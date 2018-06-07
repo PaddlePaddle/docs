@@ -1,0 +1,1 @@
+../../paddle/doc/fluid/api/gen_doc.sh

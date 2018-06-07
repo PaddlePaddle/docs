@@ -1,0 +1,1 @@
+../../paddle/doc/fluid/api/regularizer.rst

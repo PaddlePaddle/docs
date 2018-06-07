@@ -12,11 +12,14 @@
 
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     quick_start/index.rst
-    use_guide/index.rst
+    user_guides/index.rst
     advanced_usage/index.rst
+    api_guides/index.rst
+    api_reference/index.rst
+    faq.rst
 
 Indices and tables
 ==================
