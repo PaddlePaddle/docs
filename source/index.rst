@@ -3,16 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to PaddlePaddle Fluid's documentation!
-==============================================
+##############
+欢迎来到 Fluid
+##############
 
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
+..  todo::
+		内容简介，导引
 
 
+..  toctree::
+		:maxdepth: 1
+
+		quick_start/index.rst
+    
 Indices and tables
 ==================
 
