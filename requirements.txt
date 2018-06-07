@@ -19,7 +19,7 @@ nltk==3.3
 numpy==1.14.4
 opencv-python==3.4.1.15
 packaging==17.1
-paddlepaddle
+https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl
 Pillow==5.1.0
 protobuf==3.1.0
 Pygments==2.2.0
