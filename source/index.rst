@@ -8,14 +8,16 @@
 ##############
 
 ..  todo::
-		内容简介，导引
+    内容简介，导引
 
 
 ..  toctree::
-		:maxdepth: 1
+    :maxdepth: 2
 
-		quick_start/index.rst
-    
+    quick_start/index.rst
+    use_guide/index.rst
+    advanced_usage/index.rst
+
 Indices and tables
 ==================
 
