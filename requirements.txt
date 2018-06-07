@@ -19,7 +19,7 @@ nltk==3.3
 numpy==1.14.4
 opencv-python==3.4.1.15
 packaging==17.1
-paddlepaddle-gpu==0.11.1a2
+paddlepaddle
 Pillow==5.1.0
 protobuf==3.1.0
 Pygments==2.2.0
