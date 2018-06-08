@@ -18,6 +18,7 @@ import shlex
 from recommonmark.parser import CommonMarkParser
 from recommonmark.transform import AutoStructify
 import paddle.fluid
+import sphinx.ext.napoleon
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -38,6 +39,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
     'sphinx_markdown_tables',
+    'sphinx.ext.napoleon',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
