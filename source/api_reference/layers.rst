@@ -814,6 +814,12 @@ shape
 ..  autofunction:: paddle.fluid.layers.shape
     :noindex:
 
+maxout
+------
+
+..  autofunction:: paddle.fluid.layers.maxout
+    :noindex:
+
 sigmoid
 -------
 
@@ -1100,5 +1106,62 @@ noam_decay
 ----------
 
 ..  autofunction:: paddle.fluid.layers.noam_decay
+    :noindex:
+
+detection
+=========
+
+prior_box
+---------
+
+..  autofunction:: paddle.fluid.layers.prior_box
+    :noindex:
+
+multi_box_head
+--------------
+
+..  autofunction:: paddle.fluid.layers.multi_box_head
+    :noindex:
+
+bipartite_match
+---------------
+
+..  autofunction:: paddle.fluid.layers.bipartite_match
+    :noindex:
+
+target_assign
+-------------
+
+..  autofunction:: paddle.fluid.layers.target_assign
+    :noindex:
+
+detection_output
+----------------
+
+..  autofunction:: paddle.fluid.layers.detection_output
+    :noindex:
+
+ssd_loss
+--------
+
+..  autofunction:: paddle.fluid.layers.ssd_loss
+    :noindex:
+
+detection_map
+-------------
+
+..  autofunction:: paddle.fluid.layers.detection_map
+    :noindex:
+
+iou_similarity
+--------------
+
+..  autofunction:: paddle.fluid.layers.iou_similarity
+    :noindex:
+
+box_coder
+---------
+
+..  autofunction:: paddle.fluid.layers.box_coder
     :noindex:
 
