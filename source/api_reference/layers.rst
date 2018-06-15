@@ -1222,3 +1222,84 @@ auc
 ..  autofunction:: paddle.fluid.layers.auc
     :noindex:
 
+tensor
+======
+
+create_tensor
+-------------
+
+..  autofunction:: paddle.fluid.layers.create_tensor
+    :noindex:
+
+create_parameter
+----------------
+
+..  autofunction:: paddle.fluid.layers.create_parameter
+    :noindex:
+
+create_global_var
+-----------------
+
+..  autofunction:: paddle.fluid.layers.create_global_var
+    :noindex:
+
+cast
+----
+
+..  autofunction:: paddle.fluid.layers.cast
+    :noindex:
+
+concat
+------
+
+..  autofunction:: paddle.fluid.layers.concat
+    :noindex:
+
+sums
+----
+
+..  autofunction:: paddle.fluid.layers.sums
+    :noindex:
+
+assign
+------
+
+..  autofunction:: paddle.fluid.layers.assign
+    :noindex:
+
+fill_constant_batch_size_like
+-----------------------------
+
+..  autofunction:: paddle.fluid.layers.fill_constant_batch_size_like
+    :noindex:
+
+fill_constant
+-------------
+
+..  autofunction:: paddle.fluid.layers.fill_constant
+    :noindex:
+
+argmin
+------
+
+..  autofunction:: paddle.fluid.layers.argmin
+    :noindex:
+
+argmax
+------
+
+..  autofunction:: paddle.fluid.layers.argmax
+    :noindex:
+
+ones
+----
+
+..  autofunction:: paddle.fluid.layers.ones
+    :noindex:
+
+zeros
+-----
+
+..  autofunction:: paddle.fluid.layers.zeros
+    :noindex:
+
