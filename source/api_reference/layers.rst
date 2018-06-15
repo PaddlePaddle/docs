@@ -367,6 +367,12 @@ conv2d
 ..  autofunction:: paddle.fluid.layers.conv2d
     :noindex:
 
+conv3d
+------
+
+..  autofunction:: paddle.fluid.layers.conv3d
+    :noindex:
+
 sequence_pool
 -------------
 
@@ -391,6 +397,12 @@ pool2d
 ..  autofunction:: paddle.fluid.layers.pool2d
     :noindex:
 
+pool3d
+------
+
+..  autofunction:: paddle.fluid.layers.pool3d
+    :noindex:
+
 batch_norm
 ----------
 
@@ -407,6 +419,12 @@ conv2d_transpose
 ----------------
 
 ..  autofunction:: paddle.fluid.layers.conv2d_transpose
+    :noindex:
+
+conv3d_transpose
+----------------
+
+..  autofunction:: paddle.fluid.layers.conv3d_transpose
     :noindex:
 
 sequence_expand
@@ -655,6 +673,12 @@ random_crop
 ..  autofunction:: paddle.fluid.layers.random_crop
     :noindex:
 
+mean_iou
+--------
+
+..  autofunction:: paddle.fluid.layers.mean_iou
+    :noindex:
+
 ops
 ===
 
@@ -800,6 +824,12 @@ sum
 ---
 
 ..  autofunction:: paddle.fluid.layers.sum
+    :noindex:
+
+slice
+-----
+
+..  autofunction:: paddle.fluid.layers.slice
     :noindex:
 
 polygon_box_transform
@@ -1057,6 +1087,18 @@ fill_constant
 ..  autofunction:: paddle.fluid.layers.fill_constant
     :noindex:
 
+argmin
+------
+
+..  autofunction:: paddle.fluid.layers.argmin
+    :noindex:
+
+argmax
+------
+
+..  autofunction:: paddle.fluid.layers.argmax
+    :noindex:
+
 ones
 ----
 
@@ -1163,5 +1205,20 @@ box_coder
 ---------
 
 ..  autofunction:: paddle.fluid.layers.box_coder
+    :noindex:
+
+metric
+======
+
+accuracy
+--------
+
+..  autofunction:: paddle.fluid.layers.accuracy
+    :noindex:
+
+auc
+---
+
+..  autofunction:: paddle.fluid.layers.auc
     :noindex:
 
