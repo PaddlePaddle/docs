@@ -79,6 +79,7 @@ class DocGenerator(object):
             pass
 
     def print_class(self, name):
+        self._print_ref_(name)
         self._print_header_(name, dot='-', is_title=False)
         self.stream.write('''..  autoclass:: paddle.{0}.{1}
     :members:
@@ -87,6 +88,7 @@ class DocGenerator(object):
 '''.format(self.module_name, name))
 
     def print_method(self, name):
+        self._print_ref_(name)
         self._print_header_(name, dot='-', is_title=False)
         self.stream.write('''..  autofunction:: paddle.{0}.{1}
     :noindex:
@@ -103,6 +105,11 @@ class DocGenerator(object):
         self.stream.write(dot_line)
         self.stream.write('\n')
         self.stream.write('\n')
+
+    def _print_ref_(self, name):
+        self.stream.write(".. _api_{0}_{1}:\n\n".format(
+          "_".join(self.module_name.split(".")), name
+        ))
 
 
 def main():

@@ -5,11 +5,15 @@
 fluid.io
 ========
 
+.. _api_fluid_io_save_vars:
+
 save_vars
 ---------
 
 ..  autofunction:: paddle.fluid.io.save_vars
     :noindex:
+
+.. _api_fluid_io_save_params:
 
 save_params
 -----------
@@ -17,11 +21,15 @@ save_params
 ..  autofunction:: paddle.fluid.io.save_params
     :noindex:
 
+.. _api_fluid_io_save_persistables:
+
 save_persistables
 -----------------
 
 ..  autofunction:: paddle.fluid.io.save_persistables
     :noindex:
+
+.. _api_fluid_io_load_vars:
 
 load_vars
 ---------
@@ -29,11 +37,15 @@ load_vars
 ..  autofunction:: paddle.fluid.io.load_vars
     :noindex:
 
+.. _api_fluid_io_load_params:
+
 load_params
 -----------
 
 ..  autofunction:: paddle.fluid.io.load_params
     :noindex:
+
+.. _api_fluid_io_load_persistables:
 
 load_persistables
 -----------------
@@ -41,11 +53,15 @@ load_persistables
 ..  autofunction:: paddle.fluid.io.load_persistables
     :noindex:
 
+.. _api_fluid_io_save_inference_model:
+
 save_inference_model
 --------------------
 
 ..  autofunction:: paddle.fluid.io.save_inference_model
     :noindex:
+
+.. _api_fluid_io_load_inference_model:
 
 load_inference_model
 --------------------
@@ -53,11 +69,15 @@ load_inference_model
 ..  autofunction:: paddle.fluid.io.load_inference_model
     :noindex:
 
+.. _api_fluid_io_get_inference_program:
+
 get_inference_program
 ---------------------
 
 ..  autofunction:: paddle.fluid.io.get_inference_program
     :noindex:
+
+.. _api_fluid_io_save_checkpoint:
 
 save_checkpoint
 ---------------
@@ -65,11 +85,15 @@ save_checkpoint
 ..  autofunction:: paddle.fluid.io.save_checkpoint
     :noindex:
 
+.. _api_fluid_io_load_checkpoint:
+
 load_checkpoint
 ---------------
 
 ..  autofunction:: paddle.fluid.io.load_checkpoint
     :noindex:
+
+.. _api_fluid_io_clean_checkpoint:
 
 clean_checkpoint
 ----------------
@@ -77,17 +101,23 @@ clean_checkpoint
 ..  autofunction:: paddle.fluid.io.clean_checkpoint
     :noindex:
 
+.. _api_fluid_io_load_persist_vars_without_grad:
+
 load_persist_vars_without_grad
 ------------------------------
 
 ..  autofunction:: paddle.fluid.io.load_persist_vars_without_grad
     :noindex:
 
+.. _api_fluid_io_save_persist_vars_without_grad:
+
 save_persist_vars_without_grad
 ------------------------------
 
 ..  autofunction:: paddle.fluid.io.save_persist_vars_without_grad
     :noindex:
+
+.. _api_fluid_io_get_latest_checkpoint_serial:
 
 get_latest_checkpoint_serial
 ----------------------------

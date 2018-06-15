@@ -5,6 +5,8 @@
 fluid.data_feeder
 =================
 
+.. _api_fluid_data_feeder_DataFeeder:
+
 DataFeeder
 ----------
 

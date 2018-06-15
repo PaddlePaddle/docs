@@ -5,12 +5,16 @@
 fluid.metrics
 =============
 
+.. _api_fluid_metrics_MetricBase:
+
 MetricBase
 ----------
 
 ..  autoclass:: paddle.fluid.metrics.MetricBase
     :members:
     :noindex:
+
+.. _api_fluid_metrics_CompositeMetric:
 
 CompositeMetric
 ---------------
@@ -19,12 +23,16 @@ CompositeMetric
     :members:
     :noindex:
 
+.. _api_fluid_metrics_Accuracy:
+
 Accuracy
 --------
 
 ..  autoclass:: paddle.fluid.metrics.Accuracy
     :members:
     :noindex:
+
+.. _api_fluid_metrics_ChunkEvaluator:
 
 ChunkEvaluator
 --------------
@@ -33,6 +41,8 @@ ChunkEvaluator
     :members:
     :noindex:
 
+.. _api_fluid_metrics_EditDistance:
+
 EditDistance
 ------------
 
@@ -40,12 +50,16 @@ EditDistance
     :members:
     :noindex:
 
+.. _api_fluid_metrics_DetectionMAP:
+
 DetectionMAP
 ------------
 
 ..  autoclass:: paddle.fluid.metrics.DetectionMAP
     :members:
     :noindex:
+
+.. _api_fluid_metrics_Auc:
 
 Auc
 ---

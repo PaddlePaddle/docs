@@ -5,11 +5,15 @@
 fluid.regularizer
 =================
 
+.. _api_fluid_regularizer_append_regularization_ops:
+
 append_regularization_ops
 -------------------------
 
 ..  autofunction:: paddle.fluid.regularizer.append_regularization_ops
     :noindex:
+
+.. _api_fluid_regularizer_WeightDecayRegularizer:
 
 WeightDecayRegularizer
 ----------------------
@@ -18,12 +22,16 @@ WeightDecayRegularizer
     :members:
     :noindex:
 
+.. _api_fluid_regularizer_L1Decay:
+
 L1Decay
 -------
 
 ..  autoclass:: paddle.fluid.regularizer.L1Decay
     :members:
     :noindex:
+
+.. _api_fluid_regularizer_L2Decay:
 
 L2Decay
 -------
@@ -32,12 +40,16 @@ L2Decay
     :members:
     :noindex:
 
+.. _api_fluid_regularizer_L1DecayRegularizer:
+
 L1DecayRegularizer
 ------------------
 
 ..  autoclass:: paddle.fluid.regularizer.L1DecayRegularizer
     :members:
     :noindex:
+
+.. _api_fluid_regularizer_L2DecayRegularizer:
 
 L2DecayRegularizer
 ------------------

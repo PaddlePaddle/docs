@@ -5,12 +5,16 @@
 fluid.initializer
 =================
 
+.. _api_fluid_initializer_Constant:
+
 Constant
 --------
 
 ..  autoclass:: paddle.fluid.initializer.Constant
     :members:
     :noindex:
+
+.. _api_fluid_initializer_Uniform:
 
 Uniform
 -------
@@ -19,12 +23,16 @@ Uniform
     :members:
     :noindex:
 
+.. _api_fluid_initializer_Normal:
+
 Normal
 ------
 
 ..  autoclass:: paddle.fluid.initializer.Normal
     :members:
     :noindex:
+
+.. _api_fluid_initializer_Xavier:
 
 Xavier
 ------
@@ -33,17 +41,23 @@ Xavier
     :members:
     :noindex:
 
+.. _api_fluid_initializer_force_init_on_cpu:
+
 force_init_on_cpu
 -----------------
 
 ..  autofunction:: paddle.fluid.initializer.force_init_on_cpu
     :noindex:
 
+.. _api_fluid_initializer_init_on_cpu:
+
 init_on_cpu
 -----------
 
 ..  autofunction:: paddle.fluid.initializer.init_on_cpu
     :noindex:
+
+.. _api_fluid_initializer_ConstantInitializer:
 
 ConstantInitializer
 -------------------
@@ -52,6 +66,8 @@ ConstantInitializer
     :members:
     :noindex:
 
+.. _api_fluid_initializer_UniformInitializer:
+
 UniformInitializer
 ------------------
 
@@ -59,12 +75,16 @@ UniformInitializer
     :members:
     :noindex:
 
+.. _api_fluid_initializer_NormalInitializer:
+
 NormalInitializer
 -----------------
 
 ..  autoclass:: paddle.fluid.initializer.NormalInitializer
     :members:
     :noindex:
+
+.. _api_fluid_initializer_XavierInitializer:
 
 XavierInitializer
 -----------------

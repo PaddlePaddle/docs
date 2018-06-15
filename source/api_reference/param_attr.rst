@@ -5,12 +5,16 @@
 fluid.param_attr
 ================
 
+.. _api_fluid_param_attr_ParamAttr:
+
 ParamAttr
 ---------
 
 ..  autoclass:: paddle.fluid.param_attr.ParamAttr
     :members:
     :noindex:
+
+.. _api_fluid_param_attr_WeightNormParamAttr:
 
 WeightNormParamAttr
 -------------------

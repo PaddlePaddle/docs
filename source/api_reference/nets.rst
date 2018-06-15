@@ -5,11 +5,15 @@
 fluid.nets
 ==========
 
+.. _api_fluid_nets_simple_img_conv_pool:
+
 simple_img_conv_pool
 --------------------
 
 ..  autofunction:: paddle.fluid.nets.simple_img_conv_pool
     :noindex:
+
+.. _api_fluid_nets_sequence_conv_pool:
 
 sequence_conv_pool
 ------------------
@@ -17,11 +21,15 @@ sequence_conv_pool
 ..  autofunction:: paddle.fluid.nets.sequence_conv_pool
     :noindex:
 
+.. _api_fluid_nets_glu:
+
 glu
 ---
 
 ..  autofunction:: paddle.fluid.nets.glu
     :noindex:
+
+.. _api_fluid_nets_scaled_dot_product_attention:
 
 scaled_dot_product_attention
 ----------------------------

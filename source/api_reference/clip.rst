@@ -5,12 +5,16 @@
 fluid.clip
 ==========
 
+.. _api_fluid_clip_ErrorClipByValue:
+
 ErrorClipByValue
 ----------------
 
 ..  autoclass:: paddle.fluid.clip.ErrorClipByValue
     :members:
     :noindex:
+
+.. _api_fluid_clip_GradientClipByValue:
 
 GradientClipByValue
 -------------------
@@ -19,12 +23,16 @@ GradientClipByValue
     :members:
     :noindex:
 
+.. _api_fluid_clip_GradientClipByNorm:
+
 GradientClipByNorm
 ------------------
 
 ..  autoclass:: paddle.fluid.clip.GradientClipByNorm
     :members:
     :noindex:
+
+.. _api_fluid_clip_GradientClipByGlobalNorm:
 
 GradientClipByGlobalNorm
 ------------------------
@@ -33,11 +41,15 @@ GradientClipByGlobalNorm
     :members:
     :noindex:
 
+.. _api_fluid_clip_append_gradient_clip_ops:
+
 append_gradient_clip_ops
 ------------------------
 
 ..  autofunction:: paddle.fluid.clip.append_gradient_clip_ops
     :noindex:
+
+.. _api_fluid_clip_error_clip_callback:
 
 error_clip_callback
 -------------------
