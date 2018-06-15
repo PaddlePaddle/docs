@@ -19,3 +19,4 @@ API Reference
     regularizer.rst
     io.rst
     data.rst
+    transpiler.rst
