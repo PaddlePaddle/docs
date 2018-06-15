@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_reference/clip.rst:6
+msgid "clip"
+msgstr ""
+
+#: ../../source/api_reference/clip.rst:9
+msgid "ErrorClipByValue"
+msgstr ""
+
+#: ../../source/api_reference/clip.rst:16
+msgid "GradientClipByValue"
+msgstr ""
+
+#: ../../source/api_reference/clip.rst:23
+msgid "GradientClipByNorm"
+msgstr ""
+
+#: ../../source/api_reference/clip.rst:30
+msgid "GradientClipByGlobalNorm"
+msgstr ""
+
+#: ../../source/api_reference/clip.rst:37
+msgid "append_gradient_clip_ops"
+msgstr ""
+
+#: ../../source/api_reference/clip.rst:43
+msgid "error_clip_callback"
+msgstr ""
+

@@ -1,0 +1,326 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_reference/optimizer.rst:6
+msgid "optimizer"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:9
+msgid "SGD"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:16
+msgid "Momentum"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:23
+msgid "Adagrad"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:30
+msgid "Adam"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:37
+msgid "Adamax"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:44
+msgid "DecayedAdagrad"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:51
+msgid "SGDOptimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.SGDOptimizer:1
+msgid "Simple SGD optimizer without any state."
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:58
+msgid "MomentumOptimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.MomentumOptimizer:1
+msgid "Simple Momentum optimizer with velocity state"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:65
+msgid "AdagradOptimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.AdagradOptimizer:1
+msgid "Simple Adagrad optimizer with moment state"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:72
+msgid "AdamOptimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.AdamOptimizer:1
+msgid "Implements the Adam Optimizer"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:79
+msgid "AdamaxOptimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.AdamaxOptimizer:1
+msgid "Implements the Adamax Optimizer"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:86
+msgid "DecayedAdagradOptimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.DecayedAdagradOptimizer:1
+msgid "Simple Decayed Adagrad optimizer with moment state"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:93
+msgid "RMSPropOptimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:1
+msgid ""
+"Root Mean Squared Propagation (RMSProp) is an unpublished, adaptive "
+"learning rate method. The original slides proposed RMSProp: Slide 29 of "
+"http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf ."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:5
+msgid "The original equation is as follows:"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:13
+msgid ""
+"The first equation calculates moving average of the squared gradient for "
+"each weight. Then dividing the gradient by :math: `sqrt{v(w,t)}`."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:16
+msgid ""
+"In some cases, adding a momentum term :math: `\\beta` is beneficial. In "
+"our implementation, Nesterov momentum is used:"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:28
+msgid ""
+"where, :math: `\\rho` is a hyperparameter and typical values are 0.9, "
+"0.95 and so on. :math: `beta` is the momentum term. :math: `\\epsilon` is"
+" a smoothing term to avoid division by zero, usually set somewhere in "
+"range from 1e-4 to 1e-8."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage
+#: paddle.fluid.optimizer.Optimizer.create_optimization_pass
+#: paddle.fluid.optimizer.RMSPropOptimizer
+msgid "参数"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:34
+msgid "global leraning rate."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:36
+msgid "rho is :math: `\\rho` in equation, set 0.95 by default."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:38
+msgid ""
+":math: `\\epsilon` in equation is smoothing term to avoid division by "
+"zero, set 1e-6 by default."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer
+msgid "math"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:38
+msgid "`\\epsilon` in equation is smoothing term to"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:39
+msgid "avoid division by zero, set 1e-6 by default."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:41
+msgid ":math: `\\beta` in equation is the momentum term, set 0.0 by default."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:41
+msgid "`\\beta` in equation is the momentum term,"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:42
+msgid "set 0.0 by default."
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer
+msgid "raises"
+msgstr ""
+
+#: of paddle.fluid.optimizer.RMSPropOptimizer:45
+msgid ":exc:`ValueError` -- If learning_rate, rho, epsilon, momentum are None."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:15
+#: paddle.fluid.optimizer.RMSPropOptimizer:48
+msgid "Examples"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:100
+msgid "Adadelta"
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:107
+msgid "ModelAverage"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:1
+msgid ""
+"Accumulate the average of parameters whtin sliding window. The average "
+"result will be saved in temporary variables which can be applied to "
+"parameter variables of current model by calling 'apply()' method. And the"
+" 'restore()' method is used to restored the parameter values of current "
+"model."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:6
+msgid ""
+"The size of average window is determined by average_window_rate, "
+"min_average_window, max_average_window and current update times."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:9
+msgid "The rate of average window."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:10
+msgid "A list of parameter-grad variable pairs."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:11
+msgid "The minimum size of average window."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:12
+msgid "The maximum size of average window."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:16
+msgid ""
+"... optimizer = fluid.optimizer.Momentum() _, params_grads = "
+"optimizer.minimize(cost) model_average = "
+"fluid.optimizer.ModelAverage(params_grads, 0.15,"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:20
+msgid "min_average_window=10000, max_average_window=20000)"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:29
+msgid "for pass_id in range(args.pass_num):"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:24
+msgid "for data in train_reader():"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:24
+msgid "exe.run(fluid.default_main_program()...)"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:29
+msgid "with model_average.apply(exe):"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:29
+msgid "for data in test_reader():"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage:28
+msgid "exe.run(inference_program...)"
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage.apply:1
+msgid "Apply average values to parameters of current model."
+msgstr ""
+
+#: of paddle.fluid.optimizer.ModelAverage.restore:1
+msgid "Restore parameter values of current model."
+msgstr ""
+
+#: ../../source/api_reference/optimizer.rst:114
+msgid "Optimizer"
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer:1
+msgid "Optimizer Base class."
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer:3
+msgid ""
+"Define the common interface of an optimizer. User should not use this "
+"class directly, but need to use one of it's implementation."
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.create_optimization_pass:1
+msgid "Add optimization operators to update gradients to variables."
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.create_optimization_pass:3
+msgid "the target that this optimization is for."
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.create_optimization_pass:4
+msgid "a list of (variable, gradient) pair to update."
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.create_optimization_pass
+msgid "返回"
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.create_optimization_pass:6
+msgid ""
+"a list of operators that will complete one step of optimization. This "
+"will include parameter update ops, global step update ops and any other "
+"custom ops required by subclasses to manage their internal state. :param "
+"startup_program:"
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.create_optimization_pass
+msgid "返回类型"
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.global_learning_rate:1
+msgid "get global decayed learning rate :return:"
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.minimize:1
+msgid "Add operations to minimize `loss` by updating `parameter_list`."
+msgstr ""
+
+#: of paddle.fluid.optimizer.Optimizer.minimize:3
+msgid ""
+"This method combines interface `append_backward()` and "
+"`create_optimization_pass()` into one."
+msgstr ""
+

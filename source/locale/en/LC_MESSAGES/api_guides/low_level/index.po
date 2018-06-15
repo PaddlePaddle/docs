@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_guides/low_level/index.rst:3
+msgid "Low level API"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:6
+msgid "Layers"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:8
+msgid "神经网络的主体API是一些层函数，他们包括"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:23
+msgid "执行引擎"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:31
+msgid "数据读取"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:34
+msgid "参数属性与参数初始化(ParamAttr)"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:38
+msgid "预测引擎"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:41
+msgid "Program/Block/Variable"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:44
+msgid "Scope"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:47
+msgid "CreateOperator"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:50
+msgid "Backward"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:53
+msgid "模型平均(Model Average)"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:56
+msgid "Optimizers"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:59
+msgid "正则化"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:62
+msgid "Transpiler"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:65
+msgid "Gradient Clipping"
+msgstr ""
+
+#: ../../source/api_guides/low_level/index.rst:68
+msgid "调试工具/VisualDL"
+msgstr ""
+
