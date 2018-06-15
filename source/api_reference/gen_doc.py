@@ -36,7 +36,7 @@ class DocGenerator(object):
         if module_name is None:
             self.module_name = "fluid"
         else:
-            self.module_name = module_name
+            self.module_name = "fluid." + module_name
         if module_name is None:
             self.module = fluid
         else:
@@ -80,7 +80,7 @@ class DocGenerator(object):
 
     def print_class(self, name):
         self._print_header_(name, dot='-', is_title=False)
-        self.stream.write('''..  autoclass:: paddle.fluid.{0}.{1}
+        self.stream.write('''..  autoclass:: paddle.{0}.{1}
     :members:
     :noindex:
 
@@ -88,7 +88,7 @@ class DocGenerator(object):
 
     def print_method(self, name):
         self._print_header_(name, dot='-', is_title=False)
-        self.stream.write('''..  autofunction:: paddle.fluid.{0}.{1}
+        self.stream.write('''..  autofunction:: paddle.{0}.{1}
     :noindex:
 
 '''.format(self.module_name, name))

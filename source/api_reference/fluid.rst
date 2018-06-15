@@ -8,283 +8,283 @@ fluid
 Block
 -----
 
-..  autoclass:: paddle.fluid.fluid.Block
+..  autoclass:: paddle.fluid.Block
     :members:
     :noindex:
 
 Variable
 --------
 
-..  autoclass:: paddle.fluid.fluid.Variable
+..  autoclass:: paddle.fluid.Variable
     :members:
     :noindex:
 
 Program
 -------
 
-..  autoclass:: paddle.fluid.fluid.Program
+..  autoclass:: paddle.fluid.Program
     :members:
     :noindex:
 
 Operator
 --------
 
-..  autoclass:: paddle.fluid.fluid.Operator
+..  autoclass:: paddle.fluid.Operator
     :members:
     :noindex:
 
 default_startup_program
 -----------------------
 
-..  autofunction:: paddle.fluid.fluid.default_startup_program
+..  autofunction:: paddle.fluid.default_startup_program
     :noindex:
 
 default_main_program
 --------------------
 
-..  autofunction:: paddle.fluid.fluid.default_main_program
+..  autofunction:: paddle.fluid.default_main_program
     :noindex:
 
 program_guard
 -------------
 
-..  autofunction:: paddle.fluid.fluid.program_guard
+..  autofunction:: paddle.fluid.program_guard
     :noindex:
 
 switch_startup_program
 ----------------------
 
-..  autofunction:: paddle.fluid.fluid.switch_startup_program
+..  autofunction:: paddle.fluid.switch_startup_program
     :noindex:
 
 switch_main_program
 -------------------
 
-..  autofunction:: paddle.fluid.fluid.switch_main_program
+..  autofunction:: paddle.fluid.switch_main_program
     :noindex:
 
 get_var
 -------
 
-..  autofunction:: paddle.fluid.fluid.get_var
+..  autofunction:: paddle.fluid.get_var
     :noindex:
 
 Executor
 --------
 
-..  autoclass:: paddle.fluid.fluid.Executor
+..  autoclass:: paddle.fluid.Executor
     :members:
     :noindex:
 
 global_scope
 ------------
 
-..  autofunction:: paddle.fluid.fluid.global_scope
+..  autofunction:: paddle.fluid.global_scope
     :noindex:
 
 scope_guard
 -----------
 
-..  autofunction:: paddle.fluid.fluid.scope_guard
+..  autofunction:: paddle.fluid.scope_guard
     :noindex:
 
 switch_scope
 ------------
 
-..  autofunction:: paddle.fluid.fluid.switch_scope
+..  autofunction:: paddle.fluid.switch_scope
     :noindex:
 
 fetch_var
 ---------
 
-..  autofunction:: paddle.fluid.fluid.fetch_var
+..  autofunction:: paddle.fluid.fetch_var
     :noindex:
 
 Go
 --
 
-..  autoclass:: paddle.fluid.fluid.Go
+..  autoclass:: paddle.fluid.Go
     :members:
     :noindex:
 
 make_channel
 ------------
 
-..  autofunction:: paddle.fluid.fluid.make_channel
+..  autofunction:: paddle.fluid.make_channel
     :noindex:
 
 channel_send
 ------------
 
-..  autofunction:: paddle.fluid.fluid.channel_send
+..  autofunction:: paddle.fluid.channel_send
     :noindex:
 
 channel_recv
 ------------
 
-..  autofunction:: paddle.fluid.fluid.channel_recv
+..  autofunction:: paddle.fluid.channel_recv
     :noindex:
 
 channel_close
 -------------
 
-..  autofunction:: paddle.fluid.fluid.channel_close
+..  autofunction:: paddle.fluid.channel_close
     :noindex:
 
 Select
 ------
 
-..  autoclass:: paddle.fluid.fluid.Select
+..  autoclass:: paddle.fluid.Select
     :members:
     :noindex:
 
 Trainer
 -------
 
-..  autoclass:: paddle.fluid.fluid.Trainer
+..  autoclass:: paddle.fluid.Trainer
     :members:
     :noindex:
 
 BeginEpochEvent
 ---------------
 
-..  autoclass:: paddle.fluid.fluid.BeginEpochEvent
+..  autoclass:: paddle.fluid.BeginEpochEvent
     :members:
     :noindex:
 
 EndEpochEvent
 -------------
 
-..  autoclass:: paddle.fluid.fluid.EndEpochEvent
+..  autoclass:: paddle.fluid.EndEpochEvent
     :members:
     :noindex:
 
 BeginStepEvent
 --------------
 
-..  autoclass:: paddle.fluid.fluid.BeginStepEvent
+..  autoclass:: paddle.fluid.BeginStepEvent
     :members:
     :noindex:
 
 EndStepEvent
 ------------
 
-..  autoclass:: paddle.fluid.fluid.EndStepEvent
+..  autoclass:: paddle.fluid.EndStepEvent
     :members:
     :noindex:
 
 CheckpointConfig
 ----------------
 
-..  autoclass:: paddle.fluid.fluid.CheckpointConfig
+..  autoclass:: paddle.fluid.CheckpointConfig
     :members:
     :noindex:
 
 Inferencer
 ----------
 
-..  autoclass:: paddle.fluid.fluid.Inferencer
+..  autoclass:: paddle.fluid.Inferencer
     :members:
     :noindex:
 
 memory_optimize
 ---------------
 
-..  autofunction:: paddle.fluid.fluid.memory_optimize
+..  autofunction:: paddle.fluid.memory_optimize
     :noindex:
 
 release_memory
 --------------
 
-..  autofunction:: paddle.fluid.fluid.release_memory
+..  autofunction:: paddle.fluid.release_memory
     :noindex:
 
 ParallelExecutor
 ----------------
 
-..  autoclass:: paddle.fluid.fluid.ParallelExecutor
+..  autoclass:: paddle.fluid.ParallelExecutor
     :members:
     :noindex:
 
 ExecutionStrategy
 -----------------
 
-..  autoclass:: paddle.fluid.fluid.ExecutionStrategy
+..  autoclass:: paddle.fluid.ExecutionStrategy
     :members:
     :noindex:
 
 BuildStrategy
 -------------
 
-..  autoclass:: paddle.fluid.fluid.BuildStrategy
+..  autoclass:: paddle.fluid.BuildStrategy
     :members:
     :noindex:
 
 create_lod_tensor
 -----------------
 
-..  autofunction:: paddle.fluid.fluid.create_lod_tensor
+..  autofunction:: paddle.fluid.create_lod_tensor
     :noindex:
 
 create_random_int_lodtensor
 ---------------------------
 
-..  autofunction:: paddle.fluid.fluid.create_random_int_lodtensor
+..  autofunction:: paddle.fluid.create_random_int_lodtensor
     :noindex:
 
 LoDTensor
 ---------
 
-..  autoclass:: paddle.fluid.fluid.LoDTensor
+..  autoclass:: paddle.fluid.LoDTensor
     :members:
     :noindex:
 
 CPUPlace
 --------
 
-..  autoclass:: paddle.fluid.fluid.CPUPlace
+..  autoclass:: paddle.fluid.CPUPlace
     :members:
     :noindex:
 
 CUDAPlace
 ---------
 
-..  autoclass:: paddle.fluid.fluid.CUDAPlace
+..  autoclass:: paddle.fluid.CUDAPlace
     :members:
     :noindex:
 
 CUDAPinnedPlace
 ---------------
 
-..  autoclass:: paddle.fluid.fluid.CUDAPinnedPlace
+..  autoclass:: paddle.fluid.CUDAPinnedPlace
     :members:
     :noindex:
 
 Tensor
 ------
 
-..  autoclass:: paddle.fluid.fluid.Tensor
+..  autoclass:: paddle.fluid.Tensor
     :members:
     :noindex:
 
 ParamAttr
 ---------
 
-..  autoclass:: paddle.fluid.fluid.ParamAttr
+..  autoclass:: paddle.fluid.ParamAttr
     :members:
     :noindex:
 
 WeightNormParamAttr
 -------------------
 
-..  autoclass:: paddle.fluid.fluid.WeightNormParamAttr
+..  autoclass:: paddle.fluid.WeightNormParamAttr
     :members:
     :noindex:
 
 DataFeeder
 ----------
 
-..  autoclass:: paddle.fluid.fluid.DataFeeder
+..  autoclass:: paddle.fluid.DataFeeder
     :members:
     :noindex:
 
