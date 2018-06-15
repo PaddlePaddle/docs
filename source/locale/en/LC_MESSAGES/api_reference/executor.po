@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,10 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/executor.rst:6
-msgid "executor"
+msgid "fluid.executor"
 msgstr ""
 
-#: ../../source/api_reference/executor.rst:9
+#: ../../source/api_reference/executor.rst:11
 msgid "Executor"
 msgstr ""
 
@@ -73,19 +73,19 @@ msgid ""
 "compare to the last step. :return: result according to fetch_list."
 msgstr ""
 
-#: ../../source/api_reference/executor.rst:16
+#: ../../source/api_reference/executor.rst:20
 msgid "global_scope"
 msgstr ""
 
-#: ../../source/api_reference/executor.rst:22
+#: ../../source/api_reference/executor.rst:28
 msgid "scope_guard"
 msgstr ""
 
-#: ../../source/api_reference/executor.rst:28
+#: ../../source/api_reference/executor.rst:36
 msgid "switch_scope"
 msgstr ""
 
-#: ../../source/api_reference/executor.rst:34
+#: ../../source/api_reference/executor.rst:44
 msgid "fetch_var"
 msgstr ""
 
@@ -116,4 +116,7 @@ msgstr ""
 #: of paddle.fluid.executor.fetch_var:12
 msgid "LodTensor|numpy.ndarray"
 msgstr ""
+
+#~ msgid "executor"
+#~ msgstr ""
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,10 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/io.rst:6
-msgid "io"
+msgid "fluid.io"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:9
+#: ../../source/api_reference/io.rst:11
 msgid "save_vars"
 msgstr ""
 
@@ -72,7 +72,7 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:15
+#: ../../source/api_reference/io.rst:19
 msgid "save_params"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr ""
 msgid "Save all parameters to directory with executor."
 msgstr ""
 
-#: ../../source/api_reference/io.rst:21
+#: ../../source/api_reference/io.rst:27
 msgid "save_persistables"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 msgid "Save all persistables to directory with executor."
 msgstr ""
 
-#: ../../source/api_reference/io.rst:27
+#: ../../source/api_reference/io.rst:35
 msgid "load_vars"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 msgid "If it is None, load variables from separate files."
 msgstr ""
 
-#: ../../source/api_reference/io.rst:33
+#: ../../source/api_reference/io.rst:43
 msgid "load_params"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "load all parameters from directory by executor."
 msgstr ""
 
-#: ../../source/api_reference/io.rst:39
+#: ../../source/api_reference/io.rst:51
 msgid "load_persistables"
 msgstr ""
 
@@ -130,7 +130,7 @@ msgstr ""
 msgid "load all persistables from directory by executor."
 msgstr ""
 
-#: ../../source/api_reference/io.rst:45
+#: ../../source/api_reference/io.rst:59
 msgid "save_inference_model"
 msgstr ""
 
@@ -171,7 +171,7 @@ msgid ""
 "parameters are considered saved in separate files."
 msgstr ""
 
-#: ../../source/api_reference/io.rst:51
+#: ../../source/api_reference/io.rst:67
 msgid "load_inference_model"
 msgstr ""
 
@@ -203,11 +203,11 @@ msgid ""
 "data fetch_targets: Variables from which we can get inference results."
 msgstr ""
 
-#: ../../source/api_reference/io.rst:57
+#: ../../source/api_reference/io.rst:75
 msgid "get_inference_program"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:63
+#: ../../source/api_reference/io.rst:83
 msgid "save_checkpoint"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgid ""
 "serials not bigger than max_num_checkpoints"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:69
+#: ../../source/api_reference/io.rst:91
 msgid "load_checkpoint"
 msgstr ""
 
@@ -248,7 +248,7 @@ msgid ""
 "program"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:75
+#: ../../source/api_reference/io.rst:99
 msgid "clean_checkpoint"
 msgstr ""
 
@@ -264,7 +264,7 @@ msgstr ""
 msgid ":param checkpoint_dir :param delete_dir"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:81
+#: ../../source/api_reference/io.rst:107
 msgid "load_persist_vars_without_grad"
 msgstr ""
 
@@ -282,7 +282,7 @@ msgid ""
 "sub directory named __model__"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:87
+#: ../../source/api_reference/io.rst:115
 msgid "save_persist_vars_without_grad"
 msgstr ""
 
@@ -298,7 +298,7 @@ msgid ""
 "checkpoint directory :param program   will load all variables in program"
 msgstr ""
 
-#: ../../source/api_reference/io.rst:93
+#: ../../source/api_reference/io.rst:123
 msgid "get_latest_checkpoint_serial"
 msgstr ""
 
@@ -311,4 +311,7 @@ msgstr ""
 #: of paddle.fluid.io.get_latest_checkpoint_serial:3
 msgid ":param checkpoint_dir"
 msgstr ""
+
+#~ msgid "io"
+#~ msgstr ""
 

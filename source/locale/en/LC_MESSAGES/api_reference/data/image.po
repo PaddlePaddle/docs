@@ -1,0 +1,219 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_reference/data/image.rst:2
+msgid "Image Interface"
+msgstr ""
+
+#: of paddle.v2.image:1
+msgid ""
+"This file contains some common interfaces for image preprocess. Many "
+"users are confused about the image layout. We introduce the image layout "
+"as follows."
+msgstr ""
+
+#: of paddle.v2.image:5
+msgid "CHW Layout"
+msgstr ""
+
+#: of paddle.v2.image:7
+msgid "The abbreviations: C=channel, H=Height, W=Width"
+msgstr ""
+
+#: of paddle.v2.image:8
+msgid ""
+"The default layout of image opened by cv2 or PIL is HWC. PaddlePaddle "
+"only supports the CHW layout. And CHW is simply a transpose of HWC. It "
+"must transpose the input image."
+msgstr ""
+
+#: of paddle.v2.image:12
+msgid "Color format: RGB or BGR"
+msgstr ""
+
+#: of paddle.v2.image:14
+msgid ""
+"OpenCV use BGR color format. PIL use RGB color format. Both formats can "
+"be used for training. Noted that, the format should be keep consistent "
+"between the training and inference peroid."
+msgstr ""
+
+#: of paddle.v2.image.load_image_bytes:1
+msgid "Load an color or gray image from bytes array."
+msgstr ""
+
+#: of paddle.v2.image.center_crop:3 paddle.v2.image.left_right_flip:4
+#: paddle.v2.image.load_and_transform:5 paddle.v2.image.load_image:3
+#: paddle.v2.image.load_image_bytes:3 paddle.v2.image.random_crop:3
+#: paddle.v2.image.resize_short:3 paddle.v2.image.simple_transform:4
+#: paddle.v2.image.to_chw:5
+msgid "Example usage:"
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar paddle.v2.image.center_crop
+#: paddle.v2.image.left_right_flip paddle.v2.image.load_and_transform
+#: paddle.v2.image.load_image paddle.v2.image.load_image_bytes
+#: paddle.v2.image.random_crop paddle.v2.image.resize_short
+#: paddle.v2.image.simple_transform paddle.v2.image.to_chw
+msgid "参数"
+msgstr ""
+
+#: of paddle.v2.image.load_image_bytes:10
+msgid "the input image bytes array."
+msgstr ""
+
+#: of paddle.v2.image.load_image:11 paddle.v2.image.load_image_bytes:12
+msgid ""
+"If set is_color True, it will load and return a color image. Otherwise, "
+"it will load and return a gray image."
+msgstr ""
+
+#: of paddle.v2.image.load_image:1
+msgid "Load an color or gray image from the file path."
+msgstr ""
+
+#: of paddle.v2.image.load_image:9
+msgid "the input image path."
+msgstr ""
+
+#: of paddle.v2.image.resize_short:1
+msgid "Resize an image so that the length of shorter edge is size."
+msgstr ""
+
+#: of paddle.v2.image.center_crop:9 paddle.v2.image.random_crop:9
+#: paddle.v2.image.resize_short:10 paddle.v2.image.to_chw:13
+msgid "the input image with HWC layout."
+msgstr ""
+
+#: of paddle.v2.image.resize_short:12
+msgid "the shorter edge size of image after resizing."
+msgstr ""
+
+#: of paddle.v2.image.to_chw:1
+msgid ""
+"Transpose the input image order. The image layout is HWC format opened by"
+" cv2 or PIL. Transpose the input image to CHW layout according the order "
+"(2,0,1)."
+msgstr ""
+
+#: of paddle.v2.image.to_chw:15
+msgid "the transposed order."
+msgstr ""
+
+#: of paddle.v2.image.center_crop:1
+msgid "Crop the center of image with size."
+msgstr ""
+
+#: of paddle.v2.image.center_crop:11 paddle.v2.image.random_crop:11
+msgid "the cropping size."
+msgstr ""
+
+#: of paddle.v2.image.center_crop:13 paddle.v2.image.load_and_transform:19
+#: paddle.v2.image.random_crop:13 paddle.v2.image.simple_transform:18
+msgid "whether the image is color or not."
+msgstr ""
+
+#: of paddle.v2.image.random_crop:1
+msgid "Randomly crop input image with size."
+msgstr ""
+
+#: of paddle.v2.image.left_right_flip:1
+msgid "Flip an image along the horizontal direction. Return the flipped image."
+msgstr ""
+
+#: of paddle.v2.image.left_right_flip:10
+msgid "input image with HWC layout or HW layout for gray image"
+msgstr ""
+
+#: of paddle.v2.image.left_right_flip:12
+msgid "whether input image is color or not"
+msgstr ""
+
+#: of paddle.v2.image.simple_transform:1
+msgid ""
+"Simply data argumentation for training. These operations include "
+"resizing, croping and flipping."
+msgstr ""
+
+#: of paddle.v2.image.simple_transform:10
+msgid "The input image with HWC layout."
+msgstr ""
+
+#: of paddle.v2.image.load_and_transform:13 paddle.v2.image.simple_transform:12
+msgid "The shorter edge length of the resized image."
+msgstr ""
+
+#: of paddle.v2.image.load_and_transform:15 paddle.v2.image.simple_transform:14
+msgid "The cropping size."
+msgstr ""
+
+#: of paddle.v2.image.load_and_transform:17 paddle.v2.image.simple_transform:16
+msgid "Whether it is training or not."
+msgstr ""
+
+#: of paddle.v2.image.load_and_transform:21 paddle.v2.image.simple_transform:20
+msgid ""
+"the mean values, which can be element-wise mean values or mean values per"
+" channel."
+msgstr ""
+
+#: of paddle.v2.image.load_and_transform:1
+msgid ""
+"Load image from the input file `filename` and transform image for data "
+"argumentation. Please refer to the `simple_transform` interface for the "
+"transform operations."
+msgstr ""
+
+#: of paddle.v2.image.load_and_transform:11
+msgid "The file name of input image."
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar:1
+msgid "Read images from tar file and batch them into batch file."
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar:3
+msgid "path of image tar file"
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar:5
+msgid "'train','test' or 'valid'"
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar:7
+msgid "a dic with image file name as key and image's label as value"
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar:10
+msgid "image number per batch file"
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar
+msgid "返回"
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar:12
+msgid "path of list file containing paths of batch file"
+msgstr ""
+
+#: of paddle.v2.image.batch_images_from_tar
+msgid "返回类型"
+msgstr ""
+

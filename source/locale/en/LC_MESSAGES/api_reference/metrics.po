@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,10 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/metrics.rst:6
-msgid "metrics"
+msgid "fluid.metrics"
 msgstr ""
 
-#: ../../source/api_reference/metrics.rst:9
+#: ../../source/api_reference/metrics.rst:11
 msgid "MetricBase"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgid ""
 "metrics."
 msgstr ""
 
-#: ../../source/api_reference/metrics.rst:16
+#: ../../source/api_reference/metrics.rst:20
 msgid "CompositeMetric"
 msgstr ""
 
@@ -81,7 +81,7 @@ msgid ""
 "accuracy, recall into one Metric."
 msgstr ""
 
-#: ../../source/api_reference/metrics.rst:23
+#: ../../source/api_reference/metrics.rst:29
 msgid "Accuracy"
 msgstr ""
 
@@ -95,7 +95,7 @@ msgstr ""
 msgid "the metrics name"
 msgstr ""
 
-#: of paddle.fluid.metrics.Accuracy:7 paddle.fluid.metrics.EditDistance:7
+#: of paddle.fluid.metrics.Accuracy:6 paddle.fluid.metrics.EditDistance:6
 msgid "Example"
 msgstr ""
 
@@ -119,7 +119,7 @@ msgid ""
 "accuracy = accuracy_evaluator.eval()"
 msgstr ""
 
-#: ../../source/api_reference/metrics.rst:30
+#: ../../source/api_reference/metrics.rst:38
 msgid "ChunkEvaluator"
 msgstr ""
 
@@ -130,7 +130,7 @@ msgid ""
 "numbers."
 msgstr ""
 
-#: ../../source/api_reference/metrics.rst:37
+#: ../../source/api_reference/metrics.rst:47
 msgid "EditDistance"
 msgstr ""
 
@@ -166,7 +166,7 @@ msgid ""
 " pass. 'instance_error' is the instance error rate in a pass."
 msgstr ""
 
-#: ../../source/api_reference/metrics.rst:44
+#: ../../source/api_reference/metrics.rst:56
 msgid "DetectionMAP"
 msgstr ""
 
@@ -199,7 +199,7 @@ msgid ""
 "https://arxiv.org/abs/1512.02325"
 msgstr ""
 
-#: ../../source/api_reference/metrics.rst:51
+#: ../../source/api_reference/metrics.rst:65
 msgid "Auc"
 msgstr ""
 
@@ -242,4 +242,7 @@ msgstr ""
 #: of paddle.fluid.metrics.Auc:19
 msgid "\"NOTE: only implement the ROC curve type via Python now.\""
 msgstr ""
+
+#~ msgid "metrics"
+#~ msgstr ""
 

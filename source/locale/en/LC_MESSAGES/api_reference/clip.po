@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,30 +19,33 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/clip.rst:6
-msgid "clip"
+msgid "fluid.clip"
 msgstr ""
 
-#: ../../source/api_reference/clip.rst:9
+#: ../../source/api_reference/clip.rst:11
 msgid "ErrorClipByValue"
 msgstr ""
 
-#: ../../source/api_reference/clip.rst:16
+#: ../../source/api_reference/clip.rst:20
 msgid "GradientClipByValue"
 msgstr ""
 
-#: ../../source/api_reference/clip.rst:23
+#: ../../source/api_reference/clip.rst:29
 msgid "GradientClipByNorm"
 msgstr ""
 
-#: ../../source/api_reference/clip.rst:30
+#: ../../source/api_reference/clip.rst:38
 msgid "GradientClipByGlobalNorm"
 msgstr ""
 
-#: ../../source/api_reference/clip.rst:37
+#: ../../source/api_reference/clip.rst:47
 msgid "append_gradient_clip_ops"
 msgstr ""
 
-#: ../../source/api_reference/clip.rst:43
+#: ../../source/api_reference/clip.rst:55
 msgid "error_clip_callback"
 msgstr ""
+
+#~ msgid "clip"
+#~ msgstr ""
 

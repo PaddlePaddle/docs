@@ -1,0 +1,546 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_reference/data/data_reader.rst:3 of paddle.reader:14
+msgid "Data Reader Interface"
+msgstr ""
+
+#: ../../source/api_reference/data/data_reader.rst:7
+msgid "DataTypes"
+msgstr ""
+
+#: of paddle.v2.data_type.dense_array:1
+msgid ""
+"Dense Array. It means the input feature is dense array with float type. "
+"For example, if the input is an image with 28*28 pixels, the input of "
+"Paddle neural network could be a dense vector with dimension 784 or a "
+"numpy array with shape (28, 28)."
+msgstr ""
+
+#: of paddle.v2.data_type.dense_array:6
+msgid ""
+"For the 2-D convolution operation, each sample in one mini-batch must "
+"have the similarly size in PaddlePaddle now. But, it supports variable-"
+"dimension feature across mini-batch. For the variable-dimension, the "
+"param dim is not used. While the data reader must yield numpy array and "
+"the data feeder will set the data shape correctly."
+msgstr ""
+
+#: of paddle.reader.buffered paddle.reader.chain paddle.reader.compose
+#: paddle.reader.creator.np_array paddle.reader.firstn
+#: paddle.reader.map_readers paddle.reader.shuffle
+#: paddle.v2.data_type.InputType paddle.v2.data_type.dense_array
+#: paddle.v2.data_type.integer_value paddle.v2.data_type.integer_value_sequence
+#: paddle.v2.data_type.sparse_binary_vector
+#: paddle.v2.data_type.sparse_binary_vector_sequence
+#: paddle.v2.data_type.sparse_float_vector
+#: paddle.v2.data_type.sparse_float_vector_sequence
+#: paddle.v2.data_type.sparse_non_value_slot
+#: paddle.v2.data_type.sparse_value_slot paddle.v2.minibatch.batch
+msgid "参数"
+msgstr ""
+
+#: of paddle.v2.data_type.dense_array:12
+#: paddle.v2.data_type.sparse_binary_vector:4
+#: paddle.v2.data_type.sparse_float_vector:4
+#: paddle.v2.data_type.sparse_non_value_slot:4
+#: paddle.v2.data_type.sparse_value_slot:4
+msgid "dimension of this vector."
+msgstr ""
+
+#: of paddle.v2.data_type.dense_array:14
+msgid "sequence type of input."
+msgstr ""
+
+#: of paddle.reader.buffered paddle.reader.chain paddle.reader.compose
+#: paddle.reader.creator.np_array paddle.reader.creator.recordio
+#: paddle.reader.creator.text_file paddle.reader.firstn
+#: paddle.reader.map_readers paddle.reader.shuffle
+#: paddle.v2.data_type.dense_array paddle.v2.data_type.integer_value
+#: paddle.v2.data_type.sparse_binary_vector
+#: paddle.v2.data_type.sparse_binary_vector_sequence
+#: paddle.v2.data_type.sparse_float_vector
+#: paddle.v2.data_type.sparse_float_vector_sequence
+#: paddle.v2.data_type.sparse_non_value_slot
+#: paddle.v2.data_type.sparse_value_slot paddle.v2.minibatch.batch
+msgid "返回"
+msgstr ""
+
+#: of paddle.v2.data_type.dense_array:16
+#: paddle.v2.data_type.sparse_binary_vector:8
+#: paddle.v2.data_type.sparse_float_vector:8
+#: paddle.v2.data_type.sparse_non_value_slot:8
+#: paddle.v2.data_type.sparse_value_slot:8
+msgid "An input type object."
+msgstr ""
+
+#: of paddle.reader.chain paddle.reader.firstn paddle.reader.map_readers
+#: paddle.reader.shuffle paddle.v2.data_type.dense_array
+#: paddle.v2.data_type.integer_value paddle.v2.data_type.sparse_binary_vector
+#: paddle.v2.data_type.sparse_binary_vector_sequence
+#: paddle.v2.data_type.sparse_float_vector
+#: paddle.v2.data_type.sparse_float_vector_sequence
+#: paddle.v2.data_type.sparse_non_value_slot
+#: paddle.v2.data_type.sparse_value_slot paddle.v2.minibatch.batch
+msgid "返回类型"
+msgstr ""
+
+#: of paddle.v2.data_type.integer_value:1
+msgid "Data type of integer."
+msgstr ""
+
+#: of paddle.v2.data_type.integer_value:3
+#: paddle.v2.data_type.sparse_binary_vector:6
+#: paddle.v2.data_type.sparse_float_vector:6
+#: paddle.v2.data_type.sparse_non_value_slot:6
+#: paddle.v2.data_type.sparse_value_slot:6
+msgid "sequence type of this input."
+msgstr ""
+
+#: of paddle.v2.data_type.integer_value:5
+msgid "range of this integer."
+msgstr ""
+
+#: of paddle.v2.data_type.integer_value:7
+#: paddle.v2.data_type.sparse_binary_vector_sequence:6
+#: paddle.v2.data_type.sparse_float_vector_sequence:6
+msgid "An input type object"
+msgstr ""
+
+#: of paddle.v2.data_type.integer_value_sequence:1
+msgid "Data type of a sequence of integer."
+msgstr ""
+
+#: of paddle.v2.data_type.integer_value_sequence:3
+msgid "range of each element."
+msgstr ""
+
+#: of paddle.v2.data_type.sparse_binary_vector:1
+#: paddle.v2.data_type.sparse_non_value_slot:1
+msgid ""
+"Sparse binary vector. It means the input feature is a sparse vector and "
+"the every element in this vector is either zero or one."
+msgstr ""
+
+#: of paddle.v2.data_type.sparse_binary_vector_sequence:2
+msgid ""
+"Data type of a sequence of sparse vector, which every element is either "
+"zero"
+msgstr ""
+
+#: of paddle.v2.data_type.sparse_binary_vector_sequence:2
+msgid "or one."
+msgstr ""
+
+#: of paddle.v2.data_type.sparse_binary_vector_sequence:4
+#: paddle.v2.data_type.sparse_float_vector_sequence:4
+msgid "dimension of sparse vector."
+msgstr ""
+
+#: of paddle.v2.data_type.sparse_float_vector:1
+#: paddle.v2.data_type.sparse_value_slot:1
+msgid ""
+"Sparse vector. It means the input feature is a sparse vector. Most of the"
+" elements in this vector are zero, others could be any float value."
+msgstr ""
+
+#: of paddle.v2.data_type.sparse_float_vector_sequence:1
+msgid ""
+"Data type of a sequence of sparse vector, which most elements are zero, "
+"others could be any float value."
+msgstr ""
+
+#: of paddle.v2.data_type.InputType:1
+msgid "InputType is the base class for paddle input types."
+msgstr ""
+
+#: of paddle.v2.data_type.InputType:5
+msgid "this is a base class, and should never be used by user."
+msgstr ""
+
+#: of paddle.v2.data_type.InputType:7
+msgid ""
+"dimension of input. If the input is an integer, it means the value range."
+" Otherwise, it means the size of layer."
+msgstr ""
+
+#: of paddle.v2.data_type.InputType:10
+msgid ""
+"sequence type of input. 0 means it is not a sequence. 1 means it is a "
+"variable length sequence. 2 means it is a nested sequence."
+msgstr ""
+
+#: of paddle.v2.data_type.InputType:14
+msgid "data type of input."
+msgstr ""
+
+#: ../../source/api_reference/data/data_reader.rst:50
+msgid "DataFeeder"
+msgstr ""
+
+#: ../../source/api_reference/data/data_reader.rst:57
+msgid "Reader"
+msgstr ""
+
+#: of paddle.reader:1
+msgid ""
+"At training and testing time, PaddlePaddle programs need to read data. To"
+" ease the users' work to write data reading code, we define that"
+msgstr ""
+
+#: of paddle.reader:4
+msgid ""
+"A *reader* is a function that reads data (from file, network, random "
+"number generator, etc) and yields data items."
+msgstr ""
+
+#: of paddle.reader:6
+msgid "A *reader creator* is a function that returns a reader function."
+msgstr ""
+
+#: of paddle.reader:7
+msgid ""
+"A *reader decorator* is a function, which accepts one or more readers, "
+"and returns a reader."
+msgstr ""
+
+#: of paddle.reader:9
+msgid ""
+"A *batch reader* is a function that reads data (from *reader*, file, "
+"network, random number generator, etc) and yields a batch of data items."
+msgstr ""
+
+#: of paddle.reader:16
+msgid ""
+"Indeed, *data reader* doesn't have to be a function that reads and yields"
+" data items. It can be any function with no parameter that creates a "
+"iterable (anything can be used in :code:`for x in iterable`)\\:"
+msgstr ""
+
+#: of paddle.reader:24
+msgid ""
+"Element produced from the iterable should be a **single** entry of data, "
+"**not** a mini batch. That entry of data could be a single item, or a "
+"tuple of items. Item should be of `supported type "
+"<http://www.paddlepaddle.org/doc/ui/data_provider "
+"/pydataprovider2.html?highlight=dense_vector#input-types>`_ (e.g., numpy "
+"1d array of float32, int, list of int)"
+msgstr ""
+
+#: of paddle.reader:31
+msgid "An example implementation for single item data reader creator:"
+msgstr ""
+
+#: of paddle.reader:41
+msgid "An example implementation for multiple item data reader creator:"
+msgstr ""
+
+#: of paddle.reader:52
+msgid "TODO(yuyang18): Should we add whole design doc here?"
+msgstr ""
+
+#: of paddle.reader.map_readers:1
+msgid ""
+"Creates a data reader that outputs return value of function using output "
+"of each data readers as arguments."
+msgstr ""
+
+#: of paddle.reader.map_readers:4
+msgid "function to use. The type of func should be (Sample) => Sample"
+msgstr ""
+
+#: of paddle.reader.map_readers:6
+msgid "readers whose outputs will be used as arguments of func."
+msgstr ""
+
+#: of paddle.reader.map_readers
+msgid "type"
+msgstr ""
+
+#: of paddle.reader.map_readers:5
+msgid "callable"
+msgstr ""
+
+#: of paddle.reader.map_readers:7
+msgid "the created data reader."
+msgstr ""
+
+#: of paddle.reader.buffered:1
+msgid "Creates a buffered data reader."
+msgstr ""
+
+#: of paddle.reader.buffered:3
+msgid ""
+"The buffered data reader will read and save data entries into a buffer. "
+"Reading from the buffered data reader will proceed as long as the buffer "
+"is not empty."
+msgstr ""
+
+#: of paddle.reader.buffered:7 paddle.reader.firstn:3
+#: paddle.v2.minibatch.batch:3
+msgid "the data reader to read from."
+msgstr ""
+
+#: of paddle.reader.buffered:9
+msgid "max buffer size."
+msgstr ""
+
+#: of paddle.reader.buffered:12
+msgid "the buffered data reader."
+msgstr ""
+
+#: of paddle.reader.compose:1
+msgid "Creates a data reader whose output is the combination of input readers."
+msgstr ""
+
+#: of paddle.reader.compose:3
+msgid ""
+"If input readers output following data entries: (1, 2)    3    (4, 5) The"
+" composed reader will output: (1, 2, 3, 4, 5)"
+msgstr ""
+
+#: of paddle.reader.compose:8
+msgid "readers that will be composed together."
+msgstr ""
+
+#: of paddle.reader.compose:9
+msgid ""
+"if True, will check if input readers are aligned correctly. If False, "
+"will not check alignment and trailing outputs will be discarded. Defaults"
+" to True."
+msgstr ""
+
+#: of paddle.reader.chain:12 paddle.reader.compose:14
+msgid "the new data reader."
+msgstr ""
+
+#: of paddle.reader.compose
+msgid "引发"
+msgstr ""
+
+#: of paddle.reader.compose:16
+msgid ""
+"outputs of readers are not aligned. Will not raise when check_alignment "
+"is set to False."
+msgstr ""
+
+#: of paddle.reader.chain:1
+msgid ""
+"Creates a data reader whose output is the outputs of input data readers "
+"chained together."
+msgstr ""
+
+#: of paddle.reader.chain:4
+msgid ""
+"If input readers output following data entries: [0, 0, 0] [1, 1, 1] [2, "
+"2, 2] The chained reader will output: [0, 0, 0, 1, 1, 1, 2, 2, 2]"
+msgstr ""
+
+#: of paddle.reader.chain:11
+msgid "input readers."
+msgstr ""
+
+#: of paddle.reader.shuffle:1
+msgid "Creates a data reader whose data output is shuffled."
+msgstr ""
+
+#: of paddle.reader.shuffle:3
+msgid ""
+"Output from the iterator that created by original reader will be buffered"
+" into shuffle buffer, and then shuffled. The size of shuffle buffer is "
+"determined by argument buf_size."
+msgstr ""
+
+#: of paddle.reader.shuffle:7
+msgid "the original reader whose output will be shuffled."
+msgstr ""
+
+#: of paddle.reader.shuffle:9
+msgid "shuffle buffer size."
+msgstr ""
+
+#: of paddle.reader.shuffle:12
+msgid "the new reader whose output is shuffled."
+msgstr ""
+
+#: of paddle.reader.firstn:1
+msgid "Limit the max number of samples that reader could return."
+msgstr ""
+
+#: of paddle.reader.firstn:5
+msgid "the max number of samples that return."
+msgstr ""
+
+#: of paddle.reader.firstn:7
+msgid "the decorated reader."
+msgstr ""
+
+#: of paddle.reader.xmap_readers:1
+msgid ""
+"Use multiprocess to map samples from reader by a mapper defined by user. "
+"And this function contains a buffered decorator. :param mapper:  a "
+"function to map sample. :type mapper: callable :param reader: the data "
+"reader to read from :type reader: callable :param process_num: process "
+"number to handle original sample :type process_num: int :param "
+"buffer_size: max buffer size :type buffer_size: int :param order: keep "
+"the order of reader :type order: bool :return: the decarated reader "
+":rtype: callable"
+msgstr ""
+
+#: of paddle.reader.PipeReader:1
+msgid ""
+"PipeReader read data by stream from a command, take it's stdout into a "
+"pipe buffer and redirect it to the parser to parse, then yield data as "
+"your desired format."
+msgstr ""
+
+#: of paddle.reader.PipeReader:5
+msgid ""
+"You can using standard linux command or call another program to read "
+"data, from HDFS, Ceph, URL, AWS S3 etc:"
+msgstr ""
+
+#: of paddle.reader.PipeReader:14
+msgid "An example:"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line
+msgid "param cut_lines"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line:1
+msgid "cut buffer to lines"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line
+msgid "type cut_lines"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line:2
+msgid "bool"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line
+msgid "param line_break"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line:3
+msgid "line break of the file, like"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line:7
+msgid "or"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line
+msgid "type line_break"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line:5 paddle.reader.PipeReader.get_line:8
+msgid "string"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line
+msgid "return"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line:7
+msgid "one line or a buffer of bytes"
+msgstr ""
+
+#: of paddle.reader.PipeReader.get_line
+msgid "rtype"
+msgstr ""
+
+#: of paddle.reader.creator:1
+msgid ""
+"Creator package contains some simple reader creator, which could be used "
+"in user program."
+msgstr ""
+
+#: of paddle.reader.creator.np_array:1
+msgid ""
+"Creates a reader that yields elements of x, if it is a numpy vector. Or "
+"rows of x, if it is a numpy matrix. Or any sub-hyperplane indexed by the "
+"highest dimension."
+msgstr ""
+
+#: of paddle.reader.creator.np_array:5
+msgid "the numpy array to create reader from."
+msgstr ""
+
+#: of paddle.reader.creator.np_array:6
+msgid "data reader created from x."
+msgstr ""
+
+#: of paddle.reader.creator.text_file:1
+msgid ""
+"Creates a data reader that outputs text line by line from given text "
+"file. Trailing new line ('\\\\n') of each line will be removed."
+msgstr ""
+
+#: of paddle.reader.creator.recordio paddle.reader.creator.text_file
+msgid "path"
+msgstr ""
+
+#: of paddle.reader.creator.text_file:4
+msgid "path of the text file."
+msgstr ""
+
+#: of paddle.reader.creator.text_file:5
+msgid "data reader of text file"
+msgstr ""
+
+#: of paddle.reader.creator.recordio:1
+msgid "Creates a data reader from given RecordIO file paths separated by \",\","
+msgstr ""
+
+#: of paddle.reader.creator.recordio:2
+msgid "glob pattern is supported."
+msgstr ""
+
+#: of paddle.reader.creator.recordio:3
+msgid "path of recordio files, can be a string or a string list."
+msgstr ""
+
+#: of paddle.reader.creator.recordio:4
+msgid "data reader of recordio files."
+msgstr ""
+
+#: ../../source/api_reference/data/data_reader.rst:68
+msgid "minibatch"
+msgstr ""
+
+#: of paddle.v2.minibatch.batch:1
+msgid "Create a batched reader."
+msgstr ""
+
+#: of paddle.v2.minibatch.batch:5
+msgid "size of each mini-batch"
+msgstr ""
+
+#: of paddle.v2.minibatch.batch:7
+msgid "drop the last batch, if the size of last batch is not equal to batch_size."
+msgstr ""
+
+#: of paddle.v2.minibatch.batch:9
+msgid "the batched reader."
+msgstr ""
+

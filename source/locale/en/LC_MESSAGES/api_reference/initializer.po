@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,30 +19,30 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/initializer.rst:6
-msgid "initializer"
+msgid "fluid.initializer"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:9
+#: ../../source/api_reference/initializer.rst:11
 msgid "Constant"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:16
+#: ../../source/api_reference/initializer.rst:20
 msgid "Uniform"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:23
+#: ../../source/api_reference/initializer.rst:29
 msgid "Normal"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:30
+#: ../../source/api_reference/initializer.rst:38
 msgid "Xavier"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:37
+#: ../../source/api_reference/initializer.rst:47
 msgid "force_init_on_cpu"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:43
+#: ../../source/api_reference/initializer.rst:55
 msgid "init_on_cpu"
 msgstr ""
 
@@ -50,11 +50,11 @@ msgstr ""
 msgid "Switch program with `with` statement"
 msgstr ""
 
-#: of paddle.fluid.initializer.init_on_cpu:4
+#: of paddle.fluid.initializer.init_on_cpu:3
 msgid "Examples"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:49
+#: ../../source/api_reference/initializer.rst:63
 msgid "ConstantInitializer"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Implements the constant initializer"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:56
+#: ../../source/api_reference/initializer.rst:72
 msgid "UniformInitializer"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Implements the random uniform distribution initializer"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:63
+#: ../../source/api_reference/initializer.rst:81
 msgid "NormalInitializer"
 msgstr ""
 
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Implements the  random Normal(Gaussian) distribution initializer"
 msgstr ""
 
-#: ../../source/api_reference/initializer.rst:70
+#: ../../source/api_reference/initializer.rst:90
 msgid "XavierInitializer"
 msgstr ""
 
@@ -115,4 +115,7 @@ msgid ""
 "networks. International conference on artificial intelligence and "
 "statistics. (http://proceedings.mlr.press/v9/glorot10a.html)"
 msgstr ""
+
+#~ msgid "initializer"
+#~ msgstr ""
 

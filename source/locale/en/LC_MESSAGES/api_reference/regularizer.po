@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,10 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/regularizer.rst:6
-msgid "regularizer"
+msgid "fluid.regularizer"
 msgstr ""
 
-#: ../../source/api_reference/regularizer.rst:9
+#: ../../source/api_reference/regularizer.rst:11
 msgid "append_regularization_ops"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 msgid ":exc:`Exception` -- Unknown regularization type"
 msgstr ""
 
-#: ../../source/api_reference/regularizer.rst:15
+#: ../../source/api_reference/regularizer.rst:19
 msgid "WeightDecayRegularizer"
 msgstr ""
 
@@ -85,15 +85,15 @@ msgid ""
 "directly, but need to use one of its implementations"
 msgstr ""
 
-#: ../../source/api_reference/regularizer.rst:22
+#: ../../source/api_reference/regularizer.rst:28
 msgid "L1Decay"
 msgstr ""
 
-#: ../../source/api_reference/regularizer.rst:29
+#: ../../source/api_reference/regularizer.rst:37
 msgid "L2Decay"
 msgstr ""
 
-#: ../../source/api_reference/regularizer.rst:36
+#: ../../source/api_reference/regularizer.rst:46
 msgid "L1DecayRegularizer"
 msgstr ""
 
@@ -101,11 +101,14 @@ msgstr ""
 msgid "Implements the L1 Weight Decay Regularization"
 msgstr ""
 
-#: ../../source/api_reference/regularizer.rst:43
+#: ../../source/api_reference/regularizer.rst:55
 msgid "L2DecayRegularizer"
 msgstr ""
 
 #: of paddle.fluid.regularizer.L2DecayRegularizer:1
 msgid "Implements the L2 Weight Decay Regularization"
 msgstr ""
+
+#~ msgid "regularizer"
+#~ msgstr ""
 

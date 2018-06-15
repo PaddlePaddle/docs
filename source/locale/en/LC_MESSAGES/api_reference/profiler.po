@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,10 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/profiler.rst:6
-#: ../../source/api_reference/profiler.rst:21
-msgid "profiler"
+msgid "fluid.profiler"
 msgstr ""
 
-#: ../../source/api_reference/profiler.rst:9
+#: ../../source/api_reference/profiler.rst:11
 msgid "cuda_profiler"
 msgstr ""
 
@@ -60,7 +59,7 @@ msgid ""
 "Profiler User Guide\"."
 msgstr ""
 
-#: ../../source/api_reference/profiler.rst:15
+#: ../../source/api_reference/profiler.rst:19
 msgid "reset_profiler"
 msgstr ""
 
@@ -68,6 +67,10 @@ msgstr ""
 msgid ""
 "The profiler clear interface. reset_profiler will clear the previous time"
 " record."
+msgstr ""
+
+#: ../../source/api_reference/profiler.rst:27
+msgid "profiler"
 msgstr ""
 
 #: of paddle.fluid.profiler.profiler:1
@@ -101,7 +104,7 @@ msgstr ""
 msgid "If state == 'All', it will write a profile proto output file."
 msgstr ""
 
-#: ../../source/api_reference/profiler.rst:27
+#: ../../source/api_reference/profiler.rst:35
 msgid "start_profiler"
 msgstr ""
 
@@ -116,7 +119,7 @@ msgid ""
 " timeline."
 msgstr ""
 
-#: ../../source/api_reference/profiler.rst:33
+#: ../../source/api_reference/profiler.rst:43
 msgid "stop_profiler"
 msgstr ""
 

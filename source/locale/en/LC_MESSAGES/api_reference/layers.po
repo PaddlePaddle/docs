@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/layers.rst:6
-msgid "layers"
+msgid "fluid.layers"
 msgstr ""
 
 #: ../../source/api_reference/layers.rst:9
 msgid "control_flow"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:12
+#: ../../source/api_reference/layers.rst:14
 msgid "split_lod_tensor"
 msgstr ""
 
@@ -43,19 +43,22 @@ msgid ""
 msgstr ""
 
 #: of paddle.fluid.layers.DynamicRNN.memory
-#: paddle.fluid.layers.DynamicRNN.output paddle.fluid.layers.Print
+#: paddle.fluid.layers.DynamicRNN.output paddle.fluid.layers.IfElse
+#: paddle.fluid.layers.Preprocessor paddle.fluid.layers.Print
 #: paddle.fluid.layers.Send paddle.fluid.layers.StaticRNN.memory
-#: paddle.fluid.layers.StaticRNNMemoryLink paddle.fluid.layers.abs
-#: paddle.fluid.layers.array_length paddle.fluid.layers.array_to_lod_tensor
-#: paddle.fluid.layers.array_write paddle.fluid.layers.assign
-#: paddle.fluid.layers.autoincreased_step_counter
+#: paddle.fluid.layers.StaticRNNMemoryLink paddle.fluid.layers.While
+#: paddle.fluid.layers.abs paddle.fluid.layers.argmax
+#: paddle.fluid.layers.argmin paddle.fluid.layers.array_length
+#: paddle.fluid.layers.array_to_lod_tensor paddle.fluid.layers.array_write
+#: paddle.fluid.layers.assign paddle.fluid.layers.autoincreased_step_counter
 #: paddle.fluid.layers.batch_norm paddle.fluid.layers.beam_search
 #: paddle.fluid.layers.beam_search_decode paddle.fluid.layers.bipartite_match
 #: paddle.fluid.layers.box_coder paddle.fluid.layers.brelu
 #: paddle.fluid.layers.ceil paddle.fluid.layers.chunk_eval
 #: paddle.fluid.layers.clip paddle.fluid.layers.clip_by_norm
 #: paddle.fluid.layers.concat paddle.fluid.layers.conv2d
-#: paddle.fluid.layers.conv2d_transpose paddle.fluid.layers.cos
+#: paddle.fluid.layers.conv2d_transpose paddle.fluid.layers.conv3d
+#: paddle.fluid.layers.conv3d_transpose paddle.fluid.layers.cos
 #: paddle.fluid.layers.cos_sim paddle.fluid.layers.create_array
 #: paddle.fluid.layers.create_parameter paddle.fluid.layers.crf_decoding
 #: paddle.fluid.layers.cross_entropy paddle.fluid.layers.ctc_greedy_decoder
@@ -90,14 +93,15 @@ msgstr ""
 #: paddle.fluid.layers.logical_xor paddle.fluid.layers.logsigmoid
 #: paddle.fluid.layers.lstm_unit paddle.fluid.layers.matmul
 #: paddle.fluid.layers.max_sequence_len paddle.fluid.layers.maxout
-#: paddle.fluid.layers.mean paddle.fluid.layers.merge_lod_tensor
-#: paddle.fluid.layers.mul paddle.fluid.layers.multi_box_head
-#: paddle.fluid.layers.multiplex paddle.fluid.layers.natural_exp_decay
-#: paddle.fluid.layers.nce paddle.fluid.layers.noam_decay
-#: paddle.fluid.layers.one_hot paddle.fluid.layers.ones
-#: paddle.fluid.layers.open_files paddle.fluid.layers.open_recordio_file
-#: paddle.fluid.layers.pad paddle.fluid.layers.polygon_box_transform
-#: paddle.fluid.layers.pool2d paddle.fluid.layers.pow
+#: paddle.fluid.layers.mean paddle.fluid.layers.mean_iou
+#: paddle.fluid.layers.merge_lod_tensor paddle.fluid.layers.mul
+#: paddle.fluid.layers.multi_box_head paddle.fluid.layers.multiplex
+#: paddle.fluid.layers.natural_exp_decay paddle.fluid.layers.nce
+#: paddle.fluid.layers.noam_decay paddle.fluid.layers.one_hot
+#: paddle.fluid.layers.ones paddle.fluid.layers.open_files
+#: paddle.fluid.layers.open_recordio_file paddle.fluid.layers.pad
+#: paddle.fluid.layers.polygon_box_transform paddle.fluid.layers.pool2d
+#: paddle.fluid.layers.pool3d paddle.fluid.layers.pow
 #: paddle.fluid.layers.prior_box paddle.fluid.layers.random_crop
 #: paddle.fluid.layers.random_data_generator paddle.fluid.layers.reciprocal
 #: paddle.fluid.layers.reduce_max paddle.fluid.layers.reduce_mean
@@ -113,18 +117,18 @@ msgstr ""
 #: paddle.fluid.layers.sequence_reshape paddle.fluid.layers.shape
 #: paddle.fluid.layers.shrink_memory paddle.fluid.layers.sigmoid
 #: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
-#: paddle.fluid.layers.sin paddle.fluid.layers.smooth_l1
-#: paddle.fluid.layers.soft_relu paddle.fluid.layers.softmax_with_cross_entropy
-#: paddle.fluid.layers.softplus paddle.fluid.layers.softshrink
-#: paddle.fluid.layers.softsign paddle.fluid.layers.split
-#: paddle.fluid.layers.split_lod_tensor paddle.fluid.layers.sqrt
-#: paddle.fluid.layers.square paddle.fluid.layers.square_error_cost
-#: paddle.fluid.layers.ssd_loss paddle.fluid.layers.stanh
-#: paddle.fluid.layers.sum paddle.fluid.layers.sums paddle.fluid.layers.swish
-#: paddle.fluid.layers.tanh paddle.fluid.layers.tanh_shrink
-#: paddle.fluid.layers.target_assign paddle.fluid.layers.thresholded_relu
-#: paddle.fluid.layers.topk paddle.fluid.layers.transpose
-#: paddle.fluid.layers.uniform_random
+#: paddle.fluid.layers.sin paddle.fluid.layers.slice
+#: paddle.fluid.layers.smooth_l1 paddle.fluid.layers.soft_relu
+#: paddle.fluid.layers.softmax_with_cross_entropy paddle.fluid.layers.softplus
+#: paddle.fluid.layers.softshrink paddle.fluid.layers.softsign
+#: paddle.fluid.layers.split paddle.fluid.layers.split_lod_tensor
+#: paddle.fluid.layers.sqrt paddle.fluid.layers.square
+#: paddle.fluid.layers.square_error_cost paddle.fluid.layers.ssd_loss
+#: paddle.fluid.layers.stanh paddle.fluid.layers.sum paddle.fluid.layers.sums
+#: paddle.fluid.layers.swish paddle.fluid.layers.tanh
+#: paddle.fluid.layers.tanh_shrink paddle.fluid.layers.target_assign
+#: paddle.fluid.layers.thresholded_relu paddle.fluid.layers.topk
+#: paddle.fluid.layers.transpose paddle.fluid.layers.uniform_random
 #: paddle.fluid.layers.uniform_random_batch_size_like
 #: paddle.fluid.layers.warpctc paddle.fluid.layers.zeros
 msgid "参数"
@@ -152,7 +156,8 @@ msgstr ""
 #: paddle.fluid.layers.DynamicRNN.static_input
 #: paddle.fluid.layers.DynamicRNN.step_input
 #: paddle.fluid.layers.DynamicRNN.update_memory paddle.fluid.layers.Print
-#: paddle.fluid.layers.abs paddle.fluid.layers.array_length
+#: paddle.fluid.layers.abs paddle.fluid.layers.argmax
+#: paddle.fluid.layers.argmin paddle.fluid.layers.array_length
 #: paddle.fluid.layers.array_read paddle.fluid.layers.array_to_lod_tensor
 #: paddle.fluid.layers.array_write paddle.fluid.layers.assign
 #: paddle.fluid.layers.autoincreased_step_counter
@@ -162,7 +167,8 @@ msgstr ""
 #: paddle.fluid.layers.ceil paddle.fluid.layers.chunk_eval
 #: paddle.fluid.layers.clip paddle.fluid.layers.clip_by_norm
 #: paddle.fluid.layers.concat paddle.fluid.layers.conv2d
-#: paddle.fluid.layers.conv2d_transpose paddle.fluid.layers.cos
+#: paddle.fluid.layers.conv2d_transpose paddle.fluid.layers.conv3d
+#: paddle.fluid.layers.conv3d_transpose paddle.fluid.layers.cos
 #: paddle.fluid.layers.cos_sim paddle.fluid.layers.create_array
 #: paddle.fluid.layers.create_global_var paddle.fluid.layers.create_parameter
 #: paddle.fluid.layers.crf_decoding paddle.fluid.layers.cross_entropy
@@ -197,42 +203,43 @@ msgstr ""
 #: paddle.fluid.layers.logical_xor paddle.fluid.layers.logsigmoid
 #: paddle.fluid.layers.lstm_unit paddle.fluid.layers.matmul
 #: paddle.fluid.layers.max_sequence_len paddle.fluid.layers.maxout
-#: paddle.fluid.layers.mean paddle.fluid.layers.merge_lod_tensor
-#: paddle.fluid.layers.mul paddle.fluid.layers.multi_box_head
-#: paddle.fluid.layers.multiplex paddle.fluid.layers.natural_exp_decay
-#: paddle.fluid.layers.nce paddle.fluid.layers.noam_decay
-#: paddle.fluid.layers.one_hot paddle.fluid.layers.ones
-#: paddle.fluid.layers.open_files paddle.fluid.layers.open_recordio_file
-#: paddle.fluid.layers.pad paddle.fluid.layers.polygon_box_transform
+#: paddle.fluid.layers.mean paddle.fluid.layers.mean_iou
+#: paddle.fluid.layers.merge_lod_tensor paddle.fluid.layers.mul
+#: paddle.fluid.layers.multi_box_head paddle.fluid.layers.multiplex
+#: paddle.fluid.layers.natural_exp_decay paddle.fluid.layers.nce
+#: paddle.fluid.layers.noam_decay paddle.fluid.layers.one_hot
+#: paddle.fluid.layers.ones paddle.fluid.layers.open_files
+#: paddle.fluid.layers.open_recordio_file paddle.fluid.layers.pad
+#: paddle.fluid.layers.polygon_box_transform
 #: paddle.fluid.layers.polynomial_decay paddle.fluid.layers.pool2d
-#: paddle.fluid.layers.pow paddle.fluid.layers.prior_box
-#: paddle.fluid.layers.random_crop paddle.fluid.layers.random_data_generator
-#: paddle.fluid.layers.reciprocal paddle.fluid.layers.reduce_max
-#: paddle.fluid.layers.reduce_mean paddle.fluid.layers.reduce_min
-#: paddle.fluid.layers.reduce_prod paddle.fluid.layers.reduce_sum
-#: paddle.fluid.layers.relu paddle.fluid.layers.relu6
-#: paddle.fluid.layers.reorder_lod_tensor_by_rank paddle.fluid.layers.reshape
-#: paddle.fluid.layers.resize_bilinear paddle.fluid.layers.roi_pool
-#: paddle.fluid.layers.round paddle.fluid.layers.row_conv
-#: paddle.fluid.layers.scale paddle.fluid.layers.scatter
-#: paddle.fluid.layers.sequence_conv paddle.fluid.layers.sequence_expand
-#: paddle.fluid.layers.sequence_first_step
+#: paddle.fluid.layers.pool3d paddle.fluid.layers.pow
+#: paddle.fluid.layers.prior_box paddle.fluid.layers.random_crop
+#: paddle.fluid.layers.random_data_generator paddle.fluid.layers.reciprocal
+#: paddle.fluid.layers.reduce_max paddle.fluid.layers.reduce_mean
+#: paddle.fluid.layers.reduce_min paddle.fluid.layers.reduce_prod
+#: paddle.fluid.layers.reduce_sum paddle.fluid.layers.relu
+#: paddle.fluid.layers.relu6 paddle.fluid.layers.reorder_lod_tensor_by_rank
+#: paddle.fluid.layers.reshape paddle.fluid.layers.resize_bilinear
+#: paddle.fluid.layers.roi_pool paddle.fluid.layers.round
+#: paddle.fluid.layers.row_conv paddle.fluid.layers.scale
+#: paddle.fluid.layers.scatter paddle.fluid.layers.sequence_conv
+#: paddle.fluid.layers.sequence_expand paddle.fluid.layers.sequence_first_step
 #: paddle.fluid.layers.sequence_last_step paddle.fluid.layers.sequence_pool
 #: paddle.fluid.layers.sequence_reshape paddle.fluid.layers.shape
 #: paddle.fluid.layers.shrink_memory paddle.fluid.layers.sigmoid
 #: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
-#: paddle.fluid.layers.sin paddle.fluid.layers.smooth_l1
-#: paddle.fluid.layers.soft_relu paddle.fluid.layers.softmax_with_cross_entropy
-#: paddle.fluid.layers.softplus paddle.fluid.layers.softshrink
-#: paddle.fluid.layers.softsign paddle.fluid.layers.split
-#: paddle.fluid.layers.split_lod_tensor paddle.fluid.layers.sqrt
-#: paddle.fluid.layers.square paddle.fluid.layers.square_error_cost
-#: paddle.fluid.layers.ssd_loss paddle.fluid.layers.stanh
-#: paddle.fluid.layers.sum paddle.fluid.layers.sums paddle.fluid.layers.swish
-#: paddle.fluid.layers.tanh paddle.fluid.layers.tanh_shrink
-#: paddle.fluid.layers.target_assign paddle.fluid.layers.thresholded_relu
-#: paddle.fluid.layers.topk paddle.fluid.layers.transpose
-#: paddle.fluid.layers.uniform_random
+#: paddle.fluid.layers.sin paddle.fluid.layers.slice
+#: paddle.fluid.layers.smooth_l1 paddle.fluid.layers.soft_relu
+#: paddle.fluid.layers.softmax_with_cross_entropy paddle.fluid.layers.softplus
+#: paddle.fluid.layers.softshrink paddle.fluid.layers.softsign
+#: paddle.fluid.layers.split paddle.fluid.layers.split_lod_tensor
+#: paddle.fluid.layers.sqrt paddle.fluid.layers.square
+#: paddle.fluid.layers.square_error_cost paddle.fluid.layers.ssd_loss
+#: paddle.fluid.layers.stanh paddle.fluid.layers.sum paddle.fluid.layers.sums
+#: paddle.fluid.layers.swish paddle.fluid.layers.tanh
+#: paddle.fluid.layers.tanh_shrink paddle.fluid.layers.target_assign
+#: paddle.fluid.layers.thresholded_relu paddle.fluid.layers.topk
+#: paddle.fluid.layers.transpose paddle.fluid.layers.uniform_random
 #: paddle.fluid.layers.uniform_random_batch_size_like
 #: paddle.fluid.layers.warpctc paddle.fluid.layers.zeros
 msgid "返回"
@@ -244,7 +251,8 @@ msgid ""
 " false branch of tensor as per the mask applied to input."
 msgstr ""
 
-#: of paddle.fluid.layers.Print paddle.fluid.layers.array_length
+#: of paddle.fluid.layers.Print paddle.fluid.layers.argmax
+#: paddle.fluid.layers.argmin paddle.fluid.layers.array_length
 #: paddle.fluid.layers.array_read paddle.fluid.layers.array_to_lod_tensor
 #: paddle.fluid.layers.array_write paddle.fluid.layers.assign
 #: paddle.fluid.layers.autoincreased_step_counter
@@ -252,6 +260,7 @@ msgstr ""
 #: paddle.fluid.layers.beam_search_decode paddle.fluid.layers.bipartite_match
 #: paddle.fluid.layers.chunk_eval paddle.fluid.layers.concat
 #: paddle.fluid.layers.conv2d paddle.fluid.layers.conv2d_transpose
+#: paddle.fluid.layers.conv3d paddle.fluid.layers.conv3d_transpose
 #: paddle.fluid.layers.cos_sim paddle.fluid.layers.create_array
 #: paddle.fluid.layers.create_global_var paddle.fluid.layers.ctc_greedy_decoder
 #: paddle.fluid.layers.data paddle.fluid.layers.detection_output
@@ -266,11 +275,12 @@ msgstr ""
 #: paddle.fluid.layers.label_smooth paddle.fluid.layers.linear_chain_crf
 #: paddle.fluid.layers.lod_rank_table paddle.fluid.layers.lod_reset
 #: paddle.fluid.layers.lod_tensor_to_array paddle.fluid.layers.lstm_unit
-#: paddle.fluid.layers.matmul paddle.fluid.layers.merge_lod_tensor
-#: paddle.fluid.layers.multi_box_head paddle.fluid.layers.nce
-#: paddle.fluid.layers.ones paddle.fluid.layers.open_files
-#: paddle.fluid.layers.open_recordio_file paddle.fluid.layers.pad
-#: paddle.fluid.layers.pool2d paddle.fluid.layers.prior_box
+#: paddle.fluid.layers.matmul paddle.fluid.layers.mean_iou
+#: paddle.fluid.layers.merge_lod_tensor paddle.fluid.layers.multi_box_head
+#: paddle.fluid.layers.nce paddle.fluid.layers.ones
+#: paddle.fluid.layers.open_files paddle.fluid.layers.open_recordio_file
+#: paddle.fluid.layers.pad paddle.fluid.layers.pool2d
+#: paddle.fluid.layers.pool3d paddle.fluid.layers.prior_box
 #: paddle.fluid.layers.random_data_generator paddle.fluid.layers.reduce_max
 #: paddle.fluid.layers.reduce_mean paddle.fluid.layers.reduce_min
 #: paddle.fluid.layers.reduce_prod paddle.fluid.layers.reduce_sum
@@ -285,53 +295,57 @@ msgstr ""
 msgid "返回类型"
 msgstr ""
 
-#: of paddle.fluid.layers.Print:35 paddle.fluid.layers.array_length:12
-#: paddle.fluid.layers.array_read:13 paddle.fluid.layers.array_to_lod_tensor:17
-#: paddle.fluid.layers.array_write:22 paddle.fluid.layers.assign:14
-#: paddle.fluid.layers.bipartite_match:61 paddle.fluid.layers.concat:18
-#: paddle.fluid.layers.conv2d:95 paddle.fluid.layers.conv2d_transpose:99
-#: paddle.fluid.layers.create_array:11 paddle.fluid.layers.create_parameter:24
-#: paddle.fluid.layers.cross_entropy:56
-#: paddle.fluid.layers.ctc_greedy_decoder:52 paddle.fluid.layers.cumsum:17
-#: paddle.fluid.layers.data:30 paddle.fluid.layers.detection_output:66
-#: paddle.fluid.layers.dice_loss:27 paddle.fluid.layers.double_buffer:16
-#: paddle.fluid.layers.dropout:27 paddle.fluid.layers.dynamic_gru:64
-#: paddle.fluid.layers.dynamic_lstm:97 paddle.fluid.layers.dynamic_lstmp:114
-#: paddle.fluid.layers.edit_distance:39 paddle.fluid.layers.embedding:35
-#: paddle.fluid.layers.equal:16 paddle.fluid.layers.fc:63
-#: paddle.fluid.layers.fill_constant:23 paddle.fluid.layers.gather:34
-#: paddle.fluid.layers.gru_unit:45 paddle.fluid.layers.hard_shrink:19
-#: paddle.fluid.layers.image_resize:36 paddle.fluid.layers.increment:19
-#: paddle.fluid.layers.is_empty:18 paddle.fluid.layers.label_smooth:43
-#: paddle.fluid.layers.layer_norm:54 paddle.fluid.layers.lod_rank_table:41
-#: paddle.fluid.layers.lod_reset:71 paddle.fluid.layers.lod_tensor_to_array:17
-#: paddle.fluid.layers.lstm_unit:65 paddle.fluid.layers.matmul:44
-#: paddle.fluid.layers.merge_lod_tensor:24
-#: paddle.fluid.layers.multi_box_head:82 paddle.fluid.layers.one_hot:13
-#: paddle.fluid.layers.ones:17 paddle.fluid.layers.open_files:29
-#: paddle.fluid.layers.open_recordio_file:25 paddle.fluid.layers.pad:43
-#: paddle.fluid.layers.prior_box:54 paddle.fluid.layers.random_crop:6
-#: paddle.fluid.layers.random_data_generator:25
-#: paddle.fluid.layers.reduce_max:23 paddle.fluid.layers.reduce_mean:23
-#: paddle.fluid.layers.reduce_min:23 paddle.fluid.layers.reduce_prod:23
-#: paddle.fluid.layers.reduce_sum:23 paddle.fluid.layers.reshape:62
-#: paddle.fluid.layers.roi_pool:35 paddle.fluid.layers.row_conv:41
-#: paddle.fluid.layers.sequence_expand:54
-#: paddle.fluid.layers.sequence_first_step:21
-#: paddle.fluid.layers.sequence_last_step:21
-#: paddle.fluid.layers.sequence_pool:41 paddle.fluid.layers.sequence_reshape:38
-#: paddle.fluid.layers.shrink_memory:20 paddle.fluid.layers.smooth_l1:35
-#: paddle.fluid.layers.softmax_with_cross_entropy:48
-#: paddle.fluid.layers.split:23 paddle.fluid.layers.split_lod_tensor:21
-#: paddle.fluid.layers.square_error_cost:27 paddle.fluid.layers.ssd_loss:96
-#: paddle.fluid.layers.sums:15 paddle.fluid.layers.thresholded_relu:18
-#: paddle.fluid.layers.topk:29 paddle.fluid.layers.transpose:19
-#: paddle.fluid.layers.uniform_random:19 paddle.fluid.layers.warpctc:35
-#: paddle.fluid.layers.zeros:17
+#: of paddle.fluid.layers.IfElse:8 paddle.fluid.layers.Preprocessor:8
+#: paddle.fluid.layers.Print:34 paddle.fluid.layers.While:8
+#: paddle.fluid.layers.argmax:15 paddle.fluid.layers.argmin:15
+#: paddle.fluid.layers.array_length:11 paddle.fluid.layers.array_read:12
+#: paddle.fluid.layers.array_to_lod_tensor:16
+#: paddle.fluid.layers.array_write:21 paddle.fluid.layers.assign:13
+#: paddle.fluid.layers.bipartite_match:60 paddle.fluid.layers.concat:17
+#: paddle.fluid.layers.conv2d:99 paddle.fluid.layers.conv2d_transpose:98
+#: paddle.fluid.layers.conv3d:94 paddle.fluid.layers.conv3d_transpose:99
+#: paddle.fluid.layers.create_array:10 paddle.fluid.layers.create_parameter:23
+#: paddle.fluid.layers.cross_entropy:55
+#: paddle.fluid.layers.ctc_greedy_decoder:51 paddle.fluid.layers.cumsum:16
+#: paddle.fluid.layers.data:29 paddle.fluid.layers.detection_output:65
+#: paddle.fluid.layers.dice_loss:26 paddle.fluid.layers.double_buffer:15
+#: paddle.fluid.layers.dropout:26 paddle.fluid.layers.dynamic_gru:63
+#: paddle.fluid.layers.dynamic_lstm:104 paddle.fluid.layers.dynamic_lstmp:113
+#: paddle.fluid.layers.edit_distance:38 paddle.fluid.layers.embedding:34
+#: paddle.fluid.layers.equal:15 paddle.fluid.layers.fc:62
+#: paddle.fluid.layers.fill_constant:22 paddle.fluid.layers.gather:33
+#: paddle.fluid.layers.gru_unit:44 paddle.fluid.layers.hard_shrink:18
+#: paddle.fluid.layers.image_resize:35 paddle.fluid.layers.increment:18
+#: paddle.fluid.layers.is_empty:17 paddle.fluid.layers.label_smooth:42
+#: paddle.fluid.layers.layer_norm:53 paddle.fluid.layers.lod_rank_table:40
+#: paddle.fluid.layers.lod_reset:70 paddle.fluid.layers.lod_tensor_to_array:16
+#: paddle.fluid.layers.lstm_unit:64 paddle.fluid.layers.matmul:43
+#: paddle.fluid.layers.mean_iou:25 paddle.fluid.layers.merge_lod_tensor:23
+#: paddle.fluid.layers.multi_box_head:81 paddle.fluid.layers.one_hot:12
+#: paddle.fluid.layers.ones:16 paddle.fluid.layers.open_files:28
+#: paddle.fluid.layers.open_recordio_file:24 paddle.fluid.layers.pad:42
+#: paddle.fluid.layers.prior_box:53 paddle.fluid.layers.random_crop:5
+#: paddle.fluid.layers.random_data_generator:24
+#: paddle.fluid.layers.reduce_max:22 paddle.fluid.layers.reduce_mean:22
+#: paddle.fluid.layers.reduce_min:22 paddle.fluid.layers.reduce_prod:22
+#: paddle.fluid.layers.reduce_sum:22 paddle.fluid.layers.reshape:61
+#: paddle.fluid.layers.roi_pool:34 paddle.fluid.layers.row_conv:40
+#: paddle.fluid.layers.sequence_expand:53
+#: paddle.fluid.layers.sequence_first_step:20
+#: paddle.fluid.layers.sequence_last_step:20
+#: paddle.fluid.layers.sequence_pool:40 paddle.fluid.layers.sequence_reshape:37
+#: paddle.fluid.layers.shrink_memory:19 paddle.fluid.layers.smooth_l1:34
+#: paddle.fluid.layers.softmax_with_cross_entropy:47
+#: paddle.fluid.layers.split:22 paddle.fluid.layers.split_lod_tensor:20
+#: paddle.fluid.layers.square_error_cost:26 paddle.fluid.layers.ssd_loss:95
+#: paddle.fluid.layers.sums:14 paddle.fluid.layers.thresholded_relu:17
+#: paddle.fluid.layers.topk:28 paddle.fluid.layers.transpose:18
+#: paddle.fluid.layers.uniform_random:18 paddle.fluid.layers.warpctc:34
+#: paddle.fluid.layers.zeros:16
 msgid "Examples"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:18
+#: ../../source/api_reference/layers.rst:22
 msgid "merge_lod_tensor"
 msgstr ""
 
@@ -359,7 +373,7 @@ msgstr ""
 msgid "The merged output tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:24
+#: ../../source/api_reference/layers.rst:30
 msgid "BlockGuard"
 msgstr ""
 
@@ -373,7 +387,7 @@ msgid ""
 "Python `with` keyword."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:31
+#: ../../source/api_reference/layers.rst:39
 msgid "BlockGuardWithCompletion"
 msgstr ""
 
@@ -387,7 +401,7 @@ msgid ""
 "program."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:38
+#: ../../source/api_reference/layers.rst:48
 msgid "StaticRNNMemoryLink"
 msgstr ""
 
@@ -419,15 +433,28 @@ msgid ""
 "cells of a StaticRNN."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:45
+#: ../../source/api_reference/layers.rst:57
 msgid "WhileGuard"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:52
+#: ../../source/api_reference/layers.rst:66
 msgid "While"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:59
+#: of paddle.fluid.layers.While:1
+msgid "while loop control flow."
+msgstr ""
+
+#: of paddle.fluid.layers.IfElse:3 paddle.fluid.layers.While:3
+msgid "condition used to compare."
+msgstr ""
+
+#: of paddle.fluid.layers.IfElse:5 paddle.fluid.layers.While:5
+#: paddle.fluid.layers.fc:55
+msgid "The name of this layer."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:75
 msgid "Switch"
 msgstr ""
 
@@ -439,7 +466,7 @@ msgstr ""
 msgid "create a default case for this switch"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:66
+#: ../../source/api_reference/layers.rst:84
 msgid "lod_rank_table"
 msgstr ""
 
@@ -466,7 +493,7 @@ msgstr ""
 msgid "The created LoDRankTable object."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:72
+#: ../../source/api_reference/layers.rst:92
 msgid "max_sequence_len"
 msgstr ""
 
@@ -487,7 +514,7 @@ msgstr ""
 msgid "The max sequence length."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:78
+#: ../../source/api_reference/layers.rst:100
 msgid "lod_tensor_to_array"
 msgstr ""
 
@@ -520,7 +547,7 @@ msgstr ""
 msgid "tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:84
+#: ../../source/api_reference/layers.rst:108
 msgid "array_to_lod_tensor"
 msgstr ""
 
@@ -546,7 +573,7 @@ msgstr ""
 msgid "from an array."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:90
+#: ../../source/api_reference/layers.rst:116
 msgid "increment"
 msgstr ""
 
@@ -583,7 +610,7 @@ msgstr ""
 msgid "element-wise increment of each value in the input."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:96
+#: ../../source/api_reference/layers.rst:124
 msgid "array_write"
 msgstr ""
 
@@ -616,7 +643,7 @@ msgstr ""
 msgid "The output LOD_TENSOR_ARRAY where the input tensor is written."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:102
+#: ../../source/api_reference/layers.rst:132
 msgid "create_array"
 msgstr ""
 
@@ -634,7 +661,7 @@ msgstr ""
 msgid "The tensor variable storing the elements of data type."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:108
+#: ../../source/api_reference/layers.rst:140
 msgid "less_than"
 msgstr ""
 
@@ -667,7 +694,7 @@ msgstr ""
 msgid "n-dim bool tensor. Each element is Out = X < Y."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:114
+#: ../../source/api_reference/layers.rst:148
 msgid "equal"
 msgstr ""
 
@@ -695,7 +722,7 @@ msgstr ""
 msgid "The tensor variable storing the output of *equal*."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:120
+#: ../../source/api_reference/layers.rst:156
 msgid "array_read"
 msgstr ""
 
@@ -715,7 +742,7 @@ msgstr ""
 msgid "The tensor type variable that has the data written to it."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:126
+#: ../../source/api_reference/layers.rst:164
 msgid "shrink_memory"
 msgstr ""
 
@@ -758,7 +785,7 @@ msgid ""
 " reference the implementation of class DynamicRNN for detail usage."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:132
+#: ../../source/api_reference/layers.rst:172
 msgid "array_length"
 msgstr ""
 
@@ -776,11 +803,15 @@ msgstr ""
 msgid "The length of the input LoDTensorArray."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:138
+#: ../../source/api_reference/layers.rst:180
 msgid "IfElse"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:145
+#: of paddle.fluid.layers.IfElse:1
+msgid "if-else control flow."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:189
 msgid "DynamicRNN"
 msgstr ""
 
@@ -907,11 +938,11 @@ msgid ""
 "variable generated in RNN block. :type new_mem: Variable"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:152
+#: ../../source/api_reference/layers.rst:198
 msgid "ConditionalBlock"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:159
+#: ../../source/api_reference/layers.rst:207
 msgid "StaticRNN"
 msgstr ""
 
@@ -949,7 +980,7 @@ msgstr ""
 msgid "the index of batch size in batch_ref's dimension"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:166
+#: ../../source/api_reference/layers.rst:216
 msgid "reorder_lod_tensor_by_rank"
 msgstr ""
 
@@ -1030,7 +1061,7 @@ msgstr ""
 msgid "(LoDTensor), the reordered lod tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:172
+#: ../../source/api_reference/layers.rst:224
 msgid "ParallelDo"
 msgstr ""
 
@@ -1042,7 +1073,7 @@ msgstr ""
 msgid "ParallelDo class is used to create a ParallelDo."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:179
+#: ../../source/api_reference/layers.rst:233
 msgid "Print"
 msgstr ""
 
@@ -1113,7 +1144,7 @@ msgstr ""
 msgid "message=\"The content of some_layer: \")"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:185
+#: ../../source/api_reference/layers.rst:241
 msgid "is_empty"
 msgstr ""
 
@@ -1138,6 +1169,7 @@ msgid "The tensor variable storing the output of *is_empty*."
 msgstr ""
 
 #: of paddle.fluid.layers.conv2d paddle.fluid.layers.conv2d_transpose
+#: paddle.fluid.layers.conv3d paddle.fluid.layers.conv3d_transpose
 #: paddle.fluid.layers.cross_entropy paddle.fluid.layers.fc
 #: paddle.fluid.layers.is_empty paddle.fluid.layers.lod_reset
 #: paddle.fluid.layers.lstm_unit paddle.fluid.layers.ssd_loss
@@ -1150,17 +1182,17 @@ msgid ""
 "not bool"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:191
+#: ../../source/api_reference/layers.rst:247
 msgid "device"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:194
+#: ../../source/api_reference/layers.rst:252
 msgid "get_places"
 msgstr ""
 
 #: of paddle.fluid.layers.get_places:1
 msgid ""
-"Returns a list of places based on flags. The list will be used for "
+"Returns a list of places based on arguments. The list will be used for "
 "parallel execution."
 msgstr ""
 
@@ -1176,11 +1208,11 @@ msgstr ""
 msgid "vector of Place"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:200
+#: ../../source/api_reference/layers.rst:258
 msgid "io"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:203
+#: ../../source/api_reference/layers.rst:263
 msgid "data"
 msgstr ""
 
@@ -1234,7 +1266,7 @@ msgstr ""
 msgid "The global variable that gives access to the data."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:209
+#: ../../source/api_reference/layers.rst:271
 msgid "BlockGuardServ"
 msgstr ""
 
@@ -1246,7 +1278,7 @@ msgstr ""
 msgid "BlockGuardServ class is used to create an op with a block in a program."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:216
+#: ../../source/api_reference/layers.rst:280
 msgid "ListenAndServ"
 msgstr ""
 
@@ -1260,7 +1292,7 @@ msgid ""
 " which can receive variables from clients and run a block."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:223
+#: ../../source/api_reference/layers.rst:289
 msgid "Send"
 msgstr ""
 
@@ -1286,7 +1318,7 @@ msgid ""
 "server have finished running server side program."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:229
+#: ../../source/api_reference/layers.rst:297
 msgid "open_recordio_file"
 msgstr ""
 
@@ -1336,7 +1368,7 @@ msgstr ""
 msgid "The created random reader."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:235
+#: ../../source/api_reference/layers.rst:305
 msgid "open_files"
 msgstr ""
 
@@ -1373,19 +1405,23 @@ msgstr ""
 msgid "A Reader Variable via which we can get file data."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:241
+#: ../../source/api_reference/layers.rst:313
 msgid "read_file"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:247
+#: ../../source/api_reference/layers.rst:321
 msgid "shuffle"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:253
+#: of paddle.fluid.layers.shuffle:1
+msgid "Shuffle the reader."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:329
 msgid "batch"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:259
+#: ../../source/api_reference/layers.rst:337
 msgid "double_buffer"
 msgstr ""
 
@@ -1412,7 +1448,7 @@ msgstr ""
 msgid "wrapped reader with double buffer."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:265
+#: ../../source/api_reference/layers.rst:345
 msgid "random_data_generator"
 msgstr ""
 
@@ -1440,11 +1476,23 @@ msgstr ""
 msgid "A Reader Variable from which we can get random data."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:271
+#: ../../source/api_reference/layers.rst:353
 msgid "Preprocessor"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:278
+#: of paddle.fluid.layers.Preprocessor:1
+msgid "A block for data pre-processing in reader."
+msgstr ""
+
+#: of paddle.fluid.layers.Preprocessor:3
+msgid "A reader variable."
+msgstr ""
+
+#: of paddle.fluid.layers.Preprocessor:5
+msgid "The name of the reader."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:362
 msgid "load"
 msgstr ""
 
@@ -1467,11 +1515,11 @@ msgid ""
 "type conversion. Default is false."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:284
+#: ../../source/api_reference/layers.rst:368
 msgid "nn"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:287
+#: ../../source/api_reference/layers.rst:373
 msgid "fc"
 msgstr ""
 
@@ -1496,9 +1544,10 @@ msgstr ""
 msgid "This process can be formulated as follows:"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:19 paddle.fluid.layers.conv2d_transpose:18
-#: paddle.fluid.layers.fc:18 paddle.fluid.layers.lrn:13
-#: paddle.fluid.layers.row_conv:11 paddle.fluid.layers.square_error_cost:12
+#: of paddle.fluid.layers.conv2d_transpose:18 paddle.fluid.layers.conv3d:18
+#: paddle.fluid.layers.conv3d_transpose:18 paddle.fluid.layers.fc:18
+#: paddle.fluid.layers.lrn:13 paddle.fluid.layers.row_conv:11
+#: paddle.fluid.layers.square_error_cost:12
 msgid "In the above equation:"
 msgstr ""
 
@@ -1575,10 +1624,6 @@ msgid ""
 "installed. Default: False"
 msgstr ""
 
-#: of paddle.fluid.layers.fc:55
-msgid "The name of this layer."
-msgstr ""
-
 #: of paddle.fluid.layers.fc:58 paddle.fluid.layers.lrn:35
 msgid "A tensor variable storing the transformation result."
 msgstr ""
@@ -1587,7 +1632,7 @@ msgstr ""
 msgid ":exc:`ValueError` -- If rank of the input tensor is less than 2."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:293
+#: ../../source/api_reference/layers.rst:381
 msgid "embedding"
 msgstr ""
 
@@ -1632,7 +1677,7 @@ msgid ""
 "If :attr:`None`, it makes no effect to lookup. Otherwise the given "
 ":attr:`padding_idx` indicates padding the output with zeros whenever "
 "lookup encounters it in :attr:`input`. If :math:`padding_idx < 0`, the "
-"padding_idx to use in lookup is :math:`size[0] + dim`."
+":attr:`padding_idx` to use in lookup is :math:`size[0] + dim`."
 msgstr ""
 
 #: of paddle.fluid.layers.embedding:26
@@ -1645,7 +1690,7 @@ msgid ""
 "supplied inputs."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:299
+#: ../../source/api_reference/layers.rst:389
 msgid "dynamic_lstm"
 msgstr ""
 
@@ -1711,27 +1756,41 @@ msgstr ""
 
 #: of paddle.fluid.layers.dynamic_lstm:51
 msgid ""
+"The initial hidden state is an optional input, default is zero. This is a"
+" tensor with shape (N x D), where N is the batch size and D is the hidden"
+" size."
+msgstr ""
+
+#: of paddle.fluid.layers.dynamic_lstm:55
+msgid ""
+"The initial cell state is an optional input, default is zero. This is a "
+"tensor with shape (N x D), where N is the batch size. `h_0` and `c_0` can"
+" be NULL but only at the same time."
+msgstr ""
+
+#: of paddle.fluid.layers.dynamic_lstm:59
+msgid ""
 "The parameter attribute for the learnable hidden-hidden weights.  - "
 "Weights = {:math:`W_{ch}, W_{ih},"
 "                                                 W_{fh}, W_{oh}`} - The "
 "shape is (D x 4D), where D is the hidden   size."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:51
+#: of paddle.fluid.layers.dynamic_lstm:59
 msgid "The parameter attribute for the learnable hidden-hidden weights."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:54
+#: of paddle.fluid.layers.dynamic_lstm:62
 msgid ""
 "Weights = {:math:`W_{ch}, W_{ih},"
 "                                                 W_{fh}, W_{oh}`}"
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:55
+#: of paddle.fluid.layers.dynamic_lstm:63
 msgid "The shape is (D x 4D), where D is the hidden size."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:58 paddle.fluid.layers.dynamic_lstmp:70
+#: of paddle.fluid.layers.dynamic_lstm:66 paddle.fluid.layers.dynamic_lstmp:70
 msgid ""
 "The bias attribute for the learnable bias weights, which contains two "
 "parts, input-hidden bias weights and peephole connections weights if "
@@ -1742,107 +1801,109 @@ msgid ""
 "The shape is (1 x 7D)."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:58 paddle.fluid.layers.dynamic_lstmp:70
+#: of paddle.fluid.layers.dynamic_lstm:66 paddle.fluid.layers.dynamic_lstmp:70
 msgid ""
 "The bias attribute for the learnable bias weights, which contains two "
 "parts, input-hidden bias weights and peephole connections weights if "
 "setting `use_peepholes` to `True`."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:63 paddle.fluid.layers.dynamic_lstmp:75
+#: of paddle.fluid.layers.dynamic_lstm:71 paddle.fluid.layers.dynamic_lstmp:75
 msgid "`use_peepholes = False`"
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:64 paddle.fluid.layers.dynamic_lstmp:76
+#: of paddle.fluid.layers.dynamic_lstm:72 paddle.fluid.layers.dynamic_lstmp:76
 msgid "Biases = {:math:`b_c, b_i, b_f, b_o`}."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:65 paddle.fluid.layers.dynamic_lstmp:77
+#: of paddle.fluid.layers.dynamic_lstm:73 paddle.fluid.layers.dynamic_lstmp:77
 msgid "The shape is (1 x 4D)."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:66 paddle.fluid.layers.dynamic_lstmp:78
+#: of paddle.fluid.layers.dynamic_lstm:74 paddle.fluid.layers.dynamic_lstmp:78
 msgid "`use_peepholes = True`"
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:67 paddle.fluid.layers.dynamic_lstmp:79
+#: of paddle.fluid.layers.dynamic_lstm:75 paddle.fluid.layers.dynamic_lstmp:79
 msgid ""
 "Biases = { :math:`b_c, b_i, b_f, b_o, W_{ic},"
 "                                                  W_{fc}, W_{oc}`}."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:68 paddle.fluid.layers.dynamic_lstmp:80
+#: of paddle.fluid.layers.dynamic_lstm:76 paddle.fluid.layers.dynamic_lstmp:80
 msgid "The shape is (1 x 7D)."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:70 paddle.fluid.layers.dynamic_lstmp:82
+#: of paddle.fluid.layers.dynamic_lstm:78 paddle.fluid.layers.dynamic_lstmp:82
 msgid "Whether to enable diagonal/peephole connections, default `True`."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:73 paddle.fluid.layers.dynamic_lstmp:85
+#: of paddle.fluid.layers.dynamic_lstm:81 paddle.fluid.layers.dynamic_lstmp:85
 msgid "Whether to compute reversed LSTM, default `False`."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:75 paddle.fluid.layers.dynamic_lstmp:87
+#: of paddle.fluid.layers.dynamic_lstm:83 paddle.fluid.layers.dynamic_lstmp:87
 msgid ""
 "The activation for input gate, forget gate and output gate. Choices = "
 "[\"sigmoid\", \"tanh\", \"relu\", \"identity\"], default \"sigmoid\"."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:79 paddle.fluid.layers.dynamic_lstmp:91
+#: of paddle.fluid.layers.dynamic_lstm:87 paddle.fluid.layers.dynamic_lstmp:91
 msgid ""
 "The activation for cell output. Choices = [\"sigmoid\", \"tanh\", "
 "\"relu\", \"identity\"], default \"tanh\"."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:82 paddle.fluid.layers.dynamic_lstmp:94
+#: of paddle.fluid.layers.dynamic_lstm:90 paddle.fluid.layers.dynamic_lstmp:94
 msgid ""
 "The activation for candidate hidden state. Choices = [\"sigmoid\", "
 "\"tanh\",     \"relu\", \"identity\"], default \"tanh\"."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:82 paddle.fluid.layers.dynamic_lstmp:94
+#: of paddle.fluid.layers.dynamic_lstm:90 paddle.fluid.layers.dynamic_lstmp:94
 msgid ""
 "The activation for candidate hidden state. Choices = [\"sigmoid\", "
 "\"tanh\","
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:84 paddle.fluid.layers.dynamic_lstmp:96
+#: of paddle.fluid.layers.dynamic_lstm:92 paddle.fluid.layers.dynamic_lstmp:96
 #: paddle.fluid.layers.dynamic_lstmp:101
 msgid "\"relu\", \"identity\"],"
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:85 paddle.fluid.layers.dynamic_lstmp:97
+#: of paddle.fluid.layers.dynamic_lstm:93 paddle.fluid.layers.dynamic_lstmp:97
 #: paddle.fluid.layers.dynamic_lstmp:102
 msgid "default \"tanh\"."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:87 paddle.fluid.layers.dynamic_lstmp:104
+#: of paddle.fluid.layers.dynamic_lstm:95 paddle.fluid.layers.dynamic_lstmp:104
 msgid "Data type. Choices = [\"float32\", \"float64\"], default \"float32\"."
 msgstr ""
 
-#: of paddle.fluid.layers.concat:10 paddle.fluid.layers.conv2d:84
-#: paddle.fluid.layers.conv2d_transpose:88 paddle.fluid.layers.dropout:19
-#: paddle.fluid.layers.dynamic_lstm:89 paddle.fluid.layers.dynamic_lstmp:106
+#: of paddle.fluid.layers.concat:10 paddle.fluid.layers.conv2d:89
+#: paddle.fluid.layers.conv2d_transpose:88 paddle.fluid.layers.conv3d:84
+#: paddle.fluid.layers.conv3d_transpose:89 paddle.fluid.layers.dropout:19
+#: paddle.fluid.layers.dynamic_lstm:97 paddle.fluid.layers.dynamic_lstmp:106
 #: paddle.fluid.layers.image_resize:22 paddle.fluid.layers.label_smooth:35
 #: paddle.fluid.layers.lstm_unit:52 paddle.fluid.layers.matmul:36
 #: paddle.fluid.layers.pad:35 paddle.fluid.layers.pool2d:22
-#: paddle.fluid.layers.reduce_max:15 paddle.fluid.layers.reduce_mean:15
-#: paddle.fluid.layers.reduce_min:15 paddle.fluid.layers.reduce_prod:15
-#: paddle.fluid.layers.reduce_sum:15 paddle.fluid.layers.sequence_expand:46
-#: paddle.fluid.layers.split:15 paddle.fluid.layers.topk:16
+#: paddle.fluid.layers.pool3d:22 paddle.fluid.layers.reduce_max:15
+#: paddle.fluid.layers.reduce_mean:15 paddle.fluid.layers.reduce_min:15
+#: paddle.fluid.layers.reduce_prod:15 paddle.fluid.layers.reduce_sum:15
+#: paddle.fluid.layers.sequence_expand:46 paddle.fluid.layers.split:15
+#: paddle.fluid.layers.topk:16
 msgid ""
 "A name for this layer(optional). If set None, the layer will be named "
 "automatically."
 msgstr ""
 
-#: of paddle.fluid.layers.dynamic_lstm:93
+#: of paddle.fluid.layers.dynamic_lstm:101
 msgid ""
 "The hidden state, and cell state of LSTM. The shape of both         is (T"
 " x D), and lod is the same with the `input`."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:305
+#: ../../source/api_reference/layers.rst:397
 msgid "dynamic_lstmp"
 msgstr ""
 
@@ -2003,7 +2064,7 @@ msgid ""
 "is                (T x D), and both LoD is the same with the `input`."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:311
+#: ../../source/api_reference/layers.rst:405
 msgid "dynamic_gru"
 msgstr ""
 
@@ -2106,7 +2167,7 @@ msgid ""
 "and lod is the same with the input."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:317
+#: ../../source/api_reference/layers.rst:413
 msgid "gru_unit"
 msgstr ""
 
@@ -2164,7 +2225,7 @@ msgstr ""
 msgid "The hidden value, reset-hidden value and gate values."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:323
+#: ../../source/api_reference/layers.rst:421
 msgid "linear_chain_crf"
 msgstr ""
 
@@ -2272,7 +2333,7 @@ msgid ""
 "longer a LoDTensor"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:329
+#: ../../source/api_reference/layers.rst:429
 msgid "crf_decoding"
 msgstr ""
 
@@ -2349,7 +2410,7 @@ msgid ""
 "given. See more details in the operator's comment"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:335
+#: ../../source/api_reference/layers.rst:437
 msgid "cos_sim"
 msgstr ""
 
@@ -2371,7 +2432,7 @@ msgstr ""
 msgid "the output of cosine(X, Y)."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:341
+#: ../../source/api_reference/layers.rst:445
 msgid "cross_entropy"
 msgstr ""
 
@@ -2461,7 +2522,7 @@ msgstr ""
 msgid "when `soft_label == False`, and the 2nd dimension of `label` is not 1."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:347
+#: ../../source/api_reference/layers.rst:453
 msgid "square_error_cost"
 msgstr ""
 
@@ -2505,7 +2566,7 @@ msgid ""
 "                   difference of input and label."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:353
+#: ../../source/api_reference/layers.rst:461
 msgid "chunk_eval"
 msgstr ""
 
@@ -2553,7 +2614,7 @@ msgstr ""
 msgid "num_infer_chunks, num_label_chunks, num_correct_chunks)"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:359
+#: ../../source/api_reference/layers.rst:469
 msgid "sequence_conv"
 msgstr ""
 
@@ -2606,97 +2667,109 @@ msgstr ""
 msgid "output of sequence_conv"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:365
+#: ../../source/api_reference/layers.rst:477
 msgid "conv2d"
 msgstr ""
 
 #: of paddle.fluid.layers.conv2d:1
-msgid "**Convlution2D Layer**"
-msgstr ""
-
-#: of paddle.fluid.layers.conv2d:3
 msgid ""
 "The convolution2D layer calculates the output based on the input, filter "
-"and strides, paddings, dilations, groups parameters. Input(Input) and "
-"Output(Output) are in NCHW format. Where N is batch size, C is the number"
-" of channels, H is the height of the feature, and W is the width of the "
-"feature. The details of convolution layer, please refer UFLDL's "
-"`convolution, "
+"and strides, paddings, dilations, groups parameters. Input and Output are"
+" in NCHW format, where N is batch size, C is the number of channels, H is"
+" the height of the feature, and W is the width of the feature. Filter is "
+"in MCHW format, where M is the number of output image channels, C is the "
+"number of input image channels, H is the height of the filter, and W is "
+"the width of the filter. If the groups is greater than 1, C will equal "
+"the number of input image channels divided by the groups. Please refer to"
+" UFLDL's `convolution "
 "<http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_"
-" . If bias attribution and activation type are provided, bias is added to"
-" the output of the convolution, and the corresponding activation function"
-" is applied to the final result."
+" for more detials. If bias attribution and activation type are provided, "
+"bias is added to the output of the convolution, and the corresponding "
+"activation function is applied to the final result."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:13 paddle.fluid.layers.conv2d_transpose:12
+#: of paddle.fluid.layers.conv2d:16 paddle.fluid.layers.conv2d_transpose:12
+#: paddle.fluid.layers.conv3d:12 paddle.fluid.layers.conv3d_transpose:12
 msgid "For each input :math:`X`, the equation is:"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:21 paddle.fluid.layers.conv2d_transpose:20
+#: of paddle.fluid.layers.conv2d:22
+msgid "Where:"
+msgstr ""
+
+#: of paddle.fluid.layers.conv2d:24 paddle.fluid.layers.conv2d_transpose:20
 msgid ":math:`X`: Input value, a tensor with NCHW format."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:22 paddle.fluid.layers.conv2d_transpose:21
+#: of paddle.fluid.layers.conv2d:25 paddle.fluid.layers.conv2d_transpose:21
 msgid ":math:`W`: Filter value, a tensor with MCHW format."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:23
+#: of paddle.fluid.layers.conv2d:26 paddle.fluid.layers.conv3d:22
 msgid ":math:`\\ast`: Convolution operation."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:24
+#: of paddle.fluid.layers.conv2d:27 paddle.fluid.layers.conv3d:23
 msgid ":math:`b`: Bias value, a 2-D tensor with shape [M, 1]."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:25
+#: of paddle.fluid.layers.conv2d:28 paddle.fluid.layers.conv3d:24
 msgid ":math:`\\sigma`: Activation function."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:27 paddle.fluid.layers.conv2d_transpose:24
-msgid ":math:`Out`: Output value, the shape of :math:`Out` and :math:`X` may be"
+#: of paddle.fluid.layers.conv2d:29
+msgid ""
+":math:`Out`: Output value, the shape of :math:`Out` and :math:`X` may be "
+"different."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:27 paddle.fluid.layers.conv2d_transpose:24
-msgid "different."
-msgstr ""
-
-#: of paddle.fluid.layers.conv2d:30 paddle.fluid.layers.conv2d_transpose:27
+#: of paddle.fluid.layers.conv2d:31 paddle.fluid.layers.conv2d_transpose:26
+#: paddle.fluid.layers.conv3d:28 paddle.fluid.layers.conv3d_transpose:26
 msgid "Example"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:31 paddle.fluid.layers.conv2d_transpose:28
+#: of paddle.fluid.layers.conv2d:33 paddle.fluid.layers.conv2d_transpose:28
+#: paddle.fluid.layers.conv3d:30 paddle.fluid.layers.conv3d_transpose:28
 msgid "Input:"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:33
+#: of paddle.fluid.layers.conv2d:35
 msgid "Input shape: :math:`(N, C_{in}, H_{in}, W_{in})`"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:35
+#: of paddle.fluid.layers.conv2d:37
 msgid "Filter shape: :math:`(C_{out}, C_{in}, H_f, W_f)`"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:37
-msgid "Output: Output shape: :math:`(N, C_{out}, H_{out}, W_{out})`"
+#: of paddle.fluid.layers.conv2d:39 paddle.fluid.layers.conv2d_transpose:34
+#: paddle.fluid.layers.conv3d_transpose:34
+msgid "Output:"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:40 paddle.fluid.layers.conv2d_transpose:38
+#: of paddle.fluid.layers.conv2d:41
+msgid "Output shape: :math:`(N, C_{out}, H_{out}, W_{out})`"
+msgstr ""
+
+#: of paddle.fluid.layers.conv2d:43 paddle.fluid.layers.conv2d_transpose:38
+#: paddle.fluid.layers.conv3d:39 paddle.fluid.layers.conv3d_transpose:38
 msgid "Where"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:47
-msgid ""
-"The input image with [N, C, H, W] format. num_filters(int): The number of"
-" filter. It is as same as the output image channel."
+#: of paddle.fluid.layers.conv2d:50 paddle.fluid.layers.conv2d_transpose:45
+msgid "The input image with [N, C, H, W] format."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:51 paddle.fluid.layers.im2sequence:17
+#: of paddle.fluid.layers.conv2d:52
+msgid "The number of filter. It is as same as the output image channel."
+msgstr ""
+
+#: of paddle.fluid.layers.conv2d:55 paddle.fluid.layers.im2sequence:17
 msgid ""
 "The filter size. If filter_size is a tuple, it must contain two integers,"
 " (filter_size_H, filter_size_W). Otherwise, the filter will be a square."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:55 paddle.fluid.layers.conv2d_transpose:63
+#: of paddle.fluid.layers.conv2d:59 paddle.fluid.layers.conv2d_transpose:63
 #: paddle.fluid.layers.im2sequence:21
 msgid ""
 "The stride size. If stride is a tuple, it must contain two integers, "
@@ -2704,21 +2777,21 @@ msgid ""
 "Default: stride = 1."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:59 paddle.fluid.layers.conv2d_transpose:59
+#: of paddle.fluid.layers.conv2d:63 paddle.fluid.layers.conv2d_transpose:59
 msgid ""
 "The padding size. If padding is a tuple, it must contain two integers, "
 "(padding_H, padding_W). Otherwise, the padding_H = padding_W = padding. "
 "Default: padding = 0."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:63 paddle.fluid.layers.conv2d_transpose:67
+#: of paddle.fluid.layers.conv2d:67 paddle.fluid.layers.conv2d_transpose:67
 msgid ""
 "The dilation size. If dilation is a tuple, it must contain two integers, "
 "(dilation_H, dilation_W). Otherwise, the dilation_H = dilation_W = "
 "dilation. Default: dilation = 1."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:67
+#: of paddle.fluid.layers.conv2d:71
 msgid ""
 "The groups number of the Conv2d Layer. According to grouped convolution "
 "in Alex Krizhevsky's Deep CNN paper: when group=2, the first half of the "
@@ -2727,41 +2800,152 @@ msgid ""
 "the input channels. Default: groups=1"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:73
+#: of paddle.fluid.layers.conv2d:77
 msgid "The parameters to the Conv2d Layer. Default: None"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:75 paddle.fluid.layers.conv2d_transpose:81
+#: of paddle.fluid.layers.conv2d:79 paddle.fluid.layers.conv2d_transpose:81
 msgid "Bias parameter for the Conv2d layer. Default: None"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:77 paddle.fluid.layers.conv2d_transpose:83
+#: of paddle.fluid.layers.conv2d:81 paddle.fluid.layers.conv2d_transpose:83
+#: paddle.fluid.layers.conv3d:77 paddle.fluid.layers.conv3d_transpose:84
 msgid ""
 "Use cudnn kernel or not, it is valid only when the cudnn library is "
 "installed. Default: True"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:80
-msgid "Use mkldnn kernels or not."
+#: of paddle.fluid.layers.conv2d:84
+msgid ""
+"Use mkldnn kernels or not, it is valid only when compiled with mkldnn "
+"library. Default: False"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:82 paddle.fluid.layers.conv2d_transpose:86
+#: of paddle.fluid.layers.conv2d:87 paddle.fluid.layers.conv2d_transpose:86
+#: paddle.fluid.layers.conv3d:82 paddle.fluid.layers.conv3d_transpose:87
 msgid "Activation type. Default: None"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:88
+#: of paddle.fluid.layers.conv2d:93 paddle.fluid.layers.conv3d:88
 msgid ""
 "The tensor variable storing the convolution and                   non-"
 "linearity activation result."
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d:91 paddle.fluid.layers.conv2d_transpose:95
+#: of paddle.fluid.layers.conv2d:96 paddle.fluid.layers.conv2d_transpose:95
+#: paddle.fluid.layers.conv3d:91 paddle.fluid.layers.conv3d_transpose:96
 msgid ""
 ":exc:`ValueError` -- If the shapes of input, filter_size, stride, padding"
 " and groups mismatch."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:371
+#: ../../source/api_reference/layers.rst:485
+msgid "conv3d"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:1
+msgid "**Convlution3D Layer**"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:3
+msgid ""
+"The convolution3D layer calculates the output based on the input, filter "
+"and strides, paddings, dilations, groups parameters. Input(Input) and "
+"Output(Output) are in NCDHW format. Where N is batch size C is the number"
+" of channels, D is the depth of the feature, H is the height of the "
+"feature, and W is the width of the feature. Convlution3D is similar with "
+"Convlution2D but adds one dimension(depth). If bias attribution and "
+"activation type are provided, bias is added to the output of the "
+"convolution, and the corresponding activation function is applied to the "
+"final result."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:20 paddle.fluid.layers.conv3d_transpose:20
+msgid ":math:`X`: Input value, a tensor with NCDHW format."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:21 paddle.fluid.layers.conv3d_transpose:21
+msgid ":math:`W`: Filter value, a tensor with MCDHW format."
+msgstr ""
+
+#: of paddle.fluid.layers.conv2d_transpose:24 paddle.fluid.layers.conv3d:26
+#: paddle.fluid.layers.conv3d_transpose:24
+msgid ":math:`Out`: Output value, the shape of :math:`Out` and :math:`X` may be"
+msgstr ""
+
+#: of paddle.fluid.layers.conv2d_transpose:24 paddle.fluid.layers.conv3d:26
+#: paddle.fluid.layers.conv3d_transpose:24
+msgid "different."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:32
+msgid "Input shape: :math:`(N, C_{in}, D_{in}, H_{in}, W_{in})`"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:34
+msgid "Filter shape: :math:`(C_{out}, C_{in}, D_f, H_f, W_f)`"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:36
+msgid "Output: Output shape: :math:`(N, C_{out}, D_{out}, H_{out}, W_{out})`"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:47
+msgid ""
+"The input image with [N, C, D, H, W] format. num_filters(int): The number"
+" of filter. It is as same as the output image channel."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:51
+msgid ""
+"The filter size. If filter_size is a tuple, it must contain three "
+"integers, (filter_size_D, filter_size_H, filter_size_W). Otherwise, the "
+"filter will be a square."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:55 paddle.fluid.layers.conv3d_transpose:64
+msgid ""
+"The stride size. If stride is a tuple, it must contain three integers, "
+"(stride_D, stride_H, stride_W). Otherwise, the stride_D = stride_H = "
+"stride_W = stride. Default: stride = 1."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:59 paddle.fluid.layers.conv3d_transpose:60
+msgid ""
+"The padding size. If padding is a tuple, it must contain three integers, "
+"(padding_D, padding_H, padding_W). Otherwise, the padding_D = padding_H ="
+" padding_W = padding. Default: padding = 0."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:63 paddle.fluid.layers.conv3d_transpose:68
+msgid ""
+"The dilation size. If dilation is a tuple, it must contain three "
+"integers, (dilation_D, dilation_H, dilation_W). Otherwise, the dilation_D"
+" = dilation_H = dilation_W = dilation. Default: dilation = 1."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:67
+msgid ""
+"The groups number of the Conv3d Layer. According to grouped convolution "
+"in Alex Krizhevsky's Deep CNN paper: when group=2, the first half of the "
+"filters is only connected to the first half of the input channels, while "
+"the second half of the filters is only connected to the second half of "
+"the input channels. Default: groups=1"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:73
+msgid "The parameters to the Conv3d Layer. Default: None"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:75 paddle.fluid.layers.conv3d_transpose:82
+msgid "Bias parameter for the Conv3d layer. Default: None"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d:80
+msgid "Use mkldnn kernels or not."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:493
 msgid "sequence_pool"
 msgstr ""
 
@@ -2807,15 +2991,15 @@ msgstr ""
 msgid "The sequence pooling variable which is a Tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:377
+#: ../../source/api_reference/layers.rst:501
 msgid "sequence_softmax"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:383
+#: ../../source/api_reference/layers.rst:509
 msgid "softmax"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:389
+#: ../../source/api_reference/layers.rst:517
 msgid "pool2d"
 msgstr ""
 
@@ -2825,39 +3009,40 @@ msgid ""
 "pooling configurations mentioned in input parameters."
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:4
+#: of paddle.fluid.layers.pool2d:4 paddle.fluid.layers.pool3d:4
 msgid "${input_comment}"
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:6
+#: of paddle.fluid.layers.pool2d:6 paddle.fluid.layers.pool3d:6
 msgid "${ksize_comment}"
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:8
+#: of paddle.fluid.layers.pool2d:8 paddle.fluid.layers.pool3d:8
 msgid "${pooling_type_comment}"
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:10
+#: of paddle.fluid.layers.pool2d:10 paddle.fluid.layers.pool3d:10
 msgid "stride of the pooling layer."
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:12
+#: of paddle.fluid.layers.pool2d:12 paddle.fluid.layers.pool3d:12
 msgid "padding size."
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:14
+#: of paddle.fluid.layers.pool2d:14 paddle.fluid.layers.pool3d:14
 msgid "${global_pooling_comment}"
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:16
+#: of paddle.fluid.layers.pool2d:16 paddle.fluid.layers.pool3d:16
 msgid "${use_cudnn_comment}"
 msgstr ""
 
-#: of paddle.fluid.layers.pool2d:18
+#: of paddle.fluid.layers.pool2d:18 paddle.fluid.layers.pool3d:18
 msgid "${ceil_mode_comment}"
 msgstr ""
 
 #: of paddle.fluid.layers.batch_norm:22 paddle.fluid.layers.pool2d:20
+#: paddle.fluid.layers.pool3d:20
 msgid "${use_mkldnn_comment}"
 msgstr ""
 
@@ -2865,7 +3050,21 @@ msgstr ""
 msgid "output of pool2d layer."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:395
+#: ../../source/api_reference/layers.rst:525
+msgid "pool3d"
+msgstr ""
+
+#: of paddle.fluid.layers.pool3d:1
+msgid ""
+"This function adds the operator for pooling in 3-dimensions, using the "
+"pooling configurations mentioned in input parameters."
+msgstr ""
+
+#: of paddle.fluid.layers.pool3d:26
+msgid "output of pool3d layer."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:533
 msgid "batch_norm"
 msgstr ""
 
@@ -2924,7 +3123,7 @@ msgstr ""
 msgid "output of batch_norm layer."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:401
+#: ../../source/api_reference/layers.rst:541
 msgid "beam_search_decode"
 msgstr ""
 
@@ -2946,7 +3145,7 @@ msgstr ""
 msgid "a tuple of two output variable: sentence_ids, sentence_scores"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:407
+#: ../../source/api_reference/layers.rst:549
 msgid "conv2d_transpose"
 msgstr ""
 
@@ -2968,6 +3167,7 @@ msgid ""
 msgstr ""
 
 #: of paddle.fluid.layers.conv2d_transpose:22
+#: paddle.fluid.layers.conv3d_transpose:22
 msgid ":math:`\\ast` : Convolution transpose operation."
 msgstr ""
 
@@ -2979,19 +3179,12 @@ msgstr ""
 msgid "Filter shape: $(C_{in}, C_{out}, H_f, W_f)$"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d_transpose:34
-msgid "Output:"
-msgstr ""
-
 #: of paddle.fluid.layers.conv2d_transpose:36
 msgid "Output shape: $(N, C_{out}, H_{out}, W_{out})$"
 msgstr ""
 
-#: of paddle.fluid.layers.conv2d_transpose:45
-msgid "The input image with [N, C, H, W] format."
-msgstr ""
-
 #: of paddle.fluid.layers.conv2d_transpose:47
+#: paddle.fluid.layers.conv3d_transpose:48
 msgid "The number of the filter. It is as same as the output image channel."
 msgstr ""
 
@@ -3023,10 +3216,76 @@ msgid "The parameters to the Conv2d_transpose Layer. Default: None"
 msgstr ""
 
 #: of paddle.fluid.layers.conv2d_transpose:92
+#: paddle.fluid.layers.conv3d_transpose:93
 msgid "The tensor variable storing the convolution transpose result."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:413
+#: ../../source/api_reference/layers.rst:557
+msgid "conv3d_transpose"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:1
+msgid "**Convlution3D transpose layer**"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:3
+msgid ""
+"The convolution3D transpose layer calculates the output based on the "
+"input, filter, and dilations, strides, paddings. Input(Input) and "
+"output(Output) are in NCDHW format. Where N is batch size, C is the "
+"number of channels, D is the depth of the feature, H is the height of the"
+" feature, and W is the width of the feature. Parameters(dilations, "
+"strides, paddings) are two elements. These two elements represent height "
+"and width, respectively. The details of convolution transpose layer, "
+"please refer to the following explanation and references `therein "
+"<http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf>`_."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:30
+msgid "Input shape: $(N, C_{in}, D_{in}, H_{in}, W_{in})$"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:32
+msgid "Filter shape: $(C_{in}, C_{out}, D_f, H_f, W_f)$"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:36
+msgid "Output shape: $(N, C_{out}, D_{out}, H_{out}, W_{out})$"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:46
+msgid "The input image with [N, C, D, H, W] format."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:51
+msgid ""
+"The output image size. If output size is a tuple, it must contain three "
+"integers, (image_D, image_H, image_W). This parameter only works when "
+"filter_size is None."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:55
+msgid ""
+"The filter size. If filter_size is a tuple, it must contain three "
+"integers, (filter_size_D, filter_size_H, filter_size_W). Otherwise, the "
+"filter will be a square. None if use output size to calculate "
+"filter_size."
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:72
+msgid ""
+"The groups number of the Conv3d transpose layer. Inspired by grouped "
+"convolution in Alex Krizhevsky's Deep CNN paper, in which when group=2, "
+"the first half of the filters is only connected to the first half of the "
+"input channels, while the second half of the filters is only connected to"
+" the second half of the input channels. Default: groups=1"
+msgstr ""
+
+#: of paddle.fluid.layers.conv3d_transpose:79
+msgid "The parameters to the Conv3d_transpose Layer. Default: None"
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:565
 msgid "sequence_expand"
 msgstr ""
 
@@ -3057,7 +3316,7 @@ msgstr ""
 msgid "The expanded variable which is a LoDTensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:419
+#: ../../source/api_reference/layers.rst:573
 msgid "lstm_unit"
 msgstr ""
 
@@ -3129,7 +3388,7 @@ msgid ""
 "dimensions of **hidden_t_prev** and **cell_t_prev** not be the same."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:425
+#: ../../source/api_reference/layers.rst:581
 msgid "reduce_sum"
 msgstr ""
 
@@ -3161,7 +3420,7 @@ msgstr ""
 msgid "The reduced Tensor variable."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:431
+#: ../../source/api_reference/layers.rst:589
 msgid "reduce_mean"
 msgstr ""
 
@@ -3178,7 +3437,7 @@ msgid ""
 " to reduce is :math:`rank + dim[i]`."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:437
+#: ../../source/api_reference/layers.rst:597
 msgid "reduce_max"
 msgstr ""
 
@@ -3195,7 +3454,7 @@ msgid ""
 " to reduce is :math:`rank + dim[i]`."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:443
+#: ../../source/api_reference/layers.rst:605
 msgid "reduce_min"
 msgstr ""
 
@@ -3212,7 +3471,7 @@ msgid ""
 " to reduce is :math:`rank + dim[i]`."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:449
+#: ../../source/api_reference/layers.rst:613
 msgid "reduce_prod"
 msgstr ""
 
@@ -3229,7 +3488,7 @@ msgid ""
 ":math:`rank + dim[i]`."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:455
+#: ../../source/api_reference/layers.rst:621
 msgid "sequence_first_step"
 msgstr ""
 
@@ -3241,7 +3500,7 @@ msgstr ""
 msgid "The sequence's first step variable which is a Tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:461
+#: ../../source/api_reference/layers.rst:629
 msgid "sequence_last_step"
 msgstr ""
 
@@ -3253,7 +3512,7 @@ msgstr ""
 msgid "The sequence's last step variable which is a Tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:467
+#: ../../source/api_reference/layers.rst:637
 msgid "dropout"
 msgstr ""
 
@@ -3292,7 +3551,7 @@ msgstr ""
 msgid "A tensor variable."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:473
+#: ../../source/api_reference/layers.rst:645
 msgid "split"
 msgstr ""
 
@@ -3319,7 +3578,7 @@ msgstr ""
 msgid "The list of segmented tensor variables."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:479
+#: ../../source/api_reference/layers.rst:653
 msgid "ctc_greedy_decoder"
 msgstr ""
 
@@ -3363,7 +3622,7 @@ msgid ""
 "result LoDTensor will be [-1] with LoD [[0]] and dims [1, 1]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:485
+#: ../../source/api_reference/layers.rst:661
 msgid "edit_distance"
 msgstr ""
 
@@ -3425,7 +3684,7 @@ msgstr ""
 msgid "sequence-to-sequence edit distance in shape [batch_size, 1]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:491
+#: ../../source/api_reference/layers.rst:669
 msgid "l2_normalize"
 msgstr ""
 
@@ -3498,7 +3757,7 @@ msgstr ""
 msgid "Examples:"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:497
+#: ../../source/api_reference/layers.rst:677
 msgid "matmul"
 msgstr ""
 
@@ -3564,7 +3823,7 @@ msgstr ""
 msgid "The product Tensor variable."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:503
+#: ../../source/api_reference/layers.rst:685
 msgid "topk"
 msgstr ""
 
@@ -3618,7 +3877,7 @@ msgstr ""
 msgid "input."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:509
+#: ../../source/api_reference/layers.rst:693
 msgid "warpctc"
 msgstr ""
 
@@ -3666,7 +3925,7 @@ msgid ""
 "Tensor of the shape [batch_size, 1]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:515
+#: ../../source/api_reference/layers.rst:701
 msgid "sequence_reshape"
 msgstr ""
 
@@ -3703,7 +3962,7 @@ msgstr ""
 msgid "Reshaped LoDTensor according to new dimension."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:521
+#: ../../source/api_reference/layers.rst:709
 msgid "transpose"
 msgstr ""
 
@@ -3733,7 +3992,7 @@ msgstr ""
 msgid "A transposed Tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:527
+#: ../../source/api_reference/layers.rst:717
 msgid "im2sequence"
 msgstr ""
 
@@ -3782,7 +4041,7 @@ msgstr ""
 msgid "The simple usage is:"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:533
+#: ../../source/api_reference/layers.rst:725
 msgid "nce"
 msgstr ""
 
@@ -3821,7 +4080,7 @@ msgstr ""
 msgid "output of nce layer."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:539
+#: ../../source/api_reference/layers.rst:733
 msgid "beam_search"
 msgstr ""
 
@@ -3849,7 +4108,7 @@ msgstr ""
 msgid "a tuple of beam_search output variables: selected_ids, selected_scores"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:545
+#: ../../source/api_reference/layers.rst:741
 msgid "row_conv"
 msgstr ""
 
@@ -3942,7 +4201,7 @@ msgid ""
 "shape T x N, i.e., the same shape as X."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:551
+#: ../../source/api_reference/layers.rst:749
 msgid "multiplex"
 msgstr ""
 
@@ -4010,7 +4269,7 @@ msgstr ""
 msgid "The output tensor of multiplex operator."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:557
+#: ../../source/api_reference/layers.rst:757
 msgid "layer_norm"
 msgstr ""
 
@@ -4086,7 +4345,7 @@ msgstr ""
 msgid "Result after normalization"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:563
+#: ../../source/api_reference/layers.rst:765
 msgid "softmax_with_cross_entropy"
 msgstr ""
 
@@ -4152,7 +4411,7 @@ msgstr ""
 msgid "The cross entropy loss is a 2-D tensor with shape [N x 1]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:569
+#: ../../source/api_reference/layers.rst:773
 msgid "smooth_l1"
 msgstr ""
 
@@ -4214,7 +4473,7 @@ msgstr ""
 msgid "shape [batch_size, 1]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:575
+#: ../../source/api_reference/layers.rst:781
 msgid "one_hot"
 msgstr ""
 
@@ -4257,7 +4516,7 @@ msgstr ""
 msgid "[0., 1., 0., 0.], [0., 0., 0., 1.], [1., 0., 0., 0.]]"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:581
+#: ../../source/api_reference/layers.rst:789
 msgid "autoincreased_step_counter"
 msgstr ""
 
@@ -4283,7 +4542,7 @@ msgstr ""
 msgid "The global run counter."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:587
+#: ../../source/api_reference/layers.rst:797
 msgid "reshape"
 msgstr ""
 
@@ -4378,7 +4637,7 @@ msgstr ""
 msgid "The output tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:593
+#: ../../source/api_reference/layers.rst:805
 msgid "lod_reset"
 msgstr ""
 
@@ -4414,7 +4673,7 @@ msgstr ""
 msgid ":exc:`ValueError` -- If y and target_lod are both None."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:599
+#: ../../source/api_reference/layers.rst:813
 msgid "lrn"
 msgstr ""
 
@@ -4469,7 +4728,7 @@ msgstr ""
 msgid "ValueError: If rank of the input tensor is not 4."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:605
+#: ../../source/api_reference/layers.rst:821
 msgid "pad"
 msgstr ""
 
@@ -4506,7 +4765,7 @@ msgstr ""
 msgid "The padded tensor variable."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:611
+#: ../../source/api_reference/layers.rst:829
 msgid "label_smooth"
 msgstr ""
 
@@ -4566,7 +4825,7 @@ msgstr ""
 msgid "The tensor variable containing the smoothed labels."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:617
+#: ../../source/api_reference/layers.rst:837
 msgid "roi_pool"
 msgstr ""
 
@@ -4639,7 +4898,7 @@ msgstr ""
 msgid "(num_rois, channels, pooled_h, pooled_w)."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:623
+#: ../../source/api_reference/layers.rst:845
 msgid "dice_loss"
 msgstr ""
 
@@ -4672,7 +4931,7 @@ msgstr ""
 msgid "The dice loss with shape [1]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:629
+#: ../../source/api_reference/layers.rst:853
 msgid "image_resize"
 msgstr ""
 
@@ -4733,7 +4992,7 @@ msgstr ""
 msgid "(num_batches, channls, out_h, out_w)."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:635
+#: ../../source/api_reference/layers.rst:861
 msgid "image_resize_short"
 msgstr ""
 
@@ -4752,7 +5011,7 @@ msgstr ""
 msgid "resample method, default: BILINEAR."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:641
+#: ../../source/api_reference/layers.rst:869
 msgid "resize_bilinear"
 msgstr ""
 
@@ -4802,7 +5061,7 @@ msgstr ""
 msgid "The dimension of output is (N x C x out_h x out_w)."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:647
+#: ../../source/api_reference/layers.rst:877
 msgid "gather"
 msgstr ""
 
@@ -4824,7 +5083,7 @@ msgstr ""
 msgid "The output is a tensor with the same rank as input."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:653
+#: ../../source/api_reference/layers.rst:885
 msgid "random_crop"
 msgstr ""
 
@@ -4855,31 +5114,64 @@ msgstr ""
 msgid "The cropped instance batch"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:659
+#: ../../source/api_reference/layers.rst:893
+msgid "mean_iou"
+msgstr ""
+
+#: of paddle.fluid.layers.mean_iou:1
+msgid ""
+"Mean Intersection-Over-Union is a common evaluation metric for semantic "
+"image segmentation, which first computes the IOU for each semantic class "
+"and then computes the average over classes. IOU is defined as follows:"
+msgstr ""
+
+#: of paddle.fluid.layers.mean_iou:10
+msgid ""
+"The predictions are accumulated in a confusion matrix and mean-IOU is "
+"then calculated from it."
+msgstr ""
+
+#: of paddle.fluid.layers.mean_iou:14
+msgid ""
+"A Tensor of prediction results for semantic labels with type int32 or "
+"int64."
+msgstr ""
+
+#: of paddle.fluid.layers.mean_iou:16
+msgid ""
+"A Tensor of ground truth labels with type int32 or int64. Its shape "
+"should be the same as input."
+msgstr ""
+
+#: of paddle.fluid.layers.mean_iou:20
+msgid ""
+"A Tensor representing the mean intersection-over-union with shape [1]. "
+"out_wrong(Variable): A Tensor with shape [num_classes]. The wrong numbers"
+" of each class. out_correct(Variable): A Tensor with shape [num_classes]."
+" The correct numbers of each class."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:899
 msgid "ops"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:662
+#: ../../source/api_reference/layers.rst:904
 msgid "mean"
 msgstr ""
 
 #: of paddle.fluid.layers.mean:1
-msgid "Mean Operator."
+msgid "Mean Operator calculates the mean of all elements in X."
 msgstr ""
 
-#: of paddle.fluid.layers.mean:3
-msgid "Out is a scalar which is the mean of all elements in X."
+#: of paddle.fluid.layers.mean:4
+msgid "(Tensor) The input of mean op Duplicable: False  Optional: False"
 msgstr ""
 
-#: of paddle.fluid.layers.mean:6
-msgid "The input of mean op Duplicable: False  Optional: False"
+#: of paddle.fluid.layers.mean:7
+msgid "(Tensor) The output of mean op"
 msgstr ""
 
-#: of paddle.fluid.layers.mean:9
-msgid "The output of mean op"
-msgstr ""
-
-#: ../../source/api_reference/layers.rst:668
+#: ../../source/api_reference/layers.rst:912
 msgid "mul"
 msgstr ""
 
@@ -4954,7 +5246,7 @@ msgstr ""
 msgid "(Tensor), The output tensor of mul op."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:674
+#: ../../source/api_reference/layers.rst:920
 msgid "scale"
 msgstr ""
 
@@ -4980,7 +5272,7 @@ msgstr ""
 msgid "(Tensor) Output tensor of scale operator."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:680
+#: ../../source/api_reference/layers.rst:928
 msgid "sigmoid_cross_entropy_with_logits"
 msgstr ""
 
@@ -5054,7 +5346,7 @@ msgid ""
 "elementwise logistic losses."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:686
+#: ../../source/api_reference/layers.rst:936
 msgid "elementwise_add"
 msgstr ""
 
@@ -5212,7 +5504,7 @@ msgstr ""
 msgid "The output of elementwise op."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:692
+#: ../../source/api_reference/layers.rst:944
 msgid "elementwise_div"
 msgstr ""
 
@@ -5224,7 +5516,7 @@ msgstr ""
 msgid "$$Out = X / Y$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:698
+#: ../../source/api_reference/layers.rst:952
 msgid "elementwise_sub"
 msgstr ""
 
@@ -5236,7 +5528,7 @@ msgstr ""
 msgid "$$Out = X - Y$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:704
+#: ../../source/api_reference/layers.rst:960
 msgid "elementwise_mul"
 msgstr ""
 
@@ -5248,7 +5540,7 @@ msgstr ""
 msgid "$$Out = X \\odot\\ Y$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:710
+#: ../../source/api_reference/layers.rst:968
 msgid "elementwise_max"
 msgstr ""
 
@@ -5260,7 +5552,7 @@ msgstr ""
 msgid "$$Out = max(X, Y)$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:716
+#: ../../source/api_reference/layers.rst:976
 msgid "elementwise_min"
 msgstr ""
 
@@ -5272,7 +5564,7 @@ msgstr ""
 msgid "$$Out = min(X, Y)$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:722
+#: ../../source/api_reference/layers.rst:984
 msgid "elementwise_pow"
 msgstr ""
 
@@ -5284,7 +5576,7 @@ msgstr ""
 msgid "$$Out = X ^ Y$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:728
+#: ../../source/api_reference/layers.rst:992
 msgid "clip"
 msgstr ""
 
@@ -5320,7 +5612,7 @@ msgstr ""
 msgid "(Tensor)The output of clip op with shape as input(X)"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:734
+#: ../../source/api_reference/layers.rst:1000
 msgid "clip_by_norm"
 msgstr ""
 
@@ -5359,7 +5651,7 @@ msgstr ""
 msgid "(Tensor) The output of clip_by_norm op with shape as input(X)"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:740
+#: ../../source/api_reference/layers.rst:1008
 msgid "logical_and"
 msgstr ""
 
@@ -5390,7 +5682,7 @@ msgstr ""
 msgid "(LoDTensor) n-dim bool tensor. Each element is $$Out = X \\&\\& Y$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:746
+#: ../../source/api_reference/layers.rst:1016
 msgid "logical_or"
 msgstr ""
 
@@ -5421,7 +5713,7 @@ msgstr ""
 msgid "(LoDTensor) n-dim bool tensor. Each element is $$Out = X || Y$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:752
+#: ../../source/api_reference/layers.rst:1024
 msgid "logical_xor"
 msgstr ""
 
@@ -5454,7 +5746,7 @@ msgid ""
 "\\&\\& \\, !(X \\&\\& Y)$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:758
+#: ../../source/api_reference/layers.rst:1032
 msgid "logical_not"
 msgstr ""
 
@@ -5478,44 +5770,7 @@ msgstr ""
 msgid "(LoDTensor) n-dim bool tensor. Each element is $$Out = !X$$"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:764
-msgid "uniform_random"
-msgstr ""
-
-#: of paddle.fluid.layers.uniform_random:1
-msgid ""
-"This operator initializes a tensor with random values sampled from a "
-"uniform distribution. The random result is in set [min, max]."
-msgstr ""
-
-#: of paddle.fluid.layers.uniform_random:5
-msgid "The shape of the output tensor"
-msgstr ""
-
-#: of paddle.fluid.layers.uniform_random:7
-msgid "Minimum value of uniform random. [default -1.0]."
-msgstr ""
-
-#: of paddle.fluid.layers.uniform_random:9
-msgid "Maximun value of uniform random. [default 1.0]."
-msgstr ""
-
-#: of paddle.fluid.layers.uniform_random:11
-msgid ""
-"Random seed used for generating samples. 0 means use a seed generated by "
-"the system.Note that if seed is not 0, this operator will always generate"
-" the same random numbers every time. [default 0]."
-msgstr ""
-
-#: of paddle.fluid.layers.uniform_random:13
-msgid "Output tensor data type. [default 5(FP32)]."
-msgstr ""
-
-#: of paddle.fluid.layers.uniform_random:16
-msgid "The output tensor of uniform random op"
-msgstr ""
-
-#: ../../source/api_reference/layers.rst:770
+#: ../../source/api_reference/layers.rst:1040
 msgid "uniform_random_batch_size_like"
 msgstr ""
 
@@ -5579,7 +5834,7 @@ msgstr ""
 msgid "Tensor of specified shape will be filled with the specified value"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:776
+#: ../../source/api_reference/layers.rst:1048
 msgid "gaussian_random"
 msgstr ""
 
@@ -5624,46 +5879,11 @@ msgstr ""
 msgid "Output matrix of gaussian random op"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:782
+#: ../../source/api_reference/layers.rst:1056
 msgid "gaussian_random_batch_size_like"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:788
-msgid "cumsum"
-msgstr ""
-
-#: of paddle.fluid.layers.cumsum:1
-msgid ""
-"The cumulative sum of the elements along a given axis. By default, the "
-"first element of the result is the same of the first element of the "
-"input. If exlusive is true, the first element of the result is 0."
-msgstr ""
-
-#: of paddle.fluid.layers.cumsum:5
-msgid "Input of cumsum operator Duplicable: False  Optional: False"
-msgstr ""
-
-#: of paddle.fluid.layers.cumsum:7
-msgid ""
-"The dimenstion to accumulate along. -1 means the last dimenstion [default"
-" -1]."
-msgstr ""
-
-#: of paddle.fluid.layers.cumsum:9
-msgid "Whether to perform exclusive cumsum. [default false]."
-msgstr ""
-
-#: of paddle.fluid.layers.cumsum:11
-msgid ""
-"If true, the cumsum is performed in the reversed direction. [default "
-"false]."
-msgstr ""
-
-#: of paddle.fluid.layers.cumsum:14
-msgid "Output of cumsum operator"
-msgstr ""
-
-#: ../../source/api_reference/layers.rst:794
+#: ../../source/api_reference/layers.rst:1064
 msgid "scatter"
 msgstr ""
 
@@ -5699,7 +5919,7 @@ msgstr ""
 msgid "The output of add op"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:800
+#: ../../source/api_reference/layers.rst:1072
 msgid "sum"
 msgstr ""
 
@@ -5724,7 +5944,82 @@ msgstr ""
 msgid "(Tensor) The output tensor of sum operator."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:806
+#: ../../source/api_reference/layers.rst:1080
+msgid "slice"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:1
+msgid "Slice Operator."
+msgstr ""
+
+#: of paddle.fluid.layers.slice:3
+msgid ""
+"Produces a slice of the input tensor along multiple axes. Similar to "
+"numpy: https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html "
+"Slice uses `axes`, `starts` and `ends` attributes to specify the start "
+"and end dimension for each axis in the list of axes, it uses this "
+"information to slice the input data tensor. If a negative value is passed"
+" for any of the start or end indices, it represents number of elements "
+"before the end of that dimension. If the value passed to start or end is "
+"larger than the n (the number of elements in this dimension), it "
+"represents n. For slicing to the end of a dimension with unknown size, it"
+" is recommended to pass in INT_MAX. If axes are omitted, they are set to "
+"[0, ..., ndim-1]."
+msgstr ""
+
+#: of paddle.fluid.layers.slice:14
+msgid "Example 1: Given:"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:16
+msgid ""
+"data = [ [1, 2, 3, 4], [5, 6, 7, 8], ] axes = [0, 1] starts = [1, 0] ends"
+" = [2, 3]"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:21 paddle.fluid.layers.slice:29
+msgid "Then:"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:21
+msgid "result = [ [5, 6, 7], ]"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:23
+msgid "Example 2: Given:"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:25
+msgid "data = [ [1, 2, 3, 4], [5, 6, 7, 8], ] starts = [0, 1] ends = [-1, 1000]"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:29
+msgid "result = [ [2, 3, 4], ]"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:31
+msgid "Tensor of data to extract slices from. Duplicable: False  Optional: False"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:33
+msgid ""
+"(list<int>) Axes that `starts` and `ends` apply to. It's optional.If not "
+"present, will be treated as [0, 1, ..., len(`starts`) - 1]."
+msgstr ""
+
+#: of paddle.fluid.layers.slice:35
+msgid "(list<int>) Starting indices of corresponding axis in `axes`"
+msgstr ""
+
+#: of paddle.fluid.layers.slice:37
+msgid "(list<int>) Starting indices of corresponding axis in `axes`."
+msgstr ""
+
+#: of paddle.fluid.layers.slice:40
+msgid "Sliced data tensor."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1088
 msgid "polygon_box_transform"
 msgstr ""
 
@@ -5748,7 +6043,7 @@ msgstr ""
 msgid "The output with the same shape as input"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:812
+#: ../../source/api_reference/layers.rst:1096
 msgid "shape"
 msgstr ""
 
@@ -5764,7 +6059,7 @@ msgstr ""
 msgid "(Tensor), The shape of input tensor."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:818
+#: ../../source/api_reference/layers.rst:1104
 msgid "maxout"
 msgstr ""
 
@@ -5823,7 +6118,7 @@ msgid ""
 " is the height and width of feature."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:824
+#: ../../source/api_reference/layers.rst:1112
 msgid "sigmoid"
 msgstr ""
 
@@ -5855,7 +6150,7 @@ msgstr ""
 msgid "Output of Sigmoid operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:830
+#: ../../source/api_reference/layers.rst:1120
 msgid "logsigmoid"
 msgstr ""
 
@@ -5875,7 +6170,7 @@ msgstr ""
 msgid "Output of LogSigmoid operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:836
+#: ../../source/api_reference/layers.rst:1128
 msgid "exp"
 msgstr ""
 
@@ -5895,7 +6190,7 @@ msgstr ""
 msgid "Output of Exp operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:842
+#: ../../source/api_reference/layers.rst:1136
 msgid "relu"
 msgstr ""
 
@@ -5915,7 +6210,7 @@ msgstr ""
 msgid "Output of Relu operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:848
+#: ../../source/api_reference/layers.rst:1144
 msgid "tanh"
 msgstr ""
 
@@ -5935,7 +6230,7 @@ msgstr ""
 msgid "Output of Tanh operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:854
+#: ../../source/api_reference/layers.rst:1152
 msgid "tanh_shrink"
 msgstr ""
 
@@ -5955,41 +6250,27 @@ msgstr ""
 msgid "Output of TanhShrink operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:860
+#: ../../source/api_reference/layers.rst:1160
 msgid "softshrink"
 msgstr ""
 
 #: of paddle.fluid.layers.softshrink:1
-msgid "Softshrink Activation Operator."
+msgid ":strong:`Softshrink Activation Operator`"
 msgstr ""
 
-#: of paddle.fluid.layers.softshrink:3
-msgid "$$ out = \\begin{cases}"
-msgstr ""
-
-#: of paddle.fluid.layers.softshrink:5
-msgid ""
-"x - \\lambda, \\text{if } x > \\lambda \\\\ x + \\lambda, \\text{if } x <"
-" -\\lambda \\\\ 0,  \\text{otherwise} \\end{cases}"
-msgstr ""
-
-#: of paddle.fluid.layers.softshrink:9
-msgid "$$"
-msgstr ""
-
-#: of paddle.fluid.layers.softshrink:12
+#: of paddle.fluid.layers.softshrink:11
 msgid "Input of Softshrink operator Duplicable: False  Optional: False"
 msgstr ""
 
-#: of paddle.fluid.layers.softshrink:14
+#: of paddle.fluid.layers.softshrink:13
 msgid "non-negative offset"
 msgstr ""
 
-#: of paddle.fluid.layers.softshrink:17
+#: of paddle.fluid.layers.softshrink:16
 msgid "Output of Softshrink operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:866
+#: ../../source/api_reference/layers.rst:1168
 msgid "sqrt"
 msgstr ""
 
@@ -6009,7 +6290,7 @@ msgstr ""
 msgid "Output of Sqrt operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:872
+#: ../../source/api_reference/layers.rst:1176
 msgid "abs"
 msgstr ""
 
@@ -6029,7 +6310,7 @@ msgstr ""
 msgid "Output of Abs operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:878
+#: ../../source/api_reference/layers.rst:1184
 msgid "ceil"
 msgstr ""
 
@@ -6049,7 +6330,7 @@ msgstr ""
 msgid "Output of Ceil operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:884
+#: ../../source/api_reference/layers.rst:1192
 msgid "floor"
 msgstr ""
 
@@ -6069,7 +6350,7 @@ msgstr ""
 msgid "Output of Floor operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:890
+#: ../../source/api_reference/layers.rst:1200
 msgid "cos"
 msgstr ""
 
@@ -6089,7 +6370,7 @@ msgstr ""
 msgid "Output of Cos operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:896
+#: ../../source/api_reference/layers.rst:1208
 msgid "sin"
 msgstr ""
 
@@ -6109,7 +6390,7 @@ msgstr ""
 msgid "Output of Sin operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:902
+#: ../../source/api_reference/layers.rst:1216
 msgid "round"
 msgstr ""
 
@@ -6129,7 +6410,7 @@ msgstr ""
 msgid "Output of Round operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:908
+#: ../../source/api_reference/layers.rst:1224
 msgid "reciprocal"
 msgstr ""
 
@@ -6149,7 +6430,7 @@ msgstr ""
 msgid "Output of Reciprocal operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:914
+#: ../../source/api_reference/layers.rst:1232
 msgid "log"
 msgstr ""
 
@@ -6173,7 +6454,7 @@ msgstr ""
 msgid "Output of Log operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:920
+#: ../../source/api_reference/layers.rst:1240
 msgid "square"
 msgstr ""
 
@@ -6193,7 +6474,7 @@ msgstr ""
 msgid "Output of Square operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:926
+#: ../../source/api_reference/layers.rst:1248
 msgid "softplus"
 msgstr ""
 
@@ -6213,7 +6494,7 @@ msgstr ""
 msgid "Output of Softplus operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:932
+#: ../../source/api_reference/layers.rst:1256
 msgid "softsign"
 msgstr ""
 
@@ -6233,7 +6514,7 @@ msgstr ""
 msgid "Output of Softsign operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:938
+#: ../../source/api_reference/layers.rst:1264
 msgid "brelu"
 msgstr ""
 
@@ -6261,7 +6542,7 @@ msgstr ""
 msgid "Output of BRelu operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:944
+#: ../../source/api_reference/layers.rst:1272
 msgid "leaky_relu"
 msgstr ""
 
@@ -6285,7 +6566,7 @@ msgstr ""
 msgid "Output of LeakyRelu operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:950
+#: ../../source/api_reference/layers.rst:1280
 msgid "soft_relu"
 msgstr ""
 
@@ -6309,7 +6590,7 @@ msgstr ""
 msgid "Output of SoftRelu operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:956
+#: ../../source/api_reference/layers.rst:1288
 msgid "elu"
 msgstr ""
 
@@ -6339,7 +6620,7 @@ msgstr ""
 msgid "Output of ELU operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:962
+#: ../../source/api_reference/layers.rst:1296
 msgid "relu6"
 msgstr ""
 
@@ -6363,7 +6644,7 @@ msgstr ""
 msgid "Output of Relu6 operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:968
+#: ../../source/api_reference/layers.rst:1304
 msgid "pow"
 msgstr ""
 
@@ -6387,7 +6668,7 @@ msgstr ""
 msgid "Output of Pow operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:974
+#: ../../source/api_reference/layers.rst:1312
 msgid "stanh"
 msgstr ""
 
@@ -6415,47 +6696,7 @@ msgstr ""
 msgid "Output of STanh operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:980
-msgid "hard_shrink"
-msgstr ""
-
-#: of paddle.fluid.layers.hard_shrink:1
-msgid ":strong:`HardShrink activation operator`"
-msgstr ""
-
-#: of paddle.fluid.layers.hard_shrink:11
-msgid "Input of HardShrink operator Duplicable: False  Optional: False"
-msgstr ""
-
-#: of paddle.fluid.layers.hard_shrink:13
-msgid "The value of threshold for HardShrink. [default: 0.5]"
-msgstr ""
-
-#: of paddle.fluid.layers.hard_shrink:16
-msgid "Output of HardShrink operator"
-msgstr ""
-
-#: ../../source/api_reference/layers.rst:986
-msgid "thresholded_relu"
-msgstr ""
-
-#: of paddle.fluid.layers.thresholded_relu:1
-msgid ":strong:`ThresholdedRelu activation operator`"
-msgstr ""
-
-#: of paddle.fluid.layers.thresholded_relu:10
-msgid "Input of ThresholdedRelu operator Duplicable: False  Optional: False"
-msgstr ""
-
-#: of paddle.fluid.layers.thresholded_relu:12
-msgid "The threshold location of activation. [default 1.0]."
-msgstr ""
-
-#: of paddle.fluid.layers.thresholded_relu:15
-msgid "Output of ThresholdedRelu operator"
-msgstr ""
-
-#: ../../source/api_reference/layers.rst:992
+#: ../../source/api_reference/layers.rst:1320
 msgid "hard_sigmoid"
 msgstr ""
 
@@ -6497,7 +6738,7 @@ msgstr ""
 msgid "Output of HardSigmoid operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:998
+#: ../../source/api_reference/layers.rst:1328
 msgid "swish"
 msgstr ""
 
@@ -6521,15 +6762,130 @@ msgstr ""
 msgid "Output of Swish operator"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1004
+#: ../../source/api_reference/layers.rst:1336
+msgid "uniform_random"
+msgstr ""
+
+#: of paddle.fluid.layers.uniform_random:1
+msgid ""
+"This operator initializes a tensor with random values sampled from a "
+"uniform distribution. The random result is in set [min, max]."
+msgstr ""
+
+#: of paddle.fluid.layers.uniform_random:5
+msgid "The shape of the output tensor"
+msgstr ""
+
+#: of paddle.fluid.layers.uniform_random:7
+msgid "Minimum value of uniform random. [default -1.0]."
+msgstr ""
+
+#: of paddle.fluid.layers.uniform_random:9
+msgid "Maximun value of uniform random. [default 1.0]."
+msgstr ""
+
+#: of paddle.fluid.layers.uniform_random:11
+msgid ""
+"Random seed used for generating samples. 0 means use a seed generated by "
+"the system.Note that if seed is not 0, this operator will always generate"
+" the same random numbers every time. [default 0]."
+msgstr ""
+
+#: of paddle.fluid.layers.uniform_random:13
+msgid "Output tensor data type. [default 5(FP32)]."
+msgstr ""
+
+#: of paddle.fluid.layers.uniform_random:16
+msgid "The output tensor of uniform random op"
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1344
+msgid "hard_shrink"
+msgstr ""
+
+#: of paddle.fluid.layers.hard_shrink:1
+msgid ":strong:`HardShrink activation operator`"
+msgstr ""
+
+#: of paddle.fluid.layers.hard_shrink:11
+msgid "Input of HardShrink operator Duplicable: False  Optional: False"
+msgstr ""
+
+#: of paddle.fluid.layers.hard_shrink:13
+msgid "The value of threshold for HardShrink. [default: 0.5]"
+msgstr ""
+
+#: of paddle.fluid.layers.hard_shrink:16
+msgid "Output of HardShrink operator"
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1352
+msgid "cumsum"
+msgstr ""
+
+#: of paddle.fluid.layers.cumsum:1
+msgid ""
+"The cumulative sum of the elements along a given axis. By default, the "
+"first element of the result is the same of the first element of the "
+"input. If exlusive is true, the first element of the result is 0."
+msgstr ""
+
+#: of paddle.fluid.layers.cumsum:5
+msgid "Input of cumsum operator Duplicable: False  Optional: False"
+msgstr ""
+
+#: of paddle.fluid.layers.cumsum:7
+msgid ""
+"The dimenstion to accumulate along. -1 means the last dimenstion [default"
+" -1]."
+msgstr ""
+
+#: of paddle.fluid.layers.cumsum:9
+msgid "Whether to perform exclusive cumsum. [default false]."
+msgstr ""
+
+#: of paddle.fluid.layers.cumsum:11
+msgid ""
+"If true, the cumsum is performed in the reversed direction. [default "
+"false]."
+msgstr ""
+
+#: of paddle.fluid.layers.cumsum:14
+msgid "Output of cumsum operator"
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1360
+msgid "thresholded_relu"
+msgstr ""
+
+#: of paddle.fluid.layers.thresholded_relu:1
+msgid ":strong:`ThresholdedRelu activation operator`"
+msgstr ""
+
+#: of paddle.fluid.layers.thresholded_relu:10
+msgid "Input of ThresholdedRelu operator Duplicable: False  Optional: False"
+msgstr ""
+
+#: of paddle.fluid.layers.thresholded_relu:12
+msgid "The threshold location of activation. [default 1.0]."
+msgstr ""
+
+#: of paddle.fluid.layers.thresholded_relu:15
+msgid "Output of ThresholdedRelu operator"
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1366
+#: ../../source/api_reference/layers.rst:1618
 msgid "tensor"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1007
+#: ../../source/api_reference/layers.rst:1371
+#: ../../source/api_reference/layers.rst:1623
 msgid "create_tensor"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1013
+#: ../../source/api_reference/layers.rst:1379
+#: ../../source/api_reference/layers.rst:1631
 msgid "create_parameter"
 msgstr ""
 
@@ -6572,7 +6928,8 @@ msgstr ""
 msgid "the created parameter."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1019
+#: ../../source/api_reference/layers.rst:1387
+#: ../../source/api_reference/layers.rst:1639
 msgid "create_global_var"
 msgstr ""
 
@@ -6590,7 +6947,8 @@ msgstr ""
 msgid "the created Variable"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1025
+#: ../../source/api_reference/layers.rst:1395
+#: ../../source/api_reference/layers.rst:1647
 msgid "cast"
 msgstr ""
 
@@ -6600,7 +6958,8 @@ msgid ""
 "output_dtype as the output."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1031
+#: ../../source/api_reference/layers.rst:1403
+#: ../../source/api_reference/layers.rst:1655
 msgid "concat"
 msgstr ""
 
@@ -6626,7 +6985,8 @@ msgstr ""
 msgid "Output variable of the concatenation"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1037
+#: ../../source/api_reference/layers.rst:1411
+#: ../../source/api_reference/layers.rst:1663
 msgid "sums"
 msgstr ""
 
@@ -6654,7 +7014,8 @@ msgstr ""
 msgid "written to it."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1043
+#: ../../source/api_reference/layers.rst:1419
+#: ../../source/api_reference/layers.rst:1671
 msgid "assign"
 msgstr ""
 
@@ -6678,7 +7039,8 @@ msgstr ""
 msgid "The destination variable that was supplied as the *output*."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1049
+#: ../../source/api_reference/layers.rst:1427
+#: ../../source/api_reference/layers.rst:1679
 msgid "fill_constant_batch_size_like"
 msgstr ""
 
@@ -6722,7 +7084,8 @@ msgstr ""
 msgid "Tensor of specified shape will be filled with the specified value."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1055
+#: ../../source/api_reference/layers.rst:1435
+#: ../../source/api_reference/layers.rst:1687
 msgid "fill_constant"
 msgstr ""
 
@@ -6760,7 +7123,55 @@ msgstr ""
 msgid "The tensor variable storing the output."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1061
+#: ../../source/api_reference/layers.rst:1443
+#: ../../source/api_reference/layers.rst:1695
+msgid "argmin"
+msgstr ""
+
+#: of paddle.fluid.layers.argmin:1
+msgid "**argmin**"
+msgstr ""
+
+#: of paddle.fluid.layers.argmin:3
+msgid ""
+"This function computes the indices of the min elements of the input "
+"tensor's element along the provided axis."
+msgstr ""
+
+#: of paddle.fluid.layers.argmin:6
+msgid "The input to compute the indices of the min elements."
+msgstr ""
+
+#: of paddle.fluid.layers.argmax:9 paddle.fluid.layers.argmin:9
+msgid "Axis to compute indices along."
+msgstr ""
+
+#: of paddle.fluid.layers.argmax:12 paddle.fluid.layers.argmin:12
+#: paddle.fluid.layers.ones:13 paddle.fluid.layers.zeros:13
+msgid "The tensor variable storing the output"
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1451
+#: ../../source/api_reference/layers.rst:1703
+msgid "argmax"
+msgstr ""
+
+#: of paddle.fluid.layers.argmax:1
+msgid "**argmax**"
+msgstr ""
+
+#: of paddle.fluid.layers.argmax:3
+msgid ""
+"This function computes the indices of the max elements of the input "
+"tensor's element along the provided axis."
+msgstr ""
+
+#: of paddle.fluid.layers.argmax:6
+msgid "The input to compute the indices of the max elements."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1459
+#: ../../source/api_reference/layers.rst:1711
 msgid "ones"
 msgstr ""
 
@@ -6782,11 +7193,8 @@ msgstr ""
 msgid "Data type of output tensor"
 msgstr ""
 
-#: of paddle.fluid.layers.ones:13 paddle.fluid.layers.zeros:13
-msgid "The tensor variable storing the output"
-msgstr ""
-
-#: ../../source/api_reference/layers.rst:1067
+#: ../../source/api_reference/layers.rst:1467
+#: ../../source/api_reference/layers.rst:1719
 msgid "zeros"
 msgstr ""
 
@@ -6800,11 +7208,11 @@ msgid ""
 "initializes this with 0."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1073
+#: ../../source/api_reference/layers.rst:1473
 msgid "learning_rate_scheduler"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1076
+#: ../../source/api_reference/layers.rst:1478
 msgid "exponential_decay"
 msgstr ""
 
@@ -6853,7 +7261,7 @@ msgstr ""
 msgid "The decayed learning rate"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1082
+#: ../../source/api_reference/layers.rst:1486
 msgid "natural_exp_decay"
 msgstr ""
 
@@ -6867,7 +7275,7 @@ msgid ""
 "rate during training"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1088
+#: ../../source/api_reference/layers.rst:1494
 msgid "inverse_time_decay"
 msgstr ""
 
@@ -6881,7 +7289,7 @@ msgid ""
 "rate during training."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1094
+#: ../../source/api_reference/layers.rst:1502
 msgid "polynomial_decay"
 msgstr ""
 
@@ -6889,7 +7297,7 @@ msgstr ""
 msgid "Applies polynomial decay to the initial learning rate."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1100
+#: ../../source/api_reference/layers.rst:1510
 msgid "piecewise_decay"
 msgstr ""
 
@@ -6897,7 +7305,7 @@ msgstr ""
 msgid "Applies piecewise decay to the initial learning rate."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1106
+#: ../../source/api_reference/layers.rst:1518
 msgid "noam_decay"
 msgstr ""
 
@@ -6923,11 +7331,11 @@ msgstr ""
 msgid "The decayed learning rate."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1112
+#: ../../source/api_reference/layers.rst:1524
 msgid "detection"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1115
+#: ../../source/api_reference/layers.rst:1529
 msgid "prior_box"
 msgstr ""
 
@@ -7024,7 +7432,7 @@ msgid ""
 "input"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1121
+#: ../../source/api_reference/layers.rst:1537
 msgid "multi_box_head"
 msgstr ""
 
@@ -7166,7 +7574,7 @@ msgid ""
 "position of inputs"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1127
+#: ../../source/api_reference/layers.rst:1545
 msgid "bipartite_match"
 msgstr ""
 
@@ -7283,7 +7691,7 @@ msgid ""
 "dist_matrix[d+LoD[i]][j]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1133
+#: ../../source/api_reference/layers.rst:1553
 msgid "target_assign"
 msgstr ""
 
@@ -7389,7 +7797,7 @@ msgstr ""
 msgid "out_weight (Variable): The weight for output with the shape of [N, P, 1]."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1139
+#: ../../source/api_reference/layers.rst:1561
 msgid "detection_output"
 msgstr ""
 
@@ -7537,7 +7945,7 @@ msgstr ""
 msgid "loc=loc, prior_box=pb, prior_box_var=pbv)"
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1145
+#: ../../source/api_reference/layers.rst:1569
 msgid "ssd_loss"
 msgstr ""
 
@@ -7726,7 +8134,7 @@ msgid ""
 "mining         type of `max_negative`."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1151
+#: ../../source/api_reference/layers.rst:1577
 msgid "detection_map"
 msgstr ""
 
@@ -7837,7 +8245,7 @@ msgid ""
 "example count computed from input(Detection) and input(Label)."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1157
+#: ../../source/api_reference/layers.rst:1585
 msgid "iou_similarity"
 msgstr ""
 
@@ -7885,7 +8293,7 @@ msgid ""
 "a tensor with shape [N, M] representing pairwise iou scores."
 msgstr ""
 
-#: ../../source/api_reference/layers.rst:1163
+#: ../../source/api_reference/layers.rst:1593
 msgid "box_coder"
 msgstr ""
 
@@ -7953,4 +8361,103 @@ msgid ""
 "'decode_center_size', N represents the batch size and M represents the "
 "number of deocded boxes."
 msgstr ""
+
+#: ../../source/api_reference/layers.rst:1599
+msgid "metric"
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1604
+msgid "accuracy"
+msgstr ""
+
+#: of paddle.fluid.layers.accuracy:1
+msgid ""
+"This function computes the accuracy using the input and label. The output"
+" is the top k inputs and their indices."
+msgstr ""
+
+#: ../../source/api_reference/layers.rst:1612
+msgid "auc"
+msgstr ""
+
+#~ msgid "layers"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Returns a list of places based on"
+#~ " flags. The list will be used "
+#~ "for parallel execution."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "If :attr:`None`, it makes no effect "
+#~ "to lookup. Otherwise the given "
+#~ ":attr:`padding_idx` indicates padding the "
+#~ "output with zeros whenever lookup "
+#~ "encounters it in :attr:`input`. If "
+#~ ":math:`padding_idx < 0`, the padding_idx "
+#~ "to use in lookup is :math:`size[0] "
+#~ "+ dim`."
+#~ msgstr ""
+
+#~ msgid "**Convlution2D Layer**"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The convolution2D layer calculates the "
+#~ "output based on the input, filter "
+#~ "and strides, paddings, dilations, groups "
+#~ "parameters. Input(Input) and Output(Output) "
+#~ "are in NCHW format. Where N is "
+#~ "batch size, C is the number of "
+#~ "channels, H is the height of the"
+#~ " feature, and W is the width of"
+#~ " the feature. The details of "
+#~ "convolution layer, please refer UFLDL's "
+#~ "`convolution, "
+#~ "<http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_"
+#~ " . If bias attribution and activation"
+#~ " type are provided, bias is added "
+#~ "to the output of the convolution, "
+#~ "and the corresponding activation function "
+#~ "is applied to the final result."
+#~ msgstr ""
+
+#~ msgid "Output: Output shape: :math:`(N, C_{out}, H_{out}, W_{out})`"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The input image with [N, C, H, "
+#~ "W] format. num_filters(int): The number "
+#~ "of filter. It is as same as "
+#~ "the output image channel."
+#~ msgstr ""
+
+#~ msgid "Mean Operator."
+#~ msgstr ""
+
+#~ msgid "Out is a scalar which is the mean of all elements in X."
+#~ msgstr ""
+
+#~ msgid "The input of mean op Duplicable: False  Optional: False"
+#~ msgstr ""
+
+#~ msgid "The output of mean op"
+#~ msgstr ""
+
+#~ msgid "Softshrink Activation Operator."
+#~ msgstr ""
+
+#~ msgid "$$ out = \\begin{cases}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "x - \\lambda, \\text{if } x > "
+#~ "\\lambda \\\\ x + \\lambda, \\text{if"
+#~ " } x < -\\lambda \\\\ 0,  "
+#~ "\\text{otherwise} \\end{cases}"
+#~ msgstr ""
+
+#~ msgid "$$"
+#~ msgstr ""
 

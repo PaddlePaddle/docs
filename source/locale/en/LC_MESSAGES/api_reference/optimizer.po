@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,34 +19,34 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/optimizer.rst:6
-msgid "optimizer"
+msgid "fluid.optimizer"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:9
+#: ../../source/api_reference/optimizer.rst:11
 msgid "SGD"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:16
+#: ../../source/api_reference/optimizer.rst:20
 msgid "Momentum"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:23
+#: ../../source/api_reference/optimizer.rst:29
 msgid "Adagrad"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:30
+#: ../../source/api_reference/optimizer.rst:38
 msgid "Adam"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:37
+#: ../../source/api_reference/optimizer.rst:47
 msgid "Adamax"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:44
+#: ../../source/api_reference/optimizer.rst:56
 msgid "DecayedAdagrad"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:51
+#: ../../source/api_reference/optimizer.rst:65
 msgid "SGDOptimizer"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "Simple SGD optimizer without any state."
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:58
+#: ../../source/api_reference/optimizer.rst:74
 msgid "MomentumOptimizer"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Simple Momentum optimizer with velocity state"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:65
+#: ../../source/api_reference/optimizer.rst:83
 msgid "AdagradOptimizer"
 msgstr ""
 
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Simple Adagrad optimizer with moment state"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:72
+#: ../../source/api_reference/optimizer.rst:92
 msgid "AdamOptimizer"
 msgstr ""
 
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Implements the Adam Optimizer"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:79
+#: ../../source/api_reference/optimizer.rst:101
 msgid "AdamaxOptimizer"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgstr ""
 msgid "Implements the Adamax Optimizer"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:86
+#: ../../source/api_reference/optimizer.rst:110
 msgid "DecayedAdagradOptimizer"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Simple Decayed Adagrad optimizer with moment state"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:93
+#: ../../source/api_reference/optimizer.rst:119
 msgid "RMSPropOptimizer"
 msgstr ""
 
@@ -181,16 +181,16 @@ msgstr ""
 msgid ":exc:`ValueError` -- If learning_rate, rho, epsilon, momentum are None."
 msgstr ""
 
-#: of paddle.fluid.optimizer.ModelAverage:15
-#: paddle.fluid.optimizer.RMSPropOptimizer:48
+#: of paddle.fluid.optimizer.ModelAverage:14
+#: paddle.fluid.optimizer.RMSPropOptimizer:47
 msgid "Examples"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:100
+#: ../../source/api_reference/optimizer.rst:128
 msgid "Adadelta"
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:107
+#: ../../source/api_reference/optimizer.rst:137
 msgid "ModelAverage"
 msgstr ""
 
@@ -236,7 +236,7 @@ msgstr ""
 msgid "min_average_window=10000, max_average_window=20000)"
 msgstr ""
 
-#: of paddle.fluid.optimizer.ModelAverage:29
+#: of paddle.fluid.optimizer.ModelAverage:27
 msgid "for pass_id in range(args.pass_num):"
 msgstr ""
 
@@ -248,11 +248,11 @@ msgstr ""
 msgid "exe.run(fluid.default_main_program()...)"
 msgstr ""
 
-#: of paddle.fluid.optimizer.ModelAverage:29
+#: of paddle.fluid.optimizer.ModelAverage:27
 msgid "with model_average.apply(exe):"
 msgstr ""
 
-#: of paddle.fluid.optimizer.ModelAverage:29
+#: of paddle.fluid.optimizer.ModelAverage:27
 msgid "for data in test_reader():"
 msgstr ""
 
@@ -268,7 +268,7 @@ msgstr ""
 msgid "Restore parameter values of current model."
 msgstr ""
 
-#: ../../source/api_reference/optimizer.rst:114
+#: ../../source/api_reference/optimizer.rst:146
 msgid "Optimizer"
 msgstr ""
 
@@ -323,4 +323,7 @@ msgid ""
 "This method combines interface `append_backward()` and "
 "`create_optimization_pass()` into one."
 msgstr ""
+
+#~ msgid "optimizer"
+#~ msgstr ""
 

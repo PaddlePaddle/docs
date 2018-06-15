@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,18 +19,18 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: ../../source/api_reference/nets.rst:6
-msgid "nets"
+msgid "fluid.nets"
 msgstr ""
 
-#: ../../source/api_reference/nets.rst:9
+#: ../../source/api_reference/nets.rst:11
 msgid "simple_img_conv_pool"
 msgstr ""
 
-#: ../../source/api_reference/nets.rst:15
+#: ../../source/api_reference/nets.rst:19
 msgid "sequence_conv_pool"
 msgstr ""
 
-#: ../../source/api_reference/nets.rst:21
+#: ../../source/api_reference/nets.rst:27
 msgid "glu"
 msgstr ""
 
@@ -74,12 +74,12 @@ msgstr ""
 msgid "返回类型"
 msgstr ""
 
-#: of paddle.fluid.nets.glu:23
-#: paddle.fluid.nets.scaled_dot_product_attention:47
+#: of paddle.fluid.nets.glu:22
+#: paddle.fluid.nets.scaled_dot_product_attention:46
 msgid "Examples"
 msgstr ""
 
-#: ../../source/api_reference/nets.rst:27
+#: ../../source/api_reference/nets.rst:35
 msgid "scaled_dot_product_attention"
 msgstr ""
 
@@ -151,4 +151,7 @@ msgid ""
 "1. When num_heads == 1, scaled_dot_product_attention has no learnable "
 "parameters."
 msgstr ""
+
+#~ msgid "nets"
+#~ msgstr ""
 
