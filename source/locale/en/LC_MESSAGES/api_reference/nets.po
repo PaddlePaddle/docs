@@ -1,0 +1,154 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-14 18:52+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_reference/nets.rst:6
+msgid "nets"
+msgstr ""
+
+#: ../../source/api_reference/nets.rst:9
+msgid "simple_img_conv_pool"
+msgstr ""
+
+#: ../../source/api_reference/nets.rst:15
+msgid "sequence_conv_pool"
+msgstr ""
+
+#: ../../source/api_reference/nets.rst:21
+msgid "glu"
+msgstr ""
+
+#: of paddle.fluid.nets.glu:1
+msgid ""
+"The gated linear unit composed by split, sigmoid activation and "
+"elementwise multiplication. Specifically, Split the input into two equal "
+"sized parts :math:`a` and :math:`b` along the given dimension and then "
+"compute as following:"
+msgstr ""
+
+#: of paddle.fluid.nets.glu:10
+msgid ""
+"Refer to `Language Modeling with Gated Convolutional Networks "
+"<https://arxiv.org/pdf/1612.08083.pdf>`_."
+msgstr ""
+
+#: of paddle.fluid.nets.glu paddle.fluid.nets.scaled_dot_product_attention
+msgid "参数"
+msgstr ""
+
+#: of paddle.fluid.nets.glu:13
+msgid "The input variable which is a Tensor or LoDTensor."
+msgstr ""
+
+#: of paddle.fluid.nets.glu:15
+msgid ""
+"The dimension along which to split. If :math:`dim < 0`, the dimension to "
+"split along is :math:`rank(input) + dim`."
+msgstr ""
+
+#: of paddle.fluid.nets.glu paddle.fluid.nets.scaled_dot_product_attention
+msgid "返回"
+msgstr ""
+
+#: of paddle.fluid.nets.glu:19
+msgid "The Tensor variable with half the size of input."
+msgstr ""
+
+#: of paddle.fluid.nets.glu paddle.fluid.nets.scaled_dot_product_attention
+msgid "返回类型"
+msgstr ""
+
+#: of paddle.fluid.nets.glu:23
+#: paddle.fluid.nets.scaled_dot_product_attention:47
+msgid "Examples"
+msgstr ""
+
+#: ../../source/api_reference/nets.rst:27
+msgid "scaled_dot_product_attention"
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:1
+msgid "The dot-product attention."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:3
+msgid ""
+"Attention mechanism can be seen as mapping a query and a set of key-value"
+" pairs to an output. The output is computed as a weighted sum of the "
+"values, where the weight assigned to each value is computed by a "
+"compatibility function (dot-product here) of the query with the "
+"corresponding key."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:8
+msgid ""
+"The dot-product attention can be implemented through (batch) matrix "
+"multipication as follows:"
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:15
+msgid ""
+"Refer to `Attention Is All You Need "
+"<https://arxiv.org/pdf/1706.03762.pdf>`_."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:18
+#: paddle.fluid.nets.scaled_dot_product_attention:20
+#: paddle.fluid.nets.scaled_dot_product_attention:22
+msgid "The input variable which should be a 3-D Tensor."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:24
+msgid ""
+"Head number to compute the scaled dot product attention. Default value is"
+" 1."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:27
+msgid "The dropout rate to drop the attention weight. Default value is 0."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:31
+msgid ""
+"A 3-D Tensor computed by multi-head scaled dot product                   "
+"attention."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention
+msgid "raises"
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:34
+msgid ":exc:`ValueError` -- If input queries, keys, values are not 3-D Tensors."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:38
+msgid ""
+"1. When num_heads > 1, three linear projections are learned respectively "
+"to map input queries, keys and values into queries', keys' and values'. "
+"queries', keys' and values' have the same shapes with queries, keys and "
+"values."
+msgstr ""
+
+#: of paddle.fluid.nets.scaled_dot_product_attention:43
+msgid ""
+"1. When num_heads == 1, scaled_dot_product_attention has no learnable "
+"parameters."
+msgstr ""
+
