@@ -5,6 +5,7 @@ API Reference
 ..  toctree::
     :maxdepth: 1
 
+    fluid.rst
     layers.rst
     data_feeder.rst
     executor.rst

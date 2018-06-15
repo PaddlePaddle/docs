@@ -5,3 +5,5 @@ for module in data_feeder clip metrics executor initializer io nets optimizer pa
 do
   python gen_doc.py ${module} > ${module}.rst
 done
+
+python gen_doc.py "" > fluid.rst
