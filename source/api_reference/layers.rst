@@ -42,15 +42,6 @@ BlockGuardWithCompletion
     :members:
     :noindex:
 
-.. _api_fluid_layers_StaticRNNMemoryLink:
-
-StaticRNNMemoryLink
--------------------
-
-..  autoclass:: paddle.fluid.layers.StaticRNNMemoryLink
-    :members:
-    :noindex:
-
 .. _api_fluid_layers_WhileGuard:
 
 WhileGuard
@@ -241,6 +232,15 @@ is_empty
 --------
 
 ..  autofunction:: paddle.fluid.layers.is_empty
+    :noindex:
+
+.. _api_fluid_layers_StaticRNNMemoryLink:
+
+StaticRNNMemoryLink
+-------------------
+
+..  autoclass:: paddle.fluid.layers.StaticRNNMemoryLink
+    :members:
     :noindex:
 
 device
@@ -903,6 +903,22 @@ mean_iou
 ..  autofunction:: paddle.fluid.layers.mean_iou
     :noindex:
 
+.. _api_fluid_layers_relu:
+
+relu
+----
+
+..  autofunction:: paddle.fluid.layers.relu
+    :noindex:
+
+.. _api_fluid_layers_log:
+
+log
+---
+
+..  autofunction:: paddle.fluid.layers.log
+    :noindex:
+
 ops
 ===
 
@@ -1138,14 +1154,6 @@ exp
 ..  autofunction:: paddle.fluid.layers.exp
     :noindex:
 
-.. _api_fluid_layers_relu:
-
-relu
-----
-
-..  autofunction:: paddle.fluid.layers.relu
-    :noindex:
-
 .. _api_fluid_layers_tanh:
 
 tanh
@@ -1232,14 +1240,6 @@ reciprocal
 ----------
 
 ..  autofunction:: paddle.fluid.layers.reciprocal
-    :noindex:
-
-.. _api_fluid_layers_log:
-
-log
----
-
-..  autofunction:: paddle.fluid.layers.log
     :noindex:
 
 .. _api_fluid_layers_square:
@@ -1475,14 +1475,6 @@ zeros
 -----
 
 ..  autofunction:: paddle.fluid.layers.zeros
-    :noindex:
-
-.. _api_fluid_layers_reverse:
-
-reverse
--------
-
-..  autofunction:: paddle.fluid.layers.reverse
     :noindex:
 
 learning_rate_scheduler
@@ -1743,13 +1735,5 @@ zeros
 -----
 
 ..  autofunction:: paddle.fluid.layers.zeros
-    :noindex:
-
-.. _api_fluid_layers_reverse:
-
-reverse
--------
-
-..  autofunction:: paddle.fluid.layers.reverse
     :noindex:
 
