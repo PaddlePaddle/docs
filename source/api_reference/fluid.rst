@@ -358,3 +358,12 @@ DataFeeder
     :members:
     :noindex:
 
+.. _api_fluid_Scope:
+
+Scope
+-----
+
+..  autoclass:: paddle.fluid.Scope
+    :members:
+    :noindex:
+

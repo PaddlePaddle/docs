@@ -20,3 +20,4 @@ API Reference
     io.rst
     data.rst
     transpiler.rst
+    recordio_writer.rst
