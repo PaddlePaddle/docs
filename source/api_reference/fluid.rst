@@ -65,22 +65,6 @@ program_guard
 ..  autofunction:: paddle.fluid.program_guard
     :noindex:
 
-.. _api_fluid_switch_startup_program:
-
-switch_startup_program
-----------------------
-
-..  autofunction:: paddle.fluid.switch_startup_program
-    :noindex:
-
-.. _api_fluid_switch_main_program:
-
-switch_main_program
--------------------
-
-..  autofunction:: paddle.fluid.switch_main_program
-    :noindex:
-
 .. _api_fluid_get_var:
 
 get_var

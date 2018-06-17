@@ -234,15 +234,6 @@ is_empty
 ..  autofunction:: paddle.fluid.layers.is_empty
     :noindex:
 
-.. _api_fluid_layers_StaticRNNMemoryLink:
-
-StaticRNNMemoryLink
--------------------
-
-..  autoclass:: paddle.fluid.layers.StaticRNNMemoryLink
-    :members:
-    :noindex:
-
 device
 ======
 
@@ -1122,6 +1113,14 @@ shape
 ..  autofunction:: paddle.fluid.layers.shape
     :noindex:
 
+.. _api_fluid_layers_iou_similarity:
+
+iou_similarity
+--------------
+
+..  autofunction:: paddle.fluid.layers.iou_similarity
+    :noindex:
+
 .. _api_fluid_layers_maxout:
 
 maxout
@@ -1477,6 +1476,14 @@ zeros
 ..  autofunction:: paddle.fluid.layers.zeros
     :noindex:
 
+.. _api_fluid_layers_reverse:
+
+reverse
+-------
+
+..  autofunction:: paddle.fluid.layers.reverse
+    :noindex:
+
 learning_rate_scheduler
 =======================
 
@@ -1735,5 +1742,13 @@ zeros
 -----
 
 ..  autofunction:: paddle.fluid.layers.zeros
+    :noindex:
+
+.. _api_fluid_layers_reverse:
+
+reverse
+-------
+
+..  autofunction:: paddle.fluid.layers.reverse
     :noindex:
 
