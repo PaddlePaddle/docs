@@ -291,6 +291,14 @@ Send
 ..  autofunction:: paddle.fluid.layers.Send
     :noindex:
 
+.. _api_fluid_layers_Recv:
+
+Recv
+----
+
+..  autofunction:: paddle.fluid.layers.Recv
+    :noindex:
+
 .. _api_fluid_layers_open_recordio_file:
 
 open_recordio_file
@@ -1469,6 +1477,14 @@ zeros
 ..  autofunction:: paddle.fluid.layers.zeros
     :noindex:
 
+.. _api_fluid_layers_reverse:
+
+reverse
+-------
+
+..  autofunction:: paddle.fluid.layers.reverse
+    :noindex:
+
 learning_rate_scheduler
 =======================
 
@@ -1518,6 +1534,14 @@ noam_decay
 ----------
 
 ..  autofunction:: paddle.fluid.layers.noam_decay
+    :noindex:
+
+.. _api_fluid_layers_append_LARS:
+
+append_LARS
+-----------
+
+..  autofunction:: paddle.fluid.layers.append_LARS
     :noindex:
 
 detection
@@ -1719,5 +1743,13 @@ zeros
 -----
 
 ..  autofunction:: paddle.fluid.layers.zeros
+    :noindex:
+
+.. _api_fluid_layers_reverse:
+
+reverse
+-------
+
+..  autofunction:: paddle.fluid.layers.reverse
     :noindex:
 

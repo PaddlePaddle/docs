@@ -41,6 +41,15 @@ Xavier
     :members:
     :noindex:
 
+.. _api_fluid_initializer_Bilinear:
+
+Bilinear
+--------
+
+..  autoclass:: paddle.fluid.initializer.Bilinear
+    :members:
+    :noindex:
+
 .. _api_fluid_initializer_force_init_on_cpu:
 
 force_init_on_cpu
@@ -90,6 +99,15 @@ XavierInitializer
 -----------------
 
 ..  autoclass:: paddle.fluid.initializer.XavierInitializer
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_BilinearInitializer:
+
+BilinearInitializer
+-------------------
+
+..  autoclass:: paddle.fluid.initializer.BilinearInitializer
     :members:
     :noindex:
 
