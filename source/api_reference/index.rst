@@ -23,3 +23,4 @@ API Reference
     recordio_writer.rst
     backward.rst
     average.rst
+    profiler.rst

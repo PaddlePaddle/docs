@@ -59,15 +59,6 @@ DecayedAdagrad
     :members:
     :noindex:
 
-.. _api_fluid_optimizer_Ftrl:
-
-Ftrl
-----
-
-..  autoclass:: paddle.fluid.optimizer.Ftrl
-    :members:
-    :noindex:
-
 .. _api_fluid_optimizer_SGDOptimizer:
 
 SGDOptimizer
@@ -128,15 +119,6 @@ RMSPropOptimizer
 ----------------
 
 ..  autoclass:: paddle.fluid.optimizer.RMSPropOptimizer
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_FtrlOptimizer:
-
-FtrlOptimizer
--------------
-
-..  autoclass:: paddle.fluid.optimizer.FtrlOptimizer
     :members:
     :noindex:
 

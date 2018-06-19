@@ -910,14 +910,6 @@ log
 ..  autofunction:: paddle.fluid.layers.log
     :noindex:
 
-.. _api_fluid_layers_crop:
-
-crop
-----
-
-..  autofunction:: paddle.fluid.layers.crop
-    :noindex:
-
 ops
 ===
 
