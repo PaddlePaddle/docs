@@ -21,3 +21,5 @@ API Reference
     data.rst
     transpiler.rst
     recordio_writer.rst
+    backward.rst
+    average.rst
