@@ -14,7 +14,7 @@
 ..  toctree::
     :maxdepth: 1
 
-    quick_start/index.rst
+    beginners_guide/index.rst
     user_guides/index.rst
     advanced_usage/index.rst
     api_guides/index.rst
