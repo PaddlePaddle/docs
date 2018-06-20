@@ -1618,8 +1618,8 @@ box_coder
 ..  autofunction:: paddle.fluid.layers.box_coder
     :noindex:
 
-metric
-======
+metric_op
+=========
 
 .. _api_fluid_layers_accuracy:
 
