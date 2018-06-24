@@ -35,3 +35,15 @@ PaddlePaddle Fluid支持两种传入数据的方式： 一种用户需要使用 
 
    feeding_data
    use_recordio_reader
+
+#############
+Python Reader
+#############
+
+为了方便用户在Python中定义数据处理流程，PaddlePaddle Fluid支持 Python Reader，
+具体请参考:
+
+.. toctree::
+   :maxdepth: 2
+
+   reader.md

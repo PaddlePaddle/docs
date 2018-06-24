@@ -103,10 +103,6 @@ RecordIO文件转换好之后，用户可以使用 :ref:`api_fluid_layers_open_f
    image, label = fluid.layers.read_file(file_obj)
 
 
-
-
-
-
 配置数据增强
 ------------
 
