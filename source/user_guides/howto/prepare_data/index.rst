@@ -36,7 +36,6 @@ PaddlePaddle Fluid支持两种传入数据的方式： 一种用户需要使用 
    feeding_data
    use_recordio_reader
 
-#############
 Python Reader
 #############
 
