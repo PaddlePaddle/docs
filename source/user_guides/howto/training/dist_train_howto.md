@@ -24,9 +24,9 @@
 | Performance | Faster | Fast |
 
 * RPC通信方式的结构：
-  <img src="src/dist_train_pserver.png">
+  <img src="src/dist_train_pserver.png" width="500">
 * NCCL2通信方式的结构：
-  <img src="src/dist_train_nccl2.png">
+  <img src="src/dist_train_nccl2.png" width="500">
 
 
 ## 使用parameter server方式的训练
