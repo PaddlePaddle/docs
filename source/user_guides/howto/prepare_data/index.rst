@@ -4,9 +4,13 @@
 准备数据
 ########
 
-PaddlePaddle Fluid支持两种传入数据的方式： 一种用户需要使用 :code:`fluid.layers.data`
+PaddlePaddle Fluid支持两种传入数据的方式:
+
+1. 用户需要使用 :code:`fluid.layers.data`
 配置数据输入层，并在 :ref:`api_guide_executor` 或 :ref:`api_guide_parallel_executor`
-中，使用 :code:`executor.run(feed=...)` 传入训练数据; 另一种用户需要先将训练数据
+中，使用 :code:`executor.run(feed=...)` 传入训练数据。
+
+2. 用户需要先将训练数据
 转换成 Paddle 识别的 :ref:`api_guide_recordio_file_format` ， 再使用
 :code:`fluid.layers.open_files` 以及 :ref:`api_guide_reader` 配置数据读取。
 
@@ -36,7 +40,6 @@ PaddlePaddle Fluid支持两种传入数据的方式： 一种用户需要使用 
    feeding_data
    use_recordio_reader
 
-#############
 Python Reader
 #############
 
