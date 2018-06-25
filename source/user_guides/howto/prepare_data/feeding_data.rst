@@ -38,6 +38,8 @@ PaddlePaddle Fluid支持使用 :ref:`api_fluid_layers_data` 配置数据层；
 
 2. Fluid中目前使用 :code:`int64` 表示类别标签。
 
+.. _user_guide_feed_data_to_executor:
+
 传递训练数据给执行器
 ####################
 
