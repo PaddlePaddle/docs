@@ -15,3 +15,4 @@ PaddlePaddle Fluid 是PaddlePaddle的新版本。他使用类似于编程语言�
 
     fit_a_line/index.md
     recognize_digits/index.md
+    cluster/index.md
