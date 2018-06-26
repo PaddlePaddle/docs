@@ -1,3 +1,5 @@
+.. _user_guide_test_while_training:
+
 ##################
 训练过程中评测模型
 ##################
@@ -18,7 +20,7 @@
 :code:`Program.clone()` 方法可以复制出新的 :ref:`api_fluid_Program` 。 通过设置
 :code:`Program.clone(for_test=True)` 复制出用于测试的操作。简单的使用方法如下:
 
-.. code-blocks:: python
+.. code-block:: python
 
    import paddle.fluid as fluid
 
