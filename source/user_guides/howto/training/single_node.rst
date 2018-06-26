@@ -104,11 +104,11 @@
 
 这里有几点注意事项:
 
-1. :code:`ParallelExecutor` 的构造函数需要指明要执行的 :ref:`api_fluid_Program` ，
-  并在执行过程中不能修改。
+1. :code:`ParallelExecutor` 的构造函数需要指明要执行的 :ref:`api_fluid_Program` ,
+   并在执行过程中不能修改。
 2. :code:`ParallelExecutor` 需要明确指定是否使用 CUDA 显卡进行训练。在显卡训练
-  模式下会占用全部显卡。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 来修改占用
-  的显卡。
+   模式下会占用全部显卡。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 来修改占用
+   的显卡。
 
 进阶使用
 ########
