@@ -107,8 +107,8 @@ paddlepaddle-gpu==0.11.0            使用CUDA 7.5和cuDNN 5编译的0.11.0版�
 
 若您的系统为windows，您可以通过Docker来使用PaddlePaddle。
 
-推荐您下载PaddlePaddle快速安装包，该安装包能够帮助您判断、安装适合的Docker，
-并引导您在Docker中使用PaddlePaddle。
+推荐您下载 `PaddlePaddle快速安装包 <http://paddle-windows.bj.bcebos.com/PaddlePaddle-windows.rar>`_，
+该安装包能够帮助您判断、安装适合的Docker，并引导您在Docker中使用PaddlePaddle。
 
 ..
  todo: windows的安装包要放在百度云上
