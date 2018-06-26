@@ -1,5 +1,5 @@
 ```eval_rst
-..  _quick_start_cluster:
+..  _cluster_quick_start:
 ```
 
 # 分布式训练快速开始
@@ -16,18 +16,16 @@
 
 在启动集群训练脚本时，需要在不同的节点上指定不同的环境变量，具体如下：
 
-环境变量 | 类型 | 样例 | 描述
--- | -- | -- | -- | --
-PADDLE_TRAINING_ROLE | str | PSERVER,TRAINER | 训练节点的角色
-PADDLE_PSERVER_IPS | str | ps0.paddlepaddle.com,ps1.paddlepaddle.com... | 所有 pserver 节点的 IP 地址或 hostname, 用","分隔
-PADDLE_PSERVER_PORT | int | 6174 | 6174 | pserver 节点监听的端口
-PADDLE_TRAINERS | int | 2 | - | 训练任务中 trainer 节点的数量
-PADDLE_CURRENT_IP | str | ps0.paddlepaddle.com | - | 当前 pserver 节点的 IP 地址或 hostanme
-PADDLE_TRAINER_ID | int | 0 | 0 | 当前 trainer 节点的唯一 ID, 取值范围为从0开始到PADDLE_TRAINERS-1
+| 环境变量 | 数据类型 | 样例 | 描述 |
+| -- | -- | -- | -- |
+| PADDLE_TRAINING_ROLE | str | PSERVER,TRAINER | 训练节点的角色 |
+| PADDLE_PSERVER_IPS | str | ps0.paddlepaddle.com,ps1.paddlepaddle.com... | 所有 pserver 节点的 IP 地址或 hostname, 用","分隔 |
+| PADDLE_PSERVER_PORT | int | 6174 | pserver 节点监听的端口 |
+| PADDLE_TRAINERS | int | 2 | 训练任务中 trainer 节点的数量 |
+| PADDLE_CURRENT_IP | str | ps0.paddlepaddle.com | 当前 pserver 节点的 IP 地址或 hostanme |
+| PADDLE_TRAINER_ID | int | 0 | 当前 trainer 节点的唯一 ID, 取值范围为从0开始到PADDLE_TRAINERS-1 |
 
-### 如何启动
-
-1. 样例代码
+### 样例代码
 
 将下面程序代码保存为 `fluid_dist.py`
 
@@ -88,21 +86,20 @@ def train(use_cuda, train_program):
 train(False, train_program)
 ```
 
-2. 启动trainer节点和pserver节点
+### 启动trainer节点和pserver节点
 
-节点 | 启动命令
--- | -- | --
-ps0.paddlepaddle.com | PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动 pserver 节点
-ps1.paddlepaddle.com | PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps1.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动 pserver 节点
-trainer0.paddlepaddle.com | PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=0 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动第0号 trainer 节点
-trainer1.paddlepaddle.com | PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=1 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动第1号 trainer 节点
-
+| 启动节点 | 启动命令 | 说明 |
+| -- | -- | -- |
+| ps0.paddlepaddle.com | PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动 pserver 节点 |
+| ps1.paddlepaddle.com | PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps1.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动 pserver 节点 |
+| trainer0.paddlepaddle.com | PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=0 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动第0号 trainer 节点 |
+| trainer1.paddlepaddle.com | PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=1 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动第1号 trainer 节点 |
 
 **注意**
+
 - 需要先启动pserver节点再启动trainer节点
 - 看到trainer节点输出如下日志表示训练任务执行正确
+
   ```bash
   step 10, loss: [258.2326202392578]
   ```
-
-
