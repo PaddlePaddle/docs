@@ -120,111 +120,134 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 PaddlePaddle在API中提供了自动加载[MNIST](http://yann.lecun.com/exdb/mnist/)数据的模块`paddle.dataset.mnist`。加载后的数据位于`/home/username/.cache/paddle/dataset/mnist`下：
 
 
-|         文件名称          |        说明             |
-| ----------------------- | ----------------------- |
-| train-images-idx3-ubyte | 训练数据图片，60,000条数据 |
-| train-labels-idx1-ubyte | 训练数据标签，60,000条数据 |
-| t10k-images-idx3-ubyte | 测试数据图片，10,000条数据 |
-| t10k-labels-idx1-ubyte | 测试数据标签，10,000条数据 |
+|    文件名称          |       说明              |
+|----------------------|-------------------------|
+|train-images-idx3-ubyte|  训练数据图片，60,000条数据 |
+|train-labels-idx1-ubyte|  训练数据标签，60,000条数据 |
+|t10k-images-idx3-ubyte |  测试数据图片，10,000条数据 |
+|t10k-labels-idx1-ubyte |  测试数据标签，10,000条数据 |
+
+## Fluid API 概述
+
+演示将使用最新的 `Fluid API`。Fluid API是最新的 PaddlePaddle API。它在不牺牲性能的情况下简化了模型配置。
+我们建议使用 Fluid API，因为它更容易学起来。
+
+下面是快速的 Fluid API 概述。
+1. `inference_program`：指定如何从数据输入中获得预测的函数。
+这是指定网络流的地方。
+
+1. `train_program`：指定如何从 `inference_program` 和`标签值`中获取 `loss` 的函数。
+这是指定损失计算的地方。
+
+1. `optimizer_func`: “指定优化器配置的函数。优化器负责减少损失并驱动培训。Paddle 支持多种不同的优化器。
+
+1. `Trainer`：PaddlePaddle Trainer 管理由 `train_program` 和 `optimizer` 指定的训练过程。
+通过 `event_handler` 回调函数，用户可以监控培训的进展。
+
+1. `Inferencer`：Fluid inferencer 加载 `inference_program` 和由 Trainer 训练的参数。
+然后，它可以推断数据和返回预测。
+
+在这个演示中，我们将深入了解它们。
 
 ## 配置说明
-
-首先，加载PaddlePaddle的V2 api包。
+加载 PaddlePaddle 的 Fluid API 包。
 
 ```python
-import paddle.v2 as paddle
+import paddle
+import paddle.fluid as fluid
 ```
-其次，定义三个不同的分类器：
+
+### Program Functions 配置
+
+我们需要设置“推理程序”函数。我们想用这个程序来演示三个不同的分类器，每个分类器都定义为 Python 函数。
+我们需要将图像数据馈送到分类器。Paddle 为读取数据提供了一个特殊的层 `layer.data` 层。
+让我们创建一个数据层来读取图像并将其连接到分类网络。
 
 - Softmax回归：只通过一层简单的以softmax为激活函数的全连接层，就可以得到分类的结果。
 
 ```python
-def softmax_regression(img):
-predict = paddle.layer.fc(input=img,
-size=10,
-act=paddle.activation.Softmax())
+def softmax_regression():
+img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
+predict = fluid.layers.fc(
+input=img, size=10, act='softmax')
 return predict
 ```
+
 - 多层感知器：下面代码实现了一个含有两个隐藏层（即全连接层）的多层感知器。其中两个隐藏层的激活函数均采用ReLU，输出层的激活函数用Softmax。
 
 ```python
-def multilayer_perceptron(img):
+def multilayer_perceptron():
+img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
 # 第一个全连接层，激活函数为ReLU
-hidden1 = paddle.layer.fc(input=img, size=128, act=paddle.activation.Relu())
+hidden = fluid.layers.fc(input=img, size=200, act='relu')
 # 第二个全连接层，激活函数为ReLU
-hidden2 = paddle.layer.fc(input=hidden1,
-size=64,
-act=paddle.activation.Relu())
+hidden = fluid.layers.fc(input=hidden, size=200, act='relu')
 # 以softmax为激活函数的全连接输出层，输出层的大小必须为数字的个数10
-predict = paddle.layer.fc(input=hidden2,
-size=10,
-act=paddle.activation.Softmax())
-return predict
+prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
+return prediction
 ```
+
 - 卷积神经网络LeNet-5: 输入的二维图像，首先经过两次卷积层到池化层，再经过全连接层，最后使用以softmax为激活函数的全连接层作为输出层。
 
 ```python
-def convolutional_neural_network(img):
+def convolutional_neural_network():
+img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
 # 第一个卷积-池化层
-conv_pool_1 = paddle.networks.simple_img_conv_pool(
+conv_pool_1 = fluid.nets.simple_img_conv_pool(
 input=img,
 filter_size=5,
 num_filters=20,
-num_channel=1,
 pool_size=2,
 pool_stride=2,
-act=paddle.activation.Relu())
+act="relu")
+conv_pool_1 = fluid.layers.batch_norm(conv_pool_1)
 # 第二个卷积-池化层
-conv_pool_2 = paddle.networks.simple_img_conv_pool(
+conv_pool_2 = fluid.nets.simple_img_conv_pool(
 input=conv_pool_1,
 filter_size=5,
 num_filters=50,
-num_channel=20,
 pool_size=2,
 pool_stride=2,
-act=paddle.activation.Relu())
+act="relu")
 # 以softmax为激活函数的全连接输出层，输出层的大小必须为数字的个数10
-predict = paddle.layer.fc(input=conv_pool_2,
-size=10,
-act=paddle.activation.Softmax())
-return predict
+prediction = fluid.layers.fc(input=conv_pool_2, size=10, act='softmax')
+return prediction
 ```
 
-接着，通过`layer.data`调用来获取数据，然后调用分类器（这里我们提供了三个不同的分类器）得到分类结果。训练时，对该结果计算其损失函数，分类问题常常选择交叉熵损失函数。
+#### Train Program 配置
+然后我们需要设置训练程序 `train_program`。它首先从分类器中进行预测。
+在训练期间，它将从预测中计算 `avg_cost`。
+
+**注意:** 训练程序应该返回一个数组，第一个返回参数必须是 `avg_cost`。训练器使用它来计算梯度。
+
+请随意修改代码，测试 Softmax 回归 `softmax_regression`, `MLP` 和 卷积神经网络 `convolutional neural network` 分类器之间的不同结果。
 
 ```python
+def train_program():
+label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+
+# predict = softmax_regression() # uncomment for Softmax回归
+# predict = multilayer_perceptron() # uncomment for 多层感知器
+predict = convolutional_neural_network() # uncomment for LeNet5卷积神经网络
+cost = fluid.layers.cross_entropy(input=predict, label=label)
+avg_cost = fluid.layers.mean(cost)
+acc = fluid.layers.accuracy(input=predict, label=label)
+return [avg_cost, acc]
+
+
 # 该模型运行在单个CPU上
-paddle.init(use_gpu=False, trainer_count=1)
-
-images = paddle.layer.data(
-name='pixel', type=paddle.data_type.dense_vector(784))
-label = paddle.layer.data(
-name='label', type=paddle.data_type.integer_value(10))
-
-# predict = softmax_regression(images) # Softmax回归
-# predict = multilayer_perceptron(images) #多层感知器
-predict = convolutional_neural_network(images) #LeNet5卷积神经网络
-
-cost = paddle.layer.classification_cost(input=predict, label=label)
 ```
 
-然后，指定训练相关的参数。
-- 训练方法（optimizer)： 代表训练过程在更新权重时采用动量优化器 `Momentum` ，其中参数0.9代表动量优化每次保持前一次速度的0.9倍。
-- 训练速度（learning_rate）： 迭代的速度，与网络的训练收敛速度有关系。
-- 正则化（regularization）： 是防止网络过拟合的一种手段，此处采用L2正则化。
+#### Optimizer Function 配置
+
+在下面的 `Adam optimizer`，`learning_rate` 是训练的速度，与网络的训练收敛速度有关系。
 
 ```python
-parameters = paddle.parameters.create(cost)
-
-optimizer = paddle.optimizer.Momentum(
-learning_rate=0.1 / 128.0,
-momentum=0.9,
-regularization=paddle.optimizer.L2Regularization(rate=0.0005 * 128))
-
-trainer = paddle.trainer.SGD(cost=cost,
-parameters=parameters,
-update_equation=optimizer)
+def optimizer_program():
+return fluid.optimizer.Adam(learning_rate=0.001)
 ```
+
+### 数据集 Feeders 配置
 
 下一步，我们开始训练过程。`paddle.dataset.movielens.train()`和`paddle.dataset.movielens.test()`分别做训练和测试数据集。这两个函数各自返回一个reader——PaddlePaddle中的reader是一个Python函数，每次调用的时候返回一个Python yield generator。
 
@@ -232,7 +255,60 @@ update_equation=optimizer)
 
 `batch`是一个特殊的decorator，它的输入是一个reader，输出是一个batched reader —— 在PaddlePaddle里，一个reader每次yield一条训练数据，而一个batched reader每次yield一个minibatch。
 
-`event_handler_plot`可以用来在训练过程中画图如下：
+```python
+train_reader = paddle.batch(
+paddle.reader.shuffle(
+paddle.dataset.mnist.train(), buf_size=500),
+batch_size=64)
+
+test_reader = paddle.batch(
+paddle.dataset.mnist.test(), batch_size=64)
+```
+
+### Trainer 配置
+
+现在，我们需要配置 `Trainer`。`Trainer` 需要接受训练程序 `train_program`, `place` 和优化器 `optimizer`。
+
+```python
+# 该模型运行在单个CPU上
+use_cuda = False # set to True if training with GPU
+place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+
+trainer = fluid.Trainer(
+train_func=train_program, place=place, optimizer_func=optimizer_program)
+```
+
+#### Event Handler 配置
+
+Fluid API 在训练期间为回调函数提供了一个钩子。用户能够通过机制监控培训进度。
+我们将在这里演示两个 `event_handler` 程序。请随意修改 Jupyter 笔记本 ，看看有什么不同。
+
+`event_handler` 用来在训练过程中输出训练结果
+
+```python
+# Save the parameter into a directory. The Inferencer can load the parameters from it to do infer
+params_dirname = "recognize_digits_network.inference.model"
+lists = []
+def event_handler(event):
+if isinstance(event, fluid.EndStepEvent):
+if event.step % 100 == 0:
+# event.metrics maps with train program return arguments.
+# event.metrics[0] will yeild avg_cost and event.metrics[1] will yeild acc in this example.
+print "Pass %d, Batch %d, Cost %f" % (
+event.step, event.epoch, event.metrics[0])
+
+if isinstance(event, fluid.EndEpochEvent):
+avg_cost, acc = trainer.test(
+reader=test_reader, feed_order=['img', 'label'])
+
+print("Test with Epoch %d, avg_cost: %s, acc: %s" % (event.epoch, avg_cost, acc))
+
+# save parameters
+trainer.save_params(params_dirname)
+lists.append((event.epoch, avg_cost, acc))
+```
+
+`event_handler_plot` 可以用来在训练过程中画图如下：
 
 ![png](./image/train_and_test.png)
 
@@ -242,68 +318,57 @@ from paddle.v2.plot import Ploter
 train_title = "Train cost"
 test_title = "Test cost"
 cost_ploter = Ploter(train_title, test_title)
-
 step = 0
+lists = []
 
 # event_handler to plot a figure
 def event_handler_plot(event):
 global step
-if isinstance(event, paddle.event.EndIteration):
+if isinstance(event, fluid.EndStepEvent):
 if step % 100 == 0:
-cost_ploter.append(train_title, step, event.cost)
+# event.metrics maps with train program return arguments.
+# event.metrics[0] will yeild avg_cost and event.metrics[1] will yeild acc in this example.
+cost_ploter.append(train_title, step, event.metrics[0])
 cost_ploter.plot()
 step += 1
-if isinstance(event, paddle.event.EndPass):
+if isinstance(event, fluid.EndEpochEvent):
 # save parameters
-with open('params_pass_%d.tar' % event.pass_id, 'w') as f:
-trainer.save_parameter_to_tar(f)
+trainer.save_params(params_dirname)
 
-result = trainer.test(reader=paddle.batch(
-paddle.dataset.mnist.test(), batch_size=128))
-cost_ploter.append(test_title, step, result.cost)
+avg_cost, acc = trainer.test(
+reader=test_reader, feed_order=['img', 'label'])
+cost_ploter.append(test_title, step, avg_cost)
+lists.append((event.epoch, avg_cost, acc))
 ```
 
-`event_handler` 用来在训练过程中输出训练结果
-```python
-lists = []
+#### 开始训练
 
-def event_handler(event):
-if isinstance(event, paddle.event.EndIteration):
-if event.batch_id % 100 == 0:
-print "Pass %d, Batch %d, Cost %f, %s" % (
-event.pass_id, event.batch_id, event.cost, event.metrics)
-if isinstance(event, paddle.event.EndPass):
-# save parameters
-with open('params_pass_%d.tar' % event.pass_id, 'w') as f:
-trainer.save_parameter_to_tar(f)
+既然我们设置了 `event_handler` 和 `data reader`，我们就可以开始训练模型了。
 
-result = trainer.test(reader=paddle.batch(
-paddle.dataset.mnist.test(), batch_size=128))
-print "Test with Pass %d, Cost %f, %s\n" % (
-event.pass_id, result.cost, result.metrics)
-lists.append((event.pass_id, result.cost,
-result.metrics['classification_error_evaluator']))
-```
+`feed_order` 用于将数据目录映射到 `train_program`
 
 ```python
 trainer.train(
-reader=paddle.batch(
-paddle.reader.shuffle(
-paddle.dataset.mnist.train(), buf_size=8192),
-batch_size=128),
-event_handler=event_handler_plot,
-num_passes=5)
+num_epochs=5,
+event_handler=event_handler,
+reader=train_reader,
+feed_order=['img', 'label'])
 ```
 
 训练过程是完全自动的，event_handler里打印的日志类似如下所示：
 
 ```
-# Pass 0, Batch 0, Cost 2.780790, {'classification_error_evaluator': 0.9453125}
-# Pass 0, Batch 100, Cost 0.635356, {'classification_error_evaluator': 0.2109375}
-# Pass 0, Batch 200, Cost 0.326094, {'classification_error_evaluator': 0.1328125}
-# Pass 0, Batch 300, Cost 0.361920, {'classification_error_evaluator': 0.1015625}
-# Pass 0, Batch 400, Cost 0.410101, {'classification_error_evaluator': 0.125}
-# Test with Pass 0, Cost 0.326659, {'classification_error_evaluator': 0.09470000118017197}
+Pass 0, Batch 0, Cost 0.125650
+Pass 100, Batch 0, Cost 0.161387
+Pass 200, Batch 0, Cost 0.040036
+Pass 300, Batch 0, Cost 0.023391
+Pass 400, Batch 0, Cost 0.005856
+Pass 500, Batch 0, Cost 0.003315
+Pass 600, Batch 0, Cost 0.009977
+Pass 700, Batch 0, Cost 0.020959
+Pass 800, Batch 0, Cost 0.105560
+Pass 900, Batch 0, Cost 0.239809
+Test with Epoch 0, avg_cost: 0.053097883707459624, acc: 0.9822850318471338
 ```
 
 训练之后，检查模型的预测准确度。用 MNIST 训练的时候，一般 softmax回归模型的分类准确率为约为 92.34%，多层感知器为97.66%，卷积神经网络可以达到 99.20%。
@@ -311,27 +376,50 @@ num_passes=5)
 
 ## 应用模型
 
-可以使用训练好的模型对手写体数字图片进行分类，下面程序展示了如何使用paddle.infer接口进行推断。
+可以使用训练好的模型对手写体数字图片进行分类，下面程序展示了如何使用 `fluid.Inferencer` 接口进行推断。
+
+### Inference 配置
+
+`Inference` 需要一个 `infer_func` 和 `param_path` 来设置网络和经过训练的参数。
+我们可以简单地插入在此之前定义的分类器。
 
 ```python
-from PIL import Image
-import numpy as np
+inferencer = fluid.Inferencer(
+# infer_func=softmax_regression, # uncomment for softmax regression
+# infer_func=multilayer_perceptron, # uncomment for MLP
+infer_func=convolutional_neural_network,  # uncomment for LeNet5
+param_path=params_dirname,
+place=place)
+```
+
+### 生成预测输入数据
+
+`infer_3.png` 是数字 3 的一个示例图像。把它变成一个 numpy 数组以匹配数据馈送格式。
+
+```python
+# Prepare the test image
 import os
+import numpy as np
+from PIL import Image
 def load_image(file):
 im = Image.open(file).convert('L')
 im = im.resize((28, 28), Image.ANTIALIAS)
-im = np.array(im).astype(np.float32).flatten()
+im = np.array(im).reshape(1, 1, 28, 28).astype(np.float32)
 im = im / 255.0 * 2.0 - 1.0
 return im
 
-test_data = []
-cur_dir = os.getcwd()
-test_data.append((load_image(cur_dir + '/image/infer_3.png'),))
+cur_dir = cur_dir = os.getcwd()
+img = load_image(cur_dir + '/image/infer_3.png')
+```
 
-probs = paddle.infer(
-output_layer=predict, parameters=parameters, input=test_data)
-lab = np.argsort(-probs) # probs and lab are the results of one batch data
-print "Label of image/infer_3.png is: %d" % lab[0][0]
+### 预测
+
+现在我们准备做预测。
+
+```python
+results = inferencer.infer({'img': img})
+lab = np.argsort(results)  # probs and lab are the results of one batch data
+print "Label of image/infer_3.png is: %d" % lab[0][0][-1]
 ```
 
 ## 总结
