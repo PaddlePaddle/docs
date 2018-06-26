@@ -524,28 +524,3 @@ AVX是一种CPU指令集，可以加速PaddlePaddle的计算。最新的PaddlePa
       if cat /proc/cpuinfo | grep -i avx; then echo Yes; else echo No; fi
 
 如果输出是No，就需要选择使用no-AVX的镜像
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
