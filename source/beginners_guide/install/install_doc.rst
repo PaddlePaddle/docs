@@ -1,7 +1,7 @@
 安装说明
 ^^^^^^^^
 
-您可以使用我们提供的安装包，或使用源代码，安装PaddlePaddle.
+您可以使用我们提供的安装包，或使用源代码，安装PaddlePaddle。
 
 .. _install_linux:
 
@@ -14,7 +14,6 @@
 注意事项：
 
 - PaddlePaddle Python API 依赖Python 2.7版本。
-- 目前支持的系统类型为：Ubuntu/CentOS
 
 执行下面的命令即可在当前机器上安装PaddlePaddle的运行时环境，并自动下载安装依赖软件。
 
