@@ -9,5 +9,5 @@
 ..  toctree::
     :maxdepth: 2
 
-    fit_a_line/index.md
-    recognize_digits/index.md
+    fit_a_line/README.cn.md
+    recognize_digits/README.cn.md
