@@ -44,6 +44,7 @@ C++语言在底层框架中使用较多，在逐步掌握开源框架的基本�
 
 
 [机器学习](http://open.163.com/special/opencourse/machinelearning.html):斯坦福大学教授吴恩达公开课程，包含针对算法的详细讲解
+
 [AI技术](https://ai.baidu.com/paddlepaddle/player?id=13):百度推出的“AI核心技术掌握“课程，每节课在20-30分钟左右，从AI技术到深度学习进行全面细致的解读。
 
 [深度学习](http://speech.ee.ntu.edu.tw/~tlkagk/courses_ML17_2.html):台湾李宏毅教授的在线课程，其中是英文课程，会结合国外的科研成果，但也适合新手入门和理解深度学习
