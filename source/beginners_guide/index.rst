@@ -10,5 +10,5 @@
     :maxdepth: 2
 
     install/index.rst
-    quick_start.rst
-    theoretical_background.rst
+    quick_start/index.rst
+    basics/index.rst
