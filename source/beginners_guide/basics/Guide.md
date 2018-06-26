@@ -51,4 +51,4 @@ C++方向：C++语言在底层框架中使用较多，在逐步掌握开源框�
 
 
 掌握好理论基础，具备编程能力后，可以开始使用PaddlePaddle Fluid进行实操，从初阶开始学习，向着中高阶努力。
-目前已有PaddlePaddle官方视频公开课在官网呈现,内含PaddlePaddle实战、PaddlePaddle应用场景和机器学习模型讲解课程，帮助开发者从零开始使用PaddlePaddle，从简单场景逐步过渡到工业级应用。点击这里(http://ai.baidu.com/paddlepaddle/openCourses)即可开始视频课的学习之旅。
+目前已有PaddlePaddle官方视频公开课在官网呈现,内含PaddlePaddle实战、PaddlePaddle应用场景和机器学习模型讲解课程，帮助开发者从零开始使用PaddlePaddle，从简单场景逐步过渡到工业级应用。[点击这里](http://ai.baidu.com/paddlepaddle/openCourses)即可开始视频课的学习之旅。
