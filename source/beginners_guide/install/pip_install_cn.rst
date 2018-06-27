@@ -1,0 +1,1 @@
+../../../paddle/doc/fluid/build_and_install/pip_install_cn.rst
