@@ -179,7 +179,7 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
 可以在 `这里 <https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/>`_ 找到。或者
 参考下述可选步骤，从源码中构建用于编译PaddlePaddle的Docker镜像。
 
-如果您选择不使用Docker镜像，则需要在本机安装下面章节列出的 :ref:`编译依赖` 之后才能开始编译的步骤。
+如果您选择不使用Docker镜像，则需要在本机安装下面章节列出的 :ref:`附录：编译依赖` 之后才能开始编译的步骤。
 
 编译PaddlePaddle，需要执行：
 
