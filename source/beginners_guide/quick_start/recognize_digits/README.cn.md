@@ -5,10 +5,8 @@
 ## 背景介绍
 当我们学习编程的时候，编写的第一个程序一般是实现打印"Hello World"。而机器学习（或深度学习）的入门教程，一般都是 [MNIST](http://yann.lecun.com/exdb/mnist/) 数据库上的手写识别问题。原因是手写识别属于典型的图像分类问题，比较简单，同时MNIST数据集也很完备。MNIST数据集作为一个简单的计算机视觉数据集，包含一系列如图1所示的手写数字图片和对应的标签。图片是28x28的像素矩阵，标签则对应着0~9的10个数字。每张图片都经过了大小归一化和居中处理。
 
-<p align="center">
-<img src="image/mnist_example_image.png" width="400"><br/>
-图1. MNIST图片示例
-</p>
+![MNIST](./image/mnist_example_image.png)
+<p align="center">图1. MNIST图片示例</p>
 
 MNIST数据集是从 [NIST](https://www.nist.gov/srd/nist-special-database-19) 的Special Database 3（SD-3）和Special Database 1（SD-1）构建而来。由于SD-3是由美国人口调查局的员工进行标注，SD-1是由美国高中生进行标注，因此SD-3比SD-1更干净也更容易识别。Yann LeCun等人从SD-1和SD-3中各取一半作为MNIST的训练集（60000条数据）和测试集（10000条数据），其中训练集来自250位不同的标注员，此外还保证了训练集和测试集的标注员是不完全相同的。
 
@@ -44,10 +42,8 @@ $$  \text{crossentropy}(label, y) = -\sum_i label_ilog(y_i) $$
 
 图2为softmax回归的网络图，图中权重用蓝线表示、偏置用红线表示、+1代表偏置参数的系数为1。
 
-<p align="center">
-<img src="image/softmax_regression.png" width=400><br/>
-图2. softmax回归网络结构图<br/>
-</p>
+![softmaxRegression](./image/softmax_regression.png)
+<p align="center">图2. softmax回归网络结构图</p>
 
 ### 多层感知器(Multilayer Perceptron, MLP)
 
@@ -60,28 +56,22 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 
 图3为多层感知器的网络结构图，图中权重用蓝线表示、偏置用红线表示、+1代表偏置参数的系数为1。
 
-<p align="center">
-<img src="image/mlp.png" width=500><br/>
-图3. 多层感知器网络结构图<br/>
-</p>
+![multilayerPerceptron](./image/mlp.png)
+<p align="center">图3. 多层感知器网络结构图</p>
 
 ### 卷积神经网络(Convolutional Neural Network, CNN)
 
 在多层感知器模型中，将图像展开成一维向量输入到网络中，忽略了图像的位置和结构信息，而卷积神经网络能够更好的利用图像的结构信息。[LeNet-5](http://yann.lecun.com/exdb/lenet/)是一个较简单的卷积神经网络。图4显示了其结构：输入的二维图像，先经过两次卷积层到池化层，再经过全连接层，最后使用softmax分类作为输出层。下面我们主要介绍卷积层和池化层。
 
-<p align="center">
-<img src="image/cnn.png"><br/>
-图4. LeNet-5卷积神经网络结构<br/>
-</p>
+![cnnStructure](./image/cnn.png)
+<p align="center">图4. LeNet-5卷积神经网络结构</p>
 
 #### 卷积层
 
 卷积层是卷积神经网络的核心基石。在图像识别里我们提到的卷积是二维卷积，即离散二维滤波器（也称作卷积核）与二维图像做卷积操作，简单的讲是二维滤波器滑动到二维图像上所有位置，并在每个位置上与该像素点及其领域像素点做内积。卷积操作被广泛应用与图像处理领域，不同卷积核可以提取不同的特征，例如边沿、线性、角等特征。在深层卷积神经网络中，通过卷积操作可以提取出图像低级到复杂的特征。
 
-<p align="center">
-<img src="image/conv_layer.png" width='750'><br/>
-图5. 卷积层图片<br/>
-</p>
+![cnn](./image/conv_layer.png)
+<p align="center">图5. 卷积层图片</p>
 
 图5给出一个卷积计算过程的示例图，输入图像大小为`$H=5,W=5,D=3$`，即`$5 \times 5$`大小的3通道（RGB，也称作深度）彩色图像。这个示例图中包含两（用`$K$`表示）组卷积核，即图中滤波器`$W_0$`和`$W_1$`。在卷积计算中，通常对不同的输入通道采用不同的卷积核，如图示例中每组卷积核包含（`$D=3$`）个`$3 \times 3$`（用`$F \times F$`表示）大小的卷积核。另外，这个示例中卷积核在图像的水平方向（`$W$`方向）和垂直方向（`$H$`方向）的滑动步长为2（用`$S$`表示）；对输入图像周围各填充1（用`$P$`表示）个0，即图中输入层原始数据为蓝色部分，灰色部分是进行了大小为1的扩展，用0来进行扩展。经过卷积操作得到输出为`$3 \times 3 \times 2$`（用`$H_{o} \times W_{o} \times K$`表示）大小的特征图，即`$3 \times 3$`大小的2通道特征图，其中`$H_o$`计算公式为：`$H_o = (H - F + 2 \times P)/S + 1$`，`$W_o$`同理。 而输出特征图中的每个像素，是每组滤波器与输入图像每个特征图的内积再求和，再加上偏置`$b_o$`，偏置通常对于每个输出特征图是共享的。输出特征图`$o[:,:,0]$`中的最后一个`$-2$`计算如图5右下角公式所示。
 
@@ -95,10 +85,8 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 
 #### 池化层
 
-<p align="center">
-<img src="image/max_pooling.png" width="400px"><br/>
-图6. 池化层图片<br/>
-</p>
+![pooling](./image/max_pooling.png)
+<p align="center">图6. 池化层图片</p>
 
 池化是非线性下采样的一种形式，主要作用是通过减少网络的参数来减小计算量，并且能够在一定程度上控制过拟合。通常在卷积层的后面会加上一个池化层。池化包括最大池化、平均池化等。其中最大池化是用不重叠的矩形框将输入层分成不同的区域，对于每个矩形框的数取最大值作为输出层，如图6所示。
 
@@ -120,12 +108,12 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 PaddlePaddle在API中提供了自动加载[MNIST](http://yann.lecun.com/exdb/mnist/)数据的模块`paddle.dataset.mnist`。加载后的数据位于`/home/username/.cache/paddle/dataset/mnist`下：
 
 
-|    文件名称          |       说明              |
-|----------------------|-------------------------|
-|train-images-idx3-ubyte|  训练数据图片，60,000条数据 |
-|train-labels-idx1-ubyte|  训练数据标签，60,000条数据 |
-|t10k-images-idx3-ubyte |  测试数据图片，10,000条数据 |
-|t10k-labels-idx1-ubyte |  测试数据标签，10,000条数据 |
+| 文件名称                | 说明                       |
+|-------------------------|----------------------------|
+| train-images-idx3-ubyte | 训练数据图片，60,000条数据 |
+| train-labels-idx1-ubyte | 训练数据标签，60,000条数据 |
+| t10k-images-idx3-ubyte  | 测试数据图片，10,000条数据 |
+| t10k-labels-idx1-ubyte  | 测试数据标签，10,000条数据 |
 
 ## Fluid API 概述
 

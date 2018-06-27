@@ -8,7 +8,7 @@
 
 请看下面的例子，“遇到” 是谓词（Predicate，通常简写为“Pred”），“小明”是施事者（Agent），“小红”是受事者（Patient），“昨天” 是事件发生的时间（Time），“公园”是事情发生的地点（Location）。
 
-$$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_\mbox{Time}\mbox{在[公园]}_{\mbox{Location}}\mbox{[遇到]}_{\mbox{Predicate}}\mbox{了[小红]}_{\mbox{Patient}}\mbox{。}$$
+$$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_{\mbox{Time}}\mbox{在[公园]}_{\mbox{Location}}\mbox{[遇到]}_{\mbox{Predicate}}\mbox{了[小红]}_{\mbox{Patient}}\mbox{。}$$
 
 语义角色标注（Semantic Role Labeling，SRL）以句子的谓词为中心，不对句子所包含的语义信息进行深入分析，只分析句子中各成分与谓词之间的关系，即句子的谓词（Predicate）- 论元（Argument）结构，并用语义角色来描述这些结构关系，是许多自然语言理解任务（如信息抽取，篇章分析，深度问答等）的一个重要中间步骤。在研究中一般都假定谓词是给定的，所要做的就是找出给定谓词的各个论元和它们的语义角色。
 
@@ -20,8 +20,8 @@ $$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_\mb
 4. 论元识别：这个过程是从上一步剪除之后的候选中判断哪些是真正的论元，通常当做一个二分类问题来解决。
 5. 对第4步的结果，通过多分类得到论元的语义角色标签。可以看到，句法分析是基础，并且后续步骤常常会构造的一些人工特征，这些特征往往也来自句法分析。
 
+![dependencyParsing](./image/dependency_parsing.png)
 <div  align="center">
-<img src="image/dependency_parsing.png" width = "80%" align=center /><br>
 图1. 依存句法分析句法树示例
 </div>
 
@@ -29,8 +29,8 @@ $$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_\mb
 
 我们继续以上面的这句话为例，图1展示了BIO表示方法。
 
+![bioExample](./image/bio_example.png)
 <div  align="center">
-<img src="image/bio_example.png" width = "90%"  align=center /><br>
 图2. BIO标注方法示例
 </div>
 
@@ -52,8 +52,8 @@ $$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_\mb
 
 图3是最终得到的栈式循环神经网络结构示意图。
 
+![lstmStructure](./image/stacked_lstm.png)
 <p align="center">
-<img src="./image/stacked_lstm.png" width = "40%"  align=center><br>
 图3. 基于LSTM的栈式循环神经网络结构示意图
 </p>
 
@@ -63,8 +63,8 @@ $$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_\mb
 
 为了克服这一缺陷，我们可以设计一种双向循环网络单元，它的思想简单且直接：对上一节的栈式循环神经网络进行一个小小的修改，堆叠多个LSTM单元，让每一层LSTM单元分别以：正向、反向、正向 …… 的顺序学习上一层的输出序列。于是，从第2层开始，`$t$`时刻我们的LSTM单元便总是可以看到历史和未来的信息。图4是基于LSTM的双向循环神经网络结构示意图。
 
+![lstmStructure](./image/bidirectional_stacked_lstm.png)
 <p align="center">
-<img src="./image/bidirectional_stacked_lstm.png" width = "60%" align=center><br>
 图4. 基于LSTM的双向循环神经网络结构示意图
 </p>
 
@@ -78,8 +78,8 @@ CRF是一种概率化结构模型，可以看作是一个概率无向图模型�
 
 序列标注任务只需要考虑输入和输出都是一个线性序列，并且由于我们只是将输入序列作为条件，不做任何条件独立假设，因此输入序列的元素之间并不存在图结构。综上，在序列标注任务中使用的是如图5所示的定义在链式图上的CRF，称之为线性链条件随机场（Linear Chain Conditional Random Field）。
 
+![linear_chain_crf](./image/linear_chain_crf.png)
 <p align="center">
-<img src="./image/linear_chain_crf.png" width = "35%" align=center><br>
 图5. 序列标注任务中使用的线性链条件随机场
 </p>
 
@@ -122,8 +122,8 @@ $$\DeclareMathOperator*{\argmax}{arg\,max} L(\lambda, D) = - \text{log}\left(\pr
 3. 第2步的4个词向量序列作为双向LSTM模型的输入；LSTM模型学习输入序列的特征表示，得到新的特性表示序列；
 4. CRF以第3步中LSTM学习到的特征为输入，以标记序列为监督信号，完成序列标注；
 
+![db_lstm_network](./image/db_lstm_network.png)
 <div  align="center">
-<img src="image/db_lstm_network.png" width = "60%"  align=center /><br>
 图6. SRL任务上的深层双向LSTM模型
 </div>
 

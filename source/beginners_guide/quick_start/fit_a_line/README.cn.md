@@ -1,7 +1,6 @@
 ```eval_rst
 ..  _quick_start_fit_a_line:
 ```
-
 # 线性回归
 让我们从经典的线性回归（Linear Regression \[[1](#参考文献)\]）模型开始这份教程。在这一章里，你将使用真实的数据集建立起一个房价预测模型，并且了解到机器学习中的若干重要概念。
 
@@ -18,10 +17,9 @@ $$y_i = \omega_1x_{i1} + \omega_2x_{i2} + \ldots + \omega_dx_{id} + b,  i=1,\ldo
 
 ## 效果展示
 我们使用从[UCI Housing Data Set](https://archive.ics.uci.edu/ml/datasets/Housing)获得的波士顿房价数据集进行模型的训练和预测。下面的散点图展示了使用模型对部分房屋价格进行的预测。其中，每个点的横坐标表示同一类房屋真实价格的中位数，纵坐标表示线性回归模型根据特征预测的结果，当二者值完全相等的时候就会落在虚线上。所以模型预测得越准确，则点离虚线越近。
-<p align="center">
-<img src = "image/predictions.png" width=400><br/>
-图1. 预测值 V.S. 真实值
-</p>
+
+![BostonHousePricePredictions](./image/predictions.png)
+<p align="center">图1. 预测值 V.S. 真实值</p>
 
 ## 模型概览
 
@@ -83,10 +81,8 @@ $$MSE=\frac{1}{n}\sum_{i=1}^{n}{(\hat{Y_i}-Y_i)}^2$$
 - 不同的数值范围会导致不同属性对模型的重要性不同（至少在训练的初始阶段如此），而这个隐含的假设常常是不合理的。这会对优化的过程造成困难，使训练时间大大的加长。
 - 很多的机器学习技巧/模型（例如L1，L2正则项，向量空间模型-Vector Space Model）都基于这样的假设：所有的属性取值都差不多是以0为均值且取值范围相近的。
 
-<p align="center">
-<img src = "image/ranges.png" width=550><br/>
-图2. 各维属性的取值范围
-</p>
+![featureScale](./image/ranges.png)
+<p align="center">图2. 各维属性的取值范围</p>
 
 #### 整理训练集与测试集
 我们将数据集分割为两份：一份用于调整模型的参数，即进行模型的训练，模型在这份数据集上的误差被称为**训练误差**；另外一份被用来测试，模型在这份数据集上的误差被称为**测试误差**。我们训练模型的目的是为了通过从训练数据中找到规律来预测未知的新数据，所以测试误差是更能反映模型表现的指标。分割数据的比例要考虑到两个因素：更多的训练数据会降低参数估计的方差，从而得到更可信的模型；而更多的测试数据会降低测试误差的方差，从而得到更可信的测试误差。我们这个例子中设置的分割比例为`$8:2$`
@@ -222,7 +218,7 @@ event_handler=event_handler_plot,
 feed_order=feed_order)
 ```
 
-![png](./image/train_and_test.png)
+![trainTestCost](./image/train_and_test.png)
 
 ## 预测
 提供一个`inference_program`和一个`params_dirname`来初始化预测器。`params_dirname`用来存储我们的参数。
