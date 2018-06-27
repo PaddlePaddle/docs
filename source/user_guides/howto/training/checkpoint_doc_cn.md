@@ -51,7 +51,7 @@ trainer = Trainer(..., checkpoint_config=config)
 定义和声明完成后， 训练在运行过程中就会在指定的step和epoch处进行保存，出现异常时，就会自动从最新的checkpoint目录进行参数恢复啦！
 
 ## 相关API
-Trainer API 说明: <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/trainer.py>
+[Trainer API 说明](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/trainer.py)
 
 ## 注意
 1. 保证每个训练的```checkpoint_dir``` 与其他训练独立。
