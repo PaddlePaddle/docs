@@ -17,25 +17,34 @@ CPU型号。
 
 选择基准模型
 ############
-对框架做基准测试，需要覆盖不同训练任务和不同大小的模型，基准测试结果才有说服力。
-+------------+------------+-----------+ 
-| Header 1   | Header 2   | Header 3  | 
-+============+============+===========+ 
-| body row 1 | column 2   | column 3  | 
-+------------+------------+-----------+ 
-其中mnist, VGG, Resnet属于CNN模型,
-stacked-lstm代表RNN模型。
+对框架做基准测试，需要覆盖不同训练任务和不同大小的模型。本文中选取了图像和NLP的典型模型。
++------------+------------+-----------+------------+
+| 任务种类 | 模型名称 | 网络结构 | 数据集|
++============+============+===========+============+
+| 图像分类 | mnist | Lenet | mnist|
++------------+------------+-----------+------------+
+| 图像分类| VGG | VGG-16 | Flowers102|
++------------+------------+-----------+------------+
+| 图像分类| Resnet | Resnet-50 | Flowers102|
++------------+------------+-----------+------------+
+| 文本分类| Stacked-LSTM | Stacked-LSTM | IMDB |
++------------+------------+-----------+------------+
+| 机器翻译| seq-seq | Stacked-LSTM | wmt14 |
++------------+------------+-----------+------------+
+
+
+其中mnist, VGG, Resnet属于CNN模型, stacked-lstm, seq2seq代表RNN模型。
 `benchmark <https://github.com/PaddlePaddle/Paddle/tree/develop/benchmark/fluid>`__
 基准模型测试脚本中，均跳过了前几个batch的训练过程，原因是加载数据和分配显存受系统当前运行情况影响，会导致统计性能不准确。运行完若干个轮次后，统计对应指标。
 基准模型的数据的选择方面，数据量大且验证效果多的公开数据集为首选。图像模型VGG和resnet, 本文选择了 `flowers102 <http://www.robots.ox.ac.uk/~vgg/data/flowers/102/>`__，图像大小预处理为和Imagenet相同大小，因此性能可直接对比
-NLP模型的公开且影响力大数据集较少，机器翻译模型选择了wmt14数据，lstm模型中选择了`imdb <https://www.imdb.com/interfaces/>`__ 数据。
+NLP模型的公开且影响力大数据集较少，seq2seq模型选择了wmt14数据，stacked-lstm模型中选择了`imdb <https://www.imdb.com/interfaces/>`__ 数据。
 注意，图像模型每条样本大小相同，图像经过变换后大小一致，因此经过的计算路径基本相同，计算速度和显存占用波动较小，可以从若干个batch的数据中采样得到当前的训练性能数据。而NLP模型由于样本长度不定，计算路径和显存占用也不相同，因此只能完整运行若干个轮次后，统计速度和显存消耗。
 显存分配是特别耗时的操作，因此Fluid默认会占用所有可用显存空间形成显存池，用以加速计算过程中的显存分配。如果需要统计模型真实显存消耗，可设置环境变量`FLAGS_fraction_of_gpu_memory_to_use=0.0`，观察最大显存开销。
 
 测试过程
 ########
 
--  单机单CPU线程测试
+-  CPU 单机单线程测试
 
 测试CPU上单线程的性能，先设置CUDA的环境变量为空，``CUDA_VISIBLE_DEVICES=``，并通过环境变量关闭OpenMP和MKL的多线程``OMP_NUM_THREADS=1``， ``MKL_NUM_THREADS=1;``。
 然后代码中设置为使用CPUPlace，如果使用Paddle代码库中的脚本，只需要命令行参数传入 use_gpu=False即可。
@@ -50,7 +59,7 @@ NLP模型的公开且影响力大数据集较少，机器翻译模型选择了wm
     docker run -it --name CASE_NAME --security-opt seccomp=unconfined -v $PWD/benchmark:/benchmark paddlepaddle/paddle:latest-dev /bin/bash
 
 
--  单机单卡测试
+-  GPU 单机单卡测试
 
 再次确认cudnn和cuda版本一致。本教程使用了cudnn7.0.1, cuda8.0.
 
@@ -73,13 +82,15 @@ NLP模型的公开且影响力大数据集较少，机器翻译模型选择了wm
 系统环境为Ubuntu 16.04.3 LTS, 本文中采用了docker环境，系统版本为nvidia-docker17.05.0-ce。
 测试的Fluid版本为\ `v.0.12.0 <https://github.com/PaddlePaddle/Paddle/releases/tag/v.0.12.0>`__ 。
 TensorFlow版本为\ `v.1.4.0-rc1 <https://github.com/tensorflow/tensorflow/tree/v1.4.0-rc1>`__ 。
+使用的脚本和配置见\ `benchmark <https://github.com/PaddlePaddle/Paddle/tree/develop/benchmark/fluid>`__ 。
+图表中统计单位为samples/秒。
 
-- CPU测试结果
+- CPU 单机单线程测试结果
 
 +----------------+--------------------+-------------------+
 | Speed          | Fluid CPU          | TensorFlow CPU    |
 +================+====================+===================+
-| mnist          | 46.198 s/pass      | 94.106 s/pass     |
+| mnist          | 1298.75 samples/s      | 637.57 samples/s    |
 +----------------+--------------------+-------------------+
 | VGG-16         | 0.4147 images/s    | 0.1229 images/s   |
 +----------------+--------------------+-------------------+
@@ -90,12 +101,12 @@ TensorFlow版本为\ `v.1.4.0-rc1 <https://github.com/tensorflow/tensorflow/tree
 | Seq2Seq        | 217.1655 words/s   | 28.6164 words/s   |
 +----------------+--------------------+-------------------+
 
-- GPU测试结果
+- GPU 单机单卡测试结果
 
 +----------------+----------------+---------------------+
 | Speed          | Fluid GPU      | TensorFlow GPU      |
 +================+================+=====================+
-| mnist          | 3.044 s/pass   | 3.852 s/pass        |
+| mnist          | 19710.90 samples/s   | 15576.3 samples/s        |
 +----------------+----------------+---------------------+
 | VGG-16         | 59.83327       | 40.9967 images/s    |
 +----------------+----------------+---------------------+
@@ -105,5 +116,3 @@ TensorFlow版本为\ `v.1.4.0-rc1 <https://github.com/tensorflow/tensorflow/tree
 +----------------+----------------+---------------------+
 | Seq2Seq        | 7147.89081     | 6845.1161 words/s   |
 +----------------+----------------+---------------------+
-
-注：mnist由于图像太小，统计数量差异很大，采用计量单位为秒(s)
