@@ -43,7 +43,7 @@
 ==========================
 
 如果我们保存模型的目的是用于对新样本的预测，那么只保存模型参数就足够了。我们可以使用
-:code:`fluid.io.save_params` 接口来进行模型参数的保存。
+:ref:`api_fluid_io_save_params` 接口来进行模型参数的保存。
 
 例如：
 
@@ -66,7 +66,7 @@
 
 在训练过程中，我们可能希望在一些节点上将当前的训练状态保存下来，
 以便在将来需要的时候恢复训练环境继续进行训练。这一般被称作“checkpoint”。
-想要保存checkpoint，可以使用 :code:`fluid.io.save_checkpoint` 接口。
+想要保存checkpoint，可以使用 :ref:`api_fluid_io_save_checkpoint` 接口。
 
 例如：
 
@@ -98,7 +98,7 @@
 如何载入模型变量
 ################
 
-与模型变量的保存相对应，我们提供了两套API来分别进行模型的参数和checkpoint的载入。
+与模型变量的保存相对应，我们提供了两套API来分别载入模型的参数和载入模型的checkpoint。
 
 载入模型用于对新样本的预测
 ==========================
@@ -152,7 +152,7 @@
 
 上面的例子中，通过调用 :code:`fluid.io.save_checkpoint` 函数，PaddlePaddle Fluid会对
 :code:`prog` 中的所有模型变量进行扫描，根据内置规则自动筛选出需要加载的变量，
-并尝试从 :code:`path` 之中读取加载它们。
+并尝试从 :code:`path` 之中加载它们。
 
 参数 :code:`serial` 用来标记具体要加载的checkpoint的版本号。在保存checkpoint的时候，
 一个checkpoint会被保存在一个子目录中，并在目录名上体现出自己的版本号。
