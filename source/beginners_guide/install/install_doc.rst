@@ -191,12 +191,12 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
    # 2. 可选步骤：源码中构建用于编译PaddlePaddle的Docker镜像
    docker build -t paddle:dev .
    # 3. 执行下面的命令编译CPU-Only的二进制
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x ./paddle/scripts/docker/build.sh
+   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
    # 4. 或者也可以使用为上述可选步骤构建的镜像（必须先执行第2步）
    docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddle:dev
 
 注：上述命令把当前目录（源码树根目录）映射为 container 里的 :code:`/paddle` 目录。如果使用自行
-构建的镜像（上述第4步）会执行 :code:`Dockerfile` 描述的默认入口程序 :code:`build.sh` 可以省略步骤3中
+构建的镜像（上述第4步）会执行 :code:`Dockerfile` 描述的默认入口程序 :code:`docker_build.sh` 可以省略步骤3中
 最后的执行脚本的命令。
 
 编译完成后会在build/python/dist目录下生成输出的whl包，可以选在在当前机器安装也可以拷贝到目标机器安装：
@@ -228,14 +228,14 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
 
 .. code-block:: bash
 
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=ON" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/docker/build.sh
+   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=ON" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
 
 如果期望执行其中一个单元测试，（比如 :code:`test_sum_op` ）：
 
 .. code-block:: bash
 
    docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 /bin/bash
-   bash /paddle/paddle/scripts/docker/build.sh
+   bash /paddle/paddle/scripts/paddle_build.sh build
    cd /paddle/build
    ctest -R test_sum_op -V
 
@@ -283,7 +283,7 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
 
 - 可以并行编译吗？
 
-  是的。我们的 Docker image 运行一个 `Bash 脚本 <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/scripts/docker/build.sh>`_。这个脚本调用 :code:`make -j$(nproc)` 来启动和 CPU 核一样多的进程来并行编译。
+  是的。我们的 Docker image 运行一个 `Bash 脚本 <https://github.com/PaddlePaddle/Paddle/blob/develop//paddle/paddle/scripts/paddle_build.sh>`_。这个脚本调用 :code:`make -j$(nproc)` 来启动和 CPU 核一样多的进程来并行编译。
 
 - Docker 需要 sudo
 
