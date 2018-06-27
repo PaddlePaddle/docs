@@ -1,1 +1,0 @@
-../../../paddle/doc/fluid/build_and_install/docker_install_cn.rst

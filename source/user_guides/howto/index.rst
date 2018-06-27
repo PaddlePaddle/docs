@@ -2,28 +2,11 @@
 如何使用PaddlePaddle
 ####################
 
-
-概述
-####
-
+.. toctree::
+   :maxdepth: 2 
 
 
-数据预处理
-##########
-
-
-配置简单的网络
-##############
-
-
-训练
-####
-
-
-
-调试
-####
-
-模型评估
-########
+   prepare_data/index
+   configure_simple_model/index
+   training/index
 
