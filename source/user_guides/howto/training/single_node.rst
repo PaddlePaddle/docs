@@ -6,8 +6,8 @@
 ########
 
 要进行PaddlePaddle Fluid单机训练，需要先 :ref:`user_guide_prepare_data` 和
-:ref:`user_guide_config_neural_network` 。当\
-:ref:`user_guide_config_neural_network` 完毕后，可以得到两个\
+:ref:`user_guide_configure_simple_model` 。当\
+:ref:`user_guide_configure_simple_model` 完毕后，可以得到两个\
 :ref:`api_fluid_Program`， :code:`startup_program` 和 :code:`main_program`。
 默认情况下，可以使用 :ref:`api_fluid_default_startup_program` 与\ :ref:`api_fluid_default_main_program` 获得全局的 :ref:`api_fluid_Program`。
 
