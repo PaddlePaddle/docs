@@ -1,15 +1,18 @@
 # Checkpoint User Guide
+
 ## Background
 In many cases, Stand-alone training and Distributed training can be aborted by the software problem or hardware problem. More seriously, we taste so much time and the performance of machine, but get nothing, which make us frustrating and we have to restart it again.
 
 ## Purpose
-The feature of Checkpoint can save Intermediate model variables, lookup table variable and other needs datas in checkpoint directory. When the exception occurs, we can load this variables from the checkpoint directory immediately.
+The feature of ```Checkpoint``` can save Intermediate model variables, lookup table variable and other needs datas in checkpoint directory. When the exception occurs, we can load this variables from the checkpoint directory immediately.
 ## Introduce
 ### Complete Features Currently：
 1. The Trainer 0 will save model variables in training.
 2. Each of the Trainer will save its own arguments needed.
-3. Each of the Parameter Sever will save Distribute Lookup Table variables in training.
+3. Each of the Parameter Sever will save ```Distribute Lookup Table``` variables in training.
 ### Fluid Checkpoint directory structure：
+
+```
 checkpoint_dir (the checkpoint directory user define)
 ├── checkpoint_0 (the first save directory)
 │   ├── __lockup_table__ (Distribute Lookup Table directory)
@@ -21,21 +24,23 @@ checkpoint_dir (the checkpoint directory user define)
 │       ├── epoch_id
 │       └── step_id
 └── checkpoint_1 (the second save directory)
+```
 
 ## usage
 ### Fluid.CheckpointConfig construct
-When user want to use Checkpoint feature, the main thing user have to do is declare Fluid.CheckpointConfig and construct it.
+When user want to use ```Checkpoint``` feature, the main thing user have to do is declare ```CheckpointConfig``` and construct it.
 
-CheckpointConfig has 4 member variables need to be initialized：
-```table
-Member Variable   | Type |  Comment
-checkpoint_dir   |  int | checkpoint directory
-max_num_checkpoints  | int | Maximum number of checkpoint copies
-epoch_interval  | int |    epoch interval times
-step_interval   | int |   step interval times
-```
+```CheckpointConfig``` has 4 member variables need to be initialized：
+
+| Member Variable | Type | Comment | 
+| - | :-: | - | 
+| checkpoint_dir | int| checkpoint directory | 
+| max_num_checkpoints | int | Maximum number of checkpoint copies | 
+| epoch_interval | int |  epoch interval times |
+| step_interval | int | step interval times |
+
 ### Add Fluid.CheckpointConfig's declaration in Fluid.Trainer
-Because the initialization of Trianer needs an instance of CheckpointConfig., we should decare Fluid.CheckpointConfig first.
+Because the initialization of Trianer needs an instance of ```CheckpointConfig```., we should decare ```CheckpointConfig``` in ```Fluid``` first.
 
 For example：
 ```python
@@ -48,12 +53,10 @@ trainer = Trainer(..., checkpoint_config=config)
 After all the things done, the train will save checkpoint at the specified epoch and step, when the train is aborted, user can restart it, the train will restore from the latest copy.
 
 ## Related API
-https://github.com/PaddlePaddle/Paddle/blob/3ff9ba0e6ba1eec282b6e89fb7bea2e2046f01c5/python/paddle/fluid/trainer.py#L97
+Related Trainer API: <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/trainer.py>
+
 ## Attention
 1. Make the ```checkpoint_dir``` only be used by one train job.
-2. The number of max_num_checkpoints need to be adjust by the disk size and model size.
-3. Too frequently to slow down the trian speed, so too small epoch_interval  and step_interval are not suitable.
+2. The number of ```max_num_checkpoints``` need to be adjust by the disk size and model size.
+3. Too frequently to slow down the trian speed, so too ```small epoch_interval``` and ```step_interval``` are not suitable.
 4. **In distributed train**, each Trainer will save arguments in its ```checkpoint_dir``` (Only Trainer 0 will save model varibales). We need **distributed file system (HDFS, etc)** to merge all the ```checkpoint_dir``` to get the whole datas.
-
-## Next Plan
-1. Save and restore checkpoint by etcd.
