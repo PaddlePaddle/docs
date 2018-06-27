@@ -8,7 +8,7 @@
     Complete this guide
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     deploy/index.rst
     development/index.rst
