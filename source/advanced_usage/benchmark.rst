@@ -2,63 +2,79 @@
 如何进行基准测试
 #################
 
-本文介绍如何给深度学习框架做基准测试。基准测试主要包含验证模型的精度和性能两方面，下文包含搭建测试环境, 选择基准测试模型, 验证测试结果等几方面内容。
+本文介绍如何给深度学习框架做基准测试。基准测试主要包含验证模型的精度和性能两方面，下文包含搭建测试环境，选择基准测试模型，验证测试结果等几方面内容。
 验证深度学习框架，可分为训练和测试两个阶段, 验证指标略有不同，本文只介绍训练阶段的指标验证。训练阶段关注的是模型训练集上的精度，训练集是完备的，因此关注大batch\_size下的训练速度,关注吞吐量，例如图像模型常用的batch\_size=128, 多卡情况下会加大; 预测阶段关注的是在测试集上的精度，线上服务测试数据不能提前收集，因此关注小batch\_size下的预测速度，关注延迟，例如预测服务常用的batch\_size=1, 4等。
 `Fluid <https://github.com/PaddlePaddle/Paddle>`__ 是PaddlePaddle从0.11.0版本开始引入的设计，本文的基准测试在该版本上完成。
 
 环境搭建
 ########
-基准测试中模型的精度和硬件、框架无关，由模型结构和数据共同决定; 性能方面由测试硬件和框架本身性能共同决定。为了对比框架之间的差异，需要控制硬件环境，系统库等版本一致。下文中的对比实验都在相同的硬件条件和系统环境条件下进行.
-对硬件方面，对GPU验证需要保证GPU的型号一致; 对CPU需要保证CPU型号一致;
-对软件方面，基础库Cuda大版本需要保持一致，例如Cuda9与Cuda8支持指令不同，运行速度有差异，在此软件环境下，源码编译paddle。paddle会针对cuda生成对应的sm\_arch二进制\ `sm\_arch <https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html>`__\ 。cudnn对重卷积类任务影响巨大，需要版本\ **完全一致**\ 。
-本教程中的硬件环境为 Intel(R) Xeon(R) CPU E5-2660 v4 @ 2.00GHz. TITAN X
-(Pascal) 12G x 1 系统环境为 System: Ubuntu 16.04.3 LTS, Nvidia-Docker
-17.05.0-ce, build 89658be. Nvidia-Driver 384.90.
-采用的Fluid版本为\ `v.0.12.0 <https://github.com/PaddlePaddle/Paddle/releases/tag/v.0.12.0>`__,
-需要commit一致.
+基准测试中模型精度和硬件、框架无关，由模型结构和数据共同决定；性能方面由测试硬件和框架性能决定。框架基准测试为了对比框架之间的差异，控制硬件环境，系统库等版本一致。下文中的对比实验都在相同的硬件条件和系统环境条件下进行.
+不同架构的GPU卡性能差异巨大，在验证模型在GPU上训练性能时，可使用NVIDIA提供的工具`nvidia-smi`检验当前使用的GPU型号，如果测试多卡训练性能，需确认硬件连接是`NVlink <https://zh.wikipedia.org/zh/NVLink>`__ 或 `PCIe <https://zh.wikipedia.org/zh-hans/PCI_Express>`__。同样地，CPU型号会极大影响模型在CPU上的训练性能。可读取`/proc/cpuinfo`中的参数，确认当前正在使用的
+CPU型号。
+下载GPU对应的Cuda Tool Kit`Cuda <https://developer.nvidia.com/cuda-toolkit>`__ 和 Cudnn，或者使用NVIDIA官方发布的nvidia-docker镜像 `nvidia-docker <https://github.com/NVIDIA/nvidia-docker>`__。 Cuda Tool Kit包含了GPU代码使用到的基础库，影响在此基础上编译出的Fluid二进制运行性能。
+准备好Cuda环境后，从github上的下载Paddle并源码编译，会生成对应的最适合当前GPU的sm\_arch二进制\ `sm\_arch <https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html>`__\ 。另外，cudnn对卷积类任务影响巨大，在基准测试中需要小版本一致，例如Cudnn7.0.2与Cudnn7.1.4在Resnet上有5%以上差异。
 
-基准模型选择
+
+选择基准模型
 ############
-
-benchmark需要兼顾大小模型，不同训练任务下的表现,
-才能说明框架效果。其中mnist, VGG, Resnet属于CNN模型,
-stacked-lstm代表RNN模型.
+对框架做基准测试，需要覆盖不同训练任务和不同大小的模型，基准测试结果才有说服力。
++------------+------------+-----------+ 
+| Header 1   | Header 2   | Header 3  | 
++============+============+===========+ 
+| body row 1 | column 2   | column 3  | 
++------------+------------+-----------+ 
+其中mnist, VGG, Resnet属于CNN模型,
+stacked-lstm代表RNN模型。
 `benchmark <https://github.com/PaddlePaddle/Paddle/tree/develop/benchmark/fluid>`__
+基准模型测试脚本中，均跳过了前几个batch的训练过程，原因是加载数据和分配显存受系统当前运行情况影响，会导致统计性能不准确。运行完若干个轮次后，统计对应指标。
+基准模型的数据的选择方面，数据量大且验证效果多的公开数据集为首选。图像模型VGG和resnet, 本文选择了 `flowers102 <http://www.robots.ox.ac.uk/~vgg/data/flowers/102/>`__，图像大小预处理为和Imagenet相同大小，因此性能可直接对比
+NLP模型的公开且影响力大数据集较少，机器翻译模型选择了wmt14数据，lstm模型中选择了`imdb <https://www.imdb.com/interfaces/>`__ 数据。
+注意，图像模型每条样本大小相同，图像经过变换后大小一致，因此经过的计算路径基本相同，计算速度和显存占用波动较小，可以从若干个batch的数据中采样得到当前的训练性能数据。而NLP模型由于样本长度不定，计算路径和显存占用也不相同，因此只能完整运行若干个轮次后，统计速度和显存消耗。
+显存分配是特别耗时的操作，因此Fluid默认会占用所有可用显存空间形成显存池，用以加速计算过程中的显存分配。如果需要统计模型真实显存消耗，可设置环境变量`FLAGS_fraction_of_gpu_memory_to_use=0.0`，观察最大显存开销。
 
 测试过程
 ########
 
--  CPU
+-  单机单CPU线程测试
 
-首先需要屏蔽GPU ``export CUDA_VISIBLE_DEVICES=``;
+测试CPU上单线程的性能，先设置CUDA的环境变量为空，``CUDA_VISIBLE_DEVICES=``，并通过环境变量关闭OpenMP和MKL的多线程``OMP_NUM_THREADS=1``， ``MKL_NUM_THREADS=1;``。
+然后代码中设置为使用CPUPlace，如果使用Paddle代码库中的脚本，只需要命令行参数传入 use_gpu=False即可。
 
-在单机单卡的测试环境中,Fluid需要关闭OpenMP和MKL的多线程.
-设置\ ``export OMP_NUM_THREADS=1;export MKL_NUM_THREADS=1;``.
-TensorFlow需要关闭多线程, 设置 intra\_op\_parallelism\_threads=1,
-inter\_op\_parallelism\_threads=1. 运行过程中可以通过
-``nvidia-smi``\ 来校验是否有GPU被使用, 下文GPU同理.
-
-.. code:: bash
-
-    docker run -it --name CASE_NAME --security-opt seccomp=unconfined -v $PWD/benchmark:/benchmarkIMAGE_NAME /bin/bash
-
-将其中的CASE\_NAME和IMAGE\_NAME换为对应的名字，运行对应的例子
-
--  GPU
-
-再次确认cudnn和cuda版本一致。本教程使用了cudnn7, cuda8.
-nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
+.. code:: python
+    ```
+    place = core.CPUPlace() 
+    ```
 
 .. code:: bash
 
-    nvidia-docker run -it --name CASE_NAME --security-opt seccomp=unconfined -v $PWD/benchmark:/benchmark -v /usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu IMAGE_NAME /bin/bash
+    docker run -it --name CASE_NAME --security-opt seccomp=unconfined -v $PWD/benchmark:/benchmark paddlepaddle/paddle:latest-dev /bin/bash
 
-将其中的CASE\_NAME和IMAGE\_NAME换为对应的名字，运行对应的例子
+
+-  单机单卡测试
+
+再次确认cudnn和cuda版本一致。本教程使用了cudnn7.0.1, cuda8.0.
+
+.. code:: bash
+
+    nvidia-docker run -it --name CASE_NAME --security-opt seccomp=unconfined -v $PWD/benchmark:/benchmark -v /usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu paddlepaddle/paddle:latest-dev /bin/bash
+在单卡上测试，设置CUDA的环境变量使用一块GPU，``CUDA_VISIBLE_DEVICES=0``
+然后代码中设置为使用CUDAPlace，如果使用Paddle代码库中的脚本，只需要命令行参数传入 use_gpu=True即可。
+.. code:: python
+    ```
+    place = core.CUDAPlace(0) // 0 指第0块GPU
+    ```
+
 
 测试结果
 ########
 
-CPU测试结果
+本教程对比相同环境下的Fluid0.12.0和TensorFlow1.4.0的性能表现。
+硬件环境为 CPU: Intel(R) Xeon(R) CPU E5-2660 v4 @ 2.00GHz, GPU: TITAN X(Pascal) 12G x 1, Nvidia-Driver 384.90。
+系统环境为Ubuntu 16.04.3 LTS, 本文中采用了docker环境，系统版本为nvidia-docker17.05.0-ce。
+测试的Fluid版本为\ `v.0.12.0 <https://github.com/PaddlePaddle/Paddle/releases/tag/v.0.12.0>`__ 。
+TensorFlow版本为\ `v.1.4.0-rc1 <https://github.com/tensorflow/tensorflow/tree/v1.4.0-rc1>`__ 。
+
+- CPU测试结果
 
 +----------------+--------------------+-------------------+
 | Speed          | Fluid CPU          | TensorFlow CPU    |
@@ -74,7 +90,7 @@ CPU测试结果
 | Seq2Seq        | 217.1655 words/s   | 28.6164 words/s   |
 +----------------+--------------------+-------------------+
 
-GPU测试结果
+- GPU测试结果
 
 +----------------+----------------+---------------------+
 | Speed          | Fluid GPU      | TensorFlow GPU      |
@@ -90,4 +106,4 @@ GPU测试结果
 | Seq2Seq        | 7147.89081     | 6845.1161 words/s   |
 +----------------+----------------+---------------------+
 
-注：mnist由于图像太小，采用计量单位为s
+注：mnist由于图像太小，统计数量差异很大，采用计量单位为秒(s)
