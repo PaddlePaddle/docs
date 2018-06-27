@@ -10,7 +10,7 @@
 
 1. 准备一个至少4个节点的集群，并且保证网络可以联通，在本文中我们使用 `*.paddlepaddle.com` 来表示每个节点的主机名称，您可以根据集群的实际情况来修改它。
 
-2. 在开始之前确保已经阅读过 ref:`quick_start_install` 并且可以在集群的所有节点上可以正常运行 PaddlePaddle.
+2. 在开始之前确保已经阅读过 [安装指南](quick_start_install) 并且可以在集群的所有节点上可以正常运行 PaddlePaddle.
 
 ## 启动集群训练任务
 
@@ -90,10 +90,10 @@ train(False, train_program)
 
 | 启动节点 | 启动命令 | 说明 |
 | -- | -- | -- |
-| ps0.paddlepaddle.com | PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动 pserver 节点 |
-| ps1.paddlepaddle.com | PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps1.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动 pserver 节点 |
-| trainer0.paddlepaddle.com | PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=0 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动第0号 trainer 节点 |
-| trainer1.paddlepaddle.com | PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=1 PADDLE_PSERVER_PORT=6174 python fluid_dist.py | 启动第1号 trainer 节点 |
+| ps0.paddlepaddle.com | `PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py` | 启动 pserver 节点 |
+| ps1.paddlepaddle.com | `PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps1.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py` | 启动 pserver 节点 |
+| trainer0.paddlepaddle.com | `PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=0 PADDLE_PSERVER_PORT=6174 python fluid_dist.py` | 启动第0号 trainer 节点 |
+| trainer1.paddlepaddle.com | `PADDLE_TRAINING_ROLE=TRAINER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=1 PADDLE_PSERVER_PORT=6174 python fluid_dist.py` | 启动第1号 trainer 节点 |
 
 **注意**
 
