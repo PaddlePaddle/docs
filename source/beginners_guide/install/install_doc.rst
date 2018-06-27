@@ -107,7 +107,7 @@ paddlepaddle-gpu==0.11.0            使用CUDA 7.5和cuDNN 5编译的0.11.0版�
 
 若您的系统为windows，您可以通过Docker来使用PaddlePaddle。
 
-推荐您下载 `PaddlePaddle快速安装包 <http://paddle-windows.bj.bcebos.com/PaddlePaddle-windows.rar>`_，
+推荐您下载 `PaddlePaddle快速安装包 <http://paddle-windows.bj.bcebos.com/PaddlePaddle-windows.zip>`_，
 该安装包能够帮助您判断、安装适合的Docker，并引导您在Docker中使用PaddlePaddle。
 
 ..
@@ -191,7 +191,7 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
    # 2. 可选步骤：源码中构建用于编译PaddlePaddle的Docker镜像
    docker build -t paddle:dev .
    # 3. 执行下面的命令编译CPU-Only的二进制
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/docker/build.sh
+   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x ./paddle/scripts/docker/build.sh
    # 4. 或者也可以使用为上述可选步骤构建的镜像（必须先执行第2步）
    docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddle:dev
 
