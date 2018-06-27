@@ -84,8 +84,7 @@
 1. feed的数据格式，请参考文章 :ref:`user_guide_feed_data_to_executor`。
 2. :code:`Executor.run` 的返回值是 :code:`fetch_list=[...]` 的variable值。被fetch\
    的Variable必须是persistable的。 :code:`fetch_list` 可以传入Variable的列表，\
-   也可以传入Variable的名字列表。当只fetch一个对象时，返回值是一个元素。否则，\
-   返回一个列表。
+   也可以传入Variable的名字列表。:code:`Executor.run` 返回Fetch结果列表。
 3. 如果需要取回的数据包含序列信息，可以设置
    :code:`exe.run(return_numpy=False, ...)` 直接返回 :ref:`api_guide_lod_tensor`
    。用户可以直接访问 :ref:`api_guide_lod_tensor` 中的信息。
