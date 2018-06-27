@@ -234,8 +234,7 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
 
 .. code-block:: bash
 
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 /bin/bash
-   bash /paddle/paddle/scripts/paddle_build.sh build
+   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
    cd /paddle/build
    ctest -R test_sum_op -V
 
@@ -283,7 +282,7 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
 
 - 可以并行编译吗？
 
-  是的。我们的 Docker image 运行一个 `Bash 脚本 <https://github.com/PaddlePaddle/Paddle/blob/develop//paddle/paddle/scripts/paddle_build.sh>`_。这个脚本调用 :code:`make -j$(nproc)` 来启动和 CPU 核一样多的进程来并行编译。
+  是的。我们的 Docker image 运行一个 `Bash 脚本 <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/paddle/scripts/paddle_build.sh>`_。这个脚本调用 :code:`make -j$(nproc)` 来启动和 CPU 核一样多的进程来并行编译。
 
 - Docker 需要 sudo
 
