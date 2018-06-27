@@ -39,20 +39,20 @@
    adam = fluid.optimizer.Adam(learning_rate=0.001)
    adam.minimize(loss)
 
-在使用 :code:`Optimizer` 之前，将 :code:`fluid.default_main_program()` 复制
-成一个 :code:`test_program` 。之后使用测试数据运行 :code:`test_program`,
+在使用 :code:`Optimizer` 之前，将 :code:`fluid.default_main_program()` 复制\
+成一个 :code:`test_program` 。之后使用测试数据运行 :code:`test_program`,\
 就可以做到运行测试程序，而不影响训练结果。
 
 分别配置训练 :ref:`api_fluid_Program` 和测试 :ref:`api_fluid_Program`
 =====================================================================
 
 如果训练程序和测试程序相差较大时，用户也可以完全通过定义两个不同的
-:ref:`api_fluid_Program`，分别进行训练和测试。在PaddlePaddle Fluid中，
-所有的参数都有名字。如果两个不同的操作，甚至两个不同的网络使用了同样名字的参数，
+:ref:`api_fluid_Program`，分别进行训练和测试。在PaddlePaddle Fluid中，\
+所有的参数都有名字。如果两个不同的操作，甚至两个不同的网络使用了同样名字的参数，\
 那么他们的值和内存空间都是共享的。
 
-PaddlePaddle Fluid中使用 :code:`fluid.unique_name` 包来随机初始化用户未定义的
-参数名称。通过 :code:`fluid.unique_name.guard` 可以确保多次调用某函数
+PaddlePaddle Fluid中使用 :code:`fluid.unique_name` 包来随机初始化用户未定义的\
+参数名称。通过 :code:`fluid.unique_name.guard` 可以确保多次调用某函数\
 参数初始化的名称一致。
 
 例如:
