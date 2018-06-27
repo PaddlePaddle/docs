@@ -46,9 +46,10 @@
    BATCH_SIZE = 32
    reader = paddle.batch(reader_creator(), batch_size=BATCH_SIZE)
    fluid.recordio_writer.convert_reader_to_recordio_file(
-      "train.recordio", feeder=feeder, reader_creator=train_reader)
+      "train.recordio", feeder=feeder, reader_creator=reader)
 
-其中 :code:`reader_creator` 创建了一个 :code:`Reader`。 :code:`fluid.DataFeeder`
+其中 :code:`reader_creator` 创建了一个 :code:`Reader`。
+:ref:`_api_fluid_data_feeder_DataFeeder`
 是将 :code:`Reader` 转换成 :code:`LoDTensor` 的工具。详细请参考
 :ref:`user_guide_reader` 。
 
@@ -102,6 +103,8 @@ RecordIO文件转换好之后，用户可以使用 :ref:`api_fluid_layers_open_f
 
    image, label = fluid.layers.read_file(file_obj)
 
+双缓冲技术可以参考
+`Multiple buffering <https://en.wikipedia.org/wiki/Multiple_buffering>`_ 。
 
 配置数据增强
 ------------
@@ -145,7 +148,7 @@ RecordIO文件转换好之后，用户可以使用 :ref:`api_fluid_layers_open_f
 读入数据的shuffle
 -----------------
 
-使用 :ref:`api_fluid_layers_shuffle` 可以在训练过程中动态重拍训练数据。例如
+使用 :ref:`api_fluid_layers_shuffle` 可以在训练过程中动态重排训练数据。例如
 
 .. code-block:: python
 
@@ -157,8 +160,8 @@ RecordIO文件转换好之后，用户可以使用 :ref:`api_fluid_layers_open_f
 
 需要注意的是:
 
-1. :code:`shuffle` 的实现先读入 :code:`buffer_size` 条样本，再随机的选出样本进行
-训练。
+1. :code:`shuffle` 实现方法是:
+先读入 :code:`buffer_size` 条样本，再随机的选出样本进行训练。
 
 2. :code:`shuffle` 中 :code:`buffer_size` 会占用训练内存，需要确定训练过程中内存
 足够支持缓存 :code:`buffer_size` 条数据。
