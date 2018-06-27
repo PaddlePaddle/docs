@@ -39,6 +39,8 @@ PaddlePaddle Fluid支持使用 :ref:`api_fluid_layers_data` 配置数据层；
 
 2. Fluid中用来做类别标签的数据类型是 :code:`int64`，并且标签从0开始。可用数据类型请参考 :ref:`user_guide_paddle_support_data_types`。
 
+.. _user_guide_feed_data_to_executor:
+
 传递训练数据给执行器
 ####################
 
