@@ -70,7 +70,7 @@
 :ref:`api_fluid_Program` 即可。在运行的时候，用户可以通过 :code:`run(feed=...)`\
 参数传入数据；用户可以通过 :code:`run(fetch=...)` 获取持久的数据。例如:\
 
-.. code-blocks:: python
+.. code-block:: python
 
    ...
    loss = fluid.layers.mean(...)
@@ -96,7 +96,7 @@
 执行多卡训练可以使用 :ref:`api_fluid_ParallelExecutor` 运行训练
 :ref:`api_fluid_Program`。例如:
 
-.. code-blocks:: python
+.. code-block:: python
 
    train_exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name,
                                 main_program=fluid.default_main_program())
