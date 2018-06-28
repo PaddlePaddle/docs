@@ -8,7 +8,8 @@
 
 ..  toctree::
     :maxdepth: 2
-
-    install/index.rst
-    quick_start/index.rst
-    basics/index.rst
+    
+    install/install_doc.rst
+    quick_start/quick_start.rst
+    basics/theoretical_background.rst
+    basics/Guide.md
