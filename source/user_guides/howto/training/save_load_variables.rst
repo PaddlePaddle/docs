@@ -162,3 +162,11 @@
 完全一致，否则会导致变量加载错误或者未加载。另外，与 :code:`fluid.io.save_params` 类似，
 运行 :code:`fluid.default_startup_program()` 也必须在 :code:`fluid.io.load_checkpoint`
 之前进行。
+
+多机checkpoint保存
+##################
+
+.. toctree::
+   :maxdepth: 2
+
+   checkpoint_doc_cn.md

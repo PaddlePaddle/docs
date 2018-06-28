@@ -9,3 +9,4 @@ PaddlePaddle Fluid支持单机训练，和多节点训练。每种训练模式�
 
    single_node
    multi_node
+   save_load_variables
