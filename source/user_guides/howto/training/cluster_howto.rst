@@ -17,9 +17,9 @@ Fluid分布式训练使用手册
 
 在数据并行模式的训练中，Fluid使用了两种通信模式，用于应对不同训练任务对分布式训练的要求，分别为RPC通信和Collective
 通信。其中RPC通信方式使用 `gRPC <https://github.com/grpc/grpc/>`_ ，Collective通信方式使用
- `NCCL2 <https://developer.nvidia.com/nccl)`_ 。下面是一个RPC通信和Collective通信的横向对比：
+`NCCL2 <https://developer.nvidia.com/nccl>`_ 。
 
-.. csv-table:: 通信对比
+.. csv-table:: 下面是一个RPC通信和Collective通信的横向对比：
    :header: "Feature", "Coolective", "RPC"
 
    "Ring-Based通信", "Yes", "No"
@@ -39,9 +39,9 @@ Fluid分布式训练使用手册
 使用parameter server方式的训练
 ---------------------------
 
-使用"trainer" API，程序可以自动的通过识别环境变量决定是否已分布式方式执行，需要在您的分布式环境中配置的环境变量包括：
+使用"trainer" API，程序可以自动的通过识别环境变量决定是否已分布式方式执行。
 
-.. csv-table:: pserver模式环境变量
+.. csv-table:: 需要在您的分布式环境中配置的环境变量包括：
    :header: "环境变量", "说明"
 
    "PADDLE_TRAINING_ROLE", "当前进程的角色，可以是PSERVER或TRAINER"
@@ -115,16 +115,15 @@ parameter server上。如果需要使用其他，可以传入其他的方法，�
    t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, slice_var_up=False)
 
 
-
 使用NCCL2通信方式的训练
 --------------------
 
 注NCCL2模式目前仅支持trainer API，NCCL2方式并没有很多可选项，也没有"transpiler"，所以并没有底层API。
 使用NCCL2方式同样需要配置每个节点的环境变量，此处与parameter server模式有所不同，并不需要启动独立的
-parameter server的进程，只需要启动多个trainer进程即可：
+parameter server的进程，只需要启动多个trainer进程即可。
 
 
-.. csv-table:: pserver模式环境变量
+.. csv-table:: NCCL2模式环境变量说明：
    :header: "环境变量", "说明"
 
    "PADDLE_TRAINER_IPS", "所有Trainer节点的IP列表，用逗号分隔"
