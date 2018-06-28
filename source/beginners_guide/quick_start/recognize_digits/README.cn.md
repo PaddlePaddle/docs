@@ -107,7 +107,6 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 
 PaddlePaddle在API中提供了自动加载[MNIST](http://yann.lecun.com/exdb/mnist/)数据的模块`paddle.dataset.mnist`。加载后的数据位于`/home/username/.cache/paddle/dataset/mnist`下：
 
-
 | 文件名称                | 说明                       |
 |-------------------------|----------------------------|
 | train-images-idx3-ubyte | 训练数据图片，60,000条数据 |
