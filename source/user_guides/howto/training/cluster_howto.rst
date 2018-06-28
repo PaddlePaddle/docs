@@ -32,14 +32,29 @@ Fluid分布式训练使用手册
 
   .. image:: src/dist_train_pserver.png
 
+  使用RPC通信方式的数据并行分布式训练，会启动多个pserver进程和多个trainer进程，每个pserver进程
+  会保存一部分模型参数，并负责接收从trainer发送的梯度并更新这些模型参数；每个trainer进程会保存一份
+  完整的模型，并使用一部分数据进行训练，然后向pserver发送梯度，最后从pserver拉取更新后的参数。
+
+  pserver进程可以在和trainer完全不同的计算节点上，也可以和trainer公用节点。一个分布式任务所需要的
+  pserver进程个数通常需要根据实际情况调整，已达到最佳的性能，然而通常来说pserver的进程不会比trainer
+  更多。
+
+  在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝
+  接收到的梯度数据到GPU的开销，在某些情况下会导致整体训练性能降低。
+
 - NCCL2通信方式的结构：
 
   .. image:: src/dist_train_nccl2.png
 
+  使用NCCL2（Collective通信方式）进行分布式训练，是不需要启动pserver进程的，每个trainer进程都保存
+  一份完整的模型参数，在完成计算梯度之后通过trainer之间的相互通信，Reduce梯度数据到所有节点的所有设备
+  然后每个节点在各自完成参数更新。
+
 使用parameter server方式的训练
 ---------------------------
 
-使用"trainer" API，程序可以自动的通过识别环境变量决定是否已分布式方式执行。
+使用 :code`trainer` API，程序可以自动的通过识别环境变量决定是否已分布式方式执行。
 
 .. csv-table:: 需要在您的分布式环境中配置的环境变量包括：
    :header: "环境变量", "说明"
@@ -51,8 +66,8 @@ Fluid分布式训练使用手册
    "PADDLE_CURRENT_IP", "当前节点的IP"
    "PADDLE_TRAINER_ID", "trainer节点的id，从0~n-1，不能有重复"
 
-使用更加底层的"transpiler" API可以提供自定义的分布式训练的方法，比如可以在同一台机器上，启动多个pserver和trainer
-进行训练，使用底层API的方法可以参考下面的样例代码：
+使用更加底层的 :code:`transpiler` API可以提供自定义的分布式训练的方法，比如可以在同一台机器上，
+启动多个pserver和trainer进行训练，使用底层API的方法可以参考下面的样例代码：
 
 .. code:: python
 
