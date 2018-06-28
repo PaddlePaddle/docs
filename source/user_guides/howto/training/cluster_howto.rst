@@ -10,9 +10,9 @@ Fluid分布式训练使用手册
 
 .. image:: src/parallelism.png
 
-在模型并行方式下，模型的层和参数将被分布在多个节点上，模型在一个mini-batch的前向和反向训练中，将经过多次跨
-节点之间的通信。每个节点只保存整个模型的一部分；在数据并行方式下，每个节点保存有完整的模型的层和参数，每个节点
-独自完成前向和反向计算，然后完成梯度的聚合并同步的更新所有节点上的参数。Fluid目前版本仅提供数据并行方式，另外
+在模型并行方式下，模型的层和参数将被分布在多个节点上，模型在一个mini-batch的前向和反向训练中，将经过多次跨\
+节点之间的通信。每个节点只保存整个模型的一部分；在数据并行方式下，每个节点保存有完整的模型的层和参数，每个节点\
+独自完成前向和反向计算，然后完成梯度的聚合并同步的更新所有节点上的参数。Fluid目前版本仅提供数据并行方式，另外\
 诸如模型并行的特例实现（超大稀疏模型训练）功能将在后续的文档中予以说明。
 
 在数据并行模式的训练中，Fluid使用了两种通信模式，用于应对不同训练任务对分布式训练的要求，分别为RPC通信和Collective
@@ -32,29 +32,29 @@ Fluid分布式训练使用手册
 
   .. image:: src/dist_train_pserver.png
 
-  使用RPC通信方式的数据并行分布式训练，会启动多个pserver进程和多个trainer进程，每个pserver进程
-  会保存一部分模型参数，并负责接收从trainer发送的梯度并更新这些模型参数；每个trainer进程会保存一份
+  使用RPC通信方式的数据并行分布式训练，会启动多个pserver进程和多个trainer进程，每个pserver进程\
+  会保存一部分模型参数，并负责接收从trainer发送的梯度并更新这些模型参数；每个trainer进程会保存一份\
   完整的模型，并使用一部分数据进行训练，然后向pserver发送梯度，最后从pserver拉取更新后的参数。
 
-  pserver进程可以在和trainer完全不同的计算节点上，也可以和trainer公用节点。一个分布式任务所需要的
-  pserver进程个数通常需要根据实际情况调整，已达到最佳的性能，然而通常来说pserver的进程不会比trainer
+  pserver进程可以在和trainer完全不同的计算节点上，也可以和trainer公用节点。一个分布式任务所需要的\
+  pserver进程个数通常需要根据实际情况调整，已达到最佳的性能，然而通常来说pserver的进程不会比trainer\
   更多。
 
-  在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝
+  在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
   接收到的梯度数据到GPU的开销，在某些情况下会导致整体训练性能降低。
 
 - NCCL2通信方式的结构：
 
   .. image:: src/dist_train_nccl2.png
 
-  使用NCCL2（Collective通信方式）进行分布式训练，是不需要启动pserver进程的，每个trainer进程都保存
-  一份完整的模型参数，在完成计算梯度之后通过trainer之间的相互通信，Reduce梯度数据到所有节点的所有设备
+  使用NCCL2（Collective通信方式）进行分布式训练，是不需要启动pserver进程的，每个trainer进程都保存\
+  一份完整的模型参数，在完成计算梯度之后通过trainer之间的相互通信，Reduce梯度数据到所有节点的所有设备\
   然后每个节点在各自完成参数更新。
 
 使用parameter server方式的训练
----------------------------
+------------------------------
 
-使用 :code`trainer` API，程序可以自动的通过识别环境变量决定是否已分布式方式执行。
+使用 :code:`trainer` API，程序可以自动的通过识别环境变量决定是否已分布式方式执行。
 
 .. csv-table:: 需要在您的分布式环境中配置的环境变量包括：
    :header: "环境变量", "说明"
@@ -69,7 +69,7 @@ Fluid分布式训练使用手册
 使用更加底层的 :code:`transpiler` API可以提供自定义的分布式训练的方法，比如可以在同一台机器上，
 启动多个pserver和trainer进行训练，使用底层API的方法可以参考下面的样例代码：
 
-.. code:: python
+.. code-block:: python
 
    role = "PSERVER"
    trainer_id = 0
@@ -89,11 +89,11 @@ Fluid分布式训练使用手册
 
 
 选择同步或异步训练
-+++++++++++++++
+++++++++++++++++++
 
 Fluid分布式任务可以支持同步训练或异步训练，在同步训练方式下，所有的trainer节点，会在每个mini-batch
-同步地合并所有节点的梯度数据并发送给parameter server完成更新，在异步训练方式下，每个trainer没有相互
-同步等待的过程，可以独立的parameter server的参数。通常情况下，使用异步训练方式，可以在trainer节点
+同步地合并所有节点的梯度数据并发送给parameter server完成更新，在异步训练方式下，每个trainer没有相互\
+同步等待的过程，可以独立的parameter server的参数。通常情况下，使用异步训练方式，可以在trainer节点\
 更多的时候比同步训练方式有更高的总体吞吐量。
 
 在调用 :code:`transpile` 函数时，默认会生成同步训练的分布式程序，通过指定 :code:`sync_mode=False`
@@ -105,7 +105,7 @@ Fluid分布式任务可以支持同步训练或异步训练，在同步训练方
 
 
 选择参数分布方法
-+++++++++++++
+++++++++++++++++
 
 参数 :code:`split_method` 可以指定参数在parameter server上的分布方式。
 
@@ -118,7 +118,7 @@ parameter server上。如果需要使用其他，可以传入其他的方法，�
 
 
 关闭切分参数
-++++++++++
+++++++++++++
 
 参数 :code:`slice_var_up` 指定是否将较大（大于8192个元素）的参数切分到多个parameter server已均衡计算负载，默认为开启。
 
@@ -134,7 +134,7 @@ parameter server上。如果需要使用其他，可以传入其他的方法，�
 --------------------
 
 注NCCL2模式目前仅支持trainer API，NCCL2方式并没有很多可选项，也没有"transpiler"，所以并没有底层API。
-使用NCCL2方式同样需要配置每个节点的环境变量，此处与parameter server模式有所不同，并不需要启动独立的
+使用NCCL2方式同样需要配置每个节点的环境变量，此处与parameter server模式有所不同，并不需要启动独立的\
 parameter server的进程，只需要启动多个trainer进程即可。
 
 
@@ -146,7 +146,7 @@ parameter server的进程，只需要启动多个trainer进程即可。
    "PADDLE_PSERVER_PORT", "一个端口，用于在NCCL2初始化时，广播NCCL ID"
    "PADDLE_CURRENT_IP", "当前节点的IP"
 
-目前使用NCCL2进行分布式训练仅支持同步训练方式。使用NCCL2方式的分布式训练，更适合模型体积较大，并需要使用
+目前使用NCCL2进行分布式训练仅支持同步训练方式。使用NCCL2方式的分布式训练，更适合模型体积较大，并需要使用\
 同步训练和GPU训练，如果硬件设备支持RDMA和GPU Direct，可以达到很高的分布式训练性能。
 
 注意如果系统中有多个网络设备，需要手动指定NCCL2使用的设备，
