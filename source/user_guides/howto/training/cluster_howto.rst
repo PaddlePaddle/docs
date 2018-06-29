@@ -37,7 +37,7 @@ Fluid分布式训练使用手册
   完整的模型，并使用一部分数据进行训练，然后向pserver发送梯度，最后从pserver拉取更新后的参数。
 
   pserver进程可以在和trainer完全不同的计算节点上，也可以和trainer公用节点。一个分布式任务所需要的\
-  pserver进程个数通常需要根据实际情况调整，已达到最佳的性能，然而通常来说pserver的进程不会比trainer\
+  pserver进程个数通常需要根据实际情况调整，以达到最佳的性能，然而通常来说pserver的进程不会比trainer\
   更多。
 
   在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
@@ -54,7 +54,7 @@ Fluid分布式训练使用手册
 使用parameter server方式的训练
 ------------------------------
 
-使用 :code:`trainer` API，程序可以自动的通过识别环境变量决定是否已分布式方式执行。
+使用 :code:`trainer` API，程序可以自动的通过识别环境变量决定是否以分布式方式执行。
 
 .. csv-table:: 需要在您的分布式环境中配置的环境变量包括：
    :header: "环境变量", "说明"
