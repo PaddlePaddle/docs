@@ -1,0 +1,1 @@
+../../../paddle/doc/fluid/dev/new_op_cn.md
