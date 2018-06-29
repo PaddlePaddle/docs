@@ -10,6 +10,8 @@
 ..  toctree::
     :maxdepth: 2
 
+    ../mobile/README.cn.md
+    ../anakin/README.md
     deploy/index.rst
     development/contribute_to_paddle.md
     development/write_docs.rst
