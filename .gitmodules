@@ -7,6 +7,3 @@
 [submodule "source/anakin"]
 	path = source/anakin
 	url = https://github.com/PaddlePaddle/Anakin
-[submodule "source/Mobile"]
-	path = source/Mobile
-	url = https://github.com/PaddlePaddle/Mobile.git
