@@ -3,7 +3,7 @@
 ####################
 
 .. toctree::
-   :maxdepth: 2 
+   :maxdepth: 2
 
 
    prepare_data/index
