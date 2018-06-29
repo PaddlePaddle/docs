@@ -10,8 +10,11 @@
 ..  toctree::
     :maxdepth: 1
 
-    ../mobile/README.cn.md
-    ../anakin/README.md
     deploy/index.rst
     development/index.rst
+    ../mobile/README.cn.md
+    ../anakin/README.md
+    ../../paddle/doc/fluid/dev/contribute_to_paddle_cn.md
+    ../../paddle/doc/fluid/dev/write_docs_cn.rst
+    ../../paddle/doc/fluid/dev/new_op_cn.md
     benchmark.rst
