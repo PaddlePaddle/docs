@@ -21,20 +21,17 @@ Fluid中包含了常用分类指标，例如Precision, Recall, Accuracy等,更�
 
 .. code-block:: python
 
+   >>> import paddle.fluid as fluid
    >>> labels = fluid.layers.data(name="data", shape=[1], dtype="int32")
    >>> data = fluid.layers.data(name="data", shape=[32, 32], dtype="int32")
    >>> pred = fluid.layers.fc(input=data, size=1000, act="tanh")
-   >>> comp = fluid.metrics.CompositeMetric()
    >>> acc = fluid.metrics.Precision()
-   >>> recall = fluid.metrics.Recall()
-   >>> comp.add_metric(acc)
-   >>> comp.add_metric(recall)
    >>> for pass in range(PASSES):
-   >>>   comp.reset()
+   >>>   acc.reset()
    >>>   for data in train_reader():
    >>>       loss, preds, labels = exe.run(fetch_list=[cost, preds, labels])
-   >>>   comp.update(preds=preds, labels=labels)
-   >>>   numpy_acc, numpy_recall = comp.eval()
+   >>>   acc.update(preds=preds, labels=labels)
+   >>>   numpy_acc = acc.eval()
       
 
 其他任务例如MultiTask Learning，Metric Learning，Learning To Rank各种指标构造方法请参考API文档。
