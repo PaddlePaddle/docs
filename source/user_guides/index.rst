@@ -10,5 +10,7 @@
 ..  toctree::
     :maxdepth: 2
 
-    howto/index.rst
+    howto/prepare_data/index
+    howto/configure_simple_model/index
+    howto/training/index
     model_bank/index.rst

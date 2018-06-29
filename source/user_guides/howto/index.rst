@@ -9,5 +9,4 @@
    prepare_data/index
    configure_simple_model/index
    training/index
-   debug/index
 

@@ -12,3 +12,4 @@
 
     deploy/index.rst
     development/index.rst
+    benchmark.rst
