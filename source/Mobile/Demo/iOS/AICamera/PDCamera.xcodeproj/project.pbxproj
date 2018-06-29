@@ -1,0 +1,470 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		480C6CF51FB16CD80009876E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C6CF41FB16CD80009876E /* AppDelegate.swift */; };
+		480C6CF71FB16CD80009876E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C6CF61FB16CD80009876E /* ViewController.swift */; };
+		480C6CFA1FB16CD80009876E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 480C6CF81FB16CD80009876E /* Main.storyboard */; };
+		480C6CFC1FB16CD80009876E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 480C6CFB1FB16CD80009876E /* Assets.xcassets */; };
+		480C6CFF1FB16CD80009876E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 480C6CFD1FB16CD80009876E /* LaunchScreen.storyboard */; };
+		480C6D071FB242CA0009876E /* SSDDrawLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C6D061FB242CA0009876E /* SSDDrawLayer.swift */; };
+		480C6D091FB262BF0009876E /* ImageRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480C6D081FB262BF0009876E /* ImageRecognizer.swift */; };
+		483332F11FD8B0D800699E24 /* image_utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 483332ED1FD8B0D700699E24 /* image_utils.cpp */; };
+		483332F21FD8B0D800699E24 /* paddle_image_recognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 483332F01FD8B0D800699E24 /* paddle_image_recognizer.cpp */; };
+		488E78C91FB290580075A8E3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E78C81FB290580075A8E3 /* Accelerate.framework */; };
+		488E78CC1FB290AE0075A8E3 /* libpaddle_capi_engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E78CA1FB290AE0075A8E3 /* libpaddle_capi_engine.a */; };
+		488E78CD1FB290AE0075A8E3 /* libpaddle_capi_layers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E78CB1FB290AE0075A8E3 /* libpaddle_capi_layers.a */; };
+		488E78CF1FB290E40075A8E3 /* libgflags.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E78CE1FB290E40075A8E3 /* libgflags.a */; };
+		488E78D11FB290EF0075A8E3 /* libglog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E78D01FB290EF0075A8E3 /* libglog.a */; };
+		488E78D31FB290FA0075A8E3 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E78D21FB290FA0075A8E3 /* libprotobuf.a */; };
+		488E78D51FB291030075A8E3 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 488E78D41FB291030075A8E3 /* libz.a */; };
+		48C36BFB1FB8320C009CDE05 /* SSDData.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C36BFA1FB8320C009CDE05 /* SSDData.m */; };
+		48C36C001FBA529C009CDE05 /* PaddleHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 48C36BFF1FBA529B009CDE05 /* PaddleHelper.mm */; };
+		48C36C051FBAD309009CDE05 /* pascal_mobilenet_300_66.paddle in Resources */ = {isa = PBXBuildFile; fileRef = 48C36C041FBAC702009CDE05 /* pascal_mobilenet_300_66.paddle */; };
+		48C36C081FBBA721009CDE05 /* SSDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C36C071FBBA721009CDE05 /* SSDModel.swift */; };
+		48C36C0B1FBC18D5009CDE05 /* face_mobilenet_160_91.paddle in Resources */ = {isa = PBXBuildFile; fileRef = 48C36C0A1FBC18C6009CDE05 /* face_mobilenet_160_91.paddle */; };
+		48CAD1441FB2B3B3009A0523 /* ImageRecognizerPaddleWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 48CAD1431FB2B3B3009A0523 /* ImageRecognizerPaddleWrapper.mm */; };
+		D09B082B1FB280CD0014EF43 /* SSDMultiboxLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09B082A1FB280CD0014EF43 /* SSDMultiboxLayer.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		480C6CF11FB16CD80009876E /* PDCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		480C6CF41FB16CD80009876E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		480C6CF61FB16CD80009876E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		480C6CF91FB16CD80009876E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		480C6CFB1FB16CD80009876E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		480C6CFE1FB16CD80009876E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		480C6D001FB16CD80009876E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		480C6D061FB242CA0009876E /* SSDDrawLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSDDrawLayer.swift; sourceTree = "<group>"; };
+		480C6D081FB262BF0009876E /* ImageRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRecognizer.swift; sourceTree = "<group>"; };
+		483332ED1FD8B0D700699E24 /* image_utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_utils.cpp; sourceTree = "<group>"; };
+		483332EE1FD8B0D700699E24 /* image_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_utils.h; sourceTree = "<group>"; };
+		483332EF1FD8B0D800699E24 /* paddle_image_recognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = paddle_image_recognizer.h; sourceTree = "<group>"; };
+		483332F01FD8B0D800699E24 /* paddle_image_recognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = paddle_image_recognizer.cpp; sourceTree = "<group>"; };
+		483332F31FD8B13A00699E24 /* image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = image.h; sourceTree = "<group>"; };
+		4883B2371FB4E7FE00F9204A /* ImageRecognizerPaddleWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageRecognizerPaddleWrapper.h; sourceTree = "<group>"; };
+		488E78C81FB290580075A8E3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		488E78CA1FB290AE0075A8E3 /* libpaddle_capi_engine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpaddle_capi_engine.a; path = "paddle-ios/lib/libpaddle_capi_engine.a"; sourceTree = "<group>"; };
+		488E78CB1FB290AE0075A8E3 /* libpaddle_capi_layers.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpaddle_capi_layers.a; path = "paddle-ios/lib/libpaddle_capi_layers.a"; sourceTree = "<group>"; };
+		488E78CE1FB290E40075A8E3 /* libgflags.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgflags.a; path = "paddle-ios/third_party/gflags/lib/libgflags.a"; sourceTree = "<group>"; };
+		488E78D01FB290EF0075A8E3 /* libglog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglog.a; path = "paddle-ios/third_party/glog/lib/libglog.a"; sourceTree = "<group>"; };
+		488E78D21FB290FA0075A8E3 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = "paddle-ios/third_party/protobuf/lib/libprotobuf.a"; sourceTree = "<group>"; };
+		488E78D41FB291030075A8E3 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = "paddle-ios/third_party/zlib/lib/libz.a"; sourceTree = "<group>"; };
+		48C36BFA1FB8320C009CDE05 /* SSDData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSDData.m; sourceTree = "<group>"; };
+		48C36BFE1FB83241009CDE05 /* SSDData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSDData.h; sourceTree = "<group>"; };
+		48C36BFF1FBA529B009CDE05 /* PaddleHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PaddleHelper.mm; sourceTree = "<group>"; };
+		48C36C011FBA544C009CDE05 /* PaddleHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaddleHelper.h; sourceTree = "<group>"; };
+		48C36C041FBAC702009CDE05 /* pascal_mobilenet_300_66.paddle */ = {isa = PBXFileReference; lastKnownFileType = file; path = pascal_mobilenet_300_66.paddle; sourceTree = "<group>"; };
+		48C36C071FBBA721009CDE05 /* SSDModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDModel.swift; sourceTree = "<group>"; };
+		48C36C0A1FBC18C6009CDE05 /* face_mobilenet_160_91.paddle */ = {isa = PBXFileReference; lastKnownFileType = file; path = face_mobilenet_160_91.paddle; sourceTree = "<group>"; };
+		48CAD13E1FB29318009A0523 /* AICamera-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AICamera-Bridging-Header.h"; sourceTree = "<group>"; };
+		48CAD1431FB2B3B3009A0523 /* ImageRecognizerPaddleWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageRecognizerPaddleWrapper.mm; sourceTree = "<group>"; };
+		D09B082A1FB280CD0014EF43 /* SSDMultiboxLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDMultiboxLayer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		480C6CEE1FB16CD80009876E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				488E78CC1FB290AE0075A8E3 /* libpaddle_capi_engine.a in Frameworks */,
+				488E78D11FB290EF0075A8E3 /* libglog.a in Frameworks */,
+				488E78CF1FB290E40075A8E3 /* libgflags.a in Frameworks */,
+				488E78CD1FB290AE0075A8E3 /* libpaddle_capi_layers.a in Frameworks */,
+				488E78D31FB290FA0075A8E3 /* libprotobuf.a in Frameworks */,
+				488E78D51FB291030075A8E3 /* libz.a in Frameworks */,
+				488E78C91FB290580075A8E3 /* Accelerate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		480520A71FB3DA18008482C5 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				48C36C0A1FBC18C6009CDE05 /* face_mobilenet_160_91.paddle */,
+				48C36C041FBAC702009CDE05 /* pascal_mobilenet_300_66.paddle */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		480C6CE81FB16CD80009876E = {
+			isa = PBXGroup;
+			children = (
+				480520A71FB3DA18008482C5 /* models */,
+				480C6CF31FB16CD80009876E /* AICamera */,
+				480C6CF21FB16CD80009876E /* Products */,
+				488E78C71FB2901C0075A8E3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		480C6CF21FB16CD80009876E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				480C6CF11FB16CD80009876E /* PDCamera.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		480C6CF31FB16CD80009876E /* AICamera */ = {
+			isa = PBXGroup;
+			children = (
+				480C6CF41FB16CD80009876E /* AppDelegate.swift */,
+				480C6D081FB262BF0009876E /* ImageRecognizer.swift */,
+				480C6CF61FB16CD80009876E /* ViewController.swift */,
+				480C6D061FB242CA0009876E /* SSDDrawLayer.swift */,
+				D09B082A1FB280CD0014EF43 /* SSDMultiboxLayer.swift */,
+				483332F31FD8B13A00699E24 /* image.h */,
+				483332ED1FD8B0D700699E24 /* image_utils.cpp */,
+				483332EE1FD8B0D700699E24 /* image_utils.h */,
+				483332F01FD8B0D800699E24 /* paddle_image_recognizer.cpp */,
+				483332EF1FD8B0D800699E24 /* paddle_image_recognizer.h */,
+				48C36BFF1FBA529B009CDE05 /* PaddleHelper.mm */,
+				48C36C011FBA544C009CDE05 /* PaddleHelper.h */,
+				48CAD1431FB2B3B3009A0523 /* ImageRecognizerPaddleWrapper.mm */,
+				4883B2371FB4E7FE00F9204A /* ImageRecognizerPaddleWrapper.h */,
+				48C36C071FBBA721009CDE05 /* SSDModel.swift */,
+				48C36BFA1FB8320C009CDE05 /* SSDData.m */,
+				48C36BFE1FB83241009CDE05 /* SSDData.h */,
+				480C6CF81FB16CD80009876E /* Main.storyboard */,
+				480C6CFB1FB16CD80009876E /* Assets.xcassets */,
+				480C6CFD1FB16CD80009876E /* LaunchScreen.storyboard */,
+				480C6D001FB16CD80009876E /* Info.plist */,
+				48CAD13E1FB29318009A0523 /* AICamera-Bridging-Header.h */,
+			);
+			path = AICamera;
+			sourceTree = "<group>";
+		};
+		488E78C71FB2901C0075A8E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				488E78D41FB291030075A8E3 /* libz.a */,
+				488E78D21FB290FA0075A8E3 /* libprotobuf.a */,
+				488E78D01FB290EF0075A8E3 /* libglog.a */,
+				488E78CE1FB290E40075A8E3 /* libgflags.a */,
+				488E78CA1FB290AE0075A8E3 /* libpaddle_capi_engine.a */,
+				488E78CB1FB290AE0075A8E3 /* libpaddle_capi_layers.a */,
+				488E78C81FB290580075A8E3 /* Accelerate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		480C6CF01FB16CD80009876E /* PDCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 480C6D031FB16CD80009876E /* Build configuration list for PBXNativeTarget "PDCamera" */;
+			buildPhases = (
+				480C6CED1FB16CD80009876E /* Sources */,
+				480C6CEE1FB16CD80009876E /* Frameworks */,
+				480C6CEF1FB16CD80009876E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PDCamera;
+			productName = AICamera;
+			productReference = 480C6CF11FB16CD80009876E /* PDCamera.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		480C6CE91FB16CD80009876E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = PaddlePaddle;
+				TargetAttributes = {
+					480C6CF01FB16CD80009876E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = H8UUXRDF6H;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 480C6CEC1FB16CD80009876E /* Build configuration list for PBXProject "PDCamera" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 480C6CE81FB16CD80009876E;
+			productRefGroup = 480C6CF21FB16CD80009876E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				480C6CF01FB16CD80009876E /* PDCamera */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		480C6CEF1FB16CD80009876E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48C36C0B1FBC18D5009CDE05 /* face_mobilenet_160_91.paddle in Resources */,
+				48C36C051FBAD309009CDE05 /* pascal_mobilenet_300_66.paddle in Resources */,
+				480C6CFF1FB16CD80009876E /* LaunchScreen.storyboard in Resources */,
+				480C6CFC1FB16CD80009876E /* Assets.xcassets in Resources */,
+				480C6CFA1FB16CD80009876E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		480C6CED1FB16CD80009876E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480C6CF71FB16CD80009876E /* ViewController.swift in Sources */,
+				480C6CF51FB16CD80009876E /* AppDelegate.swift in Sources */,
+				483332F21FD8B0D800699E24 /* paddle_image_recognizer.cpp in Sources */,
+				D09B082B1FB280CD0014EF43 /* SSDMultiboxLayer.swift in Sources */,
+				48CAD1441FB2B3B3009A0523 /* ImageRecognizerPaddleWrapper.mm in Sources */,
+				48C36C081FBBA721009CDE05 /* SSDModel.swift in Sources */,
+				483332F11FD8B0D800699E24 /* image_utils.cpp in Sources */,
+				480C6D071FB242CA0009876E /* SSDDrawLayer.swift in Sources */,
+				48C36C001FBA529C009CDE05 /* PaddleHelper.mm in Sources */,
+				480C6D091FB262BF0009876E /* ImageRecognizer.swift in Sources */,
+				48C36BFB1FB8320C009CDE05 /* SSDData.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		480C6CF81FB16CD80009876E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				480C6CF91FB16CD80009876E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		480C6CFD1FB16CD80009876E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				480C6CFE1FB16CD80009876E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		480C6D011FB16CD80009876E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/paddle-ios/include";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		480C6D021FB16CD80009876E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/paddle-ios/include";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		480C6D041FB16CD80009876E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = H8UUXRDF6H;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/paddle-ios/include/**";
+				INFOPLIST_FILE = AICamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/paddle-ios/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/gflags/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/glog/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/protobuf/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/zlib/lib",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"${PROJECT_DIR}/paddle-ios/lib/libpaddle_capi_layers.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.paddlepaddle.PDCamera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AICamera/AICamera-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = arm64;
+			};
+			name = Debug;
+		};
+		480C6D051FB16CD80009876E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = H8UUXRDF6H;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/paddle-ios/include/**";
+				INFOPLIST_FILE = AICamera/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/paddle-ios/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/gflags/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/glog/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/protobuf/lib",
+					"$(PROJECT_DIR)/paddle-ios/third_party/zlib/lib",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"${PROJECT_DIR}/paddle-ios/lib/libpaddle_capi_layers.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.paddlepaddle.PDCamera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AICamera/AICamera-Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = arm64;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		480C6CEC1FB16CD80009876E /* Build configuration list for PBXProject "PDCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				480C6D011FB16CD80009876E /* Debug */,
+				480C6D021FB16CD80009876E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		480C6D031FB16CD80009876E /* Build configuration list for PBXNativeTarget "PDCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				480C6D041FB16CD80009876E /* Debug */,
+				480C6D051FB16CD80009876E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 480C6CE91FB16CD80009876E /* Project object */;
+}
