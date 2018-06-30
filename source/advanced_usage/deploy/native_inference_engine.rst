@@ -4,9 +4,8 @@ Paddle 预测 API
 为了更简单方便的预测部署，Fluid 提供了一套高层 API
 用来隐藏底层不同的优化实现。
 
-预测库相关代码位于
-https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/contrib/inference
-，其中发布的包括
+`预测库相关代码 <https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/contrib/inference>`__
+包括
 
 -  头文件 ``paddle_inference_api.h`` 定义了所有的接口
 -  库文件\ ``libpaddle_fluid.so`` 或 ``libpaddle_fluid.a``
