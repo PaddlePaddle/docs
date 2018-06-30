@@ -5,6 +5,11 @@
 服务端
 ######
 
+..  toctree::
+    :maxdepth: 2
+
+    native_inference_engine.rst
+
 
 使用Anakin进行服务端预测
 ========================
