@@ -4,6 +4,9 @@
 [submodule "book"]
 	path = book
 	url = https://github.com/PaddlePaddle/book.git
-[submodule "source/anakin"]
-	path = source/anakin
-	url = https://github.com/PaddlePaddle/Anakin
+[submodule "anakin"]
+	path = anakin
+	url = https://github.com/PaddlePaddle/Anakin.git
+[submodule "mobile"]
+	path = mobile
+	url = https://github.com/PaddlePaddle/paddle-mobile.git
