@@ -40,4 +40,6 @@
 .. toctree::
    :maxdepth: 2
 
-   mobile_readme.md
+   mobile_build.md
+   mobile_design.md
+   mobile_dev.md

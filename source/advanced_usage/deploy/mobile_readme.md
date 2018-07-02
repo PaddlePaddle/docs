@@ -1,1 +1,0 @@
-../../../mobile/README.cn.md

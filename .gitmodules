@@ -7,3 +7,6 @@
 [submodule "anakin"]
 	path = anakin
 	url = https://github.com/PaddlePaddle/Anakin.git
+[submodule "mobile"]
+	path = mobile
+	url = https://github.com/PaddlePaddle/paddle-mobile.git
