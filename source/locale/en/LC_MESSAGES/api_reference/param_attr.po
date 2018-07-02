@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_reference/param_attr.rst:6
+msgid "fluid.param_attr"
+msgstr ""
+
+#: ../../source/api_reference/param_attr.rst:11
+msgid "ParamAttr"
+msgstr ""
+
+#: ../../source/api_reference/param_attr.rst:20
+msgid "WeightNormParamAttr"
+msgstr ""
+
+#: of paddle.fluid.param_attr.WeightNormParamAttr:1
+msgid ""
+"Used for weight normalization. Any field in ParamAttr can also be set "
+"here. Besides, an extra field dim can be set to indicate the dimension "
+"except which to normalize."
+msgstr ""
+
+#~ msgid "param_attr"
+#~ msgstr ""
+

@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, paddle-dev@baidu.com
+# This file is distributed under the same license as the PaddlePaddle Fluid
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddlePaddle Fluid 0.13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-15 16:34+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../source/api_reference/executor.rst:6
+msgid "fluid.executor"
+msgstr ""
+
+#: ../../source/api_reference/executor.rst:11
+msgid "Executor"
+msgstr ""
+
+#: of paddle.fluid.executor.Executor.run:1
+msgid ""
+"Run program by this Executor. Feed data by feed map, fetch result by "
+"fetch_list."
+msgstr ""
+
+#: of paddle.fluid.executor.Executor.run:3
+msgid ""
+"Python executor takes a program, add feed operators and fetch operators "
+"to this program according to feed map and fetch_list. Feed map provides "
+"input data for the program. fetch_list provides the variables(or names) "
+"that user want to get after program run. Note: the executor will run all "
+"operators in the program but not only the operators dependent by the "
+"fetch_list"
+msgstr ""
+
+#: of paddle.fluid.executor.Executor.run paddle.fluid.executor.fetch_var
+msgid "参数"
+msgstr ""
+
+#: of paddle.fluid.executor.Executor.run:8
+msgid ""
+"the program that need to run, if not provied, then default_main_program "
+"will be used."
+msgstr ""
+
+#: of paddle.fluid.executor.Executor.run:9
+msgid "feed variable map, e.g. {\"image\": ImageData, \"label\": LableData}"
+msgstr ""
+
+#: of paddle.fluid.executor.Executor.run:10
+msgid ""
+"a list of variable or variable names that user want to get, run will "
+"return them according"
+msgstr ""
+
+#: of paddle.fluid.executor.Executor.run:11
+msgid ""
+"to this list. :param feed_var_name: the name for the input variable of "
+"feed Operator. :param fetch_var_name: the name for the output variable of"
+" feed Operator. :param scope: the scope used to run this program, you can"
+" switch it to different scope. default is global_scope :param "
+"return_numpy: if convert the fetched tensor to numpy :param "
+"use_program_cache: set use_program_cache to true if program not changed "
+"compare to the last step. :return: result according to fetch_list."
+msgstr ""
+
+#: ../../source/api_reference/executor.rst:20
+msgid "global_scope"
+msgstr ""
+
+#: ../../source/api_reference/executor.rst:28
+msgid "scope_guard"
+msgstr ""
+
+#: ../../source/api_reference/executor.rst:36
+msgid "switch_scope"
+msgstr ""
+
+#: ../../source/api_reference/executor.rst:44
+msgid "fetch_var"
+msgstr ""
+
+#: of paddle.fluid.executor.fetch_var:1
+msgid ""
+"Fetch the value of the variable with the given name from the given scope "
+":param name: name of the variable. Typically, only persistable variables"
+msgstr ""
+
+#: of paddle.fluid.executor.fetch_var:3
+msgid "can be found in the scope used for running the program."
+msgstr ""
+
+#: of paddle.fluid.executor.fetch_var:5
+msgid ""
+"scope object. It should be the scope where you pass to Executor.run() "
+"when running your program. If None, global_scope() will be used."
+msgstr ""
+
+#: of paddle.fluid.executor.fetch_var:9
+msgid "whether convert the tensor to numpy.ndarray"
+msgstr ""
+
+#: of paddle.fluid.executor.fetch_var
+msgid "返回"
+msgstr ""
+
+#: of paddle.fluid.executor.fetch_var:12
+msgid "LodTensor|numpy.ndarray"
+msgstr ""
+
+#~ msgid "executor"
+#~ msgstr ""
+

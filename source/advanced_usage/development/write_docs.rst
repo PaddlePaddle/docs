@@ -1,0 +1,1 @@
+../../../paddle/doc/fluid/dev/write_docs_cn.rst

@@ -1,0 +1,1 @@
+../../../anakin/docs/Manual/INSTALL_ch.md
