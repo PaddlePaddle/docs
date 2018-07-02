@@ -1,21 +1,14 @@
-########
-预测部署
-########
-
-服务端
-######
-
-Paddle原生预测引擎
-==================
+服务器端部署 - 原生引擎
+#######################
 
 ..  toctree::
     :maxdepth: 2
 
+    build_and_install_lib_cn.rst
     native_inference_engine.rst
 
-
-使用Anakin进行服务端预测
-========================
+服务器端部署 - Anakin
+#####################
 
 
 使用文档
@@ -41,8 +34,8 @@ Paddle原生预测引擎
    how_to_add_anakin_op.md
    how_to_support_new_device_in_anakin.md
 
-移动端
-######
+移动端部署
+##########
 
 .. toctree::
    :maxdepth: 2
