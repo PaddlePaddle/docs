@@ -19,6 +19,7 @@
     advanced_usage/index.rst
     api_guides/index.rst
     api_reference/index.rst
+    models/index.rst
     faq.rst
 
 Indices and tables
