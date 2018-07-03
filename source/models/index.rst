@@ -122,3 +122,15 @@ DQN 及其变体，并测试了它们在 Atari 游戏中的表现。
 情感倾向分析针对带有主观描述的中文文本，可自动判断该文本的情感极性类别并给出相应的置信度。情感类型分为积极、消极、 中性。情感倾向分析能够帮助企业理解用户消费习惯、分析热点话题和危机舆情监控，为企业提供有力的决策支持。本次我们开放 AI开放平台中情感倾向分析采用的模型(http://ai.baidu.com/tech/nlp/sentiment_classify )， 提供给用户使用。
 
 - `Senta <https://github.com/baidu/Senta/blob/master/README.md>`__
+
+AnyQ
+----
+
+`AnyQ <https://github.com/baidu/AnyQ>`__\ (ANswer Your Questions)
+开源项目主要包含面向FAQ集合的问答系统框架、文本语义匹配工具SimNet。
+问答系统框架采用了配置化、插件化的设计，各功能均通过插件形式加入，当前共开放了20+种插件。开发者可以使用AnyQ系统快速构建和定制适用于特定业务场景的FAQ问答系统，并加速迭代和升级。
+
+SimNet是百度自然语言处理部于2013年自主研发的语义匹配框架，该框架在百度各产品上广泛应用，主要包括BOW、CNN、RNN、MM-DNN等核心网络结构形式，同时基于该框架也集成了学术界主流的语义匹配模型，如MatchPyramid、MV-LSTM、K-NRM等模型。使用SimNet构建出的模型可以便捷的加入AnyQ系统中，增强AnyQ系统的语义匹配能力。
+
+-  `SimNet in PaddlePaddle
+   Fluid <https://github.com/baidu/AnyQ/blob/master/tools/simnet/train/paddle/README.md>`__
