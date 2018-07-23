@@ -1,6 +1,6 @@
 # 识别数字
 
-本教程源代码目录在[book/recognize_digits](https://github.com/PaddlePaddle/book/tree/develop/02.recognize_digits)， 初次使用请参考PaddlePaddle[安装教程](https://github.com/PaddlePaddle/book/blob/develop/README.cn.md#运行这本书)，更多内容请参考本教程的[视频课堂](http://bit.baidu.com/course/detail/id/167.html)。
+本教程源代码目录在[book/recognize_digits](https://github.com/PaddlePaddle/book/tree/develop/02.recognize_digits)， 初次使用请参考PaddlePaddle[安装教程](https://github.com/PaddlePaddle/book/blob/develop/README.cn.md#运行这本书)。
 
 ## 背景介绍
 当我们学习编程的时候，编写的第一个程序一般是实现打印"Hello World"。而机器学习（或深度学习）的入门教程，一般都是 [MNIST](http://yann.lecun.com/exdb/mnist/) 数据库上的手写识别问题。原因是手写识别属于典型的图像分类问题，比较简单，同时MNIST数据集也很完备。MNIST数据集作为一个简单的计算机视觉数据集，包含一系列如图1所示的手写数字图片和对应的标签。图片是28x28的像素矩阵，标签则对应着0~9的10个数字。每张图片都经过了大小归一化和居中处理。
@@ -70,7 +70,7 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 
 卷积层是卷积神经网络的核心基石。在图像识别里我们提到的卷积是二维卷积，即离散二维滤波器（也称作卷积核）与二维图像做卷积操作，简单的讲是二维滤波器滑动到二维图像上所有位置，并在每个位置上与该像素点及其领域像素点做内积。卷积操作被广泛应用与图像处理领域，不同卷积核可以提取不同的特征，例如边沿、线性、角等特征。在深层卷积神经网络中，通过卷积操作可以提取出图像低级到复杂的特征。
 
-![cnn](./image/conv_layer.png)
+![cnn](https://raw.githubusercontent.com/PaddlePaddle/book/develop/02.recognize_digits/image/conv_layer.png)
 <p align="center">图5. 卷积层图片</p>
 
 图5给出一个卷积计算过程的示例图，输入图像大小为`$H=5,W=5,D=3$`，即`$5 \times 5$`大小的3通道（RGB，也称作深度）彩色图像。这个示例图中包含两（用`$K$`表示）组卷积核，即图中滤波器`$W_0$`和`$W_1$`。在卷积计算中，通常对不同的输入通道采用不同的卷积核，如图示例中每组卷积核包含（`$D=3$`）个`$3 \times 3$`（用`$F \times F$`表示）大小的卷积核。另外，这个示例中卷积核在图像的水平方向（`$W$`方向）和垂直方向（`$H$`方向）的滑动步长为2（用`$S$`表示）；对输入图像周围各填充1（用`$P$`表示）个0，即图中输入层原始数据为蓝色部分，灰色部分是进行了大小为1的扩展，用0来进行扩展。经过卷积操作得到输出为`$3 \times 3 \times 2$`（用`$H_{o} \times W_{o} \times K$`表示）大小的特征图，即`$3 \times 3$`大小的2通道特征图，其中`$H_o$`计算公式为：`$H_o = (H - F + 2 \times P)/S + 1$`，`$W_o$`同理。 而输出特征图中的每个像素，是每组滤波器与输入图像每个特征图的内积再求和，再加上偏置`$b_o$`，偏置通常对于每个输出特征图是共享的。输出特征图`$o[:,:,0]$`中的最后一个`$-2$`计算如图5右下角公式所示。
@@ -107,12 +107,35 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 
 PaddlePaddle在API中提供了自动加载[MNIST](http://yann.lecun.com/exdb/mnist/)数据的模块`paddle.dataset.mnist`。加载后的数据位于`/home/username/.cache/paddle/dataset/mnist`下：
 
-| 文件名称                | 说明                       |
-|-------------------------|----------------------------|
-| train-images-idx3-ubyte | 训练数据图片，60,000条数据 |
-| train-labels-idx1-ubyte | 训练数据标签，60,000条数据 |
-| t10k-images-idx3-ubyte  | 测试数据图片，10,000条数据 |
-| t10k-labels-idx1-ubyte  | 测试数据标签，10,000条数据 |
+<p align="center">
+<table>
+    <thead>
+    <tr>
+        <th>文件名称</th>
+        <th>说明</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>train-images-idx3-ubyte</td>
+        <td>训练数据图片，60,000条数据</td>
+    </tr>
+    <tr>
+        <td>train-labels-idx1-ubyte</td>
+        <td>训练数据标签，60,000条数据</td>
+    </tr>
+    <tr>
+        <td>t10k-images-idx3-ubyte</td>
+        <td>测试数据图片，10,000条数据</td>
+    </tr>
+    <tr>
+        <td>t10k-labels-idx1-ubyte</td>
+        <td>测试数据标签，10,000条数据</td>
+    </tr>
+    </tbody>
+</table>
+</p>
 
 ## Fluid API 概述
 
