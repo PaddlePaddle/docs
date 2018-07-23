@@ -33,9 +33,9 @@
 数据层
 ------
 
-PaddlePaddle提供了 :ref:`api_fluid_layers_data` 算子来描述输入数据的格式。
+PaddlePaddle提供了 :code:`fluid.layers.data()` 算子来描述输入数据的格式。
 
-:ref:`api_fluid_layers_data` 算子的输出是一个Variable。这个Variable的实际类型是Tensor。Tensor具有强大的表征能力，可以表示多维数据。为了精确描述数据结构，通常需要指定数据shape以及数值类型type。其中shape为一个整数向量，type可以是一个字符串类型。目前支持的数据类型参考    :ref:`user_guide_paddle_support_data_types` 。 模型训练一般会使用batch的方式读取数据，而batch的size在训练过程中可能不固定。data算子会依据实际数据来推断batch size，所以这里提供shape时不用关心batch size，只需关心一条样本的shape即可，更高级用法请参考 :ref:`user_guide_customize_batch_size_rank`。从上知，:math:`x` 为 :math:`13` 维的实数向量，:math:`y` 为实数，可使用下面代码定义数据层：
+:code:`fluid.layers.data()` 算子的输出是一个Variable。这个Variable的实际类型是Tensor。Tensor具有强大的表征能力，可以表示多维数据。为了精确描述数据结构，通常需要指定数据shape以及数值类型type。其中shape为一个整数向量，type可以是一个字符串类型。目前支持的数据类型参考    :ref:`user_guide_paddle_support_data_types` 。 模型训练一般会使用batch的方式读取数据，而batch的size在训练过程中可能不固定。data算子会依据实际数据来推断batch size，所以这里提供shape时不用关心batch size，只需关心一条样本的shape即可，更高级用法请参考 :ref:`user_guide_customize_batch_size_rank`。从上知，:math:`x` 为 :math:`13` 维的实数向量，:math:`y` 为实数，可使用下面代码定义数据层：
 
 .. code-block:: python
 
@@ -55,7 +55,7 @@ PaddlePaddle提供了 :ref:`api_fluid_layers_data` 算子来描述输入数据�
     op_2_out = fluid.layers.op_2(input=op_1_out, ...)
     ...
 
-其中op_1和op_2表示算子类型，可以是fc来执行线性变换(全连接)，也可以是conv来执行卷积变换等。通过算子的输入输出的连接来定义算子的计算顺序以及数据流方向。上面的例子中，op_1的输出是op_2的输入，那么在执行计算时，会先计算op_1，然后计算op_2。更复杂的模型可能需要使用控制流算子，依据输入数据来动态执行，针对这种情况，PaddlePaddle提供了IfElseOp和WhileOp等。算子的文档可参考 :ref:`api_fluid_layers`。具体到这个任务, 我们使用一个fc算子：
+其中op_1和op_2表示算子类型，可以是fc来执行线性变换(全连接)，也可以是conv来执行卷积变换等。通过算子的输入输出的连接来定义算子的计算顺序以及数据流方向。上面的例子中，op_1的输出是op_2的输入，那么在执行计算时，会先计算op_1，然后计算op_2。更复杂的模型可能需要使用控制流算子，依据输入数据来动态执行，针对这种情况，PaddlePaddle提供了IfElseOp和WhileOp等。算子的文档可参考 :code:`fluid.layers`。具体到这个任务, 我们使用一个fc算子：
 
 .. code-block:: python
 
@@ -80,7 +80,7 @@ PaddlePaddle提供了 :ref:`api_fluid_layers_data` 算子来描述输入数据�
 
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
 
-更多优化算子可以参考 :ref:`api_fluid_optimizer` 。
+更多优化算子可以参考 :code:`fluid.optimizer()` 。
 
 下一步做什么？
 ##############
