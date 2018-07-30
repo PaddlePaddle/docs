@@ -7,12 +7,12 @@
 PaddlePaddle Fluid支持两种传入数据的方式:
 
 1. 用户需要使用 :code:`fluid.layers.data`
-配置数据输入层，并在 :ref:`api_guide_executor` 或 :ref:`api_guide_parallel_executor`
+配置数据输入层，并在 :code:`fluid.Executor` 或 :code:`fluid.ParallelExecutor`
 中，使用 :code:`executor.run(feed=...)` 传入训练数据。
 
 2. 用户需要先将训练数据
-转换成 Paddle 识别的 :ref:`api_guide_recordio_file_format` ， 再使用
-:code:`fluid.layers.open_files` 以及 :ref:`api_guide_reader` 配置数据读取。
+转换成 Paddle 识别的 :code:`fluid.recordio_writer` ， 再使用
+:code:`fluid.layers.open_files` 以及 :code:`fluid.layers.reader` 配置数据读取。
 
 这两种准备数据方法的比较如下:
 
@@ -21,9 +21,9 @@ PaddlePaddle Fluid支持两种传入数据的方式:
 +------------+----------------------------------+---------------------------------------+
 |            |        Feed数据                  |         使用Reader                    |
 +============+==================================+=======================================+
-| API接口    | :code:`executor.run(feed=...)`   |         :ref:`api_guide_reader`       |
+| API接口    | :code:`executor.run(feed=...)`   |         :code:`fluid.layers.reader`       |
 +------------+----------------------------------+---------------------------------------+
-| 数据格式   |           Numpy Array            | :ref:`api_guide_recordio_file_format` |
+| 数据格式   |           Numpy Array            | :code:`fluid.recordio_writer` |
 +------------+----------------------------------+---------------------------------------+
 | 数据增强   | Python端使用其他库完成           | 使用Fluid中的Operator 完成            |
 +------------+----------------------------------+---------------------------------------+

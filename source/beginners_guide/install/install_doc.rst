@@ -3,7 +3,10 @@
 安装说明
 ^^^^^^^^
 
-您可以使用我们提供的安装包，或使用源代码，安装PaddlePaddle。
+若您的系统为Linux或Windows，您可以使用我们提供的安装包来安装PaddlePaddle。
+
+对于MacOS系统，我们暂未提供安装包，您可以使用 **从源码编译** 的方式安装。
+
 
 .. _install_linux:
 
@@ -23,11 +26,11 @@
 
      pip install paddlepaddle
 
-当前的默认版本为0.13.0，cpu_avx_openblas，您可以通过指定版本号来安装其它版本，例如：
+您可以通过指定版本号来安装其它版本，例如：
 
   .. code-block:: bash
 
-      pip install paddlepaddle==0.12.0
+      pip install paddlepaddle==0.13.0
 
 
 如果需要安装支持GPU的版本（cuda9.0_cudnn7_avx_openblas），需要执行：
@@ -36,11 +39,14 @@
 
      pip install paddlepaddle-gpu
 
-当前的默认版本是0.13.0，PaddlePaddle针对不同需求提供了更多版本的安装包，部分列表如下：
+PaddlePaddle针对不同需求提供了更多版本的安装包，部分列表如下：
 
 =================================   ========================================
 版本号                               版本说明
 =================================   ========================================
+paddlepaddle-gpu==0.14.0            使用CUDA 9.0和cuDNN 7编译的0.14.0版本
+paddlepaddle-gpu==0.14.0.post87     使用CUDA 8.0和cuDNN 7编译的0.14.0版本
+paddlepaddle-gpu==0.14.0.post85     使用CUDA 8.0和cuDNN 5编译的0.14.0版本
 paddlepaddle-gpu==0.13.0            使用CUDA 9.0和cuDNN 7编译的0.13.0版本
 paddlepaddle-gpu==0.12.0            使用CUDA 8.0和cuDNN 5编译的0.12.0版本
 paddlepaddle-gpu==0.11.0.post87     使用CUDA 8.0和cuDNN 7编译的0.11.0版本
@@ -104,52 +110,23 @@ paddlepaddle-gpu==0.11.0            使用CUDA 7.5和cuDNN 5编译的0.11.0版�
 
 .. _install_windows:
 
-在windows安装PaddlePaddle
+在Windows安装PaddlePaddle
 ------------------------------
+Windows系统需要通过Docker来使用PaddleaPaddle。Docker是一个虚拟容器，使用Docker可以简化复杂的环境配置工作。
 
-若您的系统为windows，您可以通过Docker来使用PaddlePaddle。
+我们提供了 `PaddlePaddle_Windows快速安装包 <http://paddle-windows.bj.bcebos.com/PaddlePaddle-windows.zip>`_，
+它能够帮助您安装Docker和PaddlePaddle。
 
-推荐您下载 `PaddlePaddle快速安装包 <http://paddle-windows.bj.bcebos.com/PaddlePaddle-windows.zip>`_，
-该安装包能够帮助您判断、安装适合的Docker，并引导您在Docker中使用PaddlePaddle。
+* 安装包支持的系统：Windows7，Windows8的所有版本，Windows10的专业版、企业版。
 
-..
- todo: windows的安装包要放在百度云上
+* 如果您希望使用GPU提升训练速度，请使用Linux系统安装，Windows系统暂不支持。
+   
+.. _install_mac:
 
-注意事项：
+在MacOS安装PaddlePaddle
+--------
 
-* 系统要求：windows7&8&10。
-
-* 下载安装包后，请您右键选择“以管理员身份运行”。
-
-* PaddlePaddle不支持在windows使用GPU。
-
-Docker安装完成后，请您执行下面的步骤：
-
-请您右键选择”以管理员身份运行“，来启动Docker客户端
-
-获取Image ID
-
-.. code-block:: bash
-
-   docker images
-
-启动Docker
-
-.. code-block:: bash
-
-   docker run -d it -t imageid /bin/bash
-
-获取Docker Container
-
-.. code-block:: bash
-
-   docker ps -a
-
-进入Container
-
-.. code-block:: bash
-
-   docker attach container
+对于MacOS系统，我们暂未提供pip安装方式，您可以使用 **源码编译** 的方式安装。
 
 .. _others:
 
@@ -157,7 +134,7 @@ Docker安装完成后，请您执行下面的步骤：
 -------------
 
 .. _source:
-从源码编译
+源码编译（使用Docker镜像）
 ==========
 
 .. _requirements:
@@ -177,29 +154,83 @@ Docker安装完成后，请您执行下面的步骤：
 编译方法
 """""""""""""
 
-PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安装编译依赖的步骤，可选的不同编译环境Docker镜像
-可以在 `这里 <https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/>`_ 找到。或者
-参考下述可选步骤，从源码中构建用于编译PaddlePaddle的Docker镜像。
+PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安装编译依赖的步骤，可选的不同编译环境Docker镜像可以在 `这里 <https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/>`_ 找到。
 
-如果您选择不使用Docker镜像，则需要在本机安装下面章节列出的 `附录：编译依赖`_ 之后才能开始编译的步骤。
 
-编译PaddlePaddle，需要执行：
+**I. 编译CPU-Only版本的PaddlePaddle，需要执行：**
 
 .. code-block:: bash
 
    # 1. 获取源码
    git clone https://github.com/PaddlePaddle/Paddle.git
    cd Paddle
-   # 2. 可选步骤：源码中构建用于编译PaddlePaddle的Docker镜像
-   docker build -t paddle:dev .
-   # 3. 执行下面的命令编译CPU-Only的二进制
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
-   # 4. 或者也可以使用为上述可选步骤构建的镜像（必须先执行第2步）
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddle:dev
+   # 2. 执行如下命令下载最新版本的docker镜像
+   docker run --name paddle-test -v $PWD:/paddle --network=host -it docker.paddlepaddlehub.com/paddle:latest-dev /bin/bash
+   # 3. 进入docker内执行如下命令编译CPU-Only的二进制安装包
+   mkdir -p /paddle/build && cd /paddle/build
+   cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
+   make -j$(nproc)
 
-注：上述命令把当前目录（源码树根目录）映射为 container 里的 :code:`/paddle` 目录。如果使用自行
-构建的镜像（上述第4步）会执行 :code:`Dockerfile` 描述的默认入口程序 :code:`docker_build.sh` 可以省略步骤3中
-最后的执行脚本的命令。
+**II. 编译GPU版本的PaddlePaddle，需要执行：**
+
+.. code-block:: bash
+
+  # 1. 获取源码 
+  git clone https://github.com/PaddlePaddle/Paddle.git 
+  cd Paddle
+  # 2. 安装nvidia-docker
+  apt-get install nvidia-docker
+  # 3. 执行如下命令下载支持GPU运行的docker容器
+  nvidia-docker run --name paddle-test-gpu -v $PWD:/paddle --network=host -it docker.paddlepaddlehub.com/paddle:latest-dev /bin/bash
+  # 4. 进入docker内执行如下命令编译GPU版本的PaddlePaddle
+  mkdir -p /paddle/build && cd /paddle/build
+  cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF
+  make -j$(nproc)
+
+**注意事项：**
+
+* 上述有关 :code:`docker` 的命令把当前目录（源码树根目录）映射为 container 里的 :code:`/paddle` 目录。
+* 进入 :code:`docker` 后执行 :code:`cmake` 命令，若是出现 :code:`patchelf not found, please install it.` 错误，则执行 :code:`apt-get install -y patchelf` 命令即可解决问题。
+* 若您在使用Docker编译PaddlePaddle遇到问题时， `这个issue <https://github.com/PaddlePaddle/Paddle/issues/12079>`_ 可能会对您有所帮助。
+
+
+.. _source:
+源码编译（不使用Docker镜像）
+==========
+
+如果您选择不使用Docker镜像，则需要在本机安装下面章节列出的 `附录：编译依赖`_ 之后才能开始编译的步骤。
+
+.. _build_step:
+
+编译方法
+"""""""""""""
+
+在本机上编译CPU-Only版本的PaddlePaddle，需要执行如下命令：
+
+.. code-block:: bash
+
+   # 1. 使用virtualenvwrapper创建python虚环境并将工作空间切换到虚环境 [可选]
+   mkvirtualenv paddle-venv
+   workon paddle-venv
+   # 2. 获取源码
+   git clone https://github.com/PaddlePaddle/Paddle.git
+   cd Paddle
+   # 3. 执行下面的命令编译CPU-Only的二进制
+   mkdir build && cd build
+   cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
+   make -j4 # 根据机器配备CPU的核心数开启相应的多线程进行编译
+
+
+**注意事项：**
+
+* MacOS系统下因为默认安装了cblas库，所以编译时可能会遇到 :code:`use of undeclared identifier 'openblas_set_num_threads'` 错误。因此，在执行cmake命令时需要指定所使用openblas库的头文件路径，具体操作如下：
+
+  .. code-block:: bash
+
+    cd Paddle/build && rm -rf *
+    cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DOPENBLAS_INC_DIR=/usr/local/Cellar/openblas/[本机所安装的openblas版本号]/include/
+    make -j4 # 根据机器配备CPU的核心数开启相应的多线程进行编译
+* 若您在MacOS系统下从源码编译PaddlePaddle遇到问题时， `这个issue <https://github.com/PaddlePaddle/Paddle/issues/12078>`_ 可能会对您有所帮助。
 
 编译完成后会在build/python/dist目录下生成输出的whl包，可以选在在当前机器安装也可以拷贝到目标机器安装：
 
@@ -230,13 +261,13 @@ PaddlePaddle需要使用Docker环境完成编译，这样可以免去单独安�
 
 .. code-block:: bash
 
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=ON" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
+   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=ON" docker.paddlepaddlehub.com/paddle:latest-dev bash -x /paddle/paddle/scripts/paddle_build.sh build
 
 如果期望执行其中一个单元测试，（比如 :code:`test_sum_op` ）：
 
 .. code-block:: bash
 
-   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
+   docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=ON" -e "RUN_TEST=OFF" docker.paddlepaddlehub.com/paddle:latest-dev bash -x /paddle/paddle/scripts/paddle_build.sh build
    cd /paddle/build
    ctest -R test_sum_op -V
 
@@ -310,12 +341,16 @@ PaddlePaddle编译需要使用到下面的依赖（包含但不限于），其�
    :header: "依赖", "版本", "说明"
    :widths: 10, 15, 30
 
-   "CMake", ">=3.2", ""
+   "CMake", "3.4", ""
    "GCC", "4.8.2", "推荐使用CentOS的devtools2"
    "Python", "2.7.x", "依赖libpython2.7.so"
+   "SWIG", ">=2.0", ""
+   "wget","",""
+   "openblas","",""
    "pip", ">=9.0", ""
    "numpy", "", ""
-   "SWIG", ">=2.0", ""
+   "protobuf","3.1.0",""
+   "wheel","",""
    "Go", ">=1.8", "可选"
 
 
@@ -378,7 +413,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
     cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCUDNN_ROOT=/opt/cudnnv5
 
-**注意：这几个编译选项的设置，只在第一次cmake的时候有效。如果之后想要重新设置，推荐清理整个编译目录（** :code:`rm -rf` ）**后，再指定。**
+注意：这几个编译选项的设置，只在第一次cmake的时候有效。如果之后想要重新设置，推荐清理整个编译目录（ :code:`rm -rf` ）后，再指定。
 
 .. _install_docker:
 
