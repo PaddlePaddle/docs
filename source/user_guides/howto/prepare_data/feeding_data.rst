@@ -4,15 +4,15 @@
 使用Numpy Array作为训练数据
 ###########################
 
-PaddlePaddle Fluid支持使用 :ref:`api_fluid_layers_data` 配置数据层；
+PaddlePaddle Fluid支持使用 :code:`fluid.layers.data()` 配置数据层；
 再使用 Numpy Array 或者直接使用Python创建C++的
-:ref:`api_guide_lod_tensor` , 通过 :code:`Executor.run(feed=...)` 传给
-:ref:`api_guide_executor` 或 :ref:`api_guide_parallel_executor` 。
+:code:`fluid.LoDTensor` , 通过 :code:`Executor.run(feed=...)` 传给
+:code:`fluid.Executor` 或 :code:`fluid.ParallelExecutor` 。
 
 数据层配置
 ##########
 
-通过 :ref:`api_fluid_layers_data` 可以配置神经网络中需要的数据层。具体方法为:
+通过 :code:`fluid.layers.data()` 可以配置神经网络中需要的数据层。具体方法为:
 
 .. code-block:: python
 
