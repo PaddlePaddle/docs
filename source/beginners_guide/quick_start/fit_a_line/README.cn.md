@@ -4,7 +4,7 @@
 # 线性回归
 让我们从经典的线性回归（Linear Regression \[[1](#参考文献)\]）模型开始这份教程。在这一章里，你将使用真实的数据集建立起一个房价预测模型，并且了解到机器学习中的若干重要概念。
 
-本教程源代码目录在[book/fit_a_line](https://github.com/PaddlePaddle/book/tree/develop/01.fit_a_line)， 初次使用请参考PaddlePaddle[安装教程](https://github.com/PaddlePaddle/book/blob/develop/README.cn.md#运行这本书)，更多内容请参考本教程的[视频课堂](http://bit.baidu.com/course/detail/id/137.html)。
+本教程源代码目录在[book/fit_a_line](https://github.com/PaddlePaddle/book/tree/develop/01.fit_a_line)， 初次使用请参考PaddlePaddle[安装教程](https://github.com/PaddlePaddle/book/blob/develop/README.cn.md#运行这本书)。
 
 ## 背景介绍
 给定一个大小为`$n$`的数据集  `${\{y_{i}, x_{i1}, ..., x_{id}\}}_{i=1}^{n}$`，其中`$x_{i1}, \ldots, x_{id}$`是第`$i$`个样本`$d$`个属性上的取值，`$y_i$`是该样本待预测的目标。线性回归模型假设目标`$y_i$`可以被属性间的线性组合描述，即
@@ -52,22 +52,89 @@ $$MSE=\frac{1}{n}\sum_{i=1}^{n}{(\hat{Y_i}-Y_i)}^2$$
 ### 数据集介绍
 这份数据集共506行，每行包含了波士顿郊区的一类房屋的相关信息及该类房屋价格的中位数。其各维属性的意义如下：
 
-| 属性名 | 解释 | 类型 |
-| ------| ------ | ------ |
-| CRIM | 该镇的人均犯罪率 | 连续值 |
-| ZN | 占地面积超过25,000平方呎的住宅用地比例 | 连续值 |
-| INDUS | 非零售商业用地比例 | 连续值 |
-| CHAS | 是否邻近 Charles River  | 离散值，1=邻近；0=不邻近 |
-| NOX | 一氧化氮浓度 | 连续值 |
-| RM | 每栋房屋的平均客房数 | 连续值 |
-| AGE | 1940年之前建成的自用单位比例 | 连续值 |
-| DIS | 到波士顿5个就业中心的加权距离 | 连续值 |
-| RAD | 到径向公路的可达性指数 | 连续值 |
-| TAX | 全值财产税率 | 连续值 |
-| PTRATIO | 学生与教师的比例 | 连续值 |
-| B | 1000(BK - 0.63)^2，其中BK为黑人占比 | 连续值 |
-| LSTAT | 低收入人群占比 | 连续值 |
-| MEDV | 同类房屋价格的中位数 | 连续值 |
+<p align="center">
+<table>
+    <thead>
+    <tr>
+        <th>属性名</th>
+        <th>解释</th>
+        <th>类型</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>CRIM</td>
+        <td>该镇的人均犯罪率</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>ZN</td>
+        <td>占地面积超过25,000平方呎的住宅用地比例</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>INDUS</td>
+        <td>非零售商业用地比例</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>CHAS</td>
+        <td>是否邻近 Charles River</td>
+        <td>离散值，1=邻近；0=不邻近</td>
+    </tr>
+    <tr>
+        <td>NOX</td>
+        <td>一氧化氮浓度</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>RM</td>
+        <td>每栋房屋的平均客房数</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>AGE</td>
+        <td>1940年之前建成的自用单位比例</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>DIS</td>
+        <td>到波士顿5个就业中心的加权距离</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>RAD</td>
+        <td>到径向公路的可达性指数</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>TAX</td>
+        <td>全值财产税率</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>PTRATIO</td>
+        <td>学生与教师的比例</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>B</td>
+        <td>1000(BK - 0.63)^2，其中BK为黑人占比</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>LSTAT</td>
+        <td>低收入人群占比</td>
+        <td>连续值</td>
+    </tr>
+    <tr>
+        <td>MEDV</td>
+        <td>同类房屋价格的中位数</td>
+        <td>连续值</td>
+    </tr>
+    </tbody>
+</table>
+</p>
 
 ### 数据预处理
 #### 连续值与离散值
@@ -260,4 +327,3 @@ print("infer results: ", results[0])
 
 <br/>
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">本教程</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="http://book.paddlepaddle.org" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a> 创作，采用 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享 署名-相同方式共享 4.0 国际 许可协议</a>进行许可。
-
