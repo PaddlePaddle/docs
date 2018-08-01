@@ -7,19 +7,19 @@
 模型变量分类
 ############
 
-在PaddlePaddle Fluid中，所有的模型变量都用 :ref:`api_fluid_Variable` 作为基类进行表示。
+在PaddlePaddle Fluid中，所有的模型变量都用 :code:`fluid.Variable()` 作为基类进行表示。
 在该基类之下，模型变量主要可以分为以下几种类别：
 
 1. 模型参数
   模型参数是深度学习模型中被训练和学习的变量，在训练过程中，训练框架根据反向传播算法计算出每一个模型参数当前的梯度，
   并用优化器根据梯度对参数进行更新。模型的训练过程本质上可以看做是模型参数不断迭代更新的过程。
   在PaddlePaddle Fluid中，模型参数用 :code:`fluid.framework.Parameter` 来表示，
-  这是一个 :ref:`api_fluid_Variable` 的派生类，除了 :ref:`api_fluid_Variable` 具有的各项性质以外，
+  这是一个 :code:`fluid.Variable()` 的派生类，除了 :code:`fluid.Variable()` 具有的各项性质以外，
   :code:`fluid.framework.Parameter` 还可以配置自身的初始化方法、更新率等属性。
 
 2. 长期变量
   长期变量指的是在整个训练过程中持续存在、不会因为一个迭代的结束而被销毁的变量，例如动态调节的全局学习率等。
-  在PaddlePaddle Fluid中，长期变量通过将 :ref:`api_fluid_Variable` 的 :code:`persistable`
+  在PaddlePaddle Fluid中，长期变量通过将 :code:`fluid.Variable()` 的 :code:`persistable`
   属性设置为 :code:`True` 来表示。所有的模型参数都是长期变量，但并非所有的长期变量都是模型参数。
 
 3. 临时变量
@@ -43,7 +43,7 @@
 ==========================
 
 如果我们保存模型的目的是用于对新样本的预测，那么只保存模型参数就足够了。我们可以使用
-:ref:`api_fluid_io_save_params` 接口来进行模型参数的保存。
+:code:`fluid.io.save_params()` 接口来进行模型参数的保存。
 
 例如：
 
@@ -57,7 +57,7 @@
     fluid.io.save_params(executor=exe, dirname=param_path, main_program=None)
 
 上面的例子中，通过调用 :code:`fluid.io.save_params` 函数，PaddlePaddle Fluid会对默认
-:ref:`api_fluid_Program` 也就是 :code:`prog` 中的所有模型变量进行扫描，
+:code:`fluid.Program` 也就是 :code:`prog` 中的所有模型变量进行扫描，
 筛选出其中所有的模型参数，并将这些模型参数保存到指定的 :code:`param_path` 之中。
 
 
@@ -66,7 +66,7 @@
 
 在训练过程中，我们可能希望在一些节点上将当前的训练状态保存下来，
 以便在将来需要的时候恢复训练环境继续进行训练。这一般被称作“checkpoint”。
-想要保存checkpoint，可以使用 :ref:`api_fluid_io_save_checkpoint` 接口。
+想要保存checkpoint，可以使用 :code:`fluid.io.save_checkpiont()` 接口。
 
 例如：
 
@@ -87,7 +87,7 @@
                                 max_num_checkpoints=3)
 
 上面的例子中，通过调用 :code:`fluid.io.save_checkpoint` 函数，PaddlePaddle Fluid会对默认
-:ref:`api_fluid_Program` 也就是 :code:`prog` 中的所有模型变量进行扫描，
+:code:`fluid.Program` 也就是 :code:`prog` 中的所有模型变量进行扫描，
 根据一系列内置的规则自动筛选出其中所有需要保存的变量，并将他们保存到指定的 :code:`path` 目录下。
 
 :code:`fluid.io.save_checkpoint` 的各个参数中， :code:`trainer_id` 在单机情况下设置为0即可； :code:`trainer_args`
@@ -125,8 +125,8 @@
 需要格外注意的是，这里的 :code:`prog` 必须和调用 :code:`fluid.io.save_params`
 时所用的 :code:`prog` 中的前向部分完全一致，且不能包含任何参数更新的操作。如果两者存在不一致，
 那么可能会导致一些变量未被正确加载；如果错误地包含了参数更新操作，那可能会导致正常预测过程中参数被更改。
-这两个 :ref:`api_fluid_Program` 之间的关系类似于训练 :ref:`api_fluid_Program`
-和测试 :ref:`api_fluid_Program` 之间的关系，详见： :ref:`user_guide_test_while_training`。
+这两个 :code:`fluid.Program` 之间的关系类似于训练 :code:`fluid.Program`
+和测试 :code:`fluid.Program` 之间的关系，详见： :ref:`user_guide_test_while_training`。
 
 另外，需特别注意运行 :code:`fluid.default_startup_program()` 必须在调用 :code:`fluid.io.load_params`
 之前。如果在之后运行，可能会覆盖已加载的模型参数导致错误。
