@@ -8,8 +8,8 @@
 要进行PaddlePaddle Fluid单机训练，需要先 :ref:`user_guide_prepare_data` 和
 :ref:`user_guide_configure_simple_model` 。当\
 :ref:`user_guide_configure_simple_model` 完毕后，可以得到两个\
-:ref:`api_fluid_Program`， :code:`startup_program` 和 :code:`main_program`。
-默认情况下，可以使用 :ref:`api_fluid_default_startup_program` 与\ :ref:`api_fluid_default_main_program` 获得全局的 :ref:`api_fluid_Program`。
+:code:`fluid.Program`， :code:`startup_program` 和 :code:`main_program`。
+默认情况下，可以使用 :code:`fluid.default_startup_program()` 与\ :code:`fluid.default_main_program()` 获得全局的 :code:`fluid.Program`。
 
 例如:
 
@@ -44,8 +44,8 @@
 ==============
 
 用户配置完模型后，参数初始化操作会被写入到\
-:code:`fluid.default_startup_program()` 中。使用 :ref:`api_fluid_Executor` 运行
-这一程序，即可在全局 :ref:`api_fluid_global_scope` 中随机初始化参数。例如:
+:code:`fluid.default_startup_program()` 中。使用 :code:`fluid.Executor()` 运行
+这一程序，即可在全局 :code:`fluid.global_scope()` 中随机初始化参数。例如:
 
 .. code-block:: python
 
@@ -53,7 +53,7 @@
    exe.run(program=fluid.default_startup_program())
 
 值得注意的是: 如果使用多GPU训练，参数需要先在GPU0上初始化，再经由\
-:ref:`api_fluid_ParallelExecutor` 分发到多张显卡上。
+:code:`fluid.ParallelExecutor` 分发到多张显卡上。
 
 
 载入预定义参数
@@ -66,8 +66,8 @@
 单卡训练
 ########
 
-执行单卡训练可以使用 :ref:`api_fluid_Executor` 中的 :code:`run()` 方法，运行训练\
-:ref:`api_fluid_Program` 即可。在运行的时候，用户可以通过 :code:`run(feed=...)`\
+执行单卡训练可以使用 :code:`fluid.Executor()` 中的 :code:`run()` 方法，运行训练\
+:code:`fluid.Program` 即可。在运行的时候，用户可以通过 :code:`run(feed=...)`\
 参数传入数据；用户可以通过 :code:`run(fetch=...)` 获取持久的数据。例如:\
 
 .. code-block:: python
@@ -86,14 +86,14 @@
    的Variable必须是persistable的。 :code:`fetch_list` 可以传入Variable的列表，\
    也可以传入Variable的名字列表。:code:`Executor.run` 返回Fetch结果列表。
 3. 如果需要取回的数据包含序列信息，可以设置
-   :code:`exe.run(return_numpy=False, ...)` 直接返回 :ref:`api_guide_lod_tensor`
-   。用户可以直接访问 :ref:`api_guide_lod_tensor` 中的信息。
+   :code:`exe.run(return_numpy=False, ...)` 直接返回 :code:`fluid.LoDTensor`
+   。用户可以直接访问 :code:`fluid.LoDTensor` 中的信息。
 
 多卡训练
 ########
 
-执行多卡训练可以使用 :ref:`api_fluid_ParallelExecutor` 运行训练
-:ref:`api_fluid_Program`。例如:
+执行多卡训练可以使用 :code:`fluid.ParallelExecutor` 运行训练
+:code:`fluid.Program`。例如:
 
 .. code-block:: python
 
@@ -103,8 +103,8 @@
 
 这里有几点注意事项:
 
-1. :code:`ParallelExecutor` 的构造函数需要指明要执行的 :ref:`api_fluid_Program` ,
-   并在执行过程中不能修改。默认值是 :ref:`api_fluid_default_main_program` 。
+1. :code:`ParallelExecutor` 的构造函数需要指明要执行的 :code:`fluid.Program` ,
+   并在执行过程中不能修改。默认值是 :code:`fluid.default_main_program()` 。
 2. :code:`ParallelExecutor` 需要明确指定是否使用 CUDA 显卡进行训练。在显卡训练\
    模式下会占用全部显卡。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 来修改占用\
    的显卡。
