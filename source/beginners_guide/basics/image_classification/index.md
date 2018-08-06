@@ -1,7 +1,7 @@
 
 # 图像分类
 
-本教程源代码目录在[book/image_classification](https://github.com/PaddlePaddle/book/tree/develop/03.image_classification)， 初次使用请参考PaddlePaddle[安装教程](https://github.com/PaddlePaddle/book/blob/develop/README.cn.md#运行这本书)，更多内容请参考本教程的[视频课堂](http://bit.baidu.com/course/detail/id/168.html)。
+本教程源代码目录在[book/image_classification](https://github.com/PaddlePaddle/book/tree/develop/03.image_classification)， 初次使用请参考PaddlePaddle[安装教程](https://github.com/PaddlePaddle/book/blob/develop/README.cn.md#运行这本书)。
 
 ## 背景介绍
 
@@ -36,7 +36,7 @@
 
 一个好的模型既要对不同类别识别正确，同时也应该能够对不同视角、光照、背景、变形或部分遮挡的图像正确识别(这里我们统一称作图像扰动)。图3展示了一些图像的扰动，较好的模型会像聪明的人类一样能够正确识别。
 
-![imageVariations](./image/variations.png)
+![imageVariations](https://raw.githubusercontent.com/PaddlePaddle/book/develop/03.image_classification/image/variations.png)
 <p align="center">
 图3. 扰动图片展示[22]
 </p>
@@ -139,7 +139,7 @@ ResNet(Residual Network) \[[15](#参考文献)\] 是2015年ImageNet图像分类�
 
 由于ImageNet数据集较大，下载和训练较慢，为了方便大家学习，我们使用[CIFAR10](<https://www.cs.toronto.edu/~kriz/cifar.html>)数据集。CIFAR10数据集包含60,000张32x32的彩色图片，10个类别，每个类包含6,000张。其中50,000张图片作为训练集，10000张作为测试集。图11从每个类别中随机抽取了10张图片，展示了所有的类别。
 
-![CIFAR](./image/cifar.png)
+![CIFAR](https://raw.githubusercontent.com/PaddlePaddle/book/develop/03.image_classification/image/cifar.png)
 <p align="center">
 图11. CIFAR10数据集[21]
 </p>
@@ -263,7 +263,7 @@ return tmp
 2. 然后连接3组残差模块即下面配置3组 `layer_warp` ，每组采用图 10 左边残差模块组成。
 3. 最后对网络做均值池化并返回该层。
 
-注意：除过第一层卷积层和最后一层全连接层之外，要求三组 `layer_warp` 总的含参层数能够被6整除，即 `resnet_cifar10` 的 depth 要满足 `$(depth - 2) % 6 == 0$` 。
+注意：除过第一层卷积层和最后一层全连接层之外，要求三组 `layer_warp` 总的含参层数能够被6整除，即 `resnet_cifar10` 的 depth 要满足 $(depth - 2) % 6 == 0$ 。
 
 ```python
 def resnet_cifar10(ipt, depth=32):
