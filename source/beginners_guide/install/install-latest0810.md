@@ -60,18 +60,22 @@
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
+
 	* 对于需要***CPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest`
+		
 
 	* 对于需要***GPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest-gpu`
+		
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像
 
 		`docker pull paddlepaddle/paddle:[tag]`
 		> （[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
+		
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/work <imagename> /bin/bash`
@@ -91,7 +95,7 @@
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
 
-<br/>
+<br/><br/>
 ##### ***使用原生的pip安装PaddlePaddle***
 
 首先, 我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle
@@ -114,13 +118,19 @@
 现在，让我们来安装PaddlePaddle
 
 1. 使用pip install来安装PaddlePaddle
+
 	* 对于需要***CPU版本PaddlePaddle***的用户：`pip install paddlepaddle`
+	
 
 	* 对于需要***GPU版本PaddlePaddle***的用户：(*仅支持ubuntu16.04/14.04*)
 	> 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
 
+		
+		
 		如果您的**nccl2已经正确安装**请使用以下命令:
 		`pip install paddlepaddle-gpu`
+		
+		
 		> 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
 
 
@@ -136,15 +146,15 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[常见问题表]()
+	如果遇到其他问题请参见[常见问题表]()<!--TODO: Link 常见问题表到这里-->
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程
 
-<br/>
+<br/><br/>
 ##### ***验证安装***
 安装完成后您可以使用：`python` 进入python解释器，然后使用`import paddle.fluid` 验证是否安装成功
 
-<br/>
+<br/><br/>
 ##### ***如何卸载PaddlePaddle***
 请使用以下命令卸载PaddlePaddle：
 
@@ -198,13 +208,16 @@
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
+
 	* 对于需要***CPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest`
 
+
 	* 对于需要***GPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest-gpu`
+
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像
 
@@ -228,7 +241,7 @@
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
 
-<br/>
+<br/><br/>
 ##### ***使用原生的pip安装PaddlePaddle***
 
 首先, 我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle
@@ -253,13 +266,19 @@
 下面将说明如何安装PaddlePaddle
 
 1. 使用pip install来安装PaddlePaddle
+	
 	* 对于需要***CPU版本PaddlePaddle***的用户：`pip install paddlepaddle`
+
 
 	* 对于需要***GPU版本PaddlePaddle***的用户:
 	> 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
 
+		
+		
 		如果您的**nccl2已经正确安装**请使用以下命令:
 		`pip install paddlepaddle-gpu`
+		
+		
 		> 我们默认提供的是支持Cuda 8/Cudnn v7的PaddlePaddle
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
@@ -274,16 +293,16 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[常见问题表]()
+	如果遇到其他问题请参见[常见问题表]()<!--TODO：Link 常见问题表到这里-->
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程
 
 
-<br/>
+<br/><br/>
 ##### ***验证安装***
 安装完成后您可以使用：`python` 进入Python解释器，然后使用`import paddle.fluid` 验证是否安装成功
 
-<br/>
+<br/><br/>
 ##### ***如何卸载PaddlePaddle***
 请使用以下命令卸载PaddlePaddle：
 
@@ -291,10 +310,11 @@
 
 * ***GPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle-gpu`
 
-</br>
+<br/><br/>
 ## **从源码编译PaddlePaddle**
-当您选择使用从源码编译这种方法来安装PaddlePaddle 时请注意我们虽然提供了编译后安装的方式但是由于您的本机环境多种多样在编译源码时非常容易出现意想不到的问题而造成安装失败，如果您看完这些还是毅然决然的决定继续下去，那好吧
-***
+当您选择使用从源码编译这种方法来安装PaddlePaddle 时请注意我们虽然提供了编译后安装的方式但是由于您的本机环境多种多样在编译源码时非常容易出现意想不到的问题而造成安装失败，如果您看完这些还是毅然决然的决定继续下去，那好吧       
+      
+***       
 ### **Ubuntu下从源码编译PaddlePaddle**
 本说明将介绍如何在Ubuntu下编译PaddlePaddle,或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
 
@@ -358,15 +378,18 @@
 	> 安装patchelf, PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables
 
 8. 执行cmake：
-	>具体编译选项含义请参见[编译选项表]()
+	>具体编译选项含义请参见[编译选项表]()<!--TODO: Link 编译选项表到这里-->
+
 
 	*  对于需要编译***CPU版本PaddlePaddle***的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`
 
+
 	* 对于需要编译***GPU版本PaddlePaddle***的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF`
+
 
 9. 执行编译：
 
@@ -408,8 +431,10 @@
 		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 
-3. 进入虚环境：`workon paddle-venv`
-4. ***执行编译前***请您确认在虚环境中安装有[安装依赖表]()中提到的相关依赖：
+3. 进入虚环境：`workon paddle-venv`         
+
+
+4. ***执行编译前***请您确认在虚环境中安装有[安装依赖表]()中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
 
 	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`apt install`或者`pip install` 后跟依赖名称和版本安装
 
@@ -431,11 +456,13 @@
 	`mkdir build && cd build`
 
 8. 执行cmake：
-	>具体编译选项含义请参见[编译选项表]()
+	>具体编译选项含义请参见[编译选项表]()<!--TODO：Link 安装选项表到这里-->
+
 
 	*  对于需要编译***CPU版本PaddlePaddle***的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`.
+
 
 	* 对于需要编译***GPU版本PaddlePaddle***的用户：(*仅支持ubuntu16.04/14.04*)
 
@@ -456,11 +483,11 @@
 
 恭喜您，现在您已经完成使本机编译PaddlePaddle的过程啦
 
-<br/>
+<br/><br/>
 ##### ***验证安装***
 安装完成后您可以使用：`python` 进入Python解释器，然后使用`import paddle.fluid` 验证是否安装成功
 
-<br/>
+<br/><br/>
 ##### ***如何卸载PaddlePaddle***
 请使用以下命令卸载PaddlePaddle：
 
@@ -534,7 +561,8 @@
 	> 安装patchelf, PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables
 
 8. 执行cmake：
-	>具体编译选项含义请参见[编译选项表]()
+	>具体编译选项含义请参见[编译选项表]()<!--TODO： Link 编译选项表到这里-->
+
 
 	*  对于需要编译***CPU版本PaddlePaddle***的用户：
 
@@ -562,11 +590,11 @@
 
 恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程啦
 
-<br/>
+<br/><br/>
 ##### ***验证安装***
 安装完成后您可以使用：`python` 进入Python解释器，然后使用`import paddle.fluid` 验证是否安装成功
 
-<br/>
+<br/><br/>
 ##### ***如何卸载PaddlePaddle***
 请使用以下命令卸载PaddlePaddle：
 
