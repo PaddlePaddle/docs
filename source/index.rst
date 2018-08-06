@@ -4,27 +4,13 @@
    contain the root `toctree` directive.
 
 ##############
-欢迎来到 Fluid
+欢迎使用 Fluid
 ##############
-
-..  todo::
-    内容简介，导引
-
 
 ..  toctree::
     :maxdepth: 1
 
-    beginners_guide/index.rst
-    user_guides/index.rst
-    advanced_usage/index.rst
-    api_guides/index.rst
-    api_reference/index.rst
-    faq.rst
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+    /beginners_guide/index.rst
+    /user_guides/index.rst
+    /advanced_usage/index.rst
+    /faq/index_cn.rst
