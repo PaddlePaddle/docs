@@ -122,15 +122,9 @@
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle`
 	
 
-	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
-	> 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
-	
-	
-	  如果您的**nccl2已经正确安装**请使用以下命令:
-		
-		`pip install paddlepaddle-gpu`
-		
-	>> 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
+	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*) `pip install paddlepaddle-gpu`
+	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2. 			
+	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
 
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。
@@ -269,15 +263,9 @@
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle`
 
 
-	* 对于需要**GPU版本PaddlePaddle**的用户:
-	> 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
-	
-	
-	  如果您的**nccl2已经正确安装**请使用以下命令:
-		
-		`pip install paddlepaddle-gpu`
-		
-	>> 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
+	* 对于需要**GPU版本PaddlePaddle**的用户: `pip install paddlepaddle-gpu`
+	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
+	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
 
