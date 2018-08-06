@@ -15,7 +15,7 @@
 ***
 ### **Ubuntu下安装PaddlePaddle**
 
-本说明将介绍如何在Ubuntu下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求
+本说明将介绍如何在Ubuntu下安装PaddlePaddle,我们支持的Ubuntu系统需满足以下要求
 
 请注意：在其他系统上的尝试可能会导致安装失败
 
@@ -27,9 +27,9 @@
 * 仅支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
 也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
-* 支持GPU的PaddlePaddle，为了使PaddlePaddle程序运行的更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+* 支持GPU的PaddlePaddle，为了使PaddlePaddle程序运行的更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For CUDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+	* *Cuda 工具包9.0配合cudnn v7*
+	* *Cuda 工具包8.0配合cudnn v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 
@@ -54,7 +54,7 @@
 
 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
-为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**, 关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
 如果已经**正确安装Docker**，即可以开始**使用Docker安装PaddlePaddle**
 
@@ -98,13 +98,13 @@
 <br/><br/>
 ##### ***使用原生的pip安装PaddlePaddle***
 
-首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle
+首先, 我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle
 
 `uname -m && cat /etc/*release`
 > 上面的命令将会显示本机的操作系统和位数信息，请确保您的计算机和本教程的要求一致
 
 
-其次，您的电脑需要满足以下要求：
+其次, 您的电脑需要满足以下要求：
 
 *	Python2.7.x (dev)
 *	Pip >= 9.0.1
@@ -124,7 +124,7 @@
 
 	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*) `pip install paddlepaddle-gpu`
 	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2. 			
-	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本
+	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
 
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。
@@ -158,7 +158,7 @@
 <br/><br/>
 ### **CentOS下安装PaddlePaddle**
 
-本说明将介绍如何在CentOS下安装PaddlePaddle，我们支持的CentOS系统需满足以下要求
+本说明将介绍如何在CentOS下安装PaddlePaddle,我们支持的CentOS系统需满足以下要求
 
 请注意：在其他系统上的尝试可能会导致安装失败
 
@@ -169,9 +169,9 @@
 * 仅支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
-* 支持GPU的PaddlePaddle，为了使PaddlePaddle程序运行的更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+* 支持GPU的PaddlePaddle，为了使PaddlePaddle程序运行的更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For CUDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+	* *Cuda 工具包9.0配合cudnn v7*
+	* *Cuda 工具包8.0配合cudnn v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 
@@ -195,7 +195,7 @@
 
 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
-为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**, 关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
 当您已经**正确安装Docker**后你就可以开始**使用Docker安装PaddlePaddle**啦
 
@@ -237,13 +237,13 @@
 <br/><br/>
 ##### ***使用原生的pip安装PaddlePaddle***
 
-首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle
+首先, 我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle
 
 `uname -m && cat /etc/*release`
 > 上面的命令将会显示本机的操作系统和位数信息，请确保您的计算机和本教程的要求一致
 
 
-其次，您的计算机需要满足以下要求：
+其次, 您的计算机需要满足以下要求：
 
 *	Python2.7.x (devel)   
 	
@@ -265,7 +265,7 @@
 
 	* 对于需要**GPU版本PaddlePaddle**的用户: `pip install paddlepaddle-gpu`
 	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
-	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本
+	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
 
@@ -302,11 +302,7 @@
       
 ***       
 ### **Ubuntu下从源码编译PaddlePaddle**
-<<<<<<< HEAD
-本说明将介绍如何在Ubuntu下编译PaddlePaddle，或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
-=======
 本说明将介绍如何在Ubuntu下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求
->>>>>>> c3f4882a478eb2d9fafc9086090f70372ff1a98e
 
 * 64位台式机或笔记本电脑
 * Ubuntu 14.04/16.04/18.04（这涉及到相关工具是否能被正常安装）
@@ -315,9 +311,9 @@
 * **仅支持CPU的PaddlePaddle**，如果您的系统没有 NVIDIA® GPU，则必须安装此版本。而此版本较GPU版本更加容易安
 因此即使您的计算机上拥有GPU我们也推荐您先安装CPU版本的PaddlePaddle来检测您本地的环境是否适合。
 
-* **支持GPU的PaddlePaddle**，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+* **支持GPU的PaddlePaddle**，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For CUDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+	* *Cuda 工具包9.0配合cudnn v7*
+	* *Cuda 工具包8.0配合cudnn v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 #### 选择如何编译PaddlePaddle
@@ -331,7 +327,7 @@
 我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，我们只对特定系统提供了支持。
 <br/><br/>
 ##### ***使用Docker进行编译***
-为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**, 关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
 当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**啦
 
@@ -365,7 +361,7 @@
 	> 安装protobuf 3.1.0
 
 	`apt install patchelf`
-	> 安装patchelf，PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables
+	> 安装patchelf, PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables
 
 8. 执行cmake：
 	>具体编译选项含义请参见[编译选项表]()<!--TODO: Link 编译选项表到这里-->
@@ -488,11 +484,7 @@
 
 <br/><br/>
 ### **CentOS下从源码编译PaddlePaddle**
-<<<<<<< HEAD
-本说明将介绍如何在CentOS下编译PaddlePaddle，或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
-=======
 本说明将介绍如何在CentOS下编译PaddlePaddle,我们支持的Ubuntu系统需满足以下要求：
->>>>>>> c3f4882a478eb2d9fafc9086090f70372ff1a98e
 
 * 64位台式机或笔记本电脑
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
@@ -500,9 +492,9 @@
 #### 确定要编译的PaddlePaddle版本
 * 仅支持CPU的PaddlePaddle，如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU， 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
-* 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+* 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For CUDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+	* *Cuda 工具包9.0配合cudnn v7*
+	* *Cuda 工具包8.0配合cudnn v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 #### 选择如何编译PaddlePaddle
@@ -517,7 +509,7 @@
 <br/><br/>
 ##### ***使用Docker进行编译***
 
-为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**, 关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
 当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**啦
 
@@ -551,7 +543,7 @@
 	> 安装protobuf 3.1.0
 
 	`apt install patchelf`
-	> 安装patchelf，PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables
+	> 安装patchelf, PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables
 
 8. 执行cmake：
 	>具体编译选项含义请参见[编译选项表]()<!--TODO： Link 编译选项表到这里-->
@@ -635,7 +627,7 @@
 
 **BLAS**
 
-PaddlePaddle支持 [MKL](https://software.intel.com/en-us/mkl) 和 [OpenBlAS](http://www.openblas.net) 两种BLAS库。默认使用MKL。如果使用MKL并且机器含有AVX2指令集，还会下载MKL-DNN数学库，详细参考[这里](https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn#cmake) 。
+PaddlePaddle支持 [MKL](https://software.intel.com/en-us/mkl) 和 [OpenBlAS](http://www.openblas.net) 两种BLAS库。默认使用MKL。如果使用MKL并且机器含有AVX2指令集， 还会下载MKL-DNN数学库，详细参考[这里](https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn#cmake) 。
 
 如果关闭MKL，则会使用OpenBLAS作为BLAS库。
 

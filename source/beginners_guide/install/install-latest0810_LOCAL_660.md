@@ -1,11 +1,11 @@
 # **安装说明**
-本说明将指导您编译和安装PaddlePaddle，目前PaddlePaddle支持以下环境：
+本说明将指导您编译和安装PaddlePaddle，当前支持以下环境：
 
 * *64位台式机或笔记本电脑*
 * *Ubuntu 14.04 /16.04 /18.04*
 * *CentOS 7 / 6*
 
-请确保您的环境满足以上条件
+请确保您的环境满足以上条件，如果您希望在其他环境下尝试安装，可能会存在问题
 
 ## **安装PaddlePaddle**
 
@@ -25,7 +25,7 @@
 #### 确定要安装的PaddlePaddle版本
 
 * 仅支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
-也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
 * 支持GPU的PaddlePaddle，为了使PaddlePaddle程序运行的更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 	* *Cuda 工具包9.0配合cuDNN v7*
@@ -43,16 +43,16 @@
 * Docker源码编译安装
 
 
-我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
+我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里可以标准化编译环境，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
 
 **使用原生pypi安装**，我们为您提供原生pypi安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题
 
-从**源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答
+从**源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，自己完成编译的过程是一件更为复杂的事情无论是否使用Docker，我们将在说明的最后详细为您解答
 <br/><br/>
 ##### ***使用Docker进行安装***
 
-我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
+我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里可以标准化编译环境，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
@@ -74,13 +74,13 @@
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像
 
 		`docker pull paddlepaddle/paddle:[tag]`
-		> （请把[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
+		> （[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
 		
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/work <imagename> /bin/bash`
 
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/work 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /work 目录； paddlepaddle/paddle 指定需要使用的image名称；/bin/bash是在Docker中要执行的命令
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/work 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /work 目录； paddlepaddle/paddle 指定需要使用的image名称，/bin/bash是在Docker中要执行的命令.
 
 3. 在Docker中 使用如下命令使用PaddlePaddle
 
@@ -90,7 +90,7 @@
 	`docker attach [Name of container]`
 	> 进入启动的容器
 
-至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
+至此您已经成功使用Docker安装PaddlePaddle，您只需要在本机开发工作完成后进入Docker运行即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
@@ -141,7 +141,7 @@
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
 	如果遇到其他问题请参见[常见问题表]()<!--TODO: Link 常见问题表到这里-->
 
-现在您已经完成使用`pip install` 来安装的PaddlePaddle的过程
+现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程
 
 <br/><br/>
 ##### ***验证安装***
@@ -184,16 +184,16 @@
 * Docker源码编译安装
 
 
-我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
+我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里可以标准化编译环境，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
 
 **使用原生pypi安装**，我们为您提供原生pypi安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题
 
-从**源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答
+从**源码编译安装**，是一件更为复杂的事情无论是否使用Docker，我们将在说明的最后详细为您解答
 <br/><br/>
 ##### ***使用Docker进行安装***
 
-我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
+我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里可以标准化编译环境，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
@@ -215,7 +215,7 @@
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像
 
 		`docker pull paddlepaddle/paddle:[tag]`
-		> （请把[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
+		> （[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/work <imagename> /bin/bash`
@@ -230,7 +230,7 @@
 	`docker attach [Name of container]`
 	> 进入启动的容器
 
-至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
+至此您已经成功使用Docker安装PaddlePaddle，您只需要在本机开发工作完成后进入Docker运行即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
 
@@ -240,7 +240,7 @@
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle
 
 `uname -m && cat /etc/*release`
-> 上面的命令将会显示本机的操作系统和位数信息，请确保您的计算机和本教程的要求一致
+> 上面的命令将会显示本机的操作系统和位数信息请确保您的计算机和本教程的要求一致
 
 
 其次，您的计算机需要满足以下要求：
@@ -298,15 +298,11 @@
 
 <br/><br/>
 ## **从源码编译PaddlePaddle**
-我们也为您提供了从源码编译的方式，但不推荐您使用这种方式，这是因为您的本机环境多种多样，在编译源码时易出现复杂的问题而造成安装失败
+当您选择使用从源码编译这种方法来安装PaddlePaddle 时请注意我们虽然提供了编译后安装的方式但是由于您的本机环境多种多样在编译源码时非常容易出现意想不到的问题而造成安装失败，如果您看完这些还是毅然决然的决定继续下去，那好吧       
       
 ***       
 ### **Ubuntu下从源码编译PaddlePaddle**
-<<<<<<< HEAD
 本说明将介绍如何在Ubuntu下编译PaddlePaddle，或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
-=======
-本说明将介绍如何在Ubuntu下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求
->>>>>>> c3f4882a478eb2d9fafc9086090f70372ff1a98e
 
 * 64位台式机或笔记本电脑
 * Ubuntu 14.04/16.04/18.04（这涉及到相关工具是否能被正常安装）
@@ -326,9 +322,9 @@
 * 直接本机源码编译
 * Docker源码编译
 
-我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
+我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里可以标准化编译环境。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
-我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，我们只对特定系统提供了支持。
+同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统，或许您也可以在其他的系统上完成编译，但这不属于我们支持的范畴。
 <br/><br/>
 ##### ***使用Docker进行编译***
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
@@ -392,11 +388,11 @@
 
 	`pip install （whl包的名字）`
 
-至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
+至此您已经成功使用Docker安装PaddlePaddle，您只需要在本机开发工作完成后进入Docker运行即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
-恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程
+恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程啦
 
 <br/><br/>
 ##### ***本机编译***
@@ -488,17 +484,14 @@
 
 <br/><br/>
 ### **CentOS下从源码编译PaddlePaddle**
-<<<<<<< HEAD
 本说明将介绍如何在CentOS下编译PaddlePaddle，或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
-=======
-本说明将介绍如何在CentOS下编译PaddlePaddle,我们支持的Ubuntu系统需满足以下要求：
->>>>>>> c3f4882a478eb2d9fafc9086090f70372ff1a98e
 
 * 64位台式机或笔记本电脑
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
 
 #### 确定要编译的PaddlePaddle版本
-* 仅支持CPU的PaddlePaddle，如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU， 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+* 仅支持CPU的PaddlePaddle，如果您的系统没有 NVIDIA® GPU，则必须安装此版本。而此版本较GPU版本更加容易安
+因此即使您的计算机上拥有GPU我们也推荐您先安装CPU版本的PaddlePaddle来检测您本地的环境是否适合。
 
 * 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 	* *Cuda 工具包9.0配合cuDNN v7*
@@ -511,9 +504,9 @@
 <!--* 直接本机源码编译-->
 * Docker源码编译
 
-我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
+我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里可以标准化编译环境。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样
 
-<!--同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统-->
+<!--同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统，或许您也可以在其他的系统上完成编译，但这不属于我们支持的范畴。-->
 <br/><br/>
 ##### ***使用Docker进行编译***
 
@@ -577,11 +570,11 @@
 
 	`pip install （whl包的名字）`
 
-至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
+至此您已经成功使用Docker安装PaddlePaddle，您只需要在本机开发工作完成后进入Docker运行即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
-恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程
+恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程啦
 
 <br/><br/>
 ##### ***验证安装***
@@ -668,4 +661,4 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 |paddlepaddle-gpu==0.11.0.post8.|	使用CUDA 8.0和cuDNN 5编译的0.11.0版本|
 |paddlepaddle-gpu==0.11.0.      |	使用CUDA 7.5和cuDNN 5编译的0.11.0版本|
 
-您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
+您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到paddlepaddle-gpu的各个发行版本。
