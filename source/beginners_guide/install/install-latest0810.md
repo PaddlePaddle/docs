@@ -207,9 +207,9 @@
 		`docker pull paddlepaddle/paddle:latest`
 
 
-	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
+	<!--* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
 
-		`docker pull paddlepaddle/paddle:latest-gpu`
+		`docker pull paddlepaddle/paddle:latest-gpu`TODO: 测试后加入-->
 
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像
@@ -302,11 +302,8 @@
       
 ***       
 ### **Ubuntu下从源码编译PaddlePaddle**
-<<<<<<< HEAD
-本说明将介绍如何在Ubuntu下编译PaddlePaddle，或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
-=======
+
 本说明将介绍如何在Ubuntu下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求
->>>>>>> c3f4882a478eb2d9fafc9086090f70372ff1a98e
 
 * 64位台式机或笔记本电脑
 * Ubuntu 14.04/16.04/18.04（这涉及到相关工具是否能被正常安装）
@@ -488,11 +485,8 @@
 
 <br/><br/>
 ### **CentOS下从源码编译PaddlePaddle**
-<<<<<<< HEAD
-本说明将介绍如何在CentOS下编译PaddlePaddle，或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
-=======
+
 本说明将介绍如何在CentOS下编译PaddlePaddle,我们支持的Ubuntu系统需满足以下要求：
->>>>>>> c3f4882a478eb2d9fafc9086090f70372ff1a98e
 
 * 64位台式机或笔记本电脑
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
