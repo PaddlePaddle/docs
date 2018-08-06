@@ -3,7 +3,7 @@
 
 * *64位台式机或笔记本电脑*
 * *Ubuntu 14.04 /16.04 /18.04*
-* *CentOS 7*
+* *CentOS 7 / 6*
 
 请确保您的环境满足以上条件，如果您希望在其他环境下尝试安装，可能会存在问题
 
@@ -35,7 +35,7 @@
 
 
 #### 选择如何安装PaddlePaddle
-在Ubuntu的系统下我们提供4中不同的安装方式：
+在Ubuntu的系统下我们提供4种不同的安装方式：
 
 * Docker安装
 * 原生pypi安装
@@ -296,7 +296,7 @@
 当您选择使用从源码编译这种方法来安装PaddlePaddle 时请注意我们虽然提供了编译后安装的方式但是由于您的本机环境多种多样在编译源码时非常容易出现意想不到的问题而造成安装失败，如果您看完这些还是毅然决然的决定继续下去，那好吧
 ***
 ### **Ubuntu下从源码编译PaddlePaddle**
-本说明将介绍如何在Ubuntu下安装PaddlePaddle,或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
+本说明将介绍如何在Ubuntu下编译PaddlePaddle,或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
 
 * 64位台式机或笔记本电脑
 * Ubuntu 14.04/16.04/18.04（这涉及到相关工具是否能被正常安装）
@@ -305,7 +305,7 @@
 * **仅支持CPU的PaddlePaddle**，如果您的系统没有 NVIDIA® GPU，则必须安装此版本。而此版本较GPU版本更加容易安
 因此即使您的计算机上拥有GPU我们也推荐您先安装CPU版本的PaddlePaddle来检测您本地的环境是否适合。
 
-* **支持GPU的PaddlePaddle (only for Ubuntu 16.04 / 14.04）**，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For CUDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+* **支持GPU的PaddlePaddle**，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For CUDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 	* *Cuda 工具包9.0配合cudnn v7*
 	* *Cuda 工具包8.0配合cudnn v7*
 	* *GPU运算能力超过1.0的硬件设备*
@@ -437,7 +437,7 @@
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`.
 
-	* 对于需要编译***GPU版本PaddlePaddle***的用户：
+	* 对于需要编译***GPU版本PaddlePaddle***的用户：(*仅支持ubuntu16.04/14.04*)
 
 		1. 请确保您已经从[nvidia官网](https://developer.nvidia.com/nccl)下载对应版本的`nccl2`并按照官网流程安装。
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
@@ -471,10 +471,10 @@
 
 <br/><br/>
 ### **CentOS下从源码编译PaddlePaddle**
-本说明将介绍如何在CentOS下安装PaddlePaddle,或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
+本说明将介绍如何在CentOS下编译PaddlePaddle,或许里面的一些操作也会适用于其他的机器或操作系统但是本说明将只针对满足以下条件的机器和操作系统负责：
 
 * 64位台式机或笔记本电脑
-* CentOS 7（这涉及到相关工具是否能被正常安装）
+* CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
 
 #### 确定要编译的PaddlePaddle版本
 * 仅支持CPU的PaddlePaddle，如果您的系统没有 NVIDIA® GPU，则必须安装此版本。而此版本较GPU版本更加容易安
@@ -486,7 +486,7 @@
 	* *GPU运算能力超过1.0的硬件设备*
 
 #### 选择如何编译PaddlePaddle
-在CentOS 7的系统下我们提供中1种的编译方式：
+在CentOS 7的系统下我们提供1种的编译方式：
 
 <!--* 直接本机源码编译-->
 * Docker源码编译
@@ -539,10 +539,11 @@
 	*  对于需要编译***CPU版本PaddlePaddle***的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`
+		> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
 
-	* 对于需要编译***GPU版本PaddlePaddle***的用户：
+<!--	* 对于需要编译***GPU版本PaddlePaddle***的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF`
+		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF`-->
 
 9. 执行编译：
 
