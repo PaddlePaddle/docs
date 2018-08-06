@@ -492,12 +492,12 @@
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
 
 #### 确定要编译的PaddlePaddle版本
-* 仅支持CPU的PaddlePaddle，如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU， 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+* **仅支持CPU的PaddlePaddle**，如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU， 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
-* 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+<!--* 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 	* *Cuda 工具包9.0配合cuDNN v7*
 	* *Cuda 工具包8.0配合cuDNN v7*
-	* *GPU运算能力超过1.0的硬件设备*
+	* *GPU运算能力超过1.0的硬件设备*-->
 
 #### 选择如何编译PaddlePaddle
 在CentOS 7的系统下我们提供1种的编译方式：
