@@ -1,1 +1,1 @@
-../../../paddle/doc/fluid/howto/optimization/host_memory_profiling_cn.md
+../../../howto/optimization/host_memory_profiling_cn.md
