@@ -61,12 +61,12 @@
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
 
-	* 对于需要***CPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像
+	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest`
 		
 
-	* 对于需要***GPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
+	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest-gpu`
 		
@@ -119,19 +119,18 @@
 
 1. 使用pip install来安装PaddlePaddle
 
-	* 对于需要***CPU版本PaddlePaddle***的用户：`pip install paddlepaddle`
+	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle`
 	
 
-	* 对于需要***GPU版本PaddlePaddle***的用户：(*仅支持ubuntu16.04/14.04*)
+	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 	> 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
-
+	
+	
+	  如果您的**nccl2已经正确安装**请使用以下命令:
 		
-		
-		如果您的**nccl2已经正确安装**请使用以下命令:
 		`pip install paddlepaddle-gpu`
 		
-		
-		> 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
+	>> 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
 
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。
@@ -209,12 +208,12 @@
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
 
-	* 对于需要***CPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像
+	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest`
 
 
-	* 对于需要***GPU版本的PaddlePaddle***的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
+	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像
 
 		`docker pull paddlepaddle/paddle:latest-gpu`
 
@@ -267,19 +266,18 @@
 
 1. 使用pip install来安装PaddlePaddle
 	
-	* 对于需要***CPU版本PaddlePaddle***的用户：`pip install paddlepaddle`
+	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle`
 
 
-	* 对于需要***GPU版本PaddlePaddle***的用户:
+	* 对于需要**GPU版本PaddlePaddle**的用户:
 	> 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2.
-
+	
+	
+	  如果您的**nccl2已经正确安装**请使用以下命令:
 		
-		
-		如果您的**nccl2已经正确安装**请使用以下命令:
 		`pip install paddlepaddle-gpu`
 		
-		
-		> 我们默认提供的是支持Cuda 8/Cudnn v7的PaddlePaddle
+	>> 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/Cudnn v7的PaddlePaddle版本
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
 
@@ -381,12 +379,12 @@
 	>具体编译选项含义请参见[编译选项表]()<!--TODO: Link 编译选项表到这里-->
 
 
-	*  对于需要编译***CPU版本PaddlePaddle***的用户：
+	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`
 
 
-	* 对于需要编译***GPU版本PaddlePaddle***的用户：
+	* 对于需要编译**GPU版本PaddlePaddle**的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF`
 
@@ -434,7 +432,7 @@
 3. 进入虚环境：`workon paddle-venv`         
 
 
-4. ***执行编译前***请您确认在虚环境中安装有[安装依赖表]()中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
+4. **执行编译前**请您确认在虚环境中安装有[安装依赖表]()中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
 
 	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`apt install`或者`pip install` 后跟依赖名称和版本安装
 
@@ -459,12 +457,12 @@
 	>具体编译选项含义请参见[编译选项表]()<!--TODO：Link 安装选项表到这里-->
 
 
-	*  对于需要编译***CPU版本PaddlePaddle***的用户：
+	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`.
 
 
-	* 对于需要编译***GPU版本PaddlePaddle***的用户：(*仅支持ubuntu16.04/14.04*)
+	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
 		1. 请确保您已经从[nvidia官网](https://developer.nvidia.com/nccl)下载对应版本的`nccl2`并按照官网流程安装。
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
@@ -564,7 +562,7 @@
 	>具体编译选项含义请参见[编译选项表]()<!--TODO： Link 编译选项表到这里-->
 
 
-	*  对于需要编译***CPU版本PaddlePaddle***的用户：
+	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`
 		> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
@@ -602,7 +600,7 @@
 
 * ***GPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle-gpu`
 
-</br>
+</br></br>
 ### 附录：
 
 ## **编译依赖表**
@@ -623,7 +621,7 @@
 | go       | >=1.8               |  可选                   | |
 
 ***
-</br>
+</br></br>
 ## **编译选项表**
 | 选项             | 说明                                               |  默认值        |
 | :--              | :-----                                            |:------:        |
@@ -662,7 +660,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 
 ***
-</br>
+</br></br>
 ## **安装包列表**
 | 版本号             | 版本说明                                       |
 | :--               | :-----                                        |
