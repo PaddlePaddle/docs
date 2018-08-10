@@ -660,4 +660,4 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 |paddlepaddle-gpu==0.11.0.post8.|	使用CUDA 8.0和cuDNN 5编译的0.11.0版本|
 |paddlepaddle-gpu==0.11.0.      |	使用CUDA 7.5和cuDNN 5编译的0.11.0版本|
 
-您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到paddlepaddle-gpu的各个发行版本。
+您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
