@@ -197,7 +197,7 @@
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
-当您已经**正确安装Docker**后你就可以开始**使用Docker安装PaddlePaddle**啦
+当您已经**正确安装Docker**后你就可以开始**使用Docker安装PaddlePaddle**
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
@@ -330,7 +330,7 @@
 ##### ***使用Docker进行编译***
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
-当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**啦
+当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**
 
 1. 请首先选择您希望储存PaddlePaddle的路径，然后在该路径下使用以下命令将PaddlePaddle的源码从github克隆到本地当前目录下名为Paddle的文件夹中：
 
