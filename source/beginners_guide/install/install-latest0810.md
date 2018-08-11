@@ -486,7 +486,7 @@
 <br/><br/>
 ### **CentOS下从源码编译PaddlePaddle**
 
-本说明将介绍如何在CentOS下编译PaddlePaddle,我们支持的Ubuntu系统需满足以下要求：
+本说明将介绍如何在CentOS下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
 
 * 64位台式机或笔记本电脑
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
