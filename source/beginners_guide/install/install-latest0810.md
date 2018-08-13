@@ -259,7 +259,7 @@
 *	Pip >= 9.0.1
 	> 您的CentOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
 
-	更新yum的源：   `yum update`
+	更新yum的源：   `yum update` 并安装拓展源以安装pip：   `yum -y install epel-release`
 
 	使用以下命令安装或升级Python和pip到需要的版本： `sudo yum install python-devel python-pip`
 	> 即使您的环境中已经有`Python2.7`也需要安装`python devel`。
