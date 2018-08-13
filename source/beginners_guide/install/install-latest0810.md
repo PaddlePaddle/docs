@@ -78,11 +78,11 @@
 		
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
-	`docker run --name [Name of container] -it -v $PWD:/work <imagename> /bin/bash`
+	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/work 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /work 目录； paddlepaddle/paddle 指定需要使用的image名称；/bin/bash是在Docker中要执行的命令。
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称；/bin/bash是在Docker中要执行的命令。
 
-3. 在Docker中 使用如下命令使用PaddlePaddle
+3. 在Docker中 使用如下命令使用PaddlePaddle：
 
 	`docker start [Name of container]`
 	> 启动之前创建的容器。
@@ -90,6 +90,10 @@
 	`docker attach [Name of container]`
 	> 进入启动的容器。
 
+4. 在Docker中 使用如下命令安装numpy 1.14.0：
+	
+	`pip install numpy==1.14.0`
+	
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
@@ -218,9 +222,9 @@
 		> （请把[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
-	`docker run --name [Name of container] -it -v $PWD:/work <imagename> /bin/bash`
+	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 	
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/work 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /work 目录； paddlepaddle/paddle 指定需要使用的image名称，/bin/bash是在Docker中要执行的命令。  
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称，/bin/bash是在Docker中要执行的命令。  
 
 3. 在Docker中 使用如下命令使用PaddlePaddle：
 
@@ -230,6 +234,10 @@
 	`docker attach [Name of container]`
 	> 进入启动的容器。
 
+4. 在Docker中 使用如下命令安装numpy 1.14.0：
+	
+	`pip install numpy==1.14.0`
+	
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
@@ -341,7 +349,7 @@
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
 	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
-	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下，-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的绝对路径），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
@@ -524,7 +532,7 @@
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
 	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
-	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下，-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的绝对路径），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
@@ -617,7 +625,7 @@
 | WITH_GPU         | 是否支持GPU	                                     |ON
 | WITH_C_API       |	是否仅编译CAPI                                   |OFF
 | WITH_DOUBLE	      | 是否使用双精度浮点数                                | OFF
-| WITH_DSO         | 是否运行时动态加载CUDA动态库，而非静态加载CUDA动态库。   | ON.
+| WITH_DSO         | 是否运行时动态加载CUDA动态库，而非静态加载CUDA动态库。   | ON
 | WITH_AVX	      |是否编译含有AVX指令集的PaddlePaddle二进制文件.         |ON
 | WITH_PYTHON	      |是否内嵌PYTHON解释器	                              |ON
 | WITH_STYLE_CHECK |	是否编译时进行代码风格检查                         |ON
