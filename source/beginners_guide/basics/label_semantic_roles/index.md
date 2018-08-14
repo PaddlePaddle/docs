@@ -20,8 +20,8 @@ $$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_{\m
 4. 论元识别：这个过程是从上一步剪除之后的候选中判断哪些是真正的论元，通常当做一个二分类问题来解决。
 5. 对第4步的结果，通过多分类得到论元的语义角色标签。可以看到，句法分析是基础，并且后续步骤常常会构造的一些人工特征，这些特征往往也来自句法分析。
 
-![dependencyParsing](./image/dependency_parsing.png)
 <div  align="center">
+<img src="image/dependency_parsing.png" width = "80%" align=center /><br>
 图1. 依存句法分析句法树示例
 </div>
 
@@ -29,8 +29,8 @@ $$\mbox{[小明]}_{\mbox{Agent}}\mbox{[昨天]}_{\mbox{Time}}\mbox{[晚上]}_{\m
 
 我们继续以上面的这句话为例，图1展示了BIO表示方法。
 
-![bioExample](./image/bio_example.png)
 <div  align="center">
+<img src="image/bio_example.png" width = "90%"  align=center /><br>
 图2. BIO标注方法示例
 </div>
 
