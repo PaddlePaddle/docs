@@ -139,7 +139,7 @@ ResNet(Residual Network) \[[15](#参考文献)\] 是2015年ImageNet图像分类�
 
 由于ImageNet数据集较大，下载和训练较慢，为了方便大家学习，我们使用[CIFAR10](<https://www.cs.toronto.edu/~kriz/cifar.html>)数据集。CIFAR10数据集包含60,000张32x32的彩色图片，10个类别，每个类包含6,000张。其中50,000张图片作为训练集，10000张作为测试集。图11从每个类别中随机抽取了10张图片，展示了所有的类别。
 
-<p align="center"><img src="https://raw.githubusercontent.com/PaddlePaddle/book/develop/03.image_classification/image/cifar.png" width="70%"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/PaddlePaddle/book/develop/03.image_classification/image/cifar.png" width="50%"></p>
 <p align="center">
 图11. CIFAR10数据集[21]
 </p>
@@ -451,8 +451,8 @@ Test with Pass 0, Loss 1.1, Acc 0.6
 
 图12是训练的分类错误率曲线图，运行到第200个pass后基本收敛，最终得到测试集上分类错误率为8.54%。
 
-![CIFARErrorRate](./image/plot.png)
 <p align="center">
+<img src="image/plot.png" width="400" ><br/>
 图12. CIFAR10数据集上VGG模型的分类错误率
 </p>
 
