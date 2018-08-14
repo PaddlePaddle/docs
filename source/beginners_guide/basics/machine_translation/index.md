@@ -51,7 +51,7 @@
 ### 编码器-解码器框架
 
 编码器-解码器（Encoder-Decoder）\[[2](#参考文献)\]框架用于解决由一个任意长度的源序列到另一个任意长度的目标序列的变换问题。即编码阶段将整个源序列编码成一个向量，解码阶段通过最大化预测序列概率，从中解码出整个目标序列。编码和解码的过程通常都使用RNN实现。
-<p align="center"><img src="./image/encoder_decoder.png" width="90%"></p>
+<p align="center"><img src="./image/encoder_decoder.png" width="70%"></p>
 <p align="center">
 图3. 编码器-解码器框架
 </p>
@@ -68,8 +68,8 @@
 
 第3步也可以使用双向循环神经网络实现更复杂的句编码表示，具体可以用双向GRU实现。前向GRU按照词序列`$(x_1,x_2,...,x_T)$`的顺序依次编码源语言端词，并得到一系列隐层状态`$(\overrightarrow{h_1},\overrightarrow{h_2},...,\overrightarrow{h_T})$`。类似的，后向GRU按照`$(x_T,x_{T-1},...,x_1)$`的顺序依次编码源语言端词，得到`$(\overleftarrow{h_1},\overleftarrow{h_2},...,\overleftarrow{h_T})$`。最后对于词`$x_i$`，通过拼接两个GRU的结果得到它的隐层状态，即`$h_i=\left [ \overrightarrow{h_i^T},\overleftarrow{h_i^T} \right ]^{T}$`。
 
-<p align="center"><img src="./image/encoder_attention.png"></p>
 <p align="center">
+<img src="image/encoder_attention.png" width=500><br/>
 图4. 使用双向GRU的编码器
 </p>
 
