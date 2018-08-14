@@ -72,7 +72,7 @@ $$P(\omega=i|u)=\frac{e^{v_{i}u}}{\sum_{j \in V}e^{v_{j}u}}$$
 
 卷积神经网络主要由卷积（convolution）和池化（pooling）操作构成，其应用及组合方式灵活多变，种类繁多。本小结我们以如图3所示的网络进行讲解：
 
-<p align="center"><img src="./image/text_cnn.png" width="90%"></p>
+<p align="center"><img src="./image/text_cnn.png" width="70%"></p>
 <p align="center">
 图3. 卷积神经网络文本分类模型
 </p>
@@ -105,8 +105,9 @@ $$\hat c=max(c)$$
 
 4. 得到用户和电影的向量表示后，计算二者的余弦相似度作为推荐系统的打分。最后，用该相似度打分和用户真实打分的差异的平方作为该回归模型的损失函数。
 
-![rec_regression_network](./image/rec_regression_network.png)
 <p align="center">
+
+<img src="image/rec_regression_network.png" width="90%" ><br/>
 图4. 融合推荐模型
 </p>
 
