@@ -117,7 +117,7 @@ $$J(\theta) = -\sum_{i=1}^N\sum_{c=1}^{|V|}y_k^{i}log(softmax(g_k^i))$$
 
 CBOW模型通过一个词的上下文（各N个词）预测当前词。当N=2时，模型如下图所示：
 
-<p align="center"><img src="./image/cbow.png" width="40%"></p>
+<p align="center"><img src="./image/cbow.png" width="30%"></p>
 <p align="center">
 图3. CBOW模型
 </p>
@@ -132,7 +132,7 @@ $$context = \frac{x_{t-1} + x_{t-2} + x_{t+1} + x_{t+2}}{4}$$
 
 CBOW的好处是对上下文词语的分布在词向量上进行了平滑，去掉了噪声，因此在小数据集上很有效。而Skip-gram的方法中，用一个词预测其上下文，得到了当前词上下文的很多样本，因此可用于更大的数据集。
 
-<p align="center"><img src="./image/skipgram.png" width="40%"></p>
+<p align="center"><img src="./image/skipgram.png" width="30%"></p>
 <p align="center">
 图4. Skip-gram模型
 </p>
