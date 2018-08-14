@@ -4,7 +4,7 @@
 训练过程中评测模型
 ##################
 
-模型的测试评价与训练的 :ref:`api_fluid_Program` 不同。在测试评价中:
+模型的测试评价与训练的 :code:`fluid.Program` 不同。在测试评价中:
 
 1. 评价测试不进行反向传播，不优化更新参数。
 2. 评价测试执行的操作可以不同。
@@ -13,13 +13,13 @@
 
    * 评价模型与训练相比可以是完全不同的模型。
 
-生成测试 :ref:`api_fluid_Program`
+生成测试 :code:`fluid.Program`
 #################################
 
-通过克隆训练 :ref:`api_fluid_Program` 生成测试 :ref:`api_fluid_Program`
+通过克隆训练 :code:`fluid.Program` 生成测试 :code:`fluid.Program`
 =======================================================================
 
-:code:`Program.clone()` 方法可以复制出新的 :ref:`api_fluid_Program` 。 通过设置
+:code:`Program.clone()` 方法可以复制出新的 :code:`fluid.Program` 。 通过设置
 :code:`Program.clone(for_test=True)` 复制含有用于测试的操作Program。简单的使用方法如下:
 
 .. code-block:: python
@@ -45,11 +45,11 @@
 成一个 :code:`test_program` 。之后使用测试数据运行 :code:`test_program`,\
 就可以做到运行测试程序，而不影响训练结果。
 
-分别配置训练 :ref:`api_fluid_Program` 和测试 :ref:`api_fluid_Program`
+分别配置训练 :code:`fluid.Program` 和测试 :code:`fluid.Program`
 =====================================================================
 
 如果训练程序和测试程序相差较大时，用户也可以通过完全定义两个不同的
-:ref:`api_fluid_Program`，分别进行训练和测试。在PaddlePaddle Fluid中，\
+:code:`fluid.Program`，分别进行训练和测试。在PaddlePaddle Fluid中，\
 所有的参数都有名字。如果两个不同的操作，甚至两个不同的网络使用了同样名字的参数，\
 那么他们的值和内存空间都是共享的。
 
@@ -84,14 +84,14 @@ PaddlePaddle Fluid中使用 :code:`fluid.unique_name` 包来随机初始化用�
    # fluid.default_main_program() is the train program
    # fluid.test_program is the test program
 
-执行测试 :ref:`api_fluid_Program`
+执行测试 :code:`fluid.Program`
 #################################
 
-使用 :code:`Executor` 执行测试 :ref:`api_fluid_Program`
+使用 :code:`Executor` 执行测试 :code:`fluid.Program`
 =======================================================
 
 用户可以使用 :code:`Executor.run(program=...)` 来执行测试
-:ref:`api_fluid_Program`。
+:code:`fluid.Program`。
 
 例如
 
@@ -101,10 +101,10 @@ PaddlePaddle Fluid中使用 :code:`fluid.unique_name` 包来随机初始化用�
    test_acc = exe.run(program=test_program, feed=test_data_batch, fetch_list=[acc])
    print 'Test accuracy is ', test_acc
 
-使用 :code:`ParallelExecutor` 执行测试 :ref:`api_fluid_Program`
+使用 :code:`ParallelExecutor` 执行测试 :code:`fluid.Program`
 ===============================================================
 
-用户可以使用训练用的 :code:`ParallelExecutor` 与测试 :ref:`api_fluid_Program`
+用户可以使用训练用的 :code:`ParallelExecutor` 与测试 :code:`fluid.Program`
 一起新建一个测试的 :code:`ParallelExecutor` ；再使用测试
 :code:`ParallelExecutor.run` 来执行测试。
 
