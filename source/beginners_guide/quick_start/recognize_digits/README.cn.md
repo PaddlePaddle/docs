@@ -20,21 +20,21 @@ Yann LeCun早先在手写字符识别上做了很多研究，并在研究过程�
 ## 模型概览
 
 基于MNIST数据训练一个分类器，在介绍本教程使用的三个基本图像分类网络前，我们先给出一些定义：
-- $X$是输入：MNIST图片是$28\times28$ 的二维图像，为了进行计算，我们将其转化为$784$维向量，即$X=\left ( x_0, x_1, \dots, x_{783} \right )$。
-- $Y$是输出：分类器的输出是10类数字（0-9），即$Y=\left ( y_0, y_1, \dots, y_9 \right )$，每一维$y_i$代表图片分类为第$i$类数字的概率。
-- $L$是图片的真实标签：$L=\left ( l_0, l_1, \dots, l_9 \right )$也是10维，但只有一维为1，其他都为0。
+- `$X$`是输入：MNIST图片是`$28\times28$` 的二维图像，为了进行计算，我们将其转化为`$784$`维向量，即`$X=\left ( x_0, x_1, \dots, x_{783} \right )$`。
+- `$Y$`是输出：分类器的输出是10类数字（0-9），即`$Y=\left ( y_0, y_1, \dots, y_9 \right )$`，每一维`$y_i$`代表图片分类为第`$i$`类数字的概率。
+- `$L$`是图片的真实标签：`$L=\left ( l_0, l_1, \dots, l_9 \right )$`也是10维，但只有一维为1，其他都为0。
 
 ### Softmax回归(Softmax Regression)
 
 最简单的Softmax回归模型是先将输入层经过一个全连接层得到的特征，然后直接通过softmax 函数进行多分类\[[9](#参考文献)\]。
 
-输入层的数据$X$传到输出层，在激活操作之前，会乘以相应的权重 $W$ ，并加上偏置变量 $b$ ，具体如下：
+输入层的数据`$X$`传到输出层，在激活操作之前，会乘以相应的权重 `$W$` ，并加上偏置变量 `$b$` ，具体如下：
 
 $$ y_i = \text{softmax}(\sum_j W_{i,j}x_j + b_i) $$
 
-其中 $ \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}} $
+其中 `$ \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}} $`
 
-对于有 $N$ 个类别的多分类问题，指定 $N$ 个输出节点，$N$ 维结果向量经过softmax将归一化为 $N$ 个[0,1]范围内的实数值，分别表示该样本属于这 $N$ 个类别的概率。此处的 $y_i$ 即对应该图片为数字 $i$ 的预测概率。
+对于有 `$N$` 个类别的多分类问题，指定 `$N$` 个输出节点，`$N$` 维结果向量经过softmax将归一化为 `$N$` 个[0,1]范围内的实数值，分别表示该样本属于这 `$N$` 个类别的概率。此处的 `$y_i$` 即对应该图片为数字 `$i$` 的预测概率。
 
 在分类问题中，我们一般采用交叉熵代价损失函数（cross entropy），公式如下：
 
@@ -49,9 +49,9 @@ $$  \text{crossentropy}(label, y) = -\sum_i label_ilog(y_i) $$
 
 Softmax回归模型采用了最简单的两层神经网络，即只有输入层和输出层，因此其拟合能力有限。为了达到更好的识别效果，我们考虑在输入层和输出层中间加上若干个隐藏层\[[10](#参考文献)\]。
 
-1.  经过第一个隐藏层，可以得到 $ H_1 = \phi(W_1X + b_1) $，其中$\phi$代表激活函数，常见的有sigmoid、tanh或ReLU等函数。
-2.  经过第二个隐藏层，可以得到 $ H_2 = \phi(W_2H_1 + b_2) $。
-3.  最后，再经过输出层，得到的$Y=\text{softmax}(W_3H_2 + b_3)$，即为最后的分类结果向量。
+1.  经过第一个隐藏层，可以得到 `$ H_1 = \phi(W_1X + b_1) $`，其中`$\phi$`代表激活函数，常见的有sigmoid、tanh或ReLU等函数。
+2.  经过第二个隐藏层，可以得到 `$ H_2 = \phi(W_2H_1 + b_2) $`。
+3.  最后，再经过输出层，得到的`$Y=\text{softmax}(W_3H_2 + b_3)$`，即为最后的分类结果向量。
 
 
 图3为多层感知器的网络结构图，图中权重用蓝线表示、偏置用红线表示、+1代表偏置参数的系数为1。
@@ -73,13 +73,13 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 ![cnn](https://raw.githubusercontent.com/PaddlePaddle/book/develop/02.recognize_digits/image/conv_layer.png)
 <p align="center">图5. 卷积层图片</p>
 
-图5给出一个卷积计算过程的示例图，输入图像大小为$H=5,W=5,D=3$，即$5 \times 5$大小的3通道（RGB，也称作深度）彩色图像。这个示例图中包含两（用$K$表示）组卷积核，即图中滤波器$W_0$和$W_1$。在卷积计算中，通常对不同的输入通道采用不同的卷积核，如图示例中每组卷积核包含（$D=3$）个$3 \times 3$（用$F \times F$表示）大小的卷积核。另外，这个示例中卷积核在图像的水平方向（$W$方向）和垂直方向（$H$方向）的滑动步长为2（用$S$表示）；对输入图像周围各填充1（用$P$表示）个0，即图中输入层原始数据为蓝色部分，灰色部分是进行了大小为1的扩展，用0来进行扩展。经过卷积操作得到输出为$3 \times 3 \times 2$（用$H_{o} \times W_{o} \times K$表示）大小的特征图，即$3 \times 3$大小的2通道特征图，其中$H_o$计算公式为：$H_o = (H - F + 2 \times P)/S + 1$，$W_o$同理。 而输出特征图中的每个像素，是每组滤波器与输入图像每个特征图的内积再求和，再加上偏置$b_o$，偏置通常对于每个输出特征图是共享的。输出特征图$o[:,:,0]$中的最后一个$-2$计算如图5右下角公式所示。
+图5给出一个卷积计算过程的示例图，输入图像大小为`$H=5,W=5,D=3$`，即`$5 \times 5$`大小的3通道（RGB，也称作深度）彩色图像。这个示例图中包含两（用`$K$`表示）组卷积核，即图中滤波器`$W_0$`和`$W_1$`。在卷积计算中，通常对不同的输入通道采用不同的卷积核，如图示例中每组卷积核包含（`$D=3$`）个`$3 \times 3$`（用`$F \times F$`表示）大小的卷积核。另外，这个示例中卷积核在图像的水平方向（`$W$`方向）和垂直方向（`$H$`方向）的滑动步长为2（用`$S$`表示）；对输入图像周围各填充1（用`$P$`表示）个0，即图中输入层原始数据为蓝色部分，灰色部分是进行了大小为1的扩展，用0来进行扩展。经过卷积操作得到输出为`$3 \times 3 \times 2$`（用`$H_{o} \times W_{o} \times K$`表示）大小的特征图，即`$3 \times 3$`大小的2通道特征图，其中`$H_o$`计算公式为：`$H_o = (H - F + 2 \times P)/S + 1$`，`$W_o$`同理。 而输出特征图中的每个像素，是每组滤波器与输入图像每个特征图的内积再求和，再加上偏置`$b_o$`，偏置通常对于每个输出特征图是共享的。输出特征图`$o[:,:,0]$`中的最后一个`$-2$`计算如图5右下角公式所示。
 
-在卷积操作中卷积核是可学习的参数，经过上面示例介绍，每层卷积的参数大小为$D \times F \times F \times K$。在多层感知器模型中，神经元通常是全部连接，参数较多。而卷积层的参数较少，这也是由卷积层的主要特性即局部连接和共享权重所决定。
+在卷积操作中卷积核是可学习的参数，经过上面示例介绍，每层卷积的参数大小为`$D \times F \times F \times K$`。在多层感知器模型中，神经元通常是全部连接，参数较多。而卷积层的参数较少，这也是由卷积层的主要特性即局部连接和共享权重所决定。
 
 - 局部连接：每个神经元仅与输入神经元的一块区域连接，这块局部区域称作感受野（receptive field）。在图像卷积操作中，即神经元在空间维度（spatial dimension，即上图示例H和W所在的平面）是局部连接，但在深度上是全部连接。对于二维图像本身而言，也是局部像素关联较强。这种局部连接保证了学习后的过滤器能够对于局部的输入特征有最强的响应。局部连接的思想，也是受启发于生物学里面的视觉系统结构，视觉皮层的神经元就是局部接受信息的。
 
-- 权重共享：计算同一个深度切片的神经元时采用的滤波器是共享的。例如图4中计算$o[:,:,0]$的每个每个神经元的滤波器均相同，都为$W_0$，这样可以很大程度上减少参数。共享权重在一定程度上讲是有意义的，例如图片的底层边缘特征与特征在图中的具体位置无关。但是在一些场景中是无意的，比如输入的图片是人脸，眼睛和头发位于不同的位置，希望在不同的位置学到不同的特征 (参考[斯坦福大学公开课]( http://cs231n.github.io/convolutional-networks/))。请注意权重只是对于同一深度切片的神经元是共享的，在卷积层，通常采用多组卷积核提取不同特征，即对应不同深度切片的特征，不同深度切片的神经元权重是不共享。另外，偏重对同一深度切片的所有神经元都是共享的。
+- 权重共享：计算同一个深度切片的神经元时采用的滤波器是共享的。例如图4中计算`$o[:,:,0]$`的每个每个神经元的滤波器均相同，都为`$W_0$`，这样可以很大程度上减少参数。共享权重在一定程度上讲是有意义的，例如图片的底层边缘特征与特征在图中的具体位置无关。但是在一些场景中是无意的，比如输入的图片是人脸，眼睛和头发位于不同的位置，希望在不同的位置学到不同的特征 (参考[斯坦福大学公开课]( http://cs231n.github.io/convolutional-networks/))。请注意权重只是对于同一深度切片的神经元是共享的，在卷积层，通常采用多组卷积核提取不同特征，即对应不同深度切片的特征，不同深度切片的神经元权重是不共享。另外，偏重对同一深度切片的所有神经元都是共享的。
 
 通过介绍卷积计算过程及其特性，可以看出卷积是线性操作，并具有平移不变性（shift-invariant），平移不变性即在图像每个位置执行相同的操作。卷积层的局部连接和权重共享使得需要学习的参数大大减小，这样也有利于训练较大卷积神经网络。
 
@@ -93,13 +93,13 @@ Softmax回归模型采用了最简单的两层神经网络，即只有输入层�
 更详细的关于卷积神经网络的具体知识可以参考[斯坦福大学公开课]( http://cs231n.github.io/convolutional-networks/ )和[图像分类](https://github.com/PaddlePaddle/book/blob/develop/image_classification/README.md)教程。
 
 ### 常见激活函数介绍
-- sigmoid激活函数： $ f(x) = sigmoid(x) = \frac{1}{1+e^{-x}} $
+- sigmoid激活函数： `$ f(x) = sigmoid(x) = \frac{1}{1+e^{-x}} $`
 
-- tanh激活函数： $ f(x) = tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}} $
+- tanh激活函数： `$ f(x) = tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}} $`
 
 实际上，tanh函数只是规模变化的sigmoid函数，将sigmoid函数值放大2倍之后再向下平移1个单位：tanh(x) = 2sigmoid(2x) - 1 。
 
-- ReLU激活函数： $ f(x) = max(0, x) $
+- ReLU激活函数： `$ f(x) = max(0, x) $`
 
 更详细的介绍请参考[维基百科激活函数](https://en.wikipedia.org/wiki/Activation_function)。
 
@@ -177,51 +177,51 @@ import paddle.fluid as fluid
 
 ```python
 def softmax_regression():
-img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
-predict = fluid.layers.fc(
-input=img, size=10, act='softmax')
-return predict
+    img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
+    predict = fluid.layers.fc(
+        input=img, size=10, act='softmax')
+    return predict
 ```
 
 - 多层感知器：下面代码实现了一个含有两个隐藏层（即全连接层）的多层感知器。其中两个隐藏层的激活函数均采用ReLU，输出层的激活函数用Softmax。
 
 ```python
 def multilayer_perceptron():
-img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
-# 第一个全连接层，激活函数为ReLU
-hidden = fluid.layers.fc(input=img, size=200, act='relu')
-# 第二个全连接层，激活函数为ReLU
-hidden = fluid.layers.fc(input=hidden, size=200, act='relu')
-# 以softmax为激活函数的全连接输出层，输出层的大小必须为数字的个数10
-prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
-return prediction
+    img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
+    # 第一个全连接层，激活函数为ReLU
+    hidden = fluid.layers.fc(input=img, size=200, act='relu')
+    # 第二个全连接层，激活函数为ReLU
+    hidden = fluid.layers.fc(input=hidden, size=200, act='relu')
+    # 以softmax为激活函数的全连接输出层，输出层的大小必须为数字的个数10
+    prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
+    return prediction
 ```
 
 - 卷积神经网络LeNet-5: 输入的二维图像，首先经过两次卷积层到池化层，再经过全连接层，最后使用以softmax为激活函数的全连接层作为输出层。
 
 ```python
 def convolutional_neural_network():
-img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
-# 第一个卷积-池化层
-conv_pool_1 = fluid.nets.simple_img_conv_pool(
-input=img,
-filter_size=5,
-num_filters=20,
-pool_size=2,
-pool_stride=2,
-act="relu")
-conv_pool_1 = fluid.layers.batch_norm(conv_pool_1)
-# 第二个卷积-池化层
-conv_pool_2 = fluid.nets.simple_img_conv_pool(
-input=conv_pool_1,
-filter_size=5,
-num_filters=50,
-pool_size=2,
-pool_stride=2,
-act="relu")
-# 以softmax为激活函数的全连接输出层，输出层的大小必须为数字的个数10
-prediction = fluid.layers.fc(input=conv_pool_2, size=10, act='softmax')
-return prediction
+    img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
+    # 第一个卷积-池化层
+    conv_pool_1 = fluid.nets.simple_img_conv_pool(
+        input=img,
+        filter_size=5,
+        num_filters=20,
+        pool_size=2,
+        pool_stride=2,
+        act="relu")
+    conv_pool_1 = fluid.layers.batch_norm(conv_pool_1)
+    # 第二个卷积-池化层
+    conv_pool_2 = fluid.nets.simple_img_conv_pool(
+        input=conv_pool_1,
+        filter_size=5,
+        num_filters=50,
+        pool_size=2,
+        pool_stride=2,
+        act="relu")
+    # 以softmax为激活函数的全连接输出层，输出层的大小必须为数字的个数10
+    prediction = fluid.layers.fc(input=conv_pool_2, size=10, act='softmax')
+    return prediction
 ```
 
 #### Train Program 配置
@@ -234,15 +234,15 @@ return prediction
 
 ```python
 def train_program():
-label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
 
-# predict = softmax_regression() # uncomment for Softmax回归
-# predict = multilayer_perceptron() # uncomment for 多层感知器
-predict = convolutional_neural_network() # uncomment for LeNet5卷积神经网络
-cost = fluid.layers.cross_entropy(input=predict, label=label)
-avg_cost = fluid.layers.mean(cost)
-acc = fluid.layers.accuracy(input=predict, label=label)
-return [avg_cost, acc]
+    # predict = softmax_regression() # uncomment for Softmax回归
+    # predict = multilayer_perceptron() # uncomment for 多层感知器
+    predict = convolutional_neural_network() # uncomment for LeNet5卷积神经网络
+    cost = fluid.layers.cross_entropy(input=predict, label=label)
+    avg_cost = fluid.layers.mean(cost)
+    acc = fluid.layers.accuracy(input=predict, label=label)
+    return [avg_cost, acc]
 
 
 # 该模型运行在单个CPU上
@@ -254,7 +254,7 @@ return [avg_cost, acc]
 
 ```python
 def optimizer_program():
-return fluid.optimizer.Adam(learning_rate=0.001)
+    return fluid.optimizer.Adam(learning_rate=0.001)
 ```
 
 ### 数据集 Feeders 配置
@@ -267,12 +267,12 @@ return fluid.optimizer.Adam(learning_rate=0.001)
 
 ```python
 train_reader = paddle.batch(
-paddle.reader.shuffle(
-paddle.dataset.mnist.train(), buf_size=500),
-batch_size=64)
+        paddle.reader.shuffle(
+            paddle.dataset.mnist.train(), buf_size=500),
+        batch_size=64)
 
 test_reader = paddle.batch(
-paddle.dataset.mnist.test(), batch_size=64)
+            paddle.dataset.mnist.test(), batch_size=64)
 ```
 
 ### Trainer 配置
@@ -285,9 +285,9 @@ use_cuda = False # set to True if training with GPU
 place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
 
 trainer = fluid.Trainer(
-train_func=train_program, place=place, optimizer_func=optimizer_program)
-```
-
+    train_func=train_program, place=place, optimizer_func=optimizer_program)
+ ```
+ 
 #### Event Handler 配置
 
 Fluid API 在训练期间为回调函数提供了一个钩子。用户能够通过机制监控培训进度。
@@ -300,22 +300,22 @@ Fluid API 在训练期间为回调函数提供了一个钩子。用户能够通�
 params_dirname = "recognize_digits_network.inference.model"
 lists = []
 def event_handler(event):
-if isinstance(event, fluid.EndStepEvent):
-if event.step % 100 == 0:
-# event.metrics maps with train program return arguments.
-# event.metrics[0] will yeild avg_cost and event.metrics[1] will yeild acc in this example.
-print "Pass %d, Batch %d, Cost %f" % (
-event.step, event.epoch, event.metrics[0])
+    if isinstance(event, fluid.EndStepEvent):
+        if event.step % 100 == 0:
+            # event.metrics maps with train program return arguments.
+            # event.metrics[0] will yeild avg_cost and event.metrics[1] will yeild acc in this example.
+            print("Pass %d, Batch %d, Cost %f" % (
+                event.step, event.epoch, event.metrics[0]))
 
-if isinstance(event, fluid.EndEpochEvent):
-avg_cost, acc = trainer.test(
-reader=test_reader, feed_order=['img', 'label'])
+    if isinstance(event, fluid.EndEpochEvent):
+        avg_cost, acc = trainer.test(
+            reader=test_reader, feed_order=['img', 'label'])
 
-print("Test with Epoch %d, avg_cost: %s, acc: %s" % (event.epoch, avg_cost, acc))
+        print("Test with Epoch %d, avg_cost: %s, acc: %s" % (event.epoch, avg_cost, acc))
 
-# save parameters
-trainer.save_params(params_dirname)
-lists.append((event.epoch, avg_cost, acc))
+        # save parameters
+        trainer.save_params(params_dirname)
+        lists.append((event.epoch, avg_cost, acc))
 ```
 
 `event_handler_plot` 可以用来在训练过程中画图如下：
@@ -333,22 +333,22 @@ lists = []
 
 # event_handler to plot a figure
 def event_handler_plot(event):
-global step
-if isinstance(event, fluid.EndStepEvent):
-if step % 100 == 0:
-# event.metrics maps with train program return arguments.
-# event.metrics[0] will yeild avg_cost and event.metrics[1] will yeild acc in this example.
-cost_ploter.append(train_title, step, event.metrics[0])
-cost_ploter.plot()
-step += 1
-if isinstance(event, fluid.EndEpochEvent):
-# save parameters
-trainer.save_params(params_dirname)
+    global step
+    if isinstance(event, fluid.EndStepEvent):
+        if step % 100 == 0:
+            # event.metrics maps with train program return arguments.
+            # event.metrics[0] will yeild avg_cost and event.metrics[1] will yeild acc in this example.
+            cost_ploter.append(train_title, step, event.metrics[0])
+            cost_ploter.plot()
+        step += 1
+    if isinstance(event, fluid.EndEpochEvent):
+        # save parameters
+        trainer.save_params(params_dirname)
 
-avg_cost, acc = trainer.test(
-reader=test_reader, feed_order=['img', 'label'])
-cost_ploter.append(test_title, step, avg_cost)
-lists.append((event.epoch, avg_cost, acc))
+        avg_cost, acc = trainer.test(
+            reader=test_reader, feed_order=['img', 'label'])
+        cost_ploter.append(test_title, step, avg_cost)
+        lists.append((event.epoch, avg_cost, acc))
 ```
 
 #### 开始训练
@@ -359,10 +359,10 @@ lists.append((event.epoch, avg_cost, acc))
 
 ```python
 trainer.train(
-num_epochs=5,
-event_handler=event_handler,
-reader=train_reader,
-feed_order=['img', 'label'])
+    num_epochs=5,
+    event_handler=event_handler,
+    reader=train_reader,
+    feed_order=['img', 'label'])
 ```
 
 训练过程是完全自动的，event_handler里打印的日志类似如下所示：
@@ -395,11 +395,11 @@ Test with Epoch 0, avg_cost: 0.053097883707459624, acc: 0.9822850318471338
 
 ```python
 inferencer = fluid.Inferencer(
-# infer_func=softmax_regression, # uncomment for softmax regression
-# infer_func=multilayer_perceptron, # uncomment for MLP
-infer_func=convolutional_neural_network,  # uncomment for LeNet5
-param_path=params_dirname,
-place=place)
+    # infer_func=softmax_regression, # uncomment for softmax regression
+    # infer_func=multilayer_perceptron, # uncomment for MLP
+    infer_func=convolutional_neural_network,  # uncomment for LeNet5
+    param_path=params_dirname,
+    place=place)
 ```
 
 ### 生成预测输入数据
@@ -412,11 +412,11 @@ import os
 import numpy as np
 from PIL import Image
 def load_image(file):
-im = Image.open(file).convert('L')
-im = im.resize((28, 28), Image.ANTIALIAS)
-im = np.array(im).reshape(1, 1, 28, 28).astype(np.float32)
-im = im / 255.0 * 2.0 - 1.0
-return im
+    im = Image.open(file).convert('L')
+    im = im.resize((28, 28), Image.ANTIALIAS)
+    im = np.array(im).reshape(1, 1, 28, 28).astype(np.float32)
+    im = im / 255.0 * 2.0 - 1.0
+    return im
 
 cur_dir = cur_dir = os.getcwd()
 img = load_image(cur_dir + '/image/infer_3.png')

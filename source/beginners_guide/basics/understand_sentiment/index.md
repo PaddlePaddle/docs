@@ -41,44 +41,44 @@
 图1. 循环神经网络按时间展开的示意图
 </p>
 
-循环神经网络按时间展开后如图1所示：在第$t$时刻，网络读入第$t$个输入$x_t$（向量表示）及前一时刻隐层的状态值$h_{t-1}$（向量表示，$h_0$一般初始化为$0$向量），计算得出本时刻隐层的状态值$h_t$，重复这一步骤直至读完所有输入。如果将循环神经网络所表示的函数记为$f$，则其公式可表示为：
+循环神经网络按时间展开后如图1所示：在第`$t$`时刻，网络读入第`$t$`个输入`$x_t$`（向量表示）及前一时刻隐层的状态值`$h_{t-1}$`（向量表示，`$h_0$`一般初始化为`$0$`向量），计算得出本时刻隐层的状态值`$h_t$`，重复这一步骤直至读完所有输入。如果将循环神经网络所表示的函数记为`$f$`，则其公式可表示为：
 
 $$h_t=f(x_t,h_{t-1})=\sigma(W_{xh}x_t+W_{hh}h_{t-1}+b_h)$$
 
-其中$W_{xh}$是输入到隐层的矩阵参数，$W_{hh}$是隐层到隐层的矩阵参数，$b_h$为隐层的偏置向量（bias）参数，$\sigma$为$sigmoid$函数。
+其中`$W_{xh}$`是输入到隐层的矩阵参数，`$W_{hh}$`是隐层到隐层的矩阵参数，`$b_h$`为隐层的偏置向量（bias）参数，`$\sigma$`为`$sigmoid$`函数。
 
-在处理自然语言时，一般会先将词（one-hot表示）映射为其词向量（word embedding）表示，然后再作为循环神经网络每一时刻的输入$x_t$。此外，可以根据实际需要的不同在循环神经网络的隐层上连接其它层。如，可以把一个循环神经网络的隐层输出连接至下一个循环神经网络的输入构建深层（deep or stacked）循环神经网络，或者提取最后一个时刻的隐层状态作为句子表示进而使用分类模型等等。
+在处理自然语言时，一般会先将词（one-hot表示）映射为其词向量（word embedding）表示，然后再作为循环神经网络每一时刻的输入`$x_t$`。此外，可以根据实际需要的不同在循环神经网络的隐层上连接其它层。如，可以把一个循环神经网络的隐层输出连接至下一个循环神经网络的输入构建深层（deep or stacked）循环神经网络，或者提取最后一个时刻的隐层状态作为句子表示进而使用分类模型等等。
 
 ### 长短期记忆网络（LSTM）
 
 对于较长的序列数据，循环神经网络的训练过程中容易出现梯度消失或爆炸现象\[[6](#参考文献)\]。为了解决这一问题，Hochreiter S, Schmidhuber J. (1997)提出了LSTM(long short term memory\[[5](#参考文献)\])。
 
-相比于简单的循环神经网络，LSTM增加了记忆单元$c$、输入门$i$、遗忘门$f$及输出门$o$。这些门及记忆单元组合起来大大提升了循环神经网络处理长序列数据的能力。若将基于LSTM的循环神经网络表示的函数记为$F$，则其公式为：
+相比于简单的循环神经网络，LSTM增加了记忆单元`$c$`、输入门`$i$`、遗忘门`$f$`及输出门`$o$`。这些门及记忆单元组合起来大大提升了循环神经网络处理长序列数据的能力。若将基于LSTM的循环神经网络表示的函数记为`$F$`，则其公式为：
 
 $$ h_t=F(x_t,h_{t-1})$$
 
-$F$由下列公式组合而成\[[7](#参考文献)\]：
+`$F$`由下列公式组合而成\[[7](#参考文献)\]：
 $$ i_t = \sigma{(W_{xi}x_t+W_{hi}h_{t-1}+W_{ci}c_{t-1}+b_i)} $$
 $$ f_t = \sigma(W_{xf}x_t+W_{hf}h_{t-1}+W_{cf}c_{t-1}+b_f) $$
 $$ c_t = f_t\odot c_{t-1}+i_t\odot tanh(W_{xc}x_t+W_{hc}h_{t-1}+b_c) $$
 $$ o_t = \sigma(W_{xo}x_t+W_{ho}h_{t-1}+W_{co}c_{t}+b_o) $$
 $$ h_t = o_t\odot tanh(c_t) $$
-其中，$i_t, f_t, c_t, o_t$分别表示输入门，遗忘门，记忆单元及输出门的向量值，带角标的$W$及$b$为模型参数，$tanh$为双曲正切函数，$\odot$表示逐元素（elementwise）的乘法操作。输入门控制着新输入进入记忆单元$c$的强度，遗忘门控制着记忆单元维持上一时刻值的强度，输出门控制着输出记忆单元的强度。三种门的计算方式类似，但有着完全不同的参数，它们各自以不同的方式控制着记忆单元$c$，如图2所示：
+其中，`$i_t, f_t, c_t, o_t$`分别表示输入门，遗忘门，记忆单元及输出门的向量值，带角标的`$W$`及`$b$`为模型参数，`$tanh$`为双曲正切函数，`$\odot$`表示逐元素（elementwise）的乘法操作。输入门控制着新输入进入记忆单元`$c$`的强度，遗忘门控制着记忆单元维持上一时刻值的强度，输出门控制着输出记忆单元的强度。三种门的计算方式类似，但有着完全不同的参数，它们各自以不同的方式控制着记忆单元`$c$`，如图2所示：
 
 ![lstm](./image/lstm.png)
 <p align="center">
-图2. 时刻$t$的LSTM [7]
+图2. 时刻`$t$`的LSTM [7]
 </p>
 
 LSTM通过给简单的循环神经网络增加记忆及控制门的方式，增强了其处理远距离依赖问题的能力。类似原理的改进还有Gated Recurrent Unit (GRU)\[[8](#参考文献)\]，其设计更为简洁一些。**这些改进虽然各有不同，但是它们的宏观描述却与简单的循环神经网络一样（如图2所示），即隐状态依据当前输入及前一时刻的隐状态来改变，不断地循环这一过程直至输入处理完毕：**
 
 $$ h_t=Recrurent(x_t,h_{t-1})$$
 
-其中，$Recrurent$可以表示简单的循环神经网络、GRU或LSTM。
+其中，`$Recrurent$`可以表示简单的循环神经网络、GRU或LSTM。
 
 ### 栈式双向LSTM（Stacked Bidirectional LSTM）
 
-对于正常顺序的循环神经网络，$h_t$包含了$t$时刻之前的输入信息，也就是上文信息。同样，为了得到下文信息，我们可以使用反方向（将输入逆序处理）的循环神经网络。结合构建深层循环神经网络的方法（深层神经网络往往能得到更抽象和高级的特征表示），我们可以通过构建更加强有力的基于LSTM的栈式双向循环神经网络\[[9](#参考文献)\]，来对时序数据进行建模。
+对于正常顺序的循环神经网络，`$h_t$`包含了`$t$`时刻之前的输入信息，也就是上文信息。同样，为了得到下文信息，我们可以使用反方向（将输入逆序处理）的循环神经网络。结合构建深层循环神经网络的方法（深层神经网络往往能得到更抽象和高级的特征表示），我们可以通过构建更加强有力的基于LSTM的栈式双向循环神经网络\[[9](#参考文献)\]，来对时序数据进行建模。
 
 如图3所示（以三层为例），奇数层LSTM正向，偶数层LSTM反向，高一层的LSTM使用低一层LSTM及之前所有层的信息作为输入，对最高层LSTM序列使用时间维度上的最大池化即可得到文本的定长向量表示（这一表示充分融合了文本的上下文信息，并且对文本进行了深层次抽象），最后我们将文本表示连接至softmax构建分类模型。
 
@@ -126,23 +126,23 @@ USE_GPU = False
 
 ```python
 def convolution_net(data, input_dim, class_dim, emb_dim, hid_dim):
-emb = fluid.layers.embedding(
-input=data, size=[input_dim, emb_dim], is_sparse=True)
-conv_3 = fluid.nets.sequence_conv_pool(
-input=emb,
-num_filters=hid_dim,
-filter_size=3,
-act="tanh",
-pool_type="sqrt")
-conv_4 = fluid.nets.sequence_conv_pool(
-input=emb,
-num_filters=hid_dim,
-filter_size=4,
-act="tanh",
-pool_type="sqrt")
-prediction = fluid.layers.fc(
-input=[conv_3, conv_4], size=class_dim, act="softmax")
-return prediction
+    emb = fluid.layers.embedding(
+        input=data, size=[input_dim, emb_dim], is_sparse=True)
+    conv_3 = fluid.nets.sequence_conv_pool(
+        input=emb,
+        num_filters=hid_dim,
+        filter_size=3,
+        act="tanh",
+        pool_type="sqrt")
+    conv_4 = fluid.nets.sequence_conv_pool(
+        input=emb,
+        num_filters=hid_dim,
+        filter_size=4,
+        act="tanh",
+        pool_type="sqrt")
+    prediction = fluid.layers.fc(
+        input=[conv_3, conv_4], size=class_dim, act="softmax")
+    return prediction
 ```
 
 网络的输入`input_dim`表示的是词典的大小，`class_dim`表示类别数。这里，我们使用[`sequence_conv_pool`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/trainer_config_helpers/networks.py) API实现了卷积和池化操作。
@@ -154,27 +154,26 @@ return prediction
 ```python
 def stacked_lstm_net(data, input_dim, class_dim, emb_dim, hid_dim, stacked_num):
 
-emb = fluid.layers.embedding(
-input=data, size=[input_dim, emb_dim], is_sparse=True)
+    emb = fluid.layers.embedding(
+        input=data, size=[input_dim, emb_dim], is_sparse=True)
 
-fc1 = fluid.layers.fc(input=emb, size=hid_dim)
-lstm1, cell1 = fluid.layers.dynamic_lstm(input=fc1, size=hid_dim)
+    fc1 = fluid.layers.fc(input=emb, size=hid_dim)
+    lstm1, cell1 = fluid.layers.dynamic_lstm(input=fc1, size=hid_dim)
 
-inputs = [fc1, lstm1]
+    inputs = [fc1, lstm1]
 
-for i in range(2, stacked_num + 1):
-fc = fluid.layers.fc(input=inputs, size=hid_dim)
-lstm, cell = fluid.layers.dynamic_lstm(
-input=fc, size=hid_dim, is_reverse=(i % 2) == 0)
-inputs = [fc, lstm]
+    for i in range(2, stacked_num + 1):
+        fc = fluid.layers.fc(input=inputs, size=hid_dim)
+        lstm, cell = fluid.layers.dynamic_lstm(
+            input=fc, size=hid_dim, is_reverse=(i % 2) == 0)
+        inputs = [fc, lstm]
 
-fc_last = fluid.layers.sequence_pool(input=inputs[0], pool_type='max')
-lstm_last = fluid.layers.sequence_pool(input=inputs[1], pool_type='max')
+    fc_last = fluid.layers.sequence_pool(input=inputs[0], pool_type='max')
+    lstm_last = fluid.layers.sequence_pool(input=inputs[1], pool_type='max')
 
-prediction = fluid.layers.fc(input=[fc_last, lstm_last],
-size=class_dim,
-act='softmax')
-return prediction
+    prediction = fluid.layers.fc(
+        input=[fc_last, lstm_last], size=class_dim, act='softmax')
+    return prediction
 ```
 以上的栈式双向LSTM抽象出了高级特征并把其映射到和分类类别数同样大小的向量上。`paddle.activation.Softmax`函数用来计算分类属于某个类别的概率。
 
@@ -184,12 +183,13 @@ return prediction
 
 ```python
 def inference_program(word_dict):
-data = fluid.layers.data(
-name="words", shape=[1], dtype="int64", lod_level=1)
+    data = fluid.layers.data(
+        name="words", shape=[1], dtype="int64", lod_level=1)
 
-dict_dim = len(word_dict)
-net = convolution_net(data, dict_dim, CLASS_DIM, EMB_DIM, HID_DIM)
-return net
+    dict_dim = len(word_dict)
+    net = convolution_net(data, dict_dim, CLASS_DIM, EMB_DIM, HID_DIM)
+    # net = stacked_lstm_net(data, dict_dim, CLASS_DIM, EMB_DIM, HID_DIM, STACKED_NUM)
+    return net
 ```
 
 我们这里定义了`training_program`。它使用了从`inference_program`返回的结果来计算误差。我们同时定义了优化函数`optimizer_func`。
@@ -200,16 +200,16 @@ return net
 
 ```python
 def train_program(word_dict):
-prediction = inference_program(word_dict)
-label = fluid.layers.data(name="label", shape=[1], dtype="int64")
-cost = fluid.layers.cross_entropy(input=prediction, label=label)
-avg_cost = fluid.layers.mean(cost)
-accuracy = fluid.layers.accuracy(input=prediction, label=label)
-return [avg_cost, accuracy]
+    prediction = inference_program(word_dict)
+    label = fluid.layers.data(name="label", shape=[1], dtype="int64")
+    cost = fluid.layers.cross_entropy(input=prediction, label=label)
+    avg_cost = fluid.layers.mean(cost)
+    accuracy = fluid.layers.accuracy(input=prediction, label=label)
+    return [avg_cost, accuracy]
 
 
 def optimizer_func():
-return fluid.optimizer.Adagrad(learning_rate=0.002)
+    return fluid.optimizer.Adagrad(learning_rate=0.002)
 ```
 
 ## 训练模型
@@ -236,9 +236,9 @@ word_dict = paddle.dataset.imdb.word_dict()
 
 print ("Reading training data....")
 train_reader = paddle.batch(
-paddle.reader.shuffle(
-paddle.dataset.imdb.train(word_dict), buf_size=25000),
-batch_size=BATCH_SIZE)
+    paddle.reader.shuffle(
+        paddle.dataset.imdb.train(word_dict), buf_size=25000),
+    batch_size=BATCH_SIZE)
 ```
 
 ### 构造训练器(trainer)
@@ -246,9 +246,9 @@ batch_size=BATCH_SIZE)
 
 ```python
 trainer = fluid.Trainer(
-train_func=partial(train_program, word_dict),
-place=place,
-optimizer_func=optimizer_func)
+    train_func=partial(train_program, word_dict),
+    place=place,
+    optimizer_func=optimizer_func)
 ```
 
 ### 提供数据
@@ -268,13 +268,13 @@ feed_order = ['words', 'label']
 params_dirname = "understand_sentiment_conv.inference.model"
 
 def event_handler(event):
-if isinstance(event, fluid.EndStepEvent):
-print("Step {0}, Epoch {1} Metrics {2}".format(
-event.step, event.epoch, map(np.array, event.metrics)))
+    if isinstance(event, fluid.EndStepEvent):
+        print("Step {0}, Epoch {1} Metrics {2}".format(
+                event.step, event.epoch, map(np.array, event.metrics)))
 
-if event.step == 10:
-trainer.save_params(params_dirname)
-trainer.stop()
+        if event.step == 10:
+            trainer.save_params(params_dirname)
+            trainer.stop()
 ```
 
 ### 开始训练
@@ -283,10 +283,10 @@ trainer.stop()
 
 ```python
 trainer.train(
-num_epochs=1,
-event_handler=event_handler,
-reader=train_reader,
-feed_order=feed_order)
+    num_epochs=1,
+    event_handler=event_handler,
+    reader=train_reader,
+    feed_order=feed_order)
 ```
 
 ## 应用模型
@@ -297,7 +297,7 @@ feed_order=feed_order)
 
 ```python
 inferencer = fluid.Inferencer(
-inference_program, param_path=params_dirname, place=place)
+        infer_func=partial(inference_program, word_dict), param_path=params_dirname, place=place)
 ```
 
 ### 生成测试用输入数据
@@ -307,14 +307,14 @@ inference_program, param_path=params_dirname, place=place)
 
 ```python
 reviews_str = [
-'read the book forget the movie', 'this is a great movie', 'this is very bad'
+    'read the book forget the movie', 'this is a great movie', 'this is very bad'
 ]
 reviews = [c.split() for c in reviews_str]
 
 UNK = word_dict['<unk>']
 lod = []
 for c in reviews:
-lod.append([word_dict.get(words, UNK) for words in c])
+    lod.append([word_dict.get(words, UNK) for words in c])
 
 base_shape = [[len(c) for c in lod]]
 
@@ -329,7 +329,7 @@ tensor_words = fluid.create_lod_tensor(lod, base_shape, place)
 results = inferencer.infer({'words': tensor_words})
 
 for i, r in enumerate(results[0]):
-print("Predict probability of ", r[0], " to be positive and ", r[1], " to be negative for review \'", reviews_str[i], "\'")
+    print("Predict probability of ", r[0], " to be positive and ", r[1], " to be negative for review \'", reviews_str[i], "\'")
 
 ```
 
