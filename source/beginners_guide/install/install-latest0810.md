@@ -642,7 +642,7 @@
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。   
 
 
-<!--TODO add the following back when support gpu version on Cent> 请注意，要安装和使用支持 GPU 的PaddlePaddle版本，您必须先安装[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)-->
+<!--TODO add the following back when support gpu version on Cent-->
 
 当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**啦：
 
