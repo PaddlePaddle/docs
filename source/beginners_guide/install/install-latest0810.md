@@ -11,6 +11,7 @@
 
 * Ubuntu下安装PaddlePaddle
 * CentOS下安装PaddlePaddle
+* MacOS下安装PaddlePaddle
 
 ***
 ### **Ubuntu下安装PaddlePaddle**
@@ -56,6 +57,12 @@
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。
 
+
+
+> 请注意，要安装和使用支持 GPU 的PaddlePaddle版本，您必须先安装[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+
+
+
 如果已经**正确安装Docker**，即可以开始**使用Docker安装PaddlePaddle**
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
@@ -74,7 +81,7 @@
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
 		`docker pull paddlepaddle/paddle:[tag]`
-		> （请把[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
+		> （请把[tag]替换为[镜像表](#dockers)中的内容）
 		
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
@@ -143,7 +150,7 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[常见问题表]()<!--TODO: Link 常见问题表到这里-->
+	如果遇到其他问题请参见[常见问题表](#F&Q)<!--TODO: Link 常见问题表到这里-->
 
 现在您已经完成使用`pip install` 来安装的PaddlePaddle的过程。
 
@@ -201,6 +208,11 @@
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
+
+> 请注意，要安装和使用支持 GPU 的PaddlePaddle版本，您必须先安装[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+
+
+
 当您已经**正确安装Docker**后你就可以开始**使用Docker安装PaddlePaddle**
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
@@ -219,12 +231,12 @@
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
 		`docker pull paddlepaddle/paddle:[tag]`
-		> （请把[tag]替换为[镜像表](https://hub.docker.com/r/paddlepaddle/paddle_manylinux_devel/tags/)中的内容）
+		> （请把[tag]替换为[镜像表](#dockers)中的内容）
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 	
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称，/bin/bash是在Docker中要执行的命令。  
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称，/bin/bash是在Docker中要执行的命令。  
 
 3. 在Docker中 使用如下命令使用PaddlePaddle：
 
@@ -255,7 +267,7 @@
 
 *	Python2.7.x (devel)   
 	
-	> CentOS6需要编译Python成[共享库](https://blog.csdn.net/huzhenwei/article/details/7339548)。
+	> CentOS6需要编译Python2.7成[共享库](#F&Q)。
 *	Pip >= 9.0.1
 	> 您的CentOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
 
@@ -287,7 +299,7 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[常见问题表]()<!--TODO：Link 常见问题表到这里-->。
+	如果遇到其他问题请参见[常见问题表](#F&Q)<!--TODO：Link 常见问题表到这里-->。
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
 
@@ -304,9 +316,112 @@
 
 * ***GPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle-gpu`
 
+
+
+
+<br/><br/>
+### **MacOS下安装PaddlePaddle**
+
+本说明将介绍如何在MacOS下安装PaddlePaddle，我们支持的MacOS系统需满足以下要求。
+
+请注意：在其他系统上的尝试可能会导致安装失败。
+
+* *64位台式机或笔记本电脑*
+* *MacOS 10.13.6*
+
+#### 确定要安装的PaddlePaddle版本
+
+* 仅支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
+也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+
+
+
+#### 选择如何安装PaddlePaddle
+在MacOS的系统下我们提供3种不同的安装方式：
+
+* Docker安装
+* 源码编译安装
+* Docker源码编译安装
+
+
+我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
+
+从**源码编译安装**，在MacOS下由于源码编译安装过于复杂因此我们提供了[一键编译包]()供您使用, 而使用docker进行源码编译的过程将在文档的最后为您展示。
+
+
+
+<br/><br/>
+##### ***使用Docker进行安装***
+
+我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
+
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。
+> 请注意，在MacOS系统下登陆docker需要使用您的dockerID进行登录，否则将出现`Authenticate Failed`错误。
+
+如果已经**正确安装Docker**，即可以开始**使用Docker安装PaddlePaddle**
+
+1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
+
+
+	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
+
+		`docker pull paddlepaddle/paddle:latest`
+		
+
+	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像：
+
+		`docker pull paddlepaddle/paddle:latest-gpu`
+		
+
+	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
+
+		`docker pull paddlepaddle/paddle:[tag]`
+		> （请把[tag]替换为[镜像表](#dockers)中的内容）
+		
+2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
+
+	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
+
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称；/bin/bash是在Docker中要执行的命令。
+
+3. 在Docker中 使用如下命令使用PaddlePaddle：
+
+	`docker start [Name of container]`
+	> 启动之前创建的容器。
+
+	`docker attach [Name of container]`
+	> 进入启动的容器。
+
+4. 在Docker中 使用如下命令安装numpy 1.14.0：
+	
+	`pip install numpy==1.14.0`
+	
+至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
+
+> 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
+<!--TODO: When we support pip install mode on MacOS, we can write on this part -->
+
+
+
+<br/><br/>
+##### ***验证安装***
+安装完成后您可以使用：`python` 进入python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
+
+<br/><br/>
+##### ***如何卸载PaddlePaddle***
+请使用以下命令卸载PaddlePaddle：
+
+* ***CPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle`
+
+* ***GPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle-gpu`
+
+
+
+
+
 <br/><br/>
 ## **从源码编译PaddlePaddle**
-我们也为您提供了从源码编译的方式，但不推荐您使用这种方式，这是因为您的本机环境多种多样，在编译源码时易出现复杂的问题而造成安装失败。
+我们也为您提供了从源码编译的方式，但不推荐您使用这种方式，这是因为您的本机环境多种多样，在编译源码时易出现复杂的本说明中覆盖以外问题而造成安装失败。
       
 ***       
 ### **Ubuntu下从源码编译PaddlePaddle**
@@ -338,6 +453,11 @@
 ##### ***使用Docker进行编译***
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
+
+> 请注意，要安装和使用支持 GPU 的PaddlePaddle版本，您必须先安装[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+
+
+
 当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**：
 
 1. 请首先选择您希望储存PaddlePaddle的路径，然后在该路径下使用以下命令将PaddlePaddle的源码从github克隆到本地当前目录下名为Paddle的文件夹中：
@@ -349,7 +469,7 @@
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
 	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
-	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的绝对路径），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
@@ -373,7 +493,7 @@
 	> 安装patchelf，PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables。
 
 8. 执行cmake：
-	>具体编译选项含义请参见[编译选项表]()<!--TODO: Link 编译选项表到这里-->
+	>具体编译选项含义请参见[编译选项表](#Compile)<!--TODO: Link 编译选项表到这里-->
 
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -429,9 +549,9 @@
 3. 进入虚环境：`workon paddle-venv`         
 
 
-4. **执行编译前**请您确认在虚环境中安装有[安装依赖表]()中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
+4. **执行编译前**请您确认在虚环境中安装有[编译依赖表](#third_party)中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
 
-	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`apt install`或者`pip install` 后跟依赖名称和版本安装
+	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`apt install`或者`pip install` 后跟依赖名称和版本安装:
 
 		`apt install patchelf`
 		> 不能使用apt安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
@@ -451,7 +571,7 @@
 	`mkdir build && cd build`
 
 8. 执行cmake：
-	>具体编译选项含义请参见[编译选项表]()<!--TODO：Link 安装选项表到这里-->
+	>具体编译选项含义请参见[编译选项表](#Compile)<!--TODO：Link 安装选项表到这里-->
 
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -508,18 +628,21 @@
 	* *GPU运算能力超过1.0的硬件设备*-->
 
 #### 选择如何编译PaddlePaddle
-在CentOS 7的系统下我们提供1种的编译方式：
+在CentOS 7的系统下我们提供2种的编译方式：
 
-<!--* 直接本机源码编译-->
+* 直接本机源码编译
 * Docker源码编译
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
 
-<!--同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统-->
+同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统
 <br/><br/>
 ##### ***使用Docker进行编译***
 
-为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。   
+
+
+<!--TODO add the following back when support gpu version on Cent> 请注意，要安装和使用支持 GPU 的PaddlePaddle版本，您必须先安装[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)-->
 
 当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**啦：
 
@@ -532,7 +655,7 @@
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
 	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
-	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的绝对路径），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
@@ -556,7 +679,199 @@
 	> 安装patchelf，PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables。
 
 8. 执行cmake：
-	>具体编译选项含义请参见[编译选项表]()<!--TODO： Link 编译选项表到这里-->
+	>具体编译选项含义请参见[编译选项表](#Compile)<!--TODO： Link 编译选项表到这里-->
+
+
+	*  对于需要编译**CPU版本PaddlePaddle**的用户：
+
+		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`
+		> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
+
+<!--	* 对于需要编译***GPU版本PaddlePaddle***的用户：
+
+		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF`-->
+
+9. 执行编译：
+
+	`make -j$(nproc)`
+	> 使用多核编译
+
+10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
+
+11. 在当前机器或目标机器安装编译好的`.whl`包：
+
+	`pip install （whl包的名字）`
+
+至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
+
+> 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
+
+恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。
+
+
+<br/><br/>
+##### ***本机编译***
+
+1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
+
+2. 更新`yum`的源： `yum update`, 并添加必要的yum源：`yum -y install epel-release`
+
+3. 安装必要的工具`bzip2`以及`make`： `yum -y install bzip2` ， `yum -y install make`
+
+2. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
+
+	* 安装Python-dev: `yum install python-devel`
+
+	* 安装pip: `yum install python-pip`
+
+	* 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
+
+		1.  `pip install virtualenv` 或 `pip install virtualenv`
+		2.  `pip install virtualenvwrapper` 或 `pip install virtualenvwrapper`
+		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`
+		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat vitualenvwrapper.sh`
+		5.  安装`virtualwrapper`
+		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
+
+
+3. 进入虚环境：`workon paddle-venv`         
+
+
+4. **执行编译前**请您确认在虚环境中安装有[编译依赖表](#third_party)中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
+
+	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install` 后跟依赖名称和版本安装:
+
+		`yum install patchelf`
+		> 不能使用apt安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
+
+5. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
+
+	- `git clone https://github.com/PaddlePaddle/Paddle.git`
+
+	- `cd Paddle`
+
+6. 切换到较稳定release分支下进行编译：
+
+	`git checkout release/0.14.0`
+
+7. 并且请创建并进入一个叫build的目录下：
+
+	`mkdir build && cd build`
+
+8. 执行cmake：
+	>具体编译选项含义请参见[编译选项表](#Compile)<!--TODO：Link 安装选项表到这里-->
+
+
+	*  对于需要编译**CPU版本PaddlePaddle**的用户：
+
+		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`.
+	
+	<!--Add CentOS7 GPU compile instruction here when we support it-->
+
+9. 使用以下命令来编译：
+
+	`make -j$(nproc)`
+
+10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
+
+11. 在当前机器或目标机器安装编译好的`.whl`包：
+
+	`pip install （whl包的名字）`
+
+恭喜您，现在您已经完成使本机编译PaddlePaddle的过程了。
+
+
+
+<br/><br/>
+##### ***验证安装***
+安装完成后您可以使用：`python` 进入Python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
+
+<br/><br/>
+##### ***如何卸载PaddlePaddle***
+请使用以下命令卸载PaddlePaddle：
+
+* ***CPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle`
+
+
+
+
+<br/><br/>
+### **MacOS下从源码编译PaddlePaddle**
+
+本说明将介绍如何在MacOS下编译PaddlePaddle，我们支持的MacOS系统需满足以下要求：
+
+* 64位台式机或笔记本电脑
+* MacOS 10.13.6（这涉及到相关工具是否能被正常安装）
+
+#### 确定要编译的PaddlePaddle版本
+* **仅支持CPU的PaddlePaddle**，如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU， 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+
+<!--* 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+	* *Cuda 工具包9.0配合cuDNN v7*
+	* *Cuda 工具包8.0配合cuDNN v7*
+	* *GPU运算能力超过1.0的硬件设备*-->
+
+#### 选择如何编译PaddlePaddle
+在MacOS 10.13.6的系统下我们提供2种的编译方式：
+
+<!--* 直接本机源码编译-->
+* Docker源码编译
+* 本机一键编译包
+
+
+
+我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
+
+对于那些出于各种原因不能够安装Docker的用户我们也提供了可以使用我们提供的[本机一键编译包]()<!--上传一键编译包之后请link到目标页面-->
+
+
+
+
+<br/><br/>
+##### ***使用Docker进行编译***
+
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。
+> 请注意，在MacOS系统下登陆docker需要使用您的dockerID进行登录，否则将出现`Authenticate Failed`错误。       
+
+
+当您已经**正确安装Docker**后你就可以开始**使用Docker编译PaddlePaddle**啦：
+
+1. 进入Mac的终端
+
+1. 请选择您希望储存PaddlePaddle的路径，然后在该路径下使用以下命令将PaddlePaddle的源码从github克隆到本地当前目录下名为Paddle的文件夹中：
+
+	`git clone https://github.com/PaddlePaddle/Paddle.git`
+
+2. 进入Paddle目录下： `cd Paddle`
+
+3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
+
+	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+
+4. 进入Docker后进入paddle目录下：`cd paddle`
+
+5. 切换到较稳定release分支下进行编译：
+
+	`git checkout release/0.14.0`
+
+6. 创建并进入/paddle/build路径下：
+
+	`mkdir -p /paddle/build && cd /paddle/build`
+
+7. 使用以下命令安装相关依赖：
+
+	`pip install numpy==1.14.0`
+	> 安装numpy 1.14.0，由于目前numpy1.15.0会引起大量warning，因此在numpy修复该问题前我们先使用numpy 1.14.0。
+
+	`pip install protobuf==3.1.0`
+	> 安装protobuf 3.1.0。
+
+	`apt install patchelf`
+	> 安装patchelf，PatchELF is a small utility to modify the dynamic linker and RPATH of ELF executables。
+
+8. 执行cmake：
+	>具体编译选项含义请参见[编译选项表](#Compile)<!--TODO： Link 编译选项表到这里-->
 
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -586,6 +901,18 @@
 恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。
 
 <br/><br/>
+##### ***使用一键编译包进行编译***
+
+1. 请在下载一键编译[脚本](https://baike.baidu.com/item/脚本/1697005)后将安装脚本置于您希望储存PaddlePaddle源码的路径下，并保证所有脚本文件在同一个目录下。
+2. 请在命令行内进入您储存脚本的目录下使用以下指令启动一件编译脚本： `./01_start_check_OS.sh`      
+	
+	> 一键编译包包含两个脚本，第一个脚本用来检查您的本机环境然后会自动启动第二个脚本进行编译安装
+
+由于我们使用homebrew安装一些必要的第三方依赖，因此需要您禁用MacOS的系统完整性保护SIP（System Integrity Protection）系统一边homebrew为您正确安装相关的依赖，请在重启电脑后出现Apple标志之前使用Command + R指令进入**在线恢复模式**，然后选择关掉SIP。
+
+
+
+<br/><br/>
 ##### ***验证安装***
 安装完成后您可以使用：`python` 进入Python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
 
@@ -595,8 +922,24 @@
 
 * ***CPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle`
 
-* ***GPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle-gpu`
 
+
+
+<span id="F&Q"></span>
+</br></br>
+## **F & Q**
+1. CentOS6下如何编译python2.7为共享库? 
+	
+	> 使用以下指令：
+	
+		./configure --prefix=/usr/local/python2.7 --enable-shared   
+		make && make install   
+
+<!--TODO please add more F&Q parts here-->
+		
+
+
+<span id="third_party"></span>
 </br></br>
 ### 附录：
 
@@ -617,9 +960,14 @@
 | patchELF | any                 |    N/A                 | `apt install patchelf` 或参见github [patchelf官方教程](https://gist.github.com/ruario/80fefd174b3395d34c14) |
 | go       | >=1.8               |  可选                   | |
 
+
+
+
 ***
+<span id="Compile"></span>
 </br></br>
 ## **编译选项表**
+
 | 选项             | 说明                                               |  默认值        |
 | :--              | :-----                                            |:------:        |
 | WITH_GPU         | 是否支持GPU	                                     |ON
@@ -634,6 +982,11 @@
 | WITH_SWIG_PY	  | 是否编译PYTHON的SWIG接口，该接口可用于预测和定制化训练  |Auto
 | WITH_GOLANG	      | 是否编译go语言的可容错parameter server             |OFF
 | WITH_MKL         |	是否使用MKL数学库，如果为否则是用OpenBLAS          |ON
+
+
+
+
+
 
 **BLAS**
 
@@ -657,8 +1010,9 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 
 ***
+<span id="whls"></span>
 </br></br>
-## **安装包列表**
+## **安装包列表**   
 | 版本号             | 版本说明                                       |
 | :--               | :-----                                        |
 |paddlepaddle-gpu==0.14.0       |	使用CUDA 9.0和cuDNN 7编译的0.14.0版本|
@@ -670,4 +1024,20 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 |paddlepaddle-gpu==0.11.0.post8.|	使用CUDA 8.0和cuDNN 5编译的0.11.0版本|
 |paddlepaddle-gpu==0.11.0.      |	使用CUDA 7.5和cuDNN 5编译的0.11.0版本|
 
+
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
+
+***
+<span id="dockers"></span>
+</br></br>
+## **安装镜像表及简介**   
+| 版本号             | 版本说明                                       |
+| :--               | :-----                                        |
+|paddlepaddle/paddle:latest       |	最新的预先安装好PaddlePaddle CPU版本的镜像|
+|paddlepaddle/paddle:latest-dev |最新的	PaddlePaddle的开发环境|
+|paddlepaddle/paddle:[Version]|	将version换成具体的版本，历史版本的预安装好PaddlePaddle的镜像|
+|paddlepaddle/paddle:latest-gpu.      |	最新的预先安装好PaddlePaddle GPU版本的镜像|
+
+
+
+您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
