@@ -93,7 +93,7 @@
 
 	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称；/bin/bash是在Docker中要执行的命令。
 
-3. 在Docker中 使用如下命令使用PaddlePaddle：
+3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
 	`docker start [Name of container]`
 	> 启动之前创建的容器。
@@ -101,7 +101,7 @@
 	`docker attach [Name of container]`
 	> 进入启动的容器。
 
-4. 在Docker中 使用如下命令安装numpy 1.14.0：
+4. （可选：当您镜像中的numpy版本不匹配）在Docker中 使用如下命令安装numpy 1.14.0：
 	
 	`pip install numpy==1.14.0`
 	
@@ -246,7 +246,7 @@
 	
 	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称，/bin/bash是在Docker中要执行的命令。  
 
-3. 在Docker中 使用如下命令使用PaddlePaddle：
+3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
 	`docker start [Name of container]`
 	> 启动之前创建的容器。
@@ -254,7 +254,7 @@
 	`docker attach [Name of container]`
 	> 进入启动的容器。
 
-4. 在Docker中 使用如下命令安装numpy 1.14.0：
+4. （可选：当您镜像中的numpy版本不匹配）在Docker中 使用如下命令安装numpy 1.14.0：
 	
 	`pip install numpy==1.14.0`
 	
