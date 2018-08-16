@@ -908,7 +908,7 @@
 	
 	> 一键编译包包含两个脚本，第一个脚本用来检查您的本机环境然后会自动启动第二个脚本进行编译安装
 
-由于我们使用homebrew安装一些必要的第三方依赖，因此需要您禁用MacOS的系统完整性保护SIP（System Integrity Protection）系统一边homebrew为您正确安装相关的依赖，请在重启电脑后出现Apple标志之前使用Command + R指令进入**在线恢复模式**，然后选择关掉SIP。
+由于我们使用homebrew安装一些必要的第三方依赖，因此需要您禁用MacOS的系统完整性保护SIP（System Integrity Protection）系统一边homebrew为您正确安装相关的依赖，请在重启电脑后出现Apple标志之前使用Command + R指令进入**在线恢复模式**，然后选择关掉SIP。具体操作详见[百度经验](https://jingyan.baidu.com/article/9c69d48ff88b3813c9024e9d.html)
 
 
 
@@ -936,8 +936,12 @@
 		make && make install   
 
 <!--TODO please add more F&Q parts here-->
-		
 
+2. Ubuntu18.04下初夏libidn11找不到？
+	
+	> 使用以下指令：
+	
+		apt install libidn11   
 
 <span id="third_party"></span>
 </br></br>
