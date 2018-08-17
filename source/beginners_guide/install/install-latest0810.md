@@ -139,7 +139,7 @@
 
 	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*) `pip install paddlepaddle-gpu`
 	> 1. 为防止出现nccl.h找不到的问题请首先按照一下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
-		a. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+		a. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`             
 		b. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0`
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。
 
@@ -600,7 +600,7 @@
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
 		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
-			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`            
 			ii. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0` 
 		
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
