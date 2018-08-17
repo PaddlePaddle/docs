@@ -138,7 +138,9 @@
 	
 
 	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*) `pip install paddlepaddle-gpu`
-	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2。  			
+	> 1. 为防止出现nccl.h找不到的问题请首先按照一下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
+		a. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+		b. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0`
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。
 
 
@@ -292,7 +294,7 @@
 
 
 	* 对于需要**GPU版本PaddlePaddle**的用户: `pip install paddlepaddle-gpu`
-	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方文档](https://developer.nvidia.com/nccl/nccl-download)安装nccl2。 
+	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download)的指示正确安装nccl2
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。 
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
@@ -597,7 +599,10 @@
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
-		1. 请确保您已经从[nvidia官网](https://developer.nvidia.com/nccl)下载对应版本的`nccl2`并按照官网流程安装。
+		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
+			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			ii. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0` 
+		
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF`
@@ -987,22 +992,92 @@
 
 ## **编译依赖表**
 
-| 依赖包名称 | 版本.               | 说明                    |  安装命令  |
-| :--      | :-----:             |:------                 |:----:|
-| CMake    | 3.4                 |                        | |
-| GCC      | 4.8/5.4	         |推荐使用CentOS的devtools2 | |
-| Python   | 2.7.x.              | 依赖libpython2.7.so     | |
-| SWIG     | 最低 2.0              |    N/A                 | `apt install swig` 或 `yum install swig`|
-| wget     | any                 |    N/A                 | `apt install wget` 或 `yum install wget` |
-| openblas | any                 |    N/A                 | |
-| pip      | 最低9.0.1             |    N/A                 | `apt install python-pip` 或 `yum install Python-pip` |
-| numpy    | 最低1.12.0，最高1.14.0 |    N/A                 | `pip install numpy==1.14.0` |
-| protobuf | 3.1.0               |    N/A                 | `pip install protobuf==3.1.0`|
-| wheel    | any                 |    N/A                 | `pip install wheel`|
-| patchELF | any                 |    N/A                 | `apt install patchelf` 或参见github [patchelf官方教程](https://gist.github.com/ruario/80fefd174b3395d34c14) |
-| go       | >=1.8               |  可选                   | |
-
-
+<p align="center">
+<table>
+	<thead>
+	<tr>
+		<th> 依赖包名称 </th>
+		<th> 版本 </th>
+		<th> 说明 </th>
+		<th> 安装命令 </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td> CMake </td>
+		<td> 3.4 </td>
+		<td>  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> GCC </td>
+		<td> 4.8 / 5.4 </td>
+		<td>  推荐使用CentOS的devtools2 </td>
+		<td>  </td>
+	</tr>
+		<tr>
+		<td> Python </td>
+		<td> 2.7.x. </td>
+		<td> 依赖libpython2.7.so </td>
+		<td> <code> apt install python-dev </code> 或 <code> yum install python-devel </code></td>
+	</tr>
+	<tr>
+		<td> SWIG </td>
+		<td> 最低 2.0 </td>
+		<td>  </td>
+		<td> <code>apt install swig </code> 或 <code> yum install swig </code> </td>
+	</tr>
+	<tr>
+		<td> wget </td>
+		<td> any </td>
+		<td>  </td>
+		<td> <code> apt install wget </code>  或 <code> yum install wget </code> </td>
+	</tr>
+	<tr>
+		<td> openblas </td>
+		<td> any </td>
+		<td>  </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> pip </td>
+		<td> 最低9.0.1 </td>
+		<td>  </td>
+		<td> <code> apt install python-pip </code> 或 <code> yum install Python-pip </code> </td>
+	</tr>
+	<tr>
+		<td> numpy </td>
+		<td> 最低1.12.0，最高1.14.0 </td>
+		<td>  </td>
+		<td> <code> pip install numpy==1.14.0 </code> </td>
+	</tr>
+	<tr>
+		<td> protobuf </td>
+		<td> 3.1.0 </td>
+		<td>  </td>
+		<td> <code> pip install protobuf==3.1.0 </code> </td>
+	</tr>
+	<tr>
+		<td> wheel </td>
+		<td> any </td>
+		<td>  </td>
+		<td> <code> pip install wheel </code> </td>
+	</tr>
+	<tr>
+		<td> patchELF </td>
+		<td> any </td>
+		<td>  </td>
+		<td> <code> apt install patchelf </code> 或参见github <a href="https://gist.github.com/ruario/80fefd174b3395d34c14">patchELF 官方文档</a></td>
+	</tr>
+	<tr>
+		<td> go </td>
+		<td> >=1.8 </td>
+		<td> 可选 </td>
+		<td>  </td>
+	</tr>
+	</tbody>
+</table>
+</p>
 
 
 ***
@@ -1010,21 +1085,78 @@
 </br></br>
 ## **编译选项表**
 
-| 选项             | 说明                                               |  默认值        |
-| :--              | :-----                                            |:------:        |
-| WITH_GPU         | 是否支持GPU	                                     |ON
-| WITH_C_API       |	是否仅编译CAPI                                   |OFF
-| WITH_DOUBLE	      | 是否使用双精度浮点数                                | OFF
-| WITH_DSO         | 是否运行时动态加载CUDA动态库，而非静态加载CUDA动态库。   | ON
-| WITH_AVX	      |是否编译含有AVX指令集的PaddlePaddle二进制文件.         |ON
-| WITH_PYTHON	      |是否内嵌PYTHON解释器	                              |ON
-| WITH_STYLE_CHECK |	是否编译时进行代码风格检查                         |ON
-| WITH_TESTING     | 	是否开启单元测试	                              |OFF
-| WITH_DOC	      |是否编译中英文文档	                                 |OFF
-| WITH_SWIG_PY	  | 是否编译PYTHON的SWIG接口，该接口可用于预测和定制化训练  |Auto
-| WITH_GOLANG	      | 是否编译go语言的可容错parameter server             |OFF
-| WITH_MKL         |	是否使用MKL数学库，如果为否则是用OpenBLAS          |ON
-
+<p align="center">
+<table>
+	<thead>
+	<tr>
+		<th> 选项 </th>
+		<th> 说明 </th>
+		<th> 默认值 </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td> WITH_GPU </td>
+		<td> 是否支持GPU </td>
+		<td> ON </td>
+	</tr>
+	<tr>
+		<td> WITH_C_API </td>
+		<td> 是否仅编译CAPI </td>
+		<td>  OFF </td>
+	</tr>
+		<tr>
+		<td> WITH_DOUBLE </td>
+		<td> 是否使用双精度浮点数 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_DSO </td>
+		<td> 是否运行时动态加载CUDA动态库，而非静态加载CUDA动态库 </td>
+		<td> ON </td>
+	</tr>
+	<tr>
+		<td> WITH_AVX </td>
+		<td> 是否编译含有AVX指令集的PaddlePaddle二进制文件 </td>
+		<td> ON </td>
+	</tr>
+	<tr>
+		<td> WITH_PYTHON </td>
+		<td> 是否内嵌PYTHON解释器 </td>
+		<td> ON </td>
+	</tr>
+	<tr>
+		<td> WITH_STYLE_CHECK </td>
+		<td> 是否编译时进行代码风格检查 </td>
+		<td> ON </td>
+	</tr>
+	<tr>
+		<td> WITH_TESTING </td>
+		<td> 是否开启单元测试 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_DOC </td>
+		<td> 是否编译中英文文档 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_SWIG_PY </td>
+		<td> 是否编译PYTHON的SWIG接口，该接口可用于预测和定制化训练 </td>
+		<td> Auto </td>
+	<tr>
+		<td> WITH_GOLANG </td>
+		<td> 是否编译go语言的可容错parameter server </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_MKL </td>
+		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
+		<td> ON </td>
+	</tr>
+   </tbody>
+</table>
+</p>
 
 
 
@@ -1055,16 +1187,51 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 <span id="whls"></span>
 </br></br>
 ## **安装包列表**   
-| 版本号             | 版本说明                                       |
-| :--               | :-----                                        |
-|paddlepaddle-gpu==0.14.0       |	使用CUDA 9.0和cuDNN 7编译的0.14.0版本|
-|paddlepaddle-gpu==0.14.0.post87|	使用CUDA 8.0和cuDNN 7编译的0.14.0版本|
-|paddlepaddle-gpu==0.14.0.post85|	使用CUDA 8.0和cuDNN 5编译的0.14.0版本|
-|paddlepaddle-gpu==0.13.0.      |	使用CUDA 9.0和cuDNN 7编译的0.13.0版本|
-|paddlepaddle-gpu==0.12.0.      |	使用CUDA 8.0和cuDNN 5编译的0.12.0版本|
-|paddlepaddle-gpu==0.11.0.post87|	使用CUDA 8.0和cuDNN 7编译的0.11.0版本|
-|paddlepaddle-gpu==0.11.0.post8.|	使用CUDA 8.0和cuDNN 5编译的0.11.0版本|
-|paddlepaddle-gpu==0.11.0.      |	使用CUDA 7.5和cuDNN 5编译的0.11.0版本|
+
+<p align="center">
+<table>
+	<thead>
+	<tr>
+		<th> 版本号 </th>
+		<th> 版本说明 </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td> paddlepaddle-gpu==0.14.0 </td>
+		<td> 使用CUDA 9.0和cuDNN 7编译的0.14.0版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==0.14.0.post87 </td>
+		<td> 使用CUDA 8.0和cuDNN 7编译的0.14.0版本 </td>
+	</tr>
+		<tr>
+		<td> paddlepaddle-gpu==0.14.0.post85 </td>
+		<td> 使用CUDA 8.0和cuDNN 5编译的0.14.0版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==0.13.0 </td>
+		<td> 使用CUDA 9.0和cuDNN 7编译的0.13.0版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==0.12.0 </td>
+		<td> 使用CUDA 8.0和cuDNN 5编译的0.12.0版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==0.11.0.post87 </td>
+		<td> 使用CUDA 8.0和cuDNN 7编译的0.11.0版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==0.11.0.post85 </td>
+		<td> 使用CUDA 8.0和cuDNN 5编译的0.11.0版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==0.11.0 </td>
+		<td> 使用CUDA 7.5和cuDNN 5编译的0.11.0版本 </td>
+	</tr>
+   </tbody>
+</table>
+</p>
 
 
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
@@ -1073,13 +1240,34 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 <span id="dockers"></span>
 </br></br>
 ## **安装镜像表及简介**   
-| 版本号             | 版本说明                                       |
-| :--               | :-----                                        |
-|paddlepaddle/paddle:latest       |	最新的预先安装好PaddlePaddle CPU版本的镜像|
-|paddlepaddle/paddle:latest-dev |最新的	PaddlePaddle的开发环境|
-|paddlepaddle/paddle:[Version]|	将version换成具体的版本，历史版本的预安装好PaddlePaddle的镜像|
-|paddlepaddle/paddle:latest-gpu.      |	最新的预先安装好PaddlePaddle GPU版本的镜像|
-
+<p align="center">
+<table>
+	<thead>
+	<tr>
+		<th> 版本号 </th>
+		<th> 版本说明 </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td> paddlepaddle/paddle:latest </td>
+		<td> 最新的预先安装好PaddlePaddle CPU版本的镜像 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle/paddle:latest-dev </td>
+		<td> 最新的PaddlePaddle的开发环境 </td>
+	</tr>
+		<tr>
+		<td> paddlepaddle/paddle:[Version] </td>
+		<td> 将version换成具体的版本，历史版本的预安装好PaddlePaddle的镜像 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle/paddle:latest-gpu </td>
+		<td> 最新的预先安装好PaddlePaddle GPU版本的镜像 </td>
+	</tr>
+   </tbody>
+</table>
+</p>
 
 
 您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
