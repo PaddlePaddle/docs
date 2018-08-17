@@ -16,7 +16,7 @@
 ***
 ### **Ubuntu下安装PaddlePaddle**
 
-本说明将介绍如何在Ubuntu下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求。
+本说明将介绍如何在Ubuntu下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -28,7 +28,7 @@
 * 仅支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
 也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
-* 支持GPU的PaddlePaddle，为了使PaddlePaddle程序运行的更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+* 支持GPU的PaddlePaddle。为了使PaddlePaddle程序运行更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 	* *Cuda 工具包9.0配合cuDNN v7*
 	* *Cuda 工具包8.0配合cuDNN v7*
 	* *GPU运算能力超过1.0的硬件设备*
@@ -46,7 +46,7 @@
 
 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
-> 请注意，由于Docker的镜像源在海外，由于国内网络原因，请您预备2个小时以上的时间拉取Docker镜像         
+> 请注意，由于Docker的镜像地址在海外，拉取镜像可能会花费较长的时间（可能会达到2个小时），请您耐心等待。
 
 
 **使用原生pypi安装**，我们为您提供原生pypi安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题。         
@@ -130,7 +130,7 @@
 	使用以下命令安装或升级Python和pip到需要的版本： `sudo apt install python-dev python-pip`
 	> 即使您的环境中已经有Python2.7也需要安装Python dev。
 
-现在，让我们来安装PaddlePaddle
+现在，让我们来安装PaddlePaddle：
 
 1. 使用pip install来安装PaddlePaddle
 
@@ -138,7 +138,7 @@
 	
 
 	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*) `pip install paddlepaddle-gpu`
-	> 1. 为防止出现nccl.h找不到的问题请首先按照一下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
+	> 1. 为防止出现nccl.h找不到的问题请首先按照以下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN v7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
 		a. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`             
 		b. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0`
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。
@@ -203,7 +203,7 @@
 
 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
-> 请注意，由于Docker的镜像源在海外，由于国内网络原因，请您预备2个小时以上的时间拉取Docker镜像         
+> 请注意，由于Docker的镜像地址在海外，拉取镜像可能会花费较长的时间（可能会达到2个小时），请您耐心等待。        
 
 
 
@@ -356,7 +356,7 @@
 
 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
-> 请注意，由于Docker的镜像源在海外，由于国内网络原因，请您预备2个小时以上的时间拉取Docker镜像         
+> 请注意，由于Docker的镜像地址在海外，拉取镜像可能会花费较长的时间（可能会达到2个小时），请您耐心等待。        
 
 
 
@@ -462,7 +462,7 @@
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
-> 请注意，由于Docker的镜像源在海外，由于国内网络原因，请您预备2个小时以上的时间拉取Docker镜像         
+> 请注意，由于Docker的镜像地址在海外，拉取镜像可能会花费较长的时间（可能会达到2个小时），请您耐心等待。       
 
 
 
@@ -656,7 +656,7 @@
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
-> 请注意，由于Docker的镜像源在海外，由于国内网络原因，请您预备2个小时以上的时间拉取Docker镜像         
+> 请注意，由于Docker的镜像地址在海外，拉取镜像可能会花费较长的时间（可能会达到2个小时），请您耐心等待。        
 
 
 
@@ -956,7 +956,7 @@
 
 <span id="F&Q"></span>
 </br></br>
-## **F & Q**
+## **FAQ**
 1. CentOS6下如何编译python2.7为共享库? 
 	
 	> 使用以下指令：
@@ -966,7 +966,7 @@
 
 <!--TODO please add more F&Q parts here-->
 
-2. Ubuntu18.04下初夏libidn11找不到？
+2. Ubuntu18.04下libidn11找不到？
 	
 	> 使用以下指令：
 	
