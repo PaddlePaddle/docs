@@ -983,8 +983,11 @@
 		rm g++
 		ln -s gcc-4.8 gcc
 		ln -s g++-4.8 g++
-		
-		
+
+4. 使用Docker编译出现问题？
+	
+	> 请参照GitHub上[Issue12079](https://github.com/PaddlePaddle/Paddle/issues/12079)
+	
 
 <span id="third_party"></span>
 </br></br>
