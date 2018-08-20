@@ -3,6 +3,8 @@
 
 * *Ubuntu 14.04 /16.04 /18.04*
 * *CentOS 7 / 6*
+* *MacOS 12/13*
+* *Windows7/8/10(Pro&Enterprise)*
 
 请确保您的环境满足以上条件
 
@@ -11,6 +13,7 @@
 * Ubuntu下安装PaddlePaddle
 * CentOS下安装PaddlePaddle
 * MacOS下安装PaddlePaddle
+* Windows下安装PaddlePaddle
 
 ***
 ### **Ubuntu下安装PaddlePaddle**
@@ -110,6 +113,10 @@
 
 <br/><br/>
 ##### ***使用pip安装PaddlePaddle***
+
+您可以直接粘贴以下命令到命令行来安装PaddlePaddle(CPU)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
+		
+	apt update && apt install python-dev python-pip && pip install numpy==1.14.0 paddlepaddle && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
 
@@ -264,6 +271,10 @@
 <br/><br/>
 ##### ***使用pip安装PaddlePaddle***
 
+您可以直接粘贴以下命令到命令行来安装PaddlePaddle(CPU)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
+		
+	yum update && yum install -y epel-release gcc && yum install -y python-devel python-pip && pip install numpy==1.14.0 paddlepaddle && export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
 
 `uname -m && cat /etc/*release`
@@ -296,10 +307,10 @@
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
 
-2. 使用以下指令将默认装在`/usr/local/lib`下的`libmkldnn`放在`LD_LIBRARY_PATH中`:
+2. 使用以下指令将默认装在`/usr/lib`下的`libmkldnn`放在`LD_LIBRARY_PATH中`:
 
-	`export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH`
-	> 如果您的`libmkldnn`没有装在`/usr/local/lib`下，请使用`find / -name libmkldnn.so.0`从根目录开始找到`libmkldnn.so.0`之后将路径填到以下命令[dir]的的位置：`export LD_LIBRARY_PATH=[dir]:$LD_LIBRARY_PATH`。
+	`export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH`
+	> 如果您的`libmkldnn`没有装在`/usr/lib`下，请使用`find / -name libmkldnn.so.0`从根目录开始找到`libmkldnn.so.0`之后将路径填到以下命令[dir]的的位置：`export LD_LIBRARY_PATH=[dir]:$LD_LIBRARY_PATH`。
 
 3. 使用以下指令将numpy的版本降至1.12.0-1.14.0之间：
 	> 由于numpy支持造成numpy 1.15.0 及以上版本引发`shape warning`。
@@ -378,11 +389,6 @@
 		`docker pull paddlepaddle/paddle:latest`
 		
 
-	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像：
-
-		`docker pull paddlepaddle/paddle:latest-gpu`
-		
-
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
 		`docker pull paddlepaddle/paddle:[tag]`
@@ -421,9 +427,53 @@
 ##### ***如何卸载PaddlePaddle***
 请使用以下命令卸载PaddlePaddle：
 
-* ***CPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle`
+* ***CPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle`     
 
-* ***GPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle-gpu`
+
+
+
+<br/><br/>
+### **Windows下安装PaddlePaddle**
+
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Windows系统下安装PaddlePaddle，我们支持的Windows系统需满足以下要求。
+
+请注意：在其他系统上的尝试可能会导致安装失败。
+
+* *Windows 7/8 and Windows 10 专业版/企业版*
+
+#### 确定要安装的PaddlePaddle版本
+
+* Windows下我们目前仅提供支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
+也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+
+
+#### 选择如何安装PaddlePaddle
+在Windows系统下请使用我们为您提供的[一键安装包](http://paddle-windows.bj.bcebos.com/PaddlePaddle-windows.zip)进行安装
+	
+> 我们提供的一键安装包将基于Docker为您进行便捷的安装流程
+
+
+我们之所以使用**基于Docker的安装方式**，是因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
+
+> 请注意，由于Docker的镜像地址在海外，拉取镜像可能会花费较长的时间（可能会达到2个小时），请您耐心等待。        
+
+
+
+<!--从**源码编译安装**，在Windows下我们不支持**直接源码编译安装**，使用docker进行源码编译的过程将在文档的最后为您展示。-->
+
+
+
+
+<br/><br/>
+##### ***验证安装***
+安装完成后您可以使用：`python` 进入python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
+
+<br/><br/>
+##### ***如何卸载PaddlePaddle***
+请使用以下命令卸载PaddlePaddle：
+
+* ***CPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle`   
+
 
 
 
@@ -947,6 +997,55 @@
 
 
 
+
+<!-- TODO add it back when finish test <br/><br/>
+### **Windows下编译PaddlePaddle**
+
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Windows系统编译PaddlePaddle，我们支持的Windows系统需满足以下要求。
+
+请注意：在其他系统上的尝试可能会导致安装失败。
+
+* *Windows 7/8 and Windows 10 专业版/企业版*
+
+#### 确定要编译的PaddlePaddle版本
+
+* 支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
+也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+
+* 支持GPU的PaddlePaddle。为了使PaddlePaddle程序运行更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+	* *Cuda 工具包9.0配合cuDNN v7*
+	* *Cuda 工具包8.0配合cuDNN v7*
+	* *GPU运算能力超过1.0的硬件设备*
+
+
+#### 选择如何安装PaddlePaddle
+在Windows系统下请使用我们为您提供的[一键安装包](http://paddle-windows.bj.bcebos.com/PaddlePaddle-windows.zip)进行安装
+	
+> 我们提供的一键安装包将基于Docker为您进行便捷的安装流程
+
+
+我们之所以使用**基于Docker的编译方式**，是因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
+
+> 请注意，由于Docker的镜像地址在海外，拉取镜像可能会花费较长的时间（可能会达到2个小时），请您耐心等待。        
+
+
+
+<br/><br/>
+##### ***验证安装***
+安装完成后您可以使用：`python` 进入python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
+
+<br/><br/>
+##### ***如何卸载PaddlePaddle***
+请使用以下命令卸载PaddlePaddle：
+
+* ***CPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle`
+
+* ***GPU版本的PaddlePaddle***: `pip uninstall PaddlePaddle-gpu`-->
+
+
+
+
+
 <span id="F&Q"></span>
 </br></br>
 ## **FAQ**
@@ -980,7 +1079,59 @@
 4. 使用Docker编译出现问题？
 	
 	> 请参照GitHub上[Issue12079](https://github.com/PaddlePaddle/Paddle/issues/12079)
-	
+
+5. 什么是 Docker?
+
+  如果您没有听说 Docker，可以把它想象为一个类似 virtualenv 的系统，但是虚拟的不仅仅是 Python 的运行环境。
+
+6. Docker 还是虚拟机？
+
+  有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
+
+7. 为什么用 Docker?
+
+  把工具和配置都安装在一个 Docker image 里可以标准化编译环境。这样如果遇到问题，其他人可以复现问题以便帮助。
+
+  另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。
+
+8. 可以选择不用Docker吗？
+
+  当然可以。大家可以用把开发工具安装进入 Docker image 一样的方式，把这些工具安装到本机。这篇文档介绍基于 Docker 的开发流程，是因为这个流程比其他方法都更简便。
+
+9. 学习 Docker 有多难？
+
+  理解 Docker 并不难，大概花十分钟看一下[这篇文章](https://zhuanlan.zhihu.com/p/19902938)。
+  这可以帮您省掉花一小时安装和配置各种开发工具，以及切换机器时需要新安装的辛苦。别忘了 PaddlePaddle 更新可能导致需要新的开发工具。更别提简化问题复现带来的好处了。
+
+10. 可以用 IDE 吗？
+
+  当然可以，因为源码就在本机上。IDE 默认调用 make 之类的程序来编译源码，我们只需要配置 IDE 来调用 Docker 命令编译源码即可。
+
+  很多 PaddlePaddle 开发者使用 Emacs。他们在自己的 `~/.emacs` 配置文件里加两行
+
+    `(global-set-key "\C-cc" 'compile)`
+    `(setq compile-command`
+     `"docker run --rm -it -v $(git rev-parse --show-toplevel):/paddle paddle:dev")`
+
+  就可以按 `Ctrl-C` 和 `c` 键来启动编译了。
+
+11. 可以并行编译吗？
+
+  是的。我们的 Docker image 运行一个 [Bash 脚本](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/paddle/scripts/paddle_build.sh)。这个脚本调用`make -j$(nproc)` 来启动和 CPU 核一样多的进程来并行编译。
+
+12. Docker 需要 sudo？
+
+  如果用自己的电脑开发，自然也就有管理员权限（sudo）了。如果用公用的电脑开发，需要请管理员安装和配置好 Docker。此外，PaddlePaddle 项目在努力开始支持其他不需要 sudo 的集装箱技术，比如 rkt。
+
+13. 在 Windows/MacOS 上编译很慢？
+
+  Docker 在 Windows 和 MacOS 都可以运行。不过实际上是运行在一个 Linux 虚拟机上。可能需要注意给这个虚拟机多分配一些 CPU 和内存，以保证编译高效。具体做法请参考[issue627](https://github.com/PaddlePaddle/Paddle/issues/627)。
+
+14. 磁盘不够？
+
+  本文中的例子里， :code:`docker run` 命令里都用了 :code:`--rm` 参数，这样保证运行结束之后的 containers 不会保留在磁盘上。可以用 :code:`docker ps -a` 命令看到停止后但是没有删除的 containers。 :code:`docker build` 命令有时候会产生一些中间结果，是没有名字的 images，也会占用磁盘。可以参考 [这篇文章](https://zaiste.net/posts/removing_docker_containers) 来清理这些内容。
+
+
 
 <span id="third_party"></span>
 </br></br>
@@ -1267,3 +1418,87 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 
 您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
+
+
+
+<!--TODO this part should be in a new webpage-->
+
+</br></br>
+
+# 在Docker中执行PaddlePaddle训练程序     
+
+***
+
+假设您已经在当前目录（比如在/home/work）编写了一个PaddlePaddle的程序: `train.py` （可以参考
+[PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html)
+编写），就可以使用下面的命令开始执行训练：
+
+     cd /home/work
+     docker run -it -v $PWD:/work paddlepaddle/paddle /work/train.py
+
+上述命令中，`-it` 参数说明容器已交互式运行；`-v $PWD:/work`
+指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的:`/work`
+目录: `paddlepaddle/paddle` 指定需要使用的容器； 最后`/work/train.py`为容器内执行的命令，即运行训练程序。
+
+当然，您也可以进入到Docker容器中，以交互式的方式执行或调试您的代码：
+
+     docker run -it -v $PWD:/work paddlepaddle/paddle /bin/bash
+     cd /work
+     python train.py
+
+**注：PaddlePaddle Docker镜像为了减小体积，默认没有安装vim，您可以在容器中执行** :code:`apt-get install -y vim` **安装后，在容器中编辑代码。**
+
+</br></br>
+
+# 使用Docker启动PaddlePaddle Book教程
+
+***
+
+使用Docker可以快速在本地启动一个包含了PaddlePaddle官方Book教程的Jupyter Notebook，可以通过网页浏览。
+PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Notebook。
+如果您想要更深入了解deep learning，PaddlePaddle Book一定是您最好的选择。
+大家可以通过它阅读教程，或者制作和分享带有代码、公式、图表、文字的交互式文档。
+
+我们提供可以直接运行PaddlePaddle Book的Docker镜像，直接运行：
+
+`docker run -p 8888:8888 paddlepaddle/book`
+
+国内用户可以使用下面的镜像源来加速访问：
+
+`docker run -p 8888:8888 docker.paddlepaddlehub.com/book`
+
+然后在浏览器中输入以下网址：
+
+`http://localhost:8888/`
+
+就这么简单，享受您的旅程！
+
+</br></br>
+# 使用Docker执行GPU训练
+
+***
+
+为了保证GPU驱动能够在镜像里面正常运行，我们推荐使用
+[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)来运行镜像。
+请不要忘记提前在物理机上安装GPU最新驱动。
+
+`nvidia-docker run -it -v $PWD:/work paddlepaddle/paddle:latest-gpu /bin/bash`
+
+**注: 如果没有安装nvidia-docker，可以尝试以下的方法，将CUDA库和Linux设备挂载到Docker容器内：**
+
+     export CUDA_SO="$(\ls /usr/lib64/libcuda* | xargs -I{} echo '-v {}:{}') $(\ls /usr/lib64/libnvidia* | xargs -I{} echo '-v {}:{}')"
+     export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
+     docker run ${CUDA_SO} ${DEVICES} -it paddlepaddle/paddle:latest-gpu
+
+**关于AVX：**
+
+AVX是一种CPU指令集，可以加速PaddlePaddle的计算。最新的PaddlePaddle Docker镜像默认
+是开启AVX编译的，所以，如果您的电脑不支持AVX，需要单独[编译](/build_from_source_cn.html) PaddlePaddle为no-avx版本。
+
+以下指令能检查Linux电脑是否支持AVX：
+
+`if cat /proc/cpuinfo | grep -i avx; then echo Yes; else echo No; fi`
+
+如果输出是No，就需要选择使用no-AVX的镜像
+
+
