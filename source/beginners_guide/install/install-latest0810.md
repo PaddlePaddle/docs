@@ -149,8 +149,11 @@
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。
 
 
-	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。
-
+	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。      
+	
+	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`
+	> `版本号`参见[安装包列表](#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
+	
 2. 使用以下指令将默认装在`/usr/local/lib`下的`libmkldnn`放在`LD_LIBRARY_PATH中`:
 
 	`export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH`
@@ -306,7 +309,10 @@
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。 
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
-
+	
+	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`
+	> `版本号`参见[安装包列表](#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
+	
 2. 使用以下指令将默认装在`/usr/lib`下的`libmkldnn`放在`LD_LIBRARY_PATH中`:
 
 	`export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH`
@@ -604,8 +610,8 @@
 		1.  `apt install virtualenv` 或 `pip install virtualenv`
 		2.  `apt install virtualenvwrapper` 或 `pip install virtualenvwrapper`
 		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`
-		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat vitualenvwrapper.sh`
-		5.  安装`virtualwrapper`
+		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat virtualenvwrapper.sh`
+		5.  按照`virtualenvwrapper.sh`中的安装方法安装`virtualwrapper`
 		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 
@@ -1075,6 +1081,16 @@
 		rm g++
 		ln -s gcc-4.8 gcc
 		ln -s g++-4.8 g++
+4. 遇到paddlepaddle*.whl is not a supported wheel on this platform？
+	> 出现这个问题的主要原因是，没有找到和当前系统匹配的paddlepaddle安装包。 请检查Python版本是否为2.7系列。另外最新的pip官方源中的安装包默认是manylinux1标准， 需要使用最新的pip (>9.0.0) 才可以安装。您可以执行以下指令更新您的pip：     
+	
+	pip install --upgrade pip     
+
+	> 或者：     
+	
+	python -c "import pip; print(pip.pep425tags.get_supported())"    
+
+	> 如果系统支持的是 linux_x86_64 而安装包是 manylinux1_x86_64 ，需要升级pip版本到最新； 如果系统支持 manylinux1_x86_64 而安装包	 （本地）是 linux_x86_64， 可以重命名这个whl包为 manylinux1_x86_64 再安装。
 
 4. 使用Docker编译出现问题？
 	
@@ -1109,9 +1125,8 @@
 
   很多 PaddlePaddle 开发者使用 Emacs。他们在自己的 `~/.emacs` 配置文件里加两行
 
-    `(global-set-key "\C-cc" 'compile)`
-    `(setq compile-command`
-     `"docker run --rm -it -v $(git rev-parse --show-toplevel):/paddle paddle:dev")`
+    (global-set-key "\C-cc" 'compile)
+    (setq compile-command "docker run --rm -it -v $(git rev-parse --show-toplevel):/paddle paddle:dev")
 
   就可以按 `Ctrl-C` 和 `c` 键来启动编译了。
 
@@ -1454,7 +1469,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 ***
 
-使用Docker可以快速在本地启动一个包含了PaddlePaddle官方Book教程的Jupyter Notebook，可以通过网页浏览。
+使用Docker可以快速在本地启动一个包含了PaddlePaddle官方Book教程的Jupyter Notebook，可以通过网页浏览。
 PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Notebook。
 如果您想要更深入了解deep learning，PaddlePaddle Book一定是您最好的选择。
 大家可以通过它阅读教程，或者制作和分享带有代码、公式、图表、文字的交互式文档。
