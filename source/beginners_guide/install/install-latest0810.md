@@ -1133,7 +1133,7 @@
 
 
 
-<span id="third_party"></span>
+<a name="third_party"></a>
 </br></br>
 ### 附录：
 
@@ -1228,7 +1228,7 @@
 
 
 ***
-<span id="Compile"></span>
+<a name="Compile"></a>
 </br></br>
 ## **编译选项表**
 
@@ -1331,7 +1331,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 
 ***
-<span id="whls"></span>
+<a name="whls"></a>
 </br></br>
 ## **安装包列表**   
 
@@ -1384,7 +1384,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
 
 ***
-<span id="dockers"></span>
+<a name="dockers"></a>
 </br></br>
 ## **安装镜像表及简介**   
 <p align="center">
