@@ -4,7 +4,7 @@
 * *Ubuntu 14.04 /16.04 /18.04*
 * *CentOS 7 / 6*
 * *MacOS 10.12 / 10.13*
-* *Windows7 / 8/ 10(Pro&Enterprise)*
+* *Windows7 / 8/ 10(Pro & Enterprise)*
 
 请确保您的环境满足以上条件
 
@@ -18,7 +18,7 @@
 ***
 ### **Ubuntu下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -75,24 +75,24 @@
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull paddlepaddle/paddle:latest`
+		`docker pull docker.paddlepaddlehub.com/paddle:latest`
 		
 
 	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像：
 
-		`docker pull paddlepaddle/paddle:latest-gpu`
+		`docker pull docker.paddlepaddlehub.com/paddle:latest-gpu`
 		
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
-		`docker pull paddlepaddle/paddle:[tag]`
+		`docker pull docker.paddlepaddlehub.com/paddle:[tag]`
 		> （请把[tag]替换为[镜像表](#dockers)中的内容）
 		
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用paddlepaddle/paddle:[tag] 注：tag的意义同第二步；/bin/bash是在Docker中要执行的命令。
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用`docker.paddlepaddlehub.com/paddle:[tag]` 注：tag的意义同第二步；/bin/bash是在Docker中要执行的命令。
 
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
@@ -114,7 +114,7 @@
 <br/><br/>
 ##### ***使用pip安装PaddlePaddle***
 
-您可以直接粘贴以下命令到命令行来安装PaddlePaddle(CPU)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
+您可以直接粘贴以下命令到命令行来安装PaddlePaddle(适用于ubuntu16.04及以上安装CPU-ONLY的版本)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
 		
 	apt update && apt install python-dev python-pip && pip install numpy==1.14.0 paddlepaddle && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
@@ -164,7 +164,7 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[FAQ](#FAQ)<!--TODO: Link 常见问题表到这里-->
+	
 
 现在您已经完成使用`pip install` 来安装的PaddlePaddle的过程。
 
@@ -183,7 +183,7 @@
 <br/><br/>
 ### **CentOS下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下安装PaddlePaddle，我们支持的CentOS系统需满足以下要求：
+本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下安装PaddlePaddle，我们支持的CentOS系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -238,23 +238,23 @@
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull paddlepaddle/paddle:latest`
+		`docker pull docker.paddlepaddlehub.com/paddle:latest`
 
 
 	<!--* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像：
 
-		`docker pull paddlepaddle/paddle:latest-gpu`TODO: 测试后加入-->
+		`docker pull docker.paddlepaddlehub.com/paddle:latest-gpu`TODO: 测试后加入-->
 
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
-		`docker pull paddlepaddle/paddle:[tag]`
+		`docker pull docker.paddlepaddlehub.com/paddle:[tag]`
 		> （请把[tag]替换为[镜像表](#dockers)中的内容）
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 	
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用paddlepaddle/paddle:[tag] 注：tag的意义同第二步，/bin/bash是在Docker中要执行的命令。  
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用`docker.paddlepaddlehub.com/paddle:[tag]` 注：tag的意义同第二步，/bin/bash是在Docker中要执行的命令。  
 
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
@@ -275,7 +275,7 @@
 <br/><br/>
 ##### ***使用pip安装PaddlePaddle***
 
-您可以直接粘贴以下命令到命令行来安装PaddlePaddle(CPU)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
+您可以直接粘贴以下命令到命令行来安装PaddlePaddle(适用于CentOS7安装CPU-ONLY的版本)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
 		
 	yum update && yum install -y epel-release gcc && yum install -y python-devel python-pip && pip install numpy==1.14.0 paddlepaddle && export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
@@ -289,7 +289,7 @@
 
 *	Python2.7.x (devel)   
 	
-	> CentOS6需要编译Python2.7成[共享库](#F&Q)。
+	> CentOS6需要编译Python2.7成[共享库](#FAQ)。
 *	Pip >= 9.0.1
 	> 您的CentOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
 
@@ -347,7 +347,7 @@
 <br/><br/>
 ### **MacOS下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下安装PaddlePaddle，我们支持的MacOS系统需满足以下要求。
+本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下安装PaddlePaddle，我们支持的MacOS系统需满足以下要求。如有问题请参见[FAQ](#FAQ)
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -392,19 +392,19 @@
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull paddlepaddle/paddle:latest`
+		`docker pull docker.paddlepaddlehub.com/paddle:latest`
 		
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
-		`docker pull paddlepaddle/paddle:[tag]`
+		`docker pull docker.paddlepaddlehub.com/paddle:[tag]`
 		> （请把[tag]替换为[镜像表](#dockers)中的内容）
 		
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用paddlepaddle/paddle:[tag] 注：tag的意义同第二步；/bin/bash是在Docker中要执行的命令。
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用`docker.paddlepaddlehub.com/paddle:[tag]` 注：tag的意义同第二步；/bin/bash是在Docker中要执行的命令。
 
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
@@ -441,7 +441,7 @@
 <br/><br/>
 ### **Windows下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及Windows系统下安装PaddlePaddle，我们支持的Windows系统需满足以下要求。
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Windows系统下安装PaddlePaddle，我们支持的Windows系统需满足以下要求。如有问题请参见[FAQ](#FAQ)
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -491,7 +491,7 @@
 ***       
 ### **Ubuntu下从源码编译PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
 
 * Ubuntu 14.04/16.04/18.04（这涉及到相关工具是否能被正常安装）
 
@@ -539,8 +539,8 @@
 
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
-	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
-	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+	`docker run --name paddle-test -v $PWD:/paddle --network=host -it docker.paddlepaddlehub.com/paddle:latest-dev /bin/bash`
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，`docker.paddlepaddlehub.com/paddle:latest-dev` 使用名为`docker.paddlepaddlehub.com/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
@@ -607,7 +607,7 @@
 
 	* 安装Python-dev: `apt install python-dev`
 
-	* 安装pip: `apt install python-pip`
+	* 安装pip: `apt install python-pip` (请保证拥有9.0.1及以上版本的pip）
 
 	* 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
 
@@ -690,7 +690,7 @@
 <br/><br/>
 ### **CentOS下从源码编译PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
+本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
 
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
 
@@ -737,8 +737,8 @@
 
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
-	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
-	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+	`docker run --name paddle-test -v $PWD:/paddle --network=host -it docker.paddlepaddlehub.com/paddle:latest-dev /bin/bash`
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，`docker.paddlepaddlehub.com/paddle` 使用名为`docker.paddlepaddlehub.com/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
@@ -807,7 +807,7 @@
 
 	* 安装Python-dev: `yum install python-devel`
 
-	* 安装pip: `yum install python-pip`
+	* 安装pip: `yum install python-pip` (请保证拥有9.0.1及以上的pip版本）
 
 	* 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
 
@@ -863,7 +863,7 @@
 
 	`pip install （whl包的名字）`
 
-恭喜您，现在您已经完成使本机编译PaddlePaddle的过程了。
+恭喜您，现在您已经完成使本机编译PaddlePaddle的过程了。如有问题请参见[FAQ](#FAQ)
 
 
 
@@ -883,7 +883,7 @@
 <br/><br/>
 ### **MacOS下从源码编译PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下编译PaddlePaddle，我们支持的MacOS系统需满足以下要求：
+本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下编译PaddlePaddle，我们支持的MacOS系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
 
 * MacOS 10.12/10.13（这涉及到相关工具是否能被正常安装）
 
@@ -935,8 +935,8 @@
 
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
-	`docker run --name paddle-test -v $PWD:/paddle --network=host -it paddlepaddle/paddle:latest-dev /bin/bash`
-	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，paddlepaddle/paddle:latest-dev 使用名为paddlepaddle/paddle:latest-dev的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+	`docker run --name paddle-test -v $PWD:/paddle --network=host -it docker.paddlepaddlehub.com/paddle:latest-dev /bin/bash`
+	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，`docker.paddlepaddlehub.com/paddle:latest-dev` 使用名为`docker.paddlepaddlehub.com/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
