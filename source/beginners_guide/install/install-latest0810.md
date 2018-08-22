@@ -54,11 +54,11 @@
 
 
 
-从**源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
+从**源码编译安装**以及**使用Docker进行源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
 <br/><br/>
 ##### ***使用Docker进行安装***
 
-我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
+<!-- TODO: uncomment it when the offical website can split it to different pages我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。-->
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。
 
@@ -92,7 +92,7 @@
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称；/bin/bash是在Docker中要执行的命令。
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用paddlepaddle/paddle:[tag] 注：tag的意义同第二步；/bin/bash是在Docker中要执行的命令。
 
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
@@ -164,7 +164,7 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[常见问题表](#F&Q)<!--TODO: Link 常见问题表到这里-->
+	如果遇到其他问题请参见[FAQ](#FAQ)<!--TODO: Link 常见问题表到这里-->
 
 现在您已经完成使用`pip install` 来安装的PaddlePaddle的过程。
 
@@ -201,10 +201,11 @@
 
 
 #### 选择如何安装PaddlePaddle
-在CentOS的系统下我们提供3种不同的安装方式：
+在CentOS的系统下我们提供4种不同的安装方式：
 
 * Docker安装
 * pip安装
+* 源码编译安装
 * Docker源码编译安装
 
 
@@ -217,11 +218,11 @@
 
 **使用pip安装**，我们为您提供pip安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题。
 
-从**源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
+从**源码编译安装**以及**使用Docker进行源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
 <br/><br/>
 ##### ***使用Docker进行安装***
 
-我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
+<!-- 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。-->
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
 
@@ -253,7 +254,7 @@
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 	
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称，/bin/bash是在Docker中要执行的命令。  
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用paddlepaddle/paddle:[tag] 注：tag的意义同第二步，/bin/bash是在Docker中要执行的命令。  
 
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
@@ -323,7 +324,7 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[常见问题表](#F&Q)<!--TODO：Link 常见问题表到这里-->。
+	如果遇到其他问题请参见[FAQ](#FAQ)<!--TODO：Link 常见问题表到这里-->。
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
 
@@ -373,14 +374,14 @@
 
 
 
-从**源码编译安装**，在MacOS下由于源码编译安装过于复杂因此我们提供了[一键编译包]()供您使用, 而使用docker进行源码编译的过程将在文档的最后为您展示。
+从**源码编译安装**，在MacOS下由于源码编译安装过于复杂因此我们提供了[一键编译包]()供您使用, 而使用**Docker进行源码编译**的过程将在文档的最后为您展示。
 
 
 
 <br/><br/>
 ##### ***使用Docker进行安装***
 
-我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
+<!-- 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。-->
 
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。
 > 请注意，在MacOS系统下登陆docker需要使用您的dockerID进行登录，否则将出现`Authenticate Failed`错误。
@@ -404,7 +405,7 @@
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； paddlepaddle/paddle 指定需要使用的image名称；/bin/bash是在Docker中要执行的命令。
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中$PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用paddlepaddle/paddle:[tag] 注：tag的意义同第二步；/bin/bash是在Docker中要执行的命令。
 
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
@@ -986,7 +987,7 @@
 	
 	> 一键编译包包含两个脚本，第一个脚本用来检查您的本机环境然后会自动启动第二个脚本进行编译安装
 
-由于我们使用homebrew安装一些必要的第三方依赖，因此需要您禁用MacOS的系统完整性保护SIP（System Integrity Protection）系统一边homebrew为您正确安装相关的依赖，请在重启电脑后出现Apple标志之前使用Command + R指令进入**在线恢复模式**，然后选择关掉SIP。具体操作详见[百度经验](https://jingyan.baidu.com/article/9c69d48ff88b3813c9024e9d.html)
+由于我们使用homebrew安装一些必要的第三方依赖，禁用MacOS的系统完整性保护SIP（System Integrity Protection）系统以便homebrew为您正确安装相关的依赖，请在重启电脑后出现Apple标志之前使用Command + R指令进入**在线恢复模式**，然后选择关掉SIP。具体操作详见[百度经验](https://jingyan.baidu.com/article/9c69d48ff88b3813c9024e9d.html)
 
 
 
@@ -1052,7 +1053,7 @@
 
 
 
-<span id="F&Q"></span>
+<a name="FAQ"></a>
 </br></br>
 ## **FAQ**
 1. CentOS6下如何编译python2.7为共享库? 
@@ -1146,6 +1147,9 @@
 
   本文中的例子里， :code:`docker run` 命令里都用了 :code:`--rm` 参数，这样保证运行结束之后的 containers 不会保留在磁盘上。可以用 :code:`docker ps -a` 命令看到停止后但是没有删除的 containers。 :code:`docker build` 命令有时候会产生一些中间结果，是没有名字的 images，也会占用磁盘。可以参考 [这篇文章](https://zaiste.net/posts/removing_docker_containers) 来清理这些内容。
 
+15. 在DockerToolbox下使用book时`http://localhost:8888/`无法打开？
+	
+   需要将localhost替换成虚拟机ip，一般需要在浏览器中输如：`http://192.168.99.100:8888/`
 
 
 <a name="third_party"></a>
@@ -1444,7 +1448,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 ***
 
-假设您已经在当前目录（比如在/home/work）编写了一个PaddlePaddle的程序: `train.py` （可以参考
+假设您已经在当前目录（比如在/home/work）编写了一个PaddlePaddle的程序: `train.py` （可以参考
 [PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html)
 编写），就可以使用下面的命令开始执行训练：
 
@@ -1486,7 +1490,7 @@ PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Note
 
 `http://localhost:8888/`
 
-就这么简单，享受您的旅程！
+就这么简单，享受您的旅程！如有其他问题请参见[FAQ](#FAQ)
 
 </br></br>
 # 使用Docker执行GPU训练
