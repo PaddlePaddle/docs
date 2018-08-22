@@ -3,8 +3,8 @@
 
 * *Ubuntu 14.04 /16.04 /18.04*
 * *CentOS 7 / 6*
-* *MacOS 12/13*
-* *Windows7/8/10(Pro&Enterprise)*
+* *MacOS 10.12 / 10.13*
+* *Windows7 / 8/ 10(Pro&Enterprise)*
 
 请确保您的环境满足以上条件
 
@@ -30,8 +30,8 @@
 也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
 * 支持GPU的PaddlePaddle。为了使PaddlePaddle程序运行更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+	* *CUDA 工具包9.0配合cuDNN v7*
+	* *CUDA 工具包8.0配合cuDNN v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 
@@ -40,8 +40,8 @@
 在Ubuntu的系统下我们提供4种不同的安装方式：
 
 * Docker安装
-* pip安装
-* 源码编译安装
+* pip安装（不支持Ubuntu18.04的GPU版本）
+* 源码编译安装（不支持Ubuntu18.04的GPU版本）
 * Docker源码编译安装
 
 
@@ -54,7 +54,7 @@
 
 
 
-从**源码编译安装**以及**使用Docker进行源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
+从[**源码编译安装**](#ubt_source)以及[**使用Docker进行源码编译安装**](#ubt_docker)，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
 <br/><br/>
 ##### ***使用Docker进行安装***
 
@@ -194,8 +194,8 @@
 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
 * 支持GPU的PaddlePaddle，为了使PaddlePaddle程序运行的更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+	* *CUDA 工具包9.0配合cuDNN v7*
+	* *CUDA 工具包8.0配合cuDNN v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 
@@ -203,10 +203,10 @@
 #### 选择如何安装PaddlePaddle
 在CentOS的系统下我们提供4种不同的安装方式：
 
-* Docker安装
+* Docker安装（不支持GPU版本）
 * pip安装
-* 源码编译安装
-* Docker源码编译安装
+* 源码编译安装（不支持CentOS 6的所有版本以及CentOS 7的GPU版本）
+* Docker源码编译安装（不支持GPU版本）
 
 
 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
@@ -218,7 +218,7 @@
 
 **使用pip安装**，我们为您提供pip安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题。
 
-从**源码编译安装**以及**使用Docker进行源码编译安装**，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
+从[**源码编译安装**](#ct_source)以及[**使用Docker进行源码编译安装**](#ct_docker)，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
 <br/><br/>
 ##### ***使用Docker进行安装***
 
@@ -351,21 +351,20 @@
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
-* *MacOS 10.12/13*
+* *MacOS 10.12/10.13*
 
 #### 确定要安装的PaddlePaddle版本
 
-* 仅支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
-也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+* 仅支持CPU的PaddlePaddle。
 
 
 
 #### 选择如何安装PaddlePaddle
 在MacOS的系统下我们提供3种不同的安装方式：
 
-* Docker安装
-* 源码编译安装
-* Docker源码编译安装
+* Docker安装（不支持GPU版本）
+* 源码编译安装（不支持GPU版本）
+* Docker源码编译安装（不支持GPU版本）
 
 
 我们更加推荐**使用Docker进行安装**，因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
@@ -374,7 +373,7 @@
 
 
 
-从**源码编译安装**，在MacOS下由于源码编译安装过于复杂因此我们提供了[一键编译包]()供您使用, 而使用**Docker进行源码编译**的过程将在文档的最后为您展示。
+从**源码编译安装**，在MacOS下由于源码编译安装过于复杂因此我们提供了[一键编译包]()供您使用, 而使用[**Docker进行源码编译**](#mac_docker)的过程将在文档的最后为您展示。
 
 
 
@@ -450,8 +449,7 @@
 
 #### 确定要安装的PaddlePaddle版本
 
-* Windows下我们目前仅提供支持CPU的PaddlePaddle。如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU，
-也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+* Windows下我们目前仅提供支持CPU的PaddlePaddle。
 
 
 #### 选择如何安装PaddlePaddle
@@ -502,15 +500,15 @@
 因此即使您的计算机上拥有GPU我们也推荐您先安装CPU版本的PaddlePaddle来检测您本地的环境是否适合。
 
 * **支持GPU的PaddlePaddle**，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+	* *CUDA 工具包9.0配合cuDNN v7*
+	* *CUDA 工具包8.0配合cuDNN v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 #### 选择如何编译PaddlePaddle
 在Ubuntu的系统下我们提供两种不同的编译方式：
 
-* 直接本机源码编译
 * Docker源码编译
+* 直接本机源码编译（不支持Ubuntu18.04的GPU版本）
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
@@ -518,7 +516,10 @@
 
 
 
-我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，我们只对特定系统提供了支持。
+我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，我们只对特定系统提供了支持。        
+
+<a name="ubt_docker"></a>                         
+
 <br/><br/>
 ##### ***使用Docker进行编译***
 为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)
@@ -591,8 +592,10 @@
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
-恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。
+恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。            
 
+<a name="ubt_source"></a>    
+	
 <br/><br/>
 ##### ***本机编译***
 
@@ -692,7 +695,7 @@
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
 
 #### 确定要编译的PaddlePaddle版本
-* **仅支持CPU的PaddlePaddle**，如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU， 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+* **仅支持CPU的PaddlePaddle**。
 
 <!--* 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 	* *Cuda 工具包9.0配合cuDNN v7*
@@ -702,8 +705,8 @@
 #### 选择如何编译PaddlePaddle
 在CentOS 7的系统下我们提供2种的编译方式：
 
-* 直接本机源码编译
-* Docker源码编译
+* Docker源码编译（不支持GPU版本）
+* 直接本机源码编译（不支持CentOS 6的全部版本以及CentOS 7的GPU版本）
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
@@ -711,7 +714,11 @@
 
 
 
-同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统
+同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统。            
+
+<a name="ct_docker"></a>
+
+
 <br/><br/>
 ##### ***使用Docker进行编译***
 
@@ -782,7 +789,9 @@
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
-恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。
+恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。           
+
+<a name="ct_source"></a>
 
 
 <br/><br/>
@@ -876,10 +885,10 @@
 
 本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下编译PaddlePaddle，我们支持的MacOS系统需满足以下要求：
 
-* MacOS 10.12/13（这涉及到相关工具是否能被正常安装）
+* MacOS 10.12/10.13（这涉及到相关工具是否能被正常安装）
 
 #### 确定要编译的PaddlePaddle版本
-* **仅支持CPU的PaddlePaddle**，如果您的计算机没有 NVIDIA® GPU，则只能安装此版本。如果您的计算机有GPU， 推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
+* **仅支持CPU的PaddlePaddle**。
 
 <!--* 支持GPU的PaddlePaddle，为了使得PaddlePaddle程序运行的更加迅速，我们通常使用GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 	* *Cuda 工具包9.0配合cuDNN v7*
@@ -887,7 +896,7 @@
 	* *GPU运算能力超过1.0的硬件设备*-->
 
 #### 选择如何编译PaddlePaddle
-在MacOS 10.12/13的系统下我们提供2种的编译方式：
+在MacOS 10.12/10.13的系统下我们提供2种的编译方式：
 
 <!--* 直接本机源码编译-->
 * Docker源码编译
@@ -901,8 +910,9 @@
 
 
 
-对于那些出于各种原因不能够安装Docker的用户我们也提供了可以使用我们提供的[本机一键编译包]()<!--上传一键编译包之后请link到目标页面-->
+对于那些出于各种原因不能够安装Docker的用户我们也提供了可以使用我们提供的[本机一键编译包]()<!--上传一键编译包之后请link到目标页面-->       
 
+<a name="mac_docker"></a>
 
 
 
@@ -1020,8 +1030,8 @@
 也推荐您先安装CPU版本的PaddlePaddle，来检测您本地的环境是否适合。
 
 * 支持GPU的PaddlePaddle。为了使PaddlePaddle程序运行更加迅速，我们通过GPU对PaddlePaddle程序进行加速，但安装GPU版本的PaddlePaddle需要先拥有满足以下条件的NVIDIA® GPU（具体安装流程和配置请务必参见NVIDIA官方文档：[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
-	* *Cuda 工具包9.0配合cuDNN v7*
-	* *Cuda 工具包8.0配合cuDNN v7*
+	* *CUDA 工具包9.0配合cuDNN v7*
+	* *CUDA 工具包8.0配合cuDNN v7*
 	* *GPU运算能力超过1.0的硬件设备*
 
 
@@ -1149,7 +1159,7 @@
 
 15. 在DockerToolbox下使用book时`http://localhost:8888/`无法打开？
 	
-   需要将localhost替换成虚拟机ip，一般需要在浏览器中输如：`http://192.168.99.100:8888/`
+   需要将localhost替换成虚拟机ip，一般需要在浏览器中输入：`http://192.168.99.100:8888/`
 
 
 <a name="third_party"></a>
