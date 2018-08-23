@@ -6,7 +6,9 @@
 * *MacOS 10.12 / 10.13*
 * *Windows7 / 8/ 10(Pro & Enterprise)*
 
-请确保您的环境满足以上条件
+请确保您的环境满足以上条件       
+如在安装或编译过程中遇到问题请参见[FAQ](#FAQ)          
+
 
 ## **安装PaddlePaddle**
 
@@ -18,7 +20,7 @@
 ***
 ### **Ubuntu下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -183,7 +185,8 @@
 <br/><br/>
 ### **CentOS下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下安装PaddlePaddle，我们支持的CentOS系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
+本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下安装PaddlePaddle，我们支持的CentOS系统需满足以下要求：      
+
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -324,7 +327,8 @@
 
 	`pip install -U numpy==1.14.0`
 	> 如果遇到`Python.h: No such file or directory`请设置`python.h`路径到`C_INCLUDE_PATH/CPLUS_INCLUDE_PATH`
-	如果遇到其他问题请参见[FAQ](#FAQ)<!--TODO：Link 常见问题表到这里-->。
+	    
+	    
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
 
@@ -347,7 +351,7 @@
 <br/><br/>
 ### **MacOS下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下安装PaddlePaddle，我们支持的MacOS系统需满足以下要求。如有问题请参见[FAQ](#FAQ)
+本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下安装PaddlePaddle，我们支持的MacOS系统需满足以下要求。
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -373,7 +377,7 @@
 
 
 
-从**源码编译安装**，在MacOS下由于源码编译安装过于复杂因此我们提供了[一键编译包]()供您使用, 而使用[**Docker进行源码编译**](#mac_docker)的过程将在文档的最后为您展示。
+从**源码编译安装**，在MacOS下由于源码编译安装过于复杂因此我们提供了[一键编译包](http://paddle-macos.bj.bcebos.com/PaddlePaddle-MacOS.zip)供您使用, 而使用[**Docker进行源码编译**](#mac_docker)的过程将在文档的最后为您展示。
 
 
 
@@ -441,7 +445,7 @@
 <br/><br/>
 ### **Windows下安装PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及Windows系统下安装PaddlePaddle，我们支持的Windows系统需满足以下要求。如有问题请参见[FAQ](#FAQ)
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Windows系统下安装PaddlePaddle，我们支持的Windows系统需满足以下要求。
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
@@ -491,7 +495,7 @@
 ***       
 ### **Ubuntu下从源码编译PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
+本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
 
 * Ubuntu 14.04/16.04/18.04（这涉及到相关工具是否能被正常安装）
 
@@ -690,7 +694,7 @@
 <br/><br/>
 ### **CentOS下从源码编译PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
+本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下编译PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
 
 * CentOS 7 / 6（这涉及到相关工具是否能被正常安装）
 
@@ -863,7 +867,7 @@
 
 	`pip install （whl包的名字）`
 
-恭喜您，现在您已经完成使本机编译PaddlePaddle的过程了。如有问题请参见[FAQ](#FAQ)
+恭喜您，现在您已经完成使本机编译PaddlePaddle的过程了。
 
 
 
@@ -883,7 +887,7 @@
 <br/><br/>
 ### **MacOS下从源码编译PaddlePaddle**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下编译PaddlePaddle，我们支持的MacOS系统需满足以下要求：如有问题请参见[FAQ](#FAQ)
+本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下编译PaddlePaddle，我们支持的MacOS系统需满足以下要求：
 
 * MacOS 10.12/10.13（这涉及到相关工具是否能被正常安装）
 
@@ -910,7 +914,7 @@
 
 
 
-对于那些出于各种原因不能够安装Docker的用户我们也提供了可以使用我们提供的[本机一键编译包]()<!--上传一键编译包之后请link到目标页面-->       
+对于那些出于各种原因不能够安装Docker的用户我们也提供了可以使用我们提供的[一键编译包](http://paddle-macos.bj.bcebos.com/PaddlePaddle-MacOS.zip)<!--上传一键编译包之后请link到目标页面-->       
 
 <a name="mac_docker"></a>
 
@@ -992,7 +996,7 @@
 <br/><br/>
 ##### ***使用一键编译包进行编译***
 
-1. 请在下载一键编译[脚本](https://baike.baidu.com/item/脚本/1697005)后将安装脚本置于您希望储存PaddlePaddle源码的路径下，并保证所有脚本文件在同一个目录下。
+1. 请在下载[一键编译包](http://paddle-macos.bj.bcebos.com/PaddlePaddle-MacOS.zip)后将其中的安装脚本置于您希望储存PaddlePaddle源代码的路径下，并保证所有脚本文件在同一个目录下。
 2. 请在命令行内进入您储存脚本的目录下使用以下指令启动一件编译脚本： `01_start_check_OS.sh`      
 	
 	> 一键编译包包含两个脚本，第一个脚本用来检查您的本机环境然后会自动启动第二个脚本进行编译安装
@@ -1161,7 +1165,7 @@
 	
    需要将localhost替换成虚拟机ip，一般需要在浏览器中输入：`http://192.168.99.100:8888/`
 
-16. pip install gpu版本的PaddlePaddle后运行出现SegmentFault如图：
+16. pip install gpu版本的PaddlePaddle后运行出现SegmentFault如下：
    
   	 @ 0x7f6c8d214436 paddle::platform::EnforceNotMet::EnforceNotMet()
 	 
