@@ -40,8 +40,8 @@
 在Ubuntu的系统下我们提供4种不同的安装方式：
 
 * Docker安装
-* pip安装（不支持Ubuntu18.04的GPU版本）
-* 源码编译安装（不支持Ubuntu18.04的GPU版本）
+* pip安装
+* 源码编译安装
 * Docker源码编译安装
 
 
@@ -142,7 +142,7 @@
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle`
 	
 
-	* 对于需要**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*) `pip install paddlepaddle-gpu`
+	* 对于需要**GPU版本PaddlePaddle**的用户：`pip install paddlepaddle-gpu`
 	> 1. 为防止出现nccl.h找不到的问题请首先按照以下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN v7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
 		a. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`             
 		b. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0`
@@ -508,7 +508,7 @@
 在Ubuntu的系统下我们提供两种不同的编译方式：
 
 * Docker源码编译
-* 直接本机源码编译（不支持Ubuntu18.04的GPU版本）
+* 直接本机源码编译
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
 
@@ -1161,6 +1161,15 @@
 	
    需要将localhost替换成虚拟机ip，一般需要在浏览器中输入：`http://192.168.99.100:8888/`
 
+16. pip install gpu版本的PaddlePaddle后运行出现SegmentFault如图：
+   
+  	 @ 0x7f6c8d214436 paddle::platform::EnforceNotMet::EnforceNotMet()
+	 
+   	 @ 0x7f6c8dfed666 paddle::platform::GetCUDADeviceCount() 
+	 
+  	 @ 0x7f6c8d2b93b6 paddle::framework::InitDevices()
+   
+   出现这个问题原因主要是由于您的显卡驱动低于对应CUDA版本的要求，请保证您的显卡驱动支持所使用的CUDA版本
 
 <a name="third_party"></a>
 </br></br>
