@@ -1,5 +1,10 @@
 language: cpp
-cache: ccache
+cache:
+  directories:
+    - $HOME/.ccache
+    - $HOME/.cache/pip
+    - $TRAVIS_BUILD_DIR/
+
 sudo: required
 dist: trusty
 services:
