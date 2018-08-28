@@ -46,7 +46,7 @@ docker run -it \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
     -e PPO_SCRIPT_BRANCH=$PPO_SCRIPT_BRANCH \
     -e PADDLE_ROOT=/FluidDoc/external/Paddle \
-    -e PYTHONPATH=/paddle/paddle/build/python
+    -e PYTHONPATH=/paddle/paddle/build/python \
     -v "$PWD:/FluidDoc" \
     -w /FluidDoc \
     paddlepaddle/paddle:latest-dev \
