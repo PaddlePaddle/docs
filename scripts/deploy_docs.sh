@@ -50,5 +50,5 @@ docker run -it \
     -v "$PWD:/FluidDoc" \
     -w /FluidDoc \
     paddlepaddle/paddle:latest-dev \
-    /bin/bash -c 'curl $DEPLOY_DOCS_SH | bash -s $CONTENT_DEC_PASSWD $TRAVIS_BRANCH /FluidDoc/docs /FluidDoc/build/doc/ $PPO_SCRIPT_BRANCH' || exit_code=$(( exit_code | $? ))
+    /bin/bash -c 'curl $DEPLOY_DOCS_SH | bash -s $CONTENT_DEC_PASSWD $TRAVIS_BRANCH /FluidDoc /FluidDoc/build/doc/ $PPO_SCRIPT_BRANCH' || exit_code=$(( exit_code | $? ))
 
