@@ -15,12 +15,12 @@
 # limitations under the License.
 
 echo "1. Setup submodules"
-git submodule update --init --recursive
+#git submodule update --init --recursive
 
-echo "2. Build Paddle library"
-cd external/paddle
-paddle/scripts/paddle_docker_build.sh doc #${JOB}
-cd ../..
+#echo "2. Build Paddle library"
+#cd external/paddle
+#paddle/scripts/paddle_docker_build.sh doc #${JOB}
+#cd ../..
 
 exit_code=0
 
