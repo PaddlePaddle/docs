@@ -31,7 +31,7 @@ if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then exit $exit_code; fi;
 if [ "$TRAVIS_BRANCH" == "develop_doc" ]; then
     PPO_SCRIPT_BRANCH=develop
 elif [[ "$TRAVIS_BRANCH" == "develop"  ||  "$TRAVIS_BRANCH" =~ ^v|release/[[:digit:]]+\.[[:digit:]]+(\.[[:digit:]]+)?(-\S*)?$ ]]; then
-    PPO_SCRIPT_BRANCH=master
+    PPO_SCRIPT_BRANCH=develop
 else
     # Early exit, this branch doesn't require documentation build
     exit $exit_code;
