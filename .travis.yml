@@ -4,7 +4,6 @@ cache:
   directories:
     - $HOME/.ccache
     - $HOME/.cache/pip
-    - $TRAVIS_BUILD_DIR/
     - $HOME/docker
 
 sudo: required
