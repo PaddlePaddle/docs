@@ -1,0 +1,6 @@
+.env
+.DS_Store
+._.DS_Store
+*.mo
+
+.idea
