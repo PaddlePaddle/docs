@@ -1,9 +1,11 @@
 language: cpp
 cache:
+  bundler: true
   directories:
     - $HOME/.ccache
     - $HOME/.cache/pip
     - $TRAVIS_BUILD_DIR/
+    - $HOME/docker
 
 sudo: required
 dist: trusty
@@ -25,9 +27,19 @@ addons:
   ssh_known_hosts: 13.229.163.131
 before_install:
   -  sudo pip install pylint pytest astroid isort 
+  # Load cached docker images
+  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
+  
 script:
   - |
      scripts/deploy_docs.sh
+     
+before_cache:
+  # Save tagged docker images
+  - >
+    mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format 'paddlepaddle/paddle:latest-dev {{.ID}}'
+    | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+    
 notifications:
   email:
     on_success: change
