@@ -16,6 +16,7 @@ os:
   - linux
 env:
   - JOB=doc
+  - JOB=lite_lib
 
 addons:
   apt:
@@ -33,8 +34,11 @@ before_install:
   
 script:
   - |
-     scripts/deploy_docs.sh
+     if [ $JOB == "doc" ]; then scripts/deploy_docs.sh 
+     fi
      
+     if [ $JOB == "lite_lib" ]; then scripts/build_doc_lib_lite.sh 
+     fi 
 #before_cache:
 #  # Save tagged docker images
 #  - >
