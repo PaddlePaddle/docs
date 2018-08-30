@@ -17,6 +17,7 @@ os:
 env:
   - JOB=doc
   - JOB=lite_lib
+  - JOB=lite_lib2
 
 addons:
   apt:
@@ -38,6 +39,9 @@ script:
      fi
      
      if [ $JOB == "lite_lib" ]; then scripts/build_doc_lib_lite.sh 
+     fi 
+     
+     if [ $JOB == "lite_lib2" ]; then scripts/build_doc_lib_lite2.sh 
      fi 
 #before_cache:
 #  # Save tagged docker images
