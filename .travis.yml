@@ -5,6 +5,8 @@ cache:
     - $HOME/.ccache
     - $HOME/.cache/pip
     - $HOME/docker
+ #   - $TRAVIS_BUILD_DIR/external/
+    - $TRAVIS_BUILD_DIR/external/Paddle/build/third_party
 
 sudo: required
 dist: trusty

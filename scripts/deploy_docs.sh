@@ -15,12 +15,13 @@
 # limitations under the License.
 
 echo "1. Setup submodules"
-#git submodule update --init --recursive
+git submodule update --init --recursive
 
-#echo "2. Build Paddle library"
-#cd external/paddle
-#paddle/scripts/paddle_docker_build.sh doc #${JOB}
-#cd ../..
+echo "2. Build Paddle library"
+cd external/Paddle
+git branch
+paddle/scripts/paddle_docker_build.sh gen_doc_lib 
+cd ../..
 
 exit_code=0
 
@@ -46,7 +47,7 @@ docker run -it \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
     -e PPO_SCRIPT_BRANCH=$PPO_SCRIPT_BRANCH \
     -e PADDLE_ROOT=/FluidDoc/external/Paddle \
-    -e PYTHONPATH=/paddle/paddle/build/python \
+    -e PYTHONPATH=/FluidDoc/external/Paddle/build/python \
     -v "$PWD:/FluidDoc" \
     -w /FluidDoc \
     paddlepaddle/paddle:latest-dev \

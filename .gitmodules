@@ -1,0 +1,3 @@
+[submodule "external/Paddle"]
+	path = external/Paddle
+	url = https://github.com/PaddlePaddle/Paddle
