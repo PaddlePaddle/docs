@@ -39,10 +39,10 @@ script:
      if [ $JOB == "doc" ]; then scripts/deploy_docs.sh 
      fi
      
-     if [ $JOB == "lite_lib" ]; then scripts/build_doc_lib_lite.sh 
+     if [ $JOB == "lite_lib" ]; then scripts/build_doc_lib_lite.sh pybind 
      fi 
      
-     if [ $JOB == "lite_lib2" ]; then scripts/build_doc_lib_lite2.sh 
+     if [ $JOB == "lite_lib2" ]; then scripts/build_doc_lib_lite.sh proto
      fi 
      
      if [ $JOB == "en_external_doc" ]; then scripts/deploy_en_external_docs.sh 

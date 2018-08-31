@@ -14,14 +14,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-echo "1. Setup submodules"
-git submodule update --init --recursive
+exit_code=0
 
-echo "2. Build Paddle library"
+if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then exit $exit_code; fi;
+
+# Deploy to the the content server if its a "develop" or "release/version" branch
+# The "develop_doc" branch is reserved to test full deploy process without impacting the real content.
+if [ "$TRAVIS_BRANCH" == "develop_doc" ]; then
+    PPO_SCRIPT_BRANCH=develop
+elif [[ "$TRAVIS_BRANCH" == "develop"  ||  "$TRAVIS_BRANCH" =~ ^v|release/[[:digit:]]+\.[[:digit:]]+(\.[[:digit:]]+)?(-\S*)?$ ]]; then
+    PPO_SCRIPT_BRANCH=master
+else
+    # Early exit, this branch doesn't require documentation build
+    echo "This branch doesn't require documentation build"
+    exit $exit_code;
+fi
+
+echo "Build Paddle library $1"
 cd external/Paddle
 git branch
-paddle/scripts/paddle_docker_build.sh gen_doc_lib_lite 
+paddle/scripts/paddle_docker_build.sh gen_doc_lib proto
 cd ../..
 
-exit_code=0
+exit $exit_code;
 

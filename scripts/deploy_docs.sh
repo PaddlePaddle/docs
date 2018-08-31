@@ -33,7 +33,7 @@ fi
 echo "Build Paddle library. This step is needed to compile Paddle API documents"
 cd external/Paddle
 git branch
-paddle/scripts/paddle_docker_build.sh gen_doc_lib 
+paddle/scripts/paddle_docker_build.sh gen_doc_lib full 
 cd ../..
 
 export DEPLOY_DOCS_SH=https://raw.githubusercontent.com/PaddlePaddle/PaddlePaddle.org/$PPO_SCRIPT_BRANCH/scripts/deploy/deploy_docs.sh
