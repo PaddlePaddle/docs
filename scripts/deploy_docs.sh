@@ -26,15 +26,20 @@ elif [[ "$TRAVIS_BRANCH" == "develop"  ||  "$TRAVIS_BRANCH" =~ ^v|release/[[:dig
     PPO_SCRIPT_BRANCH=master
 else
     # Early exit, this branch doesn't require documentation build
-    echo "This branch doesn't require documentation build"
+    echo "This branch doesn't require documentation build";
     exit $exit_code;
 fi
 
-echo "Build Paddle library. This step is needed to compile Paddle API documents"
+echo "Build Paddle library $1. This step is needed to compile Paddle API documents"
 cd external/Paddle
 git branch
-paddle/scripts/paddle_docker_build.sh gen_doc_lib full 
+paddle/scripts/paddle_docker_build.sh gen_doc_lib $1
 cd ../..
+
+if [[ "$1" == "pybind" || "$1" == "proto" ]]; then
+  echo "Finish building lite library";
+  exit $exit_code;
+fi
 
 export DEPLOY_DOCS_SH=https://raw.githubusercontent.com/PaddlePaddle/PaddlePaddle.org/$PPO_SCRIPT_BRANCH/scripts/deploy/deploy_docs.sh
 

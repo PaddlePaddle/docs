@@ -27,7 +27,6 @@ addons:
       - python
       - python-pip
       - python2.7-dev
-      - golang
   ssh_known_hosts: 13.229.163.131
 before_install:
   -  sudo pip install pylint pytest astroid isort 
@@ -36,13 +35,13 @@ before_install:
   
 script:
   - |
-     if [ $JOB == "doc" ]; then scripts/deploy_docs.sh 
+     if [ $JOB == "doc" ]; then scripts/deploy_docs.sh full
      fi
      
-     if [ $JOB == "lite_lib" ]; then scripts/build_doc_lib_lite.sh pybind 
+     if [ $JOB == "lite_lib" ]; then scripts/deploy_docs.sh pybind 
      fi 
      
-     if [ $JOB == "lite_lib2" ]; then scripts/build_doc_lib_lite.sh proto
+     if [ $JOB == "lite_lib2" ]; then scripts/deploy_docs.sh proto
      fi 
      
      if [ $JOB == "en_external_doc" ]; then scripts/deploy_en_external_docs.sh 
