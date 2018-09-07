@@ -18,6 +18,7 @@ To preview documents constructured by FluidDoc. Please follow the regular previe
 # Publish New release
 1. Checkout a new release branch. The branch name should follow `release/<version>`
 1. Update the documentations on the submodules or within FluidDoc
+1. Make sure all the submodules are ready for release. Paddle, book, model, mobile and Anakin should all have stable commits. Note: Paddle repo should update the API RST files accordinly if Paddle changes the included module/classes. 
 1. Update the submodules under `external` folder and commit the changes.
 1. Git push the branch to Github, Travis CI will start several builds to publish the documents
 
