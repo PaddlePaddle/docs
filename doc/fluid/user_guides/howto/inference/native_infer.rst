@@ -10,6 +10,7 @@ Paddle 预测 API
 -  头文件 ``paddle_inference_api.h`` 定义了所有的接口
 -  库文件\ ``libpaddle_fluid.so`` 或 ``libpaddle_fluid.a``
 
+
 编译和依赖可以参考 :ref:`install_or_build_cpp_inference_lib` 。
 
 下面是一些 API 概念的介绍
@@ -95,7 +96,7 @@ engine
     CHECK(predictor->Run(slots, &outputs));
     // 获取 outputs ...
 
-编译时，联编 ``libpaddle_fluid.a/.so`` 即可。
+编译时，联编 ``libpaddle_fluid.a/.so`` 便可。
 
 详细代码参考
 ------------
