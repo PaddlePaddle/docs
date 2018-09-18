@@ -1,1 +1,0 @@
-../../../paddle/doc/v2/howto/optimization/gpu_profiling_cn.rst
