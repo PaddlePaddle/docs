@@ -123,7 +123,7 @@
     - 分布式训练任务中 trainer 节点的数量
   * - :code:`PADDLE_CURRENT_IP`
     - str
-    - ps0.paddlepaddle.com
+    - :code:`ps0.paddlepaddle.com`
     - 当前 pserver 节点的 IP 地址或 hostname
   * - :code:`PADDLE_TRAINER_ID`
     - str 
