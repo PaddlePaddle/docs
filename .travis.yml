@@ -1,0 +1,59 @@
+language: cpp
+cache:
+  bundler: true
+  directories:
+    - $HOME/.ccache
+    - $HOME/.cache/pip
+    - $HOME/docker
+ #   - $TRAVIS_BUILD_DIR/external/
+    - $TRAVIS_BUILD_DIR/external/Paddle/build/third_party
+
+sudo: required
+dist: trusty
+services:
+  - docker
+os:
+  - linux
+env:
+  - JOB=doc
+  - JOB=lite_lib
+  - JOB=lite_lib2
+  - JOB=en_external_doc
+
+addons:
+  apt:
+    packages:
+      - git
+      - python
+      - python-pip
+      - python2.7-dev
+  ssh_known_hosts: 13.229.163.131
+before_install:
+  -  sudo pip install pylint pytest astroid isort 
+  # Load cached docker images
+  #- if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
+  
+script:
+  - |
+     if [ $JOB == "doc" ]; then scripts/deploy_docs.sh full
+     fi
+     
+     if [ $JOB == "lite_lib" ]; then scripts/deploy_docs.sh pybind 
+     fi 
+     
+     if [ $JOB == "lite_lib2" ]; then scripts/deploy_docs.sh proto
+     fi 
+     
+     if [ $JOB == "en_external_doc" ]; then scripts/deploy_en_external_docs.sh 
+     fi 
+
+#before_cache:
+#  # Save tagged docker images
+#  - >
+#    mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format 'paddlepaddle/paddle:latest-dev {{.ID}}'
+#    | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+    
+notifications:
+  email:
+    on_success: change
+    on_failure: always

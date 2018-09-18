@@ -1,1 +1,0 @@
-../../../mobile/doc/development_doc.md

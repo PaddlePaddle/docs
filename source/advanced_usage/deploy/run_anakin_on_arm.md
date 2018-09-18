@@ -1,1 +1,0 @@
-../../../anakin/docs/Manual/run_on_arm_ch.md

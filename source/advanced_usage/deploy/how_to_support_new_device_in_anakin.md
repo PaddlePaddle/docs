@@ -1,1 +1,0 @@
-../../../anakin/docs/Manual/addCustomDevice.md
