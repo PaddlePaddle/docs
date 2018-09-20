@@ -2,7 +2,7 @@
 
 ## 简介
 
-本文档将指导您使用Fluid API开始编程，配置一个简单的神经网络。阅读完本文档，您将掌握：
+本文档将指导您如何用Fluid API编程并搭建一个简单的神经网络。阅读完本文档，您将掌握：
 
 - Fluid有哪些核心概念
 - 如何在fluid中定义运算过程
@@ -10,15 +10,15 @@
 - 如何从逻辑层对实际问题建模
 - 如何调用API（层，数据集，损失函数，优化方法等等）
 
-在进行模型搭建之前，首先需要明确几个Fluid核心使用概念
+在进行模型搭建之前，首先需要明确几个Fluid核心使用概念：
 
 ## 使用Tensor表示数据 
 
 Fluid和其他主流框架一样，使用Tensor数据结构来承载数据。
 
-在神经网络中传递的数据都是Tensor,Tensor可以简单理解成一个多维数组，理论上讲它可以有任意多的维度。
+在神经网络中传递的数据都是Tensor,Tensor可以简单理解成一个多维数组，一般而言可以有任意多的维度。
 
-不同的Tensor可以具有自己的数据类型和形状。Tensor中每个元素的数据类型是一样的。Tensor的形状就是Tensor的维度。下面的图直观地表示1～6维的张量。 
+不同的Tensor可以具有自己的数据类型和形状，同一Tensor中每个元素的数据类型是一样的，Tensor的形状就是Tensor的维度。下面的图直观地表示1～6维的Tensor： 
 <p align="center">
 <img src="http://agroup-bos.cdn.bcebos.com/adccdf9b5ee1a4c8a27a2b73ce3ee103fbb3c089" width="400">
 </p>
@@ -28,9 +28,14 @@ Fluid和其他主流框架一样，使用Tensor数据结构来承载数据。
 
 **1. 模型中的可学习参数**
 
-模型中的可学习参数（包括网络权重、偏置等）生存期和整个训练任务一样长，会接受优化算法的更新，在 Fluid 中以 Variable 表示。
+模型中的可学习参数（包括网络权重、偏置等）生存期和整个训练任务一样长，会接受优化算法的更新，在 Fluid 中以 Variable 的子类 Parameter 表示。
 
-用户在绝大多数情况下都不需要自己来创建网络中的可学习参数，Fluid 为绝大部分常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，下面的代码片段会直接为全连接层创建连接权值（W）和偏置（ bias ）两个可学习参数，无需显示地调用 variable 相关接口创建可学习参数。
+在Fluid中可以通过fluid.layers.create_parameter来创建可学习参数：
+```python
+w = fluid.layers.create_parameter(name="w",shape=[1],dtype='float32')
+```
+
+一般情况下，您不需要自己来创建网络中的可学习参数，Fluid 为大部分常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，下面的代码片段会直接为全连接层创建连接权值（W）和偏置（ bias ）两个可学习参数，无需显式地调用 Parameter 相关接口来创建。
 ``` python
 import paddle.fluid as fluid
 
@@ -39,9 +44,8 @@ y = fluid.layers.fc(input=x, size=128, bias_attr=True)
 
 **2. 输入输出Tensor**
 
-整个神经网络的输入数据也是一个特殊的 Tensor，在这个 Tensor 中，一些维度的大小在定义模型时无法确定（通常包括：batch size，如果 mini-batch 之间数据可变，也会包括序列的最大长度，图片的宽度和高度等），在定义模型时需要占位。
+整个神经网络的输入数据也是一个特殊的 Tensor，在这个 Tensor 中，一些维度的大小在定义模型时无法确定（通常包括：batch size，如果 mini-batch 之间数据可变，也会包括图片的宽度和高度等），在定义模型时需要占位。
 
-【***变长序列的例子没有找到合适的，如果可以的话麻烦老师添加一下代码***】
 
 Fluid 中使用 fluid.layers.data 来接收输入数据， fluid.layers.data 需要提供输入 Tensor 的形状信息，当遇到无法确定的维度时，相应维度指定为 None ，如下面的代码片段所示：
 ```python
@@ -57,7 +61,7 @@ a = fluid.layers.data(name="a",shape=[3,4],dtype='int64')
 #shape的三个维度含义分别是：channel、图片的宽度、图片的高度
 b = fluid.layers.data(name="image"，shape=[3,None,None]，dtpye="float32")
 ```
-其中，dtpye=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](http://paddlepaddle.org/documentation/docs/zh/0.15.0/user_guides/howto/prepare_data/feeding_data.html#fluid)。
+其中，dtpye=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](../user_guides/howto/prepare_data/feeding_data.rst#fluid)。
 
 **3. 常量 Tensor**
 
@@ -67,7 +71,7 @@ import paddle.fluid as fluid
 
 data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
 ```
-需要注意的是，上述定义的tensor并不具有值，它们仅表示将要执行的操作，如您直接打印data将会得到data的一段[ProgramDesc](#link——Fluid设计思想)：
+需要注意的是，上述定义的tensor并不具有值，它们仅表示将要执行的操作，如您直接打印data将会得到描述该data的一段信息：
 ```python
 print data
 ```
@@ -89,29 +93,18 @@ persistable: false
 
 具体输出数值将在Executor运行时得到，详细过程会在后文展开描述。
 
-## 数据准备
+## 数据传入
 
-Fluid支持两种传入数据的方式：
+Fluid有特定的数据传入方式：
 
-1. 用户需要使用 fluid.layers.data 配置数据输入层，并在 fluid.Executor 或 fluid.ParallelExecutor 中，使用 executor.run(feed=...) 传入训练数据。
+您需要使用 fluid.layers.data 配置数据输入层，并在 fluid.Executor 或 fluid.ParallelExecutor 中，使用 executor.run(feed=...) 传入训练数据。
 
-2. 用户需要先将训练数据 转换成 Paddle 识别的 fluid.recordio\_writer ， 再使用 fluid.layers.open_files 以及 fluid.layers.reader 配置数据读取。
+具体的数据准备过程，请阅读[准备数据](../user_guides/howto/prepare_data/index.rst)
 
-具体的数据准备过程，请阅读[准备数据](http://paddlepaddle.org/documentation/docs/zh/0.14.0/new_docs/user_guides/howto/prepare_data/index.html)
 
-Fluid将常用的数据集（如uci_housing、imdb、cifar等等）封装在了paddle.dataset中，并提供了分割测试数据与训练数据等API，选择对应的模块可以实现数据集的自动下载和读取。
+## 使用Operator表示对数据的操作
 
-以uci_housing数据集为例，在fluid中可以轻松获取分割好的训练数据与测试数据：
-```python
-import paddle.fluid as fluid
-train_data = paddle.dataset.uci_housiong.train()
-test_Data=paddle.dataset.uci_housing.test()
-```
-用户可根据自己需要直接调用API，减少了数据搜集与处理时间，将更多的精力放置在搭建网络本身。
-
-## 使用Operation表示对数据的操作
-
-在Fluid中，所有对数据的操作都由Operator表示，用户可以使用内置指令来描述他们的神经网络。
+在Fluid中，所有对数据的操作都由Operator表示，您可以使用内置指令来描述他们的神经网络。
 
 为了便于用户使用，在Python端，Fluid中的Operator被一步封装入paddle.fluid.layers，paddle.fluid.nets 等模块。
 
@@ -197,7 +190,7 @@ cost = fluid.layers.square_error_cost(input=y_predict, label=y)
 
 **条件分支——switch、if else：**
 
-Fluid中有Switch和if-else类来实现条件选择，用户可以使用这一执行结构在学习率调节器中调整学习率或其他希望的操作。
+Fluid中有switch和if-else类来实现条件选择，用户可以使用这一执行结构在学习率调节器中调整学习率或其他希望的操作。
 
 例如：
 ```python
@@ -221,7 +214,7 @@ with fluid.layers.control_flow.Switch() as switch:
 ```
 关于Fluid中Program的详细设计思想，可以参考阅读[Flui设计思想](++++++++)
 
-更多Fluid中的控制流，可以参考阅读[API文档](http://paddlepaddle.org/documentation/api/zh/0.14.0/layers.html#permalink-1-control_flow)
+更多Fluid中的控制流，可以参考阅读[API文档](../api/layers.rst#control_flow)
 
 
 ## 使用Executor执行Program
@@ -252,22 +245,9 @@ fetch_list=[result.name])
 
 ```
 
-
-## 更多内容
-
-至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随[代码实例](#代码实例)部分，完成一个非常简单的数据预测。
-
-如果您已经掌握了基本操作，可以进行下一阶段的学习了：
-
-跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](http://paddlepaddle.org/documentation/docs/zh/0.15.0/user_guides/howto/configure_simple_model/index.html)
-
-完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](http://paddlepaddle.org/documentation/docs/zh/0.15.0/user_guides/howto/training/index.html)
-
-除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](http://paddlepaddle.org/documentation/docs/zh/0.15.0/beginners_guide/index.html)、[使用指南](http://paddlepaddle.org/documentation/docs/zh/0.15.0/user_guides/index.html)和[进阶使用](http://paddlepaddle.org/documentation/docs/zh/0.15.0/advanced_usage/index.html)。
-
-如果您希望阅读更多场景下的应用案例，可以跟随导航栏进入[快速入门](http://paddlepaddle.org/documentation/docs/zh/0.15.0/beginners_guide/quick_start/index.html)和[深度学习基础知识](http://paddlepaddle.org/documentation/docs/zh/0.15.0/beginners_guide/basics/index.html)。已经具备深度学习基础知识的用户，可以从[使用指南](http://paddlepaddle.org/documentation/docs/zh/0.15.0/user_guides/index.html)开始阅读。
-
 ## 代码实例
+
+至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随本部分，完成一个非常简单的数据预测。已经掌握这部分内容的话，可以跳过本节阅读[what next](#what next)。
 
 从逻辑层面明确了输入数据格式、模型结构、损失函数以及优化算法后，需要使用PaddlePaddle提供的API及算子来实现模型逻辑。一个典型的模型主要包含4个部分，分别是：输入数据格式定义，模型前向计算逻辑，损失函数以及优化算法。
 
@@ -342,7 +322,7 @@ fetch_list=[result.name])
 	y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
 	#定义网络
 	x = fluid.layers.data(name="x",shape=[1],dtype='float32')
-	y = fluid.layers.data(name='y',shape=[1],dtype='float32')
+	y = fluid.layers.data(name="y",shape=[1],dtype='float32')
 	y_predict = fluid.layers.fc(input=x,size=1,act=None)
 	#定义损失函数
 	cost = fluid.layers.square_error_cost(input=y_predict,label=y)
@@ -353,7 +333,7 @@ fetch_list=[result.name])
 	exe.run(fluid.default_startup_program())
 	#开始训练
 	outs = exe.run(
-	feed={'x':train_data,’y’:y_true},
+	feed={'x':train_data,'y':y_true},
 	fetch_list=[y_predict.name,avg_cost.name])
 	#观察结果
 	print outs
@@ -413,6 +393,21 @@ fetch_list=[result.name])
        [5.9935956],
        [7.8866425]], dtype=float32), array([0.01651453], dtype=float32)]
 	```
-可以看到100次迭代后，预测值已经非常接近真实值了，损失值也从初始值9.05下降到了0.01。
+可以看到100次迭代后，预测值已经非常接近真实值了，损失值也从初始值9.05下降到了0.01（每次训练的结果不会完全相同，但大致在这一范围），您可以尝试增大训练轮次会得到更精确的预测值。
 
-恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](http://paddlepaddle.org/documentation/docs/zh/0.15.0/beginners_guide/quick_start/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](https://github.com/PaddlePaddle/models/tree/develop/fluid)中找到。
+恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../beginners_guide/quick_start/fit_a_line/README.cn.md)。更多丰富的模型实例可以在[模型库](../user_guides/models/index.rst)中找到。
+
+## What next
+
+如果您已经掌握了基本操作，可以进行下一阶段的学习了：
+
+跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../user_guides/howto/configure_simple_model/index.rst)
+
+完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../user_guides/howto/training/index.rst)
+
+除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../user_guides/index.rst)和[进阶使用](../advanced_usage/index.rst)。
+
+如果您希望阅读更多场景下的应用案例，可以跟随导航栏进入[快速入门](../beginners_guide/quick_start/index.rst)和[深度学习基础知识](../beginners_guide/basics/index.rst)。已经具备深度学习基础知识的用户，可以从[使用指南](../user_guides/index.rst)开始阅读。
+
+
+
