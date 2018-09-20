@@ -172,7 +172,7 @@ output：
 
 Fluid不同于其他大部分深度学习框架，去掉了静态计算图的概念，代之以Program的形式动态描述计算过程。这种动态的计算描述方式，兼具网络结构修改的灵活性和模型搭建的便捷性，在保证性能的同时极大地提高了框架对模型的表达能力。
 
-开发者的所有Operator都将写入Program，在Fluid内部将自动转化为一种叫作ProgramDesc的描述语言（对用户来说是透明的），Program的定义过程就像在写一段通用程序，有开发经验的用户在使用Fluid时，会很自然的将自己的知识迁移过来。 
+开发者的所有 Operator 都将写入 Program ，在Fluid内部将自动转化为一种叫作 ProgramDesc 的描述语言，Program 的定义过程就像在写一段通用程序，有开发经验的用户在使用 Fluid 时，会很自然的将自己的知识迁移过来。 
 
 其中，Fluid通过提供顺序、分支和循环三种执行结构的支持，让用户可以通过组合描述任意复杂的模型。
 
@@ -190,7 +190,7 @@ cost = fluid.layers.square_error_cost(input=y_predict, label=y)
 
 **条件分支——switch、if else：**
 
-Fluid中有switch和if-else类来实现条件选择，用户可以使用这一执行结构在学习率调节器中调整学习率或其他希望的操作。
+Fluid 中有 switch 和 if-else 类来实现条件选择，用户可以使用这一执行结构在学习率调节器中调整学习率或其他希望的操作。
 
 例如：
 ```python
@@ -212,20 +212,20 @@ with fluid.layers.control_flow.Switch() as switch:
     with switch.default():
         fluid.layers.tensor.assign(input=two_var, output=lr)
 ```
-关于Fluid中Program的详细设计思想，可以参考阅读[Flui设计思想](++++++++)
+关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Flui设计思想](++++++++)
 
-更多Fluid中的控制流，可以参考阅读[API文档](../api/layers.rst#control_flow)
+更多 Fluid 中的控制流，可以参考阅读[API文档](../api/layers.rst#control_flow)
 
 
 ## 使用Executor执行Program
 
 Fluid的设计思想类似于高级编程语言C++和JAVA等。程序的执行过程被分为编译和执行两个阶段。
 
-用户完成对Program的定义后，Executor接受这段Program并转化为C++后端真正可执行的FluidProgram，这一自动完成的过程叫做编译。
+用户完成对 Program 的定义后，Executor 接受这段 Program 并转化为C++后端真正可执行的 FluidProgram，这一自动完成的过程叫做编译。
 
-编译过后需要Executor来执行这段编译好的FluidProgram。
+编译过后需要 Executor 来执行这段编译好的 FluidProgram。
 
-例如上文实现的加法运算，当构建好Program后，需要创建Executor，进行初始化Program和训练Program：
+例如上文实现的加法运算，当构建好 Program 后，需要创建 Executor，进行初始化 Program 和训练 Program：
 
 ```python
 
@@ -249,7 +249,7 @@ fetch_list=[result.name])
 
 至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随本部分，完成一个非常简单的数据预测。已经掌握这部分内容的话，可以跳过本节阅读[what next](#what next)。
 
-从逻辑层面明确了输入数据格式、模型结构、损失函数以及优化算法后，需要使用PaddlePaddle提供的API及算子来实现模型逻辑。一个典型的模型主要包含4个部分，分别是：输入数据格式定义，模型前向计算逻辑，损失函数以及优化算法。
+从逻辑层面明确了输入数据格式、模型结构、损失函数以及优化算法后，需要使用 PaddlePaddle 提供的 API 及算子来实现模型逻辑。一个典型的模型主要包含4个部分，分别是：输入数据格式定义，模型前向计算逻辑，损失函数以及优化算法。
 
 1. 问题描述
 给定一组数据 $<X,Y>$，求解出函数 $f$，使得 $y=f(x)$，其中$X$,$Y$均为一维张量。最终网络可以依据输入$x$，准确预测出$y_{\_predict}$。
