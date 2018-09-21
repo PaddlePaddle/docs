@@ -49,3 +49,14 @@ Python Reader
    :maxdepth: 2
 
    reader.md
+
+PyReader
+#############
+
+Python Reader是纯Python的接口，数据传入与模型训练/预测过程是同步的，效率较低。
+Fluid提供PyReader异步数据传入方式，具体请参考：
+
+.. toctree::
+   :maxdepth: 2
+
+   use_py_reader.rst
