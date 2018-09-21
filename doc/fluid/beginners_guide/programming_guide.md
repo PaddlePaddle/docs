@@ -363,7 +363,7 @@ Fluid的设计思想类似于高级编程语言C++和JAVA等。程序的执行�
         y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
         #定义网络
         x = fluid.layers.data(name="x",shape=[1],dtype='float32')
-        y = fluid.layers.data(name='y',shape=[1],dtype='float32')
+        y = fluid.layers.data(name="y",shape=[1],dtype='float32')
         y_predict = fluid.layers.fc(input=x,size=1,act=None)
         #定义损失函数
         cost = fluid.layers.square_error_cost(input=y_predict,label=y)
