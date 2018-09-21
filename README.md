@@ -21,5 +21,5 @@ To preview documents constructured by FluidDoc. Please follow the [regular previ
 1. Make sure all the submodules are ready for release. Paddle, book, model, mobile and Anakin should all have stable commits. Note: Paddle repo should update the API RST files accordinly if Paddle changes the included module/classes. 
 1. Update the submodules under `external` folder and commit the changes.
 1. Git push the branch to Github, Travis CI will start several builds to publish the documents to the PaddlePaddle.org server
-1. Please notify the PaddlePaddle.org team that the release content is ready. PaddlePaddl.org team should enable the version and update the default version to the latest one. PaddlePaddl.org should also update the search index accordingly (Until the search server is up)
+1. Please notify the PaddlePaddle.org team that the release content is ready. PaddlePaddl.org team should enable the version and update the default version to the latest one. PaddlePaddle.org should also update the search index accordingly (Until the search server is up)
 
