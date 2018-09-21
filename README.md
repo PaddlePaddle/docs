@@ -12,7 +12,7 @@ When a release branch is pushed to Github, Travis-CI will start automatically to
 FluidDoc needs Paddle python module to compile API documents. Unfortunately, compiling Paddle python module takes longer time Travis CI permits. Usually Travis CI will fail due because of timeout. That's why there three jobs on Travis, two of them are to build libraries. Once the libraries are cached on the Travis, next build will be a lot faster.
 
 ## Preview with PPO
-To preview documents constructured by FluidDoc. Please follow the regular preview step, but replace the path to paddle with the path to FluidDoc
+To preview documents constructured by FluidDoc. Please follow the [regular preview step](https://github.com/PaddlePaddle/PaddlePaddle.org/blob/develop/README.md), but replace the path to paddle with the path to FluidDoc
 `./runserver --paddle <path_to_FluidDoc_dir>`
 
 # Publish New release
