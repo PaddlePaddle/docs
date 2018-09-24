@@ -334,7 +334,7 @@ Fluid的设计思想类似于高级编程语言C++和JAVA等。程序的执行�
             feed={'x':train_data,'y':y_true},
             fetch_list=[y_predict.name,avg_cost.name])
         #观察结果
-        print outputs
+        print outs
     
     输出结果:
 
