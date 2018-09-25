@@ -1,7 +1,7 @@
 # Parser的编写指南
 
-Parser是一种网络框架转换工具，将其他框架如Caffe、TensorFlow的网络结构转换为Anakin网络结构图，然后对转换后的Anakin图进行预测处理。
-本文主要介绍Parser功能的框架结构和根据已有的网络框架改写Parser，以解析得到Anakin框架图，进行Anakin预测。
+Parser是一种网络框架转换工具，将其他框架如Caffe、TensorFlow的网络结构转换为Anakin网络结构图，然后对转换后的Anakin图进行预测处理
+本文主要介绍Parser功能的框架结构和根据已有的网络框架改写Parser，以解析得到Anakin框架图，进行Anakin预测
 下文称Anakin为AK，运算操作为OP,本文参考TensorFlow的Parser编写,参考代码目录为tools/external_converter_v2/parser/tensorflow
 
 ## Parser的功能和执行流程
@@ -18,15 +18,15 @@ Parser功能是将其他深度学习框架(如Caffe，TensorFlow，ONNX)的模�
 Parser工具在tools/external_converter_v2/parser目录下
 Parser的目录主要包含3部分:
  1. Parser的运行配置文件包括 config.py, config.yaml, converter.py, 用户只用执行converter.py，Parser就会按照config.yaml中的声明去解析模型
- 2. Parser的公共定义，包括operations,pbs,proto三个目录. Parser的公共工具函数 graph*.py logger.py utils.py
+ 2. Parser的公共定义，包括operations,pbs,proto三个目录。Parser的公共工具函数 graph*.py logger.py utils.py
  3. 各个框架对应的Parser，其目录的命名方式为框架名,如Caffe, TensorFlow
  
 ## Parser的编写流程
 
 ### 1、声明你的Parser
 
- 1. 在config.yaml中填写你的Parser运行的必要信息，包括ProtoPath和SavePath等.OPTIONS/Framework改为你的Parser的类型，TARGET下填写对应的参数列表
- 2. 添加你的Parser目录，如TensorFlow，导出你的Parser符号.注意，Parser的框架默认调用你的Parser类中的__call__方法来执行解析，这个方法需要返回填写完毕的GraphProtoIO对象
+ 1. 在config.yaml中填写你的Parser运行的必要信息，包括ProtoPath和SavePath等。OPTIONS/Framework改为你的Parser的类型，TARGET下填写对应的参数列表
+ 2. 添加你的Parser目录，如TensorFlow，导出你的Parser符号。注意，Parser的框架默认调用你的Parser类中的__call__方法来执行解析，这个方法需要返回填写完毕的GraphProtoIO对象
  3. 在config.py中Configuration下__init__函数中增加对你的Parser的调用，将yaml中读取的配置信息传给你的Parser，此处调用你的Parser中的__init__方法
  
 ### 2、添加你的Parser主体
@@ -34,7 +34,7 @@ Parser的目录主要包含3部分:
 可以参考parser_tf.py
  1. 你需要在Parser主体构造时获取模型路径，input，ouput名字等解析必须的信息
  2. 在__call__中返回填写好的GraphProtoIO对象，该对象为填写protobuf的辅助工具
- 3. 建议Parser的解析过程分成三部分，先将原框架的模型载入并转换为一种便于修改的中间的图形式；对中间图修改使得图满足AK的要求；将满足要求的中间图利用NodeProtoIO和GraphProtoIO这两个辅助类填入protobuf.具体细节可以参考parser_tf
+ 3. 建议Parser的解析过程分成三部分，先将原框架的模型载入并转换为一种便于修改的中间的图形式；对中间图修改使得图满足AK的要求；将满足要求的中间图利用NodeProtoIO和GraphProtoIO这两个辅助类填入protobuf，具体细节可以参考parser_tf
  
 ### 3、读取原始模型，并将模型转换为中间类型
 
@@ -56,7 +56,7 @@ Parser的目录主要包含3部分:
  1. 你首先需要构造Node节点，Node节点的名字是OP的名字(如conv2d_1_a_0)，Node节点中OP成员变量的名字是Node节点的类型(如Convlution)
  2. Node节点需要按照输入的顺序用Node的add_in方法填写输入Node的名字，add_out方法按顺序填写输出Node的名字
  3. 通过调用GraphProtoIO的add_node方法将构造好的Node的__call__方法的返回值作为参数，将Node节点加入AK的graph中
- 4. 调用GraphProtoIO的add_in_edge和add_out_edge完成AK图中OP间关系的构建. 如果Node中的in和out填写正确，你也可以通过调用GraphProtoIO的format_edge_from_nodes方法完成这个工作
+ 4. 调用GraphProtoIO的add_in_edge和add_out_edge完成AK图中OP间关系的构建。如果Node中的in和out填写正确，你也可以通过调用GraphProtoIO的format_edge_from_nodes方法完成这个工作
  5. AK的模型需要Parser给出输出Node的名字，使用GraphProtoIO的add_out方法填写输出Node的名字
  
 ### 6、检查模型解析的正确性
