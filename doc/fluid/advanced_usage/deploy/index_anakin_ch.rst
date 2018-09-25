@@ -8,7 +8,7 @@
 .. toctree::
    :maxdepth: 1
 
-   Anakin的安装指南 [install_anakin ->](./install_anakin.md)
+   Anakin的安装指南 [install_anakin here->]（./install_anakin.md)
    Anakin模型转换指南 ['convert_paddle_to_anakin' ->] (./convert_paddle_to_anakin.md)
    Anakin源码编译['run_anakin_on_arm' ->'](./run_anakin_on_arm.md)
    Anakin使用指南 ['anakin_tutorial' ->](./anakin_tutorial.md)
