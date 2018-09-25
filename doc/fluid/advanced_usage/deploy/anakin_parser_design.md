@@ -1,12 +1,12 @@
 # Parser的编写指南
 
-Parser是一种网络框架转换工具，将其他框架如caffe、tensorflow的网络结构转换为Anakin网络结构图，然后对转换后的Anakin图进行预测处理。
+Parser是一种网络框架转换工具，将其他框架如Caffe、TensorFlow的网络结构转换为Anakin网络结构图，然后对转换后的Anakin图进行预测处理。
 本文主要介绍Parser功能的框架结构和根据已有的网络框架改写Parser，以解析得到Anakin框架图，进行Anakin预测。
-下文称Anakin为AK，运算操作为OP,本文参考Tensorflow的Parser编写,参考代码目录为tools/external_converter_v2/parser/tensorflow
+下文称Anakin为AK，运算操作为OP,本文参考TensorFlow的Parser编写,参考代码目录为tools/external_converter_v2/parser/tensorflow
 
 ## Parser的功能和执行流程
 
-Parser功能是将其他深度学习框架(如caffe，tensorflow，onnx)的模型转换为AK的模型。对AK的作用是屏蔽不同框架间的差异，这种差异包括模型存储、OP的定义、图差异
+Parser功能是将其他深度学习框架(如Caffe，TensorFlow，ONNX)的模型转换为AK的模型。对AK的作用是屏蔽不同框架间的差异，这种差异包括模型存储、OP的定义、图差异
 因此Parser的执行流程是：
  1. 将源框架的模型载入Parser
  2. 将原框架的图解析为AK中的OP节点和OP节点的连接关系
@@ -19,14 +19,14 @@ Parser工具在tools/external_converter_v2/parser目录下
 Parser的目录主要包含3部分:
  1. Parser的运行配置文件包括 config.py, config.yaml, converter.py, 用户只用执行converter.py，Parser就会按照config.yaml中的声明去解析模型
  2. Parser的公共定义，包括operations,pbs,proto三个目录. Parser的公共工具函数 graph*.py logger.py utils.py
- 3. 各个框架对应的Parser，其目录的命名方式为框架名,如caffe, tensorflow
+ 3. 各个框架对应的Parser，其目录的命名方式为框架名,如Caffe, TensorFlow
  
 ## Parser的编写流程
 
 ### 1、声明你的Parser
 
  1. 在config.yaml中填写你的Parser运行的必要信息，包括ProtoPath和SavePath等.OPTIONS/Framework改为你的Parser的类型，TARGET下填写对应的参数列表
- 2. 添加你的Parser目录，如tensorflow，导出你的Parser符号.注意，Parser的框架默认调用你的Parser类中的__call__方法来执行解析，这个方法需要返回填写完毕的GraphProtoIO对象
+ 2. 添加你的Parser目录，如TensorFlow，导出你的Parser符号.注意，Parser的框架默认调用你的Parser类中的__call__方法来执行解析，这个方法需要返回填写完毕的GraphProtoIO对象
  3. 在config.py中Configuration下__init__函数中增加对你的Parser的调用，将yaml中读取的配置信息传给你的Parser，此处调用你的Parser中的__init__方法
  
 ### 2、添加你的Parser主体
@@ -73,8 +73,8 @@ Parser的目录主要包含3部分:
 ## AK模型与其他框架模型的不同之处
 
  + AK模型与caffe的模型相似，因此与其他模型有很多不同的地方，需要Parser在解析过程中处理掉
- + 最大的不同是与fluid或tensorflow的模型中OP粒度很细，而AK的模型中OP的粒度很粗（目的是为了节省访存开销）。这会导致解析这些框架的模型时存在大量的合并操作
- + 其次是OP的行为不同,如tensorflow中Pooling默认都是exclusive的，而AK中是inclusive的。tensorflow的Padding，如果是奇数pad，则在右方和下方多pad，而AK是在左方和上方多Pad
+ + 最大的不同是与Fluid或TensorFlow的模型中OP粒度很细，而AK的模型中OP的粒度很粗（目的是为了节省访存开销）。这会导致解析这些框架的模型时存在大量的合并操作
+ + 其次是OP的行为不同,如TensorFlow中Pooling默认都是exclusive的，而AK中是inclusive的。TensorFlow的Padding，如果是奇数pad，则在右方和下方多pad，而AK是在左方和上方多Pad
  + AK默认的布局是NCHW，如果其他框架的OP是其他形式的，需要在Parser中做weights的布局转换，并处理reshape的问题
  + AK中有的weights是需要预先做布局转换的(如GRU，LSTM)，AK中也支持同一OP的不同算法，如(GRU，Pooling)
 
