@@ -73,7 +73,7 @@ Parser的目录主要包含3部分:
 ## AK模型与其他框架模型的不同之处
 
  + AK模型与caffe的模型相似，因此与其他模型有很多不同的地方，需要Parser在解析过程中处理掉
- + 最大的不同是与Fluid或TensorFlow的模型中OP粒度很细，而AK的模型中OP的粒度很粗（目的是为了节省访存开销）。这会导致解析这些框架的模型时存在大量的合并操作
+ + 最大的不同是与Paddle或TensorFlow的模型中OP粒度很细，而AK的模型中OP的粒度很粗（目的是为了节省访存开销）。这会导致解析这些框架的模型时存在大量的合并操作
  + 其次是OP的行为不同,如TensorFlow中Pooling默认都是exclusive的，而AK中是inclusive的。TensorFlow的Padding，如果是奇数pad，则在右方和下方多pad，而AK是在左方和上方多Pad
  + AK默认的布局是NCHW，如果其他框架的OP是其他形式的，需要在Parser中做weights的布局转换，并处理reshape的问题
  + AK中有的weights是需要预先做布局转换的(如GRU，LSTM)，AK中也支持同一OP的不同算法，如(GRU，Pooling)
