@@ -14,11 +14,6 @@ services:
   - docker
 os:
   - linux
-env:
-  - JOB=doc
-  - JOB=lite_lib
-  - JOB=lite_lib2
-  - JOB=en_external_doc
 
 addons:
   apt:
@@ -32,20 +27,13 @@ before_install:
   -  sudo pip install pylint pytest astroid isort 
   # Load cached docker images
   #- if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
-  
-script:
-  - |
-     if [ $JOB == "doc" ]; then scripts/deploy_docs.sh full
-     fi
-     
-     if [ $JOB == "lite_lib" ]; then scripts/deploy_docs.sh pybind 
-     fi 
-     
-     if [ $JOB == "lite_lib2" ]; then scripts/deploy_docs.sh proto
-     fi 
-     
-     if [ $JOB == "en_external_doc" ]; then scripts/deploy_en_external_docs.sh 
-     fi 
+
+jobs:
+  include:
+    - script: scripts/deploy_docs.sh full 
+    - script: scripts/deploy_docs.sh pybind
+    - script: scripts/deploy_docs.sh proto
+    - script: scripts/deploy_en_external_docs.sh
 
 #before_cache:
 #  # Save tagged docker images
