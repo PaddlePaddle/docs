@@ -250,7 +250,7 @@ outs = exe.run(
 
 ## 代码实例
 
-至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随本部分，完成一个非常简单的数据预测。已经掌握这部分内容的话，可以跳过本节阅读[what next](#what next)。
+至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随本部分，完成一个非常简单的数据预测。已经掌握这部分内容的话，可以跳过本节阅读[What next](#what_next)。
 
 从逻辑层面明确了输入数据格式、模型结构、损失函数以及优化算法后，需要使用 PaddlePaddle 提供的 API 及算子来实现模型逻辑。一个典型的模型主要包含4个部分，分别是：输入数据格式定义，模型前向计算逻辑，损失函数以及优化算法。
 
@@ -408,14 +408,14 @@ outs = exe.run(
     
     恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../beginners_guide/quick_start/fit_a_line/README.cn.md)。更多丰富的模型实例可以在[模型库](../user_guides/models/index.rst)中找到。
 
-<a name="what next"></a>
+<a name="what_next"></a>
 ## What next
 
 如果您已经掌握了基本操作，可以进行下一阶段的学习了：
 
-跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../user_guides/howto/configure_simple_model/index.rst)
+跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../user_guides/howto/configure_simple_model/index.rst)。
 
-完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../user_guides/howto/training/index.rst)
+完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../user_guides/howto/training/index.rst)。
 
 除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../user_guides/index.rst)和[进阶使用](../advanced_usage/index.rst)。
 
