@@ -219,7 +219,7 @@ with fluid.layers.control_flow.Switch() as switch:
 ```
 
     
-关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Flui设计思想](++++++++)
+关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Flui设计思想](../user_guides/fluid_design_idea.md)
 
 更多 Fluid 中的控制流，可以参考阅读[API文档](../api/layers.rst#control_flow)
 
@@ -408,6 +408,7 @@ outs = exe.run(
     
     恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../beginners_guide/quick_start/fit_a_line/README.cn.md)。更多丰富的模型实例可以在[模型库](../user_guides/models/index.rst)中找到。
 
+<a name="what next"></a>
 ## What next
 
 如果您已经掌握了基本操作，可以进行下一阶段的学习了：
