@@ -54,7 +54,7 @@ blocks中包含：
 
 block的概念与通用程序一致，例如在下列这段C++代码中包含三个block：
 
-``` C++
+``` cpp
 int main(){ //block 0
 	int i = 0;
 	if (i<10){ //block 1
@@ -96,7 +96,7 @@ prob = ie()
 
 `BlockDesc`中包含本地变量的定义`vars`，和一系列的operator`ops`：
 
-```
+```cpp
  message BlockDesc {
   required int32 parent = 1;
   repeated VarDesc vars = 2;
@@ -107,7 +107,7 @@ parent ID表示父块，因此block中的操作符可以引用本地定义的变
 
 Program 中的每层 block 都被压平并存储在数组中。blocks ID是这个数组中块的索引。
 
-```
+```cpp
 message ProgramDesc {
   repeated BlockDesc blocks = 1;
 }
@@ -119,14 +119,14 @@ message ProgramDesc {
 
 下述OpDesc的定义过程描述了一个operator可以包含哪些属性：
 
-```
+```cpp
 message OpDesc {
   AttrDesc attrs = 1;
   ...
 }
 ```
 属性可以是block的类型，实际上就是上面描述的block ID:
-```
+```cpp
 message AttrDesc {
   required string name = 1;
 
@@ -162,7 +162,7 @@ Executor 在运行时将接受一个`ProgramDesc`、一个`block_id`和一个`Sc
 
 Executor的C++实现代码如下：
 
-```
+```cpp
 class Executor{
 	public:
 		void Run(const ProgramDesc& pdesc,
@@ -200,7 +200,6 @@ exe = fluid.Executor(cpu)
 Fluid使用Executor.run来运行程序。定义中通过Feed映射获取数据，通过fetch\_list获取结果：
 
 ```python
-...
 ...
 x = numpy.random.random(size=(10, 1)).astype('float32')
 outs = exe.run(
@@ -243,7 +242,7 @@ sgd_optimizer.minimize(avg_cost)
 print(fluid.default_main_program().to_string(True))
 ```
 完整ProgramDesc可以在本地查看，本次仅节选一部分结果如下：
-```python
+```
 blocks {
   idx: 0
   parent_idx: -1
@@ -289,7 +288,6 @@ blocks {
       }
     }
     persistable: false
-    ...
     ...
 ```
 从输出结果中可以看到，整个定义过程在框架内部转化为了一段ProgramDesc，以block idx为索引。
