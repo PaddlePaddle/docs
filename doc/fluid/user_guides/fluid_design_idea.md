@@ -16,8 +16,9 @@
 Fluid使用一种编译器式的执行流程，分为编译时和运行时两个部分，具体包括：编译器定义 Program ，创建Executor 运行 Program 。
 
 本地训练任务执行流程图如下所示：
-
-![图片](http://agroup-bos.cdn.bcebos.com/b1ea964292e936b49947aa372fc1193d38284526)
+<p align="center">
+	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/image/fluid_process.png" width=800>
+</p>
 
  1. 编译时，用户编写一段python程序，通过调用 Fluid 提供的算子，向一段 Program 中添加变量（Tensor）以及对变量的操作（Operators 或者 Layers）。用户只需要描述核心的前向计算，不需要关心反向计算、分布式下以及异构设备下如何计算。
  
@@ -148,7 +149,9 @@ Executor 在运行时将接受一个`ProgramDesc`、一个`block_id`和一个`Sc
 
 完成的编译执行的具体过程如下图所示：
 
-![图片](http://agroup-bos.cdn.bcebos.com/3520f50cc214e86896329f83c44ee541cf1dd6f5)
+<p align="center">
+	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/image/executor_design.png" width=600>
+</p>
 
 1. Executor 为每一个block创建一个Scope，Block是可嵌套的，因此Scope也是可嵌套的
 2. 创建所有Scope中的变量
@@ -207,7 +210,7 @@ outs = exe.run(
 
 
 ## 代码实例
-本节通过[Fluid编程指南](编程指南)中简单的线性回归例子，为您介绍上述内容如何在代码中实现。
+本节通过[Fluid编程指南](../beginners_guide/programming_guide.md)中简单的线性回归例子，为您介绍上述内容如何在代码中实现。
 
 **定义Program**
 
