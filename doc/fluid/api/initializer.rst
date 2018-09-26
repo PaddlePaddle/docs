@@ -32,6 +32,15 @@ Normal
     :members:
     :noindex:
 
+.. _api_fluid_initializer_TruncatedNormal:
+
+TruncatedNormal
+---------------
+
+..  autoclass:: paddle.fluid.initializer.TruncatedNormal
+    :members:
+    :noindex:
+
 .. _api_fluid_initializer_Xavier:
 
 Xavier
@@ -99,6 +108,15 @@ NormalInitializer
 -----------------
 
 ..  autoclass:: paddle.fluid.initializer.NormalInitializer
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_TruncatedNormalInitializer:
+
+TruncatedNormalInitializer
+--------------------------
+
+..  autoclass:: paddle.fluid.initializer.TruncatedNormalInitializer
     :members:
     :noindex:
 
