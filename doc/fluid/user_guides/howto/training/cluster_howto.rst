@@ -20,7 +20,7 @@ Fluid分布式训练使用手册
 `NCCL2 <https://developer.nvidia.com/nccl>`_ 。
 
 .. csv-table:: 下面是一个RPC通信和Collective通信的横向对比：
-   :header: "Feature", "Coolective", "RPC"
+   :header: "Feature", "Collective", "RPC"
 
    "Ring-Based通信", "Yes", "No"
    "异步训练", "Yes", "Yes"
@@ -54,27 +54,30 @@ Fluid分布式训练使用手册
 使用parameter server方式的训练
 ------------------------------
 
-使用 :code:`trainer` API，程序可以自动地通过识别环境变量决定是否以分布式方式执行。
+使用 :code:`transpiler` API可以把单机可以执行的程序快速转变成可以分布式执行的程序。在不同的服务器节点
+上，通过传给 :code:`transpiler` 对应的参数，以获取当前节点需要执行的 :code:`Program` 。
 
-.. csv-table:: 需要在您的分布式环境中配置的环境变量包括：
-   :header: "环境变量", "说明"
 
-   "PADDLE_TRAINING_ROLE", "当前进程的角色，可以是PSERVER或TRAINER"
-   "PADDLE_PSERVER_PORT", "parameter使用的端口"
-   "PADDLE_PSERVER_IPS", "parameter server的IP地址列表，用逗号分开"
-   "PADDLE_TRAINERS", "分布式任务中trainer节点的个数"
-   "PADDLE_CURRENT_IP", "当前节点的IP"
-   "PADDLE_TRAINER_ID", "trainer节点的id，从0~n-1，不能有重复"
+.. csv-table:: 需要配置参数包括
+   :header: "参数", "说明"
 
-使用更加底层的 :code:`transpiler` API可以提供自定义的分布式训练的方法，比如可以在同一台机器上，
-启动多个pserver和trainer进行训练，使用底层API的方法可以参考下面的样例代码：
+   "role", "**必选**区分作为pserver启动还是trainer启动，不传给transpile，也可以用其他的变量名或环境变量"
+   "trainer_id", "**必选**如果是trainer进程，用于指定当前trainer在任务中的唯一id，从0开始，在一个任务中需保证不重复"
+   "pservers", "**必选**当前任务所有pserver的ip:port列表字符串，形式比如：127.0.0.1:6170,127.0.0.1:6171"
+   "trainers", "**必选**trainer节点的个数"
+   "sync_mode", "**可选**True为同步模式，False为异步模式"
+   "startup_program", "**可选**如果startup_program不是默认的fluid.default_startup_program()，需要传入此参数"
+   "current_endpoint", "**可选**只有NCCL2模式需要传这个参数"
+
+一个例子，假设有两个节点，分别是 :code:`192.168.1.1` 和 :code:`192.168.1.2` ，使用端口6170，启动4个trainer，
+则代码可以写成：
 
 .. code-block:: python
 
    role = "PSERVER"
-   trainer_id = 0
-   pserver_endpoints = "127.0.0.1:6170,127.0.0.1:6171"
-   current_endpoint = "127.0.0.1:6170"
+   trainer_id = 0  # get actual trainer id from cluster
+   pserver_endpoints = "192.168.1.1:6170,192.168.1.2:6170"
+   current_endpoint = "192.168.1.1:6170" # get actual current endpoint
    trainers = 4
    t = fluid.DistributeTranspiler()
    t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
@@ -120,7 +123,7 @@ parameter server上。如果需要使用其他，可以传入其他的方法，�
 关闭切分参数
 ++++++++++++
 
-参数 :code:`slice_var_up` 指定是否将较大（大于8192个元素）的参数切分到多个parameter server已均衡计算负载，默认为开启。
+参数 :code:`slice_var_up` 指定是否将较大（大于8192个元素）的参数切分到多个parameter server以均衡计算负载，默认为开启。
 
 当模型中的可训练参数体积比较均匀或者使用自定义的参数分布方法是参数均匀分布在多个parameter server上，
 可以选择关闭切分参数，这样可以降低切分和重组带来的计算和拷贝开销：
@@ -130,21 +133,61 @@ parameter server上。如果需要使用其他，可以传入其他的方法，�
    t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, slice_var_up=False)
 
 
+开启内存优化
+++++++++++++
+
+在parameter server分布式训练模式下，要开启内存优化 :code:`memory_optimize` 和单机相比，需要注意按照下面
+的规则配置：
+
+* 在pserver端，**不要**执行 :code:`memory_optimize`
+* 在trainer端，先执行 :code:`fluid.memory_optimize` 再执行 :code:`t.transpile()`
+* 在trainer端，调用 :code:`memory_optimize` 需要增加 :code:`skip_grads=True` 确保发送的梯度不会被重
+  命名： :code:`fluid.memory_optimize(input_program, skip_grads=True)`
+
+示例：
+
+.. code-block:: python
+
+  if role == "TRAINER": 
+      fluid.memory_optimize(fluid.default_main_program(), skip_grads=True)
+  t = fluid.DistributeTranspiler()
+  t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
+  if role == "PSERVER":
+      # start pserver here
+  elif role == "TRAINER":
+      # start trainer here
+
+
 使用NCCL2通信方式的训练
 --------------------
 
-注NCCL2模式目前仅支持trainer API，NCCL2方式并没有很多可选项，也没有"transpiler"，所以并没有底层API。
-使用NCCL2方式同样需要配置每个节点的环境变量，此处与parameter server模式有所不同，并不需要启动独立的\
-parameter server的进程，只需要启动多个trainer进程即可。
+NCCL2模式的分布式训练，由于没有parameter server角色，是trainer之间互相通信，使用是注意：
 
+* 配置 :code:`fluid.DistributeTranspilerConfig` 中 :code:`mode="nccl2"` 。
+* 调用 :code:`transpile` 时，:code:`trainers` 传入所有trainer节点的endpoint，并且传入参数 :code:`current_endpoint` 。
+* 初始化 :code:`ParallelExecutor` 时传入 :code:`num_trainers` 和 :code:`trainer_id` 。
 
-.. csv-table:: NCCL2模式环境变量说明：
+一个例子：
+
+.. code-block:: python
+
+  trainer_id = 0 # get actual trainer id here
+  trainers = "192.168.1.1:6170,192.168.1.2:6170"
+  current_endpoint = "192.168.1.1:6170"
+  config = fluid.DistributeTranspilerConfig()
+  config.mode = "nccl2"
+  t = fluid.DistributeTranspiler(config=config)
+  t.transpile(trainer_id, trainers=trainers, current_endpoint=current_endpoint)
+  exe = fluid.ParallelExecutor(use_cuda,
+    loss_name=loss_name, num_trainers=len(trainers.split(",")), trainer_id=trainer_id)
+  ...
+
+.. csv-table:: NCCL2模式必要参数说明
    :header: "环境变量", "说明"
 
-   "PADDLE_TRAINER_IPS", "所有Trainer节点的IP列表，用逗号分隔"
-   "PADDLE_TRAINER_ID", "trainer节点的id，从0~n-1，不能有重复"
-   "PADDLE_PSERVER_PORT", "一个端口，用于在NCCL2初始化时，广播NCCL ID"
-   "PADDLE_CURRENT_IP", "当前节点的IP"
+   "trainer_id", "任务中每个trainer节点的唯一ID，从0开始，不能有重复"
+   "trainers", "任务中所有trainer节点的endpoint，用于在NCCL2初始化时，广播NCCL ID"
+   "current_endpoint", "当前节点的endpoint"
 
 目前使用NCCL2进行分布式训练仅支持同步训练方式。使用NCCL2方式的分布式训练，更适合模型体积较大，并需要使用\
 同步训练和GPU训练，如果硬件设备支持RDMA和GPU Direct，可以达到很高的分布式训练性能。
