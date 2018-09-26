@@ -14,15 +14,6 @@ DistributeTranspiler
     :members:
     :noindex:
 
-.. _api_fluid_transpiler_InferenceTranspiler:
-
-InferenceTranspiler
--------------------
-
-..  autoclass:: paddle.fluid.transpiler.InferenceTranspiler
-    :members:
-    :noindex:
-
 .. _api_fluid_transpiler_memory_optimize:
 
 memory_optimize
