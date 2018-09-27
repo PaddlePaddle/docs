@@ -16,4 +16,4 @@
     howto/debug/index
     howto/evaluation/index
     howto/inference/index
-    models/index.rst
+    models/index.md
