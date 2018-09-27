@@ -31,9 +31,13 @@ before_install:
 jobs:
   include:
     - script: scripts/deploy_docs.sh full 
+      name: Generate Docs
     - script: scripts/deploy_docs.sh pybind
+      name: Cache pybind build
     - script: scripts/deploy_docs.sh proto
+      name: Cache proto build
     - script: scripts/deploy_en_external_docs.sh
+      name: Generate EN external docs
 
 #before_cache:
 #  # Save tagged docker images
