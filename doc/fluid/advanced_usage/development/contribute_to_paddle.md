@@ -57,6 +57,10 @@ Changes not staged for commit:
  ```bash
 ➜  docker run -v $(pwd):/paddle -e "WITH_GPU=OFF" -e "WITH_AVX=ON" -e "WITH_TESTING=ON" paddle:latest-dev
 ```
+ 如果你需要在此基础上编译基于Python3的PaddlePaddle，可以：
+ ```bash
+➜  docker run -v $(pwd):/paddle -e "PY_VERSION=3.5" -e "WITH_GPU=OFF" -e "WITH_AVX=ON" -e "WITH_TESTING=ON" paddle:latest-dev
+```
  这个过程除了编译PaddlePaddle为 `./build/libpaddle.so`，并且输出一个 `./build/paddle.deb`文件之外，还会输出一个 `build/Dockerfile`。我们只需要运行下面命令把编译好的PaddlePaddle打包成一个*生产镜像*（`paddle:prod`）：
  ```bash
 ➜  docker build -t paddle:prod -f build/Dockerfile .
