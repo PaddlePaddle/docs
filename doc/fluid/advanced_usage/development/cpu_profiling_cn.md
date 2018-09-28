@@ -1,1 +1,1 @@
-../../../howto/optimization/cpu_profiling_cn.md
+../../howto/optimization/cpu_profiling_cn.md
