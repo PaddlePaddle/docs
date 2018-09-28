@@ -37,3 +37,11 @@ scaled_dot_product_attention
 ..  autofunction:: paddle.fluid.nets.scaled_dot_product_attention
     :noindex:
 
+.. _api_fluid_nets_img_conv_group:
+
+img_conv_group
+--------------
+
+..  autofunction:: paddle.fluid.nets.img_conv_group
+    :noindex:
+

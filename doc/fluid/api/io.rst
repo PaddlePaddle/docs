@@ -69,11 +69,3 @@ load_inference_model
 ..  autofunction:: paddle.fluid.io.load_inference_model
     :noindex:
 
-.. _api_fluid_io_get_inference_program:
-
-get_inference_program
----------------------
-
-..  autofunction:: paddle.fluid.io.get_inference_program
-    :noindex:
-

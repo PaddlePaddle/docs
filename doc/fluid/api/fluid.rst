@@ -64,6 +64,14 @@ get_var
 ..  autofunction:: paddle.fluid.get_var
     :noindex:
 
+.. _api_fluid_name_scope:
+
+name_scope
+----------
+
+..  autofunction:: paddle.fluid.name_scope
+    :noindex:
+
 .. _api_fluid_Executor:
 
 Executor
@@ -97,84 +105,12 @@ _switch_scope
 ..  autofunction:: paddle.fluid._switch_scope
     :noindex:
 
-.. _api_fluid_Trainer:
-
-Trainer
--------
-
-..  autoclass:: paddle.fluid.Trainer
-    :members:
-    :noindex:
-
-.. _api_fluid_BeginEpochEvent:
-
-BeginEpochEvent
----------------
-
-..  autoclass:: paddle.fluid.BeginEpochEvent
-    :members:
-    :noindex:
-
-.. _api_fluid_EndEpochEvent:
-
-EndEpochEvent
--------------
-
-..  autoclass:: paddle.fluid.EndEpochEvent
-    :members:
-    :noindex:
-
-.. _api_fluid_BeginStepEvent:
-
-BeginStepEvent
---------------
-
-..  autoclass:: paddle.fluid.BeginStepEvent
-    :members:
-    :noindex:
-
-.. _api_fluid_EndStepEvent:
-
-EndStepEvent
-------------
-
-..  autoclass:: paddle.fluid.EndStepEvent
-    :members:
-    :noindex:
-
-.. _api_fluid_CheckpointConfig:
-
-CheckpointConfig
-----------------
-
-..  autoclass:: paddle.fluid.CheckpointConfig
-    :members:
-    :noindex:
-
-.. _api_fluid_Inferencer:
-
-Inferencer
-----------
-
-..  autoclass:: paddle.fluid.Inferencer
-    :members:
-    :noindex:
-
 .. _api_fluid_DistributeTranspiler:
 
 DistributeTranspiler
 --------------------
 
 ..  autoclass:: paddle.fluid.DistributeTranspiler
-    :members:
-    :noindex:
-
-.. _api_fluid_InferenceTranspiler:
-
-InferenceTranspiler
--------------------
-
-..  autoclass:: paddle.fluid.InferenceTranspiler
     :members:
     :noindex:
 
