@@ -40,9 +40,9 @@ with fluid.place_guard(place="/role:worker/cpu"):
     - 依赖的 op 执行完毕
     - input var 和 op 所在的 place 相同
 
-    当我们强制执行了一个 op 的 place 之后，相邻的两个计算 op 可能会处于不同的 place，这会造成 input var 永远不会 ready,
+    当我们指定了 op 的 place 之后，相邻的两个计算 op 可能会处于不同的 place，这会造成 input var 永远不会 ready,
     此时我们需要在两个 op 之间插入通信 op， 确保 input var 能够达到 ready 的状态:
-     - 计算 op 在不同设备:
+    - 计算 op 在不同设备:
 
         假设我们有两个 op: `OP1, OP2`, 他们属于同一个 worker 节点的不同设备 `OP1(/role:worker/gpu), OP2(/role:worker/cpu)`
         `dep_var` 是 OP1 的输出并且是 OP2 的输入，那么很显然 OP2 是无法直接使用 OP1 的输出结果的:
