@@ -1,4 +1,4 @@
-## 从源码编译安装Anakin ##
+## 源码编译安装Anakin ##
 
 我们已经在CentOS 7.3上成功的安装和测试了Anakin，对于其他操作系统，我们将很快支持。
 
@@ -41,7 +41,7 @@
     > sudo ldconfig
   ```
 
-    如安装protobuf遇到任何问题，请访问[这里](https://github.com/google/protobuf/blob/master/src/README.md)
+  如安装protobuf遇到任何问题，请访问[这里](https://github.com/google/protobuf/blob/master/src/README.md)
 
 - 3.2 CUDA Toolkit
 

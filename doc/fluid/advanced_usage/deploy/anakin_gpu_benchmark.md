@@ -1,33 +1,28 @@
-# Anakin GPU Benchmark
+# Anakin GPU 性能测试
 
-## Machine:
+## 环境:
 
 >  CPU: `12-core Intel(R) Xeon(R) CPU E5-2620 v2 @2.10GHz`
 >  GPU: `Tesla P4`
 >  cuDNN: `v7`
 
 
-## Counterpart of anakin  :
+## anakin 对比对象:
 
-The counterpart of **`Anakin`** is the acknowledged high performance inference engine **`NVIDIA TensorRT 3`** ,   The models which TensorRT 3 doesn't support we use the custom plugins  to support.
+**`Anakin`** 将与高性能的推理引擎 **`NVIDIA TensorRT 3`** 进行比较
 
 ## Benchmark Model
 
-The following convolutional neural networks are tested with both `Anakin` and `TenorRT3`.
-You can use pretrained caffe model or the model trained by youself.
+> 注意在性能测试之前，请先将测试model通过 `External Converter` 工具转换为Anakin model
+> 对这些model，本文在GPU上进行单线程单GPU卡的性能测试。
 
-> Please note that you should transform caffe model or others into anakin model with the help of [`external converter ->`](../docs/Manual/Converter_en.md)
-
-
-- [Vgg16](#1)   *caffe model can be found [here->](https://gist.github.com/jimmie33/27c1c0a7736ba66c2395)*
-- [Yolo](#2)  *caffe model can be found [here->](https://github.com/hojel/caffe-yolo-model)*
-- [Resnet50](#3)  *caffe model can be found [here->](https://github.com/KaimingHe/deep-residual-networks#models)*
-- [Resnet101](#4)  *caffe model can be found [here->](https://github.com/KaimingHe/deep-residual-networks#models)*
-- [Mobilenet v1](#5)  *caffe model can be found [here->](https://github.com/shicai/MobileNet-Caffe)*
-- [Mobilenet v2](#6)  *caffe model can be found [here->](https://github.com/shicai/MobileNet-Caffe)*
-- [RNN](#7)  *not support yet*
-
-We tested them on single-GPU with single-thread.
+- [Vgg16](#1)   *caffe model 可以在[这儿](https://gist.github.com/jimmie33/27c1c0a7736ba66c2395)下载*
+- [Yolo](#2)  *caffe model 可以在[这儿](https://github.com/hojel/caffe-yolo-model)下载*
+- [Resnet50](#3)  *caffe model 可以在[这儿](https://github.com/KaimingHe/deep-residual-networks#models)下载*
+- [Resnet101](#4)  *caffe model 可以在[这儿](https://github.com/KaimingHe/deep-residual-networks#models)下载*
+- [Mobilenet v1](#5)  *caffe model 可以在[这儿](https://github.com/shicai/MobileNet-Caffe)下载*
+- [Mobilenet v2](#6)  *caffe model 可以在[这儿](https://github.com/shicai/MobileNet-Caffe)下载*
+- [RNN](#7)  *暂不支持*
 
 ### <span id = '1'>VGG16 </span>
 
@@ -162,9 +157,9 @@ We tested them on single-GPU with single-thread.
 | 8 | 421 | 351 |
 | 32 | 637 | 551 |
 
-## How to run those Benchmark models?
+## How to run those Benchmark models
 
-> 1. At first, you should parse the caffe model with [`external converter`](https://github.com/PaddlePaddle/Anakin/blob/b95f31e19993a192e7428b4fcf852b9fe9860e5f/docs/Manual/Converter_en.md).
-> 2. Switch to *source_root/benchmark/CNN* directory. Use 'mkdir ./models' to create ./models and put anakin models into this file.
-> 3. Use command 'sh run.sh', we will create files in logs to save model log with different batch size. Finally, model latency summary will be displayed on the screen.
-> 4. If you want to get more detailed information with op time, you can modify CMakeLists.txt with setting `ENABLE_OP_TIMER` to `YES`, then recompile and run. You will find detailed information in  model log file.
+1. 首先, 使用[External Converter](./convert_paddle_to_anakin.md)对caffe model 进行转换
+2. 然后跳转至 *source_root/benchmark/CNN* 目录下，使用 'mkdir ./models'创建存放模型的目录，并将转换好的Anakin模型放在该目录下
+3. 运行脚本 `sh run.sh`，运行结束后，该模型的运行时间将会显示到终端上
+4. 如果你想获取每层OP的运行时间，你只用将 CMakeLists.txt 中的`ENABLE_OP_TIMER` 设置为 `YES` 即可

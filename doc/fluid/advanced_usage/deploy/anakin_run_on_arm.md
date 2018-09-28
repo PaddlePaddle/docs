@@ -34,9 +34,9 @@
     $ make install
   ```
 
-    上述 $make install 执行后，可在 `/usr/local/include/google` 找到 libprotobuf 所需的头文件,将整个google文件夹拷贝至Anakin/third-party/arm-android/protobuf/下, 然后将已经生成文件清除。
+  上述 $make install 执行后，可在 `/usr/local/include/google` 找到 libprotobuf 所需的头文件,将整个google文件夹拷贝至Anakin/third-party/arm-android/protobuf/下, 然后将已经生成文件清除。
 
-    如有问题，请点[这里](https://github.com/google/protobuf/blob/v3.4.0/src/README.md)。
+  如有问题，请点[这里](https://github.com/google/protobuf/blob/v3.4.0/src/README.md)。
 
   ```bash
     $ make distclean
@@ -66,11 +66,11 @@
     $ make
   ```
 
-    编译生成 *.a 静态库，若希望编译*.so 动态链接库 ，请在./configure参数中改--disable-shared为--disable-static --enable-shared
+  编译生成 *.a 静态库，若希望编译*.so 动态链接库 ，请在./configure参数中改--disable-shared为--disable-static --enable-shared
 
-    生成文件在`src/.libs/`下，将生成的文件拷贝至`Anakin/third-party/arm-android/protobuf/lib`下
+  生成文件在`src/.libs/`下，将生成的文件拷贝至`Anakin/third-party/arm-android/protobuf/lib`下
 
-    在[cmake](../../cmake/find_modules.cmake)中更新`ARM_RPOTO_ROOT`的路径。
+  在[cmake](../../cmake/find_modules.cmake)中更新`ARM_RPOTO_ROOT`的路径。
 
   ```cmake
     set(ARM_RPOTO_ROOT "${CMAKE_SOURCE_DIR}/third-party/arm-android/protobuf")
@@ -155,9 +155,9 @@
 
   设置`BUILD_WITH_UNIT_TEST=YES`将会编译单测文件
 
-    ```bash
-        -DBUILD_WITH_UNIT_TEST=YES
-    ```
+  ```bash
+      -DBUILD_WITH_UNIT_TEST=YES
+  ```
 
 - 编译示例文件
 
@@ -170,9 +170,9 @@
 
   如果使用opencv，设置`USE_OPENCV=YES`
 
-    ```bash
-        -DUSE_OPENCV=YES
-    ```
+  ```bash
+    -DUSE_OPENCV=YES
+  ```
 
 - 开始编译
 

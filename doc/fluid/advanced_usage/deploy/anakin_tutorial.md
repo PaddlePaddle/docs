@@ -180,78 +180,87 @@ Anakin中数据类型与基本数据类型的对应如下:
 
 填充数据区得看你申明tensor的方式， 下面展示了如何填充tensor的数据区。
 
-```c++
-  首先来看看tensor的四种声明方式：
+首先来看看tensor的四种声明方式：
 
+```c++
   1. Tensor<X86, AK_FLOAT> mytensor;
   2. Tensor<X86, AK_FLOAT, W> mytensor1(shape1);
   3. Tensor<X86, AK_FLOAT> mytensor(data_ptr, TargetType, device_id, shape);
   4. Tensor<NV, AK_FLOAT> tensor(exist_tensor);
+```
 
+相关的声明方式的数据填充方法如下：
 
-  相关的声明方式的数据填充方法如下：
+- 声明一个空的tensor，此时没有为其分配内存，所以，我们需要手动的为其分配内存。
 
-  1：声明一个空的tensor，此时没有为其分配内存，所以，我们需要手动的为其分配内存。
+```c++
 
-              //parama shape
-              mytensor.re_alloc(Shape shape);
+        //parama shape
+        mytensor.re_alloc(Shape shape);
 
-              //Get writable pointer to mytensor.
-              //parama index (int): where you start to write.
-              //Dtype is your data type such int, float or double.
-              Dtype *p = mytensor.mutable_data(index/*=0*/);
-              //write data to mytensor
-              for(int i = 0; i < mytensor.size(); i++){
-                p[i] = 1.0f;
-              }
-              //do something ...
+        //Get writable pointer to mytensor.
+        //parama index (int): where you start to write.
+        //Dtype is your data type such int, float or double.
+        Dtype *p = mytensor.mutable_data(index/*=0*/);
+        //write data to mytensor
+        for(int i = 0; i < mytensor.size(); i++){
+            p[i] = 1.0f;
+        }
+        //do something ...
+```
 
-  2: 这种声明方式会自动分配内存
+- 这种声明方式会自动分配内存
 
-            //Get writable pointer to mytensor.
-            //parama index (int): where you start to write.
-            //Dtype is your data type such int, float or double.
-            Dtype *p = mytensor1.mutable_data(index/*=0*/);
-            //write data to mytensor
-            for(int i = 0; i < mytensor.size(); i++){
-              p[i] = 1.0f;
-            }
-            //do something ...
+```c++
+        //Get writable pointer to mytensor.
+        //parama index (int): where you start to write.
+        //Dtype is your data type such int, float or double.
+        Dtype *p = mytensor1.mutable_data(index/*=0*/);
+        //write data to mytensor
+        for(int i = 0; i < mytensor.size(); i++){
+           p[i] = 1.0f;
+        }
+        //do something ...
+```
 
-
-  3：在该种声明方式中，我们仍不需要手动为其分配内存。但在构造函数内部是否为其分配内存，得依情况而定。如果data_ptr和申明的
+- 在该种声明方式中，我们仍不需要手动为其分配内存。但在构造函数内部是否为其分配内存，得依情况而定。如果data_ptr和申明的
   tensor都在都一个目标平台上，那么该tensor就会与data_ptr共享内存空间，相反，如果他们不在同一个平台上（如data_ptr在X86上，而
   tensor在GPU上），那么此时tensor就会开辟一个新的内存空间，并将data_ptr所指向的数据拷贝到tensor的buffer中。
 
-            //Get writable pointer to mytensor.
-            //parama index (int): where you start to write.
-            //Dtype is your data type such int, float or double.
-            Dtype *p = mytensor.mutable_data(index/*=0*/);
-            //write data to mytensor
-            for(int i = 0; i < mytensor.size(); i++){
-              p[i] = 1.0f;
-            }
-            //do something ...
+```c++
+        //Get writable pointer to mytensor.
+        //parama index (int): where you start to write.
+        //Dtype is your data type such int, float or double.
+        Dtype *p = mytensor.mutable_data(index/*=0*/);
+        //write data to mytensor
+        for(int i = 0; i < mytensor.size(); i++){
+          p[i] = 1.0f;
+        }
+        //do something ...
+```
 
-  4：该种方式仍不需要手动分配内存
+- 该种方式仍不需要手动分配内存
 
-            //Get writable pointer to mytensor.
-            //parama index (int): where you start to write.
-            //Dtype is your data type such int, float or double.
-            Dtype *p = mytensor.mutable_data(index/*=0*/);
-            //write data to mytensor
-            for(int i = 0; i < mytensor.size(); i++){
-              p[i] = 1.0f;
-            }
-            //do something ...
+```c++
+        //Get writable pointer to mytensor.
+        //parama index (int): where you start to write.
+        //Dtype is your data type such int, float or double.
+        Dtype *p = mytensor.mutable_data(index/*=0*/);
+        //write data to mytensor
+        for(int i = 0; i < mytensor.size(); i++){
+           p[i] = 1.0f;
+        }
+       //do something ...
+```
 
+- 另外，你还可以获取一个tensor的可读指针，示例如下：
 
-  另外，你还可以获取一个tensor的可读指针，示例如下：
-          //Get read-only pointer to mytensor.
-          //parama index (int): where you start to read.
-          //Dtype is your data type such int, float or double.
-           Dtype *p = mytensor.data(index/*=0*/);
-          //do something ...
+```c++
+        //Get read-only pointer to mytensor.
+        //parama index (int): where you start to read.
+        //Dtype is your data type such int, float or double.
+        Dtype *p = mytensor.data(index/*=0*/);
+        //do something ...
 ```
 
 如果想更详细的了解tensor，请查阅*soure_path/saber/core/tensor.h*

@@ -1,4 +1,4 @@
-# Example
+# Anakin 运行模型示例
 
 Anakin目前只支持NCHW的格式
 
