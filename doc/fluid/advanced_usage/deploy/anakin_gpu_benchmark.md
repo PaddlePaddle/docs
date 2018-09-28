@@ -14,7 +14,7 @@ The counterpart of **`Anakin`** is the acknowledged high performance inference e
 ## Benchmark Model
 
 The following convolutional neural networks are tested with both `Anakin` and `TenorRT3`.
- You can use pretrained caffe model or the model trained by youself.
+You can use pretrained caffe model or the model trained by youself.
 
 > Please note that you should transform caffe model or others into anakin model with the help of [`external converter ->`](../docs/Manual/Converter_en.md)
 

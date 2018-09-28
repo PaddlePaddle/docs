@@ -10,7 +10,7 @@
 
    install_anakin.md
    convert_paddle_to_anakin.md
-   run_anakin_on_arm.md
+   anakin_run_on_arm.md
    anakin_tutorial.md
    anakin_example.md
    anakin_parser_design.md
