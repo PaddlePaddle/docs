@@ -1,7 +1,7 @@
 ==========
  安装说明
 ==========
-本说明将指导您在*64位台式机或笔记本电脑*上编译和安装PaddlePaddle，目前PaddlePaddle支持以下环境：
+本说明将指导您在64位台式机或笔记本电脑上, 使用Python2.7或者Python3.5编译和安装PaddlePaddle，目前PaddlePaddle支持以下环境：
 
 * *Ubuntu 14.04 /16.04 /18.04*
 * *CentOS 7 / 6*
