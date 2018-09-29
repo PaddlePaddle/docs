@@ -9,7 +9,7 @@
 ..  toctree::
     :maxdepth: 2
     
-    install/install_doc.md
+    install/Start.rst
     quick_start/index.rst
     basics/index.rst
     basics/learning_materials.md
