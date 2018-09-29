@@ -53,6 +53,9 @@ place = "/node:ps/cpu"
 - `DEVICE`: 目前 Fluid 支持 CPU 和 GPU 两种运算设备。
 - `DEVICE_ID`: 在模型并行场景下，用户可以指定 operator 在哪个设备上运行。
 
+注：在数据并行场景下，用户无须为 operator 指定具体的 `NODE_ID` 以及 `DEVICE_ID`, 因为 `DistributedTranspiler`
+会根据参数的大小自动将相关 operator 分配到 parameter server 节点上。
+
 ### 如何连接两个属于不同 place 的 operator ？
 
 在 `Fluid::SSAGraph` 中，两个 operator 通过 dependency var 产生依赖关系:
