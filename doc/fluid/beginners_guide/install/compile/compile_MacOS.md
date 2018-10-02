@@ -126,7 +126,7 @@
 
 2. 安装python以及pip：    
 
-	> MacOS中自带python但是并没有pip套件，我们强烈建议您使用[Homebrew](https://brew.sh)安装python, pip以及其他的依赖，这会大大降低您安装编译的难度。
+	> MacOS中自带python但是并没有pip套件，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x), pip以及其他的依赖，这会大大降低您安装编译的难度。
 	
 		For python2: brew install python@2
 		For python3: brew install python3
@@ -136,7 +136,8 @@
 3. (Only For Python3)设置Python相关的环境变量：         
 	
 	- a. 首先使用 
-			```find `dirname $(dirname             
+			```find $`dirname               
+			$(dirname             
 			$(which python3))` -name "libpython3.*.dylib"```  
 			找到Pythonlib的路径，然后（下面[python-lib-path]替换为找到文件路径）  
 		
@@ -145,7 +146,10 @@
 	- c. 其次使用找到PythonInclude的路径（通常是找到[python-lib-path]的上一级目录为同级目录的include,然后找到该目录下python3.x或者python2.x的路径），然后（下面[python-include-path]替换为找到路径）		
 	- d. 设置PYTHON_INCLUDE_DIR: `export PYTHON_INCLUDE_DIRS=[python-include-path]`
 		
-	- e. 设置系统环境变量路径：`export PATH=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/) 
+	- e. 设置系统环境变量路径：`export PATH=[python-bin-path]:$PATH` （这里[python-bin-path]为将[python-lib-path]的最后两级目录替换为/bin/后的目录)        
+
+	- f. 设置动态库链接： `export LD_LIBRARY_PATH=[python-ld-path]` 以及 `export DYLD_LIBRARY_PATH=[python-ld-path]` （这里[python-ld-path]为[python-bin-path]的上一级目录)      
+
 	
 	
 
