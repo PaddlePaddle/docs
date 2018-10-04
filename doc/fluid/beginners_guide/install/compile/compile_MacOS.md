@@ -14,11 +14,11 @@
 	* *GPU运算能力超过1.0的硬件设备*-->
 
 ## 选择如何编译
-在MacOS 10.12/10.13的系统下我们提供1种编译方式：
+在MacOS 10.12/10.13/(部分支持10.14）的系统下我们提供1种编译方式：
 
 
 * Docker源码编译
-* 直接本机源码编译
+* 直接本机源码编译（不支持10.14）
 
 
 
@@ -136,9 +136,9 @@
 3. (Only For Python3)设置Python相关的环境变量：         
 	
 	- a. 首先使用 
-			```find $`dirname               
+			```find $(`dirname               
 			$(dirname             
-			$(which python3))` -name "libpython3.*.dylib"```  
+			$(which python3)))` -name "libpython3.*.dylib"```  
 			找到Pythonlib的路径，然后（下面[python-lib-path]替换为找到文件路径）  
 		
 	- b. 设置PYTHON_LIBRARIES：`export PYTHON_LIBRARY=[python-lib-path]`

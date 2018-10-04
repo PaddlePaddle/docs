@@ -47,7 +47,7 @@
 
 *  Python3.5.x，Pip3 >= 9.0.1           
 
-	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](./FAQ.html/#MACPRO)。    
+	> 如果您的电脑上安装有多个python环境（包括Python2/3，或者多个python2）以及pip请参见[FAQ-MacPython](./FAQ.html/#MACPRO)。    
 	>> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
 	    
 下面将说明如何安装PaddlePaddle：

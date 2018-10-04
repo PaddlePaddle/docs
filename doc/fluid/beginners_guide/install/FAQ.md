@@ -115,8 +115,8 @@
 
 - MacOS下安装PaddlePaddle后import paddle.fluid出现`Fatal Python error: PyThreadState_Get: no current thread running`错误 
 
-	请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
-
+	- For Python2.7.x: 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
+	- For Python3.5.x: 请使用`find / -name libpython3.5.dylib`找到您当前使用python的`libpython3.5.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录]`
 
 
 
