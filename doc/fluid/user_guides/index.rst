@@ -17,4 +17,4 @@
     howto/evaluation/index
     howto/inference/index
     models/index.md
-    design_idea/fluid_design_diea.md
+    design_idea/fluid_design_idea.md
