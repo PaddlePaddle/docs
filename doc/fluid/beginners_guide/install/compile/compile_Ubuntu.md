@@ -114,6 +114,10 @@
 <br/><br/>
 ### ***本机编译***
 
+
+**请严格按照以下指令顺序执行**    
+
+
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
 
 2. 更新`apt`的源： `apt update`
@@ -131,19 +135,19 @@
 	* b. 安装pip: (请保证拥有9.0.1及以上版本的pip):
 		
 		
-			For Python2: apt install python-pip 
-			For Python3: curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip 
+			For Python2: apt install python-pip
+			For Python3: apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip 
 		
 		
 	* c. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
 
-		1.  `apt install virtualenv` 或 `pip install virtualenv`
-		2.  `apt install virtualenvwrapper` 或 `pip install virtualenvwrapper`
+		1.  `apt install virtualenv` 或 `pip install virtualenv` 或 `pip3 install virtualenv`
+		2.  `apt install virtualenvwrapper` 或 `pip install virtualenvwrapper` 或 `pip3 install virtualenvwrapper`
 		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`
-		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat virtualenvwrapper.sh`
-		5.  按照`virtualenvwrapper.sh`中的安装方法安装`virtualwrapper`
-		6.  (Only for Python3) 设置虚环境的解释器路径：`export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5`
-		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
+		4.  (Only for Python3) 设置虚环境的解释器路径：`export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5`
+		5.  查看`virtualenvwrapper.sh`中的安装方法： `cat virtualenvwrapper.sh`
+		6.  按照`virtualenvwrapper.sh`中的安装方法安装`virtualwrapper`
+		7.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 
 3. 进入虚环境：`workon paddle-venv`         
@@ -185,8 +189,9 @@
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
 		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
-			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`            
-			ii. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0` 
+			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`          
+			iii. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0` 
 		
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
 

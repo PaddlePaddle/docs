@@ -11,7 +11,7 @@
 请确保您的环境满足以上条件
 
 
-**安装PaddlePaddle**
+安装PaddlePaddle
 -----------------------
 
 ..	toctree::
@@ -23,7 +23,8 @@
 	install_Windows.md
 	compile/fromsource.rst
 
-如在安装或编译过程中遇到问题请参见hahahah
+如在安装或编译过程中遇到问题请参见
+-----------------------
 
 ..	toctree::
 	:maxdepth:1
