@@ -126,14 +126,18 @@
 
 2. 安装python以及pip：    
 
-	> MacOS中自带python但是并没有pip套件，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x), pip以及其他的依赖，这会大大降低您安装编译的难度。
+	> **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x), pip以及其他的依赖，这会大大降低您安装编译的难度。
 	
 		For python2: brew install python@2
 		For python3: brew install python3
 	
-	> 请注意，当您的mac上安装有多个python时请保证您正在使用的python是您希望使用的python。
+	> 请注意，当您的mac上安装有多个python时请保证您正在使用的python是您希望使用的python。           
+	
+3. (Only For Python2)设置Python相关的环境变量：
+	
+	- 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
 
-3. (Only For Python3)设置Python相关的环境变量：         
+4. (Only For Python3)设置Python相关的环境变量：         
 	
 	- a. 首先使用 
 			```find $(`dirname               
@@ -153,7 +157,7 @@
 	
 	
 
-4. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
+5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 	
 	> MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig`，另外安装`cmake`即可
 	
@@ -167,21 +171,21 @@
 	- b. 如果您不想使用系统默认的blas而希望使用自己安装的OPENBLAS请参见[FAQ](../FAQ#OPENBLAS)
 
 
-5. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
+6. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
 
 	- `git clone https://github.com/PaddlePaddle/Paddle.git`
 
 	- `cd Paddle`
 
-6. 切换到较稳定release分支下进行编译：
+7. 切换到较稳定release分支下进行编译：
 
 	`git checkout release/1.0.0`
 
-7. 并且请创建并进入一个叫build的目录下：
+8. 并且请创建并进入一个叫build的目录下：
 
 	`mkdir build && cd build`
 
-8. 执行cmake：
+9. 执行cmake：
 	
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO：Link 安装选项表到这里-->
 
@@ -189,16 +193,17 @@
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
 			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
-			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
+			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \    
+			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
 	
 
-9. 使用以下命令来编译：
+10. 使用以下命令来编译：
 
 	`make -j4`
 
-10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
+11. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
 
-11. 在当前机器或目标机器安装编译好的`.whl`包：
+12. 在当前机器或目标机器安装编译好的`.whl`包：
 
 	`pip install （whl包的名字）`或`pip3 install （whl包的名字）`     
 	

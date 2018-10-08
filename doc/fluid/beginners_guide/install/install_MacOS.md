@@ -41,7 +41,12 @@
 > 上面的命令将会显示本机的操作系统和位数信息，请确保您的计算机和本教程的要求一致。
 
 
-其次，您的计算机需要满足以下要求：
+其次，您的计算机需要满足以下要求：    
+
+> **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python（对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x）, pip）
+	
+		For python2: brew install python@2
+		For python3: brew install python3
 
 *	Python2.7.x，Pip >= 9.0.1            
 
