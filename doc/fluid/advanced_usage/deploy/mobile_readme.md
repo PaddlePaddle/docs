@@ -1,4 +1,4 @@
-# Paddle-Mobile
+# 简介
 
 [![Build Status](https://travis-ci.org/PaddlePaddle/paddle-mobile.svg?branch=develop&longCache=true&style=flat-square)](https://travis-ci.org/PaddlePaddle/paddle-mobile)
 [![Documentation Status](https://img.shields.io/badge/中文文档-最新-brightgreen.svg)](https://github.com/PaddlePaddle/paddle-mobile/tree/develop/doc)
@@ -7,20 +7,17 @@
 <!--[![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Mobile.svg)](https://github.com/PaddlePaddle/Paddle-Mobile/releases)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)-->
 
-
-欢迎来到 Paddle-Mobile GitHub 项目。
-
 Paddle-Mobile是PaddlePaddle组织下的项目，是一个致力于嵌入式平台的深度学习的框架。Paddle-Mobile设计思想和PaddlePaddle的最新版fluid版本保持了高度一致，同时针对嵌入式做了大量优化。设计之初就对嵌入式的性能、体积、能耗、硬件平台覆盖等方面做了考虑。
 
 ## 简单搜索线上效果
 
-如下gif是简单搜索app的线上主体检测应用效果
+如下gif是简单搜索app的线上主体检测应用效果：
 
 ![ezgif-1-050a733dfb](http://otkwwi4x8.bkt.clouddn.com/2018-07-05-ezgif-1-050a733dfb.gif)
 
 ## Demo目录
 
-[点我](https://github.com/PaddlePaddle/paddle-mobile/tree/develop/demo)
+[请点击这里查看](https://github.com/PaddlePaddle/paddle-mobile/tree/develop/demo)
 
 ## Features
 
@@ -94,13 +91,11 @@ Paddle-Mobile是PaddlePaddle组织下的项目，是一个致力于嵌入式平�
 
 ### 设计文档
 
-关于paddle-mobile设计文档在下面链接中，如果想了解更多内容。[issue](https://github.com/PaddlePaddle/paddle-mobile/issues)中会有很多早期的设计和讨论过程。
-[设计文档链接](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md)
+关于paddle-mobile设计文档在下面链接中，如果想了解更多内容。[issue](https://github.com/PaddlePaddle/paddle-mobile/issues)中会有很多早期的设计和讨论过程。请点击[这里](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md)阅读设计文档。
 
 ### 开发文档
 
-开发文档主要是关于编译、运行等问题。做为开发者，它可以和贡献文档共同结合使用。
-[开发文档链接](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_doc.md)
+开发文档主要是关于编译、运行等问题。做为开发者，它可以和贡献文档共同结合使用。请点击[这里](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_doc.md)阅读开发文档。
 
 ### 贡献文档
 - [贡献文档链接](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/CONTRIBUTING.md)
@@ -111,7 +106,7 @@ Paddle-Mobile是PaddlePaddle组织下的项目，是一个致力于嵌入式平�
 目前Paddle-Mobile仅支持Paddle fluid训练的模型。如果你手中的模型是不同种类的模型，需要进行模型转换才可以运行。
 ### 1. 直接使用Paddle Fluid训练
 该方式最为可靠，推荐方式
-### 2. caffe转为Paddle Fluid模型
+### 2. Caffe转为Paddle Fluid模型
 [链接](https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid)
 ### 3. ONNX
 ONNX全称为“Open Neural Network Exchange”，即“开放的神经网络切换”。该项目的目的是让不同的神经网络开发框架做到互通互用。
@@ -127,10 +122,10 @@ ONNX全称为“Open Neural Network Exchange”，即“开放的神经网络切
 
 ## 问题解决
 
-欢迎提出或解决我们的问题，有疑问可以发issue. [Github Issues](https://github.com/PaddlePaddle/paddle-mobile/issues).
+欢迎提出或解决我们的问题，有疑问可以发[Issue](https://github.com/PaddlePaddle/paddle-mobile/issues)
 
 ## Copyright and License
-Paddle-Mobile 提供相对宽松的Apache-2.0开源协议 [Apache-2.0 license](LICENSE).
+Paddle-Mobile 提供相对宽松的Apache-2.0开源协议 [Apache-2.0 license](LICENSE)
 
 
 ## 旧版 Mobile-Deep-Learning
