@@ -32,13 +32,13 @@
 
 
 - 遇到paddlepaddle*.whl is not a supported wheel on this platform？
+	
 	> 出现这个问题的主要原因是，没有找到和当前系统匹配的paddlepaddle安装包。 请检查Python版本是否为2.7系列。另外最新的pip官方源中的安装包默认是manylinux1标准， 需要使用最新的pip (>9.0.0) 才可以安装。您可以执行以下指令更新您的pip：     
 	
-	`pip install --upgrade pip`     
-
-	或者：     
-	
-	`python -c "import pip; print(pip.pep425tags.get_supported())"`    
+		pip install --upgrade pip 
+	或者     
+		
+		python -c "import pip; print(pip.pep425tags.get_supported())"    
 
 	> 如果系统支持的是 linux_x86_64 而安装包是 manylinux1_x86_64 ，需要升级pip版本到最新； 如果系统支持 manylinux1_x86_64 而安装包	 （本地）是 linux_x86_64， 可以重命名这个whl包为 manylinux1_x86_64 再安装。
 
@@ -121,5 +121,7 @@
   
   	> [ISSUE 13217](https://github.com/PaddlePaddle/Paddle/issues/13721)
 
-- 已经安装swig但是仍旧出现swig找不到的问题：详见issue： 
+- 已经安装swig但是仍旧出现swig找不到的问题 详见issue：
+	
+	>  [ISSUE 13759](https://github.com/PaddlePaddle/Paddle/issues/13759)
 
