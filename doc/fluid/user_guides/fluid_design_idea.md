@@ -36,11 +36,14 @@ Fluid使用一种编译器式的执行流程，分为编译时和运行时两个
 用户完成网络定义后，一段 Fluid 程序中通常存在 2 段 Program：
 
   1. fluid.default_startup_program：定义了创建模型参数，输入输出，以及模型中可学习参数的初始化等各种操作
-   - default_startup_program 可以由框架自动生成，使用时无需显示地创建
-  - 如果调用修改了参数的默认初始化方式，框架会自动的将相关的修改加入default_startup_program
+    
+    default_startup_program 可以由框架自动生成，使用时无需显示地创建
+    
+    如果调用修改了参数的默认初始化方式，框架会自动的将相关的修改加入default_startup_program
   
   2. fluid.default_main_program ：定义了神经网络模型，前向反向计算，以及优化算法对网络中可学习参数的更新
- - 使用Fluid的核心就是构建起 default_main_program
+    
+    使用Fluid的核心就是构建起 default_main_program
 
 
 
@@ -290,13 +293,9 @@ blocks {
     persistable: false
     ...
 ```
-从输出结果中可以看到，整个定义过程在框架内部转化为了一段ProgramDesc，以block idx为索引。
+从输出结果中可以看到，整个定义过程在框架内部转化为了一段ProgramDesc，以block idx为索引。本次线性回归模型中仅有1个block，ProgramDesc中也仅有block 0一段BlockDesc。
 
-本次线性回归模型中仅有1个block，ProgramDesc中也仅有block 0一段BlockDesc。
-
-BlockDesc中包含定义的 vars 和一系列的 ops，以输入x为例：
-
-python代码中定义 x 是一个数据类型为"float 32"的1维数据：
+BlockDesc中包含定义的 vars 和一系列的 ops，以输入x为例，python代码中定义 x 是一个数据类型为"float 32"的1维数据：
 ```python
 x = fluid.layers.data(name="x",shape=[1],dtype='float32')
 ```
