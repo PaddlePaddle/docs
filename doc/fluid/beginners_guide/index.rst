@@ -13,3 +13,4 @@
     quick_start/index.rst
     basics/index.rst
     basics/learning_materials.md
+    programming_guide/programming_guide.md
