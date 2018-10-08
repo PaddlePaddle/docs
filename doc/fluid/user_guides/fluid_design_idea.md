@@ -241,7 +241,7 @@ sgd_optimizer.minimize(avg_cost)
 ```python
 print(fluid.default_main_program().to_string(True))
 ```
-完整ProgramDesc可以在本地查看，本次仅节选一部分结果如下：
+完整ProgramDesc可以在本地查看，本次仅节选前三个变量的结果如下：
 ```
 blocks {
   idx: 0
@@ -317,7 +317,11 @@ vars {
     }
     persistable: false
 ```
+在Fluid中所有的数据类型都为LoD-Tensor，对于不存在序列信息的数据（如此处的变量X），其lod_level=0。
+
 dims表示数据的维度，这里表示 x 的维度为[-1,1]，其中-1是batch的维度，无法确定具体数值时，Fluid 自动用 -1 占位。
+
+参数`persistable`表示该变量在整个训练过程中是否为持久化变量。
 
 **创建Executor**
 
