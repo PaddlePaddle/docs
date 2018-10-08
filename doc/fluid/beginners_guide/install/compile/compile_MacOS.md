@@ -140,10 +140,8 @@
 4. (Only For Python3)设置Python相关的环境变量：         
 	
 	- a. 首先使用 
-			```find $(`dirname               
-			$(dirname             
-			$(which python3)))` -name "libpython3.*.dylib"```  
-			找到Pythonlib的路径，然后（下面[python-lib-path]替换为找到文件路径）  
+			```find / -name "libpython3.*.dylib"```  
+			找到Pythonlib的路径（弹出的第一个对应您需要使用的python的dylib路径），然后（下面[python-lib-path]替换为找到文件路径）  
 		
 	- b. 设置PYTHON_LIBRARIES：`export PYTHON_LIBRARY=[python-lib-path]`
 		
