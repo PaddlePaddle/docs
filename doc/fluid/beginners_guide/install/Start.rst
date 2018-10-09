@@ -23,8 +23,10 @@
 	install_Windows.md
 	compile/fromsource.rst
 
-如在安装或编译过程中遇到问题请参见
+参考信息
 -----------------------
+
+如在安装或编译过程中遇到问题请参见
 
 ..	toctree::
 	:maxdepth:1
