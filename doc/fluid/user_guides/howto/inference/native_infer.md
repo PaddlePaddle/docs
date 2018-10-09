@@ -54,7 +54,7 @@ auto predictor =
 int64_t data[4] = {1, 2, 3, 4};
 paddle::PaddleTensor tensor;
 tensor.shape = std::vector<int>({4, 1});
-tensor.data = paddle::PaddleBuf(data, sizeof(data));
+tensor.data.Reset(data, sizeof(data));
 tensor.dtype = paddle::PaddleDType::INT64;
 // 创建输出 tensor，输出 tensor 的内存可以复用
 std::vector<paddle::PaddleTensor> outputs;
@@ -80,7 +80,6 @@ CHECK(predictor->Run(slots, &outputs));
 int some_size = 1024;
 PaddleTensor tensor;
 tensor.data.Resize(some_size);
-// 也可以写成 tensor.data = PaddleBuf(some_size);
 ```
 
 2. 外部内存传入
@@ -91,7 +90,6 @@ int some_size = 1024;
 void* memory = new char[some_size]; 
 
 tensor.data.Reset(memory, some_size);
-// 也可以写成 tensor.data = PaddleBuf(memory, some_size);
 // ...
 
 // 用户最后需要自行删除内存以避免内存泄漏
@@ -123,7 +121,7 @@ auto predictor =
 int64_t data[4] = {1, 2, 3, 4};
 paddle::PaddleTensor tensor;
 tensor.shape = std::vector<int>({4, 1});
-tensor.data = paddle::PaddleBuf(data, sizeof(data));
+tensor.data.Reset(data, sizeof(data));
 tensor.dtype = paddle::PaddleDType::INT64;
 tensor.name = "input0"; // 注意这里的 name 需要设定
 ```
