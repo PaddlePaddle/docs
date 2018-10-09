@@ -1,4 +1,4 @@
-# Fluid设计思想
+# Paddle Fluid设计思想
 
 ## 简介
 
@@ -17,7 +17,7 @@ Fluid使用一种编译器式的执行流程，分为编译时和运行时两个
 
 本地训练任务执行流程图如下所示：
 <p align="center">
-	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/image/fluid_process.png" width=800>
+	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/design_idea/image/fluid_process.png" width=800>
 </p>
 
  1. 编译时，用户编写一段python程序，通过调用 Fluid 提供的算子，向一段 Program 中添加变量（Tensor）以及对变量的操作（Operators 或者 Layers）。用户只需要描述核心的前向计算，不需要关心反向计算、分布式下以及异构设备下如何计算。
@@ -153,7 +153,7 @@ Executor 在运行时将接受一个`ProgramDesc`、一个`block_id`和一个`Sc
 完成的编译执行的具体过程如下图所示：
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/image/executor_design.png" width=600>
+	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/design_idea/image/executor_design.png" width=600>
 </p>
 
 1. Executor 为每一个block创建一个Scope，Block是可嵌套的，因此Scope也是可嵌套的
@@ -212,7 +212,7 @@ outs = exe.run(
 
 
 ## 代码实例
-本节通过[Fluid编程指南](../beginners_guide/programming_guide.md)中简单的线性回归例子，为您介绍上述内容如何在代码中实现。
+本节通过[Fluid编程指南](../../beginners_guide/programming_guide/programming_guide.html)中简单的线性回归例子，为您介绍上述内容如何在代码中实现。
 
 **定义Program**
 
@@ -359,5 +359,5 @@ Fluid使用Executor.run来运行一段Program。
        [6.099215 ]], dtype=float32), array([1.6935859], dtype=float32)]
 ```
 
-至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../user_guides/index.rst)相关内容，[模型库](../user_guides/models/index.rst
+至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../../user_guides/index.html)相关内容，[模型库](../../user_guides/models/index.html
 )中也为您提供了丰富的模型示例以供参考。
