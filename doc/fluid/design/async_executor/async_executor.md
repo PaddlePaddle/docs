@@ -4,14 +4,43 @@ There are many deep learning applications that use sparse features as inputs, su
 
 ## User Interface Design
 ``` python
-import paddle as paddle
 import paddle.fluid as fluid
+
+
 
 startup_program = fluid.default_startup_program()
 main_program = fluid.default_main_program()
 
-paddle.async_executor(startup_program=startup_program, 
-                      main_program=main_program)
+filelist = "filelist.txt"
+train_dataset = fluid.datasets.MyFeeder(filelist, 
+                                        transforms.Transform([
+                                        transforms.tokenize()]))
+
+train_loader = fluid.data.DataLoader(
+               train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
+               num_workers=args.workers, pin_memory=True, sampler=train_sampler)
+
+cur_block = fluid.default_main_program().current_block()
+abs_input_var = cur_block.create_var(name='abs_input',
+                                     shape=[-1, 32, 32],
+                                     dtype='float32')
+abs_output_var = cur_block.create_var(name='abs_output',
+                                     shape=[-1, 32, 32],
+                                     dtype='float32')
+
+op_desc = cur_block.desc.append_op()
+abs_op = Operator(block=cur_block, desc=op_desc, type='abs',
+                  inputs={'X': [abs_input_var]}, outputs={'Out': [abs_output_var]})
+
+for i, (slots, label) in enumerate(train_loader):
+    paddle.async_executor(feed_list=[slots, label],
+                          startup_program=startup_program, 
+                          main_program=main_program,
+                          fetch_list=[abs_output_var], 
+                          fetch_iter=10)
+    # do something on fetch list    
+
+
 ```
 
 ## Data Feeding Approach
