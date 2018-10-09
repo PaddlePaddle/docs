@@ -1,5 +1,5 @@
 
-# Fluid编程指南
+# Paddle Fluid编程指南
 
 本文档将指导您如何用Fluid API编程并搭建一个简单的神经网络。阅读完本文档，您将掌握：
 
@@ -29,7 +29,7 @@ Fluid和其他主流框架一样，使用Tensor数据结构来承载数据。
 
 模型中的可学习参数（包括网络权重、偏置等）生存期和整个训练任务一样长，会接受优化算法的更新，在 Fluid 中以 Variable 的子类 Parameter 表示。
 
-在Fluid中可以通过fluid.layers.create_parameter来创建可学习参数：
+在Fluid中可以通过`fluid.layers.create_parameter`来创建可学习参数：
 
 ```python
 w = fluid.layers.create_parameter(name="w",shape=[1],dtype='float32')
@@ -49,7 +49,7 @@ y = fluid.layers.fc(input=x, size=128, bias_attr=True)
 整个神经网络的输入数据也是一个特殊的 Tensor，在这个 Tensor 中，一些维度的大小在定义模型时无法确定（通常包括：batch size，如果 mini-batch 之间数据可变，也会包括图片的宽度和高度等），在定义模型时需要占位。
 
 
-Fluid 中使用 fluid.layers.data 来接收输入数据， fluid.layers.data 需要提供输入 Tensor 的形状信息，当遇到无法确定的维度时，相应维度指定为 None ，如下面的代码片段所示：
+Fluid 中使用 `fluid.layers.data` 来接收输入数据， `fluid.layers.data` 需要提供输入 Tensor 的形状信息，当遇到无法确定的维度时，相应维度指定为 None ，如下面的代码片段所示：
 
 ```python
 import paddle.fluid as fluid
@@ -65,11 +65,11 @@ a = fluid.layers.data(name="a",shape=[3,4],dtype='int64')
 b = fluid.layers.data(name="image"，shape=[3,None,None]，dtpye="float32")
 ```
 
-其中，dtpye=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](../user_guides/howto/prepare_data/feeding_data.rst#fluid)。
+其中，dtpye=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](../../user_guides/howto/prepare_data/feeding_data.html#fluid)。
 
 **3. 常量 Tensor**
 
-Fluid 通过 fluid.layers.fill_constant 来实现常量Tensor，用户可以指定Tensor的形状，数据类型和常量值。代码实现如下所示：
+Fluid 通过 `fluid.layers.fill_constant` 来实现常量Tensor，用户可以指定Tensor的形状，数据类型和常量值。代码实现如下所示：
 
 ```python
 import paddle.fluid as fluid
@@ -103,20 +103,20 @@ persistable: false
 
 Fluid有特定的数据传入方式：
 
-您需要使用 fluid.layers.data 配置数据输入层，并在 fluid.Executor 或 fluid.ParallelExecutor 中，使用 executor.run(feed=...) 传入训练数据。
+您需要使用 `fluid.layers.data` 配置数据输入层，并在 `fluid.Executor` 或 `fluid.ParallelExecutor` 中，使用 executor.run(feed=...) 传入训练数据。
 
-具体的数据准备过程，请阅读[准备数据](../user_guides/howto/prepare_data/index.rst)
+具体的数据准备过程，请阅读[准备数据](../../user_guides/howto/prepare_data/index.html)
 
 
 ## 使用Operator表示对数据的操作
 
 在Fluid中，所有对数据的操作都由Operator表示，您可以使用内置指令来描述他们的神经网络。
 
-为了便于用户使用，在Python端，Fluid中的Operator被一步封装入paddle.fluid.layers，paddle.fluid.nets 等模块。
+为了便于用户使用，在Python端，Fluid中的Operator被一步封装入`paddle.fluid.layers`，`paddle.fluid.nets` 等模块。
 
 这是因为一些常见的对Tensor的操作可能是由更多基础操作构成，为了提高使用的便利性，框架内部对基础 Operator 进行了一些封装，包括创建 Operator 依赖可学习参数，可学习参数的初始化细节等，减少用户重复开发的成本。
 
-例如用户可以利用paddle.fluid.layers.elementwise_add()实现两个输入Tensor的加法运算：
+例如用户可以利用`paddle.fluid.layers.elementwise_add()`实现两个输入Tensor的加法运算：
 
 ```python
 #定义网络
@@ -219,9 +219,9 @@ with fluid.layers.control_flow.Switch() as switch:
 ```
 
     
-关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Flui设计思想](../user_guides/fluid_design_idea.md)
+关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Fluid设计思想](../../user_guides/design_idea/fluid_design_idea.html)
 
-更多 Fluid 中的控制流，可以参考阅读[API文档](../api/layers.rst#control_flow)
+更多 Fluid 中的控制流，可以参考阅读[API文档](http://www.paddlepaddle.org/documentation/api/zh/0.15.0/layers.html#permalink-1-control_flow)
 
 
 ## 使用Executor执行Program
@@ -250,7 +250,7 @@ outs = exe.run(
 
 ## 代码实例
 
-至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随本部分，完成一个非常简单的数据预测。已经掌握这部分内容的话，可以跳过本节阅读[What next](#what_next)。
+至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随本部分，完成一个非常简单的数据预测。已经掌握这部分内容的话，可以跳过本节阅读[What's next](#what_next)。
 
 从逻辑层面明确了输入数据格式、模型结构、损失函数以及优化算法后，需要使用 PaddlePaddle 提供的 API 及算子来实现模型逻辑。一个典型的模型主要包含4个部分，分别是：输入数据格式定义，模型前向计算逻辑，损失函数以及优化算法。
 
@@ -364,7 +364,7 @@ outs = exe.run(
     
     确定损失函数后，可以通过前向计算得到损失值，然后通过链式求导法则得到参数的梯度值。
     
-    获取梯度值后需要更新参数，最简单的算法是随机梯度下降法：w=w−η⋅g，由fluid.optimizer.SGD实现：
+    获取梯度值后需要更新参数，最简单的算法是随机梯度下降法：w=w−η⋅g，由`fluid.optimizer.SGD`实现：
     ```python
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.01)
     ```
@@ -406,17 +406,17 @@ outs = exe.run(
     ```
     可以看到100次迭代后，预测值已经非常接近真实值了，损失值也从初始值9.05下降到了0.01。
     
-    恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../beginners_guide/quick_start/fit_a_line/README.cn.md)。更多丰富的模型实例可以在[模型库](../user_guides/models/index.rst)中找到。
+    恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../../beginners_guide/quick_start/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](../../user_guides/models/index.html)中找到。
 
 <a name="what_next"></a>
-## What next
+## What's next
 
 如果您已经掌握了基本操作，可以进行下一阶段的学习了：
 
-跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../user_guides/howto/configure_simple_model/index.rst)。
+跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../../user_guides/howto/configure_simple_model/index.html)。
 
-完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../user_guides/howto/training/index.rst)。
+完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../../user_guides/howto/training/index.html)。
 
-除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../user_guides/index.rst)和[进阶使用](../advanced_usage/index.rst)。
+除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../../beginners_guide/index.html)和[进阶使用](../../advanced_usage/index.html)。
 
-如果您希望阅读更多场景下的应用案例，可以跟随导航栏进入[快速入门](../beginners_guide/quick_start/index.rst)和[深度学习基础知识](../beginners_guide/basics/index.rst)。已经具备深度学习基础知识的用户，可以从[使用指南](../user_guides/index.rst)开始阅读。
+如果您希望阅读更多场景下的应用案例，可以跟随导航栏进入[快速入门](../../beginners_guide/quick_start/index.html)和[深度学习基础知识](../../beginners_guide/basics/index.html)。已经具备深度学习基础知识的用户，可以从[使用指南](../../user_guides/index.html)开始阅读。
