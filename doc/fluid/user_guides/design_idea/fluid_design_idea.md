@@ -324,7 +324,7 @@ dims表示数据的维度，这里表示 x 的维度为[-1,1]，其中-1是batch
 
 **创建Executor**
 
-Fluid使用Executor来执行网络训练，executor运行细节请参考[Executor设计思想](#Executor设计思想)的介绍。作为使用者，实际并不需要了解内部机制。
+Fluid使用Executor来执行网络训练，Executor运行细节请参考[Executor设计思想](#Executor设计思想)的介绍。作为使用者，实际并不需要了解内部机制。
 
 创建Executor只需调用 fluid.Executor(place) 即可，在此之前请您依据训练场所定义place变量：
 ```python
