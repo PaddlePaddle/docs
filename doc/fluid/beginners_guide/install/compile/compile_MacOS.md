@@ -137,7 +137,7 @@
 	
 3. (Only For Python2)设置Python相关的环境变量：
 	
-	- 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
+	- 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib的路径] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
 
 4. (Only For Python3)设置Python相关的环境变量：         
 	

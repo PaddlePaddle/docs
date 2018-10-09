@@ -17,7 +17,7 @@
 ## 选择如何安装
 在MacOS的系统下我们提供3种安装方式：
 
-* pip安装（不支持GPU版本）
+* pip安装（不支持GPU版本）(python3下不支持分布式）
 * Docker安装（不支持GPU版本）
 * Docker源码编译安装（不支持GPU版本）
 
