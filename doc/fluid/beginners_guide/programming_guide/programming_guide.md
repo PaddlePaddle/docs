@@ -417,6 +417,6 @@ outs = exe.run(
 
 完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../../user_guides/howto/training/index.html)。
 
-除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../../beginners_guide/index.html)和[进阶使用](../../advanced_usage/index.html)。
+除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../../beginners_guide/index.html)、[使用指南](../../user_guides/index.html)和[进阶使用](../../advanced_usage/index.html)。
 
 如果您希望阅读更多场景下的应用案例，可以跟随导航栏进入[快速入门](../../beginners_guide/quick_start/index.html)和[深度学习基础知识](../../beginners_guide/basics/index.html)。已经具备深度学习基础知识的用户，可以从[使用指南](../../user_guides/index.html)开始阅读。
