@@ -4,7 +4,7 @@ Anakin 支持不同框架的模型预测。但由于格式的差别，Anakin 需
 
 ## 简介
 
-Anakin 模型转换器输入支持 Caffe 和 Fluid 两种格式的预测模型，模型包含网络结构（model 或 prototxt）和权重参数（param 或 caffemodel）。
+Anakin 模型转换器输入支持 Caffe 和 Paddle 两种格式的预测模型，模型包含网络结构（model 或 prototxt）和权重参数（param 或 caffemodel）。
 
 模型转换的输出是一个 bin 文件，它作为 Anakin 框架的 graph 参数导入。
 
@@ -30,7 +30,7 @@ Anakin 模型转换器输入支持 Caffe 和 Fluid 两种格式的预测模型�
 #### config.yaml
 ```bash
 OPTIONS:
-    Framework: CAFFE       # 依框架类型填写 CAFFE 或 FLUID
+    Framework: CAFFE       # 依框架类型填写 CAFFE 或 Paddle
     SavePath: ./output     # 转换结束后模型的保存位置
     ResultName: googlenet  # 输出模型的名字
     Config:
@@ -53,13 +53,13 @@ TARGET:
         PrototxtPath: /path/to/your/googlenet.prototxt
         ModelPath: /path/to/your/googlenet.caffemodel
 
-    FLUID:
-        # 当 Framework 为 FLUID 时需填写
+    Paddle:
+        # 当 Framework 为 Paddle 时需填写
         Debug: NULL
         ProtoPaths:
             - /
-        PrototxtPath: /path/to/fluid/inference_model
-        ModelPath: /path/to/fluid/inference_model
+        PrototxtPath: /path/to/paddle/inference_model
+        ModelPath: /path/to/paddle/inference_model
 	# ...
 ```
 

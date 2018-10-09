@@ -8,7 +8,7 @@
 
 示例文件为打开example_nv_cnn_net.cpp，整体流程如下：
 
-- 将模型的的path设置为anakin模型的路径，初始化NV平台的图对象。 anakin模型可以通过转换器转化caffe或fluid的模型得到
+- 将模型的的path设置为anakin模型的路径，初始化NV平台的图对象。 anakin模型可以通过转换器转化caffe或Paddle的模型得到
 - 根据模型设置网络图的输入尺寸，进行图优化
 - 根据优化后的网络图初始化网络执行器
 - 取出网络的输入tensor，将数据拷贝到输入tensor
