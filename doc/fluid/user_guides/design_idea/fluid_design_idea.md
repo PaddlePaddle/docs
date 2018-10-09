@@ -212,7 +212,7 @@ outs = exe.run(
 
 
 ## 代码实例
-本节通过[Fluid编程指南](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/beginners_guide/programming_guide/programming_guide.md)中简单的线性回归例子，为您介绍上述内容如何在代码中实现。
+本节通过[Fluid编程指南](../beginners_guide/programming_guide.md)中简单的线性回归例子，为您介绍上述内容如何在代码中实现。
 
 **定义Program**
 
@@ -359,4 +359,5 @@ Fluid使用Executor.run来运行一段Program。
        [6.099215 ]], dtype=float32), array([1.6935859], dtype=float32)]
 ```
 
-至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../../user_guides/index.rst)相关内容，[模型库](../../user_guides/models/index.md)中也为您提供了丰富的模型示例以供参考。
+至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../user_guides/index.rst)相关内容，[模型库](../user_guides/models/index.rst
+)中也为您提供了丰富的模型示例以供参考。
