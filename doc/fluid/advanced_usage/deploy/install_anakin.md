@@ -6,7 +6,7 @@
 
 * [在CentOS上安装 Anakin]()
 * [在Ubuntu上安装 Anakin]()
-* [在ARM上安装 Anakin](./anakin_run_on_arm.md)
+* [在ARM上安装 Anakin](./anakin_run_on_arm.html)
 * [验证安装]()
 
 
@@ -41,7 +41,7 @@
     > sudo ldconfig
   ```
 
-  如安装protobuf遇到任何问题，请访问[这里](https://github.com/google/protobuf/blob/master/src/README.md)
+  如安装protobuf遇到任何问题，请访问[这里](https://github.com/google/protobuf/blob/master/src/README.html)
 
 - 3.2 CUDA Toolkit
 
@@ -70,7 +70,7 @@
 
 ### 在ARM上安装 Anakin ###
 
-请参考[ARM安装文档](./anakin_run_on_arm.md)
+请参考[ARM安装文档](./anakin_run_on_arm.html)
 
 ### 验证安装 ###
 
