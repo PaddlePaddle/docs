@@ -16,4 +16,5 @@
     howto/debug/index
     howto/evaluation/index
     howto/inference/index
-    models/index.md
+    models/index.rst
+    design_idea/fluid_design_idea.md
