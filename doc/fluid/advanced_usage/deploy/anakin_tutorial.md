@@ -14,8 +14,8 @@
 
 用Anakin来进行前向计算主要分为三个步骤：
 
-  - 将外部模型通过[Anakin Parser](Converter_ch.md)解析为Anakin模型
-    在使用Anakin之前，用户必须将所有其他模型转换成Anakin模型，我们提供了转换脚本，用户可通过[Anakin Parser](Converter_ch.md)进行模型转换。
+  - 将外部模型通过[Anakin Parser](./convert_paddle_to_anakin.html)解析为Anakin模型
+    在使用Anakin之前，用户必须将所有其他模型转换成Anakin模型，我们提供了转换脚本，用户可通过[Anakin Parser](./convert_paddle_to_anakin.html)进行模型转换。
   - 生成Anakin计算图
     加载Anakin模型生成原始计算图，然后需要对原始计算图进行优化。你只需要调用相应的API优化即可。
   - 执行计算图
@@ -511,7 +511,7 @@ Anakin中数据类型与基本数据类型的对应如下:
 
 #### 获取输入输出tensor
 
-获取输入输出tensor，并填充输入tensor的buffer。如果想要获取输入和输出tensor，那么必须指定输入的名字，如"input_0", "input_1", "input_2", ..., 必须传入如上字符串才能够获得输入tensor。另外，如果想知道input_i对应哪个输入，你需要去dash board查看，如何使用dash board请看[Anakin Parser](Converter_ch.md)。请看如下示例代码
+获取输入输出tensor，并填充输入tensor的buffer。如果想要获取输入和输出tensor，那么必须指定输入的名字，如"input_0", "input_1", "input_2", ..., 必须传入如上字符串才能够获得输入tensor。另外，如果想知道input_i对应哪个输入，你需要去dash board查看，如何使用dash board请看[Anakin Parser](./convert_paddle_to_anakin.html)。请看如下示例代码
 
 ```c++
   //some declaratinos
@@ -562,7 +562,7 @@ Anakin中数据类型与基本数据类型的对应如下:
     // And then
 ```
 
-类似的，我们可以利用成员函数get_out来获得输出tensor。但与获得输入tensor不同的是， 我们需要指定输入tensor结点的名字，这个可以从dash board中看到，请从[Anakin Parser](Converter_ch.md)中查看dash board的使用方法。假如有个输出结点叫pred_out, 那么我们可以通过如下代码获得相应的输出tensor：
+类似的，我们可以利用成员函数get_out来获得输出tensor。但与获得输入tensor不同的是， 我们需要指定输入tensor结点的名字，这个可以从dash board中看到，请从[Anakin Parser](./convert_paddle_to_anakin.html)中查看dash board的使用方法。假如有个输出结点叫pred_out, 那么我们可以通过如下代码获得相应的输出tensor：
 
 ```c++
   //Note: this tensor are resident at GPU.
@@ -581,7 +581,7 @@ Anakin中数据类型与基本数据类型的对应如下:
 
 下面的例子展示了如何调用Anakin。
 
-在这儿之前， 请确保你已经有了Anakin模型。如果还没有，那么请使用[Anakin Parser](Converter_ch.md)转换你的模型。
+在这儿之前， 请确保你已经有了Anakin模型。如果还没有，那么请使用[Anakin Parser](./convert_paddle_to_anakin.html)转换你的模型。
 
 ### Single-thread
 

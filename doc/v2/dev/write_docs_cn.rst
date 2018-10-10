@@ -115,7 +115,7 @@ PaddlePaddle.org工具可以配合Docker使用，需要在系统里先安装好D
 
 在浏览器中输入 http://localhost:8088 就可以看到编译生成的 ``v2`` 和 ``fluid`` 两种版本的中/英文的文档页面和英文的API页面。下图为生成的 ``v2`` 英文文档首页示例。注意，示例中由于使用了sphinx的原始主题，所以页面的风格与官网并不一致，但这并不影响开发者进行调试。
 
-..  image:: src/doc_en.png
+..  image:: https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/v2/dev/src/doc_en.png
     :align: center
     :scale: 60 %
 

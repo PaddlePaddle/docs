@@ -275,7 +275,7 @@ void Device<TNEW>::get_info() {
 
 ### 在`saber/funcs`中实现设备相关的op
 
-参考[如何增加新的Operator](./how_to_add_anakin_op.md)
+参考[如何增加新的Operator](./how_to_add_anakin_op.html)
 
 
 ## <span id = '0003'> 在`framework`中添加设备的具体化或实例化 </span> ##

@@ -6,7 +6,7 @@
 
 * [在CentOS上安装 Anakin]()
 * [在Ubuntu上安装 Anakin]()
-* [在ARM上安装 Anakin](./anakin_run_on_arm.md)
+* [在ARM上安装 Anakin](./anakin_run_on_arm.html)
 * [验证安装]()
 
 
@@ -17,7 +17,6 @@
 *  cmake 2.8.12+
 *  gcc 4.8.2+
 *  g++ 4.8.2+
-*  其他需要补充的。。。
 
 #### 2. 编译CPU版Anakin ####
 
@@ -70,7 +69,7 @@
 
 ### 在ARM上安装 Anakin ###
 
-请参考[ARM安装文档](./anakin_run_on_arm.md)
+请参考[ARM安装文档](./anakin_run_on_arm.html)
 
 ### 验证安装 ###
 
