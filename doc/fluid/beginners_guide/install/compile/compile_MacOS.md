@@ -3,7 +3,7 @@
 
 本说明将介绍如何在*64位台式机或笔记本电脑*以及MacOS系统下编译PaddlePaddle，我们支持的MacOS系统需满足#以下要求：
 
-* MacOS 10.12/10.13（这涉及到相关工具是否能被正常安装）
+* MacOS 10.12/10.13/10.14（这涉及到相关工具是否能被正常安装）
 
 ## 确定要编译的版本
 * **仅支持CPU的PaddlePaddle**。
@@ -14,11 +14,11 @@
 	* *GPU运算能力超过1.0的硬件设备*-->
 
 ## 选择如何编译
-在MacOS 10.12/10.13/10.14（MacOS 10.14下不支持Python3本机直接源码编译） 的系统下我们提供2种编译方式：
+在MacOS 10.12/10.13/10.14 的系统下我们提供2种编译方式：
 
 
 * Docker源码编译
-* 直接本机源码编译（MacOS10.14，Python3下暂不支持）
+* 直接本机源码编译
 
 
 
@@ -131,18 +131,19 @@
 	> **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x), pip以及其他的依赖，这会大大降低您安装编译的难度。
 	
 		For python2: brew install python@2
-		For python3: brew install python3
+		For python3: 使用Python官网安装
 	
 	> 请注意，当您的mac上安装有多个python时请保证您正在使用的python是您希望使用的python。           
 	
 3. (Only For Python2)设置Python相关的环境变量：
 	
-	- 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
+	- 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib的路径] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
 
 4. (Only For Python3)设置Python相关的环境变量：         
 	
 	- a. 首先使用 
-			```find / -name "libpython3.*.dylib"```  
+			```find `dirname $(dirname 
+			  $(which python3))` -name "libpython3.*.dylib"```  
 			找到Pythonlib的路径（弹出的第一个对应您需要使用的python的dylib路径），然后（下面[python-lib-path]替换为找到文件路径）  
 		
 	- b. 设置PYTHON_LIBRARIES：`export PYTHON_LIBRARY=[python-lib-path]`
@@ -152,7 +153,9 @@
 		
 	- e. 设置系统环境变量路径：`export PATH=[python-bin-path]:$PATH` （这里[python-bin-path]为将[python-lib-path]的最后两级目录替换为/bin/后的目录)        
 
-	- f. 设置动态库链接： `export LD_LIBRARY_PATH=[python-ld-path]` 以及 `export DYLD_LIBRARY_PATH=[python-ld-path]` （这里[python-ld-path]为[python-bin-path]的上一级目录)      
+	- f. 设置动态库链接： `export LD_LIBRARY_PATH=[python-ld-path]` 以及 `export DYLD_LIBRARY_PATH=[python-ld-path]` （这里[python-ld-path]为[python-bin-path]的上一级目录)    
+	
+	- g. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。  
 
 	
 	
@@ -209,7 +212,7 @@
 	
 	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html/#MACPRO)
 
-恭喜您，现在您已经完成使本机编译PaddlePaddle的过程了。
+恭喜您，现在您已经完成使用本机编译PaddlePaddle的过程了。
 
 
 
