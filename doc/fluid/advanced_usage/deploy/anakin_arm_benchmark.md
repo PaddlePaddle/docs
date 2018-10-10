@@ -25,15 +25,15 @@
 
 ### <span id = '11'> mobilenetv1 </span>
 
-   |platform | Anakin (1) | Anakin (2) | Anakin (4) | ncnn (1) | ncnn (2) | ncnn (4) | TFlite (1) | TFlite (2) | TFlite (4)|
+   |platform | Anakin (1) | Anakin (2) | Anakin (4) | ncnn (1) | ncnn (2) | ncnn (4) | TFlite (1) | TFlite (2) | TFlite (4)| 
    |:---: | :---: | :---: | :---:| :---:| :---:| :---:| :---:| :---:| :---:|
    |麒麟960|107.7ms|61.1ms|38.2ms|152.8ms|85.2ms|51.9ms|152.6ms|nan|nan|
    |高通835|105.7ms|63.1ms|~~46.8ms~~|152.7ms|87.0ms|~~92.7ms~~|146.9ms|nan|nan|
-   |高通653|120.3ms|64.2ms|46.6ms|202.5ms|117.6ms|84.8ms|158.6ms|nan|nan|
+   |高通653|120.3ms|64.2ms|46.6ms|202.5ms|117.6ms|84.8ms|158.6ms|nan|nan| 
 
 ### <span id = '22'> mobilenetv2 </span>
 
-   |platform | Anakin (1) | Anakin (2) | Anakin (4) | ncnn (1) | ncnn (2) | ncnn (4) | TFlite (1) | TFlite (2) | TFlite (4)|
+   |platform | Anakin (1) | Anakin (2) | Anakin (4) | ncnn (1) | ncnn (2) | ncnn (4) | TFlite (1) | TFlite (2) | TFlite (4)| 
    |:---: | :---: | :---: | :---:| :---:| :---:| :---:| :---:| :---:| :---:|
    |麒麟960|93.1ms|53.9ms|34.8ms|144.4ms|84.3ms|55.3ms|100.6ms|nan|nan|
    |高通835|93.0ms|55.6ms|41.1ms|139.1ms|88.4ms|58.1ms|95.2ms|nan|nan|
@@ -41,7 +41,7 @@
 
 ### <span id = '33'> mobilenet-ssd </span>
 
-   |platform | Anakin (1) | Anakin (2) | Anakin (4) | ncnn (1) | ncnn (2) | ncnn (4) | TFlite (1) | TFlite (2) | TFlite (4)|
+   |platform | Anakin (1) | Anakin (2) | Anakin (4) | ncnn (1) | ncnn (2) | ncnn (4) | TFlite (1) | TFlite (2) | TFlite (4)| 
    |:---: | :---: | :---: | :---:| :---:| :---:| :---:| :---:| :---:| :---:|
    |麒麟960|213.9ms|120.5ms|74.5ms|307.9ms|166.5ms|104.2ms|nan|nan|nan|
    |高通835|213.0ms|125.7ms|~~98.4ms~~|292.9ms|177.9ms|~~167.8ms~~|nan|nan|nan|
@@ -49,8 +49,8 @@
 
 ## How to run those Benchmark models?
 
-   1. 首先, 使用[External Converter](./convert_paddle_to_anakin.md)对caffe model 进行转换
-   2. 然后将转换后的Anakin model和编译好的benchmark_arm 二进制文件通过'adb push'命令上传至测试机
-   3. 接着在测试机含有Anakin model的目录中运行'./benchmark_arm ./ anakin_model.anakin.bin 1 10 10 1' 命令
-   4. 最后，终端显示器上将会打印该模型的运行时间
-   5. 其中运行命令的参数个数和含义可以通过运行'./benchmark_arm'看到
+1. 首先, 使用[External Converter](../docs/Manual/Converter_en.md)对caffe model 进行转换
+2. 然后将转换后的Anakin model和编译好的benchmark_arm 二进制文件通过'adb push'命令上传至测试机
+3. 接着在测试机含有Anakin model的目录中运行'./benchmark_arm ./ anakin_model.anakin.bin 1 10 10 1' 命令
+4. 最后，终端显示器上将会打印该模型的运行时间
+5. 其中运行命令的参数个数和含义可以通过运行'./benchmark_arm'看到
