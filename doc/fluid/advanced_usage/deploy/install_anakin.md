@@ -69,7 +69,7 @@
 
 ### 在ARM上安装 Anakin ###
 
-请参考[ARM安装文档](./anakin_run_on_arm.md)
+请参考[ARM安装文档](./anakin_run_on_arm.html)
 
 ### 验证安装 ###
 
