@@ -40,7 +40,7 @@
     > sudo ldconfig
   ```
 
-  如安装protobuf遇到任何问题，请访问[这里](https://github.com/google/protobuf/blob/master/src/README.html)
+  如安装protobuf遇到任何问题，请访问[这里](https://github.com/google/protobuf/blob/master/src/README.md)
 
 - 3.2 CUDA Toolkit
 

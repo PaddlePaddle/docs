@@ -36,7 +36,7 @@
 
   上述 $make install 执行后，可在 `/usr/local/include/google` 找到 libprotobuf 所需的头文件,将整个google文件夹拷贝至Anakin/third-party/arm-android/protobuf/下, 然后将已经生成文件清除。
 
-  如有问题，请点[这里](https://github.com/google/protobuf/blob/v3.4.0/src/README.html)。
+  如有问题，请点[这里](https://github.com/google/protobuf/blob/v3.4.0/src/README.md)。
 
   ```bash
     $ make distclean
