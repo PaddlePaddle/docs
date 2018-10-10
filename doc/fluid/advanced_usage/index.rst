@@ -10,8 +10,8 @@
 ..  toctree::
     :maxdepth: 2
 
-    deploy/index_anakin.rst
     deploy/index_mobile.rst
+    deploy/index_anakin.rst
     development/contribute_to_paddle.md
     development/write_docs.rst
     development/new_op.md

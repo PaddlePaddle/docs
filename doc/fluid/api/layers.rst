@@ -117,15 +117,6 @@ reorder_lod_tensor_by_rank
 ..  autofunction:: paddle.fluid.layers.reorder_lod_tensor_by_rank
     :noindex:
 
-.. _api_fluid_layers_ParallelDo:
-
-ParallelDo
-----------
-
-..  autoclass:: paddle.fluid.layers.ParallelDo
-    :members:
-    :noindex:
-
 .. _api_fluid_layers_Print:
 
 Print
@@ -154,14 +145,6 @@ data
 ----
 
 ..  autofunction:: paddle.fluid.layers.data
-    :noindex:
-
-.. _api_fluid_layers_open_recordio_file:
-
-open_recordio_file
-------------------
-
-..  autofunction:: paddle.fluid.layers.open_recordio_file
     :noindex:
 
 .. _api_fluid_layers_open_files:
@@ -440,6 +423,14 @@ sequence_expand
 ..  autofunction:: paddle.fluid.layers.sequence_expand
     :noindex:
 
+.. _api_fluid_layers_sequence_expand_as:
+
+sequence_expand_as
+------------------
+
+..  autofunction:: paddle.fluid.layers.sequence_expand_as
+    :noindex:
+
 .. _api_fluid_layers_sequence_pad:
 
 sequence_pad
@@ -688,6 +679,22 @@ reshape
 ..  autofunction:: paddle.fluid.layers.reshape
     :noindex:
 
+.. _api_fluid_layers_squeeze:
+
+squeeze
+-------
+
+..  autofunction:: paddle.fluid.layers.squeeze
+    :noindex:
+
+.. _api_fluid_layers_unsqueeze:
+
+unsqueeze
+---------
+
+..  autofunction:: paddle.fluid.layers.unsqueeze
+    :noindex:
+
 .. _api_fluid_layers_lod_reset:
 
 lod_reset
@@ -710,6 +717,14 @@ pad
 ---
 
 ..  autofunction:: paddle.fluid.layers.pad
+    :noindex:
+
+.. _api_fluid_layers_pad_constant_like:
+
+pad_constant_like
+-----------------
+
+..  autofunction:: paddle.fluid.layers.pad_constant_like
     :noindex:
 
 .. _api_fluid_layers_label_smooth:
@@ -768,6 +783,22 @@ gather
 ..  autofunction:: paddle.fluid.layers.gather
     :noindex:
 
+.. _api_fluid_layers_scatter:
+
+scatter
+-------
+
+..  autofunction:: paddle.fluid.layers.scatter
+    :noindex:
+
+.. _api_fluid_layers_sequence_scatter:
+
+sequence_scatter
+----------------
+
+..  autofunction:: paddle.fluid.layers.sequence_scatter
+    :noindex:
+
 .. _api_fluid_layers_random_crop:
 
 random_crop
@@ -816,12 +847,84 @@ rank_loss
 ..  autofunction:: paddle.fluid.layers.rank_loss
     :noindex:
 
+.. _api_fluid_layers_elu:
+
+elu
+---
+
+..  autofunction:: paddle.fluid.layers.elu
+    :noindex:
+
+.. _api_fluid_layers_relu6:
+
+relu6
+-----
+
+..  autofunction:: paddle.fluid.layers.relu6
+    :noindex:
+
+.. _api_fluid_layers_pow:
+
+pow
+---
+
+..  autofunction:: paddle.fluid.layers.pow
+    :noindex:
+
+.. _api_fluid_layers_stanh:
+
+stanh
+-----
+
+..  autofunction:: paddle.fluid.layers.stanh
+    :noindex:
+
+.. _api_fluid_layers_hard_sigmoid:
+
+hard_sigmoid
+------------
+
+..  autofunction:: paddle.fluid.layers.hard_sigmoid
+    :noindex:
+
+.. _api_fluid_layers_swish:
+
+swish
+-----
+
+..  autofunction:: paddle.fluid.layers.swish
+    :noindex:
+
 .. _api_fluid_layers_prelu:
 
 prelu
 -----
 
 ..  autofunction:: paddle.fluid.layers.prelu
+    :noindex:
+
+.. _api_fluid_layers_brelu:
+
+brelu
+-----
+
+..  autofunction:: paddle.fluid.layers.brelu
+    :noindex:
+
+.. _api_fluid_layers_leaky_relu:
+
+leaky_relu
+----------
+
+..  autofunction:: paddle.fluid.layers.leaky_relu
+    :noindex:
+
+.. _api_fluid_layers_soft_relu:
+
+soft_relu
+---------
+
+..  autofunction:: paddle.fluid.layers.soft_relu
     :noindex:
 
 .. _api_fluid_layers_flatten:
@@ -832,23 +935,60 @@ flatten
 ..  autofunction:: paddle.fluid.layers.flatten
     :noindex:
 
-ops
-===
+.. _api_fluid_layers_sequence_mask:
 
-.. _api_fluid_layers_mean:
+sequence_mask
+-------------
 
-mean
-----
-
-..  autofunction:: paddle.fluid.layers.mean
+..  autofunction:: paddle.fluid.layers.sequence_mask
     :noindex:
 
-.. _api_fluid_layers_mul:
+.. _api_fluid_layers_stack:
 
-mul
----
+stack
+-----
 
-..  autofunction:: paddle.fluid.layers.mul
+..  autofunction:: paddle.fluid.layers.stack
+    :noindex:
+
+.. _api_fluid_layers_pad2d:
+
+pad2d
+-----
+
+..  autofunction:: paddle.fluid.layers.pad2d
+    :noindex:
+
+.. _api_fluid_layers_unstack:
+
+unstack
+-------
+
+..  autofunction:: paddle.fluid.layers.unstack
+    :noindex:
+
+.. _api_fluid_layers_sequence_enumerate:
+
+sequence_enumerate
+------------------
+
+..  autofunction:: paddle.fluid.layers.sequence_enumerate
+    :noindex:
+
+.. _api_fluid_layers_expand:
+
+expand
+------
+
+..  autofunction:: paddle.fluid.layers.expand
+    :noindex:
+
+.. _api_fluid_layers_sequence_concat:
+
+sequence_concat
+---------------
+
+..  autofunction:: paddle.fluid.layers.sequence_concat
     :noindex:
 
 .. _api_fluid_layers_scale:
@@ -857,14 +997,6 @@ scale
 -----
 
 ..  autofunction:: paddle.fluid.layers.scale
-    :noindex:
-
-.. _api_fluid_layers_sigmoid_cross_entropy_with_logits:
-
-sigmoid_cross_entropy_with_logits
----------------------------------
-
-..  autofunction:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
     :noindex:
 
 .. _api_fluid_layers_elementwise_add:
@@ -921,6 +1053,33 @@ elementwise_pow
 ---------------
 
 ..  autofunction:: paddle.fluid.layers.elementwise_pow
+    :noindex:
+
+ops
+===
+
+.. _api_fluid_layers_mean:
+
+mean
+----
+
+..  autofunction:: paddle.fluid.layers.mean
+    :noindex:
+
+.. _api_fluid_layers_mul:
+
+mul
+---
+
+..  autofunction:: paddle.fluid.layers.mul
+    :noindex:
+
+.. _api_fluid_layers_sigmoid_cross_entropy_with_logits:
+
+sigmoid_cross_entropy_with_logits
+---------------------------------
+
+..  autofunction:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
     :noindex:
 
 .. _api_fluid_layers_clip:
@@ -987,20 +1146,20 @@ gaussian_random
 ..  autofunction:: paddle.fluid.layers.gaussian_random
     :noindex:
 
+.. _api_fluid_layers_sampling_id:
+
+sampling_id
+-----------
+
+..  autofunction:: paddle.fluid.layers.sampling_id
+    :noindex:
+
 .. _api_fluid_layers_gaussian_random_batch_size_like:
 
 gaussian_random_batch_size_like
 -------------------------------
 
 ..  autofunction:: paddle.fluid.layers.gaussian_random_batch_size_like
-    :noindex:
-
-.. _api_fluid_layers_scatter:
-
-scatter
--------
-
-..  autofunction:: paddle.fluid.layers.scatter
     :noindex:
 
 .. _api_fluid_layers_sum:
@@ -1169,78 +1328,6 @@ softsign
 --------
 
 ..  autofunction:: paddle.fluid.layers.softsign
-    :noindex:
-
-.. _api_fluid_layers_brelu:
-
-brelu
------
-
-..  autofunction:: paddle.fluid.layers.brelu
-    :noindex:
-
-.. _api_fluid_layers_leaky_relu:
-
-leaky_relu
-----------
-
-..  autofunction:: paddle.fluid.layers.leaky_relu
-    :noindex:
-
-.. _api_fluid_layers_soft_relu:
-
-soft_relu
----------
-
-..  autofunction:: paddle.fluid.layers.soft_relu
-    :noindex:
-
-.. _api_fluid_layers_elu:
-
-elu
----
-
-..  autofunction:: paddle.fluid.layers.elu
-    :noindex:
-
-.. _api_fluid_layers_relu6:
-
-relu6
------
-
-..  autofunction:: paddle.fluid.layers.relu6
-    :noindex:
-
-.. _api_fluid_layers_pow:
-
-pow
----
-
-..  autofunction:: paddle.fluid.layers.pow
-    :noindex:
-
-.. _api_fluid_layers_stanh:
-
-stanh
------
-
-..  autofunction:: paddle.fluid.layers.stanh
-    :noindex:
-
-.. _api_fluid_layers_hard_sigmoid:
-
-hard_sigmoid
-------------
-
-..  autofunction:: paddle.fluid.layers.hard_sigmoid
-    :noindex:
-
-.. _api_fluid_layers_swish:
-
-swish
------
-
-..  autofunction:: paddle.fluid.layers.swish
     :noindex:
 
 .. _api_fluid_layers_uniform_random:
@@ -1532,6 +1619,30 @@ anchor_generator
 ..  autofunction:: paddle.fluid.layers.anchor_generator
     :noindex:
 
+.. _api_fluid_layers_roi_perspective_transform:
+
+roi_perspective_transform
+-------------------------
+
+..  autofunction:: paddle.fluid.layers.roi_perspective_transform
+    :noindex:
+
+.. _api_fluid_layers_generate_proposal_labels:
+
+generate_proposal_labels
+------------------------
+
+..  autofunction:: paddle.fluid.layers.generate_proposal_labels
+    :noindex:
+
+.. _api_fluid_layers_generate_proposals:
+
+generate_proposals
+------------------
+
+..  autofunction:: paddle.fluid.layers.generate_proposals
+    :noindex:
+
 .. _api_fluid_layers_iou_similarity:
 
 iou_similarity
@@ -1573,128 +1684,5 @@ auc
 ---
 
 ..  autofunction:: paddle.fluid.layers.auc
-    :noindex:
-
-tensor
-======
-
-.. _api_fluid_layers_create_tensor:
-
-create_tensor
--------------
-
-..  autofunction:: paddle.fluid.layers.create_tensor
-    :noindex:
-
-.. _api_fluid_layers_create_parameter:
-
-create_parameter
-----------------
-
-..  autofunction:: paddle.fluid.layers.create_parameter
-    :noindex:
-
-.. _api_fluid_layers_create_global_var:
-
-create_global_var
------------------
-
-..  autofunction:: paddle.fluid.layers.create_global_var
-    :noindex:
-
-.. _api_fluid_layers_cast:
-
-cast
-----
-
-..  autofunction:: paddle.fluid.layers.cast
-    :noindex:
-
-.. _api_fluid_layers_concat:
-
-concat
-------
-
-..  autofunction:: paddle.fluid.layers.concat
-    :noindex:
-
-.. _api_fluid_layers_sums:
-
-sums
-----
-
-..  autofunction:: paddle.fluid.layers.sums
-    :noindex:
-
-.. _api_fluid_layers_assign:
-
-assign
-------
-
-..  autofunction:: paddle.fluid.layers.assign
-    :noindex:
-
-.. _api_fluid_layers_fill_constant_batch_size_like:
-
-fill_constant_batch_size_like
------------------------------
-
-..  autofunction:: paddle.fluid.layers.fill_constant_batch_size_like
-    :noindex:
-
-.. _api_fluid_layers_fill_constant:
-
-fill_constant
--------------
-
-..  autofunction:: paddle.fluid.layers.fill_constant
-    :noindex:
-
-.. _api_fluid_layers_argmin:
-
-argmin
-------
-
-..  autofunction:: paddle.fluid.layers.argmin
-    :noindex:
-
-.. _api_fluid_layers_argmax:
-
-argmax
-------
-
-..  autofunction:: paddle.fluid.layers.argmax
-    :noindex:
-
-.. _api_fluid_layers_argsort:
-
-argsort
--------
-
-..  autofunction:: paddle.fluid.layers.argsort
-    :noindex:
-
-.. _api_fluid_layers_ones:
-
-ones
-----
-
-..  autofunction:: paddle.fluid.layers.ones
-    :noindex:
-
-.. _api_fluid_layers_zeros:
-
-zeros
------
-
-..  autofunction:: paddle.fluid.layers.zeros
-    :noindex:
-
-.. _api_fluid_layers_reverse:
-
-reverse
--------
-
-..  autofunction:: paddle.fluid.layers.reverse
     :noindex:
 

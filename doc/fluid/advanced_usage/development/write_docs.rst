@@ -1,1 +1,1 @@
-../../../dev/write_docs_cn.rst
+../../dev/write_docs_cn.rst
