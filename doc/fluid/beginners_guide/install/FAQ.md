@@ -125,3 +125,7 @@
 	
 	>  [ISSUE 13759](https://github.com/PaddlePaddle/Paddle/issues/13759)
 
+- 出现 “target pattern contain no '%'.”的问题 详见issue：
+
+	> [ISSUE 13806](https://github.com/PaddlePaddle/Paddle/issues/13806)
+
