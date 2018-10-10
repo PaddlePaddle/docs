@@ -159,7 +159,7 @@
 
 ## How to run those Benchmark models
 
-1. 首先, 使用[External Converter](./convert_paddle_to_anakin.md)对caffe model 进行转换
+1. 首先, 使用[External Converter](./convert_paddle_to_anakin.html)对caffe model 进行转换
 2. 然后跳转至 *source_root/benchmark/CNN* 目录下，使用 'mkdir ./models'创建存放模型的目录，并将转换好的Anakin模型放在该目录下
 3. 运行脚本 `sh run.sh`，运行结束后，该模型的运行时间将会显示到终端上
 4. 如果你想获取每层OP的运行时间，你只用将 CMakeLists.txt 中的`ENABLE_OP_TIMER` 设置为 `YES` 即可
