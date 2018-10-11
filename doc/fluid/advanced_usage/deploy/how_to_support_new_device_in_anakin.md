@@ -52,7 +52,7 @@ endif()
 #cmakedefine USE_TNEW_PLACE
 ```
 
-* 其他依赖和编译选项    
+* 其他依赖和编译选项
 修改`cmake`目录下的`compiler_options.cmake`和`find_modules.cmake`
 
 
@@ -231,7 +231,7 @@ struct TargetWrapper<TNEW, __xxx_target> { //根据TNEW的具体类型修改__xx
 4. 在`impl/`目录下添加设备目录和实现
 
 在`saber/core/impl`目录下添加设备目录`tnew`。
-* 实现`TargetWrapper<TNEW, __xxx_target>`结构体中各函数的定义。    
+* 实现`TargetWrapper<TNEW, __xxx_target>`结构体中各函数的定义。
 如果`TargetWrapper<TNEW, __xxx_target>`的实现与默认的模板类一致，则不用特化出该类。
 
 ```c++
@@ -243,11 +243,11 @@ void TNEW_API::get_device_count(int &count) {
 void TNEW_API::set_device(int id){
     // add implementation
 }
-        
+
 void TNEW_API::mem_alloc(void** ptr, size_t n){
     // add implementation
 }
-        
+
 void TNEW_API::mem_free(void* ptr){
     if(ptr != nullptr){
         // add implementation
@@ -275,7 +275,7 @@ void Device<TNEW>::get_info() {
 
 ### 在`saber/funcs`中实现设备相关的op
 
-参考[如何增加新的Operator](addCustomOp.md)
+参考[如何增加新的Operator](./how_to_add_anakin_op.html)
 
 
 ## <span id = '0003'> 在`framework`中添加设备的具体化或实例化 </span> ##
@@ -329,7 +329,7 @@ public:
 	typedef Tensor4d<TNEW, DataTypeRecover<Dtype>::type> type;
 
 	PBlock() {
-		_inner_tensor = std::make_shared<type>(); 
+		_inner_tensor = std::make_shared<type>();
 	}
 	...
 }
@@ -348,7 +348,7 @@ struct target_host<saber::TNEW> {
 ### `framework/graph`
 
 * `graph.cpp`中添加实例化
-  
+
 ```c++
   #ifdef USE_TNEW_PLACE
   template class Graph<TNEW, AK_FLOAT, Precision::FP32>;
@@ -360,7 +360,7 @@ struct target_host<saber::TNEW> {
 ### `framework/model_parser`
 
 * `parser.cpp`中添加实例化
-  
+
 ```c++
   #ifdef USE_TNEW_PLACE
   template
@@ -372,7 +372,7 @@ struct target_host<saber::TNEW> {
   template
   Status load<TNEW, AK_FLOAT, Precision::INT8>(graph::Graph<TNEW, AK_FLOAT, Precision::INT8>* graph,
           const char* model_path);
-  
+
   template
   Status save<TNEW, AK_FLOAT, Precision::FP32>(graph::Graph<TNEW, AK_FLOAT, Precision::FP32>* graph,
           std::string& model_path);
@@ -382,7 +382,7 @@ struct target_host<saber::TNEW> {
   template
   Status save<TNEW, AK_FLOAT, Precision::INT8>(graph::Graph<TNEW, AK_FLOAT, Precision::INT8>* graph,
           std::string& model_path);
-  
+
   template
   Status load<TNEW, AK_FLOAT, Precision::FP32>(graph::Graph<TNEW, AK_FLOAT, Precision::FP32>* graph,
           std::string& model_path);
@@ -392,7 +392,7 @@ struct target_host<saber::TNEW> {
   template
   Status load<TNEW, AK_FLOAT, Precision::INT8>(graph::Graph<TNEW, AK_FLOAT, Precision::INT8>* graph,
           std::string& model_path);
-  
+
   template
   Status save<TNEW, AK_FLOAT, Precision::FP32>(graph::Graph<TNEW, AK_FLOAT, Precision::FP32>* graph,
           const char* model_path);
