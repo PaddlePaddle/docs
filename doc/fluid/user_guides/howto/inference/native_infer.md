@@ -133,5 +133,4 @@ tensor.name = "input0"; // 注意这里的 name 需要设定
 
 ## 详细代码参考
 
-- [inference demos](./demo_ci)
-- [复杂单线程/多线程例子](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/test_api_impl.cc)
+[inference demos](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/fluid/inference/api/demo_ci)
