@@ -150,7 +150,7 @@ class MulOp : public framework::OperatorWithKernel {
 
  protected:
   void InferShape(const framework::InferShapeContext &ctx) const override {
-    //never use Input or Output if you want a to get a LoDTensor.
+    //never use Input<Tensor> or Output<Tensor> if you want a to get a LoDTensor.
     auto dim0 = ctx.Input<LoDTensor>("X")->dims();
     auto dim1 = ctx.Input<LoDTensor>("Y")->dims();
     PADDLE_ENFORCE_EQ(dim0.size(), 2,
@@ -198,11 +198,16 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 - `typename T` : 表示数据类型，如`float`, `double`等。
 
 需要为`MulKernel`类重写`Compute`接口。
+
 - `Compute`接受一个输入参数：`const framework::ExecutionContext& context`。
+
 - 与`InferShapeContext`相比，`ExecutionContext`增加了设备类型，同样可获取到输入输出和属性参数。
+
 - `Compute`函数里实现`OpKernel`的具体计算逻辑。
 
-Op的输入和输出可分别通过ExecutionContext::Input()和ExecutionContext::Output()获得。注意：若op的输入/输出的变量类型是LoDTensor（fluid默认所有的Tensor默认都是LoDTensor类型），请写成ExecutionContext::Input()和ExecutionContext::Output()，不要写ExecutionContext::Input()和ExecutionContext::Output()。因为若实际的变量类型为SelectedRows，Input()和Output()方法会将SelectedRows类型特化为Tensor，导致潜在的错误。
+Op的输入和输出可分别通过`ExecutionContext::Input<T>()`和`ExecutionContext::Output<T>()`获得。
+
+**注意：** 若op的输入/输出的变量类型是`LoDTensor`（fluid默认所有的Tensor默认都是LoDTensor类型），请写成`ExecutionContext::Input<LoDTensor>()`和`ExecutionContext::Output<LoDTensor>()`，不要写`ExecutionContext::Input<Tensor>()`和`ExecutionContext::Output<Tensor>()`。因为若实际的变量类型为`SelectedRows`，`Input<Tensor>()`和`Output<Tensor>()`方法会将`SelectedRows`类型特化为`Tensor`，导致潜在的错误。
 
 下面是 `MulKernel` `Compute`的实现：
 
@@ -244,14 +249,16 @@ Op的输入和输出可分别通过ExecutionContext::Input()和ExecutionContext:
                   ops::MulGradKernel<paddle::platform::CPUDeviceContext, float>);
     ```
 
-   在上面的代码中：
+    在上面的代码中：
 
-    - `REGISTER_OPERATOR` ： 注册`ops::MulOp`类，类型名为`mul`，该类的`ProtoMaker`为`ops::MulOpMaker`，注册`ops::MulOpGrad`，类型名为`mul_grad`。
-    - `REGISTER_OP_CPU_KERNEL` ：注册`ops::MulKernel`类，并特化模板参数为`paddle::platform::CPUPlace`和`float`类型，同理，注册`ops::MulGradKernel`类。
+	   - `REGISTER_OPERATOR` ： 注册`ops::MulOp`类，类型名为`mul`，该类的`ProtoMaker`为`ops::MulOpMaker`，注册`ops::MulOpGrad`，类型名为`mul_grad`。
+
+	   - `REGISTER_OP_CPU_KERNEL` ：注册`ops::MulKernel`类，并特化模板参数为`paddle::platform::CPUPlace`和`float`类型，同理，注册`ops::MulGradKernel`类。
 
 
 - 在 `.cu`文件中注册CUDA Kernel。
     - 请注意，如果CUDA Kernel的实现基于Eigen unsupported模块，那么在 `.cu`的开始请加上宏定义 `#define EIGEN_USE_GPU`，代码示例如下：
+
 
     ```cpp
     // if use Eigen unsupported module before include head files
@@ -289,49 +296,51 @@ Op单元测试继承自`OpTest`。各项更加具体的单元测试在`TestMulOp
 4. 反向计算已经自动集成进测试框架，直接调用相应接口即可。
 
 
-  ```python
-  import unittest
-  import numpy as np
-  from op_test import OpTest
+	  ```python
+	  import unittest
+	  import numpy as np
+	  from op_test import OpTest
 
 
-  class TestMulOp(OpTest):
-      def setUp(self):
-          self.op_type = "mul"
-          self.inputs = {
-              'X': np.random.random((32, 84)).astype("float32"),
-              'Y': np.random.random((84, 100)).astype("float32")
-          }
-          self.outputs = {'Out': np.dot(self.inputs['X'], self.inputs['Y'])}
+	  class TestMulOp(OpTest):
+	      def setUp(self):
+	          self.op_type = "mul"
+	          self.inputs = {
+	              'X': np.random.random((32, 84)).astype("float32"),
+	              'Y': np.random.random((84, 100)).astype("float32")
+	          }
+	          self.outputs = {'Out': np.dot(self.inputs['X'], self.inputs['Y'])}
 
-      def test_check_output(self):
-          self.check_output()
+	      def test_check_output(self):
+	          self.check_output()
 
-      def test_check_grad_normal(self):
-          self.check_grad(['X', 'Y'], 'Out', max_relative_error=0.5)
+	      def test_check_grad_normal(self):
+	          self.check_grad(['X', 'Y'], 'Out', max_relative_error=0.5)
 
-      def test_check_grad_ingore_x(self):
-          self.check_grad(
-              ['Y'], 'Out', max_relative_error=0.5, no_grad_set=set("X"))
+	      def test_check_grad_ingore_x(self):
+	          self.check_grad(
+	              ['Y'], 'Out', max_relative_error=0.5, no_grad_set=set("X"))
 
-      def test_check_grad_ingore_y(self):
-          self.check_grad(
-              ['X'], 'Out', max_relative_error=0.5, no_grad_set=set('Y'))
-  ```
+	      def test_check_grad_ingore_y(self):
+	          self.check_grad(
+	              ['X'], 'Out', max_relative_error=0.5, no_grad_set=set('Y'))
+	  ```
 
-上面的代码首先导入依赖的包，下面是对`setUp`函数中操作的重要变量的详细解释：
+	上面的代码首先导入依赖的包，下面是对`setUp`函数中操作的重要变量的详细解释：
 
-- `self.op_type = "mul" ` : 定义类型，与operator注册时注册的类型一致。
-- `self.inputs` : 定义输入，类型为`numpy.array`，并初始化。
-- `self.outputs` : 定义输出，并在Python脚本中完成与operator同样的计算逻辑，返回Python端的计算结果。
+	- `self.op_type = "mul" ` : 定义类型，与operator注册时注册的类型一致。
+	- `self.inputs` : 定义输入，类型为`numpy.array`，并初始化。
+	- `self.outputs` : 定义输出，并在Python脚本中完成与operator同样的计算逻辑，返回Python端的计算结果。
 
 ### 反向operator单测
 
 而反向测试中：
+
 - `test_check_grad_normal`中调用`check_grad`使用数值法检测梯度正确性和稳定性。
   - 第一个参数`["X", "Y"]` : 指定对输入变量`X`、`Y`做梯度检测。
   - 第二个参数`"Out"` : 指定前向网络最终的输出目标变量`Out`。
   - 第三个参数`max_relative_error`：指定检测梯度时能容忍的最大错误值。
+
 - `test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况。
 
 
@@ -376,46 +385,51 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 #### 提示信息书写标准
 
 1. [required] 哪里错了？为什么错了？
+
     - 例如：`ValueError: Mismatched label shape`
+
 2. [optional] 期望的输入是什么样的？实际的输入是怎样的？
+
     - 例如：`Expected labels dimension=1. Received 4.`
+
 3. [optional] 能否给出修改意见？
+
     - 例如：`Suggested Fix:If your classifier expects one-hot encoding label,check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
 如果并非必要或者简洁的描述即可表达清楚以上要点，根据情况书写亦可。
 
-##### FAQ 典型问题
+#### FAQ 典型问题
 
 1. 无报错信息或报错信息过于简单，不能给用户提供有效的提示！
 
-问题示例1 ：未写提示信息
-```
-PADDLE_ENFORCE(ctx->HasInput("X"), "");
-```
-问题示例2 ：提示信息过于简单
-```
-PADDLE_ENFORCE(i != nullptr, "i must be set"); // i是什么？
-```
+	问题示例1 ：未写提示信息
+	```
+	PADDLE_ENFORCE(ctx->HasInput("X"), "");
+	```
+	问题示例2 ：提示信息过于简单
+	```
+	PADDLE_ENFORCE(i != nullptr, "i must be set"); // i是什么？
+	```
 
 2. 在报错信息中使用开发人员定义的变量缩写，不易理解！
 
-问题示例：
-```
-PADDLE_ENFORCE(forward_pd != nullptr,
-                    "Fail to find eltwise_fwd_pd in device context");  //eltwise_fwd_pd用户可能看不懂
-```
+	问题示例：
+	```
+	PADDLE_ENFORCE(forward_pd != nullptr,
+	                    "Fail to find eltwise_fwd_pd in device context");  //eltwise_fwd_pd用户可能看不懂
+	```
 
 3. OP内部调用非法接口：Op内部如果出现Output = ShareDataWith(Input) 
-问题示例：
-```cpp
-auto *out = ctx.Output<framework::LoDTensor>("Out");
-auto *in = ctx.Input<framework::LoDTensor>("X");
-out->ShareDataWith(*in);
-```
-Op内部如果出现Output = ShareDataWith(Input)，相当于operator图的中有一条隐藏边，连接了Input和Output，这条边无法在图分析中表达，引发基于图优化的错误。
+	问题示例：
+	```cpp
+	auto *out = ctx.Output<framework::LoDTensor>("Out");
+	auto *in = ctx.Input<framework::LoDTensor>("X");
+	out->ShareDataWith(*in);
+	```
+	Op内部如果出现Output = ShareDataWith(Input)，相当于operator图的中有一条隐藏边，连接了Input和Output，这条边无法在图分析中表达，引发基于图优化的错误。
 
 4. OP实现的性能实践
-调用了eigen的broadcast, chop等操作，性能会比手写cuda kernel差几倍以上。此时cpu的实现可以复用eigen，gpu实现可以实现cuda kernel.
+	调用了eigen的broadcast, chop等操作，性能会比手写cuda kernel差几倍以上。此时cpu的实现可以复用eigen，gpu实现可以实现cuda kernel.
 
 
 #### OP InferShape检查提示信息特别说明
@@ -423,16 +437,16 @@ Op内部如果出现Output = ShareDataWith(Input)，相当于operator图的中�
 - 检查输入输出变量，请统一遵循以下格式
 `Input(变量名) of OP名 operator should not be null.`  
 
-正确示例：
-```
-PADDLE_ENFORCE(ctx->HasInput("Input"),
-                        "Input(Input) of LSTMP operator should not be null.");
-```
+	正确示例：
+	```
+	PADDLE_ENFORCE(ctx->HasInput("Input"),
+	                        "Input(Input) of LSTMP operator should not be null.");
+	```
 
 - 反向Op的输入输出检查，要写明反向Op的名字
 
-正确示例：
-```
-PADDLE_ENFORCE(ctx->HasInput("X"),
-                        "Input(X) of LoDResetGrad opreator should not be null.");
-```
+	正确示例：
+	```
+	PADDLE_ENFORCE(ctx->HasInput("X"),
+	                        "Input(X) of LoDResetGrad opreator should not be null.");
+	```
