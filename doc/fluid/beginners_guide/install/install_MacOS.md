@@ -41,23 +41,22 @@
 > **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python（对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x）, pip）
 	
 		For python2: brew install python@2
-		For python3: brew install python3
+		For python3: 请使用Python官方下载的python3.5.x
 
 *	Python2.7.x，Pip >= 9.0.1            
+*  Python3.5.x，Pip3 >= 9.0.1  
 
-*  Python3.5.x，Pip3 >= 9.0.1           
-
-	> 如果您的电脑上安装有多个python环境（包括Python2/3，或者多个python2）以及pip请参见[FAQ-MacPython](./FAQ.html/#MACPRO)。 这里提供安装了通过`brew`或`Python.org`下载的python2.7.15后需要的命令：
-		
-	- For brew：`export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
-		
-	- For Python.org: `export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`
-		
-	>> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
+	>> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。        
 	    
 下面将说明如何安装PaddlePaddle：
 
-1. 使用pip install来安装PaddlePaddle：
+1. 设置python环境变量：
+	
+	- For Python2.7.x: 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
+	
+	- For Python3.5.x: 请使用`find / -name libpython3.5.dylib`找到您当前使用python的`libpython3.5.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录]`
+
+2. 使用pip install来安装PaddlePaddle：
 	
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
 
