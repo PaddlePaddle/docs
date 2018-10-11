@@ -210,6 +210,18 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</thead>
 	<tbody>
 	<tr>
+		<td> paddlepaddle-gpu==1.0.1 </td>
+		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.1版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==1.0.1.post87 </td>
+		<td> 使用CUDA 8.0和cuDNN 7编译的1.0.1版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==1.0.1.post85 </td>
+		<td> 使用CUDA 8.0和cuDNN 5编译的1.0.1版本 </td>
+	</tr>
+	<tr>
 		<td> paddlepaddle-gpu==1.0.0 </td>
 		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.0版本 </td>
 	</tr>

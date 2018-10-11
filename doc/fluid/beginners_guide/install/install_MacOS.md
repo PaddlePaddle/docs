@@ -34,12 +34,7 @@
 
 由于在MacOS中的Python情况差别较大我们暂不提供快速安装的命令，请您按照以下步骤进行安装
 
-首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
-
-`uname -m && cat /etc/*release`
-
-> 上面的命令将会显示本机的操作系统和位数信息，请确保您的计算机和本教程的要求一致。
-
+首先，**检查您的计算机和操作系统**是否符合我们支持的编译标准： `uname -m` 并且在`关于本机`中查看系统版本。
 
 其次，您的计算机需要满足以下要求：    
 
@@ -98,7 +93,7 @@
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.0`
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.1`
 		
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
