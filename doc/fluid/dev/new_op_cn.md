@@ -184,8 +184,8 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 
 还需要重写`InferShape`接口。`InferShape`为const函数，不能修改Op的成员变量，参数为`const framework::InferShapeContext &ctx`，通过该参数可获取到输入输出以及属性。它的功能是：
 
-  - 1). 做检查， 尽早报错：检查输入数据维度、类型等是否合法。
-  - 2). 设置输出Tensor的形状。
+  - 做检查， 尽早报错：检查输入数据维度、类型等是否合法。
+  - 设置输出Tensor的形状。
 
 通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
 
