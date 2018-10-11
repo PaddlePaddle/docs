@@ -52,7 +52,12 @@
 
 *  Python3.5.x，Pip3 >= 9.0.1           
 
-	> 如果您的电脑上安装有多个python环境（包括Python2/3，或者多个python2）以及pip请参见[FAQ-MacPython](./FAQ.html/#MACPRO)。    
+	> 如果您的电脑上安装有多个python环境（包括Python2/3，或者多个python2）以及pip请参见[FAQ-MacPython](./FAQ.html/#MACPRO)。 这里提供安装了通过`brew`或`Python.org`下载的python2.7.15后需要的命令：
+		
+	- For brew：`export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
+		
+	- For Python.org: `export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`
+		
 	>> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
 	    
 下面将说明如何安装PaddlePaddle：

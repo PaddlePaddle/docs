@@ -171,7 +171,7 @@
 		1. 从CMake[官方网站](https://cmake.org/files/v3.4/cmake-3.4.3-Darwin-x86_64.dmg)下载CMake镜像并安装
 		2. 在控制台输入`sudo "/Applications/CMake.app/Contents/bin/cmake-gui" –install`
 	
-	- b. 如果您不想使用系统默认的blas而希望使用自己安装的OPENBLAS请参见[FAQ](../FAQ#OPENBLAS)
+	- b. 如果您不想使用系统默认的blas而希望使用自己安装的OPENBLAS请参见[FAQ](../FAQ.html/#OPENBLAS)
 
 
 6. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
