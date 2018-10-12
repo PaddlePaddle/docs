@@ -114,67 +114,64 @@ Anakin中数据类型与基本数据类型的对应如下:
 
   理论上，Anakin支持申明1维以上的tensor，但是对于Anakin中的Op来说，只支持NW、NHW、NCHW、NCHW_C4这四种LayOut，其中NCHW是默认的LayOuteType，NCHW_C4是专门针对于int8这种数据类型的。
 
-  例子
+  **例子：**
 
-    下面的代码将展示如何使用tensor， 我们建议先看看这些示例。
+下面的代码将展示如何使用tensor， 我们建议先看看这些示例。
 
-    要想获得更多关于tensor的信息， 请参考 *soure_path/core/tensor.h*
+要想获得更多关于tensor的信息， 请参考 *soure_path/core/tensor.h*
 
-    > 1. 使用shape对象初始化tensor
+1. 使用shape对象初始化tensor
 
-    ```c++
-      //create a null tensor. A null tensor holds for nothing.
-      //tensor's buffer  is resident at CPU and its datatype is AK_FLOAT.
-      //tensor's Layout is NCHW(default)
-      Tensor<X86, AK_FLOAT> mytensor;
+    ```cpp
+    //create a null tensor. A null tensor holds for nothing.
+    //tensor's buffer  is resident at CPU and its datatype is AK_FLOAT.
+    //tensor's Layout is NCHW(default)
+    Tensor<X86, AK_FLOAT> mytensor;
 
-      //1. using shape object to create a tensor.
-      Shape shape1(NUM); //1-D shape. NUM is the number of dimention.
-      Tensor<X86, AK_FLOAT, W> mytensor1(shape1); //1-D tensor.
+    //1. using shape object to create a tensor.
+    Shape shape1(NUM); //1-D shape. NUM is the number of dimention.
+    Tensor<X86, AK_FLOAT, W> mytensor1(shape1); //1-D tensor.
 
-      // A 4-D shape
-      Shape shape2(N, C, H, W); // batch x channel x height x width
+    // A 4-D shape
+    Shape shape2(N, C, H, W); // batch x channel x height x width
     ```
 
-    >`注意：Shape的维度必须和tensor的`[LayoutType](#layout)`相同，比如Shape(N,C,H,W), 那么Tensor的 LayoutType必须是NCHW，否则会出错。如下列代码所示`
+    `注意：Shape的维度必须和tensor的`[LayoutType](#layout)`相同，比如Shape(N,C,H,W), 那么Tensor的 LayoutType必须是NCHW，否则会出错。如下列代码所示`
 
     ```c++
-       // A 4-D tensor.
-       Tensor<X86, AK_FLOAT> mytensor2(shape2);  //right
+    // A 4-D tensor.
+    Tensor<X86, AK_FLOAT> mytensor2(shape2);  //right
 
-       //A 4-D tensor which is resident at GPU and its datatype is AK_INT8
-       Tensor<NV, AK_INT8> mytensor3(shape2);   //right
+    //A 4-D tensor which is resident at GPU and its datatype is AK_INT8
+    Tensor<NV, AK_INT8> mytensor3(shape2);   //right
 
-       Tensor<X86, AK_FLOAT, NHW> mytensor4(shape2); //wrong!! shape's dimetion must be equal to tensor's Layout.
-       Tensor<NV, AK_FLOAT, NCHW_C4> mytensor5(shape2); //wrong!!!!
-
+    Tensor<X86, AK_FLOAT, NHW> mytensor4(shape2); //wrong!! shape's dimetion must be equal to tensor's Layout.
+    Tensor<NV, AK_FLOAT, NCHW_C4> mytensor5(shape2); //wrong!!!!
     ```
 
-    > 2. 使用现有的数据和shape初始化tensor
+2. 使用现有的数据和shape初始化tensor
 
     ```c++
+    /**
+    *  A construtor of Tensor.
+    *  data_ptr is a pointer to any data type of data
+    *  TargetType is type of a platform [Anakin TargetType]
+    *  id : device id
+    *  shape: a Anakin shape
+    */
+    Tensor(Dtype* data_ptr, TargetType_t target, int id, Shape shape);
 
-       /**
-       *  A construtor of Tensor.
-       *  data_ptr is a pointer to any data type of data
-       *  TargetType is type of a platform [Anakin TargetType]
-       *  id : device id
-       *  shape: a Anakin shape
-       */
-       Tensor(Dtype* data_ptr, TargetType_t target, int id, Shape shape);
-
-       //using existing data feed to a tensor
-       Tensor<X86, AK_FLOAT> mytensor(data_ptr, TargetType, device_id, shape); //shape must has dimention (N, C, H, W).
-
+    //using existing data feed to a tensor
+    Tensor<X86, AK_FLOAT> mytensor(data_ptr, TargetType, device_id, shape); //shape must has dimention (N, C, H, W).
     ```
 
-    > 3. 使用tensor初始化tensor
+3. 使用tensor初始化tensor
 
     ```c++
-       Tensor<NV, AK_FLOAT> tensor(exist_tensor);
+    Tensor<NV, AK_FLOAT> tensor(exist_tensor);
     ```
 
-    > 提示： 你可以用` typedef Tensor<X86, AK_FLOAT> Tensor4d_X86 `方便定义tensor
+>提示： 你可以用` typedef Tensor<X86, AK_FLOAT> Tensor4d_X86 `方便定义tensor
 
 #### 填充tensor数据区
 
