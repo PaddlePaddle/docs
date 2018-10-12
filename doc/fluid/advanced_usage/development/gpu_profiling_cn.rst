@@ -63,10 +63,7 @@ above profilers.
 上述的代码片段包含了两种方法，您可以任意使用一个或两个来对感兴趣的代码段做性能分析。
 
 1. :code:`REGISTER_TIMER_INFO` 是一个内置的定时器封装，可以用来计算CPU函数或cuda内核的时间消耗。
-
-2. :code:`REGISTER_GPU_PROFILER` is a general purpose wrapper object of :code:`cudaProfilerStart` and :code:`cudaProfilerStop` to avoid
-program crashes when CPU version of PaddlePaddle invokes them.
-
+2. :code:`REGISTER_GPU_PROFILER` 是 :code:`cudaProfilerStart` 和 :code:`cudaProfilerStop` 的通用包装对象，避免当CPU版本的PaddlePaddle调用它们时程序崩溃。
 3. :code:`REGISTER_GPU_PROFILER` 是一个封装对象，封装了 :code:`cudaProfilerStart` 和 :code:`cudaProfileStop` 两个操作；同时其内部实现可以避免纯CPU版本PaddlePaddle在执行本语句时发生崩溃。
 
 您会在接下来的部分中获得更多的细节介绍。
