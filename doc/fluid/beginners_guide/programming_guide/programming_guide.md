@@ -62,7 +62,7 @@ a = fluid.layers.data(name="a",shape=[3,4],dtype='int64')
 
 #若图片的宽度和高度在运行时可变，将宽度和高度定义为None。
 #shape的三个维度含义分别是：channel、图片的宽度、图片的高度
-b = fluid.layers.data(name="image"，shape=[3,None,None]，dtpye="float32")
+b = fluid.layers.data(name="image",shape=[3,None,None],dtpye="float32")
 ```
 
 其中，dtpye=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](../../user_guides/howto/prepare_data/feeding_data.html#fluid)。
@@ -221,7 +221,7 @@ with fluid.layers.control_flow.Switch() as switch:
     
 关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Fluid设计思想](../../user_guides/design_idea/fluid_design_idea.html)
 
-更多 Fluid 中的控制流，可以参考阅读[API文档](http://www.paddlepaddle.org/documentation/api/zh/0.15.0/layers.html#permalink-1-control_flow)
+更多 Fluid 中的控制流，可以参考阅读[API文档](http://www.paddlepaddle.org/documentation/api/zh/1.0.0/layers.html#permalink-1-control_flow)
 
 
 ## 使用Executor执行Program
