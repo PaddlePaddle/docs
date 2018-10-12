@@ -46,7 +46,7 @@
 *	Python2.7.x，Pip >= 9.0.1            
 *  Python3.5.x，Pip3 >= 9.0.1  
 
-	>> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。        
+	> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。        
 	    
 下面将说明如何安装PaddlePaddle：
 

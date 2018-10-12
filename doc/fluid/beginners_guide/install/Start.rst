@@ -10,8 +10,13 @@
 
 请确保您的环境满足以上条件
 
-- 如果您希望使用 `pip <https://pypi.org/pypi/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
-:code:`pip install paddlepaddle` （CPU版本最新）或  :code:`pip install paddlepaddle==[pip版本号]`   
+- 如果您希望使用 `pip <https://pypi.org/pypi/>`_ 进行安装PaddlePaddle可以直接使用以下命令:      
+
+:code:`pip install paddlepaddle` （CPU版本最新）  
+ 
+:code:`pip install paddlepaddle-gpu` （GPU版本最新）  
+   
+:code:`pip install paddlepaddle==[pip版本号]`             
 
 	其中[pip版本号]请查阅 `PyPi.org <https://pypi.org/search/?q=PaddlePaddle>`_
 
