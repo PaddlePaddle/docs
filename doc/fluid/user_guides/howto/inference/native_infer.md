@@ -75,26 +75,26 @@ CHECK(predictor->Run(slots, &outputs));
 `PaddleBuf` 在内存管理方面有两种模式：
 
 1. 自动分配和管理内存
-
-```c++
-int some_size = 1024;
-PaddleTensor tensor;
-tensor.data.Resize(some_size);
-```
+    
+    ```c++
+    int some_size = 1024;
+    PaddleTensor tensor;
+    tensor.data.Resize(some_size);
+    ```
 
 2. 外部内存传入
-
-```c++
-int some_size = 1024;
-// 用户外部分配内存并保证 PaddleTensor 使用过程中，内存一直可用
-void* memory = new char[some_size]; 
-
-tensor.data.Reset(memory, some_size);
-// ...
-
-// 用户最后需要自行删除内存以避免内存泄漏
-delete[] memory;
-```
+    ```c++
+    int some_size = 1024;
+    // 用户外部分配内存并保证 PaddleTensor 使用过程中，内存一直可用
+    void* memory = new char[some_size]; 
+    
+    tensor.data.Reset(memory, some_size);
+    // ...
+    
+    // 用户最后需要自行删除内存以避免内存泄漏
+    
+    delete[] memory;
+    ```
 
 两种模式中，第一种比较方便；第二种则可以严格控制内存的管理，便于与 `tcmalloc` 等库的集成。
 
