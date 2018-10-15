@@ -110,7 +110,7 @@ Fluid引入了一个索引数据结构（LoD）来将张量分割成序列。
 ## LoD-Tensor
 一个LoD-Tensor可以被看作是一个树的结构，树叶是基本的序列元素，树枝作为基本元素的标识。
 
-在 Fluid 中 LoD-Tensor 的序列信息有两种表述形式：原始长度和偏移量。在 Paddle 内部采取偏移量的形式表述 LoD-Tensor，以获得更快的序列访问速度；在 python API中采取原始长度表示 LoD-Tensor 方便用户理解和计算。在 python 中将原始长度称为：`recursive_sequence_lengths` 。
+在 Fluid 中 LoD-Tensor 的序列信息有两种表述形式：原始长度和偏移量。在 Paddle 内部采用偏移量的形式表述 LoD-Tensor，以获得更快的序列访问速度；在 python API中采用原始长度的形式表述 LoD-Tensor 方便用户理解和计算。在 python 中将原始长度称为：`recursive_sequence_lengths` 。
 
 以上文提到的一个2-level LoD-Tensor为例：
 ```
@@ -120,7 +120,7 @@ Fluid引入了一个索引数据结构（LoD）来将张量分割成序列。
 ```
 
 - 以偏移量表示此 LoD-Tensor:[ [0,3,4,6] , [0,3,5,9,10,12,15] ]，
-- 用原始长度表达此Lod-Tensor：recursive_sequence_lengths=[ [3-0 , 4-3 , 6-4] , [3-0 , 5-3 , 9-5 , 10-9 , 12-10 , 15-12] ]。
+- 以原始长度表达此 Lod-Tensor：recursive_sequence_lengths=[ [3-0 , 4-3 , 6-4] , [3-0 , 5-3 , 9-5 , 10-9 , 12-10 , 15-12] ]。
 
 以文字序列为例： [3,1,2] 可以表示这个mini-batch中有3篇文章，每篇文章分别有3、2、1个句子，[3,2,4,1,2,3] 表示每个句子中分别含有3、2、4、1、2、3个字。
 
