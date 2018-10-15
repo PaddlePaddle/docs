@@ -110,7 +110,7 @@ Fluid引入了一个索引数据结构（LoD）来将张量分割成序列。
 ## LoD-Tensor
 一个LoD-Tensor可以被看作是一个树的结构，树叶是基本的序列元素，树枝作为基本元素的标识。
 
-在 Fluid 中 LoD-Tensor 的序列信息有两种表述形式：原始长度和偏移量。在 Paddle 内部采用偏移量的形式表述 LoD-Tensor，以获得更快的序列访问速度；在 python API中采用原始长度的形式表述 LoD-Tensor 方便用户理解和计算。在 python 中将原始长度称为：`recursive_sequence_lengths` 。
+在 Fluid 中 LoD-Tensor 的序列信息有两种表述形式：原始长度和偏移量。在 Paddle 内部采用偏移量的形式表述 LoD-Tensor，以获得更快的序列访问速度；在 python API中采用原始长度的形式表述 LoD-Tensor 方便用户理解和计算，并将原始长度称为：`recursive_sequence_lengths` 。
 
 以上文提到的一个2-level LoD-Tensor为例：
 ```
