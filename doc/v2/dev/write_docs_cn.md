@@ -157,7 +157,7 @@ pip install -r requirements.txt
 		
 	3.在`FluidDoc`仓库下为您的修改提交PR
 
-提交PR的步骤可以参考[如何贡献代码](http://paddlepaddle.org/documentation/docs/zh/1.0/advanced_usage/development/contribute_to_paddle.html)
+提交PR的步骤可以参考[如何贡献代码](../development/contribute_to_paddle.html)
 
 ## 帮助改进预览工具
 
