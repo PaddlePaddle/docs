@@ -36,7 +36,7 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 	      -DWITH_PYTHON=OFF
 	
 	# 编译    
-	make -j 10
+	make -j
 	# 生成预测库
 	make inference_lib_dist -j
 	```
