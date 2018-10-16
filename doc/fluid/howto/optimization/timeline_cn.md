@@ -1,4 +1,4 @@
-# 如何使用timeline工具做性能分析
+# timeline工具简介
 
 1. 在训练的主循环外加上`profiler.start_profiler(...)`和`profiler.stop_profiler(...)`。运行之后，代码会在`/tmp/profile`目录下生成一个profile的记录文件。
 

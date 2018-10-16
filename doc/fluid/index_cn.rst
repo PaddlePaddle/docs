@@ -13,5 +13,4 @@
     beginners_guide/index.rst
     user_guides/index.rst
     advanced_usage/index.rst
-    faq/index_cn.rst
     api_guides/index_cn.rst
