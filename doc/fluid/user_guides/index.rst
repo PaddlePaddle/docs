@@ -13,7 +13,8 @@
     howto/prepare_data/index
     howto/configure_simple_model/index
     howto/training/index
-    howto/evaluation_and_debugging/index
+    howto/debug/index
+    howto/evaluation/index
     howto/inference/index
     models/index.rst
     design_idea/fluid_design_idea.md

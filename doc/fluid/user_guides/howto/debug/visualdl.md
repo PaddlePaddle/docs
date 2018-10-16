@@ -1,4 +1,4 @@
-# Visual DL工具
+# VisualDL (Visualize the Deep Learning)
 <p align="center">
   <img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/docs/images/vs-logo.png" width="60%" />
 </p>
