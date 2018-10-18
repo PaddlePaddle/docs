@@ -17,13 +17,13 @@ Paddle的文档主要分为以下几个模块：
 
 ## 如何使用预览工具
 
-如果您正在修改代码文档（即API），并在Docker容器中使用PaddlePaddle，请在您相应的docker容器中执行下列步骤。因为api的文档生成器依赖于PaddlePaddle。
+如果您正在修改代码文档（即API），并在Docker容器中使用PaddlePaddle，请在您相应的docker容器中执行下列步骤。因为API的文档生成器依赖于PaddlePaddle。
 
 如果您只改进了文本/媒体内容(不需要安装或构建PaddlePaddle)，或者正在主机上构建PaddlePaddle，请继续在主机上执行下列步骤。
 
 ### 1. Clone你希望更新或测试的相关仓库：
 
-首先下载完整的文档存储仓库，其中`--recurse-submodules`会同步更新FluidDoc中的submodule，以保证所有文档可以正常显示：
+首先下载完整的文档存储仓库，其中`--recurse-submodules`会同步更新FluidDoc中的submodule（所有的submodule均在`FluidDoc/external`中），以保证所有文档可以正常显示：
 
 ```
 git clone --recurse-submodules https://github.com/PaddlePaddle/FluidDoc
@@ -172,7 +172,7 @@ pip install -r requirements.txt
 	
 ## 提交修改
 
-如果您希望修改代码，请在`Paddle`仓库下参考[如何贡献代码]()执行操作。
+如果您希望修改代码，请在`Paddle`仓库下参考[如何贡献代码](../development/contribute_to_paddle.html)执行操作。
 
 如果您仅修改文档：
 
