@@ -86,10 +86,12 @@ Python3.5（该指令适用于本机未安装python2的用户，否则，请卸�
 
 	* 对于需要**GPU版本PaddlePaddle**的用户：`pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle`
 	
-	> 1. 为防止出现nccl.h找不到的问题请首先按照以下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN v7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
-		a. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`             
-		b. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0`
-	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。
+
+	> 1. 为防止出现nccl.h找不到的问题请首先按照以下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN v7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
+			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`     
+			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`       	 	          
+			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0` 
+	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 9/cuDNN v7的PaddlePaddle版本。
 
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。      
