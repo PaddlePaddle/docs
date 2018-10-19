@@ -233,6 +233,6 @@ array([[1],[2],[3],[4],[2],[3],[4],[2],[3],[4]])
 
 至此，相信您已经基本掌握了LoD-Tensor的概念，尝试修改上述代码中的 x_d 与 y_d，观察输出结果，有助于您更好的理解这一灵活的结构。
 
-更多LoDTensor的模型应用，可以参考新手入门中的[词向量]()、[个性化推荐]()、[情感分析]()等指导教程。
+更多LoDTensor的模型应用，可以参考新手入门中的[词向量](../../../beginners_guide/basics/word2vec/index.html)、[个性化推荐](../../../beginners_guide/basics/recommender_system/index.html)、[情感分析](../../../beginners_guide/basics/understand_sentiment/index.html)等指导教程。
 
-更高阶的应用案例，请参考[模型库]()中的相关内容。
+更高阶的应用案例，请参考[模型库](../../../user_guides/models/index.html)中的相关内容。
