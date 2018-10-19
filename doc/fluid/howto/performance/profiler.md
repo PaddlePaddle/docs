@@ -95,3 +95,22 @@ struct RecordEvent {
   }
 };
 ```
+
+### Report sample
+
+```
+Event                                             Calls       Total       Min.        Max.        Ave.        Ratio.      
+thread101::deserial                               1410        392.302     0.032768    14.1058     0.278228    0.00117247  
+thread100::GetRPC                                 11          2951.13     7.60675     1426.75     268.284     0.00882     
+thread100::serial                                 14          75.3212     0.07584     36.2135     5.38009     0.000225112 
+thread100::SendRPC                                14          13.9494     0.003072    3.97517     0.996389    4.16905e-05 
+thread99::GetRPC                                  15          3012.62     2.79062     1426.61     200.841     0.00900378  
+... 
+thread0::matmul_grad                              1480        3674.28     0.375808    181.608     2.48262     0.0109813   
+thread0::matmul                                   1480        3365.82     0.196608    172.256     2.2742      0.0100594   
+thread0::mul_grad                                 3840        3167.39     0.411648    3.33824     0.82484     0.00946633  
+thread0::fetch_barrier                            5           3082.82     354.385     1617.88     616.564     0.00921359  
+thread0::dropout                                  2480        3014.05     0.201728    6.76454     1.21534     0.00900807  
+```
+
+Note: profiler can merge the same operator's time which runs multiple times in the same thread.
