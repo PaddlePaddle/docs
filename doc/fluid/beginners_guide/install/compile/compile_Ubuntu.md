@@ -54,9 +54,9 @@
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
-5. 切换到较稳定release分支下进行编译：
+5. 切换到较稳定版本下进行编译：
 
-	`git checkout release/1.0.0`
+	`git checkout v1.0.1`
 
 6. 创建并进入/paddle/build路径下：
 
