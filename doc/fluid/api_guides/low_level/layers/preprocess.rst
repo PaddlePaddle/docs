@@ -11,6 +11,7 @@ PaddlePaddle Fluid的数据预处理目前仅针对图像领域的，目前支�
 random_crop
 ----------------
 * random_crop ：do random cropping on each instance
-  API Reference 请参考 random_crop的用法 
 
-.. _random_crop: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#random-crop
+ API Reference 请参考 api_random_crop_
+
+.. _api_random_crop: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#random-crop
