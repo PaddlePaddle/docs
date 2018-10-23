@@ -171,7 +171,7 @@ class Executor{
 		void Run(const ProgramDesc& pdesc,
 				Scope* scope,
 				int block_id) {
-			auto& block = pedsc.Block(block_id);
+			auto& block = pdesc.Block(block_id);
 			
 			//创建所有变量
 			for (auto& var : block.AllVars())
