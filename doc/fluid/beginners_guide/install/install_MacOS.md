@@ -38,10 +38,10 @@
 
 其次，您的计算机需要满足以下要求：    
 
-> **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python（对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x）, pip）
+> **请不要使用MacOS中自带python**，对于**Python2**，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg)提供的python2.7.15；对于**Python3**，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x。
 	
-		For python2: brew install python@2
-		For python3: 请使用Python官方下载的python3.5.x
+		For python2: brew install python@2 或 使用Python官方下载的python2.7.15
+		For python3: 使用Python官方下载的python3.5.x
 
 *	Python2.7.x，Pip >= 9.0.1            
 *  Python3.5.x，Pip3 >= 9.0.1  
