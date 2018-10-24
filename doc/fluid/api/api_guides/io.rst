@@ -4,7 +4,7 @@
 模型保存读取
 #########
 
-模型的保存与读取主要涉及到如下六个API：
+模型的保存与读取主要涉及到如下八个API：
 :code:`fluid.io.save_vars`、:code:`fluid.io.save_params`、:code:`fluid.io.save_persistables`、:code:`fluid.io.load_vars`、:code:`fluid.io.load_params`、:code:`fluid.io.load_persistables`、:code:`fluid.io.save_inference_model` 和 :code:`fluid.io.load_inference_model`。
 
 变量、持久性变量和参数
