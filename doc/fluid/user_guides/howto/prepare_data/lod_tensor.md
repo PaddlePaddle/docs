@@ -73,7 +73,7 @@ Fluid引入了一个索引数据结构（LoD）来将张量分割成序列。
 
 模型参数只是一个普通的张量，在Fluid中它们被表示为一个0-level LoD-Tensor。
 
-
+<a name="#LoDTensor的偏移表示"></a>
 ## LoDTensor的偏移表示 
 
 为了快速访问基本序列，Fluid提供了一种偏移表示的方法——保存序列的开始和结束元素，而不是保存长度。
@@ -178,6 +178,7 @@ place = fluid.CPUPlace()
 exe = fluid.Executor(place)
 exe.run(fluid.default_startup_program())
 ```
+<a name="#准备数据"></a>
 
 **准备数据**
 
