@@ -10,9 +10,10 @@
 2D/3D卷积
 ==============
 
-- 卷积输入参数：
-  
-  卷积需要依据滑动步长(stride)、填充长度(padding)、卷积核窗口大小(filter size)、分组数(groups)、扩张系数(dilation rate)来决定如何计算。groups最早在`AlexNet<https://www.nvidia.cn/content/tesla/pdf/machine-learning/imagenet-classification-with-deep-convolutional-nn.pdf>`_中引入, 可以理解为将原始的卷积分为独立若干组卷积计算。
+1. 卷积输入参数：
+---------------------
+
+卷积需要依据滑动步长(stride)、填充长度(padding)、卷积核窗口大小(filter size)、分组数(groups)、扩张系数(dilation rate)来决定如何计算。groups最早在 `AlexNet <https://www.nvidia.cn/content/tesla/pdf/machine-learning/imagenet-classification-with-deep-convolutional-nn.pdf>`_ 中引入, 可以理解为将原始的卷积分为独立若干组卷积计算。
   
   **注意**: 同cuDNN的方式，Fluid目前只支持在特征图上下填充相同的长度，左右也是。
 
@@ -38,11 +39,10 @@
   空洞卷积相比普通卷积而言，卷积核在特征图上取值时不在连续，而是间隔的，这个间隔数称作dilation，等于1时，即为普通卷积，空洞卷积相比普通卷积的感受野更大。
   
 - API汇总:
-
-  - conv2d请参考 :ref:`api_fluid_layers_conv2d`
-  - :ref:`api_fluid_layers_conv3d`
-  - :ref:`api_fluid_layers_conv2d_transpose`
-  - :ref:`api_fluid_layers_conv3d_transpose`
+ - :ref:`api_fluid_layers_conv2d`
+ - :ref:`api_fluid_layers_conv3d`
+ - :ref:`api_fluid_layers_conv2d_transpose`
+ - :ref:`api_fluid_layers_conv3d_transpose`
 
 
 1D序列卷积
@@ -54,9 +54,11 @@ Fluid可以表示变长的序列结构，这里的变长是指不同样本的时
 
 假如：输入序列形状为(T, N)， T即该序列的时间步数，N是序列特征大小；卷积核的上下文步长为K，输出序列长度为M，则卷积核权重形状为(K * N, M），输出序列形状为(T, M)。
   
-另外，参考DeepSpeech，Fluid实现了[行卷积`row convolution, 或称lookahead convolution <http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf>`_，该卷积相比上述普通序列卷积可以减少参数。
+另外，参考DeepSpeech，Fluid实现了行卷积row convolution, 或称
+`look ahead convolution <http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf>`_ ，
+该卷积相比上述普通序列卷积可以减少参数。
  
 
 - API汇总:
-   - :ref:`api_fluid_layers_sequence_conv`
-   - :ref:`api_fluid_layers_row_conv`
+ - :ref:`api_fluid_layers_sequence_conv`
+ - :ref:`api_fluid_layers_row_conv`
