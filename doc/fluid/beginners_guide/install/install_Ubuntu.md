@@ -127,12 +127,12 @@ Python3.5（该指令适用于本机未安装python2的用户，否则，请卸�
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.1`
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.2`
 		
 
 	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.1-gpu-cuda9.0-cudnn7`
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.2-gpu-cuda9.0-cudnn7`
 		
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
