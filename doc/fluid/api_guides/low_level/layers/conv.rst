@@ -39,10 +39,10 @@
   
 - API汇总:
 
-   - conv2d请参考 :ref:`api_fluid_layers_conv2d`
-   - :ref:`api_fluid_layers_conv3d`
-   - :ref:`api_fluid_layers_conv2d_transpose`
-   - :ref:`api_fluid_layers_conv3d_transpose`
+  - conv2d请参考 :ref:`api_fluid_layers_conv2d`
+  - :ref:`api_fluid_layers_conv3d`
+  - :ref:`api_fluid_layers_conv2d_transpose`
+  - :ref:`api_fluid_layers_conv3d_transpose`
 
 
 1D序列卷积
