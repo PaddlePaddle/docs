@@ -58,7 +58,7 @@ API Reference 请参考 :ref:`api_fluid_optimizer_AdamOptimizer`
 
 `Adamax <https://arxiv.org/abs/1412.6980>`_ 是 :code:`Adam` 算法的一个变体，对学习率的上限提供了一个更简单的范围，使学习率的边界范围更简单。
 
-API Reference 请参考 :ref:`api_fluid_optimizer_AdamxOptimizer`
+API Reference 请参考 :ref:`api_fluid_optimizer_AdamaxOptimizer`
 
 
 
@@ -89,11 +89,4 @@ API Reference 请参考 :ref:`api_fluid_optimizer_FtrlOptimizer`
 
 API Reference 请参考 :ref:`api_fluid_optimizer_ModelAverage`
 
-
-
-10.Optimizer
---------------
-:code:`Optimizer` 这个类是 :code:`Fluid` 中优化器的基类。它的作用是定义优化器的公共接口，用户通过该类调用上述经典的优化算法。
-
-API Reference 请参考 :ref:`api_fluid_optimizer`
 
