@@ -32,7 +32,7 @@
   对于depthwise convolution，可以设置groups等于输入通道数，此时，2D卷积的卷积核形状为[C_o, 1, f_h, f_w]。
   对于pointwise convolution，卷积核的形状为[C_o, C_in, 1, 1]。
   
-  **注意**：Fluid针对depthwise convolution的GPU计算做了高度优化，您可以通过在`fluid.layers.conv2d`接口设置`use_cudnn=False`来使用Fluid自身优化的CUDA程序。
+  **注意**：Fluid针对depthwise convolution的GPU计算做了高度优化，您可以通过在:code:`fluid.layers.conv2d`接口设置:code:`use_cudnn=False`来使用Fluid自身优化的CUDA程序。
    
 - 空洞卷积(dilated convolution):
   
