@@ -21,12 +21,6 @@ NN相关
 :code:`one_hot`：即one_hot编码
 相关API Reference 请参考 :ref:`api_fluid_layers_one_hot`
 
-:code:`LSTM`：即Long Short-Term Memory，长短期记忆网络。
-LSTM和LSTMP OP的相关API Reference请参考 :ref:`api_fluid_layers_dynamic_lstm` 和 :ref:`api_fluid_layers_dynamic_lstmp`
-
-:code:`GRU`：即gated recurrent unit，门控循环单元。
-相关API Reference 请参考 :ref:`api_fluid_layers_dynamic_gru` 和  :ref:`api_fluid_layers_gru_unit`
-
 :code:`CRF`：即Conditional Random Fields，条件随机场。
 相关API Reference 请参考 :ref:`api_fluid_layers_linear_chain_crf` 和 :ref:`api_fluid_layers_crf_decoding`
 
