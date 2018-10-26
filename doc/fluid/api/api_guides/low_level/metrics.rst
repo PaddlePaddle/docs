@@ -59,10 +59,3 @@ API Reference 请参考 :ref:`api_fluid_metrics_EditDistance`
 `Average-precision <https://sanchom.wordpress.com/tag/average-precision/>`_ 和 `SSD: Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_
 
 API Reference 请参考 :ref:`api_fluid_metrics_DetectionMAP`
-
-
-
-
-
-
-
