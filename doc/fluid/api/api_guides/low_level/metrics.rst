@@ -16,7 +16,7 @@ API Reference 请参考 :ref:`api_fluid_metrics_MetricBase`
 2.CompositeMetric
 ------------------
 
-:code:`CompositeMetric` 可以组合多个度量指标，只需要在每一个step提供一次预测值和真值，就可以获得多个指标值。
+:code:`CompositeMetric` 可以组合多个度量指标，只需要在每一个minibatch提供一次预测值和真值，就可以获得多个指标值。
 
 API Reference 请参考 :ref:`api_fluid_metrics_CompositeMetric`
 
@@ -47,7 +47,7 @@ API Reference 请参考 :ref:`api_fluid_metrics_ChunkEvaluator`
 5.EditDistance
 ------------------
 
-:code:`EditDistance` 字符串编辑距离，用来衡量两个字符串的相似度。可以参考文档 `Edit_distance <https://en.wikipedia.org/wiki/Edit_distance>`_
+:code:`EditDistance` 字符串编辑距离，用来衡量两个字符串的相似度。可以参考文档 `Edit_distance <https://en.wikipedia.org/wiki/Edit_distance>`_。
 
 API Reference 请参考 :ref:`api_fluid_metrics_EditDistance`
 
@@ -56,6 +56,6 @@ API Reference 请参考 :ref:`api_fluid_metrics_EditDistance`
 ------------------
 
 :code:`DetectionMAP` 是检测平均准确度，用在Faster R-CNN和SSD等物体检测模型中度量准确率。在不同召回条件下，计算了最大准确率的平均值，具体可以参考文档
-`Average-precision <https://sanchom.wordpress.com/tag/average-precision/>`_ 和 `SSD: Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_
+`Average-precision <https://sanchom.wordpress.com/tag/average-precision/>`_ 和 `SSD: Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_。
 
 API Reference 请参考 :ref:`api_fluid_metrics_DetectionMAP`
