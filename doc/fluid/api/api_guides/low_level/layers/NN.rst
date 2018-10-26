@@ -84,7 +84,7 @@ LSTM和LSTMP OP的相关API Reference请参考 :ref:`api_fluid_layers_dynamic_ls
 相关API Reference 请参考 :ref:`api_fluid_layers_pad` 和 :ref:`api_fluid_layers_pad_constant_like`
 
 :code:`image_resize`：按宽高对图片进行缩放。
-相关API Reference 请参考 :ref:`api_fluid_layers_label_image_resize` 和 :ref:`api_fluid_layers_label_image_resize_short`
+相关API Reference 请参考 :ref:`api_fluid_layers_image_resize` 和 :ref:`api_fluid_layers_image_resize_short`
 
 :code:`gather`:按照index给出的值对集合进行抽取，适合抽取不连续区域的子集。
 相关API Reference 请参考 :ref:`api_fluid_layers_gather`
