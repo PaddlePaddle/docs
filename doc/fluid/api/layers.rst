@@ -1055,81 +1055,6 @@ elementwise_pow
 ..  autofunction:: paddle.fluid.layers.elementwise_pow
     :noindex:
 
-ops
-===
-
-.. _api_fluid_layers_mean:
-
-mean
-----
-
-..  autofunction:: paddle.fluid.layers.mean
-    :noindex:
-
-.. _api_fluid_layers_mul:
-
-mul
----
-
-..  autofunction:: paddle.fluid.layers.mul
-    :noindex:
-
-.. _api_fluid_layers_sigmoid_cross_entropy_with_logits:
-
-sigmoid_cross_entropy_with_logits
----------------------------------
-
-..  autofunction:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
-    :noindex:
-
-.. _api_fluid_layers_clip:
-
-clip
-----
-
-..  autofunction:: paddle.fluid.layers.clip
-    :noindex:
-
-.. _api_fluid_layers_clip_by_norm:
-
-clip_by_norm
-------------
-
-..  autofunction:: paddle.fluid.layers.clip_by_norm
-    :noindex:
-
-.. _api_fluid_layers_logical_and:
-
-logical_and
------------
-
-..  autofunction:: paddle.fluid.layers.logical_and
-    :noindex:
-
-.. _api_fluid_layers_logical_or:
-
-logical_or
-----------
-
-..  autofunction:: paddle.fluid.layers.logical_or
-    :noindex:
-
-.. _api_fluid_layers_logical_xor:
-
-logical_xor
------------
-
-..  autofunction:: paddle.fluid.layers.logical_xor
-    :noindex:
-
-.. _api_fluid_layers_logical_not:
-
-logical_not
------------
-
-..  autofunction:: paddle.fluid.layers.logical_not
-    :noindex:
-
 .. _api_fluid_layers_uniform_random_batch_size_like:
 
 uniform_random_batch_size_like
@@ -1186,6 +1111,78 @@ shape
 ..  autofunction:: paddle.fluid.layers.shape
     :noindex:
 
+.. _api_fluid_layers_logical_and:
+
+logical_and
+-----------
+
+..  autofunction:: paddle.fluid.layers.logical_and
+    :noindex:
+
+.. _api_fluid_layers_logical_or:
+
+logical_or
+----------
+
+..  autofunction:: paddle.fluid.layers.logical_or
+    :noindex:
+
+.. _api_fluid_layers_logical_xor:
+
+logical_xor
+-----------
+
+..  autofunction:: paddle.fluid.layers.logical_xor
+    :noindex:
+
+.. _api_fluid_layers_logical_not:
+
+logical_not
+-----------
+
+..  autofunction:: paddle.fluid.layers.logical_not
+    :noindex:
+
+.. _api_fluid_layers_clip:
+
+clip
+----
+
+..  autofunction:: paddle.fluid.layers.clip
+    :noindex:
+
+.. _api_fluid_layers_clip_by_norm:
+
+clip_by_norm
+------------
+
+..  autofunction:: paddle.fluid.layers.clip_by_norm
+    :noindex:
+
+.. _api_fluid_layers_mean:
+
+mean
+----
+
+..  autofunction:: paddle.fluid.layers.mean
+    :noindex:
+
+.. _api_fluid_layers_mul:
+
+mul
+---
+
+..  autofunction:: paddle.fluid.layers.mul
+    :noindex:
+
+.. _api_fluid_layers_sigmoid_cross_entropy_with_logits:
+
+sigmoid_cross_entropy_with_logits
+---------------------------------
+
+..  autofunction:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
+    :noindex:
+
 .. _api_fluid_layers_maxout:
 
 maxout
@@ -1193,6 +1190,9 @@ maxout
 
 ..  autofunction:: paddle.fluid.layers.maxout
     :noindex:
+
+ops
+===
 
 .. _api_fluid_layers_sigmoid:
 

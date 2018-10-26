@@ -14,24 +14,6 @@ Program
     :members:
     :noindex:
 
-.. _api_fluid_Operator:
-
-Operator
---------
-
-..  autoclass:: paddle.fluid.Operator
-    :members:
-    :noindex:
-
-.. _api_fluid_Parameter:
-
-Parameter
----------
-
-..  autoclass:: paddle.fluid.Parameter
-    :members:
-    :noindex:
-
 .. _api_fluid_default_startup_program:
 
 default_startup_program
@@ -54,14 +36,6 @@ program_guard
 -------------
 
 ..  autofunction:: paddle.fluid.program_guard
-    :noindex:
-
-.. _api_fluid_get_var:
-
-get_var
--------
-
-..  autofunction:: paddle.fluid.get_var
     :noindex:
 
 .. _api_fluid_name_scope:
