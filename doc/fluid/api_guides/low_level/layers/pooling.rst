@@ -59,7 +59,7 @@ paddlepaddle中有针对定长图像特征的二维(pool2d)、三维卷积(pool3
     
     具体计算公式如下：
     
-    -  非``ceil_mode``\ 下：
+    -  非\ ``ceil_mode``\ 下：
     	
     	``输出大小 = (输入大小 - filter size + 2 * padding) / stride（步长） + 1``
     
