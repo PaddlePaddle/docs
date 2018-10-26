@@ -14,9 +14,8 @@ Optimizer
 :code:`SGD` 是实现 `随机梯度下降 <https://arxiv.org/pdf/1609.04747.pdf>`_ 的一个 :code:`Optimizer` 子类，是 `梯度下降 <https://zh.wikipedia.org/zh-hans/梯度下降法>`_ 大类中的一种方法。
 当需要训练大量样本的时候，往往选择 :code:`SGD` 来使损失函数更快的收敛。  
 
-API Reference 请参考 api_fluid_optimizer_SGDOptimizer_
+API Reference 请参考 :ref:`api_fluid_optimizer_SGDOptimizer`
 
-.. _api_fluid_optimizer_SGDOptimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-8-sgdoptimizer
 
 2.Momentum/MomentumOptimizer
 ----------------------------
@@ -26,35 +25,32 @@ API Reference 请参考 api_fluid_optimizer_SGDOptimizer_
 <https://arxiv.org/pdf/1609.04747.pdf>`_  算法和 `Nesterov accelerated gradient(论文4.2节)
 <https://arxiv.org/pdf/1609.04747.pdf>`_ 算法。
 
-API Reference 请参考 api_fluid_optimizer_MomentumOptimizer_
+API Reference 请参考 :ref:`api_fluid_optimizer_MomentumOptimizer`
 
-.. _api_fluid_optimizer_MomentumOptimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-9-momentumoptimizer
 
 3. Adagrad/AdagradOptimizer
 ---------------------------
 `Adagrad <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 优化器可以针对不同参数样本数不平均的问题，自适应地为各个参数分配不同的学习率。
 
-API Reference 请参考 api_fluid_optimizer_AdagradOptimizer_
+API Reference 请参考 :ref:`api_fluid_optimizer_AdagradOptimizer`
 
-.. _api_fluid_optimizer_AdagradOptimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-10-adagradoptimizer
 
 4.RMSPropOptimizer
 ------------------
 `RMSProp优化器 <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ ，是一种自适应调整学习率的方法，
 主要解决使用Adagrad后，模型训练中后期学习率急剧下降的问题。
 
-API Reference 请参考 api_fluid_optimizer_RMSPropOptimizer_
+API Reference 请参考 :ref:`api_fluid_optimizer_RMSPropOptimizer`
 
-.. _api_fluid_optimizer_RMSPropOptimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-14-rmspropoptimizer
+
 
 5.Adam/AdamOptimizer
 --------------------
 `Adam <https://arxiv.org/abs/1412.6980>`_ 的优化器是一种自适应调整学习率的方法，
 适用于大多非 `凸优化 <https://zh.wikipedia.org/zh/凸優化>`_ 、大数据集和高维空间的场景。在实际应用中，:code:`Adam` 是最为常用的一种优化方法。
 
-API Reference 请参考 api_fluid_optimizer_AdamOptimizer_
+API Reference 请参考 :ref:`api_fluid_optimizer_AdamOptimizer`
 
-.. _api_fluid_optimizer_AdamOptimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-11-adamoptimizer
 
 
 6.Adamax/AdamaxOptimizer
@@ -62,9 +58,8 @@ API Reference 请参考 api_fluid_optimizer_AdamOptimizer_
 
 `Adamax <https://arxiv.org/abs/1412.6980>`_ 是 :code:`Adam` 算法的一个变体，对学习率的上限提供了一个更简单的范围，使学习率的边界范围更简单。
 
-API Reference 请参考 api_fluid_optimizer_AdamxOptimizer_
+API Reference 请参考 :ref:`api_fluid_optimizer_AdamaxOptimizer`
 
-.. _api_fluid_optimizer_AdamxOptimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-12-adamaxoptimizer
 
 
 7.DecayedAdagrad/ DecayedAdagradOptimizer
@@ -72,9 +67,9 @@ API Reference 请参考 api_fluid_optimizer_AdamxOptimizer_
 
 `DecayedAdagrad <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 优化器，可以看做是引入了衰减速率的 :code:`Adagrad` 算法，解决使用Adagrad后，模型训练中后期学习率急剧下降的问题。
 
-API Reference 请参考 api_fluid_optimizer_DecayedAdagrad_
+API Reference 请参考 :ref:`api_fluid_optimizer_DecayedAdagrad`
 
-.. _api_fluid_optimizer_DecayedAdagrad: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-13-decayedadagradoptimizer
+
 
 
 8. Ftrl/FtrlOptimizer
@@ -83,24 +78,15 @@ API Reference 请参考 api_fluid_optimizer_DecayedAdagrad_
 `FtrlOptimizer <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_ 优化器结合了 `FOBOS算法 <https://stanford.edu/~jduchi/projects/DuchiSi09b.pdf>`_ 的高精度与 `RDA算法
 <http://www1.se.cuhk.edu.hk/~sqma/SEEM5121_Spring2015/dual-averaging.pdf>`_ 的稀疏性，是目前效果非常好的一种 `Online Learning <https://en.wikipedia.org/wiki/Online_machine_learning>`_ 算法。
 
-API Reference 请参考 api_fluid_optimizer_FtrlOptimizer_
+API Reference 请参考 :ref:`api_fluid_optimizer_FtrlOptimizer`
 
-.. _api_fluid_optimizer_FtrlOptimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-15-ftrloptimizer
+
 
 9.ModelAverage
 -----------------
 
 :code:`ModelAverage` 优化器，在训练中通过窗口来累计历史 parameter，在预测时使用取平均值后的paramet，整体提高预测的精度。
 
-API Reference 请参考 api_fluid_optimizer_ModelAverage_
-
-.. _api_fluid_optimizer_ModelAverage: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-17-modelaverage
+API Reference 请参考 :ref:`api_fluid_optimizer_ModelAverage`
 
 
-10.Optimizer
---------------
-:code:`Optimizer` 这个类是 :code:`Fluid` 中优化器的基类。它的作用是定义优化器的公共接口，用户通过该类调用上述经典的优化算法。
-
-API Reference 请参考 api_fluid_optimizer_
-
-.. _api_fluid_optimizer: http://www.paddlepaddle.org/docs/0.14.0/api/fluid/en/optimizer.html#permalink-18-optimizer
