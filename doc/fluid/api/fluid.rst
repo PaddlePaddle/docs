@@ -5,98 +5,6 @@
 fluid
 =====
 
-.. _api_fluid_Program:
-
-Program
--------
-
-..  autoclass:: paddle.fluid.Program
-    :members:
-    :noindex:
-
-.. _api_fluid_Operator:
-
-Operator
---------
-
-..  autoclass:: paddle.fluid.Operator
-    :members:
-    :noindex:
-
-.. _api_fluid_Parameter:
-
-Parameter
----------
-
-..  autoclass:: paddle.fluid.Parameter
-    :members:
-    :noindex:
-
-.. _api_fluid_default_startup_program:
-
-default_startup_program
------------------------
-
-..  autofunction:: paddle.fluid.default_startup_program
-    :noindex:
-
-.. _api_fluid_default_main_program:
-
-default_main_program
---------------------
-
-..  autofunction:: paddle.fluid.default_main_program
-    :noindex:
-
-.. _api_fluid_program_guard:
-
-program_guard
--------------
-
-..  autofunction:: paddle.fluid.program_guard
-    :noindex:
-
-.. _api_fluid_get_var:
-
-get_var
--------
-
-..  autofunction:: paddle.fluid.get_var
-    :noindex:
-
-.. _api_fluid_name_scope:
-
-name_scope
-----------
-
-..  autofunction:: paddle.fluid.name_scope
-    :noindex:
-
-.. _api_fluid_Executor:
-
-Executor
---------
-
-..  autoclass:: paddle.fluid.Executor
-    :members:
-    :noindex:
-
-.. _api_fluid_global_scope:
-
-global_scope
-------------
-
-..  autofunction:: paddle.fluid.global_scope
-    :noindex:
-
-.. _api_fluid_scope_guard:
-
-scope_guard
------------
-
-..  autofunction:: paddle.fluid.scope_guard
-    :noindex:
-
 .. _api_fluid__switch_scope:
 
 _switch_scope
@@ -105,64 +13,21 @@ _switch_scope
 ..  autofunction:: paddle.fluid._switch_scope
     :noindex:
 
-.. _api_fluid_DistributeTranspiler:
-
-DistributeTranspiler
---------------------
-
-..  autoclass:: paddle.fluid.DistributeTranspiler
-    :members:
-    :noindex:
-
-.. _api_fluid_memory_optimize:
-
-memory_optimize
----------------
-
-..  autofunction:: paddle.fluid.memory_optimize
-    :noindex:
-
-.. _api_fluid_release_memory:
-
-release_memory
---------------
-
-..  autofunction:: paddle.fluid.release_memory
-    :noindex:
-
-.. _api_fluid_DistributeTranspilerConfig:
-
-DistributeTranspilerConfig
---------------------------
-
-..  autoclass:: paddle.fluid.DistributeTranspilerConfig
-    :members:
-    :noindex:
-
-.. _api_fluid_ParallelExecutor:
-
-ParallelExecutor
-----------------
-
-..  autoclass:: paddle.fluid.ParallelExecutor
-    :members:
-    :noindex:
-
-.. _api_fluid_ExecutionStrategy:
-
-ExecutionStrategy
------------------
-
-..  autoclass:: paddle.fluid.ExecutionStrategy
-    :members:
-    :noindex:
-
 .. _api_fluid_BuildStrategy:
 
 BuildStrategy
 -------------
 
 ..  autoclass:: paddle.fluid.BuildStrategy
+    :members:
+    :noindex:
+
+.. _api_fluid_CPUPlace:
+
+CPUPlace
+--------
+
+..  autoclass:: paddle.fluid.CPUPlace
     :members:
     :noindex:
 
@@ -180,6 +45,93 @@ create_random_int_lodtensor
 ---------------------------
 
 ..  autofunction:: paddle.fluid.create_random_int_lodtensor
+    :noindex:
+
+.. _api_fluid_CUDAPinnedPlace:
+
+CUDAPinnedPlace
+---------------
+
+..  autoclass:: paddle.fluid.CUDAPinnedPlace
+    :members:
+    :noindex:
+
+.. _api_fluid_CUDAPlace:
+
+CUDAPlace
+---------
+
+..  autoclass:: paddle.fluid.CUDAPlace
+    :members:
+    :noindex:
+
+.. _api_fluid_DataFeeder:
+
+DataFeeder
+----------
+
+..  autoclass:: paddle.fluid.DataFeeder
+    :members:
+    :noindex:
+
+.. _api_fluid_default_main_program:
+
+default_main_program
+--------------------
+
+..  autofunction:: paddle.fluid.default_main_program
+    :noindex:
+
+.. _api_fluid_default_startup_program:
+
+default_startup_program
+-----------------------
+
+..  autofunction:: paddle.fluid.default_startup_program
+    :noindex:
+
+.. _api_fluid_DistributeTranspiler:
+
+DistributeTranspiler
+--------------------
+
+..  autoclass:: paddle.fluid.DistributeTranspiler
+    :members:
+    :noindex:
+
+.. _api_fluid_DistributeTranspilerConfig:
+
+DistributeTranspilerConfig
+--------------------------
+
+..  autoclass:: paddle.fluid.DistributeTranspilerConfig
+    :members:
+    :noindex:
+
+.. _api_fluid_ExecutionStrategy:
+
+ExecutionStrategy
+-----------------
+
+..  autoclass:: paddle.fluid.ExecutionStrategy
+    :members:
+    :noindex:
+
+.. _api_fluid_Executor:
+
+Executor
+--------
+
+..  autoclass:: paddle.fluid.Executor
+    :members:
+    :noindex:
+
+.. _api_fluid_global_scope:
+
+global_scope
+------------
+
+..  autofunction:: paddle.fluid.global_scope
     :noindex:
 
 .. _api_fluid_LoDTensor:
@@ -200,39 +152,28 @@ LoDTensorArray
     :members:
     :noindex:
 
-.. _api_fluid_CPUPlace:
+.. _api_fluid_memory_optimize:
 
-CPUPlace
---------
-
-..  autoclass:: paddle.fluid.CPUPlace
-    :members:
-    :noindex:
-
-.. _api_fluid_CUDAPlace:
-
-CUDAPlace
----------
-
-..  autoclass:: paddle.fluid.CUDAPlace
-    :members:
-    :noindex:
-
-.. _api_fluid_CUDAPinnedPlace:
-
-CUDAPinnedPlace
+memory_optimize
 ---------------
 
-..  autoclass:: paddle.fluid.CUDAPinnedPlace
-    :members:
+..  autofunction:: paddle.fluid.memory_optimize
     :noindex:
 
-.. _api_fluid_Tensor:
+.. _api_fluid_name_scope:
 
-Tensor
-------
+name_scope
+----------
 
-..  autoclass:: paddle.fluid.Tensor
+..  autofunction:: paddle.fluid.name_scope
+    :noindex:
+
+.. _api_fluid_ParallelExecutor:
+
+ParallelExecutor
+----------------
+
+..  autoclass:: paddle.fluid.ParallelExecutor
     :members:
     :noindex:
 
@@ -245,22 +186,29 @@ ParamAttr
     :members:
     :noindex:
 
-.. _api_fluid_WeightNormParamAttr:
+.. _api_fluid_Program:
 
-WeightNormParamAttr
--------------------
+Program
+-------
 
-..  autoclass:: paddle.fluid.WeightNormParamAttr
+..  autoclass:: paddle.fluid.Program
     :members:
     :noindex:
 
-.. _api_fluid_DataFeeder:
+.. _api_fluid_program_guard:
 
-DataFeeder
-----------
+program_guard
+-------------
 
-..  autoclass:: paddle.fluid.DataFeeder
-    :members:
+..  autofunction:: paddle.fluid.program_guard
+    :noindex:
+
+.. _api_fluid_release_memory:
+
+release_memory
+--------------
+
+..  autofunction:: paddle.fluid.release_memory
     :noindex:
 
 .. _api_fluid_Scope:
@@ -269,6 +217,32 @@ Scope
 -----
 
 ..  autoclass:: paddle.fluid.Scope
+    :members:
+    :noindex:
+
+.. _api_fluid_scope_guard:
+
+scope_guard
+-----------
+
+..  autofunction:: paddle.fluid.scope_guard
+    :noindex:
+
+.. _api_fluid_Tensor:
+
+Tensor
+------
+
+..  autoclass:: paddle.fluid.Tensor
+    :members:
+    :noindex:
+
+.. _api_fluid_WeightNormParamAttr:
+
+WeightNormParamAttr
+-------------------
+
+..  autoclass:: paddle.fluid.WeightNormParamAttr
     :members:
     :noindex:
 

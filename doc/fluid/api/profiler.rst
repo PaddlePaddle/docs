@@ -13,20 +13,20 @@ cuda_profiler
 ..  autofunction:: paddle.fluid.profiler.cuda_profiler
     :noindex:
 
-.. _api_fluid_profiler_reset_profiler:
-
-reset_profiler
---------------
-
-..  autofunction:: paddle.fluid.profiler.reset_profiler
-    :noindex:
-
 .. _api_fluid_profiler_profiler:
 
 profiler
 --------
 
 ..  autofunction:: paddle.fluid.profiler.profiler
+    :noindex:
+
+.. _api_fluid_profiler_reset_profiler:
+
+reset_profiler
+--------------
+
+..  autofunction:: paddle.fluid.profiler.reset_profiler
     :noindex:
 
 .. _api_fluid_profiler_start_profiler:

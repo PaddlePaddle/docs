@@ -14,21 +14,21 @@ L1Decay
     :members:
     :noindex:
 
-.. _api_fluid_regularizer_L2Decay:
-
-L2Decay
--------
-
-..  autoclass:: paddle.fluid.regularizer.L2Decay
-    :members:
-    :noindex:
-
 .. _api_fluid_regularizer_L1DecayRegularizer:
 
 L1DecayRegularizer
 ------------------
 
 ..  autoclass:: paddle.fluid.regularizer.L1DecayRegularizer
+    :members:
+    :noindex:
+
+.. _api_fluid_regularizer_L2Decay:
+
+L2Decay
+-------
+
+..  autoclass:: paddle.fluid.regularizer.L2Decay
     :members:
     :noindex:
 
