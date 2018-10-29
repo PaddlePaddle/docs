@@ -6,7 +6,7 @@
 
 池化的作用是对输入特征做下采样和降低过拟合。降低过拟合是减小输出大小的结果，它同样也减少了后续层中的参数的数量。
 
-池化通常只需要将前一层的特征图作为输入，在PaddlePaddle中我们同样接受这样RoI的通过设定池化的大小，方式，步长，是否是全局池化，是否使用cudnn，是否使用ceil函数计算输出来选择池化的方式。
+池化通常只需要将前一层的特征图作为输入，此外需要一些参数来确定池化具体的操作。在PaddlePaddle中我们同样通过设定池化的大小，方式，步长，是否是全局池化，是否使用cudnn，是否使用ceil函数计算输出等参数来选择具体池化的方式。
 PaddlePaddle中有针对定长图像特征的二维(pool2d)、三维卷积(pool3d)，RoI池化(roi_pool)，以及针对序列的序列池化(sequence_pool)，同时也有池化计算的反向过程，下面先介绍2D/3D池化，以及RoI池化，再来介绍序列池化。
 
 --------------
@@ -30,17 +30,11 @@ PaddlePaddle中有针对定长图像特征的二维(pool2d)、三维卷积(pool3
 
 -  ``use_cudnn``\ : 选项可以来选择是否使用cudnn来优化计算池化速度。
 
--  ``ceil_mode``\ : 是否使用ceil函数计算输出高度和宽度。\ ``ceil mode``\ 意为天花板模式，是指会把特征图中不足\ ``filter size``\ 的边给保留下来，单独另算，或者也可以理解为在原来的数据上补充了值为-NAN的边。而floor模式则是直接把不足\ ``filter size``\ 的边给舍弃了。
+-  ``ceil_mode``\ : 是否使用ceil函数计算输出高度和宽度。\ ``ceil mode``\ 意为天花板模式，是指会把特征图中不足\ ``filter size``\ 的边给保留下来，单独另算，或者也可以理解为在原来的数据上补充了值为-NAN的边。而floor模式则是直接把不足\ ``filter size``\ 的边给舍弃了。具体计算公式如下：
     
-    具体计算公式如下：
+    -  非\ ``ceil_mode``\ 下:\ ``输出大小 = (输入大小 - filter size + 2 * padding) / stride（步长） + 1``
     
-    -  非\ ``ceil_mode``\ 下：
-    	
-    	``输出大小 = (输入大小 - filter size + 2 * padding) / stride（步长） + 1``
-    
-    -  ``ceil_mode``\ 下:
-    
-    	``输出大小 = (输入大小 - filter size + 2 * padding + stride - 1) / stride + 1``
+    -  ``ceil_mode``\ 下:\ ``输出大小 = (输入大小 - filter size + 2 * padding + stride - 1) / stride + 1``
     	
 
 
