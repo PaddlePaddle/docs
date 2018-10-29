@@ -210,7 +210,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</thead>
 	<tbody>
 	<tr>
-		<td> paddlepaddle==[版本号] </td>
+		<td> paddlepaddle==[版本号] 如 paddlepaddle==1.0.1(下载1.0.0版本支持CPU的PaddlePaddle)</td>
 		<td> 支持CPU的对应版本的paddlepaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
 	</tr>
 	<tr>
