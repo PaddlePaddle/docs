@@ -3,7 +3,7 @@
 
 评价指标
 #########
-在神经网络训练过程中或者训练完成后，需要评估模型的训练效果，评估的方法一般是计算全体预测值和全体真值(label)之间的距离，不同类型的任务会用不同的评价方法。
+在神经网络训练过程中或者训练完成后，需要评价模型的训练效果。评价的方法一般是计算全体预测值和全体真值(label)之间的距离，不同类型的任务会使用不同的评价方法，或者综合使用多个评价方法。在具体的任务中，可以选用一种或者多种评价方法。下面对常用的评价方法按照任务类型做介绍。
 
 分类任务评价
 ------------------
@@ -34,16 +34,18 @@
 
 序列标注任务评价
 ------------------
-序列标注任务中，模型的首要目标是将输入的token分组，称为语块(chunk)。
-语块评估方法 :code:`ChunkEvaluator` ，接收 :code:`chunk_eval` 接口的输出，累积每一个minibatch的语块统计值，最后计算准确率、召回率和F1值。:code:`ChunkEvaluator` 支持IOB, IOE, IOBES和IO四种标注模式。可以参考文档 `Chunking with Support Vector Machines <https://aclanthology.info/pdf/N/N01/N01-1025.pdf>`_ 
+序列标注任务中，模型首先将输入的token分组，称为语块(chunk)，其次会对语块中的tocken进行分类。分类的评估可以使用分类任务的评估方法，而tocken分组的评估使用语块评估方法。
 
-API Reference 请参考 :ref:`api_fluid_metrics_ChunkEvaluator`
+- 语块评估方法: :code:`ChunkEvaluator` ，接收 :code:`chunk_eval` 接口的输出，累积每一个minibatch的语块统计值，最后计算准确率、召回率和F1值。:code:`ChunkEvaluator` 支持IOB, IOE, IOBES和IO四种标注模式。可以参考文档 `Chunking with Support Vector Machines <https://aclanthology.info/pdf/N/N01/N01-1025.pdf>`_ 。
+
+  API Reference 请参考 :ref:`api_fluid_metrics_ChunkEvaluator`
 
 
 生成任务评价
 ------------------
-生成任务会依据输入直接产生输出。对应NLP任务中，则生成新字符串，评估生成字符串和目标字符串之间的距离，可以使用编辑距离。
-编辑距离 :code:`EditDistance` ，用来衡量两个字符串的相似度。可以参考文档 `Edit_distance <https://en.wikipedia.org/wiki/Edit_distance>`_。
+生成任务会依据输入直接产生输出。对应NLP任务中(比如语音识别)，则生成新字符串。评估生成字符串和目标字符串之间距离的方法也有多种，比如多分类评估方法，而另外一种常用的方法叫做编辑距离。
 
-API Reference 请参考 :ref:`api_fluid_metrics_EditDistance`
+- 编辑距离: :code:`EditDistance` ，用来衡量两个字符串的相似度。可以参考文档 `Edit_distance <https://en.wikipedia.org/wiki/Edit_distance>`_。
+
+  API Reference 请参考 :ref:`api_fluid_metrics_EditDistance`
 
