@@ -8,7 +8,7 @@
 
 PaddlePaddle Fluid 对大部分的激活函数进行了支持，其中有:        
 
-:code:`relu`, :code:`tanh`, :code:`sigmoid`, :code:`elu`, :code:`relu6`, :code:`pow`, :code:`stanh`, :code:`hard_sigmoid`, :code:`swish`, :code:`prelu`, :code:`brelu`, :code:`leaky_relu`, :code:`soft_relu`, :code:`thresholded_relu`, :code:`maxout`, :code:`logsigmoid`, :code:`hard_shrink`, :code:`softsign`, :code:`softplus`, :code:`tanh_shrink`, :code:`softshrink`, :code:`exp`, :code:`identity`。
+:ref:`api_fluid_layers_relu`, :ref:`api_fluid_layers_tanh`, :ref:`api_fluid_layers_sigmoid`, :ref:`api_fluid_layers_elu`, :ref:`api_fluid_layers_relu6`, :ref:`api_fluid_layers_pow`, :ref:`api_fluid_layers_stanh`, :ref:`api_fluid_layers_hard_sigmoid`, :ref:`api_fluid_layers_swish`, :ref:`api_fluid_layers_prelu`, :ref:`api_fluid_layers_brelu`, :ref:`api_fluid_layers_leaky_relu`, :ref:`api_fluid_layers_soft_relu`, :ref:`api_fluid_layers_thresholded_relu`, :ref:`api_fluid_layers_maxout`, :ref:`api_fluid_layers_logsigmoid`, :ref:`api_fluid_layers_hard_shrink`, :ref:`api_fluid_layers_softsign`, :ref:`api_fluid_layers_softplus`, :ref:`api_fluid_layers_tanh_shrink`, :ref:`api_fluid_layers_softshrink`, :ref:`api_fluid_layers_exp`。
  
 
 Fluid提供了两种使用激活函数的方式：
