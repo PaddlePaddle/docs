@@ -9,13 +9,13 @@
 ======================   ========================================
 版本说明                            C++预测库   
 ======================   ========================================
-cpu_avx_mkl              `fluid.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/fluid.tgz>`_ 
-cpu_avx_openblas         `fluid.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/fluid.tgz>`_
-cpu_noavx_openblas       `fluid.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/fluid.tgz>`_
-cuda7.5_cudnn5_avx_mkl   `fluid.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda75cudnn5cp27cp27mu/.lastSuccessful/fluid.tgz>`_
-cuda8.0_cudnn5_avx_mkl   `fluid.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/fluid.tgz>`_
-cuda8.0_cudnn7_avx_mkl   `fluid.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/fluid.tgz>`_
-cuda9.0_cudnn7_avx_mkl   `fluid.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda90cudnn7avxMkl/.lastSuccessful/fluid.tgz>`_
+cpu_avx_mkl              `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_ 
+cpu_avx_openblas         `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/fluid_inference.tgz>`_
+cpu_noavx_openblas       `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/fluid_inference.tgz>`_
+cuda7.5_cudnn5_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda75cudnn5cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
+cuda8.0_cudnn5_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
+cuda8.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
+cuda9.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda90cudnn7avxMkl/.lastSuccessful/fluid_inference.tgz>`_
 ======================   ========================================
 
 从源码编译
@@ -26,12 +26,13 @@ cuda9.0_cudnn7_avx_mkl   `fluid.tgz <https://guest:@paddleci.ngrok.io/repository
 选项                 值   
 =================   =========
 CMAKE_BUILD_TYPE    Release
-FLUID_INSTALL_DIR   安装路径    
+FLUID_INFERENCE_INSTALL_DIR   安装路径    
 WITH_FLUID_ONLY     ON（推荐）
 WITH_SWIG_PY        OFF（推荐
 WITH_PYTHON         OFF（推荐）
 WITH_GPU            ON/OFF
 WITH_MKL            ON/OFF
+ON_INFER            ON（预测优化）
 =================   =========
 
 建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
@@ -40,19 +41,19 @@ WITH_MKL            ON/OFF
 
   .. code-block:: bash
 
-     pip install paddlepaddle-gpu
      PADDLE_ROOT=/path/of/capi
      git clone https://github.com/PaddlePaddle/Paddle.git
      cd Paddle
      mkdir build
      cd build
-     cmake -DFLUID_INSTALL_DIR=$PADDLE_ROOT \
+     cmake -DFLUID_INFERENCE_INSTALL_DIR=$PADDLE_ROOT \
            -DCMAKE_BUILD_TYPE=Release \
            -DWITH_FLUID_ONLY=ON \
            -DWITH_SWIG_PY=OFF \
            -DWITH_PYTHON=OFF \
            -DWITH_MKL=OFF \
            -DWITH_GPU=OFF  \
+           -DON_INFER=ON \
            ..
       make
       make inference_lib_dist
@@ -65,13 +66,11 @@ WITH_MKL            ON/OFF
      PaddleRoot/
      ├── CMakeCache.txt
      ├── paddle
-     │   └── fluid
-     │       ├── framework
-     │       ├── inference
-     │       ├── memory
-     │       ├── platform
-     │       ├── pybind
-     │       └── string
+     │   ├── include
+     │   │   └── paddle_inference_api.h
+     │   └── lib
+     │       ├── libpaddle_fluid.a
+     │       └── libpaddle_fluid.so
      ├── third_party
      │   ├── boost
      │   │   └── boost
@@ -92,8 +91,9 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
 
   .. code-block:: text
 
-     GIT COMMIT ID: c95cd4742f02bb009e651a00b07b21c979637dc8
+     GIT COMMIT ID: 23da8defc8314b0c711130c1d9536e2cf2fb8414
      WITH_MKL: ON
+     WITH_MKLDNN: OFF
      WITH_GPU: ON
      CUDA version: 8.0
      CUDNN version: v5
