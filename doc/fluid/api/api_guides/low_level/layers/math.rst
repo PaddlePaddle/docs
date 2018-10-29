@@ -11,28 +11,28 @@ elementwise_add
 
 对两个 :code:`Tensor` 逐元素相加，对应的数学操作符为 :code:`+`
 
-API Reference 请参考 api_fluid_math_elementwise_add_
+API Reference 请参考 :ref:`api_fluid_math_elementwise_add`
 
 elementwise_sub
 ------------------
 
 对两个 :code:`Tensor` 逐元素相减，对应数学操作符 :code:`-`
 
-API Reference 请参考 api_fluid_math_elementwise_sub_
+API Reference 请参考 :ref:`api_fluid_math_elementwise_sub`
 
 elementwise_mul
 ------------------
 
 对两个 :code:`Tensor` 逐元素相乘， 对应数学操作符 :code:`*`
 
-API Reference 请参考 api_fluid_math_elementwise_mul_
+API Reference 请参考 :ref:`api_fluid_math_elementwise_mul`
 
 elementwise_div
 ------------------
 
 对两个 :code:`Tensor` 逐元素相除， 对应数学操作符 :code:`/` 或 :code:`//`
 
-API Reference 请参考 api_fluid_math_elementwise_div_
+API Reference 请参考 :ref:`api_fluid_math_elementwise_div`
 
 
 elementwise_pow
@@ -40,146 +40,165 @@ elementwise_pow
 
 对两个 :code:`Tensor` 逐元素做次幂操作， 对应数学操作符 :code:`**`
 
-API Reference 请参考 api_fluid_math_elementwise_pow_
+API Reference 请参考 :ref:`api_fluid_math_elementwise_pow`
 
 equal
 ------------------
 
 对两个 :code:`Tensor` 逐元素判断是否相等， 对应数学操作符 :code:`==`
 
-API Reference 请参考 api_fluid_math_equal_
+API Reference 请参考 :ref:`api_fluid_math_equal`
 
 not_equal
 ------------------
 
 对两个 :code:`Tensor` 逐元素判断是否不等， 对应数学操作符 :code:`!=`
 
-API Reference 请参考 api_fluid_math_elementwise_not_equal_
+API Reference 请参考 :ref:`api_fluid_math_elementwise_not_equal`
 
 less_than
 ------------------
 
 对两个 :code:`Tensor` 逐元素判断是否满足小于关系， 对应数学操作符 :code:`<`
 
-API Reference 请参考 api_fluid_math_less_than_
+API Reference 请参考 :ref:`api_fluid_math_less_than`
 
 less_equal
 ------------------
 
 对两个 :code:`Tensor` 逐元素判断是否满足小于或等于关系， 对应数学操作符 :code:`<=`
 
-API Reference 请参考 api_fluid_math_less_equal_
+API Reference 请参考 :ref:`api_fluid_math_less_equal`
 
 greater_than
 ------------------
 
 对两个 :code:`Tensor` 逐元素判断是否满足大于关系， 对应数学操作符 :code:`>`
 
-API Reference 请参考 api_fluid_math_greater_than_
+API Reference 请参考 :ref:`api_fluid_math_greater_than`
 
 greater_equal
 ------------------
 
 对两个 :code:`Tensor` 逐元素判断是否满足大于或等于关系， 对应数学操作符 :code:`>=`
 
-API Reference 请参考 api_fluid_math_greater_equal_
+API Reference 请参考 :ref:`api_fluid_math_greater_equal`
+
+sum
+------------------
+
+对两个 :code:`Tensor` 逐元素相加。
+
+API Reference 请参考 :ref:`api_fluid_math_sum`
+
+min
+------------------
+
+对两个 :code:`Tensor` 逐元素进行 :code:`min(x, y)` 操作。
+
+API Reference 请参考 :ref:`api_fluid_math_min`
+
+max
+------------------
+
+对两个 :code:`Tensor` 逐元素进行 :code:`max(x, y)` 操作。
+
+API Reference 请参考 :ref:`api_fluid_math_max`
+
+matmul
+------------------
+
+对两个 :code:`Tensor` 进行矩阵乘操作。
+
+API Reference 请参考 :ref:`api_fluid_math_matmul`
 
 exp
 ------------------
 
 对输入 :code:`Tensor` 逐元素做 :code:`exp` 操作。
 
-API Reference 请参考 api_fluid_math_exp_
+API Reference 请参考 :ref:`api_fluid_math_exp`
 
 tanh
 ------------------
 
 对输入 :code:`Tensor` 逐元素取正切。
 
-API Reference 请参考 api_fluid_math_tanh_
+API Reference 请参考 :ref:`api_fluid_math_tanh`
 
 sqrt
 ------------------
 
 对输入 :code:`Tensor` 逐元素取平方根。
 
-API Reference 请参考 api_fluid_math_sqrt_
+API Reference 请参考 :ref:`api_fluid_math_sqrt`
 
 abs
 ------------------
 
 对输入 :code:`Tensor` 逐元素取绝对值。
 
-API Reference 请参考 api_fluid_math_abs_
+API Reference 请参考 :ref:`api_fluid_math_abs`
 
 ceil
 ------------------
 
 对输入 :code:`Tensor` 逐元素向上取整。
 
-API Reference 请参考 api_fluid_math_ceil_
+API Reference 请参考 :ref:`api_fluid_math_ceil`
 
 floor
 ------------------
 
 对输入 :code:`Tensor` 逐元素向下取整。
 
-API Reference 请参考 api_fluid_math_floor_
+API Reference 请参考 :ref:`api_fluid_math_floor`
 
 sin
 ------------------
 
 对输入 :code:`Tensor` 逐元素取正玄。
 
-API Reference 请参考 api_fluid_math_sin_
+API Reference 请参考 :ref:`api_fluid_math_sin`
 
 cos
 ------------------
 
 对输入 :code:`Tensor` 逐元素取余玄。
 
-API Reference 请参考 api_fluid_math_cos_
+API Reference 请参考 :ref:`api_fluid_math_cos`
 
 round
 ------------------
 
 对输入 :code:`Tensor` 逐元素四舍五入取整。
 
-API Reference 请参考 api_fluid_math_round_
+API Reference 请参考 :ref:`api_fluid_math_round`
 
 square
 ------------------
 
 对输入 :code:`Tensor` 逐元素取平方。
 
-API Reference 请参考 api_fluid_math_square_
+API Reference 请参考 :ref:`api_fluid_math_square`
 
 reciprocal
 ------------------
 
 对输入 :code:`Tensor` 逐元素取倒数。
 
-API Reference 请参考 api_fluid_math_reciprocal_
+API Reference 请参考 :ref:`api_fluid_math_reciprocal`
 
-.. _api_fluid_math_elementwise_add: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#elementwise-add
-.. _api_fluid_math_elementwise_sub: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#elementwise-sub
-.. _api_fluid_math_elementwise_mul: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#elementwise-mul
-.. _api_fluid_math_elementwise_div: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#elementwise-div
-.. _api_fluid_math_elementwise_pow: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#elementwise-pow
-.. _api_fluid_math_equal: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#equal
-.. _api_fluid_math_not_equal: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#not-equal
-.. _api_fluid_math_less_than: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#less-than
-.. _api_fluid_math_less_equal: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#less-equal
-.. _api_fluid_math_greater_than: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#greater-than
-.. _api_fluid_math_greater_equal: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#greater-equal
-.. _api_fluid_math_exp: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#exp
-.. _api_fluid_math_tanh: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#tanh
-.. _api_fluid_math_sqrt: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#sqrt
-.. _api_fluid_math_abs: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#abs
-.. _api_fluid_math_ceil: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#ceil
-.. _api_fluid_math_floor: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#floor
-.. _api_fluid_math_sin: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#sin
-.. _api_fluid_math_cos: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#cos
-.. _api_fluid_math_round: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#round
-.. _api_fluid_math_square: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#square
-.. _api_fluid_math_reciprocal: http://www.paddlepaddle.org/documentation/api/zh/1.0/layers.html#reciprocal
+
+reduce
+------------------
+
+对输入 :code:`Tensor` 在指定的若干轴上做reduce操作，包括：min, max, sum, mean, product
+
+API Reference 请参考:
+:ref:`api_fluid_math_reduce_min`
+:ref:`api_fluid_math_reduce_max`
+:ref:`api_fluid_math_reduce_sum`
+:ref:`api_fluid_math_reduce_mean`
+:ref:`api_fluid_math_reduce_prod`
+
