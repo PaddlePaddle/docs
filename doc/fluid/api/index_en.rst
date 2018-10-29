@@ -7,13 +7,13 @@ API Reference
 
     api_guides/index.rst
 
+    fluid.rst
     average.rst
     backward.rst
     clip.rst
     data.rst
     data_feeder.rst
     executor.rst
-    fluid.rst
     initializer.rst
     io.rst
     layers.rst
