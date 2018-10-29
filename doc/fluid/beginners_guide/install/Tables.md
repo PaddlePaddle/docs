@@ -210,6 +210,10 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</thead>
 	<tbody>
 	<tr>
+		<td> paddlepaddle==[版本号] 如 paddlepaddle==1.0.1(下载1.0.1版本只支持CPU的PaddlePaddle)</td>
+		<td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
+	</tr>
+	<tr>
 		<td> paddlepaddle-gpu==1.0.1 </td>
 		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.1版本 </td>
 	</tr>
