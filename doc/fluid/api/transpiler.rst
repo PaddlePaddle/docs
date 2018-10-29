@@ -14,20 +14,13 @@ DistributeTranspiler
     :members:
     :noindex:
 
-.. _api_fluid_transpiler_memory_optimize:
+.. _api_fluid_transpiler_DistributeTranspilerConfig:
 
-memory_optimize
----------------
+DistributeTranspilerConfig
+--------------------------
 
-..  autofunction:: paddle.fluid.transpiler.memory_optimize
-    :noindex:
-
-.. _api_fluid_transpiler_release_memory:
-
-release_memory
---------------
-
-..  autofunction:: paddle.fluid.transpiler.release_memory
+..  autoclass:: paddle.fluid.transpiler.DistributeTranspilerConfig
+    :members:
     :noindex:
 
 .. _api_fluid_transpiler_HashName:
@@ -48,12 +41,19 @@ RoundRobin
     :members:
     :noindex:
 
-.. _api_fluid_transpiler_DistributeTranspilerConfig:
+.. _api_fluid_transpiler_memory_optimize:
 
-DistributeTranspilerConfig
---------------------------
+memory_optimize
+---------------
 
-..  autoclass:: paddle.fluid.transpiler.DistributeTranspilerConfig
-    :members:
+..  autofunction:: paddle.fluid.transpiler.memory_optimize
+    :noindex:
+
+.. _api_fluid_transpiler_release_memory:
+
+release_memory
+--------------
+
+..  autofunction:: paddle.fluid.transpiler.release_memory
     :noindex:
 

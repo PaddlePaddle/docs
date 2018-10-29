@@ -14,12 +14,12 @@ ErrorClipByValue
     :members:
     :noindex:
 
-.. _api_fluid_clip_GradientClipByValue:
+.. _api_fluid_clip_GradientClipByGlobalNorm:
 
-GradientClipByValue
--------------------
+GradientClipByGlobalNorm
+------------------------
 
-..  autoclass:: paddle.fluid.clip.GradientClipByValue
+..  autoclass:: paddle.fluid.clip.GradientClipByGlobalNorm
     :members:
     :noindex:
 
@@ -32,12 +32,12 @@ GradientClipByNorm
     :members:
     :noindex:
 
-.. _api_fluid_clip_GradientClipByGlobalNorm:
+.. _api_fluid_clip_GradientClipByValue:
 
-GradientClipByGlobalNorm
-------------------------
+GradientClipByValue
+-------------------
 
-..  autoclass:: paddle.fluid.clip.GradientClipByGlobalNorm
+..  autoclass:: paddle.fluid.clip.GradientClipByValue
     :members:
     :noindex:
 

@@ -5,21 +5,12 @@
 fluid.optimizer
 ===============
 
-.. _api_fluid_optimizer_SGD:
+.. _api_fluid_optimizer_Adadelta:
 
-SGD
----
-
-..  autoclass:: paddle.fluid.optimizer.SGD
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_Momentum:
-
-Momentum
+Adadelta
 --------
 
-..  autoclass:: paddle.fluid.optimizer.Momentum
+..  autoclass:: paddle.fluid.optimizer.Adadelta
     :members:
     :noindex:
 
@@ -32,66 +23,21 @@ Adagrad
     :members:
     :noindex:
 
-.. _api_fluid_optimizer_Adam:
-
-Adam
-----
-
-..  autoclass:: paddle.fluid.optimizer.Adam
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_Adamax:
-
-Adamax
-------
-
-..  autoclass:: paddle.fluid.optimizer.Adamax
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_DecayedAdagrad:
-
-DecayedAdagrad
---------------
-
-..  autoclass:: paddle.fluid.optimizer.DecayedAdagrad
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_Ftrl:
-
-Ftrl
-----
-
-..  autoclass:: paddle.fluid.optimizer.Ftrl
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_SGDOptimizer:
-
-SGDOptimizer
-------------
-
-..  autoclass:: paddle.fluid.optimizer.SGDOptimizer
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_MomentumOptimizer:
-
-MomentumOptimizer
------------------
-
-..  autoclass:: paddle.fluid.optimizer.MomentumOptimizer
-    :members:
-    :noindex:
-
 .. _api_fluid_optimizer_AdagradOptimizer:
 
 AdagradOptimizer
 ----------------
 
 ..  autoclass:: paddle.fluid.optimizer.AdagradOptimizer
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_Adam:
+
+Adam
+----
+
+..  autoclass:: paddle.fluid.optimizer.Adam
     :members:
     :noindex:
 
@@ -104,12 +50,30 @@ AdamOptimizer
     :members:
     :noindex:
 
+.. _api_fluid_optimizer_Adamax:
+
+Adamax
+------
+
+..  autoclass:: paddle.fluid.optimizer.Adamax
+    :members:
+    :noindex:
+
 .. _api_fluid_optimizer_AdamaxOptimizer:
 
 AdamaxOptimizer
 ---------------
 
 ..  autoclass:: paddle.fluid.optimizer.AdamaxOptimizer
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_DecayedAdagrad:
+
+DecayedAdagrad
+--------------
+
+..  autoclass:: paddle.fluid.optimizer.DecayedAdagrad
     :members:
     :noindex:
 
@@ -122,12 +86,12 @@ DecayedAdagradOptimizer
     :members:
     :noindex:
 
-.. _api_fluid_optimizer_RMSPropOptimizer:
+.. _api_fluid_optimizer_Ftrl:
 
-RMSPropOptimizer
-----------------
+Ftrl
+----
 
-..  autoclass:: paddle.fluid.optimizer.RMSPropOptimizer
+..  autoclass:: paddle.fluid.optimizer.Ftrl
     :members:
     :noindex:
 
@@ -140,15 +104,6 @@ FtrlOptimizer
     :members:
     :noindex:
 
-.. _api_fluid_optimizer_Adadelta:
-
-Adadelta
---------
-
-..  autoclass:: paddle.fluid.optimizer.Adadelta
-    :members:
-    :noindex:
-
 .. _api_fluid_optimizer_ModelAverage:
 
 ModelAverage
@@ -158,12 +113,57 @@ ModelAverage
     :members:
     :noindex:
 
+.. _api_fluid_optimizer_Momentum:
+
+Momentum
+--------
+
+..  autoclass:: paddle.fluid.optimizer.Momentum
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_MomentumOptimizer:
+
+MomentumOptimizer
+-----------------
+
+..  autoclass:: paddle.fluid.optimizer.MomentumOptimizer
+    :members:
+    :noindex:
+
 .. _api_fluid_optimizer_RMSPropOptimizer:
 
 RMSPropOptimizer
 ----------------
 
 ..  autoclass:: paddle.fluid.optimizer.RMSPropOptimizer
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_RMSPropOptimizer:
+
+RMSPropOptimizer
+----------------
+
+..  autoclass:: paddle.fluid.optimizer.RMSPropOptimizer
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_SGD:
+
+SGD
+---
+
+..  autoclass:: paddle.fluid.optimizer.SGD
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_SGDOptimizer:
+
+SGDOptimizer
+------------
+
+..  autoclass:: paddle.fluid.optimizer.SGDOptimizer
     :members:
     :noindex:
 

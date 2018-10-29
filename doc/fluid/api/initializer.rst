@@ -5,6 +5,24 @@
 fluid.initializer
 =================
 
+.. _api_fluid_initializer_Bilinear:
+
+Bilinear
+--------
+
+..  autoclass:: paddle.fluid.initializer.Bilinear
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_BilinearInitializer:
+
+BilinearInitializer
+-------------------
+
+..  autoclass:: paddle.fluid.initializer.BilinearInitializer
+    :members:
+    :noindex:
+
 .. _api_fluid_initializer_Constant:
 
 Constant
@@ -14,12 +32,30 @@ Constant
     :members:
     :noindex:
 
-.. _api_fluid_initializer_Uniform:
+.. _api_fluid_initializer_ConstantInitializer:
 
-Uniform
--------
+ConstantInitializer
+-------------------
 
-..  autoclass:: paddle.fluid.initializer.Uniform
+..  autoclass:: paddle.fluid.initializer.ConstantInitializer
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_MSRA:
+
+MSRA
+----
+
+..  autoclass:: paddle.fluid.initializer.MSRA
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_MSRAInitializer:
+
+MSRAInitializer
+---------------
+
+..  autoclass:: paddle.fluid.initializer.MSRAInitializer
     :members:
     :noindex:
 
@@ -32,12 +68,48 @@ Normal
     :members:
     :noindex:
 
+.. _api_fluid_initializer_NormalInitializer:
+
+NormalInitializer
+-----------------
+
+..  autoclass:: paddle.fluid.initializer.NormalInitializer
+    :members:
+    :noindex:
+
 .. _api_fluid_initializer_TruncatedNormal:
 
 TruncatedNormal
 ---------------
 
 ..  autoclass:: paddle.fluid.initializer.TruncatedNormal
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_TruncatedNormalInitializer:
+
+TruncatedNormalInitializer
+--------------------------
+
+..  autoclass:: paddle.fluid.initializer.TruncatedNormalInitializer
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_Uniform:
+
+Uniform
+-------
+
+..  autoclass:: paddle.fluid.initializer.Uniform
+    :members:
+    :noindex:
+
+.. _api_fluid_initializer_UniformInitializer:
+
+UniformInitializer
+------------------
+
+..  autoclass:: paddle.fluid.initializer.UniformInitializer
     :members:
     :noindex:
 
@@ -50,21 +122,12 @@ Xavier
     :members:
     :noindex:
 
-.. _api_fluid_initializer_Bilinear:
+.. _api_fluid_initializer_XavierInitializer:
 
-Bilinear
---------
+XavierInitializer
+-----------------
 
-..  autoclass:: paddle.fluid.initializer.Bilinear
-    :members:
-    :noindex:
-
-.. _api_fluid_initializer_MSRA:
-
-MSRA
-----
-
-..  autoclass:: paddle.fluid.initializer.MSRA
+..  autoclass:: paddle.fluid.initializer.XavierInitializer
     :members:
     :noindex:
 
@@ -82,68 +145,5 @@ init_on_cpu
 -----------
 
 ..  autofunction:: paddle.fluid.initializer.init_on_cpu
-    :noindex:
-
-.. _api_fluid_initializer_ConstantInitializer:
-
-ConstantInitializer
--------------------
-
-..  autoclass:: paddle.fluid.initializer.ConstantInitializer
-    :members:
-    :noindex:
-
-.. _api_fluid_initializer_UniformInitializer:
-
-UniformInitializer
-------------------
-
-..  autoclass:: paddle.fluid.initializer.UniformInitializer
-    :members:
-    :noindex:
-
-.. _api_fluid_initializer_NormalInitializer:
-
-NormalInitializer
------------------
-
-..  autoclass:: paddle.fluid.initializer.NormalInitializer
-    :members:
-    :noindex:
-
-.. _api_fluid_initializer_TruncatedNormalInitializer:
-
-TruncatedNormalInitializer
---------------------------
-
-..  autoclass:: paddle.fluid.initializer.TruncatedNormalInitializer
-    :members:
-    :noindex:
-
-.. _api_fluid_initializer_XavierInitializer:
-
-XavierInitializer
------------------
-
-..  autoclass:: paddle.fluid.initializer.XavierInitializer
-    :members:
-    :noindex:
-
-.. _api_fluid_initializer_BilinearInitializer:
-
-BilinearInitializer
--------------------
-
-..  autoclass:: paddle.fluid.initializer.BilinearInitializer
-    :members:
-    :noindex:
-
-.. _api_fluid_initializer_MSRAInitializer:
-
-MSRAInitializer
----------------
-
-..  autoclass:: paddle.fluid.initializer.MSRAInitializer
-    :members:
     :noindex:
 

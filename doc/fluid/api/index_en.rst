@@ -6,22 +6,24 @@ API Reference
     :maxdepth: 1
 
     api_guides/index.rst
-    fluid.rst
-    layers.rst
+
+    average.rst
+    backward.rst
+    clip.rst
+    data.rst
     data_feeder.rst
     executor.rst
+    fluid.rst
     initializer.rst
+    io.rst
+    layers.rst
     metrics.rst
     nets.rst
-    clip.rst
     optimizer.rst
     param_attr.rst
     profiler.rst
-    regularizer.rst
-    io.rst
-    data.rst
-    transpiler.rst
-    recordio_writer.rst
-    backward.rst
-    average.rst
     profiler.rst
+    recordio_writer.rst
+    regularizer.rst
+    transpiler.rst
+
