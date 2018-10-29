@@ -14,7 +14,7 @@ PaddlePaddle Fluid 对大部分的激活函数进行了支持，其中有:
 Fluid提供了两种使用激活函数的方式：
 ==============
 
-- 如果一个层的接口提供了 :code:`act` 变量（默认值为None），我们可以通过该变量指定该层的激活函数类型。该方式支持常见的激活函数，:code:`relu`, :code:`tanh`, :code:`sigmoid`, :code:`identity`。
+- 如果一个层的接口提供了 :code:`act` 变量（默认值为None），我们可以通过该变量指定该层的激活函数类型。该方式支持常见的激活函数: :code:`relu`, :code:`tanh`, :code:`sigmoid`, :code:`identity`。
 
 .. code-block:: python
 
