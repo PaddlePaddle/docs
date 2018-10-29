@@ -847,6 +847,14 @@ rank_loss
 ..  autofunction:: paddle.fluid.layers.rank_loss
     :noindex:
 
+.. _api_fluid_layers_margin_rank_loss:
+
+margin_rank_loss
+----------------
+
+..  autofunction:: paddle.fluid.layers.margin_rank_loss
+    :noindex:
+
 .. _api_fluid_layers_elu:
 
 elu
