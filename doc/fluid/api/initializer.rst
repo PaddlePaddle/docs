@@ -41,6 +41,22 @@ ConstantInitializer
     :members:
     :noindex:
 
+.. _api_fluid_initializer_force_init_on_cpu:
+
+force_init_on_cpu
+-----------------
+
+..  autofunction:: paddle.fluid.initializer.force_init_on_cpu
+    :noindex:
+
+.. _api_fluid_initializer_init_on_cpu:
+
+init_on_cpu
+-----------
+
+..  autofunction:: paddle.fluid.initializer.init_on_cpu
+    :noindex:
+
 .. _api_fluid_initializer_MSRA:
 
 MSRA
@@ -129,21 +145,5 @@ XavierInitializer
 
 ..  autoclass:: paddle.fluid.initializer.XavierInitializer
     :members:
-    :noindex:
-
-.. _api_fluid_initializer_force_init_on_cpu:
-
-force_init_on_cpu
------------------
-
-..  autofunction:: paddle.fluid.initializer.force_init_on_cpu
-    :noindex:
-
-.. _api_fluid_initializer_init_on_cpu:
-
-init_on_cpu
------------
-
-..  autofunction:: paddle.fluid.initializer.init_on_cpu
     :noindex:
 

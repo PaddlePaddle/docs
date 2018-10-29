@@ -5,6 +5,14 @@
 fluid
 =====
 
+.. _api_fluid__switch_scope:
+
+_switch_scope
+-------------
+
+..  autofunction:: paddle.fluid._switch_scope
+    :noindex:
+
 .. _api_fluid_BuildStrategy:
 
 BuildStrategy
@@ -21,6 +29,22 @@ CPUPlace
 
 ..  autoclass:: paddle.fluid.CPUPlace
     :members:
+    :noindex:
+
+.. _api_fluid_create_lod_tensor:
+
+create_lod_tensor
+-----------------
+
+..  autofunction:: paddle.fluid.create_lod_tensor
+    :noindex:
+
+.. _api_fluid_create_random_int_lodtensor:
+
+create_random_int_lodtensor
+---------------------------
+
+..  autofunction:: paddle.fluid.create_random_int_lodtensor
     :noindex:
 
 .. _api_fluid_CUDAPinnedPlace:
@@ -48,6 +72,22 @@ DataFeeder
 
 ..  autoclass:: paddle.fluid.DataFeeder
     :members:
+    :noindex:
+
+.. _api_fluid_default_main_program:
+
+default_main_program
+--------------------
+
+..  autofunction:: paddle.fluid.default_main_program
+    :noindex:
+
+.. _api_fluid_default_startup_program:
+
+default_startup_program
+-----------------------
+
+..  autofunction:: paddle.fluid.default_startup_program
     :noindex:
 
 .. _api_fluid_DistributeTranspiler:
@@ -86,6 +126,14 @@ Executor
     :members:
     :noindex:
 
+.. _api_fluid_global_scope:
+
+global_scope
+------------
+
+..  autofunction:: paddle.fluid.global_scope
+    :noindex:
+
 .. _api_fluid_LoDTensor:
 
 LoDTensor
@@ -102,6 +150,22 @@ LoDTensorArray
 
 ..  autoclass:: paddle.fluid.LoDTensorArray
     :members:
+    :noindex:
+
+.. _api_fluid_memory_optimize:
+
+memory_optimize
+---------------
+
+..  autofunction:: paddle.fluid.memory_optimize
+    :noindex:
+
+.. _api_fluid_name_scope:
+
+name_scope
+----------
+
+..  autofunction:: paddle.fluid.name_scope
     :noindex:
 
 .. _api_fluid_ParallelExecutor:
@@ -131,6 +195,22 @@ Program
     :members:
     :noindex:
 
+.. _api_fluid_program_guard:
+
+program_guard
+-------------
+
+..  autofunction:: paddle.fluid.program_guard
+    :noindex:
+
+.. _api_fluid_release_memory:
+
+release_memory
+--------------
+
+..  autofunction:: paddle.fluid.release_memory
+    :noindex:
+
 .. _api_fluid_Scope:
 
 Scope
@@ -138,6 +218,14 @@ Scope
 
 ..  autoclass:: paddle.fluid.Scope
     :members:
+    :noindex:
+
+.. _api_fluid_scope_guard:
+
+scope_guard
+-----------
+
+..  autofunction:: paddle.fluid.scope_guard
     :noindex:
 
 .. _api_fluid_Tensor:
@@ -156,93 +244,5 @@ WeightNormParamAttr
 
 ..  autoclass:: paddle.fluid.WeightNormParamAttr
     :members:
-    :noindex:
-
-.. _api_fluid__switch_scope:
-
-_switch_scope
--------------
-
-..  autofunction:: paddle.fluid._switch_scope
-    :noindex:
-
-.. _api_fluid_create_lod_tensor:
-
-create_lod_tensor
------------------
-
-..  autofunction:: paddle.fluid.create_lod_tensor
-    :noindex:
-
-.. _api_fluid_create_random_int_lodtensor:
-
-create_random_int_lodtensor
----------------------------
-
-..  autofunction:: paddle.fluid.create_random_int_lodtensor
-    :noindex:
-
-.. _api_fluid_default_main_program:
-
-default_main_program
---------------------
-
-..  autofunction:: paddle.fluid.default_main_program
-    :noindex:
-
-.. _api_fluid_default_startup_program:
-
-default_startup_program
------------------------
-
-..  autofunction:: paddle.fluid.default_startup_program
-    :noindex:
-
-.. _api_fluid_global_scope:
-
-global_scope
-------------
-
-..  autofunction:: paddle.fluid.global_scope
-    :noindex:
-
-.. _api_fluid_memory_optimize:
-
-memory_optimize
----------------
-
-..  autofunction:: paddle.fluid.memory_optimize
-    :noindex:
-
-.. _api_fluid_name_scope:
-
-name_scope
-----------
-
-..  autofunction:: paddle.fluid.name_scope
-    :noindex:
-
-.. _api_fluid_program_guard:
-
-program_guard
--------------
-
-..  autofunction:: paddle.fluid.program_guard
-    :noindex:
-
-.. _api_fluid_release_memory:
-
-release_memory
---------------
-
-..  autofunction:: paddle.fluid.release_memory
-    :noindex:
-
-.. _api_fluid_scope_guard:
-
-scope_guard
------------
-
-..  autofunction:: paddle.fluid.scope_guard
     :noindex:
 

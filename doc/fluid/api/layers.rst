@@ -8,59 +8,6 @@ fluid.layers
 control_flow
 ============
 
-.. _api_fluid_layers_DynamicRNN:
-
-DynamicRNN
-----------
-
-..  autoclass:: paddle.fluid.layers.DynamicRNN
-    :members:
-    :noindex:
-
-.. _api_fluid_layers_IfElse:
-
-IfElse
-------
-
-..  autoclass:: paddle.fluid.layers.IfElse
-    :members:
-    :noindex:
-
-.. _api_fluid_layers_Print:
-
-Print
------
-
-..  autofunction:: paddle.fluid.layers.Print
-    :noindex:
-
-.. _api_fluid_layers_StaticRNN:
-
-StaticRNN
----------
-
-..  autoclass:: paddle.fluid.layers.StaticRNN
-    :members:
-    :noindex:
-
-.. _api_fluid_layers_Switch:
-
-Switch
-------
-
-..  autoclass:: paddle.fluid.layers.Switch
-    :members:
-    :noindex:
-
-.. _api_fluid_layers_While:
-
-While
------
-
-..  autoclass:: paddle.fluid.layers.While
-    :members:
-    :noindex:
-
 .. _api_fluid_layers_array_length:
 
 array_length
@@ -93,12 +40,30 @@ create_array
 ..  autofunction:: paddle.fluid.layers.create_array
     :noindex:
 
+.. _api_fluid_layers_DynamicRNN:
+
+DynamicRNN
+----------
+
+..  autoclass:: paddle.fluid.layers.DynamicRNN
+    :members:
+    :noindex:
+
 .. _api_fluid_layers_equal:
 
 equal
 -----
 
 ..  autofunction:: paddle.fluid.layers.equal
+    :noindex:
+
+.. _api_fluid_layers_IfElse:
+
+IfElse
+------
+
+..  autoclass:: paddle.fluid.layers.IfElse
+    :members:
     :noindex:
 
 .. _api_fluid_layers_increment:
@@ -125,6 +90,14 @@ less_than
 ..  autofunction:: paddle.fluid.layers.less_than
     :noindex:
 
+.. _api_fluid_layers_Print:
+
+Print
+-----
+
+..  autofunction:: paddle.fluid.layers.Print
+    :noindex:
+
 .. _api_fluid_layers_reorder_lod_tensor_by_rank:
 
 reorder_lod_tensor_by_rank
@@ -133,20 +106,38 @@ reorder_lod_tensor_by_rank
 ..  autofunction:: paddle.fluid.layers.reorder_lod_tensor_by_rank
     :noindex:
 
+.. _api_fluid_layers_StaticRNN:
+
+StaticRNN
+---------
+
+..  autoclass:: paddle.fluid.layers.StaticRNN
+    :members:
+    :noindex:
+
+.. _api_fluid_layers_Switch:
+
+Switch
+------
+
+..  autoclass:: paddle.fluid.layers.Switch
+    :members:
+    :noindex:
+
+.. _api_fluid_layers_While:
+
+While
+-----
+
+..  autoclass:: paddle.fluid.layers.While
+    :members:
+    :noindex:
+
 device
 ======
 
 io
 ==
-
-.. _api_fluid_layers_Preprocessor:
-
-Preprocessor
-------------
-
-..  autoclass:: paddle.fluid.layers.Preprocessor
-    :members:
-    :noindex:
 
 .. _api_fluid_layers_batch:
 
@@ -186,6 +177,15 @@ open_files
 ----------
 
 ..  autofunction:: paddle.fluid.layers.open_files
+    :noindex:
+
+.. _api_fluid_layers_Preprocessor:
+
+Preprocessor
+------------
+
+..  autoclass:: paddle.fluid.layers.Preprocessor
+    :members:
     :noindex:
 
 .. _api_fluid_layers_py_reader:

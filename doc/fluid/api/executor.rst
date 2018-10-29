@@ -5,6 +5,14 @@
 fluid.executor
 ==============
 
+.. _api_fluid_executor__switch_scope:
+
+_switch_scope
+-------------
+
+..  autofunction:: paddle.fluid.executor._switch_scope
+    :noindex:
+
 .. _api_fluid_executor_Executor:
 
 Executor
@@ -12,14 +20,6 @@ Executor
 
 ..  autoclass:: paddle.fluid.executor.Executor
     :members:
-    :noindex:
-
-.. _api_fluid_executor__switch_scope:
-
-_switch_scope
--------------
-
-..  autofunction:: paddle.fluid.executor._switch_scope
     :noindex:
 
 .. _api_fluid_executor_global_scope:

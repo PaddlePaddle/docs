@@ -41,15 +41,6 @@ Adam
     :members:
     :noindex:
 
-.. _api_fluid_optimizer_AdamOptimizer:
-
-AdamOptimizer
--------------
-
-..  autoclass:: paddle.fluid.optimizer.AdamOptimizer
-    :members:
-    :noindex:
-
 .. _api_fluid_optimizer_Adamax:
 
 Adamax
@@ -65,6 +56,15 @@ AdamaxOptimizer
 ---------------
 
 ..  autoclass:: paddle.fluid.optimizer.AdamaxOptimizer
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_AdamOptimizer:
+
+AdamOptimizer
+-------------
+
+..  autoclass:: paddle.fluid.optimizer.AdamOptimizer
     :members:
     :noindex:
 
