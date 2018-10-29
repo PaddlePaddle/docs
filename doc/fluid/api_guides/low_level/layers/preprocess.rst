@@ -12,5 +12,5 @@ random_crop
 ----------------
 * random_crop ：对每一个输入的实例做随机的裁剪
 
- API Reference 请参考 :ref:`_api_fluid_layers_random_crop`
+ API Reference 请参考 :ref:`api_fluid_layers_random_crop`
 
