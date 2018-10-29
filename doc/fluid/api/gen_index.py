@@ -4,7 +4,7 @@ import glob
 import os
 if __name__ == '__main__':
     
-    file_object = open('index.rst', 'w')
+    file_object = open('index_en.rst', 'w')
     file_object.write('''=============
 API Reference
 =============
