@@ -32,6 +32,7 @@ WITH_SWIG_PY        OFF（推荐
 WITH_PYTHON         OFF（推荐）
 WITH_GPU            ON/OFF
 WITH_MKL            ON/OFF
+ON_INFER            ON（预测优化）
 =================   =========
 
 建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
@@ -52,6 +53,7 @@ WITH_MKL            ON/OFF
            -DWITH_PYTHON=OFF \
            -DWITH_MKL=OFF \
            -DWITH_GPU=OFF  \
+           -DON_INFER=ON \
            ..
       make
       make inference_lib_dist
