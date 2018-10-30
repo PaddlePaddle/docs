@@ -16,8 +16,6 @@ Windows环境模型预测使用说明
 
 测试环境操作系统使用win10 Version 18.03 版本。下载地址：
 
-ed2k://\|file\|cn\_windows\_10\_business\_editions\_version\_1803\_updated\_march\_2018\_x64\_dvd\_12063730.iso\|4634574848\|5674B3586C866EB2F47D7736A1FDE27A\|/
-
 ### 环境配置步骤
 
 **一定要严格按照安装步骤顺序，否则会安装失败！**
@@ -25,8 +23,6 @@ ed2k://\|file\|cn\_windows\_10\_business\_editions\_version\_1803\_updated\_marc
 **安装vs2015**
 
 安装vs2015，安装选项中选择安装内容时勾选自定义，把关于c，c++，vc++的功能都安装上。下载地址：
-
-ed2k://\|file\|cn\_visual\_studio\_professional\_2015\_x86\_x64\_dvd\_6846645.iso\|4125556736\|6EECD10D20D74704C919CC60F088823E\|/
 
 **安装CUDA8**
 
@@ -99,13 +95,13 @@ Cmake可以在官网进行下载，并添加到环境变量中。[[https://cmake
 
 通过cmd进到Release目录执行：
 
-1.  开启GLOG
+  1.  开启GLOG
 
-set GLOG\_v=3
+  set GLOG\_v=3
 
-2.  进行预测
+  2.  进行预测
 
-simple\_on\_word2vec.exe \--dirname=.\\word2vec.inference.model
+  simple\_on\_word2vec.exe \--dirname=.\\word2vec.inference.model
 
 ![](image/image9.png)
 
