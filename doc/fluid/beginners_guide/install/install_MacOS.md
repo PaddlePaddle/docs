@@ -92,7 +92,7 @@
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.1`
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`
 		
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
