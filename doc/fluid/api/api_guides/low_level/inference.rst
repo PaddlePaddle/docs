@@ -4,7 +4,7 @@
 预测引擎
 #########
 
-预测引擎提供了存储预测模型 :code:`fluid.io.save_inference_model` 和加载预测模型 :code:`fluid.io.load_inference_model` 两个接口。
+预测引擎提供了存储预测模型 :ref:`api_fluid_io_save_inference_model` 和加载预测模型 :ref:`api_fluid_io_load_inference_model` 两个接口。
 
 预测模型的存储格式
 =================
