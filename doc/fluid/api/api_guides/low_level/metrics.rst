@@ -34,7 +34,7 @@
 
 序列标注任务评价
 ------------------
-序列标注任务中，模型首先将输入的token分组，称为语块(chunk)，其次会对语块中的tocken进行分类。分类的评估可以使用分类任务的评估方法，而tocken分组的评估使用语块评估方法。
+序列标注任务中，token的分组称为语块(chunk)，模型会同时将输入的token分组和分类，常用的评估方法是语块评估方法。
 
 - 语块评估方法: :code:`ChunkEvaluator` ，接收 :code:`chunk_eval` 接口的输出，累积每一个minibatch的语块统计值，最后计算准确率、召回率和F1值。:code:`ChunkEvaluator` 支持IOB, IOE, IOBES和IO四种标注模式。可以参考文档 `Chunking with Support Vector Machines <https://aclanthology.info/pdf/N/N01/N01-1025.pdf>`_ 。
 
