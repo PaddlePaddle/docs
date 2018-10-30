@@ -11,7 +11,7 @@ PaddlePaddle Fluid在图像检测任务中实现了多个特有的操作。以�
 
 图像检测中的一些通用操作，是对检测框的一系列操作，其中包括：
 
-* 对检测框的编码，解码（box_coder）：实现候选框的位置值和对目标框位置偏移值的相互转化。API Reference 请参考 :ref:`api_fluid_layers_box_coder`
+* 对检测框的编码，解码（box_coder）：实现两种框之间编码和解码的转换。例如训练阶段对先验框和真实框进行编码得到训练目标值。API Reference 请参考 :ref:`api_fluid_layers_box_coder`
 
 * 比较两个检测框并进行匹配：
 
