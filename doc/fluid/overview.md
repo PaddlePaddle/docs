@@ -9,7 +9,7 @@
 
 - [新手入门](beginners_guide/index.html)：包含安装说明和多个简单的模型案例供您快速上手
 
-- [使用指南](user_guides/index.html)：包含 Fluid 使用说明和已开源的模型库助您更好地应用Fluid
+- [使用指南](user_guides/index.html)：包含 Fluid 使用说明和已开源的[模型库](user_guidex/models/index.html)助您更好地应用Fluid
 
 - [进阶使用](advanced_usage/index.html)：包含移动端部署、模型调优、书写Operator等高阶使用说明，使 Fluid 更贴合您的需求。
  
