@@ -28,14 +28,15 @@ Windows环境模型预测使用说明
 
 需要去NVIDIA官网[https://www.geforce.cn/drivers](https://www.geforce.cn/drivers)
 下载显卡对应的驱动。推荐391版本
-
-![](image/image1.png)
-
+<p align="center">
+ <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image1.png" >
+</p>
 安装时需要勾选自定义，勾选安装全部。
 
 验证安装需要进入cmd中，输入nvcc -V查看。
-
-![](image/image2.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image2.png">
+</p>
 
 如果有显卡安装驱动，也可以选择直接安装CUDA8.0，[https://developer.nvidia.com/cuda-80-ga2-download-archive](https://developer.nvidia.com/cuda-80-ga2-download-archive)
 
@@ -75,37 +76,51 @@ Cmake可以在官网进行下载，并添加到环境变量中。[[https://cmake
 
 执行完毕后，build目录如图所示，打开 箭头指向的solution文件：
 
-![](image/image3.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image3.png">
+</p>
 
 修改编译属性为/MT：
 
-![](image/image4.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image4.png">
+</p>
 
-![](image/image5.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image5.png">
+</p>
 
 编译生成选项改成Release。
 
-![](image/image6.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image6.png">
+</p>
 
-![](image/image7.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image7.png">
+</p>
 
 将提供的依赖包中，Release下的openblas和模型文件拷贝到编译生成的Release下。
 
-![](image/image8.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image8.png">
+</p>
 
 通过cmd进到Release目录执行：
 
   1.  开启GLOG
 
-  set GLOG\_v=3
+  	set GLOG\_v=3
 
   2.  进行预测
 
-  simple\_on\_word2vec.exe \--dirname=.\\word2vec.inference.model
+  	simple\_on\_word2vec.exe \--dirname=.\\word2vec.inference.model
 
-![](image/image9.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image9.png">
+</p>
 
-FAQ：
+**FAQ：**
 
 路径中尽量不要包含空格，例如发现CUDA\_LIB路径是Program
 Files(x86)可能会出错。可以将CUDA拷贝到一个新位置（这里直接拷贝就行）
