@@ -1,8 +1,8 @@
 ..  _api_guide_executor:
 
-########
-Executor
-########
+##########
+执行引擎
+##########
 
 :code:`Executor` 即 :code:`执行器` 。PaddlePaddle Fluid中有两种执行器可以选择。
 :code:`Executor` 实现了一个简易的执行器，所有Operator会被顺序执行。用户可以使用

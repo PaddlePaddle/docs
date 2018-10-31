@@ -1,8 +1,8 @@
 ..  _api_guide_optimizer:
 
-
-Optimizer
-#########
+###########
+优化器
+###########
 
 神经网络最终是一个 `最优化问题 <https://en.wikipedia.org/wiki/Optimization_problem>`_ ，
 在经过 `前向计算和反向传播 <https://zh.wikipedia.org/zh-hans/反向传播算法>`_ 后，
