@@ -126,9 +126,6 @@ Fluid支持千亿量级超大规模稀疏特征embedding的训练，embedding参
 参数 :code:`dict_size` 定义数据中总的id的数量，id可以是int64范围内的任意值，只要总id个数小于等于dict_size就可以支持。
 所以配置之前需要预估一下数据中总的feature id的数量。
 
-TODO:
-1. 支持embedding表自动增长，去掉对dict_size的依赖。
-
 .. code-block:: python
 
   emb = fluid.layers.embedding(
