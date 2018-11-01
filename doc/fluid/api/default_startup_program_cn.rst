@@ -18,17 +18,12 @@ paddle.fluid.default_startup_program()
 
 获取默认/全局 startup program (启动程序)
 
-**fluid.layers** 中的layer函数会新建参数、读取器(readers)、NCCL句柄作为全局变量。 
+``fluid.layers`` 中的layer函数会新建参数、读取器(readers)、NCCL句柄作为全局变量。 
 
 startup_program会使用内在的operators去初始化他们，并由layer函数将这些operators追加到startup promgram中。
 
-
-
-
-
-该函数将返回默认的或当前的startup_program。用户可以使用 **fluid.program_guard** 去切换program.
+该函数将返回默认的或当前的startup_program。用户可以使用 ``fluid.program_guard`` 去切换program。
 
 返回:	startup program
-
 
 返回类型:	Program
