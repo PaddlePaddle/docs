@@ -133,7 +133,7 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`       
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1.0`       
 		
 		
 
