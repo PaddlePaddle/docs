@@ -54,7 +54,7 @@
 
 5. 切换到较稳定版本下进行编译：
 
-	`git checkout v1.1`
+	`git checkout v1.1.0`
 
 6. 创建并进入/paddle/build路径下：
 
