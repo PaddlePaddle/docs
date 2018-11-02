@@ -16,5 +16,5 @@ Python脚本驱动 :code:`Executor` 执行。默认情况下 :code:`Executor` �
 或 :ref:`api_fluid_CUDAPlace` 。 :code:`Executor` 在执行的时候可以选择执行的
 :ref:`api_guide_low_level_program` 。
 
-简单的使用方法，请参考 `quick_start_fit_a_line <../../beginners_guide/quick_start/fit_a_line/README.cn.html>`_ , API Reference 请参考
+简单的使用方法，请参考 `quick_start_fit_a_line <http://paddlepaddle.org/documentation/docs/zh/1.1/beginners_guide/quick_start/fit_a_line/README.cn.html>`_ , API Reference 请参考
 :ref:`api_fluid_Executor` 。

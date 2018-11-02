@@ -32,7 +32,7 @@
 
 	- `如何贡献代码 <../advanced_usage/development/contribute_to_paddle.html>`_：介绍如何向 PaddlePaddle 开源社区贡献代码
 
-	- `如何贡献文档 <../advanced_usage/development/write_docs.html>`_：介绍如何向 PaddlePaddle 开源社区贡献文档
+	- `如何贡献文档 <../advanced_usage/development/write_docs_cn.html>`_：介绍如何向 PaddlePaddle 开源社区贡献文档
 
 =====================
         目录
