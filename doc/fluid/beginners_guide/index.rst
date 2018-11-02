@@ -8,7 +8,7 @@
 
 请您首先阅读以下文档，了解安装方法：
 
-    - `安装说明 <../beginners_guide/install/install_doc.html>`_：我们支持在Ubunt/CentOS/Windows/MacOS环境上的安装
+    - `安装说明 <../beginners_guide/install/Start.html>`_：我们支持在Ubunt/CentOS/Windows/MacOS环境上的安装
 
 如果您初次接触深度学习，在学习PaddlePaddle之前建议您先阅读以下资料：
 
