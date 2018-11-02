@@ -1,4 +1,4 @@
-.. cn_api_fluid_executor
+.. cn_api_fluid_executor:
 
 Executor
 =======================
@@ -45,10 +45,10 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 ..  code-block:: python
     
-    >>> cpu = core.CPUPlace()
-    >>> exe = Executor(cpu)
-    >>> ...
-    >>> exe.close()
+    cpu = core.CPUPlace()
+    exe = Executor(cpu)
+    ...
+    exe.close()
 
 
 
