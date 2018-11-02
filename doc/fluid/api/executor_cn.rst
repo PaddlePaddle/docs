@@ -7,13 +7,6 @@ Executor
 *class* paddle.fluid.executor. Executor *(place)*
 ---------------------------------------------------------
 
-.. An Executor in Python, only support the single-GPU running. For multi-cards, please refer to ParallelExecutor.
-.. Python executor takes a program, add feed operators and fetch operators to this program according to feed map and fetch_list. 
-.. Feed map provides input data for the program. fetch_list provides the variables(or names) that user want to get after program run.
-.. Note: the executor will run all operators in the program but not only the operators dependent by the fetch_list.
-.. It store the global variables into the global scope, and create a local scope for the temporary variables. 
-.. The local scope contents will be discarded after every minibatch forward/backward finished.
-.. But the global scope variables will be persistent through different runs. All of ops in program will be running in sequence.
 
 
 该 ``Executor`` 是Python实现的类，仅支持在单个GPU环境中运算。对于在多卡环境下的运算，请参照 ``ParallelExecutor`` 。
@@ -30,8 +23,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 参数:	
     - place (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
-.. Note: For debugging complicated network in parallel-GPUs, you can test it on the executor.
-.. They has the exactly same arguments, and expected the same results.
+
 
 提示：你可以用Executor来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
 
@@ -64,10 +56,37 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 参数：  
 	- program (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
-	- feed (dict) – 输入变量的映射词典, 例如 {“image”: ImageData, “label”: LableData}
-	- fetch_list (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果.
-	- feed_var_name (str) – the name for the input variable of feed Operator.输入
-	- fetch_var_name (str) – the name for the output variable of fetch Operator.
-	- scope (Scope) – the scope used to run this program, you can switch it to different scope. default is global_scope
-	- return_numpy (bool) – if convert the fetched tensor to numpy
-	- use_program_cache (bool) – set use_program_cache to true if program not changed compare to the last step.
+	- feed (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LableData}
+	- fetch_list (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
+	- feed_var_name (str) – 前向算子(feed operator)变量的名称
+	- fetch_var_name (str) – 结果获取算子(fetch operator)的输出变量名称
+	- scope (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
+	- return_numpy (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
+	- use_program_cache (bool) – 当program较上次比没有改动则将其置为True
+**示例代码**
+
+..  code-block:: python
+
+
+	data = layers.data(name='X', shape=[1], dtype='float32')
+	hidden = layers.fc(input=data, size=10)
+	layers.assign(hidden, out)
+	loss = layers.mean(out)
+	adam = fluid.optimizer.Adam()
+	adam.minimize(loss)
+
+
+..  code-block:: python
+	
+	
+	cpu = core.CPUPlace()
+	exe = Executor(cpu)
+	exe.run(default_startup_program())
+	
+..  code-block:: python
+	
+	x = numpy.random.random(size=(10, 1)).astype('float32')
+	outs = exe.run(
+		feed={'X': x},
+		fetch_list=[loss.name])
+	
