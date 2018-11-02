@@ -10,11 +10,11 @@ paddle.fluid.default_startup_program()
 """"""""""""""""""""""""""""""""""""""""""
 
 
-获取默认/全局 startup program (启动程序)
+该函数可以获取默认/全局 startup program (启动程序)。
 
 ``fluid.layers`` 中的layer函数会新建参数、读取器(readers)、NCCL句柄作为全局变量。 
 
-startup_program会使用内在的operators去初始化他们，并由layer函数将这些operators追加到startup promgram中。
+startup_program会使用内在的算子(operators)去初始化他们，并由layer函数将这些operators追加到startup program中。
 
 该函数将返回默认的或当前的startup_program。用户可以使用 ``fluid.program_guard`` 去切换program。
 
@@ -41,7 +41,7 @@ paddle.fluid.default_main_program()
 
 ``fluid.layers`` 中的所有layer函数可以向 ``default_main_program`` 中添加算子(operators)和变量(variables)。
 
-``default_main_program`` 是fluid的许多编程接口（API）的默认程序(program)。例如,当用户program未设置的时候，
+``default_main_program`` 是fluid的许多编程接口（API）的Program参数的缺省值。例如,当用户program没有传入的时候，
 ``Executor.run()`` 会默认执行 ``default_main_program`` 。
 
 
@@ -64,7 +64,7 @@ paddle.fluid.program_guard(*args, **kwds)
 """"""""""""""""""""""""""""""""""""""""""
 
 
-使用python的“with”语句改变全局主程序(main program)和启动程序(startup program)。
+该函数应配合使用python的“with”语句来改变全局主程序(main program)和启动程序(startup program)。
 
 “with”语句块中的layer函数将在新的主程序（main program）后添加算子（operators）和变量（variables）。
 
