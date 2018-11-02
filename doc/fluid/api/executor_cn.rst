@@ -24,11 +24,11 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
 执行器将全局变量存储到全局域中，并为临时变量创建局部域。
-每一小批(minibatch)前向/后向算法执行完毕后局部域的内容将被作废。
+每一小批(minibatch)上进行的前向/后向算法执行完毕后局部域的内容将被作废。
 但是全局域中的变量将在执行器不同的执行过程中一直存在。program中所有的算子会按顺序执行。
 
 参数:	
-    - place (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 执行场所
+    - place (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
 .. Note: For debugging complicated network in parallel-GPUs, you can test it on the executor.
 .. They has the exactly same arguments, and expected the same results.
@@ -63,11 +63,11 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
 参数：  
-		- program (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
-    - feed (dict) – 输入变量的映射词典, 例如 {“image”: ImageData, “label”: LableData}
-    - fetch_list (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果.
-    - feed_var_name (str) – the name for the input variable of feed Operator.
-    - fetch_var_name (str) – the name for the output variable of fetch Operator.
-    - scope (Scope) – the scope used to run this program, you can switch it to different scope. default is global_scope
-    - return_numpy (bool) – if convert the fetched tensor to numpy
-    - use_program_cache (bool) – set use_program_cache to true if program not changed compare to the last step.
+	- program (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
+	- feed (dict) – 输入变量的映射词典, 例如 {“image”: ImageData, “label”: LableData}
+	- fetch_list (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果.
+	- feed_var_name (str) – the name for the input variable of feed Operator.输入
+	- fetch_var_name (str) – the name for the output variable of fetch Operator.
+	- scope (Scope) – the scope used to run this program, you can switch it to different scope. default is global_scope
+	- return_numpy (bool) – if convert the fetched tensor to numpy
+	- use_program_cache (bool) – set use_program_cache to true if program not changed compare to the last step.
