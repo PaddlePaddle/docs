@@ -1,24 +1,13 @@
-.. cn_api_fluid_default_startup_program
-
-
+.. cn_api_fluid:
 
 
 
 
 default_startup_program
->>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 paddle.fluid.default_startup_program()
 """"""""""""""""""""""""""""""""""""""""""
-.. 英文原文，方便对照：
-.. Get default/global startup program.
-
-.. The layer function in fluid.layers will create parameters, readers, NCCL handles as global variables. The startup_program 
-.. will initialize them by the operators in startup program. The layer function will append these initialization operators into startup program.
-
-.. This method will return the default or the current startup program. Users can use fluid.program_guard to switch program.
-.. 返回:	startup program
-.. 返回类型:	Program
 
 
 获取默认/全局 startup program (启动程序)
@@ -37,23 +26,15 @@ startup_program会使用内在的operators去初始化他们，并由layer函数
 
 
 
-.. cn_api_fluid_default_main_program_cn
+
 
 default_main_program
->>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 paddle.fluid.default_main_program()
 """"""""""""""""""""""""""""""""""""""""""
 
-.. 英语部分
-.. Get default/global main program. The main program is used for training or testing.
 
-.. All layer function in fluid.layers will append operators and variables to the default_main_program.
-
-.. The default_main_program is the default program in a lot of APIs. For example, the Executor.run() will execute 
-.. the default_main_program when the program is not specified.
-.. 返回:	main program
-.. 返回类型:	Program
 
 
 此函数用于获取默认或全局main program(主程序)。该主程序用于训练和测试模型。
@@ -74,15 +55,14 @@ paddle.fluid.default_main_program()
 
 
 
-.. cn_api_fluid_program_guard
+
 
 program_guard
->>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 paddle.fluid.program_guard(*args, **kwds)
 """"""""""""""""""""""""""""""""""""""""""
-.. Change the global main program and startup program with with statement. 
-.. Layer functions in the Python with block will append operators and variables to the new main programs.
+
 
 使用python的“with”语句改变全局主程序(main program)和启动程序(startup program)。
 
@@ -92,12 +72,12 @@ paddle.fluid.program_guard(*args, **kwds)
 
 ..  code-block:: python
 
- >>> import paddle.fluid as fluid
- >>> main_program = fluid.Program()
- >>> startup_program = fluid.Program()
- >>> with fluid.program_guard(main_program, startup_program):
- >>>    data = fluid.layers.data(...)
- >>>    hidden = fluid.layers.fc(...)
+	import paddle.fluid as fluid
+	main_program = fluid.Program()
+	startup_program = fluid.Program()
+	with fluid.program_guard(main_program, startup_program):
+		data = fluid.layers.data(...)
+ 		hidden = fluid.layers.fc(...)
 
 需要注意的是，如果用户不需要构建自己的启动程序或者主程序，一个临时的program将会发挥作用。
 
@@ -107,11 +87,11 @@ paddle.fluid.program_guard(*args, **kwds)
 
 ..  code-block:: python
 
->>> import paddle.fluid as fluid
->>> main_program = fluid.Program()
->>> # does not care about startup program. Just pass a temporary value.
->>> with fluid.program_guard(main_program, fluid.Program()):
->>>     data = ...
+	import paddle.fluid as fluid
+	main_program = fluid.Program()
+	# does not care about startup program. Just pass a temporary value.
+	with fluid.program_guard(main_program, fluid.Program()):
+		data = ...
 
 
 参数：  
