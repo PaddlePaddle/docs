@@ -1,5 +1,10 @@
 .. cn_api_fluid_default_startup_program
 
+
+
+
+
+
 default_startup_program
 >>>>>>>>>>>>
 
@@ -27,8 +32,6 @@ startup_program会使用内在的operators去初始化他们，并由layer函数
 返回:	startup program
 
 返回类型:	Program
-
-
 
 
 
