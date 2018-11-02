@@ -1,5 +1,5 @@
 
-.. _cn_api_fluid_layers:
+.. _cn_api_fluid_layers_While:
 
 While
 >>>>>>>>>>>>
@@ -30,6 +30,7 @@ While
       layers.array_write(result, i=i, array=d)
       layers.less_than(x=i, y=array_len, cond=cond)
 
+.. _cn_api_fluid_layers_Switch:
 
 Switch
 >>>>>>>>>>>>>>>>>>>>
@@ -73,7 +74,9 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
 ``default()``
 """"""""""""""""""""""""""""""""""""""
 为该switch建立default case。
-  
+
+
+.. _cn_api_fluid_layers_increment:
   
 increment
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -98,7 +101,7 @@ paddle.fluid.layers.  increment(x, value=1.0, in_place=True)
     data = fluid.layers.data(name='data', shape=[32, 32], dtype='float32')
     data = fluid.layers.increment(x=data, value=3.0, in_place=True)
     
-    
+.. _cn_api_fluid_layers_array_write:    
     
 array_write
 >>>>>>>>>>>>>>>>>>>>>>
