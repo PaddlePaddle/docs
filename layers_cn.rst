@@ -72,11 +72,11 @@ paddle.fluid.layers.expand(x, expand_times, name=None)
         
 返回：
 
-扩展变量是LoDTensor。扩展后，输出（Out）的每个维度的大小等于输入（X）的相应维度的大小乘以expand_times给出的相应值。
+        扩展变量是LoDTensor。扩展后，输出（Out）的每个维度的大小等于输入（X）的相应维度的大小乘以expand_times给出的相应值。
 
 返回类型：
 
-变量（Variable）
+        变量（Variable）
 
 **代码示例**
 
@@ -102,6 +102,7 @@ paddle.fluid.layers.sequence_concat(input, name=None)
         - name (str|None) – A name for this layer(optional). If set None, the layer will be named automatically.
         
 返回:  
+
         连接好的输出变量。
 
 返回类型:	
@@ -125,19 +126,20 @@ paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=Non
 
 比例运算符
 对输入张量应用缩放和偏移加法。
+
 if bias_after_scale = True：
-                Out=scale∗X+bias
+                                Out=scale∗X+bias
 else:
-                Out=scale∗(X+bias)
+                                Out=scale∗(X+bias)
 
 参数:
 
-        -x (Variable) ：(Tensor) 要比例运算的输入张量。
-        -scale (FLOAT) ：比例运算的比例因子。
-        -bias (FLOAT) ：比例算子的偏差。
-        -bias_after_scale (BOOLEAN) ：在缩放之后或之前添加bias。 在某些情况下，对数值稳定性很有用。
-        -act (basestring|None) – 激活应用于输出。
-        -name (basestring|None) –输出的名称。
+        - x(Variable) ：(Tensor) 要比例运算的输入张量。
+        - scale (FLOAT) ：比例运算的比例因子。
+        - bias (FLOAT) ：比例算子的偏差。
+        - bias_after_scale (BOOLEAN) ：在缩放之后或之前添加bias。 在某些情况下，对数值稳定性很有用。
+        - act (basestring|None) – 激活应用于输出。
+        - name (basestring|None) –输出的名称。
 返回:	
 
         比例运算符的输出张量(Tensor)
