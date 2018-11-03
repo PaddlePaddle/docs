@@ -423,8 +423,8 @@ paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
 
         **Out=min(X,Y)**
         
-- **X**：任何尺寸的张量（Tensor）。
-- **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
+- **X**：任何维数的张量（Tensor）。
+- **Y**：维数必须小于或等于X维数的张量（Tensor）。
 
 此运算符有两种情况：
 
@@ -475,7 +475,7 @@ paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
 等式是：
 
         **Out=XY**
-        
+       
 - **X**：任何尺寸的张量（Tensor）。
 - **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
 
@@ -513,3 +513,39 @@ paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
 返回：
 
         元素运算的输出。   
+        
+
+.. _cn_api_fluid_layers_uniform_random_batch_size_like:
+
+uniform_random_batch_size_like
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32', input_dim_idx=0, output_dim_idx=0, min=-1.0, max=1.0, seed=0)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+统一随机批量类似大小运算符。
+
+此运算符使用与输入张量（Tensor）相同的batch_size初始化张量（Tensor），并使用从均匀分布中采样的随机值。
+
+参数：
+
+        -input（Variable）：其input_dim_idx'th维度指定batch_size的张量（Tensor）。
+        -shape（元组|列表）：输出的形状。
+        -input_dim_idx（Int）：默认值0.输入批量大小维度的索引。
+        -output_dim_idx（Int）：默认值0.输出批量大小维度的索引。
+        -min（Float）：（float，默认-1.0）均匀随机的最小值。
+        -max（Float）：（float，default 1.0）均匀随机的最大值。
+        -seed（Int）：（int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此运算符将始终每次生成相同的随机数
+        -dtype（np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等
+返回：
+
+        指定形状的张量将使用指定值填充
+返回类型:	
+
+        变量(Variable)
+
+
+
+        
+        
+ 
