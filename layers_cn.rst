@@ -85,4 +85,44 @@ paddle.fluid.layers.expand(x, expand_times, name=None)
         x = fluid.layers.data(name='x', shape=[10], dtype='float32')
         out = fluid.layers.expand(x=x, expand_times=[1, 2, 2])
                
+               
+.. _cn_api_fluid_layers_sequence_concat:
+
+sequence_concat
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.sequence_concat(input, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+序列Concat操作通过序列信息连接LoD张量。例如：X1的LoD = [0,3,7]，X2的LoD = [0,7,9]，结果的LoD为[0，（3 + 7），（7 + 9）]，即[0,10,16]]。
+
+参数:
+
+        - input (list) – List of Variables to be concatenated.
+        - name (str|None) – A name for this layer(optional). If set None, the layer will be named automatically.
+        
+返回:      连接好的输出变量。
+
+返回类型:	 变量（Variable）
+
+
+**示例代码**
+
+..  code_block:: python
+
+        out = fluid.layers.sequence_concat(input=[seq1, seq2, seq3])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
