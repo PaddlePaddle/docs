@@ -162,13 +162,13 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None,
 等式为：
 
         **Out=X+Y**
-- **X**：任意维度的张量（tensor）.
-- **Y**：一个维度必须小于等于X维度的张量（tensor）。
-对于这个运算有情况：
+- **X**：任意维度的张量（Tensor）.
+- **Y**：一个维度必须小于等于X维度的张量（Tensor）。
+对于这个运算有2种情况：
 
         1. Y的形状（shape）与X相同。
         2. Y的形状（shape）是X的连续子序列。
-对于案例2:
+对于情况2:
 
         1. 广播Y以匹配X的形状（shape），其中轴（axis）是用于将Y广播到X上的起始维度索引。
         2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。
@@ -209,6 +209,7 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
 元素除法运算符
 
 等式是：
+
         **OUT = X / Y**
         
 -X：任何尺寸的张量。
@@ -219,7 +220,7 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
         1. Y的形状（shape）与X相同。
         2. Y的形状（shape）是X的连续子序列。
 
-对于案例2：
+对于情况2：
 
         1. 广播Y以匹配X的形状（shape），其中axis是用于将Y广播到X上的起始维度索引。
         2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。 
@@ -238,6 +239,7 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
+
         - x ：（Tensor），元素op的第一个输入张量。
         - y ：（Tensor），元素op的第二个输入张量。
         - axis（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
