@@ -8,7 +8,7 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 
 为输入索引序列生成一个新序列，该序列枚举输入长度为win_size的所有子序列。 枚举序列具有和可变输入第一维相同的维数，第二维是win_size，在生成中如果需要，通过设置pad_value填充。
 
-*例子1：*
+**例子1：**
 
 ::
 
@@ -19,15 +19,15 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
     输出：
         Out.lod = [[0, 3, 5]]  Out.data = [[1, 2], [2, 3], [3, 0], [4, 5], [5, 0]]  Out.dims = [5, 2]
         
-*参数：*
+**参数：**
           - input（Variable）: 作为索引序列的输入变量。
           - win_size（int）: 枚举所有子序列的窗口大小。
           - max_value（int）: 填充值，默认为0。
           
-*返回:*
+**返回:**
           - 枚举序列变量是LoD张量（LoDTensor）。
           
-*代码示例*
+**代码示例**
 
 ..  code-block:: python
 
