@@ -696,7 +696,7 @@ shape算子
 
 参数：
 
-        - input（Variable）：（Tensor），输入张量。
+        input（Variable）：（Tensor），输入张量。
 返回：
 
         (Tensor），输入张量的形状，形状的数据类型是int32，它将与输入张量（Tensor）在同一设备上。
@@ -727,7 +727,7 @@ paddle.fluid.layers.logical_and(x, y, out=None, name=None)
         - name（basestring | None）：输出的名称。
 返回：
 
-        (LoDTensor)n-dim bool张量。 每个元素都是：  Out = X && Y.
+        (LoDTensor)n-dim bool张量。 每个元素都是：用公式Out = X && Y计算的.
 
 返回类型：
 
