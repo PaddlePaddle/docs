@@ -11,12 +11,13 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 例子1：
 
 ::
+
     输入：
-        X.lod = [[0, 3, 5]] X.data = [[1], [2], [3], [4], [5]] X.dims = [5, 1]
+        X.lod = [[0, 3, 5]]  X.data = [[1], [2], [3], [4], [5]]  X.dims = [5, 1]
     属性：
-        win_size = 2 pad_value = 0
+        win_size = 2  pad_value = 0
     输出：
-        Out.lod = [[0, 3, 5]] Out.data = [[1, 2], [2, 3], [3, 0], [4, 5], [5, 0]] Out.dims = [5, 2]
+        Out.lod = [[0, 3, 5]]  Out.data = [[1, 2], [2, 3], [3, 0], [4, 5], [5, 0]]  Out.dims = [5, 2]
         
 参数：  
           - input（Variable）: 作为索引序列的输入变量。
