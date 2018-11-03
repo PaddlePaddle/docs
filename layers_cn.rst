@@ -19,12 +19,12 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
     输出：
         Out.lod = [[0, 3, 5]]  Out.data = [[1, 2], [2, 3], [3, 0], [4, 5], [5, 0]]  Out.dims = [5, 2]
         
-**参数：**
+参数：
           - input（Variable）: 作为索引序列的输入变量。
           - win_size（int）: 枚举所有子序列的窗口大小。
           - max_value（int）: 填充值，默认为0。
           
-**返回:**
+返回：
           - 枚举序列变量是LoD张量（LoDTensor）。
           
 **代码示例**
@@ -33,3 +33,14 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 
       x = fluid.layers.data(shape[30, 1], dtype='int32', lod_level=1)
       out = fluid.layers.sequence_enumerate(input=x, win_size=3, pad_value=0)
+
+.. _cn_api_fluid_layers_expand:
+
+expand
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.expand(x, expand_times, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+    扩展运算符会按给定的次数展开输入。 您应该通过提供属性“expand_times”来为每个维度设置次数。 X的等级应该在[1,6]中。 请注意，'expand_times'的大小     必须与X的等级相同。 以下是一个用例：
+
