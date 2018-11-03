@@ -39,7 +39,7 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 .. _cn_api_fluid_layers_expand:
 
 expand
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::
 
 paddle.fluid.layers.expand(x, expand_times, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -110,19 +110,20 @@ paddle.fluid.layers.sequence_concat(input, name=None)
         变量（Variable）
 
 
-**示例代码**
+**代码示例**
 
-..  code_block:: python
+..  code-block:: python
 
         out = fluid.layers.sequence_concat(input=[seq1, seq2, seq3])
+        
 
 .. _cn_api_fluid_layers_scale:
 
 scale
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::
 
 paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 比例运算符
 对输入张量应用缩放和偏移加法。
@@ -147,6 +148,55 @@ else:
 返回类型:
 
         变量(Variable)
+
+.. _cn_api_fluid_layers_elementwise_add:
+
+elementwise_add
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+元素添加运算符
+等式为：
+                        **Out=X+Y**
+        - **X**：任意维度的张量（tensor）.
+        - **Y**：一个维度必须小于等于X维度的张量（tensor）。
+        对于这个运算有两个案例。
+                1. Y的形状（shape）与X相同。
+                2. Y的形状是X的连续子序列。
+        对案例2:
+                1. 广播Y以匹配X的形状，其中轴（axis）是用于将Y广播到X上的起始维度索引。
+                2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。
+                3. 考虑到子序列，Y的大小为1的尾部尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+例如：
+
+::
+
+        shape(X) = (2, 3, 4, 5), shape(Y) = (,)
+        shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
+        shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+        shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+        shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+        shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+
+输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
+
+参数：
+
+        - x（Tensor）:元素op的第一个输入张量。
+        - y（Tensor）:元素op的第二个输入张量。
+        - axis（INT）:（int，默认-1）。 将Y广播到X上的起始维度索引。
+        - use_mkldnn（BOOLEAN）:（bool，默认为false）。 由MKLDNN使用。
+        - act（basestring | None）:激活应用于输出。
+        - name（basestring | None）:输出的名称。
+返回：
+
+        元素运算的输出。
+
+
+
+
 
 
 
