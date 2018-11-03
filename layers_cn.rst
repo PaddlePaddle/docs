@@ -164,16 +164,16 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None,
 
         **Out=X+Y**
 - **X**：任意维度的张量（Tensor）.
-- **Y**：一个维度必须小于等于**X**维度的张量（Tensor）。
+- **Y**：一个维度必须小于等于X维度的张量（Tensor）。
 对于这个运算有2种情况：
 
-        1. **Y**的形状（shape）与**X**相同。
-        2. **Y**的形状（shape）是**X**的连续子序列。
+        1. Y的形状（shape）与X相同。
+        2. Y的形状（shape）是X的连续子序列。
 对于情况2:
 
-        1. 广播**Y**以匹配**X**的形状（shape），其中轴（axis）是用于将**Y**广播到**X**上的起始维度索引。
-        2. 如果axis为-1（默认值），则轴（axis）= rank（**X**）-rank（**Y**）。
-        3. 考虑到子序列，**Y**的大小为1的尾部尺寸将被忽略，例如shape（**Y**）=（2,1）=>（2）。
+        1. 广播Y以匹配X的形状（shape），其中轴（axis）是用于将Y广播到X上的起始维度索引。
+        2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。
+        3. 考虑到子序列，Y的大小为1的尾部尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
 例如：
 
 ::
@@ -185,16 +185,16 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None,
         shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
 
-输入**X**和**Y**可以携带不同的LoD信息。但输出仅与输入**X**共享LoD信息。
+输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
 
-        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-        - **axis**（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
-        - **use_mkldnn**（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-        - **act**（basestring | None）：激活应用于输出。
-        - **name**（basestring | None）：输出的名称。
+        - x ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - y ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - axis（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
+        - use_mkldnn（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - act（basestring | None）：激活应用于输出。
+        - name（basestring | None）：输出的名称。
 返回：
 
         元素运算的输出。
@@ -214,18 +214,18 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
         **OUT = X / Y**
         
 - **X**：任何尺寸的张量（Tensor）。
-- **Y**：尺寸必须小于或等于**X**尺寸的张量（Tensor）。
+- **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
 
 此运算符有两种情况：
 
-        1. **Y**的形状（shape）与**X**相同。
-        2. **Y**的形状（shape）是**X**的连续子序列。
+        1. Y的形状（shape）与X相同。
+        2. Y的形状（shape）是X的连续子序列。
 
 对于情况2：
 
-        1. 广播**Y**以匹配**X**的形状（shape），其中axis是用于将**Y**广播到**X**上的起始维度索引。
+        1. 广播Y以匹配X的形状（shape），其中axis是用于将Y广播到X上的起始维度索引。
         2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。 
-        3. 考虑到子序列，**Y**的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列，Y的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 ::
@@ -237,16 +237,16 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
         shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
        
-输入**X**和**Y**可以携带不同的LoD信息。但输出仅与输入**X**共享LoD信息。
+输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
 
-        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-        - **axis**（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
-        - **use_mkldnn**（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-        - **act**（basestring | None）：激活应用于输出。
-        - **name**（basestring | None）：输出的名称。
+        - x：（Tensor），元素op的第一个输入张量（Tensor）。
+        - y：（Tensor），元素op的第二个输入张量（Tensor）。
+        - axis（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
+        - use_mkldnn（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - act（basestring | None）：激活应用于输出。
+        - name（basestring | None）：输出的名称。
 返回：
 
         元素运算的输出。
@@ -271,14 +271,14 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_sub(x, y, axis=-1, act=None,
 
 此运算符有两种情况：
 
-        1. **Y**的形状（shape）与**X**相同。
-        2. **Y**的形状（shape）是**X**的连续子序列。
+        1. Y的形状（shape）与X相同。
+        2. Y的形状（shape）是X的连续子序列。
 
 对于情况2：
 
-        1. 广播**Y**以匹配**X**的形状（shape），其中axis是用于将**Y**广播到**X**上的起始维度索引。
+        1. 广播Y以匹配X的形状（shape），其中axis是用于将Y广播到X上的起始维度索引。
         2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。 
-        3. 考虑到子序列，**Y**的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列，Y的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
         
 例如：
 ::
@@ -290,16 +290,16 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_sub(x, y, axis=-1, act=None,
         shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
         
-输入**X**和**Y**可以携带不同的LoD信息。但输出仅与输入**X**共享LoD信息。
+输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
 
-        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-        - **axis**（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
-        - **use_mkldnn**（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-        - **act**（basestring | None）：激活应用于输出。
-        - **name**（basestring | None）：输出的名称。
+        - x ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - y ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - axis（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
+        - use_mkldnn（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - act（basestring | None）：激活应用于输出。
+        - name（basestring | None）：输出的名称。
 返回：
 
         元素运算的输出。
@@ -319,18 +319,18 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None,
         **Out=X⊙Y**
         
 - **X**：任何尺寸的张量（Tensor）。
-- **Y**：尺寸必须小于或等于**X**尺寸的张量（Tensor）。
+- **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
 
 此运算符有两种情况：
 
-        1. **Y**的形状（shape）与**X**相同。
-        2. **Y**的形状（shape）是**X**的连续子序列。
+        1. Y的形状（shape）与X相同。
+        2. Y的形状（shape）是X的连续子序列。
 
 对于情况2：
 
-        1. 广播**Y**以匹配**X**的形状（shape），其中axis是用于将**Y**广播到**X**上的起始维度索引。
+        1. 广播Y以匹配X的形状（shape），其中axis是用于将Y广播到X上的起始维度索引。
         2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。 
-        3. 考虑到子序列，**Y**的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列，Y的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
         
 例如：
 ::
@@ -342,16 +342,16 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None,
         shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
         
-输入**X**和**Y**可以携带不同的LoD信息。但输出仅与输入**X**共享LoD信息。
+输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
 
-        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-        - **axis**（INT）：（int，默认-1）。将**Y**广播到**X**上的起始维度索引。
-        - **use_mkldnn**（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-        - **act**（basestring | None）：激活应用于输出。
-        - **name**（basestring | None）：输出的名称。
+        - x ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - y ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - axis（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
+        - use_mkldnn（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - act（basestring | None）：激活应用于输出。
+        - name（basestring | None）：输出的名称。
 返回：
 
         元素运算的输出。        
