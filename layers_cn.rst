@@ -536,16 +536,61 @@ paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32'
         - min（Float）：（float，默认-1.0）均匀随机的最小值。
         - max（Float）：（float，default 1.0）均匀随机的最大值。
         - seed（Int）：（int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此运算符将始终每次生成相同的随机数。
-        - dtype（np.dtype|core.VarDesc.VarType|str） - 数据类型：float32，float_16，int等。
+        - dtype（np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等。
 返回：
 
-        指定形状的张量将使用指定值填充。
+        指定形状的张量（Tensor）将使用指定值填充。
 返回类型:	
 
-        变量(Variable)
+        输出（Variable）
 
+.. _cn_api_fluid_layers_gaussian_random:
 
+gaussian_random
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-        
-        
- 
+paddle.fluid.layers.gaussian_random(shape, mean=0.0, std=1.0, seed=0, dtype='float32')
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+高斯随机运算符。
+
+用于使用高斯随机生成器初始化张量（Tensor）。
+
+参数：
+
+        - shape（tuple | list）：（vector <int>）随机张量的维数
+        - mean（Float）：（float，默认值0.0）随机张量的均值
+        - std（Float）：（浮点数，默认值为1.0）随机张量的std
+        - seed（Int）：（int，default 0）生成器随机生成种子。0表示使用系统范围的种子。注意如果seed不为0，则此运算符每次将始终生成相同的随机数
+        - dtype（np.dtype | core.VarDesc.VarType | str）：输出的数据类型。
+返回：
+
+        输出高斯随机运算矩阵
+
+返回类型：
+        输出（Variable）
+
+       
+.. _cn_api_fluid_layers_sampling_id:
+
+sampling_id
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.sampling_id(x, min=0.0, max=1.0, seed=0, dtype='float32')
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Id采样运算符。用于从输入的多项分布中对id进行采样的图层。为一个样本采样一个id。
+
+参数：
+
+        - x（Variable）：softmax的输入张量（Tensor）。2-D形状[batch_size，input_feature_dimensions]
+        - min（Float）：随机的最小值。（浮点数，默认为0.0）
+        - max（Float）：随机的最大值。（float，默认1.0）
+        - seed（Float）：用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此运算符将始终每次生成相同的随机数。（int，默认为0）。
+        - dtype（np.dtype | core.VarDesc.VarType | str）：输出数据的类型为float32，float_16，int等。
+返回：
+
+        SamplingId数据张量
+
+返回类型：
+        out（可变）
