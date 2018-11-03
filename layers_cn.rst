@@ -164,7 +164,7 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None,
         **Out=X+Y**
 - **X**：任意维度的张量（tensor）.
 - **Y**：一个维度必须小于等于X维度的张量（tensor）。
-对于这个运算有两个案例。
+对于这个运算有情况：
 
         1. Y的形状（shape）与X相同。
         2. Y的形状（shape）是X的连续子序列。
@@ -207,6 +207,7 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 元素除法运算符
+
 等式是：
         **OUT = X / Y**
         
@@ -214,6 +215,7 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
 -Y：尺寸必须小于或等于X尺寸的张量。
 
 此运算符有两种情况：
+
         1. Y的形状（shape）与X相同。
         2. Y的形状（shape）是X的连续子序列。
 
@@ -236,12 +238,12 @@ paddle.fluid.layers.paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None,
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-        - x -（Tensor），元素op的第一个输入张量。
-        - y -（Tensor），元素op的第二个输入张量。
-        - axis（INT）-（int，默认-1）。将Y广播到X上的起始维度索引。
-        - use_mkldnn（BOOLEAN）-（bool，默认为false）。由MKLDNN使用。
-        - act（basestring | None）-激活应用于输出。
-        - name（basestring | None）-输出的名称。
+        - x ：（Tensor），元素op的第一个输入张量。
+        - y ：（Tensor），元素op的第二个输入张量。
+        - axis（INT）：（int，默认-1）。将Y广播到X上的起始维度索引。
+        - use_mkldnn（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - act（basestring | None）：激活应用于输出。
+        - name（basestring | None）：输出的名称。
 返回：
 
         元素运算的输出。
