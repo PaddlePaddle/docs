@@ -21,13 +21,13 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
         
 参数：
 
-        - input（Variable）: 作为索引序列的输入变量。
-        - win_size（int）: 枚举所有子序列的窗口大小。
-        - max_value（int）: 填充值，默认为0。
+- input（Variable）: 作为索引序列的输入变量。
+- win_size（int）: 枚举所有子序列的窗口大小。
+- max_value（int）: 填充值，默认为0。
           
 返回：
 
-        枚举序列变量是LoD张量（LoDTensor）。
+ 枚举序列变量是LoD张量（LoDTensor）。
           
 **代码示例**
 
@@ -66,17 +66,17 @@ paddle.fluid.layers.expand(x, expand_times, name=None)
  
 参数：
 
-        - x (Variable)：一个等级在[1, 6]范围中的tensor.
-        
-        - expand_times (list|tuple) ：每一个维度要扩展的次数.
+- x (Variable)：一个等级在[1, 6]范围中的tensor.
+
+- expand_times (list|tuple) ：每一个维度要扩展的次数.
         
 返回：
 
-        扩展变量是LoDTensor。扩展后，输出（Out）的每个维度的大小等于输入（X）的相应维度的大小乘以expand_times给出的相应值。
+ 扩展变量是LoDTensor。扩展后，输出（Out）的每个维度的大小等于输入（X）的相应维度的大小乘以expand_times给出的相应值。
 
 返回类型：
 
-        变量（Variable）
+ 变量（Variable）
 
 **代码示例**
 
