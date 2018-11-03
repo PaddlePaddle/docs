@@ -62,16 +62,15 @@ paddle.fluid.layers.expand(x, expand_times, name=None)
                     [[4, 4], [5, 5], [6, 6], [4, 4], [5, 5], [6, 6]]
                 ]
  
- 参数:
+参数:
         - x (Variable)：一个等级在[1, 6]范围中的tensor.
         
         - expand_times (list|tuple) ：每一个维度要扩展的次数.
         
-**返回:**
+返回:
         - 扩展变量是LoDTensor。扩展后，输出（Out）的每个维度的大小等于输入（X）的相应维度的大小乘以expand_times给出的相应值。
 
-**返回类型:**
-
+返回类型:
         - 变量（Variable）
 
 **代码示例**
