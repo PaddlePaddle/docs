@@ -638,14 +638,14 @@ paddle.fluid.layers.sum(x)
 
 求和算子。
 
-该运算符对输入张量求和。所有输入都可以携带LoD（详细程度）信息。 但是输出仅与第一个输入共享LoD信息。
+该运算符对输入张量求和。所有输入都可以携带LoD（详细程度）信息，但是输出仅与第一个输入共享LoD信息。
 
 参数：
 
         - x（Variable）：（vector <Tensor>）sum运算符的输入张量（Tensor）。
 返回:
 
-        ( Tensor）sum运算符的输出张量。
+        (Tensor）求和算子的输出张量。
 返回类型：
 
         输出（Variable）。
@@ -695,8 +695,10 @@ shape算子
 获得输入张量的形状。现在只支持输入CPU的Tensor。
 
 参数：
+
         - input（Variable）：（Tensor），输入张量。
-返回:
+返回：
+
         (Tensor），输入张量的形状，形状的数据类型是int32，它将与输入张量（Tensor）在同一设备上。
 
 返回类型：
@@ -715,10 +717,10 @@ paddle.fluid.layers.logical_and(x, y, out=None, name=None)
 
 逻辑与算子
 
-它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算得到的。
+它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算公式Out = X && Y得到的。
 
-        **Out = X && Y**
 参数：
+
         - x（Variable）：（LoDTensor）logical_and运算符的左操作数
         - y（Variable）：（LoDTensor）logical_and运算符的右操作数
         - out（Tensor）：输出逻辑运算的张量。
