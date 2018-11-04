@@ -642,7 +642,7 @@ paddle.fluid.layers.sum(x)
 
 参数：
 
-        - x（Variable）：（vector <Tensor>）sum运算符的输入张量（Tensor）。
+- x（Variable）：（vector <Tensor>）sum运算符的输入张量（Tensor）。
 返回:
 
         (Tensor）求和算子的输出张量。
