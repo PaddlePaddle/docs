@@ -536,7 +536,7 @@ paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32'
 - min（Float）：（float，默认-1.0）均匀随机的最小值。
 - max（Float）：（float，default 1.0）均匀随机的最大值。
 - seed（Int）：（int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此运算符将始终每次生成相同的随机数。
-        - dtype（np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等。
+- dtype（np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等。
 返回：
 
         指定形状的张量（Tensor）将使用指定值填充。
@@ -596,10 +596,10 @@ Id采样算子。用于从输入的多项分布中对id进行采样的图层。�
 返回类型：
 
         输出（Variable）。
-       
+
 
  
- .. _cn_api_fluid_layers_gaussian_random_batch_size_like:
+.. _cn_api_fluid_layers_gaussian_random_batch_size_like:
 
 gaussian_random_batch_size_like
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -696,7 +696,7 @@ shape算子
 
 参数：
 
-        input（Variable）：（Tensor），输入张量。
+- input（Variable）：（Tensor），输入张量。
 返回：
 
         (Tensor），输入张量的形状，形状的数据类型是int32，它将与输入张量（Tensor）在同一设备上。
