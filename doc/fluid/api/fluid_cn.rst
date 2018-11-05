@@ -189,17 +189,10 @@ current_block()
 
 list_vars()
 """"""""""""""""""""""""""""""""""""""""""
-获取当前program中所有变量。返回值是一个可迭代对象（iterable object）.
+获取当前program中所有变量。返回值是一个可迭代对象（iterable object)。
+
 返回：generator 会yield每个Program中的变量
+
 返回类型：iterable
 	
-
-参数：  
-		- array (Variable|list)：待读取的输入张量（Tensor）
-		- i (Variable|list)：待读取的输入数据索引
-
-返回：	张量（Tensor）类型的变量，储存事前写入的数据
-
-返回类型:	变量（variable）
-
 
