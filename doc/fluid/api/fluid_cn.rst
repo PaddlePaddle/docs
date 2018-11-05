@@ -25,6 +25,7 @@ class paddle.fluid.Program
         fluid.layers.fc(name="fc", shape=[10], dtype='float32', act="relu")
 
 **op_role**
+""""""""""""""""""""""""""""""""""""""""""
 operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 注意：这是一个底层API。它仅用于ParallelExecutor复制或调度operator到设备。
