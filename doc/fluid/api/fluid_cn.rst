@@ -62,8 +62,9 @@ to_string(throw_on_error, with_details=False)
 用于debug
 
 参数：  
-		- throw_on_error(bool): 有设置任何必需的字段时，抛出值错误。
-		- with_details(bool): 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
+
+	- throw_on_error(bool): 有设置任何必需的字段时，抛出值错误。
+	- with_details(bool): 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
 
 返回：
 
@@ -259,6 +260,7 @@ paddle.fluid.memory_optimize(input_program, skip_opt_set=None, print_log=False, 
 注意:它不支持block中嵌套子block。
 
 参数:
+
 	- input_program (str) – 输入Program。
 	- skip_opt_set (set) – set中的vars将不被内存优化。
 	- print_log (bool) – 是否打印debug日志。
@@ -368,7 +370,7 @@ class paddle.fluid.WeightNormParamAttr(dim=None, name=None, initializer=None, le
 
 参数:
 
-	- dim(list)——参数的名称。默认None。（ 原文错误）
+	- dim(list)——参数的名称。默认None。
 	- name (str) -参数的名称。默认None。
 	- initializer（initializer)——初始化参数的方法。默认None。
 	- learning_rate (float)——学习率。优化时学习速率global_lr∗parameter_lr∗scheduler_factor。默认1.0。
