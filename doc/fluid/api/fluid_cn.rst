@@ -152,7 +152,7 @@ DistributeTranspiler
 
 transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-运行该transpiler（转译器）。
+该方法可以运行该transpiler（转译器）。
 
 参数:	
 
@@ -163,5 +163,36 @@ transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_
     - sync_mode (bool) – 是否做同步训练(synchronous training), 默认为True
     - startup_program (Program|None) – startup_program to transpile, default is fluid.default_main_program()
     - current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
+
+get_trainer_program(wait_port=True)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+该方法可以得到Trainer侧的program。
+返回:	Trainer侧的program
+返回类型:	Program
+
+
+get_pserver_program(endpoint)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+该方法可以得到Pserver（参数服务器）侧的程序
+ 
+参数:	
+ 	- endpoint (str) – 当前Pserver终端
+ 
+返回:	当前Pserver需要执行的program
+返回类型:	Program
+
+
+get_pserver_programs(endpoint)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
+参数:	
+	- endpoint (str) – 当前Pserver终端
+返回:	(main_program, startup_program), “Program”类型的元组
+返回类型:	tuple 
+ 
+ get_startup_program(endpoint, pserver_program=None, startup_program=None)
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  **该函数已停止使用**
+  
 
 
