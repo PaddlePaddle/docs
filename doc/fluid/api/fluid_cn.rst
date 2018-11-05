@@ -24,7 +24,7 @@ class paddle.fluid.Program
         fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
         fluid.layers.fc(name="fc", shape=[10], dtype='float32', act="relu")
 
-**op_role**
+op_role
 """"""""""""""""""""""""""""""""""""""""""
 operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
