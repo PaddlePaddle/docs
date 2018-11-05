@@ -310,11 +310,13 @@ x.lod = [[2, 3]] x.data = [[1, 2], [3, 4], // seq 1
 [5, 6], [7, 8], [9, 10]] // seq 2
 x.shape = [5, 2]
 
+
 LoD可以有多个level(例如，一个段落可以有多个句子，一个句子可以有多个单词)。下面的例子中，Y为LoDTensor ，lod_level为2。表示有2个序列，第一个序列的长度是2(有2个子序列)，其中第二个序列的长度是1。第一序列的两个子序列长度分别为2和2。第二个序列的子序列的长度是3。
 
 ::
 
 y.lod = [[2 1], [2 2 3]] y.shape = [2+2+3, ...]
+
 
 .. note::
 
@@ -327,19 +329,25 @@ y.lod = [[2 1], [2 2 3]] y.shape = [2+2+3, ...]
 
 has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
 
+
 ::
 
 lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+
 
 ::
 
 recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
+
 ::
 
 set_lod(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
 
+
 ::
 
 set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
+
+
 
