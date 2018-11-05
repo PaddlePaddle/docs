@@ -1,4 +1,4 @@
-# LoD-Tensor
+# LoD-Tensor使用说明
 
 LoD(Level-of-Detail) Tensor是Fluid中特有的概念，它在Tensor基础上附加了序列信息。Fluid中可传输的数据包括：输入、输出、网络中的可学习参数，全部统一使用LoD-Tensor表示。
 
