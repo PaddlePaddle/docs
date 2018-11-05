@@ -149,6 +149,28 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
     标记RNN输出变量。
     参数:outputs,输出变量。
     返回:None
-    
+ 
+ 
+.. _cn_api_fluid_layers_StaticRNN:
+
+StaticRNN
+>>>>>>>>>>>>
+
+class paddle.fluid.layers.StaticRNN(name=None)
+""""""""""""""""""""""""""""""""""""""""""
+
+用于创建static RNN。RNN将有自己的参数，比如输入、输出、memory、状态和长度。
+
+  memory(init=None, shape=None, batch_ref=None, init_value=0.0, init_batch_dim_idx=0, ref_batch_dim_idx=1)
+  参数：
+  
+    - init - boot memory，如果没有设置，则必须提供一个shape
+    - shape - boot memory的形状
+    - batch_ref - batch引用
+    - init_value - boot memory的初始化值
+    - init_batch_dim_idx - init维度中的batch大小的索引
+    - ref_batch_dim_idx - batch_ref维度中的batch大小索引
+
+
 
  
