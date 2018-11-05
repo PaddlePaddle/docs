@@ -370,14 +370,14 @@ class paddle.fluid.WeightNormParamAttr(dim=None, name=None, initializer=None, le
 
 参数:
 
-	- dim(list)——参数的名称。默认None。
-	- name (str) -参数的名称。默认None。
-	- initializer（initializer)——初始化参数的方法。默认None。
-	- learning_rate (float)——学习率。优化时学习速率global_lr∗parameter_lr∗scheduler_factor。默认1.0。
-	- regularizer (WeightDecayRegularizer) 。正则化因子。默认None。
-	- trainable(bool) -参数是否可训练。默认True。
-	- gradient_clip (BaseGradientClipAttr)——梯度下降裁剪（Gradient Clipping）的方法。默认None。
-	- do_model_average (bool) -参数是否应该model average。默认False。
+	- dim(list) 				参数的名称。默认None。
+	- name (str)				参数的名称。默认None。
+	- initializer（initializer)		初始化参数的方法。默认None。
+	- learning_rate (float)			学习率。优化时学习速率global_lr∗parameter_lr∗scheduler_factor。默认1.0。
+	- regularizer (WeightDecayRegularizer)	正则化因子。默认None。
+	- trainable(bool) 			参数是否可训练。默认True。
+	- gradient_clip (BaseGradientClipAttr)	梯度下降裁剪（Gradient Clipping）的方法。默认None。
+	- do_model_average (bool)		参数是否应该model average。默认False。
 
 返回： empty program
 
