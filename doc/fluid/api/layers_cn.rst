@@ -123,6 +123,7 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 >>>     drnn.update_memory(ex_mem=memory, new_mem=hidden)
 >>>     drnn.output(hidden)
 >>> rnn_output = drnn()
+
   参数：
     - init (Variable|None) – 初始化的Variable.
     - shape (list|tuple) – memory shape. 注意形状不包含
