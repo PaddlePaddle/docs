@@ -196,3 +196,49 @@ list_vars()
 返回类型：iterable
 	
 
+.. _cn_api_fluid_name_scope:
+
+name_scope
+>>>>>>>>>>>>
+
+paddle.fluid.name_scope(*args, **kwds)
+""""""""""""""""""""""""""""""""""""""""""
+
+为operators生成层次名称前缀
+
+注意： 这个函数只能用于调试和可视化。不要将其用于分析，比如graph/program转换。
+
+.. _cn_api_fluid_global_scope:
+
+global_scope
+>>>>>>>>>>>>
+
+paddle.fluid.global_scope()
+""""""""""""""""""""""""""""""""""""""""""
+
+获取全局/默认作用域实例。很多api使用默认global_scope，例如Executor.run
+
+返回：全局/默认作用域实例
+
+返回类型：Scope
+
+.. _cn_api_fluid_scope_guard:
+
+scope_guard
+>>>>>>>>>>>>
+
+paddle.fluid.scope_guard(*args, **kwds)()
+""""""""""""""""""""""""""""""""""""""""""
+
+修改全局/默认作用scope,  运行时中的所有变量都将分配给新的scope。
+
+参数：scope -新的全局/默认 scope。
+
+**代码示例**
+
+..  code-block:: python
+
+>>> import paddle.fluid as fluid
+>>> new_scope = fluid.Scope()
+>>> with fluid.scope_guard(new_scope):
+>>>     ...
