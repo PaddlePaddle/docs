@@ -169,8 +169,222 @@ class paddle.fluid.layers.StaticRNN(name=None)
     - batch_ref - batch引用
     - init_value - boot memory的初始化值
     - init_batch_dim_idx - init维度中的batch大小的索引
-    - ref_batch_dim_idx - batch_ref维度中的batch大小索引
+    - ref_batch_dim_idx - batch_ref维度中的batch大小的索引
 
 
 
  
+.. _cn_api_fluid_layers_shuffle:
+
+shuffle
+>>>>>>>>>>>>
+
+paddle.fluid.layers.shuffle(reader, buffer_size)
+""""""""""""""""""""""""""""""""""""""""""
+
+使用python装饰器用shuffle 装饰 reader
+
+参数:
+
+    - reader (Variable) – 用shuffle装饰的reader
+    - buffer_size (int) – reader中buffer的大小
+
+返回:	
+ 用shuffle装饰后的reader
+
+返回类型:	Variable
+
+
+.. _cn_api_fluid_layers_double_buffer:
+
+double_buffer
+>>>>>>>>>>>>
+
+paddle.fluid.layers.double_buffer(reader, place=None, name=None)
+""""""""""""""""""""""""""""""""""""""""""
+
+生成一个双缓冲队列reader. 数据将复制到具有双缓冲队列的位置（由place指定），如果place=none，，则将使用executor执行的位置。
+
+参数:
+
+  - reader (Variable) – 需要wrap的reader
+  - place (Place) – 目标数据的位置. 默认是executor执行样本的位置.
+  - name (str) – Variable 的名字. 默认为None，不关心名称时也可以设置为None
+
+
+返回： 双缓冲队列的reader
+
+
+**代码示例**
+
+..  code-block:: python
+
+>>> reader = fluid.layers.open_files(filenames=['somefile'],
+>>>                                  shapes=[[-1, 784], [-1, 1]],
+>>>                                  dtypes=['float32', 'int64'])
+>>> reader = fluid.layers.double_buffer(reader)
+>>> img, label = fluid.layers.read_file(reader)
+
+
+
+.. _cn_api_fluid_layers_py_reader:
+
+py_reader
+>>>>>>>>>>>>
+
+paddle.fluid.layers.py_reader(capacity, shapes, dtypes, lod_levels=None, name=None, use_double_buffer=True)
+""""""""""""""""""""""""""""""""""""""""""
+
+创建一个由在Python端提供数据的reader
+
+该layer返回一个Reader Variable。reader提供了decorate_paddle_reader()和decorate_tensor_provider()来设置Python generator，作为Python端的数据源。在c++端调用Executor::Run()时，来自generator的数据将被自动读取。与DataFeeder.feed()不同，数据读取进程和Executor::Run()进程可以使用py_reader并行运行。reader的start()方法应该在每次数据传递开始时调用，在传递结束和抛出fluid.core.EOFException后执行reset()方法。注意，Program.clone()方法不能克隆py_reader。
+
+参数:	
+
+  - capacity (int) – py_reader维护的缓冲区容量
+  - shapes (list|tuple) –数据形状的元组或列表.
+  - dtypes (list|tuple) – shapes对应元素的数据类型
+  - lod_levels (list|tuple) – lod_level的整型列表或元组
+  - name (basestring) – python 队列的前缀名称和Reader 名称。不会自动生成。
+  - use_double_buffer (bool) – 是否使用双缓冲
+
+返回:	
+
+reader，从reader中可以获取feed的数据
+
+返回类型:	Variable
+	
+
+
+**代码示例**
+
+1. py_reader 基本使用如下代码
+
+..  code-block:: python
+
+>>> import paddle.v2
+>>> import paddle.fluid as fluid
+>>> import paddle.dataset.mnist as mnist
+>>>
+>>> reader = fluid.layers.py_reader(capacity=64,
+>>>                                 shapes=[(-1,3,224,224), (-1,1)],
+>>>                                 dtypes=['float32', 'int64'])
+>>> reader.decorate_paddle_reader(
+>>>     paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+>>>
+>>> img, label = fluid.layers.read_file(reader)
+>>> loss = network(img, label) # some network definition
+>>>
+>>> fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
+>>>
+>>> exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
+>>> for epoch_id in range(10):
+>>>     reader.start()
+>>>     try:
+>>>         while True:
+>>>             exe.run(fetch_list=[loss.name])
+>>>     except fluid.core.EOFException:
+>>>         reader.reset()
+
+
+
+**代码示例**
+
+2. 训练和测试应使用不同的名称创建两个不同的py_reader，例如：
+
+..  code-block:: python
+
+>>> import paddle.v2
+>>> import paddle.fluid as fluid
+>>> import paddle.dataset.mnist as mnist
+>>>
+>>> def network(reader):
+>>>     img, label = fluid.layers.read_file(reader)
+>>>     # Here, we omitted the network definition
+>>>     return loss
+>>>
+>>> train_reader = fluid.layers.py_reader(capacity=64,
+>>>                                       shapes=[(-1,3,224,224), (-1,1)],
+>>>                                       dtypes=['float32', 'int64'],
+>>>                                       name='train_reader')
+>>> train_reader.decorate_paddle_reader(
+>>>     paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+>>>
+>>> test_reader = fluid.layers.py_reader(capacity=32,
+>>>                                      shapes=[(-1,3,224,224), (-1,1)],
+>>>                                      dtypes=['float32', 'int64'],
+>>>                                      name='test_reader')
+>>> test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
+>>>
+>>> # Create train_main_prog and train_startup_prog
+>>> train_main_prog = fluid.Program()
+>>> train_startup_prog = fluid.Program()
+>>> with fluid.program_guard(train_main_prog, train_startup_prog):
+>>>     # Use fluid.unique_name.guard() to share parameters with test program
+>>>     with fluid.unique_name.guard():
+>>>         train_loss = network(train_reader) # some network definition
+>>>         adam = fluid.optimizer.Adam(learning_rate=0.01)
+>>>         adam.minimize(loss)
+>>>
+>>> # Create test_main_prog and test_startup_prog
+>>> test_main_prog = fluid.Program()
+>>> test_startup_prog = fluid.Program()
+>>> with fluid.program_guard(test_main_prog, test_startup_prog):
+>>>     # Use fluid.unique_name.guard() to share parameters with train program
+>>>     with fluid.unique_name.guard():
+>>>         test_loss = network(test_reader)
+>>>
+>>> fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
+>>> fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
+>>>
+>>> train_exe = fluid.ParallelExecutor(use_cuda=True,
+>>>                 loss_name=train_loss.name, main_program=train_main_prog)
+>>> test_exe = fluid.ParallelExecutor(use_cuda=True,
+>>>                 loss_name=test_loss.name, main_program=test_main_prog)
+>>> for epoch_id in range(10):
+>>>     train_reader.start()
+>>>     try:
+>>>         while True:
+>>>             train_exe.run(fetch_list=[train_loss.name])
+>>>     except fluid.core.EOFException:
+>>>         train_reader.reset()
+>>>
+>>>     test_reader.start()
+>>>     try:
+>>>         while True:
+>>>             test_exe.run(fetch_list=[test_loss.name])
+>>>     except fluid.core.EOFException:
+>>>         test_reader.reset()
+
+
+
+.. _cn_api_fluid_layers_log:
+
+log
+>>>>>>>>>>>>
+
+paddle.fluid.layers.log(x, name=None)
+""""""""""""""""""""""""""""""""""""""""""
+
+给定输入张量，计算其每个元素的自然对数
+                
+                  Out=ln(x)
+ 
+
+参数:
+
+  - x (Variable) –输入张量
+  -	name (str|None, default None) –该layer的名称，如果为None，自动命名.
+
+
+
+返回：	给定输入张量计算自然对数
+
+返回类型:	变量（variable）
+
+
+**代码示例**
+
+..  code-block:: python
+
+  output = fluid.layers.log(x)
