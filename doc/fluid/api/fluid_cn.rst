@@ -1,4 +1,4 @@
-.. cn_api_fluid_default_startup_program:
+.. _cn_api_fluid_default_startup_program:
 
 
 
@@ -26,7 +26,7 @@ startup_program会使用内在的operators（算子）去初始化他们，并�
 
 
 
-.. cn_api_fluid_default_main_program:
+.. _cn_api_fluid_default_main_program:
 
 default_main_program
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -53,9 +53,7 @@ paddle.fluid.default_main_program()
 
 
 
-.. cn_api_fluid_program_guard:
-
-
+.. _cn_api_fluid_program_guard:
 
 program_guard
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -81,8 +79,6 @@ paddle.fluid.program_guard(*args, **kwds)
 
 需要注意的是，如果用户不需要构建自己的启动程序或者主程序，一个临时的program将会发挥作用。
 
-.. The temporary Program can be used if the user does not need to construct either of startup program or main program.
-
 **代码示例**
 
 ..  code-block:: python
@@ -98,5 +94,74 @@ paddle.fluid.program_guard(*args, **kwds)
 		- **main_program** (Program) – “with”语句中将使用的新的main program。
 		- **startup_program** (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序。
 
+
+
+
+
+
+.. _cn_api_fluid_DistributeTranspiler:
+
+DistributeTranspiler
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ *class* paddle.fluid.DistributeTranspiler *(config=None)*
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
+当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即pserver,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
+在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享
+ ``NCCL_ID`` 。
+调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``ParallelExecutor`` 来启动NCCL2分布式模式。 
+
+
+
+
+**代码示例**
+
+..  code-block:: python
+
+	# for pserver mode
+	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+	trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+	current_endpoint = "192.168.0.1:6174"
+	trainer_id = 0
+	trainers = 4
+	role = os.getenv("PADDLE_TRAINING_ROLE")
+
+	t = fluid.DistributeTranspiler()
+	t.transpile(
+     	     trainer_id, pservers=pserver_endpoints, trainers=trainers)
+	if role == "PSERVER":
+     	     pserver_program = t.get_pserver_program(current_endpoint)
+             pserver_startup_program = t.get_startup_program(current_endpoint,
+                                                     pserver_program)
+	elif role == "TRAINER":
+             trainer_program = t.get_trainer_program()
+
+	# for nccl2 mode
+	config = fluid.DistributeTranspilerConfig()
+	config.mode = "nccl2"
+	t = fluid.DistributeTranspiler(config=config)
+	t.transpile(trainer_id, workers=workers, current_endpoint=curr_ep)
+	exe = fluid.ParallelExecutor(
+    	    use_cuda,
+            loss_name=loss_var.name,
+            num_trainers=len(trainers.split(",)),
+            trainer_id=trainer_id
+	)
+
+
+transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+运行该transpiler（转译器）。
+
+参数:	
+
+    - trainer_id (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
+    - program (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
+    - pservers (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
+    - trainers (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
+    - sync_mode (bool) – 是否做同步训练(synchronous training), 默认为True
+    - startup_program (Program|None) – startup_program to transpile, default is fluid.default_main_program()
+    - current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
 
