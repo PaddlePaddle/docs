@@ -124,6 +124,7 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 >>>     drnn.output(hidden)
 >>> rnn_output = drnn()
 
+
   参数：
     - init (Variable|None) – 初始化的Variable.
     - shape (list|tuple) – memory shape. 注意形状不包含
@@ -135,11 +136,13 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
   返回：memory Variable
 
+
   update_memory(ex_mem, new_mem)
   
     将内存从ex_mem更新到new_mem。注意，ex_mem和new_mem的shape和数据类型必须相同。:param ex_mem:memory Variable。:param ex_mem: the memory variable. :type ex_mem: Variable :param new_mem: the plain variable generated in RNN block. :type new_mem: Variable
 
   返回：None
+
 
   output(*outputs)
   
