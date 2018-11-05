@@ -32,31 +32,32 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 例如，Forward operator应该在每个设备上执行。Backward operator在每个设备上执行，并将后向传播的参数梯度(使用op_role_var获得该变量)合并到一个设备上。Optimize operator只在一个设备上执行，并向其他设备广播新的参数，
 
-**set_op_role**
-
+set_op_role
+""""""""""""""""""""""""""""""""""""""""""
 operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 注意：这是一个底层API。它仅用于ParallelExecutor复制或调度operator到设备上执行。
 
 例如，Forward operator应该在每个设备上执行。Backward operato应该在每个设备上执行，并将后向传播的参数梯度(使用op_role_var获得该变量)合并到一个设备上。Optimize operator只在一个设备上执行，并向其他设备广播新的参数
 
-**op_role_var**
-
+op_role_var
+""""""""""""""""""""""""""""""""""""""""""
 op_role的辅助变量。
 
 参考:Program.op_role 文档。
 
 注意:这是一个底层API，用户不应该直接使用它。
 
-**set_op_role_var**
-
+set_op_role_var
+""""""""""""""""""""""""""""""""""""""""""
 op_role的辅助变量。
 
 参考:Program.op_role 文档。
 
 注意:这是一个底层API。用户不应该直接使用它。
 
-**to_string(throw_on_error, with_details=False)**
+to_string(throw_on_error, with_details=False)
+""""""""""""""""""""""""""""""""""""""""""
 
 用于debug
 
@@ -70,8 +71,8 @@ op_role的辅助变量。
 抛出异常：
 ValueError：当throw_on_error = true时，但没有设置任何必需的字段时，抛出ValueError。
 
-**clone(for_test=False)**
-
+clone(for_test=False)
+""""""""""""""""""""""""""""""""""""""""""
 创建一个新的、相同的Program。
 
 有些operator，在训练和测试之间的行为是不同的，比如batch_norm。它们有一个属性is_test来控制行为。当for_test=True时，此方法将把它们的is_test属性更改为True。
@@ -95,7 +96,8 @@ ValueError：当throw_on_error = true时，但没有设置任何必需的字段�
 返回类型:Program
 
 **代码示例**
-1. 克隆一个Program，示例代码如下
+1. 克隆一个Program，示例代码如下：
+
 ..  code-block:: python
 
   train_program = fluid.Program()
@@ -110,7 +112,8 @@ ValueError：当throw_on_error = true时，但没有设置任何必需的字段�
   test_program = train_program.clone(for_test=True)
   sgd = fluid.optimizer.SGD(learning_rate=1e-3)
   with fluid.program_guard(train_program, startup_program):
-        sgd.minimize(loss)       
+        sgd.minimize(loss)    
+	
 2.如果分别运行train Program 和 test Program，则可以不使用clone。
 
 ..  code-block:: python
@@ -143,8 +146,8 @@ ValueError：当throw_on_error = true时，但没有设置任何必需的字段�
 
 上边两个代码片段生成的Program是一样的。
 
-**static parse_from_string(binary_str)**
-
+static parse_from_string(binary_str)
+""""""""""""""""""""""""""""""""""""""""""
 反序列化protobuf，转换成program
 
 注意:在序列化和反序列化之后，所有关于参数的信息都会丢失。
@@ -155,34 +158,35 @@ ValueError：当throw_on_error = true时，但没有设置任何必需的字段�
 
 返回类型：Program
 
-**num_blocks**
+num_blocks
+""""""""""""""""""""""""""""""""""""""""""
+该program中的block的个数
 
-该program中的blocks的个数
-
-**random_seed**
+random_seed
+""""""""""""""""""""""""""""""""""""""""""
 
 程序中随机运算符的默认随机种子。0意味着从随机设备中获取随机种子。
 
 注意：必须在operator被添加之前设置。
 
-**global_block()**
-
+global_block()
+""""""""""""""""""""""""""""""""""""""""""
 获取该program的第一个block。
 
-**block(index)**
-
+block(index)
+""""""""""""""""""""""""""""""""""""""""""
 返回该program中 ，index指定的block。index类型为int
 
 返回：index对应的block
 
 返回类型：Block
 
-**current_block()**
-
+current_block()
+""""""""""""""""""""""""""""""""""""""""""
 获取当前block。当前block是用来添加operators。
 
-**list_vars()**
-
+list_vars()
+""""""""""""""""""""""""""""""""""""""""""
 获取当前program中所有变量。返回值是一个可迭代对象（iterable object）.
 返回：generator 会yield每个Program中的变量
 返回类型：iterable
