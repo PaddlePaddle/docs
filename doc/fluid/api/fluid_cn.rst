@@ -1,4 +1,4 @@
-.. cn_api_fluid:
+.. cn_api_fluid_default_startup_program:
 
 
 
@@ -26,7 +26,7 @@ startup_program会使用内在的operators（算子）去初始化他们，并�
 
 
 
-
+.. cn_api_fluid_default_main_program:
 
 default_main_program
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -53,7 +53,7 @@ paddle.fluid.default_main_program()
 
 
 
-
+.. cn_api_fluid_program_guard:
 
 
 
