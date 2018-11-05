@@ -65,10 +65,12 @@ to_string(throw_on_error, with_details=False)
 		- throw_on_error(bool): 有设置任何必需的字段时，抛出值错误。
 		- with_details(bool): 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
 
-返回：	
+返回：
+
 (str): debug 字符串
 
 抛出异常：
+
 ValueError：当throw_on_error = true时，但没有设置任何必需的字段时，抛出ValueError。
 
 clone(for_test=False)
