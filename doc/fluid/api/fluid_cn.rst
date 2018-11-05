@@ -106,6 +106,7 @@ DistributeTranspiler
 
  *class* paddle.fluid.DistributeTranspiler *(config=None)*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
 当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即pserver,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
 在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享
@@ -150,6 +151,7 @@ DistributeTranspiler
 	)
 
 
+
 transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 该方法可以运行该transpiler（转译器）。
@@ -165,7 +167,7 @@ transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_
     - current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
 get_trainer_program(wait_port=True)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 该方法可以得到Trainer侧的program。
 返回:	Trainer侧的program
 返回类型:	Program
@@ -202,6 +204,74 @@ get_startup_program(endpoint, pserver_program=None, startup_program=None)
 
 返回:	Pserver侧的startup_program
 返回类型:	Program
+
+
+
+.. _cn_api_fluid_release_memory:
+
+release_memory
+>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+paddle.fluid.release_memory(input_program, skip_opt_set=None) 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+该函数可以调整输入program，插入 ``delete_op`` 删除算子，提前删除不需要的变量。
+改动是在变量本身上进行的。
+提醒: 该API还在试验阶段，会在后期版本中删除。不建议用户使用。
+
+
+
+
+
+
+.. _cn_api_fluid_ParallelExecutor:
+
+.. _cn_api_fluid_ExecutionStrategy:
+
+.. _cn_api_fluid_BuildStrategy:
+
+
+
+
+.. _cn_api_fluid_create_lod_tensor:
+
+
+create_lod_tensor
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place) 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+该函数从一个numpy数组，列表或者已经存在的lod tensor中创建一个lod tensor。
+通过一下几步实现:
+	1.检查length-based level of detail (LoD,长度为基准的细节层次)，或称recursive_sequence_lengths(递归序列长度)的正确性
+	2.将recursive_sequence_lengths转化为offset-based LoD(偏移量为基准的LoD)
+        3.把提供的numpy数组，列表或者已经存在的lod tensor复制到CPU或GPU中(看实在什么设备上进行的计算)
+        4.利用offset-based LoD来设置LoD
+::
+     例如：
+Suppose we want LoDTensor to hold data for sequences of word, where each word is represented by an integer. If we want to create a LoDTensor to represent two sentences, one of 2 words, and one of 3 words.
+Then data can be a numpy array of integers with shape (5, 1). recursive_seq_lens will be [[2, 3]], indicating the length(# of words) in each sentence. This length-based recursive_seq_lens [[2, 3]] will be converted to offset-based LoD [[0, 2, 5]] inside the function call.
+Please reference api_guide_low_level_lod_tensor for more details regarding LoD.
+
+
+参数:
+data (numpy.ndarray|list|LoDTensor) – a numpy array or a LoDTensor or a list holding the data to be copied.
+recursive_seq_lens (list) – a list of lists indicating the length-based level of detail info specified by the user.
+place (Place) – CPU or GPU place indicating where the data in the new LoDTensor will be stored.
+返回:
+A fluid LoDTensor object with tensor data and recursive_seq_lens info.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
