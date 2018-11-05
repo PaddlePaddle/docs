@@ -306,11 +306,11 @@ X 为 LoDTensor，它包含两个序列。第一个长度是2，第二个长度�
 
 ::
 
-x.lod = [[2, 3]] x.data = [[1, 2], [3, 4], // seq 1
+	x.lod = [[2, 3]] x.data = [[1, 2], [3, 4], // seq 1
 
-[5, 6], [7, 8], [9, 10]] // seq 2
+	[5, 6], [7, 8], [9, 10]] // seq 2
 
-x.shape = [5, 2]
+	x.shape = [5, 2]
 
 
 LoD可以有多个level(例如，一个段落可以有多个句子，一个句子可以有多个单词)。下面的例子中，Y为LoDTensor ，lod_level为2。表示有2个序列，第一个序列的长度是2(有2个子序列)，其中第二个序列的长度是1。第一序列的两个子序列长度分别为2和2。第二个序列的子序列的长度是3。
@@ -318,33 +318,33 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 ::
 
-y.lod = [[2 1], [2 2 3]] y.shape = [2+2+3, ...]
+	y.lod = [[2 1], [2 2 3]] y.shape = [2+2+3, ...]
 
 
 .. note::
-在上面的描述中，LoD是基于长度的。在paddle内部实现中，lod是基于偏移的。因此,在内部,y.lod表示为[[0,2,3]，[0,2,4,7]](基于长度的Lod表示为为[[2-0,3-2]，[2-0,4-2,7-4]])。
+	在上面的描述中，LoD是基于长度的。在paddle内部实现中，lod是基于偏移的。因此,在内部,y.lod表示为[[0,2,3]，[0,2,4,7]](基于长度的Lod表示为为[[2-0,3-2]，[2-0,4-2,7-4]])。
 
-可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因。当LoD在API中被称为lod时，它可能是基于偏移的。用户应该注意。
-
-
-::
-
-has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
+	可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因。当LoD在API中被称为lod时，它可能是基于偏移的。用户应该注意。
 
 
 ::
 
-lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+	has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
 
 
 ::
 
-recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+	lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
 
 ::
 
-set_lod(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
+	recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+
+
+::
+
+	set_lod(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
 
 
 ::
@@ -353,19 +353,5 @@ set_lod(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
 
 
 
-::
-	
-	Given:
-
-	array = [0.6, 0.1, 0.3, 0.1]
-
-	And:
-
-	i = 2
-
-	Then:
-
-	output = 0.3
-	
 
 
