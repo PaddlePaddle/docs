@@ -1,3 +1,5 @@
+
+
 .. cn_api_fluid_executor:
 
 Executor
@@ -9,16 +11,18 @@ Executor
 
 
 
-该 ``Executor`` 是Python实现的类，仅支持在单个GPU环境中运算。对于在多卡环境下的运算，请参照 ``ParallelExecutor`` 。
-Python执行器(Executor)可以接收传入的program,并根据输入映射表(feed map)和结果获取表(fetch_list)
-向program中添加数据输入算子(feed operators)和结果获取算子（fetch operators)。
+执行引擎（Executor）使用python脚本驱动，仅支持在单GPU环境下运行。多卡环境下请参考 ``ParallelExecutor`` 。
+Python Executor可以接收传入的program,并根据feed map(输入映射表)和fetch_list(结果获取表)
+向program中添加feed operators(数据输入算子)和fetch operators（结果获取算子)。
 feed map为该program提供输入数据。fetch_list提供program训练结束后用户预期的变量（或识别类场景中的命名）。
 
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
-执行器将全局变量存储到全局域中，并为临时变量创建局部域。
-每一小批(minibatch)上进行的前向/后向算法执行完毕后局部域的内容将被作废。
-但是全局域中的变量将在执行器不同的执行过程中一直存在。program中所有的算子会按顺序执行。
+Executor将全局变量存储到全局作用域中，并为临时变量创建局部作用域。
+当每一mini-batch上的前向/反向运算完成后，局部作用域的内容将被废弃，
+但全局作用域中的变量将在Executor的不同执行过程中一直存在。
+
+program中所有的算子会按顺序执行。
 
 参数:	
     - place (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
