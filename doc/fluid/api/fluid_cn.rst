@@ -190,9 +190,20 @@ get_pserver_programs(endpoint)
 返回:	(main_program, startup_program), “Program”类型的元组
 返回类型:	tuple 
  
- get_startup_program(endpoint, pserver_program=None, startup_program=None)
- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  **该函数已停止使用**
-  
+get_startup_program(endpoint, pserver_program=None, startup_program=None)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+**该函数已停止使用**
+返回当前Pserver的startup_program。如果由多个被分散到不同blocks的变量，则修改operator。
+参数:	
+
+	endpoint (str) – 当前Pserver终端
+	pserver_program (Program) – 已停止使用, 先调用get_pserver_program
+ 	startup_program (Program) – 已停止使用, 应在初始化时传入startup_program
+
+返回:	Pserver侧的startup_program
+返回类型:	Program
+
+
+
 
 
