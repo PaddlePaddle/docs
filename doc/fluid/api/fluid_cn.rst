@@ -104,7 +104,7 @@ paddle.fluid.program_guard(*args, **kwds)
 DistributeTranspiler
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
- *class* paddle.fluid.DistributeTranspiler *(config=None)*
+*class* paddle.fluid.DistributeTranspiler *(config=None)*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
@@ -158,13 +158,13 @@ transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_
 
 参数:	
 
-    - trainer_id (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
-    - program (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
-    - pservers (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
-    - trainers (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
-    - sync_mode (bool) – 是否做同步训练(synchronous training), 默认为True
-    - startup_program (Program|None) – startup_program to transpile, default is fluid.default_main_program()
-    - current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
+	- trainer_id (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
+	- program (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
+	- pservers (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
+	- trainers (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
+	- sync_mode (bool) – 是否做同步训练(synchronous training), 默认为True
+ 	- startup_program (Program|None) – startup_program to transpile, default is fluid.default_main_program()
+	- current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
 get_trainer_program(wait_port=True)
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -178,7 +178,7 @@ get_pserver_program(endpoint)
 该方法可以得到Pserver（参数服务器）侧的程序
  
 参数:	
- 	- endpoint (str) – 当前Pserver终端
+	- endpoint (str) – 当前Pserver终端
  
 返回:	当前Pserver需要执行的program
 返回类型:	Program
@@ -187,8 +187,10 @@ get_pserver_program(endpoint)
 get_pserver_programs(endpoint)
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
+
 参数:	
 	- endpoint (str) – 当前Pserver终端
+
 返回:	(main_program, startup_program), “Program”类型的元组
 返回类型:	tuple 
  
@@ -196,11 +198,12 @@ get_startup_program(endpoint, pserver_program=None, startup_program=None)
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 **该函数已停止使用**
 返回当前Pserver的startup_program。如果由多个被分散到不同blocks的变量，则修改operator。
+
 参数:	
 
-	endpoint (str) – 当前Pserver终端
-	pserver_program (Program) – 已停止使用, 先调用get_pserver_program
- 	startup_program (Program) – 已停止使用, 应在初始化时传入startup_program
+	- endpoint (str) – 当前Pserver终端
+	- pserver_program (Program) – 已停止使用, 先调用get_pserver_program
+ 	- startup_program (Program) – 已停止使用, 应在初始化时传入startup_program
 
 返回:	Pserver侧的startup_program
 返回类型:	Program
@@ -244,29 +247,95 @@ paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place)
 
 该函数从一个numpy数组，列表或者已经存在的lod tensor中创建一个lod tensor。
 通过一下几步实现:
-	1.检查length-based level of detail (LoD,长度为基准的细节层次)，或称recursive_sequence_lengths(递归序列长度)的正确性
-	2.将recursive_sequence_lengths转化为offset-based LoD(偏移量为基准的LoD)
-        3.把提供的numpy数组，列表或者已经存在的lod tensor复制到CPU或GPU中(看实在什么设备上进行的计算)
-        4.利用offset-based LoD来设置LoD
-::
-     例如：
-Suppose we want LoDTensor to hold data for sequences of word, where each word is represented by an integer. If we want to create a LoDTensor to represent two sentences, one of 2 words, and one of 3 words.
-Then data can be a numpy array of integers with shape (5, 1). recursive_seq_lens will be [[2, 3]], indicating the length(# of words) in each sentence. This length-based recursive_seq_lens [[2, 3]] will be converted to offset-based LoD [[0, 2, 5]] inside the function call.
-Please reference api_guide_low_level_lod_tensor for more details regarding LoD.
-
+	1. 检查length-based level of detail (LoD,长度为基准的细节层次)，或称recursive_sequence_lengths(递归序列长度)的正确性
+	2. 将recursive_sequence_lengths转化为offset-based LoD(偏移量为基准的LoD)
+        3. 把提供的numpy数组，列表或者已经存在的lod tensor复制到CPU或GPU中(看在什么设备上进行的计算)
+        4. 利用offset-based LoD来设置LoD
+例如：
+         假如我们想用LoD Tensor来容纳一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个     	      词，另外一个句子有3个。
+     	 那么数据可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 	      		  ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
+     	 请参照 ``api_guide_low_level_lod_tensor`` 来获取更多LoD的详细介绍。
 
 参数:
-data (numpy.ndarray|list|LoDTensor) – a numpy array or a LoDTensor or a list holding the data to be copied.
-recursive_seq_lens (list) – a list of lists indicating the length-based level of detail info specified by the user.
-place (Place) – CPU or GPU place indicating where the data in the new LoDTensor will be stored.
+	- data (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
+	- recursive_seq_lens (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
+	- place (Place) – CPU或GPU。 指明返回的新LoD Tensor存储地点
 返回:
-A fluid LoDTensor object with tensor data and recursive_seq_lens info.
+一个携带tensor数据和recursive_seq_lens信息的fluid LoDTensor对象
+
+
+
+
+
+.. _cn_api_fluid_create_random_int_lodtensor:
+
+
+create_random_int_lodtensor
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+paddle.fluid.create_random_int_lodtensor(recursive_seq_lens, base_shape, place, low, high)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+该函数创建一个存储多个随机整数的LoD Tensor。
+
+该函数是经常在书中出现的案例，所以我们根据新的API： ``create_lod_tensor`` 更改它然后放在LoD Tensor板块里来简化代码。
+
+该函数实现以下功能：
+
+    1. 根据用户输入的length-based recursive_seq_lens（基于长度的递归序列长）和在 ``basic_shape`` 中的基本元素形状计算LoDTensor的宏观形状
+    2. 由此形状，建立numpy数组
+    3. 使用API： ``create_lod_tensor`` 建立LoDTensor
+
+
+假如我们想用LoD Tensor来容纳一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个     	      词，另外一个句子有3个。那么 ``base_shape`` 为[1], 输入的length-based ‘recursive_seq_lens’ 是 [[2, 3]]。那么LoDTensor的宏观形状应为[5, 1]，即为两个句子存储5个词。
+
+参数:	
+
+    - recursive_seq_lens (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
+    - base_shape (list) – LoDTensor所容纳的基本元素的形状
+    - place (Place) –  CPU或GPU。 指明返回的新LoD Tensor存储地点
+    - low (int) – 随机数下限
+    - high (int) – 随机数上限
+
+返回:	
+一个携带tensor数据和recursive_seq_lens信息的fluid LoDTensor对象
 
 
 
 
 
 
+
+.. _cn_api_fluid_ParamAttr:
+
+ 
+ParamAttr
+>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+class paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+该类代表了参数的各种属性。 为了使神经网络训练过程更加流畅，用户可以根据需要调整参数属性。比如learning rate（学习率）, regularization（正则化）, trainable（可训练性）, do_model_average(平均化模型)和参数初始化方法.
+
+参数:	
+    - name (str) – 参数名。默认为None。
+    - initializer (Initializer) – 初始化该参数的方法。 默认为None
+    - learning_rate (float) – 参数的学习率。计算方法为 global_lr*parameter_lr∗scheduler_factor。 默认为1.0
+    - regularizer (WeightDecayRegularizer) – 正则因子. 默认为None
+    - trainable (bool) – 该参数是否可训练。默认为True
+    - gradient_clip (BaseGradientClipAttr) – 减少参数梯度的方法。默认为None
+    - do_model_average (bool) – 该参数是否服从模型平均值。默认为False
+    
+**代码示例**
+
+..  code-block:: python
+
+   w_param_attrs = fluid.ParamAttr(name="fc_weight",
+                                   learning_rate=0.5,
+                                   regularizer=fluid.L2Decay(1.0),
+                                   trainable=True)
+   y_predict = fluid.layers.fc(input=x, size=10, param_attr=w_param_attrs)
 
 
 
