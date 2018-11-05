@@ -350,3 +350,19 @@ set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, arg0: List[Lis
 
 
 
+::
+	
+	Given:
+
+	array = [0.6, 0.1, 0.3, 0.1]
+
+	And:
+
+	i = 2
+
+	Then:
+
+	output = 0.3
+	
+
+
