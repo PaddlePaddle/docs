@@ -31,7 +31,7 @@
 
 ### 开发文档
 
-开发文档主要是关于编译、运行等问题。做为开发者，它可以和贡献文档共同结合使用
+开发文档主要是关于编译、运行等问题。作为开发者，它可以和贡献文档共同结合使用
 
 * [iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md)
 
@@ -61,9 +61,9 @@
 
 ### 3. ONNX
 
-ONNX全称为“Open Neural Network Exchange”，即“开放的神经网络切换”。该项目的目的是让不同的神经网络开发框架做到互通互用
+ONNX全称为“Open Neural Network Exchange”，即“开放的神经网络切换”，该项目的目的是让不同的神经网络开发框架做到互通互用
 
-除直接使用PaddlePaddle训练fluid版本的模型外，还可以通过onnx转换得到个别Paddle fluid模型
+除直接使用PaddlePaddle训练fluid版本的模型外，还可以通过onnx转换得到个别Paddle Fluid模型
 
 目前，百度也在做onnx支持工作。相关转换项目在[这里](https://github.com/PaddlePaddle/paddle-onnx)
 
