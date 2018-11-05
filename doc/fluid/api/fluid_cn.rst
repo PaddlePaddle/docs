@@ -227,11 +227,6 @@ paddle.fluid.release_memory(input_program, skip_opt_set=None)
 
 
 
-.. _cn_api_fluid_ParallelExecutor:
-
-.. _cn_api_fluid_ExecutionStrategy:
-
-.. _cn_api_fluid_BuildStrategy:
 
 
 
