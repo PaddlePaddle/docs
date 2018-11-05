@@ -79,8 +79,8 @@ clone(for_test=False)
 
 有些operator，在训练和测试之间的行为是不同的，比如batch_norm。它们有一个属性is_test来控制行为。当for_test=True时，此方法将把它们的is_test属性更改为True。
 
-- 当想要克隆用于训练的Program时，将for_test设置为False。
-- 当想要克隆用于测试的Program时，将for_test设置为True。
+- 克隆Program，该Program用于训练时，将for_test设置为False。
+- 克隆Program，该Program用于测试时，将for_test设置为True。
 
 注意:此API不会删除任何操作符。请在backward和optimization之前使用clone(for_test=True)。
 **代码示例**
