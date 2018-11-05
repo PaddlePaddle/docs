@@ -6,5 +6,3 @@
 
    mobile_readme.md
    mobile_build.md
-   development_ios.md
-
