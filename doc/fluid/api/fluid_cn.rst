@@ -83,6 +83,7 @@ clone(for_test=False)
 - 克隆Program，该Program用于测试时，将for_test设置为True。
 
 注意:此API不会删除任何操作符。请在backward和optimization之前使用clone(for_test=True)。
+
 **代码示例**
 
 ..  code-block:: python
@@ -98,6 +99,7 @@ clone(for_test=False)
 返回类型:Program
 
 **代码示例**
+
 1. 克隆一个Program，示例代码如下：
 
 ..  code-block:: python
@@ -242,3 +244,24 @@ paddle.fluid.scope_guard(*args, **kwds)()
 >>> new_scope = fluid.Scope()
 >>> with fluid.scope_guard(new_scope):
 >>>     ...
+
+
+.. _cn_api_fluid_memory_optimize:
+
+memory_optimize
+>>>>>>>>>>>>
+
+paddle.fluid.memory_optimize(input_program, skip_opt_set=None, print_log=False, level=0, skip_grads=False)
+""""""""""""""""""""""""""""""""""""""""""
+
+通过重用var内存来优化内存。
+
+.. NOTE:: 注意:它不支持block中嵌套子block。
+
+参数:
+	- input_program (str) – 输入Program。
+	- skip_opt_set (set) – set中的vars将不被内存优化。
+	- print_log (bool) – 是否打印debug日志。
+	- level (int)  如果 level=0 并且shape是完全相等，则重用。
+	
+返回: None
