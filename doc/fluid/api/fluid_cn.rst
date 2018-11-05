@@ -200,7 +200,6 @@ get_startup_program(endpoint, pserver_program=None, startup_program=None)
 返回当前Pserver的startup_program。如果由多个被分散到不同blocks的变量，则修改operator。
 
 参数:	
-
 	- endpoint (str) – 当前Pserver终端
 	- pserver_program (Program) – 已停止使用, 先调用get_pserver_program
  	- startup_program (Program) – 已停止使用, 应在初始化时传入startup_program
@@ -222,7 +221,11 @@ paddle.fluid.release_memory(input_program, skip_opt_set=None)
 改动是在变量本身上进行的。
 提醒: 该API还在试验阶段，会在后期版本中删除。不建议用户使用。
 
+参数:	
+    - input_program (Program) – 在此program中插入 ``delete_op`` 
+    - skip_opt_set (set) – 在内存优化时跳过的变量的集合
 
+Returns: None
 
 
 
