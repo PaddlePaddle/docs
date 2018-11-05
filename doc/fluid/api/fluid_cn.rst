@@ -1,4 +1,4 @@
-.. cn_api_fluid_default_startup_program:
+.. _cn_api_fluid_default_startup_program:
 
 
 
@@ -26,7 +26,7 @@ startup_program会使用内在的operators（算子）去初始化他们，并�
 
 
 
-.. cn_api_fluid_default_main_program:
+.. _cn_api_fluid_default_main_program:
 
 default_main_program
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -53,7 +53,7 @@ paddle.fluid.default_main_program()
 
 
 
-.. cn_api_fluid_program_guard:
+.. _cn_api_fluid_program_guard:
 
 
 
@@ -81,7 +81,7 @@ paddle.fluid.program_guard(*args, **kwds)
 
 需要注意的是，如果用户不需要构建自己的启动程序或者主程序，一个临时的program将会发挥作用。
 
-.. The temporary Program can be used if the user does not need to construct either of startup program or main program.
+
 
 **代码示例**
 
