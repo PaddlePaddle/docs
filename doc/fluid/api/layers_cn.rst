@@ -20,29 +20,6 @@ paddle.fluid.layers.create_array(dtype)
 
   返回类型: Variable。
 
-::
-	
-	Given:
-
-	array = [0.6, 0.1, 0.3, 0.1]
-
-	And:
-
-	i = 2
-
-	Then:
-
-	output = 0.3
-	
-
-参数：  
-		- array (Variable|list)：待读取的输入张量（Tensor）
-		- i (Variable|list)：待读取的输入数据索引
-
-返回：	张量（Tensor）类型的变量，储存事前写入的数据
-
-返回类型:	变量（variable）
-
 
 **代码示例**
 
