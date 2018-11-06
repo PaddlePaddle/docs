@@ -41,9 +41,9 @@
 
 * [ARM_LINUX](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_arm_linux.md)
 
-### 贡献文档
+### 贡献代码
 
-- [贡献文档链接](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/CONTRIBUTING.md)
+- [贡献代码](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/CONTRIBUTING.md)
 
 - 上面文档中涵盖了主要的贡献代码流程，如果在实践中您还遇到了其他问题，可以发[Issue](https://github.com/PaddlePaddle/paddle-mobile/issues)。我们看到后会尽快处理
 
@@ -57,7 +57,7 @@
 
 ### 2. Caffe转为Paddle Fluid模型
 
-请参考这里[这里](https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid)
+请参考这里[这里](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/caffe2fluid)
 
 ### 3. ONNX
 
