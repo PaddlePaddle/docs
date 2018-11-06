@@ -38,9 +38,11 @@ computation should be the same as the original program.
 The implementation should contain below components.
 
 1. Define an attribute for fc layer whether to enable model parallel (we can support only fc for now)
+1. IR pass can update "startup program"
 1. Implement "AllGather" OpHandle
 1. Add an IR pass to update the graph, removing original fc layer ops and replace them with 
    distributed ops like we described in above section
+1. Update "startup program" to initialize fc weights as column splited weights.
 
 ## Validation
 
