@@ -734,8 +734,136 @@ paddle.fluid.layers.logical_and(x, y, out=None, name=None)
         输出（Variable）。        
         
         
-        
-        
-        
+.. _cn_api_fluid_layers_logical_or:
+
+logical_or
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.logical_or(x, y, out=None, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+逻辑或算子
+
+它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算公式Out = X || Y得到的。
+
+参数：
+
+- x（Variable）：（LoDTensor）logical_or运算符的左操作数
+- y（Variable）：（LoDTensor）logical_or运算符的右操作数
+- out（Tensor）：输出逻辑运算的张量。
+- name（basestring | None）：输出的名称。
+返回：
+
+        (LoDTensor)n维布尔张量。 每个元素都是：用公式Out = X || Y计算的.
+
+返回类型：
+
+        输出（Variable）。        
 
 
+.. _cn_api_fluid_layers_logical_or:
+
+logical_xor
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.logical_xor(x, y, out=None, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+逻辑异或算子
+
+它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算公式Out = (X || Y) && !(X && Y)得到的。
+
+参数：
+
+- x（Variable）：（LoDTensor）logical_xor运算符的左操作数
+- y（Variable）：（LoDTensor）logical_xor运算符的右操作数
+- out（Tensor）：输出逻辑运算的张量。
+- name（basestring | None）：输出的名称。
+返回：
+
+        (LoDTensor)n维布尔张量。 每个元素都是：用公式Out = (X || Y) && !(X && Y)计算的.
+
+返回类型：
+
+        输出（Variable）。        
+
+
+.. _cn_api_fluid_layers_logical_or:
+
+logical_not
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.logical_not(x, out=None, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+逻辑非算子
+
+它在X上以元素方式操作，并返回Out。X和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算公式Out=!X得到的。
+
+参数：
+
+- x（Variable）：（LoDTensor）logical_not运算符的操作数
+- out（Tensor）：输出逻辑运算的张量。
+- name（basestring | None）：输出的名称。
+返回：
+
+        (LoDTensor)n维布尔张量。 每个元素都是：用公式Out=!X计算的.
+
+返回类型：
+
+        输出（Variable）。        
+
+
+.. _cn_api_fluid_layers_clip:
+
+clip
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.clip(x, min, max, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+clip算子
+
+clip运算符限制给定输入的值在一个区间内。间隔使用参数“min”和“max”来指定：公式为
+**Out=min(max(X,min),max)**
+
+参数：
+
+- x（Variable）：（Tensor）clip运算的输入，维数必须在[1,9]之间。
+- min（FLOAT）：（float）最小值，小于该值的元素由min代替。
+- max（FLOAT）：（float）最大值，大于该值的元素由max替换。
+- name（basestring | None）：输出的名称。
+返回：
+
+（Tensor）clip操作后的输出和输入（X）具有形状（shape）
+
+返回类型：
+
+        输出（Variable）。        
+
+
+.. _cn_api_fluid_layers_clip:
+
+clip_by_norm
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.clip_by_norm(x, max_norm, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+ClipByNorm算子
+
+此运算符将输入X的L2范数限制在max_normmax_norm内。 如果X的L2范数小于或等于max_normmax_norm，则输出（Out）将与X相同。 如果X的L2范数大于max_normmax_norm，则X将被线性缩放，使得输出（Out）的L2范数等于max_normmax_norm，如下面的公式所示：
+**Out=max_norm∗X/norm(X)**,
+其中，norm（X）范数（X）代表XX的L2范数。
+例如：
+
+..  code-block:: python
+
+      data = fluid.layer.data( name=’data’, shape=[2, 4, 6], dtype=’float32’) reshaped = fluid.layers.clip_by_norm( x=data, max_norm=0.5)
+     
+参数：
+
+- x（Variable）：（Tensor）clip_by_norm运算的输入，维数必须在[1,9]之间。
+- max_norm（FLOAT）：（float）最大范数值。
+- name（basestring | None）：输出的名称。
+返回：
+
+        （Tensor）clip_by_norm操作后的输出和输入（X）具有形状（shape）
+返回类型：
+
+        输出（Variable）。        
