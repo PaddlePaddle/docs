@@ -64,7 +64,7 @@ paddle.fluid.program_guard(*args, **kwds)
 
 该函数应配合使用python的“with”语句来改变全局主程序(main program)和启动程序(startup program)。
 
-“with”语句块中的layer函数将在新的main program（主程序）后添加operators（算子）和variables（变量）。
+“with”语句块中的layer函数将在新的main program（主程序）中添加operators（算子）和variables（变量）。
 
 **代码示例**
 
@@ -151,8 +151,8 @@ DistributeTranspiler
 
 
 
-transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+``transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')``
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 该方法可以运行该transpiler（转译器）。
 
 参数:	
@@ -164,8 +164,8 @@ transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_
  	- startup_program (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
 	- current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
-get_trainer_program(wait_port=True)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+``get_trainer_program(wait_port=True)``
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 该方法可以得到Trainer侧的program。
 
@@ -175,8 +175,8 @@ get_trainer_program(wait_port=True)
 
 
 
-get_pserver_program(endpoint)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+``get_pserver_program(endpoint)``
+"""""""""""""""""""""""""""""""""""""""""""
 该方法可以得到Pserver（参数服务器）侧的程序
  
 参数:	
@@ -187,8 +187,8 @@ get_pserver_program(endpoint)
 返回类型:	Program
 
 
-get_pserver_programs(endpoint)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+``get_pserver_programs(endpoint)``
+""""""""""""""""""""""""""""""""""""""""""""""""""
 该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
 
 参数:	
@@ -198,8 +198,8 @@ get_pserver_programs(endpoint)
 
 返回类型:	tuple 
  
-get_startup_program(endpoint, pserver_program=None, startup_program=None)
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+``get_startup_program(endpoint, pserver_program=None, startup_program=None)``
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 **该函数已停止使用**
 获取当前Pserver的startup_program，如果有多个被分散到不同blocks的变量，则修改operator的输入变量。
 
