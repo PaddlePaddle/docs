@@ -6,8 +6,8 @@ Executor
 >>>>>>>>>>>>>>>>>>>>>
 
 
-*class* paddle.fluid.executor. Executor *(place)*
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: class paddle.fluid.executor. Executor (place)
+
 
 
 
@@ -32,8 +32,8 @@ program中所有的算子会按顺序执行。
 提示：你可以用Executor来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
 
 
-``close()``
-""""""""""""""""""""""""""""""""
+.. py:method:: close()
+
 
 关闭这个执行器(Executor)。调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上涉及到目前训练器的资源。
    
@@ -47,8 +47,8 @@ program中所有的算子会按顺序执行。
     exe.close()
 
 
-``run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True,use_program_cache=False)``
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:method:: run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True,use_program_cache=False)
+
 
 调用该执行器对象的此方法可以执行program。通过feed map提供待学习数据，以及借助fetch_list得到相应的结果。
 Python执行器(Executor)可以接收传入的program,并根据输入映射表(feed map)和结果获取表(fetch_list)
