@@ -1319,12 +1319,12 @@ paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold
         >>> matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
 
 
-.. _cn_api_fluid_layers_bipartite_match:
+.. _cn_api_fluid_layers_target_assign:
         
-bipartite_match
+target_assign
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
+paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None, mismatch_value=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
 对于给定的目标边界框或目标标签，该运算符可以为每个预测分配分类和回归目标以及为预测分配权重。权重用于指定哪种预测将不会计入训练损失。
@@ -1345,8 +1345,24 @@ paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold
                 out_weight[i][j] = 0.
                 
 2、如果提供了neg_indices，则基于neg_indices分配out_weight：
-假设neg_indices中每个实例的行偏移量称为neg_lod，对于第i个实例和此实例中的neg_indices的每个id：
 
+        假设neg_indices中每个实例的行偏移量称为neg_lod，对于第i个实例和此实例中的neg_indices的每个id：
+
+::
+
+        out[i][id][0 : K] = {mismatch_value, mismatch_value, ...}
+        out_weight[i][id] = 1.0
+
+参数：
+
+- inputs（Variable）:此输入是具有形状[M，P，K]的3D LoDTensor。
+- matched_indices（Variable）:Tensor <int>），输入匹配的索引是2D Tenosr <int32>，形状为[N，P]，如果MatchIndices[i][j]为-1，则列的第j个实体不是与第i个实例中的任何行实体匹配。
+- negative_indices（Variable）:输入负实例索引是具有形状[Neg，1]和int32类型，为可选输入，其中Neg是负实例索引的总数。
+- mismatch_value（float32）：将此值填充到不匹配的位置。
+
+返回：
+
+返回元组（out，out_weight）。out是具有形状[N，P，K]的3D张量，N和P与它们在neg_indices中相同，K与X的输入中的K相同。如果是match_indices[i][j]。 out_weight是输出的权重，形状为[N，P，1]。
 
 代码示例：
 
@@ -1355,3 +1371,185 @@ paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold
         matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
         gt = layers.data(name='gt', shape=[1, 1], dtype='int32', lod_level=1)
         trg, trg_weight = layers.target_assign(gt, matched_indices, mismatch_value=0)
+
+
+.. _cn_api_fluid_layers_detection_output:
+        
+detection_output
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
+
+单次多窗口检测（SSD）来检测输出层。
+
+此操作是通过执行以下两个步骤来获取检测结果：
+
+        1、根据前面的框解码输入边界框预测。
+        2、通过应用多类非最大抑制（NMS）获得最终检测结果。
+        
+请注意，此操作不会将最终输出边界框剪切到图像窗口。
+
+参数：
+
+- loc（Variable）：具有形状[N，M，4]的3-D张量表示M个边界bbox的预测位置。 N是批量大小，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
+- scores（Variable）：具有形状[N，M，C]的3-D张量表示预测的置信度预测。 N是批量大小，C是类号，M是边界框的数量。对于每个类别，总共M个分数对应于M个边界框。
+- prior_box（Variable）：具有形状[M，4]的2-D张量保持M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是锚框的左上坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是锚箱的右下坐标。
+- prior_box_var（Variable）：具有形状[M，4]的2-D张量保持M组方差。
+- background_label（float）：背景标签的索引，将忽略背景标签。如果设置为-1，则将考虑所有类别。
+- nms_threshold（float）：在NMS中使用的阈值。
+- nms_top_k（int）：根据基于score_threshold的过滤检测的置信度保留的最大检测数。
+- keep_top_k（int）：NMS步骤后每个映像要保留的总bbox数。-1表示在NMS步骤之后保留所有bbox。
+- score_threshold（float）：过滤掉低置信度分数的边界框的阈值。如果没有提供，请考虑所有方框。
+- nms_eta（float）：自适应NMS的参数。
+
+返回：
+
+检测输出是形状为[No，6]的LoDTensor。每行有六个值：[label，confidence，xmin，ymin，xmax，ymax]。否则是此小批量中的检测总数。对于每个实例，第一维中的偏移称为LoD，偏移数为N + 1，N是批量大小。第i个图像具有LoD[i+1]-LoD[i]检测结果，如果为0，则第i个图像没有检测到结果。如果所有图像都没有检测到结果，则LoD中的所有元素都是0，输出张量只包含一个值，即-1。
+
+返回类型：
+
+变量（Variable）
+
+代码示例：
+
+::
+
+        pb = layers.data(name='prior_box', shape=[10, 4],
+             append_batch_size=False, dtype='float32')
+        pbv = layers.data(name='prior_box_var', shape=[10, 4],
+                      append_batch_size=False, dtype='float32')
+        loc = layers.data(name='target_box', shape=[2, 21, 4],
+                      append_batch_size=False, dtype='float32')
+        scores = layers.data(name='scores', shape=[2, 21, 10],
+                      append_batch_size=False, dtype='float32')
+        nmsed_outs = fluid.layers.detection_output(scores=scores,
+                                   loc=loc,
+                                   prior_box=pb,
+                                   prior_box_var=pbv)
+
+
+
+.. _cn_api_fluid_layers_ssd_loss:
+        
+ssd_loss
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, prior_box_var=None, background_label=0, overlap_threshold=0.5, neg_pos_ratio=3.0, neg_overlap=0.5, loc_loss_weight=1.0, conf_loss_weight=1.0, match_type='per_prediction', mining_type='max_negative', normalize=True, sample_size=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
+
+用于SSD的对象检测算法的多窗口损失层
+
+该层用于计算SSD的损失，给定位置偏移预测，置信度预测，最初窗口和ground-truth边界框、标签，以及实例挖掘的类型。通过执行以下步骤，返回的损失是本地化损失（或回归损失）和置信度损失（或分类损失）的加权和：
+
+1、通过二分匹配算法查找匹配的边界框。
+        1.1、计算地面实况框与之前框之间的IOU相似度。
+        1.2、通过二分匹配算法计算匹配的边界框。
+
+2、计算挖掘硬实例的信心
+        2.1、根据匹配的索引获取目标标签。
+        2.2、计算信心损失。
+
+3、应用实例挖掘来获取负示例索引并更新匹配的索引。
+4、分配分类和回归目标
+        4.1、根据前面的框编码bbox。
+        4.2、分配回归目标。
+        4.3、分配分类目标。
+5、计算总体客观损失。
+        5.1计算置信度损失。
+        5.1计算本地化损失。
+        5.3计算总体加权损失。
+参数：
+
+- location（Variable）：位置预测是具有形状[N，Np，4]的3D张量，N是批量大小，Np是每个实例的预测总数。 4是坐标值的数量，布局是[xmin，ymin，xmax，ymax]。
+- confidence (Variable) ：置信度预测是具有形状[N，Np，C]，N和Np的3D张量，它们与位置相同，C是类号。
+- gt_box（Variable）：ground-truth边界框（bbox）是具有形状[Ng，4]的2D LoDTensor，Ng是小批量输入的ground-truth边界框（bbox）的总数。
+- gt_label（Variable）：ground-truth标签是具有形状[Ng，1]的2D LoDTensor。
+- prior_box（Variable）：最初的框是具有形状[Np，4]的2D张量。
+- prior_box_var（Variable）：最初的框的方差是具有形状[Np，4]的2D张量。
+- background_label（int）：background标签的索引，默认为0。
+- overlap_threshold（float）：当找到匹配的盒子，如果match_type为'per_prediction'，请使用overlap_threshold确定额外匹配的bbox。默认为0.5。
+- neg_pos_ratio（float）：负框与正框的比率，仅在mining_type为'max_negative'时使用，3.0由defalut使用。
+- neg_overlap（float）：不匹配预测的负重叠上限。仅当mining_type为'max_negative'时使用，默认为0.5。
+- loc_loss_weight（float）：本地化丢失的权重，默认为1.0。
+- conf_loss_weight（float）：置信度损失的权重，默认为1.0。
+- match_type（str）：训练期间匹配方法的类型应为'bipartite'或'per_prediction'，'per_prediction'由defalut提供。
+- mining_type（str）：硬示例挖掘类型应该是'hard_example'或'max_negative'，现在只支持max_negative。
+- normalize（bool）：是否通过输出位置的总数将SSD丢失标准化，默认为True。
+- sample_size（int）：负框的最大样本大小，仅在mining_type为'hard_example'时使用。
+
+返回：
+
+        具有形状[N * Np，1]，N和Np的定位损失和置信度损失的加权和与它们在位置上的相同。
+
+抛出：
+
+        ValueError：如果mining_type是'hard_example'，现在只支持max_negative的挖掘类型。
+
+代码示例：
+
+::
+
+        >>> pb = fluid.layers.data(
+        >>>                   name='prior_box',
+        >>>                   shape=[10, 4],
+        >>>                   append_batch_size=False,
+        >>>                   dtype='float32')
+        >>> pbv = fluid.layers.data(
+        >>>                   name='prior_box_var',
+        >>>                   shape=[10, 4],
+        >>>                   append_batch_size=False,
+        >>>                   dtype='float32')
+        >>> loc = fluid.layers.data(name='target_box', shape=[10, 4], dtype='float32')
+        >>> scores = fluid.layers.data(name='scores', shape=[10, 21], dtype='float32')
+        >>> gt_box = fluid.layers.data(
+        >>>         name='gt_box', shape=[4], lod_level=1, dtype='float32')
+        >>> gt_label = fluid.layers.data(
+        >>>         name='gt_label', shape=[1], lod_level=1, dtype='float32')
+        >>> loss = fluid.layers.ssd_loss(loc, scores, gt_box, gt_label, pb, pbv)
+        
+
+.. _cn_api_fluid_layers_detection_map:
+        
+detection_map
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
+
+检测mAP评估运算符。一般步骤如下：首先，根据检测输入和标签计算真阳性和假阳性，然后计算mAP评估值。支持'11点'和'积分'mAP算法。请从以下文章中获取更多信息：https：//sanchom.wordpress.com/tag/average-precision/ https://arxiv.org/abs/1512.02325
+
+参数：
+detect_res - （LoDTensor）具有形状[M，6]的2-D LoDTensor表示检测。每行有6个值：[标签，置信度，xmin，ymin，xmax，ymax]，M是此小批量中检测结果的总数。对于每个实例，第一维中的偏移称为LoD，偏移数为N + 1，如果LoD [i + 1] - LoD [i] == 0，则表示没有检测到数据
+label - （LoDTensor）2-D LoDTensor表示标记的地面实况数据。每行有6个值：[标签，xmin，ymin，xmax，ymax，is_difficult]或5个值：[label，xmin，ymin，xmax，ymax]，其中N是此迷你中的地面实况数据的总数。批量。对于每个实例，第一维中的偏移称为LoD，偏移数为N + 1，如果LoD [i + 1] - LoD [i] == 0，则表示没有地面实况数据
+class_num - （int）类号
+background_label - （int，defalut：0）背景标签的索引，背景标签将被忽略。如果设置为-1，则将考虑所有类别
+overlap_threshold - （float）检测输出和地面实况数据的下限jaccard重叠阈值
+evaluate_difficult - （bool，默认为true）切换到控制是否评估困难数据
+has_state - （Tensor <int>）具有形状[1]的张量，0表示忽略输入状态，包括PosCount，TruePos，FalsePos
+input_states - 如果不是None，它包含3个元素：1。pos_count（Tensor）一个形状为[Ncls，1]的张量，存储每个类的输入正例计数，Ncls是输入分类的计数。此输入用于在执行多个小批量累积计算时传递先前小批量生成的AccumPosCount。当输入（PosCount）为空时，不执行累积计算，仅计算当前小批量的结果。 2. true_pos（LoDTensor）具有形状[Ntp，2]的2-D LoDTensor，存储每个类的输入真正正例。此输入用于传递前一个小批量生成的AccumTruePos多个小批量累计计算进行。 。 3. false_pos（LoDTensor）具有形状[Nfp，2]的2-D LoDTensor，存储每个类的输入误报示例。此输入用于传递多个小批量时前一个小批量生成的AccumFalsePos累计计算进行。 。
+out_states - 如果不是None，它包含3个元素。 1. accum_pos_count（Tensor）具有形状[Ncls，1]的张量，存储每个类的正例数。它结合了输入输入（PosCount）和从输入（检测）和输入（标签）计算的正例计数。 2. accum_true_pos（LoDTensor）具有形状[Ntp'，2]的LoDTensor，存储每个类的真正正例。它结合了输入（TruePos）和从输入（检测）和输入（标签）计算的真实正例。 3. accum_false_pos（LoDTensor）具有形状[Nfp'，2]的LoDTensor，存储每个类的误报示例。它结合了输入（FalsePos）和从输入（检测）和输入（标签）计算的误报示例。
+ap_version - （字符串，默认'integral'）AP算法类型，'integral'或'11point'
+返回：
+（Tensor）具有形状[1]的张量，存储检测的mAP评估结果
+
+        
+代码示例：
+
+::
+
+        detect_res = fluid.layers.data(
+            name='detect_res',
+            shape=[10, 6],
+            append_batch_size=False,
+            dtype='float32')
+        label = fluid.layers.data(
+            name='label',
+            shape=[10, 6],
+            append_batch_size=False,
+            dtype='float32')
+        map_out = fluid.layers.detection_map(detect_res, label, 21)
+
+
+
+
