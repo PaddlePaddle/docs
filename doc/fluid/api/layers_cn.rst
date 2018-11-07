@@ -4,8 +4,8 @@
 While
 >>>>>>>>>>>>
 
-*class* paddle.fluid.layers.  While *(cond, is_test=False, name=None)*
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: class paddle.fluid.layers.  While (cond, is_test=False, name=None)
+
 
 该类用于实现while循环控制功能。
 
@@ -34,8 +34,8 @@ While
 
 Switch
 >>>>>>>>>>>>>>>>>>>>
-*class* paddle.fluid.layers.  Switch *(name=None)*
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. py:class:: class paddle.fluid.layers.  Switch (name=None)
 
 Switch类实现的功能十分类似if-elif-else。它可以在学习率调度器(learning rate scheduler)中调整学习率。
 :: 
@@ -66,14 +66,16 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
         with switch.default():
             fluid.layers.tensor.assign(input=two_var, output=lr)
  
-``case(condition)``
-""""""""""""""""""""""""""""""""""
+.. py:method:: case(condition)
+
 为该condition（情况，条件）建立新的block（块）。
   
   
-``default()``
-""""""""""""""""""""""""""""""""""""""
+.. py:method:: default()
+
 为该switch建立default case。
+
+
 
 
 .. _cn_api_fluid_layers_increment:
@@ -81,8 +83,8 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
 increment
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   
-paddle.fluid.layers.  increment(x, value=1.0, in_place=True)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.layers.  increment(x, value=1.0, in_place=True)
+
    
 该函数为x中的每一个值增加 ``value`` 大小, ``value`` 即函数中待传入的参数。该函数默认直接在原变量x上进行运算。
   
@@ -100,13 +102,17 @@ paddle.fluid.layers.  increment(x, value=1.0, in_place=True)
   
     data = fluid.layers.data(name='data', shape=[32, 32], dtype='float32')
     data = fluid.layers.increment(x=data, value=3.0, in_place=True)
-    
+ 
+ 
+ 
 .. _cn_api_fluid_layers_array_write:    
     
 array_write
 >>>>>>>>>>>>>>>>>>>>>>
-paddle.fluid.layers.   array_write(x, i, array=None)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+.. py:class:: paddle.fluid.layers.   array_write(x, i, array=None)
+
+
 该函数将给定的输入变量（即 ``x`` ）写入一个作为输出的 ``LOD_TENSOR_ARRAY`` 变量的某一指定位置中，
 这一位置由数组下标(即 ``i`` )指明。 如果 ``LOD_TENSOR_ARRAY`` (即 ``array`` )未指定（即为None值）， 一个新的 ``LOD_TENSOR_ARRAY`` 将会被创建并作为结果返回。
 
