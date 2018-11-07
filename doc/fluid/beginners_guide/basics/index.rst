@@ -8,7 +8,7 @@
     概述
     
 ..  toctree::
-    :maxdepth: 2
+    :titlesonly:
 
     image_classification/index.md
     word2vec/index.md
