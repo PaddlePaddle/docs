@@ -1073,6 +1073,7 @@ Ceil文档：
 返回：
         Ceil运算符的输出。
         
+        
 .. _cn_api_fluid_layers_floor:
 
 floor
@@ -1088,3 +1089,209 @@ Floor文档：
 
 返回：
         Floor运算符的输出。
+
+
+
+.. _cn_api_fluid_layers_cos:
+
+cos
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.cos(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Cos文档：
+
+参数x：Cos运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Cos运算符的输出。
+
+
+.. _cn_api_fluid_layers_sin:
+
+sin
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.sin(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Sin文档：
+
+参数x：Sin运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Sin运算符的输出。
+
+
+
+.. _cn_api_fluid_layers_round:
+
+round
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.round(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Round文档：
+
+参数x：Round运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Round运算符的输出。
+        
+        
+.. _cn_api_fluid_layers_reciprocal:
+
+reciprocal
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.reciprocal(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Reciprocal文档：
+
+参数x：Reciprocal运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Reciprocal运算符的输出。        
+
+
+.. _cn_api_fluid_layers_prior_box:
+        
+prior_box
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.prior_box(input, image, min_sizes, max_sizes=None, aspect_ratios=[1.0], variance=[0.1, 0.1, 0.2, 0.2], flip=False, clip=False, steps=[0.0, 0.0], offset=0.5, name=None, min_max_aspect_ratios_order=False)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+prior_box算子
+
+生成SSD（Single Shot MultiBox Detector）算法的最初窗口。输入的每个位置产生N个最初窗口，N由min_sizes，max_sizes和aspect_ratios的数量确定。窗口的大小在范围（min_size，max_size）之间，其根据aspect_ratios按顺序生成。
+
+参数：
+- input（Variable）：输入变量，格式为NCHW。
+- image（Variable）：最初窗口输入的图像数据，布局为NCHW。
+- min_sizes（list | tuple | float value）：生成最初窗口的最小大小。
+- max_sizes（list | tuple | None）：生成最初窗口的最大大小。默认值：无。
+- aspect_ratios（list | tuple | float value）：生成最初窗口的宽高比。默认值：[1.]。
+- variance（list | tuple）：要在最初窗口中编码的方差。默认值：[0.1,0.1,0.2,0.2]。
+- flip（bool）：是否翻转宽高比。默认值：false。
+- clip（bool）：是否剪切超出边界的框。默认值：False。
+- step（list | turple）：前一个框跨越宽度和高度，如果step [0] == 0.0或者step [1] == 0.0，将自动计算输入高度/重量的前一个步骤。默认值：[0,0。]
+- offset（float）：最初窗口先前框中心偏移。默认值：0.5
+- name（str）：最初窗口操作的名称。默认值：无。
+- min_max_aspect_ratios_order（bool）:如果设置为True，则输出最初窗口的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响后续卷积层的权重顺序，但不会影响最终检测结果。默认值：False。
+返回：
+
+具有两个变量的元组（boxes, variances）。
+boxes：PriorBox输出最初窗口。布局为[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度，num_priors是每个输入位置的总窗口数。
+variances：PriorBox的方差。布局是[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度num_priors是每个输入位置的总窗口数。
+
+返回类型：
+元组
+
+代码示例：
+
+::
+
+        box, var = fluid.layers.prior_box(
+            input=conv1,
+            image=images,
+            min_sizes=[100.],
+            flip=True,
+            clip=True)
+
+        
+        
+.. _cn_api_fluid_layers_multi_box_head:
+        
+multi_box_head
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_classes, aspect_ratios, min_ratio=None, max_ratio=None, min_sizes=None, max_sizes=None, steps=None, step_w=None, step_h=None, offset=0.5, variance=[0.1, 0.1, 0.2, 0.2], flip=True, clip=False, kernel_size=1, pad=0, stride=1, name=None, min_max_aspect_ratios_order=False)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+生成SSD（Single Shot MultiBox Detector）算法的最初窗口。有关此算法的详细信息，请参阅SSD论文SSD：Single Shot MultiBox Detector的2.2节。
+
+参数：
+
+- inputs（list | tuple）：输入变量列表，所有变量的格式为NCHW。
+- image（Variable）：PriorBoxOp的输入图像数据，布局为NCHW。
+- base_size（int）：base_size用于根据min_ratio和max_ratio来获取min_size和max_size。
+- num_classes（int）：类的数量。
+- aspect_ratios（list | tuple）：生成的最初窗口的宽高比。 input和aspect_ratios的长度必须相等。
+- min_ratio（int）：生成最初窗口的最小比率。
+- max_ratio（int）：生成最初窗口的最大比率。
+- min_sizes（list | tuple | None）：如果len（输入）<= 2，则必须设置min_sizes，并且min_sizes的长度应等于输入的长度。默认值：无。
+- max_sizes（list | tuple | None）：如果len（输入）<= 2，则必须设置max_sizes，并且min_sizes的长度应等于输入的长度。默认值：无。
+- steps（list | tuple）：如果step_w和step_h相同，则step_w和step_h可以被steps替换。
+- step_w（list | tuple）：最初窗口跨越宽度。如果step_w [i] == 0.0，将自动计算输跨越入[i]宽度。默认值：无。
+- step_h（list | tuple）：最初窗口跨越高度，如果step_h [i] == 0.0，将自动计算跨越输入[i]高度。默认值：无。
+- offset（float）：最初窗口中心偏移。默认值：0.5
+- variance（list | tuple）：在最初窗口编码的方差。默认值：[0.1,0.1,0.2,0.2]。
+- flip（bool）：是否翻转宽高比。默认值：false。
+- clip（bool）：是否剪切超出边界的框。默认值：False。
+- kernel_size（int）：conv2d的内核大小。默认值：1。
+- pad（int | list | tuple）：conv2d的填充。默认值：0。
+- stride（int | list | tuple）：conv2d的步长。默认值：1，
+- name（str）：最初窗口的名称。默认值：无。
+- min_max_aspect_ratios_order（bool）：如果设置为True，则输出最初窗口的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响卷积层后面的权重顺序，但不会影响最终检测结果。默认值：False。
+
+返回：
+
+一个带有四个变量的元组，（mbox_loc，mbox_conf，boxes, variances）。
+
+- mbox_loc：预测框的输入位置。布局为[N，H * W * Priors，4]。其中Priors是每个输位置的预测框数。
+
+- mbox_conf：预测框对输入的置信度。布局为[N，H * W * Priors，C]。其中Priors是每个输入位置的预测框数，C是类的数量。
+
+- boxes：PriorBox的输出最初窗口。布局是[num_priors，4]。 num_priors是每个输入位置的总盒数。
+
+- variances：PriorBox的方差。布局是[num_priors，4]。 num_priors是每个输入位置的总窗口数。
+
+返回类型：
+
+元组（tuple）
+        
+代码示例
+
+::
+
+        mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
+        inputs=[conv1, conv2, conv3, conv4, conv5, conv5],
+        image=images,
+        num_classes=21,
+        min_ratio=20,
+        max_ratio=90,
+        aspect_ratios=[[2.], [2., 3.], [2., 3.], [2., 3.], [2.], [2.]],
+        base_size=300,
+        offset=0.5,
+        flip=True,
+        clip=True)
+
+
+.. _cn_api_fluid_layers_softplus:
+        
+softplus
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.softplus(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Softplus文档：
+
+参数x：Softplus运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Softplus运算符的输出。     
+                
+        
+        
+        
+        
+        
+
