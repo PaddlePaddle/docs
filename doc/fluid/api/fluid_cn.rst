@@ -6,8 +6,8 @@
 default_startup_program
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-paddle.fluid.default_startup_program()
-""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.default_startup_program()
+
 
 
 该函数可以获取默认/全局 startup program (启动程序)。
@@ -31,8 +31,8 @@ startup_program会使用内在的operators（算子）去初始化他们，并�
 default_main_program
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-paddle.fluid.default_main_program()
-""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.default_main_program()
+
 
 
 
@@ -58,8 +58,8 @@ paddle.fluid.default_main_program()
 program_guard
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-paddle.fluid.program_guard(*args, **kwds)
-""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.program_guard(*args, **kwds)
+
 
 
 该函数应配合使用python的“with”语句来改变全局主程序(main program)和启动程序(startup program)。
@@ -91,8 +91,8 @@ paddle.fluid.program_guard(*args, **kwds)
 
 
 参数：  
-		- **main_program** (Program) – “with”语句中将使用的新的main program。
-		- **startup_program** (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序。
+		- main_program (Program) – “with”语句中将使用的新的main program。
+		- startup_program (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序。
 
 
 
@@ -104,8 +104,8 @@ paddle.fluid.program_guard(*args, **kwds)
 DistributeTranspiler
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-*class* paddle.fluid.DistributeTranspiler *(config=None)*
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: class paddle.fluid.DistributeTranspiler (config=None)
+
 
 该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
 当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即pserver,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
@@ -151,8 +151,8 @@ DistributeTranspiler
 
 
 
-``transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')``
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:method:: transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
+
 该方法可以运行该transpiler（转译器）。
 
 参数:	
@@ -164,8 +164,8 @@ DistributeTranspiler
  	- startup_program (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
 	- current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
-``get_trainer_program(wait_port=True)``
-"""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:method:: get_trainer_program(wait_port=True)
+
 
 该方法可以得到Trainer侧的program。
 
@@ -175,8 +175,9 @@ DistributeTranspiler
 
 
 
-``get_pserver_program(endpoint)``
-"""""""""""""""""""""""""""""""""""""""""""
+.. py:method:: get_pserver_program(endpoint)
+
+
 该方法可以得到Pserver（参数服务器）侧的程序
  
 参数:	
@@ -187,8 +188,9 @@ DistributeTranspiler
 返回类型:	Program
 
 
-``get_pserver_programs(endpoint)``
-""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:method:: get_pserver_programs(endpoint)
+
+
 该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
 
 参数:	
@@ -198,8 +200,10 @@ DistributeTranspiler
 
 返回类型:	tuple 
  
-``get_startup_program(endpoint, pserver_program=None, startup_program=None)``
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ 
+.. py:method:: get_startup_program(endpoint, pserver_program=None, startup_program=None)
+
+
 **该函数已停止使用**
 获取当前Pserver的startup_program，如果有多个被分散到不同blocks的变量，则修改operator的输入变量。
 
@@ -219,8 +223,8 @@ DistributeTranspiler
 release_memory
 >>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-paddle.fluid.release_memory(input_program, skip_opt_set=None) 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.release_memory(input_program, skip_opt_set=None) 
+
 
 该函数可以调整输入program，插入 ``delete_op`` 删除算子，提前删除不需要的变量。
 改动是在变量本身上进行的。
@@ -245,8 +249,8 @@ paddle.fluid.release_memory(input_program, skip_opt_set=None)
 create_lod_tensor
 >>>>>>>>>>>>>>>>>>>>>>>>>
 
-paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place) 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place) 
+
 
 该函数从一个numpy数组，列表或者已经存在的lod tensor中创建一个lod tensor。
 通过一下几步实现:
@@ -276,8 +280,8 @@ paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place)
 create_random_int_lodtensor
 >>>>>>>>>>>>>>>>>>>>>>>>>
 
-paddle.fluid.create_random_int_lodtensor(recursive_seq_lens, base_shape, place, low, high)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.create_random_int_lodtensor(recursive_seq_lens, base_shape, place, low, high)
+
 
 
 该函数创建一个存储多个随机整数的LoD Tensor。
@@ -315,8 +319,8 @@ ParamAttr
 >>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-class paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: class paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
+
 该类代表了参数的各种属性。 为了使神经网络训练过程更加流畅，用户可以根据需要调整参数属性。比如learning rate（学习率）, regularization（正则化）, trainable（可训练性）, do_model_average(平均化模型)和参数初始化方法.
 
 参数:	
