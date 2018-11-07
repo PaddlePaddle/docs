@@ -1309,12 +1309,49 @@ paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold
 
         元组(tuple)
 
-返回：
-        Softplus运算符的输出。     
-                
-        
-        
-        
-        
-        
+代码示例：
 
+::
+
+        >>> x = fluid.layers.data(name='x', shape=[4], dtype='float32')
+        >>> y = fluid.layers.data(name='y', shape=[4], dtype='float32')
+        >>> iou = fluid.layers.iou_similarity(x=x, y=y)
+        >>> matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
+
+
+.. _cn_api_fluid_layers_bipartite_match:
+        
+bipartite_match
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
+
+对于给定的目标边界框或目标标签，该运算符可以为每个预测分配分类和回归目标以及为预测分配权重。权重用于指定哪种预测将不会计入训练损失。
+
+对于每个实例，输出out和out_weight是基于match_indices和negative_indices分配的。假设输入中每个实例的行偏移量称为lod，此运算符通过执行以下步骤来分配分类/回归目标：
+
+1、根据match_indices分配所有outpts：
+
+::
+
+        If id = match_indices[i][j] > 0,
+                out[i][j][0 : K] = X[lod[i] + id][j % P][0 : K]
+                out_weight[i][j] = 1.
+        
+        Otherwise,
+
+                out[j][j][0 : K] = {mismatch_value, mismatch_value, ...}
+                out_weight[i][j] = 0.
+                
+2、如果提供了neg_indices，则基于neg_indices分配out_weight：
+假设neg_indices中每个实例的行偏移量称为neg_lod，对于第i个实例和此实例中的neg_indices的每个id：
+
+
+代码示例：
+
+::
+
+        matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
+        gt = layers.data(name='gt', shape=[1, 1], dtype='int32', lod_level=1)
+        trg, trg_weight = layers.target_assign(gt, matched_indices, mismatch_value=0)
