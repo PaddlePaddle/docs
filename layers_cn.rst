@@ -968,9 +968,123 @@ Exp文档：
 返回：Exp算子的输出
 
 
+.. _cn_api_fluid_layers_tanh:
+
+tanh
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.tanh(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Tanh文档：
+
+参数x：Tanh运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：     Tanh算子的输出。
+
+
+
+.. _cn_api_fluid_layers_tanh_shrink:
+
+tanh_shrink
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.tanh_shrink(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+TanhShrink文档：
+
+参数x：TanhShrink运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+
+.. _cn_api_fluid_layers_softshrink:
+
+softshrink
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.softshrink(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''       
+
+Softshrink激活算子
+
+                                        out=⎧⎩⎨x−λ,if x>λ；x+λ,if x<−λ；0,otherwise。
+                                        
+参数：
+
+- x：Softshrink算子的输入 
+- lambda（FLOAT）：非负偏移量。
+
+返回：
+
+Softshrink运算符的输出
+
+
+.. _cn_api_fluid_layers_sqrt:
+
+sqrt
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.sqrt(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Sqrt文档：
+
+参数x：Sqrt运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Sqrt算子的输出。
+
+
+
+.. _cn_api_fluid_layers_abs:
+
+abs
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.abs(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Abs文档：
+
+参数x：Abs运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Abs运算符的输出。
+
+
+
+.. _cn_api_fluid_layers_ceil:
+
+ceil
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.ceil(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Ceil文档：
+
+参数x：Ceil运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Ceil运算符的输出。
         
-        
-        
-        
-        
- 
+.. _cn_api_fluid_layers_floor:
+
+floor
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.floor(x, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
+Floor文档：
+
+参数x：Floor运算符的输入 
+参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+类型use_mkldnn：BOOLEAN。
+
+返回：
+        Floor运算符的输出。
