@@ -7,7 +7,7 @@
     概述
 
 ..  toctree::
-    :maxdepth: 2
+    :titlesonly:
 
     fit_a_line/README.cn.md
     recognize_digits/README.cn.md
