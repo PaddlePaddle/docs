@@ -1517,23 +1517,37 @@ detection_map
 paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
-检测mAP评估运算符。一般步骤如下：首先，根据检测输入和标签计算真阳性和假阳性，然后计算mAP评估值。支持'11点'和'积分'mAP算法。请从以下文章中获取更多信息：https：//sanchom.wordpress.com/tag/average-precision/ https://arxiv.org/abs/1512.02325
+检测mAP评估运算符。一般步骤如下：首先，根据检测输入和标签计算TP（true positive）和FP（false positive），然后计算mAP评估值。支持'11 point'和积分mAP算法。请从以下文章中获取更多信息：
+
+        https：//sanchom.wordpress.com/tag/average-precision/
+        https://arxiv.org/abs/1512.02325
 
 参数：
-detect_res - （LoDTensor）具有形状[M，6]的2-D LoDTensor表示检测。每行有6个值：[标签，置信度，xmin，ymin，xmax，ymax]，M是此小批量中检测结果的总数。对于每个实例，第一维中的偏移称为LoD，偏移数为N + 1，如果LoD [i + 1] - LoD [i] == 0，则表示没有检测到数据
-label - （LoDTensor）2-D LoDTensor表示标记的地面实况数据。每行有6个值：[标签，xmin，ymin，xmax，ymax，is_difficult]或5个值：[label，xmin，ymin，xmax，ymax]，其中N是此迷你中的地面实况数据的总数。批量。对于每个实例，第一维中的偏移称为LoD，偏移数为N + 1，如果LoD [i + 1] - LoD [i] == 0，则表示没有地面实况数据
-class_num - （int）类号
-background_label - （int，defalut：0）背景标签的索引，背景标签将被忽略。如果设置为-1，则将考虑所有类别
-overlap_threshold - （float）检测输出和地面实况数据的下限jaccard重叠阈值
-evaluate_difficult - （bool，默认为true）切换到控制是否评估困难数据
-has_state - （Tensor <int>）具有形状[1]的张量，0表示忽略输入状态，包括PosCount，TruePos，FalsePos
-input_states - 如果不是None，它包含3个元素：1。pos_count（Tensor）一个形状为[Ncls，1]的张量，存储每个类的输入正例计数，Ncls是输入分类的计数。此输入用于在执行多个小批量累积计算时传递先前小批量生成的AccumPosCount。当输入（PosCount）为空时，不执行累积计算，仅计算当前小批量的结果。 2. true_pos（LoDTensor）具有形状[Ntp，2]的2-D LoDTensor，存储每个类的输入真正正例。此输入用于传递前一个小批量生成的AccumTruePos多个小批量累计计算进行。 。 3. false_pos（LoDTensor）具有形状[Nfp，2]的2-D LoDTensor，存储每个类的输入误报示例。此输入用于传递多个小批量时前一个小批量生成的AccumFalsePos累计计算进行。 。
-out_states - 如果不是None，它包含3个元素。 1. accum_pos_count（Tensor）具有形状[Ncls，1]的张量，存储每个类的正例数。它结合了输入输入（PosCount）和从输入（检测）和输入（标签）计算的正例计数。 2. accum_true_pos（LoDTensor）具有形状[Ntp'，2]的LoDTensor，存储每个类的真正正例。它结合了输入（TruePos）和从输入（检测）和输入（标签）计算的真实正例。 3. accum_false_pos（LoDTensor）具有形状[Nfp'，2]的LoDTensor，存储每个类的误报示例。它结合了输入（FalsePos）和从输入（检测）和输入（标签）计算的误报示例。
-ap_version - （字符串，默认'integral'）AP算法类型，'integral'或'11point'
-返回：
-（Tensor）具有形状[1]的张量，存储检测的mAP评估结果
 
+- detect_res:（LoDTensor）具有形状[M，6]的2-D LoDTensor表示检测。每行有6个值：[标签，置信度，xmin，ymin，xmax，ymax]，M是此小批量中检测结果的总数。对于每个实例，第一维中的偏移称为LoD，偏移数为N+1，如果LoD[i+1]-LoD[i]== 0，则表示没有检测到数据。
+- label:（LoDTensor）2-D LoDTensor表示标记的地面实况数据。每行有6个值：[标签，xmin，ymin，xmax，ymax，is_difficult]或5个值：[label，xmin，ymin，xmax，ymax]，其中N是此迷你中的地面实况数据的总数。批量。对于每个实例，第一维中的偏移称为LoD，偏移数为N + 1，如果LoD [i + 1] - LoD [i] == 0，则表示没有地面实况数据。
+- class_num:（int）类号。
+- background_label:（int，defalut：0）背景标签的索引，背景标签将被忽略。如果设置为-1，则将考虑所有类别。
+- overlap_threshold:（float）检测输出和地面实况数据的下限jaccard重叠阈值。
+- evaluate_difficult:（bool，默认为true）切换到控制是否评估困难数据。
+- has_state:（Tensor <int>）具有形状[1]的张量，0表示忽略输入状态，包括PosCount，TruePos，FalsePos。
+- input_states:如果不是None，它包含3个元素：
+
+        1、pos_count（Tensor）一个形状为[Ncls，1]的张量，存储每个类的输入正例计数，Ncls是输入分类的计数。此输入用于在执行多个小批量累积计算时传递先前小批量生成的AccumPosCount。当输入（PosCount）为空时，不执行累积计算，仅计算当前小批量的结果。
+        2、true_pos（LoDTensor）具有形状[Ntp，2]的2-D LoDTensor，存储每个类的输入真正正例。此输入用于传递前一个小批量生成的AccumTruePos多个小批量累计计算进行。
+        3、false_pos（LoDTensor）具有形状[Nfp，2]的2-D LoDTensor，存储每个类的输入误报示例。此输入用于传递多个小批量时前一个小批量生成的AccumFalsePos累计计算进行。 
+- out_states：如果不是None，它包含3个元素：
+
+        1、accum_pos_count（Tensor）具有形状[Ncls，1]的张量，存储每个类的正例数。它结合了输入输入（PosCount）和从输入（检测）和输入（标签）计算的正例计数。 
+        2、accum_true_pos（LoDTensor）具有形状[Ntp'，2]的LoDTensor，存储每个类的真正正例。它结合了输入（TruePos）和从输入（检测）和输入（标签）计算的真实正例。 
+        3、accum_false_pos（LoDTensor）具有形状[Nfp'，2]的LoDTensor，存储每个类的误报示例。它结合了输入（FalsePos）和从输入（检测）和输入（标签）计算的误报示例。
         
+- ap_version：（string，默认'integral'）AP算法类型，'integral'或'11 point'。
+
+返回：
+
+        （Tensor）具有形状[1]的张量，存储检测的mAP评估结果。
+
 代码示例：
 
 ::
@@ -1552,4 +1566,55 @@ ap_version - （字符串，默认'integral'）AP算法类型，'integral'或'11
 
 
 
+.. _cn_api_fluid_layers_rpn_target_assign:
+        
+rpn_target_assign
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, is_crowd, im_info, rpn_batch_size_per_im=256, rpn_straddle_thresh=0.0, rpn_fg_fraction=0.5, rpn_positive_overlap=0.7, rpn_negative_overlap=0.3, use_random=True)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
+
+**在Faster-RCNN检测中为区域检测网络（RPN）分配目标层。**
+
+对于给定锚点（anchors）和（ground truth boxes）框之间的交叉点（IoU）重叠，该层可以为每个锚点分配分类和回归目标，这些目标标签用于训练RPN。分类目标是二进制类标签（是或不是对象）。根据Faster-RCNN的论文，正标签有两种锚（anchors）：（i）具有最高IoU的锚（anchors）/锚（anchors）与（ground truth boxes）框重叠，或（ii）具有高于rpn_positive_overlap的IoU重叠的锚（anchors）（0.7）任何地面真相框。请注意，单个地面实况框可以为多个锚点（anchors）分配正面标签。对于所有地面实况框，非正向锚是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正面也不是负面的锚点对训练目标没有贡献。回归目标是与正锚（anchors）相关联的编码的地面实况框。
+
+参数：
+bbox_pred（变量） - 具有形状[N，M，4]的3-D张量表示M个边界bbox的预测位置。 N是批量大小，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
+cls_logits（变量） - 具有形状[N，M，1]的3-D张量表示预测的置信度预测。 N是批量大小，1是前景和背景sigmoid，M是边界框的数量。
+anchor_box（变量） - 具有形状[M，4]的2-D张量保持M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是锚框的左上顶部坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是锚箱的右下坐标。
+anchor_var（变量） - 具有形状[M，4]的2-D张量保持锚的扩展方差。
+gt_boxes（变量） - 地面实况boudding框（bbox）是具有形状[Ng，4]的2D LoDTensor，Ng是小批量输入的地面实况bbox的总数。
+is_crowd（变量） - 1-D LoDTensor，表示群体真相是人群。
+im_info（Variable） - 形状为[N，3]的2-D LoDTensor。 N是批量大小，
+是高度，宽度和比例。 （3） - 
+rpn_batch_size_per_im（int） - 每个映像的RPN示例总数。
+rpn_straddle_thresh（float） - 删除通过straddle_thresh像素出现在图像外部的RPN锚点。
+rpn_fg_fraction（float） - 标记为foreground（即class> 0）的RoI minibatch的目标分数，第0类是background。
+rpn_positive_overlap（float） - 锚点和地面实况框之间所需的最小重叠（锚点，gt框）对是一个正例。
+rpn_negative_overlap（float） - 锚点和地面实况框之间允许的最大重叠（锚点，gt框）对是一个反面例子。
+返回：
+返回元组（predict_scores，predict_location，target_label，target_bbox）。 predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是基础事实。 predict_location是具有形状[F，4]的2D张量，target_bbox的形状与predict_location的形状相同，F是前景锚点的数量。 predict_scores是具有形状[F + B，1]的2D张量，target_label的形状与predict_scores的形状相同，B是背景锚点的数量，F和B取决于此输入运营商。
+
+返回类型：
+元组
+
+
+代码示例：
+
+::
+
+        bbox_pred = layers.data(name=’bbox_pred’, shape=[100, 4],
+                append_batch_size=False, dtype=’float32’)
+        cls_logits = layers.data(name=’cls_logits’, shape=[100, 1],
+                append_batch_size=False, dtype=’float32’)
+        anchor_box = layers.data(name=’anchor_box’, shape=[20, 4],
+                append_batch_size=False, dtype=’float32’)
+        gt_boxes = layers.data(name=’gt_boxes’, shape=[10, 4],
+                append_batch_size=False, dtype=’float32’)
+        loc_pred, score_pred, loc_target, score_target =
+                fluid.layers.rpn_target_assign(bbox_pred=bbox_pred,
+                        cls_logits=cls_logits, anchor_box=anchor_box, gt_boxes=gt_boxes)
+        
+        
+        
+        
