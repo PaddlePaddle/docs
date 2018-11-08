@@ -924,6 +924,7 @@ paddle.fluid.layers.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, name=None)
 返回：
 
        乘法运算输出张量（Tensor）.
+       
 返回类型：
         
         输出(Variable)。       
@@ -943,8 +944,8 @@ Sigmoid文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
-
-       Sigmoid运算输出.
+        
+        Sigmoid运算输出.
 
 
  .. _cn_api_fluid_layers_logsigmoid:
