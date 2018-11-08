@@ -927,7 +927,7 @@ paddle.fluid.layers.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, name=None)
        
 返回类型：
         
-  输出(Variable)。       
+ 输出(Variable)。       
         
         
  .. _cn_api_fluid_layers_sigmoid:
@@ -962,6 +962,7 @@ LogSigmoid文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         LogSigmoid运算符的输出
 
 
