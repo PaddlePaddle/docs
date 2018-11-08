@@ -1622,4 +1622,91 @@ paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_
         
         
         
+.. _cn_api_fluid_layers_generate_proposals：
         
+generate_proposals
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, variances, pre_nms_top_n=6000, post_nms_top_n=1000, nms_thresh=0.5, min_size=0.1, eta=1.0, name=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
+
+**生成proposal标签的Faster-RCNN**
+
+该操作根据每个框提出RoI，其概率为前景对象，并且可以通过锚（anchors）来计算框。Bbox_deltais和作为对象的分数是RPN的输出。最终proposals可用于训练检测网络。
+
+为了生成提议，此操作执行以下步骤：
+
+        1、转置和调整分数和大小为（H * W * A，1）和（H * W * A，4）的bbox_deltas
+        2、计算方框位置作为提案候选人。剪辑框图像
+        3、删除小面积的预测框。
+        4、应用NMS以获得最终提案作为输出。
+参数：
+
+- scores(Variable):具有形状[N，A，H，W]的4-D张量表示每个框成为对象的概率。
+- N是批量大小，A是锚点数，H和W是特征图的高度和宽度。
+- bbox_deltas（Variable）：具有形状[N，4 * A，H，W]的4-D张量表示预测的框位置和锚点位置之间的差异。
+- im_info（Variable）：具有形状[N，3]的2-D张量表示N批次的原始图像信息。信息包含在原始图像大小和特征映射的大小之间高度，宽度和比例。
+- anchors（Variable）：4-D Tensor表示布局为[H，W，A，4]的锚点。H和W是要素图的高度和宽度，
+- num_anchors：是每个位置的盒子数。每个锚都是（xmin，ymin，xmax，ymax）格式的非标准化。
+- variances（Variable）：锚点的方差，布局为[H，W，num_priors，4]。每个方差都是（xcenter，ycenter，w，h）格式。
+- pre_nms_top_n（float）：NMS之前每个映像要保留的总bbox数。默认为6000。 
+- post_nms_top_n（float）：NMS后每个映像要保留的总bbox数。默认为1000。 
+- nms_thresh（float）：NMS中的阈值，默认为0.5。 
+- min_size（float）：删除高度或宽度<min_size的预测框。默认为0.1。
+- eta（float）：在自适应NMS中应用，如果自适应阈值> 0.5，则在每次迭代中使用adaptive_threshold = adaptive_treshold * eta。
+
+
+.. _cn_api_fluid_layers_DataFeeder：
+        
+DataFeeder
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+paddle.fluid.layers.DataFeeder(feed_list, place, program=None)
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
+
+DataFeeder将读取器返回的数据转换为可以提供给Executor和ParallelExecutor的数据结构。读取器通常会返回一个小批量数据条目列表。列表中的每个数据条目都是一个样本。每个样本都是一个具有一个特征或多个特征的列表或元组。
+
+简单用法如下：
+
+::
+
+        place=fluid.CPUPlace()
+        img=fluid.layers.data(name='image'，shape=[1,28,28])
+        label=fluid.layers.data(name='label'，shape=[1]，dtype='int64')
+        feeder = fluid.DataFeeder([img，label]，fluid.CPUPlace())
+        result = feeder.feed([([0] * 784，[9])，([1] * 784，[1])])
+        
+如果您想在使用多GPU训练模型时,预先单独将数据输入GPU，可以使用decorate_reader函数。
+
+::
+
+        place= fluid.CUDAPlace（0）
+        feeder = fluid.DataFeeder（place = place，feed_list = [data，label]）
+        reader = feeder.decorate_reader（
+            paddle.batch（flowers.train（），batch_size = 16））
+            
+参数：
+
+- feed_list（list）：将输入模型的变量或变量名称。
+- place（Place）：place表示将数据输入CPU或GPU，如果你想将数据输入GPU，请使用fluid.CUDAPlace（i）（我代表GPU id），或者如果你想将数据输入CPU，请使用fluid.CPUPlace（）。
+- program（Program）：将数据输入的程序，如果程序为None，则使用default_main_program（）。默认无。
+举：
+
+抛出（Raises）:
+
+- ValueError：如果某个变量不在此程序中。
+
+
+代码示例：
+
+..  code-block:: python
+
+        # ...
+        place = fluid.CPUPlace()
+        feed_list = [
+            main_program.global_block().var(var_name) for var_name in feed_vars_name
+        ] # feed_vars_name is a list of variables' name.
+        feeder = fluid.DataFeeder(feed_list, place)
+        for data in reader():
+            outs = exe.run(program=main_program,
+                           feed=feeder.feed(data))
