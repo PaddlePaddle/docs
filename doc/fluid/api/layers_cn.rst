@@ -281,30 +281,29 @@ reader，从reader中可以获取feed的数据
 
 ..  code-block:: python
 
+	import paddle.v2
+	import paddle.fluid as fluid
+	import paddle.dataset.mnist as mnist
 
-import paddle.v2
-import paddle.fluid as fluid
-import paddle.dataset.mnist as mnist
+	reader = fluid.layers.py_reader(capacity=64,
+					shapes=[(-1,3,224,224), (-1,1)],
+					dtypes=['float32', 'int64'])
+	reader.decorate_paddle_reader(
+	    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
 
-reader = fluid.layers.py_reader(capacity=64,
-                                shapes=[(-1,3,224,224), (-1,1)],
-                                dtypes=['float32', 'int64'])
-reader.decorate_paddle_reader(
-    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+	img, label = fluid.layers.read_file(reader)
+	loss = network(img, label) # some network definition
 
-img, label = fluid.layers.read_file(reader)
-loss = network(img, label) # some network definition
+	fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
 
-fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
-
-exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
-for epoch_id in range(10):
-    reader.start()
-    try:
-        while True:
-            exe.run(fetch_list=[loss.name])
-    except fluid.core.EOFException:
-        reader.reset()
+	exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
+	for epoch_id in range(10):
+	    reader.start()
+	    try:
+		while True:
+		    exe.run(fetch_list=[loss.name])
+	    except fluid.core.EOFException:
+		reader.reset()
 
 
 
@@ -314,67 +313,67 @@ for epoch_id in range(10):
 
 ..  code-block:: python
 
-import paddle.v2
-import paddle.fluid as fluid
-import paddle.dataset.mnist as mnist
+	import paddle.v2
+	import paddle.fluid as fluid
+	import paddle.dataset.mnist as mnist
 
-def network(reader):
-    img, label = fluid.layers.read_file(reader)
-    # Here, we omitted the network definition
-    return loss
+	def network(reader):
+	    img, label = fluid.layers.read_file(reader)
+	    # Here, we omitted the network definition
+	    return loss
 
-train_reader = fluid.layers.py_reader(capacity=64,
-                                      shapes=[(-1,3,224,224), (-1,1)],
-                                      dtypes=['float32', 'int64'],
-                                      name='train_reader')
-train_reader.decorate_paddle_reader(
-    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+	train_reader = fluid.layers.py_reader(capacity=64,
+					      shapes=[(-1,3,224,224), (-1,1)],
+					      dtypes=['float32', 'int64'],
+					      name='train_reader')
+	train_reader.decorate_paddle_reader(
+	    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
 
-test_reader = fluid.layers.py_reader(capacity=32,
-                                     shapes=[(-1,3,224,224), (-1,1)],
-                                     dtypes=['float32', 'int64'],
-                                     name='test_reader')
-test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
+	test_reader = fluid.layers.py_reader(capacity=32,
+					     shapes=[(-1,3,224,224), (-1,1)],
+					     dtypes=['float32', 'int64'],
+					     name='test_reader')
+	test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
 
-# Create train_main_prog and train_startup_prog
-train_main_prog = fluid.Program()
-train_startup_prog = fluid.Program()
-with fluid.program_guard(train_main_prog, train_startup_prog):
-    # Use fluid.unique_name.guard() to share parameters with test program
-    with fluid.unique_name.guard():
-        train_loss = network(train_reader) # some network definition
-        adam = fluid.optimizer.Adam(learning_rate=0.01)
-        adam.minimize(loss)
+	# Create train_main_prog and train_startup_prog
+	train_main_prog = fluid.Program()
+	train_startup_prog = fluid.Program()
+	with fluid.program_guard(train_main_prog, train_startup_prog):
+	    # Use fluid.unique_name.guard() to share parameters with test program
+	    with fluid.unique_name.guard():
+		train_loss = network(train_reader) # some network definition
+		adam = fluid.optimizer.Adam(learning_rate=0.01)
+		adam.minimize(loss)
 
-# Create test_main_prog and test_startup_prog
-test_main_prog = fluid.Program()
-test_startup_prog = fluid.Program()
-with fluid.program_guard(test_main_prog, test_startup_prog):
-    # Use fluid.unique_name.guard() to share parameters with train program
-    with fluid.unique_name.guard():
-        test_loss = network(test_reader)
+	# Create test_main_prog and test_startup_prog
+	test_main_prog = fluid.Program()
+	test_startup_prog = fluid.Program()
+	with fluid.program_guard(test_main_prog, test_startup_prog):
+	    # Use fluid.unique_name.guard() to share parameters with train program
+	    with fluid.unique_name.guard():
+		test_loss = network(test_reader)
 
-fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
-fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
+	fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
+	fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
 
-train_exe = fluid.ParallelExecutor(use_cuda=True,
-                loss_name=train_loss.name, main_program=train_main_prog)
-test_exe = fluid.ParallelExecutor(use_cuda=True,
-                loss_name=test_loss.name, main_program=test_main_prog)
-for epoch_id in range(10):
-    train_reader.start()
-    try:
-        while True:
-            train_exe.run(fetch_list=[train_loss.name])
-    except fluid.core.EOFException:
-        train_reader.reset()
+	train_exe = fluid.ParallelExecutor(use_cuda=True,
+			loss_name=train_loss.name, main_program=train_main_prog)
+	test_exe = fluid.ParallelExecutor(use_cuda=True,
+			loss_name=test_loss.name, main_program=test_main_prog)
+	for epoch_id in range(10):
+	    train_reader.start()
+	    try:
+		while True:
+		    train_exe.run(fetch_list=[train_loss.name])
+	    except fluid.core.EOFException:
+		train_reader.reset()
 
-    test_reader.start()
-    try:
-        while True:
-            test_exe.run(fetch_list=[test_loss.name])
-    except fluid.core.EOFException:
-        test_reader.reset()
+	    test_reader.start()
+	    try:
+		while True:
+		    test_exe.run(fetch_list=[test_loss.name])
+	    except fluid.core.EOFException:
+		test_reader.reset()
 
 
 
