@@ -139,8 +139,9 @@ else:
 - scale (FLOAT) ：比例运算的比例因子。
 - bias (FLOAT) ：比例算子的偏差。
 - bias_after_scale (BOOLEAN) ：在缩放之后或之前添加bias。在某些情况下，对数值稳定性很有用。
-- act (basestring|None) – 激活应用于输出。
-- name (basestring|None) –输出的名称。
+- act (basestring|None) ：激活应用于输出。
+- name (basestring|None)：输出的名称。
+
 返回:	
 
         比例运算符的输出张量(Tensor)
@@ -169,11 +170,13 @@ paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None, name=None)
 
         1. Y的形状（shape）与X相同。
         2. Y的形状（shape）是X的连续子序列。
+        
 对于情况2:
 
         1. 广播Y以匹配X的形状（shape），其中轴（axis）是用于将Y广播到X上的起始维度索引。
         2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。
         3. 考虑到子序列，Y的大小为1的尾部尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        
 例如：
 
 ::
@@ -228,6 +231,7 @@ paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None, name=None)
         3. 考虑到子序列，Y的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
+
 ::
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
@@ -333,6 +337,7 @@ paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None, name=None)
         3. 考虑到子序列，Y的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
         
 例如：
+
 ::
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
@@ -385,6 +390,7 @@ paddle.fluid.layers.elementwise_max(x, y, axis=-1, act=None, name=None)
         3. 考虑到子序列，Y的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
         
 例如：
+
 ::
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
@@ -861,6 +867,7 @@ ClipByNorm算子
 - x(Variable):(Tensor) clip_by_norm运算的输入，维数必须在[1,9]之间。
 - max_norm(FLOAT):(float)最大范数值。
 - name(basestring | None):输出的名称。
+
 返回：
 
         (Tensor)clip_by_norm操作后的输出和输入(X)具有形状(shape).
@@ -882,9 +889,11 @@ paddle.fluid.layers.mean(x, name=None)
 
 - x(Variable):(Tensor) 均值运算的输入。
 - name(basestring | None):输出的名称。
+
 返回：
 
-       均值运算输出张量（Tensor）.
+       均值运算输出张量（Tensor）。
+       
 返回类型：
 
         输出(Variable)。  
@@ -915,7 +924,7 @@ paddle.fluid.layers.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, name=None)
 
        乘法运算输出张量（Tensor）.
 返回类型：
-
+        
         输出(Variable)。       
         
         
@@ -945,8 +954,8 @@ paddle.fluid.layers.logsigmoid(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 LogSigmoid文档：
 
-参数x：LogSigmoid运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+- 参数x：LogSigmoid运算符的输入 
+- 参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：LogSigmoid运算符的输出
@@ -961,9 +970,9 @@ paddle.fluid.layers.exp(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 Exp文档：
 
-参数x：Exp运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
-类型use_mkldnn：BOOLEAN。
+- 参数x：Exp运算符的输入 
+- 参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+- 类型use_mkldnn：BOOLEAN。
 
 返回：Exp算子的输出
 
@@ -1035,6 +1044,7 @@ Sqrt文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Sqrt算子的输出。
 
 
@@ -1053,6 +1063,7 @@ Abs文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Abs运算符的输出。
 
 
@@ -1071,6 +1082,7 @@ Ceil文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Ceil运算符的输出。
         
         
@@ -1088,6 +1100,7 @@ Floor文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Floor运算符的输出。
 
 
@@ -1106,6 +1119,7 @@ Cos文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Cos运算符的输出。
 
 
@@ -1123,6 +1137,7 @@ Sin文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Sin运算符的输出。
 
 
@@ -1141,6 +1156,7 @@ Round文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Round运算符的输出。
         
         
@@ -1158,6 +1174,7 @@ Reciprocal文档：
 类型use_mkldnn：BOOLEAN。
 
 返回：
+
         Reciprocal运算符的输出。        
 
 
@@ -1173,6 +1190,7 @@ prior_box算子
 生成SSD（Single Shot MultiBox Detector）算法的最初窗口。输入的每个位置产生N个最初窗口，N由min_sizes，max_sizes和aspect_ratios的数量确定。窗口的大小在范围（min_size，max_size）之间，其根据aspect_ratios按顺序生成。
 
 参数：
+
 - input（Variable）：输入变量，格式为NCHW。
 - image（Variable）：最初窗口输入的图像数据，布局为NCHW。
 - min_sizes（list | tuple | float value）：生成最初窗口的最小大小。
@@ -1185,6 +1203,7 @@ prior_box算子
 - offset（float）：最初窗口先前框中心偏移。默认值：0.5
 - name（str）：最初窗口操作的名称。默认值：无。
 - min_max_aspect_ratios_order（bool）:如果设置为True，则输出最初窗口的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响后续卷积层的权重顺序，但不会影响最终检测结果。默认值：False。
+
 返回：
 
 具有两个变量的元组（boxes, variances）。
@@ -1192,7 +1211,8 @@ boxes：PriorBox输出最初窗口。布局为[H，W，num_priors，4]。 H是�
 variances：PriorBox的方差。布局是[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度num_priors是每个输入位置的总窗口数。
 
 返回类型：
-元组
+
+        元组（tuple）
 
 代码示例：
 
@@ -1443,19 +1463,24 @@ paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, 
 该层用于计算SSD的损失，给定位置偏移预测，置信度预测，最初窗口和ground-truth边界框、标签，以及实例挖掘的类型。通过执行以下步骤，返回的损失是本地化损失（或回归损失）和置信度损失（或分类损失）的加权和：
 
 1、通过二分匹配算法查找匹配的边界框。
+
         1.1、计算地面实况框与之前框之间的IOU相似度。
         1.2、通过二分匹配算法计算匹配的边界框。
 
 2、计算挖掘硬实例的信心
+
         2.1、根据匹配的索引获取目标标签。
         2.2、计算信心损失。
 
 3、应用实例挖掘来获取负示例索引并更新匹配的索引。
+
 4、分配分类和回归目标
+
         4.1、根据前面的框编码bbox。
         4.2、分配回归目标。
         4.3、分配分类目标。
 5、计算总体客观损失。
+
         5.1计算置信度损失。
         5.1计算本地化损失。
         5.3计算总体加权损失。
@@ -1519,7 +1544,8 @@ paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label
 
 检测mAP评估运算符。一般步骤如下：首先，根据检测输入和标签计算TP（true positive）和FP（false positive），然后计算mAP评估值。支持'11 point'和积分mAP算法。请从以下文章中获取更多信息：
 
-        https：//sanchom.wordpress.com/tag/average-precision/
+        https://sanchom.wordpress.com/tag/average-precision/
+        
         https://arxiv.org/abs/1512.02325
 
 参数：
@@ -1534,12 +1560,17 @@ paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label
 - input_states:如果不是None，它包含3个元素：
 
         1、pos_count（Tensor）一个形状为[Ncls，1]的张量，存储每个类的输入正例计数，Ncls是输入分类的计数。此输入用于在执行多个小批量累积计算时传递先前小批量生成的AccumPosCount。当输入（PosCount）为空时，不执行累积计算，仅计算当前小批量的结果。
+        
         2、true_pos（LoDTensor）具有形状[Ntp，2]的2-D LoDTensor，存储每个类的输入真正正例。此输入用于传递前一个小批量生成的AccumTruePos多个小批量累计计算进行。
+        
         3、false_pos（LoDTensor）具有形状[Nfp，2]的2-D LoDTensor，存储每个类的输入误报示例。此输入用于传递多个小批量时前一个小批量生成的AccumFalsePos累计计算进行。 
+        
 - out_states：如果不是None，它包含3个元素：
 
         1、accum_pos_count（Tensor）具有形状[Ncls，1]的张量，存储每个类的正例数。它结合了输入输入（PosCount）和从输入（检测）和输入（标签）计算的正例计数。 
+        
         2、accum_true_pos（LoDTensor）具有形状[Ntp'，2]的LoDTensor，存储每个类的真正正例。它结合了输入（TruePos）和从输入（检测）和输入（标签）计算的真实正例。 
+        
         3、accum_false_pos（LoDTensor）具有形状[Nfp'，2]的LoDTensor，存储每个类的误报示例。它结合了输入（FalsePos）和从输入（检测）和输入（标签）计算的误报示例。
         
 - ap_version：（string，默认'integral'）AP算法类型，'integral'或'11 point'。
@@ -1577,8 +1608,11 @@ paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_
 **在Faster-RCNN检测中为区域检测网络（RPN）分配目标层。**
 
 对于给定锚点（anchors）和（ground truth boxes）框之间的交叉点（IoU）重叠，该层可以为每个锚点（anchors）分配分类和回归目标，这些目标标签用于训练RPN。分类目标是二进制类标签（对象为是或不是）。根据Faster-RCNN的论文，正标签（positive labels）有两种锚（anchors）：
+
         （i）具有最高IoU的锚（anchors）/锚（anchors）与（ground truth boxes）框重叠；
+        
         （ii）具有IoU重叠的锚（anchors）高于带有任何真实框（ground-truth box）的rpn_positive_overlap的（0.7）。
+        
         请注意，单个真实框（ground-truth box）可以为多个锚点（anchors）分配正面标签。对于所有真实框（ground-truth box），非正向锚是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正面也不是负面的锚点（anchors）对训练目标没有贡献。回归目标是与正锚（positive anchors）相关联而编码的图片真实窗口。
 
 参数：
@@ -1598,10 +1632,11 @@ paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_
 
 返回：
 
-返回元组（predict_scores，predict_location，target_label，target_bbox）。 predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是ground-truth。 predict_location是具有形状（shape）为[F，4]的2D张量，target_bbox的形状（shape）与predict_location的形状（shape）相同，F是前景锚点（anchors）的数量。 predict_scores是具有形状[F + B，1]的2D张量，target_label的形状与predict_scores的形状相同，B是背景锚点的数量，F和B取决于此算子的输入。
+        返回元组（predict_scores，predict_location，target_label，target_bbox）。 predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是ground-truth。 predict_location是具有形状（shape）为[F，4]的2D张量，target_bbox的形状（shape）与predict_location的形状（shape）相同，F是前景锚点（anchors）的数量。 predict_scores是具有形状[F + B，1]的2D张量，target_label的形状与predict_scores的形状相同，B是背景锚点的数量，F和B取决于此算子的输入。
 
 返回类型：
-元组
+
+        元组(tuple)
 
 
 代码示例：
