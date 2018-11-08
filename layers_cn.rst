@@ -1415,6 +1415,7 @@ paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, back
 此操作是通过执行以下两个步骤来获取检测结果：
 
         1、根据前面的框解码输入边界框预测。
+        
         2、通过应用多类非最大抑制（NMS）获得最终检测结果。
         
 请注意，此操作不会将最终输出边界框剪切到图像窗口。
