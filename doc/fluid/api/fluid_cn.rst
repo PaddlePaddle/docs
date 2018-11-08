@@ -7,7 +7,7 @@ Program
 class paddle.fluid.Program
 """"""""""""""""""""""""""""""""""""""""""
 
-创建python program， 在paddleFluid内部会被转换为ProgramDesc描述语言，是被用来创建c++ Program。Program像容器一样也是一种独立的程序语言。Program包括至少一个块（Block），控制流比如conditional_block包括while_op，该Program将会含有嵌套快（nested block）。详情请参阅framework.proto。
+创建python program， 在paddleFluid内部会被转换为ProgramDesc描述语言，是被用来创建c++ Program。Program像容器一样也是一种独立的程序语言。Program包括至少一个块（Block），控制流比如conditional_block包括while_op，该Program将会含有嵌套块（nested block）。详情请参阅framework.proto。
 
 注意：默认情况下，paddleFluid内部默认含有default_startup_program和default_main_program，它们将共享参数。default_startup_program只运行一次来初始化参数，default_main_program在每个mini batch中运行并调整权重。
 
@@ -63,7 +63,7 @@ to_string(throw_on_error, with_details=False)
 
 参数：  
 
-	- throw_on_error(bool): 有设置任何必需的字段时，抛出值错误。
+	- throw_on_error(bool): 没有设置任何必需的字段时，抛出值错误。
 	- with_details(bool): 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
 
 返回：
@@ -123,31 +123,31 @@ clone(for_test=False)
 
 ..  code-block:: python
 
->>> import paddle.fluid as fluid
->>>
->>> def network(is_test):
->>>     img = fluid.layers.data(name='image', shape=[784])
->>>     hidden = fluid.layers.fc(input=img, size=200, act='relu')
->>>     hidden = fluid.layers.dropout(hidden, dropout_prob=0.5, is_test=is_test)
->>>     loss = fluid.layers.cross_entropy(
->>>                 input=fluid.layers.fc(hidden, size=10, act='softmax'),
->>>                 label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
->>>     return loss
->>>
->>> train_program = fluid.Program()
->>> startup_program = fluid.Program()
->>> test_program = fluid.Program()
->>>
->>> with fluid.program_guard(train_program, startup_program):
->>>     with fluid.unique_name.guard():
->>>         loss = network(is_test=False)
->>>         sgd = fluid.optimizer.SGD(learning_rate=1e-3)
->>>         sgd.minimize(loss)
->>>
->>> # the test startup program is not used.
->>> with fluid.program_guard(test_program, fluid.Program()):
->>>     with fluid.unique_name.guard():
->>>         loss = network(is_test=True)
+	import paddle.fluid as fluid
+
+ 	def network(is_test):
+	     img = fluid.layers.data(name='image', shape=[784])
+	     hidden = fluid.layers.fc(input=img, size=200, act='relu')
+	     hidden = fluid.layers.dropout(hidden, dropout_prob=0.5, is_test=is_test)
+	     loss = fluid.layers.cross_entropy(
+			 input=fluid.layers.fc(hidden, size=10, act='softmax'),
+			 label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
+	     return loss
+
+	 train_program = fluid.Program()
+	 startup_program = fluid.Program()
+	 test_program = fluid.Program()
+
+	 with fluid.program_guard(train_program, startup_program):
+	     with fluid.unique_name.guard():
+		 loss = network(is_test=False)
+		 sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+		 sgd.minimize(loss)
+
+	 # the test startup program is not used.
+	 with fluid.program_guard(test_program, fluid.Program()):
+	     with fluid.unique_name.guard():
+		 loss = network(is_test=True)
 
 上边两个代码片段生成的Program是一样的。
 
@@ -241,10 +241,11 @@ paddle.fluid.scope_guard(*args, **kwds)()
 
 ..  code-block:: python
 
->>> import paddle.fluid as fluid
->>> new_scope = fluid.Scope()
->>> with fluid.scope_guard(new_scope):
->>>     ...
+	import paddle.fluid as fluid
+	
+	new_scope = fluid.Scope()
+	with fluid.scope_guard(new_scope):
+		...
 
 
 .. _cn_api_fluid_memory_optimize:
@@ -366,7 +367,7 @@ WeightNormParamAttr
 class paddle.fluid.WeightNormParamAttr(dim=None, name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
 """"""""""""""""""""""""""""""""""""""""""
 
-用于取得权重范数。权重范数将权重向量的长度与其方向解耦。`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_ 这篇paper中讨论了权重范数的实现
+权重归一化。权重归一化是将权重向量的长度与其方向解耦。`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_ 这篇paper中讨论了权重范数的实现
 
 参数:
 
