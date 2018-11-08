@@ -667,7 +667,8 @@ paddle.fluid.layers.slice(input, axes, starts, ends)
 
 切片算子。
 
-沿多个轴生成输入张量的切片。与numpy类似：(https：//docs.scipy.org/doc/numpy/reference/arrays.indexing.html)[https：//docs.scipy.org/doc/numpy/reference/arrays.indexing.html] Slice使用axis、start和ends属性来指定轴列表中每个轴的起点和终点维度，它使用此信息来对输入数据张量切片。如果为任何开始或结束的索引传递负值，则表示该维度结束之前的元素数目。如果传递给start或end的值大于n（此维度中的元素数目），则表示n。对于未知大小维度的末尾进行切片，则建议传入INT_MAX。如果省略轴，则将它们设置为[0，...，ndim-1]。以下示例将解释切片如何工作：
+沿多个轴生成输入张量的切片。与numpy类似：(https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html)[https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html] Slice使用axis、start和ends属性来指定轴列表中每个轴的起点和终点维度，它使用此信息来对输入数据张量切片。如果为任何开始或结束的索引传递负值，则表示该维度结束之前的元素数目。如果传递给start或end的值大于n（此维度中的元素数目），则表示n。对于未知大小维度的末尾进行切片，则建议传入INT_MAX。如果省略轴，则将它们设置为[0，...，ndim-1]。以下示例将解释切片如何工作：
+
 ::
 
         案例1：给定：data=[[1,2,3,4],[5,6,7,8],] axes=[0,1] starts=[1,0] ends=[2,3] Then：result=[[5,6,7],]
@@ -837,7 +838,7 @@ clip运算符限制给定输入的值在一个区间内。间隔使用参数“m
 - name（basestring | None）：输出的名称。
 返回：
 
-（Tensor）clip操作后的输出和输入（X）具有形状（shape）
+        （Tensor）clip操作后的输出和输入（X）具有形状（shape）
 
 返回类型：
 
@@ -940,6 +941,7 @@ Sigmoid文档：
 参数x：Sigmoid运算符的输入 
 参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
 类型use_mkldnn：BOOLEAN。
+
 返回：
 
        Sigmoid运算输出.
@@ -958,7 +960,8 @@ LogSigmoid文档：
 - 参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
 类型use_mkldnn：BOOLEAN。
 
-返回：LogSigmoid运算符的输出
+返回：
+        LogSigmoid运算符的输出
 
 
 .. _cn_api_fluid_layers_exp:
@@ -974,7 +977,9 @@ Exp文档：
 - 参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
 - 类型use_mkldnn：BOOLEAN。
 
-返回：Exp算子的输出
+返回：
+        
+        Exp算子的输出
 
 
 .. _cn_api_fluid_layers_tanh:
@@ -990,7 +995,9 @@ Tanh文档：
 参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
 类型use_mkldnn：BOOLEAN。
 
-返回：     Tanh算子的输出。
+返回：    
+        
+        Tanh算子的输出。
 
 
 
@@ -1027,7 +1034,7 @@ Softshrink激活算子
 
 返回：
 
-Softshrink运算符的输出
+        Softshrink运算符的输出
 
 
 .. _cn_api_fluid_layers_sqrt:
