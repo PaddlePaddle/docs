@@ -1,5 +1,4 @@
 
-
 .. _cn_api_fluid_layers_conv2d_transpose:
 
 conv2d_transpose
@@ -11,7 +10,7 @@ conv2d_transpose
 
 该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中N为batch大小，C为通道数（channel），H为特征高度，W为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和参考文献。如果参数bias_attr和act不为None，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
 
-输入X和输出Out函数关系，有等式如下：
+输入X和输出Out函数关系X，有等式如下：
 
                         Out=σ(W∗X+b)
 
@@ -31,6 +30,7 @@ conv2d_transpose
 **样例**：
 
 ::
+
     - 输入
 
         输入张量的shape（N，C_in， H_in， W_in）
@@ -55,17 +55,17 @@ conv2d_transpose
 参数:
 	- input（Variable）: 输入张量，格式为[N, C, H, W]
 	- num_filters(int) : 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
-    - output_size (int|tuple|None) : 输出照片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
-    - filter_size (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
-    - padding (int|tuple) : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
-    - stride(int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-    - dilation(int|元组) : 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
-    - groups(int) : Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-    - param_attr (ParamAttr|None) : conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
-    - bias_attr (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
-    - use_cudnn (bool) : 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
-    - act(str) :  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
-    - name (str|None) : 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
+	- output_size (int|tuple|None) : 输出照片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
+	- filter_size (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
+	- padding (int|tuple) : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
+	- stride(int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+	- dilation(int|元组) : 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
+	- groups(int) : Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
+	- param_attr (ParamAttr|None) : conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
+	- bias_attr (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
+	- use_cudnn (bool) : 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+	- act(str) :  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
+	- name (str|None) : 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
 
 
 返回：	存储卷积转置结果的张量。
@@ -117,37 +117,37 @@ conv3d_transpose
 
 ::
 
-Input:
+	Input:
 
-.. math::   Input shape: (N,C_in,D_in,H_in,W_in)
+	.. math::   Input shape: (N,C_in,D_in,H_in,W_in)
 
-.. math::   Filter shape: (C_in,C_out,D_f,H_f,W_f)
+	.. math::   Filter shape: (C_in,C_out,D_f,H_f,W_f)
 
-Output:
+	Output:
 
-.. math::   Output shape: (N,C_out,D_out,H_out,W_out)
+	.. math::   Output shape: (N,C_out,D_out,H_out,W_out)
 
-其中：
+	其中：
 
-.. math::   D_out=(D_in−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(D_f−1)+1
-.. math::   H_out=(H_in−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(H_f−1)+1
-.. math::   W_out=(W_in−1)∗strides[2]−2∗paddings[2]+dilations[2]∗(W_f−1)+1
+	.. math::   D_out=(D_in−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(D_f−1)+1
+	.. math::   H_out=(H_in−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(H_f−1)+1
+	.. math::   W_out=(W_in−1)∗strides[2]−2∗paddings[2]+dilations[2]∗(W_f−1)+1
 
 
 参数:
 	- input（Variable）: 输入张量，格式为[N, C, D, H, W]
 	- num_filters(int) : 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
-    - output_size (int|tuple|None) : 输出照片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
-    - filter_size (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
-    - padding (int|tuple) : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
-    - stride(int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-    - dilation(int|元组) : 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
-    - groups(int) : Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-    - param_attr (ParamAttr|None) : conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
-    - bias_attr (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
-    - use_cudnn (bool) : 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
-    - act(str) :  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
-    - name (str|None) : 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
+	- output_size (int|tuple|None) : 输出照片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
+	- filter_size (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
+	- padding (int|tuple) : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
+	- stride(int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+	- dilation(int|元组) : 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
+	- groups(int) : Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
+	- param_attr (ParamAttr|None) : conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
+	- bias_attr (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
+	- use_cudnn (bool) : 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+	- act(str) :  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
+	- name (str|None) : 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
 
 
 返回：	存储卷积转置结果的张量。
@@ -166,6 +166,7 @@ Output:
     data = fluid.layers.data(name='data', shape=[3, 12, 32, 32], dtype='float32')
     conv3d_transpose = fluid.layers.conv3d_transpose(input=data, num_filters=2, filter_size=3)
 
+
 .. _cn_api_fluid_layers_im2sequence:
 
 im2sequence
@@ -183,11 +184,11 @@ im2sequence
 参数:
 	- input（Variable）: 输入张量，格式为[N, C, H, W]
 	- filter_size (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，它必须包含两个整数(filter_size_H, filter_size_W)。否则，过滤器将是一个方阵。
-    - stride (int|tuple) : 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-    - padding(int|tuple) : 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
-    - input_image_size(Variable) ： 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch推理。
-    - out_stride (int|tuple) ： 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
-    - name(int) ： 该layer的名称，可以忽略。
+    	- stride (int|tuple) : 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+    	- padding(int|tuple) : 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
+    	- input_image_size(Variable) ： 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch推理。
+    	- out_stride (int|tuple) ： 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
+    	- name(int) ： 该layer的名称，可以忽略。
 
 返回：	LoDTensor shaoe为{batch_size * output_height * output_width, filter_size_H * filter_size_W * input.channels}。如果将输出看作一个矩阵，这个矩阵的每一行都是一个序列的step。
 
@@ -198,8 +199,8 @@ im2sequence
 	Given:
 
     x = [[[[ 6.  2.  1.]
-    [ 8.  3.  5.]
-    [ 0.  2.  6.]]
+    	[ 8.  3.  5.]
+    	[ 0.  2.  6.]]
 
     [[ 2.  4.  4.]
     [ 6.  3.  0.]
@@ -236,6 +237,7 @@ im2sequence
 
     output.lod = [[4, 4]]
 
+
 **代码示例**
 
 ..  code-block:: python
@@ -256,12 +258,12 @@ nce
 参数:
 	- input (Variable) ： 特征
 	- label (Variable) ： 标签
-    - num_total_classes (int) -所有样本中的类别的总数
-    - sample_weight(Variable|None) - 存储每个样本权重，shape为[batch_size, 1]存储每个样本的权重。每个样本的默认权重为1.0
-    - param_attr (ParamAttr|None) -可学习参数/ nce权重的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None
-    - bias_attr (ParamAttr|bool|None) - nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None
-    - num_neg_samples (int) -负样例的数量。默认值是10
-    - name (str|None) -该layer的名称(可选)。如果设置为None，该层将被自动命名
+    	- num_total_classes (int) -所有样本中的类别的总数
+    	- sample_weight(Variable|None) - 存储每个样本权重，shape为[batch_size, 1]存储每个样本的权重。每个样本的默认权重为1.0
+    	- param_attr (ParamAttr|None) -可学习参数/ nce权重的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None
+    	- bias_attr (ParamAttr|bool|None) - nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None
+    	- num_neg_samples (int) -负样例的数量。默认值是10
+    	- name (str|None) -该layer的名称(可选)。如果设置为None，该层将被自动命名
 
 返回：	nce loss
 
@@ -298,14 +300,14 @@ nce
 
 .. _cn_api_fluid_layers_hsigmoid:
 
-    hsigmoid
-    >>>>>>>>>>>>
+hsigmoid
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.hsigmoid(input, label, num_classes, param_attr=None, bias_attr=None, name=None)
+.. py:class:: paddle.fluid.layers.hsigmoid(input, label, num_classes, param_attr=None, bias_attr=None, name=None)
 
-    层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完整的二叉树，每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。hsigmoid可以把时间复杂度O(N)优化到O(logN),其中N表示单词字典的大小。
+层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完整的二叉树，每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。hsigmoid可以把时间复杂度O(N)优化到O(logN),其中N表示单词字典的大小。
 
-    请参考` Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
+请参考` Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
     
     参数:
         - input (Variable) ： 输入张量，shape为(N×D),其中N是minibatch的大小，D是特征大小。
@@ -325,18 +327,18 @@ nce
 ..  code-block:: python
         
 	x = fluid.layers.data(name='x', shape=[2], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[1], dtype='int64')
-    out = fluid.layers.hsigmoid(input=x, label=y, num_classes=6)
+    	y = fluid.layers.data(name='y', shape=[1], dtype='int64')
+    	out = fluid.layers.hsigmoid(input=x, label=y, num_classes=6)
 
   
 .. _cn_api_fluid_layers_beam_search_decode:
 
-    beam_search_decode
-    >>>>>>>>>>>>
+beam_search_decode
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.beam_search_decode(ids, scores, beam_size, end_id, name=None)
+.. py:class:: paddle.fluid.layers.beam_search_decode(ids, scores, beam_size, end_id, name=None)
 
-    束搜索层（Beam Search Decode Layer）通过回溯LoDTensorArray ids，为每个源语句构建完整假设，LoDTensorArray ids的lod可用于恢复束搜索树中的路径。请参阅下面的demo中的束搜索使用示例：
+束搜索层（Beam Search Decode Layer）通过回溯LoDTensorArray ids，为每个源语句构建完整假设，LoDTensorArray ids的lod可用于恢复束搜索树中的路径。请参阅下面的demo中的束搜索使用示例：
 
     ::
 
@@ -359,18 +361,18 @@ nce
 
 .. _cn_api_fluid_layers_row_conv:
 
-    row_conv
-    >>>>>>>>>>>>
+row_conv
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.row_conv(input, future_context_size, param_attr=None, act=None)
+.. py:class:: paddle.fluid.layers.row_conv(input, future_context_size, param_attr=None, act=None)
 
-    行卷积（Row-convolution operator）称为超前卷积（lookahead convolution）。下面关于DeepSpeech2的paper中介绍了这个operator 
+行卷积（Row-convolution operator）称为超前卷积（lookahead convolution）。下面关于DeepSpeech2的paper中介绍了这个operator 
     
-    ` http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf <http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf>`_ 
+    ` http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf<http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf>`_ 
 
-    双向的RNN在深度语音模型中很有用，它通过对整个序列执行正向和反向传递来学习序列的表示。然而，与单向RNNs不同的是，在线部署和低延迟设置中，双向RNNs具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。 row convolution operator 与一维序列卷积不同，计算方法如下:
+双向的RNN在深度语音模型中很有用，它通过对整个序列执行正向和反向传递来学习序列的表示。然而，与单向RNNs不同的是，在线部署和低延迟设置中，双向RNNs具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。 row convolution operator 与一维序列卷积不同，计算方法如下:
    
-    给定输入序列长度t输入维度d和一个大小为上下文大小*d的滤波器，输出序列卷积为:
+给定输入序列长度t输入维度d和一个大小为上下文大小*d的滤波器，输出序列卷积为:
 
                     .. math::   out_i = sum_{j=1}^{i+context} in_{j,_:} * W_{i-j}^2 
     
@@ -380,7 +382,7 @@ nce
         - Xj: 第i行输出变量 shaoe为【1，0】
         - W_{i-j} : 第(i-j)行参数的形状[1,D]。
 
-    详细请参考设计文档 `https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  .
+详细请参考设计文档 `https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  .
 
     参数:
     - input (Variable)——输入是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。
@@ -394,21 +396,22 @@ nce
 **代码示例**
 
 ..  code-block:: python
-        
-	 import paddle.fluid as fluid
-     x = fluid.layers.data(name='x', shape=[16],
+
+	import paddle.fluid as fluid
+     
+     	x = fluid.layers.data(name='x', shape=[16],
                         dtype='float32', lod_level=1)
-     out = fluid.layers.row_conv(input=x, future_context_size=2)
+	out = fluid.layers.row_conv(input=x, future_context_size=2)
 
 
 .. _cn_api_fluid_layers_smooth_l1:
 
-    smooth_l1
-    >>>>>>>>>>>>
+smooth_l1
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.smooth_l1(x, y, inside_weight=None, outside_weight=None, sigma=None)
+.. py:class:: paddle.fluid.layers.smooth_l1(x, y, inside_weight=None, outside_weight=None, sigma=None)
 
-    该layer计算变量x1和y 的smooth L1 loss，它以x和y的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
+该layer计算变量x1和y 的smooth L1 loss，它以x和y的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
 
 
     参数:
@@ -435,12 +438,12 @@ nce
 
 .. _cn_api_fluid_layers_ctc_greedy_decoder:
 
-    greedy_decoder
-    >>>>>>>>>>>>
+greedy_decoder
+>>>>>>>>>>>>
 
-    .. py:class::paddle.fluid.layers.ctc_greedy_decoder(input, blank, name=None)
+.. py:class::paddle.fluid.layers.ctc_greedy_decoder(input, blank, name=None)
 
-    此op用于贪婪策略解码序列，步骤如下:
+此op用于贪婪策略解码序列，步骤如下:
     
     1. 获取输入中的每一行的最大值索引。又名numpy。argmax(输入轴= 0)。
     2. 对于step1结果中的每个序列，在两个空格之间合并重复token并删除所有空格。
@@ -496,15 +499,15 @@ A simple example as below:
 
 .. _cn_api_fluid_layers_pad:
 
-    pad
-    >>>>>>>>>>>>
+pad
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
+.. py:class:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
 
-   在张量上加上一个由pad_value给出的常数值，填充宽度由paddings指定。
-   其中，维度i中x内容前填充的值个数用paddings[i]表示，维i中x内容后填充的值个数用paddings[i+1]表示。
+在张量上加上一个由pad_value给出的常数值，填充宽度由paddings指定。
+其中，维度i中x内容前填充的值个数用paddings[i]表示，维i中x内容后填充的值个数用paddings[i+1]表示。
    
-    一个例子:
+一个例子:
 
     ::
 
@@ -542,23 +545,25 @@ A simple example as below:
     out = fluid.layers.pad(
     x=x, paddings=[0, 1, 1, 2], pad_value=0.)
 
+
 .. _cn_api_fluid_layers_roi_pool :
 
-    roi_pool
-    >>>>>>>>>>>>
+roi_pool
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.roi_pool(input, rois, pooled_height=1, pooled_width=1, spatial_scale=1.0)
+.. py:class:: paddle.fluid.layers.roi_pool(input, rois, pooled_height=1, pooled_width=1, spatial_scale=1.0)
 
-    ROIPool operator
-    roi池化是对非均匀大小的输入执行最大池化，以获得固定大小的特征映射(例如7*7)。
+ROIPool operator
     
-    该operator有三个步骤:
+roi池化是对非均匀大小的输入执行最大池化，以获得固定大小的特征映射(例如7*7)。
+    
+该operator有三个步骤:
 
         1. 用pooled_width和pooled_height将每个区域划分为大小相等的部分
         2. 在每个部分中找到最大的值
         3. 将这些最大值复制到输出缓冲区
 
-    Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverflow.com/questions/43430056/what-is-roi-layer-in-fast-rcnn
+Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverflow.com/questions/43430056/what-is-roi-layer-in-fast-rcnn
 
     参数:    
         - input(Variable) : 张量，ROIPoolOp的输入。输入张量的格式是NCHW。其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度
@@ -582,14 +587,14 @@ A simple example as below:
 
 .. _cn_api_fluid_layers_dice_loss:
 
-    dice_loss
-    >>>>>>>>>>>>
+dice_loss
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.dice_loss(input, label, epsilon=1e-05)
+.. py:class:: paddle.fluid.layers.dice_loss(input, label, epsilon=1e-05)
 
-    dice_loss是比较两批数据相似度，通常用于二值图像分割，即标签为二值。
+dice_loss是比较两批数据相似度，通常用于二值图像分割，即标签为二值。
     
-    dice_loss定义为:
+dice_loss定义为:
 
 .. math::       dice_loss = 1- frac{2 * intersection_area}{total_rea} = frac{((total_area−intersection_area)−intersection_area)}{total_area}=frac{union_area−intersection_area}{total_area}           
 
@@ -607,23 +612,22 @@ A simple example as below:
 ..  code-block:: python
         
 	predictions = fluid.layers.softmax(x)
-    loss = fluid.layers.dice_loss(input=predictions, label=label, 2)
+    	loss = fluid.layers.dice_loss(input=predictions, label=label, 2)
 
 
 
 .. _cn_api_fluid_layers_image_resize:
 
-    image_resize
-    >>>>>>>>>>>>
+image_resize
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR')
+.. py:class:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR')
 
-    调整一批图片的大小
+调整一批图片的大小
     
-    输入张量的shape为(num_batch, channels, in_h, in_w)，并且调整大小只适用于最后两个维度(高度和宽度)。
+输入张量的shape为(num_batch, channels, in_h, in_w)，并且调整大小只适用于最后两个维度(高度和宽度)。
     
-    支持重新取样方法: 双线性插值
-
+支持重新取样方法: 双线性插值
     
     参数:
     - input (Variable) : 图片调整层的输入张量，这是一个shape=4的张量(num_batch, channels, in_h, in_w)。
@@ -648,13 +652,12 @@ A simple example as below:
 
 .. _cn_api_fluid_layers_image_resize_short:
 
-    image_resize_short
-    >>>>>>>>>>>>
+image_resize_short
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.image_resize_short(input, out_short_len, resample='BILINEAR')
+.. py:class:: paddle.fluid.layers.image_resize_short(input, out_short_len, resample='BILINEAR')
 
-    调整一批图片的大小。输入图像的短边将被调整为给定的out_short_len 。输入图像的长边按比例调整大小，最终图像的长宽比保持不变。
-
+调整一批图片的大小。输入图像的短边将被调整为给定的out_short_len 。输入图像的长边按比例调整大小，最终图像的长宽比保持不变。
 
     参数:
         - input (Variable) ： 图像调整图层的输入张量，这是一个4维的形状张量(num_batch, channels, in_h, in_w)。
@@ -666,16 +669,17 @@ A simple example as below:
     返回类型:	变量（variable）
 
 
+
 .. _cn_api_fluid_layers_image_resize_bilinear:
 
-    resize_bilinear
-    >>>>>>>>>>>>
+resize_bilinear
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None)
+.. py:class:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None)
 
-    双线性插值是对线性插值的扩展,即二维变量方向上(如h方向和w方向)插值。关键思想是先在一个方向上执行线性插值，然后再在另一个方向上执行线性插值。
+双线性插值是对线性插值的扩展,即二维变量方向上(如h方向和w方向)插值。关键思想是先在一个方向上执行线性插值，然后再在另一个方向上执行线性插值。
 
-    详情请参阅维基百科 `https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
+详情请参阅维基百科 `https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
 
    参数:
         - input(Variable) ： 双线性插值的输入张量，是一个shpae为(N x C x h x w)的4d张量。
@@ -686,16 +690,17 @@ A simple example as below:
     返回：	输出的维度是(N x C x out_h x out_w)
 
 
+
 .. _cn_api_fluid_layers_gather:
 
-    gather
-    >>>>>>>>>>>>
+gather
+>>>>>>>>>>>>
 
-    .. py:class:: paddle.fluid.layers.gather(input, index)
+.. py:class:: paddle.fluid.layers.gather(input, index)
 
-    收集层（gather layer）
+收集层（gather layer）
 
-    根据索引index获取X的最外层维度的条目，并将它们串连在一起。
+根据索引index获取X的最外层维度的条目，并将它们串连在一起。
 
                         Out=X[Index]
 
