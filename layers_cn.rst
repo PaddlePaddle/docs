@@ -1576,24 +1576,29 @@ paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_
 
 **在Faster-RCNN检测中为区域检测网络（RPN）分配目标层。**
 
-对于给定锚点（anchors）和（ground truth boxes）框之间的交叉点（IoU）重叠，该层可以为每个锚点分配分类和回归目标，这些目标标签用于训练RPN。分类目标是二进制类标签（是或不是对象）。根据Faster-RCNN的论文，正标签有两种锚（anchors）：（i）具有最高IoU的锚（anchors）/锚（anchors）与（ground truth boxes）框重叠，或（ii）具有高于rpn_positive_overlap的IoU重叠的锚（anchors）（0.7）任何地面真相框。请注意，单个地面实况框可以为多个锚点（anchors）分配正面标签。对于所有地面实况框，非正向锚是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正面也不是负面的锚点对训练目标没有贡献。回归目标是与正锚（anchors）相关联的编码的地面实况框。
+对于给定锚点（anchors）和（ground truth boxes）框之间的交叉点（IoU）重叠，该层可以为每个锚点（anchors）分配分类和回归目标，这些目标标签用于训练RPN。分类目标是二进制类标签（对象为是或不是）。根据Faster-RCNN的论文，正标签（positive labels）有两种锚（anchors）：
+        （i）具有最高IoU的锚（anchors）/锚（anchors）与（ground truth boxes）框重叠；
+        （ii）具有IoU重叠的锚（anchors）高于带有任何真实框（ground-truth box）的rpn_positive_overlap的（0.7）。
+        请注意，单个真实框（ground-truth box）可以为多个锚点（anchors）分配正面标签。对于所有真实框（ground-truth box），非正向锚是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正面也不是负面的锚点（anchors）对训练目标没有贡献。回归目标是与正锚（positive anchors）相关联而编码的图片真实窗口。
 
 参数：
-bbox_pred（变量） - 具有形状[N，M，4]的3-D张量表示M个边界bbox的预测位置。 N是批量大小，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
-cls_logits（变量） - 具有形状[N，M，1]的3-D张量表示预测的置信度预测。 N是批量大小，1是前景和背景sigmoid，M是边界框的数量。
-anchor_box（变量） - 具有形状[M，4]的2-D张量保持M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是锚框的左上顶部坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是锚箱的右下坐标。
-anchor_var（变量） - 具有形状[M，4]的2-D张量保持锚的扩展方差。
-gt_boxes（变量） - 地面实况boudding框（bbox）是具有形状[Ng，4]的2D LoDTensor，Ng是小批量输入的地面实况bbox的总数。
-is_crowd（变量） - 1-D LoDTensor，表示群体真相是人群。
-im_info（Variable） - 形状为[N，3]的2-D LoDTensor。 N是批量大小，
-是高度，宽度和比例。 （3） - 
-rpn_batch_size_per_im（int） - 每个映像的RPN示例总数。
-rpn_straddle_thresh（float） - 删除通过straddle_thresh像素出现在图像外部的RPN锚点。
-rpn_fg_fraction（float） - 标记为foreground（即class> 0）的RoI minibatch的目标分数，第0类是background。
-rpn_positive_overlap（float） - 锚点和地面实况框之间所需的最小重叠（锚点，gt框）对是一个正例。
-rpn_negative_overlap（float） - 锚点和地面实况框之间允许的最大重叠（锚点，gt框）对是一个反面例子。
+
+- bbox_pred（Variable）：具有形状（shape）[N，M，4]的3-D张量表示M个边界bbox的预测位置。N是批量大小，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
+- cls_logits（Variable）：具有形状[N，M，1]的3-D张量表示预测的置信度预测。 N是批量大小，1是前景和背景sigmoid，M是边界框的数量。
+- anchor_box（Variable）：具有形状[M，4]的2-D张量保持M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是锚框的左上顶部坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是锚箱的右下坐标。
+- anchor_var（Variable）：具有形状[M，4]的2-D张量保持锚的扩展方差。
+- gt_boxes（Variable）：真实边界框（bbox）是具有形状[Ng，4]的2D LoDTensor，Ng是小批量输入的地实边界框（bbox）的总数。
+- is_crowd（Variable）：1-D LoDTensor，表示（groud-truth）是密集的。
+- im_info（Variable）：形状为[N，3]的2-D LoDTensor。N是批量大小，
+- rpn_batch_size_per_im（int）：每个图像的RPN示例总数。
+- rpn_straddle_thresh（float）：删除通过straddle_thresh像素出现在图像外部的RPN锚点。
+- rpn_fg_fraction（float）：标记为foreground（即class> 0）的RoI小批量的目标分数，第0类是background。
+- rpn_positive_overlap（float）：锚点（anchors）和所有真实框（ground-truth box）间所需的最小重叠（锚点，gt框）对是一个正例。
+* rpn_negative_overlap（float）：锚点（anchors）和所有真实框（ground-truth box）之间允许的最大重叠（锚点，gt框）对是一个反例。
+
 返回：
-返回元组（predict_scores，predict_location，target_label，target_bbox）。 predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是基础事实。 predict_location是具有形状[F，4]的2D张量，target_bbox的形状与predict_location的形状相同，F是前景锚点的数量。 predict_scores是具有形状[F + B，1]的2D张量，target_label的形状与predict_scores的形状相同，B是背景锚点的数量，F和B取决于此输入运营商。
+
+返回元组（predict_scores，predict_location，target_label，target_bbox）。 predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是ground-truth。 predict_location是具有形状（shape）为[F，4]的2D张量，target_bbox的形状（shape）与predict_location的形状（shape）相同，F是前景锚点（anchors）的数量。 predict_scores是具有形状[F + B，1]的2D张量，target_label的形状与predict_scores的形状相同，B是背景锚点的数量，F和B取决于此算子的输入。
 
 返回类型：
 元组
