@@ -10,7 +10,7 @@ paddle.fluid.layers.create_array(dtype)
 
 创建LoDTensorArray数组。它主要用于实现RNN与array_write, array_read和While。
 
-  参数: dtype(int |float)——lod_tensor_array中元素的数据类型。
+  参数: dtype(int |float)——lod_tensor_array中存储元素的数据类型。
 
   返回: lod_tensor_array， 元素数据类型为dtype。
 
@@ -40,22 +40,22 @@ class paddle.fluid.layers.DynamicRNN(name=None)
 **代码示例**
 
 ..  code-block:: python
-  
->>> import paddle.fluid as fluid
->>> data = fluid.layers.data(name='sentence', dtype='int64', lod_level=1)
->>> embedding = fluid.layers.embedding(input=data, size=[65535, 32],
->>>                                    is_sparse=True)
->>>
->>> drnn = fluid.layers.DynamicRNN()
->>> with drnn.block():
->>>     word = drnn.step_input(embedding)
->>>     prev = drnn.memory(shape=[200])
->>>     hidden = fluid.layers.fc(input=[word, prev], size=200, act='relu')
->>>     drnn.update_memory(prev, hidden)  # set prev to hidden
->>>     drnn.output(hidden)
->>>
->>> # last is the last time step of rnn. It is the encoding result.
->>> last = fluid.layers.sequence_last_step(drnn())
+
+	import paddle.fluid as fluid
+	data = fluid.layers.data(name='sentence', dtype='int64', lod_level=1)
+	embedding = fluid.layers.embedding(input=data, size=[65535, 32],
+					    is_sparse=True)
+
+	drnn = fluid.layers.DynamicRNN()
+	with drnn.block():
+		word = drnn.step_input(embedding)
+	     	prev = drnn.memory(shape=[200])
+	     	hidden = fluid.layers.fc(input=[word, prev], size=200, act='relu')
+	     	drnn.update_memory(prev, hidden)  # set prev to hidden
+	     	drnn.output(hidden)
+
+	 # last is the last time step of rnn. It is the encoding result.
+	last = fluid.layers.sequence_last_step(drnn())
 
 
 动态RNN将按照timesteps展开开序列。用户需要在with block中定义如何处理处理每个timestep。
@@ -66,13 +66,21 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
   step_input(x)
   
-    将序列标记为动态RNN输入。:参数x:输入序列。:x型:变量
+    将序列标记为动态RNN输入。
     
+    参数:
+    	- x:输入序列	
+	- 类型： Variable
+    	
     返回:当前的输入序列中的timestep。
 
   static_input(x)
   
-    将变量标记为RNN输入。输入不会分散到timestep中。参数x:输入变量。:x型:Variable
+    将变量标记为RNN输入。输入不会分散到timestep中。
+    
+    参数:
+    	- x:输入变量
+	- 类型:Variable
 
     返回:可以访问的RNN的输入变量,。
 
@@ -90,42 +98,46 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 ..  code-block:: python
   
->>> import paddle.fluid as fluid
->>> sentence = fluid.layers.data(
->>>                 name='sentence', dtype='float32', shape=[32])
->>> boot_memory = fluid.layers.data(
->>>                 name='boot', dtype='float32', shape=[10])
->>>
->>> drnn = fluid.layers.DynamicRNN()
->>> with drnn.block():
->>>     word = drnn.step_input(sentence)
->>>     memory = drnn.memory(init=boot_memory, need_reorder=True)
->>>     hidden = fluid.layers.fc(
->>>                 input=[word, memory], size=10, act='tanh')
->>>     drnn.update_memory(ex_mem=memory, new_mem=hidden)
->>>     drnn.output(hidden)
->>> rnn_output = drnn()
+  	import paddle.fluid as fluid
+  	sentence = fluid.layers.data(
+                 name='sentence', dtype='float32', shape=[32])
+	boot_memory = fluid.layers.data(
+                 name='boot', dtype='float32', shape=[10])
 
-  否则，如果已经设置shape value dtype，memory将被value初始化
+	drnn = fluid.layers.DynamicRNN()
+	with drnn.block():
+	     word = drnn.step_input(sentence)
+	     memory = drnn.memory(init=boot_memory, need_reorder=True)
+	     hidden = fluid.layers.fc(
+			 input=[word, memory], size=10, act='tanh')
+	     drnn.update_memory(ex_mem=memory, new_mem=hidden)
+	     drnn.output(hidden)
+	   
+	rnn_output = drnn()
+
+
+
+否则，如果已经设置shape value dtype，memory将被value初始化
   
 ..  code-block:: python
   
->>> import paddle.fluid as fluid
->>> sentence = fluid.layers.data(
->>>                 name='sentence', dtype='float32', shape=[32])
->>>
->>> drnn = fluid.layers.DynamicRNN()
->>> with drnn.block():
->>>     word = drnn.step_input(sentence)
->>>     memory = drnn.memory(shape=[10], dtype='float32', value=0)
->>>     hidden = fluid.layers.fc(
->>>             input=[word, memory], size=10, act='tanh')
->>>     drnn.update_memory(ex_mem=memory, new_mem=hidden)
->>>     drnn.output(hidden)
->>> rnn_output = drnn()
+	import paddle.fluid as fluid
+
+	sentence = fluid.layers.data(
+			name='sentence', dtype='float32', shape=[32])
+
+	drnn = fluid.layers.DynamicRNN()
+	with drnn.block():
+	    word = drnn.step_input(sentence)
+	    memory = drnn.memory(shape=[10], dtype='float32', value=0)
+	    hidden = fluid.layers.fc(
+		    input=[word, memory], size=10, act='tanh')
+	    drnn.update_memory(ex_mem=memory, new_mem=hidden)
+	    drnn.output(hidden)
+	rnn_output = drnn()
 
 
-  参数：
+参数：
     - init (Variable|None) – 初始化的Variable.
     - shape (list|tuple) – memory shape. 注意形状不包含
     - batch_size. –batch的大小
@@ -134,14 +146,19 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
     - sample. (input) – 输入
     - dtype (str|numpy.dtype) –初始化memory的数据类型
 
-  返回：memory Variable
+返回：memory Variable
 
 
-  update_memory(ex_mem, new_mem)
+update_memory(ex_mem, new_mem)
   
-    将内存从ex_mem更新到new_mem。注意，ex_mem和new_mem的shape和数据类型必须相同。:param ex_mem:memory Variable。:param ex_mem: the memory variable. :type ex_mem: Variable :param new_mem: the plain variable generated in RNN block. :type new_mem: Variable
+	将内存从ex_mem更新到new_mem。注意，ex_mem和new_mem的shape和数据类型必须相同。
+	
+	参数：
+	- ex_mem（memory Variable）:  memory 变量（Variable） 
+	
+	- new_mem（memory Variable）: RNN块中生成的平坦变量（plain  variable）
 
-  返回：None
+  	返回：None
 
 
   output(*outputs)
@@ -162,6 +179,7 @@ class paddle.fluid.layers.StaticRNN(name=None)
 用于创建static RNN。RNN将有自己的参数，比如输入、输出、memory、状态和长度。
 
   memory(init=None, shape=None, batch_ref=None, init_value=0.0, init_batch_dim_idx=0, ref_batch_dim_idx=1)
+  
   参数：
   
     - init - boot memory，如果没有设置，则必须提供一个shape
@@ -219,11 +237,12 @@ paddle.fluid.layers.double_buffer(reader, place=None, name=None)
 
 ..  code-block:: python
 
->>> reader = fluid.layers.open_files(filenames=['somefile'],
->>>                                  shapes=[[-1, 784], [-1, 1]],
->>>                                  dtypes=['float32', 'int64'])
->>> reader = fluid.layers.double_buffer(reader)
->>> img, label = fluid.layers.read_file(reader)
+reader = fluid.layers.open_files(filenames=['somefile'],
+                                 shapes=[[-1, 784], [-1, 1]],
+                                 dtypes=['float32', 'int64'])
+reader = fluid.layers.double_buffer(reader)
+img, label = fluid.layers.read_file(reader)
+
 
 
 
@@ -262,29 +281,30 @@ reader，从reader中可以获取feed的数据
 
 ..  code-block:: python
 
->>> import paddle.v2
->>> import paddle.fluid as fluid
->>> import paddle.dataset.mnist as mnist
->>>
->>> reader = fluid.layers.py_reader(capacity=64,
->>>                                 shapes=[(-1,3,224,224), (-1,1)],
->>>                                 dtypes=['float32', 'int64'])
->>> reader.decorate_paddle_reader(
->>>     paddle.v2.reader.shuffle(paddle.batch(mnist.train())
->>>
->>> img, label = fluid.layers.read_file(reader)
->>> loss = network(img, label) # some network definition
->>>
->>> fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
->>>
->>> exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
->>> for epoch_id in range(10):
->>>     reader.start()
->>>     try:
->>>         while True:
->>>             exe.run(fetch_list=[loss.name])
->>>     except fluid.core.EOFException:
->>>         reader.reset()
+
+import paddle.v2
+import paddle.fluid as fluid
+import paddle.dataset.mnist as mnist
+
+reader = fluid.layers.py_reader(capacity=64,
+                                shapes=[(-1,3,224,224), (-1,1)],
+                                dtypes=['float32', 'int64'])
+reader.decorate_paddle_reader(
+    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+
+img, label = fluid.layers.read_file(reader)
+loss = network(img, label) # some network definition
+
+fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
+
+exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
+for epoch_id in range(10):
+    reader.start()
+    try:
+        while True:
+            exe.run(fetch_list=[loss.name])
+    except fluid.core.EOFException:
+        reader.reset()
 
 
 
@@ -294,67 +314,68 @@ reader，从reader中可以获取feed的数据
 
 ..  code-block:: python
 
->>> import paddle.v2
->>> import paddle.fluid as fluid
->>> import paddle.dataset.mnist as mnist
->>>
->>> def network(reader):
->>>     img, label = fluid.layers.read_file(reader)
->>>     # Here, we omitted the network definition
->>>     return loss
->>>
->>> train_reader = fluid.layers.py_reader(capacity=64,
->>>                                       shapes=[(-1,3,224,224), (-1,1)],
->>>                                       dtypes=['float32', 'int64'],
->>>                                       name='train_reader')
->>> train_reader.decorate_paddle_reader(
->>>     paddle.v2.reader.shuffle(paddle.batch(mnist.train())
->>>
->>> test_reader = fluid.layers.py_reader(capacity=32,
->>>                                      shapes=[(-1,3,224,224), (-1,1)],
->>>                                      dtypes=['float32', 'int64'],
->>>                                      name='test_reader')
->>> test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
->>>
->>> # Create train_main_prog and train_startup_prog
->>> train_main_prog = fluid.Program()
->>> train_startup_prog = fluid.Program()
->>> with fluid.program_guard(train_main_prog, train_startup_prog):
->>>     # Use fluid.unique_name.guard() to share parameters with test program
->>>     with fluid.unique_name.guard():
->>>         train_loss = network(train_reader) # some network definition
->>>         adam = fluid.optimizer.Adam(learning_rate=0.01)
->>>         adam.minimize(loss)
->>>
->>> # Create test_main_prog and test_startup_prog
->>> test_main_prog = fluid.Program()
->>> test_startup_prog = fluid.Program()
->>> with fluid.program_guard(test_main_prog, test_startup_prog):
->>>     # Use fluid.unique_name.guard() to share parameters with train program
->>>     with fluid.unique_name.guard():
->>>         test_loss = network(test_reader)
->>>
->>> fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
->>> fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
->>>
->>> train_exe = fluid.ParallelExecutor(use_cuda=True,
->>>                 loss_name=train_loss.name, main_program=train_main_prog)
->>> test_exe = fluid.ParallelExecutor(use_cuda=True,
->>>                 loss_name=test_loss.name, main_program=test_main_prog)
->>> for epoch_id in range(10):
->>>     train_reader.start()
->>>     try:
->>>         while True:
->>>             train_exe.run(fetch_list=[train_loss.name])
->>>     except fluid.core.EOFException:
->>>         train_reader.reset()
->>>
->>>     test_reader.start()
->>>     try:
->>>         while True:
->>>             test_exe.run(fetch_list=[test_loss.name])
->>>     except fluid.core.EOFException:
->>>         test_reader.reset()
+import paddle.v2
+import paddle.fluid as fluid
+import paddle.dataset.mnist as mnist
+
+def network(reader):
+    img, label = fluid.layers.read_file(reader)
+    # Here, we omitted the network definition
+    return loss
+
+train_reader = fluid.layers.py_reader(capacity=64,
+                                      shapes=[(-1,3,224,224), (-1,1)],
+                                      dtypes=['float32', 'int64'],
+                                      name='train_reader')
+train_reader.decorate_paddle_reader(
+    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+
+test_reader = fluid.layers.py_reader(capacity=32,
+                                     shapes=[(-1,3,224,224), (-1,1)],
+                                     dtypes=['float32', 'int64'],
+                                     name='test_reader')
+test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
+
+# Create train_main_prog and train_startup_prog
+train_main_prog = fluid.Program()
+train_startup_prog = fluid.Program()
+with fluid.program_guard(train_main_prog, train_startup_prog):
+    # Use fluid.unique_name.guard() to share parameters with test program
+    with fluid.unique_name.guard():
+        train_loss = network(train_reader) # some network definition
+        adam = fluid.optimizer.Adam(learning_rate=0.01)
+        adam.minimize(loss)
+
+# Create test_main_prog and test_startup_prog
+test_main_prog = fluid.Program()
+test_startup_prog = fluid.Program()
+with fluid.program_guard(test_main_prog, test_startup_prog):
+    # Use fluid.unique_name.guard() to share parameters with train program
+    with fluid.unique_name.guard():
+        test_loss = network(test_reader)
+
+fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
+fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
+
+train_exe = fluid.ParallelExecutor(use_cuda=True,
+                loss_name=train_loss.name, main_program=train_main_prog)
+test_exe = fluid.ParallelExecutor(use_cuda=True,
+                loss_name=test_loss.name, main_program=test_main_prog)
+for epoch_id in range(10):
+    train_reader.start()
+    try:
+        while True:
+            train_exe.run(fetch_list=[train_loss.name])
+    except fluid.core.EOFException:
+        train_reader.reset()
+
+    test_reader.start()
+    try:
+        while True:
+            test_exe.run(fetch_list=[test_loss.name])
+    except fluid.core.EOFException:
+        test_reader.reset()
+
 
 
 
