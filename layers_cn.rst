@@ -1465,11 +1465,13 @@ paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, 
 1、通过二分匹配算法查找匹配的边界框。
 
         1.1、计算地面实况框与之前框之间的IOU相似度。
+        
         1.2、通过二分匹配算法计算匹配的边界框。
 
 2、计算挖掘硬实例的信心
 
         2.1、根据匹配的索引获取目标标签。
+        
         2.2、计算信心损失。
 
 3、应用实例挖掘来获取负示例索引并更新匹配的索引。
@@ -1477,13 +1479,19 @@ paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, 
 4、分配分类和回归目标
 
         4.1、根据前面的框编码bbox。
+        
         4.2、分配回归目标。
+        
         4.3、分配分类目标。
+        
 5、计算总体客观损失。
 
         5.1计算置信度损失。
+        
         5.1计算本地化损失。
+        
         5.3计算总体加权损失。
+        
 参数：
 
 - location（Variable）：位置预测是具有形状[N，Np，4]的3D张量，N是批量大小，Np是每个实例的预测总数。 4是坐标值的数量，布局是[xmin，ymin，xmax，ymax]。
@@ -1672,8 +1680,11 @@ paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, va
 为了生成提议，此操作执行以下步骤：
 
         1、转置和调整分数和大小为（H * W * A，1）和（H * W * A，4）的bbox_deltas
+        
         2、计算方框位置作为提案候选人。剪辑框图像
+        
         3、删除小面积的预测框。
+        
         4、应用NMS以获得最终提案作为输出。
 参数：
 
