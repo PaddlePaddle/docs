@@ -22,7 +22,6 @@ API Reference
     optimizer.rst
     param_attr.rst
     profiler.rst
-    recordio_writer.rst
     regularizer.rst
     transpiler.rst
 
