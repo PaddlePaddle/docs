@@ -9,5 +9,4 @@
   design/index_en.rst
   howto/index_en.rst
   dev/index_en.rst
-  api/index_en.rst
   faq/index_en.rst
