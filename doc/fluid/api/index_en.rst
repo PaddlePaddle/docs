@@ -20,7 +20,6 @@ API Reference
     io.rst
     data.rst
     transpiler.rst
-    recordio_writer.rst
     backward.rst
     average.rst
     profiler.rst
