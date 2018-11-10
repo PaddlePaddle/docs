@@ -8,7 +8,7 @@
 
 请注意：在其他系统上的尝试可能会导致安装失败。请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机处理器支持AVX2指令集，否则请选择[多版本whl包安装列表](Tables.html/#ciwhls)中`no_avx`的版本。
 
-CentOS系统下您可以使用 `cat /proc/cpuinfo | grep avx2`来检测您的处理器是否支持avx2指令集
+CentOS系统下您可以使用`cat /proc/cpuinfo | grep avx2`来检测您的处理器是否支持avx2指令集
 
 * *CentOS 6 / 7*
 
