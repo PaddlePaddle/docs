@@ -9,7 +9,7 @@
 * *Windows7 / 8/ 10(专业版/企业版)*
 
 
-请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机拥有64位操作系统，处理器支持AVX2指令集，否则请选择`多版本whl包安装列表 <Tables.html/#ciwhls>`_  中 :code:`no_avx`的版本
+请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机拥有64位操作系统，处理器支持AVX2指令集，否则请选择 `多版本whl包安装列表 <Tables.html/#ciwhls>`_  中 :code:`no_avx`的版本
 
 - 如果您希望使用 `pip <https://pypi.org/pypi/>`_ 进行安装PaddlePaddle可以直接使用以下命令:      
 
