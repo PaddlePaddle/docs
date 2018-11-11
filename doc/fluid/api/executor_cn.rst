@@ -1,13 +1,13 @@
 
 
-.. cn_api_fluid_executor:
+.. _cn_api_fluid_executor:
 
 Executor
-=======================
+>>>>>>>>>>>>>>>>>>>>>
 
 
-*class* paddle.fluid.executor. Executor *(place)*
----------------------------------------------------------
+.. py:class:: class paddle.fluid.executor. Executor (place)
+
 
 
 
@@ -32,8 +32,8 @@ program中所有的算子会按顺序执行。
 提示：你可以用Executor来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
 
 
-``close()``
-++++++++++++++++++++++++
+.. py:method:: close()
+
 
 关闭这个执行器(Executor)。调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上涉及到目前训练器的资源。
    
@@ -47,9 +47,8 @@ program中所有的算子会按顺序执行。
     exe.close()
 
 
+.. py:method:: run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True,use_program_cache=False)
 
-``run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True, use_program_cache=False)``
-*************************************************************************************************************************************************************************
 
 调用该执行器对象的此方法可以执行program。通过feed map提供待学习数据，以及借助fetch_list得到相应的结果。
 Python执行器(Executor)可以接收传入的program,并根据输入映射表(feed map)和结果获取表(fetch_list)
@@ -67,6 +66,12 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 	- scope (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
 	- return_numpy (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
 	- use_program_cache (bool) – 当program较上次比没有改动则将其置为True
+	
+返回:	根据fetch_list来获取结果
+
+返回类型:	list(numpy.array)
+
+
 **示例代码**
 
 ..  code-block:: python
