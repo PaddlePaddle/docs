@@ -51,7 +51,46 @@ executor and parallel_executor are designed for geneneral training cases in part
 to be discussed. 
 
 ## Inside Structure of Async Executor
-will be added.
+``` c++
+void AsyncExecutor::RunFromFiles(const std::vector<std::string> & files,
+                                 const int thread_num) {
+  root_scope_->DropKids();
+  std::vector<std::thread> threads;
+  threads.resize(thread_num);
+
+  // prepare readers
+  std::vector<std::shared_ptr<DataFeed> > readers;
+  readers.resize(thread_num);
+  for (auto& reader : readers) {
+    reader.reset(new DataFeed);
+    reader.add_filelist(files);
+  }
+
+  std::vector<std::shared_ptr<ExecutorThreadWorker> > workers;
+  workers.resize(thread_num);
+  for (auto& worker : workers) {
+    worker.reset(new ExecutorThreadWorker);
+  }
+
+  // prepare thread resource here
+  for (int thidx = 0; thidx < thread_num; ++thidx) {
+    CreateThreads(workers[thidx].get(), main_program,
+                  readers[thidx].get(), root_scope_, thidx);
+  }
+  
+  // start executing ops in multiple threads
+  for (int thidx = 0; thidx < thread_num_; ++thidx) {
+    threads.push_back(std::thread(&ExecutorThreadWorker::TrainFiles,
+                                  workers[thidx].get()));
+  }
+
+  for (auto& th : threads) {
+    th.join();
+  }
+  // fetch variables in scope 0, and return
+}
+
+```
 
 ## How to print variable information during execution
 Inside async_executor, no information is printed. Variable can be fetched through an execution of async_executor. The fetched variables can be printed through python. 
