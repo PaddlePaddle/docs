@@ -43,10 +43,11 @@ conv2d_transpose
 
     其中
 
-.. math::  
-	H'_out = (Hin−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(H_f−1)+1
+.. math:: 
+
+	H'_out = (Hin−1)*strides[0]−2*paddings[0]+dilations[0]*(H_f−1)+1
     
-    	W’_out = (Win−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(W_f−1)+1
+    	W’_out = (Win−1)*strides[1]−2*paddings[1]+dilations[1]*(W_f−1)+1
     
     	H_out∈[H′_out,H′_out + strides[0])
     
@@ -134,7 +135,7 @@ conv3d_transpose
 		Output shape: (N,C_out,D_out,H_out,W_out)
 
 	
-	其中：
+其中：
 
 .. math::   
 	
@@ -264,7 +265,7 @@ nce
 
 .. py:class:: paddle.fluid.layers.nce(input, label, num_total_classes, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None)
 
-计算并返回噪音对比估计（ noise-contrastive estimation training loss）。` 请参考 See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_ See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models。该operator默认使用均匀分布进行抽样。
+计算并返回噪音对比估计（ noise-contrastive estimation training loss）。`请参考 See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_该operator默认使用均匀分布进行抽样。
 
 参数:
 	- input (Variable) ： 特征
@@ -288,16 +289,16 @@ nce
     window_size = 5
     words = []
     for i in xrange(window_size):
-    words.append(layers.data(
-    name='word_{0}'.format(i), shape=[1], dtype='int64'))
+    	words.append(layers.data(
+    	name='word_{0}'.format(i), shape=[1], dtype='int64'))
 
     dict_size = 10000
     label_word = int(window_size / 2) + 1
 
     embs = []
     for i in xrange(window_size):
-    if i == label_word:
-    continue
+   	 if i == label_word:
+    	continue
 
     emb = layers.embedding(input=words[i], size=[dict_size, 32],
     param_attr='emb.w', is_sparse=True)
@@ -318,7 +319,7 @@ hsigmoid
 
 层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完整的二叉树，每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。hsigmoid可以把时间复杂度O(N)优化到O(logN),其中N表示单词字典的大小。
 
-` 请参考 Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
+`请参考 Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
     
 参数:
         - input (Variable) ： 输入张量，shape为(N×D),其中N是minibatch的大小，D是特征大小。
@@ -692,7 +693,7 @@ resize_bilinear
 
 双线性插值是对线性插值的扩展,即二维变量方向上(如h方向和w方向)插值。关键思想是先在一个方向上执行线性插值，然后再在另一个方向上执行线性插值。
 
-详情请参阅维基百科 `https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
+ `详情请参阅维基百科 https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
 
 参数:
         - input(Variable) ： 双线性插值的输入张量，是一个shpae为(N x C x h x w)的4d张量。
