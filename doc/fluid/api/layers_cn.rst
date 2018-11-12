@@ -167,10 +167,10 @@ paddle.fluid.layers.crop(x, shape=None, offsets=None, name=None)
 
  
 参数:
-- x(Variable)——输入张量。
-- shape (Variable|list/tuple of integer)-输出张量的形状由参数shape指定，它可以是一个变量/整数的列表/整数元组。如果
-- offsets(Variable|list/tuple of integer|None) -指定每个维度上的裁剪的偏移量。它可以是一个Variable，或者一个整数list/tupe。如果是一个tensor variable，它的rank必须与x相同，这种方法适用于每次迭代的偏移量（offset）都可能改变的情况。如果是一个整数list/tupe，则长度必须与x的rank的相同，如果shape=None，则每个维度的偏移量为0。
-- name (str|None) -这个层的名称(可选)。如果设置为None，该层将被自动命名。
+  - x(Variable): 输入张量。
+  - shape (Variable|list/tuple of integer)-输出张量的形状由参数shape指定，它可以是一个变量/整数的列表/整数元组。如果
+  - offsets(Variable|list/tuple of integer|None) : 指定每个维度上的裁剪的偏移量。它可以是一个Variable，或者一个整数list/tupe。如果是一个tensor variable，它的rank必须与x相同，这种方法适用于每次迭代的偏移量（offset）都可能改变的情况。如果是一个整数list/tupe，则长度必须与x的rank的相同，如果shape=None，则每个维度的偏移量为0。
+  - name (str|None) : 该层的名称(可选)。如果设置为None，该层将被自动命名。
 
 返回: 裁剪张量。
 返回类型: 变量（Variable）
