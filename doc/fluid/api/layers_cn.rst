@@ -173,7 +173,9 @@ paddle.fluid.layers.crop(x, shape=None, offsets=None, name=None)
   - name (str|None) : 该层的名称(可选)。如果设置为None，该层将被自动命名。
 
 返回: 裁剪张量。
+
 返回类型: 变量（Variable）
+
 抛出异常: 如果形状不是列表、元组或变量，抛出ValueError
 
 
