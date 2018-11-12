@@ -102,6 +102,22 @@ void AsyncExecutor::RunFromFiles(
   }
   // fetch variables in scope 0, and return
 }
+
+```
+Inside the function ```CreateThreads```, 
+``` c++
+void AsyncExecutor::CreateThreads(const ExecutorThreadWorker* worker,
+                                  const ProgramDesc& main_program,
+                                  const DataFeed& reader,
+                                  const Scope& root_scope,
+                                  const int thread_index) {
+  worker->SetThreadid(thread_index);
+  worker->CreateThreadOperators(main_program);
+  worker->CreateThreadScope(main_program);
+  worker->BindingDataFeedMemory(reader);
+  worker->SetMainProgram(main_program);
+  worker->SetRootScope(root_scope);
+}
 ```
 Inside the function ```Trainfiles```, 
 ``` c++
