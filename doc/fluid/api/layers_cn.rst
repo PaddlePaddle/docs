@@ -52,9 +52,9 @@ sequence_scatter
 random_crop
 >>>>>>>>>>>>
 
-paddle.fluid.layers.random_crop(x, shape, seed=None)
+.. py:class:: paddle.fluid.layers.random_crop(x, shape, seed=None)
 
-该operator，对batch中每个实例进行随机裁剪。这意味着每个实例的裁剪位置不同，裁剪位置由均匀分布随机生成器决定。所有裁剪的实例都具有相同的shape，由参数shape决定。
+该operator对batch中每个实例进行随机裁剪。这意味着每个实例的裁剪位置不同，裁剪位置由均匀分布随机生成器决定。所有裁剪的实例都具有相同的shape，由参数shape决定。
 
 参数:
     - x(Variable)-一组随机裁剪的实例
@@ -76,7 +76,7 @@ paddle.fluid.layers.random_crop(x, shape, seed=None)
 mean_iou
 >>>>>>>>>>>>
 
-paddle.fluid.layers.mean_iou(input, label, num_classes)
+.. py:class:: paddle.fluid.layers.mean_iou(input, label, num_classes)
 
 均值IOU（Mean  Intersection-Over-Union）是语义图像分割中的常用的评价指标之一，它首先计算每个语义类的IOU，然后计算类之间的平均值。定义如下:
       
