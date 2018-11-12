@@ -451,6 +451,321 @@ ParamAttr
 
 
 
+.. _cn_api_fluid_DataFeeder:
 
+DataFeeder
+>>>>>>>>>>>>>>>>>
+
+.. py:class:: class paddle.fluid.DataFeeder(feed_list, place, program=None)
+
+
+
+``DataFeeder`` 负责将reader(读取器)返回的数据转成一种特殊的数据结构，使它们可以输入到 ``Executor`` 和 ``ParallelExecutor`` 中。
+reader通常返回一个minibatch条目列表。在列表中每一条目都是一个样本（sample）,它是由具有一至多个特征的列表或元组组成的。
+
+
+以下是简单用法：
+
+..  code-block:: python
+	
+	place = fluid.CPUPlace()
+	img = fluid.layers.data(name='image', shape=[1, 28, 28])
+	label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+	feeder = fluid.DataFeeder([img, label], fluid.CPUPlace())
+	result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
+	
+在多GPU模型训练时，如果需要提前分别向各GPU输入数据，可以使用 ``decorate_reader`` 函数。
+
+..  code-block:: python
+
+	place=fluid.CUDAPlace(0)
+	feeder = fluid.DataFeeder(place=place, feed_list=[data, label])
+	reader = feeder.decorate_reader(
+    		paddle.batch(flowers.train(), batch_size=16))
+
+
+
+参数：  
+	- feed_list (list) – 向模型输入的变量表或者变量表名
+	- place (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
+    	- program (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
+
+
+弹出异常:	  ``ValueError``  – 如果一些变量不在此 Program 中
+
+
+**代码示例**
+
+..  code-block:: python
+
+	# ...
+	place = fluid.CPUPlace()
+	feed_list = [
+    		main_program.global_block().var(var_name) for var_name in feed_vars_name
+	] # feed_vars_name 是一个由变量名组成的列表
+	feeder = fluid.DataFeeder(feed_list, place)
+	for data in reader():
+    		outs = exe.run(program=main_program,
+               		       feed=feeder.feed(data))
+			       
+			       
+.. py:method:: feed(iterable)
+
+
+根据feed_list（数据输入表）和iterable（可遍历的数据）提供的信息，将输入数据转成一种特殊的数据结构，使它们可以输入到 ``Executor`` 和 ``ParallelExecutor`` 中。
+
+参数:	
+	- iterable (list|tuple) – 要输入的数据
+
+返回：  转换结果
+
+返回类型:	dict
+
+
+.. py:method:: feed_parallel(iterable, num_places=None)
+
+
+该方法获取的多个minibatch，并把每个minibatch提前输入进各个设备中。
+
+参数:	
+    - iterable (list|tuple) – 要输入的数据
+    - num_places (int) – 设备数目。默认为None。
+
+返回: 转换结果
+
+返回类型: dict
+
+**特别注意：** 设备（CPU或GPU）的数目必须等于minibatch的数目
+
+
+
+.. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
+
+
+  
+将reader返回的输入数据batch转换为多个mini-batch，之后每个mini-batch都会被输入进各个设备（CPU或GPU）中。
+    
+参数：
+        - reader (fun) – 待输入的数据
+        - multi_devices (bool) – 执行场所的数目，默认为None
+        - num_places (int) – 执行场所的数目，默认为None
+        - drop_last (bool) – 舍弃数目匹配不上的batch或设备
+
+返回：转换结果
+
+返回类型: dict
+    
+弹出异常： ValueError – 如果 ``drop_last`` 值为False并且reader返回的minibatch数目与设备数目不相等时，产生此异常
+
+
+        
+
+
+
+.. _cn_api_fluid_BuildStrategy:
+
+BuildStrategy
+>>>>>>>>>>>>>>>>>>
+
+.. py:class::  class paddle.fluid.BuildStrategy
+
+``BuildStrategy`` 使用户更精准地控制 ``ParallelExecutor`` 中SSA图的建造方法。可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
+
+**代码示例**
+
+..  code-block:: python
+
+    build_strategy = fluid.BuildStrategy()
+    build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
+
+    train_exe = fluid.ParallelExecutor(use_cuda=True,
+                                       loss_name=loss.name,
+                                       build_strategy=build_strategy)
+
+    train_loss, = train_exe.run([loss.name], feed=feed_dict)
+
+
+
+.. py:method:: debug_graphviz_path
+
+str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有利于调试。 默认值为""。
+
+
+
+.. py:method:: fuse_elewise_add_act_ops
+
+bool类型。它表明了是否融合（fuse）elementwise_add_op和activation_op。这会使整体执行过程更快一些。默认为False。
+
+
+
+.. py:method:: gradient_scale_strategy
+
+str类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果你想自定义 *loss@grad* ，你可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
+
+
+
+.. py:method:: reduce_strategy
+
+str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce strategy），即 ``AllReduce`` 和 ``Reduce`` 。如果你需要在所有执行场所上独立地进行参数优化，可以使用 ``AllReduce`` 。反之，如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行场所，随之将优化后的参数广播给其他执行场所。在一些模型中， ``Reduce`` 策略执行速度更快一些。默认值为 ``AllReduce`` 。
+
+
+
+
+
+
+.. _cn_api_fluid_ExecutionStrategy:
+
+ExecutionStrategy
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+.. py:class::  class paddle.fluid.ExecutionStrategy
+
+``ExecutionStrategy`` 允许用户更加精准地控制program在 ``ParallelExecutor`` 中的运行方式。可以通过在 ``ParallelExecutor`` 中设置本成员来实现。
+
+**代码示例**
+
+..  code-block:: python
+
+  exec_strategy = fluid.ExecutionStrategy()
+  exec_strategy.num_threads = 4
+
+  train_exe = fluid.ParallelExecutor(use_cuda=True,
+                                     loss_name=loss.name,
+                                     exec_strategy=exec_strategy)
+
+  train_loss, = train_exe.run([loss.name], feed=feed_dict)
+
+
+
+.. py:method:: allow_op_delay
+   
+这是一个bool类型成员，表示是否推迟communication operators(交流运算)的执行，这样做会使整体执行过程更快一些。但是在一些模型中，allow_op_delay会导致程序中断。默认为False。
+  
+
+
+.. py:method:: num_iteration_per_drop_scope
+  
+int型成员。它表明了清空执行时产生的临时变量需要的程序执行重复次数。因为临时变量的形可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为100。
+
+特别注意：
+  1.如果在调用 ``run`` 方法时获取结果数据，``ParallelExecutor`` 会在当前程序重复执行尾部清空临时变量
+  
+  2.在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
+
+
+
+.. py:method:: num_threads
+
+int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math: num_threads=1 ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math: num_threads=device_count∗4 ；对CPU，:math: num_threads=CPU_NUM∗4 。在 ``ParallelExecutor`` 中有关于 :math: CPU_NUM 的详细解释。如果没有设置CPU_NUM， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
+
+
+
+
+
+
+.. _cn_api_fluid_ParallelExecutor:
+
+ParallelExecutor
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+.. py:class::  class paddle.fluid.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
+
+
+
+
+``ParallelExecutor`` 专门设计用来实现数据并行计算，着力于向不同结点(node)分配数据，并行地在不同结点中对数据进行操作。如果在GPU上使用该类运行程序，node则用来指代GPU， ``ParallelExecutor`` 也将自动获取在当前机器上可用的GPU资源。如果在CPU上进行操作，node则指代CPU，同时你也可以通过添加环境变量 ``CPU_NUM`` 来设置CPU设备的个数。例如，``CPU_NUM=4``。但是如果没有设置该环境变量，该类会调用 ``multiprocessing.cpu_count`` 来获取当前系统中CPU的个数。
+
+
+
+
+参数: 
+    - use_cuda (bool) – 是否使用CUDA
+    - loss_name (str) – 在训练阶段，必须提供loss function名称。默认为None
+    - main_program (Program) – 需要执行的program。如果未提供， 那么将使用 ``default_main_program``。 默认为None
+    - share_vars_from (ParallelExecutor) – 如果提供了该参数， 则该 ``ParallelExecutor`` 与指定的 ``ParallelExecutor`` 共享变量。默          认为空
+    - exec_strategy (ExecutionStrategy) – ``exec_strategy`` 用于调控program在 ``ParallelExecutor`` 中的执行方式，例如，执行该program需要的线程数, 释放在执行过程中产生的临时变量需要的重复(iterations)次数。 请参考 ``fluid.ExecutionStrategy`` 获取详细介绍。该参数默认为 None
+    - build_strategy (BuildStrategy) – 设置成员 ``build_strategy`` 可以控制在 ``ParallelExecutor`` 中搭建SSA Graph的方式，例如， ``reduce_strategy`` ， ``gradient_scale_strategy`` 。 请参考 ``fluid.BuildStrategy`` 获取详细介绍。 该参数默认为None
+    - num_trainers (int) – 如果该值大于1， NCCL将会通过多层级node的方式来初始化。每个node应有相同的GPU数目。 随之会启用分布式训练。该参数默认为1
+    - trainer_id (int) – 必须与 ``num_trainers`` 参数同时使用。``trainer_id`` 是当前所在node的 “rank”（层级），从0开始计数。该参数默认为0
+    - scope (Scope) – 指定执行program所在的作用域， 默认使用 ``fluid.global_scope()``
+
+返回：初始化后的 ``ParallelExecutor`` 对象
+
+返回类型:	ParallelExecutor
+
+弹出异常：``TypeError`` - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会弹出此异常
+
+**代码示例**
+
+..  code-block:: python
+
+  train_exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
+  test_exe = fluid.ParallelExecutor(use_cuda=True,
+                                    main_program=test_program,
+                                    share_vars_from=train_exe)
+
+  train_loss, = train_exe.run([loss.name], feed=feed_dict)
+  test_loss, = test_exe.run([loss.name], feed=feed_dict)
+
+
+
+.. py:method::  run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
+
+使用 ``fetch_list`` 执行一个 ``ParallelExecutor`` 对象。
+
+参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量。如果该参数是 ``dict`` 类型，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU）。
+反之，如果它是 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。
+
+例如，如果 ``feed`` 是个 ``dict`` 类型变量，则有
+
+..  code-block:: python
+    
+    exe = ParallelExecutor()
+    # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (24, 1, 28, 28)的图像
+    exe.run(feed={'image': numpy.random.random(size=(48, 1, 28, 28))})
+  
+如果 ``feed`` 是个 ``list`` 类型变量，则有
+
+..  code-block:: python
+
+    exe = ParallelExecutor()
+    # 各设备挨个处理列表中的每个元素
+    # 第一个设备处理形为 (48, 1, 28, 28) 的图像
+    # 第二个设备处理形为 (32, 1, 28, 28) 的图像
+    #
+    # 使用 exe.device_count 得到设备数目
+    exe.run(feed=[{"image": numpy.random.random(size=(48, 1, 28, 28))},
+                  {"image": numpy.random.random(size=(32, 1, 28, 28))},
+                  ])
+
+参数： 
+    - fetch_list (list) – 获取的变量名列表
+    - feed (list|dict|None) – feed变量。 如果该参数是 ``dict`` 类型，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU）。反之，如果它是 ``list`` ，则列表中的各个元素都直接分别被拷贝到各设备中。默认为None
+    - feed_dict – 该参数已经停止使用。feed参数的别名, 为向后兼容而立。默认为None
+    - return_numpy (bool) – 是否将fetched tensor转换为numpy。默认为True
+
+返回： 获取的结果列表
+
+返回类型：List
+
+弹出异常： 
+         ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，弹出此异常
+         
+         ``TypeError`` - 如果feed参数是list类型，但是它里面的元素不是dict类型时，弹出此异常
+
+额外注意：
+     1.如果feed参数为dict类型，那么传入 ``ParallelExecutor`` 的数据量 *必须* 大于可用的执行场所数目。否则，C++端将会弹出异常。应额外注意核对数据集的最后一个batch是否比可用执行场所数目大。
+    
+     2.如果可用执行场所大于一个，则为每个变量最后获取的结果都是list类型，且这个list中的每个元素都是各个可用执行场所的变量
+
+**代码示例**
+
+..  code-block:: python
+
+        pe = fluid.ParallelExecutor(use_cuda=use_cuda,
+                                    loss_name=avg_cost.name,
+                                    main_program=fluid.default_main_program())
+        loss = pe.run(feed=feeder.feed(cur_batch),
+                      fetch_list=[avg_cost.name]))
 
 
