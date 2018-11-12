@@ -55,7 +55,7 @@ conv2d_transpose
 参数:
 	- input（Variable）: 输入张量，格式为[N, C, H, W]
 	- num_filters(int) : 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
-	- output_size (int|tuple|None) : 输出照片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
+	- output_size (int|tuple|None) : 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
 	- filter_size (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
 	- padding (int|tuple) : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
 	- stride(int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
@@ -137,7 +137,7 @@ conv3d_transpose
 参数:
 	- input（Variable）: 输入张量，格式为[N, C, D, H, W]
 	- num_filters(int) : 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
-	- output_size (int|tuple|None) : 输出照片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
+	- output_size (int|tuple|None) : 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
 	- filter_size (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
 	- padding (int|tuple) : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
 	- stride(int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
