@@ -43,13 +43,14 @@ conv2d_transpose
 
     其中
 
-.. math::   H'_out = (Hin−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(H_f−1)+1
+.. math::  
+	H'_out = (Hin−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(H_f−1)+1
     
-.. math::   W’_out = (Win−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(W_f−1)+1
+    	W’_out = (Win−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(W_f−1)+1
     
-.. math::   H_out∈[H′_out,H′_out + strides[0])
+    	H_out∈[H′_out,H′_out + strides[0])
     
-.. math::   W_out∈[W′_out,W′out + strides[1])
+    	W_out∈[W′_out,W′out + strides[1])
 
 
 参数:
@@ -119,19 +120,29 @@ conv3d_transpose
 
 	Input:
 
-	.. math::   Input shape: (N,C_in,D_in,H_in,W_in)
+.. math::   
+	
+		Input shape: (N,C_in,D_in,H_in,W_in)
 
-	.. math::   Filter shape: (C_in,C_out,D_f,H_f,W_f)
+		Filter shape: (C_in,C_out,D_f,H_f,W_f)
 
+	
 	Output:
 
-	.. math::   Output shape: (N,C_out,D_out,H_out,W_out)
+.. math::   
+	
+		Output shape: (N,C_out,D_out,H_out,W_out)
 
+	
 	其中：
 
-	.. math::   D_out=(D_in−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(D_f−1)+1
-	.. math::   H_out=(H_in−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(H_f−1)+1
-	.. math::   W_out=(W_in−1)∗strides[2]−2∗paddings[2]+dilations[2]∗(W_f−1)+1
+.. math::   
+	
+		D_out=(D_in−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(D_f−1)+1
+	
+		H_out=(H_in−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(H_f−1)+1
+	
+		W_out=(W_in−1)∗strides[2]−2∗paddings[2]+dilations[2]∗(W_f−1)+1
 
 
 参数:
@@ -253,7 +264,7 @@ nce
 
 .. py:class:: paddle.fluid.layers.nce(input, label, num_total_classes, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None)
 
-计算并返回噪音对比估计（ noise-contrastive estimation training loss）。请参考` See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_ See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models。该operator默认使用均匀分布进行抽样。
+计算并返回噪音对比估计（ noise-contrastive estimation training loss）。` 请参考 See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_ See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models。该operator默认使用均匀分布进行抽样。
 
 参数:
 	- input (Variable) ： 特征
@@ -307,9 +318,9 @@ hsigmoid
 
 层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完整的二叉树，每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。hsigmoid可以把时间复杂度O(N)优化到O(logN),其中N表示单词字典的大小。
 
-请参考` Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
+` 请参考 Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
     
-    参数:
+参数:
         - input (Variable) ： 输入张量，shape为(N×D),其中N是minibatch的大小，D是特征大小。
         - label(Variable) ： 训练数据的标签。该tensor的shape为[N×1]   
         - num_classes ： (int)，类别的数量不能少于2
@@ -344,16 +355,16 @@ beam_search_decode
 
         fluid/tests/book/test_machine_translation.py
 
-    参数:
+参数:
         - id(Variable) : LodTensorArray，包含所有回溯步骤重中所需的ids。
         - score(Variable) : LodTensorArra，包含所有回溯步骤对应的score。
         - beam_size(int) : 束搜索中波束的宽度。
         - end_id (int) : 结束token的id。
         - name (str|None) : 该层的名称(可选)。如果设置为None，该层将被自动命名。
     
-    返回：	LodTensor 对（pair）， 由生成的id序列和相应的score序列组成。两个LodTensor的shape和lod是相同的。lod的level=2，这两个level分别表示每个源句有多少个假设，每个假设有多少个id。
+返回：	LodTensor 对（pair）， 由生成的id序列和相应的score序列组成。两个LodTensor的shape和lod是相同的。lod的level=2，这两个level分别表示每个源句有多少个假设，每个假设有多少个id。
 
-    返回类型:	变量（variable）
+返回类型:	变量（variable）
 
 
 **代码示例**
@@ -368,29 +379,30 @@ row_conv
 
 行卷积（Row-convolution operator）称为超前卷积（lookahead convolution）。下面关于DeepSpeech2的paper中介绍了这个operator 
     
-    ` http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf<http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf>`_ 
+    ` <http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf>`_ 
 
 双向的RNN在深度语音模型中很有用，它通过对整个序列执行正向和反向传递来学习序列的表示。然而，与单向RNNs不同的是，在线部署和低延迟设置中，双向RNNs具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。 row convolution operator 与一维序列卷积不同，计算方法如下:
    
 给定输入序列长度t输入维度d和一个大小为上下文大小*d的滤波器，输出序列卷积为:
 
-                    .. math::   out_i = sum_{j=1}^{i+context} in_{j,_:} * W_{i-j}^2 
+.. math::   
+		out_i = sum_{j=1}^{i+context} in_{j,_:} * W_{i-j}^2 
     
-    公式中：
+公式中：
         - Out_i : 第i行输出变量 shaoe为[1, D].
         - tau： 未来上下文（featur context）大小
         - Xj: 第i行输出变量 shaoe为【1，0】
         - W_{i-j} : 第(i-j)行参数的形状[1,D]。
 
-详细请参考设计文档 `https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  .
+ `详细请参考设计文档 https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  .
 
-    参数:
+参数:
     - input (Variable)——输入是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。
     - future_context_size (int) -未来上下文大小。请注意，卷积核的shape是[future_context_size + 1, D]。
     - param_attr (ParamAttr)  参数的属性，包括名称、初始化器等。
     - act (str) 非线性激活函数。
     
-    返回: 输出(Out)是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部量是一个形状为 T x N 的矩阵，和X的 shape 一样。
+返回: 输出(Out)是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部量是一个形状为 T x N 的矩阵，和X的 shape 一样。
 
 
 **代码示例**
@@ -414,14 +426,14 @@ smooth_l1
 该layer计算变量x1和y 的smooth L1 loss，它以x和y的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
 
 
-    参数:
+参数:
         - x(Variable) : rank至少为2的张量。输入x的smmoth L1 loss 的op，shape为[batch_size, dim1，…],dimN]。
         - y(Variable) : rank至少为2的张量。与x形状一致的的smooth L1 loss  op目标值。
         - inside_weight (Variable|None) : rank至少为2的张量。这个输入是可选的，与x的形状应该相同。如果给定，(x - y)的结果将乘以这个张量元素。
         - outside_weight(变量|None) : 一个rank至少为2的张量。这个输入是可选的，它的形状应该与x相同。如果给定，那么 smooth L1 loss 就会乘以这个张量元素。
         - sigma (float|None) : smooth L1 loss layer的超参数。标量，默认值为1.0。
    
-    返回：	smooth L1 loss, shape为 [batch_size, 1]
+返回：	smooth L1 loss, shape为 [batch_size, 1]
 
     
 
@@ -476,15 +488,15 @@ A simple example as below:
         output.lod = [[2, 1]]
 
 
-    参数:
+参数:
         - input (Variable) : (LoDTensor<float>)，变长序列的概率，它是一个具有LoD信息的二维张量。它的形状是[Lp, num_classes + 1]，其中Lp是所有输入序列长度的和，num_classes是真正的类别。(不包括空白标签)。
         - blank(int) -Connectionist Temporal Classification (CTC) loss空白标签索引,  属于半开区间[0,num_classes + 1）。
         - name(str) -此层的名称。可选。
    
-    返回：	
+返回：	
         - CTC贪婪解码结果。如果结果中的所有序列都为空，则LoDTensor 为[-1]，其中LoD[[]] dims[1,1]。
 
-    返回类型： 变量（Variable）
+返回类型： 变量（Variable）
     
 
 **代码示例**
@@ -596,9 +608,10 @@ dice_loss是比较两批数据相似度，通常用于二值图像分割，即�
     
 dice_loss定义为:
 
-.. math::       dice_loss = 1- frac{2 * intersection_area}{total_rea} = frac{((total_area−intersection_area)−intersection_area)}{total_area}=frac{union_area−intersection_area}{total_area}           
+.. math::       
+		dice_loss = 1- frac{2 * intersection_area}{total_rea} = frac{((total_area−intersection_area)−intersection_area)}{total_area}=frac{union_area−intersection_area}{total_area}           
 
-    参数:
+参数:
     - input(Variable) : rank>=2的预测。第一个维度是batch大小，最后一个维度是类编号。
     - label（Variable）: 与输入tensor rank相同的正确的标注数据（groud truth）。第一个维度是batch大小，最后一个维度是1。
     - epsilon(float) : 将会加到分子和分母上。如果输入和标签都为空，则确保dice为1。默认值:0.00001
@@ -629,16 +642,16 @@ image_resize
     
 支持重新取样方法: 双线性插值
     
-    参数:
+参数:
     - input (Variable) : 图片调整层的输入张量，这是一个shape=4的张量(num_batch, channels, in_h, in_w)。
     - out_shape (list|tuple|Variable|None) : 图片调整层的输出，shape为(out_h, out_w)。默认值:None
     - scale(float|None)-输入的高度或宽度的乘数因子 : out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None
     - name (str|None) : 该层的名称(可选)。如果设置为None，该层将被自动命名。
     - resample(str) : 重采样方法。目前只支持“双线性”。默认值:双线性插值
 
-    返回： 4维tensor，shape为 (num_batches, channls, out_h, out_w).
+返回： 4维tensor，shape为 (num_batches, channls, out_h, out_w).
 
-    返回类型:	变量（variable）
+返回类型:	变量（variable）
 
 
 **代码示例**
@@ -659,14 +672,14 @@ image_resize_short
 
 调整一批图片的大小。输入图像的短边将被调整为给定的out_short_len 。输入图像的长边按比例调整大小，最终图像的长宽比保持不变。
 
-    参数:
+参数:
         - input (Variable) ： 图像调整图层的输入张量，这是一个4维的形状张量(num_batch, channels, in_h, in_w)。
         - out_short_len (int) ： 输出图像的短边长度。
         - resample (str) ： resample方法，默认为双线性插值。
     
-    返回：	4维张量，shape为(num_batch, channls, out_h, out_w)
+返回：	4维张量，shape为(num_batch, channls, out_h, out_w)
 
-    返回类型:	变量（variable）
+返回类型:	变量（variable）
 
 
 
@@ -681,13 +694,13 @@ resize_bilinear
 
 详情请参阅维基百科 `https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
 
-   参数:
+参数:
         - input(Variable) ： 双线性插值的输入张量，是一个shpae为(N x C x h x w)的4d张量。
         - out_shape(Variable) ： 一维张量，包含两个数。第一个数是高度，第二个数是宽度。
         - scale (float|None) ： 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None。
         - name (str|None) ： 输出变量名。
     
-    返回：	输出的维度是(N x C x out_h x out_w)
+返回：	输出的维度是(N x C x out_h x out_w)
 
 
 
@@ -718,11 +731,11 @@ gather
                [5, 6]]
 
 
-    参数:
+参数:
         - input(Variable)- input 的rank >= 1。
         - index(Variable)- index的rank = 1。
     
-    返回：	output (Variable)
+返回：	output (Variable)
 
 **代码示例**
 
