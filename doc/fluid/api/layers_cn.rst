@@ -42,7 +42,9 @@ sequence_scatter
 **代码示例**:
 
 ..  code-block:: python
+
 output = fluid.layers.sequence_scatter(input, index, updates)
+
 
 .. _cn_api_fluid_layers_random_crop:
 
