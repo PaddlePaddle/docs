@@ -49,6 +49,7 @@ async_executor is mainly designed for cpu training scenarios where data throughp
 executor and parallel_executor are designed for geneneral training cases in particular for gpu training. Executor is a single thread implementation for model training and it is mostly used for startup_program running currently. Another application scenario of executor is reinforcement learning where input data and main_program may change through training. Parallel_executor is mainly designed for synchronous training on high performance devices such as gpu. Operators are executed concurrently following topological orders on different graphs and model parameter gradients are synchrounized iteratively.
 
 ## Data Feeding Approach
+![Data Feeding Approach](https://github.com/guru4elephant/FluidDoc/blob/develop/doc/fluid/design/async_executor/reader_mechanisms.png)
 to be discussed. 
 
 ## Inside Structure of Async Executor
