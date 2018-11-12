@@ -52,7 +52,8 @@ executor and parallel_executor are designed for geneneral training cases in part
 ![Data Feeding Approach](https://github.com/guru4elephant/FluidDoc/blob/develop/doc/fluid/design/async_executor/reader_mechanisms.png)
 to be discussed. 
 
-## Inside Structure of Async Executor
+## Main Interface of Async Executor
+We have RunFromFiles interface which is an execution interface for users to call. Every time a user calls RunFromFiles, a main_program should be provided and it is running in the global scope previously defined. A list of file names and corresponding Dataset should be provided. Inside the RunFromFiles interface, readers will be created through Dataset configurations. Files will be fed into created readers. 
 ``` c++
 void AsyncExecutor::RunFromFiles(
     const ProgramDesc& main_program,
@@ -100,6 +101,22 @@ void AsyncExecutor::RunFromFiles(
     th.join();
   }
   // fetch variables in scope 0, and return
+}
+```
+Inside the function ```Trainfiles```, 
+``` c++
+void ExecutorThreadWorker::TrainFiles() {
+  // todo: configurable
+  SetDevice(); // cpu core binding here
+  thread_reader_->Start(); // a reader should start to run a seperate thread first
+  while (int cur_batch = thread_reader_->Next()) {
+    // all operators run here
+    for (auto& op : ops_) {
+      op->Run(*thread_scope_, place_);
+    }
+    // remove intermediate variables created in child scope
+    thread_scope_->DropKids();
+  }
 }
 ```
 
