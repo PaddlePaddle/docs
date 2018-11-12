@@ -109,7 +109,16 @@ Inside async_executor, no information is printed. Variable can be fetched throug
 ## How to save models
 Models can be saved between execution of async_executor through io.save method. 
 
+## POC experiments
+### Text Classification
+* network configuration
+* data preparation
+* performance and accuracy
 
+### Text Matching
+* network configuration
+* data preparation
+* performance and accuracy
 
 ## references
 1. [Sentiment Analysis](https://arxiv.org/pdf/1801.07883.pdf)
