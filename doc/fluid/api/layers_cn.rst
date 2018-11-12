@@ -39,11 +39,12 @@ sequence_scatter
 
 返回类型：output (Variable)
 
+
 **代码示例**:
 
 ..  code-block:: python
 
-output = fluid.layers.sequence_scatter(input, index, updates)
+  output = fluid.layers.sequence_scatter(input, index, updates)
 
 
 .. _cn_api_fluid_layers_random_crop:
@@ -92,7 +93,11 @@ paddle.fluid.layers.mean_iou(input, label, num_classes)
 
 返回类型: mean_iou(Variable)
 
-iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes)
+**代码示例**:
+
+..  code-block:: python
+
+   iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes)
 
 .. _cn_api_fluid_layers_relu:
 
@@ -107,8 +112,8 @@ Relu接受一个输入数据(张量)，输出一个张量。将线性函数y = m
  
 
 参数:
-- x(Variable)——输入张量。
-- name(str|None，默认None) -如果设置为None，该层将自动命名。
+  - x(Variable):输入张量。
+  - name(str|None，默认None) :如果设置为None，该层将自动命名。
 
 返回: 与输入形状相同的输出张量。
 
@@ -119,6 +124,7 @@ Relu接受一个输入数据(张量)，输出一个张量。将线性函数y = m
 ..  code-block:: python
 
     output = fluid.layers.relu(x)
+
 
 .. _cn_api_fluid_layers_crop:
 
