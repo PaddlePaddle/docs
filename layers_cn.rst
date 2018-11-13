@@ -746,7 +746,7 @@ Out = X && Y
 .. math::
 Out = X && Y
 
-$$Out = X && Y$$
+$$x_1 Out = X && Y$$
 返回类型：
 
         输出（Variable）。        
