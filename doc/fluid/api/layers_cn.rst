@@ -7,7 +7,7 @@ sequence_scatter
 
 序列散射层
 
-这个operator将更新张量X，它使用Ids的LoD信息来选择要更新的行，并使用Ids中的值作为列来更新X的每一行。。
+这个operator将更新张量X，它使用Ids的LoD信息来选择要更新的行，并使用Ids中的值作为列来更新X的每一行。
 
 **样例**:
  
