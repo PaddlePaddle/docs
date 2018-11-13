@@ -731,7 +731,7 @@ logical_and算子
 它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math::
-Out = X && Y
+                                        Out = X && Y
 
 参数：
 
@@ -744,9 +744,8 @@ Out = X && Y
         (LoDTensor)n-dim bool张量。 每个元素的计算公式：
         
 .. math::
-Out = X && Y
+                                        Out = X && Y
 
-$$x_1 Out = X && Y$$
 返回类型：
 
         输出（Variable）。        
