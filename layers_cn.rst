@@ -773,9 +773,10 @@ Out = X || Y
 - name（basestring | None）：输出的名称。
 返回：
 
-        (LoDTensor)n维布尔张量。 每个元素的计算公式：
-        .. math:: 
-        Out = X || Y
+        (LoDTensor)n维布尔张量。每个元素的计算公式：
+        
+.. math:: 
+Out = X || Y
 
 返回类型：
 
@@ -791,7 +792,10 @@ paddle.fluid.layers.logical_xor(x, y, out=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 logical_xor算子
 
-它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算公式Out = (X || Y) && !(X && Y)得到的。
+它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
+
+.. math:: 
+Out = (X || Y) && !(X && Y)
 
 参数：
 
@@ -801,7 +805,10 @@ logical_xor算子
 - name（basestring | None）：输出的名称。
 返回：
 
-        (LoDTensor)n维布尔张量。 每个元素都是：用公式Out = (X || Y) && !(X && Y)计算的.
+        (LoDTensor)n维布尔张量。每个元素的计算公式：
+        
+.. math:: 
+Out = (X || Y) && !(X && Y)
 
 返回类型：
 
@@ -817,7 +824,10 @@ paddle.fluid.layers.logical_not(x, out=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 logical_not算子
 
-它在X上以元素方式操作，并返回Out。X和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算公式Out=!X得到的。
+它在X上以元素方式操作，并返回Out。X和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
+
+.. math:: 
+Out=!X
 
 参数：
 
@@ -826,7 +836,10 @@ logical_not算子
 - name（basestring | None）：输出的名称。
 返回：
 
-        (LoDTensor)n维布尔张量。 每个元素都是：用公式Out=!X计算的.
+        (LoDTensor)n维布尔张量。每个元素的计算公式：
+
+.. math:: 
+Out=!X
 
 返回类型：
 
@@ -843,7 +856,9 @@ paddle.fluid.layers.clip(x, min, max, name=None)
 clip算子
 
 clip运算符限制给定输入的值在一个区间内。间隔使用参数“min”和“max”来指定：公式为
-**Out=min(max(X,min),max)**
+
+.. math:: 
+Out=min(max(X,min),max)
 
 参数：
 
@@ -870,7 +885,13 @@ paddle.fluid.layers.clip_by_norm(x, max_norm, name=None)
 ClipByNorm算子
 
 此运算符将输入X的L2范数限制在max_normmax_norm内。如果X的L2范数小于或等于max_normmax_norm，则输出（Out）将与X相同。如果X的L2范数大于max_normmax_norm，则X将被线性缩放，使得输出（Out）的L2范数等于max_normmax_norm，如下面的公式所示：
-**Out=max_norm∗X/norm(X)**,
+
+.. math:: 
+Out=max_norm∗X/norm(X)
+
+.. math:: 
+Out=\frac{max_norm∗X}{norm(X)}
+
 其中，norm（X）范数（X）代表XX的L2范数。
 例如：
 
