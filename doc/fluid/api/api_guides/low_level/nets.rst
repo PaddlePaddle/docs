@@ -21,7 +21,7 @@ API Reference 请参考 :ref:`api_fluid_nets_simple_img_conv_pool`
 ----------------
 
 :code:`img_conv_group` 是由 :ref:`api_fluid_layers_conv2d` , :ref:`api_fluid_layers_batch_norm`, :ref:`api_fluid_layers_dropout` 和 :ref:`api_fluid_layers_pool2d` 组成。
-该模块可以实现多个 :ref:`api_fluid_layers_conv2d` , :ref:`api_fluid_layers_batch_norm` 和 :ref:`api_fluid_layers_dropout` 的串联单元与一个 :ref:`api_fluid_layers_pool2d` 组合的模块。
+该模块可以实现多个 :ref:`api_fluid_layers_conv2d` , :ref:`api_fluid_layers_batch_norm` 和 :ref:`api_fluid_layers_dropout` 的串联单元与一个 :ref:`api_fluid_layers_pool2d` 的组合。
 其中， :ref:`api_fluid_layers_conv2d` , :ref:`api_fluid_layers_batch_norm` 和 :ref:`api_fluid_layers_dropout` 的数量都可以分别控制，从而得到多样的组合。
 该模块广泛使用在比较复杂的图像分类任务中，比如 `VGG <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
 
