@@ -741,7 +741,7 @@ Out = X && Y
 - name（basestring | None）：输出的名称。
 返回：
 
-        (LoDTensor)n-dim bool张量。 每个元素的计算公式：
+        (LoDTensor)n-dim bool张量。每个元素的计算公式：
         
 .. math::
 Out = X && Y
@@ -760,7 +760,10 @@ paddle.fluid.layers.logical_or(x, y, out=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 logical_or算子
 
-它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素都是通过计算公式.. math:: Out = X || Y得到的。
+它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
+
+.. math:: 
+Out = X || Y
 
 参数：
 
@@ -770,7 +773,9 @@ logical_or算子
 - name（basestring | None）：输出的名称。
 返回：
 
-        (LoDTensor)n维布尔张量。 每个元素都是：用公式Out = X || Y计算的.
+        (LoDTensor)n维布尔张量。 每个元素的计算公式：
+        .. math:: 
+        Out = X || Y
 
 返回类型：
 
