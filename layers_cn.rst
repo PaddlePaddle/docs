@@ -888,7 +888,6 @@ ClipByNorm算子
 
 .. math:: 
 Out=max_norm∗X/norm(X)
-
 $$ Out = \frac{max\_norm * X}{norm(X)},$$
 
 其中，norm（X）范数（X）代表XX的L2范数。
