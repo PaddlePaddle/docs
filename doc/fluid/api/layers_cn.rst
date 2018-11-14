@@ -420,7 +420,9 @@ conv2d_transpose
 
 2-D卷积转置层（Convlution2D transpose layer）
 
-该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中N为batch大小，C为通道数（channel），H为特征高度，W为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和参考文献。如果参数bias_attr和act不为None，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
+该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中N为batch大小，C为通道数（channel），H为特征高度，W为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr和act不为None，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
+
+.. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
 
 输入X和输出Out函数关系X，有等式如下：
 
