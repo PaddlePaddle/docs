@@ -34,9 +34,9 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 
 参数：  
-	- feed_list (list) – 向模型输入的变量表或者变量表名
-	- place (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
-    	- program (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
+	- **feed_list** (list) – 向模型输入的变量表或者变量表名
+	- **place** (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
+    	- **program** (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
 
 
 弹出异常:	  ``ValueError``  – 如果一些变量不在此 Program 中
@@ -63,7 +63,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 根据feed_list（数据输入表）和iterable（可遍历的数据）提供的信息，将输入数据转成一种特殊的数据结构，使它们可以输入到 ``Executor`` 和 ``ParallelExecutor`` 中。
 
 参数:	
-	- iterable (list|tuple) – 要输入的数据
+	- **iterable** (list|tuple) – 要输入的数据
 
 返回：  转换结果
 
@@ -76,8 +76,8 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 该方法获取的多个minibatch，并把每个minibatch提前输入进各个设备中。
 
 参数:	
-    - iterable (list|tuple) – 要输入的数据
-    - num_places (int) – 设备数目。默认为None。
+    - **iterable** (list|tuple) – 要输入的数据
+    - **num_places** (int) – 设备数目。默认为None。
 
 返回: 转换结果
 
@@ -94,10 +94,10 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 将reader返回的输入数据batch转换为多个mini-batch，之后每个mini-batch都会被输入进各个设备（CPU或GPU）中。
     
 参数：
-        - reader (fun) – 待输入的数据
-        - multi_devices (bool) – 执行场所的数目，默认为None
-        - num_places (int) – 执行场所的数目，默认为None
-        - drop_last (bool) – 舍弃数目匹配不上的batch或设备
+        - **reader** (fun) – 待输入的数据
+        - **multi_devices** (bool) – 执行场所的数目，默认为None
+        - **num_places** (int) – 执行场所的数目，默认为None
+        - **drop_last** (bool) – 舍弃数目匹配不上的batch或设备
 
 返回：转换结果
 
