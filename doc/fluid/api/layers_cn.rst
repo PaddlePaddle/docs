@@ -426,7 +426,9 @@ conv2d_transpose
 
 输入X和输出Out函数关系X，有等式如下：
 
-                        Out=σ(W∗X+b)
+.. math::
+                        \\Out=\sigma (W*X+b)\\
+                      
 
 其中：
     - X：输入张量，具有NCHW格式
