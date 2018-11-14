@@ -449,7 +449,7 @@ conv2d_transpose
 
 .. math:: 
 
-    输入张量的shape: （N，C_in， H_in， W_in)
+    输入张量的shape: （N，C_{in}， H_{in}， W_{in})
 
     滤波器（filter）shape ：（C_in, C_out, H_f, W_f) 
 
