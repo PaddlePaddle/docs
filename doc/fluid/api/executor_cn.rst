@@ -25,7 +25,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 program中所有的算子会按顺序执行。
 
 参数:	
-    - place (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
+    - **place** (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
 
 
@@ -58,14 +58,14 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
 参数：  
-	- program (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
-	- feed (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LableData}
-	- fetch_list (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
-	- feed_var_name (str) – 前向算子(feed operator)变量的名称
-	- fetch_var_name (str) – 结果获取算子(fetch operator)的输出变量名称
-	- scope (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
-	- return_numpy (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-	- use_program_cache (bool) – 当program较上次比没有改动则将其置为True
+	- **program** (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
+	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LableData}
+	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
+	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
+	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
+	- **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
+	- **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
+	- **use_program_cache** (bool) – 当program较上次比没有改动则将其置为True
 	
 返回:	根据fetch_list来获取结果
 
