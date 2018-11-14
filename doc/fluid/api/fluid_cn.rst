@@ -160,9 +160,9 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
 	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
 	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
-	- **scope (Scope)** – 执行这个program的域，用户可以指定不同的域。缺省为全局域
-	- **return_numpy (bool)** – 如果为True,则将结果张量（fetched tensor）转化为numpy
-	- **use_program_cache (bool)** – 当program较上次比没有改动则将其置为True
+	- **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
+	- **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
+	- **use_program_cache** (bool) – 当program较上次比没有改动则将其置为True
 	
 返回:	根据fetch_list来获取结果
 
