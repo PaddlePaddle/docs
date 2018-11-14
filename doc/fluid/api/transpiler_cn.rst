@@ -55,13 +55,13 @@ DistributeTranspiler
 该方法可以运行该transpiler（转译器）。
 
 参数:	
-	- trainer_id (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
-	- program (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
-	- pservers (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
-	- trainers (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
-	- sync_mode (bool) – 是否做同步训练(synchronous training), 默认为True
- 	- startup_program (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
-	- current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
+	- **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
+	- **program** (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
+	- **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
+	- **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
+	- **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
+ 	- **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
+	- **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
 .. py:method:: get_trainer_program(wait_port=True)
 
@@ -80,7 +80,7 @@ DistributeTranspiler
 该方法可以得到Pserver（参数服务器）侧的程序
  
 参数:	
-	- endpoint (str) – 当前Pserver终端
+	- **endpoint** (str) – 当前Pserver终端
  
 返回:	当前Pserver需要执行的program
 
@@ -93,7 +93,7 @@ DistributeTranspiler
 该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
 
 参数:	
-	- endpoint (str) – 当前Pserver终端
+	- **endpoint** (str) – 当前Pserver终端
 
 返回:	(main_program, startup_program), “Program”类型的元组
 
@@ -107,9 +107,9 @@ DistributeTranspiler
 获取当前Pserver的startup_program，如果有多个被分散到不同blocks的变量，则修改operator的输入变量。
 
 参数:	
-	- endpoint (str) – 当前Pserver终端
-	- pserver_program (Program) – 已停止使用。 先调用get_pserver_program
- 	- startup_program (Program) – 已停止使用。应在初始化时传入startup_program
+	- **endpoint** (str) – 当前Pserver终端
+	- **pserver_program** (Program) – 已停止使用。 先调用get_pserver_program
+ 	- **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
 
 返回:	Pserver侧的startup_program
 
