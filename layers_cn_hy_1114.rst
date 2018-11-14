@@ -4,9 +4,6 @@ equal
 =====
 .. py:class:: paddle.fluid.layers. equal(x,y,cond=None,**ignored)
 
-equal
-----
-
 该层返回元素x,y逐元素相等的值
 
 参数：
