@@ -91,8 +91,8 @@ program_guard
 
 
 参数：  
-		- main_program (Program) – “with”语句中将使用的新的main program。
-		- startup_program (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序。
+		- **main_program** (Program) – “with”语句中将使用的新的main program。
+		- **startup_program** (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序。
 
 
 
@@ -122,11 +122,11 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 program中所有的算子会按顺序执行。
 
 参数:	
-    - place (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
+    - **place** (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
 
 
-提示：你可以用Executor来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
+提示：你可以用 ``Executor`` 来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
 
 
 .. py:method:: close()
@@ -155,14 +155,14 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
 参数：  
-	- program (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
-	- feed (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LableData}
-	- fetch_list (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
-	- feed_var_name (str) – 前向算子(feed operator)变量的名称
-	- fetch_var_name (str) – 结果获取算子(fetch operator)的输出变量名称
-	- scope (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
-	- return_numpy (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-	- use_program_cache (bool) – 当program较上次比没有改动则将其置为True
+	- **program** (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
+	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LableData}
+	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
+	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
+	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
+	- **scope (Scope)** – 执行这个program的域，用户可以指定不同的域。缺省为全局域
+	- **return_numpy (bool)** – 如果为True,则将结果张量（fetched tensor）转化为numpy
+	- **use_program_cache (bool)** – 当program较上次比没有改动则将其置为True
 	
 返回:	根据fetch_list来获取结果
 
@@ -259,13 +259,13 @@ DistributeTranspiler
 该方法可以运行该transpiler（转译器）。
 
 参数:	
-	- trainer_id (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
-	- program (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
-	- pservers (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
-	- trainers (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
-	- sync_mode (bool) – 是否做同步训练(synchronous training), 默认为True
- 	- startup_program (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
-	- current_endpoint (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
+	- **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
+	- **program** (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
+	- **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
+	- **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
+	- **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
+ 	- **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
+	- **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
 .. py:method:: get_trainer_program(wait_port=True)
 
@@ -284,7 +284,7 @@ DistributeTranspiler
 该方法可以得到Pserver（参数服务器）侧的程序
  
 参数:	
-	- endpoint (str) – 当前Pserver终端
+	- **endpoint** (str) – 当前Pserver终端
  
 返回:	当前Pserver需要执行的program
 
@@ -297,7 +297,7 @@ DistributeTranspiler
 该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
 
 参数:	
-	- endpoint (str) – 当前Pserver终端
+	- **endpoint** (str) – 当前Pserver终端
 
 返回:	(main_program, startup_program), “Program”类型的元组
 
@@ -311,9 +311,9 @@ DistributeTranspiler
 获取当前Pserver的startup_program，如果有多个被分散到不同blocks的变量，则修改operator的输入变量。
 
 参数:	
-	- endpoint (str) – 当前Pserver终端
-	- pserver_program (Program) – 已停止使用。 先调用get_pserver_program
- 	- startup_program (Program) – 已停止使用。应在初始化时传入startup_program
+	- **endpoint** (str) – 当前Pserver终端
+	- **pserver_program** (Program) – 已停止使用。 先调用get_pserver_program
+ 	- **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
 
 返回:	Pserver侧的startup_program
 
@@ -334,8 +334,8 @@ release_memory
 提醒: 该API还在试验阶段，会在后期版本中删除。不建议用户使用。
 
 参数:	
-    - input_program (Program) – 在此program中插入 ``delete_op`` 
-    - skip_opt_set (set) – 在内存优化时跳过的变量的集合
+    - **input_program** (Program) – 在此program中插入 ``delete_op`` 
+    - **skip_opt_set** (set) – 在内存优化时跳过的变量的集合
 
 返回: None
 
@@ -367,9 +367,9 @@ create_lod_tensor
      	 请参照 ``api_guide_low_level_lod_tensor`` 来获取更多LoD的详细介绍。
 
 参数:
-	- data (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
-	- recursive_seq_lens (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
-	- place (Place) – CPU或GPU。 指明返回的新LoD Tensor存储地点
+	- **data** (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
+	- **recursive_seq_lens** (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
+	- **place** (Place) – CPU或GPU。 指明返回的新LoD Tensor存储地点
 
 返回: 一个fluid LoDTensor对象，包含数据和recursive_seq_lens信息
 
@@ -401,11 +401,11 @@ create_random_int_lodtensor
 假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么 ``base_shape`` 为[1], 输入的length-based ‘recursive_seq_lens’ 是 [[2, 3]]。那么LoDTensor的整体形状应为[5, 1]，即为两个句子存储5个词。
 
 参数:	
-    - recursive_seq_lens (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
-    - base_shape (list) – LoDTensor所容纳的基本元素的形状
-    - place (Place) –  CPU或GPU。 指明返回的新LoD Tensor存储地点
-    - low (int) – 随机数下限
-    - high (int) – 随机数上限
+    - **recursive_seq_lens** (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
+    - **base_shape** (list) – LoDTensor所容纳的基本元素的形状
+    - **place** (Place) –  CPU或GPU。 指明返回的新LoD Tensor存储地点
+    - **low** (int) – 随机数下限
+    - **high** (int) – 随机数上限
 
 返回:	一个fluid LoDTensor对象，包含数据和recursive_seq_lens信息
 
@@ -427,13 +427,13 @@ ParamAttr
 该类代表了参数的各种属性。 为了使神经网络训练过程更加流畅，用户可以根据需要调整参数属性。比如learning rate（学习率）, regularization（正则化）, trainable（可训练性）, do_model_average(平均化模型)和参数初始化方法.
 
 参数:	
-    - name (str) – 参数名。默认为None。
-    - initializer (Initializer) – 初始化该参数的方法。 默认为None
-    - learning_rate (float) – 参数的学习率。计算方法为 global_lr*parameter_lr∗scheduler_factor。 默认为1.0
-    - regularizer (WeightDecayRegularizer) – 正则因子. 默认为None
-    - trainable (bool) – 该参数是否可训练。默认为True
-    - gradient_clip (BaseGradientClipAttr) – 减少参数梯度的方法。默认为None
-    - do_model_average (bool) – 该参数是否服从模型平均值。默认为False
+    - **name** (str) – 参数名。默认为None。
+    - **initializer** (Initializer) – 初始化该参数的方法。 默认为None
+    - **learning_rate** (float) – 参数的学习率。计算方法为 global_lr*parameter_lr∗scheduler_factor。 默认为1.0
+    - **regularizer** (WeightDecayRegularizer) – 正则因子. 默认为None
+    - **trainable** (bool) – 该参数是否可训练。默认为True
+    - **gradient_clip** (BaseGradientClipAttr) – 减少参数梯度的方法。默认为None
+    - **do_model_average** (bool) – 该参数是否服从模型平均值。默认为False
     
 **代码示例**
 
@@ -486,9 +486,9 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 
 参数：  
-	- feed_list (list) – 向模型输入的变量表或者变量表名
-	- place (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
-    	- program (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
+	- **feed_list** (list) – 向模型输入的变量表或者变量表名
+	- **place** (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
+    	- **program** (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
 
 
 弹出异常:	  ``ValueError``  – 如果一些变量不在此 Program 中
@@ -515,7 +515,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 根据feed_list（数据输入表）和iterable（可遍历的数据）提供的信息，将输入数据转成一种特殊的数据结构，使它们可以输入到 ``Executor`` 和 ``ParallelExecutor`` 中。
 
 参数:	
-	- iterable (list|tuple) – 要输入的数据
+	- **iterable** (list|tuple) – 要输入的数据
 
 返回：  转换结果
 
@@ -528,8 +528,8 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 该方法获取的多个minibatch，并把每个minibatch提前输入进各个设备中。
 
 参数:	
-    - iterable (list|tuple) – 要输入的数据
-    - num_places (int) – 设备数目。默认为None。
+    - **iterable** (list|tuple) – 要输入的数据
+    - **num_places** (int) – 设备数目。默认为None。
 
 返回: 转换结果
 
@@ -546,10 +546,10 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 将reader返回的输入数据batch转换为多个mini-batch，之后每个mini-batch都会被输入进各个设备（CPU或GPU）中。
     
 参数：
-        - reader (fun) – 待输入的数据
-        - multi_devices (bool) – 执行场所的数目，默认为None
-        - num_places (int) – 执行场所的数目，默认为None
-        - drop_last (bool) – 舍弃数目匹配不上的batch或设备
+        - **reader** (fun) – 待输入的数据
+        - **multi_devices** (bool) – 执行场所的数目，默认为None
+        - **num_places** (int) – 执行场所的数目，默认为None
+        - **drop_last** (bool) – 舍弃数目匹配不上的batch或设备
 
 返回：转换结果
 
@@ -656,7 +656,7 @@ int型成员。它表明了清空执行时产生的临时变量需要的程序�
 
 .. py:method:: num_threads
 
-int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math: num_threads=1 ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math: num_threads=device_count∗4 ；对CPU，:math: num_threads=CPU_NUM∗4 。在 ``ParallelExecutor`` 中有关于 :math: CPU_NUM 的详细解释。如果没有设置CPU_NUM， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
+int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math: num_threads=1 ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num_threads=device_count∗4` ；对CPU，:math:`num_threads=CPU_NUM∗4` 。在 ``ParallelExecutor`` 中有关于 :math:`CPU_NUM` 的详细解释。如果没有设置CPU_NUM， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
 
 
 
@@ -679,15 +679,15 @@ ParallelExecutor
 
 
 参数: 
-    - use_cuda (bool) – 是否使用CUDA
-    - loss_name (str) – 在训练阶段，必须提供loss function名称。默认为None
-    - main_program (Program) – 需要执行的program。如果未提供， 那么将使用 ``default_main_program``。 默认为None
-    - share_vars_from (ParallelExecutor) – 如果提供了该参数， 则该 ``ParallelExecutor`` 与指定的 ``ParallelExecutor`` 共享变量。默          认为空
-    - exec_strategy (ExecutionStrategy) – ``exec_strategy`` 用于调控program在 ``ParallelExecutor`` 中的执行方式，例如，执行该program需要的线程数, 释放在执行过程中产生的临时变量需要的重复(iterations)次数。 请参考 ``fluid.ExecutionStrategy`` 获取详细介绍。该参数默认为 None
-    - build_strategy (BuildStrategy) – 设置成员 ``build_strategy`` 可以控制在 ``ParallelExecutor`` 中搭建SSA Graph的方式，例如， ``reduce_strategy`` ， ``gradient_scale_strategy`` 。 请参考 ``fluid.BuildStrategy`` 获取详细介绍。 该参数默认为None
-    - num_trainers (int) – 如果该值大于1， NCCL将会通过多层级node的方式来初始化。每个node应有相同的GPU数目。 随之会启用分布式训练。该参数默认为1
-    - trainer_id (int) – 必须与 ``num_trainers`` 参数同时使用。``trainer_id`` 是当前所在node的 “rank”（层级），从0开始计数。该参数默认为0
-    - scope (Scope) – 指定执行program所在的作用域， 默认使用 ``fluid.global_scope()``
+    - **use_cuda** (bool) – 是否使用CUDA
+    - **loss_name** (str) – 在训练阶段，必须提供loss function名称。默认为None
+    - **main_program** (Program) – 需要执行的program。如果未提供， 那么将使用 ``default_main_program``。 默认为None
+    - **share_vars_from** (ParallelExecutor) – 如果提供了该参数， 则该 ``ParallelExecutor`` 与指定的 ``ParallelExecutor`` 共享变量。默          认为空
+    - **exec_strategy** (ExecutionStrategy) – ``exec_strategy`` 用于调控program在 ``ParallelExecutor`` 中的执行方式，例如，执行该program需要的线程数, 释放在执行过程中产生的临时变量需要的重复(iterations)次数。 请参考 ``fluid.ExecutionStrategy`` 获取详细介绍。该参数默认为 None
+    - **build_strategy** (BuildStrategy) – 设置成员 ``build_strategy`` 可以控制在 ``ParallelExecutor`` 中搭建SSA Graph的方式，例如， ``reduce_strategy`` ， ``gradient_scale_strategy`` 。 请参考 ``fluid.BuildStrategy`` 获取详细介绍。 该参数默认为None
+    - **num_trainers** (int) – 如果该值大于1， NCCL将会通过多层级node的方式来初始化。每个node应有相同的GPU数目。 随之会启用分布式训练。该参数默认为1
+    - **trainer_id** (int) – 必须与 ``num_trainers`` 参数同时使用。``trainer_id`` 是当前所在node的 “rank”（层级），从0开始计数。该参数默认为0
+    - **scope** (Scope) – 指定执行program所在的作用域， 默认使用 ``fluid.global_scope()``
 
 返回：初始化后的 ``ParallelExecutor`` 对象
 
@@ -739,10 +739,10 @@ ParallelExecutor
                   ])
 
 参数： 
-    - fetch_list (list) – 获取的变量名列表
-    - feed (list|dict|None) – feed变量。 如果该参数是 ``dict`` 类型，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU）。反之，如果它是 ``list`` ，则列表中的各个元素都直接分别被拷贝到各设备中。默认为None
-    - feed_dict – 该参数已经停止使用。feed参数的别名, 为向后兼容而立。默认为None
-    - return_numpy (bool) – 是否将fetched tensor转换为numpy。默认为True
+    - **fetch_list** (list) – 获取的变量名列表
+    - **feed** (list|dict|None) – feed变量。 如果该参数是 ``dict`` 类型，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU）。反之，如果它是 ``list`` ，则列表中的各个元素都直接分别被拷贝到各设备中。默认为None
+    - **feed_dict** – 该参数已经停止使用。feed参数的别名, 为向后兼容而立。默认为None
+    - **return_numpy** (bool) – 是否将fetched tensor转换为numpy。默认为True
 
 返回： 获取的结果列表
 
