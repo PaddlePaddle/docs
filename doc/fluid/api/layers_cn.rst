@@ -441,7 +441,24 @@ conv2d_transpose
 
     - σ：激活函数
 
-    - Out：输出值，Out和X的shape可能不一样
+输入X和输出Out函数关系 :math:`X` 有等式如下：
+
+.. math::
+			   
+                        \\Out=\sigma (W*X+b)\\
+
+其中：
+    -  :math:`X` : 输入张量，具有NCHW格式
+
+    -  :math:`W` : 滤波器张量，，具有NCHW格式
+
+    -  :math:`*` : 卷积操作
+
+    -  :math:`b` : 偏置（bias），二维张量，shape为[m,1]
+
+    -  :math:`σ` : 激活函数
+ 
+    -  :math:`Out` : 输出值，Out和X的shape可能不一样
 
 **样例**：
 
