@@ -430,18 +430,8 @@ conv2d_transpose
                         \\Out=\sigma (W*X+b)\\
                       
 
-其中：
-    - X：输入张量，具有NCHW格式
 
-    - W：滤波器张量，，具有NCHW格式
-
-    - *：卷积操作
-
-    - b：偏置（bias），二维张量，shape为[m,1]
-
-    - σ：激活函数
-
-输入X和输出Out函数关系 :math:`X` 有等式如下：
+输入 :math:`X` 和输出 :math:`Out` O函数关系如下：
 
 .. math::
 			   
@@ -468,24 +458,27 @@ conv2d_transpose
 
     输入张量的shape: （N，C_{in}， H_{in}， W_{in})
 
-    滤波器（filter）shape ：（C_in, C_out, H_f, W_f) 
+    滤波器（filter）shape ：（C_{in}, C_{out}, H_f, W_f) 
 
 输出：
         
 .. math:: 
-    输出张量的shape：（N，C_out, H_out, W_out)
+    输出张量的shape：（N，C_{out}, H_{out}, W_{out})
 
 其中
 
 .. math:: 
 
-                H'_out = (Hin−1)*strides[0]−2*paddings[0]+dilations[0]*(H_f−1)+1
+                \\H'_{out} = (H_{in}-1)*strides[0]-2*paddings[0]+dilations[0]*(H_f-1)+1\\
             
-                W’_out = (Win−1)*strides[1]−2*paddings[1]+dilations[1]*(W_f−1)+1
+		\\W'_{out} = (W_{in}-1)*strides[1]-2*paddings[1]+dilations[1]*(W_f-1)+1 \\
             
-                H_out∈[H′_out,H′_out + strides[0])
+		\\H_{out}\in[H'_{out},H'_{out} + strides[0])\\
             
-                W_out∈[W′_out,W′out + strides[1])
+		\\W_{out}\in[W'_{out},W'_{out} + strides[1])\\
+
+            
+                
 
 
 参数:
@@ -534,20 +527,22 @@ conv3d_transpose
 
 输入X和输出Out函数关系X，有等式如下：
 
-                        Out=σ(W∗X+b)
+.. math::
+                        \\Out=\sigma (W*X+b)\\
 
 其中：
-    - X：输入张量，具有NCDHW格式
+    -  :math:`X` : 输入张量，具有NCDHW格式
 
-    - W：滤波器张量，具有NCDHW格式
+    -  :math:`W` : 滤波器张量，，具有NCDHW格式
 
-    - *：卷积操作
+    -  :math:`*` : 卷积操作
 
-    - b：偏置（bias），二维张量，shape为[m,1]
+    -  :math:`b` : 偏置（bias），二维张量，shape为[m,1]
 
-    - σ：激活函数
+    -  :math:`σ` : 激活函数
+ 
+    -  :math:`Out` : 输出值，Out和X的shape可能不一样
 
-    - Out：输出值，Out和X的shape可能不一样
 
 **样例**
 
@@ -555,9 +550,9 @@ Input:
 
 .. math::   
 	
-		Input shape: (N,C_in,D_in,H_in,W_in)
+		Input shape: (N,C_{in},D_{in},H_{in},W_{in})
 
-		Filter shape: (C_in,C_out,D_f,H_f,W_f)
+		Filter shape: (C_{in},C_{out},D_f,H_f,W_f)
 
 	
 
@@ -565,18 +560,21 @@ Output:
 
 .. math::   
 	
-		Output shape: (N,C_out,D_out,H_out,W_out)
+		Output shape: (N,C_{out},D_{out},H_{out},W_{out})
 
 	
 其中：
 
 .. math::   
+		
+
+
+		D_{out}=(D_{in}-1)*strides[0]-2*paddings[0]+dilations[0]*(D_f-1)+1
 	
-		D_out=(D_in−1)∗strides[0]−2∗paddings[0]+dilations[0]∗(D_f−1)+1
+		H_{out}=(H_{in}-1)*strides[1]-2*paddings[1]+dilations[1]*(H_f-1)+1
 	
-		H_out=(H_in−1)∗strides[1]−2∗paddings[1]+dilations[1]∗(H_f−1)+1
-	
-		W_out=(W_in−1)∗strides[2]−2∗paddings[2]+dilations[2]∗(W_f−1)+1
+		W_{out}=(W_{in}-1)*strides[2]-2*paddings[2]+dilations[2]*(W_f-1)+1
+		
 
 
 参数:
@@ -618,11 +616,12 @@ im2sequence
 >>>>>>>>>>>>
 
 .. py:class:: paddle.fluid.layers.im2sequence(input, filter_size=1, stride=1, padding=0, input_image_size=None, out_stride=1, name=None)
-2-D卷积转置层（Convlution2D transpose layer）
 
 从输入张量中提取图像张量，与im2col相似，shape={input.batch_size * output_height * output_width, filter_size_H * filter_size_W * input.通道}。这个op使用filter / kernel扫描图像并将这些图像转换成序列。一个图片展开后的timestep的个数为output_height * output_width，其中output_height和output_width由下式计算:
 
-                        output_size=1+(2∗padding+img_size−block_size+stride−1)/stride
+
+.. math:: 
+                        output_size=\frac{1+(2∗padding+img_size−block_size+stride−1)}{stride}
 
 每个timestep的维度为block_y * block_x * input.channels。
 
@@ -823,7 +822,7 @@ row_conv
 给定输入序列长度t输入维度d和一个大小为上下文大小*d的滤波器，输出序列卷积为:
 
 .. math::   
-		out_i = sum_{j=1}^{i+context} in_{j,_:} * W_{i-j}^2 
+		out_i = \sum_{j=1}^{i+context} in_{j,_:} * W_{i-j}^2 
     
 公式中：
         - Out_i : 第i行输出变量 shaoe为[1, D].
