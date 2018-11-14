@@ -50,13 +50,8 @@
 	    
 下面将说明如何安装PaddlePaddle：
 
-1. 设置python环境变量：
-	
-	- For Python2.7.x: 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
-	
-	- For Python3.5.x: 请使用`find / -name libpython3.5.dylib`找到您当前使用python的`libpython3.5.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录]`
 
-2. 使用pip install来安装PaddlePaddle：
+1. 使用pip install来安装PaddlePaddle：
 	
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
 

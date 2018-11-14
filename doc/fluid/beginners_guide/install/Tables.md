@@ -166,6 +166,41 @@
 		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
 		<td> ON </td>
 	</tr>
+	<tr>
+		<td> WITH_SYSTEM_BLAS </td>
+		<td> 是否使用系统自带的BLAS </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_DISTRIBUTE </td>
+		<td> 是否编译带有分布式的版本 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_MKL </td>
+		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
+		<td> ON </td>
+	</tr>
+	<tr>
+		<td> WITH_RDMA </td>
+		<td> 是否编译支持RDMA的相关部分 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_BRPC_RDMA </td>
+		<td> 是否使用BRPC RDMA作为RPC协议 </td>
+		<td> OFF </td>
+	</tr>
+		<tr>
+		<td> ON_INFER </td>
+		<td> 是否打开预测优化 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> DWITH_ANAKIN </td>
+		<td> 是否编译ANAKIN </td>
+		<td> OFF </td>
+	</tr>
    </tbody>
 </table>
 </p>
