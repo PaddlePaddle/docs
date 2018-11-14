@@ -1,5 +1,4 @@
 .. _cn_api_fluid_layers_equal:
-
 equal
 =====
 .. py:class:: paddle.fluid.layers. equal(x,y,cond=None,**ignored)
@@ -23,7 +22,6 @@ equal
     less = fluid.layers.equal(x=label,y=limit)
 
 .. _cn_api_fluid_layers_array_read: 
-
 array_read
 ==========
 
@@ -58,16 +56,13 @@ array_read
     arr = layers.array_read(tmp,i=i)
 
 .. _cn_api_fluid_layers_array_length:
-
 array_length
 ============
 .. py:class:: paddle.fluid.layers. array_length(array)
 
-得到输入的LoDTensorArray数组的长度
+此功能用于查找输入数组LOD_TENSOR_ARRAY的长度。  
 
-此功能用于找出输入数组LOD_TENSOR_ARRAY的长度。  
-
-相关API:array_read,array_write,While. 
+相关API::ref:'api_fluid_layers_array_read',:ref:'api_fluid_layers_array_write',ref:'api_fluid_layers_While'. 
 
 参数：array(LOD_TENSOR_ARRAY)-输入数组，用来计算数组长度
 
@@ -85,7 +80,6 @@ array_length
     arr_len = fluid.layers.array_length(arr)
 
 .. _cn_api_fluid_layers_IfElse:
-
 IfElse
 ======
 
@@ -119,7 +113,6 @@ if-else控制流。
     prob = ie()
 
 .. _cn_api_fluid_layers_Print:
-
 Print
 =====
 .. py:class:: paddle.fluid.layers. Print(input, first_n=-1, message=None, summarize=-1, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
@@ -140,7 +133,7 @@ Print操作命令
     * print_tensor_type(bool)-打印张量类型
     * print_tensor_shape(bool)-打印张量维度
     * print_tensor_lod(bool)-打印张量lod
-    * print_phase(str)-所要放置的阶段，包括"forward","backward"和"both".若设置为"backward"或者"both",则打印输入张量的梯度。
+    * print_phase(str)-打印的阶段，包括"forward","backward"和"both".若设置为"backward"或者"both",则打印输入张量的梯度。
 
 返回：输出张量，和输入张量同样的数据
 
@@ -170,7 +163,7 @@ is_empty
 
 返回类型：变量（Variable）
 
-提示：类型错误-如果输入条件不是变量或变量类型不是布尔类型
+提示：抛出异常-如果input不是变量或cond类型不是变量
 
 代码示例：
 
@@ -181,14 +174,13 @@ is_empty
     fluid.layers.is_empty(x=input, cond=res)
 
 .. _cn_api_fluid_layers_data:
-
 data
 ====
 .. py:class:: paddle.fluid.layers. data(name, shape, append_batch_size=True, dtype='float32', lod_level=0, type=VarType.LOD_TENSOR, stop_gradient=True)
 
 数据层(Data Layer)
 
-该功能接受输入数据，根据是否返回迷你批次minbatch用辅助函数创建全局变量。可通过以下所有操作命令访问全局变量。
+该功能接受输入数据，根据是否返回minibatch用辅助函数创建全局变量。可通过以下所有操作命令访问全局变量。
 
 该函数输入的所有变量作为局部变量传到LayerHelper构造器
 
@@ -221,7 +213,6 @@ data
 
 
 .. _cn_api_fluid_layers_open_files:
-
 open_files
 ==========
 .. py:class:: paddle.fluid.layers. open_files(filenames, shapes, lod_levels, dtypes, thread_num=None, buffer_size=None, pass_num=1, is_test=None)
@@ -239,7 +230,7 @@ open_files
     * thread_num(None)-用于读文件的线程数。默认：min(len(filenames),cpu_number)
     * buffer_size(None)-reader的缓冲区大小。默认：3*thread_num
     * pass_num(int)-用于运行的传递数量
-    * is_test(bool|None)-open_files是否用于测试。如果用于测试，生成的数据顺序和文件顺序一致。反之，无法保证时期间的数据顺序是一致的
+    * is_test(bool|None)-open_files是否用于测试。如果用于测试，生成的数据顺序和文件顺序一致。反之，无法保证每一epoch之间的数据顺序是一致的
 
 返回：一个Reader变量，通过该变量获取文件数据
 
@@ -271,7 +262,7 @@ reader也是变量。可以为由fluid.layers.open_files()生成的原始reader�
 
     reader(Variable)-将要执行的reader
 
-返回：从给定的reader中读取udall数据
+返回：从给定的reader中读取数据
 
 代码示例：
 
@@ -337,7 +328,6 @@ random_data_generator
     * high(float)-数据均匀分布的上界
     * shapes(list)-元组数列表，声明数据维度
     * lod_levels(list)-整形数列表，声明数据
-    * lod_level
     * for_parallel(Bool)-若要运行一系列操作命令则将其设置为True
 
 返回：Reader变量，可从中获取随机数据
@@ -401,7 +391,6 @@ Load操作命令将从磁盘文件中加载LoDTensor/SelectedRows变量。
 返回：None
 
 .. _cn_api_fluid_layers_embedding:
-
 embedding
 =========
 
@@ -473,14 +462,12 @@ b:
                                          proj_activation="tanh")
 
 .. _cn_api_fluid_layers_warpctc:
-
 warpctc 
 =======
 .. py:class:: paddle.fluid.layers. warpctc(input, label, blank=0, norm_by_times=False)
 
 
 .. _cn_api_fluid_layers_sequence_reshape:
-
 sequence_reshape
 ================
 .. py:class:: paddle.fluid.layers. sequence_reshape(input, new_dim) 
@@ -546,7 +533,6 @@ one_hot
     one_hot_label = layers.one_hot(input=label, depth=10)
 
 .. _cn_api_fluid_layers_autoincreased_step_counter:
-
 autoincreased_step_counter
 ==========================
 .. py:class:: paddle.fluid.layers.autoincreased_step_counter(counter_name=None, begin=1, step=1)
@@ -555,7 +541,7 @@ autoincreased_step_counter
 
 参数：
     * counter_name(str)-计数名称，默认为'@STEP_COUNTER@'
-    * begin(int)-技术的第一个值
+    * begin(int)-开始计数
     * step(int)-执行之间增加的步数
 
 返回：全局运行步数
@@ -574,7 +560,7 @@ squeeze
 =======
 .. py:class:: paddle.fluid.layers. squeeze(input, axes, name=None)
 
-向张量维度中移除单维输入。传入用于压缩的轴。如果未提供轴，所有的单一维度将从维中移除。如果带有维入口的轴与其他轴不等，则报错。
+** 向张量维度中移除单维输入。传入用于压缩的轴。如果未提供轴，所有的单一维度将从维中移除。如果带有维入口的轴与其他轴不等，则报错。**
 例如：
 情况1：
 
@@ -638,7 +624,6 @@ unsqueeze
 
 
 .. _cn_api_fluid_layers_lod_reset:
-
 lod_reset
 =========
 .. py:class:: paddle.fluid.layers. lod_reset(x, y=None, target_lod=None)
@@ -707,10 +692,9 @@ lod_reset
 
 返回类型：变量
 
-提示：ValueError - 如果y和target_lod都为空
+提示：抛出异常 - 如果y和target_lod都为空
 
 代码示例：
-
 .. code-block:: python
 
     x = layers.data(name='x', shape=[10])
@@ -718,7 +702,6 @@ lod_reset
     out = layers.lod_reset(x=x, y=y)
 
 .. _cn_api_fluid_layers_lrn:
-
 lrn
 ===
 
@@ -745,7 +728,7 @@ Local Response Normalization Layer.
     * beta(float,默认为0.75)-指数
     * name(str,默认None)-操作名称
 
-提示：ValueError-如果输入张量级别不为4
+提示：抛出异常-如果输入张量级别不为4
 
 返回：张量变量，存储转换结果
 
@@ -758,7 +741,6 @@ Local Response Normalization Layer.
     lrn = fluid.layers.lrn(input=data)
 
 .. _cn_api_fluid_layers_topk:
-
 topk
 ====
 .. py:class:: paddle.fluid.layers. topk(input, k, name=None)
@@ -766,7 +748,7 @@ topk
 该操作符用于寻找最后维前k最大项的值和索引。
 
 如果输入是（1-D Tensor），则找到向量的前k最大项，并以向量的形式输出前k最大项的值和索引。values[j]是输入中第j最大项，其索引为indices[j]。
-如果输入是更高阶的张量，则该操作符运算最后一纬的前k项
+如果输入是更高阶的张量，则该operator会基于最后一维计算前k项
 
 例如：
 
@@ -798,7 +780,7 @@ topk
 
 返回类型：元组[变量]
 
-提示：ValueError-如果k<1或者k不小于输入的最后维
+提示：抛出异常-如果k<1或者k不小于输入的最后维
 
 代码示例：
 
@@ -823,9 +805,10 @@ matmul
 
 如果两个都是2-D，则同普通矩阵一样进行矩阵相乘
 
-如果有一个为n-D，则作为一堆矩阵存储在最后两维中，一批矩阵相乘支持两个张量broadcast
+**如果有一个为n-D，则作为一堆矩阵存储在最后两维中，一批矩阵相乘支持两个张量broadcast**
 
-需注意如果原始张量x或y是一阶并未转置，矩阵相乘后需移除前置或后置维1.
+**需注意如果原始张量x或y是一阶并未转置，矩阵相乘后需移除前置或后置维1.**
+
 
 参数：
     * x(Variable)-输入变量，类型为Tensor或LoDTensor
@@ -871,7 +854,7 @@ l2_normalize
 
 .. py:class:: paddle.fluid.layers. l2_normalize(x, axis, epsilon=1e-12, name=None)
 
-欧几里得距离之和正则层（L2 normalize Layer）
+L2正则层（L2 normalize Layer）
 
 该层用欧几里得距离之和对维轴的x归一化。对于1-D张量（系数矩阵的维度固定为0），该层计算公式如下：
 公式
@@ -1007,9 +990,9 @@ sequence_last_step
 ===================
 .. py:class:: paddle.fluid.layers. sequence_last_step(input)
 
-该功能给出序列的最后一步
+该API可以获取序列的最后一步
 
-x是一级LoDTensor:
+x是level-1的LoDTensor:
 
     x.lod = [[2, 3, 2]]
 
@@ -1121,10 +1104,563 @@ uniform_random
 
     result = fluid.layers.uniform_random(shape=[32, 784])
 
+.. _cn_api_fluid_layers_hard_shrink:
+hard_shrink
+===========
+.. py:class:: paddle.fluid.layers. hard_shrink(x,threshold=None)
 
+HardShrink激活函数(HardShrink activation operator)
 
+公式
 
+参数：
+    * x-HardShrink激活函数的输入
+    * threshold(FLOAT)-HardShrink激活函数的threshold值。[默认：0.5]
+
+返回：HardShrink激活函数的输出
 
+代码示例：
 
+    .. code-block:: python
 
+        data = fluid.layers.data(name="input", shape=[784])
+        result = fluid.layers.hard_shrink(x=data, threshold=0.3)    
 
+.. _cn_api_fluid_layers_cumsum:
+cumsum
+======
+
+.. py:class:: paddle.fluid.layers. cumsum(x,axis=None,exclusive=None,reverse=None
+
+给定轴上元素的累加。默认结果的第一个元素和输入的第一个元素一致。如果exlusive为真，结果的第一个元素则为0。
+
+参数：
+    * x-累加操作符的输入
+    * axis(INT)-需要累加的维。-1代表最后一维。[默认 -1]。
+    * exclusive(BOOLEAN)-是否执行exclusive累加。[默认false]。
+    * reverse(BOOLEAN)-若为true,则以相反顺序执行累加。[默认 false]。
+
+返回：累加器的输出
+
+代码示例：
+
+.. code-block:: python
+
+    data = fluid.layers.data(name="input", shape=[32, 784])
+    result = fluid.layers.cumsum(data, axis=0)
+
+.. _cn_api_fluid_layers_thresholded_relu:
+thresholded_relu
+================
+.. py:class:: paddle.fluid.layers thresholded_relu(x,threshold=None)
+
+    ThresholdedRelu激活函数
+        公式
+
+    参数：
+        * x-ThresholdedRelu激活函数的输入
+        * threshold(FLOAT)-激活函数threshold的位置。[默认1.0]。
+    
+    返回：ThresholdedRelu激活函数的输出
+
+    代码示例：
+
+    .. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[1])
+        result = fluid.layers.thresholded_relu(data, threshold=0.4)
+
+.. _cn_api_fluid_layers_create_tensor:
+create_tensor
+=============
+
+.. py:class:: paddle.fluid.layers. create_tensor(dtype,name=None,persistable=False)
+
+创建一个变量，存储数据类型为dtype的LoDTensor。
+
+参数：
+    * dtype(string)-‘float32’|’int32’|..., 创建张量的数据类型。
+    * name(string)-创建张量的名称。如果未设置，则随机取一个唯一的名称。
+    * persistable(bool)-为创建张量设置的永久标记
+
+返回：存储在创建张量中的张量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    tensor = fluid.layers.create_tensor(dtype='float32')
+
+.. _cn_api_fluid_layers_create_parameter:
+create_parameter
+================
+.. py:class:: paddle.fluid.layers. create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
+
+创建一个参数。该参数是一个可学习的变量，拥有梯度并且可优化。
+
+注：这是一个非常低级的API。自创操作符时该API较为有用，而无需使用层。
+
+参数：
+    * shape(list[int])-参数的维度
+    * dtype(string)-参数的元素类型
+    * attr(ParamAttr)-参数的属性
+    * is_bias(bool)-当default_initializer为空，该值会对选择哪个默认初始化程序产生影响。如果is_bias为真，则使用initializer.Constant(0.0)。
+    否则使用Xavier()
+    * default_initializer(Initializer)-参数的初始化程序
+
+返回：创建的参数
+
+代码示例：
+
+.. code-block:: python
+
+    W = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
+    data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
+    hidden = fluid.layers.matmul(x=data, y=W)
+
+.. _cn_api_fluid_layers_create_global_var:
+create_global_var
+=================
+
+.. py:class:: paddle.fluid.layers create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
+
+在全局块中创建一个新的带有值的张量。
+
+参数：
+    * shape(list[int])-变量的维度
+    * value(float)-变量的值。填充新创建的变量
+    * dtype(string)-变量的数据类型
+    * persistable(bool)-如果是永久变量。默认：False
+    * force_cpu(bool)-将该变量压入CPU。默认：False
+    * name(str|None)-变量名。如果设为空，则自动创建变量名。默认：None.
+
+返回：创建的变量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    var = fluid.create_global_var(shape=[2,3], value=1.0, dtype='float32',
+                     persistable=True, force_cpu=True, name='new_var')
+
+.. _cn_api_fluid_layers_cast:
+cast 
+====
+.. py:class:: paddle.fluid.layers. cast(x,dtype)
+
+该层传入变量x,并用x.dtype将x转换成dtype类型，作为输出。
+
+参数：
+    * x(Variable)-转换函数的输入变量
+    * dtype(np.dtype|core.VarDesc.VarType|str)-输出变量的数据类型
+
+返回：转换后的输出变量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    data = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    result = fluid.layers.cast(x=data, dtype='float64')
+
+.. _cn_api_fluid_layers_concat:
+concat
+======
+
+.. py:class:: paddle.fluid.layers concat(input,axis=0,name=None)
+
+**Concat** 
+
+该函数将提到的轴上的输入连接起来，并作为输出返回。
+
+参数：
+    * input(list)-将要联结的张量列表
+    * axis(int)-数据类型为整型的轴，其上的张量将被联结
+    * name(str|None)-该层名称（可选）。如果设为空，则自动为该层命名。
+
+返回：输出的联结变量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    out = fluid.layers.concat(input=[Efirst, Esecond, Ethird, Efourth])
+
+.. _cn_api_fluid_layers_sums:
+sums
+====
+
+.. py:class:: paddle.fluid.layers. sums(input,out=None)
+
+该函数对输入进行求和，并返回求和结果作为输出。
+
+参数：
+    * input(Variable|list)-输入张量，有需要求和的元素
+    * out(Variable|None)-输出参数。求和结果。默认：None
+
+返回：输入的求和。和参数‘out‘等同
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    tmp = fluid.layers.zeros(shape=[10], dtype='int32')
+    i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
+    a0 = layers.array_read(array=tmp, i=i)
+    i = layers.increment(x=i)
+    a1 = layers.array_read(array=tmp, i=i)
+    mean_a0 = layers.mean(a0)
+    mean_a1 = layers.mean(a1)
+    a_sum = layers.sums(input=[mean_a0, mean_a1])
+
+.. _cn_api_fluid_assign:
+assign
+======
+
+.. py:class:: paddle.fluid.layers. assign(input,output=None)
+
+**Assign**
+
+该功能将输入变量复制到输出变量
+
+参数：
+
+    * input(Variable|numpy.ndarray)-源变量
+    * output(Variable|None)-目标变量
+
+返回：作为输出的目标变量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    out = fluid.layers.create_tensor(dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    fluid.layers.assign(hidden, out)
+
+.. _cn_api_fluid_fill_constant_batch_size_like:
+fill_constant_batch_size_like
+=============================
+.. py:class:: paddle.fluid.layers. fill_constant_batch_size_like(input,shape,dtype,value,input_dim_idx=0,output_dim_idx=0)
+
+该功能创建一个张量，具体含有shape,dtype和batch尺寸。并用值中提供的常量初始化该张量。该批尺寸从输入张量中获取。
+
+也将stop_gradient设置为True.
+
+    data = fluid.layers.fill_constant_batch_size_like(
+                input=like, shape=[1], value=0, dtype='int64')
+
+参数：
+    * input(Variable)-张量，其input_dim_idx个维具体指示batch_size
+    * shape(INTS)-输出的维
+    * dtype(INT)-可以为numpy.dtype。输出数据类型。默认为float32
+    * value(FLOAT)-默认为0.将要被填充的值
+    * input_dim_idx(INT)-默认为0.输入批尺寸维的索引
+    * output_dim_idx(INT)-默认为0.输出批尺寸维的索引
+
+返回：具体维的张量填充有具体值
+
+.. _cn_api_fluid_layers_fill_constant:
+fill_constant
+=============
+.. py:class:: paddle.fluid.layers fill_constant(shape,dtype,value,force_cpu=False,out=None)
+
+**fill_constant**
+
+该功能创建一个张量，具体含有shape,dtype和batch尺寸。并用值中提供的常量初始化该张量。
+
+创建张量的属性stop_gradient设为True。
+
+参数：
+    * shape(tuple|list|None)-输出张量的维
+    * dtype(np.dtype|core.VarDesc.VarType|str)-输出张量的数据类型
+    * value(float)-用于初始化输出张量的常量值
+    * out(Variable)-输出张量
+    * force_cpu(True|False)-若设为true,数据必须在CPU上
+
+返回：存储在输出中的张量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
+
+.. _cn_api_fluid_layers_argmin:
+argmin
+======
+.. py:class:: paddle.fluid.layers argmin(x,axis=0)
+    
+    **argmin**
+    
+    该功能计算输入张量元素中最小元素的索引，张量元素在提供的轴上。
+
+    参数：
+        * x(Variable)-计算最小元素索引的输入
+        * axis(int)-计算索引的轴
+    
+    返回：存储在输出中的张量
+
+    返回类型：变量（Variable）
+
+    代码示例：
+
+    .. code-block:: python
+
+        out = fluid.layers.argmin(x=in, axis=0)
+        out = fluid.layers.argmin(x=in, axis=-1)
+    
+.. _cn_api_fluid_layers_argmax:
+argmax
+======
+.. py:class:: paddle.fluid.layers argmin(x,axis=0)
+    
+    **argmax**
+    
+    该功能计算输入张量元素中最大元素的索引，张量的元素在提供的轴上。
+
+    参数：
+        * x(Variable)-用于计算最大元素索引的输入
+        * axis(int)-用于计算索引的轴
+    
+    返回：存储在输出中的张量
+
+    返回类型：变量（Variable）
+
+    代码示例：
+
+    .. code-block:: python
+
+        out = fluid.layers.argmax(x=in, axis=0)
+        out = fluid.layers.argmax(x=in, axis=-1)
+
+.. _cn_api_fluid_layers_argsort:
+argsort
+=======
+.. py:class:: paddle.fluid.layers argsort(input,axis=-1,name=None)
+
+对给定轴上的输入变量进行排序，输出排序好的数据和相应的索引，其维度和输入相同
+
+.. code-block:: python
+
+    For example, the given axis is -1 and the input Variable
+
+        input = [[0.15849551, 0.45865775, 0.8563702 ],
+                [0.12070083, 0.28766365, 0.18776911]],
+
+    after argsort, the sorted Vairable becomes
+
+        out = [[0.15849551, 0.45865775, 0.8563702 ],
+            [0.12070083, 0.18776911, 0.28766365]],
+
+    and the sorted indices along the given axis turn outs to be
+
+        indices = [[0, 1, 2],
+                [0, 2, 1]]
+
+参数：
+    * input(Variable)-用于排序的输入变量
+    * axis(int)-含有用于排序输入变量的轴。当axis<0,实际的轴为axis+rank(input)。默认为-1，即最后一维。
+    * name(str|None)-（可选）该层名称。如果设为空，则自动为该层命名。
+
+返回：含有已排序的数据和索引
+
+返回类型：元组
+
+代码示例：
+
+.. code-block:: python
+
+    input = fluid.layers.data(data=[2, 3])
+    out, indices = fluid.layers.argsort(input, axis=0)
+
+.. _cn_api_fluid_layers_ones:
+ones 
+====
+.. py:class:: paddle.fluid.layers. ones(shape,dtype,force_cpu=False)
+
+**ones**
+
+该功能创建一个张量，有具体的维度和dtype，初始值为1。
+
+也将stop_gradient设置为True。
+
+参数：
+    * shape(tuple|list|None)-输出张量的维
+    * dtype(np.dtype|core.VarDesc.VarType|str)-输出张量的数据类型
+
+返回：存储在输出中的张量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    data = fluid.layers.ones(shape=[1], dtype='int64')
+
+.. _cn_api_fluid_layers_zeros:
+zeros
+=====
+.. py:class:: paddle.fluid.layers. zeros(shape,dtype,force_cpu=False)
+
+**zeros**
+
+该功能创建一个张量，含有具体的维度和dtype，初始值为1.
+
+也将stop_gradient设置为True。
+
+参数：
+    * shape(tuple|list|None)-输出张量的维
+    * dtype(np.dtype|core.VarDesc.VarType|str)-输出张量的数据类型
+    * force_cpu(bool,default False)-是否将输出保留在CPU上
+
+返回：存储在输出中的张量
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+    data = fluid.layers.zeros(shape=[1], dtype='int64')
+
+.. _cn_api_fluid_layers_reverse:
+reverse
+=======
+.. py:class:: paddle.fluid.layers. reverse(x,axis)
+    
+    **reverse**
+    
+    该功能将给定轴上的输入'x'逆序
+
+    参数：
+        * x(Variable)-预逆序到输入
+        * axis(int|tuple|list)-其上元素逆序排列的轴。
+    
+    返回：逆序的张量
+
+    返回类型：变量（Variable）
+
+    代码示例：
+
+    .. code-block:: python
+
+        out = fluid.layers.reverse(x=in, axis=0)
+        # or:
+        out = fluid.layers.reverse(x=in, axis=[0,1])
+
+.. _cn_api_fluid_exponential_decay:
+exponential_decay 
+=================
+
+.. py:class:: paddle.fluid.layers exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
+
+在学习率上运用指数衰减。
+训练模型时，在训练过程中通常推荐降低学习率。每次‘decay_steps’步骤中用'decay_rate'衰减学习率。
+
+.. code-block:: python
+
+    if staircase == True:
+        decayed_learning_rate = learning_rate * decay_rate ^ floor(global_step / decay_steps)
+    else:
+        decayed_learning_rate = learning_rate * decay_rate ^ (global_step / decay_steps)    
+
+参数：
+    * learning_rate(Variable|float)-初始学习率
+    * decay_steps(int)-见以上衰减运算
+    * decay_rate(float)-衰减率。见以上衰减运算
+    * staircase(Boolean)-若为True,按离散区间衰减学习率。默认：False
+
+返回：衰减的学习率
+
+返回类型：变量（Variable）
+
+代码示例：
+
+.. code-block:: python
+
+    base_lr = 0.1
+    sgd_optimizer = fluid.optimizer.SGD(
+        learning_rate=fluid.layers.exponential_decay(
+            learning_rate=base_lr,
+            decay_steps=10000,
+            decay_rate=0.5,
+            staircase=True))
+    sgd_optimizer.minimize(avg_cost)
+
+.. _cn_api_fluid_layers_natural_exp_decay:
+natural_exp_decay
+=================
+
+.. py:class:: paddle.fluid.layers. natural_exp_decay(learning_rate, decay_steps, decay_rate, staircase=False)
+
+将自然指数衰减运用到初始学习率上。
+
+.. code-block:: python
+
+    if not staircase:
+        decayed_learning_rate = learning_rate * exp(- decay_rate * (global_step / decay_steps))
+    else:
+        decayed_learning_rate = learning_rate * exp(- decay_rate * (global_step / decay_steps))
+
+参数：
+    * learning_rate-标量float32值或变量。是训练过程中的初始学习率。
+    * decay_steps-Python int32数
+    * decay_rate-Python float数
+    * staircase-Boolean.若设为true，每个decay_steps衰减学习率
+
+返回：衰减的学习率
+
+.. _cn_api_fluid_layers_inverse_time_decay:
+inverse_time_decay
+==================
+
+.. py:class:: paddle.fluid.layers. inverse_time_decay(learning_rate, decay_steps, decay_rate, staircase=False)
+
+在初始学习率上运用逆时衰减。
+
+训练模型时，在训练过程中通常推荐降低学习率。通过执行该函数，将对初始学习率运用逆向衰减函数。
+
+.. code-block:: python
+
+    if staircase == True:
+         decayed_learning_rate = learning_rate / (1 + decay_rate * floor(global_step / decay_step))
+     else:
+         decayed_learning_rate = learning_rate / (1 + decay_rate * global_step / decay_step)
+
+参数：
+    * learning_rate(Variable|float)-初始学习率
+    * decay_steps(int)-见以上衰减运算
+    * decay_rate(float)-衰减率。见以上衰减运算
+    * staircase(Boolean)-若为True，按间隔区间衰减学习率。默认：False
+
+    返回：衰减的学习率
+
+    返回类型：变量（Variable）
+
+    示例代码：
+
+    .. code-block:: python
+
+        base_lr = 0.1
+        sgd_optimizer = fluid.optimizer.SGD(
+            learning_rate=fluid.layers.inverse_time_decay(
+                learning_rate=base_lr,
+                decay_steps=10000,
+                decay_rate=0.5,
+                staircase=True))
+        sgd_optimizer.minimize(avg_cost)
