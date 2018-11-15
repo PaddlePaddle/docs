@@ -3,10 +3,10 @@
 sequence_enumerate
 :::::::::::::::::::::::
 
-paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
+.. py:class:: paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-为输入索引序列生成一个新序列，该序列枚举输入长度为win_size的所有子序列。 枚举序列具有和可变输入第一维相同的维数，第二维是win_size，在生成中如果需要，通过设置pad_value填充。
+为输入索引序列生成一个新序列，该序列枚举输入长度为 ''win_size'' 的所有子序列。 枚举序列具有和可变输入第一维相同的维数，第二维是win_size，在生成中如果需要，通过设置pad_value填充。
 
 **例子：**
 
@@ -41,7 +41,7 @@ paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 expand
 :::::::::::::
 
-paddle.fluid.layers.expand(x, expand_times, name=None)
+.. py:class:: paddle.fluid.layers.expand(x, expand_times, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 expand运算算子会按给定的次数展开输入。 您应该通过提供属性“expand_times”来为每个维度设置次数。 X的等级应该在[1,6]中。请注意，'expand_times'的大小必须与X的秩相同。以下是一个用例：
@@ -91,7 +91,7 @@ expand运算算子会按给定的次数展开输入。 您应该通过提供属�
 sequence_concat
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.sequence_concat(input, name=None)
+.. py:class:: paddle.fluid.layers.sequence_concat(input, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 sequence_concat操作通过序列信息连接LoD张量（Tensor）。例如：X1的LoD = [0,3,7]，X2的LoD = [0,7,9]，结果的LoD为[0，（3 + 7），（7 + 9）]，即[0,10,16]]。
@@ -122,7 +122,7 @@ sequence_concat操作通过序列信息连接LoD张量（Tensor）。例如：X1
 scale
 :::::::
 
-paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
+.. py:class:: paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 缩放算子
@@ -157,7 +157,7 @@ else:
 elementwise_add
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None, name=None)
+.. py:class:: paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 逐元素相加算子
@@ -208,7 +208,7 @@ paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None, name=None)
 elementwise_div
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None, name=None)
+.. py:class:: paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 逐元素相除算子
@@ -262,7 +262,7 @@ paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None, name=None)
 elementwise_sub
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.elementwise_sub(x, y, axis=-1, act=None, name=None)
+.. py:class:: paddle.fluid.layers.elementwise_sub(x, y, axis=-1, act=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 逐元素相减算子
@@ -314,7 +314,7 @@ paddle.fluid.layers.elementwise_sub(x, y, axis=-1, act=None, name=None)
 elementwise_mul
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None, name=None)
+.. py:class:: paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 逐元素相乘算子
@@ -367,7 +367,7 @@ paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None, name=None)
 elementwise_max
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.elementwise_max(x, y, axis=-1, act=None, name=None)
+.. py:class:: paddle.fluid.layers.elementwise_max(x, y, axis=-1, act=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 最大元素算子
@@ -422,7 +422,7 @@ paddle.fluid.layers.elementwise_max(x, y, axis=-1, act=None, name=None)
 elementwise_min
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
+.. py:class:: paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 最小元素算子
@@ -476,7 +476,7 @@ paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
 elementwise_pow
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
+.. py:class:: paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 逐元素幂运算算子
@@ -530,7 +530,7 @@ paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
 uniform_random_batch_size_like
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32', input_dim_idx=0, output_dim_idx=0, min=-1.0, max=1.0, seed=0)
+.. py:class:: paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32', input_dim_idx=0, output_dim_idx=0, min=-1.0, max=1.0, seed=0)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 uniform_random_batch_size_like算子。
@@ -559,7 +559,7 @@ uniform_random_batch_size_like算子。
 gaussian_random
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.gaussian_random(shape, mean=0.0, std=1.0, seed=0, dtype='float32')
+.. py:class:: paddle.fluid.layers.gaussian_random(shape, mean=0.0, std=1.0, seed=0, dtype='float32')
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 gaussian_random算子。
@@ -587,7 +587,7 @@ gaussian_random算子。
 sampling_id
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.sampling_id(x, min=0.0, max=1.0, seed=0, dtype='float32')
+.. py:class:: paddle.fluid.layers.sampling_id(x, min=0.0, max=1.0, seed=0, dtype='float32')
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 sampling_id算子。用于从输入的多项分布中对id进行采样的图层。为一个样本采样一个id。
@@ -614,7 +614,7 @@ sampling_id算子。用于从输入的多项分布中对id进行采样的图层�
 gaussian_random_batch_size_like
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.gaussian_random_batch_size_like(input, shape, input_dim_idx=0, output_dim_idx=0, mean=0.0, std=1.0, seed=0, dtype='float32')
+.. py:class:: paddle.fluid.layers.gaussian_random_batch_size_like(input, shape, input_dim_idx=0, output_dim_idx=0, mean=0.0, std=1.0, seed=0, dtype='float32')
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 用于使用高斯随机发生器初始化张量。分布的defalut均值为0.并且分布的defalut标准差（std）为1.用户可以通过输入参数设置mean和std。
@@ -643,7 +643,7 @@ paddle.fluid.layers.gaussian_random_batch_size_like(input, shape, input_dim_idx=
 sum
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.sum(x)
+.. py:class:: paddle.fluid.layers.sum(x)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 sum算子。
@@ -666,7 +666,7 @@ sum算子。
 slice
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.slice(input, axes, starts, ends)
+.. py:class:: paddle.fluid.layers.slice(input, axes, starts, ends)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 slice算子。
@@ -698,7 +698,7 @@ slice算子。
 shape
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.shape(input)
+.. py:class:: paddle.fluid.layers.shape(input)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 shape算子
@@ -723,7 +723,7 @@ shape算子
 logical_and
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.logical_and(x, y, out=None, name=None)
+.. py:class:: paddle.fluid.layers.logical_and(x, y, out=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 logical_and算子
@@ -756,7 +756,7 @@ Out = X && Y
 logical_or
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.logical_or(x, y, out=None, name=None)
+.. py:class:: paddle.fluid.layers.logical_or(x, y, out=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 logical_or算子
 
@@ -788,7 +788,7 @@ Out = X || Y
 logical_xor
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.logical_xor(x, y, out=None, name=None)
+.. py:class:: paddle.fluid.layers.logical_xor(x, y, out=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 logical_xor算子
 
@@ -820,7 +820,7 @@ Out = (X || Y) && !(X && Y)
 logical_not
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.logical_not(x, out=None, name=None)
+.. py:class:: paddle.fluid.layers.logical_not(x, out=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 logical_not算子
 
@@ -851,7 +851,7 @@ Out=!X
 clip
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.clip(x, min, max, name=None)
+.. py:class:: paddle.fluid.layers.clip(x, min, max, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 clip算子
 
@@ -880,7 +880,7 @@ Out=min(max(X,min),max)
 clip_by_norm
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.clip_by_norm(x, max_norm, name=None)
+.. py:class:: paddle.fluid.layers.clip_by_norm(x, max_norm, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 ClipByNorm算子
 
@@ -915,7 +915,7 @@ Out=max_norm∗X/norm(X)
 mean
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.mean(x, name=None)
+.. py:class:: paddle.fluid.layers.mean(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 mean算子计算X中所有元素的平均值
      
@@ -937,7 +937,7 @@ mean算子计算X中所有元素的平均值
 mul
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, name=None)
+.. py:class:: paddle.fluid.layers.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 mul算子
 此运算是用于对输入X和Y执行矩阵乘法。
@@ -969,7 +969,7 @@ OUT = X * Y
 sigmoid
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.sigmoid(x, name=None)
+.. py:class:: paddle.fluid.layers.sigmoid(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 Sigmoid文档：
 
@@ -987,7 +987,7 @@ Sigmoid文档：
 logsigmoid
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.logsigmoid(x, name=None)
+.. py:class:: paddle.fluid.layers.logsigmoid(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 LogSigmoid文档：
 
@@ -1005,7 +1005,7 @@ LogSigmoid文档：
 exp
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.exp(x, name=None)
+.. py:class:: paddle.fluid.layers.exp(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 Exp文档：
 
@@ -1023,7 +1023,7 @@ Exp文档：
 tanh
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.tanh(x, name=None)
+.. py:class:: paddle.fluid.layers.tanh(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 Tanh文档：
 
@@ -1056,7 +1056,7 @@ TanhShrink文档：
 softshrink
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-paddle.fluid.layers.softshrink(x, name=None)
+.. py:class:: paddle.fluid.layers.softshrink(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''       
 
 Softshrink激活算子
@@ -1078,7 +1078,7 @@ Softshrink激活算子
 sqrt
 ::::::
 
-paddle.fluid.layers.sqrt(x, name=None)
+.. py:class:: paddle.fluid.layers.sqrt(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''        
 Sqrt文档：
 
@@ -1097,7 +1097,7 @@ Sqrt文档：
 abs
 ::::
 
-paddle.fluid.layers.abs(x, name=None)
+.. py:class:: paddle.fluid.layers.abs(x, name=None)
 ''''''''''''''''''''''''''''''''''''''''        
 Abs文档：
 
@@ -1116,7 +1116,7 @@ Abs文档：
 ceil
 ::::::
 
-paddle.fluid.layers.ceil(x, name=None)
+.. py:class:: paddle.fluid.layers.ceil(x, name=None)
 ''''''''''''''''''''''''''''''''''''''''        
 Ceil文档：
 
@@ -1134,7 +1134,7 @@ Ceil文档：
 floor
 ::::::
 
-paddle.fluid.layers.floor(x, name=None)
+.. py:class:: paddle.fluid.layers.floor(x, name=None)
 ''''''''''''''''''''''''''''''''''''''''
 Floor文档：
 
@@ -1153,7 +1153,7 @@ Floor文档：
 cos
 ::::
 
-paddle.fluid.layers.cos(x, name=None)
+.. py:class:: paddle.fluid.layers.cos(x, name=None)
 '''''''''''''''''''''''''''''''''''''
 
 Cos文档：
@@ -1172,7 +1172,7 @@ Cos文档：
 sin
 ::::
 
-paddle.fluid.layers.sin(x, name=None)
+.. py:class:: paddle.fluid.layers.sin(x, name=None)
 ''''''''''''''''''''''''''''''''''''''
 
 Sin文档：
@@ -1192,7 +1192,7 @@ Sin文档：
 round
 ::::::
 
-paddle.fluid.layers.round(x, name=None)
+.. py:class:: paddle.fluid.layers.round(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''
 
 Round文档：
@@ -1211,7 +1211,7 @@ Round文档：
 reciprocal
 ::::::::::::
 
-paddle.fluid.layers.reciprocal(x, name=None)
+.. py:class:: paddle.fluid.layers.reciprocal(x, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''
 
 Reciprocal文档：
@@ -1230,7 +1230,7 @@ Reciprocal文档：
 prior_box
 ::::::::::
 
-paddle.fluid.layers.prior_box(input, image, min_sizes, max_sizes=None, aspect_ratios=[1.0], variance=[0.1, 0.1, 0.2, 0.2], flip=False, clip=False, steps=[0.0, 0.0], offset=0.5, name=None, min_max_aspect_ratios_order=False)
+.. py:class:: paddle.fluid.layers.prior_box(input, image, min_sizes, max_sizes=None, aspect_ratios=[1.0], variance=[0.1, 0.1, 0.2, 0.2], flip=False, clip=False, steps=[0.0, 0.0], offset=0.5, name=None, min_max_aspect_ratios_order=False)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 prior_box算子
 
@@ -1279,7 +1279,7 @@ variances：PriorBox的方差。布局是[H，W，num_priors，4]。 H是输入�
 multi_box_head
 :::::::::::::::
 
-paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_classes, aspect_ratios, min_ratio=None, max_ratio=None, min_sizes=None, max_sizes=None, steps=None, step_w=None, step_h=None, offset=0.5, variance=[0.1, 0.1, 0.2, 0.2], flip=True, clip=False, kernel_size=1, pad=0, stride=1, name=None, min_max_aspect_ratios_order=False)
+.. py:class:: paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_classes, aspect_ratios, min_ratio=None, max_ratio=None, min_sizes=None, max_sizes=None, steps=None, step_w=None, step_h=None, offset=0.5, variance=[0.1, 0.1, 0.2, 0.2], flip=True, clip=False, kernel_size=1, pad=0, stride=1, name=None, min_max_aspect_ratios_order=False)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 生成SSD（Single Shot MultiBox Detector）算法的候选框。有关此算法的详细信息，请参阅SSD论文SSD：Single Shot MultiBox Detector的2.2节。
 
@@ -1345,7 +1345,7 @@ paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_classes, aspect
 bipartite_match
 ::::::::::::::::
 
-paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
+.. py:class:: paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 该算子实现了贪心二分匹配算法，该算法用于根据输入距离矩阵获得与最大距离的匹配。对于输入二维矩阵，二分匹配算法可以找到每一行的匹配列（匹配意味着最大距离），也可以找到每列的匹配行。此运算符仅计算列到行的匹配索引。对于每个实例，匹配索引的数量是输入距离矩阵的列号。
@@ -1392,7 +1392,7 @@ paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold
 target_assign
 ::::::::::::::
 
-paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None, mismatch_value=None, name=None)
+.. py:class:: paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None, mismatch_value=None, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 对于给定的目标边界框或目标标签，该运算符可以为每个预测分配分类和回归目标以及为预测分配权重。权重用于指定哪种预测将不会计入训练损失。
@@ -1446,7 +1446,7 @@ paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None,
 detection_output
 :::::::::::::::::
 
-paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
+.. py:class:: paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
 单次多窗口检测（SSD）来检测输出层。
@@ -1504,7 +1504,7 @@ paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, back
 ssd_loss
 :::::::::
 
-paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, prior_box_var=None, background_label=0, overlap_threshold=0.5, neg_pos_ratio=3.0, neg_overlap=0.5, loc_loss_weight=1.0, conf_loss_weight=1.0, match_type='per_prediction', mining_type='max_negative', normalize=True, sample_size=None)
+.. py:class:: paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, prior_box_var=None, background_label=0, overlap_threshold=0.5, neg_pos_ratio=3.0, neg_overlap=0.5, loc_loss_weight=1.0, conf_loss_weight=1.0, match_type='per_prediction', mining_type='max_negative', normalize=True, sample_size=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
 用于SSD的对象检测算法的多窗口损失层
@@ -1596,7 +1596,7 @@ paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, 
 detection_map
 ::::::::::::::
 
-paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
+.. py:class:: paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
 检测mAP评估运算符。一般步骤如下：首先，根据检测输入和标签计算TP（true positive）和FP（false positive），然后计算mAP评估值。支持'11 point'和积分mAP算法。请从以下文章中获取更多信息：
@@ -1659,7 +1659,7 @@ paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label
 rpn_target_assign
 ::::::::::::::::::
 
-paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, is_crowd, im_info, rpn_batch_size_per_im=256, rpn_straddle_thresh=0.0, rpn_fg_fraction=0.5, rpn_positive_overlap=0.7, rpn_negative_overlap=0.3, use_random=True)
+.. py:class:: paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, is_crowd, im_info, rpn_batch_size_per_im=256, rpn_straddle_thresh=0.0, rpn_fg_fraction=0.5, rpn_positive_overlap=0.7, rpn_negative_overlap=0.3, use_random=True)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
 **在Faster-RCNN检测中为区域检测网络（RPN）分配目标层。**
@@ -1719,7 +1719,7 @@ paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_
 generate_proposals
 :::::::::::::::::::
 
-paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, variances, pre_nms_top_n=6000, post_nms_top_n=1000, nms_thresh=0.5, min_size=0.1, eta=1.0, name=None)
+.. py:class:: paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, variances, pre_nms_top_n=6000, post_nms_top_n=1000, nms_thresh=0.5, min_size=0.1, eta=1.0, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
 **生成proposal标签的Faster-RCNN**
@@ -1759,7 +1759,7 @@ paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, va
 DataFeeder
 :::::::::::
 
-paddle.fluid.layers.DataFeeder(feed_list, place, program=None)
+.. py:class:: paddle.fluid.layers.DataFeeder(feed_list, place, program=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
 DataFeeder将reader返回的数据转换为可以提供给Executor和ParallelExecutor的数据结构。reader通常会返回一个mini-batch数据列表。列表中的每个数据都是一个样本。每个样本都是一个具有一个特征或多个特征的列表或元组。
