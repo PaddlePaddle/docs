@@ -6,7 +6,7 @@ Executor
 >>>>>>>>>>>>>>>>>>>>>
 
 
-.. py:class:: class paddle.fluid.executor. Executor (place)
+.. py:class:: paddle.fluid.executor. Executor (place)
 
 
 
