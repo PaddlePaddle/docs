@@ -494,7 +494,7 @@ conv2d_transpose
 	- bias_attr (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
 	- use_cudnn (bool) : 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
 	- act(str) :  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
-	- name (str|None) : 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
+	-  **name** (str|None) -  该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
 
 
 返回：	存储卷积转置结果的张量。
