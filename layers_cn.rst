@@ -9,11 +9,10 @@ reduce_sum
 计算给定维度上张量（Tensor）元素之和。
 
 参数：
-- input（Variable）：输入变量为Tensor或LoDTensor。
-- dim（list | int | None）：求和运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]
-范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
-- keep_dim（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
-- name（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **input**（Variable）：输入变量为Tensor或LoDTensor。
+          - **dim**（list | int | None）：求和运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
+          - **keep_dim**（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
+          - **name**（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回：  减少的Tensor变量。
 
@@ -51,11 +50,10 @@ reduce_prod
 计算给定维度上张量（Tensor）元素乘积。
 
 参数：
-- input（Variable）：输入变量为Tensor或LoDTensor。
-- dim（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]
-范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
-- keep_dim（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
-- name（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **input**（Variable）：输入变量为Tensor或LoDTensor。
+          - **dim**（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
+          - **keep_dim**（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
+          - **name**（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回：  减少的Tensor变量。
 
@@ -94,11 +92,10 @@ reduce_min
 计算给定维度上张量（Tensor）元素乘积。
 
 参数：
-- input（Variable）：输入变量为Tensor或LoDTensor。
-- dim（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]
-范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
-- keep_dim（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
-- name（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **input**（Variable）：输入变量为Tensor或LoDTensor。
+          - **dim**（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
+          - **keep_dim**（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
+          - **name**（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回：  减少的Tensor变量。
 
@@ -136,11 +133,10 @@ reduce_mean
 计算给定维度上张量（Tensor）元素平均值。
 
 参数：
-- input（Variable）：输入变量为Tensor或LoDTensor。
-- dim（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]
-范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
-- keep_dim（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
-- name（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **input**（Variable）：输入变量为Tensor或LoDTensor。
+          - **dim**（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
+          - **keep_dim**（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
+          - **name**（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回：  减少的Tensor变量。
 
@@ -179,11 +175,10 @@ reduce_max
 计算给定维度上张量（Tensor）元素最大值。
 
 参数：
-- input（Variable）：输入变量为Tensor或LoDTensor。
-- dim（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]
-范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
-- keep_dim（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
-- name（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **input**（Variable）：输入变量为Tensor或LoDTensor。
+          - **dim**（list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在[−rank(input),rank(input)]范围内。如果dim [i] <0，则维度将减小为rank+dim[i]。
+          - **keep_dim**（bool | False）：是否在输出Tensor中保留减小的维度。除非keep_dim为true，否则结果张量将比输入少一个维度。
+          - **name**（str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回：  减少的Tensor变量。
 
@@ -224,10 +219,10 @@ prelu
     $$y = max(0, x) + alpha min(0, x)$$
 
 参数：
-- x（Variable）：输入为Tensor。
-- param_attr(ParamAttr|None)：可学习权重 :math:`\[\alpha\]`参数属性。
-- mode（string）:权重共享的模式all：所有元素共享相同的权重通道：通道中的元素共享相同的权重元素：每个元素都有一个权重
-- name（str | None）:这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **x**（Variable）：输入为Tensor。
+          - **param_attr**(ParamAttr|None)：可学习权重 :math:`\[\alpha\]`参数属性。
+          - **mode**（string）:权重共享的模式all：所有元素共享相同的权重通道：通道中的元素共享相同的权重元素：每个元素都有一个权重
+          - **name**（str | None）:这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回： 输出Tensor与输入shape相同。
 
@@ -270,10 +265,10 @@ pad_constant_like
         Y.shape = (1, 3, 1, 3)
         
 参数：
-- x（Variable）：输入Tensor变量。
-- y（Variable）：输出Tensor变量。
-- pad_value (float)：用于填充的常量值。
-- name（str | None）:这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **x**（Variable）：输入Tensor变量。
+          - **y**（Variable）：输出Tensor变量。
+          - **pad_value** (float)：用于填充的常量值。
+          - **name**（str | None）:这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回：填充张量（Tensor）变量。。
 
@@ -297,10 +292,10 @@ pad_constant_like
     $$y = max(0, x) + alpha min(0, x)$$
 
 参数：
-- x（Variable）：输入为Tensor。
-- param_attr(ParamAttr|None)：可学习权重 :math:`\[\alpha\]`参数属性。
-- mode（string）:权重共享的模式all：所有元素共享相同的权重通道：通道中的元素共享相同的权重元素：每个元素都有一个权重
-- name（str | None）:这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **x**（Variable）：输入为Tensor。
+          - **param_attr**(ParamAttr|None)：可学习权重 :math:`\[\alpha\]`参数属性。
+          - **mode**（string）:权重共享的模式all：所有元素共享相同的权重通道：通道中的元素共享相同的权重元素：每个元素都有一个权重
+          - **name**（str | None）:这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回： 输出Tensor与输入shape相同。
 
@@ -309,25 +304,3 @@ pad_constant_like
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-**代码示例**
-
-..  code-block:: python
-
-      # x is a Tensor variable with following elements:
-      #    [[0.2, 0.3, 0.5, 0.9]
-      #     [0.1, 0.2, 0.6, 0.7]]
-
-
