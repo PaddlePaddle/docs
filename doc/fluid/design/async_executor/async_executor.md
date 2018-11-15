@@ -6,8 +6,8 @@ There are many deep learning applications that use sparse features as inputs, su
 ``` python
 def train_loop():
     filelist = ["file%d.txt" % i for i in range(10)]
-    dataset = MultiSlotDataset()
-    dataset.set_batch_size(128)
+    dataset = MultiSlotDataset() # a datafeeddesc of Dataset
+    dataset.set_batch_size(128) # datafeed should be assigned a batch size
     # input text data
     data = fluid.layers.data(name="words", shape=[1], dtype="int64", lod_level=1)
     # label data
@@ -36,7 +36,7 @@ def train_loop():
             reader=dataset, # make sure this can be changed during iteration
             filelist=filelist, # this can be changed during iteration
             thread=thread_num, # make sure this can be changed during iteration
-            fetch=[acc]) # how to define fetch, and what kind of things to return here
+            fetch=[acc]) # fetch can be done with python, but the scope should be exposed
         print("accuracy %f" % acc_val)
         executor.save_model(infer_prog, "epoch%d.model" % i)
 
