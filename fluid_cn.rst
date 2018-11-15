@@ -94,9 +94,9 @@ CPUPlace
             Out.lod = [[0, 3, 5]]  Out.data = [[1, 2], [2, 3], [3, 0], [4, 5], [5, 0]]  Out.dims = [5, 2]
         
 参数:   
-- input（Variable）: 作为索引序列的输入变量。
-- win_size（int）: 枚举所有子序列的窗口大小。
-- pad_value（int）: 填充值，默认为0。
+    - **input（Variable）**: 作为索引序列的输入变量。
+    - **win_size（int）**: 枚举所有子序列的窗口大小。
+    - **pad_value（int）**: 填充值，默认为0。
           
 返回:  枚举序列变量是LoD张量（LoDTensor）。
           
