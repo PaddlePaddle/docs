@@ -4,7 +4,7 @@
 While
 >>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.layers.  While (cond, is_test=False, name=None)
+.. py:class:: paddle.fluid.layers.  While (cond, is_test=False, name=None)
 
 
 该类用于实现while循环控制功能。
@@ -35,7 +35,7 @@ While
 Switch
 >>>>>>>>>>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.layers.  Switch (name=None)
+.. py:class:: paddle.fluid.layers.  Switch (name=None)
 
 Switch类实现的功能十分类似if-elif-else。它可以在学习率调度器(learning rate scheduler)中调整学习率。
 :: 
