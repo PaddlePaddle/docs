@@ -153,7 +153,7 @@ crf_decoding
 （没有 ``Label`` 时）该运算返回一个形为 [N X 1]的向量，其中元素取值范围为 0 ~ 最大标注个数-1，分别为预测出的标注（tag）所在的索引。
 	
 参数：	
-    - **input** (Variable)(LoDTensor，默认类型为 LoDTensor<float>) -一个形为 [N x D] 的LoDTensor，其中 N 是mini-batch的大小，D是标注（tag) 的总数。 该输入是``linear_chain_crf`` 的 unscaled emission weight matrix （未标准化的发射权重矩阵）
+    - **input** (Variable)(LoDTensor，默认类型为 LoDTensor<float>) -一个形为 [N x D] 的LoDTensor，其中 N 是mini-batch的大小，D是标注（tag) 的总数。 该输入是 ``linear_chain_crf`` 的 unscaled emission weight matrix （未标准化的发射权重矩阵）
     - **param_attr** (ParamAttr) - 参与训练的参数的属性
     - **label** (Variable)(LoDTensor，默认类型为 LoDTensor<int64_t>) - 形为[N x 1]的正确标注（ground truth）。 该项可选择传入。 有关该参数的更多信息，请详见上述描述
 
