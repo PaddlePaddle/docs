@@ -6,7 +6,7 @@ sequence_enumerate
 .. py:class:: paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-为输入索引序列生成一个新序列，该序列枚举输入长度为 ''win_size'' 的所有子序列。 枚举序列具有和可变输入第一维相同的维数，第二维是win_size，在生成中如果需要，通过设置pad_value填充。
+为输入索引序列生成一个新序列，该序列枚举输入长度为 ``win_size`` 的所有子序列。 枚举序列具有和可变输入第一维相同的维数，第二维是 ``win_size`` ，在生成中如果需要，通过设置pad_value填充。
 
 **例子：**
 
