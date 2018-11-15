@@ -23,7 +23,7 @@ _switch_scope
 Scope
 ::::::::
 
-.. py:class:: paddle.fluid._switch_scope(scope)
+.. py:class:: paddle.fluid.scope(scope)
 ''''''''''''''''''''''''''''''''''''''''''''''''
 
 .. py:method:: drop_kids(self: paddle.fluid.core.Scope) → None
@@ -32,7 +32,52 @@ Scope
 .. py:method:: var(self: paddle.fluid.core.Scope, arg0: unicode) → paddle.fluid.core.Variable   
 
 
+.. _cn_api_fluid_LoDTensorArray:
 
+LoDTensorArray
+::::::::::::::::
+
+.. py:class:: paddle.fluid.LoDTensorArray
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+.. py:method:: append(self: paddle.fluid.core.LoDTensorArray, arg0: paddle.fluid.core.LoDTensor) → None
+
+
+
+.. _cn_api_fluid_CPUPlace:
+
+CPUPlace
+::::::::::::::::
+
+.. py:class:: paddle.fluid.CPUPlace
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+.. _cn_api_fluid_CUDAPlace:
+
+CUDAPlace
+::::::::::::::::
+
+.. py:class:: paddle.fluid.CUDAPlace
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+.. _cn_api_fluid_CUDAPinnedPlace:
+
+CUDAPinnedPlace
+::::::::::::::::
+
+.. py:class:: paddle.fluid.CUDAPinnedPlace
+''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+.. _cn_api_fluid_CPUPlace:
+
+CPUPlace
+::::::::::::::::
+
+.. py:class:: paddle.fluid.CPUPlace
+''''''''''''''''''''''''''''''''''''''''''''''''
 
 
 
