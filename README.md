@@ -1,57 +1,25 @@
-# Fluid Documentation Skeleton
+# Introduction
+Fluiddoc consolidates all the documentations related to Paddle. It supplies the contents to PaddlePaddle.org via CI. 
 
-## Build
+# Architecture
+FluidDoc submodules Paddle, Book, Models, Mobile and Anakin under `external` folder. All submodules should be put under `external` as standard practice. 
 
-To build documentation, you need have a linux machine and have python2, virtualenv, gmake installed.
+Fluiddoc then uses them as references to load up the documents. The FluidDoc constructs the whole doc-tree under the `FluidDoc/doc/fluid` folder. The entry point is `FluidDoc/doc/fluid/index_cn.rst` and `FluidDoc/doc/fluid/index_en.rst`
 
-### Preparation
+When a release branch is pushed to Github, Travis-CI will start automatically to compile documents and deploy documents to the server. 
 
-You need to create a `virtualenv` instead of polute the global python library path
+## Note: 
+FluidDoc needs Paddle python module to compile API documents. Unfortunately, compiling Paddle python module takes longer time Travis CI permits. Usually Travis CI will fail due because of timeout. That's why there three jobs on Travis, two of them are to build libraries. Once the libraries are cached on the Travis, next build will be a lot faster.
 
-```bash
-virtualenv .env
-```
+## Preview with PPO
+To preview documents constructured by FluidDoc. Please follow the [regular preview step](https://github.com/PaddlePaddle/PaddlePaddle.org/blob/develop/README.md), but replace the path to paddle with the path to FluidDoc
+`./runserver --paddle <path_to_FluidDoc_dir>`
 
-You can enter virtualenv by
+# Publish New release
+1. Checkout a new release branch. The branch name should follow `release/<version>`
+1. Update the documentations on the submodules or within FluidDoc
+1. Make sure all the submodules are ready for release. Paddle, book, model, mobile and Anakin should all have stable commits. Note: Paddle repo should update the API RST files accordinly if Paddle changes the included module/classes. 
+1. Update the submodules under `external` folder and commit the changes.
+1. Git push the branch to Github, Travis CI will start several builds to publish the documents to the PaddlePaddle.org server
+1. Please notify the PaddlePaddle.org team that the release content is ready. PaddlePaddl.org team should enable the version and update the default version to the latest one. PaddlePaddle.org should also update the search index accordingly (Until the search server is up)
 
-```bash
-source .env/bin/activate
-```
-
-You can exit virtualenv by
-
-```bash
-deactivate
-```
-
-### Install dependencies
-
-```bash
-# enter virtualenv
-source .env/bin/activate
-# install dependencies
-pip install -r requirements.txt
-```
-
-### Make HTML
-
-```bash
-# make clean  # make clean to regenerate toctree. Just `make html` may have a cache.
-make html
-```
-and the html files will be generated to `build/html`. You can open `build/html/index.html` with your browser to see the documentation.
-
-## Edit
-
-### Edit documentation
-
-It is suggested to use `reStructuredText` because it is the only official markup language supportted by our documentation generating system, sphinx. `markdown` can also be used. However, since the `markdown` has so many dialects, there is no guarantee that the `markdown` source file can be rendered well.
-
-The `reStructuredText` cheatsheet is [here](http://docutils.sourceforge.net/docs/user/rst/quickref.html).
-
-
-### Edit structure
-
-The `sphinx` (our documentation generating system) uses `toctree` to organize documentation. `toctree` means `table of content tree`. 
-
-Please see the [sphinx documentation](http://www.sphinx-doc.org/en/master/), especially [`toctree` directives](http://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html)
