@@ -4,7 +4,7 @@
 DataFeeder
 >>>>>>>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.data_feeder.DataFeeder(feed_list, place, program=None)
+.. py:class:: paddle.fluid.data_feeder.DataFeeder(feed_list, place, program=None)
 
 
 
