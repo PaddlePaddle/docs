@@ -145,7 +145,9 @@ elementwise_add
 
 等式为：
 
-        **Out=X+Y**
+.. math::
+        $$Out = X + Y$$
+       
 - **X**：任意维度的张量（Tensor）.
 - **Y**：一个维度必须小于等于X维度的张量（Tensor）。
 对于这个运算算子有2种情况：
@@ -156,7 +158,7 @@ elementwise_add
 对于情况2:
 
         1. 用Y匹配X的形状（shape），其中轴（axis）的起始维度索引是将Y传到X上的索引。
-        2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。
+        2. 如果 ``axis`` 为-1（默认值），则轴（axis）= rank（X）-rank（Y）。
         3. 考虑到子序列，Y的大小为1的尾部尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
         
 例如：
@@ -176,7 +178,7 @@ elementwise_add
         - x ：（Tensor），元素op的第一个输入张量（Tensor）。
         - y ：（Tensor），元素op的第二个输入张量（Tensor）。
         - axis（INT）：（int，默认-1）。将Y传到X上的起始维度索引。
-        - use_mkldnn（BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - use_mkldnn（BOOLEAN）：（bool，默认为false）。由 ``MKLDNN`` 使用。
         - act（basestring | None）：激活应用于输出。
         - name（basestring | None）：输出的名称。
         
@@ -194,8 +196,9 @@ elementwise_div
 
 等式是：
 
-        **OUT = X / Y**
-        
+.. math::
+        $$Out = X / Y$$
+
 - **X**：任何尺寸的张量（Tensor）。
 - **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
 
@@ -246,7 +249,8 @@ elementwise_sub
 
 等式是：
 
-        **Out=X−Y**
+.. math::
+       $$Out = X - Y$$
         
 - **X**：任何尺寸的张量（Tensor）。
 - **Y**：尺寸必须小于或等于**X**尺寸的张量（Tensor）。
@@ -297,7 +301,8 @@ elementwise_mul
 
 等式是：
 
-        **Out=X⊙Y**
+.. math::
+        $$Out = X \odot Y$$
         
 - **X**：任何尺寸的张量（Tensor）。
 - **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
@@ -347,11 +352,11 @@ elementwise_max
 最大元素算子
 
 等式是：
-
-        **Out=max(X,Y)**
+.. math::
+        $$Out = max(X, Y)$$
         
-- **X**：任何尺寸的张量（Tensor）。
-- **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
+- **X** ：任何尺寸的张量（Tensor）。
+- **Y** ：尺寸必须小于或等于X尺寸的张量（Tensor）。
 
 此运算算子有两种情况：
 
@@ -401,7 +406,8 @@ elementwise_min
 
 等式是：
 
-        **Out=min(X,Y)**
+.. math::
+        $$Out = min(X, Y)$$
         
 - **X**：任何维数的张量（Tensor）。
 - **Y**：维数必须小于或等于X维数的张量（Tensor）。
@@ -414,7 +420,6 @@ elementwise_min
 对于情况2：
 
         1. 用Y匹配X的形状（shape），其中轴（axis）的起始维度索引是将Y传到X上的索引。
-
         2. 如果axis为-1（默认值），则轴（axis）= rank（X）-rank（Y）。 
         3. 考虑到子序列，Y的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
         
@@ -454,7 +459,8 @@ elementwise_pow
 
 等式是：
 
-        **Out=XY**
+.. math::
+        $$Out = X ^ Y$$
        
 - **X**：任何尺寸的张量（Tensor）。
 - **Y**：尺寸必须小于或等于X尺寸的张量（Tensor）。
@@ -676,7 +682,7 @@ logical_and算子
 它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math::
-Out = X && Y
+       $$Out = X &amp;&amp; Y$$
 
 参数：
 - x（Variable）：（LoDTensor）logical_and运算符的左操作数
@@ -684,11 +690,8 @@ Out = X && Y
 - out（Tensor）：输出逻辑运算的张量。
 - name（basestring | None）：输出的名称。
 
-返回：        (LoDTensor)n-dim bool张量。每个元素的计算公式：
+返回：        (LoDTensor)n-dim bool张量。每个元素的计算公式： :math:`$$Out = X &amp;&amp; Y$$` 
         
-.. math::
-Out = X && Y
-
 返回类型：        输出（Variable）。        
         
         
@@ -704,7 +707,7 @@ logical_or算子
 它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math:: 
-Out = X || Y
+        $$Out = X || Y$$
 
 参数：
 - x（Variable）：（LoDTensor）logical_or运算符的左操作数
@@ -712,15 +715,12 @@ Out = X || Y
 - out（Tensor）：输出逻辑运算的张量。
 - name（basestring | None）：输出的名称。
 
-返回：        (LoDTensor)n维布尔张量。每个元素的计算公式：
+返回：        (LoDTensor)n维布尔张量。每个元素的计算公式： :math:`$$Out = X || Y$$` 
         
-.. math:: 
-Out = X || Y
-
 返回类型：        输出（Variable）。        
 
 
-.. _cn_api_fluid_layers_logical_or:
+.. _cn_api_fluid_layers_logical_xor:
 
 logical_xor
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -732,7 +732,7 @@ logical_xor算子
 它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math:: 
-Out = (X || Y) && !(X && Y)
+        !!Out = (X || Y) &amp;&amp; !(X &amp;&amp; Y)!!
 
 参数：
 - x（Variable）：（LoDTensor）logical_xor运算符的左操作数
@@ -740,15 +740,12 @@ Out = (X || Y) && !(X && Y)
 - out（Tensor）：输出逻辑运算的张量。
 - name（basestring | None）：输出的名称。
 
-返回：        (LoDTensor)n维布尔张量。每个元素的计算公式：
-        
-.. math:: 
-Out = (X || Y) && !(X && Y)
-
+返回：        (LoDTensor)n维布尔张量。每个元素的计算公式： :math:`!!Out = (X || Y) &amp;&amp; !(X &amp;&amp; Y)!!`  
+       
 返回类型：        输出（Variable）。        
 
 
-.. _cn_api_fluid_layers_logical_or:
+.. _cn_api_fluid_layers_logical_not:
 
 logical_not
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -760,17 +757,14 @@ logical_not算子
 它在X上以元素方式操作，并返回Out。X和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math:: 
-Out=!X
+        !!Out = !X!!
 
 参数：
 - x（Variable）：（LoDTensor）logical_not运算符的操作数
 - out（Tensor）：输出逻辑运算的张量。
 - name（basestring | None）：输出的名称。
 
-返回：        (LoDTensor)n维布尔张量。每个元素的计算公式：
-
-.. math:: 
-Out=!X
+返回：        (LoDTensor)n维布尔张量。每个元素的计算公式： :math:`!! !!Out = !X!!` 
 
 返回类型：        输出（Variable）。        
 
@@ -809,10 +803,10 @@ clip_by_norm
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 ClipByNorm算子
 
-此运算符将输入X的L2范数限制在max_normmax_norm内。如果X的L2范数小于或等于max_normmax_norm，则输出（Out）将与X相同。如果X的L2范数大于max_normmax_norm，则X将被线性缩放，使得输出（Out）的L2范数等于max_normmax_norm，如下面的公式所示：
+此运算符将输入X的L2范数限制在 ``max_normmax_norm`` 内。如果X的L2范数小于或等于 ``max_normmax_norm``  ，则输出（Out）将与X相同。如果X的L2范数大于 ``max_normmax_norm`` ，则X将被线性缩放，使得输出（Out）的L2范数等于 ``max_normmax_norm`` ，如下面的公式所示：
 
 .. math:: 
-Out=max_norm∗X/norm(X)
+        $$ Out = \frac{max\_norm * X}{norm(X)}, $$
 
 其中，norm（X）范数（X）代表X的L2范数。
 
@@ -861,15 +855,15 @@ mul算子
 等式是：
 
 .. math:: 
-OUT = X * Y
+        $$Out = X * Y$$
 
-输入X和Y都可以携带LoD（详细程度）信息。但输出仅与输入XX共享LoD信息。
+输入X和Y都可以携带LoD（详细程度）信息。但输出仅与输入X共享LoD信息。
 
 参数：
 - x(Variable)：(Tensor) 乘法运算的第一个输入张量。
 - y(Variable)：(Tensor) 乘法运算的第二个输入张量。
-- x_num_col_dims（INT）：（int，默认值1），mul_op可以将具有两个以上维度的张量作为输入。如果输入X是具有多于两个维度的张量，则输入X将先展平为二维矩阵。展平规则是：第一个num_col_dims将被展平成最终矩阵的第一个维度（矩阵的高度），其余的num_col_dims维度被展平成最终矩阵的第二个维度（矩阵的宽度）。结果是展平矩阵的高度等于X的第一个x_num_col_dims大小的乘积，展平矩阵的宽度等于X的最后一个等级（x）-num_col_dims大小的乘积。例如，假设X是一个6维张量，形状为[2,3,4,5,6]，x_num_col_dims = 3.因此扁平矩阵的形状为[2 x 3 x 4,5 x 6 ] = [24,30]。
-- y_num_col_dims（INT）：（int，默认值1），mul_op可以将具有两个以上维度的张量作为输入。如果输入Y是具有多于两个维度的张量，则Y将首先展平为二维矩阵。y_num_col_dims属性确定Y的展平方式。有关更多详细信息，请参阅x_num_col_dims的注释。
+- x_num_col_dims（INT）：（int，默认值1）， ``mul_op`` 可以将具有两个以上维度的张量作为输入。如果输入X是具有多于两个维度的张量，则输入X将先展平为二维矩阵。展平规则是：第一个 ``num_col_dims`` 将被展平成最终矩阵的第一个维度（矩阵的高度），其余的 ``num_col_dims`` 维度被展平成最终矩阵的第二个维度（矩阵的宽度）。结果是展平矩阵的高度等于X的第一个 ``x_num_col_dims`` 大小的乘积，展平矩阵的宽度等于X的最后一个秩（x）- ``num_col_dims`` 大小的乘积。例如，假设X是一个6维张量，形状为[2,3,4,5,6]，x_num_col_dims = 3.因此扁平矩阵的形状为[2 x 3 x 4,5 x 6 ] = [24,30]。
+- y_num_col_dims（INT）：（int，默认值1）， ``mul_op`` 可以将具有两个以上维度的张量作为输入。如果输入Y是具有多于两个维度的张量，则Y将首先展平为二维矩阵。 ``y_num_col_dims`` 属性确定Y的展平方式。有关更多详细信息，请参阅 ``x_num_col_dims`` 的注释。
 - name(basestring | None):输出的名称。
 
 返回：       乘法运算输出张量（Tensor）.
@@ -903,7 +897,7 @@ logsigmoid
 LogSigmoid文档：
 
 - 参数x：LogSigmoid运算符的输入 
-- 参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+- 参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        LogSigmoid运算符的输出
@@ -935,7 +929,7 @@ tanh
 Tanh文档：
 
 参数x：Tanh运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：     Tanh算子的输出。
@@ -952,7 +946,7 @@ paddle.fluid.layers.tanh_shrink(x, name=None)
 TanhShrink文档：
 
 参数x：TanhShrink运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 
@@ -966,8 +960,9 @@ softshrink
 
 Softshrink激活算子
 
-                                        out=⎧⎩⎨x−λ,if x>λ；x+λ,if x<−λ；0,otherwise。
-                                        
+.. math::
+        \[out=\begin{Bmatrix} x-\lambda ,if x>\lambda & \\ x+\lambda ,if x<\lambda & \\ 0,otherwise & \end{Bmatrix}\]
+       
 参数：
 - x：Softshrink算子的输入 
 - lambda（FLOAT）：非负偏移量。
@@ -985,7 +980,7 @@ sqrt
 Sqrt文档：
 
 参数x：Sqrt运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：       Sqrt算子的输出。
@@ -1002,7 +997,7 @@ abs
 Abs文档：
 
 参数x：Abs运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        Abs运算符的输出。
@@ -1019,7 +1014,7 @@ ceil
 Ceil文档：
 
 参数x：Ceil运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        Ceil运算符的输出。
@@ -1035,7 +1030,7 @@ floor
 Floor文档：
 
 参数x：Floor运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        Floor运算符的输出。
@@ -1053,7 +1048,7 @@ cos
 Cos文档：
 
 参数x：Cos运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        Cos运算符的输出。
@@ -1070,7 +1065,7 @@ sin
 Sin文档：
 
 参数x：Sin运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        Sin运算符的输出。
@@ -1088,7 +1083,7 @@ round
 Round文档：
 
 参数x：Round运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        Round运算符的输出。
@@ -1105,7 +1100,7 @@ reciprocal
 Reciprocal文档：
 
 参数x：Reciprocal运算符的输入 
-参数use_mkldnn：（bool，默认为false）仅在mkldnn内核中使用；
+参数use_mkldnn：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型use_mkldnn：BOOLEAN。
 
 返回：        Reciprocal运算符的输出。        
@@ -1120,7 +1115,7 @@ prior_box
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''        
 prior_box算子
 
-生成SSD（Single Shot MultiBox Detector）算法的候选框。输入的每个位置产生N个候选框，N由min_sizes，max_sizes和aspect_ratios的数量确定。窗口的大小在范围（min_size，max_size）之间，其根据aspect_ratios按顺序生成。
+生成SSD（Single Shot MultiBox Detector）算法的候选框。输入的每个位置产生N个候选框，N由 ``min_sizes`` ， ``max_sizes`` 和 ``aspect_ratios`` 的数量确定。窗口的大小在范围（min_size，max_size）之间，其根据 ``aspect_ratios`` 按顺序生成。
 
 参数：
 
@@ -1138,8 +1133,8 @@ prior_box算子
 - min_max_aspect_ratios_order（bool）:如果设置为True，则输出候选框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响后续卷积层的权重顺序，但不会影响最终检测结果。默认值：False。
 
 返回：具有两个变量的元组（boxes, variances）。
-boxes：PriorBox输出候选框。布局为[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度，num_priors是每个输入位置的总窗口数。
-variances：PriorBox的方差。布局是[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度num_priors是每个输入位置的总窗口数。
+boxes： ``PriorBox`` 输出候选框。布局为[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度， ``num_priors`` 是每个输入位置的总窗口数。
+variances： ``PriorBox`` 的方差。布局是[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度 ``num_priors`` 是每个输入位置的总窗口数。
 
 返回类型：        元组（tuple）
 
@@ -1168,13 +1163,13 @@ multi_box_head
 参数：
 - inputs（list | tuple）：输入变量列表，所有变量的格式为NCHW。
 - image（Variable）：PriorBoxOp的输入图像数据，布局为NCHW。
-- base_size（int）：base_size用于根据min_ratio和max_ratio来获取min_size和max_size。
+- base_size（int）：base_size用于根据 ``min_ratio`` 和 ``max_ratio`` 来获取 ``min_size`` 和 ``max_size`` 。
 - num_classes（int）：类的数量。
-- aspect_ratios（list | tuple）：生成候选框的宽高比。 input和aspect_ratios的长度必须相等。
+- aspect_ratios（list | tuple）：生成候选框的宽高比。 ``input`` 和 ``aspect_ratios`` 的长度必须相等。
 - min_ratio（int）：生成候选框的最小比率。
 - max_ratio（int）：生成候选框的最大比率。
-- min_sizes（list | tuple | None）：如果len（输入）<= 2，则必须设置min_sizes，并且min_sizes的长度应等于输入的长度。默认值：无。
-- max_sizes（list | tuple | None）：如果len（输入）<= 2，则必须设置max_sizes，并且min_sizes的长度应等于输入的长度。默认值：无。
+- min_sizes（list | tuple | None）：如果len（输入）<= 2，则必须设置 ``min_sizes`` ，并且 ``min_sizes`` 的长度应等于输入的长度。默认值：无。
+- max_sizes（list | tuple | None）：如果len（输入）<= 2，则必须设置 ``max_sizes`` ，并且 ``min_sizes`` 的长度应等于输入的长度。默认值：无。
 - steps（list | tuple）：如果step_w和step_h相同，则step_w和step_h可以被steps替换。
 - step_w（list | tuple）：候选框跨越宽度。如果step_w [i] == 0.0，将自动计算输跨越入[i]宽度。默认值：无。
 - step_h（list | tuple）：候选框跨越高度，如果step_h [i] == 0.0，将自动计算跨越输入[i]高度。默认值：无。
@@ -1190,13 +1185,13 @@ multi_box_head
 
 返回：一个带有四个变量的元组，（mbox_loc，mbox_conf，boxes, variances）。
 
-- mbox_loc：预测框的输入位置。布局为[N，H * W * Priors，4]。其中Priors是每个输位置的预测框数。
+- mbox_loc：预测框的输入位置。布局为[N，H * W * Priors，4]。其中 ``Priors`` 是每个输位置的预测框数。
 
-- mbox_conf：预测框对输入的置信度。布局为[N，H * W * Priors，C]。其中Priors是每个输入位置的预测框数，C是类的数量。
+- mbox_conf：预测框对输入的置信度。布局为[N，H * W * Priors，C]。其中 ``Priors`` 是每个输入位置的预测框数，C是类的数量。
 
-- boxes：PriorBox的输出候选框。布局是[num_priors，4]。 num_priors是每个输入位置的总盒数。
+- boxes： ``PriorBox`` 的输出候选框。布局是[num_priors，4]。 ``num_priors`` 是每个输入位置的总盒数。
 
-- variances：PriorBox的方差。布局是[num_priors，4]。 num_priors是每个输入位置的总窗口数。
+- variances： ``PriorBox`` 的方差。布局是[num_priors，4]。 ``num_priors`` 是每个输入位置的总窗口数。
 
 返回类型：元组（tuple）
         
@@ -1334,9 +1329,9 @@ detection_output
 - prior_box（Variable）：具有形状[M，4]的2-D张量保持M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是锚框的左上坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是锚箱的右下坐标。
 - prior_box_var（Variable）：具有形状[M，4]的2-D张量保持M组方差。
 - background_label（float）：背景标签的索引，将忽略背景标签。如果设置为-1，则将考虑所有类别。
-- nms_threshold（float）：在NMS中使用的阈值。
-- nms_top_k（int）：根据基于score_threshold的过滤检测的置信度保留的最大检测数。
-- keep_top_k（int）：NMS步骤后每个映像要保留的总bbox数。-1表示在NMS步骤之后保留所有bbox。
+- nms_threshold（float）：在 ``NMS`` 中使用的阈值。
+- nms_top_k（int）：根据基于 ``score_threshold`` 的过滤检测的置信度保留的最大检测数。
+- keep_top_k（int）： ``NMS`` 步骤后每个映像要保留的总bbox数。-1表示在NMS步骤之后保留所有bbox。
 - score_threshold（float）：过滤掉低置信度分数的边界框的阈值。如果没有提供，请考虑所有方框。
 - nms_eta（float）：自适应NMS的参数。
 
@@ -1413,19 +1408,19 @@ ssd_loss
 - prior_box（Variable）：候选框是具有形状[Np，4]的2D张量。
 - prior_box_var（Variable）：候选框的方差是具有形状[Np，4]的2D张量。
 - background_label（int）：background标签的索引，默认为0。
-- overlap_threshold（float）：当找到匹配的盒子，如果match_type为'per_prediction'，请使用overlap_threshold确定额外匹配的bbox。默认为0.5。
-- neg_pos_ratio（float）：负框与正框的比率，仅在mining_type为'max_negative'时使用，3.0由defalut使用。
+- overlap_threshold（float）：当找到匹配的盒子，如果 ``match_type`` 为'per_prediction'，请使用 ``overlap_threshold`` 确定额外匹配的bbox。默认为0.5。
+- neg_pos_ratio（float）：负框与正框的比率，仅在 ``mining_type`` 为'max_negative'时使用，3.0由defalut使用。
 - neg_overlap（float）：不匹配预测的负重叠上限。仅当mining_type为'max_negative'时使用，默认为0.5。
 - loc_loss_weight（float）：本地化丢失的权重，默认为1.0。
 - conf_loss_weight（float）：置信度损失的权重，默认为1.0。
 - match_type（str）：训练期间匹配方法的类型应为'bipartite'或'per_prediction'，'per_prediction'由defalut提供。
 - mining_type（str）：硬示例挖掘类型应该是'hard_example'或'max_negative'，现在只支持max_negative。
 - normalize（bool）：是否通过输出位置的总数将SSD丢失标准化，默认为True。
-- sample_size（int）：负框的最大样本大小，仅在mining_type为'hard_example'时使用。
+- sample_size（int）：负框的最大样本大小，仅在 ``mining_type`` 为'hard_example'时使用。
 
 返回：        具有形状[N * Np，1]，N和Np的定位损失和置信度损失的加权和与它们在位置上的相同。
 
-抛出：        ValueError：如果mining_type是'hard_example'，现在只支持max_negative的挖掘类型。
+抛出：        ValueError：如果 ``mining_type`` 是'hard_example'，现在只支持 ``max_negative`` 的挖掘类型。
 
 代码示例：
 
@@ -1518,7 +1513,7 @@ rpn_target_assign
 .. py:class:: paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, is_crowd, im_info, rpn_batch_size_per_im=256, rpn_straddle_thresh=0.0, rpn_fg_fraction=0.5, rpn_positive_overlap=0.7, rpn_negative_overlap=0.3, use_random=True)
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''  
 
-**在Faster-RCNN检测中为区域检测网络（RPN）分配目标层。**
+ ``在Faster-RCNN检测中为区域检测网络（RPN）分配目标层。`` 
 
 对于给定anchors和真实框之间的IoU重叠，该层可以为每个anchors做分类和回归，这些target labels用于训练RPN。classification targets是二进制的类标签（是或不是对象）。根据Faster-RCNN的论文，positive labels有两种anchors：
 
@@ -1542,7 +1537,7 @@ rpn_target_assign
 - rpn_positive_overlap（float）：对于一个正例的（anchor, gt box）对，是允许anchors和所有真实框之间最小重叠的。
 - rpn_negative_overlap（float）：对于一个反例的（anchor, gt box）对，是允许anchors和所有真实框之间最大重叠的。
 
-返回：        返回元组（predict_scores，predict_location，target_label，target_bbox）。predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是ground-truth。 predict_location是一个shape为[F，4]的2D Tensor，target_bbox的shape与predict_location的shape相同，F是foreground anchors的数量。 predict_scores是一个shape为[F + B，1]的2D Tensor，target_label的shape与predict_scores的shape相同，B是 background anchors的数量，F和B取决于此算子的输入。
+返回：        返回元组（predict_scores，predict_location，target_label，target_bbox）。predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是ground-truth。 predict_location是一个shape为[F，4]的2D Tensor， ``target_bbox`` 的shape与 ``predict_location`` 的shape相同，F是foreground anchors的数量。 ``predict_scores`` 是一个shape为[F + B，1]的2D Tensor， ``target_label`` 的shape与 ``predict_scores`` 的shape相同，B是background anchors的数量，F和B取决于此算子的输入。
 
 返回类型：        元组(tuple)
 
@@ -1575,26 +1570,26 @@ generate_proposals
 
  ``生成proposal标签的Faster-RCNN`` 
 
-该操作根据每个框的概率为foreground对象，并且可以通过锚（anchors）来计算框来产生RoI。Bbox_deltais和一个objects的分数作为是RPN的输出。最终proposals可用于训练检测网络。
+该操作根据每个框的概率为foreground对象，并且可以通过锚（anchors）来计算框来产生RoI。Bbox_deltais和一个objects的分数作为是RPN的输出。最终 ``proposals`` 可用于训练检测网络。
 
-为了生成proposals，此操作执行以下步骤：
+为了生成 ``proposals`` ，此操作执行以下步骤：
 
         1、转置和调整bbox_deltas的分数和大小为（H * W * A，1）和（H * W * A，4）。
         
-        2、计算方框位置作为proposals 候选框。
+        2、计算方框位置作为 ``proposals`` 候选框。
         
         3、剪辑框图像。
         
         4、删除小面积的预测框。
         
-        5、应用NMS以获得最终proposals作为输出。
+        5、应用NMS以获得最终 ``proposals`` 作为输出。
         
 参数：
 - scores(Variable):是一个shape为[N，A，H，W]的4-D张量，表示每个框成为object的概率。
 - N是批量大小，A是anchor数，H和W是feature map的高度和宽度。
 - bbox_deltas（Variable）：是一个shape为[N，4 * A，H，W]的4-D张量，表示预测框位置和anchor位置之间的差异。
-- im_info（Variable）：是一个shape为[N，3]的2-D张量，表示N个批次原始图像的信息。信息包含原始图像大小和feature map的大小之间高度，宽度和比例。
-- anchors（Variable）：是一个shape为[H，W，A，4]的4-D Tensor。H和W是feature map的高度和宽度，
+- im_info（Variable）：是一个shape为[N，3]的2-D张量，表示N个批次原始图像的信息。信息包含原始图像大小和 ``feature map`` 的大小之间高度，宽度和比例。
+- anchors（Variable）：是一个shape为[H，W，A，4]的4-D Tensor。H和W是 ``feature map`` 的高度和宽度，
 - num_anchors：是每个位置的框的数量。每个anchor都是以非标准化格式（xmin，ymin，xmax，ymax）定义的。
 - variances（Variable）：anchor的方差，shape为[H，W，num_priors，4]。每个方差都是（xcenter，ycenter，w，h）这样的格式。
 - pre_nms_top_n（float）：每个图在NMS之前要保留的总框数。默认为6000。 
