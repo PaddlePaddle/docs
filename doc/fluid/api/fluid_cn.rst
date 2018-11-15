@@ -103,7 +103,7 @@ Executor
 >>>>>>>>>>>>>>>>>>>>>
 
 
-.. py:class:: class paddle.fluid. Executor (place)
+.. py:class:: paddle.fluid. Executor (place)
 
 
 
@@ -207,7 +207,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 DistributeTranspiler
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.DistributeTranspiler (config=None)
+.. py:class:: paddle.fluid.DistributeTranspiler (config=None)
 
 
 该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
@@ -422,7 +422,7 @@ ParamAttr
 >>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-.. py:class:: class paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
+.. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
 
 该类代表了参数的各种属性。 为了使神经网络训练过程更加流畅，用户可以根据需要调整参数属性。比如learning rate（学习率）, regularization（正则化）, trainable（可训练性）, do_model_average(平均化模型)和参数初始化方法.
 
@@ -456,7 +456,7 @@ ParamAttr
 DataFeeder
 >>>>>>>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.DataFeeder(feed_list, place, program=None)
+.. py:class:: paddle.fluid.DataFeeder(feed_list, place, program=None)
 
 
 
@@ -567,7 +567,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 BuildStrategy
 >>>>>>>>>>>>>>>>>>
 
-.. py:class::  class paddle.fluid.BuildStrategy
+.. py:class::  paddle.fluid.BuildStrategy
 
 ``BuildStrategy`` 使用户更精准地控制 ``ParallelExecutor`` 中SSA图的建造方法。可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
@@ -618,7 +618,7 @@ str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce str
 ExecutionStrategy
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-.. py:class::  class paddle.fluid.ExecutionStrategy
+.. py:class:: paddle.fluid.ExecutionStrategy
 
 ``ExecutionStrategy`` 允许用户更加精准地控制program在 ``ParallelExecutor`` 中的运行方式。可以通过在 ``ParallelExecutor`` 中设置本成员来实现。
 
@@ -656,7 +656,7 @@ int型成员。它表明了清空执行时产生的临时变量需要的程序�
 
 .. py:method:: num_threads
 
-int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math: num_threads=1 ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num_threads=device_count∗4` ；对CPU，:math:`num_threads=CPU_NUM∗4` 。在 ``ParallelExecutor`` 中有关于 :math:`CPU_NUM` 的详细解释。如果没有设置CPU_NUM， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
+int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math: num_threads=1 ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num_threads=device_count∗4` ；对CPU，:math:`num_threads=CPU_NUM∗4` 。在 ``ParallelExecutor`` 中有关于 ``CPU_NUM`` 的详细解释。如果没有设置 ``CPU_NUM`` ， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
 
 
 
@@ -668,7 +668,7 @@ int型成员。它代表了线程池(thread pool)的大小。这些线程会被�
 ParallelExecutor
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-.. py:class::  class paddle.fluid.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
+.. py:class:: paddle.fluid.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
 
 
 
