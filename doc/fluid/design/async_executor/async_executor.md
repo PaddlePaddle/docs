@@ -50,7 +50,7 @@ executor and parallel_executor are designed for geneneral training cases in part
 
 ## Data Feeding Approach
 ![Data Feeding Approach](https://github.com/guru4elephant/FluidDoc/blob/develop/doc/fluid/design/async_executor/async_executor_reader_design.png)
-to be discussed. 
+Why we use multiple queues for data reader? a experimental result page needs to be added.
 
 ## Main Interface of Async Executor
 We have RunFromFiles interface which is an execution interface for users to call. Every time a user calls RunFromFiles, a main_program should be provided and it is running in the global scope previously defined. A list of file names and corresponding Dataset should be provided. Inside the RunFromFiles interface, readers will be created through Dataset configurations. Files will be fed into created readers. 
