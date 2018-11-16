@@ -83,7 +83,8 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 返回类型: dict
 
-**特别注意：** 设备（CPU或GPU）的数目必须等于minibatch的数目
+.. note::
+   设备（CPU或GPU）的数目必须等于minibatch的数目
 
 
 
