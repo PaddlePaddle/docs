@@ -482,18 +482,18 @@ conv2d_transpose
 
 
 参数:
-	- **input（Variable）**: 输入张量，格式为[N, C, H, W]
-	- **num_filters** (int) : 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
-	- **output_size** (int|tuple|None) : 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
-	- **filter_size** (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
-	- **padding (int|tuple)** : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
-	- **stride** (int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-	- **dilation** (int|元组) : 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
-	- **groups** (int) : Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-	- **param_attr** (ParamAttr|None) : conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
+	- **input**（Variable）- 输入张量，格式为[N, C, H, W]
+	- **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
+	- **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
+	- **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
+	- **padding (int|tuple)** - 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
+	- **stride** (int|tuple) - 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+	- **dilation** (int|元组) - 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
+	- **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
+	- **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
 	- **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
-	- **use_cudnn** (bool) : 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
-	- **act** (str) :  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
+	- **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+	- **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
 	-  **name** (str|None) -  该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
 
 
@@ -580,19 +580,19 @@ Output:
 
 
 参数:
-	- **input**（Variable）: 输入张量，格式为[N, C, D, H, W]
-	- **num_filters** (int) : 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
-	- **output_size** (int|tuple|None) : 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
-	- **filter_size** (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
-	- **padding** (int|tuple) : 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
-	- **stride** (int|tuple) : 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-	- **dilation** (int|元组) : 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
-	- **groups** (int) : Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-	- **param_attr** (ParamAttr|None) : conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
+	- **input**（Variable）- 输入张量，格式为[N, C, D, H, W]
+	- **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
+	- **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
+	- **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
+	- **padding** (int|tuple) - 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
+	- **stride** (int|tuple) - 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+	- **dilation** (int|元组) - 膨胀大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
+	- **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
+	- **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
 	- **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
-	- **use_cudnn** (bool) : 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
-	- **act** (str) :  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
-	- **name** (str|None) : 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
+	- **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+	- **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
+	- **name** (str|None) - 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
 
 
 返回：	存储卷积转置结果的张量。
@@ -628,13 +628,13 @@ im2sequence
 每个timestep的维度为block_y * block_x * input.channels。
 
 参数:
-	- **input**（Variable）: 输入张量，格式为[N, C, H, W]
-	- **filter_size** (int|tuple|None) : 滤波器大小。如果filter_size是一个tuple，它必须包含两个整数(filter_size_H, filter_size_W)。否则，过滤器将是一个方阵。
-    	- **stride** (int|tuple) : 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-    	- **padding** (int|tuple) : 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
-    	- **input_image_size** (Variable) ： 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch推理。
-    	- **out_stride** (int|tuple) ： 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
-    	- **name** (int) ： 该layer的名称，可以忽略。
+	- **input**（Variable）- 输入张量，格式为[N, C, H, W]
+	- **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，它必须包含两个整数(filter_size_H, filter_size_W)。否则，过滤器将是一个方阵。
+    	- **stride** (int|tuple) - 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+    	- **padding** (int|tuple) - 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
+    	- **input_image_size** (Variable) - 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch推理。
+    	- **out_stride** (int|tuple) - 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
+    	- **name** (int) - 该layer的名称，可以忽略。
 
 返回：	LoDTensor shaoe为{batch_size * output_height * output_width, filter_size_H * filter_size_W * input.channels}。如果将输出看作一个矩阵，这个矩阵的每一行都是一个序列的step。
 
@@ -705,14 +705,14 @@ nce
 该operator默认使用均匀分布进行抽样。
 
 参数:
-	- **input** (Variable) ： 特征
-	- **label** (Variable) ： 标签
-    	- **num_total_classes** (int) -所有样本中的类别的总数
+	- **input** (Variable) -  特征
+	- **label** (Variable) -  标签
+    	- **num_total_classes** (int) - 所有样本中的类别的总数
     	- **sample_weight** (Variable|None) - 存储每个样本权重，shape为[batch_size, 1]存储每个样本的权重。每个样本的默认权重为1.0
-    	- **param_attr** (ParamAttr|None) -可学习参数/ nce权重的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None
-    	- **bias_attr** (ParamAttr|bool|None) - nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None
-    	- **num_neg_samples** (int) -负样例的数量。默认值是10
-    	- **name** (str|None) -该layer的名称(可选)。如果设置为None，该层将被自动命名
+    	- **param_attr** (ParamAttr|None) - 可学习参数/ nce权重的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None
+    	- **bias_attr** (ParamAttr|bool|None) -  nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None
+    	- **num_neg_samples** (int) - 负样例的数量。默认值是10
+    	- **name** (str|None) - 该layer的名称(可选)。如果设置为None，该层将被自动命名
 
 返回：	nce loss
 
@@ -759,12 +759,12 @@ hsigmoid
 `请参考 Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
     
 参数:
-        - **input** (Variable) ： 输入张量，shape为(N×D),其中N是minibatch的大小，D是特征大小。
-        - **label**(Variable) ： 训练数据的标签。该tensor的shape为[N×1]   
-        - **num_classes** ： (int)，类别的数量不能少于2
-        - **param_attr** (ParamAttr|None) : 可学习参数/ hsigmoid权重的参数属性。如果将其设置为ParamAttr的一个属性或None，则将ParamAttr设置为param_attr。如果没有设置param_attr的初始化器，那么使用用Xavier初始化。默认值:没None。
-        - **bias_attr** (ParamAttr|bool|None) : hsigmoid偏置的参数属性。如果设置为False，则不会向输出添加偏置。如果将其设置ParamAttr的一个属性或None，则将ParamAttr设置为bias_attr。如果没有设置bias_attr的初始化器，偏置将初始化为零。默认值:None。
-        - **name** (str|None) : 该layer的名称(可选)。如果设置为None，该层将被自动命名。默认值:None。
+        - **input** (Variable) - 输入张量，shape为(N×D),其中N是minibatch的大小，D是特征大小。
+        - **label**(Variable) - 训练数据的标签。该tensor的shape为[N×1]   
+        - **num_classes** - (int)，类别的数量不能少于2
+        - **param_attr** (ParamAttr|None) - 可学习参数/ hsigmoid权重的参数属性。如果将其设置为ParamAttr的一个属性或None，则将ParamAttr设置为param_attr。如果没有设置param_attr的初始化器，那么使用用Xavier初始化。默认值:没None。
+        - **bias_attr** (ParamAttr|bool|None) - hsigmoid偏置的参数属性。如果设置为False，则不会向输出添加偏置。如果将其设置ParamAttr的一个属性或None，则将ParamAttr设置为bias_attr。如果没有设置bias_attr的初始化器，偏置将初始化为零。默认值:None。
+        - **name** (str|None) - 该layer的名称(可选)。如果设置为None，该层将被自动命名。默认值:None。
     
     返回:  (Tensor) 层次sigmod（ hierarchical sigmoid） 。shape[N, 1]
     
@@ -794,11 +794,11 @@ beam_search_decode
         fluid/tests/book/test_machine_translation.py
 
 参数:
-        - **id** (Variable) : LodTensorArray，包含所有回溯步骤重中所需的ids。
-        - **score** (Variable) : LodTensorArra，包含所有回溯步骤对应的score。
-        - **beam_size** (int) : 束搜索中波束的宽度。
-        - **end_id** (int) : 结束token的id。
-        - **name** (str|None) : 该层的名称(可选)。如果设置为None，该层将被自动命名。
+        - **id** (Variable) - LodTensorArray，包含所有回溯步骤重中所需的ids。
+        - **score** (Variable) - LodTensorArra，包含所有回溯步骤对应的score。
+        - **beam_size** (int) - 束搜索中波束的宽度。
+        - **end_id** (int) - 结束token的id。
+        - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名。
     
 返回：	LodTensor 对（pair）， 由生成的id序列和相应的score序列组成。两个LodTensor的shape和lod是相同的。lod的level=2，这两个level分别表示每个源句有多少个假设，每个假设有多少个id。
 
@@ -835,10 +835,10 @@ row_conv
  `详细请参考设计文档 https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  .
 
 参数:
-    - **input** (Variable) : 输入是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。
-    - **future_context_size** (int) : 未来上下文大小。请注意，卷积核的shape是[future_context_size + 1, D]。
-    - **param_attr** (ParamAttr) :  参数的属性，包括名称、初始化器等。
-    - **act** (str) : 非线性激活函数。
+    - **input** (Variable) -- 输入是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。
+    - **future_context_size** (int) -- 未来上下文大小。请注意，卷积核的shape是[future_context_size + 1, D]。
+    - **param_attr** (ParamAttr) --  参数的属性，包括名称、初始化器等。
+    - **act** (str) -- 非线性激活函数。
     
 返回: 输出(Out)是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部量是一个形状为 T x N 的矩阵，和X的 shape 一样。
 
@@ -865,11 +865,11 @@ smooth_l1
 
 
 参数:
-        - **x** (Variable) : rank至少为2的张量。输入x的smmoth L1 loss 的op，shape为[batch_size, dim1，…],dimN]。
-        - **y** (Variable) : rank至少为2的张量。与x形状一致的的smooth L1 loss  op目标值。
-        - **inside_weight** (Variable|None) : rank至少为2的张量。这个输入是可选的，与x的形状应该相同。如果给定，(x - y)的结果将乘以这个张量元素。
-        - **outside_weight** (变量|None) : 一个rank至少为2的张量。这个输入是可选的，它的形状应该与x相同。如果给定，那么 smooth L1 loss 就会乘以这个张量元素。
-        - **sigma** (float|None) : smooth L1 loss layer的超参数。标量，默认值为1.0。
+        - **x** (Variable) - rank至少为2的张量。输入x的smmoth L1 loss 的op，shape为[batch_size, dim1，…],dimN]。
+        - **y** (Variable) - rank至少为2的张量。与x形状一致的的smooth L1 loss  op目标值。
+        - **inside_weight** (Variable|None) - rank至少为2的张量。这个输入是可选的，与x的形状应该相同。如果给定，(x - y)的结果将乘以这个张量元素。
+        - **outside_weight** (变量|None) - 一个rank至少为2的张量。这个输入是可选的，它的形状应该与x相同。如果给定，那么 smooth L1 loss 就会乘以这个张量元素。
+        - **sigma** (float|None) - smooth L1 loss layer的超参数。标量，默认值为1.0。
    
 返回：	smooth L1 loss, shape为 [batch_size, 1]
 
@@ -927,9 +927,9 @@ A simple example as below:
 
 
 参数:
-        - **input** (Variable) : (LoDTensor<float>)，变长序列的概率，它是一个具有LoD信息的二维张量。它的形状是[Lp, num_classes + 1]，其中Lp是所有输入序列长度的和，num_classes是真正的类别。(不包括空白标签)。
-        - **blank** (int) -Connectionist Temporal Classification (CTC) loss空白标签索引,  属于半开区间[0,num_classes + 1）。
-        - **name** (str) -此层的名称。可选。
+        - **input** (Variable) - (LoDTensor<float>)，变长序列的概率，它是一个具有LoD信息的二维张量。它的形状是[Lp, num_classes + 1]，其中Lp是所有输入序列长度的和，num_classes是真正的类别。(不包括空白标签)。
+        - **blank** (int) - Connectionist Temporal Classification (CTC) loss空白标签索引,  属于半开区间[0,num_classes + 1）。
+        - **name** (str) - -此层的名称。可选。
    
 返回：	
         - CTC贪婪解码结果。如果结果中的所有序列都为空，则LoDTensor 为[-1]，其中LoD[[]] dims[1,1]。
@@ -1016,11 +1016,11 @@ roi池化是对非均匀大小的输入执行最大池化，以获得固定大�
 Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverflow.com/questions/43430056/what-is-roi-layer-in-fast-rcnn
 
     参数:    
-        - **input** (Variable) : 张量，ROIPoolOp的输入。输入张量的格式是NCHW。其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度
-        - **roi** (Variable) :  roi区域。
-        - **pooled_height** (integer) : (int，默认1)，池化输出的高度。默认:1
-        - **pooled_width** (integer) :  (int，默认1) 池化输出的宽度。默认:1
-        - **spatial_scale** (float) : (float，默认1.0)，用于将ROI coords从输入规模转换为池化时使用的规模。默认1.0
+        - **input** (Variable) - 张量，ROIPoolOp的输入。输入张量的格式是NCHW。其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度
+        - **roi** (Variable) -  roi区域。
+        - **pooled_height** (integer) - (int，默认1)，池化输出的高度。默认:1
+        - **pooled_width** (integer) -  (int，默认1) 池化输出的宽度。默认:1
+        - **spatial_scale** (float) - (float，默认1.0)，用于将ROI coords从输入规模转换为池化时使用的规模。默认1.0
     
     返回:
         (张量)，ROIPoolOp的输出是一个shape为(num_rois, channel, pooled_h, pooled_w)的4d张量。
@@ -1050,9 +1050,9 @@ dice_loss定义为:
 		dice_loss = 1- frac{2 * intersection_area}{total_rea} = frac{((total_area−intersection_area)−intersection_area)}{total_area}=frac{union_area−intersection_area}{total_area}           
 
 参数:
-    - **input** (Variable) : rank>=2的预测。第一个维度是batch大小，最后一个维度是类编号。
-    - **label**（Variable）: 与输入tensor rank相同的正确的标注数据（groud truth）。第一个维度是batch大小，最后一个维度是1。
-    - **epsilon** (float) : 将会加到分子和分母上。如果输入和标签都为空，则确保dice为1。默认值:0.00001
+    - **input** (Variable) - rank>=2的预测。第一个维度是batch大小，最后一个维度是类编号。
+    - **label**（Variable）- 与输入tensor rank相同的正确的标注数据（groud truth）。第一个维度是batch大小，最后一个维度是1。
+    - **epsilon** (float) - 将会加到分子和分母上。如果输入和标签都为空，则确保dice为1。默认值:0.00001
     
     返回: dice_loss shape为[1]。
 
@@ -1081,11 +1081,11 @@ image_resize
 支持重新取样方法: 双线性插值
     
 参数:
-    - **input** (Variable) : 图片调整层的输入张量，这是一个shape=4的张量(num_batch, channels, in_h, in_w)。
-    - **out_shape** (list|tuple|Variable|None) : 图片调整层的输出，shape为(out_h, out_w)。默认值:None
-    - **scale** (float|None)-输入的高度或宽度的乘数因子 : out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None
-    - **name** (str|None) : 该层的名称(可选)。如果设置为None，该层将被自动命名。
-    - **resample** (str) : 重采样方法。目前只支持“双线性”。默认值:双线性插值
+    - **input** (Variable) - 图片调整层的输入张量，这是一个shape=4的张量(num_batch, channels, in_h, in_w)
+    - **out_shape** (list|tuple|Variable|None) - 图片调整层的输出，shape为(out_h, out_w)。默认值:None
+    - **scale** (float|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None
+    - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
+    - **resample** (str) - 重采样方法。目前只支持“双线性”。默认值:双线性插值
 
 返回： 4维tensor，shape为 (num_batches, channls, out_h, out_w).
 
@@ -1111,9 +1111,9 @@ image_resize_short
 调整一批图片的大小。输入图像的短边将被调整为给定的out_short_len 。输入图像的长边按比例调整大小，最终图像的长宽比保持不变。
 
 参数:
-        - **input** (Variable) ： 图像调整图层的输入张量，这是一个4维的形状张量(num_batch, channels, in_h, in_w)。
-        - **out_short_len** (int) ： 输出图像的短边长度。
-        - **resample** (str) ： resample方法，默认为双线性插值。
+        - **input** (Variable) -  图像调整图层的输入张量，这是一个4维的形状张量(num_batch, channels, in_h, in_w)。
+        - **out_short_len** (int) -  输出图像的短边长度。
+        - **resample** (str) - resample方法，默认为双线性插值。
     
 返回：	4维张量，shape为(num_batch, channls, out_h, out_w)
 
@@ -1133,10 +1133,10 @@ resize_bilinear
  `详情请参阅维基百科 https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
 
 参数:
-        - **input** (Variable) ： 双线性插值的输入张量，是一个shpae为(N x C x h x w)的4d张量。
-        - **out_shape** (Variable) ： 一维张量，包含两个数。第一个数是高度，第二个数是宽度。
-        - **scale** (float|None) ： 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None。
-        - **name** (str|None) ： 输出变量名。
+        - **input** (Variable) - 双线性插值的输入张量，是一个shpae为(N x C x h x w)的4d张量。
+        - **out_shape** (Variable) - 一维张量，包含两个数。第一个数是高度，第二个数是宽度。
+        - **scale** (float|None) - 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None。
+        - **name** (str|None) - 输出变量名。
     
 返回：	输出的维度是(N x C x out_h x out_w)
 
@@ -1170,8 +1170,8 @@ gather
 
 
 参数:
-        - **input** (Variable)- input 的rank >= 1。
-        - **index** (Variable)- index的rank = 1。
+        - **input** (Variable) - input 的rank >= 1。
+        - **index** (Variable) - index的rank = 1。
     
 返回：	output (Variable)
 
