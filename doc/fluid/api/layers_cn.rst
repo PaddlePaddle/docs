@@ -33,23 +33,23 @@ Multi-box loss layer, 用于 SSD 目标检测算法
 
   参数：
 
-    - **location**（Variable） - 位置预测是 shape 为[N，Np，4]的 3D 张量，N 是 batch 的大小，Np 是每个实例的预测总数。4 是坐标值的个数，layout 为[xmin，ymin，xmax，ymax]。
-    - **confidence**（Variable） - 置信度预测是一个三维张量，shape 为[N, Np, C]，N 和 Np 在位置上相同，C 是类别号
-    - **gt_box**（Variable） - 真实 boudding bbox 是 2D LoDTensor，shape 为[Ng，4]，Ng 是 mini-batch 中的真实 bbox 的总数
-    - **gt_label**（Variable） - 真实标签是一个二维 LoDTensor，shape 为[Ng，1]
-    - **prior_box**（Variable） - 先验框是 2 维张量，shape 为[Np，4]
-    - **prior_box_var**（Variable） - 先验框方差是具有 shape 为[Np，4]的 2 维张量。
-    - **background_label**（int） - 背景标签的索引，默认为 0。
-    - **overlap_threshold**（float） - 如果 match_type 为'per_prediction'，请使用 overlap_threshold 确定额外匹配的 bbox
+    - **location** （Variable） - 位置预测是 shape 为[N，Np，4]的 3D 张量，N 是 batch 的大小，Np 是每个实例的预测总数。4 是坐标值的个数，layout 为[xmin，ymin，xmax，ymax]。
+    - **confidence** （Variable） - 置信度预测是一个三维张量，shape 为[N, Np, C]，N 和 Np 在位置上相同，C 是类别号
+    - **gt_box** （Variable） - 真实 boudding bbox 是 2D LoDTensor，shape 为[Ng，4]，Ng 是 mini-batch 中的真实 bbox 的总数
+    - **gt_label** （Variable） - 真实标签是一个二维 LoDTensor，shape 为[Ng，1]
+    - **prior_box** （Variable） - 先验框是 2 维张量，shape 为[Np，4]
+    - **prior_box_var** （Variable） - 先验框方差是具有 shape 为[Np，4]的 2 维张量。
+    - **background_label** （int） - 背景标签的索引，默认为 0。
+    - **overlap_threshold** （float） - 如果 match_type 为'per_prediction'，请使用 overlap_threshold 确定额外匹配的 bbox
             找到匹配的boxes。默认为 0.5。
-    - **neg_pos_ratio**（float） - 负框与正框的比率，仅在 mining_type 为'max_negative'时使用，默认：3.0。
-    - **neg_overlap**（float） - 非匹配预测的负重叠上限。仅当 mining_type 为'max_negative'时使用，默认为 0.5。
-    - **loc_loss_weight**（float） - localization loss 的权重，默认为 1.0。
-    - **conf_loss_weight**（float） - confidence loss 的权重，默认为 1.0。
-    - **match_type**（str） - 训练期间匹配方法的类型应为'bipartite'或'per_prediction'，默认'per_prediction'。
-    - **mining_type**（str） - hard example mining 类型，取之可以是'hard_example'或'max_negative'，目前只支持 max_negative。
-    - **normalize**（bool） -  是否通过输出位置的总数对 SSD 损失进行规 normalization，默认为 True。
-    - **sample_size**（int） - 负框的最大样本大小，仅在 mining_type 为'hard_example'时使用。
+    - **neg_pos_ratio** （float） - 负框与正框的比率，仅在 mining_type 为'max_negative'时使用，默认：3.0。
+    - **neg_overlap** （float） - 非匹配预测的负重叠上限。仅当 mining_type 为'max_negative'时使用，默认为 0.5。
+    - **loc_loss_weight** （float） - localization loss 的权重，默认为 1.0。
+    - **conf_loss_weight** （float） - confidence loss 的权重，默认为 1.0。
+    - **match_type** （str） - 训练期间匹配方法的类型应为'bipartite'或'per_prediction'，默认'per_prediction'。
+    - **mining_type** （str） - hard example mining 类型，取之可以是'hard_example'或'max_negative'，目前只支持 max_negative。
+    - **normalize** （bool） -  是否通过输出位置的总数对 SSD 损失进行规 normalization，默认为 True。
+    - **sample_size** （int） - 负框的最大样本大小，仅在 mining_type 为'hard_example'时使用。
 
 返回: localization loss 和 confidence loss 的加权和，形状为[N * Np, 1]，N 和 Np 相同。
 
