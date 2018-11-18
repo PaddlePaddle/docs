@@ -91,7 +91,7 @@ PolygonBoxTransform 算子。
 输入是检测网络的最终几何输出。我们使用 2*n 来表示从 polygon_box 中的 n 个点到像素位置的偏移。由于每个偏移包含两个数字(xi, yi)，所以何输出包含 2*n 个通道。
 
 参数：
-    - **input**（Variable） - shape 为[batch_size，geometry_channels，height，width]
+    - **input** （Variable） - shape 为[batch_size，geometry_channels，height，width]
 
 返回：与输入 shpae 相同
 
