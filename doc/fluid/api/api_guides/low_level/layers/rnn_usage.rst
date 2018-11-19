@@ -41,7 +41,7 @@ Padding方式适合一个batch内，句子长度差异大不，通过padding 方
 
 - 1.2 对于变长的网络，可以使用StaticRNN op来进行实现
 
-  使用op为 :ref: `api_fluid_layers_StaticRNN` 
+  使用op为 :ref:`api_fluid_layers_StaticRNN` 
 
   参考代码如下 `lm_model <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/language_model/lstm/lm_model.py>`_
 
