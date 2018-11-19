@@ -14,6 +14,7 @@ rnn
 LoD方式支持的输入输入必须为LoD tensor。目前支持两种方式的LoD rnn使用方式
 -1.1 直接使用现有的op，目前实现的op包含dynamic_lstm和dynamic_gru
   使用方法如下
+  
   dynamic_gru :ref:`api_fluid_layers_dynamic_gru`
 
   dynamic_lstm :ref:`api_fluid_layers_dynamic_lstm`
