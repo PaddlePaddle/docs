@@ -277,23 +277,3 @@ pad_constant_like
     # out是秩为4的tensor, out.shape = [2, 3 ,2 , 3]。
 
 
-
-
-
-
-.. math::
-    $$y = max(0, x) + \alpha min(0, x)$$
-
-参数：
-          - **x** （Variable）：输入为Tensor。
-          - **param_attr** (ParamAttr|None)：可学习权重 :math:`\[\alpha\]`参数属性。
-          - **mode** （string）:权重共享的模式all：所有元素共享相同的权重通道：通道中的元素共享相同的权重元素：每个元素都有一个权重
-          - **name** （str | None）:这一层的名称（可选）。如果设置为None，则将自动命名这一层。
-
-返回： 输出Tensor与输入 ``x`` shape相同。
-
-返回类型：  变量（Variable）
-  
-  
-  
-  
