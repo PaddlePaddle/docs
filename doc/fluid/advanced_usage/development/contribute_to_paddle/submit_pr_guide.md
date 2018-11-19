@@ -30,6 +30,7 @@
 
  </div>
 
+
 - 请您点击CLA网站中的“Sign in with GitHub to agree”,点击完成后将会跳转回您的Pull Request页面
 
 <div align="center">
@@ -57,7 +58,7 @@
 
 <div align="center">
 
-<img src="./img/paddle_ci_log"  height="225" width="398">
+<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/v2/build_and_install/paddleci.png?raw=true"  height="225" width="398">
 
  </div>
 
@@ -97,7 +98,7 @@
 
 1）请保证Travis-CI 中单元测试能顺利通过。如果没过，说明提交的代码存在问题，评审人一般不做评审。
 
-2）提交PUll Request前：
+2）提交Pull Request前：
 
 - 请注意commit的数量：
 
