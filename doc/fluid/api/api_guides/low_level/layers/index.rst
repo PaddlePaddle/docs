@@ -14,4 +14,5 @@
     loss_function.rst
     data_in_out.rst
     control_flow.rst
+    rnn_usage.rst
     
