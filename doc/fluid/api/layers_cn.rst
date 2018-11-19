@@ -4,7 +4,7 @@
 While
 >>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers.  While (cond, is_test=False, name=None)
+.. py:class:: paddle.fluid.layers.While (cond, is_test=False, name=None)
 
 
 该类用于实现while循环控制功能。
@@ -35,7 +35,7 @@ While
 Switch
 >>>>>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers.  Switch (name=None)
+.. py:class:: paddle.fluid.layers.Switch (name=None)
 
 Switch类实现的功能十分类似if-elif-else。它可以在学习率调度器(learning rate scheduler)中调整学习率。
 :: 
@@ -83,7 +83,7 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
 increment
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   
-.. py:class:: paddle.fluid.layers.  increment(x, value=1.0, in_place=True)
+.. py:class:: paddle.fluid.layers.increment(x, value=1.0, in_place=True)
 
    
 该函数为x中的每一个值增加 ``value`` 大小, ``value`` 即函数中待传入的参数。该函数默认直接在原变量x上进行运算。
@@ -110,7 +110,7 @@ increment
 array_write
 >>>>>>>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers.   array_write(x, i, array=None)
+.. py:class:: paddle.fluid.layers.array_write(x, i, array=None)
 
 
 该函数将给定的输入变量（即 ``x`` ）写入一个作为输出的 ``LOD_TENSOR_ARRAY`` 变量的某一指定位置中，
