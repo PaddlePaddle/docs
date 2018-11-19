@@ -103,7 +103,7 @@ Executor
 >>>>>>>>>>>>>>>>>>>>>
 
 
-.. py:class:: paddle.fluid. Executor (place)
+.. py:class:: paddle.fluid.Executor (place)
 
 
 
