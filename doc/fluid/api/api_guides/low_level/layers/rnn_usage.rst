@@ -12,6 +12,7 @@ rnn
 ---------------------
 
 LoD方式支持的输入输入必须为LoD tensor。目前支持两种方式的LoD rnn使用方式
+
 -1.1 直接使用现有的op，目前实现的op包含dynamic_lstm和dynamic_gru
   使用方法如下
   
@@ -29,6 +30,7 @@ LoD方式支持的输入输入必须为LoD tensor。目前支持两种方式的L
 ---------------------
 
 Padding方式适合一个batch内，句子长度差异大不，通过padding 方式使得句子长度变得一致
+
 -1.1 对于定长的网络，可以使用for循环的方式实现，参考代码如下 `lm_model <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/language_model/lstm/lm_model.py>`_
   参考函数
   def encoder_static(input_embedding, len=10, init_hidden=None, init_cell=None):
