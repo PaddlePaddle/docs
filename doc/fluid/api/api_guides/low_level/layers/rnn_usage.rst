@@ -12,31 +12,28 @@ rnn
 ---------------------
 
 LoD方式支持的输入输入必须为LoD tensor。目前支持两种方式的LoD rnn使用方式
--1.1 直接使用现有的op，目前实现的op包含dynamic_lstm和dynamic_gru:
+-1.1 直接使用现有的op，目前实现的op包含dynamic_lstm和dynamic_gru
   使用方法如下
-  dynamic_gru:
-  :ref:`api_fluid_layers_dynamic_gru`
+  dynamic_gru :ref:`api_fluid_layers_dynamic_gru`
 
-  dynamic_lstm:
-  :ref:`api_fluid_layers_dynamic_lstm`
+  dynamic_lstm :ref:`api_fluid_layers_dynamic_lstm`
 
 
--1.2 如果上面的op不能够满足用户的需求，用户可以定义直接的rnn结果，
+-1.2 如果上面的op不能够满足用户的需求，用户可以定义直接的rnn的结构
   使用方法如下
 
-  DynamicRNN: 
-  :ref: `api_fluid_layers_DynamicRNN`
+  DynamicRNN :ref: `api_fluid_layers_DynamicRNN`
 
 2. Padding 方式
 ---------------------
 
 Padding方式适合一个batch内，句子长度差异大不，通过padding 方式使得句子长度变得一致
 -1.1 对于定长的网络，可以使用for循环的方式实现，参考代码如下 `lm_model <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/language_model/lstm/lm_model.py>`_
-  参考函数：
+  参考函数
   def encoder_static(input_embedding, len=10, init_hidden=None, init_cell=None):
 
 -1.2 对于变长的网络，可以使用StaticRNN op来进行实现：
   使用op为 ref: `api_fluid_layers_StaticRNN`
   参考代码如下 `lm_model <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/language_model/lstm/lm_model.py>`_
-  参考函数：
+  参考函数
   def padding_rnn(input_embedding, len=10, init_hidden=None, init_cell=None):
