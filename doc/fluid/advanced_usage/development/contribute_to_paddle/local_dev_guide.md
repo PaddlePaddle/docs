@@ -26,7 +26,7 @@
 
 ## 创建本地分支
 
-Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/releasing_process.md#paddle-分支规范)。
+Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/others/releasing_process.md)。
 
 所有的 feature 和 bug fix 的开发工作都应该在一个新的分支上完成，一般从 `develop` 分支上创建新分支。
 
@@ -110,7 +110,11 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ➜  docker run -it -v $(pwd):/paddle paddle:latest-dev bash -c "cd /paddle/build && ctest"
 ```
 
-关于构建和测试的更多信息，请参见[使用Docker安装运行](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/v2/build_and_install/docker_install_cn.rst)。
+关于构建和测试的更多信息，请根据您的系统环境查看Docker安装教程：
+
+- [Ubuntu](../../../beginners_guide/install/install_Ubuntu.html#permalink-4--docker-)
+- [CentOS](../../../beginners_guide/install/install_CentOS.html#permalink-4--docker-)
+- [MacOS](../../../beginners_guide/install/install_MacOS.html#permalink-4--docker-)
 
 ## 提交（commit）
 
@@ -150,10 +154,10 @@ clang-formater.......................................(no files to check)Skipped
 
 ```bash
 # 触发develop分支的CI单测
-➜  git commit -m "test=develop"
+➜  git commit -m "this is an example, test=develop"
 
-# 触发release/1.1分支的CI单侧
-➜  git commit -m "test=release/1.1"
+# 触发release/1.1分支的CI单测
+➜  git commit -m "this is an example, test=release/1.1"
 ```
 
 ## 保持本地仓库最新

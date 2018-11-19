@@ -26,7 +26,7 @@
 
 <div align="center">
 
-<img src="./img/cla_unsigned.png"  height="330" width="400">
+<img src="./img/cla_unsigned.png"  height="60" width="933">
 
  </div>
 
@@ -34,7 +34,7 @@
 
 <div align="center">
 
-<img src="./img/sign_cla.png"  height="330" width="400">
+<img src="./img/sign_cla.png"  height="672" width="534">
 
  </div>
 
@@ -43,14 +43,27 @@
 
 您在Pull Request中每提交一次新的commit后，会触发CI单元测试，请确认您的commit message中已加入必要的说明，请见[提交（commit）](local_dev_guide.html#permalink-8--commit-)
 
-请您关注您Pull Request中的CI单元测试进程，它将会在几个小时内完成
+- 请您关注您Pull Request中的CI单元测试进程，它将会在几个小时内完成
 
-您仅需要关注和自己提交的分支相关的CI项目，例如您向develop分支提交代码，则无需关注release/1.1一栏是否通过测试
+- 您仅需要关注和自己提交的分支相关的CI项目，例如您向develop分支提交代码，则无需关注release/1.1一栏是否通过测试
 
-当所需的测试后都出现了绿色的对勾，表示您本次commit通过了各项单元测试
+- 当所需的测试后都出现了绿色的对勾，表示您本次commit通过了各项单元测试
 
-如果所需的测试后出现了红色叉号，代表您本次的commit未通过某项单元测试，在这种情况下，请您点击detail查看报错详情，并将报错原因截图，以评论的方式添加在您的Pull Request中，我们的工作人员将帮您查看
+- 如果所需的测试后出现了红色叉号，代表您本次的commit未通过某项单元测试，请您按照以下步骤查看报错信息：
 
+1）点击出现报错的CI测试项栏最右边的“detail”
+
+2）如果您未登陆过CI网站，您会看到一个登陆窗口，此时请您点击“Log in as guest”(如下图)，即可查看报错信息
+
+<div align="center">
+
+<img src="./img/paddle_ci_log"  height="225" width="398">
+
+ </div>
+
+ 3）修复与反馈
+
+ 请您根据报错信息自行修复，如果确定本地commit不会触发报错，则报错可能是由CI不稳定引起的。这种情况下，请将报错详情以评论的方式添加在您的Pull Request中，我们的工作人员将帮您查看，这里提供一个[例子](https://github.com/PaddlePaddle/Paddle/pull/14337#issuecomment-437398972)
 
 ## 删除远程分支
 
