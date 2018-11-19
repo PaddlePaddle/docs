@@ -19,9 +19,9 @@ sequence_enumerate
             Out.lod = [[0, 3, 5]]  Out.data = [[1, 2], [2, 3], [3, 0], [4, 5], [5, 0]]  Out.dims = [5, 2]
         
 参数:   
-- **input** （Variable）: 作为索引序列的输入变量。
-- **win_size** （int）: 枚举所有子序列的窗口大小。
-- **pad_value** （int）: 填充值，默认为0。
+        - **input** （Variable）: 作为索引序列的输入变量。
+        - **win_size** （int）: 枚举所有子序列的窗口大小。
+        - **pad_value** （int）: 填充值，默认为0。
           
 返回:      枚举序列变量是LoD张量（LoDTensor）。
           
@@ -60,8 +60,8 @@ expand运算会按给定的次数展开输入。 您应该通过提供属性 ``e
                 ]
  
 参数:
-- **x** (Variable)：一个秩在[1, 6]范围中的张量（Tensor）.
-- **expand_times** (list|tuple) ：每一个维度要扩展的次数.
+        - **x** (Variable)：一个秩在[1, 6]范围中的张量（Tensor）.
+        - **expand_times** (list|tuple) ：每一个维度要扩展的次数.
         
 返回：     expand变量是LoDTensor。expand运算后，输出（Out）的每个维度的大小等于输入（X）的相应维度的大小乘以 ``expand_times`` 给出的相应值。
 
@@ -85,8 +85,8 @@ sequence_concat
 sequence_concat操作通过序列信息连接LoD张量（Tensor）。例如：X1的LoD = [0,3,7]，X2的LoD = [0,7,9]，结果的LoD为[0，（3 + 7），（7 + 9）]，即[0,10,16]]。
 
 参数:
-- **input** (list) – List of Variables to be concatenated.
-- **name** (str|None) – A name for this layer(optional). If set None, the layer will be named automatically.
+        - **input** (list) – List of Variables to be concatenated.
+        - **name** (str|None) – A name for this layer(optional). If set None, the layer will be named automatically.
         
 返回:     连接好的输出变量。
 
@@ -117,12 +117,12 @@ else:
                                 Out=scale∗(X+bias)
 
 参数:
-- **x**(Variable) ：(Tensor) 要比例运算的输入张量（Tensor）。
-- **scale** (FLOAT) ：比例运算的比例因子。
-- **bias** (FLOAT) ：比例算子的偏差。
-- **bias_after_scale** (BOOLEAN) ：在缩放之后或之前添加bias。在某些情况下，对数值稳定性很有用。
-- **act** (basestring|None) ：应用于输出的激活函数。
-- **name** (basestring|None)：输出的名称。
+        - **x**(Variable) ：(Tensor) 要比例运算的输入张量（Tensor）。
+        - **scale** (FLOAT) ：比例运算的比例因子。
+        - **bias** (FLOAT) ：比例算子的偏差。
+        - **bias_after_scale** (BOOLEAN) ：在缩放之后或之前添加bias。在某些情况下，对数值稳定性很有用。
+        - **act** (basestring|None) ：应用于输出的激活函数。
+        - **name** (basestring|None)：输出的名称。
 
 返回:        比例运算符的输出张量(Tensor)
 
@@ -142,7 +142,7 @@ elementwise_add
 
 .. math::
         $$Out = X + Y$$
-       
+
 - **X** ：任意维度的张量（Tensor）.
 - **Y** ：一个维度必须小于等于X维度的张量（Tensor）。
 对于这个运算算子有2种情况：
@@ -273,12 +273,12 @@ elementwise_sub
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-- **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-- **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-- **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
-- **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-- **act** （basestring | None）：激活应用于输出。
-- **name** （basestring | None）：输出的名称。
+        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
+        - **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - **act** （basestring | None）：激活应用于输出。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        元素运算的输出。
         
@@ -324,12 +324,12 @@ elementwise_mul
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-- **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-- **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-- **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
-- **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-- **act** （basestring | None）：激活应用于输出。
-- **name** （basestring | None）：输出的名称。
+        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
+        - **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - **act** （basestring | None）：激活应用于输出。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        元素运算的输出。        
         
@@ -374,12 +374,12 @@ elementwise_max
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-- **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-- **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-- **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
-- **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-- **act** （basestring | None）：激活应用于输出。
-- **name** （basestring | None）：输出的名称。
+        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
+        - **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - **act** （basestring | None）：激活应用于输出。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        元素运算的输出。        
         
@@ -426,12 +426,12 @@ elementwise_min
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-- **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-- **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-- **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
-- **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-- **act** （basestring | None）：激活应用于输出。
-- **name** （basestring | None）：输出的名称。
+        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
+        - **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - **act** （basestring | None）：激活应用于输出。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        元素运算的输出。   
  
@@ -479,12 +479,12 @@ elementwise_pow
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-- **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
-- **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
-- **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
-- **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
-- **act** （basestring | None）：激活应用于输出。
-- **name** （basestring | None）：输出的名称。
+        - **x** ：（Tensor），元素op的第一个输入张量（Tensor）。
+        - **y** ：（Tensor），元素op的第二个输入张量（Tensor）。
+        - **axis** （INT）：（int，默认-1）。将Y传到X上的起始维度索引。
+        - **use_mkldnn** （BOOLEAN）：（bool，默认为false）。由MKLDNN使用。
+        - **act** （basestring | None）：激活应用于输出。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        元素运算的输出。   
         
@@ -501,14 +501,14 @@ uniform_random_batch_size_like算子。
 此运算符使用与输入张量（Tensor）相同的batch_size初始化张量（Tensor），并使用从均匀分布中采样的随机值。
 
 参数：
-- **input** （Variable）：其input_dim_idx'th维度指定batch_size的张量（Tensor）。
-- **shape** （元组|列表）：输出的形状。
-- **input_dim_idx** （Int）：默认值0.输入批量大小维度的索引。
-- **output_dim_idx** （Int）：默认值0.输出批量大小维度的索引。
-- **min** （Float）：（float，默认-1.0）均匀随机的最小值。
-- **max** （Float）：（float，default 1.0）均匀随机的最大值。
-- **seed** （Int）：（int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此运算符将始终每次生成相同的随机数。
-- **dtype** （np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等。
+        - **input** （Variable）：其input_dim_idx'th维度指定batch_size的张量（Tensor）。
+        - **shape** （元组|列表）：输出的形状。
+        - **input_dim_idx** （Int）：默认值0.输入批量大小维度的索引。
+        - **output_dim_idx** （Int）：默认值0.输出批量大小维度的索引。
+        - **min** （Float）：（float，默认-1.0）均匀随机的最小值。
+        - **max** （Float）：（float，default 1.0）均匀随机的最大值。
+        - **seed** （Int）：（int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此运算符将始终每次生成相同的随机数。
+        - **dtype** （np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等。
 
 返回:        指定形状的张量（Tensor）将使用指定值填充。
 
@@ -526,11 +526,11 @@ gaussian_random算子。
 用于使用高斯随机生成器初始化张量（Tensor）。
 
 参数：
-- **shape** （tuple | list）：（vector <int>）随机张量的维数
-- **mean** （Float）：（float，默认值0.0）随机张量的均值
-- **std** （Float）：（浮点数，默认值为1.0）随机张量的std
-- **seed** （Int）：（int，default 0）生成器随机生成种子。0表示使用系统范围的种子。注意如果seed不为0，则此运算符每次将始终生成相同的随机数
-- **dtype** （np.dtype | core.VarDesc.VarType | str）：输出的数据类型。
+        - **shape** （tuple | list）：（vector <int>）随机张量的维数
+        - **mean** （Float）：（float，默认值0.0）随机张量的均值
+        - **std** （Float）：（浮点数，默认值为1.0）随机张量的std
+        - **seed** （Int）：（int，default 0）生成器随机生成种子。0表示使用系统范围的种子。注意如果seed不为0，则此运算符每次将始终生成相同的随机数
+        - **dtype** （np.dtype | core.VarDesc.VarType | str）：输出的数据类型。
 
 返回：        输出高斯随机运算矩阵
 
@@ -547,11 +547,11 @@ sampling_id
 sampling_id算子。用于从输入的多项分布中对id进行采样的图层。为一个样本采样一个id。
 
 参数：
-- **x** （Variable）：softmax的输入张量（Tensor）。2-D形状[batch_size，input_feature_dimensions]
-- **min** （Float）：随机的最小值。（浮点数，默认为0.0）
-- **max** （Float）：随机的最大值。（float，默认1.0）
-- **seed** （Float）：用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此运算符将始终每次生成相同的随机数。（int，默认为0）
-- **dtype** （np.dtype | core.VarDesc.VarType | str）：输出数据的类型为float32，float_16，int等。
+        - **x** （Variable）：softmax的输入张量（Tensor）。2-D形状[batch_size，input_feature_dimensions]
+        - **min** （Float）：随机的最小值。（浮点数，默认为0.0）
+        - **max** （Float）：随机的最大值。（float，默认1.0）
+        - **seed** （Float）：用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此运算符将始终每次生成相同的随机数。（int，默认为0）
+        - **dtype** （np.dtype | core.VarDesc.VarType | str）：输出数据的类型为float32，float_16，int等。
 
 返回：       Id采样的数据张量。
 
@@ -569,14 +569,14 @@ gaussian_random_batch_size_like
 用于使用高斯随机发生器初始化张量。分布的defalut均值为0.并且分布的defalut标准差（std）为1.用户可以通过输入参数设置mean和std。
 
 参数：
-- **input** （Variable）：其input_dim_idx'th维度指定batch_size的张量（Tensor）。
-- **shape** （元组|列表）：输出的形状。
-- **input_dim_idx** （Int）：默认值0.输入批量大小维度的索引。
-- **output_dim_idx** （Int）：默认值0.输出批量大小维度的索引。
-- **mean** （Float）：（float，默认值0.0）高斯分布的平均值（或中心值）。
-- **std** （Float）：（float，default 1.0）高斯分布的标准差（std或spread）。
-- **seed** （Int）：（int，默认为0）用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此运算符将始终每次生成相同的随机数。
-- **dtype** （np.dtype | core.VarDesc.VarType | str）：输出数据的类型为float32，float_16，int等。
+        - **input** （Variable）：其input_dim_idx'th维度指定batch_size的张量（Tensor）。
+        - **shape** （元组|列表）：输出的形状。
+        - **input_dim_idx** （Int）：默认值0.输入批量大小维度的索引。
+        - **output_dim_idx** （Int）：默认值0.输出批量大小维度的索引。
+        - **mean** （Float）：（float，默认值0.0）高斯分布的平均值（或中心值）。
+        - **std** （Float）：（float，default 1.0）高斯分布的标准差（std或spread）。
+        - **seed** （Int）：（int，默认为0）用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此运算符将始终每次生成相同的随机数。
+        - **dtype** （np.dtype | core.VarDesc.VarType | str）：输出数据的类型为float32，float_16，int等。
 
 返回：        指定形状的张量将使用指定值填充。
 
@@ -595,7 +595,7 @@ sum算子。
 该运算符对输入张量求和。所有输入都可以携带LoD（详细程度）信息，但是输出仅与第一个输入共享LoD信息。
 
 参数：
-- **x** （Variable）：（vector <Tensor>）sum运算符的输入张量（Tensor）。
+        - **x** （Variable）：（vector <Tensor>）sum运算符的输入张量（Tensor）。
 
 返回:        (Tensor）求和算子的输出张量。
 
@@ -620,10 +620,10 @@ slice算子。
         案例2：给定：data=[[1,2,3,4],[5,6,7,8],] starts=[0,1] ends=[-1,1000] Then：result=[[2,3,4],]
 
 参数：
-- **input** （Variable）：提取切片的数据张量（Tensor）。
-- **axes** （List）：（list <int>）开始和结束的轴适用于。它是可选的。如果不存在，将被视为[0,1，...，len（starts）- 1]。
-- **starts** （List）：（list <int>）在轴上开始相应轴的索引。
-- **ends** （List）：（list <int>）在轴上结束相应轴的索引。
+        - **input** （Variable）：提取切片的数据张量（Tensor）。
+        - **axes** （List）：（list <int>）开始和结束的轴适用于。它是可选的。如果不存在，将被视为[0,1，...，len（starts）- 1]。
+        - **starts** （List）：（list <int>）在轴上开始相应轴的索引。
+        - **ends** （List）：（list <int>）在轴上结束相应轴的索引。
 
 返回：        切片数据张量（Tensor）.
 
@@ -642,7 +642,7 @@ shape算子
 获得输入张量的形状。现在只支持输入CPU的Tensor。
 
 参数：
-- **input** （Variable）：（Tensor），输入张量。
+        - **input** （Variable）：（Tensor），输入张量。
 
 返回：        (Tensor），输入张量的形状，形状的数据类型是int32，它将与输入张量（Tensor）在同一设备上。
 
@@ -665,10 +665,10 @@ logical_and算子
        $$Out = X &amp;&amp; Y$$
 
 参数：
-- **x** （Variable）：（LoDTensor）logical_and运算符的左操作数
-- **y** （Variable）：（LoDTensor）logical_and运算符的右操作数
-- **out** （Tensor）：输出逻辑运算的张量。
-- **name** （basestring | None）：输出的名称。
+        - **x** （Variable）：（LoDTensor）logical_and运算符的左操作数
+        - **y** （Variable）：（LoDTensor）logical_and运算符的右操作数
+        - **out** （Tensor）：输出逻辑运算的张量。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        (LoDTensor)n-dim bool张量。每个元素的计算公式： :math:`$$Out = X &amp;&amp; Y$$` 
         
@@ -690,10 +690,10 @@ logical_or算子
         $$Out = X || Y$$
 
 参数：
-- **x** （Variable）：（LoDTensor）logical_or运算符的左操作数
-- **y** （Variable）：（LoDTensor）logical_or运算符的右操作数
-- **out** （Tensor）：输出逻辑运算的张量。
-- **name** （basestring | None）：输出的名称。
+        - **x** （Variable）：（LoDTensor）logical_or运算符的左操作数
+        - **y** （Variable）：（LoDTensor）logical_or运算符的右操作数
+        - **out** （Tensor）：输出逻辑运算的张量。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        (LoDTensor)n维布尔张量。每个元素的计算公式： :math:`$$Out = X || Y$$` 
         
@@ -715,10 +715,10 @@ logical_xor算子
         !!Out = (X || Y) &amp;&amp; !(X &amp;&amp; Y)!!
 
 参数：
-- **x** （Variable）：（LoDTensor）logical_xor运算符的左操作数
-- **y** （Variable）：（LoDTensor）logical_xor运算符的右操作数
-- **out** （Tensor）：输出逻辑运算的张量。
-- **name** （basestring | None）：输出的名称。
+        - **x** （Variable）：（LoDTensor）logical_xor运算符的左操作数
+        - **y** （Variable）：（LoDTensor）logical_xor运算符的右操作数
+        - **out** （Tensor）：输出逻辑运算的张量。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        (LoDTensor)n维布尔张量。每个元素的计算公式： :math:`!!Out = (X || Y) &amp;&amp; !(X &amp;&amp; Y)!!`  
        
@@ -740,9 +740,9 @@ logical_not算子
         !!Out = !X!!
 
 参数：
-- **x** （Variable）：（LoDTensor）logical_not运算符的操作数
-- **out** （Tensor）：输出逻辑运算的张量。
-- **name** （basestring | None）：输出的名称。
+        - **x** （Variable）：（LoDTensor）logical_not运算符的操作数
+        - **out** （Tensor）：输出逻辑运算的张量。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        (LoDTensor)n维布尔张量。每个元素的计算公式： :math:`!! !!Out = !X!!` 
 
@@ -764,10 +764,10 @@ clip运算符限制给定输入的值在一个区间内。间隔使用参数“m
 Out=min(max(X,min),max)
 
 参数：
-- **x** （Variable）：（Tensor）clip运算的输入，维数必须在[1,9]之间。
-- **min** （FLOAT）：（float）最小值，小于该值的元素由min代替。
-- **max** （FLOAT）：（float）最大值，大于该值的元素由max替换。
-- **name** （basestring | None）：输出的名称。
+        - **x** （Variable）：（Tensor）clip运算的输入，维数必须在[1,9]之间。
+        - **min** （FLOAT）：（float）最小值，小于该值的元素由min代替。
+        - **max** （FLOAT）：（float）最大值，大于该值的元素由max替换。
+        - **name** （basestring | None）：输出的名称。
 
 返回：        （Tensor）clip操作后的输出和输入（X）具有形状（shape）
 
@@ -797,9 +797,9 @@ ClipByNorm算子
       data = fluid.layer.data( name=’data’, shape=[2, 4, 6], dtype=’float32’) reshaped = fluid.layers.clip_by_norm( x=data, max_norm=0.5)
      
 参数：
-- **x** (Variable):(Tensor) clip_by_norm运算的输入，维数必须在[1,9]之间。
-- **max_norm** (FLOAT):(float)最大范数值。
-- **name** (basestring | None):输出的名称。
+        - **x** (Variable):(Tensor) clip_by_norm运算的输入，维数必须在[1,9]之间。
+        - **max_norm** (FLOAT):(float)最大范数值。
+        - **name** (basestring | None):输出的名称。
 
 返回：        (Tensor)clip_by_norm操作后的输出和输入(X)具有形状(shape).
 
@@ -816,8 +816,8 @@ mean
 mean算子计算X中所有元素的平均值
      
 参数：
-- **x** (Variable):(Tensor) 均值运算的输入。
-- **name** (basestring | None):输出的名称。
+        - **x** (Variable):(Tensor) 均值运算的输入。
+        - **name** (basestring | None):输出的名称。
 
 返回：       均值运算输出张量（Tensor）。
        
@@ -840,11 +840,11 @@ mul算子
 输入X和Y都可以携带LoD（详细程度）信息。但输出仅与输入X共享LoD信息。
 
 参数：
-- **x** (Variable)：(Tensor) 乘法运算的第一个输入张量。
-- **y** (Variable)：(Tensor) 乘法运算的第二个输入张量。
-- **x_num_col_dims** （INT）：（int，默认值1）， ``mul_op`` 可以将具有两个以上维度的张量作为输入。如果输入X是具有多于两个维度的张量，则输入X将先展平为二维矩阵。展平规则是：第一个 ``num_col_dims`` 将被展平成最终矩阵的第一个维度（矩阵的高度），其余的 ``num_col_dims`` 维度被展平成最终矩阵的第二个维度（矩阵的宽度）。结果是展平矩阵的高度等于X的第一个 ``x_num_col_dims`` 大小的乘积，展平矩阵的宽度等于X的最后一个秩（x）- ``num_col_dims`` 大小的乘积。例如，假设X是一个6维张量，形状为[2,3,4,5,6]，x_num_col_dims = 3.因此扁平矩阵的形状为[2 x 3 x 4,5 x 6 ] = [24,30]。
-- **y_num_col_dims** （INT）：（int，默认值1）， ``mul_op`` 可以将具有两个以上维度的张量作为输入。如果输入Y是具有多于两个维度的张量，则Y将首先展平为二维矩阵。 ``y_num_col_dims`` 属性确定Y的展平方式。有关更多详细信息，请参阅 ``x_num_col_dims`` 的注释。
-- **name** (basestring | None):输出的名称。
+        - **x** (Variable)：(Tensor) 乘法运算的第一个输入张量。
+        - **y** (Variable)：(Tensor) 乘法运算的第二个输入张量。
+        - **x_num_col_dims** （INT）：（int，默认值1）， ``mul_op`` 可以将具有两个以上维度的张量作为输入。如果输入X是具有多于两个维度的张量，则输入X将先展平为二维矩阵。展平规则是：第一个 ``num_col_dims`` 将被展平成最终矩阵的第一个维度（矩阵的高度），其余的 ``num_col_dims`` 维度被展平成最终矩阵的第二个维度（矩阵的宽度）。结果是展平矩阵的高度等于X的第一个 ``x_num_col_dims`` 大小的乘积，展平矩阵的宽度等于X的最后一个秩（x）- ``num_col_dims`` 大小的乘积。例如，假设X是一个6维张量，形状为[2,3,4,5,6]，x_num_col_dims = 3.因此扁平矩阵的形状为[2 x 3 x 4,5 x 6 ] = [24,30]。
+        - **y_num_col_dims** （INT）：（int，默认值1）， ``mul_op`` 可以将具有两个以上维度的张量作为输入。如果输入Y是具有多于两个维度的张量，则Y将首先展平为二维矩阵。 ``y_num_col_dims`` 属性确定Y的展平方式。有关更多详细信息，请参阅 ``x_num_col_dims`` 的注释。
+        - **name** (basestring | None):输出的名称。
 
 返回：       乘法运算输出张量（Tensor）.
        
@@ -943,8 +943,8 @@ Softshrink激活算子
         \[out=\begin{Bmatrix} x-\lambda ,if x>\lambda & \\ x+\lambda ,if x<\lambda & \\ 0,otherwise & \end{Bmatrix}\]
        
 参数：
-- **x** ：Softshrink算子的输入 
-- **lambda** （FLOAT）：非负偏移量。
+        - **x** ：Softshrink算子的输入 
+        - **lambda** （FLOAT）：非负偏移量。
 
 返回：       Softshrink运算符的输出
 
@@ -1094,18 +1094,18 @@ prior_box算子
 
 参数：
 
-- **input** （Variable）：输入变量，格式为NCHW。
-- **image** （Variable）：候选框输入的图像数据，布局为NCHW。
-- **min_sizes** （list | tuple | float value）：生成候选框的最小大小。
-- **max_sizes** （list | tuple | None）：生成候选框的最大大小。默认值：无。
-- **aspect_ratios** （list | tuple | float value）：生成候选框的宽高比。默认值：[1.]。
-- **variance** （list | tuple）：要在候选框中编码的方差。默认值：[0.1,0.1,0.2,0.2]。
-- **flip** （bool）：是否翻转宽高比。默认值：false。
-- **clip** （bool）：是否剪切超出边界的框。默认值：False。
-- **step** （list | turple）：前一个框跨越宽度和高度，如果step [0] == 0.0或者step [1] == 0.0，将自动计算输入高度/重量的前一个步骤。默认值：[0,0。]
-- **offset** （float）：候选框先前框中心偏移。默认值：0.5
-- **name** （str）：候选框操作的名称。默认值：无。
-- **min_max_aspect_ratios_order** （bool）:如果设置为True，则输出候选框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响后续卷积层的权重顺序，但不会影响最终检测结果。默认值：False。
+        - **input** （Variable）：输入变量，格式为NCHW。
+        - **image** （Variable）：候选框输入的图像数据，布局为NCHW。
+        - **min_sizes** （list | tuple | float value）：生成候选框的最小大小。
+        - **max_sizes** （list | tuple | None）：生成候选框的最大大小。默认值：无。
+        - **aspect_ratios** （list | tuple | float value）：生成候选框的宽高比。默认值：[1.]。
+        - **variance** （list | tuple）：要在候选框中编码的方差。默认值：[0.1,0.1,0.2,0.2]。
+        - **flip** （bool）：是否翻转宽高比。默认值：false。
+        - **clip** （bool）：是否剪切超出边界的框。默认值：False。
+        - **step** （list | turple）：前一个框跨越宽度和高度，如果step [0] == 0.0或者step [1] == 0.0，将自动计算输入高度/重量的前一个步骤。默认值：[0,0。]
+        - **offset** （float）：候选框先前框中心偏移。默认值：0.5
+        - **name** （str）：候选框操作的名称。默认值：无。
+        - **min_max_aspect_ratios_order** （bool）:如果设置为True，则输出候选框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响后续卷积层的权重顺序，但不会影响最终检测结果。默认值：False。
 
 返回：具有两个变量的元组（boxes, variances）。
  **boxes** ： ``PriorBox`` 输出候选框。布局为[H，W，num_priors，4]。 H是输入的高度，W是输入的宽度， ``num_priors`` 是每个输入位置的总窗口数。
@@ -1135,28 +1135,28 @@ multi_box_head
 
 生成SSD（Single Shot MultiBox Detector）算法的候选框。有关此算法的详细信息，请参阅SSD论文SSD：Single Shot MultiBox Detector的2.2节。
 
-参数：
-- **inputs** （list | tuple）：输入变量列表，所有变量的格式为NCHW。
-- **image** （Variable）：PriorBoxOp的输入图像数据，布局为NCHW。
-- **base_size** （int）：base_size用于根据 ``min_ratio`` 和 ``max_ratio`` 来获取 ``min_size`` 和 ``max_size`` 。
-- **num_classes** （int）：类的数量。
-- **aspect_ratios** （list | tuple）：生成候选框的宽高比。 ``input`` 和 ``aspect_ratios`` 的长度必须相等。
-- **min_ratio** （int）：生成候选框的最小比率。
-- **max_ratio** （int）：生成候选框的最大比率。
-- **min_sizes** （list | tuple | None）：如果len（输入）<= 2，则必须设置 ``min_sizes`` ，并且 ``min_sizes`` 的长度应等于输入的长度。默认值：无。
-- **max_sizes** （list | tuple | None）：如果len（输入）<= 2，则必须设置 ``max_sizes`` ，并且 ``min_sizes`` 的长度应等于输入的长度。默认值：无。
-- **steps** （list | tuple）：如果step_w和step_h相同，则step_w和step_h可以被steps替换。
-- **step_w** （list | tuple）：候选框跨越宽度。如果step_w [i] == 0.0，将自动计算输跨越入[i]宽度。默认值：无。
-- **step_h** （list | tuple）：候选框跨越高度，如果step_h [i] == 0.0，将自动计算跨越输入[i]高度。默认值：无。
-- **offset** （float）：候选框中心偏移。默认值：0.5
-- **variance** （list | tuple）：在候选框编码的方差。默认值：[0.1,0.1,0.2,0.2]。
-- **flip** （bool）：是否翻转宽高比。默认值：false。
-- **clip** （bool）：是否剪切超出边界的框。默认值：False。
-- **kernel_size** （int）：conv2d的内核大小。默认值：1。
-- **pad** （int | list | tuple）：conv2d的填充。默认值：0。
-- **stride** （int | list | tuple）：conv2d的步长。默认值：1，
-- **name** （str）：候选框的名称。默认值：无。
-- **min_max_aspect_ratios_order** （bool）：如果设置为True，则输出候选框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响卷积层后面的权重顺序，但不会影响最终检测结果。默认值：False。
+        参数：
+        - **inputs** （list | tuple）：输入变量列表，所有变量的格式为NCHW。
+        - **image** （Variable）：PriorBoxOp的输入图像数据，布局为NCHW。
+        - **base_size** （int）：base_size用于根据 ``min_ratio`` 和 ``max_ratio`` 来获取 ``min_size`` 和 ``max_size`` 。
+        - **num_classes** （int）：类的数量。
+        - **aspect_ratios** （list | tuple）：生成候选框的宽高比。 ``input`` 和 ``aspect_ratios`` 的长度必须相等。
+        - **min_ratio** （int）：生成候选框的最小比率。
+        - **max_ratio** （int）：生成候选框的最大比率。
+        - **min_sizes** （list | tuple | None）：如果len（输入）<= 2，则必须设置 ``min_sizes`` ，并且 ``min_sizes`` 的长度应等于输入的长度。默认值：无。
+        - **max_sizes** （list | tuple | None）：如果len（输入）<= 2，则必须设置 ``max_sizes`` ，并且 ``min_sizes`` 的长度应等于输入的长度。默认值：无。
+        - **steps** （list | tuple）：如果step_w和step_h相同，则step_w和step_h可以被steps替换。
+        - **step_w** （list | tuple）：候选框跨越宽度。如果step_w [i] == 0.0，将自动计算输跨越入[i]宽度。默认值：无。
+        - **step_h** （list | tuple）：候选框跨越高度，如果step_h [i] == 0.0，将自动计算跨越输入[i]高度。默认值：无。
+        - **offset** （float）：候选框中心偏移。默认值：0.5
+        - **variance** （list | tuple）：在候选框编码的方差。默认值：[0.1,0.1,0.2,0.2]。
+        - **flip** （bool）：是否翻转宽高比。默认值：false。
+        - **clip** （bool）：是否剪切超出边界的框。默认值：False。
+        - **kernel_size** （int）：conv2d的内核大小。默认值：1。
+        - **pad** （int | list | tuple）：conv2d的填充。默认值：0。
+        - **stride** （int | list | tuple）：conv2d的步长。默认值：1，
+        - **name** （str）：候选框的名称。默认值：无。
+        - **min_max_aspect_ratios_order** （bool）：如果设置为True，则输出候选框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响卷积层后面的权重顺序，但不会影响最终检测结果。默认值：False。
 
 返回：一个带有四个变量的元组，（mbox_loc，mbox_conf，boxes, variances）。
 
@@ -1203,12 +1203,12 @@ bipartite_match
 注意：此API是一个非常低级别的API。它由ssd_loss层使用。请考虑使用ssd_loss。
 
 参数：
-        - **dist_matrix** （变量）：该输入是具有形状[K，M]的2-D LoDTensor。它是由每行和每列来表示实体之间的成对距离矩阵。例如，假设一个实体是具有形状[K]的A，另一个实体是具有形状[M]的B. dist_matrix [i] [j]是A[i]和B[j]之间的距离。距离越大，匹配越好。
+                - **dist_matrix** （变量）：该输入是具有形状[K，M]的2-D LoDTensor。它是由每行和每列来表示实体之间的成对距离矩阵。例如，假设一个实体是具有形状[K]的A，另一个实体是具有形状[M]的B. dist_matrix [i] [j]是A[i]和B[j]之间的距离。距离越大，匹配越好。
 
-        注意：此张量可以包含LoD信息以表示一批输入。该批次的一个实例可以包含不同数量的实体。
+                注意：此张量可以包含LoD信息以表示一批输入。该批次的一个实例可以包含不同数量的实体。
 
-        - **match_type** （string | None）：匹配方法的类型，应为'bipartite'或'per_prediction'。[默认'二分']。
-        - **dist_threshold** （float | None）：如果match_type为'per_prediction'，则此阈值用于根据最大距离确定额外匹配的bbox，默认值为0.5。
+                - **match_type** （string | None）：匹配方法的类型，应为'bipartite'或'per_prediction'。[默认'二分']。
+                - **dist_threshold** （float | None）：如果match_type为'per_prediction'，则此阈值用于根据最大距离确定额外匹配的bbox，默认值为0.5。
 
 返回：        返回一个包含两个元素的元组。第一个是匹配的索引（matched_indices），第二个是匹配的距离（matched_distance）。
 
