@@ -342,28 +342,33 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	<tbody>
 	<tr>
 		<td> cpu_avx_mkl </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-mkl/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-mkl/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
 	</tr>
 	<tr>
 		<td> cpu_avx_openblas </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-openblas/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-openblas/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
 	</tr>
 		<tr>
 		<td> cpu_noavx_openblas </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-cpu-noavx-openblas/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddle-wheel.bj.bcebos.com/latest-cpu-noavx-openblas/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
 	</tr>
 	<tr>
 		<td> cuda8.0_cudnn5_avx_mkl </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
 	</tr>
 	<tr>
 		<td> cuda8.0_cudnn7_avx_mkl </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+	</tr>
+	<tr>
+		<td> cuda9.0_cudnn7_avx_mkl </td>
+		<td> <a href="http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
 	</tr>
    </tbody>
 </table>
