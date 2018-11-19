@@ -105,7 +105,7 @@ increment
  
  
  
-.. _cn_api_fluid_layers_array_write:    
+.. _cn_api_fluid_layers_array_write:
     
 array_write
 >>>>>>>>>>>>>>>>>>>>>>
