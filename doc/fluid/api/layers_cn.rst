@@ -13,7 +13,7 @@ While
 参数：  
 		- **cond** (Variable) – 用于比较的条件
 		- **is_test** (bool) – 用于表明是不是在测试阶段执行
-
+		- **name** (str) - 该层的命名
  
 **代码示例**
 
