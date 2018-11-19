@@ -3,7 +3,7 @@
 DistributeTranspiler
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.transpiler. DistributeTranspiler (config=None)
+.. py:class:: paddle.fluid.transpiler.DistributeTranspiler (config=None)
 
 
 该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
