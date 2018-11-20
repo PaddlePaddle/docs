@@ -420,7 +420,7 @@ conv2d_transpose
 
 2-D卷积转置层（Convlution2D transpose layer）
 
-该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中N为batch大小，C为通道数（channel），H为特征高度，W为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr和act不为None，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
+该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中 ``N`` 为batch大小， ``C`` 为通道数（channel），``H`` 为特征高度， ``W`` 为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数 ``bias_attr`` 和 ``act`` 不为 ``None``，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
 
 .. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
 
@@ -438,17 +438,17 @@ conv2d_transpose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
-    -  :math:`X` : 输入张量，具有NCHW格式
+    -  :math:`X` : 输入张量，具有 ``NCHW`` 格式
 
-    -  :math:`W` : 滤波器张量，，具有NCHW格式
+    -  :math:`W` : 滤波器张量，，具有 ``NCHW`` 格式
 
     -  :math:`*` : 卷积操作
 
-    -  :math:`b` : 偏置（bias），二维张量，shape为[m,1]
+    -  :math:`b` : 偏置（bias），二维张量，shape为 ``[m,1]``
 
     -  :math:`σ` : 激活函数
  
-    -  :math:`Out` : 输出值，Out和X的shape可能不一样
+    -  :math:`Out` : 输出值，Out和 ``X`` 的 ``shape`` 可能不一样
 
 **样例**：
 
@@ -456,14 +456,14 @@ conv2d_transpose
 
 .. math:: 
 
-    输入张量的shape: （N，C_{in}， H_{in}， W_{in})
+    输入张量的 ``shape`` :  ``（N，C_{in}， H_{in}， W_{in})``
 
-    滤波器（filter）shape ：（C_{in}, C_{out}, H_f, W_f) 
+    滤波器（filter） ``shape`` ： ``（C_{in}, C_{out}, H_f, W_f)``  
 
 输出：
         
 .. math:: 
-    输出张量的shape：（N，C_{out}, H_{out}, W_{out})
+    输出张量的 ``shape`` ： ``（N，C_{out}, H_{out}, W_{out})``
 
 其中
 
@@ -483,7 +483,7 @@ conv2d_transpose
 
 参数:
 	- **input**（Variable）- 输入张量，格式为[N, C, H, W]
-	- **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
+	- **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（ channel ）相同
 	- **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
 	- **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
 	- **padding (int|tuple)** - 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
@@ -503,7 +503,7 @@ conv2d_transpose
 
 抛出异常:
 
-    - ValueError : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
+    -  ``ValueError`` : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
 
 **代码示例**
 
@@ -523,7 +523,7 @@ conv3d_transpose
 
 3-D卷积转置层（Convlution3D transpose layer)
 
-该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出。输入(Input)和输出(Output)为NCDHW格式。其中N为batch大小，C为通道数（channel），D 为特征深度,H为特征高度，W为特征宽度。参数(膨胀、步长、填充)分别包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数 ``bias_attr`` 和 ``act`` 不为None，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数
+该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出。输入(Input)和输出(Output)为NCDHW格式。其中 ``N`` 为batch大小， ``C`` 为通道数（channel）, ``D``  为特征深度, ``H`` 为特征高度， ``W`` 为特征宽度。参数(膨胀、步长、填充)分别包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数 ``bias_attr`` 和 ``act`` 不为None，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数
 
 .. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
 
@@ -533,9 +533,9 @@ conv3d_transpose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
-    -  :math:`X` : 输入张量，具有NCDHW格式
+    -  :math:`X` : 输入张量，具有 ``NCDHW`` 格式
 
-    -  :math:`W` : 滤波器张量，，具有NCDHW格式
+    -  :math:`W` : 滤波器张量，，具有 ``NCDHW`` 格式
 
     -  :math:`*` : 卷积操作
 
@@ -543,7 +543,7 @@ conv3d_transpose
 
     -  :math:`σ` : 激活函数
  
-    -  :math:`Out` : 输出值，Out和X的shape可能不一样
+    -  :math:`Out` : 输出值， ``Out`` 和 ``X`` 的 shape可能不一样
 
 
 **样例**
@@ -601,7 +601,7 @@ Output:
 
 抛出异常:
 
-    - ValueError : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
+    -  ``ValueError``  : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
 
 
 **代码示例**
@@ -754,13 +754,13 @@ hsigmoid
 
 .. py:class:: paddle.fluid.layers.hsigmoid(input, label, num_classes, param_attr=None, bias_attr=None, name=None)
 
-层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完整的二叉树，每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。hsigmoid可以把时间复杂度O(N)优化到O(logN),其中N表示单词字典的大小。
+层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完整的二叉树，每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。hsigmoid可以把时间复杂度 ``O(N)`` 优化到 ``O(logN)`` ,其中 ``N`` 表示单词字典的大小。
 
 `请参考 Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
     
 参数:
-        - **input** (Variable) - 输入张量，shape为(N×D),其中N是minibatch的大小，D是特征大小。
-        - **label**(Variable) - 训练数据的标签。该tensor的shape为[N×1]   
+        - **input** (Variable) - 输入张量，shape为 ``[N×D]`` ,其中 ``N`` 是minibatch的大小，D是特征大小。
+        - **label**(Variable) - 训练数据的标签。该tensor的shape为 ``[N×1]``   
         - **num_classes** - (int)，类别的数量不能少于2
         - **param_attr** (ParamAttr|None) - 可学习参数/ hsigmoid权重的参数属性。如果将其设置为ParamAttr的一个属性或None，则将ParamAttr设置为param_attr。如果没有设置param_attr的初始化器，那么使用用Xavier初始化。默认值:没None。
         - **bias_attr** (ParamAttr|bool|None) - hsigmoid偏置的参数属性。如果设置为False，则不会向输出添加偏置。如果将其设置ParamAttr的一个属性或None，则将ParamAttr设置为bias_attr。如果没有设置bias_attr的初始化器，偏置将初始化为零。默认值:None。
@@ -787,7 +787,7 @@ beam_search_decode
 
 .. py:class:: paddle.fluid.layers.beam_search_decode(ids, scores, beam_size, end_id, name=None)
 
-束搜索层（Beam Search Decode Layer）通过回溯LoDTensorArray ids，为每个源语句构建完整假设，LoDTensorArray ids的lod可用于恢复束搜索树中的路径。请参阅下面的demo中的束搜索使用示例：
+束搜索层（Beam Search Decode Layer）通过回溯LoDTensorArray ids，为每个源语句构建完整假设，LoDTensorArray ``ids`` 的lod可用于恢复束搜索树中的路径。请参阅下面的demo中的束搜索使用示例：
 
     ::
 
@@ -821,7 +821,7 @@ row_conv
 
 双向的RNN在深度语音模型中很有用，它通过对整个序列执行正向和反向传递来学习序列的表示。然而，与单向RNNs不同的是，在线部署和低延迟设置中，双向RNNs具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。 row convolution operator 与一维序列卷积不同，计算方法如下:
    
-给定输入序列长度t输入维度d和一个大小为上下文大小*d的滤波器，输出序列卷积为:
+给定输入序列长度 ``t`` 输入维度 ``d`` 和一个大小为上下文大小* ``d`` 的滤波器，输出序列卷积为:
 
 .. math::   
 		out_i = \sum_{j=1}^{i+context} in_{j,_:} * W_{i-j}^2 
@@ -866,9 +866,9 @@ smooth_l1
 
 参数:
         - **x** (Variable) - rank至少为2的张量。输入x的smmoth L1 loss 的op，shape为[batch_size, dim1，…],dimN]。
-        - **y** (Variable) - rank至少为2的张量。与x形状一致的的smooth L1 loss  op目标值。
-        - **inside_weight** (Variable|None) - rank至少为2的张量。这个输入是可选的，与x的形状应该相同。如果给定，(x - y)的结果将乘以这个张量元素。
-        - **outside_weight** (变量|None) - 一个rank至少为2的张量。这个输入是可选的，它的形状应该与x相同。如果给定，那么 smooth L1 loss 就会乘以这个张量元素。
+        - **y** (Variable) - rank至少为2的张量。与 ``x`` 形状一致的的smooth L1 loss  op目标值。
+        - **inside_weight** (Variable|None) - rank至少为2的张量。这个输入是可选的，与x的形状应该相同。如果给定， ``(x - y)`` 的结果将乘以这个张量元素。
+        - **outside_weight** (变量|None) - 一个rank至少为2的张量。这个输入是可选的，它的形状应该与 ``x`` 相同。如果给定，那么 smooth L1 loss 就会乘以这个张量元素。
         - **sigma** (float|None) - smooth L1 loss layer的超参数。标量，默认值为1.0。
    
 返回：	smooth L1 loss, shape为 [batch_size, 1]
@@ -895,7 +895,7 @@ greedy_decoder
 
 此op用于贪婪策略解码序列，步骤如下:
     
-    1. 获取输入中的每一行的最大值索引。又名numpy。argmax(输入轴= 0)。
+    1. 获取输入中的每一行的最大值索引。又名numpy.argmax(input, axis=0)。
     2. 对于step1结果中的每个序列，在两个空格之间合并重复token并删除所有空格。
 
 
@@ -954,12 +954,12 @@ pad
 
 .. py:class:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
 
-在张量上加上一个由pad_value给出的常数值，填充宽度由paddings指定。
-其中，维度i中x内容前填充的值个数用paddings[i]表示，维i中x内容后填充的值个数用paddings[i+1]表示。
+在张量上加上一个由 ``pad_value`` 给出的常数值，填充宽度由 ``paddings`` 指定。
+其中，维度 ``i`` 中 ``x`` 内容前填充的值个数用 ``paddings[i]`` 表示，维度 ``i`` 中 ``x`` 内容后填充的值个数用 ``paddings[i+1]`` 表示。
    
 一个例子:
 
-    ::
+::
 
         Given:
 
@@ -979,7 +979,7 @@ pad
 
     参数:
         - **x** (Variable)——输入张量变量。
-        - **paddings** (list)-一个整数列表。它的元素依次为每个维度指定填充宽度的前后的文职。。
+        - **paddings** (list)-一个整数列表。按顺序填充在每个维度上填充元素。 ``padding`` 长度必须是 ``rank(x)×2``
         - **pad_value** (float) -用来填充的常量值。
         - **name** (str|None) -这个层的名称(可选)。如果设置为None，该层将被自动命名。
    
