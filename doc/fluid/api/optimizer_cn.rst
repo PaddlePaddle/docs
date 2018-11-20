@@ -84,10 +84,10 @@ DecayedAdagradOptimizer
 
 Decayed Adagrad Optimizer
 
- 原始论文： `http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 
+原始论文： `http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 
 
 
- 原始论文： `http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_  中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
+原始论文： `http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_  中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
  
 参数:
 
