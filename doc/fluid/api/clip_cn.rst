@@ -45,9 +45,8 @@ GradientClipByValue
 
 参数:
 
-  - **max** (foat) - 要修剪的最大值。
-
-  - **min** (float，optional) - 要修剪的最小值。如果用户没有设置，将被设置为框架-max。
+ - **max** (foat) - 要修剪的最大值。
+ - **min** (float，optional) - 要修剪的最小值。如果用户没有设置，将被设置为框架-max。
   
 **代码示例**
  
@@ -79,8 +78,7 @@ GradientClipByNorm
 
 
 参数:
-
-  - **clip_norm** (float) - 二范数最大值
+ - **clip_norm** (float) - 二范数最大值
 
   
 **代码示例**
@@ -120,9 +118,8 @@ GradientClipByGlobalNorm
 
 
 参数:
-
-  - **clip_norm** (float) - 范数最大值
-  - **group_name** (str, optional) - 剪切的组名
+ - **clip_norm** (float) - 范数最大值
+ - **group_name** (str, optional) - 剪切的组名
   
 **代码示例**
  
