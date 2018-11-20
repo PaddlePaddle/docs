@@ -43,7 +43,7 @@ WeightNormParamAttr
 
 参数:
   - **dim**  (list) – 参数纬度. Default None.
-  - **name ** (str) – 参数名称. Default None.
+  - **name** (str) – 参数名称. Default None.
   - **initializer**  (Initializer) – 初始化参数的方法. Default None.
   - **learning_rate**  (float) – 参数的学习率. 优化的参数学习率为  global_lr∗parameter_lr∗scheduler_factor. Default 1.0
   - **regularizer**  (WeightDecayRegularizer) – 正则化因子. Default None.
