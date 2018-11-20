@@ -51,10 +51,8 @@ Adamax 更新规则:
             learning\_rate=\frac{learning\_rate}{1-\beta_1^t}\\
             param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
 
-论文中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
-  - 任何小于最小值的值都被设置为最小
 
-  - 任何大于max的值都被设置为max
+论文中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
 
 参数:
 
