@@ -79,7 +79,7 @@ Multi-box loss layer, 用于 SSD 目标检测算法
     loss = fluid.layers.ssd_loss(loc, scores, gt_box, gt_label, pb, pbv)
 
 
-.. _cn_api_fluid_layers_polygon_box_transform
+.. _cn_api_fluid_layers_polygon_box_transform:
 
 polygon_box_transform
 >>>>>>>>>>>>
@@ -98,7 +98,7 @@ PolygonBoxTransform 算子。
 返回类型：output（Variable）
 
 
-.. _cn_api_fluid_layers_accuracy
+.. _cn_api_fluid_layers_accuracy:
 
 accuracy
 >>>>>>>>>>>>
