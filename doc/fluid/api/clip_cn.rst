@@ -73,6 +73,7 @@ GradientClipByNorm
 将张量转换为L2范数不超过 ``clip_norm`` 的张量
 
 该operator 限制了 输入张量 ``X``的L2范数不会超过 max_norm 。如果 ``X`` 的 ``L2`` 范数小于或等于 ``max_norm`` ,输出和 ``X`` 一样，如果 ``X`` 的L2范数大于 ``max_norm`` , ``X`` 将被线性缩放到L2范数等于 ``max_norm`` ,如以下公式所示:
+
 .. math::
             \\Out = \frac{max\_norm∗X}{norm(X)}\\
 
@@ -109,10 +110,11 @@ GradientClipByGlobalNorm
 给定一个张量t_list和一个剪切比率 clip_norm，返回一个被剪切的张量列表list_clip和t_list中所有张量的全局范数(global_norm)。
 
 剪切过程如下：
+
 .. math::
             \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{(global\_norm,clip\_norm)}\\
             
- 其中：
+            其中：
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
 
@@ -121,7 +123,7 @@ GradientClipByGlobalNorm
 
 参数:
 
-  - **clip_norm** (float) - 范数最大值\
+  - **clip_norm** (float) - 范数最大值
   - **group_name** (str, optional) - 剪切的组名
   
 **代码示例**
