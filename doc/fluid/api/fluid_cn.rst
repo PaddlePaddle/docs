@@ -85,7 +85,7 @@ program_guard
 
 	import paddle.fluid as fluid
 	main_program = fluid.Program()
-	# does not care about startup program. Just pass a temporary value.
+	# 如果您不需要关心startup program,传入一个临时值即可
 	with fluid.program_guard(main_program, fluid.Program()):
 		data = ...
 
@@ -212,7 +212,7 @@ DistributeTranspiler
 
 该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
 当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即pserver,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
-在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。
+在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享 ``NCCL_ID`` 。
 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``ParallelExecutor`` 来启动NCCL2分布式模式。 
 
 
@@ -222,7 +222,7 @@ DistributeTranspiler
 
 ..  code-block:: python
 
-	# for pserver mode
+	#pserver模式下
 	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
 	trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
 	current_endpoint = "192.168.0.1:6174"
@@ -240,7 +240,7 @@ DistributeTranspiler
 	elif role == "TRAINER":
              trainer_program = t.get_trainer_program()
 
-	# for nccl2 mode
+	# nccl2模式下
 	config = fluid.DistributeTranspilerConfig()
 	config.mode = "nccl2"
 	t = fluid.DistributeTranspiler(config=config)
@@ -331,7 +331,8 @@ release_memory
 
 该函数可以调整输入program，插入 ``delete_op`` 删除算子，提前删除不需要的变量。
 改动是在变量本身上进行的。
-提醒: 该API还在试验阶段，会在后期版本中删除。不建议用户使用。
+
+**提醒**: 该API还在试验阶段，会在后期版本中删除。不建议用户使用。
 
 参数:	
     - **input_program** (Program) – 在此program中插入 ``delete_op`` 
@@ -364,14 +365,13 @@ create_lod_tensor
 例如：
          假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。
      	 那么数据可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
-     	 请参照 ``api_guide_low_level_lod_tensor`` 来获取更多LoD的详细介绍。
 
 参数:
 	- **data** (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
 	- **recursive_seq_lens** (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
 	- **place** (Place) – CPU或GPU。 指明返回的新LoD Tensor存储地点
 
-返回: 一个fluid LoDTensor对象，包含数据和recursive_seq_lens信息
+返回: 一个fluid LoDTensor对象，包含数据和 ``recursive_seq_lens`` 信息
 
 
 
@@ -393,12 +393,12 @@ create_random_int_lodtensor
 
 该函数实现以下功能：
 
-    1. 根据用户输入的length-based recursive_seq_lens（基于长度的递归序列长）和在 ``basic_shape`` 中的基本元素形状计算LoDTensor的整体形状
+    1. 根据用户输入的length-based ``recursive_seq_lens`` （基于长度的递归序列长）和在 ``basic_shape`` 中的基本元素形状计算LoDTensor的整体形状
     2. 由此形状，建立numpy数组
     3. 使用API： ``create_lod_tensor`` 建立LoDTensor
 
 
-假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么 ``base_shape`` 为[1], 输入的length-based ‘recursive_seq_lens’ 是 [[2, 3]]。那么LoDTensor的整体形状应为[5, 1]，即为两个句子存储5个词。
+假如我们想用LoD Tensor来承载一词序列，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么 ``base_shape`` 为[1], 输入的length-based ``recursive_seq_lens`` 是 [[2, 3]]。那么LoDTensor的整体形状应为[5, 1]，并且为两个句子存储5个词。
 
 参数:	
     - **recursive_seq_lens** (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
@@ -407,7 +407,7 @@ create_random_int_lodtensor
     - **low** (int) – 随机数下限
     - **high** (int) – 随机数上限
 
-返回:	一个fluid LoDTensor对象，包含数据和recursive_seq_lens信息
+返回:	一个fluid LoDTensor对象，包含数据和 ``recursive_seq_lens`` 信息
 
 
 
@@ -429,7 +429,7 @@ ParamAttr
 参数:	
     - **name** (str) – 参数名。默认为None。
     - **initializer** (Initializer) – 初始化该参数的方法。 默认为None
-    - **learning_rate** (float) – 参数的学习率。计算方法为 global_lr*parameter_lr∗scheduler_factor。 默认为1.0
+    - **learning_rate** (float) – 参数的学习率。计算方法为 :math:`global_lr*parameter_lr∗scheduler_factor` 。 默认为1.0
     - **regularizer** (WeightDecayRegularizer) – 正则因子. 默认为None
     - **trainable** (bool) – 该参数是否可训练。默认为True
     - **gradient_clip** (BaseGradientClipAttr) – 减少参数梯度的方法。默认为None
@@ -647,16 +647,16 @@ ExecutionStrategy
   
 int型成员。它表明了清空执行时产生的临时变量需要的程序执行重复次数。因为临时变量的形可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为100。
 
-特别注意：
-  1.如果在调用 ``run`` 方法时获取结果数据，``ParallelExecutor`` 会在当前程序重复执行尾部清空临时变量
+.. note::
+  1. 如果在调用 ``run`` 方法时获取结果数据，``ParallelExecutor`` 会在当前程序重复执行尾部清空临时变量
   
-  2.在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
+  2. 在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
 
 
 
 .. py:method:: num_threads
 
-int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math: num_threads=1 ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num_threads=device_count∗4` ；对CPU，:math:`num_threads=CPU_NUM∗4` 。在 ``ParallelExecutor`` 中有关于 ``CPU_NUM`` 的详细解释。如果没有设置 ``CPU_NUM`` ， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
+int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math:`num_threads=1` ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num_{threads}=device_{count}∗4` ；对CPU，:math:`num_threads=CPU\_NUM∗4` 。在 ``ParallelExecutor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
 
 
 
