@@ -35,7 +35,7 @@ DataFeeder 将 reader 返回的数据转换为一种数据结构，该结构可�
     -  **program** （Program） - 需要使用数据的 Program，如果 Program 为 None，则使用 default_main_program（）。 默认 None。
 
 抛出异常：
-    ValueError - 如果某个变量不在该 Program 中。
+    ``ValueError`` - 如果某个变量不在该 Program 中。
 
 **代码示例**
 
