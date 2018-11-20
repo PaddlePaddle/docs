@@ -9,7 +9,8 @@ DataFeeder
 
 DataFeeder 将 reader 返回的数据转换为一种数据结构，该结构可以提供给 Executor 和 ParallelExecutor。DataFeeder 通常返回一个 mini batch 的 list。list 中的每个数据条目都是一个样本。每个样本是一个列表或元组，其中包含一个或多个特征。
 
-# 
+::
+
     简单用法如下:
     place = fluid.CPUPlace()
     img = fluid.layers.data(name='image', shape=[1, 28, 28])
