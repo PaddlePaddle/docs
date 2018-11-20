@@ -44,7 +44,7 @@ DataFeeder 将 reader 返回的数据转换为一种数据结构，该结构可�
     place = fluid.CPUPlace()
     feed_list = [
         main_program.global_block().var(var_name) for var_name in feed_vars_name
-    ] # feed_vars_name is a list of variables' name.
+    ] # feed_vars_name 是一个由变量名组成的列表。
     feeder = fluid.DataFeeder(feed_list, place)
     for data in reader():
         outs = exe.run(program=main_program,
