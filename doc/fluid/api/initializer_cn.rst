@@ -1,6 +1,6 @@
 
 
-.. _cn_api_fluid_initializer_init_on_cpu
+.. _cn_api_fluid_initializer_init_on_cpu:
 
 init_on_cpu
 >>>>>>>>>>>>
