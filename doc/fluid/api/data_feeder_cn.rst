@@ -104,7 +104,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 返回类型: dict
     
-弹出异常： ValueError – 如果 ``drop_last`` 值为False并且reader返回的minibatch数目与设备数目不相等时，产生此异常
+弹出异常： ``ValueError`` – 如果 ``drop_last`` 值为False并且reader返回的minibatch数目与设备数目不相等时，产生此异常
 
 
         
