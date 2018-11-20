@@ -16,12 +16,12 @@ init_on_cpu
         with init_on_cpu():
                 step = layers.create_global_var()
 
-.. _cn_api_fluid_initializer_ConstantInitializer
+.. _cn_api_fluid_initializer_ConstantInitializer:
 
 ConstantInitializer
 >>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.initializer.ConstantInitializer(value=0.0, force_cpu=False)
+.. py:class:: paddle.fluid.initializer.ConstantInitializer(value=0.0, force_cpu=False)
 
 常量初始器
 
@@ -35,12 +35,12 @@ ConstantInitializer
         fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.Constant(value=2.0))
 
-.. _cn_api_fluid_initializer_UniformInitializer
+.. _cn_api_fluid_initializer_UniformInitializer:
 
 UniformInitializer
 >>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.initializer.UniformInitializer(low=-1.0, high=1.0, seed=0) 
+.. py:class:: paddle.fluid.initializer.UniformInitializer(low=-1.0, high=1.0, seed=0) 
 
 随机均匀分布初始化器
 
@@ -57,7 +57,7 @@ UniformInitializer
             param_attr=fluid.initializer.Uniform(low=-0.5, high=0.5))
  
 
-.. _cn_api_fluid_initializer_NormalInitializer
+.. _cn_api_fluid_initializer_NormalInitializer:
 
 NormalInitializer
 >>>>>>>>>>>>
@@ -80,12 +80,12 @@ NormalInitializer
 
 
 
-.. _cn_api_fluid_initializer_TruncatedNormalInitializer
+.. _cn_api_fluid_initializer_TruncatedNormalInitializer:
 
 TruncatedNormalInitializer
 >>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.initializer.TruncatedNormalInitializer(loc=0.0, scale=1.0, seed=0)
+.. py:class:: paddle.fluid.initializer.TruncatedNormalInitializer(loc=0.0, scale=1.0, seed=0)
 
 Random TruncatedNormal（高斯）分布初始化器
 
