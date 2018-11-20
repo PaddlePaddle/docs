@@ -52,7 +52,7 @@ DataFeeder 将 reader 返回的数据转换为一种数据结构，该结构可�
 
 .. py:method:: feed(iterable)
 
-根据 feed_list 和 iterable，将输入转换为 Executor 和 ParallelExecutor 所需的数据结构。
+根据 feed_list 和 iterable，将输入转换为 ``Executor`` 和 ``ParallelExecutor`` 所需的数据结构。
 
 参数:	
     - **iterable** (list|tuple) – the input data.
