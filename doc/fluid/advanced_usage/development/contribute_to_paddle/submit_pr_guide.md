@@ -26,7 +26,7 @@
 
 <div align="center">
 
-<img src="./img/cla_unsigned.png"  height="60" width="933">
+<img src="https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/cla_unsigned.png?raw=true"  height="60" width="933">
 
  </div>
 
@@ -35,7 +35,7 @@
 
 <div align="center">
 
-<img src="./img/sign_cla.png"  height="672" width="534">
+<img src="https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/sign_cla.png?raw=true"  height="672" width="534">
 
  </div>
 
