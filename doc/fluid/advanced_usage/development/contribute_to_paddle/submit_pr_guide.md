@@ -52,19 +52,20 @@
 
 - 如果所需的测试后出现了红色叉号，代表您本次的commit未通过某项单元测试，请您按照以下步骤查看报错信息：
 
-1）点击出现报错的CI测试项栏最右边的“detail”
+	* 点击出现报错的CI测试项栏最右边的“detail”
 
-2）如果您未登陆过CI网站，您会看到一个登陆窗口，此时请您点击“Log in as guest”(如下图)，即可查看报错信息
+	* 如果您未登陆过CI网站，您会看到一个登陆窗口，此时请您点击“Log in as guest”(如下图)，即可查看报错信息
 
-<div align="center">
+	<div align="center">
 
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/v2/build_and_install/paddleci.png?raw=true"  height="225" width="398">
+	<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/v2/build_and_install/paddleci.png?raw=true"  height="225" width="398">
 
- </div>
+	</div>
+
 
  3）修复与反馈
 
- 请您根据报错信息自行修复，如果确定本地commit不会触发报错，则报错可能是由CI不稳定引起的。这种情况下，请将报错详情以评论的方式添加在您的Pull Request中，我们的工作人员将帮您查看，这里提供一个[例子](https://github.com/PaddlePaddle/Paddle/pull/14337#issuecomment-437398972)
+ 请您根据报错信息自行修复，如果确定本地commit不会触发报错，则报错可能是由CI不稳定引起的。这种情况下，请将报错详情以评论的方式添加在您的Pull Request中，我们的工作人员将帮您查看，这里提供一个[例子](https://github.com/PaddlePaddle/Paddle/pull/14337#issuecomment-437398972)。
 
 ## 删除远程分支
 
@@ -102,9 +103,10 @@
 
 - 请注意commit的数量：
 
-原因：如果仅仅修改一个文件但提交了十几个commit，每个commit只做了少量的修改，这会给评审人带来很大困扰。评审人需要逐一查看每个commit才能知道做了哪些修改，且不排除commit之间的修改存在相互覆盖的情况。
+	* 原因：如果仅仅修改一个文件但提交了十几个commit，每个commit只做了少量的修改，这会给评审人带来很大困扰。
+	评审人需要逐一查看每个commit才能知道做了哪些修改，且不排除commit之间的修改存在相互覆盖的情况。
 
-建议：每次提交时，保持尽量少的commit，可以通过`git commit --amend`补充上次的commit。对已经Push到远程仓库的多个commit，可以参考[squash commits after push](http://stackoverflow.com/questions/5667884/how-to-squash-commits-in-git-after-they-have-been-pushed)。
+	* 建议：每次提交时，保持尽量少的commit，可以通过`git commit --amend`补充上次的commit。对已经Push到远程仓库的多个commit，可以参考[squash commits after push](http://stackoverflow.com/questions/5667884/how-to-squash-commits-in-git-after-they-have-been-pushed)。
 
 - 请注意每个commit的名称：应能反映当前commit的内容，不能太随意。
 
