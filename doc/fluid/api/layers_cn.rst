@@ -1,6 +1,6 @@
 
 
-.. _cn_api_fluid_layers_ssd_loss
+.. _cn_api_fluid_layers_ssd_loss:
 
 ssd_loss
 >>>>>>>>>>>>
