@@ -7,7 +7,7 @@ init_on_cpu
 
 .. py:class:: paddle.fluid.initializer.init_on_cpu(*args, **kwds)
 
-强制变量在 cpu 上初始化
+强制变量在 cpu 上初始化。
 
 **代码示例**
 
