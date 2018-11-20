@@ -22,6 +22,7 @@ While
   d0 = layers.data("d0", shape=[10], dtype='float32')
   data_array = layers.array_write(x=d0, i=i)
   array_len = layers.fill_constant(shape=[1],dtype='int64', value=3)
+  
   cond = layers.less_than(x=i, y=array_len)
   while_op = layers.While(cond=cond)
   with while_op.block():
@@ -86,14 +87,15 @@ increment
 .. py:class:: paddle.fluid.layers.increment(x, value=1.0, in_place=True)
 
    
-该函数为x中的每一个值增加 ``value`` 大小, ``value`` 即函数中待传入的参数。该函数默认直接在原变量x上进行运算。
+该函数为输入 ``x`` 中的每一个值增加 ``value`` 大小, ``value`` 即函数中待传入的参数。该函数默认直接在原变量 ``x`` 上进行运算。
   
 参数:
     - **x** (Variable|list) – 含有输入值的张量(tensor)
-    - **value** (float) – 需要增加在x变量上的值
-    - **in_place** (bool) – 是否在x变量本身进行增加操作，而非返回其增加后的一个副本本身不改变。默认为True, 即在其本身进行操作。
+    - **value** (float) – 需要增加在 ``x`` 变量上的值
+    - **in_place** (bool) – 是否在 ``x`` 变量本身进行增加操作，而非返回其增加后的一个副本而本身不改变。默认为True, 即在其本身进行操作。
 
 返回： 每个元素增加后的对象
+
 返回类型：变量(variable)
 
 **代码示例**
@@ -119,9 +121,10 @@ array_write
 参数:
     - **x** (Variable|list) – 待从中读取数据的输入张量(tensor)
     - **i** (Variable|list) – 输出结果 ``LOD_TENSOR_ARRAY`` 的下标, 该下标指向输入张量 ``x`` 写入输出数组的位置
-    - **array** (Variable|list) – 会被输入张量 ``x`` 写入的输出结果 ``LOD_TENSOR_ARRAY`` 。如果该项值为None, If this parameter is NONE, 一个新的 ``LOD_TENSOR_ARRAY`` 将会被创建并作为结果返回
+    - **array** (Variable|list) – 会被输入张量 ``x`` 写入的输出结果 ``LOD_TENSOR_ARRAY`` 。如果该项值为None， 一个新的 ``LOD_TENSOR_ARRAY`` 将会被创建并作为结果返回
  
 返回:	输入张量 ``x`` 所写入的输出结果 ``LOD_TENSOR_ARRAY``  
+
 返回类型:	变量（Variable）
 
 **代码示例**
@@ -142,7 +145,7 @@ crf_decoding
 .. py:class::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None)
 
 该函数读取由 ``linear_chain_crf`` 学习的emission feature weights（发射状态特征的权重）和 transition feature weights(转移特征的权重)。
-本函数实现了Viterbi算法，可以动态地寻找隐藏状态最可能的序列，该序列也被称为Viterbi路径（Viterbi path），即为观察得出的标注(tags)序列。
+本函数实现了Viterbi算法，可以动态地寻找隐藏状态最可能的序列，该序列也被称为Viterbi路径（Viterbi path），从而得出的标注(tags)序列。
 
 这个运算的结果会随着 ``Label`` 参数的有无而改变：
       
@@ -153,9 +156,9 @@ crf_decoding
 （没有 ``Label`` 时）该运算返回一个形为 [N X 1]的向量，其中元素取值范围为 0 ~ 最大标注个数-1，分别为预测出的标注（tag）所在的索引。
 	
 参数：	
-    - **input** (Variable)(LoDTensor，默认类型为 LoDTensor<float>) -一个形为 [N x D] 的LoDTensor，其中 N 是mini-batch的大小，D是标注（tag) 的总数。 该输入是 ``linear_chain_crf`` 的 unscaled emission weight matrix （未标准化的发射权重矩阵）
-    - **param_attr** (ParamAttr) - 参与训练的参数的属性
-    - **label** (Variable)(LoDTensor，默认类型为 LoDTensor<int64_t>) - 形为[N x 1]的正确标注（ground truth）。 该项可选择传入。 有关该参数的更多信息，请详见上述描述
+    - **input** (Variable)(LoDTensor，默认类型为 LoDTensor<float>) — 一个形为 [N x D] 的LoDTensor，其中 N 是mini-batch的大小，D是标注（tag) 的总数。 该输入是 ``linear_chain_crf`` 的 unscaled emission weight matrix （未标准化的发射权重矩阵）
+    - **param_attr** (ParamAttr) — 参与训练的参数的属性
+    - **label** (Variable)(LoDTensor，默认类型为 LoDTensor<int64_t>) —  形为[N x 1]的正确标注（ground truth）。 该项可选择传入。 有关该参数的更多信息，请详见上述描述
 
 返回：(LoDTensor, LoDTensor<int64_t>)decoding结果。具体内容根据 ``Label`` 参数是否提供而定。请参照函数介绍来详细了解。
 
@@ -179,7 +182,7 @@ cross_entropy
 
 .. py:class:: paddle.fluid.layers.cross_entropy(input, label, soft_label=False, ignore_index=-100)
 
-该函数定义了输入和标签之间的cross entropy(交叉熵)层。该函数支持standard cross-entropy computation（标准交叉熵损失函数计算）
+该函数定义了输入和标签之间的cross entropy(交叉熵)层。该函数支持standard cross-entropy computation（标准交叉熵损失计算）
 以及soft-label cross-entropy computation（软标签交叉熵损失计算）
 
   1. One-hot cross-entropy算法
@@ -194,10 +197,11 @@ cross_entropy
                             .. math::
                                      \\Y[i]= \sum_{j}-Label[i,j]*log(X[i,j])\\
                                      
-      **请确保采用此算法时识别为各软标签的概率总和为1**
+     **请确保采用此算法时识别为各软标签的概率总和为1**
   
   3. One-hot cross-entropy with vecterized label（使用向量化标签的One-hot）算法
-        作为 *2* 的特殊情况，当软类标签内部只有一个非零概率元素，且它的值为1，那么 *2* 算法降级为一种仅有one-hot标签的one-hot交叉熵
+        
+     作为 *2* 的特殊情况，当软类标签内部只有一个非零概率元素，且它的值为1，那么 *2* 算法降级为一种仅有one-hot标签的one-hot交叉熵
   
   
 
@@ -207,7 +211,7 @@ cross_entropy
     - **input** (Variable|list) – 一个形为[N x D]的二维tensor，其中N是batch大小，D是类别（class）数目。 这是由之前的operator计算出的概率，绝大多数情况下是由softmax operator得出的结果
     - **label** (Variable|list) – 一个二维tensor组成的正确标记的数据集(ground truth)。 当 ``soft_label`` 为False时，label为形为[N x 1]的tensor<int64>。 ``soft_label`` 为True时, label是形为 [N x D]的 tensor<float/double>
     - **soft_label** (bool) – 标志位，指明是否需要把给定的标签列表认定为软标签。默认为False。
-    - **ignore_index** (int) – 指定一个被无视的目标值，并且这个值对不影响输入梯度变化。仅在 ``soft_label`` 为False时生效。 默认值: -100
+    - **ignore_index** (int) – 指定一个被无视的目标值，并且这个值不影响输入梯度变化。仅在 ``soft_label`` 为False时生效。 默认值: -100
 
 返回： 一个形为[N x 1]的二维tensor，承载了交叉熵损失
 
@@ -239,7 +243,7 @@ less_than
 
 
 该函数按元素出现顺序依次在X,Y上操作，并返回 ``Out`` ，它们三个都是n维tensor（张量）。
-其中，X、Y可以是任何类型的tensor，Out张量的各个元素可以通过 *Out=X<Y* 计算得出。
+其中，X、Y可以是任何类型的tensor，Out张量的各个元素可以通过 :math:`Out=X<Y` 计算得出。
 
 **代码示例**
 
@@ -280,7 +284,7 @@ reorder_lod_tensor_by_rank
   假设在 RankTable 中存储的序列索引为 [3,0,2,1]， X 将会被这样被重新排列：
   X 中的第四个序列（即索引为3的序列，后面以此类推）会变成排列后的batch中的第一个，紧接着就是原来batch中的第一个元素，第三个元素，和第二个元素。
   简言之，若有原batch：X = [Seq0, Seq1, Seq2, Seq3] 且 RankTable 中的索引为 [3,0,2,1]，那么输出即为 Out = [Seq3, Seq0, Seq2, Seq1] ，它携带着新的LoD信息。	
-  如果 X 的LoD信息是空的，这表明 X 不是序列型数据。这和由多个定长为1的序列组成的batch是相同的情况。此时，该函数将对 X 中的切片（slice） 按 rank_table 里的规则加以排列。
+  如果 X 的LoD信息是空的，这表明 X 不是序列型数据。这和由多个定长为1的序列组成的batch是相同的情况。此时，该函数将对 X 中的切片（slice） 在第一轴(axis)上按 rank_table 里的规则加以排列。
   例如，现有 X = [Slice0, Slice1, Slice2, Slice3] ，并且它LoD信息为空，在 RankTable 索引为[3, 0, 2, 1]。则 Out = [Slice3, Slice0, Slice2, Slice1] ，并且不在其中追加LoD信息。
 
 注意，该operator对 ``X`` 进行的排序所依据的 ``LoDRankTable`` 不一定是在 ``X`` 的基础上得出来的。它可以由
@@ -375,15 +379,16 @@ dynamic_gru
 
 公式如下：
 
+.. math:: 
+  u_{t}=act_g(W_{ux}x_{t}+W_{uh}h_{t-1}+b_{u})
 .. math::
-  
-  \\u_{t}=act_g(W_{ux}x_{t}+W_{uh}h_{t-1}+b_{u})\\
-  \\r_{t}=act_g(W_{rx}x_{t}+W_{rh}h_{t-1}+b_{r})\\
-  \\\widetilde{h_{t}}=act_{c}(W_{cx}x_{t}+W_{ch}(r_{t}\odot h_{t-1})+b_c)\\
-  \\h_t=(1-u_t)\odot h_{t-1}+u_t\odot \widetilde{h_t}\\
+  r_{t}=act_g(W_{rx}x_{t}+W_{rh}h_{t-1}+b_{r})
+.. math::
+  \widetilde{h_{t}}=act_{c}(W_{cx}x_{t}+W_{ch}(r_{t}\odot h_{t-1})+b_c)
+.. math::
+  h_t=(1-u_t)\odot h_{t-1}+u_t\odot \widetilde{h_t}
 
-
-其中，⊙为按元素将向量相乘。 :math:`act_g` 是更新门（update gate）和重置门（reset gate）的激励函数(activation)， 常为 :math:`sigmoid` 函数。 :math:`act_c` 是candidate hidden state(候选隐藏状态)的激励函数，常为 :math:`tanh` 。
+其中， :math:`\odot` 为按元素将向量相乘。 :math:`act_g` 是更新门（update gate）和重置门（reset gate）的激励函数(activation)， 常为 :math:`sigmoid` 函数。 :math:`act_c` 是candidate hidden state(候选隐藏状态)的激励函数，常为 :math:`tanh` 。
 
 注意 :math:`W_{ux}x_{t},W_{rx}x_{t},W_{cx}x_{t}` 这些在 input  :math:`x_t` 上的操作不包括在该运算中。用户可以选择性地在GRU层之前使用FC层来进行这一操作。
 
@@ -439,18 +444,26 @@ LSTM，即Long-Short Term Memory(长短期记忆)运算。
 
 默认实现方式为diagonal/peephole连接(https://arxiv.org/pdf/1402.1128.pdf)，公式如下：
 
-.. math::
-      \\i_t=\sigma (W_{ix}x_{t}+W_{ih}h_{t-1}+W_{ic}c_{t-1}+b_i)\\
-      \\f_t=\sigma (W_{fx}x_{t}+W_{fh}h_{t-1}+W_{fc}c_{t-1}+b_f)\\
-      \\\widetilde{c_t}=act_g(W_{ct}x_{t}+W_{ch}h_{t-1}+b_{c})\\
-      \\o_t=\sigma (W_{ox}x_{t}+W_{oh}h_{t-1}+W_{oc}c_{t}+b_o)\\
-      \\c_t=f_t\odot c_{t-1}+i_t\odot \widetilde{c_t}\\
-      \\h_t=o_t\odot act_h(c_t)\\
 
-W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门（input gate）到输入的权重矩阵, :math:`W_{ic}` ，:math:`W_{fc}` ，  :math:`W_{oc}` 是对角权重矩阵(diagonal weight matrix)，用于peephole连接。在此实现方式中，我们使用向量来代表这些对角权重矩阵。其中：
+.. math::
+      i_t=\sigma (W_{ix}x_{t}+W_{ih}h_{t-1}+W_{ic}c_{t-1}+b_i)
+.. math::
+      f_t=\sigma (W_{fx}x_{t}+W_{fh}h_{t-1}+W_{fc}c_{t-1}+b_f)
+.. math::
+      \widetilde{c_t}=act_g(W_{ct}x_{t}+W_{ch}h_{t-1}+b_{c})
+.. math::
+      o_t=\sigma (W_{ox}x_{t}+W_{oh}h_{t-1}+W_{oc}c_{t}+b_o)
+.. math::
+      c_t=f_t\odot c_{t-1}+i_t\odot \widetilde{c_t}
+.. math::
+      h_t=o_t\odot act_h(c_t)
+
+W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门（input gate）到输入的权重矩阵, :math:`W_{ic}` ，:math:`W_{fc}` ，  :math:`W_{oc}` 是对角权重矩阵(diagonal weight matrix)，用于peephole连接。在此实现方式中，我们使用向量来代表这些对角权重矩阵。
+
+其中：
       - :math:`b` 表示bias向量（ :math:`b_i` 是输入门的bias向量）
       - :math:`σ` 是非线性激励函数（non-linear activations），比如逻辑sigmoid函数
-      - :math:`i` ，:math:`f` ，:math:`o` 和 :math:`c` 分别为输入门(input gate)，遗忘门(forget gate)，输出门（output gate）,以及神经元激励向量（cell activation vector）这些向量和神经元输出激励向量（cell output activation vector）:math:`h` 有相同的大小。
+      - :math:`i` ，:math:`f` ，:math:`o` 和 :math:`c` 分别为输入门(input gate)，遗忘门(forget gate)，输出门（output gate）,以及神经元激励向量（cell activation vector）这些向量和神经元输出激励向量（cell output activation vector） :math:`h` 有相同的大小。
       - :math:`⊙` 意为按元素将两向量相乘
       - :math:`act_g` , :math:`act_h` 分别为神经元(cell)输入、输出的激励函数(activation)。常常使用tanh函数。
       - :math:`\widetilde{c_t}` 也被称为候选隐藏状态(candidate hidden state)。可根据当前输入和之前的隐藏状态计算而得
@@ -469,7 +482,7 @@ W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门�
   - **c_0** (Variable) – 最初的神经元状态（cell state）， 可选项。 默认值0。它是一个(N x D)张量, 其中N是batch大小。h_0和c_0仅可以同时为None，不能只其中一个为None。
   - **param_attr** (ParamAttr|None) – 可学习的隐藏层权重的参数属性。
     注意：
-                      - Weights = :math: \{W_{ch}, W_{ih},  W_{fh},  W_{oh} \}
+                      - Weights = :math:`\{W_{ch}, W_{ih},  W_{fh},  W_{oh} \}`
                       - 形为(D x 4D), 其中D是hidden size（隐藏层规模）
 
     如果它被设为None或者 ``ParamAttr`` 属性之一, dynamic_lstm会创建 ``ParamAttr`` 对象作为param_attr。如果没有对param_attr初始化（即构造函数没有被设置）， Xavier会负责初始化参数。默认为None。
@@ -478,7 +491,7 @@ W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门�
       - use_peepholes = False - Biases = :math:`\{ b_c,b_i,b_f,b_o \}` - 形为(1 x 4D)。
       - use_peepholes = True - Biases = :math:`\{ b_c,b_i,b_f,b_o,W_{ic},W_{fc},W_{oc} \}` - 形为 (1 x 7D)。
 
-    如果它被设为None或 ``ParamAttr`` 的属性之一， ``dynamic_lstm`` 会创建一个 ``ParamAttr``对象作为bias_attr。 如果没有对bias_attr初始化（即构造函数没有被设置），bias会被初始化为0。默认值为None。
+    如果它被设为None或 ``ParamAttr`` 的属性之一， ``dynamic_lstm`` 会创建一个 ``ParamAttr`` 对象作为bias_attr。 如果没有对bias_attr初始化（即构造函数没有被设置），bias会被初始化为0。默认值为None。
   - **use_peepholes** (bool) – （默认: True） 是否使用diagonal/peephole连接方式
   - **is_reverse** (bool) – （默认: False） 是否计算反LSTM(reversed LSTM)
   - **gate_activation** (str) – （默认: "sigmoid"）应用于input gate（输入门），forget gate（遗忘门）和 output gate（输出门）的激励函数（activation），默认为sigmoid
@@ -516,15 +529,16 @@ gru_unit
 GRU单元层。GRU执行步骤基于如下等式：
 
 .. math::
-    \\u_t=actGate(xu_t+W_{u}h_{t-1}+b_u)\\
-    \\r_t=actGate(xr_t+W_{r}h_{t-1}+b_r)\\
-    \\m_t=actNode(xm_t+W_{c}dot(r_t,h_{t-1})+b_m)\\
-    \\h_t=dot((1-u_t),m_t)+dot(u_t,h_{t-1})\\
+    u_t=actGate(xu_t+W_{u}h_{t-1}+b_u)
+.. math::
+    r_t=actGate(xr_t+W_{r}h_{t-1}+b_r)
+.. math::
+    m_t=actNode(xm_t+W_{c}dot(r_t,h_{t-1})+b_m)
+.. math::
+    h_t=dot((1-u_t),m_t)+dot(u_t,h_{t-1})
     
- 
- 
 GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中， :math:`z_t` 会被分割成三部分： :math:`xu_t` 、 :math:`xr_t` 和 :math:`xm_t`  。
-这意味着要为一批输入实现一个全连接层，我们需要采用一个全连接层，才能得到 :math:`z_t=W_{fc}x_t` 。
+这意味着要为一批输入实现一个全GRU层，我们需要采用一个全连接层，才能得到 :math:`z_t=W_{fc}x_t` 。
 :math:`u_t` 和 :math:`r_t` 分别代表了GRU神经元的update gates（更新门）和reset gates(重置门)。
 和LSTM不同，GRU少了一个门（它没有LSTM的forget gate）。但是它有一个叫做中间候选隐藏状态（intermediate candidate hidden output）的输出，
 记为 :math:`m_t` 。 该层有三个输出： :math:`h_t, dot(r_t,h_{t-1})` 以及 :math:`u_t，r_t，m_t` 的连结(concatenation)。
@@ -538,10 +552,10 @@ GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中�
   - **size** (integer) – 输入数据的维度
   - **param_attr** (ParamAttr|None) – 可学习的隐藏层权重矩阵的参数属性。
     注意：
-      - 该权重矩阵形为 :math:`(T×3D)` ，D是隐藏状态的规模（hidden size）
+      - 该权重矩阵形为 :math:`(T×3D)` ， :math:`D` 是隐藏状态的规模（hidden size）
       - 该权重矩阵的所有元素由两部分组成， 一是update gate和reset gate的权重，形为 :math:`(D×2D)` ；二是候选隐藏状态（candidate hidden state）的权重矩阵，形为 :math:`(D×D)`
     如果该函数参数值为None或者 ``ParamAttr`` 类中的属性之一，gru_unit则会创建一个 ``ParamAttr`` 类的对象作为 param_attr。如果param_attr没有被初始化，那么会由Xavier来初始化它。默认值为None
-  - **bias_attr** (ParamAttr|bool|None) - GRU的bias变量的参数属性。本bias会连结（concatenate）在update gates（更新门），reset gates(重置门)以及candidate calculations（候选隐藏状态计算）中的bias。如果值为False，那么上述三者将没有bias参与运算。若值为None或者 ``ParamAttr`` 类中的属性之一，gru_unit则会创建一个 ``ParamAttr`` 类的对象作为 bias_attr。如果bias_attr没有被初始化，那它会被默认初始化为0。默认值为None。
+  - **bias_attr** (ParamAttr|bool|None) - GRU的bias变量的参数属性。形为 :math:`(1x3D)` 的bias连结（concatenate）在update gates（更新门），reset gates(重置门)以及candidate calculations（候选隐藏状态计算）中的bias。如果值为False，那么上述三者将没有bias参与运算。若值为None或者 ``ParamAttr`` 类中的属性之一，gru_unit则会创建一个 ``ParamAttr`` 类的对象作为 bias_attr。如果bias_attr没有被初始化，那它会被默认初始化为0。默认值为None。
   - **activation** (string) –  神经元 “actNode” 的激励函数（activation）类型。默认类型为‘tanh’
   - **gate_activation** (string) – 门 “actGate” 的激励函数（activation）类型。 默认类型为 ‘sigmoid’
   
