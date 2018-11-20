@@ -91,7 +91,8 @@ Notes：设备数量和小批量数量必须相同
 
 返回类型：字典（dict）
 
-抛出异常：ValueError ，如果 drop_last 为 False 且 mini batch 不适合设备，则抛出 ValueError
+抛出异常： ``ValueError`` - 如果 ``drop_last`` 为 False 且 mini batch 不适合设备，则抛出 
+ ``ValueError``
 
 
 
