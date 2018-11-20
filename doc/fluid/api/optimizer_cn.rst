@@ -138,9 +138,6 @@ TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-pred
             squared_accum+=grad^2
 
 
-
-
-参数:
 参数:
 
   - **learning_rate** (float|Variable)-全局学习率。
@@ -153,7 +150,8 @@ TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-pred
 抛出异常：
   - **ValueError**  如果 ``learning_rate`` , ``rho``,  ``epsilon`` , ``momentum``  为 None.
 
- 
+**代码示例**
+
 .. code-block:: python
         
    optimizer = fluid.optimizer.Ftrl(0.0001)
@@ -180,7 +178,7 @@ ModelAverage
   - **name** – 可选的名称前缀
 
 **代码示例**
- 
+
 .. code-block:: python
         
   optimizer = fluid.optimizer.Momentum()
