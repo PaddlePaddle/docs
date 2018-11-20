@@ -5,7 +5,7 @@
 DataFeeder
 >>>>>>>>>>>>
 
-.. py:class:: class paddle.fluid.DataFeeder(feed_list, place, program=None)
+.. py:class:: paddle.fluid.DataFeeder(feed_list, place, program=None)
 
 DataFeeder 将 reader 返回的数据转换为一种数据结构，该结构可以提供给 Executor 和 ParallelExecutor。DataFeeder 通常返回一个 mini batch 的 list。list 中的每个数据条目都是一个样本。每个样本是一个列表或元组，其中包含一个或多个特征。
 
@@ -29,9 +29,9 @@ DataFeeder 将 reader 返回的数据转换为一种数据结构，该结构可�
         paddle.batch(flowers.train(), batch_size=16))
 
 参数：
-    - **feed_list**（list） - 输入模型的变量或变量名。
-    - **place**（Place） - CPU 或 GPU，如果想将数据输入 GPU，请使用 fluid.CUDAPlace（i）（i 代表 GPU id），或者如果想将数据输入 CPU，请 使用 fluid.CPUPlace（）。
-    - **program**（Program） - 需要使用数据的 Program，如果 Program 为 None，则使用 default_main_program（）。 默认 None。
+    -  **feed_list** （list） - 输入模型的变量或变量名。
+    -  **place** （Place） - CPU 或 GPU，如果想将数据输入 GPU，请使用 fluid.CUDAPlace（i）（i 代表 GPU id），或者如果想将数据输入 CPU，请 使用 fluid.CPUPlace（）。
+    -  **program** （Program） - 需要使用数据的 Program，如果 Program 为 None，则使用 default_main_program（）。 默认 None。
 
 抛出异常：
     ValueError - 如果某个变量不在该 Program 中。
@@ -55,9 +55,9 @@ DataFeeder 将 reader 返回的数据转换为一种数据结构，该结构可�
 根据 feed_list 和 iterable，将输入转换为 ``Executor`` 和 ``ParallelExecutor`` 所需的数据结构。
 
 参数:	
-    - **iterable** (list|tuple) – the input data.
+    -  **iterable** (list|tuple) – the input data.
 
-返回:	the result of conversion.
+返回: 转换后的结果
 
 返回类型:	dict
 
@@ -82,10 +82,10 @@ Notes：设备数量和小批量数量必须相同
 
 
 参数：
-    - **reader**（fun） - 输入数据。
-    - **multi_devices**（bool） - 多设备。 默认 None。
-    - **num_places**（int） - 设备数量。 默认 None。
-    - **drop_last**（bool） - 设备数量，默认 None。
+    -  **reader** （fun） - 输入数据。
+    -  **multi_devices** （bool） - 多设备。 默认 None。
+    -  **num_places** （int） - 设备数量。 默认 None。
+    -  **drop_last** （bool） - 设备数量，默认 None。
 
 返回：转换后的多个mini batch。
 
