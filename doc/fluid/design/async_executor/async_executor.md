@@ -5,43 +5,33 @@ There are many deep learning applications that use sparse features as inputs, su
 ## User Interface Design
 ``` python
 def train_loop():
-    filelist = ["file%d.txt" % i for i in range(10)]
-    dataset = MultiSlotDataset() # a datafeeddesc of Dataset
-    dataset.set_batch_size(128) # datafeed should be assigned a batch size
-    # input text data
-    data = fluid.layers.data(name="words", shape=[1], dtype="int64", lod_level=1)
-    # label data
-    label = fluid.layers.data(name="label", shape=[1], dtype="int64")
-
+    filelist = ["testfile.data"] # filelist file to be handled
+    dataset = fluid.DataFeedDesc('data.prototxt') # this prototxt is a datafile description protobuf
+    dataset.set_batch_size(1)     # datafeed should be assigned a batch size
+    data = fluid.layers.data(name="doc", shape=[1], dtype="int64", lod_level=1) # input text data
+    label = fluid.layers.data(name="title", shape=[1], dtype="int64", lod_level=1) # label data
     avg_cost, acc, prediction = bow_net(data, label)
     sgd_optimizer = fluid.optimizer.Adagrad(learning_rate=0.002)
     opt_ops, weight_and_grad = sgd_optimizer.minimize(avg_cost)
-
-    for w in weight_and_grad[0]:
-        reduce(lambda x * y, 1, w.shape)
-
-    varnames = [var.name for var in weight_and_grad[0]]
-    dataset.set_field_name([data.name, label.name])
     startup_program = fluid.default_startup_program()
     main_program = fluid.default_main_program()
-    infer_prog = get_infer_prog([data.name, label.name], [acc, predict])
-
     place = fluid.CPUPlace()
-    executor = fluid.AsyncExecutor()
-    executor.run_startup_program(startup_program)
+    executor = fluid.Executor(place)
+    executor.run(startup_program)
+    async_executor = fluid.AsyncExecutor(place)
+    async_executor.run_startup_program(fluid.default_startup_program())
     epochs = 10
     for i in range(epochs):
-        acc_val = executor.run(
-            program=main_program, # make sure this can be changed during iteration
-            reader=dataset, # make sure this can be changed during iteration
-            filelist=filelist, # this can be changed during iteration
-            thread=thread_num, # make sure this can be changed during iteration
-            fetch=[acc]) # fetch can be done with python, but the scope should be exposed
-        print("accuracy %f" % acc_val)
-        executor.save_model(infer_prog, "epoch%d.model" % i)
-
-    # todo: 
-    # inference to be added, should loadup a program and a global scope
+        # thread_num = len(filelist)
+        thread_num = 1
+        acc_val = async_executor.run(
+            fluid.default_main_program(),   # make sure this can be changed during iteration
+            dataset,        # make sure this can be changed during iteration
+            filelist,       # this can be changed during iteration
+            thread_num,     # make sure this can be changed during iteration
+            [acc])          # fetch can be done with python, but the scope should be exposed
+        for val in acc_val:
+            print("accuracy %f" % val)
 ```
 ## Difference between async_executor and other executors
 async_executor is mainly designed for cpu training scenarios where data throughputs are high and the computation part of training is not intensive compared with GPU trained models such as resnet-50. Since data throughputs ability is very important in async_executor, we have to design very fast data IO modules to handle very large scale data reading. Another different key aspect is that memory is not a problem in cpu training scenarios given 128G or 256G RAW in modern server. 
