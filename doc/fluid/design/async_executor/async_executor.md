@@ -8,7 +8,7 @@ def train_loop():
     filelist = ["testfile.data"] # filelist file to be handled
     data = fluid.layers.data(name="doc", shape=[1], dtype="int64", lod_level=1) # input text data
     label = fluid.layers.data(name="title", shape=[1], dtype="int64", lod_level=1) # label data
-    dataset = fluid.MultiSlotData('data.prototxt', data, label)
+    dataset = fluid.DatasetDesc(desc='data.prototxt', slots=[data, label])
     dataset.set_batch_size(128)
     avg_cost, acc, prediction = bow_net(data, label)
     sgd_optimizer = fluid.optimizer.Adagrad(learning_rate=0.002)
