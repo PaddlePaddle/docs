@@ -42,7 +42,7 @@ WeightNormParamAttr
 权重归一化。权范数是神经网络中权向量的再参数化，它将权向量的长度与其方向解耦。该paper对权值归一化的实现进行了讨论： `Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_ 
 
 参数:
-  - **dim**  (list) – 参数纬度. Default None.
+  - **dim**  (list) – 参数维度. Default None.
   - **name** (str) – 参数名称. Default None.
   - **initializer**  (Initializer) – 初始化参数的方法. Default None.
   - **learning_rate**  (float) – 参数的学习率. 优化的参数学习率为  global_lr∗parameter_lr∗scheduler_factor. Default 1.0
