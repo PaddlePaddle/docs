@@ -6,10 +6,10 @@ There are many deep learning applications that use sparse features as inputs, su
 ``` python
 def train_loop():
     filelist = ["testfile.data"] # filelist file to be handled
-    dataset = fluid.DataFeedDesc('data.prototxt') # this prototxt is a datafile description protobuf
-    dataset.set_batch_size(1)     # datafeed should be assigned a batch size
     data = fluid.layers.data(name="doc", shape=[1], dtype="int64", lod_level=1) # input text data
     label = fluid.layers.data(name="title", shape=[1], dtype="int64", lod_level=1) # label data
+    dataset = fluid.MultiSlotData('data.prototxt', data, label)
+    dataset.set_batch_size(128)
     avg_cost, acc, prediction = bow_net(data, label)
     sgd_optimizer = fluid.optimizer.Adagrad(learning_rate=0.002)
     opt_ops, weight_and_grad = sgd_optimizer.minimize(avg_cost)
