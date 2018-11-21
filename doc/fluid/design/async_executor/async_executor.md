@@ -59,7 +59,6 @@ std::vector<float> AsyncExecutor::RunFromFile(
     2) each reader has a Next() iterface, that can fetch an instance
     from the input queue
    */
-  // todo: should be factory method for creating datafeed
   std::vector<std::shared_ptr<DataFeed> > readers;
   PrepareReaders(readers, thread_num, data_feed_desc, filelist);
   
