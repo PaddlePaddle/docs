@@ -116,4 +116,3 @@
    :maxdepth: 2
 
    test_while_training
-   save_load_variables
