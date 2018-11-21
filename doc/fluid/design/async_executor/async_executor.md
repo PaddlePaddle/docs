@@ -17,8 +17,7 @@ def train_loop():
     async_executor.run_startup_program(fluid.default_startup_program())
     epochs = 10
     for i in range(epochs):
-        # thread_num = len(filelist)
-        thread_num = 1
+        thread_num = len(filelist)
         acc_val = async_executor.run(
             fluid.default_main_program(),   # make sure this can be changed during iteration
             dataset,        # make sure this can be changed during iteration
