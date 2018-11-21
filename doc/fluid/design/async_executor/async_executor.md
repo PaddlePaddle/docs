@@ -13,8 +13,6 @@ def train_loop():
     avg_cost, acc, prediction = bow_net(data, label)
     sgd_optimizer = fluid.optimizer.Adagrad(learning_rate=0.002)
     opt_ops, weight_and_grad = sgd_optimizer.minimize(avg_cost)
-    startup_program = fluid.default_startup_program()
-    main_program = fluid.default_main_program()
     place = fluid.CPUPlace()
     executor = fluid.Executor(place)
     executor.run(startup_program)
