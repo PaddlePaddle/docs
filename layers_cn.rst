@@ -117,7 +117,7 @@ else:
                                 Out=scale∗(X+bias)
 
 参数:
-        - **x**(Variable) ：(Tensor) 要比例运算的输入张量（Tensor）。
+        - **x** (Variable) ：(Tensor) 要比例运算的输入张量（Tensor）。
         - **scale** (FLOAT) ：比例运算的比例因子。
         - **bias** (FLOAT) ：比例算子的偏差。
         - **bias_after_scale** (BOOLEAN) ：在缩放之后或之前添加bias。在某些情况下，对数值稳定性很有用。
@@ -141,7 +141,7 @@ elementwise_add
 等式为：
 
 .. math::
-        $$Out = X + Y$$
+        Out = X + Y
 
 - **X** ：任意维度的张量（Tensor）.
 - **Y** ：一个维度必须小于等于X维度的张量（Tensor）。
@@ -191,7 +191,7 @@ elementwise_div
 等式是：
 
 .. math::
-        $$Out = X / Y$$
+        Out = X / Y
 
 - **X** ：任何尺寸的张量（Tensor）。
 - **Y** ：尺寸必须小于或等于X尺寸的张量（Tensor）。
@@ -243,7 +243,7 @@ elementwise_sub
 等式是：
 
 .. math::
-       $$Out = X - Y$$
+       Out = X - Y
         
 - **X** ：任何尺寸的张量（Tensor）。
 - **Y** ：尺寸必须小于或等于**X**尺寸的张量（Tensor）。
@@ -294,7 +294,7 @@ elementwise_mul
 等式是：
 
 .. math::
-        $$Out = X \odot Y$$
+        Out = X \odot Y
         
 - **X** ：任何尺寸的张量（Tensor）。
 - **Y** ：尺寸必须小于或等于X尺寸的张量（Tensor）。
@@ -342,8 +342,9 @@ elementwise_max
 最大元素算子
 
 等式是：
+
 .. math::
-        $$Out = max(X, Y)$$
+        Out = max(X, Y)
         
 - **X** ：任何尺寸的张量（Tensor）。
 - **Y** ：尺寸必须小于或等于X尺寸的张量（Tensor）。
@@ -396,7 +397,7 @@ elementwise_min
 等式是：
 
 .. math::
-        $$Out = min(X, Y)$$
+        Out = min(X, Y)
         
 - **X** ：任何维数的张量（Tensor）。
 - **Y** ：维数必须小于或等于X维数的张量（Tensor）。
@@ -448,7 +449,7 @@ elementwise_pow
 等式是：
 
 .. math::
-        $$Out = X ^ Y$$
+        Out = X ^ Y
        
 - **X** ：任何尺寸的张量（Tensor）。
 - **Y** ：尺寸必须小于或等于X尺寸的张量（Tensor）。
@@ -662,7 +663,7 @@ logical_and算子
 它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math::
-       $$Out = X &amp;&amp; Y$$
+       Out = X &amp;&amp; Y
 
 参数：
         - **x** （Variable）：（LoDTensor）logical_and运算符的左操作数
@@ -687,7 +688,7 @@ logical_or算子
 它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math:: 
-        $$Out = X || Y$$
+        Out = X || Y
 
 参数：
         - **x** （Variable）：（LoDTensor）logical_or运算符的左操作数
@@ -712,7 +713,7 @@ logical_xor算子
 它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math:: 
-        !!Out = (X || Y) &amp;&amp; !(X &amp;&amp; Y)!!
+        Out = (X || Y) &amp;&amp; !(X &amp;&amp; Y)
 
 参数：
         - **x** （Variable）：（LoDTensor）logical_xor运算符的左操作数
@@ -737,7 +738,7 @@ logical_not算子
 它在X上以元素方式操作，并返回Out。X和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
 
 .. math:: 
-        !!Out = !X!!
+        Out = !X
 
 参数：
         - **x** （Variable）：（LoDTensor）logical_not运算符的操作数
@@ -761,7 +762,7 @@ clip算子
 clip运算符限制给定输入的值在一个区间内。间隔使用参数“min”和“max”来指定：公式为
 
 .. math:: 
-Out=min(max(X,min),max)
+        Out=min(max(X,min),max)
 
 参数：
         - **x** （Variable）：（Tensor）clip运算的输入，维数必须在[1,9]之间。
@@ -786,7 +787,7 @@ ClipByNorm算子
 此运算符将输入X的L2范数限制在 ``max_normmax_norm`` 内。如果X的L2范数小于或等于 ``max_normmax_norm``  ，则输出（Out）将与X相同。如果X的L2范数大于 ``max_normmax_norm`` ，则X将被线性缩放，使得输出（Out）的L2范数等于 ``max_normmax_norm`` ，如下面的公式所示：
 
 .. math:: 
-        $$ Out = \frac{max\_norm * X}{norm(X)}, $$
+         Out = \frac{max\_norm * X}{norm(X)} 
 
 其中，norm（X）范数（X）代表X的L2范数。
 
@@ -835,7 +836,7 @@ mul算子
 等式是：
 
 .. math:: 
-        $$Out = X * Y$$
+        Out = X * Y
 
 输入X和Y都可以携带LoD（详细程度）信息。但输出仅与输入X共享LoD信息。
 
@@ -860,9 +861,9 @@ sigmoid
      
 Sigmoid文档：
 
-参数 **x** ：Sigmoid运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在mkldnn内核中使用；
-类型 **use_mkldnn** ：BOOLEAN。
+参数 - **x** ：Sigmoid运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在mkldnn内核中使用；
+类型 - **use_mkldnn** ：BOOLEAN。
 
 返回：     Sigmoid运算输出.
 
@@ -908,9 +909,9 @@ tanh
         
 Tanh文档：
 
-参数 **x** ：Tanh运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
-类型 **use_mkldnn** ：BOOLEAN。
+参数 - **x** ：Tanh运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+类型 - **use_mkldnn** ：BOOLEAN。
 
 返回：     Tanh算子的输出。
 
@@ -925,8 +926,8 @@ paddle.fluid.layers.tanh_shrink(x, name=None)
         
 TanhShrink文档：
 
-参数 **x** ：TanhShrink运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：TanhShrink运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 
@@ -958,8 +959,8 @@ sqrt
         
 Sqrt文档：
 
-参数 **x** ：Sqrt运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Sqrt运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：       Sqrt算子的输出。
@@ -975,8 +976,8 @@ abs
         
 Abs文档：
 
-参数 **x** ：Abs运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Abs运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：        Abs运算符的输出。
@@ -992,8 +993,8 @@ ceil
       
 Ceil文档：
 
-参数 **x** ：Ceil运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Ceil运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：        Ceil运算符的输出。
@@ -1008,8 +1009,8 @@ floor
 
 Floor文档：
 
-参数 **x** ：Floor运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Floor运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：        Floor运算符的输出。
@@ -1025,8 +1026,8 @@ cos
 
 Cos文档：
 
-参数 **x** ：Cos运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Cos运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：        Cos运算符的输出。
@@ -1041,8 +1042,8 @@ sin
 
 Sin文档：
 
-参数 **x** ：Sin运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Sin运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：        Sin运算符的输出。
@@ -1058,8 +1059,8 @@ round
 
 Round文档：
 
-参数 **x** ：Round运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Round运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：        Round运算符的输出。
@@ -1074,8 +1075,8 @@ reciprocal
 
 Reciprocal文档：
 
-参数 **x** ：Reciprocal运算符的输入 
-参数 **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
+参数 - **x** ：Reciprocal运算符的输入 
+参数 - **use_mkldnn** ：（bool，默认为false）仅在 ``mkldnn`` 内核中使用；
 类型 **use_mkldnn** ：BOOLEAN。
 
 返回：        Reciprocal运算符的输出。        
@@ -1093,7 +1094,6 @@ prior_box算子
 生成SSD（Single Shot MultiBox Detector）算法的候选框。输入的每个位置产生N个候选框，N由 ``min_sizes`` ， ``max_sizes`` 和 ``aspect_ratios`` 的数量确定。窗口的大小在范围（min_size，max_size）之间，其根据 ``aspect_ratios`` 按顺序生成。
 
 参数：
-
         - **input** （Variable）：输入变量，格式为NCHW。
         - **image** （Variable）：候选框输入的图像数据，布局为NCHW。
         - **min_sizes** （list | tuple | float value）：生成候选框的最小大小。
@@ -1135,7 +1135,7 @@ multi_box_head
 
 生成SSD（Single Shot MultiBox Detector）算法的候选框。有关此算法的详细信息，请参阅SSD论文SSD：Single Shot MultiBox Detector的2.2节。
 
-        参数：
+参数：
         - **inputs** （list | tuple）：输入变量列表，所有变量的格式为NCHW。
         - **image** （Variable）：PriorBoxOp的输入图像数据，布局为NCHW。
         - **base_size** （int）：base_size用于根据 ``min_ratio`` 和 ``max_ratio`` 来获取 ``min_size`` 和 ``max_size`` 。
