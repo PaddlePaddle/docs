@@ -30,6 +30,7 @@ RMSPropOptimizer
     - **centered** （bool）： 如果为True，则通过梯度估计方差对梯度进行归一化；如果false，则由未centered的第二个moment归一化。将此设置为True有助于培训，但在计算和内存方面稍微昂贵一些。默认为False。
     - **regularization** ：正规化项，如fluid.regularizer.L2DecayRegularizer。
     - **name** ：可选的名称前缀。
+    
 抛出：   ValueError：如果 ``learning_rate`` ， ``rho`` ， ``epsilon`` ， ``momentum`` 为None。
 
 **示例代码**
@@ -73,6 +74,7 @@ RMSPropOptimizer
     - **centered** （bool）： 如果为True，则通过梯度估计方差对梯度进行归一化；如果false，则由未centered的第二个moment归一化。将此设置为True有助于培训，但在计算和内存方面稍微昂贵一些。默认为False。
     - **regularization** ：正规化项，如fluid.regularizer.L2DecayRegularizer。
     - **name** ：可选的名称前缀。
+    
 抛出：   ValueError：如果 ``learning_rate`` ， ``rho`` ， ``epsilon`` ， ``momentum`` 为None。
 
 **示例代码**
