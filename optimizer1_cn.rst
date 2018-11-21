@@ -5,7 +5,7 @@ RMSPropOptimizer
 
 .. py:class:: paddle.fluid.optimizer.RMSPropOptimizer(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, regularization=None, name=None)
 
-均方根平均传播（RMSProp）法是一种未发表的,自适应学习率的方法。原始slides提出了RMSProp：[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf]中的第29张slide。等式如下所示：
+均方根平均传播（RMSProp）法是一种未发表的,自适应学习率的方法。原始slides提出了RMSProp：(http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)中的第29张slide。等式如下所示：
 
 .. math::
     \begin{align}\begin{aligned}r(w, t) &amp; = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\w &amp; = w - \frac{\eta} {\sqrt{r(w,t) + \epsilon}} \nabla Q_{i}(w)\end{aligned}\end{align}
@@ -49,7 +49,7 @@ RMSPropOptimizer
 
 .. py:class:: paddle.fluid.optimizer.RMSPropOptimizer(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, regularization=None, name=None)
 
-均方根平均传播（RMSProp）法是一种未发表的,自适应学习率的方法。原始slides提出了RMSProp：[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf]中的第29张slide。等式如下所示：
+均方根平均传播（RMSProp）法是一种未发表的,自适应学习率的方法。原始slides提出了RMSProp：(http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)中的第29张slide。等式如下所示：
 
 .. math::
     \begin{align}\begin{aligned}r(w, t) &amp; = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\w &amp; = w - \frac{\eta} {\sqrt{r(w,t) + \epsilon}} \nabla Q_{i}(w)\end{aligned}\end{align}
