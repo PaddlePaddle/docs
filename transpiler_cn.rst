@@ -5,7 +5,7 @@ DistributeTranspiler
 
 .. py:class:: paddle.fluid.transpiler.DistributeTranspiler(config=None)
 
-分布式Transpiler
+分布式Transpiler。
 
 将fluid程序转换为分布式数据并行程序。支持两种模式： ``pserver`` 模式和 ``nccl2`` 模式。
 
@@ -79,7 +79,7 @@ DistributeTranspiler
 
 返回：     当前参数服务器运行的程序。
 
-返回类型：   程序
+返回类型：   程序。
 
 .. py:method:: get_pserver_programs(endpoint)
 
