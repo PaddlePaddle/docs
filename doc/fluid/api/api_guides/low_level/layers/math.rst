@@ -153,8 +153,7 @@ less_than
 
 对两个 :code:`Tensor` 逐元素判断是否满足小于关系， 对应数学操作符 :code:`<`
 
-API Reference 请参考 :ref:`api_fluid_la
-yers_less_than`
+API Reference 请参考 :ref:`api_fluid_layers_less_than`
 
 
 sum
