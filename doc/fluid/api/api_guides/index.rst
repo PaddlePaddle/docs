@@ -3,7 +3,7 @@ API使用指南
 ===========
 
 ..  toctree::
-    :titlesonly: 
+    :titlesonly:
 
     high_low_level_api.md
     low_level/layers/index.rst
@@ -12,5 +12,6 @@ API使用指南
     low_level/metrics.rst
     low_level/model_save_reader.rst
     low_level/inference.rst
-  
-  
+    low_level/backward.rst
+    low_level/program_block_variable.rst
+
