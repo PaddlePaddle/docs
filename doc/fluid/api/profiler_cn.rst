@@ -137,7 +137,7 @@ start_profiler
 
 .. _cn_api_fluid_profiler_stop_profiler:
 
-start_profiler
+stop_profiler
 >>>>>>>>>>>>
 
 .. py:class::paddle.fluid.profiler.stop_profiler(sorted_key=None, profile_path='/tmp/profile')
