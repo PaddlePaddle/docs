@@ -53,7 +53,7 @@ Multi-box loss layer, 用于 SSD 目标检测算法
 
 返回: localization loss 和 confidence loss 的加权和，形状为[N * Np, 1]，N 和 Np 相同。
 
-抛出异常: ValueError 如果 mining_type 是' hard_example '，抛出 ValueError。现在只支持 mining type 的类型为 max_negative。
+抛出异常:  ``ValueError`` -  如果 mining_type 是' hard_example '，抛出 ValueError。现在只支持 mining type 的类型为 max_negative。
 
 
 **代码示例**
