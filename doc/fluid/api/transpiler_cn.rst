@@ -12,6 +12,9 @@ RoundRobin
 
 RondRobin  `https://en.wikipedia.org/wiki/Round-robin_scheduling <https://en.wikipedia.org/wiki/Round-robin_scheduling>`_  
 
+参数:
+  - **pserver_endpoints** (list) - endpoint （ip:port）的 list 
+ 
 .. _cn_api_fluid_DistributeTranspilerConfig:
 
 DistributeTranspilerConfig
