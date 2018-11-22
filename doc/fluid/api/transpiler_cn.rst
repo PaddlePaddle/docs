@@ -20,10 +20,10 @@ memory_optimize
 	
 返回: None
 
+
 .. _cn_api_fluid_transpiler_RoundRobin:
 
 RoundRobin
-
 >>>>>>>>>>>>
 
 .. py:class:: paddle.fluid.transpiler.RoundRobin(pserver_endpoints)
