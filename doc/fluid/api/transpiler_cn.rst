@@ -5,11 +5,12 @@
 RoundRobin
 
 >>>>>>>>>>>>
+
 .. py:class:: paddle.fluid.transpiler.DistributeTranspilerConfig
 
 使用 ``RondRobin`` 方法将变量分配给服务器端点。
 
-RondRobin < `https://en.wikipedia.org/wiki/Round-robin_scheduling <https://en.wikipedia.org/wiki/Round-robin_scheduling>`_  >
+RondRobin  `https://en.wikipedia.org/wiki/Round-robin_scheduling <https://en.wikipedia.org/wiki/Round-robin_scheduling>`_  
 
 .. _cn_api_fluid_DistributeTranspilerConfig:
 
