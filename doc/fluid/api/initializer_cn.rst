@@ -87,7 +87,7 @@ TruncatedNormalInitializer
 
 .. py:class:: paddle.fluid.initializer.TruncatedNormalInitializer(loc=0.0, scale=1.0, seed=0)
 
-Random TruncatedNormal（高斯）分布初始化器
+Random Truncated Normal（高斯）分布初始化器
 
 参数：
         - **loc** （float） - 正态分布的平均值
