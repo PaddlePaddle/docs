@@ -167,7 +167,9 @@ ModelAverage
 
 .. py:class:: paddle.fluid.optimizer.ModelAverage(average_window_rate, min_average_window=10000, max_average_window=10000, regularization=None, name=None)
 
-在滑动窗口中累积参数的平均值。平均结果将保存在临时变量中，通过调用‘apply()’方法可应用于当前模型的参数变量。使用‘restore()’方法恢复当前模型的参数值
+在滑动窗口中累积参数的平均值。平均结果将保存在临时变量中，通过调用 ``apply()`` 方法可应用于当前模型的参数变量。使用 ``restore()`` 方法恢复当前模型的参数值。
+
+平均窗口的大小由 ``average_window_rate`` ， ``min_average_window`` ， ``max_average_window`` 以及当前更新次数决定。
 
  
 参数:
