@@ -108,7 +108,7 @@ start_profiler
 .. py:class:: paddle.fluid.profiler.start_profiler(state)
 
 激活使用 profiler， 用户可以使用 ``fluid.profiler.start_profiler`` 和 ``fluid.profiler.stop_profiler`` 插入代码
-不能使用 fluid.profiler.profiler`` 
+不能使用 ``fluid.profiler.profiler`` 
 
 
 如果 state== ' All '，在profile_path 中写入文件 profile proto 。该文件记录执行期间的时间顺序信息。然后用户可以看到这个文件的时间轴，请参考 `https://github.com/PaddlePaddle/Paddle/blob/develop/doc/fluid/howto/optimization/timeline.md <https://github.com/PaddlePaddle/Paddle/blob/develop/doc/fluid/howto/optimization/timeline.md>`_ 
