@@ -73,7 +73,7 @@ GradientClipByNorm
 .. math::
             \\Out = \frac{max\_norm∗X}{norm(X)}\\
 
-其中 ``norm（X）`` 代表 ``X`` 的 L2 范数
+其中 :math:`norm（X）` 代表 :math:`X` 的 L2 范数
 
 
 参数:
