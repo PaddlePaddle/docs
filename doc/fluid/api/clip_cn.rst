@@ -68,7 +68,7 @@ GradientClipByNorm
 
 将张量转换为L2范数不超过 ``clip_norm`` 的张量
 
-该operator 限制了 输入张量 ``X``的L2范数不会超过 max_norm 。如果 ``X`` 的 ``L2`` 范数小于或等于 ``max_norm`` ,输出和 ``X`` 一样，如果 ``X`` 的L2范数大于 ``max_norm`` , ``X`` 将被线性缩放到L2范数等于 ``max_norm`` ,如以下公式所示:
+该operator 限制了 输入张量 :math:`X` 的L2范数不会超过 :math:`max_norm` 。如果 :math:`X` 的 ``L2`` 范数小于或等于 :math:`max_norm` ,输出和 :math:`X` 一样，如果 :math:`X` 的L2范数大于 :math:`max_norm` , :math:`X` 将被线性缩放到L2范数等于 :math:`max_norm` ,如以下公式所示:
 
 .. math::
             \\Out = \frac{max\_norm∗X}{norm(X)}\\
