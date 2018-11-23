@@ -69,7 +69,8 @@ Adamax 更新规则:
      optimizer = fluid.optimizer.Adamax(learning_rate=0.2)
      optimizer.minimize(cost)
 
-目前 ``AdamaxOptimizer`` 不支持  sparse gradient
+.. note::
+    目前 ``AdamaxOptimizer`` 不支持  sparse gradient
 
   
 .. _cn_api_fluid_optimizer_DecayedAdagradOptimizer:
