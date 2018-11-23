@@ -58,7 +58,7 @@ op_role的辅助变量。
 
 .. py:method:: set_op_role_var
 
-``op_role``的辅助变量。
+ ``op_role``的辅助变量。
 
 参考: ``Program.op_role`` 文档。
 
@@ -76,7 +76,7 @@ op_role的辅助变量。
 
 返回：(str): debug 字符串
 
-抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` 时，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
+抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` ，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
 
 
@@ -108,7 +108,7 @@ op_role的辅助变量。
 
 **代码示例**
 
-1. 克隆一个Program，示例代码如下：
+1.克隆一个Program，示例代码如下：
 
 ..  code-block:: python
 
@@ -151,7 +151,7 @@ op_role的辅助变量。
 		 sgd = fluid.optimizer.SGD(learning_rate=1e-3)
 		 sgd.minimize(loss)
 
-	 # the test startup program is not used.
+	 # 不使用测试阶段的startup program
 	 with fluid.program_guard(test_program, fluid.Program()):
 	     with fluid.unique_name.guard():
 		 loss = network(is_test=True)
@@ -188,7 +188,7 @@ op_role的辅助变量。
 
 .. py:method:: block(index)
 
-返回该program中 ，index指定的block。index类型为int
+返回该program中 ， ``index`` 指定的block。 ``index`` 类型为int
 
 返回：index对应的block
 
@@ -219,6 +219,17 @@ name_scope
 
 注意： 这个函数只能用于调试和可视化。不要将其用于分析，比如graph/program转换。
 
+**示例代码**
+
+.. code-block:: python
+          
+	  with name_scope("encoder"):
+             ...
+          with name_scope("decoder"):
+             ...
+             with name_scope("attention"):
+                ...
+
 .. _cn_api_fluid_global_scope:
 
 global_scope
@@ -241,10 +252,10 @@ scope_guard
 .. py:class:: paddle.fluid.scope_guard(*args, **kwds)()
 
 
-修改全局/默认作用scope,  运行时中的所有变量都将分配给新的scope。
+修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。
 
 参数：
-	- **scope** -新的全局/默认 scope。
+	- **scope** - 新的全局/默认 scope。
 
 **代码示例**
 
@@ -296,7 +307,9 @@ DistributeTranspilerConfig
 
 注意: 尝试选择最佳方法来达到Pserver间负载均衡。
 
-min_block_size (int): 最小数据块的大小
+.. py:method:: min_block_size (int)
+
+最小数据块的大小
 
 注意: 根据：https：//github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156 , 当数据块大小超过2MB时，我们可以有效地使用带宽。如果你想更改它，请详细查看 ``slice_variable`` 函数。
 
@@ -343,29 +356,17 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 	可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因。当LoD在API中被称为lod时，它可能是基于偏移的。用户应该注意。
 
 
-::
-
-	has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
 
 
-::
+.. py:method::	has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
 
-	lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+.. py:method::	lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
+.. py:method::	recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
-::
+.. py:method::	set_lod(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
 
-	recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
-
-
-::
-
-	set_lod(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
-
-
-::
-
-	set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
+.. py:method::	set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
 
 
 
@@ -384,8 +385,8 @@ WeightNormParamAttr
 参数:
 	- **dim** (list) - 参数的名称。默认None。
 	- **name** (str) - 参数的名称。默认None。
-	- **initializer**（initializer) - 初始化参数的方法。默认None。
-	- **learning_rate** (float) - 学习率。优化时学习速率global_lr∗parameter_lr∗scheduler_factor。默认1.0。
+	- **initializer** （initializer) - 初始化参数的方法。默认None。
+	- **learning_rate** (float) - 学习率。优化时学习速率 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 。默认1.0。
 	- **regularizer** (WeightDecayRegularizer) - 正则化因子。默认None。
 	- **trainable** (bool) - 参数是否可训练。默认True。
 	- **gradient_clip** (BaseGradientClipAttr) - 梯度下降裁剪（Gradient Clipping）的方法。默认None。
