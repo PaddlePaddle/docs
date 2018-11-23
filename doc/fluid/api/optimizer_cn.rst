@@ -45,11 +45,15 @@ AdamaxOptimizer
 Adamax 更新规则:
 
 .. math::
-            \\t = t + 1\\
-            tmoment_out=\beta_1∗moment+(1−\beta_1)∗grad\\
-            inf\_norm\_out=\max{(\beta_2∗inf\_norm+ϵ, \left|grad\right|)}\\
-            learning\_rate=\frac{learning\_rate}{1-\beta_1^t}\\
-            param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
+    \\t = t + 1
+.. math::
+    moment\_out=\beta_1∗moment+(1−\beta_1)∗grad
+.. math::
+    inf\_norm\_out=\max{(\beta_2∗inf\_norm+ϵ, \left|grad\right|)}
+.. math::
+    learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
+.. math::
+    param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
 
 
 论文中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
@@ -86,7 +90,12 @@ Decayed Adagrad Optimizer
 
 
 原始论文： `http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_  中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
- 
+
+.. math::
+    moment\_out = decay*moment+(1-decay)*grad*grad
+.. math::
+    param\_out=param-\frac{learning\_rate*grad}{\sqrt{moment\_out+\epsilon }}
+    
 参数:
 
   - **learning_rate** (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
@@ -120,23 +129,21 @@ TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-pred
 
 
 .. math::
-           new\_accum=squared\_accum+grad^2\\
-           if(lr\_power==−0.5):\\
-               \qquad linear\_accum+=grad-\frac{\sqrt{new\_accum}-\sqrt{squared\_accum}}{learning\_rate∗param}\\
-
-           else: \\
-               \qquad linear\_accum+=grad-\frac{new\_accum^{lr\_power}-accum^{lr\_power}}{learning_rate∗param}\\
-           \\x=l1∗sign(linear\_accum)−linear\_accum\\
-            if(lr\_power==−0.5):\\
-            \qquad y=\frac{\sqrt{new\_accum}}{learning_rate}+(2∗l2)\\
-            \qquad pre_shrink=\frac{x}{y}\\
-            \qquad param=(abs(linear\_accum)>l1).select(pre_shrink,0.0)\\
-            else:
-            \qquad y=\frac{new\_accum^{-lr\_power}}{learning_rate}+(2*l2)\\
-            \qquad pre\_shrink=\frac{x}{y}\\
-            \qquad param=(abs(linear\_accum)>l1).select(pre_shrink,0.0)\\\\
-
-            squared_accum+=grad^2
+           &\qquad new\_accum=squared\_accum+grad^2\\\\
+           &\qquad if(lr\_power==−0.5):\\
+           &\qquad \qquad linear\_accum+=grad-\frac{\sqrt{new\_accum}-\sqrt{squared\_accum}}{learning\_rate*param}\\
+           &\qquad else:\\
+           &\qquad \qquad linear\_accum+=grad-\frac{new\_accum^{-lr\_power}-accum^{-lr\_power}}{learning\_rate*param}\\\\
+           &\qquad x=l1*sign(linear\_accum)−linear\_accum\\\\
+           &\qquad if(lr\_power==−0.5):\\
+           &\qquad \qquad y=\frac{\sqrt{new\_accum}}{learning\_rate}+(2*l2)\\
+           &\qquad \qquad pre\_shrink=\frac{x}{y}\\
+           &\qquad \qquad param=(abs(linear\_accum)>l1).select(pre\_shrink,0.0)\\
+           &\qquad else:\\
+           &\qquad \qquad y=\frac{new\_accum^{-lr\_power}}{learning\_rate}+(2*l2)\\
+           &\qquad \qquad pre\_shrink=\frac{x}{y}\\
+           &\qquad \qquad param=(abs(linear\_accum)>l1).select(pre\_shrink,0.0)\\\\
+           &\qquad squared\_accum+=grad^2
 
 
 参数:
