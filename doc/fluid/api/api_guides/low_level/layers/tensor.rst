@@ -4,7 +4,7 @@
 张量
 ########
 
-Fluid 中使用两种数据结构来承载数据，分别是 Tensor 和 LoD-Tensor。 其中 LoD-Tensor 是 Fluid 的特有概念，它在 Tensor 基础上附加了序列信息。框架中可传输的数据包括：输入、输出、网络中的可学习参数，全部统一使用 LoD-Tensor 表示，Tensor 可以看作是一种特殊的 LoD-Tensor。
+Fluid 中使用两种数据结构来承载数据，分别是 `Tensor 和 LoD_Tensor <../../../../user_guides/howto/prepare_data/lod_tensor.html>`_ 。 其中 LoD-Tensor 是 Fluid 的特有概念，它在 Tensor 基础上附加了序列信息。框架中可传输的数据包括：输入、输出、网络中的可学习参数，全部统一使用 LoD-Tensor 表示，Tensor 可以看作是一种特殊的 LoD-Tensor。
 
 下面介绍这两种数据的相关操作。
 
@@ -125,7 +125,7 @@ API reference 请参考： :ref:`api_fluid_layers_reverse`
 LoD-Tensor
 ============
 
-LoD-Tensor非常适用于序列数据，相关知识可以参考阅读 `LoD_Tensor <http://paddlepaddle.org/documentation/docs/zh/1.1/user_guides/howto/prepare_data/lod_tensor.html>`_ 。
+LoD-Tensor非常适用于序列数据，相关知识可以参考阅读 `LoD_Tensor <../../../../user_guides/howto/prepare_data/lod_tensor.html>`_ 。
 
 1. create_lod_tensor
 -----------------------
