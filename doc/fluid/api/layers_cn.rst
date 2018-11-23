@@ -36,7 +36,7 @@ DynamicRNN
 
 动态RNN可以处理一批序列数据,每个样本序列的长度可以不同。这个API自动批量处理它们。
 
-必须设置输入lod，请参考lod_tensor
+必须设置输入lod，请参考 ``lod_tensor``
 
 **代码示例**
 
@@ -55,7 +55,7 @@ DynamicRNN
 	     	drnn.update_memory(prev, hidden)  # set prev to hidden
 	     	drnn.output(hidden)
 
-	 # last is the last time step of rnn. It is the encoding result.
+	 # last是的最后一时间步，也是编码（encoding）得出的最终结果
 	last = fluid.layers.sequence_last_step(drnn())
 
 
@@ -70,8 +70,8 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
     将序列标记为动态RNN输入。
 
 参数:
-    	- **x** :输入序列	
-	- **类型** ： Variable
+    	- **x** - 输入序列	
+	- **类型** - Variable
     	
 返回:当前的输入序列中的timestep。
 
@@ -80,8 +80,8 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 将变量标记为RNN输入。输入不会分散到timestep中。
 
 参数:
-    	- **x** :输入变量
-	- **类型** :Variable
+    	- **x** - 输入变量
+	- **类型** - Variable
 
 返回:可以访问的RNN的输入变量,。
 
@@ -142,8 +142,8 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
     - **init** (Variable|None) – 初始化的Variable
     - **shape** (list|tuple) – memory shape. 注意形状不包含batch的大小
     - **value** (float) – 初始化的值
-    - **need_reorder** (bool) –memory初始化依赖于输入样本时设置为True
-    - **dtype** (str|numpy.dtype) –初始化memory的数据类型
+    - **need_reorder** (bool) – memory初始化依赖于输入样本时设置为True
+    - **dtype** (str|numpy.dtype) – 初始化memory的数据类型
 
 返回：memory Variable
 
@@ -153,8 +153,8 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 将内存从 ``ex_mem`` 更新到 ``new_mem`` 。注意， ``ex_mem`` 和 ``new_mem`` 的 ``shape`` 和数据类型必须相同。
 
 参数：
-	- **ex_mem**（memory Variable）:  memory 变量（Variable） 
-	- **new_mem**（memory Variable）: RNN块中生成的平坦变量（plain  variable）
+	- **ex_mem**（memory Variable）-  memory 变量（Variable） 
+	- **new_mem**（memory Variable）- RNN块中生成的平坦变量（plain  variable）
 
 返回：None
 
@@ -285,7 +285,7 @@ py_reader
 	    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
 
 	img, label = fluid.layers.read_file(reader)
-	loss = network(img, label) # some network definition
+	loss = network(img, label) # 一些网络定义
 
 	fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
 
@@ -312,7 +312,7 @@ py_reader
 
 	def network(reader):
 	    img, label = fluid.layers.read_file(reader)
-	    # Here, we omitted the network definition
+	    # 此处我们省略了一些网络定义
 	    return loss
 
 	train_reader = fluid.layers.py_reader(capacity=64,
@@ -328,13 +328,13 @@ py_reader
 					     name='test_reader')
 	test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
 
-	# Create train_main_prog and train_startup_prog
+	# 新建 train_main_prog 和 train_startup_prog
 	train_main_prog = fluid.Program()
 	train_startup_prog = fluid.Program()
 	with fluid.program_guard(train_main_prog, train_startup_prog):
-	    # Use fluid.unique_name.guard() to share parameters with test program
+	    # 使用 fluid.unique_name.guard() 实现与test program的参数共享
 	    with fluid.unique_name.guard():
-		train_loss = network(train_reader) # some network definition
+		train_loss = network(train_reader) # 一些网络定义
 		adam = fluid.optimizer.Adam(learning_rate=0.01)
 		adam.minimize(loss)
 
@@ -342,7 +342,7 @@ py_reader
 	test_main_prog = fluid.Program()
 	test_startup_prog = fluid.Program()
 	with fluid.program_guard(test_main_prog, test_startup_prog):
-	    # Use fluid.unique_name.guard() to share parameters with train program
+	    # 使用 fluid.unique_name.guard() 实现与train program的参数共享
 	    with fluid.unique_name.guard():
 		test_loss = network(test_reader)
 
@@ -387,8 +387,8 @@ log
 
 参数:
 
-  - **x** (Variable) –输入张量
-  - **name** (str|None, default None) –该layer的名称，如果为None，自动命名.
+  - **x** (Variable) – 输入张量
+  - **name** (str|None, default None) – 该layer的名称，如果为None，自动命名
 
 返回：给定输入张量计算自然对数
 
