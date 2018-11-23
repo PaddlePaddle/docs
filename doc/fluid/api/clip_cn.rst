@@ -18,7 +18,7 @@ ErrorClipByValue
 
 参数:
  - **max** (foat) - 要修剪的最大值。
- - **min** (float) - 要修剪的最小值。如果用户没有设置，将被设置为框架 ``-max`` 
+ - **min** (float) - 要修剪的最小值。如果用户没有设置，将被 ``framework`` 设置为 ``-max`` 
   
 **代码示例**
  
