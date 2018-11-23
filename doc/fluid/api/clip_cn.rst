@@ -113,7 +113,7 @@ GradientClipByGlobalNorm
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
 
-如果 clip_norm>global_norm，t_list中的张量保持不变，否则它们都会按照全局比率缩减。
+如果 :math:`clip_norm>global_norm` ， :math:`t_list` 中的张量保持不变，否则它们都会按照全局比率缩减。
 
 
 参数:
