@@ -52,11 +52,11 @@ GradientClipByValue
 .. code-block:: python
         
      w_param_attrs = ParamAttr(name=None,
-     initializer=UniformInitializer(low=-1.0, high=1.0, seed=0),
-     learning_rate=1.0,
-     regularizer=L1Decay(1.0),
-     trainable=True,
-     clip=GradientClipByValue(-1.0, 1.0))
+                               initializer=UniformInitializer(low=-1.0, high=1.0, seed=0),
+                               learning_rate=1.0,
+                               regularizer=L1Decay(1.0),
+                               trainable=True,
+                               clip=GradientClipByValue(-1.0, 1.0))
      y_predict = fluid.layers.fc(input=x, size=1, param_attr=w_param_attrs)
      
 .. _cn_api_fluid_clip_GradientClipByNorm:
@@ -85,11 +85,11 @@ GradientClipByNorm
 .. code-block:: python
         
     w_param_attrs = ParamAttr(name=None,
-    initializer=UniformInitializer(low=-1.0, high=1.0, seed=0),
-    learning_rate=1.0,
-    regularizer=L1Decay(1.0),
-    trainable=True,
-    clip=GradientClipByNorm(clip_norm=2.0))
+                              initializer=UniformInitializer(low=-1.0, high=1.0, seed=0),
+                              learning_rate=1.0,
+                              regularizer=L1Decay(1.0),
+                              trainable=True,
+                              clip=GradientClipByNorm(clip_norm=2.0))
     y_predict = fluid.layers.fc(input=x, size=1, param_attr=w_param_attrs)
 
 
@@ -109,7 +109,9 @@ GradientClipByGlobalNorm
 .. math::
             \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{max(global\_norm,clip\_norm)}\\
             
-            其中：
+其中：
+
+.. math::            
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
 
