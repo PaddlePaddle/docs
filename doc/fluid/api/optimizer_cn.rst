@@ -58,7 +58,7 @@ Adamax 更新规则:
   - **learning_rate**  (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
   - **beta1** (float) - 第1阶段估计的指数衰减率
   - **beta2** (float) - 第2阶段估计的指数衰减率。
-  - **epsilon** (float) -非常小的浮点值得，为了数值稳定性质
+  - **epsilon** (float) -非常小的浮点值，为了数值的稳定性质
   - **regularization** - 正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
   - **name** - 可选的名称前缀。
 
