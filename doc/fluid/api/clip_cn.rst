@@ -34,7 +34,7 @@ GradientClipByValue
 
  .. py:class:: paddle.fluid.clip.GradientClipByValue(max, min=None)
 
-将张量值的范围压缩到 [min, max]。
+将梯度值(gradient values)的范围压缩到 [min, max]。
 
 
 给定一个张量 ``t`` ，该操作将它的值压缩到 ``min`` 和 ``max`` 之间
