@@ -2,7 +2,7 @@
 
 equal
 >>>>>>>>>>
-.. py:class:: paddle.fluid.layers. equal(x,y,cond=None,**ignored)
+.. py:class:: paddle.fluid.layers.equal(x,y,cond=None,**ignored)
 
 **equal**
 该层返回 :math:'x==y' 按逐元素运算而得的真值。
@@ -27,7 +27,7 @@ equal
 array_read
 >>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. array_read(array,i)
+.. py:class:: paddle.fluid.layers.array_read(array,i)
 
 此函数用于读取数据，数据以LOD_TENSOR_ARRAY数组的形式读入
 
@@ -59,7 +59,7 @@ array_read
 
 array_length
 >>>>>>>>>>>>>>
-.. py:class:: paddle.fluid.layers. array_length(array)
+.. py:class:: paddle.fluid.layers.array_length(array)
 
 **得到输入LoDTensorArray的长度**
 
@@ -90,7 +90,7 @@ array_length
 IfElse
 >>>>>>>
 
-.. py:class:: paddle.fluid.layers. IfElse(cond, name=None)
+.. py:class:: paddle.fluid.layers.IfElse(cond, name=None)
 
 if-else控制流。  
 
@@ -124,7 +124,7 @@ if-else控制流。
 
 Print
 >>>>>>>
-.. py:class:: paddle.fluid.layers. Print(input, first_n=-1, message=None, summarize=-1, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
+.. py:class:: paddle.fluid.layers.Print(input, first_n=-1, message=None, summarize=-1, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
 
 **Print操作命令**
 
@@ -160,7 +160,7 @@ Print
 
 is_empty
 >>>>>>>>>
-.. py:class:: paddle.fluid.layers. is_empty(x, cond=None, **ignored)
+.. py:class:: paddle.fluid.layers.is_empty(x, cond=None, **ignored)
 
 测试变量是否为空
 
