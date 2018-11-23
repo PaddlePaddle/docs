@@ -102,7 +102,7 @@ GradientClipByGlobalNorm
  
 通过多个张量的范数之和的比率来剪切（clip）多个张量。
 
-给定一个张量t_list和一个剪切比率 clip_norm，返回一个被剪切的张量列表list_clip和t_list中所有张量的全局范数(global_norm)。
+给定一个张量列表 :math:`t_list` 和一个剪切比率 ``clip_norm`` ，返回一个被剪切的张量列表list_clipped和 :math:`t_list` 中所有张量的全局范数(global_norm)。
 
 剪切过程如下：
 
