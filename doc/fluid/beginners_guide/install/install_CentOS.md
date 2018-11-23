@@ -95,7 +95,7 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 	* 对于需要**GPU版本PaddlePaddle**的用户: `pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle-gpu`
 	
 	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download)的指示正确安装nccl2
-	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 8/cuDNN v7的PaddlePaddle版本。 
+	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 9/cuDNN v7的PaddlePaddle版本。 
 
 	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
 	
@@ -133,7 +133,7 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.0`       
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`       
 		
 		
 

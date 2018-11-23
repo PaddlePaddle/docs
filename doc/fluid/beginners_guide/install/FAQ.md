@@ -112,8 +112,9 @@
 
 - MacOS下安装PaddlePaddle后import paddle.fluid出现`Fatal Python error: PyThreadState_Get: no current thread running`错误 
 
-	> - For Python2.7.x: 请使用`find / -name libpython2.7.dylib`找到您当前使用python的`libpython2.7.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]`
-	  - For Python3.5.x: 请使用`find / -name libpython3.5.dylib`找到您当前使用python的`libpython3.5.dylib`路径，并使用`export LD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录] && export DYLD_LIBRARY_PATH=[libpython3.5.dylib所在的目录的上两级目录]`
+	  - For Python2.7.x （install by brew): 请使用`export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
+	  - For Python2.7.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`
+	  - For Python3.5.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/ && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/`
 
 <a name="OPENBLAS"></a>
 
@@ -124,4 +125,8 @@
 - 已经安装swig但是仍旧出现swig找不到的问题 详见issue：
 	
 	>  [ISSUE 13759](https://github.com/PaddlePaddle/Paddle/issues/13759)
+
+- 出现 “target pattern contain no '%'.”的问题 详见issue：
+
+	> [ISSUE 13806](https://github.com/PaddlePaddle/Paddle/issues/13806)
 

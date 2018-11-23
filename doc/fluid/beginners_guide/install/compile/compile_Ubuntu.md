@@ -1,4 +1,4 @@
-***       
+***
 
 # **Ubuntu下从源码编译**
 
@@ -21,13 +21,13 @@
 * Docker源码编译
 * 直接本机源码编译
 
-我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
+我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
 
 
 
-我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，我们只对特定系统提供了支持。        
+我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，我们只对特定系统提供了支持。
 
-<a name="ubt_docker"></a>                         
+<a name="ubt_docker"></a>
 
 <br/><br/>
 ### ***使用Docker编译***
@@ -49,14 +49,14 @@
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
 	`docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
-	
+
 	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
-5. 切换到较稳定release分支下进行编译：
+5. 切换到较稳定版本下进行编译：
 
-	`git checkout release/1.0.0`
+	`git checkout v1.1`
 
 6. 创建并进入/paddle/build路径下：
 
@@ -66,33 +66,33 @@
 
 		For Python2: pip install protobuf==3.1.0
 		For Python3: pip install protobuf==3.1.0
-		
-	
+
+
 	> 安装protobuf 3.1.0。
 
 	`apt install patchelf`
-	
+
 	> 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
-8. 执行cmake：     
-	
+8. 执行cmake：
+
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO: Link 编译选项表到这里-->
 
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`
+		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF`
+		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 
 9. 执行编译：
 
 	`make -j$(nproc)`
-	
+
 	> 使用多核编译
 
 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
@@ -101,21 +101,21 @@
 
 		For Python2: pip install （whl包的名字）
 		For Python3: pip3 install （whl包的名字）
-		
+
 
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
-恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。            
+恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。
 
-<a name="ubt_source"></a>    
-	
+<a name="ubt_source"></a>
+
 <br/><br/>
 ### ***本机编译***
 
 
-**请严格按照以下指令顺序执行**    
+**请严格按照以下指令顺序执行**
 
 
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
@@ -125,20 +125,20 @@
 2. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 
 
-	* a. 安装Python-dev: 
-		
-		
-			For Python2: apt install python-dev 
+	* a. 安装Python-dev:
+
+
+			For Python2: apt install python-dev
 			For Python3: apt install python3.5-dev
 
-	
+
 	* b. 安装pip: (请保证拥有9.0.1及以上版本的pip):
-		
-		
+
+
 			For Python2: apt install python-pip
-			For Python3: apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip 
-		
-		
+			For Python3: apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip
+
+
 	* c. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
 
 		1.  `apt install virtualenv` 或 `pip install virtualenv` 或 `pip3 install virtualenv`
@@ -150,7 +150,7 @@
 		7.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 
-3. 进入虚环境：`workon paddle-venv`         
+3. 进入虚环境：`workon paddle-venv`
 
 
 4. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
@@ -158,7 +158,7 @@
 	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`apt install`或者`pip install` 后跟依赖名称和版本安装:
 
 		`apt install patchelf`
-		
+
 		> 不能使用apt安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
 
 5. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
@@ -175,28 +175,28 @@
 
 	`mkdir build && cd build`
 
-8. 执行cmake：       
-	
+8. 执行cmake：
+
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO：Link 安装选项表到这里-->
 
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
-			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
+			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
-		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA8，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
+		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):
 			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
-			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`          
-			iii. `sudo apt-get install libnccl2=2.2.13-1+cuda8.0 libnccl-dev=2.2.13-1+cuda8.0` 
-		
+			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
+
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
 
-				For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF       
-				For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF
+				For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+				For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 9. 使用以下命令来编译：
 

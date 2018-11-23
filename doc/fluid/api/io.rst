@@ -5,36 +5,12 @@
 fluid.io
 ========
 
-.. _api_fluid_io_save_vars:
+.. _api_fluid_io_load_inference_model:
 
-save_vars
----------
+load_inference_model
+--------------------
 
-..  autofunction:: paddle.fluid.io.save_vars
-    :noindex:
-
-.. _api_fluid_io_save_params:
-
-save_params
------------
-
-..  autofunction:: paddle.fluid.io.save_params
-    :noindex:
-
-.. _api_fluid_io_save_persistables:
-
-save_persistables
------------------
-
-..  autofunction:: paddle.fluid.io.save_persistables
-    :noindex:
-
-.. _api_fluid_io_load_vars:
-
-load_vars
----------
-
-..  autofunction:: paddle.fluid.io.load_vars
+..  autofunction:: paddle.fluid.io.load_inference_model
     :noindex:
 
 .. _api_fluid_io_load_params:
@@ -53,6 +29,14 @@ load_persistables
 ..  autofunction:: paddle.fluid.io.load_persistables
     :noindex:
 
+.. _api_fluid_io_load_vars:
+
+load_vars
+---------
+
+..  autofunction:: paddle.fluid.io.load_vars
+    :noindex:
+
 .. _api_fluid_io_save_inference_model:
 
 save_inference_model
@@ -61,11 +45,27 @@ save_inference_model
 ..  autofunction:: paddle.fluid.io.save_inference_model
     :noindex:
 
-.. _api_fluid_io_load_inference_model:
+.. _api_fluid_io_save_params:
 
-load_inference_model
---------------------
+save_params
+-----------
 
-..  autofunction:: paddle.fluid.io.load_inference_model
+..  autofunction:: paddle.fluid.io.save_params
+    :noindex:
+
+.. _api_fluid_io_save_persistables:
+
+save_persistables
+-----------------
+
+..  autofunction:: paddle.fluid.io.save_persistables
+    :noindex:
+
+.. _api_fluid_io_save_vars:
+
+save_vars
+---------
+
+..  autofunction:: paddle.fluid.io.save_vars
     :noindex:
 

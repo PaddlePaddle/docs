@@ -1,5 +1,5 @@
 ***
-<a name="third_party"></a>       
+<a name="third_party"></a>
 # 附录
 
 ## **编译依赖表**
@@ -166,6 +166,41 @@
 		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
 		<td> ON </td>
 	</tr>
+	<tr>
+		<td> WITH_SYSTEM_BLAS </td>
+		<td> 是否使用系统自带的BLAS </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_DISTRIBUTE </td>
+		<td> 是否编译带有分布式的版本 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_MKL </td>
+		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
+		<td> ON </td>
+	</tr>
+	<tr>
+		<td> WITH_RDMA </td>
+		<td> 是否编译支持RDMA的相关部分 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> WITH_BRPC_RDMA </td>
+		<td> 是否使用BRPC RDMA作为RPC协议 </td>
+		<td> OFF </td>
+	</tr>
+		<tr>
+		<td> ON_INFER </td>
+		<td> 是否打开预测优化 </td>
+		<td> OFF </td>
+	</tr>
+	<tr>
+		<td> DWITH_ANAKIN </td>
+		<td> 是否编译ANAKIN </td>
+		<td> OFF </td>
+	</tr>
    </tbody>
 </table>
 </p>
@@ -198,7 +233,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 ***
 <a name="whls"></a>
 </br></br>
-## **安装包列表**   
+## **安装包列表**
 
 <p align="center">
 <table>
@@ -209,6 +244,22 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</tr>
 	</thead>
 	<tbody>
+	<tr>
+		<td> paddlepaddle==[版本号] 如 paddlepaddle==1.0.1(下载1.0.1版本只支持CPU的PaddlePaddle)</td>
+		<td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==1.0.1 </td>
+		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.1版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==1.0.1.post87 </td>
+		<td> 使用CUDA 8.0和cuDNN 7编译的1.0.1版本 </td>
+	</tr>
+	<tr>
+		<td> paddlepaddle-gpu==1.0.1.post85 </td>
+		<td> 使用CUDA 8.0和cuDNN 5编译的1.0.1版本 </td>
+	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==1.0.0 </td>
 		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.0版本 </td>
@@ -275,7 +326,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 ***
 <a name="dockers"></a>
 </br></br>
-## **安装镜像表及简介**   
+## **安装镜像表及简介**
 <p align="center">
 <table>
 	<thead>
@@ -313,7 +364,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 ***
 <a name="ciwhls"></a>
 </br></br>
-## **多版本whl包列表**   
+## **多版本whl包列表**
 <p align="center">
 <table>
 	<thead>
@@ -321,37 +372,53 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 		<th> 版本说明 </th>
 		<th> cp27-cp27mu </th>
 		<th> cp27-cp27m </th>
+		<th> cp35-cp35m	</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
 		<td> cpu_avx_mkl </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-mkl/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">
+		paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-mkl/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl">
+		paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-mkl/paddlepaddle-latest-cp35-cp35m-linux_x86_64.whl">
+		paddlepaddle-latest-cp35-cp35m-linux_x86_64.whl</a></td>
 	</tr>
 	<tr>
-		<td> cpu_avx_mkl </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> cpu_avx_openblas </td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-openblas/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">
+		paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-cpu-avx-openblas/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> None </td>
 	</tr>
 		<tr>
 		<td> cpu_noavx_openblas </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-cpu-noavx-openblas/paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-cpu-noavx-openblas/paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> None </td>
 	</tr>
 	<tr>
 		<td> cuda8.0_cudnn5_avx_mkl </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl</a></td>
 	</tr>
 	<tr>
 		<td> cuda8.0_cudnn7_avx_mkl </td>
-		<td> <a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="https://guest@paddleci.ngrok.io/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl">	paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl</a></td>
+	</tr>
+	<tr>
+		<td> cuda9.0_cudnn7_avx_mkl </td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl</a></td>
 	</tr>
    </tbody>
 </table>
-</p>          
+</p>
 
 
 
@@ -365,7 +432,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 </br></br>
 
-## 在Docker中执行PaddlePaddle训练程序     
+## 在Docker中执行PaddlePaddle训练程序
 
 ***
 

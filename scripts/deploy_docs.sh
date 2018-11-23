@@ -17,7 +17,7 @@
 exit_code=0
 
 if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then exit $exit_code; fi;
-    
+
 # Deploy to the the content server if its a "develop" or "release/version" branch
 # The "develop_doc" branch is reserved to test full deploy process without impacting the real content.
 if [ "$TRAVIS_BRANCH" == "develop_doc" ]; then
@@ -50,6 +50,8 @@ docker run -it \
     -e DEPLOY_DOCS_SH=$DEPLOY_DOCS_SH \
     -e TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST \
     -e PPO_SCRIPT_BRANCH=$PPO_SCRIPT_BRANCH \
+    -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+    -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
     -e PADDLE_ROOT=/FluidDoc/external/Paddle \
     -e PYTHONPATH=/FluidDoc/external/Paddle/build/python \
     -v "$PWD:/FluidDoc" \

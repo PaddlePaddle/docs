@@ -6,7 +6,7 @@
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
-* *MacOS 10.12/10.13*
+* MacOS 10.11/10.12/10.13/10.14
 
 ## 确定要安装的版本
 
@@ -34,28 +34,22 @@
 
 由于在MacOS中的Python情况差别较大我们暂不提供快速安装的命令，请您按照以下步骤进行安装
 
-首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
-
-`uname -m && cat /etc/*release`
-
-> 上面的命令将会显示本机的操作系统和位数信息，请确保您的计算机和本教程的要求一致。
-
+首先，**检查您的计算机和操作系统**是否符合我们支持的编译标准： `uname -m` 并且在`关于本机`中查看系统版本。
 
 其次，您的计算机需要满足以下要求：    
 
-> **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python（对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x）, pip）
+> **请不要使用MacOS中自带python**，对于**Python2**，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg)提供的python2.7.15；对于**Python3**，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x。
 	
-		For python2: brew install python@2
-		For python3: brew install python3
+		For python2: brew install python@2 或 使用Python官方下载的python2.7.15
+		For python3: 使用Python官方下载的python3.5.x
 
 *	Python2.7.x，Pip >= 9.0.1            
+*  Python3.5.x，Pip3 >= 9.0.1  
 
-*  Python3.5.x，Pip3 >= 9.0.1           
-
-	> 如果您的电脑上安装有多个python环境（包括Python2/3，或者多个python2）以及pip请参见[FAQ-MacPython](./FAQ.html/#MACPRO)。    
-	>> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
+	> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。        
 	    
 下面将说明如何安装PaddlePaddle：
+
 
 1. 使用pip install来安装PaddlePaddle：
 	
@@ -93,7 +87,7 @@
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.0.0`
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`
 		
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：

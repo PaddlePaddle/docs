@@ -57,11 +57,11 @@ class DocGenerator(object):
             raise ValueError("Cannot find submodule {0}".format(submodule_name))
         self.print_section(submodule_name)
 
-        for item in submodule.__all__:
+        for item in sorted(submodule.__all__,key=str.lower):
             self.print_item(item)
 
     def print_current_module(self):
-        for item in self.module.__all__:
+        for item in sorted(self.module.__all__,key=str.lower):
             self.print_item(item)
 
     def print_section(self, name):

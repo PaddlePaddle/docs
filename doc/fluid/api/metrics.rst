@@ -5,12 +5,30 @@
 fluid.metrics
 =============
 
-.. _api_fluid_metrics_MetricBase:
+.. _api_fluid_metrics_Accuracy:
 
-MetricBase
-----------
+Accuracy
+--------
 
-..  autoclass:: paddle.fluid.metrics.MetricBase
+..  autoclass:: paddle.fluid.metrics.Accuracy
+    :members:
+    :noindex:
+
+.. _api_fluid_metrics_Auc:
+
+Auc
+---
+
+..  autoclass:: paddle.fluid.metrics.Auc
+    :members:
+    :noindex:
+
+.. _api_fluid_metrics_ChunkEvaluator:
+
+ChunkEvaluator
+--------------
+
+..  autoclass:: paddle.fluid.metrics.ChunkEvaluator
     :members:
     :noindex:
 
@@ -20,6 +38,33 @@ CompositeMetric
 ---------------
 
 ..  autoclass:: paddle.fluid.metrics.CompositeMetric
+    :members:
+    :noindex:
+
+.. _api_fluid_metrics_DetectionMAP:
+
+DetectionMAP
+------------
+
+..  autoclass:: paddle.fluid.metrics.DetectionMAP
+    :members:
+    :noindex:
+
+.. _api_fluid_metrics_EditDistance:
+
+EditDistance
+------------
+
+..  autoclass:: paddle.fluid.metrics.EditDistance
+    :members:
+    :noindex:
+
+.. _api_fluid_metrics_MetricBase:
+
+MetricBase
+----------
+
+..  autoclass:: paddle.fluid.metrics.MetricBase
     :members:
     :noindex:
 
@@ -38,51 +83,6 @@ Recall
 ------
 
 ..  autoclass:: paddle.fluid.metrics.Recall
-    :members:
-    :noindex:
-
-.. _api_fluid_metrics_Accuracy:
-
-Accuracy
---------
-
-..  autoclass:: paddle.fluid.metrics.Accuracy
-    :members:
-    :noindex:
-
-.. _api_fluid_metrics_ChunkEvaluator:
-
-ChunkEvaluator
---------------
-
-..  autoclass:: paddle.fluid.metrics.ChunkEvaluator
-    :members:
-    :noindex:
-
-.. _api_fluid_metrics_EditDistance:
-
-EditDistance
-------------
-
-..  autoclass:: paddle.fluid.metrics.EditDistance
-    :members:
-    :noindex:
-
-.. _api_fluid_metrics_DetectionMAP:
-
-DetectionMAP
-------------
-
-..  autoclass:: paddle.fluid.metrics.DetectionMAP
-    :members:
-    :noindex:
-
-.. _api_fluid_metrics_Auc:
-
-Auc
----
-
-..  autoclass:: paddle.fluid.metrics.Auc
     :members:
     :noindex:
 

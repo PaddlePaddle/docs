@@ -145,6 +145,7 @@
 | 4 | 1053 | 241.75 |
 | 8 | 1062.48 | 352.18 |
 
+
 ## How to run those Benchmark models
 
 1. 首先, 使用[External Converter](./convert_paddle_to_anakin.html)对caffe model 进行转换
