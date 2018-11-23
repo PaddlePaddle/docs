@@ -11,7 +11,7 @@ SGDOptimizer
 随机梯度下降算法的优化器
 
 .. math::
-            \\param_out=param-learning\_rate∗grad\\
+            \\param\_out=param-learning\_rate*grad\\
 
 
 参数:
