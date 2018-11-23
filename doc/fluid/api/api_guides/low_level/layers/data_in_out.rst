@@ -17,7 +17,7 @@ Fluid支持两种数据输入方式，包括：
 方法送入训练/预测数据，C++端的训练/预测程序调用队列的 :code:`pop` 方法取出Python端送入的数据。PyReader可与
 :code:`double_buffer` 配合使用，实现数据读取和训练/预测的异步执行。
 
-具体使用方法请参考 :ref:`user_guide_use_py_reader`。
+具体使用方法请参考 :ref:`api_fluid_layers_py_reader`。
 
 
 数据输出
