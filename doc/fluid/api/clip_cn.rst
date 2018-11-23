@@ -107,7 +107,7 @@ GradientClipByGlobalNorm
 剪切过程如下：
 
 .. math::
-            \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{(global\_norm,clip\_norm)}\\
+            \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{max(global\_norm,clip\_norm)}\\
             
             其中：
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
