@@ -148,7 +148,7 @@ TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-pred
   - **name** — 可选的名称前缀
 
 抛出异常：
-  - **ValueError**  如果 ``learning_rate`` , ``rho``,  ``epsilon`` , ``momentum``  为 None.
+  - ``ValueError``  如果 ``learning_rate`` , ``rho`` ,  ``epsilon`` , ``momentum``  为 None.
 
 **代码示例**
 
