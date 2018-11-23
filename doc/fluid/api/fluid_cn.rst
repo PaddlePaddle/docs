@@ -60,7 +60,7 @@ op_role的辅助变量。
 
 ``op_role``的辅助变量。
 
-参考:Program.op_role 文档。
+参考: ``Program.op_role`` 文档。
 
 注意:这是一个底层API。用户不应该直接使用它。
 
@@ -71,13 +71,12 @@ op_role的辅助变量。
 用于debug
 
 参数：  
-
 	- **throw_on_error** (bool): 没有设置任何必需的字段时，抛出值错误。
 	- **with_details** (bool): 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
 
 返回：(str): debug 字符串
 
-抛出异常： ``ValueError`` ：当 ``throw_on_error == true`` 时，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
+抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` 时，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
 
 
@@ -165,7 +164,8 @@ op_role的辅助变量。
 
 注意:在序列化和反序列化之后，所有关于参数的信息都会丢失。
 
-参数:	**binary_str_type** (str) – prootbuf二进制字符串
+参数:	
+    - **binary_str_type** (str) – prootbuf二进制字符串
 
 返回:	反序列化后的ProgramDesc
 
@@ -212,8 +212,8 @@ op_role的辅助变量。
 name_scope
 >>>>>>>>>>>>
 
-paddle.fluid.name_scope(*args, **kwds)
-""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.name_scope(*args, **kwds)
+
 
 为operators生成层次名称前缀
 
@@ -224,8 +224,8 @@ paddle.fluid.name_scope(*args, **kwds)
 global_scope
 >>>>>>>>>>>>
 
-paddle.fluid.global_scope()
-""""""""""""""""""""""""""""""""""""""""""
+.. py:class:: paddle.fluid.global_scope()
+
 
 获取全局/默认作用域实例。很多api使用默认 ``global_scope`` ，例如 ``Executor.run`` 。
 
@@ -270,7 +270,6 @@ memory_optimize
 注意:它不支持block中嵌套子block。
 
 参数:
-
 	- **input_program** (str) – 输入Program。
 	- **skip_opt_set** (set) – set中的vars将不被内存优化。
 	- **print_log** (bool) – 是否打印debug日志。
@@ -383,14 +382,14 @@ WeightNormParamAttr
 权重归一化。权重归一化是将权重向量的长度与其方向解耦。`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_ 这篇paper中讨论了权重归一化的实现
 
 参数:
-	- **dim** (list) ：			参数的名称。默认None。
-	- **name** (str)：			参数的名称。默认None。
-	- **initializer**（initializer)：		初始化参数的方法。默认None。
-	- **learning_rate** (float)：		学习率。优化时学习速率global_lr∗parameter_lr∗scheduler_factor。默认1.0。
-	- **regularizer** (WeightDecayRegularizer)：	正则化因子。默认None。
-	- **trainable** (bool) ：			参数是否可训练。默认True。
-	- **gradient_clip** (BaseGradientClipAttr)：	梯度下降裁剪（Gradient Clipping）的方法。默认None。
-	- **do_model_average** (bool)：		参数是否应该model average。默认False。
+	- **dim** (list) - 参数的名称。默认None。
+	- **name** (str) - 参数的名称。默认None。
+	- **initializer**（initializer) - 初始化参数的方法。默认None。
+	- **learning_rate** (float) - 学习率。优化时学习速率global_lr∗parameter_lr∗scheduler_factor。默认1.0。
+	- **regularizer** (WeightDecayRegularizer) - 正则化因子。默认None。
+	- **trainable** (bool) - 参数是否可训练。默认True。
+	- **gradient_clip** (BaseGradientClipAttr) - 梯度下降裁剪（Gradient Clipping）的方法。默认None。
+	- **do_model_average** (bool) - 参数是否应该model average。默认False。
 
 返回： empty program
 
