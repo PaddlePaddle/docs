@@ -92,7 +92,7 @@ Decayed Adagrad Optimizer
   - **learning_rate** (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
   - **decay** (float) – 衰减率
   - **regularization** - 一个正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
-  - **epsilon** (float) - 非常小的浮点值得，为了数值稳定性
+  - **epsilon** (float) - 非常小的浮点值，为了数值稳定性
   - **name** — 可选的名称前缀。
 
   
