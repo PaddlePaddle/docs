@@ -19,11 +19,11 @@
 * Docker源码编译（不支持CentOS 6 / 7的GPU版本）
 * 直接本机源码编译（不支持CentOS 6的全部版本以及CentOS 7的GPU版本）
 
-我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
+我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
 
 
 
-同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统。            
+同样对于那些出于各种原因不能够安装Docker的用户我们也提供了可以从**本机直接源码编译**的方法，但是由于在本机上的情况更加复杂，因此我们只支持特定的系统。
 
 <a name="ct_docker"></a>
 
@@ -31,7 +31,7 @@
 <br/><br/>
 ### ***使用Docker编译***
 
-为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。   
+为了更好的使用Docker并避免发生问题，我们推荐使用**最高版本的Docker**，关于**安装和使用Docker**的细节请参阅Docker[官方文档](https://docs.docker.com/install/)。
 
 
 <!--TODO add the following back when support gpu version on Cent-->
@@ -47,7 +47,7 @@
 3. 利用我们提供的镜像（使用该命令您可以不必提前下载镜像）：
 
 	`docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
-	
+
 	> --name paddle-test为您创建的Docker容器命名为paddle-test，-v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)），-it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
@@ -64,28 +64,28 @@
 
 		For Python2: pip install protobuf==3.1.0
 		For Python3: pip install protobuf==3.1.0
-		
-	
+
+
 	> 安装protobuf 3.1.0。
 
 	`apt install patchelf`
-	
+
 	> 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
-8. 执行cmake：       
-	
+8. 执行cmake：
+
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
-	
+
 	* 对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF`
-	
-	>> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译     
-		
+		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+
+	>> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
+
 9. 执行编译：
 
 	`make -j$(nproc)`
-	
+
 	> 使用多核编译
 
 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
@@ -94,23 +94,23 @@
 
 		For Python2: pip install （whl包的名字）
 		For Python3: pip3 install （whl包的名字）
-		
+
 
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
 
-恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。        
+恭喜您，现在您已经完成使用Docker编译PaddlePaddle的过程。
 
 
 
-      
+
 
 <a name="ct_source"></a>
 
 
 <br/><br/>
-### ***本机编译***     
+### ***本机编译***
 
 **请严格按照以下指令顺序执行**
 
@@ -122,32 +122,32 @@
 
 3. 安装必要的工具`bzip2`以及`make`： `yum install -y bzip2` ， `yum install -y make`
 
-4. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：         
+4. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 
-	* a. 安装Python-dev:                
-			
+	* a. 安装Python-dev:
+
 			For Python2: yum install python-devel
 			For Python3: (这里由于python3.5的编译安装过程较为复杂，请参照Python官方流程安装）
 
-	* b. 安装pip: 
-		
+	* b. 安装pip:
+
 			For Python2: yum install python-pip (请保证拥有9.0.1及以上的pip版本)
 			For Python3: (这里由于pip3的编译安装过程较为复杂，请参照Python官方流程安装）(请保证拥有9.0.1及以上的pip3版本）
-	
-	
-	* c.（Only For Python3）设置Python3相关的环境变量：         
-	
-		1. 首先使用``` find `dirname $(dirname         
-			$(which python3))` -name "libpython3.so"```找到Pythonlib的路径，然后（下面[python-lib-path]替换为找到文件路径）  
-		
+
+
+	* c.（Only For Python3）设置Python3相关的环境变量：
+
+		1. 首先使用``` find `dirname $(dirname
+			$(which python3))` -name "libpython3.so"```找到Pythonlib的路径，然后（下面[python-lib-path]替换为找到文件路径）
+
 		2. 设置PYTHON_LIBRARIES：`export PYTHON_LIBRARY=[python-lib-path]`
-		
-		3. 其次使用```find `dirname $(dirname         
-			$(which python3))`/include -name "python3.5m"```找到PythonInclude的路径，然后（下面[python-include-path]替换为找到文件路径）		
+
+		3. 其次使用```find `dirname $(dirname
+			$(which python3))`/include -name "python3.5m"```找到PythonInclude的路径，然后（下面[python-include-path]替换为找到文件路径）
 		4. 设置PYTHON_INCLUDE_DIR: `export PYTHON_INCLUDE_DIRS=[python-include-path]`
-		
-		5. 设置系统环境变量路径：`export PATH=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/) 
-		    
+
+		5. 设置系统环境变量路径：`export PATH=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
+
 
 
 	* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
@@ -160,7 +160,7 @@
 		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 
-5. 进入虚环境：`workon paddle-venv`      
+5. 进入虚环境：`workon paddle-venv`
 
 
 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
@@ -168,7 +168,7 @@
 	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 
 		`yum install patchelf`
-		
+
 		> 不能使用apt安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
 
 7. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
@@ -185,20 +185,20 @@
 
 	`mkdir build && cd build`
 
-10. 执行cmake：       
-	
+10. 执行cmake：
+
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO：Link 安装选项表到这里-->
 
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF		
-			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \  
-			-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
-			
-		
+			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+			-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+
+
 		> 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次cmake指令
-	
+
 
 
 11. 使用以下命令来编译：
