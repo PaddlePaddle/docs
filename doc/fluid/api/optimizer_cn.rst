@@ -103,7 +103,8 @@ Decayed Adagrad Optimizer
   optimizer = fluid.optimizer.DecayedAdagrad(learning_rate=0.2)
   optimizer.minimize(cost)
 
-``DecayedAdagradOptimizer`` 不支持 sparse gradient
+.. note::
+  ``DecayedAdagradOptimizer`` 不支持 sparse gradient
 
 
 .. _cn_api_fluid_optimizer_FtrlOptimizer:
