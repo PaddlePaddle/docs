@@ -31,6 +31,7 @@
     :maxdepth: 2
     
     install/Start.rst
+    api_guides/index.rst
     quick_start/index.rst
     basics/index.rst
     basics/learning_materials.md
