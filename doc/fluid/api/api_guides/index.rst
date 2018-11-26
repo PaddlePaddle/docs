@@ -7,6 +7,7 @@ API使用指南
 
     high_low_level_api.md
     low_level/layers/index.rst
+    low_level/cluster/index.rst
     low_level/executor.rst
     low_level/optimizer.rst
     low_level/metrics.rst
