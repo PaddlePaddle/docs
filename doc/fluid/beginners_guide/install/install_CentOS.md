@@ -176,8 +176,8 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 ## ***如何卸载***
 请使用以下命令卸载PaddlePaddle：
 
-* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 install paddlepaddle`
+* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 
-* ***GPU版本的PaddlePaddle***: `pip uninstall paddlepaddle-gpu` 或 `pip3 install paddlepaddle-gpu`
+* ***GPU版本的PaddlePaddle***: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
 
 
