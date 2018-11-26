@@ -26,7 +26,7 @@ Program
 
 
 
-.. py:method:: op_role
+.. py:attribute:: op_role
 
 operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
@@ -36,7 +36,7 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 
 
-.. py:method:: set_op_role
+.. py:attribute:: set_op_role
 
 operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
@@ -46,9 +46,9 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 
 
-.. py:method:: op_role_var
+.. py:attribute:: op_role_var
 
-op_role的辅助变量。
+``op_role`` 的辅助变量。
 
 参考: ``Program.op_role`` 文档。
 
@@ -56,9 +56,9 @@ op_role的辅助变量。
 
 
 
-.. py:method:: set_op_role_var
+.. py:attribute:: set_op_role_var
 
- ``op_role``的辅助变量。
+``op_role`` 的辅助变量。
 
 参考: ``Program.op_role`` 文档。
 
@@ -86,8 +86,8 @@ op_role的辅助变量。
 
 有些operator，在训练和测试之间的行为是不同的，比如batch_norm。它们有一个属性is_test来控制行为。当for_test=True时，此方法将把它们的is_test属性更改为True。
 
-- 克隆Program，该Program用于训练时，将for_test设置为False。
-- 克隆Program，该Program用于测试时，将for_test设置为True。
+- 克隆Program，该Program用于训练时，将 ``for_test`` 设置为False。
+- 克隆Program，该Program用于测试时，将 ``for_test`` 设置为True。
 
 注意:此API不会删除任何操作符。请在backward和optimization之前使用clone(for_test=True)。
 
@@ -158,7 +158,7 @@ op_role的辅助变量。
 
 上边两个代码片段生成的Program是一样的。
 
-.. py:method:: static parse_from_string(binary_str)
+.. py:staticmethod:: parse_from_string(binary_str)
 
 反序列化protobuf，转换成program
 
@@ -171,11 +171,11 @@ op_role的辅助变量。
 
 返回类型：Program
 
-.. py:method:: num_blocks
+.. py:attribute:: num_blocks
 
 该program中的block的个数
 
-.. py:method:: random_seed
+.. py:attribute:: random_seed
 
 
 程序中随机运算符的默认随机种子。0意味着从随机设备中获取随机种子。
@@ -218,6 +218,9 @@ name_scope
 为operators生成层次名称前缀
 
 注意： 这个函数只能用于调试和可视化。不要将其用于分析，比如graph/program转换。
+
+参数： 
+	- **prefix** (str) - 前缀
 
 **示例代码**
 
@@ -297,21 +300,21 @@ DistributeTranspilerConfig
 .. py:class:: paddle.fluid.DistributeTranspilerConfig
 
 
-.. py:method:: slice_var_up (bool)
+.. py:attribute:: slice_var_up (bool)
 
 为多个Pserver（parameter server）将tensor切片, 默认为True。
 
-.. py:method:: split_method (PSDispatcher)
+.. py:attribute:: split_method (PSDispatcher)
 
 可使用 RoundRobin 或者 HashName。
 
 注意: 尝试选择最佳方法来达到Pserver间负载均衡。
 
-.. py:method:: min_block_size (int)
+.. py:attribute:: min_block_size (int)
 
 最小数据块的大小
 
-注意: 根据：https：//github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156 , 当数据块大小超过2MB时，我们可以有效地使用带宽。如果你想更改它，请详细查看 ``slice_variable`` 函数。
+注意: 根据：`issuecomment-369912156 <https://github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156>`_ , 当数据块大小超过2MB时，我们可以有效地使用带宽。如果你想更改它，请详细查看 ``slice_variable`` 函数。
 
 .. _cn_api_fluid_LoDTensor:
 
@@ -334,9 +337,10 @@ X 为 LoDTensor，它包含两个序列。第一个长度是2，第二个长度�
 
 ::
 
-	x.lod = [[2, 3]] x.data = [[1, 2], [3, 4], // seq 1
+	x.lod  =  [[2, 3]] 
+	x.data = [[1, 2], [3, 4], // seq 1
 
-	[5, 6], [7, 8], [9, 10]] // seq 2
+		  [5, 6], [7, 8], [9, 10]] // seq 2
 
 	x.shape = [5, 2]
 
