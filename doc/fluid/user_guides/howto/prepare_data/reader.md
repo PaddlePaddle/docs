@@ -1,7 +1,3 @@
-```eval_rst
-.. _user_guide_reader:
-```
-
 # Python Reader
 
 During the training and testing phases, PaddlePaddle programs need to read data. To help the users write code that performs reading input data, we define the following:
