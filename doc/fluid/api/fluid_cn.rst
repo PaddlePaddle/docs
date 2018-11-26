@@ -586,25 +586,25 @@ BuildStrategy
 
 
 
-.. py:method:: debug_graphviz_path
+.. py:attribute:: debug_graphviz_path
 
 str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有利于调试。 默认值为""。
 
 
 
-.. py:method:: fuse_elewise_add_act_ops
+.. py:attribute:: fuse_elewise_add_act_ops
 
 bool类型。它表明了是否融合（fuse）elementwise_add_op和activation_op。这会使整体执行过程更快一些。默认为False。
 
 
 
-.. py:method:: gradient_scale_strategy
+.. py:attribute:: gradient_scale_strategy
 
 str类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果你想自定义 *loss@grad* ，你可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
 
 
-.. py:method:: reduce_strategy
+.. py:attribute:: reduce_strategy
 
 str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce strategy），即 ``AllReduce`` 和 ``Reduce`` 。如果你需要在所有执行场所上独立地进行参数优化，可以使用 ``AllReduce`` 。反之，如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行场所，随之将优化后的参数广播给其他执行场所。在一些模型中， ``Reduce`` 策略执行速度更快一些。默认值为 ``AllReduce`` 。
 
@@ -637,13 +637,13 @@ ExecutionStrategy
 
 
 
-.. py:method:: allow_op_delay
+.. py:attribute:: allow_op_delay
    
 这是一个bool类型成员，表示是否推迟communication operators(交流运算)的执行，这样做会使整体执行过程更快一些。但是在一些模型中，allow_op_delay会导致程序中断。默认为False。
   
 
 
-.. py:method:: num_iteration_per_drop_scope
+.. py:attribute:: num_iteration_per_drop_scope
   
 int型成员。它表明了清空执行时产生的临时变量需要的程序执行重复次数。因为临时变量的形可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为100。
 
@@ -654,7 +654,7 @@ int型成员。它表明了清空执行时产生的临时变量需要的程序�
 
 
 
-.. py:method:: num_threads
+.. py:attribute:: num_threads
 
 int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``ParallelExecutor`` 的program中的operator（算子，运算）。如果 :math:`num\_threads=1` ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``ParallelExecutor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num\_threads=device\_count∗4` ；对CPU， :math:`num\_threads=CPU\_NUM∗4` 。在 ``ParallelExecutor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ， ``ParallelExecutor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
 
