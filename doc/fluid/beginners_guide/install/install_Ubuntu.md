@@ -170,7 +170,7 @@ Python3.5（该指令适用于本机未安装python2的用户，否则，请卸�
 
 <br/><br/>
 ## ***如何卸载***
-请使用以下命令卸载PaddlePaddle：
+请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
 
 * ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 
