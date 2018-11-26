@@ -174,7 +174,7 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 
 <br/><br/>
 ## ***如何卸载***
-请使用以下命令卸载PaddlePaddle：
+请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
 
 * ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 
