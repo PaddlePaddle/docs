@@ -25,9 +25,9 @@ PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字�
 - `NativeConfig` 原生 engine，由 paddle 原生的 forward operator
     组成，可以天然支持所有paddle 训练出的模型，
 
-- `MixedRTConfig` TensorRT mixed engine 用于 GPU
+- `AnalysisConfig` TensorRT mixed engine 用于 GPU
     加速，用子图的方式支持了 [TensorRT] ，支持所有paddle
-    模型，并自动切割部分计算子图到 TensorRT 上加速（WIP）
+    模型，并自动切割部分计算子图到 TensorRT 上加速（WIP），具体的使用方式可以参考[这里](http://paddlepaddle.org/documentation/docs/zh/1.1/user_guides/howto/inference/paddle_tensorrt_infer.html)。
 
 
 ## 预测部署过程
