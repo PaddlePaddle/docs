@@ -51,7 +51,7 @@ Python2.7：
 
 Python3.5（该指令适用于本机未安装python2的用户，否则，请卸载python2之后再使用本指令）：
 	
-	apt-get install -y curl python3.5 python3.5-dev wget vim git && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip && pip3 install paddlepaddle
+	apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get install -y curl python3.5 python3.5-dev wget vim git && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip && pip3 install paddlepaddle
 	
 	
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
