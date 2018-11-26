@@ -1,6 +1,6 @@
 # 使用Paddle TensorRT预测
 
-NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。Paddle 1.0 采用了子图的形式对TensorRT进行了初步集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNet, ResNet50, VGG19, ResNext, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
+NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。Paddle 1.0 采用了子图的形式对TensorRT进行了初步集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNet, ResNet50, VGG19, ResNext, Se-ReNext, GoogleNet, DPN, ICNET, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
 
 
 ## 编译带`TensorRT`的预测库
@@ -46,7 +46,7 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 [`paddle_inference_api.h`]('https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/paddle_inference_api.h') 定义了使用TensorRT的所有接口。  
 
 总体上分为以下步骤：  
-1. 创建合适的配置MixedRTConfig.   
+1. 创建合适的配置AnalysisConfig.    
 2. 根据配合创建 `PaddlePredictor`.    
 3. 创建输入的tensor.   
 4. 获取输出的tensor，输出结果.   
@@ -56,23 +56,20 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 ```c++
 #include "paddle_inference_api.h"
 
-using paddle::contrib::MixedRTConfig;
 namespace paddle {
+using paddle::contrib::AnalysisConfig;
 
 void RunTensorRT(int batch_size, std::string model_dirname) {
   // 1. 创建MixedRTConfig
-  MixedRTConfig config;
+  AnalysisConfig config(true);
   config.model_dir = model_dirname;
-  config.use_gpu = true;  // 此处必须为true
-  config.fraction_of_gpu_memory = 0.2;  
-  config.device = 0;     // gpu id
-  // TensorRT 根据max batch size大小给op选择合适的实现，
-  // 因此max batch size大小和运行时batch的值最好相同。
-  config.max_batch_size = batch_size;
+  config->use_gpu = true;
+  config->device = 0;
+  config->fraction_of_gpu_memory = 0.15;
+  config->EnableTensorRtEngine(1 << 20 /*work_space_size*/, batch_size /*max_batch_size*/);
 
   // 2. 根据config 创建predictor
-  auto predictor = CreatePaddlePredictor<MixedRTConfig>(config);
-
+  auto predictor = CreatePaddlePredictor(config);
   // 3. 创建输入 tensor 
   int height = 224;
   int width = 224;
