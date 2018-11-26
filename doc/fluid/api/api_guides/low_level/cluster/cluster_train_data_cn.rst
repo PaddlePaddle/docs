@@ -5,7 +5,7 @@
 ####################
 
 一个数据并行的分布式训练任务通常会含有多个训练节点，每个训练节点负责训练整个数据集种的一部分。所以在
-启动分布式训练任务之前需要将训练数据切分成多个小文件，再实现一个多机训练的reader函数根据当前节点的
+启动分布式训练任务之前需要将训练数据切分成多个小文件，通过一个 file_dispatcher 函数根据当前节点的
 唯一序号(trainer_id)以及当前训练任务中训练节点的总数(trainers)决定读取哪一部分训练数据。
 
 准备文本格式的分布式训练数据集
@@ -35,7 +35,7 @@
 
   .. code-block:: python
 
-    def gen_train_list(file_pattern, trainers, trainer_id):
+    def file_dispatcher(file_pattern, trainers, trainer_id):
       file_list = glob.glob(file_pattern)
       ret_list = []
       for idx, f in enumerate(file_list):
@@ -91,14 +91,14 @@ API Reference 请参考：:ref:`api_fluid_recordio_writer_convert_reader_to_reco
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fluid 种提供了 `fluid.layers.io.open_files` API 来读取 RecordIO 格式的训练数据，在以下样例代码
-中复用了上面例子中 `gen_train_list` 函数来决定当前节点应该读取哪一部分训练数据：
+中复用了上面例子中 `file_dispatcher` 函数来决定当前节点应该读取哪一部分训练数据：
 
   .. code-block:: python
 
     trainers = int(os.getenv("PADDLE_TRAINERS"))
     trainer_id = int(os.getenv("PADDLE_TRAINER_ID"))
     data_file = fluid.layers.io.open_files(
-        filenames=gen_train_list("./mnist-[0-9]*.recordio", 2, 0),
+        filenames=file_dispatcher("./mnist-[0-9]*.recordio", 2, 0),
         thread_num=1,
         shapes=[(-1, 784),(-1, 1)],
         lod_levels=[0, 0],
