@@ -82,7 +82,7 @@ A local scope is very useful when we implement Recurrent Neural Network. Each ti
 
 ```cpp
 class Variable {
- private:
+ private:async_training.rst
   Variable() = default;
   friend class Scope;
 };
