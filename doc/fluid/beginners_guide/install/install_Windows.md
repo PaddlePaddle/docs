@@ -36,9 +36,9 @@ Windows系统下可使用`cpu-z`这类软件来检测您的处理器是否支持
 
 <br/><br/>
 ## ***如何卸载***
-请使用以下命令卸载PaddlePaddle：
+请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
 
-* ***CPU版本的PaddlePaddle***: `pip install paddlepaddle` 或 `pip3 install paddlepaddle`  
+* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`  
 
 
 
