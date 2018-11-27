@@ -37,10 +37,8 @@
 那么我们应该将各种长期变量都保存下来，甚至还需要记录一下当前的epoch和step的id。
 因为一些模型变量虽然不是参数，但对于模型的训练依然必不可少。
 
-因此，根据需求的不同，我们提供了两套API来分别进行模型的参数和checkpoint的保存。
-
 保存模型用于对新样本的预测
-############
+==========================
 
 如果我们保存模型的目的是用于对新样本的预测，那么只保存模型参数就足够了。我们可以使用
 :code:`fluid.io.save_params()` 接口来进行模型参数的保存。
@@ -115,11 +113,13 @@
 :code:`fluid.io.save_persistables`、:code:`fluid.io.load_persistables` 。
 
 单机增量训练
-##################
+==========================
 单机的增量训练的一般步骤如下：
-1. 在训练的最后调用:code:`fluid.io.save_persistables`保存持久性参数到指定的位置。
-2. 在训练的startup_program通过执行器（:code:`Executor`）执行成功之后调用:code:`fluid.io.load_persistables`加载之前保存的持久性参数。
-3. 通过执行器（:code:`Executor`）或者（:code:`ParallelExecutor`）继续训练。
+
+1. 在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数到指定的位置。
+2. 在训练的startup_program通过执行器 :code:`Executor` 执行成功之后调用 :code:`fluid.io.load_persistables` 加载之前保存的持久性参数。
+3. 通过执行器 :code:`Executor` 或者 :code:`ParallelExecutor` 继续训练。
+
 
 例如：
 
@@ -132,8 +132,7 @@
     prog = fluid.default_main_program()
     fluid.io.save_persistables(exe, path, prog)
 
-上面的例子中，通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认
-:code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，并将他们保存到指定的 :code:`path` 目录下。
+上面的例子中，通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认 :code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，并将他们保存到指定的 :code:`path` 目录下。
 
 
 .. code-block:: python
@@ -154,17 +153,20 @@
 
 
 多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
-##################
+==========================
 多机增量训练和单机增量训练有若干不同点：
-1. 在训练的最后调用:code:`fluid.io.save_persistables`保存持久性参数时，不必要所有的Trainer都调用这个方法，一般0号Trainer来保存。
+
+1. 在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数时，不必要所有的Trainer都调用这个方法，一般0号Trainer来保存。
 2. 多机增量训练的参数加载在PServer端，Trainer端不用加载参数。在PServer全部启动后，Trainer会从PServer端同步参数。
 
 多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
-1. 在0号trainer在训练的最后调用:code:`fluid.io.save_persistables`保存持久性参数到指定的 :code:`path` 下。
+
+1. 在0号trainer在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数到指定的 :code:`path` 下。
 2. 通过HDFS等方式将0号trainer保存下来的所有的参数共享给所有的PServer(每个PServer都需要有完整的参数)。
-3. PServer在训练的startup_program通过执行器（:code:`Executor`）执行成功之后调用:code:`fluid.io.load_persistables`加载0号trainer保存的持久性参数。
-4. PServer通过执行器（:code:`Executor`）继续启动Pserver_program.
-5. 所有的训练节点Trainer通过执行器（:code:`Executor`）或者（:code:`ParallelExecutor`）正常训练。
+3. PServer在训练的startup_program通过执行器（:code:`Executor`）执行成功之后调用 :code:`fluid.io.load_persistables` 加载0号trainer保存的持久性参数。
+4. PServer通过执行器 :code:`Executor` 继续启动PServer_program.
+5. 所有的训练节点Trainer通过执行器 :code:`Executor` 或者 :code:`ParallelExecutor` 正常训练。
+
 
 对于训练过程中待保存参数的Trainer， 例如：
 
@@ -179,6 +181,7 @@
         prog = fluid.default_main_program()
         fluid.io.save_persistables(exe, path, prog)
 
+
 .. code-block:: bash
     hadoop fs -mkdir /remote/$path
     hadoop fs -put $path /remote/$path
@@ -188,8 +191,10 @@
 
 对于训练过程中待载入参数的PServer， 例如：
 
+
 .. code-block:: bash
     hadoop fs -get /remote/$path $path
+
 
 .. code-block:: python
 
@@ -216,7 +221,7 @@
         main_program = t.get_trainer_program()
                 exe.run(main_program)
 
-上面的例子中，每个PServer通过调用HDFS的命令获取到0号Trainer保存的参数，通过配置获取到PServer的:code:`fluid.Program` ，PaddlePaddle Fluid会从此
+上面的例子中，每个PServer通过调用HDFS的命令获取到0号Trainer保存的参数，通过配置获取到PServer的 :code:`fluid.Program` ，PaddlePaddle Fluid会从此
 :code:`fluid.Program` 也就是 :code:`pserver_startup` 的所有模型变量中找出长期变量，并通过指定的 :code:`path` 目录下一一加载。
 
 
