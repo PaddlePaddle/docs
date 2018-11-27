@@ -1,10 +1,10 @@
 ..  _api_guide_parameter:
 
 #########
-Parameter
+模型参数
 #########
 
-我将模型中的weight和bias统称为parameter, 在fluid中对应class fluid.Parameter. fluid.Parameter继承自fluid.Variable, 是一种可持久化的variable. 模型的训练就是不断学习更新parameters的过程。Parameter相关的属性可以通过 :ref:`api_fluid_param_attr_ParamAttr` 来配置，可配置内容有：
+模型参数为模型中的weight和bias统称，在fluid中对应fluid.Parameter类，继承自fluid.Variable，是一种可持久化的variable。模型的训练就是不断学习更新模型参数的过程。模型参数相关的属性可以通过 :ref:`api_fluid_param_attr_ParamAttr` 来配置，可配置内容有：
 
 - 初始化方式
 - 正则化
@@ -160,7 +160,7 @@ fluid通过 :code:`ParamAttr` 的 :code:`do_model_average` 属性设置单个par
                                 do_model_average=true)
       y_predict = fluid.layers.fc(input=x, size=10, param_attr=param_attrs)
 
-在miniBatch训练过程中，每个batch过后，都会更新一次parameters, paddle model average做的就是平均最近k次更新产生的parameters.
+在miniBatch训练过程中，每个batch过后，都会更新一次parameters，模型平均做的就是平均最近k次更新产生的parameters。
 
 平均后的parameters只是被用来进行测试和预测，其并不参与实际的训练过程。
 
