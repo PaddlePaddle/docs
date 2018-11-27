@@ -1,7 +1,7 @@
 .. _user_guide_save_load_vars:
 
 ##################
-保存与载入模型变量
+模型/变量的保存、载入与增量训练
 ##################
 
 模型变量分类
@@ -61,44 +61,11 @@
 筛选出其中所有的模型参数，并将这些模型参数保存到指定的 :code:`param_path` 之中。
 
 
-保存checkpoint用于将来恢复训练
-==============================
-
-在训练过程中，我们可能希望在一些节点上将当前的训练状态保存下来，
-以便在将来需要的时候恢复训练环境继续进行训练。这一般被称作“checkpoint”。
-想要保存checkpoint，可以使用 :code:`fluid.io.save_checkpiont()` 接口。
-
-例如：
-
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    exe = fluid.Executor(fluid.CPUPlace())
-    path = "./checkpoints"
-    prog = fluid.default_main_program()
-    trainer_args = {"epoch_id": 200,
-                    "step_id": 20} # just an example
-    fluid.io.save_checkpoint(executor=exe,
-                                checkpoint_dir=path,
-                                trainer_id=0,
-                                trainer_args=trainer_args,
-                                main_program=prog,
-                                max_num_checkpoints=3)
-
-上面的例子中，通过调用 :code:`fluid.io.save_checkpoint` 函数，PaddlePaddle Fluid会对默认
-:code:`fluid.Program` 也就是 :code:`prog` 中的所有模型变量进行扫描，
-根据一系列内置的规则自动筛选出其中所有需要保存的变量，并将他们保存到指定的 :code:`path` 目录下。
-
-:code:`fluid.io.save_checkpoint` 的各个参数中， :code:`trainer_id` 在单机情况下设置为0即可； :code:`trainer_args`
-为一个Python dict，用于给定当前的epoch_id和step_id；
-:code:`max_num_checkpoints` 用于表示的最大checkpoint数量，
-如果目录中已经存在的checkpoint数量超过这个值，那最早的checkpoint将被删除。
 
 如何载入模型变量
 ################
 
-与模型变量的保存相对应，我们提供了两套API来分别载入模型的参数和载入模型的checkpoint。
+与模型变量的保存相对应，我们提供了两套API来分别载入模型的参数和载入模型的长期变量。
 
 载入模型用于对新样本的预测
 ==========================
@@ -132,11 +99,18 @@
 之前。如果在之后运行，可能会覆盖已加载的模型参数导致错误。
 
 
-载入checkpoint用于恢复训练
-==========================
 
-对于通过 :code:`fluid.io.save_checkpoint` 保存的模型，可以使用 :code:`fluid.io.load_checkpoint`
-来进行载入。
+增量训练
+==============================
+增量训练指一个学习系统能不断地从新样本中学习新的知识，并能保存大部分以前已经学习到的知识。因此增量学习涉及到两点：在上一次训练结束的时候保存需要持久化的参数， 在下一次训练开始的时候加载上一次保存的持久化参数。 因此增量训练涉及到如下几个API:
+:code:`fluid.io.save_persistables`、:code:`fluid.io.load_persistables` 。
+
+单机增量训练
+##################
+单机的增量训练的一般步骤如下：
+1. 在训练的最后调用:code:`fluid.io.save_persistables`保存持久性参数到指定的位置。
+2. 在训练的startup_program通过执行器（:code:`Executor`）执行成功之后调用:code:`fluid.io.load_persistables`加载之前保存的持久性参数。
+3. 通过执行器（:code:`Executor`）或者（:code:`ParallelExecutor`）继续训练。
 
 例如：
 
@@ -145,101 +119,95 @@
     import paddle.fluid as fluid
 
     exe = fluid.Executor(fluid.CPUPlace())
-    path = "./checkpoints"
+    path = "./models"
     prog = fluid.default_main_program()
-    fluid.io.load_checkpoint(executor=exe, checkpoint_dir=path,
-                             serial=9, main_program=prog)
+    fluid.io.save_persistables(exe, path, prog)
 
-上面的例子中，通过调用 :code:`fluid.io.save_checkpoint` 函数，PaddlePaddle Fluid会对
-:code:`prog` 中的所有模型变量进行扫描，根据内置规则自动筛选出需要加载的变量，
-并尝试从 :code:`path` 之中加载它们。
+上面的例子中，通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认
+:code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，并将他们保存到指定的 :code:`path` 目录下。
 
-参数 :code:`serial` 用来标记具体要加载的checkpoint的版本号。在保存checkpoint的时候，
-一个checkpoint会被保存在一个子目录中，并在目录名上体现出自己的版本号。
-一般越大的版本号表示这个checkpoint越新。
-
-这里的 :code:`prog` 必须和调用 :code:`fluid.io.save_checkpoint` 时所用的 :code:`prog`
-完全一致，否则会导致变量加载错误或者未加载。另外，与 :code:`fluid.io.save_params` 类似，
-运行 :code:`fluid.default_startup_program()` 也必须在 :code:`fluid.io.load_checkpoint`
-之前进行。
-
-多机checkpoint保存
-##################
-
-Checkpoint功能使用指南
-======================
-
-* 背景
-单机/多机在训练过程中会由于软件/硬件的问题出现异常，导致训练中断，进而导致训练无结果或结果不可用，浪费大量时间和机器性能。
-
-* 目的
-Checkpoint功能能够在训练中途对训练数据中间数据进行保存，出现异常恢复训练的时候能够加载中途保存的数据继续训练， 实现单机/多机的容错训练的功能。
-
-* 说明
-
-  * 目前已实现的参数保存：
-
-  1. 基于Trainer 0 实现训练过程中的参数保存
-
-  2. 基于PServer 实现了`Distribute Lookup Table`相关参数保存
-
-  * Fluid Checkpoint 保存数据目录结构：
 
 .. code-block:: python
 
-    checkpoint_dir (用户定义的checkpoint目录)
-    ├── checkpoint_0 (第一次保存)
-    │   ├── __lockup_table__ (Distribute Lookup Table 目录)
-    │   │   ├── table_pserver_0 (Pserver 0 号保存的lookup table 数据)
-    │   │   └── table_pserver_1
-    │   ├── __model__ (model 目录)
-    │   │   └── var.w_1
-    │   └── trainer_0 (trainer 自有数据保存)
-    │       ├── epoch_id
-    │       └── step_id
-    └── checkpoint_1 (第二次保存)
+    import paddle.fluid as fluid
 
-* 使用方法
+    exe = fluid.Executor(fluid.CPUPlace())
+    path = "./models"
+    startup_prog = fluid.default_startup_program()
+    exe.run(startup_prog)
+    fluid.io.load_persistables(exe, path, startup_prog)
+    main_prog = fluid.default_main_program()
+    exe.run(main_prog)
+    
+上面的例子中，通过调用 :code:`fluid.io.load_persistables` 函数，PaddlePaddle Fluid会从默认
+:code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，从指定的 :code:`path` 目录中将它们一一加载， 然后再继续进行训练。
 
-  * 声明Fluid.CheckpointConfig
 
-  用户对checkpoint功能的配置，主要是配置对象 :code:`Fluid` 中的 :code:`CheckpointConfig` .
 
-  :code:`CheckpointConfig` 包括4个参数：
+多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
+##################
+多机增量训练和单机增量训练有若干不同点：
+1. 在训练的最后调用:code:`fluid.io.save_persistables`保存持久性参数时，不必要所有的Trainer都调用这个方法，一般0号Trainer来保存。
+2. 多机增量训练的参数加载在PServer端，Trainer端不用加载参数。在PServer全部启动后，Trainer会从PServer端同步参数。
 
-  =====================   =====  ==========================
-          参数             类型            说明
-  =====================   =====  ==========================
-    checkpoint_dir         int    checkpoint存储目录
+多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
+1. 在0号trainer在训练的最后调用:code:`fluid.io.save_persistables`保存持久性参数到指定的 :code:`path` 下。
+2. 通过HDFS等方式将0号trainer保存下来的所有的参数共享给所有的PServer(每个PServer都需要有完整的参数)。
+3. PServer在训练的startup_program通过执行器（:code:`Executor`）执行成功之后调用:code:`fluid.io.load_persistables`加载0号trainer保存的持久性参数。
+4. PServer通过执行器（:code:`Executor`）继续启动Pserver_program.
+5. 所有的训练节点Trainer通过执行器（:code:`Executor`）或者（:code:`ParallelExecutor`）正常训练。
 
-    max_num_checkpoints    int    最大保存的checkpoint副本数
+对于训练过程中待保存参数的Trainer， 例如：
 
-    epoch_interval         int    每隔epoch_interval轮epoch
+.. code-block:: python
 
-    step_interval          int      每隔step_interval轮step
-  =====================   =====  ==========================
+    import paddle.fluid as fluid
 
-  * 在Fluid.Trainer对象的声明中加入Fluid.CheckpointConfig的声明
+    exe = fluid.Executor(fluid.CPUPlace())
+    path = "./models"
+    trainer_id = 0
+    if trainer_id == 0:
+        prog = fluid.default_main_program()
+        fluid.io.save_persistables(exe, path, prog)
 
-  Trainer的__init__方法的参数中包含了对 :code:`CheckpointConfig` ， 需要传入在声明Trainer前声明的 :code:`CheckpointConfig` 对象。
-  如：
+.. code-block:: bash
+    hadoop fs -mkdir /remote/$path
+    hadoop fs -put $path /remote/$path
 
-  .. code-block:: python
+上面的例子中，0号train通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认
+:code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，并将他们保存到指定的 :code:`path` 目录下。然后通过调用第三方的文件系统（如HDFS）将存储的模型进行上传到所有PServer都可访问的位置。
 
-      config = CheckpointConfig(
-          checkpoint_dir = "/tmp/ckpt", max_num_checkpoints = 2,
-          epoch_interval = 2, step_interval = 10)
-      trainer = Trainer(..., checkpoint_config=config)
+对于训练过程中待载入参数的PServer， 例如：
 
-定义和声明完成后， 训练在运行过程中就会在指定的step和epoch处进行保存，出现异常时，就会自动从最新的checkpoint目录进行参数恢复啦！
+.. code-block:: bash
+    hadoop fs -get /remote/$path $path
 
-* 相关API
+.. code-block:: python
 
-  `Trainer API 说明 <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/trainer.py>`_
+    import paddle.fluid as fluid
 
-* 注意
+    exe = fluid.Executor(fluid.CPUPlace())
+    path = "./models"
+    pserver_endpoints = "127.0.0.1:1001,127.0.0.1:1002"
+    trainers = 4
+    training_role == "PSERVER"
+    config = fluid.DistributeTranspilerConfig()
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True)
 
-1. 保证每个训练的 :code:`checkpoint_dir` 与其他训练独立。
-2. 最大副本数量 :code:`max_num_checkpoints` 需要根据磁盘容量以及模型的大小进行调整， 保证磁盘的可用性。
-3.  :code:`epoch_interval`  和  :code:`step_interval`  不宜过小， 频繁的进行checkpoint会拖慢训练速度。
-4.  **分布式训练** 的过程中：每个Trainer都会在 :code:`checkpoint_dir` 目录中保存当前Trainer的参数（只有Trainer 0会保存模型的参数），需要 **分布式文件系统(HDFS等)** 将同 :code:`checkpoint_dir` 目录的数据进行合并才能得到完整的数据，恢复训练的时候需要用完整的数据进行恢复。
+    if training_role == "PSERVER":
+        current_endpoint = "127.0.0.1:1001"
+        pserver_prog = t.get_pserver_program(current_endpoint)
+        pserver_startup = t.get_startup_program(current_endpoint, pserver_prog)
+
+        exe.run(pserver_startup)
+        fluid.io.load_persistables(exe, path, pserver_startup)
+        exe.run(pserver_prog)
+    if training_role == "TRAINER":
+        main_program = t.get_trainer_program()
+                exe.run(main_program)
+
+上面的例子中，每个PServer通过调用HDFS的命令获取到0号Trainer保存的参数，通过配置获取到PServer的:code:`fluid.Program` ，PaddlePaddle Fluid会从此
+:code:`fluid.Program` 也就是 :code:`pserver_startup` 的所有模型变量中找出长期变量，并通过指定的 :code:`path` 目录下一一加载。
+
+
