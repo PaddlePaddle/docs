@@ -40,7 +40,7 @@
 因此，根据需求的不同，我们提供了两套API来分别进行模型的参数和checkpoint的保存。
 
 保存模型用于对新样本的预测
-==========================
+############
 
 如果我们保存模型的目的是用于对新样本的预测，那么只保存模型参数就足够了。我们可以使用
 :code:`fluid.io.save_params()` 接口来进行模型参数的保存。
@@ -100,8 +100,17 @@
 
 
 
+预测所用的模型与参数的保存：
+##################
+预测引擎提供了存储预测模型 :code:`fluid.io.save_inference_model` 和加载预测模型 :code:`fluid.io.load_inference_model` 两个接口。
+
+- :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。
+-  :code:`fluid.io.load_inference_model`：请参考  :ref:`api_guide_inference`。
+
+
+
 增量训练
-==============================
+############
 增量训练指一个学习系统能不断地从新样本中学习新的知识，并能保存大部分以前已经学习到的知识。因此增量学习涉及到两点：在上一次训练结束的时候保存需要持久化的参数， 在下一次训练开始的时候加载上一次保存的持久化参数。 因此增量训练涉及到如下几个API:
 :code:`fluid.io.save_persistables`、:code:`fluid.io.load_persistables` 。
 
