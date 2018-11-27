@@ -767,12 +767,85 @@ sequence_expand_as
                  dtype='float32', lod_level=1)
     out = layers.sequence_expand_as(x=x, y=y)
 
+.. _cn_api_fluid_layers_sequence_pad:
+
+sequence_pad
+>>>>>>>>>>>>>>
+
+.. py:class:: paddle.fluid.layers.sequence_pad(x,pad_value,maxlen=None)
+
+序列填充操作符（Sequence Pad Operator）
+
+该操作符填充同一个batch（批）里的序列，使这些序列的长度保持一致。长度具体‘paddle_length’属性指示。填充的新元素的值具体由输入‘PadValue'指示，并会添加到每一个序列的末尾，使得他们最终的长度保持一致。
+
+以下的例子更清晰地解释此操作符的工作原理：
+
+::
+    例1:
+    给定一级LoDTensor
+    input(X):
+    X.lod = [[0,2,5]]
+    X.data = [a,b,c,d,e]
+    input(PadValue):
+    PadValue.data = [0]
+    属性'padded_length'=4
+    于是得到LoDTensor:Out.data = [[a,b,0,0],[c,d,e,0]]
+    Length.data = [[2],[3]]
+
+    例2:
+    给定一级LoDTensor
+    input(X):
+    X.lod = [[0,2,5]]
+    X.data = [[a1,a2],[b1,b2],[c1,c2],[d1,d2],[e1,e2]]
+    input(PadValue):
+    PadValue.data = [0]
+    属性'padded_length' = -1,表示用最长输入序列的长度(此例为3)
+    于是得到LoDTensor:
+    Out.data = [[[a1,a2],[b1,b2],[0,0]],[[c1,c2],[d1,d2],[e1,e2]]]
+    Length.data = [[2],[3]]
+
+    例3:
+    给定一级LoDTensor
+    input(X):
+    X.lod = [[0,2,5]]
+    X.data = [[a1,a2],[b1,b2],[c1,c2],[d1,d2],[e1,e2]]
+    input(PadValue):
+    PadValue.data = [p1,p2]
+    属性'padded_length' = -1,表示用最长输入序列的长度（此例为3）
+    于是得到LoDTensor:
+    Out.data = [[[a1,a2],[b1,b2],[0,0]],[[c1,c2],[d1,d2],[e1,e2]]]
+    Length.data = [[2],[3]]
+
+参数：
+    - **x**(Vairable) - 输入变量，应包含lod信息
+    - **pad_value**(Variable) - 变量，存有放入填充步的值。可以是scalar或tensor,维度和序列的时间步长相等。如果是scalar,则自动广播到时间步长的维度
+    - **maxlen**(int,默认None) - 填充序列的长度。可以为空或者任意正整数。当为空时，以序列中最长序列的长度为准，其他所有序列填充至该长度。当是某个特定的正整数，最大长度必须大于最长初始序列的长度
+
+返回：填充序列批（batch）和填充前的初始长度。所有序列的长度相等
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code_block:: python
+
+    import numpy
+
+    x = fluid.layers.data(name='y', shape=[10, 5],
+                 dtype='float32', lod_level=1)
+    pad_value = fluid.layers.assign(input=numpy.array([0]))
+    out = fluid.layers.sequence_pad(x=x, pad_value=pad_value)
+
+
+
+
+
 .. _cn_api_fluid_layers_sequence_first_step:
 
 sequence_first_step
 >>>>>>>>>>>>>>>>>>>>
 
-.. py:classL Paddle.fluid.layers.sequence_first_step(input)
+.. py:class:: paddle.fluid.layers.sequence_first_step(input)
 
 该功能获取序列的第一步
 
@@ -1136,12 +1209,39 @@ Sequence Reshape Layer
     x = fluid.layers.data(shape=[5, 20], dtype='float32', lod_level=1)
     x_reshaped = fluid.layers.sequence_reshape(input=x, new_dim=10)
 
+.. _cn_api_fluid_layers_transpose:
+
+transpose
+>>>>>>>>>>>
+
+.. py:class:: paddle.fluid.layers.transpose(x,perm,name=None)
+
+按照置换perm置换输入的维度矩阵。
+
+返回张量（tensor）的第i维对应输入维度矩阵的perm[i]。
+
+参数：
+    - **x**(Variable) - 输入张量（Tensor)
+    - **perm**(list) - 输入维度矩阵的转置
+    - **name**(str) - 该层名称（可选）
+
+返回： 转置后的张量（Tensor）
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code_block:: python
+
+    x = fluid.layers.data(name='x', shape=[5, 10, 15], dtype='float32')
+    x_transposed = layers.transpose(x, perm=[1, 0, 2])
+
 .. _cn_api_fluid_layers_one_hot:
 
 one_hot 
 >>>>>>>>
 
-.. py:class:: paddle.fluid.layers. one_hot(input, depth)
+.. py:class:: paddle.fluid.layers.one_hot(input, depth)
 
 该层创建输入指数的one-hot表示
 
@@ -2211,6 +2311,150 @@ multi_box_head
         flip=True,
         clip=True)
 
+.. _cn_api_fluid_layers_bipartite_match:
+
+biparite_match
+>>>>>>>>>>>>>>>>
 
 
+
+.. py:class:: paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
+
+该操作符实现一个贪婪二分图匹配算法，根据输入的距离矩阵获得最大距离匹配。对于输入的二维矩阵，二分图匹配算法找到每一行匹配的列（匹配即最大距离），
+也能找到每一列匹配的行。并且该操作符只计算从列到行的匹配索引。对一个实例，匹配索引数是输入距离矩阵的列数。
+
+输出包含匹配索引和距离。简要描述即该算法匹配距离最大的行到距离最大的列，在ColToRowMatchIndices的每一行不会复制匹配索引。如果行项没有匹配的列项，则在ColRowMatchIndices中置为-1。
+
+注：输入DistMat可以是LoDTensor（含LoD)或者张量（Tensor）。如果LoDTensor带有LoD，ColToRowMatchIndices的高度为批尺寸。如果为张量，ColToRowMatchIndices的高度为1。
+
+注：这是一个非常低级的API。用''ssd_loss''层。请考虑用''ssd_loss''。
+
+参数：
+    - **dist_matrix**(Vairable) - 输入是维度为[K,M]的二维LoDTensor，是行项和列项之间距离的矩阵。假设矩阵A,维度为K，矩阵B，维度为M。dist_matrix[i][j]即A[i]和B[j]的距离。最大距离即为行列项的最好匹配。
+    
+    注：该张量包含LoD信息，代表输入的批。该批的一个实例含有不同的项数。
+
+    - **match_type**(string|None) - 匹配算法的类型，应为二分图或。默认为二分图
+
+    - **dist_threshold**(float|None) - 如果match_type为，该临界值决定在最大距离基础上的额外matching bboxes。
+
+返回：
+    返回带有两个元素的元组。第一个元素是match_indices,第二个是matched_distance。
+
+    matched_indices是一个二维张量，维度为[N,M]，类型为整型。N是批尺寸。如果match_indices[i][j]为-1，则表示在第i个实例中B[j]不匹配任何项。如果match_indeice不为-1，则表示在第i个实例中B[j]匹配行match_indices[i][j]。第i个实例的行数存在match_indices[i][j]中。
+
+    matched_distance是一个二维张量，维度为[N,M]，类型为浮点型。N是批尺寸。如果match_indices[i][j]为-1，match_distance[i][j]也为-1.如果match_indices[i][j]不为-1，将设match_distance[i][j]=d，每个示例的行偏移两称为LoD。match_distance[i][j] = dist_matrix[d+LoD[i][j]]。
+
+返回类型：元组（tuple）
+
+**代码示例**：
+
+.. code_block:: python
+
+    x = fluid.layers.data(name='x', shape=[4], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[4], dtype='float32')
+    iou = fluid.layers.iou_similarity(x=x, y=y)
+    matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
+
+.. _cn_api_fluid_layers_target_assign:
+
+target_assign
+>>>>>>>>>>>>>>>
+
+.. py:class:: paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None, mismatch_value=None, name=None)
+
+对于给定的目标边界框（bounding box）和标签（label），该操作符对每个预测赋予分类和逻辑回归目标函数以及预测权重。权重具体表示哪个预测无需贡献训练误差。
+
+对于每个实例，根据match_indices和negative_indices赋予输入''out''和''out_weight''。将定输入中每个实例的行偏移称为lod，该操作符执行分类或回归目标函数，执行步骤如下：
+
+1.根据match_indices分配所有输入
+
+::
+    If id = match_indices[i][j] > 0,
+
+        out[i][j][0 : K] = X[lod[i] + id][j % P][0 : K]
+        out_weight[i][j] = 1.
+
+    Otherwise,
+
+        out[j][j][0 : K] = {mismatch_value, mismatch_value, ...}
+        out_weight[i][j] = 0.
+
+2.如果提供neg_indices，根据neg_indices分配out_weight：
+
+假设neg_indices中每个实例的行偏移称为neg_lod，该实例中第i个实例和neg_indices的每个id如下：
+
+::
+    out[i][id][0 : K] = {mismatch_value, mismatch_value, ...}
+    out_weight[i][id] = 1.0
+
+参数：
+    - **inputs**(Variable) - 输入为三维LoDTensor，维度为[M,P,K]
+    - **matched_indices**(Variable) - 张量（Tensor），整型，输入匹配索引为二维张量（Tensor），类型为整型32位，维度为[N,P]，如果MatchIndices[i][j]为-1，在第i个实例中第j列项不匹配任何行项。
+    - **negative_indices**(Variable) - 输入负例索引，可选输入，维度为[Neg,1]，类型为整型32，Neg为负例索引的总数
+    - **mismatch_value**(float32) - 为未匹配的位置填充值
+
+返回：返回一个元组（out,out_weight）。out是三维张量，维度为[N,P,K],N和P与neg_indices中的N和P一致，K和输入X中的K一致。如果match_indices[i][j]存在，out_weight是输出权重，维度为[N,P,1]。
+
+返回类型：元组（tuple）
+
+**代码示例**：
+
+.. code_block:: python
+
+    matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
+    gt = layers.data(
+            name='gt', shape=[1, 1], dtype='int32', lod_level=1)
+    trg, trg_weight = layers.target_assign(
+                gt, matched_indices, mismatch_value=0)
+
+.. _cn_api_fluid_layers_detection_output:
+
+detection_output
+>>>>>>>>>>>>>>>>>>
+
+.. py:class:: paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
+
+单点多盒检测的检测输出层（Detection Output Layer for Single Shot Multibox Detector(SSD))
+
+该操作符用于获得检测结果，执行步骤如下：
+
+    1.根据优先盒解码输入边界框（bounding box）预测
+
+    2.通过运用多类非最大压缩(NMS)获得最终检测结果
+
+请注意，该操作符不将最终输出边界框剪切至图像窗口。
+
+参数：
+    - **loc**(Variable) - 一个三维张量（Tensor），维度为[N,M,4]，代表M个bounding bboxes的预测位置。N是批尺寸，每个边界框（boungding box）有四个坐标值，布局为[xmin,ymin,xmax,ymax]
+    - **scores**(Variable) - 一个三维张量（Tensor），维度为[N,M,C]，代表预测置信预测。N是批尺寸，C是类别数，M是边界框数。对每类一共M个分数，对应M个边界框
+    - **prior_box**(Variable) - 一个二维张量（Tensor),维度为[M,4]，存储M个框，每个框代表[xmin,ymin,xmax,ymax]，[xmin,ymin]是anchor box的左上坐标，如果输入是图像特征图，靠近坐标系统的原点。[xmax,ymax]是anchor box的右下坐标
+    - **prior_box_var**(Variable) - 一个二维张量（Tensor），维度为[M,4]，存有M变量群
+    - **background_label**(float) - 背景标签索引，背景标签将会忽略。若设为-1，将考虑所有类别
+    - **nms_threshold**(int) - 用于NMS的临界值（threshold）
+    - **nms_top_k**(int) - 基于score_threshold过滤检测后，根据置信数维持的最大检测数
+    - **keep_top_k**(int) - NMS步后，每一图像要维持的总bbox数
+    - **score_threshold**(float) - 临界函数（Threshold），用来过滤带有低置信分数的边界框（bounding box）。若未提供，则考虑所有框
+    - **nms_eta**(float) - 适应NMS的参数
+
+返回：检测输出数一个LoDTensor，维度为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch的总检测数。对每个实例，第一维偏移称为LoD，偏移数为N+1，N是批尺寸。第i个图像有LoD[i+1]-LoD[i]检测结果。如果为0，第i个图像无检测结果。如果所有图像都没有检测结果，LoD所有元素都为0，并且输出张量只包含一个值-1。
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code_block:: python
+
+    pb = layers.data(name='prior_box', shape=[10, 4],
+             append_batch_size=False, dtype='float32')
+    pbv = layers.data(name='prior_box_var', shape=[10, 4],
+              append_batch_size=False, dtype='float32')
+    loc = layers.data(name='target_box', shape=[2, 21, 4],
+              append_batch_size=False, dtype='float32')
+    scores = layers.data(name='scores', shape=[2, 21, 10],
+              append_batch_size=False, dtype='float32')
+    nmsed_outs = fluid.layers.detection_output(scores=scores,
+                           loc=loc,
+                           prior_box=pb,
+                           prior_box_var=pbv)
 
