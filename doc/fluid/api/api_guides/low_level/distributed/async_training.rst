@@ -1,4 +1,4 @@
-.. _api_guide_sync_training:
+.. _api_guide_async_training:
 
 ############
 分布式异步训练
