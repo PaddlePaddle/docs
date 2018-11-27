@@ -84,7 +84,7 @@ Python3.5（该指令适用于本机未安装python2的用户，否则，请卸�
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
 	
 
-	* 对于需要**GPU版本PaddlePaddle**的用户：`pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle`
+	* 对于需要**GPU版本PaddlePaddle**的用户：`pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle-gpu`
 	
 
 	> 1. 为防止出现nccl.h找不到的问题请首先按照以下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN v7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
