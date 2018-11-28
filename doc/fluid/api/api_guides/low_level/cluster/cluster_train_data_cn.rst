@@ -4,17 +4,33 @@
 分布式训练数据准备
 ####################
 
-一个数据并行的分布式训练任务通常会含有多个训练节点，每个训练节点负责训练整个数据集种的一部分。所以在
-启动分布式训练任务之前需要将训练数据切分成多个小文件，通过一个 file_dispatcher 函数根据当前节点的
-唯一序号(trainer_id)以及当前训练任务中训练节点的总数(trainers)决定读取哪一部分训练数据。
+一个数据并行的分布式训练任务通常会含有多个训练进程，每个训练进程处理整个数据集中的一部分，根据当前进程的唯一序号(trainer_id)以及训练进程总数(trainers)可以决定当前训练进程应该读取哪一部分数据。
 
-准备文本格式的分布式训练数据集
-------------------------------
+实现 cluster_reader 来读取分布式训练数据集
+----------------------------------------
 
-训练数据切分
-~~~~~~~~~~~~
+比较通用的方法，可以实现一个 cluster_reader, 根据训练进程数量以及进程序号决定读取哪些 example:
 
-简单的，对于文本类训练数据来说，我们可以使用 split 命令将训练数据切分成多个小文件，例如：
+    .. code-block:: python
+        
+        def cluster_reader(reader, trainers, trainer_id):
+            def reader_creator():
+                for idx, data in enumerate(reader()):
+                    if idx % trainers == trainer_id:
+                        yield data
+            return reader
+
+        trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
+        trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
+        train_reader = cluster_reader(paddle.dataset.mnist.train(), trainers, trainer_id)
+
+上述代码中，`trainers` 和 `trainer_id` 分别是训练进程总数和当前训练进程的序号，可以通过环境变量或者参数的方式传递给 Python 程序。
+
+预先切分训练文件
+-----------------
+
+由于使用 `cluster_reader` 依然会读取全量数据，对于训练进程比较多的任务，会造成IO资源的浪费、影响训练性能。另一种方法是可以将训练数据切分成多个小文件，每个进程处理其中的一部分文件,
+例如在 Linux 系统中可以使用 `split <http://man7.org/linux/man-pages/man1/split.1.html>`_ 命令将训练数据切分成多个小文件：
 
   .. code-block:: bash
     $ split -d -a 4 -d -l 100 housing.data cluster/housing.data.
@@ -27,82 +43,22 @@
     cluster/housing.data.0001
     cluster/housing.data.0005
 
-读取分布式训练数据集
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+数据切分好以后, 可以实现一个 file_dispatcher 函数，根据训练进程数量以及序号决定需要读取哪些文件：
 
-在数据并行场景下，我们需要将训练数据平均分配给每个训练节点，通常的方法是实现一个函数，使之能够
-根据当前任务的训练节点数量以及当前节点的唯一序号决定需要读取哪些文件，例如：
+    .. code-block:: python
 
-  .. code-block:: python
+        def file_dispatcher(files_pattern, trainers, trainer_id):
+            file_list = glob.glob(files_pattern)
+            ret_list = []
+            for idx, f in enumerate(file_list):
+                if (idx + trainers) % trainers == trainer_id:
+                    ret_list.append(f)
+            return ret_list
+        
+        trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
+        trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
+        files_pattern = "cluster/housing.data.*"
 
-    def file_dispatcher(file_pattern, trainers, trainer_id):
-      file_list = glob.glob(file_pattern)
-      ret_list = []
-      for idx, f in enumerate(file_list):
-          if (idx + trainers) % trainers == trainer_id:
-              ret_list.append(f)
-      return ret_list
+        my_files = file_dispatcher(files_pattern, triners, trainer_id)
 
-- file_pattern: 训练数据文件目录目录，上述例子可以是 `cluster/housing.data.*`
-- trainers: 当前任务的训练节点数。
-- trainer_id: 当前训练节点的唯一序号。
-
-准备 RecordIO 格式的分布式训练数据集
--------------------------------------
-
-对于非文本类数据，可以预先将训练数据转换为 RecordIO 格式再进行训练, 并且转换成 RecordIO 格式
-的另一个好处是可以提升 IO 效率，从而提升分布式训练任务的运行效率。
-
-
-生成 RecordIO 格式数据集
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Fluid 提供了 `fluid.recordio_writer.convert_reader_to_recordio_files` API, 可以将训练数据转换成
-RecordIO 格式, 样例代码如下
-
-  .. code-block:: python
-
-      reader = paddle.batch(mnist.train(), batch_size=1)
-      feeder = fluid.DataFeeder(
-          feed_list=[  # order is image and label
-              fluid.layers.data(
-              name='image', shape=[784]),
-              fluid.layers.data(
-              name='label', shape=[1], dtype='int64'),
-          ],
-          place=fluid.CPUPlace())
-      fluid.recordio_writer.convert_reader_to_recordio_files(
-            filename_suffix='./mnist.recordio', batch_per_file=100, reader, feeder)
-
-运行上述代码将会生成以下文件：
-
-  .. code-block:: bash
-
-      .
-      \_mnist-00000.recordio
-      |-mnist-00001.recordio
-      |-mnist-00002.recordio
-      |-mnist-00003.recordio
-      |-mnist-00004.recordio
-
-API Reference 请参考：:ref:`api_fluid_recordio_writer_convert_reader_to_recordio_file`
-
-读取 RecordIO 训练数据
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Fluid 种提供了 `fluid.layers.io.open_files` API 来读取 RecordIO 格式的训练数据，在以下样例代码
-中复用了上面例子中 `file_dispatcher` 函数来决定当前节点应该读取哪一部分训练数据：
-
-  .. code-block:: python
-
-    trainers = int(os.getenv("PADDLE_TRAINERS"))
-    trainer_id = int(os.getenv("PADDLE_TRAINER_ID"))
-    data_file = fluid.layers.io.open_files(
-        filenames=file_dispatcher("./mnist-[0-9]*.recordio", 2, 0),
-        thread_num=1,
-        shapes=[(-1, 784),(-1, 1)],
-        lod_levels=[0, 0],
-        dtypes=["float32", "int32"])
-    img, label = fluid.layers.io.read_file(data_files)
-
-API Reference 请参考： :ref:`api_fluid_layers_open_files`
+在上述例子中，`files_pattern` 是训练文件的 glob 表达式，一般可以用通配符来表示。
