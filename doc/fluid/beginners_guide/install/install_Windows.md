@@ -12,25 +12,32 @@
 
 * Windows下我们目前仅提供支持CPU的PaddlePaddle。
 
-
 ## 选择如何安装
-在Windows系统下请使用我们为您提供的[一键安装包](http://paddle-windows.bj.bcebos.com/1.1/PaddlePaddle-windows-1.1.zip)进行安装
+
+### ***使用pip安装***
+
+我们暂不提供快速安装的命令，请您按照以下步骤进行安装
+
+首先，**检查您的计算机和操作系统**是否满足以下要求：    
 	
-> 我们提供的一键安装包将基于Docker为您进行便捷的安装流程
+		For python2: 使用Python官方下载的python2.7.15
+		For python3: 使用Python官方下载的python3.5.x
 
+*  Python2.7.x，Pip >= 9.0.1            
+*  Python3.5.x，Pip3 >= 9.0.1  
+	    
+下面将说明如何安装PaddlePaddle：
 
-我们之所以使用**基于Docker的安装方式**，是因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
+1. 使用pip install来安装PaddlePaddle：
+	
+    ** paddlepaddle 的依赖包 `recordio` 有可能用 `pip` 的默认源无法安装，可以使用 `easy_install recordio` 来安装 **
+	** 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle` **
 
+现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
 
-
-
-
-
-<br/><br/>
 ## ***验证安装***
 安装完成后您可以使用：`python` 或 `python3` 进入python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
 
-<br/><br/>
 ## ***如何卸载***
 请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
 
