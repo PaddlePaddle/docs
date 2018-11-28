@@ -6,7 +6,7 @@ equal
 .. py:class:: paddle.fluid.layers.equal(x,y,cond=None,**ignored)
 
 **equal**
-该层返回 :math:'x==y' 按逐元素运算而得的真值。
+该层返回 :math:`x==y` 按逐元素运算而得的真值。
 
 参数：
     - **x** (Variable)-equal的第一个操作数
@@ -33,6 +33,7 @@ array_read
 此函数用于读取数据，数据以LOD_TENSOR_ARRAY数组的形式读入
 
 ::
+
     Given:
     array = [0.6,0.1,0.3,0.1]
     And:
@@ -68,9 +69,9 @@ array_length
 此功能用于查找输入数组LOD_TENSOR_ARRAY的长度。  
 
 相关API:
-    - ref:'api_fluid_layers_array_read',
-    - ref:'api_fluid_layers_array_write',
-    - ref:'api_fluid_layers_While'. 
+    - ref:`api_fluid_layers_array_read`,
+    - ref:`api_fluid_layers_array_write`,
+    - ref:`api_fluid_layers_While`. 
 
 参数：**array** (LOD_TENSOR_ARRAY)-输入数组，用来计算数组长度
 
@@ -408,7 +409,7 @@ Load操作命令将从磁盘文件中加载LoDTensor/SelectedRows变量。
 参数：
     - **out** (Variable)-需要加载的LoDTensor或SelectedRows
     - **file_path** (STRING)-预从”file_path”中加载的变量Variable
-    - **load_as_fp16** (BOOLEAN)-如果为真，张量首先进行加载然后类型转换成float16。如果为假，张量无数据类型转换直接进行加载。默认为false。
+    - **load_as_fp16** (BOOLEAN)-如果为真，张量首先进行加载然后类型转换成float16。如果为假，张量将直接加载，不需要进行数据类型转换。默认为false。
 
 返回：None
 
@@ -429,7 +430,7 @@ embedding
     - **size** (tuple|list)-查找表参数的维度。应当有两个参数，一个代表嵌入矩阵字典的大小，一个代表每个嵌入向量的大小。
     - **is_sparse** (bool)-代表是否用稀疏更新的标志
     - **is_distributed** (bool)-是否从远程参数服务端运行查找表、
-    - **padding_idx** (int|long|None)-如果为''**None**''，对查找结果无影响。如果padding_idx不为空，表示一旦查找表中找到input中对应的''**padding_idz**''，则用0填充输出结果。如果 :math:'padding_{i}dx<0' ,在查找表中使用的''**padding_idx**''值为 :math:'*size[0]+dim*' 。
+    - **padding_idx** (int|long|None)-如果为‘**None**’，对查找结果无影响。如果padding_idx不为空，表示一旦查找表中找到input中对应的‘**padding_idz**’，则用0填充输出结果。如果 :math:`padding_{i}dx<0` ,在查找表中使用的‘**padding_idx**’值为 :math:`*size[0]+dim*` 。
     - **param_attr** (ParamAttr)-该层参数
     - **dtype** (np.dtype|core.VarDesc.VarType|str)-数据类型：float32,float_16,int等。
 
@@ -456,10 +457,11 @@ cos_sim
 
 .. math::
 
-Out = \frac{X^{T}*Y}{\sqrt{X^{T}*X}*\sqrt{Y^{T}*Y}}
+        Out = \frac{X^{T}*Y}{\sqrt{X^{T}*X}*\sqrt{Y^{T}*Y}}
 
-输入X和Y必须有相同维，除非输入Y的第一维只能为1（不同于输入X），传播到匹配输入X的维，然后计算X和Y的余弦相似度。
-输入X和Y都可以携带LoD(Level of Detail)信息，或者都不。但输出仅和X共享LoD信息
+输入X和Y必须具有相同的shape，除非输入Y的第一维为1(不同于输入X)，在计算它们的余弦相似度之前，Y的第一维会被broadcasted，以匹配输入X的shape。
+
+输入X和Y都携带或者都不LoD(Level of Detail)信息。但输出仅采用输入X的LoD信息。
 
 参数：
     - **X** (Variable) - cos_sim操作函数的一个输入
@@ -487,10 +489,9 @@ square_error_cost
     Out = (X-Y)^{2}
 
 在以上等式中：
-::
-    - **X** : 输入预测值，张量（Tensor)
-    - **Y** : 输入目标值，张量（Tensor）
-    - **Out** : 输出值，维度和X的相同
+- **X** : 输入预测值，张量（Tensor)
+- **Y** : 输入目标值，张量（Tensor）
+- **Out** : 输出值，维度和X的相同
 
 参数：
     - **input** (Variable) - 输入张量（Tensor），带有预测值
@@ -502,7 +503,7 @@ square_error_cost
 
 **代码示例**：
 
- .. code_block:: python:
+ .. code-block:: python
 
     y = layers.data(name='y', shape=[1], dtype='float32')
     y_predict = layers.data(name='y_predict', shape=[1], dtype='float32')
@@ -515,14 +516,13 @@ sequence_conv
 
 .. py:class:: paddle.fluid.layers.sequence_conv(input, num_filters, filter_size=3, filter_stride=1, padding=None, bias_attr=None, param_attr=None, act=None, name=None)
 
-该函数的输入参数中给出了筛选器和步长，通过利用输入以及筛选器和步长的常规配置来为sequence_conv创建操作符。
+该函数的输入参数中给出了滤波器和步长，通过利用输入以及滤波器和步长的常规配置来为sequence_conv创建操作符。
 
 参数：
-    - **input** (Variable) - (LoD张量）输入X是LoD张量，支持可变的时间量的长度输入序列。该LoDTensor的标记张量是一个维度为（T,N)
-    的矩阵，其中T是mini-batch的总时间步数，N是input_hidden_size
-    - **num_filters** (int) - 筛选器的数量
-    - **filter_size** (int) - 筛选器大小（H和W)
-    - **filter_stride** (int) - 筛选器的步长
+    - **input** (Variable) - (LoD张量）输入X是LoD张量，支持可变的时间量的长度输入序列。该LoDTensor的标记张量是一个维度为（T,N)的矩阵，其中T是mini-batch的总时间步数，N是input_hidden_size
+    - **num_filters** (int) - 滤波器的数量
+    - **filter_size** (int) - 滤波器大小（H和W)
+    - **filter_stride** (int) - 滤波器的步长
     - **padding** (bool) - 若为真，添加填充
     - **bias_attr** (ParamAttr|bool|None) - sequence_conv偏离率参数属性。若设为False,
     输出单元则不加入偏离率。若设为None或ParamAttr的一个属性，sequence_conv将创建一个ParamAttr作为bias_attr。
@@ -541,16 +541,17 @@ sequence_pool
 
 .. py:class:: paddle.fluid.layers.sequence_pool(input, pool_type)
 
-该函数为序列池添加操作符。将每个实例的所有时间步数特征加入池子，并用参数中提到的pool_type将特征运用到输入到首部。
+该函数为序列池添加操作符。将每个实例的所有时间步数特征池化，并用参数中提到的pool_type将特征运用到输入到首部。
 
 支持四种pool_type:
 
-- **average**: :math:'Out[i] = \frac{\sum_{i}X_{i}}{N}'
-- **sum**: :math:'Out[i] = \sum _{j}X_{ij}'
-- **sqrt**: :math:'Out[i] = \frac{ \sum _{j}X_{ij}}{\sqrt{len(\sqrt{X_{i}})}}'
-- **max**: :math:'Out[i] = max(X_{i})'
+- **average**: :math:`Out[i] = \frac{\sum_{i}X_{i}}{N}`
+- **sum**: :math:`Out[i] = \sum _{j}X_{ij}`
+- **sqrt**: :math:`Out[i] = \frac{ \sum _{j}X_{ij}}{\sqrt{len(\sqrt{X_{i}})}}`
+- **max**: :math:`Out[i] = max(X_{i})`
 
 ::
+
     x是一级LoDTensor:
         x.lod = [[2, 3, 2]]
         x.data = [1, 3, 2, 4, 6, 5, 1]
@@ -573,9 +574,9 @@ sequence_pool
 
 返回：序列池变量，为张量（Tensor)
 
-**代码示例**：
+**代码示例**:
 
-.. code_block:: python:
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[7, 1],
                  dtype='float32', lod_level=1)
@@ -614,7 +615,8 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 
 **代码示例**：
 
-.. code_block:: python:
+.. code-block:: python
+
     fc = fluid.layers.fc(input=x, size=10)
     softmax = fluid.layers.softmax(input=fc)
 
@@ -625,17 +627,17 @@ pool3d
 
 .. py:class:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None)
 
-该函数用输入参数中提到的池配置项为三维池添加操作符。
+函数用上述输入参数的池化配置，为三维池添加操作符(todo)
 
 参数：
-    - **input** (Vairable) - ${input_comment}
-    - **pool_size** (int) - ${ksize_comment}
-    - **pool_type** (str) - ${pooling_type_comment}
+    - **input** (Vairable) - 池化操作符的输入张量。输入张量的格式为NCHW, N是批尺寸，C是通道数，N是特征高度，W是特征宽度。
+    - **pool_size** (int) - 池化窗口的边长。所有对池化窗口都是正方形，边长为pool_size。
+    - **pool_type** (str) - 池化类型，可以是“max”对max-pooling,“avg”对average-pooling。
     - **pool_stride** (int) - 池层的步长
-    - **pool_padding** (int) - ${global_pooling_comment}
-    - **global_pooling** (bool) - ${global_pooling_comment}
-    - **use_cudnn** (bool) - ${use_cudnn_comment}
-    - **ceil_mode** (bool) - ${ceil_mode_comment}
+    - **pool_padding** (int) - 填充大小
+    - **global_pooling** (bool) - 是否使用全局池化。如果global_pooling = true,ksize and paddings将被忽略。
+    - **use_cudnn** (bool) - 只在cudnn核中使用，需要安装cudnn。
+    - **ceil_mode** (bool) - 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数。
     - **name** (str) - 该层名称（可选）。若为空，则自动为该层命名。
 
 返回：pool3d层的输出
@@ -649,9 +651,9 @@ beam_search_decode
 
 .. py:class:: paddle.fluid.layers.beam_search_decode(ids, scores, beam_size, end_id, name=None)
 
-Beam Search Decode层。沿着LoDTensorArray ''ids''往回走，为每个源句构造全假设。‘’ids''的lods可以用来存储beam search树的路径。下面是完整的beam search用例，请看如下demo：
+Beam Search Decode层。该层通过遍历LoDTensorArray id来构造每个源句的完整假设。‘’ids''的lods可以用来存储beam search树的路径。下面是完整的beam search用例，请看如下demo：
 
-:: fluid/tests/book/test_machine_translation.py
+        fluid/tests/book/test_machine_translation.py
 
 参数：
     - **ids** (Variable) - LodTensorArray变量，包含所有步中选中的ids
@@ -675,7 +677,8 @@ sequence_expand
 
 序列扩张层（Sequence Expand Layer）。根据y的具体层lod扩展输入变量x。x的lod层至多为1，x的阶至少为2。x的阶大于2，将作为二维张量。以下示例解释sequence_expand是如何工作的：
 ::
-* 例1
+
+    * 例1
     x is a LoDTensor:
         x.lod  = [[2,        2]]
         x.data = [[a], [b], [c], [d]]
@@ -692,7 +695,7 @@ sequence_expand
         out.data = [[a], [b], [a], [b], [c], [d], [c], [d]]
         out.dims = [8, 1]
 
-* 例2
+    * 例2
     x is a Tensor:
         x.data = [[a], [b], [c]]
         x.dims = [3, 1]
@@ -718,7 +721,7 @@ sequence_expand
 
 **代码示例**：
 
-.. code_block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
@@ -760,7 +763,7 @@ sequence_expand_as
 
 **代码示例**：
 
-.. code_block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
@@ -776,11 +779,12 @@ sequence_pad
 
 序列填充操作符（Sequence Pad Operator）
 
-该操作符填充同一个batch（批）里的序列，使这些序列的长度保持一致。长度具体‘paddle_length’属性指示。填充的新元素的值具体由输入‘PadValue'指示，并会添加到每一个序列的末尾，使得他们最终的长度保持一致。
+这个操作符将同一batch中的序列填充到一个一致的长度。长度由属性padded_length指定。填充的新元素的值具体由输入‘PadValue'指示，并会添加到每一个序列的末尾，使得他们最终的长度保持一致。
 
 以下的例子更清晰地解释此操作符的工作原理：
 
 ::
+
     例1:
     给定一级LoDTensor
     input(X):
@@ -827,7 +831,7 @@ sequence_pad
 
 **代码示例**：
 
-.. code_block:: python
+.. code-block:: python
 
     import numpy
 
@@ -882,7 +886,7 @@ x是一级LoDTensor:
 sequence_last_step
 >>>>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. sequence_last_step(input)
+.. py:class:: paddle.fluid.layers.sequence_last_step(input)
 
 该API可以获取序列的最后一步
 
@@ -919,7 +923,7 @@ x是level-1的LoDTensor:
 dropout
 >>>>>>>
 
-.. py:class:: Paddle.fluid.layers. dropout(x,dropout_prob,is_test=False,seed=None,name=None,dropout_implementation=‘downgrade_in_infer’)
+.. py:class:: Paddle.fluid.layers.dropout(x,dropout_prob,is_test=False,seed=None,name=None,dropout_implementation='downgrade_in_infer')
 
 计算dropout。
 
@@ -957,7 +961,7 @@ dropout
 split
 >>>>>>
 
-.. py:class:: paddle.fluid.layers. split(input,num_or_sections,dim=-1,name=None)
+.. py:class:: paddle.fluid.layers.split(input,num_or_sections,dim=-1,name=None)
 
 将输入张量分解成多个子张量
 
@@ -991,7 +995,7 @@ split
 edit_distance
 >>>>>>>>>>>>>>
 
-.. py:class:: Paddle.fluid.layers. edit_distance(input,label,normalized=True,ignored_tokens=None)
+.. py:class:: Paddle.fluid.layers.edit_distance(input,label,normalized=True,ignored_tokens=None)
 
 编辑距离运算符计算一批给定字符串及其参照字符串间的编辑距离。编辑距离也称Levenshtein距离，通过计算从一个字符串变成另一个字符串所需的最少操作步骤来衡量两个字符串的相异度。这里的操作包括插入、删除和替换。
 
@@ -1027,12 +1031,15 @@ edit_distance
 l2_normalize
 >>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. l2_normalize(x, axis, epsilon=1e-12, name=None)
+.. py:class:: paddle.fluid.layers.l2_normalize(x,axis,epsilon=1e-12,name=None)
 
 L2正则层（L2 normalize Layer）
 
 该层用欧几里得距离之和对维轴的x归一化。对于1-D张量（系数矩阵的维度固定为0），该层计算公式如下：
-公式
+
+.. math::
+
+    y=\frac{x}{\sqrt{\sum x^{2}+epsion}}
 
 对于x多维的情况，该层分别对维轴的每个1-D切片单独归一化
 
@@ -1060,7 +1067,7 @@ L2正则层（L2 normalize Layer）
 matmul
 >>>>>>>
 
-.. py:class:: paddle.fluid.layers. matmul(x, y, transpose_x=False, transpose_y=False, alpha=1.0, name=None)
+.. py:class:: paddle.fluid.layers.matmul(x, y, transpose_x=False, transpose_y=False, alpha=1.0, name=None)
 
 对两个张量进行矩阵相乘
 
@@ -1120,9 +1127,9 @@ matmul
 
 topk
 >>>>>
-.. py:class:: paddle.fluid.layers. topk(input, k, name=None)
+.. py:class:: paddle.fluid.layers.topk(input, k, name=None)
 
-该操作符用于寻找最后维前k最大项的值和索引。
+这个运算符用于查找最后一维的前k个最大项，返回它们的值和索引。
 
 如果输入是（1-D Tensor），则找到向量的前k最大项，并以向量的形式输出前k最大项的值和索引。values[j]是输入中第j最大项，其索引为indices[j]。
 如果输入是更高阶的张量，则该operator会基于最后一维计算前k项
@@ -1170,7 +1177,7 @@ topk
 sequence_reshape
 >>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. sequence_reshape(input, new_dim) 
+.. py:class:: paddle.fluid.layers.sequence_reshape(input, new_dim) 
 
 Sequence Reshape Layer
 该层重排输入序列。用户设置新维度。每一个序列的的长度通过原始长度、原始维度和新的维度计算得出。以下实例帮助解释该层的功能
@@ -1216,7 +1223,7 @@ transpose
 
 .. py:class:: paddle.fluid.layers.transpose(x,perm,name=None)
 
-按照置换perm置换输入的维度矩阵。
+根据perm对输入矩阵维度进行重排。
 
 返回张量（tensor）的第i维对应输入维度矩阵的perm[i]。
 
@@ -1231,7 +1238,7 @@ transpose
 
 **代码示例**:
 
-.. code_block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[5, 10, 15], dtype='float32')
     x_transposed = layers.transpose(x, perm=[1, 0, 2])
@@ -1290,26 +1297,23 @@ autoincreased_step_counter
 squeeze 
 >>>>>>>>
 
-.. py:class:: paddle.fluid.layers. squeeze(input, axes, name=None)
+.. py:class:: paddle.fluid.layers.squeeze(input, axes, name=None)
 
-** 向张量维度中移除单维输入。传入用于压缩的轴。如果未提供轴，所有的单一维度将从维中移除。如果带有维入口的轴与其他轴不等，则报错。**
+** 向张量维度中移除单维输入。传入用于压缩的轴。如果未提供轴，所有的单一维度将从维中移除。如果选择的轴的形状条目不等于1，则报错。**
+
 例如：
-情况1：
 
-.. code-block:: python
-
-    Given
-        X.shape = (1,3,1,5)
-    and
-        axes = [0]
-    we get
-        Out.shape = (3,1,5)
-    Case 2：
-        Given
+    例1：
+        给定
             X.shape = (1,3,1,5)
-        and
+            axes = [0]
+        得到
+            Out.shape = (3,1,5)
+    例2：
+        给定
+            X.shape = (1,3,1,5)
             axes = []
-        we get
+        得到
             Out.shape = (3,5)
 
 参数：
@@ -1333,12 +1337,12 @@ squeeze
 unsqueeze
 >>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. unsqueeze(input, axes, name=None)
+.. py:class:: paddle.fluid.layers.unsqueeze(input, axes, name=None)
 
-向张量维度中插入单维入口。传入一个必须的参数轴，将插入一列维。输出张量中显示轴上划分的维。
+向张量shape中插入单维函数。将一列参数插入参数轴中。输出张量显示轴的维索引。
 
-比如：
-给定一个张量，例如维度为[3,4,5]的张量，轴为[0,4]的未压缩张量，维度为[1,3,4,5,1]
+''比如''：
+    给定一个张量，例如维度为[3,4,5]的张量，轴为[0,4]的未压缩张量，维度为[1,3,4,5,1]
 
 参数：
     - **input** (Variable)-未压缩的输入变量
@@ -1362,59 +1366,54 @@ unsqueeze
 lod_reset
 >>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. lod_reset(x, y=None, target_lod=None)
+.. py:class:: paddle.fluid.layers.lod_reset(x, y=None, target_lod=None)
 
 设定x的LoD为y或者target_lod。如果提供y，首先将y.lod指定为目标LoD,否则y.data将指定为目标LoD。如果未提供y，
 目标LoD则指定为target_lod。如果目标LoD指定为Y.data或target_lod，只提供一层LoD。
 
 - 例1:
 
-.. code-block:: python
-
-    Given a 1-level LoDTensor x:
+    给定一级LoDTensor x:
         x.lod =  [[ 2,           3,                   1 ]]
         x.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         x.dims = [6, 1]
 
     target_lod: [4, 2]
 
-    then we get a 1-level LoDTensor:
+    得到一级LoDTensor:
         out.lod =  [[4,                          2]]
         out.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         out.dims = [6, 1]
 
 - 例2:
 
-.. code-block:: python
-
-    Given a 1-level LoDTensor x:
+    给定一级LoDTensor x:
         x.lod =  [[2,            3,                   1]]
         x.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         x.dims = [6, 1]
 
-    y is a Tensor:
+    y是张量（Tensor）:
         y.data = [[2, 4]]
         y.dims = [1, 3]
 
-    then we get a 1-level LoDTensor:
+    得到一级LoDTensor:
         out.lod =  [[2,            4]]
         out.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         out.dims = [6, 1]
 
 - 例3:
-.. code-block:: python
 
-    Given a 1-level LoDTensor x:
+    给定一级LoDTensor x:
         x.lod =  [[2,            3,                   1]]
         x.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         x.dims = [6, 1]
 
-    y is a 2-level LoDTensor:
+    y是二级LoDTensor:
         y.lod =  [[2, 2], [2, 2, 1, 1]]
         y.data = [[1.1], [2.1], [3.1], [4.1], [5.1], [6.1]]
         y.dims = [6, 1]
 
-    then we get a 2-level LoDTensor:
+    得到一个二级LoDTensor:
         out.lod =  [[2, 2], [2, 2, 1, 1]]
         out.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         out.dims = [6, 1]
@@ -1442,7 +1441,7 @@ lod_reset
 square
 >>>>>>>
 
-.. py:class:: paddle.fluid.layers. square(x,name=None)
+.. py:class:: paddle.fluid.layers.square(x,name=None)
 
 SquareDoc :参数x: 平方操作符的输入 :参数use_mkldnn: (bool, 默认false) 仅在mkldnn核中使用:类型use_mkldnn: BOOLEAN
 
@@ -1453,7 +1452,7 @@ SquareDoc :参数x: 平方操作符的输入 :参数use_mkldnn: (bool, 默认fal
 softplus
 >>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. softplus(x,name=None)
+.. py:class:: paddle.fluid.layers.softplus(x,name=None)
 
 SoftplusDoc :参数x: Softplus操作符的输入 :参数use_mkldnn: (bool, 默认false) 仅在mkldnn核中使用:类型 use_mkldnn: BOOLEAN
 
@@ -1464,7 +1463,7 @@ SoftplusDoc :参数x: Softplus操作符的输入 :参数use_mkldnn: (bool, 默�
 softsign
 >>>>>>>>>
 
-.. py:class:: Paddle.fluid.layers. softsign(x,name=None)
+.. py:class:: Paddle.fluid.layers.softsign(x,name=None)
 
 SoftplusDoc :参数x: Softsign操作符的输入 :参数use_mkldnn: (bool, 默认false) 仅在mkldnn核中使用:类型 use_mkldnn: BOOLEAN
 
@@ -1475,7 +1474,7 @@ SoftplusDoc :参数x: Softsign操作符的输入 :参数use_mkldnn: (bool, 默�
 uniform_random
 >>>>>>>>>>>>>>
 
-.. py:class:: Paddle.fluid.layers. uniform_random(shape,dtype=None,min=None,max=None,seed=None)
+.. py:class:: Paddle.fluid.layers.uniform_random(shape,dtype=None,min=None,max=None,seed=None)
 该操作符初始化一个张量，该张量的值是从正太分布中抽样的随机值
 
 参数：
@@ -1498,7 +1497,7 @@ uniform_random
 hard_shrink
 >>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. hard_shrink(x,threshold=None)
+.. py:class:: paddle.fluid.layers.hard_shrink(x,threshold=None)
 
 HardShrink激活函数(HardShrink activation operator)
 
@@ -1522,9 +1521,9 @@ HardShrink激活函数(HardShrink activation operator)
 cumsum
 >>>>>>>
 
-.. py:class:: paddle.fluid.layers. cumsum(x,axis=None,exclusive=None,reverse=None
+.. py:class:: paddle.fluid.layers.cumsum(x,axis=None,exclusive=None,reverse=None
 
-给定轴上元素的累加。默认结果的第一个元素和输入的第一个元素一致。如果exlusive为真，结果的第一个元素则为0。
+沿给定轴的元素的累加和。默认结果的第一个元素和输入的第一个元素一致。如果exlusive为真，结果的第一个元素则为0。
 
 参数：
     - **x** -累加操作符的输入
@@ -1546,7 +1545,7 @@ cumsum
 thresholded_relu
 >>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers thresholded_relu(x,threshold=None)
+.. py:class:: paddle.fluid.layers.thresholded_relu(x,threshold=None)
 
     ThresholdedRelu激活函数
         公式
@@ -1569,7 +1568,7 @@ thresholded_relu
 create_tensor
 >>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. create_tensor(dtype,name=None,persistable=False)
+.. py:class:: paddle.fluid.layers.create_tensor(dtype,name=None,persistable=False)
 
 创建一个变量，存储数据类型为dtype的LoDTensor。
 
@@ -1591,7 +1590,7 @@ create_tensor
 create_tensor
 >>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. create_tensor(dtype,name=None,persistable=False)
+.. py:class:: paddle.fluid.layers.create_tensor(dtype,name=None,persistable=False)
 
 创建一个变量，存储数据类型为dtype的LoDTensor。
 
@@ -1615,11 +1614,11 @@ create_tensor
 create_parameter
 >>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
+.. py:class:: paddle.fluid.layers.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
 
 创建一个参数。该参数是一个可学习的变量，拥有梯度并且可优化。
 
-注：这是一个非常低级的API。自创操作符时该API较为有用，而无需使用层。
+注：这是一个低级别的API。如果您希望自己创建新的op，这个API将非常有用，无需使用layers。
 
 参数：
     - **shape** (list[int])-参数的维度
@@ -1644,7 +1643,7 @@ create_parameter
 create_global_var
 >>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
+.. py:class:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
 在全局块中创建一个新的带有值的张量。
 
@@ -1672,7 +1671,7 @@ create_global_var
 cast 
 >>>>>>
 
-.. py:class:: paddle.fluid.layers. cast(x,dtype)
+.. py:class:: paddle.fluid.layers.cast(x,dtype)
 
 该层传入变量x,并用x.dtype将x转换成dtype类型，作为输出。
 
@@ -1696,11 +1695,11 @@ cast
 concat
 >>>>>>>
 
-.. py:class:: paddle.fluid.layers concat(input,axis=0,name=None)
+.. py:class:: paddle.fluid.layers.concat(input,axis=0,name=None)
 
 **Concat** 
 
-该函数将提到的轴上的输入连接起来，并作为输出返回。
+这个函数将输入连接在前面提到的轴上，并将其作为输出返回。
 
 参数：
     - **input** (list)-将要联结的张量列表
@@ -1722,7 +1721,7 @@ concat
 sums
 >>>>>
 
-.. py:class:: paddle.fluid.layers. sums(input,out=None)
+.. py:class:: paddle.fluid.layers.sums(input,out=None)
 
 该函数对输入进行求和，并返回求和结果作为输出。
 
@@ -1752,7 +1751,7 @@ sums
 assign
 >>>>>>>
 
-.. py:class:: paddle.fluid.layers. assign(input,output=None)
+.. py:class:: paddle.fluid.layers.assign(input,output=None)
 
 **Assign**
 
@@ -1779,7 +1778,7 @@ assign
 fill_constant_batch_size_like
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. fill_constant_batch_size_like(input,shape,dtype,value,input_dim_idx=0,output_dim_idx=0)
+.. py:class:: paddle.fluid.layers.fill_constant_batch_size_like(input,shape,dtype,value,input_dim_idx=0,output_dim_idx=0)
 
 该功能创建一个张量，具体含有shape,dtype和batch尺寸。并用值中提供的常量初始化该张量。该批尺寸从输入张量中获取。
 
@@ -1927,7 +1926,7 @@ argsort
 ones 
 >>>>>
 
-.. py:class:: paddle.fluid.layers. ones(shape,dtype,force_cpu=False)
+.. py:class:: paddle.fluid.layers.ones(shape,dtype,force_cpu=False)
 
 **ones**
 
@@ -1954,11 +1953,11 @@ ones
 zeros
 >>>>>>
 
-.. py:class:: paddle.fluid.layers. zeros(shape,dtype,force_cpu=False)
+.. py:class:: paddle.fluid.layers.zeros(shape,dtype,force_cpu=False)
 
 **zeros**
 
-该功能创建一个张量，含有具体的维度和dtype，初始值为1.
+该功能创建一个张量，含有具体的维度和dtype，初始值为0.
 
 也将stop_gradient设置为True。
 
@@ -1981,7 +1980,7 @@ zeros
 reverse
 >>>>>>>>
 
-.. py:class:: paddle.fluid.layers. reverse(x,axis)
+.. py:class:: paddle.fluid.layers.reverse(x,axis)
     
     **reverse**
     
@@ -2048,7 +2047,7 @@ exponential_decay
 natural_exp_decay
 >>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. natural_exp_decay(learning_rate, decay_steps, decay_rate, staircase=False)
+.. py:class:: paddle.fluid.layers.natural_exp_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
 将自然指数衰减运用到初始学习率上。
 
@@ -2072,7 +2071,7 @@ natural_exp_decay
 inverse_time_decay
 >>>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. inverse_time_decay(learning_rate, decay_steps, decay_rate, staircase=False)
+.. py:class:: paddle.fluid.layers.inverse_time_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
 在初始学习率上运用逆时衰减。
 
@@ -2113,7 +2112,7 @@ inverse_time_decay
 polynomial_decay 
 >>>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. polynomial_decay(learning_rate,decay_steps,end_learning_rate=0.0001,power=1.0,cycle=False)
+.. py:class:: paddle.fluid.layers.polynomial_decay(learning_rate,decay_steps,end_learning_rate=0.0001,power=1.0,cycle=False)
 
 对初始学习率使用多项式衰减
 
@@ -2142,7 +2141,7 @@ polynomial_decay
 piecewise_decay
 >>>>>>>>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. piecewise_decay(boundaries,values)
+.. py:class:: paddle.fluid.layers.piecewise_decay(boundaries,values)
 
 对初始学习率进行分段衰减。
 
@@ -2194,7 +2193,7 @@ Noam衰减方法。noam衰减的numpy实现如下。
 append_LARS 
 >>>>>>>>>>>>
 
-.. py:class:: paddle.fluid.layers. append_LARS(params_grads,learning_rate,weight_decay)
+.. py:class:: paddle.fluid.layers.append_LARS(params_grads,learning_rate,weight_decay)
 
 对每一层的学习率运用LARS(LAYER-WISE ADAPTIVE RATE SCALING)
 
@@ -2212,11 +2211,11 @@ append_LARS
 
 prior_box 
 >>>>>>>>>
-.. py:class:: paddle.fluid.layers. prior_box(input,image,min_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
+.. py:class:: paddle.fluid.layers.prior_box(input,image,min_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
 
 **Prior Box Operator**
 
-为SSD(Single Shot MultiBox Detector)算法生成先验盒。输入的每个位产生N个先验盒，N由min_sizes,max_sizes和aspect_ratios的数目决定，先验盒的尺寸在(min_size,max_size)之间，该尺寸根据aspect_ratios在序列中生成。
+为SSD(Single Shot MultiBox Detector)算法生成先验框。输入的每个位产生N个先验盒，N由min_sizes,max_sizes和aspect_ratios的数目决定，先验盒的尺寸在(min_size,max_size)之间，该尺寸根据aspect_ratios在序列中生成。
 
 参数：
     - **input**(Variable)-输入变量，格式为NCHW
@@ -2313,7 +2312,7 @@ multi_box_head
 
 .. _cn_api_fluid_layers_bipartite_match:
 
-biparite_match
+bipartite_match
 >>>>>>>>>>>>>>>>
 
 
@@ -2327,14 +2326,14 @@ biparite_match
 
 注：输入DistMat可以是LoDTensor（含LoD)或者张量（Tensor）。如果LoDTensor带有LoD，ColToRowMatchIndices的高度为批尺寸。如果为张量，ColToRowMatchIndices的高度为1。
 
-注：这是一个非常低级的API。用''ssd_loss''层。请考虑用''ssd_loss''。
+注：这是一个低级的API。用''ssd_loss''层。请考虑用''ssd_loss''。
 
 参数：
     - **dist_matrix**(Vairable) - 输入是维度为[K,M]的二维LoDTensor，是行项和列项之间距离的矩阵。假设矩阵A,维度为K，矩阵B，维度为M。dist_matrix[i][j]即A[i]和B[j]的距离。最大距离即为行列项的最好匹配。
     
     注：该张量包含LoD信息，代表输入的批。该批的一个实例含有不同的项数。
 
-    - **match_type**(string|None) - 匹配算法的类型，应为二分图或。默认为二分图
+    - **match_type**(string|None) - 匹配算法的类型，应为二分图或per_prediction。默认为二分图
 
     - **dist_threshold**(float|None) - 如果match_type为，该临界值决定在最大距离基础上的额外matching bboxes。
 
@@ -2349,7 +2348,7 @@ biparite_match
 
 **代码示例**：
 
-.. code_block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[4], dtype='float32')
     y = fluid.layers.data(name='y', shape=[4], dtype='float32')
@@ -2400,7 +2399,7 @@ target_assign
 
 **代码示例**：
 
-.. code_block:: python
+.. code-block:: python
 
     matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
     gt = layers.data(
@@ -2415,11 +2414,11 @@ detection_output
 
 .. py:class:: paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
 
-单点多盒检测的检测输出层（Detection Output Layer for Single Shot Multibox Detector(SSD))
+Detection Output Layer for Single Shot Multibox Detector(SSD)
 
 该操作符用于获得检测结果，执行步骤如下：
 
-    1.根据优先盒解码输入边界框（bounding box）预测
+    1.根据先验框解码输入边界框（bounding box）预测
 
     2.通过运用多类非最大压缩(NMS)获得最终检测结果
 
@@ -2434,16 +2433,16 @@ detection_output
     - **nms_threshold**(int) - 用于NMS的临界值（threshold）
     - **nms_top_k**(int) - 基于score_threshold过滤检测后，根据置信数维持的最大检测数
     - **keep_top_k**(int) - NMS步后，每一图像要维持的总bbox数
-    - **score_threshold**(float) - 临界函数（Threshold），用来过滤带有低置信分数的边界框（bounding box）。若未提供，则考虑所有框
+    - **score_threshold**(float) - 临界函数（Threshold），用来过滤带有低置信数的边界框（bounding box）。若未提供，则考虑所有框
     - **nms_eta**(float) - 适应NMS的参数
 
-返回：检测输出数一个LoDTensor，维度为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch的总检测数。对每个实例，第一维偏移称为LoD，偏移数为N+1，N是批尺寸。第i个图像有LoD[i+1]-LoD[i]检测结果。如果为0，第i个图像无检测结果。如果所有图像都没有检测结果，LoD所有元素都为0，并且输出张量只包含一个值-1。
+返回：检测输出一个LoDTensor，维度为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch的总检测数。对每个实例，第一维偏移称为LoD，偏移数为N+1，N是批尺寸。第i个图像有LoD[i+1]-LoD[i]检测结果。如果为0，第i个图像无检测结果。如果所有图像都没有检测结果，LoD所有元素都为0，并且输出张量只包含一个值-1。
 
 返回类型：变量（Variable）
 
 **代码示例**：
 
-.. code_block:: python
+.. code-block:: python
 
     pb = layers.data(name='prior_box', shape=[10, 4],
              append_batch_size=False, dtype='float32')
@@ -2457,4 +2456,5 @@ detection_output
                            loc=loc,
                            prior_box=pb,
                            prior_box_var=pbv)
+
 
