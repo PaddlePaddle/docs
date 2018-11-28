@@ -15,4 +15,3 @@
     user_guides/index.rst
     advanced_usage/index.rst
     api/index_cn.rst
-    api/api_guides/index.rst
