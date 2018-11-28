@@ -40,13 +40,13 @@
     
     > git可以在官网进行下载，并添加到环境变量中。 [下载地址](https://gitforwindows.org/) **
     
-    > python 需要2.7 及以上版本, 同时确保 `numpy, protobuf, wheel` 等模块得到安装 **
+    > python 需要2.7 及以上版本, 同时确保 `numpy, protobuf, wheel` 等模块得到安装 [下载地址](https://www.python.org/download/releases/2.7/)**
     
-        * 安装 numpy 包可以通过命令 `pip uninstall numpy` 或 `pip3 uninstall numpy`
+        * 安装 numpy 包可以通过命令 `pip install numpy` 或 `pip3 install numpy`
         
-        * 安装 protobuf 包可以通过命令 `pip uninstall protobuf` 或 `pip3 uninstall protobuf`
+        * 安装 protobuf 包可以通过命令 `pip install protobuf` 或 `pip3 install protobuf`
         
-        * 安装 wheel 包可以通过命令 `pip uninstall wheel` 或 `pip3 uninstall wheel`
+        * 安装 wheel 包可以通过命令 `pip install wheel` 或 `pip3 install wheel`
 
 3. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
 

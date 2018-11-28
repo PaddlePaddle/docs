@@ -18,7 +18,7 @@
 
 我们暂不提供快速安装的命令，请您按照以下步骤进行安装
 
-首先，**检查您的计算机和操作系统**是否满足以下要求：    
+* 首先，**检查您的计算机和操作系统**是否满足以下要求：
 	
 		For python2: 使用Python官方下载的python2.7.15
 		For python3: 使用Python官方下载的python3.5.x
@@ -31,6 +31,7 @@
 1. 使用pip install来安装PaddlePaddle：
 	
     ** paddlepaddle 的依赖包 `recordio` 有可能用 `pip` 的默认源无法安装，可以使用 `easy_install recordio` 来安装 **
+    
 	** 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle` **
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
