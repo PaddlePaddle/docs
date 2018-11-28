@@ -61,4 +61,4 @@
 
         my_files = file_dispatcher(files_pattern, triners, trainer_id)
 
-在上述例子中，`files_pattern` 是训练文件的 glob 表达式，一般可以用通配符来表示。
+在上述例子中，`files_pattern` 是训练文件的 `glob 表达式 <https://docs.python.org/2.7/library/glob.html>`_，一般可以用通配符来表示。
