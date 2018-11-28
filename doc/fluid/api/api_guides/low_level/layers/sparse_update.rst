@@ -1,19 +1,20 @@
-.. _api_guide_conv:
+.. _api_guide_sparse_update:
 
 #####
 稀疏更新
 #####
 
-在paddle里，我们提供了 :ref:`api_fluid_layers_embedding`  接口来支持稀疏更新。它在内部表示为lookup_table operator，可以在 `DesignDoc <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/dist_train/distributed_lookup_table_design.md>`_  看到起设计原理
+Fluid的 :ref:`api_fluid_layers_embedding`  层在单机训练和分布式训练时，均可以支持“稀疏更新”，即梯度以 `SelectedRows <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/selected_rows.md>`_  结构存储，只保存梯度不为0的行。
+在分布式训练中，对于较大的embedding层，开启稀疏更新有助于减少通信数据量，提升训练速度
 
 embedding输入参数：
 ---------------------
 
-embedding需要输入(input)，形状(size)，是否需要稀疏更新(is_sparse)，是否分布式(is_distributed)，是否padding输出(padding_idx)，参数属性(param_attr)，数据类型(dtype)来决定如何计算。
+embedding需要输入(input)，形状(size)，是否需要稀疏更新(is_sparse)，是否使用分布式table(is_distributed)，是否padding输出(padding_idx)，参数属性(param_attr)，数据类型(dtype)来决定如何计算。
 
 - input:
 
-  input是一个paddle的Variable, 其内容为需要查询的id向量。
+  input是一个Fluid的Variable, 其内容为需要查询的id向量。
 - size:
 
   size为lookup table的shape，必须为两维。以NLP应用为例，第0维一般为词典的大小，第1维一般为每个词对应向量的大小。
@@ -37,6 +38,28 @@ embedding需要输入(input)，形状(size)，是否需要稀疏更新(is_sparse
 - dtype:
 
   标志数据的具体类型，如float或者double等。默认为float32。
+
+
+embedding使用例子:
+---------------------
+
+.. code-block:: python
+
+   DICT_SIZE = 10000 * 10
+   EMBED_SIZE = 64
+   IS_SPARSE = False
+   def word_emb(word, dict_size=DICT_SIZE, embed_size=EMBED_SIZE):
+       embed = fluid.layers.embedding(
+           input=word,
+           size=[dict_size, embed_size],
+           dtype='float32',
+           param_attr=fluid.ParamAttr(
+               initializer=fluid.initializer.Normal(scale=1/math.sqrt(dict_size))),
+           is_sparse=IS_SPARSE,
+           is_distributed=False)
+       return embed
+
+
 - API汇总:
  - :ref:`api_fluid_layers_embedding`
 
