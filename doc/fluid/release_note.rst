@@ -21,7 +21,7 @@ PaddlePaddle v1.1 在基础框架、模型建设、分布式训练、预测引�
 	* 优化了 :code:`split operator` ，显著提升性能。
 	* 扩展 :code:`multiclass_nms operator` ，支持多边形的预测框。
 	* 通过 :code:`generatoe_proposals operator` 的CUDA实现，显著提升性能。
-	* 通过 :code:`affine_channel operator` 融合batch_norm operator，显著提升性能。
+	* 通过 :code:`affine_channel operator` 融合 :code:`batch_norm operator` ，显著提升性能。
 	* 优化 :code:`depthwise_conv operator` 的forward和backward，显著提升性能。
 	* 优化 :code:`reduce_mean operator` 。
 	* 优化 :code:`sum operator` ，该operator在输入是 :code:`Tensor` 的情况下，减少一次zero memory耗时。
@@ -30,7 +30,7 @@ PaddlePaddle v1.1 在基础框架、模型建设、分布式训练、预测引�
 	* 优化 :code:`elementwise_add operator` ，显著提升性能。
 	*  :code:`while operator` 性能优化，相关的模型性能整体提升 30%+。
 	*  :code:`sequence_slice operator` 的实现，对于一个sequence，可以从指定位置开始，slice出指定长度的subsequence。
-	*  :code:`sequence_unpad operator` 的实现，支持padding Tensor转LoDTensor。
+	*  :code:`sequence_unpad operator` 的实现，支持padding Tensor转 :code:`LoDTensor` 。
 	* 支持截断正态分布初始化方法(truncated normal initializer)。
 	* 二维 :code:`padding operator` 的实现，支持一个每个纬度的首尾padding不同的大小。
 	* 更多 operator支持： :code:`sequence_reverse operator` ， :code:`sequence_enumerate operator` , :code:`sequence_scatter operator` , :code:`roi_align operator` ， :code:`affine_channel operator` , :code:`anchor_generator operator` , :code:`generate_proposal_labels operator` , :code:`generate_proposals operator` , :code:`rpn_target_assign operator` 、 :code:`roi透视变换operator` ,  :code:`seq_pool operator` 、 :code:`seq_expand operator` 、 :code:`seq_concat operator` 、 :code:`seq_softmax operator` 、 :code:`lod_to_array operator` 、 :code:`array_to_lod operator` 。
