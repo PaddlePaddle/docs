@@ -12,7 +12,7 @@ Fluid支持数据并行的分布式同步训练，API使用 :code:`DistributedTr
 pserver模式分布式训练
 ===================
 
-API详细使用方法参考 :ref:<DistributeTranspiler> ，简单实例用法：
+API详细使用方法参考 :ref:`DistributeTranspiler` ，简单实例用法：
 
 .. code-block:: python
 
@@ -56,7 +56,7 @@ NCCL2模式分布式训练
 =================
 
 基于NCCL2 (Collective Communication) 的多机同步训练模式，仅支持在GPU集群下进行。
-此部分详细API说明可以参考 :ref:<DistributeTranspiler> 。
+此部分详细API说明可以参考 :ref:`DistributeTranspiler` 。
 
 注意：NCCL2模式下，集群不需要启动pserver，只需要启动多个trainer节点即可。
 
