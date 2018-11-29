@@ -9,7 +9,7 @@ def train_loop():
     with tarfile.open(paddle.dataset.common.download(URL, "imdb", MD5)) as tarf:
         tarf.extractall(path='./')
         tarf.close()
-     # Initialize dataset description
+    # Initialize dataset description
     dataset = fluid.DataFeedDesc('train_data/data.prototxt')
     dataset.set_batch_size(128)  # See API doc for how to change other fields
     print dataset.desc()  # Debug purpose: see what we get
@@ -18,7 +18,7 @@ def train_loop():
         name="words", shape=[1], dtype="int64", lod_level=1)
     # label data
     label = fluid.layers.data(name="label", shape=[1], dtype="int64")
-     avg_cost, acc, prediction = bow_net(data, label)
+    avg_cost, acc, prediction = bow_net(data, label)
     sgd_optimizer = fluid.optimizer.Adagrad(learning_rate=0.002)
     opt_ops, weight_and_grad = sgd_optimizer.minimize(avg_cost)
     # Run startup program
@@ -61,7 +61,7 @@ void AsyncExecutor::RunFromFile(const ProgramDesc& main_program,
                                 const std::vector<std::string>& fetch_var_names,
                                 const bool debug) {
   std::vector<std::thread> threads;
-   auto& block = main_program.Block(0);
+  auto& block = main_program.Block(0);
   for (auto var_name : fetch_var_names) {
     auto var_desc = block.FindVar(var_name);
     auto shapes = var_desc->GetShape();
@@ -83,7 +83,7 @@ void AsyncExecutor::RunFromFile(const ProgramDesc& main_program,
   }
   std::vector<std::shared_ptr<DataFeed>> readers;
   PrepareReaders(readers, actual_thread_num, data_feed_desc, filelist);
-   std::vector<std::shared_ptr<ExecutorThreadWorker>> workers;
+  std::vector<std::shared_ptr<ExecutorThreadWorker>> workers;
   workers.resize(actual_thread_num);
   for (auto& worker : workers) {
     worker.reset(new ExecutorThreadWorker);
