@@ -127,48 +127,42 @@
 	* a. 安装Python-dev:
 
 			For Python2: yum install python-devel
-			For Python3: (这里由于python3.5的编译安装过程较为复杂，请参照Python官方流程安装）
+			For Python3: (这里由于python3.5、python3.6、python3.7的编译安装过程较为复杂，请参照Python官方流程安装）
 
 	* b. 安装pip:
 
 			For Python2: yum install python-pip (请保证拥有9.0.1及以上的pip版本)
 			For Python3: (这里由于pip3的编译安装过程较为复杂，请参照Python官方流程安装）(请保证拥有9.0.1及以上的pip3版本）
 
-
-	* c.（Only For Python3）设置Python3相关的环境变量：
+	* c.（Only For Python3）设置Python3相关的环境变量，这里以python3.5版本示例，请替换成您使用的版本（3.6、3.7）：
 
 		1. 首先使用``` find `dirname $(dirname
-			$(which python3))` -name "libpython3.so"```找到Pythonlib的路径，然后（下面[python-lib-path]替换为找到文件路径）
+			$(which python3))` -name "libpython3.so"```找到Python lib的路径，然后将下面[python-lib-path]替换为找到文件路径
 
 		2. 设置PYTHON_LIBRARIES：`export PYTHON_LIBRARY=[python-lib-path]`
 
 		3. 其次使用```find `dirname $(dirname
-			$(which python3))`/include -name "python3.5m"```找到PythonInclude的路径，然后（下面[python-include-path]替换为找到文件路径）
+			$(which python3))`/include -name "python3.5m"```找到PythonInclude的路径，然后将下面[python-include-path]替换为找到文件路径
 		4. 设置PYTHON_INCLUDE_DIR: `export PYTHON_INCLUDE_DIRS=[python-include-path]`
 
 		5. 设置系统环境变量路径：`export PATH=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
-
-
 
 	* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
 
 		1.  `pip install virtualenv` 或 `pip3 install virtualenv`
 		2.  `pip install virtualenvwrapper` 或 `pip3 install virtualenvwrapper`
-		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`（请找到对应Python版本的`virtualenvwrapper.sh`
+		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`（请找到对应Python版本的`virtualenvwrapper.sh`）
 		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat vitualenvwrapper.sh`
 		5.  安装`virtualwrapper`
 		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
-
 5. 进入虚环境：`workon paddle-venv`
-
 
 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
 
 	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 
-		`yum install patchelf`
-
+        `yum install patchelf`
 		> 不能使用apt安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
 
 7. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
@@ -177,9 +171,9 @@
 
 	- `cd Paddle`
 
-8. 切换到较稳定release分支下进行编译：
+8. 切换到较稳定release分支下进行编译(当前最新分支为1.2.0，从该分支开始支持python3.6及3.7版本)：
 
-	`git checkout release/1.0.0`
+	`git checkout release/1.2.0`
 
 9. 并且请创建并进入一个叫build的目录下：
 
@@ -189,17 +183,14 @@
 
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO：Link 安装选项表到这里-->
 
-
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
 			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
 			-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
-
-		> 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次cmake指令
-
-
+		> 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次cmake指令。
+		> 请注意PY_VERSION参数更换为您需要的python版本
 
 11. 使用以下命令来编译：
 

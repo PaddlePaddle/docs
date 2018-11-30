@@ -52,7 +52,7 @@ Python2.7：
 	yum update && yum install -y epel-release && yum install -y python-devel python-pip && pip install paddlepaddle     
 	    
 	
-Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供默认您已经正确安装python3.5已经pip3之后的安装命令）
+Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，我们提供默认您已经正确安装python3.5+以及pip3之后的安装命令）
 	
 	yum update && yum install -y epel-release && pip3 install paddlepaddle     
 	
@@ -67,21 +67,19 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 其次，您的计算机需要满足以下要求：
 
 *	Python2.7.x (devel)，Pip >= 9.0.1 
-	
-	> CentOS6需要编译Python2.7成[共享库](./FAQ.html/#FAQ)。      
 
-*  Python3.5.x (devel)，Pip3 >= 9.0.1    
+     > CentOS6需要编译Python2.7成[共享库](./FAQ.html/#FAQ)。      
 
-	
+*  Python3.5+.x (devel)，Pip3 >= 9.0.1    
+
 	> 您的CentOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
 
 	更新yum的源：   `yum update` 并安装拓展源以安装pip：   `yum install -y epel-release`
 
-	使用以下命令安装或升级Python和pip到需要的版本： 
+	使用以下命令安装或升级Python和pip到需要的版本： 	
 	
-	
-	- For Python2: `sudo yum install python-devel python-pip`       
-	- For Python3: (这里由于python3.5的编译安装过程较为复杂，请参照Python官方流程安装）
+	    - For Python2: `sudo yum install python-devel python-pip`       
+	    - For Python3: (这里由于python3.5+的编译安装过程较为复杂，请参照Python官方流程安装）
 	
 	> 即使您的环境中已经有`Python`也需要安装`python develop`套装。
 
@@ -91,13 +89,12 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 	
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
 
-
 	* 对于需要**GPU版本PaddlePaddle**的用户: `pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle-gpu`
 	
 	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download)的指示正确安装nccl2
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 9/cuDNN v7的PaddlePaddle版本。 
 
-	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
+	* 对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
 	
 	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`  或 `pip3 install paddlepaddle==[版本号]`      
 	
@@ -130,14 +127,10 @@ Python3.5: (由于在CentOS下安装Python3的方法较为复杂，我们提供�
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
-
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`       
 		
-		
-
-
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:[tag]`

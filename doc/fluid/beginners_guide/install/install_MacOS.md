@@ -6,7 +6,7 @@
 
 请注意：在其他系统上的尝试可能会导致安装失败。
 
-* MacOS 10.11/10.12/10.13/10.14
+* MacOS 10.11/10.12/10.13/10.14/10.16
 
 ## 确定要安装的版本
 
@@ -38,13 +38,15 @@
 
 其次，您的计算机需要满足以下要求：    
 
-> **请不要使用MacOS中自带python**，对于**Python2**，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg)提供的python2.7.15；对于**Python3**，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x。
+> **请不要使用MacOS中自带python**，对于**Python2**，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg)提供的python2.7.15；对于**Python3**，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x、python3.6.x或python3.7.x。
 	
 		For python2: brew install python@2 或 使用Python官方下载的python2.7.15
-		For python3: 使用Python官方下载的python3.5.x
+		For python3: 使用Python官方下载的python3.5.x、python3.6.x或python3.7.x
 
-*	Python2.7.x，Pip >= 9.0.1            
+*  Python2.7.x，Pip >= 9.0.1            
 *  Python3.5.x，Pip3 >= 9.0.1  
+*  Python3.6.x，Pip3 >= 9.0.1  
+*  Python3.7.x，Pip3 >= 9.0.1  
 
 	> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。        
 	    
@@ -54,8 +56,6 @@
 1. 使用pip install来安装PaddlePaddle：
 	
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
-
-
 	
 	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`  或 `pip3 install paddlepaddle==[版本号]`
 	
@@ -84,12 +84,10 @@
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
-
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`
 		
-
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:[tag]`
