@@ -31,7 +31,9 @@ API详细使用方法参考 :ref:`DistributeTranspiler` ，简单实例用法：
 - :code:`trainer_id` ： trainer节点的id，从0到n-1，n为当前训练任务中trainer节点的个数
 - :code:`program` ： 被转换的 :code:`program` 默认使用 :code:`fluid.default_main_program()`
 - :code:`pservers` ： 当前训练任务中pserver节点的IP端口列表
-- :code:`trainers` ： int类型，当前训练任务中trainer节点的个数（NCCL2模式中，此项参数是字符串，指定trainer节点的IP端口列表），注意，在pserver模式下，trainer节点个数可以和pserver节点个数不一致，比如使用20个pserver和50个trainer。在实际训练任务中，您可以通过调整pserver节点和trainer节点个数找到最佳性能。
+- :code:`trainers` ： int类型，当前训练任务中trainer节点的个数。注意：
+    * pserver模式下，trainer节点个数可以和pserver节点个数不一致，比如使用20个pserver和50个trainer。在实际训练任务中，您可以通过调整pserver节点和trainer节点个数找到最佳性能
+    * NCCL2模式中，此项参数是字符串，指定trainer节点的IP端口列表
 - :code:`sync_mode` ： 是否是同步训练模式，默认为True，不传此参数也默认是同步训练模式
 
 
