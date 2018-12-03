@@ -7,7 +7,7 @@
 Fluid的 :ref:`api_fluid_layers_embedding`  层在单机训练和分布式训练时，均可以支持“稀疏更新”，即梯度以 `SelectedRows <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/selected_rows.md>`_  结构存储，只保存梯度不为0的行。
 在分布式训练中，对于较大的embedding层，开启稀疏更新有助于减少通信数据量，提升训练速度
 
-embedding输入参数：
+embedding输入参数
 ---------------------
 
 embedding需要输入(input)，形状(size)，是否需要稀疏更新(is_sparse)，是否使用分布式table(is_distributed)，是否padding输出(padding_idx)，参数属性(param_attr)，数据类型(dtype)来决定如何计算。
@@ -23,7 +23,7 @@ embedding需要输入(input)，形状(size)，是否需要稀疏更新(is_sparse
   反向计算的时候梯度是否为 `sparse tensor <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/selected_rows.md>`_  。如果不设置，梯度是一个 `LodTensor <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/lod_tensor.md>`_  。默认为False。
 - is_distributed:
 
-  标志是否是用在分布式的场景下。一般大规模稀疏更新（embedding的第0维维度很大，比如几百万以上）才需要设置。具体可以参考大规模稀疏的API guide  :ref:`api_guide_async_training`  。默认为False。
+  标志是否用在分布式的场景下。一般大规模稀疏更新（embedding的第0维维度很大，比如几百万以上）才需要设置。具体可以参考大规模稀疏的API guide  :ref:`api_guide_async_training`  。默认为False。
 - padding_idx:
 
   标志需要set为0的id的值。不设置时对结果没有影响。默认为None。
