@@ -31,7 +31,7 @@
 1. 使用pip install来安装PaddlePaddle：
 	
     ** paddlepaddle 的依赖包 `recordio` 有可能用 `pip` 的默认源无法安装，可以使用 `easy_install recordio` 来安装 **
-    
+
 	** 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle` **
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。

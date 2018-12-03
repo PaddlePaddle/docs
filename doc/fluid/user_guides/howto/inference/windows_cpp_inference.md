@@ -18,11 +18,11 @@ Windows环境模型预测使用说明
 
 ### 环境配置步骤
 
-**一定要严格按照安装步骤顺序，否则会安装失败！**
+**请您严格按照以下步骤进行安装，否则可能会导致安装失败！**
 
 **安装Visual Studio 2015 update3**
 
-安装Visual Studio 2015，安装选项中选择安装内容时勾选自定义，把关于c，c++，vc++的功能都安装上。
+安装Visual Studio 2015，安装选项中选择安装内容时勾选自定义，选择安装全部关于c，c++，vc++的功能。
 
 
 预测demo使用
@@ -32,12 +32,8 @@ Windows环境模型预测使用说明
 
 进入Paddle/paddle/fluid/inference/api/demo_ci目录，新建build目录并进入，然后使用cmake生成vs2015的solution文件。
 指令为：
-```cmake
-cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF
--DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release
--DDEMO_NAME=simple_on_word2vec
--DPADDLE_LIB=path_to_the_patddle\paddle_fluid.lib
-```
+
+`cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_patddle\paddle_fluid.lib`
 
 注：
 
@@ -47,9 +43,9 @@ cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF
 -DPADDLE_LIB=D:\fluid_install_dir
 
 
-Cmake可以在官网进行下载，并添加到环境变量中。 [下载地址](https://cmake.org/download/)
+Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到环境变量中。
 
-执行完毕后，build 目录如图所示，打开 箭头指向的 solution 文件：
+执行完毕后，build 目录如图所示，打开箭头指向的 solution 文件：
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image3.png">

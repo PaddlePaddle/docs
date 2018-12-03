@@ -3,8 +3,8 @@
 
 本说明将介绍如何在*64位台式机或笔记本电脑*以及Windows 10系统下编译PaddlePaddle，我们支持的Windows系统需满足以下要求：
 
-* Windows 10
-* Visual Stuido 2015 Update3
+* Windows 10 家庭版/专业版/企业版
+* Visual Studio 2015 Update3
 
 ## 确定要编译的版本
 * **仅支持CPU的PaddlePaddle**。
@@ -30,17 +30,17 @@
 
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准
 
-    * Windows 10
+    * Windows 10 家庭版/专业版/企业版
     
-    * Visual Stuido 2015 Update3
+    * Visual Studio 2015 Update3
 
 2. 安装必要的工具 cmake，git 以及 python ：
 
-    > cmake 需要3.0 及以上版本, 可以在官网进行下载，并添加到环境变量中。 [下载地址](https://cmake.org/download/) **
+    > cmake 需要3.0 及以上版本, 可以在官网进行下载，并添加到环境变量中。 [下载地址](https://cmake.org/download/)
     
-    > git可以在官网进行下载，并添加到环境变量中。 [下载地址](https://gitforwindows.org/) **
+    > git可以在官网进行下载，并添加到环境变量中。 [下载地址](https://gitforwindows.org/)
     
-    > python 需要2.7 及以上版本, 同时确保 `numpy, protobuf, wheel` 等模块得到安装 [下载地址](https://www.python.org/download/releases/2.7/)**
+    > python 需要2.7 及以上版本, 同时确保 `numpy, protobuf, wheel` 等模块得到安装 [下载地址](https://www.python.org/download/releases/2.7/)
     
         * 安装 numpy 包可以通过命令 `pip install numpy` 或 `pip3 install numpy`
         
@@ -53,11 +53,11 @@
 	- `git clone https://github.com/PaddlePaddle/Paddle.git`
 	- `cd Paddle`
 
-4. 切换到较稳定release分支下进行编译：
+4. 切换到较稳定release分支下进行编译(支持1.2.x及以上版本)：
 
-	- `git checkout release/1.2.0`
+	- `git checkout release/x.x.x`
 
-5. 并且请创建并进入一个叫build的目录下：
+5. 创建名为build的目录并进入：
 
 	- `mkdir build`
 	- `cd build`
@@ -69,8 +69,8 @@
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-			For Python2: cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-			For Python3: cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python2: `cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+			For Python3: `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 		> 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次cmake指令
 
