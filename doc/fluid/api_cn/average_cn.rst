@@ -2,13 +2,14 @@
 #################
 fluid.average
 #################
-.. _
 .. _cn_api_fluid_average_WeightedAverage:
 
 WeightedAverage
 >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 .. py:class:: paddle.fluid.average.WeightedAverage
+
+英文原文： :ref:`api_fluid_average_WeightedAverage`
 
 计算加权平均值。
 
