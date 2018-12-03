@@ -120,6 +120,7 @@ layer_norm
 - :math:  `g` : 可训练的缩放因子参数
 - :math:  `b` : 可训练的bias
 
+
 参数:
   - **input** （Variable） - 输入张量变量。
   - **scale** （bool） - 是否在归一化后学习自适应增益g。默认为True。
@@ -131,7 +132,8 @@ layer_norm
   - **act** （str） - 激活函数。默认 None
   - **name** （str） - 该层的名称， 可选的。默认为None，将自动生成唯一名称。
 
-返回： 标准化后的结果            
+返回： 标准化后的结果   
+
 **代码示例**
 
 ..  code-block:: python
@@ -200,7 +202,6 @@ Scatter Layer
 通过更新第一维度上指定选索引的输入来获得输出。
 
 .. math::
-
             \\Out=XOut[Ids]=Updates\\
 
 
@@ -231,6 +232,7 @@ detection_map
 通常步骤如下
 1 根据 detection 的输入和标签计算 true positive 和 false positive
 2 计算 map 值，支持‘11 point’ 和‘integral’ map 算法。详情参考：https://sanchom.wordpress.com/tag/average-precision/ https://arxiv.org/abs/1512.02325
+
 
 参数
   - **detect_res** （LoDTensor）- 具有形状[M，6]的 2-D LoDTensor。 每行有 6 个值：[label，confidence，xmin，ymin，xmax，ymax]，M 是此 mini batch 中检测结果的总数。 对于每个实例，第一维中的偏移称为 LoD，偏移数为 N + 1，如果 LoD [i + 1] - LoD [i] == 0，则表示没有检测到数据
@@ -277,17 +279,17 @@ rpn_target_assign
 参数：
   - **bbox_pred** （Variable） - 具有形状[N，M，4]的3-D张量表示M个边界bbox的预测位置。 N是批量大小，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]
   - **cls_logits** （Variable） - 具有形状[N，M，1]的3-D张量表示预测的置信度预测。 N是批量大小，1是前景和背景sigmoid，M是边界框的数量
-  - **anchor_box** （Variable） - 具有形状[M，4]的2-D张量保持M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是锚框的左上顶部坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是锚箱的右下坐标
+  - **anchor_box** （Variable） - 具有形状[M，4]的2-D张量保持M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是锚框的左上顶部坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是锚box的右下坐标
   - **anchor_var** （Variable） - 具有形状[M，4]的2-D张量保持锚的扩展方差
-  - **gt_boxes** （Variable） - 地面实况boudding框（bbox）是具有形状[Ng，4]的2D LoDTensor，Ng是小批量输入的地面实况bbox的总数
-  - **is_crowd** （Variable） -  1-D LoDTensor，表示群体真相是人群
+  - **gt_boxes** （Variable） - 真实boudding框（bbox）是具有形状[Ng，4]的2D LoDTensor，Ng是小批量输入的真实boundding box的总数
+  - **is_crowd** （Variable） -  1-D LoDTensor，表示 ground-truth 是 crowd
   - **im_info** （Variable） - 形状为[N，3]的2-D LoDTensor。 N是批量大小
   - **is the height, width and scale.**   （3） - 
-  - **rpn_batch_size_per_im** （int） - 每个映像的RPN示例总数
-  - **rpn_straddle_thresh** （float） - 删除通过straddle_thresh像素出现在图像外部的RPN锚点
+  - **rpn_batch_size_per_im** （int） - 每个image的RPN示例总数
+  - **rpn_straddle_thresh** （float） - 通过straddle_thresh像素移除超出图像的RPN锚
   - **rpn_fg_fraction** （float） - 标记为foreground（即class> 0）的RoI minibatch的目标分数，第0类是background
-  - **rpn_positive_overlap** （float） - 锚点和地面实况框之间所需的最小重叠（锚点，gt框）对是一个正例
-  - **rpn_negative_overlap** （float） - 锚点和地面实况框之间允许的最大重叠（锚点，gt框）对是一个反面例子
+  - **rpn_positive_overlap** （float） - 锚点和真实框之间所需的最小重叠（anchor >  box)）对是一个正例
+  - **rpn_negative_overlap** （float） - 锚点和真实框之间允许的最大重叠（anchor >  box)）对是一个反面例子
   
 返回：返回一个元组(predicted_scores, predicted_location, target_label, target_bbox)。predicted_scores和predicted_location是RPN的预测结果。target_label和target_bbox分别是ground truth。predicted_location是一个二维张量，其形状为[F, 4]， target_bbox的形状与predicted_location的形状相同，F为前景锚的个数。predicted_scores是一个二维张量，其形状为[F + B, 1]， target_label的形状与predicted_scores的形状相同，B是背景锚的个数，F和B取决于这个算子的输入。
 
