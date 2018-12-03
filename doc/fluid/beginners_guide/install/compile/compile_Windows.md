@@ -71,7 +71,8 @@
 
 		For Python2: `cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`      
+			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+			 
 		For Python3: `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
 			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
@@ -94,7 +95,7 @@
 
 
 ## ***验证安装***
-安装完成后您可以使用：`python` 进入Python解释器，然后使用 `import paddle.fluid` 验证是否安装成功。
+安装完成后您可以使用：`python` 进入Python解释器，然后使用 `import paddle.fluid`, 如沒有提示错误，则表明安装成功。
 
 ## ***如何卸载***
 请使用以下命令卸载PaddlePaddle：

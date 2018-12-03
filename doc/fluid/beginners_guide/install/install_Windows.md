@@ -23,12 +23,12 @@
 		For python2: 使用Python官方下载的python2.7.15
 		For python3: 使用Python官方下载的python3.5.x
 
-*  Python2.7.x，Pip >= 9.0.1            
-*  Python3.5.x，Pip3 >= 9.0.1  
+*  Python2.7.x，pip >= 9.0.1
+*  Python3.5.x，pip3 >= 9.0.1
 	    
 下面将说明如何安装PaddlePaddle：
 
-1. 使用pip install来安装PaddlePaddle：
+* 使用pip install来安装PaddlePaddle：
 	
     ** paddlepaddle 的依赖包 `recordio` 有可能用 `pip` 的默认源无法安装，可以使用 `easy_install recordio` 来安装 **
 
