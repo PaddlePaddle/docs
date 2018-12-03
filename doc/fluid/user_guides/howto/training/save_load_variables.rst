@@ -100,7 +100,7 @@
 
 预测所用的模型与参数的保存：
 ##################
-预测引擎提供了存储预测模型 :code:`fluid.io.save_inference_model` 和加载预测模型 :code:`fluid.io.load_inference_model` 两个接口。
+Fluid提供了预测所需的“保存预测模型”和“加载预测模型”两个接口:存储预测模型 :ref:`fluid.io.save_inference_model` 和加载预测模型 :ref:`fluid.io.load_inference_model` 
 
 - :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。
 -  :code:`fluid.io.load_inference_model`：请参考  :ref:`api_guide_inference`。
@@ -156,19 +156,19 @@
 ==========================
 多机增量训练和单机增量训练有若干不同点：
 
-1. 在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数时，不必要所有的Trainer都调用这个方法，一般0号Trainer来保存。
-2. 多机增量训练的参数加载在PServer端，Trainer端不用加载参数。在PServer全部启动后，Trainer会从PServer端同步参数。
+1. 在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数时，不必要所有的trainer都调用这个方法，一般0号trainer来保存。
+2. 多机增量训练的参数加载在PServer端，trainer端不用加载参数。在PServer全部启动后，trainer会从PServer端同步参数。
 
-多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
+多机增量（不启用分布式大规模稀疏矩阵）训练的一般步骤为：
 
-1. 在0号trainer在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数到指定的 :code:`path` 下。
+1. 0号trainer在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数到指定的 :code:`path` 下。
 2. 通过HDFS等方式将0号trainer保存下来的所有的参数共享给所有的PServer(每个PServer都需要有完整的参数)。
 3. PServer在训练的startup_program通过执行器（:code:`Executor`）执行成功之后调用 :code:`fluid.io.load_persistables` 加载0号trainer保存的持久性参数。
 4. PServer通过执行器 :code:`Executor` 继续启动PServer_program.
-5. 所有的训练节点Trainer通过执行器 :code:`Executor` 或者 :code:`ParallelExecutor` 正常训练。
+5. 所有的训练节点trainer通过执行器 :code:`Executor` 或者 :code:`ParallelExecutor` 正常训练。
 
 
-对于训练过程中待保存参数的Trainer， 例如：
+对于训练过程中待保存参数的trainer， 例如：
 
 .. code-block:: python
 
@@ -221,7 +221,7 @@
         main_program = t.get_trainer_program()
                 exe.run(main_program)
 
-上面的例子中，每个PServer通过调用HDFS的命令获取到0号Trainer保存的参数，通过配置获取到PServer的 :code:`fluid.Program` ，PaddlePaddle Fluid会从此
+上面的例子中，每个PServer通过调用HDFS的命令获取到0号trainer保存的参数，通过配置获取到PServer的 :code:`fluid.Program` ，PaddlePaddle Fluid会从此
 :code:`fluid.Program` 也就是 :code:`pserver_startup` 的所有模型变量中找出长期变量，并通过指定的 :code:`path` 目录下一一加载。
 
 
