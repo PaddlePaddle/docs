@@ -229,12 +229,12 @@ detection_map
 
 .. py:class:: paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
 
-通常步骤如下
-1 根据 detection 的输入和标签计算 true positive 和 false positive
-2 计算 map 值，支持‘11 point’ 和‘integral’ map 算法。详情参考：https://sanchom.wordpress.com/tag/average-precision/ https://arxiv.org/abs/1512.02325
+通常步骤如下:
+  - 根据 detection 的输入和标签计算 true positive 和 false positive
+  - 计算 map 值，支持‘11 point’ 和‘integral’ map 算法。详情参考：https://sanchom.wordpress.com/tag/average-precision/ https://arxiv.org/abs/1512.02325
 
 
-参数
+参数:
   - **detect_res** （LoDTensor）- 具有形状[M，6]的 2-D LoDTensor。 每行有 6 个值：[label，confidence，xmin，ymin，xmax，ymax]，M 是此 mini batch 中检测结果的总数。 对于每个实例，第一维中的偏移称为 LoD，偏移数为 N + 1，如果 LoD [i + 1] - LoD [i] == 0，则表示没有检测到数据
   - **label** （LoDTensor）- 2 维 LoDTensor 表示真实被标记的数据。 每行有 6 个值：[label，xmin，ymin，xmax，ymax，is_difficult]或 5 个值：[label，xmin，ymin，xmax，ymax]，其中 N 是此 mini batch 中的真实数据的总数。 对于每个实例，第一维中的偏移称为 LoD，偏移数为 N + 1，如果 LoD [i + 1] - LoD [i] == 0，则表示没有真实数据
   - **class_num** （int）- 类别号
