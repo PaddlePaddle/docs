@@ -30,7 +30,7 @@ Fluid中所有的Op都继承自`OperatorBase`，且所有的Op都是无状态的
 
 Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计算资源，这两个资源分别通过`Scope`和`Place`获取。框架内部有一个全局的`DeviceContextPool`，用来记录`Place`和`DeviceContext`之间的对应的关系，即每个`Place`有且仅有一个`DeviceContext`与之对应，`DeviceContext`中存放了当前设备的计算资源，比如对于GPU，这些资源包括`cudnn_handle`、`cublas_handle`、`stream`等，Op内部所有的计算（数据拷贝和CUDA Kernel等）都必须在在`DeviceContext`中进行。
 
-Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同，为此Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
+Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
 
 Operator继承关系图： 
 <p align="center">
@@ -115,15 +115,15 @@ Operator继承关系图：
 
 注意：   
 
-1. 对于一般的Op，前三个参数是必须的，op_type指明op的名字，OperatorBase是该Op的对象，op_maker_and_checker_maker是op的maker和op中attr的checker。
+1. 对于所有Op，前三个参数是必须的，op_type指明op的名字，OperatorBase是该Op的对象，op_maker_and_checker_maker是op的maker和op中attr的checker。
 
 2. 如果该Op有反向，则必须要有op_grad_opmaker，因为在backward会根据正向的Op中获取反向Op的Maker。
 
-3. 框架提供了一个默认的op_grad_opmaker：`DefaultGradOpDescMaker`，这个Maker会将前向Op的输入和输出都做为反向Op的输入，将前向Op的输入的梯度作为反向Op的输出，并将前向Op的属性拷贝过来。注意：DefaultGradOpDescMaker会将前向Op的所有输入输出都做反向Op的输入，即使这个输入是没有必要的，这将会导致无法对没有用到的变量做内存优化。
+3. 框架提供了一个默认的op_grad_opmaker：`DefaultGradOpDescMaker`，这个Maker会将前向Op的输入和输出都做为反向Op的输入，将前向Op的输入的梯度作为反向Op的输出，并将前向Op的属性拷贝过来。**注意：**DefaultGradOpDescMaker会将前向Op的所有输入输出都做反向Op的输入，即使这个输入是没有必要的，这将会导致无法对没有用到的变量做内存优化。
 
-4. 框架没有提供默认的op_infer_var_shape方法。如果该Op是无OpKernel的，通常需要需要用户添加对应的op_infer_var_shape方法；如果该Op是有OpKernel的，需要实现`OperatorWithKernel`中的`InferShape`方法，此时不需要提供op_infer_var_shape方法。具体实现可参考while_op.cc，conv_op.cc。
+4. 框架没有提供默认的op_infer_var_shape方法。如果该Op是无OpKernel的，通常需要用户添加对应的op_infer_var_shape方法；如果该Op是有OpKernel的，需要实现`OperatorWithKernel`中的`InferShape`方法，此时不需要提供op_infer_var_shape方法。具体实现可参考[while_op.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/controlflow/while_op.cc)，[conv_op.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/conv_op.cc)。
 
-5. 框架没有提供默认的op_infer_var_type方法，用户需要根据实际情况添加op_infer_var_shape。严格来说每个Op都应该注册一个InferVarType，op_infer_var_type根据输入的Var的type和dtype推断输出Var的type和dtype。注意：在python端的LayerHelper中create_variable_for_type_inference操作返回的Variable里面是LoDTensor，并且C++端的InferVarType可能会对这个type和dtype进行修改。
+5. 框架没有提供默认的op_infer_var_type方法，用户需要根据实际情况添加op_infer_var_shape。严格来说每个Op都应该注册一个InferVarType，op_infer_var_type根据输入的Var的type和dtype推断输出Var的type和dtype。**注意：**在Python端的LayerHelper中create_variable_for_type_inference操作返回的Variable里面是LoDTensor，C++端的InferVarType可以修改`Variable`的type和dtype。
 
 更多内容请参考:    
 
@@ -131,9 +131,9 @@ Operator继承关系图：
 
 ## 写Op注意事项
 ### 3.关于Op可以支持输入输出类型
-Fluid的Op的输入输出都是Variable，从设计上讲，Variable中可以存放任意类型，Op的输入输出Variable可能是是任意类型，通常情况下Variable中存放的是LoDTensor、SlelecteRows。
+Fluid的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可以存放任意类型，Op的输入输出`Variable`可能是是任意类型，通常情况下`Variable`中存放的是`LoDTensor`、`SlelecteRows`。
 
-注意：
+**注意：**
 
 - 代码中经常出现`context.Input<Tensor>("Input")`，并不表示"Input"的`Variable`是`Tensor`，而是从"Input"的`Variable`的`LoDTensor`中获取`Tensor`。如果"Input"的`Variable`是`SelecetedRows`，则会报错。
 - 如果”Input”是`SelectedRows`，`context->GetInputDim("Input")`返回的是`var->Get<SelectedRows>().GetCompleteDims()`，而不是`SelectedRows`中`Tensor`的Dim。
@@ -145,19 +145,19 @@ ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操�
 在Op内部绝不允许对输入数据做任何改写，因为可能存在其他Op需要读这个数据。
 
 ### 6.关于显存优化
-如果Op的反向不需要将前向op的所有输入输出作为其输入，则不要用`DefaultGradOpDescMaker`，这将会导致无法对没有用到的变量做内存优化。
+如果Op的反向不需要将前向op的所有输入输出作为其输入，则不要用`DefaultGradOpDescMaker`，这将会导致无法对没有用到的变量做内存/显存优化。
 
 ### 7.关于OpKernel需要注册的数据类型
-目前要求所有OpKernel在注册的时候都要有double和float。
+目前要求所有OpKernel都要注册double和float数据类型。
 
 ### 8.关于稀疏梯度参数更新方法
-目前稀疏梯度在做更新更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数的更新，以及附加参数的更新。
+目前稀疏梯度在做更新更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数的更新以及附加参数的更新。
 
 ### 9.Op兼容性问题
-对Op的修改需要考虑兼容性问题。对Op的修改需要保证之前的模型能够正常加载及运行，所以现在不允许对已有的Op新增输入或者输出，不允许减去Op的已有属性及修改默认值。
+对Op的修改需要考虑兼容性问题，要保证Op修改之后之前的模型都能够正常加载及运行。所以现在不允许对已有的Op新增输入或者输出，不允许减去Op的已有属性及修改默认值。
 
 ### 10.关于混合设备调用
-由于GPU是异步执行的，当CPU调用返回之后，GPU端可能还没有真正的执行，所以如果在Op中创建了GPU运行时需要用到的临时变量，当GPU开始运行的时候，该临时变量可能已经在CPU端释放了，这样可能会导致GPU计算出错。
+由于GPU是异步执行的，当CPU调用返回之后，GPU端可能还没有真正的执行，所以如果在Op中创建了GPU运行时需要用到的临时变量，当GPU开始运行的时候，该临时变量可能在CPU端已经被释放，这样可能会导致GPU计算出错。
 
 关于GPU中的一些同步和异步操作：
 ```
@@ -181,7 +181,7 @@ The following device operations are asynchronous with respect to the host:
       
 
 ### 11.关于第三方库的选择
-在写Op过程中优先使用高性能库（如eigen、cudnn、mklml等）中提供的操作，但是一定要做benchmark，有些第三方库不见得在深度学习任务中快。因为高性能库（如eigen等）中提供的操作为了更为通用，在性能方面可能并不是很好，通常深度学习模型中数据量较小，所以有些情况下可能高性能库中提供的某些操作速度较慢。比如elementwise系列的所有Op（前向和反向），elementwise操作在模型中调用的次数比较多，比如elementwise_add，在很多操作之后都需要添加偏置项。在之前的实现中elementwise_op直接调用Eigen库，由于elementwise操作在很多情况下需要对数据做Broadcast，而实验发现Eigen库做Broadcast的速度比较慢，慢的原因在这个PR（#6229）中有描述。
+在写Op过程中优先使用高性能（如cudnn、mkldnn、mklml、eigen等）中提供的操作，但是一定要做benchmark，有些库中的操作在深度学习任务中可能会比较慢。因为高性能库（如eigen等）中提供的操作为了更为通用，在性能方面可能并不是很好，通常深度学习模型中数据量较小，所以有些情况下可能高性能库中提供的某些操作速度较慢。比如Elementwise系列的所有Op（前向和反向），Elementwise操作在模型中调用的次数比较多，比如Elementwise_add，在很多操作之后都需要添加偏置项。在之前的实现中Elementwise_op直接调用Eigen库，由于Elementwise操作在很多情况下需要对数据做Broadcast，而实验发现Eigen库做Broadcast的速度比较慢，慢的原因在这个PR（#6229）中有描述。
 
 ## Op性能优化注意事项
 ### 12.关于Op优化
