@@ -5,7 +5,7 @@
 #####
 
 Fluid的 :ref:`api_fluid_layers_embedding`  层在单机训练和分布式训练时，均可以支持“稀疏更新”，即梯度以sparse tensor 结构存储，只保存梯度不为0的行。
-在分布式训练中，对于较大的embedding层，开启稀疏更新有助于减少通信数据量，提升训练速度
+在分布式训练中，对于较大的embedding层，开启稀疏更新有助于减少通信数据量，提升训练速度。
 
 在paddle内部，我们用lookup_table来实现embedding。下边这张图说明了embedding在正向和反向计算的过程：
 
