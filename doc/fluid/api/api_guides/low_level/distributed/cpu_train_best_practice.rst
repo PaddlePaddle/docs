@@ -4,15 +4,15 @@
 分布式CPU训练最佳实践
 ##################
 
-提高CPU分布式训练的训练速度，主要要从两个方面来考虑，一个是提高训练速度，这个方面主要是要提高CPU的使用率，另外一方面
-是要提高通信速度，主要思路是减少通信传输的数据量。
+提高CPU分布式训练的训练速度，主要要从两个方面来考虑：
+1）提高训练速度，主要是提高CPU的使用率；2）提高通信速度，主要是减少通信传输的数据量。
 
 提高CPU的使用率
 =============
 
 提高CPU使用率主要依赖 :code:`ParallelExecutor`，可以充分利用多个CPU的计算能力来加速计算。
 
-API详细使用方法参考 :ref:<ParallelExecutor> ，简单实例用法：
+API详细使用方法参考 :ref:`api_fluid_ParallelExecutor` ，简单实例用法：
 
 .. code-block:: python
 
@@ -46,7 +46,7 @@ API详细使用方法参考 :ref:<ParallelExecutor> ，简单实例用法：
 提高通信速度
 ==========
 
-要减少通信数据量，提高通信速度，主要是使用稀疏更新，目前支持稀疏更新的主要是 :code:`embedding`
+要减少通信数据量，提高通信速度，主要是使用稀疏更新 ，目前支持 `稀疏更新 <../distributed/sparse_update.html>`_  的主要是  :ref:`api_fluid_layers_embedding` 。
 
 .. code-block:: python
 
