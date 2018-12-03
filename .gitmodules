@@ -1,6 +1,9 @@
 [submodule "external/book"]
 	path = external/book
 	url = https://github.com/PaddlePaddle/book
+[submodule "external/Paddle"]
+	path = external/Paddle
+	url = https://github.com/PaddlePaddle/Paddle
 [submodule "external/Anakin"]
 	path = external/Anakin
 	url = https://github.com/PaddlePaddle/Anakin
