@@ -5,15 +5,14 @@
 ############
 
 Fluid支持数据并行的分布式异步训练，API使用 :code:`DistributedTranspiler` 将单机网络配置转换成可以多机执行的
-:code:`pserver` 端程序和 :code:`trainer` 端程序，用户在不同的节点执行相同的一段代码，根据环境变量或启动参数，
-可以执行对应的 :code:`pserver` 或 :code:`trainer` 角色。Fluid异步训练只支持pserver模式，异步训练和同步训练的
-主要差异在于异步训练每个trainer的梯度是单独更新到参数上的，而同步训练是所有trainer的梯度合并之后统一更新到参数上，
-这会造成同步训练和异步训练的超参数需要分别调节。
+:code:`pserver` 端程序和 :code:`trainer` 端程序。用户在不同的节点执行相同的一段代码，根据环境变量或启动参数，
+可以执行对应的 :code:`pserver` 或 :code:`trainer` 角色。Fluid异步训练只支持pserver模式，异步训练和 `同步训练 <../sync_training.rst.html>`_ 的主要差异在于：异步训练每个trainer的梯度是单独更新到参数上的，
+ 而同步训练是所有trainer的梯度合并之后统一更新到参数上，因此，同步训练和异步训练的超参数需要分别调节。
 
 pserver模式分布式异步训练
 ======================
 
-API详细使用方法参考 :ref:<DistributeTranspiler> ，简单实例用法：
+API详细使用方法参考 :ref: `api_fluid_DistributeTranspiler` ，简单示例用法：
 
 .. code-block:: python
 
