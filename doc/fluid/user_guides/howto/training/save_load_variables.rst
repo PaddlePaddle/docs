@@ -100,7 +100,7 @@
 
 预测所用的模型与参数的保存：
 ##################
-Fluid提供了预测所需的“保存预测模型”和“加载预测模型”两个接口:存储预测模型 :ref:`fluid.io.save_inference_model` 和加载预测模型 :ref:`fluid.io.load_inference_model` 
+预测引擎提供了存储预测模型 :code:`fluid.io.save_inference_model` 和加载预测模型 :code:`fluid.io.load_inference_model` 两个接口。
 
 - :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。
 -  :code:`fluid.io.load_inference_model`：请参考  :ref:`api_guide_inference`。
