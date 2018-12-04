@@ -13,7 +13,7 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
 当您第一次来到PaddlePaddle，请您首先阅读以下文档，了解安装方法：
 
-    - `安装说明 <../beginners_guide/install/Start.html>`_：我们支持在Ubunt/CentOS/Windows/MacOS环境上的安装
+    - `安装说明 <../beginners_guide/install/Start.html>`_：我们支持在Ubuntu/CentOS/Windows/MacOS环境上的安装
 
 如果您初次接触深度学习，在学习PaddlePaddle之前建议您先阅读以下资料：
 
@@ -36,7 +36,7 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
 ..  toctree::
     :maxdepth: 2
-    
+
     install/Start.rst
     quick_start/index.rst
     basics/index.rst
