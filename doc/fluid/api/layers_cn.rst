@@ -746,3 +746,47 @@ lrn
     data = fluid.layers.data(
         name="data", shape=[3, 112, 112], dtype="float32")
     lrn = fluid.layers.lrn(input=data)
+
+.. _cn_api_fluid_layers_box_coder:
+
+box_coder
+>>>>>>>>>>
+
+.. py:class:: paddle.fluid.layers.box_coder(prior_box, prior_box_var, target_box, code_type='encode_center_size', box_normalized=True, name=None)
+
+Bounding Box Coder
+
+编码/解码带有先验框信息的目标边界框
+
+编码规则描述如下：
+
+ox = (tx - px)/pw/pxv
+
+oy = (ty - py)/ph/pyv
+
+ow = log(abs(tw/pw))/pwv
+
+oh = log(abs(th/ph))/phv
+
+解码规则描述如下：
+
+ox = (pw * pxv * tx * + px ) - tw/2
+
+oy = (ph * pyv * ty * + py ) - th/2
+
+ow = exp(pwv * tw ) * pw + tw/2
+
+oh = exp(phv * th ) * ph + th/2
+
+其中tx，ty，tw，th分别表示目标框的中心坐标、宽度和高度。同样地，px，py，pw，ph表示先验框地中心坐标、宽度和高度。pxv，pyv，pwv，phv表示先验框变量，ox，oy，ow，oh表示编码/解码坐标、宽度和高度。
+
+参数：
+    - **prior_box** (Variable) - 张量，默认float类型的张量。先验框是二维张量，维度为[M,4]，存储M个框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐标
+    - **prior_box_var** (Variable) - 张量，默认float类型的张量。先验框是二维张量，维度为[M,4]，存储M组变量。PriorBoxVar默认将每个元素置为1
+    - **target_box** (Variable) - LoDTensor或者Tensor，当code_type为‘encode_center_size’，输入可以是二维LoDTensor，维度为[N,4]。当code_type为‘decode_center_size’输入可以为三维张量，维度为[N,M,4]。每个框代表[xmin,ymin,xmax,ymax]，[xmin,ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐标。该张量包含LoD信息，代表一批输入。批的一个实例可以包含不同的实体数。
+    - **code_type** (string，默认encode_center_size) - 编码类型用目标框
+    - **box_normalized** (boolean，默认true) - 是否将先验框作为正则框
+
+返回：（LoDTensor 或者 Tensor）code_type为‘encode_center_size’，维度为[N,M,4]的box_coder_op输出张量代表N目标框的结果，目标框用M先验框和变量编码。code_type是‘decode_center_size’，N代表批尺寸，M代表解码框数
+
+返回类型：output_box（Variable）
