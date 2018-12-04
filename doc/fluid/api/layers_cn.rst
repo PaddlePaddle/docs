@@ -615,3 +615,134 @@ batch_norm
 
     hidden1 = fluid.layers.fc(input=x, size=200, param_attr='fc1.w')
     hidden2 = fluid.layers.batch_norm(input=hidden1)
+
+.. _cn_api_fluid_layers_lstm_unit:
+
+lstm_unit
+>>>>>>>>>>>>>
+
+.. py:class:: paddle.fluid.layers.lstm_unit(x_t, hidden_t_prev, cell_t_prev, forget_bias=0.0, param_attr=None, bias_attr=None, name=None)
+
+Lstm unit layer
+
+lstm步的等式：
+
+.. math::
+
+    i_{t} = \sigma \left ( W_{x_{i}}x_{t}+W_{h_{i}}h_{t-1}+b_{i} \right )
+    f_{t} = \sigma \left ( W_{x_{f}}x_{t}+W_{h_{f}}h_{t-1}+b_{f} \right )
+    c_{t} = f_{t}c_{t-1}+i_{t}tanh\left ( W_{x_{c}}x_{t} +W_{h_{c}}h_{t-1}+b_{c}\right )
+    o_{t} = \sigma \left ( W_{x_{o}}x_{t}+W_{h_{o}}h_{t-1}+b_{o} \right )
+    h_{t} = o_{t}tanh \left ( c_{t} \right )
+
+lstm单元的输入包括 :math: `x_{t}`，:math: `h_{t-1}` 和 :math: `c_{t-1}` 。:math: `h_{t-1}` 和 :math: `c_{t-1}` 的第二维应当相同。在此实现过程中，线性转换和非线性转换分离。以 :math: `i_{t}` 为例。线性转换运用到fc层，等式为：
+
+.. math::
+
+    L_{i_{t}} = W_{x_{i}}x_{t} + W_{h_{i}}h_{t-1} + b_{i}
+
+非线性转换运用到lstm_unit_op，方程如下：
+
+.. math::
+
+    i_{t} = \sigma \left ( L_{i_{t}} \right )
+
+该层有 :math: `h_{t}` 和 :math: `o_{t}` 两个输出。
+
+参数：
+    - **x_t** (Variable) - 当前步的输入值，二维张量，shape为M*N，M是批尺寸，N是输入尺寸
+    - **hidden_t_prev** (Variable) - lstm单元的隐藏值，二维张量，shape为M*S，M是批尺寸，N是lstm单元的大小
+    - **cell_t_prev** (Variable) - lstm单元的cell值，二维张量，shape为M*S，M是批尺寸，N是lstm单元的大小
+    - **forget_bias** (Variable) - lstm单元的遗忘bias
+    - **param_attr** (ParamAttr|None) - 可学习hidden-hidden权重的擦参数属性。如果设为None或者ParamAttr的一个属性，lstm_unit创建ParamAttr为param_attr。如果param_attr的初始化函数未设置，参数初始化为Xavier。默认：None
+    - **bias_attr** (ParamAttr|None) - 可学习bias权重的bias属性。如果设为False，输出单元中则不添加bias。如果设为None或者ParamAttr的一个属性，lstm_unit创建ParamAttr为bias_attr。如果bias_attr的初始化函数未设置，bias初始化为0.默认：None
+    - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名
+
+返回：lstm单元的hidden值和cell值
+
+返回类型：tuple（元组）
+
+抛出异常：`ValueError` - **x_t**，**hidden_t_prev** 和 **cell_t_prev** 的阶不为2，或者**x_t**，**hidden_t_prev** 和 **cell_t_prev** 的第一维不一致，或者 **hidden_t_prev** 和 **cell_t_prev** 的第二维不一致
+
+**代码示例**：
+
+.. code-block:: python
+
+    x_t = fluid.layers.fc(input=x_t_data, size=10)
+    prev_hidden = fluid.layers.fc(input=prev_hidden_data, size=30)
+    prev_cell = fluid.layers.fc(input=prev_cell_data, size=30)
+    hidden_value, cell_value = fluid.layers.lstm_unit(x_t=x_t,
+                                       hidden_t_prev=prev_hidden,
+                                       cell_t_prev=prev_cell)
+
+.. _cn_api_fluid_layers_warpctc:
+
+warpctc
+>>>>>>>>
+
+.. py:class:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False)
+
+该操作符集成了开源Warp-CTC库（https://github.com/baidu-research/warp-ctc），计算基于神经网络的时序类分类（CTC）损失。原生softmax激活函数集成到Wrap-CTC库中，操作符也可称作含CTC的softmax，将输入张量每一行的值正则化。
+
+参数：
+    - **input** （Variable） - 变长序列的非尺度化概率，是一个含LoD信息的二维张量。shape为[Lp，num_classes+1]，Lp是所有输出序列长度之和，num_classes是实际类别数。（不包括空白标签）
+    - **label** (Variable） - 变长序列中正确标记的数据，是一个含LoD信息的二维张量。shape为[Lg，1]，Lg是所有标签长度之和
+    - **blank** （int，默认0） - 基于神经网络的时序类分类（CTC）损失的空白标签索引，在半开区间间隔内[0，num_classes+1]
+    - **norm_by_times** （bool，默认false）是否利用时间步长（即序列长度）的数量对梯度进行正则化。如果warpctc层后面跟着mean_op则无需对梯度正则化。
+    
+返回：基于神经网络的时序类分类（CTC）损失，是一个shape为[batch_size，1]的二维张量
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code-block:: python
+
+    label = fluid.layers.data(shape=[11, 8], dtype='float32', lod_level=1)
+    predict = fluid.layers.data(shape=[11, 1], dtype='float32')
+    cost = fluid.layers.warpctc(input=predict, label=label)
+
+.. _cn_api_fluid_layers_lrn:
+
+lrn
+>>>>
+
+.. py:class:: paddle.fluid.layers.lrn(input, n=5, k=1.0, alpha=0.0001, beta=0.75, name=None)
+
+局部响应正则层（Local Response Normalization Layer）
+
+该层对局部输入区域正则化，执行一种侧向抑制（lateral inhibition）。
+
+公式如下：
+
+.. math::
+
+    Output(i,x,y) = Input(i,x,y)/\left ( k+\alpha \sum_{min(C,c+n/2)}^{j=max(0,c-n/2)}(Input(j,x,y))^2 \right )^\beta 
+
+在以上公式中：
+    - **n** ：累加的通道数
+    - **k** ：位移（避免除数为0）
+    - **alpha** ： 缩放参数
+    - **beta** ： 指数参数
+
+参考 : _ ImageNet Classification with Deep Convolutional Neural Networks : https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf
+
+参数：
+    - **input** （Variable）- 该层输入张量，输入张量维度必须为4
+    - **n** (int，默认5） - 累加哦的通道数
+    - **k** （float，默认1.0）- 位移（通常为正数，避免除数为0）
+    - **alpha** （float，默认1e-4）- 缩放参数
+    - **beta** （float，默认0.75）- 指数
+    - **name** （str，默认None）- 操作符名
+
+抛出异常：`ValueError` - 如果输入张量的阶不为4
+
+返回：张量，存储转置结果
+
+**代码示例**：
+
+.. code-block:: python
+
+    data = fluid.layers.data(
+        name="data", shape=[3, 112, 112], dtype="float32")
+    lrn = fluid.layers.lrn(input=data)
