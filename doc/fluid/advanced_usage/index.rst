@@ -20,7 +20,7 @@
 	- `如何写新的Operator <../advanced_usage/development/new_op.html>`_ ：介绍如何在 Fluid 中添加新的 Operator
 
 	- `Op相关的一些注意事项 <../advanced_usage/development/op_notes.html>`_ ：介绍Op相关的一些注意事项
-	
+
 	- `性能调优 <../advanced_usage/development/profiling/index.html>`_ ：介绍 Fluid 使用过程中的调优方法，包括：
 
 	  - `如何进行基准测试 <../advanced_usage/development/profiling/benchmark.html>`_：介绍如何选择基准模型，从而验证模型的精度和性能
@@ -48,4 +48,5 @@
     development/contribute_to_paddle/index_cn.rst
     development/write_docs_cn.md
     development/new_op.md
+    development/op_notes.md
     development/profiling/index.rst
