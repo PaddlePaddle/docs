@@ -104,6 +104,24 @@ FtrlOptimizer
     :members:
     :noindex:
 
+.. _api_fluid_optimizer_LarsMomentum:
+
+LarsMomentum
+------------
+
+..  autoclass:: paddle.fluid.optimizer.LarsMomentum
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_LarsMomentumOptimizer:
+
+LarsMomentumOptimizer
+---------------------
+
+..  autoclass:: paddle.fluid.optimizer.LarsMomentumOptimizer
+    :members:
+    :noindex:
+
 .. _api_fluid_optimizer_ModelAverage:
 
 ModelAverage
@@ -128,15 +146,6 @@ MomentumOptimizer
 -----------------
 
 ..  autoclass:: paddle.fluid.optimizer.MomentumOptimizer
-    :members:
-    :noindex:
-
-.. _api_fluid_optimizer_RMSPropOptimizer:
-
-RMSPropOptimizer
-----------------
-
-..  autoclass:: paddle.fluid.optimizer.RMSPropOptimizer
     :members:
     :noindex:
 
