@@ -63,7 +63,7 @@
 7. 使用以下命令安装相关依赖：
 
 		For Python2: pip install protobuf==3.1.0
-		For Python3: pip install protobuf==3.1.0
+		For Python3: pip3 install protobuf==3.1.0
 
 
 	> 安装protobuf 3.1.0。
@@ -127,27 +127,27 @@
 	* a. 安装Python-dev:
 
 			For Python2: yum install python-devel
-			For Python3: (这里由于python3.5、python3.6、python3.7的编译安装过程较为复杂，请参照Python官方流程安装）
+			For Python3: (请参照Python官方流程安装）
 
 	* b. 安装pip:
 
 			For Python2: yum install python-pip (请保证拥有9.0.1及以上的pip版本)
-			For Python3: (这里由于pip3的编译安装过程较为复杂，请参照Python官方流程安装）(请保证拥有9.0.1及以上的pip3版本）
+			For Python3: (请参照Python官方流程安装, 并保证拥有9.0.1及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
 
 	* c.（Only For Python3）设置Python3相关的环境变量，这里以python3.5版本示例，请替换成您使用的版本（3.6、3.7）：
 
 		1. 首先使用``` find `dirname $(dirname
-			$(which python3))` -name "libpython3.so"```找到Python lib的路径，然后将下面[python-lib-path]替换为找到文件路径
+			$(which python3))` -name "libpython3.so"```找到Python lib的路径，如果是3.6或3.7，请将`python3`改成`python3.6`或`python3.7`，然后将下面[python-lib-path]替换为找到文件路径
 
 		2. 设置PYTHON_LIBRARIES：`export PYTHON_LIBRARY=[python-lib-path]`
 
 		3. 其次使用```find `dirname $(dirname
-			$(which python3))`/include -name "python3.5m"```找到PythonInclude的路径，然后将下面[python-include-path]替换为找到文件路径
+			$(which python3))`/include -name "python3.5m"```找到Python Include的路径，请注意python版本，然后将下面[python-include-path]替换为找到文件路径
 		4. 设置PYTHON_INCLUDE_DIR: `export PYTHON_INCLUDE_DIRS=[python-include-path]`
 
 		5. 设置系统环境变量路径：`export PATH=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
 
-	* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
+	* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7)
 
 		1.  `pip install virtualenv` 或 `pip3 install virtualenv`
 		2.  `pip install virtualenvwrapper` 或 `pip3 install virtualenvwrapper`

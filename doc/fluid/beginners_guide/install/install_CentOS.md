@@ -79,7 +79,7 @@ Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，�
 	使用以下命令安装或升级Python和pip到需要的版本： 	
 	
 	    - For Python2: `sudo yum install python-devel python-pip`       
-	    - For Python3: (这里由于python3.5+的编译安装过程较为复杂，请参照Python官方流程安装）
+	    - For Python3: (请参照Python官方流程安装，并注意pip3命令对应的python3版本是否一致，如果有多个python3版本，请指定pip版本如pip3.7，或者将pip3软链到您使用的python版本下）
 	
 	> 即使您的环境中已经有`Python`也需要安装`python develop`套装。
 

@@ -65,7 +65,7 @@
 7. 使用以下命令安装相关依赖：
 
 		For Python2: pip install protobuf==3.1.0
-		For Python3: pip install protobuf==3.1.0
+		For Python3: pip3 install protobuf==3.1.0
 
 	> 安装protobuf 3.1.0。
 
@@ -80,11 +80,11 @@
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DPY_VERSION= -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 
 9. 执行编译：
@@ -168,7 +168,7 @@
 
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO：Link 安装选项表到这里-->
 
-	*  对于需要编译**CPU版本PaddlePaddle**的用户：
+	*  对于需要编译**CPU版本PaddlePaddle**的用户：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
 			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
@@ -180,7 +180,7 @@
 			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
 			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
 
-		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
+		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
 				For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 				For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
