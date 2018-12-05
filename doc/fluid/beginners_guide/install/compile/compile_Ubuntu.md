@@ -19,7 +19,7 @@
 在Ubuntu的系统下我们提供2种编译方式：
 
 * Docker源码编译
-* 直接本机源码编译
+* 直接本机源码编译（不支持ubuntu18.04下GPU版本）      
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。有人用虚拟机来类比 Docker。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
 
@@ -136,7 +136,7 @@
 
 
 			For Python2: apt install python-pip
-			For Python3: apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip
+			For Python3: apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip
 
 
 	* c. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：

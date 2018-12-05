@@ -13,6 +13,15 @@ _switch_scope
 ..  autofunction:: paddle.fluid._switch_scope
     :noindex:
 
+.. _api_fluid_AsyncExecutor:
+
+AsyncExecutor
+-------------
+
+..  autoclass:: paddle.fluid.AsyncExecutor
+    :members:
+    :noindex:
+
 .. _api_fluid_BuildStrategy:
 
 BuildStrategy
@@ -62,6 +71,15 @@ CUDAPlace
 ---------
 
 ..  autoclass:: paddle.fluid.CUDAPlace
+    :members:
+    :noindex:
+
+.. _api_fluid_DataFeedDesc:
+
+DataFeedDesc
+------------
+
+..  autoclass:: paddle.fluid.DataFeedDesc
     :members:
     :noindex:
 
