@@ -8,6 +8,7 @@
   write_docs_cn.md
   api_doc_std_cn.md
   new_op_cn.md
+  op_notes.md
   new_op_kernel.md
   use_eigen_cn.md
   name_convention.md
