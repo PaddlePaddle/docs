@@ -11,3 +11,4 @@
 	compile_Ubuntu.md
 	compile_CentOS.md
 	compile_MacOS.md
+	compile_Windows.md

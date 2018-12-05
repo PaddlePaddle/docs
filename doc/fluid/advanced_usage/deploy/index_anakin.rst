@@ -13,6 +13,7 @@ Anakin 预测引擎
    anakin_tutorial.md
    anakin_run_on_arm.md
    anakin_example.md
+   int8_design_anakin.md
    anakin_gpu_benchmark.md
    anakin_arm_benchmark.md
 

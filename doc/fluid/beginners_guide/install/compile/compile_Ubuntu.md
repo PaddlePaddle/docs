@@ -128,7 +128,7 @@
 	* b. 安装pip: (请保证拥有9.0.1及以上版本的pip):（请注意修改对应python3的版本）
 
 			For Python2: apt install python-pip
-			For Python3: apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip
+			For Python3: apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip
 
 	* c. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意修改python版本)
 

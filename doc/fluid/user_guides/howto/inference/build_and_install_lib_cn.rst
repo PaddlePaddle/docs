@@ -22,18 +22,18 @@ cuda9.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/
 ----------
 用户也可以从 PaddlePaddle 核心代码编译C++预测库，只需在编译时配制下面这些编译选项：
 
-=================   =========
-选项                 值   
-=================   =========
-CMAKE_BUILD_TYPE    Release
+============================  =========
+选项                           值   
+============================  =========
+CMAKE_BUILD_TYPE              Release
 FLUID_INFERENCE_INSTALL_DIR   安装路径    
-WITH_FLUID_ONLY     ON（推荐）
-WITH_SWIG_PY        OFF（推荐
-WITH_PYTHON         OFF（推荐）
-WITH_GPU            ON/OFF
-WITH_MKL            ON/OFF
-ON_INFER            ON（预测优化）
-=================   =========
+WITH_FLUID_ONLY               ON（推荐）
+WITH_SWIG_PY                  OFF（推荐）
+WITH_PYTHON                   OFF（推荐）
+ON_INFER                      ON（推荐）
+WITH_GPU                      ON/OFF
+WITH_MKL                      ON/OFF
+============================  =========
 
 建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
 
@@ -67,7 +67,12 @@ ON_INFER            ON（预测优化）
      ├── CMakeCache.txt
      ├── paddle
      │   ├── include
-     │   │   └── paddle_inference_api.h
+     │   │   ├── paddle_anakin_config.h
+     │   │   ├── paddle_analysis_config.h
+     │   │   ├── paddle_api.h
+     │   │   ├── paddle_inference_api.h
+     │   │   ├── paddle_inference_pass.h
+     │   │   └── paddle_pass_builder.h
      │   └── lib
      │       ├── libpaddle_fluid.a
      │       └── libpaddle_fluid.so
@@ -80,10 +85,12 @@ ON_INFER            ON（预测优化）
      │   └── install
      │       ├── gflags
      │       ├── glog
+     │       ├── mkldnn
      │       ├── mklml
      │       ├── protobuf
      │       ├── snappy
      │       ├── snappystream
+     │       ├── xxhash
      │       └── zlib
      └── version.txt
      
@@ -91,9 +98,9 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
 
   .. code-block:: text
 
-     GIT COMMIT ID: 23da8defc8314b0c711130c1d9536e2cf2fb8414
+     GIT COMMIT ID: cc9028b90ef50a825a722c55e5fda4b7cd26b0d6
      WITH_MKL: ON
-     WITH_MKLDNN: OFF
+     WITH_MKLDNN: ON
      WITH_GPU: ON
      CUDA version: 8.0
      CUDNN version: v5
