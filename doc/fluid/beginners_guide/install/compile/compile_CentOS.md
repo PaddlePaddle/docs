@@ -171,7 +171,7 @@
 
 	- `cd Paddle`
 
-8. 切换到较稳定release分支下进行编译(当前最新分支为1.2.0，从该分支开始支持python3.6及3.7版本)：
+8. 切换到较稳定release分支下进行编译(从1.2.0分支开始支持python3.6及3.7版本)：
 
 	`git checkout release/1.2.0`
 
