@@ -1,4 +1,4 @@
-# Op相关的一些注意事项
+# op相关的一些注意事项
 
 ## Fluid中Op的构建逻辑
 ### 1.Fluid中Op的构建逻辑
@@ -9,7 +9,7 @@ Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计
 Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
 
 Operator继承关系图： 
-![op_inheritance_relation_diagram](../pics/op_inheritance_relation_diagram.png)
+![op_inheritance_relation_diagram](../../pics/op_inheritance_relation_diagram.png)
 
 进一步了解可参考：[multi_devices](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/multi_devices)，[scope](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/scope.md)，[Developer's_Guide_to_Paddle_Fluid](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md)    
 
@@ -92,7 +92,7 @@ Operator继承关系图：
 5. 框架没有提供默认的op_infer_var_type方法，用户需要根据实际情况添加op_infer_var_shape。严格来说每个Op都应该注册一个InferVarType，op_infer_var_type根据输入的Var的type和dtype推断输出Var的type和dtype。**注意：**在Python端的LayerHelper中create_variable_for_type_inference操作返回的Variable里面是LoDTensor，C++端的InferVarType可以修改`Variable`的type和dtype。
 
 
-更多内容请参考: [如何写新的Op](./new_op.html)
+更多内容请参考: [如何写新的Op](../new_op.html)
 
 ## 写Op注意事项
 ### 1.Op可以支持输入输出类型

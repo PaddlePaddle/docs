@@ -23,9 +23,6 @@
       - `模型评估 <../user_guides/howto/evaluation_and_debugging/evaluation/metrics.html>`_：介绍常用模型评估指标的构造方法
       - `Visual DL 工具 <../user_guides/howto/evaluation_and_debugging/debug/visualdl.html>`_：介绍如何利用 Visual DL 工具可视化训练过程
 
-    - `预测部署 <../user_guides/howto/inference/index.html>`_：介绍如何应用训练好的模型进行预测
-
-
 基于 Fluid 复现的多领域经典模型：
 
     - `Fluid 模型库 <../user_guides/models/index_cn.html>`_
@@ -42,6 +39,5 @@
     howto/configure_simple_model/index
     howto/training/index
     howto/evaluation_and_debugging/index
-    howto/inference/index
     models/index_cn.rst
     design_idea/fluid_design_idea.md
