@@ -27,7 +27,7 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
     - `快速入门 <../beginners_guide/quick_start/index.html>`_：提供线性回归和识别数字两个入门级模型，帮助您快速上手训练网络
 
-    - `深度学习基础知识 <../beginners_guide/basics/index.html>`_：覆盖图像分类、个性化推荐、机器翻译等多个深度领域的基础知识，提供 Fluid 实现案例
+    - `深度学习基础 <../beginners_guide/basics/index.html>`_：覆盖图像分类、个性化推荐、机器翻译等多个深度领域的基础知识，提供 Fluid 实现案例
 
 
 =========
