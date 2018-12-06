@@ -3,7 +3,7 @@
 ########
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    cluster_quick_start.rst
    cluster_howto.rst
