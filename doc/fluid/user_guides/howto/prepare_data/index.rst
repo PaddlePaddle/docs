@@ -55,14 +55,3 @@ Fluid提供PyReader异步数据传入方式，数据传入与模型训练/预测
    :maxdepth: 1
 
    use_py_reader.rst
-
-
-LoD-Tensor简介
-#####################
-
-LoD-Tensor是Fluid中特有的概念，它在Tensor基础上附加了序列信息，支持处理变长数据。具体请参考：
-
-..  toctree::
-    :maxdepth:2
-
-    lod_tensor.md
