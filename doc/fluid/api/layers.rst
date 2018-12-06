@@ -16,6 +16,8 @@ array_length
 ..  autofunction:: paddle.fluid.layers.array_length
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_array_length`
+
 .. _api_fluid_layers_array_read:
 
 array_read
@@ -23,6 +25,8 @@ array_read
 
 ..  autofunction:: paddle.fluid.layers.array_read
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_array_read`
 
 .. _api_fluid_layers_array_write:
 
@@ -32,6 +36,8 @@ array_write
 ..  autofunction:: paddle.fluid.layers.array_write
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_array_write`
+
 .. _api_fluid_layers_create_array:
 
 create_array
@@ -39,6 +45,8 @@ create_array
 
 ..  autofunction:: paddle.fluid.layers.create_array
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_create_array`
 
 .. _api_fluid_layers_DynamicRNN:
 
@@ -49,6 +57,8 @@ DynamicRNN
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_DynamicRNN`
+
 .. _api_fluid_layers_equal:
 
 equal
@@ -56,6 +66,8 @@ equal
 
 ..  autofunction:: paddle.fluid.layers.equal
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_equal`
 
 .. _api_fluid_layers_IfElse:
 
@@ -66,6 +78,8 @@ IfElse
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_IfElse`
+
 .. _api_fluid_layers_increment:
 
 increment
@@ -73,6 +87,8 @@ increment
 
 ..  autofunction:: paddle.fluid.layers.increment
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_increment`
 
 .. _api_fluid_layers_is_empty:
 
@@ -82,6 +98,8 @@ is_empty
 ..  autofunction:: paddle.fluid.layers.is_empty
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_is_empty`
+
 .. _api_fluid_layers_less_than:
 
 less_than
@@ -89,6 +107,8 @@ less_than
 
 ..  autofunction:: paddle.fluid.layers.less_than
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_less_than`
 
 .. _api_fluid_layers_Print:
 
@@ -98,6 +118,8 @@ Print
 ..  autofunction:: paddle.fluid.layers.Print
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_Print`
+
 .. _api_fluid_layers_reorder_lod_tensor_by_rank:
 
 reorder_lod_tensor_by_rank
@@ -105,6 +127,8 @@ reorder_lod_tensor_by_rank
 
 ..  autofunction:: paddle.fluid.layers.reorder_lod_tensor_by_rank
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_reorder_lod_tensor_by_rank`
 
 .. _api_fluid_layers_StaticRNN:
 
@@ -115,6 +139,8 @@ StaticRNN
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_StaticRNN`
+
 .. _api_fluid_layers_Switch:
 
 Switch
@@ -124,6 +150,8 @@ Switch
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_Switch`
+
 .. _api_fluid_layers_While:
 
 While
@@ -132,6 +160,8 @@ While
 ..  autoclass:: paddle.fluid.layers.While
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_While`
 
 device
 ======
@@ -147,6 +177,8 @@ batch
 ..  autofunction:: paddle.fluid.layers.batch
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_batch`
+
 .. _api_fluid_layers_create_py_reader_by_data:
 
 create_py_reader_by_data
@@ -154,6 +186,8 @@ create_py_reader_by_data
 
 ..  autofunction:: paddle.fluid.layers.create_py_reader_by_data
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_create_py_reader_by_data`
 
 .. _api_fluid_layers_data:
 
@@ -163,6 +197,8 @@ data
 ..  autofunction:: paddle.fluid.layers.data
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_data`
+
 .. _api_fluid_layers_double_buffer:
 
 double_buffer
@@ -170,6 +206,8 @@ double_buffer
 
 ..  autofunction:: paddle.fluid.layers.double_buffer
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_double_buffer`
 
 .. _api_fluid_layers_load:
 
@@ -179,6 +217,8 @@ load
 ..  autofunction:: paddle.fluid.layers.load
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_load`
+
 .. _api_fluid_layers_open_files:
 
 open_files
@@ -186,6 +226,8 @@ open_files
 
 ..  autofunction:: paddle.fluid.layers.open_files
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_open_files`
 
 .. _api_fluid_layers_Preprocessor:
 
@@ -196,6 +238,8 @@ Preprocessor
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_Preprocessor`
+
 .. _api_fluid_layers_py_reader:
 
 py_reader
@@ -203,6 +247,8 @@ py_reader
 
 ..  autofunction:: paddle.fluid.layers.py_reader
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_py_reader`
 
 .. _api_fluid_layers_random_data_generator:
 
@@ -212,6 +258,8 @@ random_data_generator
 ..  autofunction:: paddle.fluid.layers.random_data_generator
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_random_data_generator`
+
 .. _api_fluid_layers_read_file:
 
 read_file
@@ -220,6 +268,8 @@ read_file
 ..  autofunction:: paddle.fluid.layers.read_file
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_read_file`
+
 .. _api_fluid_layers_shuffle:
 
 shuffle
@@ -227,6 +277,8 @@ shuffle
 
 ..  autofunction:: paddle.fluid.layers.shuffle
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_shuffle`
 
 nn
 ==
@@ -239,6 +291,8 @@ add_position_encoding
 ..  autofunction:: paddle.fluid.layers.add_position_encoding
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_add_position_encoding`
+
 .. _api_fluid_layers_affine_channel:
 
 affine_channel
@@ -246,6 +300,8 @@ affine_channel
 
 ..  autofunction:: paddle.fluid.layers.affine_channel
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_affine_channel`
 
 .. _api_fluid_layers_affine_grid:
 
@@ -255,6 +311,8 @@ affine_grid
 ..  autofunction:: paddle.fluid.layers.affine_grid
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_affine_grid`
+
 .. _api_fluid_layers_autoincreased_step_counter:
 
 autoincreased_step_counter
@@ -262,6 +320,8 @@ autoincreased_step_counter
 
 ..  autofunction:: paddle.fluid.layers.autoincreased_step_counter
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_autoincreased_step_counter`
 
 .. _api_fluid_layers_batch_norm:
 
@@ -271,6 +331,8 @@ batch_norm
 ..  autofunction:: paddle.fluid.layers.batch_norm
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_batch_norm`
+
 .. _api_fluid_layers_beam_search:
 
 beam_search
@@ -278,6 +340,8 @@ beam_search
 
 ..  autofunction:: paddle.fluid.layers.beam_search
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_beam_search`
 
 .. _api_fluid_layers_beam_search_decode:
 
@@ -287,6 +351,8 @@ beam_search_decode
 ..  autofunction:: paddle.fluid.layers.beam_search_decode
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_beam_search_decode`
+
 .. _api_fluid_layers_bilinear_tensor_product:
 
 bilinear_tensor_product
@@ -294,6 +360,8 @@ bilinear_tensor_product
 
 ..  autofunction:: paddle.fluid.layers.bilinear_tensor_product
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_bilinear_tensor_product`
 
 .. _api_fluid_layers_brelu:
 
@@ -303,6 +371,8 @@ brelu
 ..  autofunction:: paddle.fluid.layers.brelu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_brelu`
+
 .. _api_fluid_layers_chunk_eval:
 
 chunk_eval
@@ -310,6 +380,8 @@ chunk_eval
 
 ..  autofunction:: paddle.fluid.layers.chunk_eval
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_chunk_eval`
 
 .. _api_fluid_layers_clip:
 
@@ -319,6 +391,8 @@ clip
 ..  autofunction:: paddle.fluid.layers.clip
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_clip`
+
 .. _api_fluid_layers_clip_by_norm:
 
 clip_by_norm
@@ -326,6 +400,8 @@ clip_by_norm
 
 ..  autofunction:: paddle.fluid.layers.clip_by_norm
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_clip_by_norm`
 
 .. _api_fluid_layers_conv2d:
 
@@ -335,6 +411,8 @@ conv2d
 ..  autofunction:: paddle.fluid.layers.conv2d
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_conv2d`
+
 .. _api_fluid_layers_conv2d_transpose:
 
 conv2d_transpose
@@ -342,6 +420,8 @@ conv2d_transpose
 
 ..  autofunction:: paddle.fluid.layers.conv2d_transpose
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_conv2d_transpose`
 
 .. _api_fluid_layers_conv3d:
 
@@ -351,6 +431,8 @@ conv3d
 ..  autofunction:: paddle.fluid.layers.conv3d
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_conv3d`
+
 .. _api_fluid_layers_conv3d_transpose:
 
 conv3d_transpose
@@ -358,6 +440,8 @@ conv3d_transpose
 
 ..  autofunction:: paddle.fluid.layers.conv3d_transpose
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_conv3d_transpose`
 
 .. _api_fluid_layers_cos_sim:
 
@@ -367,6 +451,8 @@ cos_sim
 ..  autofunction:: paddle.fluid.layers.cos_sim
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_cos_sim`
+
 .. _api_fluid_layers_crf_decoding:
 
 crf_decoding
@@ -374,6 +460,8 @@ crf_decoding
 
 ..  autofunction:: paddle.fluid.layers.crf_decoding
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_crf_decoding`
 
 .. _api_fluid_layers_crop:
 
@@ -383,6 +471,8 @@ crop
 ..  autofunction:: paddle.fluid.layers.crop
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_crop`
+
 .. _api_fluid_layers_cross_entropy:
 
 cross_entropy
@@ -390,6 +480,8 @@ cross_entropy
 
 ..  autofunction:: paddle.fluid.layers.cross_entropy
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_cross_entropy`
 
 .. _api_fluid_layers_ctc_greedy_decoder:
 
@@ -399,6 +491,8 @@ ctc_greedy_decoder
 ..  autofunction:: paddle.fluid.layers.ctc_greedy_decoder
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_ctc_greedy_decoder`
+
 .. _api_fluid_layers_dice_loss:
 
 dice_loss
@@ -406,6 +500,8 @@ dice_loss
 
 ..  autofunction:: paddle.fluid.layers.dice_loss
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_dice_loss`
 
 .. _api_fluid_layers_dropout:
 
@@ -415,6 +511,8 @@ dropout
 ..  autofunction:: paddle.fluid.layers.dropout
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_dropout`
+
 .. _api_fluid_layers_dynamic_gru:
 
 dynamic_gru
@@ -422,6 +520,8 @@ dynamic_gru
 
 ..  autofunction:: paddle.fluid.layers.dynamic_gru
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_dynamic_gru`
 
 .. _api_fluid_layers_dynamic_lstm:
 
@@ -431,6 +531,8 @@ dynamic_lstm
 ..  autofunction:: paddle.fluid.layers.dynamic_lstm
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_dynamic_lstm`
+
 .. _api_fluid_layers_dynamic_lstmp:
 
 dynamic_lstmp
@@ -438,6 +540,8 @@ dynamic_lstmp
 
 ..  autofunction:: paddle.fluid.layers.dynamic_lstmp
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_dynamic_lstmp`
 
 .. _api_fluid_layers_edit_distance:
 
@@ -447,6 +551,8 @@ edit_distance
 ..  autofunction:: paddle.fluid.layers.edit_distance
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_edit_distance`
+
 .. _api_fluid_layers_elementwise_add:
 
 elementwise_add
@@ -454,6 +560,8 @@ elementwise_add
 
 ..  autofunction:: paddle.fluid.layers.elementwise_add
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_elementwise_add`
 
 .. _api_fluid_layers_elementwise_div:
 
@@ -463,6 +571,8 @@ elementwise_div
 ..  autofunction:: paddle.fluid.layers.elementwise_div
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_elementwise_div`
+
 .. _api_fluid_layers_elementwise_max:
 
 elementwise_max
@@ -470,6 +580,8 @@ elementwise_max
 
 ..  autofunction:: paddle.fluid.layers.elementwise_max
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_elementwise_max`
 
 .. _api_fluid_layers_elementwise_min:
 
@@ -479,6 +591,8 @@ elementwise_min
 ..  autofunction:: paddle.fluid.layers.elementwise_min
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_elementwise_min`
+
 .. _api_fluid_layers_elementwise_mul:
 
 elementwise_mul
@@ -486,6 +600,8 @@ elementwise_mul
 
 ..  autofunction:: paddle.fluid.layers.elementwise_mul
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_elementwise_mul`
 
 .. _api_fluid_layers_elementwise_pow:
 
@@ -495,6 +611,8 @@ elementwise_pow
 ..  autofunction:: paddle.fluid.layers.elementwise_pow
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_elementwise_pow`
+
 .. _api_fluid_layers_elementwise_sub:
 
 elementwise_sub
@@ -502,6 +620,8 @@ elementwise_sub
 
 ..  autofunction:: paddle.fluid.layers.elementwise_sub
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_elementwise_sub`
 
 .. _api_fluid_layers_elu:
 
@@ -511,6 +631,8 @@ elu
 ..  autofunction:: paddle.fluid.layers.elu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_elu`
+
 .. _api_fluid_layers_embedding:
 
 embedding
@@ -518,6 +640,8 @@ embedding
 
 ..  autofunction:: paddle.fluid.layers.embedding
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_embedding`
 
 .. _api_fluid_layers_expand:
 
@@ -527,6 +651,8 @@ expand
 ..  autofunction:: paddle.fluid.layers.expand
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_expand`
+
 .. _api_fluid_layers_fc:
 
 fc
@@ -534,6 +660,8 @@ fc
 
 ..  autofunction:: paddle.fluid.layers.fc
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_fc`
 
 .. _api_fluid_layers_flatten:
 
@@ -543,6 +671,8 @@ flatten
 ..  autofunction:: paddle.fluid.layers.flatten
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_flatten`
+
 .. _api_fluid_layers_gather:
 
 gather
@@ -550,6 +680,8 @@ gather
 
 ..  autofunction:: paddle.fluid.layers.gather
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_gather`
 
 .. _api_fluid_layers_gaussian_random:
 
@@ -559,6 +691,8 @@ gaussian_random
 ..  autofunction:: paddle.fluid.layers.gaussian_random
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_gaussian_random`
+
 .. _api_fluid_layers_gaussian_random_batch_size_like:
 
 gaussian_random_batch_size_like
@@ -566,6 +700,18 @@ gaussian_random_batch_size_like
 
 ..  autofunction:: paddle.fluid.layers.gaussian_random_batch_size_like
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_gaussian_random_batch_size_like`
+
+.. _api_fluid_layers_get_tensor_from_selected_rows:
+
+get_tensor_from_selected_rows
+-----------------------------
+
+..  autofunction:: paddle.fluid.layers.get_tensor_from_selected_rows
+    :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_get_tensor_from_selected_rows`
 
 .. _api_fluid_layers_grid_sampler:
 
@@ -575,6 +721,8 @@ grid_sampler
 ..  autofunction:: paddle.fluid.layers.grid_sampler
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_grid_sampler`
+
 .. _api_fluid_layers_group_norm:
 
 group_norm
@@ -582,6 +730,8 @@ group_norm
 
 ..  autofunction:: paddle.fluid.layers.group_norm
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_group_norm`
 
 .. _api_fluid_layers_gru_unit:
 
@@ -591,6 +741,8 @@ gru_unit
 ..  autofunction:: paddle.fluid.layers.gru_unit
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_gru_unit`
+
 .. _api_fluid_layers_hard_sigmoid:
 
 hard_sigmoid
@@ -598,6 +750,8 @@ hard_sigmoid
 
 ..  autofunction:: paddle.fluid.layers.hard_sigmoid
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_hard_sigmoid`
 
 .. _api_fluid_layers_hash:
 
@@ -607,6 +761,8 @@ hash
 ..  autofunction:: paddle.fluid.layers.hash
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_hash`
+
 .. _api_fluid_layers_hsigmoid:
 
 hsigmoid
@@ -614,6 +770,8 @@ hsigmoid
 
 ..  autofunction:: paddle.fluid.layers.hsigmoid
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_hsigmoid`
 
 .. _api_fluid_layers_im2sequence:
 
@@ -623,6 +781,8 @@ im2sequence
 ..  autofunction:: paddle.fluid.layers.im2sequence
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_im2sequence`
+
 .. _api_fluid_layers_image_resize:
 
 image_resize
@@ -630,6 +790,8 @@ image_resize
 
 ..  autofunction:: paddle.fluid.layers.image_resize
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_image_resize`
 
 .. _api_fluid_layers_image_resize_short:
 
@@ -639,6 +801,8 @@ image_resize_short
 ..  autofunction:: paddle.fluid.layers.image_resize_short
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_image_resize_short`
+
 .. _api_fluid_layers_l2_normalize:
 
 l2_normalize
@@ -646,6 +810,8 @@ l2_normalize
 
 ..  autofunction:: paddle.fluid.layers.l2_normalize
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_l2_normalize`
 
 .. _api_fluid_layers_label_smooth:
 
@@ -655,6 +821,8 @@ label_smooth
 ..  autofunction:: paddle.fluid.layers.label_smooth
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_label_smooth`
+
 .. _api_fluid_layers_layer_norm:
 
 layer_norm
@@ -662,6 +830,8 @@ layer_norm
 
 ..  autofunction:: paddle.fluid.layers.layer_norm
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_layer_norm`
 
 .. _api_fluid_layers_leaky_relu:
 
@@ -671,6 +841,8 @@ leaky_relu
 ..  autofunction:: paddle.fluid.layers.leaky_relu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_leaky_relu`
+
 .. _api_fluid_layers_linear_chain_crf:
 
 linear_chain_crf
@@ -678,6 +850,8 @@ linear_chain_crf
 
 ..  autofunction:: paddle.fluid.layers.linear_chain_crf
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_linear_chain_crf`
 
 .. _api_fluid_layers_lod_reset:
 
@@ -687,6 +861,8 @@ lod_reset
 ..  autofunction:: paddle.fluid.layers.lod_reset
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_lod_reset`
+
 .. _api_fluid_layers_log:
 
 log
@@ -694,6 +870,8 @@ log
 
 ..  autofunction:: paddle.fluid.layers.log
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_log`
 
 .. _api_fluid_layers_log_loss:
 
@@ -703,6 +881,8 @@ log_loss
 ..  autofunction:: paddle.fluid.layers.log_loss
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_log_loss`
+
 .. _api_fluid_layers_logical_and:
 
 logical_and
@@ -710,6 +890,8 @@ logical_and
 
 ..  autofunction:: paddle.fluid.layers.logical_and
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_logical_and`
 
 .. _api_fluid_layers_logical_not:
 
@@ -719,6 +901,8 @@ logical_not
 ..  autofunction:: paddle.fluid.layers.logical_not
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_logical_not`
+
 .. _api_fluid_layers_logical_or:
 
 logical_or
@@ -726,6 +910,8 @@ logical_or
 
 ..  autofunction:: paddle.fluid.layers.logical_or
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_logical_or`
 
 .. _api_fluid_layers_logical_xor:
 
@@ -735,6 +921,8 @@ logical_xor
 ..  autofunction:: paddle.fluid.layers.logical_xor
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_logical_xor`
+
 .. _api_fluid_layers_lrn:
 
 lrn
@@ -742,6 +930,18 @@ lrn
 
 ..  autofunction:: paddle.fluid.layers.lrn
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_lrn`
+
+.. _api_fluid_layers_lstm:
+
+lstm
+----
+
+..  autofunction:: paddle.fluid.layers.lstm
+    :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_lstm`
 
 .. _api_fluid_layers_lstm_unit:
 
@@ -751,6 +951,8 @@ lstm_unit
 ..  autofunction:: paddle.fluid.layers.lstm_unit
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_lstm_unit`
+
 .. _api_fluid_layers_margin_rank_loss:
 
 margin_rank_loss
@@ -758,6 +960,8 @@ margin_rank_loss
 
 ..  autofunction:: paddle.fluid.layers.margin_rank_loss
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_margin_rank_loss`
 
 .. _api_fluid_layers_matmul:
 
@@ -767,6 +971,8 @@ matmul
 ..  autofunction:: paddle.fluid.layers.matmul
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_matmul`
+
 .. _api_fluid_layers_maxout:
 
 maxout
@@ -774,6 +980,8 @@ maxout
 
 ..  autofunction:: paddle.fluid.layers.maxout
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_maxout`
 
 .. _api_fluid_layers_mean:
 
@@ -783,6 +991,8 @@ mean
 ..  autofunction:: paddle.fluid.layers.mean
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_mean`
+
 .. _api_fluid_layers_mean_iou:
 
 mean_iou
@@ -790,6 +1000,18 @@ mean_iou
 
 ..  autofunction:: paddle.fluid.layers.mean_iou
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_mean_iou`
+
+.. _api_fluid_layers_merge_selected_rows:
+
+merge_selected_rows
+-------------------
+
+..  autofunction:: paddle.fluid.layers.merge_selected_rows
+    :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_merge_selected_rows`
 
 .. _api_fluid_layers_mul:
 
@@ -799,6 +1021,8 @@ mul
 ..  autofunction:: paddle.fluid.layers.mul
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_mul`
+
 .. _api_fluid_layers_multiplex:
 
 multiplex
@@ -806,6 +1030,8 @@ multiplex
 
 ..  autofunction:: paddle.fluid.layers.multiplex
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_multiplex`
 
 .. _api_fluid_layers_nce:
 
@@ -815,6 +1041,8 @@ nce
 ..  autofunction:: paddle.fluid.layers.nce
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_nce`
+
 .. _api_fluid_layers_one_hot:
 
 one_hot
@@ -822,6 +1050,8 @@ one_hot
 
 ..  autofunction:: paddle.fluid.layers.one_hot
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_one_hot`
 
 .. _api_fluid_layers_pad:
 
@@ -831,6 +1061,8 @@ pad
 ..  autofunction:: paddle.fluid.layers.pad
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_pad`
+
 .. _api_fluid_layers_pad2d:
 
 pad2d
@@ -838,6 +1070,8 @@ pad2d
 
 ..  autofunction:: paddle.fluid.layers.pad2d
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_pad2d`
 
 .. _api_fluid_layers_pad_constant_like:
 
@@ -847,6 +1081,8 @@ pad_constant_like
 ..  autofunction:: paddle.fluid.layers.pad_constant_like
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_pad_constant_like`
+
 .. _api_fluid_layers_pool2d:
 
 pool2d
@@ -854,6 +1090,8 @@ pool2d
 
 ..  autofunction:: paddle.fluid.layers.pool2d
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_pool2d`
 
 .. _api_fluid_layers_pool3d:
 
@@ -863,6 +1101,8 @@ pool3d
 ..  autofunction:: paddle.fluid.layers.pool3d
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_pool3d`
+
 .. _api_fluid_layers_pow:
 
 pow
@@ -870,6 +1110,8 @@ pow
 
 ..  autofunction:: paddle.fluid.layers.pow
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_pow`
 
 .. _api_fluid_layers_prelu:
 
@@ -879,6 +1121,8 @@ prelu
 ..  autofunction:: paddle.fluid.layers.prelu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_prelu`
+
 .. _api_fluid_layers_random_crop:
 
 random_crop
@@ -886,6 +1130,8 @@ random_crop
 
 ..  autofunction:: paddle.fluid.layers.random_crop
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_random_crop`
 
 .. _api_fluid_layers_rank_loss:
 
@@ -895,6 +1141,8 @@ rank_loss
 ..  autofunction:: paddle.fluid.layers.rank_loss
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_rank_loss`
+
 .. _api_fluid_layers_reduce_max:
 
 reduce_max
@@ -902,6 +1150,8 @@ reduce_max
 
 ..  autofunction:: paddle.fluid.layers.reduce_max
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_reduce_max`
 
 .. _api_fluid_layers_reduce_mean:
 
@@ -911,6 +1161,8 @@ reduce_mean
 ..  autofunction:: paddle.fluid.layers.reduce_mean
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_reduce_mean`
+
 .. _api_fluid_layers_reduce_min:
 
 reduce_min
@@ -918,6 +1170,8 @@ reduce_min
 
 ..  autofunction:: paddle.fluid.layers.reduce_min
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_reduce_min`
 
 .. _api_fluid_layers_reduce_prod:
 
@@ -927,6 +1181,8 @@ reduce_prod
 ..  autofunction:: paddle.fluid.layers.reduce_prod
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_reduce_prod`
+
 .. _api_fluid_layers_reduce_sum:
 
 reduce_sum
@@ -934,6 +1190,8 @@ reduce_sum
 
 ..  autofunction:: paddle.fluid.layers.reduce_sum
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_reduce_sum`
 
 .. _api_fluid_layers_relu:
 
@@ -943,6 +1201,8 @@ relu
 ..  autofunction:: paddle.fluid.layers.relu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_relu`
+
 .. _api_fluid_layers_relu6:
 
 relu6
@@ -950,6 +1210,8 @@ relu6
 
 ..  autofunction:: paddle.fluid.layers.relu6
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_relu6`
 
 .. _api_fluid_layers_reshape:
 
@@ -959,6 +1221,8 @@ reshape
 ..  autofunction:: paddle.fluid.layers.reshape
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_reshape`
+
 .. _api_fluid_layers_resize_bilinear:
 
 resize_bilinear
@@ -966,6 +1230,8 @@ resize_bilinear
 
 ..  autofunction:: paddle.fluid.layers.resize_bilinear
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_resize_bilinear`
 
 .. _api_fluid_layers_resize_nearest:
 
@@ -975,6 +1241,8 @@ resize_nearest
 ..  autofunction:: paddle.fluid.layers.resize_nearest
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_resize_nearest`
+
 .. _api_fluid_layers_roi_align:
 
 roi_align
@@ -982,6 +1250,8 @@ roi_align
 
 ..  autofunction:: paddle.fluid.layers.roi_align
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_roi_align`
 
 .. _api_fluid_layers_roi_pool:
 
@@ -991,6 +1261,8 @@ roi_pool
 ..  autofunction:: paddle.fluid.layers.roi_pool
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_roi_pool`
+
 .. _api_fluid_layers_row_conv:
 
 row_conv
@@ -998,6 +1270,8 @@ row_conv
 
 ..  autofunction:: paddle.fluid.layers.row_conv
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_row_conv`
 
 .. _api_fluid_layers_sampling_id:
 
@@ -1007,6 +1281,8 @@ sampling_id
 ..  autofunction:: paddle.fluid.layers.sampling_id
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sampling_id`
+
 .. _api_fluid_layers_scale:
 
 scale
@@ -1014,6 +1290,8 @@ scale
 
 ..  autofunction:: paddle.fluid.layers.scale
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_scale`
 
 .. _api_fluid_layers_scatter:
 
@@ -1023,6 +1301,8 @@ scatter
 ..  autofunction:: paddle.fluid.layers.scatter
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_scatter`
+
 .. _api_fluid_layers_selu:
 
 selu
@@ -1030,6 +1310,8 @@ selu
 
 ..  autofunction:: paddle.fluid.layers.selu
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_selu`
 
 .. _api_fluid_layers_sequence_concat:
 
@@ -1039,6 +1321,8 @@ sequence_concat
 ..  autofunction:: paddle.fluid.layers.sequence_concat
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_concat`
+
 .. _api_fluid_layers_sequence_conv:
 
 sequence_conv
@@ -1046,6 +1330,8 @@ sequence_conv
 
 ..  autofunction:: paddle.fluid.layers.sequence_conv
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_conv`
 
 .. _api_fluid_layers_sequence_enumerate:
 
@@ -1055,6 +1341,8 @@ sequence_enumerate
 ..  autofunction:: paddle.fluid.layers.sequence_enumerate
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_enumerate`
+
 .. _api_fluid_layers_sequence_expand:
 
 sequence_expand
@@ -1062,6 +1350,8 @@ sequence_expand
 
 ..  autofunction:: paddle.fluid.layers.sequence_expand
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_expand`
 
 .. _api_fluid_layers_sequence_expand_as:
 
@@ -1071,6 +1361,8 @@ sequence_expand_as
 ..  autofunction:: paddle.fluid.layers.sequence_expand_as
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_expand_as`
+
 .. _api_fluid_layers_sequence_first_step:
 
 sequence_first_step
@@ -1078,6 +1370,8 @@ sequence_first_step
 
 ..  autofunction:: paddle.fluid.layers.sequence_first_step
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_first_step`
 
 .. _api_fluid_layers_sequence_last_step:
 
@@ -1087,6 +1381,8 @@ sequence_last_step
 ..  autofunction:: paddle.fluid.layers.sequence_last_step
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_last_step`
+
 .. _api_fluid_layers_sequence_mask:
 
 sequence_mask
@@ -1094,6 +1390,8 @@ sequence_mask
 
 ..  autofunction:: paddle.fluid.layers.sequence_mask
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_mask`
 
 .. _api_fluid_layers_sequence_pad:
 
@@ -1103,6 +1401,8 @@ sequence_pad
 ..  autofunction:: paddle.fluid.layers.sequence_pad
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_pad`
+
 .. _api_fluid_layers_sequence_pool:
 
 sequence_pool
@@ -1110,6 +1410,8 @@ sequence_pool
 
 ..  autofunction:: paddle.fluid.layers.sequence_pool
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_pool`
 
 .. _api_fluid_layers_sequence_reshape:
 
@@ -1119,6 +1421,8 @@ sequence_reshape
 ..  autofunction:: paddle.fluid.layers.sequence_reshape
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_reshape`
+
 .. _api_fluid_layers_sequence_reverse:
 
 sequence_reverse
@@ -1126,6 +1430,8 @@ sequence_reverse
 
 ..  autofunction:: paddle.fluid.layers.sequence_reverse
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_reverse`
 
 .. _api_fluid_layers_sequence_scatter:
 
@@ -1135,6 +1441,8 @@ sequence_scatter
 ..  autofunction:: paddle.fluid.layers.sequence_scatter
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_scatter`
+
 .. _api_fluid_layers_sequence_slice:
 
 sequence_slice
@@ -1142,6 +1450,8 @@ sequence_slice
 
 ..  autofunction:: paddle.fluid.layers.sequence_slice
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_slice`
 
 .. _api_fluid_layers_sequence_softmax:
 
@@ -1151,6 +1461,8 @@ sequence_softmax
 ..  autofunction:: paddle.fluid.layers.sequence_softmax
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_softmax`
+
 .. _api_fluid_layers_sequence_unpad:
 
 sequence_unpad
@@ -1158,6 +1470,8 @@ sequence_unpad
 
 ..  autofunction:: paddle.fluid.layers.sequence_unpad
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sequence_unpad`
 
 .. _api_fluid_layers_shape:
 
@@ -1167,6 +1481,8 @@ shape
 ..  autofunction:: paddle.fluid.layers.shape
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_shape`
+
 .. _api_fluid_layers_sigmoid_cross_entropy_with_logits:
 
 sigmoid_cross_entropy_with_logits
@@ -1174,6 +1490,8 @@ sigmoid_cross_entropy_with_logits
 
 ..  autofunction:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_logits`
 
 .. _api_fluid_layers_similarity_focus:
 
@@ -1183,6 +1501,8 @@ similarity_focus
 ..  autofunction:: paddle.fluid.layers.similarity_focus
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_similarity_focus`
+
 .. _api_fluid_layers_slice:
 
 slice
@@ -1190,6 +1510,8 @@ slice
 
 ..  autofunction:: paddle.fluid.layers.slice
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_slice`
 
 .. _api_fluid_layers_smooth_l1:
 
@@ -1199,6 +1521,8 @@ smooth_l1
 ..  autofunction:: paddle.fluid.layers.smooth_l1
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_smooth_l1`
+
 .. _api_fluid_layers_soft_relu:
 
 soft_relu
@@ -1206,6 +1530,8 @@ soft_relu
 
 ..  autofunction:: paddle.fluid.layers.soft_relu
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_soft_relu`
 
 .. _api_fluid_layers_softmax:
 
@@ -1215,6 +1541,8 @@ softmax
 ..  autofunction:: paddle.fluid.layers.softmax
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_softmax`
+
 .. _api_fluid_layers_softmax_with_cross_entropy:
 
 softmax_with_cross_entropy
@@ -1222,6 +1550,8 @@ softmax_with_cross_entropy
 
 ..  autofunction:: paddle.fluid.layers.softmax_with_cross_entropy
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_softmax_with_cross_entropy`
 
 .. _api_fluid_layers_space_to_depth:
 
@@ -1231,6 +1561,8 @@ space_to_depth
 ..  autofunction:: paddle.fluid.layers.space_to_depth
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_space_to_depth`
+
 .. _api_fluid_layers_split:
 
 split
@@ -1238,6 +1570,8 @@ split
 
 ..  autofunction:: paddle.fluid.layers.split
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_split`
 
 .. _api_fluid_layers_square_error_cost:
 
@@ -1247,6 +1581,8 @@ square_error_cost
 ..  autofunction:: paddle.fluid.layers.square_error_cost
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_square_error_cost`
+
 .. _api_fluid_layers_squeeze:
 
 squeeze
@@ -1254,6 +1590,8 @@ squeeze
 
 ..  autofunction:: paddle.fluid.layers.squeeze
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_squeeze`
 
 .. _api_fluid_layers_stack:
 
@@ -1263,6 +1601,8 @@ stack
 ..  autofunction:: paddle.fluid.layers.stack
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_stack`
+
 .. _api_fluid_layers_stanh:
 
 stanh
@@ -1270,6 +1610,8 @@ stanh
 
 ..  autofunction:: paddle.fluid.layers.stanh
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_stanh`
 
 .. _api_fluid_layers_sum:
 
@@ -1279,6 +1621,8 @@ sum
 ..  autofunction:: paddle.fluid.layers.sum
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sum`
+
 .. _api_fluid_layers_swish:
 
 swish
@@ -1286,6 +1630,8 @@ swish
 
 ..  autofunction:: paddle.fluid.layers.swish
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_swish`
 
 .. _api_fluid_layers_topk:
 
@@ -1295,6 +1641,8 @@ topk
 ..  autofunction:: paddle.fluid.layers.topk
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_topk`
+
 .. _api_fluid_layers_transpose:
 
 transpose
@@ -1302,6 +1650,8 @@ transpose
 
 ..  autofunction:: paddle.fluid.layers.transpose
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_transpose`
 
 .. _api_fluid_layers_uniform_random_batch_size_like:
 
@@ -1311,6 +1661,8 @@ uniform_random_batch_size_like
 ..  autofunction:: paddle.fluid.layers.uniform_random_batch_size_like
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_uniform_random_batch_size_like`
+
 .. _api_fluid_layers_unsqueeze:
 
 unsqueeze
@@ -1318,6 +1670,8 @@ unsqueeze
 
 ..  autofunction:: paddle.fluid.layers.unsqueeze
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_unsqueeze`
 
 .. _api_fluid_layers_unstack:
 
@@ -1327,6 +1681,8 @@ unstack
 ..  autofunction:: paddle.fluid.layers.unstack
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_unstack`
+
 .. _api_fluid_layers_warpctc:
 
 warpctc
@@ -1334,6 +1690,8 @@ warpctc
 
 ..  autofunction:: paddle.fluid.layers.warpctc
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_warpctc`
 
 ops
 ===
@@ -1346,6 +1704,8 @@ abs
 ..  autofunction:: paddle.fluid.layers.abs
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_abs`
+
 .. _api_fluid_layers_ceil:
 
 ceil
@@ -1353,6 +1713,8 @@ ceil
 
 ..  autofunction:: paddle.fluid.layers.ceil
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_ceil`
 
 .. _api_fluid_layers_cos:
 
@@ -1362,6 +1724,8 @@ cos
 ..  autofunction:: paddle.fluid.layers.cos
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_cos`
+
 .. _api_fluid_layers_cumsum:
 
 cumsum
@@ -1369,6 +1733,8 @@ cumsum
 
 ..  autofunction:: paddle.fluid.layers.cumsum
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_cumsum`
 
 .. _api_fluid_layers_exp:
 
@@ -1378,6 +1744,8 @@ exp
 ..  autofunction:: paddle.fluid.layers.exp
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_exp`
+
 .. _api_fluid_layers_floor:
 
 floor
@@ -1385,6 +1753,8 @@ floor
 
 ..  autofunction:: paddle.fluid.layers.floor
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_floor`
 
 .. _api_fluid_layers_hard_shrink:
 
@@ -1394,6 +1764,8 @@ hard_shrink
 ..  autofunction:: paddle.fluid.layers.hard_shrink
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_hard_shrink`
+
 .. _api_fluid_layers_logsigmoid:
 
 logsigmoid
@@ -1401,6 +1773,8 @@ logsigmoid
 
 ..  autofunction:: paddle.fluid.layers.logsigmoid
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_logsigmoid`
 
 .. _api_fluid_layers_reciprocal:
 
@@ -1410,6 +1784,8 @@ reciprocal
 ..  autofunction:: paddle.fluid.layers.reciprocal
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_reciprocal`
+
 .. _api_fluid_layers_round:
 
 round
@@ -1417,6 +1793,8 @@ round
 
 ..  autofunction:: paddle.fluid.layers.round
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_round`
 
 .. _api_fluid_layers_sigmoid:
 
@@ -1426,6 +1804,8 @@ sigmoid
 ..  autofunction:: paddle.fluid.layers.sigmoid
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sigmoid`
+
 .. _api_fluid_layers_sin:
 
 sin
@@ -1433,6 +1813,8 @@ sin
 
 ..  autofunction:: paddle.fluid.layers.sin
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sin`
 
 .. _api_fluid_layers_softplus:
 
@@ -1442,6 +1824,8 @@ softplus
 ..  autofunction:: paddle.fluid.layers.softplus
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_softplus`
+
 .. _api_fluid_layers_softshrink:
 
 softshrink
@@ -1449,6 +1833,8 @@ softshrink
 
 ..  autofunction:: paddle.fluid.layers.softshrink
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_softshrink`
 
 .. _api_fluid_layers_softsign:
 
@@ -1458,6 +1844,8 @@ softsign
 ..  autofunction:: paddle.fluid.layers.softsign
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_softsign`
+
 .. _api_fluid_layers_sqrt:
 
 sqrt
@@ -1465,6 +1853,8 @@ sqrt
 
 ..  autofunction:: paddle.fluid.layers.sqrt
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_sqrt`
 
 .. _api_fluid_layers_square:
 
@@ -1474,6 +1864,8 @@ square
 ..  autofunction:: paddle.fluid.layers.square
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_square`
+
 .. _api_fluid_layers_tanh:
 
 tanh
@@ -1481,6 +1873,8 @@ tanh
 
 ..  autofunction:: paddle.fluid.layers.tanh
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_tanh`
 
 .. _api_fluid_layers_tanh_shrink:
 
@@ -1490,6 +1884,8 @@ tanh_shrink
 ..  autofunction:: paddle.fluid.layers.tanh_shrink
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_tanh_shrink`
+
 .. _api_fluid_layers_thresholded_relu:
 
 thresholded_relu
@@ -1498,6 +1894,8 @@ thresholded_relu
 ..  autofunction:: paddle.fluid.layers.thresholded_relu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_thresholded_relu`
+
 .. _api_fluid_layers_uniform_random:
 
 uniform_random
@@ -1505,6 +1903,8 @@ uniform_random
 
 ..  autofunction:: paddle.fluid.layers.uniform_random
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_uniform_random`
 
 tensor
 ======
@@ -1517,6 +1917,8 @@ argmax
 ..  autofunction:: paddle.fluid.layers.argmax
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_argmax`
+
 .. _api_fluid_layers_argmin:
 
 argmin
@@ -1524,6 +1926,8 @@ argmin
 
 ..  autofunction:: paddle.fluid.layers.argmin
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_argmin`
 
 .. _api_fluid_layers_argsort:
 
@@ -1533,6 +1937,8 @@ argsort
 ..  autofunction:: paddle.fluid.layers.argsort
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_argsort`
+
 .. _api_fluid_layers_assign:
 
 assign
@@ -1540,6 +1946,8 @@ assign
 
 ..  autofunction:: paddle.fluid.layers.assign
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_assign`
 
 .. _api_fluid_layers_cast:
 
@@ -1549,6 +1957,8 @@ cast
 ..  autofunction:: paddle.fluid.layers.cast
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_cast`
+
 .. _api_fluid_layers_concat:
 
 concat
@@ -1556,6 +1966,8 @@ concat
 
 ..  autofunction:: paddle.fluid.layers.concat
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_concat`
 
 .. _api_fluid_layers_create_global_var:
 
@@ -1565,6 +1977,8 @@ create_global_var
 ..  autofunction:: paddle.fluid.layers.create_global_var
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_create_global_var`
+
 .. _api_fluid_layers_create_parameter:
 
 create_parameter
@@ -1572,6 +1986,8 @@ create_parameter
 
 ..  autofunction:: paddle.fluid.layers.create_parameter
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_create_parameter`
 
 .. _api_fluid_layers_create_tensor:
 
@@ -1581,6 +1997,8 @@ create_tensor
 ..  autofunction:: paddle.fluid.layers.create_tensor
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_create_tensor`
+
 .. _api_fluid_layers_fill_constant:
 
 fill_constant
@@ -1588,6 +2006,8 @@ fill_constant
 
 ..  autofunction:: paddle.fluid.layers.fill_constant
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_fill_constant`
 
 .. _api_fluid_layers_fill_constant_batch_size_like:
 
@@ -1597,6 +2017,8 @@ fill_constant_batch_size_like
 ..  autofunction:: paddle.fluid.layers.fill_constant_batch_size_like
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_fill_constant_batch_size_like`
+
 .. _api_fluid_layers_has_inf:
 
 has_inf
@@ -1604,6 +2026,8 @@ has_inf
 
 ..  autofunction:: paddle.fluid.layers.has_inf
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_has_inf`
 
 .. _api_fluid_layers_has_nan:
 
@@ -1613,6 +2037,8 @@ has_nan
 ..  autofunction:: paddle.fluid.layers.has_nan
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_has_nan`
+
 .. _api_fluid_layers_isfinite:
 
 isfinite
@@ -1620,6 +2046,8 @@ isfinite
 
 ..  autofunction:: paddle.fluid.layers.isfinite
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_isfinite`
 
 .. _api_fluid_layers_ones:
 
@@ -1629,6 +2057,8 @@ ones
 ..  autofunction:: paddle.fluid.layers.ones
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_ones`
+
 .. _api_fluid_layers_reverse:
 
 reverse
@@ -1636,6 +2066,8 @@ reverse
 
 ..  autofunction:: paddle.fluid.layers.reverse
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_reverse`
 
 .. _api_fluid_layers_sums:
 
@@ -1645,6 +2077,8 @@ sums
 ..  autofunction:: paddle.fluid.layers.sums
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_sums`
+
 .. _api_fluid_layers_tensor_array_to_tensor:
 
 tensor_array_to_tensor
@@ -1653,6 +2087,8 @@ tensor_array_to_tensor
 ..  autofunction:: paddle.fluid.layers.tensor_array_to_tensor
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_tensor_array_to_tensor`
+
 .. _api_fluid_layers_zeros:
 
 zeros
@@ -1660,6 +2096,8 @@ zeros
 
 ..  autofunction:: paddle.fluid.layers.zeros
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_zeros`
 
 learning_rate_scheduler
 =======================
@@ -1672,6 +2110,8 @@ append_LARS
 ..  autofunction:: paddle.fluid.layers.append_LARS
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_append_LARS`
+
 .. _api_fluid_layers_exponential_decay:
 
 exponential_decay
@@ -1679,6 +2119,8 @@ exponential_decay
 
 ..  autofunction:: paddle.fluid.layers.exponential_decay
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_exponential_decay`
 
 .. _api_fluid_layers_inverse_time_decay:
 
@@ -1688,6 +2130,8 @@ inverse_time_decay
 ..  autofunction:: paddle.fluid.layers.inverse_time_decay
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_inverse_time_decay`
+
 .. _api_fluid_layers_natural_exp_decay:
 
 natural_exp_decay
@@ -1695,6 +2139,8 @@ natural_exp_decay
 
 ..  autofunction:: paddle.fluid.layers.natural_exp_decay
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_natural_exp_decay`
 
 .. _api_fluid_layers_noam_decay:
 
@@ -1704,6 +2150,8 @@ noam_decay
 ..  autofunction:: paddle.fluid.layers.noam_decay
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_noam_decay`
+
 .. _api_fluid_layers_piecewise_decay:
 
 piecewise_decay
@@ -1712,6 +2160,8 @@ piecewise_decay
 ..  autofunction:: paddle.fluid.layers.piecewise_decay
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_piecewise_decay`
+
 .. _api_fluid_layers_polynomial_decay:
 
 polynomial_decay
@@ -1719,6 +2169,8 @@ polynomial_decay
 
 ..  autofunction:: paddle.fluid.layers.polynomial_decay
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_polynomial_decay`
 
 detection
 =========
@@ -1731,6 +2183,8 @@ anchor_generator
 ..  autofunction:: paddle.fluid.layers.anchor_generator
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_anchor_generator`
+
 .. _api_fluid_layers_bipartite_match:
 
 bipartite_match
@@ -1738,6 +2192,8 @@ bipartite_match
 
 ..  autofunction:: paddle.fluid.layers.bipartite_match
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_bipartite_match`
 
 .. _api_fluid_layers_box_coder:
 
@@ -1747,6 +2203,8 @@ box_coder
 ..  autofunction:: paddle.fluid.layers.box_coder
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_box_coder`
+
 .. _api_fluid_layers_density_prior_box:
 
 density_prior_box
@@ -1754,6 +2212,8 @@ density_prior_box
 
 ..  autofunction:: paddle.fluid.layers.density_prior_box
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_density_prior_box`
 
 .. _api_fluid_layers_detection_map:
 
@@ -1763,6 +2223,8 @@ detection_map
 ..  autofunction:: paddle.fluid.layers.detection_map
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_detection_map`
+
 .. _api_fluid_layers_detection_output:
 
 detection_output
@@ -1770,6 +2232,8 @@ detection_output
 
 ..  autofunction:: paddle.fluid.layers.detection_output
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_detection_output`
 
 .. _api_fluid_layers_generate_proposal_labels:
 
@@ -1779,6 +2243,8 @@ generate_proposal_labels
 ..  autofunction:: paddle.fluid.layers.generate_proposal_labels
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_generate_proposal_labels`
+
 .. _api_fluid_layers_generate_proposals:
 
 generate_proposals
@@ -1786,6 +2252,8 @@ generate_proposals
 
 ..  autofunction:: paddle.fluid.layers.generate_proposals
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_generate_proposals`
 
 .. _api_fluid_layers_iou_similarity:
 
@@ -1795,6 +2263,8 @@ iou_similarity
 ..  autofunction:: paddle.fluid.layers.iou_similarity
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_iou_similarity`
+
 .. _api_fluid_layers_multi_box_head:
 
 multi_box_head
@@ -1802,6 +2272,8 @@ multi_box_head
 
 ..  autofunction:: paddle.fluid.layers.multi_box_head
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_multi_box_head`
 
 .. _api_fluid_layers_polygon_box_transform:
 
@@ -1811,6 +2283,8 @@ polygon_box_transform
 ..  autofunction:: paddle.fluid.layers.polygon_box_transform
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_polygon_box_transform`
+
 .. _api_fluid_layers_prior_box:
 
 prior_box
@@ -1818,6 +2292,8 @@ prior_box
 
 ..  autofunction:: paddle.fluid.layers.prior_box
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_prior_box`
 
 .. _api_fluid_layers_roi_perspective_transform:
 
@@ -1827,6 +2303,8 @@ roi_perspective_transform
 ..  autofunction:: paddle.fluid.layers.roi_perspective_transform
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_roi_perspective_transform`
+
 .. _api_fluid_layers_rpn_target_assign:
 
 rpn_target_assign
@@ -1834,6 +2312,8 @@ rpn_target_assign
 
 ..  autofunction:: paddle.fluid.layers.rpn_target_assign
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_rpn_target_assign`
 
 .. _api_fluid_layers_ssd_loss:
 
@@ -1843,6 +2323,8 @@ ssd_loss
 ..  autofunction:: paddle.fluid.layers.ssd_loss
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_ssd_loss`
+
 .. _api_fluid_layers_target_assign:
 
 target_assign
@@ -1850,6 +2332,8 @@ target_assign
 
 ..  autofunction:: paddle.fluid.layers.target_assign
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_target_assign`
 
 metric_op
 =========
@@ -1862,6 +2346,8 @@ accuracy
 ..  autofunction:: paddle.fluid.layers.accuracy
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_layers_accuracy`
+
 .. _api_fluid_layers_auc:
 
 auc
@@ -1869,4 +2355,6 @@ auc
 
 ..  autofunction:: paddle.fluid.layers.auc
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_layers_auc`
 
