@@ -85,8 +85,6 @@ class DocGenerator(object):
     :members:
     :noindex:
 
-
-
 '''.format(self.module_name, name))
         self._print_cn_ref(name)
 
