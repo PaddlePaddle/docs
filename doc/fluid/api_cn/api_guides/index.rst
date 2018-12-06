@@ -13,3 +13,6 @@ API使用指南
     low_level/model_save_reader.rst
     low_level/inference.rst
     low_level/distributed/index.rst
+    low_level/memory_optimize.rst
+    low_level/nets.rst
+    low_level/parallel_executor.rst
