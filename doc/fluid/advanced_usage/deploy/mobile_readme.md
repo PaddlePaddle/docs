@@ -33,13 +33,11 @@
 
 开发文档主要是关于编译、运行等问题。作为开发者，它可以和贡献文档共同结合使用
 
-[iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md)
-
-[Android](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android.md)
-
-[FPGA](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_fpga.md)
-
-[ARM_LINUX](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_arm_linux.md)
+* [iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md)
+* [Android_CPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android.md)
+* [Android_GPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android_GPU.md)
+* [FPGA](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_fpga.md)
+* [ARM_LINUX](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_arm_linux.md)
 
 ### 贡献代码
 
@@ -71,10 +69,6 @@ ONNX全称为“Open Neural Network Exchange”，即“开放的神经网络切
 
 [下载链接](http://mms-graph.bj.bcebos.com/paddle-mobile%2FmodelsAndImages.zip)
 
-如下gif是简单搜索app的线上主体检测应用效果
-
-![ezgif-1-050a733dfb](http://otkwwi4x8.bkt.clouddn.com/2018-07-05-ezgif-1-050a733dfb.gif)
-
 ## 问题解决
 
 欢迎提出或解决我们的问题，有疑问可以发[Issue](https://github.com/PaddlePaddle/paddle-mobile/issues)
@@ -85,3 +79,4 @@ Paddle-Mobile 提供相对宽松的Apache-2.0开源协议 [Apache-2.0 license](L
 
 ## 旧版 Mobile-Deep-Learning
 原MDL(Mobile-Deep-Learning)工程被迁移到了这里 [Mobile-Deep-Learning](https://github.com/allonli/mobile-deep-learning) 
+
