@@ -10,13 +10,13 @@
 
 请确保您的环境满足以上条件
 
-- 如果您希望使用 `pip <https://pypi.org/pypi/>`_ 进行安装PaddlePaddle可以直接使用以下命令:      
+- 如果您希望使用 `pip <https://pypi.org/pypi/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 
-:code:`pip install paddlepaddle` （CPU版本最新）  
- 
-:code:`pip install paddlepaddle-gpu` （GPU版本最新）  
-   
-:code:`pip install paddlepaddle==[pip版本号]`             
+:code:`pip install paddlepaddle` （CPU版本最新）
+
+:code:`pip install paddlepaddle-gpu` （GPU版本最新）
+
+:code:`pip install paddlepaddle==[pip版本号]`
 
 	其中[pip版本号]请查阅 `PyPi.org <https://pypi.org/search/?q=PaddlePaddle>`_
 
@@ -25,28 +25,13 @@
 
 	其中[docker版本号]请查阅 `DockerHub <https://hub.docker.com/r/paddlepaddle/paddle/tags/>`_
 
-
-如果对上面的指令有疑问或者不能正常使用，请参见以下内容
-
-安装PaddlePaddle
------------------------
-
 ..	toctree::
-	:maxdepth:1
+	:hidden:
 
 	install_Ubuntu.md
 	install_CentOS.md
 	install_MacOS.md
 	install_Windows.md
 	compile/fromsource.rst
-
-参考信息
------------------------
-
-如在安装或编译过程中遇到问题请参见
-
-..	toctree::
-	:maxdepth:1
-
 	FAQ.md
 	Tables.md

@@ -3,7 +3,7 @@
 ############
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     local_dev_guide.md
     submit_pr_guide.md
