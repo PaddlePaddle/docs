@@ -14,6 +14,8 @@ Adadelta
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_Adadelta`
+
 .. _api_fluid_optimizer_Adagrad:
 
 Adagrad
@@ -22,6 +24,8 @@ Adagrad
 ..  autoclass:: paddle.fluid.optimizer.Adagrad
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_Adagrad`
 
 .. _api_fluid_optimizer_AdagradOptimizer:
 
@@ -32,6 +36,8 @@ AdagradOptimizer
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_AdagradOptimizer`
+
 .. _api_fluid_optimizer_Adam:
 
 Adam
@@ -40,6 +46,8 @@ Adam
 ..  autoclass:: paddle.fluid.optimizer.Adam
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_Adam`
 
 .. _api_fluid_optimizer_Adamax:
 
@@ -50,6 +58,8 @@ Adamax
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_Adamax`
+
 .. _api_fluid_optimizer_AdamaxOptimizer:
 
 AdamaxOptimizer
@@ -58,6 +68,8 @@ AdamaxOptimizer
 ..  autoclass:: paddle.fluid.optimizer.AdamaxOptimizer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_AdamaxOptimizer`
 
 .. _api_fluid_optimizer_AdamOptimizer:
 
@@ -68,6 +80,8 @@ AdamOptimizer
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_AdamOptimizer`
+
 .. _api_fluid_optimizer_DecayedAdagrad:
 
 DecayedAdagrad
@@ -76,6 +90,8 @@ DecayedAdagrad
 ..  autoclass:: paddle.fluid.optimizer.DecayedAdagrad
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_DecayedAdagrad`
 
 .. _api_fluid_optimizer_DecayedAdagradOptimizer:
 
@@ -86,6 +102,8 @@ DecayedAdagradOptimizer
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_DecayedAdagradOptimizer`
+
 .. _api_fluid_optimizer_Ftrl:
 
 Ftrl
@@ -94,6 +112,8 @@ Ftrl
 ..  autoclass:: paddle.fluid.optimizer.Ftrl
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_Ftrl`
 
 .. _api_fluid_optimizer_FtrlOptimizer:
 
@@ -104,6 +124,8 @@ FtrlOptimizer
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_FtrlOptimizer`
+
 .. _api_fluid_optimizer_LarsMomentum:
 
 LarsMomentum
@@ -112,6 +134,8 @@ LarsMomentum
 ..  autoclass:: paddle.fluid.optimizer.LarsMomentum
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_LarsMomentum`
 
 .. _api_fluid_optimizer_LarsMomentumOptimizer:
 
@@ -122,6 +146,8 @@ LarsMomentumOptimizer
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_LarsMomentumOptimizer`
+
 .. _api_fluid_optimizer_ModelAverage:
 
 ModelAverage
@@ -130,6 +156,8 @@ ModelAverage
 ..  autoclass:: paddle.fluid.optimizer.ModelAverage
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_ModelAverage`
 
 .. _api_fluid_optimizer_Momentum:
 
@@ -140,6 +168,8 @@ Momentum
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_Momentum`
+
 .. _api_fluid_optimizer_MomentumOptimizer:
 
 MomentumOptimizer
@@ -148,6 +178,8 @@ MomentumOptimizer
 ..  autoclass:: paddle.fluid.optimizer.MomentumOptimizer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_MomentumOptimizer`
 
 .. _api_fluid_optimizer_RMSPropOptimizer:
 
@@ -158,6 +190,8 @@ RMSPropOptimizer
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_RMSPropOptimizer`
+
 .. _api_fluid_optimizer_SGD:
 
 SGD
@@ -167,6 +201,8 @@ SGD
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_SGD`
+
 .. _api_fluid_optimizer_SGDOptimizer:
 
 SGDOptimizer
@@ -175,4 +211,6 @@ SGDOptimizer
 ..  autoclass:: paddle.fluid.optimizer.SGDOptimizer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_optimizer_SGDOptimizer`
 
