@@ -5,14 +5,6 @@
 fluid
 =====
 
-.. _api_fluid__switch_scope:
-
-_switch_scope
--------------
-
-..  autofunction:: paddle.fluid._switch_scope
-    :noindex:
-
 .. _api_fluid_AsyncExecutor:
 
 AsyncExecutor
@@ -21,6 +13,8 @@ AsyncExecutor
 ..  autoclass:: paddle.fluid.AsyncExecutor
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_AsyncExecutor`
 
 .. _api_fluid_BuildStrategy:
 
@@ -31,6 +25,8 @@ BuildStrategy
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_BuildStrategy`
+
 .. _api_fluid_CPUPlace:
 
 CPUPlace
@@ -40,6 +36,8 @@ CPUPlace
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_CPUPlace`
+
 .. _api_fluid_create_lod_tensor:
 
 create_lod_tensor
@@ -48,6 +46,8 @@ create_lod_tensor
 ..  autofunction:: paddle.fluid.create_lod_tensor
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_create_lod_tensor`
+
 .. _api_fluid_create_random_int_lodtensor:
 
 create_random_int_lodtensor
@@ -55,6 +55,8 @@ create_random_int_lodtensor
 
 ..  autofunction:: paddle.fluid.create_random_int_lodtensor
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_create_random_int_lodtensor`
 
 .. _api_fluid_CUDAPinnedPlace:
 
@@ -65,6 +67,8 @@ CUDAPinnedPlace
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_CUDAPinnedPlace`
+
 .. _api_fluid_CUDAPlace:
 
 CUDAPlace
@@ -73,6 +77,8 @@ CUDAPlace
 ..  autoclass:: paddle.fluid.CUDAPlace
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_CUDAPlace`
 
 .. _api_fluid_DataFeedDesc:
 
@@ -83,6 +89,8 @@ DataFeedDesc
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_DataFeedDesc`
+
 .. _api_fluid_DataFeeder:
 
 DataFeeder
@@ -92,6 +100,8 @@ DataFeeder
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_DataFeeder`
+
 .. _api_fluid_default_main_program:
 
 default_main_program
@@ -100,6 +110,8 @@ default_main_program
 ..  autofunction:: paddle.fluid.default_main_program
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_default_main_program`
+
 .. _api_fluid_default_startup_program:
 
 default_startup_program
@@ -107,6 +119,8 @@ default_startup_program
 
 ..  autofunction:: paddle.fluid.default_startup_program
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_default_startup_program`
 
 .. _api_fluid_DistributeTranspiler:
 
@@ -117,6 +131,8 @@ DistributeTranspiler
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_DistributeTranspiler`
+
 .. _api_fluid_DistributeTranspilerConfig:
 
 DistributeTranspilerConfig
@@ -125,6 +141,8 @@ DistributeTranspilerConfig
 ..  autoclass:: paddle.fluid.DistributeTranspilerConfig
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_DistributeTranspilerConfig`
 
 .. _api_fluid_ExecutionStrategy:
 
@@ -135,6 +153,8 @@ ExecutionStrategy
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_ExecutionStrategy`
+
 .. _api_fluid_Executor:
 
 Executor
@@ -144,6 +164,8 @@ Executor
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_Executor`
+
 .. _api_fluid_global_scope:
 
 global_scope
@@ -151,6 +173,8 @@ global_scope
 
 ..  autofunction:: paddle.fluid.global_scope
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_global_scope`
 
 .. _api_fluid_LoDTensor:
 
@@ -161,6 +185,8 @@ LoDTensor
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_LoDTensor`
+
 .. _api_fluid_LoDTensorArray:
 
 LoDTensorArray
@@ -170,6 +196,8 @@ LoDTensorArray
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_LoDTensorArray`
+
 .. _api_fluid_memory_optimize:
 
 memory_optimize
@@ -178,6 +206,8 @@ memory_optimize
 ..  autofunction:: paddle.fluid.memory_optimize
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_memory_optimize`
+
 .. _api_fluid_name_scope:
 
 name_scope
@@ -185,6 +215,8 @@ name_scope
 
 ..  autofunction:: paddle.fluid.name_scope
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_name_scope`
 
 .. _api_fluid_ParallelExecutor:
 
@@ -195,6 +227,8 @@ ParallelExecutor
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_ParallelExecutor`
+
 .. _api_fluid_ParamAttr:
 
 ParamAttr
@@ -203,6 +237,8 @@ ParamAttr
 ..  autoclass:: paddle.fluid.ParamAttr
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_ParamAttr`
 
 .. _api_fluid_Program:
 
@@ -213,6 +249,8 @@ Program
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_Program`
+
 .. _api_fluid_program_guard:
 
 program_guard
@@ -221,6 +259,8 @@ program_guard
 ..  autofunction:: paddle.fluid.program_guard
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_program_guard`
+
 .. _api_fluid_release_memory:
 
 release_memory
@@ -228,6 +268,8 @@ release_memory
 
 ..  autofunction:: paddle.fluid.release_memory
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_release_memory`
 
 .. _api_fluid_Scope:
 
@@ -238,6 +280,8 @@ Scope
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_Scope`
+
 .. _api_fluid_scope_guard:
 
 scope_guard
@@ -245,6 +289,8 @@ scope_guard
 
 ..  autofunction:: paddle.fluid.scope_guard
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_scope_guard`
 
 .. _api_fluid_Tensor:
 
@@ -255,6 +301,8 @@ Tensor
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_Tensor`
+
 .. _api_fluid_WeightNormParamAttr:
 
 WeightNormParamAttr
@@ -263,4 +311,6 @@ WeightNormParamAttr
 ..  autoclass:: paddle.fluid.WeightNormParamAttr
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_WeightNormParamAttr`
 

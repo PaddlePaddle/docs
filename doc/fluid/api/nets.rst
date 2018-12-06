@@ -13,6 +13,8 @@ glu
 ..  autofunction:: paddle.fluid.nets.glu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_nets_glu`
+
 .. _api_fluid_nets_img_conv_group:
 
 img_conv_group
@@ -20,6 +22,8 @@ img_conv_group
 
 ..  autofunction:: paddle.fluid.nets.img_conv_group
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_nets_img_conv_group`
 
 .. _api_fluid_nets_scaled_dot_product_attention:
 
@@ -29,6 +33,8 @@ scaled_dot_product_attention
 ..  autofunction:: paddle.fluid.nets.scaled_dot_product_attention
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_nets_scaled_dot_product_attention`
+
 .. _api_fluid_nets_sequence_conv_pool:
 
 sequence_conv_pool
@@ -37,6 +43,8 @@ sequence_conv_pool
 ..  autofunction:: paddle.fluid.nets.sequence_conv_pool
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_nets_sequence_conv_pool`
+
 .. _api_fluid_nets_simple_img_conv_pool:
 
 simple_img_conv_pool
@@ -44,4 +52,6 @@ simple_img_conv_pool
 
 ..  autofunction:: paddle.fluid.nets.simple_img_conv_pool
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_nets_simple_img_conv_pool`
 
