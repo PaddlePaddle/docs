@@ -15,4 +15,7 @@
     data_in_out.rst
     control_flow.rst
     sparse_update.rst
-    
+    data_feeder.rst
+    learning_rate_scheduler.rst
+    tensor.rst
+
