@@ -6,7 +6,7 @@
 
 如果您非常熟悉 Fluid，期望获得更高效的模型或者定义自己的Operator，请阅读：
 
-    - `Fluid 设计思想 <../advanced_usage/design_idea/fluid_design_idea.html>`_：介绍 Fluid 底层的设计思想，帮助您更好的理解框架运作过程
+    	- `Fluid 设计思想 <../advanced_usage/design_idea/fluid_design_idea.html>`_：介绍 Fluid 底层的设计思想，帮助您更好的理解框架运作过程
 
 	- `预测部署 <../advanced_usage/deploy/index_cn.html>`_ ：介绍如何应用训练好的模型进行预测
 
