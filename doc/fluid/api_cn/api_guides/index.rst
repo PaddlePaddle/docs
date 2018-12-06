@@ -3,7 +3,7 @@ API使用指南
 ===========
 
 ..  toctree::
-    :titlesonly:
+    :hidden:
 
     high_low_level_api.md
     low_level/layers/index.rst
