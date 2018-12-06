@@ -1,7 +1,7 @@
 # 环境搭建
 ## 使用 docker
 ### 1. 安装 docker
-安装 docker 的方式，参考官方文档 [https://docs.docker.com/install/](https://docs.docker.com/install/)
+安装 docker 的方式，参考 [官方文档](https://docs.docker.com/install/)
 ### 2. 使用 docker 搭建构建环境
 首先进入 paddle-mobile 的目录下，执行 `docker build`
 以 Linux/Mac 为例 (windows 建议在 'Docker Quickstart Terminal' 中执行)

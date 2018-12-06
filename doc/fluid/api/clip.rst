@@ -14,6 +14,8 @@ ErrorClipByValue
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_clip_ErrorClipByValue`
+
 .. _api_fluid_clip_GradientClipByGlobalNorm:
 
 GradientClipByGlobalNorm
@@ -22,6 +24,8 @@ GradientClipByGlobalNorm
 ..  autoclass:: paddle.fluid.clip.GradientClipByGlobalNorm
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm`
 
 .. _api_fluid_clip_GradientClipByNorm:
 
@@ -32,6 +36,8 @@ GradientClipByNorm
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_clip_GradientClipByNorm`
+
 .. _api_fluid_clip_GradientClipByValue:
 
 GradientClipByValue
@@ -40,4 +46,6 @@ GradientClipByValue
 ..  autoclass:: paddle.fluid.clip.GradientClipByValue
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_clip_GradientClipByValue`
 
