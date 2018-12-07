@@ -40,8 +40,8 @@ PaddlePaddle中有针对定长图像特征的二维(pool2d)、三维卷积(pool3
 
 api汇总：
 
-- :ref:`api_fluid_layers_pool2d`
-- :ref:`api_fluid_layers_pool3d`
+- :ref:`cn_api_fluid_layers_pool2d`
+- :ref:`cn_api_fluid_layers_pool3d`
 
 
 2. roi_pool
@@ -58,7 +58,7 @@ api汇总：
 
 api汇总：
 
-- :ref:`api_fluid_layers_roi_pool`
+- :ref:`cn_api_fluid_layers_roi_pool`
 
 
 3. sequence_pool
@@ -77,4 +77,4 @@ api汇总：
 
 api汇总：
 
-- :ref:`api_fluid_layers_sequence_pool`
+- :ref:`cn_api_fluid_layers_sequence_pool`
