@@ -1,14 +1,37 @@
-
 #################
  fluid.optimizer
 #################
+
+.. _cn_api_fluid_optimizer_Adadelta:
+
+Adadelta
+-------------------------------
+
+.. py:attribute::  paddle.fluid.optimizer.Adadelta
+
+``AdadeltaOptimizer`` 的别名
+
+
+
+
+
+
+.. _cn_api_fluid_optimizer_Adagrad:
+
+Adagrad
+-------------------------------
+
+.. py:attribute::  paddle.fluid.optimizer.Adagrad
+
+``AdagradOptimizer`` 的别名
+
 
 
 
 .. _cn_api_fluid_optimizer_AdagradOptimizer:
 
 AdagradOptimizer
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.optimizer.AdagradOptimizer(learning_rate, epsilon=1e-06, regularization=None, name=None)
 
@@ -37,45 +60,42 @@ http://cs231n.github.io/neural-networks-3/#ada 用于维持数值稳定性，避
     optimizer = fluid.optimizer.Adagrad(learning_rate=0.2)
     optimizer.minimize(cost)
 
-AdamOptimizer
->>>>>>>>>>>>>
-
-.. py:class:: paddle.fluid.optimizer. AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None)
-
-该函数实现了自适应矩估计优化器，介绍自Adam论文:https://arxiv.org/abs/1412.6980的第二节。Adam是一阶基于梯度下降的算法，基于自适应低阶矩估计。
-Adam更新如下：
-
-.. math::
-
-	t & = t + 1\\moment\_out & = {\beta}_1 * moment + (1 - {\beta}_1) * grad\\inf\_norm\_out & = max({\beta}_2 * inf\_norm + \epsilon, |grad|)\\learning\_rate & = \frac{learning\_rate}{1 - {\beta}_1^t}\\param\_out & = param - learning\_rate * \frac{moment\_out}{inf\_norm\_out}
-
-参数: 
-    - **learning_rate** (float|Variable)-学习率，用于更新参数。作为数据参数，可以是一个浮点类型值或有一个浮点类型值的变量
-    - **beta1** (float)-一阶矩估计的指数衰减率
-    - **beta2** (float)-二阶矩估计的指数衰减率
-    - **epsilon** (float)-保持数值稳定性的短浮点类型值
-    - **regularization** - 规则化函数，例如''fluid.regularizer.L2DecayRegularizer
-    - **name** - 可选名称前缀
-
-**代码示例**：
-
-.. code-block:: python:
-
-    optimizer = fluid.optimizer.Adam(learning_rate=0.2)
-    optimizer.minimize(cost)
-
-.. note::
-
-	目前，AdamaxOptimizer不支持稀疏参数优化
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_AdagradOptimizer` 
+
+
+.. _cn_api_fluid_optimizer_Adam:
+
+Adam
+-------------------------------
+
+.. py:attribute::  paddle.fluid.optimizer.Adam
+
+``AdamOptimizer`` 的别名
+
+
+
+
+
+.. _cn_api_fluid_optimizer_Adamax:
+
+Adamax
+-------------------------------
+
+.. py:attribute:: paddle.fluid.optimizer.Adamax
+
+``AdamaxOptimizer`` 的别名
+
+
+
+
+
 
 .. _cn_api_fluid_optimizer_AdamaxOptimizer:
 
 AdamaxOptimizer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.optimizer.AdamaxOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None)
 
@@ -119,12 +139,68 @@ Adamax 更新规则:
   
 
 
-英文版API文档: :ref:`api_fluid_optimizer_AdamaxOptimizer` 
+
+
+
+
+
+
+
+
+.. _cn_api_fluid_optimizer_AdamOptimizer:
+
+AdamOptimizer
+-------------------------------
+
+.. py:class:: paddle.fluid.optimizer. AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None)
+
+该函数实现了自适应矩估计优化器，介绍自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节。Adam是一阶基于梯度下降的算法，基于自适应低阶矩估计。
+Adam更新如下：
+
+.. math::
+
+	t & = t + 1\\moment\_out & = {\beta}_1 * moment + (1 - {\beta}_1) * grad\\inf\_norm\_out & = max({\beta}_2 * inf\_norm + \epsilon, |grad|)\\learning\_rate & = \frac{learning\_rate}{1 - {\beta}_1^t}\\param\_out & = param - learning\_rate * \frac{moment\_out}{inf\_norm\_out}
+
+参数: 
+    - **learning_rate** (float|Variable)-学习率，用于更新参数。作为数据参数，可以是一个浮点类型值或有一个浮点类型值的变量
+    - **beta1** (float)-一阶矩估计的指数衰减率
+    - **beta2** (float)-二阶矩估计的指数衰减率
+    - **epsilon** (float)-保持数值稳定性的短浮点类型值
+    - **regularization** - 规则化函数，例如''fluid.regularizer.L2DecayRegularizer
+    - **name** - 可选名称前缀
+
+**代码示例**：
+
+.. code-block:: python:
+
+    optimizer = fluid.optimizer.Adam(learning_rate=0.2)
+    optimizer.minimize(cost)
+
+
+
+
+
+
+
+
+
+.. _cn_api_fluid_optimizer_DecayedAdagrad:
+
+DecayedAdagrad
+-------------------------------
+
+.. py:attribute::  paddle.fluid.optimizer.DecayedAdagrad
+
+``DecayedAdagradOptimizer`` 的别名
+
+
+
+
 
 .. _cn_api_fluid_optimizer_DecayedAdagradOptimizer:
 
 DecayedAdagradOptimizer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.optimizer.DecayedAdagradOptimizer(learning_rate, decay=0.95, epsilon=1e-06, regularization=None, name=None)
 
@@ -160,12 +236,27 @@ Decayed Adagrad Optimizer
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_DecayedAdagradOptimizer` 
+
+
+
+
+
+.. _cn_api_fluid_optimizer_Ftrl:
+
+Ftrl
+-------------------------------
+
+.. py:attribute::  paddle.fluid.optimizer.Ftrl
+
+``FtrlOptimizer`` 的别名
+
+
+
 
 .. _cn_api_fluid_optimizer_FtrlOptimizer:
 
 FtrlOptimizer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.optimizer.FtrlOptimizer(learning_rate, l1=0.0, l2=0.0, lr_power=-0.5,regularization=None, name=None)
  
@@ -194,9 +285,9 @@ TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-pred
 
 参数:
   - **learning_rate** (float|Variable)-全局学习率。
-  - **l1** (float)
-  - **l2** (float)
-  - **lr_power** (float)
+  - **l1** (float) - 暂无，请等待后期更新
+  - **l2** (float) - 暂无，请等待后期更新
+  - **lr_power** (float) - 暂无，请等待后期更新
   - **regularization** - 正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
   - **name** — 可选的名称前缀
 
@@ -211,29 +302,32 @@ TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-pred
    _, params_grads = optimizer.minimize(cost)
 
 .. note::
-目前, FtrlOptimizer 不支持 sparse gradient
+     目前, FtrlOptimizer 不支持 sparse gradient
 
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_FtrlOptimizer` 
+
+
+
 
 .. _cn_api_fluid_optimizer_LarsMomentum:
 
 LarsMomentum
->>>>>>>>>>>>>>
+-------------------------------
 
-:code:`fluid.optimizer.LarsMomentumOptimizer` 的别名
+.. py:attribute::  paddle.fluid.optimizer.LarsMomentum
+
+``fluid.optimizer.LarsMomentumOptimizer`` 的别名
 
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_LarsMomentum` 
 
 .. _cn_api_fluid_optimizer_LarsMomentumOptimizer:
 
 LarsMomentumOptimizer
->>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.optimizer.LarsMomentumOptimizer(learning_rate, momentum, lars_coeff=0.001, lars_weight_decay=0.0005, regularization=None, name=None)
 
@@ -265,12 +359,14 @@ LARS支持的Momentum优化器
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_LarsMomentumOptimizer` 
+
+
+
 
 .. _cn_api_fluid_optimizer_ModelAverage:
 
 ModelAverage
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.optimizer.ModelAverage(average_window_rate, min_average_window=10000, max_average_window=10000, regularization=None, name=None)
 
@@ -315,12 +411,25 @@ ModelAverage
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_ModelAverage` 
+
+
+
+
+.. _cn_api_fluid_optimizer_Momentum:
+
+Momentum
+-------------------------------
+
+.. py:attribute::  paddle.fluid.optimizer.Momentum
+
+``MomentumOptimizer`` 的别名
+
+
 
 .. _cn_api_fluid_optimizer_MomentumOptimizer:
 
 MomentumOptimizer
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class::  paddle.fluid.optimizer.MomentumOptimizer(learning_rate, momentum, use_nesterov=False, regularization=None, name=None)
 
@@ -349,12 +458,14 @@ MomentumOptimizer
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_MomentumOptimizer` 
+
+
+
 
 .. _cn_api_fluid_optimizer_RMSPropOptimizer:
 
 RMSPropOptimizer
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.optimizer.RMSPropOptimizer(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, regularization=None, name=None)
 
@@ -406,12 +517,27 @@ RMSPropOptimizer
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_RMSPropOptimizer` 
+
+
+
+.. _cn_api_fluid_optimizer_SGD:
+
+SGD
+-------------------------------
+
+.. py:attribute::  paddle.fluid.optimizer.SGD
+
+``SGDOptimizer`` 的别名
+
+
+
+
+
 
 .. _cn_api_fluid_optimizer_SGDOptimizer:
 
 SGDOptimizer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.optimizer.SGDOptimizer(learning_rate, regularization=None, name=None)
 
@@ -438,5 +564,7 @@ SGDOptimizer
 
 
 
-英文版API文档: :ref:`api_fluid_optimizer_SGDOptimizer` 
+
+
+
 

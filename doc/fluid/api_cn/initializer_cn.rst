@@ -1,7 +1,6 @@
-
-#################
+###################
  fluid.initializer
-#################
+###################
 
 
 .. _cn_api_fluid_initializer_Bilinear:
@@ -9,9 +8,9 @@
 Bilinear
 >>>>>>>>>>>
 
-.. py:function:: paddle.fluid.initializer.Bilinear
+.. py:attribute:: paddle.fluid.initializer.Bilinear
 
- ``BilinearInitializer``的别名
+``BilinearInitializer`` 的别名
 
 
 .. _cn_api_fluid_initializer_BilinearInitializer:
@@ -45,16 +44,16 @@ num_filters = C和groups = C 表示这是按通道转置的卷积函数。滤波
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_BilinearInitializer` 
+
 
 .. _cn_api_fluid_initializer_Constant:
 
 Constant
 >>>>>>>>>>
 
-.. py:function:: paddle.fluid.initializer.Constant
+.. py:attribute:: paddle.fluid.initializer.Constant
 
- ``ConstantInitializer``的别名
+``ConstantInitializer`` 的别名
 
 
 .. _cn_api_fluid_initializer_ConstantInitializer:
@@ -78,7 +77,7 @@ ConstantInitializer
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_ConstantInitializer` 
+
 
 
 
@@ -103,7 +102,7 @@ force_init_on_cpu
         create_op('force_cpu': force_init_on_cpu())
 
 
-英文版API文档: :ref:`api_fluid_initializer_force_init_on_cpu`
+
 
 
 
@@ -130,7 +129,7 @@ init_on_cpu
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_init_on_cpu` 
+
 
 
 .. _cn_api_fluid_initializer_MSRA:
@@ -138,9 +137,9 @@ init_on_cpu
 MSRA
 >>>>>>
 
-.. py:function:: paddle.fluid.initializer.MSRA
+.. py:attribute:: paddle.fluid.initializer.MSRA
 
- ``MSRAInitializer``的别名
+``MSRAInitializer`` 的别名
 
 .. _cn_api_fluid_initializer_MSRAInitializer:
 
@@ -184,7 +183,7 @@ MSRAInitializer
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_MSRAInitializer` 
+
 
 
 .. _cn_api_fluid_initializer_Normal:
@@ -192,9 +191,9 @@ MSRAInitializer
 Normal
 >>>>>>>>
 
-.. py:function:: paddle.fluid.initializer.Normal
+.. py:attribute:: paddle.fluid.initializer.Normal
 
- ``NormalInitializer``的别名
+``NormalInitializer`` 的别名
 
 
 .. _cn_api_fluid_initializer_NormalInitializer:
@@ -222,16 +221,16 @@ NormalInitializer
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_NormalInitializer` 
+
 
 .. _cn_api_fluid_initializer_TruncatedNormal:
 
 TruncatedNormal
 >>>>>>>>>>>>>>>>>
 
-.. py:function:: paddle.fluid.initializer.TruncatedNormal
+.. py:attribute:: paddle.fluid.initializer.TruncatedNormal
 
- ``TruncatedNormalInitializer``的别名
+``TruncatedNormalInitializer`` 的别名
 
 
 .. _cn_api_fluid_initializer_TruncatedNormalInitializer:
@@ -260,7 +259,7 @@ Random Truncated Normal（高斯）分布初始化器
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_TruncatedNormalInitializer` 
+
 
 
 .. _cn_api_fluid_initializer_Uniform:
@@ -268,12 +267,13 @@ Random Truncated Normal（高斯）分布初始化器
 Uniform
 >>>>>>>>>
 
+.. py:attribute:: paddle.fluid.initializer.Uniform
+
+``UniformInitializer`` 的别名
+
+
+
 .. _cn_api_fluid_initializer_UniformInitializer:
-
-.. py:class:: paddle.fluid.initializer.Uniform
-
- ``UniformInitializer``的别名
-
 
 UniformInitializer
 >>>>>>>>>>>>
@@ -297,16 +297,24 @@ UniformInitializer
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_UniformInitializer` 
 
-.. _api_fluid_initializer_Xavier:
+
+
+
+
+.. _cn_api_fluid_initializer_Xavier:
 
 Xavier
 >>>>>>>>>
 
-.. py:function:: paddle.fluid.initializer.Xavier
+.. py:attribute:: paddle.fluid.initializer.Xavier
 
- ``XavierInitializer``的别名
+``XavierInitializer`` 的别名
+
+
+
+
+
 
 .. _cn_api_fluid_initializer_XavierInitializer:
 
@@ -351,5 +359,5 @@ XavierInitializer
 
 
 
-英文版API文档: :ref:`api_fluid_initializer_XavierInitializer` 
+
 

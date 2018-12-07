@@ -1,4 +1,3 @@
-
 #################
  fluid.clip
 #################
@@ -8,7 +7,7 @@
 .. _cn_api_fluid_clip_ErrorClipByValue:
 
 ErrorClipByValue
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.clip.ErrorClipByValue(max, min=None)
 
@@ -34,12 +33,14 @@ ErrorClipByValue
 
 
 
-英文版API文档: :ref:`api_fluid_clip_ErrorClipByValue` 
+
+
+
 
 .. _cn_api_fluid_clip_GradientClipByGlobalNorm:
 
 GradientClipByGlobalNorm
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.clip.GradientClipByGlobalNorm(clip_norm, group_name='default_group')
  
@@ -78,12 +79,14 @@ GradientClipByGlobalNorm
 
 
 
-英文版API文档: :ref:`api_fluid_clip_GradientClipByGlobalNorm` 
+
+
+
 
 .. _cn_api_fluid_clip_GradientClipByNorm:
 
 GradientClipByNorm
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.clip.GradientClipByNorm(clip_norm)
 
@@ -116,12 +119,14 @@ GradientClipByNorm
 
 
 
-英文版API文档: :ref:`api_fluid_clip_GradientClipByNorm` 
+
+
+
 
 .. _cn_api_fluid_clip_GradientClipByValue:
 
 GradientClipByValue
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.clip.GradientClipByValue(max, min=None)
 
@@ -152,5 +157,7 @@ GradientClipByValue
      
 
 
-英文版API文档: :ref:`api_fluid_clip_GradientClipByValue` 
+
+
+
 
