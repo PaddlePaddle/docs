@@ -13,8 +13,6 @@ cuda_profiler
 ..  autofunction:: paddle.fluid.profiler.cuda_profiler
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_profiler_cuda_profiler`
-
 .. _api_fluid_profiler_profiler:
 
 profiler
@@ -22,8 +20,6 @@ profiler
 
 ..  autofunction:: paddle.fluid.profiler.profiler
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_profiler_profiler`
 
 .. _api_fluid_profiler_reset_profiler:
 
@@ -33,8 +29,6 @@ reset_profiler
 ..  autofunction:: paddle.fluid.profiler.reset_profiler
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_profiler_reset_profiler`
-
 .. _api_fluid_profiler_start_profiler:
 
 start_profiler
@@ -43,8 +37,6 @@ start_profiler
 ..  autofunction:: paddle.fluid.profiler.start_profiler
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_profiler_start_profiler`
-
 .. _api_fluid_profiler_stop_profiler:
 
 stop_profiler
@@ -52,6 +44,4 @@ stop_profiler
 
 ..  autofunction:: paddle.fluid.profiler.stop_profiler
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_profiler_stop_profiler`
 

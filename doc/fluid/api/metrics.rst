@@ -14,8 +14,6 @@ Accuracy
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_metrics_Accuracy`
-
 .. _api_fluid_metrics_Auc:
 
 Auc
@@ -24,8 +22,6 @@ Auc
 ..  autoclass:: paddle.fluid.metrics.Auc
     :members:
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_metrics_Auc`
 
 .. _api_fluid_metrics_ChunkEvaluator:
 
@@ -36,8 +32,6 @@ ChunkEvaluator
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_metrics_ChunkEvaluator`
-
 .. _api_fluid_metrics_CompositeMetric:
 
 CompositeMetric
@@ -46,8 +40,6 @@ CompositeMetric
 ..  autoclass:: paddle.fluid.metrics.CompositeMetric
     :members:
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_metrics_CompositeMetric`
 
 .. _api_fluid_metrics_DetectionMAP:
 
@@ -58,8 +50,6 @@ DetectionMAP
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_metrics_DetectionMAP`
-
 .. _api_fluid_metrics_EditDistance:
 
 EditDistance
@@ -68,8 +58,6 @@ EditDistance
 ..  autoclass:: paddle.fluid.metrics.EditDistance
     :members:
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_metrics_EditDistance`
 
 .. _api_fluid_metrics_MetricBase:
 
@@ -80,8 +68,6 @@ MetricBase
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_metrics_MetricBase`
-
 .. _api_fluid_metrics_Precision:
 
 Precision
@@ -91,8 +77,6 @@ Precision
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_metrics_Precision`
-
 .. _api_fluid_metrics_Recall:
 
 Recall
@@ -101,6 +85,4 @@ Recall
 ..  autoclass:: paddle.fluid.metrics.Recall
     :members:
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_metrics_Recall`
 

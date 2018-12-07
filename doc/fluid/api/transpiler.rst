@@ -14,8 +14,6 @@ DistributeTranspiler
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_transpiler_DistributeTranspiler`
-
 .. _api_fluid_transpiler_DistributeTranspilerConfig:
 
 DistributeTranspilerConfig
@@ -24,8 +22,6 @@ DistributeTranspilerConfig
 ..  autoclass:: paddle.fluid.transpiler.DistributeTranspilerConfig
     :members:
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_transpiler_DistributeTranspilerConfig`
 
 .. _api_fluid_transpiler_HashName:
 
@@ -36,8 +32,6 @@ HashName
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_transpiler_HashName`
-
 .. _api_fluid_transpiler_memory_optimize:
 
 memory_optimize
@@ -45,8 +39,6 @@ memory_optimize
 
 ..  autofunction:: paddle.fluid.transpiler.memory_optimize
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_transpiler_memory_optimize`
 
 .. _api_fluid_transpiler_release_memory:
 
@@ -56,8 +48,6 @@ release_memory
 ..  autofunction:: paddle.fluid.transpiler.release_memory
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_transpiler_release_memory`
-
 .. _api_fluid_transpiler_RoundRobin:
 
 RoundRobin
@@ -66,6 +56,4 @@ RoundRobin
 ..  autoclass:: paddle.fluid.transpiler.RoundRobin
     :members:
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_transpiler_RoundRobin`
 

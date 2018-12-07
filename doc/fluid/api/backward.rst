@@ -13,5 +13,3 @@ append_backward
 ..  autofunction:: paddle.fluid.backward.append_backward
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_backward_append_backward`
-

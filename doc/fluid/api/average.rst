@@ -14,5 +14,3 @@ WeightedAverage
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_average_WeightedAverage`
-
