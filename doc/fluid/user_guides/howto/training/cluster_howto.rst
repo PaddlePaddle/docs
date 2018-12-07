@@ -1,6 +1,6 @@
-.. _cluster_howto
+.. _cluster_howto:
 
-Fluid分布式训练使用手册
+分布式训练使用手册
 ====================
 
 分布式训练基本思想
@@ -174,7 +174,7 @@ parameter server上。如果需要使用其他，可以传入其他的方法，�
 
 .. code-block:: python
 
-  if role == "TRAINER": 
+  if role == "TRAINER":
       fluid.memory_optimize(fluid.default_main_program(), skip_grads=True)
   t = fluid.DistributeTranspiler()
   t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)

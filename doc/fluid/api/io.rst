@@ -13,8 +13,6 @@ load_inference_model
 ..  autofunction:: paddle.fluid.io.load_inference_model
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_io_load_inference_model`
-
 .. _api_fluid_io_load_params:
 
 load_params
@@ -22,8 +20,6 @@ load_params
 
 ..  autofunction:: paddle.fluid.io.load_params
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_io_load_params`
 
 .. _api_fluid_io_load_persistables:
 
@@ -33,8 +29,6 @@ load_persistables
 ..  autofunction:: paddle.fluid.io.load_persistables
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_io_load_persistables`
-
 .. _api_fluid_io_load_vars:
 
 load_vars
@@ -42,8 +36,6 @@ load_vars
 
 ..  autofunction:: paddle.fluid.io.load_vars
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_io_load_vars`
 
 .. _api_fluid_io_save_inference_model:
 
@@ -53,8 +45,6 @@ save_inference_model
 ..  autofunction:: paddle.fluid.io.save_inference_model
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_io_save_inference_model`
-
 .. _api_fluid_io_save_params:
 
 save_params
@@ -62,8 +52,6 @@ save_params
 
 ..  autofunction:: paddle.fluid.io.save_params
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_io_save_params`
 
 .. _api_fluid_io_save_persistables:
 
@@ -73,8 +61,6 @@ save_persistables
 ..  autofunction:: paddle.fluid.io.save_persistables
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_io_save_persistables`
-
 .. _api_fluid_io_save_vars:
 
 save_vars
@@ -82,6 +68,4 @@ save_vars
 
 ..  autofunction:: paddle.fluid.io.save_vars
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_io_save_vars`
 

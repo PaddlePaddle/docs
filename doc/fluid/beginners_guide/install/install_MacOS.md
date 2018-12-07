@@ -18,8 +18,8 @@
 在MacOS的系统下我们提供3种安装方式：
 
 * pip安装（不支持GPU版本）(python3下不支持分布式）
-* Docker安装（不支持GPU版本）
-* Docker源码编译安装（不支持GPU版本）
+* Docker安装（不支持GPU版本）(镜像中python的版本为2.7)
+* Docker源码编译安装（不支持GPU版本）(镜像中的python版本为2.7，3.5，3.6，3.7)
 
 
 **使用pip安装**（最便捷的安装方式），我们为您提供pip安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题。
@@ -63,8 +63,6 @@
 	
      
 	
-	    
-	    
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
 
@@ -114,6 +112,7 @@
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
+
 <!--TODO: When we support pip install mode on MacOS, we can write on this part -->
 
 
@@ -124,7 +123,7 @@
 
 <br/><br/>
 ## ***如何卸载***
-请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
+请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令，请使用相应版本的pip）：
 
 * ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`     
 
