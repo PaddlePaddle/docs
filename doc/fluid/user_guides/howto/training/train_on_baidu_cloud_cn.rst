@@ -1,6 +1,6 @@
-.. _train_on_baidu_cloud_cn
+.. _train_on_baidu_cloud_cn:
 
-在百度云上启动Fluid分布式训练
+在百度云启动Fluid分布式训练
 =========================
 
 PaddlePaddle Fluid分布式训练，可以不依赖集群系统（比如MPI，Kubernetes）启动分布式训练。
@@ -113,7 +113,7 @@ PaddlePaddle Fluid分布式训练，可以不依赖集群系统（比如MPI，Ku
 
       exe.run(fluid.default_startup_program())
 
-      
+
       for pass_id in range(PASS_NUM):
           for batch_id, data in enumerate(train_reader()):
               acc_np, avg_loss_np = exe.run(fluid.default_main_program(),
@@ -155,7 +155,7 @@ PaddlePaddle Fluid分布式训练，可以不依赖集群系统（比如MPI，Ku
 
 假设我们创建了2台GPU服务器，ip分别是 :code:`172.16.0.5,172.16.0.6` ，然后在第一台服务器上，
 先创建训练程序文件 :code:`dist_train_demo.py` ，从
-`这里 <https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/training/src/dist_train_demo.py>`_ 
+`这里 <https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/training/src/dist_train_demo.py>`_
 下载代码。然后编写 :code:`fabfile.py` 脚本，用于控制在不同服务器上启动训练任务的parameter server和trainer：
 
 .. code-block:: python
