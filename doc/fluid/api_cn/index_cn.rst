@@ -1,6 +1,6 @@
-=============
-API Reference
-=============
+=====
+API
+=====
 
 ..  toctree::
     :maxdepth: 1
@@ -12,7 +12,6 @@ API Reference
     clip_cn.rst
     data_feeder_cn.rst
     executor_cn.rst
-    index_cn.rst
     initializer_cn.rst
     io_cn.rst
     layers_cn.rst
