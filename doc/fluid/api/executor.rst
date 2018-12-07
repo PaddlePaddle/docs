@@ -14,8 +14,6 @@ Executor
     :members:
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_executor_Executor`
-
 .. _api_fluid_executor_global_scope:
 
 global_scope
@@ -24,8 +22,6 @@ global_scope
 ..  autofunction:: paddle.fluid.executor.global_scope
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_executor_global_scope`
-
 .. _api_fluid_executor_scope_guard:
 
 scope_guard
@@ -33,6 +29,4 @@ scope_guard
 
 ..  autofunction:: paddle.fluid.executor.scope_guard
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_executor_scope_guard`
 
