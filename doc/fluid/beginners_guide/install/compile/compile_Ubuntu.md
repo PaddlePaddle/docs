@@ -54,9 +54,9 @@
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
-5. 切换到较稳定版本下进行编译：
+5. 切换到较稳定release分支下进行编译：(注意，python3.6、python3.7版本是从1.2.0分支开始支持)
 
-	`git checkout v1.1`
+	`git checkout release/1.2.0`
 
 6. 创建并进入/paddle/build路径下：
 
@@ -65,8 +65,7 @@
 7. 使用以下命令安装相关依赖：
 
 		For Python2: pip install protobuf==3.1.0
-		For Python3: pip install protobuf==3.1.0
-
+		For Python3: pip3 install protobuf==3.1.0
 
 	> 安装protobuf 3.1.0。
 
@@ -77,16 +76,15 @@
 8. 执行cmake：
 
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO: Link 编译选项表到这里-->
-
+	>请注意修改参数`-DPY_VERSION`为您当前环境下使用的python版本
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
-
+		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 
 9. 执行编译：
@@ -114,32 +112,25 @@
 <br/><br/>
 ### ***本机编译***
 
-
 **请严格按照以下指令顺序执行**
-
 
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
 
 2. 更新`apt`的源： `apt update`
 
-2. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
+3. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 
-
-	* a. 安装Python-dev:
-
+	* a. 安装Python-dev:（请安装与当前环境python版本匹配的python3.x-dev）
 
 			For Python2: apt install python-dev
 			For Python3: apt install python3.5-dev
 
-
-	* b. 安装pip: (请保证拥有9.0.1及以上版本的pip):
-
+	* b. 安装pip: (请保证拥有9.0.1及以上版本的pip):（请注意修改对应python3的版本）
 
 			For Python2: apt install python-pip
-			For Python3: apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip
+			For Python3: apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt install curl && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip
 
-
-	* c. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：
+	* c. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意修改python版本)
 
 		1.  `apt install virtualenv` 或 `pip install virtualenv` 或 `pip3 install virtualenv`
 		2.  `apt install virtualenvwrapper` 或 `pip install virtualenvwrapper` 或 `pip3 install virtualenvwrapper`
@@ -149,11 +140,9 @@
 		6.  按照`virtualenvwrapper.sh`中的安装方法安装`virtualwrapper`
 		7.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
+4. 进入虚环境：`workon paddle-venv`
 
-3. 进入虚环境：`workon paddle-venv`
-
-
-4. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
+5. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖：<!--TODO：Link 安装依赖表到这里-->
 
 	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`apt install`或者`pip install` 后跟依赖名称和版本安装:
 
@@ -179,12 +168,10 @@
 
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO：Link 安装选项表到这里-->
 
-
-	*  对于需要编译**CPU版本PaddlePaddle**的用户：
+	*  对于需要编译**CPU版本PaddlePaddle**的用户：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
 			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
@@ -193,10 +180,12 @@
 			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
 			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
 
-		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：
+		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
 				For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 				For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+				
+			>`-DPY_VERSION=3.5`请修改为安装环境的Python版本
 
 9. 使用以下命令来编译：
 

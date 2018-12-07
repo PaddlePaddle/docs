@@ -14,6 +14,8 @@ Bilinear
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_Bilinear`
+
 .. _api_fluid_initializer_BilinearInitializer:
 
 BilinearInitializer
@@ -22,6 +24,8 @@ BilinearInitializer
 ..  autoclass:: paddle.fluid.initializer.BilinearInitializer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_initializer_BilinearInitializer`
 
 .. _api_fluid_initializer_Constant:
 
@@ -32,6 +36,8 @@ Constant
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_Constant`
+
 .. _api_fluid_initializer_ConstantInitializer:
 
 ConstantInitializer
@@ -41,6 +47,8 @@ ConstantInitializer
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_ConstantInitializer`
+
 .. _api_fluid_initializer_force_init_on_cpu:
 
 force_init_on_cpu
@@ -49,6 +57,8 @@ force_init_on_cpu
 ..  autofunction:: paddle.fluid.initializer.force_init_on_cpu
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_force_init_on_cpu`
+
 .. _api_fluid_initializer_init_on_cpu:
 
 init_on_cpu
@@ -56,6 +66,8 @@ init_on_cpu
 
 ..  autofunction:: paddle.fluid.initializer.init_on_cpu
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_initializer_init_on_cpu`
 
 .. _api_fluid_initializer_MSRA:
 
@@ -66,6 +78,8 @@ MSRA
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_MSRA`
+
 .. _api_fluid_initializer_MSRAInitializer:
 
 MSRAInitializer
@@ -74,6 +88,8 @@ MSRAInitializer
 ..  autoclass:: paddle.fluid.initializer.MSRAInitializer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_initializer_MSRAInitializer`
 
 .. _api_fluid_initializer_Normal:
 
@@ -84,6 +100,8 @@ Normal
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_Normal`
+
 .. _api_fluid_initializer_NormalInitializer:
 
 NormalInitializer
@@ -92,6 +110,8 @@ NormalInitializer
 ..  autoclass:: paddle.fluid.initializer.NormalInitializer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_initializer_NormalInitializer`
 
 .. _api_fluid_initializer_TruncatedNormal:
 
@@ -102,6 +122,8 @@ TruncatedNormal
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_TruncatedNormal`
+
 .. _api_fluid_initializer_TruncatedNormalInitializer:
 
 TruncatedNormalInitializer
@@ -110,6 +132,8 @@ TruncatedNormalInitializer
 ..  autoclass:: paddle.fluid.initializer.TruncatedNormalInitializer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_initializer_TruncatedNormalInitializer`
 
 .. _api_fluid_initializer_Uniform:
 
@@ -120,6 +144,8 @@ Uniform
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_Uniform`
+
 .. _api_fluid_initializer_UniformInitializer:
 
 UniformInitializer
@@ -128,6 +154,8 @@ UniformInitializer
 ..  autoclass:: paddle.fluid.initializer.UniformInitializer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_initializer_UniformInitializer`
 
 .. _api_fluid_initializer_Xavier:
 
@@ -138,6 +166,8 @@ Xavier
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_initializer_Xavier`
+
 .. _api_fluid_initializer_XavierInitializer:
 
 XavierInitializer
@@ -146,4 +176,6 @@ XavierInitializer
 ..  autoclass:: paddle.fluid.initializer.XavierInitializer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_initializer_XavierInitializer`
 
