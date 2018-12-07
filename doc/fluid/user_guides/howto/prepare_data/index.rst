@@ -35,14 +35,14 @@ Python Reader是纯的Python端接口，数据传入与模型训练/预测过程
 数据，具体请参考:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    feeding_data.rst
 
 Python Reader支持组batch、shuffle等高级功能，具体请参考：
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    reader.md
 
@@ -52,17 +52,6 @@ py_reader接口异步方式
 Fluid提供PyReader异步数据传入方式，数据传入与模型训练/预测过程是异步的，效率较高。具体请参考：
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    use_py_reader.rst
-
-
-LoD-Tensor简介
-#####################
-
-LoD-Tensor是Fluid中特有的概念，它在Tensor基础上附加了序列信息，支持处理变长数据。具体请参考：
-
-..  toctree::
-    :maxdepth:2
-
-    lod_tensor.md

@@ -43,21 +43,28 @@
 <br/><br/>
 ### ***使用pip安装***
 
+#### ****直接安装****
+
 您可以直接粘贴以下命令到命令行来安装PaddlePaddle(适用于ubuntu16.04及以上安装CPU-ONLY的版本)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
 
 Python2.7：
 
 	apt update && apt install -y python-dev python-pip && pip install paddlepaddle
 
-Python3.5（该指令适用于本机未安装python2的用户，否则，请卸载python2之后再使用本指令）：        
-
+Python3.5（该指令适用于本机未安装python2的用户，否则，请卸载python2之后再使用本指令）： 
+  
+  apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get install -y curl python3.5 python3.5-dev wget vim git && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip && pip3 install paddlepaddle
 	
-	apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get install -y curl python3.5 python3.5-dev wget vim git && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip && pip3 install paddlepaddle
-	
+Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上安装差异较大，不一一描述其安装过程，执行以下命令前，我们认为您已经准备好python3.6或3.7的环境，并安装了对应版本的python3-dev以及pip3）
+    
+    apt update && pip3 install paddlepaddle
 
+<br/>
+
+#### ****分步安装****
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
 
-`uname -m && cat /etc/*release`
+    uname -m && cat /etc/*release
 
 > 上面的命令将会显示本机的操作系统和位数信息，请确保您的计算机和本教程的要求一致。
 
@@ -65,25 +72,24 @@ Python3.5（该指令适用于本机未安装python2的用户，否则，请卸�
 其次，您的电脑需要满足以下任一要求：
 
 *	Python2.7.x (dev)，Pip >= 9.0.1
-*	Python3.5.x (dev)，Pip3 >= 9.0.1
+*	Python3.5+.x (dev)，Pip3 >= 9.0.1
 
-	> 您的Ubuntu上可能已经安装pip请使用pip -V或pip3 -V来确认我们建议使用pip 9.0.1或更高版本来安装
+> 您的Ubuntu上可能已经安装pip请使用pip -V或pip3 -V来确认我们建议使用pip 9.0.1或更高版本来安装
 
 	更新apt的源：   `apt update`
 
-	使用以下命令安装或升级Python和pip到需要的版本：
+使用以下命令安装或升级Python和pip到需要的版本：（python3.6、python3.7安装pip和dev在不同Ubuntu版本下差别较大，不一一描述）
 
 	- For python2： `sudo apt install python-dev python-pip`
-	- For python3：`sudo apt install python3.5-dev` and `curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip`
-
-	> 即使您的环境中已经有Python2或Python3也需要安装Python-dev或Python3.5-dev。
+	- For python3.5：`sudo apt install python3.5-dev` and `curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip`
+	- For python3.6、python3.7： 我们默认您应准备好python3.6（3.7）以及对应版本的dev和pip3
+> 即使您的环境中已经有Python2或Python3也需要安装Python-dev或Python3.5（3.6、3.7）-dev。
 
 现在，让我们来安装PaddlePaddle：
 
 1. 使用pip install来安装PaddlePaddle
 
-	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`        
-	
+	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
 
 	* 对于需要**GPU版本PaddlePaddle**的用户：`pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle-gpu`
 	
@@ -92,11 +98,9 @@ Python3.5（该指令适用于本机未安装python2的用户，否则，请卸�
 			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`       	 	          
 			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0` 
 
-
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 9/cuDNN v7的PaddlePaddle版本。
 
-
-	对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。
+	* 对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle --ignore-installed six`（GPU）解决。
 
 	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]` 或 `pip3 install paddlepaddle==[版本号]`
 
@@ -126,16 +130,13 @@ Python3.5（该指令适用于本机未安装python2的用户，否则，请卸�
 
 1. 使用以下指令拉取我们为您预安装好PaddlePaddle的镜像：
 
-
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`
 
-
 	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1-gpu-cuda9.0-cudnn7`
-
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 

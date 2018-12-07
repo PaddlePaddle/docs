@@ -74,7 +74,7 @@
 8. 使用以下命令安装相关依赖：
 
 		For Python2: pip install protobuf==3.1.0
-		For Python3: pip install protobuf==3.1.0
+		For Python3: pip3 install protobuf==3.1.0
 
 
 	> 安装protobuf 3.1.0。
@@ -128,7 +128,7 @@
 
 2. 安装python以及pip：
 
-	> **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x), pip以及其他的依赖，这会大大降低您安装编译的难度。
+	> **请不要使用MacOS中自带python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x、python3.6.x、python3.7.x), pip以及其他的依赖，这会大大降低您安装编译的难度。
 
 		For python2: brew install python@2
 		For python3: 使用Python官网安装
@@ -180,7 +180,7 @@
 
 	- `cd Paddle`
 
-7. 切换到较稳定release分支下进行编译：
+7. 切换到较稳定release分支下进行编译：(注意，python3.6、python3.7版本是从1.2.0分支开始支持)
 
 	`git checkout release/1.0.0`
 
@@ -192,12 +192,12 @@
 
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO：Link 安装选项表到这里-->
 
-
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
 			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
 			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
+	>`-DPY_VERSION=3.5`请修改为安装环境的Python版本
 
 
 10. 使用以下命令来编译：

@@ -14,6 +14,8 @@ L1Decay
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_regularizer_L1Decay`
+
 .. _api_fluid_regularizer_L1DecayRegularizer:
 
 L1DecayRegularizer
@@ -22,6 +24,8 @@ L1DecayRegularizer
 ..  autoclass:: paddle.fluid.regularizer.L1DecayRegularizer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_regularizer_L1DecayRegularizer`
 
 .. _api_fluid_regularizer_L2Decay:
 
@@ -32,6 +36,8 @@ L2Decay
     :members:
     :noindex:
 
+Read Chinese Version: :ref:`cn_api_fluid_regularizer_L2Decay`
+
 .. _api_fluid_regularizer_L2DecayRegularizer:
 
 L2DecayRegularizer
@@ -40,4 +46,6 @@ L2DecayRegularizer
 ..  autoclass:: paddle.fluid.regularizer.L2DecayRegularizer
     :members:
     :noindex:
+
+Read Chinese Version: :ref:`cn_api_fluid_regularizer_L2DecayRegularizer`
 
