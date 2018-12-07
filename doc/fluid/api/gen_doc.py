@@ -86,7 +86,6 @@ class DocGenerator(object):
     :noindex:
 
 '''.format(self.module_name, name))
-        self._print_cn_ref(name)
 
     def print_method(self, name):
         self._print_ref_(name)
@@ -95,7 +94,6 @@ class DocGenerator(object):
     :noindex:
 
 '''.format(self.module_name, name))
-        self._print_cn_ref(name)
 
     def _print_header_(self, name, dot, is_title):
         dot_line = dot * len(name)
@@ -111,9 +109,6 @@ class DocGenerator(object):
     def _print_ref_(self, name):
         self.stream.write(".. _api_{0}_{1}:\n\n".format("_".join(
             self.module_name.split(".")), name))
-    def _print_cn_ref(self, name):
-        self.stream.write("Read Chinese Version: :ref:`cn_api_{0}_{1}`\n\n".format("_".join(
-            self.module_name.split(".")),name))
 
 
 def main():
