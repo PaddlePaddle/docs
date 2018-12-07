@@ -17,7 +17,7 @@ Fluid支持两种数据输入方式，包括：
 方法送入训练/预测数据，C++端的训练/预测程序调用队列的 :code:`pop` 方法取出Python端送入的数据。PyReader可与
 :code:`double_buffer` 配合使用，实现数据读取和训练/预测的异步执行。
 
-具体使用方法请参考 :ref:`api_fluid_layers_py_reader`。
+具体使用方法请参考 :ref:`cn_api_fluid_layers_py_reader`。
 
 
 数据输出
@@ -29,5 +29,5 @@ Fluid支持在训练/预测阶段获取当前batch的数据。
 fetch期望的输出变量，通过设置 :code:`return_numpy` 参数设置是否将输出数据转为numpy array。
 若 :code:`return_numpy` 为 :code:`False` ，则返回 :code:`LoDTensor` 类型数据。
 
-具体使用方式请参考相关API文档 :ref:`api_fluid_executor_Executor` 和
-:ref:`api_fluid_ParallelExecutor`。
+具体使用方式请参考相关API文档 :ref:`cn_api_fluid_executor_Executor` 和
+:ref:`cn_api_fluid_ParallelExecutor`。

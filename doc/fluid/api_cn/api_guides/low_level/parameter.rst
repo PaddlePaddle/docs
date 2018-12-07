@@ -4,7 +4,7 @@
 模型参数
 #########
 
-模型参数为模型中的weight和bias统称，在fluid中对应fluid.Parameter类，继承自fluid.Variable，是一种可持久化的variable。模型的训练就是不断学习更新模型参数的过程。模型参数相关的属性可以通过 :ref:`api_fluid_param_attr_ParamAttr` 来配置，可配置内容有：
+模型参数为模型中的weight和bias统称，在fluid中对应fluid.Parameter类，继承自fluid.Variable，是一种可持久化的variable。模型的训练就是不断学习更新模型参数的过程。模型参数相关的属性可以通过 :ref:`cn_api_fluid_param_attr_ParamAttr` 来配置，可配置内容有：
 
 - 初始化方式
 - 正则化
@@ -33,7 +33,7 @@ fluid通过设置 :code:`ParamAttr` 的 :code:`initializer` 属性为单个param
 
 可用别名：Bilinear
 
-API请参考：:ref:`api_fluid_initializer_BilinearInitializer`
+API请参考：:ref:`cn_api_fluid_initializer_BilinearInitializer`
 
 2. ConstantInitializer
 ----------------------
@@ -42,7 +42,7 @@ API请参考：:ref:`api_fluid_initializer_BilinearInitializer`
 
 可用别名：Constant
 
-API请参考：:ref:`api_fluid_initializer_ConstantInitializer`
+API请参考：:ref:`cn_api_fluid_initializer_ConstantInitializer`
 
 3. MSRAInitializer
 ------------------
@@ -51,7 +51,7 @@ API请参考：:ref:`api_fluid_initializer_ConstantInitializer`
 
 可用别名：MSRA
 
-API请参考：:ref:`api_fluid_initializer_MSRAInitializer`
+API请参考：:ref:`cn_api_fluid_initializer_MSRAInitializer`
 
 4. NormalInitializer
 ---------------------
@@ -60,7 +60,7 @@ API请参考：:ref:`api_fluid_initializer_MSRAInitializer`
 
 可用别名：Normal
 
-API请参考：:ref:`api_fluid_initializer_NormalInitializer`
+API请参考：:ref:`cn_api_fluid_initializer_NormalInitializer`
 
 5. TruncatedNormalInitializer
 -----------------------------
@@ -69,7 +69,7 @@ API请参考：:ref:`api_fluid_initializer_NormalInitializer`
 
 可用别名：TruncatedNormal
 
-API请参考：:ref:`api_fluid_initializer_TruncatedNormalInitializer`
+API请参考：:ref:`cn_api_fluid_initializer_TruncatedNormalInitializer`
 
 6. UniformInitializer
 --------------------
@@ -78,7 +78,7 @@ API请参考：:ref:`api_fluid_initializer_TruncatedNormalInitializer`
 
 可用别名：Uniform
 
-API请参考：:ref:`api_fluid_initializer_UniformInitializer`
+API请参考：:ref:`cn_api_fluid_initializer_UniformInitializer`
 
 7. XavierInitializer
 --------------------
@@ -87,7 +87,7 @@ API请参考：:ref:`api_fluid_initializer_UniformInitializer`
 
 可用别名：Xavier
 
-API请参考：:ref:`api_fluid_initializer_XavierInitializer`
+API请参考：:ref:`cn_api_fluid_initializer_XavierInitializer`
 
 正则化方式
 =============
@@ -102,8 +102,8 @@ fluid通过设置 :code:`ParamAttr` 的 :code:`regularizer` 属性为单个param
 
 以下为fluid支持的正则化方式：
 
-- :ref:`api_fluid_regularizer_L1DecayRegularizer` (别名：L1Decay)
-- :ref:`api_fluid_regularizer_L2DecayRegularizer` (别名：L2Decay)
+- :ref:`cn_api_fluid_regularizer_L1DecayRegularizer` (别名：L1Decay)
+- :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` (别名：L2Decay)
 
 Clipping
 ==========
@@ -124,14 +124,14 @@ fluid通过设置 :code:`ParamAttr` 的 :code:`gradient_clip` 属性为单个par
 
 用来将一个tensor的值clipping到指定范围。
 
-API请参考：:ref:`api_fluid_clip_ErrorClipByValue`
+API请参考：:ref:`cn_api_fluid_clip_ErrorClipByValue`
 
 2. GradientClipByGlobalNorm
 ---------------------------
 
 用来将多个Tensor的global-norm限制在 :code:`clip_norm` 以内。
 
-API请参考：:ref:`api_fluid_clip_GradientClipByGlobalNorm`
+API请参考：:ref:`cn_api_fluid_clip_GradientClipByGlobalNorm`
 
 3. GradientClipByNorm
 ---------------------
@@ -139,14 +139,14 @@ API请参考：:ref:`api_fluid_clip_GradientClipByGlobalNorm`
 将Tensor的l2-norm限制在 :code:`max_norm` 以内。如果Tensor的l2-norm超过了 :code:`max_norm` ，
 会将计算出一个 :code:`scale` ，该Tensor的所有值乘上计算出来的 :code:`scale` .
 
-API请参考：:ref:`api_fluid_clip_GradientClipByNorm`
+API请参考：:ref:`cn_api_fluid_clip_GradientClipByNorm`
 
 4. GradientClipByValue
 ----------------------
 
 将parameter对应的gradient的值限制在[min, max]范围内。
 
-API请参考：:ref:`api_fluid_clip_GradientClipByValue`
+API请参考：:ref:`cn_api_fluid_clip_GradientClipByValue`
 
 模型平均
 ========
@@ -164,4 +164,4 @@ fluid通过 :code:`ParamAttr` 的 :code:`do_model_average` 属性设置单个par
 
 平均后的parameters只是被用来进行测试和预测，其并不参与实际的训练过程。
 
-具体API请参考：:ref:`api_fluid_optimizer_ModelAverage`
+具体API请参考：:ref:`cn_api_fluid_optimizer_ModelAverage`
