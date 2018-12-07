@@ -1,14 +1,22 @@
-
 #################
  fluid.regularizer
 #################
+
+.. _cn_api_fluid_regularizer_L1Decay:
+
+L1Decay
+-------------------------------
+
+.. py:attribute::   paddle.fluid.regularizer.L1Decay
+
+``L1DecayRegularizer`` 的别名
 
 
 
 .. _cn_api_fluid_regularizer_L1DecayRegularizer:
 
 L1DecayRegularizer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.regularizer.L1DecayRegularizer(regularization_coeff=0.0)
 
@@ -39,10 +47,24 @@ L1正则将会稀疏化权重矩阵。
 
 英文版API文档: :ref:`api_fluid_regularizer_L1DecayRegularizer` 
 
+
+.. _cn_api_fluid_regularizer_L2Decay:
+
+L2Decay
+-------------------------------
+
+.. py:attribute::   paddle.fluid.regularizer.L2Decay
+
+``L2DecayRegularizer`` 的别名
+
+
+
+
+
 .. _cn_api_fluid_regularizer_L2DecayRegularizer:
 
 L2DecayRegularizer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.regularizer.L2DecayRegularizer(regularization_coeff=0.0)
 
@@ -69,4 +91,6 @@ L2DecayRegularizer
 
 
 英文版API文档: :ref:`api_fluid_regularizer_L2DecayRegularizer` 
+
+
 

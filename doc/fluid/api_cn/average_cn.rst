@@ -1,4 +1,3 @@
-
 #################
  fluid.average
 #################
@@ -8,7 +7,7 @@
 .. _cn_api_fluid_average_WeightedAverage:
 
 WeightedAverage
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.average.WeightedAverage
 
@@ -66,4 +65,6 @@ WeightedAverage
 
 
 英文版API文档: :ref:`api_fluid_average_WeightedAverage` 
+
+
 
