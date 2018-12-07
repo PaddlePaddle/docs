@@ -31,7 +31,7 @@ LoD 索引
 
 假设一个mini-batch中有3个句子，每个句子中分别包含3个、1个和2个单词。我们可以用(3+1+2)xD维Tensor 加上一些索引信息来表示这个mini-batch:
 
-.. code-block :: python
+.. code-block :: text
 
   3       1   2
   | | |   |   | |
@@ -42,7 +42,8 @@ LoD 索引
 
 让我们来看另一个2-level LoD-Tensor的例子：假设存在一个mini-batch中包含3个句子、1个句子和2个句子的文章，每个句子都由不同数量的单词组成，则这个mini-batch的样式可以看作：
 
-.. code-block :: python
+.. code-block :: text
+
 
   3            1 2
   3   2  4     1 2  3
@@ -51,7 +52,7 @@ LoD 索引
 
 表示的LoD信息为：
 
-.. code-block :: python
+.. code-block :: text
 
   [[3，1，2]/*level=0*/，[3，2，4，1，2，3]/*level=1*/]
 
@@ -60,7 +61,7 @@ LoD 索引
 
 在视觉任务中，时常需要处理视频和图像这些元素是高维的对象，假设现存的一个nimi-batch包含3个视频，分别有3个，1个和2个帧，每个帧都具有相同大小：640x480，则这个mini-batch可以被表示为：
 
-.. code-block :: python
+.. code-block :: text
 
   3     1  2
   口口口 口 口口
@@ -72,14 +73,14 @@ LoD 索引
 
 在传统的情况下，比如有N个固定大小的图像的mini-batch，LoD-Tensor表示为:
 
-.. code-block :: python
+.. code-block :: text
 
   1 1 1 1     1
   口口口口 ... 口
 
 在这种情况下，我们不会因为索引值都为1而忽略信息，仅仅把LoD-Tensor看作是一个普通的张量:
 
-.. code-block :: python
+.. code-block :: text
 
   口口口口 ... 口
 
@@ -94,13 +95,13 @@ LoDTensor的偏移表示
 
 在上述例子中，您可以计算基本元素的长度：
 
-.. code-block :: python
+.. code-block :: text
 
   3 2 4 1 2 3
 
 将其转换为偏移表示：
 
-.. code-block :: python
+.. code-block :: text
 
   0  3  5   9   10  12   15
      =  =   =   =   =    =
@@ -110,13 +111,13 @@ LoDTensor的偏移表示
 
 类似的，LoD的顶层长度
 
-.. code-block :: python
+.. code-block :: text
 
   3 1 2
 
 可以被转化成偏移形式：
 
-.. code-block :: python
+.. code-block :: text
 
   0 3 4   6
     = =   =
@@ -124,7 +125,7 @@ LoDTensor的偏移表示
 
 因此该LoD-Tensor的偏移表示为：
 
-.. code-block :: python
+.. code-block :: text
 
   0       3    4      6
     3 5 9   10   12 15
@@ -138,7 +139,7 @@ LoD-Tensor
 
 以上文提到的一个2-level LoD-Tensor为例：
 
-.. code-block :: python
+.. code-block :: text
 
   3           1  2
   3   2  4    1  2  3
@@ -147,11 +148,12 @@ LoD-Tensor
 - 以偏移量表示此 LoD-Tensor:[ [0,3,4,6] , [0,3,5,9,10,12,15] ]，
 - 以原始长度表达此 Lod-Tensor：recursive_sequence_lengths=[ [3-0 , 4-3 , 6-4] , [3-0 , 5-3 , 9-5 , 10-9 , 12-10 , 15-12] ]。
 
-以文字序列为例： [3,1,2] 可以表示这个mini-batch中有3篇文章，每篇文章分别有3、2、1个句子，[3,2,4,1,2,3] 表示每个句子中分别含有3、2、4、1、2、3个字。
+
+以文字序列为例： [3,1,2] 可以表示这个mini-batch中有3篇文章，每篇文章分别有3、1、2个句子，[3,2,4,1,2,3] 表示每个句子中分别含有3、2、4、1、2、3个字。
 
 recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最外层列表的size表示嵌套的层数，也就是lod-level的大小；内部的每个列表，对应表示每个lod-level下，每个元素的大小。
 
-.. code-block :: python
+.. code-block :: text
 
   #查看lod-tensor嵌套层数
   print len(recursive_seq_lengths)
