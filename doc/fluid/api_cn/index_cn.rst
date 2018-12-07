@@ -22,4 +22,4 @@ API Reference
     param_attr_cn.rst
     profiler_cn.rst
     regularizer_cn.rst
-    transpliter_cn.rst
+    transpiler_cn.rst
