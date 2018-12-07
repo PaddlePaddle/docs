@@ -1,14 +1,13 @@
-
 #################
  fluid.executor
 #################
 
 
 
-.. _cn_api_fluid_executor:
+.. _cn_api_fluid_executor_Executor:
 
 Executor
->>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 
 .. py:class:: paddle.fluid.executor.Executor (place)
@@ -107,5 +106,64 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 
 
-英文版API文档: :ref:`api_fluid_executor` 
+
+
+
+
+
+
+.. _cn_api_fluid_executor_global_scope:
+
+global_scope
+-------------------------------
+
+.. py:function:: paddle.fluid.global_scope()
+
+
+获取全局/默认作用域实例。很多api使用默认 ``global_scope`` ，例如 ``Executor.run`` 。
+
+返回：全局/默认作用域实例
+
+返回类型：Scope
+
+
+
+
+
+
+.. _cn_api_fluid_executor_scope_guard:
+
+scope_guard
+-------------------------------
+
+.. py:function:: paddle.fluid.scope_guard(*args, **kwds)
+
+
+修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。
+
+参数：
+	- **scope** - 新的全局/默认 scope。
+
+**代码示例**
+
+..  code-block:: python
+
+	import paddle.fluid as fluid
+	
+	new_scope = fluid.Scope()
+	with fluid.scope_guard(new_scope):
+		...
+
+
+
+
+
+
+
+
+
+
+
+
+
 

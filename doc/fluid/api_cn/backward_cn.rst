@@ -1,4 +1,3 @@
-
 #################
  fluid.backward
 #################
@@ -8,7 +7,7 @@
 .. _cn_api_fluid_backward_append_backward:
 
 append_backward
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.backward.append_backward(loss, parameter_list=None, no_grad_set=None, callbacks=None)
 
@@ -86,5 +85,7 @@ append_backward
 
 
 
-英文版API文档: :ref:`api_fluid_backward_append_backward` 
+
+
+
 
