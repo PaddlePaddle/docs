@@ -39,10 +39,10 @@
   空洞卷积相比普通卷积而言，卷积核在特征图上取值时不在连续，而是间隔的，这个间隔数称作dilation，等于1时，即为普通卷积，空洞卷积相比普通卷积的感受野更大。
   
 - API汇总:
- - :ref:`api_fluid_layers_conv2d`
- - :ref:`api_fluid_layers_conv3d`
- - :ref:`api_fluid_layers_conv2d_transpose`
- - :ref:`api_fluid_layers_conv3d_transpose`
+ - :ref:`cn_api_fluid_layers_conv2d`
+ - :ref:`cn_api_fluid_layers_conv3d`
+ - :ref:`cn_api_fluid_layers_conv2d_transpose`
+ - :ref:`cn_api_fluid_layers_conv3d_transpose`
 
 
 1D序列卷积
@@ -60,5 +60,5 @@ Fluid可以表示变长的序列结构，这里的变长是指不同样本的时
  
 
 - API汇总:
- - :ref:`api_fluid_layers_sequence_conv`
- - :ref:`api_fluid_layers_row_conv`
+ - :ref:`cn_api_fluid_layers_sequence_conv`
+ - :ref:`cn_api_fluid_layers_row_conv`
