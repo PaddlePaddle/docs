@@ -1,4 +1,3 @@
-
 ###################
 fluid.layers
 ###################
@@ -12,7 +11,7 @@ fluid.layers
 .. _cn_api_fluid_layers_array_length:
 
 array_length
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.array_length(array)
 
@@ -42,14 +41,16 @@ array_length
 
 
 
-英文版API文档: :ref:`api_fluid_layers_array_length` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_array_read:
 
 array_read
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.array_read(array,i)
 
@@ -83,14 +84,16 @@ array_read
 
 
 
-英文版API文档: :ref:`api_fluid_layers_array_read` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_array_write:
     
 array_write
->>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.array_write(x, i, array=None)
 
@@ -119,14 +122,16 @@ array_write
 
 
 
-英文版API文档: :ref:`api_fluid_layers_array_write` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_create_array:
 
 create_array
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.create_array(dtype)
 
@@ -151,14 +156,16 @@ create_array
 
 
 
-英文版API文档: :ref:`api_fluid_layers_create_array` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_DynamicRNN:
 
 DynamicRNN
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.layers.DynamicRNN(name=None)
 
@@ -299,14 +306,16 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
  
 
 
-英文版API文档: :ref:`api_fluid_layers_DynamicRNN` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_equal:
 
 equal
->>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.equal(x,y,cond=None,**ignored)
 
@@ -330,14 +339,16 @@ equal
 
 
 
-英文版API文档: :ref:`api_fluid_layers_equal` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_IfElse:
 
 IfElse
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.IfElse(cond, name=None)
 
@@ -371,14 +382,16 @@ if-else控制流。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_IfElse` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_increment:
   
 increment
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
   
 .. py:function:: paddle.fluid.layers.increment(x, value=1.0, in_place=True)
 
@@ -405,14 +418,16 @@ increment
  
 
 
-英文版API文档: :ref:`api_fluid_layers_increment` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_is_empty:
 
 is_empty
->>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.is_empty(x, cond=None, **ignored)
 
@@ -438,14 +453,16 @@ is_empty
 
 
 
-英文版API文档: :ref:`api_fluid_layers_is_empty` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_less_than:
 
 less_than
->>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.less_than(x, y, force_cpu=None, cond=None, **ignored)
 
@@ -475,14 +492,16 @@ less_than
 
 
 
-英文版API文档: :ref:`api_fluid_layers_less_than` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_Print:
 
 Print
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.Print(input, first_n=-1, message=None, summarize=-1, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
 
@@ -517,14 +536,16 @@ Print
 
 
 
-英文版API文档: :ref:`api_fluid_layers_Print` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reorder_lod_tensor_by_rank:
 
 reorder_lod_tensor_by_rank
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reorder_lod_tensor_by_rank(x, rank_table)
 
@@ -562,14 +583,16 @@ reorder_lod_tensor_by_rank
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reorder_lod_tensor_by_rank` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_StaticRNN:
 
 StaticRNN
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.layers.StaticRNN(name=None)
 
@@ -591,14 +614,16 @@ StaticRNN
  
 
 
-英文版API文档: :ref:`api_fluid_layers_StaticRNN` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_Switch:
 
 Switch
->>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.Switch (name=None)
 
@@ -645,14 +670,16 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_Switch` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_While:
 
 While
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.While (cond, is_test=False, name=None)
 
@@ -683,7 +710,9 @@ While
 
 
 
-英文版API文档: :ref:`api_fluid_layers_While` 
+
+
+
 
 
 
@@ -697,7 +726,7 @@ While
 .. _cn_api_fluid_layers_batch:
 
 batch
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.batch(reader, batch_size)
 
@@ -734,14 +763,16 @@ batch
 
 
 
-英文版API文档: :ref:`api_fluid_layers_batch` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_create_py_reader_by_data:
 
 create_py_reader_by_data
->>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.create_py_reader_by_data(capacity,feed_list,name=None,use_double_buffer=True)
 
@@ -789,14 +820,16 @@ create_py_reader_by_data
 
 
 
-英文版API文档: :ref:`api_fluid_layers_create_py_reader_by_data` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_data:
 
 data
->>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.data(name, shape, append_batch_size=True, dtype='float32', lod_level=0, type=VarType.LOD_TENSOR, stop_gradient=True)
 
@@ -835,14 +868,16 @@ data
 
 
 
-英文版API文档: :ref:`api_fluid_layers_data` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_double_buffer:
 
 double_buffer
->>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.double_buffer(reader, place=None, name=None)
 
@@ -873,14 +908,16 @@ double_buffer
 
 
 
-英文版API文档: :ref:`api_fluid_layers_double_buffer` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_load:
 
 load
->>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.load(out, file_path, load_as_fp16=None)
 
@@ -901,14 +938,16 @@ Load操作命令将从磁盘文件中加载LoDTensor/SelectedRows变量。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_load` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_open_files:
 
 open_files
->>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.open_files(filenames, shapes, lod_levels, dtypes, thread_num=None, buffer_size=None, pass_num=1, is_test=None)
 
@@ -945,14 +984,16 @@ open_files
 
 
 
-英文版API文档: :ref:`api_fluid_layers_open_files` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_Preprocessor:
 
 Preprocessor
->>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: class paddle.fluid.layers.Preprocessor(reader, name=None)
 
@@ -976,14 +1017,16 @@ reader变量中数据预处理块。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_Preprocessor` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_py_reader:
 
 py_reader
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.py_reader(capacity, shapes, dtypes, lod_levels=None, name=None, use_double_buffer=True)
 
@@ -1111,14 +1154,16 @@ py_reader
 
 
 
-英文版API文档: :ref:`api_fluid_layers_py_reader` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_random_data_generator:
 
 random_data_generator
->>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.random_data_generator(low, high, shapes, lod_levels, for_parallel=True)
 
@@ -1151,14 +1196,16 @@ random_data_generator
 
 
 
-英文版API文档: :ref:`api_fluid_layers_random_data_generator` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_read_file:
 
 read_file
->>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.read_file(reader)
 
@@ -1186,14 +1233,16 @@ reader也是变量。可以为由fluid.layers.open_files()生成的原始reader�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_read_file` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_shuffle:
 
 shuffle
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.shuffle(reader, buffer_size)
 
@@ -1210,7 +1259,9 @@ shuffle
 
 
 
-英文版API文档: :ref:`api_fluid_layers_shuffle` 
+
+
+
 
 
 
@@ -1224,7 +1275,7 @@ shuffle
 .. _cn_api_fluid_layers_add_position_encoding:
 
 add_position_encoding
->>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.add_position_encoding(input, alpha, beta, name=None)
 
@@ -1236,9 +1287,9 @@ add_position_encoding
 
 .. math::
 
-  PE(pos, 2i) = \sin{(pos / 10000^{2i / P})}\\
-  PE(pos, 2i + 1) = \cos{(pos / 10000^{2i / P})}\\
-  Out(:, pos, i) = \alpha * input(:, pos, i) + \beta * PE(pos, i)
+  PE(pos, 2i) &= \sin{(pos / 10000^{2i / P})}\\
+  PE(pos, 2i + 1) &= \cos{(pos / 10000^{2i / P})}\\
+  Out(:, pos, i) &= \alpha * input(:, pos, i) + \beta * PE(pos, i)
 	
 其中:
     - PE(pos, 2i): 偶数位置上数字的增量
@@ -1257,14 +1308,15 @@ add_position_encoding
 
 
 
-英文版API文档: :ref:`api_fluid_layers_add_position_encoding` 
+
+
 
 
 
 .. _cn_api_fluid_layers_affine_channel:
 
 affine_channel
->>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.affine_channel(x, scale=None, bias=None, data_layout='NCHW', name=None)
 
@@ -1283,14 +1335,16 @@ affine_channel
 
 
 
-英文版API文档: :ref:`api_fluid_layers_affine_channel` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_affine_grid:
 
 affine_grid
->>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.affine_grid(theta, out_shape, name=None)
 
@@ -1387,14 +1441,16 @@ affine_grid
 
 
 
-英文版API文档: :ref:`api_fluid_layers_affine_grid` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_autoincreased_step_counter:
 
 autoincreased_step_counter
->>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.autoincreased_step_counter(counter_name=None, begin=1, step=1)
 
@@ -1418,14 +1474,16 @@ autoincreased_step_counter
 
 
 
-英文版API文档: :ref:`api_fluid_layers_autoincreased_step_counter` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_batch_norm:
 
 batch_norm
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.batch_norm(input, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, fuse_with_relu=False)
 
@@ -1477,14 +1535,16 @@ batch_norm
 
 
 
-英文版API文档: :ref:`api_fluid_layers_batch_norm` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_beam_search:
 
 beam_search
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.beam_search(pre_ids, pre_scores, ids, scores, beam_size, end_id, level=0, name=None)
 
@@ -1540,14 +1600,16 @@ beam_search
 
 
 
-英文版API文档: :ref:`api_fluid_layers_beam_search` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_beam_search_decode:
 
 beam_search_decode
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.beam_search_decode(ids, scores, beam_size, end_id, name=None)
 
@@ -1580,14 +1642,16 @@ beam_search_decode
 
 
 
-英文版API文档: :ref:`api_fluid_layers_beam_search_decode` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_bilinear_tensor_product:
 
 bilinear_tensor_product
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.bilinear_tensor_product(x, y, size, act=None, name=None, param_attr=None, bias_attr=None)
 
@@ -1625,14 +1689,16 @@ bilinear_tensor_product
 
 
 
-英文版API文档: :ref:`api_fluid_layers_bilinear_tensor_product` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_brelu:
 
 brelu
->>>>>>>>>>>>  
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.brelu(x, t_min=0.0, t_max=24.0, name=None)
 
@@ -1649,14 +1715,16 @@ BRelu 激活函数
 
 
 
-英文版API文档: :ref:`api_fluid_layers_brelu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_chunk_eval:
 
 chunk_eval
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.chunk_eval(input, label, chunk_scheme, num_chunk_types, excluded_chunk_types=None)
 
@@ -1743,14 +1811,16 @@ num_tag_type是标注规则中的标签类型数，num_chunk_type是块类型数
 
 
 
-英文版API文档: :ref:`api_fluid_layers_chunk_eval` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_clip:
 
 clip
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.clip(x, min, max, name=None)
         
@@ -1774,14 +1844,16 @@ clip运算符限制给定输入的值在一个区间内。间隔使用参数“m
 
 
 
-英文版API文档: :ref:`api_fluid_layers_clip` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_clip_by_norm:
 
 clip_by_norm
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.clip_by_norm(x, max_norm, name=None)
      
@@ -1814,14 +1886,16 @@ ClipByNorm算子
 
 
 
-英文版API文档: :ref:`api_fluid_layers_clip_by_norm` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_conv2d:
 
 conv2d
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.conv2d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None)
 
@@ -1893,14 +1967,16 @@ conv2d
 
 
 
-英文版API文档: :ref:`api_fluid_layers_conv2d` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_conv2d_transpose:
 
 conv2d_transpose
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.conv2d_transpose(input, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None)
 
@@ -1988,14 +2064,16 @@ conv2d_transpose
 
 
 
-英文版API文档: :ref:`api_fluid_layers_conv2d_transpose` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_conv3d:
 
 conv3d
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.conv3d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None)
 
@@ -2066,14 +2144,16 @@ conv3d
 
 
 
-英文版API文档: :ref:`api_fluid_layers_conv3d` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_conv3d_transpose:
 
 conv3d_transpose
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.conv3d_transpose(input, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None)
 
@@ -2169,14 +2249,16 @@ conv3d_transpose
 
 
 
-英文版API文档: :ref:`api_fluid_layers_conv3d_transpose` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_cos_sim:
 
 cos_sim 
->>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.cos_sim(X, Y)
 
@@ -2200,14 +2282,16 @@ cos_sim
 
 
 
-英文版API文档: :ref:`api_fluid_layers_cos_sim` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_crf_decoding:
 
 crf_decoding
->>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None)
 
@@ -2244,14 +2328,16 @@ crf_decoding
 
 
 
-英文版API文档: :ref:`api_fluid_layers_crf_decoding` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_crop:
 
 crop
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.crop(x, shape=None, offsets=None, name=None)
 
@@ -2317,14 +2403,16 @@ crop
 
 
 
-英文版API文档: :ref:`api_fluid_layers_crop` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_cross_entropy:
 
 cross_entropy
->>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.cross_entropy(input, label, soft_label=False, ignore_index=-100)
 
@@ -2382,14 +2470,16 @@ cross_entropy
 
 
 
-英文版API文档: :ref:`api_fluid_layers_cross_entropy` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_ctc_greedy_decoder:
 
 ctc_greedy_decoder
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.ctc_greedy_decoder(input, blank, name=None)
 
@@ -2448,14 +2538,16 @@ A simple example as below:
 
 
 
-英文版API文档: :ref:`api_fluid_layers_ctc_greedy_decoder` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_dice_loss:
 
 dice_loss
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.dice_loss(input, label, epsilon=1e-05)
 
@@ -2488,14 +2580,16 @@ dice_loss定义为:
 
 
 
-英文版API文档: :ref:`api_fluid_layers_dice_loss` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_dropout:
 
 dropout
->>>>>>>
+-------------------------------
 
 .. py:function:: Paddle.fluid.layers.dropout(x,dropout_prob,is_test=False,seed=None,name=None,dropout_implementation='downgrade_in_infer')
 
@@ -2535,14 +2629,16 @@ dropout操作
 
 
 
-英文版API文档: :ref:`api_fluid_layers_dropout` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_dynamic_gru:
 
 dynamic_gru
->>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.dynamic_gru(input, size, param_attr=None, bias_attr=None, is_reverse=False, gate_activation='sigmoid', candidate_activation='tanh', h_0=None)
 
@@ -2613,14 +2709,16 @@ dynamic_gru
 
 
 
-英文版API文档: :ref:`api_fluid_layers_dynamic_gru` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_dynamic_lstm:
 
 dynamic_lstm
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.dynamic_lstm(input, size, h_0=None, c_0=None, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', dtype='float32', name=None)
 
@@ -2705,14 +2803,16 @@ W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_dynamic_lstm` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_dynamic_lstmp:
 
 dynamic_lstmp
->>>>>>>>>>>>>>
+-------------------------------
 .. py:function:: paddle.fluid.layers.dynamic_lstmp(input, size, proj_size, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', proj_activation='tanh', dtype='float32', name=None)
 
 动态LSTMP层(Dynamic LSTMP Layer)
@@ -2810,7 +2910,9 @@ LSTMP层(具有循环映射的LSTM)在LSTM层后有一个分离的映射层，�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_dynamic_lstmp` 
+
+
+
 
 
 
@@ -2818,7 +2920,7 @@ LSTMP层(具有循环映射的LSTM)在LSTM层后有一个分离的映射层，�
 
 
 edit_distance
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: Paddle.fluid.layers.edit_distance(input,label,normalized=True,ignored_tokens=None)
 
@@ -2855,14 +2957,16 @@ edit_distance
 
 
 
-英文版API文档: :ref:`api_fluid_layers_edit_distance` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elementwise_add:
 
 elementwise_add
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None, name=None)
 
@@ -2909,14 +3013,16 @@ elementwise_add
 
 
 
-英文版API文档: :ref:`api_fluid_layers_elementwise_add` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elementwise_div:
 
 elementwise_div
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None, name=None)
 
@@ -2965,14 +3071,16 @@ elementwise_div
         
 
 
-英文版API文档: :ref:`api_fluid_layers_elementwise_div` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elementwise_max:
 
 elementwise_max
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_max(x, y, axis=-1, act=None, name=None)
 最大元素算子
@@ -3020,14 +3128,16 @@ elementwise_max
 
 
 
-英文版API文档: :ref:`api_fluid_layers_elementwise_max` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elementwise_min:
 
 elementwise_min
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
 
@@ -3076,14 +3186,16 @@ elementwise_min
  
 
 
-英文版API文档: :ref:`api_fluid_layers_elementwise_min` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elementwise_mul:
 
 elementwise_mul
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None, name=None)
 
@@ -3131,14 +3243,16 @@ elementwise_mul
         
 
 
-英文版API文档: :ref:`api_fluid_layers_elementwise_mul` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elementwise_pow:
 
 elementwise_pow
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
 
@@ -3187,14 +3301,16 @@ elementwise_pow
 
 
 
-英文版API文档: :ref:`api_fluid_layers_elementwise_pow` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elementwise_sub:
 
 elementwise_sub
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_sub(x, y, axis=-1, act=None, name=None)
 
@@ -3242,14 +3358,16 @@ elementwise_sub
         
 
 
-英文版API文档: :ref:`api_fluid_layers_elementwise_sub` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_elu:
 
 elu
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.elu(x, alpha=1.0, name=None)
 
@@ -3271,14 +3389,16 @@ ELU激活层（ELU Activation Operator）
 
 
 
-英文版API文档: :ref:`api_fluid_layers_elu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_embedding:
 
 embedding
->>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.embedding(input, size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
 
@@ -3310,14 +3430,16 @@ embedding
 
 
 
-英文版API文档: :ref:`api_fluid_layers_embedding` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_expand:
 
 expand
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.expand(x, expand_times, name=None)
 
@@ -3359,14 +3481,16 @@ expand运算会按给定的次数对输入各维度进行复制（tile）运算�
                
 
 
-英文版API文档: :ref:`api_fluid_layers_expand` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_fc:
 
 fc
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.fc(input, size, num_flatten_dims=1, param_attr=None, bias_attr=None, act=None, is_test=False, name=None)
 
@@ -3422,14 +3546,16 @@ fc
 
 
 
-英文版API文档: :ref:`api_fluid_layers_fc` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_flatten:
 
 flatten
->>>>>>>>>>
+-------------------------------
 
 将输入张量压扁成二维矩阵
 
@@ -3476,14 +3602,16 @@ flatten
 
 
 
-英文版API文档: :ref:`api_fluid_layers_flatten` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_gather:
 
 gather
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.gather(input, index)
 
@@ -3522,14 +3650,16 @@ gather
 
 
 
-英文版API文档: :ref:`api_fluid_layers_gather` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_gaussian_random:
 
 gaussian_random
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.gaussian_random(shape, mean=0.0, std=1.0, seed=0, dtype='float32')
 
@@ -3551,14 +3681,16 @@ gaussian_random算子。
        
 
 
-英文版API文档: :ref:`api_fluid_layers_gaussian_random` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_gaussian_random_batch_size_like:
 
 gaussian_random_batch_size_like
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.gaussian_random_batch_size_like(input, shape, input_dim_idx=0, output_dim_idx=0, mean=0.0, std=1.0, seed=0, dtype='float32')
 
@@ -3581,14 +3713,43 @@ gaussian_random_batch_size_like
 
 
 
-英文版API文档: :ref:`api_fluid_layers_gaussian_random_batch_size_like` 
+
+
+
+
+
+
+.. _cn_api_fluid_layers_get_tensor_from_selected_rows:
+
+get_tensor_from_selected_rows
+-------------------------------
+
+.. py:function::  paddle.fluid.layers.get_tensor_from_selected_rows(x, name=None)
+
+:code:`Get Tensor From Selected Rows` 用于从选中行（Selected Rows）中获取张量
+
+参数：
+	- **x** (Variable) - 输入，类型是SelectedRows
+	- **name** (basestring|None) - 输出的名称
+
+返回： 输出类型为LoDTensor
+
+返回类型： out(Variable)
+
+
+
+
+
+
+
+
 
 
 
 .. _cn_api_fluid_layers_grid_sampler:
 
 grid_sampler
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.grid_sampler(x, grid, name=None)
 
@@ -3656,14 +3817,16 @@ step 2：
 
 
 
-英文版API文档: :ref:`api_fluid_layers_grid_sampler` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_group_norm:
 
 group_norm
->>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.group_norm(input, groups, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, data_layout='NCHW', name=None)
 
@@ -3692,14 +3855,16 @@ group_norm
 
 
 
-英文版API文档: :ref:`api_fluid_layers_group_norm` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_gru_unit:
 
 gru_unit
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.gru_unit(input, hidden, size, param_attr=None, bias_attr=None, activation='tanh', gate_activation='sigmoid')
 
@@ -3758,14 +3923,16 @@ GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_gru_unit` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_hard_sigmoid:
 
 hard_sigmoid
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.hard_sigmoid(x, slope=0.2, offset=0.5, name=None)
 
@@ -3787,14 +3954,16 @@ sigmoid的分段线性逼近(https://arxiv.org/abs/1603.00391)，比sigmoid快�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_hard_sigmoid` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_hash:
 
 hash
->>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.hash(input, hash_size, num_hash=1, name=None)
 
@@ -3858,14 +4027,16 @@ hash
 
 
 
-英文版API文档: :ref:`api_fluid_layers_hash` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_hsigmoid:
 
 hsigmoid
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.hsigmoid(input, label, num_functiones, param_attr=None, bias_attr=None, name=None)
 
@@ -3897,14 +4068,16 @@ hsigmoid
   
 
 
-英文版API文档: :ref:`api_fluid_layers_hsigmoid` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_im2sequence:
 
 im2sequence
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.im2sequence(input, filter_size=1, stride=1, padding=0, input_image_size=None, out_stride=1, name=None)
 
@@ -3983,14 +4156,16 @@ im2sequence
 
 
 
-英文版API文档: :ref:`api_fluid_layers_im2sequence` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_image_resize:
 
 image_resize
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR')
 
@@ -4023,14 +4198,16 @@ image_resize
 
 
 
-英文版API文档: :ref:`api_fluid_layers_image_resize` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_image_resize_short:
 
 image_resize_short
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.image_resize_short(input, out_short_len, resample='BILINEAR')
 
@@ -4049,14 +4226,16 @@ image_resize_short
 
 
 
-英文版API文档: :ref:`api_fluid_layers_image_resize_short` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_l2_normalize:
 
 l2_normalize
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.l2_normalize(x,axis,epsilon=1e-12,name=None)
 
@@ -4091,14 +4270,16 @@ L2正则（L2 normalize Layer）
 
 
 
-英文版API文档: :ref:`api_fluid_layers_l2_normalize` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_label_smooth:
 
 label_smooth
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.label_smooth(label, prior_dist=None, epsilon=0.1, dtype='float32', name=None)
 
@@ -4138,14 +4319,16 @@ label_smooth
 
 
 
-英文版API文档: :ref:`api_fluid_layers_label_smooth` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_layer_norm:
 
 layer_norm
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
 
@@ -4191,14 +4374,16 @@ layer_norm
 
 
 
-英文版API文档: :ref:`api_fluid_layers_layer_norm` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_leaky_relu:
 
 leaky_relu
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.leaky_relu(x, alpha=0.02, name=None)
 
@@ -4213,14 +4398,16 @@ LeakyRelu 激活函数
 
 
 
-英文版API文档: :ref:`api_fluid_layers_leaky_relu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_linear_chain_crf:
 
 linear_chain_crf
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.linear_chain_crf(input, label, param_attr=None)
 
@@ -4282,14 +4469,16 @@ linear_chain_crf
 
 
 
-英文版API文档: :ref:`api_fluid_layers_linear_chain_crf` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_lod_reset:
 
 lod_reset
->>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.lod_reset(x, y=None, target_lod=None)
 
@@ -4367,14 +4556,16 @@ lod_reset
 
 
 
-英文版API文档: :ref:`api_fluid_layers_lod_reset` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_log:
 
 log
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.log(x, name=None)
 
@@ -4404,14 +4595,16 @@ log
 
 
 
-英文版API文档: :ref:`api_fluid_layers_log` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_log_loss:
 
 log_loss
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.log_loss(input, label, epsilon=0.0001, name=None)
 
@@ -4446,14 +4639,16 @@ log_loss
 
 
 
-英文版API文档: :ref:`api_fluid_layers_log_loss` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_logical_and:
 
 logical_and
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.logical_and(x, y, out=None, name=None)
 
@@ -4477,14 +4672,16 @@ logical_and算子
         
 
 
-英文版API文档: :ref:`api_fluid_layers_logical_and` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_logical_not:
 
 logical_not
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.logical_not(x, out=None, name=None)
 
@@ -4507,14 +4704,16 @@ logical_not算子
 
 
 
-英文版API文档: :ref:`api_fluid_layers_logical_not` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_logical_or:
 
 logical_or
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.logical_or(x, y, out=None, name=None)
 
@@ -4538,14 +4737,16 @@ logical_or算子
 
 
 
-英文版API文档: :ref:`api_fluid_layers_logical_or` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_logical_xor:
 
 logical_xor
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.logical_xor(x, y, out=None, name=None)
 
@@ -4569,14 +4770,16 @@ logical_xor算子
 
 
 
-英文版API文档: :ref:`api_fluid_layers_logical_xor` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_lrn:
 
 lrn
->>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.lrn(input, n=5, k=1.0, alpha=0.0001, beta=0.75, name=None)
 
@@ -4623,14 +4826,93 @@ lrn
 
 
 
-英文版API文档: :ref:`api_fluid_layers_lrn` 
+
+
+
+
+
+
+.. _cn_api_fluid_layers_lstm:
+
+lstm
+-------------------------------
+
+.. py:function::  paddle.fluid.layers.lstm(input, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=0.0, is_bidirec=False, is_test=False, name=None, default_initializer=None, seed=-1)
+
+如果您的设备是GPU，本op将使用cudnn LSTM实现
+
+一个没有 peephole 连接的四门长短期记忆网络。在前向传播中，给定迭代的输出ht和单元输出ct可由递归输入ht-1、单元输入ct-1和上一层输入xt计算，给定矩阵W、R和bias bW, bR由下式计算:
+
+.. math::
+
+	i_t = \sigma(W_{ix}x_{t} + W_{ih}h_{t-1} + bx_i + bh_i)\\
+	f_t = \sigma(W_{fx}x_{t} + W_{fh}h_{t-1} + bx_f + bh_f)\\
+	o_t = \sigma(W_{ox}x_{t} + W_{oh}h_{t-1} + bx_o + bh_o)\\
+	\tilde{c_t} = tanh(W_{cx}x_t + W_{ch}h_{t-1} + bx_c + bh_c)\\
+	c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c_t}\\
+	h_t = o_t \odot tanh(c_t)
+
+公式中：
+	- W 项表示权重矩阵(e.g. :math:`W_{ix}` 是从输入门到输入的权重矩阵)
+	- b 项表示偏差向量( :math:`b_{xi}` 和 :math:`b_{hi}` 是输入门的偏差向量)
+	- sigmoid 是 logistic sigmoid 函数
+	- i、f、o、c 分别为输入门、遗忘门、输出门和激活向量，它们的大小与 cell 输出激活向量h相同。
+	- :math:`\odot` 是向量的元素乘积
+	- tanh是激活函数
+	- :math:`\tilde{c_t}` 也称为候选隐藏状态，它是根据当前输入和之前的隐藏状态来计算的
+	- sigmoid的计算公式为：sigmoid(x) = 1 / (1 + e^-x)
+	- \*表示点乘，X表示矩阵乘
+
+参数：
+	- **input** (Variable) - LSTM 输入张量，形状必须为(seq_len x，batch_size，x，input_size)
+	- **init_h** (Variable) – LSTM的初始隐藏状态，是一个有形状的张量(num_layers，x，batch_size，x，hidden_size)如果is_bidirec = True，形状应该是(num_layers*2，x， batch_size， x， hidden_size)
+	- **init_c** (Variable) - LSTM的初始状态。这是一个有形状的张量(num_layers， x， batch_size， x， hidden_size)如果is_bidirec = True，形状应该是(num_layers*2， x， batch_size， x， hidden_size)
+	- **max_len** (int) – LSTM的最大长度。输入张量的第一个 dim 不能大于max_len
+	- **hidden_size** (int) - LSTM的隐藏大小
+	- **num_layers** (int) –  LSTM的总层数
+	- **dropout_prob** (float|0.0) – dropout prob，dropout 只在 rnn 层之间工作，而不是在时间步骤之间。dropout 不作用于最后的 rnn 层的 rnn 输出中
+	- **is_bidirec** (bool) – 是否是双向的
+	- **is_test** (bool) – 是否在测试阶段
+	- **name** (str|None) - 此层的名称(可选)。如果没有设置，该层将被自动命名。
+	- **default_initializer** (Initialize|None) – 在哪里使用初始化器初始化权重，如果没有设置，将进行默认初始化。
+	- **seed** (int) – LSTM中dropout的Seed，如果是-1,dropout将使用随机Seed
+
+返回：
+	- LSTM hidden的结果：形状(seq_len x batch_size x hidden_size)如果is_bidirec设置为True,形状为(seq_len x batch_sze hidden_size * 2)
+	- last_h(Tensor):  LSTM最后一步的隐藏状态，形状为(num_layers x batch_size x hidden_size)；如果is_bidirec设置为True，形状为(num_layers*2 x batch_size x hidden_size)
+	- last_c(Tensor)： LSTM最后一步的cell状态，形状为(num_layers x batch_size x hidden_size)；如果is_bidirec设置为True，形状为(num_layers*2 x batch_size x hidden_size)
+
+**代码示例：**
+
+.. code-block:: python
+
+	input = embedding
+	batch_size = 20
+	max_len = 100
+	dropout_prob = 0.2
+	input_size = 100
+	hidden_size = 150
+	num_layers = 1
+	init_hidden1 = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
+	init_cell1 = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
+
+	rnn_out, last_h, last_c = layers.lstm( input, init_h, init_c, max_len, dropout_prob, input_size, hidden_size,  num_layers)
+
+
+
+
+
+
+
+
+
 
 
 
 .. _cn_api_fluid_layers_lstm_unit:
 
 lstm_unit
->>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.lstm_unit(x_t, hidden_t_prev, cell_t_prev, forget_bias=0.0, param_attr=None, bias_attr=None, name=None)
 
@@ -4691,14 +4973,16 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
 
 
 
-英文版API文档: :ref:`api_fluid_layers_lstm_unit` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_margin_rank_loss:
 
 margin_rank_loss
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.margin_rank_loss(label, left, right, margin=0.1, name=None)
 
@@ -4737,7 +5021,9 @@ margin rank loss（差距排序损失）层。在排序问题中，它可以比�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_margin_rank_loss` 
+
+
+
 
 
 
@@ -4746,7 +5032,7 @@ margin rank loss（差距排序损失）层。在排序问题中，它可以比�
 
 
 matmul
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.matmul(x, y, transpose_x=False, transpose_y=False, alpha=1.0, name=None)
 
@@ -4804,14 +5090,16 @@ matmul
 
 
 
-英文版API文档: :ref:`api_fluid_layers_matmul` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_maxout:
 
 maxout
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.maxout(x, groups, name=None)
 
@@ -4843,14 +5131,16 @@ maxout
 
 
 
-英文版API文档: :ref:`api_fluid_layers_maxout` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_mean:
 
 mean
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.mean(x, name=None)
        
@@ -4867,14 +5157,16 @@ mean算子计算X中所有元素的平均值
         
 
 
-英文版API文档: :ref:`api_fluid_layers_mean` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_mean_iou:
 
 mean_iou
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.mean_iou(input, label, num_functiones)
 
@@ -4901,14 +5193,62 @@ mean_iou
 
 
 
-英文版API文档: :ref:`api_fluid_layers_mean_iou` 
+
+
+
+
+
+
+.. _cn_api_fluid_layers_merge_selected_rows:
+
+merge_selected_rows
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.merge_selected_rows(x, name=None)
+
+**实现合并选中行（row）操作**
+
+该运算用于合并（值相加）输入张量中重复的行。输出行没有重复的行，并且按值从小到大顺序重新对行排序。
+
+::
+    
+    例如：
+          
+          输入: 
+               X.rows = [0, 5, 5, 4, 19]
+               X.height = 20
+               X.value = [[1, 1] [2, 2] [3, 3] [4, 4] [6, 6]]
+          
+          
+          输出：
+               Out.row is [0, 4, 5, 19] 
+               Out.height is 20 
+               Out.value is: [[1, 1] [4, 4] [5, 5] [6, 6]]
+
+
+
+参数:
+  - x (Variable) – 输入类型为SelectedRows, 选中行有可能重复
+  - name (basestring|None) – 输出变量的命名
+
+返回: 输出类型为SelectedRows，并且选中行不会重复 
+
+返回类型:	变量（Variable）
+
+
+
+
+
+
+
+
 
 
 
 .. _cn_api_fluid_layers_mul:
 
 mul
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, name=None)
         
@@ -4935,14 +5275,16 @@ mul算子
         
 
 
-英文版API文档: :ref:`api_fluid_layers_mul` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_multiplex:
 
 multiplex
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.multiplex(inputs, index)
 
@@ -4989,14 +5331,16 @@ multiplex
 
 
 
-英文版API文档: :ref:`api_fluid_layers_multiplex` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_nce:
 
 nce
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.nce(input, label, num_total_functiones, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None)
 
@@ -5050,14 +5394,16 @@ nce
 
 
 
-英文版API文档: :ref:`api_fluid_layers_nce` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_one_hot:
 
 one_hot 
->>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.one_hot(input, depth)
 
@@ -5080,14 +5426,16 @@ one_hot
 
 
 
-英文版API文档: :ref:`api_fluid_layers_one_hot` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_pad:
 
 pad
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
 
@@ -5134,14 +5482,16 @@ pad
 
 
 
-英文版API文档: :ref:`api_fluid_layers_pad` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_pad2d:
 
 pad2d
->>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.layers.pad2d(input, paddings=[0, 0, 0, 0], mode='constant', pad_value=0.0, data_format='NCHW', name=None)
 
@@ -5202,14 +5552,16 @@ pad2d
 
 
 
-英文版API文档: :ref:`api_fluid_layers_pad2d` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_pad_constant_like:
 
 pad_constant_like
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.pad_constant_like(x, y, pad_value=0.0, name=None)
 
@@ -5262,14 +5614,16 @@ pad_constant_like
 
 
 
-英文版API文档: :ref:`api_fluid_layers_pad_constant_like` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_pool2d:
 
 pool2d
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.pool2d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None)
 
@@ -5358,14 +5712,16 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_pool2d` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_pool3d:
 
 pool3d
->>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None)
 
@@ -5391,14 +5747,16 @@ pool3d
 
 
 
-英文版API文档: :ref:`api_fluid_layers_pool3d` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_pow:
 
 pow
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.pow(x, factor=1.0, name=None)
 
@@ -5415,14 +5773,16 @@ pow
 
 
 
-英文版API文档: :ref:`api_fluid_layers_pow` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_prelu:
 
 prelu
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.prelu(x, mode, param_attr=None, name=None)
 
@@ -5445,14 +5805,16 @@ prelu
   
 
 
-英文版API文档: :ref:`api_fluid_layers_prelu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_random_crop:
 
 random_crop
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.random_crop(x, shape, seed=None)
 
@@ -5475,14 +5837,16 @@ random_crop
 
 
 
-英文版API文档: :ref:`api_fluid_layers_random_crop` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_rank_loss:
 
 rank_loss
->>>>>>>>>>>>
+-------------------------------
 
 
 .. py:function::  paddle.fluid.layers.rank_loss(label, left, right, name=None)
@@ -5527,14 +5891,16 @@ P 的取值可为： {0, 1} 或 {0, 0.5, 1}, 其中，0.5表示输入的两文�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_rank_loss` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reduce_max:
 
 reduce_max
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reduce_max(input, dim=None, keep_dim=False, name=None)
 
@@ -5573,14 +5939,16 @@ reduce_max
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reduce_max` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reduce_mean:
 
 reduce_mean
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reduce_mean(input, dim=None, keep_dim=False, name=None)
 
@@ -5620,14 +5988,16 @@ reduce_mean
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reduce_mean` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reduce_min:
 
 reduce_min
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reduce_min(input, dim=None, keep_dim=False, name=None)
 
@@ -5666,14 +6036,16 @@ reduce_min
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reduce_min` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reduce_prod:
 
 reduce_prod
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reduce_prod(input, dim=None, keep_dim=False, name=None)
 
@@ -5713,14 +6085,16 @@ reduce_prod
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reduce_prod` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reduce_sum:
 
 reduce_sum
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reduce_sum(input, dim=None, keep_dim=False, name=None)
 
@@ -5759,14 +6133,16 @@ reduce_sum
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reduce_sum` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_relu:
 
 relu
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.relu(x, name=None)
 
@@ -5793,14 +6169,16 @@ Relu接受一个输入数据(张量)，输出一个张量。将线性函数y = m
 
 
 
-英文版API文档: :ref:`api_fluid_layers_relu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_relu6:
 
 relu6
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.relu6(x, threshold=6.0, name=None)
 
@@ -5823,14 +6201,16 @@ relu6激活算子（Relu6 Activation Operator）
 
 
 
-英文版API文档: :ref:`api_fluid_layers_relu6` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reshape:
 
 reshape
->>>>>>>>>>
+-------------------------------
 
 保持输入张量数据不变的情况下，改变张量的形状。
 
@@ -5877,14 +6257,16 @@ reshape
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reshape` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_resize_bilinear:
 
 resize_bilinear
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None)
 
@@ -5904,14 +6286,16 @@ resize_bilinear
 
 
 
-英文版API文档: :ref:`api_fluid_layers_resize_bilinear` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_resize_nearest:
 
 resize_nearest
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.resize_nearest(input, out_shape=None, scale=None, name=None, actual_shape=None)
 
@@ -5940,14 +6324,16 @@ resize_nearest
 
 
 
-英文版API文档: :ref:`api_fluid_layers_resize_nearest` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_roi_align:
 
 roi_align
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.roi_align(input, rois, pooled_height=1, pooled_width=1, spatial_scale=1.0, sampling_ratio=-1, name=None)
 
@@ -5987,14 +6373,16 @@ Region of Interests align(直译：有意义、有价值选区对齐) 用于实�
 
 
 
-英文版API文档: :ref:`api_fluid_layers_roi_align` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_roi_pool:
 
 roi_pool
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.roi_pool(input, rois, pooled_height=1, pooled_width=1, spatial_scale=1.0)
 
@@ -6030,14 +6418,16 @@ Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverfl
 
 
 
-英文版API文档: :ref:`api_fluid_layers_roi_pool` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_row_conv:
 
 row_conv
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.row_conv(input, future_context_size, param_attr=None, act=None)
 
@@ -6082,14 +6472,16 @@ row_conv
 
 
 
-英文版API文档: :ref:`api_fluid_layers_row_conv` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sampling_id:
 
 sampling_id
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sampling_id(x, min=0.0, max=1.0, seed=0, dtype='float32')
 
@@ -6110,14 +6502,16 @@ sampling_id算子。用于从输入的多项分布中对id进行采样的图层�
  
 
 
-英文版API文档: :ref:`api_fluid_layers_sampling_id` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_scale:
 
 scale
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 
@@ -6150,14 +6544,16 @@ else:
 
 
 
-英文版API文档: :ref:`api_fluid_layers_scale` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_scatter:
 
 scatter
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.scatter(input, index, updates, name=None)
 
@@ -6188,14 +6584,16 @@ scatter
 
 
 
-英文版API文档: :ref:`api_fluid_layers_scatter` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_selu:
 
 selu
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.selu(x, scale=None, alpha=None, name=None)
 
@@ -6234,14 +6632,16 @@ selu
 
 
 
-英文版API文档: :ref:`api_fluid_layers_selu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_concat:
 
 sequence_concat
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_concat(input, name=None)
 
@@ -6265,14 +6665,16 @@ sequence_concat操作通过序列信息连接LoD张量（Tensor）。例如：X1
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_concat` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_conv:
 
 sequence_conv 
->>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_conv(input, num_filters, filter_size=3, filter_stride=1, padding=None, bias_attr=None, param_attr=None, act=None, name=None)
 
@@ -6294,14 +6696,16 @@ sequence_conv
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_conv` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_enumerate:
 
 sequence_enumerate
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 
@@ -6336,14 +6740,16 @@ sequence_enumerate
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_enumerate` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_expand:
 
 sequence_expand 
->>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_expand(x, y, ref_level=-1, name=None)
 
@@ -6406,14 +6812,16 @@ sequence_expand
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_expand` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_expand_as:
 
 sequence_expand_as 
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_expand_as(x, y, name=None)
 
@@ -6457,14 +6865,16 @@ Sequence Expand As Layer
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_expand_as` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_first_step:
 
 sequence_first_step
->>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_first_step(input)
 
@@ -6500,14 +6910,16 @@ sequence_first_step
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_first_step` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_last_step:
 
 sequence_last_step
->>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_last_step(input)
 
@@ -6545,14 +6957,16 @@ sequence_last_step
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_last_step` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_mask:
 
 sequence_mask
->>>>>>>>>>>>>>
+-------------------------------
 
 该层根据输入 ``x`` 和 ```maxlen`` 输出一个掩码，数据类型为dtype。
 
@@ -6577,14 +6991,16 @@ sequence_mask
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_mask` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_pad:
 
 sequence_pad
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_pad(x,pad_value,maxlen=None)
 
@@ -6667,14 +7083,16 @@ sequence_pad
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_pad` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_pool:
 
 sequence_pool 
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_pool(input, pool_type)
 
@@ -6727,14 +7145,16 @@ sequence_pool
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_pool` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_reshape:
 
 sequence_reshape
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_reshape(input, new_dim) 
 
@@ -6777,14 +7197,16 @@ Sequence Reshape Layer
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_reshape` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_reverse:
 
 sequence_reverse
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_reverse(x, name=None)
 
@@ -6824,14 +7246,16 @@ sequence_reverse
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_reverse` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_scatter:
 
 sequence_scatter
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_scatter(input, index, updates, name=None)
 
@@ -6879,14 +7303,16 @@ sequence_scatter
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_scatter` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_slice:
 
 sequence_slice
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_slice(input, offset, length, name=None)
 
@@ -6939,14 +7365,16 @@ sequence_slice
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_slice` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_softmax:
 
 sequence_softmax
->>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_softmax(input, use_cudnn=False, name=None)
 
@@ -6982,14 +7410,16 @@ sequence_softmax
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_softmax` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sequence_unpad:
 
 sequence_unpad
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_unpad(x, length, name=None)
 
@@ -7039,14 +7469,16 @@ sequence_unpad
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sequence_unpad` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_shape:
 
 shape
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.shape(input)
 
@@ -7065,14 +7497,16 @@ shape算子
         
 
 
-英文版API文档: :ref:`api_fluid_layers_shape` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sigmoid_cross_entropy_with_logits:
 
 sigmoid_cross_entropy_with_logits
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits(x, label, name=None)
 
@@ -7116,14 +7550,16 @@ sigmoid_cross_entropy_with_logits
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sigmoid_cross_entropy_with_logits` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_similarity_focus:
 
 similarity_focus
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.similarity_focus(input, axis, indexes, name=None)
 
@@ -7213,14 +7649,16 @@ similarity_focus
 
 
 
-英文版API文档: :ref:`api_fluid_layers_similarity_focus` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_slice:
 
 slice
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.slice(input, axes, starts, ends)
 
@@ -7257,14 +7695,16 @@ slice算子。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_slice` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_smooth_l1:
 
 smooth_l1
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.smooth_l1(x, y, inside_weight=None, outside_weight=None, sigma=None)
 
@@ -7295,14 +7735,16 @@ smooth_l1
 
 
 
-英文版API文档: :ref:`api_fluid_layers_smooth_l1` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_soft_relu:
 
 soft_relu
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.soft_relu(x, threshold=40.0, name=None)
 
@@ -7318,14 +7760,16 @@ SoftRelu 激活函数
 
 
 
-英文版API文档: :ref:`api_fluid_layers_soft_relu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_softmax:
 
 softmax
->>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.softmax(input, use_cudnn=True, name=None)
 
@@ -7361,14 +7805,16 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 
 
 
-英文版API文档: :ref:`api_fluid_layers_softmax` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_softmax_with_cross_entropy:
 
 softmax_with_cross_entropy
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100)
 
@@ -7415,14 +7861,16 @@ softmax_with_cross_entropy
       
 
 
-英文版API文档: :ref:`api_fluid_layers_softmax_with_cross_entropy` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_space_to_depth:
 
 space_to_depth
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.space_to_depth(x, blocksize, name=None)
 
@@ -7465,14 +7913,16 @@ space_to_depth
 
 
 
-英文版API文档: :ref:`api_fluid_layers_space_to_depth` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_split:
 
 split
->>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.split(input,num_or_sections,dim=-1,name=None)
 
@@ -7505,14 +7955,16 @@ split
 
 
 
-英文版API文档: :ref:`api_fluid_layers_split` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_square_error_cost:
 
 square_error_cost 
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.square_error_cost(input,label)
 
@@ -7549,14 +8001,16 @@ square_error_cost
 
 
 
-英文版API文档: :ref:`api_fluid_layers_square_error_cost` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_squeeze:
 
 squeeze 
->>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.squeeze(input, axes, name=None)
 
@@ -7598,14 +8052,16 @@ squeeze
 
 
 
-英文版API文档: :ref:`api_fluid_layers_squeeze` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_stack:
 
 stack
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.stack(x, axis=0)
 
@@ -7627,14 +8083,16 @@ stack
 
 
 
-英文版API文档: :ref:`api_fluid_layers_stack` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_stanh:
 
 stanh
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.stanh(x, scale_a=0.6666666666666666, scale_b=1.7159, name=None)
 
@@ -7655,14 +8113,16 @@ STanh 激活算子（STanh Activation Operator.）
 
 
 
-英文版API文档: :ref:`api_fluid_layers_stanh` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sum:
 
 sum
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sum(x)
 
@@ -7680,14 +8140,16 @@ sum算子。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sum` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_swish:
 
 swish
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.swish(x, beta=1.0, name=None)
 
@@ -7710,14 +8172,16 @@ Swish 激活函数
 
 
 
-英文版API文档: :ref:`api_fluid_layers_swish` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_topk:
 
 topk
->>>>>
+-------------------------------
 .. py:function:: paddle.fluid.layers.topk(input, k, name=None)
 
 这个运算符用于查找最后一维的前k个最大项，返回它们的值和索引。
@@ -7766,14 +8230,16 @@ topk
 
 
 
-英文版API文档: :ref:`api_fluid_layers_topk` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_transpose:
 
 transpose
->>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.transpose(x,perm,name=None)
 
@@ -7799,14 +8265,16 @@ transpose
 
 
 
-英文版API文档: :ref:`api_fluid_layers_transpose` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_uniform_random_batch_size_like:
 
 uniform_random_batch_size_like
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32', input_dim_idx=0, output_dim_idx=0, min=-1.0, max=1.0, seed=0)
 
@@ -7830,14 +8298,16 @@ uniform_random_batch_size_like算子。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_uniform_random_batch_size_like` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_unsqueeze:
 
 unsqueeze
->>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.unsqueeze(input, axes, name=None)
 
@@ -7865,14 +8335,16 @@ unsqueeze
 
 
 
-英文版API文档: :ref:`api_fluid_layers_unsqueeze` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_unstack:
 
 unstack
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.unstack(x, axis=0, num=None)
 
@@ -7899,14 +8371,16 @@ unstack
 
 
 
-英文版API文档: :ref:`api_fluid_layers_unstack` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_warpctc:
 
 warpctc
->>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, use_cudnn=False))
 
@@ -7933,7 +8407,9 @@ warpctc
 
 
 
-英文版API文档: :ref:`api_fluid_layers_warpctc` 
+
+
+
 
 
 
@@ -7947,7 +8423,7 @@ warpctc
 .. _cn_api_fluid_layers_abs:
 
 abs
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.abs(x, name=None)
 
@@ -7963,14 +8439,16 @@ abs
 
 
 
-英文版API文档: :ref:`api_fluid_layers_abs` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_ceil:
 
 ceil
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.ceil(x, name=None)
 
@@ -7984,14 +8462,16 @@ ceil
         
 
 
-英文版API文档: :ref:`api_fluid_layers_ceil` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_cos:
 
 cos
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.cos(x, name=None)
 
@@ -8006,14 +8486,16 @@ cos
 
 
 
-英文版API文档: :ref:`api_fluid_layers_cos` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_cumsum:
 
 cumsum
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.cumsum(x,axis=None,exclusive=None,reverse=None
 
@@ -8036,14 +8518,16 @@ cumsum
 
 
 
-英文版API文档: :ref:`api_fluid_layers_cumsum` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_exp:
 
 exp
->>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.exp(x, name=None)
        
@@ -8057,14 +8541,16 @@ exp
 
 
 
-英文版API文档: :ref:`api_fluid_layers_exp` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_floor:
 
 floor
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.floor(x, name=None)
 
@@ -8080,14 +8566,16 @@ floor
 
 
 
-英文版API文档: :ref:`api_fluid_layers_floor` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_hard_shrink:
 
 hard_shrink
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.hard_shrink(x,threshold=None)
 
@@ -8117,14 +8605,16 @@ HardShrink激活函数(HardShrink activation operator)
 
 
 
-英文版API文档: :ref:`api_fluid_layers_hard_shrink` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_logsigmoid:
 
 logsigmoid
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.logsigmoid(x, name=None)
         
@@ -8139,14 +8629,16 @@ logsigmoid
 
 
 
-英文版API文档: :ref:`api_fluid_layers_logsigmoid` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reciprocal:
 
 reciprocal
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reciprocal(x, name=None)
 
@@ -8163,14 +8655,16 @@ reciprocal
         
 
 
-英文版API文档: :ref:`api_fluid_layers_reciprocal` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_round:
 
 round
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.round(x, name=None)
 
@@ -8184,14 +8678,16 @@ round
         
 
 
-英文版API文档: :ref:`api_fluid_layers_round` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sigmoid:
 
 sigmoid
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sigmoid(x, name=None)
      
@@ -8207,14 +8703,16 @@ sigmoid
 
  
 
-英文版API文档: :ref:`api_fluid_layers_sigmoid` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sin:
 
 sin
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sin(x, name=None)
 
@@ -8229,14 +8727,16 @@ sin
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sin` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_softplus:
 
 softplus
->>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.softplus(x,name=None)
 
@@ -8248,14 +8748,16 @@ softplus
 
 
 
-英文版API文档: :ref:`api_fluid_layers_softplus` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_softshrink:
 
 softshrink
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.softshrink(x, name=None)       
 
@@ -8277,14 +8779,16 @@ Softshrink激活算子
 
 
 
-英文版API文档: :ref:`api_fluid_layers_softshrink` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_softsign:
 
 softsign
->>>>>>>>>
+-------------------------------
 
 .. py:function:: Paddle.fluid.layers.softsign(x,name=None)
 
@@ -8296,14 +8800,16 @@ softsign
 
 
 
-英文版API文档: :ref:`api_fluid_layers_softsign` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sqrt:
 
 sqrt
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sqrt(x, name=None)
 
@@ -8318,14 +8824,16 @@ sqrt
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sqrt` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_square:
 
 square
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.square(x,name=None)
 
@@ -8337,14 +8845,16 @@ square
 
 
 
-英文版API文档: :ref:`api_fluid_layers_square` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_tanh:
 
 tanh
->>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.tanh(x, name=None)
         
@@ -8361,14 +8871,16 @@ tanh
 
 
 
-英文版API文档: :ref:`api_fluid_layers_tanh` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_tanh_shrink:
 
 tanh_shrink
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.tanh_shrink(x, name=None)
 
@@ -8381,14 +8893,16 @@ tanh_shrink
 
 
 
-英文版API文档: :ref:`api_fluid_layers_tanh_shrink` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_thresholded_relu:
 
 thresholded_relu
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.thresholded_relu(x,threshold=None)
 
@@ -8416,14 +8930,16 @@ thresholded_relu
 
 
 
-英文版API文档: :ref:`api_fluid_layers_thresholded_relu` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_uniform_random:
 
 uniform_random
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: Paddle.fluid.layers.uniform_random(shape,dtype=None,min=None,max=None,seed=None)
 该操作符初始化一个张量，该张量的值是从正太分布中抽样的随机值
@@ -8445,7 +8961,9 @@ uniform_random
 
 
 
-英文版API文档: :ref:`api_fluid_layers_uniform_random` 
+
+
+
 
 
 
@@ -8459,7 +8977,7 @@ uniform_random
 .. _cn_api_fluid_layers_argmax:
 
 argmax
->>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers argmin(x,axis=0)
     
@@ -8484,14 +9002,16 @@ argmax
 
 
 
-英文版API文档: :ref:`api_fluid_layers_argmax` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_argmin:
 
 argmin
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers argmin(x,axis=0)
     
@@ -8516,14 +9036,16 @@ argmin
     
 
 
-英文版API文档: :ref:`api_fluid_layers_argmin` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_argsort:
 
 argsort
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers argsort(input,axis=-1,name=None)
 
@@ -8565,14 +9087,16 @@ argsort
 
 
 
-英文版API文档: :ref:`api_fluid_layers_argsort` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_assign:
 
 assign
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.assign(input,output=None)
 
@@ -8598,14 +9122,16 @@ assign
 
 
 
-英文版API文档: :ref:`api_fluid_layers_assign` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_cast:
 
 cast 
->>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.cast(x,dtype)
 
@@ -8628,14 +9154,16 @@ cast
 
 
 
-英文版API文档: :ref:`api_fluid_layers_cast` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_concat:
 
 concat
->>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.concat(input,axis=0,name=None)
 
@@ -8660,14 +9188,16 @@ concat
 
 
 
-英文版API文档: :ref:`api_fluid_layers_concat` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_create_global_var:
 
 create_global_var
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
@@ -8694,14 +9224,16 @@ create_global_var
 
 
 
-英文版API文档: :ref:`api_fluid_layers_create_global_var` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_create_parameter:
 
 create_parameter
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
 
@@ -8728,14 +9260,16 @@ create_parameter
 
 
 
-英文版API文档: :ref:`api_fluid_layers_create_parameter` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_create_tensor:
 
 create_tensor
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.create_tensor(dtype,name=None,persistable=False)
 
@@ -8757,14 +9291,18 @@ create_tensor
     tensor = fluid.layers.create_tensor(dtype='float32')
 
 
-英文版API文档: :ref:`api_fluid_layers_create_tensor` 
+
+
+
+
+
 
 
 
 .. _cn_api_fluid_layers_fill_constant:
 
 fill_constant
->>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers fill_constant(shape,dtype,value,force_cpu=False,out=None)
 
@@ -8793,14 +9331,16 @@ fill_constant
 
 
 
-英文版API文档: :ref:`api_fluid_layers_fill_constant` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_fill_constant_batch_size_like:
 
 fill_constant_batch_size_like
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.fill_constant_batch_size_like(input,shape,dtype,value,input_dim_idx=0,output_dim_idx=0)
 
@@ -8826,14 +9366,16 @@ fill_constant_batch_size_like
 
 
 
-英文版API文档: :ref:`api_fluid_layers_fill_constant_batch_size_like` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_has_inf:
 
 has_inf
->>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.has_inf(x)
 
@@ -8853,14 +9395,16 @@ has_inf
 
 
 
-英文版API文档: :ref:`api_fluid_layers_has_inf` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_has_nan:
 
 has_nan
->>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.has_nan(x)
 
@@ -8874,14 +9418,16 @@ has_nan
 
 
 
-英文版API文档: :ref:`api_fluid_layers_has_nan` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_isfinite:
 
 isfinite
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.isfinite(x)
 
@@ -8896,14 +9442,16 @@ isfinite
 
 
 
-英文版API文档: :ref:`api_fluid_layers_isfinite` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_ones:
 
 ones 
->>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.ones(shape,dtype,force_cpu=False)
 
@@ -8929,14 +9477,16 @@ ones
 
 
 
-英文版API文档: :ref:`api_fluid_layers_ones` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_reverse:
 
 reverse
->>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.reverse(x,axis)
     
@@ -8962,14 +9512,16 @@ reverse
 
 
 
-英文版API文档: :ref:`api_fluid_layers_reverse` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_sums:
 
 sums
->>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.sums(input,out=None)
 
@@ -8998,14 +9550,16 @@ sums
 
 
 
-英文版API文档: :ref:`api_fluid_layers_sums` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_tensor_array_to_tensor:
 
 tensor_array_to_tensor
->>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.tensor_array_to_tensor(input, axis=1, name=None)
 
@@ -9049,14 +9603,16 @@ tensor_array_to_tensor
 
 
 
-英文版API文档: :ref:`api_fluid_layers_tensor_array_to_tensor` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_zeros:
 
 zeros
->>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.zeros(shape,dtype,force_cpu=False)
 
@@ -9082,7 +9638,9 @@ zeros
 
 
 
-英文版API文档: :ref:`api_fluid_layers_zeros` 
+
+
+
 
 
 
@@ -9096,7 +9654,7 @@ zeros
 .. _cn_api_fluid_layers_append_LARS:
 
 append_LARS 
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.append_LARS(params_grads,learning_rate,weight_decay)
 
@@ -9117,14 +9675,16 @@ append_LARS
 
 
 
-英文版API文档: :ref:`api_fluid_layers_append_LARS` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_exponential_decay:
 
 exponential_decay 
->>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
 
@@ -9163,14 +9723,16 @@ exponential_decay
 
 
 
-英文版API文档: :ref:`api_fluid_layers_exponential_decay` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_inverse_time_decay:
 
 inverse_time_decay
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.inverse_time_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
@@ -9210,14 +9772,16 @@ inverse_time_decay
 
 
 
-英文版API文档: :ref:`api_fluid_layers_inverse_time_decay` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_natural_exp_decay:
 
 natural_exp_decay
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.natural_exp_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
@@ -9240,14 +9804,16 @@ natural_exp_decay
 
 
 
-英文版API文档: :ref:`api_fluid_layers_natural_exp_decay` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_noam_decay:
 
 noam_decay
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers noam_decay(d_model,warmup_steps)
 
@@ -9270,14 +9836,16 @@ Noam衰减方法。noam衰减的numpy实现如下。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_noam_decay` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_piecewise_decay:
 
 piecewise_decay
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.piecewise_decay(boundaries,values)
 
@@ -9304,14 +9872,16 @@ piecewise_decay
 
 
 
-英文版API文档: :ref:`api_fluid_layers_piecewise_decay` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_polynomial_decay:
 
 polynomial_decay 
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.polynomial_decay(learning_rate,decay_steps,end_learning_rate=0.0001,power=1.0,cycle=False)
 
@@ -9339,7 +9909,9 @@ polynomial_decay
 
 
 
-英文版API文档: :ref:`api_fluid_layers_polynomial_decay` 
+
+
+
 
 
 
@@ -9353,7 +9925,7 @@ polynomial_decay
 .. _cn_api_fluid_layers_anchor_generator:
 
 anchor_generator
->>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.anchor_generator(input, anchor_sizes=None, aspect_ratios=None, variance=[0.1, 0.1, 0.2, 0.2], stride=None, offset=0.5, name=None)
 
@@ -9401,14 +9973,16 @@ anchor_generator
 
 
 
-英文版API文档: :ref:`api_fluid_layers_anchor_generator` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_bipartite_match:
         
 bipartite_match
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
 
@@ -9452,14 +10026,16 @@ bipartite_match
 
 
 
-英文版API文档: :ref:`api_fluid_layers_bipartite_match` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_box_coder:
 
 box_coder
->>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.box_coder(prior_box, prior_box_var, target_box, code_type='encode_center_size', box_normalized=True, name=None)
 
@@ -9511,14 +10087,16 @@ Bounding Box Coder
 
 
 
-英文版API文档: :ref:`api_fluid_layers_box_coder` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_density_prior_box:
 
 density_prior_box
->>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.density_prior_box(input, image, densities=None, fixed_sizes=None, fixed_ratios=None, variance=[0.1, 0.1, 0.2, 0.2], clip=False, steps=[0.0, 0.0], offset=0.5, flatten_to_2d=False, name=None)
 
@@ -9589,14 +10167,16 @@ density prior box的量由fixed_sizes and fixed_ratios决定。显然地，fixed
 
 
 
-英文版API文档: :ref:`api_fluid_layers_density_prior_box` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_detection_map:
         
 detection_map
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.detection_map(detect_res, label, function_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
 
@@ -9654,14 +10234,16 @@ detection_map
 
 
 
-英文版API文档: :ref:`api_fluid_layers_detection_map` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_detection_output:
 
 detection_output
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
 
@@ -9713,14 +10295,16 @@ Detection Output Layer for Single Shot Multibox Detector(SSD)
 
 
 
-英文版API文档: :ref:`api_fluid_layers_detection_output` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_generate_proposal_labels:
 
 generate_proposal_labels
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_functiones, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], function_nums=None, use_random=True)
 
@@ -9758,14 +10342,16 @@ RpnRois 是RPN的输出box， 并由 ``GenerateProposals`` 来进一步处理, �
 
 
 
-英文版API文档: :ref:`api_fluid_layers_generate_proposal_labels` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_generate_proposals:
 
 generate_proposals
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, variances, pre_nms_top_n=6000, post_nms_top_n=1000, nms_thresh=0.5, min_size=0.1, eta=1.0, name=None) 
 
@@ -9801,14 +10387,17 @@ generate_proposals
 
 
 
-英文版API文档: :ref:`api_fluid_layers_generate_proposals` 
+
+
+
+
 
 
 
 .. _cn_api_fluid_layers_iou_similarity:
 
 iou_similarity
->>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.iou_similarity(x, y, name=None)
 
@@ -9830,14 +10419,16 @@ iou_similarity
 
 
 
-英文版API文档: :ref:`api_fluid_layers_iou_similarity` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_multi_box_head:
         
 multi_box_head
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_functiones, aspect_ratios, min_ratio=None, max_ratio=None, min_sizes=None, max_sizes=None, steps=None, step_w=None, step_h=None, offset=0.5, variance=[0.1, 0.1, 0.2, 0.2], flip=True, clip=False, kernel_size=1, pad=0, stride=1, name=None, min_max_aspect_ratios_order=False)
 
@@ -9897,14 +10488,16 @@ multi_box_head
 
 
 
-英文版API文档: :ref:`api_fluid_layers_multi_box_head` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_polygon_box_transform:
 
 polygon_box_transform
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.polygon_box_transform(input, name=None)  
 
@@ -9925,14 +10518,16 @@ PolygonBoxTransform 算子。
 
 
 
-英文版API文档: :ref:`api_fluid_layers_polygon_box_transform` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_prior_box:
 
 prior_box 
->>>>>>>>>
+-------------------------------
 .. py:function:: paddle.fluid.layers.prior_box(input,image,min_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
 
 **Prior Box Operator**
@@ -9975,14 +10570,16 @@ prior_box
 
 
 
-英文版API文档: :ref:`api_fluid_layers_prior_box` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_roi_perspective_transform:
 
 roi_perspective_transform
->>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.roi_perspective_transform(input, rois, transformed_height, transformed_width, spatial_scale=1.0)
 
@@ -10015,14 +10612,16 @@ roi_perspective_transform
 
 
 
-英文版API文档: :ref:`api_fluid_layers_roi_perspective_transform` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_rpn_target_assign:
 
 rpn_target_assign
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, is_crowd, im_info, rpn_batch_size_per_im=256, rpn_straddle_thresh=0.0, rpn_fg_fraction=0.5, rpn_positive_overlap=0.7, rpn_negative_overlap=0.3, use_random=True)
 
@@ -10075,14 +10674,16 @@ rpn_target_assign
         
 
 
-英文版API文档: :ref:`api_fluid_layers_rpn_target_assign` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_ssd_loss:
         
 ssd_loss
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, prior_box_var=None, background_label=0, overlap_threshold=0.5, neg_pos_ratio=3.0, neg_overlap=0.5, loc_loss_weight=1.0, conf_loss_weight=1.0, match_type='per_prediction', mining_type='max_negative', normalize=True, sample_size=None) 
 
@@ -10167,14 +10768,16 @@ ssd_loss
 
 
 
-英文版API文档: :ref:`api_fluid_layers_ssd_loss` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_target_assign:
 
 target_assign
->>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None, mismatch_value=None, name=None)
 
@@ -10227,7 +10830,9 @@ target_assign
 
 
 
-英文版API文档: :ref:`api_fluid_layers_target_assign` 
+
+
+
 
 
 
@@ -10241,7 +10846,7 @@ target_assign
 .. _cn_api_fluid_layers_accuracy:
 
 accuracy
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.accuracy(input, label, k=1, correct=None, total=None)
 
@@ -10274,14 +10879,16 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
 
 
-英文版API文档: :ref:`api_fluid_layers_accuracy` 
+
+
+
 
 
 
 .. _cn_api_fluid_layers_auc:
 
 auc
->>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.layers.auc(input, label, curve='ROC', num_thresholds=4095, topk=1, slide_steps=1)
 
@@ -10320,7 +10927,9 @@ auc
 
 
 
-英文版API文档: :ref:`api_fluid_layers_auc` 
+
+
+
 
 
 

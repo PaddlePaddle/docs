@@ -1,4 +1,3 @@
-
 #################
  fluid.profiler
 #################
@@ -8,7 +7,7 @@
 .. _cn_api_fluid_profiler_cuda_profiler:
 
 cuda_profiler
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.profiler.cuda_profiler(*args, **kwds)
 
@@ -54,12 +53,14 @@ CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行�
 
 
 
-英文版API文档: :ref:`api_fluid_profiler_cuda_profiler` 
+
+
+
 
 .. _cn_api_fluid_profiler_profiler:
 
 profiler
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.profiler.profiler(*args, **kwds)
 
@@ -93,12 +94,14 @@ profile interface 。与cuda_profiler不同，此profiler可用于分析CPU和GP
 
 
 
-英文版API文档: :ref:`api_fluid_profiler_profiler` 
+
+
+
 
 .. _cn_api_fluid_profiler_reset_profiler:
 
 reset_profiler
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.profiler.reset_profiler()
 
@@ -118,12 +121,14 @@ reset_profiler
 
 
 
-英文版API文档: :ref:`api_fluid_profiler_reset_profiler` 
+
+
+
 
 .. _cn_api_fluid_profiler_start_profiler:
 
 start_profiler
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.profiler.start_profiler(state)
 
@@ -157,12 +162,14 @@ start_profiler
 
 
 
-英文版API文档: :ref:`api_fluid_profiler_start_profiler` 
+
+
+
 
 .. _cn_api_fluid_profiler_stop_profiler:
 
 stop_profiler
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function::paddle.fluid.profiler.stop_profiler(sorted_key=None, profile_path='/tmp/profile')
 
@@ -192,5 +199,7 @@ stop_profiler
 
 
 
-英文版API文档: :ref:`api_fluid_profiler_stop_profiler` 
+
+
+
 
