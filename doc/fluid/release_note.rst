@@ -2,75 +2,87 @@
 版本说明
 ==============
 
-PaddlePaddle v1.1
+PaddlePaddle v1.2
 #####################
 
-PaddlePaddle v1.1 在基础框架、模型建设、分布式训练、预测引擎各个方向上完成多项更新。OP进行了全面完善和优化，模型库新增了自然语言处理、视觉和推荐等领域的大量经典模型，分布式训练能力显著提升，支持千亿规模稀疏参数大规模多机异步训练，预测库易用性和效率提升，移动端预测支持更多模型和更多硬件。详情如下：
+PaddlePaddle v1.2 在基础框架、预测引擎、模型建设、分布式训练各个方向上完成多项更新。基础框架支持python3.5及以上全版本。预测引擎优化，预测性能大幅提升。增强了对RL相关的支持能力。模型库新增图像分类任任务的预训练模型、语言模型任务新增基于cudnn的LSTM实现、分布式word2vec模型。CPU多机异步训练升级了包括worker异步并发和IO、通信优化在内多项功能，整体吞吐大幅提升。
 
 基础框架
-=========
-* 安装
-	* Mac OS X 10.11及以上pip安装支持。
-	* Mac OS X 10.12及以上从源码编译安装支持。
-* 编程语言
-	* Python3的支持（python3.5版本）。
-* IO
-	* 新增PyReader，支持用户基于python自定义数据读取和预处理的的高性能数据输入。在ResNet50模型上，单机情况下：单卡数据读取速度提升4%、4卡数据读取速度提升38%、8卡数据读取速度提升60%。
-	* 实现一个多进程PyReader decorator，配合PyReader可以实现数据读取性能线性提升。
-* OP优化
-	* 优化了 :code:`split operator` ，显著提升性能。
-	* 扩展 :code:`multiclass_nms operator` ，支持多边形的预测框。
-	* 通过 :code:`generatoe_proposals operator` 的CUDA实现，显著提升性能。
-	* 通过 :code:`affine_channel operator` 融合batch_norm operator，显著提升性能。
-	* 优化 :code:`depthwise_conv operator` 的forward和backward，显著提升性能。
-	* 优化 :code:`reduce_mean operator` 。
-	* 优化 :code:`sum operator` ，该operator在输入是 :code:`Tensor` 的情况下，减少一次zero memory耗时。
-	* 优化 :code:`top_k operator` ，显著提升性能。
-	* 优化 :code:`sequence_pool operator` ，显著提升性能。
-	* 优化 :code:`elementwise_add operator` ，显著提升性能。
-	*  :code:`while operator` 性能优化，相关的模型性能整体提升 30%+。
-	*  :code:`sequence_slice operator` 的实现，对于一个sequence，可以从指定位置开始，slice出指定长度的subsequence。
-	*  :code:`sequence_unpad operator` 的实现，支持padding Tensor转LoDTensor。
-	* 支持截断正态分布初始化方法(truncated normal initializer)。
-	* 二维 :code:`padding operator` 的实现，支持一个每个纬度的首尾padding不同的大小。
-	* 更多 operator支持： :code:`sequence_reverse operator` ， :code:`sequence_enumerate operator` , :code:`sequence_scatter operator` , :code:`roi_align operator` ， :code:`affine_channel operator` , :code:`anchor_generator operator` , :code:`generate_proposal_labels operator` , :code:`generate_proposals operator` , :code:`rpn_target_assign operator` 、 :code:`roi透视变换operator` ,  :code:`seq_pool operator` 、 :code:`seq_expand operator` 、 :code:`seq_concat operator` 、 :code:`seq_softmax operator` 、 :code:`lod_to_array operator` 、 :code:`array_to_lod operator` 。
-* 显存优化
-	* 显存优化策略eager deletion支持control flow (e.g. if-else, while)中子block的优化。显著降低包含control flow的模型的显存开销。
-
-模型建设
-=========
-* 自然语言处理方向增加开源语义匹配DAM模型和阅读理解BiDAF模型，机器翻译Transformer模型性能优化后训练速度提升超过30%，模型效果和训练速度均达到业界领先水平。
-* 计算机视觉方向增加开源OCR识别Seq2Seq-Attention模型，目标检测Faster-RCNN模型，图像语义分割DeepLab v3+模型，视频分类TSN模型，图像生成CircleGAN/ConditionalGAN/DCGAN模型，以及Deep Metric Learning模型，模型效果和训练速度均达到业界领先水平。
-* 个性化推荐任务系列模型支持：新闻自动标签模型TagSpace，序列语义召回模型GRU4Rec、SequenceSemanticRetrieval，点击率预估模型DeepCTR，多视角兴趣匹配模型multiview-simnet。
-	* TagSpace : TagSpace: Semantic Embeddings from Hashtags。
-	* SequenceSemanticRetrieval  : Multi-Rate Deep Learning for Temporal Recommendation。
-	* multiview-simnet  : A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems。
-	* GRU4Rec  : Session-based Recommendations with Recurrent Neural Networks。
-	* DeepCTR  : DeepFM: A Factorization-Machine based Neural Network for CTR Prediction。
-
-* 公开的Quora数据集上，实现并复现了四个公开匹配算法，具有较好的通用性，可应用于NLP、搜索、推荐等场景。
-	* cdssmNet：Learning semantic representations using convolutional neural networks for web search 。
-	* decAttNet：Neural paraphrase identification of questions with noisy pretraining 。
-	* inferSentNet：Supervised learning of universal sentence representations from natural language inference data 。
-	* SSENet：Shortcut-stacked sentence encoders for multi-domain inference。
-
-分布式训练
 ==========
-* GPU多机多卡同步训练支持参数同步频率可配置化，在V100上支持的batch size提升为v1.0版本的8倍，通过合理的通信间隔配置，使GPU卡数较少的情况下超大Batch同步训练成为可能，并在优化算法方面保证了收敛效果不变。
-* 支持千亿规模稀疏参数服务器，用于大规模多机异步训练，适用于推荐、广告等领域的点击率预估模型。
-
+* 安装
+	* 提供新pip安装包，支持Windows下CPU执行。
+* 编程语言
+	* 新增对python3.6、python3.7的支持。
+* 重构内存分配模块Allocator，提升CPU下内存分配策略，提升显存利用率(默认关闭，需要使用FLAGS_allocator_strategy)。
+* 限制SelectedRows的使用。修复了稀疏正则和稀疏优化器的bug。
+* Tensor支持DLPack，方便被其他框架集成和集成其他训练框架。
+* OP
+	* 修复 expand op shape 推理错误的bug
+	* 支持 Selu 激活函数
 
 预测引擎
-========
+==========
 * 服务器预测
-	* 预测库Windows支持。
-	* PaddlePredictor C++ 接口稳定版发布，已经实际支持一部分业务上线，并持续向前兼容。
-	* 预发布整合了 TensorRT 子图加速方案。运行时自动切割计算子图调用TensorRT加速。目前Paddle TensorRT 依旧在持续开发中，已支持的模型有 AlexNet, MobileNet, ResNet50, VGG19, ResNet, MobileNet-SSD等。
-	* 基于图优化的 CPU 加速 feature，实现了 LSTM，GRU 等一系列 operator 的 fuse，理论上可以大幅提升序列相关模型的性能。
-	* 增加了部署时 AVX 和 NOAVX 自动切换的feature，可以针对重点模型实现AVX, AVX2, AVX512自动切换。
-	* 提升预测库易用性：只需要 include一个头文件和一个库。
-	* ICNet 预测性能大幅提升。
+	* GPU 支持图融合，且支持和 TensorRT引擎混合改图，在Resnet50和Googlenet等图像通用模型上bs=1下性能提升 50%~100%。
+	* GPU支持DDPG Deep Explore预测。
+	* Paddle-TRT对更多模型的支持，其中包括Resnet， SE-Resnet， DPN，GoogleNet。
+	* CPU, GPU, TensorRT 等加速引擎合并入 AnalysisPredictor，统一由 AnalysisConfig 控制。
+	* 增加调用多线程数学库的接口。
+	* 新增TensorRT plugin的支持，包括 :code:`split operator` ， :code:`prelu operator` ，  :code:`avg_pool operator` ,  :code:`elementwise_mul operator` 。
+	* 增加了JIT CPU Kernel，支持基本的向量操作，以及常见的算法包括ReLU，LSTM和GRU的部分实现，可以实现在AVX和AVX2指令集之间自动runtime切换。
+	* 优化CRF decoding和LayerNorm在AVX以及AVX2指令集上的实现。
+	* 修复了 AnalysisPredictor 在GPU，在CPU 到 GPU 的 transfer data 不删除的问题。
+	* 修复了 Variable 中包含 container 内存持续增长的问题。
+	* 修复 :code:`fc_op` 不支持3-D Tensor的问题。
+	* 修复了Analysis predictor 在GPU下执行pass时的问题。
+	* 修复了TensorRT下运行GoogleNet的问题。
+	* 预测性能提升
+		* Max Sequence pool optimization，单op提高10%。
+		*  :code:`Softmax operator` 优化，单op提升14%。
+		*  :code:`Layer Norm operator` 优化，支持avx2指令集，单op提升5倍。
+		*  :code:`Stack operator` 优化，单op提升3.6倍。
+		* 增加depthwise_conv_mkldnn_pass，加速MobileNet预测。
+		* 加速analysis模式的图分析时间，提升70倍。
+		* DAM开源模型，提升118.8%。
 * 移动端预测
-	* 树莓派上MobileNet、GoogleNet、ResNet 34等多个模型支持。
-	* Mali GPU和Andreno GPU上MobileNet v1模型支持。
-	* ZU5、ZU9等FPGA开发板上ResNet 34和ResNet 50模型支持。
+	* 实现winograd算法， GoogleNet v1性能大幅提升35%。
+	* GoogleNet 8bit优化，相比float加速14%。
+	* MobileNet v1 8bit支持，相比float加速20%。
+	* MobileNet v2 8bit支持，相比float加速19%。
+	* FPGA V1 开发了Deconv算子。
+	* android gpu支持MobileNet、MobileNetSSD、GoogleNet、SqueezeNet、YOLO、ResNet等主流的网络模型。
+
+
+模型建设
+===========
+* CV图像分类任务发布MobileNet V1, ResNet101, ResNet152，VGG11预训练模型。
+* CV Metric Learning模型新增arcmargin损失，并调整训练方式，采用element-wise作为预训练模型，pair-wise继续微调的训练方式提升精度。
+* NLP语言模型任务新增基于cudnn的LSTM实现，对比PaddingRNN的实现方式，在不同参数配置下速度提升3~5倍。
+* 增加分布式word2vec模型，包括新增的tree-based softmax operator，negative sampling等，与经典word2vec算法对齐。
+* 新增GRU4Rec、Tag-Space算法的分布式配置。
+* 完善Multi-view Simnet模型，并增加inference配置。
+* 支持强化学习算法 DQN。
+* 现已支持python3.x的模型：语义匹配DAM，阅读理解BiDAF，机器翻译Transformer，语言模型，强化学习DQN、DoubleDQN模型、DuelingDQN模型，视频分类TSN，度量学习Metric Learning，场景文字识别CRNN-CTC 、OCR Attention，生成式对抗网络ConditionalGAN、DCGAN、CycleGAN，语义分割ICNET、DeepLab v3+，目标检测Faster-RCNN、MobileNet-SSD 、PyramidBox ，图像分类SE-ResNeXt、ResNet等，个性化推荐TagSpace、GRU4Rec、SequenceSemanticRetrieval、DeepCTR、Multiview-Simnet。
+
+分布式训练
+=============
+* CPU多机异步训练
+	* worker异步并发：增加 :code:`AsyncExecutor` ，以训练文件作为执行粒度，支持分布式训练中的worker端计算异步无锁计算，同时支持单机训练。以CTR任务为例，单机训练速度，在充分利用单机线程的情况下，整体吞吐提升14倍。
+	* IO优化：增加支持 :code:`AsyncExecutor` 的DataFeed，支持可定制化的通用分类任务格式。面向CTR任务，增加CTRReader，使数据读取速度线性提升，在PaddleRec/ctr任务中，整体吞吐提升1倍。
+	* 通信优化：针对稀疏访问的Dense参数例如Embedding，增加稀疏通信机制，以语义匹配任务为例，获取参数的总量可以压缩到1%以下，在搜索真实场景的数据下，整体训练吞吐可以提升50倍。
+* GPU多机同步训练
+	* 修复Transformer、Bert模型下P2P训练模式会Hang住的问题。
+
+文档
+=========
+* API
+	* 新增13篇API​使用指南。
+	* 新增300个API Reference中文文档。
+	* 优化77个API Reference英文文档：包括代码示例、参数说明等。
+* 安装文档
+	* 新增python3.6、python3.7安装说明。
+	* 新增windows pip install安装说明。
+* Book文档
+	* Book文档中的代码示例更改为Low level API。
+* 使用文档
+	* 新增《Operator相关注意事项》，更新《保存与载入模型变量》、《C++预测API介绍》、《使用TensorRT库预测》、《如何贡献代码》等多篇使用文档。
