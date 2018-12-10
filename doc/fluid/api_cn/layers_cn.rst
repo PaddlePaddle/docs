@@ -1875,8 +1875,6 @@ ClipByNorm算子
 
 其中， :math:`norm（X）` 代表 ``x`` 的L2范数。
 
-例如,
-
 
 参数：
         - **x** (Variable)- (Tensor) clip_by_norm运算的输入，维数必须在[1,9]之间。
