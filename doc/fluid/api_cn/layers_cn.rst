@@ -20,11 +20,12 @@ array_length
 此功能用于查找输入数组LOD_TENSOR_ARRAY的长度。  
 
 相关API:
-    - :ref:`api_fluid_layers_array_read`
-    - :ref:`api_fluid_layers_array_write`
-    - :ref:`api_fluid_layers_While`
+    - :ref:`cn_api_fluid_layers_array_read`
+    - :ref:`cn_api_fluid_layers_array_write`
+    - :ref:`cn_api_fluid_layers_While`
 
-参数：**array** (LOD_TENSOR_ARRAY)-输入数组，用来计算数组长度
+参数：
+    - **array** (LOD_TENSOR_ARRAY)-输入数组，用来计算数组长度
 
 返回：输入数组LoDTensorArray的长度
 
@@ -1714,12 +1715,7 @@ BRelu 激活函数
     - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
 
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype=”float32”)
-    y = fluid.layers.brelu(x, t_min=1.0, t_max=20.0)
 
 
 
@@ -1831,7 +1827,7 @@ clip
         
 clip算子
 
-clip运算符限制给定输入的值在一个区间内。间隔使用参数"min"和"max"来指定：公式为
+clip运算符限制给定输入的值在一个区间内。间隔使用参数“min”和“max”来指定：公式为
 
 .. math:: 
         Out=min(max(X,min),max)
@@ -1846,13 +1842,9 @@ clip运算符限制给定输入的值在一个区间内。间隔使用参数"min
 
 返回类型：        输出（Variable）。        
 
-**代码示例：**
 
-.. code-block:: python
 
-    input = fluid.layers.data(
-        name='data', shape=[1], dtype='float32')
-    reward = fluid.layers.clip(x=input, min=-1.0, max=1.0)
+
 
 
 
@@ -1875,6 +1867,13 @@ ClipByNorm算子
 
 其中， :math:`norm（X）` 代表 ``x`` 的L2范数。
 
+例如,
+
+..  code-block:: python
+
+  data = fluid.layer.data( name=’data’, shape=[2, 4, 6], dtype=’float32’)
+  reshaped = fluid.layers.clip_by_norm( x=data, max_norm=0.5)
+
 
 参数：
         - **x** (Variable)- (Tensor) clip_by_norm运算的输入，维数必须在[1,9]之间。
@@ -1885,13 +1884,7 @@ ClipByNorm算子
 
 返回类型：       Variable        
 
-**代码示例：**
 
-.. code-block:: python
-
-    input = fluid.layers.data(
-        name='data', shape=[1], dtype='float32')
-    reward = fluid.layers.clip_by_norm(x=input, max_norm=1.0)
 
 
 
@@ -2492,16 +2485,15 @@ ctc_greedy_decoder
 .. py:function:: paddle.fluid.layers.ctc_greedy_decoder(input, blank, name=None)
 
 此op用于贪婪策略解码序列，步骤如下:
-    
-    1. 获取输入中的每一行的最大值索引。又名numpy.argmax(input, axis=0)。
-    2. 对于step1结果中的每个序列，在两个空格之间合并重复token并删除所有空格。
+    1. 获取输入中的每一行的最大值索引，也就是numpy.argmax(input, axis=0)。
+    2. 对于step1结果中的每个序列，在两个空格之间合并重复部分（即合并重复的上一步中的到的索引值）并删除所有空格。
 
 
-A simple example as below:
+简单举一个例子，
 
-  ::
+::
 
-        Given:
+        已知：
 
         input.data = [[0.6, 0.1, 0.3, 0.1],
                       [0.3, 0.2, 0.4, 0.1],
@@ -2515,7 +2507,14 @@ A simple example as below:
 
         input.lod = [[4, 4]]
 
-        Then:
+        计算过程：
+
+        1. 将argmax的运算结果应用于输入的第一个序列，即 input.data[0:4] 。
+           则得出的结果为[[0], [2], [1], [0]]
+        2. 合并重复的索引值部分，删除空格，即为0的值。
+           则第一个输入序列对应的输出为：[[2], [1]]
+
+        最后
 
         output.data = [[2],
                        [1],
@@ -2529,7 +2528,7 @@ A simple example as below:
         - **blank** (int) — Connectionist Temporal Classification (CTC) loss空白标签索引,  属于半开区间[0,num_classes + 1）。
         - **name** (str) — 此层的名称。可选。
    
-返回： CTC贪婪解码结果。如果结果中的所有序列都为空，则LoDTensor 为[-1]，其中LoD[[]] dims[1,1]。
+返回： CTC贪婪解码结果是一个形为(Lp,1)的二维张量，其中Lp是所有输出序列的长度之和。如果结果中的所有序列都为空，则输出LoDTensor 为[-1]，其中LoD[[]] 形为[1,1]。
 
 返回类型： 变量（Variable）
     
@@ -2606,23 +2605,30 @@ dropout操作
 丢弃或者保持x的每个元素独立。Dropout是一种正则化技术，通过在训练过程中阻止神经元节点间的联合适应性来减少过拟合。根据给定的丢弃概率dropout操作符随机将一些神经元输出设置为0，其他的仍保持不变。
 
 参数：
-    - **x** Variable）-输入张量
+    - **x** (Variable)-输入张量
     - **dropout_prob** (float)-设置为0的单元的概率
     - **is_test** (bool)-显示是否进行测试用语的标记
     - **seed** (int)-Python整型，用于创建随机种子。如果该参数设为None，则使用随机种子。注：如果给定一个整型种子，始终丢弃相同的输出单元。训练过程中勿用固定不变的种子。
     - **name** (str|None)-该层名称（可选）。如果设置为None,则自动为该层命名
-    - **dropout_implementation** (string)-[‘downgrade_in_infer’(defauld)|’upscale_in_train’] 
-        1.downgrade_in_infer(default), 在预测时减小输出结果 
-            train: out = input * mask 
-	    
-	    inference: out = input * dropout_prob 
-            (mask是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为dropout_prob)
-        2.upscale_in_train, 增加训练时的结果
-	    train: out = input * mask / ( 1.0 - dropout_prob )
-	    
-	    inference: out = input 
-	    (make是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为dropout_prob）
-            dropout操作符可以从程序中移除，程序变得高效。
+    - **dropout_implementation** (string) -   [‘downgrade_in_infer’(defauld)|’upscale_in_train’] 
+      其中:
+      1.downgrade_in_infer(default), 在预测时减小输出结果 
+
+        train: out = input * mask 
+
+        inference: out = input * dropout_prob 
+
+        (mask是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` )
+        
+      2.upscale_in_train, 增加训练时的结果
+
+        train: out = input * mask / ( 1.0 - dropout_prob )
+
+        inference: out = input 
+
+        (make是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` ）
+
+dropout操作符可以从程序中移除，程序变得高效。
 
 返回：带有x维的张量
 
@@ -2706,7 +2712,7 @@ dynamic_gru
     emb = fluid.layers.embedding(input=data, size=[dict_dim, emb_dim])
     hidden_dim = 512
     x = fluid.layers.fc(input=emb, size=hidden_dim * 3)
-    hidden = fluid.layers.dynamic_gru(input=x, dim=hidden_dim)
+    hidden = fluid.layers.dynamic_gru(input=x, size=hidden_dim)
 
 
 
@@ -2959,8 +2965,8 @@ edit_distance
 
 .. code-block:: python
 
-    x = fluid.layers.data(name='x', shape=[8], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[7], dtype='float32')
+    x = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     cost = fluid.layers.edit_distance(input=x,label=y)
 
 
@@ -3395,12 +3401,7 @@ ELU激活层（ELU Activation Operator）
 
 返回类型: 输出(Variable)
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.elu(x, alpha=0.2)
 
 
 
@@ -3966,12 +3967,7 @@ sigmoid的分段线性逼近(https://arxiv.org/abs/1603.00391)，比sigmoid快�
     - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.hard_sigmoid(x, slope=0.3, offset=0.8)
 
 
 
@@ -4056,23 +4052,41 @@ hash
 hsigmoid
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.hsigmoid(input, label, num_functiones, param_attr=None, bias_attr=None, name=None)
+.. py:function:: paddle.fluid.layers.hsigmoid(input, label, num_functiones, param_attr=None, bias_attr=None, name=None, path_table=None, path_code=None, is_custom=False, is_sparse=False)
 
-层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完整的二叉树，每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。hsigmoid可以把时间复杂度 :math:`O(N)` 优化到 :math:`O(logN)` ,其中 :math:`N` 表示单词字典的大小。
+层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完全二叉树，也可以使用 ``is_custom`` 参数来传入自定义的树结构来实现层次化。 
 
-`请参考 Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_
-    
+树中每个叶节点表示一个类(一个单词)，每个内部节点进行一个二分类。对于每个单词，都有一个从根到它的叶子节点的唯一路径，hsigmoid计算路径上每个内部节点的损失（cost），并将它们相加得到总损失（cost）。
+
+hsigmoid可以把时间复杂度 :math:`O(N)` 优化到 :math:`O(logN)` ,其中 :math:`N` 表示单词字典的大小。
+
+使用默认树结构，请参考 `Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_ 。
+
+若要使用自定义树结构，请设置 ``is_custom`` 值为True。但在此之前，请完成以下几步部署：
+
+1.使用自定义词典来建立二叉树，每个叶结点都应该是词典中的单词
+
+2.建立一个dict类型数据结构，来存储 **单词id -> 该单词叶结点至根节点路径** 的映射，称之为路径表 ``path_table`` 参数
+
+3.建立一个dict类型数据结构，来存储 **单词id -> 该单词叶结点至根节点路径的编码(code)** 的映射。 编码code是指每次二分类的标签，1为真，0为假
+
+4.现在我们的每个单词都已经有自己的路径和路径编码，当对于同一批输入进行操作时，你可以同时传入一批路径和路径编码进行运算。
+
 参数:
     - **input** (Variable) - 输入张量，shape为 ``[N×D]`` ,其中 ``N`` 是minibatch的大小，D是特征大小。
     - **label** (Variable) - 训练数据的标签。该tensor的shape为 ``[N×1]``   
-    - **num_classes** (int) - 类别的数量不能少于2
+    - **num_classes** (int) - 类别的数量不能少于2。若使用默认树结构，该参数必须用户设置。当 ``is_custom=False`` 时，该项绝不能为None。反之，如果 ``is_custom=True`` ，它取值应为非叶节点的个数，来指明二分类实用的类别数目。
     - **param_attr** (ParamAttr|None) - 可学习参数/ hsigmoid权重的参数属性。如果将其设置为ParamAttr的一个属性或None，则将ParamAttr设置为param_attr。如果没有设置param_attr的初始化器，那么使用用Xavier初始化。默认值:没None。
     - **bias_attr** (ParamAttr|bool|None) - hsigmoid偏置的参数属性。如果设置为False，则不会向输出添加偏置。如果将其设置ParamAttr的一个属性或None，则将ParamAttr设置为bias_attr。如果没有设置bias_attr的初始化器，偏置将初始化为零。默认值:None。
     - **name** (str|None) - 该layer的名称(可选)。如果设置为None，该层将被自动命名。默认值:None。
+    - **path_table** (Variable|None) – 存储每一批样本从词到根节点的路径。路径应为从叶至根方向。 ``path_table`` 和 ``path_code`` 应具有相同的形, 对于每个样本 i ，path_table[i]为一个类似np.array的结构，该数组内的每个元素都是其双亲结点权重矩阵的索引
+    - **path_code** (Variable|None) – 存储每批样本的路径编码，仍然是按从叶至根方向。各样本路径编码批都由其各祖先结点的路径编码组成
+    - **is_custom** (bool|False) – 使用用户自定义二叉树取代默认二叉树结构，如果该项为真， 请务必设置 ``path_table`` , ``path_code`` , ``num_classes`` , 否则就需要设置 num_classes 
+    - **is_sparse** (bool|False) – 使用稀疏更新方式，而非密集更新。如果为真， W的梯度和输入梯度将会变得稀疏
+
+返回:  (LoDTensor) 层次sigmod（ hierarchical sigmoid） 。shape[N, 1]
     
-    返回:  (Tensor) 层次sigmod（ hierarchical sigmoid） 。shape[N, 1]
-    
-    返回类型:  Out
+返回类型:  Out
 
 
 **代码示例**
@@ -4083,7 +4097,7 @@ hsigmoid
     	y = fluid.layers.data(name='y', shape=[1], dtype='int64')
     	out = fluid.layers.hsigmoid(input=x, label=y, num_classes=6)
 
-  
+
 
 
 
@@ -4191,36 +4205,25 @@ image_resize
     
 输入张量的shape为(num_batch, channels, in_h, in_w)，并且调整大小只适用于最后两个维度(高度和宽度)。
     
-支持重新取样方法: 
-
-    BILINEAR：双线性插值
-    NEAREST：最近邻插值
-
+支持重新取样方法: 双线性插值
+    
 参数:
     - **input** (Variable) - 图片调整层的输入张量，这是一个shape=4的张量(num_batch, channels, in_h, in_w)
     - **out_shape** (list|tuple|Variable|None) - 图片调整层的输出，shape为(out_h, out_w)。默认值:None
     - **scale** (float|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None
     - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
     - **resample** (str) - 重采样方法。目前只支持“双线性”。默认值:双线性插值
-    - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`actual_shape` 而不是 :code:`out_shape` 。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值:None
-
 
 返回： 4维tensor，shape为 (num_batches, channls, out_h, out_w).
 
 返回类型:	变量（variable）
 
-抛出异常：
-	- :code:`TypeError` - out_shape应该是一个列表、元组或变量。
-	- :code:`TypeError` - actual_shape应该是变量或None
-	- :code:`ValueError` - image_resize的"resample"只能是"BILINEAR"或"NEAREST"。
-	- :code:`ValueError` - out_shape 和 scale 不能为 None
-	- :code:`ValueError` - out_shape 的长度必须为 2
 
 **代码示例**
 
 ..  code-block:: python
         
-	out = fluid.layers.image_resize(input, out_shape=[12, 12], resample="NEAREST") 
+	out = fluid.layers.image_resize(input, out_shape=[12, 12]) 
   
 
 
@@ -4425,12 +4428,7 @@ LeakyRelu 激活函数
     - **alpha** (FLOAT|0.02) - 负斜率，值很小。
     - **name** (str|None) - 此层的名称(可选)。如果设置为None，该层将被自动命名。
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype="float32")
-    y = fluid.layers.leaky_relu(x, alpha=0.01)
 
 
 
@@ -4704,16 +4702,6 @@ logical_and算子
 返回类型：        输出（Variable）。        
         
         
-**代码示例：**
-
-.. code-block:: python
-
-    left = fluid.layers.data(
-        name='left', shape=[1], dtype='int32')
-    right = fluid.layers.data(
-        name='right', shape=[1], dtype='int32')
-    result = fluid.layers.logical_and(x=left, y=right)
-
 
 
 
@@ -4746,13 +4734,7 @@ logical_not算子
 返回类型：        输出（Variable）。        
 
 
-**代码示例：**
 
-.. code-block:: python
-    
-    left = fluid.layers.data(
-        name='left', shape=[1], dtype='int32')
-    result = fluid.layers.logical_not(x=left)
 
 
 
@@ -4786,15 +4768,7 @@ logical_or算子
 
 
 
-**代码示例：**
 
-.. code-block:: python
-
-    left = fluid.layers.data(
-        name='left', shape=[1], dtype='int32')
-    right = fluid.layers.data(
-        name='right', shape=[1], dtype='int32')
-    result = fluid.layers.logical_or(x=left, y=right)
 
 
 
@@ -4827,15 +4801,7 @@ logical_xor算子
 
 
 
-**代码示例：**
 
-.. code-block:: python
-
-    left = fluid.layers.data(
-        name='left', shape=[1], dtype='int32')
-    right = fluid.layers.data(
-        name='right', shape=[1], dtype='int32')
-    result = fluid.layers.logical_xor(x=left, y=right)
 
 
 
@@ -5408,7 +5374,7 @@ multiplex
 nce
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.nce(input, label, num_total_functiones, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None)
+.. py:function:: paddle.fluid.layers.nce(input, label, num_total_functiones, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
 
 计算并返回噪音对比估计（ noise-contrastive estimation training loss）。
 `请参考 See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models 
@@ -5416,14 +5382,18 @@ nce
 该operator默认使用均匀分布进行抽样。
 
 参数:
-	- **input** (Variable) -  特征
-	- **label** (Variable) -  标签
-    	- **num_total_classes** (int) - 所有样本中的类别的总数
-    	- **sample_weight** (Variable|None) - 存储每个样本权重，shape为[batch_size, 1]存储每个样本的权重。每个样本的默认权重为1.0
-    	- **param_attr** (ParamAttr|None) - 可学习参数/ nce权重的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None
-    	- **bias_attr** (ParamAttr|bool|None) -  nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None
-    	- **num_neg_samples** (int) - 负样例的数量。默认值是10
-    	- **name** (str|None) - 该layer的名称(可选)。如果设置为None，该层将被自动命名
+    - **input** (Variable) -  输入变量
+    - **label** (Variable) -  标签
+    - **num_total_classes** (int) - 所有样本中的类别的总数
+    - **sample_weight** (Variable|None) - 存储每个样本权重，shape为[batch_size, 1]存储每个样本的权重。每个样本的默认权重为1.0
+    - **param_attr** (ParamAttr|None) - :math:`可学习参数/nce权重` 的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None
+    - **bias_attr** (ParamAttr|bool|None) -  nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None
+    - **num_neg_samples** (int) - 负样例的数量。默认值是10
+    - **name** (str|None) - 该layer的名称(可选)。如果设置为None，该层将被自动命名
+    - **sampler** (str) – 取样器，用于从负类别中进行取样。可以是 ‘uniform’, ‘log_uniform’ 或 ‘custom_dist’。 默认 ‘uniform’
+    - **custom_dist** (float[]) – 一个 float[] 并且它的长度为 ``num_total_classes`` 。  如果取样器类别为‘custom_dist’，则使用此参数。 custom_dist[i] 是第i个类别被取样的概率。默认为 None
+    - **seed** (int) – 取样器使用的seed。默认为0
+    - **is_sparse** (bool) – 标志位，指明是否使用稀疏更新,  :math:`weight@GRAD` 和 :math:`bias@GRAD` 会变为 SelectedRows
 
 返回：	nce loss
 
@@ -5434,28 +5404,37 @@ nce
 
 ..  code-block:: python
 
-    window_size = 5
-    words = []
-    for i in xrange(window_size):
-    	words.append(layers.data(
-    	name='word_{0}'.format(i), shape=[1], dtype='int64'))
+		window_size = 5
+		words = []
+		for i in xrange(window_size):
+			words.append(layers.data(
+				name='word_{0}'.format(i), shape=[1], dtype='int64'))
 
-    dict_size = 10000
-    label_word = int(window_size / 2) + 1
+		dict_size = 10000
+		label_word = int(window_size / 2) + 1
 
-    embs = []
-    for i in xrange(window_size):
-   	 if i == label_word:
-    	continue
+		embs = []
+		for i in xrange(window_size):
+			if i == label_word:
+				continue
 
-    emb = layers.embedding(input=words[i], size=[dict_size, 32],
-    param_attr='emb.w', is_sparse=True)
-    embs.append(emb)
+			emb = layers.embedding(input=words[i], size=[dict_size, 32],
+								   param_attr='emb.w', is_sparse=True)
+			embs.append(emb)
 
-    embs = layers.concat(input=embs, axis=1)
-    loss = layers.nce(input=embs, label=words[label_word],
-    num_total_classes=dict_size, param_attr='nce.w',
-    bias_attr='nce.b')
+		embs = layers.concat(input=embs, axis=1)
+		loss = layers.nce(input=embs, label=words[label_word],
+					  num_total_classes=dict_size, param_attr='nce.w',
+					  bias_attr='nce.b')
+
+		#使用custom distribution
+		dist = fluid.layers.assign(input=np.array([0.05,0.5,0.1,0.3,0.05]).astype("float32"))
+		loss = layers.nce(input=embs, label=words[label_word],
+					  num_total_classes=5, param_attr='nce.w',
+					  bias_attr='nce.b',
+					  num_neg_samples=3,
+					  sampler="custom_dist",
+					  custom_dist=dist)
 
 
 
@@ -5691,7 +5670,7 @@ pad_constant_like
 pool2d
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.pool2d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None)
+.. py:function:: paddle.fluid.layers.pool2d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True)
 
 pooling2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` , 步长 ``pool_stride`` ，填充 ``pool_padding`` 这些参数得到输出。
 
@@ -5702,10 +5681,10 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核�
 例如：
 
 输入：
-    X shape：:math:`\left ( N,C_{in},H_{in},W_{in} \right )`
+    X shape：:math:`\left ( N,C,H_{in},W_{in} \right )`
 
 输出：
-    Out shape：:math:`\left ( N,C_{out},H_{out},W_{out} \right )`
+    Out shape：:math:`\left ( N,C,H_{out},W_{out} \right )`
 
 如果 ``ceil_mode`` = false：
 
@@ -5738,21 +5717,22 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核�
     hstart &= max(0, i * strides[0] - paddings[0])\\
     hend &= min(H, hstart + ksize[0]) \\
     wstart &= max(0, j * strides[1] - paddings[1]) \\
-    wend & = min(W, wstart + ksize[1]) Output(i ,j) \\
-         & = \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
+    wend & = min(W, wstart + ksize[1]) \\
+    Output(i ,j) & = \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
 
 
 
 参数：
     - **input** (Variable) - 池化操作的输入张量。输入张量格式为NCHW，N为批尺寸，C是通道数，H是特征高度，W是特征宽度
-    - **pool_size** (int) - 池化窗口的边长。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。否则它应是一个整数的平方值。
+    - **pool_size** (int|list|tuple)  - 池化窗口的大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。否则它应是一个整数的平方值。
     - **pool_type** (string) - 池化类型，可以是“max”对应max-pooling，“avg”对应average-pooling
-    - **pool_stride** (int) - 池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。否则它是一个整数的平方值。
-    - **pool_padding** (int) - 填充大小。如果它是一个元组或列表，它必须包含两个整数值，(pool_padding_on_Height, pool_padding_on_Width)。否则它是一个整数的平方值。
-    - **global_pooling** （bool，默认false）- 是否用全局池化。如果global_pooling = true，ksize和填充（padding）则被忽略
+    - **pool_stride** (int|list|tuple)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。否则它是一个整数的平方值。
+    - **pool_padding** (int|list|tuple) - 填充大小。如果它是一个元组或列表，它必须包含两个整数值，(pool_padding_on_Height, pool_padding_on_Width)。否则它是一个整数的平方值。
+    - **global_pooling** （bool，默认false）- 是否用全局池化。如果global_pooling = true， ``pool_size`` 和 ``pool_padding`` 将被忽略。
     - **use_cudnn** （bool，默认false）- 只在cudnn核中用，需要下载cudnn
     - **ceil_mode** （bool，默认false）- 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数
     - **name** （str|None） - 该层名称（可选）。若设为None，则自动为该层命名。
+    - **exclusive** (bool) - 是否在平均池化模式忽略填充值。默认为True。
 
 返回：池化结果
 
@@ -5789,20 +5769,21 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核�
 pool3d
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None)
+.. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None， exclusive=True)
 
 函数使用上述输入参数的池化配置，为三维空间添加池化操作
 
 参数：
-    - **input** (Vairable) - 池化的输入张量。输入张量的格式为NCHW, N是批尺寸，C是通道数，N是特征高度，W是特征宽度。
-    - **pool_size** (int) - 池化窗口的边长。所有对池化窗口都是正方形，边长为pool_size。
-    - **pool_type** (str) - 池化类型，``ma``对应max-pooling,``avg``对应average-pooling。
-    - **pool_stride** (int) - 跨越步长
-    - **pool_padding** (int) - 填充大小
-    - **global_pooling** (bool) - 是否使用全局池化。如果global_pooling = true,ksize and paddings将被忽略。
-    - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效
+    - **input** (Vairable) - 池化运算的输入张量。输入张量的格式为NCDHW, N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。
+    - **pool_size** (int|list|tuple) - 池化窗口的大小。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。如果是int类型，它应该是一个整数的立方。
+    - **pool_type** (str) - 池化类型， "max" 对应max-pooling, "avg" 对应average-pooling。
+    - **pool_stride** (int|list|tuple) - 池化跨越步长。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。如果是int类型，它应该是一个整数的立方。
+    - **pool_padding** (int|list|tuple) - 填充大小。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。如果是int类型，它应该是一个整数的立方。
+    - **global_pooling** (bool) - 是否使用全局池化。如果global_pooling = true, ``pool_size`` 和 ``pool_padding`` 将被忽略。
+    - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效。
     - **ceil_mode** (bool) - 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数。
     - **name** (str) - 该层名称（可选）。若为空，则自动为该层命名。
+    - **exclusive** (bool) - 是否在平均池化模式忽略填充值。默认为True。
 
 返回：pool3d层的输出
 
@@ -5838,12 +5819,7 @@ pow
 返回类型: 输出(Variable)
 
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.pow(x, factor=2.0)
 
 
 
@@ -6270,12 +6246,7 @@ relu6激活算子（Relu6 Activation Operator）
 返回类型: 输出(Variable)
 
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.relu6(x, threshold=6.0)
 
 
 
@@ -6288,12 +6259,10 @@ relu6激活算子（Relu6 Activation Operator）
 reshape
 -------------------------------
 
-.. py:function::  paddle.fluid.layers.reshape(x, shape, actual_shape=None, act=None, inplace=False, name=None)
-
 保持输入张量数据不变的情况下，改变张量的形状。
 
-目标形状可由 ``shape`` 或 ``actual_shape`` 给出。``shape`` 是一个整数列表，而 ``actual_shape`` 是一个张量变量。
-当两个属性同时被指定时，``actual_shape`` 的优先级高于 ``shape`` ，但在编译时仍然应该正确地设置 ``shape`` 以保证形状推断。
+目标形状可由 ``shape`` 或 ``actual_shape`` 给出。``shape``是一个整数列表，而 ``actual_shape``是一个张量变量。
+当两个属性同时被指定时，``actual_shape``的优先级高于 ``shape``，但在编译时仍然应该正确地设置shape以保证形状推断。
 
 在指定目标shape时存在一些技巧：
 
@@ -6316,10 +6285,10 @@ reshape
 	- **shape** (list) - 新的形状。新形状最多只能有一个维度为-1。
 	- **actual_shape** (variable) - 一个可选的输入。如果提供，则根据 ``actual_shape`` 进行 reshape，而不是指定 ``shape`` 。也就是说，actual_shape具有比shape更高的优先级。
 	- **act** (str) - 对reshpe后的tensor变量执行非线性激活
-	- **inplace** (bool) - 如果在多个操作符中使用x，则 ``inplace`` 必须设置为False。如果该标志设置为True，则重用输入x进行reshape，这将改变张量变量x的形状，并可能在多个操作符中使用x时造成错误。如果为False，则保留形状x，并创建一个新的输出张量变量，该张量变量的数据是从输入x复制的，但经过了重构。
+	- **inplace** (bool) - 如果在多个操作符中使用x，则 ``inplace``必须设置为False。如果该标志设置为True，则重用输入x进行reshape，这将改变张量变量x的形状，并可能在多个操作符中使用x时造成错误。如果为False，则保留形状x，并创建一个新的输出张量变量，该张量变量的数据是从输入x复制的，但经过了重构。
 	- **name** (str) -  可选变量，此层的名称
 
-返回：如果 ``act`` 为 ``None``,返回reshape后的tensor变量。如果 ``inplace`` 为 ``False`` ,将返回一个新的Tensor变量，否则，将改变x自身。如果 ``act`` 不是 ``None`` ，则返回激活的张量变量。
+返回：如果 ``act`` 为 ``None``,返回reshape后的tensor变量。如果 ``inplace``为 ``False``,将返回一个新的Tensor变量，否则，将改变x自身。如果 ``act``不是 ``None``，则返回激活的张量变量。
 
 抛出异常：``TypeError`` - 如果 actual_shape 既不是变量也不是None
 
@@ -6348,8 +6317,6 @@ resize_bilinear
 
 .. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None)
 
-根据指定的out_shape执行双线性插值调整输入大小，输出形状按优先级由actual_shape、out_shape和scale指定。
-
 双线性插值是对线性插值的扩展,即二维变量方向上(如h方向和w方向)插值。关键思想是先在一个方向上执行线性插值，然后再在另一个方向上执行线性插值。
 
  `详情请参阅维基百科 https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
@@ -6359,16 +6326,11 @@ resize_bilinear
         - **out_shape** (Variable) - 一维张量，包含两个数。第一个数是高度，第二个数是宽度。
         - **scale** (float|None) - 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None。
         - **name** (str|None) - 输出变量名。
-        - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`actual_shape` 而不是 :code:`out_shape` 。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值:None
-
+    
 返回：	输出的维度是(N x C x out_h x out_w)
 
 
-**代码示例：**
 
-.. code-block:: python
-
-  out = fluid.layers.resize_bilinear(input, out_shape=[12, 12])
 
 
 
@@ -7087,7 +7049,7 @@ sequence_mask
 sequence_pad
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.sequence_pad(x,pad_value,maxlen=None)
+.. py:function:: paddle.fluid.layers.sequence_pad(x,pad_value,maxlen=None,name=None)
 
 序列填充操作符（Sequence Pad Operator）
 
@@ -7096,7 +7058,6 @@ sequence_pad
 以下的例子更清晰地解释此操作符的工作原理：
 
 ::
-
 
     例1:
 
@@ -7114,6 +7075,8 @@ sequence_pad
         Out.data = [[a,b,0,0],[c,d,e,0]]
         Length.data = [[2],[3]]
 
+::
+
     例2:
     
     给定 1-level LoDTensor
@@ -7129,6 +7092,9 @@ sequence_pad
     得到LoDTensor:
         Out.data = [[[a1,a2],[b1,b2],[0,0]],[[c1,c2],[d1,d2],[e1,e2]]]
         Length.data = [[2],[3]]
+
+
+::
 
     例3:
     
@@ -7146,12 +7112,14 @@ sequence_pad
         Out.data = [[[a1,a2],[b1,b2],[p1,p2]],[[c1,c2],[d1,d2],[e1,e2]]]
         Length.data = [[2],[3]]
 
+
 参数：
     - **x** (Vairable) - 输入变量，应包含lod信息
     - **pad_value** (Variable) - 变量，存有放入填充步的值。可以是标量或tensor,维度和序列的时间步长相等。如果是标量,则自动广播到时间步长的维度
     - **maxlen** (int,默认None) - 填充序列的长度。可以为空或者任意正整数。当为空时，以序列中最长序列的长度为准，其他所有序列填充至该长度。当是某个特定的正整数，最大长度必须大于最长初始序列的长度
+    - **name** (str|None) – 该层的命名(可选项)。 如果为 None, 则自动命名
 
-返回：填充序列批（batch）和填充前的初始长度。所有序列的长度相等
+返回：填充序列批（batch）和填充前的初始长度。所有输出序列的长度相等
 
 返回类型：变量（Variable）
 
@@ -7162,8 +7130,9 @@ sequence_pad
     import numpy
 
     x = fluid.layers.data(name='y', shape=[10, 5],
-                 dtype='float32', lod_level=1)
-    pad_value = fluid.layers.assign(input=numpy.array([0]))
+                     dtype='float32', lod_level=1)
+    pad_value = fluid.layers.assign(
+        input=numpy.array([0.0], dtype=numpy.float32))
     out = fluid.layers.sequence_pad(x=x, pad_value=pad_value)
 
 
@@ -7179,7 +7148,7 @@ sequence_pad
 sequence_pool 
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.sequence_pool(input, pool_type)
+.. py:function:: paddle.fluid.layers.sequence_pool(input, pool_type, is_test=False)
 
 该函数为序列的池化添加操作符。将每个实例的所有时间步数特征池化，并用参数中提到的pool_type将特征运用到输入到首部。
 
@@ -7212,6 +7181,7 @@ sequence_pool
 参数：
     - **input** (variable) - 输入变量，为LoDTensor
     - **pool_type** (string) - 池化类型。支持average,sum,sqrt和max
+    - **is_test** (bool, 默认为 False) - 用于区分训练模式和测试评分模式
 
 返回：sequence pooling 变量，类型为张量（Tensor)
 
@@ -7842,12 +7812,7 @@ SoftRelu 激活函数
     - **threshold** (FLOAT|40.0) - SoftRelu的阈值
     - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name=”x”, shape=[2,3,16,16], dtype=”float32”) 
-    y = fluid.layers.soft_relu(x, threshold=20.0)
 
 
 
@@ -7906,7 +7871,7 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 softmax_with_cross_entropy
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100)
+.. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=False, return_softmax=False)
 
 使用softmax的交叉熵在输出层已被广泛使用。该函数计算输入张量每一行的softmax标准化值，而后计算交叉熵。通过此种方式，可以得到更具数字稳定性的梯度值。
 
@@ -7925,17 +7890,28 @@ softmax_with_cross_entropy
 
 .. math::
    loss_j =  -\sum_{i=0}^{K}\text{label}_i\left(\text{logit}_i - \log\left(\sum_{i=0}^{K}\exp(\text{logit}_i)\right)\right), j = 1,...,K
-   
- 
+
+3.如果 ``numeric_stable_mode`` 为真，在通过softmax和标签计算交叉熵损失前， softmax 首先经由下式计算得出：
+
+.. math::
+    max_j           &= \max_{i=0}^{K}{\text{logit}_i} \\
+    log\_max\_sum_j &= \log\sum_{i=0}^{K}\exp(logit_i - max_j)\\
+    softmax_j &= \exp(logit_j - max_j - {log\_max\_sum}_j)
+
+
 参数:
   - **logits** (Variable) - 未标准化(unscaled)的log概率,一个形为 N X K 的二维张量。 N是batch大小，K是类别总数
   - **label** (Variable) - 2-D 张量，代表了正确标注（ground truth）, 如果 ``soft_label`` 为  False，则该参数是一个形为 N X 1 的Tensor<int64> 。如果 ``soft_label`` 为 True，它是 Tensor<float/double> ，形为 N X K
   - **soft_label** (bool) - 是否将输入标签当作软标签。默认为False
   - **ignore_index** (int) - 指明要无视的目标值，使之不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认为-100 
+  - **numeric_stable_mode** (bool) – 标志位，指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效. 若 ``soft_label`` 为 True 或者执行场所为CPU, 算法一直具有数学稳定性。 注意使用稳定算法时速度可能会变慢。默认为 False
+  - **return_softmax** (bool) – 标志位，指明是否额外返回一个softmax值， 同时返回交叉熵计算结果。默认为False
 
-返回： 交叉熵，一个形为[N x 1]的二维张量
+返回: 
+  - 如果 ``return_softmax`` 为 False， 则返回交叉熵，一个形为[N x 1]的二维张量
+  - 如果 ``return_softmax`` 为 True，则返回元组 (loss, softmax) ，其中交叉熵loss为形为[N x 1]的二维张量，softmax为[N x K]的二维张量
 
-返回类型:	Variable
+返回类型:变量或者两个变量组成的元组
 
 
 **代码示例**
@@ -8201,12 +8177,7 @@ STanh 激活算子（STanh Activation Operator.）
 
 返回类型: 输出(Variable)
 
-**代码示例：**
 
-.. code-block:: python
-
-    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.stanh(x, scale_a=0.67, scale_b=1.72)
 
 
 
@@ -8263,12 +8234,7 @@ Swish 激活函数
 返回类型: output(Variable)
 
 
-**代码示例：**
 
-.. code-block:: python
-
-  x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-  y = fluid.layers.swish(x, beta=2.0)
 
 
 
@@ -8360,7 +8326,10 @@ transpose
 
 .. code-block:: python
 
-    x = fluid.layers.data(name='x', shape=[5, 10, 15], dtype='float32')
+    # 请使用 append_batch_size=False 来避免
+    # 在数据张量中添加多余的batch大小维度
+    x = fluid.layers.data(name='x', shape=[5, 10, 15],
+                    dtype='float32', append_batch_size=False)
     x_transposed = layers.transpose(x, perm=[1, 0, 2])
 
 
@@ -10506,7 +10475,6 @@ iou_similarity
 计算两个框列表的intersection-over-union(IOU)。框列表‘X’应为LoDTensor，‘Y’是普通张量，X成批输入的所有实例共享‘Y’中的框。给定框A和框B，IOU的运算如下：
 
 .. math::
-
     IOU(A, B) = \frac{area(A\cap B)}{area(A)+area(B)-area(A\cap B)}
 
 参数：
