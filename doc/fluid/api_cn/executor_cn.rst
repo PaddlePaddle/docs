@@ -81,10 +81,11 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 ..  code-block:: python
 
 
-	data = layers.data(name='X', shape=[1], dtype='float32')
-	hidden = layers.fc(input=data, size=10)
-	layers.assign(hidden, out)
-	loss = layers.mean(out)
+	data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+	out = fluid.layers.create_tensor(dtype='float32')
+	hidden = fluid.layers.fc(input=data, size=10)
+	fluid.layers.assign(hidden, out)
+	loss = fluid.layers.mean(out)
 	adam = fluid.optimizer.Adam()
 	adam.minimize(loss)
 
@@ -93,8 +94,8 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 	
 	
 	cpu = core.CPUPlace()
-	exe = Executor(cpu)
-	exe.run(default_startup_program())
+	exe = fluid.Executor(cpu)
+	exe.run(fluid.default_startup_program())
 	
 ..  code-block:: python
 	

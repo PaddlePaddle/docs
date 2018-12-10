@@ -1062,10 +1062,10 @@ name_scope
           
 	  with name_scope("encoder"):
              ...
-          with name_scope("decoder"):
+    with name_scope("decoder"):
              ...
-             with name_scope("attention"):
-                ...
+    with name_scope("attention"):
+             ...
 
 
 
