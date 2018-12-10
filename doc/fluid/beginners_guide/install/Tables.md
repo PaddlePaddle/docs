@@ -516,13 +516,11 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</tr>
 	<tr>
 		<td> cuda8.0_cudnn5_avx_mkl </td>
-		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest.post85-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest.post85-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
-		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest.post85-cp35-cp35m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl</a></td>
-		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest.post85-cp36-cp36m-linux_x86_64.whl">
-		paddlepaddle_gpu-latest-cp36-cp36m-linux_x86_64.whl</a></td>
-		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest.post85-cp37-cp37m-linux_x86_64.whl">
-		paddlepaddle_gpu-latest-cp37-cp37m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest.-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp36-cp36m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp36-cp36m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn5-avx-mkl/paddlepaddle_gpu-latest-cp37-cp37m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp37-cp37m-linux_x86_64.whl</a></td>
 	</tr>
 	<tr>
 		<td> cuda8.0_cudnn7_noavx_mkl </td>
@@ -536,13 +534,11 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</tr>
 	<tr>
 		<td> cuda8.0_cudnn7_avx_mkl </td>
-		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest.post87-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest.post87-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest.post87-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest.post87-cp27-cp27m-linux_x86_64.whl</a></td>
-		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest.post87-cp35-cp35m-linux_x86_64.whl"> paddlepaddle_gpu-latest.post87-cp35-cp35m-linux_x86_64.whl</a></td>
-		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest.post87-cp36-cp36m-linux_x86_64.whl">
-		paddlepaddle_gpu-latest.post87-cp36-cp36m-linux_x86_64.whl</a></td>
-		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest.post87-cp37-cp37m-linux_x86_64.whl">
-		paddlepaddle_gpu-latest.post87-cp37-cp37m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td><a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp35-cp35m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp36-cp36m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp36-cp36m-linux_x86_64.whl</a></td>
+		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/paddlepaddle_gpu-latest-cp37-cp37m-linux_x86_64.whl"> paddlepaddle_gpu-latest-cp37-cp37m-linux_x86_64.whl</a></td>
 	</tr>
 	<tr>
 		<td> cuda9.0_cudnn7_avx_mkl </td>
