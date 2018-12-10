@@ -16,7 +16,7 @@
 ## 选择如何编译
 我们在CentOS的系统下提供2种编译方式：
 
-* Docker源码编译（不支持CentOS 6 / 7的GPU版本）
+* Docker源码编译（不支持CentOS 6 / 7的GPU版本）(该镜像已经包含python2.7、python3.6、python3.7环境)
 * 直接本机源码编译（不支持CentOS 6的全部版本以及CentOS 7的GPU版本）
 
 我们更加推荐**使用Docker进行编译**，因为我们在把工具和配置都安装在一个 Docker image 里。这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
@@ -60,10 +60,10 @@
 
 	`mkdir -p /paddle/build && cd /paddle/build`
 
-7. 使用以下命令安装相关依赖：
+7. 使用以下命令安装相关依赖：（For Python3：请选择您希望用的python版本对应的pip，如pip3.5、pip3.6）
 
 		For Python2: pip install protobuf==3.1.0
-		For Python3: pip3 install protobuf==3.1.0
+		For Python3: pip3.5 install protobuf==3.1.0
 
 
 	> 安装protobuf 3.1.0。
@@ -80,7 +80,7 @@
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
-	>> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
+	> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
 
 9. 执行编译：
 
@@ -90,10 +90,10 @@
 
 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
 
-11. 在当前机器或目标机器安装编译好的`.whl`包：
+11. 在当前机器或目标机器安装编译好的`.whl`包：（For Python3：请选择您希望用的python版本对应的pip，如pip3.5、pip3.6）
 
 		For Python2: pip install （whl包的名字）
-		For Python3: pip3 install （whl包的名字）
+		For Python3: pip3.5 install （whl包的名字）
 
 
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
@@ -118,7 +118,7 @@
 
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
 
-2. 更新`yum`的源： `yum update`, 并添加必要的yum源：`yum install -y epel-release`
+2. 更新`yum`的源： `yum update`, 并添加必要的yum源：`yum install -y epel-release`, 并提前安装openCV
 
 3. 安装必要的工具`bzip2`以及`make`： `yum install -y bzip2` ， `yum install -y make`
 
@@ -212,6 +212,6 @@
 
 <br/><br/>
 ## ***如何卸载***
-请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
+请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令,请使用对应版本pip）：
 
 * ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`

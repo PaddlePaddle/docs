@@ -1,5 +1,6 @@
 ***
-<a name="FAQ"></a>        
+<a name="FAQ"></a>  
+
 # **FAQ**
 - CentOS6下如何编译python2.7为共享库? 
 	

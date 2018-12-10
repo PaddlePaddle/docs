@@ -1,4 +1,3 @@
-
 #################
  fluid.io
 #################
@@ -8,7 +7,7 @@
 .. _cn_api_fluid_io_load_inference_model:
 
 load_inference_model
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
 
@@ -44,12 +43,14 @@ load_inference_model
 
 
 
-英文版API文档: :ref:`api_fluid_io_load_inference_model` 
+
+
+
 
 .. _cn_api_fluid_io_load_params:
 
 load_params
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.load_params(executor, dirname, main_program=None, filename=None)
 
@@ -79,12 +80,14 @@ load_params
                         
 
 
-英文版API文档: :ref:`api_fluid_io_load_params` 
+
+
+
 
 .. _cn_api_fluid_io_load_persistables:
 
 load_persistables
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.load_persistables(executor, dirname, main_program=None, filename=None)
 
@@ -112,12 +115,14 @@ load_persistables
  
 
 
-英文版API文档: :ref:`api_fluid_io_load_persistables` 
+
+
+
 
 .. _cn_api_fluid_io_load_vars:
 
 load_vars
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
@@ -154,24 +159,28 @@ load_vars
 
     prog = fluid.default_main_program()
     fluid.io.load_vars(executor=exe, dirname=path, main_program=prog,
-                       vars=None)
+                       vars=None, predicate=name_has_fc)
+    #加载所有`main_program`中变量名包含 ‘fc’ 的变量
+    #并且此前所有变量应该保存在不同文件中
 
 
-    # The second usage: using `vars` to specify variables
+    #用法2：使用 `vars` 列表来指明变量
     var_list = [var_a, var_b, var_c]
     fluid.io.load_vars(executor=exe, dirname=path, vars=var_list,
                        filename="vars_file")
-    # var_a, var_b and var_c will be loaded. And they are supposed to haven
-    # been saved in the same file named 'var_file' in the path "./my_paddle_model".
+    # 加载 var_a ， var_b ， var_c .它们此前应被保存在同一文件中
+    # 文件名为 'var_file' ，路径为 "./my_paddle_model".
  
 
 
-英文版API文档: :ref:`api_fluid_io_load_vars` 
+
+
+
 
 .. _cn_api_fluid_io_save_inference_model:
 
 save_inference_model
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
 
@@ -211,12 +220,14 @@ save_inference_model
 
 
 
-英文版API文档: :ref:`api_fluid_io_save_inference_model` 
+
+
+
 
 .. _cn_api_fluid_io_save_params:
 
 save_params
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.save_params(executor, dirname, main_program=None, filename=None)
 
@@ -248,12 +259,14 @@ save_params
                          
 
 
-英文版API文档: :ref:`api_fluid_io_save_params` 
+
+
+
 
 .. _cn_api_fluid_io_save_persistables:
 
 save_persistables
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.save_persistables(executor, dirname, main_program=None, filename=None)
 
@@ -284,14 +297,14 @@ save_persistables
     
 
 
-英文版API文档: :ref:`api_fluid_io_save_persistables` 
+
 
 
 
 .. _cn_api_fluid_io_save_vars:
 
 save_vars
->>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.io.save_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
@@ -328,7 +341,7 @@ save_vars
 
       prog = fluid.default_main_program()
       fluid.io.save_vars(executor=exe, dirname=path, main_program=prog,
-                         vars=None)
+                         vars=None, predicate = name_has_fc)
       # 将main_program中名中包含“fc”的的所有变量保存。
       # 变量将分开保存。
 
@@ -341,5 +354,7 @@ save_vars
 
 
 
-英文版API文档: :ref:`api_fluid_io_save_vars` 
+
+
+
 

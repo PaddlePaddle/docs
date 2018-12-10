@@ -13,8 +13,6 @@ convert_reader_to_recordio_file
 ..  autofunction:: paddle.fluid.recordio_writer.convert_reader_to_recordio_file
     :noindex:
 
-Read Chinese Version: :ref:`cn_api_fluid_recordio_writer_convert_reader_to_recordio_file`
-
 .. _api_fluid_recordio_writer_convert_reader_to_recordio_files:
 
 convert_reader_to_recordio_files
@@ -22,6 +20,4 @@ convert_reader_to_recordio_files
 
 ..  autofunction:: paddle.fluid.recordio_writer.convert_reader_to_recordio_files
     :noindex:
-
-Read Chinese Version: :ref:`cn_api_fluid_recordio_writer_convert_reader_to_recordio_files`
 

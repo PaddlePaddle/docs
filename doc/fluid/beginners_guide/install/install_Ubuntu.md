@@ -4,7 +4,11 @@
 
 本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
 
-请注意：在其他系统上的尝试可能会导致安装失败。
+
+
+请注意：在其他系统上的尝试可能会导致安装失败。请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机处理器支持AVX指令集，否则请选择[多版本whl包安装列表](Tables.html/#ciwhls)中`no_avx`的版本。
+
+Ubuntu系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处理器是否支持AVX指令集
 
 * *Ubuntu 14.04 /16.04 /18.04*
 
@@ -24,9 +28,9 @@
 在Ubuntu的系统下我们提供4种安装方式：
 
 * pip安装
-* Docker安装
+* Docker安装(镜像中python的版本为2.7)
 * 源码编译安装
-* Docker源码编译安装
+* Docker源码编译安装(镜像中的python版本为2.7，3.5，3.6，3.7)
 
 
 
@@ -173,7 +177,7 @@ Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上�
 
 <br/><br/>
 ## ***如何卸载***
-请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
+请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令，请使用相应版本的pip）：
 
 * ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 

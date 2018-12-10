@@ -1,6 +1,5 @@
-
 #################
-fluid
+ fluid
 #################
 
 
@@ -8,7 +7,7 @@ fluid
 .. _cn_api_fluid_AsyncExecutor:
 
 AsyncExecutor
->>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.AsyncExecutor(place=None)
 
@@ -48,14 +47,39 @@ AsyncExecutor正在积极开发，API可能在不久的将来会发生变化。
 
 	目前仅支持CPU
 
+.. py:method:: run(program, data_feed, filelist, thread_num, fetch, debug=False)
+
+使用此 ``AsyncExecutor`` 来运行 ``program`` 。
+
+``filelist`` 中包含训练数据集。用户也可以通过在参数 ``fetch`` 中提出变量来检查特定的变量， 正如 ``fluid.Executor`` 。
+
+但不像 ``fluid.Executor`` ， ``AsyncExecutor`` 不返回获取到的变量，而是将每个获取到的变量作为标准输出展示给用户。
+
+数据集上的运算在多个线程上执行，每个线程中都会独立出一个线程本地作用域，并在此域中建立运算。
+所有运算同时更新参数值。
+
+参数:	
+  - program (Program) – 需要执行的program。如果没有提供该参数，默认使用 ``default_main_program`` 
+  - data_feed (DataFeedDesc) –  ``DataFeedDesc`` 对象
+  - filelist (str) – 一个包含训练数据集文件的文件列表
+  - thread_num (int) – 并发训练线程数。参照 *注解* 部分获取合适的设置方法
+  - fetch (str|list) – 变量名，或者变量名列表。指明最后要进行观察的变量命名
+  - debug (bool) – 如果为True, 在每一个minibatch处理后，fetch 中指明的变量将会通过标准输出打印出来
+
+.. note::
+    1.该执行器会运行program中的所有运算，不只是那些依赖于fetchlist的运算
+
+    2.该类执行器在多线程上运行，每个线程占用一个CPU核。为了实现效率最大化，建议将 ``thread_num`` 等于或稍微小于CPU核心数
 
 
-英文版API文档: :ref:`api_fluid_AsyncExecutor` 
+
+
+
 
 .. _cn_api_fluid_BuildStrategy:
 
 BuildStrategy
->>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class::  paddle.fluid.BuildStrategy
 
@@ -105,38 +129,48 @@ str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce str
 
 
 
-英文版API文档: :ref:`api_fluid_BuildStrategy` 
+
+
+
 
 .. _cn_api_fluid_CPUPlace:
 
 CPUPlace
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.CPUPlace
 
 
 
 
-英文版API文档: :ref:`api_fluid_CPUPlace` 
+
+
+
 
 .. _cn_api_fluid_create_lod_tensor:
 
 
 create_lod_tensor
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place) 
 
 
 该函数从一个numpy数组，列表或者已经存在的lod tensor中创建一个lod tensor。
+
 通过一下几步实现:
-	1. 检查length-based level of detail (LoD,长度为基准的细节层次)，或称recursive_sequence_lengths(递归序列长度)的正确性
-	2. 将recursive_sequence_lengths转化为offset-based LoD(偏移量为基准的LoD)
-        3. 把提供的numpy数组，列表或者已经存在的lod tensor复制到CPU或GPU中(依据执行场所确定)
-        4. 利用offset-based LoD来设置LoD
+
+1. 检查length-based level of detail (LoD,长度为基准的细节层次)，或称recursive_sequence_lengths(递归序列长度)的正确性
+
+2. 将recursive_sequence_lengths转化为offset-based LoD(偏移量为基准的LoD)
+
+3. 把提供的numpy数组，列表或者已经存在的lod tensor复制到CPU或GPU中(依据执行场所确定)
+
+4. 利用offset-based LoD来设置LoD
+
 例如：
          假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。
-     	 那么数据可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
+     	 那么数 ``data`` 可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
 
 参数:
 	- **data** (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
@@ -151,13 +185,15 @@ create_lod_tensor
 
 
 
-英文版API文档: :ref:`api_fluid_create_lod_tensor` 
+
+
+
 
 .. _cn_api_fluid_create_random_int_lodtensor:
 
 
 create_random_int_lodtensor
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.create_random_int_lodtensor(recursive_seq_lens, base_shape, place, low, high)
 
@@ -169,9 +205,9 @@ create_random_int_lodtensor
 
 该函数实现以下功能：
 
-    1. 根据用户输入的length-based ``recursive_seq_lens`` （基于长度的递归序列长）和在 ``basic_shape`` 中的基本元素形状计算LoDTensor的整体形状
-    2. 由此形状，建立numpy数组
-    3. 使用API： ``create_lod_tensor`` 建立LoDTensor
+1. 根据用户输入的length-based ``recursive_seq_lens`` （基于长度的递归序列长）和在 ``basic_shape`` 中的基本元素形状计算LoDTensor的整体形状
+2. 由此形状，建立numpy数组
+3. 使用API： ``create_lod_tensor`` 建立LoDTensor
 
 
 假如我们想用LoD Tensor来承载一词序列，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么 ``base_shape`` 为[1], 输入的length-based ``recursive_seq_lens`` 是 [[2, 3]]。那么LoDTensor的整体形状应为[5, 1]，并且为两个句子存储5个词。
@@ -193,12 +229,14 @@ create_random_int_lodtensor
 
 
 
-英文版API文档: :ref:`api_fluid_create_random_int_lodtensor` 
+
+
+
 
 .. _cn_api_fluid_CUDAPinnedPlace:
 
 CUDAPinnedPlace
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.CUDAPinnedPlace
 
@@ -209,24 +247,28 @@ CUDAPinnedPlace
 
 
 
-英文版API文档: :ref:`api_fluid_CUDAPinnedPlace` 
+
+
+
 
 .. _cn_api_fluid_CUDAPlace:
 
 CUDAPlace
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.CUDAPlace
 
 
 
 
-英文版API文档: :ref:`api_fluid_CUDAPlace` 
+
+
+
 
 .. _cn_api_fluid_DataFeedDesc:
 
 DataFeedDesc
->>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.DataFeedDesc(proto_file)
 
@@ -267,7 +309,7 @@ DataFeedDesc应由来自磁盘的有效protobuf消息初始化:
 
 DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含义，您可以修改它以更好地满足您的需要。例如:
 
-.. code-block:: text
+.. code-block:: python
 
     data_feed.set_batch_size(128)
     data_feed.set_dense_slots('wd')  # The slot named 'wd' will be dense
@@ -276,6 +318,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
     #Finally, the content can be dumped out for debugging purpose:
     
     print(data_feed.desc())
+
 
 参数：
 	- **proto_file** (string) - 包含数据feed中描述的磁盘文件
@@ -351,12 +394,14 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 	print(data_feed.desc())
 
 
-英文版API文档: :ref:`api_fluid_DataFeedDesc` 
+
+
+
 
 .. _cn_api_fluid_DataFeeder:
 
 DataFeeder
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.DataFeeder(feed_list, place, program=None)
 
@@ -387,13 +432,14 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 
 
-参数：  
-	- **feed_list** (list) – 向模型输入的变量表或者变量表名
-	- **place** (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
-    	- **program** (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
+参数：
+    - **feed_list** (list) – 向模型输入的变量表或者变量表名
+    - **place** (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
+    - **program** (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
 
 
-弹出异常:	  ``ValueError``  – 如果一些变量不在此 Program 中
+抛出异常:
+  - ``ValueError``  – 如果一些变量不在此 Program 中
 
 
 **代码示例**
@@ -437,7 +483,8 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 返回类型: dict
 
-**特别注意：** 设备（CPU或GPU）的数目必须等于minibatch的数目
+.. note::
+     设备（CPU或GPU）的数目必须等于minibatch的数目
 
 
 
@@ -448,16 +495,16 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 将reader返回的输入数据batch转换为多个mini-batch，之后每个mini-batch都会被输入进各个设备（CPU或GPU）中。
     
 参数：
-        - **reader** (fun) – 待输入的数据
-        - **multi_devices** (bool) – 执行场所的数目，默认为None
-        - **num_places** (int) – 执行场所的数目，默认为None
-        - **drop_last** (bool) – 舍弃数目匹配不上的batch或设备
+        - **reader** (fun) – 该参数是一个可以生成数据的函数
+        - **multi_devices** (bool) – bool型，指明是否使用多个设备
+        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True`` , 可以使用此参数来设置GPU数目。如果 ``num_places`` 为 ``None`` ，该函数默认使用当前训练机所有GPU设备。默认为None。
+        - **drop_last** (bool) – 如果最后一个batch的大小比 ``batch_size`` 要小，则可使用该参数来指明是否选择丢弃最后一个batch数据。 默认为 ``True`` 
 
 返回：转换结果
 
 返回类型: dict
     
-弹出异常： ``ValueError`` – 如果 ``drop_last`` 值为False并且reader返回的minibatch数目与设备数目不相等时，产生此异常
+抛出异常： ``ValueError`` – 如果 ``drop_last`` 值为False并且reader返回的minibatch数目与设备数目不相等时，产生此异常
 
 
         
@@ -466,12 +513,14 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 
 
-英文版API文档: :ref:`api_fluid_DataFeeder` 
+
+
+
 
 .. _cn_api_fluid_default_main_program:
 
 default_main_program
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.default_main_program()
 
@@ -497,7 +546,9 @@ default_main_program
 
 
 
-英文版API文档: :ref:`api_fluid_default_main_program` 
+
+
+
 
 .. _cn_api_fluid_default_startup_program:
 
@@ -505,7 +556,7 @@ default_main_program
 
 
 default_startup_program
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.default_startup_program()
 
@@ -529,12 +580,14 @@ startup_program会使用内在的operators（算子）去初始化他们，并�
 
 
 
-英文版API文档: :ref:`api_fluid_default_startup_program` 
+
+
+
 
 .. _cn_api_fluid_DistributeTranspiler:
 
 DistributeTranspiler
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.DistributeTranspiler (config=None)
 
@@ -590,6 +643,7 @@ DistributeTranspiler
 参数:	
 	- **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
 	- **program** (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
+	- **startup_program** (Program|None) - 要转译的 ``startup_program`` ,默认为 ``fluid.default_startup_program()``
 	- **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
 	- **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
 	- **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
@@ -652,12 +706,14 @@ DistributeTranspiler
 
 
 
-英文版API文档: :ref:`api_fluid_DistributeTranspiler` 
+
+
+
 
 .. _cn_api_fluid_DistributeTranspilerConfig:
 
 DistributeTranspilerConfig
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.DistributeTranspilerConfig
 
@@ -680,12 +736,14 @@ DistributeTranspilerConfig
 
 
 
-英文版API文档: :ref:`api_fluid_DistributeTranspilerConfig` 
+
+
+
 
 .. _cn_api_fluid_ExecutionStrategy:
 
 ExecutionStrategy
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.ExecutionStrategy
 
@@ -734,12 +792,14 @@ int型成员。它代表了线程池(thread pool)的大小。这些线程会被�
 
 
 
-英文版API文档: :ref:`api_fluid_ExecutionStrategy` 
+
+
+
 
 .. _cn_api_fluid_executor:
 
 Executor
->>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 
 .. py:class:: paddle.fluid.Executor (place)
@@ -843,26 +903,14 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 
 
-英文版API文档: :ref:`api_fluid_executor` 
-
-.. _cn_api_fluid_fluid_Tensor:
-
-Tensor
->>>>>>>>>>>>>>>>>>>>>>>>>
-
-.. py:function:: paddle.fluid.Tensor
-
-    ``LoDTensor`` 的别名
 
 
 
-
-英文版API文档: :ref:`api_fluid_fluid_Tensor` 
 
 .. _cn_api_fluid_global_scope:
 
 global_scope
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.global_scope()
 
@@ -875,19 +923,24 @@ global_scope
 
 
 
-英文版API文档: :ref:`api_fluid_global_scope` 
+
+
+
 
 .. _cn_api_fluid_LoDTensor:
 
 LoDTensor
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.LoDTensor
 
 
 LoDTensor是一个具有LoD信息的张量(Tensor)
 
- ``np.array(lod_tensor)`` 可以将LoDTensor转换为numpy array。 ``lod_tensor.lod()`` 可以获得LoD信息。
+``np.array(lod_tensor)`` 可以将LoDTensor转换为numpy array。 
+
+``lod_tensor.lod()`` 可以获得LoD信息。
+
 LoD是多层序列（Level of Details）的缩写，通常用于不同长度的序列。如果您不需要了解LoD信息，可以跳过下面的注解。
 
 举例:
@@ -939,12 +992,14 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 
 
-英文版API文档: :ref:`api_fluid_LoDTensor` 
+
+
+
 
 .. _cn_api_fluid_LoDTensorArray:
 
 LoDTensorArray
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.LoDTensorArray
 
@@ -954,19 +1009,22 @@ LoDTensorArray
 
 
 
-英文版API文档: :ref:`api_fluid_LoDTensorArray` 
+
+
+
 
 .. _cn_api_fluid_memory_optimize:
 
 memory_optimize
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.memory_optimize(input_program, skip_opt_set=None, print_log=False, level=0, skip_grads=False)
 
 
 通过重用var内存来优化内存。
 
-注意:它不支持block中嵌套子block。
+.. note::
+    它不支持block中嵌套子block。
 
 参数:
 	- **input_program** (str) – 输入Program。
@@ -979,12 +1037,14 @@ memory_optimize
 
 
 
-英文版API文档: :ref:`api_fluid_memory_optimize` 
+
+
+
 
 .. _cn_api_fluid_name_scope:
 
 name_scope
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.name_scope(*args, **kwds)
 
@@ -1009,12 +1069,14 @@ name_scope
 
 
 
-英文版API文档: :ref:`api_fluid_name_scope` 
+
+
+
 
 .. _cn_api_fluid_ParallelExecutor:
 
 ParallelExecutor
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
 
@@ -1041,7 +1103,7 @@ ParallelExecutor
 
 返回类型:	ParallelExecutor
 
-弹出异常：``TypeError`` - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会弹出此异常
+抛出异常：``TypeError`` - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会弹出此异常
 
 **代码示例**
 
@@ -1096,14 +1158,12 @@ ParallelExecutor
 
 返回类型：List
 
-弹出异常： 
-         ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，弹出此异常
-         
-         ``TypeError`` - 如果feed参数是list类型，但是它里面的元素不是dict类型时，弹出此异常
+抛出异常: 
+     - ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，抛出此异常
+     - ``TypeError`` - 如果feed参数是list类型，但是它里面的元素不是dict类型时，弹出此异常
 
-额外注意：
-     1.如果feed参数为dict类型，那么传入 ``ParallelExecutor`` 的数据量 *必须* 大于可用的执行场所数目。否则，C++端将会弹出异常。应额外注意核对数据集的最后一个batch是否比可用执行场所数目大。
-    
+.. note::
+     1.如果feed参数为dict类型，那么传入 ``ParallelExecutor`` 的数据量 *必须* 大于可用的执行场所数目。否则，C++端将会抛出异常。应额外注意核对数据集的最后一个batch是否比可用执行场所数目大。
      2.如果可用执行场所大于一个，则为每个变量最后获取的结果都是list类型，且这个list中的每个元素都是各个可用执行场所的变量
 
 **代码示例**
@@ -1120,13 +1180,15 @@ ParallelExecutor
 
 
 
-英文版API文档: :ref:`api_fluid_ParallelExecutor` 
+
+
+
 
 .. _cn_api_fluid_ParamAttr:
 
  
 ParamAttr
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 
 .. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
@@ -1160,12 +1222,14 @@ ParamAttr
 
 
 
-英文版API文档: :ref:`api_fluid_ParamAttr` 
+
+
+
 
 .. _cn_api_fluid_Program:
 
 Program
->>>>>>>>>>>>
+-------------------------------
 
 .. py:function::  paddle.fluid.Program
 
@@ -1372,12 +1436,14 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 
 
-英文版API文档: :ref:`api_fluid_Program` 
+
+
+
 
 .. _cn_api_fluid_program_guard:
 
 program_guard
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.program_guard(*args, **kwds)
 
@@ -1420,12 +1486,14 @@ program_guard
 
 
 
-英文版API文档: :ref:`api_fluid_program_guard` 
+
+
+
 
 .. _cn_api_fluid_release_memory:
 
 release_memory
->>>>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.release_memory(input_program, skip_opt_set=None) 
 
@@ -1450,14 +1518,36 @@ release_memory
 
 
 
-英文版API文档: :ref:`api_fluid_release_memory` 
+
+
+
 
 .. _cn_api_fluid_Scope:
 
 Scope
->>>>>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
-.. py:function:: paddle.fluid.scope(scope)
+.. py:class:: paddle.fluid.scope(scope)
+
+(作用域)Scope为变量名的联合。所有变量都属于Scope。
+
+从本地作用域中可以拉取到其双亲作用域的变量。
+
+要想运行一个网络，需要指明它运行所在的域，确切的说： exe.Run(&scope) 。
+
+一个网络可以在不同域上运行，并且更新该域的各类变量。
+
+在作用域上创建一个变量，并在域中获取。
+
+**代码示例**
+
+..  code-block:: python
+
+    # create tensor from a scope and set value to it.
+    param = scope.var('Param').get_tensor()
+    param_array = np.full((height, row_numel), 5.0).astype("float32")
+    param.set(param_array, place)
+
 
 .. py:method:: drop_kids(self: paddle.fluid.core.Scope) → None
 .. py:method:: find_var(self: paddle.fluid.core.Scope, arg0: unicode) → paddle.fluid.core.Variable
@@ -1467,14 +1557,16 @@ Scope
 
 
 
-英文版API文档: :ref:`api_fluid_Scope` 
+
+
+
 
 .. _cn_api_fluid_scope_guard:
 
 scope_guard
->>>>>>>>>>>>
+-------------------------------
 
-.. py:function:: paddle.fluid.scope_guard(*args, **kwds)()
+.. py:function:: paddle.fluid.scope_guard(*args, **kwds)
 
 
 修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。
@@ -1495,25 +1587,31 @@ scope_guard
 
 
 
-英文版API文档: :ref:`api_fluid_scope_guard` 
-
-.. _cn_api_fluid_switch_scope:
-
-_switch_scope
->>>>>>>>>>>>>>>>>>>>>>>>>
-
-.. py:function:: paddle.fluid._switch_scope(scope)
 
 
 
 
+.. _cn_api_fluid_Tensor:
 
-英文版API文档: :ref:`api_fluid_switch_scope` 
+Tensor
+-------------------------------
+
+.. py:function:: paddle.fluid.Tensor
+
+    ``LoDTensor`` 的别名
+
+
+
+
+
+
+
+
 
 .. _cn_api_fluid_WeightNormParamAttr:
 
 WeightNormParamAttr
->>>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.WeightNormParamAttr(dim=None, name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
 
@@ -1546,5 +1644,7 @@ WeightNormParamAttr
 
 
 
-英文版API文档: :ref:`api_fluid_WeightNormParamAttr` 
+
+
+
 
