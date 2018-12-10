@@ -1718,7 +1718,7 @@ BRelu 激活函数
 
 .. code-block:: python
 
-    x = fluid.layers.data(name=”x”, shape=[2,3,16,16], dtype=”float32”)
+    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype=”float32”)
     y = fluid.layers.brelu(x, t_min=1.0, t_max=20.0)
 
 
@@ -4194,8 +4194,8 @@ image_resize
 输入张量的shape为(num_batch, channels, in_h, in_w)，并且调整大小只适用于最后两个维度(高度和宽度)。
     
 支持重新取样方法: 
-	
-	BILINEAR：双线性插值
+
+    BILINEAR：双线性插值
     NEAREST：最近邻插值
 
 参数:
