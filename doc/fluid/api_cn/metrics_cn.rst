@@ -239,6 +239,7 @@ https://arxiv.org/abs/1512.02325
 在上述例子中：
 	
 	"cur_map_v" 是当前 mini-batch 的 mAP
+	
 	"accum_map_v" 是一个 pass 的 mAP累加和
 
 .. py:method:: get_map_var()
