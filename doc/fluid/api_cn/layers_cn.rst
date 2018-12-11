@@ -202,6 +202,9 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 动态RNN可以将多个变量标记为其输出。使用drnn()获得输出序列。
 
+.. note::
+    目前不支持在DynamicRNN中任何层上配置 is_sparse = True
+
 .. py:method:: step_input(x)
   
     将序列标记为动态RNN输入。
@@ -397,12 +400,15 @@ increment
 .. py:function:: paddle.fluid.layers.increment(x, value=1.0, in_place=True)
 
    
-该函数为输入 ``x`` 中的每一个值增加 ``value`` 大小, ``value`` 即函数中待传入的参数。该函数默认直接在原变量 ``x`` 上进行运算。
-  
+该函数为输入 ``x`` 增加 ``value`` 大小, ``value`` 即函数中待传入的参数。该函数默认直接在原变量 ``x`` 上进行运算。
+
+.. note::
+    ``x`` 中元素个数必须为1
+
 参数:
     - **x** (Variable|list) – 含有输入值的张量(tensor)
     - **value** (float) – 需要增加在 ``x`` 变量上的值
-    - **in_place** (bool) – 是否在 ``x`` 变量本身进行增加操作，而非返回其增加后的一个副本而本身不改变。默认为True, 即在其本身进行操作。
+    - **in_place** (bool) – 判断是否在x变量本身执行操作，True原地执行，False时，返回增加后的副本
 
 返回： 每个元素增加后的对象
 
@@ -412,7 +418,8 @@ increment
 
 ..  code-block:: python
   
-    data = fluid.layers.data(name='data', shape=[32, 32], dtype='float32')
+    data = fluid.layers.data(name='data', shape=[1], dtype='float32',
+                         append_batch_size=False)
     data = fluid.layers.increment(x=data, value=3.0, in_place=True)
  
  
@@ -851,7 +858,7 @@ data
         2.如果维度shape包含-1，比如shape=[-1,1],
         “append_batch_size则为False（表示无效）”
 
-    - **dtype** (int|float)-数据类型：float32,float_16,int等
+    - **dtype** (basestring)-数据类型：float32,float_16,int等
     - **type** (VarType)-输出类型。默认为LOD_TENSOR
     - **lod_level** (int)-LoD层。0表示输入数据不是一个序列
     - **stop_gradient** (bool)-布尔类型，提示是否应该停止计算梯度
@@ -1215,7 +1222,7 @@ read_file
 reader也是变量。可以为由fluid.layers.open_files()生成的原始reader或者由fluid.layers.double_buffer()生成的装饰变量，等等。
 
 参数：
-    **reader** (Variable)-将要执行的reader
+    - **reader** (Variable)-将要执行的reader
 
 返回：从给定的reader中读取数据
 
@@ -1247,13 +1254,14 @@ shuffle
 
 .. py:function:: paddle.fluid.layers.shuffle(reader, buffer_size)
 
-使用python装饰器用shuffle 装饰 reader
+创建一个特殊的数据读取器，它的输出数据会被重洗(shuffle)。由原始读取器创建的迭代器得到的输出将会被暂存到shuffle缓存区，其后
+会对其进行重洗运算。shuffle缓存区的大小由参数 ``buffer_size`` 决定。
 
 参数:
     - **reader** (Variable) – 用shuffle装饰的reader
     - **buffer_size** (int) – reader中buffer的大小
 
-返回:用shuffle装饰后的reader
+返回:其输出会被重洗的一个reader（读取器）
 
 返回类型:Variable
 
@@ -1715,7 +1723,12 @@ BRelu 激活函数
     - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype=”float32”)
+    y = fluid.layers.brelu(x, t_min=1.0, t_max=20.0)
 
 
 
@@ -1827,7 +1840,7 @@ clip
         
 clip算子
 
-clip运算符限制给定输入的值在一个区间内。间隔使用参数“min”和“max”来指定：公式为
+clip运算符限制给定输入的值在一个区间内。间隔使用参数"min"和"max"来指定：公式为
 
 .. math:: 
         Out=min(max(X,min),max)
@@ -1842,9 +1855,13 @@ clip运算符限制给定输入的值在一个区间内。间隔使用参数“m
 
 返回类型：        输出（Variable）。        
 
+**代码示例：**
 
+.. code-block:: python
 
-
+    input = fluid.layers.data(
+        name='data', shape=[1], dtype='float32')
+    reward = fluid.layers.clip(x=input, min=-1.0, max=1.0)
 
 
 
@@ -1867,13 +1884,6 @@ ClipByNorm算子
 
 其中， :math:`norm（X）` 代表 ``x`` 的L2范数。
 
-例如,
-
-..  code-block:: python
-
-  data = fluid.layer.data( name=’data’, shape=[2, 4, 6], dtype=’float32’)
-  reshaped = fluid.layers.clip_by_norm( x=data, max_norm=0.5)
-
 
 参数：
         - **x** (Variable)- (Tensor) clip_by_norm运算的输入，维数必须在[1,9]之间。
@@ -1884,7 +1894,13 @@ ClipByNorm算子
 
 返回类型：       Variable        
 
+**代码示例：**
 
+.. code-block:: python
+
+    input = fluid.layers.data(
+        name='data', shape=[1], dtype='float32')
+    reward = fluid.layers.clip_by_norm(x=input, max_norm=1.0)
 
 
 
@@ -3401,7 +3417,12 @@ ELU激活层（ELU Activation Operator）
 
 返回类型: 输出(Variable)
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
+    y = fluid.layers.elu(x, alpha=0.2)
 
 
 
@@ -3967,7 +3988,12 @@ sigmoid的分段线性逼近(https://arxiv.org/abs/1603.00391)，比sigmoid快�
     - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
+    y = fluid.layers.hard_sigmoid(x, slope=0.3, offset=0.8)
 
 
 
@@ -4205,25 +4231,36 @@ image_resize
     
 输入张量的shape为(num_batch, channels, in_h, in_w)，并且调整大小只适用于最后两个维度(高度和宽度)。
     
-支持重新取样方法: 双线性插值
-    
+支持重新取样方法: 
+
+    BILINEAR：双线性插值
+    NEAREST：最近邻插值
+
 参数:
     - **input** (Variable) - 图片调整层的输入张量，这是一个shape=4的张量(num_batch, channels, in_h, in_w)
     - **out_shape** (list|tuple|Variable|None) - 图片调整层的输出，shape为(out_h, out_w)。默认值:None
     - **scale** (float|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None
     - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
     - **resample** (str) - 重采样方法。目前只支持“双线性”。默认值:双线性插值
+    - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`actual_shape` 而不是 :code:`out_shape` 。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值:None
+
 
 返回： 4维tensor，shape为 (num_batches, channls, out_h, out_w).
 
 返回类型:	变量（variable）
 
+抛出异常：
+	- :code:`TypeError` - out_shape应该是一个列表、元组或变量。
+	- :code:`TypeError` - actual_shape应该是变量或None
+	- :code:`ValueError` - image_resize的"resample"只能是"BILINEAR"或"NEAREST"。
+	- :code:`ValueError` - out_shape 和 scale 不能为 None
+	- :code:`ValueError` - out_shape 的长度必须为 2
 
 **代码示例**
 
 ..  code-block:: python
         
-	out = fluid.layers.image_resize(input, out_shape=[12, 12]) 
+	out = fluid.layers.image_resize(input, out_shape=[12, 12], resample="NEAREST") 
   
 
 
@@ -4428,7 +4465,12 @@ LeakyRelu 激活函数
     - **alpha** (FLOAT|0.02) - 负斜率，值很小。
     - **name** (str|None) - 此层的名称(可选)。如果设置为None，该层将被自动命名。
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype="float32")
+    y = fluid.layers.leaky_relu(x, alpha=0.01)
 
 
 
@@ -4702,6 +4744,16 @@ logical_and算子
 返回类型：        输出（Variable）。        
         
         
+**代码示例：**
+
+.. code-block:: python
+
+    left = fluid.layers.data(
+        name='left', shape=[1], dtype='int32')
+    right = fluid.layers.data(
+        name='right', shape=[1], dtype='int32')
+    result = fluid.layers.logical_and(x=left, y=right)
+
 
 
 
@@ -4734,7 +4786,13 @@ logical_not算子
 返回类型：        输出（Variable）。        
 
 
+**代码示例：**
 
+.. code-block:: python
+    
+    left = fluid.layers.data(
+        name='left', shape=[1], dtype='int32')
+    result = fluid.layers.logical_not(x=left)
 
 
 
@@ -4768,7 +4826,15 @@ logical_or算子
 
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    left = fluid.layers.data(
+        name='left', shape=[1], dtype='int32')
+    right = fluid.layers.data(
+        name='right', shape=[1], dtype='int32')
+    result = fluid.layers.logical_or(x=left, y=right)
 
 
 
@@ -4801,7 +4867,15 @@ logical_xor算子
 
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    left = fluid.layers.data(
+        name='left', shape=[1], dtype='int32')
+    right = fluid.layers.data(
+        name='right', shape=[1], dtype='int32')
+    result = fluid.layers.logical_xor(x=left, y=right)
 
 
 
@@ -5352,7 +5426,7 @@ multiplex
 **代码示例**
 
 ..  code-block:: python
-    
+
    import paddle.fluid as fluid
    
    x1 = fluid.layers.data(name='x1', shape=[4], dtype='float32')
@@ -5819,7 +5893,12 @@ pow
 返回类型: 输出(Variable)
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
+    y = fluid.layers.pow(x, factor=2.0)
 
 
 
@@ -5927,7 +6006,7 @@ P 的取值可为： {0, 1} 或 {0, 0.5, 1}, 其中，0.5表示输入的两文�
 **代码示例**
 
 .. code-block:: python
-	
+
     theta = fluid.layers.data(name="x", shape=[2, 3], dtype="float32")
     out_shape = fluid.layers.data(name="y", shape=[-1], dtype="float32")
     data = fluid.layers.affine_grid(theta, out_shape)
@@ -6246,7 +6325,12 @@ relu6激活算子（Relu6 Activation Operator）
 返回类型: 输出(Variable)
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
+    y = fluid.layers.relu6(x, threshold=6.0)
 
 
 
@@ -6259,10 +6343,12 @@ relu6激活算子（Relu6 Activation Operator）
 reshape
 -------------------------------
 
+.. py:function::  paddle.fluid.layers.reshape(x, shape, actual_shape=None, act=None, inplace=False, name=None)
+
 保持输入张量数据不变的情况下，改变张量的形状。
 
-目标形状可由 ``shape`` 或 ``actual_shape`` 给出。``shape``是一个整数列表，而 ``actual_shape``是一个张量变量。
-当两个属性同时被指定时，``actual_shape``的优先级高于 ``shape``，但在编译时仍然应该正确地设置shape以保证形状推断。
+目标形状可由 ``shape`` 或 ``actual_shape`` 给出。``shape`` 是一个整数列表，而 ``actual_shape`` 是一个张量变量。
+当两个属性同时被指定时，``actual_shape`` 的优先级高于 ``shape`` ，但在编译时仍然应该正确地设置 ``shape`` 以保证形状推断。
 
 在指定目标shape时存在一些技巧：
 
@@ -6285,10 +6371,10 @@ reshape
 	- **shape** (list) - 新的形状。新形状最多只能有一个维度为-1。
 	- **actual_shape** (variable) - 一个可选的输入。如果提供，则根据 ``actual_shape`` 进行 reshape，而不是指定 ``shape`` 。也就是说，actual_shape具有比shape更高的优先级。
 	- **act** (str) - 对reshpe后的tensor变量执行非线性激活
-	- **inplace** (bool) - 如果在多个操作符中使用x，则 ``inplace``必须设置为False。如果该标志设置为True，则重用输入x进行reshape，这将改变张量变量x的形状，并可能在多个操作符中使用x时造成错误。如果为False，则保留形状x，并创建一个新的输出张量变量，该张量变量的数据是从输入x复制的，但经过了重构。
+	- **inplace** (bool) - 如果在多个操作符中使用x，则 ``inplace`` 必须设置为False。如果该标志设置为True，则重用输入x进行reshape，这将改变张量变量x的形状，并可能在多个操作符中使用x时造成错误。如果为False，则保留形状x，并创建一个新的输出张量变量，该张量变量的数据是从输入x复制的，但经过了重构。
 	- **name** (str) -  可选变量，此层的名称
 
-返回：如果 ``act`` 为 ``None``,返回reshape后的tensor变量。如果 ``inplace``为 ``False``,将返回一个新的Tensor变量，否则，将改变x自身。如果 ``act``不是 ``None``，则返回激活的张量变量。
+返回：如果 ``act`` 为 ``None``,返回reshape后的tensor变量。如果 ``inplace`` 为 ``False`` ,将返回一个新的Tensor变量，否则，将改变x自身。如果 ``act`` 不是 ``None`` ，则返回激活的张量变量。
 
 抛出异常：``TypeError`` - 如果 actual_shape 既不是变量也不是None
 
@@ -6317,6 +6403,8 @@ resize_bilinear
 
 .. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None)
 
+根据指定的out_shape执行双线性插值调整输入大小，输出形状按优先级由actual_shape、out_shape和scale指定。
+
 双线性插值是对线性插值的扩展,即二维变量方向上(如h方向和w方向)插值。关键思想是先在一个方向上执行线性插值，然后再在另一个方向上执行线性插值。
 
  `详情请参阅维基百科 https://en.wikipedia.org/wiki/Bilinear_interpolation <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 
@@ -6326,11 +6414,16 @@ resize_bilinear
         - **out_shape** (Variable) - 一维张量，包含两个数。第一个数是高度，第二个数是宽度。
         - **scale** (float|None) - 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None。
         - **name** (str|None) - 输出变量名。
-    
+        - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`actual_shape` 而不是 :code:`out_shape` 。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值:None
+
 返回：	输出的维度是(N x C x out_h x out_w)
 
 
+**代码示例：**
 
+.. code-block:: python
+
+  out = fluid.layers.resize_bilinear(input, out_shape=[12, 12])
 
 
 
@@ -6459,7 +6552,7 @@ Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverfl
 **代码示例**
 
 ..  code-block:: python
-        
+
 	pool_out = fluid.layers。roi_pool(输入=x, rois=rois, 7,7,1.0)
 
 
@@ -7270,7 +7363,7 @@ sequence_reverse
 在第0维上将输入 ``x`` 的各序列倒序。
 
 ::
-    
+
     假设 ``x`` 是一个形为 (5,4) 的LoDTensor， lod信息为 [[0, 2, 5]]，其中，
 
 
@@ -7281,7 +7374,7 @@ sequence_reverse
 输出 ``Y`` 与 ``x`` 具有同样的维数和LoD信息。 于是有：
 
 ::
-    
+
     Y.data() = [ [5, 6, 7, 8], [1, 2, 3, 4], # 索引为0，长度为2的逆序列 
                  [17, 18, 19, 20], [13, 14, 15, 16], [9, 10, 11, 12] # 索引为1，长度为3的逆序列
 
@@ -7812,7 +7905,12 @@ SoftRelu 激活函数
     - **threshold** (FLOAT|40.0) - SoftRelu的阈值
     - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name=”x”, shape=[2,3,16,16], dtype=”float32”) 
+    y = fluid.layers.soft_relu(x, threshold=20.0)
 
 
 
@@ -8177,7 +8275,12 @@ STanh 激活算子（STanh Activation Operator.）
 
 返回类型: 输出(Variable)
 
+**代码示例：**
 
+.. code-block:: python
+
+    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
+    y = fluid.layers.stanh(x, scale_a=0.67, scale_b=1.72)
 
 
 
@@ -8234,7 +8337,12 @@ Swish 激活函数
 返回类型: output(Variable)
 
 
+**代码示例：**
 
+.. code-block:: python
+
+  x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
+  y = fluid.layers.swish(x, beta=2.0)
 
 
 
@@ -9558,22 +9666,22 @@ reverse
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.reverse(x,axis)
-    
-    **reverse**
-    
-    该功能将给定轴上的输入‘x’逆序
 
-    参数：
-        - **x** (Variable)-预逆序到输入
-        - **axis** (int|tuple|list)-其上元素逆序排列的轴。
-    
-    返回：逆序的张量
+**reverse**
 
-    返回类型：变量（Variable）
+该功能将给定轴上的输入‘x’逆序
 
-    **代码示例**：
+参数：
+  - **x** (Variable)-预逆序到输入
+  - **axis** (int|tuple|list)-其上元素逆序排列的轴。
 
-    .. code-block:: python
+返回：逆序的张量
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code-block:: python
 
         out = fluid.layers.reverse(x=in, axis=0)
         # or:
@@ -9703,6 +9811,7 @@ zeros
 **代码示例**：
 
 .. code-block:: python
+
     data = fluid.layers.zeros(shape=[1], dtype='int64')
 
 
@@ -9729,12 +9838,7 @@ append_LARS
 
 对每一层的学习率运用LARS(LAYER-WISE ADAPTIVE RATE SCALING)
 
-.. code-block python
 
-    .. math::
-
-        learning_rate*=local_gw_ratio * sqrt(sumsq(param))
-            / (sqrt(sumsq(gradient))+ weight_decay * sqrt(sumsq(param)))
 
 参数：
     - **learning_rate** -变量学习率。LARS的全局学习率。
@@ -9742,7 +9846,12 @@ append_LARS
 
 返回： 衰减的学习率
 
+**代码示例** :
 
+.. code-block:: python
+
+        learning_rate*=local_gw_ratio * sqrt(sumsq(param))
+            / (sqrt(sumsq(gradient))+ weight_decay * sqrt(sumsq(param)))
 
 
 
@@ -10424,9 +10533,9 @@ generate_proposals
 
 .. py:function:: paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, variances, pre_nms_top_n=6000, post_nms_top_n=1000, nms_thresh=0.5, min_size=0.1, eta=1.0, name=None) 
 
-生成proposal标签的Faster-RCNN
+生成proposal的Faster-RCNN
 
-该操作根据每个框的概率为foreground对象，并且可以通过锚（anchors）来计算框来产生RoI。Bbox_deltais和一个objects的分数作为是RPN的输出。最终 ``proposals`` 可用于训练检测网络。
+该操作根据每个框为foreground（前景）对象的概率，并且通过锚（anchors）来计算这些框，进而提出RoI。Bbox_deltais和一个objects的分数作为是RPN的输出。最终 ``proposals`` 可用于训练检测网络。
 
 为了生成 ``proposals`` ，此操作执行以下步骤：
 
@@ -10697,11 +10806,11 @@ rpn_target_assign
 
 对于给定anchors和真实框之间的IoU重叠，该层可以为每个anchors做分类和回归，这些target labels用于训练RPN。classification targets是二进制的类标签（是或不是对象）。根据Faster-RCNN的论文，positive labels有两种anchors：
 
-        （i）anchor/anchors与真实框具有最高IoU重叠；
-        
-        （ii）具有IoU重叠的anchors高于带有任何真实框（ground-truth box）的rpn_positive_overlap0（0.7）。
-        
-        请注意，单个真实框（ground-truth box）可以为多个anchors分配正标签。对于所有真实框（ground-truth box），非正向锚是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正也不是负的anchors对训练目标没有价值。回归目标是与positive anchors相关联而编码的图片真实框。
+(i) anchor/anchors与真实框具有最高IoU重叠；
+
+(ii) 具有IoU重叠的anchors高于带有任何真实框（ground-truth box）的rpn_positive_overlap0（0.7）。
+
+请注意，单个真实框（ground-truth box）可以为多个anchors分配正标签。对于所有真实框（ground-truth box），非正向锚是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正也不是负的anchors对训练目标没有价值。回归目标是与positive anchors相关联而编码的图片真实框。
 
 参数：
         - **bbox_pred** （Variable）- 是一个shape为[N，M，4]的3-D Tensor，表示M个边界框的预测位置。N是批量大小，每个边界框有四个坐标值，即[xmin，ymin，xmax，ymax]。
@@ -10717,7 +10826,13 @@ rpn_target_assign
         - **rpn_positive_overlap** （float）- 对于一个正例的（anchor, gt box）对，是允许anchors和所有真实框之间最小重叠的。
         - **rpn_negative_overlap** （float）- 对于一个反例的（anchor, gt box）对，是允许anchors和所有真实框之间最大重叠的。
 
-返回：        返回元组（predict_scores，predict_location，target_label，target_bbox）。predict_scores和predict_location是RPN的预测结果。 target_label和target_bbox分别是ground-truth。 predict_location是一个shape为[F，4]的2D Tensor， ``target_bbox`` 的shape与 ``predict_location`` 的shape相同，F是foreground anchors的数量。 ``predict_scores`` 是一个shape为[F + B，1]的2D Tensor， ``target_label`` 的shape与 ``predict_scores`` 的shape相同，B是background anchors的数量，F和B取决于此算子的输入。
+返回:
+
+返回元组 (predicted_scores, predicted_location, target_label, target_bbox, bbox_inside_weight) : 
+   - **predicted_scores** 和 **predicted_location** 是RPN的预测结果。 **target_label** 和 **target_bbox** 分别是真实准确数据(ground-truth)。 
+   - **predicted_location** 是一个形为[F，4]的2D Tensor， **target_bbox** 的形与 **predicted_location** 相同，F是foreground anchors的数量。 
+   - **predicted_scores** 是一个shape为[F + B，1]的2D Tensor， **target_label** 的形与 **predict_scores** 的形相同，B是background anchors的数量，F和B取决于此算子的输入。 
+   - **Bbox_inside_weight** 标志着predicted_loction是否为fake_fg（假前景），其形为[F,4]。
 
 返回类型：        元组(tuple)
 
@@ -10734,7 +10849,7 @@ rpn_target_assign
                 append_batch_size=False, dtype=’float32’)
         gt_boxes = layers.data(name=’gt_boxes’, shape=[10, 4],
                 append_batch_size=False, dtype=’float32’)
-        loc_pred, score_pred, loc_target, score_target =
+        loc_pred, score_pred, loc_target, score_target, bbox_inside_weight=
                 fluid.layers.rpn_target_assign(bbox_pred=bbox_pred,
                         cls_logits=cls_logits, anchor_box=anchor_box, gt_boxes=gt_boxes)
         
@@ -10968,8 +11083,9 @@ auc
 
 有两种可能的曲线：
 
-    1. ROC:受试者工作特征曲线
-    2. PR:准确率召回率曲线
+1. ROC:受试者工作特征曲线
+
+2. PR:准确率召回率曲线
 
 参数：
     - **input** (Variable) - 浮点二维变量，值的范围为[0,1]。每一行降序排列。输入应为topk的输出。该变量显示了每个标签的概率。
@@ -10987,7 +11103,7 @@ auc
 
 .. code-block:: python
 
-    # network is a binary classification model and label the ground truth
+    #  network为二分类模型, label为ground truth（正确标记）
     prediction = network(image, is_infer=True)
     auc_out=fluid.layers.auc(input=prediction, label=label)
 

@@ -406,7 +406,7 @@ outs = exe.run(
     ```
     可以看到100次迭代后，预测值已经非常接近真实值了，损失值也从初始值9.05下降到了0.01。
     
-    恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../../beginners_guide/quick_start/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](../../user_guides/models/index.html)中找到。
+    恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../../beginners_guide/quick_start/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](../../user_guides/models/index_cn.html)中找到。
 
 <a name="what_next"></a>
 ## What's next

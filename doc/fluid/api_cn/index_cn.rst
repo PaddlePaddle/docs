@@ -16,7 +16,7 @@ API
     io_cn.rst
     layers_cn.rst
     metrics_cn.rst
-    net_cn.rst
+    nets_cn.rst
     optimizer_cn.rst
     param_attr_cn.rst
     profiler_cn.rst
