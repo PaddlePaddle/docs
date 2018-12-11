@@ -2,6 +2,15 @@
 性能调优
 ##########
 
+..  toctree::
+	:hidden:
+
+	benchmark.rst
+	cpu_profiling_cn.md
+	gpu_profiling_cn.rst
+	host_memory_profiling_cn.md
+	timeline_cn.md
+
 本模块介绍 Fluid 使用过程中的调优方法，包括：
 
 - `如何进行基准测试 <benchmark.html>`_：介绍如何选择基准模型，从而验证模型的精度和性能
@@ -11,11 +20,3 @@
 - `Timeline工具简介 <timeline_cn.html>`_ ：介绍如何使用 Timeline 工具进行性能分析和调优
 
 
-..  toctree::
-	:hidden:
-
-    benchmark.rst
-    cpu_profiling_cn.md
-    gpu_profiling_cn.rst
-    host_memory_profiling_cn.md
-    timeline_cn.md

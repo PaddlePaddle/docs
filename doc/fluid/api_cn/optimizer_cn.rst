@@ -134,7 +134,7 @@ Adamax 更新规则:
      optimizer.minimize(cost)
 
 .. note::
-    目前 ``AdamaxOptimizer`` 不支持  sparse gradient
+    目前 ``AdamaxOptimizer`` 不支持  sparse parameter optimization.
 
   
 
@@ -231,7 +231,7 @@ Decayed Adagrad Optimizer
   optimizer.minimize(cost)
 
 .. note::
-  ``DecayedAdagradOptimizer`` 不支持 sparse gradient
+  ``DecayedAdagradOptimizer`` 不支持 sparse parameter optimization
 
 
 
@@ -302,7 +302,7 @@ TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-pred
    _, params_grads = optimizer.minimize(cost)
 
 .. note::
-     目前, FtrlOptimizer 不支持 sparse gradient
+     目前, FtrlOptimizer 不支持 sparse parameter optimization
 
 
 

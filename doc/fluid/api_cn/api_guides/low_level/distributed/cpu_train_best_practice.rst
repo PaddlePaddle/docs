@@ -12,7 +12,7 @@
 
 提高CPU使用率主要依赖 :code:`ParallelExecutor`，可以充分利用多个CPU的计算能力来加速计算。
 
-API详细使用方法参考 :ref:`api_fluid_ParallelExecutor` ，简单实例用法：
+API详细使用方法参考 :ref:`cn_api_fluid_ParallelExecutor` ，简单实例用法：
 
 .. code-block:: python
 
@@ -46,7 +46,7 @@ API详细使用方法参考 :ref:`api_fluid_ParallelExecutor` ，简单实例用
 提高通信速度
 ==========
 
-要减少通信数据量，提高通信速度，主要是使用稀疏更新 ，目前支持 `稀疏更新 <../distributed/sparse_update.html>`_  的主要是  :ref:`api_fluid_layers_embedding` 。
+要减少通信数据量，提高通信速度，主要是使用稀疏更新 ，目前支持 `稀疏更新 <../distributed/sparse_update.html>`_  的主要是  :ref:`cn_api_fluid_layers_embedding` 。
 
 .. code-block:: python
 

@@ -4,7 +4,11 @@
 
 本说明将介绍如何在*64位台式机或笔记本电脑*以及Ubuntu系统下安装PaddlePaddle，我们支持的Ubuntu系统需满足以下要求：
 
-请注意：在其他系统上的尝试可能会导致安装失败。
+
+
+请注意：在其他系统上的尝试可能会导致安装失败。请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机处理器支持AVX指令集，否则请选择[多版本whl包安装列表](Tables.html/#ciwhls)中`no_avx`的版本。
+
+Ubuntu系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处理器是否支持AVX指令集
 
 * *Ubuntu 14.04 /16.04 /18.04*
 
@@ -24,9 +28,9 @@
 在Ubuntu的系统下我们提供4种安装方式：
 
 * pip安装
-* Docker安装
+* Docker安装(镜像中python的版本为2.7)
 * 源码编译安装
-* Docker源码编译安装
+* Docker源码编译安装(镜像中的python版本为2.7，3.5，3.6，3.7)
 
 
 
@@ -51,12 +55,12 @@ Python2.7：
 
 	apt update && apt install -y python-dev python-pip && pip install paddlepaddle
 
-Python3.5（该指令适用于本机未安装python2的用户，否则，请卸载python2之后再使用本指令）： 
-  
+Python3.5（该指令适用于本机未安装python2的用户，否则，请卸载python2之后再使用本指令）：
+
   apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get install -y curl python3.5 python3.5-dev wget vim git && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip && pip3 install paddlepaddle
-	
+
 Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上安装差异较大，不一一描述其安装过程，执行以下命令前，我们认为您已经准备好python3.6或3.7的环境，并安装了对应版本的python3-dev以及pip3）
-    
+
     apt update && pip3 install paddlepaddle
 
 <br/>
@@ -92,11 +96,11 @@ Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上�
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
 
 	* 对于需要**GPU版本PaddlePaddle**的用户：`pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle-gpu`
-	
-	> 1. 为防止出现nccl.h找不到的问题请首先按照以下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN v7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):      
-			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`     
-			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`       	 	          
-			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0` 
+
+	> 1. 为防止出现nccl.h找不到的问题请首先按照以下命令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN v7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):
+			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
 
 	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 9/cuDNN v7的PaddlePaddle版本。
 
@@ -104,7 +108,7 @@ Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上�
 
 	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]` 或 `pip3 install paddlepaddle==[版本号]`
 
-	> `版本号`参见[安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
+	> `版本号`参见[安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[多版本whl包列表](./Tables.html/#ciwhls)或者我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
 
 
 
@@ -132,11 +136,11 @@ Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上�
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.2`
 
 	* 对于需要**GPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For GPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1-gpu-cuda9.0-cudnn7`
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.2-gpu-cuda9.0-cudnn7`
 
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
@@ -173,7 +177,7 @@ Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上�
 
 <br/><br/>
 ## ***如何卸载***
-请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令）：
+请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令，请使用相应版本的pip）：
 
 * ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 
