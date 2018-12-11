@@ -4,9 +4,9 @@
 
 本部分包括两篇文档：
 
-- `模型评估 <../user_guides/howto/evaluation_and_debugging/evaluation/metrics.html>`_：介绍常用模型评估指标的构造方法
+- `模型评估 <../evaluation_and_debugging/evaluation/metrics.html>`_：介绍常用模型评估指标的构造方法
 
-- `Visual DL 工具 <../user_guides/howto/evaluation_and_debugging/debug/visualdl.html>`_：介绍如何利用 Visual DL 工具可视化训练过程
+- `Visual DL 工具 <../evaluation_and_debugging/debug/visualdl.html>`_：介绍如何利用 Visual DL 工具可视化训练过程
 
 ..  toctree::
     :hidden:

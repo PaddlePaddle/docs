@@ -48,33 +48,33 @@ Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到�
 执行完毕后，build 目录如图所示，打开箭头指向的 solution 文件：
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image3.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image3.png">
 </p>
 
 修改编译属性为 `/MT` ：
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image4.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image4.png">
 </p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image5.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image5.png">
 </p>
 
 编译生成选项改成 `Release` 。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image6.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image6.png">
 </p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image7.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image7.png">
 </p>
 
 将提供的依赖包中，Release下的openblas和模型文件拷贝到编译生成的Release下。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image8.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image8.png">
 </p>
 
 通过cmd进到Release目录执行：
@@ -88,6 +88,6 @@ Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到�
   	`simple_on_word2vec.exe --dirname=.\word2vec.inference.model`
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/inference/image/image9.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
 </p>
 
