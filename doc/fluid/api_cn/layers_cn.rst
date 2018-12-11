@@ -2011,7 +2011,7 @@ conv2d_transpose
 其中：
     -  :math:`X` : 输入张量，具有 ``NCHW`` 格式
 
-    -  :math:`W` : 滤波器张量，，具有 ``NCHW`` 格式
+    -  :math:`W` : 滤波器张量，具有 ``NCHW`` 格式
 
     -  :math:`*` : 卷积操作
 
@@ -4225,7 +4225,7 @@ im2sequence
 image_resize
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR')
+.. py:function:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR', actual_shape=None)
 
 调整一批图片的大小
     
@@ -4234,6 +4234,7 @@ image_resize
 支持重新取样方法: 
 
     BILINEAR：双线性插值
+
     NEAREST：最近邻插值
 
 参数:
@@ -6401,7 +6402,7 @@ reshape
 resize_bilinear
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None)
+.. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None, actual_shape=None)
 
 根据指定的out_shape执行双线性插值调整输入大小，输出形状按优先级由actual_shape、out_shape和scale指定。
 
