@@ -3990,7 +3990,9 @@ sigmoid的分段线性逼近(https://arxiv.org/abs/1603.00391)，比sigmoid快�
 
 **代码示例：**
 
+
 .. code-block:: python
+
 
     x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
     y = fluid.layers.hard_sigmoid(x, slope=0.3, offset=0.8)
@@ -4234,7 +4236,6 @@ image_resize
 支持重新取样方法: 
 
     BILINEAR：双线性插值
-
     NEAREST：最近邻插值
 
 参数:
@@ -4830,6 +4831,7 @@ logical_or算子
 **代码示例：**
 
 .. code-block:: python
+
 
     left = fluid.layers.data(
         name='left', shape=[1], dtype='int32')
@@ -6403,6 +6405,8 @@ resize_bilinear
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None, actual_shape=None)
+
+根据指定的out_shape执行双线性插值调整输入大小，输出形状按优先级由actual_shape、out_shape和scale指定。
 
 根据指定的out_shape执行双线性插值调整输入大小，输出形状按优先级由actual_shape、out_shape和scale指定。
 
