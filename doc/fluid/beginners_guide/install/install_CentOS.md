@@ -48,17 +48,6 @@ CentOS系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处�
 <br/><br/>
 ### ***使用pip安装PaddlePaddle***
 
-您可以直接粘贴以下命令到命令行来安装PaddlePaddle(适用于CentOS7安装CPU-ONLY的版本)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
-
-Python2.7：
-
-	yum update && yum install -y epel-release && yum install -y python-devel python-pip && pip install paddlepaddle
-
-
-Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，我们提供默认您已经正确安装python3.5+以及pip3之后的安装命令）
-
-	yum update && yum install -y epel-release && pip3 install paddlepaddle
-
 
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
 
