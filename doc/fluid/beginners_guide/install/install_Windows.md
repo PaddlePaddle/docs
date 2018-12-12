@@ -29,8 +29,8 @@ Windows系统下可使用`cpu-z`这类软件来检测您的处理器是否支持
 		For python2: 使用Python官方下载的python2.7.15
 		For python3: 使用Python官方下载的python3.5.x, python3.6.x 或 python3.7.x
 
-*  Python2.7.x，pip >= 9.0.1
-*  Python3.5.x，pip3 >= 9.0.1
+*  Python2.7.x ：pip >= 9.0.1
+*  Python3.5.x, python3.6.x 或 python3.7.x ：pip3 >= 9.0.1
 	    
 下面将说明如何安装PaddlePaddle：
 
