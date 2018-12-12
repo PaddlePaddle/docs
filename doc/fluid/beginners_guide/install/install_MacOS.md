@@ -59,7 +59,7 @@
 
 	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`  或 `pip3 install paddlepaddle==[版本号]`
 
-	> `版本号`参见[最新Release安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
+	> `版本号`参见[最新Release安装包列表](./Tables.html/#ciwhls-release)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
 
 
 
