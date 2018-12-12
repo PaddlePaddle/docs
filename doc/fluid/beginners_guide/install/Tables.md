@@ -363,7 +363,8 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 <a name="ciwhls-release"></a>
 </br></br>
-## **多版本whl包列表-v1.2**
+
+## **多版本whl包列表-Release**
 
 <p align="center">
 <table>

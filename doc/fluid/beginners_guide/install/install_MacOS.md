@@ -25,7 +25,7 @@
 **使用pip安装**（最便捷的安装方式），我们为您提供pip安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题。
 
 
-**使用Docker进行安装**（最保险的安装方式），因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。    
+**使用Docker进行安装**（最保险的安装方式），因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
 
 
 
@@ -36,33 +36,33 @@
 
 首先，**检查您的计算机和操作系统**是否符合我们支持的编译标准： `uname -m` 并且在`关于本机`中查看系统版本。
 
-其次，您的计算机需要满足以下要求：    
+其次，您的计算机需要满足以下要求：
 
 > **请不要使用MacOS中自带python**，对于**Python2**，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg)提供的python2.7.15；对于**Python3**，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x、python3.6.x或python3.7.x。
-	
+
 		For python2: brew install python@2 或 使用Python官方下载的python2.7.15
 		For python3: 使用Python官方下载的python3.5.x、python3.6.x或python3.7.x
 
-*  Python2.7.x，Pip >= 9.0.1            
-*  Python3.5.x，Pip3 >= 9.0.1  
-*  Python3.6.x，Pip3 >= 9.0.1  
-*  Python3.7.x，Pip3 >= 9.0.1  
+*  Python2.7.x，Pip >= 9.0.1
+*  Python3.5.x，Pip3 >= 9.0.1
+*  Python3.6.x，Pip3 >= 9.0.1
+*  Python3.7.x，Pip3 >= 9.0.1
 
-	> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。        
-	    
+	> 注： 您的MacOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
+
 下面将说明如何安装PaddlePaddle：
 
 
 1. 使用pip install来安装PaddlePaddle：
-	
+
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
-	
+
 	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`  或 `pip3 install paddlepaddle==[版本号]`
-	
-	> `版本号`参见[安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[多版本whl包列表](./Tables.html/#ciwhls)或者我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
-	
-     
-	
+
+	> `版本号`参见[最新Release安装包列表](./Tables.html/#ciwhls-release)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
+
+
+
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
 
@@ -84,14 +84,14 @@
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`
-		
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.2`
+
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:[tag]`
-		
+
 		> （请把[tag]替换为[镜像表](./Tables.html/#dockers)中的内容）
-		
+
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
@@ -101,14 +101,14 @@
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
 	`docker start [Name of container]`
-	
+
 	> 启动之前创建的容器。
 
 	`docker attach [Name of container]`
-	
-	> 进入启动的容器。     
-	
-	
+
+	> 进入启动的容器。
+
+
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
@@ -125,5 +125,5 @@
 ## ***如何卸载***
 请使用以下命令卸载PaddlePaddle（使用docker安装PaddlePaddle的用户请进入包含PaddlePaddle的容器中使用以下命令，请使用相应版本的pip）：
 
-* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`     
+* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 

@@ -196,7 +196,7 @@ CompositeMetric
 DetectionMAP
 -------------------------------
 
-.. py:class:: paddle.fluid.metrics.DetectionMAP(name=None)
+.. py:class:: paddle.fluid.metrics.DetectionMAP(input, gt_label, gt_box, gt_difficult=None, class_num=None, background_label=0, overlap_threshold=0.5, evaluate_difficult=True, ap_version='integral')
 
 计算 detection 平均精度（mAP）。 mAP是衡量object detectors精度的指标，比如 Faster R-CNN,SSD等。它不同于召回率，它是最大精度的平均值。 请从以下文章中获取更多信息：
 

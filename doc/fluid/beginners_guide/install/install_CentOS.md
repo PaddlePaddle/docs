@@ -2,11 +2,11 @@
 
 # **CentOS下安装**
 
-本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下安装PaddlePaddle，我们支持的CentOS系统需满足以下要求：      
+本说明将介绍如何在*64位台式机或笔记本电脑*以及CentOS系统下安装PaddlePaddle，我们支持的CentOS系统需满足以下要求：
 
 
 
-请注意：在其他系统上的尝试可能会导致安装失败。请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机处理器支持AVX指令集，否则请选择[多版本whl包安装列表](Tables.html/#ciwhls)中`no_avx`的版本。
+请注意：在其他系统上的尝试可能会导致安装失败。请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机处理器支持AVX指令集，否则请选择[[最新Release安装包列表](./Tables.html/#ciwhls-release)中`no_avx`的版本。
 
 CentOS系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处理器是否支持AVX指令集
 
@@ -37,7 +37,7 @@ CentOS系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处�
 **使用pip安装**（最便捷的安装方式），我们为您提供pip安装方法，但它更依赖您的本机环境，可能会出现和您本机环境相关的一些问题。
 
 
-**使用Docker进行安装**（最保险的安装方式），因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。        
+**使用Docker进行安装**（最保险的安装方式），因为我们在把工具和配置都安装在一个 Docker image 里，这样如果遇到问题，其他人可以复现问题以便帮助。另外，对于习惯使用Windows和MacOS的开发者来说，使用Docker就不用配置交叉编译环境了。需要强调的是：Docker 不会虚拟任何硬件，Docker container 里运行的编译工具实际上都是在本机的 CPU 和操作系统上直接运行的，性能和把编译工具安装在本机运行一样。
 
 
 从[**源码编译安装**](#ct_source)以及[**使用Docker进行源码编译安装**](#ct_docker)，这是一种通过将PaddlePaddle源代码编译成为二进制文件，然后在安装这个二进制文件的过程，相比使用我们为您编译过的已经通过测试的二进制文件形式的PaddlePaddle，手动编译更为复杂，我们将在说明的最后详细为您解答。
@@ -48,17 +48,6 @@ CentOS系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处�
 <br/><br/>
 ### ***使用pip安装PaddlePaddle***
 
-您可以直接粘贴以下命令到命令行来安装PaddlePaddle(适用于CentOS7安装CPU-ONLY的版本)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
-
-Python2.7：
-		
-	yum update && yum install -y epel-release && yum install -y python-devel python-pip && pip install paddlepaddle     
-	    
-	
-Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，我们提供默认您已经正确安装python3.5+以及pip3之后的安装命令）
-	
-	yum update && yum install -y epel-release && pip3 install paddlepaddle     
-	
 
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
 
@@ -69,44 +58,44 @@ Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，�
 
 其次，您的计算机需要满足以下要求：
 
-*	Python2.7.x (devel)，Pip >= 9.0.1 
+*	Python2.7.x (devel)，Pip >= 9.0.1
 
-     > CentOS6需要编译Python2.7成[共享库](./FAQ.html/#FAQ)。      
+     > CentOS6需要编译Python2.7成[共享库](./FAQ.html/#FAQ)。
 
-*  Python3.5+.x (devel)，Pip3 >= 9.0.1    
+*  Python3.5+.x (devel)，Pip3 >= 9.0.1
 
 	> 您的CentOS上可能已经安装pip请使用pip -V来确认我们建议使用pip 9.0.1或更高版本来安装。
 
 	更新yum的源：   `yum update` 并安装拓展源以安装pip：   `yum install -y epel-release`
 
-	使用以下命令安装或升级Python和pip到需要的版本： 	
-	
-	    - For Python2: `sudo yum install python-devel python-pip`       
+	使用以下命令安装或升级Python和pip到需要的版本：
+
+	    - For Python2: `sudo yum install python-devel python-pip`
 	    - For Python3: (请参照Python官方流程安装，并注意pip3命令对应的python3版本是否一致，如果有多个python3版本，请指定pip版本如pip3.7，或者将pip3软链到您使用的python版本下）
-	
+
 	> 即使您的环境中已经有`Python`也需要安装`python develop`套装。
 
 下面将说明如何安装PaddlePaddle：
 
 1. 使用pip install来安装PaddlePaddle：
-	
+
 	* 对于需要**CPU版本PaddlePaddle**的用户：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
 
 	* 对于需要**GPU版本PaddlePaddle**的用户: `pip install paddlepaddle-gpu` 或 `pip3 install paddlepaddle-gpu`
-	
+
 	> 1. 为防止出现nccl.h找不到的问题请首先按照NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download)的指示正确安装nccl2
-	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 9/cuDNN v7的PaddlePaddle版本。 
+	> 2. 如果您不规定pypi包版本号，我们默认为您提供支持Cuda 9/cuDNN v7的PaddlePaddle版本。
 
 	* 对于出现`Cannot uninstall 'six'.`问题的用户，可是由于您的系统中已有的Python安装问题造	成的，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip 	install paddlepaddle-gpu --ignore-installed six`（GPU）解决。
-	
-	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`  或 `pip3 install paddlepaddle==[版本号]`      
-	
-	> `版本号`参见[安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[多版本whl包列表](./Tables.html/#ciwhls)或者我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
-	
-     
-	
-	    
-	    
+
+	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`  或 `pip3 install paddlepaddle==[版本号]`
+
+	> `版本号`参见[最新Release安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[[最新dev安装包列表](./Tables.html/#ciwhls)或者我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
+
+
+
+
+
 
 现在您已经完成通过`pip install` 来安装的PaddlePaddle的过程。
 
@@ -131,32 +120,32 @@ Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，�
 
 	* 对于需要**CPU版本的PaddlePaddle**的用户请使用以下指令拉取我们为您预安装好*PaddlePaddle For CPU*的镜像：
 
-		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.1`       
-		
+		`docker pull hub.baidubce.com/paddlepaddle/paddle:1.2`
+
 	* 您也可以通过以下指令拉取任意的我们提供的Docker镜像：
 
 		`docker pull hub.baidubce.com/paddlepaddle/paddle:[tag]`
-		
-		> （请把[tag]替换为[镜像表](./Tables.html/#dockers)中的内容）             
+
+		> （请把[tag]替换为[镜像表](./Tables.html/#dockers)中的内容）
 
 
 
 2. 使用以下指令用已经拉取的镜像构建并进入Docker容器：
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
-	
-	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用`hub.baidubce.com/paddlepaddle/paddle:[tag]` 注：tag的意义同第二步，/bin/bash是在Docker中要执行的命令。  
+
+	> 上述命令中，--name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185)）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，如果您需要使用我们的镜像请使用`hub.baidubce.com/paddlepaddle/paddle:[tag]` 注：tag的意义同第二步，/bin/bash是在Docker中要执行的命令。
 
 3. （可选：当您需要第二次进入Docker容器中）使用如下命令使用PaddlePaddle：
 
 	`docker start [Name of container]`
-	
+
 	> 启动之前创建的容器。
 
 	`docker attach [Name of container]`
-	
+
 	> 进入启动的容器。
-	
+
 至此您已经成功使用Docker安装PaddlePaddle，您只需要进入Docker容器后运行PaddlePaddle即可，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)。
 
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码。
