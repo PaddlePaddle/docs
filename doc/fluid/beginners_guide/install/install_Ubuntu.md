@@ -47,25 +47,7 @@ Ubuntu系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处�
 <br/><br/>
 ### ***使用pip安装***
 
-#### ****直接安装****
 
-您可以直接粘贴以下命令到命令行来安装PaddlePaddle(适用于ubuntu16.04及以上安装CPU-ONLY的版本)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
-
-Python2.7：
-
-	apt update && apt install -y python-dev python-pip && pip install paddlepaddle
-
-Python3.5（该指令适用于本机未安装python2的用户，否则，请卸载python2之后再使用本指令）：
-
-  apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get install -y curl python3.5 python3.5-dev wget vim git && curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip && pip3 install paddlepaddle
-
-Python3.6、Python3.7：（由于版本相对较新，在不同Ubuntu版本上安装差异较大，不一一描述其安装过程，执行以下命令前，我们认为您已经准备好python3.6或3.7的环境，并安装了对应版本的python3-dev以及pip3）
-
-    apt update && pip3 install paddlepaddle
-
-<br/>
-
-#### ****分步安装****
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
 
     uname -m && cat /etc/*release
