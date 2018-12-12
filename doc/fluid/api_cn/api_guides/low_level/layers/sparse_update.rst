@@ -39,7 +39,7 @@ API详细使用方法参考 :ref:`cn_api_fluid_layers_embedding` ，以下是一
 
 - :code:`is_sparse` ： 反向计算的时候梯度是否为sparse tensor。如果不设置，梯度是一个 `LodTensor <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/user_guides/howto/prepare_data/lod_tensor.md>`_  。默认为False。
 
-- :code:`is_distributed` ： 标志是否是用在分布式的场景下。一般大规模稀疏更新（embedding的第0维维度很大，比如几百万以上）才需要设置。具体可以参考大规模稀疏的API guide  :ref:`cn_api_guide_async_training`  。默认为False。
+- :code:`is_distributed` ： 标志是否是用在分布式的场景下。一般大规模稀疏更新（embedding的第0维维度很大，比如几百万以上）才需要设置。具体可以参考大规模稀疏的API guide  :ref:`api_guide_async_training`  。默认为False。
 
 - API汇总:
  - :ref:`cn_api_fluid_layers_embedding`
