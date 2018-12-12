@@ -147,12 +147,6 @@ equal
 
 API Reference 请参考 :ref:`cn_api_fluid_layers_equal`
 
-not_equal
-------------------
-
-对两个 :code:`Tensor` 逐元素判断是否不等， 对应数学操作符 :code:`!=`
-
-API Reference 请参考 :ref:`cn_api_fluid_layers_elementwise_not_equal`
 
 less_than
 ------------------
@@ -161,26 +155,7 @@ less_than
 
 API Reference 请参考 :ref:`cn_api_fluid_layers_less_than`
 
-less_equal
-------------------
 
-对两个 :code:`Tensor` 逐元素判断是否满足小于或等于关系， 对应数学操作符 :code:`<=`
-
-API Reference 请参考 :ref:`cn_api_fluid_layers_less_equal`
-
-greater_than
-------------------
-
-对两个 :code:`Tensor` 逐元素判断是否满足大于关系， 对应数学操作符 :code:`>`
-
-API Reference 请参考 :ref:`cn_api_fluid_layers_greater_than`
-
-greater_equal
-------------------
-
-对两个 :code:`Tensor` 逐元素判断是否满足大于或等于关系， 对应数学操作符 :code:`>=`
-
-API Reference 请参考 :ref:`cn_api_fluid_layers_greater_equal`
 
 sum
 ------------------
@@ -189,19 +164,19 @@ sum
 
 API Reference 请参考 :ref:`cn_api_fluid_layers_sum`
 
-min
+elementwise_min
 ------------------
 
 对两个 :code:`Tensor` 逐元素进行 :code:`min(x, y)` 操作。
 
-API Reference 请参考 :ref:`cn_api_fluid_layers_min`
+API Reference 请参考 :ref:`cn_api_fluid_layers_elementwise_min`
 
-max
+elementwise_max
 ------------------
 
 对两个 :code:`Tensor` 逐元素进行 :code:`max(x, y)` 操作。
 
-API Reference 请参考 :ref:`cn_api_fluid_layers_max`
+API Reference 请参考 :ref:`cn_api_fluid_layers_elementwise_max`
 
 matmul
 ------------------
