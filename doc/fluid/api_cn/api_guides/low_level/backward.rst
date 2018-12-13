@@ -1,8 +1,11 @@
+.. _api_guide_backward:
+
+
 ########
 反向传播
 ########
 
-神经网络的对模型的表达能力依赖于优化算法，优化是一个不断计算梯度并调整可学习参数的过程，Fluid中的优化算法可参考 :ref:`api_guide_optimizer` 。
+神经网络对模型的表达能力依赖于优化算法，优化是一个不断计算梯度并调整可学习参数的过程，Fluid中的优化算法可参考 :ref:`api_guide_optimizer` 。
 
 在网络的训练过程中，梯度计算分为两个步骤：前向计算与 `反向传播 <https://en.wikipedia.org/wiki/Backpropagation>`_ 。
 
