@@ -5163,7 +5163,7 @@ matmul
 当前输入的张量可以为任意阶，但当任意一个输入的阶数大于3时，两个输入的阶必须相等。
 实际的操作取决于x,y的维度和 ``transpose_x`` , ``transpose_y`` 的标记值。具体如下：
 
-- 如果transpose值为真，则对应 ``tensor`` 的最后两位将被转置。如：x是一个shape=[D]的一阶张量，那么x在非转置形式中为[1,D]，在转置形式中为[D,1],而y则相反，在非转置形式中作为[D,1]，在转置形式中作为[1,D]。
+- 如果transpose值为真，则对应 ``tensor`` 的最后两维将被转置。如：x是一个shape=[D]的一阶张量，那么x在非转置形式中为[1,D]，在转置形式中为[D,1],而y则相反，在非转置形式中作为[D,1]，在转置形式中作为[1,D]。
 
 - 转置后，这两个`tensors`将为 2-D 或 n-D ,并依据下列规则进行矩阵相乘：
 	- 如果两个都是2-D，则同普通矩阵一样进行矩阵相乘
@@ -5176,7 +5176,7 @@ matmul
     - **x** (Variable)-输入变量，类型为Tensor或LoDTensor
     - **y** (Variable)-输入变量，类型为Tensor或LoDTensor
     - **transpose_x** (bool)-相乘前是否转置x
-    - **transeptse_y** (bool)-相乘前是否转置y
+    - **transpose_y** (bool)-相乘前是否转置y
     - **alpha** (float)-输出比例。默认为1.0
     - **name** (str|None)-该层名称（可选）。如果设置为空，则自动为该层命名
 
