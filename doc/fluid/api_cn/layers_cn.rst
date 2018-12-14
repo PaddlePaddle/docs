@@ -6657,7 +6657,17 @@ sampling_id算子。用于从输入的多项分布中对id进行采样的图层�
 返回类型：        输出（Variable）。
 
 
- 
+**代码示例：**
+
+.. code-block:: python
+
+    x = layers.data(
+    name="X",
+    shape=[13, 11],
+    dtype='float32',
+    append_batch_size=False)
+
+    out = layers.sampling_id(x)
 
 
 
