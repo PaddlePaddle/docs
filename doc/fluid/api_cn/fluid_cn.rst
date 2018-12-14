@@ -1231,10 +1231,10 @@ ParamAttr
 Program
 -------------------------------
 
-.. py:function::  paddle.fluid.Program
+.. py:class::  paddle.fluid.Program
 
 
-创建python program， 在paddleFluid内部会被转换为ProgramDesc描述语言，是被用来创建c++ Program。Program像容器一样也是一种独立的程序语言。Program包括至少一个块（Block），控制流比如conditional_block包括while_op，该Program将会含有嵌套块（nested block）。详情请参阅framework.proto。
+创建python program， 在paddleFluid内部会被转换为ProgramDesc描述语言，用来创建一段 c++ 程序。Program像容器一样，是一种自包含的程序语言。Program中包括至少一个块（Block），当 block 中存在条件选择的控制流op（例如 while_op）时，该Program将会含有嵌套块（nested block）。详情请参阅framework.proto。
 
 注意：默认情况下，paddleFluid内部默认含有 ``default_startup_program`` 和 ``default_main_program`` ，它们将共享参数。 ``default_startup_program`` 只运行一次来初始化参数， ``default_main_program`` 在每个mini batch中运行并调整权重。
 

@@ -354,7 +354,7 @@ equal
 IfElse
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.IfElse(cond, name=None)
+.. py:class:: paddle.fluid.layers.IfElse(cond, name=None)
 
 if-else控制流。  
 
@@ -633,7 +633,7 @@ StaticRNN
 Switch
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.Switch (name=None)
+.. py:class:: paddle.fluid.layers.Switch (name=None)
 
 Switch类实现的功能十分类似if-elif-else。它可以在学习率调度器(learning rate scheduler)中调整学习率。
 :: 
@@ -689,7 +689,7 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
 While
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.While (cond, is_test=False, name=None)
+.. py:class:: paddle.fluid.layers.While (cond, is_test=False, name=None)
 
 
 该类用于实现while循环控制功能。
@@ -1669,7 +1669,7 @@ bilinear_tensor_product
 例如:
 
 .. math::
-       out{i} = x * W_{i} * {y^\mathrm{T}}, i=0,1,...,size-1
+       out_{i} = x * W_{i} * {y^\mathrm{T}}, i=0,1,...,size-1
 
 在这个公式中：
 	- :math:`x`: 第一个输入，包含M个元素，形状为[batch_size, M]
@@ -2646,7 +2646,7 @@ dropout操作
 
 dropout操作符可以从程序中移除，程序变得高效。
 
-返回：带有x维的张量
+返回：与输入X，shape相同的张量
 
 返回类型：变量
 
@@ -3592,6 +3592,8 @@ fc
 flatten
 -------------------------------
 
+.. py:function::  paddle.fluid.layers.flatten(x, axis=1, name=None)
+
 将输入张量压扁成二维矩阵
 
 例如：
@@ -3713,7 +3715,11 @@ gaussian_random算子。
 
 返回类型：        输出（Variable）
 
-       
+**代码示例：**
+
+.. code-block:: python
+
+    out = layers.gaussian_random(shape=[20, 30])       
 
 
 
@@ -3747,7 +3753,14 @@ gaussian_random_batch_size_like
 
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+
+    out = layers.gaussian_random_batch_size_like(
+        input, shape=[-1, 11], mean=1.0, std=2.0)
 
 
 
