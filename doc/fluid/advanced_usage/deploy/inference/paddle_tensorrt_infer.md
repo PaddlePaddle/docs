@@ -26,14 +26,17 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 	cd /Paddle
 	mkdir build
 	cd build
+	# TENSORRT_ROOT为TRT的路径，默认为 /usr，根据自己需求进行改动
 	cmake .. \
 	      -DWITH_FLUID_ONLY=ON \
 	      -DWITH_CONTRIB=OFF \
 	      -DWITH_MKL=OFF \
 	      -DWITH_MKLDNN=OFF \
-	      -DWITH_TESTING=ON \
+	      -DWITH_TESTING=OFF \
 	      -DCMAKE_BUILD_TYPE=Release \
-	      -DWITH_PYTHON=OFF
+	      -DWITH_PYTHON=OFF   \
+	      -DTENSORRT_ROOT=/usr \
+	      -DON_INFER=ON
 	
 	# 编译    
 	make -j
@@ -97,11 +100,11 @@ void RunTensorRT(int batch_size, std::string model_dirname) {
 
 int main() { 
   // 模型下载地址 http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/mobilenet.tar.gz
-  paddle::RunTensorRT(1, “./mobilenet");
+  paddle::RunTensorRT(1, "./mobilenet");
   return 0;
 }
 ```
-编译过程可以参照[这里](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/fluid/inference/api/demo_ci)。
+编译过程可以参照[这里](https://github.com/NHZlX/Paddle_TRT_Sample)。
 
 ## 子图运行原理
    PaddlePaddle采用子图的形式对TensorRT进行集成，当模型加载后，神经网络可以表示为由变量和运算节点组成的计算图。Paddle TensorRT实现的功能是能够对整个图进行扫描，发现图中可以使用TensorRT优化的子图，并使用TensorRT节点替换它们。在模型的推断期间，如果遇到TensorRT节点，Paddle会调用TensoRT库对该节点进行优化，其他的节点调用Paddle的原生实现。TensorRT在推断期间能够进行Op的横向和纵向融合，过滤掉冗余的Op，并对特定平台下的特定的Op选择合适的kenel等进行优化，能够加快模型的预测速度。  
