@@ -9,10 +9,10 @@ You will learn how to develop programs in local under the guide of this document
 - Pass through all unit tests.
 - Please follow [regulations of submitting codes](#regulations of submitting codes).
 
-The following steps tell you how to submit code.
+It tells you how to submit code as follows.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-Transfer to the homepage of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork`  to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
+Transfer to the homepage of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork` to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
 
 ## Clone
 
