@@ -17,7 +17,7 @@ Fluid使用一种编译器式的执行流程，分为编译时和运行时两个
 
 本地训练任务执行流程图如下所示：
 <p align="center">
-	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/design_idea/image/fluid_process.png" width=800>
+	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/release/1.1/doc/fluid/user_guides/design_idea/image/fluid_process.png" width=800>
 </p>
 
  1. 编译时，用户编写一段python程序，通过调用 Fluid 提供的算子，向一段 Program 中添加变量（Tensor）以及对变量的操作（Operators 或者 Layers）。用户只需要描述核心的前向计算，不需要关心反向计算、分布式下以及异构设备下如何计算。
@@ -153,7 +153,7 @@ Executor 在运行时将接受一个`ProgramDesc`、一个`block_id`和一个`Sc
 完成的编译执行的具体过程如下图所示：
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/design_idea/image/executor_design.png" width=600>
+	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/release/1.1/doc/fluid/user_guides/design_idea/image/executor_design.png" width=600>
 </p>
 
 1. Executor 为每一个block创建一个Scope，Block是可嵌套的，因此Scope也是可嵌套的
