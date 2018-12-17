@@ -12,7 +12,7 @@ You will learn how to develop programs in local under the guide of this document
 It tells you how to submit code as follows.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-Transfer to the homepage of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork` to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
+Transfer to the homepage of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork` to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>.
 
 ## Clone
 
@@ -28,7 +28,7 @@ Clone remote git to local:
 
 At present [Git stream branch model](http://nvie.com/posts/a-successful-git-branching-model/) is applied to Paddle to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/releasing_process.md#paddle-分支规范) about details。
 
-All development tasks of feature and bug fix should be finished in a new branch which is extended from `develop` branch.所
+All development tasks of feature and bug fix should be finished in a new branch which is extended from `develop` branch.
 
 Create and change into a new branch with command `git checkout -b`.
 
@@ -51,7 +51,7 @@ Paddle developers manage Git pre-commit hook with [pre-commit](http://pre-commit
 
 Paddle modify the format of C/C++ source code with `clang-format` .Make sure the version of `clang-format` is above 3.8.
 
-Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit`.Paddle developers use `pip install pre-commit`。
+Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit`.Paddle developers use `pip install pre-commit`.
 
 ## Starting the development
 
@@ -129,7 +129,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test
 ```
 
-Git 每次提交代码，都需要写提交说明，这可以让其他人知道这次提交做了哪些改变，这可以通过`git commit` 完成。
+Commit message is a must at evry submit to Git so that other members would learn about the modification that you have made,which could be finished with commang `git commit`.
 
 ```bash
 ➜  git commit
