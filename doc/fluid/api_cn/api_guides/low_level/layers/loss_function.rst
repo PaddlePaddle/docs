@@ -57,4 +57,4 @@ API Reference 请参考 :ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_log
 
 对于一些较为复杂的损失函数，可以尝试使用其他损失函数组合实现；Paddle Fluid 中提供的用于图像分割任务的 :ref:`cn_api_fluid_layers_dice_loss` 即是使用其他 OP 组合（计算各像素位置似然概率的均值）而成；多目标损失函数也可看作这样的情况，如 Faster RCNN 就使用 cross entropy 和 smooth_l1 loss 的加权和作为损失函数。
 
-**注意**，在定义损失函数之后为能够使用 :ref:`cn_api_guide_optimizer` 进行优化，通常需要使用 :ref:`cn_api_fluid_layers_mean` 或其他操作将损失函数返回的高维 Tensor 转换为 Scalar 值。
+**注意**，在定义损失函数之后为能够使用 :ref:`api_guide_optimizer` 进行优化，通常需要使用 :ref:`cn_api_fluid_layers_mean` 或其他操作将损失函数返回的高维 Tensor 转换为 Scalar 值。
