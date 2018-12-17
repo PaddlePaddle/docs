@@ -12,11 +12,11 @@ You will learn how to develop programs in local under the guide of this document
 It tells you how to submit code as follows.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-Transfer to the homepage of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork` to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>.
+Transfer to the homepage of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork` to generate the repository under your own file directory,such as <https://github.com/USERNAME/Paddle>.
 
 ## Clone
 
-Clone remote git to local:
+Clone remote repository to local:
 
 ```bash
 ➜  git clone https://github.com/USERNAME/Paddle
@@ -158,9 +158,9 @@ clang-formater.......................................(no files to check)Skipped
 
 ## Keep the latest local repository
 
-It needs to keep up with the latest code of original git (<https://github.com/PaddlePaddle/Paddle>）before Pull Request.
+It needs to keep up with the latest code of original repository (<https://github.com/PaddlePaddle/Paddle>）before Pull Request.
 
-Check the name of current remote git with `git remote`.
+Check the name of current remote repository with `git remote`.
 
 ```bash
 ➜  git remote
@@ -170,7 +170,7 @@ origin	https://github.com/USERNAME/Paddle (fetch)
 origin	https://github.com/USERNAME/Paddle (push)
 ```
 
-origin is the name of remote git that we clone,which is also the Paddle under your own account.Next we create a remote host of an original Paddle and name it upstream.
+origin is the name of remote repository that we clone,which is also the Paddle under your own account.Next we create a remote host of an original Paddle and name it upstream.
 
 ```bash
 ➜  git remote add upstream https://github.com/PaddlePaddle/Paddle
@@ -191,6 +191,6 @@ Get the latest code of upstream and update current branch.
 Submit local modification to GitHub (https://github.com/USERNAME/Paddle).
 
 ```bash
-# submit it to remote git the branch my-cool-stuff of origin
+# submit it to remote repository the branch my-cool-stuff of origin
 ➜  git push origin my-cool-stuff
 ```
