@@ -62,10 +62,10 @@ a = fluid.layers.data(name="a",shape=[3,4],dtype='int64')
 
 #若图片的宽度和高度在运行时可变，将宽度和高度定义为None。
 #shape的三个维度含义分别是：channel、图片的宽度、图片的高度
-b = fluid.layers.data(name="image",shape=[3,None,None],dtpye="float32")
+b = fluid.layers.data(name="image",shape=[3,None,None],dtype="float32")
 ```
 
-其中，dtpye=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](../../user_guides/howto/prepare_data/feeding_data.html#fluid)。
+其中，dtype=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](../../user_guides/howto/prepare_data/feeding_data.html#fluid)。
 
 **3. 常量 Tensor**
 
