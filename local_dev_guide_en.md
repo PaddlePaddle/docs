@@ -7,7 +7,7 @@ You will learn how to develop programs in local under the guide of this document
 - Make sure that option of builder `WITH_STYLE_CHECK` is on and the build could pass through the code style check.
 - Unit test is a need for all codes.
 - Pass through all unit tests.
-- Please follow [regulations of submitting codes](#regulations of submitting codes).
+- Please follow [regulations of submitting code](#regulations of submitting code).
 
 It tells you how to submit code as follows.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
@@ -49,13 +49,13 @@ Paddle developers manage Git pre-commit hook with [pre-commit](http://pre-commit
 ➜  pre-commit install
 ```
 
-Paddle modify the format of C/C++ source code with `clang-format` .Make sure the version of `clang-format` is above 3.8.
+You can modify the format of C/C++ source code with `clang-format` in Paddle.Make sure the version of `clang-format` is above 3.8.
 
 Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit`.Paddle developers use `pip install pre-commit`.
 
 ## Starting the development
 
-I delete a line of README.md and create a new file in the case.
+I delete one line of README.md and create a new file at the example.
 
 Check current status with `git status`,followed by the appearance of changes under current directory.Meanwhile,you can also check the specific modifications of the file with `git diff`.
 
@@ -86,7 +86,7 @@ You need to bulid this development mirror under the root directory of source cod
 ➜  docker build -t paddle:latest-dev .
 ```
 
-Then you can start building PaddlePaddle source code with this development mirror.For example,to build a Paddleddle which are not dependent on GPU but in support of AVX commands and including unit test,you can:
+Then you can start building PaddlePaddle source code with this development mirror.For example,to build a PaddlePaddle which is not dependent on GPU but in support of AVX commands and including unit test,you can:
 
 ```bash
 ➜  docker run -v $(pwd):/paddle -e "WITH_GPU=OFF" -e "WITH_AVX=ON" -e "WITH_TESTING=ON" paddle:latest-dev
@@ -98,13 +98,13 @@ If you want to build PaddlePaddle based on Python3,you can:
 ➜  docker run -v $(pwd):/paddle -e "PY_VERSION=3.5" -e "WITH_FLUID_ONLY=ON" -e "WITH_GPU=OFF" -e "WITH_AVX=ON" -e "WITH_TESTING=ON" paddle:latest-dev
 ```
 
-Except for the build of PaddlePaddle as `./build/libpaddle.so` and the output of `./build/paddle.deb` file, there is a output of `build/Dockerfile`.What we need to do is to package the PaddlePaddle as a *produce mirror*（`paddle:prod`）with following commands.
+Except for the build of PaddlePaddle as `./build/libpaddle.so` and the output of `./build/paddle.deb` file, there is a output of `build/Dockerfile`.What we need to do is to package the PaddlePaddle as a *produce mirror*（`paddle:prod`）with following command.
 
 ```bash
 ➜  docker build -t paddle:prod -f build/Dockerfile .
 ```
 
-Run all unit tests with following commands:
+Run all unit tests with following command:
 
 ```bash
 ➜  docker run -it -v $(pwd):/paddle paddle:latest-dev bash -c "cd /paddle/build && ctest"
@@ -146,7 +146,7 @@ clang-formater.......................................(no files to check)Skipped
  create mode 100644 233
 ```
 
-<b> <font color="red">Attention needs to be paid：you need to add commit message to touch CI test.The command is as follows:</font> </b>
+<b> <font color="red">Attention needs to be paid：you need to add commit message to touch CI test with following commands.</font> </b>
 
 ```bash
 # Touch CI single test of develop branch
@@ -156,7 +156,7 @@ clang-formater.......................................(no files to check)Skipped
 ➜  git commit -m "test=release/1.1"
 ```
 
-## Keep the latest local git
+## Keep the latest local repository
 
 It needs to keep up with the latest code of original git (<https://github.com/PaddlePaddle/Paddle>）before Pull Request.
 
@@ -186,7 +186,7 @@ Get the latest code of upstream and update current branch.
 ➜  git pull upstream develop
 ```
 
-## Push to remote git
+## Push to remote repository
 
 Submit local modification to GitHub (https://github.com/USERNAME/Paddle).
 
