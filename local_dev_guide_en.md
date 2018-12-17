@@ -191,6 +191,6 @@ Get the latest code of upstream and update current branch.
 Submit local modification to GitHub (https://github.com/USERNAME/Paddle).
 
 ```bash
-# submit it to remote repository the branch my-cool-stuff of origin
+# submit it to the branch my-cool-stuff of remote repository origin
 ➜  git push origin my-cool-stuff
 ```
