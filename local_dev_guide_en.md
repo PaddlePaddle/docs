@@ -1,18 +1,18 @@
 # Guide of local development
 
-You will learn how to develop programs in local under the guidelines of this document.
+You will learn how to develop programs in local under the guide of this document.
 
-## Requirements of coding
-- Please refer to the coding note format of[Doxygen](http://www.stack.nl/~dimitri/doxygen/) 
+## Requirements of code
+- Please refer to the coding note format of [Doxygen](http://www.stack.nl/~dimitri/doxygen/) 
 - Make sure that option of builder `WITH_STYLE_CHECK` is on and the build could pass through the code style check.
 - Unit test is a need for all codes.
 - Pass through all unit tests.
 - Please follow [regulations of submitting codes](#regulations of submitting codes).
 
-The following guidiance tells how to submit code.
+The following steps tell you how to submit code.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-Transfer to the homepage of Github[PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork`  to generate the git under your own file directory,such as<https://github.com/USERNAME/Paddle>。
+Transfer to the homepage of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle),and then click button`Fork`  to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
 
 ## Clone
 
@@ -26,7 +26,7 @@ Clone remote git to local:
 
 ## Create local branch
 
-At present [Git stream branch model] is applied to Paddle(http://nvie.com/posts/a-successful-git-branching-model/) to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle] about details(https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/releasing_process.md#paddle-分支规范)。
+At present [Git stream branch model](http://nvie.com/posts/a-successful-git-branching-model/) is applied to Paddle to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/releasing_process.md#paddle-分支规范) about details。
 
 All development tasks of feature and bug fix should be finished in a new branch which is extended from `develop` branch.所
 
@@ -51,7 +51,7 @@ Paddle developers manage Git pre-commit hook with [pre-commit](http://pre-commit
 
 Paddle modify the format of C/C++ source code with `clang-format` .Make sure the version of `clang-format` is above 3.8.
 
-Note：There are difference between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit`.Paddle developer use `pip install pre-commit`。
+Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit`.Paddle developers use `pip install pre-commit`。
 
 ## Starting the development
 
@@ -188,7 +188,7 @@ Get the latest code of upstream and update current branch.
 
 ## Push to remote git
 
-Submit local modification to GitHub(https://github.com/USERNAME/Paddle).
+Submit local modification to GitHub (https://github.com/USERNAME/Paddle).
 
 ```bash
 # submit it to remote git the branch my-cool-stuff of origin
