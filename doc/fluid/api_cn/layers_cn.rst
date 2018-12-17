@@ -4249,6 +4249,7 @@ image_resize
 支持重新取样方法: 
 
     BILINEAR：双线性插值
+
     NEAREST：最近邻插值
 
 参数:
@@ -4508,27 +4509,31 @@ linear_chain_crf
 
 该操作符实现了线性链条件随机场（linear chain CRF）的前向——反向算法。详情请参照 http://www.cs.columbia.edu/~mcollins/fb.pdf 和 http://cseweb.ucsd.edu/~elkan/250Bwinter2012/loglinearCRFs.pdf。
 
-公式：
 
-	1.这里x代表Emission
-
-	2.Transition的第一维度值，代表起始权重，这里用a表示
-
-	3.Transition的下一维值，代表末尾权重，这里用b表示
-
-	4.Transition剩下的值，代表转移权重，这里用w表示
-
-	5.Label用s表示
-
-	长度为L的序列s的概率定义如下：
+长度为L的序列s的概率定义如下：
 
 .. math::
 
-    P(s) = (1/Z)exp(a_{s_{1}}+b_{s_{L}}+sum_{L}^{l=1}x_{s+{l}}+sum_{L}^{l=2}w_{s_{l-1},s_{l}})
+    P(s) = (1/Z)exp(a_{s_{1}}+b_{s_{L}}+sum_{l=1}^{L}x_{s+{l}}+sum_{l=2}^{L}w_{s_{l-1},s_{l}})
+
 
 其中Z是正则化值，所有可能序列的P(s)之和为1，x是线性链条件随机场（linear chain CRF）的发射（emission）特征权重。
 
 线性链条件随机场最终输出mini-batch每个训练样本的条件概率的对数
+
+
+	1.这里 :math:`x` 代表Emission
+
+	2.Transition的第一维度值，代表起始权重，这里用 :math:`a` 表示
+
+	3.Transition的下一维值，代表末尾权重，这里用 :math:`b` 表示
+
+	4.Transition剩下的值，代表转移权重，这里用 :math:`w` 表示
+
+	5.Label用 :math:`s` 表示
+
+	
+
 
 **注意：**
 
@@ -4633,7 +4638,7 @@ lod_reset
 
 返回类型：变量
 
-提示：抛出异常 - 如果y和target_lod都为空
+抛出异常：``TypeError`` - 如果y和target_lod都为空
 
 **代码示例**：
 
@@ -5231,10 +5236,10 @@ maxout
 
 	y_{si+j} &= \max_k x_{gsi + sk + j} \\
 	g &= groups \\
-	s &= \frac{input.size}{num_channels} \\
-	0 &\le i < \frac{num_channels}{groups} \\
-	0 &\le j < s \\
-	0 &\le k < groups
+	s &= \frac{input.size}{num\_channels} \\
+	0 \le i < \frac{num\_channels}{groups} \\
+	0 \le j < s \\
+	0 \le k < groups
 
 
 请参阅论文:
@@ -5294,7 +5299,7 @@ mean_iou
 
 均值IOU（Mean  Intersection-Over-Union）是语义图像分割中的常用的评价指标之一，它首先计算每个语义类的IOU，然后计算类之间的平均值。定义如下:
       
-          .. math::   IOU = \frac{true_positi}{true_positive+false_positive+false_negative}
+          .. math::   IOU = \frac{true_{positive}}{true_{positive}+false_{positive}+false_{negative}}
           
 在一个混淆矩阵中累积得到预测值，然后从中计算均值-IOU。
 
@@ -5898,6 +5903,10 @@ pow
 .. py:function:: paddle.fluid.layers.pow(x, factor=1.0, name=None)
 
 指数激活算子（Pow Activation Operator.）
+
+.. math::
+
+    out = x^{factor}
 
 参数
     - **x** (Variable) - Pow operator的输入
@@ -6816,8 +6825,8 @@ sequence_concat
 sequence_concat操作通过序列信息连接LoD张量（Tensor）。例如：X1的LoD = [0,3,7]，X2的LoD = [0,7,9]，结果的LoD为[0，（3 + 7），（7 + 9）]，即[0,10,16]。
 
 参数:
-        - **input** (list) – List of Variables to be concatenated.
-        - **name** (str|None) – A name for this layer(optional). If set None, the layer will be named automatically.
+        - **input** (list) – 要连接变量的列表
+        - **name** (str|None) – 此层的名称(可选)。如果没有设置，该层将被自动命名。
         
 返回:     连接好的输出变量。
 
@@ -6995,7 +7004,7 @@ sequence_expand_as
 
 Sequence Expand As Layer
 
-这一层将根据y的第0级lod展开输入变量x。当前实现要求输入（Y）的lod层数必须为1，输入（X）的第一维应当和输入（Y）的第0层lod的大小相同，不考虑输入（X）的lod。
+这一层将根据y的第0级lod扩展输入变量x。当前实现要求输入（Y）的lod层数必须为1，输入（X）的第一维应当和输入（Y）的第0层lod的大小相同，不考虑输入（X）的lod。
 
 以下示例解释sequence_expand如何工作：
 
@@ -7012,6 +7021,23 @@ Sequence Expand As Layer
         Out.lod =  [[0,            3,              6,  7,  8]]
         Out.data = [[a], [a], [a], [b], [b], [b], [c], [d]]
         Out.dims = [8, 1]
+
+    *例2
+
+    给定一个 input(X)：
+        X.data = [[a, b], [c, d], [e, f]]
+        X.dims = [3, 2]
+    
+    和 input(Y):
+        Y.lod = [[0, 2, 3, 6]]
+    ref_level: 0
+
+    得到输出张量：
+    
+        Out.lod =  [[0,             2,     3,                    6]]
+        Out.data = [[a, b], [a, b] [c, d], [e, f], [e, f], [e, f]]
+        Out.dims = [6, 2]
+
 
 参数：
     - **x** (Variable) - 输入变量，类型为Tensor或LoDTensor
