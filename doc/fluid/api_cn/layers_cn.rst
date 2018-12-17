@@ -4638,7 +4638,7 @@ lod_reset
 
 返回类型：变量
 
-抛出异常：``TypeError`` - 如果y和target_lod都为空
+抛出异常： ``TypeError`` - 如果y和target_lod都为空
 
 **代码示例**：
 
