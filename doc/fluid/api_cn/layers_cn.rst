@@ -4514,7 +4514,7 @@ linear_chain_crf
 
 .. math::
 
-    P(s) = (1/Z)exp(a_{s_{1}}+b_{s_{L}}+sum_{l=1}^{L}x_{s+{l}}+sum_{l=2}^{L}w_{s_{l-1},s_{l}})
+    P(s) = (1/Z) exp(a_{s_1} + b_{s_L} + sum_{l=1}^L x_{s_l} + sum_{l=2}^L w_{s_{l-1},s_l})
 
 
 其中Z是正则化值，所有可能序列的P(s)之和为1，x是线性链条件随机场（linear chain CRF）的发射（emission）特征权重。
@@ -5237,9 +5237,9 @@ maxout
 	y_{si+j} &= \max_k x_{gsi + sk + j} \\
 	g &= groups \\
 	s &= \frac{input.size}{num\_channels} \\
-	0 \le i < \frac{num\_channels}{groups} \\
-	0 \le j < s \\
-	0 \le k < groups
+	0 \le &i < \frac{num\_channels}{groups} \\
+	0 \le &j < s \\
+	0 \le &k < groups
 
 
 请参阅论文:
@@ -7929,7 +7929,7 @@ smooth_l1
 
 .. py:function:: paddle.fluid.layers.smooth_l1(x, y, inside_weight=None, outside_weight=None, sigma=None)
 
-该layer计算变量 ``x1`` 和 ``y`` 的smooth L1 loss，它以x和y的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
+该layer计算变量 ``x`` 和 ``y`` 的smooth L1 loss，它以 ``x`` 和 ``y`` 的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
 
 
 参数:
@@ -8472,7 +8472,7 @@ topk
 
 返回类型：元组[变量]
 
-抛出异常: ``TypeError`` - 如果k<1或者k不小于输入的最后维
+抛出异常: ``ValueError`` - 如果k<1或者k不小于输入的最后维
 
 **代码示例**：
 
@@ -9166,27 +9166,27 @@ thresholded_relu
 
 .. py:function:: paddle.fluid.layers.thresholded_relu(x,threshold=None)
 
-    ThresholdedRelu激活函数
+ThresholdedRelu激活函数
 
-    .. math::
+.. math::
 
-        out = \left\{\begin{matrix}
-            x, if&x > threshold\\ 
-            0, &otherwise 
-            \end{matrix}\right.
+	out = \left\{\begin{matrix}
+	    x, if&x > threshold\\ 
+	    0, &otherwise 
+	    \end{matrix}\right.
 
-    参数：
-        - **x** -ThresholdedRelu激活函数的输入
-        - **threshold** (FLOAT)-激活函数threshold的位置。[默认1.0]。
-    
-    返回：ThresholdedRelu激活函数的输出
+参数：
+- **x** -ThresholdedRelu激活函数的输入
+- **threshold** (FLOAT)-激活函数threshold的位置。[默认1.0]。
 
-    **代码示例**：
+返回：ThresholdedRelu激活函数的输出
 
-    .. code-block:: python
+**代码示例**：
 
-        data = fluid.layers.data(name="input", shape=[1])
-        result = fluid.layers.thresholded_relu(data, threshold=0.4)
+.. code-block:: python
+
+	data = fluid.layers.data(name="input", shape=[1])
+	result = fluid.layers.thresholded_relu(data, threshold=0.4)
 
 
 
@@ -9302,12 +9302,12 @@ argmin
 
 
 
-.. _cn_api_fluid_layers.argsort:
+.. _cn_api_fluid_layers_argsort:
 
 argsort
 -------------------------------
 
-.. py:function:: paddle.fluid.layers argsort(input,axis=-1,name=None)
+.. py:function:: paddle.fluid.layers.argsort(input,axis=-1,name=None)
 
 对输入变量沿给定轴进行排序，输出排序好的数据和相应的索引，其维度和输入相同
 
@@ -9461,7 +9461,7 @@ create_global_var
 
 .. py:function:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
-在全局块中创建一个新的带有 ``Value`` 的张量。
+在全局块中创建一个新的带有 ``value`` 的张量。
 
 参数：
     - **shape** (list[int])-变量的维度
@@ -9559,16 +9559,16 @@ create_tensor
 
 
 
-.. _cn_api_fluid_layers.fill_constant:
+.. _cn_api_fluid_layers_fill_constant:
 
 fill_constant
 -------------------------------
 
-.. py:function:: paddle.fluid.layers fill_constant(shape,dtype,value,force_cpu=False,out=None)
+.. py:function:: paddle.fluid.layers.fill_constant(shape,dtype,value,force_cpu=False,out=None)
 
 **fill_constant**
 
-该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``Value`` 中提供的常量初始化该张量。
+该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``value`` 中提供的常量初始化该张量。
 
 创建张量的属性stop_gradient设为True。
 
