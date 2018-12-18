@@ -4638,7 +4638,7 @@ lod_reset
 
 返回类型：变量
 
-抛出异常： ``TypeError`` - 如果y和target_lod都为空
+抛出异常：``TypeError`` - 如果y和target_lod都为空
 
 **代码示例**：
 
@@ -7162,9 +7162,11 @@ sequence_last_step
 sequence_mask
 -------------------------------
 
-该层根据输入 ``x`` 和 ```maxlen`` 输出一个掩码，数据类型为dtype。
+.. py:function::  paddle.fluid.layers.sequence_mask(x, maxlen=None, dtype='int64', name=None)
 
-假设x是一个形状为[d_1, d_2，…]的张量。， y是一个形为[d_1, d_2，… ，d_n, maxlen]的掩码，其中:
+该层根据输入 ``x`` 和 ``maxlen`` 输出一个掩码，数据类型为dtype。
+
+假设x是一个形状为[d_1, d_2，…, d_n]的张量。， y是一个形为[d_1, d_2，… ，d_n, maxlen]的掩码，其中:
 
 .. math::
 
@@ -7487,8 +7489,8 @@ sequence_scatter
 
 参数：
       - **input** (Variable) - input 秩（rank） >= 1。
-      - **index** (Variable) - index 秩（rank）=1。由于用于索引dtype应该是int32或int64。
-      - **updates** (Variable) - input需要被更新的值。
+      - **index** (Variable) - LoD Tensor， index 是 sequence scatter op 的输入索引，该函数的input将依据index进行更新。 秩（rank）=1。由于用于索引dtype应该是int32或int64。
+      - **updates** (Variable) - 一个 LoD Tensor , update 的值将被 sactter 到输入x。update 的 LoD信息必须与index一致。
       - **name** (str|None) - 输出变量名。默认：None。
 
 返回： 输出张量维度应该和输入张量相同
@@ -7696,7 +7698,13 @@ shape算子
 返回类型：        输出（Variable）。
         
         
-        
+**代码示例：**
+
+.. code-block:: python
+
+    input = layers.data(
+        name="input", shape=[3, 100, 100], dtype="float32")
+    out = layers.shape(input)        
 
 
 
@@ -7895,7 +7903,18 @@ slice算子。
 返回类型：        输出（Variable）。
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    starts = [1, 0, 2]
+    ends = [3, 3, 4]
+    axes = [0, 1, 2]
+
+    input = layers.data(
+        name="input", shape=[3, 4, 5, 6], dtype='float32')
+
+    out = layers.slice(input, axes=axes, starts=starts, ends=ends)
 
 
 
@@ -7910,7 +7929,7 @@ smooth_l1
 
 .. py:function:: paddle.fluid.layers.smooth_l1(x, y, inside_weight=None, outside_weight=None, sigma=None)
 
-该layer计算变量x1和y 的smooth L1 loss，它以x和y的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
+该layer计算变量 ``x1`` 和 ``y`` 的smooth L1 loss，它以x和y的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
 
 
 参数:
@@ -7992,7 +8011,7 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 
 .. math::
 
-    Out[i,j] = \frac{exp(X[i,j])}{\sum{j}_exp(X[i,j])}
+    Out[i,j] = \frac{exp(X[i,j])}{\sum_j exp(X[i,j])}
 
 参数：
     - **input** (Variable) - 输入变量
@@ -8211,7 +8230,7 @@ square_error_cost
 
 **代码示例**：
 
- .. code-block:: python
+.. code-block:: python
 
     y = layers.data(name='y', shape=[1], dtype='float32')
     y_predict = layers.data(name='y_predict', shape=[1], dtype='float32')
@@ -8361,7 +8380,12 @@ sum算子。
 返回类型：        Variable
 
 
+**代码示例：**
 
+.. code-block:: python
+
+    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = layers.sum(input)
 
 
 
@@ -8379,10 +8403,10 @@ swish
 Swish 激活函数
 
 .. math::   
-         \\out = \frac{x}{e^(1+betax)}\\
+         out = \frac{x}{1 + e^{- beta x}}
 
 参数：
-    - **x** (Variable) -  Swishoperator的输入
+    - **x** (Variable) -  Swish operator 的输入
     - **beta** (浮点|1.0) - Swish operator 的常量beta
     - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
@@ -8448,7 +8472,7 @@ topk
 
 返回类型：元组[变量]
 
-提示：抛出异常-如果k<1或者k不小于输入的最后维
+抛出异常: ``TypeError`` - 如果k<1或者k不小于输入的最后维
 
 **代码示例**：
 
@@ -8528,8 +8552,13 @@ uniform_random_batch_size_like算子。
 返回类型:        Variable
 
 
+**代码示例：**
+
+.. code-block:: python
 
 
+    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = layers.uniform_random_batch_size_like(input, [-1, 11])
 
 
 
@@ -8596,7 +8625,7 @@ unstack
 
 返回: 经unstack运算后的变量
 
-返回类型: Variable
+返回类型: list(Variable)
   
 
 
@@ -8829,10 +8858,10 @@ HardShrink激活函数(HardShrink activation operator)
 
 **代码示例**：
 
-    .. code-block:: python
+.. code-block:: python
 
-        data = fluid.layers.data(name="input", shape=[784])
-        result = fluid.layers.hard_shrink(x=data, threshold=0.3)    
+    data = fluid.layers.data(name="input", shape=[784])
+    result = fluid.layers.hard_shrink(x=data, threshold=0.3)    
 
 
 
@@ -9146,7 +9175,7 @@ thresholded_relu
             0, &otherwise 
             \end{matrix}\right.
 
-参数：
+    参数：
         - **x** -ThresholdedRelu激活函数的输入
         - **threshold** (FLOAT)-激活函数threshold的位置。[默认1.0]。
     
@@ -9173,7 +9202,7 @@ uniform_random
 -------------------------------
 
 .. py:function:: Paddle.fluid.layers.uniform_random(shape,dtype=None,min=None,max=None,seed=None)
-该操作符初始化一个张量，该张量的值是从正太分布中抽样的随机值
+该操作符初始化一个张量，该张量的值是从均匀分布中抽样的随机值
 
 参数：
     - **shape** (LONGS)-输出张量的维
@@ -9210,26 +9239,26 @@ uniform_random
 argmax
 -------------------------------
 
-.. py:function:: paddle.fluid.layers argmin(x,axis=0)
+.. py:function:: paddle.fluid.layers.argmin(x,axis=0)
     
-    **argmax**
-    
-    该功能计算输入张量元素中最大元素的索引，张量的元素在提供的轴上。
+**argmax**
 
-    参数：
-        - **x** (Variable)-用于计算最大元素索引的输入
-        - **axis** (int)-用于计算索引的轴
-    
-    返回：存储在输出中的张量
+该功能计算输入张量元素中最大元素的索引，张量的元素在提供的轴上。
 
-    返回类型：变量（Variable）
+参数：
+    - **x** (Variable)-用于计算最大元素索引的输入
+    - **axis** (int)-用于计算索引的轴
 
-    **代码示例**：
+返回：存储在输出中的张量
 
-    .. code-block:: python
+返回类型：变量（Variable）
 
-        out = fluid.layers.argmax(x=in, axis=0)
-        out = fluid.layers.argmax(x=in, axis=-1)
+**代码示例**：
+
+.. code-block:: python
+
+    out = fluid.layers.argmax(x=in, axis=0)
+    out = fluid.layers.argmax(x=in, axis=-1)
 
 
 
@@ -9244,26 +9273,26 @@ argmax
 argmin
 -------------------------------
 
-.. py:function:: paddle.fluid.layers argmin(x,axis=0)
+.. py:function:: paddle.fluid.layers.argmin(x,axis=0)
     
-    **argmin**
-    
-    该功能计算输入张量元素中最小元素的索引，张量元素在提供的轴上。
+**argmin**
 
-    参数：
-        - **x** (Variable)-计算最小元素索引的输入
-        - **axis** (int)-计算索引的轴
-    
-    返回：存储在输出中的张量
+该功能计算输入张量元素中最小元素的索引，张量元素在提供的轴上。
 
-    返回类型：变量（Variable）
+参数：
+    - **x** (Variable)-计算最小元素索引的输入
+    - **axis** (int)-计算索引的轴
 
-    **代码示例**：
+返回：存储在输出中的张量
 
-    .. code-block:: python
+返回类型：变量（Variable）
 
-        out = fluid.layers.argmin(x=in, axis=0)
-        out = fluid.layers.argmin(x=in, axis=-1)
+**代码示例**：
+
+.. code-block:: python
+
+    out = fluid.layers.argmin(x=in, axis=0)
+    out = fluid.layers.argmin(x=in, axis=-1)
     
 
 
@@ -9280,7 +9309,7 @@ argsort
 
 .. py:function:: paddle.fluid.layers argsort(input,axis=-1,name=None)
 
-对给定轴上的输入变量进行排序，输出排序好的数据和相应的索引，其维度和输入相同
+对输入变量沿给定轴进行排序，输出排序好的数据和相应的索引，其维度和输入相同
 
 .. code-block:: text
 
@@ -9302,10 +9331,10 @@ argsort
 
 参数：
     - **input** (Variable)-用于排序的输入变量
-    - **axis** (int)-含有用于排序输入变量的轴。当axis<0,实际的轴为axis+rank(input)。默认为-1，即最后一维。
+    - **axis** (int)- 沿该参数指定的轴对输入进行排序。当axis<0,实际的轴为axis+rank(input)。默认为-1，即最后一维。
     - **name** (str|None)-（可选）该层名称。如果设为空，则自动为该层命名。
 
-返回：含有已排序的数据和索引
+返回：一组已排序的数据变量和索引
 
 返回类型：元组
 
@@ -9432,7 +9461,7 @@ create_global_var
 
 .. py:function:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
-在全局块中创建一个新的带有值的张量。
+在全局块中创建一个新的带有 ``Value`` 的张量。
 
 参数：
     - **shape** (list[int])-变量的维度
@@ -9509,9 +9538,9 @@ create_tensor
 参数：
     - **dtype** (string)-“float32”|“int32”|..., 创建张量的数据类型。
     - **name** (string)-创建张量的名称。如果未设置，则随机取一个唯一的名称。
-    - **persistable** (bool)-为创建张量设置的永久标记
+    - **persistable** (bool)-是否将创建的张量设置为 persistable
 
-返回：存储在创建张量中的张量
+返回：一个张量，存储着创建的张量
 
 返回类型：变量（Variable）
 
@@ -9539,18 +9568,18 @@ fill_constant
 
 **fill_constant**
 
-该功能创建一个张量，具体含有shape,dtype和batch尺寸。并用值中提供的常量初始化该张量。
+该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``Value`` 中提供的常量初始化该张量。
 
 创建张量的属性stop_gradient设为True。
 
 参数：
-    - **shape** (tuple|list|None)-输出张量的维
-    - **dtype** (np.dtype|core.VarDesc.VarType|str)-输出张量的数据类型
-    - **value** (float)-用于初始化输出张量的常量值
+    - **shape** (tuple|list|None)-输出张量的形状
+    - **dtype** (np.dtype|core.VarDesc.VarType|str)-输出张量的数据类型
+    - **value** (float)-用于初始化输出张量的常量值
     - **out** (Variable)-输出张量
     - **force_cpu** (True|False)-若设为true,数据必须在CPU上
 
-返回：存储在输出中的张量
+返回：存储着输出的张量
 
 返回类型：变量（Variable）
 
@@ -9575,17 +9604,17 @@ fill_constant_batch_size_like
 
 .. py:function:: paddle.fluid.layers.fill_constant_batch_size_like(input,shape,dtype,value,input_dim_idx=0,output_dim_idx=0)
 
-该功能创建一个张量，具体含有shape,dtype和batch尺寸。并用值中提供的常量初始化该张量。该批尺寸从输入张量中获取。它还将stop_gradient设置为True.
+该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``Value`` 中提供的常量初始化该张量。该批尺寸从输入张量中获取。它还将stop_gradient设置为True.
 
 参数：
     - **input** (Variable)-张量，其input_dim_idx个维具体指示batch_size
-    - **shape** (INTS)-输出的维
+    - **shape** (INTS)-输出的形状
     - **dtype** (INT)-可以为numpy.dtype。输出数据类型。默认为float32
     - **value** (FLOAT)-默认为0.将要被填充的值
     - **input_dim_idx** (INT)-默认为0.输入批尺寸维的索引
     - **output_dim_idx** (INT)-默认为0.输出批尺寸维的索引
 
-返回：具体维的张量填充有具体值
+返回：具有特定形状和值的张量
 
 **代码示例**：
 
@@ -9618,7 +9647,7 @@ has_inf
 返回：
   tensor变量存储输出值，包含一个bool型数值
 
-
+返回类型：Variable
 
 
 
@@ -9647,7 +9676,7 @@ has_nan
 返回：
   tensor变量存储输出值，包含一个bool型数值
 
-
+返回类型：Variable
 
 
 
@@ -9670,7 +9699,7 @@ isfinite
 返回:
   Variable: tensor变量存储输出值，包含一个bool型数值
 
-
+返回类型：Variable
 
 
 
@@ -9726,8 +9755,8 @@ reverse
 该功能将给定轴上的输入‘x’逆序
 
 参数：
-  - **x** (Variable)-预逆序到输入
-  - **axis** (int|tuple|list)-其上元素逆序排列的轴。
+  - **x** (Variable)-预逆序的输入
+  - **axis** (int|tuple|list) - 元素逆序排列的轴。如果该参数是一个元组或列表，则对该参数中每个元素值所指定的轴上进行逆序运算。
 
 返回：逆序的张量
 
@@ -9824,6 +9853,8 @@ tensor_array_to_tensor
 返回：
     Variable: 连接的输出变量,输入LodTensorArray沿指定axis连接。
 
+返回类型： Variable
+
 **代码示例：**
 
 .. code-block:: python
@@ -9918,7 +9949,7 @@ append_LARS
 exponential_decay 
 -------------------------------
 
-.. py:function:: paddle.fluid.layers exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
+.. py:function:: paddle.fluid.layers.exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
 
 在学习率上运用指数衰减。
 训练模型时，在训练过程中通常推荐降低学习率。每次 ``decay_steps`` 步骤中用 ``decay_rate`` 衰减学习率。
@@ -9985,9 +10016,9 @@ inverse_time_decay
     - **decay_rate** (float)-衰减率。见以上衰减运算
     - **staircase** (Boolean)-若为True，按间隔区间衰减学习率。默认：False
 
-    返回：衰减的学习率
+返回：衰减的学习率
 
-    返回类型：变量（Variable）
+返回类型：变量（Variable）
 
 **示例代码：**
 
@@ -10047,7 +10078,7 @@ natural_exp_decay
 noam_decay
 -------------------------------
 
-.. py:function:: paddle.fluid.layers noam_decay(d_model,warmup_steps)
+.. py:function:: paddle.fluid.layers.noam_decay(d_model,warmup_steps)
 
 Noam衰减方法。noam衰减的numpy实现如下。
 
@@ -10058,7 +10089,7 @@ Noam衰减方法。noam衰减的numpy实现如下。
                            np.power(current_steps, -0.5),
                            np.power(warmup_steps, -1.5) * current_steps])
 
-请参照 attention is all you need。
+请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 
 
 参数：
     - **d_model** (Variable)-模型的输入和输出维度
@@ -10167,27 +10198,17 @@ anchor_generator
 
 参数：
     - **input** (Variable) - 输入特征图，格式为NCHW
-    - **anchor_sizes** (list|tuple|float) - 生成锚的锚大小
-    - **in absolute pixels** 等[64.,128.,256.,512.](给定)-实例，锚大小为64意味该锚的面积等于64*2
+    - **anchor_sizes** (list|tuple|float) - 生成锚的锚大小，以绝对像素的形式表示，例如：[64.,128.,256.,512.]若锚的大小为64，则意味着这个锚的面积等于64**2。
     - **aspect_ratios** (list|tuple|float) - 生成锚的高宽比，例如[0.5,1.0,2.0]
     - **variance** (list|tuple) - 变量，在框回归delta中使用。默认：[0.1,0.1,0.2,0.2]
     - **stride** (list|tuple) - 锚在宽度和高度方向上的步长，比如[16.0,16.0]
     - **offset** (float) - 先验框的中心位移。默认：0.5
     - **name** (str) - 先验框操作符名称。默认：None
 
-::
-
-
-    输出anchor，布局[H,W,num_anchors,4]
-        H是输入的高度，W是输入的宽度，num_priors是输入每位的框数
-        每个anchor格式（非正式格式）为(xmin,ymin,xmax,ymax)
+返回：
+    - Anchors(Varibale): 输出anchor，布局[H,W,num_anchors,4] , ``H``  是输入的高度， ``W`` 是输入的宽度， ``num_priors`` 是输入每位的框数,每个anchor格式（未归一化）为(xmin,ymin,xmax,ymax)
     
-::
-
-
-    变量(Variable):锚的扩展变量
-        布局为[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的框数
-	每个变量的格式为(xcenter,ycenter)。
+    - Variances(Variable): 锚的扩展变量布局为 [H,W,num_priors,4]。 ``H`` 是输入的高度， ``W`` 是输入的宽度， ``num_priors`` 是输入每个位置的框数,每个变量的格式为(xcenter,ycenter,w,h)。
 
 返回类型：anchor（Variable)
 
@@ -10823,7 +10844,7 @@ roi_perspective_transform
     - **spatial_scale** (float) - 空间尺度因子，用于缩放ROI坐标，默认：1.0。
 
 返回：
-   ``ROIPerspectiveTransformOp`` 的输出，带有shape的四维张量(num_rois,channels,transformed_h,transformed_w)
+ ``ROIPerspectiveTransformOp`` 的输出，它是一个4维张量，形为 (num_rois,channels,transformed_h,transformed_w)
 
 返回类型：变量（Variable）
 
