@@ -18,7 +18,6 @@ API
     metrics_cn.rst
     nets_cn.rst
     optimizer_cn.rst
-    param_attr_cn.rst
     profiler_cn.rst
     regularizer_cn.rst
     transpiler_cn.rst
