@@ -6406,7 +6406,6 @@ resize_bilinear
 
 .. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None, actual_shape=None)
 
-根据指定的out_shape执行双线性插值调整输入大小，输出形状按优先级由actual_shape、out_shape和scale指定。
 
 根据指定的out_shape执行双线性插值调整输入大小，输出形状按优先级由actual_shape、out_shape和scale指定。
 
@@ -7086,7 +7085,7 @@ sequence_last_step
         
         且 len(x.lod[-1]) == out.dims[0]
         
-        out.data = [1, 2, 5], where 1=first(1,3), 2=first(2,4,6), 5=first(5,1)
+        out.data = [3, 6, 1], where 3=last(1,3), 6=last(2,4,6), 1=last(5,1)
 
 参数：**input** (variable)-输入变量，为LoDTensor
 
