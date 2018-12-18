@@ -9302,7 +9302,7 @@ argmin
 
 
 
-.. _cn_api_fluid_layers_argsort:
+.. _cn_api_fluid_layers.argsort:
 
 argsort
 -------------------------------
@@ -9559,7 +9559,7 @@ create_tensor
 
 
 
-.. _cn_api_fluid_layers_fill_constant:
+.. _cn_api_fluid_layers.fill_constant:
 
 fill_constant
 -------------------------------
