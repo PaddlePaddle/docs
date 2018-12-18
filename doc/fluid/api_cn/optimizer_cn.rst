@@ -262,7 +262,7 @@ FtrlOptimizer
  
 FTRL (Follow The Regularized Leader) Optimizer.
 
-TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_)
+FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_)
 
 
 .. math::
@@ -439,9 +439,10 @@ MomentumOptimizer
 
 .. math::
 	& velocity = mu * velocity + gradient\\
-	& if (use\_nesterov):\
-	\&\quad   param = param - (gradient + mu * velocity) * learning\_rate\\
+	& if (use\_nesterov):\\
+	&\quad   param = param - (gradient + mu * velocity) * learning\_rate\\
 	& else:\\&\quad   param = param - learning\_rate * velocity
+
 参数：
     - **learning_rate** (float|Variable) - 学习率，用于参数更新。作为数据参数，可以是浮点型值或含有一个浮点型值的变量
     - **momentum** (float) - 动量因子

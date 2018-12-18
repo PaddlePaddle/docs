@@ -174,7 +174,7 @@ stop_profiler
 .. py:function::paddle.fluid.profiler.stop_profiler(sorted_key=None, profile_path='/tmp/profile')
 
 停止 profiler， 用户可以使用 ``fluid.profiler.start_profiler`` 和 ``fluid.profiler.stop_profiler`` 插入代码
-不能使用 fluid.profiler.profiler`` 
+不能使用 ``fluid.profiler.profiler`` 
 
 参数:
   - **sorted_key** (string) – 如果为None，prfile的结果将按照事件的第一次结束时间顺序打印。否则，结果将按标志排序。标志取值为"call"、"total"、"max"、"min" "ave"之一，根据调用着的数量进行排序。total表示按总执行时间排序，max 表示按最大执行时间排序。min 表示按最小执行时间排序。ave表示按平均执行时间排序。
