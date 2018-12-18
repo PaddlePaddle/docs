@@ -150,7 +150,7 @@ DistributeTranspilerConfig
 
 最小数据块的大小
 
-注意: 根据：https：//github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156, 当数据块大小超过2MB时，我们可以有效地使用带宽。如果你想更改它，请详细查看slice_variable函数。
+注意: 根据：https://github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156 , 当数据块大小超过2MB时，我们可以有效地使用带宽。如果你想更改它，请详细查看slice_variable函数。
 
 
 

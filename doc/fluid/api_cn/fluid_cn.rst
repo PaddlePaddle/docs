@@ -9,7 +9,7 @@
 AsyncExecutor
 -------------------------------
 
-.. py:function:: paddle.fluid.AsyncExecutor(place=None)
+.. py:class:: paddle.fluid.AsyncExecutor(place=None)
 
 Python中的异步执行器。AsyncExecutor利用多核处理器和数据排队的强大功能，使数据读取和融合解耦，每个线程并行运行。
 
@@ -122,8 +122,9 @@ str类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方
 
 str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce strategy），即 ``AllReduce`` 和 ``Reduce`` 。如果你需要在所有执行场所上独立地进行参数优化，可以使用 ``AllReduce`` 。反之，如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行场所，随之将优化后的参数广播给其他执行场所。在一些模型中， ``Reduce`` 策略执行速度更快一些。默认值为 ``AllReduce`` 。
 
+.. py:attribute:: remove_unnecessary_lock
 
-
+BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，ParallelExecutor将运行得更快，默认为 False。
 
 
 
@@ -270,7 +271,7 @@ CUDAPlace
 DataFeedDesc
 -------------------------------
 
-.. py:function:: paddle.fluid.DataFeedDesc(proto_file)
+.. py:class:: paddle.fluid.DataFeedDesc(proto_file)
 
 数据描述符，描述输入训练数据格式。
 
@@ -324,7 +325,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 	- **proto_file** (string) - 包含数据feed中描述的磁盘文件
 
 
-.. py:method:: set_batch_size(self, batch_size)
+.. py:method:: set_batch_size(batch_size)
 
 设置batch size，训练期间有效
 
@@ -339,7 +340,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 	data_feed = fluid.DataFeedDesc('data.proto')
 	data_feed.set_batch_size(128)
 
-.. py:method:: set_dense_slots(self, dense_slots_name)
+.. py:method:: set_dense_slots(dense_slots_name)
 
 指定slot经过设置后将变成密集的slot，仅在训练期间有效。
 
@@ -360,7 +361,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 	默认情况下，所有slot都是稀疏的
 
-.. py:method:: set_use_slots(self, use_slots_name)
+.. py:method:: set_use_slots(use_slots_name)
 
 
 设置一个特定的slot是否用于训练。一个数据集包含了很多特征，通过这个函数可以选择哪些特征将用于指定的模型。
@@ -380,7 +381,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 	默认值不用于所有slot
 
 
-.. py:method:: desc(self)
+.. py:method:: desc()
 
 返回此DataFeedDesc的protobuf信息
 
@@ -1231,10 +1232,10 @@ ParamAttr
 Program
 -------------------------------
 
-.. py:function::  paddle.fluid.Program
+.. py:class::  paddle.fluid.Program
 
 
-创建python program， 在paddleFluid内部会被转换为ProgramDesc描述语言，是被用来创建c++ Program。Program像容器一样也是一种独立的程序语言。Program包括至少一个块（Block），控制流比如conditional_block包括while_op，该Program将会含有嵌套块（nested block）。详情请参阅framework.proto。
+创建python program， 在paddleFluid内部会被转换为ProgramDesc描述语言，用来创建一段 c++ 程序。Program像容器一样，是一种自包含的程序语言。Program中包括至少一个块（Block），当 block 中存在条件选择的控制流op（例如 while_op）时，该Program将会含有嵌套块（nested block）。详情请参阅framework.proto。
 
 注意：默认情况下，paddleFluid内部默认含有 ``default_startup_program`` 和 ``default_main_program`` ，它们将共享参数。 ``default_startup_program`` 只运行一次来初始化参数， ``default_main_program`` 在每个mini batch中运行并调整权重。
 
