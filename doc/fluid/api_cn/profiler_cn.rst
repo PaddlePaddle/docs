@@ -171,7 +171,7 @@ start_profiler
 stop_profiler
 -------------------------------
 
-.. py:function::paddle.fluid.profiler.stop_profiler(sorted_key=None, profile_path='/tmp/profile')
+.. py:function:: paddle.fluid.profiler.stop_profiler(sorted_key=None, profile_path='/tmp/profile')
 
 停止 profiler， 用户可以使用 ``fluid.profiler.start_profiler`` 和 ``fluid.profiler.stop_profiler`` 插入代码
 不能使用 ``fluid.profiler.profiler`` 
