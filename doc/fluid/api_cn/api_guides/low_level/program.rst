@@ -11,10 +11,10 @@ Program/Block/Operator/Variable
 
 嵌套的 :code:`Block` 是 :code:`Program` 中的基本结构，它们之间的关系可以被表示为：
 
-* Program： 
-	* 一些嵌套的 :code:`Block`:
-		* 一些 ``Variable`` 定义
-		* 一系列的 ``Operator`` 
+- Program： 
+	- 一些嵌套的 :code:`Block`:
+		- 一些 ``Variable`` 定义
+		- 一系列的 ``Operator`` 
 
 :code:`Block` 是高级语言中变量作用域的概念。在 Fluid 中，当执行到一个 :code:`Block` 时，框架会添加一个新的作用域，实现 :code:`Block` 里定义的 Variable 和 Operator。
 
@@ -26,7 +26,7 @@ Program/Block/Operator/Variable
 
 **提示：**
 
-直接操作 `Operator`, `Variable` 虽然未被禁止，但十分不推荐。推荐您使用 :code:`fluid.layers` 中的相关API配置网络。
+直接操作 ``Operator``, ``Variable`` 虽然未被禁止，但十分不推荐。推荐您使用 :code:`fluid.layers` 中的相关API配置网络。
 
 **相关API：**
 
@@ -35,8 +35,9 @@ Program/Block/Operator/Variable
   :ref:`cn_api_fluid_program` ， 训练用的 :ref:`cn_api_fluid_program` ，测试用的
   :ref:`cn_api_fluid_Program` 等等。
 
+
 * 用户还可以使用 :ref:`cn_api_fluid_program_guard` 配合 :code:`with` 语句，修改配置好的 :ref:`cn_api_fluid_default_startup_program` 和 :ref:`cn_api_fluid_default_main_program` 。
 
 
-* 在Fluid中，Block内部执行顺序由控制流决定，如 :ref:`cn_api_fluid_layers_IfElse` , :ref:`cn_api_fluid_layers_While`, :ref:`cn_api_fluid_layers_Switch` 等。相关内容可参考： :ref:`api_guide_control_flow`
 
+* 在Fluid中，Block内部执行顺序由控制流决定，如 :ref:`cn_api_fluid_layers_IfElse` , :ref:`cn_api_fluid_layers_While`, :ref:`cn_api_fluid_layers_Switch` 等。 相关内容可参考： :ref:`api_guide_control_flow` 
