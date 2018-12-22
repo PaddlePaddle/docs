@@ -6032,15 +6032,10 @@ P 的取值可为： {0, 1} 或 {0, 0.5, 1}, 其中，0.5表示输入的两文�
 
 .. code-block:: python
 
-    theta = fluid.layers.data(name="x", shape=[2, 3], dtype="float32")
-    out_shape = fluid.layers.data(name="y", shape=[-1], dtype="float32")
-    data = fluid.layers.affine_grid(theta, out_shape)
-    
-    # or
-    data = fluid.layers.affine_grid(theta, [5, 3, 28, 28])
-
-
-
+		label = fluid.layers.data(name="label", shape=[4, 1], dtype="float32")
+		left = fluid.layers.data(name="left", shape=[4, 1], dtype="float32")
+		right = fluid.layers.data(name="right", shape=[4, 1], dtype="float32")
+		out = fluid.layers.rank_loss(label, left, right)
 
 
 
