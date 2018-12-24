@@ -28,7 +28,7 @@ To preview documents constructured by FluidDoc. Please follow the [regular previ
 
 ## 通过PaddlePaddle.org预览文档
 
-为了预览FluidDoc的文档，请按照[普通预览步骤](https://github.com/PaddlePaddle/PaddlePaddle.org/blob/develop/README.md)，但请在这一步将路径用paddle替代
+为了预览FluidDoc的文档，请按照[常规预览步骤](https://github.com/PaddlePaddle/PaddlePaddle.org/blob/develop/README.md)，但请请在这一步将 paddle 的路径替换为 Fluid 的路径
 `./runserver --paddle <path_to_FluidDoc_dir>`
 
 
