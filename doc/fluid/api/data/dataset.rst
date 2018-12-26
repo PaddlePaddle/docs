@@ -1,4 +1,4 @@
-Dataset
+dataset
 =======
 
 ..  automodule:: paddle.dataset

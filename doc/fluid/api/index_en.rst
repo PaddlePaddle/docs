@@ -22,4 +22,5 @@ API Reference
     recordio_writer.rst
     regularizer.rst
     transpiler.rst
+    data/dataset.rst
 
