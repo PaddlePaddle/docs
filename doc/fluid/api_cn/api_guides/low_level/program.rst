@@ -19,7 +19,7 @@ Program
 
 * :code:`Block` 中的计算由顺序执行、条件选择或者循环执行三种方式组合，构成复杂的计算逻辑；
 
-* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor。 
+* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_ 表示。 
 
 
 
@@ -28,16 +28,16 @@ Program
 Block
 =========
 
-:code:`Block` 是高级语言中变量作用域的概念，在编程语言中，Block是一对大括号，其中包含局部变量定义和一系列指令或操作符。编程语言中的控制流结构 :code:`if` :code:`else` 和 :code:`for` 在深度学习中可以被等效为：
+:code:`Block` 是高级语言中变量作用域的概念，在编程语言中，Block是一对大括号，其中包含局部变量定义和一系列指令或操作符。编程语言中的控制流结构 :code:`if-else` 和 :code:`for` 在深度学习中可以被等效为：
 
 +----------------------+-------------------------+
-| 编程语言             | Fluid                   |
+| 编程语言              | Fluid                   |
 +======================+=========================+
 | for, while loop      | RNN,WhileOP             |
 +----------------------+-------------------------+
-| bif, if-else, switch | IfElseOp, SwitchOp      |
+| if-else, switch      | IfElseOp, SwitchOp      |
 +----------------------+-------------------------+
-| 顺序执行             | 一系列layers            | 
+| 顺序执行              | 一系列 layers            | 
 +----------------------+-------------------------+
 
 如上文所说，Fluid 中的 :code:`Block` 描述了一组以顺序、选择或是循环执行的 Operator 以及 Operator 操作的对象：Tensor。
@@ -61,7 +61,7 @@ Operator
 Variable
 =========
 
-Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多数情况下是一个 Tensor，但在 RNN 情况下也可以是一些整数id或其他变量的作用域。
+Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多数情况下是一个 LoD-Tensor。
 
 模型中所有的可学习参数都以 :code:`Variable` 的形式保留在内存空间中，您在绝大多数情况下都不需要自己来创建网络中的可学习参数， Fluid 为几乎常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，调用 :code:`fluid.layers.fc` 会直接为全连接层创建连接权值( W )和偏置（ bias ）两个可学习参数，无需显示地调用 :code:`variable` 相关接口创建可学习参数。
 
@@ -71,9 +71,9 @@ Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多�
 =========
 
 * 用户配置的单个神经网络叫做 :ref:`cn_api_fluid_Program` 。值得注意的是，训练神经网
-  络时，用户经常需要配置和操作多个 :ref:`cn_api_fluid_Program` 。比如参数初始化的
-  :ref:`cn_api_fluid_program` ， 训练用的 :ref:`cn_api_fluid_program` ，测试用的
-  :ref:`cn_api_fluid_Program` 等等。
+  络时，用户经常需要配置和操作多个 :code:`Program` 。比如参数初始化的
+  :code:`Program` ， 训练用的 :code:`Program` ，测试用的
+  :code:`Program` 等等。
 
 
 * 用户还可以使用 :ref:`cn_api_fluid_program_guard` 配合 :code:`with` 语句，修改配置好的 :ref:`cn_api_fluid_default_startup_program` 和 :ref:`cn_api_fluid_default_main_program` 。
