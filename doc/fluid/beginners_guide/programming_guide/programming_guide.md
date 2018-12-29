@@ -384,6 +384,9 @@ outs = exe.run(
     #定义损失函数
     cost = fluid.layers.square_error_cost(input=y_predict,label=y)
     avg_cost = fluid.layers.mean(cost)
+    #定义优化方法
+    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.01)
+    sgd_optimizer.minimize(avg_cost)
     #参数初始化
     cpu = fluid.core.CPUPlace()
     exe = fluid.Executor(cpu)
