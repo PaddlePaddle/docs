@@ -42,7 +42,7 @@ LoD 索引
 
 让我们来看另一个2-level LoD-Tensor的例子：假设存在一个mini-batch中包含3个句子、1个句子和2个句子的文章，每个句子都由不同数量的单词组成，则这个mini-batch的样式可以看作：
 
-.. code-block :: text
+.. code-block:: text
 
 
   3            1 2
@@ -52,7 +52,7 @@ LoD 索引
 
 表示的LoD信息为：
 
-.. code-block :: text
+.. code-block:: text
 
   [[3，1，2]/*level=0*/，[3，2，4，1，2，3]/*level=1*/]
 
@@ -61,7 +61,7 @@ LoD 索引
 
 在视觉任务中，时常需要处理视频和图像这些元素是高维的对象，假设现存的一个nimi-batch包含3个视频，分别有3个，1个和2个帧，每个帧都具有相同大小：640x480，则这个mini-batch可以被表示为：
 
-.. code-block :: text
+.. code-block:: text
 
   3     1  2
   口口口 口 口口
@@ -73,14 +73,14 @@ LoD 索引
 
 在传统的情况下，比如有N个固定大小的图像的mini-batch，LoD-Tensor表示为:
 
-.. code-block :: text
+.. code-block:: text
 
   1 1 1 1     1
   口口口口 ... 口
 
 在这种情况下，我们不会因为索引值都为1而忽略信息，仅仅把LoD-Tensor看作是一个普通的张量:
 
-.. code-block :: text
+.. code-block:: text
 
   口口口口 ... 口
 
@@ -95,13 +95,13 @@ LoDTensor的偏移表示
 
 在上述例子中，您可以计算基本元素的长度：
 
-.. code-block :: text
+.. code-block:: text
 
   3 2 4 1 2 3
 
 将其转换为偏移表示：
 
-.. code-block :: text
+.. code-block:: text
 
   0  3  5   9   10  12   15
      =  =   =   =   =    =
@@ -111,13 +111,13 @@ LoDTensor的偏移表示
 
 类似的，LoD的顶层长度
 
-.. code-block :: text
+.. code-block:: text
 
   3 1 2
 
 可以被转化成偏移形式：
 
-.. code-block :: text
+.. code-block:: text
 
   0 3 4   6
     = =   =
@@ -125,7 +125,7 @@ LoDTensor的偏移表示
 
 因此该LoD-Tensor的偏移表示为：
 
-.. code-block :: text
+.. code-block:: text
 
   0       3    4      6
     3 5 9   10   12 15
@@ -139,7 +139,7 @@ LoD-Tensor
 
 以上文提到的一个2-level LoD-Tensor为例：
 
-.. code-block :: text
+.. code-block:: text
 
   3           1  2
   3   2  4    1  2  3
@@ -153,14 +153,25 @@ LoD-Tensor
 
 recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最外层列表的size表示嵌套的层数，也就是lod-level的大小；内部的每个列表，对应表示每个lod-level下，每个元素的大小。
 
-.. code-block :: text
+.. code-block:: python
 
+  #创建lod-tensor
+  import paddle.fluid as fluid
+  a = fluid.create_lod_tensor(np.array([[1],[1],[1],
+                                    [1],[1],
+                                    [1],[1],[1],[1],
+                                    [1],
+                                    [1],[1],
+                                    [1],[1],[1]]).astype('int64') ,
+                            [[3,1,2] , [3,2,4,1,2,3]],
+                            fluid.CPUPlace())
+  
   #查看lod-tensor嵌套层数
-  print len(recursive_seq_lengths)
+  print len(a.recursive_seq_lengths())
   # output：2
 
   #查看最基础元素个数
-  print sum(recursive_seq_lengths[-1])
+  print sum(a.recursive_seq_lengths()[-1])
   # output:15 (3+2+4+1+2+3=15)
 
 代码示例
@@ -173,29 +184,14 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
 -  学习如何打印LoDTensor内容
 
 
-**创建LoD-Tensor**
-
-Fluid中可以通过 :code:`fluid.create_lod_tensor()` 创建一个LoD-Tensor，使用说明请参考 :ref:`api_fluid_layers_sequence-expand` 。需要注意的是，这个API只能支持int64的数据，如果您希望处理float32的数据，推荐您使用下述方式创建lod_tensor：
-
-使用fluid.LoDTensor()创建一个LoD-Tensor，并为其指定数据、运算场所和LoD值：
-
-.. code-block :: python
-  import paddle.fluid as fluid
-  import numpy as np
-
-  def create_lod_tensor(data, lod, place):
-      res = fluid.LoDTensor()
-      res.set(data, place)
-      res.set_lod(lod)
-      return res
-
+  
 **定义计算过程**
 
-layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，关于 :code:`fluid.layers.sequence_expand` 的功能说明，请先阅读 :ref:`api_fluid_layers_sequence-expand` 。
+layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，关于 :code:`fluid.layers.sequence_expand` 的功能说明，请先阅读 :ref:`api_fluid_layers_sequence_expand` 。
 
 序列扩充代码实现：
 
-.. code-block :: python
+.. code-block:: python
 
   x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=0)
   y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=1)
@@ -205,7 +201,7 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
 
 **创建Executor**
 
-.. code-block :: python
+.. code-block:: python
 
   place = fluid.CPUPlace()
   exe = fluid.Executor(place)
@@ -213,47 +209,24 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
 
 **准备数据**
 
-这里我们使用偏移量的方法表示Tensor的LoD索引：
-假使x_d 为一个LoDTensor：
+这里我们调用 :code:`fluid.create_lod_tensor` 创建 :code:`sequence_expand` 的输入数据，通过定义 y_d 的 LoD 值，对 x_d 进行扩充。其中，输出值只与 y_d 的 LoD 值有关，y_d 的 data 值在这里并不参与计算，维度上与LoD[-1]一致即可。
 
-.. code-block :: shell
-
-  x.lod = [[0,1,4]]
-  x.data = [[1],[2],[3],[4]]
-  x.dims = [4,1]
-
-y_d 也为一个LoDTensor：
-
-.. code-block :: shell
-
-  y.lod = [[0, 1,       4],
-           [0, 2, 3, 5, 6]]
-
-其中，输出值只与 y 的LoD值有关，y_d 的 data 值在这里并不参与计算，维度上与LoD[-1]一致即可。
-
-预期输出结果为：
-
-.. code-block :: shell
-
-  #预期输出lod的原始长度
-  out.lod =  [ [1,  3,          3,         3]]
-  #预期输出结果
-  out.data = [ [1],[2],[3],[4],[2],[3],[4],[2],[3],[4]]
+:code:`fluid.create_lod_tensor()` 的使用说明请参考 :ref:`api_fluid_create_lod_tensor` 。
 
 实现代码如下：
 
-.. code-block :: python
+.. code-block:: python
 
-  x_d = create_lod_tensor(np.array([[1], [2],[3],[4]]), [[0,1,4]], place)
-  y_d = create_lod_tensor(np.array([[1],[1],[1],[1],[1],[1]]), [[0,1,4], [0,2,3,5,6]], place)
+  x_d = fluid.create_lod_tensor(np.array([[1.1],[2.2],[3.3],[4.4]]).astype('float32'), [[1,3]], place)
+  y_d = fluid.create_lod_tensor(np.array([[1.1],[1.1],[1.1],[1.1],[1.1],[1.1]]).astype('float32'), [[1,3], [2,1,2,1]],place)
+
 
 **执行运算**
 
-在Fluid中，LoD>1的Tensor与其他类型数据一样，使用feed定义数据传入顺序。此外，由于输出results是带有LoD信息的Tensor，需在exe.run( )中添加 :code: `return_numpy=False`参数，获得LoD-Tensor的输出结果。
+在Fluid中，LoD>1的Tensor与其他类型的数据一样，使用 :code:`feed` 定义数据传入顺序。此外，由于输出results是带有LoD信息的Tensor，需在exe.run( )中添加 :code:`return_numpy=False` 参数，获得LoD-Tensor的输出结果。
 
-.. code-block :: python
+.. code-block:: python
 
-  feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
   results = exe.run(fluid.default_main_program(),
                     feed={'x':x_d, 'y': y_d },
                     fetch_list=[out],return_numpy=False)
@@ -262,17 +235,63 @@ y_d 也为一个LoDTensor：
 
 由于LoDTensor的特殊属性，无法直接print查看内容，常用操作时将LoD-Tensor作为网络的输出fetch出来，然后执行 numpy.array(lod_tensor), 就能转成numpy array：
 
-.. code-block :: python
+.. code-block:: python
 
   np.array(results[0])
 
 输出结果为：
 
-.. code-block :: python
+.. code-block:: text
 
-  array([[1],[2],[3],[4],[2],[3],[4],[2],[3],[4]])
+  array([[1.1],[2.2],[3.3],[4.4],[2.2],[3.3],[4.4],[2.2],[3.3],[4.4]])
 
-可以看到与准备数据一节中的预期结果一致。
+**查看序列长度**
+
+可以通过查看序列长度得到 LoDTensor 的层级信息：
+
+.. code-block:: python
+
+    results[0].recursive_sequence_lengths()
+    
+输出结果为：
+
+.. code-block:: text
+    
+    [[1L, 3L, 3L, 3L]]
+
+**完整代码**
+
+您可以运行下列完整代码，观察输出结果：
+
+.. code-block:: python
+    
+    #加载库
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    #定义前向计算
+    x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=0)
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=1)
+    out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
+    #定义运算场所
+    place = fluid.CPUPlace()
+    #创建执行器
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    #创建LoDTensor
+    x_d = fluid.create_lod_tensor(np.array([[1.1], [2.2],[3.3],[4.4]]).astype('float32'), [[1,3]], place)
+    y_d = fluid.create_lod_tensor(np.array([[1.1],[1.1],[1.1],[1.1],[1.1],[1.1]]).astype('float32'), [[1,3], [1,2,1,2]], place)
+    #开始计算
+    results = exe.run(fluid.default_main_program(),
+                      feed={'x':x_d, 'y': y_d },
+                      fetch_list=[out],return_numpy=False)
+    #输出执行结果
+    print("The data of the result: {}.".format(np.array(results[0])))
+    #输出 result 的序列长度
+    print("The recursive sequence lengths of the result: {}.".format(results[0].recursive_sequence_lengths()))
+    #输出 result 的 LoD
+    print("The LoD of the result: {}.".format(results[0].lod()))
+
 
 总结
 ========
