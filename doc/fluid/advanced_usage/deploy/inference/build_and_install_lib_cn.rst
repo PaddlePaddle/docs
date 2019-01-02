@@ -71,7 +71,6 @@ WITH_MKL                      ON/OFF
      │   │   ├── paddle_analysis_config.h
      │   │   ├── paddle_api.h
      │   │   ├── paddle_inference_api.h
-     │   │   ├── paddle_inference_pass.h
      │   │   └── paddle_pass_builder.h
      │   └── lib
      │       ├── libpaddle_fluid.a
