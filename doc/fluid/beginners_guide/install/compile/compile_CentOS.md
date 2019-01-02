@@ -80,7 +80,7 @@
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
-	> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
+	> 我们目前不支持在CentOS下使用gpu的镜像进行PaddlePaddle GPU版本的编译
 
 9. 执行编译：
 
