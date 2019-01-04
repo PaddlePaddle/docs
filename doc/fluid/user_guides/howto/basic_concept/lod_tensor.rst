@@ -157,6 +157,8 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
 
   #创建lod-tensor
   import paddle.fluid as fluid
+  import numpy as np
+  
   a = fluid.create_lod_tensor(np.array([[1],[1],[1],
                                     [1],[1],
                                     [1],[1],[1],[1],
@@ -167,11 +169,11 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
                             fluid.CPUPlace())
   
   #查看lod-tensor嵌套层数
-  print len(a.recursive_seq_lengths())
+  print len(a.recursive_sequence_lengths())
   # output：2
 
   #查看最基础元素个数
-  print sum(a.recursive_seq_lengths()[-1])
+  print sum(a.recursive_sequence_lengths()[-1])
   # output:15 (3+2+4+1+2+3=15)
 
 代码示例
@@ -247,7 +249,7 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
 
 **查看序列长度**
 
-可以通过查看序列长度得到 LoDTensor 的层级信息：
+可以通过查看序列长度得到 LoDTensor 的递归序列长度：
 
 .. code-block:: python
 
