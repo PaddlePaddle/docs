@@ -107,4 +107,4 @@ In addition,please follow the following regulations in response to the suggestio
 
    - Please show general modification
 
-   - Please follow [start a review](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/) to give your reply,instead of directly replying for that every comment will result in sending an email causing emaill disaster.
+   - Please follow [start a review](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/) to give your reply,instead of directly replying for that every comment will result in sending an email causing email disaster.
