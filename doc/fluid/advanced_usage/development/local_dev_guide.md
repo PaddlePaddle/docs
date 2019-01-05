@@ -157,7 +157,7 @@ clang-formater.......................................(no files to check)Skipped
 
 It needs to keep up with the latest code of original git(<https://github.com/PaddlePaddle/Paddle>）before Pull Request.
 
-Check the name of current remote git with `git remote`.
+Check the name of current remote repository with `git remote`.
 
 ```bash
 ➜  git remote
