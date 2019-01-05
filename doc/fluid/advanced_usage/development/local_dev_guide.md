@@ -37,7 +37,7 @@ Create and switch to a new branch with command `git checkout -b`.
 ➜  git checkout -b my-cool-stuff
 ```
 
-It is worth noting that before the checkout, you need to keep the current branch directory clean, otherwise the untracked file will be brought to the new branch, which can be viewed by git status. `git status`.
+It is worth noting that before the checkout, you need to keep the current branch directory clean, otherwise the untracked file will be brought to the new branch, which can be viewed by  `git status` .
 
 
 ## Use `pre-commit` hook
