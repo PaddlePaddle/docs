@@ -127,7 +127,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test
 ```
 
-Git 每次提交代码，都需要写提交说明，这可以让其他人知道这次提交做了哪些改变，这可以通过`git commit` 完成。
+It's required that the commit message is also given on every Git commit, through which other developers will be notified of what changes have been made. Type `git commit` to realize it.
 
 ```bash
 ➜  git commit
