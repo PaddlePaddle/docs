@@ -1,6 +1,6 @@
 # Guide of local development
 
-You will learn how to develop programs in local under the guidelines of this document.
+You will learn how to develop programs in local environment under the guidelines of this document.
 
 ## Requirements of coding
 - Please refer to the coding note format of[Doxygen](http://www.stack.nl/~dimitri/doxygen/) 
