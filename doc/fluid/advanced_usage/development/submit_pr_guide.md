@@ -58,7 +58,7 @@ We can delete branches of remote repository in PR page after the merge of PR int
 
 <img width="775" alt="screen shot 2017-04-26 at 9 18 24 pm" src="https://cloud.githubusercontent.com/assets/11692045/25436457/e4cdd472-2ac5-11e7-9272-badc76c4a23e.png">
 
-We can also delete remote repository with `git push origin :分支名`,such as:
+We can also delete the branch of remote repository with `git push origin :the_branch_name`,such as:
 
 ```bash
 ➜  git push origin :my-cool-stuff
