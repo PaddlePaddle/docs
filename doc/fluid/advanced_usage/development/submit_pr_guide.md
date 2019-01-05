@@ -97,7 +97,7 @@ Suggestion：Keep commit concise as much as possible at every submit.You can mak
 
 In addition,please follow the following regulations in response to the suggestion of reviewers:
 
-1）A reply to every comment of reviewers（It's the fundamental complimentary in open source community.An expression of appreciation is a need for help from others):
+1）A reply to every comment of reviewers（It's a fundamental complimentary conduct in open source community.An expression of appreciation is a need for help from others):
 
    - If you adopt the suggestion of reviewer and make a modification accordingly.
 
