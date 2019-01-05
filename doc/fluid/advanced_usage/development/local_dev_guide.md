@@ -54,7 +54,7 @@ The `pre-commit` test is part of the unit test in Travis-CI. A PR that does not 
 
 Paddle modify the format of C/C++ source code with `clang-format` .Make sure the version of `clang-format` is above 3.8.
 
-Note：There are difference between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit`.Paddle developer use `pip install pre-commit`。
+Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit` . Paddle developers use `pip install pre-commit` 。
 
 ## Start development
 
