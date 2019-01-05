@@ -79,7 +79,7 @@ And now we finish a full process of code contribution
 
 ## Certain regulations about submitting code
 
-In order that reviewrs focus on code in the code review,please follow these rules every time you submit your code:
+In order that reviewers focus on code in the code review,please follow these rules every time you submit your code:
 
 1）Make sure that unit tests in Travis-CI pass through successfully.If it fails,it means problems have been found in submitted code which will not be reviewed by reviewer.
 
