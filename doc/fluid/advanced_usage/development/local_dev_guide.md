@@ -78,7 +78,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## Build and test
 
-It needs a various of development tools to bulid Paddle Paddle source code and generate documents.For convenience,our standard development procedure is to put these tools together into a Docker image,called *development mirror*,usually named as `paddle:latest-dev` or `paddle:[version tag]-dev`,such as `paddle:0.11.0-dev`.Then all that need `cmake && make` ,such as IDE configuration,are replaced by `docker run paddle:latest-dev`.
+It needs a variety of development tools to build PaddlePaddle source code and generate documentation. For convenience, our standard development procedure is to put these tools together into a Docker image,called  *development mirror* , usually named as `paddle:latest-dev` or `paddle:[version tag]-dev`,such as `paddle:0.11.0-dev` . Then all that need `cmake && make` ,such as IDE configuration,are replaced by `docker run paddle:latest-dev` .
 
 You need to bulid this development mirror under the root directory of source code directory tree 
 
