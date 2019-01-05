@@ -144,7 +144,7 @@ clang-formater.......................................(no files to check)Skipped
  create mode 100644 233
 ```
 
-<b> <font color="red">Attention needs to be paid：you need to add commit message to touch CI test.The command is as follows:</font> </b>
+<b> <font color="red">Attention needs to be paid：you need to add commit message to trigger CI test.The command is as follows:</font> </b>
 
 ```bash
 # Touch CI single test of develop branch
