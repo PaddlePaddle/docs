@@ -28,7 +28,7 @@ Clone remote git to local:
 
 At present [Git stream branch model](http://nvie.com/posts/a-successful-git-branching-model/)  is applied to Paddle to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/releasing_process.md#paddle-分支规范) about details。
 
-All development tasks of feature and bug fix should be finished in a new branch which is extended from `develop` branch.所
+All development tasks of feature and bug fix should be finished in a new branch which is extended from `develop` branch.
 
 Create and switch to a new branch with command `git checkout -b`.
 
