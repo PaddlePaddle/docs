@@ -98,7 +98,7 @@ If you want to build PaddlePaddle based on Python3,you can:
 ➜  docker run -v $(pwd):/paddle -e "PY_VERSION=3.5" -e "WITH_FLUID_ONLY=ON" -e "WITH_GPU=OFF" -e "WITH_AVX=ON" -e "WITH_TESTING=ON" paddle:latest-dev
 ```
 
-Except for the build of PaddlePaddle as `./build/libpaddle.so` and the output of `./build/paddle.deb` file, there is a output of `build/Dockerfile`.What we need to do is to package the PaddlePaddle as a *produce mirror*（`paddle:prod`）with following commands.
+Except for the build of PaddlePaddle as `./build/libpaddle.so` and the output of `./build/paddle.deb` file, there is an output of `build/Dockerfile`. What we need to do is to package the PaddlePaddle as a *produce mirror*（ `paddle:prod` ）with following commands.
 
 ```bash
 ➜  docker build -t paddle:prod -f build/Dockerfile .
