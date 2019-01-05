@@ -3,7 +3,7 @@
 You will learn how to develop programs in local environment under the guidelines of this document.
 
 ## Requirements of coding
-- Please refer to the coding note format of[Doxygen](http://www.stack.nl/~dimitri/doxygen/) 
+- Please refer to the coding comment format of [Doxygen](http://www.stack.nl/~dimitri/doxygen/) 
 - Make sure that option of builder `WITH_STYLE_CHECK` is on and the build could pass through the code style check.
 - Unit test is needed for all codes.
 - Pass through all unit tests.
