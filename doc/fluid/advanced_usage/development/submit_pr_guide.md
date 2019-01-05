@@ -99,7 +99,7 @@ In addition,please follow the following regulations in response to the suggestio
 
 1）A reply to every comment of reviewers（It's a fundamental complimentary conduct in open source community.An expression of appreciation is a need for help from others):
 
-   - If you adopt the suggestion of reviewer and make a modification accordingly.
+   - If you adopt the suggestion of reviewer and make a modification accordingly, it's courteous to reply with a simple `Done` .
 
    - Please clarify your reason to the disagreenment
 
