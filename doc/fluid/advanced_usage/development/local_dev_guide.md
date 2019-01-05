@@ -110,7 +110,7 @@ Run all unit tests with following commands:
 ➜  docker run -it -v $(pwd):/paddle paddle:latest-dev bash -c "cd /paddle/build && ctest"
 ```
 
-Please refer to [Installation and run with Docker](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/v2/build_and_install/docker_install_cn.rst) about more information of constructure and test.
+Please refer to [Installation and run with Docker](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/v2/build_and_install/docker_install_cn.rst) about more information of construction and test.
 
 ## Commit
 
