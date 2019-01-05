@@ -153,7 +153,7 @@ clang-formater.......................................(no files to check)Skipped
 ➜  git commit -m "test=release/1.1"
 ```
 
-## Keep the latest local git
+## Keep the latest local repository
 
 It needs to keep up with the latest code of original git(<https://github.com/PaddlePaddle/Paddle>）before Pull Request.
 
