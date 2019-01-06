@@ -185,7 +185,7 @@ Get the latest code of upstream and update current branch.
 
 ## Push to remote repository
 
-Submit local modification to GitHub(https://github.com/USERNAME/Paddle).
+Push local modification to GitHub(https://github.com/USERNAME/Paddle).
 
 ```bash
 # submit it to remote git the branch my-cool-stuff of origin
