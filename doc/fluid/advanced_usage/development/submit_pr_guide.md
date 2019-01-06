@@ -49,7 +49,7 @@ You only need to focus on CI projects associated with your submitted branch.For 
 
 Green ticks after all tests means that your commit has passed all unit tests.
 
-Red cross behind the tests means your commit hasn't passed certain unit test.Please click detail to view bug details and make a screenshot of bug,then add it as a comment in your Pull Request.Our stuff will help you check it.
+Red cross after the tests means your commit hasn't passed certain unit test.Please click detail to view bug details and make a screenshot of bug,then add it as a comment in your Pull Request.Our stuff will help you check it.
 
 
 ## Delete remote branch
