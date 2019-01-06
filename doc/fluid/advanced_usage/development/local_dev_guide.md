@@ -167,7 +167,7 @@ origin	https://github.com/USERNAME/Paddle (fetch)
 origin	https://github.com/USERNAME/Paddle (push)
 ```
 
-origin is the name of remote git that we clone,which is also the Paddle under your own account.Next we create a remote host of an original Paddle and name it upstream.
+origin is the name of remote repository that we clone,which is also the Paddle under your own account. Next we create a remote host of an original Paddle and name it upstream.
 
 ```bash
 ➜  git remote add upstream https://github.com/PaddlePaddle/Paddle
