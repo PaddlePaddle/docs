@@ -41,7 +41,7 @@ For the first time to submit Pull Request,you need to sign CLA(Contributor Licen
 
 ### Pass unit tests
 
-Every new commit in your Pull Request will touch CI unit tests,so please make sure that necessary comments have been included in your commit message.Please refer to [commit](local_dev_guide.html#permalink-8--commit-)
+Every new commit in your Pull Request will trigger CI unit tests,so please make sure that necessary comments have been included in your commit message.Please refer to [commit](local_dev_guide.html#permalink-8--commit-)
 
 Please note the procedure of CI unit tests in your Pull Request which will be finished in several hours.
 
