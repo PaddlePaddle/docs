@@ -47,7 +47,7 @@ Please note the procedure of CI unit tests in your Pull Request which will be fi
 
 You only need to focus on CI projects associated with your submitted branch.For example,there is no need to check whether release/1.1 pass test or not if you submit code to develop branch.
 
-Green ticks behind all tests means that your commit has passed all unit tests.
+Green ticks after all tests means that your commit has passed all unit tests.
 
 Red cross behind the tests means your commit hasn't passed certain unit test.Please click detail to view bug details and make a screenshot of bug,then add it as a comment in your Pull Request.Our stuff will help you check it.
 
