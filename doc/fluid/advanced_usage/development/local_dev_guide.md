@@ -183,7 +183,7 @@ Get the latest code of upstream and update current branch.
 ➜  git pull upstream develop
 ```
 
-## Push to remote git
+## Push to remote repository
 
 Submit local modification to GitHub(https://github.com/USERNAME/Paddle).
 
