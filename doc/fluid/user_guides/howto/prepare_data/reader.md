@@ -3,23 +3,23 @@
 ```
 
 # Python Reader
-在训练期和测试期，PaddlePaddle程序需要读数据。为了帮助用户写能执行读数据的代码，我们做了如下定义：
+在模型训练和预测阶段，PaddlePaddle程序需要读取训练或预测数据。为了帮助用户编写数据读取的代码，我们提供了如下接口：
 
-- *reader*: 用于读数据的函数，数据来自文件、网络、随机数生成器等等，迭代数据项。
-- *reader creator*: 返回reader函数的函数。
+- *reader*: 用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个数据项。
+- *reader creator*: 接受一个或多个reader作为参数、返回一个新reader的函数。
 - *reader decorator*: 一个函数，接受一个或多个reader，并返回一个reader。
-- *batch reader*: 用于读取数据的函数，数据来自*reader*、文件、网络、随机数生成器等等，迭代一批数据项。
+- *batch reader*: 用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个batch大小的数据项。
 
-同样提供一个函数，可以将reader转换成batch reader，会频繁用到reader creator和reader decorator。
+此外，还提供了将reader转换为batch reader的函数，会频繁用到reader creator和reader decorator。
 
 ## Data Reader 接口
-*Data reader*不一定要求为读取和遍历数据项的函数。可以仅为任意不带参数的函数,该函数可以创建一个迭代器，通过`for x in iterable`访问任意数据项，迭代器定义如下： 
+Data reader不一定要求为读取和遍历数据项的函数。它可以是返回iterable对象（即可以用于`for x in iterable`的任意对象）的任意不带参数的函数：
 
 ```
 iterable = data_reader()
 ```
 
-迭代产生的数据项应为**单项**或者元组（tuple）形式的数据而**不是**mini batch,应该在[支持的类型](http://www.paddlepaddle.org/doc/ui/data_provider/pydataprovider2.html?highlight=dense_vector#input-types) 中，例如float32,int类型的numpy一维矩阵，int类型的列表等。
+Iterable对象应产生单项或tuple形式的数据，而不是一个mini batch的数据。产生的数据项应在[支持的类型](http://www.paddlepaddle.org/doc/ui/data_provider/pydataprovider2.html?highlight=dense_vector#input-types) 中，例如float32,int类型的numpy一维矩阵，int类型的列表等。
 
 以下是实现单项数据reader creator的示例：
 
@@ -42,7 +42,7 @@ def reader_creator_random_image_and_label(width, height, label):
 ```
 
 ## Batch Reader 接口
-*Batch reader*可以为任意不带参数的函数,该函数可以创建一个迭代器，通过`for x in iterable`访问任意数据项。迭代器的输出应为一批（列表）数据项，列表里的每项应为元组（tuple）。
+*Batch reader*可以是返回iterable对象（即可以用于`for x in iterable`的任意对象）的任意不带参数的函数。Iterable的输出应为一个batch（list）的数据项。list中的每个数据项均为一个tuple元组。
 
 这里是一些有效输出：
 
@@ -91,7 +91,7 @@ mnist_random_image_batch_reader = custom_batch_reader
 ## 使用
 以下是我们如何用PaddlePaddle的reader：
 
-batch reader是从数据项到数据层的映射，批尺寸和总传递数将传给到 `paddle.train`：
+batch reader是从数据项到数据层（data layer）的映射，batch size和总pass数通过以下方式传给`paddle.train`：
 
 ```python
 # 创建两个数据层：
@@ -104,23 +104,23 @@ paddle.train(batch_reader, {"image":0, "label":1}, 128, 10, ...)
 ```
 
 ## Data Reader装饰器
-*Data reader decorator*接收一个单项data reader或者多项data reader，返回一个新的data reader。和[python decorator](https://wiki.python.org/moin/PythonDecorators)类似，但在语法上不使用`@`。
+*Data reader decorator*接收一个或多个reader对象作为参数，返回一个新的reader对象。它类似于[python decorator](https://wiki.python.org/moin/PythonDecorators) 类似，但在语法上不需要写`@`。
 
-我们对data reader接口有严格限制（无参数并返回一个单数据项），一个data reader可以更灵活地运用，使用data reader装饰器。以下是一些示例：
+我们对data reader接口有严格限制（无参数并返回单个数据项），data reader可灵活地搭配data reader decorators使用。以下是一些示例：
 
 ### 预取回数据（缓存数据）
-由于读数据需要一些时间，而没有数据无法进行训练，总体来说预取（缓存）数据会是一个不错的办法。
+由于读数据需要一些时间，而没有数据无法进行训练，因此一般而言数据预读取会是一个很好的方法。
 
-用`paddle.reader.buffered`预取回（缓存）数据：
+用`paddle.reader.buffered`预读取数据：
 
 ```python
 buffered_reader = paddle.reader.buffered(paddle.dataset.mnist.train(), 100)
 ```
 
-`buffered_reader`将尝试预取回（缓存）`100`个数据项。
+`buffered_reader`将尝试缓存（预读取）`100`个数据项。
 
-### 组成多项Data Reader
-例如，如果我们想用实际图像源(也就是复用mnist数据集),和随机图像源作为[Generative Adversarial Networks](https://arxiv.org/abs/1406.2661)的输入。
+### 组成多个Data Reader
+例如，如果我们想用实际图像源(也就是复用mnist数据集),和随机图像源作为[Generative Adversarial Networks](https://arxiv.org/abs/1406.2661)的输入。
 
 我们可以参照如下：
 
@@ -142,7 +142,7 @@ false_reader = reader_creator_bool(False)
 
 reader = paddle.reader.compose(paddle.dataset.mnist.train(), data_reader_creator_random_image(20, 20), true_reader, false_reader)
 # 跳过1因为paddle.dataset.mnist.train()为每个数据项生成两个项。
-# 并且这里我们暂时不考虑第二项。
+# 并且这里我们暂时不考虑第二项。
 paddle.train(paddle.batch(reader, 128), {"true_image":0, "fake_image": 2, "true_label": 3, "false_label": 4}, ...)
 ```
 
@@ -160,13 +160,13 @@ reader = paddle.reader.shuffle(paddle.dataset.mnist.train(), 512)
 
 返回单项，可以更容易地复用已有的data reader，例如如果一个已有的reader返回3项而不是一个单项，这样训练代码会更复杂，因为需要处理像批尺寸为2这样的例子。
 
-我们提供一个函数来将reader（一个单项）转换成一个batch reader。
+我们提供一个函数来将一个单项reader转换成一个batch reader。
 
 ### 为什么需要一个batch raeder，在训练过程中给出reader和batch_size参数这样不足够吗？
 
-在大多数情况下，在训练方法中给出reader和batch_size参数是足够的。但有时用户想自定义mini batch里数据项的顺序，或者动态改变批尺寸。在这些情况下用batch reader会非常高效有用。
+在大多数情况下，在训练方法中给出reader和batch_size参数是足够的。但有时用户想自定义mini batch里数据项的顺序，或者动态改变批尺寸。在这些情况下用batch reader会非常高效有用。
 
-### 为什么用字典而不是列表进行映射（map）？
+### 为什么用字典而不是列表进行映射？
 
 使用字典(`{"image":0, "label":1}`)而不是列表`["image", "label"]`)有利于用户易于复用数据项，例如使用`{"image_a":0, "image_b":0, "label":1}`，或者甚至跳过数据项，例如使用`{"image_a":0, "label":2}`。
 
