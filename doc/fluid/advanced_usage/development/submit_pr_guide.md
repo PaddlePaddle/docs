@@ -91,7 +91,7 @@ Reason：It will bother reviewers a lot if a dozen of commits are submitted afte
 
 Suggestion：Keep commit concise as much as possible at every submit.You can make a supplyment to the previous commit with `git commit --amend`.About several commits having been pushed to remote repository,you can refer to [squash commits after push](http://stackoverflow.com/questions/5667884/how-to-squash-commits-in-git-after-they-have-been-pushed)。
 
-- Pay attention to the name of every commit:It would be better to abstract the content of present commit and be not too random.
+- Pay attention to the name of every commit:It would be better to abstract the content of present commit and be not too arbitrary.
 
 3）If you have tackled with problems of an Issue,please add `fix #issue_number` to the *first* comment area of PULL Request.Then the corresponding Issue will be closed automatically after the merge of PULL Request.Keywords are including:close, closes, closed, fix, fixes, fixed, resolve, resolves, resolved.Please select appropriate word.Please refer to [Closing issues via commit messages](https://help.github.com/articles/closing-issues-via-commit-messages) for more details.
 
