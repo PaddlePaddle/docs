@@ -19,7 +19,7 @@ Data reader不一定要求为读取和遍历数据项的函数。它可以是返
 iterable = data_reader()
 ```
 
-Iterable对象应产生单项或tuple形式的数据，而不是一个mini batch的数据。产生的数据项应在[支持的类型](http://www.paddlepaddle.org/doc/ui/data_provider/pydataprovider2.html?highlight=dense_vector#input-types) 中，例如float32,int类型的numpy一维矩阵，int类型的列表等。
+Iterable对象应产生单项或tuple形式的数据，而不是一个mini batch的数据。产生的数据项应在[支持的类型](./feeding_data.html#fluid) 中，例如float32,int类型的numpy一维矩阵，int类型的列表等。
 
 以下是实现单项数据reader creator的示例：
 
@@ -91,7 +91,7 @@ mnist_random_image_batch_reader = custom_batch_reader
 ## 使用
 以下是我们如何用PaddlePaddle的reader：
 
-batch reader是从数据项到数据层（data layer）的映射，batch size和总pass数通过以下方式传给`paddle.train`：
+batch reader是从数据项到数据层（data layer）的映射，batch_size和总pass数通过以下方式传给`paddle.train`：
 
 ```python
 # 创建两个数据层：
@@ -104,7 +104,7 @@ paddle.train(batch_reader, {"image":0, "label":1}, 128, 10, ...)
 ```
 
 ## Data Reader装饰器
-*Data reader decorator*接收一个或多个reader对象作为参数，返回一个新的reader对象。它类似于[python decorator](https://wiki.python.org/moin/PythonDecorators) 类似，但在语法上不需要写`@`。
+*Data reader decorator*接收一个或多个reader对象作为参数，返回一个新的reader对象。它类似于[python decorator](https://wiki.python.org/moin/PythonDecorators) ，但在语法上不需要写`@`。
 
 我们对data reader接口有严格限制（无参数并返回单个数据项），data reader可灵活地搭配data reader decorators使用。以下是一些示例：
 
@@ -158,13 +158,13 @@ reader = paddle.reader.shuffle(paddle.dataset.mnist.train(), 512)
 
 ### 为什么一个reader只返回单项而不是mini batch？
 
-返回单项，可以更容易地复用已有的data reader，例如如果一个已有的reader返回3项而不是一个单项，这样训练代码会更复杂，因为需要处理像批尺寸为2这样的例子。
+返回单项，可以更容易地复用已有的data reader，例如如果一个已有的reader返回3项而不是一个单项，这样训练代码会更复杂，因为需要处理像batch_size为2这样的例子。
 
 我们提供一个函数来将一个单项reader转换成一个batch reader。
 
 ### 为什么需要一个batch raeder，在训练过程中给出reader和batch_size参数这样不足够吗？
 
-在大多数情况下，在训练方法中给出reader和batch_size参数是足够的。但有时用户想自定义mini batch里数据项的顺序，或者动态改变批尺寸。在这些情况下用batch reader会非常高效有用。
+在大多数情况下，在训练方法中给出reader和batch_size参数是足够的。但有时用户想自定义mini batch里数据项的顺序，或者动态改变batch_size。在这些情况下用batch reader会非常高效有用。
 
 ### 为什么用字典而不是列表进行映射？
 
