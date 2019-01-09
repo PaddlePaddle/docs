@@ -164,7 +164,7 @@ reader = paddle.reader.shuffle(paddle.dataset.mnist.train(), 512)
 
 ### Why does a reader return only a single entry, and not a mini batch?
 
-Returning a single entry makes reusing existing data readers much easier (for example, if an existing reader returns 3 entries instead if a single entry, the training code will be more complicated because it need to handle cases like a batch size 2).
+Returning a single entry makes reusing existing data readers much easier (for example, if an existing reader returns 3 entries instead of a single entry, the training code will be more complicated because it needs to handle cases like a batch size 2).
 
 We provide a function: `paddle.batch` to turn (a single entry) reader into a batch reader.
 
