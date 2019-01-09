@@ -21,7 +21,7 @@ and also provide a function which can convert a reader to a batch reader, freque
 iterable = data_reader()
 ```
 
-The item produced from the iterable should be a **single** entry of data and **not** a mini batch. The entry of data could be a single item or a tuple of items. Item should be of one of the [supported types](http://www.paddlepaddle.org/doc/ui/data_provider/pydataprovider2.html?highlight=dense_vector#input-types) (e.g., numpy 1d array of float32, int, list of int etc.)
+The item produced from the iterable should be a **single** entry of data and **not** a mini batch. The entry of data could be a single item or a tuple of items. Item should be of one of the supported types (e.g., numpy 1d array of float32, int, list of int etc.)
 
 An example implementation for single item data reader creator is as follows:
 
@@ -164,7 +164,7 @@ reader = paddle.reader.shuffle(paddle.dataset.mnist.train(), 512)
 
 ### Why does a reader return only a single entry, and not a mini batch?
 
-Returning a single entry makes reusing existing data readers much easier (for example, if an existing reader returns 3 entries instead if a single entry, the training code will be more complicated because it need to handle cases like a batch size 2).
+Returning a single entry makes reusing existing data readers much easier (for example, if an existing reader returns 3 entries instead of a single entry, the training code will be more complicated because it needs to handle cases like a batch size 2).
 
 We provide a function: `paddle.batch` to turn (a single entry) reader into a batch reader.
 
