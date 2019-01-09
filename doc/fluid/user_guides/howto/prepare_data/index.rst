@@ -44,7 +44,7 @@ Python Reader支持组batch、shuffle等高级功能，具体请参考：
 .. toctree::
    :maxdepth: 1
 
-   reader.md
+   reader_cn.md
 
 py_reader接口异步方式
 #####################
