@@ -12,9 +12,9 @@ Under Ubuntu, you can use `cat /proc/cpuinfo | grep avx` to check if your proces
 
 ## Determine which version to install
 
-* Only PaddlePaddle for CPU is supported. If your computer does not have an NVIDIA® GPU, you can only install this version. If your computer has a GPU, it is also recommended that you install the CPU version of PaddlePaddle first to check if your local environment is suitable.
+* PaddlePaddle for CPU is supported. If your computer does not have an NVIDIA® GPU, you can only install this version. If your computer has a GPU, it is also recommended that you install the CPU version of PaddlePaddle first to check if your local environment is suitable.
 
-* Support for GPU PaddlePaddle. In order to make the PaddlePaddle program run more quickly, we accelerate the PaddlePaddle program through the GPU, but the GPU version of the PaddlePaddle needs to have the NVIDIA? GPU that meets the following conditions (see the NVIDIA official documentation for the specific installation process and configuration: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), [For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
+* PaddlePaddle for GPU is supported. In order to make the PaddlePaddle program run more quickly, we accelerate the PaddlePaddle program through the GPU, but the GPU version of the PaddlePaddle needs to have the NVIDIA® GPU that meets the following conditions (see the NVIDIA official documentation for the specific installation process and configuration: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), [For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
 
 	* *CUDA Toolkit 9.0 with cuDNN v7*
 	* *CUDA Toolkit 8.0 with cuDNN v7*
@@ -34,9 +34,9 @@ Under the Ubuntu system, we offer 4 installation methods:
 
 **With pip installation** (the easiest way to install), we offer you a pip installation method, but it depends more on your native environment and may have some issues related to your local environment.
 
-**Use Docker for installation** (the safest way to install), because we are installing the tools and configuration in a Docker image so that if something goes wrong, others can reproduce the problem for help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually run directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
+**Use Docker for installation** (the safest way to install), because we have installed the tools and configuration in a Docker image so that if something goes wrong, others can reproduce the problem for help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
 
-Compile and install from [**source**](#ubt_source) and [**use Docker**](#ubt_docker). This is a process of compiling the PaddlePaddle source code into a binary file and then installing the binary file, compared to the binary that has been tested for you. The form of PaddlePaddle, manual compilation is more complicated, we will answer you in detail at the end of the description.
+Compile and install from [**source**](#ubt_source) and [**use Docker**](#ubt_docker). This is a process of compiling the PaddlePaddle source code into a binary file and then installing the binary file. Compared to the binary PaddlePaddle that has been successfully tested and compiled for you, the manual compilation is more complicated, we will answer you in detail at the end of the description.
 
 <br/><br/>
 ### ***Install using pip***
@@ -44,27 +44,26 @@ Compile and install from [**source**](#ubt_source) and [**use Docker**](#ubt_doc
 
 First, we use the following commands to **check if the environment of this machine** is suitable for installing PaddlePaddle:
 
-    Uname -m && cat /etc/*release
+    uname -m && cat /etc/*release
 
->The above command will display the operating system and digits of the machine. Please make sure your computer is consistent with the 	requirements of this tutorial.
+>The above command will display the operating system and processing bits of the machine. Please make sure your computer is consistent with the requirements of this tutorial.
 
 Second, your computer needs to meet any of the following requirements:
 
 *	Python2.7.x (dev), Pip >= 9.0.1
 *	Python3.5+.x (dev), Pip3 >= 9.0.1
 
->You may have installed pip on your Ubuntu. Please use pip -V or pip3 -V to confirm that we recommend using pip 9.0.1 or higher to install.
+>You may have installed pip on your Ubuntu. Please use pip -V or pip3 -V to confirm its version is the recommended pip 9.0.1 or higher.
 
 	Update apt source: `apt update`
 
-Use the following command to install or upgrade Python and pip to the required version: (python3.6, python3.7 install pip and dev differ greatly in different Ubuntu versions, not described one by one)
-
+Use the following command to install or upgrade Python and pip to the required version: (pip and dev installation in python3.6, python3.7 differs greatly across different Ubuntu versions, thus the steps are omitted here)
 
 	- For python2: `sudo apt install python-dev python-pip`
 
 	- For python3.5: `sudo apt install python3.5-dev and curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip`
 
-	- For python3.6, python3.7: We default to python3.6 (3.7) and the corresponding versions of dev and pip3
+	- For python3.6, python3.7: We assumed that python3.6 (3.7) and the corresponding versions of dev and pip3 are properly installed by yourself.
 
 
 >Even if you already have Python 2 or Python 3 in your environment, you need to install Python-dev or Python 3.5 (3.6, 3.7) -dev.
