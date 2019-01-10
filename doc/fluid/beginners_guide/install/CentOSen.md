@@ -122,11 +122,11 @@ Once you have **properly installed Docker**, you can start **installing PaddlePa
 
 	`Docker start [Name of container]`
 
-	> The container created before starting.
+	> start the container created previously
 
 	`Docker attach [Name of container]`
 
-	> Enter the boot container.
+	> Enter the started container in the last step.
 
 Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to [the official Docker documentation](https://docs.docker.com/).
 
