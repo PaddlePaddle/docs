@@ -79,14 +79,15 @@ Now let's install PaddlePaddle:
 
 	* For users who need **the GPU version PaddlePaddle**: `pip install paddlepaddle-gpu` or `pip3 install paddlepaddle-gpu`
 
-	> 1. In order to prevent problems that cannot be found by nccl.h, please first install nccl2 according to the following command (here is ubuntu 16.04, CUDA9, ncDNN v7 nccl2 installation instructions), for more information about the installation information, please refer to [the NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download):
+	> 1.In order to prevent problem "nccl.h cannot be found", please first install nccl2 according to the following command (here is ubuntu 16.04, CUDA9, ncDNN v7 nccl2 installation instructions), for more information about the installation information, please refer to [the NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download):
+	
 		i. `Wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
 		ii. `dpkg -i nvidia-machine- Learning-repo-ubuntu1604_1.0.0-1_amd64.deb` 
 		iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
 
-	> 2. If you do not specify the pypi package version number, we will by default provide you with a version of PaddlePaddle that supports Cuda 9/cuDNN v7.
+	> 2.If you do not specify the pypi package version number, we will by default provide you with a version of PaddlePaddle that supports Cuda 9/cuDNN v7.
 
-	* For users with `Cannot uninstall 'six'`. problems, due to Python installation issues already in your system, please use `pip install paddlepaddle --ignore-installed six`(CPU) or `pip install paddlepaddle --ignore-installed Six` (GPU) solution.
+	* For users with `Cannot uninstall 'six'.` problems, the probable reason is the existing Python installation issues in your system. In this case, use  `pip install paddlepaddle --ignore-installed six`(CPU) or `pip install paddlepaddle-gpu -- Ignore-installed six` (GPU)  to resolve.
 
 	* For users with **other requirements**: `pip install paddlepaddle==[version number]` or `pip3 install paddlepaddle==[version number]`
 
@@ -125,7 +126,7 @@ If Docker is **properly installed**, you can start **installing PaddlePaddle usi
 
 	`Docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> In the above command, --name [Name of container] sets the name of the Docker; the `-it` parameter indicates that the container is running interactively with the machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to The absolute path of the current path is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of tag is the same as the second step; /bin/bash is the command to be executed in Docker.
+	> In the above command, --name [Name of container] sets the name of the Docker; the `-it` parameter indicates that the container is running interactively with the host machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to The absolute path of the current path) is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of tag is the same as the second step; /bin/bash is the command to be executed in Docker.
 
 3. (Optional: When you need to enter the Docker container a second time) re-enter the PaddlePaddle container with the following command:
 
@@ -151,7 +152,7 @@ After the installation is complete, you can use `python` or `python3` to enter t
 <br/><br/>
 ## ***How to uninstall***
 
-Please use the following command to uninstall PaddlePaddle (users who use PakerPaddle to install PaddlePaddle should use the following command in the container containing PaddlePaddle, please use the corresponding version of pip):
+Please use the following command to uninstall PaddlePaddle (users who use Docker to install PaddlePaddle should use the following command in the container containing PaddlePaddle. Please use the corresponding version of pip):
 
 * ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
 
