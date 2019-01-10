@@ -77,7 +77,7 @@ Here's how to install PaddlePaddle:
 
 	* For users who need **the GPU version PaddlePaddle**: `pip install paddlepaddle-gpu` or `pip3 install paddlepaddle-gpu`
 
-	> 1 . In order to prevent problems that cannot be found by nccl.h, please first install nccl2 according to the instructions of [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download).
+	> 1 . In order to prevent problem "nccl.h cannot be found", please first install nccl2 according to the instructions of [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download).
 
 	> 2 . If you do not specify the pypi package version number, we will by default provide you with a version of PaddlePaddle that supports Cuda 9/cuDNN v7.
 
