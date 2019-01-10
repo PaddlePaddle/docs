@@ -21,7 +21,7 @@ The current version does not support NCCL, distributed, AVX, warpctc and MKL rel
 
 ### ***Install using pip***
 
-We do not provide a quick installation command, please install according to follow the steps： 
+We do not provide a quick installation command, please install according to the following steps： 
 
 * First, **check that your computer and operating system** meet the following requirements:
 
@@ -47,6 +47,6 @@ After completing the installation, you can use `python` or `python3` to enter th
 
 ## ***How to uninstall***
 
-Use the following command to uninstall PaddlePaddle (users who use Paker to install PaddlePaddle, please use the following command in the container containing PaddlePaddle):
+Use the following command to uninstall PaddlePaddle (users who use Docker to install PaddlePaddle, please use the following command in the container containing PaddlePaddle):
 
 * ***CPU version of PaddlePaddle***: `pip uninstallpaddlepaddle `or `pip3 uninstall paddlepaddle`
