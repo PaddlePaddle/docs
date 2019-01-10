@@ -21,7 +21,7 @@ Under CentOS you can use `cat /proc/cpuinfo | grep avx` to check if your process
 	* *Hardware devices with GPU compute capability exceeding 1.0*
 
 
-## Choose how to install
+## Choose an installation method
 
 We offer 4 installation methods under the CentOS system:
 
