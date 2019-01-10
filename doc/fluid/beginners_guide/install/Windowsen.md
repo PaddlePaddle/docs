@@ -5,7 +5,7 @@
 This instruction will show you how to install PaddlePaddle on a 64-bit desktop or laptop and Windows. The Windows systems we support must meet the following requirements.
 
 
-Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the above conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in [the multi-version whl package installation list](Tables.html/#ciwhls):
+Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in [the multi-version whl package installation list](Tables.html/#ciwhls):
 
 Windows can use software such as `cpu-z` to detect whether your processor supports the AVX instruction set.
 
@@ -17,7 +17,7 @@ The current version does not support NCCL, distributed, AVX, warpctc and MKL rel
 
 * Under Windows, we currently only offer PaddlePaddle that supports CPU.
 
-## Choose how to install
+## Choose an installation method
 
 ### ***Install using pip***
 
@@ -25,8 +25,8 @@ We do not provide a quick installation command, please install according to foll
 
 * First, **check that your computer and operating system** meet the following requirements:
 
-		For python2: Python2.7.15 officially downloaded using Python
-		For python3: Use Python officially downloaded python3.5.x, python3.6.x or python3.7.x
+		For python2: Python2.7.15 downloaded from official Python
+		For python3: Use python3.5.x, python3.6.x or python3.7.x downloaded from official Python
 
 * Python2.7.x :pip >= 9.0.1
 * Python3.5.x, python3.6.x or python3.7.x :pip3 >= 9.0.1
