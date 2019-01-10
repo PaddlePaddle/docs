@@ -18,7 +18,7 @@ Under CentOS you can use `cat /proc/cpuinfo | grep avx` to check if your process
 
 	* *CUDA Toolkit 9.0 with cuDNN v7*
 	* *CUDA Toolkit 8.0 with cuDNN v7*
-	* *Hardware devices with GPU computing power exceeding 1.0*
+	* *Hardware devices with GPU compute capability exceeding 1.0*
 
 
 ## Choose how to install
@@ -34,7 +34,7 @@ We offer 4 installation methods under the CentOS system:
 
 **Use Docker for installation** (the safest way to install), because we are installing the tools and configuration in a Docker image so that if something goes wrong, others can reproduce the problem for help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually run directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
 
-Compile and install from [**source**](#ct_source) and [**use Docker**](#ct_docker). This is a process of compiling the PaddlePaddle source code into a binary file and then installing the binary file, compared to the binary that has been tested for you. The form of PaddlePaddle, manual compilation is more complicated, we will answer you in detail at the end of the description.
+Compile and install from [**source**](#ct_source) and [**use Docker**](#ct_docker). This is a process of compiling the PaddlePaddle source code into a binary file and then installing the binary file. Compared with the binary form of PaddlePaddle that has been successfully tested and compiled for you, this manual compilation is more complicated, and we will answer you in detail at the end of this tutorial.
 
 
 <br/><br/>
@@ -44,7 +44,7 @@ First, we use the following commands to check if **the environment of this machi
 
 `Uname -m && cat /etc/*release`
 
-> The above command will display the operating system and digits of the machine. Please make sure your computer is consistent with the requirements of this tutorial.
+> The above command will display the operating system and processing bits of the machine. Please make sure your computer is consistent with the requirements of this tutorial.
 
 Second, your computer needs to meet the following requirements:
 
@@ -62,7 +62,8 @@ Second, your computer needs to meet the following requirements:
 
 
 	    - For Python2: `sudo yum install python-devel python-pip`
-	    - For Python3: (Please refer to the Python official process installation, and pay attention to whether the python3 version corresponding to the pip3 command is consistent. If there are multiple python3 versions, please specify the pip version such as pip3.7, or the pip3 soft link to the python version you use. under)
+	    - For Python3: (Please refer to the official Python installation, and pay attention to whether the python3 version is consistent with the python version corresponding to the pip3 command. If there are multiple python3 versions, please specify the pip version such as pip3.7, or add soft link from pip3 to the python version you use. )
+
 
 
 
@@ -80,7 +81,7 @@ Here's how to install PaddlePaddle:
 
 	> 2 . If you do not specify the pypi package version number, we will by default provide you with a version of PaddlePaddle that supports Cuda 9/cuDNN v7.
 
-	* For users with `Cannot uninstall 'six'.` problems, but due to Python installation issues already in your system, use `pip install paddlepaddle --ignore-installed six`(CPU) or `pip install paddlepaddle-gpu -- Ignore-installed six` (GPU) solution.
+	* For users with `Cannot uninstall 'six'.` problems, the probable reason is the existing Python installation issues in your system. In this case, use  `pip install paddlepaddle --ignore-installed six`(CPU) or `pip install paddlepaddle-gpu -- Ignore-installed six` (GPU)  to resolve.
 
 	* For users with **other requirements**: `pip install paddlepaddle==[version number]` or `pip3 install paddlepaddle==[version number]`
 
@@ -115,9 +116,9 @@ Once you have **properly installed Docker**, you can start **installing PaddlePa
 
 	`Docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> In the above command, --name [Name of container] sets the name of the Docker; the -it parameter indicates that the container is running interactively with the machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to [The absolute path](https://baike.baidu.com/item/%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/481185) of the current path is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of the tag is the same as the second step. /bin/bash is the command to be executed in Docker.
+		> In the above command, --name [Name of container] sets the name of the Docker; the -it parameter indicates that the container is running interactively with the host machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to [The absolute path](https://baike.baidu.com/item/%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/481185) of the current path ) which is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of the tag is the same as the second step. /bin/bash is the command to be executed in Docker.
 
-3. (Optional: When you need to enter the Docker container a second time) Use PaddlePaddle with the following command:
+3. (Optional: When you need to enter the Docker container a second time) re-enter the PaddlePaddle container with the following command:
 
 	`Docker start [Name of container]`
 
