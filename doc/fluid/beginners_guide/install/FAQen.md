@@ -10,26 +10,26 @@
 
 
 		./configure --prefix=/usr/local/python2.7 --enable-shared
-		Make && make install
+		make && make install
 
 
 - Ubuntu18.04 under libidn11 can not be found?
 
 	> Use the following instructions:
 
-		Apt install libidn11
+		apt install libidn11
 
 - When Ubuntu compiles, a lot of code segments are not recognized?
 
 	> This may be caused by a mismatch in the cmake version. Please use the following command in the gcc installation directory:
 
-		Apt install gcc-4.8 g++-4.8
-		Cp gcc gcc.bak
-		Cp g++ g++.bak
-		Rm gcc
-		Rm g++
-		Ln -s gcc-4.8 gcc
-		Ln -s g++-4.8 g++
+		apt install gcc-4.8 g++-4.8
+		cp gcc gcc.bak
+		cp g++ g++.bak
+		rm gcc
+		rm g++
+		ln -s gcc-4.8 gcc
+		ln -s g++-4.8 g++
 
 
 
@@ -38,10 +38,10 @@
 
 	> The main reason for this problem is that there is no paddlepaddle installation package that matches the current system. Please check if the Python version is 2.7 series. In addition, the latest pip official source installation package defaults to the manylinux1 standard, you need to use the latest pip (>9.0.0) to install. You can update your pip by following these instructions:
 
-		Pip install --upgrade pip
+		pip install --upgrade pip
 	or
 
-		Python -c "import pip; print(pip.pep425tags.get_supported())"
+		python -c "import pip; print(pip.pep425tags.get_supported())"
 
 	> If the system supports linux_x86_64 and the installation package is manylinux1_x86_64, you need to upgrade the pip version to the latest; if the system supports manylinux1_x86_64 and the installation package (local) is linux_x86_64, you can rename this whl package to manylinux1_x86_64 and install it again.
 
@@ -51,7 +51,7 @@
 
 - What is Docker?
 
-	> If you haven't heard of Docker, you can think of it as a virtualenv-like system, but it's not just the Python runtime environment.
+	> If you haven't heard of Docker, you can think of it as a virtualenv-like system, but it virtualises more than the Python runtime environment.
 
 - Is Docker still a virtual machine?
 
@@ -63,7 +63,7 @@
 
 - Can I choose not to use Docker?
 
-	> Of course can. You can install these tools to the machine in the same way that you install the development tools into Docker image. This document describes the Docker-based development process because it is easier than the other methods.
+	> Of course you can. You can install development tools to the machine in the same way that you install them into Docker image. This document describes the Docker-based development process because it is easier than the other methods.
 
 - How hard is it to learn Docker?
 
@@ -80,7 +80,7 @@
 
 - Can I compile in parallel?
 
-	> Yes. Our Docker image runs a [Bash script](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/paddle/scripts/paddle_build.sh). This script calls `make -j$(nproc)` to start as many processes as the CPU core to compile in parallel.
+	> Yes. Our Docker image runs a [Bash script](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/paddle/scripts/paddle_build.sh). This script calls `make -j$(nproc)` to start as many processes as the CPU cores to compile in parallel.
 
 - Docker needs sudo?
 
@@ -96,7 +96,7 @@
 
 - Can't I open `http://localhost:8888/` when using the book under DockerToolbox?
 
-	> Need to replace localhost with virtual machine ip, generally need to enter in the browser: `http://192.168.99.100:8888/`
+	> You need to replace localhost with virtual machine ip. Generally type this in the browser: `http://192.168.99.100:8888/`
 
 - After the pip install gpu version of PaddlePaddle runing, the SegmentFault appears as follows:
 
@@ -117,7 +117,7 @@
 	- For Python3.5.x (install by Python.org): Please use `export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/ && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5 /`
 
 
-- Use custom openblas under MACOS. See issue for details:
+- Use customized openblas under MACOS. See issue for details:
 
 	>[ISSUE 13217](https://github.com/PaddlePaddle/Paddle/issues/13721)
 
