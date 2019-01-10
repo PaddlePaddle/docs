@@ -104,11 +104,11 @@ If Docker is **properly installed**, you can start **using Docker to install Pad
 
 	`Docker attach [Name of container]`
 
-	> Enter the boot container.
+	> Enter the started container.
 
 Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to [the official Docker documentation](https://docs.docker.com/).
 
-> Note: PaddlePaddle Docker image In order to reduce the size, `vim` is not installed by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
+> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
 
 
 <br/><br/>
@@ -119,6 +119,6 @@ After the installation is complete, you can use `python` or `python3` to enter t
 <br/><br/>
 ## ***How to uninstall***
 
-Please use the following command to uninstall PaddlePaddle (users who use PakerPaddle to install PaddlePaddle should use the following command in the container containing PaddlePaddle, please use the corresponding version of pip):
+Please use the following command to uninstall PaddlePaddle (Users who use Docker to install PaddlePaddle should use the following command in the container containing PaddlePaddle. Please use the corresponding version of pip):
 
 * ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
