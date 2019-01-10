@@ -128,20 +128,19 @@ If Docker is **properly installed**, you can start **installing PaddlePaddle usi
 
 	> In the above command, --name [Name of container] sets the name of the Docker; the `-it` parameter indicates that the container is running interactively with the machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to The absolute path of the current path is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of tag is the same as the second step; /bin/bash is the command to be executed in Docker.
 
-3. (Optional: When you need to enter the Docker container a second time) Use PaddlePaddle with the following command:
+3. (Optional: When you need to enter the Docker container a second time) re-enter the PaddlePaddle container with the following command:
 
 	`Docker start [Name of container]`
 
-	> The container created before starting.
+	> start the container created previously.
 
 	`Docker attach [Name of container]`
 
-	> Enter the boot container.
+	> Enter the started container.
 
 Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to [the official Docker documentation](https://docs.docker.com/).
 
->Note: PaddlePaddle Docker image In order to reduce the size, `vim` is not installed by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
-
+>Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
 
 <br/><br/>
 ## ***Verify installation***
