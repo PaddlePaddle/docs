@@ -14,7 +14,7 @@ Under CentOS you can use `cat /proc/cpuinfo | grep avx` to check if your process
 
 * Only PaddlePaddle for CPU is supported. If your computer does not have an NVIDIA® GPU, you can only install this version. If your computer has a GPU, it is recommended that you install the CPU version of PaddlePaddle first to check if your local environment is suitable.
 
-* PaddlePaddle with GPU support, in order to make the PaddlePaddle program run more quickly, we accelerate the PaddlePaddle program through the GPU, but the GPU version of PaddlePaddle needs to have the NVIDIA? GPU that meets the following conditions (see the NVIDIA official for the specific installation process and configuration). Documentation: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), [For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
+* PaddlePaddle with GPU support, in order to make the PaddlePaddle program run more quickly, we accelerate the PaddlePaddle program through the GPU, but the GPU version of PaddlePaddle needs to have the NVIDIA® GPU that meets the following conditions (see the NVIDIA official for the specific installation process and configuration). Documentation: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), [For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
 
 	* *CUDA Toolkit 9.0 with cuDNN v7*
 	* *CUDA Toolkit 8.0 with cuDNN v7*
