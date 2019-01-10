@@ -4,7 +4,7 @@
 
 This note will show you how to install PaddlePaddle on a *64-bit desktop or laptop* and CentOS. The CentOS system we support needs to meet the following requirements:
 
-Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the above conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in [the latest Release installation package list](./Tables.html/#ciwhls-release).
+Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in [the latest Release installation package list](./Tables.html/#ciwhls-release).
 
 Under CentOS you can use `cat /proc/cpuinfo | grep avx` to check if your processor supports the AVX instruction set.
 
