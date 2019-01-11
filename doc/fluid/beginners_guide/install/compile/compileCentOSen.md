@@ -1,5 +1,5 @@
 ***
-# **Compiled From Source Under CentOS**
+# **Compile From Source Code Under CentOS**
 
 This instruction will show you how to compile PaddlePaddle on a 64-bit desktop or laptop and CentOS. The Centos systems we support must meet the following requirements:
 
@@ -9,7 +9,7 @@ This instruction will show you how to compile PaddlePaddle on a 64-bit desktop o
 
 * **Only PaddlePaddle for CPU is supported.**
 
-## Choose how to compile
+## Choose a compilation method
 
 We provide two compilation methods under the CentOS system:
 
