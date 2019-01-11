@@ -9,7 +9,7 @@ This instruction will show you how to compile PaddlePaddle on *64-bit desktops o
 
 * **Only PaddlePaddle for CPU is supported.**
 
-## Choose how to compile
+## Choose a compilation method
 
 Under the MacOS 10.12/10.13/10.14 system we offer 2 ways to compile:
 
@@ -17,7 +17,7 @@ Under the MacOS 10.12/10.13/10.14 system we offer 2 ways to compile:
 * Direct source code compilation
 
 
-We recommend **using Docker for compilation** because we are installing both the tools and the configuration in a Docker image. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually run directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
+We recommend **using Docker for compilation** because we are installing both the tools and the configuration in a Docker image. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
 
 Also for those who can't install Docker for a variety of reasons, we also provide a way to **compile directly from local sources**, but since the situation on this machine is more complicated, we only support specific systems.
 
@@ -26,7 +26,7 @@ Also for those who can't install Docker for a variety of reasons, we also provid
 
 In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on **installing and using Docker**, please refer to the [official Docker documentation](https://docs.docker.com/install/).
 
-> Please note that logging in to docker on MacOS requires logging in with your dockerID, otherwise an Authenticate Failed error will occur.
+> Please note that running Docker on MacOS requires logging in with your dockerID, otherwise an Authenticate Failed error will occur.
 
 Once you have **properly installed Docker**, you can start **compiling PaddlePaddle with Docker**:
 
@@ -93,7 +93,7 @@ Once you have **properly installed Docker**, you can start **compiling PaddlePad
 
 Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
-> Note: PaddlePaddle Docker image In order to reduce the size, `vim` is not installed by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
+> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
 
 Congratulations, you have now completed the process of compiling PaddlePaddle using Docker.
 
@@ -103,11 +103,11 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 **Please strictly follow the order of the following instructions**
 
-1. Check that your computer and operating system meet our supported compilation standards: `uname -m` and view the system version `on this machine`. And install openCV in advance.
+1. Check that your computer and operating system meet our supported compilation standards: `uname -m` and view the system version `about this Mac`. And install openCV in advance.
 
 2. Install python and pip:
 
-	> **Please do not use Python with MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.5.x, python3.6.x, python3.7.x), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+	> **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.5.x, python3.6.x, python3.7.x), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
 		For python2: brew install python@2
 		For python3: Install using Python official website
@@ -122,23 +122,24 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 4. (Only For Python3) Set Python-related environment variables:
 
 	- a. First use 
-			```find dirname $(dirname $(which python3)) -name "libpython3.*.dylib" ```
-			to find the path to Pythonlib (the first one that pops up the dylib path for the python you need to use), then (below [python-lib-path] is replaced by finding the file path)
+			```find `dirname $(dirname
+			  $(which python3))` -name "libpython3.*.dylib"```
+			to find the path to Pythonlib (the first one it prompts is the dylib path for the python you need to use), then (below [python-lib-path] is replaced by finding the file path)
 
 	- b. Set PYTHON_LIBRARIES: `export PYTHON_LIBRARY=[python-lib-path]`
 
-	- c. Secondly use the path to find PythonInclude (usually find the above directory of [python-lib-path] as the include of the same directory, then find the path of python3.x or python2.x in the directory), then (below [python-include-path] is replaced by finding the path)
+	- c. Secondly use the path to find PythonInclude (usually find the above directory of [python-lib-path] as the include of the same directory, then find the path of python3.x or python2.x in the directory), then (the [python-include-path] in the following commands should be replaced by the path found here)
 
 	- d. Set PYTHON_INCLUDE_DIR: `export PYTHON_INCLUDE_DIRS=[python-include-path]`
 
-	- e. Set the system environment variable path: `export PATH=[python-bin-path]:$PATH` (here [python-bin-path] is to replace the last two levels of [python-lib-path] with /bin/ 's catalog)
+	- e. Set the system environment variable path: `export PATH=[python-bin-path]:$PATH` (here [python-bin-path] is the result of replacing the last two levels of [python-lib-path] with the path after /bin/ )
 
-	- f. Set the dynamic library link: `export LD_LIBRARY_PATH=[python-ld-path]` and `export DYLD_LIBRARY_PATH=[python-ld-path]` (here [python-ld-path] is the [python-bin-path]'s last level of catalog )
+	- f. Set the dynamic library link: `export LD_LIBRARY_PATH=[python-ld-path]` and `export DYLD_LIBRARY_PATH=[python-ld-path]` (here [python-ld-path] is the [python-bin-path]'s parent directory )
 
 	- g. (Optional) If you are compiling PaddlePaddle on MacOS 10.14, make sure you have the [appropriate version](http://developer.apple.com/download) of Xcode installed.
 
 
-5. Before **executing the compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](h../Tables.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
+5. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](h../Tables.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
 
 	> Under MacOS, if you have not modified or installed the dependencies mentioned in the "Compile Dependency Table", you only need to use `pip` to install `numpy`, `protobuf`, `wheel`, use `homebrew` to install `wget`, `swig`,then install `cmake`.
 
@@ -150,17 +151,17 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 	
 		2. Enter `sudo "/Applications/CMake.app/Contents/bin/cmake-gui" –install` in the console
 
-	- b. If you do not want to use the system default blas and want to use your own installed OPENBLAS please see [FAQ](../FAQ.html/#OPENBLAS)
+	- b. If you do not want to use the system default blas and want to use your own installed OPENBLAS please read [FAQ](../FAQ.html/#OPENBLAS)
 
-6. Put the PaddlePaddle source clone in the Paddle folder in the current directory and go to the Padde directory:
+6. Put the PaddlePaddle source cloned in the Paddle folder in the current directory and go to the Paddle directory:
 
 	- `git clone https://github.com/PaddlePaddle/Paddle.git`
 
 	- `cd Paddle`
 
-7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version is supported from the 1.2.0 branch)
+7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch)
 
-	`git checkout release/1.0.0`
+	`git checkout release/1.2`
 
 8. And please create and enter a directory called build:
 
@@ -201,6 +202,6 @@ After the installation is complete, you can use `python` to enter the Python int
 <br/><br/>
 ### ***How to uninstall***
 
-Please use the following command to uninstall PaddlePaddle (users who use PakerPaddle to install PaddlePaddle should use the following command in the container containing PaddlePaddle, please use the corresponding version of pip):
+Please use the following command to uninstall PaddlePaddle (users who use Docker to install PaddlePaddle should use the following command in the container containing PaddlePaddle. Please use the corresponding version of pip):
 
 * ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
