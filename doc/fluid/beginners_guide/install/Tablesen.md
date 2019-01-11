@@ -35,7 +35,7 @@
 	</tr>
 	<tr>
 		<td> SWIG </td>
-		<td> minimum 2.0 </td>
+		<td> at least 2.0 </td>
 		<td>  </td>
 		<td> <code>apt install swig </code> or <code> yum install swig </code> </td>
 	</tr>
@@ -53,7 +53,7 @@
 	</tr>
 	<tr>
 		<td> pip </td>
-		<td> minimum9.0.1 </td>
+		<td> at least 9.0.1 </td>
 		<td>  </td>
 		<td> <code> apt install python-pip </code> or <code> yum install Python-pip </code> </td>
 	</tr>
@@ -79,7 +79,7 @@
 		<td> patchELF </td>
 		<td> any </td>
 		<td>  </td>
-		<td> <code> apt install patchelf </code> or see github <a href="https://gist.github.com/ruario/80fefd174b3395d34c14">patchELF official documentation</a></td>
+		<td> <code> apt install patchelf </code> or read github <a href="https://gist.github.com/ruario/80fefd174b3395d34c14">patchELF official documentation</a></td>
 	</tr>
 	<tr>
 		<td> go </td>
@@ -114,7 +114,7 @@
 	</tr>
 	<tr>
 		<td> WITH_C_API </td>
-		<td> Whether to compile API </td>
+		<td> Whether to compile CAPI </td>
 		<td>  OFF </td>
 	</tr>
 		<tr>
@@ -168,7 +168,7 @@
 	</tr>
 	<tr>
 		<td> WITH_SYSTEM_BLAS </td>
-		<td> Whether to use thesystem's BLAS </td>
+		<td> Whether to use the system's BLAS </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
@@ -216,15 +216,15 @@ If you close MKL, OpenBLAS will be used as the BLAS library.
 
 PaddlePaddle automatically finds the CUDA and cuDNN libraries installed in the system for compilation and execution at compile time/runtime. Use the parameter `-DCUDA_ARCH_NAME=Auto` to specify to enable automatic detection of the SM architecture and speed up compilation.
 
-PaddlePaddle can be compiled and run using any version after cuDNN v5.1, but try to keep the same version of cuDNN compiled and running. We recommend using the latest version of cuDNN.
+PaddlePaddle can be compiled and run using any version after cuDNN v5.1, but try to keep the same version of cuDNN in the compiling and running processes. We recommend using the latest version of cuDNN.
 
-**Compile Option Settings**
+**Configure Compile Options**
 
 PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specifying paths at compile time. When cmake compiles, it first searches the system paths ( `/usr/liby` and `/usr/local/lib` ) for these libraries, and also reads the relevant path variables for searching. Can be set by using the `-D` command, for example:
 
 > `Cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCUDNN_ROOT=/opt/cudnnv5`
 
-**Note**: The settings for these compilation options are only valid for the first cmake. If you want to reset it later, it is recommended to clean up the entire build directory ( rm -rf ) and then specify it.
+**Note**: The settings introduced here for these compilation options are only valid for the first cmake. If you want to reset it later, it is recommended to clean up the entire build directory ( rm -rf ) and then specify it.
 
 
 ***
@@ -242,7 +242,7 @@ PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specif
 	</thead>
 	<tbody>
 	<tr>
-		<td> such as paddlepaddle==1.0.1 (download version 1.0.1 only supports CPU PaddlePaddle)</td>
+		<td> paddlepaddle==[version code] such as paddlepaddle==1.0.1 (download version 1.0.1 which only supports CPU PaddlePaddle)</td>
 		<td> Only support the corresponding version of the CPU PaddlePaddle, please refer to <a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> for the specific version. </td>
 	</tr>
 	<tr>
@@ -319,11 +319,11 @@ PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specif
 
 
 
-You can find the various distributions of PaddlePaddle-gpu in [the Release History](https://pypi.org/project/paddlepaddle-gpu/#history).
+You can find various distributions of PaddlePaddle-gpu in [the Release History](https://pypi.org/project/paddlepaddle-gpu/#history).
 
 ***
 </br></br>
-## Installation Mirror Table and Introduction
+## Installation Mirrors and Introduction
 
 <p align="center">
 <table>
@@ -362,7 +362,7 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 
 </br></br>
 
-## **Multi-version whl package list-Release**
+## **Multi-version whl package list - Release**
 
 <p align="center">
 <table>
@@ -564,24 +564,24 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 
 ***
 
-Suppose you have written a PaddlePaddle program in the current directory (such as /home/work): `train.py` (can refer to [PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html) to write), you can start the training with the following command:
+Suppose you have written a PaddlePaddle program in the current directory (such as /home/work): `train.py` ( refer to [PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html) to write), you can start the training with the following command:
 
 
-    Cd /home/work
-    Docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /work/train.py
+    cd /home/work
+    docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /work/train.py
 
 
-In the above commands, the `-it` parameter indicates that the container has been run interactively; `-v $PWD:/work` specifies that the current path (the absolute path where the PWD variable in Linux will expand to the current path) is mounted to the `:/work` directory inside the container: `Hub.baidubce.com/paddlepaddle/paddle` specifies the container to be used; finally `/work/train.py` is the command executed inside the container, ie running the training program.
+In the above commands, the `-it` parameter indicates that the container has been run interactively; `-v $PWD:/work` specifies that the current path (the absolute path where the PWD variable in Linux will expand to the current path) is mounted to the `:/work` directory inside the container: `Hub.baidubce.com/paddlepaddle/paddle` specifies the container to be used; finally `/work/train.py` is the command executed inside the container, ie. the training program.
 
-Of course, you can also go into the Docker container and execute or debug your code interactively:
-
-
-    Docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /bin/bash
-    Cd /work
-    Python train.py
+Of course, you can also enter into the Docker container and execute or debug your code interactively:
 
 
-**Note: PaddlePaddle Docker image In order to reduce the size, vim is not installed by default. You can edit the code in the container after executing** `apt-get install -y vim` **in the container.**
+    docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /bin/bash
+    cd /work
+    python train.py
+
+
+**Note: In order to reduce the size, vim is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing ** `apt-get install -y vim` **(which installs vim for you) in the container.**
 
 </br></br>
 
@@ -593,17 +593,17 @@ Use Docker to quickly launch a local Jupyter Notebook containing the PaddlePaddl
 
 We provide a Docker image that can run the PaddlePaddle Book directly, running directly:
 
-`Docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book`
+`docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book`
 
 Domestic users can use the following image source to speed up access:
 
-`Docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book`
+`docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book`
 
 Then enter the following URL in your browser:
 
-`Http://localhost:8888/`
+`http://localhost:8888/`
 
-It's that simple and enjoy your journey! Please refer to the [FAQ](#FAQ),if you have any other questions.
+It's that simple and bon voyage! For further questions, please refer to the [FAQ](#FAQ).
 
 
 </br></br>
@@ -620,19 +620,19 @@ In order to ensure that the GPU driver works properly in the image, we recommend
 
 	export CUDA_SO="$(\ls /usr/lib64/libcuda* | xargs -I{} echo '-v {}:{}') \
 	$(\ls /usr/lib64/libnvidia* | xargs -I{} echo '-v {}:{}')"
-	Export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
-	Docker run ${CUDA_SO} \
+	export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
+	docker run ${CUDA_SO} \
  	 ${DEVICES} -it hub.baidubce.com/paddlepaddle/paddle:latest-gpu
 
 
 
 **About AVX:**
 
-AVX is a set of CPU instructions that speed up the calculation of PaddlePaddle. The latest PaddlePaddle Docker image is enabled by default for AVX compilation, so if your computer does not support AVX, you need to [compile](/build_from_source_cn.html) PaddlePaddle to no-avx version separately.
+AVX is a set of CPU instructions that speeds up the calculation of PaddlePaddle. The latest PaddlePaddle Docker image is enabled by default for AVX compilation, so if your computer does not support AVX, you need to [compile](/build_from_source_cn.html) PaddlePaddle to no-avx version separately.
 
 The following instructions can check if the Linux computer supports AVX:
 
-`If cat /proc/cpuinfo | grep -i avx; then echo Yes; else echo No; fi`
+`if cat /proc/cpuinfo | grep -i avx; then echo Yes; else echo No; fi`
 
 If the output is No, you need to choose a mirror that uses no-AVX.
 
