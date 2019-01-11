@@ -1,5 +1,5 @@
 ***
-# **Compiled From Source Under MacOS**
+# **Compile From Source Code Under MacOS**
 
 This instruction will show you how to compile PaddlePaddle on *64-bit desktops or laptops* and MacOS systems. The MacOS systems we support need to meet the following requirements:
 
