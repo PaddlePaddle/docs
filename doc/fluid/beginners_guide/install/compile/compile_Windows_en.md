@@ -1,5 +1,5 @@
 ***
-# **Compile From Source Code Under Windows**
+# **Compile under Windows from Source Code**
 
 This instruction will show you how to compile PaddlePaddle on a *64-bit desktop or laptop* and Windows 10. The Windows systems we support must meet the following requirements:
 
