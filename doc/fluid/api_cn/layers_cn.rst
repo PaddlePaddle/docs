@@ -1516,7 +1516,7 @@ batch_norm
 参数：
     - **input** (Variable) - 输入变量，为LoDTensor
     - **act** （string，默认None）- 激活函数类型，linear|relu|prelu|...
-    - **is_test** （bool,默认False） - 用于训练
+    - **is_test** （bool,默认False） - 标志位，是否用于测试或训练
     - **momentum** （float，默认0.9）- （暂无说明，待更新）
     - **epsilon** （float，默认1e-05）- （暂无说明，待更新）
     - **param_attr** （ParamAttr|None） - batch_norm参数范围的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为param_attr。如果没有设置param_attr的初始化函数，参数初始化为Xavier。默认：None
@@ -1527,7 +1527,7 @@ batch_norm
     - **moving_mean_name** （string，默认None）- moving_mean的名称，存储全局Mean
     - **moving_variance_name** （string，默认None）- moving_variance的名称，存储全局变量
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值
-    - **fuse_with_relo** （bool）- 如果为True，batch norm后该操作符执行relu
+    - **fuse_with_relu** （bool）- 如果为True，batch norm后该操作符执行relu
 
 返回： 张量，在输入中运用批正则后的结果
 
