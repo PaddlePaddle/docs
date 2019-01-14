@@ -231,6 +231,22 @@ shuffle
 nn
 ==
 
+.. _api_fluid_layers_adaptive_pool2d:
+
+adaptive_pool2d
+---------------
+
+..  autofunction:: paddle.fluid.layers.adaptive_pool2d
+    :noindex:
+
+.. _api_fluid_layers_adaptive_pool3d:
+
+adaptive_pool3d
+---------------
+
+..  autofunction:: paddle.fluid.layers.adaptive_pool3d
+    :noindex:
+
 .. _api_fluid_layers_add_position_encoding:
 
 add_position_encoding
@@ -293,6 +309,14 @@ bilinear_tensor_product
 -----------------------
 
 ..  autofunction:: paddle.fluid.layers.bilinear_tensor_product
+    :noindex:
+
+.. _api_fluid_layers_bpr_loss:
+
+bpr_loss
+--------
+
+..  autofunction:: paddle.fluid.layers.bpr_loss
     :noindex:
 
 .. _api_fluid_layers_brelu:
@@ -397,6 +421,14 @@ ctc_greedy_decoder
 ------------------
 
 ..  autofunction:: paddle.fluid.layers.ctc_greedy_decoder
+    :noindex:
+
+.. _api_fluid_layers_data_norm:
+
+data_norm
+---------
+
+..  autofunction:: paddle.fluid.layers.data_norm
     :noindex:
 
 .. _api_fluid_layers_dice_loss:
@@ -621,6 +653,14 @@ hsigmoid
 --------
 
 ..  autofunction:: paddle.fluid.layers.hsigmoid
+    :noindex:
+
+.. _api_fluid_layers_huber_loss:
+
+huber_loss
+----------
+
+..  autofunction:: paddle.fluid.layers.huber_loss
     :noindex:
 
 .. _api_fluid_layers_im2sequence:
@@ -901,6 +941,22 @@ prelu
 -----
 
 ..  autofunction:: paddle.fluid.layers.prelu
+    :noindex:
+
+.. _api_fluid_layers_psroi_pool:
+
+psroi_pool
+----------
+
+..  autofunction:: paddle.fluid.layers.psroi_pool
+    :noindex:
+
+.. _api_fluid_layers_py_func:
+
+py_func
+-------
+
+..  autofunction:: paddle.fluid.layers.py_func
     :noindex:
 
 .. _api_fluid_layers_random_crop:
@@ -1309,6 +1365,14 @@ swish
 -----
 
 ..  autofunction:: paddle.fluid.layers.swish
+    :noindex:
+
+.. _api_fluid_layers_teacher_student_sigmoid_loss:
+
+teacher_student_sigmoid_loss
+----------------------------
+
+..  autofunction:: paddle.fluid.layers.teacher_student_sigmoid_loss
     :noindex:
 
 .. _api_fluid_layers_topk:
@@ -1873,6 +1937,14 @@ target_assign
 -------------
 
 ..  autofunction:: paddle.fluid.layers.target_assign
+    :noindex:
+
+.. _api_fluid_layers_yolov3_loss:
+
+yolov3_loss
+-----------
+
+..  autofunction:: paddle.fluid.layers.yolov3_loss
     :noindex:
 
 metric_op

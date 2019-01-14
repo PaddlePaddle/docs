@@ -221,15 +221,6 @@ release_memory
 ..  autofunction:: paddle.fluid.release_memory
     :noindex:
 
-.. _api_fluid_Scope:
-
-Scope
------
-
-..  autoclass:: paddle.fluid.Scope
-    :members:
-    :noindex:
-
 .. _api_fluid_scope_guard:
 
 scope_guard
