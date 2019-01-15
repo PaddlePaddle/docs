@@ -17,6 +17,20 @@ cuda8.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://https://paddle-inference-
 cuda9.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.2.0-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_
 ======================   ========================================
 
+
+如需下载develop版本的预测库，请参照以下表格，若出现登陆界面，请点击log as guest，即可下载：
+
+======================   ========================================
+版本说明                            C++预测库   
+======================   ========================================
+cpu_avx_mkl              `fluid_inference.tgz <http://ci.paddlepaddle.org/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_ 
+cpu_avx_openblas         `fluid_inference.tgz <http://ci.paddlepaddle.org/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/fluid_inference.tgz>`_
+cpu_noavx_openblas       `fluid_inference.tgz <http://ci.paddlepaddle.org/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/fluid_inference.tgz>`_
+cuda8.0_cudnn5_avx_mkl   `fluid_inference.tgz <http://ci.paddlepaddle.org/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
+cuda8.0_cudnn7_avx_mkl   `fluid_inference.tgz <http://ci.paddlepaddle.org/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
+cuda9.0_cudnn7_avx_mkl   `fluid_inference.tgz <http://ci.paddlepaddle.org/repository/download/Manylinux1_Cuda90cudnn7avxMkl/.lastSuccessful/fluid_inference.tgz>`_
+======================   ========================================
+
 从源码编译
 ----------
 用户也可以从 PaddlePaddle 核心代码编译C++预测库，只需在编译时配制下面这些编译选项：
