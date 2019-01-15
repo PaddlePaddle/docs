@@ -23,4 +23,5 @@ API Reference
     regularizer.rst
     transpiler.rst
     data/dataset.rst
+    data/data_reader.rst
 
