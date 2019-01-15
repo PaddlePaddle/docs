@@ -1,6 +1,6 @@
 ***
 
-# **Install under Windows**
+# **Install on Windows**
 
 This instruction will show you how to install PaddlePaddle on a 64-bit desktop or laptop and Windows. The Windows systems we support must meet the following requirements.
 

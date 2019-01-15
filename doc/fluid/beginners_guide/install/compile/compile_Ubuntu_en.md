@@ -1,5 +1,5 @@
 ***
-# **Compile under Ubuntu from Source Code**
+# **Compile on Ubuntu from Source Code**
 
 This instruction describes how to compile PaddlePaddle on *64-bit desktops or laptops* and Ubuntu systems. The Ubuntu systems we support must meet the following requirements:
 

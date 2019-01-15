@@ -1,4 +1,5 @@
 ***
+<a name="third_party"></a>
 # APPENDIX
 
 
@@ -228,6 +229,7 @@ PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specif
 
 
 ***
+<a name="whls"></a>
 </br></br>
 ## **Installation Package List**
 
@@ -322,6 +324,7 @@ PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specif
 You can find various distributions of PaddlePaddle-gpu in [the Release History](https://pypi.org/project/paddlepaddle-gpu/#history).
 
 ***
+<a name="dockers"></a>
 </br></br>
 ## Installation Mirrors and Introduction
 
@@ -359,7 +362,7 @@ You can find various distributions of PaddlePaddle-gpu in [the Release History](
 You can find the docker image for each release of PaddlePaddle in the [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/).
 
 ***
-
+<a name="ciwhls-release"></a>
 </br></br>
 
 ## **Multi-version whl package list - Release**
@@ -460,10 +463,8 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 </p>
 
 
+<a name="ciwhls"></a>
 </br></br>
-
-
-
 
 ## **Multi-version whl package list - dev**
 

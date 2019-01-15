@@ -1,5 +1,5 @@
 ***
-# **Install under MacOS**
+# **Install on MacOS**
 
 This instruction will show you how to install PaddlePaddle on a *64-bit desktop or laptop* and MacOS system. The MacOS system we support must meet the following requirements.
 
