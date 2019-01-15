@@ -262,7 +262,7 @@ FtrlOptimizer
  
 FTRL (Follow The Regularized Leader) Optimizer.
 
-TFRTL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_)
+FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_)
 
 
 .. math::
@@ -439,9 +439,10 @@ MomentumOptimizer
 
 .. math::
 	& velocity = mu * velocity + gradient\\
-	& if (use\_nesterov):\
-	\&\quad   param = param - (gradient + mu * velocity) * learning\_rate\\
+	& if (use\_nesterov):\\
+	&\quad   param = param - (gradient + mu * velocity) * learning\_rate\\
 	& else:\\&\quad   param = param - learning\_rate * velocity
+
 参数：
     - **learning_rate** (float|Variable) - 学习率，用于参数更新。作为数据参数，可以是浮点型值或含有一个浮点型值的变量
     - **momentum** (float) - 动量因子
@@ -469,7 +470,7 @@ RMSPropOptimizer
 
 .. py:class:: paddle.fluid.optimizer.RMSPropOptimizer(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, regularization=None, name=None)
 
-均方根平均传播（RMSProp）法是一种未发表的,自适应学习率的方法。原始slides提出了RMSProp：[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf]中的第29张slide。等式如下所示：
+均方根传播（RMSProp）法是一种未发表的,自适应学习率的方法。原演示幻灯片中提出了RMSProp：[http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf]中的第29张。等式如下所示：
 
 .. math::
     r(w, t) & = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\
@@ -493,11 +494,11 @@ RMSPropOptimizer
 其中， :math:`ρ` 是超参数，典型值为0.9,0.95等。 :math:`beta` 是动量术语。  :math:`epsilon` 是一个平滑项，用于避免除零，通常设置在1e-4到1e-8的范围内。
       
 参数：
-    - **learning_rate** （float） - 全球学习率。
+    - **learning_rate** （float） - 全局学习率。
     - **rho** （float） - rho是等式中的 :math:`rho` ，默认设置为0.95。
     - **epsilon** （float） - 等式中的epsilon是平滑项，避免被零除，默认设置为1e-6。
     - **momentum** （float） - 方程中的β是动量项，默认设置为0.0。
-    - **centered** （bool） - 如果为True，则通过梯度估计方差对梯度进行归一化；如果false，则由未centered的第二个moment归一化。将此设置为True有助于培训，但在计算和内存方面稍微昂贵一些。默认为False。
+    - **centered** （bool） - 如果为True，则通过梯度的估计方差,对梯度进行归一化；如果False，则由未centered的第二个moment归一化。将此设置为True有助于模型训练，但会消耗额外计算和内存资源。默认为False。
     - **regularization**  - 正则器项，如 ``fluid.regularizer.L2DecayRegularizer`` 。
     - **name**  - 可选的名称前缀。
     

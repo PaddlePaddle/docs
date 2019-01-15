@@ -1,17 +1,17 @@
 ***
-<a name="third_party"></a>
-# 附录
+# APPENDIX
 
-## **编译依赖表**
+
+## Compile Dependency Table
 
 <p align="center">
 <table>
 	<thead>
 	<tr>
-		<th> 依赖包名称 </th>
-		<th> 版本 </th>
-		<th> 说明 </th>
-		<th> 安装命令 </th>
+		<th> Dependency package name </th>
+		<th> Version </th>
+		<th> Description </th>
+		<th> Installation command </th>
 	</tr>
 	</thead>
 	<tbody>
@@ -24,26 +24,26 @@
 	<tr>
 		<td> GCC </td>
 		<td> 4.8 / 5.4 </td>
-		<td>  推荐使用CentOS的devtools2 </td>
+		<td>  recommends using devtools2 for CentOS </td>
 		<td>  </td>
 	</tr>
 		<tr>
 		<td> Python </td>
 		<td> 2.7.x. </td>
-		<td> 依赖libpython2.7.so </td>
-		<td> <code> apt install python-dev </code> 或 <code> yum install python-devel </code></td>
+		<td> depends on libpython2.7.so </td>
+		<td> <code> apt install python-dev </code> or <code> yum install python-devel </code></td>
 	</tr>
 	<tr>
 		<td> SWIG </td>
-		<td> 最低 2.0 </td>
+		<td> at least 2.0 </td>
 		<td>  </td>
-		<td> <code>apt install swig </code> 或 <code> yum install swig </code> </td>
+		<td> <code>apt install swig </code> or <code> yum install swig </code> </td>
 	</tr>
 	<tr>
 		<td> wget </td>
 		<td> any </td>
 		<td>  </td>
-		<td> <code> apt install wget </code>  或 <code> yum install wget </code> </td>
+		<td> <code> apt install wget </code>  or <code> yum install wget </code> </td>
 	</tr>
 	<tr>
 		<td> openblas </td>
@@ -53,9 +53,9 @@
 	</tr>
 	<tr>
 		<td> pip </td>
-		<td> 最低9.0.1 </td>
+		<td> at least 9.0.1 </td>
 		<td>  </td>
-		<td> <code> apt install python-pip </code> 或 <code> yum install Python-pip </code> </td>
+		<td> <code> apt install python-pip </code> or <code> yum install Python-pip </code> </td>
 	</tr>
 	<tr>
 		<td> numpy </td>
@@ -79,12 +79,12 @@
 		<td> patchELF </td>
 		<td> any </td>
 		<td>  </td>
-		<td> <code> apt install patchelf </code> 或参见github <a href="https://gist.github.com/ruario/80fefd174b3395d34c14">patchELF 官方文档</a></td>
+		<td> <code> apt install patchelf </code> or read github <a href="https://gist.github.com/ruario/80fefd174b3395d34c14">patchELF official documentation</a></td>
 	</tr>
 	<tr>
 		<td> go </td>
 		<td> >=1.8 </td>
-		<td> 可选 </td>
+		<td> optional </td>
 		<td>  </td>
 	</tr>
 	</tbody>
@@ -95,110 +95,110 @@
 ***
 <a name="Compile"></a>
 </br></br>
-## **编译选项表**
+## **Compile Option Table**
 
 <p align="center">
 <table>
 	<thead>
 	<tr>
-		<th> 选项 </th>
-		<th> 说明 </th>
-		<th> 默认值 </th>
+		<th> Option </th>
+		<th> Description  </th>
+		<th> Default </th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
 		<td> WITH_GPU </td>
-		<td> 是否支持GPU </td>
+		<td> Whether to support GPU </td>
 		<td> ON </td>
 	</tr>
 	<tr>
 		<td> WITH_C_API </td>
-		<td> 是否仅编译CAPI </td>
+		<td> Whether to compile CAPI </td>
 		<td>  OFF </td>
 	</tr>
 		<tr>
 		<td> WITH_DOUBLE </td>
-		<td> 是否使用双精度浮点数 </td>
+		<td> Whether to use double precision floating point numeber </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> WITH_DSO </td>
-		<td> 是否运行时动态加载CUDA动态库，而非静态加载CUDA动态库 </td>
+		<td> whether to load CUDA dynamic libraries dynamically at runtime, instead of statically loading CUDA dynamic libraries. </td>
 		<td> ON </td>
 	</tr>
 	<tr>
 		<td> WITH_AVX </td>
-		<td> 是否编译含有AVX指令集的PaddlePaddle二进制文件 </td>
+		<td> whether to compile PaddlePaddle binaries file containing the AVX instruction set </td>
 		<td> ON </td>
 	</tr>
 	<tr>
 		<td> WITH_PYTHON </td>
-		<td> 是否内嵌PYTHON解释器 </td>
+		<td> Whether the PYTHON interpreter is embedded </td>
 		<td> ON </td>
 	</tr>
 	<tr>
 		<td> WITH_STYLE_CHECK </td>
-		<td> 是否编译时进行代码风格检查 </td>
+		<td> Whether to perform code style checking at compile time </td>
 		<td> ON </td>
 	</tr>
 	<tr>
 		<td> WITH_TESTING </td>
-		<td> 是否开启单元测试 </td>
+		<td>  Whether to turn on unit test </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> WITH_DOC </td>
-		<td> 是否编译中英文文档 </td>
+		<td> Whether to compile Chinese and English documents </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> WITH_SWIG_PY </td>
-		<td> 是否编译PYTHON的SWIG接口，该接口可用于预测和定制化训练 </td>
+		<td> Whether to compile PYTHON's SWIG interface, which can be used for predicting and customizing training </td>
 		<td> Auto </td>
 	<tr>
 		<td> WITH_GOLANG </td>
-		<td> 是否编译go语言的可容错parameter server </td>
+		<td> Whether to compile the fault-tolerant parameter server of the go language </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> WITH_MKL </td>
-		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
+		<td> Whether to use the MKL math library, if not,using OpenBLAS </td>
 		<td> ON </td>
 	</tr>
 	<tr>
 		<td> WITH_SYSTEM_BLAS </td>
-		<td> 是否使用系统自带的BLAS </td>
+		<td> Whether to use the system's BLAS </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> WITH_DISTRIBUTE </td>
-		<td> 是否编译带有分布式的版本 </td>
+		<td> Whether to Compile with distributed version </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> WITH_MKL </td>
-		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
+		<td> Whether to uses the MKL math library, if not, using OpenBLAS </td>
 		<td> ON </td>
 	</tr>
 	<tr>
 		<td> WITH_RDMA </td>
-		<td> 是否编译支持RDMA的相关部分 </td>
+		<td> Whether to compile the relevant parts that supports RDMA </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> WITH_BRPC_RDMA </td>
-		<td> 是否使用BRPC RDMA作为RPC协议 </td>
+		<td> Whether to use BRPC RDMA as RPC protocol </td>
 		<td> OFF </td>
 	</tr>
 		<tr>
 		<td> ON_INFER </td>
-		<td> 是否打开预测优化 </td>
+		<td> Whether to turn on prediction optimization </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
 		<td> DWITH_ANAKIN </td>
-		<td> 是否编译ANAKIN </td>
+		<td> Whether to Compile ANAKIN </td>
 		<td> OFF </td>
 	</tr>
    </tbody>
@@ -206,171 +206,169 @@
 </p>
 
 
-
-
-
 **BLAS**
 
-PaddlePaddle支持 [MKL](https://software.intel.com/en-us/mkl) 和 [OpenBlAS](http://www.openblas.net) 两种BLAS库。默认使用MKL。如果使用MKL并且机器含有AVX2指令集，还会下载MKL-DNN数学库，详细参考[这里](https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn#cmake) 。
+PaddlePaddle supports two BLAS libraries, [MKL](https://software.intel.com/en-us/mkl) and [OpenBlAS](http://www.openblas.net/). MKL is used by default. If you use MKL and the machine contains the AVX2 instruction set, you will also download the MKL-DNN math library, for details please refer to [here](https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn#cmake).
 
-如果关闭MKL，则会使用OpenBLAS作为BLAS库。
+If you close MKL, OpenBLAS will be used as the BLAS library.
 
 **CUDA/cuDNN**
 
-PaddlePaddle在编译时/运行时会自动找到系统中安装的CUDA和cuDNN库进行编译和执行。 使用参数 `-DCUDA_ARCH_NAME=Auto` 可以指定开启自动检测SM架构，加速编译。
+PaddlePaddle automatically finds the CUDA and cuDNN libraries installed in the system for compilation and execution at compile time/runtime. Use the parameter `-DCUDA_ARCH_NAME=Auto` to specify to enable automatic detection of the SM architecture and speed up compilation.
 
-PaddlePaddle可以使用cuDNN v5.1之后的任何一个版本来编译运行，但尽量请保持编译和运行使用的cuDNN是同一个版本。 我们推荐使用最新版本的cuDNN。
+PaddlePaddle can be compiled and run using any version after cuDNN v5.1, but try to keep the same version of cuDNN in the compiling and running processes. We recommend using the latest version of cuDNN.
 
-**编译选项的设置**
+**Configure Compile Options**
 
-PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。cmake编译时，首先在系统路径（ `/usr/liby` 和 `/usr/local/lib` ）中搜索这几个库，同时也会读取相关路径变量来进行搜索。 通过使用`-D`命令可以设置，例如：
+PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specifying paths at compile time. When cmake compiles, it first searches the system paths ( `/usr/liby` and `/usr/local/lib` ) for these libraries, and also reads the relevant path variables for searching. Can be set by using the `-D` command, for example:
 
-> `cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCUDNN_ROOT=/opt/cudnnv5`
+> `Cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCUDNN_ROOT=/opt/cudnnv5`
 
-**注意**：这几个编译选项的设置，只在第一次cmake的时候有效。如果之后想要重新设置，推荐清理整个编译目录（ rm -rf ）后，再指定。
+**Note**: The settings introduced here for these compilation options are only valid for the first cmake. If you want to reset it later, it is recommended to clean up the entire build directory ( rm -rf ) and then specify it.
 
 
 ***
-<a name="whls"></a>
 </br></br>
-## **安装包列表**
+## **Installation Package List**
+
 
 <p align="center">
 <table>
 	<thead>
 	<tr>
-		<th> 版本号 </th>
-		<th> 版本说明 </th>
+		<th> Version Number </th>
+		<th> Release Discription </th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
-		<td> paddlepaddle==[版本号] 如 paddlepaddle==1.0.1(下载1.0.1版本只支持CPU的PaddlePaddle)</td>
-		<td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
+		<td> paddlepaddle==[version code] such as paddlepaddle==1.0.1 (download version 1.0.1 which only supports CPU PaddlePaddle)</td>
+		<td> Only support the corresponding version of the CPU PaddlePaddle, please refer to <a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> for the specific version. </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==1.0.1 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.1版本 </td>
+		<td>  Using version 1.0.1 compiled with CUDA 9.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==1.0.1.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的1.0.1版本 </td>
+		<td> Using version 1.0.1 compiled with CUDA 8.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==1.0.1.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的1.0.1版本 </td>
+		<td> Using version 1.0.1 compiled with CUDA 8.0 and cuDNN 5 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==1.0.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.0版本 </td>
+		<td> Using version 1.0.0 compiled with CUDA 9.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==1.0.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的1.0.0版本 </td>
+		<td> Using version 1.0.0 compiled with CUDA 8.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==1.0.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的1.0.0版本 </td>
+		<td> Using version 1.0.0 compiled with CUDA 8.0 and cuDNN 5 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.15.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的0.15.0版本 </td>
+		<td> Using version 0.15.0 compiled with CUDA 9.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.15.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的0.15.0版本 </td>
+		<td> Using version 0.15.0 compiled with CUDA 8.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.15.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.15.0版本 </td>
+		<td> Using version 0.15.0 compiled with CUDA 8.0 and cuDNN 5 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.14.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的0.15.0版本 </td>
+		<td> Using version 0.15.0 compiled with CUDA 9.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.14.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的0.15.0版本 </td>
+		<td> Using version 0.15.0 compiled with CUDA 8.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.14.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.15.0版本 </td>
+		<td> Using version 0.15.0 compiled with CUDA 8.0 and cuDNN 5 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.13.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的0.13.0版本 </td>
+		<td> Using version 0.13.0 compiled with CUDA 9.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.12.0 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.12.0版本 </td>
+		<td> Using version 0.12.0 compiled with CUDA 8.0 and cuDNN 5 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.11.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的0.11.0版本 </td>
+		<td> Using version 0.11.0 compiled with CUDA 8.0 and cuDNN 7 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.11.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.11.0版本 </td>
+		<td> Using version 0.11.0 compiled with CUDA 8.0 and cuDNN 5 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==0.11.0 </td>
-		<td> 使用CUDA 7.5和cuDNN 5编译的0.11.0版本 </td>
+		<td> Using version 0.11.0 compiled with CUDA 7.5 and cuDNN 5 </td>
 	</tr>
    </tbody>
 </table>
 </p>
 
 
-您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
+
+You can find various distributions of PaddlePaddle-gpu in [the Release History](https://pypi.org/project/paddlepaddle-gpu/#history).
 
 ***
-<a name="dockers"></a>
 </br></br>
-## **安装镜像表及简介**
+## Installation Mirrors and Introduction
+
 <p align="center">
 <table>
 	<thead>
 	<tr>
-		<th> 版本号 </th>
-		<th> 版本说明 </th>
+		<th> Version Number </th>
+		<th> Release Description </th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr>
 		<td> hub.baidubce.com/paddlepaddle/paddle:latest </td>
-		<td> 最新的预先安装好PaddlePaddle CPU版本的镜像 </td>
+		<td> The latest pre-installed image of the PaddlePaddle CPU version </td>
 	</tr>
 	<tr>
 		<td> hub.baidubce.com/paddlepaddle/paddle:latest-dev </td>
-		<td> 最新的PaddlePaddle的开发环境 </td>
+		<td> The latest PaddlePaddle development environment </td>
 	</tr>
 		<tr>
 		<td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
-		<td> 将version换成具体的版本，历史版本的预安装好PaddlePaddle的镜像 </td>
+		<td>  Replace version with a specific version, preinstalled PaddlePaddle image in historical version </td>
 	</tr>
 	<tr>
 		<td> hub.baidubce.com/paddlepaddle/paddle:latest-gpu </td>
-		<td> 最新的预先安装好PaddlePaddle GPU版本的镜像 </td>
+		<td> The latest pre-installed image of the PaddlePaddle GPU version </td>
 	</tr>
    </tbody>
 </table>
 </p>
 
 
-您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
+
+You can find the docker image for each release of PaddlePaddle in the [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/).
 
 ***
 
-<a name="ciwhls-release"></a>
 </br></br>
 
-## **多版本whl包列表-Release**
+## **Multi-version whl package list - Release**
 
 <p align="center">
 <table>
 	<thead>
 	<tr>
-		<th> 版本说明 </th>
+		<th> Release Instruction </th>
 		<th> cp27-cp27mu </th>
 		<th> cp27-cp27m </th>
 		<th> cp35-cp35m	</th>
@@ -461,14 +459,20 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 </table>
 </p>
 
-<a name="ciwhls"></a>
+
 </br></br>
-## **多版本whl包列表-dev**
+
+
+
+
+## **Multi-version whl package list - dev**
+
+
 <p align="center">
 <table>
 	<thead>
 	<tr>
-		<th> 版本说明 </th>
+		<th> Release Instruction </th>
 		<th> cp27-cp27mu </th>
 		<th> cp27-cp27m </th>
 		<th> cp35-cp35m	</th>
@@ -554,85 +558,108 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 </p>
 
 
-<!--TODO this part should be in a new webpage-->
-
 </br></br>
 
-## 在Docker中执行PaddlePaddle训练程序
+## Execute the PaddlePaddle training program in Docker
 
 ***
 
-假设您已经在当前目录（比如在/home/work）编写了一个PaddlePaddle的程序: `train.py` （可以参考
-[PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html)
-编写），就可以使用下面的命令开始执行训练：
+Suppose you have written a PaddlePaddle program in the current directory (such as /home/work): `train.py` ( refer to [PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html) to write), you can start the training with the following command:
 
-     cd /home/work
-     docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /work/train.py
 
-上述命令中，`-it` 参数说明容器已交互式运行；`-v $PWD:/work`
-指定将当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的:`/work`
-目录: `hub.baidubce.com/paddlepaddle/paddle` 指定需要使用的容器； 最后`/work/train.py`为容器内执行的命令，即运行训练程序。
+    cd /home/work
+    docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /work/train.py
 
-当然，您也可以进入到Docker容器中，以交互式的方式执行或调试您的代码：
 
-     docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /bin/bash
-     cd /work
-     python train.py
+In the above commands, the `-it` parameter indicates that the container has been run interactively; `-v $PWD:/work` specifies that the current path (the absolute path where the PWD variable in Linux will expand to the current path) is mounted to the `:/work` directory inside the container: `Hub.baidubce.com/paddlepaddle/paddle` specifies the container to be used; finally `/work/train.py` is the command executed inside the container, ie. the training program.
 
-**注：PaddlePaddle Docker镜像为了减小体积，默认没有安装vim，您可以在容器中执行** `apt-get install -y vim` **安装后，在容器中编辑代码。**
+Of course, you can also enter into the Docker container and execute or debug your code interactively:
+
+
+    docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /bin/bash
+    cd /work
+    python train.py
+
+
+**Note: In order to reduce the size, vim is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing ** `apt-get install -y vim` **(which installs vim for you) in the container.**
 
 </br></br>
 
-## 使用Docker启动PaddlePaddle Book教程
+## Start PaddlePaddle Book tutorial with Docker
 
 ***
 
-使用Docker可以快速在本地启动一个包含了PaddlePaddle官方Book教程的Jupyter Notebook，可以通过网页浏览。
-PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Notebook。
-如果您想要更深入了解deep learning，PaddlePaddle Book一定是您最好的选择。
-大家可以通过它阅读教程，或者制作和分享带有代码、公式、图表、文字的交互式文档。
+Use Docker to quickly launch a local Jupyter Notebook containing the PaddlePaddle official Book tutorial, which can be viewed on the web. PaddlePaddle Book is an interactive Jupyter Notebook for users and developers. If you want to learn more about deep learning, PaddlePaddle Book is definitely your best choice. You can read tutorials or create and share interactive documents with code, formulas, charts, and text.
 
-我们提供可以直接运行PaddlePaddle Book的Docker镜像，直接运行：
+We provide a Docker image that can run the PaddlePaddle Book directly, running directly:
 
 `docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book`
 
-国内用户可以使用下面的镜像源来加速访问：
+Domestic users can use the following image source to speed up access:
 
 `docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book`
 
-然后在浏览器中输入以下网址：
+Then enter the following URL in your browser:
 
 `http://localhost:8888/`
 
-就这么简单，享受您的旅程！如有其他问题请参见[FAQ](#FAQ)
+It's that simple and bon voyage! For further questions, please refer to the [FAQ](#FAQ).
+
 
 </br></br>
-## 使用Docker执行GPU训练
+## Perform GPU training using Docker
 
 ***
 
-为了保证GPU驱动能够在镜像里面正常运行，我们推荐使用
-[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)来运行镜像。
-请不要忘记提前在物理机上安装GPU最新驱动。
+In order to ensure that the GPU driver works properly in the image, we recommend using [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) to run the image. Don't forget to install the latest GPU drivers on your physical machine in advance.
 
-`nvidia-docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle:latest-gpu /bin/bash`
+`Nvidia-docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle:latest-gpu /bin/bash`
 
-**注: 如果没有安装nvidia-docker，可以尝试以下的方法，将CUDA库和Linux设备挂载到Docker容器内：**
-
-     export CUDA_SO="$(\ls /usr/lib64/libcuda* | xargs -I{} echo '-v {}:{}') \
-     $(\ls /usr/lib64/libnvidia* | xargs -I{} echo '-v {}:{}')"
-     export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
-     docker run ${CUDA_SO} \
-      ${DEVICES} -it hub.baidubce.com/paddlepaddle/paddle:latest-gpu
+**Note: If you don't have nvidia-docker installed, you can try the following to mount the CUDA library and Linux devices into the Docker container:**
 
 
-**关于AVX：**
+	export CUDA_SO="$(\ls /usr/lib64/libcuda* | xargs -I{} echo '-v {}:{}') \
+	$(\ls /usr/lib64/libnvidia* | xargs -I{} echo '-v {}:{}')"
+	export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
+	docker run ${CUDA_SO} \
+ 	 ${DEVICES} -it hub.baidubce.com/paddlepaddle/paddle:latest-gpu
 
-AVX是一种CPU指令集，可以加速PaddlePaddle的计算。最新的PaddlePaddle Docker镜像默认
-是开启AVX编译的，所以，如果您的电脑不支持AVX，需要单独[编译](/build_from_source_cn.html) PaddlePaddle为no-avx版本。
 
-以下指令能检查Linux电脑是否支持AVX：
+
+**About AVX:**
+
+AVX is a set of CPU instructions that speeds up the calculation of PaddlePaddle. The latest PaddlePaddle Docker image is enabled by default for AVX compilation, so if your computer does not support AVX, you need to [compile](/build_from_source_cn.html) PaddlePaddle to no-avx version separately.
+
+The following instructions can check if the Linux computer supports AVX:
 
 `if cat /proc/cpuinfo | grep -i avx; then echo Yes; else echo No; fi`
 
-如果输出是No，就需要选择使用no-AVX的镜像
+If the output is No, you need to choose a mirror that uses no-AVX.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

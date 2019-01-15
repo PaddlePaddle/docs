@@ -285,7 +285,7 @@ UniformInitializer
 参数：
         - **low** (float) - 下界 
         - **high** (float) - 上界
-        - **seed** (float) - 随机种子
+        - **seed** (int) - 随机种子
 
 **代码示例**
 

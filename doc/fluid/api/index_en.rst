@@ -18,9 +18,10 @@ API Reference
     metrics.rst
     nets.rst
     optimizer.rst
-    param_attr.rst
     profiler.rst
     recordio_writer.rst
     regularizer.rst
     transpiler.rst
+    data/dataset.rst
+    data/data_reader.rst
 

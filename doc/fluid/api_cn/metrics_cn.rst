@@ -196,7 +196,7 @@ CompositeMetric
 DetectionMAP
 -------------------------------
 
-.. py:class:: paddle.fluid.metrics.DetectionMAP(name=None)
+.. py:class:: paddle.fluid.metrics.DetectionMAP(input, gt_label, gt_box, gt_difficult=None, class_num=None, background_label=0, overlap_threshold=0.5, evaluate_difficult=True, ap_version='integral')
 
 计算 detection 平均精度（mAP）。 mAP是衡量object detectors精度的指标，比如 Faster R-CNN,SSD等。它不同于召回率，它是最大精度的平均值。 请从以下文章中获取更多信息：
 
@@ -246,7 +246,7 @@ https://arxiv.org/abs/1512.02325
 
 返回：当前 mini-batch 的 mAP 变量，和跨 mini-batch 的 mAP 累加和
 
-.. py:methord::  reset(executor, reset_program=None)
+.. py:method::  reset(executor, reset_program=None)
 
 在指定 batch 的每一 pass/user  开始时重置度量状态。
 
@@ -380,7 +380,7 @@ Recall
 
 .. py:class:: paddle.fluid.metrics.Recall(name=None)
 
-召回率（也称为敏感度）是度量有多个正例被分为正例
+召回率（也称为敏感度）是指得到的相关实例数占相关实例总数的比重
 
 https://en.wikipedia.org/wiki/Precision_and_recall
 

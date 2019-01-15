@@ -80,7 +80,7 @@
 
 		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
-	> 我们目前不支持CentOS下GPU版本PaddlePaddle的编译
+	> 我们目前不支持CentOS下使用Docker编译GPU版本的PaddlePaddle
 
 9. 执行编译：
 
@@ -171,9 +171,9 @@
 
 	- `cd Paddle`
 
-8. 切换到较稳定release分支下进行编译(从1.2.0分支开始支持python3.6及3.7版本)：
+8. 切换到较稳定release分支下进行编译(从1.2分支开始支持python3.6及3.7版本)：
 
-	`git checkout release/1.2.0`
+	`git checkout release/1.2`
 
 9. 并且请创建并进入一个叫build的目录下：
 

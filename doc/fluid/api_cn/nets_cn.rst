@@ -159,7 +159,7 @@ attention运算机制可以被视为将查询和一组键值对映射到输出�
 sequence_conv_pool
 -------------------------------
 
-.. py:function:: paddle.fluid.nets.sequence_conv_pool(input, num_filters, filter_size, param_attr=None, act='sigmoid', pool_type='max')
+.. py:function:: paddle.fluid.nets.sequence_conv_pool(input, num_filters, filter_size, param_attr=None, act='sigmoid', pool_type='max', bias_attr=None)
 
 sequence_conv_pool由序列卷积和池化组成
 

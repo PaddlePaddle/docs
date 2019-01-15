@@ -6,7 +6,7 @@
 
 
 
-请注意：在其他系统上的尝试可能会导致安装失败。请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机处理器支持AVX指令集，否则请选择[多版本whl包安装列表](Tables.html/#ciwhls)中`no_avx`的版本。
+请注意：在其他系统上的尝试可能会导致安装失败。请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机处理器支持AVX指令集，否则请选择[[最新Release安装包列表](./Tables.html/#ciwhls-release)中`no_avx`的版本。
 
 CentOS系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处理器是否支持AVX指令集
 
@@ -47,17 +47,6 @@ CentOS系统下您可以使用`cat /proc/cpuinfo | grep avx`来检测您的处�
 
 <br/><br/>
 ### ***使用pip安装PaddlePaddle***
-
-您可以直接粘贴以下命令到命令行来安装PaddlePaddle(适用于CentOS7安装CPU-ONLY的版本)，如果出现问题，您可以参照后面的解释对命令作出适应您系统的更改：
-
-Python2.7：
-
-	yum update && yum install -y epel-release && yum install -y python-devel python-pip && pip install paddlepaddle
-
-
-Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，我们提供默认您已经正确安装python3.5+以及pip3之后的安装命令）
-
-	yum update && yum install -y epel-release && pip3 install paddlepaddle
 
 
 首先，我们使用以下指令来**检测本机的环境**是否适合安装PaddlePaddle：
@@ -101,7 +90,7 @@ Python3.5、3.6、3.7: (由于在CentOS下安装Python3的方法较为复杂，�
 
 	* 对于有**其他要求**的用户：`pip install paddlepaddle==[版本号]`  或 `pip3 install paddlepaddle==[版本号]`
 
-	> `版本号`参见[安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[多版本whl包列表](./Tables.html/#ciwhls)或者我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
+	> `版本号`参见[最新Release安装包列表](./Tables.html/#whls)或者您如果需要获取并安装**最新的PaddlePaddle开发分支**，可以从[[最新dev安装包列表](./Tables.html/#ciwhls)或者我们的[CI系统](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) 中下载最新的whl安装包和c-api开发包并安装。如需登录，请点击“Log in as guest”。
 
 
 
