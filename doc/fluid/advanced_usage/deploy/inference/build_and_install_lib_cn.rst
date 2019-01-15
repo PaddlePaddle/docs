@@ -7,15 +7,15 @@
 -------------
 
 ======================   ========================================
-版本说明                            C++预测库   
+版本说明                            C++预测库
 ======================   ========================================
-cpu_avx_mkl              `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxCp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_ 
-cpu_avx_openblas         `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuAvxOpenblas/.lastSuccessful/fluid_inference.tgz>`_
-cpu_noavx_openblas       `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_CpuNoavxOpenblas/.lastSuccessful/fluid_inference.tgz>`_
+cpu_avx_mkl              `fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.2.0-cpu-avx-mkl/fluid_inference.tgz>`_
+cpu_avx_openblas         `fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.2.0-cpu-avx-openblas/fluid_inference.tgz>`_
+cpu_noavx_openblas       `fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.2.0-cpu-noavx-openblas/fluid_inference.tgz>`_
 cuda7.5_cudnn5_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda75cudnn5cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
-cuda8.0_cudnn5_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda80cudnn5cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
-cuda8.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda8cudnn7cp27cp27mu/.lastSuccessful/fluid_inference.tgz>`_
-cuda9.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/repository/download/Manylinux1_Cuda90cudnn7avxMkl/.lastSuccessful/fluid_inference.tgz>`_
+cuda8.0_cudnn5_avx_mkl   `fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.2.0-gpu-cuda8-cudnn5-avx-mkl/fluid_inference.tgz>`_
+cuda8.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://https://paddle-inference-lib.bj.bcebos.com/1.2.0-gpu-cuda8-cudnn7-avx-mkl/fluid_inference.tgz>`_
+cuda9.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.2.0-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_
 ======================   ========================================
 
 从源码编译
@@ -23,10 +23,10 @@ cuda9.0_cudnn7_avx_mkl   `fluid_inference.tgz <https://guest:@paddleci.ngrok.io/
 用户也可以从 PaddlePaddle 核心代码编译C++预测库，只需在编译时配制下面这些编译选项：
 
 ============================  =========
-选项                           值   
+选项                           值
 ============================  =========
 CMAKE_BUILD_TYPE              Release
-FLUID_INFERENCE_INSTALL_DIR   安装路径    
+FLUID_INFERENCE_INSTALL_DIR   安装路径
 WITH_FLUID_ONLY               ON（推荐）
 WITH_SWIG_PY                  OFF（推荐）
 WITH_PYTHON                   OFF（推荐）
@@ -92,7 +92,7 @@ WITH_MKL                      ON/OFF
      │       ├── xxhash
      │       └── zlib
      └── version.txt
-     
+
 version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使用OpenBlas或MKL数学库、CUDA/CUDNN版本号，如：
 
   .. code-block:: text
