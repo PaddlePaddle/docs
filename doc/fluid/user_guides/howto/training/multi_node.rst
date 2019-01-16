@@ -1,4 +1,4 @@
-########
+﻿########
 多机训练
 ########
 
@@ -6,5 +6,7 @@
    :maxdepth: 2
 
    cluster_quick_start.rst
+   cluster_quick_start_en.rst
    cluster_howto.rst
+   cluster_howto_en.rst
    train_on_baidu_cloud_cn.rst

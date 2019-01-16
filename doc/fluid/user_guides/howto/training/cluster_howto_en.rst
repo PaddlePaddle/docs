@@ -1,0 +1,203 @@
+.. _cluster_howto
+
+Fluid Distributed Training User Manual
+=======================================
+
+Basic Idea Of Distributed Training
+-------------------------------------
+
+Distributed deep learning training is usually divided into two parallelization methods: data parallelism, model parallelism, refer to the following figure:
+
+.. image:: src/parallelism.png
+
+In the model parallel mode, the layers and parameters of the model will be distributed on multiple nodes. The model will go through multiple crosses communication between nodes in the forward and reverse training of a mini-batch. Each node only saves a part of the entire model; In data parallel mode, each node holds the layers and parameters of the complete model, each node perform forward and reverse calculations on their own, then complete the aggregation of the gradients and synchronize the parameters on all nodes synchronously. Fluid's current version only provides data parallel mode, in addition, special case implementations such as model parallelism (large sparse model training) functions will be explained in subsequent documents.
+
+In the training of data parallel mode, Fluid uses two communication modes to deal with the requirements of distributed training for different training tasks, namely RPC communication and Collective Communication. The RPC communication method uses `gRPC <https://github.com/grpc/grpc/>`_, Collective communication method uses `NCCL2 <https://developer.nvidia.com/nccl>`_. 
+
+.. csv-table:: The following is a horizontal comparison of RPC communication and Collective communication:
+	:header: "Feature", "Collective", "RPC"
+
+	"Ring-Based Communication", "Yes", "No"
+	"Asynchronous Training", "Yes", "Yes"
+	"Distributed Model", "No", "Yes"
+	"Fault-tolerant Training", "No", "Yes"
+	"Performance", "Faster", "Fast"
+
+- Structure of RPC Communication Method:
+
+  .. image:: src/dist_train_pserver.png
+
+  Data parallel distributed training using RPC communication mode will start multiple pserver processes and multiple trainer processes, each pserver process will save a part of the model parameters and be responsible for receiving the gradients sent from the trainer and updating these model parameters; Each trainer process will save a copy of the complete model, and use a part of the data to train, then send the gradient to the pserver, finally pull the updated parameters from the pserver.
+
+  The pserver process can be on a compute node that is completely different from the trainer, or it can be shared with the trainer. The number of pserver processes required for a distributed task usually needs to be adjusted according to the actual situation to achieve the best performance. However, usually the process of pserver is no more than the trainer.
+
+  When using GPU training, the pserver can choose to use the GPU or only use the CPU. If the pserver also uses the GPU, it will increase the overhead of the gradient data received from the CPU copy to the GPU. In some cases, the overall training performance will be degraded.
+
+- Structure of NCCL2 communication method:
+
+  .. image:: src/dist_train_nccl2.png
+
+Using NCCL2 (Collective communication method) for distributed training, there is no need to start the pserver process. Each trainer process saves a complete model parameter. After completing the calculation of the gradient, the trainer communicates with each other, and the Reduce gradient data is to all devices of all nodes then each node completes parameter updates.
+
+Training Using the Parameter Server Method
+----------------------------------------------
+
+Use the :code:`transpiler` API to quickly convert a program that can be executed on a single machine into a program that can be executed in a distributed manner. On different server nodes
+On, pass the parameter corresponding to :code:`transpiler` to get the current node to execute: :code:`Program` .
+
+
+.. csv-table:: required configuration parameters including
+   :header: "parameter", "description"
+
+   "role", "\ **required**\  distinguishes whether to start as pserver or trainer, not to transpile, or use other variable names or environment variables"
+   "trainer_id", "\ **required**\  If it is a trainer process, it is used to specify the unique id of the current trainer in the task, starting from 0, and must be guaranteed not to be repeated in one task"
+   "pservers", "\ **required**\  current task all pserver ip:port list string, for example: 127.0.0.1:6170,127.0.0.1:6171"
+   "trainers", "\ **required**\  number of trainer nodes"
+   "sync_mode", "\ **optional**\  True for synchronous mode, False for asynchronous mode"
+   "startup_program", "\ **optional**\  If startup_program is not the default fluid.default_startup_program(), this parameter needs to be passed in"
+   "current_endpoint", "\ **optional**\  This parameter is only required for NCCL2 mode"
+
+An example, suppose there are two nodes, namely :code:`192.168.1.1` and :code:`192.168.1.2`, use port 6170 to start 4 trainers.
+Then the code can be written as:
+
+.. code-block:: python
+
+	role = "PSERVER"
+	trainer_id = 0 # get actual trainer id from cluster
+	pserver_endpoints = "192.168.1.1:6170,192.168.1.2:6170"
+	current_endpoint = "192.168.1.1:6170" # get actual current endpoint
+	trainers = 4
+	t = fluid.DistributeTranspiler()
+	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
+	if role == "PSERVER":
+		pserver_prog = t.get_pserver_program(current_endpoint)
+		pserver_startup = t.get_startup_program(current_endpoint,Pserver_prog)
+		exe.run(pserver_startup)
+		exe.run(pserver_prog)
+	elif role == "TRAINER":
+		train_loop(t.get_trainer_program())
+
+
+Choose Synchronous Or Asynchronous Training
++++++++++++++++++++++++++++++++++++++++++++++
+
+Fluid distributed tasks can support synchronous training or asynchronous training. In the synchronous training mode, all trainer nodes will merge the gradient data of all nodes synchronously in each mini-batch and send them to the parameter server to complete the update. Underneath, each trainer does not have a process of waiting for each other, and can independently parameterize the parameter server. In general, using the asynchronous training method can have a higher overall throughput than the synchronous training mode when the trainer node is more.
+
+When the :code:`transpile` function is called, the distributed training program is generated by default. The asynchronous training program can be generated by specifying the :code:`sync_mode=False` parameter:
+
+.. code-block:: python
+
+	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=False)
+
+
+
+Choose Whether To Use The Distributed Embedding Table For Training
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Embedding is widely used in various network structures, especially text processing related models. In some scenarios, such as recommendation systems or search engines, the feature id of embedding may be very large. When the feature id reaches a certain number, the embedding parameter will become very large. On the one hand, the memory of the single machine may not be stored, resulting in the inability to train. On the one hand, the normal training mode needs to synchronize the complete parameters for each iteration. If the parameters are too large, the communication will become very slow, which will affect the training speed.
+
+Fluid supports the training of hundreds of millions of large-scale sparse features embedding. The embedding parameter is only saved on the parameter server. The parameter prefetch and gradient sparse update method greatly reduce the traffic and improve the communication speed.
+
+This feature is only valid for distributed training and cannot be used on a single machine. Need to be used with sparse updates.
+
+Using method, when configuring embedding, add the parameters :code:`is_distributed=True` and :code:`is_sparse=True`.
+Parameters :code:`dict_size` Defines the total number of ids in the data. The id can be any value in the int64 range. As long as the total number of ids is less than or equal to dict_size, it can be supported.
+So before you configure, you need to estimate the total number of feature ids in the data.
+
+.. code-block:: python
+
+	emb = fluid.layers.embedding(
+		is_distributed=True,
+		input=input,
+		size=[dict_size, embedding_width],
+		is_sparse=True)
+
+
+Select Parameter Distribution Method
+++++++++++++++++++++++++++++++++++++++
+
+Parameters :code:`split_method` can specify how the parameters are distributed on the parameter server.
+
+Fluid uses `RoundRobin <https://en.wikipedia.org/wiki/Round-robin_scheduling>`_ by default.
+The method distributes parameters on multiple parameter servers. In this case, the parameters are evenly distributed on all parameter servers in the case where the parameter segmentation is not turned off by default. If you need to use something else, you can pass in other methods. The currently available methods are: :code:`RoundRobin` and :code:`HashName` . You can also use a custom distribution method, just refer to `here <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/transpiler/ps_dispatcher.py#L44>`_
+write custom Distribution function
+
+
+Turn Off The Segmentation Parameters
+++++++++++++++++++++++++++++++++++++++
+
+Parameters :code:`slice_var_up` Specifies whether to split large (more than 8192 elements) parameters into multiple parameter servers to balance the computational load. The default is on.
+
+When the size of the trainable parameters in the model is relatively uniform or a custom parameter distribution method is used, the parameters are evenly distributed on multiple parameter servers,you can choose to turn off the sharding parameters, which reduces the computational and copying overhead of sharding and reorganization:
+
+.. code-block:: python
+
+	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, slice_var_up=False)
+
+
+Turn On Memory Optimization
+++++++++++++++++++++++++++++++
+
+In the parameter server distributed training mode, you need to enable memory optimization: code:`memory_optimize` Compared with a single machine, you need to pay attention to the following rules:
+
+* On the pserver side, \**don't**\execute :code:`memory_optimize`
+* On the trainer side, execute :code:`fluid.memory_optimize` and execute :code:`t.transpile()`
+* On the trainer side, call :code:`memory_optimize` to add :code:`skip_grads=True` Make sure the gradient sent is not renamed: :code:`fluid.memory_optimize(input_program, skip_grads=True)`
+
+Example:
+
+.. code-block:: python
+
+	if role == "TRAINER":
+		fluid.memory_optimize(fluid.default_main_program(), skip_grads=True)
+	t = fluid.DistributeTranspiler()
+	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
+	if role == "PSERVER":
+		# start pserver here
+	elif role == "TRAINER":
+		# start trainer here
+
+
+Training Using NCCL2 Communication
+--------------------
+
+Distributed training in NCCL2 mode, because there is no parameter server role, the trainers communicate with each other, pay attention to when using:
+
+* Configure :code:`fluid.DistributeTranspilerConfig` :code:`mode="nccl2"` .
+* When calling :code:`transpile`, :code:`trainers` is passed to the endpoint of all trainer nodes, and passed the argument :code:`current_endpoint`.
+* Initialize :code:`ParallelExecutor` with :code:`num_trainers` and :code:`trainer_id` .
+
+An example:
+
+.. code-block:: python
+
+	Trainer_id = 0 # get actual trainer id here
+	Trainers = "192.168.1.1:6170,192.168.1.2:6170"
+	Current_endpoint = "192.168.1.1:6170"
+	Config = fluid.DistributeTranspilerConfig()
+	Config.mode = "nccl2"
+	t = fluid.DistributeTranspiler(config=config)
+	T.transpile(trainer_id, trainers=trainers, current_endpoint=current_endpoint)
+	Exe = fluid.ParallelExecutor(use_cuda,
+		Loss_name=loss_name, num_trainers=len(trainers.split(",")), trainer_id=trainer_id)
+	...
+
+.. csv-table:: Description of the necessary parameters for NCCL2 mode
+	:header: "parameter", "description"
+
+	"trainer_id", "The unique ID of each trainer node in the task, starting at 0, there can be no duplication"
+	"trainers", "endpoints for all trainer nodes in the task, used to broadcast NCCL IDs when NCCL2 is initialized"
+	"current_endpoint", "endpoint of current node"
+
+Currently, distributed training using NCCL2 only supports synchronous training. The distributed training using NCCL2 mode is more suitable for the model volume and needs to be used\
+Synchronous training and GPU training, if the hardware device supports RDMA and GPU Direct, can achieve high distributed training performance.
+
+Note that if there are multiple network devices in the system, you need to manually specify the devices used by NCCL2.
+Assuming you need to use :code:`eth2` as the communication device, you need to set the following environment variables:
+
+.. code-block:: bash
+
+	Export NCCL_SOCKET_IFNAME=eth2
+
+In addition, NCCL2 provides other switch environment variables, such as whether to enable GPU Direct, whether to use RDMA, etc. For details, please refer to
+`ncclknobs <https://docs.nvidia.com/deeplearning/sdk/nccl-developer-guide/index.html#ncclknobs>`_ .
