@@ -1,6 +1,6 @@
 .. _cluster_howto
 
-Fluid Distributed Training User Manual
+the Manual of Distributed Training
 =======================================
 
 Basic Idea Of Distributed Training
