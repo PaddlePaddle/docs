@@ -16,7 +16,7 @@ gperftool主要支持以下四个功能：
 - heap-profiling using tcmalloc
 - CPU profiler
 
-Paddle也提供了基于gperftool的[CPU性能分析教程](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/fluid/howto/optimization/cpu_profiling_cn.md)。
+Paddle也提供了基于gperftool的[CPU性能分析教程](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/howto/optimization/cpu_profiling_cn.md)。
 
 对于堆内存的分析，主要用到thread-caching malloc和heap-profiling using tcmalloc。
 
