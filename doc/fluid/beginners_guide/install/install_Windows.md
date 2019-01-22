@@ -2,11 +2,11 @@
 
 # **Windows下安装**
 
-本说明将介绍如何在以及Windows系统下安装PaddlePaddle，您的计算机需要满足以下要求：
+本文将介绍如何在Windows系统下安装PaddlePaddle，您的计算机需要满足以下要求：
 
 * *64位台式机或笔记本电脑*
 
-* *Windows 7/8 and Windows 10 专业版/企业版*
+* *Windows 7/8 ，Windows 10 专业版/企业版*
 
 注：
 
