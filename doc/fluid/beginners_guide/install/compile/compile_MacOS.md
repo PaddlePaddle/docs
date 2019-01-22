@@ -177,9 +177,9 @@
 
 	- `cd Paddle`
 
-7. 切换到较稳定release分支下进行编译：(注意，python3.6、python3.7版本是从1.2.0分支开始支持)
+7. 切换到较稳定release分支下进行编译：(注意，python3.6、python3.7版本是从1.2分支开始支持)
 
-	`git checkout release/1.0.0`
+	`git checkout release/1.2`
 
 8. 并且请创建并进入一个叫build的目录下：
 
