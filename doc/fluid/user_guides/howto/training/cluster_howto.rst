@@ -96,7 +96,7 @@
 
 Fluid分布式任务可以支持同步训练或异步训练，在同步训练方式下，所有的trainer节点，会在每个mini-batch
 同步地合并所有节点的梯度数据并发送给parameter server完成更新，在异步训练方式下，每个trainer没有相互\
-同步等待的过程，可以独立的parameter server的参数。通常情况下，使用异步训练方式，可以在trainer节点\
+同步等待的过程，可以独立地更新parameter server的参数。通常情况下，使用异步训练方式，可以在trainer节点\
 更多的时候比同步训练方式有更高的总体吞吐量。
 
 在调用 :code:`transpile` 函数时，默认会生成同步训练的分布式程序，通过指定 :code:`sync_mode=False`
