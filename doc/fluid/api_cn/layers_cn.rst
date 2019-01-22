@@ -9638,8 +9638,7 @@ has_inf
 参数：
 	- **x(variable)** - 用于被检查的Tensor/LoDTensor
 
-返回：
-  tensor变量存储输出值，包含一个bool型数值
+返回： tensor变量存储输出值，包含一个bool型数值
 
 返回类型：Variable
 
@@ -9667,8 +9666,7 @@ has_nan
 参数：
 	- **x(variable)** - 用于被检查的Tensor/LoDTensor
 
-返回：
-  tensor变量存储输出值，包含一个bool型数值
+返回： tensor变量存储输出值，包含一个bool型数值
 
 返回类型：Variable
 
@@ -9690,8 +9688,7 @@ isfinite
 参数：
   - **x(variable)** - 用于被检查的Tensor/LoDTensor
 
-返回:
-  Variable: tensor变量存储输出值，包含一个bool型数值
+返回: Variable: tensor变量存储输出值，包含一个bool型数值
 
 返回类型：Variable
 
