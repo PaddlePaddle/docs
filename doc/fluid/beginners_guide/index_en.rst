@@ -28,4 +28,5 @@ If you have been armed with certain level of deep learning knowledge, and it hap
     :hidden:
 
     install/index_en.rst
+    basics/learning_materials_en.md
 

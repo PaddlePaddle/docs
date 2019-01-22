@@ -166,7 +166,7 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 8. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch):
 
-	- `git checkout release/1.2.0`
+	- `git checkout release/1.2`
 
 9. And please create and enter a directory called build:
 

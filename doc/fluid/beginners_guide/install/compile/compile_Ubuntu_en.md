@@ -52,7 +52,7 @@ Once you have **properly installed Docker**, you can start **compiling PaddlePad
 
 5. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch)
 
-	`git checkout release/1.2.0`
+	`git checkout release/1.2`
 
 6. Create and enter the /paddle/build path:
 
