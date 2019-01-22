@@ -54,9 +54,9 @@
 
 4. 进入Docker后进入paddle目录下：`cd paddle`
 
-5. 切换到较稳定release分支下进行编译：(注意，python3.6、python3.7版本是从1.2.0分支开始支持)
+5. 切换到较稳定release分支下进行编译：(注意，python3.6、python3.7版本是从1.2分支开始支持)
 
-	`git checkout release/1.2.0`
+	`git checkout release/1.2`
 
 6. 创建并进入/paddle/build路径下：
 

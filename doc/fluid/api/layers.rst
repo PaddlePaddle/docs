@@ -623,6 +623,14 @@ hsigmoid
 ..  autofunction:: paddle.fluid.layers.hsigmoid
     :noindex:
 
+.. _api_fluid_layers_huber_loss:
+
+huber_loss
+----------
+
+..  autofunction:: paddle.fluid.layers.huber_loss
+    :noindex:
+
 .. _api_fluid_layers_im2sequence:
 
 im2sequence
