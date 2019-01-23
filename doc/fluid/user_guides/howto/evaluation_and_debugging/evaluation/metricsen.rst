@@ -14,7 +14,7 @@ Common indicators
 
 The metric function varies with different model tasks, and so does the indicator construction.
 
-The labels in regression task are real numbers, so the loss and metric functions are constructed in an identical way. The MSE method can be a great reference.
+The labels in regression task are real numbers, so the loss and metric functions are constructed in an identical way. You can refer to the MSE method for help.
 The commonly used indicators for classification tasks are classification indicators.The indicator mentioned in this paper is generally indicators of binary classification. For details of indicators of multi-category and multi-label tasks, please read the corresponding API documents. For example, the ranking indicator auc, multi-classification can be used as a 0,1 classification task, and the auc indicator still works.
 Fluid contains common classification indicators, such as Precision, Recall, Accuracy, etc. Please read the API documentation for more. Take :ref:`Precision` as an example, the specific method is
 
@@ -37,7 +37,7 @@ For other tasks such as MultiTask Learning, Metric Learning, and Learning To Ran
 
 Custom indicator
 ################
-Fluid supports custom metrics and is flexible enough to support a wide range of computing tasks. The evaluation of the model is implemented below with a metric function composed of a simple counter. Where ``preds`` is the prediction values returned from the model and ``labels`` is the given labels.
+Fluid supports custom metrics and is flexible enough to support a wide range of computing tasks. The evaluation of the model is implemented below with a metric function composed of a simple counter, where ``preds`` is the prediction values returned from the model and ``labels`` is the given labels.
 
 .. code-block:: python
 
