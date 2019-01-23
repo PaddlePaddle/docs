@@ -1,29 +1,29 @@
-.. _train_on_baidu_cloud_cn:
+.. _train_on_baidu_cloud_en:
 
 Distributed Training in Baidu Cloud
 =====================================
 
 PaddlePaddle Fluid distributed training allows you to start distributed training without relying on cluster systems (such as MPI, Kubernetes).
-This chapter will use `Baidu Cloud <https://cloud.baidu.com/>`_ as an example to show how to boot in a cloud environment or even a cloud GPU environment.
-Large-scale distributed tasks.
+This chapter will use `Baidu Cloud <https://cloud.baidu.com/>`_ as an example to show you how to perform large-scale distributed tasks in a cloud environment or even a cloud GPU environment.
+.
 
 Create a cluster template
 ---------------------------
 
-Log in to Baidu Cloud Console, select BCC Service, and click "Create Instance". Select the region, note that only some regions have GPU servers available.
-After selecting the appropriate territory, select the corresponding model and create an empty server, as shown below:
+Log in to Baidu Cloud Console, select BCC Service, and click "Create Instance". Select the region, and note that only some regions have GPU servers available.
+After selecting an appropriate region, select the corresponding model and create an empty server, as shown below:
 
 .. image:: src/create_gpu_machine.png
 
-* In the operating system options, you can select the corresponding version according to your needs. Note that the CUDA version is selected according to the actual situation. Here we choose CUDA-9.2.
-* In the example, the machine payment method is selected as post-paid, which means that as the machine is released, the charge will stop correspondingly, which is more cost-effective for running a one-time task.
+* In the operating system options, you can select the corresponding version according to your needs. Note that the CUDA version is selected based on the actual situation. Here we choose CUDA-9.2.
+* In the example, the payment method is selected as post-paid, which means that as the machine is released, the charge will stop correspondingly, which is more cost-effective for running a one-time task.
 
 After the machine is created successfully, execute the following command to install the paddlepaddle GPU version and related dependencies.
 
 .. code-block:: bash
 
   apt-get update && apt-get install -y python python-pip python-opencv
-  # Note: Baidu cloud cuda-9.2 image does not have cudnn and nccl2 installed by default. It needs to be installed manually. If you install it yourself, you need to download it from the official website.
+  # Note: Baidu cloud cuda-9.2 image does not have cudnn and nccl2 installed by default. It needs to be installed manually. If you intend to install it by yourself, you need to download it from the official website.
   wget -q "http://paddle-train-on-cloud.cdn.bcebos.com/libcudnn7_7.2.1.38-1+cuda9.2_amd64.deb"
   wget -q "http://paddle-train-on-cloud.cdn.bcebos.com/nccl_2.2.13-1+cuda9.0_x86_64.txz"
   dpkg -i libcudnn7_7.2.1.38-1+cuda9.2_amd64.deb
@@ -31,12 +31,12 @@ After the machine is created successfully, execute the following command to inst
   unxz nccl_2.2.13-1+cuda9.0_x86_64.txz
   tar xf nccl_2.2.13-1+cuda9.0_x86_64.tar
   cp -r nccl_2.2.13-1+cuda9.0_x86_64/lib/* /usr/lib
-  # Note: You can choose whether to use the following pip image to speed up the download.
+  # Note: You can choose whether to use the following pip image to speed up the download.(for users within China)
   pip install -i https://pypi.tuna.tsinghua.edu.cn/simple matplotlib==2.2.3
   pip install -i https://pypi.tuna.tsinghua.edu.cn/simple paddlepaddle-gpu==0.15.0.post97
 
 
-After the installation is complete, use the following test program to test whether the current machine can run the GPU training program correctly. If an error is encountered, please fix the running environment problem according to the error message. In order to facilitate the startup of the GPU cluster, the test program is successfully executed. Select the current server and select Create Custom Image. You can select the configured image when you create the GPU cluster.
+After the installation is completed, use the following test program to test whether the current machine can run the GPU training program correctly. If an error is encountered, please fix the running environment problem according to the error message. In order to facilitate the startup of the GPU cluster, after the test program is successfully executed, select the current server and select "Create Customized Image" . You can select the configured image when you create the GPU cluster later.
 
 .. image:: src/create_image.png
 
@@ -130,18 +130,18 @@ After the installation is complete, use the following test program to test wheth
 Create a cluster
 ------------------
 
-After creating the image, you can use this configured image to create a GPU cluster and create a sufficient number of GPU servers according to your actual needs.As an example, here are two GPU servers started, including the one created in the previous step, so start a new server here.
+After creating the image, you can use this configured image to create a GPU cluster and create a sufficient number of GPU servers according to your actual needs.As an example, here are two GPU servers started, including the one created in the previous step, and a new server here.
 
-Click "Create Instance" to select the same configured GPU server in the same region. Pay attention to the image you just created as the operating system.
+Click "Create Instance" to select GPU servers with the same settings in the same region. Especially, the image you just created should be selected as the operating system.
 
 .. image:: src/create_more_nodes.png
 
-Write a cluster task startup script
+Write cluster task startup scripts
 ------------------------------------
 
 In order to facilitate the launch of distributed training tasks on more GPU servers, we will use
 `fabric <http://www.fabfile.org/>`_
-as a cluster task launch management tool, you can choose other familiar cluster frameworks, such as MPI, Kubernetes, and the methods demonstrated in this example only for simple cluster environments, and servers can log in to each other ssh.
+as a cluster task launch management tool. You can choose other familiar cluster frameworks, such as MPI, Kubernetes, and the methods demonstrated in this example are only proposed for simple cluster environments, and servers can log in to each other through SSH.
 
 To install the fabric, you need to execute:
 
@@ -149,10 +149,10 @@ To install the fabric, you need to execute:
 
   pip install fabric
 
-Suppose we created two GPU servers, ip are :code:`172.16.0.5, 172.16.0.6`, and then on the first server,
-first create the training program file :code:`dist_train_demo.py`, from
+Suppose we have created two GPU servers, ips of them are :code:`172.16.0.5, 172.16.0.6` . On the first server,
+create the training program file :code:`dist_train_demo.py`, from
 `here <https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/training/src/dist_train_demo.py>`_
-to download the code. Then write the :code:`fabfile.py` script to control the parameter server and trainer that start the training task on different servers:
+to download the code. Then write the :code:`fabfile.py` script to control the parameter servers and trainers that start the training task on different servers:
 
 .. code-block:: python
 
@@ -202,7 +202,7 @@ Save the above code to :code:`fabfile.py` and execute
 
   fab -H 172.16.0.5,172.16.0.6 start
 
-You can start a distributed training task. This task will start training on two GPU servers by starting two pserver processes and two trainer processes.
+Right now, you can start a distributed training task. This task will start training on two GPU servers by starting two pserver processes and two trainer processes respectively.
 
 Get distributed training results
 ---------------------------------
@@ -215,10 +215,10 @@ view the results of these log files on the server. You can also use the fabric t
 
   fab -H 172.16.0.5,172.16.0.6 tail-log
 
-Close the cluster
-------------------
+Terminate the cluster
+------------------------
 
-After the task is executed, don't forget to release the GPU cluster resources, select the server you want to release, and select "Release" to shut down the machine and release the resources.
+After the task is executed, don't forget to release the GPU cluster resources. To do this, firstly select the servers you want to release, and then select "Release" to shut down the machine and release the resources.
 If you need to perform a new task, you can use the previously saved image directly, start a new cluster, and start the training by following the previous steps.
 
 .. image:: src/release.png
