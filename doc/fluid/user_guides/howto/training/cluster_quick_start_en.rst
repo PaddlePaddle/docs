@@ -1,4 +1,4 @@
-..  _cluster_quick_start:
+..  _cluster_quick_start_en:
 
 Quick Start with Distributed Training
 ==========================
