@@ -1,4 +1,4 @@
-.. _cluster_howto
+.. _cluster_howto_en:
 
 Manual for Distributed Training with Fluid
 ==========================================
