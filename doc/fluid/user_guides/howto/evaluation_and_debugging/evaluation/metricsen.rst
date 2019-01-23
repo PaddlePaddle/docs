@@ -1,21 +1,21 @@
-############
-Model evaluation
-############
+################
+Model Evaluation
+################
 
-Model evaluation is to use indicators to reflect the accuracy of the model under the expected target, and to determine the observation index according to the model task, as an important basis for adjusting the super-parameters in training and evaluating the effect of the model. The input to the metric function is the predicted preds and labels for the current model, and the output is custom. The metric function is very similar to the loss function, but metric is not part of the model training network.
+Model evaluation is to use indicators to reflect the accuracy of a model under the expected target. The observed indicators should be determined with respect to the need of specific model task. It is also an important basis to adjusting the super-parameters in training and evaluating the effect of a model. The input to the metric function is the predicted preds and labels for the current model, and the output is customized. The metric function is very similar to the loss function, but metric is not a component of the model training network.
 
-Users can get the current predicted preds and labels through the training network, customize the metric function on the Python side, or accelerate the metric calculation on the GPU by customizing the c++ Operator.
+Users can get the current predicted preds and labels through training network, and customize the metric function on the Python side, or accelerate the metric calculation on the GPU by customizing the C++ Operator.
 
-The paddle.fluid.metrics module contains this feature
+The ``paddle.fluid.metrics`` module contains this feature.
 
 
 Common indicators
-############
+##################
 
-The metric function varies depending on the model task, and the indicator construction method varies depending on the task.
+The metric function varies with different model tasks, and so does the indicator construction.
 
-The regression type task labels are real numbers, so the loss and metric functions are constructed identically. Refer to the MSE method.
-The commonly used indicators for classification tasks are classification indicators. The two categories mentioned in this paper are generally two-category indicators. Multi-category and multi-label need to view the corresponding API documents. For example, the ranking indicator auc, multi-classification can be used as a 0,1 classification task, and the auc indicator still applies.
+The labels in regression task are real numbers, so the loss and metric functions are constructed in an identical way. The MSE method can be a great reference.
+The commonly used indicators for classification tasks are classification indicators.The indicator mentioned in this paper is generally indicators of binary classification. For details of indicators of multi-category and multi-label tasks, please read the corresponding API documents. For example, the ranking indicator auc, multi-classification can be used as a 0,1 classification task, and the auc indicator still works.
 Fluid contains common classification indicators, such as Precision, Recall, Accuracy, etc. Please read the API documentation for more. Take :ref:`Precision` as an example, the specific method is
 
 .. code-block:: python
@@ -36,8 +36,8 @@ Fluid contains common classification indicators, such as Precision, Recall, Accu
 For other tasks such as MultiTask Learning, Metric Learning, and Learning To Rank, please refer to the API documentation for various indicator construction methods.
 
 Custom indicator
-############
-Fluid supports custom metrics and is flexible enough to support a wide range of computing tasks. The evaluation of the model is implemented below by a simple counter metric function.Where preds is the model predictor and labels is the given label.
+################
+Fluid supports custom metrics and is flexible enough to support a wide range of computing tasks. The evaluation of the model is implemented below with a metric function composed of a simple counter. Where ``preds`` is the prediction values returned from the model and ``labels`` is the given labels.
 
 .. code-block:: python
 
