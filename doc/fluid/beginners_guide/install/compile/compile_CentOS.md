@@ -75,10 +75,11 @@
 8. 执行cmake：
 
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	>请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本, 如以下命令中`-DPY_VERSION=3.5`表示python版本为3.5.x
 
 	* 对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	> 我们目前不支持CentOS下使用Docker编译GPU版本的PaddlePaddle
 
@@ -152,8 +153,8 @@
 		1.  `pip install virtualenv` 或 `pip3 install virtualenv`
 		2.  `pip install virtualenvwrapper` 或 `pip3 install virtualenvwrapper`
 		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`（请找到对应Python版本的`virtualenvwrapper.sh`）
-		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat vitualenvwrapper.sh`
-		5.  安装`virtualwrapper`
+		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat vitualenvwrapper.sh`, 该shell文件中描述了步骤及命令
+		5.  按照`virtualenvwrapper.sh`中的描述，安装`virtualwrapper`
 		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 5. 进入虚环境：`workon paddle-venv`
