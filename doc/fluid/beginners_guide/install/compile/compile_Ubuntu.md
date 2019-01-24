@@ -76,7 +76,7 @@
 8. 执行cmake：
 
 	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)<!--TODO: Link 编译选项表到这里-->
-	>请注意修改参数`-DPY_VERSION`为您当希望编译使用的python版本, 如以下命令中`-DPY_VERSION=3.5`表示python版本为3.5.x
+	>请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本, 如以下命令中`-DPY_VERSION=3.5`表示python版本为3.5.x
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
