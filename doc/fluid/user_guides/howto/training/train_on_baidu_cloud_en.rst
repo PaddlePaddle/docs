@@ -1,11 +1,10 @@
 .. _train_on_baidu_cloud_en:
 
-Distributed Training in Baidu Cloud
+Distributed Training on Baidu Cloud
 =====================================
 
 PaddlePaddle Fluid distributed training allows you to start distributed training without relying on cluster systems (such as MPI, Kubernetes).
 This chapter will use `Baidu Cloud <https://cloud.baidu.com/>`_ as an example to show you how to perform large-scale distributed tasks in a cloud environment or even a cloud GPU environment.
-.
 
 Create a cluster template
 ---------------------------
@@ -141,7 +140,9 @@ Write cluster task startup scripts
 
 In order to facilitate the launch of distributed training tasks on more GPU servers, we will use
 `fabric <http://www.fabfile.org/>`_
-as a cluster task launch management tool. You can choose other familiar cluster frameworks, such as MPI, Kubernetes, and the methods demonstrated in this example are only proposed for simple cluster environments, and servers can log in to each other through SSH.
+as a cluster task launch management tool. You can choose other familiar cluster frameworks, such as MPI, Kubernetes. 
+
+The methods demonstrated in this example are only proposed for simple cluster environments, and servers can log in to each other through SSH.
 
 To install the fabric, you need to execute:
 
@@ -149,7 +150,7 @@ To install the fabric, you need to execute:
 
   pip install fabric
 
-Suppose we have created two GPU servers, ips of them are :code:`172.16.0.5, 172.16.0.6` . On the first server,
+Suppose we have created two GPU servers, the ip addresses of them are :code:`172.16.0.5, 172.16.0.6` . On the first server,
 create the training program file :code:`dist_train_demo.py`, from
 `here <https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/user_guides/howto/training/src/dist_train_demo.py>`_
 to download the code. Then write the :code:`fabfile.py` script to control the parameter servers and trainers that start the training task on different servers:
@@ -207,7 +208,7 @@ Right now, you can start a distributed training task. This task will start train
 Get distributed training results
 ---------------------------------
 
-The example task will log under :code:`/root/work`, respectively
+The example task will be logged under :code:`/root/work`, respectively
 :code:`pserver.log.[IP]` and :code:`trainer.log.[IP]` can be manually
 view the results of these log files on the server. You can also use the fabric to obtain log information of all nodes, for example:
 
