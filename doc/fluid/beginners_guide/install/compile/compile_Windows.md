@@ -43,6 +43,8 @@
     
     > python 需要2.7 及以上版本, 同时确保 `numpy, protobuf, wheel` 等模块得到安装 [下载地址](https://www.python.org/download/releases/2.7/)
     
+    > python2.7下, 使用`pip`命令就可以; 如果是python3.x, 则建议使用`pip3`命令来使用pip安装工具。
+    
         * 安装 numpy 包可以通过命令 `pip install numpy` 或 `pip3 install numpy`
         
         * 安装 protobuf 包可以通过命令 `pip install protobuf` 或 `pip3 install protobuf`
