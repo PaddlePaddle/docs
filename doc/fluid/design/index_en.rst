@@ -15,5 +15,4 @@ Design
   algorithm/index_en.rst
   network/index_en.rst
   modules/index_en.rst
-  interface/index_en.rst
   dist_train/index_en.rst
