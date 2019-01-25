@@ -82,7 +82,7 @@ enum Type {
 }
 ```
 
-A TensorDesc describes `SelectedRows` and `LoDTensor`. For details of `SelectedRows`, please reference [`SelectedRows`](./selected_rows.md).
+A TensorDesc describes `SelectedRows` and `LoDTensor`. For details of `SelectedRows`, please reference `SelectedRows` .
 
 ## Definition of LodTensorDesc
 
@@ -97,4 +97,4 @@ A LoDTensorDesc contains a tensor and a lod_level.
 
 ## Definition of Variable in Python
 
-For Variable in Python, please reference [`Python API`](./python_api.md).
+For Variable in Python, please reference `Python API`.
