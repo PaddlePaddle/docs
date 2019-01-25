@@ -13,10 +13,10 @@ The parameter `alpha` is a hyperparameter that weights the relative contribution
 The most commonly used norm penalties are the L2 norm penalty and the L1 norm penalty. These are given as follows:
 
 ##### L2 Regularization:
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/l2_regularization.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/l2_regularization.png" align="center"/><br/>
 
 ##### L1 Regularization
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/l1_regularization.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/l1_regularization.png" align="center"/><br/>
 
 A much more detailed mathematical background of regularization can be found [here](http://www.deeplearningbook.org/contents/regularization.html).
 
@@ -40,15 +40,15 @@ The idea of building ops for regularization is in sync with the refactored Paddl
 
 Below is an example of a really simple feed forward neural network.
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/feed_forward.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/feed_forward.png" align="center"/><br/>
 
 The Python API will modify this computation graph to add regularization operators. The modified computation graph will look as follows:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/feed_forward_regularized.png" align="center"/><br/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/feed_forward_regularized.png" align="center"/><br/>
    
 ### Python API implementation for Regularization
 
-Using the low level ops, `L2_regularization_op` and `L1_regularization_op`, any user can add regularization to their computation graphs. However, this will require a lot of lines of code and we should design Python APIs that support regularization. An example of such an API can be seen in [Keras](https://keras.io/regularizers/). As per the PaddlePaddle [Python API design](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/fluid/design/modules/python_api.md), the layer functions are responsible for creating operators, operator parameters and variables. Since regularization is a property of parameters, it makes sense to create these in the layer functions.
+Using the low level ops, `L2_regularization_op` and `L1_regularization_op`, any user can add regularization to their computation graphs. However, this will require a lot of lines of code and we should design Python APIs that support regularization. An example of such an API can be seen in [Keras](https://keras.io/regularizers/). As per the PaddlePaddle [Python API design](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md), the layer functions are responsible for creating operators, operator parameters and variables. Since regularization is a property of parameters, it makes sense to create these in the layer functions.
 
 #### Creation of Regularization ops
 There are two possibilities for creating the regularization ops:
@@ -59,8 +59,8 @@ The proposal is to add these ops in a lazy manner just before the backward pass.
 
 #### Storage of Regularization attributes
 
-Since we want to create the regularization ops in a lazy manner, the regularization attributes (type of regularization and weight of regularization penalty) can be stored as attributes of the [`Parameter`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/v2/framework/framework.py#L421) class. This is because regularization is a property of the parameters and storing regularization properties with Parameters also allows for shared parameters.
+Since we want to create the regularization ops in a lazy manner, the regularization attributes (type of regularization and weight of regularization penalty) can be stored as attributes of the `Parameter` class. This is because regularization is a property of the parameters and storing regularization properties with Parameters also allows for shared parameters.
 
 #### High-level API
 
-In PaddlePaddle Python API, users will primarily rely on [layer functions](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/fluid/design/modules/python_api.md#layer-function) to create neural network layers. Hence, we also need to provide regularization functionality in layer functions. The design of these APIs can be postponed for later right now. A good reference for these APIs can be found in [Keras](https://keras.io/regularizers/) and also by looking at Tensorflow in [`tf.contrib.layers`](https://www.tensorflow.org/api_guides/python/contrib.layers).
+In PaddlePaddle Python API, users will primarily rely on [layer functions](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#layer-function) to create neural network layers. Hence, we also need to provide regularization functionality in layer functions. The design of these APIs can be postponed for later right now. A good reference for these APIs can be found in [Keras](https://keras.io/regularizers/) and also by looking at Tensorflow in [`tf.contrib.layers`](https://www.tensorflow.org/api_guides/python/contrib.layers).
