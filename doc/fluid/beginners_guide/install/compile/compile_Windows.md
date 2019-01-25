@@ -54,9 +54,9 @@
 	- `git clone https://github.com/PaddlePaddle/Paddle.git`
 	- `cd Paddle`
 
-4. 切换到较稳定release分支下进行编译(支持1.2.x及以上版本)：
+4. 切换到较稳定release分支下进行编译：
 
-	- `git checkout release/x.x.x`
+	- `git checkout release/1.2`
 
 5. 创建名为build的目录并进入：
 
