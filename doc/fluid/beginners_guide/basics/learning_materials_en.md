@@ -1,4 +1,4 @@
-# Learning Materials - Books, Lectures and More
+# Learning Materials
 
 ## The first book to start your journey
 
