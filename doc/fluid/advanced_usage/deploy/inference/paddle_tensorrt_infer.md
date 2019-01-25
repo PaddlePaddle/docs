@@ -1,9 +1,16 @@
-# 使用TensorRT库预测
+# 使用Paddle-TensorRT库预测
 
-NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。Paddle 1.0 采用了子图的形式对TensorRT进行了初步集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNet, ResNet50, VGG19, ResNext, Se-ReNext, GoogleNet, DPN, ICNET, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
+NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。PaddlePaddle 采用了子图的形式对TensorRT进行了集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNet, ResNet50, VGG19, ResNext, Se-ReNext, GoogleNet, DPN, ICNET, Deeplabv3, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
+
+## 内容
+- [编译Paddle-TRT预测库](#编译Paddle-TRT预测库)
+- [Paddle-TRT接口使用](#Paddle-TRT接口使用)
+- [Paddle-TRT样例编译测试](#Paddle-TRT样例编译测试)
+- [Paddle-TRT INT8使用](#Paddle-TRT_INT8使用)
+- [Paddle-TRT子图运行原理](#Paddle-TRT子图运行原理)
 
 
-## 编译带`TensorRT`的预测库
+## <a name="编译Paddle-TRT预测库">编译Paddle-TRT预测库</a>
 
 **使用Docker编译预测库**         
 
@@ -59,7 +66,7 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
    
 	`fluid_inference_install_dir`下， paddle目录包含了预测库的头文件和预测库的lib， version.txt 中包含了lib的版本和配置信息，third_party 中包含了预测库依赖的第三方库      
 
-## Paddle TensorRT使用
+## <a name="Paddle-TRT接口使用">Paddle-TRT接口使用</a> 
 
 [`paddle_inference_api.h`]('https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/paddle_inference_api.h') 定义了使用TensorRT的所有接口。  
 
@@ -79,13 +86,13 @@ using paddle::contrib::AnalysisConfig;
 
 void RunTensorRT(int batch_size, std::string model_dirname) {
   // 1. 创建MixedRTConfig
-  AnalysisConfig config(true);
-  config.model_dir = model_dirname;
-  config->use_gpu = true;
-  config->device = 0;
-  config->fraction_of_gpu_memory = 0.15;
+  AnalysisConfig config(model_dirname);
+  // config->SetModel(model_dirname + "/model",                                                                                             
+  //                     model_dirname + "/params");
+ 
+  config->EnableUseGpu(100, 0 /*gpu_id*/);
   config->EnableTensorRtEngine(1 << 20 /*work_space_size*/, batch_size /*max_batch_size*/);
-
+  
   // 2. 根据config 创建predictor
   auto predictor = CreatePaddlePredictor(config);
   // 3. 创建输入 tensor 
@@ -120,7 +127,8 @@ int main() {
 }
 ```
 
-## 样例编译
+## <a name="Paddle-TRT样例编译测试">Paddle-TRT样例编译测试</a>
+
 1. 下载样例   
 	```
 	wget http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/paddle_trt_samples.tar.gz
@@ -161,8 +169,31 @@ int main() {
 	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  thread_mobilenet_test SAMPLE_BASE_DIR/sample/mobilenetv1
 	```
 
+## <a name="Paddle-TRT_INT8使用">Paddle-TRT INT8使用</a>
 
-## 子图运行原理
+1. Paddle-TRT INT8 简介    
+	神经网络的参数在一定程度上是冗余的，在很多任务上，我们可以在保证模型精度的前提下，将Float32的模型转换成Int8的模型。目前，Paddle-TRT支持离线将预训练好的Float32模型转换成Int8的模型，具体的流程如下：1）**生成校准表**（Calibration table）；我们准备500张左右的真实输入数据，并将数据输入到模型中去，Paddle-TRT会统计模型中每个op输入和输出值的范围信息，并将记录到校准表中，这些信息有效的减少了模型转换时的信息损失。2）生成校准表后，再次运行模型，**Paddle-TRT会自动加载校准表**，并进行INT8模式下的预测。
+
+2. 编译测试INT8样例
+
+	```shell
+	cd SAMPLE_BASE_DIR/sample
+	# sh run_impl.sh {预测库的地址} {测试脚本的名字} {模型目录}
+	# 我们随机生成了500个输入来模拟这一过程，建议大家用真实样例进行实验。
+	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  fluid_generate_calib_test SAMPLE_BASE_DIR/sample/mobilenetv1
+	
+	```
+	运行结束后，在 `SAMPLE_BASE_DIR/sample/build/mobilenetv1` 模型目录下会多出一个名字为trt_calib_*的文件，即校准表。
+	
+	``` shell
+	# 执行INT8预测
+	# 将带校准表的模型文件拷贝到特定地址
+	cp -rf SAMPLE_BASE_DIR/sample/build/mobilenetv1 SAMPLE_BASE_DIR/sample/mobilenetv1_calib
+	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  fluid_int8_test SAMPLE_BASE_DIR/sample/mobilenetv1_calib
+	```
+
+## <a name="Paddle-TRT子图运行原理">Paddle-TRT子图运行原理</a>
+ 
    PaddlePaddle采用子图的形式对TensorRT进行集成，当模型加载后，神经网络可以表示为由变量和运算节点组成的计算图。Paddle TensorRT实现的功能是能够对整个图进行扫描，发现图中可以使用TensorRT优化的子图，并使用TensorRT节点替换它们。在模型的推断期间，如果遇到TensorRT节点，Paddle会调用TensoRT库对该节点进行优化，其他的节点调用Paddle的原生实现。TensorRT在推断期间能够进行Op的横向和纵向融合，过滤掉冗余的Op，并对特定平台下的特定的Op选择合适的kenel等进行优化，能够加快模型的预测速度。  
 
 下图使用一个简单的模型展示了这个过程：   
