@@ -60,7 +60,7 @@ For a detailed explanation, refer to this document -
 
 The revamped distributed training architecture can address the above discussed limitations. Below is the illustration of how it does so:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/distributed_architecture.png"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/distributed_architecture.png"/>
 
 The major components are: *Python API*, *Distribute Transpiler* and *Remote Executor*.
 
@@ -152,7 +152,7 @@ for data in train_reader():
 `JobDesc` object describe the distributed job resource specification to run on
 Cluster environment.
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/remote_executor.png" width="500" align="center" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/remote_executor.png" width="500" align="center" />
 
 `RemoteExecutor.run` sends the `ProgramDesc` and
 [TrainingJob](https://github.com/PaddlePaddle/cloud/blob/unreleased-tpr/doc/autoscale/README.md#training-job-resource)
@@ -171,7 +171,7 @@ In the future, a more general placement algorithm should be implemented, which m
 
 The local training architecture will be the same as the distributed training architecture, the difference is that everything runs locally, and there is just one PaddlePaddle runtime:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/local_architecture.png"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/local_architecture.png"/>
 
 
 ### Training Data
