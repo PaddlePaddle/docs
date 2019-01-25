@@ -1,5 +1,5 @@
 ***
-# **Compile under Windows from Source Code**
+# **Compile on Windows from Source Code**
 
 This instruction will show you how to compile PaddlePaddle on a *64-bit desktop or laptop* and Windows 10. The Windows systems we support must meet the following requirements:
 
@@ -52,9 +52,9 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 	- `git clone https://github.com/PaddlePaddle/Paddle.git`
 	- `cd Paddle`
 
-4. Switch to a more stable release branch for compilation (supports 1.2.x and above):
+4. Switch to a more stable release branch for compilation :
 
-	- `git checkout release/x.x.x`
+	- `git checkout release/1.2`
 
 5. Create a directory called build and enter it:
 

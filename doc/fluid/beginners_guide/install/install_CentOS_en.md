@@ -1,6 +1,6 @@
 ***
 
-# **Install under CentOS**
+# **Install on CentOS**
 
 This note will show you how to install PaddlePaddle on a *64-bit desktop or laptop* and CentOS. The CentOS system we support needs to meet the following requirements:
 
