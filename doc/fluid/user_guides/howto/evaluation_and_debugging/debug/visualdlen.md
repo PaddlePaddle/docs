@@ -19,7 +19,7 @@ VisualDL currently supports 4 components:
 - histogram
 
 ### Graph
-Compatible with ONNX (Open Neural Network Exchange)[https://github.com/onnx/onnx], through integration with the Python SDK, VisualDL is compatible with most mainstream DNN platforms including PaddlePaddle, pytorch, mxnet.
+Compatible with ONNX (Open Neural Network Exchange)[https://github.com/onnx/onnx] , through integration with the Python SDK, VisualDL is compatible with most mainstream DNN platforms including PaddlePaddle, pytorch, mxnet.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/daming-lu/large_files/master/graph_demo.gif" width="60%" />
@@ -47,7 +47,7 @@ Used to visualize the trend of the distribution of elements in any tensor.
 <img src="https://raw.githubusercontent.com/daming-lu/large_files/master/histogram.gif" width="60%"/>
 </p>
 
-## Quickly try
+## Quick Start
 Use the following command to quickly test VisualDL.
 
 ```
@@ -61,7 +61,7 @@ visualDL --logdir=scratch_log --port=8080
 # Visit http://127.0.0.1:8080
 ```
 
-If there is a problem in the above steps, it is probably due to different versions or different locations of python or pip. The following installation methods can be solved.
+If there is a problem in the above steps, it is probably due to different versions or different locations of python or pip. The following installation methods can solve the issue.
 
 ## Installing with virtualenv
 
@@ -103,9 +103,9 @@ visualDL --logdir=scratch_log --port=8080
 #Visit http://127.0.0.1:8080
 ```
 
-If appears `TypeError: __init__() got an unexpected keyword argument 'file'`, because the protobuf is not 3.5 or higher, you can run `pip install --upgrade protobuf` to solve it.
+If it appears `TypeError: __init__() got an unexpected keyword argument 'file'`, the reason is that the protobuf is not 3.5 or higher. You can run `pip install --upgrade protobuf` to solve it.
 
-If you still encounter installation problems in a virtual environment, try the following.
+If you still encounter installation problems in a virtual environment, try the following methods.
 
 
 ## Installing with Anaconda
@@ -141,7 +141,7 @@ If you are still experiencing installation issues, try the following source code
 
 ### Installing with code
 ```
-# suggested you are in a virtual environment or anaconda.
+# It is suggested you be in a virtual environment or anaconda.
 git clone https://github.com/PaddlePaddle/VisualDL.git
 cd VisualDL
 
@@ -149,7 +149,7 @@ python setup.py bdist_wheel
 pip install --upgrade dist/visualdl-*.whl
 ```
 
-If packaging and installation encounter other problems, don't install just want to run Visual DL can see [here](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/develop/how_to_dev_frontend_cn.md)
+If you encounter other packaging and installation problems, or just want to run Visual DL without installing it, you can read [here](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/develop/how_to_dev_frontend_cn.md)
 
 
 ## SDK
@@ -158,7 +158,7 @@ VisualDL also provides the python SDK and the C++ SDK for different ways.
 ### Python SDK
 VisualDL now supports Python 2 and Python 3.
 
-Take the simplest Scalar component as an example, try to create a scalar component and insert data from multiple time steps:
+Take the simplest Scalar component as an example, try to create a scalar component and insert data of multiple time steps:
 
 ```python
 import random
@@ -178,7 +178,7 @@ for step in range(100):
 ```
 
 ### C++ SDK
-The C++ SDK usage of the above code in the Python SDK is as follows
+The C++ SDK version of the above code in the Python SDK is as follows :
 ```c++
 #include <cstdlib>
 #include <string>
@@ -204,7 +204,7 @@ int main() {
   return 0;
 }
 ```
-## Launching Board
+## Launch Board
 When the log data has been generated during the training, you can start the board to preview the visual information in real time.
 
 ```
@@ -215,4 +215,4 @@ Board also supports the following parameters to achieve remote access:
 
 - `--host` set IP
 - `--port` set port
-- `--model_pb` specifies the ONNX format's model file
+- `--model_pb` specifies the model file of ONNX format
