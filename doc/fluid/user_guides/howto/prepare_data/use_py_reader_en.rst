@@ -1,11 +1,11 @@
-.. _user_guide_use_py_reader:
+.. _user_guide_use_py_reader_en:
 
-#########################################
-Use PyReader to read train and test data
-##########################################
+############################################
+Use PyReader to read training and test data
+############################################
 
-Paddle Fluid support PyReader,implementing feeding data from Python to C++.Differenting from :ref:`user_guide_use_numpy_array_as_train_data` , the process of loading to Python is asynchronous with the process of reading data :code:`Executor::Run()` with PyReader
-and is able to work with :code:`double_buffer_reader` to upgrade the performance of reading data.
+Paddle Fluid supports PyReader, which implements feeding data from Python to C++. Different from :ref:`user_guide_use_numpy_array_as_train_data_en` , the process of loading data to Python is asynchronous with the process of :code:`Executor::Run()` reading data when PyReader is in use.
+Moreover, PyReader is able to work with :code:`double_buffer_reader` to upgrade the performance of reading data.
 
 Create PyReader Object
 ################################
@@ -22,13 +22,13 @@ You can create PyReader object as follows:
                                        name='py_reader',
                                        use_double_buffer=True)
 
-capacity is buffer size of PyReader;
-shapes is the size of parameters of batch(such as image and label in picture classification task);
-dtypes is data type of parameters of batch;
-name is name of PyReader;
-use_double_buffer is True by default,expressed by :code:`double_buffer_reader` 。
+In the code, ``capacity`` is buffer size of PyReader; 
+``shapes`` is the size of parameters in the batch (such as image and label in picture classification task); 
+``dtypes`` is data type of parameters in the batch; 
+``name`` is name of PyReader instance; 
+``use_double_buffer`` is True by default, which means :code:`double_buffer_reader` is used.
 
-If there are different PyReader objects created,the names of objects should be unique. Usually,you have to create two different PyReader objects in training and testing period.For example.In the same task,PyReader objects in training and testing period are created as follows:
+To create some different PyReader objects (Usually, you have to create two different PyReader objects for training and testing phase), the names of objects must be different. For example, In the same task, PyReader objects in training and testing period are created as follows:
 
 .. code-block:: python
 
@@ -46,9 +46,9 @@ If there are different PyReader objects created,the names of objects should be u
                                             name='test',
                                             use_double_buffer=True)
 
-Note: You could not copy PyReader object with :code:`Program.clone()` so you have to create PyReader objects in training and testing period with the method mentioned above
+Note: You could not copy PyReader object with :code:`Program.clone()` so you have to create PyReader objects in training and testing phase with the method mentioned above
 
-Because you could not copy PyReader with :code:`Program.clone()` so you have to get parameters in training and testing period shared with :code:`fluid.unique_name.guard()` .
+Because you could not copy PyReader with :code:`Program.clone()` so you have to share the parameters of training phase with testing phase through :code:`fluid.unique_name.guard()` .
 
 Details are as follows:
 
@@ -89,17 +89,17 @@ Details are as follows:
 
 Configure data source of PyReader objects
 ##########################################
-PyReader provide :code:`decorate_tensor_provider` and :code:`decorate_paddle_reader` ,both of which receieve Python :code:`generator` as data source.The difference is:
+PyReader provides :code:`decorate_tensor_provider` and :code:`decorate_paddle_reader` , both of which receieve Python :code:`generator` as data source.The difference is:
 
-1. :code:`decorate_tensor_provider` : everytime :code:`generator` generates a  :code:`list` or :code:`tuple` ,each element of :code:`list` 或 :code:`tuple` is :code:`LoDTensor` or Numpy array,and :code:`LoDTensor` or :code:`shape` of Numpy array must be the same with :code:`shapes` stated while PyReader is created.
+1. :code:`decorate_tensor_provider` :  :code:`generator` generates a  :code:`list` or :code:`tuple` each time, with each element of :code:`list` or :code:`tuple` being :code:`LoDTensor` or Numpy array, and :code:`LoDTensor` or :code:`shape` of Numpy array must be the same as :code:`shapes` stated while PyReader is created.
 
 
-2. :code:`decorate_paddle_reader` : everytime :code:`generator` generates a :code:`list` or :code:`tuple` ,each element of :code:`list` 或 :code:`tuple` is Numpy array,but :code:`shape` of Numpy array have not to be the same with :code:`shape` stated while PyReader is created. :code:`decorate_paddle_reader` will :code:`reshape` :code:`shape` of Numpy array
+2. :code:`decorate_paddle_reader` :  :code:`generator` generates a :code:`list` or :code:`tuple` each time, with each element of :code:`list` or :code:`tuple` being Numpy array,but the :code:`shape` of Numpy array doesn't have to be the same as :code:`shape` stated while PyReader is created. :code:`decorate_paddle_reader` will :code:`reshape` Numpy array internally. 
 
 Train and test model with PyReader
 ##################################
 
-Details are as follows（the left part of code above）:
+Details are as follows（the remaining part of the code above）:
 
 .. code-block:: python
 
@@ -140,6 +140,6 @@ Details are as follows（the left part of code above）:
 
 Specific steps are as follows:
 
-1. Before the start of every epoch,call :code:`start()` to invoke PyReader;
+1. Before the start of every epoch, call :code:`start()` to invoke PyReader;
 
-2. At the end of every epoch, :code:`read_file` throw exception :code:`fluid.core.EOFException` . Call :code:`reset()` after catching up exception to reset the state of PyReader in order to start next epoch.
+2. At the end of every epoch, :code:`read_file` throws exception :code:`fluid.core.EOFException` . Call :code:`reset()` after catching up exception to reset the state of PyReader in order to start next epoch.
