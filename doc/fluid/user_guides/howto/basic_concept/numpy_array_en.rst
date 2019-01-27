@@ -1,18 +1,18 @@
-.. _user_guide_use_numpy_array_as_train_data:
+.. _user_guide_use_numpy_array_as_train_data_en:
 
-###############################
-Take Numpy Array as Train Data
-###############################
+#################################
+Take Numpy Array as Training Data
+#################################
 
-PaddlePaddle Fluid supports you to configure data layer with :code:`fluid.layers.data()` .
+PaddlePaddle Fluid supports configuring data layer with :code:`fluid.layers.data()` .
 Then you can use Numpy Array or directly use Python to create C++
-:code:`fluid.LoDTensor` , with :code:`Executor.run(feed=...)` feeding to
-:code:`fluid.Executor` or :code:`fluid.ParallelExecutor` 。
+:code:`fluid.LoDTensor` , and then feed it to :code:`fluid.Executor` or :code:`fluid.ParallelExecutor` 
+through :code:`Executor.run(feed=...)` .
 
-Configuration of Data Layer
+Configure Data Layer
 ############################
 
-With :code:`fluid.layers.data()` ,you can configure data layer in neural network. Details are as follows:
+With :code:`fluid.layers.data()` , you can configure data layer in neural network. Details are as follows:
 
 .. code-block:: python
 
@@ -26,11 +26,11 @@ With :code:`fluid.layers.data()` ,you can configure data layer in neural network
    loss = fluid.layers.cross_entropy(input=prediction, label=label)
    ...
 
-In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.layers.data` . :code:`image` is float data of :code:`[3, 224, 224]` ; :code:`label` is the int data of :code:`[1]` . Attentions need to be paid:
+In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.layers.data` . :code:`image` is float data of shape :code:`[3, 224, 224]` ; :code:`label` is the int data of shape :code:`[1]` . Note that:
 
-1. :code:`-1` is represented for the dimension of batch size by default in Fluid.And :code:`-1` is added to the first shape of :code:`shape` by default. Therefore in the code above,it would be alright to transfer numpy array of :code:`[32, 3, 224, 224]` to :code:`image` . If you want to customize the rank of batch_size,please set 如果想自定义batch size :code:`fluid.layers.data(append_batch_size=False)` .Please refer to the user guide in higher rank :ref:`user_guide_customize_batch_size_rank` .
+1. :code:`-1` is represented for the dimension of batch size by default in Fluid. And :code:`-1` is added to the first dimension of :code:`shape` by default. Therefore in the code above, it would be alright to transfer numpy array of :code:`[32, 3, 224, 224]` to :code:`image` . If you want to customize the position of the batch size dimension, please set :code:`fluid.layers.data(append_batch_size=False)` .Please refer to the tutorial in the advanced user guide: :ref:`user_guide_customize_batch_size_rank` .
 
-2. Data type as category label in Fluid is :code:`int64` and the label starts from 0. About the supported data types,please refer to :ref:`user_guide_paddle_support_data_types`。
+2. Data type of category labels in Fluid is :code:`int64` and the label starts from 0. About the supported data types,please refer to :ref:`user_guide_paddle_support_data_types`。
 
 .. _user_guide_feed_data_to_executor:
 
@@ -38,7 +38,7 @@ Transfer Train Data to Executor
 ################################
 
 Both :code:`Executor.run` and :code:`ParallelExecutor.run` receive a parameter :code:`feed` .
-The parameter is a dict in Python.Its key is the name of data layer,such as :code:`image` in code above. And its value is correspondent with numpy array.
+The parameter is a dict in Python. Its key is the name of data layer,such as :code:`image` in code above. And its value is the corresponding  numpy array.
 
 For example:
 
@@ -56,9 +56,9 @@ Advanced Usage
 How to feed Sequence Data
 --------------------------
 
-Sequence data is a typical data type supported by PaddlePaddle Fluid. You can take :code:`LoDTensor` as input data type.
+Sequence data is a unique data type supported by PaddlePaddle Fluid. You can take :code:`LoDTensor` as input data type.
 
-You needs to: 
+You need to: 
 
 1. Feed all data to be trained in a mini-batch.
 
@@ -66,9 +66,9 @@ You needs to:
 
 You can use :code:`fluid.create_lod_tensor` to create :code:`LoDTensor`。
 
-It needs to set the sequence nested depth :code:`lod_level` at the feed of sequence information.
+To feed sequence information, it is necessary to set the sequence nested depth :code:`lod_level` .
 
-For example,if train data are sentences consisting of words, :code:`lod_level=1`; if train data are paragraphs which consists of sentences that consists of words, :code:`lod_level=2` .
+For instance, if the training data are sentences consisting of words, :code:`lod_level=1`; if train data are paragraphs which consists of sentences that consists of words, :code:`lod_level=2` .
 
 For example:
 
@@ -86,19 +86,19 @@ For example:
      )
    })
 
-Train data :code:`sentence` contains three samples, the lengths of which are :code:`4, 1, 2` respectively.
+Training data :code:`sentence` contain three samples, the lengths of which are :code:`4, 1, 2` respectively.
 
 They are :code:`data[0:4]`, :code:`data[4:5]` and :code:`data[5:7]` respectively.
 
-How to set train data of every device in ParallelExecutor
-----------------------------------------------------------
+How to prepare training data for every device in ParallelExecutor
+-------------------------------------------------------------------
 
 When you feed data to :code:`ParallelExecutor.run(feed=...)` , 
-you can explicitly assign data for every train device (such as GPU).
+you can explicitly assign data for every training device (such as GPU).
 
 You need to feed a list to :code:`feed` . Each element of the list is a dict.
 
-The key of dict is name of data layer and the value of dict is value of data layer.
+The key of the dict is name of data layer and the value of dict is value of data layer.
 
 For example:
 
@@ -118,16 +118,16 @@ For example:
      ]
    )
 
-In code above,GPU0 will train 32 samples and GPU1 will train 16 samples.
+In the code above, GPU0 will train 32 samples and GPU1 will train 16 samples.
 
 .. _user_guide_customize_batch_size_rank:
 
-Customize the shape of BatchSize
+Customize the BatchSize dimension
 ------------------------------------
 
-Batch size is the first shape of data by default in PaddlePaddle Fluid, indicated by :code:`-1` .But in advanced usage,batch_size could be fixed or respresented by other shapes or multiple shapes,which could be implemented by setting :code:`fluid.layers.data(append_batch_size=False)` .
+Batch size is the first dimension of data by default in PaddlePaddle Fluid, indicated by :code:`-1` .But in advanced usage, batch_size could be fixed or respresented by other dimension or multiple dimensions, which could be implemented by setting :code:`fluid.layers.data(append_batch_size=False)` .
 
-1. batch size with fixed shape
+1. fixed BatchSize dimension
 
   .. code-block:: python
 
@@ -135,16 +135,16 @@ Batch size is the first shape of data by default in PaddlePaddle Fluid, indicate
 
   Here:code:`image` is always a matrix with size of :code:`[32, 784]` .
 
-2. batch size expressed by other shapes
+2. batch size expressed by other dimension
 
   .. code-block:: python
 
-     sentence = fluid.layers.data(name="sentence",
+     sentence = fluid.layers.data(name="sentence",
                                   shape=[80, -1, 1],
                                   append_batch_size=False,
                                   dtype="int64")
 
-  Here the middle shape of :code:`sentence` is batch size. The arrangement of data is applied in fixed-length recurrent neural network.
+  Here the middle dimension of :code:`sentence` is batch size. This type of data layout is applied in fixed-length recurrent neural networks.
 
 .. _user_guide_paddle_support_data_types:
 
@@ -153,12 +153,12 @@ Data types supported by Fluid
 
 Data types supported by PaddlePaddle Fluid contains:
 
-   * float16： support part operation
-   * float32:  major real number
-   * float64:  minor real number,support most operation
-   * int32: minor label
-   * int64: major label
-   * uint64: minor label
-   * bool:  control flow
-   * int16: minor label
+   * float16： supported by part of operations
+   * float32:  major data type of real number
+   * float64:  minor data type of real number, supported by most operations
+   * int32: minor data type of labels
+   * int64: major data type of labels
+   * uint64: minor data type of labels
+   * bool:  type of control flow data
+   * int16: minor type of labels
    * uint8: input data type, used for pixel of picture
