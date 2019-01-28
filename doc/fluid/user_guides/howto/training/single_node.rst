@@ -106,7 +106,7 @@
 1. :code:`ParallelExecutor` 的构造函数需要指明要执行的 :code:`fluid.Program` ,
    并在执行过程中不能修改。默认值是 :code:`fluid.default_main_program()` 。
 2. :code:`ParallelExecutor` 需要明确指定是否使用 CUDA 显卡进行训练。在显卡训练\
-   模式下会占用全部显卡。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 来修改占用\
+   模式下会占用全部显卡。用户可以配置 `CUDA_VISIBLE_DEVICES <https://devblogs.nvidia.com/cuda-pro-tip-control-gpu-visibility-cuda_visible_devices/>`_ 来修改占用\
    的显卡。
 
 进阶使用
