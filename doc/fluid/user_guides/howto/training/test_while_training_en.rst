@@ -1,25 +1,25 @@
-.. _user_guide_test_while_training:
+.. _user_guide_test_while_training_en:
 
 ##############################
-Evaluate model during train
+Evaluate model while training
 ##############################
 
-Model testing evaluation is different from :code:`fluid.Program` .In testing evalution:
+:code:`fluid.Program` for model test and evaluation is different from the one for training. In the test and evalution phase:
 
-1. Don't broadcast backward and optimize and update parameters while evaluating test.
-2. Operations in evaluating test can be different.
+1. There is no back propagation and no process of optimizing and updating parameters in evaluation and test.
+2. Operations in model evaluation can be different.
 
-   * Take operation BatchNorm for example,algorithms are different in train and test.
+   * Take the operator BatchNorm for example, algorithms are different in train and test.
 
-   * Test model and train model can be totally different.
+   * Evaluation model and training model can be totally different.
 
-Generate test :code:`fluid.Program`
-#################################
+Generate :code:`fluid.Program` for test
+#######################################
 
-Generate test :code:`fluid.Program` by cloning train :code:`fluid.Program` 
+Generate test :code:`fluid.Program` by cloning training :code:`fluid.Program` 
 ============================================================================
 
-:code:`Program.clone()` can copy new :code:`fluid.Program` . You can copy Program with operations applied for test by setting :code:`Program.clone(for_test=True)` . Simple usage is as follows:
+:code:`Program.clone()` can generate a copied new :code:`fluid.Program` . You can generate a copy of Program with operations applied for test by setting :code:`Program.clone(for_test=True)` . Simple usage is as follows:
 
 .. code-block:: python
 
@@ -40,14 +40,14 @@ Generate test :code:`fluid.Program` by cloning train :code:`fluid.Program`
    adam = fluid.optimizer.Adam(learning_rate=0.001)
    adam.minimize(loss)
 
-Before the usage of :code:`Optimizer` ,please copy :code:`fluid.default_main_program()` as a :code:`test_program` .Then you can use test data to run :code:`test_program` so that you can run testing program without influencing training result.
+Before using :code:`Optimizer` , please copy :code:`fluid.default_main_program()` into a :code:`test_program` . Then you can pass test data to :code:`test_program` so that you can run test program without influencing training result.
 
-Configure train :code:`fluid.Program` and test :code:`fluid.Program` respectively
-==================================================================================
+Configure training :code:`fluid.Program` and test :code:`fluid.Program` individually
+=====================================================================================
 
-If train program is largely different from test program, you can define two different :code:`fluid.Program`, performing train and test respectively.In PaddlePaddle Fluid, all parameters are entitled with name. If two different operations and even two different networks use parameters with same name, the value and memory space of these parameters are shared.
+If the training program is largely different from test program, you can define two totally different :code:`fluid.Program` , and perform training and test individually. In PaddlePaddle Fluid, all parameters are named. If two different operations or even two different networks use parameters with the same name, the value and memory space of these parameters are shared.
 
-You can use :code:`fluid.unique_name` package to randomly initialize your undefined names of parameters in PaddlePaddle Fluid. When you call the parameter initialization of certain function for several times, :code:`fluid.unique_name.guard` can keep names of initialization consistant.
+Fluid adopts :code:`fluid.unique_name` package to randomly initialize the names of unnamed parameters. :code:`fluid.unique_name.guard` can keep the initialized names consistent across multiple times of calling some function.
 
 For example:
 
@@ -77,7 +77,7 @@ For example:
    # fluid.test_program is the test program
 
 Perform test :code:`fluid.Program`
-#################################
+###################################
 
 Run test :code:`fluid.Program` with :code:`Executor` 
 =======================================================
@@ -92,10 +92,10 @@ For example:
    test_acc = exe.run(program=test_program, feed=test_data_batch, fetch_list=[acc])
    print 'Test accuracy is ', test_acc
 
-You can run test :code:`fluid.Program` with :code:`ParallelExecutor` 
+Run test :code:`fluid.Program` with :code:`ParallelExecutor` 
 =====================================================================
 
-You can use :code:`ParallelExecutor` for train and :code:`fluid.Program` for test to create a new test :code:`ParallelExecutor` ;then use test :code:`ParallelExecutor.run` to run test.
+You can use :code:`ParallelExecutor` for training and :code:`fluid.Program` for test to create a new test :code:`ParallelExecutor` ; then use test :code:`ParallelExecutor.run` to run test process.
 
 For example:
 
