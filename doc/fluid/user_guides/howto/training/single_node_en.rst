@@ -1,11 +1,11 @@
-########
+#####################
 Single-node training
-########
+#####################
 
 Preparation
 ############
 
-To perform single-node training in PaddlePaddle Fluid, you need to :ref:`user_guide_prepare_data` and :ref:`user_guide_configure_simple_model` . When :ref:`user_guide_configure_simple_model` is finished,you can get two :code:`fluid.Program`, :code:`startup_program` and :code:`main_program`.By default,you can use :code:`fluid.default_startup_program()` and :code:`fluid.default_main_program()` to get global :code:`fluid.Program` .
+To perform single-node training in PaddlePaddle Fluid, you need to read :ref:`user_guide_prepare_data_en` and :ref:`user_guide_configure_simple_model_en` . When you have finished reading :ref:`user_guide_configure_simple_model_en` , you can get two :code:`fluid.Program`, namely :code:`startup_program` and :code:`main_program` . By default,you can use :code:`fluid.default_startup_program()` and :code:`fluid.default_main_program()` to get global :code:`fluid.Program` .
 
 For example:
 
@@ -32,32 +32,33 @@ For example:
 
 After the configuration of model,the configurations of :code:`fluid.default_startup_program()` and :code:`fluid.default_main_program()` have been finished.
 
-Initialized Parameters
+Initialize Parameters
 #######################
 
 Random Initialization of Parameters
 ====================================
 
-After the configuration of model,the initialization of parameters will be written into :code:`fluid.default_startup_program()` .The random initialization of parameters will be finished in global with :code:`fluid.Executor()` .For example:
+After the configuration of model,the initialization of parameters will be written into :code:`fluid.default_startup_program()` . By running this program in :code:`fluid.Executor()` , the random initialization of parameters will be finished in global :code:`fluid.global_scope()` .For example:
 
 .. code-block:: python
 
    exe = fluid.Executor(fluid.CUDAPlace(0))
    exe.run(program=fluid.default_startup_program())
 
-Attention needs to be paid that parameters should be initialized in GPU0 and then submitted to graphics cards through :code:`fluid.ParallelExecutor` when you use GPUs to train.
+Note that in multi-GPU training, the parameters should be initialized on GPU0 and then will be distributed to graphics cards through :code:`fluid.ParallelExecutor` .
 
 
 Load Predefined Parameters
 ===========================
 
-During the neural network train, you often need to load predefined model to continue your train.About how to predefine parameters,please refer to :ref:`user_guide_save_load_vars`.
+In the neural network training, predefined models are usually loaded to continue training. For how to load predefined parameters, please refer to :ref:`user_guide_save_load_vars_en`.
 
 
 Single-card Training
 #####################
 
-You can use :code:`run()` of :code:`fluid.Executor()` to perform single-card train.What you need to do is run :code:`fluid.Program` .At the runtime,user can realize data feeding with :code:`run(feed=...)` and get prolong data with :code:`run(fetch=...)` .For example:\
+Single-card training can be performed through calling :code:`run()` of :code:`fluid.Executor()` to run and train :code:`fluid.Program` .
+In the runtime, feed data with :code:`run(feed=...)` and get persistable data with :code:`run(fetch=...)` . For example:
 
 .. code-block:: python
 
@@ -70,14 +71,14 @@ You can use :code:`run()` of :code:`fluid.Executor()` to perform single-card tra
 
 Notes:
 
-1. About data format of feed,please refer to the article :ref:`user_guide_feed_data_to_executor`.
-2. Return value of :code:`Executor.run` is the variable value of :code:`fetch_list=[...]` .The fetched Variable must be persistable. :code:`fetch_list` can be feed to either Variable list or name list of Variable. :code:`Executor.run` return Fetch result list.
-3. If you need to fetch data with sequence information,you set :code:`exe.run(return_numpy=False, ...)` to directly get :code:`fluid.LoDTensor`. User can directly visit the information of :code:`fluid.LoDTensor` .
+1. About data type supported by feed, please refer to the article :ref:`user_guide_feed_data_to_executor_en`.
+2. The return value of :code:`Executor.run` is the variable value of :code:`fetch_list=[...]` .The fetched Variable must be persistable. :code:`fetch_list` can be fed with either Variable list or name list of variables . :code:`Executor.run` returns Fetch result list.
+3. If the fetch data contain sequence information,  you can set :code:`exe.run(return_numpy=False, ...)` to directly get :code:`fluid.LoDTensor` . You can directly access the information in :code:`fluid.LoDTensor` .
 
-Multiple-card Training
+Multi-card Training
 #######################
 
-In multiple-card training,you can use :code:`fluid.ParallelExecutor` to run :code:`fluid.Program`.For example:
+In multi-card training, you can use :code:`fluid.ParallelExecutor` to run and train :code:`fluid.Program`. For example:
 
 .. code-block:: python
 
@@ -87,8 +88,8 @@ In multiple-card training,you can use :code:`fluid.ParallelExecutor` to run :cod
 
 Notes:
 
-1. The constructed function of :code:`ParallelExecutor` needs to be indicated  :code:`fluid.Program` which can not be modified at runtime. And the default value is :code:`fluid.default_main_program()` .
-2. :code:`ParallelExecutor` should be indicated whether to use CUDA to train. In the mode of graphics card training, all graphics cards will be unavailable.Users can configure `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ to adjust graphics cards that are being used.
+1. The constructor of :code:`ParallelExecutor` needs to be set with :code:`fluid.Program` to be run which can not be modified at runtime. The default value is :code:`fluid.default_main_program()` .
+2. :code:`ParallelExecutor` should be indicated whether to use CUDA to train. In the mode of graphics card training, all graphics cards will be occupied. Users can configure `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ to change graphics cards that are being used.
 
 Advanced Usage
 ###############
@@ -96,4 +97,9 @@ Advanced Usage
 .. toctree::
    :maxdepth: 2
 
-   test_while_training
+   test_while_training_en.rst
+
+
+
+
+
