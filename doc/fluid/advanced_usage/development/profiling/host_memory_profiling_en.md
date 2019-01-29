@@ -1,9 +1,9 @@
 # Analysis and Optimization of Heap
 
-Every computer program may have the potential of memory leak.As for **Memory Leak**,generally, the program allocates memory on the heap without releasing it. As the memory of the program becomes larger and larger, it will affect the stability of the program, which may make the running speed slower or cause oom(Out of Memory ), even affecting the stability of the machine running the program, causing downtime.
+Every computer program may have the potential of memory leak. As for **Memory Leak**, generally, the program allocates memory on the heap without releasing it. As the memory of the program becomes larger and larger, it will affect the stability of the program, which may make the running speed slower or cause oom(Out of Memory ), even affecting the stability of the machine running the program, causing downtime.
 
 
-There are many memory leak analysis tools at present. Typically,[valgrind](http://valgrind.org/docs/manual/quick-start.html#quick-start.intro), [gperftools](https://gperftools.github.io/gperftools/).
+There are many memory leak analysis tools at present. Typically, [valgrind](http://valgrind.org/docs/manual/quick-start.html#quick-start.intro), [gperftools](https://gperftools.github.io/gperftools/).
 
 Because Fluid is run in Python-driven C++ core, valgrind is very difficult to analyze directly. You need to compile the debug version of the dedicated Python version with valgrind support, and most of the output information is Python's own symbols and call information. It's very difficult. In addition, using valgrind will make the program run very slowly, so it is not recommended.
 
@@ -47,7 +47,7 @@ export PPROF_BINARY_PATH=/root/gopath/bin/pprof
 export LD_PRELOAD=/usr/lib/libtcmalloc.so.4
 ```
 
-- Use heap profile to run python program.Essentially, a snapshot of the heap allocation is done periodically.
+- Use heap profile to run python program. Essentially, a snapshot of the heap allocation is done periodically.
 
 ```
 # HEAPPROFILE sets the directory and file prefix of the generated heap analysis file
@@ -72,7 +72,7 @@ As the program runs, a lot of files are generated in the perf_log folder as foll
 	```
 	pprof --pdf python test.log.0012.heap
 	```
-	The command above will generate a file of profile00x.pdf, which can be opened directly, for example,[memory_cpu_allocator](https://github.com/jacquesqiao/Paddle/blob/bd2ea0e1f84bb6522a66d44a072598153634cade/doc/fluid/howto/optimization/memory_cpu_allocator.pdf). As can be seen from the figure below, during the running of the CPU version fluid, the most stored modular CPUAllocator is allocated. Other modules are relatively less allocated memory, so they are ignored, which is very inconvenient for allocating memory leaks. The leak is a slow process which cannot be seen in this picture.
+	The command above will generate a file of profile00x.pdf, which can be opened directly, for example, [memory_cpu_allocator](https://github.com/jacquesqiao/Paddle/blob/bd2ea0e1f84bb6522a66d44a072598153634cade/doc/fluid/howto/optimization/memory_cpu_allocator.pdf). As can be seen from the figure below, during the running of the CPU version fluid, the most stored modular CPUAllocator is allocated. Other modules are relatively less allocated memory, so they are ignored, which is very inconvenient for allocating memory leaks. The leak is a slow process which cannot be seen in this picture.
 	![result](https://user-images.githubusercontent.com/3048612/40964027-a54033e4-68dc-11e8-836a-144910c4bb8c.png)
 	
 	- Diff mode. You can do diff on the heap at two times, removing some modules whose memory allocation has not changed, and displaying the incremental part.
