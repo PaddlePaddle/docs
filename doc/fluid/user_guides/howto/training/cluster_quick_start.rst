@@ -150,12 +150,12 @@ DistributeTranspiler
         pservers = pserver_endpoints,    
         trainers = trainers)
     if PADDLE_TRAINING_ROLE == "TRAINER":
-        # fetch the pserver program and execute it
+        # fetch the trainer program and execute it
         trainer_prog = t.get_trainer_program()
         ...
 
     elif PADDLE_TRAINER_ROLE == "PSERVER":
-        # fetch the trainer program and execute it
+        # fetch the pserver program and execute it
         pserver_prog = t.get_pserver_program(current_endpoint) 
         ...
 
