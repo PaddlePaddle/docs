@@ -1,14 +1,14 @@
 .. _api_guide_sync_training_en:
 
-############
+####################################
 Synchronous Distributed Training
-############
+####################################
 
 Fluid supports data-parallel distributed synchronization training, the API uses the :code:`DistributedTranspiler` to convert a single machine network configuration into a :code:`pserver` side and :code:`trainer` side program that can be executed in multiple machines. The user executes the same piece of code on different nodes, depending on the environment variable or startup parameters.
 You can execute the corresponding :code:`pserver` or :code:`trainer` role. Fluid distributed synchronization training supports both pserver mode and NCCL2 mode.There are differences in the use of the API, so you need to pay attention.
 
 Pserver mode distributed training
-===================
+======================================
 
 API usage for details, please refer to :ref:`DistributeTranspiler`, simple example usage:
 
@@ -53,7 +53,7 @@ General environment variable configuration:
 
 
 NCCL2 mode distributed training
-=================
+====================================
 
 The multi-machine synchronous training mode based on NCCL2 (Collective Communication) is only supported under the GPU cluster.
 Detailed API descriptions in this section can be found in :ref:`DistributeTranspiler` .
