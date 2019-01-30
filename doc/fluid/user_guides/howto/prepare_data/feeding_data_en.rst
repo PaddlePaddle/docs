@@ -28,11 +28,11 @@ With :code:`fluid.layers.data()` , you can configure data layer in neural networ
 
 In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.layers.data` . :code:`image` is float data of shape :code:`[3, 224, 224]` ; :code:`label` is the int data of shape :code:`[1]` . Note that:
 
-1. :code:`-1` is represented for the dimension of batch size by default in Fluid. And :code:`-1` is added to the first dimension of :code:`shape` by default. Therefore in the code above, it would be alright to transfer numpy array of :code:`[32, 3, 224, 224]` to :code:`image` . If you want to customize the position of the batch size dimension, please set :code:`fluid.layers.data(append_batch_size=False)` .Please refer to the tutorial in the advanced user guide: :ref:`user_guide_customize_batch_size_rank` .
+1. :code:`-1` is represented for the dimension of batch size by default in Fluid. And :code:`-1` is added to the first dimension of :code:`shape` by default. Therefore in the code above, it would be alright to transfer numpy array of :code:`[32, 3, 224, 224]` to :code:`image` . If you want to customize the position of the batch size dimension, please set :code:`fluid.layers.data(append_batch_size=False)` .Please refer to the tutorial in the advanced user guide: :ref:`user_guide_customize_batch_size_rank_en` .
 
-2. Data type of category labels in Fluid is :code:`int64` and the label starts from 0. About the supported data types,please refer to :ref:`user_guide_paddle_support_data_types`。
+2. Data type of category labels in Fluid is :code:`int64` and the label starts from 0. About the supported data types,please refer to :ref:`user_guide_paddle_support_data_types_en` .
 
-.. _user_guide_feed_data_to_executor:
+.. _user_guide_feed_data_to_executor_en:
 
 Transfer Train Data to Executor
 ################################
@@ -64,7 +64,7 @@ You need to:
 
 2. Get the length of each sequence.
 
-You can use :code:`fluid.create_lod_tensor` to create :code:`LoDTensor`。
+You can use :code:`fluid.create_lod_tensor` to create :code:`LoDTensor` .
 
 To feed sequence information, it is necessary to set the sequence nested depth :code:`lod_level` .
 
@@ -120,7 +120,7 @@ For example:
 
 In the code above, GPU0 will train 32 samples and GPU1 will train 16 samples.
 
-.. _user_guide_customize_batch_size_rank:
+.. _user_guide_customize_batch_size_rank_en:
 
 Customize the BatchSize dimension
 ------------------------------------
@@ -133,7 +133,7 @@ Batch size is the first dimension of data by default in PaddlePaddle Fluid, indi
 
      image = fluid.layers.data(name="image", shape=[32, 784], append_batch_size=False)
 
-  Here:code:`image` is always a matrix with size of :code:`[32, 784]` .
+  Here :code:`image` is always a matrix with size of :code:`[32, 784]` .
 
 2. batch size expressed by other dimension
 
@@ -146,16 +146,16 @@ Batch size is the first dimension of data by default in PaddlePaddle Fluid, indi
 
   Here the middle dimension of :code:`sentence` is batch size. This type of data layout is applied in fixed-length recurrent neural networks.
 
-.. _user_guide_paddle_support_data_types:
+.. _user_guide_paddle_support_data_types_en:
 
 Data types supported by Fluid
 -------------------------------
 
 Data types supported by PaddlePaddle Fluid contains:
 
-   * float16： supported by part of operations
-   * float32:  major data type of real number
-   * float64:  minor data type of real number, supported by most operations
+   * float16: supported by part of operations
+   * float32: major data type of real number
+   * float64: minor data type of real number, supported by most operations
    * int32: minor data type of labels
    * int64: major data type of labels
    * uint64: minor data type of labels
