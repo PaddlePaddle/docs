@@ -1,4 +1,4 @@
-.. _api_guide_sync_training:
+.. _api_guide_sync_training_en:
 
 ############
 Synchronous Distributed Training
