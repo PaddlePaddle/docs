@@ -1,6 +1,6 @@
 # Introduction of C++ Inference API
 
-To make deploy of inference more convenient,a series of high-level APIs provided in Fluid are used to hide different optimization of low-level APIs.
+To make deploy of inference more convenient, a series of high-level APIs provided in Fluid are used to hide different optimization of low-level APIs.
 
 Inference library contains:
 
@@ -15,16 +15,16 @@ PaddleTensor defines basic format of input and output data for inference.Common 
 
 - `name` is used to indicate the name of variable in model correspondent with input data.
 - `shape` represents shape of a Tensor.
-- `data`  is stored in `PaddleBuf` in mode of continuous storage.`PaddleBuf` can receieve outer data or independently `malloc` memory. You can refer to associated definitions in head file.
+- `data`  is stored in `PaddleBuf` in mode of continuous storage. `PaddleBuf` can receieve outer data or independently `malloc` memory. You can refer to associated definitions in head file.
 - `dtype` represents data type of Tensor.
 
 ## Use Config to create different search engines
 
-The fundemental levels of high-level API contains many optimizations which are called engines.Transferring different Config implements overloading of different engines during the switch among them.
+The fundemental levels of high-level API contains many optimizations which are called engines. Transferring different Config implements overloading of different engines during the switch among them.
 
-- `NativeConfig` native engine,consisting of native forward operators of paddle,can originally support all models trained with paddle.
+- `NativeConfig` native engine,consisting of native forward operators of paddle, can originally support all models trained with paddle.
 
-- `AnalysisConfig` TensorRT mixed engine used to speed up GPU supports [TensorRT] with subgraph,supports all paddle models and aumatically segments computing subgraph to TensorRT to speed up (WIP).About specific usage,please refer to [here](http://paddlepaddle.org/documentation/docs/zh/1.1/user_guides/howto/inference/paddle_tensorrt_infer.html).
+- `AnalysisConfig` TensorRT mixed engine used to speed up GPU supports [TensorRT] with subgraph, supports all paddle models and aumatically segments computing subgraph to TensorRT to speed up (WIP). About specific usage,please refer to [here](http://paddlepaddle.org/documentation/docs/zh/1.1/user_guides/howto/inference/paddle_tensorrt_infer.html).
 
 
 ## Inference process of deploy
@@ -67,7 +67,7 @@ Is is enough to bind to build `libpaddle_fluid.a/.so` .
 ## Adavanced Usage
 
 ### memory management of input and output
-field `data` of `PaddleTensor` is a `PaddleBuf`，used to manage a section of memory for copying data.
+field `data` of `PaddleTensor` is a `PaddleBuf`, used to manage a section of memory for copying data.
 
 There are two modes in term of memory management in `PaddleBuf` :
 
@@ -93,14 +93,14 @@ There are two modes in term of memory management in `PaddleBuf` :
     delete[] memory;
     ```
 
-In the two modes,the first is more convenient while the second strictly controls memory management to integrate with `tcmalloc` and other libraries.
+In the two modes, the first is more convenient while the second strictly controls memory management to integrate with `tcmalloc` and other libraries.
 
 ### Upgrade performance based on contrib::AnalysisConfig (pre-deploy)
 *AnalyisConfig is at the stage of pre-deploy protected by `namespace contrib` ,which may be adjusted later*.
 
-`NativeConfig`,`AnalysisConfig` can create a inference engine with high performance after a series of optimizations,including analysis and optimization of computing graph as well as integration and revise for some important Ops, which **largely upgrades the peformance of models, such as While, LSTM, GRU and so on** .
+`NativeConfig`,`AnalysisConfig` can create a inference engine with high performance after a series of optimizations, including analysis and optimization of computing graph as well as integration and revise for some important Ops, which **largely upgrades the peformance of models, such as While, LSTM, GRU and so on** .
 
-The usage of `AnalysisConfig` is similiar with that of `NativeConfig` 类似 but the former *only supports CPU at present and is supporting GPU more and more*.
+The usage of `AnalysisConfig` is similiar with that of `NativeConfig` but the former *only supports CPU at present and is supporting GPU more and more*.
 
 ```c++
 AnalysisConfig config;
