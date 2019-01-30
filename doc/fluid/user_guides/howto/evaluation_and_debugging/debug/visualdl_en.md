@@ -8,7 +8,7 @@ VisualDL is a visualization tool for deep learning tasks. It includes functions 
 
 Currently, most DNN platforms use Python as the configuration language. VisualDL natively supports the use of Python. By adding a few lines to the Python configuration of the model, it can provide rich visual support for the training process.
 
-In addition to the Python SDK, the underlying Visual DL is written in C++, and its exposed C++ SDK can be integrated into other platforms for native performance and customization.
+In addition to the Python SDK, the low level part of Visual DL is written in C++, and its exposed C++ SDK can be integrated into other platforms for native performance and customization.
 
 ## Component
 VisualDL currently supports 4 components:
@@ -56,7 +56,7 @@ pip install --upgrade visualdl
 
 # Run an example, vdl_create_scratch_log will create a test log
 vdl_create_scratch_log
-visualDL --logdir=scratch_log --port=8080
+visualdl --logdir=scratch_log --port=8080
 
 # Visit http://127.0.0.1:8080
 ```
@@ -98,7 +98,7 @@ pip install --upgrade visualdl
 
 # Run an example, vdl_create_scratch_log will create a test log
 vdl_create_scratch_log
-visualDL --logdir=scratch_log --port=8080
+visualdl --logdir=scratch_log --port=8080
 
 #Visit http://127.0.0.1:8080
 ```
@@ -132,7 +132,7 @@ pip install --upgrade visualdl
 
 # Run an example, vdl_create_scratch_log will create a test log
 vdl_create_scratch_log
-visualDL --logdir=scratch_log --port=8080
+visualdl --logdir=scratch_log --port=8080
 
 #Visit http://127.0.0.1:8080
 ```
@@ -153,12 +153,12 @@ If you encounter other packaging and installation problems, or just want to run 
 
 
 ## SDK
-VisualDL also provides the python SDK and the C++ SDK for different ways.
+VisualDL also provides the python SDK and the C++ SDK which can be utilized in different ways.
 
 ### Python SDK
 VisualDL now supports Python 2 and Python 3.
 
-Take the simplest Scalar component as an example, try to create a scalar component and insert data of multiple time steps:
+Take the simplest Scalar component as example, which tries to create a scalar component and insert data of multiple time steps:
 
 ```python
 import random
@@ -178,7 +178,7 @@ for step in range(100):
 ```
 
 ### C++ SDK
-The C++ SDK version of the above code in the Python SDK is as follows :
+The C++ SDK version of the code in the Python SDK is as follows :
 ```c++
 #include <cstdlib>
 #include <string>
@@ -205,7 +205,7 @@ int main() {
 }
 ```
 ## Launch Board
-When the log data has been generated during the training, you can start the board to preview the visual information in real time.
+When the log data have been generated during the training, you can start the board to preview the visual information in real time.
 
 ```
 visualDL --logdir <some log dir>
