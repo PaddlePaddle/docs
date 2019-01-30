@@ -1,9 +1,9 @@
 .. _install_or_build_cpp_inference_lib:
 
-Install and build C++ inference library
-=========================================
+Install and Compile C++ Prediction Libraries
+=============================================
 
-Direct download and installation
+Direct Download and Installation
 ---------------------------------
 
 ..  csv-table:: c++ inference library list
@@ -18,10 +18,9 @@ Direct download and installation
     "cuda9.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.2.0-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_"
 
 
-Build source code
-----------
-You can build C++ predict library from the core code of PaddlePaddle.What you need to do is configure the options for building:
-
+Build Source Code
+---------------------
+Users can also compile C++ predictive libraries from the PaddlePaddle core code by compiling the following compile options at compile time:
 ============================  =========
 Option                        Value
 ============================  =========
@@ -35,10 +34,10 @@ WITH_GPU                      ON/OFF
 WITH_MKL                      ON/OFF
 ============================  =========
 
-It is recommended to configure options according to recommended value to avoid the link to unecessary library.Other options can be set if it is necessary.
+It is recommended to configure options according to recommended value to avoid the link to unecessary library. Other options can be set if it is necessary.
 
 
-Code below is the latest code pulled from github.Configure options for building(It needs to replace PADDLE_ROOT with installation path of PaddlePaddle predict library):
+The following code snippet pulls the latest code from github and compiles the build options (you need to replace PADDLE_ROOT with the installation path of the PaddlePaddle prediction library):
 
   .. code-block:: bash
 
@@ -59,7 +58,7 @@ Code below is the latest code pulled from github.Configure options for building(
       make
       make inference_lib_dist
 
-After successful build,dependencies for using C++ predict library will be stored in the directory of PADDLE_ROOT ,including 1.Built PaddlePaddle predict library and head files; 2.link library from third party and head files ;3.version information and options for building.The structure of directory is as follows:
+After successful compilation, use C++ to predict the dependencies required by the library (including: (1) compiled PaddlePaddle prediction library and head files; (2) third-party link libraries and head files; (3) version information and compilation option information) Will be stored in the PADDLE_ROOT directory. The directory structure is as follows:
 
   .. code-block:: text
 
@@ -93,7 +92,7 @@ After successful build,dependencies for using C++ predict library will be stored
      │       └── zlib
      └── version.txt
 
-Version information about the predict library has been recorded in version.txt,including Git Commit ID,usage of OpenBlas or MKL math library,CUDA/CUDNN version number,for example:
+Version information about the predict library has been recorded in version.txt, including Git Commit ID, usage of OpenBlas or MKL math library, CUDA/CUDNN version number, for example:
 
   .. code-block:: text
 
