@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)-->
 
 
-Welcome to Paddle-Mobile GitHub project.Paddle-Mobile,a project of PaddlePaddle Organization,is a deep learning framework for embeded platform.
+Welcome to Paddle-Mobile GitHub project.Paddle-Mobile, a project of PaddlePaddle Organization, is a deep learning framework for embeded platform.
 
 ## Features
 
@@ -26,12 +26,12 @@ Please refer to [here](https://github.com/PaddlePaddle/paddle-mobile/tree/develo
 
 ### Design Document
 
-About design document of paddle-mobile,please refer to [here](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md).For more details,please refer to [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues) to know more about previous design and discussion.
+About design document of paddle-mobile, please refer to [here](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md). For more details, please refer to [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues) to know more about previous design and discussion.
 
 
 ### Development Document
 
-Development document is mainly about build,operation and other problems.As a developer,you can combine the development document with contribution document.
+Development document is mainly about build, operation and other problems. As a developer, you can combine the development document with contribution document.
 
 * [iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md).
 * [Android_CPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android.md).
@@ -43,11 +43,11 @@ Development document is mainly about build,operation and other problems.As a dev
 
 - [Contribute Code](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/CONTRIBUTING.md).
 
-- Document above  introduces main process to contribute code.If you come across other problems,you can send [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues). We will deal with them as soon as possible once we receieve them.
+- Document above  introduces main process to contribute code. If you come across other problems, you can send [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues). We will deal with them as soon as possible once we receieve them.
 
 
 ## Get Model
-At present Paddle-Mobile only supports models trained by Paddle fluid.If your model is other kinds of model,you need to transform the model to make it operated normally.
+At present Paddle-Mobile only supports models trained by Paddle fluid. If your model is other kinds of model, you need to transform the model to make it operated normally.
 
 ### 1. Directly Use Paddle Fluid to Train
 
@@ -61,9 +61,9 @@ Please refer to [here](https://github.com/PaddlePaddle/models/tree/develop/fluid
 
 The full name of is “Open Neural Network Exchange” which is “开放的神经网络切换” in Chinese. The aim of the project is to share developing frameworks of different neural networks.
 
-Except for directly using PaddlePaddle to train model in fluid,we can also get certain Paddle Fluid models with transformation of onnx.
+Except for directly using PaddlePaddle to train model in fluid, we can also get certain Paddle Fluid models with transformation of onnx.
 
-At present,Baidu is also supporting onnx.Related projects can be found [here](https://github.com/PaddlePaddle/paddle-onnx).
+At present, Baidu is also supporting onnx. Related projects can be found [here](https://github.com/PaddlePaddle/paddle-onnx).
 
 ### 4. Download Part of Test Models and Pictures
 
@@ -71,7 +71,7 @@ At present,Baidu is also supporting onnx.Related projects can be found [here](ht
 
 ## Q&A
 
-Welcome to come up with or solve our problems.Please send [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues) if you have any question.
+Welcome to come up with or solve our problems. Please send [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues) if you have any question.
 
 ## Copyright and License
 
