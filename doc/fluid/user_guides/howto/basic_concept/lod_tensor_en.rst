@@ -2,7 +2,7 @@
 LoD-Tensor User Guide
 #####################
 
-LoD(Level-of-Detail) Tensor is a unique terminology in Fluid, which can be constructed by appending sequence information to Tensor. Data transferred in Fluid contain input, output and learnable parameters of the network, all of which are represented by LoD-Tensor.
+LoD(Level-of-Detail) Tensor is a unique term in Fluid, which can be constructed by appending sequence information to Tensor. Data transferred in Fluid contain input, output and learnable parameters of the network, all of which are represented by LoD-Tensor.
 
 With the help of this user guide, you will learn the design idea of LoD-Tensor in Fluid so that you can use such a data type more flexibly.
 
@@ -13,9 +13,9 @@ In most deep learning frameworks, a mini-batch is represented by Tensor.
 
 For example, if there are 10 pictures in a mini-batch and the size of each picture is 32*32, the mini-batch will be a 10*32*32 Tensor.
 
-Or in the NLP task, there are N sentences in a mini-batch and the length of each sentence is L. Every word is represented by a one-hot vector with D dimensions. Then the mini-batch can be represented by N*L*D Tensor.
+Or in the NLP task, there are N sentences in a mini-batch and the length of each sentence is L. Every word is represented by a one-hot vector with D dimensions. Then the mini-batch can be represented by an N*L*D Tensor.
 
-In the two examples above, the size of each sequence element remains the same. However, the data to be trained are variable-length sequences under many circumstances. In this situatin, method to be taken in most frameworks is to set a fixed length and sequence data shorter than the fixed length will be padded with 0 to reach the fixed length.
+In the two examples above, the size of each sequence element remains the same. However, the data to be trained are variable-length sequences in many cases. For this scenario, method to be taken in most frameworks is to set a fixed length and sequence data shorter than the fixed length will be padded with 0 to reach the fixed length.
 
 Owing to the LoD-Tensor in Fluid, it is not necessary to keep the lengths of sequence data in every mini-batch constant.Therefore tasks sensitive to sequence formats like NLP can also be finished without padding.
 
@@ -28,7 +28,7 @@ To have a better understanding of the concept of LoD, you can refer to the examp
 
 **mini-batch consisting of sentences**
 
-Supposing a mini-batch contains three sentences, and each contains 3, 1, 2 words respectively. Then the mini-batch can be represented by a (3+1+2)*D Tensor with some index information appended:
+Suppose a mini-batch contains three sentences, and each contains 3, 1, 2 words respectively. Then the mini-batch can be represented by a (3+1+2)*D Tensor with some index information appended:
 
 .. code-block :: text
 
@@ -39,7 +39,7 @@ In the text above, each :code:`|` represents a word vector with D dimension and 
 
 **recursive sequence**
 
-Take a 2-level LoD-Tensor for example,a mini-batch contains articles of 3 sentences,1 sentences and 2 sentences. The number of words in every sentence is different.Then the mini-batch is formed as follows:
+Take a 2-level LoD-Tensor for example, a mini-batch contains articles of 3 sentences, 1 sentence and 2 sentences. The number of words in every sentence is different. Then the mini-batch is formed as follows:
 
 .. code-block:: text
 
@@ -49,7 +49,7 @@ Take a 2-level LoD-Tensor for example,a mini-batch contains articles of 3 senten
   ||| || ||||  | || |||
 
 
-Represented LoD:
+the LoD to express the format:
 
 .. code-block:: text
 
@@ -58,7 +58,7 @@ Represented LoD:
 
 **mini-batch consisting of video data**
 
-In the task of computer vision,it usually needs to deal objects with high dimension like vedios and pictures.Supposing a mini-batch contains 3 videos, which is composed of 3 frames, 1 frames, 2 frames respectively.The size of each frame is 640*480.Then the mini-batch can be described as:
+In the task of computer vision, it usually needs to deal objects with high dimension like videos and pictures. Suppose a mini-batch contains 3 videos, which is composed of 3 frames, 1 frames, 2 frames respectively. The size of each frame is 640*480. Then the mini-batch can be described as:
 
 .. code-block:: text
 
@@ -66,18 +66,18 @@ In the task of computer vision,it usually needs to deal objects with high dimens
   口口口 口 口口
 
 
-The size of the tensor at the bottom is (3+1+2)*640*480.Every :code:`口` represents a 640*480 picture.
+The size of the tensor at the bottom is (3+1+2)*640*480. Every :code:`口` represents a 640*480 picture.
 
 **mini-batch consisting of pictures**
 
-Traditionally,for a mini-batch of N pictures with fixed size, LoD-Tensor is described as:
+Traditionally, for a mini-batch of N pictures with fixed size, LoD-Tensor is described as:
 
 .. code-block:: text
 
   1 1 1 1     1
   口口口口 ... 口
 
-Under such circumstance, we will consider LoD-Tensor as a common tensor instead of ingoring information because of the indice of all elements are 1.
+Under such circumstance, we will consider LoD-Tensor as a common tensor instead of ignoring information because of the indices of all elements are 1.
 
 .. code-block:: text
 
@@ -108,7 +108,7 @@ It is expressed by offset as follows:
 
 Therefore we infer that the first sentence starts from word 0 to word 3 and the second sentence starts from word 3 to word 5.
 
-Similarly,for the length of the top layer of LoD
+Similarly, for the length of the top layer of LoD
 
 .. code-block:: text
 
@@ -134,7 +134,7 @@ LoD-Tensor
 =============
 A LoD-Tensor can be regarded as a tree of which the leaf is an original sequence element and branch is the flag of fundamental element.
 
-There are two ways to express sequence information of LoD-Tensor in Fluid: primitive length and offset. LoD-Tensor is expressed by offset in Paddle to offer a quicker access to sequence;LoD-Tensor is expressed by primitive length in python API to make user understand and compute more easily.The primary length is named as  :code:`recursive_sequence_lengths` 。
+There are two ways to express sequence information of LoD-Tensor in Fluid: primitive length and offset. LoD-Tensor is expressed by offset in Paddle to offer a quicker access to sequence;LoD-Tensor is expressed by primitive length in python API to make user understand and compute more easily. The primary length is named as  :code:`recursive_sequence_lengths` .
 
 Take a 2-level LoD-Tensor mentioned above as an example:
 
@@ -178,7 +178,7 @@ recursive_seq_lens is a double Layer nested list, and in other words, the elemen
 Code examples
 ==============
 
-Input variable x is expanded according to specified layer level y-lod in the code example in this section.The example below contains some fundamental conception of LoD-Tensor. By following the code, you will
+Input variable x is expanded according to specified layer level y-lod in the code example in this section. The example below contains some fundamental conception of LoD-Tensor. By following the code, you will
 
 -  Have a direct understanding of the implementation of :code:`fluid.layers.sequence_expand` in Fluid
 -  Know how to create LoD-Tensor in Fluid
@@ -188,7 +188,7 @@ Input variable x is expanded according to specified layer level y-lod in the cod
   
 **Define the Process of Computing**
 
-layers.sequence_expand expands x by obtaining the lod value of y. About more explanation of :code:`fluid.layers.sequence_expand` ,please read :ref:`api_fluid_layers_sequence_expand` first. 
+layers.sequence_expand expands x by obtaining the lod value of y. About more explanation of :code:`fluid.layers.sequence_expand` , please read :ref:`api_fluid_layers_sequence_expand` first. 
 
 Code of sequence expanding:
 
@@ -198,7 +198,7 @@ Code of sequence expanding:
   y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=1)
   out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
 
-*Note*：The dimension of input LoD-Tensor is only associated with the dimension of real data transferred in.The shape value set for x and y in the definition of network structure is just a placeholder with little influence on the result.  
+*Note*：The dimension of input LoD-Tensor is only associated with the dimension of real data transferred in. The shape value set for x and y in the definition of network structure is just a placeholder with little influence on the result.  
 
 **Create Executor**
 
@@ -210,9 +210,9 @@ Code of sequence expanding:
 
 **Prepare Data**
 
-Here we use :code:`fluid.create_lod_tensor` to create the input data of :code:`sequence_expand` and expand x_d by defining LoD of y_d. The output value is only associated with LoD of y_d. And the data of y_d is not invovled in the process of computation.The dimension of y_d must keep consistent with as its LoD[-1] .
+Here we use :code:`fluid.create_lod_tensor` to create the input data of :code:`sequence_expand` and expand x_d by defining LoD of y_d. The output value is only associated with LoD of y_d. And the data of y_d is not invovled in the process of computation. The dimension of y_d must keep consistent with as its LoD[-1] .
 
-About the user guide of :code:`fluid.create_lod_tensor()`, please refer to :ref:`api_fluid_create_lod_tensor` 。
+About the user guide of :code:`fluid.create_lod_tensor()` , please refer to :ref:`api_fluid_create_lod_tensor` .
 
 Code：
 
@@ -224,7 +224,7 @@ Code：
 
 **Execute Computing**
 
-For tensor whose LoD > 1 in Fluid, like data of other types,the order of transfering data is defined by :code:`feed` . In addition, parameter :code:`return_numpy=False` needs to be added to exe.run() to get the output of LoD-Tensor because results are Tensors with LoD information.
+For tensor whose LoD > 1 in Fluid, like data of other types, the order of transfering data is defined by :code:`feed` . In addition, parameter :code:`return_numpy=False` needs to be added to exe.run() to get the output of LoD-Tensor because results are Tensors with LoD information.
 
 .. code-block:: python
 
@@ -234,7 +234,7 @@ For tensor whose LoD > 1 in Fluid, like data of other types,the order of transfe
 
 **Check the result of LodTensor**
 
-Because of the special attributes of LoDTensor,you could not print to check the content.The usual solution to the problem is to fetch the LoDTensor as the output of network and then execute  numpy.array(lod_tensor) to transfer LoDTensor into numpy array: 
+Because of the special attributes of LoDTensor, you could not print to check the content. The usual solution to the problem is to fetch the LoDTensor as the output of network and then execute  numpy.array(lod_tensor) to transfer LoDTensor into numpy array: 
 
 .. code-block:: python
 
@@ -297,8 +297,8 @@ You can check the output by executing the following complete code:
 Summary
 ========
 
-Then,we believe that you have known about the concept LoD-Tensor.And an attempt to change x-_d and y_d in code above and then to check the output may help you get a better understanding of this flexible structure.
+Then, we believe that you have known about the concept LoD-Tensor. And an attempt to change x_d and y_d in code above and then to check the output may help you get a better understanding of this flexible structure.
 
 About more model applications of LoDTensor, you can refer to `Word2vec <../../../beginners_guide/basics/word2vec/index.html>`_ , `Individual Recommendation <../../../beginners_guide/basics/recommender_system/index.html>`_ , `Sentiment Analysis <../../../beginners_guide/basics/understand_sentiment/index.html>`_ in the beginner's guide. 
 
-About more difffiult and complex examples of application, please refer to associated information about `models <../../../user_guides/models/index_cn.html>`_ .
+About more difffiult and complex examples of application, please refer to associated information about `models <../../../user_guides/models/model12_en.html>`_ .
