@@ -63,7 +63,7 @@ visualdl --logdir=scratch_log --port=8080
 
 If there is a problem in the above steps, it is probably due to different versions or different locations of python or pip. The following installation methods can solve the issue.
 
-## Installing with virtualenv
+## Install with Virtualenv
 
 [Virtualenv](https://virtualenv.pypa.io/en/stable/) creates a stand-alone Python environment and also ensures that the relative positions of Python and pip are correct.
 
@@ -108,7 +108,7 @@ If it appears `TypeError: __init__() got an unexpected keyword argument 'file'`,
 If you still encounter installation problems in a virtual environment, try the following methods.
 
 
-## Installing with Anaconda
+## Install with Anaconda
 
 Anaconda is a Python distribution for scientific computing that provides package management and environment management capabilities to easily handle multi-version python coexistence, switching, and various third-party package installation issues.
 
@@ -139,7 +139,7 @@ visualdl --logdir=scratch_log --port=8080
 
 If you are still experiencing installation issues, try the following source code installation method.
 
-### Installing with code
+### Install 
 ```
 # It is suggested you be in a virtual environment or anaconda.
 git clone https://github.com/PaddlePaddle/VisualDL.git
@@ -204,7 +204,7 @@ int main() {
   return 0;
 }
 ```
-## Launch Board
+## Launch Visual DL
 When the log data have been generated during the training, you can start the board to preview the visual information in real time.
 
 ```
