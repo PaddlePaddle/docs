@@ -9,7 +9,7 @@
 load_inference_model
 -------------------------------
 
-.. py:class:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
+.. py:function:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
 
 从指定目录中加载 推理model(inference model)
 
@@ -20,7 +20,7 @@ load_inference_model
   - **params_filename** (str|None) –  加载所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
   - **pserver_endpoints** (list|None) – 只有在分布式推理时需要用到。 当在训练时使用分布式 look up table , 需要这个参数. 该参数是 pserver endpoints 的列表 
 
-返回: 这个函数的返回有三个元素的元组(Program，feed_target_names, fetch_targets)。Program 是一个 ``Program`` ，它是推理 ``Program``。  ``feed_target_names`` 是一个str列表，它包含需要在推理 ``Program`` 中提供数据的变量的名称。` `fetch_targets`` 是一个 ``Variable`` 列表，从中我们可以得到推断结果。
+返回: 这个函数的返回有三个元素的元组(Program，feed_target_names, fetch_targets)。Program 是一个 ``Program`` ，它是推理 ``Program``。  ``feed_target_names`` 是一个str列表，它包含需要在推理 ``Program`` 中提供数据的变量的名称。``fetch_targets`` 是一个 ``Variable`` 列表，从中我们可以得到推断结果。
 
 返回类型：元组(tuple)
 
@@ -52,7 +52,7 @@ load_inference_model
 load_params
 -------------------------------
 
-.. py:class:: paddle.fluid.io.load_params(executor, dirname, main_program=None, filename=None)
+.. py:function:: paddle.fluid.io.load_params(executor, dirname, main_program=None, filename=None)
 
 该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们加载保存在到目录 ``dirname`` 中或文件中的参数。
 
@@ -89,7 +89,7 @@ load_params
 load_persistables
 -------------------------------
 
-.. py:class:: paddle.fluid.io.load_persistables(executor, dirname, main_program=None, filename=None)
+.. py:function:: paddle.fluid.io.load_persistables(executor, dirname, main_program=None, filename=None)
 
 该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们加载保存在到目录 ``dirname`` 中或文件中的参数。
 
@@ -124,7 +124,7 @@ load_persistables
 load_vars
 -------------------------------
 
-.. py:class:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
+.. py:function:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
 ``executor`` 从指定目录加载变量。
 
@@ -182,7 +182,7 @@ load_vars
 save_inference_model
 -------------------------------
 
-.. py:class:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
+.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
 
 修改指定的 ``main_program`` ，构建一个专门用于推理的 ``Program``，然后  ``executor`` 把它和所有相关参数保存到 ``dirname`` 中
 
@@ -229,13 +229,13 @@ save_inference_model
 save_params
 -------------------------------
 
-.. py:class:: paddle.fluid.io.save_params(executor, dirname, main_program=None, filename=None)
+.. py:function:: paddle.fluid.io.save_params(executor, dirname, main_program=None, filename=None)
 
-该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们保存到目录 ``dirname`` 中或文件中。
+该函数过滤出给定 ``main_program`` 中所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
 
-``dirname`` 用于指定保存变量的目录。如果想将变量保存到指定目录的若干文件中，设置文件名 None; 如果想将所有变量保存在一个文件中，请使用filename来指定它
+``dirname`` 用于指定保存变量的目标目录。如果想将变量保存到多个独立文件中，设置 ``filename`` 为 None; 如果想将所有变量保存在单个文件中，请使用 ``filename`` 来指定该文件的命名。
 
-注意:有些变量不是参数，但它们对于训练是必要的。因此，您不能仅通过 ``save_params()`` 和 ``load_params()`` 保存并之后继续训练。可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数
+注意:有些变量不是参数，但它们对于训练是必要的。因此，您不能仅通过 ``save_params()`` 和 ``load_params()`` 保存之后并继续训练。可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数
 
 
 参数:
@@ -243,7 +243,7 @@ save_params
  - **dirname**  (str) – 目录路径
  - **main_program**  (Program|None) – 需要保存变量的 Program。如果为 None，则使用 default_main_Program 。默认值: None
  - **vars**  (list[Variable]|None) –  要保存的所有变量的列表。 优先级高于main_program。默认值: None
- - **filename**  (str|None) – 保存变量的文件。如果想分开保存变量，设置 filename=None. 默认值: None
+ - **filename**  (str|None) – 保存变量的文件。如果想分不同独立文件来保存变量，设置 filename=None. 默认值: None
  
 返回: None
   
@@ -268,7 +268,7 @@ save_params
 save_persistables
 -------------------------------
 
-.. py:class:: paddle.fluid.io.save_persistables(executor, dirname, main_program=None, filename=None)
+.. py:function:: paddle.fluid.io.save_persistables(executor, dirname, main_program=None, filename=None)
 
 该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们保存到目录 ``dirname`` 中或文件中。
 
@@ -306,7 +306,7 @@ save_persistables
 save_vars
 -------------------------------
 
-.. py:class:: paddle.fluid.io.save_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
+.. py:function:: paddle.fluid.io.save_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
 通过 ``Executor`` ,此函数将变量保存到指定目录下。
 
