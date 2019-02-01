@@ -11,5 +11,4 @@
   dev/index_en.rst
   api/index_en.rst
   book/index_en.rst
-  user_guides/models/index_en.rst
   advanced_usage/deploy/index_mobile.rst
