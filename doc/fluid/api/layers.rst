@@ -231,6 +231,22 @@ shuffle
 nn
 ==
 
+.. _api_fluid_layers_adaptive_pool2d:
+
+adaptive_pool2d
+---------------
+
+..  autofunction:: paddle.fluid.layers.adaptive_pool2d
+    :noindex:
+
+.. _api_fluid_layers_adaptive_pool3d:
+
+adaptive_pool3d
+---------------
+
+..  autofunction:: paddle.fluid.layers.adaptive_pool3d
+    :noindex:
+
 .. _api_fluid_layers_add_position_encoding:
 
 add_position_encoding
@@ -293,6 +309,14 @@ bilinear_tensor_product
 -----------------------
 
 ..  autofunction:: paddle.fluid.layers.bilinear_tensor_product
+    :noindex:
+
+.. _api_fluid_layers_bpr_loss:
+
+bpr_loss
+--------
+
+..  autofunction:: paddle.fluid.layers.bpr_loss
     :noindex:
 
 .. _api_fluid_layers_brelu:
@@ -397,6 +421,14 @@ ctc_greedy_decoder
 ------------------
 
 ..  autofunction:: paddle.fluid.layers.ctc_greedy_decoder
+    :noindex:
+
+.. _api_fluid_layers_data_norm:
+
+data_norm
+---------
+
+..  autofunction:: paddle.fluid.layers.data_norm
     :noindex:
 
 .. _api_fluid_layers_dice_loss:
@@ -621,6 +653,14 @@ hsigmoid
 --------
 
 ..  autofunction:: paddle.fluid.layers.hsigmoid
+    :noindex:
+
+.. _api_fluid_layers_huber_loss:
+
+huber_loss
+----------
+
+..  autofunction:: paddle.fluid.layers.huber_loss
     :noindex:
 
 .. _api_fluid_layers_im2sequence:
@@ -901,6 +941,22 @@ prelu
 -----
 
 ..  autofunction:: paddle.fluid.layers.prelu
+    :noindex:
+
+.. _api_fluid_layers_psroi_pool:
+
+psroi_pool
+----------
+
+..  autofunction:: paddle.fluid.layers.psroi_pool
+    :noindex:
+
+.. _api_fluid_layers_py_func:
+
+py_func
+-------
+
+..  autofunction:: paddle.fluid.layers.py_func
     :noindex:
 
 .. _api_fluid_layers_random_crop:
@@ -1191,6 +1247,14 @@ shape
 ..  autofunction:: paddle.fluid.layers.shape
     :noindex:
 
+.. _api_fluid_layers_shuffle_channel:
+
+shuffle_channel
+---------------
+
+..  autofunction:: paddle.fluid.layers.shuffle_channel
+    :noindex:
+
 .. _api_fluid_layers_sigmoid_cross_entropy_with_logits:
 
 sigmoid_cross_entropy_with_logits
@@ -1311,6 +1375,14 @@ swish
 ..  autofunction:: paddle.fluid.layers.swish
     :noindex:
 
+.. _api_fluid_layers_teacher_student_sigmoid_loss:
+
+teacher_student_sigmoid_loss
+----------------------------
+
+..  autofunction:: paddle.fluid.layers.teacher_student_sigmoid_loss
+    :noindex:
+
 .. _api_fluid_layers_topk:
 
 topk
@@ -1325,6 +1397,14 @@ transpose
 ---------
 
 ..  autofunction:: paddle.fluid.layers.transpose
+    :noindex:
+
+.. _api_fluid_layers_tree_conv:
+
+tree_conv
+---------
+
+..  autofunction:: paddle.fluid.layers.tree_conv
     :noindex:
 
 .. _api_fluid_layers_uniform_random_batch_size_like:
@@ -1763,6 +1843,14 @@ bipartite_match
 ..  autofunction:: paddle.fluid.layers.bipartite_match
     :noindex:
 
+.. _api_fluid_layers_box_clip:
+
+box_clip
+--------
+
+..  autofunction:: paddle.fluid.layers.box_clip
+    :noindex:
+
 .. _api_fluid_layers_box_coder:
 
 box_coder
@@ -1795,6 +1883,14 @@ detection_output
 ..  autofunction:: paddle.fluid.layers.detection_output
     :noindex:
 
+.. _api_fluid_layers_generate_mask_labels:
+
+generate_mask_labels
+--------------------
+
+..  autofunction:: paddle.fluid.layers.generate_mask_labels
+    :noindex:
+
 .. _api_fluid_layers_generate_proposal_labels:
 
 generate_proposal_labels
@@ -1825,6 +1921,14 @@ multi_box_head
 --------------
 
 ..  autofunction:: paddle.fluid.layers.multi_box_head
+    :noindex:
+
+.. _api_fluid_layers_multiclass_nms:
+
+multiclass_nms
+--------------
+
+..  autofunction:: paddle.fluid.layers.multiclass_nms
     :noindex:
 
 .. _api_fluid_layers_polygon_box_transform:
@@ -1873,6 +1977,14 @@ target_assign
 -------------
 
 ..  autofunction:: paddle.fluid.layers.target_assign
+    :noindex:
+
+.. _api_fluid_layers_yolov3_loss:
+
+yolov3_loss
+-----------
+
+..  autofunction:: paddle.fluid.layers.yolov3_loss
     :noindex:
 
 metric_op
