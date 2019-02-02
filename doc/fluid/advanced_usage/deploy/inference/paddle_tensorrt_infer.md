@@ -82,7 +82,7 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 #include "paddle_inference_api.h"
 
 namespace paddle {
-using paddle::contrib::AnalysisConfig;
+using paddle::AnalysisConfig;
 
 void RunTensorRT(int batch_size, std::string model_dirname) {
   // 1. 创建MixedRTConfig
