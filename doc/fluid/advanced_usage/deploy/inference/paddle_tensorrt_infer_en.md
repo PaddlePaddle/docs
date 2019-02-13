@@ -1,7 +1,7 @@
-# Use TensorRT library to inference
+# Use TensorRT Library for inference
 
-NVIDIA TensorRT is a deep learning inference library with high performance, bringing low reply and high QPS for deep learning inference application.
-Subgraph is used in Paddle 1.0 to preliminarily integrate TensorRT which we can use to upgrade inference performance of Paddle. The module is still under development. Currently-supported models are AlexNet, MobileNet, ResNet50, VGG19, ResNext, Se-ReNext, GoogleNet, DPN, ICNET, MobileNet-SSD and so on. We will introduce the obtain, usage and pricipe of Paddle-TensorRT in this documentation.
+NVIDIA TensorRT is a is a platform for high-performance deep learning inference. It delivers low latency and high throughput for deep learning inference application.
+Subgraph is used in Paddle 1.0 to preliminarily integrate TensorRT, which enables TensorRT module to enhance inference performance of paddle models. The module is still under development. Currently supported models are AlexNet, MobileNet, ResNet50, VGG19, ResNext, Se-ReNext, GoogleNet, DPN, ICNET, MobileNet-SSD and so on. We will introduce the obtaining, usage and theory of Paddle-TensorRT library in this documentation.
 
 
 ## Build inference libraries with `TensorRT`
@@ -14,7 +14,7 @@ Subgraph is used in Paddle 1.0 to preliminarily integrate TensorRT which we can 
 	git clone https://github.com/PaddlePaddle/Paddle.git
 	```
 	
-2. Get docker mirror
+2. Get docker image
   
 	```
 	nvidia-docker run --name paddle_trt -v $PWD/Paddle:/Paddle -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
@@ -23,12 +23,10 @@ Subgraph is used in Paddle 1.0 to preliminarily integrate TensorRT which we can 
 3. Build Paddle TensorRT       
 
 	```
-	# perform following operations in docker container
+	# perform the following operations in docker container
 	cd /Paddle
 	mkdir build
 	cd build
-	# TENSORRT_ROOT is path of TRT, /usr by default,which could be modified according to your requirements
-	# MKL can be on according to your requirements
 	cmake .. \
 	      -DWITH_FLUID_ONLY=ON \
 	      -DWITH_MKL=OFF \
@@ -43,33 +41,16 @@ Subgraph is used in Paddle 1.0 to preliminarily integrate TensorRT which we can 
 	# generate inference library
 	make inference_lib_dist -j
 	```
-	
-	the directory of library after building is as follows:
-	
-	```
-	fluid_inference_install_dir
-	├── paddle
-	│      
-	├── CMakeCache.txt
-	├── version.txt
-	├── third_party
-	    ├── boost
-	    ├── install
-	    └── engine3 
-	```
-   
-	Under `fluid_inference_install_dir`,head file and lib of inference library are under paddle directory.
-    version.txt contains information of version and configuration of lib while third_party contains third-party libraries inference libraries depend.
 
 ## Usage of Paddle TensorRT
 
-[`paddle_inference_api.h`]('https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/paddle_inference_api.h') defines all APIs with TensorRT used. 
+[`paddle_inference_api.h`]('https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/paddle_inference_api.h') defines all APIs of TensorRT. 
 
-In general steps are as follows:
+General steps are as follows:
 1. Create appropriate AnalysisConfig.    
-2. Create `PaddlePredictor` according to config.    
+2. Create `PaddlePredictor` based on config.    
 3. Create input tensor.   
-4. Get output tensor and show result.   
+4. Get output tensor and output result.   
 
 A complete process is shown below:
 
@@ -88,7 +69,7 @@ void RunTensorRT(int batch_size, std::string model_dirname) {
   config->fraction_of_gpu_memory = 0.15;
   config->EnableTensorRtEngine(1 << 20 /*work_space_size*/, batch_size /*max_batch_size*/);
 
-  // 2. Create predictor according to config
+  // 2. Create predictor based on config
   auto predictor = CreatePaddlePredictor(config);
   // 3. Create input tensor 
   int height = 224;
@@ -116,58 +97,19 @@ void RunTensorRT(int batch_size, std::string model_dirname) {
 }  // namespace paddle
 
 int main() { 
-  // Download address for model http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/mobilenet.tar.gz
+  // Download address of the model http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/mobilenet.tar.gz
   paddle::RunTensorRT(1, "./mobilenet");
   return 0;
 }
 ```
-
-## BUild Sample
-1. Download Sample   
-	```
-	wget http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/paddle_trt_samples.tar.gz
-	```
-	
-	Directory decompressed is as follows:
-	
-	```
-	sample
-	├── CMakeLists.txt
-	├── mobilenet_test.cc
-	├── thread_mobilenet_test.cc
-	├── mobilenetv1
-	│   ├── model
-	│   └── params
-	└── run_impl.sh
-	```
-	
-	- `mobilenet_test.cc` is single-thread program file  
-	- `thread_mobilenet_test.cc` is multi-thread program file  
-	- `mobilenetv1` is model file   
-
-	Supposing the path of inference library is ``BASE_DIR/fluid_inference_install_dir/`` and samples are under the directory ``SAMPLE_BASE_DIR/sample`` 
-
-2. Samples of Building   
-
-	```shell
-	cd SAMPLE_BASE_DIR/sample
-	# sh run_impl.sh {address of inference libraries} {name of test script} {directory of model}
-	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  mobilenet_test SAMPLE_BASE_DIR/sample/mobilenetv1
-	```
-
-3. Build multi-thread samples
-
- 	```shell
-	cd SAMPLE_BASE_DIR/sample
-	# sh run_impl.sh {address of inference libraries} {name of test script} {directory of model}
-	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  thread_mobilenet_test SAMPLE_BASE_DIR/sample/mobilenetv1
-	```
+The compilation process is [here](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/fluid/inference/api/demo_ci)
 
 
-## Subgraph Operation Principle
-   Subgraph is used to integrate TensorRT in PaddlePaddle. After the load of model, network can be represented as computing graph composed by variables and computing nodes. Functions Paddle TensorRT implements are to scan the whole picture, find subgraphs that can be optimized with TensorRT and replace them with TensorRT nodes. During the inference of model, Paddle will call TensorRT library to optimize TensorRT nodes call native library of Paddle to optimize other nodes. During the inference, TensorRT can integrate Op horizonally and vertically to filter superfluous Ops and can choose appropriate kenel for specific Op in specific platform to perform optimization so as to speed up inference of model.
+## Subgraph Theory
+
+   Subgraph is used to integrate TensorRT in PaddlePaddle. After model is loaded, neural network can be represented as a computing graph composed of variables and computing nodes. Functions Paddle TensorRT implements are to scan the whole picture, discover subgraphs that can be optimized with TensorRT and replace them with TensorRT nodes. During the inference of model, Paddle will call TensorRT library to optimize TensorRT nodes and call native library of Paddle to optimize other nodes. During the inference, TensorRT can integrate Op horizonally and vertically to filter redundant Ops and is able to choose appropriate kernel for specific Op in specific platform to speed up the inference of model.
    
-A simple model expresses the process shown in the picture below: 
+A simple model expresses the process : 
 
 **Original Network**
 <p align="center">
@@ -179,11 +121,6 @@ A simple model expresses the process shown in the picture below:
  <img src="https://raw.githubusercontent.com/NHZlX/FluidDoc/add_trt_doc/doc/fluid/user_guides/howto/inference/image/model_graph_trt.png" width="600">
 </p>
 
-  We can see in the original model network that green nodes represent nodes supported by TensorRT, red nodes represent variables in network and yellow nodes represent nodes can only be operated by native functions in Paddle. Green nodes in original network are extracted to compose subgraph which is replaced by a TensorRT node and transformed as `block-25` node in network. TensorRT library will be called to operate the node during the runtime of network in Paddle.
+  We can see in the Original Network that the green nodes represent nodes supported by TensorRT, the red nodes represent variables in network and yellow nodes represent nodes which can only be operated by native functions in Paddle. Green nodes in original network are extracted to compose subgraph which is replaced by a single TensorRT node to be transformed into `block-25` node in network. When such nodes are encountered during the runtime, TensorRT library will be called to execute them.
    
-
-
-
-
-
 
