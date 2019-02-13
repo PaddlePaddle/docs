@@ -1,10 +1,10 @@
 # Build Environment
-## Use docker
+## Use docker 
 ### 1. Install docker
-About the installation of docker, please refer to [offical document](https://docs.docker.com/install/)
+For the installation of docker, please refer to [official document](https://docs.docker.com/install/)
 ### 2. Use docker to build environment
-First we enter into the directory of paddle-mobile and run `docker build`
-Take Linux/Mac as an example (It is recommended to run in 'Docker Quickstart Terminal' in windows)
+First we enter into the directory of paddle-mobile and run `docker build` .
+Take Linux/Mac as an example (On windows, it is recommended to run in 'Docker Quickstart Terminal' )
 ```
 $ docker build -t paddle-mobile:dev - < Dockerfile
 ```
@@ -15,7 +15,7 @@ REPOSITORY      TAG     IMAGE ID       CREATED         SIZE
 paddle-mobile   dev     33b146787711   45 hours ago    372MB
 ```
 ### 3. Use docker to build
-Enter into the directory of paddle-mobile and perform docker run
+Enter into the directory of paddle-mobile and perform *docker run*
 ```
 $ docker run -it --mount type=bind, source=$PWD, target=/paddle-mobile paddle-mobile:dev
 root@5affd29d4fc5:/ # cd /paddle-mobile
@@ -26,8 +26,8 @@ root@5affd29d4fc5:/ # cmake -DCMAKE_TOOLCHAIN_FILE=tools/toolchains/arm-android-
 root@5affd29d4fc5:/ # rm CMakeCache.txt
 root@5affd29d4fc5:/ # cmake -DCMAKE_TOOLCHAIN_FILE=tools/toolchains/arm-linux-gnueabi.cmake
 ```
-### 4. Configure Options for Build
-We can configure options for build with ccmake.
+### 4. Configure compiling options
+We can configure compiling options with ccmake.
 ```
 root@5affd29d4fc5:/ # ccmake .
                                                      Page 1 of 1
@@ -46,14 +46,14 @@ root@5affd29d4fc5:/ # ccmake .
  USE_EXCEPTION                    ON
  USE_OPENMP                       OFF
 ```
-After updating options, we can update Makefile according to `c`, `g` .
+After updating options, we can update Makefile pressing `c`, `g` .
 ### 5. Build
-Use command make to build
+Use command *make* to build
 ```
 root@5affd29d4fc5:/ # make
 ```
-### 6. Check Output of Build
-Output of build can be checked in host machine. In the directory of paddle-mobile, build and test/build, you can use command adb or scp to make it run on device.
+### 6. Check Output of Building
+Output can be checked on the host machine. In the directory of paddle-mobile, build and test/build, you can use command adb or scp to make it run on device.
 
 ## Without docker
-Without docker, you can directly use cmake to generate makefile and then build. It needs to appropriately configure NDK_ROOt to build android with ndk. To build linux applications needs to install arm-linux-gnueabi-gcc or similiar cross-fix build tools and may need to configure environment path like CC, CXX, or update arm-linux-gnueabi.cmake in tools/toolchains/ , or add toolchain file according to your requirements.
+Without docker, you can directly use cmake to generate makefile and then build. It needs to appropriately configure NDK_ROOT to build android with ndk. To build linux applications needs to install arm-linux-gnueabi-gcc or similiar cross-building tools and may need to configure environment variables like CC, CXX; or update arm-linux-gnueabi.cmake in tools/toolchains/ ; or add toolchain file if it is needed.
