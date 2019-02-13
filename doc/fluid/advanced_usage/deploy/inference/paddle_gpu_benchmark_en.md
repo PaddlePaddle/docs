@@ -1,16 +1,16 @@
-# Performance test of TensorRT library
+# Performance test for TensorRT library
 
 ## Test Environment
 - CPU:Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz GPU:Tesla P4
 - TensorRT4.0, CUDA8.0, CUDNNV7
 - Test model ResNet50, MobileNet, ResNet101, Inception V3.
 
-## Test Objects
+## Test Targets
 **PaddlePaddle, Pytorch, Tensorflow**   
 
-- In test, subgraph optimization is used to integrate TensorRT in PaddlePaddle.model [address](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models).
-- Native implementation is used in Pytorch. Model [address 1](https://github.com/pytorch/vision/tree/master/torchvision/models),[address 2](https://github.com/marvis/pytorch-mobilenet).
-- Test for TensorFlow contains test for native TF and TF—TRT. **Test for TF—TRT hasn't reached expectation wihch will be complemented later**. Model [address](https://github.com/tensorflow/models).
+- In test, PaddlePaddle adopts subgraph optimization to integrate TensorRT [model](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models) .
+- Native implementation is used in Pytorch. Model [address 1](https://github.com/pytorch/vision/tree/master/torchvision/models) , [address 2](https://github.com/marvis/pytorch-mobilenet) .
+- Test for TensorFlow contains test for native TF and TF—TRT. **Test for TF—TRT hasn't reached expectation wihch will be complemented later**. Model [address](https://github.com/tensorflow/models) .
 
 
 ### ResNet50 
