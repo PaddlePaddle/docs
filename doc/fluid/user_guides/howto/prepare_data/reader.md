@@ -1,7 +1,3 @@
-```eval_rst
-.. _user_guide_reader:
-```
-
 # Python Reader
 
 During the training and testing phases, PaddlePaddle programs need to read data. To help the users write code that performs reading input data, we define the following:
@@ -137,7 +133,7 @@ def reader_creator_random_image(width, height):
     return reader
 
 def reader_creator_bool(t):
-    def reader:
+    def reader():
         while True:
             yield t
     return reader
@@ -145,7 +141,7 @@ def reader_creator_bool(t):
 true_reader = reader_creator_bool(True)
 false_reader = reader_creator_bool(False)
 
-reader = paddle.reader.compose(paddle.dataset.mnist.train(), data_reader_creator_random_image(20, 20), true_reader, false_reader)
+reader = paddle.reader.compose(paddle.dataset.mnist.train(), reader_creator_random_image(20, 20), true_reader, false_reader)
 # Skipped 1 because paddle.dataset.mnist.train() produces two items per data entry.
 # And we don't care about the second item at this time.
 paddle.train(paddle.batch(reader, 128), {"true_image":0, "fake_image": 2, "true_label": 3, "false_label": 4}, ...)
