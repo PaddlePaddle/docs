@@ -98,7 +98,7 @@ CHECK(predictor->Run(slots, &outputs));
 
 两种模式中，第一种比较方便；第二种则可以严格控制内存的管理，便于与 `tcmalloc` 等库的集成。
 
-### 基于 contrib::AnalysisConfig  提升性能 (预发布)
+### 基于 contrib::AnalysisConfig  提升性能
 *AnalyisConfig 目前正在预发布阶段，用 `namespace contrib` 进行了保护，后续可能会有调整*
 
 类似 `NativeConfig` ， `AnalysisConfig` 可以创建一个经过一系列优化的高性能预测引擎。 其中包含了计算图的分析和优化，以及对一些重要 Op 的融合改写等，**对使用了 While, LSTM, GRU 等模型性能有大幅提升** 。
@@ -107,9 +107,10 @@ CHECK(predictor->Run(slots, &outputs));
 
 ```c++
 AnalysisConfig config;
-config.model_dir = xxx;
-config.use_gpu = false;  // 目前还不支持 GPU 的优化
-config.specify_input_name = true; // 需要指定输入的 name
+config.SetModel(dirname);                // 设定模型的目录
+config.EnableUseGpu(100, 0 /*gpu id*/);  // 使用GPU， CPU下使用config.DisableGpu();
+config.SwitchSpecifyInputNames(true);    // 需要指定输入的 name
+config.SwitchIrOptim();                  // 打开优化开关，运行时会执行一系列的优化
 ```
 
 这里需要注意的是，输入的 PaddleTensor 需要指定，比如之前的例子需要修改为
@@ -129,7 +130,7 @@ tensor.name = "input0"; // 注意这里的 name 需要设定
 ### 性能建议
 1. 在 CPU型号允许的情况下，尽量使用带 AVX 和 MKL 的版本
 2. 复用输入和输出的 `PaddleTensor` 以避免频繁分配内存拉低性能
-3. CPU预测，可以尝试把 `NativeConfig` 改成成 `AnalysisConfig` 来进行优化
+3. CPU或GPU预测，可以尝试把 `NativeConfig` 改成成 `AnalysisConfig` 来进行优化
 
 ## 详细代码参考
 
