@@ -1,82 +1,78 @@
-# Brief Introduction of Project
+# Brief Introduction to the Project
 
 <!--[![Release](https://img.shields.io/github/release/PaddlePaddle/Paddle-Mobile.svg)](https://github.com/PaddlePaddle/Paddle-Mobile/releases)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)-->
 
 
-Welcome to Paddle-Mobile GitHub project.Paddle-Mobile, a project of PaddlePaddle Organization, is a deep learning framework for embeded platform.
+Welcome to Paddle-Mobile GitHub project。Paddle-Mobile is a project of PaddlePaddle as well as a deep learning framework for embedded platforms.
 
 ## Features
 
-- Support ARM CPU with hign performance 
-- Support Mali GPU
-- Support Andreno GPU
-- Support GPU Metal of Apple devices
-- Support FPGA demoboard like ZU5、ZU9
-- Support arm-linux demoboard like raspberry pi
+- high performance in support of ARM CPU 
+- support Mali GPU
+- support Andreno GPU
+- support the realization of GPU Metal on Apple devices
+- support implementation on ZU5、ZU9 and other FPGA-based development boards
+- support implementation on Raspberry Pi and other arm-linux development boards
 
 ## Demo
-[ANDROID](https://github.com/xiebaiyuan/paddle-mobile-demo).
+- [ANDROID](https://github.com/xiebaiyuan/paddle-mobile-demo)
 
-### Primary Domo Directory
+### Catalog of original Demo
 
-Please refer to [here](https://github.com/PaddlePaddle/paddle-mobile/tree/develop/demo).
+[https://github.com/PaddlePaddle/paddle-mobile/tree/develop/demo](https://github.com/PaddlePaddle/paddle-mobile/tree/develop/demo)
 
-## Document
+## Documentation
 
-### Design Document
+### Documentation of design
 
-About design document of paddle-mobile, please refer to [here](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md). For more details, please refer to [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues) to know more about previous design and discussion.
+If you want to know more details about the documentation of paddle-mobile design, please refer to the link as follows. There are many previous designs and discussion: [issue](https://github.com/PaddlePaddle/paddle-mobile/issues).
 
+[link of documentation of design](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md)
 
-### Development Document
+### Documentation of development
 
-Development document is mainly about build, operation and other problems. As a developer, you can combine the development document with contribution document.
+Documentation of development is mainly about building, running and other tasks. As a developer, you can use it with the help of contributed documents.
+* [iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md)
+* [Android_CPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android.md)
+* [Android_GPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android_GPU.md)
+* [FPGA](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_fpga.md)
+* [ARM_LINUX](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_arm_linux.md)
 
-* [iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md).
-* [Android_CPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android.md).
-* [Android_GPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android_GPU.md).
-* [FPGA](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_fpga.md).
-* [ARM_LINUX](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_arm_linux.md).
-
-### Contribute Code
-
-- [Contribute Code](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/CONTRIBUTING.md).
-
-- Document above  introduces main process to contribute code. If you come across other problems, you can send [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues). We will deal with them as soon as possible once we receieve them.
+### How to contribute your documents
+- [tutorial link to contribute documents](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/CONTRIBUTING.md)
+- Main procedure of contributing code is covered in the document above. If you have other problems during the procedure, please send them as [issue](https://github.com/PaddlePaddle/paddle-mobile/issues). We will deal with it as quickly as possible.
 
 
-## Get Model
-At present Paddle-Mobile only supports models trained by Paddle fluid. If your model is other kinds of model, you need to transform the model to make it operated normally.
-
-### 1. Directly Use Paddle Fluid to Train
-
-It's the most reliable method(recomended).
-
-### 2. Caffe Transformed as Paddle Fluid Model
-
-Please refer to [here](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/caffe2fluid).
-
+## Acquisition of Models
+At present Paddle-Mobile only supports Paddle fluid training model. Models will be operated regularly after transformation if you have various models.
+### 1. Use Paddle Fluid directly to train
+It is the most reliable method to be recommended
+### 2. Transform Caffe to Paddle Fluid model
+[https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid](https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid)
 ### 3. ONNX
+ONNX is the acronym of Open Neural Network Exchange. The project is aimed to make a full communication and usage among different neural network development frameworks.
 
-The full name of is “Open Neural Network Exchange” which is “开放的神经网络切换” in Chinese. The aim of the project is to share developing frameworks of different neural networks.
+Except for directly using fluid models trained by PaddlePaddle, you can also get certain Paddle fluid models through onnx transformation.
 
-Except for directly using PaddlePaddle to train model in fluid, we can also get certain Paddle Fluid models with transformation of onnx.
+At present，work in support of onnx is also under operation in Baidu. Related transformation project can be referred to here：
+[https://github.com/PaddlePaddle/paddle-onnx](https://github.com/PaddlePaddle/paddle-onnx)
 
-At present, Baidu is also supporting onnx. Related projects can be found [here](https://github.com/PaddlePaddle/paddle-onnx).
+### 4. Download parts of testing models and testing pictures
+[http://mms-graph.bj.bcebos.com/paddle-mobile%2FmodelsAndImages.zip](http://mms-graph.bj.bcebos.com/paddle-mobile%2FmodelsAndImages.zip)
 
-### 4. Download Part of Test Models and Pictures
+<!--## Online output of simple search
 
-[Download Link](http://mms-graph.bj.bcebos.com/paddle-mobile%2FmodelsAndImages.zip).
+Gif as following is the application output of online main part detection of simple search app
+![ezgif-1-050a733dfb](http://otkwwi4x8.bkt.clouddn.com/2018-07-05-ezgif-1-050a733dfb.gif)-->
 
-## Q&A
+## Ask Questions
 
-Welcome to come up with or solve our problems. Please send [Issue](https://github.com/PaddlePaddle/paddle-mobile/issues) if you have any question.
+Welcome to put forward or tackle with our problems. You can post your question in our issue modular on github. [Github Issues](https://github.com/PaddlePaddle/paddle-mobile/issues).
 
 ## Copyright and License
+Paddle-Mobile provides relatively unstrict Apache-2.0 Open source agreement [Apache-2.0 license](LICENSE).
 
-Paddle-Mobile provides relatively unstrict Apache-2.0 opensource license [Apache-2.0 license](LICENSE).
 
-
-## Old Mobile-Deep-Learning
-Primary MDL(Mobile-Deep-Learning) project is transferred to [Mobile-Deep-Learning](https://github.com/allonli/mobile-deep-learning) .
+## Old version Mobile-Deep-Learning
+Original MDL(Mobile-Deep-Learning) project has been transferred to [Mobile-Deep-Learning](https://github.com/allonli/mobile-deep-learning) 
