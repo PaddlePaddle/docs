@@ -19,7 +19,7 @@ cmake .. -DWITH_DOC=OFF -DWITH_GPU=OFF -DWITH_DISTRIBUTE=ON -DWITH_SWIG_PY=ON -D
 这里，我们以[Deep Learing 101](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.html)课程中的第一章 fit a line 为例，描述如何将单机训练脚本改造成支持集群训练的版本。
 ### 单机训练脚本示例
 ```python
-import paddle as paddle
+import paddle
 import paddle.fluid as fluid
 
 x = fluid.layers.data(name='x', shape=[13], dtype='float32')

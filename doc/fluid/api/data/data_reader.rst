@@ -6,50 +6,50 @@ Data Reader
 DataTypes
 =========
 
-..  autofunction:: paddle.v2.data_type.dense_array
+..  autofunction:: paddle.data_type.dense_array
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.integer_value
+..  autofunction:: paddle.data_type.integer_value
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.integer_value_sequence
+..  autofunction:: paddle.data_type.integer_value_sequence
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.integer_value_sub_sequence
+..  autofunction:: paddle.data_type.integer_value_sub_sequence
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_binary_vector
+..  autofunction:: paddle.data_type.sparse_binary_vector
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_binary_vector_sequence
+..  autofunction:: paddle.data_type.sparse_binary_vector_sequence
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_binary_vector_sub_sequence
+..  autofunction:: paddle.data_type.sparse_binary_vector_sub_sequence
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_float_vector
+..  autofunction:: paddle.data_type.sparse_float_vector
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_float_vector_sequence
+..  autofunction:: paddle.data_type.sparse_float_vector_sequence
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_float_vector_sub_sequence
+..  autofunction:: paddle.data_type.sparse_float_vector_sub_sequence
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_non_value_slot
+..  autofunction:: paddle.data_type.sparse_non_value_slot
     :noindex:
 
-..  autofunction:: paddle.v2.data_type.sparse_value_slot
+..  autofunction:: paddle.data_type.sparse_value_slot
     :noindex:
 
-..  autoclass:: paddle.v2.data_type.InputType
+..  autoclass:: paddle.data_type.InputType
     :members:
     :noindex:
 
 DataFeeder
 ==========
 
-..  automodule:: paddle.v2.data_feeder
+..  automodule:: paddle.data_feeder
     :members:
     :noindex:
 
@@ -67,6 +67,6 @@ Reader
 minibatch
 =========
 
-..  automodule:: paddle.v2.minibatch
+..  automodule:: paddle.minibatch
     :members:
     :noindex:
