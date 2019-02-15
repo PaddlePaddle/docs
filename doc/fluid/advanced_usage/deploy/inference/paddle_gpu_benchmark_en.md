@@ -1,4 +1,4 @@
-# Performance test for TensorRT library
+# Performance Profiling for TensorRT Library
 
 ## Test Environment
 - CPU:Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz GPU:Tesla P4
