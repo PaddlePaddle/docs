@@ -172,7 +172,7 @@ After completing the installation, you will also need to do:
 
 ## Submit changes
 
-If you wish to modify the code, please refer to [How to contribute code](../development/contribute_to_paddle.html) under the `Paddle` repository.
+If you wish to modify the code, please refer to [How to contribute code](contribute_to_paddle/index_en.html) under the `Paddle` repository.
 
 If you just modify the document:
 
@@ -193,7 +193,7 @@ If you just modify the document:
 
 3.  Pull Request for your changes in the `FluidDoc` repository
 
-The steps to submit changes and PR can refer to [How to contribute code](../development/contribute_to_paddle_en.html)
+The steps to submit changes and PR can refer to [How to contribute code](contribute_to_paddle/index_en.html)
 
 ## Help improve preview tool
 
