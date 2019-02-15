@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)-->
 
 
-Welcome to Paddle-Mobile GitHub project。Paddle-Mobile is a project of PaddlePaddle as well as a deep learning framework for embedded platforms.
+Welcome to Paddle-Mobile GitHub project. Paddle-Mobile is a project of PaddlePaddle as well as a deep learning framework for embedded platforms.
 
 ## Features
 
@@ -26,18 +26,19 @@ Welcome to Paddle-Mobile GitHub project。Paddle-Mobile is a project of PaddlePa
 
 ### Documentation of design
 
-If you want to know more details about the documentation of paddle-mobile design, please refer to the link as follows. There are many previous designs and discussion: [issue](https://github.com/PaddlePaddle/paddle-mobile/issues).
+If you want to know more details about the documentation of paddle-mobile design, please refer to [documentation of design](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md) . There are many previous designs and discussions: [issue](https://github.com/PaddlePaddle/paddle-mobile/issues).
 
-[link of documentation of design](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/design_doc.md)
+
 
 ### Documentation of development
 
 Documentation of development is mainly about building, running and other tasks. As a developer, you can use it with the help of contributed documents.
-* [iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md)
-* [Android_CPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android.md)
-* [Android_GPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android_GPU.md)
-* [FPGA](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_fpga.md)
-* [ARM_LINUX](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_arm_linux.md)
+
+- [iOS](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_ios.md)
+- [Android_CPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android.md)
+- [Android_GPU](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_android_GPU.md)
+- [FPGA](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_fpga.md)
+- [ARM_LINUX](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/doc/development_arm_linux.md)
 
 ### How to contribute your documents
 - [tutorial link to contribute documents](https://github.com/PaddlePaddle/paddle-mobile/blob/develop/CONTRIBUTING.md)
@@ -45,7 +46,7 @@ Documentation of development is mainly about building, running and other tasks. 
 
 
 ## Acquisition of Models
-At present Paddle-Mobile only supports Paddle fluid training model. Models will be operated regularly after transformation if you have various models.
+At present Paddle-Mobile only supports models trained by Paddle fluid. Models can only be operated regularly after transformation if you have models trained by other framworks.
 ### 1. Use Paddle Fluid directly to train
 It is the most reliable method to be recommended
 ### 2. Transform Caffe to Paddle Fluid model
@@ -68,7 +69,7 @@ Gif as following is the application output of online main part detection of simp
 
 ## Ask Questions
 
-Welcome to put forward or tackle with our problems. You can post your question in our issue modular on github. [Github Issues](https://github.com/PaddlePaddle/paddle-mobile/issues).
+Welcome to put forward or tackle with our problems. You can post your question in our issue module on github. [Github Issues](https://github.com/PaddlePaddle/paddle-mobile/issues).
 
 ## Copyright and License
 Paddle-Mobile provides relatively unstrict Apache-2.0 Open source agreement [Apache-2.0 license](LICENSE).
