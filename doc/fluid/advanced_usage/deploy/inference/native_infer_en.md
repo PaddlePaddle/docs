@@ -27,7 +27,7 @@ The low level of high-level API contains various optimization methods which are 
 - `AnalysisConfig` TensorRT mixed engine. It is used to speed up GPU and supports [TensorRT] with subgraph. Moreover, this engine supports all paddle models and automatically slices part of computing subgraphs to TensorRT to speed up the process (WIP). For specific usage, please refer to [here](http://paddlepaddle.org/documentation/docs/zh/1.1/user_guides/howto/inference/paddle_tensorrt_infer.html).
 
 
-## Inference process of deployment
+## Process of Inference Deployment
 
 In general, the steps are:
 
@@ -60,7 +60,7 @@ CHECK(predictor->Run(slots, &outputs));
 // fetch outputs ...
 ```
 
-At compile time, it is enough to co-build with `libpaddle_fluid.a/.so` . 
+At compile time, it is proper to co-build with `libpaddle_fluid.a/.so` . 
 
 
 
