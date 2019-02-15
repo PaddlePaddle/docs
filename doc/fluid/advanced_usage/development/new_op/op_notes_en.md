@@ -92,7 +92,7 @@ Usually you need to call REGISTER_OPERATOR when you make comments on Op, which i
 5. The framework does not provide a default op_infer_var_type method, the user needs to add op_infer_var_shape according to the actual situation. Strictly speaking, every Op should register an InferVarType, and op_infer_var_type infers the type and dtype of the output Var according to the type and dtype of the input Var. **Note:** In the Python-side LayerHelper, the create_variable_for_type_inference operation returns a Variable which is a LoDTensor. The C++-side InferVarType can modify the type and dtype of the `Variable`.
 
 
-For more details, please refer to: [How to write a new Op](../new_op_en.html)
+For more details, please refer to: [How to write a new Op](new_op_en.html)
 
 ## Notes on Writing an Op
 ### 1. input and output types supported by Op
