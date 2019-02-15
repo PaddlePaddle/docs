@@ -1,5 +1,5 @@
 Image Interface
 ===============
 
-..  automodule:: paddle.v2.image
+..  automodule:: paddle.image
     :members:

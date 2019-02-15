@@ -54,9 +54,9 @@ Details are as follows:
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.dataset.mnist as mnist
-    import paddle.v2
 
     import numpy
 
@@ -115,7 +115,7 @@ Details are as follows（the remaining part of the code above）:
         use_cuda=True, share_vars_from=trainer, main_program=test_prog)
 
     train_reader.decorate_paddle_reader(
-        paddle.v2.reader.shuffle(paddle.batch(mnist.train(), 512), buf_size=8192))
+        paddle.reader.shuffle(paddle.batch(mnist.train(), 512), buf_size=8192))
 
     test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
 
