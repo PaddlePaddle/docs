@@ -1063,7 +1063,7 @@ py_reader
 
 ..  code-block:: python
 
-	import paddle.v2
+	import paddle
 	import paddle.fluid as fluid
 	import paddle.dataset.mnist as mnist
 
@@ -1071,7 +1071,7 @@ py_reader
 					shapes=[(-1,3,224,224), (-1,1)],
 					dtypes=['float32', 'int64'])
 	reader.decorate_paddle_reader(
-	    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+	    paddle.reader.shuffle(paddle.batch(mnist.train())
 
 	img, label = fluid.layers.read_file(reader)
 	loss = network(img, label) # 一些网络定义
@@ -1095,7 +1095,7 @@ py_reader
 
 ..  code-block:: python
 
-	import paddle.v2
+	import paddle
 	import paddle.fluid as fluid
 	import paddle.dataset.mnist as mnist
 
@@ -1109,7 +1109,7 @@ py_reader
 					      dtypes=['float32', 'int64'],
 					      name='train_reader')
 	train_reader.decorate_paddle_reader(
-	    paddle.v2.reader.shuffle(paddle.batch(mnist.train())
+	    paddle.reader.shuffle(paddle.batch(mnist.train())
 
 	test_reader = fluid.layers.py_reader(capacity=32,
 					     shapes=[(-1,3,224,224), (-1,1)],

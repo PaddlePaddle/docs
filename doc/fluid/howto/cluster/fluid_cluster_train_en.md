@@ -31,7 +31,7 @@ Let's take [Deep Learning 101](http://www.paddlepaddle.org/docs/develop/book/01.
 The non-cluster version of this demo with fluid API is as follows:
 
 ``` python
-import paddle.v2 as paddle
+import paddle
 import paddle.fluid as fluid
 
 x = fluid.layers.data(name='x', shape=[13], dtype='float32')

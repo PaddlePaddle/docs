@@ -367,7 +367,7 @@
 
 - 打印可读的 `Program`
   ```python
-  from paddle.v2.fluid import debuger
+  from paddle.fluid import debuger
   print debuger.pprint_program_codes(framework.default_main_program().desc)
   ```
 </font>
@@ -1626,7 +1626,7 @@ class ClipKernel : public framework::OpKernel<T> {
 
 - 当在python端执行时：
     ```python
-    import paddle.v2.fluid as fluid
+    import paddle.fluid as fluid
     ```
     [`framework.py`](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/framework.py#L1040)定义了两个全局`Program`:
     ```python

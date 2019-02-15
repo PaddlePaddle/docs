@@ -251,9 +251,8 @@ PaddleFluid 中以 :code:`fluid.layers.data` 来接收输入数据。
 ::
 
   import numpy as np
-
+  import paddle 
   import paddle.fluid as fluid
-  import paddle.v2 as paddle
 
   # define the input layers for the network.
   x = fluid.layers.data(name="img", shape=[1, 28, 28], dtype="float32")
@@ -350,10 +349,8 @@ Fluid 使用 Program 而不是计算图描述模型，一般情况下，用户�
 ::
 
   import numpy as np
-
+  import paddle
   import paddle.fluid as fluid
-  import paddle.v2 as paddle
-
 
   def main():
       BATCH_SIZE = 128
