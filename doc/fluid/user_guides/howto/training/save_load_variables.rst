@@ -7,19 +7,19 @@
 模型变量分类
 ############
 
-在PaddlePaddle Fluid中，所有的模型变量都用 :code:`fluid.Variable()` 作为基类进行表示。
+在PaddlePaddle Fluid中，所有的模型变量都用 :code:`fluid.framework.Variable()` 作为基类进行表示。
 在该基类之下，模型变量主要可以分为以下几种类别：
 
 1. 模型参数
   模型参数是深度学习模型中被训练和学习的变量，在训练过程中，训练框架根据反向传播算法计算出每一个模型参数当前的梯度，
   并用优化器根据梯度对参数进行更新。模型的训练过程本质上可以看做是模型参数不断迭代更新的过程。
   在PaddlePaddle Fluid中，模型参数用 :code:`fluid.framework.Parameter` 来表示，
-  这是一个 :code:`fluid.Variable()` 的派生类，除了 :code:`fluid.Variable()` 具有的各项性质以外，
+  这是一个 :code:`fluid.framework.Variable()` 的派生类，除了 :code:`fluid.framework.Variable()` 具有的各项性质以外，
   :code:`fluid.framework.Parameter` 还可以配置自身的初始化方法、更新率等属性。
 
 2. 长期变量
   长期变量指的是在整个训练过程中持续存在、不会因为一个迭代的结束而被销毁的变量，例如动态调节的全局学习率等。
-  在PaddlePaddle Fluid中，长期变量通过将 :code:`fluid.Variable()` 的 :code:`persistable`
+  在PaddlePaddle Fluid中，长期变量通过将 :code:`fluid.framework.Variable()` 的 :code:`persistable`
   属性设置为 :code:`True` 来表示。所有的模型参数都是长期变量，但并非所有的长期变量都是模型参数。
 
 3. 临时变量
