@@ -10,9 +10,7 @@
 
 注：
 
-* 当前版本暂不支持NCCL，分布式，AVX，warpctc和MKL相关功能
-
-* Windows环境下，目前仅支持CPU版本的PaddlePaddle
+* 当前版本暂不支持NCCL，分布式等相关功能
 
 ## 安装步骤
 
@@ -28,14 +26,20 @@
 
 * 开始安装
 
+* ***CPU版本的PaddlePaddle***:
 执行如下命令：`pip install paddlepaddle`(python2.7) 或 `pip3 install paddlepaddle`(python3.x) 安装PaddlePaddle
+
+* ***GPU版本的PaddlePaddle***:
+执行如下命令：`pip install paddlepaddle-gpu`(python2.7) 或 `pip3 install paddlepaddle-gpu`(python3.x) 安装PaddlePaddle
 
 ## ***验证安装***
 安装完成后您可以使用 `python` 或 `python3` 进入python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
 
 ## ***如何卸载***
 
+* ***CPU版本的PaddlePaddle***:
 请使用以下命令：`pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`  卸载PaddlePaddle
 
-
+* ***GPU版本的PaddlePaddle***:
+请使用以下命令：`pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`  卸载PaddlePaddle
 
