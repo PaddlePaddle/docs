@@ -2,7 +2,7 @@
 
 ## <span id="local">Local</span>
 
-1. Add `profiler.start_profiler(...)`和`profiler.stop_profiler(...)` to the main training loop. After run, the code will generate a profile record file `/tmp/profile`. **Warning**: Please do not run too many batches when use profiler to record timeline information, for the profile record will grow with the batch number.
+1. Add `profiler.start_profiler(...)` and `profiler.stop_profiler(...)` to the main training loop. After run, the code will generate a profile record file `/tmp/profile`. **Warning**: Please do not run too many batches when use profiler to record timeline information, for the profile record will grow with the batch number.
 
 	```python
     for pass_id in range(pass_num):
@@ -17,37 +17,38 @@
 	            ...
 	```
 
-1. Run `python paddle/tools/timeline.py` to process `/tmp/profile`, it will generate another
+2. Run `python paddle/tools/timeline.py` to process `/tmp/profile`, it will generate another
 file `/tmp/timeline` by default. You can change the path by cmd parameter, please take a look at
 [timeline.py](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/timeline.py) for details.
 ```python
 python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=timeline
 ```
 
-1. Open chrome and visit <chrome://tracing/>, use `load` button to load the generated `timeline` file.
+3. Open chrome and visit <chrome://tracing/>, use `load` button to load the generated `timeline` file.
 
 	![chrome tracing](./tracing.jpeg)
 
-1. The resulting timeline should be like:
 
 
-	![chrome timeline](./timeline.jpeg)
+4. The result timeline should be like:<a name="local_step_4"></a>
+
+    ![chrome timeline](./timeline.jpeg)
 	
 ## Distributed
 This tool can support distributed train programs(pserver and trainer) too.
 
 1. Open traniner profiler just like how to use in [local](#local).
 
-1. Open pserver profiler: add some enviroment variables, eg:
+2. Open pserver profiler: add two environment variables, e.g.:
 ```
 FLAGS_rpc_server_profile_period=10 FLAGS_rpc_server_profile_path=./tmp/pserver python train.py
 ```
 
-1. Merge pservers' and trainers' profiler file, eg:
+3. Merge pservers' and trainers' profiler file, e.g.:
 ```
 python /paddle/tools/timeline.py
     --profile_path trainer0=local_profile_10_pass0_0,trainer1=local_profile_10_pass0_1,pserver0=./pserver_0,pserver1=./pserver_1
     --timeline_path ./dist.timeline
 ```
  
-1. Load `dist.timeline` in chrome://tracing
+4. Load `dist.timeline` in chrome just like the [fourth step in Local](#local_step_4)
