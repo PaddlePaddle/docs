@@ -365,11 +365,6 @@
 - `default_startup_program`：创建可学习参数，对参数进行初始化
 - `default_main_program`：由用户定义的模型，包括了前向、反向、优化及所有必要的计算
 
-- 打印可读的 `Program`
-  ```python
-  from paddle.fluid import debuger
-  print debuger.pprint_program_codes(framework.default_main_program().desc)
-  ```
 </font>
 
 ---
