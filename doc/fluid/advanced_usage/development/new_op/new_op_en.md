@@ -1,6 +1,6 @@
 # How to write a new operator
 
-## Table of Contents
+<!--## Table of Contents
 - [How to write a new operator](#How to write a new operator)
   - [Background](#Background)
   - [Implementing C++ Types](#Implementing C++ Types)
@@ -21,7 +21,7 @@
       - [Error Message Standard](#Error Message Standard)
       - [Typical Problems](#Typical Problems)
       - [OP InferShape check message special instructions](#OP InferShape check message special instructions)
-
+-->
 
 <a name="Background"></a>
 ## Background
@@ -284,7 +284,9 @@ The definition of its corresponding backward operator, if applicable, is similar
     REGISTER_OP_CUDA_KERNEL(mul, ops::MulKernel<paddle::platform::CUDADeviceContext, float>);
     REGISTER_OP_CUDA_KERNEL(mul_grad,
                            ops::MulGradKernel<paddle::platform::CUDADeviceContext, float>);
+
     ```
+
 <a name="Compilation"></a>
 ### Compilation
 
@@ -293,6 +295,7 @@ Run the following commands to compile.
 ```
 make mul_op
 ```
+
 <a name="Python Binding"></a>
 ## Python Binding
 
@@ -360,9 +363,9 @@ The code above first loads required packages. In addition, we have
 - `self.outputs` defines output and completes the same operator computation in the Python script, and returns its result from the Python script.
 
 <a name="Unit test for backward operators"></a>
-### Unit test for backward operators
+### Unit Test for Backward Operators
 
-In the reverse test:
+In the backward operator test:
 
 - `check_grad` is called in `test_check_grad_normal` to use numerical methods to detect gradient correctness and stability.
 - The first parameter `["X", "Y"]` : specifies gradient check for the input variables `X`, `Y`.
@@ -427,15 +430,15 @@ Any place where PADDLE_ENFORCE and PADDLE_ENFORCE_EQ are used must have a proper
 
 1. [required] Where does it go wrong? Why is it wrong?
 
-  - For example: `ValueError: Mismatched label shape`
+    - For example: `ValueError: Mismatched label shape`
 
 2. [optional] What is the expected input? What is the actual input?
 
-  - For example: `Expected labels dimension=1. Received 4.`
+    - For example: `Expected labels dimension=1. Received 4.`
 
 3. [optional] Can you come up with a suggestion?
 
-  - For example: `Suggested Fix: If your classifier expects one-hot encoding label, check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
+    - For example: `Suggested Fix: If your classifier expects one-hot encoding label, check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
 If it is not necessary or concise description is enough to clearly express the above points, just write based on actual needs.
 
@@ -443,7 +446,8 @@ If it is not necessary or concise description is enough to clearly express the a
 <a name="Typical Problems"></a>
 #### Typical Problems
 
-1. No error message or error message is too short to provide effective notification to the user.
+
+1.No error message exists or error message is too short to provide effective notification to the user.
 
   Problem example 1: Absent message
   ```
@@ -451,34 +455,33 @@ If it is not necessary or concise description is enough to clearly express the a
   ```
   Problem example 2: The prompt message is too short
   ```
-  PADDLE_ENFORCE(i != nullptr, "i must be set"); // What i is it?
+  PADDLE_ENFORCE(i != nullptr, "i must be set"); // What is i?
   ```
 
-2. Using developer-defined variable abbreviations in error messages is not easy to understand.
+2.Using developer-defined variable abbreviations in error messages is not easy to understand.
 
-  Example of the problem:
+  Example of the problem:  
   ```
   PADDLE_ENFORCE(forward_pd != nullptr,
-  "Fail to find eltwise_fwd_pd in device context"); //eltwise_fwd_pduser may not understand
+  "Fail to find eltwise_fwd_pd in device context"); //eltwise_fwd_pduser may not be understood
   ```
 
-3. The OP internally calls the illegal interface: If Op appears inside Output = ShareDataWith(Input)
+3.The OP internally calls the illegal interface: If Op appears inside Output = ShareDataWith(Input)
+   Example of the problem:
+   ```cpp
+   auto *out = ctx.Output<framework::LoDTensor>("Out");
+   auto *in = ctx.Input<framework::LoDTensor>("X");
+   out->ShareDataWith(*in);
+   ```
 
-  Example of the problem:
-  ```cpp
-  auto *out = ctx.Output<framework::LoDTensor>("Out");
-  auto *in = ctx.Input<framework::LoDTensor>("X");
-  out->ShareDataWith(*in);
-  ```
-  If there is Output = ShareDataWith(Input) inside Op, it will equivalently indicate a hidden edge in the operator graph, which connects Input and Output. This edge cannot be expressed in graph analysis, causing error based on graph optimization.
+   If there is Output = ShareDataWith(Input) inside Op, it will equivalently indicate a hidden edge in the operator graph, which connects Input and Output. This edge cannot be expressed in graph analysis, causing error based on graph optimization.
 
-4. Performance of OP implementation
-    It called eigen's broadcast, chop and other operations, the performance will be over several times worse than the handwritten cuda kernel. At this point, the implementation of cpu can reuse eigen, and the gpu implementation can implement cuda kernel.
+4.Performance of OP implementation. It called eigen's broadcast, chop and other operations, the performance will be over several times worse than the handwritten cuda kernel. At this point, the implementation of cpu can reuse eigen, and the gpu implementation can implement cuda kernel.
 
 
 
 <a name="Special instructions for OP InferShape check message"></a>
-#### Special instructions for OP InferShape check message 
+#### Special Instructions for OP InferShape Check Message 
 
 - Check input and output variables, please follow the following format
 `Input(variable name) of OP name operator should not be null.`
