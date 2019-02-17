@@ -1,16 +1,16 @@
 ..  _api_guide_executor_en:
 
 ################
-Executor Engine
+Executor
 ################
 
-:code:`Executor` , :code:`执行器` in Chinese, is a simple executor with which all Operators will be executed in order. You can run :code:`Executor` driven by Python script. There are two executors in PaddlePaddle Fluid. One is single-thread executor which is the default option for :code:`Executor` .
-and another is parallel executor which can be referred to :ref:`api_guide_parallel_executor` .
+:code:`Executor` realises a simple executor with which all operators will be executed in order. You can run :code:`Executor` driven by Python script. There are two kinds of executors in PaddlePaddle Fluid. One is single-thread executor which is the default option for :code:`Executor` 
+and another is the parallel executor which is introduced in :ref:`api_guide_parallel_executor_en` .
 
-The logic of :code:`Executor` is very simple. It is suggested to thoroughly run the model with :code:`Executor` in debug in one computer and then change to multiple devices or multiple computers to compute.
+The logic of :code:`Executor` is very simple. It is suggested to thoroughly run the model with :code:`Executor` in debugging phase on one computer and then switch to multiple devices or multiple computers to compute.
 
-:code:`Executor` receieve a :code:`Place` at construction, which can be either :ref:`api_fluid_CPUPlace` or :ref:`api_fluid_CUDAPlace`. :code:`Executor` can choose to run :ref:`api_guide_low_level_program`.
+:code:`Executor` receieves a :code:`Place` at construction, which can either be :ref:`api_fluid_CPUPlace` or :ref:`api_fluid_CUDAPlace`. 
 
-About quick start, please refer to `quick_start_fit_a_line <http://paddlepaddle.org/documentation/docs/zh/1.1/beginners_guide/quick_start/fit_a_line/README.cn.html>`_ 
+For simple example please refer to `quick_start_fit_a_line <http://paddlepaddle.org/documentation/docs/zh/1.1/beginners_guide/quick_start/fit_a_line/README.cn.html>`_ 
 
-About API Reference, please refer to :ref:`api_fluid_Executor`.
+For API Reference, please refer to :ref:`api_fluid_Executor`.
