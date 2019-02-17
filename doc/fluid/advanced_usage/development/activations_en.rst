@@ -1,10 +1,10 @@
 .. _api_guide_activations_en:
 
-####
+###################
 Activation Function
-####
+###################
 
-The activation function introduces nonlinear properties into the neural network.
+The activation function introduces nonlinearity properties into the neural network.
 
 PaddlePaddle Fluid supports most of the activation functions, including:
 
@@ -34,7 +34,7 @@ PaddlePaddle Fluid supports most of the activation functions, including:
 
 **Fluid provides two ways to use the activation function:**
 
-- If a layer interface provides :code:`act` variables (default None), we can specify the type of layer activation function by the variable. This mode supports common activation functions :code:`relu`, :code:`tanh`, :code:`sigmoid`, :code:`identity`.
+- If a layer interface provides :code:`act` variables (default None), we can specify the type of layer activation function through this parameter. This mode supports common activation functions :code:`relu`, :code:`tanh`, :code:`sigmoid`, :code:`identity`.
 
 .. code-block:: python
 
