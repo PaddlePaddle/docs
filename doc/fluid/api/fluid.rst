@@ -23,6 +23,15 @@ BuildStrategy
     :members:
     :noindex:
 
+.. _api_fluid_CompiledProgram:
+
+CompiledProgram
+---------------
+
+..  autoclass:: paddle.fluid.CompiledProgram
+    :members:
+    :noindex:
+
 .. _api_fluid_CPUPlace:
 
 CPUPlace
@@ -219,15 +228,6 @@ release_memory
 --------------
 
 ..  autofunction:: paddle.fluid.release_memory
-    :noindex:
-
-.. _api_fluid_Scope:
-
-Scope
------
-
-..  autoclass:: paddle.fluid.Scope
-    :members:
     :noindex:
 
 .. _api_fluid_scope_guard:
