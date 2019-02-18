@@ -211,6 +211,6 @@ config.mkldnn_enabled();  // return a bool
 
 `AnalysisConfig` 完整接口可以参考 [这里](https://github.com/PaddlePaddle/Paddle/blob/release/1.3/paddle/fluid/inference/api/paddle_analysis_config.h#L35)
 
-inference demos](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/fluid/inference/api/demo_ci)
+[inference demos](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/fluid/inference/api/demo_ci)
 
 
