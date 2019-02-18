@@ -11,7 +11,7 @@ Fluid的 :ref:`cn_api_fluid_layers_embedding`  层在单机训练和分布式训
 
 如图所示：一个Tensor中有两行不为0，正向计算的过程中，我们使用ids存储不为0的行，并使用对应的两行数据来进行计算；反向更新的过程也只更新这两行。
 
-.. image:: ../../../../images/lookup_table_training.png
+.. image:: ../../../images/lookup_table_training.png
    :scale: 50 %
 
 embedding使用例子:

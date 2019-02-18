@@ -54,7 +54,7 @@ Operator
 这是因为一些常见的对 Tensor 的操作可能是由更多基础操作构成，为了提高使用的便利性，框架内部对基础 Operator 进行了一些封装，包括创建 Operator 依赖可学习参数，可学习参数的初始化细节等，减少用户重复开发的成本。
 
 
-更多内容可参考阅读 `Fluid设计思想 <../../../advanced_usage/design_idea/fluid_design_idea.html>`_ 
+更多内容可参考阅读 `Fluid设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_ 
 
 
 =========
