@@ -5,14 +5,16 @@ Best practices of distributed training on CPU
 ######################################################
 
 To improve the training speed of CPU distributed training, we must consider two aspects:
-1) Improve the training speed, mainly to improve the CPU usage; 2) Improve the communication speed, mainly to reduce the amount of data transmitted by the communication.
 
-Improve CPU usage rate 
-==========================
+1. Improve the training speed mainly by improving utilization rate of CPU; 
+2. Improve the communication speed mainly by reducing the amount of data transmitted in the communication.
 
-The CPU usage is mainly dependent on :code:`ParallelExecutor`, which can make full use of the computing power of multiple CPUs to speed up the calculation.
+Improve CPU utilization 
+=============================
 
-API detailed usage please refer to :ref:`cn_api_fluid_ParallelExecutor`, simple example:
+The CPU utilization mainly depends on :code:`ParallelExecutor`, which can make full use of the computing power of multiple CPUs to speed up the calculation.
+
+For detailed API usage, please refer to :ref:`api_fluid_ParallelExecutor` . A simple example:
 
 .. code-block:: python
 
@@ -32,13 +34,13 @@ API detailed usage please refer to :ref:`cn_api_fluid_ParallelExecutor`, simple 
 		build_strategy=build_strategy,
 		exec_strategy=exec_strategy)
 
-Among the above parameters:
+Among the parameters above:
 
-- :code:`num_threads` : The number of threads used by the model training is preferably close to the physical CPU core of the machine where the training is performed.
+- :code:`num_threads` : the number of threads used by the model training. It is preferably close to the number of the physical CPU cores of the machine where the training is performed.
 - :code:`reduce_strategy` : For CPU training, you should choose fluid.BuildStrategy.ReduceStrategy.Reduce
 
 
-General environment variable configuration:
+Configuration of general environment variables:
 
 - :code:`CPU_NUM`: The number of replicas of the model, preferably the same as num_threads
 
@@ -46,13 +48,13 @@ General environment variable configuration:
 Improve communication speed
 ==============================
 
-To reduce the amount of communication data and improve communication speed, mainly using sparse updates, the current support for sparse update <../distributed/sparse_update.html>`_ is mainly :ref:`cn_api_fluid_layers_embedding`.
+To reduce the amount of communication data and improve communication speed is achieved mainly by using sparse updates, the current support for `sparse update <../layers/sparse_update_en.html>`_ is mainly :ref:`api_fluid_layers_embedding`.
 
 .. code-block:: python
 
 	data = fluid.layers.data(name='ids', shape=[1], dtype='int64')
 	fc = fluid.layers.embedding(input=data, size=[dict_size, 16], is_sparse=True)
 
-Among the above parameters:
+Among the parameters above:
 
-- :code:`is_sparse`: Use sparse updates to configure embedding. If the dict_size of embedding is large but the data is very small each time, it is recommended to use the sparse update method.
+- :code:`is_sparse`: Use sparse updates to configure embedding. If the dict_size of embedding is large but the number of data are very small each time, it is recommended to use the sparse update method.
