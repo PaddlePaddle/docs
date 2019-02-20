@@ -35,8 +35,7 @@ API reference :ref:`api_fluid_layers_embedding` . Here is a simple example:
            is_distributed=False)
        return embed
 
-
-Among the above parameters:
+The parameters:
 
 - :code:`is_sparse` : Whether the gradient is a sparse tensor in the backward calculation. If not set, the gradient is a `LodTensor <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/user_guides/howto/prepare_data/lod_tensor.md>`_ . The default is False.
 
