@@ -5,13 +5,13 @@ Optimizer
 ###########
 
 Neural network in essence is a `Optimization problem <https://en.wikipedia.org/wiki/Optimization_problem>`_ .
-With `forward computing and backpropagation <https://zh.wikipedia.org/zh-hans/backpropagation_algorithm>`_ ,
-:code:`Optimizer` use backpropagation gradients to optimize parameters in a neural network.
+With `forward computing and back propagation <https://zh.wikipedia.org/zh-hans/backpropagation_algorithm>`_ ,
+:code:`Optimizer` use back-propagation gradients to optimize parameters in a neural network.
 
 1.SGD/SGDOptimizer
 ------------------
 
-:code:`SGD` is an offspring class of :code:`Optimizer` implementing `Radom Gradient Descent <https://arxiv.org/pdf/1609.04747.pdf>`_ which is a method of `Gradient Descent <https://zh.wikipedia.org/zh-hans/gradient_descent_algorithm>`_ .
+:code:`SGD` is an offspring class of :code:`Optimizer` implementing `Random Gradient Descent <https://arxiv.org/pdf/1609.04747.pdf>`_ which is a method of `Gradient Descent <https://zh.wikipedia.org/zh-hans/gradient_descent_algorithm>`_ .
 When it needs to train a large number of samples, we usually choose :code:`SGD` to make loss function converge more quickly.  
 
 API Reference: :ref:`api_fluid_optimizer_SGDOptimizer`
@@ -21,7 +21,7 @@ API Reference: :ref:`api_fluid_optimizer_SGDOptimizer`
 ----------------------------
 
 :code:`Momentum` optimizer adds momentum on the basis of :code:`SGD` , reducing noise problem in the process of random gradient descent.
-You can set :code:`ues_nesterov` as False or True, repectively corresponding to traditional `Momentum(Section 4.1 in thesis)
+You can set :code:`ues_nesterov` as False or True, respectively corresponding to traditional `Momentum(Section 4.1 in thesis)
 <https://arxiv.org/pdf/1609.04747.pdf>`_  algorithm and `Nesterov accelerated gradient(Section 4.2 in thesis)
 <https://arxiv.org/pdf/1609.04747.pdf>`_ algorithm.
 
