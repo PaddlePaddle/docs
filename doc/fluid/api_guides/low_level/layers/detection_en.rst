@@ -26,7 +26,7 @@ Some common operations in image detection are a series of operations on the boun
 Faster RCNN
 -------------
 
-`Faster RCNN <https://arxiv.org/abs/1506.01497>`_ is a typical dual-stage target detector. Compared with the traditional extraction method, the RPN network in Faster RCNN greatly improves the extraction efficiency by sharing convolutional layer parameters, and proposes high-quality region proposals. The RPN network needs to compare the input anchor with the ground-truth value to generate a primary candidate region, and assigns a classification and regression value to the primary candidate box. The following four unique apis are required:
+`Faster RCNN <https://arxiv.org/abs/1506.01497>`_ is a typical dual-stage target detector. Compared with the traditional extraction method, the RPN network in Faster RCNN greatly improves the extraction efficiency by sharing convolution layer parameters, and proposes high-quality region proposals. The RPN network needs to compare the input anchor with the ground-truth value to generate a primary candidate region, and assigns a classification and regression value to the primary candidate box. The following four unique apis are required:
 
 * rpn_target_assign: Assign the classification and regression target values ​​of the RPN network to the anchor through the anchor and the ground-truth box. For API Reference, please refer to :ref:`api_fluid_layers_rpn_target_assign`
 
@@ -55,8 +55,8 @@ SSD
 OCR
 ---------
 
-Scene text recognition is a process of converting image information into a sequence of characters in the case of complex image background, low resolution, diverse fonts, random distribution, etc. It can be considered as a special translation process: translation of image input into natural language output. The OCR task needs to perform irregular transformation on the bounding box, which requires the following two APIs:
+Scene text recognition is a process of converting image information into a sequence of characters in the case of complex image background, low resolution, diverse fonts, random distribution and so on. It can be considered as a special translation process: translation of image input into natural language output. The OCR task needs to perform irregular transformation on the bounding box, which requires the following two APIs:
 
-* roi_perspective_transform: Make a perspective transformation on the input roi. For API Reference, please refer to :ref:`api_fluid_layers_roi_perspective_transform`
+* roi_perspective_transform: Make a perspective transformation on the input RoI. For API Reference, please refer to :ref:`api_fluid_layers_roi_perspective_transform`
 
 * polygon_box_transform: Coordinate transformation of the irregular bounding box. For API Reference, please refer to :ref:`api_fluid_layers_polygon_box_transform`
