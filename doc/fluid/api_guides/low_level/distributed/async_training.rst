@@ -12,7 +12,7 @@ Fluid支持数据并行的分布式异步训练，API使用 :code:`DistributedTr
 pserver模式分布式异步训练
 ======================
 
-API详细使用方法参考 :ref: `api_fluid_DistributeTranspiler` ，简单示例用法：
+API详细使用方法参考 :ref:`cn_api_fluid_DistributeTranspiler` ，简单示例用法：
 
 .. code-block:: python
 
@@ -26,7 +26,7 @@ API详细使用方法参考 :ref: `api_fluid_DistributeTranspiler` ，简单示�
                 trainers=1,
                 sync_mode=False)
 
-以上参数说明请参考`同步训练 <../distributed/sync_training.html>`_ 
+以上参数说明请参考 `同步训练 <../distributed/sync_training.html>`_ 
 
 需要注意的是：进行异步训练时，请修改 :code:`sync_mode` 的值
 

@@ -4,7 +4,7 @@
 显存优化
 #####
 
-显存优化是通过分析、复用 :code:`Program` 中 :code:`Varaible` 使用的显存，从而降低 :code:`Program` 执行时显存消耗的方法。用户可以通过Python脚本调用 :code:`memory_optimize` 接口进行显存优化，显存优化的执行策略如下：
+显存优化是通过分析、复用 :code:`Program` 中 :code:`Variable` 使用的显存，从而降低 :code:`Program` 执行时显存消耗的方法。用户可以通过Python脚本调用 :code:`memory_optimize` 接口进行显存优化，显存优化的执行策略如下：
 
 - 首先根据 :code:`Program` 中 :code:`Operator` 之间的关系对 :code:`Variable` 的最后存活时间进行分析，得到每个 :code:`Variable` 的最后存活时间;
 - 其次根据每个 :code:`Variable` 的最后存活时间，我们将到达存活时间、不再存活的 :code:`Variable` 所占用的显存提供给后来的 :code:`Variable` 使用。
@@ -28,7 +28,7 @@
         skip_opt_set=("fc"), skip_grads=True)
 
 在这个示例中，:code:`fluid.memory_optimize` 接口对默认的 :code:`Program` 进行了 :code:`Variable` 最后存活时间的分析，并跳过了名字为 :code:`fc` 的 :code:`Variable` 以及网络反向部分的所有 :code:`Variable` 。
-这部分 :code:`Variable` 的显存都不会被别的 :code:`Varaible` 再次使用。
+这部分 :code:`Variable` 的显存都不会被别的 :code:`Variable` 再次使用。
 
 指定显存优化等级
 ===========

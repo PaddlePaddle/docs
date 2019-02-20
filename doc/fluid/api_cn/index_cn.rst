@@ -3,9 +3,9 @@ API
 =====
 
 ..  toctree::
-    :maxdepth: 1
 
-    api_guides/index.rst
+
+    ../api_guides/index.rst
     fluid_cn.rst
     average_cn.rst
     backward_cn.rst
