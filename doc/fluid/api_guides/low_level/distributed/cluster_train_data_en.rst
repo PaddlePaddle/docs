@@ -1,12 +1,12 @@
 .. _api_guide_cluster_train_data_en:
 
-###########################################
-Preparing Reader for Distributed Training
-###########################################
+###############################################
+Preparing Data Reader for Distributed Training
+###############################################
 
 A parallelism distributed training task usually contains multiple training processes. Each training process processes a part of the entire data set. The unique serial number (trainer_id) of the current process and the total number of training processes (trainers) determines which part of the data can be read by the current training process.
 
-Read distributed training datasets by defining a cluster_reader
+Read datasets in distributed training by defining a cluster_reader
 -----------------------------------------------------------------
 
 Generally, you can implement a cluster_reader, regarding the number of training processes and the process serial number(i.e. trainer_id) to decide which data to read:
