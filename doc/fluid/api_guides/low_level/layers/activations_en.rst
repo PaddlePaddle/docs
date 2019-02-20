@@ -4,7 +4,7 @@
 Activation Function
 ###################
 
-The activation function introduces nonlinearity properties into the neural network.
+The activation function incorporates non-linearity properties into the neural network.
 
 PaddlePaddle Fluid supports most of the activation functions, including:
 
@@ -41,7 +41,7 @@ PaddlePaddle Fluid supports most of the activation functions, including:
 	conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
 
 
-- Fluid provides an interface for each Activation, and we can explicitly call them.
+- Fluid provides an interface for each Activation, and we can explicitly call it.
 
 .. code-block:: python
 
