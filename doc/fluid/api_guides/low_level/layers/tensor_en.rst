@@ -4,7 +4,7 @@
 Tensor
 ########
 
-There are two data structures used in Fluid to host the data, namely `Tensor and LoD_Tensor <../../../user_guides/howto/prepare_data/lod_tensor_en.html>`_. LoD-Tensor is a unique concept of Fluid, which appends sequence information to Tensor. The data that can be transferred in the framework includes: input, output, and learnable parameters in the network. All of them are uniformly represented by LoD-Tensor. In addition, tensor can be regarded as a special LoD-Tensor.
+There are two data structures used in Fluid to host the data, namely `Tensor and LoD_Tensor <../../../user_guides/howto/basic_concept/lod_tensor_en.html>`_ .  LoD-Tensor is a unique concept of Fluid, which appends sequence information to Tensor. The data that can be transferred in the framework includes: input, output, and learnable parameters in the network. All of them are uniformly represented by LoD-Tensor. In addition, tensor can be regarded as a special LoD-Tensor.
 
 Now let's take a closer look at the operations related to these two types of data.
 
@@ -125,7 +125,7 @@ API reference : :ref:`api_fluid_layers_reverse`
 LoD-Tensor
 ============
 
-LoD-Tensor is very suitable for sequence data. For related knowledge, please read `LoD_Tensor <../../../user_guides/howto/prepare_data/lod_tensor_en.html>`_.
+LoD-Tensor is very suitable for sequence data. For related knowledge, please read `Tensor and LoD_Tensor <../../../user_guides/howto/basic_concept/lod_tensor_en.html>`_ .
 
 1.create_lod_tensor
 -----------------------
