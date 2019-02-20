@@ -11183,6 +11183,7 @@ auc
 注：这里返回的是auc的一个全局累加值。如果想要在训练的过程中将全局auc置为0，可以参考以下代码，其中auc_status为auc相关的状态记录变量：
 
 .. code-block:: python
+
     def set_zero(var_name):
         param = inference_scope.var(var_name).get_tensor()
         param_array = np.zeros(param._get_dims()).astype("int64")
