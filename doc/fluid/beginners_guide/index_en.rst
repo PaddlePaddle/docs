@@ -13,15 +13,15 @@ For beginners of PaddlePaddle, the following documentation will tutor you about 
 
 The following resources are recommended for novices in deep learning:
 
-    - `Resources <../beginners_guide/basics/learning_materials.html>`_ ：Selected books and lectures about machine learning, deep learning and programming languages.
+    - `Resources <../beginners_guide/basics/learning_materials_en.html>`_ ：Selected books and lectures about machine learning, deep learning and programming languages.
 
 If you have been armed with certain level of deep learning knowledge, and it happens to be the first time to try PaddlePaddle, the following cases of model building will expedite your learning process:
 
-    - `Programming with Fluid <../beginners_guide/programming_guide/programming_guide.html>`_ ： Core concepts and basic usage of Fluid
+    - `Programming with Fluid <../beginners_guide/programming_guide/programming_guide_en.html>`_ ： Core concepts and basic usage of Fluid
 
-    - `Quick Start <../beginners_guide/quick_start/index.html>`_： Two easy-to-go models, linear regression model and digit recognition model, are in place to speed up your study of training neural networks
+    - `Quick Start <../beginners_guide/quick_start/index_en.html>`_： Two easy-to-go models, linear regression model and digit recognition model, are in place to speed up your study of training neural networks
 
-    - `Deep Learning  <../beginners_guide/basics/index.html>`_： This section encompasses various fields of fundamental deep learning knowledge, such as image classification, customized recommendation, machine translation, and examples implemented by Fluid are provided. 
+    - `Deep Learning  Basics <../beginners_guide/basics/index_en.html>`_： This section encompasses various fields of fundamental deep learning knowledge, such as image classification, customized recommendation, machine translation, and examples implemented by Fluid are provided. 
 
 
 ..  toctree::
@@ -29,4 +29,4 @@ If you have been armed with certain level of deep learning knowledge, and it hap
 
     install/index_en.rst
     basics/learning_materials_en.md
-
+    programming_guide/programming_guide_en.md
