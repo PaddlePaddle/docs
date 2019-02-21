@@ -4,7 +4,7 @@
 使用PyReader读取训练和测试数据
 ############################
 
-Paddle Fluid支持PyReader，实现Python端往C++端导入数据的功能。与 :ref:`user_guide_use_numpy_array_as_train_data` 不同，在使用PyReader时，数据读取和模型训练过程是异步进行的，且能与 :code:`double_buffer_reader` 配合以进一步提高数据读取性能，其中 :code:`double_buffer_reader` 负责异步完成CPU Tensor到GPU Tensor的转换。
+除Python Reader方法外，我们提供了PyReader。PyReader的性能比 :ref:`user_guide_use_numpy_array_as_train_data` 更好：它的数据读取和模型训练过程是异步进行的，且能与 :code:`double_buffer_reader` 配合以进一步提高数据读取性能，此外， :code:`double_buffer_reader` 负责异步完成CPU Tensor到GPU Tensor的转换，大幅提升了数据读取效率。
 
 创建PyReader对象
 ################################
@@ -21,9 +21,9 @@ Paddle Fluid支持PyReader，实现Python端往C++端导入数据的功能。与
                                        name='py_reader',
                                        use_double_buffer=True)
 
-其中，capacity为PyReader对象的缓存区大小；shapes为batch各参量（如图像分类任务中的image和label）的尺寸；dtypes为batch各参量的数据类型；name为PyReader对象的名称；use_double_buffer默认为True，表示使用 :code:`double_buffer_reader` 。
+其中，capacity为PyReader对象的缓存区大小；shapes为batch各参量（如图像分类任务中的image和label）的尺寸；dtypes为batch各参量的数据类型；name为PyReader对象的名称；use_double_buffer默认为True，表示使用 :code:`double_buffer_reader` ，建议开启，可提升数据读取速度。
 
-由于Paddle采用不同的变量名区分不同的变量，且 `Program.clone()` (参见 :ref:`cn_api_fluid_Program_clone` ）不能实现PyReader对象的复制，因此若要创建多个不同的PyReader对象（如训练阶段和测试阶段往往需创建两个不同的PyReader对象），必须给不同的PyReader对象指定不同的name。
+需要注意的是：如果您要创建多个不同PyReader对象（例如训练和预测阶段需创建两个不同的PyReader），则需要必须给不同的PyReader对象指定不同的name。这是因为PaddlePaddle采用不同的变量名区分不同的变量，而且 `Program.clone()` (参见 :ref:`cn_api_fluid_Program_clone` ）不能实现PyReader对象的复制，因此若要创建多个不同的PyReader对象（如训练阶段和测试阶段往往需创建两个不同的PyReader对象），必须给不同的PyReader对象指定不同的name。
 例如，在同一任务中创建训练阶段和测试阶段的PyReader对象的方式为：
 
 .. code-block:: python
@@ -42,10 +42,10 @@ Paddle Fluid支持PyReader，实现Python端往C++端导入数据的功能。与
                                             name='test',
                                             use_double_buffer=True)
 
-在使用PyReader时，用户需通过 :code:`fluid.unique_name.guard()` 的方式实现训练阶段和测试阶段模型参数的共享。
+在使用PyReader时，如果需要共享训练阶段和测试阶段的模型参数，您可以通过 :code:`fluid.unique_name.guard()` 的方式来实现。
 注：Paddle采用不同的变量名区分不同的变量，且变量名是根据 :code:`unique_name` 模块中的计数器自动生成的，每生成一个变量名计数值加1。 :code:`fluid.unique_name.guard()` 的作用是重置 :code:`unique_name` 模块中的计数器，保证多次调用 :code:`fluid.unique_name.guard()` 配置网络时对应变量的变量名相同，从而实现参数共享。
 
-以下展示了使用PyReader配置训练阶段和测试阶段网络的例子：
+下面是一个使用PyReader配置训练阶段和测试阶段网络的例子：
 
 .. code-block:: python
 
@@ -93,7 +93,9 @@ Paddle Fluid支持PyReader，实现Python端往C++端导入数据的功能。与
 PyReader对象通过 :code:`decorate_paddle_reader()` 或 :code:`decorate_tensor_provider()` 方法设置其数据源。 :code:`decorate_paddle_reader()` 和 :code:`decorate_tensor_provider()` 均接收Python生成器 :code:`generator` 作为参数， :code:`generator` 内部每次通过yield的方式生成一个batch的数据。
 
 :code:`decorate_paddle_reader()` 和 :code:`decorate_tensor_provider()` 方法的区别在于：
+
 - :code:`decorate_paddle_reader()` 的 :code:`generator` 应返回Numpy Array类型的数据，而 :code:`decorate_tensor_provider()` 的 :code:`generator` 应返回LoDTensor类型的数据。
+
 - :code:`decorate_tensor_provider()` 要求 :code:`generator` 返回的LoDTensor的数据类型、尺寸必须与配置py_reader时指定的dtypes、shapes参数相同，而 :code:`decorate_paddle_reader()` 不要求数据类型和尺寸的严格一致，其内部会完成数据类型和尺寸的转换。
 
 具体方式为：
