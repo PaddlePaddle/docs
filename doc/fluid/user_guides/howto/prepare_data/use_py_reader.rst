@@ -4,7 +4,7 @@
 使用PyReader读取训练和测试数据
 ############################
 
-除Python Reader方法外，我们提供了PyReader。PyReader的性能比 :ref:`user_guide_use_numpy_array_as_train_data` 更好：它的数据读取和模型训练过程是异步进行的，且能与 :code:`double_buffer_reader` 配合以进一步提高数据读取性能，此外， :code:`double_buffer_reader` 负责异步完成CPU Tensor到GPU Tensor的转换，大幅提升了数据读取效率。
+除Python Reader方法外，我们提供了PyReader。PyReader的性能比 :ref:`user_guide_use_numpy_array_as_train_data` 更好，因为PyReader的数据读取和模型训练过程是异步进行的，且能与 :code:`double_buffer_reader` 配合以进一步提高数据读取性能。此外， :code:`double_buffer_reader` 负责异步完成CPU Tensor到GPU Tensor的转换，一定程度上提升了数据读取效率。
 
 创建PyReader对象
 ################################
@@ -42,7 +42,7 @@
                                             use_double_buffer=True)
 
 在使用PyReader时，如果需要共享训练阶段和测试阶段的模型参数，您可以通过 :code:`fluid.unique_name.guard()` 的方式来实现。
-注：Paddle采用不同的变量名区分不同的变量，且变量名是根据 :code:`unique_name` 模块中的计数器自动生成的，每生成一个变量名计数值加1。 :code:`fluid.unique_name.guard()` 的作用是重置 :code:`unique_name` 模块中的计数器，保证多次调用 :code:`fluid.unique_name.guard()` 配置网络时对应变量的变量名相同，从而实现参数共享。
+注：Paddle采用变量名区分不同变量，且变量名是根据 :code:`unique_name` 模块中的计数器自动生成的，每生成一个变量名计数值加1。 :code:`fluid.unique_name.guard()` 的作用是重置 :code:`unique_name` 模块中的计数器，保证多次调用 :code:`fluid.unique_name.guard()` 配置网络时对应变量的变量名相同，从而实现参数共享。
 
 下面是一个使用PyReader配置训练阶段和测试阶段网络的例子：
 
