@@ -23,8 +23,7 @@
 
 其中，capacity为PyReader对象的缓存区大小；shapes为batch各参量（如图像分类任务中的image和label）的尺寸；dtypes为batch各参量的数据类型；name为PyReader对象的名称；use_double_buffer默认为True，表示使用 :code:`double_buffer_reader` ，建议开启，可提升数据读取速度。
 
-需要注意的是：如果您要创建多个不同PyReader对象（例如训练和预测阶段需创建两个不同的PyReader），则需要必须给不同的PyReader对象指定不同的name。这是因为PaddlePaddle采用不同的变量名区分不同的变量，而且 `Program.clone()` (参见 :ref:`cn_api_fluid_Program_clone` ）不能实现PyReader对象的复制，因此若要创建多个不同的PyReader对象（如训练阶段和测试阶段往往需创建两个不同的PyReader对象），必须给不同的PyReader对象指定不同的name。
-例如，在同一任务中创建训练阶段和测试阶段的PyReader对象的方式为：
+需要注意的是：如果您要创建多个不同PyReader对象（例如训练和预测阶段需创建两个不同的PyReader），则需要必须给不同的PyReader对象指定不同的name。这是因为PaddlePaddle采用不同的变量名区分不同的变量，而且 `Program.clone()` (参见 :ref:`cn_api_fluid_Program_clone` ）不能实现PyReader对象的复制。
 
 .. code-block:: python
 
