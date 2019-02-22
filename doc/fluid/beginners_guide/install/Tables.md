@@ -324,40 +324,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
 
 ***
-<a name="dockers"></a>
-</br></br>
-## **安装镜像表及简介**
-<p align="center">
-<table>
-	<thead>
-	<tr>
-		<th> 版本号 </th>
-		<th> 版本说明 </th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td> hub.baidubce.com/paddlepaddle/paddle:latest </td>
-		<td> 最新的预先安装好PaddlePaddle CPU版本的镜像 </td>
-	</tr>
-	<tr>
-		<td> hub.baidubce.com/paddlepaddle/paddle:latest-dev </td>
-		<td> 最新的PaddlePaddle的开发环境 </td>
-	</tr>
-		<tr>
-		<td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
-		<td> 将version换成具体的版本，历史版本的预安装好PaddlePaddle的镜像 </td>
-	</tr>
-	<tr>
-		<td> hub.baidubce.com/paddlepaddle/paddle:latest-gpu </td>
-		<td> 最新的预先安装好PaddlePaddle GPU版本的镜像 </td>
-	</tr>
-   </tbody>
-</table>
-</p>
 
-
-您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
 
 ***
 
