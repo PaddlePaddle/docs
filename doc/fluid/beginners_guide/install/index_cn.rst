@@ -1,7 +1,7 @@
 ==========
  安装说明
 ==========
-本说明将指导您在64位台式机或笔记本电脑上编译和安装PaddlePaddle
+本说明将指导您在64位操作系统编译和安装PaddlePaddle
 
 PaddlePaddle目前支持的Python版本包括：Python 2.7-3.7
 
@@ -12,7 +12,7 @@ PaddlePaddle目前支持以下环境：
 * *MacOS 10.11 / 10.12 / 10.13 / 10.14*
 * *Windows7 / 8/ 10(专业版/企业版)*
 
-请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机拥有64位操作系统，处理器支持AVX指令集，否则请选择 `多版本whl包安装列表 <Tables.html/#ciwhls>`_  中 :code:`no_avx` 的版本
+请确保您的环境满足以上条件，我们默认提供的安装同时需要您的计算机拥有64位操作系统，处理器支持AVX指令集和MKL，如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html/#ciwhls>`_
 
 - 如果您希望使用 `pip <https://pypi.org/pypi/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 

@@ -37,7 +37,7 @@
 
 2. 进入Paddle目录下： `cd Paddle`
 
-3. 创建并进入满足编译环境的Docker容器：
+3. 创建并进入已配置好编译环境的Docker容器：
 
 	`docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
 
