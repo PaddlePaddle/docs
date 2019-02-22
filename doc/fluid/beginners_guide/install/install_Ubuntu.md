@@ -11,7 +11,7 @@
 
 * 可以使用`uname -m && cat /etc/*release`查看本机的操作系统和位数信息
 * 可以使用`pip -V`(Python版本为2.7)或`pip3 -V`(Python版本为3.5/3.6/3.7)，确认pip/pip3版本是否满足要求
-* 默认提供的安装包需要计算机支持AVX指令集。可使用`cat /proc/cpuinfo | grep avx`来检测您的处理器是否支持该指令集，如不支持，请在[这里](./Tables.html/#ciwhls-release)下载`no_avx`版本的安装包
+* 默认提供的安装包需要计算机支持AVX指令集和MKL。如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/beginners_guide/install/install_script.md)。或者您也可以使用`cat /proc/cpuinfo | grep avx`来检测您的处理器是否支持该指令集，如不支持，请在[这里](./Tables.html/#ciwhls-release)下载`no_avx`版本的安装包
 
 ## 选择CPU/GPU
 

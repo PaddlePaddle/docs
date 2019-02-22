@@ -10,7 +10,7 @@
 ### 注意事项
 
 * 可以使用`pip -V`(Python版本为2.7)或`pip3 -V`(Python版本为3.5/3.6/3.7)，确认pip/pip3版本是否满足要求
-* 默认提供的安装包需要计算机支持AVX指令集。可使用`cat /proc/cpuinfo | grep avx`来检测您的处理器是否支持该指令集，如不支持，请在[这里](./Tables.html/#ciwhls-release)下载`no_avx`版本的安装包
+* 默认提供的安装包需要计算机支持AVX指令集
 
 ## 选择CPU/GPU
 
