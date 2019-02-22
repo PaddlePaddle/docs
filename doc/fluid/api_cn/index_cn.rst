@@ -3,7 +3,7 @@ API
 =====
 
 ..  toctree::
-
+    :maxdepth: 1
 
     ../api_guides/index.rst
     fluid_cn.rst
