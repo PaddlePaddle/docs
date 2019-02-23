@@ -77,8 +77,6 @@
 
 	*  编译**GPU版本PaddlePaddle**：
 
-		*  对于需要编译**GPU版本PaddlePaddle**的用户：
-
 		For Python2: `cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
 			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
