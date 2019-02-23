@@ -11,13 +11,13 @@ This document will instruct you to program and create a simple nueral network wi
 
 Before building model, you need to figure out several core concepts of Fluid at first:
 
-## Express data with Tensor 
+## Express data with Tensor
 
 Like other mainstream frameworks, Fluid uses Tensor to hold data.
 
 All data transferred in neural network are Tensor which can simply be regarded as a multi-dimensional array. In general, the number of dimensions can be any. Tensor features its own data type and shape. Data type of each element in single Tensor is the same. And **the shape of Tensor** refers to the dimensions of Tensor.
 
-Picture below visually shows Tensor with dimension from one to six: 
+Picture below visually shows Tensor with dimension from one to six:
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/beginners_guide/image/tensor.jpg" width="400">
 </p>
@@ -46,21 +46,21 @@ y = fluid.layers.fc(input=x, size=128, bias_attr=True)
 
 **2. Input and Output Tensor**
 
-The input data of the whole neural network is also a special Tensor in which the sizes of some dimensions can not be decided at the definition time of models. Such dimensions usually includes batch size, or width and height of image when such data formats in a mini-batch are not constant. Placeholders for these uncertain dimension are necessary at the definition phase of model. 
+The input data of the whole neural network is also a special Tensor in which the sizes of some dimensions can not be decided at the definition time of models. Such dimensions usually includes batch size, or width and height of image when such data formats in a mini-batch are not constant. Placeholders for these uncertain dimension are necessary at the definition phase of model.
 
 
-`fluid.layers.data` is used to receive input data in Fluid, and it needs to be provided with the shape of input Tensor. When the shape is not certain, the correspondent dimension is defined as None. 
+`fluid.layers.data` is used to receive input data in Fluid, and it needs to be provided with the shape of input Tensor. When the shape is not certain, the correspondent dimension is defined as None.
 
 The code below exemplifies the usage of `fluid.layers.data` :
 
 ```python
 import paddle.fluid as fluid
 
-#Define the dimension of x : [3,None]. What we could make sure is that the first dimension of x is 3. 
+#Define the dimension of x : [3,None]. What we could make sure is that the first dimension of x is 3.
 #The second dimension is unknown and can only be known at runtime.
 x = fluid.layers.data(name="x", shape=[3,None], dtype="int64")
 
-#batch size doesn't have to be defined explicitly. 
+#batch size doesn't have to be defined explicitly.
 #Fluid will automatically assign zeroth dimension as batch size dimension and fill right number at runtime.
 a = fluid.layers.data(name="a",shape=[3,4],dtype='int64')
 
@@ -126,7 +126,7 @@ For example, you can use `paddle.fluid.layers.elementwise_add()` to add up two i
 #Define network
 import paddle.fluid as fluid
 a = fluid.layers.data(name="a",shape=[1],dtype='float32')
-b = fluid.layers.data(name="b",shape=[1],dtype='float32') 
+b = fluid.layers.data(name="b",shape=[1],dtype='float32')
 
 result = fluid.layers.elementwise_add(a,b)
 
@@ -140,7 +140,7 @@ import numpy
 data_1 = input("a=")
 data_2 = input("b=")
 x = numpy.array([[data_1]])
-y = numpy.array([[data_2]]) 
+y = numpy.array([[data_2]])
 
 #Run computing
 outs = exe.run(
@@ -178,7 +178,7 @@ Output:
 ```
 [array([[7]]), array([[3]]), array([[10]])]
 ```
-    
+
 ## Use Program to describe neural network model
 
 Fluid is different from most other deep learning frameworks. In Fluid, static computing map is replaced by Program to dynamically describe the network. This dynamic method delivers both flexible modifications to network structure and convenience to build model. Moreover, the capability of expressing a model is enhanced significantly while the performance is guaranteed.
@@ -222,10 +222,10 @@ with fluid.layers.control_flow.Switch() as switch:
             fluid.layers.tensor.assign(input=two_var, output=lr)
 ```
 
-    
-For detailed design principles of Program, please refer to [Design principle of Fluid](../../user_guides/design_idea/fluid_design_idea_en.html).
 
-For more about control flow in Fluid, please refer to [Control Flow](../../api_guides/low_level/layers/control_flow_en.html).
+For detailed design principles of Program, please refer to [Design principle of Fluid](../../advanced_usage/design_idea/fluid_design_idea_en.html).
+
+For more about control flow in Fluid, please refer to [Control Flow](../../api/layers.html#control-flow).
 
 
 ## Use Executor to run Program
@@ -265,27 +265,27 @@ Firstly, define input data format, model structure,loss function and optimized a
 2. Define data
 
     Supposing input data X=[1 2 3 4]，Y=[2,4,6,8], make a definition in network:
-    
+
     ```python
     #define X
     train_data=numpy.array([[1.0],[2.0],[3.0],[4.0]]).astype('float32')
     #define ground-truth y_true expected to get from the model prediction
     y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
     ```
-        
+
 3. Create network (define forward computing logic)
 
     Next you need to define the relationship between the predicted value and the input. Take a simple linear regression function for example:
-    
+
     ```python
     #define input data type
     x = fluid.layers.data(name="x",shape=[1],dtype='float32')
     #create fully connected network
     y_predict = fluid.layers.fc(input=x,size=1,act=None)
     ```
-    
+
     Now the network can predict output. Although the output is just a group of random numbers, which is far from expected results:
-    
+
     ```python
     #load library
     import paddle.fluid as fluid
@@ -307,9 +307,9 @@ Firstly, define input data format, model structure,loss function and optimized a
     #observe result
     print outs
     ```
-    
+
     Output:
-    
+
     ```
     [array([[0.74079144],
                [1.4815829 ],
@@ -317,8 +317,8 @@ Firstly, define input data format, model structure,loss function and optimized a
                [2.9631658 ]], dtype=float32)]
     ```
 
-4. Add loss function 
-    
+4. Add loss function
+
     After the construction of model, we need to evaluate the output result in order to make accurate predictions. How do we evaluate the result of prediction? We usually add loss function to network to compute the *distance* between ground-truth value and predict value.
 
     In this example, we adopt [mean-square function](https://en.wikipedia.org/wiki/Mean_squared_error) as our loss function ：
@@ -328,7 +328,7 @@ Firstly, define input data format, model structure,loss function and optimized a
     avg_cost = fluid.layers.mean(cost)
     ```
     Output predicted value and loss function after a process of computing:
-    
+
     ```python
     #load library
     import paddle.fluid as fluid
@@ -355,7 +355,7 @@ Firstly, define input data format, model structure,loss function and optimized a
     print outs
     ```
     Output:
-    
+
     ```
     [array([[0.9010564],
         [1.8021128],
@@ -364,17 +364,17 @@ Firstly, define input data format, model structure,loss function and optimized a
     ```
 
     We discover that the loss function after the first iteration of computing is 9.0, which shows there is a great improve space.
-    
+
 5. Optimization of network
-    
+
     After the definition of loss function,you can get loss value by forward computing and then get gradients of parameters with chain derivative method.
-    
+
     Parameters should be updated after you have obtained gradients. The simplest algorithm is random gradient algorithm: w=w−η⋅g,which is implemented by `fluid.optimizer.SGD`:
     ```python
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.01)
     ```
     Let's train the network for 100 times and check the results:
-    
+
     ```python
     #load library
     import paddle.fluid as fluid
@@ -413,7 +413,7 @@ Firstly, define input data format, model structure,loss function and optimized a
             [7.8866425]], dtype=float32), array([0.01651453], dtype=float32)]
     ```
     Now we discover that predicted value is nearly close to real value and the loss value descends from original value 9.05 to 0.01 after iteration for 100 times.
-    
+
     Congratulations! You have succeed to create a simple network. If you want to try advanced linear regression —— predict model of housing price, please read [linear regression](../../beginners_guide/quick_start/fit_a_line/README.en.html). More examples of model can be found in [models](../../user_guides/models/index_en.html).
 
 <a name="what_next"></a>

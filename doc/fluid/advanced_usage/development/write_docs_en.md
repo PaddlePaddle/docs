@@ -114,7 +114,7 @@ After completing the installation, you will also need to do:
   In the docker container that compiles the code, or the corresponding location in the host machine:
 
   - Run the script `paddle/scripts/paddle_build.sh` (under Paddle repo)
-  
+
   ```bash
   # Compile paddle's python library
   cd Paddle
@@ -129,7 +129,7 @@ After completing the installation, you will also need to do:
 
   docker run -it -v /Users/xxxx/workspace/paddlepaddle_workplace:/workplace -p 8000:8000 [images_id] /bin/bash
   ```
-  
+
   > Where `/Users/xxxx/workspace/paddlepaddle_workplace` should be replaced with your local host paddle workspace directory, `/workplace` should be replaced with the working directory in the docker. This mapping will ensure that we compile the python library, modify FluidDoc and use the preview tool at the same time.
 
   > [images_id] is the image id of the paddlepaddle you use in docker.
@@ -158,7 +158,7 @@ After completing the installation, you will also need to do:
   ```
 
 ---
-  
+
   **Preview modification**
 
 
@@ -166,26 +166,26 @@ After completing the installation, you will also need to do:
   Open your browser and navigate to http://localhost:8000 .
 
   On the page to be updated, click Refresh Content at the top right corner.
-  
+
   After entering documentation page, the API section does not contain content. To preview the API document, please click on the API directory and you will see the generated API reference after a few minutes.
-  
+
 
 ## Submit changes
 
-If you wish to modify the code, please refer to [How to contribute code](contribute_to_paddle/index_en.html) under the `Paddle` repository.
+If you wish to modify the code, please refer to [How to contribute code](../development/contribute_to_paddle/index_en.html) under the `Paddle` repository.
 
 If you just modify the document:
 
   - The modified content is in the `doc` folder, you only need to submit `PR` in the `FluidDoc` repository.
-  
+
   - The modified content is in the `external` folder:
 
 	1. Submit the PR in the repostory you modified. This is because the `FluidDoc` repository is just a wrapper that brings together the links of other repositories (namely, the "submodules" in git context).
-	
+
 	2. When your changes are approved, update the corresponding `submodule` in FluidDoc to the latest commit-id of the source repository.
 
 	  > For example, you updated the document on the develop branch in the book repository:
-	  
+
 
 	  > - Go to the `FluidDoc/external/book` directory
 	  > - Update commit-id to the latest commit: `git pull origin develop`
@@ -193,7 +193,7 @@ If you just modify the document:
 
 3.  Pull Request for your changes in the `FluidDoc` repository
 
-The steps to submit changes and PR can refer to [How to contribute code](contribute_to_paddle/index_en.html)
+The steps to submit changes and PR can refer to [How to contribute code](../development/contribute_to_paddle/index_en.html)
 
 ## Help improve preview tool
 

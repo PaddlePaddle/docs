@@ -8,7 +8,7 @@ Welcome to Paddle-Mobile GitHub project. Paddle-Mobile is a project of PaddlePad
 
 ## Features
 
-- high performance in support of ARM CPU 
+- high performance in support of ARM CPU
 - support Mali GPU
 - support Andreno GPU
 - support the realization of GPU Metal on Apple devices
@@ -50,7 +50,7 @@ At present Paddle-Mobile only supports models trained by Paddle fluid. Models ca
 ### 1. Use Paddle Fluid directly to train
 It is the most reliable method to be recommended
 ### 2. Transform Caffe to Paddle Fluid model
-[https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid](https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid)
+[https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/caffe2fluid)
 ### 3. ONNX
 ONNX is the acronym of Open Neural Network Exchange. The project is aimed to make a full communication and usage among different neural network development frameworks.
 
@@ -76,4 +76,4 @@ Paddle-Mobile provides relatively unstrict Apache-2.0 Open source agreement [Apa
 
 
 ## Old version Mobile-Deep-Learning
-Original MDL(Mobile-Deep-Learning) project has been transferred to [Mobile-Deep-Learning](https://github.com/allonli/mobile-deep-learning) 
+Original MDL(Mobile-Deep-Learning) project has been transferred to [Mobile-Deep-Learning](https://github.com/allonli/mobile-deep-learning)
