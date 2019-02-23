@@ -10,7 +10,7 @@ API Reference
 =============
 
 ..  toctree::
-
+    :maxdepth: 1
 
 ''')
     file_object.write('    ../api_guides/index.rst'+'\n')
