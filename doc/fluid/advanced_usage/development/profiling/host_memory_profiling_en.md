@@ -16,7 +16,7 @@ gperftool mainly supports four functions:
 - heap-profiling using tcmalloc
 - CPU profiler
 
-Paddle also provides a [tutorial on CPU performance analysis](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/howto/optimization/cpu_profiling_en.md) based on gperftool.
+Paddle also provides a [tutorial on CPU performance analysis](./cpu_profiling_en.html) based on gperftool.
 
 For the analysis for heap, we mainly use thread-caching malloc and heap-profiling using tcmalloc.
 
@@ -29,7 +29,7 @@ This tutorial is based on the Docker development environment paddlepaddle/paddle
 - Install google-perftools
 
 ```
-apt-get install libunwind-dev 
+apt-get install libunwind-dev
 apt-get install google-perftools
 ```
 
@@ -74,15 +74,15 @@ As the program runs, a lot of files will be generated in the perf_log folder as 
 	```
 	The command above will generate a file of profile00x.pdf, which can be opened directly, for example, [memory_cpu_allocator](https://github.com/jacquesqiao/Paddle/blob/bd2ea0e1f84bb6522a66d44a072598153634cade/doc/fluid/howto/optimization/memory_cpu_allocator.pdf).  As demonstrated in the chart below, during the running of the CPU version fluid, the module CPUAllocator is allocated with most memory. Other modules are allocated with relatively less memory, so they are ignored. It is very inconvenient for inspecting memory leak for memory leak is a chronic process which cannot be inspected in this picture.
 	![result](https://user-images.githubusercontent.com/3048612/40964027-a54033e4-68dc-11e8-836a-144910c4bb8c.png)
-	
+
 	- Diff mode. You can do diff on the heap at two moments, which removes some modules whose memory allocation has not changed, and displays the incremental part.
 	```
 	pprof --pdf --base test.log.0010.heap python test.log.1045.heap
 	```
 	The generated result: [`memory_leak_protobuf`](https://github.com/jacquesqiao/Paddle/blob/bd2ea0e1f84bb6522a66d44a072598153634cade/doc/fluid/howto/optimization/memory_leak_protobuf.pdf)
-	
+
 	As shown from the figure: The structure of ProgramDesc has increased by 200MB+ between the two versions, so there is a large possibility that memory leak happens here, and the final result does prove a leak here.
-	
+
 	![result](https://user-images.githubusercontent.com/3048612/40964057-b434d5e4-68dc-11e8-894b-8ab62bcf26c2.png)
 	![result](https://user-images.githubusercontent.com/3048612/40964063-b7dbee44-68dc-11e8-9719-da279f86477f.png)
-	
+

@@ -8,7 +8,7 @@
 
 ## Features
 
-- 高性能支持ARM CPU 
+- 高性能支持ARM CPU
 - 支持Mali GPU
 - 支持Andreno GPU
 - 支持苹果设备的GPU Metal实现
@@ -55,7 +55,7 @@
 
 ### 2. Caffe转为Paddle Fluid模型
 
-请参考这里[这里](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/caffe2fluid)
+请参考这里[这里](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/caffe2fluid)
 
 ### 3. ONNX
 
@@ -78,5 +78,5 @@ Paddle-Mobile 提供相对宽松的Apache-2.0开源协议 [Apache-2.0 license](L
 
 
 ## 旧版 Mobile-Deep-Learning
-原MDL(Mobile-Deep-Learning)工程被迁移到了这里 [Mobile-Deep-Learning](https://github.com/allonli/mobile-deep-learning) 
+原MDL(Mobile-Deep-Learning)工程被迁移到了这里 [Mobile-Deep-Learning](https://github.com/allonli/mobile-deep-learning)
 

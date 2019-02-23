@@ -100,7 +100,7 @@ Paddle Fluid v1.3
 
 模型建设
 ==========
-* addleCV 智能视觉
+* PaddleCV 智能视觉
 	* 新增发布PaddlePaddle视频模型库，包括五个视频分类模型：Attention Cluster、NeXtVLAD、LSTM,、stNet、TSN。提供适合视频分类任务的通用骨架代码，包括数据读取和预处理、训练和预测、网络模型以及指标计算等多个模块。用户根据需要添加自己的网络模型，直接复用其他模块的代码，快速部署模型。
 	* 新增支持目标检测Mask R-CNN模型，效果与主流实现打平。
 	* 语义分割DeepLabV3+模型，depthwise_conv op融合，显存优化，显存占用对比上一版本减少50%。

@@ -36,7 +36,7 @@
 	<tr>
 		<td> SWIG </td>
 		<td> 最低 2.0 </td>
-		<td>  </td>
+		<td>  </td>https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn
 		<td> <code>apt install swig </code> 或 <code> yum install swig </code> </td>
 	</tr>
 	<tr>
@@ -211,7 +211,7 @@
 
 **BLAS**
 
-PaddlePaddle支持 [MKL](https://software.intel.com/en-us/mkl) 和 [OpenBlAS](http://www.openblas.net) 两种BLAS库。默认使用MKL。如果使用MKL并且机器含有AVX2指令集，还会下载MKL-DNN数学库，详细参考[这里](https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn#cmake) 。
+PaddlePaddle支持 [MKL](https://software.intel.com/en-us/mkl) 和 [OpenBlAS](http://www.openblas.net) 两种BLAS库。默认使用MKL。如果使用MKL并且机器含有AVX2指令集，还会下载MKL-DNN数学库，详细参考[这里](https://github.com/PaddlePaddle/Paddle/tree/release/0.11.0/doc/design/mkldnn#cmake) 。
 
 如果关闭MKL，则会使用OpenBLAS作为BLAS库。
 
@@ -531,7 +531,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 ***
 
 假设您已经在当前目录（比如在/home/work）编写了一个PaddlePaddle的程序: `train.py` （可以参考
-[PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html)
+[PaddlePaddleBook](https://github.com/PaddlePaddle/book/blob/develop/01.fit_a_line/README.cn.md)
 编写），就可以使用下面的命令开始执行训练：
 
      cd /home/work
@@ -597,7 +597,7 @@ PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Note
 **关于AVX：**
 
 AVX是一种CPU指令集，可以加速PaddlePaddle的计算。最新的PaddlePaddle Docker镜像默认
-是开启AVX编译的，所以，如果您的电脑不支持AVX，需要单独[编译](/build_from_source_cn.html) PaddlePaddle为no-avx版本。
+是开启AVX编译的，所以，如果您的电脑不支持AVX，需要单独编译PaddlePaddle为no-avx版本。
 
 以下指令能检查Linux电脑是否支持AVX：
 

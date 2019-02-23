@@ -14,7 +14,7 @@ At present, most DNN frameworks use Python as their primary language. VisualDL s
 Users can get plentiful visualization results by simply add a few lines of Python code into their model before training.
 
 Besides Python SDK, VisualDL was writen in C++ on the low level. It also provides C++ SDK that
-can be integrated into other platforms.  
+can be integrated into other platforms.
 
 
 ## Component
@@ -174,7 +174,7 @@ pip install --upgrade dist/visualdl-*.whl
 ```
 
 If there are still issues regarding the ```pip install```, you can still start Visual DL by starting the dev server
-[here](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/how_to_dev_frontend_en.md)
+[here](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/develop/how_to_dev_frontend_en.md)
 
 
 ## SDK
