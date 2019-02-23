@@ -128,9 +128,62 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 
 
+.. _cn_api_fluid_CompiledProgram:
 
+CompiledProgram
+-------------------------------
 
+.. py:class:: paddle.fluid.CompiledProgram(program)
 
+编译一个接着用来执行的Program。
+
+1. 首先使用layers(网络层)创建程序。
+2. （可选）可使用CompiledProgram来在运行之前优化程序。
+3. 定义的程序或CompiledProgram由Executor运行。
+
+CompiledProgram用于转换程序以进行各种优化。例如，
+
+- 预先计算一些逻辑，以便每次运行更快。
+- 转换Program，使其可以在多个设备中运行。
+- 转换Program以进行优化预测或分布式训练。
+
+**代码示例**
+
+..  code-block:: python
+
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+            exe = fluid.Executor(place)
+            exe.run(startup)
+            compiled_prog = compiler.CompiledProgram(main).with_data_parallel(
+                loss_name=loss.name)
+            for i in range(5):
+                test_loss, = exe.run(compiled_prog,
+                                     feed=feed_dict,
+                                     fetch_list=[loss.name])
+
+参数：
+  - **program** : 一个Program对象，承载着用户定义的模型计算逻辑
+
+.. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None)
+
+配置Program使其以数据并行方式运行。
+
+参数：
+  - **loss_name** （str） - 损失函数名称必须在训练过程中设置。 默认None。
+  - **build_strategy** （BuildStrategy） -  build_strategy用于构建图，因此它可以在具有优化拓扑的多个设备/核上运行。 有关更多信息，请参阅  ``fluid.BuildStrategy`` 。 默认None。
+  - **exec_strategy** （ExecutionStrategy） -  exec_strategy用于选择执行图的方式，例如使用多少线程，每次清理临时变量之前进行的迭代次数。 有关更多信息，请参阅 ``fluid.ExecutionStrategy`` 。 默认None。
+  - **share_vars_from** （CompiledProgram） - 如果有，此CompiledProgram将共享来自share_vars_from的变量。 share_vars_from指定的Program必须由此CompiledProgram之前的Executor运行，以便vars准备就绪。
+
+返回: self
+
+.. py:method:: with_inference_optimize(config)
+
+添加预测优化。
+
+参数：
+  - **config** - 用于创建预测器的NativeConfig或AnalysisConfig的实例
+
+返回: self
 
 
 
@@ -1509,56 +1562,6 @@ release_memory
     - **skip_opt_set** (set) – 在内存优化时跳过的变量的集合
 
 返回: None
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.. _cn_api_fluid_Scope:
-
-Scope
--------------------------------
-
-.. py:class:: paddle.fluid.scope(scope)
-
-(作用域)Scope为变量名的联合。所有变量都属于Scope。
-
-从本地作用域中可以拉取到其双亲作用域的变量。
-
-要想运行一个网络，需要指明它运行所在的域，确切的说： exe.Run(&scope) 。
-
-一个网络可以在不同域上运行，并且更新该域的各类变量。
-
-在作用域上创建一个变量，并在域中获取。
-
-**代码示例**
-
-..  code-block:: python
-
-    # create tensor from a scope and set value to it.
-    param = scope.var('Param').get_tensor()
-    param_array = np.full((height, row_numel), 5.0).astype("float32")
-    param.set(param_array, place)
-
-
-.. py:method:: drop_kids(self: paddle.fluid.core.Scope) → None
-.. py:method:: find_var(self: paddle.fluid.core.Scope, arg0: unicode) → paddle.fluid.core.Variable
-.. py:method:: new_scope(self: paddle.fluid.core.Scope) → paddle.fluid.core.Scope
-.. py:method:: var(self: paddle.fluid.core.Scope, arg0: unicode) → paddle.fluid.core.Variable   
-
-
-
-
-
 
 
 
