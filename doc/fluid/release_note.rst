@@ -32,7 +32,7 @@ Paddle Fluid v1.3
 	* 新增QuantizationTransformPass，此为Quantization Aware Training量化模式训练前的图修改操作部分。
 * 内存和显存方面的优化
 	* 新增支持在编译时加入 Jemalloc 作为动态链接库，提升内存管理的性能，降低基础框架内存管理开销
-	*新增memory optimize，inplace pass, memory pool early deletion等显存优化策略。
+	* 新增memory optimize，inplace pass, memory pool early deletion等显存优化策略。
 	* 新增支持网络无锁更新的Pass。
 	* 新增QuantizationTransformPass，此为Quantization Aware Training量化模式训练前的图修改操作部分。
 * Operator整体层面的优化
