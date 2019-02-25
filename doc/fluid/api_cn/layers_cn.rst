@@ -10785,21 +10785,21 @@ anchor_generator
 
 **Anchor generator operator**
 
-为Faster RCNN算法生成锚，输入的每一位产生N个锚，N=size(anchor_sizes)*size(aspect_ratios)。生成锚的顺序首先是aspect_ratios循环，然后是anchor_sizes循环。
+为Faster RCNN算法生成anchor，输入的每一位产生N个anchor，N=size(anchor_sizes)*size(aspect_ratios)。生成anchor的顺序首先是aspect_ratios循环，然后是anchor_sizes循环。
 
 参数：
     - **input** (Variable) - 输入特征图，格式为NCHW
-    - **anchor_sizes** (list|tuple|float) - 生成锚的锚大小，以绝对像素的形式表示，例如：[64.,128.,256.,512.]若锚的大小为64，则意味着这个锚的面积等于64**2。
-    - **aspect_ratios** (list|tuple|float) - 生成锚的高宽比，例如[0.5,1.0,2.0]
+    - **anchor_sizes** (list|tuple|float) - 生成anchor的anchor大小，以绝对像素的形式表示，例如：[64.,128.,256.,512.]若anchor的大小为64，则意味着这个anchor的面积等于64**2。
+    - **aspect_ratios** (list|tuple|float) - 生成anchor的高宽比，例如[0.5,1.0,2.0]
     - **variance** (list|tuple) - 变量，在框回归delta中使用。默认：[0.1,0.1,0.2,0.2]
-    - **stride** (list|tuple) - 锚在宽度和高度方向上的步长，比如[16.0,16.0]
+    - **stride** (list|tuple) - anchor在宽度和高度方向上的步长，比如[16.0,16.0]
     - **offset** (float) - 先验框的中心位移。默认：0.5
     - **name** (str) - 先验框操作符名称。默认：None
 
 返回：
     - Anchors(Varibale): 输出anchor，布局[H,W,num_anchors,4] , ``H``  是输入的高度， ``W`` 是输入的宽度， ``num_priors`` 是输入每位的框数,每个anchor格式（未归一化）为(xmin,ymin,xmax,ymax)
     
-    - Variances(Variable): 锚的扩展变量布局为 [H,W,num_priors,4]。 ``H`` 是输入的高度， ``W`` 是输入的宽度， ``num_priors`` 是输入每个位置的框数,每个变量的格式为(xcenter,ycenter,w,h)。
+    - Variances(Variable): anchor的扩展变量布局为 [H,W,num_priors,4]。 ``H`` 是输入的高度， ``W`` 是输入的宽度， ``num_priors`` 是输入每个位置的框数,每个变量的格式为(xcenter,ycenter,w,h)。
 
 返回类型：anchor（Variable)
 
@@ -11320,7 +11320,7 @@ generate_proposals
 
 生成proposal的Faster-RCNN
 
-该操作根据每个框为foreground（前景）对象的概率，并且通过锚（anchors）来计算这些框，进而提出RoI。Bbox_deltais和一个objects的分数作为是RPN的输出。最终 ``proposals`` 可用于训练检测网络。
+该操作根据每个框为foreground（前景）对象的概率，并且通过anchors来计算这些框，进而提出RoI。Bbox_deltais和一个objects的分数作为是RPN的输出。最终 ``proposals`` 可用于训练检测网络。
 
 为了生成 ``proposals`` ，此操作执行以下步骤：
 
@@ -11648,7 +11648,7 @@ rpn_target_assign
 
 (ii) 具有IoU重叠的anchors高于带有任何真实框（ground-truth box）的rpn_positive_overlap0（0.7）。
 
-请注意，单个真实框（ground-truth box）可以为多个anchors分配正标签。对于所有真实框（ground-truth box），非正向锚是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正也不是负的anchors对训练目标没有价值。回归目标是与positive anchors相关联而编码的图片真实框。
+请注意，单个真实框（ground-truth box）可以为多个anchors分配正标签。对于所有真实框（ground-truth box），非正向anchor是指其IoU比率低于rpn_negative_overlap（0.3）。既不是正也不是负的anchors对训练目标没有价值。回归目标是与positive anchors相关联而编码的图片真实框。
 
 参数：
         - **bbox_pred** （Variable）- 是一个shape为[N，M，4]的3-D Tensor，表示M个边界框的预测位置。N是批量大小，每个边界框有四个坐标值，即[xmin，ymin，xmax，ymax]。
