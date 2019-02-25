@@ -224,9 +224,9 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 返回:可以访问的RNN的输入变量,。
 
-.. py:method:: block(*args, **kwds)
+.. py:method:: block()
 
-用户在RNN中定义operators的block。有关详细信息，请参阅class ``docstring`` 。
+用户在RNN中定义operators的block。
 
 .. py:method:: memory(init=None, shape=None, value=0.0, need_reorder=False, dtype='float32')
 
@@ -321,7 +321,7 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 equal
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.equal(x,y,cond=None,**ignored)
+.. py:function:: paddle.fluid.layers.equal(x,y,cond=None)
 
 **equal**
 该层返回 :math:`x==y` 按逐元素运算而得的真值。
@@ -437,7 +437,7 @@ increment
 is_empty
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.is_empty(x, cond=None, **ignored)
+.. py:function:: paddle.fluid.layers.is_empty(x, cond=None)
 
 测试变量是否为空
 
@@ -472,7 +472,7 @@ is_empty
 less_than
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.less_than(x, y, force_cpu=None, cond=None, **ignored)
+.. py:function:: paddle.fluid.layers.less_than(x, y, force_cpu=None, cond=None)
 
 
 该函数按元素出现顺序依次在X,Y上操作，并返回 ``Out`` ，它们三个都是n维tensor（张量）。
@@ -2104,9 +2104,9 @@ conv2d
     - :math:`X` ：输入值，NCHW格式的张量（Tensor）
     - :math:`W` ：滤波器值，MCHW格式的张量（Tensor）
     - :math:`*` ： 卷积操作
-    - :math:`b` ：Bias值，二维张量（Tensor），shape为[M,1]
+    - :math:`b` ：Bias值，二维张量（Tensor），shape为 ``[M,1]``
     - :math:`\sigma` ：激活函数
-    - :math:`Out` ：输出值，*Out*和**X**的shape可能不同
+    - :math:`Out` ：输出值，``Out`` 和 ``X`` 的shape可能不同
 
 **示例**
 
@@ -4428,11 +4428,11 @@ im2sequence
 参数:
 	- **input** （Variable）- 输入张量，格式为[N, C, H, W]
 	- **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，它必须包含两个整数(filter_size_H, filter_size_W)。否则，过滤器将是一个方阵。
-    	- **stride** (int|tuple) - 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-    	- **padding** (int|tuple) - 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
-    	- **input_image_size** (Variable) - 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch推理。
-    	- **out_stride** (int|tuple) - 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
-    	- **name** (int) - 该layer的名称，可以忽略。
+	- **stride** (int|tuple) - 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+	- **padding** (int|tuple) - 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
+	- **input_image_size** (Variable) - 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch上的预测。
+	- **out_stride** (int|tuple) - 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
+	- **name** (int) - 该layer的名称，可以忽略。
 
 返回：	LoDTensor shaoe为{batch_size * output_height * output_width, filter_size_H * filter_size_W * input.channels}。如果将输出看作一个矩阵，这个矩阵的每一行都是一个序列的step。
 
@@ -6082,7 +6082,7 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核�
 
 参数：
     - **input** (Variable) - 池化操作的输入张量。输入张量格式为NCHW，N为批尺寸，C是通道数，H是特征高度，W是特征宽度
-    - **pool_size** (int|list|tuple)  - 池化窗口的大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。否则它应是一个整数的平方值。
+    - **pool_size** (int|list|tuple)  - 池化核的大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。若为一个整数，则它的平方值将作为池化核大小，比如若pool_size=2, 则池化核大小为2x2。
     - **pool_type** (string) - 池化类型，可以是“max”对应max-pooling，“avg”对应average-pooling
     - **pool_stride** (int|list|tuple)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。否则它是一个整数的平方值。
     - **pool_padding** (int|list|tuple) - 填充大小。如果它是一个元组或列表，它必须包含两个整数值，(pool_padding_on_Height, pool_padding_on_Width)。否则它是一个整数的平方值。
@@ -6215,8 +6215,13 @@ prelu
 
 返回类型：  变量（Variable）
   
+**代码示例：**
 
+.. code-block:: python
 
+    x = fluid.layers.data(name="x", shape=[10,10], dtype="float32")
+    mode = 'channel'
+    output = fluid.layers.prelu(x,mode)
 
 .. _cn_api_fluid_layers_psroi_pool:
 
@@ -8155,7 +8160,7 @@ sigmoid_cross_entropy_with_logits
 
 .. py:function:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits(x, label, name=None)
 
-在类别不相互独立的分类任务中，该函数可以衡量按元素顺序的可能性误差。可以这么认为，为单一数据点预测标签，它们之间不是完全互斥的关系。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
+在类别不相互独立的分类任务中，该函数可以衡量按元素的可能性误差。可以这么认为，为单一数据点预测标签，它们之间不是完全互斥的关系。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
 逻辑loss可通过下式计算：
 
@@ -8177,7 +8182,7 @@ sigmoid_cross_entropy_with_logits
 .. math::
     loss = max(X, 0) - X * Labels + log(1 + exp(-|X|))
 
-输入 ``X`` 和 ``label`` 都可以携带LoD信息。当输出仅采用输入 ``X`` 的LoD。
+输入 ``X`` 和 ``label`` 都可以携带LoD信息。然而输出仅采用输入 ``X`` 的LoD。
 
 
 
@@ -9207,12 +9212,14 @@ abs
 
 .. py:function:: paddle.fluid.layers.abs(x, name=None)
 
+绝对值运算激活函数。
+
+.. math::
+    out = |x|
 
 参数:
     - **x** - abs运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
-
-
+ 
 返回：        Abs运算符的输出。
 
 
@@ -9232,10 +9239,15 @@ ceil
 
 .. py:function:: paddle.fluid.layers.ceil(x, name=None)
 
+天花板运算激活函数。
+
+.. math::
+    out = \left \lceil x \right \rceil
+
+
 
 参数:
     - **x** - Ceil运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
 
 返回：        Ceil运算符的输出。
         
@@ -9255,11 +9267,17 @@ cos
 
 .. py:function:: paddle.fluid.layers.cos(x, name=None)
 
+Cosine余弦激活函数。
+
+.. math::
+
+    out = cos(x)
+
 
 
 参数:
     - **x** - cos运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
+
 
 返回：        Cos运算符的输出
 
@@ -9310,11 +9328,15 @@ exp
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.exp(x, name=None)
-       
+
+Exp激活函数(Exp指以自然常数e为底的指数运算)。
+
+.. math::
+    out = e^x
 
 参数:
     - **x** - Exp运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
+
 
 返回：       Exp算子的输出
 
@@ -9335,10 +9357,15 @@ floor
 .. py:function:: paddle.fluid.layers.floor(x, name=None)
 
 
+地板运算激活函数。
+
+.. math::
+    out = \left \lfloor x \right \rfloor
+
 
 参数:
     - **x** - Floor运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
+
 
 返回：        Floor运算符的输出。
 
@@ -9397,12 +9424,17 @@ logsigmoid
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.logsigmoid(x, name=None)
-        
+
+Logsigmoid激活函数。
+
+
+.. math::
+
+    out = \log \frac{1}{1 + e^{-x}}
 
 
 参数:
     - **x** - LogSigmoid运算符的输入 
-    - **use_mkldnn** (bool) - （默认为False）仅在 ``mkldnn`` 内核中使用
 
 返回：        LogSigmoid运算符的输出
 
@@ -9422,10 +9454,14 @@ reciprocal
 
 .. py:function:: paddle.fluid.layers.reciprocal(x, name=None)
 
+Reciprocal（取倒数）激活函数
+
+
+.. math::
+    out = \frac{1}{x}
 
 参数:
     - **x** - Ceil运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
 
 返回：        Reciprocal运算符的输出。        
 
@@ -9448,10 +9484,15 @@ round
 
 .. py:function:: paddle.fluid.layers.round(x, name=None)
 
+Round取整激活函数。
+
+
+.. math::
+     out = [x]
+
 
 参数:
     - **x** - Ceil运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
 
 返回：        Round运算符的输出。
         
@@ -9470,13 +9511,15 @@ sigmoid
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.sigmoid(x, name=None)
-     
+
+sigmoid激活函数
+
+.. math::
+    out = \frac{1}{1 + e^{-x}}
 
 
 参数:
     - **x** - Sigmoid运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
-
 
 返回：     Sigmoid运算输出.
 
@@ -9496,10 +9539,15 @@ sin
 
 .. py:function:: paddle.fluid.layers.sin(x, name=None)
 
+正弦sine激活函数。
+
+.. math::
+     out = sin(x)
+
 
 参数:
     - **x** - sin运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
+
 
 返回：        Sin运算符的输出。
 
@@ -9520,9 +9568,13 @@ softplus
 
 .. py:function:: paddle.fluid.layers.softplus(x,name=None)
 
+softplus激活函数。
+
+.. math::
+    out = \ln(1 + e^{x})
+
 参数：
     - **x** : Softplus操作符的输入
-    - **use_mkldnn** (bool, 默认false) - 仅在mkldnn核中使用
 
 返回：Softplus操作后的结果
 
@@ -9572,9 +9624,15 @@ softsign
 
 .. py:function:: Paddle.fluid.layers.softsign(x,name=None)
 
+
+softsign激活函数。
+
+.. math::
+    out = \frac{x}{1 + |x|}
+
 参数：
     - **x** : Softsign操作符的输入
-    - **use_mkldnn** (bool, 默认false) - 仅在mkldnn核中使用
+
 
 返回：Softsign操作后的结果
 
@@ -9593,10 +9651,13 @@ sqrt
 
 .. py:function:: paddle.fluid.layers.sqrt(x, name=None)
 
+算数平方根激活函数。
+
+.. math::
+    out = \sqrt{x}
 
 参数:
     - **x** - Sqrt运算符的输入 
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
 
 返回：       Sqrt算子的输出。
 
@@ -9617,9 +9678,14 @@ square
 
 .. py:function:: paddle.fluid.layers.square(x,name=None)
 
+取平方激活函数。
+
+.. math::
+    out = x^2
+
 参数:
     - **x** : 平方操作符的输入
-    - **use_mkldnn** (bool, 默认false) 仅在mkldnn核中使用
+
 
 返回：平方后的结果
 
@@ -9637,13 +9703,18 @@ tanh
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.tanh(x, name=None)
-        
+
+
+
+
+tanh 激活函数。
+
+.. math::
+    out = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
 
 
 参数:
     - **x** - Tanh运算符的输入  
-    - **use_mkldnn** (bool) - （默认为false）仅在 ``mkldnn`` 内核中使用
-
 
 返回：     Tanh算子的输出。
 
@@ -9664,10 +9735,13 @@ tanh_shrink
 
 .. py:function:: paddle.fluid.layers.tanh_shrink(x, name=None)
 
+tanh_shrink激活函数。
+
+.. math::
+    out = x - \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
 
 参数:
     - **x** - TanhShrink运算符的输入 
-    - **use_mkldnn** (bool)- （默认为false）仅在 ``mkldnn`` 内核中使用
 
 返回：     tanh_shrink算子的输出
 
@@ -10127,7 +10201,7 @@ fill_constant_batch_size_like
 该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``Value`` 中提供的常量初始化该张量。该批尺寸从输入张量中获取。它还将stop_gradient设置为True.
 
 参数：
-    - **input** (Variable)-张量，其input_dim_idx个维具体指示batch_size
+    - **input** (Variable)-张量，其第input_dim_idx维可指定batch_size
     - **shape** (INTS)-输出的形状
     - **dtype** (INT)-可以为numpy.dtype。输出数据类型。默认为float32
     - **value** (FLOAT)-默认为0.将要被填充的值
@@ -10711,7 +10785,7 @@ anchor_generator
 
 **Anchor generator operator**
 
-为快速RCNN算法生成锚，输入的每一位产生N个锚，N=size(anchor_sizes)*size(aspect_ratios)。生成锚的顺序首先是aspect_ratios循环，然后是anchor_sizes循环。
+为Faster RCNN算法生成锚，输入的每一位产生N个锚，N=size(anchor_sizes)*size(aspect_ratios)。生成锚的顺序首先是aspect_ratios循环，然后是anchor_sizes循环。
 
 参数：
     - **input** (Variable) - 输入特征图，格式为NCHW
