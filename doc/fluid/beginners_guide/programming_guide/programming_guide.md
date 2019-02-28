@@ -220,9 +220,7 @@ with fluid.layers.control_flow.Switch() as switch:
 
 
 关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Fluid设计思想](../../advanced_usage/design_idea/fluid_design_idea.html)
-
 更多 Fluid 中的控制流，可以参考阅读[API文档](../../api_cn/layers_cn.html#control-flow)
-
 
 ## 使用Executor执行Program
 
