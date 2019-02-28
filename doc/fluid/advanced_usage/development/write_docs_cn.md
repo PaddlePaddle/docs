@@ -172,7 +172,7 @@ pip install -r requirements.txt
 
 ## 提交修改
 
-如果您希望修改代码，请在`Paddle`仓库下参考[如何贡献代码](../development/contribute_to_paddle.html)执行操作。
+如果您希望修改代码，请在`Paddle`仓库下参考[如何贡献代码](../development/contribute_to_paddle/index_cn.html)执行操作。
 
 如果您仅修改文档：
 
@@ -193,7 +193,7 @@ pip install -r requirements.txt
 
 	3.在`FluidDoc`仓库下为您的修改提交PR
 
-提交修改与PR的步骤可以参考[如何贡献代码](../development/contribute_to_paddle.html)
+提交修改与PR的步骤可以参考[如何贡献代码](../development/contribute_to_paddle/index_cn.html)
 
 ## 帮助改进预览工具
 

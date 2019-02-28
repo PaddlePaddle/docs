@@ -209,7 +209,7 @@
 
 **BLAS**
 
-PaddlePaddle supports two BLAS libraries, [MKL](https://software.intel.com/en-us/mkl) and [OpenBlAS](http://www.openblas.net/). MKL is used by default. If you use MKL and the machine contains the AVX2 instruction set, you will also download the MKL-DNN math library, for details please refer to [here](https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn#cmake).
+PaddlePaddle supports two BLAS libraries, [MKL](https://software.intel.com/en-us/mkl) and [OpenBlAS](http://www.openblas.net/). MKL is used by default. If you use MKL and the machine contains the AVX2 instruction set, you will also download the MKL-DNN math library, for details please refer to [here](https://github.com/PaddlePaddle/Paddle/tree/release/0.11.0/doc/design/mkldnn#cmake).
 
 If you close MKL, OpenBLAS will be used as the BLAS library.
 
@@ -565,7 +565,7 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 
 ***
 
-Suppose you have written a PaddlePaddle program in the current directory (such as /home/work): `train.py` ( refer to [PaddlePaddleBook](http://www.paddlepaddle.org/docs/develop/book/01.fit_a_line/index.cn.html) to write), you can start the training with the following command:
+Suppose you have written a PaddlePaddle program in the current directory (such as /home/work): `train.py` ( refer to [PaddlePaddleBook](https://github.com/PaddlePaddle/book/blob/develop/01.fit_a_line/README.cn.md) to write), you can start the training with the following command:
 
 
     cd /home/work
@@ -629,7 +629,7 @@ In order to ensure that the GPU driver works properly in the image, we recommend
 
 **About AVX:**
 
-AVX is a set of CPU instructions that speeds up the calculation of PaddlePaddle. The latest PaddlePaddle Docker image is enabled by default for AVX compilation, so if your computer does not support AVX, you need to [compile](/build_from_source_cn.html) PaddlePaddle to no-avx version separately.
+AVX is a set of CPU instructions that speeds up the calculation of PaddlePaddle. The latest PaddlePaddle Docker image is enabled by default for AVX compilation, so if your computer does not support AVX, you need to compile PaddlePaddle to no-avx version separately.
 
 The following instructions can check if the Linux computer supports AVX:
 

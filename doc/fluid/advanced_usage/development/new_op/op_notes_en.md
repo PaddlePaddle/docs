@@ -11,7 +11,7 @@ The Fluid framework is designed to run on a variety of devices and third-party l
 Operator inheritance diagram:
 ![op_inheritance_relation_diagram](../../pics/op_inheritance_relation_diagram.png)
 
-For further information, please refer to: [multi_devices](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/multi_devices) , [scope](https://github.com/PaddlePaddle/FluidDoc/Blob/develop/doc/fluid/design/concepts/scope.md) , [Developer's_Guide_to_Paddle_Fluid](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md )
+For further information, please refer to: [multi_devices](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/multi_devices) , [scope](https://github.com/PaddlePaddle/FluidDoc/Blob/develop/doc/fluid/design/concepts/scope.md) , [Developer's_Guide_to_Paddle_Fluid](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md)
 
 ### 2.Op's registration logic
 The registration entries for each Operator include:
@@ -67,7 +67,7 @@ The registration entries for each Operator include:
 <tr>
 <td>OpCreator </td>
 <td>Functor </td>
-<td>Create a new OperatorBase for each call </td> 
+<td>Create a new OperatorBase for each call </td>
 <td>Call at runtime </td>
 </tr>
 </tbody>
@@ -150,7 +150,7 @@ The calculation speed of Op is related to the amount of data input. For some Op,
 
 Since the call of CUDA Kernel has a certain overhead, multiple calls of the CUDA Kernel in Op may affect the execution speed of Op. For example, the previous sequence_expand_op contains many CUDA Kernels. Usually, these CUDA Kernels process a small amount of data, so frequent calls to such Kernels will affect the calculation speed of Op. In this case, it is better to combine these small CUDA Kernels into one. This idea is used in the optimization of the sequence_expand_op procedure (related PR[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)). The optimized sequence_expand_op is about twice as fast as the previous implementation, the relevant experiments are introduced in the PR ([#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)).
 
-Reduce the number of copy and sync operations between the CPU and the GPU. For example, the fetch operation will update the model parameters and get a loss after each iteration, and the copy of the data from the GPU to the Non-Pinned-Memory CPU is synchronous, so frequent fetching for multiple parameters will reduce the model training speed. 
+Reduce the number of copy and sync operations between the CPU and the GPU. For example, the fetch operation will update the model parameters and get a loss after each iteration, and the copy of the data from the GPU to the Non-Pinned-Memory CPU is synchronous, so frequent fetching for multiple parameters will reduce the model training speed.
 
 ## Op numerical stability
 ### 1. Some Ops have numerical stability problems

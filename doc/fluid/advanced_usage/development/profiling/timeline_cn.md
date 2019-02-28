@@ -27,15 +27,15 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
 
 1. 打开chrome浏览器，访问<chrome://tracing/>，用`load`按钮来加载生成的`timeline`文件。
 
-	![chrome tracing](./tracing.jpeg)
+	![chrome tracing](../tracing.jpeg)
 
 1. 结果如下图所示，可以放到来查看timetime的细节信息。
 
 	![chrome timeline](./timeline.jpeg)
 
 ## 分布式使用
-一般来说，分布式的训练程序都会有两种程序：pserver和trainer。我们提供了把pserver和trainer的profile日志用timeline来显示的方式。 
- 
+一般来说，分布式的训练程序都会有两种程序：pserver和trainer。我们提供了把pserver和trainer的profile日志用timeline来显示的方式。
+
 1. trainer打开方式与[本地使用](#local)部分的第1步相同
 
 1. pserver可以通过加两个环境变量打开profile，例如：
@@ -43,7 +43,7 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
 FLAGS_rpc_server_profile_period=10 FLAGS_rpc_server_profile_path=./tmp/pserver python train.py
 ```
 
-3. 把pserver和trainer的profile文件生成一个timeline文件，例如：  
+3. 把pserver和trainer的profile文件生成一个timeline文件，例如：
 ```
 python /paddle/tools/timeline.py
     --profile_path trainer0=local_profile_10_pass0_0,trainer1=local_profile_10_pass0_1,pserver0=./pserver_0,pserver1=./pserver_1
