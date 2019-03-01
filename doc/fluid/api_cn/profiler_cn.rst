@@ -9,7 +9,7 @@
 cuda_profiler
 -------------------------------
 
-.. py:function:: paddle.fluid.profiler.cuda_profiler(*args, **kwds)
+.. py:function:: paddle.fluid.profiler.cuda_profiler(output_file, output_mode=None, config=None)
 
 
 CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行性能分析。分析结果将以键-值对格式或逗号分隔的格式写入output_file。用户可以通过output_mode参数设置输出模式，并通过配置参数设置计数器/选项。默认配置是[' gpustarttimestamp '， ' gpustarttimestamp '， ' gridsize3d '， ' threadblocksize '， ' streamid '， ' enableonstart 0 '， ' conckerneltrace ']。然后，用户可使用 `NVIDIA Visual Profiler <https://developer.nvidia.com/nvidia-visualprofiler>`_ 工具来加载这个输出文件以可视化结果。
@@ -62,7 +62,7 @@ CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行�
 profiler
 -------------------------------
 
-.. py:function:: paddle.fluid.profiler.profiler(*args, **kwds)
+.. py:function:: paddle.fluid.profiler.profiler(state, sorted_key=None, profile_path='/tmp/profile')
 
 profile interface 。与cuda_profiler不同，此profiler可用于分析CPU和GPU程序。默认情况下，它记录CPU和GPU kernel，如果想分析其他程序，可以参考教程来在c++代码中添加更多代码。
 

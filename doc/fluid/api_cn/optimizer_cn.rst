@@ -152,7 +152,7 @@ Adamax 更新规则:
 AdamOptimizer
 -------------------------------
 
-.. py:class:: paddle.fluid.optimizer. AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None, lazy_mode=False)
 
 该函数实现了自适应矩估计优化器，介绍自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节。Adam是一阶基于梯度下降的算法，基于自适应低阶矩估计。
 Adam更新如下：
@@ -168,6 +168,8 @@ Adam更新如下：
     - **epsilon** (float)-保持数值稳定性的短浮点类型值
     - **regularization** - 规则化函数，例如''fluid.regularizer.L2DecayRegularizer
     - **name** - 可选名称前缀
+    - **lazy_mode** （bool: false） - 官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果。
+
 
 **代码示例**：
 
@@ -285,9 +287,9 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
 
 参数:
   - **learning_rate** (float|Variable)-全局学习率。
-  - **l1** (float) - 暂无，请等待后期更新
-  - **l2** (float) - 暂无，请等待后期更新
-  - **lr_power** (float) - 暂无，请等待后期更新
+  - **l1** (float) - L1 regularization strength.
+  - **l2** (float) - L2 regularization strength.
+  - **lr_power** (float) - 学习率降低指数
   - **regularization** - 正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
   - **name** — 可选的名称前缀
 
@@ -400,7 +402,7 @@ ModelAverage
               exe.run(inference_program...)
 
 
-.. py:method:: apply(*args, **kwds)
+.. py:method:: apply(executor, need_restore=True)
 
 将平均值应用于当前模型的参数。
 
