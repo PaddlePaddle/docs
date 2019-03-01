@@ -137,8 +137,8 @@ exe.run(fluid.default_startup_program()) #initialize network parameters
 
 #Prepare data
 import numpy
-data_1 = input("a=")
-data_2 = input("b=")
+data_1 = int(input("Please enter an integer: a="))
+data_2 = int(input("Please enter an integer: b="))
 x = numpy.array([[data_1]])
 y = numpy.array([[data_2]])
 
