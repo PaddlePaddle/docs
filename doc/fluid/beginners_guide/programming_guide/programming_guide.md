@@ -133,8 +133,8 @@ exe.run(fluid.default_startup_program()) #网络参数初始化
 
 #准备数据
 import numpy
-data_1 = input("a=")
-data_2 = input("b=")
+data_1 = int(input("Please enter an integer: a="))
+data_2 = int(input("Please enter an integer: b="))
 x = numpy.array([[data_1]])
 y = numpy.array([[data_2]])
 
