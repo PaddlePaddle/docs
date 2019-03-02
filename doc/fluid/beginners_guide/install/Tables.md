@@ -1,4 +1,3 @@
-***
 <a name="third_party"></a>
 # 附录
 
@@ -36,7 +35,7 @@
 	<tr>
 		<td> SWIG </td>
 		<td> 最低 2.0 </td>
-		<td>  </td>https://github.com/PaddlePaddle/Paddle/tree/develop/doc/design/mkldnn
+		<td>  </td>
 		<td> <code>apt install swig </code> 或 <code> yum install swig </code> </td>
 	</tr>
 	<tr>
@@ -177,11 +176,6 @@
 		<td> OFF </td>
 	</tr>
 	<tr>
-		<td> WITH_MKL </td>
-		<td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
-		<td> ON </td>
-	</tr>
-	<tr>
 		<td> WITH_RDMA </td>
 		<td> 是否编译支持RDMA的相关部分 </td>
 		<td> OFF </td>
@@ -245,86 +239,27 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</thead>
 	<tbody>
 	<tr>
-		<td> paddlepaddle==[版本号] 如 paddlepaddle==1.0.1(下载1.0.1版本只支持CPU的PaddlePaddle)</td>
+		<td> paddlepaddle==[版本号] 例如 paddlepaddle==1.2.0 </td>
 		<td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
 	</tr>
 	<tr>
-		<td> paddlepaddle-gpu==1.0.1 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.1版本 </td>
+		<td> paddlepaddle-gpu==1.2.0 </td>
+		<td> 使用CUDA 9.0和cuDNN 7编译的1.2.0版本 </td>
 	</tr>
 	<tr>
-		<td> paddlepaddle-gpu==1.0.1.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的1.0.1版本 </td>
+		<td> paddlepaddle-gpu==1.2.0.post87 </td>
+		<td> 使用CUDA 8.0和cuDNN 7编译的1.2.0版本 </td>
 	</tr>
 	<tr>
-		<td> paddlepaddle-gpu==1.0.1.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的1.0.1版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==1.0.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的1.0.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==1.0.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的1.0.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==1.0.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的1.0.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.15.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的0.15.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.15.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的0.15.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.15.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.15.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.14.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的0.15.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.14.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的0.15.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.14.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.15.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.13.0 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的0.13.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.12.0 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.12.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.11.0.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的0.11.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.11.0.post85 </td>
-		<td> 使用CUDA 8.0和cuDNN 5编译的0.11.0版本 </td>
-	</tr>
-	<tr>
-		<td> paddlepaddle-gpu==0.11.0 </td>
-		<td> 使用CUDA 7.5和cuDNN 5编译的0.11.0版本 </td>
+		<td> paddlepaddle-gpu==1.2.0.post85 </td>
+		<td> 使用CUDA 8.0和cuDNN 5编译的1.2.0版本 </td>
 	</tr>
    </tbody>
 </table>
 </p>
 
-
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
-
-***
-
+需要注意的是，在v1.3版本中，<code> paddlepaddle-gpu </code> 命令在windows环境下，会默认安装CUDA 8.0和cuDNN 5编译的PaddlePaddle
 
 ***
 
@@ -425,9 +360,79 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 		<td> <a href="http://paddle-wheel.bj.bcebos.com/1.3.0-gpu-cuda9-cudnn7-avx-mkl/paddlepaddle_gpu-1.3.0.post97-cp37-cp37m-linux_x86_64.whl">
 		paddlepaddle_gpu-1.3.0-cp37-cp37m-linux_x86_64.whl</a></td>
 	</tr>
+	<tr>
+		<td> win_amd64 </td>
+		<td> - </td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle-1.3.0-cp27-cp27m-win_amd64.whl">
+		paddlepaddle-1.3.0-cp27-cp27m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle-1.3.0-cp35-cp35m-win_amd64.whl">
+		 paddlepaddle-1.3.0-cp35-cp35m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle-1.3.0-cp36-cp36m-win_amd64.whl">
+		paddlepaddle-1.3.0-cp36-cp36m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle-1.3.0-cp37-cp37m-win_amd64.whl">
+		paddlepaddle-1.3.0-cp37-cp37m-win_amd64.whl</a></td>
+	</tr>
+	<tr>
+		<td> cuda8.0_cudnn5_win_amd64 </td>
+		<td> - </td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle_gpu-1.3.0-cp27-cp27m-win_amd64.whl">
+		paddlepaddle_gpu-1.3.0-cp27-cp27m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle_gpu-1.3.0-cp35-cp35m-win_amd64.whl">
+		paddlepaddle_gpu-1.3.0-cp35-cp35m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl">
+		paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-noavx-openblas/paddlepaddle_gpu-1.3.0-cp37-cp37m-win_amd64.whl">
+		paddlepaddle_gpu-1.3.0-cp37-cp37m-win_amd64.whl</a></td>
+	</tr>
    </tbody>
 </table>
 </p>
+
+### 表格说明
+
+- 纵轴
+
+cpu_noavx_mkl: 只支持CPU训练和预测，使用sse指令集和Intel mkl数学库
+
+cpu_avx_mkl: 只支持CPU训练和预测，使用avx指令集和Intel mkl数学库
+
+cpu_avx_openblas: 只支持CPU训练和预测，使用avx指令集和openblas数学库
+
+cuda8.0_cudnn5_avx_mkl: 支持GPU训练和预测，使用avx指令集和Intel mkl数学库
+
+cuda8.0_cudnn7_noavx_mkl: 支持GPU训练和预测，使用sse指令集和Intel mkl数学库
+
+cuda8.0_cudnn7_avx_mkl: 支持GPU训练和预测，使用avx指令集和Intel mkl数学库
+
+cuda9.0_cudnn7_avx_mkl: 支持GPU训练和预测，使用avx指令集和Intel mkl数学库
+
+win_amd64：只支持CPU训练和预测，使用AMD64指令集
+
+cuda8.0_cudnn5_win_amd64：支持支持GPU训练和预测，使用AMD64指令集
+
+- 横轴
+
+一般是类似于“cp27-cp27mu”的形式，其中：
+
+27:python tag,指python2.7，类似的还有“35”、“36”、“37”等
+
+mu:指unicode版本python，若为m则指非unicode版本python
+
+- 安装包命名规则
+
+每个安装包都有一个专属的名字，它们是按照Python的官方规则 来命名的，形式如下：
+
+{distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.whl
+
+其中build tag可以缺少，其他部分不能缺少
+
+distribution: wheel名称version: 版本，例如0.14.0 (要求必须是数字格式)
+
+python tag: 类似'py27', 'py2', 'py3'，用于标明对应的python版本
+
+abi tag:  类似'cp33m', 'abi3', 'none'
+
+platform tag: 类似 'linux_x86_64', 'any'
 
 <a name="ciwhls"></a>
 </br></br>
