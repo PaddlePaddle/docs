@@ -259,7 +259,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 </p>
 
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
-需要注意的是，在v1.3版本中，<code> paddlepaddle-gpu命令 </code> 在windows环境下，会默认安装CUDA 8.0和cuDNN 5编译的PaddlePaddle
+需要注意的是，在v1.3版本中，<code> paddlepaddle-gpu </code> 命令在windows环境下，会默认安装CUDA 8.0和cuDNN 5编译的PaddlePaddle
 
 ***
 

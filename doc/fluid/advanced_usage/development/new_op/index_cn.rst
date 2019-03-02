@@ -2,10 +2,15 @@
 新增Operator
 #############
 
-在这里，您将掌握如何添加新的Operator，本部分有如下几个部分：
+本部分将指导您如何新增Operator，也包括一些必要的注意事项
+
+- `如何写新的op <./new_op.html>`_
+
+- `op相关注意事项 <./op_notes.html>`_
 
 .. toctree::
    :hidden:
 
    new_op.md
    op_notes.md
+
