@@ -406,7 +406,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 		paddlepaddle_gpu-1.3.0-cp35-cp35m-win_amd64.whl</a></td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-avx-openblas/paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl">
 		paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-avx-openblas/paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl">
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-avx-openblas/paddlepaddle_gpu-1.3.0-cp37-cp37m-win_amd64.whl">
 		paddlepaddle_gpu-1.3.0-cp37-cp37m-win_amd64.whl</a></td>
 	</tr>
    </tbody>
