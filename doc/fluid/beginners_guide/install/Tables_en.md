@@ -444,7 +444,7 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 		paddlepaddle_gpu-1.3.0-cp35-cp35m-win_amd64.whl</a></td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-avx-openblas/paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl">
 		paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-avx-openblas/paddlepaddle_gpu-1.3.0-cp36-cp36m-win_amd64.whl">
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.3.0-win-avx-openblas/paddlepaddle_gpu-1.3.0-cp37-cp37m-win_amd64.whl">
 		paddlepaddle_gpu-1.3.0-cp37-cp37m-win_amd64.whl</a></td>
 	</tr>
    </tbody>
