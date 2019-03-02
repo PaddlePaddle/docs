@@ -9,7 +9,7 @@
 
 ### 注意事项
 
-* 默认提供的安装包需要计算机支持AVX指令集和MKL
+* 默认提供的安装包需要计算机支持AVX指令集和MKL，如果您的环境不支持，请在[这里](./Tables.html/#ciwhls-release)下载`no_avx`、`openblas`等版本的安装包
 * 当前版本暂不支持NCCL，分布式等相关功能
 
 ## 选择CPU/GPU
