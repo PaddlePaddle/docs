@@ -22,3 +22,4 @@ API
     regularizer_cn.rst
     transpiler_cn.rst
     data/dataset_cn.rst
+    data/data_reader_cn.rst
