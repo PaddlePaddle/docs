@@ -5,7 +5,7 @@ API
 ..  toctree::
     :maxdepth: 1
 
-    api_guides/index.rst
+    ../api_guides/index.rst
     fluid_cn.rst
     average_cn.rst
     backward_cn.rst
@@ -21,3 +21,4 @@ API
     profiler_cn.rst
     regularizer_cn.rst
     transpiler_cn.rst
+    data/dataset_cn.rst

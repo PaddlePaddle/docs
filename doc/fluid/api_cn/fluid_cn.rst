@@ -9,13 +9,14 @@
 AsyncExecutor
 -------------------------------
 
-.. py:class:: paddle.fluid.AsyncExecutor(place=None)
+.. py:class:: paddle.fluid.AsyncExecutor(place=None, run_mode='')
+
+**AsyncExecutor正在积极开发，API可能在短期内进行调整。**
 
 Python中的异步执行器。AsyncExecutor利用多核处理器和数据排队的强大功能，使数据读取和融合解耦，每个线程并行运行。
 
 AsyncExecutor不是在python端读取数据，而是接受一个训练文件列表，该列表将在c++中检索，然后训练输入将被读取、解析并在c++代码中提供给训练网络。
 
-AsyncExecutor正在积极开发，API可能在不久的将来会发生变化。
 
 参数：
 	- **place** (fluid.CPUPlace|None) - 指示 executor 将在哪个设备上运行。目前仅支持CPU
@@ -47,7 +48,7 @@ AsyncExecutor正在积极开发，API可能在不久的将来会发生变化。
 
 	目前仅支持CPU
 
-.. py:method:: run(program, data_feed, filelist, thread_num, fetch, debug=False)
+.. py:method:: run(program, data_feed, filelist, thread_num, fetch, mode='', debug=False)
 
 使用此 ``AsyncExecutor`` 来运行 ``program`` 。
 
@@ -59,21 +60,78 @@ AsyncExecutor正在积极开发，API可能在不久的将来会发生变化。
 所有运算同时更新参数值。
 
 参数:	
-  - program (Program) – 需要执行的program。如果没有提供该参数，默认使用 ``default_main_program`` 
-  - data_feed (DataFeedDesc) –  ``DataFeedDesc`` 对象
-  - filelist (str) – 一个包含训练数据集文件的文件列表
-  - thread_num (int) – 并发训练线程数。参照 *注解* 部分获取合适的设置方法
-  - fetch (str|list) – 变量名，或者变量名列表。指明最后要进行观察的变量命名
-  - debug (bool) – 如果为True, 在每一个minibatch处理后，fetch 中指明的变量将会通过标准输出打印出来
+  - **program**  (Program) – 需要执行的program。如果没有提供该参数，默认使用 ``default_main_program`` 
+  - **data_feed**  (DataFeedDesc) –  ``DataFeedDesc`` 对象
+  - **filelist**  (str) – 一个包含训练数据集文件的文件列表
+  - **thread_num**  (int) – 并发训练线程数。参照 *注解* 部分获取合适的设置方法
+  - **fetch**  (str|list) – 变量名，或者变量名列表。指明最后要进行观察的变量命名
+  - **mode**  (str) – 该接口的运行模式
+  - **debug**  (bool) – 如果为True, 在每一个minibatch处理后，fetch 中指明的变量将会通过标准输出打印出来
 
 .. note::
     1.该执行器会运行program中的所有运算，不只是那些依赖于fetchlist的运算
 
     2.该类执行器在多线程上运行，每个线程占用一个CPU核。为了实现效率最大化，建议将 ``thread_num`` 等于或稍微小于CPU核心数
 
+.. py:method:: download_data(afs_path, local_path, fs_default_name, ugi, file_cnt, hadoop_home='$HADOOP_HOME', process_num=12)
 
+download_data是用于分布式训练的默认下载方法，用户可不使用该方法下载数据。
 
+**示例**
 
+..  code-block:: python
+
+    exe = fluid.AsyncExecutor()
+    exe.download_data("/xxx/xxx/xx/",
+                      "./data", "afs://
+     xxx.xxx.xxx.xxx:9901", "xxx,yyy")
+
+参数: 
+  - **afs_path** （str） - 用户定义的afs_path
+  - **local_path** （str） - 下载数据路径
+  - **fs_default_name** （str） - 文件系统服务器地址
+  - **ugi** （str） -  hadoop ugi
+  - **file_cn** （int） - 用户可以指定用于调试的文件号
+  - **hadoop_home** （str） -  hadoop home path
+  - **process_num** （int） - 下载进程号
+
+.. py:method:: get_instance()
+
+获取当前节点的实例，以便用户可以在分布式背景下中执行操作。
+
+.. py:method:: config_distributed_nodes()
+
+如果用户需要运行分布式AsyncExecutor，则需要进行全局配置，以便获取当前进程的信息。
+
+.. py:method:: stop()
+
+在流程结束时，用户应该停止服务器并阻止所有workers。
+
+.. py:method:: init_server(dist_desc)
+
+如果当前进程是server，则初始化当前节点的服务器。
+
+参数: 
+  - **dist_desc** （str）- 描述如何初始化worker和server的protobuf字符串
+
+.. py:method:: init_worker(dist_desc, startup_program)
+
+如果当前进程是worker，则初始化当前节点的worker 
+
+参数: 
+  - **dist_desc** （str）- 描述如何初始化worker和server的protobuf字符串
+  - **startup_program** （fluid.Program）- 当前进程的startup program
+
+.. py:method:: init_model()
+
+可以从其中一个worker中调用的init_model命令。随之，在server中初始化模型参数。
+
+.. py:method:: save_model(save_path)
+
+可以从其中一个worker调用的save_model命令。随之，模型参数会保存在server中并上传到文件系统的save_path指定的位置。
+
+参数: 
+  - **save_path** （str）- 文件系统的保存路径
 
 
 .. _cn_api_fluid_BuildStrategy:
@@ -106,10 +164,14 @@ str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有
 
 
 
+
 .. py:attribute:: fuse_elewise_add_act_ops
 
 bool类型。它表明了是否融合（fuse）elementwise_add_op和activation_op。这会使整体执行过程更快一些。默认为False。
 
+.. py:attribute:: fuse_relu_depthwise_conv
+
+BOOL类型，fuse_relu_depthwise_conv指示是否融合relu和depthwise_conv2d，它会节省GPU内存并可能加速执行过程。 此选项仅适用于GPU设备。 默认为False。
 
 
 .. py:attribute:: gradient_scale_strategy
@@ -128,9 +190,62 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 
 
+.. _cn_api_fluid_CompiledProgram:
 
+CompiledProgram
+-------------------------------
 
+.. py:class:: paddle.fluid.CompiledProgram(program)
 
+编译一个接着用来执行的Program。
+
+1. 首先使用layers(网络层)创建程序。
+2. （可选）可使用CompiledProgram来在运行之前优化程序。
+3. 定义的程序或CompiledProgram由Executor运行。
+
+CompiledProgram用于转换程序以进行各种优化。例如，
+
+- 预先计算一些逻辑，以便每次运行更快。
+- 转换Program，使其可以在多个设备中运行。
+- 转换Program以进行优化预测或分布式训练。
+
+**代码示例**
+
+..  code-block:: python
+
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+            exe = fluid.Executor(place)
+            exe.run(startup)
+            compiled_prog = compiler.CompiledProgram(main).with_data_parallel(
+                loss_name=loss.name)
+            for i in range(5):
+                test_loss, = exe.run(compiled_prog,
+                                     feed=feed_dict,
+                                     fetch_list=[loss.name])
+
+参数：
+  - **program** : 一个Program对象，承载着用户定义的模型计算逻辑
+
+.. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None)
+
+配置Program使其以数据并行方式运行。
+
+参数：
+  - **loss_name** （str） - 损失函数名称必须在训练过程中设置。 默认None。
+  - **build_strategy** （BuildStrategy） -  build_strategy用于构建图，因此它可以在具有优化拓扑的多个设备/核上运行。 有关更多信息，请参阅  ``fluid.BuildStrategy`` 。 默认None。
+  - **exec_strategy** （ExecutionStrategy） -  exec_strategy用于选择执行图的方式，例如使用多少线程，每次清理临时变量之前进行的迭代次数。 有关更多信息，请参阅 ``fluid.ExecutionStrategy`` 。 默认None。
+  - **share_vars_from** （CompiledProgram） - 如果有，此CompiledProgram将共享来自share_vars_from的变量。 share_vars_from指定的Program必须由此CompiledProgram之前的Executor运行，以便vars准备就绪。
+
+返回: self
+
+.. py:method:: with_inference_optimize(config)
+
+添加预测优化。
+
+参数：
+  - **config** - 用于创建预测器的NativeConfig或AnalysisConfig的实例
+
+返回: self
 
 
 
@@ -505,7 +620,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 返回类型: dict
     
-抛出异常： ``ValueError`` – 如果 ``drop_last`` 值为False并且reader返回的minibatch数目与设备数目不相等时，产生此异常
+抛出异常： ``ValueError`` – 如果 ``drop_last`` 值为False并且data batch与设备不匹配时，产生此异常
 
 
         
@@ -731,7 +846,7 @@ DistributeTranspilerConfig
 
 .. py:attribute:: min_block_size (int)
 
-最小数据块的大小
+block中分割(split)出的元素个数的最小值。
 
 注意: 根据：`issuecomment-369912156 <https://github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156>`_ , 当数据块大小超过2MB时，我们可以有效地使用带宽。如果你想更改它，请详细查看 ``slice_variable`` 函数。
 
@@ -821,6 +936,32 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 
 program中所有的算子会按顺序执行。
 
+**示例代码**
+
+.. code-block:: python
+
+    # 新建一个执行引擎Executor名为exe。 
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
+
+    # 仅运行一次startup program.
+    # 不需要优化/编译这个startup program. 
+    exe.run(fluid.default_startup_program())
+
+    # 无需编译，直接运行main program
+    loss, = exe.run(fluid.default_main_program(),
+                        feed=feed_dict,
+                        fetch_list=[loss.name])
+
+    # 另一种方法是，编译这个main program然后运行. 参考CompiledProgram 
+    compiled_prog = compiler.CompiledProgram(
+            fluid.default_main_program()).with_data_parallel(
+            loss_name=loss.name)
+    loss, = exe.run(compiled_prog,
+                        feed=feed_dict,
+                        fetch_list=[loss.name])
+
+
 参数:	
     - **place** (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
@@ -855,8 +996,8 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
 参数：  
-	- **program** (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
-	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LableData}
+	- **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
+	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
 	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
 	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
 	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
@@ -979,13 +1120,49 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 .. py:method::	has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
 
+检查LoDTensor的lod值的正确性。
+
+返回:    是否带有正确的lod值
+
+返回类型:    out (bool)
+
 .. py:method::	lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+
+得到LoD Tensor的LoD。 
+
+返回：LoD Tensor的LoD。 
+
+返回类型：out（List [List [int]]）
+
 
 .. py:method::	recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
-.. py:method::	set_lod(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
+得到与LoD对应的LoDTensor的序列长度。
 
-.. py:method::	set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, arg0: List[List[int]]) → None
+返回：LoD对应的一至多个序列长度。
+
+返回类型：out（List [List [int]）
+
+
+
+.. py:method::	set_lod(self: paddle.fluid.core.LoDTensor, lod: List[List[int]]) → None
+
+设置LoDTensor的LoD。
+
+参数：
+- **lod** （List [List [int]]） - 要设置的lod。
+
+.. py:method::	set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
+
+根据递归序列长度recursive_sequence_lengths设置LoDTensor的LoD。
+
+::
+
+   例如，如果recursive_sequence_lengths = [[2,3]]，
+   意味着有两个长度分别为2和3的序列，相应的lod将是[[0,2,2 + 3]]，即[[0， 2,5]]。
+
+参数：
+- **recursive_sequence_lengths** （List [List [int]]） - 序列长度。
 
 
 
@@ -1004,7 +1181,9 @@ LoDTensorArray
 
 .. py:class:: paddle.fluid.LoDTensorArray
 
-.. py:method:: append(self: paddle.fluid.core.LoDTensorArray, arg0: paddle.fluid.core.LoDTensor) → None
+.. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
+
+将LoDensor追加到LoDTensorArray后。
 
 
 
@@ -1047,7 +1226,7 @@ memory_optimize
 name_scope
 -------------------------------
 
-.. py:function:: paddle.fluid.name_scope(*args, **kwds)
+.. py:function:: paddle.fluid.name_scope(prefix=None)
 
 
 为operators生成层次名称前缀
@@ -1304,7 +1483,10 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 返回：(str): debug 字符串
 
-抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` ，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
+返回类型： str
+
+抛出异常： 
+ - ``ValueError`` - 当 ``throw_on_error == true`` ，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
 
 
@@ -1446,7 +1628,7 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 program_guard
 -------------------------------
 
-.. py:function:: paddle.fluid.program_guard(*args, **kwds)
+.. py:function::    paddle.fluid.program_guard(main_program, startup_program=None)
 
 
 
@@ -1512,62 +1694,12 @@ release_memory
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-.. _cn_api_fluid_Scope:
-
-Scope
--------------------------------
-
-.. py:class:: paddle.fluid.scope(scope)
-
-(作用域)Scope为变量名的联合。所有变量都属于Scope。
-
-从本地作用域中可以拉取到其双亲作用域的变量。
-
-要想运行一个网络，需要指明它运行所在的域，确切的说： exe.Run(&scope) 。
-
-一个网络可以在不同域上运行，并且更新该域的各类变量。
-
-在作用域上创建一个变量，并在域中获取。
-
-**代码示例**
-
-..  code-block:: python
-
-    # create tensor from a scope and set value to it.
-    param = scope.var('Param').get_tensor()
-    param_array = np.full((height, row_numel), 5.0).astype("float32")
-    param.set(param_array, place)
-
-
-.. py:method:: drop_kids(self: paddle.fluid.core.Scope) → None
-.. py:method:: find_var(self: paddle.fluid.core.Scope, arg0: unicode) → paddle.fluid.core.Variable
-.. py:method:: new_scope(self: paddle.fluid.core.Scope) → paddle.fluid.core.Scope
-.. py:method:: var(self: paddle.fluid.core.Scope, arg0: unicode) → paddle.fluid.core.Variable   
-
-
-
-
-
-
-
-
 .. _cn_api_fluid_scope_guard:
 
 scope_guard
 -------------------------------
 
-.. py:function:: paddle.fluid.scope_guard(*args, **kwds)
+.. py:function:: paddle.fluid.scope_guard(scope)
 
 
 修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。

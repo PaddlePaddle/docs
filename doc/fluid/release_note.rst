@@ -2,6 +2,141 @@
 版本说明
 ==============
 
+Paddle Fluid v1.3
+##########################
+
+重要更新
+=========
+* 统一Executor和ParallelExecutor接口，用户只需通过CompiledProgram将单卡模型转化多卡模型，并利用Executor进行训练或者预测。
+* 正式发布AnalysisConfig 预测接口，支持计算图分析、算子融合等优化，并支持利用 Intel MKLDNN、Nvidia TensorRT 子图引擎等第三方库的加速.
+* 模型库新增发布PaddlePaddle视频模型库，提供5个视频分类经典模型以及适合视频分类任务的通用骨架代码，用户可一键式高效配置模型完成训练和评测。
+* 新增支持NLP语义表示BERT模型，支持多机多卡训练，支持混合精度训练，训练速度对比主流实现提升50%+，提供完整部署示例。
+* 大规模稀疏参数服务器Benchmark发布， CPU多机异步训练发布显著提升点击率预估任务IO吞吐的built-in reader，多机多卡训练性能多方面提升。
+
+基础框架
+==========
+* 安装
+	* 新增Linux和MacOS下的中文版本辅助安装脚本，提供交互式安装方式，协助用户在复杂环境下快速完成PaddlePaddle安装。
+	* Windows支持优化：新增cuda8，cudnn7的GPU支持，新增AVX指令集、MKLDNN、mnist数据集支持。修复Windows加载Linux/Mac下同版本paddle训练模型的问题。
+* 增加动态图基础功能
+	* 动态图tracer、 autograd、python Layer/PyLayer，动态图支持MLP、GAN、ptbRNN、Resnet模型，动态图支持Optimizer、GPU训练。
+* Executor和ParallelExecutor接口优化
+	* 对Executor和ParallelExecutor接口进行统一，用户只需通过CompiledProgram将单卡模型转化多卡模型，并利用Executor进行训练或者预测。
+	* ParallelExecutor优化
+		对MultiDevSSAGraphBuilder进行重构，使得MultiDevSSAGraphBuilder更易扩展。
+		去除ParallelExecutor中的设备锁，提升ParallelExecutor多卡调度性能。
+* 中间表达IR和Pass方面的优化
+	* 完善C++ IR graph的python接口以及C++ IR pass的python接口。
+	* 在framework.py中新增IRGraph类，为在Python层编写IR Pass做准备。
+	* 新增支持网络无锁更新的Pass。
+	* 新增QuantizationTransformPass，此为Quantization Aware Training量化模式训练前的图修改操作部分。
+* 内存和显存方面的优化
+	* 新增支持在编译时加入 Jemalloc 作为动态链接库，提升内存管理的性能，降低基础框架内存管理开销
+	* 新增memory optimize，inplace pass, memory pool early deletion等显存优化策略。
+	* 新增支持网络无锁更新的Pass。
+	* 新增QuantizationTransformPass，此为Quantization Aware Training量化模式训练前的图修改操作部分。
+* Operator整体层面的优化
+	* 每个op在执行前只做一次scope查询，减少读写锁操作（原来需要做1~5次scope查询）
+	* 新增Temporary Allocator，减少op中的同步操作
+	* 新增py_func operator，支持python op接入，用户可以借助py_func Operator快速实现所需要的特有操作
+* 重构DDim，Variable Type等，降低基础框架调度开销。
+* INTEL FP32计算相关优化
+	* 优化density_prior_box operator，单op四线程提速3倍。
+	* 优化Stack operator，单op提速16倍。
+	* 开发Transpose，Concat和Conv3d三个基于MKLDNN的kernel。
+	* 修复lrn operator中MKLDNN kernel精度bug，同时单op提速1.3倍。
+	* 修复MKLDNN初始化占用5G内存的问题，目前初始化占用500MB。
+	* 减少从MKLDNN OP kernel到非MKLDNN OP kernel时不必要的reorder。
+* 完善CPU JitKernel
+	* sequence pooling 的jitkernel，纯op提升2倍。
+	* softmax 的jitkernel，纯op提升2倍，同时使得Bert模型CPU预测提升26%。
+	* 常见的基本逻辑：向量的每个元素求平方kVSquare、矩阵乘法kMatMul、向量的最大值kHMax、向量所有元素的和kHSum。
+
+预测引擎
+==========
+
+服务器预测
++++++++++++
+* 正式发布AnalysisConfig 预测接口，支持计算图分析、算子融合等优化，并支持利用 Intel MKLDNN、Nvidia TensorRT 子图引擎等第三方库的加速。
+* 预发布 intel CPU上的 预测 INT8 离线量化方案
+	* 开发Conv2D，Pool2D，Quantize，Dequantize四个基于MKL-DNN的INT8 kernel。
+	* 预发布Calibration的3个核心Python API（paddle.fluid.contrib.Calibrator）。
+	* 开发Calibration工具，保证FP32和INT8的精度在ResNet-50和MobileNet-V1在ImageNet验证数据集上相差在1%内。
+	* 支持Intel Xeon CascadeLake Server（VNNI指令）及Intel Xeon SkyLake Server，性能提升约为1.33倍。
+* CPU预测速度提升
+	* fuse sequence pooling concatop，支持N (<200)个sequence_pooling op concat起来组成一个新op，整体使得seqpool模型 CPU预测提升56%。
+	* fuse 连续重复的fc op为一个大op，使得seqpool模型CPU预测速度提升15%。
+	* fuse 逻辑为 $$((X * Y).^2 - (X.^2 * Y.^2) ) .* scalar$$ 的op组合 , 使得seqpool模型CPU预测速度提升8.2%。
+	* 针对输入tensor元素个数为1的情况，优化compare_op的CPU Kernel。
+* 新增Paddle-TRT 对Calibration INT8的支持，GPU预测速度提升
+	* 模型VGG，Resnet50上预测速度达到了Paddle-TRT float32的两倍性能。
+	* 模型VGG，Resnet50在imagenet数据集上测试，精度下降0.3%以内。
+* 算子融合
+	* 增加 fc和 con 相关两个 fuse，作用于 conv_op CUDNN kernel。
+	* 新增Conv+Affine Channel的融合pass，Faster RCNN运行的性能提升26.8%。
+	* 新增Transpose+Flatten+Concat 融合pass，MobilenetSSD模型性能提升15%。
+	* 实现beam_search operator的CUDA Kernel，并且将相应的top-k、elementwise_add、reshape、log计算融合到beam_search operator中。
+* 功能完善及易用性提升
+	* 新增C++ IR graph的Python接口。
+	* 新增预测库的Python接口。
+	* 服务端预测支持从内存加载模型。
+* 其他
+	* 删除legacy V2代码。从1.3版本起，不再支持V1&V2老版本功能。
+	* 修复Paddle-TRT elementwise-mul模型运行出现问题的bug。
+	* 修复Paddle-TRT  trt_engine stream多个连续输入情况下模型输出结果异常的bug。
+
+移动端预测
++++++++++++
+* 效率优化，常见模型预测速度提升
+	* int8预测支持dequantize和其他op（batch normalization/relu/elementwise add）进行自动kernel融合。
+	* transpose2 operator对于shuffle channel操作进行优化。
+	* gru operator使用neon指令进行优化，并针对batch size为1时进行优化。
+	* 优化和实现pooling，支持任意的padding。
+	* 优化和实现batch normalization、softmax、elementwise add。
+* 新增支持多个输入和多个输出的模型预测。
+* 新增实现prelu6 operator、cast operator、top_k operator。
+* 修复int8 offline量化溢出结果不对的问题。
+* 修复winograd实现在输入feature map的height和width不相等时结果可能为0的bug。
+
+模型建设
+==========
+* PaddleCV 智能视觉
+	* 新增发布PaddlePaddle视频模型库，包括五个视频分类模型：Attention Cluster、NeXtVLAD、LSTM,、stNet、TSN。提供适合视频分类任务的通用骨架代码，包括数据读取和预处理、训练和预测、网络模型以及指标计算等多个模块。用户根据需要添加自己的网络模型，直接复用其他模块的代码，快速部署模型。
+	* 新增支持目标检测Mask R-CNN模型，效果与主流实现打平。
+	* 语义分割DeepLabV3+模型，depthwise_conv op融合，显存优化，显存占用对比上一版本减少50%。
+* PaddleNLP 智能文本处理
+	* 新增支持NLP语义表示BERT模型，支持多机多卡训练，支持混合精度训练，训练速度对比主流实现提升50%+，提供完整部署示例。
+	* 机器翻译Transformer模型优化解码计算，decoder中加入对encoder output计算结果的cache，预测速度提升一倍。
+* PaddleRec 智能推荐
+	* Sequence Semantic Retrieval 新增单机多线程、单机多卡运行示例，添加预测功能、数据预处理优化，完善部署示例。
+	* GRU4Rec新增负采样功能，使用bpr loss和cross entropy loss的效果与原作打平。
+
+分布式训练
+===========
+* 大规模稀疏参数服务器Benchmark发布
+	* 测试真实业务场景下，特征规模百亿、样本平均特征数1k的点击率预估任务，在batch=512情况下，100worker加速比95.0，吞吐量1.56M/s 。
+* CPU多机异步训练
+	* 发布面向点击率预估任务的built-in reader，Criteo数据集下IO总吞吐提升1300%。
+* GPU多机多卡水平扩展性能提升
+	* 新增并行模式：PG（ParallelGraph）、MP（Multi-Process），独立GPU卡之间的计算，提升性能同时，不影响模型精度。
+	* 在ResNet50模型，单机8卡V100下，PG, MP模式提升训练性能30%以上；4机32卡，PG模式提速46%，MP模式提速60%。
+	* 在BERT模型，8卡V100下，PG, MP模式提升训练性能26%。
+	* Multi-Process模式相比Parallel-Graph模式对Reader速度敏感度不高。
+* GPU多机多卡垂直扩展性能提升
+	* 新增功能：fp16和混合精度训练
+	* Fp16单机单卡加速情况：ResNet50提速约87%，BERT提速约70%。
+	* BERT同时开启PG和混合精度，单机8卡下单位时间吞吐提升120%。
+	* ResNet50同时开启混合精度训练和MP模式，在V100单机8卡、4机32卡下，单位时间吞吐提升100%。
+* 典型模型收敛速度优化
+	* 新增功能：动态Batch Size，动态Image Resize方法。
+	* Resnet50 on Imagenet数据集：训练收敛轮数下降为标准训练方法的1/3左右。
+
+VisualDL
+==========
+* VisualDL graph支持Paddle fluid保存的模型可视化展示。
+
+
+
 Paddle Fluid v1.2
 ##########################
 

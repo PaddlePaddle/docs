@@ -194,7 +194,7 @@ Fluid中使用fluid.Executor(place)创建Executor，place属性由用户定义�
 下例代码表示创建一个Executor，其运行场所在CPU内：
 
 ```python
-cpu=core.CPUPlace()
+cpu=fluid.CPUPlace()
 exe = fluid.Executor(cpu)
 ```
 
@@ -329,7 +329,7 @@ Fluid使用Executor来执行网络训练，Executor运行细节请参考[Executo
 创建Executor只需调用 fluid.Executor(place) 即可，在此之前请您依据训练场所定义place变量：
 ```python
  #在CPU内执行训练
- cpu = fluid.core.CPUPlace()
+ cpu = fluid.CPUPlace()
  #创建Executor
  exe = fluid.Executor(cpu)
 ```

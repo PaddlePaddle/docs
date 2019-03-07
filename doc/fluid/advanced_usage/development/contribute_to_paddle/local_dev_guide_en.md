@@ -3,7 +3,7 @@
 You will learn how to develop programs in local environment under the guidelines of this document.
 
 ## Requirements of coding
-- Please refer to the coding comment format of [Doxygen](http://www.stack.nl/~dimitri/doxygen/) 
+- Please refer to the coding comment format of [Doxygen](http://www.stack.nl/~dimitri/doxygen/)
 - Make sure that option of builder `WITH_STYLE_CHECK` is on and the build could pass through the code style check.
 - Unit test is needed for all codes.
 - Pass through all unit tests.
@@ -26,7 +26,7 @@ Clone remote git to local:
 
 ## Create local branch
 
-At present [Git stream branch model](http://nvie.com/posts/a-successful-git-branching-model/)  is applied to Paddle to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/design/releasing_process.md#paddle-分支规范) about details。
+At present [Git stream branch model](http://nvie.com/posts/a-successful-git-branching-model/)  is applied to Paddle to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/others/releasing_process.md) about details。
 
 All development tasks of feature and bug fix should be finished in a new branch which is extended from `develop` branch.
 
@@ -80,7 +80,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 It needs a variety of development tools to build PaddlePaddle source code and generate documentation. For convenience, our standard development procedure is to put these tools together into a Docker image,called  *development mirror* , usually named as `paddle:latest-dev` or `paddle:[version tag]-dev`,such as `paddle:0.11.0-dev` . Then all that need `cmake && make` ,such as IDE configuration,are replaced by `docker run paddle:latest-dev` .
 
-You need to bulid this development mirror under the root directory of source code directory tree 
+You need to bulid this development mirror under the root directory of source code directory tree
 
 ```bash
 ➜  docker build -t paddle:latest-dev .
@@ -110,7 +110,7 @@ Run all unit tests with following commands:
 ➜  docker run -it -v $(pwd):/paddle paddle:latest-dev bash -c "cd /paddle/build && ctest"
 ```
 
-Please refer to [Installation and run with Docker](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/v2/build_and_install/docker_install_cn.rst) about more information of construction and test.
+Please refer to [Installation and run with Docker](../../../beginners_guide/install/install_Docker.html) about more information of construction and test.
 
 ## Commit
 

@@ -195,7 +195,7 @@ Fluid uses Fluid.Executor(place) to create an Executor. The place attribute is d
 The following code example creates an Executor that runs on CPU:
 
 ```python
-cpu=core.CPUPlace()
+cpu=fluid.CPUPlace()
 exe = fluid.Executor(cpu)
 ```
 
@@ -330,7 +330,7 @@ Fluid uses Executor to perform network training. For details on Executor operati
 To create an Executor, simply call fluid.Executor(place). Before that, please define a place variable based on the training site:
 ```python
  #Execute training on CPU
- cpu = fluid.core.CPUPlace()
+ cpu = fluid.CPUPlace()
  #Create Executor
  exe = fluid.Executor(cpu)
 ```
