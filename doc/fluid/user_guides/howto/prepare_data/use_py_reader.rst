@@ -84,11 +84,63 @@ PyReader对象。
 
 设置PyReader对象的数据源
 ################################
+<<<<<<< Updated upstream
 PyReader对象提供 :code:`decorate_tensor_provider` 和 :code:`decorate_paddle_reader` 方法，它们均接收一个Python生成器 :code:`generator` 对象作为数据源，两个方法的区别在于：
 
 1. :code:`decorate_tensor_provider` 方法：要求 :code:`generator` 每次产生一个 :code:`list` 或 :code:`tuple` 对象， :code:`list` 或 :code:`tuple` 对象中的每个元素为 :code:`LoDTensor` 类型或Numpy数组类型，且 :code:`LoDTensor` 或Numpy数组的 :code:`shape` 必须与创建PyReader对象时指定的 :code:`shapes` 参数完全一致。
 
 2. :code:`decorate_paddle_reader` 方法：要求 :code:`generator` 每次产生一个 :code:`list` 或 :code:`tuple` 对象， :code:`list` 或 :code:`tuple` 对象中的每个元素为Numpy数组类型，但Numpy数组的 :code:`shape` 不必与创建PyReader对象时指定的 :code:`shapes` 参数完全一致， :code:`decorate_paddle_reader` 方法内部会对其进行 :code:`reshape` 操作。
+=======
+PyReader对象通过 :code:`decorate_paddle_reader()` 或 :code:`decorate_tensor_provider()` 方法设置其数据源。 :code:`decorate_paddle_reader()` 和 :code:`decorate_tensor_provider()` 均接收Python生成器 :code:`generator` 作为参数， :code:`generator` 内部每次通过yield的方式生成一个batch的数据。
+
+:code:`decorate_paddle_reader()` 和 :code:`decorate_tensor_provider()` 方法的区别在于：
+
+- :code:`decorate_paddle_reader()` 要求 :code:`generator` 返回的数据格式为[(img_1, label_1), (img_2, label_2), ..., (img_n, label_n)]，其中img_i和label_i均为每个样本的Numpy Array类型数据，n为batch size。而 :code:`decorate_tensor_provider()` 要求 :code:`generator` 返回的数据的数据格式为[batched_imgs, batched_labels]，其中batched_imgs和batched_labels为batch级的Numpy Array或LoDTensor类型数据。
+
+- :code:`decorate_tensor_provider()` 要求 :code:`generator` 返回的LoDTensor的数据类型、尺寸必须与配置py_reader时指定的dtypes、shapes参数相同，而 :code:`decorate_paddle_reader()` 不要求数据类型和尺寸的严格一致，其内部会完成数据类型和尺寸的转换。
+
+具体方式为：
+
+.. code-block:: python
+
+    import paddle.batch
+    import paddle.fluid as fluid
+    import numpy as np
+
+    BATCH_SIZE = 32
+
+    # Case 1: Use decorate_paddle_reader() method to set the data source of py_reader
+    # The generator yields Numpy-typed batched data
+    def fake_random_numpy_reader():
+        image = np.random.random(size=(784, ))
+        label = np.random.random_integers(size=(1, ), low=0, high=9)
+        yield image, label
+
+    py_reader1 = fluid.layers.py_reader(
+        capacity=10,
+        shapes=((-1, 784), (-1, 1)),
+        dtypes=('float32', 'int64'),
+        name='py_reader1',
+        use_double_buffer=True)
+
+    py_reader1.decorate_paddle_reader(paddle.batch(fake_random_reader, batch_size=BATCH_SIZE))
+
+    # Case 2: Use decorate_tensor_provider() method to set the data source of py_reader
+    # The generator yields Tensor-typed batched data
+    def fake_random_tensor_provider():
+        image = np.random.random(size=(BATCH_SIZE, 784)).astype('float32')
+        label = np.random.random_integers(size=(BATCH_SIZE, 1), low=0, high=9).astype('int64')
+        yield image_tensor, label_tensor
+
+    py_reader2 = fluid.layers.py_reader(
+        capacity=10,
+        shapes=((-1, 784), (-1, 1)),
+        dtypes=('float32', 'int64'),
+        name='py_reader2',
+        use_double_buffer=True)
+
+    py_reader2.decorate_tensor_provider(fake_random_tensor_provider)
+>>>>>>> Stashed changes
 
 使用PyReader进行模型训练和测试
 ################################
