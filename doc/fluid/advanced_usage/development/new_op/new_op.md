@@ -120,7 +120,7 @@ $$Out = scale*X$$
 这个例子有`AddAttr<AttrType>("scale", "...").SetDefault(1.0);` : 增加`scale`系数，作为参数属性，并且设置默认值为1.0。
 
 ### 定义GradProtoMaker类
-每个Op的必须有一个对应的GraProtoMaker，若未定制对应前向Op的GradProtoMaker，fluid提供了DefaultGradProtoMaker，默认注册会使用全部输入输出，包括Input, Output, Output@Grad等，使用不需要的变量的会造成显存浪费。
+每个Op的必须有一个对应的GradProtoMaker，若未定制对应前向Op的GradProtoMaker，fluid提供了DefaultGradProtoMaker，默认注册会使用全部输入输出，包括Input, Output, Output@Grad等，使用不需要的变量的会造成显存浪费。
 下面示例定义了ScaleOp的GradProtoMaker。
 
 ```cpp

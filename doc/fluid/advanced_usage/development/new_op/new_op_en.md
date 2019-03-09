@@ -134,7 +134,7 @@ Note `AddAttr<AttrType>("scale", "...").SetDefault(1.0);` adds `scale`constant a
 <a name="Defining the GradProtoMaker class"></a>
 ### Defining the GradProtoMaker class
 
-Each Op must have a corresponding GraProtoMaker. If GradProtoMaker corresponding to the forward Op is not customized, Fluid provides DefaultGradProtoMaker. The default registration will use all input and output, including Input, Output, Output@Grad and so on. Using unnecessary variables will cause waste of memory.
+Each Op must have a corresponding GradProtoMaker. If GradProtoMaker corresponding to the forward Op is not customized, Fluid provides DefaultGradProtoMaker. The default registration will use all input and output, including Input, Output, Output@Grad and so on. Using unnecessary variables will cause waste of memory.
 The following example defines ScaleOp's GradProtoMaker.
 
 ```cpp
