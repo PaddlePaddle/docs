@@ -103,7 +103,7 @@ The equation is: Out = X * Y
 
 The constructor utilizes `AddInput` to add input parameter, `AddOutput` to add output parameter, and `AddComment` to add comments for the Op, so that the corresponding information will be added to `OpProto`.
 
-The code above adds two inputs `X` and `Y` to `MulOp`, an output `Out`, and their corresponding descriptions. Names are given in accordance to Paddle's [naming convention](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/dev/name_convention.md).
+The code above adds two inputs `X` and `Y` to `MulOp`, an output `Out`, and their corresponding descriptions. Names are given in accordance to Paddle's [naming convention](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md).
 
 
 An additional example [`ScaleOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/scale_op.cc#L38-L55) is implemented as follows:
@@ -244,7 +244,7 @@ Note that **different devices (CPU, CUDA)share one Op definition; whether or not
 
 `MulOp`'s CPU and CUDA share the same `Kernel`. A non-sharing  `OpKernel` example can be seen in [`OnehotCrossEntropyOpKernel`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/cross_entropy_op.cc).
 
-To ease the writing of `OpKernel` compute, and for reusing code cross-device, [`Eigen-unsupported Tensor`](https://bitbucket.org/eigen/eigen/src/default/unsupported/Eigen/CXX11/src/Tensor/README.md?fileviewer=file-view-default) module is used to implement `Compute` interface. To learn about how the Eigen library is used in PaddlePaddle, please see [usage document](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/dev/use_eigen_en.md).
+To ease the writing of `OpKernel` compute, and for reusing code cross-device, [`Eigen-unsupported Tensor`](https://bitbucket.org/eigen/eigen/src/default/unsupported/Eigen/CXX11/src/Tensor/README.md?fileviewer=file-view-default) module is used to implement `Compute` interface. To learn about how the Eigen library is used in PaddlePaddle, please see [usage document](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/use_eigen_cn.md).
 
 
 This concludes the forward implementation of an operator. Next its operation and kernel need to be registered in a `.cc` file.
@@ -460,7 +460,7 @@ If it is not necessary or concise description is enough to clearly express the a
 
 2.Using developer-defined variable abbreviations in error messages is not easy to understand.
 
-  Example of the problem:  
+  Example of the problem:
   ```
   PADDLE_ENFORCE(forward_pd != nullptr,
   "Fail to find eltwise_fwd_pd in device context"); //eltwise_fwd_pduser may not be understood
@@ -481,7 +481,7 @@ If it is not necessary or concise description is enough to clearly express the a
 
 
 <a name="Special instructions for OP InferShape check message"></a>
-#### Special Instructions for OP InferShape Check Message 
+#### Special Instructions for OP InferShape Check Message
 
 - Check input and output variables, please follow the following format
 `Input(variable name) of OP name operator should not be null.`
