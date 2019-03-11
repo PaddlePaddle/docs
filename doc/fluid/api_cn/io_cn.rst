@@ -11,12 +11,12 @@ load_inference_model
 
 .. py:function:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
 
-从指定目录中加载 预测model(inference model)。
+从指定目录中加载预测模型(inference model)。
 
 参数:
   - **dirname** (str) – model的路径
   - **executor** (Executor) – 运行 inference model的 ``executor``
-  - **model_filename** (str|None) –  预测 Program 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
+  - **model_filename** (str|None) –  存储着预测 Program 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
   - **params_filename** (str|None) –  加载所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
   - **pserver_endpoints** (list|None) – 只有在分布式预测时需要用到。 当在训练时使用分布式 look up table , 需要这个参数. 该参数是 pserver endpoints 的列表 
 
@@ -71,13 +71,13 @@ load_params
 **代码示例**
 
 ..  code-block:: python
-    
+
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()
     fluid.io.load_params(executor=exe, dirname=param_path,
                         main_program=None)
-                        
+
 
 
 
@@ -186,6 +186,7 @@ save_inference_model
 
 修改指定的 ``main_program`` ，构建一个专门用于预测的 ``Program``，然后  ``executor`` 把它和所有相关参数保存到 ``dirname`` 中。
 
+
 ``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它。
 
 参数:
@@ -194,7 +195,7 @@ save_inference_model
   - **target_vars** (list[Variable]) – 保存预测（inference）结果的 Variables
   - **executor** (Executor) –  executor 保存  inference model
   - **main_program** (Program|None) – 使用 ``main_program`` ，构建一个专门用于预测的 ``Program`` （inference model）. 如果为None, 使用   ``default main program``   默认: None.
-  - **model_filename** (str|None) – 保存 预测P rogram 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
+  - **model_filename** (str|None) – 保存预测Program 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
   - **params_filename** (str|None) – 保存所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
   - **export_for_deployment** (bool) – 如果为真，Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前只支持True。
 

@@ -1,7 +1,3 @@
-```eval_rst
-.. _user_guide_reader:
-```
-
 # Python Reader
 在模型训练和预测阶段，PaddlePaddle程序需要读取训练或预测数据。为了帮助用户编写数据读取的代码，我们提供了如下接口：
 
@@ -132,7 +128,7 @@ def reader_creator_random_image(width, height):
     return reader
 
 def reader_creator_bool(t):
-    def reader:
+    def reader():
         while True:
             yield t
     return reader
@@ -140,7 +136,7 @@ def reader_creator_bool(t):
 true_reader = reader_creator_bool(True)
 false_reader = reader_creator_bool(False)
 
-reader = paddle.reader.compose(paddle.dataset.mnist.train(), data_reader_creator_random_image(20, 20), true_reader, false_reader)
+reader = paddle.reader.compose(paddle.dataset.mnist.train(), reader_creator_random_image(20, 20), true_reader, false_reader)
 # 跳过1因为paddle.dataset.mnist.train()为每个数据项生成两个项。
 # 并且这里我们暂时不考虑第二项。
 paddle.train(paddle.batch(reader, 128), {"true_image":0, "fake_image": 2, "true_label": 3, "false_label": 4}, ...)

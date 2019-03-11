@@ -1,4 +1,4 @@
-# op相关的一些注意事项
+# op相关注意事项
 
 ## Fluid中Op的构建逻辑
 ### 1.Fluid中Op的构建逻辑
@@ -8,10 +8,10 @@ Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计
 
 Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
 
-Operator继承关系图： 
+Operator继承关系图：
 ![op_inheritance_relation_diagram](../../pics/op_inheritance_relation_diagram.png)
 
-进一步了解可参考：[multi_devices](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/multi_devices)，[scope](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/scope.md)，[Developer's_Guide_to_Paddle_Fluid](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md)    
+进一步了解可参考：[multi_devices](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/multi_devices)，[scope](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/scope.md)，[Developer's_Guide_to_Paddle_Fluid](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md)
 
 ### 2.Op的注册逻辑
 每个Operator的注册项包括：
@@ -75,7 +75,7 @@ Operator继承关系图：
 
 通常Op注释时需要调用REGISTER_OPERATOR，即：
     ```
-    REGISTER_OPERATOR(op_type, 
+    REGISTER_OPERATOR(op_type,
                       OperatorBase
                       op_maker_and_checker_maker,
                       op_grad_opmaker,
@@ -83,7 +83,7 @@ Operator继承关系图：
                       op_infer_var_type)
     ```
 
-**注意：**   
+**注意：**
 
 1. 对于所有Op，前三个参数是必须的，op_type指明op的名字，OperatorBase是该Op的对象，op_maker_and_checker_maker是op的maker和op中attr的checker。
 2. 如果该Op有反向，则必须要有op_grad_opmaker，因为在backward会根据正向的Op中获取反向Op的Maker。
@@ -139,7 +139,7 @@ The following device operations are asynchronous with respect to the host:
 - 如果数据传输是从GPU端到非页锁定的CPU端，数据传输将是同步，即使调用的是异步拷贝操作。
 - 如果数据传输时从CPU端到CPU端，数据传输将是同步的，即使调用的是异步拷贝操作。
 
-更多内容可参考：[Asynchronous Concurrent Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#asynchronous-concurrent-execution)，[API synchronization behavior](https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html#api-sync-behavior)  
+更多内容可参考：[Asynchronous Concurrent Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#asynchronous-concurrent-execution)，[API synchronization behavior](https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html#api-sync-behavior)
 
 ## Op性能优化
 ### 1.第三方库的选择

@@ -67,20 +67,20 @@
 
 - How hard is it to learn Docker?
 
-	> It's not difficult to understand Docker. It takes about ten minutes to read this [article](https://zhuanlan.zhihu.com/p/19902938). 
+	> It's not difficult to understand Docker. It takes about ten minutes to read this [article](https://zhuanlan.zhihu.com/p/19902938).
 	This can save you an hour of installing and configuring various development tools, as well as the need for new installations when switching machines. Don't forget that PaddlePaddle updates may lead to the need for new development tools. Not to mention the benefits of simplifying the recurrence of problems.
 
 - Can I use an IDE?
 
-	> Of course, because the source code is on the machine. By default, the IDE calls a program like make to compile the source code. We only need to configure the IDE to call the Docker command to compile the source code. 
-	Many PaddlePaddle developers use Emacs. They add two lines to their `~/.emacs` configuration file. 
+	> Of course, because the source code is on the machine. By default, the IDE calls a program like make to compile the source code. We only need to configure the IDE to call the Docker command to compile the source code.
+	Many PaddlePaddle developers use Emacs. They add two lines to their `~/.emacs` configuration file.
 	`global-set-key "\C-cc" 'compile`
-	`setq compile-command "docker run --rm -it -v $(git rev-parse --show- Toplevel): /paddle paddle:dev"` 
+	`setq compile-command "docker run --rm -it -v $(git rev-parse --show- Toplevel): /paddle paddle:dev"`
 	You can start the compilation by pressing `Ctrl-C` and` c`.
 
 - Can I compile in parallel?
 
-	> Yes. Our Docker image runs a [Bash script](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/paddle/scripts/paddle_build.sh). This script calls `make -j$(nproc)` to start as many processes as the CPU cores to compile in parallel.
+	> Yes. Our Docker image runs a [Bash script](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/scripts/paddle_build.sh). This script calls `make -j$(nproc)` to start as many processes as the CPU cores to compile in parallel.
 
 - Docker needs sudo?
 

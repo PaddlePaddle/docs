@@ -11,13 +11,13 @@
 
 在进行模型搭建之前，首先需要明确几个Fluid核心使用概念：
 
-## 使用Tensor表示数据 
+## 使用Tensor表示数据
 
 Fluid和其他主流框架一样，使用Tensor数据结构来承载数据。
 
 在神经网络中传递的数据都是Tensor,Tensor可以简单理解成一个多维数组，一般而言可以有任意多的维度。不同的Tensor可以具有自己的数据类型和形状，同一Tensor中每个元素的数据类型是一样的，Tensor的形状就是Tensor的维度。
 
-下图直观地表示1～6维的Tensor： 
+下图直观地表示1～6维的Tensor：
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/beginners_guide/image/tensor.jpg" width="400">
 </p>
@@ -96,7 +96,7 @@ type {
 }
 persistable: false
 ```
-    
+
 具体输出数值将在Executor运行时得到，详细过程会在后文展开描述。
 
 ## 数据传入
@@ -122,7 +122,7 @@ Fluid有特定的数据传入方式：
 #定义网络
 import paddle.fluid as fluid
 a = fluid.layers.data(name="a",shape=[1],dtype='float32')
-b = fluid.layers.data(name="b",shape=[1],dtype='float32') 
+b = fluid.layers.data(name="b",shape=[1],dtype='float32')
 
 result = fluid.layers.elementwise_add(a,b)
 
@@ -133,10 +133,10 @@ exe.run(fluid.default_startup_program()) #网络参数初始化
 
 #准备数据
 import numpy
-data_1 = input("a=")
-data_2 = input("b=")
+data_1 = int(input("Please enter an integer: a="))
+data_2 = int(input("Please enter an integer: b="))
 x = numpy.array([[data_1]])
-y = numpy.array([[data_2]]) 
+y = numpy.array([[data_2]])
 
 #执行计算
 outs = exe.run(
@@ -174,12 +174,12 @@ print outs
 ```
 [array([[7]]), array([[3]]), array([[10]])]
 ```
-    
+
 ## 使用Program描述神经网络模型
 
 Fluid不同于其他大部分深度学习框架，去掉了静态计算图的概念，代之以Program的形式动态描述计算过程。这种动态的计算描述方式，兼具网络结构修改的灵活性和模型搭建的便捷性，在保证性能的同时极大地提高了框架对模型的表达能力。
 
-开发者的所有 Operator 都将写入 Program ，在Fluid内部将自动转化为一种叫作 ProgramDesc 的描述语言，Program 的定义过程就像在写一段通用程序，有开发经验的用户在使用 Fluid 时，会很自然的将自己的知识迁移过来。 
+开发者的所有 Operator 都将写入 Program ，在Fluid内部将自动转化为一种叫作 ProgramDesc 的描述语言，Program 的定义过程就像在写一段通用程序，有开发经验的用户在使用 Fluid 时，会很自然的将自己的知识迁移过来。
 
 其中，Fluid通过提供顺序、分支和循环三种执行结构的支持，让用户可以通过组合描述任意复杂的模型。
 
@@ -218,11 +218,9 @@ with fluid.layers.control_flow.Switch() as switch:
             fluid.layers.tensor.assign(input=two_var, output=lr)
 ```
 
-    
-关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Fluid设计思想](../../user_guides/design_idea/fluid_design_idea.html)
 
-更多 Fluid 中的控制流，可以参考阅读[API文档](http://www.paddlepaddle.org/documentation/api/zh/1.0.0/layers.html#permalink-1-control_flow)
-
+关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Fluid设计思想](../../advanced_usage/design_idea/fluid_design_idea.html)
+更多 Fluid 中的控制流，可以参考阅读[API文档](../../api_cn/layers_cn.html#control-flow)
 
 ## 使用Executor执行Program
 
@@ -261,27 +259,27 @@ outs = exe.run(
 2. 定义数据
 
     假设输入数据X=[1 2 3 4]，Y=[2,4,6,8]，在网络中定义：
-    
+
     ```python
     #定义X数值
     train_data=numpy.array([[1.0],[2.0],[3.0],[4.0]]).astype('float32')
     #定义期望预测的真实值y_true
     y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
     ```
-        
+
 3. 搭建网络（定义前向计算逻辑）
 
     接下来需要定义预测值与输入的关系，本次使用一个简单的线性回归函数进行预测：
-    
+
     ```python
     #定义输入数据类型
     x = fluid.layers.data(name="x",shape=[1],dtype='float32')
     #搭建全连接网络
     y_predict = fluid.layers.fc(input=x,size=1,act=None)
     ```
-    
+
     这样的网络就可以进行预测了，虽然输出结果只是一组随机数，离预期结果仍相差甚远：
-    
+
     ```python
     #加载库
     import paddle.fluid as fluid
@@ -303,9 +301,9 @@ outs = exe.run(
     #观察结果
     print outs
     ```
-    
+
     输出结果：
-    
+
     ```
     [array([[0.74079144],
                [1.4815829 ],
@@ -313,8 +311,8 @@ outs = exe.run(
                [2.9631658 ]], dtype=float32)]
     ```
 
-4. 添加损失函数 
-    
+4. 添加损失函数
+
     完成模型搭建后，如何评估预测结果的好坏呢？我们通常在设计的网络中添加损失函数，以计算真实值与预测值的差。
 
     在本例中，损失函数采用[均方差函数](https://en.wikipedia.org/wiki/Mean_squared_error)：
@@ -323,7 +321,7 @@ outs = exe.run(
     avg_cost = fluid.layers.mean(cost)
     ```
     输出一轮计算后的预测值和损失函数：
-    
+
     ```python
     #加载库
     import paddle.fluid as fluid
@@ -350,7 +348,7 @@ outs = exe.run(
     print outs
     ```
     输出结果:
-    
+
     ```
     [array([[0.9010564],
         [1.8021128],
@@ -359,17 +357,17 @@ outs = exe.run(
     ```
 
     可以看到第一轮计算后的损失函数为9.0，仍有很大的下降空间。
-    
+
 5. 网络优化
-    
+
     确定损失函数后，可以通过前向计算得到损失值，然后通过链式求导法则得到参数的梯度值。
-    
+
     获取梯度值后需要更新参数，最简单的算法是随机梯度下降法：w=w−η⋅g，由`fluid.optimizer.SGD`实现：
     ```python
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.01)
     ```
     让我们的网络训练100次，查看结果：
-    
+
     ```python
     #加载库
     import paddle.fluid as fluid
@@ -408,7 +406,7 @@ outs = exe.run(
             [7.8866425]], dtype=float32), array([0.01651453], dtype=float32)]
     ```
     可以看到100次迭代后，预测值已经非常接近真实值了，损失值也从初始值9.05下降到了0.01。
-    
+
     恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../../beginners_guide/quick_start/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](../../user_guides/models/index_cn.html)中找到。
 
 <a name="what_next"></a>
