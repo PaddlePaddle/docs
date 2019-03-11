@@ -125,7 +125,7 @@ init_on_cpu
 .. code-block:: python
         
         with init_on_cpu():
-                step = layers.create_global_var()
+                step = fluid.layers.create_global_var()
 
 
 

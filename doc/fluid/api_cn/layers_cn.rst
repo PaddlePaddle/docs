@@ -117,7 +117,7 @@ array_write
 
   tmp = fluid.layers.zeros(shape=[10], dtype='int32')
   i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-  arr = layers.array_write(tmp, i=i)
+  arr = fluid.layers.array_write(tmp, i=i)
 
 
 
@@ -704,15 +704,15 @@ While
 
 ..  code-block:: python
 
-  d0 = layers.data("d0", shape=[10], dtype='float32')
-  data_array = layers.array_write(x=d0, i=i)
-  array_len = layers.fill_constant(shape=[1],dtype='int64', value=3)
+  d0 = fluid.layers.data("d0", shape=[10], dtype='float32')
+  data_array = fluid.layers.array_write(x=d0, i=i)
+  array_len = fluid.layers.fill_constant(shape=[1],dtype='int64', value=3)
   
-  cond = layers.less_than(x=i, y=array_len)
-  while_op = layers.While(cond=cond)
+  cond = fluid.layers.less_than(x=i, y=array_len)
+  while_op = fluid.layers.While(cond=cond)
   with while_op.block():
-      d = layers.array_read(array=data_array, i=i)
-      i = layers.increment(x=i, in_place=True)
+      d = fluid.layers.array_read(array=data_array, i=i)
+      i = fluid.layers.increment(x=i, in_place=True)
       layers.array_write(result, i=i, array=d)
       layers.less_than(x=i, y=array_len, cond=cond)
 
@@ -1761,13 +1761,13 @@ beam_search
     
     # 假设 `probs` 包含计算神经元所得的预测结果
     # `pre_ids` 和 `pre_scores` 为beam_search之前时间步的输出
-    topk_scores, topk_indices = layers.topk(probs, k=beam_size)
-    accu_scores = layers.elementwise_add(
+    topk_scores, topk_indices = fluid.layers.topk(probs, k=beam_size)
+    accu_scores = fluid.layers.elementwise_add(
                                           x=layers.log(x=topk_scores)),
                                           y=layers.reshape(
                                               pre_scores, shape=[-1]),
                                           axis=0)
-    selected_ids, selected_scores = layers.beam_search(
+    selected_ids, selected_scores = fluid.layers.beam_search(
                                           pre_ids=pre_ids,
                                           pre_scores=pre_scores,
                                           ids=topk_indices,
@@ -1816,7 +1816,7 @@ beam_search_decode
             
 	    # 假设 `ids` 和 `scores` 为 LodTensorArray变量，它们保留了
             # 选择出的所有时间步的id和score
-            finished_ids, finished_scores = layers.beam_search_decode(
+            finished_ids, finished_scores = fluid.layers.beam_search_decode(
                 ids, scores, beam_size=5, end_id=0)
 
 
@@ -2536,7 +2536,7 @@ crf_decoding
 
 ..  code-block:: python
 
-      crf_decode = layers.crf_decoding(
+      crf_decode = fluid.layers.crf_decoding(
            input=hidden, param_attr=ParamAttr(name="crfw"))
 
 
@@ -3982,7 +3982,7 @@ gaussian_random算子。
 
 .. code-block:: python
 
-    out = layers.gaussian_random(shape=[20, 30])       
+    out = fluid.layers.gaussian_random(shape=[20, 30])       
 
 
 
@@ -4020,9 +4020,9 @@ gaussian_random_batch_size_like
 
 .. code-block:: python
 
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
 
-    out = layers.gaussian_random_batch_size_like(
+    out = fluid.layers.gaussian_random_batch_size_like(
         input, shape=[-1, 11], mean=1.0, std=2.0)
 
 
@@ -4786,9 +4786,9 @@ label_smooth
 
 ..  code-block:: python
 
-    label = layers.data(name="label", shape=[1], dtype="float32")
-    one_hot_label = layers.one_hot(input=label, depth=10)
-    smooth_label = layers.label_smooth(
+    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
+    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
+    smooth_label = fluid.layers.label_smooth(
     label=one_hot_label, epsilon=0.1, dtype="float32")
 
 
@@ -5033,9 +5033,9 @@ lod_reset
 
 .. code-block:: python
 
-    x = layers.data(name='x', shape=[10])
-    y = layers.data(name='y', shape=[10, 20], lod_level=2)
-    out = layers.lod_reset(x=x, y=y)
+    x = fluid.layers.data(name='x', shape=[10])
+    y = fluid.layers.data(name='y', shape=[10, 20], lod_level=2)
+    out = fluid.layers.lod_reset(x=x, y=y)
 
 
 
@@ -5413,10 +5413,10 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
 	input_size = 100
 	hidden_size = 150
 	num_layers = 1
-	init_hidden1 = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
-	init_cell1 = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
+	init_hidden1 = fluid.layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
+	init_cell1 = fluid.layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
 
-	rnn_out, last_h, last_c = layers.lstm( input, init_h, init_c, max_len, dropout_prob, input_size, hidden_size,  num_layers)
+	rnn_out, last_h, last_c = fluid.layers.lstm( input, init_h, init_c, max_len, dropout_prob, input_size, hidden_size,  num_layers)
 
 
 
@@ -5912,18 +5912,18 @@ nce
 			if i == label_word:
 				continue
 
-			emb = layers.embedding(input=words[i], size=[dict_size, 32],
+			emb = fluid.layers.embedding(input=words[i], size=[dict_size, 32],
 								   param_attr='emb.w', is_sparse=True)
 			embs.append(emb)
 
-		embs = layers.concat(input=embs, axis=1)
-		loss = layers.nce(input=embs, label=words[label_word],
+		embs = fluid.layers.concat(input=embs, axis=1)
+		loss = fluid.layers.nce(input=embs, label=words[label_word],
 					  num_total_classes=dict_size, param_attr='nce.w',
 					  bias_attr='nce.b')
 
 		#使用custom distribution
 		dist = fluid.layers.assign(input=np.array([0.05,0.5,0.1,0.3,0.05]).astype("float32"))
-		loss = layers.nce(input=embs, label=words[label_word],
+		loss = fluid.layers.nce(input=embs, label=words[label_word],
 					  num_total_classes=5, param_attr='nce.w',
 					  bias_attr='nce.b',
 					  num_neg_samples=3,
@@ -5960,8 +5960,8 @@ one_hot
 
 .. code-block:: python 
 
-    label = layers.data(name="label", shape=[1], dtype="float32")
-    one_hot_label = layers.one_hot(input=label, depth=10)
+    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
+    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
 
 
 
@@ -7316,13 +7316,13 @@ sampling_id算子。用于从输入的多项分布中对id进行采样的图层�
 
 .. code-block:: python
 
-    x = layers.data(
+    x = fluid.layers.data(
     name="X",
     shape=[13, 11],
     dtype='float32',
     append_batch_size=False)
 
-    out = layers.sampling_id(x)
+    out = fluid.layers.sampling_id(x)
 
 
 
@@ -7631,7 +7631,7 @@ sequence_expand
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
-    out = layers.sequence_expand(x=x, y=y, ref_level=0)
+    out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
 
 
 
@@ -7701,7 +7701,7 @@ Sequence Expand As Layer
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
-    out = layers.sequence_expand_as(x=x, y=y)
+    out = fluid.layers.sequence_expand_as(x=x, y=y)
 
 
 
@@ -8354,9 +8354,9 @@ shape算子
 
 .. code-block:: python
 
-    input = layers.data(
+    input = fluid.layers.data(
         name="input", shape=[3, 100, 100], dtype="float32")
-    out = layers.shape(input)        
+    out = fluid.layers.shape(input)        
 
 
 
@@ -8645,10 +8645,10 @@ slice算子。
     ends = [3, 3, 4]
     axes = [0, 1, 2]
 
-    input = layers.data(
+    input = fluid.layers.data(
         name="input", shape=[3, 4, 5, 6], dtype='float32')
 
-    out = layers.slice(input, axes=axes, starts=starts, ends=ends)
+    out = fluid.layers.slice(input, axes=axes, starts=starts, ends=ends)
 
 
 
@@ -8966,9 +8966,9 @@ square_error_cost
 
 .. code-block:: python
 
-    y = layers.data(name='y', shape=[1], dtype='float32')
-    y_predict = layers.data(name='y_predict', shape=[1], dtype='float32')
-    cost = layers.square_error_cost(input=y_predict, label=y)
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.data(name='y_predict', shape=[1], dtype='float32')
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
 
 
 
@@ -9018,8 +9018,8 @@ squeeze
 
 .. code-block:: python
 
-    x = layers.data(name='x', shape=[5, 1, 10])
-    y = layers.sequeeze(input=x, axes=[1])      
+    x = fluid.layers.data(name='x', shape=[5, 1, 10])
+    y = fluid.layers.sequeeze(input=x, axes=[1])      
 
 
 
@@ -9118,8 +9118,8 @@ sum算子。
 
 .. code-block:: python
 
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = layers.sum(input)
+    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = fluid.layers.sum(input)
 
 
 
@@ -9242,7 +9242,7 @@ topk
 
 .. code-block:: python 
 
-    top5_values, top5_indices = layers.topk(input, k=5)
+    top5_values, top5_indices = fluid.layers.topk(input, k=5)
 
 
 
@@ -9280,7 +9280,7 @@ transpose
     # 在数据张量中添加多余的batch大小维度
     x = fluid.layers.data(name='x', shape=[5, 10, 15],
                     dtype='float32', append_batch_size=False)
-    x_transposed = layers.transpose(x, perm=[1, 0, 2])
+    x_transposed = fluid.layers.transpose(x, perm=[1, 0, 2])
 
 
 
@@ -9316,21 +9316,21 @@ tree_conv
 
 .. code-block:: python
 
-    nodes_vector = layers.data(name='vectors', shape=[None, 10, 5], dtype='float32)
+    nodes_vector = fluid.layers.data(name='vectors', shape=[None, 10, 5], dtype='float32)
     # batch size为None, 10代表数据集最大节点大小max_node_size,5表示向量宽度
-    edge_set = layers.data(name='edge_set', shape=[None, 10, 2], dtype='float32')
+    edge_set = fluid.layers.data(name='edge_set', shape=[None, 10, 2], dtype='float32')
     # None 代表batch size, 10 代表数据集的最大节点大小max_node_size, 2 代表每条边连接两个节点
     # 边必须为有向边
-    out_vector = layers.tree_conv(nodes_vector, edge_set, 6, 1, 2, 'tanh',
+    out_vector = fluid.layers.tree_conv(nodes_vector, edge_set, 6, 1, 2, 'tanh',
         ParamAttr(initializer=Constant(1.0), ParamAttr(initializer=Constant(1.0))
     # 输出的形会是[None, 10, 6, 1],
     # None 代表batch size, 10数据集的最大节点大小max_node_size, 6 代表输出大小output size, 1 代表 1 个filter
-    out_vector = layers.reshape(out_vector, shape=[None, 10, 6])
+    out_vector = fluid.layers.reshape(out_vector, shape=[None, 10, 6])
     # reshape之后, 输出张量output tensor为下一个树卷积的nodes_vector 
-    out_vector_2 = layers.tree_conv(out_vector, edge_set, 3, 4, 2, 'tanh',
+    out_vector_2 = fluid.layers.tree_conv(out_vector, edge_set, 3, 4, 2, 'tanh',
         ParamAttr(initializer=Constant(1.0), ParamAttr(initializer=Constant(1.0))
     # 输出tensor也可以用来池化(论文中称为global pooling)
-    pooled = layers.reduce_max(out_vector, dims=2) # global 池化
+    pooled = fluid.layers.reduce_max(out_vector, dims=2) # global 池化
 
 
 
@@ -9376,8 +9376,8 @@ uniform_random_batch_size_like算子。
 .. code-block:: python
 
 
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = layers.uniform_random_batch_size_like(input, [-1, 11])
+    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = fluid.layers.uniform_random_batch_size_like(input, [-1, 11])
 
 
 
@@ -9408,8 +9408,8 @@ unsqueeze
 
 .. code-block:: python
 
-    x = layers.data(name='x', shape=[5, 10])
-    y = layers.unsequeeze(input=x, axes=[1])
+    x = fluid.layers.data(name='x', shape=[5, 10])
+    y = fluid.layers.unsequeeze(input=x, axes=[1])
 
 
 
@@ -10686,12 +10686,12 @@ sums
 
     tmp = fluid.layers.zeros(shape=[10], dtype='int32')
     i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-    a0 = layers.array_read(array=tmp, i=i)
-    i = layers.increment(x=i)
-    a1 = layers.array_read(array=tmp, i=i)
-    mean_a0 = layers.mean(a0)
-    mean_a1 = layers.mean(a1)
-    a_sum = layers.sums(input=[mean_a0, mean_a1])
+    a0 = fluid.layers.array_read(array=tmp, i=i)
+    i = fluid.layers.increment(x=i)
+    a1 = fluid.layers.array_read(array=tmp, i=i)
+    mean_a0 = fluid.layers.mean(a0)
+    mean_a1 = fluid.layers.mean(a1)
+    a_sum = fluid.layers.sums(input=[mean_a0, mean_a1])
 
 
 
@@ -11482,13 +11482,13 @@ Detection Output Layer for Single Shot Multibox Detector(SSD)
 
 .. code-block:: python
 
-    pb = layers.data(name='prior_box', shape=[10, 4],
+    pb = fluid.layers.data(name='prior_box', shape=[10, 4],
              append_batch_size=False, dtype='float32')
-    pbv = layers.data(name='prior_box_var', shape=[10, 4],
+    pbv = fluid.layers.data(name='prior_box_var', shape=[10, 4],
               append_batch_size=False, dtype='float32')
-    loc = layers.data(name='target_box', shape=[2, 21, 4],
+    loc = fluid.layers.data(name='target_box', shape=[2, 21, 4],
               append_batch_size=False, dtype='float32')
-    scores = layers.data(name='scores', shape=[2, 21, 10],
+    scores = fluid.layers.data(name='scores', shape=[2, 21, 10],
               append_batch_size=False, dtype='float32')
     nmsed_outs = fluid.layers.detection_output(scores=scores,
                            loc=loc,
@@ -11997,13 +11997,13 @@ rpn_target_assign
 
 ..  code-block:: python
 
-        bbox_pred = layers.data(name=’bbox_pred’, shape=[100, 4],
+        bbox_pred = fluid.layers.data(name=’bbox_pred’, shape=[100, 4],
                 append_batch_size=False, dtype=’float32’)
-        cls_logits = layers.data(name=’cls_logits’, shape=[100, 1],
+        cls_logits = fluid.layers.data(name=’cls_logits’, shape=[100, 1],
                 append_batch_size=False, dtype=’float32’)
-        anchor_box = layers.data(name=’anchor_box’, shape=[20, 4],
+        anchor_box = fluid.layers.data(name=’anchor_box’, shape=[20, 4],
                 append_batch_size=False, dtype=’float32’)
-        gt_boxes = layers.data(name=’gt_boxes’, shape=[10, 4],
+        gt_boxes = fluid.layers.data(name=’gt_boxes’, shape=[10, 4],
                 append_batch_size=False, dtype=’float32’)
         loc_pred, score_pred, loc_target, score_target, bbox_inside_weight=
                 fluid.layers.rpn_target_assign(bbox_pred=bbox_pred,
@@ -12162,9 +12162,9 @@ target_assign
 .. code-block:: python
 
     matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
-    gt = layers.data(
+    gt = fluid.layers.data(
             name='gt', shape=[1, 1], dtype='int32', lod_level=1)
-    trg, trg_weight = layers.target_assign(
+    trg, trg_weight = fluid.layers.target_assign(
                 gt, matched_indices, mismatch_value=0)
 
 
