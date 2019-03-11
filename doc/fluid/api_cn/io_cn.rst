@@ -231,11 +231,11 @@ save_params
 
 .. py:function:: paddle.fluid.io.save_params(executor, dirname, main_program=None, filename=None)
 
-该函数过滤出给定 ``main_program`` 中所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
+该函数从 ``main_program`` 中取出所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
 
 ``dirname`` 用于指定保存变量的目标目录。如果想将变量保存到多个独立文件中，设置 ``filename`` 为 None; 如果想将所有变量保存在单个文件中，请使用 ``filename`` 来指定该文件的命名。
 
-注意:有些变量不是参数，但它们对于训练是必要的。因此，您不能仅通过 ``save_params()`` 和 ``load_params()`` 保存之后并继续训练。可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数
+注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。
 
 
 参数:
@@ -270,9 +270,9 @@ save_persistables
 
 .. py:function:: paddle.fluid.io.save_persistables(executor, dirname, main_program=None, filename=None)
 
-该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们保存到目录 ``dirname`` 中或文件中。
+该函数从给定 ``main_program`` 中取出所有参数，然后将它们保存到目录 ``dirname`` 中或 ``filename`` 指定的文件中。
 
-``dirname`` 用于指定保存变量的目录。如果想将变量保存到指定目录的若干文件中，设置 ``filename=None`` ; 如果想将所有变量保存在一个文件中，请使用 ``filename`` 来指定它
+``dirname`` 用于指定保存变量的目录。如果想将变量保存到指定目录的若干文件中，设置 ``filename=None`` ; 如果想将所有变量保存在一个文件中，请使用 ``filename`` 来指定它。
 
 参数:
  - **executor**  (Executor) – 保存变量的 executor
