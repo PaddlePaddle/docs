@@ -11,7 +11,7 @@ DataFeeder
 .. py:class:: paddle.fluid.data_feeder.DataFeeder(feed_list, place, program=None)
 
 
-DataFeeder将读卡器返回的数据转换为可以输入Executor和ParallelExecutor的数据结构。读卡器通常返回一个小批量数据条目列表。列表中的每个数据条目都是一个样本。每个样本都是具有一个或多个特征的列表或元组。
+DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecutor的数据结构。reader通常返回一个小批量数据条目列表。列表中的每个数据条目都是一个样本。每个样本都是具有一个或多个特征的列表或元组。
 
 简单用法如下：
 
@@ -96,7 +96,7 @@ DataFeeder将读卡器返回的数据转换为可以输入Executor和ParallelExe
 
 .. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
-将输入数据转换成读卡器返回的多个mini-batches。每个mini-batch
+将输入数据转换成reader返回的多个mini-batches。每个mini-batch
 
 参数：
     - **reader** (function) – reader是可以生成数据的函数
@@ -120,8 +120,8 @@ Reader
 
 	- reader是一个读取数据（从文件、网络、随机数生成器等）并生成数据项的函数。
 	- reader creator是返回reader函数的函数。
-	- reader decorator是一个函数，它接受一个或多个读卡器，并返回一个读卡器。
-	- batch reader是一个函数，它读取数据（从读卡器、文件、网络、随机数生成器等）并生成一批数据项。 
+	- reader decorator是一个函数，它接受一个或多个reader，并返回一个reader。
+	- batch reader是一个函数，它读取数据（从reader、文件、网络、随机数生成器等）并生成一批数据项。 
 
 
 Data Reader Interface
@@ -163,7 +163,7 @@ Data Reader Interface
 
 参数：
     - **func**  - 使用的函数. 函数类型应为(Sample) => Sample
-    - **readers**  - 其输出将用作func参数的读卡器。
+    - **readers**  - 其输出将用作func参数的reader。
 
 类型：callable
 
@@ -176,7 +176,7 @@ Data Reader Interface
 
 创建缓冲数据读取器。
 
-缓冲数据读卡器将读取数据条目并将其保存到缓冲区中。只要缓冲区不为空，就将继续从缓冲数据读取器读取数据。
+缓冲数据reader将读取数据条目并将其保存到缓冲区中。只要缓冲区不为空，就将继续从缓冲数据读取器读取数据。
 
 参数：
     - **reader** (callable) - 要读取的数据读取器
@@ -188,25 +188,25 @@ Data Reader Interface
 
 .. py:function::   paddle.reader.compose(*readers, **kwargs)
 
-创建一个数据读卡器，其输出是输入读卡器的组合。
+创建一个数据reader，其输出是输入reader的组合。
 
-如果输入读卡器输出以下数据项：（1，2）3（4，5），则组合读卡器将输出：（1，2，3，4，5）
+如果输入reader输出以下数据项：（1，2）3（4，5），则组合reader将输出：（1，2，3，4，5）
 
 参数：
     - **readers** - 将被组合的多个读取器
-    - **check_alignment** (bool) - 如果为True，将检查输入读卡器是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。 
+    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。 
 
 返回：新的数据读取器
 
-引起异常： 	``ComposeNotAligned`` – 读卡器的输出不一致。 当check_alignment设置为False，不会升高。 
+引起异常： 	``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。 
 
 
 
 .. py:function:: paddle.reader.chain(*readers)
 
-创建一个数据读卡器，其输出是链接在一起的输入数据读卡器的输出。
+创建一个数据reader，其输出是链接在一起的输入数据reader的输出。
 
-如果输入读卡器输出以下数据条目：[0，0，0][1，1，1][2，2，2]，链接读卡器将输出：[0，0，0，1，1，1，2，2，2] 
+如果输入reader输出以下数据条目：[0，0，0][1，1，1][2，2，2]，链接reader将输出：[0，0，0，1，1，1，2，2，2] 
 
 参数：
     - **readers** – 输入的数据
@@ -220,13 +220,13 @@ Data Reader Interface
 
 创建数据读取器，该阅读器的数据输出将被无序排列。
 
-由原始读卡器创建的迭代器的输出将被缓冲到shuffle缓冲区，然后进行打乱。打乱缓冲区的大小由参数buf_size决定。 
+由原始reader创建的迭代器的输出将被缓冲到shuffle缓冲区，然后进行打乱。打乱缓冲区的大小由参数buf_size决定。 
 
 参数：
-    - **reader** (callable)  – 输出会被打乱的原始读卡器
+    - **reader** (callable)  – 输出会被打乱的原始reader
     - **buf_size** (int)  – 打乱缓冲器的大小
 
-返回： 输出会被打乱的读卡器
+返回： 输出会被打乱的reader
 
 返回类型： callable
 
@@ -234,13 +234,13 @@ Data Reader Interface
 
 .. py:function:: paddle.reader.firstn(reader, n)
 
-限制读卡器可以返回的最大样本数。
+限制reader可以返回的最大样本数。
 
 参数：
     - **reader** (callable)  – 要读取的数据读取器
     - **n** (int)  – 返回的最大样本数 
 
-返回： 装饰读卡器
+返回： 装饰reader
 
 返回类型： callable
 
@@ -294,11 +294,11 @@ rtype:	string
 
 .. py:function:: paddle.reader.multiprocess_reader(readers, use_pipe=True, queue_size=1000)
 
-多进程读卡器使用python多进程从读卡器中读取数据，然后使用multi process.queue或multi process.pipe合并所有数据。进程号等于输入读卡器的编号，每个进程调用一个读卡器。
+多进程reader使用python多进程从reader中读取数据，然后使用multi process.queue或multi process.pipe合并所有数据。进程号等于输入reader的编号，每个进程调用一个reader。
 
 multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
-您需要首先创建多个读卡器，这些读卡器应该相互独立，这样每个进程都可以独立工作。
+您需要首先创建多个reader，这些reader应该相互独立，这样每个进程都可以独立工作。
 
 **代码示例**
 
@@ -314,11 +314,11 @@ multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
 .. py:class::paddle.reader.Fake
 
-Fake读卡器将缓存它读取的第一个数据，并将其输出data_num次。它用于缓存来自真实阅读器的数据，并将其用于速度测试。
+Fakereader将缓存它读取的第一个数据，并将其输出data_num次。它用于缓存来自真实阅读器的数据，并将其用于速度测试。
 
 参数：
     - **reader** – 原始读取器
-    - **data_num** – 读卡器产生数据的次数 
+    - **data_num** – reader产生数据的次数 
 
 返回： 一个Fake读取器
 
@@ -343,7 +343,7 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 如果是numpy向量，则创建一个生成x个元素的读取器。或者，如果它是一个numpy矩阵，创建一个生成x行元素的读取器。或由最高维度索引的任何子超平面。 
 
 参数：
-    - **x** – 用于创建读卡器的numpy数组
+    - **x** – 用于创建reader的numpy数组
 
 返回： 从x创建的数据读取器
 
@@ -359,7 +359,7 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 
 .. py:function::  paddle.reader.creator.recordio(paths, buf_size=100)
 
-从给定的recordio文件路径创建数据读卡器，用“，”分隔“，支持全局模式。 
+从给定的recordio文件路径创建数据reader，用“，”分隔“，支持全局模式。 
 
 路径：recordio文件的路径，可以是字符串或字符串列表。
 
