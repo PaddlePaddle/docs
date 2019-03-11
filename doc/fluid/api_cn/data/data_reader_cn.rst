@@ -96,19 +96,19 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 .. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
-将输入数据转换成reader返回的多个mini-batches。每个mini-batch
+将输入数据转换成reader返回的多个mini-batches。每个mini-batch分别送入各设备中。
 
 参数：
     - **reader** (function) – reader是可以生成数据的函数
     - **multi_devices** (bool) – 是否用多个设备
     - **num_places** (int) – 如果multi_devices是True, 你可以指定GPU的使用数量, 如果multi_devices是None, 会使用当前机器的所有GPU ，默认值None。
-    - **drop_last** (bool) – 如果最后一个batch的大小小于batch_size，是否删除最后一个batch，默认值True。
+    - **drop_last** (bool) – 如果最后一个batch的大小小于batch_size，选择是否删除最后一个batch，默认值True。
 
 返回： 转换结果
 
 返回类型： dict
 
-引起异常： 	ValueError – 如果drop_last为False并且数据批不适合设备。
+抛出异常： 	``ValueError`` – 如果drop_last为False并且数据batch和设备数目不匹配。
 
 
 .. _cn_api_paddle_data_reader_reader:
@@ -198,7 +198,7 @@ Data Reader Interface
 
 返回：新的数据读取器
 
-引起异常： 	``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。 
+抛出异常： 	``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。 
 
 
 
