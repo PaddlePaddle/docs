@@ -42,7 +42,7 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 参数：
     - **feed_list**  (list) –  将输入模型的变量或变量的名称。
     - **place**  (Place) – place表示将数据输入CPU或GPU，如果要将数据输入GPU，请使用fluid.CUDAPlace(i)（i表示GPU的ID），如果要将数据输入CPU，请使用fluid.CPUPlace()。
-    - **program**  (Program) –将数据输入的Program，如果Program为None，它将使用default_main_program() 。默认值None.
+    - **program**  (Program) –将数据输入的Program，如果Program为None，它将使用default_main_program() 。默认值None。
 
 抛出异常： 	``ValueError`` – 如果某些变量未在Program中出现
 
@@ -81,7 +81,7 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 需要多个mini-batches。每个mini-batch都将提前在每个设备上输入。
 
 参数：
-    - **iterable** (list|tuple) – 输入的数据
+    - **iterable** (list|tuple) – 输入的数据。
     - **num_places**  (int) – 设备编号，默认值为None。
 
 返回： 转换结果
@@ -99,8 +99,8 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 将输入数据转换成reader返回的多个mini-batches。每个mini-batch分别送入各设备中。
 
 参数：
-    - **reader** (function) – reader是可以生成数据的函数
-    - **multi_devices** (bool) – 是否用多个设备
+    - **reader** (function) – reader是可以生成数据的函数。
+    - **multi_devices** (bool) – 是否用多个设备。
     - **num_places** (int) – 如果multi_devices是True, 你可以指定GPU的使用数量, 如果multi_devices是None, 会使用当前机器的所有GPU ，默认值None。
     - **drop_last** (bool) – 如果最后一个batch的大小小于batch_size，选择是否删除最后一个batch，默认值True。
 
@@ -127,7 +127,7 @@ Reader
 Data Reader Interface
 ------------------------------------
 
-的确，数据阅读器不必是读取和生成数据项的函数，它可以是任何不带参数的函数来创建一个iterable（任何东西都可以被用于 ``for x in iterable`` ):
+的确，data reader不必是读取和生成数据项的函数，它可以是任何不带参数的函数来创建一个iterable（任何东西都可以被用于 ``for x in iterable`` ):
 
 ..  code-block:: python
 
@@ -190,10 +190,10 @@ Data Reader Interface
 
 创建一个数据reader，其输出是输入reader的组合。
 
-如果输入reader输出以下数据项：（1，2）3（4，5），则组合reader将输出：（1，2，3，4，5）
+如果输入reader输出以下数据项：（1，2）3（4，5），则组合reader将输出：（1，2，3，4，5）。
 
 参数：
-    - **readers** - 将被组合的多个读取器
+    - **readers** - 将被组合的多个读取器。
     - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。 
 
 返回：新的数据读取器
@@ -206,10 +206,10 @@ Data Reader Interface
 
 创建一个数据reader，其输出是链接在一起的输入数据reader的输出。
 
-如果输入reader输出以下数据条目：[0，0，0][1，1，1][2，2，2]，链接reader将输出：[0，0，0，1，1，1，2，2，2] 
+如果输入reader输出以下数据条目：[0，0，0][1，1，1][2，2，2]，链接reader将输出：[0，0，0，1，1，1，2，2，2] 。
 
 参数：
-    - **readers** – 输入的数据
+    - **readers** – 输入的数据。
 
 返回： 新的数据读取器
 
@@ -218,7 +218,7 @@ Data Reader Interface
 
 .. py:function:: paddle.reader.shuffle(reader, buf_size)
 
-创建数据读取器，该阅读器的数据输出将被无序排列。
+创建数据读取器，该reader的数据输出将被无序排列。
 
 由原始reader创建的迭代器的输出将被缓冲到shuffle缓冲区，然后进行打乱。打乱缓冲区的大小由参数buf_size决定。 
 
@@ -237,8 +237,8 @@ Data Reader Interface
 限制reader可以返回的最大样本数。
 
 参数：
-    - **reader** (callable)  – 要读取的数据读取器
-    - **n** (int)  – 返回的最大样本数 
+    - **reader** (callable)  – 要读取的数据读取器。
+    - **n** (int)  – 返回的最大样本数 。
 
 返回： 装饰reader
 
@@ -314,11 +314,11 @@ multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
 .. py:class::paddle.reader.Fake
 
-Fakereader将缓存它读取的第一个数据，并将其输出data_num次。它用于缓存来自真实阅读器的数据，并将其用于速度测试。
+Fakereader将缓存它读取的第一个数据，并将其输出data_num次。它用于缓存来自真实reader的数据，并将其用于速度测试。
 
 参数：
-    - **reader** – 原始读取器
-    - **data_num** – reader产生数据的次数 
+    - **reader** – 原始读取器。
+    - **data_num** – reader产生数据的次数 。
 
 返回： 一个Fake读取器
 
@@ -343,7 +343,7 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 如果是numpy向量，则创建一个生成x个元素的读取器。或者，如果它是一个numpy矩阵，创建一个生成x行元素的读取器。或由最高维度索引的任何子超平面。 
 
 参数：
-    - **x** – 用于创建reader的numpy数组
+    - **x** – 用于创建reader的numpy数组。
 
 返回： 从x创建的数据读取器
 
