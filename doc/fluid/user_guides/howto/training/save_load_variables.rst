@@ -7,14 +7,14 @@
 模型变量分类
 ############
 
-在PaddlePaddle Fluid中，所有的模型变量都用 :code:`fluid.framework.Variable()` 作为基类进行表示。
+在PaddlePaddle Fluid中，所有的模型变量都用 :code:`fluid.framework.Variable()` 作为基类。
 在该基类之下，模型变量主要可以分为以下几种类别：
 
 1. 模型参数
-  模型参数是深度学习模型中被训练和学习的变量，在训练过程中，训练框架根据反向传播算法计算出每一个模型参数当前的梯度，
-  并用优化器根据梯度对参数进行更新。模型的训练过程本质上可以看做是模型参数不断迭代更新的过程。
+  模型参数是深度学习模型中被训练和学习的变量，在训练过程中，训练框架根据反向传播(backpropagation)算法计算出每一个模型参数当前的梯度，
+  并用优化器(optimizer)根据梯度对参数进行更新。模型的训练过程本质上可以看做是模型参数不断迭代更新的过程。
   在PaddlePaddle Fluid中，模型参数用 :code:`fluid.framework.Parameter` 来表示，
-  这是一个 :code:`fluid.framework.Variable()` 的派生类，除了 :code:`fluid.framework.Variable()` 具有的各项性质以外，
+  这是一个 :code:`fluid.framework.Variable()` 的派生类，除了具有 :code:`fluid.framework.Variable()` 的各项性质以外，
   :code:`fluid.framework.Parameter` 还可以配置自身的初始化方法、更新率等属性。
 
 2. 长期变量
@@ -33,7 +33,7 @@
 ################
 
 根据用途的不同，我们需要保存的模型变量也是不同的。例如，如果我们只是想保存模型用来进行以后的预测，
-那么只保存模型参数就够用了。但如果我们需要保存一个checkpoint以备将来恢复训练，
+那么只保存模型参数就够用了。但如果我们需要保存一个checkpoint（检查点，类似于游戏中的存档，存有复现目前模型的必要信息）以备将来恢复训练，
 那么我们应该将各种长期变量都保存下来，甚至还需要记录一下当前的epoch和step的id。
 因为一些模型变量虽然不是参数，但对于模型的训练依然必不可少。
 
@@ -63,12 +63,13 @@
 如何载入模型变量
 ################
 
-与模型变量的保存相对应，我们提供了两套API来分别载入模型的参数和载入模型的长期变量。
+与模型变量的保存相对应，我们提供了两套API来分别载入模型的参数和载入模型的长期变量，分别为保存、加载模型参数的 ``save_params()`` 、 ``load_params()`` 和
+保存、加载长期变量的 ``save_persistables`` 、 ``load_persistables`` 。
 
 载入模型用于对新样本的预测
 ==========================
 
-对于通过 :code:`fluid.io.save_params` 保存的模型，可以使用 :code:`fluid.io.load_params`
+对于通过 :code:`fluid.io.save_params` 保存的模型，可以使用 :code:`fluid.io.load_params` 
 来进行载入。
 
 例如：
@@ -98,18 +99,20 @@
 
 
 
-预测所用的模型与参数的保存：
-##################
+预测模型的保存和加载
+##############################
+
 预测引擎提供了存储预测模型 :code:`fluid.io.save_inference_model` 和加载预测模型 :code:`fluid.io.load_inference_model` 两个接口。
 
 - :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。
--  :code:`fluid.io.load_inference_model`：请参考  :ref:`api_guide_inference`。
+- :code:`fluid.io.load_inference_model`：请参考  :ref:`api_guide_inference`。
 
 
 
 增量训练
 ############
-增量训练指一个学习系统能不断地从新样本中学习新的知识，并能保存大部分以前已经学习到的知识。因此增量学习涉及到两点：在上一次训练结束的时候保存需要持久化的参数， 在下一次训练开始的时候加载上一次保存的持久化参数。 因此增量训练涉及到如下几个API:
+
+增量训练指一个学习系统能不断地从新样本中学习新的知识，并能保存大部分以前已经学习到的知识。因此增量学习涉及到两点：在上一次训练结束的时候保存需要的长期变量， 在下一次训练开始的时候加载上一次保存的这些长期变量。 因此增量训练涉及到如下几个API:
 :code:`fluid.io.save_persistables`、:code:`fluid.io.load_persistables` 。
 
 单机增量训练
@@ -152,14 +155,15 @@
 
 
 
-多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
+多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为
 ==========================
+
 多机增量训练和单机增量训练有若干不同点：
 
-1. 在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数时，不必要所有的trainer都调用这个方法，一般0号trainer来保存。
+1. 在训练的最后调用 :code:`fluid.io.save_persistables` 保存长期变量时，不必要所有的trainer都调用这个方法来保存，一般0号trainer来保存即可。
 2. 多机增量训练的参数加载在PServer端，trainer端不用加载参数。在PServer全部启动后，trainer会从PServer端同步参数。
 
-多机增量（不启用分布式大规模稀疏矩阵）训练的一般步骤为：
+多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
 
 1. 0号trainer在训练的最后调用 :code:`fluid.io.save_persistables` 保存持久性参数到指定的 :code:`path` 下。
 2. 通过HDFS等方式将0号trainer保存下来的所有的参数共享给所有的PServer(每个PServer都需要有完整的参数)。
@@ -186,7 +190,7 @@
     hadoop fs -mkdir /remote/$path
     hadoop fs -put $path /remote/$path
 
-上面的例子中，0号train通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认
+上面的例子中，0号trainer通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认
 :code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，并将他们保存到指定的 :code:`path` 目录下。然后通过调用第三方的文件系统（如HDFS）将存储的模型进行上传到所有PServer都可访问的位置。
 
 对于训练过程中待载入参数的PServer， 例如：
