@@ -10127,7 +10127,7 @@ uniform_random
 argmax
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.argmin(x,axis=0)
+.. py:function:: paddle.fluid.layers.argmax(x,axis=0)
     
 **argmax**
 
