@@ -1015,10 +1015,10 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 ..  code-block:: python
 
 
-	data = layers.data(name='X', shape=[1], dtype='float32')
-	hidden = layers.fc(input=data, size=10)
+	data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+	hidden = fluid.layers.fc(input=data, size=10)
 	layers.assign(hidden, out)
-	loss = layers.mean(out)
+	loss = fluid.layers.mean(out)
 	adam = fluid.optimizer.Adam()
 	adam.minimize(loss)
 
