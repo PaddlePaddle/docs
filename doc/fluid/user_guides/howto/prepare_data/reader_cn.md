@@ -1,7 +1,7 @@
 # Python Reader
 在模型训练和预测阶段，PaddlePaddle程序需要读取训练或预测数据。为了帮助用户编写数据读取的代码，我们提供了如下接口：
 
-- *reader*: 用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个数据项。
+- *reader*: 样本级的reader，用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个样本数据项。
 - *reader creator*: 接受一个或多个reader作为参数、返回一个新reader的函数。
 - *reader decorator*: 一个函数，接受一个或多个reader，并返回一个reader。
 - *batch reader*: 用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个batch大小的数据项。
@@ -185,15 +185,4 @@ def image_reader_creator(image_path, label_path, n):
 
 # images_reader_creator创建一个reader
 reader = image_reader_creator("/path/to/image_file", "/path/to/label_file", 1024)
-paddle.train(paddle.batch(reader, 128), {"image":0, "label":1}, ...)
-```
-
-### `paddle.train`实现原理
-实现`paddle.train`的示例如下：
-
-```python
-def train(batch_reader, mapping, batch_size, total_pass):
-    for pass_idx in range(total_pass):
-        for mini_batch in batch_reader(): # this loop will never end in online learning.
-            do_forward_backward(mini_batch, mapping)
 ```
