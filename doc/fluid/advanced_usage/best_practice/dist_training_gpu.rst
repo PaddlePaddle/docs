@@ -9,7 +9,7 @@
 PaddlePaddle Fluid可以支持在现代GPU服务器集群上完成高性能分布式训练。通常可以通过以下手段
 优化在多机多卡环境训练性能，建议在进行性能优化时，检查每项优化点并验证对应提升，最终获得最优性能。
 
-一个简单的验证当前的训练程序是否需要进一步优化性能的方法，是查看GPU的计算利用率，通常用 :code:`nvidia-smi`_
+一个简单的验证当前的训练程序是否需要进一步优化性能的方法，是查看GPU的计算利用率，通常用 :code:`nvidia-smi`
 命令查看。如果GPU利用率较低，则可能存在较大的优化空间。
 
 下列表格中列出本文将介绍的所有可优化点的概述：
@@ -19,26 +19,26 @@ PaddlePaddle Fluid可以支持在现代GPU服务器集群上完成高性能分�
 
 ..  csv-table:: GPU分布式训练性能调节项
     :header: "调节项", "可选值说明", "配置方法"
-    :widths: 3, 5
+    :widths: 3, 3, 5
 
-    "通信模式", "pserver模式；NCCL2模式（collective）", "配置方法参考： `这里<http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/training/cluster_howto.html#permalink-8--nccl2->`_ "
-    "执行模式", "单进程；单进程ParallelGraph；多进程", "配置方法参考： `这里<http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/training/cluster_howto.html#permalink-9--nccl2->`_ "
-    "同步AllReduce操作", "开启则使每次调用等待AllReduce同步", "设置环境变量 :code:`FLAGS_sync_nccl_allreduce` "
+    "通信模式", "pserver模式；NCCL2模式（collective）", "配置方法参考： `这里 <http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/training/cluster_howto.html#permalink-8--nccl2->`_ "
+    "执行模式", "单进程；单进程ParallelGraph；多进程", "配置方法参考： `这里 <http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/training/cluster_howto.html#permalink-9--nccl2->`_ "
+    "同步AllReduce操作", "开启则使每次调用等待AllReduce同步", "设置环境变量 :code:`FLAGS_sync_nccl_allreduce`"
     "CPU线程数", "int值，配置使用的CPU线程数", "参考本片后续说明"
-    "预先分配足够的显存", "0~1之间的float值，预先分配显存的占比", "设置环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use`_ "
-    "scope drop频率", "int值，设置每隔N个batch的迭代之后执行一次清理scope", "设置 :code:`fluid.ExecutionStrategy().num_iteration_per_drop_scope` "
+    "预先分配足够的显存", "0~1之间的float值，预先分配显存的占比", "设置环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use`"
+    "scope drop频率", "int值，设置每隔N个batch的迭代之后执行一次清理scope", "设置 :code:`fluid.ExecutionStrategy().num_iteration_per_drop_scope`"
     "fetch频率", "代码配置", "参考本片后续说明"
     "启用RDMA多机通信", "如果机器硬件支持，可以选择开启RDMA支持", "配置环境变量 :code:`NCCL_IB_DISABLE` "
     "使用GPU完成部分图片预处理", "代码配置", "参考本片后续说明"
     "设置通信频率（batch merge）", "代码配置", "参考本片后续说明"
     "优化reader性能", "代码优化", "参考本片后续说明"
-    "混合精度", "FP32训练；混合FP32,FP16训练（在V100下启用TensorCore）", "参考实例项目：图像分类"
+    "混合精度", "FP32训练；混合FP32,FP16训练（在V100下启用TensorCore）", "参考项目：`图像分类 <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification>`_ "
 
 
 通信模式，执行模式
 ++++++++++++++++
 
-GPU分布式训练场景，使用多进程+NCCL2模式（collective）通常可以获得最好的性能。参考 `这里<http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/training/cluster_howto.html#permalink-8--nccl2->`_ 配置您的程序
+GPU分布式训练场景，使用多进程+NCCL2模式（collective）通常可以获得最好的性能。参考 `这里 <http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/training/cluster_howto.html#permalink-8--nccl2->`_ 配置您的程序
 使用多进程NCCL2模式训练。
 
 在进程模式下，每台服务器的每个GPU卡都会对应启动一个训练进程，集群中的所有进程之间会互相通信完成训练。以此方式最大
@@ -60,7 +60,7 @@ reader在多卡下io性能不足的问题，直接使用多进程提升数据读
    export FLAGS_enable_parallel_graph=1
    export FLAGS_sync_nccl_allreduce=1
 
-注：在单机多卡ParallelGraph模式下，配置 :code:`FLAGS_sync_nccl_allreduce=1`_ 让每次allreduce操作都等待完成，可以提升性能，
+注：在单机多卡ParallelGraph模式下，配置 :code:`FLAGS_sync_nccl_allreduce=1` 让每次allreduce操作都等待完成，可以提升性能，
 详细原因和分析可以参考：https://github.com/PaddlePaddle/Paddle/issues/15049
 
 
@@ -89,8 +89,8 @@ PaddlePaddle Fluid使用“线程池”模型调度并执行Op，Op在启动GPU�
 预先分配足够的显存
 +++++++++++++++
 
-通过设置环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use=0.95`_ 设置预先分配的显存占比，比如0.95是指95%的
-显存会预先分配。设置的范围是0.0~1.0。注意，设置成0.0会让每次显存分配都调用 :code:`cudaMalloc`_ 这样会极大的降低训练
+通过设置环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use=0.95` 设置预先分配的显存占比，比如0.95是指95%的
+显存会预先分配。设置的范围是0.0~1.0。注意，设置成0.0会让每次显存分配都调用 :code:`cudaMalloc` 这样会极大的降低训练
 性能。
 
 降低scope drop频率和fetch频率
@@ -123,8 +123,8 @@ PaddlePaddle Fluid使用“线程池”模型调度并执行Op，Op在启动GPU�
 ++++++++++++++
 
 在使用NCCL2模式训练时，其会默认尝试开启RDMA通信，如果系统不支持，则会自动降级为使用TCP通信。可以通过打开
-环境变量:code:`NCCL_DEBUG=INFO`_ 查看NCCL是否选择了开启RDMA通信。如果需要强制使用TCP方式通信，可以设置
-:code:`NCCL_IB_DISABLE=1`_ 。
+环境变量 :code:`NCCL_DEBUG=INFO` 查看NCCL是否选择了开启RDMA通信。如果需要强制使用TCP方式通信，可以设置
+:code:`NCCL_IB_DISABLE=1` 。
 
 
 使用GPU完成部分图片预处理
@@ -141,7 +141,7 @@ PaddlePaddle Fluid使用“线程池”模型调度并执行Op，Op在启动GPU�
    t1 = fluid.layers.elementwise_sub(image / 255.0, img_mean, axis=1)
    image = fluid.layers.elementwise_div(t1, img_std, axis=1)
 
-对输入的图片Tensor，使用 :code:`fluid.layers`_ 完成图片数据归一化预处理，这样可以减轻CPU预处理数据的负担，提升总体训练速度。
+对输入的图片Tensor，使用 :code:`fluid.layers` 完成图片数据归一化预处理，这样可以减轻CPU预处理数据的负担，提升总体训练速度。
 
 增大batch_size或使用设置通信频率（batch merge）
 ++++++++++++++++++++++++++++++++++++++++++
@@ -161,9 +161,9 @@ batch merge功能，在同样的模型，可以极大的增加batch size，提�
 数据读取的优化在GPU训练中至关重要，尤其在不断增加batch_size提升吞吐时，计算对reader性能会有更高对要求，
 优化reader性能需要考虑的点包括：
 
-1. 使用 :code:`pyreader`_ 
-   参考 `这里<http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/prepare_data/use_py_reader.html>`_
-   使用pyreader，并开启 :code:`use_double_buffer`_ 
+1. 使用 :code:`pyreader` 
+   参考 `这里 <http://paddlepaddle.org/documentation/docs/zh/1.3/user_guides/howto/prepare_data/use_py_reader.html>`_
+   使用pyreader，并开启 :code:`use_double_buffer`
 2. reader返回uint8类型数据
    图片在解码后一般会以uint8类型存储，如果在reader中转换成float类型数据，会将数据体积扩大4倍。直接返回uint8数据，然后在GPU
    上转化成float类型进行训练
@@ -226,7 +226,7 @@ batch merge功能，在同样的模型，可以极大的增加batch size，提�
 使用混合精度训练
 ++++++++++++++
 
-V100 GPU提供了 `Tensor Core<https://www.nvidia.com/en-us/data-center/tensorcore/>`_ 可以在混合精度计算
+V100 GPU提供了 `Tensor Core <https://www.nvidia.com/en-us/data-center/tensorcore/>`_ 可以在混合精度计算
 场景极大的提升性能。使用混合精度计算的例子可以参考：
 https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification#using-mixed-precision-training
 
