@@ -25,6 +25,7 @@ PaddlePaddle支持使用pip快速安装， 执行下面的命令完成快速安�
 首先，您需要导入fluid库
 
 .. code-block:: python
+
 	import paddle.fluid as fluid
 
 Tensor操作
@@ -36,15 +37,15 @@ Tensor操作
 
 .. code-block:: python
     
-    # 定义数组元素个数及数据类型
+	# 定义数组元素个数及数据类型
 	data = fluid.layers.ones(shape=[5], dtype='int64')
 	# 定义运算场所
 	place = fluid.CPUPlace()
 	exe = fluid.Executor(place)
 	# 执行计算
 	ones_result = exe.run(fluid.default_main_program(),
-	            fetch_list=[data],
-	            return_numpy=True)
+				fetch_list=[data],
+				return_numpy=True)
 	# 输出结果
 	print(ones_result[0])
 
@@ -116,8 +117,8 @@ Tensor操作
 	res = []
 	for i in range(10):
 		# 假设方程式为 y=4a+6b+7c+2d
-	    y = 4*outputs[i][0]+6*outputs[i][1]+7*outputs[i][2]+2*outputs[i][3]
-	    res.append([y])
+		y = 4*outputs[i][0]+6*outputs[i][1]+7*outputs[i][2]+2*outputs[i][3]
+		res.append([y])
 	# 定义数据
 	train_data=np.array(outputs).astype('float32')
 	y_true = np.array(res).astype('float32')
@@ -138,29 +139,29 @@ Tensor操作
 	exe.run(fluid.default_startup_program())
 	##开始训练，迭代500次
 	for i in range(500):
-	    outs = exe.run(
-	        feed={'x':train_data,'y':y_true},
-	        fetch_list=[y_predict.name,avg_cost.name])
-	    if i%50==0:
-	        print ('iter={:.0f},cost={}'.format(i,outs[1][0]))
+		outs = exe.run(
+			feed={'x':train_data,'y':y_true},
+			fetch_list=[y_predict.name,avg_cost.name])
+		if i%50==0:
+			print ('iter={:.0f},cost={}'.format(i,outs[1][0]))
 	#存储训练结果
 	params_dirname = "result"
 	fluid.io.save_inference_model(params_dirname, ['x'], [y_predict], exe)
 
-    # 开始预测
+	# 开始预测
 	infer_exe = fluid.Executor(cpu)
 	inference_scope = fluid.Scope()
 	# 加载训练好的模型
 	with fluid.scope_guard(inference_scope):
-	    [inference_program, feed_target_names,
-	     fetch_targets] = fluid.io.load_inference_model(params_dirname, infer_exe)
+		[inference_program, feed_target_names,
+		 fetch_targets] = fluid.io.load_inference_model(params_dirname, infer_exe)
 
 	# 生成测试数据
 	test = np.array([[[9],[5],[2],[10]]]).astype('float32')
 	# 进行预测
 	results = infer_exe.run(inference_program,
-	                        feed={"x": test},
-	                        fetch_list=fetch_targets) 
+							feed={"x": test},
+							fetch_list=fetch_targets) 
 
 	# 给出题目为 【9,5,2,10】 y=4*9+6*5+7*2+10*2=100
 	# 答案应该为 100 
