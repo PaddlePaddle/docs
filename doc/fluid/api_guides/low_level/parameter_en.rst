@@ -4,14 +4,14 @@
 Model Parameters
 #########
 
-Model parameters are weights and bias in the model. In fluid, we use fluid. Parameter class which is inherited from fluid, a persistent variable, to define our model parameters. Model training is the process of learning and updating model parameters. The attributes related to model parameters can be configured by :ref:`api_fluid_ParamAttr` . The configurable contents are as follows:
+Model parameters are weights and biases in a model. In fluid, they are instances of ``fluid.Parameter`` class which is inherited from fluid, and they are all persistable variables. Model training is a process of learning and updating model parameters. The attributes related to model parameters can be configured by :ref:`api_fluid_ParamAttr` . The configurable contents are as follows:
 
 
 - Initialization method
 
 - Regularization
 
-- gradient shear
+- gradient clipping
 
 - Model Average
 
@@ -152,7 +152,7 @@ API reference： :ref:`api_fluid_clip_GradientClipByNorm`
 4. GradientClipByValue
 ----------------------
 
-Limit the value of gradient corresponding to a parameter to [min, max].
+Limit the value of the gradient on a parameter to [min, max].
 
 API reference： :ref:`api_fluid_clip_GradientClipByValue`
 

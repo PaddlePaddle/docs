@@ -8,7 +8,7 @@ Program/Block/Operator/Variable
 Program
 ==================
 
-:code:`Fluid` describes the user's neural network configuration in the form of abstract grammar tree similar to programming language, and the user's description of computation will be written into a Program. Program in Fluid replaces the concept of model in traditional framework. It can describe any complex model by supporting three execution structures: sequential execution, conditional selection and loop execution. Writing :code:`Program` is very close to writing a general program. If you have some programming experience, you will naturally transfer your knowledge.
+:code:`Fluid` describes neural network configuration in the form of abstract grammar tree similar to that of a programming language, and the user's description of computation will be written into a Program. Program in Fluid replaces the concept of models in traditional frameworks. It can describe any complex model through three execution structures: sequential execution, conditional selection and loop execution. Writing :code:`Program` is very close to writing a common program. If you have tried programming before, you will naturally apply your expertise to it.
 
 In brief：
 
