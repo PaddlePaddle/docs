@@ -18,3 +18,6 @@ API使用指南分功能向您介绍PaddlePaddle Fluid的API体系和用法，�
     low_level/memory_optimize.rst
     low_level/nets.rst
     low_level/parallel_executor.rst
+    low_level/backward.rst
+    low_level/parameter.rst
+    low_level/program.rst

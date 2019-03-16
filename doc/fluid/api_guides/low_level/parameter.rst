@@ -4,7 +4,7 @@
 模型参数
 #########
 
-模型参数为模型中的weight和bias统称，在fluid中对应fluid.Parameter类，继承自fluid.Variable，是一种可持久化的variable。模型的训练就是不断学习更新模型参数的过程。模型参数相关的属性可以通过 :ref:`cn_api_fluid_param_attr_ParamAttr` 来配置，可配置内容有：
+模型参数为模型中的weight和bias统称，在fluid中对应fluid.Parameter类，继承自fluid.Variable，是一种可持久化的variable。模型的训练就是不断学习更新模型参数的过程。模型参数相关的属性可以通过 :ref:`cn_api_fluid_ParamAttr` 来配置，可配置内容有：
 
 - 初始化方式
 - 正则化
