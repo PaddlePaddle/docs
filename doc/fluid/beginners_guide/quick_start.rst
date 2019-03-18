@@ -164,14 +164,15 @@ Tensor操作
 	results = infer_exe.run(inference_program,
 							feed={"x": test},
 							fetch_list=fetch_targets) 
-
-
-	# 输出验证答案
+    # 给出题目为 【9,5,2,10】 输出y=4*9+6*5+7*2+10*2的值
 	print ("9a+5b+2c+10d={}".format(results[0][0]))
 
 .. code-block:: text
+
+    # 输出结果应是一个近似等于100的值，每次计算结果略有不同
 	
-	给出题目为 【9,5,2,10】 y=4*9+6*5+7*2+10*2=100 
+	9a+5b+2c+10d=[99.946]
 	
-	输出结果应是一个近似等于100的值，每次计算结果略有不同
+    
 	
+
