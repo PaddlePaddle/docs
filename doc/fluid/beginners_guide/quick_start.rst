@@ -16,7 +16,7 @@ PaddlePaddle支持使用pip快速安装， 执行下面的命令完成快速安�
 
 	pip install paddlepaddle-gpu
 
-更详细的安装和编译方法，请参考：`安装说明 <http://paddlepaddle.org/documentation/docs/zh/1.3/beginners_guide/install/index_cn.html>`_
+如遇到安装问题，或想阅读更详细的安装和编译方法，请参考：`安装说明 <../beginners_guide/install/index_cn.html>`_
 
 
 快速使用
@@ -37,14 +37,16 @@ Tensor操作
 
 .. code-block:: python
     
-	# 定义数组元素个数及数据类型
+	# 定义数组维度及数据类型，可以修改shape参数定义任意大小的数组
 	data = fluid.layers.ones(shape=[5], dtype='int64')
-	# 定义运算场所
+	# 在CPU上执行运算
 	place = fluid.CPUPlace()
+	# 创建执行器
 	exe = fluid.Executor(place)
 	# 执行计算
 	ones_result = exe.run(fluid.default_main_program(),
-				fetch_list=[data],
+	                        # 获取数据data
+				fetch_list=[data], 
 				return_numpy=True)
 	# 输出结果
 	print(ones_result[0])
@@ -163,8 +165,13 @@ Tensor操作
 							feed={"x": test},
 							fetch_list=fetch_targets) 
 
-	# 给出题目为 【9,5,2,10】 y=4*9+6*5+7*2+10*2=100
-	# 答案应该为 100 
 
 	# 输出验证答案
 	print ("9a+5b+2c+10d={}".format(results[0][0]))
+
+.. code-block:: text
+	
+	给出题目为 【9,5,2,10】 y=4*9+6*5+7*2+10*2=100 
+	
+	输出结果应是一个近似等于100的值，每次计算结果略有不同
+	
