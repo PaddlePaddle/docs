@@ -1185,7 +1185,7 @@ LoDTensorArray
 
 .. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
-将LoDensor追加到LoDTensorArray后。
+将LoDTensor追加到LoDTensorArray后。
 
 
 
