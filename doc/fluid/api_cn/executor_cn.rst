@@ -144,7 +144,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 global_scope
 -------------------------------
 
-.. py:function:: paddle.fluid.global_scope ()
+.. py:function:: paddle.fluid.executor.global_scope ()
 
 
 获取全局/默认作用域实例。很多api使用默认 ``global_scope`` ，例如 ``Executor.run`` 。
@@ -163,7 +163,7 @@ global_scope
 scope_guard
 -------------------------------
 
-.. py:function:: paddle.fluid.scope_guard (scope)
+.. py:function:: paddle.fluid.executor.scope_guard (scope)
 
 
 修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。
