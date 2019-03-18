@@ -47,9 +47,9 @@ As mentioned above,  :code:`Block` in Fluid describes a set of Operators that in
 Operator
 =============
 
-In Fluid, all operations of data are represented by :code:`Operator` . In Python, :code:`Operator` in Fluid is encapsulated into modules such as: :code:`paddle.fluid.layers` , :code:`paddle.fluid.nets` , and so on.
+In Fluid, all operations of data are represented by :code:`Operator` . In Python, :code:`Operator` in Fluid is encapsulated into modules like :code:`paddle.fluid.layers` , :code:`paddle.fluid.nets` .
 
-This is because some common operations on Tensor may consist of more basic operations. In order to improve the convenience of use, some encapsulation of the basic Operator is carried out inside the framework, including the creation of Operator dependent on learnable parameters, the initialization details of learnable parameters, and so on, so as to reduce the cost of repeating development by users.
+This is because some common operations on Tensor may consist of more basic operations. For simplicity, some encapsulation of the basic Operator is carried out inside the framework, including the creation of learnable parameters relied by an Operator, the initialization details of learnable parameters, and so on, so as to reduce the cost of further development.
 
 
 
@@ -62,17 +62,17 @@ Variable
 
 In Fluid， :code:`Variable` can contain any type of value -- in most cases a LoD-Tensor.
 
-All the learnable parameters in the model are kept in the memory space in form of :code:`Variable` . In most cases, you do not need to create the learnable parameters in the network by yourself. Fluid provides encapsulation for almost common basic computing modules of the neural network. Taking the simplest full connection model as an example, calling :code:`fluid.layers.fc` directly creates two learnable parameters for the full connection layer, namely, connection weight (W) and bias, without explicitly calling :code:`variable` related interfaces to create learnable parameters.
+All the learnable parameters in the model are kept in the memory space in form of :code:`Variable` . In most cases, you do not need to create the learnable parameters in the network by yourself. Fluid provides encapsulation for almost common basic computing modules of the neural network. Taking the simplest full connection model as an example, calling :code:`fluid.layers.fc` directly creates two learnable parameters for the full connection layer, namely, connection weight (W) and bias, without explicitly calling :code:`Variable` related interfaces to create learnable parameters.
 
 =========
 Related API
 =========
 
 
-* A single neural network for user configuration is called :ref:`api_fluid_Program` . It is noteworthy that when training neural networks, users often need to configure and operate multiple :code:`Program` . For example,  :code:`Program` for parameter initialization, :code:`Program` for training,  :code:`Program` for testing, etc.
+* A single neural network configured by the user is called :ref:`api_fluid_Program` . It is noteworthy that when training neural networks, users often need to configure and operate multiple :code:`Program` . For example,  :code:`Program` for parameter initialization, :code:`Program` for training,  :code:`Program` for testing, etc.
 
 
 * Users can also use :ref:`api_fluid_program_guard` with :code:`with` to modify the configured :ref:`api_fluid_default_startup_program` and :ref:`api_fluid_default_main_program` .
 
 
-* In Fluid，Block internal execution order is determined by control flow，such as :ref:`api_fluid_layers_IfElse` , :ref:`api_fluid_layers_While` and :ref:`api_fluid_layers_Switch` . For more information, please reference to： :ref:`api_guide_control_flow_en` 
+* In Fluid，the execution order in a Block is determined by control flow，such as :ref:`api_fluid_layers_IfElse` , :ref:`api_fluid_layers_While` and :ref:`api_fluid_layers_Switch` . For more information, please refer to： :ref:`api_guide_control_flow_en` 
