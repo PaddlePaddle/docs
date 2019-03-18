@@ -241,8 +241,10 @@ https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classif
 目前Paddle只提供在两个模型（ResNet, BERT）的混合精度计算实现并支持static loss scaling，其他模型使用混合精度也
 可以参考以上的实现完成验证。
 
+附录
+----
 
-.. [#] 现代GPU：指至少支持运行 `CUDA <>`_ 版本7.5以上的GPU
+.. [#] 现代GPU：指至少支持运行 `CUDA <https://developer.nvidia.com/cuda-downloads>`_ 版本7.5以上的GPU
 .. [#] GPU利用率：这里指GPU计算能力被使用部分所占的百分比
 .. [#] Collective定义参考：https://en.wikipedia.org/wiki/Message_Passing_Interface#Collective_basics
 .. [#] https://en.wikipedia.org/wiki/Thread_pool
