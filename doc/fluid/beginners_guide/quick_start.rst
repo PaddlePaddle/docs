@@ -164,7 +164,7 @@ Tensor操作
 	results = infer_exe.run(inference_program,
 							feed={"x": test},
 							fetch_list=fetch_targets) 
-  # 给出题目为 【9,5,2,10】 输出y=4*9+6*5+7*2+10*2的值
+	# 给出题目为 【9,5,2,10】 输出y=4*9+6*5+7*2+10*2的值
 	print ("9a+5b+2c+10d={}".format(results[0][0]))
 
 .. code-block:: text
