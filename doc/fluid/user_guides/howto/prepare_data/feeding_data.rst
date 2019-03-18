@@ -1,8 +1,8 @@
 .. _user_guide_use_numpy_array_as_train_data:
 
-############################
-使用同步Feed方式读取训练和测试数据
-############################
+##############
+同步数据读取
+##############
 
 PaddlePaddle Fluid支持使用 :code:`fluid.layers.data()` 配置数据层；
 再使用 Numpy Array 或者直接使用Python创建C++的
