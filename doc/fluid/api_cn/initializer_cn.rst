@@ -116,7 +116,7 @@ force_init_on_cpu
 init_on_cpu
 -------------------------------
 
-.. py:function:: paddle.fluid.initializer.init_on_cpu(*args, **kwds)
+.. py:function:: paddle.fluid.initializer.init_on_cpu()
 
 强制变量在 cpu 上初始化。
 

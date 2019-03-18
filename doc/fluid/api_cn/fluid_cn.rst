@@ -162,7 +162,9 @@ BuildStrategy
 
 str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有利于调试。 默认值为""。
 
+.. py:attribute:: enable_sequential_execution
 
+类型是BOOL。 如果设置为True，则ops的执行顺序将与program中的执行顺序相同。 默认为False。
 
 
 .. py:attribute:: fuse_elewise_add_act_ops
@@ -1183,7 +1185,7 @@ LoDTensorArray
 
 .. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
-将LoDensor追加到LoDTensorArray后。
+将LoDTensor追加到LoDTensorArray后。
 
 
 
