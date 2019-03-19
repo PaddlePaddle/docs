@@ -6,13 +6,13 @@
 
 PaddlePaddle支持使用pip快速安装， 执行下面的命令完成快速安装：
 
-.. code-block::
+.. code-block:: bash
 
 	pip install paddlepaddle
 
 如果需要安装支持GPU的版本，请执行：
 
-.. code-block::
+.. code-block:: bash
 
 	pip install paddlepaddle-gpu
 
@@ -33,7 +33,7 @@ Tensor操作
 
 下面几个简单的案例，可以帮助您快速了解Fluid：
 
-1. 使用Fluid创建5个元素的一维数组，其中每个元素都为1
+1.使用Fluid创建5个元素的一维数组，其中每个元素都为1
 
 .. code-block:: python
     
@@ -57,7 +57,7 @@ Tensor操作
 
 	[1 1 1 1 1]
 
-2. 使用Fluid将两个数组按位相加
+2.使用Fluid将两个数组按位相加
 
 .. code-block:: python
 
@@ -79,7 +79,7 @@ Tensor操作
 
 	[2 2 2 2 2]
 
-3. 使用Fluid转换数据类型
+3.使用Fluid转换数据类型
 
 .. code-block:: python
 
