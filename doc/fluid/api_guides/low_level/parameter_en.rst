@@ -1,8 +1,8 @@
 ..  _api_guide_parameter_en:
 
-#########
+##################
 Model Parameters
-#########
+##################
 
 Model parameters are weights and biases in a model. In fluid, they are instances of ``fluid.Parameter`` class which is inherited from fluid, and they are all persistable variables. Model training is a process of learning and updating model parameters. The attributes related to model parameters can be configured by :ref:`api_fluid_ParamAttr` . The configurable contents are as follows:
 
@@ -18,7 +18,7 @@ Model parameters are weights and biases in a model. In fluid, they are instances
 
 
 Initialization method
-=================
+========================
 
 Fluid initializes a single parameter by setting attributes of :code:`initializer` in :code:`ParamAttr` .
 
@@ -44,7 +44,7 @@ Alias：Bilinear
 API reference： :ref:`api_fluid_initializer_BilinearInitializer`
 
 2. ConstantInitializer
-----------------------
+--------------------------
 
 Constant initialization. Initialize the parameter to the specified value.
 
@@ -53,7 +53,7 @@ Alias：Constant
 API reference： :ref:`api_fluid_initializer_ConstantInitializer`
 
 3. MSRAInitializer
-------------------
+----------------------
 
 Please refer to https://arxiv.org/abs/1502.01852 for initialization.
 
@@ -62,7 +62,7 @@ Alias：MSRA
 API reference： :ref:`api_fluid_initializer_MSRAInitializer`
 
 4. NormalInitializer
----------------------
+-------------------------
 
 Initialization method of random Gaussian distribution.
 
@@ -71,7 +71,7 @@ Alias：Normal
 API reference： :ref:`api_fluid_initializer_NormalInitializer`
 
 5. TruncatedNormalInitializer
------------------------------
+---------------------------------
 
 Initialization method of stochastic truncated Gauss distribution.
 
@@ -80,7 +80,7 @@ Alias：TruncatedNormal
 API reference： :ref:`api_fluid_initializer_TruncatedNormalInitializer`
 
 6. UniformInitializer
---------------------
+------------------------
 
 Initialization method of random uniform distribution.
 
@@ -89,7 +89,7 @@ Alias：Uniform
 API reference： :ref:`api_fluid_initializer_UniformInitializer`
 
 7. XavierInitializer
---------------------
+------------------------
 
 Please refer to http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf for initialization.
 
@@ -98,7 +98,7 @@ Alias：Xavier
 API reference： :ref:`api_fluid_initializer_XavierInitializer`
 
 Regularization
-=============
+=================
 
 Fluid regularizes a single parameter by setting attributes of :code:`regularizer` in :code:`ParamAttr` .
 
@@ -129,35 +129,35 @@ Fluid sets clipping method for a single parameter by setting attributes of :code
 The following is the clipping method supported by fluid:
 
 1. ErrorClipByValue
--------------------
+----------------------
 
 Used to clipping the value of a tensor to a specified range.
 
 API reference： :ref:`api_fluid_clip_ErrorClipByValue`
 
 2. GradientClipByGlobalNorm
----------------------------
+------------------------------
 
 Used to limit the global-norm of multiple Tensors to :code:`clip_norm`.
 
 API reference： :ref:`api_fluid_clip_GradientClipByGlobalNorm`
 
 3. GradientClipByNorm
----------------------
+------------------------
 Limit the L2-norm of Tensor to :code:`max_norm` . If Tensor's L2-norm exceeds: :code:`max_norm` ,
 it will calculate a  :code:`scale` . And then all values of the Tensor multiply the :code:`scale` .
 
 API reference： :ref:`api_fluid_clip_GradientClipByNorm`
 
 4. GradientClipByValue
-----------------------
+-------------------------
 
 Limit the value of the gradient on a parameter to [min, max].
 
 API reference： :ref:`api_fluid_clip_GradientClipByValue`
 
 Model Averaging
-========
+================
 
 Fluid determines whether to average a single parameter by setting attributes of :code:`do_model_average` in :code:`ParamAttr` .
 Examples:
