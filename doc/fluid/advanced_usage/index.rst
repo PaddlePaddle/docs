@@ -29,3 +29,5 @@
     development/profiling/index_cn.rst
     development/contribute_to_paddle/index_cn.rst
     development/write_docs_cn.md
+    best_practice/dist_training_gpu.rst
+    
