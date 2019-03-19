@@ -27,7 +27,7 @@ In brief：
 Block
 =========
 
-:code:`Block` is the concept of variable scope in advanced languages. In programming languages, Block is a pair of braces, which contains local variable definitions and a series of instructions or operators. Control flow structures :code:`if-else` and :code:`for` in programming languages can be equivalent to in deep learning:
+:code:`Block` is the concept of variable scope in advanced languages. In programming languages, Block is a pair of braces, which contains local variable definitions and a series of instructions or operators. Control flow structures :code:`if-else` and :code:`for` in programming languages can be equivalent to the following counterparts in deep learning:
 
 +----------------------+-------------------------+
 | programming languages| Fluid                   |
