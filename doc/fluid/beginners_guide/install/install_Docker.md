@@ -22,7 +22,7 @@
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> 上述命令中，各项参数分别指： --name [Name of container] 设定Docker的名称；-it 参数说明容器已和本机交互式运行； -v $PWD:/paddle 指定将当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
+	> 上述命令中，各项参数分别指： --name [Name of container] 设置Docker中容器的名称；-it 设置以交互的方式运行容器； -v $PWD:/paddle 指定将当前路径（Linux中PWD变量会得到当前路径的绝对路径）挂载到容器内部的 /paddle 目录； `<imagename>` 指定需要使用的镜像名称，您可以通过`docker images`命令查看；/bin/bash 是在Docker的镜像中要执行的命令
 
 至此，您已经成功使用Docker安装PaddlePaddle，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
