@@ -2,21 +2,18 @@
 模型评估
 ############
 
-模型评估是指用指标(metrics)反映模型在预期目标下的精度。其中，指标(metrics)根据模型任务决定。模型评估可作为在训练中调整超参数、评估模型效果的重要依据。
-metric函数的输入为当前模型的预测preds和labels，输出是自定义的。metric函数和loss函数非常相似，但是metric并不是模型训练网络组成部分。
+模型评估是指用评价指标(metrics)反映模型在预期目标下的精度，可作为在训练中调整超参数、评估模型效果的重要依据。其中，评价指标根据模型任务决定，也被称为评价函数。评价函数和loss函数非常相似，但不参与模型的训练优化。
 
-用户可以通过训练网络得到当前的预测preds和labels，在Python端定制metric函数；也可以通过定制c++ Operator的方式，在GPU上加速metric计算。
-
-paddle.fluid.metrics模块包含该功能。
-
+评价函数的输入为模型的预测值(preds)和真实值(labels)，返回评价值。
+paddle.fluid.metrics模块提供了一系列常用的模型评价指标; 用户也可以方便的通过Python定制评价指标，或者是通过定制C++ Operator的方式，在GPU上加速评价指标的计算。
 
 常用指标
 ############
 
-metric函数根据模型任务不同，指标构建方法因任务而异。
+根据不同的任务，会选用不同的评价指标。
 
-回归类型任务labels是实数，可参考 MSE (Mean Squared Error) 方法。
-分类任务常用指标为分类指标（classification metrics），本文提到的一般是二分类指标，多分类和多标签需要查看对应的API文档。例如排序指标auc，多分类可以作为0，1分类任务，auc指标仍然适用。
+回归任务labels是实数，评价指标可参考 MSE (Mean Squared Error) 方法。
+分类任务常用指标为分类指标（classification metrics），本文提到的一般是二分类指标，多分类(multi-category)和多标签(multi-label)任务的评价指标需要查看对应的API文档。例如排序指标AUC可以同时用在二分类和多分类任务中，因为多分类任务可以转化为二分类任务。
 Fluid中包含了常用分类指标，例如Precision, Recall, Accuracy等,更多请阅读API文档。以 :ref:`Precision` 为例，具体方法为
 
 .. code-block:: python
