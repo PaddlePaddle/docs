@@ -25,7 +25,7 @@
 * 本机源码编译
 
 <a name="ubt_docker"></a>
-### 用Docker编译
+### ***Docker源码编译***
 
 [Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源
 
@@ -115,7 +115,7 @@
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 来安装。
 
 <a name="ubt_source"></a>
-### ***本机编译***
+### ***本机源码编译***
 
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
 
