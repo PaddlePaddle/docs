@@ -28,7 +28,7 @@ We recommend using **Docker for compilation** because we are installing both the
 We also provide methods that can be **compiled from local source code**, but since the situation on host machine is more complicated, we only provide support for specific systems.
 
 <br/><br/>
-## ***Compile with Docker***
+## ***Docker Source Compilation***
 
 In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on **installing and using Docker**, please refer to [the official Docker documentation](https://docs.docker.com/install/).
 
@@ -104,7 +104,7 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 
 <br/><br/>
-### ***Local compilation***
+### ***Direct Native Source Code Compilation***
 
 **Please strictly follow the following instructions step by step**
 
