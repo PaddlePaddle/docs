@@ -21,7 +21,7 @@ Since the situation on host machine is more complicated, we only support specifi
 Please note: The current version does not support NCCL, distributed, AVX, warpctc and MKL related functions.
 
 
-### ***Local compilation***
+### ***Direct Source Code Compilation***
 
 **Please strictly follow the following instructions step by step**
 
