@@ -22,7 +22,7 @@ We recommend **using Docker for compilation** because we are installing both the
 Also for those who can't install Docker for a variety of reasons, we also provide a way to **compile directly from local sources**, but since the situation on this machine is more complicated, we only support specific systems.
 
 <br/><br/>
-### ***Compile with Docker***
+### ***Docker Source Compilation***
 
 In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on **installing and using Docker**, please refer to the [official Docker documentation](https://docs.docker.com/install/).
 
@@ -99,7 +99,7 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 
 <br/><br/>
-### ***Native compilation***
+### ***Direct Source Code Compilation***
 
 **Please strictly follow the order of the following instructions**
 
