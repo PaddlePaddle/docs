@@ -18,7 +18,7 @@
 * 本机源码编译
 
 <a name="mac_docker"></a>
-### ***使用Docker编译***
+### ***Docker源码编译***
 
 [Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源
 
@@ -107,7 +107,7 @@
 
 <a name="mac_source"></a>
 <br/><br/>
-### ***本机编译***
+### ***本机源码编译***
 
 **请严格按照以下指令顺序执行**
 
