@@ -331,7 +331,7 @@ LarsMomentum
 LarsMomentumOptimizer
 -------------------------------
 
-.. py:function:: paddle.fluid.optimizer.LarsMomentumOptimizer(learning_rate, momentum, lars_coeff=0.001, lars_weight_decay=0.0005, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.LarsMomentumOptimizer(learning_rate, momentum, lars_coeff=0.001, lars_weight_decay=0.0005, regularization=None, name=None)
 
 LARS支持的Momentum优化器
 

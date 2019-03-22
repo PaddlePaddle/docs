@@ -1,10 +1,10 @@
 ..  _user_guides_use_py_reader:
 
-############################
-使用PyReader读取训练和测试数据
-############################
+#############
+异步数据读取
+#############
 
-除Python Reader方法外，我们提供了PyReader。PyReader的性能比 :ref:`user_guide_use_numpy_array_as_train_data` 更好，因为PyReader的数据读取和模型训练过程是异步进行的，且能与 :code:`double_buffer_reader` 配合以进一步提高数据读取性能。此外， :code:`double_buffer_reader` 负责异步完成CPU Tensor到GPU Tensor的转换，一定程度上提升了数据读取效率。
+除同步Feed方式外，我们提供了PyReader。PyReader的性能比 :ref:`user_guide_use_numpy_array_as_train_data` 更好，因为PyReader的数据读取和模型训练过程是异步进行的，且能与 :code:`double_buffer_reader` 配合以进一步提高数据读取性能。此外， :code:`double_buffer_reader` 负责异步完成CPU Tensor到GPU Tensor的转换，一定程度上提升了数据读取效率。
 
 创建PyReader对象
 ################################

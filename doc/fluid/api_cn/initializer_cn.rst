@@ -116,7 +116,7 @@ force_init_on_cpu
 init_on_cpu
 -------------------------------
 
-.. py:function:: paddle.fluid.initializer.init_on_cpu(*args, **kwds)
+.. py:function:: paddle.fluid.initializer.init_on_cpu()
 
 强制变量在 cpu 上初始化。
 
@@ -125,7 +125,7 @@ init_on_cpu
 .. code-block:: python
         
         with init_on_cpu():
-                step = layers.create_global_var()
+                step = fluid.layers.create_global_var()
 
 
 

@@ -105,7 +105,7 @@ ChunkEvaluator
         labels = fluid.layers.data(name="data", shape=[1], dtype="int32")
         data = fluid.layers.data(name="data", shape=[32, 32], dtype="int32")
         pred = fluid.layers.fc(input=data, size=1000, act="tanh")
-        precision, recall, f1_score, num_infer_chunks, num_label_chunks, num_correct_chunks = layers.chunk_eval(
+        precision, recall, f1_score, num_infer_chunks, num_label_chunks, num_correct_chunks = fluid.layers.chunk_eval(
         input=pred,
         label=label)
         metric = fluid.metrics.ChunkEvaluator()

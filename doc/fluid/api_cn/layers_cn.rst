@@ -117,7 +117,7 @@ array_write
 
   tmp = fluid.layers.zeros(shape=[10], dtype='int32')
   i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-  arr = layers.array_write(tmp, i=i)
+  arr = fluid.layers.array_write(tmp, i=i)
 
 
 
@@ -704,15 +704,15 @@ While
 
 ..  code-block:: python
 
-  d0 = layers.data("d0", shape=[10], dtype='float32')
-  data_array = layers.array_write(x=d0, i=i)
-  array_len = layers.fill_constant(shape=[1],dtype='int64', value=3)
+  d0 = fluid.layers.data("d0", shape=[10], dtype='float32')
+  data_array = fluid.layers.array_write(x=d0, i=i)
+  array_len = fluid.layers.fill_constant(shape=[1],dtype='int64', value=3)
   
-  cond = layers.less_than(x=i, y=array_len)
-  while_op = layers.While(cond=cond)
+  cond = fluid.layers.less_than(x=i, y=array_len)
+  while_op = fluid.layers.While(cond=cond)
   with while_op.block():
-      d = layers.array_read(array=data_array, i=i)
-      i = layers.increment(x=i, in_place=True)
+      d = fluid.layers.array_read(array=data_array, i=i)
+      i = fluid.layers.increment(x=i, in_place=True)
       layers.array_write(result, i=i, array=d)
       layers.less_than(x=i, y=array_len, cond=cond)
 
@@ -1761,13 +1761,13 @@ beam_search
     
     # 假设 `probs` 包含计算神经元所得的预测结果
     # `pre_ids` 和 `pre_scores` 为beam_search之前时间步的输出
-    topk_scores, topk_indices = layers.topk(probs, k=beam_size)
-    accu_scores = layers.elementwise_add(
+    topk_scores, topk_indices = fluid.layers.topk(probs, k=beam_size)
+    accu_scores = fluid.layers.elementwise_add(
                                           x=layers.log(x=topk_scores)),
                                           y=layers.reshape(
                                               pre_scores, shape=[-1]),
                                           axis=0)
-    selected_ids, selected_scores = layers.beam_search(
+    selected_ids, selected_scores = fluid.layers.beam_search(
                                           pre_ids=pre_ids,
                                           pre_scores=pre_scores,
                                           ids=topk_indices,
@@ -1816,7 +1816,7 @@ beam_search_decode
             
 	    # 假设 `ids` 和 `scores` 为 LodTensorArray变量，它们保留了
             # 选择出的所有时间步的id和score
-            finished_ids, finished_scores = layers.beam_search_decode(
+            finished_ids, finished_scores = fluid.layers.beam_search_decode(
                 ids, scores, beam_size=5, end_id=0)
 
 
@@ -2039,7 +2039,7 @@ clip
         
 clip算子
 
-clip运算符限制给定输入的值在一个区间内。间隔使用参数"min"和"max"来指定：公式为
+clip算子限制给定输入的值在一个区间内。间隔使用参数"min"和"max"来指定：公式为
 
 .. math:: 
         Out=min(max(X,min),max)
@@ -2076,7 +2076,7 @@ clip_by_norm
      
 ClipByNorm算子
 
-此运算符将输入 ``X`` 的L2范数限制在 ``max_norm`` 内。如果 ``X`` 的L2范数小于或等于 ``max_norm``  ，则输出（Out）将与 ``X`` 相同。如果X的L2范数大于 ``max_norm`` ，则 ``X`` 将被线性缩放，使得输出（Out）的L2范数等于 ``max_norm`` ，如下面的公式所示：
+此算子将输入 ``X`` 的L2范数限制在 ``max_norm`` 内。如果 ``X`` 的L2范数小于或等于 ``max_norm``  ，则输出（Out）将与 ``X`` 相同。如果X的L2范数大于 ``max_norm`` ，则 ``X`` 将被线性缩放，使得输出（Out）的L2范数等于 ``max_norm`` ，如下面的公式所示：
 
 .. math:: 
          Out = \frac{max\_norm * X}{norm(X)} 
@@ -2478,7 +2478,7 @@ cos_sim
 
 .. py:function:: paddle.fluid.layers.cos_sim(X, Y)
 
-余弦相似度运算符（Cosine Similarity Operator）
+余弦相似度算子（Cosine Similarity Operator）
 
 .. math::
 
@@ -2536,7 +2536,7 @@ crf_decoding
 
 ..  code-block:: python
 
-      crf_decode = layers.crf_decoding(
+      crf_decode = fluid.layers.crf_decoding(
            input=hidden, param_attr=ParamAttr(name="crfw"))
 
 
@@ -2864,7 +2864,7 @@ dice_loss定义为:
 dropout
 -------------------------------
 
-.. py:function:: Paddle.fluid.layers.dropout(x,dropout_prob,is_test=False,seed=None,name=None,dropout_implementation='downgrade_in_infer')
+.. py:function:: paddle.fluid.layers.dropout(x,dropout_prob,is_test=False,seed=None,name=None,dropout_implementation='downgrade_in_infer')
 
 dropout操作
 
@@ -3222,9 +3222,9 @@ LSTMP层(具有循环映射的LSTM)在LSTM层后有一个分离的映射层，�
 edit_distance
 -------------------------------
 
-.. py:function:: Paddle.fluid.layers.edit_distance(input,label,normalized=True,ignored_tokens=None)
+.. py:function:: paddle.fluid.layers.edit_distance(input,label,normalized=True,ignored_tokens=None)
 
-编辑距离运算符
+编辑距离算子
 
 计算一批给定字符串及其参照字符串间的编辑距离。编辑距离也称Levenshtein距离，通过计算从一个字符串变成另一个字符串所需的最少操作步骤来衡量两个字符串的相异度。这里的操作包括插入、删除和替换。
 
@@ -3795,7 +3795,7 @@ fc
 
 **全连接层**
 
-该函数在神经网络中建立一个全连接层。 它可以同时将多个tensor作为自己的输入，并为每个输入的tensor创立一个变量，称为“权”（weights），等价于一个从每个输入单元到每个输出单元的全连接权矩阵。FC层用每个tensor和它对应的权相乘得到输出tensor。如果有多个输入tensor，那么多个乘法运算将会加在一起得出最终结果。如果 ``bias_attr`` 非空，则会新创建一个偏向变量（bias variable），并把它加入到输出结果的运算中。最后，如果 ``act`` 非空，它也会加入最终输出的计算中。
+该函数在神经网络中建立一个全连接层。 它可以同时将多个tensor（ ``input`` 可使用多个tensor组成的一个list，详见参数说明）作为自己的输入，并为每个输入的tensor创立一个变量，称为“权”（weights），等价于一个从每个输入单元到每个输出单元的全连接权矩阵。FC层用每个tensor和它对应的权相乘得到输出tensor。如果有多个输入tensor，那么多个乘法运算将会加在一起得出最终结果。如果 ``bias_attr`` 非空，则会新创建一个偏向变量（bias variable），并把它加入到输出结果的运算中。最后，如果 ``act`` 非空，它也会加入最终输出的计算中。
 
 这个过程可以通过如下公式表现：
 
@@ -3882,11 +3882,13 @@ flatten
         Out.shape = (1, 3 * 100 * 100 * 4)
 
 参数：
-	- **x** (Variable): 一个秩>=axis 的张量
-	- **axis** (int)：指出应该将哪些输入维度(唯一的) flatten 到输出的外部维度。axis的值必须在[0,R]范围内，其中R是输入张量的秩。当 axis= 0 时，输出张量的形状为(1，(d_0 X d_1…)，其中输入张量的形状为(d_0, d_1，…)d_n)。
-	- **name** (str|None)：此层的名称(可选)。如果没有设置，层将自动命名。
+	- **x** (Variable) - 一个秩>=axis 的张量
+ 	- **axis** (int) - flatten的划分轴，[0, axis) 轴数据被flatten到输出矩阵的0轴，[axis, R)被flatten到输出矩阵的1轴，其中R是输入张量的秩。axis的值必须在[0,R]范围内。当 axis= 0 时，输出张量的形状为 (1，d_0 \* d_1 \*… d_n) ，其输入张量的形状为(d_0, d_1，… d_n)。
+	- **name** (str|None) - 此层的名称(可选)。如果没有设置，层将自动命名。
 
-返回：Variable: 一个二维张量，它包含输入张量的内容，输入维数将沿给定轴flatten到输出的外部维度，剩余的输入维数flatten到输出的内部维数。
+返回: 一个二维张量，它包含输入张量的内容，但维数发生变化。输入的[0, axis)维将沿给定轴flatten到输出的前一个维度，剩余的输入维数flatten到输出的后一个维度。
+
+返回类型: Variable
 
 抛出异常：
 	- ValueError: 如果 x 不是一个变量
@@ -3971,7 +3973,7 @@ gaussian_random算子。
         - **shape** （tuple | list）- （vector <int>）随机张量的维数
         - **mean** （Float）- （默认值0.0）随机张量的均值
         - **std** （Float）- （默认值为1.0）随机张量的std
-        - **seed** （Int）- （默认值为 0）生成器随机生成种子。0表示使用系统范围的种子。注意如果seed不为0，则此运算符每次将始终生成相同的随机数
+        - **seed** （Int）- （默认值为 0）生成器随机生成种子。0表示使用系统范围的种子。注意如果seed不为0，则此算子每次将始终生成相同的随机数
         - **dtype** （np.dtype | core.VarDesc.VarType | str）- 输出的数据类型。
 
 返回：        输出高斯随机运算矩阵
@@ -3982,7 +3984,7 @@ gaussian_random算子。
 
 .. code-block:: python
 
-    out = layers.gaussian_random(shape=[20, 30])       
+    out = fluid.layers.gaussian_random(shape=[20, 30])       
 
 
 
@@ -4007,7 +4009,7 @@ gaussian_random_batch_size_like
         - **output_dim_idx** （Int）- 默认值0.输出批量大小维度的索引。
         - **mean** （Float）- （默认值0.0）高斯分布的平均值（或中心值）。
         - **std** （Float）- （默认值 1.0）高斯分布的标准差（std或spread）。
-        - **seed** （Int）- （默认为0）用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此运算符将始终每次生成相同的随机数。
+        - **seed** （Int）- （默认为0）用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此算子将始终每次生成相同的随机数。
         - **dtype** （np.dtype | core.VarDesc.VarType | str）- 输出数据的类型为float32，float_16，int等。
 
 返回：        指定形状的张量将使用指定值填充。
@@ -4020,9 +4022,9 @@ gaussian_random_batch_size_like
 
 .. code-block:: python
 
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
 
-    out = layers.gaussian_random_batch_size_like(
+    out = fluid.layers.gaussian_random_batch_size_like(
         input, shape=[-1, 11], mean=1.0, std=2.0)
 
 
@@ -4373,7 +4375,7 @@ hash
 hsigmoid
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.hsigmoid(input, label, num_functiones, param_attr=None, bias_attr=None, name=None, path_table=None, path_code=None, is_custom=False, is_sparse=False)
+.. py:function:: paddle.fluid.layers.hsigmoid(input, label, num_classes, param_attr=None, bias_attr=None, name=None, path_table=None, path_code=None, is_custom=False, is_sparse=False)
 
 层次sigmod（ hierarchical sigmoid ）加速语言模型的训练过程。这个operator将类别组织成一个完全二叉树，也可以使用 ``is_custom`` 参数来传入自定义的树结构来实现层次化。 
 
@@ -4786,9 +4788,9 @@ label_smooth
 
 ..  code-block:: python
 
-    label = layers.data(name="label", shape=[1], dtype="float32")
-    one_hot_label = layers.one_hot(input=label, depth=10)
-    smooth_label = layers.label_smooth(
+    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
+    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
+    smooth_label = fluid.layers.label_smooth(
     label=one_hot_label, epsilon=0.1, dtype="float32")
 
 
@@ -5033,9 +5035,9 @@ lod_reset
 
 .. code-block:: python
 
-    x = layers.data(name='x', shape=[10])
-    y = layers.data(name='y', shape=[10, 20], lod_level=2)
-    out = layers.lod_reset(x=x, y=y)
+    x = fluid.layers.data(name='x', shape=[10])
+    y = fluid.layers.data(name='y', shape=[10, 20], lod_level=2)
+    out = fluid.layers.lod_reset(x=x, y=y)
 
 
 
@@ -5143,8 +5145,8 @@ logical_and算子
        Out = X \&\& Y
 
 参数：
-        - **x** （Variable）- （LoDTensor）logical_and运算符的左操作数
-        - **y** （Variable）- （LoDTensor）logical_and运算符的右操作数
+        - **x** （Variable）- （LoDTensor）logical_and算子的左操作数
+        - **y** （Variable）- （LoDTensor）logical_and算子的右操作数
         - **out** （Tensor）- 输出逻辑运算的张量。
         - **name** （basestring | None）- 输出的名称。
 
@@ -5186,7 +5188,7 @@ logical_not算子
         Out = !X
 
 参数：
-        - **x** （Variable）- （LoDTensor）logical_not运算符的操作数
+        - **x** （Variable）- （LoDTensor）logical_not算子的操作数
         - **out** （Tensor）- 输出逻辑运算的张量。
         - **name** （basestring | None）- 输出的名称。
 
@@ -5224,8 +5226,8 @@ logical_or算子
         Out = X || Y
 
 参数：
-        - **x** （Variable）- （LoDTensor）logical_or运算符的左操作数
-        - **y** （Variable）- （LoDTensor）logical_or运算符的右操作数
+        - **x** （Variable）- （LoDTensor）logical_or算子的左操作数
+        - **y** （Variable）- （LoDTensor）logical_or算子的右操作数
         - **out** （Tensor）- 输出逻辑运算的张量。
         - **name** （basestring | None）- 输出的名称。
 
@@ -5266,8 +5268,8 @@ logical_xor算子
         Out = (X || Y) \&\& !(X \&\& Y)
 
 参数：
-        - **x** （Variable）- （LoDTensor）logical_xor运算符的左操作数
-        - **y** （Variable）- （LoDTensor）logical_xor运算符的右操作数
+        - **x** （Variable）- （LoDTensor）logical_xor算子的左操作数
+        - **y** （Variable）- （LoDTensor）logical_xor算子的右操作数
         - **out** （Tensor）- 输出逻辑运算的张量。
         - **name** （basestring | None）- 输出的名称。
 
@@ -5413,10 +5415,10 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
 	input_size = 100
 	hidden_size = 150
 	num_layers = 1
-	init_hidden1 = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
-	init_cell1 = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
+	init_hidden1 = fluid.layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
+	init_cell1 = fluid.layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
 
-	rnn_out, last_h, last_c = layers.lstm( input, init_h, init_c, max_len, dropout_prob, input_size, hidden_size,  num_layers)
+	rnn_out, last_h, last_c = fluid.layers.lstm( input, init_h, init_c, max_len, dropout_prob, input_size, hidden_size,  num_layers)
 
 
 
@@ -5688,7 +5690,7 @@ mean算子计算X中所有元素的平均值
 mean_iou
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.mean_iou(input, label, num_functiones)
+.. py:function:: paddle.fluid.layers.mean_iou(input, label, num_classes)
 
 均值IOU（Mean  Intersection-Over-Union）是语义图像分割中的常用的评价指标之一，它首先计算每个语义类的IOU，然后计算类之间的平均值。定义如下:
       
@@ -5868,7 +5870,7 @@ multiplex
 nce
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.nce(input, label, num_total_functiones, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
+.. py:function:: paddle.fluid.layers.nce(input, label, num_total_classes, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
 
 计算并返回噪音对比估计（ noise-contrastive estimation training loss）。
 `请参考 See Noise-contrastive estimation: A new estimation principle for unnormalized statistical models 
@@ -5912,18 +5914,18 @@ nce
 			if i == label_word:
 				continue
 
-			emb = layers.embedding(input=words[i], size=[dict_size, 32],
+			emb = fluid.layers.embedding(input=words[i], size=[dict_size, 32],
 								   param_attr='emb.w', is_sparse=True)
 			embs.append(emb)
 
-		embs = layers.concat(input=embs, axis=1)
-		loss = layers.nce(input=embs, label=words[label_word],
+		embs = fluid.layers.concat(input=embs, axis=1)
+		loss = fluid.layers.nce(input=embs, label=words[label_word],
 					  num_total_classes=dict_size, param_attr='nce.w',
 					  bias_attr='nce.b')
 
 		#使用custom distribution
 		dist = fluid.layers.assign(input=np.array([0.05,0.5,0.1,0.3,0.05]).astype("float32"))
-		loss = layers.nce(input=embs, label=words[label_word],
+		loss = fluid.layers.nce(input=embs, label=words[label_word],
 					  num_total_classes=5, param_attr='nce.w',
 					  bias_attr='nce.b',
 					  num_neg_samples=3,
@@ -5960,8 +5962,8 @@ one_hot
 
 .. code-block:: python 
 
-    label = layers.data(name="label", shape=[1], dtype="float32")
-    one_hot_label = layers.one_hot(input=label, depth=10)
+    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
+    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
 
 
 
@@ -6263,7 +6265,7 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核�
 pool3d
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None， exclusive=True)
+.. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True)
 
 函数使用上述输入参数的池化配置，为三维空间添加池化操作
 
@@ -6967,7 +6969,7 @@ reshape
 	- **shape** (list) - 新的形状。新形状最多只能有一个维度为-1。
 	- **actual_shape** (variable) - 一个可选的输入。如果提供，则根据 ``actual_shape`` 进行 reshape，而不是指定 ``shape`` 。也就是说，actual_shape具有比shape更高的优先级。
 	- **act** (str) - 对reshpe后的tensor变量执行非线性激活
-	- **inplace** (bool) - 如果在多个操作符中使用x，则 ``inplace`` 必须设置为False。如果该标志设置为True，则重用输入x进行reshape，这将改变张量变量x的形状，并可能在多个操作符中使用x时造成错误。如果为False，则保留形状x，并创建一个新的输出张量变量，该张量变量的数据是从输入x复制的，但经过了重构。
+	- **inplace** (bool) - 如果在多个操作符中使用x，则 ``inplace`` 必须设置为False。如果该标志设置为True，则直接对输入x本身进行reshape操作，张量变量x的形状将会被改变，因此在其他操作中再使用x时会造成错误。如果为False，则保留输入变量x的原形状，并输出一个新的张量变量，该张量变量的数据是从输入x复制的，但是其形状已经经过reshape操作进行重构。
 	- **name** (str) -  可选变量，此层的名称
 
 返回：如果 ``act`` 为 ``None``,返回reshape后的tensor变量。如果 ``inplace`` 为 ``False`` ,将返回一个新的Tensor变量，否则，将改变x自身。如果 ``act`` 不是 ``None`` ，则返回激活的张量变量。
@@ -7304,7 +7306,7 @@ sampling_id算子。用于从输入的多项分布中对id进行采样的图层�
         - **x** （Variable）- softmax的输入张量（Tensor）。2-D形状[batch_size，input_feature_dimensions]
         - **min** （Float）- 随机的最小值。（浮点数，默认为0.0）
         - **max** （Float）- 随机的最大值。（float，默认1.0）
-        - **seed** （Float）- 用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此运算符将始终每次生成相同的随机数。（int，默认为0）
+        - **seed** （Float）- 用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此算子将始终每次生成相同的随机数。（int，默认为0）
         - **dtype** （np.dtype | core.VarDesc.VarType | str）- 输出数据的类型为float32，float_16，int等。
 
 返回：       Id采样的数据张量。
@@ -7316,13 +7318,13 @@ sampling_id算子。用于从输入的多项分布中对id进行采样的图层�
 
 .. code-block:: python
 
-    x = layers.data(
+    x = fluid.layers.data(
     name="X",
     shape=[13, 11],
     dtype='float32',
     append_batch_size=False)
 
-    out = layers.sampling_id(x)
+    out = fluid.layers.sampling_id(x)
 
 
 
@@ -7360,7 +7362,7 @@ else:
         - **act** (basestring|None) - 应用于输出的激活函数。
         - **name** (basestring|None)- 输出的名称。
 
-返回:        比例运算符的输出张量(Tensor)
+返回:        比例算子的输出张量(Tensor)
 
 返回类型:        变量(Variable)
 
@@ -7631,7 +7633,7 @@ sequence_expand
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
-    out = layers.sequence_expand(x=x, y=y, ref_level=0)
+    out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
 
 
 
@@ -7701,7 +7703,7 @@ Sequence Expand As Layer
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
-    out = layers.sequence_expand_as(x=x, y=y)
+    out = fluid.layers.sequence_expand_as(x=x, y=y)
 
 
 
@@ -8354,9 +8356,9 @@ shape算子
 
 .. code-block:: python
 
-    input = layers.data(
+    input = fluid.layers.data(
         name="input", shape=[3, 100, 100], dtype="float32")
-    out = layers.shape(input)        
+    out = fluid.layers.shape(input)        
 
 
 
@@ -8371,7 +8373,7 @@ shuffle_channel
 
 **Shuffle Channel 运算（通道重排运算）**
 
-该运算符将输入 ``x`` 的通道混洗重排。 它将每个组中的输入通道分成 ``group`` 个子组，并通过逐个从每个子组中选择元素来获得新的顺序。
+该算子将输入 ``x`` 的通道混洗重排。 它将每个组中的输入通道分成 ``group`` 个子组，并通过逐个从每个子组中选择元素来获得新的顺序。
 
 请参阅 https://arxiv.org/pdf/1707.01083.pdf
 
@@ -8645,10 +8647,10 @@ slice算子。
     ends = [3, 3, 4]
     axes = [0, 1, 2]
 
-    input = layers.data(
+    input = fluid.layers.data(
         name="input", shape=[3, 4, 5, 6], dtype='float32')
 
-    out = layers.slice(input, axes=axes, starts=starts, ends=ends)
+    out = fluid.layers.slice(input, axes=axes, starts=starts, ends=ends)
 
 
 
@@ -8966,9 +8968,9 @@ square_error_cost
 
 .. code-block:: python
 
-    y = layers.data(name='y', shape=[1], dtype='float32')
-    y_predict = layers.data(name='y_predict', shape=[1], dtype='float32')
-    cost = layers.square_error_cost(input=y_predict, label=y)
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.data(name='y_predict', shape=[1], dtype='float32')
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
 
 
 
@@ -9018,8 +9020,8 @@ squeeze
 
 .. code-block:: python
 
-    x = layers.data(name='x', shape=[5, 1, 10])
-    y = layers.sequeeze(input=x, axes=[1])      
+    x = fluid.layers.data(name='x', shape=[5, 1, 10])
+    y = fluid.layers.sequeeze(input=x, axes=[1])      
 
 
 
@@ -9104,10 +9106,10 @@ sum
 
 sum算子。
 
-该运算符对输入张量求和。所有输入都可以携带LoD（详细程度）信息，但是输出仅与第一个输入共享LoD信息。
+该算子对输入张量求和。所有输入都可以携带LoD（详细程度）信息，但是输出仅与第一个输入共享LoD信息。
 
 参数：
-        - **x** （Variable）- （vector <Tensor>）sum运算符的输入张量（Tensor）。
+        - **x** （Variable）- （vector <Tensor>）sum算子的输入张量（Tensor）。
 
 返回:        (Tensor）求和算子的输出张量。
 
@@ -9118,8 +9120,8 @@ sum算子。
 
 .. code-block:: python
 
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = layers.sum(input)
+    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = fluid.layers.sum(input)
 
 
 
@@ -9200,7 +9202,7 @@ topk
 -------------------------------
 .. py:function:: paddle.fluid.layers.topk(input, k, name=None)
 
-这个运算符用于查找最后一维的前k个最大项，返回它们的值和索引。
+这个算子用于查找最后一维的前k个最大项，返回它们的值和索引。
 
 如果输入是（1-D Tensor），则找到向量的前k最大项，并以向量的形式输出前k最大项的值和索引。values[j]是输入中第j最大项，其索引为indices[j]。
 如果输入是更高阶的张量，则该operator会基于最后一维计算前k项
@@ -9242,7 +9244,7 @@ topk
 
 .. code-block:: python 
 
-    top5_values, top5_indices = layers.topk(input, k=5)
+    top5_values, top5_indices = fluid.layers.topk(input, k=5)
 
 
 
@@ -9280,7 +9282,7 @@ transpose
     # 在数据张量中添加多余的batch大小维度
     x = fluid.layers.data(name='x', shape=[5, 10, 15],
                     dtype='float32', append_batch_size=False)
-    x_transposed = layers.transpose(x, perm=[1, 0, 2])
+    x_transposed = fluid.layers.transpose(x, perm=[1, 0, 2])
 
 
 
@@ -9316,21 +9318,21 @@ tree_conv
 
 .. code-block:: python
 
-    nodes_vector = layers.data(name='vectors', shape=[None, 10, 5], dtype='float32)
+    nodes_vector = fluid.layers.data(name='vectors', shape=[None, 10, 5], dtype='float32)
     # batch size为None, 10代表数据集最大节点大小max_node_size,5表示向量宽度
-    edge_set = layers.data(name='edge_set', shape=[None, 10, 2], dtype='float32')
+    edge_set = fluid.layers.data(name='edge_set', shape=[None, 10, 2], dtype='float32')
     # None 代表batch size, 10 代表数据集的最大节点大小max_node_size, 2 代表每条边连接两个节点
     # 边必须为有向边
-    out_vector = layers.tree_conv(nodes_vector, edge_set, 6, 1, 2, 'tanh',
+    out_vector = fluid.layers.tree_conv(nodes_vector, edge_set, 6, 1, 2, 'tanh',
         ParamAttr(initializer=Constant(1.0), ParamAttr(initializer=Constant(1.0))
     # 输出的形会是[None, 10, 6, 1],
     # None 代表batch size, 10数据集的最大节点大小max_node_size, 6 代表输出大小output size, 1 代表 1 个filter
-    out_vector = layers.reshape(out_vector, shape=[None, 10, 6])
+    out_vector = fluid.layers.reshape(out_vector, shape=[None, 10, 6])
     # reshape之后, 输出张量output tensor为下一个树卷积的nodes_vector 
-    out_vector_2 = layers.tree_conv(out_vector, edge_set, 3, 4, 2, 'tanh',
+    out_vector_2 = fluid.layers.tree_conv(out_vector, edge_set, 3, 4, 2, 'tanh',
         ParamAttr(initializer=Constant(1.0), ParamAttr(initializer=Constant(1.0))
     # 输出tensor也可以用来池化(论文中称为global pooling)
-    pooled = layers.reduce_max(out_vector, dims=2) # global 池化
+    pooled = fluid.layers.reduce_max(out_vector, dims=2) # global 池化
 
 
 
@@ -9354,7 +9356,7 @@ uniform_random_batch_size_like
 
 uniform_random_batch_size_like算子。
 
-此运算符使用与输入张量（Tensor）相同的batch_size初始化张量（Tensor），并使用从均匀分布中采样的随机值。
+此算子使用与输入张量（Tensor）相同的batch_size初始化张量（Tensor），并使用从均匀分布中采样的随机值。
 
 参数：
         - **input** （Variable）- 其input_dim_idx'th维度指定batch_size的张量（Tensor）。
@@ -9363,7 +9365,7 @@ uniform_random_batch_size_like算子。
         - **output_dim_idx** （Int）- 默认值0.输出批量大小维度的索引。
         - **min** （Float）- （默认 1.0）均匀随机的最小值。
         - **max** （Float）- （默认 1.0）均匀随机的最大值。
-        - **seed** （Int）- （int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此运算符将始终每次生成相同的随机数。
+        - **seed** （Int）- （int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此算子将始终每次生成相同的随机数。
         - **dtype** （np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等。
 
 返回:        指定形状的张量（Tensor）将使用指定值填充。
@@ -9376,8 +9378,8 @@ uniform_random_batch_size_like算子。
 .. code-block:: python
 
 
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = layers.uniform_random_batch_size_like(input, [-1, 11])
+    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = fluid.layers.uniform_random_batch_size_like(input, [-1, 11])
 
 
 
@@ -9408,8 +9410,8 @@ unsqueeze
 
 .. code-block:: python
 
-    x = layers.data(name='x', shape=[5, 10])
-    y = layers.unsequeeze(input=x, axes=[1])
+    x = fluid.layers.data(name='x', shape=[5, 10])
+    y = fluid.layers.unsequeeze(input=x, axes=[1])
 
 
 
@@ -9461,7 +9463,7 @@ unstack
 warpctc
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, use_cudnn=False))
+.. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, use_cudnn=False)
 
 该操作符集成了 `开源Warp-CTC库 <https://github.com/baidu-research/warp-ctc>`_ ，计算基于神经网络的时序类分类（CTC）损失。原生softmax激活函数集成到Wrap-CTC库中，操作符也可称作含CTC的softmax，将输入张量每一行的值正则化。
 
@@ -9512,9 +9514,9 @@ abs
     out = |x|
 
 参数:
-    - **x** - abs运算符的输入 
+    - **x** - abs算子的输入 
  
-返回：        Abs运算符的输出。
+返回：        Abs算子的输出。
 
 
 
@@ -9533,7 +9535,7 @@ ceil
 
 .. py:function:: paddle.fluid.layers.ceil(x, name=None)
 
-天花板运算激活函数。
+向上取整运算激活函数。
 
 .. math::
     out = \left \lceil x \right \rceil
@@ -9541,9 +9543,9 @@ ceil
 
 
 参数:
-    - **x** - Ceil运算符的输入 
+    - **x** - Ceil算子的输入 
 
-返回：        Ceil运算符的输出。
+返回：        Ceil算子的输出。
         
         
 
@@ -9570,10 +9572,10 @@ Cosine余弦激活函数。
 
 
 参数:
-    - **x** - cos运算符的输入 
+    - **x** - cos算子的输入 
 
 
-返回：        Cos运算符的输出
+返回：        Cos算子的输出
 
 
 
@@ -9589,7 +9591,7 @@ Cosine余弦激活函数。
 cumsum
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.cumsum(x,axis=None,exclusive=None,reverse=None
+.. py:function:: paddle.fluid.layers.cumsum(x,axis=None,exclusive=None,reverse=None)
 
 沿给定轴的元素的累加和。默认结果的第一个元素和输入的第一个元素一致。如果exlusive为真，结果的第一个元素则为0。
 
@@ -9629,7 +9631,7 @@ Exp激活函数(Exp指以自然常数e为底的指数运算)。
     out = e^x
 
 参数:
-    - **x** - Exp运算符的输入 
+    - **x** - Exp算子的输入 
 
 
 返回：       Exp算子的输出
@@ -9651,17 +9653,17 @@ floor
 .. py:function:: paddle.fluid.layers.floor(x, name=None)
 
 
-地板运算激活函数。
+向下取整运算激活函数。
 
 .. math::
     out = \left \lfloor x \right \rfloor
 
 
 参数:
-    - **x** - Floor运算符的输入 
+    - **x** - Floor算子的输入 
 
 
-返回：        Floor运算符的输出。
+返回：        Floor算子的输出。
 
 
 
@@ -9728,9 +9730,9 @@ Logsigmoid激活函数。
 
 
 参数:
-    - **x** - LogSigmoid运算符的输入 
+    - **x** - LogSigmoid算子的输入 
 
-返回：        LogSigmoid运算符的输出
+返回：        LogSigmoid算子的输出
 
 
 
@@ -9755,9 +9757,9 @@ Reciprocal（取倒数）激活函数
     out = \frac{1}{x}
 
 参数:
-    - **x** - Ceil运算符的输入 
+    - **x** - reciprocal算子的输入 
 
-返回：        Reciprocal运算符的输出。        
+返回：        Reciprocal算子的输出。        
 
 
 
@@ -9786,9 +9788,9 @@ Round取整激活函数。
 
 
 参数:
-    - **x** - Ceil运算符的输入 
+    - **x** - round算子的输入 
 
-返回：        Round运算符的输出。
+返回：        Round算子的输出。
         
         
 
@@ -9813,7 +9815,7 @@ sigmoid激活函数
 
 
 参数:
-    - **x** - Sigmoid运算符的输入 
+    - **x** - Sigmoid算子的输入 
 
 返回：     Sigmoid运算输出.
 
@@ -9840,10 +9842,10 @@ sin
 
 
 参数:
-    - **x** - sin运算符的输入 
+    - **x** - sin算子的输入 
 
 
-返回：        Sin运算符的输出。
+返回：        Sin算子的输出。
 
 
 
@@ -9900,7 +9902,7 @@ Softshrink激活算子
         - **x** - Softshrink算子的输入 
         - **lambda** （FLOAT）- 非负偏移量。
 
-返回：       Softshrink运算符的输出
+返回：       Softshrink算子的输出
 
 
 
@@ -9916,7 +9918,7 @@ Softshrink激活算子
 softsign
 -------------------------------
 
-.. py:function:: Paddle.fluid.layers.softsign(x,name=None)
+.. py:function:: paddle.fluid.layers.softsign(x,name=None)
 
 
 softsign激活函数。
@@ -9951,7 +9953,7 @@ sqrt
     out = \sqrt{x}
 
 参数:
-    - **x** - Sqrt运算符的输入 
+    - **x** - Sqrt算子的输入 
 
 返回：       Sqrt算子的输出。
 
@@ -10008,7 +10010,7 @@ tanh 激活函数。
 
 
 参数:
-    - **x** - Tanh运算符的输入  
+    - **x** - Tanh算子的输入  
 
 返回：     Tanh算子的输出。
 
@@ -10035,7 +10037,7 @@ tanh_shrink激活函数。
     out = x - \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
 
 参数:
-    - **x** - TanhShrink运算符的输入 
+    - **x** - TanhShrink算子的输入 
 
 返回：     tanh_shrink算子的输出
 
@@ -10089,7 +10091,7 @@ ThresholdedRelu激活函数
 uniform_random
 -------------------------------
 
-.. py:function:: Paddle.fluid.layers.uniform_random(shape,dtype=None,min=None,max=None,seed=None)
+.. py:function:: paddle.fluid.layers.uniform_random(shape,dtype=None,min=None,max=None,seed=None)
 该操作符初始化一个张量，该张量的值是从均匀分布中抽样的随机值
 
 参数：
@@ -10127,7 +10129,7 @@ uniform_random
 argmax
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.argmin(x,axis=0)
+.. py:function:: paddle.fluid.layers.argmax(x,axis=0)
     
 **argmax**
 
@@ -10686,12 +10688,12 @@ sums
 
     tmp = fluid.layers.zeros(shape=[10], dtype='int32')
     i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-    a0 = layers.array_read(array=tmp, i=i)
-    i = layers.increment(x=i)
-    a1 = layers.array_read(array=tmp, i=i)
-    mean_a0 = layers.mean(a0)
-    mean_a1 = layers.mean(a1)
-    a_sum = layers.sums(input=[mean_a0, mean_a1])
+    a0 = fluid.layers.array_read(array=tmp, i=i)
+    i = fluid.layers.increment(x=i)
+    a1 = fluid.layers.array_read(array=tmp, i=i)
+    mean_a0 = fluid.layers.mean(a0)
+    mean_a1 = fluid.layers.mean(a1)
+    a_sum = fluid.layers.sums(input=[mean_a0, mean_a1])
 
 
 
@@ -11124,7 +11126,7 @@ bipartite_match
 
 .. py:function:: paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
 
-该算子实现了贪心二分匹配算法，该算法用于根据输入距离矩阵获得与最大距离的匹配。对于输入二维矩阵，二分匹配算法可以找到每一行的匹配列（匹配意味着最大距离），也可以找到每列的匹配行。此运算符仅计算列到行的匹配索引。对于每个实例，匹配索引的数量是输入距离矩阵的列号。
+该算子实现了贪心二分匹配算法，该算法用于根据输入距离矩阵获得与最大距离的匹配。对于输入二维矩阵，二分匹配算法可以找到每一行的匹配列（匹配意味着最大距离），也可以找到每列的匹配行。此算子仅计算列到行的匹配索引。对于每个实例，匹配索引的数量是输入距离矩阵的列号。
 
 它有两个输出，匹配的索引和距离。简单的描述是该算法将最佳（最大距离）行实体与列实体匹配，并且匹配的索引在ColToRowMatchIndices的每一行中不重复。如果列实体与任何行实体不匹配，则ColToRowMatchIndices设置为-1。
 
@@ -11217,7 +11219,7 @@ box_clip
 box_coder
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.box_coder(prior_box, prior_box_var, target_box, code_type='encode_center_size', box_normalized=True, name=None)
+.. py:function:: paddle.fluid.layers.box_coder(prior_box, prior_box_var, target_box, code_type='encode_center_size', box_normalized=True, name=None, axis=0)
 
 Bounding Box Coder
 
@@ -11381,9 +11383,9 @@ density prior box的量由fixed_sizes and fixed_ratios决定。显然地，fixed
 detection_map
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.detection_map(detect_res, label, function_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
+.. py:function:: paddle.fluid.layers.detection_map(detect_res, label, class_num, background_label=0, overlap_threshold=0.3, evaluate_difficult=True, has_state=None, input_states=None, out_states=None, ap_version='integral')
 
-检测mAP评估运算符。一般步骤如下：首先，根据检测输入和标签计算TP（true positive）和FP（false positive），然后计算mAP评估值。支持'11 point'和积分mAP算法。请从以下文章中获取更多信息：
+检测mAP评估算子。一般步骤如下：首先，根据检测输入和标签计算TP（true positive）和FP（false positive），然后计算mAP评估值。支持'11 point'和积分mAP算法。请从以下文章中获取更多信息：
 
         https://sanchom.wordpress.com/tag/average-precision/
         
@@ -11482,13 +11484,13 @@ Detection Output Layer for Single Shot Multibox Detector(SSD)
 
 .. code-block:: python
 
-    pb = layers.data(name='prior_box', shape=[10, 4],
+    pb = fluid.layers.data(name='prior_box', shape=[10, 4],
              append_batch_size=False, dtype='float32')
-    pbv = layers.data(name='prior_box_var', shape=[10, 4],
+    pbv = fluid.layers.data(name='prior_box_var', shape=[10, 4],
               append_batch_size=False, dtype='float32')
-    loc = layers.data(name='target_box', shape=[2, 21, 4],
+    loc = fluid.layers.data(name='target_box', shape=[2, 21, 4],
               append_batch_size=False, dtype='float32')
-    scores = layers.data(name='scores', shape=[2, 21, 10],
+    scores = fluid.layers.data(name='scores', shape=[2, 21, 10],
               append_batch_size=False, dtype='float32')
     nmsed_outs = fluid.layers.detection_output(scores=scores,
                            loc=loc,
@@ -11508,7 +11510,7 @@ generate_mask_labels
 
 **为Mask-RCNN生成mask标签**
 
-对于给定的 RoI (Regions of Interest) 和相应的标签，该运算符可以对前景RoI进行采样。 该mask branch对每个前景RoI还具有 :math:`K*M^{2}` 维输出目标，用于编码分辨率为M×M的K个二进制mask，K个种类中的各种类分别对应一个这样的二进制mask。 此mask输出目标用于计算掩码分支的损失。
+对于给定的 RoI (Regions of Interest) 和相应的标签，该算子可以对前景RoI进行采样。 该mask branch对每个前景RoI还具有 :math:`K*M^{2}` 维输出目标，用于编码分辨率为M×M的K个二进制mask，K个种类中的各种类分别对应一个这样的二进制mask。 此mask输出目标用于计算掩码分支的损失。
 
 请注意groud-truth（真实值，下简称GT）分段的数据格式。假设分段如下， 第一个实例有两个GT对象。 第二个实例有一个GT对象，该对象有两个GT分段。
 
@@ -11587,7 +11589,7 @@ generate_mask_labels
 generate_proposal_labels
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_functiones, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], function_nums=None, use_random=True)
+.. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_classes, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], class_nums=None, use_random=True)
 
 **该函数可以应用于 Faster-RCNN 网络，生成建议标签。**
 
@@ -11710,7 +11712,7 @@ iou_similarity
 multi_box_head
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_functiones, aspect_ratios, min_ratio=None, max_ratio=None, min_sizes=None, max_sizes=None, steps=None, step_w=None, step_h=None, offset=0.5, variance=[0.1, 0.1, 0.2, 0.2], flip=True, clip=False, kernel_size=1, pad=0, stride=1, name=None, min_max_aspect_ratios_order=False)
+.. py:function:: paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_classes, aspect_ratios, min_ratio=None, max_ratio=None, min_sizes=None, max_sizes=None, steps=None, step_w=None, step_h=None, offset=0.5, variance=[0.1, 0.1, 0.2, 0.2], flip=True, clip=False, kernel_size=1, pad=0, stride=1, name=None, min_max_aspect_ratios_order=False)
 
 生成SSD（Single Shot MultiBox Detector）算法的候选框。有关此算法的详细信息，请参阅SSD论文 `SSD：Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_ 的2.2节。
 
@@ -11779,7 +11781,7 @@ multiclass_nms
 
 该运算用于对边界框（bounding box）和评分进行多类非极大值抑制（NMS）。
 
-在NMS中，如果提供 ``score_threshold`` 阈值，则此运算符贪婪地选择具有高于 ``score_threshold`` 的高分数的检测边界框（bounding box）的子集，然后如果nms_top_k大于-1，则选择最大的nms_top_k置信度分数。 接着，该运算符基于 ``nms_threshold`` 和 ``nms_eta`` 参数，通过自适应阈值NMS移去与已经选择的框具有高IOU（intersection over union）重叠的框。
+在NMS中，如果提供 ``score_threshold`` 阈值，则此算子贪婪地选择具有高于 ``score_threshold`` 的高分数的检测边界框（bounding box）的子集，然后如果nms_top_k大于-1，则选择最大的nms_top_k置信度分数。 接着，该算子基于 ``nms_threshold`` 和 ``nms_eta`` 参数，通过自适应阈值NMS移去与已经选择的框具有高IOU（intersection over union）重叠的框。
 
 在NMS步骤后，如果keep_top_k大于-1，则每个图像最多保留keep_top_k个总bbox数。
 
@@ -11861,7 +11863,7 @@ PolygonBoxTransform 算子。
 
 prior_box 
 -------------------------------
-.. py:function:: paddle.fluid.layers.prior_box(input,image,min_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
+.. py:function:: paddle.fluid.layers.prior_box(input,image,min_sizes=None,max_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
 
 **Prior Box Operator**
 
@@ -11997,13 +11999,13 @@ rpn_target_assign
 
 ..  code-block:: python
 
-        bbox_pred = layers.data(name=’bbox_pred’, shape=[100, 4],
+        bbox_pred = fluid.layers.data(name=’bbox_pred’, shape=[100, 4],
                 append_batch_size=False, dtype=’float32’)
-        cls_logits = layers.data(name=’cls_logits’, shape=[100, 1],
+        cls_logits = fluid.layers.data(name=’cls_logits’, shape=[100, 1],
                 append_batch_size=False, dtype=’float32’)
-        anchor_box = layers.data(name=’anchor_box’, shape=[20, 4],
+        anchor_box = fluid.layers.data(name=’anchor_box’, shape=[20, 4],
                 append_batch_size=False, dtype=’float32’)
-        gt_boxes = layers.data(name=’gt_boxes’, shape=[10, 4],
+        gt_boxes = fluid.layers.data(name=’gt_boxes’, shape=[10, 4],
                 append_batch_size=False, dtype=’float32’)
         loc_pred, score_pred, loc_target, score_target, bbox_inside_weight=
                 fluid.layers.rpn_target_assign(bbox_pred=bbox_pred,
@@ -12162,9 +12164,9 @@ target_assign
 .. code-block:: python
 
     matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
-    gt = layers.data(
+    gt = fluid.layers.data(
             name='gt', shape=[1, 1], dtype='int32', lod_level=1)
-    trg, trg_weight = layers.target_assign(
+    trg, trg_weight = fluid.layers.target_assign(
                 gt, matched_indices, mismatch_value=0)
 
 

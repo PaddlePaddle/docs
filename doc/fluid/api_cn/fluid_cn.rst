@@ -162,7 +162,9 @@ BuildStrategy
 
 str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有利于调试。 默认值为""。
 
+.. py:attribute:: enable_sequential_execution
 
+类型是BOOL。 如果设置为True，则ops的执行顺序将与program中的执行顺序相同。 默认为False。
 
 
 .. py:attribute:: fuse_elewise_add_act_ops
@@ -1015,10 +1017,10 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 ..  code-block:: python
 
 
-	data = layers.data(name='X', shape=[1], dtype='float32')
-	hidden = layers.fc(input=data, size=10)
+	data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+	hidden = fluid.layers.fc(input=data, size=10)
 	layers.assign(hidden, out)
-	loss = layers.mean(out)
+	loss = fluid.layers.mean(out)
 	adam = fluid.optimizer.Adam()
 	adam.minimize(loss)
 
@@ -1183,7 +1185,7 @@ LoDTensorArray
 
 .. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
-将LoDensor追加到LoDTensorArray后。
+将LoDTensor追加到LoDTensorArray后。
 
 
 
