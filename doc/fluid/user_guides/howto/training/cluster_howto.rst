@@ -19,7 +19,9 @@
 通信。其中RPC通信方式使用 `gRPC <https://github.com/grpc/grpc/>`_ ，Collective通信方式使用
 `NCCL2 <https://developer.nvidia.com/nccl>`_ 。
 
-.. csv-table:: 下面是一个RPC通信和Collective通信的横向对比：
+**RPC通信和Collective通信的横向对比如下：**
+
+.. csv-table:: 
    :header: "Feature", "Collective", "RPC"
 
    "Ring-Based通信", "Yes", "No"
@@ -40,7 +42,7 @@
   pserver进程个数通常需要根据实际情况调整，以达到最佳的性能，然而通常来说pserver的进程不会比trainer\
   更多。
 
-  在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
+  pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
   接收到的梯度数据到GPU的开销，在某些情况下会导致整体训练性能降低。
 
 - NCCL2通信方式的结构：
@@ -57,8 +59,9 @@
 使用 :code:`transpiler` API可以把单机可以执行的程序快速转变成可以分布式执行的程序。在不同的服务器节点
 上，通过传给 :code:`transpiler` 对应的参数，以获取当前节点需要执行的 :code:`Program` 。
 
-
-.. csv-table:: 需要配置参数包括
+需要配置参数包括
+++++++++++++++++++
+.. csv-table:: 
    :header: "参数", "说明"
 
    "role", "\ **必选**\ 区分作为pserver启动还是trainer启动，不传给transpile，也可以用其他的变量名或环境变量"
@@ -109,7 +112,7 @@ Fluid分布式任务可以支持同步训练或异步训练，在同步训练方
 
 
 选择是否使用分布式embedding表进行训练
-+++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++
 
 embedding被广泛应用在各种网络结构中，尤其是文本处理相关的模型。在某些场景，例如推荐系统或者搜索引擎中，
 embedding的feature id可能会非常多，当feature id达到一定数量时，embedding参数会变得很大，一方面可能
@@ -208,7 +211,9 @@ NCCL2模式的分布式训练，由于没有parameter server角色，是trainer�
     loss_name=loss_name, num_trainers=len(trainers.split(",")), trainer_id=trainer_id)
   ...
 
-.. csv-table:: NCCL2模式必要参数说明
+NCCL2模式必要参数说明
+++++++++++++++++++++++++++++++++++++++
+.. csv-table:: 
    :header: "参数", "说明"
 
    "trainer_id", "任务中每个trainer节点的唯一ID，从0开始，不能有重复"
