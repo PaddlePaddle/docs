@@ -9,7 +9,7 @@
 - 如何从逻辑层对实际问题建模
 - 如何调用API（层，数据集，损失函数，优化方法等等）
 
-在进行模型搭建之前，首先需要明确几个Fluid核心使用概念：
+在进行模型搭建之前，首先需要了解Fluid的5个核心概念：
 
 ## 使用Tensor表示数据
 
@@ -194,7 +194,7 @@ y = fluid.layers.data(name='y', shape=[1], dtype='float32')
 cost = fluid.layers.square_error_cost(input=y_predict, label=y)
 ```
 
-**条件分支——switch、if else：**
+**条件分支和循环**
 
 Fluid 中有 switch 和 if-else 类来实现条件选择，用户可以使用这一执行结构在学习率调节器中调整学习率或其他希望的操作：
 
