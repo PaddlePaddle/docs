@@ -13,7 +13,7 @@ Step1: 自定义Reader生成训练/预测数据
 
 Batch级的Reader每次返回一个Batch的数据，Sample级的Reader每次返回单个样本的数据
 
-如果您的数据是Sample级的数据，我们提供了一个可以组建batch及数据预处理的工具：:code:`Python Reader` 。
+如果您的数据是Sample级的数据，我们提供了一个可以数据预处理和组建batch的工具：:code:`Python Reader` 。
 
 
 Step2: 将数据送入网络进行训练/预测
