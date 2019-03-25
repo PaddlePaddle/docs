@@ -1,28 +1,5 @@
 # How to write a new operator
 
-<!--## Table of Contents
-- [How to write a new operator](#How to write a new operator)
-  - [Background](#Background)
-  - [Implementing C++ Types](#Implementing C++ Types)
-    - [Defining ProtoMaker](#Defining ProtoMaker)
-    - [Defining the GradProtoMaker class](#Defining the GradProtoMaker class)
-    - [Defining Operator](#Defining Operator)
-    - [Defining OpKernel](#Defining OpKernel)
-    - [Registering Operator and OpKernel](#Registering Operator and OpKernel)
-    - [Compilation](#Compilation)
-  - [Python Binding](#Python Binding)
-  - [Unit Tests](#Unit Tests)
-    - [Unit Test for Forward Operators](#Unit Test for Forward Operators)
-    - [Unit test for backward operators](#Unit test for backward operators)
-    - [Compiling and Running](#Compiling and Running)
-  - [Remarks](#Remarks)
-    - [PADDLE_ENFORCE Usage Note](#PADDLE_ENFORCE Usage Note)
-      - [General Principles](#General Principles)
-      - [Error Message Standard](#Error Message Standard)
-      - [Typical Problems](#Typical Problems)
-      - [OP InferShape check message special instructions](#OP InferShape check message special instructions)
--->
-
 <a name="Background"></a>
 ## Background
 
