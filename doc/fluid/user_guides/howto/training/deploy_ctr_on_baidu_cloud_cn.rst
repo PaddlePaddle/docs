@@ -3,19 +3,19 @@
 百度云分布式训练CTR
 =========================
 
-Fluid支持数据并行的分布式训练，也支持基于k8s的分布式部署。用户可以利用百度云，来分布式训练ctr任务。
+Fluid支持数据并行的分布式训练，也支持基于Kubernetes的分布式部署。本文以百度云为例，说明如何通过在云服务器上分布式训练Click-Through-Rate（以下简称ctr）任务。
 
-1. 概念了解
+1. 使用前的准备
 ----------------
-基本概念可以参考 `官网文档 <https://cloud.baidu.com/doc/CCE/GettingStarted/24.5C.E6.93.8D.E4.BD.9C.E6.B5.81.E7.A8.8B.html#.E6.93.8D.E4.BD.9C.E6.B5.81.E7.A8.8B>`_ 做了解
+百度云容器引擎的使用流程基本概念可以参考 `官网文档 <https://cloud.baidu.com/doc/CCE/GettingStarted/24.5C.E6.93.8D.E4.BD.9C.E6.B5.81.E7.A8.8B.html#.E6.93.8D.E4.BD.9C.E6.B5.81.E7.A8.8B>`_ 做了解
 
 2. 创建集群
 ----------------
-登陆百度云官网，按照 `帮助文档 <https://cloud.baidu.com/doc/CCE/GettingStarted/24.5C.E5.88.9B.E5.BB.BA.E9.9B.86.E7.BE.A4.html#.E6.93.8D.E4.BD.9C.E6.AD.A5.E9.AA.A4>`_ 建立一个集群。
+具体请参考 `帮助文档 <https://cloud.baidu.com/doc/CCE/GettingStarted/24.5C.E5.88.9B.E5.BB.BA.E9.9B.86.E7.BE.A4.html#.E6.93.8D.E4.BD.9C.E6.AD.A5.E9.AA.A4>`_ 说明文档来建立一个集群。
 
 集群配置需要满足如下要求
 
-- 集群名称定义为 `default`
+- 集群名称定义为 .. code-block:: default
 
     + 集群名称对后续操作有影响，如果用其它名称，请修改后面步骤的集群名字，使其保持一致
 
@@ -30,7 +30,6 @@ Fluid支持数据并行的分布式训练，也支持基于k8s的分布式部署
 3. 操作集群
 ----------------
 集群的操作可以通过百度云web或者通过kubectl工具进行，推荐用 `kubectl工具 <https://cloud.baidu.com/doc/CCE/GettingStarted.html#.9A.A4.11.34.30.82.16.52.AD.4D.B9.72.E8.10.44.C0>`_ 。
-
 
 从Kubernetes 版本下载页面下载对应的 kubectl 客户端，关于kubectl 的其他信息，可以参见kubernetes官方安装和设置 kubectl文档。
 
@@ -69,7 +68,7 @@ Fluid支持数据并行的分布式训练，也支持基于k8s的分布式部署
 
 5. 部署任务
 ----------------
-任务的所有脚本文件可以访问 https://github.com/PaddlePaddle/edl/tree/develop/example 地址拿到。
+任务的所有脚本文件可以访问 `这里 <https://github.com/PaddlePaddle/edl/tree/develop/example/ctr>`_ 获取。
 
 - ctr：ctr任务对应的python脚本
 - ps-train：k8s任务对应的yaml文件
@@ -81,7 +80,7 @@ Fluid支持数据并行的分布式训练，也支持基于k8s的分布式部署
 - Dockerfile：pod文件的docker镜像生成文件
 - Script：pod文件docker镜像中包含的脚本
 
-直接通过
+通过执行
 
 .. code-block:: bash
 
