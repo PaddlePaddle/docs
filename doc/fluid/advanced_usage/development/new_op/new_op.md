@@ -1,20 +1,5 @@
 # 如何写新的op
 
- - [概念简介](#概念简介)
- - [实现C++类](#实现c类)
-   - [定义ProtoMaker类](#定义protomaker类)
-   - [定义Operator类](#定义operator类)
-   - [定义OpKernel类](#定义opkernel类)
-   - [注册Operator](#注册operator)
-   - [编译](#编译)
- - [绑定Python](#绑定python)
- - [实现单元测试](#实现单元测试)
-   - [前向Operator单测](#前向operator单测)
-   - [反向Operator单测](#反向operator单测)
-   - [编译和执行](#编译和执行)
- - [注意事项](#注意事项)
-
-
 ## 概念简介
 
 简单介绍需要用到基类，详细介绍请参考设计文档。
@@ -92,7 +77,7 @@ The equation is: Out = X * Y
 
 构造函数里通过`AddInput`添加输入参数，通过`AddOutput`添加输出参数，通过`AddComment`添加Op的注释。这些函数会将对应内容添加到`OpProto`中。
 
-上面的代码在`MulOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，并解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/Paddle/blob/develop/doc/fluid/dev/name_convention.md)。
+上面的代码在`MulOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，并解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
 
 再以[`ScaleOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/scale_op.cc#L38-L55)为例：
