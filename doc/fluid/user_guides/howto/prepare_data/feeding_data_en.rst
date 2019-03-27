@@ -45,6 +45,8 @@ For example:
 .. code-block:: python
 
    exe = fluid.Executor(fluid.CPUPlace())
+   # initial exe
+   exe.run(fluid.default_startup_program())
    exe.run(feed={
       "image": numpy.random.random(size=(32, 3, 224, 224)).astype('float32'),
       "label": numpy.random.random(size=(32, 1)).astype('int64')
