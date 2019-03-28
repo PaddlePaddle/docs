@@ -3723,8 +3723,8 @@ embedding
 .. code-block:: python
 
     dict_size = len(dataset.ids)
-    data = fluid.layers.data(name='ids', shape=[32, 32], dtype='float32')
-    fc = fluid.layers.embedding(input=data, size=[dict_size, 16])
+    data = fluid.layers.data(name='ids', shape=[1], dtype='int64')
+    fc = fluid.layers.embedding(input=data, size=[dict_size, 16], dtype='float32')
 
 
 
