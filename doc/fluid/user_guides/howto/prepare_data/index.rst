@@ -6,17 +6,17 @@
 
 使用PaddlePaddle Fluid准备数据分为两个步骤：
 
-Step1: 自定义Reader生成训练/预测数据
+Step1: 使用Reader加载训练或预测所需的数据
 ###################################
 
-生成的数据类型可以为Numpy Array或LoDTensor。根据Reader返回的数据形式的不同，可分为Batch级的Reader和Sample（样本）级的Reader。
+Reader加载数据后生成的数据类型为Numpy Array或LoDTensor。根据Reader返回的数据形式的不同，可分为Batch级的Reader和Sample（样本）级的Reader。
 
 Batch级的Reader每次返回一个Batch的数据，Sample级的Reader每次返回单个样本的数据
 
 如果您的数据是Sample级的数据，我们提供了一个可以数据预处理和组建batch的工具：:code:`Python Reader` 。
 
 
-Step2: 将数据送入网络进行训练/预测
+Step2: 将数据送入网络进行训练或预测
 ###################################
 
 Fluid提供两种方式，分别是同步Feed方式或异步py_reader接口方式，具体介绍如下：
