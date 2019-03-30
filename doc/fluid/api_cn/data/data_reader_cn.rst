@@ -118,10 +118,10 @@ Reader
 
 在训练和测试时，PaddlePaddle需要读取数据。为了简化用户编写数据读取代码的工作，我们定义了
 
-	- reader是一个读取数据（从文件、网络、随机数生成器等）并生成数据项的函数。
-	- reader creator是返回reader函数的函数。
-	- reader decorator是一个函数，它接受一个或多个reader，并返回一个reader。
-	- batch reader是一个函数，它读取数据（从reader、文件、网络、随机数生成器等）并生成一批数据项。 
+	- reader是一个加载数据（从文件、网络、随机数生成器等）并生成Fluid所使用的数据的函数。
+	- reader creator是返回reader的函数。
+	- reader decorator是接受一个或多个reader并返回一个reader的函数。
+	- batch reader是读取数据（从reader、文件、网络、随机数生成器等）并生成一批数据的函数。 
 
 
 Data Reader Interface
