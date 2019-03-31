@@ -88,4 +88,4 @@ What to do next?
 #################
 
 Attention needs to be paid for **Data Layer**, **Forward Computing Logic**, **Loss function** and **Optimization Function** while you use PaddlePaddle to implement models.
-The data format, computing logic, loss function and optimization function are all different in different tasks. A rich number of examples of model are provided in PaddlePaddle. You can build your own model structure by referring to these examples. You can visit `Model Repository <https://github.com/PaddlePaddle/models/tree/develop/fluid>`_ to refer to examples in official documentation.
+The data format, computing logic, loss function and optimization function are all different in different tasks. A rich number of examples of model are provided in PaddlePaddle. You can build your own model structure by referring to these examples. You can visit `Model Repository <../../../user_guides/models/index_en.html>`_ to refer to examples in official documentation.
