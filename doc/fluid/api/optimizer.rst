@@ -86,6 +86,15 @@ DecayedAdagradOptimizer
     :members:
     :noindex:
 
+.. _api_fluid_optimizer_DGCMomentumOptimizer:
+
+DGCMomentumOptimizer
+--------------------
+
+..  autoclass:: paddle.fluid.optimizer.DGCMomentumOptimizer
+    :members:
+    :noindex:
+
 .. _api_fluid_optimizer_Ftrl:
 
 Ftrl

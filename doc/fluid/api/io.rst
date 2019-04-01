@@ -37,6 +37,15 @@ load_vars
 ..  autofunction:: paddle.fluid.io.load_vars
     :noindex:
 
+.. _api_fluid_io_PyReader:
+
+PyReader
+--------
+
+..  autoclass:: paddle.fluid.io.PyReader
+    :members:
+    :noindex:
+
 .. _api_fluid_io_save_inference_model:
 
 save_inference_model
