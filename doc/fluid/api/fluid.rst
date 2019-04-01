@@ -32,6 +32,14 @@ CompiledProgram
     :members:
     :noindex:
 
+.. _api_fluid_cpu_places:
+
+cpu_places
+----------
+
+..  autofunction:: paddle.fluid.cpu_places
+    :noindex:
+
 .. _api_fluid_CPUPlace:
 
 CPUPlace
@@ -55,6 +63,22 @@ create_random_int_lodtensor
 ---------------------------
 
 ..  autofunction:: paddle.fluid.create_random_int_lodtensor
+    :noindex:
+
+.. _api_fluid_cuda_pinned_places:
+
+cuda_pinned_places
+------------------
+
+..  autofunction:: paddle.fluid.cuda_pinned_places
+    :noindex:
+
+.. _api_fluid_cuda_places:
+
+cuda_places
+-----------
+
+..  autofunction:: paddle.fluid.cuda_places
     :noindex:
 
 .. _api_fluid_CUDAPinnedPlace:

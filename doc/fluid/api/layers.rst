@@ -575,6 +575,14 @@ flatten
 ..  autofunction:: paddle.fluid.layers.flatten
     :noindex:
 
+.. _api_fluid_layers_fsp_matrix:
+
+fsp_matrix
+----------
+
+..  autofunction:: paddle.fluid.layers.fsp_matrix
+    :noindex:
+
 .. _api_fluid_layers_gather:
 
 gather
@@ -685,6 +693,14 @@ image_resize_short
 ------------------
 
 ..  autofunction:: paddle.fluid.layers.image_resize_short
+    :noindex:
+
+.. _api_fluid_layers_kldiv_loss:
+
+kldiv_loss
+----------
+
+..  autofunction:: paddle.fluid.layers.kldiv_loss
     :noindex:
 
 .. _api_fluid_layers_l2_normalize:
@@ -877,6 +893,14 @@ nce
 ---
 
 ..  autofunction:: paddle.fluid.layers.nce
+    :noindex:
+
+.. _api_fluid_layers_npair_loss:
+
+npair_loss
+----------
+
+..  autofunction:: paddle.fluid.layers.npair_loss
     :noindex:
 
 .. _api_fluid_layers_one_hot:
@@ -1077,6 +1101,14 @@ row_conv
 --------
 
 ..  autofunction:: paddle.fluid.layers.row_conv
+    :noindex:
+
+.. _api_fluid_layers_sampled_softmax_with_cross_entropy:
+
+sampled_softmax_with_cross_entropy
+----------------------------------
+
+..  autofunction:: paddle.fluid.layers.sampled_softmax_with_cross_entropy
     :noindex:
 
 .. _api_fluid_layers_sampling_id:
@@ -1319,6 +1351,14 @@ space_to_depth
 ..  autofunction:: paddle.fluid.layers.space_to_depth
     :noindex:
 
+.. _api_fluid_layers_spectral_norm:
+
+spectral_norm
+-------------
+
+..  autofunction:: paddle.fluid.layers.spectral_norm
+    :noindex:
+
 .. _api_fluid_layers_split:
 
 split
@@ -1381,6 +1421,14 @@ teacher_student_sigmoid_loss
 ----------------------------
 
 ..  autofunction:: paddle.fluid.layers.teacher_student_sigmoid_loss
+    :noindex:
+
+.. _api_fluid_layers_temporal_shift:
+
+temporal_shift
+--------------
+
+..  autofunction:: paddle.fluid.layers.temporal_shift
     :noindex:
 
 .. _api_fluid_layers_topk:
@@ -1448,6 +1496,30 @@ abs
 ---
 
 ..  autofunction:: paddle.fluid.layers.abs
+    :noindex:
+
+.. _api_fluid_layers_acos:
+
+acos
+----
+
+..  autofunction:: paddle.fluid.layers.acos
+    :noindex:
+
+.. _api_fluid_layers_asin:
+
+asin
+----
+
+..  autofunction:: paddle.fluid.layers.asin
+    :noindex:
+
+.. _api_fluid_layers_atan:
+
+atan
+----
+
+..  autofunction:: paddle.fluid.layers.atan
     :noindex:
 
 .. _api_fluid_layers_ceil:
@@ -1733,6 +1805,14 @@ ones
 ..  autofunction:: paddle.fluid.layers.ones
     :noindex:
 
+.. _api_fluid_layers_range:
+
+range
+-----
+
+..  autofunction:: paddle.fluid.layers.range
+    :noindex:
+
 .. _api_fluid_layers_reverse:
 
 reverse
@@ -1776,6 +1856,14 @@ append_LARS
 ..  autofunction:: paddle.fluid.layers.append_LARS
     :noindex:
 
+.. _api_fluid_layers_cosine_decay:
+
+cosine_decay
+------------
+
+..  autofunction:: paddle.fluid.layers.cosine_decay
+    :noindex:
+
 .. _api_fluid_layers_exponential_decay:
 
 exponential_decay
@@ -1790,6 +1878,14 @@ inverse_time_decay
 ------------------
 
 ..  autofunction:: paddle.fluid.layers.inverse_time_decay
+    :noindex:
+
+.. _api_fluid_layers_linear_lr_warmup:
+
+linear_lr_warmup
+----------------
+
+..  autofunction:: paddle.fluid.layers.linear_lr_warmup
     :noindex:
 
 .. _api_fluid_layers_natural_exp_decay:
@@ -1859,6 +1955,14 @@ box_coder
 ..  autofunction:: paddle.fluid.layers.box_coder
     :noindex:
 
+.. _api_fluid_layers_box_decoder_and_assign:
+
+box_decoder_and_assign
+----------------------
+
+..  autofunction:: paddle.fluid.layers.box_decoder_and_assign
+    :noindex:
+
 .. _api_fluid_layers_density_prior_box:
 
 density_prior_box
@@ -1881,6 +1985,14 @@ detection_output
 ----------------
 
 ..  autofunction:: paddle.fluid.layers.detection_output
+    :noindex:
+
+.. _api_fluid_layers_distribute_fpn_proposals:
+
+distribute_fpn_proposals
+------------------------
+
+..  autofunction:: paddle.fluid.layers.distribute_fpn_proposals
     :noindex:
 
 .. _api_fluid_layers_generate_mask_labels:
@@ -1977,6 +2089,14 @@ target_assign
 -------------
 
 ..  autofunction:: paddle.fluid.layers.target_assign
+    :noindex:
+
+.. _api_fluid_layers_yolo_box:
+
+yolo_box
+--------
+
+..  autofunction:: paddle.fluid.layers.yolo_box
     :noindex:
 
 .. _api_fluid_layers_yolov3_loss:
