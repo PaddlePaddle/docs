@@ -1,4 +1,4 @@
-`Fluid Model Library <https://github.com/PaddlePaddle/models/tree/develop/fluid>`__
+`Fluid Model Library <https://github.com/PaddlePaddle/models>`__
 ============
 
 Image classification
