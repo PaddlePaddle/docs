@@ -20,9 +20,13 @@ PaddlePaddle目前支持以下环境：
 
 :code:`pip install paddlepaddle-gpu` （GPU版本最新）
 
-:code:`pip install paddlepaddle==[pip版本号]`
+注：:code:`pip install paddlepaddle-gpu` 命令将安装支持CUDA 9.0 cuDNN v7的PaddlePaddle，如果您的CUDA或cuDNN版本与此不同，可以参考 `这里 <https://pypi.org/project/paddlepaddle-gpu/#history>`_ 了解其他CUDA/cuDNN版本所适用的安装命令
 
-	其中[pip版本号]请查阅 `PyPi.org <https://pypi.org/search/?q=PaddlePaddle>`_
+如果您希望通过 ``pip`` 方式安装老版本的PaddlePaddle，您可以使用如下命令：
+
+:code:`pip install paddlepaddle==[PaddlePaddle版本号]` (CPU版，具体版本号请参考 `这里 <https://pypi.org/project/paddlepaddle/#history>`_ )
+
+:code:`pip install paddlepaddle-gpu==[PaddlePaddle版本号]` (GPU版,具体版本号请参考 `这里 <https://pypi.org/project/paddlepaddle-gpu/#history>`_ )
 
 - 如果您希望使用 `docker <https://www.docker.com>`_ 安装PaddlePaddle可以直接使用以下命令:
 :code:`docker run --name [Name of container] -it -v $PWD:/paddle hub.baidubce.com/paddlepaddle/paddle:[docker版本号] /bin/bash`
