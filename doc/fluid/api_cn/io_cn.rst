@@ -9,9 +9,9 @@
 load_inference_model
 -------------------------------
 
-.. py:function:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
+.. py:class:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
 
-从指定目录中加载预测模型(inference model)。
+从指定目录中加载预测模型model(inference model)
 
 参数:
   - **dirname** (str) – model的路径
@@ -52,13 +52,13 @@ load_inference_model
 load_params
 -------------------------------
 
-.. py:function:: paddle.fluid.io.load_params(executor, dirname, main_program=None, filename=None)
+.. py:class:: paddle.fluid.io.load_params(executor, dirname, main_program=None, filename=None)
 
-该函数从给定 ``main_program`` 中取出所有参数，然后从目录 ``dirname`` 中或 ``filename`` 指定的文件中加载这些参数。
+该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们加载保存在到目录 ``dirname`` 中或文件中的参数。
 
-``dirname`` 用于存有变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指明这个文件。
+``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它
 
-注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。
+注意:有些变量不是参数，但它们对于训练是必要的。因此，您不能仅通过 ``save_params()`` 和 ``load_params()`` 保存并之后继续训练。可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数
 
 参数:
  - **executor**  (Executor) – 加载变量的 executor
@@ -89,11 +89,11 @@ load_params
 load_persistables
 -------------------------------
 
-.. py:function:: paddle.fluid.io.load_persistables(executor, dirname, main_program=None, filename=None)
+.. py:class:: paddle.fluid.io.load_persistables(executor, dirname, main_program=None, filename=None)
 
-该函数从给定 ``main_program`` 中取出所有 ``persistable==True`` 的变量（即长期变量），然后将它们从目录 ``dirname`` 中或 ``filename`` 指定的文件中加载出来。
+该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们加载保存在到目录 ``dirname`` 中或文件中的参数。
 
-``dirname`` 用于指定存有长期变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它。
+``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它
 
 参数:
     - **executor**  (Executor) – 加载变量的 executor
@@ -124,13 +124,13 @@ load_persistables
 load_vars
 -------------------------------
 
-.. py:function:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
+.. py:class:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
 ``executor`` 从指定目录加载变量。
 
 有两种方法来加载变量:方法一，``vars`` 为变量的列表。方法二，将已存在的 ``Program`` 赋值给 ``main_program`` ，然后将加载 ``Program`` 中的所有变量。第一种方法优先级更高。如果指定了 vars，那么忽略 ``main_program`` 和 ``predicate`` 。
 
-``dirname`` 用于指定加载变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用 ``filename`` 来指定它。
+``dirname`` 用于指定加载变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用 ``filename`` 来指定它
 
 参数:
  - **executor**  (Executor) – 加载变量的 executor
@@ -173,7 +173,121 @@ load_vars
  
 
 
+.. _cn_api_fluid_io_PyReader:
 
+PyReader
+-------------------------------
+
+.. py:class:: paddle.fluid.io.PyReader(feed_list, capacity, use_double_buffer=True, iterable=False)
+
+
+在python中为数据输入创建一个reader对象。将使用python线程预取数据，并将其异步插入队列。当调用Executor.run（…）时，将自动提取队列中的数据。 
+
+参数:
+  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建。
+  - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
+  - **use_double_buffer** (bool) – 是否使用``double_buffer_reader ``来加速数据输入。
+  - **iterable** (bool) –  被创建的reader对象是否可迭代。
+
+返回: 被创建的reader对象
+
+返回类型： reader (Reader)
+
+
+**代码示例**
+
+1.如果iterable=false，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException `` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
+
+..  code-block:: python
+
+    image = fluid.layers.data(
+            name='image', shape=[784], dtype='float32')
+    label = fluid.layers.data(
+            name='label', shape=[1], dtype='int64')
+
+    reader = fluid.io.PyReader(feed_list=[image, label],
+            capacity=4, iterable=False)
+    reader.decorate_sample_list_generator(user_defined_reader)
+... # definition of network is omitted
+    executor.run(fluid.default_main_program())
+    for _ in range(EPOCH_NUM):
+        reader.start()
+        while True:
+          try:
+              executor.run(feed=None, ...)
+          except fluid.core.EOFException:
+              reader.reset()
+              break
+
+
+2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 
+
+..  code-block:: python
+
+    image = fluid.layers.data(
+            name='image', shape=[784], dtype='float32')
+    label = fluid.layers.data(
+            name='label', shape=[1], dtype='int64')
+
+    reader = fluid.io.PyReader(feed_list=[image, label],
+            capacity=4, iterable=True)
+    reader.decorate_sample_list_generator(user_defined_reader,
+            places=fluid.cuda_places())
+... # definition of network is omitted
+    executor.run(fluid.default_main_program())
+    for _ in range(EPOCH_NUM):
+        for data in reader():
+            executor.run(feed=data, ...)
+
+.. py:method::start()
+
+启动数据输入线程。只能在reader对象不可迭代时调用。
+
+.. py:method::reset()
+
+当 ``fluid.core.EOFException`` 提升时重置reader对象。只能在reader对象不可迭代时调用。
+
+.. py:method::decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=None)
+
+设置Pyreader对象的数据源。
+
+提供的 ``sample_generator `` 应该是一个python生成器，它生成每个示例的numpy.ndarray类型的数据。
+
+当Pyreader对象不可迭代时，必须设置 ``places`` 。
+
+如果所有的输入都没有LOD，这个方法比 ``decorate_sample_list_generator(paddle.batch(sample_generator, ...))`` 更快。
+
+参数:
+  - **sample_generator** (generator)  – 返回numpy.ndarray类型样本数据的Python生成器
+  - **batch_size** (int) – batch size，必须大于0
+  - **drop_last** (bool) – 当样本数小于batch数量时，是否删除最后一个batch
+  - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
+
+
+.. py:method::decorate_sample_list_generator(reader, places=None)
+
+设置Pyreader对象的数据源。
+
+提供的 ``reader`` 应该是一个python生成器，它生成列表（numpy.ndarray）类型的批处理数据。
+
+当Pyreader对象不可迭代时，必须设置 ``places`` 。
+
+参数:
+  - **reader** (generator)  – 返回列表（numpy.ndarray）类型的批处理数据的Python生成器
+  - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
+
+
+.. py:method::decorate_batch_generator(reader, places=None)
+
+设置Pyreader对象的数据源。
+
+提供的 ``reader`` 应该是一个python生成器，它生成列表（numpy.ndarray）类型或LoDTensor类型的批处理数据。
+
+当Pyreader对象不可迭代时，必须设置 ``places`` 。
+
+参数:
+  - **reader** (generator)  – 返回LoDTensor类型的批处理数据的Python生成器
+  - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
 
 
 
@@ -182,12 +296,11 @@ load_vars
 save_inference_model
 -------------------------------
 
-.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
+.. py:class:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
 
-修改指定的 ``main_program`` ，构建一个专门用于预测的 ``Program``，然后  ``executor`` 把它和所有相关参数保存到 ``dirname`` 中。
+修改指定的 ``main_program`` ，构建一个专门用预测的 ``Program``，然后  ``executor`` 把它和所有相关参数保存到 ``dirname`` 中
 
-
-``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它。
+``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它
 
 参数:
   - **dirname** (str) – 保存预测model的路径
@@ -230,13 +343,13 @@ save_inference_model
 save_params
 -------------------------------
 
-.. py:function:: paddle.fluid.io.save_params(executor, dirname, main_program=None, filename=None)
+.. py:class:: paddle.fluid.io.save_params(executor, dirname, main_program=None, filename=None)
 
-该函数从 ``main_program`` 中取出所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
+该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们保存到目录 ``dirname`` 中或文件中。
 
-``dirname`` 用于指定保存变量的目标目录。如果想将变量保存到多个独立文件中，设置 ``filename`` 为 None; 如果想将所有变量保存在单个文件中，请使用 ``filename`` 来指定该文件的命名。
+``dirname`` 用于指定保存变量的目录。如果想将变量保存到指定目录的若干文件中，设置文件名 None; 如果想将所有变量保存在一个文件中，请使用filename来指定它
 
-注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。
+注意:有些变量不是参数，但它们对于训练是必要的。因此，您不能仅通过 ``save_params()`` 和 ``load_params()`` 保存并之后继续训练。可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数
 
 
 参数:
@@ -244,7 +357,7 @@ save_params
  - **dirname**  (str) – 目录路径
  - **main_program**  (Program|None) – 需要保存变量的 Program。如果为 None，则使用 default_main_Program 。默认值: None
  - **vars**  (list[Variable]|None) –  要保存的所有变量的列表。 优先级高于main_program。默认值: None
- - **filename**  (str|None) – 保存变量的文件。如果想分不同独立文件来保存变量，设置 filename=None. 默认值: None
+ - **filename**  (str|None) – 保存变量的文件。如果想分开保存变量，设置 filename=None. 默认值: None
  
 返回: None
   
@@ -269,11 +382,11 @@ save_params
 save_persistables
 -------------------------------
 
-.. py:function:: paddle.fluid.io.save_persistables(executor, dirname, main_program=None, filename=None)
+.. py:class:: paddle.fluid.io.save_persistables(executor, dirname, main_program=None, filename=None)
 
-该函数从给定 ``main_program`` 中取出所有 ``persistable==True`` 的变量，然后将它们保存到目录 ``dirname`` 中或 ``filename`` 指定的文件中。
+该函数过滤掉 给定 ``main_program`` 中所有参数，然后将它们保存到目录 ``dirname`` 中或文件中。
 
-``dirname`` 用于指定保存长期变量的目录。如果想将变量保存到指定目录的若干文件中，设置 ``filename=None`` ; 如果想将所有变量保存在一个文件中，请使用 ``filename`` 来指定它。
+``dirname`` 用于指定保存变量的目录。如果想将变量保存到指定目录的若干文件中，设置 ``filename=None`` ; 如果想将所有变量保存在一个文件中，请使用 ``filename`` 来指定它
 
 参数:
  - **executor**  (Executor) – 保存变量的 executor
@@ -307,7 +420,7 @@ save_persistables
 save_vars
 -------------------------------
 
-.. py:function:: paddle.fluid.io.save_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
+.. py:class:: paddle.fluid.io.save_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
 通过 ``Executor`` ,此函数将变量保存到指定目录下。
 

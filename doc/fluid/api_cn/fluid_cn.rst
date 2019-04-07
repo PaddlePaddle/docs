@@ -162,9 +162,7 @@ BuildStrategy
 
 str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有利于调试。 默认值为""。
 
-.. py:attribute:: enable_sequential_execution
 
-类型是BOOL。 如果设置为True，则ops的执行顺序将与program中的执行顺序相同。 默认为False。
 
 
 .. py:attribute:: fuse_elewise_add_act_ops
@@ -250,6 +248,26 @@ CompiledProgram用于转换程序以进行各种优化。例如，
 返回: self
 
 
+.. _cn_api_fluid_cpu_places:
+
+cpu_places
+-------------------------------
+
+.. py:function:: paddle.fluid.cpu_places(device_count=None) 
+
+创建 ``fluid.CPUPlace`` 对象列表。
+
+如果 ``device_count`` 为None，则设备计数将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备计数将由 ``multiprocessing.cpu_count()`` 确定。
+
+参数：
+  - **device_count** (None|int) - 设备计数
+
+返回: CPU位置列表
+
+返回类型：out (list(fluid.CPUPlace))
+
+
+
 
 .. _cn_api_fluid_CPUPlace:
 
@@ -259,7 +277,7 @@ CPUPlace
 .. py:class:: paddle.fluid.CPUPlace
 
 
-
+cpuplace是设备的描述符。它代表一个CPU，CPU可以访问内存的CPU位置。
 
 
 
@@ -356,13 +374,20 @@ create_random_int_lodtensor
 CUDAPinnedPlace
 -------------------------------
 
-.. py:class:: paddle.fluid.CUDAPinnedPlace
+.. py:class:: paddle.fluid.cuda_pinned_places(device_count=None)
 
 
 
+创建 ``fluid.CUDAPinnedPlace`` 对象列表。
 
+如果 ``device_count`` 为None，则设备计数将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备计数将由 ``multiprocessing.cpu_count()`` 确定。
 
+参数：
+  - **device_count** (None|int) - 设备计数
 
+返回: cuda pinned位置列表
+
+返回类型：out(list(fluid.CUDAPinnedPlace))
 
 
 
@@ -374,9 +399,22 @@ CUDAPinnedPlace
 CUDAPlace
 -------------------------------
 
-.. py:class:: paddle.fluid.CUDAPlace
+.. py:class:: paddle.fluid.cuda_places(device_ids=None)
+
+创建 ``fluid.CUDAPlace`` 对象列表。
 
 
+如果 ``device_ids`` 为none，则首先检查 ``FLAGS_selected_gpus`` 的环境变量。如果 ``FLAGS_selected_gpus=0,1,2`` ，则返回的列表将为[fluid.cudaplace（0），fluid.cudaplace（1），fluid.cudaplace（2）]。如果未设置标志 ``FLAGS_selected_gpus`` ，则将返回所有可见的GPU位置。
+
+
+如果 ``device_ids`` 不是“无”，它应该是GPU的设备ID。例如，如果 ``device_id=[0,1,2]`` ，返回的列表将是[fluid.cudaplace（0），fluid.cudaplace（1），fluid.cudaplace（2）]。
+
+参数：
+  - **device_count** (None|list(int)|tuple(int)) - GPU设备ID列表
+
+返回: GPU位置列表
+
+返回类型：out (list(fluid.CUDAPlace))
 
 
 
@@ -890,7 +928,7 @@ ExecutionStrategy
 
 .. py:attribute:: num_iteration_per_drop_scope
   
-int型成员。它表明了清空执行时产生的临时变量需要的程序执行重复次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为100。
+int型成员。它表明了清空执行时产生的临时变量需要的程序执行重复次数。因为临时变量的形可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为100。
 
 .. note::
   1. 如果在调用 ``run`` 方法时获取结果数据，``ParallelExecutor`` 会在当前程序重复执行尾部清空临时变量
@@ -1017,10 +1055,10 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 ..  code-block:: python
 
 
-	data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-	hidden = fluid.layers.fc(input=data, size=10)
+	data = layers.data(name='X', shape=[1], dtype='float32')
+	hidden = layers.fc(input=data, size=10)
 	layers.assign(hidden, out)
-	loss = fluid.layers.mean(out)
+	loss = layers.mean(out)
 	adam = fluid.optimizer.Adam()
 	adam.minimize(loss)
 
@@ -1185,7 +1223,7 @@ LoDTensorArray
 
 .. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
-将LoDTensor追加到LoDTensorArray后。
+将LoDensor追加到LoDTensorArray后。
 
 
 
