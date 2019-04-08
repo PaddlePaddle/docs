@@ -94,7 +94,50 @@ PyReader provides :code:`decorate_tensor_provider` and :code:`decorate_paddle_re
 1. :code:`decorate_tensor_provider` :  :code:`generator` generates a  :code:`list` or :code:`tuple` each time, with each element of :code:`list` or :code:`tuple` being :code:`LoDTensor` or Numpy array, and :code:`LoDTensor` or :code:`shape` of Numpy array must be the same as :code:`shapes` stated while PyReader is created.
 
 
-2. :code:`decorate_paddle_reader` :  :code:`generator` generates a :code:`list` or :code:`tuple` each time, with each element of :code:`list` or :code:`tuple` being Numpy array,but the :code:`shape` of Numpy array doesn't have to be the same as :code:`shape` stated while PyReader is created. :code:`decorate_paddle_reader` will :code:`reshape` Numpy array internally. 
+2. :code:`decorate_paddle_reader` :  :code:`generator` generates a :code:`list` or :code:`tuple` each time, with each element of :code:`list` or :code:`tuple` being Numpy array,but the :code:`shape` of Numpy array doesn't have to be the same as :code:`shape` stated while PyReader is created. :code:`decorate_paddle_reader` will :code:`reshape` Numpy array internally.
+
+example usage：
+
+.. code-block:: python
+
+    import paddle.batch
+    import paddle.fluid as fluid
+    import numpy as np
+
+    BATCH_SIZE = 32
+
+    # Case 1: Use decorate_paddle_reader() method to set the data source of py_reader
+    # The generator yields Numpy-typed batched data
+    def fake_random_numpy_reader():
+        image = np.random.random(size=(784, ))
+        label = np.random.random_integers(size=(1, ), low=0, high=9)
+        yield image, label
+
+    py_reader1 = fluid.layers.py_reader(
+        capacity=10,
+        shapes=((-1, 784), (-1, 1)),
+        dtypes=('float32', 'int64'),
+        name='py_reader1',
+        use_double_buffer=True)
+
+    py_reader1.decorate_paddle_reader(paddle.batch(fake_random_reader, batch_size=BATCH_SIZE))
+
+
+    # Case 2: Use decorate_tensor_provider() method to set the data source of py_reader
+    # The generator yields Tensor-typed batched data
+    def fake_random_tensor_provider():
+        image = np.random.random(size=(BATCH_SIZE, 784)).astype('float32')
+        label = np.random.random_integers(size=(BATCH_SIZE, 1), low=0, high=9).astype('int64')
+        yield image_tensor, label_tensor
+
+    py_reader2 = fluid.layers.py_reader(
+        capacity=10,
+        shapes=((-1, 784), (-1, 1)),
+        dtypes=('float32', 'int64'),
+        name='py_reader2',
+        use_double_buffer=True)
+
+    py_reader2.decorate_tensor_provider(fake_random_tensor_provider)
 
 Train and test model with PyReader
 ##################################

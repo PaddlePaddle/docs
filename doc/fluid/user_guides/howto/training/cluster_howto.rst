@@ -42,8 +42,11 @@
   pserver进程个数通常需要根据实际情况调整，以达到最佳的性能，然而通常来说pserver的进程不会比trainer\
   更多。
 
-  pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
+  **注：** 在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
   接收到的梯度数据到GPU的开销，在某些情况下会导致整体训练性能降低。
+  
+  **注：** 在使用GPU训练时，如果每个trainer节点有多个GPU卡，则会先在每个trainer节点的多个卡之间执行\
+  NCCL2通信方式的梯度聚合，然后再通过pserver聚合多个节点的梯度。
 
 - NCCL2通信方式的结构：
 
@@ -194,7 +197,10 @@ NCCL2模式的分布式训练，由于没有parameter server角色，是trainer�
 
 * 配置 :code:`fluid.DistributeTranspilerConfig` 中 :code:`mode="nccl2"` 。
 * 调用 :code:`transpile` 时，:code:`trainers` 传入所有trainer节点的endpoint，并且传入参数 :code:`current_endpoint` 。
+  在此步骤中，会在 :code:`startup program` 中增加 :code:`gen_nccl_id_op` 用于在多机程序初始化时同步NCCLID信息。
 * 初始化 :code:`ParallelExecutor` 时传入 :code:`num_trainers` 和 :code:`trainer_id` 。
+  在此步骤中，:code:`ParallelExecutor` 会使用多机方式初始化NCCL2并可以开始在多个节点对每个参数对应的梯度执行跨节点的
+  :code:`allreduce` 操作，执行多机同步训练
 
 一个例子：
 
@@ -216,9 +222,9 @@ NCCL2模式必要参数说明
 .. csv-table:: 
    :header: "参数", "说明"
 
-   "trainer_id", "任务中每个trainer节点的唯一ID，从0开始，不能有重复"
-   "trainers", "任务中所有trainer节点的endpoint，用于在NCCL2初始化时，广播NCCL ID"
-   "current_endpoint", "当前节点的endpoint"
+   "trainer_id", "(int) 任务中每个trainer节点的唯一ID，从0开始，不能有重复"
+   "trainers", "(int) 任务中所有trainer节点的endpoint，用于在NCCL2初始化时，广播NCCL ID"
+   "current_endpoint", "(string) 当前节点的endpoint"
 
 目前使用NCCL2进行分布式训练仅支持同步训练方式。使用NCCL2方式的分布式训练，更适合模型体积较大，并需要使用\
 同步训练和GPU训练，如果硬件设备支持RDMA和GPU Direct，可以达到很高的分布式训练性能。
@@ -252,7 +258,10 @@ NCCL2分布式训练注意事项
 - 随机采样一些数据，补全分配到较少数据的节点上。（推荐使用这种方法，以训练完整的数据集）。
 - 在python代码中，每个节点每个pass只训练固定的batch数，如果这个节点数据较多，则不训练这些多出来的数据。
 
+**说明：** 使用NCCL2模式分布式训练时，如果只希望使用一个节点上的部分卡，可以通过配置环境变量：:code:`export CUDA_VISIBLE_DEVICES=0,1,2,3` 指定。
+
 **注意：** 如果系统中有多个网络设备，需要手动指定NCCL2使用的设备，假设需要使用 :code:`eth2` 为通信设备，需要设定如下环境变量：
+
 
 .. code-block:: bash
 

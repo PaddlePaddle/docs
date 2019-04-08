@@ -2293,7 +2293,7 @@ conv3d
 
 .. py:function:: paddle.fluid.layers.conv3d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None)
 
-卷积三维层（convolution3D layer）根据输入、滤波器（filter）、步长（stride）、填充（padding）、膨胀（dilations）、组数参数计算得到输出。输入和输出是NCHW格式，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。卷积三维（Convlution3D）和卷积二维（Convlution2D）相似，但多了一维深度（depth）。如果提供了bias属性和激活函数类型，bias会添加到卷积（convolution）的结果中相应的激活函数会作用在最终结果上。
+3D卷积层（convolution3D layer）根据输入、滤波器（filter）、步长（stride）、填充（padding）、膨胀（dilations）、组数参数计算得到输出。输入和输出是NCHW格式，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。卷积三维（Convlution3D）和卷积二维（Convlution2D）相似，但多了一维深度（depth）。如果提供了bias属性和激活函数类型，bias会添加到卷积（convolution）的结果中相应的激活函数会作用在最终结果上。
 
 对每个输入X，有等式：
 
@@ -2303,8 +2303,8 @@ conv3d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
-    - :math:`X` ：输入值，NCHW格式的张量（Tensor）
-    - :math:`W` ：滤波器值，MCHW格式的张量（Tensor）
+    - :math:`X` ：输入值，NCDHW格式的张量（Tensor）
+    - :math:`W` ：滤波器值，MCDHW格式的张量（Tensor）
     - :math:`*` ： 卷积操作
     - :math:`b` ：Bias值，二维张量（Tensor），形为 ``[M,1]``
     - :math:`\sigma` ：激活函数
@@ -2313,30 +2313,28 @@ conv3d
 **示例**
 
 - 输入：
-    输入shape： :math:`( N,C_{in},H_{in},W_{in}  )` 
+    输入shape： :math:`(N, C_{in}, D_{in}, H_{in}, W_{in})` 
 
-    滤波器shape： :math:`( C_{out},C_{in},H_{f},W_{f} )` 
+    滤波器shape： :math:`(C_{out}, C_{in}, D_f, H_f, W_f)` 
 - 输出：
-    输出shape： :math:`( N,C_{out},H_{out},W_{out} )` 
+    输出shape： :math:`(N, C_{out}, D_{out}, H_{out}, W_{out})` 
 
 其中
 
 .. math::
 
 
-    D_{out} = \frac{\left ( D_{in}+2*paddings[0]-\left ( dilations[0]*\left ( D_{f}-1 \right )+1 \right ) \right )}{strides[0]}+1
-
-    H_{out} = \frac{\left ( H_{in}+2*paddings[1]-\left ( dilations[1]*\left ( H_{f}-1 \right )+1 \right ) \right )}{strides[1]}+1
-
-    W_{out} = \frac{\left ( W_{in}+2*paddings[2]-\left ( dilations[2]*\left ( W_{f}-1 \right )+1 \right ) \right )}{strides[2]}+1
+    D_{out}&= \frac{(D_{in} + 2 * paddings[0] - (dilations[0] * (D_f - 1) + 1))}{strides[0]} + 1 \\
+    H_{out}&= \frac{(H_{in} + 2 * paddings[1] - (dilations[1] * (H_f - 1) + 1))}{strides[1]} + 1 \\
+    W_{out}&= \frac{(W_{in} + 2 * paddings[2] - (dilations[2] * (W_f - 1) + 1))}{strides[2]} + 1
 
 参数：
-    - **input** (Variable) - 格式为[N,C,H,W]格式的输入图像
+    - **input** (Variable) - 格式为[N,C,D,H,W]格式的输入图像
     - **num_fliters** (int) - 滤波器数。和输出图像通道相同
-    - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size，filter_size_W）。否则，滤波器为square
-    - **stride** (int|tuple) - 步长(stride)大小。如果步长（stride）为元组，则必须包含两个整型数，（stride_H,stride_W）。否则，stride_H = stride_W = stride。默认：stride = 1
-    - **padding** (int|tuple) - 填充（padding）大小。如果填充（padding）为元组，则必须包含两个整型数，（padding_H,padding_W)。否则，padding_H = padding_W = padding。默认：padding = 0
-    - **dilation** (int|tuple) - 膨胀（dilation）大小。如果膨胀（dialation）为元组，则必须包含两个整型数，（dilation_H,dilation_W）。否则，dilation_H = dilation_W = dilation。默认：dilation = 1
+    - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_D, filter_size_H, filter_size_W)。否则，滤波器为棱长为int的立方体形。
+    - **stride** (int|tuple) - 步长(stride)大小。如果步长（stride）为元组，则必须包含三个整型数， (stride_D, stride_H, stride_W)。否则，stride_D = stride_H = stride_W = stride。默认：stride = 1
+    - **padding** (int|tuple) - 填充（padding）大小。如果填充（padding）为元组，则必须包含三个整型数，(padding_D, padding_H, padding_W)。否则， padding_D = padding_H = padding_W = padding。默认：padding = 0
+    - **dilation** (int|tuple) - 膨胀（dilation）大小。如果膨胀（dialation）为元组，则必须包含两个整型数， (dilation_D, dilation_H, dilation_W)。否则，dilation_D = dilation_H = dilation_W = dilation。默认：dilation = 1
     - **groups** (int) - 卷积二维层（Conv2D Layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，滤波器的前一半仅和输入通道的前一半连接。滤波器的后一半仅和输入通道的后一半连接。默认：groups = 1
     - **param_attr** (ParamAttr|None) - conv2d的可学习参数/权重的参数属性。如果设为None或者ParamAttr的一个属性，conv2d创建ParamAttr为param_attr。如果param_attr的初始化函数未设置，参数则初始化为 :math:`Normal(0.0,std)`，并且std为 :math:`\left ( \frac{2.0}{filter\_elem\_num} \right )^{0.5}` 。默认为None
     - **bias_attr** (ParamAttr|bool|None) - conv2d bias的参数属性。如果设为False，则没有bias加到输出。如果设为None或者ParamAttr的一个属性，conv2d创建ParamAttr为bias_attr。如果bias_attr的初始化函数未设置，bias初始化为0.默认为None
@@ -3723,8 +3721,8 @@ embedding
 .. code-block:: python
 
     dict_size = len(dataset.ids)
-    data = fluid.layers.data(name='ids', shape=[32, 32], dtype='float32')
-    fc = fluid.layers.embedding(input=data, size=[dict_size, 16])
+    data = fluid.layers.data(name='ids', shape=[1], dtype='int64')
+    fc = fluid.layers.embedding(input=data, size=[dict_size, 16], dtype='float32')
 
 
 
