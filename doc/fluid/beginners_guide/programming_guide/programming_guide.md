@@ -214,8 +214,8 @@ two_var = fluid.layers.fill_constant(
 with fluid.layers.control_flow.Switch() as switch:
     with switch.case(global_step == zero_var):
         fluid.layers.tensor.assign(input=one_var, output=lr)
-        with switch.default():
-            fluid.layers.tensor.assign(input=two_var, output=lr)
+    with switch.default():
+        fluid.layers.tensor.assign(input=two_var, output=lr)
 ```
 
 
