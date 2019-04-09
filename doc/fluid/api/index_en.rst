@@ -12,6 +12,7 @@ API Reference
     clip.rst
     data.rst
     data_feeder.rst
+    dataset.rst
     executor.rst
     initializer.rst
     io.rst
