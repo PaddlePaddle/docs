@@ -205,7 +205,6 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
 
   # 输出结果
   print(new_array)
-  # output：
 
 * Tensor 转 LoD-Tensor
 
