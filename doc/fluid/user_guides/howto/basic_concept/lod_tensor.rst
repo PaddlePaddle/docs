@@ -153,7 +153,7 @@ LoD-Tensor
 
 recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最外层列表的size表示嵌套的层数，也就是lod-level的大小；内部的每个列表，对应表示每个lod-level下，每个元素的大小。
 
-下面三段代码分别介绍如何创建一个LoD-Tensor、如何将LoD-Tensor转换成Tensor、如何将Tensor转换成LoD-Tensor：
+下面三段代码分别介绍如何创建一个LoD-Tensor，如何将LoD-Tensor转换成Tensor，如何将Tensor转换成LoD-Tensor：
 
 * 创建 LoD-Tensor
 
