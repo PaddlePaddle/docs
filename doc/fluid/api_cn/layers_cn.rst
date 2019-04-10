@@ -6015,7 +6015,7 @@ npair_loss
 
 参考阅读 `Improved Deep Metric Learning with Multi class N pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_
 
-NPair损失需要成对的数据。NPair损失分为两部分：第一部分是嵌入向量上的L2正则化器；第二部分是以锚的相似矩阵和正的相似矩阵为逻辑的交叉熵损失。
+NPair损失需要成对的数据。NPair损失分为两部分：第一部分是嵌入向量上的L2正则化器；第二部分是以anchor的相似矩阵和正的相似矩阵为逻辑的交叉熵损失。
 
 参数:
     - **anchor** (Variable) -  嵌入锚定图像的向量。尺寸=[batch_size, embedding_dims] 
@@ -7392,7 +7392,7 @@ row_conv
 .. _cn_api_fluid_layers_sampled_softmax_with_cross_entropy:
 
 sampled_softmax_with_cross_entropy
--------------------------------
+----------------------------------------------
 
 .. py:function:: paddle.fluid.layers.sampled_softmax_with_cross_entropy(logits, label, num_samples, num_true=1, remove_accidental_hits=True, use_customized_samples=False, customized_samples=None, customized_probabilities=None, seed=0)
 
@@ -9063,7 +9063,7 @@ spectral_norm
     - **dim** (int)-将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1，默认为0。
     - **power_iters** (int)-将用于计算spectral norm的功率迭代次数，默认值1
     - **eps** (float)-epsilon用于计算规范中的数值稳定性
-    - **name** (str)-此层的名称。这是可选的。
+    - **name** (str)-此层的名称，可选。
 
 返回：光谱归一化后权重参数的张量变量
 
