@@ -13,8 +13,8 @@ This instruction will show you how to compile PaddlePaddle on a 64-bit desktop o
 
 We provide two compilation methods under the CentOS system:
 
-* Docker source code compilation (the CentOS 6 / 7 GPU version is not supported) (this image already contains python2.7, python3.6, python3.7 environment)
-* Direct native source code compilation (does not support all versions of CentOS 6 and GPU versions of CentOS 7)
+* Compile with Docker (the CentOS 6 / 7 GPU version is not supported) (this image already contains python2.7, python3.6, python3.7 environment)
+* Local compilation (does not support all versions of CentOS 6 and GPU versions of CentOS 7)
 
 We recommend using **Docker for compilation** because we are installing both the tools and the configuration in a Docker image. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
 
