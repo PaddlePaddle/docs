@@ -14,7 +14,7 @@ This instruction will show you how to compile PaddlePaddle on a *64-bit desktop 
 
 We provide one compilation method under the Windows system:
 
-* Direct source code compilation
+* Local compilation
 
 Since the situation on host machine is more complicated, we only support specific systems.
 
