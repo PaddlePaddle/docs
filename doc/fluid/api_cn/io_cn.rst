@@ -208,7 +208,7 @@ PyReader
     reader = fluid.io.PyReader(feed_list=[image, label],
             capacity=4, iterable=False)
     reader.decorate_sample_list_generator(user_defined_reader)
-... # definition of network is omitted
+    ... # definition of network is omitted
     executor.run(fluid.default_main_program())
     for _ in range(EPOCH_NUM):
         reader.start()
@@ -233,7 +233,7 @@ PyReader
             capacity=4, iterable=True)
     reader.decorate_sample_list_generator(user_defined_reader,
             places=fluid.cuda_places())
-... # definition of network is omitted
+    ... # definition of network is omitted
     executor.run(fluid.default_main_program())
     for _ in range(EPOCH_NUM):
         for data in reader():
