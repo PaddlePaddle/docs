@@ -19,9 +19,9 @@ This instruction describes how to compile PaddlePaddle on *64-bit desktops or la
 
 Under Ubuntu's system we offer 2 ways to compile:
 
-* Docker source compilation (this image already contains python2.7, python3.6, python3.7 environment)
+* Compile with Docker (this image already contains python2.7, python3.6, python3.7 environment)
 
-* Direct native source code compilation (does not support GPU version under ubuntu18.04)
+* Local compilation (does not support GPU version under ubuntu18.04)
 
 We recommend using **Docker for compilation** because we are installing both the tools and the configuration in a Docker image. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. Someone uses a virtual machine to analogize to Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
 
