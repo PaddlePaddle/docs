@@ -3901,7 +3901,38 @@ flatten
 
 
 
+.. _cn_api_fluid_layers_fsp_matrix:
 
+fsp_matrix
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.fsp_matrix(x, y)
+
+**FSP matrix op**
+
+此运算用于计算两个特征映射的求解过程（FSP）矩阵。给定形状为[x_channel，h，w]的特征映射x和形状为[y_channel，h，w]的特征映射y，我们可以分两步得到x和y的fsp矩阵：
+
+1.用形状[X_channel，H*W]将X重塑为矩阵，并用形状[H*W，y_channel]将Y重塑和转置为矩阵。
+
+2.乘以x和y得到形状为[x_channel，y_channel]的fsp矩阵。
+
+输出是一批fsp矩阵。
+
+参数：
+    - **x** (Variable): 一个形状为[batch_size, x_channel, height, width]的特征映射
+    - **y** (Variable)：具有形状[batch_size, y_channel, height, width]的特征映射。Y轴通道可以与输入（X）的X轴通道不同，而其他尺寸必须与输入（X）相同。
+
+返回：形状为[batch_size, x_channel, y_channel]的fsp op的输出。x_channel 是x的通道，y_channel是y的通道。
+
+返回类型：fsp matrix (Variable)
+
+**代码示例**
+
+..  code-block:: python
+        
+    feature_map_0 = fluid.layers.conv2d(x)
+    feature_map_1 = fluid.layers.conv2d(feature_map_0)
+    loss = fluid.layers.fsp_matrix(feature_map_0, feature_map_1)
 
 
 
@@ -4698,7 +4729,48 @@ image_resize_short
 
 
 
+.. _cn_api_fluid_layers_kldiv_loss:
 
+kldiv_loss
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.kldiv_loss(x, target, reduction='mean', name=None)
+
+此运算符计算输入（x）和输入（Target）之间的Kullback-Leibler发散损失。
+
+kL发散损失计算如下：
+
+..  math::
+
+    l(x, y) = y * (log(y) - x)
+
+:math:`x` 为输入（x），:math:`y` 输入（Target）。
+
+当 ``reduction``  为 ``none`` 时，输出损失与输入（x）形状相同，各点的损失单独计算，不应用reduction 。
+
+当 ``reduction``  为 ``mean`` 时，输出损失为[1]的形状，损失值为所有损失的平均值。
+
+当 ``reduction``  为 ``sum`` 时，输出损失为[1]的形状，损失值为所有损失的总和。
+
+当 ``reduction``  为 ``batchmean`` 时，输出损失为[1]的形状，损失值为所有损失的总和除以批量大小。
+
+参数:
+    - **x** (Variable) - KL发散损失算子的输入张量。这是一个形状为[N, \*]的张量，其中N是批大小，\*表示任何数量的附加维度
+    - **target** (Variable) - KL发散损失算子的张量。这是一个具有输入（x）形状的张量
+    - **reduction** (Variable)-要应用于输出的reduction类型，可用类型为‘none’ | ‘batchmean’ | ‘mean’ | ‘sum’，‘none’表示无reduction，‘batchmean’ 表示输出的总和除以批大小，‘mean’ 表示所有输出的平均值，‘sum’表示输出的总和。
+    - **name** (str, default None) - 该层的名称
+
+返回：KL发散损失
+
+返回类型：kldiv_loss (Variable)
+
+**代码示例**：
+
+.. code-block:: python
+
+    x = fluid.layers.data(name='x', shape=[4,2,2], dtype='float32')
+    target = fluid.layers.data(name='target', shape=[4,2,2], dtype='float32')
+    loss = fluid.layers.kldiv_loss(x=x, target=target, reduction='batchmean')
 
 
 
@@ -5932,7 +6004,41 @@ nce
 
 
 
+.. _cn_api_fluid_layers_npair_loss:
 
+npair_loss
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.npair_loss(anchor, positive, labels, l2_reg=0.002)
+
+**Npair Loss Layer**
+
+参考阅读 `Improved Deep Metric Learning with Multi class N pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_
+
+NPair损失需要成对的数据。NPair损失分为两部分：第一部分是嵌入向量上的L2正则化器；第二部分是以锚的相似矩阵和正的相似矩阵为逻辑的交叉熵损失。
+
+参数:
+    - **anchor** (Variable) -  嵌入锚定图像的向量。尺寸=[batch_size, embedding_dims] 
+    - **positive** (Variable) -  嵌入正图像的向量。尺寸=[batch_size, embedding_dims] 
+    - **labels** (Variable) - 1维张量，尺寸=[batch_size]
+    - **l2_reg** (float32) - 嵌入向量的L2正则化项，默认值：0.002
+
+返回： npair loss，尺寸=[1]
+
+返回类型：npair loss(Variable)
+
+**代码示例**：
+
+.. code-block:: python 
+
+    anchor = fluid.layers.data(
+              name = 'anchor', shape = [18, 6], dtype = 'float32', append_batch_size=False)
+    positive = fluid.layers.data(
+              name = 'positive', shape = [18, 6], dtype = 'float32', append_batch_size=False)
+    labels = fluid.layers.data(
+              name = 'labels', shape = [18], dtype = 'float32', append_batch_size=False)
+
+    npair_loss = fluid.layers.npair_loss(anchor, positive, labels, l2_reg = 0.002)
 
 
 
@@ -7283,7 +7389,47 @@ row_conv
 	out = fluid.layers.row_conv(input=x, future_context_size=2)
 
 
+.. _cn_api_fluid_layers_sampled_softmax_with_cross_entropy:
 
+sampled_softmax_with_cross_entropy
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.sampled_softmax_with_cross_entropy(logits, label, num_samples, num_true=1, remove_accidental_hits=True, use_customized_samples=False, customized_samples=None, customized_probabilities=None, seed=0)
+
+**Sampled Softmax With Cross Entropy Operator**
+
+对于较大的输出类，采样的交叉熵损失Softmax被广泛地用作输出层。该运算符为所有示例采样若干个样本，并计算每行采样张量的SoftMax标准化值，然后计算交叉熵损失。
+
+由于此运算符在内部对逻辑执行SoftMax，因此它需要未分级的逻辑。此运算符不应与SoftMax运算符的输出一起使用，因为这样会产生不正确的结果。
+
+对于T真标签（T>=1）的示例，我们假设每个真标签的概率为1/T。对于每个样本，使用对数均匀分布生成S个样本。真正的标签与这些样本连接起来，形成每个示例的T+S样本。因此，假设逻辑的形状是[N x K]，样本的形状是[N x（T+S）]。对于每个取样标签，计算出一个概率，对应于[Jean et al., 2014]( `http://arxiv.org/abs/1412.2007 <https://arxiv.org/abs/1412.2007>`_ )中的Q(y|x)。
+
+根据采样标签对逻辑进行采样。如果remove_accidental_hits为“真”，如果sample[i, j] 意外匹配“真”标签，则相应的sampled_logits[i, j]减去1e20，使其SoftMax结果接近零。然后用logQ(y|x)减去采样的逻辑，这些采样的逻辑和重新索引的标签被用来计算具有交叉熵的SoftMax。
+
+参数：
+        - **logits** （Variable）- 非比例对数概率，是一个二维张量，形状为[N x K]。N是批大小，K是类别号。
+        - **label** （Variable）- 基本事实，是一个二维张量。label是一个张量<int64>，其形状为[N x T]，其中T是每个示例的真实标签数。
+        - **num_samples** （int）- 每个示例的数目num_samples应该小于类的数目。
+        - **num_true** （int）- 每个培训示例的目标课程数。
+        - **remove_accidental_hits** （bool）- 指示采样时是否删除意外命中的标志。如果为真，如果一个sample[i，j]意外地碰到了真标签，那么相应的sampled_logits[i，j]将被减去1e20，使其SoftMax结果接近零。默认值为True。
+        - **use_customized_samples** （bool）- 是否使用自定义样本和可能性对logits进行抽样。
+        - **customized_samples** （Variable）- 用户定义的示例，它是一个具有形状[N, T + S]的二维张量。S是num_samples，T是每个示例的真标签数。
+        - **customized_probabilities** （Variable）- 用户定义的样本概率，与customized_samples形状相同的二维张量。
+        - **seed** （int）- 用于生成随机数的随机种子，在采样过程中使用。默认值为0。
+
+返回：交叉熵损失，是一个二维张量，形状为[N x 1]。
+
+返回类型：Variable
+
+**代码示例：**
+
+.. code-block:: python
+
+    logits = fluid.layers.data(name='data', shape=[256], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[5], dtype='int64')
+    fc = fluid.layers.fc(input=data, size=100)
+    out = fluid.layers.sampled_softmax_with_cross_entropy(
+    logits=fc, label=label, num_samples=25)
 
 
 
@@ -8884,7 +9030,51 @@ space_to_depth
 
 
 
+.. _cn_api_fluid_layers_spectral_norm:
 
+spectral_norm
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.spectral_norm(weight, dim=0, power_iters=1, eps=1e-12, name=None)
+
+**Spectral Normalization Layer**
+
+该层计算了fc、conv1d、conv2d、conv3d层的权重参数的光谱归一化值，其参数应为2-D, 3-D, 4-D, 5-D。计算结果如下。
+
+步骤1：生成向量U,形状为[H]，V,形状为[W]。而H是输入权重的第 ``dim`` 个维度，W是剩余维度的乘积。
+
+步骤2： ``power_iters`` 应该是一个正整数，用u和v计算 ``power_iters`` 的轮数。 
+
+.. math::
+
+    \mathbf{v} &:= \frac{\mathbf{W}^{T} \mathbf{u}}{\|\mathbf{W}^{T} \mathbf{u}\|_2}\\
+    \mathbf{u} &:= \frac{\mathbf{W}^{T} \mathbf{v}}{\|\mathbf{W}^{T} \mathbf{v}\|_2}
+
+步骤3：计算 \sigma(\mathbf{W}) 并权重值归一化。
+
+.. math::
+    \sigma(\mathbf{W}) &= \mathbf{u}^{T} \mathbf{W} \mathbf{v}\\
+    \mathbf{W} &= \frac{\mathbf{W}}{\sigma(\mathbf{W})}
+
+可参考: `Spectral Normalization <https://arxiv.org/abs/1802.05957>`_ 
+
+参数：
+    - **weight** (Variable)-spectral_norm算子的输入权重张量，可以是2-D, 3-D, 4-D, 5-D张量，它是fc、conv1d、conv2d、conv3d层的权重。
+    - **dim** (int)-将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1，默认为0。
+    - **power_iters** (int)-将用于计算spectral norm的功率迭代次数，默认值1
+    - **eps** (float)-epsilon用于计算规范中的数值稳定性
+    - **name** (str)-此层的名称。这是可选的。
+
+返回：光谱归一化后权重参数的张量变量
+
+返回类型：Variable
+
+**代码示例**：
+
+.. code-block:: python
+
+    weight = fluid.layers.data(name='weight', shape=[8, 32, 32],dtype='float32')
+    x = fluid.layers.spectral_norm(weight=data, dim=1, power_iters=2)
 
 
 
@@ -9190,7 +9380,57 @@ teacher_student_sigmoid_loss
     cost = fluid.layers.teacher_student_sigmoid_loss(input=similarity, label=label)
 
 
+.. _cn_api_fluid_layers_temporal_shift:
 
+temporal_shift
+-------------------------------
+.. py:function:: paddle.fluid.layers.temporal_shift(x, seg_num, shift_ratio=0.25, name=None)
+
+**Temporal Shift Operator**
+
+此运算符计算输入（x）的时间移位特征。
+
+输入（x）的形状应为[N*T, C, H, W]，N是批大小，T是 ``seg_num`` 指定的时间段号，C是通道号，H和W是特征的高度和宽度。
+
+时间偏移计算如下：
+
+步骤1：将输入（X）重塑为[N、T、C、H、W]。
+
+步骤2：填充0到第二个(T)尺寸的变形结果，填充宽度每边为1，填充结果的形状为[N，T+2，C，H，W]。
+
+步骤3：假设shift_ratio为1/4，切片填充结果如下：
+
+.. math::
+
+    slice1 &= x[:, :T, :C/4, :, :]
+
+    slice2 &= x[:, 2:T+2, C/4:C/2, :, :]
+
+    slice3 &= x[:, 1:T+1, C/2:, :, :]
+
+步骤4：沿第3(C)维连接三个切片，并将结果重塑为[N*T, C, H, W]。
+
+有关时间移动的详细信息，请参阅文件： `Temporal Shift Module <https://arxiv.org/abs/1811.08383>`_ 
+
+参数：
+  - **x**  (Variable) – 时移算符的输入张量。这是一个4维张量，形状为[N*T，C，H，W]。N为批量大小，T为时间段数，C为信道数，H为特征高度，W为特征宽度
+  - **seg_num**  (int) – 时间段编号，这应该是一个正整数。
+  - **shift_ratio**  (float) – 通道的移位比、通道的第一个 ``shift_ratio`` 部分沿时间维度移动-1，通道的第二个 ``shift_ratio`` 部分沿时间维度移动1。默认值0.25
+  - **name**  (str, default None) – 该层名称
+
+返回：时间移位结果是一个与输入形状和类型相同的张量变量
+
+返回类型：out(Variable)
+
+抛出异常： ``TypeError`` – seg_num 必须是int类型
+
+
+**代码示例**：
+
+.. code-block:: python 
+
+    input = fluid.layers.data(name='input', shape=[4,2,2], dtype='float32')
+    out = fluid.layers.temporal_shift(x=input, seg_num=2, shift_ratio=0.2)
 
 
 
