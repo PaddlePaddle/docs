@@ -91,7 +91,7 @@ download_data是用于分布式训练的默认下载方法，用户可不使用�
   - **local_path** （str） - 下载数据路径
   - **fs_default_name** （str） - 文件系统服务器地址
   - **ugi** （str） -  hadoop ugi
-  - **file_cn** （int） - 用户可以指定用于调试的文件号
+  - **file_cnt** （int） - 用户可以指定用于调试的文件号
   - **hadoop_home** （str） -  hadoop home path
   - **process_num** （int） - 下载进程号
 
@@ -188,8 +188,15 @@ str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce str
 
 .. py:attribute:: remove_unnecessary_lock
 
-BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，ParallelExecutor将运行得更快，默认为 False。
+BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，ParallelExecutor将运行得更快，默认为 True。
 
+.. py:attribute:: sync_batch_norm
+
+类型为bool，sync_batch_norm表示是否使用同步批处理规范化，在训练阶段通过多个设备同步均值和方差。
+
+当前的实现不支持FP16培训和CPU。只有一台机器是同步的，不是所有的机器。
+
+默认为 False。
 
 
 .. _cn_api_fluid_CompiledProgram:
@@ -197,9 +204,9 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 CompiledProgram
 -------------------------------
 
-.. py:class:: paddle.fluid.CompiledProgram(program)
+.. py:class:: paddle.fluid.CompiledProgram(program_or_graph)
 
-编译一个接着用来执行的Program。
+编译成一个用来执行的Graph。
 
 1. 首先使用layers(网络层)创建程序。
 2. （可选）可使用CompiledProgram来在运行之前优化程序。
@@ -226,9 +233,9 @@ CompiledProgram用于转换程序以进行各种优化。例如，
                                      fetch_list=[loss.name])
 
 参数：
-  - **program** : 一个Program对象，承载着用户定义的模型计算逻辑
+  - **program_or_graph** (Graph|Program): 如果它是Program，那么它将首先被降成一个graph，以便进一步优化。如果它是一个graph（以前可能优化过），它将直接用于进一步的优化。注意：只有使用 with_data_parallel 选项编译时才支持graph。
 
-.. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None)
+.. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None, places=None)
 
 配置Program使其以数据并行方式运行。
 
@@ -237,6 +244,7 @@ CompiledProgram用于转换程序以进行各种优化。例如，
   - **build_strategy** （BuildStrategy） -  build_strategy用于构建图，因此它可以在具有优化拓扑的多个设备/核上运行。 有关更多信息，请参阅  ``fluid.BuildStrategy`` 。 默认None。
   - **exec_strategy** （ExecutionStrategy） -  exec_strategy用于选择执行图的方式，例如使用多少线程，每次清理临时变量之前进行的迭代次数。 有关更多信息，请参阅 ``fluid.ExecutionStrategy`` 。 默认None。
   - **share_vars_from** （CompiledProgram） - 如果有，此CompiledProgram将共享来自share_vars_from的变量。 share_vars_from指定的Program必须由此CompiledProgram之前的Executor运行，以便vars准备就绪。
+  - **places** （list(CUDAPlace)|list(CPUPlace)|None） - 如果提供，则仅在给定位置编译程序。否则，编译时使用的位置由Executor确定，使用的位置由环境变量控制：如果使用GPU，则标记FLAGS_selected_gpus或CUDA_VISIBLE_DEVICES设备；如果使用CPU，则标记CPU_NUM。例如，如果要在GPU 0和GPU 1上运行，请设置places=[fluid.CUDAPlace(0), fluid.CUDAPlace(1)]。如果要在2个CPU核心上运行，请设置places=[fluid.CPUPlace()]*2。
 
 返回: self
 
@@ -359,6 +367,7 @@ CUDAPinnedPlace
 .. py:class:: paddle.fluid.CUDAPinnedPlace
 
 
+CUDAPinnedPlace是设备的描述符。CUDAPInnedplace的内存可以由GPU和CPU访问。
 
 
 
@@ -376,7 +385,7 @@ CUDAPlace
 
 .. py:class:: paddle.fluid.CUDAPlace
 
-
+CUDAPlace是设备的描述符。它代表一个GPU，每个CUDAPlace都有一个dev_id来指示当前CUDAPlace所代表的卡数。无法访问具有不同dev_id的CUDAPlace的内存。
 
 
 
@@ -615,7 +624,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 参数：
         - **reader** (fun) – 该参数是一个可以生成数据的函数
         - **multi_devices** (bool) – bool型，指明是否使用多个设备
-        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True`` , 可以使用此参数来设置GPU数目。如果 ``num_places`` 为 ``None`` ，该函数默认使用当前训练机所有GPU设备。默认为None。
+        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True`` , 可以使用此参数来设置GPU数目。如果 ``multi_devices`` 为 ``None`` ，该函数默认使用当前训练机所有GPU设备。默认为None。
         - **drop_last** (bool) – 如果最后一个batch的大小比 ``batch_size`` 要小，则可使用该参数来指明是否选择丢弃最后一个batch数据。 默认为 ``True`` 
 
 返回：转换结果
@@ -925,7 +934,7 @@ Executor
 
 
 
-执行引擎（Executor）使用python脚本驱动，仅支持在单GPU环境下运行。多卡环境下请参考 ``ParallelExecutor`` 。
+执行引擎（Executor）使用python脚本驱动，支持在单/多GPU、单/多CPU环境下运行。
 Python Executor可以接收传入的program,并根据feed map(输入映射表)和fetch_list(结果获取表)
 向program中添加feed operators(数据输入算子)和fetch operators（结果获取算子)。
 feed map为该program提供输入数据。fetch_list提供program训练结束后用户预期的变量（或识别类场景中的命名）。
@@ -936,7 +945,6 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 当每一mini-batch上的前向/反向运算完成后，局部作用域的内容将被废弃，
 但全局作用域中的变量将在Executor的不同执行过程中一直存在。
 
-program中所有的算子会按顺序执行。
 
 **示例代码**
 
@@ -969,13 +977,12 @@ program中所有的算子会按顺序执行。
 
 
 
-提示：你可以用 ``Executor`` 来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
-
-
 .. py:method:: close()
 
 
-关闭这个执行器(Executor)。调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上涉及到目前训练器的资源。
+关闭这个执行器(Executor)。
+
+调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上涉及到目前训练器的资源。
    
 **示例代码**
 
@@ -1000,12 +1007,12 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 参数：  
 	- **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
 	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
-	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
+	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, 该方法会根据这个列表给出结果
 	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
 	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
 	- **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
 	- **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-	- **use_program_cache** (bool) – 当program较上次比没有改动则将其置为True
+	- **use_program_cache** (bool) – 是否跨批使用缓存程序设置。只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，设置为True的速度才会更快。
 	
 返回:	根据fetch_list来获取结果
 
