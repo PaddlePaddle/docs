@@ -95,7 +95,7 @@ Notes:
 
 1. The constructor of :ref:`api_fluid_CompiledProgram` needs to be set with :code:`fluid.Program` to be run which can not be modified at runtime. 
 2. If :code:`exe` is initialized with CUDAPlace, the model will be run in GPU. In the mode of graphics card training, all graphics card will be occupied. Users can configure `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ to change graphics cards that are being used. 
-3. If :code:`exe` is initialized with CPUPlace, the model will be run in CPU. In this situation, there will be multi-threads are used to run the model, and the threads number are equal to the number of logic cores. Users can configure `CPU_NUM`  to change the number of threads that are being used. 
+3. If :code:`exe` is initialized with CPUPlace, the model will be run in CPU. In this situation, the multi-threads are used to run the model, and the number of threads is equal to the number of logic cores. Users can configure `CPU_NUM`  to change the number of threads that are being used. 
 
 Advanced Usage
 ###############

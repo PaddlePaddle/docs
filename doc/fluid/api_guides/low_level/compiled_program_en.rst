@@ -4,7 +4,7 @@
 CompiledProgram
 ################
 
-The :ref:`api_fluid_CompiledProgram` is used to transform a program for various optimizations. For example, you can call :code:`with_data_parallel` to transform a single card program to multi cards program, and then you can the program with multi cards to run the program.
+The :ref:`api_fluid_CompiledProgram` is used to transform a program for various optimizations. For example, you can use :code:`with_data_parallel` to transform the program to data parallel program so that it can be run in multiple devices. 
 
 
 .. code-block:: python
@@ -24,7 +24,7 @@ The :ref:`api_fluid_CompiledProgram` is used to transform a program for various 
     exe.run(fluid.default_startup_program())
     
     # Run the main program directly without compile.
-    loss, = exe.run(fluid.default_main_program(),
+    loss = exe.run(fluid.default_main_program(),
                     feed=feed_dict,
                     fetch_list=[loss.name])
     
@@ -33,7 +33,7 @@ The :ref:`api_fluid_CompiledProgram` is used to transform a program for various 
     exec_strategy.num_threads = dev_count * 4 # the size of thread pool.
     build_strategy = fluid.BuildStrategy()
     build_strategy.memory_optimize = True if memory_opt else False  
-    
+
     compiled_prog = compiler.CompiledProgram(
         fluid.default_main_program()).with_data_parallel(
             loss_name=loss.name,
