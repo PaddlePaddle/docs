@@ -7410,8 +7410,8 @@ sampled_softmax_with_cross_entropy
         - **logits** （Variable）- 非比例对数概率，是一个二维张量，形状为[N x K]。N是批大小，K是类别号。
         - **label** （Variable）- 基本事实，是一个二维张量。label是一个张量<int64>，其形状为[N x T]，其中T是每个示例的真实标签数。
         - **num_samples** （int）- 每个示例的数目num_samples应该小于类的数目。
-        - **num_true** （int）- 每个培训示例的目标课程数。
-        - **remove_accidental_hits** （bool）- 指示采样时是否删除意外命中的标志。如果为真，如果一个sample[i，j]意外地碰到了真标签，那么相应的sampled_logits[i，j]将被减去1e20，使其SoftMax结果接近零。默认值为True。
+        - **num_true** （int）- 每个训练实例的目标类别总数。
+        - **remove_accidental_hits** （bool）- 指示采样时是否删除意外命中的标签。如果为真，如果一个sample[i，j]意外地碰到了真标签，那么相应的sampled_logits[i，j]将被减去1e20，使其SoftMax结果接近零。默认值为True。
         - **use_customized_samples** （bool）- 是否使用自定义样本和可能性对logits进行抽样。
         - **customized_samples** （Variable）- 用户定义的示例，它是一个具有形状[N, T + S]的二维张量。S是num_samples，T是每个示例的真标签数。
         - **customized_probabilities** （Variable）- 用户定义的样本概率，与customized_samples形状相同的二维张量。
@@ -9039,11 +9039,11 @@ spectral_norm
 
 **Spectral Normalization Layer**
 
-该层计算了fc、conv1d、conv2d、conv3d层的权重参数的光谱归一化值，其参数应为2-D, 3-D, 4-D, 5-D。计算结果如下。
+该层计算了fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，其参数应分别为2-D, 3-D, 4-D, 5-D。计算结果如下。
 
-步骤1：生成向量U,形状为[H]，V,形状为[W]。而H是输入权重的第 ``dim`` 个维度，W是剩余维度的乘积。
+步骤1：生成形状为[H]的向量U,以及形状为[W]的向量V,其中H是输入权重的第 ``dim`` 个维度，W是剩余维度的乘积。
 
-步骤2： ``power_iters`` 应该是一个正整数，用u和v计算 ``power_iters`` 的轮数。 
+步骤2： ``power_iters`` 应该是一个正整数，用U和V迭代计算 ``power_iters`` 轮。 
 
 .. math::
 
@@ -9065,7 +9065,7 @@ spectral_norm
     - **eps** (float)-epsilon用于计算规范中的数值稳定性
     - **name** (str)-此层的名称，可选。
 
-返回：光谱归一化后权重参数的张量变量
+返回：谱正则化后权重参数的张量变量
 
 返回类型：Variable
 
