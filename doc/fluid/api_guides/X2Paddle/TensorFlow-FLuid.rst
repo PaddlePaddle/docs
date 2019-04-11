@@ -6,6 +6,7 @@ TensorFlow-Fluid
 
 本文档基于TensorFlow v1.12.0梳理了常用API与Fluid API对应关系和差异分析。
 参考 : `ImageNet Classification with Deep Convolutional Neural Networks <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>`_
+参考下 `差异对比 <https://www.baidu.com>`_
 
 ======== ============================================= ================================================== ===================
 序号      TensorFlow接口                                 PaddlePaddle接口                                   备注              
