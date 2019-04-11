@@ -16,7 +16,7 @@ TensorFlow-Fluid
 4        tf.argmin                                     fluid.layers.argmin                                接口对应        
 5        tf.assign                                     fluid.layers.assign                                接口对应        
 6        tf.assign_add                                 fluid.layers.increment                             接口对应        
-7        tf.case                                       fluid.layers.Switch                                `差异对比 <https://www.baidu.com>`_
+7        tf.case                                       fluid.layers.Switch                                `差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/doc/tensorflow2fluid/doc/tf.case.md>`_
 8        tf.cast                                       fluid.layers.cast                                  接口对应        
 9        tf.check_numerics                             fluid.layers.isinfinite                            接口对应        
 10       tf.clip_by_global_norm                        fluid.clip.GradientClipByGlobalNorm                接口对应        
@@ -31,17 +31,17 @@ TensorFlow-Fluid
 19       tf.contrib.layers.one_hot_encoding            fluid.layers.one_hot                               接口对应        
 20       tf.contrib.layers.softmax                     fluid.layers.softmax                               接口对应        
 21       tf.contrib.layers.xavier_initializer          fluid.initializer.Xavier                           接口对应        
-22       tf.contrib.rnn.GRUCell                        fluid.layers.gru_unit                              差异对比        
+22       tf.contrib.rnn.GRUCell                        fluid.layers.gru_unit                              `差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/doc/tensorflow2fluid/doc/tf.contrib.rnn.GRUCell.md>`_        
 23       tf.contrib.rnn.MultiRNNCell                   -                                                  Fluid实现  
 24       tf.contrib.rnn.static_rnn                     fluid.layers.DynamicRNN                            接口对应        
 25       tf.convert_to_tensor                          fluid.layers.assign                                接口对应        
 26       tf.cos                                        fluid.layers.cos                                   接口对应        
 27       tf.div                                        fluid.layers.elementwise_div                       接口对应        
 28       tf.divide                                     fluid.layers.elementwise_divide                    接口对应        
-29       tf.dropout                                    fluid.layers.dropout                               差异对比        
+29       tf.dropout                                    fluid.layers.dropout                               `差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/doc/tensorflow2fluid/doc/tf.nn.dropout.md>`_        
 30       tf.equal                                      -                                                  对比操作        
 31       tf.exp                                        fluid.layers.exp                                   接口对应        
-32       tf.expand_dims                                fluid.layers.unsqueeze                             差异对比        
+32       tf.expand_dims                                fluid.layers.unsqueeze                             `差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/doc/tensorflow2fluid/doc/tf.expand_dims.md>`_         
 33       tf.fill                                       fluid.layers.fill_constant                         接口对应        
 34       tf.floor                                      fluid.layers.floor                                 接口对应        
 35       tf.gather                                     fluid.layers.gather                                接口对应        
