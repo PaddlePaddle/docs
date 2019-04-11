@@ -4,6 +4,8 @@
 TensorFlow-Fluid
 #################
 
+.. _a link: http://example.com/
+
 本文档基于TensorFlow v1.12.0梳理了常用API与Fluid API对应关系和差异分析。  
 
 接口对应： TensorFlow与Fluid接口基本一致  
