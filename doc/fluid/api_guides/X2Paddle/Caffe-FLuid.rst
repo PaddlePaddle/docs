@@ -34,7 +34,6 @@ FLuid实现：Fluid无对应接口，但可利用现有接口组合实现
     :header: "序号", "TensorFlow接口", "Fluid接口", "备注"
     :widths: 1, 8, 8, 3
 
-    "1", "`tf.abs <https://www.tensorflow.org/api_docs/python/tf/abs>`_", "`fluid.layers.abs <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#abs>`_", "接口对应"
     "1", "`AbsVal <http://caffe.berkeleyvision.org/tutorial/layers/absval.html>`_", "`fluid.layers.abs <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#permalink-182-abs>`_", "接口对应"
     "2", "`Accuracy <http://caffe.berkeleyvision.org/tutorial/layers/accuracy.html>`_", "`fluid.layers.accuracy <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#permalink-253-accuracy>`_", "`差异对比 <Accuracy.md>`_"
     "3", "`ArgMax <http://caffe.berkeleyvision.org/tutorial/layers/argmax.html>`_", "`fluid.layers.argmax <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#permalink-204-argmax>`_", "`差异对比 <ArgMax.md>`_"
