@@ -31,7 +31,7 @@ TensorFlow-Fluid
 20       tf.contrib.layers.softmax                     fluid.layers.softmax                               接口对应        
 21       tf.contrib.layers.xavier_initializer          fluid.initializer.Xavier                           接口对应        
 22       tf.contrib.rnn.GRUCell                        fluid.layers.gru_unit                              差异对比        
-23       tf.contrib.rnn.MultiRNNCell                   -                                                  PaddlePaddle实现  
+23       tf.contrib.rnn.MultiRNNCell                   -                                                  Fluid实现  
 24       tf.contrib.rnn.static_rnn                     fluid.layers.DynamicRNN                            接口对应        
 25       tf.convert_to_tensor                          fluid.layers.assign                                接口对应        
 26       tf.cos                                        fluid.layers.cos                                   接口对应        
@@ -75,7 +75,7 @@ TensorFlow-Fluid
 64       tf.multiply                                   fluid.layers.elementwise_mul                       接口对应        
 65       tf.nn.avg_pool                                fluid.layers.pool2d                                差异对比        
 66       tf.nn.batch_normalization                     fluid.layers.batch_norm                            接口对应        
-67       tf.nn.bidirectional_dynamic_rnn               -                                                  PaddlePaddle实现  
+67       tf.nn.bidirectional_dynamic_rnn               -                                                  Fluid实现  
 68       tf.nn.conv2d                                  fluid.layers.conv2d                                差异对比        
 69       tf.nn.conv2d_transpose                        fluid.layers.conv2d_transpose                      差异对比        
 70       tf.nn.conv3d_transpose                        fluid.layers.conv2d_transpose                      差异对比        
@@ -89,7 +89,7 @@ TensorFlow-Fluid
 78       tf.nn.relu                                    fluid.layers.relu                                  接口对应        
 79       tf.nn.relu6                                   fluid.layers.relu6                                 接口对应        
 80       tf.nn.rnn_cell.LSTMCell                       fluid.layers.lstm_unit                             差异对比        
-81       tf.nn.separable_conv2d                        -                                                  PaddlePaddle实现  
+81       tf.nn.separable_conv2d                        -                                                  Fluid实现  
 82       tf.nn.sigmoid                                 fluid.layers.sigmoid                               接口对应        
 83       tf.nn.sigmoid_cross_entropy_with_logits       fluid.layers.sigmoid_cross_entropy_with_logits     接口对应        
 84       tf.nn.softmax                                 fluid.layers.softmax                               接口对应        
@@ -109,7 +109,7 @@ TensorFlow-Fluid
 98       tf.random_normal_initializer                  fluid.initializer.Normal                           接口对应        
 99       tf.random_uniform                             fluid.layers.uniform_random                        接口对应        
 100      tf.random_uniform_initializer                 fluid.initializer.UniformInitializer               接口对应        
-101      tf.reduce_logsumexp                           -                                                  PaddlePaddle实现  
+101      tf.reduce_logsumexp                           -                                                  Fluid实现  
 102      tf.reduce_max                                 fluid.layers.reduce_max                            接口对应        
 103      tf.reduce_mean                                fluid.layers.reduce_mean                           接口对应        
 104      tf.reduce_min                                 fluid.layers.reduce_min                            接口对应        
@@ -120,7 +120,7 @@ TensorFlow-Fluid
 109      tf.reverse_sequence                           fluid.layers.sequence_reverse                      差异对比        
 110      tf.reverse_v2                                 fluid.layers.reverse                               接口对应        
 111      tf.round                                      fluid.layers.round                                 接口对应        
-112      tf.rsqrt                                      -                                                  PaddlePaddle实现  
+112      tf.rsqrt                                      -                                                  Fluid实现  
 113      tf.scalar_mul                                 fluid.layers.scale                                 接口对应        
 114      tf.scatter_update                             fluid.layers.scatter                               差异对比        
 115      tf.sequence_mask                              fluid.layers.sequence_mask                         接口对应        
@@ -132,10 +132,10 @@ TensorFlow-Fluid
 121      tf.split                                      fluid.layers.split                                 差异对比        
 122      tf.sqrt                                       fluid.layers.sqrt                                  接口对应        
 123      tf.square                                     fluid.layers.square                                接口对应        
-124      tf.squared_difference                         -                                                  PaddlePaddle实现  
+124      tf.squared_difference                         -                                                  Fluid实现  
 125      tf.squeeze                                    fluid.layers.squeeze                               接口对应        
 126      tf.stack                                      fluid.layers.stack                                 接口对应        
-127      tf.stop_gradient                              -                                                  PaddlePaddle实现  
+127      tf.stop_gradient                              -                                                  Fluid实现  
 128      tf.subtract                                   fluid.layers.elementwise_sub                       接口对应        
 129      tf.tanh                                       fluid.layers.tanh                                  接口对应        
 130      tf.tile                                       fluid.layers.expand                                接口对应        
