@@ -21,3 +21,5 @@ API使用指南分功能向您介绍PaddlePaddle Fluid的API体系和用法，�
     low_level/backward.rst
     low_level/parameter.rst
     low_level/program.rst
+    X2Paddle/Tensorflow-Fluid.rst
+    X2Paddle/Caffe-Fluid.rst
