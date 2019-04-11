@@ -12,6 +12,24 @@ Caffe-Fluid
 
 FLuid实现：Fluid无对应接口，但可利用现有接口组合实现  
 
+
+.. _TensorFlow-FLuid:
+
+#################
+TensorFlow-Fluid
+#################
+
+.. _a link: http://example.com/
+
+本文档基于TensorFlow v1.12.0梳理了常用API与Fluid API对应关系和差异分析。  
+
+接口对应： TensorFlow与Fluid接口基本一致  
+
+差异对比： 接口存在使用或功能差异  
+
+FLuid实现：Fluid无对应接口，但可利用现有接口组合实现  
+
+
 ..  csv-table:: 
     :header: "序号", "TensorFlow接口", "Fluid接口", "备注"
     :widths: 1, 8, 8, 3
