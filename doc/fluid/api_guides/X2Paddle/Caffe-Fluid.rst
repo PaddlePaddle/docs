@@ -1,16 +1,10 @@
 .. _Caffe-FLuid:
 
 #################
-Caffe-Fluid
+Caffe-Fluid常用层对应表
 #################
 
-本文档梳理了Caffe常用Layer与Fluid API对应关系和差异分析。  
-
-接口对应： Caffe Layer与Fluid接口基本一致  
-
-差异对比： Caffe Layer与Fluid接口存在使用或功能差异  
-
-FLuid实现：Fluid无对应接口，但可利用现有接口组合实现  
+本文档梳理了Caffe常用Layer与PaddlePaddle API对应关系和差异分析。根据文档对应关系，有Caffe使用经验的用户，可根据对应关系，快速熟悉PaddlePaddle的接口使用 。  
 
 
 ..  csv-table:: 
