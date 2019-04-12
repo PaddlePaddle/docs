@@ -2,19 +2,21 @@
 
 <div align="center">
   <h3>
-    <a href="https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/tutorial.md">
+      模型压缩工具库
+    <span> | </span>
+    <a href="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/tutorial.md">
       算法原理介绍
     </a>
     <span> | </span>
-    <a href="https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/usage.md">
+    <a href="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md">
       使用文档
     </a>
     <span> | </span>
-    <a href="https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/demo.md">
+    <a href="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/demo.md">
       示例文档
     </a>
     <span> | </span>
-    <a href="https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/model_zoo.md">
+    <a href="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/model_zoo.md">
       Model Zoo
     </a>
   </h3>
@@ -33,7 +35,7 @@ Paddle-Slim工具库有以下特点：
 - 以配置文件方式集中管理可配参数，方便实验管理
 - 在普通模型训练脚本上，添加极少代码即可完成模型压缩
 
-详见：[使用示例](https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/demo.md)
+详见：[使用示例](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/demo.md)
 
 ### 效果好
 
@@ -41,7 +43,7 @@ Paddle-Slim工具库有以下特点：
 - 蒸馏压缩策略可明显提升原始模型的精度。
 - 量化训练与蒸馏的组合使用，可同时做到缩减模型大小和提升模型精度。
 
-详见：[效果数据与ModelZoo](https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/model_zoo.md)
+详见：[效果数据与ModelZoo](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/model_zoo.md)
 
 ### 功能更强更灵活
 
@@ -50,7 +52,7 @@ Paddle-Slim工具库有以下特点：
 - 蒸馏支持多种方式，用户可自定义组合loss
 - 支持快速配置多种压缩策略组合使用
 
-详见：[使用说明](https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/usage.md)
+详见：[使用说明](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md)
 
 ## 架构介绍
 
@@ -58,16 +60,16 @@ Paddle-Slim工具库有以下特点：
 **图 1**为模型压缩工具的架构图，从上到下为API依赖关系。蒸馏模块、量化模块和剪切模块都间接依赖底层的paddle框架。目前，模型压缩工具作为了PaddlePaddle框架的一部分，所以已经安装普通版本paddle的用户需要重新下载安装支持模型压缩功能的paddle，才能使用压缩功能。
 
 <p align="center">
-<img src="./image/framework_0.png" height=452 width=706 hspace='10'/> <br />
+<img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_0.png?raw=true" height=252 width=406 hspace='10'/> <br />
 <strong>图 1</strong>
 </p>
 
-如**图 1**所示，最上层的紫色模块为用户接口，在Python脚本中调用模型压缩功能时，只需要构造一个Compressor对象即可，在[使用文档](https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/usage.md)中会有详细说明。
+如**图 1**所示，最上层的紫色模块为用户接口，在Python脚本中调用模型压缩功能时，只需要构造一个Compressor对象即可，在[使用文档](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md)中会有详细说明。
 
-我们将每个压缩算法称为压缩策略，在迭代训练模型的过程中调用用户注册的压缩策略完成模型压缩，如**图2**所示。其中，模型压缩工具封装好了模型训练逻辑，用户只需要提供训练模型需要的网络结构、数据、优化策略（optimizer）等，在[使用文档](https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/usage.md)会对此详细介绍。
+我们将每个压缩算法称为压缩策略，在迭代训练模型的过程中调用用户注册的压缩策略完成模型压缩，如**图2**所示。其中，模型压缩工具封装好了模型训练逻辑，用户只需要提供训练模型需要的网络结构、数据、优化策略（optimizer）等，在[使用文档](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md)会对此详细介绍。
 
 <p align="center">
-<img src="./image/framework_1.png" height=255 width=646 hspace='10'/> <br />
+<img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_1.png?raw=true" height=255 width=646 hspace='10'/> <br />
 <strong>图 2</strong>
 </p>
 
@@ -102,7 +104,7 @@ Paddle-Slim工具库有以下特点：
 
 ## 简要实验结果
 
-本节列出了PaddleSlim模型压缩工具库的一些实验结果，更多实验数据和预训练模型的下载，请参考：[详细实验结果与ModelZoo](https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/model_zoo.md)
+本节列出了PaddleSlim模型压缩工具库的一些实验结果，更多实验数据和预训练模型的下载，请参考：[详细实验结果与ModelZoo](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/model_zoo.md)
 
 ### 量化训练
 
