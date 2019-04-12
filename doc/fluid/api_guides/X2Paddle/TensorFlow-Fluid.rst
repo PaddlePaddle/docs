@@ -4,7 +4,7 @@
 TensorFlow-Fluid
 #################
 
-本文档基于TensorFlow v1.12.0梳理了常用API与PaddlePaddle API对应关系和差异分析。根据文档对应关系，有TensorFlow使用经验的用户，可根据对应关系，快速熟悉PaddlePaddle的接口使用 。 
+本文档基于TensorFlow v1.12梳理了常用API与PaddlePaddle API对应关系和差异分析。根据文档对应关系，有TensorFlow使用经验的用户，可根据对应关系，快速熟悉PaddlePaddle的接口使用 。 
 
 ..  csv-table:: 
     :header: "序号", "TensorFlow接口", "Fluid接口", "备注"
