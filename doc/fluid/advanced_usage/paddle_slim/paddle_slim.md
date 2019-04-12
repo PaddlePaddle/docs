@@ -22,7 +22,7 @@
 
 ## 简介
 
-PaddleSlim是PaddlePaddle框架的一个子模块。PaddleSlim首次在PaddlePaddle 1.4版本中发布。在PaddleSlim中，实现了目前主流的网络剪枝、量化、蒸馏三种压缩策略，主要用于压缩图像领域模型。在后续版本中，会添加更多的压缩策略，以及完善对NLP领域模型的支持。
+PaddleSlim是PaddlePaddle框架的一个子模块。PaddleSlim首次发布于PaddlePaddle 1.4版本。在PaddleSlim中，实现了目前主流的网络剪枝、量化、蒸馏三种压缩策略，主要用于压缩图像领域模型。在后续版本中，会添加更多的压缩策略，以及完善对NLP领域模型的支持。
 
 ## 主要特点
 
@@ -58,7 +58,7 @@ Paddle-Slim工具库有以下特点：
 **图 1**为模型压缩工具的架构图，从上到下为API依赖关系。蒸馏模块、量化模块和剪切模块都间接依赖底层的paddle框架。目前，模型压缩工具作为了PaddlePaddle框架的一部分，所以已经安装普通版本paddle的用户需要重新下载安装支持模型压缩功能的paddle，才能使用压缩功能。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/paddle_slim/image/framework_0.png" height=452 width=706 hspace='10'/> <br />
+<img src="./image/framework_0.png" height=452 width=706 hspace='10'/> <br />
 <strong>图 1</strong>
 </p>
 
@@ -67,7 +67,7 @@ Paddle-Slim工具库有以下特点：
 我们将每个压缩算法称为压缩策略，在迭代训练模型的过程中调用用户注册的压缩策略完成模型压缩，如**图2**所示。其中，模型压缩工具封装好了模型训练逻辑，用户只需要提供训练模型需要的网络结构、数据、优化策略（optimizer）等，在[使用文档](https://github.com/wanghaoshuang/models/blob/add_doc/PaddleSlim/docs/usage.md)会对此详细介绍。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/paddle_slim/image/framework_1.png" height=255 width=646 hspace='10'/> <br />
+<img src="./image/framework_1.png" height=255 width=646 hspace='10'/> <br />
 <strong>图 2</strong>
 </p>
 
@@ -99,7 +99,6 @@ Paddle-Slim工具库有以下特点：
 
 - 支持配置文件管理压缩任务超参数
 - 支持多种压缩策略组合使用
-- 蒸馏和剪切压缩过程支持checkpoints功能
 
 ## 简要实验结果
 
