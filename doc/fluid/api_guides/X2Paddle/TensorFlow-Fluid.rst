@@ -10,8 +10,8 @@ TensorFlow-Fluid
     :header: "序号", "TensorFlow接口", "Fluid接口", "备注"
     :widths: 1, 8, 8, 3
 
-    "1", "`tf.abs <https://www.tensorflow.org/api_docs/python/tf/abs>`_", "`fluid.layers.abs <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#abs>`_", "功能一致"
-    "2", "`tf.add <https://www.tensorflow.org/api_docs/python/tf/add>`_", "`fluid.layers.elementwise_add <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#elementwise_add>`_", "功能一致"
+    "1", "`tf.abs <https://www.tensorflow.org/api_docs/python/tf/abs>`_", "`fluid.layers.abs <cn_api_fluid_layers_elementwise_add>`_", "功能一致"
+    "2", "`tf.add <https://www.tensorflow.org/api_docs/python/tf/add>`_", ":ref:`cn_api_fluid_layers_elementwise_add`", "功能一致"
     "3", "`tf.argmax <https://www.tensorflow.org/api_docs/python/tf/argmax>`_", "`fluid.layers.argmax <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#argmax>`_", "功能一致"
     "4", "`tf.argmin <https://www.tensorflow.org/api_docs/python/tf/argmin>`_", "`fluid.layers.argmin <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#argmin>`_", "功能一致"
     "5", "`tf.assign <https://www.tensorflow.org/api_docs/python/tf/assign>`_", "`fluid.layers.assign <http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#assign>`_", "功能一致"
