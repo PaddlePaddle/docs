@@ -3,7 +3,7 @@
 ################
 
 
-本章由6篇文档组成，它们按照简单到难的顺序排列，将指导您如何使用PaddlePaddle完成基础的深度学习任务
+本章由7篇文档组成，它们按照简单到难的顺序排列，将指导您如何使用PaddlePaddle完成基础的深度学习任务
 
 本章文档涉及大量了深度学习基础知识，也介绍了如何使用PaddlePaddle实现这些内容，请参阅以下说明了解如何使用：
 
@@ -21,6 +21,7 @@
     understand_sentiment/index.md
     label_semantic_roles/index.md
     machine_translation/index.md
+    gan/index.md
 
 我们把Jupyter、PaddlePaddle、以及各种被依赖的软件都打包进一个Docker image了。所以您不需要自己来安装各种软件，只需要安装Docker即可。对于各种Linux发行版，请参考 https://www.docker.com 。如果您使用 `Windows <https://www.docker.com/docker-windows>`_ 或者 `Mac <https://www.docker.com/docker-mac>`_，可以考虑 `给Docker更多内存和CPU资源 <http://stackoverflow.com/a/39720010/724872>`_ 。
 

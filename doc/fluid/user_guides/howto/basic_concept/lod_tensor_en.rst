@@ -299,6 +299,6 @@ Summary
 
 Then, we believe that you have known about the concept LoD-Tensor. And an attempt to change x_d and y_d in code above and then to check the output may help you get a better understanding of this flexible structure.
 
-About more model applications of LoDTensor, you can refer to `Word2vec <../../../beginners_guide/basics/word2vec/index.html>`_ , `Individual Recommendation <../../../beginners_guide/basics/recommender_system/index.html>`_ , `Sentiment Analysis <../../../beginners_guide/basics/understand_sentiment/index.html>`_ in the beginner's guide. 
+About more model applications of LoDTensor, you can refer to `Word2vec <../../../beginners_guide/basics/word2vec/index_en.html>`_ , `Individual Recommendation <../../../beginners_guide/basics/recommender_system/index_en.html>`_ , `Sentiment Analysis <../../../beginners_guide/basics/understand_sentiment/index_en.html>`_ in the beginner's guide. 
 
-About more difffiult and complex examples of application, please refer to associated information about `models <../../../user_guides/models/model12_en.html>`_ .
+About more difffiult and complex examples of application, please refer to associated information about `models <../../../user_guides/models/index_en.html>`_ .

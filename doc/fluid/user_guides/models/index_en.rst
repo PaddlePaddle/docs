@@ -1,4 +1,4 @@
-`Fluid Model Library <https://github.com/PaddlePaddle/models/tree/develop/fluid>`__
+`Fluid Model Library <https://github.com/PaddlePaddle/models>`__
 ============
 
 Image classification
@@ -7,17 +7,17 @@ Image classification
 Image classification is based on the semantic information of images to distinguish different types of images. It is an important basic problem in computer vision. It is the basis of other high-level visual tasks such as object detection, image segmentation, object tracking, behavior analysis, face recognition, etc. The field has a wide range of applications. Such as: face recognition and intelligent video analysis in the security field, traffic scene recognition in the traffic field, content-based image retrieval and automatic classification of albums in the Internet field, image recognition in the medical field.
 
 In the era of deep learning, the accuracy of image classification has been greatly improved. In the image classification task, we introduced how to train commonly used models in the classic dataset ImageNet, including AlexNet, VGG, GoogLeNet, ResNet, Inception- V4, MobileNet, DPN (Dual
-Path Network), SE-ResNeXt model. We also provide open source \ `trained model <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleCV/image_classification/README_cn.md#>`__\  to make it convenient for users to download and use. It also provides tools to convert Caffe models into PaddlePaddle Fluid model configurations and parameter files.
+Path Network), SE-ResNeXt model. We also provide open source \ `trained model <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/image_classification/README_cn.md#>`__\  to make it convenient for users to download and use. It also provides tools to convert Caffe models into PaddlePaddle Fluid model configurations and parameter files.
 
-- `AlexNet <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `VGG <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `GoogleNet <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `Residual Network <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `Inception-v4 <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `MobileNet <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `Dual Path Network <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `SE-ResNeXt <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models>`__
-- `Convert Caffe model to Paddle Fluid configuration and model file tools <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/caffe2fluid>`__
+- `AlexNet <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `VGG <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `GoogleNet <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `Residual Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `Inception-v4 <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `MobileNet <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `Dual Path Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `SE-ResNeXt <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
+- `Convert Caffe model to Paddle Fluid configuration and model file tools <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/caffe2fluid>`__
 
 Object Detection
 -----------------
@@ -28,8 +28,8 @@ In the object detection task, we introduced how to train general object detectio
 
 Detecting human faces in an open environment, especially small, obscured and partially occluded faces is also a challenging task. We also introduced how to train Baidu's self-developed face detection PyramidBox model based on `WIDER FACE <http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/>`_ data. The algorithm won the `first place <http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/WiderFace_Results.html>`_ in multiple evaluations of WIDER FACE in March 2018 .
 
-- `Single Shot MultiBox Detector <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleCV/object_detection/README_cn.md>`__
-- `Face Detector: PyramidBox <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/face_detection/README_cn.md>`_
+- `Single Shot MultiBox Detector <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/object_detection/README_cn.md>`__
+- `Face Detector: PyramidBox <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/face_detection/README_cn.md>`_
 
 Image semantic segmentation
 ----------------------------
@@ -38,7 +38,7 @@ As the name suggests, Image Semantic Segmentation is to group/segment pixels acc
 
 In the image semantic segmentation task, we introduce how to perform semantic segmentation based on Image Cascade Network (ICNet). Compared with other segmentation algorithms, ICNet takes into account the accuracy and speed.
 
-- `ICNet <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/icnet>`__
+- `ICNet <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/icnet>`__
 
 Image Synthesis
 -----------------
@@ -47,8 +47,8 @@ Image Synthesis refers to generating a target image based on an input vector. Th
 
 In the image synthesis task, we introduced how to use DCGAN and ConditioanlGAN to generate handwritten numbers, and also introduced CycleGAN for style migration.
 
-- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/gan/c_gan>`__
-- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/gan/cycle_gan>`__
+- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/c_gan>`__
+- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/cycle_gan>`__
 
 Scene Text Recognition
 -----------------------
@@ -57,8 +57,8 @@ Rich textual information is usually contained in scene images, which plays an im
 
 In the scene text recognition task, we introduce how to combine CNN-based image feature extraction and RNN-based sequence translation technology, eliminate artificial definition features, avoid character segmentation, and use automatically learned image features to complete character recognition. Currently, the CRNN-CTC model and the sequence-to-sequence model based on the attention mechanism are introduced.
 
-- `CRNN-CTC model <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/ocr_recognition>`__
-- `Attention Model <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/ocr_recognition>`__
+- `CRNN-CTC model <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/ocr_recognition>`__
+- `Attention Model <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/ocr_recognition>`__
 
 
 Metric learning
@@ -67,7 +67,7 @@ Metric learning
 
 Metric learning is also called distance metric learning or similarity learning. Through the distance between learning objects, metric learning can be used to analyze the association and comparison of objects. It can be applied to practical problems like auxiliary classification, aggregation and also widely used in areas such as image retrieval and face recognition. In the past, for different tasks, it was necessary to select appropriate features and manually construct a distance function, but the metric learning can initially learn the metric distance function for a specific task from the main task according to different tasks. The combination of metric learning and deep learning has achieved good performance in the fields of face recognition/verification, human re-ID, image retrieval, etc. In this task, we mainly introduce the depth-based metric learning based on Fluid. The model contains loss functions such as triples and quaternions.
 
-- `Metric Learning <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/metric_learning>`__
+- `Metric Learning <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/metric_learning>`__
 
 
 Video classification
@@ -76,7 +76,7 @@ Video classification
 Video classification is the basis of video comprehension tasks. Unlike image classification, classified objects are no longer still images, but a video object composed of multi-frame images containing speech data and motion information, so to understand video needs to get more context information. To be specific, it needs not only to understand what each frame image is, what it contains, but also to combine different frames to know the context related information. The video classification method mainly includes a method based on convolutional neural networks, recurrent neural networks, or a combination of the two. In this task, we introduce the Fluid-based video classification model, which currently includes the Temporal Segment Network (TSN) model, and we will continuously add more models.
 
 
-- `TSN <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/video_classification>`__
+- `TSN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/video_classification>`__
 
 
 
@@ -87,7 +87,7 @@ Automatic Speech Recognition (ASR) is a technique for transcribing vocabulary co
 
 Different from the end-to-end direct prediction for word distribution of the deep learning model  `DeepSpeech <https://github.com/PaddlePaddle/DeepSpeech>`__ , this example is closer to the traditional language recognition process. With phoneme as the modeling unit, it focuses on the training of acoustic models in speech recognition, use `kaldi <http://www.kaldi-asr.org>`__ for feature extraction and label alignment of audio data, and integrate kaldi's decoder to complete decoding.
 
-- `DeepASR <https://github.com/PaddlePaddle/models/blob/develop/fluid/DeepASR/README_cn.md>`__
+- `DeepASR <https://github.com/PaddlePaddle/models/blob/develop/DeepASR/README_cn.md>`__
 
 Machine Translation
 ---------------------
@@ -97,7 +97,7 @@ Machine Translation transforms a natural language (source language) into another
 The Transformer implemented in this example is a machine translation model based on the self-attention mechanism, in which there is no more RNN or CNN structure, but fully utilizes Attention to learn the context dependency. Compared with RNN/CNN, in a single layer, this structure has lower computational complexity, easier parallelization, and easier modeling for long-range dependencies, and finally achieves the best translation effect among multiple languages.
 
 
-- `Transformer <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/neural_machine_translation/transformer/README_cn.md>`__
+- `Transformer <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/neural_machine_translation/transformer/README_cn.md>`__
 
 Reinforcement learning
 -------------------------
@@ -106,7 +106,7 @@ Reinforcement learning is an increasingly important machine learning direction i
 
 The pioneering work of deep reinforcement learning is a successful application in Atari video games, which can directly accept high-dimensional input of video frames and predict the next action according to the image content end-to-end. The model used is called depth Q Network (Deep Q-Network, DQN). This example uses PaddlePaddle Fluid, our flexible framework, to implement DQN and its variants and test their performance in Atari games.
 
-- `DeepQNetwork <https://github.com/PaddlePaddle/models/blob/develop/fluid/DeepQNetwork/README_cn.md>`__
+- `DeepQNetwork <https://github.com/PaddlePaddle/models/blob/develop/DeepQNetwork/README_cn.md>`__
 
 Chinese lexical analysis
 ---------------------------
@@ -131,7 +131,7 @@ In many scenarios of natural language processing, it is necessary to measure the
 
 The DAM (Deep Attention Matching Network) introduced in this example is the work of Baidu Natural Language Processing Department published in ACL-2018, which is used for the selection of responses in multi-round dialogue of retrieval chat robots. Inspired by Transformer, DAM is based entirely on the attention mechanism. It uses the stack-type self-attention structure to learn the semantic representations of responses and contexts at different granularities, and then uses cross-attention to obtain relativity between responses and contexts. The performance on the two large-scale multi-round dialogue datasets is better than other models.
 
-- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleNLP/deep_attention_matching_net>`__
+- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/deep_attention_matching_net>`__
 
 AnyQ
 ----
@@ -151,7 +151,7 @@ Machine Reading Comprehension (MRC) is one of the core tasks in Natural Language
 
 Baidu reading comprehension dataset is an open-source real-world dataset publicized by Baidu Natural Language Processing Department. All the questions and original texts are derived from actual data (Baidu search engine data and Baidu know Q&A community), and the answer is given by humans. Each question corresponds to multiple answers. The dataset contains 200k questions, 1000k original text and 420k answers. It is currently the largest Chinese MRC dataset. Baidu also publicized the corresponding open-source reading comprehension model, called DuReader. DuReader adopts the current common network hierarchical structure, and captures the interaction between the problems and the original texts through the double attention mechanism to generate the original representation of the query-aware. Finally, based on the original text of query-aware, the answer scope is predicted by point network.
 
-- `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/machine_reading_comprehension/README.md>`__
+- `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/machine_reading_comprehension/README.md>`__
 
 
 Personalized recommendation
@@ -161,8 +161,8 @@ The recommendation system is playing an increasingly important role in the curre
 
 In an industrially adoptable recommendation system, the recommendation strategy is generally divided into multiple modules in series. Take the news recommendation system as an example. There are multiple procedures that can use deep learning techniques, such as automated annotation of news, personalized news recall, personalized matching and sorting. PaddlePaddle provides complete support for the training of recommendation algorithms and provides a variety of model configurations for users to choose from.
 
-- `TagSpace <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleRec/tagspace>`_
-- `GRU4Rec <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleRec/gru4rec>`_
-- `SequenceSemanticRetrieval <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleRec/ssr>`_
-- `DeepCTR <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/ctr/README.cn.md>`_
-- `Multiview-Simnet <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleRec/multiview_simnet>`_
+- `TagSpace <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/tagspace>`_
+- `GRU4Rec <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/gru4rec>`_
+- `SequenceSemanticRetrieval <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/ssr>`_
+- `DeepCTR <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/ctr/README.cn.md>`_
+- `Multiview-Simnet <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/multiview_simnet>`_
