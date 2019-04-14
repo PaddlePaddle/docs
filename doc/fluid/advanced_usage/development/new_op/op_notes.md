@@ -6,7 +6,7 @@ Fluid中所有的Op都继承自`OperatorBase`，且所有的Op都是无状态的
 
 Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计算资源，这两个资源分别通过`Scope`和`Place`获取。框架内部有一个全局的`DeviceContextPool`，用来记录`Place`和`DeviceContext`之间的对应的关系，即每个`Place`有且仅有一个`DeviceContext`与之对应，`DeviceContext`中存放了当前设备的计算资源。比如对于GPU，这些资源包括`cudnn_handle`、`cublas_handle`、`stream`等，Op内部所有的计算（数据拷贝和CUDA Kernel等）都必须在`DeviceContext`中进行。
 
-Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
+Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv_op，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
 
 Operator继承关系图：
 ![op_inheritance_relation_diagram](../../pics/op_inheritance_relation_diagram.png)
@@ -62,7 +62,7 @@ Operator继承关系图：
 <td>InferShapeFN </td>
 <td>Functor </td>
 <td>用于推断Output的Shape </td>
-<td>分为编译时和运行时，编译时是在Python端调用；如果Op继承自OperatorWithKernel，运行时是在op.run时调用 </td>
+<td>分为编译时和运行时，编译时是在Python端调用；如果Op继承自OperatorWithKernel，运行时是在op.run中调用 </td>
 </tr>
 <tr>
 <td>OpCreator </td>
@@ -85,11 +85,12 @@ Operator继承关系图：
 
 **注意：**
 
-1. 对于所有Op，前三个参数是必须的，op_type指明op的名字，OperatorBase是该Op的对象，op_maker_and_checker_maker是op的maker和op中attr的checker。
+1. 对于所有Op，前三个参数是必须的，op_type指明op的名字，OperatorBase是该Op的对象，op_maker_and_checker_maker是op的maker以及Op中attr的checker。
 2. 如果该Op有反向，则必须要有op_grad_opmaker，因为在backward会根据正向的Op中获取反向Op的Maker。
-3. 框架提供了一个默认的op_grad_opmaker：`DefaultGradOpDescMaker`，这个Maker会将前向Op的输入和输出都作为反向Op的输入，将前向Op的输入的梯度作为反向Op的输出，并将前向Op的属性拷贝过来。**注意：**DefaultGradOpDescMaker会将前向Op的所有输入输出都做反向Op的输入，即使这个输入是没有必要的，这将会导致无法对没有用到的变量做内存优化。
+3. 框架提供了一个默认的op_grad_opmaker：`DefaultGradOpDescMaker`，这个Maker会将前向Op的输入和输出都作为反向Op的输入，将前向Op的输入的梯度作为反向Op的输出，并将前向Op的属性拷贝过来。**注意：DefaultGradOpDescMaker会将前向Op的所有输入输出都做反向Op的输入，即使这个输入是没有必要的，这将会导致无法对没有用到的变量做内存优化**。
 4. 框架没有提供默认的op_infer_var_shape方法。如果该Op是无OpKernel的，通常需要用户添加对应的op_infer_var_shape方法；如果该Op是有OpKernel的，需要实现`OperatorWithKernel`中的`InferShape`方法，此时不需要提供op_infer_var_shape方法。具体实现可参考[while_op.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/controlflow/while_op.cc)，[conv_op.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/conv_op.cc)。
-5. 框架没有提供默认的op_infer_var_type方法，用户需要根据实际情况添加op_infer_var_shape。严格来说每个Op都应该注册一个InferVarType，op_infer_var_type根据输入的Var的type和dtype推断输出Var的type和dtype。**注意：**在Python端的LayerHelper中create_variable_for_type_inference操作返回的Variable里面是LoDTensor，C++端的InferVarType可以修改`Variable`的type和dtype。
+5. 框架没有提供默认的op_infer_var_type方法，用户需要根据实际情况添加op_infer_var_shape。严格来说每个Op都应该注册一个InferVarType，op_infer_var_type根据输入的Var的type和dtype推断输出Var的type和dtype。**注意：在Python端的LayerHelper中create_variable_for_type_inference操作返回的Variable里面是LoDTensor，C++端的InferVarType可以修改`Variable`的type和dtype**。
+
 
 
 更多内容请参考: [如何写新的Op](new_op.html)
@@ -119,9 +120,17 @@ ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操�
 目前稀疏梯度在做更新更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如velocity）的更新。
 
 ### 7.显存优化
-如果Op的反向不需要将前向op的所有输入输出作为其输入，则不要用`DefaultGradOpDescMaker`，这将会导致无法对没有用到的变量做内存/显存优化。
+通常反向Op会依赖于前向Op的某些输入、输出变量，以供反向Op计算使用。但有些情况下，反向Op完全不需要任何前向的输入和输出；有些情况下，反向Op只需要前向Op的部分输入和输出；有些情况下，反向Op只需要使用前向Op中输入和输出变量的Shape和LoD信息。若op开发者在注册反向Op时，将不必要的前向Op输入和输出作为反向op的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
-### 8.混合设备调用
+所以在写注册反向Op时需要注意一下几点：
+
+- Fluid提供的`DefaultGradOpDescMaker`，默认会将前向op的所有输入（Input）、输出（Output）以及输出变量所对应的梯度（Output@Grad）作为反向Op的输入，将前向Op输入所对应的梯度（Input@Grad）作为反向Op的输出。所以在使用`DefaultGradOpDescMaker`时需要考虑是否有些变量在计算中不被用到。
+- 如果有些反向Op需要依赖前向Op的输入、输出的shape或lod，但不依赖于Tensor的Buffer，且不能根据其他信息推断出shape和lod，需要注册`NoNeedBufferVarsInference`，一旦注册了`NoNeedBufferVarsIference`，反向op中就不能读写这些Tensor的buffer，只能调用Tensor的dims()和lod()方法。具体可参考：[sequence_concat_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_concat_op.cc)。
+
+
+### 8. 反向op注册规范问题
+
+### 9.混合设备调用
 由于GPU是异步执行的，当CPU调用返回之后，GPU端可能还没有真正的执行，所以如果在Op中创建了GPU运行时需要用到的临时变量，当GPU开始运行的时候，该临时变量可能在CPU端已经被释放，这样可能会导致GPU计算出错。
 
 关于GPU中的一些同步和异步操作：
@@ -172,7 +181,10 @@ Enforce提示信息不能为空，并且需要写明，因为报错信息可以�
 
 **注意：**在merge到develop分支之前一定进行公式预览。可参考[dynamic_lstmp](http://paddlepaddle.org/documentation/docs/zh/1.1/api/layers.html#dynamic-lstmp)。
 
-### 3.Python端Op接口中参数的顺序
+### 3.Op变量名的命名要规范
+在定义Op时，Op的输入输出以及属性的命名需要符合规范，具体命名规则请参考：[`name_convention`](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
+
+### 4.Python端Op接口中参数的顺序
 Python API中参数的顺序一般按照重要性来排，以fc为例：
 ```
 def fc(input,
