@@ -192,9 +192,9 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 .. py:attribute:: sync_batch_norm
 
-类型为bool，sync_batch_norm表示是否使用同步批处理规范化，在训练阶段通过多个设备同步均值和方差。
+类型为bool，sync_batch_norm表示是否使用同步的batch正则化，即在训练阶段通过多个设备同步均值和方差。
 
-当前的实现不支持FP16培训和CPU。只有一台机器是同步的，不是所有的机器。
+当前的实现不支持FP16培训和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。
 
 默认为 False。
 
@@ -982,7 +982,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 
 关闭这个执行器(Executor)。
 
-调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上涉及到目前训练器的资源。
+调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上和目前Trainer有关联的资源。
    
 **示例代码**
 
@@ -1012,7 +1012,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
 	- **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
 	- **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-	- **use_program_cache** (bool) – 是否跨批使用缓存程序设置。只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，设置为True的速度才会更快。
+	- **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。
 	
 返回:	根据fetch_list来获取结果
 

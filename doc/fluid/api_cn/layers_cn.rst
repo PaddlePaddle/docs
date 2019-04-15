@@ -1495,7 +1495,7 @@ affine_channel
 	- **bias** (Variable):形状为(C)的一维输入，第C个元素是输入的第C个通道的仿射变换的偏置。
 	- **data_layout** (string, default NCHW): NCHW 或 NHWC，如果输入是一个2D张量，可以忽略该参数
 	- **name** (str, default None): 此层的名称
-    - **act** (str, default None): 用于该层的输出的激活
+        - **act** (str, default None): 应用于该层输出的激活函数
 
 返回： out (Variable): 与x具有相同形状和数据布局的张量。
 
@@ -1684,7 +1684,7 @@ batch_norm
     - **input** (Variable) - 输入变量的排序，可以为 2, 3, 4, 5
     - **act** （string，默认None）- 激活函数类型，linear|relu|prelu|...
     - **is_test** （bool,默认False） - 指示它是否在测试阶段。
-    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean and moving_var. 更新公式为: \(moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)\) \(moving\_var = moving\_var * momentum + new\_var * (1. - momentum)\)， 默认值0.9.
+    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean and moving_var. 更新公式为:  :math:`\(moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)\)` :math:`\(moving\_var = moving\_var * momentum + new\_var * (1. - momentum)\)` ， 默认值0.9.
     - **epsilon** （float，默认1e-05）- 加在分母上为了数值稳定的值。默认值为1e-5。
     - **param_attr** （ParamAttr|None） - batch_norm参数范围的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为param_attr。如果没有设置param_attr的初始化函数，参数初始化为Xavier。默认：None
     - **bias_attr** （ParamAttr|None） - batch_norm bias参数的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为bias_attr。如果没有设置bias_attr的初始化函数，参数初始化为0。默认：None
@@ -3181,7 +3181,7 @@ LSTMP层(具有循环映射的LSTM)在LSTM层后有一个分离的映射层，�
     - **dtype** (str) - 数据类型。Choices = [“float32”，“float64”]，默认“float32”。
     - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。
     - **h_0** (Variable) - 初始隐藏状态是可选输入，默认为0。这是一个具有形状的张量(N x D)，其中N是批大小，D是投影大小。 
-    - **c_0** (Variable) - 初始单元格状态是可选输入，默认为0。这是一个具有形状(N x D)的张量，其中N是批大小。h_0和c_0可以为空，但只能同时为空。
+    - **c_0** (Variable) - 初始cell状态是可选输入，默认为0。这是一个具有形状(N x D)的张量，其中N是批大小。h_0和c_0可以为空，但只能同时为空。
     - **cell_clip** (float) - 如果提供该参数，则在单元输出激活之前，单元状态将被此值剪裁。 
     - **proj_clip** (float) - 如果 num_proj > 0 并且 proj_clip 被提供,那么将投影值沿元素方向剪切到[-proj_clip，proj_clip]内
 
