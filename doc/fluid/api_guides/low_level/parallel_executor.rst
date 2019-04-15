@@ -29,9 +29,39 @@
 
 **注意** ：如果在Reduce模式下使用 :code:`CPU` 多线程执行 :code:`Program` ， :code:`Program` 的参数在多个线程间是共享的，在某些模型上，Reduce模式可以大幅节省内存。
 
-由于模型的执行速度与模型结构和执行器的执行策略相关， :code:`ParallelExecutor` 允许用户修改执行器的相关参数，如：线程池大小（ :code:`num_threads` ）、多少次迭代之后清理一次临时变量 :code:`num_iteration_per_drop_scope` 等，更多信息请参考 :ref:`cn_api_fluid_ExecutionStrategy` 。
+鉴于模型的执行速率和模型结构及执行器的执行策略有关，:code:`ParallelExecutor` 允许你修改执行器的相关参数，例如线程池的规模( :code:`num_threads` )、为清除临时变量:code:`num_iteration_per_drop_scope`需要进行的循环次数。更多信息请参照:ref:`api_fluid_ExecutionStrategy`。
 
-- 相关API汇总:
- - :ref:`cn_api_fluid_ParallelExecutor`
- - :ref:`cn_api_fluid_BuildStrategy`
- - :ref:`cn_api_fluid_ExecutionStrategy`
+
+.. code-block:: python
+
+    # 注释：
+    #   - 如果你想在ParallelExecutor中指定用于运行的GPU卡，需要在环境中定义
+    #     CUDA_VISIBLE_DEVICES
+    #   - 如果你想在ParallelExecutor中使用多CPU来运行程序，需要在环境中定义
+    #     CPU_NUM
+    # 首先创建Executor。
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    # 运行启动程序仅一次。
+    exe.run(fluid.default_startup_program())
+    # 定义train_exe和test_exe
+    exec_strategy = fluid.ExecutionStrategy()
+    exec_strategy.num_threads = dev_count * 4 # the size of thread pool.
+    build_strategy = fluid.BuildStrategy()
+    build_strategy.memory_optimize = True if memory_opt else False
+    train_exe = fluid.ParallelExecutor(use_cuda=use_cuda, 
+                                       main_program=train_program, 
+                                       build_strategy=build_strategy,
+                                       exec_strategy=exec_strategy,
+                                       loss_name=loss.name)
+    # 注释：对于test_exe，loss_name是不必要的。
+    test_exe = fluid.ParallelExecutor(use_cuda=True,
+                                      main_program=test_program,
+                                      build_strategy=build_strategy,
+                                      exec_strategy=exec_strategy,
+                                      share_vars_from=train_exe)
+    train_loss, = train_exe.run(fetch_list=[loss.name], feed=feed_dict)
+    test_loss, = test_exe.run(fetch_list=[loss.name], feed=feed_dict)
+- 相关API :
+ - :ref:`api_fluid_ParallelExecutor`
+ - :ref:`api_fluid_BuildStrategy`
