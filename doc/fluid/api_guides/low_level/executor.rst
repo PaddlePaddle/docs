@@ -4,17 +4,24 @@
 执行引擎
 ##########
 
-:code:`Executor` 即 :code:`执行器` 。PaddlePaddle Fluid中有两种执行器可以选择。
-:code:`Executor` 实现了一个简易的执行器，所有Operator会被顺序执行。用户可以使用
-Python脚本驱动 :code:`Executor` 执行。默认情况下 :code:`Executor` 是单线程的，如果
-想使用数据并行，请参考另一个执行器， :ref:`api_guide_parallel_executor` 。
+:code:`Executor` 实现了一个简易的执行器，所有的操作在其中顺序执行。你可以在Python脚本中运行:code:`Executor`。PaddlePaddle Fluid中有两种执行器。一种是:code:`Executor` 默认的单线程执行器，另一种是并行计算执行器，在:ref:`api_guide_parallel_executor_en`中进行了解释。`Executor`和:ref:`api_guide_parallel_executor_en`的配置不同，这可能会给部分用户带来困惑。为使执行器更加灵活，我们引入了:ref:`api_guide_compiled_program_en`，:ref:`api_guide_compiled_program_en`用于把一个程序转换为不同的优化组合，可以通过:code:`Executor`运行。
 
-:code:`Executor` 的代码逻辑非常简单。建议用户在调试过程中，先使用
-:code:`Executor` 跑通模型，再切换到多设备计算，甚至多机计算。
+:code:`Executor`的逻辑非常简单。建议在调试阶段用:code:`Executor`在一台计算机上完整地运行模型，然后转向多设备或多台计算机计算。
 
-:code:`Executor` 在构造的时候接受一个 :code:`Place`， 它们可以是 :ref:`cn_api_fluid_CPUPlace`
-或 :ref:`cn_api_fluid_CUDAPlace` 。 :code:`Executor` 在执行的时候可以选择执行的
-:ref:`api_guide_low_level_program` 。
+:code:`Executor`在构造时接受一个:code:`Place`，它既可能是:ref:`api_fluid_CPUPlace`也可能是:ref:`api_fluid_CUDAPlace`。
 
-简单的使用方法，请参考 `quick_start_fit_a_line <http://paddlepaddle.org/documentation/docs/zh/1.1/beginners_guide/quick_start/fit_a_line/README.cn.html>`_ , API Reference 请参考
-:ref:`cn_api_fluid_Executor` 。
+.. code-block:: python
+    # 首先创建Executor。
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    # 运行启动程序仅一次。
+    exe.run(fluid.default_startup_program())
+    
+    # 直接运行主程序。
+    loss, = exe.run(fluid.default_main_program(),
+                    feed=feed_dict,
+                    fetch_list=[loss.name])
+简单样例请参照 `quick_start_fit_a_line <http://paddlepaddle.org/documentation/docs/zh/1.1/beginners_guide/quick_start/fit_a_line/README.html>`_ 
+
+- 相关API :
+ - :ref:`api_fluid_Executor` 
