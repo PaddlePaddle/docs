@@ -12428,7 +12428,7 @@ multi_box_head
 ..  code-block:: python
 
         mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
-          inputs=[conv1, conv2, conv3, conv4, conv5, conv5],
+          inputs=[conv1, conv2, conv3, conv4, conv5, conv6],
           image=images,
           num_classes=21,
           min_ratio=20,
@@ -12914,7 +12914,7 @@ yolo_box
 yolov3_loss
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.yolov3_loss(x, gtbox, gtlabel, anchors, anchor_mask, class_num, ignore_thresh, downsample_ratio, gtscore=None, use_label_smooth=True, name=None)
+.. py:function:: paddle.fluid.layers.yolov3_loss(x, gt_box, gt_label, anchors, anchor_mask, class_num, ignore_thresh, downsample_ratio, gt_score=None, use_label_smooth=True, name=None)
 
 该运算通过给定的预测结果和真实框生成yolov3损失。
 
@@ -12965,15 +12965,15 @@ yolov3_loss
 
 参数：
     - **x**  (Variable) – YOLOv3损失运算的输入张量，这是一个形状为[N，C，H，W]的四维张量。H和W应该相同，第二维（C）存储框的位置信息，以及每个anchor box的置信度得分和one-hot分类
-    - **gtbox**  (Variable) – 真实框，应该是[N，B，4]的形状。第三维用来承载x、y、w、h，x、y、w、h应该是输入图像相对值。 N是batch size，B是图像中所含有的的最多的box数目
-    - **gtlabel**  (Variable) – 真实框的类id，应该形为[N，B]。
+    - **gt_box**  (Variable) – 真实框，应该是[N，B，4]的形状。第三维用来承载x、y、w、h，x、y、w、h应该是输入图像相对值。 N是batch size，B是图像中所含有的的最多的box数目
+    - **gt_label**  (Variable) – 真实框的类id，应该形为[N，B]。
     - **anchors**  (list|tuple) – 指定anchor框的宽度和高度，它们将逐对进行解析
     - **anchor_mask**  (list|tuple) – 当前YOLOv3损失计算中使用的anchor的mask索引
     - **class_num**  (int) – 要预测的类数
     - **ignore_thresh**  (float) – 一定条件下忽略某框置信度损失的忽略阈值
     - **downsample_ratio**  (int) – 从网络输入到YOLOv3 loss输入的下采样率，因此应为第一，第二和第三个YOLOv3损失运算设置32,16,8
     - **name** (string) – yolov3损失层的命名
-    - **gtscore** （Variable） - 真实框的混合得分，形为[N，B]。 默认None。
+    - **gt_score** （Variable） - 真实框的混合得分，形为[N，B]。 默认None。
     - **use_label_smooth** (bool） - 是否使用平滑标签。 默认为True
 
 
@@ -12996,13 +12996,13 @@ yolov3_loss
 .. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
-    gtbox = fluid.layers.data(name='gtbox', shape=[6, 4], dtype='float32')
-    gtlabel = fluid.layers.data(name='gtlabel', shape=[6], dtype='int32')
-    gtscore = fluid.layers.data(name='gtscore', shape=[6], dtype='float32')
+    gt_box = fluid.layers.data(name='gtbox', shape=[6, 4], dtype='float32')
+    gt_label = fluid.layers.data(name='gtlabel', shape=[6], dtype='int32')
+    gt_score = fluid.layers.data(name='gtscore', shape=[6], dtype='float32')
     anchors = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
     anchor_mask = [0, 1, 2]
-    loss = fluid.layers.yolov3_loss(x=x, gtbox=gtbox, gtlabel=gtlabel,
-                                    gtscore=gtscore, anchors=anchors,
+    loss = fluid.layers.yolov3_loss(x=x, gt_box=gt_box, gt_label=gt_label,
+                                    gt_score=gt_score, anchors=anchors,
                                     anchor_mask=anchor_mask, class_num=80,
                                     ignore_thresh=0.7, downsample_ratio=32)
 
