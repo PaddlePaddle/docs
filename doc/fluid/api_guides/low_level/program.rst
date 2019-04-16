@@ -1,8 +1,8 @@
 .. _api_guide_Program:
 
-###############################
-Program/Block/Operator/Variable
-###############################
+#########
+基础概念
+#########
 
 ==================
 Program
@@ -13,13 +13,13 @@ Program
 
 总得来说：
 
-* 一个模型是一个 Fluid :code:`Program` ,一个模型可以含有多于一个 :code:`Program` ； 
+* 一个模型是一个 Fluid :code:`Program` ,一个模型可以含有多于一个 :code:`Program` ；
 
 * :code:`Program` 由嵌套的 :code:`Block` 构成，:code:`Block` 的概念可以类比到 C++ 或是 Java 中的一对大括号，或是 Python 语言中的一个缩进块；
 
 * :code:`Block` 中的计算由顺序执行、条件选择或者循环执行三种方式组合，构成复杂的计算逻辑；
 
-* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_ 表示。 
+* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_ 表示。
 
 
 
@@ -37,7 +37,7 @@ Block
 +----------------------+-------------------------+
 | if-else, switch      | IfElseOp, SwitchOp      |
 +----------------------+-------------------------+
-| 顺序执行              | 一系列 layers            | 
+| 顺序执行              | 一系列 layers            |
 +----------------------+-------------------------+
 
 如上文所说，Fluid 中的 :code:`Block` 描述了一组以顺序、选择或是循环执行的 Operator 以及 Operator 操作的对象：Tensor。
@@ -54,7 +54,7 @@ Operator
 这是因为一些常见的对 Tensor 的操作可能是由更多基础操作构成，为了提高使用的便利性，框架内部对基础 Operator 进行了一些封装，包括创建 Operator 依赖可学习参数，可学习参数的初始化细节等，减少用户重复开发的成本。
 
 
-更多内容可参考阅读 `Fluid设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_ 
+更多内容可参考阅读 `Fluid设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_
 
 
 =========
@@ -78,4 +78,4 @@ Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多�
 
 * 用户还可以使用 :ref:`cn_api_fluid_program_guard` 配合 :code:`with` 语句，修改配置好的 :ref:`cn_api_fluid_default_startup_program` 和 :ref:`cn_api_fluid_default_main_program` 。
 
-* 在Fluid中，Block内部执行顺序由控制流决定，如 :ref:`cn_api_fluid_layers_IfElse` , :ref:`cn_api_fluid_layers_While`, :ref:`cn_api_fluid_layers_Switch` 等，更多内容可参考： :ref:`api_guide_control_flow` 
+* 在Fluid中，Block内部执行顺序由控制流决定，如 :ref:`cn_api_fluid_layers_IfElse` , :ref:`cn_api_fluid_layers_While`, :ref:`cn_api_fluid_layers_Switch` 等，更多内容可参考： :ref:`api_guide_control_flow`

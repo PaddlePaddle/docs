@@ -31,6 +31,45 @@ These two modes are specified by :code:`build_strategy`. For how to use them, pl
 
 Since the execution speed of the model is related to the model structure and the execution strategy of the executor, :code:`ParallelExecutor` allows you to modify the relevant parameters of the executor, such as the size of thread pool  ( :code:`num_threads` ), how many iterations should be done to clean up temporary variables :code:`num_iteration_per_drop_scope` . For more information, please refer to :ref:`api_fluid_ExecutionStrategy`.
 
+
+.. code-block:: python
+
+    # Note:
+    #   - If you want to specify the GPU cards which are used to run 
+    #     in ParallelExecutor, you should define the CUDA_VISIBLE_DEVICES 
+    #     in environment.
+    #   - If you want to use multi CPU to run the program in ParallelExecutor, 
+    #     you should define the CPU_NUM in the environment.
+
+    # First create the Executor.
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
+
+    # Run the startup program once and only once.
+    exe.run(fluid.default_startup_program())
+
+    # Define train_exe and test_exe
+    exec_strategy = fluid.ExecutionStrategy()
+    exec_strategy.num_threads = dev_count * 4 # the size of thread pool.
+    build_strategy = fluid.BuildStrategy()
+    build_strategy.memory_optimize = True if memory_opt else False
+
+    train_exe = fluid.ParallelExecutor(use_cuda=use_cuda, 
+                                       main_program=train_program, 
+                                       build_strategy=build_strategy,
+                                       exec_strategy=exec_strategy,
+                                       loss_name=loss.name)
+    # NOTE: loss_name is unnecessary for test_exe.
+    test_exe = fluid.ParallelExecutor(use_cuda=True,
+                                      main_program=test_program,
+                                      build_strategy=build_strategy,
+                                      exec_strategy=exec_strategy,
+                                      share_vars_from=train_exe)
+
+    train_loss, = train_exe.run(fetch_list=[loss.name], feed=feed_dict)
+    test_loss, = test_exe.run(fetch_list=[loss.name], feed=feed_dict)
+
+
 - Related API :
  - :ref:`api_fluid_ParallelExecutor`
  - :ref:`api_fluid_BuildStrategy`

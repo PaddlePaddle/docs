@@ -1,8 +1,8 @@
 .. _api_guide_Program_en:
 
-###############################
-Program/Block/Operator/Variable
-###############################
+###############
+Basic Concept
+###############
 
 ==================
 Program
@@ -36,7 +36,7 @@ Block
 +----------------------+-------------------------+
 | if-else, switch      | IfElseOp, SwitchOp      |
 +----------------------+-------------------------+
-| execute sequentially | a series of layers      | 
+| execute sequentially | a series of layers      |
 +----------------------+-------------------------+
 
 As mentioned above,  :code:`Block` in Fluid describes a set of Operators that include sequential execution, conditional selection or loop execution, and the operating object of Operator: Tensor.
@@ -53,7 +53,7 @@ This is because some common operations on Tensor may consist of more basic opera
 
 
 
-More information can be read for reference. `Fluid Design Idea <../../advanced_usage/design_idea/fluid_design_idea.html>`_ 
+More information can be read for reference. `Fluid Design Idea <../../advanced_usage/design_idea/fluid_design_idea.html>`_
 
 
 =========
@@ -75,4 +75,4 @@ Related API
 * Users can also use :ref:`api_fluid_program_guard` with :code:`with` to modify the configured :ref:`api_fluid_default_startup_program` and :ref:`api_fluid_default_main_program` .
 
 
-* In Fluid，the execution order in a Block is determined by control flow，such as :ref:`api_fluid_layers_IfElse` , :ref:`api_fluid_layers_While` and :ref:`api_fluid_layers_Switch` . For more information, please refer to： :ref:`api_guide_control_flow_en` 
+* In Fluid，the execution order in a Block is determined by control flow，such as :ref:`api_fluid_layers_IfElse` , :ref:`api_fluid_layers_While` and :ref:`api_fluid_layers_Switch` . For more information, please refer to： :ref:`api_guide_control_flow_en`

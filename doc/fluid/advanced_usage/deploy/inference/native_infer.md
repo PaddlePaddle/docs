@@ -132,6 +132,22 @@ tensor.dtype = paddle::PaddleDType::INT64;
 
 后续的执行过程与 `NativeConfig` 完全一致。
 
+### 变长序列输入
+在处理变长输入的时候，需要对 `PaddleTensor` 设置LoD信息
+
+``` c++
+# 假设序列长度依次为 [3, 2, 4, 1, 2, 3]
+tensor.lod = {{0,
+               /*0 + 3=*/3,
+               /*3 + 2=*/5,
+               /*5 + 4=*/9,
+               /*9 + 1=*/10,
+               /*10 + 2=*/12,
+               /*12 + 3=*/15}};
+```
+
+更详细的例子可以参考[LoD-Tensor使用说明](../../../user_guides/howto/basic_concept/lod_tensor.html)
+
 ### 多线程预测的建议
 
 #### 数据并行的服务

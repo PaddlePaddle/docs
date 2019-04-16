@@ -177,6 +177,14 @@ global_scope
 ..  autofunction:: paddle.fluid.global_scope
     :noindex:
 
+.. _api_fluid_in_dygraph_mode:
+
+in_dygraph_mode
+---------------
+
+..  autofunction:: paddle.fluid.in_dygraph_mode
+    :noindex:
+
 .. _api_fluid_LoDTensor:
 
 LoDTensor

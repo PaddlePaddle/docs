@@ -4,19 +4,19 @@
 Synchronous Distributed Training
 ####################################
 
-Fluid supports parallelism distributed synchronous training, the API uses the :code:`DistributedTranspiler` to convert a single node network configuration into a :code:`pserver` side and :code:`trainer` side program that can be executed on multiple machines. The user executes the same piece of code on different nodes. Depending on the environment variables or startup parameters, you can execute the corresponding :code:`pserver` or :code:`trainer` role. Fluid distributed synchronous training supports both pserver mode and NCCL2 mode. There are differences in the use of the API, to which you need to pay attention.
+Fluid supports parallelism distributed synchronous training, the API uses the :code:`DistributeTranspiler` to convert a single node network configuration into a :code:`pserver` side and :code:`trainer` side program that can be executed on multiple machines. The user executes the same piece of code on different nodes. Depending on the environment variables or startup parameters, you can execute the corresponding :code:`pserver` or :code:`trainer` role. Fluid distributed synchronous training supports both pserver mode and NCCL2 mode. There are differences in the use of the API, to which you need to pay attention.
 
-Distributed training in pserver mode 
+Distributed training in pserver mode
 ======================================
 
 For API Reference, please refer to :ref:`DistributeTranspiler`. A simple example :
 
 .. code-block:: python
 
-	config = fluid.DistributedTranspilerConfig()
+	config = fluid.DistributeTranspilerConfig()
 	#Configuring policy config
 	config.slice_var_up = False
-	t = fluid.DistributedTranspiler(config=config)
+	t = fluid.DistributeTranspiler(config=config)
 	t.transpile(trainer_id,
 				program=main_program,
 				pservers="192.168.0.1:6174,192.168.0.2:6174",
@@ -51,7 +51,7 @@ Configuration for general environment variables:
 - :code:`FLAGS_rpc_deadline` : int, the longest waiting time for RPC communication, in milliseconds, default 180000
 
 
-Distributed training in NCCL2 mode 
+Distributed training in NCCL2 mode
 ====================================
 
 The multi-node synchronous training mode based on NCCL2 (Collective Communication) is only supported in the GPU cluster.
@@ -65,7 +65,7 @@ Use the following code to convert the current :code:`Program` to a Fluid :code:`
 
 	Config = fluid.DistributeTranspilerConfig()
 	Config.mode = "nccl2"
-	t = fluid.DistributedTranspiler(config=config)
+	t = fluid.DistributeTranspiler(config=config)
 	t.transpile(trainer_id,
 				program=main_program,
 				startup_program=startup_program,
