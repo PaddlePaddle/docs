@@ -264,7 +264,7 @@ cpu_places
 参数：
   - **device_count** (None|int) - 设备数目
 
-返回: CPU位置列表
+返回: CPUPlace列表
 
 返回类型：out (list(fluid.CPUPlace))
 
@@ -278,7 +278,7 @@ CPUPlace
 .. py:class:: paddle.fluid.CPUPlace
 
 
-CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace内存。
+CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应的内存。
 
 
 
@@ -394,13 +394,13 @@ cuda_places
 创建 ``fluid.CUDAPlace`` 对象列表。
 
 
-如果 ``device_ids`` 为none，则首先检查 ``FLAGS_selected_gpus`` 的环境变量。如果 ``FLAGS_selected_gpus=0,1,2`` ，则返回的列表将为[fluid.cudaplace（0），fluid.cudaplace（1），fluid.cudaplace（2）]。如果未设置标志 ``FLAGS_selected_gpus`` ，则将返回所有可见的GPU位置。
+如果 ``device_ids`` 为None，则首先检查 ``FLAGS_selected_gpus`` 的环境变量。如果 ``FLAGS_selected_gpus=0,1,2`` ，则返回的列表将为[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]。如果未设置标志 ``FLAGS_selected_gpus`` ，则将返回所有可见的GPU places。
 
 
-如果 ``device_ids`` 不是None，它应该是GPU的设备ID。例如，如果 ``device_id=[0,1,2]`` ，返回的列表将是[fluid.cudaplace（0），fluid.cudaplace（1），fluid.cudaplace（2）]。
+如果 ``device_ids`` 不是None，它应该是GPU的设备ID。例如，如果 ``device_id=[0,1,2]`` ，返回的列表将是[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]。
 
 参数：
-  - **device_count** (None|list(int)|tuple(int)) - GPU设备ID列表
+  - **device_ids** (None|list(int)|tuple(int)) - GPU的设备ID列表
 
 返回: CUDAPlace列表
 
@@ -429,7 +429,7 @@ CUDAPlace
 
 .. py:class:: paddle.fluid.CUDAPlace
 
-CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace有一个dev_id（设备id）来表明当前CUDAPlace代表的卡数。具有不同dev_id的CUDAPlace对应的内存不可互相访问。
+CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace有一个dev_id（设备id）来表明当前CUDAPlace代表的卡数。dev_id不同的CUDAPlace所对应的内存不可相互访问。
 
 
 
