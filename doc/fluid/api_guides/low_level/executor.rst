@@ -24,4 +24,4 @@
 简单样例请参照 `quick_start_fit_a_line <http://paddlepaddle.org/documentation/docs/zh/1.1/beginners_guide/quick_start/fit_a_line/README.html>`_ 
 
 - 相关API :
- - :ref:`api_fluid_Executor` 
+ - :ref:`cn_api_fluid_Executor` 
