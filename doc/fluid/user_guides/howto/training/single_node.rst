@@ -99,7 +99,7 @@
 
 进阶使用
 ###############
- @@ -98,8 +104,3 @@ Advanced Usage
+.. toctree::
    :maxdepth: 2
 
-   test_while_training_en.rst
+   test_while_training.rst
