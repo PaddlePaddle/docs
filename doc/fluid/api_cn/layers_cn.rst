@@ -205,12 +205,13 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 .. note::
     目前不支持在DynamicRNN中任何层上配置 is_sparse = True
 
-.. py:method:: step_input(x)
+.. py:method:: step_input(x, level=0)
 
     将序列标记为动态RNN输入。
 
 参数:
-    	- **x** (Variable) - 输入序列	
+    	- **x** (Variable) - 输入序列
+        - **level** (int) - 用于拆分步骤的LOD层级，默认值0
 	
     	
 返回:当前的输入序列中的timestep。
@@ -1087,8 +1088,7 @@ py_reader
 	    except fluid.core.EOFException:
 		reader.reset()
 
-
-
+    fluid.io.save_inference_model(dirname='./model', feeded_var_names=[img, label],target_vars=[loss], executor=fluid.Executor(fluid.CUDAPlace(0)))
 
 
 2.训练和测试应使用不同的名称创建两个不同的py_reader，例如：
@@ -1483,7 +1483,7 @@ add_position_encoding
 affine_channel
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.affine_channel(x, scale=None, bias=None, data_layout='NCHW', name=None)
+.. py:function:: paddle.fluid.layers.affine_channel(x, scale=None, bias=None, data_layout='NCHW', name=None,act=None)
 
 对输入的每个 channel 应用单独的仿射变换。用于将空间批处理范数替换为其等价的固定变换。
 
@@ -1495,6 +1495,7 @@ affine_channel
 	- **bias** (Variable):形状为(C)的一维输入，第C个元素是输入的第C个通道的仿射变换的偏置。
 	- **data_layout** (string, default NCHW): NCHW 或 NHWC，如果输入是一个2D张量，可以忽略该参数
 	- **name** (str, default None): 此层的名称
+        - **act** (str, default None): 应用于该层输出的激活函数
 
 返回： out (Variable): 与x具有相同形状和数据布局的张量。
 
@@ -1680,11 +1681,11 @@ batch_norm
 
 
 参数：
-    - **input** (Variable) - 输入变量，为LoDTensor
+    - **input** (Variable) - 输入变量的排序，可以为 2, 3, 4, 5
     - **act** （string，默认None）- 激活函数类型，linear|relu|prelu|...
-    - **is_test** （bool,默认False） - 标志位，是否用于测试或训练
-    - **momentum** （float，默认0.9）- （暂无说明，待更新）
-    - **epsilon** （float，默认1e-05）- （暂无说明，待更新）
+    - **is_test** （bool,默认False） - 指示它是否在测试阶段。
+    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean and moving_var. 更新公式为:  :math:`\(moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)\)` :math:`\(moving\_var = moving\_var * momentum + new\_var * (1. - momentum)\)` ， 默认值0.9.
+    - **epsilon** （float，默认1e-05）- 加在分母上为了数值稳定的值。默认值为1e-5。
     - **param_attr** （ParamAttr|None） - batch_norm参数范围的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为param_attr。如果没有设置param_attr的初始化函数，参数初始化为Xavier。默认：None
     - **bias_attr** （ParamAttr|None） - batch_norm bias参数的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为bias_attr。如果没有设置bias_attr的初始化函数，参数初始化为0。默认：None
     - **data_layout** （string,默认NCHW) - NCHW|NHWC
@@ -2763,7 +2764,7 @@ ctc_greedy_decoder
 data_norm
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, use_mkldnn=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False)
+.. py:function:: paddle.fluid.layers.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False)
 
 **数据正则化层**
     
@@ -2790,7 +2791,6 @@ data_norm
   - **param_attr** （ParamAttr） - 参数比例的参数属性。
   - **data_layout** （string，默认NCHW） -  NCHW | NHWC
   - **in_place** （bool，默认值False） - 使data_norm的输入和输出复用同一块内存。
-  - **use_mkldnn** （bool，默认为false） -  是否使用mkldnn
   - **name** （string，默认None） - 此层的名称（可选）。 如果设置为None，则将自动命名该层。
   - **moving_mean_name** （string，Default None） - 存储全局Mean的moving_mean的名称。
   - **moving_variance_name** （string，默认None） - 存储全局Variance的moving_variance的名称。
@@ -2884,7 +2884,7 @@ dropout op可以从Program中删除，提高执行效率。
 
          - train: out = input * mask 
 
-         - inference: out = input * dropout_prob 
+         - inference: out = input * (1.0 - dropout_prob) 
 
          (mask是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` )
         
@@ -3111,7 +3111,7 @@ W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门�
 
 dynamic_lstmp
 -------------------------------
-.. py:function:: paddle.fluid.layers.dynamic_lstmp(input, size, proj_size, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', proj_activation='tanh', dtype='float32', name=None)
+.. py:function:: paddle.fluid.layers.dynamic_lstmp(input, size, proj_size, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', proj_activation='tanh', dtype='float32', name=None, h_0=None, c_0=None, cell_clip=None, proj_clip=None)
 
 动态LSTMP层(Dynamic LSTMP Layer)
 
@@ -3179,7 +3179,16 @@ LSTMP层(具有循环映射的LSTM)在LSTM层后有一个分离的映射层，�
     - **candidate_activation** (str) - 候选隐藏状态（candidate hidden state）的激活状态。Choices = [“sigmoid”，“tanh”，“relu”，“identity”]，默认“tanh”。
     - **proj_activation** (str) - 投影输出的激活函数。Choices = [“sigmoid”，“tanh”，“relu”，“identity”]，默认“tanh”。
     - **dtype** (str) - 数据类型。Choices = [“float32”，“float64”]，默认“float32”。
-    - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。 
+    - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。
+    - **h_0** (Variable) - 初始隐藏状态是可选输入，默认为0。这是一个具有形状的张量(N x D)，其中N是批大小，D是投影大小。 
+    - **c_0** (Variable) - 初始cell状态是可选输入，默认为0。这是一个具有形状(N x D)的张量，其中N是批大小。h_0和c_0可以为空，但只能同时为空。
+    - **cell_clip** (float) - 如果提供该参数，则在单元输出激活之前，单元状态将被此值剪裁。 
+    - **proj_clip** (float) - 如果 num_proj > 0 并且 proj_clip 被提供,那么将投影值沿元素方向剪切到[-proj_clip，proj_clip]内
+
+
+
+
+
 
 返回：含有两个输出变量的元组，隐藏状态（hidden state）的投影和LSTMP的cell状态。投影的shape为（T*P），cell state的shape为（T*D），两者的LoD和输入相同。
 
@@ -3793,9 +3802,17 @@ fc
 
 **全连接层**
 
-该函数在神经网络中建立一个全连接层。 它可以同时将多个tensor（ ``input`` 可使用多个tensor组成的一个list，详见参数说明）作为自己的输入，并为每个输入的tensor创立一个变量，称为“权”（weights），等价于一个从每个输入单元到每个输出单元的全连接权矩阵。FC层用每个tensor和它对应的权相乘得到输出tensor。如果有多个输入tensor，那么多个乘法运算将会加在一起得出最终结果。如果 ``bias_attr`` 非空，则会新创建一个偏向变量（bias variable），并把它加入到输出结果的运算中。最后，如果 ``act`` 非空，它也会加入最终输出的计算中。
+该函数在神经网络中建立一个全连接层。 它可以将一个或多个tensor（ ``input`` 可以是一个list或者Variable，详见参数说明）作为自己的输入，并为每个输入的tensor创立一个变量，称为“权”（weights），等价于一个从每个输入单元到每个输出单元的全连接权矩阵。FC层用每个tensor和它对应的权相乘得到形状为[M, size]输出tensor，M是批大小。如果有多个输入tensor，那么形状为[M, size]的多个输出张量的结果将会被加起来。如果 ``bias_attr`` 非空，则会新创建一个偏向变量（bias variable），并把它加入到输出结果的运算中。最后，如果 ``act`` 非空，它也会加入最终输出的计算中。
 
-这个过程可以通过如下公式表现：
+当输入为单个张量：
+
+.. math::
+
+        \\Out = Act({XW + b})\\
+
+
+
+当输入为多个张量：
 
 .. math::
 
@@ -3803,12 +3820,28 @@ fc
 
 
 上述等式中：
-  - :math:`N` ：输入tensor的数目
-  - :math:`X_i` : 输入的tensor
-  - :math:`W` ：该层创立的权
+  - :math:`N` ：输入的数目,如果输入是变量列表，N等于len（input）
+  - :math:`X_i` : 第i个输入的tensor
+  - :math:`W_i` ：对应第i个输入张量的第i个权重矩阵
   - :math:`b` ：该层创立的bias参数
   - :math:`Act` : activation function(激励函数)
   - :math:`Out` : 输出tensor
+
+::
+
+            Given:
+                data_1.data = [[[0.1, 0.2],
+                               [0.3, 0.4]]]
+                data_1.shape = (1, 2, 2) # 1 is batch_size
+         
+                data_2 = [[[0.1, 0.2, 0.3]]]
+                data_2.shape = (1, 1, 3)
+         
+                out = fluid.layers.fc(input=[data_1, data_2], size=2)
+         
+            Then:
+                out.data = [[0.18669507, 0.1893476]]
+                out.shape = (1, 2)
 
 
 参数:
@@ -3832,9 +3865,15 @@ fc
 
 ..  code-block:: python
 
+         # 当输入为单个张量时
+
         data = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
         fc = fluid.layers.fc(input=data, size=1000, act="tanh")
 
+        # 当输入为多个张量时
+        data_1 = fluid.layers.data(name="data_1", shape=[32, 32], dtype="float32")
+        data_2 = fluid.layers.data(name="data_2", shape=[24, 36], dtype="float32")
+        fc = fluid.layers.fc(input=[data_1, data_2], size=1000, act="tanh")
 
 
 
