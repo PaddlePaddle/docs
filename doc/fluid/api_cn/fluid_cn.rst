@@ -1069,6 +1069,18 @@ global_scope
 
 
 
+.. _cn_api_fluid_in_dygraph_mode:
+
+in_dygraph_mode
+-------------------------------
+
+.. py:function:: paddle.fluid.in_dygraph_mode()
+
+返回：bool，如果Program是在动态图模式下运行的则为True。
+
+
+
+
 
 
 .. _cn_api_fluid_LoDTensor:
