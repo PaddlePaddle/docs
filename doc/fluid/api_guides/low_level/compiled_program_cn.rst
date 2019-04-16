@@ -1,4 +1,4 @@
-..  _api_guide_compiled_program_zh:
+..  _api_guide_compiled_program:
 
 ################
 CompiledProgram
