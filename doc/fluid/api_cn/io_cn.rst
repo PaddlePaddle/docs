@@ -289,8 +289,6 @@ PyReader
   - **reader** (generator)  – 返回LoDTensor类型的批处理数据的Python生成器
   - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
 
-
-
 .. _cn_api_fluid_io_save_inference_model:
 
 save_inference_model
@@ -313,7 +311,9 @@ save_inference_model
   - **params_filename** (str|None) – 保存所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
   - **export_for_deployment** (bool) – 如果为真，Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前只支持True。
 
-返回: None
+返回: 获取的变量名列表
+
+返回类型：target_var_name_list(list)
 
 抛出异常：
  - ``ValueError`` – 如果 ``feed_var_names`` 不是字符串列表
@@ -406,8 +406,9 @@ save_persistables
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()
+    # `prog` 可以是由用户自定义的program
     fluid.io.save_persistables(executor=exe, dirname=param_path,
-                               main_program=None)
+                               main_program=prog)
     
     
 
