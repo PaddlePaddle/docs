@@ -236,7 +236,7 @@ Fluid的设计思想类似于高级编程语言C++和JAVA等。程序的执行�
 #定义Exector
 cpu = fluid.core.CPUPlace() #定义运算场所，这里选择在CPU下训练
 exe = fluid.Executor(cpu) #创建执行器
-exe.run(fluid.default_startup_program()) #初始化Program
+exe.run(fluid.default_startup_program()) #用来进行初始化的program
 
 #训练Program，开始计算
 #feed以字典的形式定义了数据传入网络的顺序

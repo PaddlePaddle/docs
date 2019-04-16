@@ -20,13 +20,13 @@ API详细使用方法参考 :ref:`cn_api_fluid_DistributeTranspiler` ，简单�
     # 配置策略config
     config.slice_var_up = False
     t = fluid.DistributedTranspiler(config=config)
-    t.transpile(trainer_id, 
+    t.transpile(trainer_id,
                 program=main_program,
                 pservers="192.168.0.1:6174,192.168.0.2:6174",
                 trainers=1,
                 sync_mode=False)
 
-以上参数说明请参考 `同步训练 <../distributed/sync_training.html>`_ 
+以上参数说明请参考 `同步训练 <../distributed/sync_training.html>`_
 
 需要注意的是：进行异步训练时，请修改 :code:`sync_mode` 的值
 

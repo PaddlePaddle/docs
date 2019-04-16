@@ -4,7 +4,7 @@
 分布式同步训练
 ############
 
-Fluid支持数据并行的分布式同步训练，API使用 :code:`DistributedTranspiler` 将单机网络配置转换成可以多机执行的
+Fluid支持数据并行的分布式同步训练，API使用 :code:`DistributeTranspiler` 将单机网络配置转换成可以多机执行的
 :code:`pserver` 端程序和 :code:`trainer` 端程序。用户在不同的节点执行相同的一段代码，根据环境变量或启动参数，
 可以执行对应的 :code:`pserver` 或 :code:`trainer` 角色。Fluid分布式同步训练同时支持pserver模式和NCCL2模式，
 在API使用上有差别，需要注意。
@@ -16,11 +16,11 @@ API详细使用方法参考 :ref:`DistributeTranspiler` ，简单实例用法：
 
 .. code-block:: python
 
-    config = fluid.DistributedTranspilerConfig()
+    config = fluid.DistributeTranspilerConfig()
     # 配置策略config
     config.slice_var_up = False
-    t = fluid.DistributedTranspiler(config=config)
-    t.transpile(trainer_id, 
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id,
                 program=main_program,
                 pservers="192.168.0.1:6174,192.168.0.2:6174",
                 trainers=1,
@@ -68,8 +68,8 @@ NCCL2模式分布式训练
 
     config = fluid.DistributeTranspilerConfig()
     config.mode = "nccl2"
-    t = fluid.DistributedTranspiler(config=config)
-    t.transpile(trainer_id, 
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id,
                 program=main_program,
                 startup_program=startup_program,
                 trainers="192.168.0.1:6174,192.168.0.2:6174",
