@@ -8,7 +8,9 @@ This instruction will show you how to compile PaddlePaddle on a *64-bit desktop 
 
 ## Determine which version to compile
 
-* **Only PaddlePaddle for CPU is supported.**
+* 1.3 PaddlePaddle that supports GPU.In order to make PaddlePaddle programs run faster,we usually use GPU to accelerate them.However,for the installation of GPU version of PaddlePaddle,NVIDIA GPU which satisfies with the following condictions is needed(please refer to the offical document of NVIDIA GPU for more installation and configuration details:[For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+* Cuda tool package8.0 with cuDNN v7
+* Hardware device with GPU calculation performance beyond 1.0
 
 ## Choose a compilation method
 
@@ -18,7 +20,7 @@ We provide one compilation method under the Windows system:
 
 Since the situation on host machine is more complicated, we only support specific systems.
 
-Please note: The current version does not support NCCL, distributed, AVX, warpctc and MKL related functions.
+Please note: The current version does not support NCCL, distributed related functions.
 
 
 ### ***Local compilation***
@@ -33,7 +35,7 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 
 2. Install the necessary tools i.e. cmake, git and python :
 
-	> Cmake requires version 3.0 and above, which can be downloaded from the official website and added to the environment variable. [Download here](https://cmake.org/download/).
+	> Cmake requires version 3.5 and above, which can be downloaded from the official website and added to the environment variable. [Download here](https://cmake.org/download/).
 
 	> Git can be downloaded on the official website and added to the environment variable. [Download here](https://gitforwindows.org/).
 
@@ -54,7 +56,7 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 
 4. Switch to a more stable release branch for compilation :
 
-	- `git checkout release/1.2`
+	- `git checkout release/1.3`
 
 5. Create a directory called build and enter it:
 
@@ -65,7 +67,7 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 
 	> For details on the compilation options, see [the compilation options list](../Tables.html/#Compile).
 
-	* For users who need to compile **the CPU version PaddlePaddle**:
+	* For users who need to compile **CPU version of PaddlePaddle**:
 
 		For Python2:`cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR = $ {PYTHON_INCLUDE_DIRS} 
 			-DPYTHON_LIBRARY = $ {PYTHON_LIBRARY} 
@@ -76,11 +78,21 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 			-DPYTHON_LIBRARY = $ {PYTHON_LIBRARY} 
 			-DPYTHON_EXECUTABLE = $ {PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY = ON -DWITH_GPU = OFF -DWITH_TESTING =OFF -DCMAKE_BUILD_TYPE=Release`
 
-		> If you encounter `Could NOT find PROTOBUF (missing: PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`, you can re-execute the cmake command.
+			*  For users who need to compile **GPU version PaddlePaddle**:
+
+  		For Python2: `cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
+ 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
+ 			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
+ 			 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=${CUDA_TOOLKIT_ROOT_DIR}`
+
+  		For Python3: `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
+ 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
+ 			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
+ 			 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=${CUDA_TOOLKIT_ROOT_DIR}`
 
 7. Some third-party dependencies (openblas, snappystream) currently require users to provide pre-compiled versions, or download pre-compiled files from `https://github.com/wopeizl/Paddle_deps` and place the entire `third_party` folder in the `build` directory. 
 
-8. Use Blend for Visual Studio 2015 to open `paddle.sln` file, select the platform `x64`, configure with `Release`, then begin to compile
+8. Use Blend for Visual Studio 2015 to open `paddle.sln` file, select the platform `x64`, configure with `Release`, compile the third_party module and then other modules
 
 9. Having compiled successfully, go to the `\paddle\build\python\dist`directory and find the generated `.whl` package:
 
@@ -102,3 +114,5 @@ After the installation is complete, you can use: `python` to enter the Python in
 Please use the following command to uninstall PaddlePaddle:
 
 * ***CPU version of PaddlePaddle*** : `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
+
+* ***GPU version of PaddlePaddle***: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
