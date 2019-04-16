@@ -64,4 +64,4 @@
     test_loss, = test_exe.run(fetch_list=[loss.name], feed=feed_dict)
 - 相关API :
  - :ref:`cn_api_fluid_ParallelExecutor`
- - :ref:`api_fluid_BuildStrategy`
+ - :ref:`cn_api_fluid_BuildStrategy`
