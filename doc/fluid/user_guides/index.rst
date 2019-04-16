@@ -16,9 +16,9 @@
 
     - `模型评估与调试 <../user_guides/howto/evaluation_and_debugging/index.html>`_：介绍在 Fluid 下进行模型评估和调试的方法，包括：
 
-基于 Fluid 复现的多领域经典模型：
+	- `DyGraph模式 <../user_guides/howto/dygraph/DyGraph.md>`_：介绍在 Fluid 下使用DyGraph
 
-    - `Fluid 模型库 <../user_guides/models/index_cn.html>`_
+
 
 ..  toctree::
     :hidden:
@@ -28,4 +28,5 @@
     howto/configure_simple_model/index
     howto/training/index
     howto/evaluation_and_debugging/index
+    howto/dygraph/DyGraph.md
     models/index_cn.rst
