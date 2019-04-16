@@ -15,8 +15,8 @@
 
 在CentOS的系统下有2种编译方式：
 
-* Docker源码编译
-* 本机源码编译（不支持CentOS 6）
+* 使用Docker编译
+* 本机编译（不支持CentOS 6）
 
 <a name="ct_docker"></a>
 ### ***使用Docker编译***

@@ -935,6 +935,14 @@ pad_constant_like
 ..  autofunction:: paddle.fluid.layers.pad_constant_like
     :noindex:
 
+.. _api_fluid_layers_pixel_shuffle:
+
+pixel_shuffle
+-------------
+
+..  autofunction:: paddle.fluid.layers.pixel_shuffle
+    :noindex:
+
 .. _api_fluid_layers_pool2d:
 
 pool2d

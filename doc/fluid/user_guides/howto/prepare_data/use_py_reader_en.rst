@@ -120,7 +120,7 @@ example usage：
         name='py_reader1',
         use_double_buffer=True)
 
-    py_reader1.decorate_paddle_reader(paddle.batch(fake_random_reader, batch_size=BATCH_SIZE))
+    py_reader1.decorate_paddle_reader(paddle.batch(fake_random_numpy_reader, batch_size=BATCH_SIZE))
 
 
     # Case 2: Use decorate_tensor_provider() method to set the data source of py_reader

@@ -153,6 +153,10 @@ LoD-Tensor
 
 recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最外层列表的size表示嵌套的层数，也就是lod-level的大小；内部的每个列表，对应表示每个lod-level下，每个元素的大小。
 
+下面三段代码分别介绍如何创建一个LoD-Tensor，如何将LoD-Tensor转换成Tensor，如何将Tensor转换成LoD-Tensor：
+
+* 创建 LoD-Tensor
+
 .. code-block:: python
 
   #创建lod-tensor
@@ -169,12 +173,74 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
                             fluid.CPUPlace())
   
   #查看lod-tensor嵌套层数
-  print len(a.recursive_sequence_lengths())
+  print (len(a.recursive_sequence_lengths()))
   # output：2
 
   #查看最基础元素个数
-  print sum(a.recursive_sequence_lengths()[-1])
+  print (sum(a.recursive_sequence_lengths()[-1]))
   # output:15 (3+2+4+1+2+3=15)
+
+* LoD-Tensor 转 Tensor
+
+.. code-block:: python
+
+  import paddle.fluid as fluid
+  import numpy as np
+
+  # 创建一个 LoD-Tensor
+  a = fluid.create_lod_tensor(np.array([[1.1], [2.2],[3.3],[4.4]]).astype('float32'), [[1,3]], fluid.CPUPlace())
+
+  def LodTensor_to_Tensor(lod_tensor):
+    # 获取 LoD-Tensor 的 lod 信息
+    lod = lod_tensor.lod()
+    # 转换成 array
+    array = np.array(lod_tensor)
+    new_array = []
+    # 依照原LoD-Tensor的层级信息，转换成Tensor
+    for i in range(len(lod[0]) - 1):
+        new_array.append(array[lod[0][i]:lod[0][i + 1]])
+    return new_array
+
+  new_array = LodTensor_to_Tensor(a)
+
+  # 输出结果
+  print(new_array)
+
+* Tensor 转 LoD-Tensor
+
+.. code-block:: python
+
+  import paddle.fluid as fluid
+  import numpy as np
+
+  def to_lodtensor(data, place):
+    # 存储Tensor的长度作为LoD信息
+    seq_lens = [len(seq) for seq in data]
+    cur_len = 0
+    lod = [cur_len]
+    for l in seq_lens:
+        cur_len += l
+        lod.append(cur_len)
+    # 对待转换的 Tensor 降维
+    flattened_data = np.concatenate(data, axis=0).astype("int64")
+    flattened_data = flattened_data.reshape([len(flattened_data), 1])
+    # 为 Tensor 数据添加lod信息
+    res = fluid.LoDTensor()
+    res.set(flattened_data, place)
+    res.set_lod([lod])
+    return res
+
+  # new_array 为上段代码中转换的Tensor
+  lod_tensor = to_lodtensor(new_array,fluid.CPUPlace())
+
+  # 输出 LoD 信息
+  print("The LoD of the result: {}.".format(lod_tensor.lod()))
+
+  # 检验与原Tensor数据是否一致
+  print("The array : {}.".format(np.array(lod_tensor)))
+
+
+
 
 代码示例
 ===========
