@@ -7332,7 +7332,7 @@ Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverfl
 
 ..  code-block:: python
 
-	pool_out = fluid.layers。roi_pool(输入=x, rois=rois, 7,7,1.0)
+	pool_out = fluid.layers.roi_pool(input=x, rois=rois, 7,7,1.0)
 
 
 
