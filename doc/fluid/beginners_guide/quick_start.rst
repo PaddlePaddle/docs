@@ -4,19 +4,13 @@
 快速安装
 ----------
 
-PaddlePaddle支持使用pip快速安装， 执行下面的命令完成快速安装：
+PaddlePaddle支持使用pip快速安装， 执行下面的命令完成CPU版本的快速安装：
 
 .. code-block:: bash
 
 	pip install paddlepaddle
 
-如果需要安装支持GPU的版本，请执行：
-
-.. code-block:: bash
-
-	pip install paddlepaddle-gpu
-
-如遇到安装问题，或想阅读更详细的安装和编译方法，请参考：`安装说明 <../beginners_guide/install/index_cn.html>`_
+如需安装GPU版本的PaddlePaddle，或查阅更详细的安装方法，请参考：`安装说明 <../beginners_guide/install/index_cn.html>`_
 
 
 快速使用
