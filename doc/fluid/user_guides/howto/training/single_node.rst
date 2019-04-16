@@ -93,7 +93,7 @@
 
 注释：
 
-1. :ref:`api_fluid_CompiledProgram`的构造函数需要经过:code:`fluid.Program`设置后运行，这在运行时内无法被修改。
+1. :ref:`cn_api_fluid_CompiledProgram`的构造函数需要经过:code:`fluid.Program`设置后运行，这在运行时内无法被修改。
 2. 如果:code:`exe`是用CUDAPlace来初始化的，模型会在GPU中运行。在显卡训练模式中，所有的显卡都将被占用。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 以更改被占用的显卡。
 3. 如果:code:`exe`是用CPUPlace来初始化的，模型会在CPU中运行。在这种情况下，多线程用于运行模型，同时线程的数目和逻辑核的数目相等。用户可以配置`CPU_NUM`以更改使用中的线程数目。
 
