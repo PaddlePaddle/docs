@@ -4,7 +4,7 @@
 CompiledProgram
 ################
 
-:ref:`api_fluid_CompiledProgram` 用于把程序转化为不同的优化组合。例如，你可以使用with_data_parallel将程序转化为数据并行程序，使其能够运行在多个设备上。 
+:ref:`cn_api_fluid_CompiledProgram` 用于把程序转化为不同的优化组合。例如，你可以使用with_data_parallel将程序转化为数据并行程序，使其能够运行在多个设备上。 
 
 
 .. code-block:: python
