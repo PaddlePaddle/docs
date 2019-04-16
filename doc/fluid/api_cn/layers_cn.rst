@@ -2491,7 +2491,7 @@ cos_sim
     - **X** (Variable) - cos_sim操作函数的一个输入
     - **Y** (Variable) - cos_sim操作函数的第二个输入
 
-返回：cosine(X,Y)的输出
+返回：cosine(X,Y)的输出
 
 返回类型：变量（Variable)
 
@@ -5430,7 +5430,7 @@ lrn
 
 参数：
     - **input** （Variable）- 该层输入张量，输入张量维度必须为4
-    - **n** (int，默认5） - 累加哦的通道数
+    - **n** (int，默认5） - 累加的通道数
     - **k** （float，默认1.0）- 位移（通常为正数，避免除数为0）
     - **alpha** （float，默认1e-4）- 缩放参数
     - **beta** （float，默认0.75）- 指数
@@ -5948,6 +5948,44 @@ multiplex
 
 其中 :math:`y` 为输出张量， :math:`x_k` 为第k个输入张量，并且 :math:`k=Ids[i]` 。
 
+示例：
+
+.. code-block:: text
+
+        例1：
+
+        假设:
+
+        X = [[[0,0,3,4], [0,1,3,4], [0,2,4,4], [0,3,3,4]],
+             [[1,0,3,4], [1,1,7,8], [1,2,4,2], [1,3,3,4]],
+             [[2,0,3,4], [2,1,7,8], [2,2,4,2], [2,3,3,4]],
+             [[3,0,3,4], [3,1,7,8], [3,2,4,2], [3,3,3,4]]]
+
+        index = [3,0,1,2]
+
+        out:[[3 0 3 4]    // X[3,0] (3 = index[i], 0 = i); i=0
+             [0 1 3 4]    // X[0,1] (0 = index[i], 1 = i); i=1
+             [1 2 4 2]    // X[1,2] (0 = index[i], 2 = i); i=2
+             [2 3 3 4]]   // X[2,3] (0 = index[i], 3 = i); i=3
+
+        例2:
+
+        假设:
+
+        X = [[[0,0,3,4], [0,1,3,4], [0,2,4,4], [0,3,3,4]],
+             [[1,0,3,4], [1,1,7,8], [1,2,4,2], [1,3,3,4]]]
+
+        index = [1,0]
+
+        out:[[1 0 3 4]    // X[1,0] (3 = index[0], 0 = i); i=1
+             [0 1 3 4]    // X[0,1] (0 = index[1], 1 = i); i=2
+             [0 2 4 4]    // X[0,2] (0 = 0, 2 = i); i=3
+             [0 3 3 4]]   // X[0,3] (0 = 0, 3 = i); i=4
+
+
+
+
+
 参数:
   - **inputs** （list） - 要从中收集的变量列表。所有变量的形状相同，秩至少为2
   - **index** （Variable） -  Tensor <int32>，索引变量为二维张量，形状[M, 1]，其中M为批大小。
@@ -5964,7 +6002,6 @@ multiplex
    x2 = fluid.layers.data(name='x2', shape=[4], dtype='float32')
    index = fluid.layers.data(name='index', shape=[1], dtype='int32')
    out = fluid.layers.multiplex(inputs=[x1, x2], index=index)
-   
 
 
 
@@ -6274,7 +6311,8 @@ pad_constant_like
               [[38, 39, 40]],
               [[41, 42, 43]]]]
         Y.shape = (1, 3, 1, 3)
-        
+
+
 参数：
           - **x** （Variable）- 输入Tensor变量。
           - **y** （Variable）- 输出Tensor变量。
@@ -6297,8 +6335,41 @@ pad_constant_like
 
 
 
+.. _cn_api_fluid_layers_pixel_shuffle:
+
+pixel_shuffle
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.pixel_shuffle(x, upscale_factor)
+
+pixel shuffle 层（像素重组层）
+
+该层将一个形为[N, C, H, W]的张量重新排列成形为 [N, C/r**2, H*r, W*r] 的张量。这样做有利于实现步长（stride）为1/r的高效sub-pixel（亚像素）卷积。详见Shi等人在2016年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv.org/abs/1609.05158v2>`_ 。
+
+.. code-block:: text
+
+    给定一个形为  x.shape = [1, 9, 4, 4]  的4-D张量
+    设定：upscale_factor=3
+    那么输出张量的形为：[1, 1, 12, 12]
+
+参数：
+          - **x** （Variable）- 输入Tensor变量。
+          - **upscale_factor** （int）- 增大空间分辨率的增大因子
 
 
+返回：根据新的维度信息进行重组的张量
+
+返回类型：  Variable
+
+抛出异常： ``ValueError``  - 如果upscale_factor的平方不能整除输入的通道维(C)大小。
+
+
+**示例代码**
+
+..  code-block:: python
+
+    input = fluid.layers.data(shape=[9,4,4])
+    output = fluid.layers.pixel_shuffle(x=input, upscale_factor=3)
 
 
 
@@ -7112,7 +7183,7 @@ reshape
 	- **shape** (list) - 新的形状。新形状最多只能有一个维度为-1。
 	- **actual_shape** (variable) - 一个可选的输入。如果提供，则根据 ``actual_shape`` 进行 reshape，而不是指定 ``shape`` 。也就是说，actual_shape具有比shape更高的优先级。
 	- **act** (str) - 对reshpe后的tensor变量执行非线性激活
-	- **inplace** (bool) - 如果在多个操作符中使用x，则 ``inplace`` 必须设置为False。如果该标志设置为True，则直接对输入x本身进行reshape操作，张量变量x的形状将会被改变，因此在其他操作中再使用x时会造成错误。如果为False，则保留输入变量x的原形状，并输出一个新的张量变量，该张量变量的数据是从输入x复制的，但是其形状已经经过reshape操作进行重构。
+	- **inplace** (bool) - 如果 ``inplace`` 为True，则 ``layers.reshape`` 的输入和输出是同一个变量，否则， ``layers.reshape`` 的输入和输出是不同的变量。请注意，如果x作为多个层的输入，则 ``inplace`` 必须为False。
 	- **name** (str) -  可选变量，此层的名称
 
 返回：如果 ``act`` 为 ``None``,返回reshape后的tensor变量。如果 ``inplace`` 为 ``False`` ,将返回一个新的Tensor变量，否则，将改变x自身。如果 ``act`` 不是 ``None`` ，则返回激活的张量变量。
@@ -7271,7 +7342,7 @@ resize_nearest
   - **actual_shape** (Variable) – 可选输入， 动态设置输出张量的形状。 如果提供该值， 图片放缩会依据此形状进行， 而非依据 ``out_shape`` 和 ``scale`` 。 即为， ``actual_shape`` 具有最高的优先级。 如果想动态指明输出形状，推荐使用 ``actual_shape`` 取代 ``out_shape`` 。 当使用 ``actual_shape`` 来指明输出形状， ``out_shape`` 和 ``scale`` 也应该进行设置, 否则在图形生成阶段将会报错。默认: None
   - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值：True
 
-返回：插值运算的输出张量，是一个形为 (N,C,H,W) 的四维张量
+返回：插值运算的输出张量，是一个形为 [N,C,H,W] 的四维张量
 
 **代码示例**
 
@@ -7360,7 +7431,7 @@ Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverfl
     - **roi** (Variable) -  roi区域。
     - **pooled_height** (integer) - (int，默认1)，池化输出的高度。默认:1
     - **pooled_width** (integer) -  (int，默认1) 池化输出的宽度。默认:1
-    - **spatial_scale** (float) - (float，默认1.0)，用于将ROI coords从输入规模转换为池化时使用的规模。默认1.0
+    - **spatial_scale** (float) - (float，默认1.0)，用于将ROI coords从输入比例转换为池化时使用的比例。默认1.0
 
 返回: (张量)，ROIPoolOp的输出是一个shape为(num_rois, channel, pooled_h, pooled_w)的4d张量。
     
@@ -8523,16 +8594,16 @@ shape
 
 .. py:function:: paddle.fluid.layers.shape(input)
 
-shape算子
+shape层。
 
-获得输入张量的形状。现在只支持输入CPU的Tensor。
+获得输入变量的形状。
 
 参数：
-        - **input** （Variable）- （Tensor），输入张量。
+        - **input** （Variable）-  输入的变量
 
-返回：        (Tensor），输入张量的形状，形状的数据类型是int32，它将与输入张量（Tensor）在同一设备上。
+返回： (Tensor），输入变量的形状
 
-返回类型：        输出（Variable）。
+返回类型：    Variable
         
         
 **代码示例：**
@@ -8916,12 +8987,12 @@ SoftRelu 激活函数
 softmax
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.softmax(input, use_cudnn=True, name=None)
+.. py:function:: paddle.fluid.layers.softmax(input, use_cudnn=False, name=None, axis=-1)
 
 softmax操作符的输入是任意阶的张量，输出张量和输入张量的维度相同。
 
-首先逻辑上将输入张量压平至二维矩阵。矩阵的第二维（行数）和输入张量的最后一维相同。第一维（列数）
-是输入张量除最后一维之外的所有维的产物。对矩阵的每一行来说,softmax操作将K维(K是矩阵的宽度,也就是输入张量的维度)任意实际值，压缩成K维取值为[0,1]之间的向量，压缩后k个值的和为1。
+输入变量的 ``axis`` 维会被排列到最后一维。然后逻辑上将输入张量压平至二维矩阵。矩阵的第二维（行数）和输入张量的 ``axis`` 维相同。第一维（列数）
+是输入张量除最后一维之外的所有维长度乘积。对矩阵的每一行来说,softmax操作将含有任意实数值的K维向量(K是矩阵的宽度,也就是输入张量 ``axis`` 维度的大小)压缩成K维含有取值为[0,1]中实数的向量，并且这些值和为1。
 
 
 softmax操作符计算k维向量输入中所有其他维的指数和指数值的累加和。维的指数比例和所有其他维的指数值之和作为softmax操作符的输出。
@@ -8934,19 +9005,23 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 
 参数：
     - **input** (Variable) - 输入变量
-    - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效
+    - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效。为了数学稳定性，默认该项为False。
     - **name** (str|None) - 该层名称（可选）。若为空，则自动为该层命名。默认：None
+    - **axis** (Variable) - 执行softmax计算的维度索引，应该在 :math:`[-1，rank-1]` 范围内，其中rank是输入变量的秩。 默认值：-1。
 
 返回： softmax输出
 
 返回类型：变量（Variable）
 
-**代码示例**：
+**代码示例**
 
 .. code-block:: python
 
     fc = fluid.layers.fc(input=x, size=10)
-    softmax = fluid.layers.softmax(input=fc)
+    # 在第二维执行softmax
+    softmax = fluid.layers.softmax(input=fc, axis=1)
+    # 在最后一维执行softmax 
+    softmax = fluid.layers.softmax(input=fc, axis=-1)
 
 
 
@@ -8961,7 +9036,7 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 softmax_with_cross_entropy
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=False, return_softmax=False)
+.. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False)
 
 使用softmax的交叉熵在输出层已被广泛使用。该函数计算输入张量每一行的softmax标准化值，而后计算交叉熵。通过此种方式，可以得到更具数字稳定性的梯度值。
 
@@ -8990,12 +9065,12 @@ softmax_with_cross_entropy
 
 
 参数:
-  - **logits** (Variable) - 未标准化(unscaled)的log概率,一个形为 N X K 的二维张量。 N是batch大小，K是类别总数
-  - **label** (Variable) - 2-D 张量，代表了正确标注（ground truth）, 如果 ``soft_label`` 为  False，则该参数是一个形为 N X 1 的Tensor<int64> 。如果 ``soft_label`` 为 True，它是 Tensor<float/double> ，形为 N X K
-  - **soft_label** (bool) - 是否将输入标签当作软标签。默认为False
-  - **ignore_index** (int) - 指明要无视的目标值，使之不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认为kIgnoreIndex 
-  - **numeric_stable_mode** (bool) – 标志位，指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效. 若 ``soft_label`` 为 True 或者执行场所为CPU, 算法一直具有数学稳定性。 注意使用稳定算法时速度可能会变慢。默认为 False
-  - **return_softmax** (bool) – 标志位，指明是否额外返回一个softmax值， 同时返回交叉熵计算结果。默认为False
+  - **logits** (Variable) - 未标准化(unscaled)的log概率,一个形为 N X K 的二维张量。 N是batch大小，K是类别总数。
+  - **label** (Variable) - 2-D 张量，代表了正确标注（ground truth）, 如果 ``soft_label`` 为  False，则该参数是一个形为 N X 1 的Tensor<int64> 。如果 ``soft_label`` 为 True，它是 Tensor<float/double> ，形为 N X K 。
+  - **soft_label** (bool) - 是否将输入标签当作软标签。默认为False。
+  - **ignore_index** (int) - 指明要无视的目标值，使之不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认为kIgnoreIndex。 
+  - **numeric_stable_mode** (bool) – 标志位，指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效. 若 ``soft_label`` 为 True 或者执行场所为CPU, 算法一直具有数学稳定性。 注意使用稳定算法时速度可能会变慢。默认为 True。
+  - **return_softmax** (bool) – 标志位，指明是否额外返回一个softmax值， 同时返回交叉熵计算结果。默认为False。
 
 返回: 
   - 如果 ``return_softmax`` 为 False， 则返回交叉熵损失
@@ -9062,9 +9137,16 @@ space_to_depth
 ..  code-block:: python
 
     data = fluid.layers.data(
-        name='data', shape=[1, 4, 2, 2], dtype='float32')
+        name='data', shape=[1, 4, 2, 2], dtype='float32', append_batch_size=False)
     space_to_depthed = fluid.layers.space_to_depth(
         x=data, blocksize=2)
+
+    exe = fluid.Executor(fluid.CUDAPlace(0))
+    data_np = np.arange(0,16).reshape((1,4,2,2)).astype('float32')
+    out_main = exe.run(fluid.default_main_program(),
+                  feed={'data': data_np},
+                  fetch_list=[space_to_depthed])
+
 
 
 
@@ -9270,6 +9352,47 @@ stack
 沿 ``axis`` 轴，该层对输入 ``x`` 进行stack运算。
 
 输入 x 可以是单个变量, 或是多个变量组成的列表或元组。如果 x 是一个列表或元组, 那么这些变量必须同形。 假设每个输入的形都为 :math:`[d_0,d_1,...,d_{n−1}]` , 则输出变量的形为 :math:`[d_0,d_1,...,d_{axis}=len(x),...,d_{n−1}]` 。 如果 ``axis`` < 0, 则将其取代为 :math:`axis+rank(x[0])+1` 。 如果 ``axis`` 为 None, 则认为它是 0。
+
+
+例如：
+
+.. code-block:: text
+
+    例1:
+      输入:
+        x[0].data = [ [1.0 , 2.0 ] ]
+        x[0].dims = [1, 2]
+        x[1].data = [ [3.0 , 4.0 ] ]
+        x[1].dims = [1, 2]
+        x[2].data = [ [5.0 , 6.0 ] ]
+        x[2].dims = [1, 2]
+
+      参数:
+        axis = 0
+
+      输出:
+        Out.data =[ [ [1.0, 2.0] ],
+                    [ [3.0, 4.0] ],
+                    [ [5.0, 6.0] ] ]
+        Out.dims = [3, 1, 2]
+
+    例2:
+      如果
+        x[0].data = [ [1.0 , 2.0 ] ]
+        x[0].dims = [1, 2]
+        x[1].data = [ [3.0 , 4.0 ] ]
+        x[1].dims = [1, 2]
+        x[2].data = [ [5.0 , 6.0 ] ]
+        x[2].dims = [1, 2]
+
+      参数:
+        axis = 1 or axis = -2
+
+      输出:
+        Out.data =[ [ [1.0, 2.0]
+                      [3.0, 4.0]
+                      [5.0, 6.0] ] ]
+        Out.dims = [1, 3, 2]
 
 参数:	
   - **x** (Variable|list(Variable)|tuple(Variable)) – 输入变量
@@ -9785,20 +9908,74 @@ abs
 
 .. py:function:: paddle.fluid.layers.abs(x, name=None)
 
-绝对值运算激活函数。
+绝对值激活函数。
 
 .. math::
     out = |x|
 
 参数:
     - **x** - abs算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
  
-返回：        Abs算子的输出。
+返回：        abs算子的输出。
 
 
 
 
 
+.. _cn_api_fluid_layers_acos:
+
+acos
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.acos(x, name=None)
+
+arccosine激活函数。
+
+.. math::
+    out = cos^{-1}(x)
+
+参数:
+    - **x** - acos算子的输入 
+ 
+返回：        acos算子的输出。
+
+
+
+.. _cn_api_fluid_layers_asin:
+
+asin
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.asin(x, name=None)
+
+arcsine激活函数。
+
+.. math::
+    out = sin^{-1}(x)
+
+参数:
+    - **x** - asin算子的输入 
+ 
+返回：        asin算子的输出。
+
+
+.. _cn_api_fluid_layers_atan:
+
+atan
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.atan(x, name=None)
+
+arctanh激活函数。
+
+.. math::
+    out = tanh^{-1}(x)
+
+参数:
+    - **x** - atan算子的输入 
+ 
+返回：       atan算子的输出。
 
 
 
@@ -9821,6 +9998,7 @@ ceil
 
 参数:
     - **x** - Ceil算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：        Ceil算子的输出。
         
@@ -9850,6 +10028,7 @@ Cosine余弦激活函数。
 
 参数:
     - **x** - cos算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 
 返回：        Cos算子的输出
@@ -9909,6 +10088,7 @@ Exp激活函数(Exp指以自然常数e为底的指数运算)。
 
 参数:
     - **x** - Exp算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 
 返回：       Exp算子的输出
@@ -9938,6 +10118,7 @@ floor
 
 参数:
     - **x** - Floor算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 
 返回：        Floor算子的输出。
@@ -10007,7 +10188,8 @@ Logsigmoid激活函数。
 
 
 参数:
-    - **x** - LogSigmoid算子的输入 
+    - **x** - LogSigmoid算子的输入
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn 
 
 返回：        LogSigmoid算子的输出
 
@@ -10035,6 +10217,7 @@ Reciprocal（取倒数）激活函数
 
 参数:
     - **x** - reciprocal算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn 
 
 返回：        Reciprocal算子的输出。        
 
@@ -10066,6 +10249,7 @@ Round取整激活函数。
 
 参数:
     - **x** - round算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn 
 
 返回：        Round算子的输出。
         
@@ -10093,6 +10277,7 @@ sigmoid激活函数
 
 参数:
     - **x** - Sigmoid算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：     Sigmoid运算输出.
 
@@ -10120,6 +10305,7 @@ sin
 
 参数:
     - **x** - sin算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 
 返回：        Sin算子的输出。
@@ -10147,7 +10333,8 @@ softplus激活函数。
     out = \ln(1 + e^{x})
 
 参数：
-    - **x** : Softplus操作符的输入
+    - **x** - Softplus操作符的输入
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：Softplus操作后的结果
 
@@ -10205,6 +10392,7 @@ softsign激活函数。
 
 参数：
     - **x** : Softsign操作符的输入
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 
 返回：Softsign操作后的结果
@@ -10226,11 +10414,15 @@ sqrt
 
 算数平方根激活函数。
 
+请确保输入是非负数。有些训练当中，会出现输入为接近零的负值，此时应加上一个小值epsilon（1e-12）将其变为正数从而正确运算并进行后续的操作。
+
+
 .. math::
     out = \sqrt{x}
 
 参数:
     - **x** - Sqrt算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：       Sqrt算子的输出。
 
@@ -10258,7 +10450,7 @@ square
 
 参数:
     - **x** : 平方操作符的输入
-
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：平方后的结果
 
@@ -10288,6 +10480,7 @@ tanh 激活函数。
 
 参数:
     - **x** - Tanh算子的输入  
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：     Tanh算子的输出。
 
@@ -10315,6 +10508,7 @@ tanh_shrink激活函数。
 
 参数:
     - **x** - TanhShrink算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：     tanh_shrink算子的输出
 
@@ -10368,17 +10562,16 @@ ThresholdedRelu激活函数
 uniform_random
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.uniform_random(shape,dtype=None,min=None,max=None,seed=None)
+.. py:function:: paddle.fluid.layers.uniform_random(shape, dtype='float32', min=-1.0, max=1.0, seed=0)
 该操作符初始化一个张量，该张量的值是从均匀分布中抽样的随机值
 
 参数：
     - **shape** (LONGS)-输出张量的维
+    - **dtype** (np.dtype|core.VarDesc.VarType|str) – 数据的类型, 例如float32, float64。 默认: float32.
     - **min** (FLOAT)-均匀随机分布的最小值。[默认 -1.0]
     - **max** (FLOAT)-均匀随机分布的最大值。[默认 1.0]
     - **seed** (INT)-随机种子，用于生成样本。0表示使用系统生成的种子。注意如果种子不为0，该操作符每次都生成同样的随机数。[默认 0]
-    - **dtype** (INT)-输出张量数据类型。[默认5(FP32)]
 
-返回：正态随机操作符的输出张量
 
 **代码示例**：
 
@@ -10562,7 +10755,7 @@ cast
 
 .. py:function:: paddle.fluid.layers.cast(x,dtype)
 
-该层传入变量x,并用x.dtype将x转换成dtype类型，作为输出。
+该层传入变量x, 并用x.dtype将x转换成dtype类型，作为输出。如果输出的dtype和输入的dtype相同，则使用cast是没有意义的，但如果真的这么做了也不会报错。
 
 参数：
     - **x** (Variable)-转换函数的输入变量
@@ -10886,7 +11079,7 @@ ones
 也将stop_gradient设置为True。
 
 参数：
-    - **shape** (tuple|list|None)-输出张量的维
+    - **shape** (tuple|list)-输出张量的维
     - **dtype** (np.dtype|core.VarDesc.VarType|str)-输出张量的数据类型
 
 返回：存储在输出中的张量
@@ -10901,7 +11094,32 @@ ones
 
 
 
+.. _cn_api_fluid_layers_range:
 
+range
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.range(start, end, step, dtype)
+
+均匀分隔给定数值区间，并返回该分隔结果。
+
+返回值在半开区间[start，stop)内生成（即包括起点start但不包括终点stop的区间）。
+
+
+参数：
+    - **start** （int | float | Variable） - 区间起点，且区间包括此值。
+    - **end** （int | float | Variable） - 区间终点，通常区间不包括此值。但当step不是整数，且浮点数取整会影响out的长度时例外。
+    - **step** （int | float | Variable） - 返回结果中数值之间的间距（步长）。 对于任何输出变量out，step是两个相邻值之间的距离，即out [i + 1]  -  out [i]。 默认为1。
+    - **dtype** （string） - 'float32'|'int32'| ...，输出张量的数据类型。
+
+返回：均匀分割给定数值区间后得到的值组
+
+
+**代码示例**：
+
+.. code-block:: python
+
+    data = fluid.layers.range(0, 10, 2, 'int32')
 
 
 
@@ -11105,6 +11323,35 @@ append_LARS
 
 
 
+.. _cn_api_fluid_layers_cosine_decay:
+
+cosine_decay
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.cosine_decay(learning_rate, step_each_epoch, epochs)
+
+使用 cosine decay 的衰减方式进行学习率调整。
+
+在训练模型时，建议一边进行训练一边降低学习率。 通过使用此方法，学习速率将通过如下cosine衰减策略进行衰减：
+
+.. math::
+    decayed\_lr = learning\_rate * 0.5 * (cos(epoch * math.pi / epochs) + 1)
+
+
+参数：
+    - **learning_rate** （Variable | float） - 初始学习率。
+    - **step_each_epoch** （int） - 一次迭代中的步数。
+    - **epochs**  - 总迭代次数。
+
+
+
+
+**代码示例**
+
+.. code-block:: python
+
+    base_lr = 0.1 
+    lr = fluid.layers.cosine_decay( learning_rate = base_lr, step_each_epoch=10000, epochs=120)
 
 
 
@@ -11115,7 +11362,7 @@ exponential_decay
 
 .. py:function:: paddle.fluid.layers.exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
 
-在学习率上运用指数衰减。
+在学习率上运用指数衰减。
 训练模型时，在训练过程中通常推荐降低学习率。每次 ``decay_steps`` 步骤中用 ``decay_rate`` 衰减学习率。
 
 .. code-block:: text
@@ -11177,7 +11424,7 @@ inverse_time_decay
 参数：
     - **learning_rate** (Variable|float)-初始学习率
     - **decay_steps** (int)-见以上衰减运算
-    - **decay_rate** (float)-衰减率。见以上衰减运算
+    - **decay_rate** (float)-衰减率。见以上衰减运算
     - **staircase** (Boolean)-若为True，按间隔区间衰减学习率。默认：False
 
 返回：衰减的学习率
@@ -11197,6 +11444,45 @@ inverse_time_decay
                 staircase=True))
         sgd_optimizer.minimize(avg_cost)
 
+
+
+
+.. _cn_api_fluid_layers_linear_lr_warmup:
+
+linear_lr_warmup
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.linear_lr_warmup(learning_rate, warmup_steps, start_lr, end_lr)
+
+在正常学习率调整之前先应用线性学习率热身(warm up)进行初步调整。
+
+.. code-block:: text
+
+    if global_step < warmup_steps:
+        linear_step = end_lr - start_lr
+        lr = start_lr + linear_step * (global_step / warmup_steps)
+
+参数：
+    - **learning_rate** （float | Variable） - 学习率，类型为float值或变量。
+    - **warmup_steps** （int） - 进行warm up过程的步数。
+    - **start_lr** （float） - warm up的起始学习率
+    - **end_lr** （float） - warm up的最终学习率。
+
+返回：进行热身衰减后的学习率。
+
+
+**示例代码**
+
+.. code-block:: python
+
+        boundaries = [100, 200]
+        lr_steps = [0.1, 0.01, 0.001]
+        warmup_steps = 50
+        start_lr = 1. / 3.
+        end_lr = 0.1
+        decayed_lr = fluid.layers.linear_lr_warmup(
+            fluid.layers.piecewise_decay(boundaries, lr_steps),
+            warmup_steps, start_lr, end_lr)
 
 
 
@@ -11534,7 +11820,7 @@ Bounding Box Coder
 
 参数：
     - **prior_box** (Variable) - 张量，默认float类型的张量。先验框是二维张量，维度为[M,4]，存储M个框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐标
-    - **prior_box_var** (Variable|list) - 支持两种输入类型，一是二维张量，维度为[M,4]，存储M个prior box。另外是一个含有4个元素的list，所有prior box共用这个list。
+    - **prior_box_var** (Variable|list|None) - 支持两种输入类型，一是二维张量，维度为[M,4]，存储M个prior box。另外是一个含有4个元素的list，所有prior box共用这个list。
     - **target_box** (Variable) - LoDTensor或者Tensor，当code_type为‘encode_center_size’，输入可以是二维LoDTensor，维度为[N,4]。当code_type为‘decode_center_size’输入可以为三维张量，维度为[N,M,4]。每个框代表[xmin,ymin,xmax,ymax]，[xmin,ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐标。该张量包含LoD信息，代表一批输入。批的一个实例可以包含不同的实体数。
     - **code_type** (string，默认encode_center_size) - 编码类型用目标框，可以是encode_center_size或decode_center_size
     - **box_normalized** (boolean，默认true) - 是否将先验框作为正则框
@@ -11573,6 +11859,66 @@ Bounding Box Coder
 
 
 
+.. _cn_api_fluid_layers_box_decoder_and_assign:
+
+box_decoder_and_assign
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.box_decoder_and_assign(prior_box, prior_box_var, target_box, box_score, box_clip, name=None)
+
+边界框编码器。
+
+根据prior_box来解码目标边界框。
+
+解码方案为：
+
+.. math::
+
+    ox &= (pw \times pxv \times tx + px) - \frac{tw}{2}\\
+    oy &= (ph \times pyv \times ty + py) - \frac{th}{2}\\
+    ow &= \exp (pwv \times tw) \times pw + \frac{tw}{2}\\
+    oh &= \exp (phv \times th) \times ph + \frac{th}{2}
+
+其中tx，ty，tw，th分别表示目标框的中心坐标，宽度和高度。 类似地，px，py，pw，ph表示prior_box（anchor）的中心坐标，宽度和高度。 pxv，pyv，pwv，phv表示prior_box的variance，ox，oy，ow，oh表示decode_box中的解码坐标，宽度和高度。
+
+box decode过程得出decode_box，然后分配方案如下所述：
+
+对于每个prior_box，使用最佳non-background（非背景）类的解码值来更新prior_box位置并获取output_assign_box。 因此，output_assign_box的形状与PriorBox相同。
+
+
+
+
+参数：
+   - **prior_box** （Variable） - （Tensor，默认Tensor <float>）框列表PriorBox是一个二维张量，形状为[N，4]，它包含N个框，每个框表示为[xmin，ymin，xmax，ymax]， [xmin，ymin]是anchor框的左上坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是anchor框的右下坐标
+   - **prior_box_var** （Variable） - （Tensor，默认Tensor <float>，可选）PriorBoxVar是一个二维张量，形状为[N，4]，它包含N组variance。 PriorBoxVar默认将所有元素设置为1
+   - **target_box** （Variable） - （LoDTensor或Tensor）此输入可以是形状为[N，classnum * 4]的2-D LoDTensor。它拥有N个框的N个目标
+   - **box_score** （变量） - （LoDTensor或Tensor）此输入可以是具有形状[N，classnum]的2-D LoDTensor，每个框表示为[classnum]，其中含有各分类概率值
+   - **box_clip** （FLOAT） - （float，默认4.135，np.log（1000. / 16.））裁剪框以防止溢出
+   - **name** （str | None） - 此算子的自定义名称
+
+
+返回：两个变量：
+
+     - decode_box（Variable）:( LoDTensor或Tensor）op的输出张量，形为[N，classnum * 4]，表示用M个prior_box解码的N个目标框的结果，以及每个类上的variance
+     - output_assign_box（Variable）:( LoDTensor或Tensor）op的输出张量，形为[N，4]，表示使用M个prior_box解码的N个目标框的结果和BoxScore的最佳非背景类的方差
+
+返回类型：   decode_box(Variable), output_assign_box(Variable)
+
+
+**代码示例**
+
+.. code-block:: python
+
+    pb = fluid.layers.data(
+        name='prior_box', shape=[20, 4], dtype='float32')
+    pbv = fluid.layers.data(
+        name='prior_box_var', shape=[1, 4], dtype='float32')
+    loc = fluid.layers.data(
+        name='target_box', shape=[20, 4*81], dtype='float32')
+    scores = fluid.layers.data(
+        name='scores', shape=[20, 81], dtype='float32')
+    decoded_box, output_assign_box = fluid.layers.box_decoder_and_assign(
+        pb, pbv, loc, scores, 4.135)    
 
 
 .. _cn_api_fluid_layers_density_prior_box:
@@ -11775,6 +12121,51 @@ Detection Output Layer for Single Shot Multibox Detector(SSD)
                            prior_box_var=pbv)
 
 
+
+
+
+
+.. _cn_api_fluid_layers_distribute_fpn_proposals:
+
+distribute_fpn_proposals
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.distribute_fpn_proposals(fpn_rois, min_level, max_level, refer_level, refer_scale, name=None)
+
+在 Feature Pyramid Networks（FPN）模型中，需要将所有proposal分配到不同的FPN级别，包括proposal的比例，引用比例和引用级别。 此外，为了恢复proposals的顺序，我们返回一个数组，该数组表示当前proposals中的原始RoIs索引。 要计算每个RoI的FPN级别，公式如下：
+
+.. math::
+    roi\_scale &= \sqrt{BBoxArea(fpn\_roi)}\\
+    level = floor(&\log(\frac{roi\_scale}{refer\_scale}) + refer\_level)
+
+其中BBoxArea方法用来计算每个RoI的区域。
+
+
+参数：
+    - **fpn_rois** （variable） - 输入fpn_rois，第二个维度为4。
+    - **min_level** （int） - 产生proposal最低级别FPN层。
+    - **max_level** （int） - 产生proposal最高级别FPN层。
+    - **refer_level** （int） - 具有指定比例的FPN层的引用级别。
+    - **refer_scale** （int） - 具有指定级别的FPN层的引用比例。
+    - **name** （str | None） - 此算子的名称。
+
+返回：返回一个元组（multi_rois，restore_ind）。 multi_rois是分段张量变量的列表。 restore_ind是具有形状[N，1]的2D张量，N是总rois的数量。 它用于恢复fpn_rois的顺序。
+
+返回类型：   tuple
+
+
+**代码示例**：
+
+.. code-block:: python
+
+    fpn_rois = fluid.layers.data(
+        name='data', shape=[4], dtype='float32', lod_level=1)
+    multi_rois, restore_ind = fluid.layers.distribute_fpn_proposals(
+        fpn_rois=fpn_rois,
+        min_level=2,
+        max_level=5,
+        refer_level=4,
+        refer_scale=224)
 
 
 
@@ -12022,7 +12413,7 @@ multi_box_head
 
     - **mbox_conf** ：预测框对输入的置信度。布局为[N，H * W * Priors，C]。其中 ``Priors`` 是每个输入位置的预测框数，C是类的数量。
 
-    - **boxes** ： ``PriorBox`` 的输出候选框。布局是[num_priors，4]。 ``num_priors`` 是每个输入位置的总盒数。
+    - **boxes** ： ``PriorBox`` 的输出候选框。布局是[num_priors，4]。 ``num_priors`` 是每个输入位置的总框数。
 
     - **variances** ： ``PriorBox`` 的方差。布局是[num_priors，4]。 ``num_priors`` 是每个输入位置的总窗口数。
 
@@ -12254,7 +12645,7 @@ rpn_target_assign
         - **anchor_var** （Variable）- 是一个shape为[M，4]的2-D Tensor，它拥有anchor的expand方差。
         - **gt_boxes** （Variable）- 真实边界框是一个shape为[Ng，4]的2D LoDTensor，Ng是小批量输入的真实框（bbox）总数。
         - **is_crowd** （Variable）- 1-D LoDTensor，表示（groud-truth）是密集的。
-        - **im_info** （Variable）- 是一个形为[N，3]的2-D LoDTensor。N是batch大小，第二维上的3维分别代表高度，宽度和规模(scale)
+        - **im_info** （Variable）- 是一个形为[N，3]的2-D LoDTensor。N是batch大小，第二维上的3维分别代表高度，宽度和比例(scale)
         - **rpn_batch_size_per_im** （int）- 每个图像中RPN示例总数。
         - **rpn_straddle_thresh** （float）- 通过straddle_thresh像素删除出现在图像外部的RPN anchor。
         - **rpn_fg_fraction** （float）- 为foreground（即class> 0）RoI小批量而标记的目标分数，第0类是background。
@@ -12347,7 +12738,7 @@ ssd_loss
         - **prior_box** （Variable）- 候选框是具有形状[Np，4]的2D张量。
         - **prior_box_var** （Variable）- 候选框的方差是具有形状[Np，4]的2D张量。
         - **background_label** （int）- background标签的索引，默认为0。
-        - **overlap_threshold** （float）- 当找到匹配的盒子，如果 ``match_type`` 为'per_prediction'，请使用 ``overlap_threshold`` 确定额外匹配的bbox。默认为0.5。
+        - **overlap_threshold** （float）- 当找到匹配的框，如果 ``match_type`` 为'per_prediction'，请使用 ``overlap_threshold`` 确定额外匹配的bbox。默认为0.5。
         - **neg_pos_ratio** （float）- 负框与正框的比率，仅在 ``mining_type`` 为'max_negative'时使用，3.0由defalut使用。
         - **neg_overlap** （float）- 不匹配预测的负重叠上限。仅当mining_type为'max_negative'时使用，默认为0.5。
         - **loc_loss_weight** （float）- 本地化丢失的权重，默认为1.0。
@@ -12447,12 +12838,79 @@ target_assign
                 gt, matched_indices, mismatch_value=0)
 
 
+
+
+
+
+.. _cn_api_fluid_layers_yolo_box:
+
+yolo_box
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.yolo_box(x, img_size, anchors, class_num, conf_thresh, downsample_ratio, name=None)
+
+
+该运算符从YOLOv3网络的输出生成YOLO检测框。
+
+先前网络的输出形状为[N，C，H，W]，而H和W应相同，用来指定网格大小。对每个网格点预测给定的数目的框，这个数目记为S，由anchor的数量指定。 在第二维（通道维度）中，C应该等于S *（5 + class_num），class_num是源数据集中对象类别数目（例如coco数据集中的80），此外第二个（通道）维度中还有4个框位置坐标x，y，w，h，以及anchor box的one-hot key的置信度得分。
+
+假设4个位置坐标是 :math:`t_x` ，:math:`t_y` ，:math:`t_w` ， :math:`t_h` 
+，则框的预测算法为：
+
+.. math::
+
+    b_x &= \sigma(t_x) + c_x\\
+    b_y &= \sigma(t_y) + c_y\\
+    b_w &= p_w e^{t_w}\\
+    b_h &= p_h e^{t_h}\\
+
+在上面的等式中， :math:`c_x` ， :math:`c_x` 是当前网格的左上角顶点坐标。 :math:`p_w` ， :math:`p_h`  由anchors指定。
+
+每个anchor预测框的第五通道的逻辑回归值表示每个预测框的置信度得分，并且每个anchor预测框的最后class_num通道的逻辑回归值表示分类得分。 应忽略置信度低于conf_thresh的框。另外，框最终得分是置信度得分和分类得分的乘积。
+
+
+.. math::
+
+    score_{pred} = score_{conf} * score_{class}
+
+
+参数：
+    - **x** （Variable） -  YoloBox算子的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出
+    - **img_size** （Variable） -  YoloBox算子的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小
+    - **anchors** （list | tuple） - anchor的宽度和高度，它将逐对解析
+    - **class_num** （int） - 要预测的类数
+    - **conf_thresh** （float） - 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略
+    - **downsample_ratio** （int） - 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
+    - **name** （string） -  yolo box层的名称。默认None。
+
+返回: 具有形状[N，M，4]的三维张量；框的坐标；以及具有形状[N，M，class_num]的三维张量；框的分类得分；
+
+返回类型:   变量（Variable）
+
+抛出异常:
+    - TypeError  -  yolov_box的输入x必须是Variable
+    - TypeError  -  yolo框的anchors参数必须是list或tuple
+    - TypeError  -  yolo box的class_num参数必须是整数
+    - TypeError  -  yolo框的conf_thresh参数必须是一个浮点数
+
+**代码示例**
+
+.. code-block:: python
+
+    x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
+    anchors = [10, 13, 16, 30, 33, 23]
+    loss = fluid.layers.yolo_box(x=x, class_num=80, anchors=anchors,
+                                    conf_thresh=0.01, downsample_ratio=32)
+
+
+
+
 .. _cn_api_fluid_layers_yolov3_loss:
 
 yolov3_loss
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.yolov3_loss(x, gtbox, gtlabel, anchors, anchor_mask, class_num, ignore_thresh, downsample_ratio, name=None)
+.. py:function:: paddle.fluid.layers.yolov3_loss(x, gtbox, gtlabel, anchors, anchor_mask, class_num, ignore_thresh, downsample_ratio, gtscore=None, use_label_smooth=True, name=None)
 
 该运算通过给定的预测结果和真实框生成yolov3损失。
 
@@ -12495,6 +12953,12 @@ yolov3_loss
          $$
          
 
+当 ``use_label_smooth`` 设置为 ``True`` 时，在计算分类损失时将平滑分类目标，将正样本的目标平滑到1.0-1.0 / class_num，并将负样本的目标平滑到1.0 / class_num。
+
+如果给出了 ``GTScore`` 表示真实框的mixup得分，那么真实框所产生的所有损失将乘以其混合得分。
+
+
+
 参数：
     - **x**  (Variable) – YOLOv3损失运算的输入张量，这是一个形状为[N，C，H，W]的四维张量。H和W应该相同，第二维（C）存储框的位置信息，以及每个anchor box的置信度得分和one-hot分类
     - **gtbox**  (Variable) – 真实框，应该是[N，B，4]的形状。第三维用来承载x、y、w、h，x、y、w、h应该是输入图像相对值。 N是batch size，B是图像中所含有的的最多的box数目
@@ -12504,33 +12968,39 @@ yolov3_loss
     - **class_num**  (int) – 要预测的类数
     - **ignore_thresh**  (float) – 一定条件下忽略某框置信度损失的忽略阈值
     - **downsample_ratio**  (int) – 从网络输入到YOLOv3 loss输入的下采样率，因此应为第一，第二和第三个YOLOv3损失运算设置32,16,8
-    - **name**  (string) – yolov3损失层的命名
+    - **name** (string) – yolov3损失层的命名
+    - **gtscore** （Variable） - 真实框的混合得分，形为[N，B]。 默认None。
+    - **use_label_smooth** (bool） - 是否使用平滑标签。 默认为True
 
 
-返回: 具有形状[1]的1-D张量，yolov3损失的值
+返回: 具有形状[N]的1-D张量，yolov3损失的值
 
 返回类型:   变量（Variable）
 
 抛出异常: 
     - ``TypeError``  – yolov3_loss的输入x必须是Variable
     - ``TypeError``  – 输入yolov3_loss的gtbox必须是Variable
-    - ``TypeError``  – 输入yolov3_loss的gtlabel必须是Variable
+    - ``TypeError``  – 输入yolov3_loss的gtlabel必须是None或Variable
+    - ``TypeError``  – 输入yolov3_loss的gtscore必须是Variable
     - ``TypeError``  – 输入yolov3_loss的anchors必须是list或tuple
     - ``TypeError``  – 输入yolov3_loss的class_num必须是整数integer类型
     - ``TypeError``  – 输入yolov3_loss的ignore_thresh必须是一个浮点数float类型
+    - ``TypeError``  – 输入yolov3_loss的use_label_smooth必须是bool型
 
 **代码示例**
 
 .. code-block:: python
 
-        x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
-        gtbox = fluid.layers.data(name='gtbox', shape=[6, 5], dtype='float32')
-        gtlabel = fluid.layers.data(name='gtlabel', shape=[6, 1], dtype='int32')
-        anchors = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
-        anchor_mask = [0, 1, 2]
-        loss = fluid.layers.yolov3_loss(x=x, gtbox=gtbox, gtlabel=gtlabel, anchors=anchors, 
-                                      anchor_mask=anchor_mask, class_num=80,
-                                      ignore_thresh=0.7, downsample_ratio=32)
+    x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
+    gtbox = fluid.layers.data(name='gtbox', shape=[6, 4], dtype='float32')
+    gtlabel = fluid.layers.data(name='gtlabel', shape=[6], dtype='int32')
+    gtscore = fluid.layers.data(name='gtscore', shape=[6], dtype='float32')
+    anchors = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
+    anchor_mask = [0, 1, 2]
+    loss = fluid.layers.yolov3_loss(x=x, gtbox=gtbox, gtlabel=gtlabel,
+                                    gtscore=gtscore, anchors=anchors,
+                                    anchor_mask=anchor_mask, class_num=80,
+                                    ignore_thresh=0.7, downsample_ratio=32)
 
 
 

@@ -267,12 +267,12 @@ cpu_places
 
 创建 ``fluid.CPUPlace`` 对象列表。
 
-如果 ``device_count`` 为None，则设备计数将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备计数将由 ``multiprocessing.cpu_count()`` 确定。
+如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目将由 ``multiprocessing.cpu_count()`` 确定。
 
 参数：
-  - **device_count** (None|int) - 设备计数
+  - **device_count** (None|int) - 设备数目
 
-返回: CPU位置列表
+返回: CPUPlace列表
 
 返回类型：out (list(fluid.CPUPlace))
 
@@ -286,7 +286,7 @@ CPUPlace
 .. py:class:: paddle.fluid.CPUPlace
 
 
-cpuplace是设备的描述符。它代表一个CPU，CPU可以访问内存的CPU位置。
+CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应的内存。
 
 
 
@@ -369,11 +369,51 @@ create_random_int_lodtensor
 
 
 
+.. _cn_api_fluid_cuda_pinned_places:
+
+cuda_pinned_places
+-------------------------------
+
+
+.. py:function:: paddle.fluid.cuda_pinned_places(device_count=None)
 
 
 
+创建 ``fluid.CUDAPinnedPlace`` 对象列表。
+
+如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目将由 ``multiprocessing.cpu_count()`` 确定。
+
+参数：
+  - **device_count** (None|int) - 设备数目
+
+返回: CUDAPinnedPlace对象列表
+
+返回类型：out(list(fluid.CUDAPinnedPlace))
 
 
+
+.. _cn_api_fluid_cuda_places:
+
+cuda_places
+-------------------------------
+
+.. py:function:: paddle.fluid.cuda_places(device_ids=None)
+
+创建 ``fluid.CUDAPlace`` 对象列表。
+
+
+
+如果 ``device_ids`` 为None，则首先检查 ``FLAGS_selected_gpus`` 的环境变量。如果 ``FLAGS_selected_gpus=0,1,2`` ，则返回的列表将为[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]。如果未设置标志 ``FLAGS_selected_gpus`` ，则将返回所有可见的GPU places。
+
+
+如果 ``device_ids`` 不是None，它应该是GPU的设备ID。例如，如果 ``device_id=[0,1,2]`` ，返回的列表将是[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]。
+
+参数：
+  - **device_ids** (None|list(int)|tuple(int)) - GPU的设备ID列表
+
+返回: CUDAPlace列表
+
+返回类型：out (list(fluid.CUDAPlace))
 
 
 
@@ -384,29 +424,9 @@ create_random_int_lodtensor
 CUDAPinnedPlace
 -------------------------------
 
-.. py:class:: paddle.fluid.cuda_pinned_places(device_count=None)
+.. py:class:: paddle.fluid.CUDAPinnedPlace
 
-
-
-创建 ``fluid.CUDAPinnedPlace`` 对象列表。
-
-如果 ``device_count`` 为None，则设备计数将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备计数将由 ``multiprocessing.cpu_count()`` 确定。
-
-参数：
-  - **device_count** (None|int) - 设备计数
-
-返回: cuda pinned位置列表
-
-返回类型：out(list(fluid.CUDAPinnedPlace))
-
-
-CUDAPinnedPlace是设备的描述符。CUDAPInnedplace的内存可以由GPU和CPU访问。
-
-
-
-
-
-
+CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GPU和CPU访问。
 
 
 
@@ -416,22 +436,9 @@ CUDAPinnedPlace是设备的描述符。CUDAPInnedplace的内存可以由GPU和CP
 CUDAPlace
 -------------------------------
 
-.. py:class:: paddle.fluid.cuda_places(device_ids=None)
+.. py:class:: paddle.fluid.CUDAPlace
 
-创建 ``fluid.CUDAPlace`` 对象列表。
-
-
-如果 ``device_ids`` 为none，则首先检查 ``FLAGS_selected_gpus`` 的环境变量。如果 ``FLAGS_selected_gpus=0,1,2`` ，则返回的列表将为[fluid.cudaplace（0），fluid.cudaplace（1），fluid.cudaplace（2）]。如果未设置标志 ``FLAGS_selected_gpus`` ，则将返回所有可见的GPU位置。
-
-
-如果 ``device_ids`` 不是“无”，它应该是GPU的设备ID。例如，如果 ``device_id=[0,1,2]`` ，返回的列表将是[fluid.cudaplace（0），fluid.cudaplace（1），fluid.cudaplace（2）]。
-
-参数：
-  - **device_count** (None|list(int)|tuple(int)) - GPU设备ID列表
-
-返回: GPU位置列表
-
-返回类型：out (list(fluid.CUDAPlace))
+CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace有一个dev_id（设备id）来表明当前CUDAPlace代表的卡数。dev_id不同的CUDAPlace所对应的内存不可相互访问。
 
 
 
@@ -1120,6 +1127,18 @@ global_scope
 
 返回类型：Scope
 
+
+
+
+
+.. _cn_api_fluid_in_dygraph_mode:
+
+in_dygraph_mode
+-------------------------------
+
+.. py:function:: paddle.fluid.in_dygraph_mode()
+
+返回：bool，如果Program是在动态图模式下运行的则为True。
 
 
 

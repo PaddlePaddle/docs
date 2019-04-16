@@ -21,5 +21,6 @@ API
     profiler_cn.rst
     regularizer_cn.rst
     transpiler_cn.rst
+    dataset_cn.rst
     data/dataset_cn.rst
     data/data_reader_cn.rst
