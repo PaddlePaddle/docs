@@ -90,7 +90,7 @@ TensorFlow-Fluid常用接口对应表
     "78", "`tf.nn.separable_conv2d <https://www.tensorflow.org/api_docs/python/tf/nn/separable_conv2d>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.separable_conv2d.md>`_"
     "79", "`tf.nn.sigmoid <https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid>`_", ":ref:`cn_api_fluid_layers_sigmoid`", "功能一致"
     "80", "`tf.nn.sigmoid_cross_entropy_with_logits <https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits>`_", ":ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_logits`", "功能一致"
-    "81", "`tf.nn.softmax <https://www.tensorflow.org/api_docs/python/tf/nn/softmax>`_", ":ref:`cn_api_fluid_layers_softmax`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.softmax.md>`_"
+    "81", "`tf.nn.softmax <https://www.tensorflow.org/api_docs/python/tf/nn/softmax>`_", ":ref:`cn_api_fluid_layers_softmax`", "功能一致"
     "82", "`tf.nn.softmax_cross_entropy_with_logits <https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits>`_", ":ref:`cn_api_fluid_layers_softmax_with_cross_entropy`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.softmax_cross_entropy_with_logits.md>`_"
     "83", "`tf.nn.softplus <https://www.tensorflow.org/api_docs/python/tf/nn/softplus>`_", ":ref:`cn_api_fluid_layers_softplus`", "功能一致"
     "84", "`tf.nn.softsign <https://www.tensorflow.org/api_docs/python/tf/nn/softsign>`_", ":ref:`cn_api_fluid_layers_softsign`", "功能一致"
