@@ -18,6 +18,10 @@
 
 	- `DyGraph模式 <../user_guides/howto/dygraph/DyGraph.md>`_：介绍在 Fluid 下使用DyGraph
 
+基于 Fluid 复现的多领域经典模型：
+
+    - `Fluid 模型库 <../user_guides/models/index_cn.html>`_
+
 
 
 ..  toctree::

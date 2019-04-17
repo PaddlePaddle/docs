@@ -1,13 +1,19 @@
 # DyGraph
 
-PaddlePaddle的DyGraph模式是一种动态的图执行机制，可以立即执行结果，无需构建整个图。同时，和以往静态的执行计算图不同，DyGraph模式下您的所有操作可以立即获得执行结果，而不是构建固定的计算图来执行，这样可以让您更加直观的构建PaddlePaddle下的深度学习任务并调试模型，同时还减少了大量用于构建静态计算图的代码，使得您编写网络的过程变得更加便捷，更加容易调试。
+PaddlePaddle的DyGraph模式是一种动态的图执行机制，可以立即执行结果，无需构建整个图。同时，和以往静态的执行计算图不同，DyGraph模式下您的所有操作可以立即获得执行结果，而不是构建固定的计算图来执行，这样可以让您更加直观的构建PaddlePaddle下的深度学习任务，以及进行模型的调试，同时还减少了大量用于构建静态计算图的代码，使得您编写网络的过程变得更加便捷，更加容易调试。
 
 PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：      
 
 *	更加灵活便捷的代码组织结构： 使用python的执行控制流程和面向对象的模型设计
+
+
 * 	更加便捷的调试功能： 直接调用操作从而检查正在运行的模型并且测试更改
+
+
 *  和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的静态图模式执行
-*  支持纯python和numpy语法实现的layer： 支持使用numpy相关操作直接搭建模型计算部分
+
+
+*  支持纯Python和Numpy语法实现的layer： 支持使用numpy相关操作直接搭建模型计算部分
 
 ## 设置和基本用法
 
@@ -114,7 +120,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		        x = fluid.layers.reduce_sum(x)
 		        return [x]       
 		        
-	3. （optional）实现一个`build_once(self, *inputs)` 方法，该方法将作为一个单次执行的函数，用于初始化一些依赖于输入信息的参数和网络信息, 例如在`FC`（fully connected layer）当中, 需要依赖输入的`shape`初始化参数， 这里我们并不需要这样的操作，仅仅为了展示，因此这个方法可以直接跳过：
+	3. （可选）实现一个`build_once(self, *inputs)` 方法，该方法将作为一个单次执行的函数，用于初始化一些依赖于输入信息的参数和网络信息, 例如在`FC`（fully connected layer）当中, 需要依赖输入的`shape`初始化参数， 这里我们并不需要这样的操作，仅仅为了展示，因此这个方法可以直接跳过：
 		
 			def build_once(self, input):
 		        pass
@@ -431,9 +437,9 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 下面的代码展示了如何使用DyGraph模式训练一个用于执行“手写数字识别”任务的模型并保存，并且利用已经保存好的模型进行预测。
 
-我们在第一个`fluid.dygraph.guard()`上下文中进行了模型的保存和训练，值得注意的是，当我们需要在训练的过程中进行预测时需要使用`YourModel.eval()`切换到预测模式，并且在预测完成后使用`YourModel.train()`切换回训练模式继续训练
+我们在第一个`fluid.dygraph.guard()`上下文中进行了模型的保存和训练，值得注意的是，当我们需要在训练的过程中进行预测时需要使用`YourModel.eval()`切换到预测模式，并且在预测完成后使用`YourModel.train()`切换回训练模式继续训练。
 
-我们在第二个`fluid.dygraph.guard()`上下文中利用之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换的预测模式
+我们在第二个`fluid.dygraph.guard()`上下文中利用之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换的预测模式。
 			
 	with fluid.dygraph.guard():
         fluid.default_startup_program().random_seed = seed
