@@ -10,4 +10,3 @@ PaddlePaddle Fluid支持单机训练和多节点训练。每种训练模式下�
    single_node.rst
    multi_node.rst
    save_load_variables.rst
-   deploy_ctr_on_baidu_cloud_cn.rst

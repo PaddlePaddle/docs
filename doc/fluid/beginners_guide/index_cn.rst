@@ -8,7 +8,7 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
 让我们从这里开始：
 
-	- `快速开始 <../beginners_guide/quick_start.html>`_
+    - `快速开始 <../beginners_guide/quick_start.html>`_
 
 当您第一次来到PaddlePaddle，请您首先阅读以下文档，了解安装方法：
 
