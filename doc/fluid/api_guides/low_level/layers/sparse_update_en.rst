@@ -37,7 +37,7 @@ API reference :ref:`api_fluid_layers_embedding` . Here is a simple example:
 
 The parameters:
 
-- :code:`is_sparse` : Whether the gradient is a sparse tensor in the backward calculation. If not set, the gradient is a `LodTensor <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/user_guides/howto/prepare_data/lod_tensor.md>`_ . The default is False.
+- :code:`is_sparse` : Whether the gradient is a sparse tensor in the backward calculation. If not set, the gradient is a `LodTensor <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/user_guides/howto/basic_concept/lod_tensor_en.html>`_ . The default is False.
 
 - :code:`is_distributed` : Whether the current training is in a distributed scenario. Generally, this parameter can only be set in large-scale sparse updates (the 0th dimension of embedding is very large, such as several million or more). For details, please refer to the large-scale sparse API guide :ref:`api_guide_async_training`. The default is False.
 

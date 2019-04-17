@@ -407,17 +407,17 @@ outs = exe.run(
     ```
     可以看到100次迭代后，预测值已经非常接近真实值了，损失值也从初始值9.05下降到了0.01。
 
-    恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../../beginners_guide/quick_start/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](../../user_guides/models/index_cn.html)中找到。
+    恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../../beginners_guide/basics/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](../../user_guides/models/index_cn.html)中找到。
 
 <a name="what_next"></a>
 ## What's next
 
 如果您已经掌握了基本操作，可以进行下一阶段的学习了：
 
-跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../../user_guides/howto/configure_simple_model/index.html)。
+跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../../user_guides/howto/configure_simple_model/index_cn.html)。
 
-完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../../user_guides/howto/training/index.html)。
+完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../../user_guides/howto/training/index_cn.html)。
 
-除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../../beginners_guide/index.html)、[使用指南](../../user_guides/index.html)和[进阶使用](../../advanced_usage/index.html)。
+除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[新手入门](../../beginners_guide/index_cn.html)、[使用指南](../../user_guides/index_cn.html)和[进阶使用](../../advanced_usage/index_cn.html)。
 
-如果您希望阅读更多场景下的应用案例，可以跟随导航栏进入[快速入门](../../beginners_guide/quick_start/index.html)和[深度学习基础知识](../../beginners_guide/basics/index.html)。已经具备深度学习基础知识的用户，可以从[使用指南](../../user_guides/index.html)开始阅读。
+如果您希望阅读更多场景下的应用案例，可以参考[深度学习基础教程](../../beginners_guide/basics/index_cn.html)。已经具备深度学习基础知识的用户，可以从[使用指南](../../user_guides/index_cn.html)开始阅读。

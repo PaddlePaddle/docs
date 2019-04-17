@@ -21,7 +21,7 @@
     loss, = exe.run(fluid.default_main_program(),
                     feed=feed_dict,
                     fetch_list=[loss.name])
-简单样例请参照 `quick_start_fit_a_line <http://paddlepaddle.org/documentation/docs/zh/1.1/beginners_guide/quick_start/fit_a_line/README.html>`_
+简单样例请参照 `basics_fit_a_line <../../beginners_guide/basics/fit_a_line/README.cn.html>`_
 
 - 相关API :
  - :ref:`cn_api_fluid_Executor`

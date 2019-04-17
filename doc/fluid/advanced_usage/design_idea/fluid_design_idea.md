@@ -359,5 +359,5 @@ Fluid使用Executor.run来运行一段Program。
        [6.099215 ]], dtype=float32), array([1.6935859], dtype=float32)]
 ```
 
-至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../../user_guides/index.html)相关内容，[模型库](../../user_guides/models/index_cn.html
+至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../../user_guides/index_cn.html)相关内容，[模型库](../../user_guides/models/index_cn.html
 )中也为您提供了丰富的模型示例以供参考。
