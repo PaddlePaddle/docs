@@ -1,6 +1,6 @@
 .. _train_on_baidu_cloud_cn:
 
-在百度云启动Fluid分布式训练
+在百度云启动分布式训练
 =========================
 
 PaddlePaddle Fluid分布式训练，可以不依赖集群系统（比如MPI，Kubernetes）启动分布式训练。
@@ -226,8 +226,3 @@ PaddlePaddle Fluid分布式训练，可以不依赖集群系统（比如MPI，Ku
 如果需要执行新的任务，可以直接使用之前保存的镜像，启动新的集群，并参照前面的步骤开始训练。
 
 .. image:: src/release.png
-
-..  toctree::
-    :hidden:
-
-    deploy_ctr_on_baidu_cloud_cn.rst
