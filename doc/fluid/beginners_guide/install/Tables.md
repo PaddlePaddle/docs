@@ -156,11 +156,6 @@
 		<td> 是否打开预测优化 </td>
 		<td> OFF </td>
 	</tr>
-	<tr>
-		<td> DWITH_ANAKIN </td>
-		<td> 是否编译ANAKIN </td>
-		<td> OFF </td>
-	</tr>
    </tbody>
 </table>
 </p>
