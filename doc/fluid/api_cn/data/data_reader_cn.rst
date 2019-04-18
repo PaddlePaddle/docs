@@ -26,7 +26,7 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 	result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
 
 
-如果您想在使用多个GPU训练模型时预先将数据单独输入GPU端，可以使用decorate_reader函数。 
+如果您想在使用多个GPU训练模型时预先将数据单独输入GPU端，可以使用decorate_reader函数。
 
 
 **代码示例**
@@ -90,7 +90,7 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 
 
-.. note:: 
+.. note::
 
 	设备数量和mini-batches数量必须一致。
 
@@ -121,7 +121,7 @@ Reader
 	- reader是一个读取数据（从文件、网络、随机数生成器等）并生成数据项的函数。
 	- reader creator是返回reader函数的函数。
 	- reader decorator是一个函数，它接受一个或多个reader，并返回一个reader。
-	- batch reader是一个函数，它读取数据（从reader、文件、网络、随机数生成器等）并生成一批数据项。 
+	- batch reader是一个函数，它读取数据（从reader、文件、网络、随机数生成器等）并生成一批数据项。
 
 
 Data Reader Interface
@@ -133,10 +133,10 @@ Data Reader Interface
 
 	iterable = data_reader()
 
-从iterable生成的元素应该是单个数据条目，而不是mini batch。数据输入可以是单个项目，也可以是项目的元组，但应为 `支持的类型 <http://www.paddlepaddle.org/doc/ui/data_provider/pydataprovider2.html?highlight=dense_vector#input-types>`_ （如, numpy 1d array of float32, int, list of int）
+从iterable生成的元素应该是单个数据条目，而不是mini batch。数据输入可以是单个项目，也可以是项目的元组，但应为 `支持的类型 <../../user_guides/howto/prepare_data/feeding_data.html#fluid>`_ （如, numpy 1d array of float32, int, list of int）
 
 
-单项目数据读取器创建者的示例实现： 
+单项目数据读取器创建者的示例实现：
 
 ..  code-block:: python
 
@@ -147,7 +147,7 @@ Data Reader Interface
 	return reader
 
 
-多项目数据读取器创建者的示例实现： 
+多项目数据读取器创建者的示例实现：
 
 ..  code-block:: python
 
@@ -194,11 +194,11 @@ Data Reader Interface
 
 参数：
     - **readers** - 将被组合的多个读取器。
-    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。 
+    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。
 
 返回：新的数据读取器
 
-抛出异常： 	``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。 
+抛出异常： 	``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。
 
 
 
@@ -220,7 +220,7 @@ Data Reader Interface
 
 创建数据读取器，该reader的数据输出将被无序排列。
 
-由原始reader创建的迭代器的输出将被缓冲到shuffle缓冲区，然后进行打乱。打乱缓冲区的大小由参数buf_size决定。 
+由原始reader创建的迭代器的输出将被缓冲到shuffle缓冲区，然后进行打乱。打乱缓冲区的大小由参数buf_size决定。
 
 参数：
     - **reader** (callable)  – 输出会被打乱的原始reader
@@ -257,7 +257,7 @@ Data Reader Interface
 PipeReader通过流从一个命令中读取数据，将它的stdout放到管道缓冲区中，并将其重定向到解析器进行解析，然后根据需要的格式生成数据。
 
 
-您可以使用标准Linux命令或调用其他Program来读取数据，例如通过HDFS、CEPH、URL、AWS S3中读取： 
+您可以使用标准Linux命令或调用其他Program来读取数据，例如通过HDFS、CEPH、URL、AWS S3中读取：
 
 **代码示例**
 
@@ -340,7 +340,7 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 
 .. py:function:: paddle.reader.creator.np_array(x)
 
-如果是numpy向量，则创建一个生成x个元素的读取器。或者，如果它是一个numpy矩阵，创建一个生成x行元素的读取器。或由最高维度索引的任何子超平面。 
+如果是numpy向量，则创建一个生成x个元素的读取器。或者，如果它是一个numpy矩阵，创建一个生成x行元素的读取器。或由最高维度索引的任何子超平面。
 
 参数：
     - **x** – 用于创建reader的numpy数组。
@@ -359,7 +359,7 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 
 .. py:function::  paddle.reader.creator.recordio(paths, buf_size=100)
 
-从给定的recordio文件路径创建数据reader，用“，”分隔“，支持全局模式。 
+从给定的recordio文件路径创建数据reader，用“，”分隔“，支持全局模式。
 
 路径：recordio文件的路径，可以是字符串或字符串列表。
 
