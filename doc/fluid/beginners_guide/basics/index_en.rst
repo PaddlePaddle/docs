@@ -2,7 +2,7 @@
 Basic Deep Learning Models
 ############################
 
-This section collects 8 documents arranging from the simplest to the most challenging, which will guide you through the basic deep learning tasks in PaddlePaddle.
+This section collects 9 documents arranging from the simplest to the most challenging, which will guide you through the basic deep learning tasks in PaddlePaddle.
 
 The documentation in this chapter covers a lot of deep learning basics and how to implement them with PaddlePaddle. See the instructions below for how to use:
 
@@ -23,7 +23,7 @@ The book you are reading is an "interactive" e-book - each chapter can be run in
     understand_sentiment/index_en.md
     label_semantic_roles/index_en.md
     machine_translation/index_en.md
-
+    gan/index.md
 
 We packaged Jupyter, PaddlePaddle, and various dependency softwares into a Docker image. It frees you from installing these softwares by yourself, and you only need to just install Docker. For various Linux versions, please refer to https://www.docker.com . If you use docker on `Windows <https://www.docker.com/docker-windows>`_ or `Mac <https://www.docker.com/docker-mac>`_ , consider `allocate more Memory and CPU resources to Docker  <http://stackoverflow.com/a/39720010/724872>`_ .
 
