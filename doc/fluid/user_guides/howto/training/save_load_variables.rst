@@ -1,8 +1,8 @@
 .. _user_guide_save_load_vars:
 
-##################
+################################
 模型/变量的保存、载入与增量训练
-##################
+################################
 
 模型变量分类
 ############
@@ -38,8 +38,8 @@
 因为一些模型变量虽然不是参数，但对于模型的训练依然必不可少。
 
 save_vars、save_params、save_persistables 以及 save_inference_model的区别
-##############################
-1. :code:`save_inference_model` 会根据用户配置的 :code:`feeded_var_names` 和 :code:`target_vars` 进行网络裁剪，保存下裁剪后的网络结构的__model__以及裁剪后网络中的长期变量
+##########################################################################
+1. :code:`save_inference_model` 会根据用户配置的 :code:`feeded_var_names` 和 :code:`target_vars` 进行网络裁剪，保存下裁剪后的网络结构的 ``__model__`` 以及裁剪后网络中的长期变量
 
 2. :code:`save_persistables` 不会保存网络结构，会保存网络中的全部长期变量到指定位置。
 
@@ -175,7 +175,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 
 1. 在训练的最后调用 :code:`fluid.io.save_persistables` 保存长期变量时，不必要所有的trainer都调用这个方法来保存，一般0号trainer来保存即可。
 2. 多机增量训练的参数加载在PServer端，trainer端不用加载参数。在PServer全部启动后，trainer会从PServer端同步参数。
-3. 在确认需要使用增量的情况下， 多机在调用 :code:`fluid.DistributeTranspiler.transpile` 时需要指定`current_endpoint`参数。
+3. 在确认需要使用增量的情况下， 多机在调用 :code:`fluid.DistributeTranspiler.transpile` 时需要指定 ``current_endpoint`` 参数。
 
 多机增量（不带分布式大规模稀疏矩阵）训练的一般步骤为：
 
