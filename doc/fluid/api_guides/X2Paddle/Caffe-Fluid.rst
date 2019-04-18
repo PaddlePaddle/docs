@@ -1,10 +1,10 @@
-.. _Caffe-FLuid:
+.. _Caffe-Fluid:
 
-#################
+########################
 Caffe-Fluid常用层对应表
-#################
+########################
 
-本文档梳理了Caffe常用Layer与PaddlePaddle API对应关系和差异分析。根据文档对应关系，有Caffe使用经验的用户，可根据对应关系，快速熟悉PaddlePaddle的接口使用 。  
+本文档梳理了Caffe常用Layer与PaddlePaddle API对应关系和差异分析。根据文档对应关系，有Caffe使用经验的用户，可根据对应关系，快速熟悉PaddlePaddle的接口使用。  
 
 
 ..  csv-table:: 
