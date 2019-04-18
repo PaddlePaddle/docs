@@ -507,7 +507,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
         results = mnist_infer(to_variable(tensor_img))
         lab = np.argsort(results.numpy())
-        print("Inference result of image/infer_3.png is: %d" % lab[0][0])
+        print("Inference result of image/infer_3.png is: %d" % lab[0][-1])
 
 	
 	
