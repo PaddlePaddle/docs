@@ -125,6 +125,24 @@ tensor.dtype = paddle::PaddleDType::INT64;
 tensor.name = "input0"; // name need to be set here
 ```
 
+The subsequent execution process is totally the same with `NativeConfig` .
+	
+### variable-length sequence input
+When dealing with variable-length sequence input, you need to set LoD for `PaddleTensor` .
+	
+``` c++
+# Suppose the sequence lengths are [3, 2, 4, 1, 2, 3] in order.
+tensor.lod = {{0,
+	         /*0 + 3=*/3,
+	         /*3 + 2=*/5,
+	         /*5 + 4=*/9,
+	         /*9 + 1=*/10,
+	         /*10 + 2=*/12,
+	         /*12 + 3=*/15}};
+```
+	
+For more specific examples, please refer to[LoD-Tensor Instructions](../../../user_guides/howto/basic_concept/lod_tensor_en.html)
+	
 ### Suggestion for Performance
 
 1. If the CPU type permits, it's best to use the versions with support for AVX and MKL.
