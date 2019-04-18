@@ -111,7 +111,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 			    def __init__(self, name_scope):
 			        super(MyLayer, self).__init__(name_scope)    
 			        
-	2. 实现一个`forward(self, *inputs)`的执行函数，该函数将负责执行，实际运行时网络的执行逻辑， 该函数将会在每一轮训练/预测中被调用，这里我们将执行一个简单的`relu` -> `elementwise add` -> `reduce sum`：
+	2. 实现一个`forward(self, *inputs)`的执行函数，该函数将负责执行实际运行时网络的执行逻辑， 该函数将会在每一轮训练/预测中被调用，这里我们将执行一个简单的`relu` -> `elementwise add` -> `reduce sum`：
 	
 			def forward(self, inputs):
 		        x = fluid.layers.relu(inputs)
