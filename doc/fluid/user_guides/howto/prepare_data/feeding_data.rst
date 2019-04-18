@@ -53,6 +53,8 @@ PaddlePaddle Fluid支持使用 :code:`fluid.layers.data()` 配置数据层；
 .. code-block:: python
 
    exe = fluid.Executor(fluid.CPUPlace())
+   # init Program
+   exe.run(fluid.default_startup_program())
    exe.run(feed={
       "image": numpy.random.random(size=(32, 3, 224, 224)).astype('float32'),
       "label": numpy.random.random(size=(32, 1)).astype('int64')
