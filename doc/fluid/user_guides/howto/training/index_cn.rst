@@ -7,6 +7,6 @@ PaddlePaddle Fluid支持单机训练和多节点训练。每种训练模式下�
 .. toctree::
    :maxdepth: 1
 
-   single_node
-   multi_node
-   save_load_variables
+   single_node.rst
+   multi_node.rst
+   save_load_variables.rst

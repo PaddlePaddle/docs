@@ -87,7 +87,7 @@ Automatic Speech Recognition (ASR) is a technique for transcribing vocabulary co
 
 Different from the end-to-end direct prediction for word distribution of the deep learning model  `DeepSpeech <https://github.com/PaddlePaddle/DeepSpeech>`__ , this example is closer to the traditional language recognition process. With phoneme as the modeling unit, it focuses on the training of acoustic models in speech recognition, use `kaldi <http://www.kaldi-asr.org>`__ for feature extraction and label alignment of audio data, and integrate kaldi's decoder to complete decoding.
 
-- `DeepASR <https://github.com/PaddlePaddle/models/blob/develop/DeepASR/README_cn.md>`__
+- `DeepASR <https://github.com/PaddlePaddle/models/blob/develop/PaddleSpeech/DeepASR/README.md>`__
 
 Machine Translation
 ---------------------

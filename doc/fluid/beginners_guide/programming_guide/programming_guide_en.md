@@ -414,7 +414,7 @@ Firstly, define input data format, model structure,loss function and optimized a
     ```
     Now we discover that predicted value is nearly close to real value and the loss value descends from original value 9.05 to 0.01 after iteration for 100 times.
 
-    Congratulations! You have succeed to create a simple network. If you want to try advanced linear regression —— predict model of housing price, please read [linear regression](../../beginners_guide/quick_start/fit_a_line/README.en.html). More examples of model can be found in [models](../../user_guides/models/index_en.html).
+    Congratulations! You have succeed to create a simple network. If you want to try advanced linear regression —— predict model of housing price, please read [linear regression](../../beginners_guide/basics/fit_a_line/README.en.html). More examples of model can be found in [models](../../user_guides/models/index_en.html).
 
 <a name="what_next"></a>
 ## What's next
@@ -427,4 +427,4 @@ After the construction of network, you can start training your network in single
 
 In addition, there are three learning levels in documentation according to developer's background and experience: [Beginner's Guide](../../beginners_guide/index_en.html) , [User Guides](../../user_guides/index_en.html) and [Advanced User Guides](../../advanced_usage/index_en.html).
 
-If you want to read examples in more application scenarios, you can go to [quick start](../../beginners_guide/quick_start/index_en.html) and [basic knowledge of deep learning](../../beginners_guide/basics/index_en.html) .If you have learned basic knowledge of deep learning, you can read from [user guide](../../user_guides/index_en.html).
+If you want to read examples in more application scenarios, you can go to [basic knowledge of deep learning](../../beginners_guide/basics/index_en.html) .If you have learned basic knowledge of deep learning, you can read from [user guide](../../user_guides/index_en.html).
