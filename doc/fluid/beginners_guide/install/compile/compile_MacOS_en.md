@@ -68,7 +68,7 @@ Once you have **properly installed Docker**, you can start **compiling PaddlePad
 
 9. Execute cmake:
 
-	> For details on the compilation options, see the [compilation options table](../Tables.html/#Compile).
+	> For details on the compilation options, see the [compilation options table](../Tables_en.html/#Compile).
 
 	* For users who need to compile the **CPU version PaddlePaddle**:
 

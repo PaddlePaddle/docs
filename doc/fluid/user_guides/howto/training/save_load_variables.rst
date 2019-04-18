@@ -84,7 +84,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 载入模型用于对新样本的预测
 ==========================
 
-对于通过 :code:`fluid.io.save_params` 保存的模型，可以使用 :code:`fluid.io.load_params` 
+对于通过 :code:`fluid.io.save_params` 保存的模型，可以使用 :code:`fluid.io.load_params`
 来进行载入。
 
 例如：
@@ -162,7 +162,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
     fluid.io.load_persistables(exe, path, startup_prog)
     main_prog = fluid.default_main_program()
     exe.run(main_prog)
-    
+
 上面的例子中，通过调用 :code:`fluid.io.load_persistables` 函数，PaddlePaddle Fluid会从默认
 :code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，从指定的 :code:`path` 目录中将它们一一加载， 然后再继续进行训练。
 

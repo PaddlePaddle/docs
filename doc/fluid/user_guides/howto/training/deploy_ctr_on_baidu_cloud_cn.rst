@@ -1,6 +1,6 @@
 ..  _deploy_ctr_on_baidu_cloud_cn:
 
-百度云分布式训练CTR
+在百度云分布式训练CTR
 =========================
 
 Fluid支持数据并行的分布式训练，也支持基于Kubernetes的分布式部署。本文以百度云为例，说明如何通过在云服务器上分布式训练Click-Through-Rate（以下简称ctr）任务。
