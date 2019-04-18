@@ -83,7 +83,7 @@ For example:
    exe.run(feed={
      "sentence": create_lod_tensor(
        data=numpy.array([1, 3, 4, 5, 3, 6, 8], dtype='int64').reshape(-1, 1),
-       lod=[4, 1, 2],
+       recursive_seq_lens=[[4, 1, 2]],
        place=fluid.CPUPlace()
      )
    })
