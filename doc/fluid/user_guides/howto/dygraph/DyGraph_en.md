@@ -1,6 +1,6 @@
 # DyGraph
 
-DyGraph mode of PaddlePaddle is a dynamic mechanism for the execution of graphs, which can execuate the result immediately without constructing the whole graph.Meanwhile,different from the static execution of graphs before, in the DyGraph mode,you can get the execution result once you operate rather than construct the fixed computation graph to execute.Under these conditions, you can build a deep learning assignment and debug the model with  PaddlePaddle more intuitively. What's more, mass codes for constructing the static computation graph are reduced, so that the process of establishing networks more convenient and debugging easier.
+DyGraph mode of PaddlePaddle is a dynamic mechanism for the execution of graphs, which can execuate the result immediately without constructing the whole graph. Meanwhile, different from the static execution of graphs before, in the DyGraph mode, you can get the execution result once you operate rather than construct the fixed computation graph to execute.Under these conditions, you can build a deep learning assignment and debug the model with  PaddlePaddle more intuitively. What's more, mass codes for constructing the static computation graph are reduced, so that the process of establishing networks more convenient and debugging easier.
 
 PaddlePaddle DyGraph is a more flexible and easily accessible mode, which can provide:      
 
@@ -49,7 +49,7 @@ PaddlePaddle DyGraph is a more flexible and easily accessible mode, which can pr
 
 	>	A sequence of `ndarray` inputs are created here,and we can print the running results
 	
-	Then execute the back propagation by `Variable.backward()` method after calling `reduce_sum`.And you can get the gradient value in the form of `ndarray` after the back network's execution by `Variable.gradient()` method:
+	Then execute the back propagation by `Variable.backward()` method after calling `reduce_sum`. And you can get the gradient value in the form of `ndarray` after the back network's execution by `Variable.gradient()` method:
 
 		loss = fluid.layers.reduce_sum(ret)
 		loss.backward()
@@ -159,7 +159,7 @@ Please refer to contents in [PaddleBook](https://github.com/PaddlePaddle/book/tr
 		train_reader = paddle.batch(
 		paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
 
-2. Build the network. Although you can define all the network structures yourself according to the previous introduction, you can also use the basic network structures we have customized for you in `fluid.Layer.nn` directly.We build basic `SimpleImgConvPool` by `fluid.Layer.nn.Conv2d` and `fluid.Layer.nn.Pool2d` here:
+2. Build the network. Although you can define all the network structures yourself according to the previous introduction, you can also use the basic network structures we have customized for you in `fluid.Layer.nn` directly. We build basic `SimpleImgConvPool` by `fluid.Layer.nn.Conv2d` and `fluid.Layer.nn.Pool2d` here:
 
 		class SimpleImgConvPool(fluid.dygraph.Layer):
 		    def __init__(self,
@@ -439,7 +439,7 @@ The following codes show how to train and save a model for executing "Handwritin
 
 In the first `fluid.dygraph.guard()` context, we train and save the models. It's noticeable that if we need to infer during training process, we can switch to the inference mode by `YourModel.eval()` and switch back to the training mode to continue training afer inference by `YourModel.train()`.
 
-In the second `fluid.dygraph.guard()` context we can use previously saved `checkpoint` to do the inference.Also, we need to switch to the inference mode by `YourModel.eval()`.
+In the second `fluid.dygraph.guard()` context we can use previously saved `checkpoint` to do the inference. Also, we need to switch to the inference mode by `YourModel.eval()`.
 			
 	with fluid.dygraph.guard():
         fluid.default_startup_program().random_seed = seed
