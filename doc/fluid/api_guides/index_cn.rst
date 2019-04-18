@@ -21,3 +21,5 @@ API分类检索
     low_level/compiled_program.rst
     low_level/parameter.rst
     low_level/distributed/index.rst
+    X2Paddle/TensorFlow-Fluid.rst
+    X2Paddle/Caffe-Fluid.rst
