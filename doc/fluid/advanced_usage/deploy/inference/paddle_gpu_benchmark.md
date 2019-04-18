@@ -6,15 +6,15 @@
 - 测试模型 ResNet50，MobileNet，ResNet101, Inception V3.
 
 ## 测试对象
-**PaddlePaddle, Pytorch, Tensorflow**   
+**PaddlePaddle, Pytorch, Tensorflow**
 
-- 在测试中，PaddlePaddle使用子图优化的方式集成了TensorRT, 模型[地址](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models)。
+- 在测试中，PaddlePaddle使用子图优化的方式集成了TensorRT, 模型[地址](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models)。
 - Pytorch使用了原生的实现, 模型[地址1](https://github.com/pytorch/vision/tree/master/torchvision/models)、[地址2](https://github.com/marvis/pytorch-mobilenet)。
 - 对TensorFlow测试包括了对TF的原生的测试，和对TF—TRT的测试，**对TF—TRT的测试并没有达到预期的效果，后期会对其进行补充**， 模型[地址](https://github.com/tensorflow/models)。
 
 
-### ResNet50 
- 
+### ResNet50
+
 |batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1|4.64117 |16.3|10.878|

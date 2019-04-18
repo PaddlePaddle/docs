@@ -112,16 +112,6 @@
 		<td> ON </td>
 	</tr>
 	<tr>
-		<td> WITH_C_API </td>
-		<td> 是否仅编译CAPI </td>
-		<td>  OFF </td>
-	</tr>
-		<tr>
-		<td> WITH_DOUBLE </td>
-		<td> 是否使用双精度浮点数 </td>
-		<td> OFF </td>
-	</tr>
-	<tr>
 		<td> WITH_DSO </td>
 		<td> 是否运行时动态加载CUDA动态库，而非静态加载CUDA动态库 </td>
 		<td> ON </td>
@@ -137,27 +127,8 @@
 		<td> ON </td>
 	</tr>
 	<tr>
-		<td> WITH_STYLE_CHECK </td>
-		<td> 是否编译时进行代码风格检查 </td>
-		<td> ON </td>
-	</tr>
-	<tr>
 		<td> WITH_TESTING </td>
 		<td> 是否开启单元测试 </td>
-		<td> OFF </td>
-	</tr>
-	<tr>
-		<td> WITH_DOC </td>
-		<td> 是否编译中英文文档 </td>
-		<td> OFF </td>
-	</tr>
-	<tr>
-		<td> WITH_SWIG_PY </td>
-		<td> 是否编译PYTHON的SWIG接口，该接口可用于预测和定制化训练 </td>
-		<td> Auto </td>
-	<tr>
-		<td> WITH_GOLANG </td>
-		<td> 是否编译go语言的可容错parameter server </td>
 		<td> OFF </td>
 	</tr>
 	<tr>
@@ -176,11 +147,6 @@
 		<td> OFF </td>
 	</tr>
 	<tr>
-		<td> WITH_RDMA </td>
-		<td> 是否编译支持RDMA的相关部分 </td>
-		<td> OFF </td>
-	</tr>
-	<tr>
 		<td> WITH_BRPC_RDMA </td>
 		<td> 是否使用BRPC RDMA作为RPC协议 </td>
 		<td> OFF </td>
@@ -188,11 +154,6 @@
 		<tr>
 		<td> ON_INFER </td>
 		<td> 是否打开预测优化 </td>
-		<td> OFF </td>
-	</tr>
-	<tr>
-		<td> DWITH_ANAKIN </td>
-		<td> 是否编译ANAKIN </td>
 		<td> OFF </td>
 	</tr>
    </tbody>

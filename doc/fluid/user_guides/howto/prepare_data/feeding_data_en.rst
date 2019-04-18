@@ -45,6 +45,8 @@ For example:
 .. code-block:: python
 
    exe = fluid.Executor(fluid.CPUPlace())
+   # init Program
+   exe.run(fluid.default_startup_program())
    exe.run(feed={
       "image": numpy.random.random(size=(32, 3, 224, 224)).astype('float32'),
       "label": numpy.random.random(size=(32, 1)).astype('int64')
@@ -81,7 +83,7 @@ For example:
    exe.run(feed={
      "sentence": create_lod_tensor(
        data=numpy.array([1, 3, 4, 5, 3, 6, 8], dtype='int64').reshape(-1, 1),
-       lod=[4, 1, 2],
+       recursive_seq_lens=[[4, 1, 2]],
        place=fluid.CPUPlace()
      )
    })

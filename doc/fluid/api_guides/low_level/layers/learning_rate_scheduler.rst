@@ -38,3 +38,9 @@
 * :code:`append_LARS`: 通过Layer-wise Adaptive Rate Scaling算法获得学习率，相关算法请参考 `《Train Feedfoward Neural Network with Layer-wise Adaptive Rate via Approximating Back-matching Propagation》 <https://arxiv.org/abs/1802.09750>`_ 。
   相关API Reference请参考 :ref:`cn_api_fluid_layers_append_LARS`
 
+* :code:`cosine_decay`: 余弦衰减，即学习率随step数变化呈余弦函数。
+  相关API Reference请参考 :ref:`cn_api_fluid_layers_cosine_decay`
+
+* :code:`linear_lr_warmup`: 学习率随step数线性增加到指定学习率。
+  相关API Reference请参考 :ref:`cn_api_fluid_layers_linear_lr_warmup`
+
