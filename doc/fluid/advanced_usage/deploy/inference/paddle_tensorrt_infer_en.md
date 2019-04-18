@@ -113,19 +113,19 @@ The compilation process is [here](https://github.com/PaddlePaddle/Paddle/tree/de
 ## <a name="Paddle-TRT_INT8 usage">Paddle-TRT INT8 usage</a>
 
   1. Paddle-TRT INT8 introduction    
-   The parameters of the neural network are redundant to some extent.In many tasks,we can turn the Float32 model into Int8 model on the premise of precision.At present,Paddle-TRT supports to turn the trained Float32 model into Int8 model off line.The specific processes are as follows:1）**Create the calibration table**.We prepare about 500 real input data,and input the data to the model.Paddle-TRT will count the range information of each op input and output value in the model,and record in the calibration table.The information can reduce the information loss during model transformation.2）After creating the calibration table,run the model again,**Paddle-TRT will load the calibration table automatically**,and conduct the inference in the INT8 mode.
+   The parameters of the neural network are redundant to some extent. In many tasks, we can turn the Float32 model into Int8 model on the premise of precision. At present,Paddle-TRT supports to turn the trained Float32 model into Int8 model off line. The specific processes are as follows:1）**Create the calibration table**. We prepare about 500 real input data, and input the data to the model. Paddle-TRT will count the range information of each op input and output value in the model, and record in the calibration table. The information can reduce the information loss during model transformation. 2）After creating the calibration table, run the model again, **Paddle-TRT will load the calibration table automatically**, and conduct the inference in the INT8 mode.
 
   2. compile and test the INT8 example
 
   	```shell
  	cd SAMPLE_BASE_DIR/sample
  	# sh run_impl.sh {the address o inference libraries} {the name of test script} {model directories}
- 	# We generate 500 input data to simulate the process,and it's suggested that you use real example for experiment.
+ 	# We generate 500 input data to simulate the process, and it's suggested that you use real example for experiment. 
  	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  fluid_generate_calib_test SAMPLE_BASE_DIR/sample/mobilenetv1
  	
  	```
  	
-        After the running period,there will be a new file named trt_calib_* under the `SAMPLE_BASE_DIR/sample/build/mobilenetv1` model directory,which is the calibration table.
+        After the running period, there will be a new file named trt_calib_* under the `SAMPLE_BASE_DIR/sample/build/mobilenetv1` model directory, which is the calibration table.
 
   	``` shell
  	# conduct INT8 inference
