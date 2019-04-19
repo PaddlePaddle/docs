@@ -33,7 +33,7 @@ Version of pip or pip3 should be equal to or above 9.0.1 .
 Execute `pip install paddlepaddle` or `pip3 install paddlepaddle` to download and install PaddlePaddle.
 
 * ***GPU version of PaddlePaddle***:
- 执行如下命令：`pip install paddlepaddle-gpu`(python2.7) 或 `pip3 install paddlepaddle-gpu`(python3.x) 安装PaddlePaddle
+Execute `pip install paddlepaddle-gpu`(python2.7) or `pip3 install paddlepaddle-gpu`(python3.x) to download and install PaddlePaddle.
  
 ## ***Verify installation***
 
