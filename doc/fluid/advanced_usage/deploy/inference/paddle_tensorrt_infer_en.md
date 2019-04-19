@@ -113,7 +113,7 @@ The compilation process is [here](https://github.com/PaddlePaddle/Paddle/tree/de
 ## <a name="Paddle-TRT_INT8 usage">Paddle-TRT INT8 usage</a>
 
   1. Paddle-TRT INT8 introduction    
-   The parameters of the neural network are redundant to some extent. In many tasks, we can turn the Float32 model into Int8 model on the premise of precision. At present,Paddle-TRT supports to turn the trained Float32 model into Int8 model off line. The specific processes are as follows:1）**Create the calibration table**. We prepare about 500 real input data, and input the data to the model. Paddle-TRT will count the range information of each op input and output value in the model, and record in the calibration table. The information can reduce the information loss during model transformation. 2）After creating the calibration table, run the model again, **Paddle-TRT will load the calibration table automatically**, and conduct the inference in the INT8 mode.
+   The parameters of the neural network are redundant to some extent. In many tasks, we can turn the Float32 model into Int8 model on the premise of precision. At present, Paddle-TRT supports to turn the trained Float32 model into Int8 model off line. The specific processes are as follows: 1）**Create the calibration table**. We prepare about 500 real input data, and input the data to the model. Paddle-TRT will count the range information of each op input and output value in the model, and record in the calibration table. The information can reduce the information loss during model transformation. 2）After creating the calibration table, run the model again, **Paddle-TRT will load the calibration table automatically**, and conduct the inference in the INT8 mode.
 
   2. compile and test the INT8 example
 
