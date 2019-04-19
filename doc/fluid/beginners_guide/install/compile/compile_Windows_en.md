@@ -8,7 +8,7 @@ This instruction will show you how to compile PaddlePaddle on a *64-bit desktop 
 
 ## Determine which version to compile
 
-* 1.3 PaddlePaddle that supports GPU. In order to make PaddlePaddle programs run faster, we usually use GPU to accelerate them. However, for the installation of GPU version of PaddlePaddle, NVIDIA GPU which satisfies with the following condictions is needed(please refer to the offical document of NVIDIA GPU for more installation and configuration details: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
+* 1.3 version PaddlePaddle can support GPU. In order to make PaddlePaddle programs run faster, we usually use GPU to accelerate them. However, for the installation of GPU version of PaddlePaddle, NVIDIA GPU which satisfies with the following condictions is needed(please refer to the offical document of NVIDIA GPU for more installation and configuration details: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)）
 * Cuda tool package8.0 with cuDNN v7
 * Hardware device with GPU calculation performance beyond 1.0
 
