@@ -399,7 +399,7 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 		<td> <a href="http://paddlepaddle.org/download?url=http://paddle-wheel.bj.bcebos.com/1.4.0-gpu-cuda9-cudnn7-avx-mkl/paddlepaddle_gpu-1.4.0.post97-cp37-cp37m-linux_x86_64.whl">
 		paddlepaddle_gpu-1.4.0-cp37-cp37m-linux_x86_64.whl</a></td>
 	</tr>
-	<tr>
+<!--<tr>
 		<td> win_cpu_noavx_openblas </td>
 		<td> - </td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.0-win-noavx-openblas/paddlepaddle-1.4.0-cp27-cp27m-win_amd64.whl">
@@ -447,6 +447,7 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.0-win-avx-openblas/paddlepaddle_gpu-1.4.0-cp37-cp37m-win_amd64.whl">
 		paddlepaddle_gpu-1.4.0-cp37-cp37m-win_amd64.whl</a></td>
 	</tr>
+-->
    </tbody>
 </table>
 </p>
