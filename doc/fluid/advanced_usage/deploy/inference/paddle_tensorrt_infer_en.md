@@ -113,7 +113,7 @@ The compilation process is [here](https://github.com/PaddlePaddle/Paddle/tree/de
 ## <a name="Paddle-TRT_INT8 usage">Paddle-TRT INT8 usage</a>
 
   1. Paddle-TRT INT8 introduction    
-   The parameters of the neural network are redundant to some extent. In many tasks, we can turn the Float32 model into Int8 model on the premise of precision. At present, Paddle-TRT supports to turn the trained Float32 model into Int8 model off line. The specific processes are as follows: 1）**Create the calibration table**. We prepare about 500 real input data, and input the data to the model. Paddle-TRT will count the range information of each op input and output value in the model, and record in the calibration table. The information can reduce the information loss during model transformation. 2）After creating the calibration table, run the model again, **Paddle-TRT will load the calibration table automatically**, and conduct the inference in the INT8 mode.
+The parameters of the neural network are redundant to some extent. In many tasks, we can turn the Float32 model into Int8 model on the premise of precision. At present, Paddle-TRT supports to turn the trained Float32 model into Int8 model off line. The specific processes are as follows: 1）**Create the calibration table**. We prepare about 500 real input data, and input the data to the model. Paddle-TRT will count the range information of each op input and output value in the model, and record in the calibration table. The information can reduce the information loss during model transformation. 2）After creating the calibration table, run the model again, **Paddle-TRT will load the calibration table automatically**, and conduct the inference in the INT8 mode.
 
   2. compile and test the INT8 example
 
@@ -136,7 +136,7 @@ The compilation process is [here](https://github.com/PaddlePaddle/Paddle/tree/de
 
 ## <a name="Paddle-TRT subgraph operation principle">Paddle-TRT subgraph operation principle</a>
 
-   Subgraph is used to integrate TensorRT in PaddlePaddle. After model is loaded, neural network can be represented as a computing graph composed of variables and computing nodes. Functions Paddle TensorRT implements are to scan the whole picture, discover subgraphs that can be optimized with TensorRT and replace them with TensorRT nodes. During the inference of model, Paddle will call TensorRT library to optimize TensorRT nodes and call native library of Paddle to optimize other nodes. During the inference, TensorRT can integrate Op horizonally and vertically to filter redundant Ops and is able to choose appropriate kernel for specific Op in specific platform to speed up the inference of model.
+Subgraph is used to integrate TensorRT in PaddlePaddle. After model is loaded, neural network can be represented as a computing graph composed of variables and computing nodes. Functions Paddle TensorRT implements are to scan the whole picture, discover subgraphs that can be optimized with TensorRT and replace them with TensorRT nodes. During the inference of model, Paddle will call TensorRT library to optimize TensorRT nodes and call native library of Paddle to optimize other nodes. During the inference, TensorRT can integrate Op horizonally and vertically to filter redundant Ops and is able to choose appropriate kernel for specific Op in specific platform to speed up the inference of model.
    
 A simple model expresses the process : 
 
@@ -150,6 +150,6 @@ A simple model expresses the process :
  <img src="https://raw.githubusercontent.com/NHZlX/FluidDoc/add_trt_doc/doc/fluid/user_guides/howto/inference/image/model_graph_trt.png" width="600">
 </p>
 
-  We can see in the Original Network that the green nodes represent nodes supported by TensorRT, the red nodes represent variables in network and yellow nodes represent nodes which can only be operated by native functions in Paddle. Green nodes in original network are extracted to compose subgraph which is replaced by a single TensorRT node to be transformed into `block-25` node in network. When such nodes are encountered during the runtime, TensorRT library will be called to execute them.
+We can see in the Original Network that the green nodes represent nodes supported by TensorRT, the red nodes represent variables in network and yellow nodes represent nodes which can only be operated by native functions in Paddle. Green nodes in original network are extracted to compose subgraph which is replaced by a single TensorRT node to be transformed into `block-25` node in network. When such nodes are encountered during the runtime, TensorRT library will be called to execute them.
    
 
