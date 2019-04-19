@@ -119,7 +119,7 @@ The parameters of the neural network are redundant to some extent. In many tasks
 
   	```shell
  	cd SAMPLE_BASE_DIR/sample
- 	# sh run_impl.sh {the address o inference libraries} {the name of test script} {model directories}
+ 	# sh run_impl.sh {the address of inference libraries} {the name of test script} {model directories}
  	# We generate 500 input data to simulate the process, and it's suggested that you use real example for experiment. 
  	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  fluid_generate_calib_test SAMPLE_BASE_DIR/sample/mobilenetv1
  	
