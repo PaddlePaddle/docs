@@ -213,7 +213,7 @@ Start Up NCCL2 Distributed Training in Muti-Process Mode
 Attention during usage:
 
  * set the number of nodes: set the number of nodes of an assignment by the environment variable :code:`PADDLE_NUM_TRAINERS` , and this variable will also be set in every training process.
- * set the number of devices of each node:by activating the parameter :code:`--gpus` , you can set the number of GPU devices of each node, and the sequence number of each process will be set in the environment variable :code:`PADDLE_TRAINER_ID` automatically.
+ * set the number of devices of each node: by activating the parameter :code:`--gpus` , you can set the number of GPU devices of each node, and the sequence number of each process will be set in the environment variable :code:`PADDLE_TRAINER_ID` automatically.
  * data segment: mult-process mode means one process in each device. Generally, each process manages a part of training data, in order to make sure that all processes can manage the whole data set.
  * entrance file: entrance file is the training script for actual startup.
  * journal: for each training process, the joural is saved in the default :code:`./mylog` directory, and you can assign by the parameter :code:`--log_dir` .
