@@ -205,6 +205,25 @@ For example:
 Currently, distributed training using NCCL2 only supports synchronous training. The distributed training using NCCL2 mode is more suitable for the model which is relatively large and needs \
 synchronous training and GPU training. If the hardware device supports RDMA and GPU Direct, this can achieve high distributed training performance.
 
+Start Up NCCL2 Distributed Training in Muti-Process Mode
+++++++++++++++++++++++++++++++++++++++++++++++
+
+ Usually you can get better multi-training performance by using multi-process mode to start up NCCL2 distributed training assignment. Paddle provides :code:`paddle.distributed.launch` module to start up multi-process assignment, after which each training process will use an independent GPU device.
+
+Attention during usage:
+
+ * set the number of nodes: set the number of nodes of an assignment by the environment variable :code:`PADDLE_NUM_TRAINERS` , and this variable will also be set in every training process.
+ * set the number of devices of each node: by activating the parameter :code:`--gpus` , you can set the number of GPU devices of each node, and the sequence number of each process will be set in the environment variable :code:`PADDLE_TRAINER_ID` automatically.
+ * data segment: mult-process mode means one process in each device. Generally, each process manages a part of training data, in order to make sure that all processes can manage the whole data set.
+ * entrance file: entrance file is the training script for actual startup.
+ * journal: for each training process, the joural is saved in the default :code:`./mylog` directory, and you can assign by the parameter :code:`--log_dir` .
+
+  startup example:
+
+  .. code-block:: bash
+
+     > PADDLE_NUM_TRAINERS=<TRAINER_COUNT> python -m paddle.distributed.launch train.py --gpus <NUM_GPUS_ON_HOSTS> <ENTRYPOINT_SCRIPT> --arg1 --arg2 ...
+
 Important Notes on NCCL2 Distributed Training
 ++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -215,7 +234,7 @@ exit at the final iteration. There are two common ways:
 - Each node only trains fixed number of batches per pass, which is controlled by python codes. If a node has more data than this fixed amount, then these 
   marginal data will not be trained.
 
-**Note** :  If there are multiple network devices in the system, you need to manually specify the devices used by NCCL2.
+**Note** : If there are multiple network devices in the system, you need to manually specify the devices used by NCCL2.
 
 Assuming you need to use :code:`eth2` as the communication device, you need to set the following environment variables:
 
