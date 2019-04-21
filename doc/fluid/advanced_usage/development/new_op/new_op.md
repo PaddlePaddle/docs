@@ -7,7 +7,7 @@
 - `framework::OperatorBase`: Operator(简写，Op)基类。
 - `framework::OpKernel`: Op计算函数的基类，称作Kernel。
 - `framework::OperatorWithKernel`：继承自OperatorBase，Op有计算函数，称作有Kernel。
-- `class OpProtoAndCheckerMaker`：描述该Op的输入、输出、属性、注释，主要用于Python API接口生成
+- `framework::OpProtoAndCheckerMaker`：描述该Op的输入、输出、属性、注释，主要用于Python API接口生成。
 
 根据是否包含Kernel，可以将Op分为两种：包含Kernel的Op和不包含kernel的Op：
 
@@ -115,7 +115,9 @@ or not. But the output only shares the LoD information with input $X$.
 上面的代码在`MulOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，并解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
 ### 定义GradProtoMaker类
-通常情况下，每个Op的会有一个对应的GradProtoMaker，为方便代码编写，fluid提供了默认的GradProtoMaker，即：`DefaultGradProtoMaker`。`DefaultGradProtoMaker`会使用前向Op的全部输入输出以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。**注意：不要将反向Op不会用到的变量放到反向Op的输入列表中，这样会导致这些不会被反向Op用到的变量的空间不能够及时回收，进而有可能导致用到该Op的模型可以设置的最大batch_size较低。**
+通常情况下，每个Op的会有一个对应的`GradProtoMaker`，为方便代码编写，fluid提供了默认的`GradProtoMaker`，即：`DefaultGradProtoMaker`。`DefaultGradProtoMaker`会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
+
+**注意：不要将反向Op不会用到的变量放到反向Op的输入列表中，这样会导致这些不会被反向Op用到的变量的空间不能够及时回收，进而有可能导致用到该Op的模型可以设置的batch_size较低。**
 
 下面示例定义了`MulOp`的GradProtoMaker。
 
@@ -232,9 +234,9 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 
 `MulKernel`继承自`framework::OpKernel`，带有下面两个模板参数:
 
-- `typename DeviceContext`: 表示设备类型，不同设备(CPU、CUDA)共享同一个Kernel时，需加该模板参数，不共享则不加，一个不共享的例子是[`SGDOpKernel`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/optimizers/sgd_op.h)。
+- `typename DeviceContext`: 表示设备类型。不同设备(CPU、CUDA)共享同一个Kernel时，需加该模板参数；不共享则不加，一个不共享的例子是[`SGDOpKernel`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/optimizers/sgd_op.h)。
 
-- `typename T` : 表示数据类型，如`float`, `double`等。
+- `typename T` : 表示数据类型，如`float`, `double`, `int16`等。
 
 需要为`MulKernel`类重写`Compute`接口。
 
@@ -331,9 +333,33 @@ class MulKernel : public framework::OpKernel<T> {
                             ops::MulKernel<paddle::platform::CUDADeviceContext, float>,
                             ops::MulKernel<paddle::platform::CUDADeviceContext, double>);
     REGISTER_OP_CUDA_KERNEL(mul_grad,
-                           ops::MulGradKernel<paddle::platform::CUDADeviceContext, float>,
-                           ops::MulGradKernel<paddle::platform::CUDADeviceContext, double>);
+                            ops::MulGradKernel<paddle::platform::CUDADeviceContext, float>,
+                            ops::MulGradKernel<paddle::platform::CUDADeviceContext, double>);
     ```
+
+**注意：**
+
+在运行Op时，框架系统会根据输入数据所在的设备、输入数据的类型等信息自动的选择合适的OpKernel，比如输入的数据是在GPU上，并且为`float`类型，框架系统会选择由`REGISTER_OP_CUDA_KERNEL`注册的`ops::MulKernel<paddle::platform::CUDADeviceContext, float>`。如果用户希望指定运行时可被调用的OpKernel，用户需要覆盖`framework::OperatorWithKernel`中的`GetExpectedKernelType`函数，比如`ConvOp`会根据属性`use_cudnn`为`false`还是为`true`决定是否调用cudnn库中提供的conv操作。
+
+```
+framework::OpKernelType ConvOp::GetExpectedKernelType(
+    const framework::ExecutionContext& ctx) const {
+  int customized_type_value =
+      framework::OpKernelType::kDefaultCustomizedTypeValue;
+  framework::LibraryType library{framework::LibraryType::kPlain};
+  auto input_data_type = ctx.Input<Tensor>("Input")->type();
+  std::string data_format = ctx.Attr<std::string>("data_format");
+  framework::DataLayout layout = framework::StringToDataLayout(data_format);
+#ifdef PADDLE_WITH_CUDA
+  if (ctx.Attr<bool>("use_cudnn")) {
+    library = framework::LibraryType::kCUDNN;
+  }
+#endif
+  auto type = framework::OpKernelType(input_data_type, ctx.GetPlace(), layout,
+                                      library, customized_type_value);
+  return type;
+}
+```
 
 ### 编译
 
@@ -346,6 +372,14 @@ make mul_op
 ## 绑定Python
 
 系统会对新增的op自动绑定Python，并链接到生成的lib库中。
+
+### 使用mul操作在Python端构建Layer
+
+在Python端，`mul`操作用于构建FC层，即：
+
+$$Out = Act({X*W + b})$$
+
+具体实现方式可参考[FC层的实现代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/nn.py#L205)。
 
 ## 实现单元测试
 
@@ -408,7 +442,6 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestMulOp`里�
 
 - `test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况。
 
-
 ### 编译和执行
 
 `python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
@@ -445,7 +478,7 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 
 #### 总体原则
 
-任何使用了PADDLE_ENFORCE与PADDLE_ENFORCE_**检查的地方，必须有详略得当的备注解释！错误提示信息**不能为空！
+任何使用了PADDLE_ENFORCE与PADDLE_ENFORCE_检查的地方，必须有详略得当的备注解释！**错误提示信息**不能为空！
 
 #### 提示信息书写标准
 
