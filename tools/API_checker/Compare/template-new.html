@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>new</title>
+        <script src="jquery-3.3.1.js" > </script>
+        <script>
+
+        var files=['io_en.html', //0
+        'fluid_en.html', //1
+        'profiler_en.html', //2
+        'backward_en.html', //3
+        'data_feeder_en.html', //4
+        'metrics_en.html', //5
+        'clip_en.html', //6
+        'regularizer_en.html',//7 
+        'nets_en.html', //8
+        'executor_en.html',//9 
+        'initializer_en.html',//10 
+        'transpiler_en.html', //11
+        'average_en.html', //12
+        'layers_en.html', //13
+        'optimizer_en.html']//14
+
+        $(document).ready(function(){
+            for(var i=0;i<files.length;i++){
+                var filename=files[i]
+                $("#contents").append("<div width='100%' class='file_hinter'>"+filename+"</div>")
+                $("#contents").append("<div id='"+i+"_div'></div>")
+                //alert("#"+i+"_div")
+                $("#"+i+"_div").load("new/"+filename+"  #doc-content",
+                    function(){
+                                $(".btn-group").remove();
+                                $(".headerlink").remove();
+                                $(".viewcode-link").remove();
+                });
+
+            
+            }
+            
+
+        });
+
+        </script>
+        <style>
+        .file_hinter{
+            background-color:lightblue;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="contents"></div>
+
+    </body>
+</html>

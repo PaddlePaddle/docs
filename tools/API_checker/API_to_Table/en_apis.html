@@ -1,0 +1,100 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="jquery-3.3.1.js" > </script>
+        <script src="FileSaver.js"></script>
+        <script src="generator_saver.js"></script>
+        <style>
+        .file_hinter{
+            background-color:lightblue;
+        }
+
+        .analysed_api_table{
+            border-right:1px solid ;
+            border-bottom:1px solid ;
+            background-color: #99FFFF;
+
+        }
+        .analysed_api_table td,.analysed_api_table th{
+            border-left:1px solid;
+            border-top:1px solid;
+        }
+        #report-div{
+            border:1px solid #CC3366;
+
+
+        }
+        </style>
+    </head>
+    <body>
+        
+        <div class="">
+            <p>
+                <span>选择要分析的API，点击『Analyse and Load API』</span>
+                <br>
+
+                <span>连续点击『Analyse and Load API』会叠加，或者分析完后点击『Clear this page』来从0开始</span>
+
+                <br>
+                <span>layers会延迟20s左右的处理时间....</span>
+
+                <br>
+                <em style="color:red">截取的py文件会默认下载到游览器默认下载位置处</em>
+
+                <br>    
+
+            </p>
+            <form action="#" id="filename_form">
+                <p>
+                    <label></label>
+                    <br>
+                    <select id="api_file_select" name="file">
+
+                    </select>
+                    <br>
+                    <br>
+                    <input type="button" id="submit-button" value="Analyse and Load API" />
+                    <input type="button" id="clear-button" value="Clear this page" />
+                    <p>
+                    <input type="button" id="download-button" value="Download All Example Codes" disabled="disabled" />
+                    </p>
+                    <script type="text/javascript">
+                        $("#clear-button").click(function(){location.reload();})
+                    </script>
+
+                </p>
+            </form>
+        </div>
+        
+        <div id="report-div">
+            <p id="report-div-p">
+                Result:<br>
+            </p>
+        </div>
+        <div id="function_api_table" class="analysed_api_div">
+                <table class="analysed_api_table" id="api_table" border="0">
+                    <tr class="table_head" >
+                        <th>API Name</th>
+                        <th>API Path</th>
+                        <th>API Type</th>
+                        <th>API Args</th>
+                        <th>API Explanation</th>
+                        <th>Argument Details</th>
+                        <th>Returns</th>
+                        <th>Return Type</th>
+                        <th>Raises</th>
+                        <th>Examples</th>
+                        <th>Operations</th>
+                    </tr>
+
+                </table>
+        </div>
+        
+        <div id="contents">
+            
+
+        </div>
+        
+
+    </body>
+</html>
