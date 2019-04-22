@@ -1,8 +1,8 @@
 .. _user_guide_save_load_vars_en:
 
-######################################################
-Save, Load Models or Variables & Incremental Learning
-######################################################
+##########################################################
+Save, Load and Incremental Learning of Models or Variables
+##########################################################
 
 Model variable classification
 ##############################
@@ -26,6 +26,21 @@ How to save model variables
 ############################
 
 The model variables we need to save are different depending on the application. For example, if we just want to save the model for future predictions, just saving the model parameters will be enough. But if we need to save a checkpoint for future recovery of current training, then we should save all the persistable variables, and even record the current epoch and step id. It is because even though some model variables are not parameters, they are still essential for model training.
+
+differences among save_vars、save_params、save_persistables and save_inference_model
+###################################################################################
+ 1. :code:`save_inference_model` will trim the network according to :code:`feeded_var_names` and :code:`target_vars` configured by users, and save the ``__model__`` of network structures and long-term variables of networks after the trim.
+
+  2. :code:`save_persistables` will not save network structures but will save all the long-term variables in networks in the appointed location.
+
+  3. :code:`save_params` will not save network structures but will save all the model parameters in networks in the appointed location.
+
+  4. :code:`save_vars` will not save network structures but will save according to  :code:`fluid.framework.Parameter` list appointed by users.
+
+   :code:`save_persistables` can save most comprehensive network parameters. In incremental training or recovery training situation, please choose :code:`save_persistables` to save variables.
+  :code:`save_inference_model` will save network parameters and models after trim. For later inference, please choose  :code:`save_inference_model` to save variables and networks.
+  :code:`save_vars 和 save_params` is only used in the situation where users know clearly about the uses or for special purpose, and is not recommended in general.
+
 
 Save the model to make prediction for new samples
 ===================================================
@@ -140,6 +155,7 @@ There are several differences between multi-node incremental training and single
 
 1. At the end of the training, when :code:`fluid.io.save_persistables` is called to save the persistence parameters, it is not necessary for all trainers to call this method, usually it is called on the 0th trainer.
 2. The parameters of multi-node incremental training are loaded on the PServer side, and the trainer side does not need to load parameters. After the PServers are fully started, the trainer will synchronize the parameters from the PServer.
+3. In the situation where increment needs to be used determinately, multi-node needs to appoint ``current_endpoint`` parameter when calling :code:`fluid.DistributeTranspiler.transpile` .
 
 The general steps for multi-node incremental training (do not enable distributed large-scale sparse matrices) are:
 
@@ -184,7 +200,7 @@ For the PServer to be loaded with parameters during training, for example:
 	Training_role == "PSERVER"
 	config = fluid.DistributeTranspilerConfig()
 	t = fluid.DistributeTranspiler(config=config)
-	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True)
+	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True, current_endpoint=current_endpoint)
 
 	if training_role == "PSERVER":
 		current_endpoint = "127.0.0.1:1001"
