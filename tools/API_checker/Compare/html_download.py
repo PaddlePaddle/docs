@@ -11,40 +11,35 @@ def saveHtml(file_name, file_content, dire):
   
         f.write(file_content)
  
-files=['io_en.html', #0
-        'fluid_en.html', #1
-        'profiler_en.html', #2
-        'backward_en.html', #3
-        'data_feeder_en.html', #4
-        'metrics_en.html', #5
-        'clip_en.html', #6
-        'regularizer_en.html',#7 
-        'nets_en.html', #8
-        'executor_en.html',#9 
-        'initializer_en.html',#10 
-        'transpiler_en.html', #11
-        'average_en.html', #12
-        'layers_en.html', #13
-        'optimizer_en.html']#14
+webpages=['io.html', #0
+        'fluid.html', #1
+        'profiler.html', #2
+        'backward.html', #3
+        'data_feeder.html', #4
+        'metrics.html', #5
+        'clip.html', #6
+        'regularizer.html',#7 
+        'nets.html', #8
+        'executor.html',#9 
+        'initializer.html',#10 
+        'transpiler.html', #11
+        'average.html', #12
+        'layers.html', #13
+        'optimizer.html']#14
 
-version=input("API HTML version(for example: 1.3 1.4 develop):")
-version=str(version).replace(" ","")
+version=raw_input("API HTML version(for example: 1.3 1.4 develop):")
 
-dire=input("download to (directory):")
-dire=str(dire).replace(" ","")
 
-for filename in files:
+dire=raw_input("download to (directory):")
+
+
+for filename in webpages:
     aurl = "http://paddlepaddle.org/documentation/docs/en/"+version+"/api/"+filename
     html = getHtml(aurl)
     if(not os.path.isdir(dire)):
         os.mkdir(dire)
-    saveHtml(filename, html, version+"/")
+    classname=filename[:filename.find(".html")]
+    filename=classname+"_en.html"
+    saveHtml(filename, html, dire+"/")
     print(version+" downloaded --- "+ filename)
 
-'''
-for filename in files:
-    aurl = "http://paddlepaddle.org/documentation/docs/en/develop/api/"+filename
-    html = getHtml(aurl)
-    saveHtml(filename, html, "develop/")
-    print("develop ok --- "+ filename)
-'''
