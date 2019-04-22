@@ -233,6 +233,8 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 
 通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
 
+**注意：**通常`InferShape`操作在[编译时和运行时](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在一些NLP任务可能会涉及到很多的变长操作，Paddle中在编译时变长使用-1表示，所以Op中在做检查或者推断输出变量的Shape时需要注意输入变量的某个维度是否可能为-1。
+
 ### 定义OpKernel类
 
 `MulKernel`继承自`framework::OpKernel`，带有下面两个模板参数:
@@ -388,6 +390,10 @@ $$Out = Act({X*W + b})$$
 
 单测包括对比前向Op不同设备(CPU、CUDA)的实现、对比反向OP不同设备(CPU、CUDA)的实现、反向Op的梯度测试。下面介绍介绍[`MulOp`的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_mul_op.py)。
 
+**注意：**
+
+单测中的测试用例需要尽可能的覆盖Op中的所有分支。
+
 ### 前向Operator单测
 
 Op单元测试继承自`OpTest`。各项具体的单元测试在`TestMulOp`里完成。测试Operator，需要：
@@ -445,6 +451,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestMulOp`里�
 
 - `test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况。
 
+
 ### 编译和执行
 
 `python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
@@ -481,7 +488,7 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 
 #### 总体原则
 
-任何使用了PADDLE_ENFORCE与PADDLE_ENFORCE_检查的地方，必须有详略得当的备注解释！**错误提示信息**不能为空！
+任何使用了PADDLE_ENFORCE与PADDLE_ENFORCE_XX检查的地方，必须有详略得当的备注解释！<font color="#FF0000">**错误提示信息不能为空！**</font>
 
 #### 提示信息书写标准
 
