@@ -2,7 +2,7 @@
 
 ## 概念简介
 
-简单介绍需要用到基类，详细介绍请参考设计文档。
+简单介绍需要用到基类，详细介绍请参考[设计文档](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/motivation/refactorization.md#operatoropwithkernelopkernel)。
 
 - `framework::OperatorBase`: Operator(简写，Op)基类。
 - `framework::OpKernel`: Op计算函数的基类，称作Kernel。
@@ -117,7 +117,10 @@ or not. But the output only shares the LoD information with input $X$.
 ### 定义GradProtoMaker类
 通常情况下，每个Op的会有一个对应的`GradProtoMaker`，为方便代码编写，fluid提供了默认的`GradProtoMaker`，即：`DefaultGradProtoMaker`。`DefaultGradProtoMaker`会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
 
-**注意：不要将反向Op不会用到的变量放到反向Op的输入列表中，这样会导致这些不会被反向Op用到的变量的空间不能够及时回收，进而有可能导致用到该Op的模型可以设置的batch_size较低。**
+**注意:**
+不要将反向Op不会用到的变量放到反向Op的输入列表中，这样会导致这些不会被反向Op用到的变量的空间不能够及时回收，进而有可能导致用到该Op的模型可以设置的batch_size较低。
+比如`relu`操作的前向操作为：`out.device(d) = x.cwiseMax(static_cast<T>(0));`反向操作为：`dx.device(d) = dout * (out > static_cast<T>(0)).template cast<T>();`。显然，反向操作中只是用到了`out`、`dout`、`dx`，没有用到`x`。
+
 
 下面示例定义了`MulOp`的GradProtoMaker。
 
@@ -446,7 +449,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestMulOp`里�
 
 `python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
 
-请注意，**不同于Op的编译测试，运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`, 即`cmake paddle_dir -DWITH_TESTING=ON`。编译成功后，执行下面的命令来运行单元测试：
+请注意，**不同于Op的编译测试，运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`, 即`cmake -DWITH_TESTING=ON ..`。编译成功后，执行下面的命令来运行单元测试：
 
 ```bash
 make test ARGS="-R test_mul_op -V"
