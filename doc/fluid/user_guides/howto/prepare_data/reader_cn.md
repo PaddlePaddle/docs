@@ -159,7 +159,7 @@ reader = paddle.reader.shuffle(paddle.dataset.mnist.train(), 512)
 
 我们提供一个函数来将一个单项reader转换成一个batch reader。
 
-### 为什么需要一个batch raeder，在训练过程中给出reader和batch_size参数这样不足够吗？
+### 为什么需要一个batch reader，在训练过程中给出reader和batch_size参数这样不足够吗？
 
 在大多数情况下，在训练方法中给出reader和batch_size参数是足够的。但有时用户想自定义mini batch里数据项的顺序，或者动态改变batch_size。在这些情况下用batch reader会非常高效有用。
 

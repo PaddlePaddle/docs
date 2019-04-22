@@ -12939,10 +12939,10 @@ yolov3_loss
 至于置信度得分，它是anchor框和真实框之间的IoU的逻辑回归值，anchor框的得分最高为1，此时该anchor框对应着最大IoU。
 如果anchor框之间的IoU大于忽略阀值ignore_thresh，则该anchor框的置信度评分损失将会被忽略。
          
-因此，yolov3损失包括三个主要部分，框位置损失，置信度评分损失，分类损失。L1损失用于
-框坐标（w，h），同时，sigmoid交叉熵损失用于框坐标（x，y），置信度评分损失和分类损失。
+因此，yolov3损失包括三个主要部分，框位置损失，目标性损失，分类损失。L1损失用于
+框坐标（w，h），同时，sigmoid交叉熵损失用于框坐标（x，y），目标性损失和分类损失。
          
-每个真实框在所有anchor中找到最匹配的anchor，预测各anchor框都将会产生所有三种损失的计算，但是没有匹配GT box(ground truth box真实框)的anchor的预测只会产生目标损失。
+每个真实框在所有anchor中找到最匹配的anchor，预测各anchor框都将会产生所有三种损失的计算，但是没有匹配GT box(ground truth box真实框)的anchor的预测只会产生目标性损失。
 
 为了权衡大框(box)和小(box)之间的框坐标损失，框坐标损失将与比例权重相乘而得。即：
 
@@ -12965,7 +12965,7 @@ yolov3_loss
 
 参数：
     - **x**  (Variable) – YOLOv3损失运算的输入张量，这是一个形状为[N，C，H，W]的四维张量。H和W应该相同，第二维（C）存储框的位置信息，以及每个anchor box的置信度得分和one-hot分类
-    - **gt_box**  (Variable) – 真实框，应该是[N，B，4]的形状。第三维用来承载x、y、w、h，x、y、w、h应该是输入图像相对值。 N是batch size，B是图像中所含有的的最多的box数目
+    - **gt_box**  (Variable) – 真实框，应该是[N，B，4]的形状。第三维用来承载x、y、w、h，其中 x, y是真实框的中心坐标，w, h是框的宽度和高度，且x、y、w、h将除以输入图片的尺寸，缩放到[0,1]区间内。 N是batch size，B是图像中所含有的的最多的box数目
     - **gt_label**  (Variable) – 真实框的类id，应该形为[N，B]。
     - **anchors**  (list|tuple) – 指定anchor框的宽度和高度，它们将逐对进行解析
     - **anchor_mask**  (list|tuple) – 当前YOLOv3损失计算中使用的anchor的mask索引

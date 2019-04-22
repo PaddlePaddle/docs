@@ -14,7 +14,6 @@
 
     - `训练神经网络 <../user_guides/howto/training/index_cn.html>`_：介绍如何使用 Fluid 进行单机训练、多机训练、以及保存和载入模型变量
 
-
     - `DyGraph模式 <../user_guides/howto/dygraph/DyGraph.html>`_：介绍在 Fluid 下使用DyGraph
 
     - `模型评估与调试 <../user_guides/howto/evaluation_and_debugging/index_cn.html>`_：介绍在 Fluid 下进行模型评估和调试的方法，包括：

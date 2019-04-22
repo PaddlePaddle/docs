@@ -25,7 +25,8 @@ PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字�
 `Config` 有两种，`NativeConfig` 较简单和稳定，`AnalysisConfig` 功能更新，性能更好
 
 - `NativeConfig` 原生 engine，由 paddle 原生的 forward operator
-  组成，可以天然支持所有paddle 训练出的模型，
+  组成，可以天然支持所有paddle 训练出的模型
+  
 - `AnalysisConfig` 
   - 支持计算图的分析和优化
   - 支持最新的各类 op fuse，性能一般比  `NativeConfig` 要好

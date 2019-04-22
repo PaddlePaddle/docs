@@ -1,5 +1,7 @@
 # 动态图机制-DyGraph
 
+
+
 PaddlePaddle的DyGraph模式是一种动态的图执行机制，可以立即执行结果，无需构建整个图。同时，和以往静态的执行计算图不同，DyGraph模式下您的所有操作可以立即获得执行结果，而不必等待所构建的计算图全部执行完成，这样可以让您更加直观地构建PaddlePaddle下的深度学习任务，以及进行模型的调试，同时还减少了大量用于构建静态计算图的代码，使得您编写、调试网络的过程变得更加便捷。
 
 
@@ -313,7 +315,6 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		        train_reader = paddle.batch(
 		            paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
 		
-		        dy_param_init_value = {}
 		        np.set_printoptions(precision=3, suppress=True)
 		        for epoch in range(epoch_num):
 		            for batch_id, data in enumerate(train_reader()):
@@ -332,10 +333,6 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		                avg_loss = fluid.layers.mean(loss)
 		
 		                dy_out = avg_loss.numpy()
-		
-		                if epoch == 0 and batch_id == 0:
-		                    for param in mnist.parameters():
-		                        dy_param_init_value[param.name] = param.numpy()
 		
 		                avg_loss.backward()
 		                sgd.minimize(avg_loss)
@@ -390,11 +387,15 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
  在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir")`来保存`your_model_object`中所有的模型参数。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
 
-同样可以使用`your_modle_object.load_dict(
-                        fluid.dygraph.load_persistables(your_model_object.state_dict(), "save_dir"))`接口来恢复保存的模型参数从而达到继续训练的目的。
+同样可以使用`your_modle_object.load_dict(fluid.dygraph.load_persistables("save_dir"))`接口来恢复保存的模型参数从而达到继续训练的目的。
+
+
+
 
 下面的代码展示了如何在“手写数字识别”任务中保存参数并且读取已经保存的参数来继续训练。
-	
+
+
+	dy_param_init_value={}
 	for epoch in range(epoch_num):
 	    for batch_id, data in enumerate(train_reader()):
 	        dy_x_data = np.array(
@@ -420,9 +421,8 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 	
 	        for param in mnist.parameters():
 	            dy_param_init_value[param.name] = param.numpy()
-	
-	        mnist.load_dict(fluid.dygraph.load_persistables(mnist.state_dict(), "save_dir"))
-	        restore = mnist.parameters()
+	        mnist.load_dict(fluid.dygraph.load_persistables("save_dir"))
+	restore = mnist.parameters()
 	# check save and load
 	success = True
 	for value in restore:
@@ -490,7 +490,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
         mnist_infer = MNIST("mnist")
         # load checkpoint
         mnist_infer.load_dict(
-            fluid.dygraph.load_persistables(mnist.state_dict(), "save_dir"))
+            fluid.dygraph.load_persistables("save_dir"))
         print("checkpoint loaded")
 
         # start evaluate mode
@@ -536,56 +536,41 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 ## 编写兼容的模型
 
 以上一步中手写数字识别的例子为例，相同的模型代码可以直接在PaddlePaddle的`Executor`中执行：
-
+	
 	exe = fluid.Executor(fluid.CPUPlace(
-        ) if not core.is_compiled_with_cuda() else fluid.CUDAPlace(0))
-
-        mnist = MNIST("mnist")
-        sgd = SGDOptimizer(learning_rate=1e-3)
-        train_reader = paddle.batch(
-            paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
-
-        img = fluid.layers.data(
-            name='pixel', shape=[1, 28, 28], dtype='float32')
-        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-        cost = mnist(img)
-        loss = fluid.layers.cross_entropy(cost, label)
-        avg_loss = fluid.layers.mean(loss)
-        sgd.minimize(avg_loss)
-
-        # initialize params and fetch them
-        static_param_init_value = {}
-        static_param_name_list = []
-        for param in mnist.parameters():
-            static_param_name_list.append(param.name)
-
-        out = exe.run(fluid.default_startup_program(),
-                      fetch_list=static_param_name_list)
-
-        for i in range(len(static_param_name_list)):
-            static_param_init_value[static_param_name_list[i]] = out[i]
-
-        for epoch in range(epoch_num):
-            for batch_id, data in enumerate(train_reader()):
-                static_x_data = np.array(
-                    [x[0].reshape(1, 28, 28)
-                     for x in data]).astype('float32')
-                y_data = np.array(
-                    [x[1] for x in data]).astype('int64').reshape([BATCH_SIZE, 1])
-
-                fetch_list = [avg_loss.name]
-                fetch_list.extend(static_param_name_list)
-                out = exe.run(
-                    fluid.default_main_program(),
-                    feed={"pixel": static_x_data,
-                          "label": y_data},
-                    fetch_list=fetch_list)
-
-                static_param_value = {}
-                static_out = out[0]
-                for i in range(1, len(out)):
-                    static_param_value[static_param_name_list[i - 1]] = out[
-                        i]
+	) if not core.is_compiled_with_cuda() else fluid.CUDAPlace(0))
+	
+	mnist = MNIST("mnist")
+	sgd = SGDOptimizer(learning_rate=1e-3)
+	train_reader = paddle.batch(
+	    paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
+	
+	img = fluid.layers.data(
+	    name='pixel', shape=[1, 28, 28], dtype='float32')
+	label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+	cost = mnist(img)
+	loss = fluid.layers.cross_entropy(cost, label)
+	avg_loss = fluid.layers.mean(loss)
+	sgd.minimize(avg_loss)
+	
+	out = exe.run(fluid.default_startup_program())
+	
+	for epoch in range(epoch_num):
+	    for batch_id, data in enumerate(train_reader()):
+	        static_x_data = np.array(
+	            [x[0].reshape(1, 28, 28)
+	             for x in data]).astype('float32')
+	        y_data = np.array(
+	            [x[1] for x in data]).astype('int64').reshape([BATCH_SIZE, 1])
+	
+	        fetch_list = [avg_loss.name]
+	        out = exe.run(
+	            fluid.default_main_program(),
+	            feed={"pixel": static_x_data,
+	                  "label": y_data},
+	            fetch_list=fetch_list)
+	
+	        static_out = out[0]
 
 			
 			
