@@ -30,3 +30,4 @@ We gladly encourage your contributions of codes and documentation to our communi
     development/contribute_to_paddle/index_en.rst
     development/write_docs_en.md
     best_practice/index_en.rst
+    paddle_slim/paddle_slim_en.md 
