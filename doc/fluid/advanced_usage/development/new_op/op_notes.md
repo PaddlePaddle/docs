@@ -125,11 +125,29 @@ ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操�
 所以在写注册反向Op时需要注意以下几点：
 
 - Fluid提供的`DefaultGradOpDescMaker`，默认会将前向op的所有输入(`Input`）、输出(`Output`)以及输出变量所对应的梯度(`Output@Grad`)作为反向Op的输入，将前向Op输入所对应的梯度(`Input@Grad`)作为反向Op的输出。所以在使用`DefaultGradOpDescMaker`时需要考虑是否有些变量在计算中不被用到。
-- 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，需要对该变量在反向Op中进行注册`NoNeedBufferVarsInference`。**一旦注册了`NoNeedBufferVarsIference`，反向op中就不能读写该变量对应的Tensor中的buffer，只能调用Tensor的dims()和LoD()方法**。比如在`SliceOpGrad`中只会用到`Input`中变量的Shape信息，所以需要为对`Input`在`SliceOpGrad`上进行注册：
+- 如果`DefaultGradOpDescMaker`不能够满足需求，需要用户自己手动构建`GradOpDescMaker`，具体实现请参考[相关文档](new_op.html#permalink-4--gradprotomaker-);
+- 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，需要对该变量（以下称该变量为`X`）在反向Op中进行注册`NoNeedBufferVarsInference`。**一旦注册了`NoNeedBufferVarsIference`，反向op中就不能读写该变量对应的Tensor中的buffer，只能调用Tensor的dims()和lod()方法，同时，反向Op中的`GetExpectedKernelType()`必须要重写，并且`GetExpectedKernelType()`中不能访问`X`变量中Tensor的type()方法**。比如在`SliceOpGrad`中只会用到`Input`中变量的Shape信息，所以需要为对`Input`在`SliceOpGrad`上进行注册：
 ```
 namespace paddle {
 namespace operators {
 // ...
+class SliceOpGrad : public framework::OperatorWithKernel {
+ public:
+  using framework::OperatorWithKernel::OperatorWithKernel;
+
+  void InferShape(framework::InferShapeContext* ctx) const override {
+    // ... 
+  }
+
+  framework::OpKernelType GetExpectedKernelType(
+      const framework::ExecutionContext& ctx) const override {
+    // Note: don't get data type from ctx.Input<framework::Tensor>("Input");   
+    auto dtype = ctx.Input<framework::Tensor>(framework::GradVarName("Out"))->type();    
+    return framework::OpKernelType( dtype, ctx.GetPlace());
+  }
+};
+
+
 class SliceOpGradMaker : public framework::SingleGradOpDescMaker {
  public:
   using framework::SingleGradOpDescMaker::SingleGradOpDescMaker;
@@ -157,9 +175,7 @@ REGISTER_OPERATOR(slice_grad, ops::SliceOpGrad,
                   ops::SliceOpGradNoNeedBufferVarsInference);
 ```
 
-### 8. 反向op注册规范问题
-
-### 9.混合设备调用
+### 8.混合设备调用
 由于GPU是异步执行的，当CPU调用返回之后，GPU端可能还没有真正的执行，所以如果在Op中创建了GPU运行时需要用到的临时变量，当GPU开始运行的时候，该临时变量可能在CPU端已经被释放，这样可能会导致GPU计算出错。
 
 关于GPU中的一些同步和异步操作：
@@ -175,7 +191,7 @@ The following device operations are asynchronous with respect to the host:
 关于cudaMemCpy和cudaMemCpyAsync注意事项：
 
 - 如果数据传输是从GPU端到非页锁定的CPU端，数据传输将是同步，即使调用的是异步拷贝操作。
-- 如果数据传输时从CPU端到CPU端，数据传输将是同步的，即使调用的是异步拷贝操作。
+- 如果数据传输是从CPU端到CPU端，数据传输将是同步的，即使调用的是异步拷贝操作。
 
 更多内容可参考：[Asynchronous Concurrent Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#asynchronous-concurrent-execution)，[API synchronization behavior](https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html#api-sync-behavior)
 
