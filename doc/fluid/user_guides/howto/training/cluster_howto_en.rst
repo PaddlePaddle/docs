@@ -35,7 +35,9 @@ In the training of data parallelism mode, Fluid uses two communication modes to 
 
   The pserver process can be on a compute node that is completely different from the trainer, or it can share the same node with a trainer. The number of pserver processes required for a distributed task usually needs to be adjusted according to the actual situation to achieve the best performance. However, usually pserver processes are no more than trainer processes.
 
-  When using GPU training, the pserver can choose to use the GPU or only use the CPU. If the pserver also uses the GPU, it will result in the extra overhead of copying the gradient data received from the CPU to the GPU. In some cases, the overall training performance will be degraded.
+  **Note:** When using GPU training, the pserver can choose to use the GPU or only use the CPU. If the pserver also uses the GPU, it will result in the extra overhead of copying the gradient data received from the CPU to the GPU. In some cases, the overall training performance will be degraded.
+
+  **Note:** When using GPU training, if there are multiple GPU cards in each trainer node, the gradient polymerization will execute in NCCL2 way among the cards in one node, and then in multiple nodes through pserver.
 
 - Structure of NCCL2 communication method:
 
@@ -178,8 +180,10 @@ Distributed training in NCCL2 mode, because there is no parameter server role, t
 
 * Configure :code:`mode="nccl2"` in :code:`fluid.DistributeTranspilerConfig` .
 * When calling :code:`transpile`, :code:`trainers` is fed with the endpoints of all trainer nodes, and passed with the argument :code:`current_endpoint` .
+  In this step, :code:`gen_nccl_id_op` will add in :code:`startup program` to synchronize NCCLID information during the multi-computer program initialization.
 * Initialize :code:`ParallelExecutor` with :code:`num_trainers` and :code:`trainer_id` .
-
+  In this step, :code:`ParallelExecutor` will initialize NCCL2 by the multi-computer way and do the operations :code:`allreduce` across the nodes for the gradient of every parameter to execute muti-computer training
+   
 For example:
 
 .. code-block:: python
@@ -198,24 +202,45 @@ For example:
 .. csv-table:: Description of the necessary parameters for NCCL2 mode
 	:header: "parameter", "description"
 
-	"trainer_id", "The unique ID of each trainer node in the task, starting at 0, there cannot be any duplication"
-	"trainers", "endpoints of all trainer nodes in the task, used to broadcast NCCL IDs when NCCL2 is initialized"
-	"current_endpoint", "endpoint of current node"
+	"trainer_id", "(int)The unique ID of each trainer node in the task, starting at 0, there cannot be any duplication"
+	"trainers", "(int)endpoints of all trainer nodes in the task, used to broadcast NCCL IDs when NCCL2 is initialized"
+	"current_endpoint", "(string)endpoint of current node"
 
 Currently, distributed training using NCCL2 only supports synchronous training. The distributed training using NCCL2 mode is more suitable for the model which is relatively large and needs \
 synchronous training and GPU training. If the hardware device supports RDMA and GPU Direct, this can achieve high distributed training performance.
 
+Start Up NCCL2 Distributed Training in Muti-Process Mode
+++++++++++++++++++++++++++++++++++++++++++++++
+
+ Usually you can get better multi-training performance by using multi-process mode to start up NCCL2 distributed training assignment. Paddle provides :code:`paddle.distributed.launch` module to start up multi-process assignment, after which each training process will use an independent GPU device.
+
+Attention during usage:
+
+ * set the number of nodes: set the number of nodes of an assignment by the environment variable :code:`PADDLE_NUM_TRAINERS` , and this variable will also be set in every training process.
+ * set the number of devices of each node: by activating the parameter :code:`--gpus` , you can set the number of GPU devices of each node, and the sequence number of each process will be set in the environment variable :code:`PADDLE_TRAINER_ID` automatically.
+ * data segment: mult-process mode means one process in each device. Generally, each process manages a part of training data, in order to make sure that all processes can manage the whole data set.
+ * entrance file: entrance file is the training script for actual startup.
+ * journal: for each training process, the joural is saved in the default :code:`./mylog` directory, and you can assign by the parameter :code:`--log_dir` .
+
+  startup example:
+
+  .. code-block:: bash
+
+     > PADDLE_NUM_TRAINERS=<TRAINER_COUNT> python -m paddle.distributed.launch train.py --gpus <NUM_GPUS_ON_HOSTS> <ENTRYPOINT_SCRIPT> --arg1 --arg2 ...
+
 Important Notes on NCCL2 Distributed Training
 ++++++++++++++++++++++++++++++++++++++++++++++
 
-**Note** : Please ensure each node has the same amount of data to train in NCCL2 mode distributed training, which prevents
+**Note:** When using distributed training in NCCL2 mode, if you only want to use a part of cards in one node, you can appoint by configuring the environment variable :code:`export CUDA_VISIBLE_DEVICES=0,1,2,3` .
+
+**Note:** Please ensure each node has the same amount of data to train in NCCL2 mode distributed training, which prevents
 exit at the final iteration. There are two common ways:
 
 - Randomly sample some data to complement nodes where less data are distributed. (We recommend this method for sake of a complete dataset to be trained)
 - Each node only trains fixed number of batches per pass, which is controlled by python codes. If a node has more data than this fixed amount, then these 
   marginal data will not be trained.
 
-**Note** :  If there are multiple network devices in the system, you need to manually specify the devices used by NCCL2.
+**Note** : If there are multiple network devices in the system, you need to manually specify the devices used by NCCL2.
 
 Assuming you need to use :code:`eth2` as the communication device, you need to set the following environment variables:
 

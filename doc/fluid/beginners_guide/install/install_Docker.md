@@ -4,6 +4,8 @@
 
 ## 环境准备
 
+- 目前支持的系统类型，请见[安装说明](./index_cn.html)，请注意目前暂不支持在CentOS 6使用Docker
+
 - 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
 - 如需在Linux开启GPU支持，请[安装nvidia-docker](https://github.com/NVIDIA/nvidia-docker)

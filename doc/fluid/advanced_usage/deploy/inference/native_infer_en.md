@@ -96,7 +96,7 @@ There are two modes in term of memory management in `PaddleBuf` :
 
 In the two modes, the first is more convenient while the second strictly controls memory management to facilitate integration with `tcmalloc` and other libraries.
  
-### Upgrade performance based on contrib::AnalysisConfig (Prerelease)
+### Upgrade performance based on contrib::AnalysisConfig
 
 AnalyisConfig is at the stage of pre-release and protected by `namespace contrib` , which may be adjusted in the future.
 
@@ -106,9 +106,11 @@ The usage of `AnalysisConfig` is similiar with that of `NativeConfig` but the fo
 
 ```c++
 AnalysisConfig config;
-config.model_dir = xxx;
-config.use_gpu = false;  // GPU optimization is not supported at present
-config.specify_input_name = true; // it needs to set name of input
+config.SetModel(dirname);                // set the directory of the model
+config.EnableUseGpu(100, 0 /*gpu id*/);  // use GPU,or
+config.DisableGpu();                     // use CPU
+config.SwitchSpecifyInputNames(true);    // need to appoint the name of your input
+config.SwitchIrOptim();     // turn on the optimization switch,and a sequence of optimizations will be executed in operation                      
 ```
 
 Note that input PaddleTensor needs to be allocated. Previous examples need to be revised as follows:
@@ -125,11 +127,29 @@ tensor.dtype = paddle::PaddleDType::INT64;
 tensor.name = "input0"; // name need to be set here
 ```
 
+The subsequent execution process is totally the same with `NativeConfig` .
+	
+### variable-length sequence input
+When dealing with variable-length sequence input, you need to set LoD for `PaddleTensor` .
+	
+``` c++
+# Suppose the sequence lengths are [3, 2, 4, 1, 2, 3] in order.
+tensor.lod = {{0,
+	         /*0 + 3=*/3,
+	         /*3 + 2=*/5,
+	         /*5 + 4=*/9,
+	         /*9 + 1=*/10,
+	         /*10 + 2=*/12,
+	         /*12 + 3=*/15}};
+```
+	
+For more specific examples, please refer to[LoD-Tensor Instructions](../../../user_guides/howto/basic_concept/lod_tensor_en.html)
+	
 ### Suggestion for Performance
 
 1. If the CPU type permits, it's best to use the versions with support for AVX and MKL.
 2. Reuse input and output `PaddleTensor` to avoid frequent memory allocation resulting in low performance
-3. Try to replace `NativeConfig` with `AnalysisConfig` to perform optimization for CPU inference 
+3. Try to replace `NativeConfig` with `AnalysisConfig` to perform optimization for CPU or GPU inference 
 
 ## Code Demo
 
