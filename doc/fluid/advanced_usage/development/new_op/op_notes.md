@@ -4,7 +4,7 @@
 ### 1.Fluid中Op的构建逻辑
 Fluid中所有的Op都继承自`OperatorBase`，且所有的Op都是无状态的，每个Op包含的成员变量只有四个：type、inputs、outputs、attribute。
 
-Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计算资源，这两个资源分别通过`Scope`和`Place`获取。框架内部有一个全局的`DeviceContextPool`，用来记录`Place`和`DeviceContext`之间的对应的关系，即每个`Place`有且仅有一个`DeviceContext`与之对应，`DeviceContext`中存放了当前设备的计算资源。比如对于GPU，这些资源包括`cudnn_handle`、`cublas_handle`、`stream`等，Op内部所有的计算（数据拷贝和CUDA Kernel等）都必须在`DeviceContext`中进行。
+Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计算资源，这两个资源分别通过`Scope`和`Place`获取。框架内部有一个全局的`DeviceContextPool`，用来记录`Place`和`DeviceContext`之间的对应的关系，即每个`Place`有且仅有一个`DeviceContext`与之对应，`DeviceContext`中存放了当前设备的计算资源。比如对于GPU，这些资源包括`cudnn_handle`、`cublas_handle`、`stream`等，**Op内部所有的计算（数据拷贝和CUDA Kernel等）都必须在`DeviceContext`中进行**。
 
 Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv_op，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
 
@@ -120,13 +120,42 @@ ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操�
 目前稀疏梯度在做更新更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如velocity）的更新。
 
 ### 7.显存优化
-通常反向Op会依赖于前向Op的某些输入、输出变量，以供反向Op计算使用。但有些情况下，反向Op完全不需要任何前向的输入和输出；有些情况下，反向Op只需要前向Op的部分输入和输出；有些情况下，反向Op只需要使用前向Op中输入和输出变量的Shape和LoD信息。若op开发者在注册反向Op时，将不必要的前向Op输入和输出作为反向op的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
+通常反向Op会依赖于前向Op的某些输入(Input)、输出(Output)，以供反向Op计算使用。但有些情况下，反向Op不需要前向Op的所有输入和输出；有些情况下，反向Op只需要前向Op的部分输入和输出；有些情况下，反向Op只需要使用前向Op中输入和输出变量的Shape和LoD信息。若Op开发者在注册反向Op时，将不必要的前向Op输入和输出作为反向Op的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
-所以在写注册反向Op时需要注意一下几点：
+所以在写注册反向Op时需要注意以下几点：
 
-- Fluid提供的`DefaultGradOpDescMaker`，默认会将前向op的所有输入（Input）、输出（Output）以及输出变量所对应的梯度（Output@Grad）作为反向Op的输入，将前向Op输入所对应的梯度（Input@Grad）作为反向Op的输出。所以在使用`DefaultGradOpDescMaker`时需要考虑是否有些变量在计算中不被用到。
-- 如果有些反向Op需要依赖前向Op的输入、输出的shape或lod，但不依赖于Tensor的Buffer，且不能根据其他信息推断出shape和lod，需要注册`NoNeedBufferVarsInference`，一旦注册了`NoNeedBufferVarsIference`，反向op中就不能读写这些Tensor的buffer，只能调用Tensor的dims()和lod()方法。具体可参考：[sequence_concat_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_concat_op.cc)。
+- Fluid提供的`DefaultGradOpDescMaker`，默认会将前向op的所有输入(`Input`）、输出(`Output`)以及输出变量所对应的梯度(`Output@Grad`)作为反向Op的输入，将前向Op输入所对应的梯度(`Input@Grad`)作为反向Op的输出。所以在使用`DefaultGradOpDescMaker`时需要考虑是否有些变量在计算中不被用到。
+- 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，需要对该变量在反向Op中进行注册`NoNeedBufferVarsInference`。**一旦注册了`NoNeedBufferVarsIference`，反向op中就不能读写该变量对应的Tensor中的buffer，只能调用Tensor的dims()和LoD()方法**。比如在`SliceOpGrad`中只会用到`Input`中变量的Shape信息，所以需要为对`Input`在`SliceOpGrad`上进行注册：
+```
+namespace paddle {
+namespace operators {
+// ...
+class SliceOpGradMaker : public framework::SingleGradOpDescMaker {
+ public:
+  using framework::SingleGradOpDescMaker::SingleGradOpDescMaker;
 
+ protected:
+  std::unique_ptr<framework::OpDesc> Apply() const override {
+    auto* bind = new framework::OpDesc();
+    bind->SetInput("Input", Input("Input"));
+    bind->SetInput(framework::GradVarName("Out"), OutputGrad("Out"));
+    bind->SetOutput(framework::GradVarName("Input"), InputGrad("Input"));
+    bind->SetAttrMap(Attrs());
+    bind->SetType("slice_grad");
+    return std::unique_ptr<framework::OpDesc>(bind);
+  }
+};
+
+DECLARE_NO_NEED_BUFFER_VARS_INFERENCE(SliceOpGradNoNeedBufferVarsInference,
+                                      "Input");
+}  // namespace operators
+}  // namespace paddle
+namespace ops = paddle::operators;
+REGISTER_OPERATOR(slice, ops::SliceOp, ops::SliceOpMaker,
+                  ops::SliceOpGradMaker);
+REGISTER_OPERATOR(slice_grad, ops::SliceOpGrad,
+                  ops::SliceOpGradNoNeedBufferVarsInference);
+```
 
 ### 8. 反向op注册规范问题
 
