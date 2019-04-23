@@ -59,7 +59,7 @@ LoD 索引
 
 **视频的mini-batch**
 
-在视觉任务中，时常需要处理视频和图像这些元素是高维的对象，假设现存的一个nimi-batch包含3个视频，分别有3个，1个和2个帧，每个帧都具有相同大小：640x480，则这个mini-batch可以被表示为：
+在视觉任务中，时常需要处理视频和图像这些元素是高维的对象，假设现存的一个mini-batch包含3个视频，分别有3个，1个和2个帧，每个帧都具有相同大小：640x480，则这个mini-batch可以被表示为：
 
 .. code-block:: text
 
@@ -261,8 +261,8 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
 
 .. code-block:: python
 
-  x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=0)
-  y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=1)
+  x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
+  y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
   out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
 
 *说明*：输出LoD-Tensor的维度仅与传入的真实数据维度有关，在定义网络结构阶段为x、y设置的shape值，仅作为占位，并不影响结果。
@@ -338,8 +338,8 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
     import paddle.fluid as fluid
     import numpy as np
     #定义前向计算
-    x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=0)
-    y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=1)
+    x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
     out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
     #定义运算场所
     place = fluid.CPUPlace()
