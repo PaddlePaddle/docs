@@ -194,8 +194,8 @@ Code of sequence expanding:
 
 .. code-block:: python
 
-  x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=0)
-  y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=1)
+  x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
+  y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
   out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
 
 *Note*：The dimension of input LoD-Tensor is only associated with the dimension of real data transferred in. The shape value set for x and y in the definition of network structure is just a placeholder with little influence on the result.  
@@ -271,8 +271,8 @@ You can check the output by executing the following complete code:
     import paddle.fluid as fluid
     import numpy as np
     #Define forward computation
-    x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=0)
-    y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=1)
+    x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
     out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
     #Define place for computation
     place = fluid.CPUPlace()
