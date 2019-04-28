@@ -339,11 +339,11 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 		<td> - </td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.1-cpu-noavx-openblas-win%2Fpaddlepaddle-1.4.1-cp27-cp27m-win_amd64.whl">
 		paddlepaddle-1.4.1-cp27-cp27m-win_amd64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.1-cpu-noavx-openblas-win%2Fpaddlepaddle-1.4.1-cp27-cp27m-win_amd64.whl">
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.1-cpu-noavx-openblas-win%2Fpaddlepaddle-1.4.1-cp35-cp35m-win_amd64.whl">
 		paddlepaddle-1.4.1-cp35-cp35m-win_amd64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.1-cpu-noavx-openblas-win%2Fpaddlepaddle-1.4.1-cp27-cp27m-win_amd64.whl">
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.1-cpu-noavx-openblas-win%2Fpaddlepaddle-1.4.1-cp36-cp36m-win_amd64.whl">
 		paddlepaddle-1.4.1-cp36-cp36m-win_amd64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.1-cpu-noavx-openblas-win%2Fpaddlepaddle-1.4.1-cp27-cp27m-win_amd64.whl">
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.4.1-cpu-noavx-openblas-win%2Fpaddlepaddle-1.4.1-cp37-cp37m-win_amd64.whl">
 		paddlepaddle-1.4.1-cp37-cp37m-win_amd64.whl</a></td>
 	</tr>
 	<tr>
