@@ -1,8 +1,8 @@
 Quick Start
-===========
+=============
 
 Quick Installation
-----------
+--------------------
 
 PaddlePaddle supports quick installation by pip. Execute the following commands to finish quick installation of the CPU version:
 
@@ -10,7 +10,7 @@ PaddlePaddle supports quick installation by pip. Execute the following commands 
 
 	pip install paddlepaddle
 
-If you need to install the GPU version, or look up more specific installation methods, please refer to `Installation Instructions <../beginners_guide/install/index_cn.html>`_
+If you need to install the GPU version, or look up more specific installation methods, please refer to `Installation Instructions <../beginners_guide/install/index_en.html>`_
 
 
 Quick Usage
@@ -25,7 +25,7 @@ First, you need to import the fluid library
 * Tensor Operations
 
 
-The following simple examples may help you quickly konw Fluid:
+The following simple examples may help you quickly know about Fluid:
 
 1.use Fluid to create a one-dimensional array with five elements, and each element is 1
 
@@ -73,7 +73,7 @@ you can get the results:
 
 	[2 2 2 2 2]
 
-3.us Fluid to transform the data type
+3.use Fluid to transform the data type
 
 .. code-block:: python
 
@@ -96,11 +96,11 @@ you can get the results:
 
 
 Operate the Linear Regression Model
------------------
+-------------------------------------
 
 By the simple example above, you may have known how to operate data with Fluid to some extent, so please try to create a test.py, and copy the following codes.
 
-This a a simple linear regression model to help us quickly solve the linear equation with four unknown.
+This a a simple linear regression model to help us quickly solve the quaternary linear equation.
 
 .. code-block:: python
 
