@@ -5412,7 +5412,7 @@ lrn
 
 .. math::
 
-    Output(i,x,y) = Input(i,x,y)/\left ( k+\alpha \sum_{j=max(0,c-n/2)}^{min(C,c+n/2)}(Input(j,x,y))^2 \right )^\beta
+    Output(i,x,y) = Input(i,x,y)/\left ( k+\alpha \sum_{j=max(0,i-n/2)}^{min(C-1,i+n/2)}(Input(j,x,y))^2 \right )^\beta
 
 在以上公式中：
   - :math:`n` ：累加的通道数
