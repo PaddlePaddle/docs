@@ -4,7 +4,7 @@
 
 PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵活、可扩展的深度学习框架
 
-您可参考PaddlePaddle的 `Github <https://github.com/PaddlePaddle/Paddle>`_ 了解详情，也可阅读 `版本说明 <../release_note.html>`_ 了解新版本的特性
+您可参考PaddlePaddle的 `Github <https://github.com/PaddlePaddle/Paddle>`_ 了解详情，也可阅读 `版本说明 <../release_note_cn.html>`_ 了解新版本的特性
 
 让我们从这里开始：
 
