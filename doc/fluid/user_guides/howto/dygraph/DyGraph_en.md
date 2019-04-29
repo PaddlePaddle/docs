@@ -311,7 +311,7 @@ Please refer to contents in [PaddleBook](https://github.com/PaddlePaddle/book/tr
 		        train_reader = paddle.batch(
 		            paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
 		
-		        dy_param_init_value = {}
+		
 		        np.set_printoptions(precision=3, suppress=True)
 		        for epoch in range(epoch_num):
 		            for batch_id, data in enumerate(train_reader()):
@@ -331,10 +331,7 @@ Please refer to contents in [PaddleBook](https://github.com/PaddlePaddle/book/tr
 		
 		                dy_out = avg_loss.numpy()
 		
-		                if epoch == 0 and batch_id == 0:
-		                    for param in mnist.parameters():
-		                        dy_param_init_value[param.name] = param.numpy()
-		
+		             
 		                avg_loss.backward()
 		                sgd.minimize(avg_loss)
 		                mnist.clear_gradients()
@@ -388,11 +385,11 @@ Please refer to contents in [PaddleBook](https://github.com/PaddlePaddle/book/tr
 
  In model traning, you can use `                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir")` to save all model parameters in `your_model_object`. And you can define Python Dictionary introduction of "parameter name" - "parameter object" that needs to be saved yourself.
 
-Or use `your_modle_object.load_dict(
-                        fluid.dygraph.load_persistables(your_model_object.state_dict(), "save_dir"))` interface to recover saved model parameters to continue training.
+Or use `your_modle_object.load_dict(fluid.dygraph.load_persistables("save_dir"))` interface to recover saved model parameters to continue training.
 
 The following codes show how to save parameters and read saved parameters to continue training in the "Handwriting Digit Recognition" task.
 	
+	dy_param_init_value={}
 	for epoch in range(epoch_num):
 	    for batch_id, data in enumerate(train_reader()):
 	        dy_x_data = np.array(
@@ -419,8 +416,8 @@ The following codes show how to save parameters and read saved parameters to con
 	        for param in mnist.parameters():
 	            dy_param_init_value[param.name] = param.numpy()
 	
-	        mnist.load_dict(fluid.dygraph.load_persistables(mnist.state_dict(), "save_dir"))
-	        restore = mnist.parameters()
+	        mnist.load_dict(fluid.dygraph.load_persistables("save_dir"))
+	restore = mnist.parameters()
 	# check save and load
 	success = True
 	for value in restore:
@@ -478,7 +475,7 @@ In the second `fluid.dygraph.guard()` context we can use previously saved `check
             mnist.train()
             print("Loss at epoch {} , Test avg_loss is: {}, acc is: {}".format(epoch, test_cost, test_acc))
 	
-        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
+        fluid.dygraph.save_persistables("save_dir")
         print("checkpoint saved")
 
     with fluid.dygraph.guard():
@@ -534,9 +531,9 @@ In the second `fluid.dygraph.guard()` context we can use previously saved `check
 ## Build Compatible Model
 
 Take the "Handwriting Digit Recognition" in the last step for example, the same modlel codes can execute in `Executor` of PaddlePaddle:
-
+	
 	exe = fluid.Executor(fluid.CPUPlace(
-        ) if not core.is_compiled_with_cuda() else fluid.CUDAPlace(0))
+	) if not core.is_compiled_with_cuda() else fluid.CUDAPlace(0))
 
         mnist = MNIST("mnist")
         sgd = SGDOptimizer(learning_rate=1e-3)
@@ -551,39 +548,24 @@ Take the "Handwriting Digit Recognition" in the last step for example, the same 
         avg_loss = fluid.layers.mean(loss)
         sgd.minimize(avg_loss)
 
-        # initialize params and fetch them
-        static_param_init_value = {}
-        static_param_name_list = []
-        for param in mnist.parameters():
-            static_param_name_list.append(param.name)
+	out = exe.run(fluid.default_startup_program())
+	
+	for epoch in range(epoch_num):
+	    for batch_id, data in enumerate(train_reader()):
+	        static_x_data = np.array(
+	            [x[0].reshape(1, 28, 28)
+	             for x in data]).astype('float32')
+	        y_data = np.array(
+	            [x[1] for x in data]).astype('int64').reshape([BATCH_SIZE, 1])
 
-        out = exe.run(fluid.default_startup_program(),
-                      fetch_list=static_param_name_list)
+	        fetch_list = [avg_loss.name]
+	        out = exe.run(
+	            fluid.default_main_program(),
+	            feed={"pixel": static_x_data,
+ 	                  "label": y_data},
 
-        for i in range(len(static_param_name_list)):
-            static_param_init_value[static_param_name_list[i]] = out[i]
+	        static_out = out[0]
 
-        for epoch in range(epoch_num):
-            for batch_id, data in enumerate(train_reader()):
-                static_x_data = np.array(
-                    [x[0].reshape(1, 28, 28)
-                     for x in data]).astype('float32')
-                y_data = np.array(
-                    [x[1] for x in data]).astype('int64').reshape([BATCH_SIZE, 1])
-
-                fetch_list = [avg_loss.name]
-                fetch_list.extend(static_param_name_list)
-                out = exe.run(
-                    fluid.default_main_program(),
-                    feed={"pixel": static_x_data,
-                          "label": y_data},
-                    fetch_list=fetch_list)
-
-                static_param_value = {}
-                static_out = out[0]
-                for i in range(1, len(out)):
-                    static_param_value[static_param_name_list[i - 1]] = out[
-                        i]
 
 			
 			
