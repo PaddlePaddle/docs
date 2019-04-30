@@ -14,11 +14,11 @@
 
 1. Pull PaddlePaddle image
 
-	* CPU version PaddlePaddle： `docker pull hub.baidubce.com/paddlepaddle/paddle:[版本号]`
+	* CPU version PaddlePaddle： `docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]`
 
-	* GPU version PaddlePaddle： `docker pull hub.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda9.0-cudnn7`
+	* GPU version PaddlePaddle： `docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]-gpu-cuda9.0-cudnn7`
 
-    Please fill in the version number of PaddlePaddle such as 1.2 after `:`. For more details please refer to [Image Instructions](#dockers)
+    Please fill in the version number of PaddlePaddle such as 1.2 after `:`. For more details, please refer to [Image Instructions](#dockers).
 
 2. Construct and enter Docker container
 
