@@ -152,6 +152,10 @@ Take text sequence as an example,[3,1,2] indicates there are 3 articles in the m
 
 recursive_seq_lens is a double Layer nested list, and in other words, the element of the list is list. The size of the outermost list represents the nested layers, namely the size of lod-level; Each inner list represents the size of each element in each lod-level. 
 
+The following three pieces of codes introduce how to create LoD-Tensor, how to transform LoD-Tensor to Tensor and how to transform Tensor to LoD-Tensor respectively:
+
+  * Create LoD-Tensor
+
 .. code-block:: python
 
   #Create lod-tensor
@@ -168,12 +172,75 @@ recursive_seq_lens is a double Layer nested list, and in other words, the elemen
                             fluid.CPUPlace())
   
   #Check lod-tensor nested layers
-  print len(a.recursive_sequence_lengths())
+  print (len(a.recursive_sequence_lengths()))
   # output：2
 
   #Check the number of the most fundamental elements
-  print sum(a.recursive_sequence_lengths()[-1])
+  print (sum(a.recursive_sequence_lengths()[-1]))
   # output:15 (3+2+4+1+2+3=15)
+
+* Transform LoD-Tensor to Tensor
+
+  .. code-block:: python
+
+   import paddle.fluid as fluid
+   import numpy as np
+
+   # create LoD-Tensor
+   a = fluid.create_lod_tensor(np.array([[1.1], [2.2],[3.3],[4.4]]).astype('float32'), [[1,3]], fluid.CPUPlace())
+
+   def LodTensor_to_Tensor(lod_tensor):
+     # get lod information of LoD-Tensor
+     lod = lod_tensor.lod()
+     # transform into array
+     array = np.array(lod_tensor)
+     new_array = []
+     # transform to Tensor according to the layer information of the original LoD-Tensor
+     for i in range(len(lod[0]) - 1):
+         new_array.append(array[lod[0][i]:lod[0][i + 1]])
+     return new_array
+
+   new_array = LodTensor_to_Tensor(a)
+
+   # output the result
+   print(new_array)
+
+ * Transform Tensor to LoD-Tensor
+
+  .. code-block:: python
+
+   import paddle.fluid as fluid
+   import numpy as np
+
+   def to_lodtensor(data, place):
+     # save the length of Tensor as LoD information
+     seq_lens = [len(seq) for seq in data]
+     cur_len = 0
+     lod = [cur_len]
+     for l in seq_lens:
+         cur_len += l
+         lod.append(cur_len)
+     # decrease the dimention of transformed Tensor
+     flattened_data = np.concatenate(data, axis=0).astype("int64")
+     flattened_data = flattened_data.reshape([len(flattened_data), 1])
+     # add lod information to Tensor data
+     res = fluid.LoDTensor()
+     res.set(flattened_data, place)
+     res.set_lod([lod])
+     return res
+
+   # new_array is the transformed Tensor above
+   lod_tensor = to_lodtensor(new_array,fluid.CPUPlace())
+
+   # output LoD information
+   print("The LoD of the result: {}.".format(lod_tensor.lod()))
+
+   # examine the consistency with Tensor data
+   print("The array : {}.".format(np.array(lod_tensor)))
+
+
+
+
 
 Code examples
 ==============
