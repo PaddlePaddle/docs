@@ -237,6 +237,7 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 在我们的静态图网络中，`InferShape`操作在[编译时和运行时](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，一次是在编译时（compile time 组网过程中），一次是在运行时（run time，kernel运行时）。（后续的内容中，我们会用compile time表示编译时，run time表示运行时）。在框架中，用-1来表示变长，就会导致在compile time时，input的shape中会存在-1的情况，因此对于shape的检查和运算需要区分compile time和 run time时，否则会导致在compile time的时候程序会挂掉。 run time的时候，shape中不会存在-1的情况，所以不用考虑这种情况
 
 以下两种情况需要区分compile time和 run time。
+
 **1.检查**
 比如以下代码：
 ```cpp
