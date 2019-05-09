@@ -16,3 +16,4 @@
     advanced_usage/index_cn.rst
     api_cn/index_cn.rst
     release_note_cn.md
+    faq/index_cn.rst
