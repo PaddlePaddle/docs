@@ -6,7 +6,7 @@ Fluid中所有的Op都继承自`OperatorBase`，且所有的Op都是无状态的
 
 Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计算资源，这两个资源分别通过`Scope`和`Place`获取。框架内部有一个全局的`DeviceContextPool`，用来记录`Place`和`DeviceContext`之间的对应的关系，即每个`Place`有且仅有一个`DeviceContext`与之对应，`DeviceContext`中存放了当前设备的计算资源。比如对于GPU，这些资源包括`cudnn_handle`、`cublas_handle`、`stream`等，**Op内部所有的计算（数据拷贝和CUDA Kernel等）都必须在`DeviceContext`中进行**。
 
-Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv_op，conv_op的OpKerne有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
+Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv_op，conv_op的OpKernel有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
 
 Operator继承关系图：
 ![op_inheritance_relation_diagram](../../pics/op_inheritance_relation_diagram.png)
@@ -194,6 +194,54 @@ The following device operations are asynchronous with respect to the host:
 - 如果数据传输是从CPU端到CPU端，数据传输将是同步的，即使调用的是异步拷贝操作。
 
 更多内容可参考：[Asynchronous Concurrent Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#asynchronous-concurrent-execution)，[API synchronization behavior](https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html#api-sync-behavior)
+
+### 9. LoD 传导规范
+
+LoD 是 Paddle Fluid 框架用来表示序列数据的特有属性，除了仅支持输入是 padding  data 的 Op 外，所有 Op 的实现都要考虑 LoD 的传导问题。
+
+根据 OP 的计算过程中是否用到 LoD，我们可以将涉及到 LoD 传导问题的 OP 分为两类: LoD-Transparent 与 LoD-Based。
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LoD-Transparent </td>
+<td>不依赖LoD，通常是 position-wise 的计算</td>
+<td>conv2d_op、batch_norm_op、dropout_op 等 </td>
+</tr>
+<tr>
+<td>LoD-Based </td>
+<td>依赖LoD，计算过程通常是以序列为单位 </td>
+<td> lstm_op、gru_op、sequence_ops 等 </td>
+</tr>
+</tbody>
+</table>
+
+这两类 OP 的 LoD 传导需要考虑前向和反向两个过程。
+ 
+#### 前向传导
+
+  - LoD-Transparent OP 与部分 LoD-Based OP 的输出与输入的 LoD 相同，可以在`InferShape` 中调用 `ShareLod()` 直接将输入 Var 的 LoD 共享给输出 Var, 可参考 [lstm_op](https://github.com/PaddlePaddle/Paddle/blob/a88a1faa48a42a8c3737deb0f05da968d200a7d3/paddle/fluid/operators/lstm_op.cc#L92); 如果有多个输入且都可能存在 LoD 的情况，默认共享第一个输入, 例如 [elementwise_ops forward](https://github.com/PaddlePaddle/Paddle/blob/5d6a1fcf16bcb48d2e66306b27d9994d9b07433c/paddle/fluid/operators/elementwise/elementwise_op.h#L69)；
+  
+  - 部分 LoD-Based OP 输出的 LoD 发生了变化，其真实的 LoD 需要在前向计算结束后才能确定，此时仍需要在`InferShape` 中调用 `ShareLod()`，以确保CompileTime 时对 LoD Level 做了正确的传导，可参考 [sequence_expand_op](https://github.com/PaddlePaddle/Paddle/blob/565d30950138b9f831caa33904d9016cf53c6c2e/paddle/fluid/operators/sequence_ops/sequence_expand_op.cc)；
+  
+  - 部分 LoD-Based OP 的输出不再是序列数据，此时不用再考虑前向的 LoD 传导问题，可参考 [sequence_pool_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_pool_op.cc)；
+
+  - 实现 LoD-Based OP 时，需要处理好 LoD 传导的边界情况，例如对长度为零的输入的支持，并完善相应的单测，可参考 [test_lstm_op.py](https://github.com/PaddlePaddle/Paddle/blob/4292bd8687ababc7737cffbddc0d38ead2138c00/python/paddle/fluid/tests/unittests/test_lstm_op.py#L203-L216)
+
+  - 对 LoD Level 有明确要求的 OP，推荐的做法是在 `InferShape` 中即完成 LoD Level的检查，例如 [sequence_pad_op](https://github.com/PaddlePaddle/Paddle/blob/4292bd8687ababc7737cffbddc0d38ead2138c00/paddle/fluid/operators/sequence_ops/sequence_pad_op.cc#L79)。
+
+   
+#### 反向传导
+
+通常来讲，OP 的某个输入 Var 所对应的梯度 GradVar 的 LoD 应该与 Var 自身相同，所以应直接将 Var 的 LoD 共享给 GradVar，可以参考 [elementwise ops 的 backward](https://github.com/PaddlePaddle/Paddle/blob/a88a1faa48a42a8c3737deb0f05da968d200a7d3/paddle/fluid/operators/elementwise/elementwise_op.h#L189-L196)
+
 
 ## Op性能优化
 ### 1.第三方库的选择
