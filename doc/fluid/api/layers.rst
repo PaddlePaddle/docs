@@ -351,6 +351,14 @@ clip_by_norm
 ..  autofunction:: paddle.fluid.layers.clip_by_norm
     :noindex:
 
+.. _api_fluid_layers_continuous_value_model:
+
+continuous_value_model
+----------------------
+
+..  autofunction:: paddle.fluid.layers.continuous_value_model
+    :noindex:
+
 .. _api_fluid_layers_conv2d:
 
 conv2d
