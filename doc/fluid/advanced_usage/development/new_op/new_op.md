@@ -234,7 +234,7 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
 
 ### InferShape区分 compile time 和 run time
-在我们的静态图网络中，`InferShape`操作在[编译时和运行时](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，一次是在编译时（compile time 组网过程中），一次是在运行时（run time，kernel运行时）。（后续的内容中，我们会用compile time表示编译时，run time表示运行时）。在框架中，用-1来表示变长，就会导致在compile time时，input的shape中会存在-1的情况，因此对于shape的检查和运算需要区分compile time和 run time时，否则会导致在compile time的时候程序会挂掉。 run time的时候，shape中不会存在-1的情况，所以不用考虑这种情况
+在我们的静态图网络中，`InferShape`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，可能会存在变化，用-1表示维度可变，run time是，维度的值是真实的值，不存在-1的情况， 由于维度的值compile time和 run time可能不一致，如果存在维度的判断和运算操作，InferShape就需要区分compile time 和 run time。
 
 以下两种情况需要区分compile time和 run time。
 
@@ -258,7 +258,6 @@ PADDLE_ENFORCE_GE ( x_dim[i] , 10)
 PADDLE_ENFORCE_LT ( x_dim[i] , 10)
 PADDLE_ENFORCE_LE ( x_dim[i] , 10)
 ```
-以及 c++的运算符  <=, <, !=, ==, >, >=
 都需要区分 compile time 和 run time来进行判断
 
 **2. 运算**
@@ -288,11 +287,9 @@ y_dim[i] = x_dim[i] + z_dim[i]
 1. 判断的实现方法可以参考 cross_entropy_op.cc，cross_entropy_op 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
 
 ```cpp
-    bool check = true;
-    if ((!ctx->IsRuntime()) && (framework::product(x_dims) <= 0 ||
-                                framework::product(label_dims) <= 0)) {
-      check = false;
-    }
+    bool contain_unknown_dim = framework::contain_unknown_dim(x_dims) ||
+                               framework::contain_unknown_dim(label_dims);
+    bool check = ctx->IsRuntime() || !contain_unknown_dim;
     if (check) {
       PADDLE_ENFORCE_EQ(framework::slice_ddim(x_dims, 0, rank - 1),
                         framework::slice_ddim(label_dims, 0, rank - 1),
@@ -319,18 +316,13 @@ y_dim[i] = x_dim[i] + z_dim[i]
             }
           }
         } else {
-          if (ctx->IsRuntime()) {
+          bool check_shape =
+              ctx->IsRuntime() || (out_dims[j] > 0 && ins[i][j] > 0);
+          if (check_shape) {
             // check all shape in run time
             PADDLE_ENFORCE_EQ(out_dims[j], ins[i][j],
                               "Input tensors should have the same "
                               "elements except the specify axis.");
-          } else {
-            // not check -1 with other in compile time
-            if (out_dims[j] > 0 && ins[i][j] > 0) {
-              PADDLE_ENFORCE_EQ(out_dims[j], ins[i][j],
-                                "Input tensors should have the same "
-                                "elements except the specify axis.");
-            }
           }
         }
       }
