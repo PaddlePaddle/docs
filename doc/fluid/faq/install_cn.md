@@ -1,4 +1,4 @@
-# 安装与编译
+ # 安装与编译
 
 ## Linux安装PaddlePaddle
 ### Q：Ubuntu18.10、CPU版本、Python3.6编译错误如何解决？
@@ -60,11 +60,12 @@ make: *** [Makefile:152: all] Error 2
 ```
 CUDNN_STATUS_NOT_INITIALIZED at [/paddle/paddle/fluid/platform/device_context.cc:216]
 ```
+
 + 问题解答
 cuDNN与CUDA版本不一致导致。PIP安装的GPU版本默认使用CUDA 9.0和cuDNN 7编译，请根据您的环境配置选择在官网首页选择对应的安装包进行安装，例如paddlepaddle-gpu==1.2.0.post87 代表使用CUDA 8.0和cuDNN 7编译的1.2.0版本。
 
 ### Q：cuda9.0需要安装哪一个版本的paddle，安装包在哪?
-+ 问题解答
+- 问题解答
 pip install paddlepaddle-gpu 命令将安装支持CUDA 9.0 cuDNN v7的PaddlePaddle，可以参考[安装说明文档](http://paddlepaddle.org/documentation/docs/zh/1.4/beginners_guide/install/index_cn.html)
 
 
@@ -88,7 +89,7 @@ pip install paddlepaddle-gpu 命令将安装支持CUDA 9.0 cuDNN v7的PaddlePadd
 更多请参考[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
 
-### Q问题：安成功安装了PaddlePaddle CPU版本后，使用Paddle训练模型，训练过程中，Paddle会自动退出，gdb显示Illegal instruction？
+### Q：安成功安装了PaddlePaddle CPU版本后，使用Paddle训练模型，训练过程中，Paddle会自动退出，gdb显示Illegal instruction？
 + 报错信息
 ```bash
 *** Aborted at 1539697466 (unix time) try "date -d @1539697466" if you are using GNU date ***
@@ -162,6 +163,7 @@ import paddle.fluid
 PC: @ 0x0 (unknown)
 *** SIGILL (@0x7f6ac6ea9436) received by PID 16 (TID 0x7f6b07bc7700) from PID 18446744072751846454; stack trace: ***
 ```
+
 + 问题解答
 请先确定一下机器是否支持AVX2指令集，如果不支持，请按照相应的不支持AVX2指令集的PaddlePaddle，可以解决该问题。
 
@@ -334,6 +336,7 @@ def testpaddle014():
     paddle package is already in your PYTHONPATH. But unittest need a clean environment.
     Please uninstall paddle package before start unittest. Try to 'pip uninstall paddle'.
 ```
+
 + 问题解答
 卸载PaddlePaddle包 `pip uninstall paddle`, 清理掉老旧的PaddlePaddle安装包，使得单元测试有一个干净的环境。如果PaddlePaddle包已经在python的site-packages里面，单元测试会引用site-packages里面的python包，而不是源码目录里 `/python` 目录下的python包。同时，即便设置 `PYTHONPATH` 到 `/python` 也没用，因为python的搜索路径是优先已经安装的python包。
 
@@ -372,6 +375,7 @@ python python/paddle/fluid/tests/book/test_fit_a_line.py
 ### Q：在Docker镜像上，GPU版本的PaddlePaddle运行结果报错
 ![](https://user-images.githubusercontent.com/17102274/42516300-50f04f8e-8490-11e8-95f1-613d3d3f6ca6.png)
 ![](https://user-images.githubusercontent.com/17102274/42516303-5594bd22-8490-11e8-8c01-55741484f126.png)
+
 + 问题解答
 使用`sudo docker run --name paddle-test -v $PWD:/paddle --network=host -it docker.paddlepaddlehub.com/paddle:latest-dev /bin/bash`命令创建的docker容器仅能支持运行CPU版本的PaddlePaddle。
 使用如下命令重新开启支持GPU运行的docker容器：
