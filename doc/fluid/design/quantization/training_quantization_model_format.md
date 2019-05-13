@@ -1,5 +1,7 @@
 # 量化训练模型格式说明
 
+PaddlePaddle框架主要支持动态量化和静态量化两种量化训练模式。其中，动态量化会在每次推断过程中动态计算量化比例系数的值，而静态量化则对不同的输入采用相同的量化比例系数值。 对于权重而言，在训练过程中采用动态量化模式。换句话说，在每次迭代过程中量化比例系数均会被重新计算得到直至训练过程结束。 对于激活而言，可以选择动态量化模式也可以选择静态量化模式。若选择使用静态量化模式，则量化比例系数会在训练过程中被评估求得，且在推断过程中被使用(不同的输入均保持不变)。除此之外，卷积权重的动态量化亦包括两种形式：1）Tensor-wise量化，即直接求取整个权重Tensor的量化scale值（单一值）；2）Channel-wise量化，即对权重Tensor按照channel维度进行分片，然后求取每个通道Tensor的scale值。
+
 ## 1. Tensor-wise量化
 ### 1.1 动态量化
 
@@ -73,10 +75,10 @@ fake_dequantize_abs_max {
 }
 ```
 
-## 2. Channel-wise量化
+## 2. 卷积权重Channel-wise量化
 ### 2.1 分channel量化
 
-分channel量化与动态量化类似，也是将输入tensor量化到-127～+127值域范围内，不同之处在于分channel量化会对tensor按照channel维度进行分片，然后求取每个通道tensor的scale值。在Paddle中，`fake_channel_wise_quantize_abs_max`op实现了分channel量化的逻辑。注意，目前仅对权重进行分channel量化，对激活是不进行分channel量化的，并且分channel量化只作用在卷积操作上(包括`conv2d`和`depthwise_conv2d`）。下面是对`fake_channel_wise_quantize_abs_max`op的整体描述：
+分channel量化与动态量化类似，也是将输入tensor量化到-127～+127值域范围内，不同之处在于分channel量化会对tensor按照channel维度进行分片，然后求取每个通道tensor的scale值。在PaddlePaddle框架中，`fake_channel_wise_quantize_abs_max`op实现了分channel量化的逻辑。注意，目前仅对权重进行分channel量化，对激活是不进行分channel量化的，并且分channel量化只作用在卷积操作上(包括`conv2d`和`depthwise_conv2d`）。下面是对`fake_channel_wise_quantize_abs_max`op的整体描述：
 
 ```
 fake_channel_wise_quantize_abs_max {
