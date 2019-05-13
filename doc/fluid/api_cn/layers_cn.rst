@@ -2116,12 +2116,9 @@ continuous_value_model
 
 **continuous_value_model层**
 
-—现在，continuous value model(cvm)仅考虑CTR项目中的展示和点击值。
-我们假设输入是一个含cvm_feature的词向量，其形状为[N * D]（D为2 + 嵌入维度）。
-如果use_cvm为真，它会计算log(cvm_feature)，且输出的形状为[N * D]。
-如果use_cvm为假，它会从输入中移除cvm_feature，且输出的形状为[N * (D - 2)]。
+现在，continuous value model(cvm)仅考虑CTR项目中的展示和点击值。我们假设输入是一个含cvm_feature的词向量，其形状为[N * D]（D为2 + 嵌入维度）。如果use_cvm为真，它会计算log(cvm_feature)，且输出的形状为[N * D]。如果use_cvm为假，它会从输入中移除cvm_feature，且输出的形状为[N * (D - 2)]。
     
-该层接受一个名为输入的张量，嵌入后成为input which is ID after embedded(lod level为1)， cvm为一个show_click info。
+该层接受一个名为输入的张量，嵌入后成为ID层(lod level为1)， cvm为一个show_click info。
 
 参数：
     - **input** (Variable)-一个N x D的二维LodTensor， N为batch size， D为2 + 嵌入维度， lod level = 1。
