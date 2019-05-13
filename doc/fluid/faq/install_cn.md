@@ -60,11 +60,12 @@ make: *** [Makefile:152: all] Error 2
 ```
 CUDNN_STATUS_NOT_INITIALIZED at [/paddle/paddle/fluid/platform/device_context.cc:216]
 ```
+
 + 问题解答
 cuDNN与CUDA版本不一致导致。PIP安装的GPU版本默认使用CUDA 9.0和cuDNN 7编译，请根据您的环境配置选择在官网首页选择对应的安装包进行安装，例如paddlepaddle-gpu==1.2.0.post87 代表使用CUDA 8.0和cuDNN 7编译的1.2.0版本。
 
 ### Q：cuda9.0需要安装哪一个版本的paddle，安装包在哪?
-+ 问题解答
+- 问题解答
 pip install paddlepaddle-gpu 命令将安装支持CUDA 9.0 cuDNN v7的PaddlePaddle，可以参考[安装说明文档](http://paddlepaddle.org/documentation/docs/zh/1.4/beginners_guide/install/index_cn.html)
 
 
@@ -94,38 +95,38 @@ pip install paddlepaddle-gpu 命令将安装支持CUDA 9.0 cuDNN v7的PaddlePadd
 *** Aborted at 1539697466 (unix time) try "date -d @1539697466" if you are using GNU date ***
 PC: @                0x0 (unknown)
 *** SIGILL (@0x7fe3a27b7912) received by PID 13005 (TID 0x7fe4059d8700) from PID 18446744072140585234; stack trace: ***
-@       0x318b20f500 (unknown)
-@     0x7fe3a27b7912 paddle::framework::VisitDataType<>()
-@     0x7fe3a279f84f paddle::operators::math::set_constant_with_place<>()
-@     0x7fe3a1e50c21 paddle::operators::FillConstantOp::RunImpl()
-@     0x7fe3a27526bf paddle::framework::OperatorBase::Run()
-@     0x7fe3a1ca31ea paddle::framework::Executor::RunPreparedContext()
-@     0x7fe3a1ca3be0 paddle::framework::Executor::Run()
-@     0x7fe3a1bc9e7d _ZZN8pybind1112cpp_function10initializeIZN6paddle6pybindL13pybind11_initEvEUlRNS2_9framework8ExecutorERKNS4_11ProgramDescEPNS4_5ScopeEibbE63_vIS6_S9_SB_ibbEINS_4nameENS_9is_methodENS_7siblingEEEEvOT_PFT0_DpT1_EDpRKT2_ENUlRNS_6detail13function_callEE1_4_FUNEST_
-@     0x7fe3a1c14c24 pybind11::cpp_function::dispatcher()
-@     0x7fe405acf3e4 PyEval_EvalFrameEx
-@     0x7fe405ad0130 PyEval_EvalCodeEx
-@     0x7fe405ace4a1 PyEval_EvalFrameEx
-@     0x7fe405ad0130 PyEval_EvalCodeEx
-@     0x7fe405ace4a1 PyEval_EvalFrameEx
-@     0x7fe405ad0130 PyEval_EvalCodeEx
-@     0x7fe405a5c181 function_call
-@     0x7fe405a340f3 PyObject_Call
-@     0x7fe405accde7 PyEval_EvalFrameEx
-@     0x7fe405acec56 PyEval_EvalFrameEx
-@     0x7fe405ad0130 PyEval_EvalCodeEx
-@     0x7fe405a5c27d function_call
-@     0x7fe405a340f3 PyObject_Call
-@     0x7fe405accde7 PyEval_EvalFrameEx
-@     0x7fe405ad0130 PyEval_EvalCodeEx
-@     0x7fe405a5c181 function_call
-@     0x7fe405a340f3 PyObject_Call
-@     0x7fe405a46f7f instancemethod_call
-@     0x7fe405a340f3 PyObject_Call
-@     0x7fe405a8abd4 slot_tp_call
-@     0x7fe405a340f3 PyObject_Call
-@     0x7fe405acd887 PyEval_EvalFrameEx
-@     0x7fe405acec56 PyEval_EvalFrameEx
+    @       0x318b20f500 (unknown)
+    @     0x7fe3a27b7912 paddle::framework::VisitDataType<>()
+    @     0x7fe3a279f84f paddle::operators::math::set_constant_with_place<>()
+    @     0x7fe3a1e50c21 paddle::operators::FillConstantOp::RunImpl()
+    @     0x7fe3a27526bf paddle::framework::OperatorBase::Run()
+    @     0x7fe3a1ca31ea paddle::framework::Executor::RunPreparedContext()
+    @     0x7fe3a1ca3be0 paddle::framework::Executor::Run()
+    @     0x7fe3a1bc9e7d _ZZN8pybind1112cpp_function10initializeIZN6paddle6pybindL13pybind11_initEvEUlRNS2_9framework8ExecutorERKNS4_11ProgramDescEPNS4_5ScopeEibbE63_vIS6_S9_SB_ibbEINS_4nameENS_9is_methodENS_7siblingEEEEvOT_PFT0_DpT1_EDpRKT2_ENUlRNS_6detail13function_callEE1_4_FUNEST_
+    @     0x7fe3a1c14c24 pybind11::cpp_function::dispatcher()
+    @     0x7fe405acf3e4 PyEval_EvalFrameEx
+    @     0x7fe405ad0130 PyEval_EvalCodeEx
+    @     0x7fe405ace4a1 PyEval_EvalFrameEx
+    @     0x7fe405ad0130 PyEval_EvalCodeEx
+    @     0x7fe405ace4a1 PyEval_EvalFrameEx
+    @     0x7fe405ad0130 PyEval_EvalCodeEx
+    @     0x7fe405a5c181 function_call
+    @     0x7fe405a340f3 PyObject_Call
+    @     0x7fe405accde7 PyEval_EvalFrameEx
+    @     0x7fe405acec56 PyEval_EvalFrameEx
+    @     0x7fe405ad0130 PyEval_EvalCodeEx
+    @     0x7fe405a5c27d function_call
+    @     0x7fe405a340f3 PyObject_Call
+    @     0x7fe405accde7 PyEval_EvalFrameEx
+    @     0x7fe405ad0130 PyEval_EvalCodeEx
+    @     0x7fe405a5c181 function_call
+    @     0x7fe405a340f3 PyObject_Call
+    @     0x7fe405a46f7f instancemethod_call
+    @     0x7fe405a340f3 PyObject_Call
+    @     0x7fe405a8abd4 slot_tp_call
+    @     0x7fe405a340f3 PyObject_Call
+    @     0x7fe405acd887 PyEval_EvalFrameEx
+    @     0x7fe405acec56 PyEval_EvalFrameEx
 ```
 + 问题解答
 CPU版本PaddlePaddle自动退出的原因通常是因为所在机器不支持AVX2指令集而主动abort。简单的判断方法：
@@ -141,9 +142,9 @@ $ /path/to/gdb -iex "set auto-load safe-path /" -iex "set solib-search-path /pat
 
 找到箭头所指的指令，例如：
 ```bash
-0x00007f381ae4b90d <+3101>:  test   %r8,%r8
+   0x00007f381ae4b90d <+3101>:  test   %r8,%r8
 => 0x00007f381ae4b912 <+3106>:  vbroadcastss %xmm0,%ymm1
-0x00007f381ae4b917 <+3111>:  lea    (%r12,%rdx,4),%rdi
+   0x00007f381ae4b917 <+3111>:  lea    (%r12,%rdx,4),%rdi
 ```
 
 然后google一下这个指令需要的指令集。上面例子中的带xmm和ymm操作数的vbroadcastss指令只在AVX2中支持
@@ -162,6 +163,7 @@ import paddle.fluid
 PC: @ 0x0 (unknown)
 *** SIGILL (@0x7f6ac6ea9436) received by PID 16 (TID 0x7f6b07bc7700) from PID 18446744072751846454; stack trace: ***
 ```
+
 + 问题解答
 请先确定一下机器是否支持AVX2指令集，如果不支持，请按照相应的不支持AVX2指令集的PaddlePaddle，可以解决该问题。
 
@@ -220,16 +222,16 @@ PaddlePaddle Call Stacks:
 + 报错信息：
 ```bash
 Traceback (most recent call last):
-File "train.py", line 240, in <module>
-main()
-File "train.py", line 236, in main
-train(args)
-File "train.py", line 147, in train
-exe.run(fluid.default_startup_program())
-File "/usr/local/lib/python2.7/dist-packages/paddle/fluid/executor.py", line 443, in run
-self.executor.run(program.desc, scope, 0, True, True)
+  File "train.py", line 240, in <module>
+    main()
+  File "train.py", line 236, in main
+    train(args)
+  File "train.py", line 147, in train
+    exe.run(fluid.default_startup_program())
+  File "/usr/local/lib/python2.7/dist-packages/paddle/fluid/executor.py", line 443, in run
+    self.executor.run(program.desc, scope, 0, True, True)
 paddle.fluid.core.EnforceNotMet: enforce allocating <= available failed, 1827927622 > 1359806208
-at [/paddle/paddle/fluid/platform/gpu_info.cc:119]
+ at [/paddle/paddle/fluid/platform/gpu_info.cc:119]
 PaddlePaddle Call Stacks: 
 0       0x7f1bac5312f6p paddle::platform::EnforceNotMet::EnforceNotMet(std::__exception_ptr::exception_ptr, char const*, int) + 486
 1       0x7f1bad3a95bep paddle::platform::GpuMaxChunkSize() + 766
@@ -271,7 +273,7 @@ Tue Jul 24 08:24:22 2018
 |   0  GeForce GTX 960     Off  | 00000000:01:00.0  On |                  N/A |
 | 22%   52C    P2   100W / 120W |   1757MiB /  1994MiB |     98%      Default |
 +-------------------------------+----------------------+----------------------+
-
+                                                                               
 +-----------------------------------------------------------------------------+
 | Processes:                                                       GPU Memory |
 |  GPU       PID   Type   Process name                             Usage      |
@@ -288,52 +290,53 @@ Tue Jul 24 08:24:22 2018
 + 程序代码
 ```bash
 def testpaddle014():
-place = fluid.CUDAPlace(0)
-#place = fluid.CPUPlace()
-print 'version', paddle.__version__, place
-input = fluid.layers.data(name='input', shape=[3,50,50], dtype='float32')
-
-output = fluid.layers.conv2d(input=input,num_filters=1,filter_size=3,stride=1,padding=1,groups=1,act=None)
-#output = fluid.layers.fc(input=input,size=2)
-
-fetch_list = [output.name]
-data = np.zeros((2,3,50,50), np.float32)
-exe = fluid.Executor(place)
-exe.run(fluid.default_startup_program())
-outputlist = exe.run(
-fluid.default_main_program(),
-feed={'input': data},
-fetch_list=fetch_list
-)
-print 'output', outputlist[0].shape
+    place = fluid.CUDAPlace(0)
+    #place = fluid.CPUPlace()
+    print 'version', paddle.__version__, place
+    input = fluid.layers.data(name='input', shape=[3,50,50], dtype='float32')
+    
+    output = fluid.layers.conv2d(input=input,num_filters=1,filter_size=3,stride=1,padding=1,groups=1,act=None)
+    #output = fluid.layers.fc(input=input,size=2)
+    
+    fetch_list = [output.name]
+    data = np.zeros((2,3,50,50), np.float32)
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    outputlist = exe.run(
+                fluid.default_main_program(),
+                feed={'input': data},
+                fetch_list=fetch_list
+            )
+    print 'output', outputlist[0].shape
 ```
 + 问题解答
 安装版本为`paddlepaddle_gpu-0.14.0.post87-cp27-cp27mu-manylinux1_x86_64.whl`，其中post87是指在CUDA8.0、cudnn7.0编译的，请确定您机器上是否安装了对应版本的cuDNN。造成问题描述中现象的情况通常可能是环境不匹配导致的。
 
 ### Q：安装完了PaddlePaddle后，出现以下python相关的单元测试都过不了的情况：
 ```
-24 - test_PyDataProvider (Failed)
-26 - test_RecurrentGradientMachine (Failed)
-27 - test_NetworkCompare (Failed)
-28 - test_PyDataProvider2 (Failed)
-32 - test_Prediction (Failed)
-33 - test_Compare (Failed)
-34 - test_Trainer (Failed)
-35 - test_TrainerOnePass (Failed)
-36 - test_CompareTwoNets (Failed)
-37 - test_CompareTwoOpts (Failed)
-38 - test_CompareSparse (Failed)
-39 - test_recurrent_machine_generation (Failed)
-40 - test_PyDataProviderWrapper (Failed)
-41 - test_config_parser (Failed)
-42 - test_swig_api (Failed)
-43 - layers_test (Failed)
+    24 - test_PyDataProvider (Failed)
+    26 - test_RecurrentGradientMachine (Failed)
+    27 - test_NetworkCompare (Failed)
+    28 - test_PyDataProvider2 (Failed)
+    32 - test_Prediction (Failed)
+    33 - test_Compare (Failed)
+    34 - test_Trainer (Failed)
+    35 - test_TrainerOnePass (Failed)
+    36 - test_CompareTwoNets (Failed)
+    37 - test_CompareTwoOpts (Failed)
+    38 - test_CompareSparse (Failed)
+    39 - test_recurrent_machine_generation (Failed)
+    40 - test_PyDataProviderWrapper (Failed)
+    41 - test_config_parser (Failed)
+    42 - test_swig_api (Failed)
+    43 - layers_test (Failed)
 ```
 并且查询PaddlePaddle单元测试的日志，提示：
 ```
-paddle package is already in your PYTHONPATH. But unittest need a clean environment.
-Please uninstall paddle package before start unittest. Try to 'pip uninstall paddle'.
+    paddle package is already in your PYTHONPATH. But unittest need a clean environment.
+    Please uninstall paddle package before start unittest. Try to 'pip uninstall paddle'.
 ```
+
 + 问题解答
 卸载PaddlePaddle包 `pip uninstall paddle`, 清理掉老旧的PaddlePaddle安装包，使得单元测试有一个干净的环境。如果PaddlePaddle包已经在python的site-packages里面，单元测试会引用site-packages里面的python包，而不是源码目录里 `/python` 目录下的python包。同时，即便设置 `PYTHONPATH` 到 `/python` 也没用，因为python的搜索路径是优先已经安装的python包。
 
@@ -372,6 +375,7 @@ python python/paddle/fluid/tests/book/test_fit_a_line.py
 ### Q：在Docker镜像上，GPU版本的PaddlePaddle运行结果报错
 ![](https://user-images.githubusercontent.com/17102274/42516300-50f04f8e-8490-11e8-95f1-613d3d3f6ca6.png)
 ![](https://user-images.githubusercontent.com/17102274/42516303-5594bd22-8490-11e8-8c01-55741484f126.png)
+
 + 问题解答
 使用`sudo docker run --name paddle-test -v $PWD:/paddle --network=host -it docker.paddlepaddlehub.com/paddle:latest-dev /bin/bash`命令创建的docker容器仅能支持运行CPU版本的PaddlePaddle。
 使用如下命令重新开启支持GPU运行的docker容器：
@@ -417,49 +421,49 @@ pip install --upgrade pip
 ### Q：PaddlePaddle官方文档中，关于MacOS下安装PaddlePaddle只提及了MacOS中使用Docker环境安装PaddlePaddle的内容，没有Mac本机安装的内容？
 + 问题解答
 基于Docker容器编译PaddlePaddle与本机上直接编译PaddlePaddle，所使用的编译执行命令是不一样的，但是官网仅仅给出了基于Docker容器编译PaddlePaddle所执行的命令。
-1.基于Docker容器编译PaddlePaddle，需要执行：
-```bash
-# 1. 获取源码
+	1.基于Docker容器编译PaddlePaddle，需要执行：
+	```bash
+	# 1. 获取源码
 
-git clone https://github.com/PaddlePaddle/Paddle.git
+	git clone https://github.com/PaddlePaddle/Paddle.git
 
-cd Paddle
+	cd Paddle
 
-# 2. 可选步骤：源码中构建用于编译PaddlePaddle的Docker镜像
+	# 2. 可选步骤：源码中构建用于编译PaddlePaddle的Docker镜像
 
-docker build -t paddle:dev .
+	docker build -t paddle:dev .
 
-# 3. 执行下面的命令编译CPU-Only的二进制
+	# 3. 执行下面的命令编译CPU-Only的二进制
 
-docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
+	docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
 
-# 4. 或者也可以使用为上述可选步骤构建的镜像（必须先执行第2步）
+	# 4. 或者也可以使用为上述可选步骤构建的镜像（必须先执行第2步）
 
-docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddle:dev
-```
+	docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddle:dev
+	```
 
-2.直接在本机上编译PaddlePaddle，需要执行：
-```bash
-# 1. 使用virtualenvwrapper创建python虚环境并将工作空间切换到虚环境
+	2.直接在本机上编译PaddlePaddle，需要执行：
+	```bash
+	# 1. 使用virtualenvwrapper创建python虚环境并将工作空间切换到虚环境
 
-mkvirtualenv paddle-venv
+	mkvirtualenv paddle-venv
 
-workon paddle-venv
+	workon paddle-venv
 
-# 2. 获取源码
+	# 2. 获取源码
 
-git clone https://github.com/PaddlePaddle/Paddle.git
+	git clone https://github.com/PaddlePaddle/Paddle.git
 
-cd Paddle
+	cd Paddle
 
-# 3. 执行下面的命令编译CPU-Only的二进制
+	# 3. 执行下面的命令编译CPU-Only的二进制
 
-mkdir build && cd build
+	mkdir build && cd build
 
-cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF
+	cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF
 
-make -j$(nproc)
-```
+	make -j$(nproc)
+	```
 更详细的内容，请参考[官方文档](http://paddlepaddle.org/documentation/docs/zh/1.4/beginners_guide/install/install_MacOS.html)
 
 ### Q：以源码方式在MacOS上安装时，出现`Configuring incomplete, errors occured!`？
@@ -467,24 +471,24 @@ make -j$(nproc)
 ![](https://user-images.githubusercontent.com/17102274/42515239-e24be824-848d-11e8-9f3d-3baf156dcea8.png)
 ![](https://user-images.githubusercontent.com/17102274/42515246-e6f7c2d0-848d-11e8-853a-7d7401e4650f.png)
 + 问题解答
-安装PaddlePaddle编译时需要的各种依赖则可，如下：
+	安装PaddlePaddle编译时需要的各种依赖则可，如下：
 
-```bash
-pip install wheel
-brew install protobuf@3.1
-pip install protobuf==3.1.0
-```
+	```bash
+	pip install wheel
+	brew install protobuf@3.1
+	pip install protobuf==3.1.0
+	```
 
-如果执行pip install protobuf==3.1.0时报错，输出下图内容：
+	如果执行pip install protobuf==3.1.0时报错，输出下图内容：
 
-![](https://user-images.githubusercontent.com/17102274/42515286-fb7a7b76-848d-11e8-931a-a7f61bd6374b.png)
+	![](https://user-images.githubusercontent.com/17102274/42515286-fb7a7b76-848d-11e8-931a-a7f61bd6374b.png)
 
-从图中可以获得报错的关键为`Cannot uninstall 'six'`，那么解决方法就是先安装好`six`，再尝试安装`protobuf 3.1.0`如下：
+	从图中可以获得报错的关键为`Cannot uninstall 'six'`，那么解决方法就是先安装好`six`，再尝试安装`protobuf 3.1.0`如下：
 
-```bash
-easy_install -U six 
-pip install protobuf==3.1.0
-```
+	```bash
+	easy_install -U six 
+	pip install protobuf==3.1.0
+	```
 
 ### Q：MacOS 10.12下编译PaddlePaddle出现`/bin/sh: wget: command not found`，如何解决？
 ![](https://user-images.githubusercontent.com/17102274/42515304-0bd7012e-848e-11e8-966f-946361ac7a56.png)
@@ -501,15 +505,15 @@ brew install wget
 
 + 问题解答
 该问题是有CMake引擎的，修改CMake编译命令，打开WITH_FLUID_ONLY编译选项，修改后编译命令如下：
-```bash
-cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
-```
+	```bash
+	cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
+	```
 
 ### Q：MacOS本机直接通过源码编译的方式安装PaddlePaddle出现`[paddle/fluid/platform/CMakeFiles/profiler_py_proto.dir/all] Error 2`？
 + 报错截图
 ![](https://user-images.githubusercontent.com/17102274/42515350-28c055ce-848e-11e8-9b90-c294b375d8a4.png)
 + 问题解答
-使用cmake版本为3.4则可
+    使用cmake版本为3.4则可
 
 
 ### Q：MacOS本地编译PaddlePaddle github上develop分支的代码出现，出现No such file or directory错误？
@@ -518,16 +522,16 @@ cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
 
 + 问题解答
 因为此时develop分支上Generating build/.timestamp这一步涉及的代码还在进行修改，所以并不能保证稳定，建议切换回稳定分支进行编译安装。
-可以通过执行如下命令将分支切换到0.14.0进行编译:
-```bash
-cd Paddle
-git checkout -b release/1.1
-cd build &&  rm -rf *
-cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
-make -j4
-```
-编译成功后的结果如图：
-![](https://user-images.githubusercontent.com/17102274/42515418-4fb71e56-848e-11e8-81c6-da2a5553a27a.png)
+	可以通过执行如下命令将分支切换到0.14.0进行编译:
+	```bash
+	cd Paddle
+	git checkout -b release/1.1
+	cd build &&  rm -rf *
+	cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF
+	make -j4
+	```
+	编译成功后的结果如图：
+	![](https://user-images.githubusercontent.com/17102274/42515418-4fb71e56-848e-11e8-81c6-da2a5553a27a.png)
 
 
 
@@ -554,34 +558,34 @@ Mac上对自带的Python和包有严格的权限保护，最好不要在自带�
 virtualenv的基本原理是将机器上的Python运行所需的运行环境完整地拷贝一份。我们可以在一台机器上制造多份拷贝，并在这多个拷贝之间自由切换，这样就相当于在一台机器上拥有了多个相互隔离、互不干扰的Python环境。
 
 下面使用virtualenv为Paddle生成一个专用的Python环境。
-安装virtualenv，virtualenv本身也是Python的一个包，可以用pip进行安装：
-```
-sudo -H pip install virtualenv
-```
+	安装virtualenv，virtualenv本身也是Python的一个包，可以用pip进行安装：
+	```
+	 sudo -H pip install virtualenv
+	```
 
-由于virtualenv需要安装给系统自带的Python，因此需要使用sudo权限。接着使用安装好的virtualenv创建一个新的Python运行环境：
-```
-virtualenv --no-site-packages paddle
-```
+	由于virtualenv需要安装给系统自带的Python，因此需要使用sudo权限。接着使用安装好的virtualenv创建一个新的Python运行环境：
+	```
+	virtualenv --no-site-packages paddle
+	```
 
---no-site-packages 参数表示不拷贝已有的任何第三方包，创造一个完全干净的新Python环境。后面的paddle是我们为这个新创建的环境取的名字。执行完这一步后，当前目录下应该会出现一个名为paddle（或者你取的其他名字）的目录。这个目录里保存了运行一个Python环境所需要的各种文件。
+	--no-site-packages 参数表示不拷贝已有的任何第三方包，创造一个完全干净的新Python环境。后面的paddle是我们为这个新创建的环境取的名字。执行完这一步后，当前目录下应该会出现一个名为paddle（或者你取的其他名字）的目录。这个目录里保存了运行一个Python环境所需要的各种文件。
 
-启动运行环境：
-```
-source paddle/bin/activate
-```
+	启动运行环境：
+	```
+	source paddle/bin/activate
+	```
 
-执行后会发现命令提示符前面增加了(paddle)字样，说明已经成功启动了名为‘paddle’的Python环境。执行which python，可以发现使用的已经是刚刚创建的paddle目录下的Python。
-在这个环境中，我们可以自由地进行PaddlePaddle的安装、使用和开发工作，无需担心对系统自带Python的影响。
-如果我们经常使用Paddle这个环境，我们每次打开终端后都需要执行一下source paddle/bin/activate来启动环境，比较繁琐。为了简便，可以修改终端的配置文件，来让终端每次启动后自动启动特定的Python环境。
-执行:
+	执行后会发现命令提示符前面增加了(paddle)字样，说明已经成功启动了名为‘paddle’的Python环境。执行which python，可以发现使用的已经是刚刚创建的paddle目录下的Python。
+	在这个环境中，我们可以自由地进行PaddlePaddle的安装、使用和开发工作，无需担心对系统自带Python的影响。
+	如果我们经常使用Paddle这个环境，我们每次打开终端后都需要执行一下source paddle/bin/activate来启动环境，比较繁琐。为了简便，可以修改终端的配置文件，来让终端每次启动后自动启动特定的Python环境。
+	执行:
 
-```
-vi ~/.bash_profile
-```
+	```
+	vi ~/.bash_profile
+	```
 
-打开终端配置文件，并在文件的最后添加一行：
-```
-source paddle/bin/activate
-```
-这样，每次打开终端时就会自动启动名为‘paddle’的Python环境了。
+	打开终端配置文件，并在文件的最后添加一行：
+	```
+	source paddle/bin/activate
+	```
+	这样，每次打开终端时就会自动启动名为‘paddle’的Python环境了。

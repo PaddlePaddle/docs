@@ -1,4 +1,4 @@
-# 网络搭建与训练
+# 网络搭建及训练
 
 ### Q：在RNN模型中如何遍历序列数据里每一个时间步？
 + 问题解答
@@ -36,6 +36,7 @@ Traceback (most recent call last):
     "The target variable must have an "
 ValueError: The target variable must have an associated operator that generates it.
 ```
+
 + 代码文件：[network_conf.py](https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/ctr/network_conf.py)只修改了最后一行：
 ```
 accuracy = fluid.layers.accuracy(input=predict, label=words[-1])
@@ -43,6 +44,7 @@ auc_var, batch_auc_var, auc_states = \
     fluid.layers.auc(input=predict, label=words[-1], num_thresholds=2 ** 12, slide_steps=20)
 return accuracy, avg_cost, auc_var, batch_auc_var, py_reader
 ```
+
 + 问题解答
 保存模型时需指定program 才能正确保存。请使用` executor = Executor(place)`, 你的train_program, 以及给` layers.data `指定的名称作为` save_inference_model` 的输入。
 
@@ -55,7 +57,7 @@ Tensor not initialized yet when Tensor::type() is called. at [/paddle/paddle/flu
 PaddlePaddle Call Stacks:
 ```
 + 问题解答
-错误提示是某个tensor为空。建议运行时加上环境变量GLOG_vmodule=operator=4，GLOG_logtostderr=1看看运行到哪个op，哪个tensor为空。
+错误提示是某个tensor为空。建议运行时加上环境变量GLOG_vmodule=operator=4 , GLOG_logtostderr=1看看运行到哪个op，哪个tensor为空。
 
 
 ### Q：使用py_reader读取数据的时候，怎么给读取的变量指定名字呢？
