@@ -37,6 +37,8 @@ PaddlePaddle目前支持以下环境：
 :code:`docker run --name [Name of container] -it -v $PWD:/paddle paddlepaddle/paddle:[docker版本号] /bin/bash`
 
 	其中[docker版本号]请查阅 `DockerHub <https://hub.docker.com/r/paddlepaddle/paddle/tags/>`_
+	
+- 如果您有开发PaddlePaddle的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
 ..	toctree::
 	:hidden:
