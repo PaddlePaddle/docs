@@ -234,11 +234,12 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
 
 ### InferShape区分 compile time 和 run time
-在我们的静态图网络中，`InferShape`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，用-1表示维度未知，run time时，不存在未知维度， 因此维度的值在compile time和 run time时可能不一致，如果存在维度的判断和运算操作，InferShape就需要区分compile time 和 run time时。
+在我们的静态图网络中，`InferShape`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，用-1表示维度未知，run time时，不存在未知维度，因此维度的值在compile time和 run time时可能不一致，如果存在维度的判断和运算操作，InferShape就需要区分compile time 和 run time时。
 
 以下两种情况需要区分compile time和 run time。
 
 **1.检查**
+
 比如以下代码：
 ```cpp
 auto x_dim = ctx->GetInputDim("X");
@@ -248,8 +249,7 @@ PADDLE_ENFORCE_GT( x_dim[i] , 10)
 
 x_dim[i]在compile time的时候，可能等于-1，会导致这个PADDLE_ENFORCE_GT会报错退出。
 
-如果用了以下判断操作
-paddle中定义的宏：
+如果用了以下判断paddle中定义的宏进行判断：
 ```cpp
 PADDLE_ENFORCE_EQ ( x_dim[i] , 10)
 PADDLE_ENFORCE_NE ( x_dim[i] , 10)
@@ -269,7 +269,7 @@ y_dim[0] = x_dim[i] + 10
 ```
 
 x_dim[0]的compile time的时候，可能等于-1，得到的 y_dim[0] 等于 9，这个也是不符合逻辑的
-如果用到了 类似以下的运算操作
+如果用到了类似以下的运算操作
 ```cpp
 y_dim[i] = x_dim[i] + 10
 y_dim[i] = x_dim[i] - 10
@@ -298,7 +298,7 @@ y_dim[i] = x_dim[i] + z_dim[i]
     }
 ```
 
-运算的实现可以参考concat_op.cc， concat在运算的时候，要求除了concat那个轴之外，其他维度维度完全一致；output的维度，要把concat那个轴的维度求和，其他的维度和输入保持一致。
+运算的实现可以参考concat_op.cc，concat在运算的时候，除了需要concat轴之外，其他维度维度完全一致；output的维度，要把concat那个轴的维度求和，其他的维度和输入保持一致。
 
 ```cpp
     auto out_dims = ins[0];
