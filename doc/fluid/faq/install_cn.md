@@ -1,4 +1,4 @@
- # 安装与编译
+# 安装与编译
 
 ## Linux安装PaddlePaddle
 ### Q：Ubuntu18.10、CPU版本、Python3.6编译错误如何解决？
