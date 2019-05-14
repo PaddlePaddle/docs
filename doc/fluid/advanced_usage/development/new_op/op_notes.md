@@ -195,9 +195,9 @@ The following device operations are asynchronous with respect to the host:
 
 更多内容可参考：[Asynchronous Concurrent Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#asynchronous-concurrent-execution)，[API synchronization behavior](https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html#api-sync-behavior)
 
-### 9. LoD 传导规范
+### 9. LoD 在 Op 内部的传导规范
 
-LoD 是 Paddle Fluid 框架用来表示序列数据的特有属性，除了仅支持输入是 padding  data 的 Op 外，所有 Op 的实现都要考虑 LoD 的传导问题。
+[LoD](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/lod_tensor.md) 是 Paddle Fluid 框架用来表示变长序列数据的属性，除了仅支持输入是 padding  data 的 Op 外，所有 Op 的实现都要考虑 LoD 的传导问题。
 
 根据 OP 的计算过程中是否用到 LoD，我们可以将涉及到 LoD 传导问题的 OP 分为两类: LoD-Transparent 与 LoD-Based。
 
@@ -212,12 +212,12 @@ LoD 是 Paddle Fluid 框架用来表示序列数据的特有属性，除了仅�
 <tbody>
 <tr>
 <td>LoD-Transparent </td>
-<td>不依赖LoD，通常是 position-wise 的计算</td>
+<td>计算过程不依赖 LoD，输入是否有 LoD 不会影响计算的结果，通常是 position-wise 的计算 </td>
 <td>conv2d_op、batch_norm_op、dropout_op 等 </td>
 </tr>
 <tr>
 <td>LoD-Based </td>
-<td>依赖LoD，计算过程通常是以序列为单位 </td>
+<td>计算以序列为单位， 计算过程依赖 LoD </td>
 <td> lstm_op、gru_op、sequence_ops 等 </td>
 </tr>
 </tbody>
