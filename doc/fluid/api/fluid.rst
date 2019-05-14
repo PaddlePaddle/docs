@@ -5,6 +5,15 @@
 fluid
 =====
 
+.. _api_fluid_AsyncExecutor:
+
+AsyncExecutor
+-------------
+
+..  autoclass:: paddle.fluid.AsyncExecutor
+    :members:
+    :noindex:
+
 .. _api_fluid_BuildStrategy:
 
 BuildStrategy
