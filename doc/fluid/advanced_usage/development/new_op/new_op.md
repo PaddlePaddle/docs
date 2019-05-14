@@ -300,7 +300,7 @@ y_dim[i] = x_dim[i] + z_dim[i]
     }
 ```
 
-2. 运算的实现可以参考concat_op.cc，concat在InferShape判断时，除了进行concat轴之外，其他的维度完全一致；在生成output的维度时，把concat那个轴的维度求和，其他的维度和输入保持一致。
+2. 运算的实现可以参考concat_op.cc，concat在InferShape判断时，除了进行concat轴之外，其他的维度完全一致；在生成output的维度时，把concat轴的维度求和，其他的维度和输入保持一致。
 
 ```cpp
     auto out_dims = ins[0];
