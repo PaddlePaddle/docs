@@ -234,22 +234,22 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
 
 ### InferShape区分 compile time 和 run time
-在我们的静态图网络中，`InferShape`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，用-1表示维度未知，run time时，不存在未知维度，因此维度的值在compile time和 run time时可能不一致，如果存在维度的判断和运算操作，InferShape就需要区分compile time 和 run time时。
+在我们的静态图网络中，`InferShape`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，框架内部用-1来表示，在run time时，用实际的维度表示，因此维度的值在compile time和 run time时可能不一致，如果存在维度的判断和运算操作，InferShape就需要区分compile time 和 run time。
 
 以下两种情况需要区分compile time和 run time。
 
 **1.检查**
 
-比如以下代码：
+如以下代码：
 ```cpp
 auto x_dim = ctx->GetInputDim("X");
 int i = xxx;
 PADDLE_ENFORCE_GT( x_dim[i] , 10)
 ```
 
-x_dim[i]在compile time的时候，可能等于-1，会导致这个PADDLE_ENFORCE_GT会报错退出。
+在compile time的时候，x_dim[i]可能等于-1，导致这个PADDLE_ENFORCE_GT报错退出。
 
-如果用了以下判断paddle中定义的宏进行判断：
+如果用了以下paddle中定义的宏进行判断：
 ```cpp
 PADDLE_ENFORCE_EQ ( x_dim[i] , 10)
 PADDLE_ENFORCE_NE ( x_dim[i] , 10)
@@ -258,17 +258,19 @@ PADDLE_ENFORCE_GE ( x_dim[i] , 10)
 PADDLE_ENFORCE_LT ( x_dim[i] , 10)
 PADDLE_ENFORCE_LE ( x_dim[i] , 10)
 ```
-都需要区分 compile time 和 run time来进行判断
+都需要区分compile time和run time
 
 **2. 运算**
 
+如以下代码:
 ```cpp
 auto x_dim = ctx->GetInputDim("X");
 int i = xxx;
 y_dim[0] = x_dim[i] + 10
 ```
 
-x_dim[0]的compile time的时候，可能等于-1，得到的 y_dim[0] 等于 9，这个也是不符合逻辑的
+在compile time的时候，x_dim[i]可能等于-1，得到的 y_dim[0] 等于 9，是不符合逻辑的
+
 如果用到了类似以下的运算操作
 ```cpp
 y_dim[i] = x_dim[i] + 10
@@ -277,14 +279,14 @@ y_dim[i] = x_dim[i] * 10
 y_dim[i] = x_dim[i] / 10
 y_dim[i] = x_dim[i] + z_dim[i]
 ```
-都需要考虑区分 compile time 和 run time 进行运算
+都需要区分compile time和run time
 
 **处理的标准**：
-- 检查： compile time的时候不检查维度等于-1的情况，但是runtime的时候检查
-- 运算： -1 和其他数做任何运算都要等于-1
+- 检查： compile time的时候不判断维度等于-1的情况，但在runtime的时候检查
+- 运算： -1和其他数做任何运算都要等于-1
 
 **参考代码**
-1. 判断的实现方法可以参考 cross_entropy_op.cc，cross_entropy_op 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
+1. 判断的实现方法可以参考cross_entropy_op.cc，cross_entropy_op 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
 
 ```cpp
     bool contain_unknown_dim = framework::contain_unknown_dim(x_dims) ||
@@ -298,7 +300,7 @@ y_dim[i] = x_dim[i] + z_dim[i]
     }
 ```
 
-运算的实现可以参考concat_op.cc，concat在运算的时候，除了需要concat轴之外，其他维度维度完全一致；output的维度，要把concat那个轴的维度求和，其他的维度和输入保持一致。
+2. 运算的实现可以参考concat_op.cc，concat在InferShape判断时，除了进行concat轴之外，其他的维度完全一致；在生成output的维度时，把concat那个轴的维度求和，其他的维度和输入保持一致。
 
 ```cpp
     auto out_dims = ins[0];
