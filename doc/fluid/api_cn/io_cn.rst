@@ -29,17 +29,35 @@ load_inference_model
 
 ..  code-block:: python
 
-    exe = fluid.Executor(fluid.CPUPlace())
-    path = "./infer_model"
-    endpoints = ["127.0.0.1:2023","127.0.0.1:2024"]
-    [inference_program, feed_target_names, fetch_targets] =
-        fluid.io.load_inference_model(dirname=path, executor=exe)
+        import paddle.fluid as fluid
+        import numpy as np
+        main_prog = fluid.Program()
+        startup_prog = fluid.Program()
+        with fluid.program_guard(main_prog, startup_prog):
+            data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
+            w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
+            b = fluid.layers.create_parameter(shape=[200], dtype='float32')
+            hidden_w = fluid.layers.matmul(x=data, y=w)
+            hidden_b = fluid.layers.elementwise_add(hidden_w, b)
+        place = fluid.CPUPlace()
+        exe = fluid.Executor(place)
+        exe.run(startup_prog)
+        path = "./infer_model"
+        fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'],target_vars=[hidden_b], executor=exe, main_program=main_prog)
+        tensor_img = np.array(np.random.random((1, 64, 784)), dtype=np.float32)
+        [inference_program, feed_target_names, fetch_targets] = fluid.io.load_inference_model(dirname=path, executor=exe)
     results = exe.run(inference_program,
                   feed={feed_target_names[0]: tensor_img},
                   fetch_list=fetch_targets)
-    # 在这个示例中，inference program 保存在 ./infer_model/__model__”中
-    # 参数保存在./infer_mode 单独的若干文件中
-    # 加载 inference program 后， executor 使用 fetch_targets 和 feed_target_names 执行Program， 得到预测结果
+
+    # endpoints是你的服务器端点列表，以上仅为一个样例
+    endpoints = ["127.0.0.1:2023","127.0.0.1:2024"]
+    # 如果需要查询表格，我们可以使用：
+    [dist_inference_program, dist_feed_target_names, dist_fetch_targets] = fluid.io.load_inference_model(dirname=path,executor=exe,pserver_endpoints=endpoints)
+
+    # 在这个示例中，inference program 保存在“ ./infer_model/__model__”中
+    # 参数保存在“./infer_mode ”单独的若干文件中
+    # 加载 inference program 后， executor 使用 fetch_targets 和 feed_target_names 执行Program，得到预测结果
 
 
 
@@ -149,27 +167,39 @@ load_vars
 
 ..  code-block:: python
     
-    exe = fluid.Executor(fluid.CPUPlace())
+    import paddle.fluid as fluid
+    main_prog = fluid.Program()
+    startup_prog = fluid.Program()
+    with fluid.program_guard(main_prog, startup_prog):
+        data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
+        w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32', name='fc_w')
+        b = fluid.layers.create_parameter(shape=[200], dtype='float32', name='fc_b')
+        hidden_w = fluid.layers.matmul(x=data, y=w)
+        hidden_b = fluid.layers.elementwise_add(hidden_w, b)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(startup_prog)
+
     param_path = "./my_paddle_model"
 
     # 第一种使用方式 使用 main_program 指定变量
     def name_has_fc(var):
         res = "fc" in var.name
         return res
-
-    prog = fluid.default_main_program()
-    fluid.io.load_vars(executor=exe, dirname=path, main_program=prog,
-                       vars=None, predicate=name_has_fc)
+    fluid.io.save_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
+    fluid.io.load_vars(executor=exe, dirname=param_path, main_program=main_prog,vars=None, predicate=name_has_fc)
     #加载所有`main_program`中变量名包含 ‘fc’ 的变量
     #并且此前所有变量应该保存在不同文件中
 
-
-    #用法2：使用 `vars` 列表来指明变量
-    var_list = [var_a, var_b, var_c]
+    #用法2：使用 `vars` 来使变量具体化
+    path = "./my_paddle_vars"
+    var_list = [w, b]
+    fluid.io.save_vars(executor=exe, dirname=path, vars=var_list,
+                       filename="vars_file")
     fluid.io.load_vars(executor=exe, dirname=path, vars=var_list,
                        filename="vars_file")
-    # 加载 var_a ， var_b ， var_c .它们此前应被保存在同一文件中
-    # 文件名为 'var_file' ，路径为 "./my_paddle_model".
+    # 加载w和b，它们此前应被保存在同一文件中
+    # 文件名为 'var_file' ，路径为 "./my_paddle_model"
  
 
 
@@ -200,21 +230,39 @@ PyReader
 
 ..  code-block:: python
 
-    image = fluid.layers.data(
-            name='image', shape=[784], dtype='float32')
-    label = fluid.layers.data(
-            name='label', shape=[1], dtype='int64')
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
+
+    def reader_creator_random_image_and_label(height, width):
+        def reader():
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0,
+                                                high=255,
+                                                size=[height, width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+            return reader
+
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
 
     reader = fluid.io.PyReader(feed_list=[image, label],
             capacity=4, iterable=False)
-    reader.decorate_sample_list_generator(user_defined_reader)
-    ... # definition of network is omitted
-    executor.run(fluid.default_main_program())
-    for _ in range(EPOCH_NUM):
+    
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(
+            paddle.batch(user_defined_reader, batch_size=BATCH_SIZE))
+    # 省略网络定义
+    executor = fluid.Executor(fluid.CUDAPlace(0))
+    executor.run(fluid.default_startup_program())
+    
+    for i in range(EPOCH_NUM):
         reader.start()
         while True:
           try:
-              executor.run(feed=None, ...)
+              executor.run(feed=None)
           except fluid.core.EOFException:
               reader.reset()
               break
@@ -224,45 +272,139 @@ PyReader
 
 ..  code-block:: python
 
-    image = fluid.layers.data(
-            name='image', shape=[784], dtype='float32')
-    label = fluid.layers.data(
-            name='label', shape=[1], dtype='int64')
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 10
 
-    reader = fluid.io.PyReader(feed_list=[image, label],
-            capacity=4, iterable=True)
-    reader.decorate_sample_list_generator(user_defined_reader,
-            places=fluid.cuda_places())
-    ... # definition of network is omitted
+    def reader_creator_random_image(height, width):
+        def reader():
+            for i in range(ITER_NUM):
+                yield np.random.uniform(low=0, high=255, size=[height, width]),
+        return reader
+
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True)
+   
+    user_defined_reader = reader_creator_random_image(784, 784)
+    reader.decorate_sample_list_generator(
+        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE), fluid.core.CUDAPlace(0))
+    # 省略网络定义
+    executor = fluid.Executor(fluid.CUDAPlace(0))
     executor.run(fluid.default_main_program())
+
     for _ in range(EPOCH_NUM):
-        for data in reader():
-            executor.run(feed=data, ...)
+    for data in reader():
+        executor.run(feed=data)
 
 .. py:method::start()
 
 启动数据输入线程。只能在reader对象不可迭代时调用。
 
+**代码示例**
+
+..  code-block:: python
+
+BATCH_SIZE = 10
+     
+def generator():
+    for i in range(5):
+       yield np.random.uniform(low=0, high=255, size=[784, 784]),
+     
+image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=False)
+reader.decorate_sample_list_generator(
+    paddle.batch(generator, batch_size=BATCH_SIZE))
+     
+executor = fluid.Executor(fluid.CUDAPlace(0))
+executor.run(fluid.default_startup_program())
+for i in range(3):
+    reader.start()
+    while True:
+        try:
+            executor.run(feed=None)
+        except fluid.core.EOFException:
+            reader.reset()
+            break
+
 .. py:method::reset()
 
 当 ``fluid.core.EOFException`` 提升时重置reader对象。只能在reader对象不可迭代时调用。
+
+**代码示例**
+
+..  code-block:: python
+
+            BATCH_SIZE = 10
+     
+            def generator():
+                for i in range(5):
+                    yield np.random.uniform(low=0, high=255, size=[784, 784]),
+     
+            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+            reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=False)
+            reader.decorate_sample_list_generator(
+                paddle.batch(generator, batch_size=BATCH_SIZE))
+     
+            executor = fluid.Executor(fluid.CUDAPlace(0))
+            executor.run(fluid.default_startup_program())
+            for i in range(3):
+                reader.start()
+                while True:
+                    try:
+                        executor.run(feed=None)
+                    except fluid.core.EOFException:
+                        reader.reset()
+                        break
 
 .. py:method::decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=None)
 
 设置Pyreader对象的数据源。
 
-提供的 ``sample_generator `` 应该是一个python生成器，它生成每个示例的numpy.ndarray类型的数据。
+提供的 ``sample_generator `` 应该是一个python生成器，它生成list(numpy.ndarray) - 每个示例的类型化数据。
 
 当Pyreader对象不可迭代时，必须设置 ``places`` 。
 
 如果所有的输入都没有LOD，这个方法比 ``decorate_sample_list_generator(paddle.batch(sample_generator, ...))`` 更快。
 
 参数:
-  - **sample_generator** (generator)  – 返回numpy.ndarray类型样本数据的Python生成器
+  - **sample_generator** (generator)  – 返回list(numpy.ndarray) - 类型化样本数据的Python生成器
   - **batch_size** (int) – batch size，必须大于0
   - **drop_last** (bool) – 当样本数小于batch数量时，是否删除最后一个batch
   - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
 
+**代码示例**
+
+..  code-block:: python
+     
+            EPOCH_NUM = 3
+            ITER_NUM = 15
+            BATCH_SIZE = 3
+     
+            def random_image_and_label_generator(height, width):
+                def generator():
+                    for i in range(ITER_NUM):
+                        fake_image = np.random.uniform(low=0,
+                                                       high=255,
+                                                       size=[height, width])
+                        fake_label = np.array([1])
+                        yield fake_image, fake_label
+                return generator
+     
+            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+            label = fluid.layers.data(name='label', shape=[1], dtype='int32')
+            reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=True)
+     
+            user_defined_generator = random_image_and_label_generator(784, 784)
+            reader.decorate_sample_generator(user_defined_generator,
+                                             batch_size=BATCH_SIZE,
+                                             places=[fluid.CUDAPlace(0)])
+            # definition of network is omitted
+            executor = fluid.Executor(fluid.CUDAPlace(0))
+            executor.run(fluid.default_main_program())
+     
+            for _ in range(EPOCH_NUM):
+                for data in reader():
+                    executor.run(feed=data)
 
 .. py:method::decorate_sample_list_generator(reader, places=None)
 
@@ -276,6 +418,39 @@ PyReader
   - **reader** (generator)  – 返回列表（numpy.ndarray）类型的批处理数据的Python生成器
   - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
 
+**代码示例**
+
+..  code-block:: python
+            
+            EPOCH_NUM = 3
+            ITER_NUM = 15
+            BATCH_SIZE = 3
+     
+            def random_image_and_label_generator(height, width):
+                def generator():
+                    for i in range(ITER_NUM):
+                        fake_image = np.random.uniform(low=0,
+                                                       high=255,
+                                                       size=[height, width])
+                        fake_label = np.ones([1])
+                        yield fake_image, fake_label
+                return generator
+     
+            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+            label = fluid.layers.data(name='label', shape=[1], dtype='int32')
+            reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=True)
+     
+            user_defined_generator = random_image_and_label_generator(784, 784)
+            reader.decorate_sample_list_generator(
+                paddle.batch(user_defined_generator, batch_size=BATCH_SIZE),
+                fluid.core.CUDAPlace(0))
+            # definition of network is omitted
+            executor = fluid.Executor(fluid.core.CUDAPlace(0))
+            executor.run(fluid.default_main_program())
+     
+            for _ in range(EPOCH_NUM):
+                for data in reader():
+                    executor.run(feed=data)
 
 .. py:method::decorate_batch_generator(reader, places=None)
 
@@ -288,6 +463,38 @@ PyReader
 参数:
   - **reader** (generator)  – 返回LoDTensor类型的批处理数据的Python生成器
   - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
+
+**代码示例**
+
+..  code-block:: python
+
+            EPOCH_NUM = 3
+            ITER_NUM = 15
+            BATCH_SIZE = 3
+     
+            def random_image_and_label_generator(height, width):
+                def generator():
+                    for i in range(ITER_NUM):
+                        batch_image = np.random.uniform(low=0,
+                                                        high=255,
+                                                        size=[BATCH_SIZE, height, width])
+                        batch_label = np.ones([BATCH_SIZE, 1])
+                        yield batch_image, batch_label
+                return generator
+     
+            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+            label = fluid.layers.data(name='label', shape=[1], dtype='int32')
+            reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=True)
+     
+            user_defined_generator = random_image_and_label_generator(784, 784)
+            reader.decorate_batch_generator(user_defined_generator, fluid.CUDAPlace(0))
+            # definition of network is omitted
+            executor = fluid.Executor(fluid.CUDAPlace(0))
+            executor.run(fluid.default_main_program())
+     
+            for _ in range(EPOCH_NUM):
+                for data in reader():
+                    executor.run(feed=data)
 
 .. _cn_api_fluid_io_save_inference_model:
 
@@ -323,13 +530,29 @@ save_inference_model
 
 ..  code-block:: python
 
-    exe = fluid.Executor(fluid.CPUPlace())
-    path = "./infer_model"
-    fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'],
-                 target_vars=[predict_var], executor=exe)
+    import paddle.fluid as fluid
 
-    # 在这个示例中，函数将修改默认的主程序让它适合于推断‘predict_var’。修改的
-    # 预测Program 将被保存在 ./infer_model/__model__”中。
+    path = "./infer_model"
+
+    # 用户定义网络，此处是一个softmax回归示例
+    image = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    feeder = fluid.DataFeeder(feed_list=[image, label], place=fluid.CPUPlace())
+    predict = fluid.layers.fc(input=image, size=10, act='softmax')
+
+    loss = fluid.layers.cross_entropy(input=predict, label=label)
+    avg_loss = fluid.layers.mean(loss)
+
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(fluid.default_startup_program())
+
+    # 数据喂入及训练过程
+
+    # 保存预测模型。注意我们不在这个示例中保存标签和损失。
+    fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'], target_vars=[predict], executor=exe)
+
+    # 在这个示例中，函数将修改默认的主程序让它适合于推断‘predict_var’
+    # 修改的预测Program 将被保存在 ./infer_model/__model__”中。
     # 和参数将保存在文件夹下的单独文件中 ./infer_mode
 
 
@@ -446,8 +669,19 @@ save_vars
 **代码示例**
 
 ..  code-block:: python
-
-      exe = fluid.Executor(fluid.CPUPlace())
+      import paddle.fluid as fluid
+      main_prog = fluid.Program()
+      startup_prog = fluid.Program()
+      with fluid.program_guard(main_prog, startup_prog):
+          data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
+          w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32', name='fc_w')
+          b = fluid.layers.create_parameter(shape=[200], dtype='float32', name='fc_b')
+          hidden_w = fluid.layers.matmul(x=data, y=w)
+          hidden_b = fluid.layers.elementwise_add(hidden_w, b)
+      place = fluid.CPUPlace()
+      exe = fluid.Executor(place)
+      exe.run(startup_prog)
+     
       param_path = "./my_paddle_model"
 
       # 第一种用法:用main_program来指定变量。
@@ -455,18 +689,17 @@ save_vars
           res = "fc" in var.name
           return res
 
-      prog = fluid.default_main_program()
-      fluid.io.save_vars(executor=exe, dirname=path, main_program=prog,
-                         vars=None, predicate = name_has_fc)
+      fluid.io.save_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate = name_has_fc)
       # 将main_program中名中包含“fc”的的所有变量保存。
       # 变量将分开保存。
 
 
       # 第二种用法: 用vars来指定变量。
-      var_list = [var_a, var_b, var_c]
+      var_list = [w, b]
+      path = "./my_paddle_vars"
       fluid.io.save_vars(executor=exe, dirname=path, vars=var_list,
                          filename="vars_file")
-      # var_a，var_b和var_c将被保存。 他们将使用同一文件，名为“var_file”，保存在路径“./my_paddle_model”下。
+      # var_a，var_b和var_c将被保存。 他们将使用同一文件，名为“var_file”，保存在路径“./my_paddle_vars”下。
 
 
 
