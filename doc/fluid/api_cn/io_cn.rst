@@ -46,7 +46,7 @@ load_inference_model
         fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'],target_vars=[hidden_b], executor=exe, main_program=main_prog)
         tensor_img = np.array(np.random.random((1, 64, 784)), dtype=np.float32)
         [inference_program, feed_target_names, fetch_targets] = fluid.io.load_inference_model(dirname=path, executor=exe)
-    results = exe.run(inference_program,
+        results = exe.run(inference_program,
                   feed={feed_target_names[0]: tensor_img},
                   fetch_list=fetch_targets)
 
@@ -187,7 +187,7 @@ load_vars
         res = "fc" in var.name
         return res
     fluid.io.save_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
-    fluid.io.load_vars(executor=exe, dirname=param_path, main_program=main_prog,vars=None, predicate=name_has_fc)
+    fluid.io.load_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
     #加载所有`main_program`中变量名包含 ‘fc’ 的变量
     #并且此前所有变量应该保存在不同文件中
 
@@ -226,7 +226,7 @@ PyReader
 
 **代码示例**
 
-1.如果iterable=false，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException `` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
+1.如果iterable=false，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException`` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
 
 ..  code-block:: python
 
@@ -296,7 +296,7 @@ PyReader
     for data in reader():
         executor.run(feed=data)
 
-.. py:method::start()
+.. py:method:: start()
 
 启动数据输入线程。只能在reader对象不可迭代时调用。
 
@@ -304,20 +304,20 @@ PyReader
 
 ..  code-block:: python
 
-BATCH_SIZE = 10
+  BATCH_SIZE = 10
      
-def generator():
+  def generator():
     for i in range(5):
        yield np.random.uniform(low=0, high=255, size=[784, 784]),
      
-image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=False)
-reader.decorate_sample_list_generator(
+  image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+  reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=False)
+  reader.decorate_sample_list_generator(
     paddle.batch(generator, batch_size=BATCH_SIZE))
      
-executor = fluid.Executor(fluid.CUDAPlace(0))
-executor.run(fluid.default_startup_program())
-for i in range(3):
+  executor = fluid.Executor(fluid.CUDAPlace(0))
+  executor.run(fluid.default_startup_program())
+  for i in range(3):
     reader.start()
     while True:
         try:
@@ -326,7 +326,7 @@ for i in range(3):
             reader.reset()
             break
 
-.. py:method::reset()
+.. py:method:: reset()
 
 当 ``fluid.core.EOFException`` 提升时重置reader对象。只能在reader对象不可迭代时调用。
 
@@ -356,11 +356,11 @@ for i in range(3):
                         reader.reset()
                         break
 
-.. py:method::decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=None)
+.. py:method:: decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=None)
 
 设置Pyreader对象的数据源。
 
-提供的 ``sample_generator `` 应该是一个python生成器，它生成list(numpy.ndarray) - 每个示例的类型化数据。
+提供的 ``sample_generator`` 应该是一个python生成器，它生成list(numpy.ndarray) - 每个示例的类型化数据。
 
 当Pyreader对象不可迭代时，必须设置 ``places`` 。
 
@@ -406,7 +406,7 @@ for i in range(3):
                 for data in reader():
                     executor.run(feed=data)
 
-.. py:method::decorate_sample_list_generator(reader, places=None)
+.. py:method:: decorate_sample_list_generator(reader, places=None)
 
 设置Pyreader对象的数据源。
 
@@ -452,7 +452,7 @@ for i in range(3):
                 for data in reader():
                     executor.run(feed=data)
 
-.. py:method::decorate_batch_generator(reader, places=None)
+.. py:method:: decorate_batch_generator(reader, places=None)
 
 设置Pyreader对象的数据源。
 
@@ -534,7 +534,7 @@ save_inference_model
 
     path = "./infer_model"
 
-    # 用户定义网络，此处是一个softmax回归示例
+    # 用户定义网络，此处以softmax回归为例
     image = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
     label = fluid.layers.data(name='label', shape=[1], dtype='int64')
     feeder = fluid.DataFeeder(feed_list=[image, label], place=fluid.CPUPlace())
@@ -553,7 +553,7 @@ save_inference_model
 
     # 在这个示例中，函数将修改默认的主程序让它适合于推断‘predict_var’
     # 修改的预测Program 将被保存在 ./infer_model/__model__”中。
-    # 和参数将保存在文件夹下的单独文件中 ./infer_mode
+    # 参数将保存在文件夹下的单独文件中 ./infer_mode
 
 
 
@@ -669,6 +669,7 @@ save_vars
 **代码示例**
 
 ..  code-block:: python
+      
       import paddle.fluid as fluid
       main_prog = fluid.Program()
       startup_prog = fluid.Program()
@@ -699,7 +700,8 @@ save_vars
       path = "./my_paddle_vars"
       fluid.io.save_vars(executor=exe, dirname=path, vars=var_list,
                          filename="vars_file")
-      # var_a，var_b和var_c将被保存。 他们将使用同一文件，名为“var_file”，保存在路径“./my_paddle_vars”下。
+      # var_a，var_b和var_c将被保存。
+      #他们将使用同一文件，名为“var_file”，保存在路径“./my_paddle_vars”下。
 
 
 
