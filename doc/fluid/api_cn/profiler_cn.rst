@@ -31,6 +31,7 @@ CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行�
 
     import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
+    import numpy as np
 
     epoc = 8
     dshape = [4, 3, 28, 28]
@@ -82,16 +83,22 @@ profile interface 。与cuda_profiler不同，此profiler可用于分析CPU和GP
 ..  code-block:: python
 
     import paddle.fluid.profiler as profiler
-
-    with profiler.profiler('All', 'total', '/tmp/profile') as prof:
-        for pass_id in range(pass_num):
-            for batch_id, data in enumerate(train_reader()):
+    import numpy as np
+ 
+    epoc = 8
+    dshape = [4, 3, 28, 28]
+    data = fluid.layers.data(name='data', shape=[3, 28, 28], dtype='float32')
+    conv = fluid.layers.conv2d(data, 20, 3, stride=[1, 1], padding=[1, 1])
+     
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    
+    with profiler.profiler('CPU', 'total', '/tmp/profile') as prof:
+        for i in range(epoc):
+            input = np.random.random(dshape).astype('float32')
                 exe.run(fluid.default_main_program(),
-                        feed=feeder.feed(data),
-                        fetch_list=[],
-                        use_program_cache=True)
-                # ...
-
+                        feed={'data': input})
 
 
 
@@ -112,7 +119,7 @@ reset_profiler
 ..  code-block:: python
 
     import paddle.fluid.profiler as profiler
-    with profiler.profiler(state, 'total', '/tmp/profile'):
+    with profiler.profiler('CPU', 'total', '/tmp/profile'):
     for iter in range(10):
         if iter == 2:
             profiler.reset_profiler()
