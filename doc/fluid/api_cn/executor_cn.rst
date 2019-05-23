@@ -117,6 +117,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 **示例代码**
 
 .. code-block:: python
+      
       import paddle.fluid as fluid
       import numpy
 
@@ -134,8 +135,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
       exe.run(fluid.default_startup_program())
 
       x = numpy.random.random(size=(10, 1)).astype('float32')
-      outs = exe.run(feed={'X': x},
- 	 	                       fetch_list=[loss.name])
+      outs = exe.run(feed={'X': x},fetch_list=[loss.name])
 
 参数：  
 	- **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
