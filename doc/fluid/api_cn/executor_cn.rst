@@ -35,9 +35,9 @@ program中所有的算子会按顺序执行。
 .. code-block:: python
 
     import paddle.fluid as fluid
- 	import paddle.fluid.compiler as compiler
- 	import numpy
- 	import os 
+ 	  import paddle.fluid.compiler as compiler
+ 	  import numpy
+ 	  import os 
     
     use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
@@ -45,12 +45,12 @@ program中所有的算子会按顺序执行。
 
 
     train_program = fluid.Program()
- 	startup_program = fluid.Program()
- 	with fluid.program_guard(train_program, startup_program):
- 	 	data = fluid.layers.data(name='X', shape=[1], dtype='float32')
- 	 	hidden = fluid.layers.fc(input=data, size=10)
- 	 	loss = fluid.layers.mean(hidden)
- 	 	fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+ 	  startup_program = fluid.Program()
+ 	  with fluid.program_guard(train_program, startup_program):
+ 	       data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+ 	 	     hidden = fluid.layers.fc(input=data, size=10)
+ 	 	     loss = fluid.layers.mean(hidden)
+ 	 	     fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
     
     # 仅运行一次startup program.
     # 不需要优化/编译这个startup program. 
@@ -70,7 +70,7 @@ program中所有的算子会按顺序执行。
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     #否则进程会异常中断。
     if not use_cuda:
- 	 	    os.environ['CPU_NUM'] = str(2)
+ 	 	        os.environ['CPU_NUM'] = str(2)
     compiled_prog = compiler.CompiledProgram(
             train_program()).with_data_parallel(
             loss_name=loss.name)
@@ -118,7 +118,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 .. code-block:: python
 
-                import paddle.fluid as fluid
+            import paddle.fluid as fluid
  	 	        import numpy
  	 	 
  	 	        # 首先创建Executor
@@ -210,14 +210,14 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 ..  code-block:: python
 
         import paddle.fluid as fluid
-        place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
+        place = fluid.CPUPlace() # 若使用GPU，您可设置place = fluid.CUDAPlace(0)
         exe = fluid.Executor(place)
         x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
         y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
         dataset = fluid.DatasetFactory().create_dataset()
         dataset.set_use_var([x, y])
         dataset.set_thread(1)
-        filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
+        filelist = [] # 您可以设置您自己的filelist，如输入filelist = ["dataA.txt"]
         dataset.set_filelist(filelist)
         exe.run(fluid.default_startup_program())
         exe.train_from_dataset(program=fluid.default_main_program(),dataset=dataset)
@@ -240,7 +240,7 @@ global_scope
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
+    import paddle.fluid as fluid
  	  import numpy
  	 	 
  	  fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
