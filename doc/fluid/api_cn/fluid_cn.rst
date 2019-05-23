@@ -47,15 +47,13 @@ bool类型。它表明了是否融合（fuse）elementwise_add_op和activation_o
 
 bool类型，fuse_relu_depthwise_conv指示是否融合relu和depthwise_conv2d，它会节省GPU内存并可能加速执行过程。 此选项仅适用于GPU设备。默认为False。
 
-
-
 .. py:attribute:: gradient_scale_strategy
 
 str类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果你想自定义 *loss@grad* ，你可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
 .. py:attribute:: memory_optimize
-     
- bool类型。设为True时可用于储存完整的内存消耗。为实验性特征，一些变量可能会被优化策略重用/移除。如果你需要在使用该特征时获取某些变量，请把变量的persistable property设为True。默认为False。
+
+bool类型。设为True时可用于储存完整的内存消耗。为实验性特征，一些变量可能会被优化策略重用/移除。如果你需要在使用该特征时获取某些变量，请把变量的persistable property设为True。默认为False。
 
 .. py:attribute:: reduce_strategy
 
@@ -220,7 +218,7 @@ CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应�
 
 ..  code-block:: python
 
-cpu_place = fluid.CPUPlace()
+        cpu_place = fluid.CPUPlace()
 
 
 .. _cn_api_fluid_create_lod_tensor:
@@ -352,8 +350,6 @@ cuda_places
 
 创建 ``fluid.CUDAPlace`` 对象列表。
 
-
-
 如果 ``device_ids`` 为None，则首先检查 ``FLAGS_selected_gpus`` 的环境变量。如果 ``FLAGS_selected_gpus=0,1,2`` ，则返回的列表将为[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]。如果未设置标志 ``FLAGS_selected_gpus`` ，则将返回所有可见的GPU places。
 
 
@@ -370,7 +366,7 @@ cuda_places
 
 ..  code-block:: python
 
-cuda_places = fluid.cuda_places()
+      cuda_places = fluid.cuda_places()
 
 .. _cn_api_fluid_CUDAPinnedPlace:
 
@@ -385,7 +381,7 @@ CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GP
 
 ..  code-block:: python
 
-place = fluid.CUDAPinnedPlace()
+      place = fluid.CUDAPinnedPlace()
 
 .. _cn_api_fluid_CUDAPlace:
 
@@ -400,7 +396,7 @@ CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace�
 
 ..  code-block:: python
 
-gpu_place = fluid.CUDAPlace(0)
+       gpu_place = fluid.CUDAPlace(0)
 
 
 
@@ -1109,18 +1105,18 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 
 ..  code-block:: python
 
-import paddle.fluid as fluid
-place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
-exe = fluid.Executor(place)
-x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
-y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
-dataset = fluid.DatasetFactory().create_dataset()
-dataset.set_use_var([x, y])
-dataset.set_thread(1)
-filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
-dataset.set_filelist(filelist)
-exe.run(fluid.default_startup_program())
-exe.infer_from_dataset(program=fluid.default_main_program(),dataset=dataset)
+ import paddle.fluid as fluid
+ place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
+ exe = fluid.Executor(place)
+ x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
+ y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
+ dataset = fluid.DatasetFactory().create_dataset()
+ dataset.set_use_var([x, y])
+ dataset.set_thread(1)
+ filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
+ dataset.set_filelist(filelist)
+ exe.run(fluid.default_startup_program())
+ exe.infer_from_dataset(program=fluid.default_main_program(),dataset=dataset)
      
 
 .. py:method:: train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
@@ -1195,14 +1191,16 @@ in_dygraph_mode
 .. py:function:: paddle.fluid.in_dygraph_mode()
 
 检查程序状态(tracer) - 是否在dygraph模式中运行
+
 返回：如果Program是在动态图模式下运行的则为True。
+
 返回类型：out(boolean)
 
 **示例代码**
 
 ..  code-block:: python
 
-if fluid.in_dygraph_mode():
+  if fluid.in_dygraph_mode():
             pass
 
 
@@ -1244,7 +1242,9 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
   y.shape = [2+2+3, ...]
 
-  示例：
+**示例代码**
+
+..  code-block:: python
 
       import paddle.fluid as fluid
      
@@ -1341,10 +1341,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 根据递归序列长度recursive_sequence_lengths设置LoDTensor的LoD。
 
-::
-
-   例如，如果recursive_sequence_lengths = [[2,3]]，
-   意味着有两个长度分别为2和3的序列，相应的lod将是[[0,2,2 + 3]]，即[[0， 2,5]]。
+例如，如果recursive_sequence_lengths = [[2,3]]，意味着有两个长度分别为2和3的序列，相应的lod将是[[0,2,2 + 3]]，即[[0， 2,5]]。
 
 参数：
 - **recursive_sequence_lengths** （List [List [int]]） - 序列长度。
@@ -1480,10 +1477,10 @@ ParallelExecutor
         use_cuda = True
         place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
      
-        #注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-        #否则fluid会把逻辑核的所有数目设为CPU_NUM，
-        #在这种情况下，输入的batch size应大于CPU_NUM，
-        #否则程序会异常中断。
+        # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
+        # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+        # 在这种情况下，输入的batch size应大于CPU_NUM，
+        # 否则程序会异常中断。
         if not use_cuda:
             os.environ['CPU_NUM'] = str(2)
      
@@ -1542,6 +1539,7 @@ ParallelExecutor
 **示例代码**
 
 .. code-block:: python
+    
     import paddle.fluid as fluid
     import numpy
     import os
@@ -1793,7 +1791,7 @@ Program
 
 **代码示例**
 
-注意：程序说明在clone后的顺序可能不同，这不会影响您的训练或测试进程。 在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
+注意，程序说明在clone后的顺序可能不同，这不会影响您的训练或测试进程。 在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
 
 ..  code-block:: python     
                 
@@ -1811,7 +1809,7 @@ Program
                             if key not in ['op_callstack', 'op_role_var']:
                                 print(" [ attrs: {}:   {} ]".format(key, value))
 
-1.克隆一个Program，示例代码如下：
+1.克隆一个Program，示例代码如下。
 
 ..  code-block:: python
 
@@ -1930,7 +1928,7 @@ Program
 
 **代码示例**
 
-..  code-block:: 
+..  code-block:: python
 
             import paddle.fluid as fluid
      
@@ -2155,8 +2153,8 @@ WeightNormParamAttr
   fc = fluid.layers.fc(input=data,
            size=1000,
            param_attr=WeightNormParamAttr(
-          dim=None,
-          name='weight_norm_param'))
+                dim=None,
+                name='weight_norm_param'))
 
 
 
