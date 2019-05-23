@@ -13663,7 +13663,7 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
 返回: 正确率
 
-返回类型:   变量（Variable）
+返回类型：变量（Variable）
 
 **代码示例**
 
