@@ -35,9 +35,9 @@ program中所有的算子会按顺序执行。
 .. code-block:: python
 
     import paddle.fluid as fluid
- 	  import paddle.fluid.compiler as compiler
- 	  import numpy
- 	  import os 
+    import paddle.fluid.compiler as compiler
+    import numpy
+    import os 
     
     use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
@@ -48,9 +48,9 @@ program中所有的算子会按顺序执行。
  	  startup_program = fluid.Program()
  	  with fluid.program_guard(train_program, startup_program):
  	       data = fluid.layers.data(name='X', shape=[1], dtype='float32')
- 	 	     hidden = fluid.layers.fc(input=data, size=10)
- 	 	     loss = fluid.layers.mean(hidden)
- 	 	     fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+         hidden = fluid.layers.fc(input=data, size=10)
+         loss = fluid.layers.mean(hidden)
+         fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
     
     # 仅运行一次startup program.
     # 不需要优化/编译这个startup program. 
@@ -70,13 +70,13 @@ program中所有的算子会按顺序执行。
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     #否则进程会异常中断。
     if not use_cuda:
- 	 	        os.environ['CPU_NUM'] = str(2)
+            os.environ['CPU_NUM'] = str(2)
     compiled_prog = compiler.CompiledProgram(
             train_program()).with_data_parallel(
             loss_name=loss.name)
     loss_data, = exe.run(compiled_prog,
-                        feed={"X": x},
-                        fetch_list=[loss.name])
+                         feed={"X": x},
+                         fetch_list=[loss.name])
 
 
 参数:	
@@ -117,25 +117,24 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 **示例代码**
 
 .. code-block:: python
+      import paddle.fluid as fluid
+      import numpy
 
-            import paddle.fluid as fluid
- 	 	        import numpy
- 	 	 
- 	 	        # 首先创建Executor
- 	 	        place = fluid.CPUPlace() # fluid.CUDAPlace(0)
- 	 	        exe = fluid.Executor(place)
- 	 	 
- 	 	        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
- 	 	        hidden = fluid.layers.fc(input=data, size=10)
- 	 	        loss = fluid.layers.mean(hidden)
- 	 	        adam = fluid.optimizer.Adam()
- 	 	        adam.minimize(loss)
- 	 	 
- 	 	        # 运行startup程序仅一次
- 	 	        exe.run(fluid.default_startup_program())
- 	 	 
- 	 	        x = numpy.random.random(size=(10, 1)).astype('float32')
- 	 	        outs = exe.run(feed={'X': x},
+      # 首先创建Executor
+      place = fluid.CPUPlace() # fluid.CUDAPlace(0)
+      exe = fluid.Executor(place)
+
+      data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+      hidden = fluid.layers.fc(input=data, size=10)
+      loss = fluid.layers.mean(hidden)
+      adam = fluid.optimizer.Adam()
+      adam.minimize(loss)
+
+      # 运行startup程序仅一次
+      exe.run(fluid.default_startup_program())
+
+      x = numpy.random.random(size=(10, 1)).astype('float32')
+      outs = exe.run(feed={'X': x},
  	 	                       fetch_list=[loss.name])
 
 参数：  
@@ -241,10 +240,10 @@ global_scope
 .. code-block:: python
 
     import paddle.fluid as fluid
- 	  import numpy
- 	 	 
- 	  fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
- 	  numpy.array(fluid.global_scope().find_var("data").get_tensor())
+    import numpy
+    
+    fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
+    numpy.array(fluid.global_scope().find_var("data").get_tensor())
  	 	 
 返回：全局/默认作用域实例
 
