@@ -11851,35 +11851,6 @@ zeros_like
 
 
 
-============
- learning_rate_scheduler
-============
-
-
-.. _cn_api_fluid_layers_append_LARS:
-
-append_LARS
--------------------------------
-
-.. py:function:: paddle.fluid.layers.append_LARS(params_grads,learning_rate,weight_decay)
-
-对每一层的学习率运用LARS(LAYER-WISE ADAPTIVE RATE SCALING)
-
-
-
-参数：
-    - **learning_rate** -变量学习率。LARS的全局学习率。
-    - **weight_decay** -Python float类型数
-
-返回： 衰减的学习率
-
-**代码示例** :
-
-.. code-block:: python
-
-        learning_rate*=local_gw_ratio * sqrt(sumsq(param))
-            / (sqrt(sumsq(gradient))+ weight_decay * sqrt(sumsq(param)))
-
 
 
 
