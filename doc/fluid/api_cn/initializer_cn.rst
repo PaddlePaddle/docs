@@ -156,7 +156,7 @@ MSRAInitializer
 
 .. math::
 
-	x = \sqrt{\frac{6.0}{fan\_in}}
+    x = \sqrt{\frac{6.0}{fan\_in}}
 
 在正态分布中，均值为0，标准差为：
 
@@ -266,6 +266,8 @@ Random Truncated Normal（高斯）分布初始化器
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
+        x = fluid.layers.data(name='x', shape=[1], dtype='float32')
         fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.TruncatedNormal(loc=0.0, scale=2.0))
 
@@ -305,7 +307,9 @@ UniformInitializer
 **代码示例**
 
 .. code-block:: python
-        
+       
+       import paddle.fluid as fluid
+       x = fluid.layers.data(name='x', shape=[1], dtype='float32')
        fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.Uniform(low=-0.5, high=0.5))
  
@@ -368,6 +372,8 @@ XavierInitializer
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+    queries = fluid.layers.data(name='x', shape=[1], dtype='float32')
     fc = fluid.layers.fc(
         input=queries, size=10,
         param_attr=fluid.initializer.Xavier(uniform=False))
