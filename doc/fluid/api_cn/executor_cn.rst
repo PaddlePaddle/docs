@@ -66,7 +66,7 @@ program中所有的算子会按顺序执行。
     # 另一种方法是，编译这个main program然后运行。
     # 参考CompiledProgram以获取更多信息。
     # 注意：如果您使用CPU运行程序，需要具体设置CPU_NUM的值，
-    # 否则fluid会把CPU_NUM设为逻辑核的所有数目，
+    # 否则fluid会把CPU_NUM设为逻辑核总数，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     #否则进程会异常中断。
     if not use_cuda:
