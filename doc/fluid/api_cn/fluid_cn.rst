@@ -34,7 +34,10 @@ str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有
 
 类型是BOOL。 如果设置为True，则ops的执行顺序将与program中的执行顺序相同。 默认为False。
 
-
+.. py:attribute:: fuse_broadcast_ops
+     
+bool类型。它表明了是否融合（fuse）ops。值得注意的是，在Reduce模式中，融合broadcast ops可以使程序运行更快，因为这个过程等同于延迟执行所有的broadcast ops。在这种情况下，所有的nccl streams仅用于一段时间内的NCCLReduce操作。默认为False。
+     
 .. py:attribute:: fuse_elewise_add_act_ops
 
 bool类型。它表明了是否融合（fuse）elementwise_add_op和activation_op。这会使整体执行过程更快一些。默认为False。
@@ -48,7 +51,9 @@ BOOL类型，fuse_relu_depthwise_conv指示是否融合relu和depthwise_conv2d�
 
 str类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果你想自定义 *loss@grad* ，你可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
+.. py:attribute:: memory_optimize
 
+bool类型。设为True时可用于储存完整的内存消耗。为实验性特征，一些变量可能会被优化策略重用/移除。如果你需要在使用该特征时获取某些变量，请把变量的persistable property设为True。默认为False。
 
 .. py:attribute:: reduce_strategy
 
@@ -84,22 +89,34 @@ CompiledProgram用于转换程序以进行各种优化。例如，
 
 - 预先计算一些逻辑，以便每次运行更快。
 - 转换Program，使其可以在多个设备中运行。
-- 转换Program以进行优化预测或分布式训练。
+- 转换Program以进行优化预测或分布式训练。注意：此部分尚未完成。
 
 **代码示例**
 
 ..  code-block:: python
-
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-            exe = fluid.Executor(place)
-            exe.run(startup)
-            compiled_prog = compiler.CompiledProgram(main).with_data_parallel(
-                loss_name=loss.name)
-            for i in range(5):
-                test_loss, = exe.run(compiled_prog,
-                                     feed=feed_dict,
-                                     fetch_list=[loss.name])
-
+        
+        import paddle.fluid as fluid
+        import paddle.fluid.compiler as compiler
+        import numpy
+        import os
+     
+        place = fluid.CUDAPlace(0) # fluid.CPUPlace()
+        exe = fluid.Executor(place)
+     
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = fluid.layers.mean(hidden)
+        fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+     
+        fluid.default_startup_program().random_seed=1
+        exe.run(fluid.default_startup_program())
+        compiled_prog = compiler.CompiledProgram(
+                 fluid.default_main_program())
+     
+        x = numpy.random.random(size=(10, 1)).astype('float32')
+        loss_data, = exe.run(compiled_prog,
+                             feed={"X": x},
+                             fetch_list=[loss.name])
 参数：
   - **program_or_graph** (Graph|Program): 如果它是Program，那么它将首先被降成一个graph，以便进一步优化。如果它是一个graph（以前可能优化过），它将直接用于进一步的优化。注意：只有使用 with_data_parallel 选项编译时才支持graph。
 
@@ -107,6 +124,42 @@ CompiledProgram用于转换程序以进行各种优化。例如，
 
 配置Program使其以数据并行方式运行。
 
+**代码示例**
+
+..  code-block:: python
+            
+            import paddle.fluid as fluid
+            import paddle.fluid.compiler as compiler
+            import numpy
+            import os
+     
+            use_cuda = True
+            place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+            #注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
+            #否则fluid会把逻辑核的所有数目设为CPU_NUM，
+            #在这种情况下，输入的batch size应大于CPU_NUM，
+            #否则程序会异常中断。
+            if not use_cuda:
+                os.environ['CPU_NUM'] = str(2)
+     
+            exe = fluid.Executor(place)
+     
+            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+            hidden = fluid.layers.fc(input=data, size=10)
+            loss = fluid.layers.mean(hidden)
+            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+     
+            fluid.default_startup_program().random_seed=1
+            exe.run(fluid.default_startup_program())
+            compiled_prog = compiler.CompiledProgram(
+                     fluid.default_main_program()).with_data_parallel(
+                              loss_name=loss.name)
+     
+            x = numpy.random.random(size=(10, 1)).astype('float32')
+            loss_data, = exe.run(compiled_prog,
+                                 feed={"X": x},
+                                 fetch_list=[loss.name])
+     
 参数：
   - **loss_name** （str） - 损失函数名称必须在训练过程中设置。 默认None。
   - **build_strategy** （BuildStrategy） -  build_strategy用于构建图，因此它可以在具有优化拓扑的多个设备/核上运行。 有关更多信息，请参阅  ``fluid.BuildStrategy`` 。 默认None。
@@ -144,6 +197,11 @@ cpu_places
 
 返回类型：out (list(fluid.CPUPlace))
 
+**代码示例**
+
+..  code-block:: python
+
+           cpu_places = fluid.cpu_places()
 
 
 .. _cn_api_fluid_CPUPlace:
@@ -156,9 +214,11 @@ CPUPlace
 
 CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应的内存。
 
+**代码示例**
 
+..  code-block:: python
 
-
+        cpu_place = fluid.CPUPlace()
 
 
 .. _cn_api_fluid_create_lod_tensor:
@@ -183,8 +243,16 @@ create_lod_tensor
 4. 利用offset-based LoD来设置LoD
 
 例如：
-         假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。
-     	 那么数 ``data`` 可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
+假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么数 ``data`` 可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
+
+..  code-block:: python
+
+        import paddle.fluid as fluid
+        import numpy as np
+     
+        t = fluid.create_lod_tensor(np.ndarray([5, 30]), [[2, 3]], fluid.CPUPlace())
+
+参考api_guide_low_level_lod_tensor以获取更多关于LoD的信息。
 
 参数:
 	- **data** (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
@@ -233,9 +301,15 @@ create_random_int_lodtensor
     - **low** (int) – 随机数下限
     - **high** (int) – 随机数上限
 
-返回:	一个fluid LoDTensor对象，包含数据和 ``recursive_seq_lens`` 信息
+返回: 一个fluid LoDTensor对象，包含张量数据和 ``recursive_seq_lens`` 信息
 
+**代码示例**
 
+..  code-block:: python
+
+        import paddle.fluid as fluid
+     
+        t = fluid.create_random_int_lodtensor(recursive_seq_lens=[[2, 3]],base_shape=[30], place=fluid.CPUPlace(), low=0, high=10)
 
 .. _cn_api_fluid_cuda_pinned_places:
 
@@ -258,7 +332,13 @@ cuda_pinned_places
 
 返回类型：out(list(fluid.CUDAPinnedPlace))
 
+**代码示例**
 
+..  code-block:: python
+
+        cuda_pinned_places_cpu_num = fluid.cuda_pinned_places()
+        # 或者
+        cuda_pinned_places = fluid.cuda_pinned_places(1)
 
 .. _cn_api_fluid_cuda_places:
 
@@ -283,9 +363,11 @@ cuda_places
 
 返回类型：out (list(fluid.CUDAPlace))
 
+**代码示例**
 
+..  code-block:: python
 
-
+      cuda_places = fluid.cuda_places()
 
 .. _cn_api_fluid_CUDAPinnedPlace:
 
@@ -296,8 +378,11 @@ CUDAPinnedPlace
 
 CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GPU和CPU访问。
 
+**代码示例**
 
+..  code-block:: python
 
+      place = fluid.CUDAPinnedPlace()
 
 .. _cn_api_fluid_CUDAPlace:
 
@@ -308,9 +393,11 @@ CUDAPlace
 
 CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace有一个dev_id（设备id）来表明当前CUDAPlace代表的卡数。dev_id不同的CUDAPlace所对应的内存不可相互访问。
 
+**代码示例**
 
+..  code-block:: python
 
-
+       gpu_place = fluid.CUDAPlace(0)
 
 
 
@@ -624,13 +711,21 @@ startup_program会使用内在的operators（算子）去初始化他们，并�
 
 返回类型:	Program
 
+**代码示例：**
 
+.. code-block:: python
 
-
-
-
-
-
+        import paddle.fluid as fluid
+     
+        main_program = fluid.Program()
+        startup_program = fluid.Program()
+        with fluid.program_guard(main_program=main_program, startup_program=startup_program):
+            x = fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
+            y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
+            z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
+     
+            print("main program is: {}".format(fluid.default_main_program()))
+            print("start up program is: {}".format(fluid.default_startup_program()))
 
 
 
@@ -829,7 +924,8 @@ int型成员。它表明了清空执行时产生的临时变量需要的程序�
 
   2. 在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
 
-
+.. py:attribute:: num_iteration_per_run
+它配置了当用户在python脚本中调用pe.run()时执行器会执行的迭代次数。
 
 .. py:attribute:: num_threads
 
@@ -872,31 +968,54 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 **示例代码**
 
 .. code-block:: python
-
-    # 新建一个执行引擎Executor名为exe。
+    
+    import paddle.fluid as fluid
+    import paddle.fluid.compiler as compiler
+    import numpy
+    import os
+    
+    use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
 
-    # 仅运行一次startup program.
-    # 不需要优化/编译这个startup program.
+    train_program = fluid.Program()
+    startup_program = fluid.Program()
+    with fluid.program_guard(train_program, startup_program):
+            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+            hidden = fluid.layers.fc(input=data, size=10)
+            loss = fluid.layers.mean(hidden)
+            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    
+    # 仅运行一次startup program
+    # 不需要优化/编译这个startup program
+    startup_program.random_seed=1
     exe.run(fluid.default_startup_program())
 
     # 无需编译，直接运行main program
-    loss, = exe.run(fluid.default_main_program(),
-                        feed=feed_dict,
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data = exe.run(train_program(),
+                        feed={"X": x},
                         fetch_list=[loss.name])
 
-    # 另一种方法是，编译这个main program然后运行. 参考CompiledProgram
+    # 另一种方法是，编译这个main program然后运行。
+    # 参考CompiledProgram以获取更多信息。
+    # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
+    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 在这种情况下，输入的batch size应大于CPU_NUM，
+    # 否则程序会异常中断。
+    if not use_cuda:
+            os.environ['CPU_NUM'] = str(2)
+
     compiled_prog = compiler.CompiledProgram(
-            fluid.default_main_program()).with_data_parallel(
+            train_program()).with_data_parallel(
             loss_name=loss.name)
-    loss, = exe.run(compiled_prog,
-                        feed=feed_dict,
+    loss_data = exe.run(compiled_prog,
+                        feed={"X": x},
                         fetch_list=[loss.name])
 
 
-参数:
-    - **place** (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
+参数: 
+    - **place** (fluid.CPUPlace|fluid.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
 
 
@@ -910,10 +1029,12 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 **示例代码**
 
 ..  code-block:: python
+    
+    import paddle.fluid as fluid
 
-    cpu = core.CPUPlace()
-    exe = Executor(cpu)
-    ...
+    cpu = fluid.CPUPlace()
+    exe = fluid.Executor(cpu)
+    #执行训练或测试过程
     exe.close()
 
 
@@ -927,58 +1048,112 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
-参数：
-	- **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
-	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
-	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, 该方法会根据这个列表给出结果
-	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
-	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
-	- **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
-	- **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-	- **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。
+**示例代码**
 
-返回:	根据fetch_list来获取结果
+..  code-block:: python
+
+            import paddle.fluid as fluid
+            import numpy
+     
+            #首先创建执行器
+            place = fluid.CPUPlace() # fluid.CUDAPlace(0)
+            exe = fluid.Executor(place)
+     
+            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+            hidden = fluid.layers.fc(input=data, size=10)
+            loss = fluid.layers.mean(hidden)
+            adam = fluid.optimizer.Adam()
+            adam.minimize(loss)
+     
+            #仅运行startup程序一次
+            exe.run(fluid.default_startup_program())
+     
+            x = numpy.random.random(size=(10, 1)).astype('float32')
+            outs = exe.run(feed={'X': x},
+                           fetch_list=[loss.name])
+参数：  
+  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
+  - **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
+  - **fetch_list** (list) – 用户想得到的变量或者命名的列表, 该方法会根据这个列表给出结果
+  - **feed_var_name** (str) – 前向算子(feed operator)变量的名称
+  - **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
+  - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
+  - **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
+  - **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。
+  
+返回: 根据fetch_list来获取结果
 
 返回类型:	list(numpy.array)
 
+
+.. py:method:: infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
+
+infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。 infer_from_dataset（）可以非常容易地用于多线程中的评估。
+
+参数：  
+  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
+  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
+  - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0
+  - **debug** (bool) – 无论用户是否想要运行infer_from_dataset，默认为False
+  - **fetch_list** (Variable List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None
+  - **fetch_info** (String List) – 每个变量的打印信息，默认为None
+  - **print_period** (int) – 每次打印的mini-batches的数量，默认为100
+
+返回: None
 
 **示例代码**
 
 ..  code-block:: python
 
+	import paddle.fluid as fluid
+	place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
+	exe = fluid.Executor(place)
+	x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
+	y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
+	dataset = fluid.DatasetFactory().create_dataset()
+	dataset.set_use_var([x, y])
+	dataset.set_thread(1)
+	filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
+	dataset.set_filelist(filelist)
+	exe.run(fluid.default_startup_program())
+	exe.infer_from_dataset(program=fluid.default_main_program(),dataset=dataset)
+     
 
-	data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-	hidden = fluid.layers.fc(input=data, size=10)
-	layers.assign(hidden, out)
-	loss = fluid.layers.mean(out)
-	adam = fluid.optimizer.Adam()
-	adam.minimize(loss)
+.. py:method:: train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 
+从预定义的数据集中训练。 数据集在paddle.fluid.dataset中定义。 给定程序（或编译程序），train_from_dataset将使用数据集中的所有数据样本。 输入范围可由用户给出。 默认情况下，范围是global_scope()。训练中的线程总数是thread。 训练中使用的线程数将是数据集中threadnum的最小值，同时也是此接口中线程的值。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
+
+注意：train_from_dataset将销毁每次运行在executor中创建的所有资源。
+
+参数：  
+  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
+  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
+  - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0
+  - **debug** (bool) – 无论用户是否想要运行infer_from_dataset，默认为False
+  - **fetch_list** (Variable List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None
+  - **fetch_info** (String List) – 每个变量的打印信息，默认为None
+  - **print_period** (int) – 每次打印的mini-batches的数量，默认为100
+
+返回: None
+
+**示例代码**
 
 ..  code-block:: python
 
-
-	cpu = core.CPUPlace()
-	exe = Executor(cpu)
-	exe.run(default_startup_program())
-
-..  code-block:: python
-
-	x = numpy.random.random(size=(10, 1)).astype('float32')
-	outs = exe.run(
-		feed={'X': x},
-		fetch_list=[loss.name])
-
-
-
-
-
-
-
-
-
-
-
+        import paddle.fluid as fluid
+        place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
+        exe = fluid.Executor(place)
+        x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
+        y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
+        dataset = fluid.DatasetFactory().create_dataset()
+        dataset.set_use_var([x, y])
+        dataset.set_thread(1)
+        filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
+        dataset.set_filelist(filelist)
+        exe.run(fluid.default_startup_program())
+        exe.train_from_dataset(program=fluid.default_main_program(),dataset=dataset)
 
 
 .. _cn_api_fluid_global_scope:
@@ -990,6 +1165,16 @@ global_scope
 
 
 获取全局/默认作用域实例。很多api使用默认 ``global_scope`` ，例如 ``Executor.run`` 。
+
+**示例代码**
+
+..  code-block:: python
+
+        import paddle.fluid as fluid
+        import numpy
+     
+        fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
+        numpy.array(fluid.global_scope().find_var("data").get_tensor())
 
 返回：全局/默认作用域实例
 
@@ -1006,11 +1191,18 @@ in_dygraph_mode
 
 .. py:function:: paddle.fluid.in_dygraph_mode()
 
-返回：bool，如果Program是在动态图模式下运行的则为True。
+检查程序状态(tracer) - 是否在dygraph模式中运行
 
+返回：如果Program是在动态图模式下运行的则为True。
 
+返回类型：out(boolean)
 
+**示例代码**
 
+..  code-block:: python
+
+  if fluid.in_dygraph_mode():
+            pass
 
 
 .. _cn_api_fluid_LoDTensor:
@@ -1037,10 +1229,9 @@ X 为 LoDTensor，它包含两个序列。第一个长度是2，第二个长度�
 
 ::
 
-	x.lod  =  [[2, 3]]
-	x.data = [[1, 2], [3, 4], // seq 1
-
-		  [5, 6], [7, 8], [9, 10]] // seq 2
+  x.lod  =  [[2, 3]] 
+  
+  x.data = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
 
 	x.shape = [5, 2]
 
@@ -1049,9 +1240,18 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 
 ::
+  
+  y.lod = [[2 1], [2 2 3]]
 
-	y.lod = [[2 1], [2 2 3]] y.shape = [2+2+3, ...]
+  y.shape = [2+2+3, ...]
 
+**示例代码**
+
+..  code-block:: python
+
+      import paddle.fluid as fluid
+     
+      t = fluid.LoDTensor()
 
 .. note::
 
@@ -1070,7 +1270,19 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 返回类型:    out (bool)
 
-.. py:method::	lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+**示例代码**
+
+..  code-block:: python
+            
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+            t.set_recursive_sequence_lengths([[2, 3]])
+            print(t.has_valid_recursive_sequence_lengths()) # True
+
+.. py:method::  lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
 得到LoD Tensor的LoD。
 
@@ -1078,8 +1290,19 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 返回类型：out（List [List [int]]）
 
+**示例代码**
 
-.. py:method::	recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+..  code-block:: python
+            
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+            t.set_lod([[0, 2, 5]])
+            print(t.lod()) # [[0, 2, 5]]
+
+.. py:method::  recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
 得到与LoD对应的LoDTensor的序列长度。
 
@@ -1087,7 +1310,17 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 返回类型：out（List [List [int]）
 
+**示例代码**
 
+..  code-block:: python
+            
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+            t.set_recursive_sequence_lengths([[2, 3]])
+            print(t.recursive_sequence_lengths()) # [[2, 3]]
 
 .. py:method::	set_lod(self: paddle.fluid.core.LoDTensor, lod: List[List[int]]) → None
 
@@ -1096,20 +1329,36 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 参数：
 - **lod** （List [List [int]]） - 要设置的lod。
 
-.. py:method::	set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
+**示例代码**
+
+..  code-block:: python
+            
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+            t.set_lod([[0, 2, 5]])
+
+.. py:method::  set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
 
 根据递归序列长度recursive_sequence_lengths设置LoDTensor的LoD。
 
-::
-
-   例如，如果recursive_sequence_lengths = [[2,3]]，
-   意味着有两个长度分别为2和3的序列，相应的lod将是[[0,2,2 + 3]]，即[[0， 2,5]]。
+例如，如果recursive_sequence_lengths = [[2,3]]，意味着有两个长度分别为2和3的序列，相应的lod将是[[0,2,2 + 3]]，即[[0， 2,5]]。
 
 参数：
 - **recursive_sequence_lengths** （List [List [int]]） - 序列长度。
 
+**示例代码**
 
-
+..  code-block:: python
+            
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+            t.set_recursive_sequence_lengths([[2, 3]])
 
 
 
@@ -1124,6 +1373,16 @@ LoDTensorArray
 -------------------------------
 
 .. py:class:: paddle.fluid.LoDTensorArray
+
+LoDTensor的数组。
+
+**示例代码**
+
+..  code-block:: python
+        
+        import paddle.fluid as fluid
+     
+        arr = fluid.LoDTensorArray()   
 
 .. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
@@ -1183,17 +1442,18 @@ name_scope
 **示例代码**
 
 .. code-block:: python
-
-    with name_scope("encoder"):
-        ...
-    with name_scope("decoder"):
-        ...
-    with name_scope("attention"):
-        ...
-
-
-
-
+          
+ with fluid.name_scope("s1"):
+    a = fluid.layers.data(name='data', shape=[1], dtype='int32')
+    b = a + 1
+    with fluid.name_scope("s2"):
+       c = b * 1
+    with fluid.name_scope("s3"):
+        d = c / 1
+ with fluid.name_scope("s1"):
+    f = fluid.layers.pow(d, 2.0)
+ with fluid.name_scope("s4"):
+    g = f - 1
 
 
 
@@ -1209,8 +1469,51 @@ ParallelExecutor
 
 ``ParallelExecutor`` 专门设计用来实现数据并行计算，着力于向不同结点(node)分配数据，并行地在不同结点中对数据进行操作。如果在GPU上使用该类运行程序，node则用来指代GPU， ``ParallelExecutor`` 也将自动获取在当前机器上可用的GPU资源。如果在CPU上进行操作，node则指代CPU，同时你也可以通过添加环境变量 ``CPU_NUM`` 来设置CPU设备的个数。例如，``CPU_NUM=4``。但是如果没有设置该环境变量，该类会调用 ``multiprocessing.cpu_count`` 来获取当前系统中CPU的个数。
 
+**示例代码**
 
+.. code-block:: python
 
+        import paddle.fluid as fluid
+        import numpy
+        import os
+     
+        use_cuda = True
+        place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+     
+        # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
+        # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+        # 在这种情况下，输入的batch size应大于CPU_NUM，
+        # 否则程序会异常中断。
+        if not use_cuda:
+            os.environ['CPU_NUM'] = str(2)
+     
+        exe = fluid.Executor(place)
+     
+        train_program = fluid.Program()
+        startup_program = fluid.Program()
+        with fluid.program_guard(train_program, startup_program):
+            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+            hidden = fluid.layers.fc(input=data, size=10)
+            loss = fluid.layers.mean(hidden)
+            test_program = fluid.default_main_program().clone(for_test=True)
+            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+     
+        startup_program.random_seed=1
+        exe.run(startup_program)
+     
+        train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
+                                           main_program=train_program,
+                                           loss_name=loss.name)
+        test_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
+                                          main_program=test_program,
+                                          share_vars_from=train_exe)
+     
+        x = numpy.random.random(size=(10, 1)).astype('float32')
+        loss_data, = train_exe.run(feed={"X": x},
+                                   fetch_list=[loss.name])
+     
+        loss_data, = test_exe.run(feed={"X": x},
+                                  fetch_list=[loss.name])
 
 参数:
     - **use_cuda** (bool) – 是否使用CUDA
@@ -1229,20 +1532,6 @@ ParallelExecutor
 
 抛出异常：``TypeError`` - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会弹出此异常
 
-**代码示例**
-
-..  code-block:: python
-
-  train_exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
-  test_exe = fluid.ParallelExecutor(use_cuda=True,
-                                    main_program=test_program,
-                                    share_vars_from=train_exe)
-
-  train_loss, = train_exe.run([loss.name], feed=feed_dict)
-  test_loss, = test_exe.run([loss.name], feed=feed_dict)
-
-
-
 .. py:method::  run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
 
 使用 ``fetch_list`` 执行一个 ``ParallelExecutor`` 对象。
@@ -1250,27 +1539,55 @@ ParallelExecutor
 参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量。如果该参数是 ``dict`` 类型，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU）。
 反之，如果它是 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。
 
-例如，如果 ``feed`` 是个 ``dict`` 类型变量，则有
+**示例代码**
 
-..  code-block:: python
+.. code-block:: python
+    
+    import paddle.fluid as fluid
+    import numpy
+    import os
 
-    exe = ParallelExecutor()
-    # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (24, 1, 28, 28)的图像
-    exe.run(feed={'image': numpy.random.random(size=(48, 1, 28, 28))})
+    use_cuda = True
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+     
+    # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
+    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 在这种情况下，输入的batch size应大于CPU_NUM，
+    # 否则程序会异常中断。
+    if not use_cuda:
+            os.environ['CPU_NUM'] = str(2)
+    exe = fluid.Executor(place)
 
-如果 ``feed`` 是个 ``list`` 类型变量，则有
+    train_program = fluid.Program()
+    startup_program = fluid.Program()
+    with fluid.program_guard(train_program, startup_program):
+            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+            hidden = fluid.layers.fc(input=data, size=10)
+            loss = fluid.layers.mean(hidden)
+            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+     
+            startup_program.random_seed=1
+            exe.run(startup_program)
+     
+            train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
+                                               main_program=train_program,
+                                               loss_name=loss.name)
+    # 如果feed参数是dict类型:
+    # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (5, 1)的图像
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data, = train_exe.run(feed={"X": x},
 
-..  code-block:: python
+                               fetch_list=[loss.name])
 
-    exe = ParallelExecutor()
+    # 如果feed参数是list类型:
     # 各设备挨个处理列表中的每个元素
-    # 第一个设备处理形为 (48, 1, 28, 28) 的图像
-    # 第二个设备处理形为 (32, 1, 28, 28) 的图像
+    # 第一个设备处理形为 (10, 1) 的图像
+    # 第二个设备处理形为 (9, 1) 的图像
     #
     # 使用 exe.device_count 得到设备数目
-    exe.run(feed=[{"image": numpy.random.random(size=(48, 1, 28, 28))},
-                  {"image": numpy.random.random(size=(32, 1, 28, 28))},
-                  ])
+    x2 = numpy.random.random(size=(9, 1)).astype('float32')
+    loss_data, = train_exe.run(feed=[{"X": x}, {"X": x2}],
+                               fetch_list=[loss.name])
 
 参数：
     - **fetch_list** (list) – 获取的变量名列表
@@ -1300,10 +1617,48 @@ ParallelExecutor
         loss = pe.run(feed=feeder.feed(cur_batch),
                       fetch_list=[avg_cost.name]))
 
+.. py:method::  drop_local_exe_scopes()
 
+立即删除本地执行作用域。
+ 
+在程序执行期间，生成中间结果被放置在本地执行作用域内，在某些模型中，这些中间结果的创建和删除较为费时。为了解决这个问题，ParallelExecutor在ExecutionStrategy中提供了可选项，如num_iteration_per_drop_scope，此选项指示在删除本地执行作用域之前要运行的迭代次数。 但在某些情况下，每次迭代都会产生不同的中间结果，这将导致本地执行作用域所需的内存逐渐增加。 如果你想在这个时候运行另一个程序，可能没有足够的存储空间，此时你应该删除其他程序的本地执行作用域。
+     
 
+**代码示例**
 
+..  code-block:: python
 
+            import paddle.fluid as fluid
+            import numpy
+            import os
+     
+            use_cuda = True
+            # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
+            # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+            # 在这种情况下，输入的batch size应大于CPU_NUM，
+            # 否则程序会异常中断。
+            if not use_cuda:
+                os.environ['CPU_NUM'] = str(2)
+     
+            train_program = fluid.Program()
+            startup_program = fluid.Program()
+            with fluid.program_guard(train_program, startup_program):
+                data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+                hidden = fluid.layers.fc(input=data, size=10)
+                loss = fluid.layers.mean(hidden)
+     
+            place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+            exe.run(startup_program)
+     
+            parallel_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
+                                               main_program=train_program,
+                                               loss_name=loss.name)
+     
+            x = numpy.random.random(size=(10, 1)).astype('float32')
+            loss_data, = parallel_exe.run(feed={"X": x},
+                                       fetch_list=[loss.name])
+     
+            parallel_exe.drop_local_exe_scopes()
 
 
 
@@ -1332,6 +1687,8 @@ ParamAttr
 
 ..  code-block:: python
 
+   import paddle.fluid as fluid
+   
    w_param_attrs = fluid.ParamAttr(name="fc_weight",
                                    learning_rate=0.5,
                                    regularizer=fluid.L2Decay(1.0),
@@ -1367,54 +1724,20 @@ Program
 **代码示例**
 
 ..  code-block:: python
+  
+  import paddle.fluid as fluid
 
   main_program = fluid.Program()
   startup_program = fluid.Program()
   with fluid.program_guard(main_program=main_program, startup_program=startup_program):
-        fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
-        fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
-        fluid.layers.fc(name="fc", shape=[10], dtype='float32', act="relu")
+        
+        x = fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
 
-
-
-.. py:attribute:: op_role
-
-operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
-
-注意：这是一个底层API。它仅用于 ``ParallelExecutor`` 复制或调度operator到设备。
-
-例如，Forward operator应该在每个设备上执行。Backward operator在每个设备上执行，并将后向传播的参数梯度(使用 ``op_role_var`` 获得该变量)合并到一个设备上。Optimize operator只在一个设备上执行，并向其他设备广播新的参数，
-
-
-
-.. py:attribute:: set_op_role
-
-operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
-
-注意：这是一个底层API。它仅用于 ``ParallelExecutor`` 复制或调度operator到设备上执行。
-
-例如，Forward operator应该在每个设备上执行。Backward operato应该在每个设备上执行，并将后向传播的参数梯度(使用op_role_var获得该变量)合并到一个设备上。Optimize operator只在一个设备上执行，并向其他设备广播新的参数
-
-
-
-.. py:attribute:: op_role_var
-
-``op_role`` 的辅助变量。
-
-参考: ``Program.op_role`` 文档。
-
-注意:这是一个底层API，用户不应该直接使用它。
-
-
-
-.. py:attribute:: set_op_role_var
-
-``op_role`` 的辅助变量。
-
-参考: ``Program.op_role`` 文档。
-
-注意:这是一个底层API。用户不应该直接使用它。
-
+  print("main program is: {}".format(main_program))
+  
+  print("start up program is: {}".format(startup_program))
 
 
 .. py:method:: to_string(throw_on_error, with_details=False)
@@ -1432,7 +1755,15 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 抛出异常：
  - ``ValueError`` - 当 ``throw_on_error == true`` ，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
+**代码示例**
 
+..  code-block:: python
+
+            import paddle.fluid as fluid
+     
+            prog = fluid.default_main_program()
+            prog_string = prog.to_string(throw_on_error=True, with_details=False)
+            print(prog_string)
 
 .. py:method:: clone(for_test=False)
 
@@ -1441,7 +1772,7 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 有些operator，在训练和测试之间的行为是不同的，比如batch_norm。它们有一个属性is_test来控制行为。当for_test=True时，此方法将把它们的is_test属性更改为True。
 
 - 克隆Program，该Program用于训练时，将 ``for_test`` 设置为False。
-- 克隆Program，该Program用于测试时，将 ``for_test`` 设置为True。
+- 克隆Program，该Program用于测试时，将 ``for_test`` 设置为True。我们不会在此处对程序进行任何剪枝，因此，如果您只是想要一个用于测试的前向传播程序，请在使用Opimizer.minimize之前使用clone
 
 注意:此API不会删除任何操作符。请在backward和optimization之前使用clone(for_test=True)。
 
@@ -1462,55 +1793,106 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 **代码示例**
 
-1.克隆一个Program，示例代码如下：
+注意，程序说明在clone后的顺序可能不同，这不会影响您的训练或测试进程。 在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
+
+..  code-block:: python     
+                
+                import paddle.fluid as fluid
+                import six
+     
+                def print_prog(prog):
+                    for name, value in sorted(six.iteritems(prog.block(0).vars)):
+                        print(value)
+                    for op in prog.block(0).ops:
+                        print("op type is {}".format(op.type))
+                        print("op inputs are {}".format(op.input_arg_names))
+                        print("op outputs are {}".format(op.output_arg_names))
+                        for key, value in sorted(six.iteritems(op.all_attrs())):
+                            if key not in ['op_callstack', 'op_role_var']:
+                                print(" [ attrs: {}:   {} ]".format(key, value))
+
+1.克隆一个Program，示例代码如下。
 
 ..  code-block:: python
 
+  import paddle.fluid as fluid
+  import six
+     
+  def print_prog(prog):
+      for name, value in sorted(six.iteritems(prog.block(0).vars)):
+        print(value)
+      for op in prog.block(0).ops:
+        print("op type is {}".format(op.type))
+        print("op inputs are {}".format(op.input_arg_names))
+        print("op outputs are {}".format(op.output_arg_names))
+        for key, value in sorted(six.iteritems(op.all_attrs())):
+            if key not in ['op_callstack', 'op_role_var']:
+                print(" [ attrs: {}:   {} ]".format(key, value))
+     
   train_program = fluid.Program()
   startup_program = fluid.Program()
   with fluid.program_guard(train_program, startup_program):
+      with fluid.unique_name.guard():
         img = fluid.layers.data(name='image', shape=[784])
         hidden = fluid.layers.fc(input=img, size=200, act='relu')
         hidden = fluid.layers.dropout(hidden, dropout_prob=0.5)
         loss = fluid.layers.cross_entropy(
                      input=fluid.layers.fc(hidden, size=10, act='softmax'),
                      label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
-  test_program = train_program.clone(for_test=True)
+  avg_loss = fluid.layers.mean(loss)
+  test_program = train_program.clone(for_test=False)
   sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-  with fluid.program_guard(train_program, startup_program):
-        sgd.minimize(loss)
+  print_prog(test_program)
 
+  with fluid.program_guard(train_program, startup_program):
+      with fluid.unique_name.guard():
+        sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+        sgd.minimize(avg_loss)    
+  
 2.如果分别运行 train Program 和 test Program，则可以不使用clone。
 
 ..  code-block:: python
 
-	import paddle.fluid as fluid
+  import paddle.fluid as fluid
+  import six
+  
+  def print_prog(prog):
+      for name, value in sorted(six.iteritems(prog.block(0).vars)):
+          print(value)
+      for op in prog.block(0).ops:
+          print("op type is {}".format(op.type))
+          print("op inputs are {}".format(op.input_arg_names))
+          print("op outputs are {}".format(op.output_arg_names))
+          for key, value in sorted(six.iteritems(op.all_attrs())):
+              if key not in ['op_callstack', 'op_role_var']:
+                  print(" [ attrs: {}:   {} ]".format(key, value))
+  def network(is_test):
+       img = fluid.layers.data(name='image', shape=[784])
+       hidden = fluid.layers.fc(input=img, size=200, act='relu')
+       hidden = fluid.layers.dropout(hidden, dropout_prob=0.5, is_test=is_test)
+       loss = fluid.layers.cross_entropy(
+       input=fluid.layers.fc(hidden, size=10, act='softmax'),
+       label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
+       avg_loss = fluid.layers.mean(loss)
+       return avg_loss
 
- 	def network(is_test):
-	     img = fluid.layers.data(name='image', shape=[784])
-	     hidden = fluid.layers.fc(input=img, size=200, act='relu')
-	     hidden = fluid.layers.dropout(hidden, dropout_prob=0.5, is_test=is_test)
-	     loss = fluid.layers.cross_entropy(
-			 input=fluid.layers.fc(hidden, size=10, act='softmax'),
-			 label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
-	     return loss
+   train_program_2 = fluid.Program()
+   startup_program_2 = fluid.Program()
+   test_program_2 = fluid.Program()
 
-	 train_program = fluid.Program()
-	 startup_program = fluid.Program()
-	 test_program = fluid.Program()
+   with fluid.program_guard(train_program_2, startup_program_2):
+       with fluid.unique_name.guard():
+       
+            sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+            sgd.minimize(avg_loss)
 
-	 with fluid.program_guard(train_program, startup_program):
-	     with fluid.unique_name.guard():
-		 loss = network(is_test=False)
-		 sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-		 sgd.minimize(loss)
+   # 不使用测试阶段的startup program
+   with fluid.program_guard(test_program_2, fluid.Program()):
+       with fluid.unique_name.guard():
+            loss = network(is_test=True)
+   print(test_program_2)  
 
-	 # 不使用测试阶段的startup program
-	 with fluid.program_guard(test_program, fluid.Program()):
-	     with fluid.unique_name.guard():
-		 loss = network(is_test=True)
-
-上边两个代码片段生成的Program是一样的。
+上边两个代码片段生成和打印的Program是一样的。
 
 .. py:staticmethod:: parse_from_string(binary_str)
 
@@ -1529,6 +1911,16 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 该program中的block的个数
 
+**代码示例**
+
+..  code-block:: python
+            
+            import paddle.fluid as fluid
+     
+            prog = fluid.default_main_program()
+            num_blocks = prog.num_blocks
+            print(num_blocks)
+
 .. py:attribute:: random_seed
 
 
@@ -1536,9 +1928,31 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 注意：必须在operator被添加之前设置。
 
+**代码示例**
+
+..  code-block:: python
+
+            import paddle.fluid as fluid
+     
+            prog = fluid.default_main_program()
+            random_seed = prog.random_seed
+            print(random_seed)
+            prog.random_seed = 1
+            print(prog.random_seed)
+
 .. py:method:: global_block()
 
 获取该program的第一个block。
+
+**代码示例**
+
+..  code-block:: python
+
+            import paddle.fluid as fluid
+     
+            prog = fluid.default_main_program()
+            gb_block = prog.global_block()
+            print(gb_block)
 
 .. py:method:: block(index)
 
@@ -1548,9 +1962,29 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 返回类型：Block
 
+**代码示例**
+
+..  code-block:: python
+
+            import paddle.fluid as fluid
+     
+            prog = fluid.default_main_program()
+            block_0 = prog.block(0)
+            print(block_0)
+
 .. py:method:: current_block()
 
 获取当前block。当前block是用来添加operators。
+
+**代码示例**
+
+..  code-block:: python
+
+            import paddle.fluid as fluid
+     
+            prog = fluid.default_main_program()
+            current_blk = prog.current_block()
+            print(current_blk)
 
 .. py:method:: list_vars()
 
@@ -1559,10 +1993,18 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 返回：generator 会yield每个Program中的变量
 
 返回类型：iterable
+  
+**代码示例**
 
+..  code-block:: python
 
-
-
+            import paddle.fluid as fluid
+     
+            prog = fluid.default_main_program()
+            img = fluid.layers.data(name='img', shape=[1,28,28], dtype='float32')
+            label = fluid.layers.data(name='label', shape=[128,1], dtype='int64')
+            for var in prog.list_vars():
+                print(var)
 
 
 
@@ -1588,8 +2030,8 @@ program_guard
 	main_program = fluid.Program()
 	startup_program = fluid.Program()
 	with fluid.program_guard(main_program, startup_program):
-		data = fluid.layers.data(...)
- 		hidden = fluid.layers.fc(...)
+		data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+ 		hidden = fluid.layers.fc(input=data, size=10, act='relu')
 
 需要注意的是，如果用户不需要构建自己的启动程序或者主程序，一个临时的program将会发挥作用。
 
@@ -1601,7 +2043,7 @@ program_guard
 	main_program = fluid.Program()
 	# 如果您不需要关心startup program,传入一个临时值即可
 	with fluid.program_guard(main_program, fluid.Program()):
-		data = ...
+		data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
 
 
 参数：
@@ -1655,15 +2097,13 @@ scope_guard
 
 ..  code-block:: python
 
-	import paddle.fluid as fluid
-
-	new_scope = fluid.Scope()
-	with fluid.scope_guard(new_scope):
-		...
-
-
-
-
+  import numpy
+  
+  new_scope = fluid.Scope()
+  with fluid.scope_guard(new_scope):
+       fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
+  numpy.array(new_scope.find_var("data").get_tensor())
+ 
 
 
 
