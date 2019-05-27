@@ -359,7 +359,6 @@ Precision(也称为 positive predictive value,正预测值)是被预测为正样
 .. code-block:: python
 
     metric = fluid.metrics.Precision() 
-    
     for pass in range(PASSES):
         metric.reset() 
         for data in train_reader():
