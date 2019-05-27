@@ -27,8 +27,8 @@ append_backward
 
 返回类型：   	list[(Variable,Variable)]
 
-抛出异常：     
-       - ``AssertionError`` - 如果loss不是Variable的实例。
+抛出：     
+    - ``AssertionError`` - 如果loss不是Variable的实例。
 
 **示例代码**
 
