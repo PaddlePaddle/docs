@@ -227,7 +227,7 @@ CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应�
 create_lod_tensor
 -------------------------------
 
-.. py:function:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place) 
+.. py:function:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place)
 
 
 该函数从一个numpy数组，列表或者已经存在的lod tensor中创建一个lod tensor。
