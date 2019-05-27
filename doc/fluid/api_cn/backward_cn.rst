@@ -27,15 +27,21 @@ append_backward
 
 返回类型：   	list[(Variable,Variable)]
 
-抛出：     
-    - ``AssertionError`` - 如果loss不是Variable的实例。
+抛出异常：     
+       - ``AssertionError`` - 如果loss不是Variable的实例。
 
 **示例代码**
 
 ..  code-block:: python
 
         # 网络配置
-        # ...
+        # 损失计算
+        x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[1], dtype='float32')	 
+ 	 	    
+        y_predict = fluid.layers.fc(input=x, size=1, act=None)
+        loss = fluid.layers.square_error_cost(input=y_predict, label=y)
+        
         avg_loss = fluid.layers.mean(loss)
         param_grad_list = fluid.backward.append_backward(loss=avg_loss)
 
