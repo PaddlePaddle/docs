@@ -98,7 +98,7 @@ profile interface 。与cuda_profiler不同，此profiler可用于分析CPU和GP
         for i in range(epoc):
             input = np.random.random(dshape).astype('float32')
                 exe.run(fluid.default_main_program(),
-                        feed={'data': input})
+                    feed={'data': input})
 
 
 
