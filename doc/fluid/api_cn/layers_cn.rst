@@ -11015,10 +11015,10 @@ ThresholdedRelu激活函数
 
 .. math::
 
-    out = \left\{\begin{matrix}
-        x, &if x > threshold\\
-        0, &otherwise
-        \end{matrix}\right.
+	out = \left\{\begin{matrix}
+	    x, &if x > threshold\\
+	    0, &otherwise
+	    \end{matrix}\right.
 
 参数：
 - **x** -ThresholdedRelu激活函数的输入
@@ -13506,11 +13506,12 @@ yolo_box
 **代码示例**
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
     anchors = [10, 13, 16, 30, 33, 23]
-    loss = fluid.layers.yolo_box(x=x, img_size=608, class_num=80, anchors=anchors, conf_thresh=0.01, downsample_ratio=32)
+    loss = fluid.layers.yolo_box(x=x, img_size=608, class_num=80, anchors=anchors,
+                                    conf_thresh=0.01, downsample_ratio=32)
 
 
 
