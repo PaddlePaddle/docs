@@ -1014,7 +1014,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
                         fetch_list=[loss.name])
 
 
-参数: 
+参数:
     - **place** (fluid.CPUPlace|fluid.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
 
@@ -1262,7 +1262,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 
 
-.. py:method::	has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
+.. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
 
 检查LoDTensor的lod值的正确性。
 
