@@ -9,7 +9,7 @@ FAQ
 1. CLA签署不成功，怎么办？
 ---------------------------
 
-由于 `CLA <https://github.com/cla-assistant/cla-assistant>`_ 是第三方开源库，有时候会不稳定。如果确定自己已成功签署CLA，可尝试：
+由于 `CLA <https://github.com/cla-assistant/cla-assistant>`_ 是第三方开源库，有时候会不稳定。如果确定自己已签署CLA，但CLA没触发成功，可尝试：
 
 * 关闭并重新开启本PR，来重新触发CLA。点击 :code:`Close pull request` ，再点击 :code:`Reopen pull request` ，并等待几分钟。
 * 如果上述操作重复2次仍未生效，请重新提一个PR或评论区留言。
