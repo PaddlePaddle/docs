@@ -7,3 +7,4 @@
 
     local_dev_guide.md
     submit_pr_guide.md
+    faq.rst
