@@ -122,7 +122,7 @@ RNN 结构的 NMT 得以应运而生，例如基于卷积神经网络 CNN
 Attention 学习语言中的上下文依赖。相较于RNN/CNN,
 这种结构在单层内计算复杂度更低、易于并行化、对长程依赖更易建模，最终在多种语言之间取得了最好的翻译效果。
 
--  `Transformer <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/neural_machine_translation/transformer/README_cn.md>`__
+-  `Transformer <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/neural_machine_translation/transformer/README.md>`__
 
 强化学习
 --------
@@ -184,7 +184,7 @@ SimNet是百度自然语言处理部于2013年自主研发的语义匹配框架�
 
 百度阅读理解数据集是由百度自然语言处理部开源的一个真实世界数据集，所有的问题、原文都来源于实际数据(百度搜索引擎数据和百度知道问答社区)，答案是由人类回答的。每个问题都对应多个答案，数据集包含200k问题、1000k原文和420k答案，是目前最大的中文MRC数据集。百度同时开源了对应的阅读理解模型，称为DuReader，采用当前通用的网络分层结构，通过双向attention机制捕捉问题和原文之间的交互关系，生成query-aware的原文表示，最终基于query-aware的原文表示通过point network预测答案范围。
 
--  `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/machine_reading_comprehension/README.md>`__
+-  `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/reading_comprehension>`__
 
 
 个性化推荐
