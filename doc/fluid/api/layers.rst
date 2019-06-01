@@ -471,6 +471,14 @@ data_norm
 ..  autofunction:: paddle.fluid.layers.data_norm
     :noindex:
 
+.. _api_fluid_layers_deformable_conv:
+
+deformable_conv
+---------------
+
+..  autofunction:: paddle.fluid.layers.deformable_conv
+    :noindex:
+
 .. _api_fluid_layers_dice_loss:
 
 dice_loss
@@ -1383,6 +1391,14 @@ sigmoid_cross_entropy_with_logits
 ..  autofunction:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
     :noindex:
 
+.. _api_fluid_layers_sign:
+
+sign
+----
+
+..  autofunction:: paddle.fluid.layers.sign
+    :noindex:
+
 .. _api_fluid_layers_similarity_focus:
 
 similarity_focus
@@ -2081,6 +2097,14 @@ box_decoder_and_assign
 ----------------------
 
 ..  autofunction:: paddle.fluid.layers.box_decoder_and_assign
+    :noindex:
+
+.. _api_fluid_layers_collect_fpn_proposals:
+
+collect_fpn_proposals
+---------------------
+
+..  autofunction:: paddle.fluid.layers.collect_fpn_proposals
     :noindex:
 
 .. _api_fluid_layers_density_prior_box:
