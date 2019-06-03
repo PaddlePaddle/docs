@@ -24,7 +24,7 @@
 
 ## Introduction
 
-PaddleSlim is a sub-module of PaddlePaddle frame, which is first issued in the 1.4 version PaddlePaddle. In PaddleSlim, the mainstream compression strategies including pruning, quantization and distillation are realized and mainly applied to image compression models. In subsequent versions, more compression stratigies will be added to support models in NLP field.
+PaddleSlim is a sub-module of PaddlePaddle, which is initially released in the 1.4 version PaddlePaddle. PaddleSlim has implemented mainstream compression strategies including pruning, quantization and distillation, which are mainly applied to compression of image processing models. In subsequent versions, more compression strategies will be incorporated to support models in NLP field.
 
 ## Main Features
 
