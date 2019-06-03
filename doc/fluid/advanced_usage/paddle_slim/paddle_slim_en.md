@@ -45,7 +45,7 @@ Refer to [demos](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/
 
 Refer to [Performance Data and ModelZoo](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/model_zoo.md) for more details
 
-### Stronger and More Flexible functions
+###  More Powerful and Flexible Functionality
 
 - Automate the pruning and compression process
 - The pruning and compression strategies support more network structures
