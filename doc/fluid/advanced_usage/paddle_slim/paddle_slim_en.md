@@ -54,7 +54,7 @@ Refer to [Performance Data and ModelZoo](https://github.com/PaddlePaddle/models/
 
 Refer to [Documentation](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md) for more details.
 
-## Introduction to Framework
+## An overview of the architecture
 
 The overall principle of the model compression tool is briefly introduced here to make you understand the use process.
 **figure 1** shows the architecture of the model compression tool, which is a API-relying relation from top to bottom. The distillation, quantization and pruning modules all rely on the bottom paddle framework indirectly. At present, the model compression tool serves as a part of PaddlePaddle framework, so users who have installed paddle of ordinary version have to download and install paddle supporting model compression again for the compression function.
