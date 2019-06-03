@@ -66,7 +66,7 @@ The overall principle of the model compression tool is briefly introduced here t
 
 As **figure 1** shows, the top purple module is the user interface. When calling the model compression function in Python scripts, we only need to construct a Compressor object. Please refer to [Documentation](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md) for more details.
 
-We call every compression algorithms compression strategies, which are called during the process of training models iteratively to complete model compression, as is shown in **figure 2**. The logic is packaged in the tool for model compression, and users only need to provide network structures, data and optimizers for model training. Please refer to [Use Document](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md) for more details.
+We call every compression algorithms compression strategies, which are called during the process of training models iteratively to complete model compression, as is shown in **figure 2**. The logic is packaged in the toolset for model compression, and users only need to provide network structures, data and optimizers for model training. Please refer to [Use Document](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md) for more details.
 
 <p align="center">
 <img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_1.png?raw=true" height=255 width=646 hspace='10'/> <br />
