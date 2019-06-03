@@ -20,7 +20,7 @@
 
     Please fill in the version number of PaddlePaddle such as 1.2 after `:`. For more details, please refer to [Image Instructions](#dockers).
 
-2. Construct and enter Docker container
+2. Construct and enter a Docker container
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
