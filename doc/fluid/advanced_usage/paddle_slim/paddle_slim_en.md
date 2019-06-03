@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3>
-      Model Compression Tool Library
+      Model Compression Toolset
     <span> | </span>
     <a href="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/tutorial.md">
       Introduction to Algorithmic Principle
@@ -28,7 +28,7 @@ PaddleSlim is a sub-module of PaddlePaddle, which is initially released in the 1
 
 ## Main Features
 
-Paddle-Slim tool library has the following features:
+Paddle-Slim toolset has the following features:
 
 ###  Simplified Interface
 
@@ -47,17 +47,17 @@ Refer to [Performance Data and ModelZoo](https://github.com/PaddlePaddle/models/
 
 ###  More Powerful and Flexible Functionality
 
-- Automate the pruning and compression process
-- The pruning and compression strategies support more network structures
-- The distillation strategy supports multipy ways, and users can customize the combination of losses
-- Support rapid configuration of multiple compression strategies for combined use
+- Automate the pruning and compression process.
+- The pruning and compression strategies support more network structures.
+- The distillation strategy supports multipy ways, and users can customize the combination of losses.
+- Support rapid configuration of multiple compression strategies for combined use.
 
 Refer to [Documentation](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md) for more details.
 
 ## An overview of the architecture
 
 The overall principle of the model compression tool is briefly introduced here to help you understand the workflow.
-**figure 1** shows the architecture of the model compression tool, which arranged by API dependency from top to bottom. The distillation, quantization and pruning modules all rely on the bottom paddle framework indirectly. At present, the model compression tool serves as a part of PaddlePaddle framework, so users who have installed paddle of ordinary version have to download and install paddle supporting model compression again for the compression function.
+**figure 1** shows the architecture of the model compression tool, which is arranged by API dependency from top to bottom. The distillation, quantization and pruning modules all rely on the bottom paddle framework indirectly. At present, the model compression tool serves as a part of PaddlePaddle framework, so users who have installed paddle of ordinary version have to download and install paddle supporting model compression again for the compression function.
 
 <p align="center">
 <img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_0.png?raw=true" height=252 width=406 hspace='10'/> <br />
@@ -104,7 +104,7 @@ We call every compression algorithms compression strategies, which are called du
 
 ## Brief Experiment Results
 
-Some experiment results of the PaddleSlim model compression tool library are listed in this section. To download more experiment data and pre-training moels, please refer to [Specific Experiment Results and ModelZoo](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/model_zoo.md)
+Some experiment results of the PaddleSlim model compression toolset are listed in this section. To download more experiment data and pre-training moels, please refer to [Specific Experiment Results and ModelZoo](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/model_zoo.md)
 
 ### Quantification Training
 
