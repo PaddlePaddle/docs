@@ -32,7 +32,7 @@ Paddle-Slim tool library has the following features:
 
 ###  Simplified Interface
 
-- Manage configurable parameters intensively by configuring-file ways for convenience for experiment management.
+- Manage configurable parameters intensively by the method of configuring files to facilitate experiment management.
 - Based on training scripts of common models, model compression can be realized by adding only a few codes.
 
 Refer to [Use Examples](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/demo.md) for more details
