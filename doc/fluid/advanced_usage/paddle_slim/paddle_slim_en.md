@@ -41,7 +41,7 @@ Refer to [demos](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/
 
 - For MobileNetV1 model with less redundant information, the convolution core pruning strategy can still reduce the size of the model and maintain as little accuracy loss as possible.
 - The distillation strategy can increase the accuracy of the original model dramatically.
-- Combination of the quantization strategy and the distillation strategy can reduce the size ande increase the accuracy of the model at the same time.
+- The combination of the quantization strategy and the distillation strategy can reduce the size and increase the accuracy of the model at the same time.
 
 Refer to [Performance Data and ModelZoo](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/model_zoo.md) for more details
 
