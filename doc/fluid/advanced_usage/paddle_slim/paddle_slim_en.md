@@ -30,7 +30,7 @@ PaddleSlim is a sub-module of PaddlePaddle, which is initially released in the 1
 
 Paddle-Slim tool library has the following features:
 
-###  Easy Interface
+###  Simplified Interface
 
 - Manage configurable parameters intensively by configuring-file ways for convenience for experiment management.
 - Based on training scripts of common models, model compression can be realized by adding only a few codes.
