@@ -1,4 +1,4 @@
-# Model Compression Tool Library
+# Model Compression Toolset
 
 <div align="center">
   <h3>
