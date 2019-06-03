@@ -79,7 +79,7 @@ You can find docker images of all versions of PaddlePaddle in [DockerHub](https:
 ```
 * If you are new with Docker, please refer to information on the Internet, such as [Docker Tutorial](http://www.runoob.com/docker/docker-hello-world.html) .
 
-## How to Unload
+## How to uninstall
 
 After entering Docker, execute the following commands:
 
