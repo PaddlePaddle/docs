@@ -35,7 +35,7 @@ Paddle-Slim tool library has the following features:
 - Manage configurable parameters intensively by the method of configuring files to facilitate experiment management.
 - Model compression can be realized by adding merely a few codes to common scripts of training models.
 
-Refer to [Use Examples](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/demo.md) for more details
+Refer to [demos](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/demo.md) for more details
 
 ### Good Performance
 
