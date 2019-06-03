@@ -37,7 +37,7 @@ Paddle-Slim tool library has the following features:
 
 Refer to [demos](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/demo.md) for more details
 
-### Good Performance
+### Optimized Effects
 
 - For MobileNetV1 model with less redundant information, the convolution core pruning strategy can still reduce the size of the model and maintain as little accuracy loss as possible.
 - The distillation strategy can increase the accuracy of the origin model dramatically.
