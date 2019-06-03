@@ -87,5 +87,5 @@ After entering Docker, execute the following commands:
 
 * ***GPU version PaddlePaddle***: `pip uninstall paddlepaddle-gpu`
 
-or use `docker rm [Name of container]` to delete Docker container directly.
+or use `docker rm [Name of container]` to delete a Docker container directly.
 
