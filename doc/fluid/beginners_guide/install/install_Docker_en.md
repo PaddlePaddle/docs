@@ -30,7 +30,7 @@ So far, you have installed PaddlePaddle with Docker successfully, for more usage
 
 <a name="dockers"></a>
 </br></br>
-### **Image Instructions**
+### Introduction to Images
 <p align="center">
 <table>
 	<thead>
