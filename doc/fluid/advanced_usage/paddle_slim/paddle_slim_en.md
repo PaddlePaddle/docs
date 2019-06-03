@@ -52,7 +52,7 @@ Refer to [Performance Data and ModelZoo](https://github.com/PaddlePaddle/models/
 - The distillation strategy supports multipy ways, and users can customize the combination of losses
 - Support rapid configuration of multiple compression strategies for combined use
 
-Refer to [Use Introduction](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md) for more details.
+Refer to [Documentation](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md) for more details.
 
 ## Introduction to Framework
 
