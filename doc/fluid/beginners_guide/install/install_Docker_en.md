@@ -62,7 +62,7 @@ Until now, you have installed PaddlePaddle with Docker successfully, for more us
 
 You can find docker images of all versions of PaddlePaddle in [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/).
 
-### Anouncements
+### Tips
 
 * Python version is 2.7 in the images
 * PaddlePaddle Docker doesn't install `vim` by default in order to reduce the volume, and you can install it by executing `apt-get install -y vim` command in the container to edit codes.
