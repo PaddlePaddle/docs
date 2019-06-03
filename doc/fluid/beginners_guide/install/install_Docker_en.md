@@ -24,7 +24,7 @@
 
 	`docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
 
-	> Parameters in the commands above mean: --name [Name of container]  set the name ofDocker；-it  the parameter means the container has been working interactively with the localhost； -v $PWD:/paddle  appoints to pull the present path(which will unfold to absolute path by PWD variable on Linux) to /paddle catalogue inside the container； `<imagename>` appoints the name of the image needed, and you can check by `docker images` command；/bin/bash  is the command to execute in Docker
+	> The meanings of the parameters in the command above : --name [Name of container]  sets the name of Docker；-it means the container has been working interactively with the localhost； -v $PWD:/paddle  mounts the present path (PWD will be expanded to the absolute path on Linux) to /paddle directory inside the container； `<imagename>`  specifies the name of the image needed, and you can check it by `docker images` command；/bin/bash  is the command to execute in Docker.
 
 So far, you have installed PaddlePaddle with Docker successfully, for more usage details please refer to [Docker Official Documents](https://docs.docker.com)
 
