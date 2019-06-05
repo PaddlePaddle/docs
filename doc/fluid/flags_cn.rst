@@ -16,6 +16,7 @@ String型，['legacy', 'naive_best_fit']中的一个。缺省值为'legacy'。
 示例
 --------
 FLAGS_allocator_strategy=legacy - 使用legacy分配器。
+
 FLAGS_allocator_strategy=naive_best_fit - 使用新设计的分配器。
 
 
@@ -304,8 +305,10 @@ Double型，单位为GB，缺省值为-1.0。
 示例
 -------
 FLAGS_eager_delete_tensor_gb=0.0 - 一旦不再使用即释放内存垃圾。
+
 FLAGS_eager_delete_tensor_gb=1.0 - 垃圾占用内存大小达到1.0GB时释放内存垃圾。
-FLAGS_eager_delete_tensor_gb=-1.0 - 禁用垃圾回收策略。
+
+FLAGS_eager_delete_tensor_gb=-1.0 - 禁用垃圾回收策略。    
 
 注释
 -------
@@ -385,6 +388,7 @@ Bool型，缺省值为True。
 示例
 -------
 FLAGS_fast_eager_deletion_mode=True - 启用快速垃圾回收策略。
+
 FLAGS_fast_eager_deletion_mode=False - 禁用快速垃圾回收策略。
 
 
@@ -419,7 +423,9 @@ Bool型，缺省值为False。
 
 示例
 -------
-FLAGS_free_idle_memory=True - 空闲内存太多时释放。 FLAGS_free_idle_memory=False - 不释放空闲内存。
+FLAGS_free_idle_memory=True - 空闲内存太多时释放。
+
+FLAGS_free_idle_memory=False - 不释放空闲内存。
 
 
 fuse_parameter_groups_size
@@ -465,6 +471,7 @@ Bool型，缺省值为False。
 示例
 -------
 FLAGS_init_allocated_mem=True - 对分配的内存进行非零初始化。
+
 FLAGS_init_allocated_mem=False - 不会对分配的内存进行非零初始化。
 
 
@@ -565,7 +572,9 @@ Double型，范围为[0.0, 1.0]，缺省值为1.0。
 示例
 -------
 FLAGS_memory_fraction_of_eager_deletion=0 - 保留所有临时变量，也就是禁用垃圾回收策略。
-FLAGS_memory_fraction_of_eager_deletion=1 - 释放所有临时变量。
+
+FLAGS_memory_fraction_of_eager_deletion=1 - 释放所有临时变量。   
+
 FLAGS_memory_fraction_of_eager_deletion=0.5 - 仅释放50%比例的占用内存最多的变量。
 
 

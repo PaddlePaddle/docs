@@ -15,6 +15,7 @@ String, enum in ['legacy', 'naive_best_fit']. The default value is 'legacy'.
 Example
 --------
 FLAGS_allocator_strategy=legacy would use the legacy allocator.
+
 FLAGS_allocator_strategy=naive_best_fit would use the new-designed allocator.
 
 
@@ -302,8 +303,10 @@ Double, in GB unit. The default value is -1.0.
 
 Example
 -------
-FLAGS_eager_delete_tensor_gb=0.0 would make memory garbage release immediately once it is not used.
-FLAGS_eager_delete_tensor_gb=1.0 would make memory garbage release till the memory size of garbages reaches 1.0GB.
+FLAGS_eager_delete_tensor_gb=0.0 would make memory garbage release immediately once it is not used. 
+
+FLAGS_eager_delete_tensor_gb=1.0 would make memory garbage release till the memory size of garbages reaches 1.0GB. 
+
 FLAGS_eager_delete_tensor_gb=-1.0 would disable garbage collection strategy.
 
 Note
@@ -383,7 +386,8 @@ Bool. The default value is True.
 
 Example
 -------
-FLAGS_fast_eager_deletion_mode=True would turn on fast garbage collection strategy.
+FLAGS_fast_eager_deletion_mode=True would turn on fast garbage collection strategy. 
+
 FLAGS_fast_eager_deletion_mode=False would turn off fast garbage collection strategy.
 
 
@@ -420,6 +424,7 @@ Bool. The default value is False.
 Example
 -------
 FLAGS_free_idle_memory=True will free idle memory when there is too much of it. 
+
 FLAGS_free_idle_memory=False will not free idle memory.
 
 
@@ -466,6 +471,7 @@ Bool. The default value is False.
 Example
 -------
 FLAGS_init_allocated_mem=True will make the allocated memory initialize as a non-zero value. 
+
 FLAGS_init_allocated_mem=False will not initialize the allocated memory.
 
 
@@ -567,7 +573,9 @@ Double, inside [0.0, 1.0]. The default value is 1.0.
 Example
 -------
 FLAGS_memory_fraction_of_eager_deletion=0 would keep all temporary variables, that is to say, disabling garbage collection strategy.
-FLAGS_memory_fraction_of_eager_deletion=1 would release all temporary variables.
+
+FLAGS_memory_fraction_of_eager_deletion=1 would release all temporary variables.  
+  
 FLAGS_memory_fraction_of_eager_deletion=0.5 would only release 50% of variables with largest memory size.
 
 
