@@ -3,7 +3,7 @@ API
 =====
 
 ..  toctree::
-    :caption: test
+    :hidden:
     
 
 
