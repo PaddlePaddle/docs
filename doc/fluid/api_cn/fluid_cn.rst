@@ -53,7 +53,7 @@ str类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方
 
 .. py:attribute:: memory_optimize
 
-bool类型。设为True时可用于储存完整的内存消耗。为实验性特征，一些变量可能会被优化策略重用/移除。如果你需要在使用该特征时获取某些变量，请把变量的persistable property设为True。默认为False。
+bool类型。设为True时可用于减少总内存消耗。为实验性属性，一些变量可能会被优化策略重用/移除。如果你需要在使用该特征时获取某些变量，请把变量的persistable property设为True。默认为False。
 
 .. py:attribute:: reduce_strategy
 
@@ -252,7 +252,7 @@ create_lod_tensor
      
         t = fluid.create_lod_tensor(np.ndarray([5, 30]), [[2, 3]], fluid.CPUPlace())
 
-参考api_guide_low_level_lod_tensor以获取更多关于LoD的信息。
+参考 :ref:`api_guide_tensor` 以获取更多关于LoD的信息。
 
 参数:
 	- **data** (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
@@ -1055,7 +1055,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
             import paddle.fluid as fluid
             import numpy
      
-            #首先创建执行器
+            #首先创建执行引擎
             place = fluid.CPUPlace() # fluid.CUDAPlace(0)
             exe = fluid.Executor(place)
      
@@ -1388,9 +1388,17 @@ LoDTensor的数组。
 
 将LoDTensor追加到LoDTensorArray后。
 
+**示例代码**
 
+.. code-block:: python
 
-
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            arr = fluid.LoDTensorArray()
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+            arr.append(t)
 
 
 
@@ -1449,11 +1457,11 @@ name_scope
     with fluid.name_scope("s2"):
        c = b * 1
     with fluid.name_scope("s3"):
-        d = c / 1
+       d = c / 1
  with fluid.name_scope("s1"):
-    f = fluid.layers.pow(d, 2.0)
+       f = fluid.layers.pow(d, 2.0)
  with fluid.name_scope("s4"):
-    g = f - 1
+       g = f - 1
 
 
 
@@ -1771,8 +1779,8 @@ Program
 
 有些operator，在训练和测试之间的行为是不同的，比如batch_norm。它们有一个属性is_test来控制行为。当for_test=True时，此方法将把它们的is_test属性更改为True。
 
-- 克隆Program，该Program用于训练时，将 ``for_test`` 设置为False。
-- 克隆Program，该Program用于测试时，将 ``for_test`` 设置为True。我们不会在此处对程序进行任何剪枝，因此，如果您只是想要一个用于测试的前向传播程序，请在使用Opimizer.minimize之前使用clone
+- 克隆Program用于训练时，将 ``for_test`` 设置为False。
+- 克隆Program用于测试时，将 ``for_test`` 设置为True。我们不会在此处对程序进行任何裁剪，因此，如果您只是想要一个用于测试的前向计算程序，请在使用Opimizer.minimize之前使用clone
 
 注意:此API不会删除任何操作符。请在backward和optimization之前使用clone(for_test=True)。
 
@@ -1793,7 +1801,7 @@ Program
 
 **代码示例**
 
-注意，程序说明在clone后的顺序可能不同，这不会影响您的训练或测试进程。 在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
+注意，Program Desc在clone后的顺序可能不同，这不会影响您的训练或测试进程。 在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
 
 ..  code-block:: python     
                 
