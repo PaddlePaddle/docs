@@ -50,7 +50,7 @@ load_inference_model
                   feed={feed_target_names[0]: tensor_img},
                   fetch_list=fetch_targets)
 
-        # endpoints是你的服务器端点列表，以上仅为一个样例
+        # endpoints是pserver服务器终端列表，下面仅为一个样例
         endpoints = ["127.0.0.1:2023","127.0.0.1:2024"]
         # 如果需要查询表格，我们可以使用：
         [dist_inference_program, dist_feed_target_names, dist_fetch_targets] = fluid.io.load_inference_model(dirname=path,executor=exe,pserver_endpoints=endpoints)
@@ -198,8 +198,8 @@ load_vars
                        filename="vars_file")
     fluid.io.load_vars(executor=exe, dirname=path, vars=var_list,
                        filename="vars_file")
-    # 加载w和b，它们此前应被保存在同一文件中
-    # 文件名为 'var_file' ，路径为 "./my_paddle_model"
+    # 加载w和b，它们此前应被保存在同一名为'var_file'的文件中
+    # 该文件所在路径为 "./my_paddle_model"
  
 
 
@@ -366,7 +366,7 @@ PyReader
 如果所有的输入都没有LOD，这个方法比 ``decorate_sample_list_generator(paddle.batch(sample_generator, ...))`` 更快。
 
 参数:
-  - **sample_generator** (generator)  – 返回list(numpy.ndarray) - 类型化样本数据的Python生成器
+  - **sample_generator** (generator)  – 返回list(numpy.ndarray) - typed data数据的Python生成器
   - **batch_size** (int) – batch size，必须大于0
   - **drop_last** (bool) – 当样本数小于batch数量时，是否删除最后一个batch
   - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
