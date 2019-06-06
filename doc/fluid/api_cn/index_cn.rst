@@ -3,8 +3,9 @@ API
 =====
 
 ..  toctree::
-    :maxdepth: 1
+    :hidden:  
 
+    ../flags_cn.rst
     ../api_guides/index_cn.rst
     fluid_cn.rst
     average_cn.rst

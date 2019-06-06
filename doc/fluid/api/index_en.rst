@@ -3,8 +3,9 @@ API Reference
 =============
 
 ..  toctree::
-    :maxdepth: 1
+    :hidden:
 
+    ../flags_en.rst
     ../api_guides/index_en.rst
     fluid.rst
     average.rst
