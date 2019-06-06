@@ -5,16 +5,42 @@
 1. Add `profiler.start_profiler(...)` and `profiler.stop_profiler(...)` to the main training loop. After run, the code will generate a profile record file `/tmp/profile`. **Warning**: Please do not run too many batches when use profiler to record timeline information, for the profile record will grow with the batch number.
 
 	```python
-    for pass_id in range(pass_num):
-        for batch_id, data in enumerate(train_reader()):
-            if pass_id == 0 and batch_id == 5:
-                profiler.start_profiler("All")
-            elif pass_id == 0 and batch_id == 10:
-                profiler.stop_profiler("total", "/tmp/profile")
-            exe.run(fluid.default_main_program(),
-                    feed=feeder.feed(data),
-                    fetch_list=[])
-	            ...
+
+    import numpy as np
+    import paddle
+    import paddle.fluid as fluid
+    from paddle.fluid import profiler
+
+    place = fluid.CPUPlace()
+
+    def reader():
+        for i in range(100):
+            yield [np.random.random([4]).astype('float32'), np.random.random([3]).astype('float32')],
+
+    main_program = fluid.Program()
+    startup_program = fluid.Program()
+
+    with fluid.program_guard(main_program, startup_program):
+    	 data_1 = fluid.layers.data(name='data_1', shape=[1, 2, 2])
+         data_2 = fluid.layers.data(name='data_2', shape=[1, 1, 3])
+	 out = fluid.layers.fc(input=[data_1, data_2], size=2)
+	 # ...
+
+	 feeder = fluid.DataFeeder([data_1, data_2], place)
+         exe = fluid.Executor(place)
+	 exe.run(startup_program)
+	 pass_num = 10
+
+	 for pass_id in range(pass_num):
+            for batch_id, data in enumerate(reader()):
+	        if pass_id == 0 and batch_id == 5:
+		     profiler.start_profiler("All")
+		elif pass_id == 0 and batch_id == 10:
+		     profiler.stop_profiler("total", "/tmp/profile")
+		outs = exe.run(program=main_program,
+		               feed=feeder.feed(data),
+		               fetch_list=[out])
+
 	```
 
 2. Run `python paddle/tools/timeline.py` to process `/tmp/profile`, it will generate another

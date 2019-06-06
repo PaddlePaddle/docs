@@ -57,6 +57,22 @@ equal
 ..  autofunction:: paddle.fluid.layers.equal
     :noindex:
 
+.. _api_fluid_layers_greater_equal:
+
+greater_equal
+-------------
+
+..  autofunction:: paddle.fluid.layers.greater_equal
+    :noindex:
+
+.. _api_fluid_layers_greater_than:
+
+greater_than
+------------
+
+..  autofunction:: paddle.fluid.layers.greater_than
+    :noindex:
+
 .. _api_fluid_layers_IfElse:
 
 IfElse
@@ -82,12 +98,28 @@ is_empty
 ..  autofunction:: paddle.fluid.layers.is_empty
     :noindex:
 
+.. _api_fluid_layers_less_equal:
+
+less_equal
+----------
+
+..  autofunction:: paddle.fluid.layers.less_equal
+    :noindex:
+
 .. _api_fluid_layers_less_than:
 
 less_than
 ---------
 
 ..  autofunction:: paddle.fluid.layers.less_than
+    :noindex:
+
+.. _api_fluid_layers_not_equal:
+
+not_equal
+---------
+
+..  autofunction:: paddle.fluid.layers.not_equal
     :noindex:
 
 .. _api_fluid_layers_Print:
@@ -439,6 +471,14 @@ data_norm
 ..  autofunction:: paddle.fluid.layers.data_norm
     :noindex:
 
+.. _api_fluid_layers_deformable_conv:
+
+deformable_conv
+---------------
+
+..  autofunction:: paddle.fluid.layers.deformable_conv
+    :noindex:
+
 .. _api_fluid_layers_dice_loss:
 
 dice_loss
@@ -503,6 +543,14 @@ elementwise_div
 ..  autofunction:: paddle.fluid.layers.elementwise_div
     :noindex:
 
+.. _api_fluid_layers_elementwise_floordiv:
+
+elementwise_floordiv
+--------------------
+
+..  autofunction:: paddle.fluid.layers.elementwise_floordiv
+    :noindex:
+
 .. _api_fluid_layers_elementwise_max:
 
 elementwise_max
@@ -517,6 +565,14 @@ elementwise_min
 ---------------
 
 ..  autofunction:: paddle.fluid.layers.elementwise_min
+    :noindex:
+
+.. _api_fluid_layers_elementwise_mod:
+
+elementwise_mod
+---------------
+
+..  autofunction:: paddle.fluid.layers.elementwise_mod
     :noindex:
 
 .. _api_fluid_layers_elementwise_mul:
@@ -1007,12 +1063,36 @@ random_crop
 ..  autofunction:: paddle.fluid.layers.random_crop
     :noindex:
 
+.. _api_fluid_layers_rank:
+
+rank
+----
+
+..  autofunction:: paddle.fluid.layers.rank
+    :noindex:
+
 .. _api_fluid_layers_rank_loss:
 
 rank_loss
 ---------
 
 ..  autofunction:: paddle.fluid.layers.rank_loss
+    :noindex:
+
+.. _api_fluid_layers_reduce_all:
+
+reduce_all
+----------
+
+..  autofunction:: paddle.fluid.layers.reduce_all
+    :noindex:
+
+.. _api_fluid_layers_reduce_any:
+
+reduce_any
+----------
+
+..  autofunction:: paddle.fluid.layers.reduce_any
     :noindex:
 
 .. _api_fluid_layers_reduce_max:
@@ -1311,6 +1391,14 @@ sigmoid_cross_entropy_with_logits
 ..  autofunction:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
     :noindex:
 
+.. _api_fluid_layers_sign:
+
+sign
+----
+
+..  autofunction:: paddle.fluid.layers.sign
+    :noindex:
+
 .. _api_fluid_layers_similarity_focus:
 
 similarity_focus
@@ -1503,6 +1591,14 @@ warpctc
 ..  autofunction:: paddle.fluid.layers.warpctc
     :noindex:
 
+.. _api_fluid_layers_where:
+
+where
+-----
+
+..  autofunction:: paddle.fluid.layers.where
+    :noindex:
+
 ops
 ===
 
@@ -1608,6 +1704,14 @@ round
 -----
 
 ..  autofunction:: paddle.fluid.layers.round
+    :noindex:
+
+.. _api_fluid_layers_rsqrt:
+
+rsqrt
+-----
+
+..  autofunction:: paddle.fluid.layers.rsqrt
     :noindex:
 
 .. _api_fluid_layers_sigmoid:
@@ -1773,6 +1877,14 @@ create_tensor
 ..  autofunction:: paddle.fluid.layers.create_tensor
     :noindex:
 
+.. _api_fluid_layers_diag:
+
+diag
+----
+
+..  autofunction:: paddle.fluid.layers.diag
+    :noindex:
+
 .. _api_fluid_layers_fill_constant:
 
 fill_constant
@@ -1811,6 +1923,14 @@ isfinite
 --------
 
 ..  autofunction:: paddle.fluid.layers.isfinite
+    :noindex:
+
+.. _api_fluid_layers_linspace:
+
+linspace
+--------
+
+..  autofunction:: paddle.fluid.layers.linspace
     :noindex:
 
 .. _api_fluid_layers_ones:
@@ -1861,16 +1981,16 @@ zeros
 ..  autofunction:: paddle.fluid.layers.zeros
     :noindex:
 
+.. _api_fluid_layers_zeros_like:
+
+zeros_like
+----------
+
+..  autofunction:: paddle.fluid.layers.zeros_like
+    :noindex:
+
 learning_rate_scheduler
 =======================
-
-.. _api_fluid_layers_append_LARS:
-
-append_LARS
------------
-
-..  autofunction:: paddle.fluid.layers.append_LARS
-    :noindex:
 
 .. _api_fluid_layers_cosine_decay:
 
@@ -1977,6 +2097,14 @@ box_decoder_and_assign
 ----------------------
 
 ..  autofunction:: paddle.fluid.layers.box_decoder_and_assign
+    :noindex:
+
+.. _api_fluid_layers_collect_fpn_proposals:
+
+collect_fpn_proposals
+---------------------
+
+..  autofunction:: paddle.fluid.layers.collect_fpn_proposals
     :noindex:
 
 .. _api_fluid_layers_density_prior_box:

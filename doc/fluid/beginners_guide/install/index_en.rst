@@ -15,7 +15,7 @@ PaddlePaddle currently supports the following environments：
 
 
 Please make sure your environment meets the conditions above.
-And the installation assumes your computer possesses 64-bit operating system, and AVX instruction set is supported by the processor, otherwise you should use the version of :code:`no_avx` in `whl package list - Dev <Tables_en.html/#ciwhls>`_ . 
+And the installation assumes your computer possesses 64-bit operating system, and AVX instruction set is supported by the processor, otherwise you should use the version of :code:`no_avx` in `whl package list - Dev <Tables_en.html/#ciwhls>`_ .
 
 
 - If you are planning to use  `pip <https://pypi.org/pypi/>`_ to install PaddlePaddle, please type the following commands directly:
@@ -30,7 +30,7 @@ And the installation assumes your computer possesses 64-bit operating system, an
 
 - If you are planning to use `docker <https://www.docker.com>`_ to install PaddlePaddle, please type the following commands directly:
 
-:code:`docker run --name [Name of container] -it -v $PWD:/paddle hub.baidubce.com/paddlepaddle/paddle:[docker version] /bin/bash`
+:code:`docker run --name [Name of container] -it -v $PWD:/paddle paddlepaddle/paddle:[docker version] /bin/bash`
 
     where [docker version] can be looked up in `DockerHub <https://hub.docker.com/r/paddlepaddle/paddle/tags/>`_
 

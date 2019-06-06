@@ -133,7 +133,7 @@ Data Reader Interface
 
 	iterable = data_reader()
 
-从iterable生成的元素应该是单个数据条目，而不是mini batch。数据输入可以是单个项目，也可以是项目的元组，但应为 `支持的类型 <../../user_guides/howto/prepare_data/feeding_data.html#fluid>`_ （如, numpy 1d array of float32, int, list of int）
+从iterable生成的元素应该是单个数据条目，而不是mini batch。数据输入可以是单个项目，也可以是项目的元组，但应为 :ref:`user_guide_paddle_support_data_types` （如, numpy 1d array of float32, int, list of int）
 
 
 单项目数据读取器创建者的示例实现：
