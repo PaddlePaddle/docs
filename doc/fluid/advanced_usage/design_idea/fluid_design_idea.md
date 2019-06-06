@@ -97,7 +97,7 @@ prob = ie()
 
 用户描述的block与program信息在Fluid中以[protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers) 格式保存，所有的`protobuf`信息被定义在`framework.proto`中，在Fluid中被称为BlockDesc和ProgramDesc。ProgramDesc和BlockDesc的概念类似于一个[抽象语法树](https://en.wikipedia.org/wiki/Abstract_syntax_tree)。
 
-`BlockDesc`中包含本地变量的定义`vars`，和一系列的operator`ops`：
+`BlockDesc`中包含本地变量的定义 [vars](http://www.paddlepaddle.org/documentation/docs/zh/1.4/api_guides/low_level/program.html#variable)，和一系列的operator`ops`：
 
 ```cpp
  message BlockDesc {
@@ -150,6 +150,8 @@ message AttrDesc {
 
 Executor 在运行时将接受一个`ProgramDesc`、一个`block_id`和一个`Scope`。`ProgramDesc`是`block`的列表，每一项包含`block`中所有参数和`operator`的`protobuf`定义；`block_id`指定入口块；`Scope`是所有变量实例的容器。
 
+其中 `Scope` 包含了 `name` 与 `Variable` 的映射，所有变量都被定义在 `Scope` 里。大部分API会默认使用 `global_scople` ,例如 :code:`Executor.run`,您也可以指定网络运行在某个特定的 `Scope` 中，一个网络可以在不同的 `Scope`内运行，并在该 `Scope` 内更新不同的 `Variable`。
+
 完成的编译执行的具体过程如下图所示：
 
 <p align="center">
@@ -183,8 +185,7 @@ class Executor{
 				auto op = CreateOp(*op_desc);
 				op->Run(*local_scope, place_);
 			}
-		}
-	};
+		}；
 ```
 
 **创建Executor**
