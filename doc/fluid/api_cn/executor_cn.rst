@@ -45,12 +45,12 @@ program中所有的算子会按顺序执行。
 
 
 	train_program = fluid.Program()
-		startup_program = fluid.Program()
-		with fluid.program_guard(train_program, startup_program):
-			data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-	hidden = fluid.layers.fc(input=data, size=10)
-	loss = fluid.layers.mean(hidden)
-	fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+	startup_program = fluid.Program()
+	with fluid.program_guard(train_program, startup_program):
+      data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+      hidden = fluid.layers.fc(input=data, size=10)
+      loss = fluid.layers.mean(hidden)
+      fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
     
 	# 仅运行一次startup program.
 	# 不需要优化/编译这个startup program. 
@@ -70,13 +70,13 @@ program中所有的算子会按顺序执行。
 	# 在这种情况下，输入的batch size应大于CPU_NUM，
 	#否则进程会异常中断。
 	if not use_cuda:
-		os.environ['CPU_NUM'] = str(2)
+		  os.environ['CPU_NUM'] = str(2)
 	compiled_prog = compiler.CompiledProgram(
-		train_program()).with_data_parallel(
-    		loss_name=loss.name)
+      train_program()).with_data_parallel(
+      loss_name=loss.name)
 	loss_data, = exe.run(compiled_prog,
-				feed={"X": x},
-				fetch_list=[loss.name])
+				                feed={"X": x},
+				                fetch_list=[loss.name])
 
 
 参数:	
