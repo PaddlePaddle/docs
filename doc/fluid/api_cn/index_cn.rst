@@ -3,7 +3,7 @@ API
 =====
 
 ..  toctree::
-    :hidden:  
+    :hidden:
 
     ../flags_cn.rst
     ../api_guides/index_cn.rst

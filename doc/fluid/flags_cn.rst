@@ -1,5 +1,6 @@
 
-Flags
+==================
+环境变量FLAGS
 ==================
 
 
@@ -441,21 +442,6 @@ Int32型，缺省值为3。
 示例
 -------
 FLAGS_fuse_parameter_groups_size=3 - 将单组参数的梯度大小设为3。
-
-
-fuse_parameter_memory_size
-*******************************************
-(始于1.4.0)
-
-FLAGS_fuse_parameter_memory_size表示作为通信调用输入（例如NCCLAllReduce）的单组参数梯度的上限内存大小。默认值为0，表示不根据memory_size设置组。单位是字节。
-
-取值范围
----------------
-Uint64型，缺省值为0。
-
-示例
--------
-FLAGS_fuse_parameter_memory_size=131072 - 将单组参数梯度的上限大小设为131072字节。
 
 
 init_allocated_mem
