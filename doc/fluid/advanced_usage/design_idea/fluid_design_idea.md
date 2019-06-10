@@ -21,28 +21,28 @@ Fluid使用一种编译器式的执行流程，分为编译时和运行时两个
 </p>
 
  1. 编译时，用户编写一段python程序，通过调用 Fluid 提供的算子，向一段 Program 中添加变量（Tensor）以及对变量的操作（Operators 或者 Layers）。用户只需要描述核心的前向计算，不需要关心反向计算、分布式下以及异构设备下如何计算。
-
+ 
  2. 原始的 Program 在平台内部转换为中间描述语言： `ProgramDesc`。
-
+ 
  3. 编译期最重要的一个功能模块是 `Transpiler`。`Transpiler` 接受一段 `ProgramDesc` ，输出一段变化后的 `ProgramDesc` ，作为后端 `Executor` 最终需要执行的 Fluid Program
 
  4. 后端 Executor 接受 Transpiler 输出的这段 Program ，依次执行其中的 Operator（可以类比为程序语言中的指令），在执行过程中会为 Operator 创建所需的输入输出并进行管理。
+	
 
 
-
-
-## 2. Program设计思想
+ 
+## 2. Program设计思想 
 
 用户完成网络定义后，一段 Fluid 程序中通常存在 2 段 Program：
 
   1. fluid.default_startup_program：定义了创建模型参数，输入输出，以及模型中可学习参数的初始化等各种操作
-
+    
     default_startup_program 可以由框架自动生成，使用时无需显示地创建
-
+    
     如果调用修改了参数的默认初始化方式，框架会自动的将相关的修改加入default_startup_program
-
+  
   2. fluid.default_main_program ：定义了神经网络模型，前向反向计算，以及优化算法对网络中可学习参数的更新
-
+    
     使用Fluid的核心就是构建起 default_main_program
 
 
@@ -53,7 +53,7 @@ Fluid 的 Program 的基本结构是一些嵌套 blocks，形式上类似一段 
 blocks中包含：
 
 -  本地变量的定义
--  一系列的operator
+-  一系列的operator 
 
 block的概念与通用程序一致，例如在下列这段C++代码中包含三个block：
 
@@ -95,7 +95,7 @@ prob = ie()
 ```
 ### BlockDesc and ProgramDesc
 
-用户描述的block与program信息在Fluid中以[protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers) 格式保存，所有的`protobuf`信息被定义在`framework.proto`中，在Fluid中被称为BlockDesc和ProgramDesc。ProgramDesc和BlockDesc的概念类似于一个[抽象语法树](https://en.wikipedia.org/wiki/Abstract_syntax_tree)。
+用户描述的block与program信息在Fluid中以[protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers) 格式保存，所有的`protobub`信息被定义在`framework.proto`中，在Fluid中被称为BlockDesc和ProgramDesc。ProgramDesc和BlockDesc的概念类似于一个[抽象语法树](https://en.wikipedia.org/wiki/Abstract_syntax_tree)。
 
 `BlockDesc`中包含本地变量的定义`vars`，和一系列的operator`ops`：
 
@@ -172,12 +172,12 @@ class Executor{
 				Scope* scope,
 				int block_id) {
 			auto& block = pdesc.Block(block_id);
-
+			
 			//创建所有变量
 			for (auto& var : block.AllVars())
 				scope->Var(Var->Name());
 			}
-
+			
 			//创建OP并按顺序执行
 			for (auto& op_desc : block.AllOps()){
 				auto op = CreateOp(*op_desc);
@@ -300,7 +300,7 @@ BlockDesc中包含定义的 vars 和一系列的 ops，以输入x为例，python
 x = fluid.layers.data(name="x",shape=[1],dtype='float32')
 ```
 在BlockDesc中，变量x被描述为：
-```
+``` 
 vars {
     name: "x"
     type {
@@ -359,5 +359,5 @@ Fluid使用Executor.run来运行一段Program。
        [6.099215 ]], dtype=float32), array([1.6935859], dtype=float32)]
 ```
 
-至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../../user_guides/index_cn.html)相关内容，[模型库](../../user_guides/models/index_cn.html
+至此您已经了解了Fluid 内部的执行流程的核心概念，更多框架使用细节请参考[使用指南](../../user_guides/index.html)相关内容，[模型库](../../user_guides/models/index_cn.html
 )中也为您提供了丰富的模型示例以供参考。

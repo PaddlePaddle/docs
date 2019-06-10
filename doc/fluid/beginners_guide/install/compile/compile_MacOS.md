@@ -186,7 +186,6 @@
 			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
 			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
-
 	>`-DPY_VERSION=3.5`请修改为安装环境的Python版本
 
 10. 使用以下命令来编译：
@@ -204,10 +203,7 @@
 恭喜，至此您已完成PaddlePaddle的编译安装
 
 ## ***验证安装***
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
-
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+安装完成后您可以使用：`python` 或 `python3` 进入Python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
 
 ## ***如何卸载***
 请使用以下命令卸载PaddlePaddle

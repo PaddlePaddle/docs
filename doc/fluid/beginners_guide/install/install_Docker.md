@@ -4,8 +4,6 @@
 
 ## 环境准备
 
-- 目前支持的系统类型，请见[安装说明](./index_cn.html)，请注意目前暂不支持在CentOS 6使用Docker
-
 - 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
 - 如需在Linux开启GPU支持，请[安装nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
@@ -18,13 +16,7 @@
 
 	* GPU版的PaddlePaddle： `docker pull hub.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda9.0-cudnn7`
 
-    如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
-
-    * CPU版的PaddlePaddle： `docker pull paddlepaddle/paddle:[版本号]`
-
-    * GPU版的PaddlePaddle： `docker pull paddlepaddle/paddle:[版本号]-gpu-cuda9.0-cudnn7`
-
-    在`:`后请您填写PaddlePaddle版本号，例如当前版本，更多请见[镜像简介](#dockers)，上例中，`cuda9.0-cudnn7` 也仅作示意用，您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
+    在`:`后请您填写PaddlePaddle版本号，例如1.2，更多请见[镜像简介](#dockers)
 
 2. 构建、进入Docker容器
 
@@ -41,26 +33,26 @@
 <table>
 	<thead>
 	<tr>
-		<th> 镜像源 </th>
-		<th> 镜像说明 </th>
+		<th> 版本名称 </th>
+		<th> 版本说明 </th>
 	</tr>
 	</thead>
 	<tbody>
-		<tr>
-		<td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
-		<td> 安装了指定版本PaddlePaddle </td>
-	</tr>
 	<tr>
 		<td> hub.baidubce.com/paddlepaddle/paddle:latest </td>
-		<td> 安装了开发版PaddlePaddle。注意：此版本可能包含尚未发布的特性和不稳定的功能，因此不推荐常规用户或在生产环境中使用。 </td>
+		<td> 最新的预先安装好PaddlePaddle CPU版本的镜像 </td>
+	</tr>
+		<tr>
+		<td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
+		<td> 将version换成具体的版本，历史版本的预安装好PaddlePaddle的镜像 </td>
 	</tr>
 	<tr>
 		<td> hub.baidubce.com/paddlepaddle/paddle:latest-gpu </td>
-		<td> 安装了开发版PaddlePaddle（支持GPU）。注意：此版本可能包含尚未发布的特性和不稳定的功能，因此不推荐常规用户或在生产环境中使用。 </td>
+		<td> 最新的预先安装好PaddlePaddle GPU版本的镜像 </td>
 	</tr>
 		<tr>
 		<td> hub.baidubce.com/paddlepaddle/paddle:latest-dev </td>
-		<td> 安装了PaddlePaddle最新的开发环境 </td>
+		<td> 最新的PaddlePaddle的开发环境 </td>
 	</tr>
    </tbody>
 </table>

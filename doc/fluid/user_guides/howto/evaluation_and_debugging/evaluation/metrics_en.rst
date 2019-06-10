@@ -21,15 +21,15 @@ Fluid contains common classification metrics, such as Precision, Recall, Accurac
 .. code-block:: python
 
 	>>> import paddle.fluid as fluid
-   	>>> label = fluid.layers.data(name="label", shape=[1], dtype="int32")
+   	>>> labels = fluid.layers.data(name="data", shape=[1], dtype="int32")
 	>>> data = fluid.layers.data(name="data", shape=[32, 32], dtype="int32")
 	>>> pred = fluid.layers.fc(input=data, size=1000, act="tanh")
 	>>> acc = fluid.metrics.Precision()
-	>>> for pass_iter in range(PASSES):
+	>>> for pass in range(PASSES):
 	>>>   acc.reset()
 	>>>   for data in train_reader():
 	>>>       loss, preds, labels = exe.run(fetch_list=[cost, preds, labels])
-	>>>       acc.update(preds=preds, labels=labels)
+	>>>   acc.update(preds=preds, labels=labels)
 	>>>   numpy_acc = acc.eval()
 		
 

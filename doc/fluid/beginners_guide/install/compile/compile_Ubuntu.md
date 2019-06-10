@@ -21,11 +21,11 @@
 
 在Ubuntu的系统下有2种编译方式：
 
-* 用Docker编译（暂不支持Ubuntu18.04下GPU版本）
-* 本机编译
+* Docker源码编译（暂不支持Ubuntu18.04下GPU版本）
+* 本机源码编译
 
 <a name="ubt_docker"></a>
-### ***用Docker编译***
+### 用Docker编译
 
 [Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源
 
@@ -209,10 +209,7 @@
 恭喜，至此您已完成PaddlePaddle的编译安装
 
 ## ***验证安装***
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
-
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+安装完成后您可以使用：`python` 或 `python3` 进入Python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
 
 ## ***如何卸载***
 请使用以下命令卸载PaddlePaddle：

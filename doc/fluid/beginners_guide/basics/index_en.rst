@@ -1,8 +1,8 @@
-############################
+##########################
 Basic Deep Learning Models
-############################
+##########################
 
-This section collects 8 documents arranging from the simplest to the most challenging, which will guide you through the basic deep learning tasks in PaddlePaddle.
+This section collects six documents arranging from the simplest to the most challenging, which will guide you through the basic deep learning tasks in PaddlePaddle.
 
 The documentation in this chapter covers a lot of deep learning basics and how to implement them with PaddlePaddle. See the instructions below for how to use:
 
@@ -15,8 +15,6 @@ The book you are reading is an "interactive" e-book - each chapter can be run in
 ..  toctree::
     :titlesonly:
 
-    fit_a_line/README.md
-    recognize_digits/README.md
     image_classification/index_en.md
     word2vec/index_en.md
     recommender_system/index_en.md
@@ -47,7 +45,7 @@ Just run these in shell:
 
 	docker run -d -p 8888:8888 paddlepaddle/book
 
-It downloads the Docker image for running books from DockerHub.com.
+It downloads the Docker image for running books from DockerHub.com. 
 To read and edit this book on-line, please visit http://localhost:8888 in your browser.
 
 If the Internet connection to DockerHub.com is compromised, try our spare docker image named docker.paddlepaddlehub.com:

@@ -68,7 +68,7 @@ Once you have **properly installed Docker**, you can start **compiling PaddlePad
 
 9. Execute cmake:
 
-	> For details on the compilation options, see the [compilation options table](../Tables_en.html/#Compile).
+	> For details on the compilation options, see the [compilation options table](../Tables.html/#Compile).
 
 	* For users who need to compile the **CPU version PaddlePaddle**:
 
@@ -121,7 +121,7 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 4. (Only For Python3) Set Python-related environment variables:
 
-	- a. First use
+	- a. First use 
 			```find `dirname $(dirname
 			  $(which python3))` -name "libpython3.*.dylib"```
 			to find the path to Pythonlib (the first one it prompts is the dylib path for the python you need to use), then (below [python-lib-path] is replaced by finding the file path)
@@ -148,7 +148,7 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 		Since we are using CMake3.4 please follow the steps below:
 
 		1. Download the CMake image from the [official CMake website](https://cmake.org/files/v3.4/cmake-3.4.3-Darwin-x86_64.dmg) and install it.
-
+	
 		2. Enter `sudo "/Applications/CMake.app/Contents/bin/cmake-gui" –install` in the console
 
 	- b. If you do not want to use the system default blas and want to use your own installed OPENBLAS please read [FAQ](../FAQ.html/#OPENBLAS)

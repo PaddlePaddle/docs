@@ -9,8 +9,9 @@ This instruction will show you how to install PaddlePaddle on Windows.  The foll
 
 **Note** : 
 
-* The current version does not support NCCL, distributed training related functions.
+* The current version does not support NCCL, distributed training, AVX, warpctc and MKL related functions.
 
+* Currently, only PaddlePaddle for CPU is supported on Windows.
 
 
 
@@ -29,20 +30,14 @@ Version of pip or pip3 should be equal to or above 9.0.1 .
 
 * Install PaddlePaddle
 
-* ***CPU version of PaddlePaddle***:
 Execute `pip install paddlepaddle` or `pip3 install paddlepaddle` to download and install PaddlePaddle.
 
-* ***GPU version of PaddlePaddle***:
-Execute `pip install paddlepaddle-gpu`(python2.7) or `pip3 install paddlepaddle-gpu`(python3.x) to download and install PaddlePaddle.
- 
+
 ## ***Verify installation***
 
 After completing the installation, you can use `python` or `python3` to enter the python interpreter and then use `import paddle.fluid` to verify that the installation was successful.
 
 ## ***How to uninstall***
 
-* ***CPU version of PaddlePaddle***:
 Use the following command to uninstall PaddlePaddle : `pip uninstallpaddlepaddle `or `pip3 uninstall paddlepaddle`
 
-* ***GPU version of PaddlePaddle***:
-Use the following command to uninstall PaddlePaddle : `pip uninstall paddlepaddle-gpu` or `pip3 uninstall paddlepaddle-gpu`

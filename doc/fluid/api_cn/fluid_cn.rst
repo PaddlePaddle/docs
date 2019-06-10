@@ -2,6 +2,138 @@
  fluid
 #################
 
+
+
+.. _cn_api_fluid_AsyncExecutor:
+
+AsyncExecutor
+-------------------------------
+
+.. py:class:: paddle.fluid.AsyncExecutor(place=None, run_mode='')
+
+**AsyncExecutor正在积极开发，API可能在短期内进行调整。**
+
+Python中的异步执行器。AsyncExecutor利用多核处理器和数据排队的强大功能，使数据读取和融合解耦，每个线程并行运行。
+
+AsyncExecutor不是在python端读取数据，而是接受一个训练文件列表，该列表将在c++中检索，然后训练输入将被读取、解析并在c++代码中提供给训练网络。
+
+
+参数：
+	- **place** (fluid.CPUPlace|None) - 指示 executor 将在哪个设备上运行。目前仅支持CPU
+
+**代码示例：**
+
+.. code-block:: python
+
+    data_feed = fluid.DataFeedDesc('data.proto')
+    startup_program = fluid.default_startup_program()
+    main_program = fluid.default_main_program()
+    filelist = ["train_data/part-%d" % i for i in range(100)]
+    thread_num = len(filelist) / 4
+    place = fluid.CPUPlace()
+    async_executor = fluid.AsyncExecutor(place)
+    async_executor.run_startup_program(startup_program)
+    epoch = 10
+    for i in range(epoch):
+        async_executor.run(main_program,
+                           data_feed,
+                           filelist,
+                           thread_num,
+                           [acc],
+                           debug=False)
+
+.. note::
+
+	对于并行gpu调试复杂网络，您可以在executor上测试。他们有完全相同的参数，并可以得到相同的结果。
+
+	目前仅支持CPU
+
+.. py:method:: run(program, data_feed, filelist, thread_num, fetch, mode='', debug=False)
+
+使用此 ``AsyncExecutor`` 来运行 ``program`` 。
+
+``filelist`` 中包含训练数据集。用户也可以通过在参数 ``fetch`` 中提出变量来检查特定的变量， 正如 ``fluid.Executor`` 。
+
+但不像 ``fluid.Executor`` ， ``AsyncExecutor`` 不返回获取到的变量，而是将每个获取到的变量作为标准输出展示给用户。
+
+数据集上的运算在多个线程上执行，每个线程中都会独立出一个线程本地作用域，并在此域中建立运算。
+所有运算同时更新参数值。
+
+参数:	
+  - **program**  (Program) – 需要执行的program。如果没有提供该参数，默认使用 ``default_main_program`` 
+  - **data_feed**  (DataFeedDesc) –  ``DataFeedDesc`` 对象
+  - **filelist**  (str) – 一个包含训练数据集文件的文件列表
+  - **thread_num**  (int) – 并发训练线程数。参照 *注解* 部分获取合适的设置方法
+  - **fetch**  (str|list) – 变量名，或者变量名列表。指明最后要进行观察的变量命名
+  - **mode**  (str) – 该接口的运行模式
+  - **debug**  (bool) – 如果为True, 在每一个minibatch处理后，fetch 中指明的变量将会通过标准输出打印出来
+
+.. note::
+    1.该执行器会运行program中的所有运算，不只是那些依赖于fetchlist的运算
+
+    2.该类执行器在多线程上运行，每个线程占用一个CPU核。为了实现效率最大化，建议将 ``thread_num`` 等于或稍微小于CPU核心数
+
+.. py:method:: download_data(afs_path, local_path, fs_default_name, ugi, file_cnt, hadoop_home='$HADOOP_HOME', process_num=12)
+
+download_data是用于分布式训练的默认下载方法，用户可不使用该方法下载数据。
+
+**示例**
+
+..  code-block:: python
+
+    exe = fluid.AsyncExecutor()
+    exe.download_data("/xxx/xxx/xx/",
+                      "./data", "afs://
+     xxx.xxx.xxx.xxx:9901", "xxx,yyy")
+
+参数: 
+  - **afs_path** （str） - 用户定义的afs_path
+  - **local_path** （str） - 下载数据路径
+  - **fs_default_name** （str） - 文件系统服务器地址
+  - **ugi** （str） -  hadoop ugi
+  - **file_cn** （int） - 用户可以指定用于调试的文件号
+  - **hadoop_home** （str） -  hadoop home path
+  - **process_num** （int） - 下载进程号
+
+.. py:method:: get_instance()
+
+获取当前节点的实例，以便用户可以在分布式背景下中执行操作。
+
+.. py:method:: config_distributed_nodes()
+
+如果用户需要运行分布式AsyncExecutor，则需要进行全局配置，以便获取当前进程的信息。
+
+.. py:method:: stop()
+
+在流程结束时，用户应该停止服务器并阻止所有workers。
+
+.. py:method:: init_server(dist_desc)
+
+如果当前进程是server，则初始化当前节点的服务器。
+
+参数: 
+  - **dist_desc** （str）- 描述如何初始化worker和server的protobuf字符串
+
+.. py:method:: init_worker(dist_desc, startup_program)
+
+如果当前进程是worker，则初始化当前节点的worker 
+
+参数: 
+  - **dist_desc** （str）- 描述如何初始化worker和server的protobuf字符串
+  - **startup_program** （fluid.Program）- 当前进程的startup program
+
+.. py:method:: init_model()
+
+可以从其中一个worker中调用的init_model命令。随之，在server中初始化模型参数。
+
+.. py:method:: save_model(save_path)
+
+可以从其中一个worker调用的save_model命令。随之，模型参数会保存在server中并上传到文件系统的save_path指定的位置。
+
+参数: 
+  - **save_path** （str）- 文件系统的保存路径
+
+
 .. _cn_api_fluid_BuildStrategy:
 
 BuildStrategy
@@ -56,15 +188,8 @@ str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce str
 
 .. py:attribute:: remove_unnecessary_lock
 
-BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，ParallelExecutor将运行得更快，默认为 True。
+BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，ParallelExecutor将运行得更快，默认为 False。
 
-.. py:attribute:: sync_batch_norm
-
-类型为bool，sync_batch_norm表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。
-
-当前的实现不支持FP16培训和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。
-
-默认为 False。
 
 
 .. _cn_api_fluid_CompiledProgram:
@@ -72,9 +197,9 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 CompiledProgram
 -------------------------------
 
-.. py:class:: paddle.fluid.CompiledProgram(program_or_graph)
+.. py:class:: paddle.fluid.CompiledProgram(program)
 
-编译成一个用来执行的Graph。
+编译一个接着用来执行的Program。
 
 1. 首先使用layers(网络层)创建程序。
 2. （可选）可使用CompiledProgram来在运行之前优化程序。
@@ -101,9 +226,9 @@ CompiledProgram用于转换程序以进行各种优化。例如，
                                      fetch_list=[loss.name])
 
 参数：
-  - **program_or_graph** (Graph|Program): 如果它是Program，那么它将首先被降成一个graph，以便进一步优化。如果它是一个graph（以前可能优化过），它将直接用于进一步的优化。注意：只有使用 with_data_parallel 选项编译时才支持graph。
+  - **program** : 一个Program对象，承载着用户定义的模型计算逻辑
 
-.. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None, places=None)
+.. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None)
 
 配置Program使其以数据并行方式运行。
 
@@ -112,7 +237,6 @@ CompiledProgram用于转换程序以进行各种优化。例如，
   - **build_strategy** （BuildStrategy） -  build_strategy用于构建图，因此它可以在具有优化拓扑的多个设备/核上运行。 有关更多信息，请参阅  ``fluid.BuildStrategy`` 。 默认None。
   - **exec_strategy** （ExecutionStrategy） -  exec_strategy用于选择执行图的方式，例如使用多少线程，每次清理临时变量之前进行的迭代次数。 有关更多信息，请参阅 ``fluid.ExecutionStrategy`` 。 默认None。
   - **share_vars_from** （CompiledProgram） - 如果有，此CompiledProgram将共享来自share_vars_from的变量。 share_vars_from指定的Program必须由此CompiledProgram之前的Executor运行，以便vars准备就绪。
-  - **places** （list(CUDAPlace)|list(CPUPlace)|None） - 如果提供，则仅在给定位置编译程序。否则，编译时使用的位置由Executor确定，使用的位置由环境变量控制：如果使用GPU，则标记FLAGS_selected_gpus或CUDA_VISIBLE_DEVICES设备；如果使用CPU，则标记CPU_NUM。例如，如果要在GPU 0和GPU 1上运行，请设置places=[fluid.CUDAPlace(0), fluid.CUDAPlace(1)]。如果要在2个CPU核心上运行，请设置places=[fluid.CPUPlace()]*2。
 
 返回: self
 
@@ -126,25 +250,6 @@ CompiledProgram用于转换程序以进行各种优化。例如，
 返回: self
 
 
-.. _cn_api_fluid_cpu_places:
-
-cpu_places
--------------------------------
-
-.. py:function:: paddle.fluid.cpu_places(device_count=None)
-
-创建 ``fluid.CPUPlace`` 对象列表。
-
-如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目将由 ``multiprocessing.cpu_count()`` 确定。
-
-参数：
-  - **device_count** (None|int) - 设备数目
-
-返回: CPUPlace列表
-
-返回类型：out (list(fluid.CPUPlace))
-
-
 
 .. _cn_api_fluid_CPUPlace:
 
@@ -154,7 +259,6 @@ CPUPlace
 .. py:class:: paddle.fluid.CPUPlace
 
 
-CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应的内存。
 
 
 
@@ -167,7 +271,7 @@ CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应�
 create_lod_tensor
 -------------------------------
 
-.. py:function:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place)
+.. py:function:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place) 
 
 
 该函数从一个numpy数组，列表或者已经存在的lod tensor中创建一个lod tensor。
@@ -226,7 +330,7 @@ create_random_int_lodtensor
 
 假如我们想用LoD Tensor来承载一词序列，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么 ``base_shape`` 为[1], 输入的length-based ``recursive_seq_lens`` 是 [[2, 3]]。那么LoDTensor的整体形状应为[5, 1]，并且为两个句子存储5个词。
 
-参数:
+参数:	
     - **recursive_seq_lens** (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
     - **base_shape** (list) – LoDTensor所容纳的基本元素的形状
     - **place** (Place) –  CPU或GPU。 指明返回的新LoD Tensor存储地点
@@ -237,51 +341,11 @@ create_random_int_lodtensor
 
 
 
-.. _cn_api_fluid_cuda_pinned_places:
-
-cuda_pinned_places
--------------------------------
-
-
-.. py:function:: paddle.fluid.cuda_pinned_places(device_count=None)
 
 
 
-创建 ``fluid.CUDAPinnedPlace`` 对象列表。
-
-如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目将由 ``multiprocessing.cpu_count()`` 确定。
-
-参数：
-  - **device_count** (None|int) - 设备数目
-
-返回: CUDAPinnedPlace对象列表
-
-返回类型：out(list(fluid.CUDAPinnedPlace))
 
 
-
-.. _cn_api_fluid_cuda_places:
-
-cuda_places
--------------------------------
-
-.. py:function:: paddle.fluid.cuda_places(device_ids=None)
-
-创建 ``fluid.CUDAPlace`` 对象列表。
-
-
-
-如果 ``device_ids`` 为None，则首先检查 ``FLAGS_selected_gpus`` 的环境变量。如果 ``FLAGS_selected_gpus=0,1,2`` ，则返回的列表将为[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]。如果未设置标志 ``FLAGS_selected_gpus`` ，则将返回所有可见的GPU places。
-
-
-如果 ``device_ids`` 不是None，它应该是GPU的设备ID。例如，如果 ``device_id=[0,1,2]`` ，返回的列表将是[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]。
-
-参数：
-  - **device_ids** (None|list(int)|tuple(int)) - GPU的设备ID列表
-
-返回: CUDAPlace列表
-
-返回类型：out (list(fluid.CUDAPlace))
 
 
 
@@ -294,7 +358,13 @@ CUDAPinnedPlace
 
 .. py:class:: paddle.fluid.CUDAPinnedPlace
 
-CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GPU和CPU访问。
+
+
+
+
+
+
+
 
 
 
@@ -305,8 +375,6 @@ CUDAPlace
 -------------------------------
 
 .. py:class:: paddle.fluid.CUDAPlace
-
-CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace有一个dev_id（设备id）来表明当前CUDAPlace代表的卡数。dev_id不同的CUDAPlace所对应的内存不可相互访问。
 
 
 
@@ -364,9 +432,9 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
     data_feed.set_batch_size(128)
     data_feed.set_dense_slots('wd')  # The slot named 'wd' will be dense
     data_feed.set_use_slots('wd')    # The slot named 'wd' will be used
-
+    
     #Finally, the content can be dumped out for debugging purpose:
-
+    
     print(data_feed.desc())
 
 
@@ -385,7 +453,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 **代码示例：**
 
 .. code-block:: python
-
+	
 	data_feed = fluid.DataFeedDesc('data.proto')
 	data_feed.set_batch_size(128)
 
@@ -402,11 +470,11 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 **代码示例：**
 
 .. code-block:: python
-
+	
 	data_feed = fluid.DataFeedDesc('data.proto')
 	data_feed.set_dense_slots(['words'])
 
-.. note::
+.. note:: 
 
 	默认情况下，所有slot都是稀疏的
 
@@ -426,7 +494,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 	data_feed.set_use_slots(['words'])
 
 .. note::
-
+	
 	默认值不用于所有slot
 
 
@@ -464,13 +532,13 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 以下是简单用法：
 
 ..  code-block:: python
-
+	
 	place = fluid.CPUPlace()
 	img = fluid.layers.data(name='image', shape=[1, 28, 28])
 	label = fluid.layers.data(name='label', shape=[1], dtype='int64')
 	feeder = fluid.DataFeeder([img, label], fluid.CPUPlace())
 	result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
-
+	
 在多GPU模型训练时，如果需要提前分别向各GPU输入数据，可以使用 ``decorate_reader`` 函数。
 
 ..  code-block:: python
@@ -505,14 +573,14 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 	for data in reader():
     		outs = exe.run(program=main_program,
                		       feed=feeder.feed(data))
-
-
+			       
+			       
 .. py:method:: feed(iterable)
 
 
 根据feed_list（数据输入表）和iterable（可遍历的数据）提供的信息，将输入数据转成一种特殊的数据结构，使它们可以输入到 ``Executor`` 和 ``ParallelExecutor`` 中。
 
-参数:
+参数:	
 	- **iterable** (list|tuple) – 要输入的数据
 
 返回：  转换结果
@@ -525,7 +593,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 该方法获取的多个minibatch，并把每个minibatch提前输入进各个设备中。
 
-参数:
+参数:	
     - **iterable** (list|tuple) – 要输入的数据
     - **num_places** (int) – 设备数目。默认为None。
 
@@ -541,23 +609,23 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 .. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
 
-
+  
 将reader返回的输入数据batch转换为多个mini-batch，之后每个mini-batch都会被输入进各个设备（CPU或GPU）中。
-
+    
 参数：
         - **reader** (fun) – 该参数是一个可以生成数据的函数
         - **multi_devices** (bool) – bool型，指明是否使用多个设备
-        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True`` , 可以使用此参数来设置GPU数目。如果 ``multi_devices`` 为 ``None`` ，该函数默认使用当前训练机所有GPU设备。默认为None。
-        - **drop_last** (bool) – 如果最后一个batch的大小比 ``batch_size`` 要小，则可使用该参数来指明是否选择丢弃最后一个batch数据。 默认为 ``True``
+        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True`` , 可以使用此参数来设置GPU数目。如果 ``num_places`` 为 ``None`` ，该函数默认使用当前训练机所有GPU设备。默认为None。
+        - **drop_last** (bool) – 如果最后一个batch的大小比 ``batch_size`` 要小，则可使用该参数来指明是否选择丢弃最后一个batch数据。 默认为 ``True`` 
 
 返回：转换结果
 
 返回类型: dict
-
+    
 抛出异常： ``ValueError`` – 如果 ``drop_last`` 值为False并且data batch与设备不匹配时，产生此异常
 
 
-
+        
 
 
 
@@ -614,7 +682,7 @@ default_startup_program
 
 该函数可以获取默认/全局 startup program (启动程序)。
 
-``fluid.layers`` 中的layer函数会新建参数、readers(读取器)、NCCL句柄作为全局变量。
+``fluid.layers`` 中的layer函数会新建参数、readers(读取器)、NCCL句柄作为全局变量。 
 
 startup_program会使用内在的operators（算子）去初始化他们，并由layer函数将这些operators追加到startup program中。
 
@@ -645,7 +713,7 @@ DistributeTranspiler
 该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
 当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即pserver,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
 在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享 ``NCCL_ID`` 。
-调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``ParallelExecutor`` 来启动NCCL2分布式模式。
+调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``ParallelExecutor`` 来启动NCCL2分布式模式。 
 
 
 
@@ -690,11 +758,11 @@ DistributeTranspiler
 
 该方法可以运行该transpiler（转译器）。
 
-参数:
+参数:	
 	- **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
-	- **program** (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()``
+	- **program** (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
 	- **startup_program** (Program|None) - 要转译的 ``startup_program`` ,默认为 ``fluid.default_startup_program()``
-	- **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号*
+	- **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
 	- **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
 	- **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
  	- **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
@@ -715,10 +783,10 @@ DistributeTranspiler
 
 
 该方法可以得到Pserver（参数服务器）侧的程序
-
-参数:
+ 
+参数:	
 	- **endpoint** (str) – 当前Pserver终端
-
+ 
 返回:	当前Pserver需要执行的program
 
 返回类型:	Program
@@ -729,21 +797,21 @@ DistributeTranspiler
 
 该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
 
-参数:
+参数:	
 	- **endpoint** (str) – 当前Pserver终端
 
 返回:	(main_program, startup_program), “Program”类型的元组
 
-返回类型:	tuple
-
-
+返回类型:	tuple 
+ 
+ 
 .. py:method:: get_startup_program(endpoint, pserver_program=None, startup_program=None)
 
 
 **该函数已停止使用**
 获取当前Pserver的startup_program，如果有多个被分散到不同blocks的变量，则修改operator的输入变量。
 
-参数:
+参数:	
 	- **endpoint** (str) – 当前Pserver终端
 	- **pserver_program** (Program) – 已停止使用。 先调用get_pserver_program
  	- **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
@@ -815,18 +883,18 @@ ExecutionStrategy
 
 
 .. py:attribute:: allow_op_delay
-
+   
 这是一个bool类型成员，表示是否推迟communication operators(交流运算)的执行，这样做会使整体执行过程更快一些。但是在一些模型中，allow_op_delay会导致程序中断。默认为False。
-
+  
 
 
 .. py:attribute:: num_iteration_per_drop_scope
-
+  
 int型成员。它表明了清空执行时产生的临时变量需要的程序执行重复次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为100。
 
 .. note::
   1. 如果在调用 ``run`` 方法时获取结果数据，``ParallelExecutor`` 会在当前程序重复执行尾部清空临时变量
-
+  
   2. 在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
 
 
@@ -857,7 +925,7 @@ Executor
 
 
 
-执行引擎（Executor）使用python脚本驱动，支持在单/多GPU、单/多CPU环境下运行。
+执行引擎（Executor）使用python脚本驱动，仅支持在单GPU环境下运行。多卡环境下请参考 ``ParallelExecutor`` 。
 Python Executor可以接收传入的program,并根据feed map(输入映射表)和fetch_list(结果获取表)
 向program中添加feed operators(数据输入算子)和fetch operators（结果获取算子)。
 feed map为该program提供输入数据。fetch_list提供program训练结束后用户预期的变量（或识别类场景中的命名）。
@@ -868,17 +936,18 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 当每一mini-batch上的前向/反向运算完成后，局部作用域的内容将被废弃，
 但全局作用域中的变量将在Executor的不同执行过程中一直存在。
 
+program中所有的算子会按顺序执行。
 
 **示例代码**
 
 .. code-block:: python
 
-    # 新建一个执行引擎Executor名为exe。
+    # 新建一个执行引擎Executor名为exe。 
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
 
     # 仅运行一次startup program.
-    # 不需要优化/编译这个startup program.
+    # 不需要优化/编译这个startup program. 
     exe.run(fluid.default_startup_program())
 
     # 无需编译，直接运行main program
@@ -886,7 +955,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
                         feed=feed_dict,
                         fetch_list=[loss.name])
 
-    # 另一种方法是，编译这个main program然后运行. 参考CompiledProgram
+    # 另一种方法是，编译这个main program然后运行. 参考CompiledProgram 
     compiled_prog = compiler.CompiledProgram(
             fluid.default_main_program()).with_data_parallel(
             loss_name=loss.name)
@@ -895,22 +964,23 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
                         fetch_list=[loss.name])
 
 
-参数:
+参数:	
     - **place** (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
+
+
+提示：你可以用 ``Executor`` 来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
 
 
 .. py:method:: close()
 
 
-关闭这个执行器(Executor)。
-
-调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上和目前Trainer有关联的资源。
-
+关闭这个执行器(Executor)。调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上涉及到目前训练器的资源。
+   
 **示例代码**
 
 ..  code-block:: python
-
+    
     cpu = core.CPUPlace()
     exe = Executor(cpu)
     ...
@@ -927,16 +997,16 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
-参数：
+参数：  
 	- **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
 	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
-	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, 该方法会根据这个列表给出结果
+	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
 	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
 	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
 	- **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
 	- **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-	- **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。
-
+	- **use_program_cache** (bool) – 当program较上次比没有改动则将其置为True
+	
 返回:	根据fetch_list来获取结果
 
 返回类型:	list(numpy.array)
@@ -956,19 +1026,19 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 
 ..  code-block:: python
-
-
+	
+	
 	cpu = core.CPUPlace()
 	exe = Executor(cpu)
 	exe.run(default_startup_program())
-
+	
 ..  code-block:: python
-
+	
 	x = numpy.random.random(size=(10, 1)).astype('float32')
 	outs = exe.run(
 		feed={'X': x},
 		fetch_list=[loss.name])
-
+	
 
 
 
@@ -999,18 +1069,6 @@ global_scope
 
 
 
-.. _cn_api_fluid_in_dygraph_mode:
-
-in_dygraph_mode
--------------------------------
-
-.. py:function:: paddle.fluid.in_dygraph_mode()
-
-返回：bool，如果Program是在动态图模式下运行的则为True。
-
-
-
-
 
 
 .. _cn_api_fluid_LoDTensor:
@@ -1023,7 +1081,7 @@ LoDTensor
 
 LoDTensor是一个具有LoD信息的张量(Tensor)
 
-``np.array(lod_tensor)`` 可以将LoDTensor转换为numpy array。
+``np.array(lod_tensor)`` 可以将LoDTensor转换为numpy array。 
 
 ``lod_tensor.lod()`` 可以获得LoD信息。
 
@@ -1037,7 +1095,7 @@ X 为 LoDTensor，它包含两个序列。第一个长度是2，第二个长度�
 
 ::
 
-	x.lod  =  [[2, 3]]
+	x.lod  =  [[2, 3]] 
 	x.data = [[1, 2], [3, 4], // seq 1
 
 		  [5, 6], [7, 8], [9, 10]] // seq 2
@@ -1072,9 +1130,9 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 .. py:method::	lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
-得到LoD Tensor的LoD。
+得到LoD Tensor的LoD。 
 
-返回：LoD Tensor的LoD。
+返回：LoD Tensor的LoD。 
 
 返回类型：out（List [List [int]]）
 
@@ -1155,7 +1213,7 @@ memory_optimize
 	- **skip_opt_set** (set) – set中的vars将不被内存优化。
 	- **print_log** (bool) – 是否打印debug日志。
 	- **level** (int)  如果 level=0 并且shape是完全相等，则重用。
-
+	
 返回: None
 
 
@@ -1177,13 +1235,13 @@ name_scope
 
 注意： 这个函数只能用于调试和可视化。不要将其用于分析，比如graph/program转换。
 
-参数：
+参数： 
 	- **prefix** (str) - 前缀
 
 **示例代码**
 
 .. code-block:: python
-
+          
     with name_scope("encoder"):
         ...
     with name_scope("decoder"):
@@ -1212,7 +1270,7 @@ ParallelExecutor
 
 
 
-参数:
+参数: 
     - **use_cuda** (bool) – 是否使用CUDA
     - **loss_name** (str) – 在训练阶段，必须提供loss function名称。默认为None
     - **main_program** (Program) – 需要执行的program。如果未提供， 那么将使用 ``default_main_program``。 默认为None
@@ -1253,11 +1311,11 @@ ParallelExecutor
 例如，如果 ``feed`` 是个 ``dict`` 类型变量，则有
 
 ..  code-block:: python
-
+    
     exe = ParallelExecutor()
     # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (24, 1, 28, 28)的图像
     exe.run(feed={'image': numpy.random.random(size=(48, 1, 28, 28))})
-
+  
 如果 ``feed`` 是个 ``list`` 类型变量，则有
 
 ..  code-block:: python
@@ -1272,7 +1330,7 @@ ParallelExecutor
                   {"image": numpy.random.random(size=(32, 1, 28, 28))},
                   ])
 
-参数：
+参数： 
     - **fetch_list** (list) – 获取的变量名列表
     - **feed** (list|dict|None) – feed变量。 如果该参数是 ``dict`` 类型，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU）。反之，如果它是 ``list`` ，则列表中的各个元素都直接分别被拷贝到各设备中。默认为None
     - **feed_dict** – 该参数已经停止使用。feed参数的别名, 为向后兼容而立。默认为None
@@ -1282,7 +1340,7 @@ ParallelExecutor
 
 返回类型：List
 
-抛出异常:
+抛出异常: 
      - ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，抛出此异常
      - ``TypeError`` - 如果feed参数是list类型，但是它里面的元素不是dict类型时，弹出此异常
 
@@ -1310,7 +1368,7 @@ ParallelExecutor
 
 .. _cn_api_fluid_ParamAttr:
 
-
+ 
 ParamAttr
 -------------------------------
 
@@ -1319,7 +1377,7 @@ ParamAttr
 
 该类代表了参数的各种属性。 为了使神经网络训练过程更加流畅，用户可以根据需要调整参数属性。比如learning rate（学习率）, regularization（正则化）, trainable（可训练性）, do_model_average(平均化模型)和参数初始化方法.
 
-参数:
+参数:	
     - **name** (str) – 参数名。默认为None。
     - **initializer** (Initializer) – 初始化该参数的方法。 默认为None
     - **learning_rate** (float) – 参数的学习率。计算方法为 :math:`global\_lr*parameter\_lr∗scheduler\_factor` 。 默认为1.0
@@ -1327,7 +1385,7 @@ ParamAttr
     - **trainable** (bool) – 该参数是否可训练。默认为True
     - **gradient_clip** (BaseGradientClipAttr) – 减少参数梯度的方法。默认为None
     - **do_model_average** (bool) – 该参数是否服从模型平均值。默认为False
-
+    
 **代码示例**
 
 ..  code-block:: python
@@ -1421,7 +1479,7 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 用于debug
 
-参数：
+参数：  
 	- **throw_on_error** (bool): 没有设置任何必需的字段时，抛出值错误。
 	- **with_details** (bool): 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
 
@@ -1429,7 +1487,7 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 返回类型： str
 
-抛出异常：
+抛出异常： 
  - ``ValueError`` - 当 ``throw_on_error == true`` ，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
 
@@ -1478,8 +1536,8 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
   test_program = train_program.clone(for_test=True)
   sgd = fluid.optimizer.SGD(learning_rate=1e-3)
   with fluid.program_guard(train_program, startup_program):
-        sgd.minimize(loss)
-
+        sgd.minimize(loss)    
+	
 2.如果分别运行 train Program 和 test Program，则可以不使用clone。
 
 ..  code-block:: python
@@ -1518,7 +1576,7 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 
 注意:在序列化和反序列化之后，所有关于参数的信息都会丢失。
 
-参数:
+参数:	
     - **binary_str_type** (str) – prootbuf二进制字符串
 
 返回:	反序列化后的ProgramDesc
@@ -1559,7 +1617,7 @@ operator的角色，值只能是枚举变量{Forward, Backward, Optimize}。
 返回：generator 会yield每个Program中的变量
 
 返回类型：iterable
-
+	
 
 
 
@@ -1604,7 +1662,7 @@ program_guard
 		data = ...
 
 
-参数：
+参数：  
 		- **main_program** (Program) – “with”语句中将使用的新的main program。
 		- **startup_program** (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序。
 
@@ -1622,7 +1680,7 @@ program_guard
 release_memory
 -------------------------------
 
-.. py:function:: paddle.fluid.release_memory(input_program, skip_opt_set=None)
+.. py:function:: paddle.fluid.release_memory(input_program, skip_opt_set=None) 
 
 
 该函数可以调整输入program，插入 ``delete_op`` 删除算子，提前删除不需要的变量。
@@ -1630,8 +1688,8 @@ release_memory
 
 **提醒**: 该API还在试验阶段，会在后期版本中删除。不建议用户使用。
 
-参数:
-    - **input_program** (Program) – 在此program中插入 ``delete_op``
+参数:	
+    - **input_program** (Program) – 在此program中插入 ``delete_op`` 
     - **skip_opt_set** (set) – 在内存优化时跳过的变量的集合
 
 返回: None
@@ -1656,7 +1714,7 @@ scope_guard
 ..  code-block:: python
 
 	import paddle.fluid as fluid
-
+	
 	new_scope = fluid.Scope()
 	with fluid.scope_guard(new_scope):
 		...

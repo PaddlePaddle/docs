@@ -1,4 +1,4 @@
-# 提交PR注意事项
+# Github提交PR指南
 
 ## 建立 Issue 并完成 Pull Request
 

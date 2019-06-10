@@ -33,9 +33,8 @@ API Reference 请参考 :ref:`cn_api_fluid_nets_img_conv_group`
 
 :code:`sequence_conv_pool` 是由 :ref:`cn_api_fluid_layers_sequence_conv` 与 :ref:`cn_api_fluid_layers_sequence_pool` 串联而成。
 该模块在 `自然语言处理 <https://zh.wikipedia.org/wiki/自然语言处理>`_ 以及 `语音识别 <https://zh.wikipedia.org/wiki/语音识别>`_ 等领域均有广泛应用，
-比如 `文本分类模型 <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/text_classification/nets.py>`_ ,
-`TagSpace <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/tagspace/train.py>`_  以及
-`Multi-view Simnet <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/multiview_simnet/nets.py>`_ 等模型。
+比如 `文本分类模型 <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/text_classification/nets.py>`_ , 
+`TagSpace <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/tagspace/train.py>`_  以及 `Multi-view Simnet <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/multiview_simnet/nets.py>`_ 等模型。
 
 API Reference 请参考 :ref:`cn_api_fluid_nets_sequence_conv_pool`
 
@@ -56,7 +55,7 @@ API Reference 请参考 :ref:`cn_api_fluid_nets_glu`
 .. math::
  Attention(Q, K, V)= softmax(QK^\mathrm{T})V
 
-该模块广泛使用在 `机器翻译 <https://zh.wikipedia.org/zh/机器翻译>`_ 的模型中，比如 `Transformer <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/neural_machine_translation/transformer>`_ 。
+该模块广泛使用在 `机器翻译 <https://zh.wikipedia.org/zh/机器翻译>`_ 的模型中，比如 `Transformer <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleNLP/neural_machine_translation/transformer>`_ 。
 
 API Reference 请参考 :ref:`cn_api_fluid_nets_scaled_dot_product_attention`
 

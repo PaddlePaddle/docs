@@ -8,41 +8,16 @@
 	请不要在timeline记录信息时运行太多次迭代，因为timeline中的记录数量和迭代次数是成正比的。
 
 	```python
-    import numpy as np
-    import paddle
-    import paddle.fluid as fluid
-    from paddle.fluid import profiler
-
-    place = fluid.CPUPlace()
-
-    def reader():
-        for i in range(100):
-            yield [np.random.random([4]).astype('float32'), np.random.random([3]).astype('float32')],
-
-    main_program = fluid.Program()
-    startup_program = fluid.Program()
-
-    with fluid.program_guard(main_program, startup_program):
-        data_1 = fluid.layers.data(name='data_1', shape=[1, 2, 2])
-        data_2 = fluid.layers.data(name='data_2', shape=[1, 1, 3])
-        out = fluid.layers.fc(input=[data_1, data_2], size=2)
-        # ...
-
-        feeder = fluid.DataFeeder([data_1, data_2], place)
-        exe = fluid.Executor(place)
-        exe.run(startup_program)
-        pass_num = 10
-
-        for pass_id in range(pass_num):
-            for batch_id, data in enumerate(reader()):
-                if pass_id == 0 and batch_id == 5:
-                    profiler.start_profiler("All")
-                elif pass_id == 0 and batch_id == 10:
-                    profiler.stop_profiler("total", "/tmp/profile")
-                outs = exe.run(program=main_program,
-                               feed=feeder.feed(data),
-                               fetch_list=[out])
-
+    for pass_id in range(pass_num):
+        for batch_id, data in enumerate(train_reader()):
+            if pass_id == 0 and batch_id == 5:
+                profiler.start_profiler("All")
+            elif pass_id == 0 and batch_id == 10:
+                profiler.stop_profiler("total", "/tmp/profile")
+            exe.run(fluid.default_main_program(),
+                    feed=feeder.feed(data),
+                    fetch_list=[])
+	            ...
 	```
 
 1. 运行`python paddle/tools/timeline.py`来处理`/tmp/profile`，这个程序默认会生成一个`/tmp/timeline`文件，你也可以用命令行参数来修改这个路径，请参考[timeline.py](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/timeline.py)。

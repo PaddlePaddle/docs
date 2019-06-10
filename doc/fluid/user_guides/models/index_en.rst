@@ -87,7 +87,7 @@ Automatic Speech Recognition (ASR) is a technique for transcribing vocabulary co
 
 Different from the end-to-end direct prediction for word distribution of the deep learning model  `DeepSpeech <https://github.com/PaddlePaddle/DeepSpeech>`__ , this example is closer to the traditional language recognition process. With phoneme as the modeling unit, it focuses on the training of acoustic models in speech recognition, use `kaldi <http://www.kaldi-asr.org>`__ for feature extraction and label alignment of audio data, and integrate kaldi's decoder to complete decoding.
 
-- `DeepASR <https://github.com/PaddlePaddle/models/blob/develop/PaddleSpeech/DeepASR/README.md>`__
+- `DeepASR <https://github.com/PaddlePaddle/models/blob/develop/DeepASR/README_cn.md>`__
 
 Machine Translation
 ---------------------
@@ -97,7 +97,7 @@ Machine Translation transforms a natural language (source language) into another
 The Transformer implemented in this example is a machine translation model based on the self-attention mechanism, in which there is no more RNN or CNN structure, but fully utilizes Attention to learn the context dependency. Compared with RNN/CNN, in a single layer, this structure has lower computational complexity, easier parallelization, and easier modeling for long-range dependencies, and finally achieves the best translation effect among multiple languages.
 
 
-- `Transformer <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/neural_machine_translation/transformer/README.md>`__
+- `Transformer <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/neural_machine_translation/transformer/README_cn.md>`__
 
 Reinforcement learning
 -------------------------
@@ -131,7 +131,7 @@ In many scenarios of natural language processing, it is necessary to measure the
 
 The DAM (Deep Attention Matching Network) introduced in this example is the work of Baidu Natural Language Processing Department published in ACL-2018, which is used for the selection of responses in multi-round dialogue of retrieval chat robots. Inspired by Transformer, DAM is based entirely on the attention mechanism. It uses the stack-type self-attention structure to learn the semantic representations of responses and contexts at different granularities, and then uses cross-attention to obtain relativity between responses and contexts. The performance on the two large-scale multi-round dialogue datasets is better than other models.
 
-- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/dialogue_model_toolkit/deep_attention_matching>`__
+- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/deep_attention_matching_net>`__
 
 AnyQ
 ----
@@ -151,7 +151,7 @@ Machine Reading Comprehension (MRC) is one of the core tasks in Natural Language
 
 Baidu reading comprehension dataset is an open-source real-world dataset publicized by Baidu Natural Language Processing Department. All the questions and original texts are derived from actual data (Baidu search engine data and Baidu know Q&A community), and the answer is given by humans. Each question corresponds to multiple answers. The dataset contains 200k questions, 1000k original text and 420k answers. It is currently the largest Chinese MRC dataset. Baidu also publicized the corresponding open-source reading comprehension model, called DuReader. DuReader adopts the current common network hierarchical structure, and captures the interaction between the problems and the original texts through the double attention mechanism to generate the original representation of the query-aware. Finally, based on the original text of query-aware, the answer scope is predicted by point network.
 
-- `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/reading_comprehension>`__
+- `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/machine_reading_comprehension/README.md>`__
 
 
 Personalized recommendation

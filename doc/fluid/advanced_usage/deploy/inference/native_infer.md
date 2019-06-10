@@ -25,8 +25,7 @@ PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字�
 `Config` 有两种，`NativeConfig` 较简单和稳定，`AnalysisConfig` 功能更新，性能更好
 
 - `NativeConfig` 原生 engine，由 paddle 原生的 forward operator
-  组成，可以天然支持所有paddle 训练出的模型
-  
+  组成，可以天然支持所有paddle 训练出的模型，
 - `AnalysisConfig` 
   - 支持计算图的分析和优化
   - 支持最新的各类 op fuse，性能一般比  `NativeConfig` 要好
@@ -132,22 +131,6 @@ tensor.dtype = paddle::PaddleDType::INT64;
 ```
 
 后续的执行过程与 `NativeConfig` 完全一致。
-
-### 变长序列输入
-在处理变长输入的时候，需要对 `PaddleTensor` 设置LoD信息
-
-``` c++
-# 假设序列长度依次为 [3, 2, 4, 1, 2, 3]
-tensor.lod = {{0,
-               /*0 + 3=*/3,
-               /*3 + 2=*/5,
-               /*5 + 4=*/9,
-               /*9 + 1=*/10,
-               /*10 + 2=*/12,
-               /*12 + 3=*/15}};
-```
-
-更详细的例子可以参考[LoD-Tensor使用说明](../../../user_guides/howto/basic_concept/lod_tensor.html)
 
 ### 多线程预测的建议
 

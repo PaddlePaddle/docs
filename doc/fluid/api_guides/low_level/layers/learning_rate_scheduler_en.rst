@@ -30,7 +30,3 @@ The following content describes the APIs related to the learning rate scheduler:
 * :code:`piecewise_decay`: Piecewise decay. That is, the stair-like decay for a given number of steps, the learning rate stays the same within each step. For related API Reference please refer to :ref:`api_fluid_layers_piecewise_decay`
 
 * :code:`append_LARS`: The learning rate is obtained by the Layer-wise Adaptive Rate Scaling algorithm. For related algorithms, please refer to `Train Feed forward Neural Network with Layerwise Adaptive Rate via Approximating Back-matching Propagation <https://arxiv. Org/abs/1802.09750>`_ . For related API Reference please refer to :ref:`api_fluid_layers_append_LARS`
-
-* :code:`cosine_decay`: Cosine attenuation. It means the learning rate changes with the number of steps in the form of a cosine function. For related API Reference please refer to :ref:`api_fluid_layers_cosine_decay`
-
-* :code:`linear_lr_warmup`: The learning rate increases linearly to an appointed rate with the number of steps. For related API Reference please refer to :ref:`api_fluid_layers_linear_lr_warmup`

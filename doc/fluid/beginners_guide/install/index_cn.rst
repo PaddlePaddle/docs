@@ -28,17 +28,10 @@ PaddlePaddle目前支持以下环境：
 
 :code:`pip install paddlepaddle-gpu==[PaddlePaddle版本号]` (GPU版,具体版本号请参考 `这里 <https://pypi.org/project/paddlepaddle-gpu/#history>`_ )
 
-- 如果您希望使用 `docker <https://www.docker.com>`_ 安装PaddlePaddle，可以使用以下命令:
-
+- 如果您希望使用 `docker <https://www.docker.com>`_ 安装PaddlePaddle可以直接使用以下命令:
 :code:`docker run --name [Name of container] -it -v $PWD:/paddle hub.baidubce.com/paddlepaddle/paddle:[docker版本号] /bin/bash`
 
-如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像
-
-:code:`docker run --name [Name of container] -it -v $PWD:/paddle paddlepaddle/paddle:[docker版本号] /bin/bash`
-
 	其中[docker版本号]请查阅 `DockerHub <https://hub.docker.com/r/paddlepaddle/paddle/tags/>`_
-	
-- 如果您有开发PaddlePaddle的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
 ..	toctree::
 	:hidden:

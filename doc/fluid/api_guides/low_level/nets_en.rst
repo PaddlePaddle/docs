@@ -32,8 +32,8 @@ For API Reference, please refer to :ref:`api_fluid_nets_img_conv_group`
 --------------------
 
 :code:`sequence_conv_pool` is got by concatenating :ref:`api_fluid_layers_sequence_conv` with :ref:`api_fluid_layers_sequence_pool`.
-The module is widely used in the field of `natural language processing <https://en.wikipedia.org/wiki/Natural_language_processing>`_ and `speech recognition <https://en.wikipedia.org/wiki/Speech_recognition>`_ .  Models such as the `text classification model <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/text_classification/nets.py>`_ ,
-`TagSpace <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/tagspace/train.py>`_ and `Multi view Simnet <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/multiview_simnet/nets.py>`_.
+The module is widely used in the field of `natural language processing <https://en.wikipedia.org/wiki/Natural_language_processing>`_ and `speech recognition <https://en.wikipedia.org/wiki/Speech_recognition>`_ .  Models such as the `text classification model <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/text_classification/nets.py>`_ ,
+`TagSpace <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/tagspace/train.py>`_ and `Multi view Simnet <https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/multiview_simnet/nets.py>`_.
 
 For API Reference, please refer to :ref:`api_fluid_nets_sequence_conv_pool`
 
@@ -54,6 +54,6 @@ For the input data :code:`Queries` , :code:`Key` and :code:`Values`, calculate t
 .. math::
  Attention(Q, K, V)= softmax(QK^\mathrm{T})V
 
-This module is widely used in the model of `machine translation <https://en.wikipedia.org/wiki/Machine_translation>`_, such as `Transformer <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/neural_machine_translation/transformer>`_ .
+This module is widely used in the model of `machine translation <https://en.wikipedia.org/wiki/Machine_translation>`_, such as `Transformer <https://github.com/PaddlePaddle/models/tree/develop/Fluid/PaddleNLP/neural_machine_translation/transformer>`_ .
 
 For API Reference, please refer to :ref:`api_fluid_nets_scaled_dot_product_attention`

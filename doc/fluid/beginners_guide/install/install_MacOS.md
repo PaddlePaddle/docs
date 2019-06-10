@@ -41,10 +41,7 @@ MacOS系统下有4种安装方式：
 
 <a name="check"></a>
 ## 验证安装
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
-
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+安装完成后您可以使用：`python` 或 `python3` 进入python解释器，然后使用`import paddle.fluid` 验证是否安装成功。
 
 ## 如何卸载
 

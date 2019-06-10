@@ -4,7 +4,7 @@
 
 This instruction describes how to install PaddlePaddle on a *64-bit desktop or laptop* and Ubuntu system. The Ubuntu systems we support must meet the following requirements:
 
-Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in the [latest Release installation package list](./Tables_en.html/#ciwhls-release).
+Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in the [latest Release installation package list](./Tables.html/#ciwhls-release).
 
 Under Ubuntu, you can use `cat /proc/cpuinfo | grep avx` to check if your processor supports the AVX instruction set.
 
@@ -80,9 +80,9 @@ Now let's install PaddlePaddle:
 	* For users who need **the GPU version PaddlePaddle**: `pip install paddlepaddle-gpu` or `pip3 install paddlepaddle-gpu`
 
 	> 1.In order to prevent problem "nccl.h cannot be found", please first install nccl2 according to the following command (here is ubuntu 16.04, CUDA9, ncDNN v7 nccl2 installation instructions), for more information about the installation information, please refer to [the NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download):
-
+	
 		i. `Wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
-		ii. `dpkg -i nvidia-machine- Learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+		ii. `dpkg -i nvidia-machine- Learning-repo-ubuntu1604_1.0.0-1_amd64.deb` 
 		iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
 
 	> 2.If you do not specify the pypi package version number, we will by default provide you with a version of PaddlePaddle that supports Cuda 9/cuDNN v7.

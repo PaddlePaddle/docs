@@ -20,7 +20,7 @@
 
 在Windows的系统下提供1种编译方式：
 
-* 本机编译（暂不支持NCCL，分布式等相关功能）
+* 直接本机源码编译（暂不支持NCCL，分布式等相关功能）
 
 <a name="win_source"></a>
 ### ***本机编译***
@@ -102,10 +102,7 @@
 恭喜，至此您已完成PaddlePaddle的编译安装
 
 ## ***验证安装***
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
-
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+安装完成后您可以使用：`python` 或 `python3`进入Python解释器，然后使用 `import paddle.fluid`, 如沒有提示错误，则表明安装成功。
 
 ## ***如何卸载***
 请使用以下命令卸载PaddlePaddle：
