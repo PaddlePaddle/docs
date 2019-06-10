@@ -351,7 +351,7 @@ greater_equal
 
 .. py:function:: paddle.fluid.layers.greater_equal(x, y, cond=None)
 
-该层逐元素地返回 :math:`x >= y` 的真值，和重载算子 `>=` 相同。
+该层逐元素地返回 :math:`x >= y` 的逻辑值，和重载算子 `>=` 相同。
 
 参数：
     - **x** (Variable) - *greater_equal* 的第一个操作数
@@ -377,7 +377,7 @@ greater_than
 
 .. py:function:: paddle.fluid.layers.greater_than(x, y, cond=None)
 
-该层逐元素地返回 :math:`x > y` 的真值，和重载算子 `>` 相同。
+该层逐元素地返回 :math:`x > y` 的逻辑值，和重载算子 `>` 相同。
 
 参数：
     - **x** (Variable) - *greater_than* 的第一个操作数
@@ -517,7 +517,7 @@ less_equal
 
 .. py:function:: paddle.fluid.layers.less_equal(x, y, cond=None)
 
-该层逐元素地返回 :math:`x <= y` 的真值，和重载算子 `<=` 相同。
+该层逐元素地返回 :math:`x <= y` 的逻辑值，和重载算子 `<=` 相同。
 
 参数：
     - **x** (Variable) - *less_equal* 的第一个操作数
@@ -576,7 +576,7 @@ not_equal
 
 .. py:function:: paddle.fluid.layers.not_equal(x, y, cond=None)
 
-该层逐元素地返回 :math:`x != y` 的真值，和重载算子 `!=` 相同。
+该层逐元素地返回 :math:`x != y` 的逻辑值，和重载算子 `!=` 相同。
 
 参数：
     - **x** (Variable) - *not_equal* 的第一个操作数
@@ -2231,7 +2231,7 @@ continuous_value_model
 
 现在，continuous value model(cvm)仅考虑CTR项目中的展示和点击值。我们假设输入是一个含cvm_feature的词向量，其形状为[N * D]（D为2 + 嵌入维度）。如果use_cvm为真，它会计算log(cvm_feature)，且输出的形状为[N * D]。如果use_cvm为假，它会从输入中移除cvm_feature，且输出的形状为[N * (D - 2)]。
     
-该层接受一个名为输入的张量，嵌入后成为ID层(lod level为1)， cvm为一个show_click info。
+该层接受一个名为input的张量，嵌入后成为ID层(lod level为1)， cvm为一个show_click info。
 
 参数：
     - **input** (Variable)-一个N x D的二维LodTensor， N为batch size， D为2 + 嵌入维度， lod level = 1。
@@ -2246,16 +2246,16 @@ continuous_value_model
 
 .. code-block:: python
 
-     input = fluid.layers.data(name="input", shape=[-1, 1], lod_level=1, append_batch_size=False, dtype="int64")#, stop_gradient=False)
-          label = fluid.layers.data(name="label", shape=[-1, 1], append_batch_size=False, dtype="int64")
-          embed = fluid.layers.embedding(
+    input = fluid.layers.data(name="input", shape=[-1, 1], lod_level=1, append_batch_size=False, dtype="int64")#, stop_gradient=False)
+    label = fluid.layers.data(name="label", shape=[-1, 1], append_batch_size=False, dtype="int64")
+    embed = fluid.layers.embedding(
                             input=input,
                             size=[100, 11],
                             dtype='float32')
-          ones = fluid.layers.fill_constant_batch_size_like(input=label, shape=[-1, 1], dtype="int64", value=1)
-          show_clk = fluid.layers.cast(fluid.layers.concat([ones, label], axis=1), dtype='float32')
-          show_clk.stop_gradient = True
-          input_with_cvm = fluid.layers.continuous_value_model(embed, show_clk, True)
+    ones = fluid.layers.fill_constant_batch_size_like(input=label, shape=[-1, 1], dtype="int64", value=1)
+    show_clk = fluid.layers.cast(fluid.layers.concat([ones, label], axis=1), dtype='float32')
+    show_clk.stop_gradient = True
+    input_with_cvm = fluid.layers.continuous_value_model(embed, show_clk, True)
 
 
 
@@ -2653,9 +2653,9 @@ cos_sim
 
 ..  code-block:: python
 
-	x = fluid.layers.data(name='x', shape=[3, 7], dtype='float32', append_batch_size=False)
-	y = fluid.layers.data(name='y', shape=[1, 7], dtype='float32', append_batch_size=False)
-	out = fluid.layers.cos_sim(x, y)
+	   x = fluid.layers.data(name='x', shape=[3, 7], dtype='float32', append_batch_size=False)
+	   y = fluid.layers.data(name='y', shape=[1, 7], dtype='float32', append_batch_size=False)
+	   out = fluid.layers.cos_sim(x, y)
 
 
 
@@ -6956,7 +6956,7 @@ rank
 参数:
     - **input** (Variable)：输入变量
 
-返回：输入变量的排序
+返回：输入变量的秩
 
 返回类型： 变量（Variable）
 
@@ -7060,7 +7060,7 @@ reduce_any
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：函数运算的维度。如果为None，则计算所有元素的与逻辑并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：函数运算的维度。如果为None，则计算所有元素的或逻辑并返回仅含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量将比输入少一个维度。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
@@ -7591,7 +7591,7 @@ resize_nearest
 
 参数:
   - **input** (Variable) – 插值运算的输入张量, 是一个形为 (N,C,H,W) 的四维张量
-  - **out_shape** (Variable) – 调整最近邻层的输出形状，形式为(out_h, out_w)。默认值：None。
+  - **out_shape** (list|tuple|Variable|None) – 调整最近邻层的输出形状，形式为(out_h, out_w)。默认值：None。
   - **scale** (float|None) – 输入高、宽的乘法器。 ``out_shape`` 和 ``scale`` 二者至少设置其一。 ``out_shape`` 具有比 ``scale`` 更高的优先级。 默认: None
   - **name** (str|None) – 输出变量的命名
   - **actual_shape** (Variable) – 可选输入， 动态设置输出张量的形状。 如果提供该值， 图片放缩会依据此形状进行， 而非依据 ``out_shape`` 和 ``scale`` 。 即为， ``actual_shape`` 具有最高的优先级。 如果想动态指明输出形状，推荐使用 ``actual_shape`` 取代 ``out_shape`` 。 当使用 ``actual_shape`` 来指明输出形状， ``out_shape`` 和 ``scale`` 也应该进行设置, 否则在图形生成阶段将会报错。默认: None
@@ -9307,7 +9307,7 @@ softmax_with_cross_entropy
 
 .. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False, axis=-1)
 
-使用softmax的交叉熵在输出层已被广泛使用。该函数计算输入张量在维度轴上的softmax标准化值，而后计算交叉熵。通过此种方式，可以得到更具数字稳定性的梯度值。
+使用softmax的交叉熵在输出层已被广泛使用。该函数计算输入张量在axis轴上的softmax标准化值，而后计算交叉熵。通过此种方式，可以得到更具数字稳定性的梯度值。
 
 因为该运算是在内部进行logit上的softmax运算，所以它需要未标准化（unscaled）的logit。该运算不应该对softmax运算的输出进行操作，否则会得出错误结果。
 
@@ -9335,7 +9335,7 @@ softmax_with_cross_entropy
 
 参数:
   - **logits** (Variable) - 未标准化(unscaled)对数概率的输入张量。
-  - **label** (Variable) - 真值张量。如果 ``soft_label`` 为True，则该参数是一个和logits形状相同的的Tensor<float/double> 。如果 ``soft_label`` 为False，则该参数是一个在为1的维度轴上和logits期望形状相同的Tensor<int64>。
+  - **label** (Variable) - 真实值张量。如果 ``soft_label`` 为True，则该参数是一个和logits形状相同的的Tensor<float/double> 。如果 ``soft_label`` 为False，label是一个在axis维上形为1，其它维上与logits形对应相同的Tensor<int64>。
   - **soft_label** (bool) - 是否将输入标签当作软标签。默认为False。
   - **ignore_index** (int) - 指明要无视的目标值，使之不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认为kIgnoreIndex。 
   - **numeric_stable_mode** (bool) – 标志位，指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效。若 ``soft_label`` 为 True 或者执行场所为CPU, 算法一直具有数学稳定性。 注意使用稳定算法时速度可能会变慢。默认为 True。
@@ -9344,7 +9344,7 @@ softmax_with_cross_entropy
 
 返回:
   - 如果 ``return_softmax`` 为 False，则返回交叉熵损失
-  - 如果 ``return_softmax`` 为 True，则返回元组 (loss, softmax) ，其中softmax和输入logits形状相同，交叉熵损失和输入logits形状相同
+  - 如果 ``return_softmax`` 为 True，则返回元组 (loss, softmax) ，其中softmax和输入logits形状相同；除了axis维上的形为1，其余维上交叉熵损失和输入logits形状相同
 
 返回类型:变量或者两个变量组成的元组
 
@@ -10640,7 +10640,7 @@ rsqrt
 
 rsqrt激活函数
 
-请确保输入合法以免出现数字误差。
+请确保输入合法以免出现数字错误。
 
 .. math::
     out = \frac{1}{\sqrt{x}}
@@ -11576,7 +11576,7 @@ linspace
 
 .. py:function:: paddle.fluid.layers.linspace(start, stop, num, dtype)
 
-在给定间隔内返回均匀间隔值的固定数目。
+在给定区间内返回固定数目的均匀间隔的值。
  
 第一个entry是start，最后一个entry是stop。在Num为1的情况下，仅返回start。类似numpy的linspace功能。
 
