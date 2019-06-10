@@ -1,5 +1,5 @@
 
-Flags
+环境变量FLAGS
 ==================
 
 
@@ -447,11 +447,11 @@ fuse_parameter_memory_size
 *******************************************
 (始于1.4.0)
 
-FLAGS_fuse_parameter_memory_size表示作为通信调用输入（例如NCCLAllReduce）的单组参数梯度的上限内存大小。默认值为0，表示不根据memory_size设置组。单位是字节。
+FLAGS_fuse_parameter_memory_size表示作为通信调用输入（例如NCCLAllReduce）的单组参数梯度的上限内存大小。默认值为-1.0，表示不根据memory_size设置组。单位是MB。
 
 取值范围
 ---------------
-Uint64型，缺省值为0。
+Double型，缺省值为-1.0。
 
 示例
 -------

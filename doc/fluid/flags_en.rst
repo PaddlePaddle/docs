@@ -1,5 +1,5 @@
 ==================
-Flags
+FLAGS
 ==================
 
 allocator_strategy
@@ -447,11 +447,11 @@ fuse_parameter_memory_size
 *******************************************
 (since 1.4.0)
 
-FLAGS_fuse_parameter_memory_size indicates the up limited memory size of one group parameters' gradient which is the input of communication calling ( e.g NCCLAllReduce). The default value is 0, it means that not set group according to memory_size. The unit is byte.
+FLAGS_fuse_parameter_memory_size indicates the up limited memory size of one group parameters' gradient which is the input of communication calling ( e.g NCCLAllReduce). The default value is -1.0, it means that not set group according to memory_size. The unit is MegaByte.
 
 Values accepted
 ---------------
-Uint64. The default value is 0.
+Double. The default value is -1.0.
 
 Example
 -------
