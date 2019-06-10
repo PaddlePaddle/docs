@@ -97,7 +97,7 @@ prob = ie()
 
 用户描述的block与program信息在Fluid中以[protobuf](https://en.wikipedia.org/wiki/Protocol_Buffers) 格式保存，所有的`protobuf`信息被定义在`framework.proto`中，在Fluid中被称为BlockDesc和ProgramDesc。ProgramDesc和BlockDesc的概念类似于一个[抽象语法树](https://en.wikipedia.org/wiki/Abstract_syntax_tree)。
 
-`BlockDesc`中包含本地变量的定义 [vars](../../../api_guides/low_level/program.html#variable)，和一系列的operator`ops`：
+`BlockDesc`中包含本地变量的定义 [vars](../../api_guides/low_level/program.html#variable)，和一系列的operator`ops`：
 
 ```cpp
  message BlockDesc {
@@ -155,7 +155,7 @@ Executor 在运行时将接受一个`ProgramDesc`、一个`block_id`和一个`Sc
 完成的编译执行的具体过程如下图所示：
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/design_idea/image/executor_design.png" width=600>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/design_idea/image/executor_design.png" width=600>
 </p>
 
 1. Executor 为每一个block创建一个Scope，Block是可嵌套的，因此Scope也是可嵌套的
