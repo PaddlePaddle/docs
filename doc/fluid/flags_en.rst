@@ -443,21 +443,6 @@ Example
 FLAGS_fuse_parameter_groups_size=3 will set the size of one group parameters' gradient to 3.
 
 
-fuse_parameter_memory_size
-*******************************************
-(since 1.4.0)
-
-FLAGS_fuse_parameter_memory_size indicates the up limited memory size of one group parameters' gradient which is the input of communication calling ( e.g NCCLAllReduce). The default value is -1.0, it means that not set group according to memory_size. The unit is MegaByte.
-
-Values accepted
----------------
-Double. The default value is -1.0.
-
-Example
--------
-FLAGS_fuse_parameter_memory_size=131072 set the up limited memory size of one group parameters' gradient to 131072 bytes.
-
-
 init_allocated_mem
 *******************************************
 (since 0.15.0)
