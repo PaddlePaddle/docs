@@ -175,7 +175,7 @@ PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字�
 - `lod`，  类型：`vector<vector<size_t>>`，在处理变长输入的时候，需要对 `PaddleTensor` 设置LoD信息。[LoD-Tensor使用说明](../../../user_guides/howto/basic_concept/lod_tensor.html)
 
 
-### ZeroCopyTenosr的使用
+### ZeroCopyTensor的使用
 ZeroCopyTensor的使用可避免预测时候准备输入以及获取输出时多余的数据copy，提高预测性能。**只可用于AnalysisPredictor**。    
 
 **Note：**使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`
