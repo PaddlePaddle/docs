@@ -756,14 +756,6 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
         with switch.default():
             fluid.layers.tensor.assign(input=two_var, output=lr)
 
-.. py:method:: case(condition)
-
-为该condition（情况，条件）建立新的block（块）。
-
-
-.. py:method:: default()
-
-为该switch建立default case。
 
 
 
