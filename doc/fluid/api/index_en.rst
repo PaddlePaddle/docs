@@ -10,7 +10,8 @@ API Reference
     average.rst
     backward.rst
     clip.rst
-    data.rst
+    data/data_reader.rst
+    data/dataset.rst
     data_feeder.rst
     dataset.rst
     executor.rst
@@ -25,6 +26,3 @@ API Reference
     regularizer.rst
     transpiler.rst
     unique_name.rst
-    data/dataset.rst
-    data/data_reader.rst
-
