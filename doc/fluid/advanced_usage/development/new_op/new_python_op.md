@@ -39,7 +39,7 @@ def foward_func(x_1, x_2, ..., x_n):
 
 默认情况下，反向函数的输入参数顺序为：所有前向输入变量 + 所有前向输出变量 + 所有前向输出变量的梯度，因此对应的反向函数的定义格式为：
 ```Python
-def backward_func(x_1, x_2, ..., x_n, y_1, y_2, ..., y_m, d_y1, d_y2, ..., d_ym):
+def backward_func(x_1, x_2, ..., x_n, y_1, y_2, ..., y_m, dy_1, dy_2, ..., dy_m):
     ...
     return dx_1, dx_2, ..., dx_n
 ```
@@ -96,7 +96,7 @@ fluid.layers.py_func(func=my_tanh, x=in_var, out=out_var, backward_func=my_tanh_
 
 ```Python
 fluid.layers.py_func(func=my_tanh, x=in_var, out=out_var, backward_func=my_tanh_grad_without_x,
-    skip_vars_in_backward_input=x)
+    skip_vars_in_backward_input=in_var)
 ```
 
 至此，使用 `py_func` 编写Python Op的步骤结束。我们可以与使用其他Op一样进行网路训练/预测。
