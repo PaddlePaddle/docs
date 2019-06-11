@@ -1,161 +1,215 @@
 # C++ 预测 API介绍
 
-为了更简单方便的预测部署，Fluid 提供了一套高层 API 用来隐藏底层不同的优化实现。
+为了更简单方便的预测部署，PaddlePaddle 提供了一套高层 API 预测接口。
 
 预测库包含:
 
-- 头文件 `paddle_inference_api.h` 定义了所有的接口
-- 库文件`libpaddle_fluid.so` 或 `libpaddle_fluid.a`
+- 头文件主要包括： 
+	- `paddle_analysis_config.h `
+	- `paddle_api.h `
+	- `paddle_inference_api.h`
+- 库文件：
+	- `libpaddle_fluid.so` 
+	- `libpaddle_fluid.a`
 
-下面是详细介绍
+下面是详细介绍。
 
-## PaddleTensor
 
-PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字段：
+## 内容
+- [NativePredictor使用](#NativePredictor使用)
+- [AnalysisPredictor使用](#AnalysisPredictor使用)
+- [输入输出的管理](#输入输出的管理)	
+- [多线程预测](#多线程预测)
+- [性能建议](#性能建议)
 
-- `name` 用于指定输入数据对应的 模型中variable 的名字
-- `shape` 表示一个 Tensor 的 shape
-- `data`  数据以连续内存的方式存储在`PaddleBuf` 中，`PaddleBuf` 可以接收外面的数据或者独立`malloc`内存，详细可以参考头文件中相关定义。
-- `dtype` 表示 Tensor 的数据类型
+## <a name="NativePredictor使用">NativePredictor使用</a>
 
-## 利用Config 创建不同引擎
-
-高层 API 底层有多种优化实现，我们称之为 engine；不同 engine 的切换通过传递不同的 Config 实现重载。
-
-`Config` 有两种，`NativeConfig` 较简单和稳定，`AnalysisConfig` 功能更新，性能更好
-
-- `NativeConfig` 原生 engine，由 paddle 原生的 forward operator
-  组成，可以天然支持所有paddle 训练出的模型
+`NativePredictor`为原生预测引擎，底层由 PaddlePaddle 原生的 forward operator
+  组成，可以天然**支持所有Paddle 训练出的模型**。
   
-- `AnalysisConfig` 
-  - 支持计算图的分析和优化
-  - 支持最新的各类 op fuse，性能一般比  `NativeConfig` 要好
-  - 支持 TensorRT mixed engine 用于 GPU
-    加速，用子图的方式支持了 [TensorRT] ，支持所有paddle
-    模型，并自动切割部分计算子图到 TensorRT 上加速，具体的使用方式可以参考[这里](http://paddlepaddle.org/documentation/docs/zh/1.1/user_guides/howto/inference/paddle_tensorrt_infer.html)
-
-## 基于 NativeConfig 的预测部署过程
-
-总体上分为以下步骤
-
-1. 用合适的配置创建 `PaddlePredictor`
-2. 创建输入用的 `PaddleTensor`，传入到 `PaddlePredictor` 中
-3. 获取输出的 `PaddleTensor` ，将结果取出
-
-下面完整演示一个简单的模型，部分细节代码隐去
-
-```c++
+#### NativePredictor 使用样例
+```c++ 
 #include "paddle_inference_api.h"
 
-// 创建一个 config，并修改相关设置
-paddle::NativeConfig config;
-config.model_dir = "xxx";
-config.use_gpu = false;
-// 创建一个原生的 PaddlePredictor
-auto predictor =
-      paddle::CreatePaddlePredictor<paddle::NativeConfig>(config);
-// 创建输入 tensor
-int64_t data[4] = {1, 2, 3, 4};
-paddle::PaddleTensor tensor;
-tensor.shape = std::vector<int>({4, 1});
-tensor.data.Reset(data, sizeof(data));
-tensor.dtype = paddle::PaddleDType::INT64;
-// 创建输出 tensor，输出 tensor 的内存可以复用
-std::vector<paddle::PaddleTensor> outputs;
-// 执行预测
-CHECK(predictor->Run(slots, &outputs));
-// 获取 outputs ...
+namespace paddle {
+// 配置NativeConfig
+void CreateConfig(NativeConfig *config, const std::string& model_dirname) {
+  config->use_gpu=true;
+  config->device=0;
+  config->fraction_of_gpu_memory=0.1;
+  
+  /* for cpu
+  config->use_gpu=false;
+  config->SetCpuMathLibraryNumThreads(1);
+  */
+  
+  // 设置模型的参数路径
+  config->prog_file = model_dirname + "model";
+  config->param_file = model_dirname + "params";
+  // 当模型输入是多个的时候，这个配置是必要的。
+  config->specify_input_name = true;
+}
+
+void RunNative(int batch_size, const std::string& model_dirname) {
+  // 1. 创建NativeConfig
+  NativeConfig config;
+  CreateConfig(&config);
+  
+  // 2. 根据config 创建predictor
+  auto predictor = CreatePaddlePredictor(config);
+  
+  int channels = 3;
+  int height = 224;
+  int width = 224;
+  float data[batch_size * channels * height * width] = {0};
+
+  // 3. 创建输入 tensor 
+  PaddleTensor tensor;
+  tensor.name = "image";
+  tensor.shape = std::vector<int>({batch_size, channels, height, width});
+  tensor.data = PaddleBuf(static_cast<void *>(data),
+                          sizeof(float) * (batch_size * channels * height * width));
+  tensor.dtype = PaddleDType::FLOAT32;
+  std::vector<PaddleTensor> paddle_tensor_feeds(1, tensor);
+
+  // 4. 创建输出 tensor
+  std::vector<PaddleTensor> outputs;
+  // 5. 预测
+  predictor->Run(paddle_tensor_feeds, &outputs, batch_size);
+
+  const size_t num_elements = outputs.front().data.length() / sizeof(float);
+  auto *data = static_cast<float *>(outputs.front().data.data());
+}
+}  // namespace paddle
+
+int main() { 
+  // 模型下载地址 http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/mobilenet.tar.gz
+  paddle::RunNative(1, "./mobilenet");
+  return 0;
+}
 ```
 
-编译时，联编 `libpaddle_fluid.a/.so` 便可。 
+## <a name="AnalysisPredictor使用"> AnalysisPredictor使用</a>
+AnalysisConfig 创建了一个高性能预测引擎。该引擎通过对计算图的分析，完成对计算图的一系列的优化（Op 的融合, MKLDNN，TRT等底层加速库的支持 etc），大大提升预测引擎的性能。 
 
-
-
-## 高阶使用
-
-### 输入输出的内存管理
-
-`PaddleTensor` 的 `data` 字段是一个 `PaddleBuf`，用于管理一段内存用于数据的拷贝。 
-
-`PaddleBuf` 在内存管理方面有两种模式：
-
-1. 自动分配和管理内存
-
-   ```c++
-   int some_size = 1024;
-   PaddleTensor tensor;
-   tensor.data.Resize(some_size);
-   ```
-
-2. 外部内存传入
-
-   ```c++
-   int some_size = 1024;
-   // 用户外部分配内存并保证 PaddleTensor 使用过程中，内存一直可用
-   void* memory = new char[some_size]; 
-   
-   tensor.data.Reset(memory, some_size);
-   // ...
-   
-   // 用户最后需要自行删除内存以避免内存泄漏
-   
-   delete[] memory;
-   ```
-
-两种模式中，第一种比较方便；第二种则可以严格控制内存的管理，便于与 `tcmalloc` 等库的集成。
-
-### 基于 AnalysisConfig  提升性能
-
-`AnalysisConfig` 是目前我们重点优化的版本。
-
-类似 `NativeConfig` ， `AnalysisConfig` 可以创建一个经过一系列优化的高性能预测引擎。 其中包含了计算图的分析和优化，以及对一些重要 Op 的融合改写等，比如对使用了 While, LSTM, GRU 等模型性能有大幅提升 。
-
-`AnalysisConfig` 的使用方法也和 `NativeConfig` 类似
+#### AnalysisPredictor 使用样例
 
 ```c++
-AnalysisConfig config(dirname);  // dirname 是模型的路径
-// 对于不同的模型存储格式，也可以用 AnalysisConfig config(model_file, params_file)
-config.EnableUseGpu(100/*初始显存池大小(MB)*/, 0 /*gpu id*/);  // 使用GPU， CPU下使用config.DisableGpu();
-config.SwitchIrOptim();                  // 打开优化开关，运行时会执行一系列的计算图优化
+void CreateConfig(AnalysisConfig* config, const std::string& model_dirname) {
+  // 模型从磁盘进行加载
+  config->SetModel(model_dirname + "/model",                                                                                             
+                      model_dirname + "/params");  
+  // config->SetModel(model_dirname);
+  // 如果模型从内存中加载，可以使用SetModelBuffer接口
+  // config->SetModelBuffer(prog_buffer, prog_size, params_buffer, params_size); 
+  config->EnableUseGpu(10 /*the initial size of the GPU memory pool in MB*/,  0 /*gpu_id*/);
+  
+  /* for cpu 
+  config->DisableGpu();
+  config->EnableMKLDNN();   // 可选
+  config->SetCpuMathLibraryNumThreads(10);
+  */
+ 
+  // 当使用ZeroCopyTensor的时候，此处一定要设置为false。
+  config->SwitchUseFeedFetchOps(false);
+  // 当多输入的时候，此处一定要设置为true
+  config->SwitchSpecifyInputNames(true);
+  config->SwitchIrDebug(true); // 开关打开，会在每个图优化过程后生成dot文件，方便可视化。
+  // config->SwitchIrOptim(false); // 默认为true。如果设置为false，关闭所有优化，执行过程同 NativePredictor
+  // config->EnableMemoryOptim(); // 开启内存/显存复用
+}
+
+void RunAnalysis(int batch_size, std::string model_dirname) {
+  // 1. 创建AnalysisConfig
+  AnalysisConfig config;
+  CreateConfig(&config);
+  
+  // 2. 根据config 创建predictor
+  auto predictor = CreatePaddlePredictor(config);
+  int channels = 3;
+  int height = 224;
+  int width = 224;
+  float input[batch_size * channels * height * width] = {0};
+  
+  // 3. 创建输入
+  // 同NativePredictor样例一样，此处可以使用PaddleTensor来创建输入
+  // 以下的代码中使用了ZeroCopy的接口，同使用PaddleTensor不同的是：此接口可以避免预测中多余的cpu copy，提升预测性能。
+  auto input_names = predictor->GetInputNames();
+  auto input_t = predictor->GetInputTensor(input_names[0]);
+  input_t->Reshape({batch_size, channels, height, width});
+  input_t->copy_from_cpu(input);
+
+  // 4. 运行
+  CHECK(predictor->ZeroCopyRun());
+   
+  // 5. 获取输出
+  std::vector<float> out_data;
+  auto output_names = predictor->GetOutputNames();
+  auto output_t = predictor->GetOutputTensor(output_names[0]);
+  std::vector<int> output_shape = output_t->shape();
+  int out_num = std::accumulate(output_shape.begin(), output_shape.end(), 1, std::multiplies<int>());
+
+  out_data.resize(out_num);
+  output_t->copy_to_cpu(out_data.data());
+}
+}  // namespace paddle
+
+int main() { 
+  // 模型下载地址 http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/mobilenet.tar.gz
+  paddle::RunAnalysis(1, "./mobilenet");
+  return 0;
+}
+
+
 ```
 
-这里需要注意的是，输入的 PaddleTensor 需要指定，比如之前的例子需要修改为
+## <a name="输入输出的管理"> 输入输出的管理</a>
+### PaddleTensor 的使用
+PaddleTensor可用于NativePredictor和AnalysisPredictor，在 NativePredictor样例中展示了PaddleTensor的使用方式。
+PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字段如下：
 
-```c++
-auto predictor = paddle::CreatePaddlePredictor(config); // 注意这里需要 AnalysisConfig
-// 创建输入 tensor
-int64_t data[4] = {1, 2, 3, 4};
-paddle::PaddleTensor tensor;
-tensor.shape = std::vector<int>({4, 1});
-tensor.data.Reset(data, sizeof(data));
-tensor.dtype = paddle::PaddleDType::INT64;
+- `name`， 类型：string， 用于指定输入数据对应的 模型中variable 的名字
+- `shape`， 类型：`vector<int>`, 表示一个 Tensor 的 shape
+- `data`，  类型：`PaddleBuf`, 数据以连续内存的方式存储在`PaddleBuf` 中，`PaddleBuf` 可以接收外面的数据或者独立`malloc`内存，详细可以参考头文件中相关定义。
+- `dtype`， 类型：`PaddleType`, 有`PaddleDtype::FLOAT32`, `PaddleDtype::INT64`, `PaddleDtype::INT32`种, 表示 Tensor 的数据类型。
+- `lod`，  类型：`vector<vector<size_t>>`，在处理变长输入的时候，需要对 `PaddleTensor` 设置LoD信息。[LoD-Tensor使用说明](../../../user_guides/howto/basic_concept/lod_tensor.html)
+
+
+### ZeroCopyTenosr的使用
+ZeroCopyTensor的使用可避免预测时候准备输入以及获取输出时多余的数据copy，提高预测性能。**只可用于AnalysisPredictor**。    
+
+**Note：**使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`
+
+```
+// 通过创建的AnalysisPredictor获取输入和输出的tensor
+auto input_names = predictor->GetInputNames();
+auto input_t = predictor->GetInputTensor(input_names[0]);
+auto output_names = predictor->GetOutputNames();
+auto output_t = predictor->GetOutputTensor(output_names[0]);
+
+// 对tensor进行reshape
+input_t->Reshape({batch_size, channels, height, width});
+
+// 通过copy_from_cpu接口，输入cpu数据输入；通过copy_to_cpu接口，将输出数据copy到cpu
+input_t->copy_from_cpu<float>(input_data /*数据指针*/);
+output_t->copy_to_cpu(out_data /*数据指针*/);
+
+// 设置LOD 
+std::vector<std::vector<size_t>> lod_data = {{0}, {0}};
+input_t->SetLoD(lod_data);
+
+// 获取tensor数据指针
+float *input_d = input_t->mutable_data<float>(PaddlePlace::kGPU);  // CPU下使用PaddlePlace::kCPU
+int output_size;
+float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
 ```
 
-后续的执行过程与 `NativeConfig` 完全一致。
+## <a name="多线程预测"> 多线程预测</a>
 
-### 变长序列输入
-在处理变长输入的时候，需要对 `PaddleTensor` 设置LoD信息
 
-``` c++
-# 假设序列长度依次为 [3, 2, 4, 1, 2, 3]
-tensor.lod = {{0,
-               /*0 + 3=*/3,
-               /*3 + 2=*/5,
-               /*5 + 4=*/9,
-               /*9 + 1=*/10,
-               /*10 + 2=*/12,
-               /*12 + 3=*/15}};
-```
+多线程场景下，每个服务线程执行同一种模型，支持 CPU 和 GPU。
 
-更详细的例子可以参考[LoD-Tensor使用说明](../../../user_guides/howto/basic_concept/lod_tensor.html)
-
-### 多线程预测的建议
-
-#### 数据并行的服务
-
-这种场景下，每个服务线程执行同一种模型，支持 CPU 和 GPU。
-
-Paddle 并没有相关的接口支持，但用户可以简单组合得出，下面演示最简单的实现，用户最好参考具体应用场景做调整
+下面演示最简单的实现，用户需要根据具体应用场景做相应的调整
 
 ```c++
 auto main_predictor = paddle::CreatePaddlePredictor(config);
@@ -164,11 +218,12 @@ const int num_threads = 10;  // 假设有 10 个服务线程
 std::vector<std::thread> threads;
 std::vector<decl_type(main_predictor)> predictors;
 
-// 最好初始化时把所有predictor都创建好
+// 线程外将所有的predictor进行创建
 predictors.emplace_back(std::move(main_predictor));
 for (int i = 1; i < num_threads; i++) {
     predictors.emplace_back(main_predictor->Clone());
 }
+
 // 创建线程并执行
 for (int i = 0; i < num_threads; i++) {
     threads.emplace_back([i, &]{
@@ -178,7 +233,7 @@ for (int i = 0; i < num_threads; i++) {
     });
 }
 
-// 结尾
+// 线程join
 for (auto& t : threads) {
     if (t.joinable()) t.join();
 }
@@ -186,48 +241,12 @@ for (auto& t : threads) {
 // 结束
 ```
 
-#### 模型并行的服务
 
-这种场景，使用多个线程/CPU核加速单个模型的预测，**目前只支持 CPU下使用 MKL/MKLDNN 的情况**。
+## <a name="性能建议"> 性能建议</a>
 
-使用 `AnalysisConfig` 的对应接口来设置底层科学计算库使用线程的数目，具体参考 [SetCpuMathLibraryNumThreads](https://github.com/PaddlePaddle/Paddle/blob/release/1.3/paddle/fluid/inference/api/paddle_analysis_config.h#L159)
-
-```c++
-config.SetCpuMathLibraryNumThreads(8); // 一个模型使用 8 个线程加速预测
-
-// 查询状态，可以使用如下接口
-config.cpu_math_library_num_threads(); // return an int
-```
-
-### 性能建议
-
-1. 在 CPU型号允许的情况下，尽量使用带 AVX 和 MKL 的版本
-2. 复用输入和输出的 `PaddleTensor` 以避免频繁分配内存拉低性能
-3. CPU或GPU预测，可以尝试把 `NativeConfig` 改成成 `AnalysisConfig` 来进行优化
-
-#### CPU下可以尝试使用 Intel 的  `MKLDNN` 加速
-
-MKLDNN 对 `CNN` 类的模型预测有不错的加速效果，可以尝试对比与 `MKLML` 的性能。
-
-使用方法：
-
-```c++
-// AnalysisConfig config(...);
-config.EnableMKLDNN();
-// 查看 mkldnn 是否已经打开，可以用如下代码
-config.mkldnn_enabled();  // return a bool
-```
-
-#### GPU 下可以尝试打开 `TensorRT` 子图加速引擎
-
-通过计算图分析，Paddle 可以自动将计算图中部分子图切割，并调用 NVidia 的 `TensorRT` 来进行加速。
-
-详细内容可以参考 [TensorRT 子图引擎](./paddle_tensorrt_infer.html)
-
-## 详细代码参考
-
-`AnalysisConfig` 完整接口可以参考 [这里](https://github.com/PaddlePaddle/Paddle/blob/release/1.3/paddle/fluid/inference/api/paddle_analysis_config.h#L35)
-
-[inference demos](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/fluid/inference/api/demo_ci)
-
-
+1. 在CPU型号允许的情况下，尽量使用带 AVX 和 MKL 的版本
+2. CPU或GPU预测，可以尝试把 `NativeConfig` 改成成 `AnalysisConfig` 来进行优化
+3. 尽量使用 `ZeroCopyTensor` 避免多余的内存copy
+4. CPU下可以尝试使用 Intel 的  `MKLDNN` 加速
+5. GPU 下可以尝试打开 `TensorRT` 子图加速引擎, 通过计算图分析，Paddle 可以自动将计算图中部分子图切割，并调用 NVidia 的 `TensorRT` 来进行加速。
+详细内容可以参考 [Paddle-TRT 子图引擎](./paddle_tensorrt_infer.html)
