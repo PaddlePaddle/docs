@@ -6,12 +6,12 @@
 
 模型的测试评价与训练的 :code:`fluid.Program` 不同。在测试评价中:
 
-1. 评价测试不进行反向传播，不优化更新参数。
-2. 评价测试执行的操作可以不同。
+1. 测试评价不进行反向传播，不优化更新参数。
+2. 测试评价执行的操作可以不同。
 
    * 例如 BatchNorm 操作，在训练和测试时执行不同的算法。
 
-   * 评价模型与训练相比可以是完全不同的模型。
+   * 测试评价模型与训练模型可以是完全不同的模型。
 
 生成测试 :code:`fluid.Program`
 #################################
@@ -19,8 +19,8 @@
 通过克隆训练 :code:`fluid.Program` 生成测试 :code:`fluid.Program`
 =======================================================================
 
-:code:`Program.clone()` 方法可以复制出新的 :code:`fluid.Program` 。 通过设置
-:code:`Program.clone(for_test=True)` 复制含有用于测试的操作Program。简单的使用方法如下:
+用:code:`Program.clone()` 方法可以复制出新的 :code:`fluid.Program` 。 通过设置
+:code:`Program.clone(for_test=True)` 复制含有用于测试的操作 :code:`fluid.Program` 。简单的使用方法如下:
 
 .. code-block:: python
 
@@ -105,7 +105,7 @@ PaddlePaddle Fluid中使用 :code:`fluid.unique_name` 包来随机初始化用�
 ===============================================================
 
 用户可以使用训练用的 :code:`ParallelExecutor` 与测试 :code:`fluid.Program`
-一起新建一个测试的 :code:`ParallelExecutor` ；再使用测试
+一起，新建一个测试的 :code:`ParallelExecutor` ；再使用测试
 :code:`ParallelExecutor.run` 来执行测试。
 
 例如:

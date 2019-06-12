@@ -93,6 +93,15 @@ NormalInitializer
     :members:
     :noindex:
 
+.. _api_fluid_initializer_NumpyArrayInitializer:
+
+NumpyArrayInitializer
+---------------------
+
+..  autoclass:: paddle.fluid.initializer.NumpyArrayInitializer
+    :members:
+    :noindex:
+
 .. _api_fluid_initializer_TruncatedNormal:
 
 TruncatedNormal

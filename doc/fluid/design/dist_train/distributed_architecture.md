@@ -40,11 +40,11 @@ computation is only specified in Python code which sits outside of PaddlePaddle,
 
 Similar to how a compiler uses an intermediate representation (IR) so that the programmer does not need to manually optimize their code for most of the cases, we can have an intermediate representation in PaddlePaddle as well. The compiler optimizes the IR as follows:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/compiler.png"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/compiler.png"/>
 
 PaddlePaddle can support model parallelism by converting the IR so that the user no longer needs to manually perform the computation and operations in the Python component:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/paddle-compile.png"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/paddle-compile.png"/>
 
 The IR for PaddlePaddle after refactoring is called a `Block`, it specifies the computation dependency graph and the variables used in the computation.
 
@@ -54,13 +54,13 @@ The user can not directly specify the parameter update rule for the parameter se
 
 This could be fixed by making the parameter server also run an IR, which can be different to the trainer side
 For a detailed explanation, refer to this document -
-[Design Doc: Parameter Server](./parameter_server.md)
+[Design Doc: Parameter Server](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/dist_train/parameter_server.md)
 
 ## Distributed Training Architecture
 
 The revamped distributed training architecture can address the above discussed limitations. Below is the illustration of how it does so:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/distributed_architecture.png"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/distributed_architecture.png"/>
 
 The major components are: *Python API*, *Distribute Transpiler* and *Remote Executor*.
 
@@ -97,9 +97,9 @@ The code above is a typical local training program, the "Training Program" is bu
 `fluid.layer.fc`. The training is done by calling `Executor.run`
 iteratively.
 
-For more details, the implementation of IR is [Program](../program.md), and `ProgramDesc` is the protobuf type.
+For more details, the implementation of IR is [Program](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/program.md), and `ProgramDesc` is the protobuf type.
 
-[Executor](../executor.md) simply runs the `ProgramDesc`. For local training you generally use
+[Executor](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/executor.md) simply runs the `ProgramDesc`. For local training you generally use
 `Executor` to run the program locally. For any kind of distributed training, you can use
 `RemoteExecutor` to specify desired distributed training method with some optional arguments.
 
@@ -152,7 +152,7 @@ for data in train_reader():
 `JobDesc` object describe the distributed job resource specification to run on
 Cluster environment.
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/remote_executor.png" width="500" align="center" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/remote_executor.png" width="500" align="center" />
 
 `RemoteExecutor.run` sends the `ProgramDesc` and
 [TrainingJob](https://github.com/PaddlePaddle/cloud/blob/unreleased-tpr/doc/autoscale/README.md#training-job-resource)
@@ -171,13 +171,13 @@ In the future, a more general placement algorithm should be implemented, which m
 
 The local training architecture will be the same as the distributed training architecture, the difference is that everything runs locally, and there is just one PaddlePaddle runtime:
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/Paddle/develop/doc/fluid/images/local_architecture.png"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/local_architecture.png"/>
 
 
 ### Training Data
 
 In PaddlePaddle v0.10.0, training data is typically read
-with [data reader](./README.md) from Python. This approach is
+with `data reader` from Python. This approach is
 no longer efficient when training distributedly since the Python
 process no longer runs on the same node with the trainer processes,
 the Python reader will need to read from the distributed filesystem

@@ -86,6 +86,24 @@ DecayedAdagradOptimizer
     :members:
     :noindex:
 
+.. _api_fluid_optimizer_DGCMomentumOptimizer:
+
+DGCMomentumOptimizer
+--------------------
+
+..  autoclass:: paddle.fluid.optimizer.DGCMomentumOptimizer
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_ExponentialMovingAverage:
+
+ExponentialMovingAverage
+------------------------
+
+..  autoclass:: paddle.fluid.optimizer.ExponentialMovingAverage
+    :members:
+    :noindex:
+
 .. _api_fluid_optimizer_Ftrl:
 
 Ftrl
@@ -101,6 +119,15 @@ FtrlOptimizer
 -------------
 
 ..  autoclass:: paddle.fluid.optimizer.FtrlOptimizer
+    :members:
+    :noindex:
+
+.. _api_fluid_optimizer_LambOptimizer:
+
+LambOptimizer
+-------------
+
+..  autoclass:: paddle.fluid.optimizer.LambOptimizer
     :members:
     :noindex:
 

@@ -1,11 +1,8 @@
-```eval_rst
-.. _user_guide_reader:
-```
+# 数据预处理工具
 
-# Python Reader
-在模型训练和预测阶段，PaddlePaddle程序需要读取训练或预测数据。为了帮助用户编写数据读取的代码，我们提供了如下接口：
+在模型训练和预测阶段，PaddlePaddle程序需要读取训练或预测数据。为了帮助您编写数据读取的代码，我们提供了如下接口：
 
-- *reader*: 用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个数据项。
+- *reader*: 样本级的reader，用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个样本数据项。
 - *reader creator*: 接受一个或多个reader作为参数、返回一个新reader的函数。
 - *reader decorator*: 一个函数，接受一个或多个reader，并返回一个reader。
 - *batch reader*: 用于读取数据的函数，数据可来自于文件、网络、随机数生成器等，函数每次返回一个batch大小的数据项。
@@ -132,7 +129,7 @@ def reader_creator_random_image(width, height):
     return reader
 
 def reader_creator_bool(t):
-    def reader:
+    def reader():
         while True:
             yield t
     return reader
@@ -140,7 +137,7 @@ def reader_creator_bool(t):
 true_reader = reader_creator_bool(True)
 false_reader = reader_creator_bool(False)
 
-reader = paddle.reader.compose(paddle.dataset.mnist.train(), data_reader_creator_random_image(20, 20), true_reader, false_reader)
+reader = paddle.reader.compose(paddle.dataset.mnist.train(), reader_creator_random_image(20, 20), true_reader, false_reader)
 # 跳过1因为paddle.dataset.mnist.train()为每个数据项生成两个项。
 # 并且这里我们暂时不考虑第二项。
 paddle.train(paddle.batch(reader, 128), {"true_image":0, "fake_image": 2, "true_label": 3, "false_label": 4}, ...)
@@ -162,7 +159,7 @@ reader = paddle.reader.shuffle(paddle.dataset.mnist.train(), 512)
 
 我们提供一个函数来将一个单项reader转换成一个batch reader。
 
-### 为什么需要一个batch raeder，在训练过程中给出reader和batch_size参数这样不足够吗？
+### 为什么需要一个batch reader，在训练过程中给出reader和batch_size参数这样不足够吗？
 
 在大多数情况下，在训练方法中给出reader和batch_size参数是足够的。但有时用户想自定义mini batch里数据项的顺序，或者动态改变batch_size。在这些情况下用batch reader会非常高效有用。
 
@@ -189,15 +186,4 @@ def image_reader_creator(image_path, label_path, n):
 
 # images_reader_creator创建一个reader
 reader = image_reader_creator("/path/to/image_file", "/path/to/label_file", 1024)
-paddle.train(paddle.batch(reader, 128), {"image":0, "label":1}, ...)
-```
-
-### `paddle.train`实现原理
-实现`paddle.train`的示例如下：
-
-```python
-def train(batch_reader, mapping, batch_size, total_pass):
-    for pass_idx in range(total_pass):
-        for mini_batch in batch_reader(): # this loop will never end in online learning.
-            do_forward_backward(mini_batch, mapping)
 ```

@@ -75,44 +75,31 @@
    ...
    loss = fluid.layers.mean(...)
 
-   exe = fluid.Executor(...)
-   # the result is an numpy array
-   result = exe.run(feed={"image": ..., "label": ...}, fetch_list=[loss])
-
-这里有几点注意事项:
-
-1. feed的数据格式，请参考文章 :ref:`user_guide_feed_data_to_executor`。
-2. :code:`Executor.run` 的返回值是 :code:`fetch_list=[...]` 的variable值。被fetch\
-   的Variable必须是persistable的。 :code:`fetch_list` 可以传入Variable的列表，\
-   也可以传入Variable的名字列表。:code:`Executor.run` 返回Fetch结果列表。
-3. 如果需要取回的数据包含序列信息，可以设置
-   :code:`exe.run(return_numpy=False, ...)` 直接返回 :code:`fluid.LoDTensor`
-   。用户可以直接访问 :code:`fluid.LoDTensor` 中的信息。
-
 多卡训练
-########
-
-执行多卡训练可以使用 :code:`fluid.ParallelExecutor` 运行训练
-:code:`fluid.Program`。例如:
+#######################
+在多卡训练中，你可以使用 :code:`fluid.compiler.CompiledProgram` 来编译 :code:`fluid.Program` ，然后调用 :code:`with_data_parallel` 。例如：
 
 .. code-block:: python
 
-   train_exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name,
-                                main_program=fluid.default_main_program())
-   train_exe.run(fetch_list=[loss.name], feed={...})
+    exe = fluid.Executor(...)
 
-这里有几点注意事项:
+    compiled_prog = fluid.compiler.CompiledProgram(
+        fluid.default_main_program()).with_data_parallel(
+            loss_name=loss.name)
 
-1. :code:`ParallelExecutor` 的构造函数需要指明要执行的 :code:`fluid.Program` ,
-   并在执行过程中不能修改。默认值是 :code:`fluid.default_main_program()` 。
-2. :code:`ParallelExecutor` 需要明确指定是否使用 CUDA 显卡进行训练。在显卡训练\
-   模式下会占用全部显卡。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 来修改占用\
-   的显卡。
+    result = exe.run(program=compiled_prog,
+                    fetch_list=[loss.name],
+                    feed={"image": ..., "label": ...})
+
+注释：
+
+1. :ref:`cn_api_fluid_CompiledProgram` 的构造函数需要经过 :code:`fluid.Program` 设置后运行，这在运行时内无法被修改。
+2. 如果 :code:`exe` 是用CUDAPlace来初始化的，模型会在GPU中运行。在显卡训练模式中，所有的显卡都将被占用。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 以更改被占用的显卡。
+3. 如果 :code:`exe` 是用CPUPlace来初始化的，模型会在CPU中运行。在这种情况下，多线程用于运行模型，同时线程的数目和逻辑核的数目相等。用户可以配置 ``CPU_NUM`` 以更改使用中的线程数目。
 
 进阶使用
-########
-
+###############
 .. toctree::
    :maxdepth: 2
 
-   test_while_training
+   test_while_training.rst

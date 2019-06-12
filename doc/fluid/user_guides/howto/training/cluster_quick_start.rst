@@ -18,8 +18,8 @@
 样例代码
 -------
 
-下面使用一个非常简单的线性回归模型作为样例来解释如何启动一个包含2个 pserver server 节点以及
-2个 trainer 节点的分布式训练任务，您可以将本段代码保存为 ``dist_train.py``
+下面使用一个非常简单的线性回归模型作为样例来解释如何启动一个包含2个 ``PSERVER`` 节点以及
+2个 ``TRAINER`` 节点的分布式训练任务，您可以将本段代码保存为 ``dist_train.py`` 运行。
 
 .. code:: python
 
@@ -112,11 +112,11 @@
   * - :code:`PADDLE_PSERVER_IPS`
     - str
     - :code:`ps0.paddlepaddle.com,ps1.paddlepaddle.com`
-    - 分布式训练任务中所有 pserver 节点的 IP 地址或 hostname, 使用","分隔
+    - 分布式训练任务中所有 PSERVER 节点的 IP 地址或 hostname, 使用","分隔
   * - :code:`PADDLE_PSERVER_PORT`
     - int
     - 6174
-    - pserver 进程监听的端口
+    - PSERVER 进程监听的端口
   * - :code:`PADDLE_TRAINERS`
     - int
     - 2
@@ -124,11 +124,11 @@
   * - :code:`PADDLE_CURRENT_IP`
     - str
     - :code:`ps0.paddlepaddle.com`
-    - 当前 pserver 节点的 IP 地址或 hostname
+    - 当前 PSERVER 节点的 IP 地址或 hostname
   * - :code:`PADDLE_TRAINER_ID`
     - str 
     - 0
-    - 当前 trainer 节点的 ID (唯一)， 取值范围为 [0, PADDLE_TRAINERS)
+    - 当前 TRAINER 节点的 ID (唯一)， 取值范围为 [0, PADDLE_TRAINERS)
 
 注： 环境变量只是获取运行时信息的一种方式，实际任务中可以采用命令行参数等方式获取运行时信息。
 
@@ -138,9 +138,9 @@
 DistributeTranspiler
 ~~~~~~~~~~~~~~~~~~~~~~
 
-基于 pserver-trainer 架构的的分布式训练任务分为两种角色： Parameter Server(pserver) 以及 trainer, 
+基于 pserver-trainer 架构的的分布式训练任务分为两种角色： Parameter Server(PSERVER) 以及 TRAINER, 
 在 Fluid 中，用户只需配置单机训练所需要的网络配置, ``DistributeTranspiler`` 模块会自动地根据
-当前训练节点的角色将用户配置的单机网路配置改写成 pserver 和 trainer 需要运行的网络配置:
+当前训练节点的角色将用户配置的单机网路配置改写成 PSERVER 和 TRAINER 需要运行的网络配置:
 
 .. code:: python
 
@@ -150,20 +150,20 @@ DistributeTranspiler
         pservers = pserver_endpoints,    
         trainers = trainers)
     if PADDLE_TRAINING_ROLE == "TRAINER":
-        # fetch the pserver program and execute it
+        # fetch the trainer program and execute it
         trainer_prog = t.get_trainer_program()
         ...
 
     elif PADDLE_TRAINER_ROLE == "PSERVER":
-        # fetch the trainer program and execute it
+        # fetch the pserver program and execute it
         pserver_prog = t.get_pserver_program(current_endpoint) 
         ...
 
 exe.close()
 ~~~~~~~~~~~~~~
 
-pserver 节点中会保存所有 trainer 节点的状态信息，在 trainer结束训练时需要调用 ``exe.close()``
-通知所有 PServer 节点释放当前 Trainer 节点的资源:
+PSERVER 节点中会保存所有 TRAINER 节点的状态信息，在 TRAINER 结束训练时需要调用 ``exe.close()``
+通知所有 PSERVER 节点释放当前 TRAINER 节点的资源:
 
 .. code:: python
 
@@ -182,13 +182,13 @@ pserver 节点中会保存所有 trainer 节点的状态信息，在 trainer结�
      - 说明
    * - ps0.paddlepaddle.com
      - :code:`PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps0.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py`
-     - 启动 pserver 节点
+     - 启动 PSERVER 节点
    * - ps1.paddlepaddle.com
      - :code:`PADDLE_TRAINING_ROLE=PSERVER PADDLE_CURRENT_IP=ps1.paddlepaddle.com PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_PSERVER_PORT=6174 python fluid_dist.py`
-     - 启动 pserver 节点
+     - 启动 PSERVER 节点
    * - trainer0.paddlepaddle.com
      - :code:`PADDLE_TRAINING_ROLE=TRAINER PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=0 PADDLE_PSERVER_PORT=6174 python fluid_dist.py`
-     - 启动第0号 trainer 节点
+     - 启动第0号 TRAINER 节点
    * - trainer1.paddlepaddle.com
      - :code:`PADDLE_TRAINING_ROLE=TRAINER PADDLE_PSERVER_IPS=ps0.paddlepaddle.com,ps1.paddlepaddle.com PADDLE_TRAINERS=2 PADDLE_TRAINER_ID=1 PADDLE_PSERVER_PORT=6174 python fluid_dist.py`
-     - 启动第1号 trainer 节点
+     - 启动第1号 TRAINER 节点

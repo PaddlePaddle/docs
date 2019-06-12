@@ -6,7 +6,7 @@
 .. _cn_api_fluid_initializer_Bilinear:
 
 Bilinear
->>>>>>>>>>>
+-------------------------------
 
 .. py:attribute:: paddle.fluid.initializer.Bilinear
 
@@ -16,7 +16,7 @@ Bilinear
 .. _cn_api_fluid_initializer_BilinearInitializer:
 
 BilinearInitializer
->>>>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.initializer.BilinearInitializer
 
@@ -49,7 +49,7 @@ num_filters = C和groups = C 表示这是按通道转置的卷积函数。滤波
 .. _cn_api_fluid_initializer_Constant:
 
 Constant
->>>>>>>>>>
+-------------------------------
 
 .. py:attribute:: paddle.fluid.initializer.Constant
 
@@ -59,7 +59,7 @@ Constant
 .. _cn_api_fluid_initializer_ConstantInitializer:
 
 ConstantInitializer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.initializer.ConstantInitializer(value=0.0, force_cpu=False)
 
@@ -84,7 +84,7 @@ ConstantInitializer
 .. _cn_api_fluid_initializer_force_init_on_cpu:
 
 force_init_on_cpu
->>>>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:function:: paddle.fluid.initializer.force_init_on_cpu()
 
@@ -114,9 +114,9 @@ force_init_on_cpu
 .. _cn_api_fluid_initializer_init_on_cpu:
 
 init_on_cpu
->>>>>>>>>>>>
+-------------------------------
 
-.. py:function:: paddle.fluid.initializer.init_on_cpu(*args, **kwds)
+.. py:function:: paddle.fluid.initializer.init_on_cpu()
 
 强制变量在 cpu 上初始化。
 
@@ -125,7 +125,7 @@ init_on_cpu
 .. code-block:: python
         
         with init_on_cpu():
-                step = layers.create_global_var()
+                step = fluid.layers.create_global_var()
 
 
 
@@ -135,7 +135,7 @@ init_on_cpu
 .. _cn_api_fluid_initializer_MSRA:
 
 MSRA
->>>>>>
+-------------------------------
 
 .. py:attribute:: paddle.fluid.initializer.MSRA
 
@@ -144,7 +144,7 @@ MSRA
 .. _cn_api_fluid_initializer_MSRAInitializer:
 
 MSRAInitializer
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.initializer.MSRAInitializer(uniform=True, fan_in=None, seed=0)
 
@@ -189,7 +189,7 @@ MSRAInitializer
 .. _cn_api_fluid_initializer_Normal:
 
 Normal
->>>>>>>>
+-------------------------------
 
 .. py:attribute:: paddle.fluid.initializer.Normal
 
@@ -199,7 +199,7 @@ Normal
 .. _cn_api_fluid_initializer_NormalInitializer:
 
 NormalInitializer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.initializer.NormalInitializer(loc=0.0, scale=1.0, seed=0)
 
@@ -218,15 +218,30 @@ NormalInitializer
             param_attr=fluid.initializer.Normal(loc=0.0, scale=2.0)
 
 
+.. _cn_api_fluid_initializer_NumpyArrayInitializer:
 
+NumpyArrayInitializer
+-------------------------------
 
+.. py:class:: paddle.fluid.initializer.NumpyArrayInitializer(value)
 
+使用Numpy型数组来初始化参数变量。
+
+参数：
+        - **value** （numpy） - 用于初始化变量的一个Numpy型数组。
+
+**代码示例**
+
+.. code-block:: python
+
+    fc = fluid.layers.fc(input=x, size=10,
+        param_attr=fluid.initializer.NumpyArrayInitializer(numpy.array([1,2])))
 
 
 .. _cn_api_fluid_initializer_TruncatedNormal:
 
 TruncatedNormal
->>>>>>>>>>>>>>>>>
+-------------------------------
 
 .. py:attribute:: paddle.fluid.initializer.TruncatedNormal
 
@@ -236,7 +251,7 @@ TruncatedNormal
 .. _cn_api_fluid_initializer_TruncatedNormalInitializer:
 
 TruncatedNormalInitializer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.initializer.TruncatedNormalInitializer(loc=0.0, scale=1.0, seed=0)
 
@@ -265,7 +280,7 @@ Random Truncated Normal（高斯）分布初始化器
 .. _cn_api_fluid_initializer_Uniform:
 
 Uniform
->>>>>>>>>
+-------------------------------
 
 .. py:attribute:: paddle.fluid.initializer.Uniform
 
@@ -276,7 +291,7 @@ Uniform
 .. _cn_api_fluid_initializer_UniformInitializer:
 
 UniformInitializer
->>>>>>>>>>>>
+-------------------------------
 
 .. py:class:: paddle.fluid.initializer.UniformInitializer(low=-1.0, high=1.0, seed=0) 
 
@@ -305,7 +320,7 @@ UniformInitializer
 .. _cn_api_fluid_initializer_Xavier:
 
 Xavier
->>>>>>>>>
+-------------------------------
 
 .. py:attribute:: paddle.fluid.initializer.Xavier
 
@@ -319,7 +334,8 @@ Xavier
 .. _cn_api_fluid_initializer_XavierInitializer:
 
 XavierInitializer
->>>>>>>>>>>>>>>>>>>
+-------------------------------
+
 .. py:class:: paddle.fluid.initializer.XavierInitializer(uniform=True, fan_in=None, fan_out=None, seed=0)
 
 该类实现Xavier权重初始化方法（ Xavier weight initializer），Xavier权重初始化方法出自Xavier Glorot和Yoshua Bengio的论文 `Understanding the difficulty of training deep feedforward neural networks <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>`_

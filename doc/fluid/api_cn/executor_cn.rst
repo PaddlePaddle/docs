@@ -15,6 +15,8 @@ Executor
 
 
 
+
+
 执行引擎（Executor）使用python脚本驱动，仅支持在单GPU环境下运行。多卡环境下请参考 ``ParallelExecutor`` 。
 Python Executor可以接收传入的program,并根据feed map(输入映射表)和fetch_list(结果获取表)
 向program中添加feed operators(数据输入算子)和fetch operators（结果获取算子)。
@@ -28,12 +30,38 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 
 program中所有的算子会按顺序执行。
 
+**示例代码**
+
+.. code-block:: python
+
+    # 新建一个执行引擎Executor名为exe。 
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
+
+    # 仅运行一次startup program.
+    # 不需要优化/编译这个startup program. 
+    exe.run(fluid.default_startup_program())
+
+    # 无需编译，直接运行main program
+    loss, = exe.run(fluid.default_main_program(),
+                        feed=feed_dict,
+                        fetch_list=[loss.name])
+
+    # 另一种方法是，编译这个main program然后运行. 参考CompiledProgram 
+    compiled_prog = compiler.CompiledProgram(
+            fluid.default_main_program()).with_data_parallel(
+            loss_name=loss.name)
+    loss, = exe.run(compiled_prog,
+                        feed=feed_dict,
+                        fetch_list=[loss.name])
+
+
 参数:	
     - **place** (core.CPUPlace|core.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
 
 
 
-提示：你可以用Executor来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
+提示：你可以用 ``Executor`` 来调试基于并行GPU实现的复杂网络，他们有完全一样的参数也会产生相同的结果。
 
 
 .. py:method:: close()
@@ -62,8 +90,8 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
 
 参数：  
-	- **program** (Program) – 需要执行的program,如果没有给定那么默认使用default_main_program
-	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LableData}
+	- **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
+	- **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
 	- **fetch_list** (list) – 用户想得到的变量或者命名的列表, run会根据这个列表给与结果
 	- **feed_var_name** (str) – 前向算子(feed operator)变量的名称
 	- **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
@@ -80,23 +108,21 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 ..  code-block:: python
 
-
 	data = fluid.layers.data(name='X', shape=[1], dtype='float32')
 	out = fluid.layers.create_tensor(dtype='float32')
 	hidden = fluid.layers.fc(input=data, size=10)
-	fluid.layers.assign(hidden, out)
+	fluid.layers.assign(hidden,out)
 	loss = fluid.layers.mean(out)
 	adam = fluid.optimizer.Adam()
-	adam.minimize(loss)
+	# adam.minimize(loss)
 
 
 ..  code-block:: python
-	
-	
+
 	cpu = core.CPUPlace()
 	exe = fluid.Executor(cpu)
 	exe.run(fluid.default_startup_program())
-	
+
 ..  code-block:: python
 	
 	x = numpy.random.random(size=(10, 1)).astype('float32')
@@ -118,7 +144,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 global_scope
 -------------------------------
 
-.. py:function:: paddle.fluid.global_scope()
+.. py:function:: paddle.fluid.executor.global_scope ()
 
 
 获取全局/默认作用域实例。很多api使用默认 ``global_scope`` ，例如 ``Executor.run`` 。
@@ -137,7 +163,7 @@ global_scope
 scope_guard
 -------------------------------
 
-.. py:function:: paddle.fluid.scope_guard(*args, **kwds)
+.. py:function:: paddle.fluid.executor.scope_guard (scope)
 
 
 修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。

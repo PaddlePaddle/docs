@@ -33,7 +33,7 @@ Adagrad
 AdagradOptimizer
 -------------------------------
 
-.. py:class:: paddle.fluid.optimizer.AdagradOptimizer(learning_rate, epsilon=1e-06, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.AdagradOptimizer(learning_rate, epsilon=1e-06, regularization=None, name=None, initial_accumulator_value=0.0)
 
 **Adaptive Gradient Algorithm(Adagrad)**
 
@@ -52,6 +52,7 @@ http://cs231n.github.io/neural-networks-3/#ada 用于维持数值稳定性，避
     - **epsilon** (float) - 维持数值稳定性的短浮点型值
     - **regularization** - 规则化函数，例如fluid.regularizer.L2DecayRegularizer
     - **name** - 名称前缀（可选）
+    - **initial_accumulator_value** (float) - moment累加器的初始值。
 
 **代码示例**：
 
@@ -152,7 +153,7 @@ Adamax 更新规则:
 AdamOptimizer
 -------------------------------
 
-.. py:class:: paddle.fluid.optimizer. AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None, lazy_mode=False)
 
 该函数实现了自适应矩估计优化器，介绍自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节。Adam是一阶基于梯度下降的算法，基于自适应低阶矩估计。
 Adam更新如下：
@@ -168,6 +169,8 @@ Adam更新如下：
     - **epsilon** (float)-保持数值稳定性的短浮点类型值
     - **regularization** - 规则化函数，例如''fluid.regularizer.L2DecayRegularizer
     - **name** - 可选名称前缀
+    - **lazy_mode** （bool: false） - 官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果。
+
 
 **代码示例**：
 
@@ -236,6 +239,59 @@ Decayed Adagrad Optimizer
 
 
 
+.. _cn_api_fluid_optimizer_DGCMomentumOptimizer:
+
+DGCMomentumOptimizer
+-------------------------------
+
+.. py:class:: paddle.fluid.optimizer.DGCMomentumOptimizer(learning_rate, momentum, rampup_begin_step, rampup_step=1, sparsity=[0.999], use_nesterov=False, local_grad_clip_norm=None, num_trainers=None, regularization=None, name=None)
+
+原始论文: https://arxiv.org/abs/1712.01887
+
+DGC通过仅发送重要梯度（稀疏更新）来减少通信带宽：仅发送大于给定阈值的梯度。
+
+为避免丢失信息，DGC在本地累积其余梯度。最终，这些梯度会积累到足够大，从而可以传输。
+
+因此，DGC即时发送相对较大的梯度，但最终随时间积累而发送所有梯度。
+
+此外，为了确保不损失精度，DGC在梯度稀疏化之上采用动量修正和局部梯度修剪(clip)来维持模型性能。
+
+DGC还使用动量因子掩藏(momentum factor masking)和预训练(warm-up)来克服由于reduced通讯而导致的数据陈旧性(staleness)问题。
+
+这个优化器会执行如下操作：
+
+1. 通过从张量获取前TopK个导入值来压缩梯度，并将其用于allreduce以减少网络带宽。
+2. 调用momentum来降低cost。
+
+参数: 
+    - **learning_rate** （float | Variable） - 用于更新参数的学习率。可以是浮点值或由一个浮点型数据组成的Variable。
+    - **momentum** （float） - 动量因子。
+    - **rampup_begin_step** （int） - 进行梯度压缩的起步点。
+    - **rampup_step** （int） - 使用稀疏期的时间。默认值为1.例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，并且rampup_step为5，则在0步时使用0.75，在1步时使用0.9375，依此类推。当达到sparsity数组末尾时，它此后延续使用0.999。
+    - **sparsity** （list [float]） - 从梯度张量中获取较为重要的元素，比率为（1-当前稀疏度）。
+    - **use_nesterov** （bool） - 启用Nesterov momentum。 True意味着使用nesterov。
+    - **local_grad_clip_norm** （float） - 如果需要，clip norm值。
+    - **num_trainers**   - 训练节点的数量。
+    - **regularization**  - 正则器，如fluid.regularizer.L2DecayRegularizer。
+    - **name**   - 可选的名称前缀。
+
+**代码示例**
+
+.. code-block:: python
+
+    optimizer = fluid.optimizer.DGCMomentumOptimizer(
+        learning_rate=fluid.layers.piecewise_decay(
+            boundaries=bd, values=lr),
+        momentum=0.9,
+        rampup_begin_step=1252,
+        regularization=fluid.regularizer.L2Decay(1e-4))
+    optimizer.minimize(cost)
+
+
+
+
+
+
 
 
 
@@ -285,9 +341,9 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
 
 参数:
   - **learning_rate** (float|Variable)-全局学习率。
-  - **l1** (float) - 暂无，请等待后期更新
-  - **l2** (float) - 暂无，请等待后期更新
-  - **lr_power** (float) - 暂无，请等待后期更新
+  - **l1** (float) - L1 regularization strength.
+  - **l2** (float) - L2 regularization strength.
+  - **lr_power** (float) - 学习率降低指数
   - **regularization** - 正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
   - **name** — 可选的名称前缀
 
@@ -329,7 +385,7 @@ LarsMomentum
 LarsMomentumOptimizer
 -------------------------------
 
-.. py:function:: paddle.fluid.optimizer.LarsMomentumOptimizer(learning_rate, momentum, lars_coeff=0.001, lars_weight_decay=0.0005, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.LarsMomentumOptimizer(learning_rate, momentum, lars_coeff=0.001, lars_weight_decay=0.0005, regularization=None, name=None)
 
 LARS支持的Momentum优化器
 
@@ -400,7 +456,7 @@ ModelAverage
               exe.run(inference_program...)
 
 
-.. py:method:: apply(*args, **kwds)
+.. py:method:: apply(executor, need_restore=True)
 
 将平均值应用于当前模型的参数。
 

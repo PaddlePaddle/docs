@@ -5,15 +5,6 @@
 fluid
 =====
 
-.. _api_fluid_AsyncExecutor:
-
-AsyncExecutor
--------------
-
-..  autoclass:: paddle.fluid.AsyncExecutor
-    :members:
-    :noindex:
-
 .. _api_fluid_BuildStrategy:
 
 BuildStrategy
@@ -21,6 +12,23 @@ BuildStrategy
 
 ..  autoclass:: paddle.fluid.BuildStrategy
     :members:
+    :noindex:
+
+.. _api_fluid_CompiledProgram:
+
+CompiledProgram
+---------------
+
+..  autoclass:: paddle.fluid.CompiledProgram
+    :members:
+    :noindex:
+
+.. _api_fluid_cpu_places:
+
+cpu_places
+----------
+
+..  autofunction:: paddle.fluid.cpu_places
     :noindex:
 
 .. _api_fluid_CPUPlace:
@@ -46,6 +54,22 @@ create_random_int_lodtensor
 ---------------------------
 
 ..  autofunction:: paddle.fluid.create_random_int_lodtensor
+    :noindex:
+
+.. _api_fluid_cuda_pinned_places:
+
+cuda_pinned_places
+------------------
+
+..  autofunction:: paddle.fluid.cuda_pinned_places
+    :noindex:
+
+.. _api_fluid_cuda_places:
+
+cuda_places
+-----------
+
+..  autofunction:: paddle.fluid.cuda_places
     :noindex:
 
 .. _api_fluid_CUDAPinnedPlace:
@@ -144,6 +168,14 @@ global_scope
 ..  autofunction:: paddle.fluid.global_scope
     :noindex:
 
+.. _api_fluid_in_dygraph_mode:
+
+in_dygraph_mode
+---------------
+
+..  autofunction:: paddle.fluid.in_dygraph_mode
+    :noindex:
+
 .. _api_fluid_LoDTensor:
 
 LoDTensor
@@ -219,15 +251,6 @@ release_memory
 --------------
 
 ..  autofunction:: paddle.fluid.release_memory
-    :noindex:
-
-.. _api_fluid_Scope:
-
-Scope
------
-
-..  autoclass:: paddle.fluid.Scope
-    :members:
     :noindex:
 
 .. _api_fluid_scope_guard:

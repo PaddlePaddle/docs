@@ -19,7 +19,9 @@
 通信。其中RPC通信方式使用 `gRPC <https://github.com/grpc/grpc/>`_ ，Collective通信方式使用
 `NCCL2 <https://developer.nvidia.com/nccl>`_ 。
 
-.. csv-table:: 下面是一个RPC通信和Collective通信的横向对比：
+**RPC通信和Collective通信的横向对比如下：**
+
+.. csv-table:: 
    :header: "Feature", "Collective", "RPC"
 
    "Ring-Based通信", "Yes", "No"
@@ -40,8 +42,11 @@
   pserver进程个数通常需要根据实际情况调整，以达到最佳的性能，然而通常来说pserver的进程不会比trainer\
   更多。
 
-  在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
+  **注：** 在使用GPU训练时，pserver可以选择使用GPU或只使用CPU，如果pserver也使用GPU，则会增加一次从CPU拷贝\
   接收到的梯度数据到GPU的开销，在某些情况下会导致整体训练性能降低。
+  
+  **注：** 在使用GPU训练时，如果每个trainer节点有多个GPU卡，则会先在每个trainer节点的多个卡之间执行\
+  NCCL2通信方式的梯度聚合，然后再通过pserver聚合多个节点的梯度。
 
 - NCCL2通信方式的结构：
 
@@ -57,8 +62,9 @@
 使用 :code:`transpiler` API可以把单机可以执行的程序快速转变成可以分布式执行的程序。在不同的服务器节点
 上，通过传给 :code:`transpiler` 对应的参数，以获取当前节点需要执行的 :code:`Program` 。
 
-
-.. csv-table:: 需要配置参数包括
+需要配置参数包括
+++++++++++++++++++
+.. csv-table:: 
    :header: "参数", "说明"
 
    "role", "\ **必选**\ 区分作为pserver启动还是trainer启动，不传给transpile，也可以用其他的变量名或环境变量"
@@ -109,7 +115,7 @@ Fluid分布式任务可以支持同步训练或异步训练，在同步训练方
 
 
 选择是否使用分布式embedding表进行训练
-+++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++
 
 embedding被广泛应用在各种网络结构中，尤其是文本处理相关的模型。在某些场景，例如推荐系统或者搜索引擎中，
 embedding的feature id可能会非常多，当feature id达到一定数量时，embedding参数会变得很大，一方面可能
@@ -191,7 +197,10 @@ NCCL2模式的分布式训练，由于没有parameter server角色，是trainer�
 
 * 配置 :code:`fluid.DistributeTranspilerConfig` 中 :code:`mode="nccl2"` 。
 * 调用 :code:`transpile` 时，:code:`trainers` 传入所有trainer节点的endpoint，并且传入参数 :code:`current_endpoint` 。
+  在此步骤中，会在 :code:`startup program` 中增加 :code:`gen_nccl_id_op` 用于在多机程序初始化时同步NCCLID信息。
 * 初始化 :code:`ParallelExecutor` 时传入 :code:`num_trainers` 和 :code:`trainer_id` 。
+  在此步骤中，:code:`ParallelExecutor` 会使用多机方式初始化NCCL2并可以开始在多个节点对每个参数对应的梯度执行跨节点的
+  :code:`allreduce` 操作，执行多机同步训练
 
 一个例子：
 
@@ -208,15 +217,38 @@ NCCL2模式的分布式训练，由于没有parameter server角色，是trainer�
     loss_name=loss_name, num_trainers=len(trainers.split(",")), trainer_id=trainer_id)
   ...
 
-.. csv-table:: NCCL2模式必要参数说明
+NCCL2模式必要参数说明
+++++++++++++++++++++++++++++++++++++++
+.. csv-table:: 
    :header: "参数", "说明"
 
-   "trainer_id", "任务中每个trainer节点的唯一ID，从0开始，不能有重复"
-   "trainers", "任务中所有trainer节点的endpoint，用于在NCCL2初始化时，广播NCCL ID"
-   "current_endpoint", "当前节点的endpoint"
+   "trainer_id", "(int) 任务中每个trainer节点的唯一ID，从0开始，不能有重复"
+   "trainers", "(int) 任务中所有trainer节点的endpoint，用于在NCCL2初始化时，广播NCCL ID"
+   "current_endpoint", "(string) 当前节点的endpoint"
 
 目前使用NCCL2进行分布式训练仅支持同步训练方式。使用NCCL2方式的分布式训练，更适合模型体积较大，并需要使用\
 同步训练和GPU训练，如果硬件设备支持RDMA和GPU Direct，可以达到很高的分布式训练性能。
+
+启动多进程模式 NCCL2 分布式训练作业
++++++++++++++++++++++++++++++++++
+
+通常情况下使用多进程模式启动 NCCL2 分布式训练作业可以获得更好多训练性能，Paddle 提供了
+:code:`paddle.distributed.launch` 模块可以方便地启动多进程作业，启动后每个训练进程将会使用一块独立的 GPU 设备。
+使用时需要注意：
+
+* 设置节点数：通过环境变量 :code:`PADDLE_NUM_TRAINERS` 设置作业的节点数，此环境变量也会被设置在每个训练进程中。
+* 设置每个节点的设备数：通过启动参数 :code:`--gpus` 可以设置每个节点的 GPU 设备数量，每个进程的序号将会被自动设置在环境变量
+  :code:`PADDLE_TRAINER_ID` 中。
+* 数据切分： 多进程模式是每个设备一个进程，一般来说需要每个进程处理一部分训练数据，并且保证所有进程能够处理完整的数据集。
+* 入口文件：入口文件为实际启动的训练脚本。
+* 日志：每个训练进程的日志默认会保存在 :code:`./mylog` 目录下，您也可以通过参数 :code:`--log_dir` 进行指定。
+
+启动样例:
+
+.. code-block:: bash
+
+    > PADDLE_NUM_TRAINERS=<TRAINER_COUNT> python -m paddle.distributed.launch train.py --gpus <NUM_GPUS_ON_HOSTS> <ENTRYPOINT_SCRIPT> --arg1 --arg2 ...
+
 
 NCCL2分布式训练注意事项
 +++++++++++++++++++++
@@ -226,7 +258,10 @@ NCCL2分布式训练注意事项
 - 随机采样一些数据，补全分配到较少数据的节点上。（推荐使用这种方法，以训练完整的数据集）。
 - 在python代码中，每个节点每个pass只训练固定的batch数，如果这个节点数据较多，则不训练这些多出来的数据。
 
+**说明：** 使用NCCL2模式分布式训练时，如果只希望使用一个节点上的部分卡，可以通过配置环境变量：:code:`export CUDA_VISIBLE_DEVICES=0,1,2,3` 指定。
+
 **注意：** 如果系统中有多个网络设备，需要手动指定NCCL2使用的设备，假设需要使用 :code:`eth2` 为通信设备，需要设定如下环境变量：
+
 
 .. code-block:: bash
 
