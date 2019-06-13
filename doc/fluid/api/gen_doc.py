@@ -185,15 +185,6 @@ def generate_doc(module_name, module_prefix, output, to_multiple_files):
 def main():
     args = parse_arg()
     generate_doc(args.module_name, args.module_prefix, args.output, args.to_multiple_files)
-    '''
-    with open(args.output, 'w') as stream:
-        gen = DocGenerator(args.module, args.module_prefix, stream)
-        if args.submodules is None:
-            gen.print_current_module()
-        else:
-            for submodule_name in args.submodules:
-                gen.print_submodule(submodule_name)
-    '''
 
 
 if __name__ == '__main__':
