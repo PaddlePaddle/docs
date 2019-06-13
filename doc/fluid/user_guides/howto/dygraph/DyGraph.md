@@ -21,9 +21,9 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 ## 设置和基本用法
 
-1. 升级到最新的PaddlePaddle 1.4:		
+1. 升级到最新的PaddlePaddle 1.5:		
 		
-		pip install -q --upgrade paddlepaddle==1.4
+		pip install -q --upgrade paddlepaddle==1.5
 
 2. 使用`fluid.dygraph.guard(place=None)` 上下文：
 		
@@ -106,10 +106,10 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 -->
 ## 基于DyGraph构建网络
 		
-1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**三个部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必需要使用继承自`fluid.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
+1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**三个部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必需要使用继承自`fluid.dygraph.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
 
 	
-	1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
+	1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.dygraph.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
 		
 			class MyLayer(fluid.Layer):
 			    def __init__(self, name_scope):
@@ -124,10 +124,6 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		        x = fluid.layers.reduce_sum(x)
 		        return [x]       
 		        
-	3. （可选）实现一个`build_once(self, *inputs)` 方法，该方法将作为一个单次执行的函数，用于初始化一些依赖于输入信息的参数和网络信息, 例如在`FC`（fully connected layer）当中, 需要依赖输入的`shape`初始化参数， 这里我们并不需要这样的操作，仅仅为了展示，因此这个方法可以直接跳过：
-		
-			def build_once(self, input):
-		        pass
 
 2. 在`fluid.dygraph.guard()`中执行：
 
@@ -135,7 +131,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		
 			np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
 
-	2. 输入转换并执行前向网络获取返回值： 使用`fluid.dygraph.base.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`l(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
+	2. 转换输入的`ndarray`为`Variable`, 并执行前向网络获取返回值： 使用`fluid.dygraph.base.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`l(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
 
 
 			with fluid.dygraph.guard():
@@ -150,6 +146,32 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 			    dy_grad = l._x_for_debug.gradient()
 
 
+完整代码如下：
+
+			
+	import paddle.fluid as fluid
+		
+	class MyLayer(fluid.Layer):
+		def __init__(self, name_scope):
+		    super(MyLayer, self).__init__(name_scope)
+		
+		def forward(self, inputs):
+		    x = fluid.layers.relu(inputs)
+		    self._x_for_debug = x
+		    x = fluid.layers.elementwise_mul(x, x)
+		    x = fluid.layers.reduce_sum(x)
+		    return [x]
+			
+	if __name__ == '__main__':
+		np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
+		with fluid.dygraph.guard():
+			var_inp = fluid.dygraph.base.to_variable(np_inp)
+			l = MyLayer("my_layer")
+			x = l(var_inp)[0]
+			dy_out = x.numpy()
+			x.backward()
+			dy_grad = l._x_for_debug.gradient()
+			l.clear_gradient()
 
 ## 使用DyGraph训练模型
 
@@ -163,7 +185,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		train_reader = paddle.batch(
 		paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
 
-2. 构建网络，虽然您可以根据之前的介绍自己定义所有的网络结构，但是您也可以直接使用`fluid.Layer.nn`当中我们为您定制好的一些基础网络结构，这里我们利用`fluid.Layer.nn.Conv2d`以及`fluid.Layer.nn.Pool2d`构建了基础的`SimpleImgConvPool`：
+2. 构建网络，虽然您可以根据之前的介绍自己定义所有的网络结构，但是您也可以直接使用`fluid.dygraph.Layer`当中我们为您定制好的一些基础网络结构，这里我们利用`fluid.dygraph.Layer.Conv2d`以及`fluid.dygraph.Layer.Pool2d`构建了基础的`SimpleImgConvPool`：
 
 		class SimpleImgConvPool(fluid.dygraph.Layer):
 		    def __init__(self,
@@ -186,9 +208,8 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		                 bias_attr=None):
 		        super(SimpleImgConvPool, self).__init__(name_scope)
 		
-		        self._conv2d = Conv2D(
+		        self._conv2d = fluid.dygraph.Conv2D(
 		            self.full_name(),
-		            num_channels=num_channels,
 		            num_filters=num_filters,
 		            filter_size=filter_size,
 		            stride=conv_stride,
@@ -197,9 +218,10 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		            groups=conv_groups,
 		            param_attr=None,
 		            bias_attr=None,
+		            act=act,
 		            use_cudnn=use_cudnn)
 		
-		        self._pool2d = Pool2D(
+		        self._pool2d = fluid.dygraph.Pool2D(
 		            self.full_name(),
 		            pool_size=pool_size,
 		            pool_type=pool_type,
@@ -235,18 +257,22 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		        pool_2_shape = 50 * 4 * 4
 		        SIZE = 10
 		        scale = (2.0 / (pool_2_shape**2 * SIZE))**0.5
-		        self._fc = FC(self.full_name(),
+		        self._fc = fluid.dygraph.FC(self.full_name(),
 		                      10,
 		                      param_attr=fluid.param_attr.ParamAttr(
 		                          initializer=fluid.initializer.NormalInitializer(
 		                              loc=0.0, scale=scale)),
 		                      act="softmax")
 		
-		    def forward(self, inputs):
+		    def forward(self, inputs, label=None):
 		        x = self._simple_img_conv_pool_1(inputs)
 		        x = self._simple_img_conv_pool_2(x)
 		        x = self._fc(x)
-		        return x
+		        if label is not None:
+		            acc = fluid.layers.accuracy(input=x, label=label)
+		            return x, acc
+		        else:
+		            return x
 				  
 
 
@@ -259,7 +285,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 				dy_x_data = np.array(
 				    [x[0].reshape(1, 28, 28)
 				     for x in data]).astype('float32')
-				img = to_variable(dy_x_data)
+				img = fluid.dygraph.to_variable(dy_x_data)
 				print("cost is: {}".format(mnist(img).numpy()))
 				
 				
@@ -276,26 +302,34 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 5. 构建训练循环，在每一轮参数更新完成后我们调用`mnist.clear_gradients()`来重置梯度：
 
-		for epoch in range(epoch_num):
-                for batch_id, data in enumerate(train_reader()):
-                    dy_x_data = np.array(
-                        [x[0].reshape(1, 28, 28)
-                         for x in data]).astype('float32')
-                    y_data = np.array(
-                        [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
-
-                    img = to_variable(dy_x_data)
-                    label = to_variable(y_data)
-                    label.stop_gradient = True
-
-                    cost = mnist(img)
-                    loss = fluid.layers.cross_entropy(cost, label)
-                    avg_loss = fluid.layers.mean(loss)
-
-                    dy_out = avg_loss.numpy()
-                    avg_loss.backward()
-                    sgd.minimize(avg_loss)
-                    mnist.clear_gradients()
+		with fluid.dygraph.guard():
+		    epoch_num = 5		
+		    BATCH_SIZE = 64
+		    train_reader = paddle.batch(
+		        paddle.dataset.mnist.train(), batch_size=32, drop_last=True)
+		    mnist = MNIST("mnist")
+		    id, data = list(enumerate(train_reader()))[0]
+		    adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
+		    for epoch in range(epoch_num):
+		        for batch_id, data in enumerate(train_reader()):
+		            dy_x_data = np.array([x[0].reshape(1, 28, 28)
+		                                  for x in data]).astype('float32')
+		            y_data = np.array(
+		                [x[1] for x in data]).astype('int64').reshape(-1, 1)
+		
+		            img = fluid.dygraph.to_variable(dy_x_data)
+		            label = fluid.dygraph.to_variable(y_data)
+		
+		            cost = mnist(img)
+		
+		            loss = fluid.layers.cross_entropy(cost, label)
+		            avg_loss = fluid.layers.mean(loss)
+		
+		            if batch_id % 100 == 0 and batch_id is not 0:
+		                print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
+		            avg_loss.backward()
+		            adam.minimize(avg_loss)
+		            mnist.clear_gradients()
 
 
 
@@ -304,50 +338,49 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 	模型的参数或者任何您希望检测的值可以作为变量封装在类中，并且通过对象获取并使用`numpy()`方法获取其`ndarray`的输出， 在训练过程中您可以使用`mnist.parameters()`来获取到网络中所有的参数，也可以指定某一个`Layer`的某个参数或者`parameters()`来获取该层的所有参数，使用`numpy()`方法随时查看参数的值
 
-	反向运行后调用之前定义的`SGD`优化器对象的`minimize`方法进行参数更新:
+	反向运行后调用之前定义的`Adam`优化器对象的`minimize`方法进行参数更新:
 		
 		with fluid.dygraph.guard():
-		        fluid.default_startup_program().random_seed = seed
-		        fluid.default_main_program().random_seed = seed
+		    epoch_num = 5
+		    BATCH_SIZE = 64
 		
-		        mnist = MNIST("mnist")
-		        sgd = SGDOptimizer(learning_rate=1e-3)
-		        train_reader = paddle.batch(
-		            paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
+		    mnist = MNIST("mnist")
+		    adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
+		    train_reader = paddle.batch(
+		        paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
 		
-		        np.set_printoptions(precision=3, suppress=True)
-		        for epoch in range(epoch_num):
-		            for batch_id, data in enumerate(train_reader()):
-		                dy_x_data = np.array(
-		                    [x[0].reshape(1, 28, 28)
-		                     for x in data]).astype('float32')
-		                y_data = np.array(
-		                    [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
+		    np.set_printoptions(precision=3, suppress=True)
+		    for epoch in range(epoch_num):
+		        for batch_id, data in enumerate(train_reader()):
+		            dy_x_data = np.array(
+		                [x[0].reshape(1, 28, 28)
+		                 for x in data]).astype('float32')
+		            y_data = np.array(
+		                [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
 		
-		                img = to_variable(dy_x_data)
-		                label = to_variable(y_data)
-		                label.stop_gradient = True
+		            img = fluid.dygraph.to_variable(dy_x_data)
+		            label = fluid.dygraph.to_variable(y_data)
+		            label.stop_gradient = True
 		
-		                cost = mnist(img)
-		                loss = fluid.layers.cross_entropy(cost, label)
-		                avg_loss = fluid.layers.mean(loss)
+		            cost = mnist(img)
+		            loss = fluid.layers.cross_entropy(cost, label)
+		            avg_loss = fluid.layers.mean(loss)
 		
-		                dy_out = avg_loss.numpy()
+		            dy_out = avg_loss.numpy()
 		
-		                avg_loss.backward()
-		                sgd.minimize(avg_loss)
-		                mnist.clear_gradients()
+		            avg_loss.backward()
+		            adam.minimize(avg_loss)
+		            mnist.clear_gradients()
 		
-		                dy_param_value = {}
-		                for param in mnist.parameters():
-		                    dy_param_value[param.name] = param.numpy()
+		            dy_param_value = {}
+		            for param in mnist.parameters():
+		                dy_param_value[param.name] = param.numpy()
 		
-		                if batch_id % 20 == 0:
-		                    print("Loss at step {}: {:.7}".format(batch_id, avg_loss.numpy()))
-		        print("Final loss: {:.7}".format(avg_loss.numpy()))
-		        print("_simple_img_conv_pool_1_conv2d W's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._filter_param.numpy().mean()))
-		        print("_simple_img_conv_pool_1_conv2d Bias's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._bias_param.numpy().mean()))
-
+		            if batch_id % 20 == 0:
+		                print("Loss at step {}: {}".format(batch_id, avg_loss.numpy()))
+		    print("Final loss: {}".format(avg_loss.numpy()))
+		    print("_simple_img_conv_pool_1_conv2d W's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._filter_param.numpy().mean()))
+		    print("_simple_img_conv_pool_1_conv2d Bias's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._bias_param.numpy().mean()))
 
 
 
@@ -385,9 +418,14 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 ## 模型参数的保存
 
- 在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir")`来保存`your_model_object`中所有的模型参数。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
+ 在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir", optimizers=None)`来保存`your_model_object`中所有的模型参数, 以及使用`learning rate decay`的优化器。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
 
-同样可以使用`your_modle_object.load_dict(fluid.dygraph.load_persistables("save_dir"))`接口来恢复保存的模型参数从而达到继续训练的目的。
+同样可以使用`models，optimizers =     fluid.dygraph.load_persistables("save_dir")`获取保存的模型参数和优化器。
+
+
+再使用`your_modle_object.load_dict(models)`接口来恢复保存的模型参数从而达到继续训练的目的。
+
+以及使用`your_optimizer_object.load(optimizers)`接口来恢复保存的优化器中的`learning rate decay`值
 
 
 
@@ -395,40 +433,57 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 下面的代码展示了如何在“手写数字识别”任务中保存参数并且读取已经保存的参数来继续训练。
 
 
-	dy_param_init_value={}
-	for epoch in range(epoch_num):
-	    for batch_id, data in enumerate(train_reader()):
-	        dy_x_data = np.array(
-	            [x[0].reshape(1, 28, 28)
-	             for x in data]).astype('float32')
-	        y_data = np.array(
-	            [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
+	with fluid.dygraph.guard():
+	    epoch_num = 5
+	    BATCH_SIZE = 64
 	
-	        img = to_variable(dy_x_data)
-	        label = to_variable(y_data)
-	        label.stop_gradient = True
+	    mnist = MNIST("mnist")
+	    adam = fluid.optimizer.Adam(learning_rate=0.001)
+	    train_reader = paddle.batch(
+	        paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
 	
-	        cost = mnist(img)
-	        loss = fluid.layers.cross_entropy(cost, label)
-	        avg_loss = fluid.layers.mean(loss)
+	    np.set_printoptions(precision=3, suppress=True)
+	    dy_param_init_value={}
+	    for epoch in range(epoch_num):
+	        for batch_id, data in enumerate(train_reader()):
+	            dy_x_data = np.array(
+	                [x[0].reshape(1, 28, 28)
+	                 for x in data]).astype('float32')
+	            y_data = np.array(
+	                [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
 	
-	        dy_out = avg_loss.numpy()
+	            img = fluid.dygraph.to_variable(dy_x_data)
+	            label = fluid.dygraph.to_variable(y_data)
+	            label.stop_gradient = True
 	
-	        avg_loss.backward()
-	        sgd.minimize(avg_loss)
-	        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
-	        mnist.clear_gradients()
+	            cost = mnist(img)
+	            loss = fluid.layers.cross_entropy(cost, label)
+	            avg_loss = fluid.layers.mean(loss)
 	
-	        for param in mnist.parameters():
-	            dy_param_init_value[param.name] = param.numpy()
-	        mnist.load_dict(fluid.dygraph.load_persistables("save_dir"))
-	restore = mnist.parameters()
-	# check save and load
-	success = True
-	for value in restore:
-	    if (not np.allclose(value.numpy(), dy_param_init_value[value.name])) or (not np.isfinite(value.numpy().all())) or (np.isnan(value.numpy().any())):
-	        success = False
-	print("model save and load success? {}".format(success))
+	            dy_out = avg_loss.numpy()
+	
+	            avg_loss.backward()
+	            adam.minimize(avg_loss)
+	            if batch_id == 20:
+	                fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir", adam)
+	            mnist.clear_gradients()
+	
+	            if batch_id == 20:
+	                for param in mnist.parameters():
+	                    dy_param_init_value[param.name] = param.numpy()
+	                model, _ = fluid.dygraph.load_persistables("save_dir")
+	                mnist.load_dict(model)
+	                break
+	        if epoch == 0:
+	            break
+	    restore = mnist.parameters()
+	    # check save and load
+	
+	    success = True
+	    for value in restore:
+	        if (not np.array_equal(value.numpy(), dy_param_init_value[value.name])) or (not np.isfinite(value.numpy().all())) or (np.isnan(value.numpy().any())):
+	            success = False
+	    print("model save and load success? {}".format(success))
 
 
         
@@ -439,112 +494,141 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 下面的代码展示了如何使用DyGraph模式训练一个用于执行“手写数字识别”任务的模型并保存，并且利用已经保存好的模型进行预测。
 
-我们在第一个`fluid.dygraph.guard()`上下文中进行了模型的保存和训练，值得注意的是，当我们需要在训练的过程中进行预测时需要使用`YourModel.eval()`切换到预测模式，并且在预测完成后使用`YourModel.train()`切换回训练模式继续训练。
+我们在`fluid.dygraph.guard()`上下文中进行了模型的保存和训练，值得注意的是，当我们需要在训练的过程中进行预测时需要使用`YourModel.eval()`切换到预测模式，并且在预测完成后使用`YourModel.train()`切换回训练模式继续训练。
 
-我们在第二个`fluid.dygraph.guard()`上下文中利用之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换的预测模式。
+我们在`inference_mnist `中启用另一个`fluid.dygraph.guard()`，并在其上下文中`load`之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换的预测模式。
 			
+	def test_mnist(reader, model, batch_size):
+	    acc_set = []
+	    avg_loss_set = []
+	    for batch_id, data in enumerate(reader()):
+	        dy_x_data = np.array([x[0].reshape(1, 28, 28)
+	                              for x in data]).astype('float32')
+	        y_data = np.array(
+	            [x[1] for x in data]).astype('int64').reshape(batch_size, 1)
+	
+	        img = fluid.dygraph.to_variable(dy_x_data)
+	        label = fluid.dygraph.to_variable(y_data)
+	        label.stop_gradient = True
+	        prediction, acc = model(img, label)
+	        loss = fluid.layers.cross_entropy(input=prediction, label=label)
+	        avg_loss = fluid.layers.mean(loss)
+	        acc_set.append(float(acc.numpy()))
+	        avg_loss_set.append(float(avg_loss.numpy()))
+	
+	        # get test acc and loss
+	    acc_val_mean = np.array(acc_set).mean()
+	    avg_loss_val_mean = np.array(avg_loss_set).mean()
+	
+	    return avg_loss_val_mean, acc_val_mean
+	
+	
+	def inference_mnist():
+	    with fluid.dygraph.guard():
+	        mnist_infer = MNIST("mnist")
+	        # load checkpoint
+	        model_dict, _ = fluid.dygraph.load_persistables("save_dir")
+	        mnist_infer.load_dict(model_dict)
+	        print("checkpoint loaded")
+	
+	        # start evaluate mode
+	        mnist_infer.eval()
+	
+	        def load_image(file):
+	            im = Image.open(file).convert('L')
+	            im = im.resize((28, 28), Image.ANTIALIAS)
+	            im = np.array(im).reshape(1, 1, 28, 28).astype(np.float32)
+	            im = im / 255.0 * 2.0 - 1.0
+	            return im
+	
+	        cur_dir = os.path.dirname(os.path.realpath(__file__))
+	        tensor_img = load_image(cur_dir + '/image/2.png')
+	
+	        results = mnist_infer(fluid.dygraph.to_variable(tensor_img))
+	        lab = np.argsort(results.numpy())
+	        print("Inference result of image/infer_3.png is: %d" % lab[0][-1])
+
 	with fluid.dygraph.guard():
-        fluid.default_startup_program().random_seed = seed
-        fluid.default_main_program().random_seed = seed
+	    epoch_num = 1
+	    BATCH_SIZE = 64
+	    mnist = MNIST("mnist")
+	    adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
+	    test_reader = paddle.batch(
+	        paddle.dataset.mnist.test(), batch_size=BATCH_SIZE, drop_last=True)
 	
-        mnist = MNIST("mnist")
-        adam = AdamOptimizer(learning_rate=0.001)
-        train_reader = paddle.batch(
-            paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
-        test_reader = paddle.batch(
-            paddle.dataset.mnist.test(), batch_size=BATCH_SIZE, drop_last=True)
-        for epoch in range(epoch_num):
-            for batch_id, data in enumerate(train_reader()):
-                dy_x_data = np.array(
-                    [x[0].reshape(1, 28, 28)
-                     for x in data]).astype('float32')
-                y_data = np.array(
-                    [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
+	    train_reader = paddle.batch(
+	        paddle.dataset.mnist.train(),
+	        batch_size=BATCH_SIZE,
+	        drop_last=True)
 	
-                img = to_variable(dy_x_data)
-                label = to_variable(y_data)
-                label.stop_gradient = True
+	    for epoch in range(epoch_num):
+	        for batch_id, data in enumerate(train_reader()):
+	            dy_x_data = np.array([x[0].reshape(1, 28, 28)
+	                                  for x in data]).astype('float32')
+	            y_data = np.array(
+	                [x[1] for x in data]).astype('int64').reshape(-1, 1)
 	
-                cost, acc = mnist(img, label)
+	            img = fluid.dygraph.to_variable(dy_x_data)
+	            label = fluid.dygraph.to_variable(y_data)
+	            label.stop_gradient = True
 	
-                loss = fluid.layers.cross_entropy(cost, label)
-                avg_loss = fluid.layers.mean(loss)
-                avg_loss.backward()
-                adam.minimize(avg_loss)
-                # save checkpoint
-                mnist.clear_gradients()
-                if batch_id % 100 == 0:
-                    print("Loss at epoch {} step {}: {:}".format(epoch, batch_id, avg_loss.numpy()))
-            mnist.eval()
-            test_cost, test_acc = self._test_train(test_reader, mnist, BATCH_SIZE)
-            mnist.train()
-            print("Loss at epoch {} , Test avg_loss is: {}, acc is: {}".format(epoch, test_cost, test_acc))
+	            cost, acc = mnist(img, label)
 	
-        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
-        print("checkpoint saved")
-
-    with fluid.dygraph.guard():
-        fluid.default_startup_program().random_seed = seed
-        fluid.default_main_program().random_seed = seed
-
-        mnist_infer = MNIST("mnist")
-        # load checkpoint
-        mnist_infer.load_dict(
-            fluid.dygraph.load_persistables("save_dir"))
-        print("checkpoint loaded")
-
-        # start evaluate mode
-        mnist_infer.eval()
-        def load_image(file):
-            im = Image.open(file).convert('L')
-            im = im.resize((28, 28), Image.ANTIALIAS)
-            im = np.array(im).reshape(1, 1, 28, 28).astype(np.float32)
-            im = im / 255.0 * 2.0 - 1.0
-            return im
-
-        cur_dir = os.path.dirname(os.path.realpath(__file__))
-        tensor_img = load_image(cur_dir + '/image/infer_3.png')
-
-        results = mnist_infer(to_variable(tensor_img))
-        lab = np.argsort(results.numpy())
-        print("Inference result of image/infer_3.png is: %d" % lab[0][-1])
-
+	            loss = fluid.layers.cross_entropy(cost, label)
+	            avg_loss = fluid.layers.mean(loss)
+	
+	
+	            avg_loss.backward()
+	
+	            adam.minimize(avg_loss)
+	            # save checkpoint
+	            mnist.clear_gradients()
+	            if batch_id % 100 == 0:
+	                print("Loss at epoch {} step {}: {:}".format(
+	                    epoch, batch_id, avg_loss.numpy()))
+	
+	        mnist.eval()
+	        test_cost, test_acc = test_mnist(test_reader, mnist, BATCH_SIZE)
+	        mnist.train()
+	        print("Loss at epoch {} , Test avg_loss is: {}, acc is: {}".format(
+	            epoch, test_cost, test_acc))
+	
+	    fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
+	    print("checkpoint saved")
+	
+	    inference_mnist()
 	
 	
 	
-	Loss at epoch 3 , Test avg_loss is: 0.0721620170576, acc is: 0.97796474359
-	Loss at epoch 4 step 0: [0.01078923]
-	Loss at epoch 4 step 100: [0.10447877]
-	Loss at epoch 4 step 200: [0.05149534]
-	Loss at epoch 4 step 300: [0.0122997]
-	Loss at epoch 4 step 400: [0.0281883]
-	Loss at epoch 4 step 500: [0.10709661]
-	Loss at epoch 4 step 600: [0.1306036]
-	Loss at epoch 4 step 700: [0.01628026]
-	Loss at epoch 4 step 800: [0.07947419]
-	Loss at epoch 4 step 900: [0.02067161]
-	Loss at epoch 4 , Test avg_loss is: 0.0802323290939, acc is: 0.976963141026
+	Loss at epoch 0 step 0: [2.2991252]
+	Loss at epoch 0 step 100: [0.15491392]
+	Loss at epoch 0 step 200: [0.13315125]
+	Loss at epoch 0 step 300: [0.10253005]
+	Loss at epoch 0 step 400: [0.04266362]
+	Loss at epoch 0 step 500: [0.08894891]
+	Loss at epoch 0 step 600: [0.08999012]
+	Loss at epoch 0 step 700: [0.12975612]
+	Loss at epoch 0 step 800: [0.15257305]
+	Loss at epoch 0 step 900: [0.07429226]
+	Loss at epoch 0 , Test avg_loss is: 0.05995981965082674, acc is: 0.9794671474358975
 	checkpoint saved
+	No optimizer loaded. If you didn't save optimizer, please ignore this. The program can still work with new optimizer. 
 	checkpoint loaded
-	
-	
-	Ran 1 test in 208.017s
-	
 	Inference result of image/infer_3.png is: 3
 
 
 ## 编写兼容的模型
 
-以上一步中手写数字识别的例子为例，相同的模型代码可以直接在PaddlePaddle的`Executor`中执行：
+以上一步中手写数字识别的例子为例，动态图的模型代码可以直接用于静态图中作为模型代码，执行时，直接使用PaddlePaddle静态图执行方式即可，这里以静态图中的`executor`为例, 模型代码可以直接使用之前的模型代码，执行时使用`Executor`执行即可
 	
-	exe = fluid.Executor(fluid.CPUPlace(
-	) if not core.is_compiled_with_cuda() else fluid.CUDAPlace(0))
+	epoch_num = 1
+	BATCH_SIZE = 64
+	exe = fluid.Executor(fluid.CPUPlace())
 	
 	mnist = MNIST("mnist")
-	sgd = SGDOptimizer(learning_rate=1e-3)
+	sgd = fluid.optimizer.SGDOptimizer(learning_rate=1e-3)
 	train_reader = paddle.batch(
-	    paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
-	
+	    paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
 	img = fluid.layers.data(
 	    name='pixel', shape=[1, 28, 28], dtype='float32')
 	label = fluid.layers.data(name='label', shape=[1], dtype='int64')
@@ -571,6 +655,10 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 	            fetch_list=fetch_list)
 	
 	        static_out = out[0]
+	
+	        if batch_id % 100 == 0 and batch_id is not 0:
+	            print("epoch: {}, batch_id: {}, loss: {}".format(epoch, batch_id, static_out))
+    
 
 			
 			
