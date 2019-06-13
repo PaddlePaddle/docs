@@ -178,7 +178,6 @@ def generate_doc(module_name, module_prefix, output, to_multiple_files):
             header_name = api
             with gen.guard(os.path.join(output, api + '.rst')):
                 gen.print_header_reminder()
-                gen._print_header_(header_name, dot='=', is_title=True)
                 gen.print_item(api)
 
 
