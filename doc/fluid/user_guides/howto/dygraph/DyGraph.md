@@ -34,13 +34,13 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 	现在您就可以在`fluid.dygraph.guard()`上下文环境中使用DyGraph的模式运行网络了，DyGraph将改变以往PaddlePaddle的执行方式： 现在他们将会立即执行，并且将计算结果返回给Python。
 
 
-	Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.base.to_variable(x)`将会将ndarray转换为`fluid.Variable`，而使用`fluid.Variable.numpy()`将可以把任意时刻获取到的计算结果转换为Numpy`ndarray`：         
+	Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.to_variable(x)`将会将ndarray转换为`fluid.Variable`，而使用`fluid.Variable.numpy()`将可以把任意时刻获取到的计算结果转换为Numpy`ndarray`：         
 	
 			x = np.ones([2, 2], np.float32)
 			with fluid.dygraph.guard():
 		        inputs = []
 		        for _ in range(10):
-		            inputs.append(fluid.dygraph.base.to_variable(x))
+		            inputs.append(fluid.dygraph.to_variable(x))
 		        ret = fluid.layers.sums(inputs)
 		        print(ret.numpy())
 					
@@ -96,7 +96,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 			np_inp = np.ones([2, 2], np.float32)
         	with fluid.dygraph.guard():
 	            my_py_layer = MyPyLayer()
-	            var_inp = fluid.dygraph.base.to_variable(np_inp)
+	            var_inp = fluid.dygraph.to_variable(np_inp)
 	            outs = my_py_layer(var_inp)
 	            dy_out = np.sum(outs[0].numpy())
 	            outs[0].backward()
@@ -106,7 +106,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 -->
 ## 基于DyGraph构建网络
 		
-1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**三个部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必需要使用继承自`fluid.dygraph.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
+1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**三个部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必须要使用继承自`fluid.dygraph.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
 
 	
 	1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.dygraph.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
@@ -131,47 +131,49 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		
 			np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
 
-	2. 转换输入的`ndarray`为`Variable`, 并执行前向网络获取返回值： 使用`fluid.dygraph.base.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`l(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
-
+	2. 转换输入的`ndarray`为`Variable`, 并执行前向网络获取返回值： 使用`fluid.dygraph.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`l(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
 
 			with fluid.dygraph.guard():
-			    var_inp = fluid.dygraph.base.to_variable(np_inp)
-			    l = MyLayer("my_layer")
-			    x = l(var_inp)[0]
+			    var_inp = fluid.dygraph.to_variable(np_inp)
+			    my_layer = MyLayer("my_layer")
+			    x = my_layer(var_inp)[0]
 			    dy_out = x.numpy()
 
 	3. 计算梯度：自动微分对于实现机器学习算法（例如用于训练神经网络的反向传播）来说很有用， 使用`x.backward()`方法可以从某个`fluid.Varaible`开始执行反向网络，同时利用`l._x_for_debug.gradient()`获取了网络中`x`梯度的`ndarray` 返回值：
 		
 			    x.backward()
-			    dy_grad = l._x_for_debug.gradient()
+			    dy_grad = my_layer._x_for_debug.gradient()
 
 
 完整代码如下：
 
 			
 	import paddle.fluid as fluid
-		
-	class MyLayer(fluid.Layer):
-		def __init__(self, name_scope):
-		    super(MyLayer, self).__init__(name_scope)
-		
-		def forward(self, inputs):
-		    x = fluid.layers.relu(inputs)
-		    self._x_for_debug = x
-		    x = fluid.layers.elementwise_mul(x, x)
-		    x = fluid.layers.reduce_sum(x)
-		    return [x]
-			
+	import numpy as np
+	
+	
+	class MyLayer(fluid.dygraph.Layer):
+	    def __init__(self, name_scope):
+	        super(MyLayer, self).__init__(name_scope)
+	
+	    def forward(self, inputs):
+	        x = fluid.layers.relu(inputs)
+	        self._x_for_debug = x
+	        x = fluid.layers.elementwise_mul(x, x)
+	        x = fluid.layers.reduce_sum(x)
+	        return [x]
+	
+	
 	if __name__ == '__main__':
-		np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
-		with fluid.dygraph.guard():
-			var_inp = fluid.dygraph.base.to_variable(np_inp)
-			l = MyLayer("my_layer")
-			x = l(var_inp)[0]
-			dy_out = x.numpy()
-			x.backward()
-			dy_grad = l._x_for_debug.gradient()
-			l.clear_gradient()
+	    np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
+	    with fluid.dygraph.guard():
+	        var_inp = fluid.dygraph.to_variable(np_inp)
+	        my_layer = MyLayer("my_layer")
+	        x = my_layer(var_inp)[0]
+	        dy_out = x.numpy()
+	        x.backward()
+	        dy_grad = my_layer._x_for_debug.gradient()
+	        my_layer.clear_gradients() # 将参数梯度清零以保证下一轮训练的正确性
 
 ## 使用DyGraph训练模型
 
@@ -185,7 +187,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		train_reader = paddle.batch(
 		paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
 
-2. 构建网络，虽然您可以根据之前的介绍自己定义所有的网络结构，但是您也可以直接使用`fluid.dygraph.Layer`当中我们为您定制好的一些基础网络结构，这里我们利用`fluid.dygraph.Layer.Conv2d`以及`fluid.dygraph.Layer.Pool2d`构建了基础的`SimpleImgConvPool`：
+2. 构建网络，虽然您可以根据之前的介绍自己定义所有的网络结构，但是您也可以直接使用`fluid.dygraph.Layer`当中我们为您定制好的一些基础网络结构，这里我们利用`fluid.dygraph.Conv2D`以及`fluid.dygraph.Pool2d`构建了基础的`SimpleImgConvPool`：
 
 		class SimpleImgConvPool(fluid.dygraph.Layer):
 		    def __init__(self,
