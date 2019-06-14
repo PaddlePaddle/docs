@@ -190,7 +190,6 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		class SimpleImgConvPool(fluid.dygraph.Layer):
 		    def __init__(self,
 		                 name_scope,
-		                 num_channels,
 		                 num_filters,
 		                 filter_size,
 		                 pool_size,
@@ -237,7 +236,8 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 
 
-	> 注意: 构建网络时子网络的定义和使用请在`__init__`中进行， 而子网络的执行部分则在`forward`函数中进行
+
+	> 注意: 构建网络时子网络的定义和使用请在`__init__`中进行， 而子网络的执行则在`forward`函数中进行
 
 
 		       
@@ -249,20 +249,20 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		        super(MNIST, self).__init__(name_scope)
 		
 		        self._simple_img_conv_pool_1 = SimpleImgConvPool(
-		            self.full_name(), 1, 20, 5, 2, 2, act="relu")
+		            self.full_name(), 20, 5, 2, 2, act="relu")
 		
 		        self._simple_img_conv_pool_2 = SimpleImgConvPool(
-		            self.full_name(), 20, 50, 5, 2, 2, act="relu")
+		            self.full_name(), 50, 5, 2, 2, act="relu")
 		
 		        pool_2_shape = 50 * 4 * 4
 		        SIZE = 10
 		        scale = (2.0 / (pool_2_shape**2 * SIZE))**0.5
 		        self._fc = fluid.dygraph.FC(self.full_name(),
-		                      10,
-		                      param_attr=fluid.param_attr.ParamAttr(
-		                          initializer=fluid.initializer.NormalInitializer(
-		                              loc=0.0, scale=scale)),
-		                      act="softmax")
+		                                    10,
+		                                    param_attr=fluid.param_attr.ParamAttr(
+		                                        initializer=fluid.initializer.NormalInitializer(
+		                                            loc=0.0, scale=scale)),
+		                                    act="softmax")
 		
 		    def forward(self, inputs, label=None):
 		        x = self._simple_img_conv_pool_1(inputs)
@@ -273,6 +273,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		            return x, acc
 		        else:
 		            return x
+
 				  
 
 
@@ -286,11 +287,11 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 				    [x[0].reshape(1, 28, 28)
 				     for x in data]).astype('float32')
 				img = fluid.dygraph.to_variable(dy_x_data)
-				print("cost is: {}".format(mnist(img).numpy()))
+				print("result is: {}".format(mnist(img).numpy()))
 				
 				
 				
-				cost is: [[0.10135901 0.1051138  0.1027941  ... 0.0972859  0.10221873 0.10165327]
+				result is: [[0.10135901 0.1051138  0.1027941  ... 0.0972859  0.10221873 0.10165327]
 				[0.09735426 0.09970362 0.10198303 ... 0.10134517 0.10179105 0.10025002]
 				[0.09539858 0.10213123 0.09543551 ... 0.10613529 0.10535969 0.097991  ]
 				...
@@ -336,7 +337,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 6. 变量及优化器
 
-	模型的参数或者任何您希望检测的值可以作为变量封装在类中，并且通过对象获取并使用`numpy()`方法获取其`ndarray`的输出， 在训练过程中您可以使用`mnist.parameters()`来获取到网络中所有的参数，也可以指定某一个`Layer`的某个参数或者`parameters()`来获取该层的所有参数，使用`numpy()`方法随时查看参数的值
+	模型的参数或者任何您希望检测的值可以作为变量封装在类中，然后通过对象获取并使用`numpy()`方法获取其`ndarray`的输出， 在训练过程中您可以使用`mnist.parameters()`来获取到网络中所有的参数，也可以指定某一个`Layer`的某个参数或者`parameters()`来获取该层的所有参数，使用`numpy()`方法随时查看参数的值
 
 	反向运行后调用之前定义的`Adam`优化器对象的`minimize`方法进行参数更新:
 		
@@ -414,7 +415,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 7.	性能
 
-	在使用`fluid.dygraph.guard()`可以通过传入`fluid.CUDAPlace(0)`或者`fluid.CPUPlace()`来选择执行DyGraph的设备，通常如果不做任何处理将会自动适配您的设备。
+	在使用`fluid.dygraph.guard()`时可以通过传入`fluid.CUDAPlace(0)`或者`fluid.CPUPlace()`来选择执行DyGraph的设备，通常如果不做任何处理将会自动适配您的设备。
 
 ## 模型参数的保存
 
@@ -496,7 +497,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 我们在`fluid.dygraph.guard()`上下文中进行了模型的保存和训练，值得注意的是，当我们需要在训练的过程中进行预测时需要使用`YourModel.eval()`切换到预测模式，并且在预测完成后使用`YourModel.train()`切换回训练模式继续训练。
 
-我们在`inference_mnist `中启用另一个`fluid.dygraph.guard()`，并在其上下文中`load`之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换的预测模式。
+我们在`inference_mnist `中启用另一个`fluid.dygraph.guard()`，并在其上下文中`load`之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换到预测模式。
 			
 	def test_mnist(reader, model, batch_size):
 	    acc_set = []
