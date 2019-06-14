@@ -11,7 +11,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 *	更加灵活便捷的代码组织结构： 使用python的执行控制流程和面向对象的模型设计
 
 
-* 	更加便捷的调试功能： 直接调用操作从而检查正在运行的模型并且测试更改
+* 	更加便捷的调试功能： 直接使用python的打印方法即时打印所需要的结果，从而检查正在运行的模型结果便于测试更改
 
 
 *  和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的静态图模式执行
@@ -129,7 +129,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 		
 			np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
 
-	2. 转换输入的`ndarray`为`Variable`, 并执行前向网络获取返回值： 使用`fluid.dygraph.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`l(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
+	2. 转换输入的`ndarray`为`Variable`, 并执行前向网络获取返回值： 使用`fluid.dygraph.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`my_layer(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
 
 			with fluid.dygraph.guard():
 			    var_inp = fluid.dygraph.to_variable(np_inp)
@@ -137,7 +137,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 			    x = my_layer(var_inp)[0]
 			    dy_out = x.numpy()
 
-	3. 计算梯度：自动微分对于实现机器学习算法（例如用于训练神经网络的反向传播）来说很有用， 使用`x.backward()`方法可以从某个`fluid.Varaible`开始执行反向网络，同时利用`l._x_for_debug.gradient()`获取了网络中`x`梯度的`ndarray` 返回值：
+	3. 计算梯度：自动微分对于实现机器学习算法（例如用于训练神经网络的反向传播）来说很有用， 使用`x.backward()`方法可以从某个`fluid.Varaible`开始执行反向网络，同时利用`my_layer._x_for_debug.gradient()`获取了网络中`x`梯度的`ndarray` 返回值：
 		
 			    x.backward()
 			    dy_grad = my_layer._x_for_debug.gradient()
@@ -237,7 +237,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 
 
-	> 注意: 构建网络时子网络的定义和使用请在`__init__`中进行， 而子网络的调用则在`forward`函数中调用
+	> 注意: 构建网络时子网络的定义和使用请在`__init__`中进行， 而子网络的执行部分则在`forward`函数中进行
 
 
 		       
