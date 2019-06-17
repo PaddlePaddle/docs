@@ -12,3 +12,4 @@ PaddlePaddle Fluid 提供了 C++ API 来支持模型的部署上线
    paddle_tensorrt_infer.md
    paddle_gpu_benchmark.md
    windows_cpp_inference.md
+   python_infer_cn.md
