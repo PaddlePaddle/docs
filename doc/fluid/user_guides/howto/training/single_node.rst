@@ -41,7 +41,7 @@
 
 用户配置完模型后，参数初始化操作会被写入到\
 :code:`fluid.default_startup_program()` 中。使用 :code:`fluid.Executor()` 运行
-这一程序，初始化之后的参数默认被放在可在全局scope中，即 :code:`fluid.global_scope()` 。例如:
+这一程序，初始化之后的参数默认被放在全局scope中，即 :code:`fluid.global_scope()` 。例如:
 
 .. code-block:: python
 
@@ -90,11 +90,12 @@
     loss_data, = exe.run(train_program,
                          feed={"X": x},
                          fetch_list=[loss.name])
-    # Or 
-    # compiled_prog = compiler.CompiledProgram(train_program)
-    # loss_data, = exe.run(compiled_prog,
-    #              feed={"X": x},
-    #              fetch_list=[loss.name])
+
+    # Or use CompiledProgram:
+    compiled_prog = compiler.CompiledProgram(train_program)
+    loss_data, = exe.run(compiled_prog,
+                 feed={"X": x},
+                 fetch_list=[loss.name])
 
 多卡训练
 #######################
@@ -104,7 +105,7 @@
 
     # NOTE: If you use CPU to run the program, you need
     # to specify the CPU_NUM, otherwise, fluid will use
-    # all the number of the logic core as the CPU_NUM,
+    # all the number of the logic cores as the CPU_NUM,
     # in that case, the batch size of the input should be
     # greater than CPU_NUM, if not, the process will be
     # failed by an exception.
