@@ -4109,7 +4109,7 @@ gather
 
 
 参数:
-        - **input** (Variable) - input 的秩rank >= 1。
+        - **input** (Variable) - input的秩rank >= 1。
         - **index** (Variable) - index的秩rank = 1。
 
 返回：	output (Variable)
@@ -6199,7 +6199,7 @@ nce
               num_total_classes=dict_size, param_attr='nce.w_0',
               bias_attr='nce.b_0')
 
-    #or use custom distribution
+    #或使用custom distribution
     dist = np.array([0.05,0.5,0.1,0.3,0.05])
     loss = fluid.layers.nce(input=embs, label=words[label_word],
               num_total_classes=5, param_attr='nce.w_1',
