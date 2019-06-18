@@ -122,6 +122,7 @@ PyReader对象通过 :code:`decorate_sample_generator()` ， :code:`decorate_sam
     import paddle
     import paddle.fluid as fluid
 
+    ITERABLE = True
     USE_CUDA = True
     USE_DATA_PARALLEL = True
 
@@ -146,7 +147,7 @@ PyReader对象通过 :code:`decorate_sample_generator()` ， :code:`decorate_sam
     # 使用sample级的reader + paddle.batch设置PyReader的数据源
     py_reader2 = fluid.io.PyReader(feed_list=[image2, label2], capacity=10, iterable=ITERABLE)
     sample_list_reader = paddle.batch(fake_sample_reader, batch_size=32)
-    sample_list_reader = paddle.reader.shuffle(sample_list_reader) # 还可以进行适当的shuffle
+    sample_list_reader = paddle.reader.shuffle(sample_list_reader, buf_size=64) # 还可以进行适当的shuffle
     py_reader2.decorate_sample_list_generator(sample_list_reader, places=places)
 
     # 使用batch级的reader作为PyReader的数据源
@@ -233,8 +234,8 @@ PyReader对象通过 :code:`decorate_sample_generator()` ， :code:`decorate_sam
             print('loss is {}'.format(loss_value))
 
     for epoch_id in six.moves.range(10):
-        run_iterable(train_prog, exe, loss, train_reader)
-        run_iterable(test_prog, exe, loss, test_reader)
+        run_iterable(train_prog, exe, train_loss, train_reader)
+        run_iterable(test_prog, exe, test_loss, test_reader)
 
 若iterable=False，则需在每个epoch开始前，调用 :code:`start()` 方法启动PyReader对象；并在每个epoch结束时，exe.run会抛出 :code:`fluid.core.EOFException` 异常，在捕获异常后调用 :code:`reset()` 方法重置PyReader对象的状态，
 以便启动下一轮的epoch。iterable=False时无需给exe.run传入feed参数。具体方式为：
@@ -252,6 +253,6 @@ PyReader对象通过 :code:`decorate_sample_generator()` ， :code:`decorate_sam
             py_reader.reset()
 
     for epoch_id in six.moves.range(10):
-        run_non_iterable(train_prog, exe, loss, train_reader)
-        run_non_iterable(test_prog, exe, loss, test_reader)
+        run_non_iterable(train_prog, exe, train_loss, train_reader)
+        run_non_iterable(test_prog, exe, test_loss, test_reader)
 
