@@ -12,20 +12,22 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 
 ## <a name="编译Paddle-TRT预测库">编译Paddle-TRT预测库</a>
 
-**使用Docker编译预测库**         
+**使用Docker编译预测库**
+
+TensorRT预测库目前仅支持使用GPU编译。        
 
 1. 下载Paddle  
- 
+
 	```
 	git clone https://github.com/PaddlePaddle/Paddle.git
 	```
-	
+
 2. 获取docker镜像
-  
+
 	```
 	nvidia-docker run --name paddle_trt -v $PWD/Paddle:/Paddle -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
 	```
- 
+
 3. 编译Paddle TensorRT       
 
 	```
@@ -43,15 +45,15 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 	      -DWITH_PYTHON=OFF   \
 	      -DTENSORRT_ROOT=/usr \
 	      -DON_INFER=ON
-	
+
 	# 编译    
 	make -j
 	# 生成预测库
 	make inference_lib_dist -j
 	```
-	
+
 	编译后的库的目录如下：
-	
+
 	```
 	fluid_inference_install_dir
 	├── paddle
@@ -61,12 +63,12 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 	├── third_party
 	    ├── boost
 	    ├── install
-	    └── engine3 
+	    └── engine3
 	```
-   
+
 	`fluid_inference_install_dir`下， paddle目录包含了预测库的头文件和预测库的lib， version.txt 中包含了lib的版本和配置信息，third_party 中包含了预测库依赖的第三方库      
 
-## <a name="Paddle-TRT接口使用">Paddle-TRT接口使用</a> 
+## <a name="Paddle-TRT接口使用">Paddle-TRT接口使用</a>
 
 [`paddle_inference_api.h`]('https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/paddle_inference_api.h') 定义了使用TensorRT的所有接口。  
 
@@ -89,13 +91,13 @@ void RunTensorRT(int batch_size, std::string model_dirname) {
   AnalysisConfig config(model_dirname);
   // config->SetModel(model_dirname + "/model",                                                                                             
   //                     model_dirname + "/params");
- 
+
   config->EnableUseGpu(100, 0 /*gpu_id*/);
   config->EnableTensorRtEngine(1 << 20 /*work_space_size*/, batch_size /*max_batch_size*/);
-  
+
   // 2. 根据config 创建predictor
   auto predictor = CreatePaddlePredictor(config);
-  // 3. 创建输入 tensor 
+  // 3. 创建输入 tensor
   int height = 224;
   int width = 224;
   float data[batch_size * 3 * height * width] = {0};
@@ -114,13 +116,13 @@ void RunTensorRT(int batch_size, std::string model_dirname) {
 
   const size_t num_elements = outputs.front().data.length() / sizeof(float);
   auto *data = static_cast<float *>(outputs.front().data.data());
-  for (size_t i = 0; i < num_elements; i++) { 
+  for (size_t i = 0; i < num_elements; i++) {
     std::cout << "output: " << data[i] << std::endl;
   }
 }
 }  // namespace paddle
 
-int main() { 
+int main() {
   // 模型下载地址 http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/mobilenet.tar.gz
   paddle::RunTensorRT(1, "./mobilenet");
   return 0;
@@ -133,9 +135,9 @@ int main() {
 	```
 	wget http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/paddle_trt_samples.tar.gz
 	```
-	
+
 	解压后的目录如下：
-	
+
 	```
 	sample
 	├── CMakeLists.txt
@@ -146,12 +148,12 @@ int main() {
 	│   └── params
 	└── run_impl.sh
 	```
-	
+
 	- `mobilenet_test.cc` 为单线程的程序文件  
 	- `thread_mobilenet_test.cc` 为多线程的程序文件  
 	- `mobilenetv1` 为模型文件   
 
-	在这里假设预测库的路径为 ``BASE_DIR/fluid_inference_install_dir/`` ，样例所在的目录为 ``SAMPLE_BASE_DIR/sample`` 
+	在这里假设预测库的路径为 ``BASE_DIR/fluid_inference_install_dir/`` ，样例所在的目录为 ``SAMPLE_BASE_DIR/sample``
 
 2. 编译样例   
 
@@ -181,10 +183,10 @@ int main() {
 	# sh run_impl.sh {预测库的地址} {测试脚本的名字} {模型目录}
 	# 我们随机生成了500个输入来模拟这一过程，建议大家用真实样例进行实验。
 	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  fluid_generate_calib_test SAMPLE_BASE_DIR/sample/mobilenetv1
-	
+
 	```
 	运行结束后，在 `SAMPLE_BASE_DIR/sample/build/mobilenetv1` 模型目录下会多出一个名字为trt_calib_*的文件，即校准表。
-	
+
 	``` shell
 	# 执行INT8预测
 	# 将带校准表的模型文件拷贝到特定地址
@@ -193,7 +195,7 @@ int main() {
 	```
 
 ## <a name="Paddle-TRT子图运行原理">Paddle-TRT子图运行原理</a>
- 
+
    PaddlePaddle采用子图的形式对TensorRT进行集成，当模型加载后，神经网络可以表示为由变量和运算节点组成的计算图。Paddle TensorRT实现的功能是能够对整个图进行扫描，发现图中可以使用TensorRT优化的子图，并使用TensorRT节点替换它们。在模型的推断期间，如果遇到TensorRT节点，Paddle会调用TensoRT库对该节点进行优化，其他的节点调用Paddle的原生实现。TensorRT在推断期间能够进行Op的横向和纵向融合，过滤掉冗余的Op，并对特定平台下的特定的Op选择合适的kenel等进行优化，能够加快模型的预测速度。  
 
 下图使用一个简单的模型展示了这个过程：   
@@ -208,12 +210,5 @@ int main() {
  <img src="https://raw.githubusercontent.com/NHZlX/FluidDoc/add_trt_doc/doc/fluid/user_guides/howto/inference/image/model_graph_trt.png" width="600">
 </p>
 
-    
+
    我们可以在原始模型网络中看到，绿色节点表示可以被TensorRT支持的节点，红色节点表示网络中的变量，黄色表示Paddle只能被Paddle原生实现执行的节点。那些在原始网络中的绿色节点被提取出来汇集成子图，并由一个TensorRT节点代替，成为转换网络中的`block-25` 节点。在网络运行过程中，如果遇到该节点，Paddle将调用TensorRT库来对其执行。
-
-
-
-
-
-
-
