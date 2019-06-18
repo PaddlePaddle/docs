@@ -3,7 +3,7 @@
 ## 环境准备
 
 * *64位操作系统*
-* *Ubuntu 14.04 /16.04 /18.04*
+* *Ubuntu 14.04 /16.04 /18.04(GPU版本只针对CUDA10支持)*
 * *Python 2.7/3.5/3.6/3.7*
 * *pip或pip3 >= 9.0.1*
 
@@ -12,10 +12,10 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * *CUDA 工具包9.0配合cuDNN v7*
-    * *CUDA 工具包8.0配合cuDNN v7*
-    * *CUDA 工具包8.0配合cuDNN v5*
-    * *GPU运算能力超过1.0的硬件设备*
+	* *CUDA 工具包10.0配合cuDNN v7.3(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *CUDA 工具包9.0配合cuDNN v7.3(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *CUDA 工具包8.0配合cuDNN v7.3(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
+	* *GPU运算能力超过1.0的硬件设备*
 
 ## 安装步骤
 
@@ -59,7 +59,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 	注意：python3.6、python3.7版本从release/1.2分支开始支持
 
@@ -69,12 +69,12 @@
 
 7. 使用以下命令安装相关依赖：
 
-		For Python2: pip install protobuf==3.1.0
-		For Python3: pip3.5 install protobuf==3.1.0
+		For Python2: pip install protobuf
+		For Python3: pip3.5 install protobuf
 
 	注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
-	> 安装protobuf 3.1.0。
+	> 安装protobuf。
 
 	`apt install patchelf`
 
@@ -89,11 +89,11 @@
 
 	*  编译**CPU版本PaddlePaddle**：
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	*  编译**GPU版本PaddlePaddle**：
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 9. 执行编译：
 
@@ -167,7 +167,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 7. 并且请创建并进入一个叫build的目录下：
 
@@ -179,20 +179,20 @@
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python2: cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
 		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):
-			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			i. `wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
 			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
-			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
+			iii. `sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0`
 
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+				For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+				For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 

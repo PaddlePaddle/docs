@@ -16,7 +16,7 @@
 在CentOS的系统下有2种编译方式：
 
 * 使用Docker编译
-* 本机编译（不支持CentOS 6）
+* 本机编译（不提供在CentOS 6下编译中遇到问题的支持）
 
 <a name="ct_docker"></a>
 ### ***使用Docker编译***
@@ -53,7 +53,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 	注意：python3.6、python3.7版本从release/1.2分支开始支持
 
@@ -63,12 +63,12 @@
 
 7. 使用以下命令安装相关依赖：
 
-		For Python2: pip install protobuf==3.1.0
-		For Python3: pip3.5 install protobuf==3.1.0
+		For Python2: pip install protobuf
+		For Python3: pip3.5 install protobuf
 
 	注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
-	> 安装protobuf 3.1.0。
+	> 安装protobuf。
 
 	`apt install patchelf`
 
@@ -81,7 +81,7 @@
 
 	* 对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	> 我们目前不支持CentOS下使用Docker编译GPU版本的PaddlePaddle
 
@@ -168,7 +168,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 9. 并且请创建并进入一个叫build的目录下：
 
@@ -180,9 +180,9 @@
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python2: cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-			-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 		> 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次cmake指令。
 		> 请注意PY_VERSION参数更换为您需要的python版本
