@@ -3,7 +3,7 @@ API
 =====
 
 ..  toctree::
-    :maxdepth: 1    
+    :maxdepth: 1
 
     ../flags_cn.rst
     ../api_guides/index_cn.rst
