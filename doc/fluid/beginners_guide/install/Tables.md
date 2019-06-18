@@ -164,7 +164,7 @@
 	</tr>
 	</tr>
 		<tr>
-		<td> DCUDA_ARCH_NAME </td>
+		<td> CUDA_ARCH_NAME </td>
 		<td> 是否只针对当前CUDA架构编译 </td>
 		<td> All 可选：Auto</td>
 	</tr>
