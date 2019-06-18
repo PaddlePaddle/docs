@@ -1,3 +1,4 @@
 .vscode/
 /doc/fluid/menu.zh.json
 /doc/fluid/menu.en.json
+.DS_store
