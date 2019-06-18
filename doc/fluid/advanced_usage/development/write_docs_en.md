@@ -51,13 +51,28 @@ Take the ubuntu system as an example, run:
 sudo apt-get update && apt-get install -y python-dev build-essential
 ```
 
-then:
+Then:
 
 ```
 git clone https://github.com/PaddlePaddle/PaddlePaddle.org.git
 cd PaddlePaddle.org/portal
-# To install in a virtual environment.
+```
+
+Then install requirements. Please  make sure that you install with python 2.7.15. We recommend you to use conda/virtualenv to create a virtual environment first.
+
+Create conda environment:
+
+```
+conda create -n <env-name> python-2.7.15 -y
+conda activate <env-name>
+# To install in a virtual environment with virtual env
 # virtualenv venv; source venv/bin/activate
+```
+
+Install requirements：
+
+
+```
 pip install -r requirements.txt
 ```
 

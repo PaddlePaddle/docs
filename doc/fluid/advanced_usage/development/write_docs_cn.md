@@ -56,8 +56,22 @@ sudo apt-get update && apt-get install -y python-dev build-essential
 ```
 git clone https://github.com/PaddlePaddle/PaddlePaddle.org.git
 cd PaddlePaddle.org/portal
-# To install in a virtual environment.
+```
+
+之后安装requirements，请确保在python 2.7.15环境下安装。推荐使用conda/virtualenv创建虚拟环境后安装requirements。
+
+创建conda环境：
+
+```
+conda create -n <env-name> python-2.7.15 -y
+conda activate <env-name>
+# To install in a virtual environment with virtualenv:
 # virtualenv venv; source venv/bin/activate
+```
+
+安装requirements：
+
+```
 pip install -r requirements.txt
 ```
 
