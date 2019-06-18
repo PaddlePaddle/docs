@@ -167,6 +167,7 @@ The status information of all trainer nodes is saved in the pserver node. When t
   # training process ...
   exe.close() # notify PServer to destory the resource
 
+Note: every trainer needs to call exe.close() when the trainer finishes.
 
 Start a Distributed Training Task
 ----------------------------------
