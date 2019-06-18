@@ -86,6 +86,12 @@
 		<td> 可选 </td>
 		<td>  </td>
 	</tr>
+	<tr>
+		<td> setuptools </td>
+		<td> >= 28.0.0 </td>
+		<td> </td>
+		<td>  </td>
+	</tr>
 	</tbody>
 </table>
 </p>
