@@ -12,9 +12,9 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-	* *CUDA 工具包10.0配合cuDNN v7.3(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包9.0配合cuDNN v7.3(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包8.0配合cuDNN v7.3(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
+	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *CUDA 工具包8.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
 	* *GPU运算能力超过1.0的硬件设备*
 
 ## 安装步骤
