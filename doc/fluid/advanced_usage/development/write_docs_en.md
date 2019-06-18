@@ -58,16 +58,7 @@ git clone https://github.com/PaddlePaddle/PaddlePaddle.org.git
 cd PaddlePaddle.org/portal
 ```
 
-Then install requirements. Please  make sure that you install with python 2.7.15. We recommend you to use conda/virtualenv to create a virtual environment first.
-
-Create conda environment:
-
-```
-conda create -n <env-name> python-2.7.15 -y
-conda activate <env-name>
-# To install in a virtual environment with virtual env
-# virtualenv venv; source venv/bin/activate
-```
+Then install requirements. Please  make sure that you install with python 2.7.15 or 2.7.16. We recommend you to use Anaconda or virtualenv to create an appropriate virtual environment first. 
 
 Install requirements：
 

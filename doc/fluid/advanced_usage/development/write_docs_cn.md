@@ -58,18 +58,9 @@ git clone https://github.com/PaddlePaddle/PaddlePaddle.org.git
 cd PaddlePaddle.org/portal
 ```
 
-之后安装requirements，请确保在python 2.7.15环境下安装。推荐使用conda/virtualenv创建虚拟环境后安装requirements。
+之后需要安装依赖库，请确保在python 2.7.15 或2.7.16 环境下安装。推荐使用Anaconda或virtualenv创建合适的虚拟环境后安装依赖库。
 
-创建conda环境：
-
-```
-conda create -n <env-name> python-2.7.15 -y
-conda activate <env-name>
-# To install in a virtual environment with virtualenv:
-# virtualenv venv; source venv/bin/activate
-```
-
-安装requirements：
+安装依赖库：
 
 ```
 pip install -r requirements.txt
