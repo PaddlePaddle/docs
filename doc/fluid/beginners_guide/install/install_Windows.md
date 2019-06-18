@@ -17,6 +17,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
 
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
+    * *CUDA 工具包9.0配合cuDNN v7*
     * *CUDA 工具包8.0配合cuDNN v7*
     * *GPU运算能力超过1.0的硬件设备*
 

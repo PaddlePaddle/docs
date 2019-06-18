@@ -16,6 +16,7 @@ Under Ubuntu, you can use `cat /proc/cpuinfo | grep avx` to check if your proces
 
 * PaddlePaddle for GPU is supported. In order to make the PaddlePaddle program run more quickly, we accelerate the PaddlePaddle program through the GPU, but the GPU version of the PaddlePaddle needs to have the NVIDIA® GPU that meets the following conditions (see the NVIDIA official documentation for the specific installation process and configuration: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), [For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
 
+	* *CUDA Toolkit 10.0 with cuDNN v7*
 	* *CUDA Toolkit 9.0 with cuDNN v7*
 	* *CUDA Toolkit 8.0 with cuDNN v7*
 	* *Hardware devices with GPU computing power exceeding 1.0*
