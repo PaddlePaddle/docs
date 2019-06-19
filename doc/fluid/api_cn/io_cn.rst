@@ -196,7 +196,7 @@ PyReader
 
 **代码示例**
 
-1.如果iterable=false，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException `` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
+1.如果iterable=False，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException `` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
 
 ..  code-block:: python
 
@@ -220,7 +220,7 @@ PyReader
               break
 
 
-2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 
+2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 
 
 ..  code-block:: python
 
@@ -239,15 +239,15 @@ PyReader
         for data in reader():
             executor.run(feed=data, ...)
 
-.. py:method::start()
+..  py:function:: start()
 
 启动数据输入线程。只能在reader对象不可迭代时调用。
 
-.. py:method::reset()
+..  py:function:: reset()
 
 当 ``fluid.core.EOFException`` 提升时重置reader对象。只能在reader对象不可迭代时调用。
 
-.. py:method::decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=None)
+..  py:function:: decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=None)
 
 设置Pyreader对象的数据源。
 
@@ -264,7 +264,7 @@ PyReader
   - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
 
 
-.. py:method::decorate_sample_list_generator(reader, places=None)
+..  py:function:: decorate_sample_list_generator(reader, places=None)
 
 设置Pyreader对象的数据源。
 
@@ -277,7 +277,7 @@ PyReader
   - **places** (None|list(CUDAPlace)|list(CPUPlace)) –  位置列表。当PyReader可迭代时必须被提供
 
 
-.. py:method::decorate_batch_generator(reader, places=None)
+..  py:function:: decorate_batch_generator(reader, places=None)
 
 设置Pyreader对象的数据源。
 
