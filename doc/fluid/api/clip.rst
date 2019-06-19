@@ -12,6 +12,7 @@ ErrorClipByValue
 
 ..  autoclass:: paddle.fluid.clip.ErrorClipByValue
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_clip_GradientClipByGlobalNorm:
@@ -21,6 +22,7 @@ GradientClipByGlobalNorm
 
 ..  autoclass:: paddle.fluid.clip.GradientClipByGlobalNorm
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_clip_GradientClipByNorm:
@@ -30,6 +32,7 @@ GradientClipByNorm
 
 ..  autoclass:: paddle.fluid.clip.GradientClipByNorm
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_clip_GradientClipByValue:
@@ -39,5 +42,6 @@ GradientClipByValue
 
 ..  autoclass:: paddle.fluid.clip.GradientClipByValue
     :members:
+    :inherited-members:
     :noindex:
 

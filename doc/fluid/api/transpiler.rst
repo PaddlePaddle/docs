@@ -12,6 +12,7 @@ DistributeTranspiler
 
 ..  autoclass:: paddle.fluid.transpiler.DistributeTranspiler
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_transpiler_DistributeTranspilerConfig:
@@ -21,6 +22,7 @@ DistributeTranspilerConfig
 
 ..  autoclass:: paddle.fluid.transpiler.DistributeTranspilerConfig
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_transpiler_HashName:
@@ -30,6 +32,7 @@ HashName
 
 ..  autoclass:: paddle.fluid.transpiler.HashName
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_transpiler_memory_optimize:
@@ -55,5 +58,6 @@ RoundRobin
 
 ..  autoclass:: paddle.fluid.transpiler.RoundRobin
     :members:
+    :inherited-members:
     :noindex:
 
