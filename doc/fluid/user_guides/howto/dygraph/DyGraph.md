@@ -23,43 +23,43 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 1. 升级到最新的PaddlePaddle 1.4:	
 
-```
-pip install -q --upgrade paddlepaddle==1.4
-```
+    ```
+    pip install -q --upgrade paddlepaddle==1.4
+    ```
 
 2. 使用`fluid.dygraph.guard(place=None)` 上下文：
 		
-```python
-import paddle.fluid as fluid
-with fluid.dygraph.guard():
-	# write your executable dygraph code here             
-```
+    ```python
+    import paddle.fluid as fluid
+    with fluid.dygraph.guard():
+    	# write your executable dygraph code here             
+    ```
 
 现在您就可以在`fluid.dygraph.guard()`上下文环境中使用DyGraph的模式运行网络了，DyGraph将改变以往PaddlePaddle的执行方式： 现在他们将会立即执行，并且将计算结果返回给Python。
 
 
 Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.base.to_variable(x)`将会将ndarray转换为`fluid.Variable`，而使用`fluid.Variable.numpy()`将可以把任意时刻获取到的计算结果转换为Numpy`ndarray`：         
 
-```python
-x = np.ones([2, 2], np.float32)
-with fluid.dygraph.guard():
-    inputs = []
-    for _ in range(10):
-        inputs.append(fluid.dygraph.base.to_variable(x))
-    ret = fluid.layers.sums(inputs)
-    print(ret.numpy())
-```		
+    ```python
+    x = np.ones([2, 2], np.float32)
+    with fluid.dygraph.guard():
+        inputs = []
+        for _ in range(10):
+            inputs.append(fluid.dygraph.base.to_variable(x))
+        ret = fluid.layers.sums(inputs)
+        print(ret.numpy())
+    ```		
 		    
 
 
 得到输出 ：
          
-```
-[[10. 10.]
-[10. 10.]]
+    ```
+    [[10. 10.]
+    [10. 10.]]
 
-Process finished with exit code 0
-```
+    Process finished with exit code 0
+    ```
 
 >	这里创建了一系列`ndarray`的输入，执行了一个`sum`操作之后，我们可以直接将运行的结果打印出来
 
@@ -67,20 +67,20 @@ Process finished with exit code 0
 
 
 
-```python
-loss = fluid.layers.reduce_sum(ret)
-loss.backward()
-print(loss.gradient())
-```
+    ```python
+    loss = fluid.layers.reduce_sum(ret)
+    loss.backward()
+    print(loss.gradient())
+    ```
 
 
 		
 得到输出 ：
-```
-[1.]
+    ```
+    [1.]
 
-Process finished with exit code 0
-```
+    Process finished with exit code 0
+    ```
 
 <!--3. 使用Python和Numpy的操作来构建一个网络：
 
@@ -127,31 +127,31 @@ Process finished with exit code 0
     1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
 		
 
-    ```python
-    class MyLayer(fluid.Layer):
-        def __init__(self, name_scope):
-            super(MyLayer, self).__init__(name_scope)    
-    ```
+        ```python
+        class MyLayer(fluid.Layer):
+            def __init__(self, name_scope):
+                super(MyLayer, self).__init__(name_scope)    
+        ```
 
     2. 实现一个`forward(self, *inputs)`的执行函数，该函数将负责执行实际运行时网络的执行逻辑， 该函数将会在每一轮训练/预测中被调用，这里我们将执行一个简单的`relu` -> `elementwise add` -> `reduce sum`：
 	
 
-    ```python
-    def forward(self, inputs):
-        x = fluid.layers.relu(inputs)
-        self._x_for_debug = x
-        x = fluid.layers.elementwise_mul(x, x)
-        x = fluid.layers.reduce_sum(x)
-        return [x]       
-    ```
+        ```python
+        def forward(self, inputs):
+            x = fluid.layers.relu(inputs)
+            self._x_for_debug = x
+            x = fluid.layers.elementwise_mul(x, x)
+            x = fluid.layers.reduce_sum(x)
+            return [x]       
+        ```
 
     3. （可选）实现一个`build_once(self, *inputs)` 方法，该方法将作为一个单次执行的函数，用于初始化一些依赖于输入信息的参数和网络信息, 例如在`FC`（fully connected layer）当中, 需要依赖输入的`shape`初始化参数， 这里我们并不需要这样的操作，仅仅为了展示，因此这个方法可以直接跳过：
 		
 
-    ```python
-    def build_once(self, input):
-        pass
-    ```
+        ```python
+        def build_once(self, input):
+            pass
+        ```
 
 2. 在`fluid.dygraph.guard()`中执行：
 
@@ -159,28 +159,28 @@ Process finished with exit code 0
     1. 使用Numpy构建输入：
 		
 
-	```python
-    np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
-    ```
+    	```python
+        np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
+        ```
 
     2. 输入转换并执行前向网络获取返回值： 使用`fluid.dygraph.base.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`l(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
 
 
-	```python
-    with fluid.dygraph.guard():
-        var_inp = fluid.dygraph.base.to_variable(np_inp)
-        l = MyLayer("my_layer")
-        x = l(var_inp)[0]
-        dy_out = x.numpy()
-    ```
+    	```python
+        with fluid.dygraph.guard():
+            var_inp = fluid.dygraph.base.to_variable(np_inp)
+            l = MyLayer("my_layer")
+            x = l(var_inp)[0]
+            dy_out = x.numpy()
+        ```
 
     3. 计算梯度：自动微分对于实现机器学习算法（例如用于训练神经网络的反向传播）来说很有用， 使用`x.backward()`方法可以从某个`fluid.Varaible`开始执行反向网络，同时利用`l._x_for_debug.gradient()`获取了网络中`x`梯度的`ndarray` 返回值：
 		
 
-	```python
-    x.backward()
-    dy_grad = l._x_for_debug.gradient()
-    ```
+    	```python
+        x.backward()
+        dy_grad = l._x_for_debug.gradient()
+        ```
 
 
 ## 使用DyGraph训练模型
@@ -192,152 +192,152 @@ Process finished with exit code 0
 
 1.	准备数据，我们使用`paddle.dataset.mnist`作为训练所需要的数据集：
 	
-```python
-train_reader = paddle.batch(
-paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
-```
+    ```python
+    train_reader = paddle.batch(
+    paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
+    ```
 
 2. 构建网络，虽然您可以根据之前的介绍自己定义所有的网络结构，但是您也可以直接使用`fluid.Layer.nn`当中我们为您定制好的一些基础网络结构，这里我们利用`fluid.Layer.nn.Conv2d`以及`fluid.Layer.nn.Pool2d`构建了基础的`SimpleImgConvPool`：
-	
-```python
-class SimpleImgConvPool(fluid.dygraph.Layer):
-    def __init__(self,
-                 name_scope,
-                 num_channels,
-                 num_filters,
-                 filter_size,
-                 pool_size,
-                 pool_stride,
-                 pool_padding=0,
-                 pool_type='max',
-                 global_pooling=False,
-                 conv_stride=1,
-                 conv_padding=0,
-                 conv_dilation=1,
-                 conv_groups=1,
-                 act=None,
-                 use_cudnn=False,
-                 param_attr=None,
-                 bias_attr=None):
-        super(SimpleImgConvPool, self).__init__(name_scope)
+    	
+    ```python
+    class SimpleImgConvPool(fluid.dygraph.Layer):
+        def __init__(self,
+                     name_scope,
+                     num_channels,
+                     num_filters,
+                     filter_size,
+                     pool_size,
+                     pool_stride,
+                     pool_padding=0,
+                     pool_type='max',
+                     global_pooling=False,
+                     conv_stride=1,
+                     conv_padding=0,
+                     conv_dilation=1,
+                     conv_groups=1,
+                     act=None,
+                     use_cudnn=False,
+                     param_attr=None,
+                     bias_attr=None):
+            super(SimpleImgConvPool, self).__init__(name_scope)
 
-        self._conv2d = Conv2D(
-            self.full_name(),
-            num_channels=num_channels,
-            num_filters=num_filters,
-            filter_size=filter_size,
-            stride=conv_stride,
-            padding=conv_padding,
-            dilation=conv_dilation,
-            groups=conv_groups,
-            param_attr=None,
-            bias_attr=None,
-            use_cudnn=use_cudnn)
+            self._conv2d = Conv2D(
+                self.full_name(),
+                num_channels=num_channels,
+                num_filters=num_filters,
+                filter_size=filter_size,
+                stride=conv_stride,
+                padding=conv_padding,
+                dilation=conv_dilation,
+                groups=conv_groups,
+                param_attr=None,
+                bias_attr=None,
+                use_cudnn=use_cudnn)
 
-        self._pool2d = Pool2D(
-            self.full_name(),
-            pool_size=pool_size,
-            pool_type=pool_type,
-            pool_stride=pool_stride,
-            pool_padding=pool_padding,
-            global_pooling=global_pooling,
-            use_cudnn=use_cudnn)
+            self._pool2d = Pool2D(
+                self.full_name(),
+                pool_size=pool_size,
+                pool_type=pool_type,
+                pool_stride=pool_stride,
+                pool_padding=pool_padding,
+                global_pooling=global_pooling,
+                use_cudnn=use_cudnn)
 
-    def forward(self, inputs):
-        x = self._conv2d(inputs)
-        x = self._pool2d(x)
-        return x
-```
+        def forward(self, inputs):
+            x = self._conv2d(inputs)
+            x = self._pool2d(x)
+            return x
+    ```
 
 
-> 注意: 构建网络时子网络的定义和使用请在`__init__`中进行， 而子网络的调用则在`forward`函数中调用
+    > 注意: 构建网络时子网络的定义和使用请在`__init__`中进行， 而子网络的调用则在`forward`函数中调用
 
 
 		       
 
 3. 利用已经构建好的`SimpleImgConvPool`组成最终的`MNIST`网络：
 	
-```python
-class MNIST(fluid.dygraph.Layer):
-    def __init__(self, name_scope):
-        super(MNIST, self).__init__(name_scope)
+    ```python
+    class MNIST(fluid.dygraph.Layer):
+        def __init__(self, name_scope):
+            super(MNIST, self).__init__(name_scope)
 
-        self._simple_img_conv_pool_1 = SimpleImgConvPool(
-            self.full_name(), 1, 20, 5, 2, 2, act="relu")
+            self._simple_img_conv_pool_1 = SimpleImgConvPool(
+                self.full_name(), 1, 20, 5, 2, 2, act="relu")
 
-        self._simple_img_conv_pool_2 = SimpleImgConvPool(
-            self.full_name(), 20, 50, 5, 2, 2, act="relu")
+            self._simple_img_conv_pool_2 = SimpleImgConvPool(
+                self.full_name(), 20, 50, 5, 2, 2, act="relu")
 
-        pool_2_shape = 50 * 4 * 4
-        SIZE = 10
-        scale = (2.0 / (pool_2_shape**2 * SIZE))**0.5
-        self._fc = FC(self.full_name(),
-                      10,
-                      param_attr=fluid.param_attr.ParamAttr(
-                          initializer=fluid.initializer.NormalInitializer(
-                              loc=0.0, scale=scale)),
-                      act="softmax")
+            pool_2_shape = 50 * 4 * 4
+            SIZE = 10
+            scale = (2.0 / (pool_2_shape**2 * SIZE))**0.5
+            self._fc = FC(self.full_name(),
+                          10,
+                          param_attr=fluid.param_attr.ParamAttr(
+                              initializer=fluid.initializer.NormalInitializer(
+                                  loc=0.0, scale=scale)),
+                          act="softmax")
 
-    def forward(self, inputs):
-        x = self._simple_img_conv_pool_1(inputs)
-        x = self._simple_img_conv_pool_2(x)
-        x = self._fc(x)
-        return x
-```		  
+        def forward(self, inputs):
+            x = self._simple_img_conv_pool_1(inputs)
+            x = self._simple_img_conv_pool_2(x)
+            x = self._fc(x)
+            return x
+    ```		  
 
 
 			
 4. 在`fluid.dygraph.guard()`中定义配置好的`MNIST`网络结构，此时即使没有训练也可以在`fluid.dygraph.guard()`中调用模型并且检查输出：
 	
-```python
-with fluid.dygraph.guard():
-	mnist = MNIST("mnist")
-	id, data = list(enumerate(train_reader()))[0]
-	dy_x_data = np.array(
-	    [x[0].reshape(1, 28, 28)
-	     for x in data]).astype('float32')
-	img = to_variable(dy_x_data)
-	print("cost is: {}".format(mnist(img).numpy()))
-```	
-				
-得到输出：
+    ```python
+    with fluid.dygraph.guard():
+    	mnist = MNIST("mnist")
+    	id, data = list(enumerate(train_reader()))[0]
+    	dy_x_data = np.array(
+    	    [x[0].reshape(1, 28, 28)
+    	     for x in data]).astype('float32')
+    	img = to_variable(dy_x_data)
+    	print("cost is: {}".format(mnist(img).numpy()))
+    ```	
+    				
+    得到输出：
 
-```
-cost is: [[0.10135901 0.1051138  0.1027941  ... 0.0972859  0.10221873 0.10165327]
-[0.09735426 0.09970362 0.10198303 ... 0.10134517 0.10179105 0.10025002]
-[0.09539858 0.10213123 0.09543551 ... 0.10613529 0.10535969 0.097991  ]
-...
-[0.10120598 0.0996111  0.10512722 ... 0.10067689 0.10088114 0.10071224]
-[0.09889644 0.10033772 0.10151272 ... 0.10245881 0.09878646 0.101483  ]
-[0.09097178 0.10078511 0.10198414 ... 0.10317434 0.10087223 0.09816764]]
-	
-Process finished with exit code 0
-```
+    ```
+    cost is: [[0.10135901 0.1051138  0.1027941  ... 0.0972859  0.10221873 0.10165327]
+    [0.09735426 0.09970362 0.10198303 ... 0.10134517 0.10179105 0.10025002]
+    [0.09539858 0.10213123 0.09543551 ... 0.10613529 0.10535969 0.097991  ]
+    ...
+    [0.10120598 0.0996111  0.10512722 ... 0.10067689 0.10088114 0.10071224]
+    [0.09889644 0.10033772 0.10151272 ... 0.10245881 0.09878646 0.101483  ]
+    [0.09097178 0.10078511 0.10198414 ... 0.10317434 0.10087223 0.09816764]]
+    	
+    Process finished with exit code 0
+    ```
 
 5. 构建训练循环，在每一轮参数更新完成后我们调用`mnist.clear_gradients()`来重置梯度：
 
-```python
-for epoch in range(epoch_num):
-    for batch_id, data in enumerate(train_reader()):
-        dy_x_data = np.array(
-            [x[0].reshape(1, 28, 28)
-             for x in data]).astype('float32')
-        y_data = np.array(
-            [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
+    ```python
+    for epoch in range(epoch_num):
+        for batch_id, data in enumerate(train_reader()):
+            dy_x_data = np.array(
+                [x[0].reshape(1, 28, 28)
+                 for x in data]).astype('float32')
+            y_data = np.array(
+                [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
 
-        img = to_variable(dy_x_data)
-        label = to_variable(y_data)
-        label.stop_gradient = True
+            img = to_variable(dy_x_data)
+            label = to_variable(y_data)
+            label.stop_gradient = True
 
-        cost = mnist(img)
-        loss = fluid.layers.cross_entropy(cost, label)
-        avg_loss = fluid.layers.mean(loss)
+            cost = mnist(img)
+            loss = fluid.layers.cross_entropy(cost, label)
+            avg_loss = fluid.layers.mean(loss)
 
-        dy_out = avg_loss.numpy()
-        avg_loss.backward()
-        sgd.minimize(avg_loss)
-        mnist.clear_gradients()
-```
+            dy_out = avg_loss.numpy()
+            avg_loss.backward()
+            sgd.minimize(avg_loss)
+            mnist.clear_gradients()
+    ```
 
 
 
@@ -346,18 +346,103 @@ for epoch in range(epoch_num):
 	模型的参数或者任何您希望检测的值可以作为变量封装在类中，并且通过对象获取并使用`numpy()`方法获取其`ndarray`的输出， 在训练过程中您可以使用`mnist.parameters()`来获取到网络中所有的参数，也可以指定某一个`Layer`的某个参数或者`parameters()`来获取该层的所有参数，使用`numpy()`方法随时查看参数的值
 
 	反向运行后调用之前定义的`SGD`优化器对象的`minimize`方法进行参数更新:
-		
-```python
-with fluid.dygraph.guard():
-    fluid.default_startup_program().random_seed = seed
-    fluid.default_main_program().random_seed = seed
+    		
+    ```python
+    with fluid.dygraph.guard():
+        fluid.default_startup_program().random_seed = seed
+        fluid.default_main_program().random_seed = seed
 
-    mnist = MNIST("mnist")
-    sgd = SGDOptimizer(learning_rate=1e-3)
-    train_reader = paddle.batch(
-        paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
+        mnist = MNIST("mnist")
+        sgd = SGDOptimizer(learning_rate=1e-3)
+        train_reader = paddle.batch(
+            paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
 
-    np.set_printoptions(precision=3, suppress=True)
+        np.set_printoptions(precision=3, suppress=True)
+        for epoch in range(epoch_num):
+            for batch_id, data in enumerate(train_reader()):
+                dy_x_data = np.array(
+                    [x[0].reshape(1, 28, 28)
+                     for x in data]).astype('float32')
+                y_data = np.array(
+                    [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
+
+                img = to_variable(dy_x_data)
+                label = to_variable(y_data)
+                label.stop_gradient = True
+
+                cost = mnist(img)
+                loss = fluid.layers.cross_entropy(cost, label)
+                avg_loss = fluid.layers.mean(loss)
+
+                dy_out = avg_loss.numpy()
+
+                avg_loss.backward()
+                sgd.minimize(avg_loss)
+                mnist.clear_gradients()
+
+                dy_param_value = {}
+                for param in mnist.parameters():
+                    dy_param_value[param.name] = param.numpy()
+
+                if batch_id % 20 == 0:
+                    print("Loss at step {}: {:.7}".format(batch_id, avg_loss.numpy()))
+        print("Final loss: {:.7}".format(avg_loss.numpy()))
+        print("_simple_img_conv_pool_1_conv2d W's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._filter_param.numpy().mean()))
+        print("_simple_img_conv_pool_1_conv2d Bias's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._bias_param.numpy().mean()))
+    ```
+
+
+
+    得到输出：
+
+    ```
+    Loss at step 0: [2.302]
+    Loss at step 20: [1.616]
+    Loss at step 40: [1.244]
+    Loss at step 60: [1.142]
+    Loss at step 80: [0.911]
+    Loss at step 100: [0.824]
+    Loss at step 120: [0.774]
+    Loss at step 140: [0.626]
+    Loss at step 160: [0.609]
+    Loss at step 180: [0.627]
+    Loss at step 200: [0.466]
+    Loss at step 220: [0.499]
+    Loss at step 240: [0.614]
+    Loss at step 260: [0.585]
+    Loss at step 280: [0.503]
+    Loss at step 300: [0.423]
+    Loss at step 320: [0.509]
+    Loss at step 340: [0.348]
+    Loss at step 360: [0.452]
+    Loss at step 380: [0.397]
+    Loss at step 400: [0.54]
+    Loss at step 420: [0.341]
+    Loss at step 440: [0.337]
+    Loss at step 460: [0.155]
+    Final loss: [0.164]
+    _simple_img_conv_pool_1_conv2d W's mean is: 0.00606656912714
+    _simple_img_conv_pool_1_conv2d Bias's mean is: -3.4576318285e-05
+    ```
+
+7.	性能
+
+	在使用`fluid.dygraph.guard()`可以通过传入`fluid.CUDAPlace(0)`或者`fluid.CPUPlace()`来选择执行DyGraph的设备，通常如果不做任何处理将会自动适配您的设备。
+
+    ## 模型参数的保存
+
+     在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir")`来保存`your_model_object`中所有的模型参数。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
+
+    同样可以使用`your_modle_object.load_dict(fluid.dygraph.load_persistables("save_dir"))`接口来恢复保存的模型参数从而达到继续训练的目的。
+
+
+
+
+    下面的代码展示了如何在“手写数字识别”任务中保存参数并且读取已经保存的参数来继续训练。
+
+
+    ```python
+    dy_param_init_value={}
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(train_reader()):
             dy_x_data = np.array(
@@ -378,105 +463,20 @@ with fluid.dygraph.guard():
 
             avg_loss.backward()
             sgd.minimize(avg_loss)
+            fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
             mnist.clear_gradients()
 
-            dy_param_value = {}
             for param in mnist.parameters():
-                dy_param_value[param.name] = param.numpy()
-
-            if batch_id % 20 == 0:
-                print("Loss at step {}: {:.7}".format(batch_id, avg_loss.numpy()))
-    print("Final loss: {:.7}".format(avg_loss.numpy()))
-    print("_simple_img_conv_pool_1_conv2d W's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._filter_param.numpy().mean()))
-    print("_simple_img_conv_pool_1_conv2d Bias's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._bias_param.numpy().mean()))
-```
-
-
-
-得到输出：
-
-```
-Loss at step 0: [2.302]
-Loss at step 20: [1.616]
-Loss at step 40: [1.244]
-Loss at step 60: [1.142]
-Loss at step 80: [0.911]
-Loss at step 100: [0.824]
-Loss at step 120: [0.774]
-Loss at step 140: [0.626]
-Loss at step 160: [0.609]
-Loss at step 180: [0.627]
-Loss at step 200: [0.466]
-Loss at step 220: [0.499]
-Loss at step 240: [0.614]
-Loss at step 260: [0.585]
-Loss at step 280: [0.503]
-Loss at step 300: [0.423]
-Loss at step 320: [0.509]
-Loss at step 340: [0.348]
-Loss at step 360: [0.452]
-Loss at step 380: [0.397]
-Loss at step 400: [0.54]
-Loss at step 420: [0.341]
-Loss at step 440: [0.337]
-Loss at step 460: [0.155]
-Final loss: [0.164]
-_simple_img_conv_pool_1_conv2d W's mean is: 0.00606656912714
-_simple_img_conv_pool_1_conv2d Bias's mean is: -3.4576318285e-05
-```
-
-7.	性能
-
-	在使用`fluid.dygraph.guard()`可以通过传入`fluid.CUDAPlace(0)`或者`fluid.CPUPlace()`来选择执行DyGraph的设备，通常如果不做任何处理将会自动适配您的设备。
-
-## 模型参数的保存
-
- 在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir")`来保存`your_model_object`中所有的模型参数。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
-
-同样可以使用`your_modle_object.load_dict(fluid.dygraph.load_persistables("save_dir"))`接口来恢复保存的模型参数从而达到继续训练的目的。
-
-
-
-
-下面的代码展示了如何在“手写数字识别”任务中保存参数并且读取已经保存的参数来继续训练。
-
-
-```python
-dy_param_init_value={}
-for epoch in range(epoch_num):
-    for batch_id, data in enumerate(train_reader()):
-        dy_x_data = np.array(
-            [x[0].reshape(1, 28, 28)
-             for x in data]).astype('float32')
-        y_data = np.array(
-            [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
-
-        img = to_variable(dy_x_data)
-        label = to_variable(y_data)
-        label.stop_gradient = True
-
-        cost = mnist(img)
-        loss = fluid.layers.cross_entropy(cost, label)
-        avg_loss = fluid.layers.mean(loss)
-
-        dy_out = avg_loss.numpy()
-
-        avg_loss.backward()
-        sgd.minimize(avg_loss)
-        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
-        mnist.clear_gradients()
-
-        for param in mnist.parameters():
-            dy_param_init_value[param.name] = param.numpy()
-        mnist.load_dict(fluid.dygraph.load_persistables("save_dir"))
-restore = mnist.parameters()
-# check save and load
-success = True
-for value in restore:
-    if (not np.allclose(value.numpy(), dy_param_init_value[value.name])) or (not np.isfinite(value.numpy().all())) or (np.isnan(value.numpy().any())):
-        success = False
-print("model save and load success? {}".format(success))
-```
+                dy_param_init_value[param.name] = param.numpy()
+            mnist.load_dict(fluid.dygraph.load_persistables("save_dir"))
+    restore = mnist.parameters()
+    # check save and load
+    success = True
+    for value in restore:
+        if (not np.allclose(value.numpy(), dy_param_init_value[value.name])) or (not np.isfinite(value.numpy().all())) or (np.isnan(value.numpy().any())):
+            success = False
+    print("model save and load success? {}".format(success))
+    ```
 
 
         
