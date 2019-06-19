@@ -24,8 +24,8 @@ PaddlePaddle Fluid可以支持在现代GPU [#]_ 服务器集群上完成高性�
     :header: "调节项", "可选值说明", "配置方法"
     :widths: 3, 3, 5
 
-    "通信模式", "pserver模式；NCCL2模式（collective [#]_ ）", "配置方法参考： `这里 <../../user_guides/howto/training/cluster_howto.html#permalink-8--nccl2->`_ "
-    "执行模式", "单进程；单进程ParallelGraph；多进程", "配置方法参考： `这里 <../../user_guides/howto/training/cluster_howto.html#permalink-9--nccl2->`_ "
+    "通信模式", "pserver模式；NCCL2模式（collective [#]_ ）", "配置方法参考：:ref:`cluster_howto`"
+    "执行模式", "单进程；单进程ParallelGraph；多进程", "配置方法参考：:ref:`cluster_howto`"
     "同步AllReduce操作", "开启则使每次调用等待AllReduce同步", "设置环境变量 :code:`FLAGS_sync_nccl_allreduce`"
     "CPU线程数", "int值，配置使用的CPU线程数", "参考本片后续说明"
     "预先分配足够的显存", "0~1之间的float值，预先分配显存的占比", "设置环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use`"
@@ -41,7 +41,7 @@ PaddlePaddle Fluid可以支持在现代GPU [#]_ 服务器集群上完成高性�
 选择通信模式和执行模式
 +++++++++++++++++++
 
-GPU分布式训练场景，使用多进程+NCCL2模式（collective）通常可以获得最好的性能。参考 `这里 <../../user_guides/howto/training/cluster_howto.html#permalink-8--nccl2->`_ 配置您的程序使用多进程NCCL2模式训练。
+GPU分布式训练场景，使用多进程+NCCL2模式（collective）通常可以获得最好的性能。参考 :ref:`cluster_howto` 配置您的程序使用多进程NCCL2模式训练。
 
 在进程模式下，每台服务器的每个GPU卡都会对应启动一个训练进程，
 集群中的所有进程之间会互相通信完成训练。以此方式最大限度的降低进程内部资源抢占的开销。
