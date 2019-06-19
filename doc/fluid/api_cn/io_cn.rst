@@ -220,7 +220,7 @@ PyReader
               break
 
 
-2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 
+2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 
 
 ..  code-block:: python
 
