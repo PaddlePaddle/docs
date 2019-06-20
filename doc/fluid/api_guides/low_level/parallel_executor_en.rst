@@ -4,8 +4,7 @@
 Parallel Executor
 ##############################
 
-
-:code:`ParallelExecutor` is an executor that executes :code:`Program` separately on multiple nodes in a data-parallelism manner. Users can use the Python script to run :code:`ParallelExecutor`. The execution process of :code:`ParallelExecutor` is as follows:
+:code:`ParallelExecutor` is an upgraded version of Executor, in addition, it supports model training of :code:`Program` in parallel with data. Users can use the Python script to run :code:`ParallelExecutor`. The execution process of :code:`ParallelExecutor` is as follows:
 
 - First it builds :code:`SSA Graph` and a thread pool based on :code:`Program`, the number of :code:`GPU` cards (or :code:`CPU` cores) and :ref:`api_fluid_BuildStrategy` ;
 - During execution, it executes the Op depending on whether the input of Op is ready, so that multiple Ops that do not depend on each other can be executed in parallel in the thread pool;
@@ -69,6 +68,7 @@ Since the execution speed of the model is related to the model structure and the
     train_loss, = train_exe.run(fetch_list=[loss.name], feed=feed_dict)
     test_loss, = test_exe.run(fetch_list=[loss.name], feed=feed_dict)
 
+**Note**: :code:`fluid.Executor` and :code:`fluid.ParallelExecutor` are two completely different executors. First of all, their execution objects are different. The execution object of :code:`fluid.Executor` is :code:`fluid.Program` and the execution object of :code:`fluid.ParallelExecutor` is Graph. Secondly, their execution schedules are different. :code:`fluid.Executor` runs one by one according to the order of operators in :code:`fluid.Program`. :code:`fluid.ParallelExecutor` executes concurrently according to the dependencies between nodes in Graph.
 
 - Related API :
  - :ref:`api_fluid_ParallelExecutor`

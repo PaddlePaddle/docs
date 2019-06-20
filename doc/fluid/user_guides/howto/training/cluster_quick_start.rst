@@ -171,6 +171,9 @@ PSERVER 节点中会保存所有 TRAINER 节点的状态信息，在 TRAINER 结
     # training process ...
     exe.close() # notify PServer to destory the resource
 
+注意：所有的trainer在退出时都需要调用exe.close()。
+
+
 启动分布式训练任务
 --------------------
 
