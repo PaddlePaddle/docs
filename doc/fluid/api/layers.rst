@@ -7,7 +7,6 @@ fluid.layers
 
     layers/control_flow.rst
     layers/detection.rst
-    layers/device.rst
     layers/io.rst
     layers/learning_rate_scheduler.rst
     layers/metric_op.rst
