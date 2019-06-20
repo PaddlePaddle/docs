@@ -18,7 +18,7 @@ MNIST数据集。
 
 MNIST训练数据集的creator。
 
-它返回一个reader creator, reader中的每个样本的图像像素范围是[0，1]，标签范围是[0，9]。
+它返回一个reader creator, reader中的每个样本的图像像素范围是[-1，1]，标签范围是[0，9]。
 
 返回： 训练数据的reader creator
 
@@ -30,7 +30,7 @@ MNIST训练数据集的creator。
 
 MNIST测试数据集的creator。
 
-它返回一个reader creator, reader中的每个样本的图像像素范围是[0，1]，标签范围是[0，9]。
+它返回一个reader creator, reader中的每个样本的图像像素范围是[-1，1]，标签范围是[0，9]。
 
 返回： 测试数据集的reader creator
 

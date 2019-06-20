@@ -14,7 +14,7 @@ DatasetFactory
 
 .. py:class:: paddle.fluid.dataset.DatasetFactory
 
-DatasetFactory是一个按数据集名称创建数据集的 "工厂" ，可以创建“QueueDataset”或“InMemoryDataset”或“FileInstantDataset”，默认为“QueueDataset”。
+DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创建“QueueDataset”或“InMemoryDataset”或“FileInstantDataset”，默认为“QueueDataset”。
 
 **代码示例**
 
@@ -89,6 +89,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 .. py:method:: global_shuffle(fleet=None)
 
 全局shuffle。
+
 只能用在分布式模式（单机多进程或多机多进程）中。您如果在分布式模式中运行，应当传递fleet而非None。
 
 **代码示例**:
@@ -201,6 +202,7 @@ QueueDataset
 .. py:method:: local_shuffle()
 
 局域shuffle数据
+
 QueueDataset中不支持局域shuffle，可能抛出NotImplementedError
 
 **代码示例**:
@@ -216,6 +218,7 @@ QueueDataset中不支持局域shuffle，可能抛出NotImplementedError
 .. py:method:: global_shuffle(fleet=None)
 
 全局shuffle数据
+
 QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 **代码示例**:

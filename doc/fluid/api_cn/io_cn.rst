@@ -11,14 +11,14 @@ load_inference_model
 
 .. py:function:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
 
-从指定目录中加载预测模型(inference model)。
+从指定目录中加载预测模型(inference model)。通过这个API，您可以获得模型结构（预测程序）和模型参数。如果您只想下载预训练后的模型的参数，请使用load_params API。更多细节请参考 ``模型/变量的保存、载入与增量训练`` 。
 
 参数:
   - **dirname** (str) – model的路径
   - **executor** (Executor) – 运行 inference model的 ``executor``
   - **model_filename** (str|None) –  存储着预测 Program 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
   - **params_filename** (str|None) –  加载所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
-  - **pserver_endpoints** (list|None) – 只有在分布式预测时需要用到。 当在训练时使用分布式 look up table , 需要这个参数. 该参数是 pserver endpoints 的列表 
+  - **pserver_endpoints** (list|None) – 只有在分布式预测时需要用到。 当在训练时使用分布式 look up table , 需要这个参数. 该参数是 pserver endpoints 的列表
 
 返回: 这个函数的返回有三个元素的元组(Program，feed_target_names, fetch_targets)。Program 是一个 ``Program`` ，它是预测 ``Program``。  ``feed_target_names`` 是一个str列表，它包含需要在预测 ``Program`` 中提供数据的变量的名称。``fetch_targets`` 是一个 ``Variable`` 列表，从中我们可以得到推断结果。
 
@@ -45,7 +45,8 @@ load_inference_model
         path = "./infer_model"
         fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'],target_vars=[hidden_b], executor=exe, main_program=main_prog)
         tensor_img = np.array(np.random.random((1, 64, 784)), dtype=np.float32)
-        [inference_program, feed_target_names, fetch_targets] = fluid.io.load_inference_model(dirname=path, executor=exe)
+        [inference_program, feed_target_names, fetch_targets] = (fluid.io.load_inference_model(dirname=path, executor=exe))
+        
         results = exe.run(inference_program,
                   feed={feed_target_names[0]: tensor_img},
                   fetch_list=fetch_targets)
@@ -53,7 +54,10 @@ load_inference_model
         # endpoints是pserver服务器终端列表，下面仅为一个样例
         endpoints = ["127.0.0.1:2023","127.0.0.1:2024"]
         # 如果需要查询表格，我们可以使用：
-        [dist_inference_program, dist_feed_target_names, dist_fetch_targets] = fluid.io.load_inference_model(dirname=path,executor=exe,pserver_endpoints=endpoints)
+        [dist_inference_program, dist_feed_target_names, dist_fetch_targets] = (
+            fluid.io.load_inference_model(dirname=path,
+                                          executor=exe,
+                                          pserver_endpoints=endpoints))
 
         # 在这个示例中，inference program 保存在“ ./infer_model/__model__”中
         # 参数保存在“./infer_mode ”单独的若干文件中
@@ -78,11 +82,13 @@ load_params
 
 注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。
 
+如果您想下载预训练后的模型结构和参数用于预测，请使用load_inference_model API。更多细节请参考 ``模型/变量的保存、载入与增量训练`` 。
+
 参数:
- - **executor**  (Executor) – 加载变量的 executor
- - **dirname**  (str) – 目录路径
- - **main_program**  (Program|None) – 需要加载变量的 Program。如果为 None，则使用 default_main_Program 。默认值: None
- - **filename**  (str|None) – 保存变量的文件。如果想分开保存变量，设置 filename=None. 默认值: None
+    - **executor**  (Executor) – 加载变量的 executor
+    - **dirname**  (str) – 目录路径
+    - **main_program**  (Program|None) – 需要加载变量的 Program。如果为 None，则使用 default_main_Program 。默认值: None
+    - **filename**  (str|None) – 保存变量的文件。如果想分开保存变量，设置 filename=None. 默认值: None
 
 返回: None
   
@@ -208,16 +214,17 @@ load_vars
 PyReader
 -------------------------------
 
-.. py:class:: paddle.fluid.io.PyReader(feed_list, capacity, use_double_buffer=True, iterable=False)
+.. py:class:: paddle.fluid.io.PyReader(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False)
 
 
 在python中为数据输入创建一个reader对象。将使用python线程预取数据，并将其异步插入队列。当调用Executor.run（…）时，将自动提取队列中的数据。 
 
 参数:
-  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建。
+  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建，在可迭代模式下可能为None。
   - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
   - **use_double_buffer** (bool) – 是否使用``double_buffer_reader ``来加速数据输入。
   - **iterable** (bool) –  被创建的reader对象是否可迭代。
+  - **return_list** (bool) –  返回值是否以列表形式展示。
 
 返回: 被创建的reader对象
 
@@ -268,7 +275,7 @@ PyReader
               break
 
 
-2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 
+2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 。
 
 ..  code-block:: python
 
@@ -283,7 +290,7 @@ PyReader
         return reader
 
     image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True)
+    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True, return_list=False)
    
     user_defined_reader = reader_creator_random_image(784, 784)
     reader.decorate_sample_list_generator(
@@ -294,6 +301,42 @@ PyReader
     for _ in range(EPOCH_NUM):
       for data in reader():
         executor.run(feed=data)
+
+
+3.如果return_list=True，返回值会表示成列表而非字典。
+
+..  code-block:: python
+
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 10
+    
+    def reader_creator_random_image(height, width):
+        def reader():
+            for i in range(ITER_NUM):
+                yield np.random.uniform(low=0, high=255, size=[height, width]),
+        return reader
+
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True, return_list=True)
+    
+    user_defined_reader = reader_creator_random_image(784, 784)
+    reader.decorate_sample_list_generator(
+        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
+        fluid.core.CPUPlace())
+    # 省略了网络的定义
+    executor = fluid.Executor(fluid.core.CPUPlace())
+    executor.run(fluid.default_main_program())
+    
+    for _ in range(EPOCH_NUM):
+        for data in reader():
+            executor.run(feed={"image": data[0]})
+
+
 
 .. py:method::start()
 
@@ -397,7 +440,7 @@ PyReader
             reader.decorate_sample_generator(user_defined_generator,
                                              batch_size=BATCH_SIZE,
                                              places=[fluid.CUDAPlace(0)])
-            # definition of network is omitted
+            # 省略了网络的定义
             executor = fluid.Executor(fluid.CUDAPlace(0))
             executor.run(fluid.default_main_program())
      
@@ -443,7 +486,7 @@ PyReader
             reader.decorate_sample_list_generator(
                 paddle.batch(user_defined_generator, batch_size=BATCH_SIZE),
                 fluid.core.CUDAPlace(0))
-            # definition of network is omitted
+            # 省略了网络的定义
             executor = fluid.Executor(fluid.core.CUDAPlace(0))
             executor.run(fluid.default_main_program())
      
@@ -487,7 +530,7 @@ PyReader
      
             user_defined_generator = random_image_and_label_generator(784, 784)
             reader.decorate_batch_generator(user_defined_generator, fluid.CUDAPlace(0))
-            # definition of network is omitted
+            # 省略了网络的定义
             executor = fluid.Executor(fluid.CUDAPlace(0))
             executor.run(fluid.default_main_program())
      
@@ -500,12 +543,15 @@ PyReader
 save_inference_model
 -------------------------------
 
-.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
+.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True, program_only=False)
 
 修改指定的 ``main_program`` ，构建一个专门用于预测的 ``Program``，然后  ``executor`` 把它和所有相关参数保存到 ``dirname`` 中。
 
 
 ``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它。
+
+如果您仅想保存您训练好的模型的参数，请使用save_params API。更多细节请参考 ``模型/变量的保存、载入与增量训练`` 。
+
 
 参数:
   - **dirname** (str) – 保存预测model的路径
@@ -516,6 +562,7 @@ save_inference_model
   - **model_filename** (str|None) – 保存预测Program 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
   - **params_filename** (str|None) – 保存所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
   - **export_for_deployment** (bool) – 如果为真，Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前只支持True。
+  - **program_only** (bool) – 如果为真，它会仅存储预测模型，而不存储Program的参数。
 
 返回: 获取的变量名列表
 
@@ -572,7 +619,7 @@ save_params
 
 ``dirname`` 用于指定保存变量的目标目录。如果想将变量保存到多个独立文件中，设置 ``filename`` 为 None; 如果想将所有变量保存在单个文件中，请使用 ``filename`` 来指定该文件的命名。
 
-注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。
+注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。如果您想要储存您的模型用于预测，请使用save_inference_model API。更多细节请参考 ``模型/变量的保存、载入与增量训练`` 。
 
 
 参数:

@@ -129,6 +129,8 @@ attention运算机制可以被视为将查询和一组键值对映射到输出�
 
 ..  code-block:: python
 
+          import paddle.fluid as fluid
+          
           queries = fluid.layers.data(name="queries",
                                       shape=[3, 5, 9],
                                       dtype="float32",
