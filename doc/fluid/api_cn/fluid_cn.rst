@@ -62,7 +62,7 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 类型为bool，sync_batch_norm表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。
 
-当前的实现不支持FP16培训和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。
+当前的实现不支持FP16训练和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。
 
 默认为 False。
 
@@ -1717,11 +1717,3 @@ WeightNormParamAttr
 			     param_attr=WeightNormParamAttr(
 				  dim=None,
 				  name='weight_norm_param'))
-
-
-
-
-
-
-
-
