@@ -166,7 +166,6 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 .. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
 
-  
 将reader返回的输入数据batch转换为多个mini-batch，之后每个mini-batch都会被输入进各个设备（CPU或GPU）中。
     
 参数：
