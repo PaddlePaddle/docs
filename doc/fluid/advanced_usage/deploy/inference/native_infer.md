@@ -168,17 +168,17 @@ int main() {
 PaddleTensor可用于NativePredictor和AnalysisPredictor，在 NativePredictor样例中展示了PaddleTensor的使用方式。
 PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字段如下：
 
-- `name`， 类型：string， 用于指定输入数据对应的 模型中variable 的名字
-- `shape`， 类型：`vector<int>`, 表示一个 Tensor 的 shape
-- `data`，  类型：`PaddleBuf`, 数据以连续内存的方式存储在`PaddleBuf` 中，`PaddleBuf` 可以接收外面的数据或者独立`malloc`内存，详细可以参考头文件中相关定义。
-- `dtype`， 类型：`PaddleType`, 有`PaddleDtype::FLOAT32`, `PaddleDtype::INT64`, `PaddleDtype::INT32`种, 表示 Tensor 的数据类型。
-- `lod`，  类型：`vector<vector<size_t>>`，在处理变长输入的时候，需要对 `PaddleTensor` 设置LoD信息。[LoD-Tensor使用说明](../../../user_guides/howto/basic_concept/lod_tensor.html)
+- `name`，类型：string，用于指定输入数据对应的模型中variable的名字
+- `shape`，类型：`vector<int>`, 表示一个Tensor的shape
+- `data`，类型：`PaddleBuf`, 数据以连续内存的方式存储在`PaddleBuf`中，`PaddleBuf`可以接收外面的数据或者独立`malloc`内存，详细可以参考头文件中相关定义。
+- `dtype`，类型：`PaddleType`, 有`PaddleDtype::FLOAT32`, `PaddleDtype::INT64`, `PaddleDtype::INT32`三种, 表示 Tensor 的数据类型。
+- `lod`，类型：`vector<vector<size_t>>`，在处理变长输入的时候，需要对 `PaddleTensor`设置LoD信息。可以参考[LoD-Tensor使用说明](../../../user_guides/howto/basic_concept/lod_tensor.html)
 
 
 ### ZeroCopyTensor的使用
 ZeroCopyTensor的使用可避免预测时候准备输入以及获取输出时多余的数据copy，提高预测性能。**只可用于AnalysisPredictor**。    
 
-**Note:**使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`
+**Note:**使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false)`
 
 ```
 // 通过创建的AnalysisPredictor获取输入和输出的tensor
@@ -190,7 +190,7 @@ auto output_t = predictor->GetOutputTensor(output_names[0]);
 // 对tensor进行reshape
 input_t->Reshape({batch_size, channels, height, width});
 
-// 通过copy_from_cpu接口，输入cpu数据输入；通过copy_to_cpu接口，将输出数据copy到cpu
+// 通过copy_from_cpu接口，将cpu数据输入；通过copy_to_cpu接口，将输出数据copy到cpu
 input_t->copy_from_cpu<float>(input_data /*数据指针*/);
 output_t->copy_to_cpu(out_data /*数据指针*/);
 
@@ -218,7 +218,7 @@ const int num_threads = 10;  // 假设有 10 个服务线程
 std::vector<std::thread> threads;
 std::vector<decl_type(main_predictor)> predictors;
 
-// 线程外将所有的predictor进行创建
+// 线程外创建所有的predictor
 predictors.emplace_back(std::move(main_predictor));
 for (int i = 1; i < num_threads; i++) {
     predictors.emplace_back(main_predictor->Clone());
@@ -244,9 +244,9 @@ for (auto& t : threads) {
 
 ## <a name="性能建议"> 性能建议</a>
 
-1. 在CPU型号允许的情况下，尽量使用带 AVX 和 MKL 的版本
-2. CPU或GPU预测，可以尝试把 `NativeConfig` 改成成 `AnalysisConfig` 来进行优化
-3. 尽量使用 `ZeroCopyTensor` 避免多余的内存copy
-4. CPU下可以尝试使用 Intel 的  `MKLDNN` 加速
-5. GPU 下可以尝试打开 `TensorRT` 子图加速引擎, 通过计算图分析，Paddle 可以自动将计算图中部分子图切割，并调用 NVidia 的 `TensorRT` 来进行加速。
+1. 在CPU型号允许的情况下，尽量使用带AVX和MKL的版本
+2. CPU或GPU预测，可以尝试把`NativeConfig`改成`AnalysisConfig`来进行优化
+3. 尽量使用`ZeroCopyTensor`避免过多的内存copy
+4. CPU下可以尝试使用Intel的`MKLDNN`加速
+5. GPU 下可以尝试打开`TensorRT`子图加速引擎, 通过计算图分析，Paddle可以自动将计算图中部分子图切割，并调用NVidia的 `TensorRT` 来进行加速。
 详细内容可以参考 [Paddle-TRT 子图引擎](./paddle_tensorrt_infer.html)

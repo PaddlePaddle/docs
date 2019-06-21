@@ -1,6 +1,6 @@
 # 使用Paddle-TensorRT库预测
 
-NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。PaddlePaddle 采用了子图的形式对TensorRT进行了集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNetV1, ResNet50, VGG19, ResNext, Se-ReNext, GoogleNet, DPN, ICNET, Deeplabv3, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
+NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。PaddlePaddle 采用了子图的形式对TensorRT进行了集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNetV1, ResNet50, VGG19, ResNext, Se-ReNext, GoogLeNet, DPN, ICNET, Deeplabv3, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
 
 ## 内容
 - [编译Paddle-TRT预测库](#编译Paddle-TRT预测库)
@@ -73,9 +73,9 @@ TensorRT预测库目前仅支持使用GPU编译。
 
 Paddle-TRT预测使用总体上分为以下步骤：  
 1. 创建合适的配置AnalysisConfig.    
-2. 根据配合创建 `PaddlePredictor`.    
-3. 创建输入的tensor.   
-4. 获取输出的tensor，输出结果.   
+2. 根据配置创建 `PaddlePredictor`.    
+3. 创建输入tensor.   
+4. 获取输出tensor，输出结果.   
 
 以下的代码展示了完整的过程：
 
@@ -146,12 +146,12 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 ```    
 的方式来指定使用Paddle-TRT子图方式来运行。以下我们将对此接口中的参数进行详细的介绍：
 
-- **`workspace_size`**， 类型：int， 默认值为`1 << 20`。
-- **`max_batch_size`**， 类型：int， 默认值1。需要提前设置最大的batch的大小，运行时batch数目不得超过此大小。
-- **`min_subgraph_size`**，类型：int， 默认值3。Paddle-TRT是以子图的形式运行，为了避免性能损失，当子图内部节点个数大于`min_subgraph_size`的时候，才会使用Paddle-TRT运行。
-- **`precision`**，  类型：`enum class Precision {kFloat32 = 0, kInt8,};`, 默认值为`AnalysisConfig::Precision::kFloat32`。如果需要使用Paddle-TRT calib int8的时候，需要指定precision为 `AnalysisConfig::Precision::kInt8`, 且`use_calib_mode` 为true
-- **`use_static`**， 类型：bool, 默认值为false。如果指定为true，在初次运行程序的时候会将TRT的优化信息进行序列化，下次运行的时候直接加载优化的序列化信息而不需要重新生成。
-- **`use_calib_mode`**， 类型：bool, 默认值为false。如果需要运行Paddle-TRT calib int8的时候，需要将此设置为true。
+- **`workspace_size`**，类型：int，默认值为`1 << 20`。
+- **`max_batch_size`**，类型：int，默认值1。需要提前设置最大的batch的大小，运行时batch数目不得超过此大小。
+- **`min_subgraph_size`**，类型：int，默认值3。Paddle-TRT是以子图的形式运行，为了避免性能损失，当子图内部节点个数大于`min_subgraph_size`的时候，才会使用Paddle-TRT运行。
+- **`precision`**，类型：`enum class Precision {kFloat32 = 0, kInt8,};`, 默认值为`AnalysisConfig::Precision::kFloat32`。如果需要使用Paddle-TRT calib int8的时候，需要指定precision为 `AnalysisConfig::Precision::kInt8`, 且`use_calib_mode` 为true
+- **`use_static`**，类型：bool, 默认值为false。如果指定为true，在初次运行程序的时候会将TRT的优化信息进行序列化，下次运行的时候直接加载优化的序列化信息而不需要重新生成。
+- **`use_calib_mode`**，类型：bool, 默认值为false。如果需要运行Paddle-TRT calib int8的时候，需要将此设置为true。
  
 **Note：** Paddle-TRT目前只支持固定shape的输入，不支持变化shape的输入。
 
