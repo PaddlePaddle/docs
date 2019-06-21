@@ -178,7 +178,7 @@ PaddleTensor 定义了预测最基本的输入输出的数据格式，常用字�
 ### ZeroCopyTensor的使用
 ZeroCopyTensor的使用可避免预测时候准备输入以及获取输出时多余的数据copy，提高预测性能。**只可用于AnalysisPredictor**。    
 
-**Note：**使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`
+**Note:**使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`
 
 ```
 // 通过创建的AnalysisPredictor获取输入和输出的tensor
