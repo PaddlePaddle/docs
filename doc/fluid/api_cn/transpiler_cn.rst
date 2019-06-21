@@ -24,41 +24,54 @@ DistributeTranspiler
 
 ..  code-block:: python
 
-	# for pserver mode
-	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
-	trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
-	current_endpoint = "192.168.0.1:6174"
-	trainer_id = 0
-	trainers = 4
-	role = os.getenv("PADDLE_TRAINING_ROLE")
+    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.fc(input=x, size=1, act=None)
+    
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+    avg_loss = fluid.layers.mean(cost)
+    
+    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
+    sgd_optimizer.minimize(avg_loss)
 
-	t = fluid.DistributeTranspiler()
-	t.transpile(
-     	     trainer_id, pservers=pserver_endpoints, trainers=trainers)
-	if role == "PSERVER":
-     	     pserver_program = t.get_pserver_program(current_endpoint)
+    # pserver模式
+    pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    current_endpoint = "192.168.0.1:6174"
+    trainer_id = 0
+    trainers = 4
+    role = "PSERVER"
+
+    t = fluid.DistributeTranspiler()
+    t.transpile(
+             trainer_id, pservers=pserver_endpoints, trainers=trainers)
+    if role == "PSERVER":
+             pserver_program = t.get_pserver_program(current_endpoint)
              pserver_startup_program = t.get_startup_program(current_endpoint,
                                                      pserver_program)
-	elif role == "TRAINER":
+    elif role == "TRAINER":
              trainer_program = t.get_trainer_program()
 
-	# for nccl2 mode
-	config = fluid.DistributeTranspilerConfig()
-	config.mode = "nccl2"
-	t = fluid.DistributeTranspiler(config=config)
-	t.transpile(trainer_id, workers=workers, current_endpoint=curr_ep)
-	exe = fluid.ParallelExecutor(
-    	    use_cuda,
-            loss_name=loss_var.name,
-            num_trainers=len(trainers.split(",)),
+    # nccl2模式
+    trainer_num = 2
+    trainer_id = 0
+    config = fluid.DistributeTranspilerConfig()
+    config.mode = "nccl2"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
+    exe = fluid.ParallelExecutor(
+            use_cuda=True,
+            loss_name=avg_loss.name,
+            num_trainers=len(trainer_num,
             trainer_id=trainer_id
-	)
+    )
 
 
 
 .. py:method:: transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
 
-该方法可以运行该transpiler（转译器）。
+该方法可以运行该transpiler（转译器）。转译输入程序。
 
 参数:	
 	- **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
@@ -70,6 +83,19 @@ DistributeTranspiler
  	- **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
 	- **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
 
+**代码示例**
+
+..  code-block:: python
+
+	transpiler = fluid.DistributeTranspiler()
+	t.transpile(
+		trainer_id=0,
+		pservers="127.0.0.1:7000,127.0.0.1:7001",
+		trainers=2,
+		sync_mode=False,
+		current_endpoint="127.0.0.1:7000")
+
+
 .. py:method:: get_trainer_program(wait_port=True)
 
 
@@ -79,6 +105,18 @@ DistributeTranspiler
 
 返回类型:	Program
 
+**代码示例**
+
+..  code-block:: python
+
+		import paddle.fluid as fluid
+		#this is an example, find available endpoints in your case
+		pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+		trainer_id = 0
+		trainers = 4
+		t = fluid.DistributeTranspiler()
+		t.transpile(trainer_id, trainers=trainers, pservers=pserver_endpoints)
+		trainer_program = t.get_trainer_program()
 
 
 .. py:method:: get_pserver_program(endpoint)
@@ -92,6 +130,21 @@ DistributeTranspiler
 返回:	当前Pserver需要执行的program
 
 返回类型:	Program
+
+**代码示例**
+
+..  code-block:: python
+
+ 	 	import paddle.fluid as fluid
+ 	 	#this is an example, find available endpoints in your case
+ 	 	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+ 	 	current_endpoint = "192.168.0.1:6174"
+ 	 	trainer_id = 0
+ 	 	trainers = 4
+ 	 	t = fluid.DistributeTranspiler()
+ 	 	t.transpile(
+ 	 	     trainer_id, pservers=pserver_endpoints, trainers=trainers)
+ 	 	pserver_program = t.get_pserver_program(current_endpoint)
 
 
 .. py:method:: get_pserver_programs(endpoint)
@@ -107,6 +160,22 @@ DistributeTranspiler
 返回类型:	tuple 
  
  
+**代码示例**
+
+..  code-block:: python
+
+ 	 	import paddle.fluid as fluid
+ 	 	#this is an example, find available endpoints in your case
+ 	 	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+ 	 	current_endpoint = "192.168.0.1:6174"
+ 	 	trainer_id = 0
+ 	 	trainers = 4
+ 	 	t = fluid.DistributeTranspiler()
+ 	 	t.transpile(
+ 	 	     trainer_id, pservers=pserver_endpoints, trainers=trainers)
+ 	 	pserver_program, pserver_startup_program = t.get_pserver_programs(current_endpoint)
+
+
 .. py:method:: get_startup_program(endpoint, pserver_program=None, startup_program=None)
 
 
@@ -122,9 +191,21 @@ DistributeTranspiler
 
 返回类型:	Program
 
+**代码示例**
 
+..  code-block:: python
 
-
+ 	 	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+ 	 	trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+ 	 	current_endpoint = "192.168.0.1:6174"
+ 	 	trainer_id = 0
+ 	 	trainers = 4
+ 	 	 
+ 	 	t = fluid.DistributeTranspiler()
+ 	 	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
+ 	 	pserver_program = t.get_pserver_program(current_endpoint)
+ 	 	pserver_startup_program = t.get_startup_program(current_endpoint,
+ 	 	                                                pserver_program)
 
 
 
@@ -152,9 +233,12 @@ DistributeTranspilerConfig
 
 注意: 根据：https://github.com/PaddlePaddle/Paddle/issues/8638#issuecomment-369912156 , 当数据块大小超过2MB时，我们可以有效地使用带宽。如果你想更改它，请详细查看slice_variable函数。
 
+**代码示例**
 
+..  code-block:: python
 
-
+		config = fluid.DistributeTranspilerConfig()
+		config.slice_var_up = True
 
 
 
@@ -170,9 +254,14 @@ HashName
 参数:
   - **pserver_endpoints** (list) - endpoint （ip:port）的 list 
 
+**代码示例**
 
+..  code-block:: python
 
-
+ 	 	pserver_endpoints = [“127.0.0.1:6007”, “127.0.0.1:6008”]
+ 	 	vars = [“var1”,”var2”,”var3”,”var4”,”var5”]
+ 	 	rr = RoundRobin(pserver_endpoints)
+ 	 	rr.dispatch(vars)
 
 
 
@@ -184,21 +273,47 @@ memory_optimize
 
 .. py:function:: paddle.fluid.transpiler.memory_optimize(input_program, skip_opt_set=None, print_log=False, level=0, skip_grads=False)
 
-通过重用var内存来优化内存。
+传统内存优化策略，通过在不同operators之间重用可变内存来减少总内存消耗。
+用一个简单的例子来解释该算法：
 
-注意:它不支持block中嵌套子block。
+c = a + b  # 假设此处是最后一次使用a
+d = b * c
+
+因为在“c = a + b”之后将不再使用a，并且a和d的大小相同，所有我们可以使用变量a来替换变量d，即实际上我们可以将上面的代码优化为如下所示：
+
+c = a + b
+a = b * c
+
+请注意，在这个legacy设计中，我们使用变量a直接替换d，这意味着在调用此API之后，某些变量可能会消失，而某些变量可能会保留非预期值，如在上面的例子中，实际上执行代码后a保持d的值。
+
+因此，为了防止重要变量在优化中被重用/删除，我们提供skip_opt_set用于指定变量白名单。
+skip_opt_set中的变量不受memory_optimize API的影响。
+
+注意：
+不推荐使用此API，请避免在新代码中使用它。
+不支持会创建子块的运算符，如While，IfElse等。
 
 参数:
   - **input_program** (str) – 输入Program。
   - **skip_opt_set** (set) – set中的vars将不被内存优化。
   - **print_log** (bool) – 是否打印debug日志。
-  - **level** (int) - 如果 level=0 并且shape是完全相等，则重用。
+  - **level** (int) - 0或1，0代表我们仅在a.size == b.size时用b替换a，1代表我们可以在a.size <= b.size时用b替换a
 
 返回: None
 
+**代码示例**
 
+..  code-block:: python
 
-
+ 	 	import paddle.fluid as fluid
+ 	 	main_prog = fluid.Program()
+ 	 	startup_prog = fluid.Program()
+ 	 	 
+ 	 	place = fluid.CPUPlace()
+ 	 	exe = fluid.Executor(place)
+ 	 	 
+ 	 	exe.run(startup_prog)
+ 	 	fluid.memory_optimize(main_prog)
 
 
 
@@ -222,9 +337,16 @@ release_memory
 
 返回: None
 
+**代码示例**
 
+..  code-block:: python
 
-
+		import paddle.fluid as fluid
+		# 构建网络
+		# ...
+		
+		# deprecated API
+		fluid.release_memory(fluid.default_main_program())
 
 
 
@@ -250,9 +372,14 @@ RoundRobin
 参数:
   - **pserver_endpoints** (list) - endpoint （ip:port）的 list 
  
- 
+**代码示例**
 
+..  code-block:: python
 
+ 	 	pserver_endpoints = [“127.0.0.1:6007”, “127.0.0.1:6008”]
+ 	 	vars = [“var1”,”var2”,”var3”,”var4”,”var5”]
+ 	 	rr = RoundRobin(pserver_endpoints)
+ 	 	rr.dispatch(vars)
 
 
 
