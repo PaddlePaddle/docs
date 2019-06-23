@@ -3,7 +3,7 @@ API Reference
 =============
 
 ..  toctree::
-    :hidden:
+    :maxdepth: 1
 
     ../flags_en.rst
     ../api_guides/index_en.rst
