@@ -1,23 +1,22 @@
+<<<<<<< HEAD
+# DyGraph
+=======
 # 动态图机制-DyGraph
 
 
 
 PaddlePaddle的DyGraph模式是一种动态的图执行机制，可以立即执行结果，无需构建整个图。同时，和以往静态的执行计算图不同，DyGraph模式下您的所有操作可以立即获得执行结果，而不必等待所构建的计算图全部执行完成，这样可以让您更加直观地构建PaddlePaddle下的深度学习任务，以及进行模型的调试，同时还减少了大量用于构建静态计算图的代码，使得您编写、调试网络的过程变得更加便捷。
 
+>>>>>>> 2c5edc9be9c3928c4190c409904fa762d1b215e3
 
+PaddlePaddle的DyGraph模式是一种动态的图执行机制，可以立即执行结果，无需构建整个图。同时，和以往静态的执行计算图不同，DyGraph模式下您的所有操作可以立即获得执行结果，而不是构建固定的计算图来执行，这样可以让您更加直观的构建PaddlePaddle下的深度学习任务并调试模型，同时还减少了大量用于构建静态计算图的代码，使得您编写网络的过程变得更加便捷，更加容易调试。
 
 PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：      
 
 *	更加灵活便捷的代码组织结构： 使用python的执行控制流程和面向对象的模型设计
-
-
 * 	更加便捷的调试功能： 直接调用操作从而检查正在运行的模型并且测试更改
-
-
 *  和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的静态图模式执行
-
-
-*  支持纯Python和Numpy语法实现的layer： 支持使用Numpy相关操作直接搭建模型计算部分
+*  支持纯python和numpy语法实现的layer： 支持使用numpy相关操作直接搭建模型计算部分
 
 ## 设置和基本用法
 
@@ -126,6 +125,22 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.base.to_variab
 
     1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
 		
+<<<<<<< HEAD
+			class MyLayer(fluid.Layer):
+			    def __init__(self, name_scope):
+			        super(MyLayer, self).__init__(name_scope)    
+			        
+	2. 实现一个`forward(self, *inputs)`的执行函数，该函数将负责执行，实际运行时网络的执行逻辑， 该函数将会在每一轮训练/预测中被调用，这里我们将执行一个简单的`relu` -> `elementwise add` -> `reduce sum`：
+	
+			def forward(self, inputs):
+		        x = fluid.layers.relu(inputs)
+		        self._x_for_debug = x
+		        x = fluid.layers.elementwise_mul(x, x)
+		        x = fluid.layers.reduce_sum(x)
+		        return [x]       
+		        
+	3. （optional）实现一个`build_once(self, *inputs)` 方法，该方法将作为一个单次执行的函数，用于初始化一些依赖于输入信息的参数和网络信息, 例如在`FC`（fully connected layer）当中, 需要依赖输入的`shape`初始化参数， 这里我们并不需要这样的操作，仅仅为了展示，因此这个方法可以直接跳过：
+=======
 
         ```python
         class MyLayer(fluid.Layer):
@@ -146,6 +161,7 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.base.to_variab
         ```
 
     3. （可选）实现一个`build_once(self, *inputs)` 方法，该方法将作为一个单次执行的函数，用于初始化一些依赖于输入信息的参数和网络信息, 例如在`FC`（fully connected layer）当中, 需要依赖输入的`shape`初始化参数， 这里我们并不需要这样的操作，仅仅为了展示，因此这个方法可以直接跳过：
+>>>>>>> 2c5edc9be9c3928c4190c409904fa762d1b215e3
 		
 
         ```python
@@ -346,9 +362,153 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.base.to_variab
 	模型的参数或者任何您希望检测的值可以作为变量封装在类中，并且通过对象获取并使用`numpy()`方法获取其`ndarray`的输出， 在训练过程中您可以使用`mnist.parameters()`来获取到网络中所有的参数，也可以指定某一个`Layer`的某个参数或者`parameters()`来获取该层的所有参数，使用`numpy()`方法随时查看参数的值
 
 	反向运行后调用之前定义的`SGD`优化器对象的`minimize`方法进行参数更新:
+<<<<<<< HEAD
+		
+		with fluid.dygraph.guard():
+		        fluid.default_startup_program().random_seed = seed
+		        fluid.default_main_program().random_seed = seed
+		
+		        mnist = MNIST("mnist")
+		        sgd = SGDOptimizer(learning_rate=1e-3)
+		        train_reader = paddle.batch(
+		            paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
+		
+		        dy_param_init_value = {}
+		        np.set_printoptions(precision=3, suppress=True)
+		        for epoch in range(epoch_num):
+		            for batch_id, data in enumerate(train_reader()):
+		                dy_x_data = np.array(
+		                    [x[0].reshape(1, 28, 28)
+		                     for x in data]).astype('float32')
+		                y_data = np.array(
+		                    [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
+		
+		                img = to_variable(dy_x_data)
+		                label = to_variable(y_data)
+		                label.stop_gradient = True
+		
+		                cost = mnist(img)
+		                loss = fluid.layers.cross_entropy(cost, label)
+		                avg_loss = fluid.layers.mean(loss)
+		
+		                dy_out = avg_loss.numpy()
+		
+		                if epoch == 0 and batch_id == 0:
+		                    for param in mnist.parameters():
+		                        dy_param_init_value[param.name] = param.numpy()
+		
+		                avg_loss.backward()
+		                sgd.minimize(avg_loss)
+		                mnist.clear_gradients()
+		
+		                dy_param_value = {}
+		                for param in mnist.parameters():
+		                    dy_param_value[param.name] = param.numpy()
+		
+		                if batch_id % 20 == 0:
+		                    print("Loss at step {}: {:.7}".format(batch_id, avg_loss.numpy()))
+		        print("Final loss: {:.7}".format(avg_loss.numpy()))
+		        print("_simple_img_conv_pool_1_conv2d W's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._filter_param.numpy().mean()))
+		        print("_simple_img_conv_pool_1_conv2d Bias's mean is: {}".format(mnist._simple_img_conv_pool_1._conv2d._bias_param.numpy().mean()))
+
+
+
+
+			Loss at step 0: [2.302]
+			Loss at step 20: [1.616]
+			Loss at step 40: [1.244]
+			Loss at step 60: [1.142]
+			Loss at step 80: [0.911]
+			Loss at step 100: [0.824]
+			Loss at step 120: [0.774]
+			Loss at step 140: [0.626]
+			Loss at step 160: [0.609]
+			Loss at step 180: [0.627]
+			Loss at step 200: [0.466]
+			Loss at step 220: [0.499]
+			Loss at step 240: [0.614]
+			Loss at step 260: [0.585]
+			Loss at step 280: [0.503]
+			Loss at step 300: [0.423]
+			Loss at step 320: [0.509]
+			Loss at step 340: [0.348]
+			Loss at step 360: [0.452]
+			Loss at step 380: [0.397]
+			Loss at step 400: [0.54]
+			Loss at step 420: [0.341]
+			Loss at step 440: [0.337]
+			Loss at step 460: [0.155]
+			Final loss: [0.164]
+			_simple_img_conv_pool_1_conv2d W's mean is: 0.00606656912714
+			_simple_img_conv_pool_1_conv2d Bias's mean is: -3.4576318285e-05
+
+7.	性能
+
+	在使用`fluid.dygraph.guard()`可以通过传入`fluid.CUDAPlace(0)`或者`fluid.CPUPlace()`来选择执行DyGraph的设备，通常如果不做任何处理将会自动适配您的设备。
+
+## 模型参数的保存
+
+ 在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir")`来保存`your_model_object`中所有的模型参数。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
+
+同样可以使用`your_modle_object.load_dict(
+                        fluid.dygraph.load_persistables(your_model_object.state_dict(), "save_dir"))`接口来恢复保存的模型参数从而达到继续训练的目的。
+
+下面的代码展示了如何在“手写数字识别”任务中保存参数并且读取已经保存的参数来继续训练。
+	
+	for epoch in range(epoch_num):
+	    for batch_id, data in enumerate(train_reader()):
+	        dy_x_data = np.array(
+	            [x[0].reshape(1, 28, 28)
+	             for x in data]).astype('float32')
+	        y_data = np.array(
+	            [x[1] for x in data]).astype('int64').reshape(BATCH_SIZE, 1)
+	
+	        img = to_variable(dy_x_data)
+	        label = to_variable(y_data)
+	        label.stop_gradient = True
+	
+	        cost = mnist(img)
+	        loss = fluid.layers.cross_entropy(cost, label)
+	        avg_loss = fluid.layers.mean(loss)
+	
+	        dy_out = avg_loss.numpy()
+	
+	        avg_loss.backward()
+	        sgd.minimize(avg_loss)
+	        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
+	        mnist.clear_gradients()
+	
+	        for param in mnist.parameters():
+	            dy_param_init_value[param.name] = param.numpy()
+	
+	        mnist.load_dict(fluid.dygraph.load_persistables(mnist.state_dict(), "save_dir"))
+	        restore = mnist.parameters()
+	# check save and load
+	success = True
+	for value in restore:
+	    if (not np.allclose(value.numpy(), dy_param_init_value[value.name])) or (not np.isfinite(value.numpy().all())) or (np.isnan(value.numpy().any())):
+	        success = False
+	print("model save and load success? {}".format(success))
+
+
+        
+
+## 模型评估
+
+当我们需要在DyGraph模式下利用搭建的模型进行预测任务，可以使用`YourModel.eval()`接口，在之前的手写数字识别模型中我们使用`mnist.eval()`来启动预测模式（我们默认在`fluid.dygraph.guard()`上下文中是训练模式），在预测的模式下，DyGraph将只会执行前向的预测网络，而不会进行自动求导并执行反向网络：
+
+下面的代码展示了如何使用DyGraph模式训练一个用于执行“手写数字识别”任务的模型并保存，并且利用已经保存好的模型进行预测。
+
+我们在第一个`fluid.dygraph.guard()`上下文中进行了模型的保存和训练，值得注意的是，当我们需要在训练的过程中进行预测时需要使用`YourModel.eval()`切换到预测模式，并且在预测完成后使用`YourModel.train()`切换回训练模式继续训练
+
+我们在第二个`fluid.dygraph.guard()`上下文中利用之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换的预测模式
+			
+	with fluid.dygraph.guard():
+=======
     		
     ```python
     with fluid.dygraph.guard():
+>>>>>>> 2c5edc9be9c3928c4190c409904fa762d1b215e3
         fluid.default_startup_program().random_seed = seed
         fluid.default_main_program().random_seed = seed
 
@@ -431,7 +591,13 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.base.to_variab
 
     ## 模型参数的保存
 
+<<<<<<< HEAD
+        results = mnist_infer(to_variable(tensor_img))
+        lab = np.argsort(results.numpy())
+        print("Inference result of image/infer_3.png is: %d" % lab[0][0])
+=======
      在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir")`来保存`your_model_object`中所有的模型参数。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
+>>>>>>> 2c5edc9be9c3928c4190c409904fa762d1b215e3
 
     同样可以使用`your_modle_object.load_dict(fluid.dygraph.load_persistables("save_dir"))`接口来恢复保存的模型参数从而达到继续训练的目的。
 
@@ -491,6 +657,8 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.base.to_variab
 
 我们在第二个`fluid.dygraph.guard()`上下文中利用之前保存的`checkpoint`进行预测，同样的在执行预测前需要使用`YourModel.eval()`来切换的预测模式。
 			
+<<<<<<< HEAD
+=======
 ```python
 with fluid.dygraph.guard():
     fluid.default_startup_program().random_seed = seed
@@ -627,4 +795,5 @@ for epoch in range(epoch_num):
 ```
 
 			
+>>>>>>> 2c5edc9be9c3928c4190c409904fa762d1b215e3
 			
