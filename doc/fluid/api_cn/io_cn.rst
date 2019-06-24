@@ -214,17 +214,16 @@ load_vars
 PyReader
 -------------------------------
 
-.. py:class:: paddle.fluid.io.PyReader(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False)
+.. py:class:: paddle.fluid.io.PyReader(feed_list, capacity, use_double_buffer=True, iterable=False)
 
 
 在python中为数据输入创建一个reader对象。将使用python线程预取数据，并将其异步插入队列。当调用Executor.run（…）时，将自动提取队列中的数据。 
 
 参数:
-  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建，在可迭代模式下可为None。
+  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建。
   - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
   - **use_double_buffer** (bool) – 是否使用``double_buffer_reader ``来加速数据输入。
   - **iterable** (bool) –  被创建的reader对象是否可迭代。
-  - **return_list** (bool) –  返回值是否以列表形式展示。
 
 返回: 被创建的reader对象
 
@@ -290,7 +289,7 @@ PyReader
         return reader
 
     image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True, return_list=False)
+    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True)
    
     user_defined_reader = reader_creator_random_image(784, 784)
     reader.decorate_sample_list_generator(
@@ -301,40 +300,6 @@ PyReader
     for _ in range(EPOCH_NUM):
       for data in reader():
         executor.run(feed=data)
-
-
-3.如果return_list=True，返回值会表示成列表而非字典。
-
-..  code-block:: python
-
-    import paddle
-    import paddle.fluid as fluid
-    import numpy as np
-    
-    EPOCH_NUM = 3
-    ITER_NUM = 5
-    BATCH_SIZE = 10
-    
-    def reader_creator_random_image(height, width):
-        def reader():
-            for i in range(ITER_NUM):
-                yield np.random.uniform(low=0, high=255, size=[height, width]),
-        return reader
-
-    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True, return_list=True)
-    
-    user_defined_reader = reader_creator_random_image(784, 784)
-    reader.decorate_sample_list_generator(
-        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
-        fluid.core.CPUPlace())
-    # 省略了网络的定义
-    executor = fluid.Executor(fluid.core.CPUPlace())
-    executor.run(fluid.default_main_program())
-    
-    for _ in range(EPOCH_NUM):
-        for data in reader():
-            executor.run(feed={"image": data[0]})
 
 
 
@@ -543,7 +508,7 @@ PyReader
 save_inference_model
 -------------------------------
 
-.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True, program_only=False)
+.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
 
 修改指定的 ``main_program`` ，构建一个专门用于预测的 ``Program``，然后  ``executor`` 把它和所有相关参数保存到 ``dirname`` 中。
 
@@ -562,7 +527,6 @@ save_inference_model
   - **model_filename** (str|None) – 保存预测Program 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
   - **params_filename** (str|None) – 保存所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
   - **export_for_deployment** (bool) – 如果为真，Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前只支持True。
-  - **program_only** (bool) – 如果为真，它会仅存储预测模型，而不存储Program的参数。
 
 返回: 获取的变量名列表
 

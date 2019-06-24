@@ -1602,7 +1602,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 
 
-.. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → bool
+.. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
 
 检查LoDTensor的lod值的正确性。
 
@@ -1622,7 +1622,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set_recursive_sequence_lengths([[2, 3]])
             print(t.has_valid_recursive_sequence_lengths()) # True
 
-.. py:method::  lod(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
+.. py:method::  lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
 得到LoD Tensor的LoD。
 
@@ -1642,7 +1642,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set_lod([[0, 2, 5]])
             print(t.lod()) # [[0, 2, 5]]
 
-.. py:method::  recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
+.. py:method::  recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
 
 得到与LoD对应的LoDTensor的序列长度。
 
@@ -1662,7 +1662,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set_recursive_sequence_lengths([[2, 3]])
             print(t.recursive_sequence_lengths()) # [[2, 3]]
 
-.. py:method::  set_lod(self: paddle.fluid.core_avx.LoDTensor, lod: List[List[int]]) → None
+.. py:method::  set_lod(self: paddle.fluid.core.LoDTensor, lod: List[List[int]]) → None
 
 设置LoDTensor的LoD。
 
@@ -1680,7 +1680,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_lod([[0, 2, 5]])
 
-.. py:method::  set_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
+.. py:method::  set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
 
 根据递归序列长度recursive_sequence_lengths设置LoDTensor的LoD。
 
@@ -1724,7 +1724,7 @@ LoDTensor的数组。
      
         arr = fluid.LoDTensorArray()   
 
-.. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core_avx.LoDTensor) → None
+.. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
 将LoDTensor追加到LoDTensorArray后。
 
@@ -2144,11 +2144,10 @@ Program
 有些operator，在训练和测试之间的行为是不同的，比如batch_norm。它们有一个属性is_test来控制行为。当for_test=True时，此方法将把它们的is_test属性更改为True。
 
 - 克隆Program用于训练时，将 ``for_test`` 设置为False。
-- 克隆Program用于测试时，将 ``for_test`` 设置为True。我们不会在此处对程序进行任何裁剪，因此，如果您只是想要一个用于测试的前向计算程序，请在使用Opimizer.minimize之前使用clone
+- 克隆Program用于测试时，将 ``for_test`` 设置为True。
+我们不会在此处对程序进行任何裁剪，因此，如果您只是想要一个用于测试的前向计算程序，请在使用Opimizer.minimize之前使用clone
 
-注意:
- - Program.clone()方法不克隆py_reader。
- - 此API不会删除任何操作符。请在backward和optimization之前使用clone(for_test=True)。
+注意: 此API不会裁剪任何操作符。请在backward和optimization之前使用clone(for_test=True)。
 
 
 **代码示例**
@@ -2168,7 +2167,7 @@ Program
 
 **代码示例**
 
-注意，Program Desc在clone后的顺序可能不同，这不会影响您的训练或测试进程。 在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
+注意，Program Desc在clone后的顺序可能不同，这不会影响您的训练或测试进程。在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
 
 ..  code-block:: python     
                 
