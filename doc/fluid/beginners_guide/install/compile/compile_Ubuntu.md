@@ -125,7 +125,7 @@
 
 3. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 
-	* a. 安装Python-dev:
+	* a. 安装Python-dev（请注意Ubuntu16.04下的python2.7不支持gcc4.8，请使用gcc5.4编译Paddle）:
 
 			For Python2: apt install python-dev
 			For Python3: apt install python3.5-dev
