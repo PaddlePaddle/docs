@@ -4335,29 +4335,26 @@ deformable_conv
 可变形卷积层，基于4-D输入进行2-D可变形卷积计算。对于一个输入x，输出特征图y，可变形卷积计算如下：
 
 .. math::
-        \[y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}\]
+        y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}
 
-:math:其中 \(\Delta p_k\) 和 \(\Delta m_k\) 分别是k位置的可学习偏置和调整标量
+其中，:math:`\Delta p_k` 和 :math:`\Delta m_k` 分别是k位置的可学习偏置和调整标量
 
 参考Deformable ConvNets v2：可变形性越强，结果越好。
 
 **用法示例**
 
-.. math::
-
         输入：
-        输入形状：\((N, C_{in}, H_{in}, W_{in})\)
-        滤网形状：\((C_{out}, C_{in}, H_f, W_f)\)
-        偏置形状：\((N, 2 * deformable\_groups * H_f * H_w, H_{in}, W_{in})\)
-        掩码形状：\((N, deformable\_groups * H_f * H_w, H_{in}, W_{in})\)
+            - 输入形状：:math:`(N, C_{in}, H_{in}, W_{in})`
+            - 滤网形状：:math:`(C_{out}, C_{in}, H_f, W_f)`
+            - 偏置形状：:math:`(N, 2 * deformable\_groups * H_f * H_w, H_{in}, W_{in})`
+            - 掩码形状：:math:`(N, deformable\_groups * H_f * H_w, H_{in}, W_{in})`
 
         输出：
-        输出形状：\((N, C_{out}, H_{out}, W_{out})\)
+            - 输出形状：:math:`(N, C_{out}, H_{out}, W_{out})`
 
 
         其中：
-        \[\begin{split}H_{out}&= \frac{(H_{in} + 2 * paddings[0] - (dilations[0] * (H_f - 1) + 1))}{strides[0]} + 1 \\
-        W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1\end{split}\]
+            :math:`\begin{split}H_{out}&= \frac{(H_{in} + 2 * paddings[0] - (dilations[0] * (H_f - 1) + 1))}{strides[0]} + 1 \\W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1\end{split}`
 
 
 
@@ -4365,17 +4362,17 @@ deformable_conv
 参数:
     - **input** (Variable) – 输入图片，格式为[N, C, H, W]。
     - **offset** (Variable) – 可变形卷积层对输入坐标的偏置。
-    - **Mask** (Variable) – 可变形卷积层对输入的掩码。
+    - **mask** (Variable) – 可变形卷积层对输入的掩码。
     - **num_filters** (int) – 滤网的数量，与输出图片的通道数量相同。
-    - **filter_size (int|tuple|None) - 滤网的大小，如果滤网的大小用tuple表示，则tuple必须包含两个int，(filter_size_H, filter_size_W)。否则，滤网将是一个正方形。
-    - **stride (int|tuple) – 步长，如果步长的大小用tuple表示，则tuple必须包含两个int，(stride_H, stride_W)。否则，stride_H = stride_W = stride。默认值：stride=1。
-    - **padding (int|tuple) – 边距，如果边距的大小用tuple表示，则tuple必须包含两个int，(padding_H, padding_W)。否则，padding_H = padding_W = padding。默认值：padding = 0。
-    - **dilation (int|tuple) – 扩放，如果扩放的大小用tuple表示，则tuple必须包含两个int，(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation。默认值：dilation = 1。
-    - **groups (int) – 可变形卷积层的组数。Paddle从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-    - **param_attr** (ParamAttr|None) - 可变形卷积层中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，可变形卷积层使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，参数将被初始化为：:math:`\(Normal(0.0, std)\)`，:math:`\(std\)=\((\frac{2.0}{filter\_elem\_num})^{0.5}\)`。默认值:None。
-    - **deformable_groups (int) – 可变形分组数量。默认值：deformable_groups = 1。
-    - **im2col_step (int) – im2col计算中使用的最大图片数量。总batch size应该能被这个数量整除，或小于这个数。如果你遇到了内存问题，应调小此最大数量。默认值：im2col_step = 64。
-    bias_attr (ParamAttr|bool|None) – 可变形卷积层中偏置的属性。如果设置为False，则输出单位不添加偏置。如果这是为None或ParamAttr的一个属性，可变形卷积层使用ParamAttrs作为bias_attr的值。如果没有设置的param_attr初始化器，参数将被初始化为0。默认值:None。
+    - **filter_size** (int|tuple|None) - 滤网的大小，如果滤网的大小用tuple表示，则tuple必须包含两个int，(filter_size_H, filter_size_W)。否则，滤网将是一个正方形。
+    - **stride** (int|tuple) – 步长，如果步长的大小用tuple表示，则tuple必须包含两个int，(stride_H, stride_W)。否则，stride_H = stride_W = stride。默认值：stride=1。
+    - **padding** (int|tuple) – 边距，如果边距的大小用tuple表示，则tuple必须包含两个int，(padding_H, padding_W)。否则，padding_H = padding_W = padding。默认值：padding = 0。
+    - **dilation** (int|tuple) – 扩放，如果扩放的大小用tuple表示，则tuple必须包含两个int，(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation。默认值：dilation = 1。
+    - **groups** (int) – 可变形卷积层的组数。Paddle从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
+    - **param_attr** (ParamAttr|None) - 可变形卷积层中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，可变形卷积层使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，参数将被初始化为：:math:`(Normal(0.0, std)`，:math:`std\)=\((\frac{2.0}{filter\_elem\_num})^{0.5}`。默认值:None。
+    - **deformable_groups** (int) – 可变形分组数量。默认值：deformable_groups = 1。
+    - **im2col_step** (int) – im2col计算中使用的最大图片数量。总batch size应该能被这个数量整除，或小于这个数。如果你遇到了内存问题，应调小此最大数量。默认值：im2col_step = 64。
+    - **bias_attr** (ParamAttr|bool|None) – 可变形卷积层中偏置的属性。如果设置为False，则输出单位不添加偏置。如果这是为None或ParamAttr的一个属性，可变形卷积层使用ParamAttrs作为bias_attr的值。如果没有设置的param_attr初始化器，参数将被初始化为0。默认值:None。
     - **name** (str|None) - 该可变形卷积层的名称(可选)。如果设置为None， 将自动命名该层。默认值:True。
 
 
@@ -4433,7 +4430,7 @@ dice_loss定义为:
 ..  code-block:: python
 
     predictions = fluid.layers.softmax(x)
-        loss = fluid.layers.dice_loss(input=predictions, label=label, 2)
+    loss = fluid.layers.dice_loss(input=predictions, label=label, 2)
 
 
 
@@ -6066,8 +6063,8 @@ hsigmoid可以把时间复杂度 :math:`O(N)` 优化到 :math:`O(logN)` ,其中 
 ..  code-block:: python
 
     x = fluid.layers.data(name='x', shape=[2], dtype='float32')
-        y = fluid.layers.data(name='y', shape=[1], dtype='int64')
-        out = fluid.layers.hsigmoid(input=x, label=y, num_classes=6)
+    y = fluid.layers.data(name='y', shape=[1], dtype='int64')
+    out = fluid.layers.hsigmoid(input=x, label=y, num_classes=6)
 
 
 
@@ -6808,7 +6805,7 @@ log_loss
 ..  code-block:: python
 
     prob = fluid.layers.sigmoid(net)
-        cost = fluid.layers.log_loss(input=prob, label=label)
+    cost = fluid.layers.log_loss(input=prob, label=label)
 
 
 
