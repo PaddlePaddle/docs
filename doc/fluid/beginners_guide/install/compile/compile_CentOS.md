@@ -145,7 +145,8 @@
 		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`（请找到对应Python版本的`virtualenvwrapper.sh`）
 		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat vitualenvwrapper.sh`, 该shell文件中描述了步骤及命令
 		5.  按照`virtualenvwrapper.sh`中的描述，安装`virtualwrapper`
-		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
+		6.  设置VIRTUALENVWRAPPER_PYTHON：`export VIRTUALENVWRAPPER_PYTHON=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
+		7.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 5. 进入虚环境：`workon paddle-venv`
 
