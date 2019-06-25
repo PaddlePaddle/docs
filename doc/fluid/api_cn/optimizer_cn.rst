@@ -750,34 +750,6 @@ MomentumOptimizer
 
 
 
-.. _cn_api_fluid_optimizer_PipelineOptimizer:
-
-PipelineOptimizer
--------------------------------
-
-.. py:class:: paddle.fluid.optimizer.PipelineOptimizer(optimizer, cut_list=None, place_list=None, concurrency_list=None, queue_size=30, sync_steps=1, start_cpu_core_id=0)
-
-.. py:method:: extract_section_opt_ops(ops, cut_point_name)
-
-在给定section中抽取opt ops。
-
-.. py:method:: find_input_output(ops, name, is_forward=True)
-
-找到section中的输入和输出。
-
-.. py:method:: find_persistable_vars(ops, whole_parameters)
-
-找到当前section中的可持续输入变量。
-
-.. py:method:: extract_section_ops(ops, cut_point_name)
-
-在给定section中抽取ops。
-
-
-
-
-
-
 
 .. _cn_api_fluid_optimizer_RMSPropOptimizer:
 
