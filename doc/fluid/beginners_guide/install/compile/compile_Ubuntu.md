@@ -11,13 +11,24 @@
 
 ## 选择CPU/GPU
 
-* 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
+## 选择CPU/GPU
 
-* 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
+* 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
+
+* 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
 	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
 	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
 	* *CUDA 工具包8.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
 	* *GPU运算能力超过1.0的硬件设备*
+
+		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+
+* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):
+
+
+		wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+		dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+		sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
 ## 安装步骤
 
