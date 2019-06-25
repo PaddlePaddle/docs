@@ -13,11 +13,11 @@
 基准测试中模型精度和硬件、框架无关，由模型结构和数据共同决定；性能方面由测试硬件和框架性能决定。框架基准测试为了对比框架之间的差异，控制硬件环境，系统库等版本一致。下文中的对比实验都在相同的硬件条件和系统环境条件下进行.
 
 
-不同架构的GPU卡性能差异巨大，在验证模型在GPU上训练性能时，可使用NVIDIA提供的工具:code `nvidia-smi` 检验当前使用的GPU型号，如果测试多卡训练性能，需确认硬件连接是 [nvlink](https://zh.wikipedia.org/zh/NVLink)或 [PCIe](https://zh.wikipedia.org/zh-hans/PCI_Express)。 同样地，CPU型号会极大影响模型在CPU上的训练性能。可读取`/proc/cpuinfo`中的参数，确认当前正在使用的CPU型号。
+不同架构的GPU卡性能差异巨大，在验证模型在GPU上训练性能时，可使用NVIDIA提供的工具:```nvidia-smi``` 检验当前使用的GPU型号，如果测试多卡训练性能，需确认硬件连接是 [nvlink](https://zh.wikipedia.org/zh/NVLink)或 [PCIe](https://zh.wikipedia.org/zh-hans/PCI_Express)。 同样地，CPU型号会极大影响模型在CPU上的训练性能。可读取`/proc/cpuinfo`中的参数，确认当前正在使用的CPU型号。
 
 下载GPU对应的Cuda Tool Kit和 Cudnn，或者使用NVIDIA官方发布的nvidia-docker镜像 [nvidia-docker](https://github.com/NVIDIA/nvidia-docker), 镜像内包含了Cuda和Cudnn，本文采用这种方式。 Cuda Tool Kit包含了GPU代码使用到的基础库，影响在此基础上编译出的Fluid二进制运行性能。
 
-准备好Cuda环境后，从github上下载Paddle代码并编译，会生成对应的最适合当前GPU的sm\_arch二进制\ [sm\_arch](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html)。另外，cudnn对卷积类任务影响巨大，在基准测试中需要小版本一致，例如Cudnn7.0.2与Cudnn7.1.4在Resnet上有5%以上差异。
+准备好Cuda环境后，从github上下载Paddle代码并编译，会生成对应的最适合当前GPU的sm\_arch二进制[sm\_arch](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html)。另外，cudnn对卷积类任务影响巨大，在基准测试中需要小版本一致，例如Cudnn7.0.2与Cudnn7.1.4在Resnet上有5%以上差异。
 
 
 选择基准模型
@@ -51,7 +51,7 @@ NLP模型的公开且影响力大数据集较少，Bert和Transformer模型都�
 
 -  GPU 单机单卡测试
 
-本教程使用了Cuda9, Cudnn7.0.1。来源为:code `nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04`
+本教程使用了Cuda9, Cudnn7.0.1。来源为:```nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04```
 
 ```
     nvidia-docker run -it --name CASE_NAME --security-opt seccomp=unconfined -v $PWD/benchmark:/benchmark -v /usr/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu paddlepaddle/paddle:latest-dev /bin/bash
@@ -81,8 +81,8 @@ SE-ResNeXt50对比的框架是Pytorch，因为tensorflow上没有对应的模型
 
 - GPU 单机单卡测试结果
 
-   Model|Fluid GPU|  TensorFlow/Pytorch GPU
-:---:|:--:|:---:
+  Model|Fluid GPU|  TensorFlow/Pytorch GPU
+  :---:|:--:|:---:
   CycleGAN|              7.3 samples/s|               6.1 samples/s
   SE-ResNeXt50|             164.4 samples/s  |              153.1 samples/s
   DeepLab_V3+|          12.8 samples/s  |              6.4 samples/s
