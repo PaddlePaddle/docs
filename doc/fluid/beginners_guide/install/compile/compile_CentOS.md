@@ -210,8 +210,14 @@
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持CentOS7（CUDA10/CUDA9）*)
 
 		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):
+
+
 			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm`
+
+
 			ii.  `rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm`
+
+
 			iii. `yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0`
 
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
