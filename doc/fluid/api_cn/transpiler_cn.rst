@@ -110,7 +110,7 @@ DistributeTranspiler
 ..  code-block:: python
 
 		import paddle.fluid as fluid
-		#this is an example, find available endpoints in your case
+		# 这是一个示例，请根据你的情况更改endpoint
 		pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
 		trainer_id = 0
 		trainers = 4
@@ -136,7 +136,7 @@ DistributeTranspiler
 ..  code-block:: python
 
  	 	import paddle.fluid as fluid
- 	 	#this is an example, find available endpoints in your case
+ 	 	# 这是一个示例，请根据你的情况更改endpoint
  	 	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
  	 	current_endpoint = "192.168.0.1:6174"
  	 	trainer_id = 0
@@ -165,7 +165,7 @@ DistributeTranspiler
 ..  code-block:: python
 
  	 	import paddle.fluid as fluid
- 	 	#this is an example, find available endpoints in your case
+ 	 	# 这是一个示例，请根据你的情况更改endpoint
  	 	pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
  	 	current_endpoint = "192.168.0.1:6174"
  	 	trainer_id = 0
