@@ -197,7 +197,7 @@
 
 12. 在当前机器或目标机器安装编译好的`.whl`包：
 
-	`pip install （whl包的名字）`或`pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）`或`pip3 install -U（whl包的名字）`
 
 	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html/#MACPRO)
 
