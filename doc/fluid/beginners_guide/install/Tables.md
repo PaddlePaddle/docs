@@ -28,9 +28,9 @@
 	</tr>
 		<tr>
 		<td> Python </td>
-		<td> 2.7.x. </td>
-		<td> 依赖libpython2.7.so </td>
-		<td> <code> apt install python-dev </code> 或 <code> yum install python-devel </code></td>
+		<td> 2.7.x. 或 3.5+.x </td>
+		<td> 依赖libpython2.7.so 或 libpython3.5+.so </td>
+		<td> <code> apt install python-dev </code> 或 <code> yum install python-devel </code> 如果安装python3请访问<a href="https://www.python.org">Python 官网</a></td>
 	</tr>
 	<tr>
 		<td> SWIG </td>
@@ -64,9 +64,9 @@
 	</tr>
 	<tr>
 		<td> protobuf </td>
-		<td> 3.1.0 </td>
+		<td> >=3.1.0 </td>
 		<td>  </td>
-		<td> <code> pip install protobuf==3.1.0 </code> </td>
+		<td> <code> pip install protobuf </code> </td>
 	</tr>
 	<tr>
 		<td> wheel </td>
@@ -84,6 +84,12 @@
 		<td> go </td>
 		<td> >=1.8 </td>
 		<td> 可选 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> setuptools </td>
+		<td> >= 28.0.0 </td>
+		<td> </td>
 		<td>  </td>
 	</tr>
 	</tbody>
@@ -155,6 +161,12 @@
 		<td> ON_INFER </td>
 		<td> 是否打开预测优化 </td>
 		<td> OFF </td>
+	</tr>
+	</tr>
+		<tr>
+		<td> CUDA_ARCH_NAME </td>
+		<td> 是否只针对当前CUDA架构编译 </td>
+		<td> All 可选：Auto</td>
 	</tr>
    </tbody>
 </table>
