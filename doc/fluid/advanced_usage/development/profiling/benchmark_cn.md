@@ -30,7 +30,7 @@
 图像生成|      CycleGAN|         GAN|              horse2zebra
 图像分类|      SE-ResNeXt50|        Resnet-50|          image-net
 语义分割|      DeepLab_V3+|  ResNets|       cityscapes
-机器翻译|      Bert|       transformer|       Wikipedia
+自然语言|      Bert|       Transformer|       Wikipedia
 机器翻译|      Transformer|           Attention|             Wikipedia
 
 CycleGAN, SE-ResNeXt50, DeepLab_V3+属于CNN模型, Bert, Transformer是一种比传统RNN模型更好的NLP模型。
@@ -38,8 +38,8 @@ CycleGAN, SE-ResNeXt50, DeepLab_V3+属于CNN模型, Bert, Transformer是一种�
 基准模型测试脚本中，均跳过了前几个batch的训练过程，原因是加载数据和分配显存受系统当前运行情况影响，会导致统计性能不准确。运行完若干个轮次后，统计对应指标。
 
 
-基准模型的数据的选择方面，数据量大且验证效果多的公开数据集为首选。图像模型CycleGAN选择了horse2zebra数据集，SE-ResNeXt50选择了image-net数据，[image-net](http://www.image-net.org/challenges/LSVRC/2012/nnoupb)，图像大小预处理为和Imagenet相同大小，因此性能可直接对比。
-NLP模型的公开且影响力大数据集较少，Bert和Transformer模型都选择了Wikipedia数据，[Wikipedia](https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2)。
+基准模型的数据的选择方面，数据量大且验证效果多的公开数据集为首选。图像模型CycleGAN选择了horse2zebra数据集，SE-ResNeXt50选择了[image-net](http://www.image-net.org/challenges/LSVRC/2012/nnoupb)数据集，图像大小预处理为和Imagenet相同大小，因此性能可直接对比。
+NLP模型的公开且影响力大数据集较少，Bert和Transformer模型都选择了[Wikipedia](https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2)数据集。
 
 
 注意，图像模型每条样本大小相同，图像经过变换后大小一致，因此经过的计算路径基本相同，计算速度和显存占用波动较小，可以从若干个batch的数据中采样得到当前的训练性能数据。而NLP模型由于样本长度不定，计算路径和显存占用也不相同，因此只能完整运行若干个轮次后，统计速度和显存消耗。
@@ -84,8 +84,8 @@ SE-ResNeXt50对比的框架是Pytorch，因为tensorflow上没有对应的模型
   Model|Fluid GPU|  TensorFlow/Pytorch GPU
   :---:|:--:|:---:
   CycleGAN|              7.3 samples/s|               6.1 samples/s
-  SE-ResNeXt50|             164.4 samples/s  |              153.1 samples/s
+  SE-ResNeXt50|             169.4 samples/s  |              153.1 samples/s
   DeepLab_V3+|          12.8 samples/s  |              6.4 samples/s
   Bert|       4.0 samples/s   |              3.4 samples/s
-  Transformer|            4.8 samples/s   |              4.7 samples/s
+  Transformer|            4.9 samples/s   |              4.7 samples/s
 
