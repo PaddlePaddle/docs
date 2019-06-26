@@ -64,7 +64,7 @@ Bool型，缺省值为False。
 -------
 FLAGS_communicator_fake_rpc=True - 启用通信器fake模式。
 
-注释
+注意
 -------
 该flag仅用于paddlepaddle的开发者，普通用户不应对其设置。
 
@@ -83,7 +83,7 @@ Bool型，缺省值为True。
 -------
 FLAGS_communicator_independent_recv_thread=True - 使用独立线程以从参数服务器接收参数。
 
-注释
+注意
 -------
 开发者使用该flag进行框架的调试与优化，普通用户不应对其设置。
 
@@ -102,9 +102,28 @@ Int32型，缺省值为20。
 -------
 FLAGS_communicator_max_merge_var_num=16 - 将要通过通信器合并为一个梯度并发送的最大梯度数设为16。
 
-注释
+注意
 -------
 该flag和训练器线程数有着密切关联，缺省值应和线程数一致。
+
+
+communicator_merge_sparse_grad
+*******************************************
+(始于1.5.0)
+
+在发送之前，合并稀疏梯度。
+
+取值范围
+---------------
+Bool型，缺省值true。
+
+示例
+-------
+FLAGS_communicator_merge_sparse_grad=true - 设置合并稀疏梯度。
+
+注意
+-------
+合并稀疏梯度会耗费时间。如果重复ID较多，内存占用会变少，通信会变快；如果重复ID较少，则并不会节约内存。
 
 
 communicator_min_send_grad_num_before_recv
@@ -121,7 +140,7 @@ Int32型，缺省值为20。
 -------
 FLAGS_communicator_min_send_grad_num_before_recv=10 - 在接收线程从参数服务器接收参数之前，发送线程发送的梯度数为10。
 
-注释
+注意
 -------
 由于该flag和训练器的训练线程数强相关，而每个训练线程都会发送其梯度，所以缺省值应和线程数一致。
 
@@ -140,7 +159,7 @@ Int32型，缺省值为20。
 -------
 FLAGS_communicator_send_queue_size=10 - 设置每个梯度的队列大小为10。
 
-注释
+注意
 -------
 该flag会影响训练速度，若队列大小过大，速度会变快但结果可能会变差。
 
@@ -174,7 +193,7 @@ Int32型，缺省值为5。
 -------
 FLAGS_communicator_thread_pool_size=10 - 设置线程池大小为10。
 
-注释
+注意
 -------
 大部分情况下，用户不需要设置该flag。
 
@@ -223,7 +242,7 @@ Bool型，缺省值为False。
 -------
 FLAGS_cudnn_batchnorm_spatial_persistent=True - 开启CUDNN_BATCHNORM_SPATIAL_PERSISTENT模式。
 
-注释
+注意
 -------
 此模式在某些任务中可以更快，因为将为CUDNN_DATA_FLOAT和CUDNN_DATA_HALF数据类型选择优化路径。我们默认将其设置为False的原因是此模式可能使用原子整数缩减(scaled atomic integer reduction)而导致某些输入数据范围的数字溢出。
 
@@ -242,7 +261,7 @@ Bool型，缺省值为False。
 -------
 FLAGS_cudnn_deterministic=True - 选择cuDNN中的确定性函数。
 
-注释
+注意
 -------
 现在，在cuDNN卷积和池化Operator中启用此flag。确定性算法速度可能较慢，因此该flag通常用于调试。
 
@@ -310,7 +329,7 @@ FLAGS_eager_delete_tensor_gb=1.0 - 垃圾占用内存大小达到1.0GB时释放�
 
 FLAGS_eager_delete_tensor_gb=-1.0 - 禁用垃圾回收策略。    
 
-注释
+注意
 -------
 建议用户在训练大型网络时设置FLAGS_eager_delete_tensor_gb=0.0以启用垃圾回收策略。
 
@@ -406,7 +425,7 @@ Uint64型，大于0，表示初始分配的内存块占GPU内存的比例。
 -------
 FLAGS_fraction_of_gpu_memory_to_use=0.1 - 分配总GPU内存大小的10%作为初始GPU 内存块。
 
-注释
+注意
 -------
 Windows系列平台会将FLAGS_fraction_of_gpu_memory_to_use默认设为0.5，Linux则会默认设为0.92。
 
@@ -504,7 +523,7 @@ Uint64型，大于0，为初始GPU内存大小，单位为MB。
 -------
 FLAGS_initial_gpu_memory_in_mb=4096 - 分配4GB作为初始GPU内存块大小。
 
-注释
+注意
 -------
 如果设置该flag，则FLAGS_fraction_of_gpu_memory_to_use设置的内存大小将被该flag覆盖。如果未设置该flag，PaddlePaddle将使用FLAGS_fraction_of_gpu_memory_to_use分配GPU内存。
 
@@ -523,7 +542,7 @@ Int32型，缺省值为0，这意味着operator将不会在多线程模式下运
 -------
 FLAGS_inner_op_parallelism=5 - 将operator内的线程数设为5。
 
-注释
+注意
 -------
 目前只有稀疏的adam op支持inner_op_parallelism。
 
@@ -652,7 +671,7 @@ Bool型，缺省值为False。
 -------
 FLAGS_reader_queue_speed_test_mode=True - 启用pyreader测试模式。
 
-注释
+注意
 -------
 仅当使用py_reader时该flag才有效。
 
@@ -671,7 +690,7 @@ Int64型，大于0，单位为MB。
 -------
 FLAGS_reallocate_gpu_memory_in_mb=1024 - 如果耗尽了分配的GPU内存块，重新分配1GB。
 
-注释
+注意
 -------
 如果设置了该flag，PaddlePaddle将重新分配该flag指定大小的gpu内存。否则分配FLAGS_fraction_of_gpu_memory_to_use指定比例的gpu内存。
 
@@ -765,7 +784,7 @@ selected_gpus
 -------
 FLAGS_selected_gpus=0,1,2,3,4,5,6,7 - 令0-7号GPU设备用于训练和预测。
 
-注释
+注意
 -------
 使用该flag的原因是我们希望在GPU设备之间使用聚合通信，但通过CUDA_VISIBLE_DEVICES只能使用共享内存。
 
@@ -830,7 +849,7 @@ Bool型，缺省值为False。
 -------
 FLAGS_use_mkldnn=True - 开启使用MKL-DNN运行。
 
-注释
+注意
 -------
 FLAGS_use_mkldnn仅用于python训练和预测脚本。要在CAPI中启用MKL-DNN，请设置选项 -DWITH_MKLDNN=ON。
 英特尔MKL-DNN支持英特尔64架构和兼容架构。
@@ -857,7 +876,7 @@ Bool型，缺省值为False。
 -------
 FLAGS_use_ngraph=True - 开启使用nGraph运行。
 
-注释
+注意
 -------
 英特尔nGraph目前仅在少数模型中支持。我们只验证了[ResNet-50]（https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/image_classification/README_ngraph.md）的训练和预测。
 

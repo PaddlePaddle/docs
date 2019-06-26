@@ -14,4 +14,4 @@ There are two articles in this section:
     :hidden:
 
     evaluation/metrics_en.rst
-    debug/visualdl_en.md
+    debug/index_en.rst

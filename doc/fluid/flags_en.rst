@@ -106,6 +106,25 @@ Note
 This flag has strong relationship with trainer thread num. The default value should be the same with thread num.
 
 
+communicator_merge_sparse_grad
+*******************************
+(since 1.5.0)
+
+merge sparse gradient before sending.
+
+Values accepted
+---------------
+Bool. The default value is True.
+
+Example
+-------
+FLAGS_communicator_merge_sparse_grad=True will merge sparse gradient before sending.
+
+Note
+-------
+Merging sparse gradient would be time-consuming. If the sparse gradient has many duplicated ids, it will save memory and communication could be much faster. Otherwise it will not save memory.
+
+
 communicator_min_send_grad_num_before_recv
 *******************************************
 (since 1.5.0)
