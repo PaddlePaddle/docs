@@ -7,4 +7,4 @@ FAQ
 
     install_cn.rst
     train_cn.rst
-    inferense_cn.rst
+    inference_cn.rst
