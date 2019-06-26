@@ -13,7 +13,7 @@
 基准测试中模型精度和硬件、框架无关，由模型结构和数据共同决定；性能方面由测试硬件和框架性能决定。框架基准测试为了对比框架之间的差异，控制硬件环境，系统库等版本一致。下文中的对比实验都在相同的硬件条件和系统环境条件下进行.
 
 
-不同架构的GPU卡性能差异巨大，在验证模型在GPU上训练性能时，可使用NVIDIA提供的工具:```nvidia-smi``` 检验当前使用的GPU型号，如果测试多卡训练性能，需确认硬件连接是 [nvlink](https://zh.wikipedia.org/zh/NVLink)或 [PCIe](https://zh.wikipedia.org/zh-hans/PCI_Express)。 同样地，CPU型号会极大影响模型在CPU上的训练性能。可读取`/proc/cpuinfo`中的参数，确认当前正在使用的CPU型号。
+不同架构的GPU卡性能差异巨大，在验证模型在GPU上训练性能时，可使用NVIDIA提供的命令:```nvidia-smi``` 检验当前使用的GPU型号，如果测试多卡训练性能，需确认硬件连接是 [nvlink](https://zh.wikipedia.org/zh/NVLink)或 [PCIe](https://zh.wikipedia.org/zh-hans/PCI_Express)。 同样地，CPU型号会极大影响模型在CPU上的训练性能。可读取`/proc/cpuinfo`中的参数，确认当前正在使用的CPU型号。
 
 下载GPU对应的Cuda Tool Kit和 Cudnn，或者使用NVIDIA官方发布的nvidia-docker镜像 [nvidia-docker](https://github.com/NVIDIA/nvidia-docker), 镜像内包含了Cuda和Cudnn，本文采用这种方式。 Cuda Tool Kit包含了GPU代码使用到的基础库，影响在此基础上编译出的Fluid二进制运行性能。
 
