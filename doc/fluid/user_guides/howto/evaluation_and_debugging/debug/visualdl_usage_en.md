@@ -1,6 +1,7 @@
 # VisualDL user guide
 
 ## Overview
+
 VisualDL is a toolkit to visualize data generated in deep learning tasks. VisualDL make use of [ECharts](https://echarts.apache.org/en/feature.html) to display the distribution and change tendency of data, so that users can view data more clearly and intuitively.
 
 To be conductive to analyze the characteristics of data, detect errors, and optimize the neural network model, VisualDL provides seven functional components, including  scalar, histogram, image, text, audio, high dimensional and graph.
@@ -16,34 +17,41 @@ To be conductive to analyze the characteristics of data, detect errors, and opti
 |<a href="#7">graph</a>| Directed Graph | Display the neural networks |
 
 ## Toolkits of adding data
+
 The six components (scalar, histogram, image, text, audio and high dimensional) are used to add data during program running. Class LogWriter must be initialized before adding data, in order to set the storage path and synchronization cycle. The input parameters of each components will be saved as log file in disk, after that the log file will be loaded into front end to display.  
 
-### LogWriter  
+### LogWriter
+
 LogWriter is a Python wrapper to write data to log file with the data format defined as in protobuf file [storage.proto](https://github.com/PaddlePaddle/VisualDL/blob/develop/visualdl/storage/storage.proto).
 
-The definition of LogWriter:
+The definition of LogWriter :
+
 ```python
 class LogWriter(dir, sync_cycle)
 ```
-> :param dir : the directory path to the saved log files  
-> :param sync_cycle : specify how often should the system store data into the file system, that is, system will save the data into the file system once operations count reaches sync_cycle.  
-> :return: a new LogWriter instance  
 
-Example 1.  Create a LogWriter instance
+> :param dir : the directory path to the saved log files.         
+> :param sync_cycle : specify how often should the system store data into the file system, that is, system will save the data into the file system once operations count reaches sync_cycle.         
+> :return: a new LogWriter instance.          
+
+Demo 1.  Create a LogWriter instance
+
 ```python
 # Create a LogWriter instance named log_writer
 log_writer = LogWriter("./log", sync_cycle=10)
 ```
 
 class LogWriter include the following member functions:
-* mode()  
-* scalar(), histogram(), image(), text(), audio(), embedding()  
 
-The member function mode() is used to specify the phase of program running. The input string is customized, such as ``test``, ``validation``, ``test``, ``conv_layer1``. Components with same mode are grouped together, so users can choose different modes to display on the frontend webpage.
+* `mode()`     
+* `scalar()`, `histogram()`, `image()`, `text()`, `audio()`, `embedding()`      
+
+The member function mode() is used to specify the phase of program running. The input string is customized, such as `test`, `validation`, `test`, `conv_layer1`. Components with same mode are grouped together, so users can choose different modes to display on the frontend webpage.
 
 The member functions scalar(), histogram(), image(), text(), audio() and embedding() are used to create component instance。
 
-Example 2. Use LogWriter instance to create component instance
+Demo 2. Use LogWriter instance to create component instance
+
 ```python
 # Set the name of mode to "train", and create a scalar component instance
 with log_writer.mode("train") as logger:
@@ -54,26 +62,32 @@ test_image = shower.image("conv_image", 10, 1)
 ```
 
 ### scalar -- component to draw line charts
+
 The <a name="1">scalar</a> component is used to draw line charts. By passing scalar data such as loss value, accuracy as input parameters into the scalar() function, the frontend webpage will display the data in the form of line charts. It can facilitate users to grasp the changing tendency of training process.
 
 The first step of using scalar component is initializing the member function scalar() of LogWriter instance, then you can add data through the member function add_record() of ScalarWriter instance.
 
-* The member function scalar() of LogWriter instance :  
+* The member function `scalar()` of LogWriter instance :    
+
 ```python
 def scalar(tag, type)  
 ```  
-> :param tag : The scalar writer will label the data with tag  
-> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float"  
-> :return : A ScalarWriter instance to handle step and value records  
 
-* The member function add_record() of ScalarWriter instance :
+> :param tag : The scalar writer will label the data with tag.     
+> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float".     
+> :return : A ScalarWriter instance to handle step and value records.     
+
+* The member function `add_record()` of ScalarWriter instance :   
+
 ```python
 def add_record(step, value)  
 ```
-> :param step : Step number  
-> :param value : Input data
 
-Example 3. scalar demo program[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/scalar-demo.py)
+> :param step : Step number.       
+> :param value : Input data.     
+
+Demo 3. scalar demo program[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/scalar-demo.py)
+
 ```python
 # coding=utf-8
 from visualdl import LogWriter
@@ -99,43 +113,54 @@ test_acc.add_record(step, 1 - value[step])
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
+
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080
 ```
 
 By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，you will see the interface below.
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/scalar-interface.png)
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/scalar-interface.png" width=800><br/>
+Figure 1. scalar component displays line charts <br/>
+</p>
 
 The right sidebar of VisualDL has adjustment options for each component, take scalar component as example:
-* Smoothing : To adjust the smoothness of the line charts.
-* X-axis : The horizontal ordinate of line charts, optional choice : Step, Relative, Wall Time
-* Tooltip sorting : Sorting method of tag, optional choice : default, descending, ascending, nearest
 
-There is also a ``RUNNING`` button at the bottom of the right sidebar, the frontend webpage will send request to the flask server for data synchronization. Switching to ``Stopped``, it will pause the data update.  
+* Smoothing : To adjust the smoothness of the line charts.    
+* X-axis : The horizontal ordinate of line charts, optional choice : Step, Relative, Wall Time.    
+* Tooltip sorting : Sorting method of tag, optional choice : default, descending, ascending, nearest.       
+
+There is also a ``RUNNING`` button at the bottom of the right sidebar, the frontend webpage will send request to the flask server for data synchronization. Switching to ``Stopped``, it will pause the data update.   
 
 ### histogram -- component to display data distribution
-The <a name="2">histogram</a> component is used to draw histogram for displaying the distribution of input data. By passing some parameters of model training, such as weight matrices, biases, gradient, as input parameters into the histogram() function, the frontend webpage will display the data in the form of histogram. It can facilitate
-users to view the change tendency of parameters distribution.
 
-The first step of using histogram component is initializing the member function histogram() of LogWriter instance, then you can add data through the member function add_record() of HistogramWriter instance.
+The <a name="2">histogram</a> component is used to draw histogram for displaying the distribution of input data. By passing some parameters of model training, such as weight matrices, biases, gradient, as input parameters into the `histogram()` function, the frontend webpage will display the data in the form of histogram. It can facilitate users to view the change tendency of parameters distribution.
+
+The first step of using histogram component is initializing the member function `histogram()` of LogWriter instance, then you can add data through the member function `add_record()` of HistogramWriter instance.
 
 * The member function histogram() of LogWriter instance :
+
 ```python
 def histogram(tag, num_buckets, type)  
 ```
-> :param tag : The histogram writer will label the data with tag  
-> :param num_buckets : The number of pillar in the histogram
-> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float"  
-> :return : A HistogramWriter instance to record distribution  
 
-* The member function add_record() of HistogramWriter instance :  
+> :param tag : The histogram writer will label the data with tag.              
+> :param num_buckets : The number of pillar in the histogram.       
+> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float".         
+> :return : A HistogramWriter instance to record distribution.      
+
+* The member function add_record() of HistogramWriter instance :
+
 ```python
 def add_record(step, value)  
 ```
-> :param step : Step number  
-> :param value : Input data, type is list[]
 
-Example 4. histogram demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/histogram-demo.py)
+> :param step : Step number.          
+> :param value : Input data, type is list[].        
+
+Demo 4. histogram demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/histogram-demo.py)
+
 ```python
 # coding=utf-8
 import numpy as np
@@ -160,51 +185,65 @@ param1_histogram.add_record(step, data)
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
+
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080
 ```
+
 By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，you will see the interface below.
 
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/histogram-interface.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/histogram-interface.png" width=800><br/>
+Figure 2. histogram component displays histograms <br/>
+</p>
 
 ### image -- component to display image
+
 The <a name="3">image</a> component is used to visualize the image data. By passing the image data (type numpy.ndarray) into the image() function, the frontend webpage will display the image directly.
 
 The first step of using image component is initializing the member function image() of LogWriter instance. Then you can add data through the member functions start_sampling(), is_sample_taken(), set_sample(), and finish_sample() of ImageWriter instance.
 
 * The member function image() of LogWriter instance :
-```python  
-def image(tag, num_samples, step_cycle)  
-```  
-> :param tag : The image writer will label the image with tag  
-> :param num_samples : Appoint the number of samples to take in a step  
-> :param step_cycle : Store every `step_cycle` as a record, the default value is 1  
-> :return:  A ImageWriter instance to sample images  
 
-* Start a new sampling cycle, allocate memory space for the sampled data  
+```python
+def image(tag, num_samples, step_cycle)  
+```
+
+> :param tag : The image writer will label the image with tag.     
+> :param num_samples : Appoint the number of samples to take in a step.     
+> :param step_cycle : Store every `step_cycle` as a record, the default value is 1.      
+> :return:  A ImageWriter instance to sample images.       
+
+* Start a new sampling cycle, allocate memory space for the sampled data
+
 ```python
 def start_sampling()
 ```
 
-* Determine whether the picture should be sampled or not. If the return value is -1, it means no sampling, otherwise it should be sampled  
+* Determine whether the picture should be sampled or not. If the return value is -1, it means no sampling, otherwise it should be sampled :
+
 ```python
 def is_sample_taken()
 ```
 
-* Add image data
+* Add image data :
+
 ```python
 def set_sample(index, image_shape, image_data)  
 ```  
-> :param index : Combined with tag, used to determine the sub-frame of the image display  
-> :param image_shape : The shape of image, [weight, height, channel(RGB is 3, GrayScale is 1)]  
-> :param image_data : Image data with type numpy.ndarray, member function flatten() can turn the shape to row vector.  
 
-* End the current sampling period, load the sampled data into disk, and release the memory space  
+> :param index : Combined with tag, used to determine the sub-frame of the image display.    
+> :param image_shape : The shape of image, [weight, height, channel(RGB is 3, GrayScale is 1)].     
+> :param image_data : Image data with type numpy.ndarray, member function flatten() can turn the shape to row vector.   
+
+* End the current sampling period, load the sampled data into disk, and release the memory space :
+
 ```python
 def finish_sample()  
 ```
 
-Example 5. image demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/image-demo.py)
+Demo 5. image demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/image-demo.py)
+
 ```python
 # coding=utf-8
 import numpy as np
@@ -262,29 +301,38 @@ visualdl --logdir ./log --host 0.0.0.0 --port 8080
 ```
 By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，then click the ``SAMPLES`` option at the top of the webpage, you will see the interface below.
 
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/image-interface.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/image-interface.png" width=800><br/>
+Figure 3. image component displays images <br/>
+</p>
 
 Each subgraph has a horizontal axis which can be dragged to display images of different steps.
 
 ### text -- component to display text
+
 The <a name="4">text</a> component is used to visualize the text data. By passing the text data (type string) into the text() function, the frontend webpage will display the image directly.
 
 The first step of using text component is initializing the member function text() of LogWriter instance, then you can add data through the member function add_record() of TextWriter instance.
 
-* The member function text() of LogWriter instance :
+* The member function text() of LogWriter instance :   
+
 ```python
 def text(tag)
 ```
-> :param tag : Combined with tag, used to determine the sub-frame of the image display  
 
-* The member function add_record() of TextWriter instance :  
+> :param tag : Combined with tag, used to determine the sub-frame of the image display.          
+
+* The member function add_record() of TextWriter instance :     
+
 ```python
 def add_record(step, str)
 ```
-> :param step : Step number  
-> :param value : Input data, type is string
 
-Example 6. text demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/text-demo.py)
+> :param step : Step number.         
+> :param value : Input data, type is string.       
+
+Demo 6. text demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/text-demo.py)
+
 ```python
 # coding=utf-8
 from visualdl import LogWriter
@@ -303,53 +351,67 @@ vdl_text_comp.add_record(i, "This is data %d ." % i)
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
+
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080
 ```
+
 By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，then click the ``SAMPLES`` option at the top of the webpage, you will see the interface below.
 
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/text-interface.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/text-interface.png" width=800><br/>
+Figure 4. text component displays texts  <br/>
+</p>
 
 Each subgraph has a horizontal axis which can be dragged to display text of different steps.
 
 ### audio -- component to play audio
+
 The <a name="5"> audio</a> component is used to play audio. By passing the audio data (type numpy.ndarray) into the audio() function, users can play audio directly, or choose to download.  
 
 The first step of using audio component is initializing the member function audio() of LogWriter instance. Then you can add data through the member functions start_sampling(), is_sample_taken(), set_sample(), and finish_sample() of AudioWriter instance.
 
 * The member function audio() of LogWriter instance :
+
 ```python  
 def audio(tag, num_samples, step_cycle)  
-```  
-> :param tag : The audio writer will label the audio with tag  
-> :param num_samples : Appoint the number of samples to take in a step  
-> :param step_cycle : Store every `step_cycle` as a record, the default value is 1  
-> :return:  An AudioWriter instance to sample images  
+```
 
-* Start a new sampling cycle, allocate memory space for the sampled data  
+> :param tag : The audio writer will label the audio with tag.      
+> :param num_samples : Appoint the number of samples to take in a step.      
+> :param step_cycle : Store every `step_cycle` as a record, the default value is 1.     
+> :return:  An AudioWriter instance to sample images.      
+
+* Start a new sampling cycle, allocate memory space for the sampled data :
+
 ```python
 def start_sampling()
 ```
 
-* Determine whether the audio should be sampled or not. If the return value is -1, it means no sampling, otherwise it should be sampled  
+* Determine whether the audio should be sampled or not. If the return value is -1, it means no sampling, otherwise it should be sampled : 
+
 ```python
 def is_sample_taken()
 ```
 
-* Add audio data
-```python
-def set_sample(index, audio_params, audio_data)  
-```  
-> :param index : Combined with tag, used to determine the sub-frame of the audio  
-> :param audio_params : The parameters of audio, [sample rate, sample width, channel]  
-> :param audio_data : Audio data with type numpy.ndarray, member function flatten() can turn the shape to row vector.  
+* Add audio data :
 
-* End the current sampling period, load the sampled data into disk, and release the memory space  
+```python
+def set_sample(index, audio_params, audio_data) 
+```
+
+> :param index : Combined with tag, used to determine the sub-frame of the audio.         
+> :param audio_params : The parameters of audio, [sample rate, sample width, channels].           
+> :param audio_data : Audio data with type numpy.ndarray, member function flatten() can turn the shape to row vector.     
+
+* End the current sampling period, load the sampled data into disk, and release the memory space :
+
 ```python
 def finish_sample()  
 ```
 
-Example 7. audio demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/audio-demo.py)
+Demo 7. audio demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/audio-demo.py)
+
 ```python
 # coding=utf-8
 import numpy as np
@@ -412,38 +474,49 @@ audio_sample_num = 0
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
+
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080
 ```
+
 By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，then click the ``SAMPLES`` option at the top of the webpage, you will see the interface below.
 
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/audio-interface.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/audio-interface.png" width=800><br/>
+Figure 5. audio component displays audios <br/>
+</p>
 
 Each subgraph has a horizontal axis which can be dragged to play audio of different steps.
 
 ### high dimensional -- component of dimensionality reduction
+
 The role of <a name="6">high dimensional</a> component is to map data into 2D or 3D space for embedding visualization, which is helpful for users to understand the relevance of different data.
 
-The high dimensional component supports the following two dimensionality reduction algorithms：
-* PCA    : Principle Component Analysis  
-* [t-SNE](https://lvdmaaten.github.io/tsne/)  : t-distributed stochastic neighbor embedding
+The high dimensional component supports the following two dimensionality reduction algorithms : 
+
+* PCA    : Principle Component Analysis              
+* [t-SNE](https://lvdmaaten.github.io/tsne/)  : t-distributed stochastic neighbor embedding        
 
 The first step of using audio component is initializing the member function embedding() of LogWriter instance. Then you can add data through the member functions add_embeddings_with_word_dict() of EmbeddingWriter instance.
 
 
 * The member function embedding() of LogWriter instance
+
 ```python
 def embedding()  
 ```
 
 * The member function add_embeddings_with_word_dict() of EmbeddingWriter instance :
+
 ```python
 def add_embeddings_with_word_dict(data, Dict)  
 ```
-> :param data : input data , type List[List(float)]  
-> :param Dict : dictionary， type Dict[str, int]  
 
-例8 high dimensional demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/embedding-demo.py)
+> :param data : input data , type List[List(float)].        
+> :param Dict : dictionary， type Dict[str, int].         
+
+Demo 8. high dimensional demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/embedding-demo.py)
+
 ```python
 # coding=utf-8
 import numpy as np
@@ -470,20 +543,32 @@ train_embedding.add_embeddings_with_word_dict(hot_vectors, word_dict)
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
+
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080
 ```
+
 By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，then click the ``HIGHDIMENSIONAL`` option at the top of the webpage, you will see the interface below.
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/embedding-2D.png)
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/embedding-3D.png)
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/embedding-2D.png" width=800><br/>
+Figure 6. high dimensional component displays plane coordinates <br/>
+</p>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/embedding-3D.png" width=800><br/>
+Figure 7. High dimensional component displays Cartesian coordinates <br/>
+</p>
 
 ## graph -- component to visualize neural network
+
 The role of <a name="7">graph</a> component is to visualize neural network. This component can display models with
 Paddle format or [ONNX](https://onnx.ai) format. The graph component can help users understand the model structure of the neural network, and also help to troubleshoot neural network configuration errors.
 
 Unlike other components that need to record data, the only one prerequisite for using graph component is specifying the storage path of the model file. That is, adding the option --model_pb to the command ``visualdl`` to specify the storage path of the model file, then you can see the corresponding neural network in the frontend webpage.
 
-例3.1 graph demo program（How to save a Lenet-5 model by Paddle）[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/graph-demo.py)
+Demo 9. graph demo program（How to save a Lenet-5 model by Paddle）[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/graph-demo.py)
+
 ```python
 # coding=utf-8
 import paddle.fluid as fluid
@@ -531,11 +616,15 @@ target_vars=[predition],
 executor=exe)
 ```
 
-After running the demo program above, you can start the flask server with command ``visualdl`` :
+After running the demo program above, you can start the flask server with command ``visualdl`` :  
+
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080 --model_pb paddle_lenet_5_model
 ```
 
-By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，then click the ``GRAPHS`` option at the top of the webpage, you will see the interface below.
+By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，then click the `GRAPHS` option at the top of the webpage, you will see the interface below.
 
-![](https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/graph.png)
+<p align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/graph.png" width=800><br/>
+Figure 8. graph component displays the model structure of Lenet-5 <br/>
+</p>
