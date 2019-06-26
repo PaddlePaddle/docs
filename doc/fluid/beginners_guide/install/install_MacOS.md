@@ -29,7 +29,7 @@ MacOS系统下有4种安装方式：
 
 ## 安装步骤
 
-* CPU版PaddlePaddle：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
+* CPU版PaddlePaddle：`pip install -U paddlepaddle` 或 `pip3 install -U  paddlepaddle`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
