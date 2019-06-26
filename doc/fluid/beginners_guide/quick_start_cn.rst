@@ -10,7 +10,13 @@ PaddlePaddle支持使用pip快速安装， 执行下面的命令完成CPU版本�
 
 	pip install paddlepaddle
 
-如需安装GPU版本的PaddlePaddle，或查阅更详细的安装方法，请参考：`安装说明 <../beginners_guide/install/index_cn.html>`_
+如需安装GPU版本的PaddlePaddle，执行下面的命令完成GPU版本的快速安装:
+
+.. code-block:: bash
+
+	pip install paddlepaddle-gpu
+
+同时请保证您参考NVIDIA官网，已经正确配置和安装了显卡驱动，`CUDA 9 <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/>`_ ，`cuDNN 7.3 <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，`NCCL2 <https://developer.nvidia.com/nccl/nccl-download/>`_ 等依赖，其他更加详细的安装信息请参考：`安装说明 <../beginners_guide/install/index_cn.html>`_
 
 
 快速使用
