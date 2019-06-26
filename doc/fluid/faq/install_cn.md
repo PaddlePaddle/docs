@@ -21,7 +21,7 @@ Python2:
 
 Python3:
 
-`pip3 install paddlepaddle -i http://pypi.douban.com/simple/``
+`pip3 install paddlepaddle -i http://pypi.douban.com/simple/`
 
 这里也可以将 -i 后的参数换成：https://mirrors.aliyun.com/pypi/simple/
 
@@ -43,7 +43,7 @@ Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
 
 2. 添加下面两行内容到hosts文件中
 
-`151.101.72.249 github.global.ssl.fastly.net  ``
+`151.101.72.249 github.global.ssl.fastly.net`
 
 `192.30.253.112 github.com`
 
@@ -273,32 +273,32 @@ PaddlePaddle官方文档中，关于MacOS下安装PaddlePaddle只提及了MacOS�
 
 基于Docker容器编译PaddlePaddle与本机上直接编译PaddlePaddle，所使用的编译执行命令是不一样的，但是官网仅仅给出了基于Docker容器编译PaddlePaddle所执行的命令。
 
-	1.基于Docker容器编译PaddlePaddle，需要执行：
+1.基于Docker容器编译PaddlePaddle，需要执行：
 
-	```bash
-	# 1. 获取源码
-	git clone https://github.com/PaddlePaddle/Paddle.git
-	cd Paddle
-	# 2. 可选步骤：源码中构建用于编译PaddlePaddle的Docker镜像
-	docker build -t paddle:dev .
-	# 3. 执行下面的命令编译CPU-Only的二进制
-	docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
-	# 4. 或者也可以使用为上述可选步骤构建的镜像（必须先执行第2步）
-	docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddle:dev
-	```
-	2.直接在本机上编译PaddlePaddle，需要执行：
-	```bash
-	# 1. 使用virtualenvwrapper创建python虚环境并将工作空间切换到虚环境
-	mkvirtualenv paddle-venv
-	workon paddle-venv
-	# 2. 获取源码
-	git clone https://github.com/PaddlePaddle/Paddle.git
-	cd Paddle
-	# 3. 执行下面的命令编译CPU-Only的二进制
-	mkdir build && cd build
-	cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF
-	make -j$(nproc)
-	```
+```bash
+# 1. 获取源码
+git clone https://github.com/PaddlePaddle/Paddle.git
+cd Paddle
+# 2. 可选步骤：源码中构建用于编译PaddlePaddle的Docker镜像
+docker build -t paddle:dev .
+# 3. 执行下面的命令编译CPU-Only的二进制
+docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddlepaddle/paddle_manylinux_devel:cuda8.0_cudnn5 bash -x /paddle/paddle/scripts/paddle_build.sh build
+# 4. 或者也可以使用为上述可选步骤构建的镜像（必须先执行第2步）
+docker run -it -v $PWD:/paddle -e "WITH_GPU=OFF" -e "WITH_TESTING=OFF" paddle:dev
+```
+2.直接在本机上编译PaddlePaddle，需要执行：
+```bash
+# 1. 使用virtualenvwrapper创建python虚环境并将工作空间切换到虚环境
+mkvirtualenv paddle-venv
+workon paddle-venv
+# 2. 获取源码
+git clone https://github.com/PaddlePaddle/Paddle.git
+cd Paddle
+# 3. 执行下面的命令编译CPU-Only的二进制
+mkdir build && cd build
+cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF
+make -j$(nproc)
+```
 
 更详细的内容，请参考[官方文档](http://paddlepaddle.org/documentation/docs/zh/1.4/beginners_guide/install/install_MacOS.html)
 
@@ -436,29 +436,29 @@ cat /proc/cpuinfo | grep flags | uniq | grep avx --color
 安装完了PaddlePaddle后，出现以下python相关的单元测试都过不了的情况：
 
 ```
-    24 - test_PyDataProvider (Failed)
-		26 - test_RecurrentGradientMachine (Failed)
-		27 - test_NetworkCompare (Failed)
-		28 - test_PyDataProvider2 (Failed)
-		32 - test_Prediction (Failed)
-    33 - test_Compare (Failed)
-    34 - test_Trainer (Failed)
-    35 - test_TrainerOnePass (Failed)
-    36 - test_CompareTwoNets (Failed)
-    37 - test_CompareTwoOpts (Failed)
-    38 - test_CompareSparse (Failed)
-    39 - test_recurrent_machine_generation (Failed)
-    40 - test_PyDataProviderWrapper (Failed)
-    41 - test_config_parser (Failed)
-    42 - test_swig_api (Failed)
-    43 - layers_test (Failed)
+24 - test_PyDataProvider (Failed)
+26 - test_RecurrentGradientMachine (Failed)
+27 - test_NetworkCompare (Failed)
+28 - test_PyDataProvider2 (Failed)
+32 - test_Prediction (Failed)
+33 - test_Compare (Failed)
+34 - test_Trainer (Failed)
+35 - test_TrainerOnePass (Failed)
+36 - test_CompareTwoNets (Failed)
+37 - test_CompareTwoOpts (Failed)
+38 - test_CompareSparse (Failed)
+39 - test_recurrent_machine_generation (Failed)
+40 - test_PyDataProviderWrapper (Failed)
+41 - test_config_parser (Failed)
+42 - test_swig_api (Failed)
+43 - layers_test (Failed)
 ```
 
 并且查询PaddlePaddle单元测试的日志，提示：
 
 ```
-    paddle package is already in your PYTHONPATH. But unittest need a clean environment.
-		Please uninstall paddle package before start unittest. Try to 'pip uninstall paddle'.
+paddle package is already in your PYTHONPATH. But unittest need a clean environment.
+Please uninstall paddle package before start unittest. Try to 'pip uninstall paddle'.
 ```
 
 + 问题解答
