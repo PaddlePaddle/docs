@@ -118,8 +118,8 @@
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-		For Python2: pip install （whl包的名字）
-		For Python3: pip3.5 install （whl包的名字）
+		For Python2: pip install -U（whl包的名字）
+		For Python3: pip3.5 install -U（whl包的名字）
 
 	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
@@ -154,7 +154,8 @@
 		4.  (Only for Python3) 设置虚环境的解释器路径：`export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5`
 		5.  查看`virtualenvwrapper.sh`中的安装方法： `cat virtualenvwrapper.sh`, 该shell文件中描述了步骤及命令
 		6.  按照`virtualenvwrapper.sh`中的描述，安装`virtualwrapper`
-		7.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
+		7.  设置VIRTUALENVWRAPPER_PYTHON：`export VIRTUALENVWRAPPER_PYTHON=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
+		8.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
@@ -222,7 +223,7 @@
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-	`pip install （whl包的名字）`或`pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）`或`pip3 install -U（whl包的名字）`
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 
