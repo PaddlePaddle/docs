@@ -467,4 +467,4 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 
 路径：recordio文件的路径，可以是字符串或字符串列表。
 
-返回： recordio文件的数据读取器
+返回：recordio文件的数据读取器
