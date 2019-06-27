@@ -103,8 +103,8 @@ auc函数创建四个局部变量true_positives, true_negatives, false_positives
 用给定的预测值和标签更新auc曲线。
 
 参数： 
-    - **preds** – 形状为(batch_size, 2)的numpy数组，preds[i][j]表示将实例i划分为类别j的概率。(of) –
-    - **labels** – 形状为(batch_size, 1)的numpy数组，labels[i]为0或1，代表实例i的标签。(the) –
+    - **preds** – 形状为(batch_size, 2)的numpy数组，preds[i][j]表示将实例i划分为类别j的概率。
+    - **labels** – 形状为(batch_size, 1)的numpy数组，labels[i]为0或1，代表实例i的标签。
 
 
 .. py:method:: eval()
@@ -245,16 +245,16 @@ DetectionMAP
 
 .. py:class:: paddle.fluid.metrics.DetectionMAP(input, gt_label, gt_box, gt_difficult=None, class_num=None, background_label=0, overlap_threshold=0.5, evaluate_difficult=True, ap_version='integral')
 
-计算 detection 平均精度（mAP）。 mAP是衡量object detectors精度的指标，比如 Faster R-CNN,SSD等。它不同于召回率，它是最大精度的平均值。 请从以下文章中获取更多信息：
-
-https://sanchom.wordpress.com/tag/average-precision/
-
-https://arxiv.org/abs/1512.02325
+计算 detection 平均精度（mAP）。 mAP是衡量object detectors精度的指标，比如 Faster R-CNN,SSD等。它不同于召回率，它是最大精度的平均值。 5
 
 通常步骤如下：
 
 1. 根据detectors中的输入和label，计算  true positive 和 false positive
 2. 计算map，支持 ‘11 point’ and ‘integral’
+
+请从以下文章中获取更多信息：
+    - https://sanchom.wordpress.com/tag/average-precision/
+    - https://arxiv.org/abs/1512.0232
 
 参数：
     - **input** (Variable) – detection的结果，一个 shape=[M, 6] 的 lodtensor。布局为[label, confidence, xmin, ymin, xmax, ymax]
@@ -410,8 +410,6 @@ MetricBase
 
 获取度量（metric)状态和当前状态。状态（state）包含没有 ``_`` 前缀的成员。
         
-参数：**None**
-
 返回：metric对应到state的字典
 
 返回类型：字典（dict）
@@ -459,11 +457,14 @@ https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers
     import numpy as np
 
     metric = fluid.metrics.Precision() 
+
     # 生成预测值和标签
+
     preds = [[0.1], [0.7], [0.8], [0.9], [0.2],
-                 [0.2], [0.3], [0.5], [0.8], [0.6]]
+             [0.2], [0.3], [0.5], [0.8], [0.6]]
+             
     labels = [[0], [1], [1], [1], [1],
-                  [0], [0], [0], [0], [0]]
+              [0], [0], [0], [0], [0]]
     
     preds = np.array(preds)
     labels = np.array(labels)

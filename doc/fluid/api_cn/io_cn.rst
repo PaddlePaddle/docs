@@ -82,7 +82,7 @@ load_params
 
 注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。
 
-如果您想下载预训练后的模型结构和参数用于预测，请使用load_inference_model API。更多细节请参考 ``模型/变量的保存、载入与增量训练`` 。
+如果您想下载预训练后的模型结构和参数用于预测，请使用load_inference_model API。更多细节请参考 :ref:`api_guide_model_save_reader`。
 
 参数:
     - **executor**  (Executor) – 加载变量的 executor
@@ -232,7 +232,7 @@ PyReader
 
 **代码示例**
 
-1.如果iterable=false，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException `` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
+1.如果iterable=False，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException `` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
 
 .. code-block:: python
 
@@ -515,7 +515,7 @@ save_inference_model
 
 ``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它。
 
-如果您仅想保存您训练好的模型的参数，请使用save_params API。更多细节请参考 ``模型/变量的保存、载入与增量训练`` 。
+如果您仅想保存您训练好的模型的参数，请使用save_params API。更多细节请参考 :ref:`api_guide_model_save_reader`。
 
 
 参数:
@@ -583,7 +583,7 @@ save_params
 
 ``dirname`` 用于指定保存变量的目标目录。如果想将变量保存到多个独立文件中，设置 ``filename`` 为 None; 如果想将所有变量保存在单个文件中，请使用 ``filename`` 来指定该文件的命名。
 
-注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。如果您想要储存您的模型用于预测，请使用save_inference_model API。更多细节请参考 ``模型/变量的保存、载入与增量训练`` 。
+注意:有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。如果您想要储存您的模型用于预测，请使用save_inference_model API。更多细节请参考 :ref:`api_guide_model_save_reader`。
 
 
 参数:
