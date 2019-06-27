@@ -1014,10 +1014,10 @@ DistributeTranspiler
   t = fluid.DistributeTranspiler()
   t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
   if role == "PSERVER":
-             pserver_program = t.get_pserver_program(current_endpoint)
-             pserver_startup_program = t.get_startup_program(current_endpoint, pserver_program)
+     pserver_program = t.get_pserver_program(current_endpoint)
+     pserver_startup_program = t.get_startup_program(current_endpoint, pserver_program)
   elif role == "TRAINER":
-             trainer_program = t.get_trainer_program()
+     trainer_program = t.get_trainer_program()
 
   # nccl2模式下
   trainer_num = 2
@@ -1028,9 +1028,9 @@ DistributeTranspiler
   t = fluid.DistributeTranspiler(config=config)
   t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
   exe = fluid.ParallelExecutor(
-            loss_name=avg_loss.name,
-            num_trainers=len(trainer_num,
-            trainer_id=trainer_id
+     loss_name=avg_loss.name,
+     num_trainers=len(trainer_num,
+     trainer_id=trainer_id
   )
 
 
@@ -1317,10 +1317,10 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
-            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-            hidden = fluid.layers.fc(input=data, size=10)
-            loss = fluid.layers.mean(hidden)
-            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = fluid.layers.mean(hidden)
+        fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
     
     # 仅运行一次startup program
     # 不需要优化/编译这个startup program
@@ -1340,7 +1340,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
-            os.environ['CPU_NUM'] = str(2)
+        os.environ['CPU_NUM'] = str(2)
 
     compiled_prog = compiler.CompiledProgram(
             train_program()).with_data_parallel(
@@ -1537,8 +1537,8 @@ in_dygraph_mode
 
 .. code-block:: python
 
-  if fluid.in_dygraph_mode():
-            pass
+    if fluid.in_dygraph_mode():
+        pass
 
 
 .. _cn_api_fluid_LoDTensor:
@@ -1923,23 +1923,23 @@ ParallelExecutor
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
-            os.environ['CPU_NUM'] = str(2)
+        os.environ['CPU_NUM'] = str(2)
     exe = fluid.Executor(place)
 
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
-            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-            hidden = fluid.layers.fc(input=data, size=10)
-            loss = fluid.layers.mean(hidden)
-            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-     
-            startup_program.random_seed=1
-            exe.run(startup_program)
-     
-            train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
-                                               main_program=train_program,
-                                               loss_name=loss.name)
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = fluid.layers.mean(hidden)
+        fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+ 
+        startup_program.random_seed=1
+        exe.run(startup_program)
+ 
+        train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
+                                           main_program=train_program,
+                                           loss_name=loss.name)
     # 如果feed参数是dict类型:
     # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (5, 1)的图像
     x = numpy.random.random(size=(10, 1)).astype('float32')
@@ -2093,12 +2093,11 @@ Program
 
 .. code-block:: python
   
-  import paddle.fluid as fluid
+    import paddle.fluid as fluid
 
-  main_program = fluid.Program()
-  startup_program = fluid.Program()
-  with fluid.program_guard(main_program=main_program, startup_program=startup_program):
-        
+    main_program = fluid.Program()
+    startup_program = fluid.Program()
+    with fluid.program_guard(main_program=main_program, startup_program=startup_program):
         x = fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
         y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
         z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
@@ -2396,12 +2395,12 @@ program_guard
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  main_program = fluid.Program()
-  startup_program = fluid.Program()
-  with fluid.program_guard(main_program, startup_program):
-    data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-    hidden = fluid.layers.fc(input=data, size=10, act='relu')
+    import paddle.fluid as fluid
+    main_program = fluid.Program()
+    startup_program = fluid.Program()
+    with fluid.program_guard(main_program, startup_program):
+        data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10, act='relu')
 
 需要注意的是，如果用户不需要构建自己的启动程序或者主程序，一个临时的program将会发挥作用。
 
@@ -2409,11 +2408,11 @@ program_guard
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  main_program = fluid.Program()
-  # 如果您不需要关心startup program,传入一个临时值即可
-  with fluid.program_guard(main_program, fluid.Program()):
-    data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    import paddle.fluid as fluid
+    main_program = fluid.Program()
+    # 如果您不需要关心startup program,传入一个临时值即可
+    with fluid.program_guard(main_program, fluid.Program()):
+        data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
 
 
 参数：
@@ -2533,14 +2532,14 @@ WeightNormParamAttr
 **代码示例**
 
 .. code-block:: python
-  
+      
   import paddle.fluid as fluid
   data = fluid.layers.data(name="data", shape=[3, 32, 32], dtype="float32")
   fc = fluid.layers.fc(input=data,
-           size=1000,
-           param_attr=fluid.WeightNormParamAttr(
-                    dim=None,
-                    name='weight_norm_param'))
+                       size=1000,
+                       param_attr=fluid.WeightNormParamAttr(
+                                dim=None,
+                                name='weight_norm_param'))
 
 
 

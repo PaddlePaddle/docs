@@ -357,13 +357,17 @@ ExponentialMovingAverage
 .. py:class:: paddle.fluid.optimizer.ExponentialMovingAverage(decay=0.999, thres_steps=None, name=None)
 
 用指数衰减计算参数的移动平均值。
-给出参数\(\theta\)，它的指数移动平均值(exponential moving average, EMA)
+给出参数 :math:`\theta` ，它的指数移动平均值(exponential moving average, EMA)
 为
-\[ \begin{align}\begin{aligned}\text{EMA}_0 & = 0\\\text{EMA}_t & = \text{decay} * \text{EMA}_{t-1} + (1 - \text{decay}) * \theta_t\end{aligned}\end{align} \]
-用update()方法计算出的平均结果将保存在由对象创建和维护的临时变量中，并且可以通过调用apply()方法把结果应用于当前模型的参数。另外，restore()方法用于恢复参数。
-偏差教正。所有的EMAs均初始化为\(0\)，因此它们将为零偏差，可以通过除以因子\((1 - \text{decay}^t)\)来校正，即在调用apply()方法时应用于参数的真实EMAs将为\[\widehat{\text{EMA}}_t = \frac{\text{EMA}_t}{1 - \text{decay}^t}\]衰减率调度。一个非常接近于1的很大的衰减率将会导致平均值移动得很慢。更优的策略是，一开始就设置一个相对较小的衰减率。参数thres_steps允许用户传递一个变量以设置衰减率，在这种情况下，
+
+.. math::
+    \begin{align}\begin{aligned}\text{EMA}_0 & = 0\\\text{EMA}_t & = \text{decay} * \text{EMA}_{t-1} + (1 - \text{decay}) * \theta_t\end{aligned}\end{align}
+
+
+用 ``update()`` 方法计算出的平均结果将保存在由对象创建和维护的临时变量中，并且可以通过调用 ``apply()`` 方法把结果应用于当前模型的参数。另外，``restore()`` 方法用于恢复参数。
+偏差教正。所有的EMAs均初始化为 :math:`0` ，因此它们将为零偏差，可以通过除以因子 :math:`(1 - \text{decay}^t)` 来校正，即在调用 ``apply()`` 方法时应用于参数的真实EMAs将为 :math:`\widehat{\text{EMA}}_t = \frac{\text{EMA}_t}{1 - \text{decay}^t}` 衰减率调度。一个非常接近于1的很大的衰减率将会导致平均值移动得很慢。更优的策略是，一开始就设置一个相对较小的衰减率。参数thres_steps允许用户传递一个变量以设置衰减率，在这种情况下，
 真实的衰减率变为  
-\[\min(\text{decay}, \frac{1 + \text{thres_steps}}{10 + \text{thres_steps}})\]
+:math:`\min(\text{decay}, \frac{1 + \text{thres_steps}}{10 + \text{thres_steps}})`
 通常thres_steps可以是全局训练steps。
      
 
@@ -376,34 +380,48 @@ ExponentialMovingAverage
 
 .. code-block:: python
 
+    import numpy
+    import paddle
     import paddle.fluid as fluid
-     
+
     data = fluid.layers.data(name='x', shape=[5], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
     cost = fluid.layers.mean(hidden)
-     
+
+    test_program = fluid.default_main_program().clone(for_test=True)
+
     optimizer = fluid.optimizer.Adam(learning_rate=0.001)
     optimizer.minimize(cost)
-     
+
     global_steps = fluid.layers.learning_rate_scheduler._decay_step_counter()
     ema = fluid.optimizer.ExponentialMovingAverage(0.999, thres_steps=global_steps)
     ema.update()
 
-    # 伪码
-    for pass_id in range(args.pass_num):
-        for data in train_reader():
-            exe.run(fluid.default_main_program()...)
-     
-        # 用法1
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+
+    for pass_id in range(3):
+        for batch_id in range(6):
+            data = numpy.random.random(size=(10, 5)).astype('float32')
+            exe.run(program=fluid.default_main_program(),
+                feed={'x': data},
+                fetch_list=[cost.name])
+
+        # usage 1
         with ema.apply(exe):
-            for data in test_reader():
-                exe.run(inference_program...)
-     
-        # 用法2
+            data = numpy.random.random(size=(10, 5)).astype('float32')
+            exe.run(program=test_program,
+                    feed={'x': data},
+                    fetch_list=[hidden.name])
+
+
+         # usage 2
         with ema.apply(exe, need_restore=False):
-            for data in test_reader():
-                exe.run(inference_program...)
-        ...
+            data = numpy.random.random(size=(10, 5)).astype('float32')
+            exe.run(program=test_program,
+                    feed={'x': data},
+                    fetch_list=[hidden.name])
         ema.restore(exe)
 
 
@@ -524,8 +542,12 @@ LambOptimizer
 LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器
 LAMB优化器旨在不降低准确性的条件下扩大训练的批量大小，支持自适应元素更新和精确的分层校正。 更多信息请参考Reducing BERT Pre-Training Time from 3 Days to 76 Minutes。
 参数更新如下：
-\[ \begin{align}\begin{aligned}m_t^l & = \beta_1 m_{t - 1}^l + (1 - \beta_1)g_t^l\\v_t^l & = \beta_2 v_{t - 1}^l + (1 - \beta_2)g_t^l \odot g_t^l\\\widehat{m}_t^l & = m_t^l/(1 - \beta_1^t)\\\widehat{v}_t^l & = v_t^l/(1 - \beta_2^t)\\r_1 & = \left \| w_{t-1}^l \right \|_2\\r_2 & = \left \|  \frac{\widehat{m}_t^l}{\sqrt{\widehat{v}_t^l+\epsilon}} + \lambda w_{t-1}^l \right \|_2\\r & = r_1 / r_2\\\eta^l & = r \times \eta\\w_t^l & = w_{t-1}^l -\eta ^l \times (\frac{\widehat{m}_t^l}{\sqrt{\widehat{v}_t^l+\epsilon}} + \lambda w_{t-1}^l)\end{aligned}\end{align} \]
-其中\(m\)为第一个时刻，\(v\)为第二个时刻，\(\eta\)为学习率，\(\lambda\)为LAMB权重衰减率。
+
+.. math::
+
+    \begin{align}\begin{aligned}m_t^l & = \beta_1 m_{t - 1}^l + (1 - \beta_1)g_t^l\\v_t^l & = \beta_2 v_{t - 1}^l + (1 - \beta_2)g_t^l \odot g_t^l\\\widehat{m}_t^l & = m_t^l/(1 - \beta_1^t)\\\widehat{v}_t^l & = v_t^l/(1 - \beta_2^t)\\r_1 & = \left \| w_{t-1}^l \right \|_2\\r_2 & = \left \|  \frac{\widehat{m}_t^l}{\sqrt{\widehat{v}_t^l+\epsilon}} + \lambda w_{t-1}^l \right \|_2\\r & = r_1 / r_2\\\eta^l & = r \times \eta\\w_t^l & = w_{t-1}^l -\eta ^l \times (\frac{\widehat{m}_t^l}{\sqrt{\widehat{v}_t^l+\epsilon}} + \lambda w_{t-1}^l)\end{aligned}\end{align}
+
+其中 :math:`m` 为第一个时刻，:math:`v` 为第二个时刻，:math:`\eta` 为学习率，:math:`\lambda` 为LAMB权重衰减率。
 
 参数：
     - **learning_rate** (float|Variable) – 用于更新参数的学习速率。可以是浮点值或具有一个作为数据元素的浮点值的变量。
