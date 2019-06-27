@@ -1,12 +1,10 @@
-.. _fleet_api_howto:
-
 使用FleetAPI进行分布式训练
 ====================
 
 FleetAPI 设计说明
 ---------------
 
-Fleet是PaddlePaddle Fluid最新优化的多机API版本， 统一了多机API的实现，兼容Transplier/Collective两种模式。 可以在MPI环境及K8S环境下进行多机训练，以及自定义分布式训练配置。
+Fleet是PaddlePaddle Fluid最新优化的多机API版本， 统一了多机API的实现，兼容Transpiler/Collective两种模式。 可以在MPI环境及K8S环境下进行多机训练，以及自定义分布式训练配置。
 
 
 FleetAPI 接口说明
@@ -21,8 +19,8 @@ FleetAPI 接口说明
    "init_worker", "fleet 初始化当前worker运行环境"
    "is_worker", "判断当前节点是否是Worker节点， 是则返回True，否则返回False"
    "is_server", "判断当前节点是否是Server节点， 是则返回True，否则返回False"
-   "save_inference_model", "fleet 保存通过多机的模型保存预测相关的模型及参数，参数及用法参考 fluid.io.save_inference_model"
-   "save_persistables", "fleet 保存多机模型参数，参数及用法参考 fluid.io.save_persistables"
+   "save_inference_model", "fleet保存预测相关的模型及参数，参数及用法参考 code:`fluid.io.save_inference_model`"
+   "save_persistables", "fleet保存多机模型参数，参数及用法参考 code:`fluid.io.save_persistables`"
 
 
 FleetAPI 一般训练步骤
@@ -40,7 +38,7 @@ FleetAPI 一般训练步骤
 
 初始化
 ++++++++++++++++++
-Fleet使用 fleet.init(role_maker=None) 进行初始化
+Fleet使用 code:`fleet.init(role_maker=None)` 进行初始化
 
 当用户不指定role_maker, 则Fleet默认用户使用MPI环境，会采用MPISymetricRoleMaker.
 
@@ -60,7 +58,7 @@ Fleet使用 fleet.init(role_maker=None) 进行初始化
 ++++++++++++++++
 
 对于Transpiler模式，需要使用 DistributeTranspilerConfig 指定多机配置。
-Fleet需要在用户定义的optimizer之上装饰fleet.distributed_optimizer来完成多机分布式策略的配置。
+Fleet需要在用户定义的optimizer之上装饰 code:`fleet.distributed_optimizer` 来完成多机分布式策略的配置。
 
 .. csv-table::
    :header: "接口", "说明"
