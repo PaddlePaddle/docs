@@ -55,10 +55,11 @@ Demo 2. Use LogWriter instance to create component instance
 ```python
 # Set the name of mode to "train", and create a scalar component instance
 with log_writer.mode("train") as logger:
-train_scalar = logger.scalar("acc")
+    train_scalar = logger.scalar("acc")
+
 # Set the name of mode to "test", and create an image component instance
 with log_writer.mode("test") as shower:
-test_image = shower.image("conv_image", 10, 1)
+    test_image = shower.image("conv_image", 10, 1)
 ```
 
 ### scalar -- component to draw line charts
@@ -97,19 +98,19 @@ log_writer = LogWriter("./log", sync_cycle=20)
 
 # Create two ScalarWriter instances, whose mode is set to be "train"
 with log_writer.mode("train") as logger:
-train_acc = logger.scalar("acc")
-train_loss = logger.scalar("loss")
+    train_acc = logger.scalar("acc")
+    train_loss = logger.scalar("loss")
 
 # Create a ScalarWriter instance, whose mode is set to be "test"
 with log_writer.mode("test") as logger:
-test_acc = logger.scalar("acc")
+    test_acc = logger.scalar("acc")
 
 value = [i/1000.0 for i in range(1000)]
 for step in range(1000):
-# Add data
-train_acc.add_record(step, value[step])
-train_loss.add_record(step, 1 / (value[step] + 1))
-test_acc.add_record(step, 1 - value[step])
+    # Add data
+    train_acc.add_record(step, value[step])
+    train_loss.add_record(step, 1 / (value[step] + 1))
+    test_acc.add_record(step, 1 - value[step])
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
@@ -171,17 +172,17 @@ log_writer = LogWriter('./log', sync_cycle=10)
 
 # Create a HistogramWriter instance, whose mode is set to be "train"
 with log_writer.mode("train") as logger:
-param1_histogram = logger.histogram("param1", num_buckets=100)
+    param1_histogram = logger.histogram("param1", num_buckets=100)
 
 # Loop
 for step in range(1, 101):
-# Create input data
-interval_start = 1 + 2 * step/100.0
-interval_end = 6 - 2 * step/100.0
-data = np.random.uniform(interval_start, interval_end, size=(10000))
+    # Create input data
+    interval_start = 1 + 2 * step/100.0
+    interval_end = 6 - 2 * step/100.0
+    data = np.random.uniform(interval_start, interval_end, size=(10000))
 
-# Use member function add_record() to add data
-param1_histogram.add_record(step, data)
+    # Use member function add_record() to add data
+    param1_histogram.add_record(step, data)
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
@@ -252,14 +253,14 @@ from PIL import Image
 
 
 def random_crop(img):
-'''
-This function is used to get a random block (100*100 pixels) of data img.
-''
-img = Image.open(img)
-w, h = img.size
-random_w = np.random.randint(0, w - 100)
-random_h = np.random.randint(0, h - 100)
-return img.crop((random_w, random_h, random_w + 100, random_h + 100))
+    '''
+    This function is used to get a random block (100*100 pixels) of data img.
+    '''
+    img = Image.open(img)
+    w, h = img.size
+    random_w = np.random.randint(0, w - 100)
+    random_h = np.random.randint(0, h - 100)
+    return img.crop((random_w, random_h, random_w + 100, random_h + 100))
 
 
 # Create a LogWriter instance
@@ -268,37 +269,39 @@ log_writer = LogWriter("./log", sync_cycle=10)
 # Create a ImageWriter instance
 ns = 2
 with log_writer.mode("train") as logger:
-input_image = logger.image(tag="test", num_samples=ns)
+    input_image = logger.image(tag="test", num_samples=ns)
 
 # The variable sample_num is used to record the number of image data that have been sampled
 sample_num = 0
 
 for step in range(6):
-# Set the condition of start_sampling()
-if sample_num == 0:
-input_image.start_sampling()
+    # Set the condition of start_sampling()
+    if sample_num == 0:
+        input_image.start_sampling()
 
-idx = input_image.is_sample_taken()
-# # if idx != -1，sample this data, otherwise skip
-if idx != -1:
-# Get image data
-image_path = "test.jpg"
-image_data = np.array(random_crop(image_path))
+    idx = input_image.is_sample_taken()
+    # if idx != -1，sample this data, otherwise skip
+    if idx != -1:
+        # Get image data
+        image_path = "test.jpg"
+        image_data = np.array(random_crop(image_path))
 
-# Add data
-input_image.set_sample(idx, image_data.shape, image_data.flatten())
-sample_num += 1
+        # Add data
+        input_image.set_sample(idx, image_data.shape, image_data.flatten())
+        sample_num += 1
 
-# If sampling of the present period have been completed, call finish_sample()
-if sample_num % ns == 0:
-input_image.finish_sampling()
-sample_num = 0
+        # If sampling of the present period have been completed, call finish_sample()
+        if sample_num % ns == 0:
+        input_image.finish_sampling()
+        sample_num = 0
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
+
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080
 ```
+
 By opening the URL [http://0.0.0.0:8080](http://0.0.0.0:8080) in your browser，then click the ``SAMPLES`` option at the top of the webpage, you will see the interface below.
 
 <p align="center">
@@ -342,12 +345,12 @@ log_writter = LogWriter("./log", sync_cycle=10)
 
 # Create a TextWriter instance
 with log_writter.mode("train") as logger:
-vdl_text_comp = logger.text(tag="test")
+    vdl_text_comp = logger.text(tag="test")
 
 # Use member function add_record() to add data
 for i in range(1, 6):
-vdl_text_comp.add_record(i, "这是第 %d 个 step 的数据。" % i)
-vdl_text_comp.add_record(i, "This is data %d ." % i)
+    vdl_text_comp.add_record(i, "这是第 %d 个 step 的数据。" % i)
+    vdl_text_comp.add_record(i, "This is data %d ." % i)
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
@@ -420,23 +423,23 @@ from visualdl import LogWriter
 
 
 def read_audio_data(audio_path):
-"""
-Read audio data
-"""
-CHUNK = 4096
-f = wave.open(audio_path, "rb")
-wavdata = []
-chunk = f.readframes(CHUNK)
+    """
+    Read audio data
+    """
+    CHUNK = 4096
+    f = wave.open(audio_path, "rb")
+    wavdata = []
+    chunk = f.readframes(CHUNK)
 
-while chunk:
-data = np.fromstring(chunk, dtype='uint8')
-wavdata.extend(data)
-chunk = f.readframes(CHUNK)
+    while chunk:
+        data = np.fromstring(chunk, dtype='uint8')
+        wavdata.extend(data)
+        chunk = f.readframes(CHUNK)
 
-# 8k sample rate, 16bit frame, 1 channel
-shape = [8000, 2, 1]
+    # 8k sample rate, 16bit frame, 1 channel
+    shape = [8000, 2, 1]
 
-return shape, wavdata
+    return shape, wavdata
 
 
 # Create a LogWriter instance
@@ -445,7 +448,7 @@ log_writter = LogWriter("./log", sync_cycle=10)
 # Create an AudioWriter instance
 ns = 2
 with log_writter.mode("train") as logger:
-input_audio = logger.audio(tag="test", num_samples=ns)
+    input_audio = logger.audio(tag="test", num_samples=ns)
 
 # The variable sample_num is used to record the number of audio data that have been sampled
 audio_sample_num = 0
@@ -453,24 +456,24 @@ audio_sample_num = 0
 for step in range(9):
 # Set the condition of start_sampling()
 if audio_sample_num == 0:
-input_audio.start_sampling()
+    input_audio.start_sampling()
 
-# Get idx
-idx = input_audio.is_sample_taken()
-# if idx != -1，sample this data, otherwise skip
-if idx != -1:
-# Read audio data
-audio_path = "test.wav"
-audio_shape, audio_data = read_audio_data(audio_path)
+    # Get idx
+    idx = input_audio.is_sample_taken()
+    # if idx != -1，sample this data, otherwise skip
+    if idx != -1:
+        # Read audio data
+        audio_path = "test.wav"
+        audio_shape, audio_data = read_audio_data(audio_path)
 
-# Add data through member function set_samle()
-input_audio.set_sample(idx, audio_shape, audio_data)
-audio_sample_num += 1
+        # Add data through member function set_samle()
+        input_audio.set_sample(idx, audio_shape, audio_data)
+        audio_sample_num += 1
 
-#  If sampling of the present period have been completed, call finish_sample()
-if audio_sample_num % ns ==0:
-input_audio.finish_sampling()
-audio_sample_num = 0
+        #  If sampling of the present period have been completed, call finish_sample()
+        if audio_sample_num % ns ==0:
+            input_audio.finish_sampling()
+            audio_sample_num = 0
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :
@@ -527,16 +530,16 @@ log_writer = LogWriter("./log", sync_cycle=10)
 
 # Create an EmbeddingWriter instance
 with log_writer.mode("train") as logger:
-train_embedding = logger.embedding()
+    train_embedding = logger.embedding()
 
 # Initialize data List[List(float)]  
 hot_vectors = np.random.uniform(1, 2, size=(10, 3))  
 word_dict = {
-"label_1": 5,
-"label_2": 4,
-"label_3": 3,
-"label_4": 2,
-"label_5": 1,}
+    "label_1": 5,
+    "label_2": 4,
+    "label_3": 3,
+    "label_4": 2,
+    "label_5": 1,}
 
 # Add data through member function add_embeddings_with_word_dict(data, Dict)
 train_embedding.add_embeddings_with_word_dict(hot_vectors, word_dict)
@@ -575,29 +578,29 @@ import paddle.fluid as fluid
 
 
 def lenet_5(img):
-'''
-Define the Lenet-5 model
-'''
-conv1 = fluid.nets.simple_img_conv_pool(
-input=img,
-filter_size=5,
-num_filters=20,
-pool_size=2,
-pool_stride=2,
-act="relu")
+    '''
+    Define the Lenet-5 model
+    '''
+    conv1 = fluid.nets.simple_img_conv_pool(
+        input=img,
+        filter_size=5,
+        num_filters=20,
+        pool_size=2,
+        pool_stride=2,
+        act="relu")
 
-conv1_bn = fluid.layers.batch_norm(input=conv1)
+    conv1_bn = fluid.layers.batch_norm(input=conv1)
 
-conv2 = fluid.nets.simple_img_conv_pool(
-input=conv1_bn,
-filter_size=5,
-num_filters=50,
-pool_size=2,
-pool_stride=2,
-act="relu")
+    conv2 = fluid.nets.simple_img_conv_pool(
+        input=conv1_bn,
+        filter_size=5,
+        num_filters=50,
+        pool_size=2,
+        pool_stride=2,
+        act="relu")
 
-predition = fluid.layers.fc(input=conv2, size=10, act="softmax")
-return predition
+    predition = fluid.layers.fc(input=conv2, size=10, act="softmax")
+    return predition
 
 
 # Variable assignment
@@ -610,10 +613,10 @@ exe.run(fluid.default_startup_program())
 
 # save the result to "./paddle_lenet_5_model"
 fluid.io.save_inference_model(
-"./paddle_lenet_5_model",
-feeded_var_names=[image.name],
-target_vars=[predition],
-executor=exe)
+    "./paddle_lenet_5_model",
+    feeded_var_names=[image.name],
+    target_vars=[predition],
+    executor=exe)
 ```
 
 After running the demo program above, you can start the flask server with command ``visualdl`` :  

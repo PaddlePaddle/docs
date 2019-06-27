@@ -559,7 +559,7 @@ visualdl --logdir ./log --host 0.0.0.0 --port 8080
 
 与其他需要记录数据的组件不同，使用 graph 组件的唯一要素就是指定模型文件的存放位置，即在 `visualdl` 命令中增加选项 `--model_pb` 来指定模型文件的存放路径，则可在前端看到相应效果。
 
-例3.1 graph 组件示例程序（下面示例展示了如何用 Paddle 保存一个 Lenet-5 模型）[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/graph-demo.py)
+例9 graph 组件示例程序（下面示例展示了如何用 Paddle 保存一个 Lenet-5 模型）[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/graph-demo.py)
 
 ```python
 # coding=utf-8
