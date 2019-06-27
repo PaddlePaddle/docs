@@ -4,7 +4,7 @@
 
 * *64位操作系统*
 * *MacOS 10.12/10.13/10.14*
-* *Python 2.7/3.5/3.6/3.7*
+* *Python 2.7/3.5.1+/3.6/3.7*
 * *pip或pip3 >= 9.0.1*
 
 ## 选择CPU/GPU
@@ -82,7 +82,7 @@
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release`
 
 		> 我们目前不支持MacOS下GPU版本PaddlePaddle的编译
 
