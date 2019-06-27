@@ -10068,14 +10068,13 @@ Sequence Reshape Layer
 
 
 
-.. _cn_api_fluid_layers_sequence_reverse:
+
 
 sequence_reverse
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.sequence_reverse(x, name=None)
 
-**实现SequenceReverse（序列倒序）运算**
 
 在第0维上将输入 ``x`` 的各序列倒序。
 
