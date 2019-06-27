@@ -13,12 +13,12 @@ FleetAPI 接口说明
    :header: "接口", "说明"
 
    "init", "fleet初始化，需要在使用fleet其他接口前先调用，用于定义多机的环境配置"
-   "distributed_optimizer", "fleet多机训练策略优化，接收一个标准Optimizer及相应的多机运行策略， fleet会根据优化策略进行优化"
+   "distributed_optimizer", "fleet多机训练策略优化，接收一个标准Optimizer及相应的多机运行策略，fleet会根据优化策略进行优化"
    "init_server", "fleet加载model_dir中保存的模型相关参数进行parameter server的初始化"
    "run_server", "fleet启动parameter server服务"
-   "init_worker", "fleet 初始化当前worker运行环境"
-   "is_worker", "判断当前节点是否是Worker节点， 是则返回True，否则返回False"
-   "is_server", "判断当前节点是否是Server节点， 是则返回True，否则返回False"
+   "init_worker", "fleet初始化当前worker运行环境"
+   "is_worker", "判断当前节点是否是Worker节点，是则返回True，否则返回False"
+   "is_server", "判断当前节点是否是Server节点，是则返回True，否则返回False"
    "save_inference_model", "fleet保存预测相关的模型及参数，参数及用法参考 code:`fluid.io.save_inference_model`"
    "save_persistables", "fleet保存多机模型参数，参数及用法参考 code:`fluid.io.save_persistables`"
 
