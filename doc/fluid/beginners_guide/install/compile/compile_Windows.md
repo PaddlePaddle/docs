@@ -97,7 +97,7 @@
 
 9. 在当前机器或目标机器安装编译好的 `.whl` 包：
 
-	`pip install （whl包的名字）` 或 `pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）` 或 `pip3 install -U（whl包的名字）`
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 
