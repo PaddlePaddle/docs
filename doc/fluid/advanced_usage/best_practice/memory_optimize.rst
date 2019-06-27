@@ -53,7 +53,7 @@ GC策略的使能开关，double类型，默认值为-1。GC策略会积攒一�
 
 若 :code:`FLAGS_eager_delete_tensor_gb=0` ，则一旦有显存垃圾则马上回收，最为节省显存。
 
-若 :code:`FLAGS_eager_delete_tensor_gb=1` ，则显存垃圾积攒到1G后才出发回收。
+若 :code:`FLAGS_eager_delete_tensor_gb=1` ，则显存垃圾积攒到1G后才触发回收。
 
 若 :code:`FLAGS_eager_delete_tensor_gb<0` ，则GC策略关闭。
 
