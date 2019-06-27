@@ -12,4 +12,4 @@
     :hidden:
 
     evaluation/metrics.rst
-    debug/visualdl.md
+    debug/index_cn.rst

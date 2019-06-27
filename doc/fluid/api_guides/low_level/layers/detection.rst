@@ -21,11 +21,17 @@ PaddlePaddle Fluid在图像检测任务中实现了多个特有的操作。以�
 
 * 根据检测框和标签得到分类和回归目标值（target_assign）：通过匹配索引和非匹配索引得到目标值和对应权重。API Reference 请参考 :ref:`cn_api_fluid_layers_target_assign`
 
+* 对检测框进行后处理：
 
-Faster RCNN
+  * box_clip: 将检测框剪切到指定大小。API Reference 请参考 :ref:`cn_api_fluid_layers_box_clip`
+  
+  * multiclass_nms: 对边界框和评分进行多类非极大值抑制。API Reference 请参考 :ref:`cn_api_fluid_layers_multiclass_nms`
+
+
+RCNN
 -------------
 
-`Faster RCNN <https://arxiv.org/abs/1506.01497>`_ 是典型的两阶段目标检测器，相较于传统提取区域的方法，Faster RCNN中RPN网络通过共享卷积层参数大幅提高提取区域的效率，并提出高质量的候选区域。RPN网络需要对输入anchor和真实值进行比较生成初选候选框，并对初选候选框分配分类和回归值，>需要如下四个特有api：
+RCNN系列模型是两阶段目标检测器，其中包含`Faster RCNN <https://arxiv.org/abs/1506.01497>`_，`Mask RCNN <https://arxiv.org/abs/1703.06870>`_，相较于传统提取区域的方法，RCNN中RPN网络通过共享卷积层参数大幅提高提取区域的效率，并提出高质量的候选区域。RPN网络需要对输入anchor和真实值进行比较生成初选候选框，并对初选候选框分配分类和回归值，需要如下五个特有api：
 
 * rpn_target_assign：通过anchor和真实框为anchor分配RPN网络的分类和回归目标值。API Reference 请参考 :ref:`cn_api_fluid_layers_rpn_target_assign`
 
@@ -35,13 +41,27 @@ Faster RCNN
 
 * generate_proposals: 对RPN网络输出box解码并筛选得到新的候选框。API Reference 请参考 :ref:`cn_api_fluid_layers_generate_proposals`
 
+* generate_mask_labels: 通过generate_proposal_labels得到的RoI，和真实框对比后进一步筛选RoI并得到Mask分支的目标值。API Reference 请参考 :ref:`cn_api_fluid_layers_generate_mask_labels`
+
+FPN
+-------------
+
+`FPN <https://arxiv.org/abs/1612.03144>`_ 全称Feature Pyramid Networks, 采用特征金字塔做目标检测。 顶层特征通过上采样和低层特征做融合，并将FPN放在RPN网络中用于生成候选框，有效的提高检测精度，需要如下两种特有api：
+
+* collect_fpn_proposals: 拼接多层RoI，同时选择分数较高的RoI。API Reference 请参考 :ref:`cn_api_fluid_layers_collect_fpn_proposals`
+
+* distribute_fpn_proposals: 将多个RoI依据面积分配到FPN的多个层级中。API Reference 请参考 :ref:`cn_api_fluid_layers_distribute_fpn_proposals`
 
 SSD
 ----------------
 
 `SSD <https://arxiv.org/abs/1512.02325>`_ 全称Single Shot MultiBox Detector，是目标检测领域较新且效果较好的检测算法之一，具有检测速度快且检测精度高的特点。与两阶段的检测方法不同，单阶段目标检测并不进行区域推荐，而是直接从特征图回归出目标的边界框和分类概率。SSD网络对六个尺度特>征图计算损失，进行预测，需要如下五种特有api：
 
-* Prior Box：根据不同参数为每个输入位置生成一系列候选框。API Reference 请参考 :ref:`cn_api_fluid_layers_prior_box`
+* 根据不同参数为每个输入位置生成一系列候选框。
+
+  * prior box: API Reference 请参考 :ref:`cn_api_fluid_layers_prior_box`
+
+  * density_prior box: API Reference 请参考 :ref:`cn_api_fluid_layers_density_prior_box`
 
 * multi_box_head ：得到不同prior box的位置和置信度。API Reference 请参考 :ref:`cn_api_fluid_layers_multi_box_head`
 
@@ -50,6 +70,26 @@ SSD
 * ssd_loss：通过位置偏移预测值，置信度，检测框位置和真实框位置和标签计算损失。API Reference 请参考 :ref:`cn_api_fluid_layers_ssd_loss`
 
 * detection map: 利用mAP评估SSD网络模型。API Reference 请参考 :ref:`cn_api_fluid_layers_detection_map`
+
+YOLO V3
+---------------
+
+`YOLO V3 <https://arxiv.org/abs/1804.02767>`_ 是单阶段目标检测器，同时具备了精度高，速度快的特点。对特征图划分多个区块，每个区块得到坐标位置和置信度。采用了多尺度融合的方式预测以得到更高的训练精度，需要如下两种特有api：
+
+* yolo_box: 从YOLOv3网络的输出生成YOLO检测框。API Reference 请参考 :ref:`cn_api_fluid_layers_yolo_box`
+
+* yolov3_loss：通过给定的预测结果和真实框生成yolov3损失。API Reference 请参考 :ref:`cn_api_fluid_layers_yolov3_loss`
+
+RetinaNet
+---------------
+
+`RetinaNet <https://arxiv.org/abs/1708.02002>`_ 是单阶段目标检测器，引入Focal Loss和FPN后，能以更快的速率实现与双阶段目标检测网络近似或更优的效果，需要如下三种特有api：
+
+* sigmoid_focal_loss: 用于处理单阶段检测器中类别不平均问题的损失。API Reference 请参考 :ref:`cn_api_fluid_layers_sigmoid_focal_loss`
+
+* retinanet_target_assign: 对给定anchor和真实框，为每个anchor分配分类和回归的目标值，用于训练RetinaNet。API Reference 请参考 :ref:`cn_api_fluid_layers_retinanet_target_assign`
+
+* retinanet_detection_output: 对检测框进行解码，并做非极大值抑制后得到检测输出。API Reference 请参考 :ref:`cn_api_fluid_layers_retinanet_detection_output`
 
 OCR
 ---------

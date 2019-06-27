@@ -4538,7 +4538,7 @@ im2sequence
 
 
 .. math::
-                        output\_size=1+\frac{(2∗padding+img\_size−block\_size+stride-1}{stride}
+                        output\_size=1+\frac{(2∗padding+img\_size−block\_size+stride-1)}{stride}
 
 每个timestep的维度为 :math:`block\_y * block\_x * input.channels` 。
 
@@ -4551,7 +4551,7 @@ im2sequence
 	- **out_stride** (int|tuple) - 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
 	- **name** (int) - 该layer的名称，可以忽略。
 
-返回：	LoDTensor shaoe为{batch_size * output_height * output_width, filter_size_H * filter_size_W * input.channels}。如果将输出看作一个矩阵，这个矩阵的每一行都是一个序列的step。
+返回：	LoDTensor shape为{batch_size * output_height * output_width, filter_size_H * filter_size_W * input.channels}。如果将输出看作一个矩阵，这个矩阵的每一行都是一个序列的step。
 
 返回类型:	output
 

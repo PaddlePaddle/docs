@@ -1,4 +1,4 @@
-# Visual DL Toolset
+# Introduction to VisualDL Toolset
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/docs/images/vs-logo.png" width="60%" />
@@ -257,7 +257,7 @@ visualDL also supports following optional parameters:
 
 VisualDL is initially created by [PaddlePaddle](http://www.paddlepaddle.org/) and
 [ECharts](http://echarts.baidu.com/).
-We welcome everyone to use, comment and contribute to Visual DL :)
+We welcome everyone to use, comment and contribute to VisualDL :)
 
 ## More details
 

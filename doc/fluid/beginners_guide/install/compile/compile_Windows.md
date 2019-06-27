@@ -4,7 +4,7 @@
 
 * *64位操作系统*
 * *Windows 10 家庭版/专业版/企业版*
-* *Python 2.7/3.5/3.6/3.7*
+* *Python 2.7/3.5.1+/3.6/3.7*
 * *pip或pip3 >= 9.0.1*
 * *Visual Studio 2015 Update3*
 
@@ -97,7 +97,7 @@
 
 9. 在当前机器或目标机器安装编译好的 `.whl` 包：
 
-	`pip install （whl包的名字）` 或 `pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）` 或 `pip3 install -U（whl包的名字）`
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 

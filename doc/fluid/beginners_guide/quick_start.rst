@@ -1,179 +1,173 @@
-快速开始
-===========
+Quick Start
+=============
 
-快速安装
-----------
+Quick Installation
+--------------------
 
-PaddlePaddle支持使用pip快速安装， 执行下面的命令完成CPU版本的快速安装：
-
-.. code-block:: bash
-
-	pip install -U paddlepaddle
-
-如需安装GPU版本的PaddlePaddle，执行下面的命令完成GPU版本的快速安装:
+PaddlePaddle supports quick installation by pip. Execute the following commands to finish quick installation of the CPU version:
 
 .. code-block:: bash
 
-	pip install -U paddlepaddle-gpu
+	pip install paddlepaddle
 
-同时请保证您参考NVIDIA官网，已经正确配置和安装了显卡驱动，`CUDA 9 <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/>`_ ，`cuDNN 7.3 <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，`NCCL2 <https://developer.nvidia.com/nccl/nccl-download/>`_ 等依赖，其他更加详细的安装信息请参考：`安装说明 <../beginners_guide/install/index_cn.html>`_
+If you need to install the GPU version, or look up more specific installation methods, please refer to `Installation Instructions <../beginners_guide/install/index_en.html>`_
 
 
-快速使用
+Quick Usage
 -------------
 
-首先，您需要导入fluid库
+First, you need to import the fluid library
 
 .. code-block:: python
 
 	import paddle.fluid as fluid
 
-* Tensor操作
+* Tensor Operations
 
 
-下面几个简单的案例，可以帮助您快速了解Fluid：
+The following simple examples may help you quickly know about Fluid:
 
-1.使用Fluid创建5个元素的一维数组，其中每个元素都为1
+1.use Fluid to create a one-dimensional array with five elements, and each element is 1
 
 .. code-block:: python
     
-	# 定义数组维度及数据类型，可以修改shape参数定义任意大小的数组
+	# define the dimension of an array and the data type, and the parameter 'shape' can be modified to define an array of any size
 	data = fluid.layers.ones(shape=[5], dtype='int64')
-	# 在CPU上执行运算
+	# compute on the CPU
 	place = fluid.CPUPlace()
-	# 创建执行器
+	# create executors
 	exe = fluid.Executor(place)
-	# 执行计算
+	# execute computation
 	ones_result = exe.run(fluid.default_main_program(),
-	                        # 获取数据data
+	                        # get data
 				fetch_list=[data], 
 				return_numpy=True)
-	# 输出结果
+	# output the results
 	print(ones_result[0])
 
-可以得到结果：
+you can get the results:
 
 .. code-block:: text
 
 	[1 1 1 1 1]
 
-2.使用Fluid将两个数组按位相加
+2.use Fluid to add two arrays by bits
 
 .. code-block:: python
 
-	# 调用 elementwise_op 将生成的一维数组按位相加
+	# call elementwise_op to add the generative arrays by bits
 	add = fluid.layers.elementwise_add(data,data)
-	# 定义运算场所
+	# define computation place
 	place = fluid.CPUPlace()
 	exe = fluid.Executor(place)
-	# 执行计算
+	# execute computation
 	add_result = exe.run(fluid.default_main_program(),
 	                 fetch_list=[add],
 	                 return_numpy=True)
-	# 输出结果
+	# output the results
 	print (add_result[0])
 
-可以得到结果：
+you can get the results:
 
 .. code-block:: text
 
 	[2 2 2 2 2]
 
-3.使用Fluid转换数据类型
+3.use Fluid to transform the data type
 
 .. code-block:: python
 
-	# 将一维整型数组，转换成float64类型
+	# transform a one-dimentional array of int to float64
 	cast = fluid.layers.cast(x=data, dtype='float64')
-	# 定义运算场所执行计算
+	# define computation place to execute computation
 	place = fluid.CPUPlace()
 	exe = fluid.Executor(place)
 	cast_result = exe.run(fluid.default_main_program(),
 	                 fetch_list=[cast],
 	                 return_numpy=True)
-	# 输出结果
+	# output the results
 	print(cast_result[0])
 
-可以得到结果：
+you can get the results:
 
 .. code-block:: text
 
 	[1. 1. 1. 1. 1.]
 
 
-运行线性回归模型
------------------
+Operate the Linear Regression Model
+-------------------------------------
 
-通过上面的小例子，相信您已经对如何使用Fluid操作数据有了一定的了解，那么试着创建一个test.py，并粘贴下面的代码吧。
+By the simple example above, you may have known how to operate data with Fluid to some extent, so please try to create a test.py, and copy the following codes.
 
-这是一个简单的线性回归模型，来帮助我们快速求解4元一次方程。
+This a a simple linear regression model to help us quickly solve the quaternary linear equation.
 
 .. code-block:: python
 
-	#加载库
+	#load the library
 	import paddle.fluid as fluid
 	import numpy as np
-	#生成数据
+	#generate data
 	np.random.seed(0)
 	outputs = np.random.randint(5, size=(10, 4))
 	res = []
 	for i in range(10):
-		# 假设方程式为 y=4a+6b+7c+2d
+		# assume the equation is y=4a+6b+7c+2d
 		y = 4*outputs[i][0]+6*outputs[i][1]+7*outputs[i][2]+2*outputs[i][3]
 		res.append([y])
-	# 定义数据
+	# define data
 	train_data=np.array(outputs).astype('float32')
 	y_true = np.array(res).astype('float32')
 
-	#定义网络
+	#define the network
 	x = fluid.layers.data(name="x",shape=[4],dtype='float32')
 	y = fluid.layers.data(name="y",shape=[1],dtype='float32')
 	y_predict = fluid.layers.fc(input=x,size=1,act=None)
-	#定义损失函数
+	#define loss function
 	cost = fluid.layers.square_error_cost(input=y_predict,label=y)
 	avg_cost = fluid.layers.mean(cost)
-	#定义优化方法
+	#define optimization methods
 	sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.05)
 	sgd_optimizer.minimize(avg_cost)
-	#参数初始化
+	#initialize parameters
 	cpu = fluid.CPUPlace()
 	exe = fluid.Executor(cpu)
 	exe.run(fluid.default_startup_program())
-	##开始训练，迭代500次
+	##start training and iterate for 500 times
 	for i in range(500):
 		outs = exe.run(
 			feed={'x':train_data,'y':y_true},
 			fetch_list=[y_predict.name,avg_cost.name])
 		if i%50==0:
 			print ('iter={:.0f},cost={}'.format(i,outs[1][0]))
-	#存储训练结果
+	#save the training result
 	params_dirname = "result"
 	fluid.io.save_inference_model(params_dirname, ['x'], [y_predict], exe)
 
-	# 开始预测
+	# start inference
 	infer_exe = fluid.Executor(cpu)
 	inference_scope = fluid.Scope()
-	# 加载训练好的模型
+	# load the trained model
 	with fluid.scope_guard(inference_scope):
 		[inference_program, feed_target_names,
 		 fetch_targets] = fluid.io.load_inference_model(params_dirname, infer_exe)
 
-	# 生成测试数据
+	# generate test data
 	test = np.array([[[9],[5],[2],[10]]]).astype('float32')
-	# 进行预测
+	# inference
 	results = infer_exe.run(inference_program,
 							feed={"x": test},
 							fetch_list=fetch_targets) 
-	# 给出题目为 【9,5,2,10】 输出y=4*9+6*5+7*2+10*2的值
+	# give the problem 【9,5,2,10】 and output the value of y=4*9+6*5+7*2+10*2
 	print ("9a+5b+2c+10d={}".format(results[0][0]))
 
 .. code-block:: text
 
-    得到结果：
+    get the result:
 	
 	9a+5b+2c+10d=[99.946]
 	
-输出结果应是一个近似等于100的值，每次计算结果略有不同。
+The output result should be a value close to 100, which may have a few errors every time.
 	
     
 	
