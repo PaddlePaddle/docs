@@ -37,15 +37,15 @@ Python3:
 
 1. 编辑hosts 文件
 
-Linux/Mac：`vim/etc/hosts`
+	Linux/Mac：`vim/etc/hosts`
 
-Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
+	Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
 
 2. 添加下面两行内容到hosts文件中
 
-`151.101.72.249 github.global.ssl.fastly.net`
+	`151.101.72.249 github.global.ssl.fastly.net`
 
-`192.30.253.112 github.com`
+	`192.30.253.112 github.com`
 
 
 ## 环境问题
@@ -84,7 +84,7 @@ Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
 
 + 问题解答
 
-在本文中的例子里，`docker run` 命令里都用了 `--rm` 参数，这样保证运行结束之后的 containers 不会保留在磁盘上。可以用 `docker ps -a` 命令看到停止后但是没有删除的 containers。`docker build` 命令有时候会产生一些中间结果，是没有名字的 images，也会占用磁盘。可以参考 [这篇文章](https://zaiste.net/posts/removing_docker_containers) 来清理这些内容。
+在本文中的例子里，`docker run` 命令里都用了 `--rm` 参数，这样保证运行结束之后的 containers 不会保留在磁盘上。可以用 `docker ps -a` 命令看到停止后但是没有删除的 containers。`docker build` 命令有时候会产生一些中间结果，是没有名字的 images，也会占用磁盘。
 
 
 ## CPU
@@ -617,7 +617,7 @@ pip install build/python/dist/*.whl
 python python/paddle/fluid/tests/book/test_fit_a_line.py
 ```
 
-### 安装后无法使用(GPU)
+### 安装后无法使用
 
 ##### Q: GPU安装成功，无法import
 

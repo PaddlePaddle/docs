@@ -54,7 +54,7 @@ PaddlePaddle可以像tf一样根据输出，只执行模型的一部分么？
 对于LodTensor数据，分步处理每一个时间步数据的需求，大部分情况可以使用`DynamicRNN`，[参考示例](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/book/test_machine_translation.py#L69) ，其中`rnn.step_input`即是每一个时间步的数据，`rnn.memory`是需要更新的rnn的hidden state，另外还有个`rnn.static_input`是rnn外部的数据在DynamicRNN内的表示（如encoder的output），可以利用这三种数据完成所需操作。
 
 rank_table记录了每个sequence的长度，DynamicRNN中调用了lod_tensor_to_array在产生array时按照rank_table做了特殊处理（sequence从长到短排序后从前到后进行slice），每个时间步数据的batch size可能会缩小（短的sequence结束时），这是Fluid DynamicRNN的一些特殊之处。
-对于非LoDTensor数据，可以使用StaticRNN，用法与上面类似，参考[语言模型示例]( https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleNLP/language_model/lstm/lm_model.py#L261)。
+对于非LoDTensor数据，可以使用StaticRNN，用法与上面类似，参考[语言模型示例]( https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/unarchived/language_model/lstm/lm_model.py#L261)。
 
 ##### Q: NumPy读取出fc层W矩阵？
 
@@ -80,7 +80,7 @@ weight名字在构建网络的时候可以通过param_attr指定，然后用`flu
 
 + 问题描述
 
-根据models里面的[ctr例子](https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/ctr/infer.py)改写了一个脚本，主要在train的同时增加test过程，方便选择模型轮次，整体训练测试过程跑通，不过无法获取accuracy？
+根据models里面的[ctr例子](https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/ctr/infer.py)改写了一个脚本，主要在train的同时增加test过程，方便选择模型轮次，整体训练测试过程跑通，不过无法获取accuracy？
 
 + 问题解答
 
@@ -142,7 +142,7 @@ ln -s libnccl.so.2 libnccl.so
 
 CTR模型保存模型时报错
 
-+ 代码文件：[network_conf.py](https://github.com/PaddlePaddle/models/blob/develop/fluid/PaddleRec/ctr/network_conf.py)只修改了最后一行：
++ 代码文件：[network_conf.py](https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/ctr/network_conf.py)只修改了最后一行：
 
 ```
 accuracy = fluid.layers.accuracy(input=predict, label=words[-1])
