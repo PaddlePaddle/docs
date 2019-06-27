@@ -72,7 +72,7 @@ Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
           img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
           conv_pool = fluid.nets.img_conv_group(input=img,
@@ -127,7 +127,7 @@ attention运算机制可以被视为将查询和一组键值对映射到输出�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
           import paddle.fluid as fluid
           
@@ -236,7 +236,7 @@ simple_img_conv_pool
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')

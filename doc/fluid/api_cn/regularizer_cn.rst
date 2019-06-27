@@ -33,7 +33,7 @@ L1正则将会稀疏化权重矩阵。
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     import paddle.fluid as fluid
     main_prog = fluid.Program()
@@ -90,7 +90,7 @@ L2DecayRegularizer
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     import paddle.fluid as fluid
     main_prog = fluid.Program()

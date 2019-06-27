@@ -34,8 +34,8 @@ DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	dataset = fluid.DatasetFactory().create_dataset()
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset()
 
 
 
@@ -52,7 +52,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-	dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 
 .. py:method:: load_into_memory()
@@ -63,11 +63,11 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-	filelist = ["a.txt", "b.txt"]
-	dataset.set_filelist(filelist)
-	dataset.load_into_memory()
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    filelist = ["a.txt", "b.txt"]
+    dataset.set_filelist(filelist)
+    dataset.load_into_memory()
 
 
 .. py:method:: local_shuffle()
@@ -78,12 +78,12 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-	filelist = ["a.txt", "b.txt"]
-	dataset.set_filelist(filelist)
-	dataset.load_into_memory()
-	dataset.local_shuffle()
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    filelist = ["a.txt", "b.txt"]
+    dataset.set_filelist(filelist)
+    dataset.load_into_memory()
+    dataset.local_shuffle()
 
 
 .. py:method:: global_shuffle(fleet=None)
@@ -96,13 +96,13 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-	dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-	filelist = ["a.txt", "b.txt"]
-	dataset.set_filelist(filelist)
-	dataset.load_into_memory()
-	dataset.global_shuffle(fleet)
+    import paddle.fluid as fluid
+    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    filelist = ["a.txt", "b.txt"]
+    dataset.set_filelist(filelist)
+    dataset.load_into_memory()
+    dataset.global_shuffle(fleet)
 
 参数：
     - **fleet** (Fleet) – fleet单例。默认为None。
@@ -116,17 +116,17 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-	dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-	filelist = ["a.txt", "b.txt"]
-	dataset.set_filelist(filelist)
-	dataset.load_into_memory()
-	dataset.global_shuffle(fleet)
-	exe = fluid.Executor(fluid.CPUPlace())
-	exe.run(fluid.default_startup_program())
-	exe.train_from_dataset(fluid.default_main_program(), dataset)dataset.release_memory()
-	dataset.release_memory()
+    import paddle.fluid as fluid
+    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    filelist = ["a.txt", "b.txt"]
+    dataset.set_filelist(filelist)
+    dataset.load_into_memory()
+    dataset.global_shuffle(fleet)
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(fluid.default_startup_program())
+    exe.train_from_dataset(fluid.default_main_program(), dataset)dataset.release_memory()
+    dataset.release_memory()
 
 .. py:method:: get_memory_data_size(fleet=None)
 
@@ -144,13 +144,13 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-	dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-	filelist = ["a.txt", "b.txt"]
-	dataset.set_filelist(filelist)
-	dataset.load_into_memory()
-	print dataset.get_memory_data_size(fleet)
+    import paddle.fluid as fluid
+    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    filelist = ["a.txt", "b.txt"]
+    dataset.set_filelist(filelist)
+    dataset.load_into_memory()
+    print dataset.get_memory_data_size(fleet)
 
 
 .. py:method:: get_shuffle_data_size(fleet=None)
@@ -169,14 +169,14 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-	dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-	filelist = ["a.txt", "b.txt"]
-	dataset.set_filelist(filelist)
-	dataset.load_into_memory()
-	dataset.global_shuffle(fleet)
-	print dataset.get_shuffle_data_size(fleet)
+    import paddle.fluid as fluid
+    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    filelist = ["a.txt", "b.txt"]
+    dataset.set_filelist(filelist)
+    dataset.load_into_memory()
+    dataset.global_shuffle(fleet)
+    print dataset.get_shuffle_data_size(fleet)
 
 
 
@@ -194,8 +194,8 @@ QueueDataset
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
 
 
 
@@ -209,9 +209,9 @@ QueueDataset中不支持局域shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
-	dataset.local_shuffle()
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
+    dataset.local_shuffle()
 
 
 
@@ -225,8 +225,8 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
-	import paddle.fluid as fluid
-	from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-	dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
-	dataset.global_shuffle(fleet)
+    import paddle.fluid as fluid
+    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
+    dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
+    dataset.global_shuffle(fleet)
 

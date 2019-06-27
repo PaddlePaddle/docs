@@ -113,7 +113,7 @@ array_write
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   tmp = fluid.layers.zeros(shape=[10], dtype='int32')
   i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
@@ -149,7 +149,7 @@ create_array
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   data = fluid.layers.create_array(dtype='float32')
 
@@ -177,7 +177,7 @@ DynamicRNN
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     data = fluid.layers.data(name='sentence', dtype='int64', lod_level=1)
@@ -236,7 +236,7 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 **例如**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     sentence = fluid.layers.data(
@@ -259,7 +259,7 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 否则，如果已经设置 ``shape`` 、 ``value`` 、 ``dtype`` ，memory将被 ``value`` 初始化
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
 
@@ -416,7 +416,7 @@ increment
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(name='data', shape=[1], dtype='float32',
                          append_batch_size=False)
@@ -480,7 +480,7 @@ less_than
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     less = fluid.layers.less_than(x=label, y=limit)
@@ -645,7 +645,7 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     lr = fluid.layers.tensor.create_global_var(
         shape=[1],
@@ -702,7 +702,7 @@ While
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   d0 = fluid.layers.data("d0", shape=[10], dtype='float32')
   data_array = fluid.layers.array_write(x=d0, i=i)
@@ -811,7 +811,7 @@ bipartite_match
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
          x = fluid.layers.data(name='x', shape=[4], dtype='float32')
          y = fluid.layers.data(name='y', shape=[4], dtype='float32')
@@ -856,7 +856,7 @@ box_clip
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     boxes = fluid.layers.data(
         name='boxes', shape=[8, 4], dtype='float32', lod_level=1)
@@ -1193,7 +1193,7 @@ detection_map
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         detect_res = fluid.layers.data(
             name='detect_res',
@@ -1557,7 +1557,7 @@ iou_similarity
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         import paddle.fluid as fluid
      
@@ -1616,7 +1616,7 @@ multi_box_head
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
         
         import paddle.fluid as fluid
      
@@ -1685,7 +1685,7 @@ multiclass_nms
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     boxes = fluid.layers.data(name='bboxes', shape=[81, 4],
                               dtype='float32', lod_level=1)
@@ -1724,7 +1724,7 @@ PolygonBoxTransform 算子。
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     input = fluid.layers.data(name='input', shape=[4, 10, 5, 5],
@@ -1882,7 +1882,7 @@ rpn_target_assign
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         import paddle.fluid as fluid
         bbox_pred = fluid.layers.data(name=’bbox_pred’, shape=[100, 4],
@@ -1976,7 +1976,7 @@ ssd_loss
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
          pb = fluid.layers.data(
                            name='prior_box',
@@ -2420,7 +2420,7 @@ double_buffer
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     reader = fluid.layers.open_files(filenames=['somefile'],
                      shapes=[[-1, 784], [-1, 1]],
@@ -2578,7 +2578,7 @@ py_reader
 
 1.py_reader 基本使用如下代码
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle
     import paddle.fluid as fluid
@@ -2609,7 +2609,7 @@ py_reader
 
 2.训练和测试应使用不同的名称创建两个不同的py_reader，例如：
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle
     import paddle.fluid as fluid
@@ -2810,7 +2810,7 @@ pooling2d操作根据输入 ``input`` ， ``pool_size`` ， ``pool_type`` 参数
 
 对于平均adaptive pool2d:
 
-..  math::
+.. math::
 
        hstart &= floor(i * H_{in} / H_{out})
 
@@ -2878,7 +2878,7 @@ pooling3d操作根据输入 ``input`` ，``pool_size`` ， ``pool_type`` 参数�
 
 对于平均adaptive pool3d:
 
-..  math::
+.. math::
 
       dstart &= floor(i * D_{in} / D_{out})
 
@@ -3274,7 +3274,7 @@ beam_search
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     # 假设 `probs` 包含计算神经元所得的预测结果
     # `pre_ids` 和 `pre_scores` 为beam_search之前时间步的输出
@@ -3829,7 +3829,7 @@ conv2d_transpose
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
     conv2d_transpose = fluid.layers.conv2d_transpose(input=data, num_filters=2, filter_size=3)
@@ -4013,7 +4013,7 @@ conv3d_transpose
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(name='data', shape=[3, 12, 32, 32], dtype='float32')
     conv3d_transpose = fluid.layers.conv3d_transpose(input=data, num_filters=2, filter_size=3)
@@ -4090,7 +4090,7 @@ crf_decoding
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       crf_decode = fluid.layers.crf_decoding(
            input=hidden, param_attr=ParamAttr(name="crfw"))
@@ -4161,7 +4161,7 @@ crop
 
 **代码示例**:
 
-..  code-block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name="x", shape=[3, 5], dtype="float32")
     y = fluid.layers.data(name="y", shape=[2, 3], dtype="float32")
@@ -4231,7 +4231,7 @@ cross_entropy
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         predict = fluid.layers.fc(input=net, size=classdim, act='softmax')
         cost = fluid.layers.cross_entropy(input=predict, label=label)
@@ -4306,7 +4306,7 @@ ctc_greedy_decoder
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[8], dtype='float32')
 
@@ -4359,7 +4359,7 @@ data_norm
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(input=x, size=200, param_attr='fc1.w')
     hidden2 = fluid.layers.data_norm(input=hidden1)
@@ -4431,7 +4431,7 @@ groups mismatch.
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
     offset = fluid.layers.data(name='offset', shape=[18, 32, 32], dtype='float32')
@@ -4468,7 +4468,7 @@ dice_loss定义为:
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     predictions = fluid.layers.softmax(x)
     loss = fluid.layers.dice_loss(input=predictions, label=label, 2)
@@ -4614,7 +4614,7 @@ dynamic_gru
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     dict_dim, emb_dim = 128, 64
     data = fluid.layers.data(name='sequence', shape=[1],
@@ -4713,7 +4713,7 @@ W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   hidden_dim = 512
   forward_proj = fluid.layers.fc(input=input_seq, size=hidden_dim * 4,
@@ -4917,7 +4917,7 @@ elementwise_add
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -4973,7 +4973,7 @@ elementwise_div
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5031,7 +5031,7 @@ FloorDiv运算。
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5088,7 +5088,7 @@ elementwise_max
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5145,7 +5145,7 @@ elementwise_min
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5201,7 +5201,7 @@ elementwise_mod
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5257,7 +5257,7 @@ elementwise_mul
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5313,7 +5313,7 @@ elementwise_pow
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5370,7 +5370,7 @@ elementwise_sub
 
 例如：
 
-..  code-block:: text
+.. code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -5512,7 +5512,7 @@ expand运算会按给定的次数对输入各维度进行复制（tile）运算�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         x = fluid.layers.data(name='x', shape=[10], dtype='float32')
         out = fluid.layers.expand(x=x, expand_times=[1, 2, 2])
@@ -5597,7 +5597,7 @@ fc
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
          # 当输入为单个张量时
 
@@ -5701,7 +5701,7 @@ fsp_matrix
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     feature_map_0 = fluid.layers.conv2d(x)
     feature_map_1 = fluid.layers.conv2d(feature_map_0)
@@ -5748,7 +5748,7 @@ gather
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[-1, 5], dtype='float32')
     index = fluid.layers.data(name='index', shape=[-1, 1], dtype='int32')
@@ -6043,7 +6043,7 @@ GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     # 假设我们现在有x_t_data和size=10的之前的隐藏层
     x_t = fluid.layers.fc(input=x_t_data, size=30)
@@ -6217,7 +6217,7 @@ hsigmoid可以把时间复杂度 :math:`O(N)` 优化到 :math:`O(logN)` ,其中 
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[2], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='int64')
@@ -6259,7 +6259,7 @@ Huber损失是更具鲁棒性的损失函数。 huber损失可以评估输入对
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
 
@@ -6348,7 +6348,7 @@ im2sequence
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     output = fluid.layers.im2sequence(
     input=layer, stride=[1, 1], filter_size=[2, 2])
@@ -6475,7 +6475,7 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation。
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
     out = fluid.layers.image_resize(input, out_shape=[12, 12], resample="NEAREST")
@@ -6522,7 +6522,7 @@ kldiv_loss
 
 kL发散损失计算如下：
 
-..  math::
+.. math::
 
     l(x, y) = y * (log(y) - x)
 
@@ -6638,7 +6638,7 @@ label_smooth
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     label = fluid.layers.data(name="label", shape=[1], dtype="float32")
     one_hot_label = fluid.layers.one_hot(input=label, depth=10)
@@ -6694,7 +6694,7 @@ layer_norm
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
    data = fluid.layers.data(name='data', shape=[3, 32, 32],
                                            dtype='float32')
@@ -6924,7 +6924,7 @@ log
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   output = fluid.layers.log(x)
 
@@ -6967,7 +6967,7 @@ log_loss
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     label = fluid.layers.data(name='label', shape=[1], dtype='int64')
     prob = fluid.layers.data(name='prob', shape=[10], dtype='float32')
@@ -7385,7 +7385,7 @@ margin rank loss（差距排序损失）层。在排序问题中，它可以比�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     label = fluid.layers.data(name="label", shape=[4, 1], dtype="float32")
     left = fluid.layers.data(name="left", shape=[4, 1], dtype="float32")
@@ -7576,7 +7576,7 @@ mean_iou
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
    iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes)
 
@@ -7746,7 +7746,7 @@ multiplex
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
    import paddle.fluid as fluid
 
@@ -7796,7 +7796,7 @@ nce
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import numpy as np
 
@@ -7949,7 +7949,7 @@ pad
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     # x 为一个秩为2的张量
     import paddle.fluid as fluid
@@ -8081,7 +8081,7 @@ pad_constant_like
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
     # x是秩为4的tensor, x.shape = (2, 3, 2, 3)
     # y是秩为4的tensor, y.shape = (1, 3, 1, 3)
@@ -8125,7 +8125,7 @@ pixel shuffle 层（像素重组层）
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
     input = fluid.layers.data(name="input", shape=[9,4,4])
     output = fluid.layers.pixel_shuffle(x=input, upscale_factor=3)
@@ -8463,7 +8463,7 @@ PyFunc运算。
 
 **代码示例**:
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     import six
@@ -8526,7 +8526,7 @@ random_crop
 
 **代码示例**:
 
-..  code-block:: python
+.. code-block:: python
 
    img = fluid.layers.data("img", [3, 256, 256])
    cropped_img = fluid.layers.random_crop(img, shape=[3, 224, 224])
@@ -8615,7 +8615,7 @@ reduce_max
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
@@ -8663,7 +8663,7 @@ reduce_mean
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
@@ -8712,7 +8712,7 @@ reduce_min
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
@@ -8760,7 +8760,7 @@ reduce_prod
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
@@ -8809,7 +8809,7 @@ reduce_sum
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
@@ -8859,7 +8859,7 @@ Relu接受一个输入数据(张量)，输出一个张量。将线性函数y = m
 
 **代码示例**:
 
-..  code-block:: python
+.. code-block:: python
 
     output = fluid.layers.relu(x)
 
@@ -9105,7 +9105,7 @@ resize_nearest
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     out = fluid.layers.resize_nearest(input, out_shape=[12, 12])
 
@@ -9148,7 +9148,7 @@ Region of Interests align(直译：有意义、有价值选区对齐) 用于实�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     align_out = fluid.layers.roi_align(input=x,
                                        rois=rois,
@@ -9199,7 +9199,7 @@ Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverfl
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     pool_out = fluid.layers.roi_pool(input=x, rois=rois, 7,7,1.0)
 
@@ -9249,7 +9249,7 @@ row_conv
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
 
@@ -9414,7 +9414,7 @@ scatter
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     output = fluid.layers.scatter(input, index, updates)
 
@@ -9460,7 +9460,7 @@ selu
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     output = fluid.layers.selu(x)
 
@@ -9496,7 +9496,7 @@ sequence_concat操作通过序列信息连接LoD张量（Tensor）。例如：X1
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         out = fluid.layers.sequence_concat(input=[seq1, seq2, seq3])
 
@@ -9571,7 +9571,7 @@ sequence_enumerate
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       x = fluid.layers.data(shape[30, 1], dtype='int32', lod_level=1)
       out = fluid.layers.sequence_enumerate(input=x, win_size=3, pad_value=0)
@@ -10167,7 +10167,7 @@ sequence_scatter
 
 **代码示例**:
 
-..  code-block:: python
+.. code-block:: python
 
   output = fluid.layers.sequence_scatter(input, index, updates)
 
@@ -10223,7 +10223,7 @@ sequence_slice
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import numpy as np
     seqs = fluid.layers.data(name='x', shape=[10, 5],
@@ -10329,7 +10329,7 @@ sequence_unpad
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[10, 5], dtype='float32')
     len = fluid.layers.data(name='length', shape=[1], dtype='int64')
@@ -10494,7 +10494,7 @@ sigmoid_cross_entropy_with_logits
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     input = fluid.layers.data(
         name='data', shape=[10], dtype='float32')
@@ -10596,7 +10596,7 @@ similarity_focus
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             data = fluid.layers.data(
               name='data', shape=[2, 3, 2, 2], dtype='float32')
@@ -10693,7 +10693,7 @@ smooth_l1
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(name='data', shape=[128], dtype='float32')
     label = fluid.layers.data(
@@ -10840,7 +10840,7 @@ softmax_with_cross_entropy
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(name='data', shape=[128], dtype='float32')
         label = fluid.layers.data(name='label', shape=[1], dtype='int64')
@@ -10893,7 +10893,7 @@ space_to_depth
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(
         name='data', shape=[1, 4, 2, 2], dtype='float32', append_batch_size=False)
@@ -13464,7 +13464,7 @@ bipartite_match
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
          x = fluid.layers.data(name='x', shape=[4], dtype='float32')
          y = fluid.layers.data(name='y', shape=[4], dtype='float32')
@@ -13509,7 +13509,7 @@ box_clip
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     boxes = fluid.layers.data(
         name='data', shape=[8, 4], dtype='float32', lod_level=1)
@@ -13793,7 +13793,7 @@ detection_map
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         detect_res = fluid.layers.data(
             name='detect_res',
@@ -14170,7 +14170,7 @@ multi_box_head
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
           inputs=[conv1, conv2, conv3, conv4, conv5, conv6],
@@ -14229,7 +14229,7 @@ multiclass_nms
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     boxes = fluid.layers.data(name='bboxes', shape=[81, 4],
                               dtype='float32', lod_level=1)
@@ -14414,7 +14414,7 @@ rpn_target_assign
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         bbox_pred = fluid.layers.data(name=’bbox_pred’, shape=[100, 4],
                 append_batch_size=False, dtype=’float32’)
@@ -14503,7 +14503,7 @@ ssd_loss
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
          pb = fluid.layers.data(
                            name='prior_box',
@@ -14937,7 +14937,7 @@ sequence_unpad
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[10, 5], dtype='float32')
     len = fluid.layers.data(name='length', shape=[1], dtype='int64')
@@ -15103,7 +15103,7 @@ sigmoid_cross_entropy_with_logits
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     input = fluid.layers.data(
         name='data', shape=[10], dtype='float32')
@@ -15140,7 +15140,7 @@ sign
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     # [1, 0, -1]
     data = fluid.layers.sign(np.array([3, 0, -2]))
@@ -15231,7 +15231,7 @@ similarity_focus
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             data = fluid.layers.data(
               name='data', shape=[-1, 3, 2, 2], dtype='float32')
@@ -15333,7 +15333,7 @@ smooth_l1
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     data = fluid.layers.data(name='data', shape=[128], dtype='float32')
     label = fluid.layers.data(
@@ -15484,7 +15484,7 @@ softmax_with_cross_entropy
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   data = fluid.layers.data(name='data', shape=[128], dtype='float32')
         label = fluid.layers.data(name='label', shape=[1], dtype='int64')
@@ -15537,7 +15537,7 @@ space_to_depth
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     import numpy as np

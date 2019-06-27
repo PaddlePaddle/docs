@@ -13,7 +13,7 @@ BuildStrategy
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -26,7 +26,7 @@ str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -39,7 +39,7 @@ str类型。它表明了以graphviz格式向文件中写入SSA图的路径，有
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -56,7 +56,7 @@ bool类型。它表明了是否融合（fuse）elementwise_add_op和activation_o
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -69,7 +69,7 @@ BOOL类型，fuse_relu_depthwise_conv指示是否融合relu和depthwise_conv2d�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -81,7 +81,7 @@ str类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -97,7 +97,7 @@ str类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce str
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -109,7 +109,7 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -126,7 +126,7 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
@@ -154,7 +154,7 @@ CompiledProgram用于转换程序以进行各种优化。例如，
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
         
         import paddle.fluid as fluid
         import paddle.fluid.compiler as compiler
@@ -187,7 +187,7 @@ CompiledProgram用于转换程序以进行各种优化。例如，
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
             
             import paddle.fluid as fluid
             import paddle.fluid.compiler as compiler
@@ -260,7 +260,7 @@ cpu_places
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
            cpu_places = fluid.cpu_places()
 
@@ -277,7 +277,7 @@ CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         cpu_place = fluid.CPUPlace()
 
@@ -306,7 +306,7 @@ create_lod_tensor
 例如：
 假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么数 ``data`` 可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
 
-..  code-block:: python
+.. code-block:: python
 
         import paddle.fluid as fluid
         import numpy as np
@@ -366,7 +366,7 @@ create_random_int_lodtensor
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         import paddle.fluid as fluid
      
@@ -395,7 +395,7 @@ cuda_pinned_places
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         cuda_pinned_places_cpu_num = fluid.cuda_pinned_places()
         # 或者
@@ -426,7 +426,7 @@ cuda_places
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       cuda_places = fluid.cuda_places()
 
@@ -441,7 +441,7 @@ CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GP
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
       place = fluid.CUDAPinnedPlace()
 
@@ -456,7 +456,7 @@ CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
        gpu_place = fluid.CUDAPlace(0)
 
@@ -476,35 +476,31 @@ DataFeedDesc
 
 DataFeedDesc应由来自磁盘的有效protobuf消息初始化。
 
-.. code-block:: python
-
-  data_feed = fluid.DataFeedDesc('data.proto')
-
 可以参考 :code:`paddle/fluid/framework/data_feed.proto` 查看我们如何定义message
 
 一段典型的message可能是这样的：
 
-.. code-block:: text
+.. code-block:: python
 
- f = open("data.proto", "w")
- print >> f, 'name: "MultiSlotDataFeed"'
- print >> f, 'batch_size: 2'
- print >> f, 'multi_slot_desc {'
- print >> f, '    slots {'
- print >> f, '         name: "words"'
- print >> f, '         type: "uint64"'
- print >> f, '         is_dense: false'
- print >> f, '         is_used: true'
- print >> f, '     }'
- print >> f, '     slots {'
- print >> f, '         name: "label"'
- print >> f, '         type: "uint64"'
- print >> f, '         is_dense: false'
- print >> f, '         is_used: true'
- print >> f, '    }'
- print >> f, '}'
- f.close()
- data_feed = fluid.DataFeedDesc('data.proto')
+    f = open("data.proto", "w")
+    print >> f, 'name: "MultiSlotDataFeed"'
+    print >> f, 'batch_size: 2'
+    print >> f, 'multi_slot_desc {'
+    print >> f, '    slots {'
+    print >> f, '         name: "words"'
+    print >> f, '         type: "uint64"'
+    print >> f, '         is_dense: false'
+    print >> f, '         is_used: true'
+    print >> f, '     }'
+    print >> f, '     slots {'
+    print >> f, '         name: "label"'
+    print >> f, '         type: "uint64"'
+    print >> f, '         is_dense: false'
+    print >> f, '         is_used: true'
+    print >> f, '    }'
+    print >> f, '}'
+    f.close()
+    data_feed = fluid.DataFeedDesc('data.proto')
 
 但是，用户通常不应该关心消息格式;相反，我们鼓励他们在将原始日志文件转换为AsyncExecutor可以接受的训练文件的过程中，使用 :code:`Data Generator` 生成有效数据描述。
 
@@ -514,10 +510,10 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
-    data_feed.set_dense_slots('wd')  # The slot named 'wd' will be dense
-    data_feed.set_use_slots('wd')    # The slot named 'wd' will be used
+    data_feed.set_dense_slots('wd')  # 名为'wd'的slot将被设置为密集的
+    data_feed.set_use_slots('wd')    # 名为'wd'的slot将被用于训练
 
-    #Finally, the content can be dumped out for debugging purpose:
+    # 最后，可以打印变量详细信息便于排出错误
 
     print(data_feed.desc())
 
@@ -687,7 +683,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 以下是简单用法：
 
-..  code-block:: python
+.. code-block:: python
 
   import paddle.fluid as fluid
   place = fluid.CPUPlace()
@@ -698,7 +694,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 在多GPU模型训练时，如果需要提前分别向各GPU输入数据，可以使用 ``decorate_reader`` 函数。
 
-..  code-block:: python
+.. code-block:: python
 
   import paddle
   import paddle.fluid as fluid
@@ -725,7 +721,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   import numpy as np
   import paddle
@@ -769,7 +765,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import numpy.random as random
     import paddle.fluid as fluid
@@ -804,7 +800,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import numpy.random as random
     import paddle.fluid as fluid
@@ -849,7 +845,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import numpy.random as random
     import paddle
@@ -901,7 +897,7 @@ default_main_program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
      
@@ -995,7 +991,7 @@ DistributeTranspiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   x = fluid.layers.data(name='x', shape=[13], dtype='float32')
   y = fluid.layers.data(name='y', shape=[1], dtype='float32')
@@ -1055,7 +1051,7 @@ DistributeTranspiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     transpiler = fluid.DistributeTranspiler()
     t.transpile(
@@ -1078,7 +1074,7 @@ DistributeTranspiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     #this is an example, find available endpoints in your case
@@ -1104,7 +1100,7 @@ DistributeTranspiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     #this is an example, find available endpoints in your case
@@ -1132,7 +1128,7 @@ DistributeTranspiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     #this is an example, find available endpoints in your case
@@ -1164,7 +1160,7 @@ DistributeTranspiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
@@ -1209,7 +1205,7 @@ block中分割(split)出的元素个数的最小值。
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     config = fluid.DistributeTranspilerConfig()
     config.slice_var_up = True
@@ -1228,7 +1224,7 @@ ExecutionStrategy
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     x = fluid.layers.data(name='x', shape=[13], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
@@ -1368,7 +1364,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
     
     import paddle.fluid as fluid
 
@@ -1390,7 +1386,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
             import numpy
@@ -1444,7 +1440,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
   import paddle.fluid as fluid
   place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
@@ -1480,7 +1476,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
         import paddle.fluid as fluid
         place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
@@ -1508,7 +1504,7 @@ global_scope
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
         import paddle.fluid as fluid
         import numpy
@@ -1539,7 +1535,7 @@ in_dygraph_mode
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
   if fluid.in_dygraph_mode():
             pass
@@ -1587,7 +1583,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
       import paddle.fluid as fluid
      
@@ -1612,7 +1608,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
             
             import paddle.fluid as fluid
             import numpy as np
@@ -1632,7 +1628,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
             
             import paddle.fluid as fluid
             import numpy as np
@@ -1652,7 +1648,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
             
             import paddle.fluid as fluid
             import numpy as np
@@ -1671,7 +1667,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
             
             import paddle.fluid as fluid
             import numpy as np
@@ -1691,7 +1687,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
             
             import paddle.fluid as fluid
             import numpy as np
@@ -1718,7 +1714,7 @@ LoDTensor的数组。
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
         
         import paddle.fluid as fluid
      
@@ -1751,7 +1747,7 @@ memory_optimize
 
 .. py:function:: paddle.fluid.memory_optimize(input_program, skip_opt_set=None, print_log=False, level=0, skip_grads=False)
 
-Legacy内存优化策略，通过在不同operators间重用var内存来减少总内存消耗。
+历史遗留的内存优化策略，通过在不同operators间重用var内存来减少总内存消耗。
 用一个简单的示例来解释该算法：
 
 c = a + b  # 假设这里是最后一次使用a
@@ -1762,14 +1758,14 @@ d = b * c
 c = a + b
 a = b * c
      
-请注意，在此legacy设计中，我们将直接用变量a代替变量d，这意味着在你调用该API后，某些变量将会消失，还有一些会取非预期值。正如上面的例子中，执行程序后，实际上a取d的值。
+请注意，在此历史遗存设计中，我们将直接用变量a代替变量d，这意味着在你调用该API后，某些变量将会消失，还有一些会取非预期值。正如上面的例子中，执行程序后，实际上a取d的值。
     
 因此，为避免重要变量在优化过程中被重用或移除，我们支持用skip_opt_set指定一个变量白名单。skip_opt_set中的变量不会受memory_optimize API的影响。
      
      
 .. note::
     
-     此API为deprecated，请不要在你新写的代码中使用它。它不支持block中嵌套子block，如While、IfElse等。
+     此API已被弃用，请不要在你新写的代码中使用它。它不支持block中嵌套子block，如While、IfElse等。
 
 参数:
   - **input_program** (str) – 输入Program。
@@ -1981,7 +1977,7 @@ ParallelExecutor
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
         pe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                     loss_name=avg_cost.name,
@@ -1998,7 +1994,7 @@ ParallelExecutor
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
             import numpy
@@ -2057,7 +2053,7 @@ ParamAttr
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
    import paddle.fluid as fluid
    
@@ -2095,7 +2091,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
   
   import paddle.fluid as fluid
 
@@ -2129,7 +2125,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
      
@@ -2152,7 +2148,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   test_program = fluid.default_main_program().clone(for_test=True)
   optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
@@ -2169,7 +2165,7 @@ Program
 
 注意，Program Desc在clone后的顺序可能不同，这不会影响您的训练或测试进程。在下面的示例中，我们为您提供了一个简单的方法print_prog（program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
 
-..  code-block:: python     
+.. code-block:: python     
                 
                 import paddle.fluid as fluid
                 import six
@@ -2187,7 +2183,7 @@ Program
 
 1.克隆一个Program，示例代码如下。
 
-..  code-block:: python
+.. code-block:: python
 
   import paddle.fluid as fluid
   import six
@@ -2225,7 +2221,7 @@ Program
   
 2.如果分别运行 train Program 和 test Program，则可以不使用clone。
 
-..  code-block:: python
+.. code-block:: python
 
   import paddle.fluid as fluid
   import six
@@ -2287,7 +2283,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
             
             import paddle.fluid as fluid
      
@@ -2304,7 +2300,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
      
@@ -2320,7 +2316,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
      
@@ -2338,7 +2334,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
      
@@ -2352,7 +2348,7 @@ Program
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
      
@@ -2370,7 +2366,7 @@ Program
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             import paddle.fluid as fluid
      
@@ -2398,7 +2394,7 @@ program_guard
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   import paddle.fluid as fluid
   main_program = fluid.Program()
@@ -2411,7 +2407,7 @@ program_guard
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   import paddle.fluid as fluid
   main_program = fluid.Program()
@@ -2454,14 +2450,14 @@ release_memory
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
      
     # 搭建网络
     # ...
      
-    # deprecated API
+    # 已弃用的API
     fluid.release_memory(fluid.default_main_program())
      
 
@@ -2482,7 +2478,7 @@ scope_guard
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   import numpy
   
@@ -2536,7 +2532,7 @@ WeightNormParamAttr
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
   
   import paddle.fluid as fluid
   data = fluid.layers.data(name="data", shape=[3, 32, 32], dtype="float32")

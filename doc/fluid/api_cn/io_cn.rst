@@ -27,7 +27,7 @@ load_inference_model
 抛出异常：
    - ``ValueError`` – 如果 ``dirname`` 非法 
 
-..  code-block:: python
+.. code-block:: python
 
         import paddle.fluid as fluid
         import numpy as np
@@ -94,7 +94,7 @@ load_params
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
@@ -129,7 +129,7 @@ load_persistables
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
@@ -171,7 +171,7 @@ load_vars
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     import paddle.fluid as fluid
     main_prog = fluid.Program()
@@ -234,7 +234,7 @@ PyReader
 
 1.如果iterable=false，则创建的Pyreader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用start（），并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException `` 。一旦捕获到异常，用户应该调用reset（）手动重置reader。
 
-..  code-block:: python
+.. code-block:: python
 
     EPOCH_NUM = 3
     ITER_NUM = 5
@@ -276,7 +276,7 @@ PyReader
 
 2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 。
 
-..  code-block:: python
+.. code-block:: python
 
     EPOCH_NUM = 3
     ITER_NUM = 5
@@ -309,7 +309,7 @@ PyReader
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
   BATCH_SIZE = 10
      
@@ -339,7 +339,7 @@ PyReader
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             BATCH_SIZE = 10
      
@@ -381,7 +381,7 @@ PyReader
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
      
             EPOCH_NUM = 3
             ITER_NUM = 15
@@ -427,7 +427,7 @@ PyReader
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
             
             EPOCH_NUM = 3
             ITER_NUM = 15
@@ -473,7 +473,7 @@ PyReader
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
             EPOCH_NUM = 3
             ITER_NUM = 15
@@ -538,7 +538,7 @@ save_inference_model
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
 
@@ -597,7 +597,7 @@ save_params
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
@@ -634,7 +634,7 @@ save_persistables
   
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
@@ -678,7 +678,7 @@ save_vars
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
       
       import paddle.fluid as fluid
       main_prog = fluid.Program()

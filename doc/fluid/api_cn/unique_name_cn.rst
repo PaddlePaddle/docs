@@ -22,16 +22,16 @@ generate
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
- 	 	import paddle.fluid as fluid
- 	 	name1 = fluid.unique_name.generate('fc')
- 	 	name2 = fluid.unique_name.generate('fc')
- 	 	# 结果为fc_0, fc_1
- 	 	print name1, name2
+        import paddle.fluid as fluid
+        name1 = fluid.unique_name.generate('fc')
+        name2 = fluid.unique_name.generate('fc')
+        # 结果为fc_0, fc_1
+        print name1, name2
 
 
-.. _cn_api_fluid_transpiler_RoundRobin:
+.. _cn_api_fluid_unique_name_guard:
 
 guard
 -------------------------------
@@ -45,22 +45,22 @@ guard
  
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
- 	 	import paddle.fluid as fluid
- 	 	with fluid.unique_name.guard():
- 	 	  name_1 = fluid.unique_name.generate('fc')
- 	 	with fluid.unique_name.guard():
- 	 	  name_2 = fluid.unique_name.generate('fc')
- 	 	# 结果为fc_0, fc_0
- 	 	print name_1, name_2
- 	 	 
- 	 	with fluid.unique_name.guard('A'):
- 	 	  name_1 = fluid.unique_name.generate('fc')
- 	 	with fluid.unique_name.guard('B'):
- 	 	  name_2 = fluid.unique_name.generate('fc')
- 	 	# 结果为Afc_0, Bfc_0
- 	 	print name_1, name_2
+        import paddle.fluid as fluid
+        with fluid.unique_name.guard():
+          name_1 = fluid.unique_name.generate('fc')
+        with fluid.unique_name.guard():
+          name_2 = fluid.unique_name.generate('fc')
+        # 结果为fc_0, fc_0
+        print name_1, name_2
+         
+        with fluid.unique_name.guard('A'):
+          name_1 = fluid.unique_name.generate('fc')
+        with fluid.unique_name.guard('B'):
+          name_2 = fluid.unique_name.generate('fc')
+        # 结果为Afc_0, Bfc_0
+        print name_1, name_2
 
 
 .. _cn_api_fluid_unique_name_switch:
@@ -81,15 +81,15 @@ switch
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
- 	 	import paddle.fluid as fluid
- 	 	name1 = fluid.unique_name.generate('fc')
- 	 	name2 = fluid.unique_name.generate('fc')
- 	 	# 结果为fc_0, fc_1
- 	 	print name1, name2
- 	 	 
- 	 	fluid.unique_name.switch()
- 	 	name2 = fluid.unique_name.generate('fc')
- 	 	# 结果为fc_0
- 	 	print name2
+        import paddle.fluid as fluid
+        name1 = fluid.unique_name.generate('fc')
+        name2 = fluid.unique_name.generate('fc')
+        # 结果为fc_0, fc_1
+        print name1, name2
+         
+        fluid.unique_name.switch()
+        name2 = fluid.unique_name.generate('fc')
+        # 结果为fc_0
+        print name2

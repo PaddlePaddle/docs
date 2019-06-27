@@ -41,8 +41,8 @@ AdagradOptimizer
 
 .. math::
 
-	moment\_out &= moment + grad * grad\\param\_out 
-	&= param - \frac{learning\_rate * grad}{\sqrt{moment\_out} + \epsilon}
+    moment\_out &= moment + grad * grad\\param\_out 
+    &= param - \frac{learning\_rate * grad}{\sqrt{moment\_out} + \epsilon}
 
 原始论文（http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf）没有epsilon属性。在我们的实现中也作了如下更新：
 http://cs231n.github.io/neural-networks-3/#ada 用于维持数值稳定性，避免除数为0的错误发生。
@@ -195,7 +195,7 @@ Adam更新如下：
 
 .. math::
 
-	t & = t + 1\\moment\_out & = {\beta}_1 * moment + (1 - {\beta}_1) * grad\\inf\_norm\_out & = max({\beta}_2 * inf\_norm + \epsilon, |grad|)\\learning\_rate & = \frac{learning\_rate}{1 - {\beta}_1^t}\\param\_out & = param - learning\_rate * \frac{moment\_out}{inf\_norm\_out}
+    t & = t + 1\\moment\_out & = {\beta}_1 * moment + (1 - {\beta}_1) * grad\\inf\_norm\_out & = max({\beta}_2 * inf\_norm + \epsilon, |grad|)\\learning\_rate & = \frac{learning\_rate}{1 - {\beta}_1^t}\\param\_out & = param - learning\_rate * \frac{moment\_out}{inf\_norm\_out}
 
 参数: 
     - **learning_rate** (float|Variable)-学习率，用于更新参数。作为数据参数，可以是一个浮点类型值或有一个浮点类型值的变量
@@ -704,10 +704,10 @@ MomentumOptimizer
 该优化器含有牛顿动量标志，公式更新如下：
 
 .. math::
-	& velocity = mu * velocity + gradient\\
-	& if (use\_nesterov):\\
-	&\quad   param = param - (gradient + mu * velocity) * learning\_rate\\
-	& else:\\&\quad   param = param - learning\_rate * velocity
+    & velocity = mu * velocity + gradient\\
+    & if (use\_nesterov):\\
+    &\quad   param = param - (gradient + mu * velocity) * learning\_rate\\
+    & else:\\&\quad   param = param - learning\_rate * velocity
 
 参数：
     - **learning_rate** (float|Variable) - 学习率，用于参数更新。作为数据参数，可以是浮点型值或含有一个浮点型值的变量
@@ -795,7 +795,7 @@ RMSPropOptimizer
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle
     import paddle.fluid as fluid

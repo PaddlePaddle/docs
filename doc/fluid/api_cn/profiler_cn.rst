@@ -27,7 +27,7 @@ CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行�
 **代码示例**
 
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
@@ -79,7 +79,7 @@ profile interface 。与cuda_profiler不同，此profiler可用于分析CPU和GP
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid.profiler as profiler
     import numpy as np
@@ -115,7 +115,7 @@ reset_profiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid.profiler as profiler
     with profiler.profiler(state, 'total', '/tmp/profile'):
@@ -152,7 +152,7 @@ start_profiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid.profiler as profiler
 
@@ -192,7 +192,7 @@ stop_profiler
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid.profiler as profiler
 
