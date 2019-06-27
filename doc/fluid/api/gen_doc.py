@@ -91,6 +91,7 @@ class DocGenerator(object):
         self._print_header_(name, dot='-', is_title=False)
         self.stream.write('''..  autoclass:: paddle.{0}.{1}
     :members:
+    :inherited-members:
     :noindex:
 
 '''.format(self.module_prefix, name))
