@@ -55,7 +55,7 @@
 
 ### 2. Caffe转为Paddle Fluid模型
 
-请参考这里[这里](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/caffe2fluid)
+请参考这里[这里](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/caffe2fluid)
 
 ### 3. ONNX
 
@@ -69,9 +69,10 @@ ONNX全称为“Open Neural Network Exchange”，即“开放的神经网络切
 
 [下载链接](http://mms-graph.bj.bcebos.com/paddle-mobile%2FmodelsAndImages.zip)
 
-## 问题解决
-
-欢迎提出或解决我们的问题，有疑问可以发[Issue](https://github.com/PaddlePaddle/paddle-mobile/issues)
+## 交流与反馈
+- 欢迎您通过[Github Issues](https://github.com/PaddlePaddle/Paddle/issues)来提交问题、报告与建议
+- QQ群: 696965088 (Paddle-Mobile)
+- [论坛](http://ai.baidu.com/forum/topic/list/168): 欢迎大家在PaddlePaddle论坛分享在使用PaddlePaddle中遇到的问题和经验, 营造良好的论坛氛围
 
 ## Copyright and License
 Paddle-Mobile 提供相对宽松的Apache-2.0开源协议 [Apache-2.0 license](LICENSE)
