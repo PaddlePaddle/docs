@@ -130,7 +130,7 @@ init_on_cpu
 .. code-block:: python
         
         with fluid.initializer.init_on_cpu():
-                step = fluid.layers.create_global_var(shape=[2,3], value=1.0, dtype='float32')
+            step = fluid.layers.create_global_var(shape=[2,3], value=1.0, dtype='float32')
 
 
 

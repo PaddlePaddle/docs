@@ -44,13 +44,13 @@ DistributeTranspiler
 
     t = fluid.DistributeTranspiler()
     t.transpile(
-             trainer_id, pservers=pserver_endpoints, trainers=trainers)
+            trainer_id, pservers=pserver_endpoints, trainers=trainers)
     if role == "PSERVER":
-             pserver_program = t.get_pserver_program(current_endpoint)
-             pserver_startup_program = t.get_startup_program(current_endpoint,
+        pserver_program = t.get_pserver_program(current_endpoint)
+        pserver_startup_program = t.get_startup_program(current_endpoint,
                                                      pserver_program)
     elif role == "TRAINER":
-             trainer_program = t.get_trainer_program()
+        trainer_program = t.get_trainer_program()
 
     # nccl2模式
     trainer_num = 2
@@ -345,7 +345,7 @@ release_memory
         # 构建网络
         # ...
         
-        # deprecated API
+        # 已弃用的API
         fluid.release_memory(fluid.default_main_program())
 
 

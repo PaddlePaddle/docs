@@ -14,7 +14,7 @@ DataFeeder
 
 
 ``DataFeeder`` 负责将reader(读取器)返回的数据转成一种特殊的数据结构，使它们可以输入到 ``Executor`` 和 ``ParallelExecutor`` 中。
-reader通常返回一个minibatch条目列表。在列表中每一条目都是一个样本（sample）,它是由具有一至多个特征的列表或元组组成的。
+reader通常返回一个minibatch条目列表。在列表中每一条目都是一个样本（sample），它是由具有一至多个特征的列表或元组组成的。
 
 
 以下是简单用法：

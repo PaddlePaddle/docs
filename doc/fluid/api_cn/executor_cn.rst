@@ -43,10 +43,10 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
-            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-            hidden = fluid.layers.fc(input=data, size=10)
-            loss = fluid.layers.mean(hidden)
-            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = fluid.layers.mean(hidden)
+        fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
     
     # 仅运行一次startup program
     # 不需要优化/编译这个startup program
@@ -66,7 +66,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
-            os.environ['CPU_NUM'] = str(2)
+        os.environ['CPU_NUM'] = str(2)
 
     compiled_prog = compiler.CompiledProgram(
             train_program()).with_data_parallel(
