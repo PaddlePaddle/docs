@@ -8,6 +8,5 @@
     user_guides/index_en.rst
     advanced_usage/index_en.rst
     api/index_en.rst
-    release_note_en.rst
 
 
