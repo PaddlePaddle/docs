@@ -34,7 +34,8 @@ array_length
 **代码示例**:
 
 .. code-block:: python
-
+    
+    import paddle.fluid as fluid
     tmp = fluid.layers.zeros(shape=[10], dtype='int32')
     i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
     arr = fluid.layers.array_write(tmp, i=i)
@@ -79,6 +80,7 @@ array_read
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     array = fluid.layers.create_array(dtype='float32')
     i = fluid.layers.fill_constant(shape=[1],dtype='int64',value=10)
     item = fluid.layers.array_read(array, i)
@@ -115,9 +117,10 @@ array_write
 
 .. code-block:: python
 
-  tmp = fluid.layers.zeros(shape=[10], dtype='int32')
-  i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-  arr = fluid.layers.array_write(tmp, i=i)
+    import paddle.fluid as fluid
+    tmp = fluid.layers.zeros(shape=[10], dtype='int32')
+    i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
+    arr = fluid.layers.array_write(tmp, i=i)
 
 
 
@@ -151,7 +154,7 @@ create_array
 
 .. code-block:: python
 
-  data = fluid.layers.create_array(dtype='float32')
+    data = fluid.layers.create_array(dtype='float32')
 
 
 
@@ -175,27 +178,6 @@ DynamicRNN
 
 必须设置输入lod，请参考 ``lod_tensor``
 
-**代码示例**
-
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name='sentence', dtype='int64', lod_level=1)
-    embedding = fluid.layers.embedding(input=data, size=[65535, 32],
-                        is_sparse=True)
-
-    drnn = fluid.layers.DynamicRNN()
-    with drnn.block():
-        word = drnn.step_input(embedding)
-            prev = drnn.memory(shape=[200])
-            hidden = fluid.layers.fc(input=[word, prev], size=200, act='relu')
-            drnn.update_memory(prev, hidden)  # set prev to hidden
-            drnn.output(hidden)
-
-     # last是的最后一时间步，也是编码（encoding）得出的最终结果
-    last = fluid.layers.sequence_last_step(drnn())
-
-
 动态RNN将按照timesteps展开开序列。用户需要在with block中定义如何处理处理每个timestep。
 
 memory用于缓存分段数据。memory的初始值可以是零，也可以是其他变量。
@@ -211,18 +193,70 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 参数:
         - **x** (Variable) - 输入序列
-      - **level** (int) - 用于拆分步骤的LOD层级，默认值0
+        - **level** (int) - 用于拆分步骤的LOD层级，默认值0
 
 返回:当前的输入序列中的timestep。
 
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+
+    sentence = fluid.layers.data(name='sentence', shape=[1], dtype='int64', lod_level=1)
+    embedding = fluid.layers.embedding(input=sentence, size=[65536, 32], is_sparse=True)
+
+    drnn = fluid.layers.DynamicRNN()
+    with drnn.block():
+        word = drnn.step_input(embedding)
+        prev = drnn.memory(shape=[200])
+        hidden = fluid.layers.fc(input=[word, prev], size=200, act='relu')
+        drnn.update_memory(prev, hidden)  # set prev to hidden
+        drnn.output(hidden)
+
+    # 获得最后一个的时间步的rnn，也是编码得出的最终结果
+    rnn_output = drnn()
+    last = fluid.layers.sequence_last_step(rnn_output)
+
+
+
+
 .. py:method:: static_input(x)
 
-将变量标记为RNN输入。输入不会分散到timestep中。
+将变量标记为RNN输入。输入不会分散到timestep中。这是可选的。
 
 参数:
         - **x** (Variable) - 输入序列
 
-返回:可以访问的RNN的输入变量,。
+返回:可以访问的RNN的输入变量。
+
+**代码示例**
+
+.. code-block:: python
+
+import paddle.fluid as fluid
+
+    sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
+    encoder_proj = fluid.layers.data(name='encoder_proj', dtype='float32', shape=[32], lod_level=1)
+    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10], lod_level=1)
+
+    drnn = fluid.layers.DynamicRNN()
+    with drnn.block():
+        current_word = drnn.step_input(sentence)
+        encoder_word = drnn.static_input(encoder_proj)
+        hidden_mem = drnn.memory(init=decoder_boot, need_reorder=True)
+        fc_1 = fluid.layers.fc(input=encoder_word, size=30, bias_attr=False)
+        fc_2 = fluid.layers.fc(input=current_word, size=30, bias_attr=False)
+        decoder_inputs = fc_1 + fc_2
+        h, _, _ = fluid.layers.gru_unit(input=decoder_inputs, hidden=hidden_mem, size=30)
+        drnn.update_memory(hidden_mem, h)
+        out = fluid.layers.fc(input=h, size=10, bias_attr=True, act='softmax')
+        drnn.output(out)
+
+    rnn_output = drnn()
+
+
 
 .. py:method:: block()
 
@@ -232,48 +266,47 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 为动态rnn创建一个memory 变量。
 
-如果 ``init`` 不是None， ``memory`` 将由这个变量初始化。参数 ``need_reorder`` 用于将memory重新排序作为输入变量。当memory初始化依赖于输入样本时，应该将其设置为true。
+如果 ``init`` 不是None， ``memory`` 将由这个变量初始化。参数 ``need_reorder`` 用于将memory重新排序作为输入变量。当memory初始化依赖于输入样本时，应该将其设置为True。
 
-**例如**
+**代码示例**
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    sentence = fluid.layers.data(
-                 name='sentence', dtype='float32', shape=[32])
-    boot_memory = fluid.layers.data(
-                 name='boot', dtype='float32', shape=[10])
+
+    sentence = fluid.layers.data(name='sentence', shape=[32], dtype='float32', lod_level=1)
+    boot_memory = fluid.layers.data(name='boot', shape=[10], dtype='float32', lod_level=1)
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
-         word = drnn.step_input(sentence)
-         memory = drnn.memory(init=boot_memory, need_reorder=True)
-         hidden = fluid.layers.fc(
-             input=[word, memory], size=10, act='tanh')
-         drnn.update_memory(ex_mem=memory, new_mem=hidden)
-         drnn.output(hidden)
+        word = drnn.step_input(sentence)
+        memory = drnn.memory(init=boot_memory, need_reorder=True)
+        hidden = fluid.layers.fc(input=[word, memory], size=10, act='tanh')
+        drnn.update_memory(ex_mem=memory, new_mem=hidden)
+        drnn.output(hidden)
 
     rnn_output = drnn()
 
 
 
-否则，如果已经设置 ``shape`` 、 ``value`` 、 ``dtype`` ，memory将被 ``value`` 初始化
+否则，如果已经设置 ``shape`` 、 ``value`` 、 ``dtype`` ，memory将被 ``value`` 初始化。
+
+**代码示例**
 
 .. code-block:: python
 
     import paddle.fluid as fluid
 
-    sentence = fluid.layers.data(
-            name='sentence', dtype='float32', shape=[32])
+    sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
         word = drnn.step_input(sentence)
         memory = drnn.memory(shape=[10], dtype='float32', value=0)
-        hidden = fluid.layers.fc(
-            input=[word, memory], size=10, act='tanh')
+        hidden = fluid.layers.fc(input=[word, memory], size=10, act='tanh')
         drnn.update_memory(ex_mem=memory, new_mem=hidden)
         drnn.output(hidden)
+
     rnn_output = drnn()
 
 
@@ -292,8 +325,8 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 将内存从 ``ex_mem`` 更新到 ``new_mem`` 。注意， ``ex_mem`` 和 ``new_mem`` 的 ``shape`` 和数据类型必须相同。
 
 参数：
-    - **ex_mem** （memory Variable）-  memory 变量（Variable）
-    - **new_mem** （memory Variable）- RNN块中生成的平坦变量（plain  variable）
+    - **ex_mem** （memory Variable）-  memory 变量
+    - **new_mem** （memory Variable）- RNN块中生成的变量
 
 返回：None
 
@@ -343,6 +376,64 @@ equal
 
 
 
+
+
+
+
+
+.. _cn_api_fluid_layers_greater_equal:
+    
+greater_equal
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.greater_equal(x, y, cond=None)
+
+该层逐元素地返回 :math:`x >= y` 的逻辑值，和重载算子 `>=` 相同。
+
+参数：
+    - **x** (Variable) - *greater_equal* 的第一个操作数
+    - **y** (Variable) - *greater_equal* 的第二个操作数
+    - **cond** (Variable|None) - 可选的输出变量，存储 *greater_equal* 的结果
+
+返回：存储 *greater_equal* 的输出的张量变量。
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+
+     out = fluid.layers.greater_equal(x=label, y=limit)
+
+
+
+
+
+
+
+.. _cn_api_fluid_layers_greater_than:
+
+greater_than
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.greater_than(x, y, cond=None)
+
+该层逐元素地返回 :math:`x > y` 的逻辑值，和重载算子 `>` 相同。
+
+参数：
+    - **x** (Variable) - *greater_than* 的第一个操作数
+    - **y** (Variable) - *greater_than* 的第二个操作数
+    - **cond** (Variable|None) - 可选的输出变量，存储 *greater_than* 的结果
+
+返回：存储 *greater_than* 的输出的张量变量。
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+
+     out = fluid.layers.greater_than(x=label, y=limit)
 
 
 
@@ -3651,15 +3742,15 @@ continuous_value_model
 .. code-block:: python
 
     input = fluid.layers.data(name="input", shape=[-1, 1], lod_level=1, append_batch_size=False, dtype="int64")#, stop_gradient=False)
-      label = fluid.layers.data(name="label", shape=[-1, 1], append_batch_size=False, dtype="int64")
-      embed = fluid.layers.embedding(
-                        input=input,
-                        size=[100, 11],
-                        dtype='float32')
-      ones = fluid.layers.fill_constant_batch_size_like(input=label, shape=[-1, 1], dtype="int64", value=1)
-      show_clk = fluid.layers.cast(fluid.layers.concat([ones, label], axis=1), dtype='float32')
-      show_clk.stop_gradient = True
-      input_with_cvm = fluid.layers.continuous_value_model(embed, show_clk, True)
+    label = fluid.layers.data(name="label", shape=[-1, 1], append_batch_size=False, dtype="int64")
+    embed = fluid.layers.embedding(
+                    input=input,
+                    size=[100, 11],
+                    dtype='float32')
+    ones = fluid.layers.fill_constant_batch_size_like(input=label, shape=[-1, 1], dtype="int64", value=1)
+    show_clk = fluid.layers.cast(fluid.layers.concat([ones, label], axis=1), dtype='float32')
+    show_clk.stop_gradient = True
+    input_with_cvm = fluid.layers.continuous_value_model(embed, show_clk, True)
 
     
     
