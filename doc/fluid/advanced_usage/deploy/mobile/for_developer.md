@@ -113,7 +113,7 @@ Mobile 在这次升级为 lite 架构， 侧重多硬件、高性能的支持，
 
 ## 实现C++类
 
-以mul op的CPU Kernel实现为例，mul kernel执行运算的矩阵乘法的公式为*Out* = *X* * *Y*,  可见该计算有两个输入，一个输出组成; 输入输出参数分别从OP的param中获取，如mul op的param定义如下：
+以mul op的CPU Kernel实现为例，mul kernel执行运算的矩阵乘法的公式为*Out* = *X* * *Y*,  可见该计算由两个输入，一个输出组成; 输入输出参数分别从OP的param中获取，如mul op的param定义如下：
 
 ```c++
 struct MulParam {
