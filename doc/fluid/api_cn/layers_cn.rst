@@ -4277,10 +4277,40 @@ elementwise_mod
 返回：        元素运算的输出。
     
     
-    
-    
+**代码示例**
 
+..  code-block:: python
+  
+    import paddle.fluid as fluid
+    # example 1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_mod(x0, y0)
 
+    # example 2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_mod(x1, y1)
+
+    # example 3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_mod(x2, y2, axis=2)
+
+    # example 4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_mod(x3, y3, axis=1)
+
+    # example 5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_mod(x4, y4, axis=0)
+
+    # example 6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_mod(x5, y5, axis=0)
 
 
 
