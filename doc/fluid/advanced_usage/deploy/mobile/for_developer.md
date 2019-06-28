@@ -100,7 +100,7 @@ Mobile 在这次升级为 lite 架构， 侧重多硬件、高性能的支持，
 
 架构图如下
 
-[Paddle Inference Refactor1.0](https://github.com/Superjomn/_tmp_images/raw/master/images/lite.jpg)
+![Paddle Inference Refactor1.0](https://github.com/Superjomn/_tmp_images/raw/master/images/lite.jpg)
 
 
 
