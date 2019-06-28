@@ -107,52 +107,58 @@ PaddlePredictor 提供的 methods 都是 native static methods。整体上运行
 
 1. 载入模型：
 
-```java
-// 载入没有优化过的原始模型，用户可以设置期望的 Place 和可选的 Place 
-public static native boolean loadCxxModel(String modelPath, Place preferredPlace, Place[] validPlaces); 
-
-// 载入没有优化过的原始模型，用户可以设置期望的 Place 和可选的 Place 
-public static native boolean loadMobileModel(String modelPath);
-```
+	```java
+	// 载入没有优化过的原始模型，用户可以设置期望的 Place 和可选的 Place 
+	public static native boolean loadCxxModel(String modelPath, Place preferredPlace, Place[] validPlaces); 
+	
+	// 载入没有优化过的原始模型，用户可以设置期望的 Place 和可选的 Place 
+	public static native boolean loadMobileModel(String modelPath);
+	```
 
 2. 设置输入
-```java
-// 设置第 offest （从0开始）输入的维度和float数据
-public static native boolean setInput(int offset, int[] dims, float[] buf);
 
-// 设置第 offest （从0开始）输入的维度和byte数据 （在c++端为int8）
-public static native boolean setInput(int offset, int[] dims, byte[] buf);
-```
+	```java
+	// 设置第 offest （从0开始）输入的维度和float数据
+	public static native boolean setInput(int offset, int[] dims, float[] buf);
+	
+	// 设置第 offest （从0开始）输入的维度和byte数据 （在c++端为int8）
+	public static native boolean setInput(int offset, int[] dims, byte[] buf);
+	```
 
 3. 运行模型
-```java
-// 运行模型
-public static native boolean run();
-```
+	
+	```java
+	// 运行模型
+	public static native boolean run();
+	```
 
 4. 获取输出
-```java
-// 获取第 offset （从0开始）的 float 输出
-public static native float[] getFloatOutput(int offset);
-// 获取第 offset （从0开始）的 byte 输出
-public static native byte[] getByteOutput(int offset);
-// 指定名字获取 Var 的 float 输出
-public static native float[] fetchFloat(String name);
-// 指定名字获取 Var 的 byte 输出
-public static native byte[] fetchByte(String name);
-```
+	
+	```java
+	// 获取第 offset （从0开始）的 float 输出
+	public static native float[] getFloatOutput(int offset);
+	// 获取第 offset （从0开始）的 byte 输出
+	public static native byte[] getByteOutput(int offset);
+	// 指定名字获取 Var 的 float 输出
+	public static native float[] fetchFloat(String name);
+	// 指定名字获取 Var 的 byte 输出
+	public static native byte[] fetchByte(String name);
+	```
 
 5. 存储运行后优化的模型
-```java
-public static native boolean saveOptimizedModel(String modelPath);
-```
+
+	```java
+	public static native boolean saveOptimizedModel(String modelPath);
+	```
 
 6. 清理掉载入的模型
-```java
-public static native boolean clear();
-```
+	
+	```java
+	public static native boolean clear();
+	```
 
 使用示例如下：
+
 ```java
 String modelPath = "lite_naive_model"; // 用户定义的模型路径
 
@@ -272,16 +278,14 @@ std::shared_ptr<PaddlePredictor> CreatePaddlePredictor(const ConfigT&);
 
 `valid_places` 用于设置模型可执行的 Place 范围，底层会根据place 信息挑选出具体的硬件执行 kernel，而`preferred_place` 用于指定 `valid_places` 中最优先执行的 Place，从而使对应 place 的 kernel 更优先被选择.
 
-比如，要执行 ARM Int8 量化预测，可以设置
+比如，要执行 ARM FP32 量化预测，可以设置
 
 ```c++
 CxxConfig config;
 config.set_model_dir("xxx");  // model_dir 为必须选项
-// 由于 ARM Int8 模式只包括 MUL 等少数量化 kernel，因此需要一并选择上 Float 的 kernel
-config.set_valid_places({Place{TARGET(kARM), PRECISION(kInt8)},  // Int8 计算 kernel
-                         Place{TARGET(kARM), PRECISION(kFloat)}  // Float 也需要选择以补充
-                        });
-// 上面同时选择了 kInt8 和 kFloat 两类模式的 kernel，下面设置 kInt8 的 kernel 为优先选择
+// 设置有效的Place信息
+config.set_valid_places({Place{TARGET(kARM), PRECISION(kFloat)}});
+// 当每个Op有多个kernel可选择的时候，优先选择preferred_place可运行的kernel。
 config.set_preferred_place(Place{TARGET(kARM), PRECISION(kInt8)});
 ```
 
@@ -375,11 +379,27 @@ const auto* out_data = out_tensor->data<float>();
 
 ### GenCode 功能介绍
 
-Mobile 支持将模型和预测库结合，转化为 C++代码，进而融合成一个链接库。
+Mobile 支持将模型和预测库结合，转化为 C++代码，进而融合成一个链接库，在设备上执行`paddle_code_generator` 及相应参数便可转化。
 
-## INT8量化预测
+### INT8量化预测
 
-@zhaolong
+Paddle-Mobile支持对[PaddleSlim](https://github.com/PaddlePaddle/models/tree/develop/PaddleSlim)中量化训练得到的模型的预测。
+
+其中使用方法如下：
+
+```c++
+CxxConfig config;
+config.set_model_dir("xxx");  // model_dir 为必须选项
+// 由于 ARM Int8 模式只包括 Conv，MUL 等少数量化 kernel，因此需要一并选择上 Float 的 kernel
+config.set_valid_places({Place{TARGET(kARM), PRECISION(kInt8)},  // Int8 计算 kernel
+                         Place{TARGET(kARM), PRECISION(kFloat)}  // Float 也需要选择以补充
+                        });
+// 上面同时选择了 kInt8 和 kFloat 两类模式的 kernel，下面设置 kInt8 的 kernel 为优先选择
+config.set_preferred_place(Place{TARGET(kARM), PRECISION(kInt8)});
+```
+
+目前该功能已在Mobilenetv1上进行了验证，并且还在持续开发中。
+
 
 ## 源码编译
 
@@ -399,23 +419,23 @@ Mobile 支持将模型和预测库结合，转化为 C++代码，进而融合成
     - `ARM_TARGET_LANG` 代表目标编译的语言， 默认为gcc，支持 gcc和clang两种。
 
 - 参考示例
-
-```shell
-# ARM_TARGET_OS in "android" , "armlinux"
-# ARM_TARGET_ARCH_ABI in "armv8", "armv7" ,"armv7hf"
-# ARM_TARGET_LANG in "gcc" "clang"
-cmake .. \
-    -DWITH_GPU=OFF \
-    -DWITH_MKL=OFF \
-    -DWITH_LITE=ON \
-    -DLITE_WITH_CUDA=OFF \
-    -DLITE_WITH_X86=OFF \
-    -DLITE_WITH_ARM=ON \
-    -DLITE_WITH_LIGHT_WEIGHT_FRAMEWORK=ON \
-    -DWITH_TESTING=ON \
-    -DARM_TARGET_OS="android" -DARM_TARGET_ARCH_ABI="armv8" -DARM_TARGET_LANG="gcc"
-make -j4
-```
+	
+	```shell
+	# ARM_TARGET_OS in "android" , "armlinux"
+	# ARM_TARGET_ARCH_ABI in "armv8", "armv7" ,"armv7hf"
+	# ARM_TARGET_LANG in "gcc" "clang"
+	cmake .. \
+	    -DWITH_GPU=OFF \
+	    -DWITH_MKL=OFF \
+	    -DWITH_LITE=ON \
+	    -DLITE_WITH_CUDA=OFF \
+	    -DLITE_WITH_X86=OFF \
+	    -DLITE_WITH_ARM=ON \
+	    -DLITE_WITH_LIGHT_WEIGHT_FRAMEWORK=ON \
+	    -DWITH_TESTING=ON \
+	    -DARM_TARGET_OS="android" -DARM_TARGET_ARCH_ABI="armv8" -DARM_TARGET_LANG="gcc"
+	make -j4
+	```
 
 ### OpenCL
 
@@ -431,31 +451,31 @@ Paddle-Mobile支持在Android系统上运行基于OpenCL的程序，目前提供
     * `ARM_TARGET_LANG` 代表目标编译的语言， 默认为gcc，支持 gcc和clang两种。
 - 参考示例
 
-```shell
-# ARM_TARGET_OS in "android"
-# ARM_TARGET_ARCH_ABI in "armv8", "armv7" ,"armv7hf"
-# ARM_TARGET_LANG in "gcc" "clang"
-# 假设我们处于源码根目录下
-mkdir build_opencl && cd build_opencl
-cmake .. \
-    -DLITE_WITH_OPENCL=ON \
-    -DWITH_GPU=OFF \
-    -DWITH_MKL=OFF \
-    -DWITH_LITE=ON \
-    -DLITE_WITH_CUDA=OFF \
-    -DLITE_WITH_X86=OFF \
-    -DLITE_WITH_ARM=ON \
-    -DLITE_WITH_LIGHT_WEIGHT_FRAMEWORK=ON \
-    -DWITH_TESTING=ON \
-    -DARM_TARGET_OS="android" -DARM_TARGET_ARCH_ABI="armv8" -DARM_TARGET_LANG="gcc"
-# 完整编译
-make -j4
-# 或者我们也可以make某一target文件
-make test_mobilenetv1_lite -j4
-make test_cl_runtime -j4
-make test_elementwise_add_opencl -j4
-make test_pool_opencl -j4
-```
+	```shell
+	# ARM_TARGET_OS in "android"
+	# ARM_TARGET_ARCH_ABI in "armv8", "armv7" ,"armv7hf"
+	# ARM_TARGET_LANG in "gcc" "clang"
+	# 假设我们处于源码根目录下
+	mkdir build_opencl && cd build_opencl
+	cmake .. \
+	    -DLITE_WITH_OPENCL=ON \
+	    -DWITH_GPU=OFF \
+	    -DWITH_MKL=OFF \
+	    -DWITH_LITE=ON \
+	    -DLITE_WITH_CUDA=OFF \
+	    -DLITE_WITH_X86=OFF \
+	    -DLITE_WITH_ARM=ON \
+	    -DLITE_WITH_LIGHT_WEIGHT_FRAMEWORK=ON \
+	    -DWITH_TESTING=ON \
+	    -DARM_TARGET_OS="android" -DARM_TARGET_ARCH_ABI="armv8" -DARM_TARGET_LANG="gcc"
+	# 完整编译
+	make -j4
+	# 或者我们也可以make某一target文件
+	make test_mobilenetv1_lite -j4
+	make test_cl_runtime -j4
+	make test_elementwise_add_opencl -j4
+	make test_pool_opencl -j4
+	```
 
 #### 运行
 
@@ -463,7 +483,7 @@ make test_pool_opencl -j4
 
 使用如下命令将运行OpenCL程序时需要加载的文件push到手机端(假设我们处于源码根目录下)：
 
-```shell
+```
 # 我们将文件统一push到/data/local/tmp/opencl目录下
 adb shell mkdir -p /data/local/tmp/opencl
 # 将OpenCL的kernels文件push到/data/local/tmp/opencl目录下
