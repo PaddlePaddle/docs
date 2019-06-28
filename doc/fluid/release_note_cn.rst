@@ -112,7 +112,7 @@ Release Notes
     * 提供SE_ResNeXt50_32x4d模型作为标准示例，给出图像分类任务上单卡多并发、多卡多并发等场景benchmark
     * 支持大规模稀疏参数任务：用于CTR预估等场景下超大规模embedding的存储和在线访问。一期发布单机版本，支持亿级别embedding访问
     * 易于使用的API接口，API demo示例
-PaddleSlim 
+* PaddleSlim 
     * 集成INT8量化框架
     * 新增自动剪切策略，基于模拟退火算法搜索最优剪切率：对比MobileNet V1在ImageNet 1000类分类任务上FLOPS减少50%; Top1-Accuracy=69.7%
     * 新增轻量级模型结构自动搜索功能（Light-NAS）：对比MobileNet V1在ImageNet 1000类分类任务上精度无损情况下FLOPS 减少17%
@@ -183,7 +183,7 @@ PaddleSlim
         * 简化finetune、evaluate、predict等使用逻辑，提升易用性
         * 增加事件回调功能，方便用户快速实现自定义迁移学习任务
         * 新增多标签分类Fine-tune任务
-* 图学习框架`PGL <https://github.com/PaddlePaddle/PGL>`_  (Paddle Graph Learning) 
+* 图学习框架 `PGL <https://github.com/PaddlePaddle/PGL>`_  (Paddle Graph Learning) 
     * 发布基于PaddlePaddle的图学习框架PGL Preview版，提供基于游走 (Walk Based) 以及消息传递（Message Passing）两种计算范式去搭建最前沿的图学习算法，如图表征学习、图神经网络等。PGL充分利用Paddle LoD Tensor特性大幅提升Message-Passing范式中信息聚合效率，兼顾了灵活性和高效性
         * 新增基于PGL实现的GCN、GAT，在多个数据集达到SOTA水平
         * 新增基于大规模子图采样模型Graphsage模型，单机可支持5千万节点、20亿条边的巨图
