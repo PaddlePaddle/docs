@@ -69,6 +69,8 @@ ONNX全称为“Open Neural Network Exchange”，即“开放的神经网络切
 
 [下载链接](http://mms-graph.bj.bcebos.com/paddle-mobile%2FmodelsAndImages.zip)
 
+- 测试输入数据可由本仓库下的脚本`tools/python/imagetools`生成。
+
 ## 交流与反馈
 - 欢迎您通过[Github Issues](https://github.com/PaddlePaddle/Paddle/issues)来提交问题、报告与建议
 - QQ群: 696965088 (Paddle-Mobile)
