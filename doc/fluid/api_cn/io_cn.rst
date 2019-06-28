@@ -237,115 +237,108 @@ PyReader
 
 .. code-block:: python
 
-    import paddle
-    import paddle.fluid as fluid
-    import paddle.dataset.mnist as mnist
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
 
-    def network(image, label):
-        # user defined network, here a softmax regresssion example
-        predict = fluid.layers.fc(input=image, size=10, act='softmax')
-        return fluid.layers.cross_entropy(input=predict, label=label)
+    def reader_creator_random_image_and_label(height, width):
+        def reader():
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0,
+                                               high=255,
+                                               size=[height, width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+        return reader
 
-    reader = fluid.layers.py_reader(capacity=64,
-                                    shapes=[(-1, 1, 28, 28), (-1, 1)],
-                                    dtypes=['float32', 'int64'])
-    reader.decorate_paddle_reader(
-        paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5),
-                              buf_size=1000))
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
 
-    img, label = fluid.layers.read_file(reader)
-    loss = network(img, label)
+    reader = fluid.io.PyReader(feed_list=[image, label],
+                               capacity=4,
+                               iterable=False)
 
-    fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
-    exe = fluid.ParallelExecutor(use_cuda=True)
-    for epoch_id in range(10):
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(
+        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE))
+    # definition of network is omitted
+    executor = fluid.Executor(fluid.CUDAPlace(0))
+    executor.run(fluid.default_startup_program())
+    for i in range(EPOCH_NUM):
         reader.start()
+        while True:
             try:
-                while True:
-                    exe.run(fetch_list=[loss.name])
+                executor.run(feed=None)
             except fluid.core.EOFException:
                 reader.reset()
-
-    fluid.io.save_inference_model(dirname='./model',
-                                  feeded_var_names=[img.name, label.name],
-                                  target_vars=[loss],
-                                  executor=fluid.Executor(fluid.CUDAPlace(0)))
+                break
 
 
 2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 。
 
 .. code-block:: python
 
-    import paddle
-    import paddle.fluid as fluid
-    import paddle.dataset.mnist as mnist
+   EPOCH_NUM = 3
+   ITER_NUM = 5
+   BATCH_SIZE = 10
 
-    def network(reader):
-        img, label = fluid.layers.read_file(reader)
-        # User defined network. Here a simple regression as example
-        predict = fluid.layers.fc(input=img, size=10, act='softmax')
-        loss = fluid.layers.cross_entropy(input=predict, label=label)
-        return fluid.layers.mean(loss)
+   def reader_creator_random_image(height, width):
+       def reader():
+           for i in range(ITER_NUM):
+               yield np.random.uniform(low=0, high=255, size=[height, width]),
+       return reader
 
-    # 创建 train_main_prog 和 train_startup_prog
-    train_main_prog = fluid.Program()
-    train_startup_prog = fluid.Program()
-    with fluid.program_guard(train_main_prog, train_startup_prog):
-        # 通过 fluid.unique_name.guard() 与测试程序分享参数
-        with fluid.unique_name.guard():
-            train_reader = fluid.layers.py_reader(capacity=64,
-                                                  shapes=[(-1, 1, 28, 28),
-                                                          (-1, 1)],
-                                                  dtypes=['float32', 'int64'],
-                                                  name='train_reader')
-            train_reader.decorate_paddle_reader(
-            paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5),
-                                  buf_size=500))
-            train_loss = network(train_reader)  # some network definition
-            adam = fluid.optimizer.Adam(learning_rate=0.01)
-            adam.minimize(train_loss)
+   image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+   reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True, return_list=False)
 
-    # Create test_main_prog and test_startup_prog
-    test_main_prog = fluid.Program()
-    test_startup_prog = fluid.Program()
-    with fluid.program_guard(test_main_prog, test_startup_prog):
-        # Use fluid.unique_name.guard() to share parameters with train program
-        with fluid.unique_name.guard():
-            test_reader = fluid.layers.py_reader(capacity=32,
-                                                 shapes=[(-1, 1, 28, 28), (-1, 1)],
-                                                 dtypes=['float32', 'int64'],
-                                                 name='test_reader')
-            test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
-            test_loss = network(test_reader)
+   user_defined_reader = reader_creator_random_image(784, 784)
+   reader.decorate_sample_list_generator(
+       paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
+       fluid.core.CUDAPlace(0))
+   # definition of network is omitted
+   executor = fluid.Executor(fluid.CUDAPlace(0))
+   executor.run(fluid.default_main_program())
 
-    fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
-    fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
+   for _ in range(EPOCH_NUM):
+       for data in reader():
+           executor.run(feed=data)
 
-    train_exe = fluid.ParallelExecutor(use_cuda=True,
-                                       loss_name=train_loss.name,
-                                       main_program=train_main_prog)
-    test_exe = fluid.ParallelExecutor(use_cuda=True,
-                                      loss_name=test_loss.name,
-                                      main_program=test_main_prog)
-    for epoch_id in range(10):
-        train_reader.start()
-        try:
-            while True:
-               train_exe.run(fetch_list=[train_loss.name])
-        except fluid.core.EOFException:
-            train_reader.reset()
+3. return_list=True，返回值将用list表示而非dict
 
-    test_reader.start()
-    try:
-        while True:
-            test_exe.run(fetch_list=[test_loss.name])
-    except fluid.core.EOFException:
-        test_reader.reset()
+.. code-block:: python
+
+   import paddle
+   import paddle.fluid as fluid
+   import numpy as np
+
+   EPOCH_NUM = 3
+   ITER_NUM = 5
+   BATCH_SIZE = 10
+
+   def reader_creator_random_image(height, width):
+       def reader():
+           for i in range(ITER_NUM):
+               yield np.random.uniform(low=0, high=255, size=[height, width]),
+       return reader
+
+   image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+   reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True, return_list=True)
+
+   user_defined_reader = reader_creator_random_image(784, 784)
+   reader.decorate_sample_list_generator(
+       paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
+       fluid.core.CPUPlace())
+   # definition of network is omitted
+   executor = fluid.Executor(fluid.core.CPUPlace())
+   executor.run(fluid.default_main_program())
+
+   for _ in range(EPOCH_NUM):
+       for data in reader():
+           executor.run(feed={"image": data[0]})
 
 
 
-
-.. py:method::start()
+.. py:method:: start()
 
 启动数据输入线程。只能在reader对象不可迭代时调用。
 
@@ -377,7 +370,7 @@ PyReader
 
 .. py:method:: reset()
 
-当 ``fluid.core.EOFException`` 提升时重置reader对象。只能在reader对象不可迭代时调用。
+当 ``fluid.core.EOFException`` 抛出时重置reader对象。只能在reader对象不可迭代时调用。
 
 **代码示例**
 
@@ -455,7 +448,7 @@ PyReader
                 for data in reader():
                     executor.run(feed=data)
 
-.. py:method::decorate_sample_list_generator(reader, places=None)
+.. py:method:: decorate_sample_list_generator(reader, places=None)
 
 设置Pyreader对象的数据源。
 
@@ -501,7 +494,7 @@ PyReader
                 for data in reader():
                     executor.run(feed=data)
 
-.. py:method::decorate_batch_generator(reader, places=None)
+.. py:method:: decorate_batch_generator(reader, places=None)
 
 设置Pyreader对象的数据源。
 
