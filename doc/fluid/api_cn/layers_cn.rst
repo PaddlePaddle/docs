@@ -35,6 +35,7 @@ array_length
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     tmp = fluid.layers.zeros(shape=[10], dtype='int32')
     i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
     arr = fluid.layers.array_write(tmp, i=i)
@@ -79,6 +80,7 @@ array_read
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     array = fluid.layers.create_array(dtype='float32')
     i = fluid.layers.fill_constant(shape=[1],dtype='int64',value=10)
     item = fluid.layers.array_read(array, i)
@@ -107,14 +109,15 @@ array_write
     - **i** (Variable|list) – 输出结果 ``LOD_TENSOR_ARRAY`` 的下标, 该下标指向输入张量 ``x`` 写入输出数组的位置
     - **array** (Variable|list) – 会被输入张量 ``x`` 写入的输出结果 ``LOD_TENSOR_ARRAY`` 。如果该项值为None， 一个新的 ``LOD_TENSOR_ARRAY`` 将会被创建并作为结果返回
 
-返回:	输入张量 ``x`` 所写入的输出结果 ``LOD_TENSOR_ARRAY``
+返回: 输入张量 ``x`` 所写入的输出结果 ``LOD_TENSOR_ARRAY``
 
-返回类型:	变量（Variable）
+返回类型: 变量（Variable）
 
 **代码示例**
 
 ..  code-block:: python
 
+  import paddle.fluid as fluid
   tmp = fluid.layers.zeros(shape=[10], dtype='int32')
   i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
   arr = fluid.layers.array_write(tmp, i=i)
@@ -175,27 +178,6 @@ DynamicRNN
 
 必须设置输入lod，请参考 ``lod_tensor``
 
-**代码示例**
-
-..  code-block:: python
-
-	import paddle.fluid as fluid
-	data = fluid.layers.data(name='sentence', dtype='int64', lod_level=1)
-	embedding = fluid.layers.embedding(input=data, size=[65535, 32],
-					    is_sparse=True)
-
-	drnn = fluid.layers.DynamicRNN()
-	with drnn.block():
-		word = drnn.step_input(embedding)
-	     	prev = drnn.memory(shape=[200])
-	     	hidden = fluid.layers.fc(input=[word, prev], size=200, act='relu')
-	     	drnn.update_memory(prev, hidden)  # set prev to hidden
-	     	drnn.output(hidden)
-
-	 # last是的最后一时间步，也是编码（encoding）得出的最终结果
-	last = fluid.layers.sequence_last_step(drnn())
-
-
 动态RNN将按照timesteps展开开序列。用户需要在with block中定义如何处理处理每个timestep。
 
 memory用于缓存分段数据。memory的初始值可以是零，也可以是其他变量。
@@ -205,24 +187,72 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 .. note::
     目前不支持在DynamicRNN中任何层上配置 is_sparse = True
 
+**代码示例**
+
+..  code-block:: python
+
+  import paddle.fluid as fluid
+  
+  sentence = fluid.layers.data(name='sentence', shape=[1], dtype='int64', lod_level=1)
+  embedding = fluid.layers.embedding(input=sentence, size=[65536, 32], is_sparse=True)
+  
+  drnn = fluid.layers.DynamicRNN()
+  with drnn.block():
+      word = drnn.step_input(embedding)
+      prev = drnn.memory(shape=[200])
+      hidden = fluid.layers.fc(input=[word, prev], size=200, act='relu')
+      drnn.update_memory(prev, hidden)  # set prev to hidden
+      drnn.output(hidden)
+     
+  # 获得上一个timestep的rnn，该值是一个编码后的结果
+  rnn_output = drnn()
+  last = fluid.layers.sequence_last_step(rnn_output)
+
+
 .. py:method:: step_input(x, level=0)
 
     将序列标记为动态RNN输入。
 
 参数:
-    	- **x** (Variable) - 输入序列
+      - **x** (Variable) - 含lod信息的输入序列
       - **level** (int) - 用于拆分步骤的LOD层级，默认值0
 
 返回:当前的输入序列中的timestep。
 
 .. py:method:: static_input(x)
 
-将变量标记为RNN输入。输入不会分散到timestep中。
+将变量标记为RNN输入。输入不会分散到timestep中。为可选项。
 
 参数:
-    	- **x** (Variable) - 输入序列
+      - **x** (Variable) - 输入序列
 
-返回:可以访问的RNN的输入变量,。
+返回:可以访问的RNN的输入变量。
+
+**代码示例**
+
+..  code-block:: python
+
+    import paddle.fluid as fluid
+     
+    sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
+    encoder_proj = fluid.layers.data(name='encoder_proj', dtype='float32', shape=[32], lod_level=1)
+    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10], lod_level=1)
+     
+    drnn = fluid.layers.DynamicRNN()
+    with drnn.block():
+        current_word = drnn.step_input(sentence)
+        encoder_word = drnn.static_input(encoder_proj)
+        hidden_mem = drnn.memory(init=decoder_boot, need_reorder=True)
+        fc_1 = fluid.layers.fc(input=encoder_word, size=30, bias_attr=False)
+        fc_2 = fluid.layers.fc(input=current_word, size=30, bias_attr=False)
+        decoder_inputs = fc_1 + fc_2
+        h, _, _ = fluid.layers.gru_unit(input=decoder_inputs, hidden=hidden_mem, size=30)
+        drnn.update_memory(hidden_mem, h)
+        out = fluid.layers.fc(input=h, size=10, bias_attr=True, act='softmax')
+        drnn.output(out)
+     
+    rnn_output = drnn()
+
 
 .. py:method:: block()
 
@@ -232,54 +262,53 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 为动态rnn创建一个memory 变量。
 
-如果 ``init`` 不是None， ``memory`` 将由这个变量初始化。参数 ``need_reorder`` 用于将memory重新排序作为输入变量。当memory初始化依赖于输入样本时，应该将其设置为true。
+如果 ``init`` 不是None， ``memory`` 将由这个变量初始化。参数 ``need_reorder`` 用于将memory重新排序作为输入变量。当memory初始化依赖于输入样本时，应该将其设置为True。
 
-**例如**
+**代码示例**
 
 ..  code-block:: python
 
-  	import paddle.fluid as fluid
-  	sentence = fluid.layers.data(
-                 name='sentence', dtype='float32', shape=[32])
-	boot_memory = fluid.layers.data(
-                 name='boot', dtype='float32', shape=[10])
+  import paddle.fluid as fluid
+  
+  sentence = fluid.layers.data(name='sentence', shape=[32], dtype='float32', lod_level=1)
+  boot_memory = fluid.layers.data(name='boot', shape=[10], dtype='float32', lod_level=1)
+  
+  drnn = fluid.layers.DynamicRNN()
+  with drnn.block():
+      word = drnn.step_input(sentence)
+      memory = drnn.memory(init=boot_memory, need_reorder=True)
+      hidden = fluid.layers.fc(input=[word, memory], size=10, act='tanh')
+      drnn.update_memory(ex_mem=memory, new_mem=hidden)
+      drnn.output(hidden)
 
-	drnn = fluid.layers.DynamicRNN()
-	with drnn.block():
-	     word = drnn.step_input(sentence)
-	     memory = drnn.memory(init=boot_memory, need_reorder=True)
-	     hidden = fluid.layers.fc(
-			 input=[word, memory], size=10, act='tanh')
-	     drnn.update_memory(ex_mem=memory, new_mem=hidden)
-	     drnn.output(hidden)
-
-	rnn_output = drnn()
+  rnn_output = drnn()
 
 
 
 否则，如果已经设置 ``shape`` 、 ``value`` 、 ``dtype`` ，memory将被 ``value`` 初始化
 
+**代码示例**
+
 ..  code-block:: python
 
-	import paddle.fluid as fluid
+  import paddle.fluid as fluid
 
-	sentence = fluid.layers.data(
-			name='sentence', dtype='float32', shape=[32])
+  sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
 
-	drnn = fluid.layers.DynamicRNN()
-	with drnn.block():
-	    word = drnn.step_input(sentence)
-	    memory = drnn.memory(shape=[10], dtype='float32', value=0)
-	    hidden = fluid.layers.fc(
-		    input=[word, memory], size=10, act='tanh')
-	    drnn.update_memory(ex_mem=memory, new_mem=hidden)
-	    drnn.output(hidden)
-	rnn_output = drnn()
+  drnn = fluid.layers.DynamicRNN()
+  with drnn.block():
+      word = drnn.step_input(sentence)
+      memory = drnn.memory(shape=[10], dtype='float32', value=0)
+      hidden = fluid.layers.fc(input=[word, memory], size=10, act='tanh')
+      drnn.update_memory(ex_mem=memory, new_mem=hidden)
+      drnn.output(hidden)
+
+  rnn_output = drnn()
 
 
 参数：
     - **init** (Variable|None) – 初始化的Variable
-    - **shape** (list|tuple) – memory shape. 注意形状不包含batch_size
+    - **shape** (list|tuple) – memory shape，形状不包含batch_size
     - **value** (float) – 初始化的值
     - **need_reorder** (bool) – memory初始化依赖于输入样本时设置为True
     - **dtype** (str|numpy.dtype) – 初始化memory的数据类型
@@ -292,8 +321,8 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 将内存从 ``ex_mem`` 更新到 ``new_mem`` 。注意， ``ex_mem`` 和 ``new_mem`` 的 ``shape`` 和数据类型必须相同。
 
 参数：
-	- **ex_mem** （memory Variable）-  memory 变量（Variable）
-	- **new_mem** （memory Variable）- RNN块中生成的平坦变量（plain  variable）
+  - **ex_mem** （memory Variable）-  memory 变量（Variable）
+  - **new_mem** （memory Variable）- RNN块中生成的平坦变量（plain  variable）
 
 返回：None
 
@@ -307,11 +336,9 @@ memory用于缓存分段数据。memory的初始值可以是零，也可以是�
 
 返回:None
 
+      
 
-
-
-
-
+  
 
 
 
@@ -339,12 +366,63 @@ equal
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+    label = fluid.layers.data(name="label", shape=[3,10,32,32], dtype="float32")
+    limit = fluid.layers.data(name="limit", shape=[3,10,32,32], dtype="float32")
     less = fluid.layers.equal(x=label,y=limit)
 
 
 
 
+.. _cn_api_fluid_layers_greater_equal:
 
+greater_equal
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.greater_equal(x, y, cond=None)
+
+该层逐元素地返回 :math:`x >= y` 的逻辑值，和重载算子 `>=` 相同。
+
+参数：
+    - **x** (Variable) - *greater_equal* 的第一个操作数
+    - **y** (Variable) - *greater_equal* 的第二个操作数
+    - **cond** (Variable|None) - 可选的输出变量，存储 *greater_equal* 的结果
+
+返回：存储 *greater_equal* 的输出的张量变量。
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+
+     out = fluid.layers.greater_equal(x=label, y=limit)
+
+
+
+.. _cn_api_fluid_layers_greater_than:
+
+greater_than
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.greater_than(x, y, cond=None)
+
+该层逐元素地返回 :math:`x > y` 的逻辑值，和重载算子 `>` 相同。
+
+参数：
+    - **x** (Variable) - *greater_than* 的第一个操作数
+    - **y** (Variable) - *greater_than* 的第二个操作数
+    - **cond** (Variable|None) - 可选的输出变量，存储 *greater_than* 的结果
+
+返回：存储 *greater_than* 的输出的张量变量。
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+
+     out = fluid.layers.greater_than(x=label, y=limit)
 
 
 
@@ -366,8 +444,12 @@ if-else控制流。
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+     
+    image = fluid.layers.data(name="X", shape=[2, 5, 5], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
     limit = fluid.layers.fill_constant_batch_size_like(
-        input=label, dtype='int64', shape=[1], value=5.0)
+         input=label, dtype='int64', shape=[1], value=5.0)
     cond = fluid.layers.less_than(x=label, y=limit)
     ie = fluid.layers.IfElse(cond)
     with ie.true_block():
@@ -418,6 +500,7 @@ increment
 
 ..  code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.data(name='data', shape=[1], dtype='float32',
                          append_batch_size=False)
     data = fluid.layers.increment(x=data, value=3.0, in_place=True)
@@ -455,14 +538,38 @@ is_empty
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+    input = fluid.layers.data(name="input", shape=[4, 32, 32], dtype="float32")
     res = fluid.layers.is_empty(x=input)
     # or:
-    fluid.layers.is_empty(x=input, cond=res)
+    # fluid.layers.is_empty(x=input, cond=res)
 
 
 
 
+.. _cn_api_fluid_layers_less_equal:
 
+less_equal
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.less_equal(x, y, cond=None)
+
+该层逐元素地返回 :math:`x <= y` 的逻辑值，和重载算子 `<=` 相同。
+
+参数：
+    - **x** (Variable) - *less_equal* 的第一个操作数
+    - **y** (Variable) - *less_equal* 的第二个操作数
+    - **cond** (Variable|None) - 可选的输出变量，存储 *less_equal* 的结果
+
+返回：存储 *less_equal* 的输出的张量变量。
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+
+     out = fluid.layers.less_equal(x=label, y=limit)
 
 
 
@@ -478,12 +585,6 @@ less_than
 该函数按元素出现顺序依次在X,Y上操作，并返回 ``Out`` ，它们三个都是n维tensor（张量）。
 其中，X、Y可以是任何类型的tensor，Out张量的各个元素可以通过 :math:`Out=X<Y` 计算得出。
 
-**代码示例**
-
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    less = fluid.layers.less_than(x=label, y=limit)
 
 参数：
     - **x** (Variable) – ``less_than`` 运算的左操作数
@@ -492,14 +593,40 @@ less_than
     - **cond** (Variable|None) – 可选的用于存储 ``less_than`` 输出结果的变量，为None则由函数自动生成Out变量
 
 
-返回：	n维bool型tensor，其中各个元素可以通过 *Out=X<Y* 计算得出
+返回： n维bool型tensor，其中各个元素可以通过 *Out=X<Y* 计算得出
+
+**代码示例**:
+
+.. code-block:: python
+
+    label = fluid.layers.data(name='y', shape=[1], dtype='int64')
+    limit = fluid.layers.fill_constant(shape=[1], dtype='int64', value=5)
+    cond = fluid.layers.less_than(x=label, y=limit)
 
 
+.. _cn_api_fluid_layers_not_equal:
 
+not_equal
+-------------------------------
 
+.. py:function:: paddle.fluid.layers.not_equal(x, y, cond=None)
 
+该层逐元素地返回 :math:`x != y` 的逻辑值，和重载算子 `!=` 相同。
 
+参数：
+    - **x** (Variable) - *not_equal* 的第一个操作数
+    - **y** (Variable) - *not_equal* 的第二个操作数
+    - **cond** (Variable|None) - 可选的输出变量，存储 *not_equal* 的结果
 
+返回：存储 *not_equal* 的输出的张量变量。
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+
+     out = fluid.layers.not_equal(x=label, y=limit)
 
 
 
@@ -530,17 +657,24 @@ Print
     - **print_tensor_lod** (bool)-打印张量lod
     - **print_phase** (str)-打印的阶段，包括 ``forward`` , ``backward`` 和 ``both`` .若设置为 ``backward`` 或者 ``both`` ,则打印输入张量的梯度。
 
-返回：输出张量，和输入张量同样的数据
+返回：输出张量
 
 返回类型：变量（Variable）
+
+.. note::
+   输入和输出是两个不同的变量，在接下来的过程中，你应该使用输出变量而非输入变量，否则打印层将失去输出层前的信息。
 
 **代码示例**：
 
 .. code-block:: python
 
-    value = some_layer(...)
-    Print(value, summarize=10,
-    message="The content of some_layer: ")
+    import paddle.fluid as fluid
+     
+    input = fluid.layers.data(name="input", shape=[4, 32, 32], dtype="float32")
+    input = fluid.layers.Print(input, message = "The content of input layer:")
+    # value = some_layer(...)
+    # Print(value, summarize=10,
+    #     message="The content of some_layer: ")
 
 
 
@@ -558,8 +692,8 @@ reorder_lod_tensor_by_rank
 .. py:function:: paddle.fluid.layers.reorder_lod_tensor_by_rank(x, rank_table)
 
 
-函数参数 ``X`` 是由多个序列(sequence)组成的的一个batch（数据批）。``rank_table`` 存储着batch中序列的重新排列规则。
-该operator（算子）根据 ``rank_table`` 中提供的规则信息来实现对 ``X`` 的重新排列。
+函数参数 ``X`` 是由多个序列(sequence)组成的的一个数据批(batch）。``rank_table`` 存储着batch中序列的重新排列规则。
+该算子(operator）根据 ``rank_table`` 中提供的规则信息来实现对 ``X`` 的重新排列。
 
 
 ::
@@ -568,25 +702,32 @@ reorder_lod_tensor_by_rank
 
   假设在 RankTable 中存储的序列索引为 [3,0,2,1]， X 将会被这样被重新排列：
   X 中的第四个序列（即索引为3的序列，后面以此类推）会变成排列后的batch中的第一个，紧接着就是原来batch中的第一个元素，第三个元素，和第二个元素。
+  
   简言之，若有原batch：X = [Seq0, Seq1, Seq2, Seq3] 且 RankTable 中的索引为 [3,0,2,1]，那么输出即为 Out = [Seq3, Seq0, Seq2, Seq1] ，它携带着新的LoD信息。
   如果 X 的LoD信息是空的，这表明 X 不是序列型数据。这和由多个定长为1的序列组成的batch是相同的情况。此时，该函数将对 X 中的切片（slice） 在第一轴(axis)上按 rank_table 里的规则加以排列。
   例如，现有 X = [Slice0, Slice1, Slice2, Slice3] ，并且它LoD信息为空，在 RankTable 索引为[3, 0, 2, 1]。则 Out = [Slice3, Slice0, Slice2, Slice1] ，并且不在其中追加LoD信息。
-
-注意，该operator对 ``X`` 进行的排序所依据的 ``LoDRankTable`` 不一定是在 ``X`` 的基础上得出来的。它可以由
-其他不同的序列batch得出，并由该operator依据这个 ``LoDRankTable`` 来对  ``X`` 排序。
+  注意，该operator对 ``X`` 进行的排序所依据的 ``LoDRankTable`` 不一定是在 ``X`` 的基础上得出来的。它可以由其他不同的序列得出，并由该operator依据这个 ``LoDRankTable`` 来对  ``X`` 排序。
 
 参数：
-    - **x** (LoDTensor)-待根据提供的 ``RankTable`` 进行排序的LoD tensor
-    - **rank_table** (LoDRankTable)- ``X`` 重新排序的依据规则表
+    - **x(Variable)** - (LoDTensor)，待根据提供的 ``RankTable`` 进行排序的LoD tensor
+    - **rank_table(Variable)** - 变量
 
 
-返回：	重新排列后的LoDTensor
+返回： 重新排列后的LoDTensor
 
-返回类型:	LoDTensor
+返回类型: out(Variable)
 
+**代码示例**：
 
+.. code-block:: python
 
-
+    import paddle.fluid as fluid
+    data_desc = (['input', [9], 0], ['ref', [5], 1])
+    data = fluid.layers.data(name=data_desc[0][0], shape=data_desc[0][1])
+    rank_data = fluid.layers.data(name=data_desc[1][0], shape=data_desc[1][1])
+    table = fluid.layers.control_flow.lod_rank_table(rank_data)
+    new_data = fluid.layers.reorder_lod_tensor_by_rank(
+                     x=data, rank_table=table)
 
 
 
@@ -604,20 +745,125 @@ StaticRNN
 
 .. py:class:: paddle.fluid.layers.StaticRNN(name=None)
 
+StaticRNN可以处理一批序列数据。每个样本序列的长度必须相等。StaticRNN将拥有自己的参数，如输入、输出和存储器等。请注意，输入的第一个维度表示序列长度，且输入的所有序列长度必须相同。并且输入和输出的每个轴的含义是相同的。
 
-用于创建static RNN。RNN将有自己的参数，比如输入、输出、memory、状态和长度。
+**代码示例**：
+
+.. code-block:: python
+
+        import paddle.fluid as fluid
+        import paddle.fluid.layers as layers
+        
+        vocab_size, hidden_size=10000, 200
+        x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
+        x_emb = layers.embedding(
+                input=x,
+                size=[vocab_size, hidden_size],
+                dtype='float32',
+                is_sparse=False)
+        x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+      
+        rnn = fluid.layers.StaticRNN()
+        with rnn.step():
+           word = rnn.step_input(x_emb)
+           prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
+           hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+           rnn.update_memory(prev, hidden)  # set prev to hidden
+           rnn.step_output(hidden)
+        
+        result = rnn()
+
+StaticRNN将序列展开为时间步长。用户需要定义如何在with步骤中处理每个时间步长。
+
+内存用作在time step之间缓存数据。内存的初始值可以是填充常量值的变量或指定变量。
+
+StaticRNN可以将多个变量标记为其输出。使用rnn()获取输出序列。
+
+
+.. py:method:: step()
+
+  用户在该代码块中定义RNN中的operators。
+
 
 .. py:method:: memory(init=None, shape=None, batch_ref=None, init_value=0.0, init_batch_dim_idx=0, ref_batch_dim_idx=1)
+ 
+  为静态RNN创建一个内存变量。
+  如果init不为None，则此变量将初始化内存。 如果init为None，则必须设置shape和batch_ref，并且此函数将初始化init变量。
 
-参数：
-    - **init** - boot memory，如果没有设置，则必须提供一个shape
-    - **shape** - boot memory的形状
-    - **batch_ref** - batch引用
-    - **init_value** - boot memory的初始化值
-    - **init_batch_dim_idx** - init维度中的batch大小的索引
-    - **ref_batch_dim_idx** - batch_ref维度中的batch大小的索引
+  参数：
+    - **init** (Variable|None) - 初始化过的变量，如果没有设置，则必须提供shape和batch_ref，默认值None
+    - **shape** (list|tuple) - boot memory的形状，注意其不包括batch_size，默认值None
+    - **batch_ref** (Variable|None) - batch引用变量，默认值None
+    - **init_value** (float) - boot memory的初始化值，默认值0.0
+    - **init_batch_dim_idx** (int) - init变量的batch_size轴，默认值0
+    - **ref_batch_dim_idx** (int) - batch_ref变量的batch_size轴
+
+  返回：内存变量
 
 
+  **代码示例**：
+
+  .. code-block:: python
+
+        import paddle.fluid as fluid
+        import paddle.fluid.layers as layers
+
+        vocab_size, hidden_size=10000, 200
+        x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
+        x_emb = layers.embedding(
+            input=x,
+            size=[vocab_size, hidden_size],
+            dtype='float32',
+            is_sparse=False)
+        x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+
+        rnn = fluid.layers.StaticRNN()
+        with rnn.step():
+            word = rnn.step_input(x_emb)
+            prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
+            hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+            rnn.update_memory(prev, hidden)
+
+.. py:method:: step_input(x)
+
+  标记作为StaticRNN输入的序列。
+
+  参数：
+    - **x** (Variable) – 输入序列，x的形状应为[seq_len, ...]。
+
+  返回：输入序列中的当前时间步长。
+
+
+
+.. py:method:: step_output(o)
+
+  标记作为StaticRNN输出的序列。
+
+  参数：
+    -**o** (Variable) – 输出序列
+
+  返回：None
+
+
+.. py:method:: output(*outputs)
+
+  标记StaticRNN输出变量。
+
+  参数：
+    -**outputs** – 输出变量
+
+  返回：None
+
+
+.. py:method:: update_memory(mem, var)
+
+  将内存从ex_mem更新为new_mem。请注意，ex_mem和new_mem的形状和数据类型必须相同。
+
+  参数：    
+    - **mem** (Variable) – 内存变量
+    - **var** (Variable) – RNN块中产生的普通变量
+
+  返回：None
 
 
 
@@ -647,31 +893,30 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
 
 ..  code-block:: python
 
-    lr = fluid.layers.tensor.create_global_var(
+    import paddle.fluid as fluid
+
+    lr = fluid.layers.create_global_var(
         shape=[1],
         value=0.0,
         dtype='float32',
         persistable=True,
         name="learning_rate")
-    one_var = tensor.fill_constant(
+    zero_var = fluid.layers.fill_constant(
+        shape=[1], dtype='float32', value=0.0)
+    one_var = fluid.layers.fill_constant(
         shape=[1], dtype='float32', value=1.0)
-    two_var = tensor.fill_constant(
+    two_var = fluid.layers.fill_constant(
         shape=[1], dtype='float32', value=2.0)
+
+    global_step = fluid.layers.autoincreased_step_counter(
+           counter_name='@LR_DECAY_COUNTER@', begin=0, step=1)
 
     with fluid.layers.control_flow.Switch() as switch:
         with switch.case(global_step == zero_var):
-            fluid.layers.tensor.assign(input=one_var, output=lr)
+            fluid.layers.assign(input=one_var, output=lr)
         with switch.default():
-            fluid.layers.tensor.assign(input=two_var, output=lr)
+            fluid.layers.assign(input=two_var, output=lr)
 
-.. py:method:: case(condition)
-
-为该condition（情况，条件）建立新的block（块）。
-
-
-.. py:method:: default()
-
-为该switch建立default case。
 
 
 
@@ -696,14 +941,17 @@ While
 
 
 参数：
-		- **cond** (Variable) – 用于比较的条件
-		- **is_test** (bool) – 用于表明是不是在测试阶段执行
-		- **name** (str) - 该层的命名
+    - **cond** (Variable) – 用于比较的条件
+    - **is_test** (bool) – 用于表明是不是在测试阶段执行
+    - **name** (str) - 该层的命名
 
 **代码示例**
 
 ..  code-block:: python
 
+  import paddle.fluid as fluid
+  
+  i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=0)
   d0 = fluid.layers.data("d0", shape=[10], dtype='float32')
   data_array = fluid.layers.array_write(x=d0, i=i)
   array_len = fluid.layers.fill_constant(shape=[1],dtype='int64', value=3)
@@ -712,9 +960,9 @@ While
   while_op = fluid.layers.While(cond=cond)
   with while_op.block():
       d = fluid.layers.array_read(array=data_array, i=i)
-      i = fluid.layers.increment(x=i, in_place=True)
-      layers.array_write(result, i=i, array=d)
-      layers.less_than(x=i, y=array_len, cond=cond)
+      i = fluid.layers.increment(x=i, value=1, in_place=True)
+      
+      fluid.layers.less_than(x=i, y=array_len, cond=cond)
 
 
 
@@ -754,7 +1002,7 @@ batch
 
     raw_reader = fluid.layers.io.open_files(filenames=['./data1.recordio',
                                                './data2.recordio'],
-                                        shapes=[(3,224,224), (1)],
+                                        shapes=[(3,224,224), (1,)],
                                         lod_levels=[0, 0],
                                         dtypes=['float32', 'int64'],
                                         thread_num=2,
@@ -789,10 +1037,10 @@ create_py_reader_by_data
 它的工作方式与 ``py_reader`` 非常相似，除了它的输入是一个 feed_list 而不是 ``shapes``、 ``dtypes`` 和 ``lod_level``
 
 参数：
-	- **capacity** (int) - 缓冲区容量由 :code:`py_reader` 维护
-	- **feed_list** (list(Variable)) - 传输数据列表
-	- **name** (basestring) - 前缀Python队列名称和 reader 名称。不定义时将自动生成名称。
-	- **use_double_buffer** (bool) - 是否使用 double buffer
+  - **capacity** (int) - 缓冲区容量由 :code:`py_reader` 维护
+  - **feed_list** (list(Variable)) - 传输数据列表
+  - **name** (basestring) - 前缀Python队列名称和 reader 名称。不定义时将自动生成名称。
+  - **use_double_buffer** (bool) - 是否使用 double buffer
 
 返回： Variable: 一种reader，我们可以从中获得输入数据。
 
@@ -801,17 +1049,25 @@ create_py_reader_by_data
  :code:`py_reader` 的基本用法如下所示：
 
 .. code-block:: python
-
+    
+    import paddle
     import paddle.fluid as fluid
     import paddle.dataset.mnist as mnist
 
-    image = fluid.layers.data(name='image', shape=[3,224,224], dtypes='float32')
+    def network(img, label):
+        # 用户自定义网络。此处以一个简单的线性回归作为示例。
+        predict = fluid.layers.fc(input=img, size=10, act='softmax')
+        loss = fluid.layers.cross_entropy(input=predict, label=label)
+        return fluid.layers.mean(loss)
+    
+    image = fluid.layers.data(name='image', shape=[1, 28, 28], dtypes='float32')
     label = fluid.layers.data(name='label', shape=[1], dtypes='int64')
-    reader = fluid.layers.create_py_reader_by_data(capacity=64, feed_list=[image, label])
+    reader = fluid.layers.create_py_reader_by_data(capacity=64,
+                                                   feed_list=[image, label])
     reader.decorate_paddle_reader(
-        paddle.reader.shuffle(paddle.batch(mnist.train())
+        paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5), buf_size=500))
     img, label = fluid.layers.read_file(reader)
-    loss = network(img, label) # some network definition
+    loss = network(img, label) # 一些网络定义
 
     fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
 
@@ -847,18 +1103,20 @@ data
 
 这个函数的所有输入变量都作为本地变量传递给LayerHelper构造函数。
 
+请注意，paddle在编译期间仅使用shape来推断网络中以下变量的形状。在运行期间，paddle不会检查所需数据的形状是否与此函数中的形状设置相匹配。
+
 参数：
     - **name** (str)-函数名或函数别名
     - **shape** (list)-声明维度信息的list。如果 ``append_batch_size`` 为True且内部没有维度值为-1，则应将其视为每个样本的形状。 否则，应将其视为batch数据的形状。
     - **append_batch_size** (bool)-
 
-        1.如果为真，则在维度shape的开头插入-1
-        “如果shape=[1],则输出shape为[-1,1].”
+        1.如果为真，则在维度shape的开头插入-1。
+        例如，如果shape=[1],则输出shape为[-1,1]。这对在运行期间设置不同的batch大小很有用。
 
-        2.如果维度shape包含-1，比如shape=[-1,1],
-        “append_batch_size则为False（表示无效）”
+        2.如果维度shape包含-1，比如shape=[-1,1]。
+        append_batch_size会强制变为为False（表示无效），因为PaddlePaddle不能在shape上设置一个以上的未知数。
 
-    - **dtype** (basestring)-数据类型：float32,float_16,int等
+    - **dtype** (np.dtype|VarType|str)-数据类型：float32,float_16,int等
     - **type** (VarType)-输出类型。默认为LOD_TENSOR
     - **lod_level** (int)-LoD层。0表示输入数据不是一个序列
     - **stop_gradient** (bool)-布尔类型，提示是否应该停止计算梯度
@@ -905,11 +1163,12 @@ double_buffer
 
 ..  code-block:: python
 
-	reader = fluid.layers.open_files(filenames=['somefile'],
-					 shapes=[[-1, 784], [-1, 1]],
-					 dtypes=['float32', 'int64'])
-	reader = fluid.layers.double_buffer(reader)
-	img, label = fluid.layers.read_file(reader)
+  import paddle.fluid as fluid
+  reader = fluid.layers.open_files(filenames=['mnist.recordio'],
+           shapes=[[-1, 784], [-1, 1]],
+           dtypes=['float32', 'int64'])
+  reader = fluid.layers.double_buffer(reader)
+  img, label = fluid.layers.read_file(reader)
 
 
 
@@ -981,9 +1240,10 @@ open_files
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     reader = fluid.layers.io.open_files(filenames=['./data1.recordio',
                                             './data2.recordio'],
-                                    shapes=[(3,224,224), (1)],
+                                    shapes=[(3,224,224), (1,)],
                                     lod_levels=[0, 0],
                                     dtypes=['float32', 'int64'])
 
@@ -1015,6 +1275,12 @@ reader变量中数据预处理块。
 
 .. code-block:: python
 
+    reader = fluid.layers.io.open_files(
+        filenames=['./data1.recordio', './data2.recordio'],
+        shapes=[(3, 224, 224), (1, )],
+        lod_levels=[0, 0],
+        dtypes=['float32', 'int64'])
+
     preprocessor = fluid.layers.io.Preprocessor(reader=reader)
     with preprocessor.block():
         img, lbl = preprocessor.inputs()
@@ -1041,11 +1307,11 @@ py_reader
 
 创建一个由在Python端提供数据的reader
 
-该layer返回一个Reader Variable。reader提供了 ``decorate_paddle_reader()`` 和 ``decorate_tensor_provider()`` 来设置Python generator，作为Python端的数据源。在c++端调用 ``Executor::Run()`` 时，来自generator的数据将被自动读取。与 ``DataFeeder.feed()`` 不同，数据读取进程和  ``Executor::Run()`` 进程可以使用 ``py_reader`` 并行运行。reader的 ``start()`` 方法应该在每次数据传递开始时调用，在传递结束和抛出  ``fluid.core.EOFException`` 后执行 ``reset()`` 方法。注意， ``Program.clone()`` 方法不能克隆 ``py_reader`` 。
+该layer返回一个Reader Variable。reader提供了 ``decorate_paddle_reader()`` 和 ``decorate_tensor_provider()`` 来设置Python generator作为数据源。更多细节请参考异步数据读取:ref:`user_guide_use_py_reader`，在c++端调用 ``Executor::Run()`` 时，来自generator的数据将被自动读取。与 ``DataFeeder.feed()`` 不同，数据读取进程和  ``Executor::Run()`` 进程可以使用 ``py_reader`` 并行运行。reader的 ``start()`` 方法应该在每次数据传递开始时调用，在传递结束和抛出  ``fluid.core.EOFException`` 后执行 ``reset()`` 方法。注意， ``Program.clone()`` 方法不能克隆 ``py_reader`` 。
 
 参数:
   - **capacity** (int) –  ``py_reader`` 维护的缓冲区容量
-  - **shapes** (list|tuple) –数据形状的元组或列表.
+  - **shapes** (list|tuple) –数据形状的元组或列表
   - **dtypes** (list|tuple) –  ``shapes`` 对应元素的数据类型
   - **lod_levels** (list|tuple) – lod_level的整型列表或元组
   - **name** (basestring) – python 队列的前缀名称和Reader 名称。不会自动生成。
@@ -1053,108 +1319,110 @@ py_reader
 
 返回:    reader，从reader中可以获取feed的数据
 
-返回类型:	Variable
+返回类型: Variable
 
 
 
 **代码示例**
 
-1.py_reader 基本使用如下代码
+1.py_reader 基本用法如下
 
 ..  code-block:: python
 
-	import paddle
-	import paddle.fluid as fluid
-	import paddle.dataset.mnist as mnist
+  import paddle
+  import paddle.fluid as fluid
+  import paddle.dataset.mnist as mnist
 
-	reader = fluid.layers.py_reader(capacity=64,
-					shapes=[(-1,3,224,224), (-1,1)],
-					dtypes=['float32', 'int64'])
-	reader.decorate_paddle_reader(
-	    paddle.reader.shuffle(paddle.batch(mnist.train())
+  def network(image, label):
+    # 用户自定义网络，此处以softmax回归为例
+    predict = fluid.layers.fc(input=image, size=10, act='softmax')
+  return fluid.layers.cross_entropy(input=predict, label=label)
+         
+  reader = fluid.layers.py_reader(capacity=64,
+          shapes=[(-1,1, 28, 28), (-1,1)],
+          dtypes=['float32', 'int64'])
+  reader.decorate_paddle_reader(
+      paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5),buf_size=1000))
 
-	img, label = fluid.layers.read_file(reader)
-	loss = network(img, label) # 一些网络定义
+  img, label = fluid.layers.read_file(reader)
+  loss = network(img, label) # 一些网络定义
 
-	fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
+  fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
 
-	exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
-	for epoch_id in range(10):
-	    reader.start()
-	    try:
-		while True:
-		    exe.run(fetch_list=[loss.name])
-	    except fluid.core.EOFException:
-		reader.reset()
+  exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
+  for epoch_id in range(10):
+      reader.start()
+      try:
+    while True:
+        exe.run(fetch_list=[loss.name])
+      except fluid.core.EOFException:
+    reader.reset()
 
-    fluid.io.save_inference_model(dirname='./model', feeded_var_names=[img, label],target_vars=[loss], executor=fluid.Executor(fluid.CUDAPlace(0)))
+    fluid.io.save_inference_model(dirname='./model', feeded_var_names=[img.name, label.name],target_vars=[loss], executor=fluid.Executor(fluid.CUDAPlace(0)))
 
 
 2.训练和测试应使用不同的名称创建两个不同的py_reader，例如：
 
 ..  code-block:: python
 
-	import paddle
-	import paddle.fluid as fluid
-	import paddle.dataset.mnist as mnist
+  import paddle
+  import paddle.fluid as fluid
+  import paddle.dataset.mnist as mnist
 
-	def network(reader):
-	    img, label = fluid.layers.read_file(reader)
-	    # 此处我们省略了一些网络定义
-	    return loss
+  def network(reader):
+    img, label = fluid.layers.read_file(reader)
+    # 用户自定义网络，此处以softmax回归为例
+    predict = fluid.layers.fc(input=img, size=10, act='softmax')
 
-	train_reader = fluid.layers.py_reader(capacity=64,
-					      shapes=[(-1,3,224,224), (-1,1)],
-					      dtypes=['float32', 'int64'],
-					      name='train_reader')
-	train_reader.decorate_paddle_reader(
-	    paddle.reader.shuffle(paddle.batch(mnist.train())
+    loss = fluid.layers.cross_entropy(input=predict, label=label)
+        
+    return fluid.layers.mean(loss)
 
-	test_reader = fluid.layers.py_reader(capacity=32,
-					     shapes=[(-1,3,224,224), (-1,1)],
-					     dtypes=['float32', 'int64'],
-					     name='test_reader')
-	test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
+  # 新建 train_main_prog 和 train_startup_prog
+  train_main_prog = fluid.Program()
+  train_startup_prog = fluid.Program()
+  with fluid.program_guard(train_main_prog, train_startup_prog):
+    # 使用 fluid.unique_name.guard() 实现与test program的参数共享
+    with fluid.unique_name.guard():
+      train_reader = fluid.layers.py_reader(capacity=64, shapes=[(-1, 1, 28, 28), (-1, 1)], dtypes=['float32', 'int64'], name='train_reader')
+      train_reader.decorate_paddle_reader(
+        paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5), buf_size=500))
+    train_loss = network(train_reader) # 一些网络定义
+    adam = fluid.optimizer.Adam(learning_rate=0.01)
+    adam.minimize(train_loss)
 
-	# 新建 train_main_prog 和 train_startup_prog
-	train_main_prog = fluid.Program()
-	train_startup_prog = fluid.Program()
-	with fluid.program_guard(train_main_prog, train_startup_prog):
-	    # 使用 fluid.unique_name.guard() 实现与test program的参数共享
-	    with fluid.unique_name.guard():
-		train_loss = network(train_reader) # 一些网络定义
-		adam = fluid.optimizer.Adam(learning_rate=0.01)
-		adam.minimize(loss)
+  # Create test_main_prog and test_startup_prog
+  test_main_prog = fluid.Program()
+  test_startup_prog = fluid.Program()
+  with fluid.program_guard(test_main_prog, test_startup_prog):
+    # 使用 fluid.unique_name.guard() 实现与train program的参数共享
+    with fluid.unique_name.guard():
+      test_reader = fluid.layers.py_reader(capacity=32, shapes=[(-1, 1, 28, 28), (-1, 1)], dtypes=['float32', 'int64'], name='test_reader')
+                test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
+    
+      test_loss = network(test_reader)
 
-	# Create test_main_prog and test_startup_prog
-	test_main_prog = fluid.Program()
-	test_startup_prog = fluid.Program()
-	with fluid.program_guard(test_main_prog, test_startup_prog):
-	    # 使用 fluid.unique_name.guard() 实现与train program的参数共享
-	    with fluid.unique_name.guard():
-		test_loss = network(test_reader)
+  fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
+  fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
 
-	fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
-	fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
+  train_exe = fluid.ParallelExecutor(use_cuda=True,
+      loss_name=train_loss.name, main_program=train_main_prog)
+  test_exe = fluid.ParallelExecutor(use_cuda=True,
+      loss_name=test_loss.name, main_program=test_main_prog)
+  for epoch_id in range(10):
+      train_reader.start()
+      try:
+    while True:
+        train_exe.run(fetch_list=[train_loss.name])
+      except fluid.core.EOFException:
+    train_reader.reset()
 
-	train_exe = fluid.ParallelExecutor(use_cuda=True,
-			loss_name=train_loss.name, main_program=train_main_prog)
-	test_exe = fluid.ParallelExecutor(use_cuda=True,
-			loss_name=test_loss.name, main_program=test_main_prog)
-	for epoch_id in range(10):
-	    train_reader.start()
-	    try:
-		while True:
-		    train_exe.run(fetch_list=[train_loss.name])
-	    except fluid.core.EOFException:
-		train_reader.reset()
-
-	    test_reader.start()
-	    try:
-		while True:
-		    test_exe.run(fetch_list=[test_loss.name])
-	    except fluid.core.EOFException:
-		test_reader.reset()
+      test_reader.start()
+      try:
+    while True:
+        test_exe.run(fetch_list=[test_loss.name])
+      except fluid.core.EOFException:
+    test_reader.reset()
 
 
 
@@ -1231,6 +1499,7 @@ reader也是变量。可以为由fluid.layers.open_files()生成的原始reader�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data_file = fluid.layers.open_files(
         filenames=['mnist.recordio'],
         shapes=[(-1, 748), (-1, 1)],
@@ -1266,9 +1535,19 @@ shuffle
 
 返回类型:Variable
 
+**代码示例**：
 
+.. code-block:: python
 
-
+    raw_reader = fluid.layers.io.open_files(filenames=['./data1.recordio',
+                                                   './data2.recordio'],
+                                            shapes=[(3,224,224), (1,)],
+                                            lod_levels=[0, 0],
+                                            dtypes=['float32', 'int64'],
+                                            thread_num=2,
+                                            buffer_size=2)
+    batch_reader = fluid.layers.batch(reader=raw_reader, batch_size=5)
+    shuffle_reader = fluid.layers.shuffle(reader=batch_reader, buffer_size=5000)
 
 
 
@@ -1417,8 +1696,11 @@ pooling3d操作根据输入 ``input`` ，``pool_size`` ， ``pool_type`` 参数�
     #                 output[:, :, i, j, k] =
     #                     avg(input[:, :, dstart:dend, hstart: hend, wstart: wend])
     #
+    
+    import paddle.fluid as fluid
+
     data = fluid.layers.data(
-    name='data', shape=[3, 32, 32], dtype='float32')
+    name='data', shape=[3, 32, 32, 32], dtype='float32')
     pool_out, mask = fluid.layers.adaptive_pool3d(
                       input=data,
                       pool_size=[3, 3, 3],
@@ -1465,7 +1747,15 @@ add_position_encoding
 
 .. code-block:: python
 
-	position_tensor = fluid.layers.add_position_encoding(input=tensor)
+  import paddle.fluid as fluid
+     
+  tensor = fluid.layers.data(
+        name='tensor',
+        shape=[32, 64, 512],
+        dtype='float32',
+        append_batch_size=False)
+  position_tensor = fluid.layers.add_position_encoding(
+        input=tensor, alpha=1.0, beta=1.0)
 
 
 
@@ -1489,18 +1779,28 @@ affine_channel
 输入也可以是二维张量，并在二维应用仿射变换。
 
 参数：
-	- **x** (Variable):特征图输入可以是一个具有NCHW阶或NHWC阶的4D张量。它也可以是二维张量和应用于第二维度的仿射变换。
-	- **scale** (Variable): 形状为(C)的一维输入，第C个元素为输入的第C通道仿射变换的尺度因子。
-	- **bias** (Variable):形状为(C)的一维输入，第C个元素是输入的第C个通道的仿射变换的偏置。
-	- **data_layout** (string, default NCHW): NCHW 或 NHWC，如果输入是一个2D张量，可以忽略该参数
-	- **name** (str, default None): 此层的名称
-        - **act** (str, default None): 应用于该层输出的激活函数
+  - **x** (Variable):特征图输入可以是一个具有NCHW阶或NHWC阶的4D张量。它也可以是二维张量和应用于第二维度的仿射变换。
+  - **scale** (Variable): 形状为(C)的一维输入，第C个元素为输入的第C通道仿射变换的尺度因子。
+  - **bias** (Variable):形状为(C)的一维输入，第C个元素是输入的第C个通道的仿射变换的偏置。
+  - **data_layout** (string, default NCHW): NCHW 或 NHWC，如果输入是一个2D张量，可以忽略该参数
+  - **name** (str, default None): 此层的名称
+  - **act** (str, default None): 应用于该层输出的激活函数
 
 返回： out (Variable): 与x具有相同形状和数据布局的张量。
 
+**代码示例：**
 
+.. code-block:: python
 
-
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='data', shape=[3, 32, 32],
+                             dtype='float32')
+    input_scale = fluid.layers.create_parameter(shape=[3],
+                             dtype="float32")
+    input_bias = fluid.layers.create_parameter(shape=[3],
+                             dtype="float32")
+    out = fluid.layers.affine_channel(data,scale=input_scale,
+                             bias=input_bias)
 
 
 
@@ -1586,9 +1886,9 @@ affine_grid
   Output[i] = C\_ * Theta[i]^T
 
 参数：
-	- **theta** (Variable)： 一类具有形状为[N, 2, 3]的仿射变换参数
-	- **out_shape** (Variable | list | tuple)：具有格式[N, C, H, W]的目标输出的shape，out_shape可以是变量、列表或元组。
-	- **name** (str|None): 此层的名称(可选)。如果没有设置，将自动命名。
+  - **theta** (Variable)： 一类具有形状为[N, 2, 3]的仿射变换参数
+  - **out_shape** (Variable | list | tuple)：具有格式[N, C, H, W]的目标输出的shape，out_shape可以是变量、列表或元组。
+  - **name** (str|None): 此层的名称(可选)。如果没有设置，将自动命名。
 
 返回： Variable: 形为[N, H, W, 2]的输出。
 
@@ -1598,6 +1898,7 @@ affine_grid
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     theta = fluid.layers.data(name="x", shape=[2, 3], dtype="float32")
     out_shape = fluid.layers.data(name="y", shape=[-1], dtype="float32")
     data = fluid.layers.affine_grid(theta, out_shape)
@@ -1635,7 +1936,7 @@ autoincreased_step_counter
 .. code-block:: python
 
     global_step = fluid.layers.autoincreased_step_counter(
-        counter_name='@LR_DECAY_COUNTER@', begin=begin, step=1)
+        counter_name='@LR_DECAY_COUNTER@', begin=0, step=1)
 
 
 
@@ -1690,8 +1991,8 @@ batch_norm
     - **data_layout** （string,默认NCHW) - NCHW|NHWC
     - **in_place** （bool，默认False）- 得出batch norm可复用记忆的输入和输出
     - **name** （string，默认None）- 该层名称（可选）。若设为None，则自动为该层命名
-    - **moving_mean_name** （string，默认None）- moving_mean的名称，存储全局Mean
-    - **moving_variance_name** （string，默认None）- moving_variance的名称，存储全局变量
+    - **moving_mean_name** （string，默认None）- moving_mean的名称，存储全局Mean。如果将其设置为None, ``batch_norm``将随机命名全局平均值；否则， `batch_norm`将命名全局平均值为``moving_mean_name``
+    - **moving_variance_name** （string，默认None）- moving_variance的名称，存储全局变量。如果将其设置为None,``batch_norm``将随机命名全局方差；否则， `batch_norm`将命名全局方差为``moving_mean_name``
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值
     - **fuse_with_relu** （bool）- 如果为True，batch norm后该操作符执行relu
     - **use_global_stats** （bool, Default False） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。
@@ -1703,7 +2004,8 @@ batch_norm
 **代码示例**：
 
 .. code-block:: python
-
+    
+    x = fluid.layers.data(name='x', shape=[3, 7, 3, 7], dtype='float32', append_batch_size=False)
     hidden1 = fluid.layers.fc(input=x, size=200, param_attr='fc1.w')
     hidden2 = fluid.layers.batch_norm(input=hidden1)
 
@@ -1759,12 +2061,22 @@ beam_search
 
 ..  code-block:: python
 
+    import paddle.fluid as fluid
+
     # 假设 `probs` 包含计算神经元所得的预测结果
     # `pre_ids` 和 `pre_scores` 为beam_search之前时间步的输出
+    beam_size = 4
+    end_id = 1
+    pre_ids = fluid.layers.data(
+        name='pre_id', shape=[1], lod_level=2, dtype='int64')
+    pre_scores = fluid.layers.data(
+        name='pre_scores', shape=[1], lod_level=2, dtype='float32')
+    probs = fluid.layers.data(
+        name='probs', shape=[10000], dtype='float32')
     topk_scores, topk_indices = fluid.layers.topk(probs, k=beam_size)
     accu_scores = fluid.layers.elementwise_add(
-                                          x=layers.log(x=topk_scores)),
-                                          y=layers.reshape(
+                                          x=fluid.layers.log(x=topk_scores)),
+                                          y=fluid.layers.reshape(
                                               pre_scores, shape=[-1]),
                                           axis=0)
     selected_ids, selected_scores = fluid.layers.beam_search(
@@ -1805,18 +2117,22 @@ beam_search_decode
         - **end_id** (int) - 结束token的id。
         - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名。
 
-返回：	LodTensor 对（pair）， 由生成的id序列和相应的score序列组成。两个LodTensor的shape和lod是相同的。lod的level=2，这两个level分别表示每个源句有多少个假设，每个假设有多少个id。
+返回： LodTensor 对（pair）， 由生成的id序列和相应的score序列组成。两个LodTensor的shape和lod是相同的。lod的level=2，这两个level分别表示每个源句有多少个假设，每个假设有多少个id。
 
-返回类型:	变量（variable）
+返回类型: 变量（variable）
 
 
 **代码示例**
 
 .. code-block:: python
 
-	    # 假设 `ids` 和 `scores` 为 LodTensorArray变量，它们保留了
-            # 选择出的所有时间步的id和score
-            finished_ids, finished_scores = fluid.layers.beam_search_decode(
+       import paddle.fluid as fluid
+
+       # 假设 `ids` 和 `scores` 为 LodTensorArray变量，它们保留了
+       # 选择出的所有时间步的id和score
+       ids = fluid.layers.create_array(dtype='int64')
+       scores = fluid.layers.create_array(dtype='float32')
+       finished_ids, finished_scores = fluid.layers.beam_search_decode(
                 ids, scores, beam_size=5, end_id=0)
 
 
@@ -1842,11 +2158,11 @@ bilinear_tensor_product
        out_{i} = x * W_{i} * {y^\mathrm{T}}, i=0,1,...,size-1
 
 在这个公式中：
-	- :math:`x`: 第一个输入，包含M个元素，形状为[batch_size, M]
-	- :math:`y`: 第二个输入，包含N个元素，形状为[batch_size, N]
-	- :math:`W_{i}`: 第i个被学习的权重，形状是[M, N]
-	- :math:`out_{i}`: out的第i个元素，形状是[batch_size, size]
-	- :math:`y^\mathrm{T}`: :math:`y_{2}` 的转置
+  - :math:`x`: 第一个输入，包含M个元素，形状为[batch_size, M]
+  - :math:`y`: 第二个输入，包含N个元素，形状为[batch_size, N]
+  - :math:`W_{i}`: 第i个被学习的权重，形状是[M, N]
+  - :math:`out_{i}`: out的第i个元素，形状是[batch_size, size]
+  - :math:`y^\mathrm{T}`: :math:`y_{2}` 的转置
 
 参数：
     - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M]
@@ -1863,7 +2179,9 @@ bilinear_tensor_product
 
 .. code-block:: python
 
-	tensor = bilinear_tensor_product(x=layer1, y=layer2, size=1000)
+  layer1 = fluid.layers.data("t1", shape=[-1, 5], dtype="float32")
+  layer2 = fluid.layers.data("t2", shape=[-1, 4], dtype="float32")
+  tensor = fluid.layers.bilinear_tensor_product(x=layer1, y=layer2, size=1000)
 
 
 
@@ -1876,20 +2194,20 @@ bpr_loss
 .. py:function:: paddle.fluid.layers.bpr_loss(input, label, name=None)
 
 
-Bayesian Personalized Ranking Loss Operator. (贝叶斯个性化排序损失计算)
+贝叶斯个性化排序损失计算（Bayesian Personalized Ranking Loss Operator ）
 
 该算子属于pairwise的排序类型，其标签是期望物品。在某次会话中某一给定点的损失值由下式计算而得:
 
 .. math::
 
-  Y[i] = -\frac{1}{N_{i}-1} * \sum_{0\le j<N_{i},~ j\neq Label[i]}\log(\sigma(X[i, Label[i]]-X[i, j]))
+  \[Y[i] = 1/(N[i] - 1) * \sum_j{\log(\sigma(X[i, Label[i]]-X[i, j]))}\]
 
-更多细节请参考 `Session Based Recommendations with Recurrent Neural Networks <https://arxiv.org/abs/1511.06939>`_
+更多细节请参考 `Session Based Recommendations with Recurrent Neural Networks`_
 
 参数:
-  - **input** (Variable|list):  一个形为[N x D]的2-D tensor , 其中 N 为批大小batch size ，D 为种类的数量。该输入为logits而非概率。
-  - **label** (Variable|list):  2-D tensor<int64> 类型的真实值, 形为[N x 1]
-  - **name** (str|None): （可选）该层的命名。 如果为None, 则自动为该层命名。 默认为None.
+  - **input** (Variable|list) - 一个形为[N x D]的2-D tensor , 其中 N 为批大小batch size ，D 为种类的数量。该输入为logits而非概率。
+  - **label** (Variable|list) - 2-D tensor<int64> 类型的真实值, 形为[N x 1]
+  - **name** (str|None) - （可选）该层的命名。 如果为None, 则自动为该层命名。 默认为None.
 
 返回: 形为[N x 1]的2D张量，即bpr损失
 
@@ -1897,6 +2215,13 @@ Bayesian Personalized Ranking Loss Operator. (贝叶斯个性化排序损失计�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+     
+    neg_size = 10
+    label = fluid.layers.data(
+              name="label", shape=[1], dtype="int64")
+    predict = fluid.layers.data(
+              name="predict", shape=[neg_size + 1], dtype="float32")
     cost = fluid.layers.bpr_loss(input=predict, label=label)
 
 
@@ -2012,10 +2337,21 @@ num_tag_type是标注规则中的标签类型数，num_chunk_type是块类型数
 
 .. code-block:: python:
 
+    import paddle.fluid as fluid
+     
+    dict_size = 10000
+    label_dict_len = 7
+    sequence = fluid.layers.data(
+        name='id', shape=[1], lod_level=1, dtype='int64')
+    embedding = fluid.layers.embedding(
+        input=sequence, size=[dict_size, 512])
+    hidden = fluid.layers.fc(input=embedding, size=512)
+    label = fluid.layers.data(
+        name='label', shape=[1], lod_level=1, dtype='int32')
     crf = fluid.layers.linear_chain_crf(
-        input=hidden, label=label, param_attr=ParamAttr(name="crfw"))
+        input=hidden, label=label, param_attr=fluid.ParamAttr(name="crfw"))
     crf_decode = fluid.layers.crf_decoding(
-        input=hidden, param_attr=ParamAttr(name="crfw"))
+        input=hidden, param_attr=fluid.ParamAttr(name="crfw"))
     fluid.layers.chunk_eval(
         input=crf_decode,
         label=label,
@@ -2057,7 +2393,8 @@ clip算子限制给定输入的值在一个区间内。间隔使用参数"min"�
 **代码示例：**
 
 .. code-block:: python
-
+    
+    import paddle.fluid as fluid
     input = fluid.layers.data(
         name='data', shape=[1], dtype='float32')
     reward = fluid.layers.clip(x=input, min=-1.0, max=1.0)
@@ -2101,6 +2438,48 @@ ClipByNorm算子
         name='data', shape=[1], dtype='float32')
     reward = fluid.layers.clip_by_norm(x=input, max_norm=1.0)
 
+
+
+
+
+
+
+.. _cn_api_fluid_layers_continuous_value_model:
+
+continuous_value_model
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.continuous_value_model(input, cvm, use_cvm=True)
+
+**continuous_value_model层**
+
+现在，continuous value model(cvm)仅考虑CTR项目中的展示和点击值。我们假设输入是一个含cvm_feature的词向量，其形状为[N * D]（D为2 + 嵌入维度）。如果use_cvm=True，它会计算log(cvm_feature)，且输出的形状为[N * D]。如果use_cvm=False，它会从输入中移除cvm_feature，且输出的形状为[N * (D - 2)]。
+    
+该层接受一个名为input的张量，嵌入后成为ID层(lod level为1)， cvm为一个show_click info。
+
+参数：
+    - **input** (Variable)-一个N x D的二维LodTensor， N为batch size， D为2 + 嵌入维度， lod level = 1。
+    - **cvm** (Variable)-一个N x 2的二维Tensor， N为batch size，2为展示和点击值。
+    - **use_cvm** (bool)-分使用/不使用cvm两种情况。如果使用cvm，输出维度和输入相等；如果不使用cvm，输出维度为输入-2（移除展示和点击值)。（cvm op是一个自定义的op，其输入是一个含embed_with_cvm默认值的序列，因此我们需要一个名为cvm的op来决定是否使用cvm。）
+
+返回：变量，一个N x D的二维LodTensor，如果使用cvm，D等于输入的维度，否则D等于输入的维度-2。
+
+返回类型：变量（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+
+    input = fluid.layers.data(name="input", shape=[-1, 1], lod_level=1, append_batch_size=False, dtype="int64")#, stop_gradient=False)
+    label = fluid.layers.data(name="label", shape=[-1, 1], append_batch_size=False, dtype="int64")
+    embed = fluid.layers.embedding(
+                            input=input,
+                            size=[100, 11],
+                            dtype='float32')
+    ones = fluid.layers.fill_constant_batch_size_like(input=label, shape=[-1, 1], dtype="int64", value=1)
+    show_clk = fluid.layers.cast(fluid.layers.concat([ones, label], axis=1), dtype='float32')
+    show_clk.stop_gradient = True
+    input_with_cvm = fluid.layers.continuous_value_model(embed, show_clk, True)
 
 
 
@@ -2247,24 +2626,24 @@ conv2d_transpose
 
 
 参数:
-	- **input** （Variable）- 输入张量，格式为[N, C, H, W]
-	- **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（ channel ）相同
-	- **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
-	- **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
-	- **padding** (int|tuple) - 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
-	- **stride** (int|tuple) - 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-	- **dilation** (int|元组) - 膨胀(dilation)大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
-	- **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-	- **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
-	- **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
-	- **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
-	- **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
-	- **name** (str|None) -  该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
+  - **input** （Variable）- 输入张量，格式为[N, C, H, W]
+  - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（ channel ）相同
+  - **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
+  - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
+  - **padding** (int|tuple) - 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
+  - **stride** (int|tuple) - 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+  - **dilation** (int|元组) - 膨胀(dilation)大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
+  - **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
+  - **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
+  - **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
+  - **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+  - **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
+  - **name** (str|None) -  该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
 
 
-返回：	存储卷积转置结果的张量。
+返回： 存储卷积转置结果的张量。
 
-返回类型:	变量（variable）
+返回类型: 变量（variable）
 
 抛出异常:
     -  ``ValueError`` : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
@@ -2402,9 +2781,9 @@ conv3d_transpose
 
 .. math::
 
-		Input shape: (N,C_{in},D_{in},H_{in},W_{in})
+    Input shape: (N,C_{in},D_{in},H_{in},W_{in})
 
-		Filter shape: (C_{in},C_{out},D_f,H_f,W_f)
+    Filter shape: (C_{in},C_{out},D_f,H_f,W_f)
 
 
 
@@ -2412,7 +2791,7 @@ conv3d_transpose
 
 .. math::
 
-		Output shape: (N,C_{out},D_{out},H_{out},W_{out})
+    Output shape: (N,C_{out},D_{out},H_{out},W_{out})
 
 
 其中：
@@ -2421,33 +2800,33 @@ conv3d_transpose
 
 
 
-		D_{out}=(D_{in}-1)*strides[0]-2*paddings[0]+dilations[0]*(D_f-1)+1
+    D_{out}=(D_{in}-1)*strides[0]-2*paddings[0]+dilations[0]*(D_f-1)+1
 
-		H_{out}=(H_{in}-1)*strides[1]-2*paddings[1]+dilations[1]*(H_f-1)+1
+    H_{out}=(H_{in}-1)*strides[1]-2*paddings[1]+dilations[1]*(H_f-1)+1
 
-		W_{out}=(W_{in}-1)*strides[2]-2*paddings[2]+dilations[2]*(W_f-1)+1
+    W_{out}=(W_{in}-1)*strides[2]-2*paddings[2]+dilations[2]*(W_f-1)+1
 
 
 
 参数:
-	- **input** （Variable）- 输入张量，格式为[N, C, D, H, W]
-	- **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
-	- **output_size** (int|tuple|None) - 输出图片的大小。如果 ``output_size`` 是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果 ``output_size=None`` ,则内部会使用filter_size、padding和stride来计算output_size。如果 ``output_size`` 和 ``filter_size`` 是同时指定的，那么它们应满足上面的公式。
-	- **filter_size** (int|tuple|None) - 滤波器大小。如果 ``filter_size`` 是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果 ``filter_size=None`` ，则内部会计算输出大小。
-	- **padding** (int|tuple) - 填充大小。如果 ``padding`` 是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
-	- **stride** (int|tuple) - 步长大小。如果 ``stride`` 是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-	- **dilation** (int|元组) - 膨胀大小。如果 ``dilation`` 是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
-	- **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-	- **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
-	- **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
-	- **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
-	- **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
-	- **name** (str|None) - 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
+  - **input** （Variable）- 输入张量，格式为[N, C, D, H, W]
+  - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（channel）相同
+  - **output_size** (int|tuple|None) - 输出图片的大小。如果 ``output_size`` 是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果 ``output_size=None`` ,则内部会使用filter_size、padding和stride来计算output_size。如果 ``output_size`` 和 ``filter_size`` 是同时指定的，那么它们应满足上面的公式。
+  - **filter_size** (int|tuple|None) - 滤波器大小。如果 ``filter_size`` 是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果 ``filter_size=None`` ，则内部会计算输出大小。
+  - **padding** (int|tuple) - 填充大小。如果 ``padding`` 是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
+  - **stride** (int|tuple) - 步长大小。如果 ``stride`` 是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+  - **dilation** (int|元组) - 膨胀大小。如果 ``dilation`` 是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
+  - **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
+  - **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
+  - **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
+  - **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+  - **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
+  - **name** (str|None) - 该layer的名称(可选)。如果设置为None， 将自动命名该layer。默认值:True。
 
 
-返回：	存储卷积转置结果的张量。
+返回： 存储卷积转置结果的张量。
 
-返回类型:	变量（variable）
+返回类型: 变量（variable）
 
 抛出异常:
     -  ``ValueError``  : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
@@ -2494,9 +2873,13 @@ cos_sim
 
 返回类型：变量（Variable)
 
+**代码示例**
 
+..  code-block:: python
 
-
+     x = fluid.layers.data(name='x', shape=[3, 7], dtype='float32', append_batch_size=False)
+     y = fluid.layers.data(name='y', shape=[1, 7], dtype='float32', append_batch_size=False)
+     out = fluid.layers.cos_sim(x, y)
 
 
 
@@ -2534,8 +2917,13 @@ crf_decoding
 
 ..  code-block:: python
 
-      crf_decode = fluid.layers.crf_decoding(
-           input=hidden, param_attr=ParamAttr(name="crfw"))
+    images = fluid.layers.data(name='pixel', shape=[784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int32')
+    hidden = fluid.layers.fc(input=images, size=2)
+    crf = fluid.layers.linear_chain_crf(input=hidden, label=label,
+            param_attr=fluid.ParamAttr(name="crfw"))
+    crf_decode = fluid.layers.crf_decoding(input=hidden,
+            param_attr=fluid.ParamAttr(name="crfw"))
 
 
 
@@ -2604,7 +2992,8 @@ crop
 **代码示例**:
 
 ..  code-block:: python
-
+    
+    import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3, 5], dtype="float32")
     y = fluid.layers.data(name="y", shape=[2, 3], dtype="float32")
     crop = fluid.layers.crop(x, shape=y)
@@ -2675,7 +3064,10 @@ cross_entropy
 
 ..  code-block:: python
 
-        predict = fluid.layers.fc(input=net, size=classdim, act='softmax')
+        classdim = 7
+        x = fluid.layers.data(name='x', shape=[3, 7], dtype='float32', append_batch_size=False)
+        label = fluid.layers.data(name='label', shape=[3, 1], dtype='float32', append_batch_size=False)
+        predict = fluid.layers.fc(input=x, size=classdim, act='softmax')
         cost = fluid.layers.cross_entropy(input=predict, label=label)
 
 
@@ -2750,6 +3142,7 @@ ctc_greedy_decoder
 
 ..  code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[8], dtype='float32')
 
     cost = fluid.layers.ctc_greedy_decoder(input=x, blank=0)
@@ -2803,8 +3196,10 @@ data_norm
 
 ..  code-block:: python
 
-    data = fluid.layers.data(input=x, size=200, param_attr='fc1.w')
-    hidden2 = fluid.layers.data_norm(input=hidden1)
+    import paddle.fluid as fluid
+
+    hidden1 = fluid.layers.data(name="hidden1", shape=[200])
+    hidden2 = fluid.layers.data_norm(name="hidden2", input=hidden1)
 
 
 
@@ -2812,7 +3207,128 @@ data_norm
 
 
 
+.. _cn_api_fluid_layers_deformable_conv:
 
+deformable_conv
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.deformable_conv(input, offset, mask, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, deformable_groups=None, im2col_step=None, param_attr=None, bias_attr=None, name=None)
+
+可变形卷积层
+
+在4-D输入上计算2-D可变形卷积。给定输入图像x，输出特征图y，可变形卷积操作如下所示：
+\[y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}\]
+其中\(\Delta p_k\) 和 \(\Delta m_k\) 分别为第k个位置的可学习偏移和调制标量。
+参考可变形卷积网络v2：可变形程度越高，结果越好。
+
+**示例**
+     
+输入：
+    输入形状： \((N, C_{in}, H_{in}, W_{in})\)
+    卷积核形状： \((C_{out}, C_{in}, H_f, W_f)\)
+    偏移形状： \((N, 2 * deformable\_groups * H_f * H_w, H_{in}, W_{in})\)
+    掩膜形状： \((N, deformable\_groups * H_f * H_w, H_{in}, W_{in})\)
+     
+输出：
+    输出形状： \((N, C_{out}, H_{out}, W_{out})\)
+
+其中
+    \[\begin{split}H_{out}&= \frac{(H_{in} + 2 * paddings[0] - (dilations[0] * (H_f - 1) + 1))}{strides[0]} + 1 \\
+    W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1\end{split}\]
+     
+
+参数：
+    - **input** (Variable) - 形式为[N, C, H, W]的输入图像。
+    - **offset** (Variable) – 可变形卷积层的输入坐标偏移。
+    - **Mask** (Variable) – 可变形卷积层的输入掩膜。
+    - **num_filters** (int) – 卷积核数。和输出图像通道数相同。
+    - **filter_size** (int|tuple|None) – 卷积核大小。如果filter_size为元组，则必须包含两个整数(filter_size_H, filter_size_W)。否则卷积核将为方形。
+    - **stride** (int|tuple) – 步长大小。如果stride为元组，则必须包含两个整数(stride_H, stride_W)。否则stride_H = stride_W = stride。默认stride = 1。
+    - **padding** (int|tuple) – padding大小。如果padding为元组，则必须包含两个整数(padding_H, padding_W)。否则padding_H = padding_W = padding。默认padding = 0。
+    - **dilation** (int|tuple) – dilation大小。如果dilation为元组，则必须包含两个整数(dilation_H, dilation_W)。否则dilation_H = dilation_W = dilation。默认dilation = 1。
+    - **groups** (int) – 可变形卷积层的群组数。依据Alex Krizhevsky的Deep CNN论文中的分组卷积，有：当group=2时，前一半卷积核只和前一半输入通道有关，而后一半卷积核只和后一半输入通道有关。默认groups=1。
+    - **deformable_groups** (int) – 可变形群组分区数。默认deformable_groups = 1。
+    - **im2col_step** (int) – 每个im2col计算的最大图像数。总batch大小应该可以被该值整除或小于该值。如果您面临内存问题，可以尝试在此处使用一个更小的值。默认im2col_step = 64。
+    - **param_attr** (ParamAttr|None) – 可变形卷积的可学习参数/权重的参数属性。如果将其设置为None或ParamAttr的一个属性，可变形卷积将创建ParamAttr作为param_attr。如果没有设置此param_attr的Initializer，该参数将被\(Normal(0.0, std)\)初始化，且其中的\(std\) 为 \((\frac{2.0 }{filter\_elem\_num})^{0.5}\)。默认值None。
+    - **bias_attr** (ParamAttr|bool|None) – 可变形卷积层的偏置的参数属性。如果设为False，则输出单元不会加偏置。如果设为None或者ParamAttr的一个属性，conv2d会创建ParamAttr作为bias_attr。如果不设置bias_attr的Initializer，偏置会被初始化为0。默认值None。
+    - **name** (str|None) – 该层的名字（可选项）。如果设为None，该层将会被自动命名。默认值None。
+ 
+返回：储存可变形卷积结果的张量变量。
+     
+返回类型：变量(Variable)
+     
+抛出：ValueError – 如果input, filter_size, stride, padding和groups的大小不匹配。
+
+**代码示例**
+
+..  code-block:: python
+
+    data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
+    offset = fluid.layers.data(name='offset', shape=[18, 32, 32], dtype='float32')
+    mask = fluid.layers.data(name='mask', shape=[9, 32, 32], dtype='float32')
+    out = fluid.layers.deformable_conv(input=data, offset=offset, mask=mask, num_filters=2, filter_size=3, padding=1)
+
+
+
+
+
+
+.. _cn_api_fluid_layers_deformable_roi_pooling:
+
+deformable_roi_pooling
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.deformable_roi_pooling(input, rois, trans, no_trans=False, spatial_scale=1.0, group_size=[1, 1], pooled_height=1, pooled_width=1, part_size=None, sample_per_part=1, trans_std=0.1, position_sensitive=False, name=None)
+
+可变形PSROI池层
+
+参数:
+    - **input** (Variable) - 可变形PSROI池层的输入。输入张量的形状为[N，C，H，W]。其中N是批量大小，C是输入通道的数量，H是特征的高度，W是特征的宽度。
+    - **rois** （Variable）- 将池化的ROIs（感兴趣区域）。应为一个形状为(num_rois, 4)的2-D LoDTensor，且lod level为1。给出[[x1, y1, x2, y2], ...]，(x1, y1)为左上角坐标，(x2, y2)为右下角坐标。
+    - **trans** （Variable）- 池化时ROIs上的特征偏移。格式为NCHW，其中N是ROIs的数量，C是通道的数量，指示x和y方向上的偏移距离，H是池化的高度，W是池化的宽度。
+    - **no_trans** （bool）- roi池化阶段是否加入偏移以获取新值。取True或False。默认为False。
+    - **spatial_scale** (float) - 输入特征图的高度（或宽度）与原始图像高度（或宽度）的比率。等于卷积图层中总步长的倒数，默认为1.0。
+    - **group_size** （list|tuple）- 输入通道划分成的组数（例如，输入通道的数量是k1 * k2 *（C + 1），其中k1和k2是组宽度和高度，C + 1是输出通道的数量。如（ 4,6）中4是组的高度，6是组的宽度）。默认为[1,1]。
+    - **pooled_height** （integer）- 池化后输出的高度。
+    - **pooled_width** （integer）- 池化后输出的宽度。
+    - **part_size** （list|tuple）- 偏移高度和宽度，如(4, 6)代表高度为4、宽度为6，默认为None，此时默认值[pooled_height, pooled_width]。
+    - **sample_per_part** （integer）- 每个bin中的样本数量，默认为1。
+    - **trans_std** （float）- 偏移系数，默认为0.1。
+    - **position_sensitive** （bool）- 是否选择可变形psroi池化模式，默认为False。
+    - **name** （str）- 层名，默认为None。
+
+返回: 存储可变形psroi池层的张量变量
+
+返回类型:  变量(Variable)
+
+**代码示例**
+
+..  code-block:: python
+
+    input = fluid.layers.data(name="input",
+                              shape=[2, 192, 64, 64],
+                              dtype='float32',
+                              append_batch_size=False)
+    rois = fluid.layers.data(name="rois",
+                             shape=[4],
+                             dtype='float32',
+                             lod_level=1)
+    trans = fluid.layers.data(name="trans",
+                              shape=[2, 384, 64, 64],
+                              dtype='float32',
+                              append_batch_size=False)
+    x = fluid.layers.nn.deformable_roi_pooling(input=input,
+                                                 rois=rois,
+                                                 trans=trans,
+                                                 no_trans=False,
+                                                 spatial_scale=1.0,
+                                                 group_size=(1, 1),
+                                                 pooled_height=8,
+                                                 pooled_width=8,
+                                                 part_size=(8, 8),
+                                                 sample_per_part=4,
+                                                 trans_std=0.1,
+                                                 position_sensitive=False)
 
 .. _cn_api_fluid_layers_dice_loss:
 
@@ -2843,8 +3359,11 @@ dice_loss定义为:
 
 ..  code-block:: python
 
-	predictions = fluid.layers.softmax(x)
-    	loss = fluid.layers.dice_loss(input=predictions, label=label, 2)
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='data', shape = [3, 224, 224, 2], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[3, 224, 224, 1], dtype='float32')
+    predictions = fluid.layers.softmax(x)
+    loss = fluid.layers.dice_loss(input=predictions, label=label)
 
 
 
@@ -2980,14 +3499,16 @@ dynamic_gru
   - **h_0** (Variable) – 该函数参数为初始隐藏状态。若未赋值，则默认为0。它是一个 (N x D) tensor, 其中 N 为输入mini-batch的总时间步数， D 为 隐藏状态规模(hidden size)
 
 
-返回：	GRU的隐藏状态(hidden state)。形为（T X D），序列长度和输入相同。
+返回： GRU的隐藏状态(hidden state)。形为（T X D），序列长度和输入相同。
 
-返回类型:	变量（variable）
+返回类型: 变量（variable）
 
 
 **代码示例**
 
 ..  code-block:: python
+
+    import paddle.fluid as fluid
 
     dict_dim, emb_dim = 128, 64
     data = fluid.layers.data(name='sequence', shape=[1],
@@ -3088,8 +3609,15 @@ W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门�
 
 ..  code-block:: python
 
+  emb_dim = 256
+  vocab_size = 10000
   hidden_dim = 512
-  forward_proj = fluid.layers.fc(input=input_seq, size=hidden_dim * 4,
+
+  data = fluid.layers.data(name='x', shape=[1],
+                 dtype='int32', lod_level=1)
+  emb = fluid.layers.embedding(input=data, size=[vocab_size, emb_dim], is_sparse=True)
+     
+  forward_proj = fluid.layers.fc(input=emb, size=hidden_dim * 4,
                                  bias_attr=False)
   forward, _ = fluid.layers.dynamic_lstm(
       input=forward_proj, size=hidden_dim * 4, use_peepholes=False)
@@ -3252,9 +3780,28 @@ edit_distance
 
 .. code-block:: python
 
-    x = fluid.layers.data(name='x', shape=[1], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
-    cost = fluid.layers.edit_distance(input=x,label=y)
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[1], dtype='int64')
+    y = fluid.layers.data(name='y', shape=[1], dtype='int64')
+    cost, _ = fluid.layers.edit_distance(input=x,label=y)
+
+    cpu = fluid.core.CPUPlace()
+    exe = fluid.Executor(cpu)
+    exe.run(fluid.default_startup_program())
+
+    import numpy
+    x_ = numpy.random.randint(5, size=(2, 1)).astype('int64')
+    y_ = numpy.random.randint(5, size=(2, 1)).astype('int64')
+    
+    print(x_)
+    print(y_)
+    
+    x = fluid.create_lod_tensor(x_, [[2]], cpu)
+    y = fluid.create_lod_tensor(y_, [[2]], cpu)
+    
+    outs = exe.run(feed={'x':x, 'y':y}, fetch_list=[cost.name])
+    
+    print(outs)
 
 
 
@@ -3287,11 +3834,11 @@ elementwise_add
 对于情况2:
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），则 ``axis`` 为 :math:`Y` 传到 :math:`X` 上的起始维度索引。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis= rank(X)-rank(Y)` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾部尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 
-..  code-block:: python
+..  code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -3303,17 +3850,48 @@ elementwise_add
 输入 :math:`X` 和 :math:`Y` 可以携带不同的LoD信息。但输出仅与输入 :math:`X` 共享LoD信息。
 
 参数：
-        - **x** （Tensor）- 元素op的第一个输入张量（Tensor）。
-        - **y** （Tensor）- 元素op的第二个输入张量（Tensor）。
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
         - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活应用于输出。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
         - **name** （basestring | None）- 输出的名称。
 
 返回：        元素运算的输出。
 
+**代码示例**
 
+..  code-block:: python
 
-
+    import paddle.fluid as fluid
+    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_add(x0, y0)
+     
+    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_add(x1, y1)
+     
+    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_add(x2, y2, axis=2)
+     
+    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_add(x3, y3, axis=1)
+     
+    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_add(x4, y4, axis=0)
+     
+    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_add(x5, y5, axis=0)
 
 
 
@@ -3333,8 +3911,8 @@ elementwise_div
 .. math::
         Out = X / Y
 
-- :math:`X` ：任何尺寸的张量（Tensor）。
-- :math:`Y` ：尺寸必须小于或等于X尺寸的张量（Tensor）。
+- :math:`X` ：任何维度的张量（Tensor）。
+- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
 
 此运算算子有两种情况：
         1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
@@ -3343,11 +3921,11 @@ elementwise_div
 对于情况2：
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 
-..  code-block:: python
+..  code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -3359,17 +3937,145 @@ elementwise_div
 输入 :math:`X` 和 :math:`Y` 可以携带不同的LoD信息。但输出仅与输入 :math:`X` 共享LoD信息。
 
 参数：
-        - **x** （Tensor）- 元素op的第一个输入张量（Tensor）。
-        - **y** （Tensor）- 元素op的第二个输入张量（Tensor）。
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
         - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活应用于输出。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
+        - **name** （basestring | None）- 输出的名称。
+
+返回：        元素运算的输出。
+
+**代码示例**
+
+..  code-block:: python
+
+    import paddle.fluid as fluid
+    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_div(x0, y0)
+     
+    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_div(x1, y1)
+     
+    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_div(x2, y2, axis=2)
+     
+    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_div(x3, y3, axis=1)
+     
+    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_div(x4, y4, axis=0)
+     
+    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_div(x5, y5, axis=0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.. _cn_api_fluid_layers_elementwise_floordiv:
+    
+elementwise_floordiv
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.elementwise_floordiv(x, y, axis=-1, act=None, name=None)
+
+FloorDiv运算。
+
+等式是：
+
+.. math::
+        Out = X // Y
+
+- :math:`X` ：任何维度的张量（Tensor）。
+- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
+
+此运算分两种情况：
+        1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
+        2. :math:`Y` 的形状（shape）是 :math:`X` 的连续子序列。
+
+对于情况2：
+        1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
+        2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
+
+例如：
+
+..  code-block:: text
+
+        shape(X) = (2, 3, 4, 5), shape(Y) = (,)
+        shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
+        shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+        shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+        shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+        shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+
+输入 :math:`X` 和 :math:`Y` 可以携带不同的LoD信息。但输出仅与输入 :math:`X` 共享LoD信息。
+
+参数：
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
+        - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
         - **name** （basestring | None）- 输出的名称。
 
 返回：        元素运算的输出。
 
 
+**代码示例**
 
+..  code-block:: python
 
+    import paddle.fluid as fluid
+    # example 1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_floordiv(x0, y0)
+
+    # example 2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_floordiv(x1, y1)
+
+    # example 3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_floordiv(x2, y2, axis=2)
+
+    # example 4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_floordiv(x3, y3, axis=1)
+
+    # example 5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_floordiv(x4, y4, axis=0)
+
+    # example 6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_floordiv(x5, y5, axis=0)
 
 
 
@@ -3389,8 +4095,8 @@ elementwise_max
 .. math::
         Out = max(X, Y)
 
-- :math:`X` ：任何尺寸的张量（Tensor）。
-- :math:`Y` ：尺寸必须小于或等于X尺寸的张量（Tensor）。
+- :math:`X` ：任何维度的张量（Tensor）。
+- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
 
 此运算算子有两种情况：
         1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
@@ -3399,11 +4105,11 @@ elementwise_max
 对于情况2：
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 
-..  code-block:: python
+..  code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -3415,15 +4121,48 @@ elementwise_max
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-        - **x** （Tensor）- 元素op的第一个输入张量（Tensor）。
-        - **y** （Tensor）- 元素op的第二个输入张量（Tensor）。
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
         - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活应用于输出。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
         - **name** （basestring | None）- 输出的名称。
 
 返回：        元素运算的输出。
 
+**代码示例**
 
+..  code-block:: python
+
+    import paddle.fluid as fluid
+    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_max(x0, y0)
+     
+    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_max(x1, y1)
+     
+    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_max(x2, y2, axis=2)
+     
+    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_max(x3, y3, axis=1)
+     
+    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_max(x4, y4, axis=0)
+     
+    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_max(x5, y5, axis=0)
 
 
 
@@ -3446,8 +4185,8 @@ elementwise_min
 .. math::
         Out = min(X, Y)
 
-- :math:`X` ：任何维数的张量（Tensor）。
-- :math:`Y` ：维数必须小于或等于X维数的张量（Tensor）。
+- :math:`X` ：任何维度的张量（Tensor）。
+- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
 
 此运算算子有两种情况：
         1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
@@ -3456,11 +4195,11 @@ elementwise_min
 对于情况2：
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 
-..  code-block:: python
+..  code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -3472,20 +4211,137 @@ elementwise_min
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-        - **x** （Tensor）- 元素op的第一个输入张量（Tensor）。
-        - **y** （Tensor）- 元素op的第二个输入张量（Tensor）。
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
         - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活应用于输出。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
         - **name** （basestring | None）- 输出的名称。
 
 返回：        元素运算的输出。
 
+**代码示例**
+
+..  code-block:: python
+
+    import paddle.fluid as fluid
+    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_min(x0, y0)
+     
+    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_min(x1, y1)
+     
+    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_min(x2, y2, axis=2)
+     
+    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_min(x3, y3, axis=1)
+     
+    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_min(x4, y4, axis=0)
+     
+    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_min(x5, y5, axis=0)
+     
 
 
 
 
 
+.. _cn_api_fluid_layers_elementwise_mod:
+    
+elementwise_mod
+-------------------------------
 
+.. py:function:: paddle.fluid.layers.elementwise_mod(x, y, axis=-1, act=None, name=None)
+
+按元素的取模运算。
+
+等式是：
+
+.. math::
+        Out = X\%Y
+
+- :math:`X` ：任何维度的张量（Tensor）。
+- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
+
+此运算算子有两种情况：
+        1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
+        2. :math:`Y` 的形状（shape）是 :math:`X` 的连续子序列。
+
+对于情况2：
+        1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
+        2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾随维度将被忽略，例如shape（Y）=（2,1）=>（2）。
+
+例如：
+
+..  code-block:: text
+
+        shape(X) = (2, 3, 4, 5), shape(Y) = (,)
+        shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
+        shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+        shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+        shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+        shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+
+输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
+
+参数：
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
+        - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
+        - **name** （basestring | None）- 输出的名称。
+
+返回：        元素运算的输出。
+    
+    
+**代码示例**
+
+..  code-block:: python
+  
+    import paddle.fluid as fluid
+    # example 1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_mod(x0, y0)
+
+    # example 2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_mod(x1, y1)
+
+    # example 3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_mod(x2, y2, axis=2)
+
+    # example 4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_mod(x3, y3, axis=1)
+
+    # example 5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_mod(x4, y4, axis=0)
+
+    # example 6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_mod(x5, y5, axis=0)
 
 
 
@@ -3503,8 +4359,8 @@ elementwise_mul
 .. math::
         Out = X \odot Y
 
-- **X** ：任何尺寸的张量（Tensor）。
-- **Y** ：尺寸必须小于或等于X尺寸的张量（Tensor）。
+- :math:`X` ：任何维度的张量（Tensor）。
+- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
 
 此运算算子有两种情况：
         1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
@@ -3513,11 +4369,11 @@ elementwise_mul
 对于情况2：
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾随维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 
-..  code-block:: python
+..  code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -3529,15 +4385,48 @@ elementwise_mul
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-        - **x** - （Tensor），元素op的第一个输入张量（Tensor）。
-        - **y** - （Tensor），元素op的第二个输入张量（Tensor）。
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
         - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活应用于输出。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
         - **name** （basestring | None）- 输出的名称。
 
 返回：        元素运算的输出。
 
+**代码示例**
 
+..  code-block:: python
+
+    import paddle.fluid as fluid
+    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_mul(x0, y0)
+     
+    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_mul(x1, y1)
+     
+    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_mul(x2, y2, axis=2)
+     
+    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_mul(x3, y3, axis=1)
+     
+    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_mul(x4, y4, axis=0)
+     
+    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_mul(x5, y5, axis=0)
 
 
 
@@ -3559,8 +4448,8 @@ elementwise_pow
 .. math::
         Out = X ^ Y
 
-- :math:`X` ：任何维数的张量（Tensor）。
-- :math:`Y` ：维数必须小于或等于X维数的张量（Tensor）。
+- :math:`X` ：任何维度的张量（Tensor）。
+- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
 
 此运算算子有两种情况：
         1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
@@ -3569,11 +4458,11 @@ elementwise_pow
 对于情况2：
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾随维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
-例如：
+**代码示例**
 
-..  code-block:: python
+..  code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -3585,15 +4474,47 @@ elementwise_pow
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-        - **x** （Tensor）- 元素op的第一个输入张量（Tensor）。
-        - **y** （Tensor）- 元素op的第二个输入张量（Tensor）。
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
         - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活应用于输出。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
         - **name** （basestring | None）- 输出的名称。
 
 返回：        元素运算的输出。
 
+**代码示例**
 
+..  code-block:: python
+
+    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_pow(x0, y0)
+     
+    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_pow(x1, y1)
+     
+    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_pow(x2, y2, axis=2)
+     
+    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_pow(x3, y3, axis=1)
+     
+    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_pow(x4, y4, axis=0)
+     
+    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_pow(x5, y5, axis=0)
 
 
 
@@ -3616,8 +4537,8 @@ elementwise_sub
 .. math::
        Out = X - Y
 
-- **X** ：任何尺寸的张量（Tensor）。
-- **Y** ：尺寸必须小于或等于**X**尺寸的张量（Tensor）。
+- **X** ：任何维度的张量（Tensor）。
+- **Y** ：维度必须小于或等于**X**维度的张量（Tensor）。
 
 此运算算子有两种情况：
         1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
@@ -3626,11 +4547,11 @@ elementwise_sub
 对于情况2：
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾随尺寸将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾随维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 
-..  code-block:: python
+..  code-block:: text
 
         shape(X) = (2, 3, 4, 5), shape(Y) = (,)
         shape(X) = (2, 3, 4, 5), shape(Y) = (5,)
@@ -3642,17 +4563,48 @@ elementwise_sub
 输入X和Y可以携带不同的LoD信息。但输出仅与输入X共享LoD信息。
 
 参数：
-        - **x** - （Tensor），元素op的第一个输入张量（Tensor）。
-        - **y** - （Tensor），元素op的第二个输入张量（Tensor）。
+        - **x** （Tensor）- 第一个输入张量（Tensor）。
+        - **y** （Tensor）- 第二个输入张量（Tensor）。
         - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活应用于输出。
+        - **act** （basestring | None）- 激活函数名称，应用于输出。
         - **name** （basestring | None）- 输出的名称。
 
 返回：        元素运算的输出。
 
+**代码示例**
 
+..  code-block:: python
 
-
+    import paddle.fluid as fluid
+    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
+    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
+    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
+    z0 = fluid.layers.elementwise_sub(x0, y0)
+     
+    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
+    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
+    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
+    z1 = fluid.layers.elementwise_sub(x1, y1)
+     
+    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
+    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
+    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
+    z2 = fluid.layers.elementwise_sub(x2, y2, axis=2)
+     
+    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
+    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
+    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
+    z3 = fluid.layers.elementwise_sub(x3, y3, axis=1)
+     
+    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
+    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
+    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
+    z4 = fluid.layers.elementwise_sub(x4, y4, axis=0)
+     
+    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
+    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
+    z5 = fluid.layers.elementwise_sub(x5, y5, axis=0)
 
 
 
@@ -3681,7 +4633,7 @@ ELU激活层（ELU Activation Operator）
 
 返回类型: 输出(Variable)
 
-**代码示例：**
+**代码示例**
 
 .. code-block:: python
 
@@ -3723,9 +4675,9 @@ embedding
 
 .. code-block:: python
 
-    dict_size = len(dataset.ids)
-    data = fluid.layers.data(name='ids', shape=[1], dtype='int64')
-    fc = fluid.layers.embedding(input=data, size=[dict_size, 16], dtype='float32')
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='sequence', shape=[1], dtype='int64', lod_level=1)
+    emb = fluid.layers.embedding(input=data, size=[128, 64])
 
 
 
@@ -3815,11 +4767,11 @@ fc
 
 上述等式中：
   - :math:`N` ：输入的数目,如果输入是变量列表，N等于len（input）
-  - :math:`X_i` : 第i个输入的tensor
+  - :math:`X_i` ：第i个输入的tensor
   - :math:`W_i` ：对应第i个输入张量的第i个权重矩阵
   - :math:`b` ：该层创立的bias参数
-  - :math:`Act` : activation function(激励函数)
-  - :math:`Out` : 输出tensor
+  - :math:`Act` ：activation function(激励函数)
+  - :math:`Out` ：输出tensor
 
 ::
 
@@ -3913,17 +4865,17 @@ flatten
         Out.shape = (1, 3 * 100 * 100 * 4)
 
 参数：
-	- **x** (Variable) - 一个秩>=axis 的张量
- 	- **axis** (int) - flatten的划分轴，[0, axis) 轴数据被flatten到输出矩阵的0轴，[axis, R)被flatten到输出矩阵的1轴，其中R是输入张量的秩。axis的值必须在[0,R]范围内。当 axis= 0 时，输出张量的形状为 (1，d_0 \* d_1 \*… d_n) ，其输入张量的形状为(d_0, d_1，… d_n)。
-	- **name** (str|None) - 此层的名称(可选)。如果没有设置，层将自动命名。
+  - **x** (Variable) - 一个秩>=axis 的张量
+  - **axis** (int) - flatten的划分轴，[0, axis) 轴数据被flatten到输出矩阵的0轴，[axis, R)被flatten到输出矩阵的1轴，其中R是输入张量的秩。axis的值必须在[0,R]范围内。当 axis= 0 时，输出张量的形状为 (1，d_0 \* d_1 \*… d_n) ，其输入张量的形状为(d_0, d_1，… d_n)。
+  - **name** (str|None) - 此层的名称(可选)。如果没有设置，层将自动命名。
 
 返回: 一个二维张量，它包含输入张量的内容，但维数发生变化。输入的[0, axis)维将沿给定轴flatten到输出的前一个维度，剩余的输入维数flatten到输出的后一个维度。
 
 返回类型: Variable
 
 抛出异常：
-	- ValueError: 如果 x 不是一个变量
-	- ValueError: 如果axis的范围不在 [0, rank(x)]
+  - ValueError: 如果 x 不是一个变量
+  - ValueError: 如果axis的范围不在 [0, rank(x)]
 
 **代码示例**
 
@@ -3963,8 +4915,12 @@ fsp_matrix
 
 ..  code-block:: python
 
-    feature_map_0 = fluid.layers.conv2d(x)
-    feature_map_1 = fluid.layers.conv2d(feature_map_0)
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='data', shape=[3, 32, 32])
+    feature_map_0 = fluid.layers.conv2d(data, num_filters=2,
+                                        filter_size=3)
+    feature_map_1 = fluid.layers.conv2d(feature_map_0, num_filters=2,
+                                        filter_size=1)
     loss = fluid.layers.fsp_matrix(feature_map_0, feature_map_1)
 
 
@@ -3977,7 +4933,7 @@ fsp_matrix
 gather
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.gather(input, index)
+.. py:function:: paddle.fluid.layers.gather(input, index, overwrite=True)
 
 收集层（gather layer）
 
@@ -4001,16 +4957,21 @@ gather
 
 
 参数:
-        - **input** (Variable) - input 的rank >= 1。
-        - **index** (Variable) - index的rank = 1。
+         - **input** (Variable) - input的秩rank >= 1。
+        - **index** (Variable) - index的秩rank = 1。
+        - **overwrite** (bool) - 具有相同索引时更新grad的模式。如果为True，则使用覆盖模式更新相同索引的grad，如果为False，则使用accumulate模式更新相同索引的grad。Default值为True。
 
-返回：	output (Variable)
+返回：和输入的秩相同的输出张量。
+
+返回类型：output (Variable)
 
 **代码示例**
 
 ..  code-block:: python
-
-	output = fluid.layers.gather(x, index)
+  
+  x = fluid.layers.data(name='x', shape=[-1, 5], dtype='float32')
+  index = fluid.layers.data(name='index', shape=[-1, 1], dtype='int32')
+  output = fluid.layers.gather(x, index)
 
 
 
@@ -4046,6 +5007,7 @@ gaussian_random算子。
 
 .. code-block:: python
 
+    import paddle.fluid.layers as layers
     out = fluid.layers.gaussian_random(shape=[20, 30])
 
 
@@ -4104,14 +5066,21 @@ get_tensor_from_selected_rows
 :code:`Get Tensor From Selected Rows` 用于从选中行（Selected Rows）中获取张量
 
 参数：
-	- **x** (Variable) - 输入，类型是SelectedRows
-	- **name** (basestring|None) - 输出的名称
+  - **x** (Variable) - 输入，类型是SelectedRows
+  - **name** (basestring|None) - 输出的名称
 
 返回： 输出类型为LoDTensor
 
 返回类型： out(Variable)
 
+**代码示例：**
 
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    b = fluid.default_main_program().global_block()
+    input = b.create_var(name="X", dtype="float32", persistable=True, type=fluid.core.VarDesc.VarType.SELECTED_ROWS)
+    out = fluid.layers.get_tensor_from_selected_rows(input)
 
 
 
@@ -4136,13 +5105,13 @@ grid_sampler
 
 step 1：
 
-	得到(x, y)网格坐标，缩放到[0,h -1/W-1]
+  得到(x, y)网格坐标，缩放到[0,h -1/W-1]
 
-	grid_x = 0.5 * (grid[:, :, :, 0] + 1) * (W - 1) grid_y = 0.5 * (grid[:, :, :, 1] + 1) * (H - 1)
+  grid_x = 0.5 * (grid[:, :, :, 0] + 1) * (W - 1) grid_y = 0.5 * (grid[:, :, :, 1] + 1) * (H - 1)
 
 step 2：
 
-	在每个[H, W]区域用网格(X, y)作为输入数据X的索引，并将双线性插值点值由4个最近的点表示。
+  在每个[H, W]区域用网格(X, y)作为输入数据X的索引，并将双线性插值点值由4个最近的点表示。
 
 .. code-block:: text
 
@@ -4174,9 +5143,9 @@ step 2：
            + ws * d_e * d_n + es * d_w * d_n
 
 参数：
-	- **x** (Variable): 输入数据，形状为[N, C, H, W]
-	- **grid** (Variable): 输入网格张量，形状为[N, H, W, 2]
-	- **name** (str, default None): 该层的名称
+  - **x** (Variable): 输入数据，形状为[N, C, H, W]
+  - **grid** (Variable): 输入网格张量，形状为[N, H, W, 2]
+  - **name** (str, default None): 该层的名称
 
 返回： **out** (Variable): 输入X基于输入网格的bilnear插值计算结果，形状为[N, C, H, W]
 
@@ -4184,9 +5153,11 @@ step 2：
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+
     x = fluid.layers.data(name='x', shape=[3, 10, 32, 32], dtype='float32')
     theta = fluid.layers.data(name='theta', shape=[3, 2, 3], dtype='float32')
-    grid = fluid.layers.affine_grid(input=theta, size=[3, 10, 32, 32]})
+    grid = fluid.layers.affine_grid(theta=theta, out_shape=[3, 10, 32, 32]})
     out = fluid.layers.grid_sampler(x=x, grid=grid)
 
 
@@ -4208,14 +5179,14 @@ group_norm
 参考论文： `Group Normalization <https://arxiv.org/abs/1803.08494>`_
 
 参数：
-	- **input** (Variable)：输入张量变量
-	- **groups** (int)：从 channel 中分离出来的 group 的数目
-	- **epsilon** (float)：为防止方差除零，增加一个很小的值
-	- **param_attr** (ParamAttr|None)：可学习标度的参数属性 :math:`g`,如果设置为False，则不会向输出单元添加标度。如果设置为0，偏差初始化为1。默认值:None
-	- **bias_attr** (ParamAttr|None)：可学习偏置的参数属性 :math:`b ` , 如果设置为False，则不会向输出单元添加偏置量。如果设置为零，偏置初始化为零。默认值:None。
-	- **act** (str):将激活应用于输出的 group normalizaiton
-	- **data_layout** (string|NCHW): 只支持NCHW。
-	- **name** (str):这一层的名称（可选）
+  - **input** (Variable)：输入张量变量
+  - **groups** (int)：从 channel 中分离出来的 group 的数目
+  - **epsilon** (float)：为防止方差除零，增加一个很小的值
+  - **param_attr** (ParamAttr|None)：可学习标度的参数属性 :math:`g`,如果设置为False，则不会向输出单元添加标度。如果设置为0，偏差初始化为1。默认值:None
+  - **bias_attr** (ParamAttr|None)：可学习偏置的参数属性 :math:`b ` , 如果设置为False，则不会向输出单元添加偏置量。如果设置为零，偏置初始化为零。默认值:None。
+  - **act** (str):将激活应用于输出的 group normalizaiton
+  - **data_layout** (string|NCHW): 只支持NCHW。
+  - **name** (str):这一层的名称（可选）
 
 返回： Variable: 一个张量变量，它是对输入进行 group normalization 后的结果。
 
@@ -4294,19 +5265,26 @@ GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中�
   - **gate_activation** (string) – 门 “actGate” 的激励函数（activation）类型。 默认类型为 ‘sigmoid’
 
 
-返回：	 hidden value（隐藏状态的值），reset-hidden value(重置隐藏状态值)，gate values(门值)
+返回：  hidden value（隐藏状态的值），reset-hidden value(重置隐藏状态值)，gate values(门值)
 
-返回类型:	 元组（tuple）
+返回类型:  元组（tuple）
 
 
 **代码示例**
 
 ..  code-block:: python
 
-    # 假设我们现在有x_t_data和size=10的之前的隐藏层
-    x_t = fluid.layers.fc(input=x_t_data, size=30)
-    hidden_val, r_h_val, gate_val = fluid.layers.gru_unit(input=x_t,
-                                          hidden = prev_hidden)
+    import paddle.fluid as fluid
+
+    dict_dim, emb_dim = 128, 64
+    data = fluid.layers.data(name='step_data', shape=[1], dtype='int32')
+    emb = fluid.layers.embedding(input=data, size=[dict_dim, emb_dim])
+    hidden_dim = 512
+    x = fluid.layers.fc(input=emb, size=hidden_dim * 3)
+    pre_hidden = fluid.layers.data(
+        name='pre_hidden', shape=[hidden_dim], dtype='float32')
+    hidden = fluid.layers.gru_unit(
+        input=x, hidden=pre_hidden, size=hidden_dim * 3)
 
 
 
@@ -4350,7 +5328,7 @@ sigmoid的分段线性逼近(https://arxiv.org/abs/1603.00391)，比sigmoid快�
 
 .. code-block:: python
 
-
+    import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
     y = fluid.layers.hard_sigmoid(x, slope=0.3, offset=0.8)
 
@@ -4374,43 +5352,43 @@ hash
 
 .. code-block:: text
 
-	给出：
+  给出：
 
-		# shape [2, 2]
-		input.data = [
-		    [[1], [2]],
-		    [[3], [4]],
-		]
+    # shape [2, 2]
+    input.data = [
+        [[1, 2],
+        [3, 4]],
+    ]
 
-		input.lod = [[0, 2]]
+    input.lod = [[0, 2]]
 
-		hash_size = 10000
+    hash_size = 10000
 
-		num_hash = 4
+    num_hash = 4
 
-	然后:
+  然后:
 
-		哈希操作将这个二维input的所有数字作为哈希算法每次的输入。
+    哈希操作将这个二维input的所有数字作为哈希算法每次的输入。
 
-		每个输入都将被哈希4次，最终得到一个长度为4的数组。
+    每个输入都将被哈希4次，最终得到一个长度为4的数组。
 
-		数组中的每个值的范围从0到9999。
+    数组中的每个值的范围从0到9999。
 
 
 
-  	# shape [2, 4]
-  	output.data = [
-  	    [[9662], [9217], [1129], [8487]],
-  	    [[8310], [1327], [1654], [4567]],
-  	]
+    # shape [2, 4]
+    output.data = [
+        [[9662, 9217, 1129, 8487],
+        [8310, 1327, 1654, 4567]],
+    ]
 
-  	output.lod = [[0, 2]]
+    output.lod = [[0, 2]]
 
 参数：
-	- **input** (Variable) - 输入变量是一个 one-hot 词。输入变量的维数必须是2。
-	- **hash_size** (int) - 哈希算法的空间大小。输出值将保持在 :math:`[0, hash\_size - 1]` 范围内。
-	- **num_hash** (int) - 哈希次数，默认为1。
-	- **name** (str, default None) - 该层的名称
+  - **input** (Variable) - 输入变量是一个 one-hot 词。输入变量的维数必须是2。
+  - **hash_size** (int) - 哈希算法的空间大小。输出值将保持在 :math:`[0, hash\_size - 1]` 范围内。
+  - **num_hash** (int) - 哈希次数，默认为1。
+  - **name** (str, default None) - 该层的名称
 
 返回：哈希的结果变量，是一个lodtensor。
 
@@ -4420,9 +5398,24 @@ hash
 
 .. code-block:: python
 
-    word_dict = paddle.dataset.imdb.word_dict()
-    x = fluid.layers.data(shape[1], dtype='int32', lod_level=1)
-    out = fluid.layers.hash(input=x, num_hash=4, hash_size=1000)
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    import numpy as np
+
+    titles = fluid.layers.data(name='titles', shape=[1], dtype='int32', lod_level=1)
+    hash_r = fluid.layers.hash(name='hash_x', input=titles, num_hash=1, hash_size=1000)
+
+    place = fluid.core.CPUPlace()
+    exece = fluid.Executor(place)
+    exece.run(fluid.default_startup_program())
+
+    # 初始化Tensor
+    tensor = fluid.core.LoDTensor()
+    tensor.set(np.random.randint(0, 10, (3, 1)).astype("int32"), place)
+    # 设置LoD
+    tensor.set_recursive_sequence_lengths([[1, 1, 1]])
+
+    out = exece.run(feed={'titles': tensor}, fetch_list=[hash_r], return_numpy=False)
 
 
 
@@ -4478,9 +5471,10 @@ hsigmoid可以把时间复杂度 :math:`O(N)` 优化到 :math:`O(logN)` ,其中 
 
 ..  code-block:: python
 
-	x = fluid.layers.data(name='x', shape=[2], dtype='float32')
-    	y = fluid.layers.data(name='y', shape=[1], dtype='int64')
-    	out = fluid.layers.hsigmoid(input=x, label=y, num_classes=6)
+      import paddle.fluid as fluid
+      x = fluid.layers.data(name='x', shape=[2], dtype='float32')
+      y = fluid.layers.data(name='y', shape=[1], dtype='int64')
+      out = fluid.layers.hsigmoid(input=x, label=y, num_classes=6)
 
 
 
@@ -4520,8 +5514,14 @@ Huber损失是更具鲁棒性的损失函数。 huber损失可以评估输入对
 
 ..  code-block:: python
 
-    predictions = fluid.layers.softmax(x)
-    loss = fluid.layers.huber_loss(input=predictions, label=label, 1.0)
+    import paddle.fluid as fluid
+
+    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    predict = fluid.layers.fc(input=x, size=1)
+    label = fluid.layers.data(
+        name='label', shape=[1], dtype='float32')
+    loss = fluid.layers.huber_loss(
+        input=predict, label=label, delta=1.0)
 
 
 
@@ -4543,25 +5543,25 @@ im2sequence
 每个timestep的维度为 :math:`block\_y * block\_x * input.channels` 。
 
 参数:
-	- **input** （Variable）- 输入张量，格式为[N, C, H, W]
-	- **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，它必须包含两个整数(filter_size_H, filter_size_W)。否则，过滤器将是一个方阵。
-	- **stride** (int|tuple) - 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-	- **padding** (int|tuple) - 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
-	- **input_image_size** (Variable) - 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch上的预测。
-	- **out_stride** (int|tuple) - 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
-	- **name** (int) - 该layer的名称，可以忽略。
+  - **input** （Variable）- 输入张量，格式为[N, C, H, W]
+  - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，它必须包含两个整数(filter_size_H, filter_size_W)。否则，过滤器将是一个方阵。
+  - **stride** (int|tuple) - 步长大小。如果stride是一个元组，它必须包含两个整数(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
+  - **padding** (int|tuple) - 填充大小。如果padding是一个元组，它可以包含两个整数(padding_H, padding_W)，这意味着padding_up = padding_down = padding_H和padding_left = padding_right = padding_W。或者它可以使用(padding_up, padding_left, padding_down, padding_right)来指示四个方向的填充。否则，标量填充意味着padding_up = padding_down = padding_left = padding_right = padding Default: padding = 0。
+  - **input_image_size** (Variable) - 输入包含图像的实际大小。它的维度为[batchsize，2]。该参数可有可无，是用于batch上的预测。
+  - **out_stride** (int|tuple) - 通过CNN缩放图像。它可有可无，只有当input_image_size不为空时才有效。如果out_stride是tuple，它必须包含(out_stride_H, out_stride_W)，否则，out_stride_H = out_stride_W = out_stride。
+  - **name** (int) - 该layer的名称，可以忽略。
 
-返回：	LoDTensor shape为{batch_size * output_height * output_width, filter_size_H * filter_size_W * input.channels}。如果将输出看作一个矩阵，这个矩阵的每一行都是一个序列的step。
+返回： LoDTensor shape为{batch_size * output_height * output_width, filter_size_H * filter_size_W * input.channels}。如果将输出看作一个矩阵，这个矩阵的每一行都是一个序列的step。
 
-返回类型:	output
+返回类型: output
 
 ::
 
-	Given:
+  Given:
 
     x = [[[[ 6.  2.  1.]
-    	[ 8.  3.  5.]
-    	[ 0.  2.  6.]]
+      [ 8.  3.  5.]
+      [ 0.  2.  6.]]
 
         [[ 2.  4.  4.]
          [ 6.  3.  0.]
@@ -4603,8 +5603,11 @@ im2sequence
 
 ..  code-block:: python
 
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='data', shape=[3, 32, 32],
+                             dtype='float32')
     output = fluid.layers.im2sequence(
-    input=layer, stride=[1, 1], filter_size=[2, 2])
+        input=data, stride=[1, 1], filter_size=[2, 2])
 
 
 
@@ -4713,23 +5716,25 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation。
 
 返回： 4维tensor，shape为 (num_batches, channls, out_h, out_w).
 
-返回类型:	变量（variable）
+返回类型: 变量（variable）
 
 抛出异常：
     - :code:`TypeError` - out_shape应该是一个列表、元组或变量。
-    - :code:`TypeError` - actual_shape应该是变量或None
+    - :code:`TypeError` - actual_shape应该是变量或None。
     - :code:`ValueError` - image_resize的"resample"只能是"BILINEAR"或"NEAREST"。
-    - :code:`ValueError` - out_shape 和 scale 不可同时为 None
-    - :code:`ValueError` - out_shape 的长度必须为 2
-    - :code:`TypeError`  - align_corners 应为bool型
-    - :code:`ValueError` - align_mode 只能取 ‘0’ 或 ‘1’
+    - :code:`ValueError` - out_shape 和 scale 不可同时为 None。
+    - :code:`ValueError` - out_shape 的长度必须为 2。
+    - :code:`ValueError` - scale应大于0。
+    - :code:`TypeError`  - align_corners 应为bool型。
+    - :code:`ValueError` - align_mode 只能取 ‘0’ 或 ‘1’。
 
 
 **代码示例**
 
 ..  code-block:: python
 
-	out = fluid.layers.image_resize(input, out_shape=[12, 12], resample="NEAREST")
+  input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
+  out = fluid.layers.image_resize(input, out_shape=[12, 12], resample="NEAREST")
 
 
 
@@ -4756,11 +5761,16 @@ image_resize_short
         - **out_short_len** (int) -  输出图像的短边长度。
         - **resample** (str) - resample方法，默认为双线性插值。
 
-返回：	4维张量，shape为(num_batch, channls, out_h, out_w)
+返回： 4维张量，shape为(num_batch, channls, out_h, out_w)
 
-返回类型:	变量（variable）
+返回类型: 变量（variable）
 
+**代码示例**
 
+..  code-block:: python
+
+    input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
+    out = fluid.layers.image_resize_short(input, out_short_len=3)
 
 .. _cn_api_fluid_layers_kldiv_loss:
 
@@ -4831,7 +5841,7 @@ L2正则（L2 normalize Layer）
 参数：
     - **x** (Variable|list)- l2正则层（l2_normalize layer）的输入
     - **axis** (int)-运用归一化的轴。如果轴小于0，归一化的维是rank(X)+axis。-1是最后维
-    - **epsilon** (float)-epsilon用于避免分母为0，默认值为1e-10
+    - **epsilon** (float)-epsilon用于避免分母为0，默认值为1e-12
     - **name** (str|None)-该层名称（可选）。如果设为空，则自动为该层命名
 
     返回：输出张量，同x的维度一致
@@ -4890,6 +5900,8 @@ label_smooth
 **代码示例**
 
 ..  code-block:: python
+
+    import paddle.fluid.layers as layers
 
     label = fluid.layers.data(name="label", shape=[1], dtype="float32")
     one_hot_label = fluid.layers.one_hot(input=label, depth=10)
@@ -5016,15 +6028,15 @@ linear_chain_crf
 线性链条件随机场最终输出mini-batch每个训练样本的条件概率的对数
 
 
-	1.这里 :math:`x` 代表Emission
+  1.这里 :math:`x` 代表Emission
 
-	2.Transition的第一维度值，代表起始权重，这里用 :math:`a` 表示
+  2.Transition的第一维度值，代表起始权重，这里用 :math:`a` 表示
 
-	3.Transition的下一维值，代表末尾权重，这里用 :math:`b` 表示
+  3.Transition的下一维值，代表末尾权重，这里用 :math:`b` 表示
 
-	4.Transition剩下的值，代表转移权重，这里用 :math:`w` 表示
+  4.Transition剩下的值，代表转移权重，这里用 :math:`w` 表示
 
-	5.Label用 :math:`s` 表示
+  5.Label用 :math:`s` 表示
 
 
 
@@ -5052,6 +6064,19 @@ linear_chain_crf
 
 返回类型：output（Variable）
 
+**代码示例：**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    emission = fluid.layers.data(name='emission', shape=[1000], dtype='float32')
+    target = fluid.layers.data(name='target', shape=[1], dtype='int32')
+    crf_cost = fluid.layers.linear_chain_crf(
+        input=emission,
+        label=target,
+        param_attr=fluid.ParamAttr(
+            name='crfw',
+            learning_rate=0.2))
 
 
 
@@ -5170,13 +6195,14 @@ log
 
 返回：给定输入张量计算自然对数
 
-返回类型:	变量（variable）
+返回类型: 变量（variable）
 
 
 **代码示例**
 
 ..  code-block:: python
 
+  x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
   output = fluid.layers.log(x)
 
 
@@ -5211,17 +6237,18 @@ log_loss
   - **epsilon** (float) – epsilon
   - **name** (string) – log_loss层的名称
 
-返回：	形为[N x 1]的二维张量，承载着负log_loss值
+返回： 形为[N x 1]的二维张量，承载着负log_loss值
 
-返回类型:	变量（Variable）
+返回类型: 变量（Variable）
 
 
 **代码示例**
 
 ..  code-block:: python
 
-	prob = fluid.layers.sigmoid(net)
-        cost = fluid.layers.log_loss(input=prob, label=label)
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    prob = fluid.layers.data(name='prob', shape=[10], dtype='float32')
+    cost = fluid.layers.log_loss(input=prob, label=label)
 
 
 
@@ -5466,38 +6493,38 @@ lstm
 
 .. math::
 
-	i_t &= \sigma(W_{ix}x_{t} + W_{ih}h_{t-1} + bx_i + bh_i)\\
-	f_t &= \sigma(W_{fx}x_{t} + W_{fh}h_{t-1} + bx_f + bh_f)\\
-	o_t &= \sigma(W_{ox}x_{t} + W_{oh}h_{t-1} + bx_o + bh_o)\\
-	\tilde{c_t} &= tanh(W_{cx}x_t + W_{ch}h_{t-1} + bx_c + bh_c)\\
-	c_t &= f_t \odot c_{t-1} + i_t \odot \tilde{c_t}\\
-	h_t &= o_t \odot tanh(c_t)
+  i_t &= \sigma(W_{ix}x_{t} + W_{ih}h_{t-1} + bx_i + bh_i)\\
+  f_t &= \sigma(W_{fx}x_{t} + W_{fh}h_{t-1} + bx_f + bh_f)\\
+  o_t &= \sigma(W_{ox}x_{t} + W_{oh}h_{t-1} + bx_o + bh_o)\\
+  \tilde{c_t} &= tanh(W_{cx}x_t + W_{ch}h_{t-1} + bx_c + bh_c)\\
+  c_t &= f_t \odot c_{t-1} + i_t \odot \tilde{c_t}\\
+  h_t &= o_t \odot tanh(c_t)
 
 公式中：
-	- W 项表示权重矩阵(e.g. :math:`W_{ix}` 是从输入门到输入的权重矩阵)
-	- b 项表示偏差向量( :math:`b_{xi}` 和 :math:`b_{hi}` 是输入门的偏差向量)
-	- sigmoid 是 logistic sigmoid 函数
-	- i、f、o、c 分别为输入门、遗忘门、输出门和激活向量，它们的大小与 cell 输出激活向量h相同。
-	- :math:`\odot` 是向量的元素乘积
-	- tanh是激活函数
-	- :math:`\tilde{c_t}` 也称为候选隐藏状态，它是根据当前输入和之前的隐藏状态来计算的
+  - W 项表示权重矩阵(e.g. :math:`W_{ix}` 是从输入门到输入的权重矩阵)
+  - b 项表示偏差向量( :math:`b_{xi}` 和 :math:`b_{hi}` 是输入门的偏差向量)
+  - sigmoid 是 logistic sigmoid 函数
+  - i、f、o、c 分别为输入门、遗忘门、输出门和激活向量，它们的大小与 cell 输出激活向量h相同。
+  - :math:`\odot` 是向量的元素乘积
+  - tanh是激活函数
+  - :math:`\tilde{c_t}` 也称为候选隐藏状态，它是根据当前输入和之前的隐藏状态来计算的
 
 sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
 
 
 参数：
-	- **input** (Variable) - LSTM 输入张量，形状必须为(seq_len x，batch_size，x，input_size)
-	- **init_h** (Variable) – LSTM的初始隐藏状态，是一个有形状的张量(num_layers，x，batch_size，x，hidden_size)如果is_bidirec = True，形状应该是(num_layers*2，x， batch_size， x， hidden_size)
-	- **init_c** (Variable) - LSTM的初始状态。这是一个有形状的张量(num_layers， x， batch_size， x， hidden_size)如果is_bidirec = True，形状应该是(num_layers*2， x， batch_size， x， hidden_size)
-	- **max_len** (int) – LSTM的最大长度。输入张量的第一个 dim 不能大于max_len
-	- **hidden_size** (int) - LSTM的隐藏大小
-	- **num_layers** (int) –  LSTM的总层数
-	- **dropout_prob** (float|0.0) – dropout prob，dropout 只在 rnn 层之间工作，而不是在时间步骤之间。dropout 不作用于最后的 rnn 层的 rnn 输出中
-	- **is_bidirec** (bool) – 是否是双向的
-	- **is_test** (bool) – 是否在测试阶段
-	- **name** (str|None) - 此层的名称(可选)。如果没有设置，该层将被自动命名。
-	- **default_initializer** (Initialize|None) – 在哪里使用初始化器初始化权重，如果没有设置，将进行默认初始化。
-	- **seed** (int) – LSTM中dropout的Seed，如果是-1,dropout将使用随机Seed
+  - **input** (Variable) - LSTM 输入张量，形状必须为(seq_len x，batch_size，x，input_size)
+  - **init_h** (Variable) – LSTM的初始隐藏状态，是一个有形状的张量(num_layers，x，batch_size，x，hidden_size)如果is_bidirec = True，形状应该是(num_layers*2，x， batch_size， x， hidden_size)
+  - **init_c** (Variable) - LSTM的初始状态。这是一个有形状的张量(num_layers， x， batch_size， x， hidden_size)如果is_bidirec = True，形状应该是(num_layers*2， x， batch_size， x， hidden_size)
+  - **max_len** (int) – LSTM的最大长度。输入张量的第一个 dim 不能大于max_len
+  - **hidden_size** (int) - LSTM的隐藏大小
+  - **num_layers** (int) –  LSTM的总层数
+  - **dropout_prob** (float|0.0) – dropout prob，dropout 只在 rnn 层之间工作，而不是在时间步骤之间。dropout 不作用于最后的 rnn 层的 rnn 输出中
+  - **is_bidirec** (bool) – 是否是双向的
+  - **is_test** (bool) – 是否在测试阶段
+  - **name** (str|None) - 此层的名称(可选)。如果没有设置，该层将被自动命名。
+  - **default_initializer** (Initialize|None) – 在哪里使用初始化器初始化权重，如果没有设置，将进行默认初始化。
+  - **seed** (int) – LSTM中dropout的Seed，如果是-1,dropout将使用随机Seed
 
 返回：   三个张量， rnn_out, last_h, last_c:
 
@@ -5511,17 +6538,21 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
 
 .. code-block:: python
 
-	input = embedding
-	batch_size = 20
-	max_len = 100
-	dropout_prob = 0.2
-	input_size = 100
-	hidden_size = 150
-	num_layers = 1
-	init_hidden1 = fluid.layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
-	init_cell1 = fluid.layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0, stop_grad=False)
+  emb_dim = 256
+  vocab_size = 10000
+  data = fluid.layers.data(name='x', shape=[-1, 100, 1],
+                 dtype='int32')
+  emb = fluid.layers.embedding(input=data, size=[vocab_size, emb_dim], is_sparse=True)
+  batch_size = 20
+  max_len = 100
+  dropout_prob = 0.2
+  input_size = 100
+  hidden_size = 150
+  num_layers = 1
+  init_h = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
+  init_c = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
 
-	rnn_out, last_h, last_c = fluid.layers.lstm( input, init_h, init_c, max_len, dropout_prob, input_size, hidden_size,  num_layers)
+  rnn_out, last_h, last_c = fluid.layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
 
 
 
@@ -5565,7 +6596,7 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
 
     i_{t} = \sigma \left ( L_{i_{t}} \right )
 
-该层有 :math:`h_{t}` 和 :math:`o_{t}` 两个输出。
+该层有 :math:`h_{t}` 和 :math:`c_{t}` 两个输出。
 
 参数：
     - **x_t** (Variable) - 当前步的输入值，二维张量，shape为 M x N ，M是批尺寸，N是输入尺寸
@@ -5587,12 +6618,17 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
 
 .. code-block:: python
 
-    x_t = fluid.layers.fc(input=x_t_data, size=10)
-    prev_hidden = fluid.layers.fc(input=prev_hidden_data, size=30)
-    prev_cell = fluid.layers.fc(input=prev_cell_data, size=30)
-    hidden_value, cell_value = fluid.layers.lstm_unit(x_t=x_t,
-                                       hidden_t_prev=prev_hidden,
-                                       cell_t_prev=prev_cell)
+    import paddle.fluid as fluid
+     
+    dict_dim, emb_dim, hidden_dim = 128, 64, 512
+    data = fluid.layers.data(name='step_data', shape=[1], dtype='int32')
+    x = fluid.layers.embedding(input=data, size=[dict_dim, emb_dim])
+    pre_hidden = fluid.layers.data(name='pre_hidden', shape=[hidden_dim], dtype='float32')
+    pre_cell = fluid.layers.data(name='pre_cell', shape=[hidden_dim], dtype='float32')
+    hidden = fluid.layers.lstm_unit(
+        x_t=x,
+        hidden_t_prev=prev_hidden,
+        cell_t_prev=prev_cell)
 
 
 
@@ -5628,7 +6664,7 @@ margin rank loss（差距排序损失）层。在排序问题中，它可以比�
 
 返回： 排序损失
 
-返回类型:	变量（Variable）
+返回类型: 变量（Variable）
 
 抛出异常:
   - ``ValueError`` - ``label`` , ``left`` , ``right`` 有一者不为Variable类型时，抛出此异常
@@ -5637,10 +6673,10 @@ margin rank loss（差距排序损失）层。在排序问题中，它可以比�
 
 ..  code-block:: python
 
-             label = fluid.layers.data(name="label", shape=[4, 1], dtype="float32")
-             left = fluid.layers.data(name="left", shape=[4, 1], dtype="float32")
-             right = fluid.layers.data(name="right", shape=[4, 1], dtype="float32")
-             out = fluid.layers.margin_rank_loss(label, left, right)
+    label = fluid.layers.data(name="label", shape=[-1, 1], dtype="float32")
+    left = fluid.layers.data(name="left", shape=[-1, 1], dtype="float32")
+    right = fluid.layers.data(name="right", shape=[-1, 1], dtype="float32")
+    out = fluid.layers.margin_rank_loss(label, left, right)
 
 
 
@@ -5669,8 +6705,8 @@ matmul
 - 如果transpose值为真，则对应 ``tensor`` 的最后两维将被转置。如：x是一个shape=[D]的一阶张量，那么x在非转置形式中为[1,D]，在转置形式中为[D,1],而y则相反，在非转置形式中作为[D,1]，在转置形式中作为[1,D]。
 
 - 转置后，这两个`tensors`将为 2-D 或 n-D ,并依据下列规则进行矩阵相乘：
-	- 如果两个都是2-D，则同普通矩阵一样进行矩阵相乘
-	- 如果任意一个是n-D，则将其视为驻留在最后两个维度的矩阵堆栈，并在两个张量上应用支持广播的批处理矩阵乘法。
+  - 如果两个都是2-D，则同普通矩阵一样进行矩阵相乘
+  - 如果任意一个是n-D，则将其视为驻留在最后两个维度的矩阵堆栈，并在两个张量上应用支持广播的批处理矩阵乘法。
 
 **注意，如果原始张量x或y的秩为1且没有转置，则在矩阵乘法之后，前置或附加维度1将被移除。**
 
@@ -5693,27 +6729,29 @@ matmul
 
     # 以下是解释输入和输出维度的示例
     # x: [B, ..., M, K], y: [B, ..., K, N]
-    fluid.layers.matmul(x, y)  # out: [B, ..., M, N]
+    # fluid.layers.matmul(x, y)  # out: [B, ..., M, N]
 
     # x: [B, M, K], y: [B, K, N]
-    fluid.layers.matmul(x, y)  # out: [B, M, N]
+    # fluid.layers.matmul(x, y)  # out: [B, M, N]
 
     # x: [B, M, K], y: [K, N]
-    fluid.layers.matmul(x, y)  # out: [B, M, N]
+    # fluid.layers.matmul(x, y)  # out: [B, M, N]
 
     # x: [M, K], y: [K, N]
-    fluid.layers.matmul(x, y)  # out: [M, N]
+    # fluid.layers.matmul(x, y)  # out: [M, N]
 
     # x: [B, M, K], y: [K]
-    fluid.layers.matmul(x, y)  # out: [B, M]
+    # fluid.layers.matmul(x, y)  # out: [B, M]
 
     # x: [K], y: [K]
-    fluid.layers.matmul(x, y)  # out: [1]
+    # fluid.layers.matmul(x, y)  # out: [1]
 
     # x: [M], y: [N]
-    fluid.layers.matmul(x, y, True, True)  # out: [M, N]
+    # fluid.layers.matmul(x, y, True, True)  # out: [M, N]
 
-
+    x = fluid.layers.data(name='x', shape=[2, 3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[3, 2], dtype='float32')
+    out = fluid.layers.matmul(x, y, True, True)
 
 
 
@@ -5732,26 +6770,36 @@ maxout
 
 .. math::
 
-	y_{si+j} &= \max_k x_{gsi + sk + j} \\
-	g &= groups \\
-	s &= \frac{input.size}{num\_channels} \\
-	0 \le &i < \frac{num\_channels}{groups} \\
-	0 \le &j < s \\
-	0 \le &k < groups
+  y_{si+j} &= \max_k x_{gsi + sk + j} \\
+  g &= groups \\
+  s &= \frac{input.size}{num\_channels} \\
+  0 \le &i < \frac{num\_channels}{groups} \\
+  0 \le &j < s \\
+  0 \le &k < groups
 
 
 请参阅论文:
-	- Maxout Networks:  http://www.jmlr.org/proceedings/papers/v28/goodfellow13.pdf
-	- Multi-digit Number Recognition from Street View Imagery using Deep Convolutional Neural Networks: https://arxiv.org/pdf/1312.6082v4.pdf
+  - Maxout Networks:  http://www.jmlr.org/proceedings/papers/v28/goodfellow13.pdf
+  - Multi-digit Number Recognition from Street View Imagery using Deep Convolutional Neural Networks: https://arxiv.org/pdf/1312.6082v4.pdf
 
 参数：
-	- **x** (Variable) - (tensor) maxout算子的输入张量。输入张量的格式为NCHW。其中N为 batch size ，C为通道数，H和W为feature的高和宽
-	- **groups** （INT）- 指定输入张量将被分成多少组“通道维数”。输出通道的数量以组为单位。
-	- **name** (basestring|None) - 输出的名称
+    - **x** (Variable) - (tensor) maxout算子的输入张量。输入张量的格式为NCHW。其中N为 batch size ，C为通道数，H和W为feature的高和宽
+    - **groups** （INT）- 指定将输入张量的channel通道维度进行分组的数目。输出的通道数量为通道数除以组数。
+    - **name** (basestring|None) - 输出的名称
 
 返回：Tensor，maxout算子的输出张量。输出张量的格式也是NCHW。其中N为 batch size，C为通道数，H和W为特征的高和宽。
 
-返回类型：out（variable）
+返回类型：out（Variable）
+
+**代码示例**：
+    
+.. code-block:: python
+
+    input = fluid.layers.data(
+        name='data',
+        shape=[256, 32, 32],
+        dtype='float32')
+    out = fluid.layers.maxout(input, groups=2)
 
 
 
@@ -5779,6 +6827,13 @@ mean算子计算X中所有元素的平均值
 
 返回类型：        Variable
 
+**代码示例**：
+
+.. code-block:: python
+
+    input = fluid.layers.data(
+        name='data', shape=[2, 3], dtype='float32')
+    mean = fluid.layers.mean(input)
 
 
 
@@ -5820,6 +6875,9 @@ mean_iou
 
 ..  code-block:: python
 
+   import paddle.fluid as fluid
+   predict = fluid.layers.data(name='predict', shape=[3, 32, 32])
+   label = fluid.layers.data(name='label', shape=[1])
    iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes)
 
 
@@ -5864,9 +6922,17 @@ merge_selected_rows
 
 返回: 输出类型为SelectedRows，并且选中行不会重复
 
-返回类型:	变量（Variable）
+返回类型: 变量（Variable）
 
+**代码示例**
 
+..  code-block:: python
+
+  b = fluid.default_main_program().global_block()
+  var = b.create_var(
+        name="X", dtype="float32", persistable=True,
+        type=fluid.core.VarDesc.VarType.SELECTED_ROWS)
+  y = fluid.layers.merge_selected_rows(var)
 
 
 
@@ -5903,9 +6969,16 @@ mul算子
 
 返回类型：    输出(Variable)。
 
+**代码示例**
 
+..  code-block:: python
 
-
+    import paddle.fluid as fluid
+    dataX = fluid.layers.data(name="dataX", append_batch_size = False, shape=[2, 5], dtype="float32")
+    dataY = fluid.layers.data(name="dataY", append_batch_size = False, shape=[5, 3], dtype="float32")
+    output = fluid.layers.mul(dataX, dataY,
+                              x_num_col_dims = 1,
+                              y_num_col_dims = 1)
 
 
 
@@ -6031,46 +7104,49 @@ nce
     - **seed** (int) – 取样器使用的seed。默认为0
     - **is_sparse** (bool) – 标志位，指明是否使用稀疏更新,  :math:`weight@GRAD` 和 :math:`bias@GRAD` 会变为 SelectedRows
 
-返回：	nce loss
+返回： nce loss
 
-返回类型:	变量（Variable）
+返回类型: 变量（Variable）
 
 
 **代码示例**
 
 ..  code-block:: python
 
-		window_size = 5
-		words = []
-		for i in xrange(window_size):
-			words.append(layers.data(
-				name='word_{0}'.format(i), shape=[1], dtype='int64'))
+    import numpy as np
 
-		dict_size = 10000
-		label_word = int(window_size / 2) + 1
+    window_size = 5
+    words = []
+    for i in xrange(window_size):
+        words.append(fluid.layers.data(
+            name='word_{0}'.format(i), shape=[1], dtype='int64'))
 
-		embs = []
-		for i in xrange(window_size):
-			if i == label_word:
-				continue
+    dict_size = 10000
+    label_word = int(window_size / 2) + 1
 
-			emb = fluid.layers.embedding(input=words[i], size=[dict_size, 32],
-								   param_attr='emb.w', is_sparse=True)
-			embs.append(emb)
+    embs = []
+    for i in xrange(window_size):
+        if i == label_word:
+            continue
 
-		embs = fluid.layers.concat(input=embs, axis=1)
-		loss = fluid.layers.nce(input=embs, label=words[label_word],
-					  num_total_classes=dict_size, param_attr='nce.w',
-					  bias_attr='nce.b')
+        emb = fluid.layers.embedding(input=words[i], size=[dict_size, 32],
+                           param_attr='embed', is_sparse=True)
+        embs.append(emb)
 
-		#使用custom distribution
-		dist = fluid.layers.assign(input=np.array([0.05,0.5,0.1,0.3,0.05]).astype("float32"))
-		loss = fluid.layers.nce(input=embs, label=words[label_word],
-					  num_total_classes=5, param_attr='nce.w',
-					  bias_attr='nce.b',
-					  num_neg_samples=3,
-					  sampler="custom_dist",
-					  custom_dist=dist)
+    embs = fluid.layers.concat(input=embs, axis=1)
+    loss = fluid.layers.nce(input=embs, label=words[label_word],
+              num_total_classes=dict_size, param_attr='nce.w_0',
+              bias_attr='nce.b_0')
+
+    # 或使用自定义分布
+    dist = np.array([0.05,0.5,0.1,0.3,0.05])
+    loss = fluid.layers.nce(input=embs, label=words[label_word],
+              num_total_classes=5, param_attr='nce.w_1',
+              bias_attr='nce.b_1',
+              num_neg_samples=3,
+              sampler="custom_dist",
+              custom_dist=dist)
+
 
 
 
@@ -6136,7 +7212,7 @@ one_hot
 
 .. code-block:: python
 
-    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
+    label = fluid.layers.data(name="label", shape=[1], dtype="int64")
     one_hot_label = fluid.layers.one_hot(input=label, depth=10)
 
 
@@ -6182,7 +7258,7 @@ pad
     - **pad_value** (float) — 用来填充的常量值。
     - **name** (str|None) — 这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
-返回：	填充后的张量变量
+返回： 填充后的张量变量
 
 返回类型： 变量（Variable）
 
@@ -6191,8 +7267,11 @@ pad
 
 ..  code-block:: python
 
+    # x 为一个秩为2的张量
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='data', shape=[224], dtype='float32')
     out = fluid.layers.pad(
-    x=x, paddings=[0, 1, 1, 2], pad_value=0.)
+        x=x, paddings=[0, 1, 1, 2], pad_value=0.)
 
 
 
@@ -6216,7 +7295,7 @@ pad2d
 
 .. code-block:: text
 
-	假设X是输入图像:
+  假设X是输入图像:
 
       X = [[1, 2, 3],
            [4, 5, 6]]
@@ -6244,13 +7323,13 @@ pad2d
                [4, 4, 4, 5, 6, 6]]
 
 参数：
-	- **input** (Variable) - 具有[N, C, H, W]格式或[N, H, W, C]格式的输入图像。
-	- **paddings** (tuple|list|Variable) - 填充区域的大小。如果填充是一个元组，它必须包含四个整数，
-	  (padding_top, padding_bottom, padding_left, padding_right)。默认:padding =[0,0,0,0]。
-	- **mode** (str) - 三种模式:constant(默认)、reflect、edge。默认值:常数
-	- **pad_value** (float32) - 以常量模式填充填充区域的值。默认值:0
-	- **data_format** (str)  - 可选字符串，选项有: ``NHWC`` , ``NCHW``。指定输入数据的数据格式。默认值:``NCHW``
-	- **name** (str|None) - 此层的名称(可选)。如果没有设置，该层将被自动命名。
+  - **input** (Variable) - 具有[N, C, H, W]格式或[N, H, W, C]格式的输入图像。
+  - **paddings** (tuple|list|Variable) - 填充区域的大小。如果填充是一个元组，它必须包含四个整数，
+    (padding_top, padding_bottom, padding_left, padding_right)。默认:padding =[0,0,0,0]。
+  - **mode** (str) - 三种模式:constant(默认)、reflect、edge。默认值:常数
+  - **pad_value** (float32) - 以常量模式填充填充区域的值。默认值:0
+  - **data_format** (str)  - 可选字符串，选项有: ``NHWC`` , ``NCHW``。指定输入数据的数据格式。默认值:``NCHW``
+  - **name** (str|None) - 此层的名称(可选)。如果没有设置，该层将被自动命名。
 
 返回： tensor变量，按照 padding值 和 mode 进行填充
 
@@ -6260,8 +7339,9 @@ pad2d
 
 .. code-block:: python
 
-	data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
-	result = fluid.layers.pad2d(input=data, padding=[1,2,3,4], mode='reflect')
+  import paddle.fluid as fluid
+  data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
+  result = fluid.layers.pad2d(input=data, paddings=[1,2,3,4], mode='reflect')
 
 
 
@@ -6320,10 +7400,13 @@ pad_constant_like
 
 ..  code-block:: python
 
-    # x是秩为4的tensor, x.shape = (2, 3, 2, 3)。
-    # y是秩为4的tensor, y.shape = (1, 3, 1, 3)。
+    # x是秩为4的tensor, x.shape = (2, 3, 2, 3)
+    # y是秩为4的tensor, y.shape = (1, 3, 1, 3)
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[2,3,2,3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1,3,1,3], dtype='float32')
     out = fluid.layers.pad_constant_like(x=x, y=y, pad_value=0.)
-    # out是秩为4的tensor, out.shape = [2, 3 ,2 , 3]。
+    # out是秩为4的tensor, out.shape = [2, 3 ,2 , 3]
 
 
 
@@ -6361,7 +7444,7 @@ pixel shuffle 层（像素重组层）
 
 ..  code-block:: python
 
-    input = fluid.layers.data(shape=[9,4,4])
+    input = fluid.layers.data(name="input", shape=[9,4,4])
     output = fluid.layers.pixel_shuffle(x=input, upscale_factor=3)
 
 
@@ -6591,6 +7674,7 @@ pow
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
     y = fluid.layers.pow(x, factor=2.0)
 
@@ -6611,10 +7695,19 @@ prelu
 .. math::
     y = max(0, x) + \alpha min(0, x)
 
+共提供三种激活方式：
+
+.. code-block:: text
+
+    all: 所有元素使用同一个alpha值
+    channel: 在同一个通道中的元素使用同一个alpha值
+    element: 每一个元素有一个独立的alpha值
+
+
 参数：
           - **x** （Variable）- 输入为Tensor。
-          - **param_attr** (ParamAttr|None) - 可学习权重 :math:`[\alpha]` 的参数属性。
-          - **mode** （string）- 权重共享的模式all：所有元素共享相同的权重通道：通道中的元素共享相同的权重元素：每个元素都有一个权重
+          - **mode** (string) - 权重共享模式。
+          - **param_attr** (ParamAttr|None) - 可学习权重 :math:`[\alpha]` 的参数属性，可由ParamAttr创建。
           - **name** （str | None）- 这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
 返回： 输出Tensor与输入shape相同。
@@ -6625,9 +7718,15 @@ prelu
 
 .. code-block:: python
 
-    x = fluid.layers.data(name="x", shape=[10,10], dtype="float32")
+    import paddle.fluid as fluid
+    from paddle.fluid.param_attr import ParamAttr
+    x = fluid.layers.data(name="x", shape=[5,10,10], dtype="float32")
     mode = 'channel'
-    output = fluid.layers.prelu(x,mode)
+    output = fluid.layers.prelu(
+             x,mode,param_attr=ParamAttr(name='alpha'))
+
+
+
 
 .. _cn_api_fluid_layers_psroi_pool:
 
@@ -6644,7 +7743,7 @@ PSROIPool运算
 
 参数：
     - **input** （Variable） - （Tensor），PSROIPoolOp的输入。 输入张量的格式是NCHW。 其中N是批大小batch_size，C是输入通道的数量，H是输入特征图的高度，W是特征图宽度
-    - **rois** （Variable） - 要进行池化的RoI（感兴趣区域）。
+    - **rois** （Variable） - 要进行池化的RoI（感兴趣区域）。应为一个形状为(num_rois, 4)的二维LoDTensor，其lod level为1。给出[[x1, y1, x2, y2], ...]，(x1, y1)为左上角坐标，(x2, y2)为右下角坐标。
     - **output_channels** （integer） - （int），输出特征图的通道数。 对于共C个种类的对象分类任务，output_channels应该是（C + 1），该情况仅适用于分类任务。
     - **spatial_scale** （float） - （float，default 1.0），乘法空间比例因子，用于将ROI坐标从其输入比例转换为池化使用的比例。默认值：1.0
     - **pooled_height** （integer） - （int，默认值1），池化输出的高度。默认值：1
@@ -6659,7 +7758,10 @@ PSROIPool运算
 
 .. code-block:: python
 
-    pool_out = fluid.layers.psroi_pool(input=x, rois=rois, 490, 1.0, 7, 7)
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[490, 28, 28], dtype='float32')
+    rois = fluid.layers.data(name='rois', shape=[4], lod_level=1, dtype='float32')
+    pool_out = fluid.layers.psroi_pool(x, rois, 10, 1.0, 7, 7)
 
 
 
@@ -6769,9 +7871,31 @@ random_crop
 
 
 
+.. _cn_api_fluid_layers_rank:
 
+rank
+-------------------------------
 
+.. py:function::  paddle.fluid.layers.rank(input)
 
+排序层
+
+返回张量的维数，一个数据类型为int32的0-D Tensor。
+
+参数:
+    - **input** (Variable)：输入变量
+
+返回：输入变量的秩
+
+返回类型： 变量（Variable）
+
+**代码示例**
+
+.. code-block:: python
+
+       input = layers.data(
+            name="input", shape=[3, 100, 100], dtype="float32")
+       rank = layers.rank(input) # 4
 
 
 .. _cn_api_fluid_layers_rank_loss:
@@ -6791,17 +7915,17 @@ P 的取值可为： {0, 1} 或 {0, 0.5, 1}, 其中，0.5表示输入的两文�
 
 .. math::
 
-	 C_{i,j} &= -\tilde{P_{ij}} * o_{i,j} + \log(1 + e^{o_{i,j}}) \\
+   C_{i,j} &= -\tilde{P_{ij}} * o_{i,j} + \log(1 + e^{o_{i,j}}) \\
       o_{i,j} &=  o_i - o_j  \\
       \tilde{P_{i,j}} &= \left \{0, 0.5, 1 \right \} \ or \ \left \{0, 1 \right \}
 
 排序损失层的输入带有batch_size (batch_size >= 1)
 
 参数：
-	- **label** (Variable)：A的排名是否高于B
-	- **left** (Variable)：RankNet对doc A的输出分数
-	- **right** (Variable): RankNet对doc B的输出分数
-	- **name** (str|None)：此层的名称(可选)。如果没有设置，层将自动命名。
+  - **label** (Variable)：A的排名是否高于B
+  - **left** (Variable)：RankNet对doc A的输出分数
+  - **right** (Variable)：RankNet对doc B的输出分数
+  - **name** (str|None)：此层的名称(可选)。如果没有设置，层将自动命名。
 
 返回：rank loss的值
 
@@ -6813,15 +7937,80 @@ P 的取值可为： {0, 1} 或 {0, 0.5, 1}, 其中，0.5表示输入的两文�
 
 .. code-block:: python
 
-    label = fluid.layers.data(name="label", shape=[4, 1], dtype="float32")
-    left = fluid.layers.data(name="left", shape=[4, 1], dtype="float32")
-    right = fluid.layers.data(name="right", shape=[4, 1], dtype="float32")
+    label = fluid.layers.data(name="label", shape=[-1, 1], dtype="float32")
+    left = fluid.layers.data(name="left", shape=[-1, 1], dtype="float32")
+    right = fluid.layers.data(name="right", shape=[-1, 1], dtype="float32")
     out = fluid.layers.rank_loss(label, left, right)
 
 
 
+.. _cn_api_fluid_layers_reduce_all:
 
+reduce_all
+-------------------------------
 
+.. py:function:: paddle.fluid.layers.reduce_all(input, dim=None, keep_dim=False, name=None)
+
+计算给定维度上张量（Tensor）元素的与逻辑。
+
+参数：
+          - **input** （Variable）：输入变量为Tensor或LoDTensor。
+          - **dim** （list | int | None）：与逻辑运算的维度。如果为None，则计算所有元素的与逻辑并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量的维度将比输入张量小。
+          - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+
+返回：  减少维度之后的Tensor变量。
+
+返回类型：  变量（Variable）
+
+**代码示例**
+
+..  code-block:: python
+     
+     
+        # x是一个布尔型Tensor，元素如下:
+        #    [[True, False]
+        #     [True, True]]
+        # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+        fluid.layers.reduce_all(x)  # False
+        fluid.layers.reduce_all(x, dim=0)  # [True, False]
+        fluid.layers.reduce_all(x, dim=-1)  # [False, True]
+        fluid.layers.reduce_all(x, dim=1,
+                                 keep_dim=True)  # [[False], [True]]
+     
+.. _cn_api_fluid_layers_reduce_any:
+
+reduce_any
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.reduce_any(input, dim=None, keep_dim=False, name=None)
+
+计算给定维度上张量（Tensor）元素的或逻辑。     
+
+参数：
+          - **input** （Variable）：输入变量为Tensor或LoDTensor。
+          - **dim** （list | int | None）：或逻辑运算的维度。如果为None，则计算所有元素的或逻辑并返回仅包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量的维度将比输入张量小。
+          - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+
+返回：  减少维度之后的Tensor变量。
+
+返回类型：  变量（Variable）
+
+**代码示例**
+
+..  code-block:: python
+     
+     
+        # x是一个布尔型Tensor，元素如下:
+        #    [[True, False]
+        #     [False, False]]
+        # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+        fluid.layers.reduce_any(x)  # True
+        fluid.layers.reduce_any(x, dim=0)  # [True, False]
+        fluid.layers.reduce_any(x, dim=-1)  # [True, False]
+        fluid.layers.reduce_any(x, dim=1,
+                                 keep_dim=True)  # [[True], [False]]
 
 
 
@@ -6851,21 +8040,24 @@ reduce_max
 
 ..  code-block:: python
 
+      import paddle.fluid as fluid
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
       #     [0.1, 0.2, 0.6, 0.7]]
-      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。。
+      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+      x = fluid.layers.data(name='x', shape=[4, 2], dtype='float32')
       fluid.layers.reduce_max(x)  # [0.9]
       fluid.layers.reduce_max(x, dim=0)  # [0.2, 0.3, 0.6, 0.9]
       fluid.layers.reduce_max(x, dim=-1)  # [0.9, 0.7]
       fluid.layers.reduce_max(x, dim=1, keep_dim=True)  # [[0.9], [0.7]]
 
-      # x是一个shape为[2, 2, 2]的Tensor，元素如下:
+      # y是一个shape为[2, 2, 2]的Tensor，元素如下:
       #      [[[1.0, 2.0], [3.0, 4.0]],
       #      [[5.0, 6.0], [7.0, 8.0]]]
-      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。。
-      fluid.layers.reduce_max(x, dim=[1, 2]) # [4.0, 8.0]
-      fluid.layers.reduce_max(x, dim=[0, 1]) # [7.0, 8.0]
+      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+      y = fluid.layers.data(name='y', shape=[2, 2, 2], dtype='float32')
+      fluid.layers.reduce_max(y, dim=[1, 2]) # [4.0, 8.0]
+      fluid.layers.reduce_max(y, dim=[0, 1]) # [7.0, 8.0]
 
 
 
@@ -6899,22 +8091,24 @@ reduce_mean
 
 ..  code-block:: python
 
+      import paddle.fluid as fluid
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
       #     [0.1, 0.2, 0.6, 0.7]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+      x = fluid.layers.data(name='x', shape=[4, 2], dtype='float32')
       fluid.layers.reduce_mean(x)  # [0.4375]
       fluid.layers.reduce_mean(x, dim=0)  # [0.15, 0.25, 0.55, 0.8]
       fluid.layers.reduce_mean(x, dim=-1)  # [0.475, 0.4]
-      fluid.layers.reduce_mean(
-          x, dim=1, keep_dim=True)  # [[0.475], [0.4]]
+      fluid.layers.reduce_mean(x, dim=1, keep_dim=True)  # [[0.475], [0.4]]
 
-      # x 是一个shape为[2, 2, 2]的Tensor元素如下:
+      # y是一个shape为[2, 2, 2]的Tensor元素如下:
       #      [[[1.0, 2.0], [3.0, 4.0]],
       #      [[5.0, 6.0], [7.0, 8.0]]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。。
-      fluid.layers.reduce_mean(x, dim=[1, 2]) # [2.5, 6.5]
-      fluid.layers.reduce_mean(x, dim=[0, 1]) # [4.0, 5.0]
+      y = fluid.layers.data(name='y', shape=[2, 2, 2], dtype='float32')
+      fluid.layers.reduce_mean(y, dim=[1, 2]) # [2.5, 6.5]
+      fluid.layers.reduce_mean(y, dim=[0, 1]) # [4.0, 5.0]
 
 
 
@@ -6948,21 +8142,24 @@ reduce_min
 
 ..  code-block:: python
 
+      import paddle.fluid as fluid
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
       #     [0.1, 0.2, 0.6, 0.7]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+      x = fluid.layers.data(name='x', shape=[4, 2], dtype='float32')
       fluid.layers.reduce_min(x)  # [0.1]
       fluid.layers.reduce_min(x, dim=0)  # [0.1, 0.2, 0.5, 0.7]
       fluid.layers.reduce_min(x, dim=-1)  # [0.2, 0.1]
       fluid.layers.reduce_min(x, dim=1, keep_dim=True)  # [[0.2], [0.1]]
 
-      # x 是一个shape为[2, 2, 2]的Tensor元素如下:
+      # y是一个shape为[2, 2, 2]的Tensor元素如下:
       #      [[[1.0, 2.0], [3.0, 4.0]],
       #      [[5.0, 6.0], [7.0, 8.0]]]
-      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。。
-      fluid.layers.reduce_min(x, dim=[1, 2]) # [1.0, 5.0]
-      fluid.layers.reduce_min(x, dim=[0, 1]) # [1.0, 2.0]
+      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+      y = fluid.layers.data(name='y', shape=[2, 2, 2], dtype='float32')
+      fluid.layers.reduce_min(y, dim=[1, 2]) # [1.0, 5.0]
+      fluid.layers.reduce_min(y, dim=[0, 1]) # [1.0, 2.0]
 
 
 
@@ -6996,22 +8193,25 @@ reduce_prod
 
 ..  code-block:: python
 
+      import paddle.fluid as fluid
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
       #     [0.1, 0.2, 0.6, 0.7]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+      x = fluid.layers.data(name='x', shape=[4, 2], dtype='float32')
       fluid.layers.reduce_prod(x)  # [0.0002268]
       fluid.layers.reduce_prod(x, dim=0)  # [0.02, 0.06, 0.3, 0.63]
       fluid.layers.reduce_prod(x, dim=-1)  # [0.027, 0.0084]
       fluid.layers.reduce_prod(x, dim=1,
                                keep_dim=True)  # [[0.027], [0.0084]]
 
-      # x 是一个shape为[2, 2, 2]的Tensor元素如下:
+      # y 是一个shape为[2, 2, 2]的Tensor元素如下:
       #      [[[1.0, 2.0], [3.0, 4.0]],
       #      [[5.0, 6.0], [7.0, 8.0]]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      fluid.layers.reduce_prod(x, dim=[1, 2]) # [24.0, 1680.0]
-      fluid.layers.reduce_prod(x, dim=[0, 1]) # [105.0, 384.0]
+      y = fluid.layers.data(name='y', shape=[2, 2, 2], dtype='float32')
+      fluid.layers.reduce_prod(y, dim=[1, 2]) # [24.0, 1680.0]
+      fluid.layers.reduce_prod(y, dim=[0, 1]) # [105.0, 384.0]
 
 
 
@@ -7045,21 +8245,24 @@ reduce_sum
 
 ..  code-block:: python
 
+      import paddle.fluid as fluid
       # x是一个Tensor，元素如下:
       #    [[0.2, 0.3, 0.5, 0.9]
       #     [0.1, 0.2, 0.6, 0.7]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
+      x = fluid.layers.data(name='x', shape=[4, 2], dtype='float32')
       fluid.layers.reduce_sum(x)  # [3.5]
       fluid.layers.reduce_sum(x, dim=0)  # [0.3, 0.5, 1.1, 1.6]
       fluid.layers.reduce_sum(x, dim=-1)  # [1.9, 1.6]
       fluid.layers.reduce_sum(x, dim=1, keep_dim=True)  # [[1.9], [1.6]]
 
-      # x 是一个shape为[2, 2, 2]的Tensor元素如下:
+      # y 是一个shape为[2, 2, 2]的Tensor元素如下:
       #      [[[1, 2], [3, 4]],
       #      [[5, 6], [7, 8]]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      fluid.layers.reduce_sum(x, dim=[1, 2]) # [10, 26]
-      fluid.layers.reduce_sum(x, dim=[0, 1]) # [16, 20]
+      y = fluid.layers.data(name='y', shape=[2, 2, 2], dtype='float32')
+      fluid.layers.reduce_sum(y, dim=[1, 2]) # [10, 26]
+      fluid.layers.reduce_sum(y, dim=[0, 1]) # [16, 20]
 
 
 
@@ -7094,7 +8297,8 @@ Relu接受一个输入数据(张量)，输出一个张量。将线性函数y = m
 **代码示例**:
 
 ..  code-block:: python
-
+      
+    x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
     output = fluid.layers.relu(x)
 
 
@@ -7159,25 +8363,25 @@ reshape
 
 .. code-block:: text
 
-	1. -1表示这个维度的值是从x的元素总数和剩余维度推断出来的。因此，有且只有一个维度可以被设置为-1。
-	2. 0表示实际的维数是从x的对应维数中复制出来的，因此shape中0的索引值不能超过秩(x)。
+  1. -1表示这个维度的值是从x的元素总数和剩余维度推断出来的。因此，有且只有一个维度可以被设置为-1。
+  2. 0表示实际的维数是从x的对应维数中复制出来的，因此shape中0的索引值不能超过秩(x)。
 
 
 这里有一些例子来解释它们：
 
 .. code-block:: text
 
-	1. 给定一个形状为[2,4,6]的三维张量x，目标形状为[6,8]， ``reshape`` 将x变换为形状为[6,8]的二维张量，且x的数据保持不变。
-	2. 给定一个形状为[2,4,6]的三维张量x，指定的目标形状为[2,3,-1,2]， ``reshape``将x变换为形状为[2,3,4,2]的4- d张量，不改变x的数据。在这种情况下，目标形状的一个维度被设置为-1，这个维度的值是从x的元素总数和剩余维度推断出来的。
-	3. 给定一个形状为[2,4,6]的三维张量x，目标形状为[- 1,0,3,2]，整形算子将x变换为形状为[2,4,3,2]的四维张量，使x的数据保持不变。在这种情况下，0意味着实际的维值将从x的对应维数中复制,-1位置的维度由x的元素总数和剩余维度计算得来。
+  1. 给定一个形状为[2,4,6]的三维张量x，目标形状为[6,8]， ``reshape`` 将x变换为形状为[6,8]的二维张量，且x的数据保持不变。
+  2. 给定一个形状为[2,4,6]的三维张量x，指定的目标形状为[2,3,-1,2]， ``reshape``将x变换为形状为[2,3,4,2]的4- d张量，不改变x的数据。在这种情况下，目标形状的一个维度被设置为-1，这个维度的值是从x的元素总数和剩余维度推断出来的。
+  3. 给定一个形状为[2,4,6]的三维张量x，目标形状为[- 1,0,3,2]，整形算子将x变换为形状为[2,4,3,2]的四维张量，使x的数据保持不变。在这种情况下，0意味着实际的维值将从x的对应维数中复制,-1位置的维度由x的元素总数和剩余维度计算得来。
 
 参数：
-	- **x** (variable) - 输入张量
-	- **shape** (list) - 新的形状。新形状最多只能有一个维度为-1。
-	- **actual_shape** (variable) - 一个可选的输入。如果提供，则根据 ``actual_shape`` 进行 reshape，而不是指定 ``shape`` 。也就是说，actual_shape具有比shape更高的优先级。
-	- **act** (str) - 对reshpe后的tensor变量执行非线性激活
-	- **inplace** (bool) - 如果 ``inplace`` 为True，则 ``layers.reshape`` 的输入和输出是同一个变量，否则， ``layers.reshape`` 的输入和输出是不同的变量。请注意，如果x作为多个层的输入，则 ``inplace`` 必须为False。
-	- **name** (str) -  可选变量，此层的名称
+  - **x** (variable) - 输入张量
+  - **shape** (list) - 新的形状。新形状最多只能有一个维度为-1。
+  - **actual_shape** (variable) - 一个可选的输入。如果提供，则根据 ``actual_shape`` 进行 reshape，而不是指定 ``shape`` 。也就是说，actual_shape具有比shape更高的优先级。
+  - **act** (str) - 对reshpe后的tensor变量执行非线性激活
+  - **inplace** (bool) - 如果 ``inplace`` 为True，则 ``layers.reshape`` 的输入和输出是同一个变量，否则， ``layers.reshape`` 的输入和输出是不同的变量。请注意，如果x作为多个层的输入，则 ``inplace`` 必须为False。
+  - **name** (str) -  可选变量，此层的名称
 
 返回：如果 ``act`` 为 ``None``,返回reshape后的tensor变量。如果 ``inplace`` 为 ``False`` ,将返回一个新的Tensor变量，否则，将改变x自身。如果 ``act`` 不是 ``None`` ，则返回激活的张量变量。
 
@@ -7187,10 +8391,10 @@ reshape
 
 .. code-block:: python
 
-	data = fluid.layers.data(
-	    name='data', shape=[2, 4, 6], dtype='float32')
-	reshaped = fluid.layers.reshape(
-	    x=data, shape=[-1, 0, 3, 2], inplace=True)
+  data = fluid.layers.data(
+      name='data', shape=[2, 4, 6], dtype='float32')
+  reshaped = fluid.layers.reshape(
+      x=data, shape=[-1, 0, 3, 2], inplace=True)
 
 
 
@@ -7255,21 +8459,22 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
 
 参数:
     - **input** (Variable) - 双线性插值的输入张量，是一个shape为(N x C x h x w)的4d张量。
-    - **out_shape** (Variable) - 一维张量，包含两个数。第一个数是高度，第二个数是宽度。
-    - **scale** (float|None) - 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None。
+    - **out_shape** (list|tuple|Variable|None) - 调整双线性层的输出形状，形式为(out_h, out_w)。默认值：None。
+    - **scale** (float|None) - 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值：None。
     - **name** (str|None) - 输出变量名。
     - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`actual_shape` 而不是 :code:`out_shape` 。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值:None
     - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值：True
     - **align_mode** （int）- 双线性插值的可选项。 可以是'0'代表src_idx = scale *（dst_indx + 0.5）-0.5；可以为'1' ，代表src_idx = scale * dst_index。
 
 
-返回：	插值运算的输出张量，其各维度是(N x C x out_h x out_w)
+返回： 插值运算的输出张量，其各维度是(N x C x out_h x out_w)
 
 
-**代码示例：**
+**代码示例**
 
 .. code-block:: python
-
+  
+  input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
   out = fluid.layers.resize_bilinear(input, out_shape=[12, 12])
 
 
@@ -7329,7 +8534,7 @@ resize_nearest
 
 参数:
   - **input** (Variable) – 插值运算的输入张量, 是一个形为 (N,C,H,W) 的四维张量
-  - **out_shape** (Variable) – 一维张量，包含两个指明输出大小的数字 。 第一个代表了高度，第二个代表了宽度
+  - **out_shape** (list|tuple|Variable|None) – 调整最近邻层的输出形状，形式为(out_h, out_w)。默认值：None。
   - **scale** (float|None) – 输入高、宽的乘法器。 ``out_shape`` 和 ``scale`` 二者至少设置其一。 ``out_shape`` 具有比 ``scale`` 更高的优先级。 默认: None
   - **name** (str|None) – 输出变量的命名
   - **actual_shape** (Variable) – 可选输入， 动态设置输出张量的形状。 如果提供该值， 图片放缩会依据此形状进行， 而非依据 ``out_shape`` 和 ``scale`` 。 即为， ``actual_shape`` 具有最高的优先级。 如果想动态指明输出形状，推荐使用 ``actual_shape`` 取代 ``out_shape`` 。 当使用 ``actual_shape`` 来指明输出形状， ``out_shape`` 和 ``scale`` 也应该进行设置, 否则在图形生成阶段将会报错。默认: None
@@ -7340,7 +8545,8 @@ resize_nearest
 **代码示例**
 
 ..  code-block:: python
-
+    
+    input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
     out = fluid.layers.resize_nearest(input, out_shape=[12, 12])
 
 
@@ -7384,6 +8590,10 @@ Region of Interests align(直译：有意义、有价值选区对齐) 用于实�
 
 ..  code-block:: python
 
+    x = fluid.layers.data(
+            name='data', shape=[256, 32, 32], dtype='float32')
+    rois = fluid.layers.data(
+            name='rois', shape=[4], dtype='float32')
     align_out = fluid.layers.roi_align(input=x,
                                        rois=rois,
                                        pooled_height=7,
@@ -7435,8 +8645,18 @@ Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverfl
 
 ..  code-block:: python
 
-	pool_out = fluid.layers.roi_pool(input=x, rois=rois, 7,7,1.0)
-
+  import paddle.fluid as fluid
+     
+  x = fluid.layers.data(
+            name='x', shape=[8, 112, 112], dtype='float32')
+  rois = fluid.layers.data(
+            name='roi', shape=[4], lod_level=1, dtype='float32')
+  pool_out = fluid.layers.roi_pool(
+            input=x,
+            rois=rois,
+            pooled_height=7,
+            pooled_width=7,
+            spatial_scale=1.0)
 
 
 
@@ -7462,7 +8682,7 @@ row_conv
 给定输入序列长度为 :math:`t` 的输入序列 :math:`X` 和输入维度 :math:`D` ，以及一个大小为 :math:`context * D` 的滤波器 :math:`W` ，输出序列卷积为:
 
 .. math::
-		out_i = \sum_{j=i}^{i+context-1} X_{j} · W_{j-i}
+    out_i = \sum_{j=i}^{i+context-1} X_{j} · W_{j-i}
 
 公式中：
     - :math:`out_i` : 第i行输出变量形为[1, D].
@@ -7485,11 +8705,11 @@ row_conv
 
 ..  code-block:: python
 
-	import paddle.fluid as fluid
+  import paddle.fluid as fluid
 
-     	x = fluid.layers.data(name='x', shape=[16],
+  x = fluid.layers.data(name='x', shape=[16],
                         dtype='float32', lod_level=1)
-	out = fluid.layers.row_conv(input=x, future_context_size=2)
+  out = fluid.layers.row_conv(input=x, future_context_size=2)
 
 
 .. _cn_api_fluid_layers_sampled_softmax_with_cross_entropy:
@@ -7528,11 +8748,13 @@ sampled_softmax_with_cross_entropy
 
 .. code-block:: python
 
-    logits = fluid.layers.data(name='data', shape=[256], dtype='float32')
+    import paddle.fluid as fluid
+
+    input = fluid.layers.data(name='data', shape=[256], dtype='float32')
     label = fluid.layers.data(name='label', shape=[5], dtype='int64')
-    fc = fluid.layers.fc(input=data, size=100)
+    fc = fluid.layers.fc(input=input, size=100)
     out = fluid.layers.sampled_softmax_with_cross_entropy(
-    logits=fc, label=label, num_samples=25)
+              logits=fc, label=label, num_samples=25)
 
 
 
@@ -7613,6 +8835,14 @@ else:
 
 返回类型:        变量(Variable)
 
+**代码示例：**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+     
+    x = fluid.layers.data(name="X", shape=[1, 2, 5, 5], dtype='float32')
+    y = fluid.layers.scale(x, scale = 2.0, bias = 1.0)
 
 
 
@@ -7627,7 +8857,7 @@ else:
 scatter
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.scatter(input, index, updates, name=None)
+.. py:function:: paddle.fluid.layers.scatter(input, index, updates, name=None, overwrite=True)
 
 
 通过更新输入在第一维度上指定索引位置处的元素来获得输出。
@@ -7637,10 +8867,11 @@ scatter
 
 
 参数：
-  - **input** （Variable） - 秩> = 1的源输入
-  - **index** （Variable） - 秩= 1的索引输入。 它的dtype应该是int32或int64，因为它用作索引
-  - **updates** （Variable） - scatter 要进行更新的变量
-  - **name** （str | None） - 输出变量名称。 默认None
+  - **input** （Variable） - 秩> = 1的源输入。
+  - **index** （Variable） - 秩= 1的索引输入。 它的dtype应该是int32或int64，因为它用作索引。
+  - **updates** （Variable） - scatter 要进行更新的变量。
+  - **name** （str | None） - 输出变量名称。 默认None。
+  - **overwrite** （bool） - 具有相同索引时更新输出的模式。如果为True，则使用覆盖模式更新相同索引的输出，如果为False，则使用accumulate模式更新相同索引的grad。默认值为True。您可以设置overwrite=False以使用scatter_add。
 
 返回：张量变量, 与输入张量的shape相同
 
@@ -7650,6 +8881,12 @@ scatter
 
 ..  code-block:: python
 
+    import paddle.fluid as fluid
+     
+    input = fluid.layers.data(name='data', shape=[3, 5, 9], dtype='float32', append_batch_size=False)
+    index = fluid.layers.data(name='index', shape=[3], dtype='int64', append_batch_size=False)
+    updates = fluid.layers.data(name='update', shape=[3, 5, 9], dtype='float32', append_batch_size=False)
+    
     output = fluid.layers.scatter(input, index, updates)
 
 
@@ -7696,7 +8933,12 @@ selu
 
 ..  code-block:: python
 
-    output = fluid.layers.selu(x)
+    import paddle.fluid as fluid
+     
+    input = fluid.layers.data(
+         name="input", shape=[3, 9, 5], dtype="float32")
+
+    output = fluid.layers.selu(input)
 
 
 
@@ -7732,7 +8974,10 @@ sequence_concat操作通过序列信息连接LoD张量（Tensor）。例如：X1
 
 ..  code-block:: python
 
-        out = fluid.layers.sequence_concat(input=[seq1, seq2, seq3])
+        import paddle.fluid as fluid
+        x = fluid.layers.data(name='x', shape=[10], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[10], dtype='float32')
+        out = fluid.layers.sequence_concat(input=[x, y])
 
 
 
@@ -7766,7 +9011,13 @@ sequence_conv
 
 返回类型：变量（Variable）
 
+**代码示例**
 
+..  code-block:: python
+
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[10,10], append_batch_size=False, dtype='float32')
+    x_conved = fluid.layers.sequence_conv(x,2)
 
 
 
@@ -7807,7 +9058,7 @@ sequence_enumerate
 
 ..  code-block:: python
 
-      x = fluid.layers.data(shape[30, 1], dtype='int32', lod_level=1)
+      x = fluid.layers.data(shape[-1, 1], dtype='int32', lod_level=1)
       out = fluid.layers.sequence_enumerate(input=x, win_size=3, pad_value=0)
 
 
@@ -7833,35 +9084,35 @@ sequence_expand
 
 
     * 例1
-	    x is a LoDTensor:
-		x.lod  = [[2,        2]]
-		x.data = [[a], [b], [c], [d]]
-		x.dims = [4, 1]
+      x is a LoDTensor:
+    x.lod  = [[2,        2]]
+    x.data = [[a], [b], [c], [d]]
+    x.dims = [4, 1]
 
-	    y is a LoDTensor:
-		y.lod = [[2,    2],
-		         [3, 3, 1, 1]]
+      y is a LoDTensor:
+    y.lod = [[2,    2],
+             [3, 3, 1, 1]]
 
-	    ref_level: 0
+      ref_level: 0
 
-	    then output is a 1-level LoDTensor:
-		out.lod =  [[2,        2,        2,        2]]
-		out.data = [[a], [b], [a], [b], [c], [d], [c], [d]]
-		out.dims = [8, 1]
+      then output is a 1-level LoDTensor:
+    out.lod =  [[2,        2,        2,        2]]
+    out.data = [[a], [b], [a], [b], [c], [d], [c], [d]]
+    out.dims = [8, 1]
 
     * 例2
-	    x is a Tensor:
-		x.data = [[a], [b], [c]]
-		x.dims = [3, 1]
+      x is a Tensor:
+    x.data = [[a], [b], [c]]
+    x.dims = [3, 1]
 
-	    y is a LoDTensor:
-		y.lod = [[2, 0, 3]]
+      y is a LoDTensor:
+    y.lod = [[2, 0, 3]]
 
-	    ref_level: -1
+      ref_level: -1
 
-	    then output is a Tensor:
-		out.data = [[a], [a], [c], [c], [c]]
-		out.dims = [5, 1]
+      then output is a Tensor:
+    out.data = [[a], [a], [c], [c], [c]]
+    out.dims = [5, 1]
 
 参数：
     - **x** (Variable) - 输入变量，张量或LoDTensor
@@ -7877,6 +9128,7 @@ sequence_expand
 
 .. code-block:: python
 
+    import paddle.fluid.layers as layers
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
@@ -7943,17 +9195,14 @@ Sequence Expand As Layer
 
 返回类型：变量（Variable）
 
+
 **代码示例**：
 
 .. code-block:: python
 
-    x = fluid.layers.data(name='x', shape=[10], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[10, 20],
-                 dtype='float32', lod_level=1)
-    out = fluid.layers.sequence_expand_as(x=x, y=y)
-
-
-
+    x = fluid.layers.data(name='x', shape=[7, 1],
+                     dtype='float32', lod_level=1)
+    x_first_step = fluid.layers.sequence_first_step(input=x)
 
 
 
@@ -8065,19 +9314,26 @@ sequence_mask
 
 .. math::
 
-	y(i_1, i_2,..., i_n, j) = (j < x(i_1, i_2,..., i_n))
+  y(i_1, i_2,..., i_n, j) = (j < x(i_1, i_2,..., i_n))
 
 参数：
-	- **x** (Variable) - sequence_mask层的输入张量，其元素是小于maxlen的整数。
-	- **maxlen** (int|None) - 序列的最大长度。如果maxlen为空，则用max(x)替换。
-	- **dtype** (np.dtype|core.VarDesc.VarType|str) - 输出的数据类型
-	- **name** (str|None) - 此层的名称(可选)。如果没有设置，该层将被自动命名。
+  - **x** (Variable) - sequence_mask层的输入张量，其元素是小于maxlen的整数。
+  - **maxlen** (int|None) - 序列的最大长度。如果maxlen为空，则用max(x)替换。
+  - **dtype** (np.dtype|core.VarDesc.VarType|str) - 输出的数据类型
+  - **name** (str|None) - 此层的名称(可选)。如果没有设置，该层将被自动命名。
 
 返回： sequence mask 的输出
 
 返回类型： Variable
 
+**代码示例**：
 
+.. code-block:: python
+
+    import paddle.fluid.layers as layers
+    
+    x = fluid.layers.data(name='x', shape=[10], dtype='float32', lod_level=1)
+    mask = layers.sequence_mask(x=x)
 
 
 
@@ -8192,7 +9448,7 @@ sequence_pad
 sequence_pool
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.sequence_pool(input, pool_type, is_test=False)
+.. py:function:: paddle.fluid.layers.sequence_pool(input, pool_type, is_test=False, pad_value=0.0)
 
 该函数为序列的池化添加操作符。将每个实例的所有时间步数特征池化，并用参数中提到的pool_type将特征运用到输入到首部。
 
@@ -8206,32 +9462,37 @@ sequence_pool
 ::
 
 
-    x是一级LoDTensor:
-        x.lod = [[2, 3, 2]]
+    x是一级LoDTensor且**pad_value** = 0.0:
+        x.lod = [[2, 3, 2, 0]]
         x.data = [1, 3, 2, 4, 6, 5, 1]
         x.dims = [7, 1]
     输出为张量（Tensor）：
-        out.dim = [3, 1]
+        out.dim = [4, 1]
         with condition len(x.lod[-1]) == out.dims[0]
     对于不同的pool_type：
-        average: out.data = [2, 4, 3], where 2=(1+3)/2, 4=(2+4+6)/3, 3=(5+1)/2
-        sum    : out.data = [4, 12, 6], where 4=1+3, 12=2+4+6, 6=5+1
-        sqrt   : out.data = [2.82, 6.93, 4.24], where 2.82=(1+3)/sqrt(2),
+        average: out.data = [2, 4, 3, 0.0], where 2=(1+3)/2, 4=(2+4+6)/3, 3=(5+1)/2
+        sum    : out.data = [4, 12, 6, 0.0], where 4=1+3, 12=2+4+6, 6=5+1
+        sqrt   : out.data = [2.82, 6.93, 4.24, 0.0], where 2.82=(1+3)/sqrt(2),
              6.93=(2+4+6)/sqrt(3), 4.24=(5+1)/sqrt(2)
-        max    : out.data = [3, 6, 5], where 3=max(1,3), 6=max(2,4,6), 5=max(5,1)
-        last   : out.data = [3, 6, 1], where 3=last(1,3), 6=last(2,4,6), 1=last(5,1)
-        first  : out.data = [1, 2, 5], where 1=first(1,3), 2=first(2,4,6), 5=first(5,1)
+        max    : out.data = [3, 6, 5, 0.0], where 3=max(1,3), 6=max(2,4,6), 5=max(5,1)
+        last   : out.data = [3, 6, 1, 0.0], where 3=last(1,3), 6=last(2,4,6), 1=last(5,1)
+        first  : out.data = [1, 2, 5, 0.0], where 1=first(1,3), 2=first(2,4,6), 5=first(5,1)
+        
+      且以上所有均满足0.0 = **pad_value**
 
 参数：
     - **input** (variable) - 输入变量，为LoDTensor
     - **pool_type** (string) - 池化类型。支持average,sum,sqrt和max
-    - **is_test** (bool, 默认为 False) - 用于区分训练模式和测试评分模式
+    - **is_test** (bool, 默认为 False) - 用于区分训练模式和测试评分模式。默认为False。
+    - **pad_value** (float) - 用于填充空输入序列的池化结果。
 
 返回：sequence pooling 变量，类型为张量（Tensor)
 
 **代码示例**:
 
 .. code-block:: python
+
+    import paddle.fluid as fluid
 
     x = fluid.layers.data(name='x', shape=[7, 1],
                  dtype='float32', lod_level=1)
@@ -8291,8 +9552,9 @@ Sequence Reshape Layer
 
 .. code-block:: python
 
-    x = fluid.layers.data(shape=[5, 20], dtype='float32', lod_level=1)
-    x_reshaped = fluid.layers.sequence_reshape(input=x, new_dim=10)
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[2, 6], append_batch_size=False, dtype='float32', lod_level=1)
+    x_reshaped = fluid.layers.sequence_reshape(input=x, new_dim=4)
 
 
 
@@ -8309,7 +9571,6 @@ sequence_reverse
 
 .. py:function:: paddle.fluid.layers.sequence_reverse(x, name=None)
 
-**实现SequenceReverse（序列倒序）运算**
 
 在第0维上将输入 ``x`` 的各序列倒序。
 
@@ -8341,9 +9602,13 @@ sequence_reverse
 
 返回类型：Variable
 
+**代码示例**：
 
+.. code-block:: python
 
-
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[2, 6], dtype='float32')
+    x_reversed = fluid.layers.sequence_reverse(x)
 
 
 
@@ -8403,7 +9668,12 @@ sequence_scatter
 
 ..  code-block:: python
 
-  output = fluid.layers.sequence_scatter(input, index, updates)
+    import paddle.fluid.layers as layers
+     
+    input = layers.data( name="x", shape=[3, 6], append_batch_size=False, dtype='float32' )
+    index = layers.data( name='index', shape=[1], dtype='int32')
+    updates = layers.data( name='updates', shape=[1], dtype='float32')
+    output = fluid.layers.sequence_scatter(input, index, updates)
 
 
 
@@ -8459,13 +9729,13 @@ sequence_slice
 
 ..  code-block:: python
 
-	import numpy as np
-	seqs = fluid.layers.data(name='x', shape=[10, 5],
-			 dtype='float32', lod_level=1)
-	offset = fluid.layers.assign(input=np.array([[0, 1]]).astype("int32"))
-	length = fluid.layers.assign(input=np.array([[2, 1]]).astype("int32"))
-	subseqs = fluid.layers.sequence_slice(input=seqs, offset=offset,
-					      length=length)
+  import numpy as np
+  seqs = fluid.layers.data(name='x', shape=[10, 5],
+       dtype='float32', lod_level=1)
+  offset = fluid.layers.assign(input=np.array([[0, 1]]).astype("int32"))
+  length = fluid.layers.assign(input=np.array([[2, 1]]).astype("int32"))
+  subseqs = fluid.layers.sequence_slice(input=seqs, offset=offset,
+                length=length)
 
 
 
@@ -8602,6 +9872,7 @@ shape层。
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     input = fluid.layers.data(
         name="input", shape=[3, 100, 100], dtype="float32")
     out = fluid.layers.shape(input)
@@ -8720,9 +9991,9 @@ sigmoid_cross_entropy_with_logits
   - **name** (basestring|None) - 输出的名称
   - **normalize** （bool） - 如果为true，则将输出除以除去ignore_index对应目标外的目标数
 
-返回：	(Tensor, 默认Tensor<float>), 形为 N x D 的二维张量，其值代表了按元素的逻辑loss
+返回： (Tensor, 默认Tensor<float>), 形为 N x D 的二维张量，其值代表了按元素的逻辑loss
 
-返回类型:	Variable
+返回类型：Variable
 
 
 
@@ -8743,6 +10014,32 @@ sigmoid_cross_entropy_with_logits
 
 
 
+
+
+
+
+.. _cn_api_fluid_layers_sign:
+
+sign
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.sign(x)
+
+此函数返回x中每个元素的正负号：1代表正，-1代表负，0代表零。
+
+参数：
+    - **x** (Variable|numpy.ndarray) – 输入张量。
+
+返回：输出正负号张量，和x有着相同的形状和数据类型。
+
+返回类型：Variable
+
+**代码示例**
+
+..  code-block:: python
+
+    # [1, 0, -1]
+    data = fluid.layers.sign(np.array([3, 0, -2]))
 
 
 
@@ -8833,8 +10130,8 @@ similarity_focus
 ..  code-block:: python
 
             data = fluid.layers.data(
-              name='data', shape=[2, 3, 2, 2], dtype='float32')
-            x = fluid.layers.layer_norm(input=data, axis=1, indexes=[0])
+              name='data', shape=[-1, 3, 2, 2], dtype='float32')
+            fluid.layers.similarity_focus(input=data, axis=1, indexes=[0])
 
 
 
@@ -8856,22 +10153,25 @@ slice
 
 slice算子。
 
-沿多个轴生成输入张量的切片。与numpy类似： https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html Slice使用 ``axes`` 、 ``starts`` 和 ``ends`` 属性来指定轴列表中每个轴的起点和终点维度，它使用此信息来对输入数据张量切片。如果向 ``starts`` 或 ``ends`` 传递负值，则表示该维度结束之前的元素数目。如果传递给 ``starts`` 或 ``end`` 的值大于n（此维度中的元素数目），则表示n。对于未知大小维度的末尾进行切片，则建议传入 ``INT_MAX`` 。如果省略轴，则将它们设置为[0，...，ndim-1]。以下示例将解释切片如何工作：
+沿多个轴生成输入张量的切片。与numpy类似： https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html Slice使用 ``axes`` 、 ``starts`` 和 ``ends`` 属性来指定轴列表中每个轴的起点和终点维度，它使用此信息来对输入数据张量切片。如果向 ``starts`` 或 ``ends`` 传递负值，则表示该维度结束之前的元素数目。如果传递给 ``starts`` 或 ``end`` 的值大于n（此维度中的元素数目），则表示n。当切片一个未知数量的唯独时，建议传入INT_MAX. ``axes`` 的大小必须和 ``starts`` 和 ``ends`` 的相等。以下示例将解释切片如何工作：
 
 ::
 
-        案例1：给定：data=[[1,2,3,4],[5,6,7,8],]
+        案例1：
+                给定：
+                     data=[[1,2,3,4],[5,6,7,8],]
                      axes=[0,1]
                      starts=[1,0]
                      ends=[2,3]
-               则：
+                则：
                      result=[[5,6,7],]
 
-        案例2：给定：
+        案例2：
+                给定：
                      data=[[1,2,3,4],[5,6,7,8],]
                      starts=[0,1]
                      ends=[-1,1000]
-               则：
+                则：
                      result=[[2,3,4],]
 
 参数：
@@ -8888,6 +10188,8 @@ slice算子。
 **代码示例：**
 
 .. code-block:: python
+
+    import paddle.fluid as fluid
 
     starts = [1, 0, 2]
     ends = [3, 3, 4]
@@ -8921,7 +10223,7 @@ smooth_l1
         - **outside_weight** (变量|None) - 一个rank至少为2的张量。这个输入是可选的，它的形状应该与 ``x`` 相同。如果给定，那么 smooth L1 loss 就会乘以这个张量元素。
         - **sigma** (float|None) - smooth L1 loss layer的超参数。标量，默认值为1.0。
 
-返回：	smooth L1 loss, shape为 [batch_size, 1]
+返回： smooth L1 loss, shape为 [batch_size, 1]
 
 返回类型:  Variable
 
@@ -8963,6 +10265,8 @@ SoftRelu 激活函数
 **代码示例：**
 
 .. code-block:: python
+
+    import paddle.fluid as fluid
 
     x = fluid.layers.data(name=”x”, shape=[2,3,16,16], dtype=”float32”)
     y = fluid.layers.soft_relu(x, threshold=20.0)
@@ -9009,6 +10313,8 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[2], dtype='float32')
     fc = fluid.layers.fc(input=x, size=10)
     # 在第二维执行softmax
     softmax = fluid.layers.softmax(input=fc, axis=1)
@@ -9028,9 +10334,9 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
 softmax_with_cross_entropy
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False)
+.. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False, axis=-1)
 
-使用softmax的交叉熵在输出层已被广泛使用。该函数计算输入张量每一行的softmax标准化值，而后计算交叉熵。通过此种方式，可以得到更具数字稳定性的梯度值。
+使用softmax的交叉熵在输出层已被广泛使用。该函数计算输入张量在axis轴上的softmax标准化值，而后计算交叉熵。通过此种方式，可以得到更具数字稳定性的梯度值。
 
 因为该运算是在内部进行logit上的softmax运算，所以它需要未标准化（unscaled）的logit。该运算不应该对softmax运算的输出进行操作，否则会得出错误结果。
 
@@ -9057,17 +10363,17 @@ softmax_with_cross_entropy
 
 
 参数:
-
-  - **logits** (Variable) - 未标准化(unscaled)的log概率,一个形为 N X K 的二维张量。 N是batch大小，K是类别总数。
-  - **label** (Variable) - 2-D 张量，代表了正确标注（ground truth）, 如果 ``soft_label`` 为  False，则该参数是一个形为 N X 1 的Tensor<int64> 。如果 ``soft_label`` 为 True，它是 Tensor<float/double> ，形为 N X K 。
+  - **logits** (Variable) - 未标准化(unscaled)对数概率的输入张量。
+  - **label** (Variable) - 真实值张量。如果 ``soft_label`` 为True，则该参数是一个和logits形状相同的的Tensor<float/double> 。如果 ``soft_label`` 为False，label是一个在axis维上形为1，其它维上与logits形对应相同的Tensor<int64>。
   - **soft_label** (bool) - 是否将输入标签当作软标签。默认为False。
-  - **ignore_index** (int) - 指明要无视的目标值，使之不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认为kIgnoreIndex。
-  - **numeric_stable_mode** (bool) – 标志位，指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效. 若 ``soft_label`` 为 True 或者执行场所为CPU, 算法一直具有数学稳定性。 注意使用稳定算法时速度可能会变慢。默认为 True。
+  - **ignore_index** (int) - 指明要无视的目标值，使之不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认为kIgnoreIndex。 
+  - **numeric_stable_mode** (bool) – 标志位，指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效。若 ``soft_label`` 为 True 或者执行场所为CPU, 算法一直具有数学稳定性。 注意使用稳定算法时速度可能会变慢。默认为 True。
   - **return_softmax** (bool) – 标志位，指明是否额外返回一个softmax值， 同时返回交叉熵计算结果。默认为False。
+  - **axis** (int) – 执行softmax计算的维度索引。 它应该在范围 :math:`[ -  1，rank  -  1]` 中，而 :math:`rank` 是输入logits的秩。 默认值：-1。
 
 返回:
-  - 如果 ``return_softmax`` 为 False， 则返回交叉熵损失
-  - 如果 ``return_softmax`` 为 True，则返回元组 (loss, softmax) ，其中交叉熵损失为形为[N x 1]的二维张量，softmax为[N x K]的二维张量
+  - 如果 ``return_softmax`` 为 False，则返回交叉熵损失
+  - 如果 ``return_softmax`` 为 True，则返回元组 (loss, softmax) ，其中softmax和输入logits形状相同；除了axis维上的形为1，其余维上交叉熵损失和输入logits形状相同
 
 返回类型:变量或者两个变量组成的元组
 
@@ -9076,7 +10382,7 @@ softmax_with_cross_entropy
 
 ..  code-block:: python
 
-	data = fluid.layers.data(name='data', shape=[128], dtype='float32')
+  data = fluid.layers.data(name='data', shape=[128], dtype='float32')
         label = fluid.layers.data(name='label', shape=[1], dtype='int64')
         fc = fluid.layers.fc(input=data, size=100)
         out = fluid.layers.softmax_with_cross_entropy(
@@ -9128,6 +10434,9 @@ space_to_depth
 **代码示例**
 
 ..  code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
 
     data = fluid.layers.data(
         name='data', shape=[1, 4, 2, 2], dtype='float32', append_batch_size=False)
@@ -9187,8 +10496,10 @@ spectral_norm
 
 .. code-block:: python
 
-    weight = fluid.layers.data(name='weight', shape=[8, 32, 32],dtype='float32')
-    x = fluid.layers.spectral_norm(weight=data, dim=1, power_iters=2)
+   import paddle.fluid as fluid
+
+   weight = fluid.layers.data(name='weight', shape=[2, 8, 32, 32], append_batch_size=False, dtype='float32')
+   x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
 
 
 
@@ -9217,16 +10528,21 @@ split
 
 .. code-block:: python
 
-    # x是维为[3,9,5]的张量：
-    x0, x1, x2 = fluid.layers.split(x, num_or_sections=3, dim=1)
-    x0.shape  # [3, 3, 5]
-    x1.shape  # [3, 3, 5]
-    x2.shape  # [3, 3, 5]
-    x0, x1, x2 = fluid.layers.split(
-        x, num_or_sections=[2, 3, 4], dim=1)
-    x0.shape  # [3, 2, 5]
-    x1.shape  # [3, 3, 5]
-    x2.shape  # [3, 4, 5]
+    import paddle.fluid as fluid
+
+    # 输入是维为[-1, 3,9,5]的张量：
+    input = fluid.layers.data(
+         name="input", shape=[3, 9, 5], dtype="float32")
+
+    x0, x1, x2 = fluid.layers.split(x, num_or_sections=3, dim=2)
+    # x0.shape  [-1, 3, 3, 5]
+    # x1.shape  [-1, 3, 3, 5]
+    # x2.shape  [-1, 3, 3, 5]
+    
+    x0, x1, x2 = fluid.layers.split(input, num_or_sections=[2, 3, 4], dim=2)
+    # x0.shape  [-1, 3, 2, 5]
+    # x1.shape  [-1, 3, 3, 5]
+    # x2.shape  [-1, 3, 4, 5]
 
 
 
@@ -9322,6 +10638,7 @@ squeeze
 
 .. code-block:: python
 
+    import paddle.fluid.layers as layers
     x = fluid.layers.data(name='x', shape=[5, 1, 10])
     y = fluid.layers.sequeeze(input=x, axes=[1])
 
@@ -9396,9 +10713,14 @@ stack
 
 返回类型: Variable
 
+**代码示例**：
 
+.. code-block:: python
 
-
+    import paddle.fluid.layers as layers
+    x1 = layers.data(name='x1', shape=[1, 2], dtype='int32')
+    x2 = layers.data(name='x2', shape=[1, 2], dtype='int32')
+    data = layers.stack([x1,x2])
 
 
 
@@ -9464,8 +10786,10 @@ sum算子。
 
 .. code-block:: python
 
-    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = fluid.layers.sum(input)
+    import paddle.fluid.layers as layers
+    input0 = fluid.layers.data(name="input0", shape=[13, 11], dtype='float32')
+    input1 = layers.data(name="input1", shape=[13, 11], dtype='float32')
+    out = fluid.layers.sum([input0,input1])
 
 
 
@@ -9533,6 +10857,13 @@ teacher_student_sigmoid_loss
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+     
+    batch_size = 64
+    label = fluid.layers.data(
+              name="label", shape=[batch_size, 1], dtype="int64", append_batch_size=False)
+    similarity = fluid.layers.data(
+              name="similarity", shape=[batch_size, 1], dtype="float32", append_batch_size=False)
     cost = fluid.layers.teacher_student_sigmoid_loss(input=similarity, label=label)
 
 
@@ -9638,6 +10969,8 @@ topk
 
 .. code-block:: python
 
+    import paddle.fluid.layers as layers
+    input = layers.data(name="input", shape=[13, 11], dtype='float32')
     top5_values, top5_indices = fluid.layers.topk(input, k=5)
 
 
@@ -9674,6 +11007,7 @@ transpose
 
     # 请使用 append_batch_size=False 来避免
     # 在数据张量中添加多余的batch大小维度
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[5, 10, 15],
                     dtype='float32', append_batch_size=False)
     x_transposed = fluid.layers.transpose(x, perm=[1, 0, 2])
@@ -9711,32 +11045,66 @@ tree_conv
 **代码示例**:
 
 .. code-block:: python
-
-    nodes_vector = fluid.layers.data(name='vectors', shape=[None, 10, 5], dtype='float32)
-    # batch size为None, 10代表数据集最大节点大小max_node_size,5表示向量宽度
-    edge_set = fluid.layers.data(name='edge_set', shape=[None, 10, 2], dtype='float32')
-    # None 代表batch size, 10 代表数据集的最大节点大小max_node_size, 2 代表每条边连接两个节点
+    
+    # 10 代表数据集的最大节点大小max_node_size，5 代表向量宽度
+    nodes_vector = fluid.layers.data(name='vectors', shape=[10, 5], dtype='float32')
+    # 10 代表数据集的最大节点大小max_node_size, 2 代表每条边连接两个节点
     # 边必须为有向边
-    out_vector = fluid.layers.tree_conv(nodes_vector, edge_set, 6, 1, 2, 'tanh',
-        ParamAttr(initializer=Constant(1.0), ParamAttr(initializer=Constant(1.0))
-    # 输出的形会是[None, 10, 6, 1],
-    # None 代表batch size, 10数据集的最大节点大小max_node_size, 6 代表输出大小output size, 1 代表 1 个filter
-    out_vector = fluid.layers.reshape(out_vector, shape=[None, 10, 6])
+    edge_set = fluid.layers.data(name='edge_set', shape=[10, 2], dtype='float32')
+
+    # 输出的形状会是[None, 10, 6, 1],
+    # 10 代表数据集的最大节点大小max_node_size, 6 代表输出大小output size, 1 代表 1 个filter
+    
+    out_vector = fluid.layers.tree_conv(nodes_vector, edge_set, 6, 1, 2)
     # reshape之后, 输出张量output tensor为下一个树卷积的nodes_vector
-    out_vector_2 = fluid.layers.tree_conv(out_vector, edge_set, 3, 4, 2, 'tanh',
-        ParamAttr(initializer=Constant(1.0), ParamAttr(initializer=Constant(1.0))
+    out_vector = fluid.layers.reshape(out_vector, shape=[-1, 10, 6])
+    
+    
+    out_vector_2 = fluid.layers.tree_conv(out_vector, edge_set, 3, 4, 2)
+    
     # 输出tensor也可以用来池化(论文中称为global pooling)
-    pooled = fluid.layers.reduce_max(out_vector, dims=2) # global 池化
+    pooled = fluid.layers.reduce_max(out_vector, dims=2) # 全局池化
 
 
 
 
 
 
+.. _cn_api_fluid_layers_unfold:
+
+unfold
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.unfold(x, kernel_sizes, strides=1, paddings=0, dilations=1, name=None)
+
+此函数返回输入x的滑动局域块的col缓冲区，对于批处理的2D图像张量，也称为im2col。 对于卷积核下的每个块，所有元素将重新排列为列。当卷积核在输入特征图上滑动时，将形成一系列这样的列。对于每个形为[N, C, H, W]的输入\(X\)，输出形状[N, Cout, Lout计算如下：
+
+\[ \begin{align}\begin{aligned}dkernel[0] &= dilations[0] \times (kernel\_sizes[0] - 1) + 1\\dkernel[1] &= dilations[1] \times (kernel\_sizes[1] - 1) + 1\\hout &= \frac{H + paddings[0] + paddings[2] - dkernel[0]}{strides[0]} + 1\\wout &= \frac{W + paddings[1] + paddings[3] - dkernel[1]}{strides[1]} + 1\\Cout &= C \times kernel\_sizes[0] \times kernel\_sizes[1]\\Lout &= hout \times wout\end{aligned}\end{align} \]
 
 
+参数：
+    - **x**  (Variable) – 输入张量，形式为[N, C, H, W]。
+    - **kernel_sizes**  (int|list) – 卷积核大小，应为[k_h, k_w]，或整数k（看做[k, k]）。
+    - **strides**  (int|list) – 步长，应为[stride_h, stride_w]或整数stride（看做[stride, stride]）。默认为[1, 1]。
+    - **paddings**  (int|list) – 每个维度的paddings，应为
+    [padding_top, padding_left, padding_bottom, padding_right]
+    或 [padding_h, padding_w] 或一个整数padding。
+    如果给出 [padding_h, padding_w] ，它将扩展为
+    [padding_h, padding_w, padding_h, padding_w]。如果给出了整数
+    padding，则将使用[padding, padding, padding, padding]。默认为[0, 0, 0, 0]。
+    - **dilations**  (int|list) – 卷积核膨胀，应为[dilation_h, dilation_w]，或整数dilation（看做[dilation, dilation]）。默认为[1, 1]。
 
+返回：对应于滑动局域块的张量变量。输出形状为[N, Cout, Lout]（如上所述）。 Cout是每个块中的值的总数，Lout是这些块的总数。
 
+返回类型：变量(Variable)
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name = 'data', shape = [3, 224, 224], dtype = 'float32')
+    y = fluid.layers.unfold(x, [3, 3], 1, 1, 1)
 
 
 
@@ -9771,6 +11139,7 @@ uniform_random_batch_size_like算子。
 
 .. code-block:: python
 
+    import paddle.fluid.layers as layers
 
     input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
     out = fluid.layers.uniform_random_batch_size_like(input, [-1, 11])
@@ -9804,6 +11173,7 @@ unsqueeze
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[5, 10])
     y = fluid.layers.unsequeeze(input=x, axes=[1])
 
@@ -9842,9 +11212,13 @@ unstack
 
 返回类型: list(Variable)
 
+**代码示例**：
 
+.. code-block:: python
 
-
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[5, 10], dtype='float32')
+    y = fluid.layers.unstack(x, axis=1)
 
 
 
@@ -9876,15 +11250,46 @@ warpctc
 
 .. code-block:: python
 
-    label = fluid.layers.data(shape=[11, 8], dtype='float32', lod_level=1)
-    predict = fluid.layers.data(shape=[11, 1], dtype='float32')
+    import paddle.fluid as fluid
+    label = fluid.layers.data(name='label', shape=[11, 8],
+                              dtype='float32', lod_level=1)
+    predict = fluid.layers.data(name='predict', shape=[11, 1],
+                                dtype='float32')
     cost = fluid.layers.warpctc(input=predict, label=label)
 
 
 
 
+.. _cn_api_fluid_layers_where:
 
+where
+-------------------------------
 
+.. py:function:: paddle.fluid.layers.where(condition)
+     
+返回一个秩为2的int64型张量，指定condition中真实元素的坐标。
+     
+输出的第一维是真实元素的数量，第二维是condition的秩（维数）。如果没有真实元素，则将生成空张量。
+        
+参数：
+    - **condition** （Variable） - 秩至少为1的布尔型张量。
+
+返回：存储一个二维张量的张量变量
+
+返回类型：变量（Variable）
+     
+**代码示例**：
+
+.. code-block:: python
+
+        # condition为张量[True, False, True]
+        out = fluid.layers.where(condition) # [[0], [2]]
+     
+        # condition为张量[[True, False], [False, True]]
+        out = fluid.layers.where(condition) # [[0, 0], [1, 1]]
+     
+        # condition为张量[False, False, False]
+        out = fluid.layers.where(condition) # [[]]
 
 
 
@@ -9914,8 +11319,12 @@ abs
 
 返回：        abs算子的输出。
 
+**代码示例**：
 
+.. code-block:: python
 
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.abs(data)
 
 
 .. _cn_api_fluid_layers_acos:
@@ -9935,6 +11344,12 @@ arccosine激活函数。
 
 返回：        acos算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.acos(data)
 
 
 .. _cn_api_fluid_layers_asin:
@@ -9954,6 +11369,14 @@ arcsine激活函数。
 
 返回：        asin算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.asin(data)
+
+
 
 .. _cn_api_fluid_layers_atan:
 
@@ -9972,6 +11395,12 @@ arctanh激活函数。
 
 返回：       atan算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.atan(data)
 
 
 
@@ -9998,6 +11427,12 @@ ceil
 
 返回：        Ceil算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.ceil(data)
 
 
 
@@ -10030,7 +11465,12 @@ Cosine余弦激活函数。
 
 返回：        Cos算子的输出
 
+**代码示例**：
 
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.cos(data)
 
 
 
@@ -10091,6 +11531,12 @@ Exp激活函数(Exp指以自然常数e为底的指数运算)。
 
 返回：       Exp算子的输出
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.exp(data)
 
 
 
@@ -10122,6 +11568,12 @@ floor
 
 返回：        Floor算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.floor(data)
 
 
 
@@ -10144,7 +11596,7 @@ HardShrink激活函数(HardShrink activation operator)
 
 .. math::
 
-	out = \begin{cases}
+  out = \begin{cases}
         x, \text{if } x > \lambda \\
         x, \text{if } x < -\lambda \\
         0,  \text{otherwise}
@@ -10188,11 +11640,16 @@ Logsigmoid激活函数。
 
 参数:
     - **x** - LogSigmoid算子的输入
-
     - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：        LogSigmoid算子的输出
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.logsigmoid(data)
 
 
 
@@ -10221,6 +11678,15 @@ Reciprocal（取倒数）激活函数
     - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：        Reciprocal算子的输出。
+
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.reciprocal(data)
+
+
 
 
 
@@ -10252,12 +11718,43 @@ Round取整激活函数。
 
 返回：        Round算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.round(data)
 
 
 
+.. _cn_api_fluid_layers_rsqrt:
+
+rsqrt
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.rsqrt(x, name=None)
+
+rsqrt激活函数
+
+请确保输入合法以免出现数字错误。
+
+.. math::
+    out = \frac{1}{\sqrt{x}}
 
 
+参数:
 
+    - **x** - rsqrt算子的输入 
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
+
+返回：     rsqrt运算输出
+
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.rsqrt(data)
 
 
 
@@ -10280,6 +11777,15 @@ sigmoid激活函数
     - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：     Sigmoid运算输出.
+
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.sigmoid(data)
+
+
 
 
 
@@ -10311,6 +11817,15 @@ sin
 
 返回：        Sin算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.sin(data)
+
+
+
 
 
 
@@ -10338,6 +11853,15 @@ softplus激活函数。
     - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：Softplus操作后的结果
+
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.softplus(data)
+
+
 
 
 
@@ -10369,6 +11893,15 @@ Softshrink激活算子
 
 返回：       Softshrink算子的输出
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.softshrink(data)
+
+
+
 
 
 
@@ -10397,6 +11930,15 @@ softsign激活函数。
 
 
 返回：Softsign操作后的结果
+
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.softsign(data)
+
+
 
 
 
@@ -10428,6 +11970,15 @@ sqrt
 
 返回：       Sqrt算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.sqrt(data)
+
+
+
 
 
 
@@ -10455,6 +12006,15 @@ square
     - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
 返回：平方后的结果
+
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.square(data)
+
+
 
 
 
@@ -10487,6 +12047,15 @@ tanh 激活函数。
 
 返回：     Tanh算子的输出。
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.tanh(data)
+
+
+
 
 
 
@@ -10516,6 +12085,13 @@ tanh_shrink激活函数。
 
 返回：     tanh_shrink算子的输出
 
+**代码示例**：
+
+.. code-block:: python
+
+        data = fluid.layers.data(name="input", shape=[32, 784])
+        result = fluid.layers.tanh_shrink(data)
+
 
 
 
@@ -10535,10 +12111,10 @@ ThresholdedRelu激活函数
 
 .. math::
 
-	out = \left\{\begin{matrix}
-	    x, if&x > threshold\\
-	    0, &otherwise
-	    \end{matrix}\right.
+  out = \left\{\begin{matrix}
+      x, &if x > threshold\\
+      0, &otherwise
+      \end{matrix}\right.
 
 参数：
 - **x** -ThresholdedRelu激活函数的输入
@@ -10550,8 +12126,8 @@ ThresholdedRelu激活函数
 
 .. code-block:: python
 
-	data = fluid.layers.data(name="input", shape=[1])
-	result = fluid.layers.thresholded_relu(data, threshold=0.4)
+  data = fluid.layers.data(name="input", shape=[1])
+  result = fluid.layers.thresholded_relu(data, threshold=0.4)
 
 
 
@@ -10581,6 +12157,7 @@ uniform_random
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     result = fluid.layers.uniform_random(shape=[32, 784])
 
 
@@ -10620,7 +12197,8 @@ argmax
 **代码示例**：
 
 .. code-block:: python
-
+    
+    x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
     out = fluid.layers.argmax(x=in, axis=0)
     out = fluid.layers.argmax(x=in, axis=-1)
 
@@ -10654,7 +12232,8 @@ argmin
 **代码示例**：
 
 .. code-block:: python
-
+    
+    x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
     out = fluid.layers.argmin(x=in, axis=0)
     out = fluid.layers.argmin(x=in, axis=-1)
 
@@ -10678,17 +12257,17 @@ argsort
 .. code-block:: text
 
     例如：
-	给定 input 并指定 axis=-1
+  给定 input 并指定 axis=-1
 
         input = [[0.15849551, 0.45865775, 0.8563702 ],
                 [0.12070083, 0.28766365, 0.18776911]],
 
-    	执行argsort操作后，得到排序数据：
+      执行argsort操作后，得到排序数据：
 
         out = [[0.15849551, 0.45865775, 0.8563702 ],
             [0.12070083, 0.18776911, 0.28766365]],
 
-	根据指定axis排序后的数据indices变为:
+  根据指定axis排序后的数据indices变为:
 
         indices = [[0, 1, 2],
                 [0, 2, 1]]
@@ -10706,8 +12285,8 @@ argsort
 
 .. code-block:: python
 
-    input = fluid.layers.data(data=[2, 3])
-    out, indices = fluid.layers.argsort(input, axis=0)
+    x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
+    out, indices = fluid.layers.argsort(input=x, axis=0)
 
 
 
@@ -10724,9 +12303,7 @@ assign
 
 .. py:function:: paddle.fluid.layers.assign(input,output=None)
 
-**Assign**
-
-该功能将输入变量复制到输出变量
+该函数将输入变量复制到输出变量
 
 参数：
     - **input** (Variable|numpy.ndarray)-源变量
@@ -10740,6 +12317,8 @@ assign
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name="data", shape=[3, 32, 32], dtype="float32")
     out = fluid.layers.create_tensor(dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
     fluid.layers.assign(hidden, out)
@@ -10807,7 +12386,11 @@ concat
 **代码示例**：
 
 .. code-block:: python
-
+    
+    a = fluid.layers.data(name='a', shape=[2, 13], dtype='float32')
+    b = fluid.layers.data(name='b', shape=[2, 3], dtype='float32')
+    c = fluid.layers.data(name='c', shape=[2, 2], dtype='float32')
+    d = fluid.layers.data(name='d', shape=[2, 5], dtype='float32')
     out = fluid.layers.concat(input=[Efirst, Esecond, Ethird, Efourth])
 
 
@@ -10843,7 +12426,8 @@ create_global_var
 
 .. code-block:: python
 
-    var = fluid.create_global_var(shape=[2,3], value=1.0, dtype='float32',
+    import paddle.fluid.layers as layers
+    var = layers.create_global_var(shape=[2,3], value=1.0, dtype='float32',
                      persistable=True, force_cpu=True, name='new_var')
 
 
@@ -10878,9 +12462,8 @@ create_parameter
 
 .. code-block:: python
 
+    import paddle.fluid.layers as layers
     W = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
-    data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
-    hidden = fluid.layers.matmul(x=data, y=W)
 
 
 
@@ -10916,9 +12499,30 @@ create_tensor
 
 
 
+.. _cn_api_fluid_layers_diag:
 
+diag
+-------------------------------
 
+.. py:function:: paddle.fluid.layers.diag(diagonal)
 
+该功能创建一个方阵，含有diagonal指定的对角线值。
+
+参数：
+    - **diagonal** (Variable|numpy.ndarray) - 指定对角线值的输入张量，其秩应为1。
+
+返回：存储着方阵的张量变量
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code-block:: python
+
+        #  [3, 0, 0]
+        #  [0, 4, 0]
+        #  [0, 0, 5]
+        data = fluid.layers.diag(np.arange(3, 6))
 
 
 
@@ -10929,8 +12533,6 @@ fill_constant
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.fill_constant(shape,dtype,value,force_cpu=False,out=None)
-
-**fill_constant**
 
 该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``value`` 中提供的常量初始化该张量。
 
@@ -10951,6 +12553,7 @@ fill_constant
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
 
 
@@ -10984,6 +12587,8 @@ fill_constant_batch_size_like
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+    like = fluid.layers.data(name='like', shape=[1], dtype='float32')
     data = fluid.layers.fill_constant_batch_size_like(
                 input=like, shape=[1], value=0, dtype='int64')
 
@@ -11006,15 +12611,19 @@ has_inf
 测试x是否包括一个无穷数
 
 参数：
-	- **x(variable)** - 用于被检查的Tensor/LoDTensor
+  - **x(variable)** - 用于被检查的Tensor/LoDTensor
 
 返回： tensor变量存储输出值，包含一个bool型数值
 
 返回类型：Variable
 
+**代码示例**：
 
+.. code-block:: python
 
-
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name="input", shape=[4, 32, 32], dtype="float32")
+    res = fluid.layers.has_inf(data)
 
 
 
@@ -11034,14 +12643,19 @@ has_nan
 测试x是否包含NAN
 
 参数：
-	- **x(variable)** - 用于被检查的Tensor/LoDTensor
+  - **x(variable)** - 用于被检查的Tensor/LoDTensor
 
 返回： tensor变量存储输出值，包含一个bool型数值
 
 返回类型：Variable
 
+**代码示例**：
 
+.. code-block:: python
 
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name="input", shape=[4, 32, 32], dtype="float32")
+    res = fluid.layers.has_nan(data)
 
 
 
@@ -11062,8 +12676,44 @@ isfinite
 
 返回类型：Variable
 
+**代码示例**：
+
+.. code-block:: python
+
+    var = fluid.layers.data(name="data",
+                            shape=(4, 6),
+                            dtype="float32")
+    out = fluid.layers.isfinite(v)
 
 
+
+.. _cn_api_fluid_layers_linspace:
+
+linspace
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.linspace(start, stop, num, dtype)
+
+在给定区间内返回固定数目的均匀间隔的值。
+ 
+第一个entry是start，最后一个entry是stop。在Num为1的情况下，仅返回start。类似numpy的linspace功能。
+
+参数：
+    - **start** (float|Variable)-序列中的第一个entry。 它是一个浮点标量，或是一个数据类型为'float32'|'float64'、形状为[1]的张量。
+    - **stop** (float|Variable)-序列中的最后一个entry。 它是一个浮点标量，或是一个数据类型为'float32'|'float64'、形状为[1]的张量。
+    - **num** (int|Variable)-序列中的entry数。 它是一个整型标量，或是一个数据类型为int32、形状为[1]的张量。
+    - **dtype** (string)-‘float32’|’float64’，输出张量的数据类型。
+
+返回：存储一维张量的张量变量
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code-block:: python
+
+      data = fluid.layers.linspace(0, 10, 5, 'float32') # [0.0,  2.5,  5.0,  7.5, 10.0]
+      data = fluid.layers.linspace(0, 10, 1, 'float32') # [0.0]
 
 
 
@@ -11094,6 +12744,7 @@ ones
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.ones(shape=[1], dtype='int64')
 
 
@@ -11152,9 +12803,11 @@ reverse
 
 .. code-block:: python
 
-        out = fluid.layers.reverse(x=in, axis=0)
+        import paddle.fluid as fluid
+        data = fluid.layers.data(name="data", shape=[4, 8], dtype="float32")
+        out = fluid.layers.reverse(x=data, axis=0)
         # or:
-        out = fluid.layers.reverse(x=in, axis=[0,1])
+        out = fluid.layers.reverse(x=data, axis=[0,1])
 
 
 
@@ -11185,14 +12838,23 @@ sums
 
 .. code-block:: python
 
-    tmp = fluid.layers.zeros(shape=[10], dtype='int32')
-    i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-    a0 = fluid.layers.array_read(array=tmp, i=i)
+    import paddle.fluid as fluid
+     
+    # sum of several tensors
+    a0 = fluid.layers.fill_constant(shape=[1], dtype='int64', value=1)
+    a1 = fluid.layers.fill_constant(shape=[1], dtype='int64', value=2)
+    a2 = fluid.layers.fill_constant(shape=[1], dtype='int64', value=3)
+    sums = fluid.layers.sums(input=[a0, a1, a2])
+
+    # sum of a tensor array
+    array = fluid.layers.create_array('int64')
+    i = fluid.layers.zeros(shape=[1], dtype='int64', force_cpu=True)
+    fluid.layers.array_write(a0, array=array, i=i)
     i = fluid.layers.increment(x=i)
-    a1 = fluid.layers.array_read(array=tmp, i=i)
-    mean_a0 = fluid.layers.mean(a0)
-    mean_a1 = fluid.layers.mean(a1)
-    a_sum = fluid.layers.sums(input=[mean_a0, mean_a1])
+    fluid.layers.array_write(a1, array=array, i=i)
+    i = fluid.layers.increment(x=i)
+    fluid.layers.array_write(a2, array=array, i=i)
+    sums = fluid.layers.sums(input=array)
 
 
 
@@ -11245,6 +12907,8 @@ tensor_array_to_tensor
 
 .. code-block:: python
 
+   import paddle.fluid as fluid
+   tensor_array = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
    output, output_index = fluid.layers.tensor_array_to_tensor(input=tensor_array)
 
 
@@ -11266,7 +12930,7 @@ zeros
 
 **zeros**
 
-该功能创建一个张量，含有具体的维度和dtype，初始值为0.
+该函数创建一个张量，含有具体的维度和dtype，初始值为0.
 
 也将stop_gradient设置为True。
 
@@ -11283,12 +12947,41 @@ zeros
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.zeros(shape=[1], dtype='int64')
 
 
 
 
 
+
+
+
+.. _cn_api_fluid_layers_zeros_like:
+
+zeros_like
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.zeros_like(x, out=None)
+
+**zeros_like**
+
+该函数创建一个和x具有相同的形状和数据类型的全零张量
+
+参数：
+    - **x** (Variable)-指定形状和数据类型的输入张量
+    - **out** (Variable)-输出张量
+    
+返回：存储输出的张量变量
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code-block:: python
+
+    x = fluid.layers.data(name='x', dtype='float32', shape=[3], append_batch_size=False)
+    data = fluid.layers.zeros_like(x) # [0.0, 0.0, 0.0]
 
 
 
@@ -11362,6 +13055,7 @@ exponential_decay
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     base_lr = 0.1
     sgd_optimizer = fluid.optimizer.SGD(
         learning_rate=fluid.layers.exponential_decay(
@@ -11369,7 +13063,7 @@ exponential_decay
             decay_steps=10000,
             decay_rate=0.5,
             staircase=True))
-    sgd_optimizer.minimize(avg_cost)
+
 
 
 
@@ -11411,9 +13105,10 @@ inverse_time_decay
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         base_lr = 0.1
         sgd_optimizer = fluid.optimizer.SGD(
-            learning_rate=fluid.layers.inverse_time_decay(
+            learning_rate=fluid.layers.natural_exp_decay(
                 learning_rate=base_lr,
                 decay_steps=10000,
                 decay_rate=0.5,
@@ -11491,8 +13186,18 @@ natural_exp_decay
 
 返回：衰减的学习率
 
+**示例代码：**
 
+.. code-block:: python
 
+    import paddle.fluid as fluid
+    base_lr = 0.1
+    sgd_optimizer = fluid.optimizer.SGD(
+        learning_rate=fluid.layers.natural_exp_decay(
+              learning_rate=base_lr,
+              decay_steps=10000,
+              decay_rate=0.5,
+              staircase=True))
 
 
 
@@ -11511,6 +13216,11 @@ Noam衰减方法。noam衰减的numpy实现如下。
 .. code-block:: python
 
     import numpy as np
+    # 设置超参数
+    d_model = 2
+    current_steps = 20
+    warmup_steps = 200
+    # 计算
     lr_value = np.power(d_model, -0.5) * np.min([
                            np.power(current_steps, -0.5),
                            np.power(warmup_steps, -1.5) * current_steps])
@@ -11523,8 +13233,16 @@ Noam衰减方法。noam衰减的numpy实现如下。
 
 返回：衰减的学习率
 
+**代码示例**：
 
+.. code-block:: python
 
+        import padde.fluid as fluid
+        warmup_steps = 100
+        learning_rate = 0.01
+        lr = fluid.layers.learning_rate_scheduler.noam_decay(
+                       1/(warmup_steps *(learning_rate ** 2)),
+                       warmup_steps)
 
 
 
@@ -11559,8 +13277,17 @@ piecewise_decay
 
 返回：衰减的学习率
 
+**代码示例**：
 
+.. code-block:: python
 
+        import paddle.fluid as fluid
+        boundaries = [10000, 20000]
+        values = [1.0, 0.5, 0.1]
+        optimizer = fluid.optimizer.Momentum(
+            momentum=0.9,
+            learning_rate=fluid.layers.piecewise_decay(boundaries=boundaries, values=values),
+            regularization=fluid.regularizer.L2Decay(1e-4))
 
 
 
@@ -11596,8 +13323,16 @@ polynomial_decay
 
 返回类型：变量（Variable）
 
+**代码示例**：
 
+.. code-block:: python
 
+        import paddle.fluid as fluid
+        start_lr = 0.01
+        total_step = 5000
+        end_lr = 0
+        lr = fluid.layers.polynomial_decay(
+            start_lr, total_step, end_lr, power=1)
 
 
 
@@ -11642,7 +13377,8 @@ anchor_generator
 
 .. code-block:: python
 
-    anchor, var = anchor_generator(
+    conv1 = fluid.layers.data(name='conv1', shape=[48, 16, 16], dtype='float32')
+    anchor, var = fluid.layers.anchor_generator(
     input=conv1,
     anchor_sizes=[64, 128, 256, 512],
     aspect_ratios=[0.5, 1.0, 2.0],
@@ -11739,7 +13475,7 @@ box_clip
 ..  code-block:: python
 
     boxes = fluid.layers.data(
-        name='data', shape=[8, 4], dtype='float32', lod_level=1)
+        name='boxes', shape=[8, 4], dtype='float32', lod_level=1)
     im_info = fluid.layers.data(name='im_info', shape=[3])
     out = fluid.layers.box_clip(
         input=boxes, im_info=im_info, inplace=True)
@@ -11886,15 +13622,66 @@ box decode过程得出decode_box，然后分配方案如下所述：
 .. code-block:: python
 
     pb = fluid.layers.data(
-        name='prior_box', shape=[20, 4], dtype='float32')
+        name='prior_box', shape=[4], dtype='float32')
     pbv = fluid.layers.data(
-        name='prior_box_var', shape=[1, 4], dtype='float32')
+        name='prior_box_var', shape=[4], dtype='float32', append_batch_size=False))
     loc = fluid.layers.data(
-        name='target_box', shape=[20, 4*81], dtype='float32')
+        name='target_box', shape=[4*81], dtype='float32')
     scores = fluid.layers.data(
-        name='scores', shape=[20, 81], dtype='float32')
+        name='scores', shape=[81], dtype='float32')
     decoded_box, output_assign_box = fluid.layers.box_decoder_and_assign(
         pb, pbv, loc, scores, 4.135)
+
+
+
+
+.. _cn_api_fluid_layers_collect_fpn_proposals:
+
+collect_fpn_proposals
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.collect_fpn_proposals(multi_rois, multi_scores, min_level, max_level, post_nms_top_n, name=None)
+
+连接多级RoIs（感兴趣区域）并依据multi_scores选择N个RoIs。此操作执行以下步骤：
+1、选择num_level个RoIs和scores作为输入：num_level = max_level - min_level
+2、连接num_level个RoIs和scores。
+3、整理scores并选择post_nms_top_n个scores。
+4、通过scores中的选定指数收集RoIs。
+5、通过对应的batch_id重新整理RoIs。
+
+
+参数：
+    - **multi_ros** (list) – 要收集的RoIs列表
+    - **multi_scores** (list) - 要收集的FPN层的最低级
+    - **max_level** (int) – 要收集的FPN层的最高级
+    - **post_nms_top_n** (int) – 所选RoIs的数目
+    - **name** (str|None) – 该层的名称（可选项）
+
+返回：选定RoIs的输出变量
+
+返回类型：变量(Variable)
+
+**代码示例**
+
+.. code-block:: python
+
+    multi_rois = []
+    multi_scores = []
+    for i in range(4):
+        multi_rois.append(fluid.layers.data(
+            name='roi_'+str(i), shape=[4], dtype='float32', lod_level=1))
+    for i in range(4):
+        multi_scores.append(fluid.layers.data(
+            name='score_'+str(i), shape=[1], dtype='float32', lod_level=1))
+     
+    fpn_rois = fluid.layers.collect_fpn_proposals(
+        multi_rois=multi_rois,
+        multi_scores=multi_scores,
+        min_level=2,
+        max_level=5,
+        post_nms_top_n=2000)
+
+
 
 
 .. _cn_api_fluid_layers_density_prior_box:
@@ -11936,30 +13723,32 @@ density prior box的量由fixed_sizes and fixed_ratios决定。显然地，fixed
 
   boxes: PriorBox的输出density prior boxes
 
-  	当flatten_to_2d为False时，形式为[H, W, num_priors, 4]
+    当flatten_to_2d为False时，形式为[H, W, num_priors, 4]
 
-  	当flatten_to_2d为True时，形式为[H * W * num_priors, 4]
+    当flatten_to_2d为True时，形式为[H * W * num_priors, 4]
 
-  	H是输入的高度，W是输入的宽度
+    H是输入的高度，W是输入的宽度
 
-  	num_priors是输入中每个位置的总box count
+    num_priors是输入中每个位置的总box count
 
   variances:  PriorBox的expanded variance
 
-  	当flatten_to_2d为False时，形式为[H, W, num_priors, 4]
+    当flatten_to_2d为False时，形式为[H, W, num_priors, 4]
 
-  	当flatten_to_2d为True时，形式为[H * W * num_priors, 4]
+    当flatten_to_2d为True时，形式为[H * W * num_priors, 4]
 
-  	H是输入的高度，W是输入的宽度
+    H是输入的高度，W是输入的宽度
 
-  	num_priors是输入中每个位置的总box count
+    num_priors是输入中每个位置的总box count
 
 **代码示例**
 
 .. code-block:: python
-
+    
+    input = fluid.layers.data(name="input", shape=[3,6,9])
+    images = fluid.layers.data(name="images", shape=[3,9,12])
     box, var = fluid.layers.density_prior_box(
-        input=conv1,
+        input=input,
         image=images,
         densities=[4, 2, 1],
         fixed_sizes=[32.0, 64.0, 128.0],
@@ -12075,14 +13864,15 @@ Detection Output Layer for Single Shot Multibox Detector(SSD)
     - **nms_eta** (float) - 适应NMS的参数
 
 返回：
-	输出一个LoDTensor，形为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch的总检测数。对每个实例，第一维偏移称为LoD，偏移数为N+1，N是batch size。第i个图像有LoD[i+1]-LoD[i]检测结果。如果为0，第i个图像无检测结果。如果所有图像都没有检测结果，LoD会被设置为{1}，并且输出张量只包含一个值-1。（1.3版本后对于没有检测结果的boxes, LoD的值由之前的{0}调整为{1}）
+  输出一个LoDTensor，形为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch的总检测数。对每个实例，第一维偏移称为LoD，偏移数为N+1，N是batch size。第i个图像有LoD[i+1]-LoD[i]检测结果。如果为0，第i个图像无检测结果。如果所有图像都没有检测结果，LoD会被设置为{1}，并且输出张量只包含一个值-1。（1.3版本后对于没有检测结果的boxes, LoD的值由之前的{0}调整为{1}）
 
 返回类型：变量（Variable）
 
 **代码示例**：
 
 .. code-block:: python
-
+    
+    import paddle.fluid as fluid
     pb = fluid.layers.data(name='prior_box', shape=[10, 4],
              append_batch_size=False, dtype='float32')
     pbv = fluid.layers.data(name='prior_box_var', shape=[10, 4],
@@ -12203,6 +13993,8 @@ generate_mask_labels
 **代码示例**：
 
 .. code-block:: python
+    
+    import paddle.fluid as fluid
 
     im_info = fluid.layers.data(name="im_info", shape=[3],
         dtype="float32")
@@ -12212,15 +14004,18 @@ generate_mask_labels
         dtype="float32", lod_level=1)
     gt_masks = fluid.layers.data(name="gt_masks", shape=[2],
         dtype="float32", lod_level=3)
-    # rois, labels_int32 可以是
-    # fluid.layers.generate_proposal_labels 的输出
+    # rois, roi_labels 可以是fluid.layers.generate_proposal_labels的输出
+    rois = fluid.layers.data(name="rois", shape=[4],
+        dtype="float32", lod_level=1)
+    roi_labels = fluid.layers.data(name="roi_labels", shape=[1],
+        dtype="int32", lod_level=1)
     mask_rois, mask_index, mask_int32 = fluid.layers.generate_mask_labels(
         im_info=im_info,
         gt_classes=gt_classes,
         is_crowd=is_crowd,
         gt_segms=gt_masks,
         rois=rois,
-        labels_int32=labels_int32,
+        labels_int32=roi_labels,
         num_classes=81,
         resolution=14)
 
@@ -12233,7 +14028,7 @@ generate_mask_labels
 generate_proposal_labels
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_classes, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], class_nums=None, use_random=True)
+.. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_classes, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], class_nums=None, use_random=True, is_cls_agnostic=False, is_cascade_rcnn=False)
 
 **该函数可以应用于 Faster-RCNN 网络，生成建议标签。**
 
@@ -12261,9 +14056,28 @@ RpnRois 是RPN的输出box， 并由 ``GenerateProposals`` 来进一步处理, �
   - **bbox_reg_weights** (list|tuple) – Box 回归权重
   - **class_nums** (int) – 种类数目
   - **use_random** (bool) – 是否使用随机采样来选择foreground（前景）和background（背景） boxes（框）
+  - **is_cls_agnostic** （bool）- 未知类别的bounding box回归，仅标识前景和背景框
+  - **is_cascade_rcnn** （bool）- 是否为 cascade RCNN 模型，为True时采样策略发生变化
 
+**代码示例**：
 
+.. code-block:: python
 
+    import paddle.fluid as fluid
+    rpn_rois = fluid.layers.data(name='rpn_rois', shape=[2, 4],
+                   append_batch_size=False, dtype='float32')
+    gt_classes = fluid.layers.data(name='gt_classes', shape=[8, 1],
+                   append_batch_size=False, dtype='float32')
+    is_crowd = fluid.layers.data(name='is_crowd', shape=[8, 1],
+                   append_batch_size=False, dtype='float32')
+    gt_boxes = fluid.layers.data(name='gt_boxes', shape=[8, 4],
+                   append_batch_size=False, dtype='float32')
+    im_info = fluid.layers.data(name='im_info', shape=[10, 3],
+                   append_batch_size=False, dtype='float32')
+    rois, labels_int32, bbox_targets, bbox_inside_weights,
+    bbox_outside_weights = fluid.layers.generate_proposal_labels(
+                   rpn_rois, gt_classes, is_crowd, gt_boxes, im_info,
+                   class_nums=10)
 
 
 
@@ -12311,7 +14125,23 @@ generate_proposals
         - **min_size** （float）- 删除高度或宽度小于min_size的预测框。默认为0.1。
         - **eta** （float）- 在自适应NMS中应用，如果自适应阈值> 0.5，则在每次迭代中使用adaptive_threshold = adaptive_treshold * eta。
 
+**代码示例**：
 
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    scores = fluid.layers.data(name='scores', shape=[2, 4, 5, 5],
+                 append_batch_size=False, dtype='float32')
+    bbox_deltas = fluid.layers.data(name='bbox_deltas', shape=[2, 16, 5, 5],
+                 append_batch_size=False, dtype='float32')
+    im_info = fluid.layers.data(name='im_info', shape=[2, 3],
+                 append_batch_size=False, dtype='float32')
+    anchors = fluid.layers.data(name='anchors', shape=[5, 5, 4, 4],
+                 append_batch_size=False, dtype='float32')
+    variances = fluid.layers.data(name='variances', shape=[5, 5, 10, 4],
+                 append_batch_size=False, dtype='float32')
+    rois, roi_probs = fluid.layers.generate_proposals(scores, bbox_deltas,
+                 im_info, anchors, variances)
 
 
 
@@ -12343,8 +14173,15 @@ iou_similarity
 
 返回类型：out(Variable)
 
+**代码示例**
 
+..  code-block:: python
 
+        import paddle.fluid as fluid
+
+        x = fluid.layers.data(name='x', shape=[4], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[4], dtype='float32')
+        iou = fluid.layers.iou_similarity(x=x, y=y)
 
 
 
@@ -12398,7 +14235,17 @@ multi_box_head
 **代码示例**
 
 ..  code-block:: python
-
+        
+        import paddle.fluid as fluid
+     
+        images = fluid.layers.data(name='data', shape=[3, 300, 300], dtype='float32')
+        conv1 = fluid.layers.data(name='conv1', shape=[512, 19, 19], dtype='float32')
+        conv2 = fluid.layers.data(name='conv2', shape=[1024, 10, 10], dtype='float32')
+        conv3 = fluid.layers.data(name='conv3', shape=[512, 5, 5], dtype='float32')
+        conv4 = fluid.layers.data(name='conv4', shape=[256, 3, 3], dtype='float32')
+        conv5 = fluid.layers.data(name='conv5', shape=[256, 2, 2], dtype='float32')
+        conv6 = fluid.layers.data(name='conv6', shape=[128, 1, 1], dtype='float32')
+        
         mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
           inputs=[conv1, conv2, conv3, conv4, conv5, conv6],
           image=images,
@@ -12493,9 +14340,14 @@ PolygonBoxTransform 算子。
 
 返回类型：output（Variable）
 
+**代码示例**
 
+..  code-block:: python
 
-
+    import paddle.fluid as fluid
+    input = fluid.layers.data(name='input', shape=[4, 10, 5, 5],
+                              append_batch_size=False, dtype='float32')
+    out = fluid.layers.polygon_box_transform(input)
 
 
 
@@ -12509,7 +14361,7 @@ prior_box
 -------------------------------
 .. py:function:: paddle.fluid.layers.prior_box(input,image,min_sizes=None,max_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
 
-**Prior Box Operator**
+**Prior Box操作符**
 
 为SSD(Single Shot MultiBox Detector)算法生成先验框。输入的每个位产生N个先验框，N由min_sizes,max_sizes和aspect_ratios的数目决定，先验框的尺寸在(min_size,max_size)之间，该尺寸根据aspect_ratios在序列中生成。
 
@@ -12517,36 +14369,95 @@ prior_box
     - **input** (Variable)-输入变量，格式为NCHW
     - **image** (Variable)-PriorBoxOp的输入图像数据，布局为NCHW
     - **min_sizes** (list|tuple|float值)-生成的先验框的最小尺寸
-    - **max_sizes** (list|tuple|None)-生成的先验框的最大尺寸。默认：None
+    - **max_sizes** (list|tuple|None)-生成的先验框的最大尺寸。默认：None
     - **aspect_ratios** (list|tuple|float值)-生成的先验框的纵横比。默认：[1.]
     - **variance** (list|tuple)-先验框中的变量，会被解码。默认：[0.1,0.1,0.2,0.2]
     - **flip** (bool)-是否忽略纵横比。默认：False。
-    - **clip** (bool)-是否修建溢界框。默认：False。
+    - **clip** (bool)-是否修建溢界框。默认：False。
     - **step** (list|tuple)-先验框在width和height上的步长。如果step[0] == 0.0/step[1] == 0.0，则自动计算先验框在宽度和高度上的步长。默认：[0.,0.]
-    - **offset** (float)-先验框中心位移。默认：0.5
+    - **offset** (float)-先验框中心位移。默认：0.5
     - **name** (str)-先验框操作符名称。默认：None
     - **min_max_aspect_ratios_order** (bool)-若设为True,先验框的输出以[min,max,aspect_ratios]的顺序，和Caffe保持一致。请注意，该顺序会影响后面卷基层的权重顺序，但不影响最后的检测结果。默认：False。
 
 返回：
     含有两个变量的元组(boxes,variances)
-    boxes:PriorBox的输出先验框。布局是[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
-    variances:PriorBox的扩展变量。布局上[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
+    boxes:PriorBox的输出先验框。布局是[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
+    variances:PriorBox的扩展变量。布局上[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
 
 返回类型：元组
 
 **代码示例**：
 
 .. code-block:: python
-
+    
+    input = fluid.layers.data(name="input", shape=[3,6,9])
+    images = fluid.layers.data(name="images", shape=[3,9,12])
     box, var = fluid.layers.prior_box(
-        input=conv1,
+        input=input,
         image=images,
         min_sizes=[100.],
         flip=True,
         clip=True)
 
 
+.. _cn_api_fluid_layers_retinanet_detection_output:
 
+retinanet_detection_output
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.retinanet_detection_output(bboxes, scores, anchors, im_info, score_threshold=0.05, nms_top_k=1000, keep_top_k=100, nms_threshold=0.3, nms_eta=1.0)
+
+**Retinanet的检测输出层**
+
+此操作通过执行以下步骤获取检测结果：
+
+1. 根据anchor框解码每个FPN级别的最高得分边界框预测。
+2. 合并所有级别的顶级预测并对其应用多级非最大抑制（NMS）以获得最终检测。
+
+
+参数：
+    - **bboxes**  (List) – 来自多个FPN级别的张量列表。每个元素都是一个三维张量，形状[N，Mi，4]代表Mi边界框的预测位置。N是batch大小，Mi是第i个FPN级别的边界框数，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
+    - **scores**  (List) – 来自多个FPN级别的张量列表。每个元素都是一个三维张量，各张量形状为[N，Mi，C]，代表预测的置信度预测。 N是batch大小，C是类编号（不包括背景），Mi是第i个FPN级别的边界框数。对于每个边界框，总共有C个评分。
+    - **anchors**  (List) – 具有形状[Mi，4]的2-D Tensor表示来自所有FPN级别的Mi anchor框的位置。每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
+    - **im_info**  (Variable) – 形状为[N，3]的2-D LoDTensor表示图像信息。 N是batch大小，每个图像信息包括高度，宽度和缩放比例。
+    - **score_threshold**  (float) – 用置信度分数剔除边界框的过滤阈值。
+    - **nms_top_k**  (int) – 根据NMS之前的置信度保留每个FPN层的最大检测数。
+    - **keep_top_k**  (int) – NMS步骤后每个图像要保留的总边界框数。 -1表示在NMS步骤之后保留所有边界框。
+    - **nms_threshold**  (float) – NMS中使用的阈值.
+    - **nms_eta**  (float) – adaptive NMS的参数.
+
+
+
+返回：
+检测输出是具有形状[No，6]的LoDTensor。 每行有六个值：[标签，置信度，xmin，ymin，xmax，ymax]。 No是此mini batch中的检测总数。 对于每个实例，第一维中的偏移称为LoD，偏移值为N + 1，N是batch大小。 第i个图像具有LoD [i + 1]  -  LoD [i]检测结果，如果为0，则第i个图像没有检测到结果。 如果所有图像都没有检测到结果，则LoD将设置为0，输出张量为空（None）。
+
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code-block:: python
+
+  import paddle.fluid as fluid
+
+  bboxes = layers.data(name='bboxes', shape=[1, 21, 4],
+      append_batch_size=False, dtype='float32')
+  scores = layers.data(name='scores', shape=[1, 21, 10],
+      append_batch_size=False, dtype='float32')
+  anchors = layers.data(name='anchors', shape=[21, 4],
+      append_batch_size=False, dtype='float32')
+  im_info = layers.data(name="im_info", shape=[1, 3],
+      append_batch_size=False, dtype='float32')
+  nmsed_outs = fluid.layers.retinanet_detection_output(
+                                          bboxes=[bboxes, bboxes],
+                                          scores=[scores, scores],
+                                          anchors=[anchors, anchors],
+                                          im_info=im_info,
+                                          score_threshold=0.05,
+                                          nms_top_k=1000,
+                                          keep_top_k=100,
+                                          nms_threshold=0.3,
+                                          nms_eta=1.)
 
 
 
@@ -12567,7 +14478,8 @@ roi_perspective_transform
 参数：
     - **input** (Variable) - ROI Perspective TransformOp的输入。输入张量的形式为NCHW。N是批尺寸，C是输入通道数，H是特征高度，W是特征宽度
     - **rois** (Variable) - 用来处理的ROIs，应该是shape的二维LoDTensor(num_rois,8)。给定[[x1,y1,x2,y2,x3,y3,x4,y4],...],(x1,y1)是左上角坐标，(x2,y2)是右上角坐标，(x3,y3)是右下角坐标，(x4,y4)是左下角坐标
-    - **transformed_height** - 输出的宽度
+    - **transformed_height** (integer) - 输出的高度
+    - **transformed_width** (integer) – 输出的宽度
     - **spatial_scale** (float) - 空间尺度因子，用于缩放ROI坐标，默认：1.0。
 
 返回：
@@ -12579,17 +14491,11 @@ roi_perspective_transform
 
 .. code-block:: python
 
-    out = fluid.layers.roi_perspective_transform(input, rois, 7, 7, 1.0)
+    import paddle.fluid as fluid
 
-
-
-
-
-
-
-
-
-
+    x = fluid.layers.data(name='x', shape=[256, 28, 28], dtype='float32')
+    rois = fluid.layers.data(name='rois', shape=[8], lod_level=1, dtype='float32')
+    out = fluid.layers.roi_perspective_transform(x, rois, 7, 7, 1.0)
 
 
 
@@ -12643,6 +14549,7 @@ rpn_target_assign
 
 ..  code-block:: python
 
+        import paddle.fluid as fluid
         bbox_pred = fluid.layers.data(name=’bbox_pred’, shape=[100, 4],
                 append_batch_size=False, dtype=’float32’)
         cls_logits = fluid.layers.data(name=’cls_logits’, shape=[100, 1],
@@ -12651,9 +14558,13 @@ rpn_target_assign
                 append_batch_size=False, dtype=’float32’)
         gt_boxes = fluid.layers.data(name=’gt_boxes’, shape=[10, 4],
                 append_batch_size=False, dtype=’float32’)
+        is_crowd = fluid.layers.data(name='is_crowd', shape=[1],
+                    append_batch_size=False, dtype='float32')
+        im_info = fluid.layers.data(name='im_infoss', shape=[1, 3],
+                    append_batch_size=False, dtype='float32')
         loc_pred, score_pred, loc_target, score_target, bbox_inside_weight=
-                fluid.layers.rpn_target_assign(bbox_pred=bbox_pred,
-                        cls_logits=cls_logits, anchor_box=anchor_box, gt_boxes=gt_boxes)
+                fluid.layers.rpn_target_assign(bbox_pred, cls_logits,
+                        anchor_box, anchor_var, gt_boxes, is_crowd, im_info)
 
 
 
@@ -12807,11 +14718,22 @@ target_assign
 
 .. code-block:: python
 
-    matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
-    gt = fluid.layers.data(
-            name='gt', shape=[1, 1], dtype='int32', lod_level=1)
-    trg, trg_weight = fluid.layers.target_assign(
-                gt, matched_indices, mismatch_value=0)
+        import paddle.fluid as fluid
+        x = fluid.layers.data(
+            name='x',
+            shape=[4, 20, 4],
+            dtype='float',
+            lod_level=1,
+            append_batch_size=False)
+        matched_id = fluid.layers.data(
+            name='indices',
+            shape=[8, 20],
+            dtype='int32',
+            append_batch_size=False)
+        trg, trg_weight = fluid.layers.target_assign(
+            x,
+            matched_id,
+            mismatch_value=0)
 
 
 
@@ -12873,9 +14795,10 @@ yolo_box
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
     anchors = [10, 13, 16, 30, 33, 23]
-    loss = fluid.layers.yolo_box(x=x, class_num=80, anchors=anchors,
+    loss = fluid.layers.yolo_box(x=x, img_size=608, class_num=80, anchors=anchors,
                                     conf_thresh=0.01, downsample_ratio=32)
 
 
@@ -12910,10 +14833,10 @@ yolov3_loss
 在上面的等式中， :math:`c_x, c_y` 是当前网格的左上角, :math:`p_w, p_h` 由anchors指定。
 至于置信度得分，它是anchor框和真实框之间的IoU的逻辑回归值，anchor框的得分最高为1，此时该anchor框对应着最大IoU。
 如果anchor框之间的IoU大于忽略阀值ignore_thresh，则该anchor框的置信度评分损失将会被忽略。
-         
+         
 因此，yolov3损失包括三个主要部分，框位置损失，目标性损失，分类损失。L1损失用于
 框坐标（w，h），同时，sigmoid交叉熵损失用于框坐标（x，y），目标性损失和分类损失。
-         
+         
 每个真实框在所有anchor中找到最匹配的anchor，预测各anchor框都将会产生所有三种损失的计算，但是没有匹配GT box(ground truth box真实框)的anchor的预测只会产生目标性损失。
 
 为了权衡大框(box)和小(box)之间的框坐标损失，框坐标损失将与比例权重相乘而得。即：
@@ -13008,18 +14931,19 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
     - **correct** (Variable)-正确的预测个数。
     - **total** (Variable)-总共的样本数。
 
-返回:	正确率
+返回: 正确率
 
-返回类型:	变量（Variable）
+返回类型: 变量（Variable）
 
 **代码示例**
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.data(name="data", shape=[-1, 32, 32], dtype="float32")
-    label = fluid.layers.data(name="data", shape=[-1,1], dtype="int32")
+    label = fluid.layers.data(name="label", shape=[-1,1], dtype="int32")
     predict = fluid.layers.fc(input=data, size=10)
-    acc = fluid.layers.accuracy(input=predict, label=label, k=5)
+    accuracy_out = fluid.layers.accuracy(input=predict, label=label, k=5)
 
 
 
@@ -13067,23 +14991,11 @@ auc
 
 .. code-block:: python
 
-    #  network为二分类模型, label为ground truth（正确标记）
-    prediction = network(image, is_infer=True)
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
+    label = fluid.layers.data(name="label", shape=[1], dtype="int32")
+    predict = fluid.layers.fc(input=data, size=2)
     auc_out=fluid.layers.auc(input=prediction, label=label)
-
-注：这里返回的是auc的一个全局累加值。如果想要在训练的过程中将全局auc置为0，可以参考以下代码，其中auc_status为auc相关的状态记录变量：
-
-.. code-block:: python
-
-    def set_zero(var_name):
-        param = inference_scope.var(var_name).get_tensor()
-        param_array = np.zeros(param._get_dims()).astype("int64")
-        param.set(param_array, place)
-
-    for auc_state in auc_states:
-        set_zero(auc_state.name)
-
-
 
 
 
