@@ -50,7 +50,7 @@ At present Paddle-Mobile only supports models trained by Paddle fluid. Models ca
 ### 1. Use Paddle Fluid directly to train
 It is the most reliable method to be recommended
 ### 2. Transform Caffe to Paddle Fluid model
-[https://github.com/PaddlePaddle/models/tree/develop/fluid/image_classification/caffe2fluid](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/caffe2fluid)
+[https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/caffe2fluid](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/caffe2fluid)
 ### 3. ONNX
 ONNX is the acronym of Open Neural Network Exchange. The project is aimed to make a full communication and usage among different neural network development frameworks.
 
@@ -67,9 +67,10 @@ At present，work in support of onnx is also under operation in Baidu. Related t
 Gif as following is the application output of online main part detection of simple search app
 ![ezgif-1-050a733dfb](http://otkwwi4x8.bkt.clouddn.com/2018-07-05-ezgif-1-050a733dfb.gif)-->
 
-## Ask Questions
-
-Welcome to put forward or tackle with our problems. You can post your question in our issue module on github. [Github Issues](https://github.com/PaddlePaddle/paddle-mobile/issues).
+## Communication
+- [Github Issues](https://github.com/PaddlePaddle/Paddle/issues): bug reports, feature requests, install issues, usage issues, etc.
+- QQ discussion group: 696965088 (Paddle-Mobile).
+- [Forums](http://ai.baidu.com/forum/topic/list/168?pageNo=1): discuss implementations, research, etc.
 
 ## Copyright and License
 Paddle-Mobile provides relatively unstrict Apache-2.0 Open source agreement [Apache-2.0 license](LICENSE).

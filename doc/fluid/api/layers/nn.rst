@@ -32,6 +32,7 @@ nn
     nn/ctc_greedy_decoder.rst
     nn/data_norm.rst
     nn/deformable_conv.rst
+    nn/deformable_roi_pooling.rst
     nn/dice_loss.rst
     nn/dropout.rst
     nn/dynamic_gru.rst
@@ -167,6 +168,7 @@ nn
     nn/topk.rst
     nn/transpose.rst
     nn/tree_conv.rst
+    nn/unfold.rst
     nn/uniform_random_batch_size_like.rst
     nn/unsqueeze.rst
     nn/unstack.rst

@@ -12,5 +12,6 @@ DataFeeder
 
 ..  autoclass:: paddle.fluid.data_feeder.DataFeeder
     :members:
+    :inherited-members:
     :noindex:
 

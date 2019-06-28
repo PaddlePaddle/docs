@@ -30,4 +30,3 @@ Reproduced classic models of multiple directions in Fluid：
     howto/configure_simple_model/index_en.rst
     howto/training/index_en.rst
     howto/evaluation_and_debugging/index_en.rst
-    models/index_en.rst

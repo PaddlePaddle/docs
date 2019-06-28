@@ -12,6 +12,7 @@ Adadelta
 
 ..  autoclass:: paddle.fluid.optimizer.Adadelta
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_Adagrad:
@@ -21,6 +22,7 @@ Adagrad
 
 ..  autoclass:: paddle.fluid.optimizer.Adagrad
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_AdagradOptimizer:
@@ -30,6 +32,7 @@ AdagradOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.AdagradOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_Adam:
@@ -39,6 +42,7 @@ Adam
 
 ..  autoclass:: paddle.fluid.optimizer.Adam
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_Adamax:
@@ -48,6 +52,7 @@ Adamax
 
 ..  autoclass:: paddle.fluid.optimizer.Adamax
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_AdamaxOptimizer:
@@ -57,6 +62,7 @@ AdamaxOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.AdamaxOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_AdamOptimizer:
@@ -66,6 +72,7 @@ AdamOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.AdamOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_DecayedAdagrad:
@@ -75,6 +82,7 @@ DecayedAdagrad
 
 ..  autoclass:: paddle.fluid.optimizer.DecayedAdagrad
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_DecayedAdagradOptimizer:
@@ -84,6 +92,7 @@ DecayedAdagradOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.DecayedAdagradOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_DGCMomentumOptimizer:
@@ -93,6 +102,7 @@ DGCMomentumOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.DGCMomentumOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_ExponentialMovingAverage:
@@ -102,6 +112,7 @@ ExponentialMovingAverage
 
 ..  autoclass:: paddle.fluid.optimizer.ExponentialMovingAverage
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_Ftrl:
@@ -111,6 +122,7 @@ Ftrl
 
 ..  autoclass:: paddle.fluid.optimizer.Ftrl
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_FtrlOptimizer:
@@ -120,6 +132,7 @@ FtrlOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.FtrlOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_LambOptimizer:
@@ -129,6 +142,7 @@ LambOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.LambOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_LarsMomentum:
@@ -138,6 +152,7 @@ LarsMomentum
 
 ..  autoclass:: paddle.fluid.optimizer.LarsMomentum
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_LarsMomentumOptimizer:
@@ -147,6 +162,7 @@ LarsMomentumOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.LarsMomentumOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_ModelAverage:
@@ -156,6 +172,7 @@ ModelAverage
 
 ..  autoclass:: paddle.fluid.optimizer.ModelAverage
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_Momentum:
@@ -165,6 +182,7 @@ Momentum
 
 ..  autoclass:: paddle.fluid.optimizer.Momentum
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_MomentumOptimizer:
@@ -174,6 +192,17 @@ MomentumOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.MomentumOptimizer
     :members:
+    :inherited-members:
+    :noindex:
+
+.. _api_fluid_optimizer_PipelineOptimizer:
+
+PipelineOptimizer
+-----------------
+
+..  autoclass:: paddle.fluid.optimizer.PipelineOptimizer
+    :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_RMSPropOptimizer:
@@ -183,6 +212,7 @@ RMSPropOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.RMSPropOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_SGD:
@@ -192,6 +222,7 @@ SGD
 
 ..  autoclass:: paddle.fluid.optimizer.SGD
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_optimizer_SGDOptimizer:
@@ -201,5 +232,6 @@ SGDOptimizer
 
 ..  autoclass:: paddle.fluid.optimizer.SGDOptimizer
     :members:
+    :inherited-members:
     :noindex:
 
