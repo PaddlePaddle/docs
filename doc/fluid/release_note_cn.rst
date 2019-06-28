@@ -100,7 +100,7 @@ Release Notes
 预测部署
 ########
 * 服务端部署库
-    * 优化显存功能。DAM模型显存占用从4G下降至940M; MobileNet 模型显存占用从1G下降至500M。
+    * 优化显存优化功能。DAM模型显存占用从4G下降至940M; MobileNet 模型显存占用从1G下降至500M。
     * 将Paddle-TRT的优化过程迁移到模型初始化期间，解决Paddle-TRT初次预测时间过长的问题。例如使MobileNet初次预测时间从秒级别下降至毫秒级。
     * 解决使用AnalysisPredictor从内存载入模型时，模型参数多次内存分配的问题。
     * 增强Python预测API，并在官网文档预测部署下增加Python预测API的使用说明。
