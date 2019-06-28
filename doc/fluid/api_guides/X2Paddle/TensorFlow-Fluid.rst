@@ -30,7 +30,7 @@ TensorFlow-Fluid常用接口对应表
     "18", "`tf.contrib.layers.one_hot_encoding <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/contrib/layers/one_hot_encoding>`_", ":ref:`cn_api_fluid_layers_one_hot`", "功能一致"
     "19", "`tf.contrib.layers.softmax <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/contrib/layers/softmax>`_", ":ref:`cn_api_fluid_layers_softmax`", "功能一致"
     "20", "`tf.contrib.layers.xavier_initializer <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/contrib/layers/xavier_initializer>`_", ":ref:`cn_api_fluid_initializer_Xavier`", "功能一致"
-    "21", "`tf.nn.rnn.GRUCell <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/rnn_cell/GRUCell>`_", ":ref:`cn_api_fluid_layers_gru_unit`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.contrib.rnn.GRUCell.md>`_"
+    "21", "`tf.nn.rnn.GRUCell <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/rnn_cell/GRUCell>`_", ":ref:`cn_api_fluid_layers_gru_unit`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.rnn.GRUCell.md>`_"
     "22", "`tf.nn.rnn.MultiRNNCell <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/rnn_cell/MultiRNNCell>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.rnn_cell.MultiRNNCell.md>`_"
     "23", "`tf.nn.rnn.static_rnn <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/static_rnn>`_", ":ref:`cn_api_fluid_layers_DynamicRNN`", "功能一致"
     "24", "`tf.convert_to_tensor <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/convert_to_tensor>`_", ":ref:`cn_api_fluid_layers_assign`", "功能一致"
