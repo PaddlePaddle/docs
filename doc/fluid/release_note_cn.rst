@@ -33,7 +33,7 @@ Release Notes
 * 新增基于Padding方式实现的LSTM、GRU，更方便用户学习和使用；并基于对应API新增语言模型、seq2seq翻译模型的示例模型；增强部分OP功能，更好地支持NLP中Tensor多个维度可变的任务。
 * 正式发布动态图Preview版并提供相关的API文档，并提供 7个模型动态图版本官方实现。
 * 官方模型库方面正式发布PaddleDetection物体检测统一框架，覆盖主流目标检测算法，易扩展和模块化组合使用；发布图像生成库，覆盖主流的GAN算法，可一键式运行；发布PaddleNLP-Research，包含百度在 NLP 领域最新研究工作。
-* 模型压缩框架PaddleSlim新增基于模拟退火的自动剪切策略和轻量级模型结构自动搜索功能（Light-NAS。
+* 模型压缩框架PaddleSlim新增基于模拟退火的自动剪切策略和轻量级模型结构自动搜索功能（Light-NAS）。
 * 分布式训练发布HighLevel API Fleet，单机转分布式训练成本显著降低；GPU多机多卡性能显著提升，在ResNet50、BERT、ERNIE等模型中4x8 v100配置下相比此前发布的Benchmark提速超过50%。
 * PaddleHub新增29个预训练模型，总计覆盖文本、图像、视频三大领域40个模型，并全面提升易用性，发布PaddleHub官网。
 * 发布图学习框架PGL(Paddle Graph Learning) Preview版，提供基于游走以及消息传递两种计算范式去搭建最前沿的图学习算法。
@@ -43,7 +43,7 @@ Release Notes
 ##########
 * 安装&环境
     * 增加Linux下对CUDA 10的支持，增加Windows下对CUDA 9的支持，cuDnn版本统一为7.3+
-    * 安装包不按照CPU处理器是否支持AVX指令集做区分，支持自动判断并选择选择使用AVX指令集或不使用用AVX指令集
+    * 安装包不按照CPU处理器是否支持AVX指令集做区分，支持自动判断并选择使用AVX指令集或不使用AVX指令集
     * 针对Python2、Python3下可能版本不兼容的依赖包限制了版本范围，以支持Python相应环境下正确安装
     * 提供可全离线安装PaddlePaddle的Docker镜像
     * 增加安装后的GPU多卡运行检测
@@ -76,7 +76,7 @@ Release Notes
         * 修复了dropout、conv_transpose、activation op的反向注册，降低op的显存占用
     * 显存分配与显存复用策略重构
         * 重构Allocator底层架构，为后续扩展Allocator策略提供基础
-        * 重构Inplace策略重构，使其代码便于维护，并排除之前策略中变量可能存在误inplace、graph存在环等bu
+        * 重构Inplace策略，使其代码便于维护，并排除之前策略中变量可能存在误inplace、graph存在环等bu
     * 配置优化
         * 用户可通过环境变量FLAGS_conv_workspace_size_limit设置conv层的最大workspace size，单位为MB
 * 执行优化
@@ -85,17 +85,17 @@ Release Notes
     * ParallelExecutor执行模式（CompiledProgram.with_data_parallel())下的优化：减少同步操作；优化在num_thread=1时的速度，对于小模型的速度提升较为明显。（对于PaddingRNN small model 速度提升16%）
 * 框架基础功能增强
     * build_strategy新增mkldnn_enabled_op_types选项，用户可以灵活地控制哪些op需要使用mkldnn kernel以获得加速
-    * 新增ParallelExecutor下的drop_local_exe_scopes接口，可以控制什么时候清理local scope中的数据num_iteration_per_drop_scope的设置依然有效
+    * 新增ParallelExecutor下的drop_local_exe_scopes接口，可以控制什么时候清理local scope中的数据，num_iteration_per_drop_scope的设置依然有效
     * 新增自动混合精度训练接口fluid.contrib.mixed_precision.decorate()，支持图像分类、BERT等模型的训练
     * 新增fluid.gradients接口，11个操作支持做二次反向，使用于图像生成的梯度惩罚功能
     * Intel nGraph图编译引擎支持加强，增加了Bert模型所需的op支持，可以通过Intel nGraph图编译引擎进行BERT模型训练，收敛效果对齐。
 * OP完善
     * 增强fused_elewise_activation op的功能，添加对x+sigmoid(y)、x+tanh(y)计算模式的支持
-    * 新增指数滑动平均(Exponential Moving Average), 是模型训练更加平滑稳定
+    * 新增指数滑动平均(Exponential Moving Average), 使模型训练更加平滑稳定
     * 新增sigmoid_focal_loss损失函数
     * 新增deformable RoI pooling操作
     * 新增deformable convolution v2操作
-    * 提供unfold操作(即im2col)操作
+    * 提供unfold操作(即im2col操作)
  
 预测部署
 ########
@@ -199,5 +199,5 @@ BUG修复
 * 修复Concat Op属性axis为负数时挂掉的问题
 * 修复了enable_inplace和memory_optimize的潜在bug，保证某些op的输出变量不会被错误地复用
 * 修复了Eager Deletion策略可能会提前误删变量存储空间的bug，提高Eager Deletion策略的稳定性
-* 修复了模型图分析中拓扑排序存在bug导致的在相同模型的输入情况下有不同的模型图的生成情况
+* 修复了模型图分析中拓扑排序存在bug导致的在相同模型输入情况下有不同的模型图生成的情况
 * 修复了预测结束后其他服务线程OMP线程冲突的问题。修复为在CPU模式下，预测引擎会在预测结束后将全局的OMP线程数设回为1。
