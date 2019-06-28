@@ -53,7 +53,7 @@ void CreateConfig(NativeConfig *config, const std::string& model_dirname) {
 void RunNative(int batch_size, const std::string& model_dirname) {
   // 1. 创建NativeConfig
   NativeConfig config;
-  CreateConfig(&config);
+  CreateConfig(&config, model_dirname);
   
   // 2. 根据config 创建predictor
   auto predictor = CreatePaddlePredictor(config);
@@ -61,7 +61,7 @@ void RunNative(int batch_size, const std::string& model_dirname) {
   int channels = 3;
   int height = 224;
   int width = 224;
-  float data[batch_size * channels * height * width] = {0};
+  float *data = new float[batch_size * channels * height * width];
 
   // 3. 创建输入 tensor 
   PaddleTensor tensor;
@@ -78,7 +78,7 @@ void RunNative(int batch_size, const std::string& model_dirname) {
   predictor->Run(paddle_tensor_feeds, &outputs, batch_size);
 
   const size_t num_elements = outputs.front().data.length() / sizeof(float);
-  auto *data = static_cast<float *>(outputs.front().data.data());
+  auto *data_out = static_cast<float *>(outputs.front().data.data());
 }
 }  // namespace paddle
 
@@ -95,6 +95,9 @@ AnalysisConfig 创建了一个高性能预测引擎。该引擎通过对计算�
 #### AnalysisPredictor 使用样例
 
 ```c++
+#include "paddle_inference_api.h"
+
+namespace paddle {
 void CreateConfig(AnalysisConfig* config, const std::string& model_dirname) {
   // 模型从磁盘进行加载
   config->SetModel(model_dirname + "/model",                                                                                             
@@ -122,7 +125,7 @@ void CreateConfig(AnalysisConfig* config, const std::string& model_dirname) {
 void RunAnalysis(int batch_size, std::string model_dirname) {
   // 1. 创建AnalysisConfig
   AnalysisConfig config;
-  CreateConfig(&config);
+  CreateConfig(&config, model_dirname);
   
   // 2. 根据config 创建predictor
   auto predictor = CreatePaddlePredictor(config);

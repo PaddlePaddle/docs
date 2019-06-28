@@ -49,5 +49,4 @@ PaddlePaddle目前支持以下环境：
 	install_Windows.md
 	install_Docker.md
 	compile/fromsource.rst
-	FAQ.md
 	Tables.md

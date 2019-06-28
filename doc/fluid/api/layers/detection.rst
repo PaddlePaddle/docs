@@ -149,6 +149,22 @@ prior_box
 ..  autofunction:: paddle.fluid.layers.prior_box
     :noindex:
 
+.. _api_fluid_layers_retinanet_detection_output:
+
+retinanet_detection_output
+--------------------------
+
+..  autofunction:: paddle.fluid.layers.retinanet_detection_output
+    :noindex:
+
+.. _api_fluid_layers_retinanet_target_assign:
+
+retinanet_target_assign
+-----------------------
+
+..  autofunction:: paddle.fluid.layers.retinanet_target_assign
+    :noindex:
+
 .. _api_fluid_layers_roi_perspective_transform:
 
 roi_perspective_transform
@@ -163,6 +179,14 @@ rpn_target_assign
 -----------------
 
 ..  autofunction:: paddle.fluid.layers.rpn_target_assign
+    :noindex:
+
+.. _api_fluid_layers_sigmoid_focal_loss:
+
+sigmoid_focal_loss
+------------------
+
+..  autofunction:: paddle.fluid.layers.sigmoid_focal_loss
     :noindex:
 
 .. _api_fluid_layers_ssd_loss:
