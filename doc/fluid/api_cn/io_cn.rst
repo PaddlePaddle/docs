@@ -220,9 +220,9 @@ PyReader
 在python中为数据输入创建一个reader对象。将使用python线程预取数据，并将其异步插入队列。当调用Executor.run（…）时，将自动提取队列中的数据。 
 
 参数:
-  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建。在可迭代模式下它可以被设置为None。
+  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由 ``fluid.layers.data()`` 创建。在可迭代模式下它可以被设置为None。
   - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
-  - **use_double_buffer** (bool) – 是否使用``double_buffer_reader ``来加速数据输入。
+  - **use_double_buffer** (bool) – 是否使用 ``double_buffer_reader`` 来加速数据输入。
   - **iterable** (bool) –  被创建的reader对象是否可迭代。
   - **eturn_list** (bool) –  是否以list的形式将返回值
 
@@ -261,7 +261,7 @@ PyReader
     user_defined_reader = reader_creator_random_image_and_label(784, 784)
     reader.decorate_sample_list_generator(
         paddle.batch(user_defined_reader, batch_size=BATCH_SIZE))
-    # definition of network is omitted
+    # 此处省略网络定义
     executor = fluid.Executor(fluid.CUDAPlace(0))
     executor.run(fluid.default_startup_program())
     for i in range(EPOCH_NUM):
@@ -295,7 +295,7 @@ PyReader
    reader.decorate_sample_list_generator(
        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
        fluid.core.CUDAPlace(0))
-   # definition of network is omitted
+   # 此处省略网络定义
    executor = fluid.Executor(fluid.CUDAPlace(0))
    executor.run(fluid.default_main_program())
 
@@ -328,7 +328,7 @@ PyReader
    reader.decorate_sample_list_generator(
        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
        fluid.core.CPUPlace())
-   # definition of network is omitted
+   # 此处省略网络定义
    executor = fluid.Executor(fluid.core.CPUPlace())
    executor.run(fluid.default_main_program())
 
