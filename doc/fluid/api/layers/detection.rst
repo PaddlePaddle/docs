@@ -61,6 +61,14 @@ density_prior_box
 ..  autofunction:: paddle.fluid.layers.density_prior_box
     :noindex:
 
+.. _api_fluid_layers_detection_map:
+
+detection_map
+-------------
+
+..  autofunction:: paddle.fluid.layers.detection_map
+    :noindex:
+
 .. _api_fluid_layers_detection_output:
 
 detection_output
