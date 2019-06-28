@@ -214,16 +214,17 @@ load_vars
 PyReader
 -------------------------------
 
-.. py:class:: paddle.fluid.io.PyReader(feed_list, capacity, use_double_buffer=True, iterable=False)
+.. py:class:: paddle.fluid.io.PyReader(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False)
 
 
 在python中为数据输入创建一个reader对象。将使用python线程预取数据，并将其异步插入队列。当调用Executor.run（…）时，将自动提取队列中的数据。 
 
 参数:
-  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建。
+  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由``fluid.layers.data()``创建。在可迭代模式下它可以被设置为None。
   - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
   - **use_double_buffer** (bool) – 是否使用``double_buffer_reader ``来加速数据输入。
   - **iterable** (bool) –  被创建的reader对象是否可迭代。
+  - **eturn_list** (bool) –  是否以list的形式将返回值
 
 返回: 被创建的reader对象
 
@@ -236,70 +237,111 @@ PyReader
 
 .. code-block:: python
 
-    EPOCH_NUM = 3
-    ITER_NUM = 5
-    BATCH_SIZE = 3
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.dataset.mnist as mnist
 
-    def reader_creator_random_image_and_label(height, width):
-        def reader():
-            for i in range(ITER_NUM):
-                fake_image = np.random.uniform(low=0,
-                                                high=255,
-                                                size=[height, width])
-                fake_label = np.ones([1])
-                yield fake_image, fake_label
-            return reader
+    def network(image, label):
+        # user defined network, here a softmax regresssion example
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
 
-    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    reader = fluid.layers.py_reader(capacity=64,
+                                    shapes=[(-1, 1, 28, 28), (-1, 1)],
+                                    dtypes=['float32', 'int64'])
+    reader.decorate_paddle_reader(
+        paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5),
+                              buf_size=1000))
 
-    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    img, label = fluid.layers.read_file(reader)
+    loss = network(img, label)
 
-    reader = fluid.io.PyReader(feed_list=[image, label],
-            capacity=4, iterable=False)
-    
-    user_defined_reader = reader_creator_random_image_and_label(784, 784)
-    reader.decorate_sample_list_generator(
-            paddle.batch(user_defined_reader, batch_size=BATCH_SIZE))
-    # 省略网络定义
-    executor = fluid.Executor(fluid.CUDAPlace(0))
-    executor.run(fluid.default_startup_program())
-    
-    for i in range(EPOCH_NUM):
+    fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
+    exe = fluid.ParallelExecutor(use_cuda=True)
+    for epoch_id in range(10):
         reader.start()
-        while True:
-          try:
-              executor.run(feed=None)
-          except fluid.core.EOFException:
-              reader.reset()
-              break
+            try:
+                while True:
+                    exe.run(fetch_list=[loss.name])
+            except fluid.core.EOFException:
+                reader.reset()
+
+    fluid.io.save_inference_model(dirname='./model',
+                                  feeded_var_names=[img.name, label.name],
+                                  target_vars=[loss],
+                                  executor=fluid.Executor(fluid.CUDAPlace(0)))
 
 
 2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 。
 
 .. code-block:: python
 
-    EPOCH_NUM = 3
-    ITER_NUM = 5
-    BATCH_SIZE = 10
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.dataset.mnist as mnist
 
-    def reader_creator_random_image(height, width):
-        def reader():
-            for i in range(ITER_NUM):
-                yield np.random.uniform(low=0, high=255, size=[height, width]),
-        return reader
+    def network(reader):
+        img, label = fluid.layers.read_file(reader)
+        # User defined network. Here a simple regression as example
+        predict = fluid.layers.fc(input=img, size=10, act='softmax')
+        loss = fluid.layers.cross_entropy(input=predict, label=label)
+        return fluid.layers.mean(loss)
 
-    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-    reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True)
-   
-    user_defined_reader = reader_creator_random_image(784, 784)
-    reader.decorate_sample_list_generator(
-        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE), fluid.core.CUDAPlace(0))
-    # 省略网络定义
-    executor = fluid.Executor(fluid.CUDAPlace(0))
-    executor.run(fluid.default_main_program())
-    for _ in range(EPOCH_NUM):
-      for data in reader():
-        executor.run(feed=data)
+    # 创建 train_main_prog 和 train_startup_prog
+    train_main_prog = fluid.Program()
+    train_startup_prog = fluid.Program()
+    with fluid.program_guard(train_main_prog, train_startup_prog):
+        # 通过 fluid.unique_name.guard() 与测试程序分享参数
+        with fluid.unique_name.guard():
+            train_reader = fluid.layers.py_reader(capacity=64,
+                                                  shapes=[(-1, 1, 28, 28),
+                                                          (-1, 1)],
+                                                  dtypes=['float32', 'int64'],
+                                                  name='train_reader')
+            train_reader.decorate_paddle_reader(
+            paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5),
+                                  buf_size=500))
+            train_loss = network(train_reader)  # some network definition
+            adam = fluid.optimizer.Adam(learning_rate=0.01)
+            adam.minimize(train_loss)
+
+    # Create test_main_prog and test_startup_prog
+    test_main_prog = fluid.Program()
+    test_startup_prog = fluid.Program()
+    with fluid.program_guard(test_main_prog, test_startup_prog):
+        # Use fluid.unique_name.guard() to share parameters with train program
+        with fluid.unique_name.guard():
+            test_reader = fluid.layers.py_reader(capacity=32,
+                                                 shapes=[(-1, 1, 28, 28), (-1, 1)],
+                                                 dtypes=['float32', 'int64'],
+                                                 name='test_reader')
+            test_reader.decorate_paddle_reader(paddle.batch(mnist.test(), 512))
+            test_loss = network(test_reader)
+
+    fluid.Executor(fluid.CUDAPlace(0)).run(train_startup_prog)
+    fluid.Executor(fluid.CUDAPlace(0)).run(test_startup_prog)
+
+    train_exe = fluid.ParallelExecutor(use_cuda=True,
+                                       loss_name=train_loss.name,
+                                       main_program=train_main_prog)
+    test_exe = fluid.ParallelExecutor(use_cuda=True,
+                                      loss_name=test_loss.name,
+                                      main_program=test_main_prog)
+    for epoch_id in range(10):
+        train_reader.start()
+        try:
+            while True:
+               train_exe.run(fetch_list=[train_loss.name])
+        except fluid.core.EOFException:
+            train_reader.reset()
+
+    test_reader.start()
+    try:
+        while True:
+            test_exe.run(fetch_list=[test_loss.name])
+    except fluid.core.EOFException:
+        test_reader.reset()
+
 
 
 
@@ -503,19 +545,20 @@ PyReader
                 for data in reader():
                     executor.run(feed=data)
 
+
 .. _cn_api_fluid_io_save_inference_model:
 
 save_inference_model
 -------------------------------
 
-.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True)
+.. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True,  program_only=False)
 
 修改指定的 ``main_program`` ，构建一个专门用于预测的 ``Program``，然后  ``executor`` 把它和所有相关参数保存到 ``dirname`` 中。
 
 
 ``dirname`` 用于指定保存变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它。
 
-如果您仅想保存您训练好的模型的参数，请使用save_params API。更多细节请参考 :ref:`api_guide_model_save_reader`。
+如果您仅想保存您训练好的模型的参数，请使用save_params API。更多细节请参考 :ref:`api_guide_model_save_reader` 。
 
 
 参数:
@@ -527,6 +570,7 @@ save_inference_model
   - **model_filename** (str|None) – 保存预测Program 的文件名称。如果设置为None，将使用默认的文件名为： ``__model__``
   - **params_filename** (str|None) – 保存所有相关参数的文件名称。如果设置为None，则参数将保存在单独的文件中。
   - **export_for_deployment** (bool) – 如果为真，Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前只支持True。
+  - **program_only** (bool) – 如果为真，将只保存预测程序，而不保存程序的参数。
 
 返回: 获取的变量名列表
 
@@ -636,6 +680,8 @@ save_persistables
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
+
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()

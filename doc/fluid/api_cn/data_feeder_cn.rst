@@ -48,7 +48,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 参数：  
     - **feed_list** (list) – 向模型输入的变量表或者变量表名
     - **place** (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
-        - **program** (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
+    - **program** (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
 
 
 弹出异常:   ``ValueError``  – 如果一些变量不在此 Program 中

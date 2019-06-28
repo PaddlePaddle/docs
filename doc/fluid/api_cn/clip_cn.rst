@@ -90,21 +90,22 @@ GradientClipByGlobalNorm
     startup_program = fluid.framework.Program()
     with fluid.program_guard(
             main_program=prog, startup_program=startup_program):
-                image = fluid.layers.data(name='x', shape=[784], dtype='float32')
-                label = fluid.layers.data(name='y', shape=[1], dtype='int64')
-                hidden1 = fluid.layers.fc(input=image, size=128, act='relu')
-                hidden2 = fluid.layers.fc(input=hidden1, size=64, act='relu')
-                predict = fluid.layers.fc(input=hidden2, size=10, act='softmax')
-                cost = fluid.layers.cross_entropy(input=predict, label=label)
-                avg_cost = fluid.layers.mean(cost)
+        image = fluid.layers.data(name='x', shape=[784], dtype='float32')
+        label = fluid.layers.data(name='y', shape=[1], dtype='int64')
+        hidden1 = fluid.layers.fc(input=image, size=128, act='relu')
+        hidden2 = fluid.layers.fc(input=hidden1, size=64, act='relu')
+        predict = fluid.layers.fc(input=hidden2, size=10, act='softmax')
+        cost = fluid.layers.cross_entropy(input=predict, label=label)
+        avg_cost = fluid.layers.mean(cost)
     prog_clip = prog.clone()
     avg_cost_clip = prog_clip.block(0).var(avg_cost.name)
     p_g_clip = fluid.backward.append_backward(loss=avg_cost_clip)
 
     with fluid.program_guard(main_program=prog_clip):
-         fluid.clip.set_gradient_clip(
-                fluid.clip.GradientClipByGlobalNorm(clip_norm=2.0))
-         p_g_clip = fluid.clip.append_gradient_clip_ops(p_g_clip)
+        fluid.clip.set_gradient_clip(
+            fluid.clip.GradientClipByGlobalNorm(clip_norm=2.0))
+        p_g_clip = fluid.clip.append_gradient_clip_ops(p_g_clip)
+
 
 
 

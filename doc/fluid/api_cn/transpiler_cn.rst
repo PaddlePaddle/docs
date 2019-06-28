@@ -27,32 +27,31 @@ DistributeTranspiler
     x = fluid.layers.data(name='x', shape=[13], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     y_predict = fluid.layers.fc(input=x, size=1, act=None)
-    
+
     cost = fluid.layers.square_error_cost(input=y_predict, label=y)
     avg_loss = fluid.layers.mean(cost)
-    
+
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
     sgd_optimizer.minimize(avg_loss)
 
-    # pserver模式
+    # pserver 模式下
     pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     current_endpoint = "192.168.0.1:6174"
     trainer_id = 0
     trainers = 4
     role = "PSERVER"
-
     t = fluid.DistributeTranspiler()
     t.transpile(
-            trainer_id, pservers=pserver_endpoints, trainers=trainers)
+         trainer_id, pservers=pserver_endpoints, trainers=trainers)
     if role == "PSERVER":
-        pserver_program = t.get_pserver_program(current_endpoint)
-        pserver_startup_program = t.get_startup_program(current_endpoint,
-                                                     pserver_program)
+         pserver_program = t.get_pserver_program(current_endpoint)
+         pserver_startup_program = t.get_startup_program(current_endpoint,
+                                                        pserver_program)
     elif role == "TRAINER":
-        trainer_program = t.get_trainer_program()
+         trainer_program = t.get_trainer_program()
 
-    # nccl2模式
+    # nccl2 模式下
     trainer_num = 2
     trainer_id = 0
     config = fluid.DistributeTranspilerConfig()
@@ -61,10 +60,10 @@ DistributeTranspiler
     t = fluid.DistributeTranspiler(config=config)
     t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
     exe = fluid.ParallelExecutor(
-            use_cuda=True,
-            loss_name=avg_loss.name,
-            num_trainers=len(trainer_num,
-            trainer_id=trainer_id
+        use_cuda=True,
+        loss_name=avg_loss.name,
+        num_trainers=trainer_num,
+        trainer_id=trainer_id
     )
 
 
@@ -185,7 +184,7 @@ DistributeTranspiler
 参数:    
     - **endpoint** (str) – 当前Pserver终端
     - **pserver_program** (Program) – 已停止使用。 先调用get_pserver_program
-     - **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
+    - **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
 
 返回:    Pserver侧的startup_program
 
@@ -273,7 +272,7 @@ memory_optimize
 
 .. py:function:: paddle.fluid.transpiler.memory_optimize(input_program, skip_opt_set=None, print_log=False, level=0, skip_grads=False)
 
-传统内存优化策略，通过在不同operators之间重用可变内存来减少总内存消耗。
+历史遗留内存优化策略，通过在不同operators之间重用可变内存来减少总内存消耗。
 用一个简单的例子来解释该算法：
 
 c = a + b  # 假设此处是最后一次使用a
@@ -284,13 +283,13 @@ d = b * c
 c = a + b
 a = b * c
 
-请注意，在这个legacy设计中，我们使用变量a直接替换d，这意味着在调用此API之后，某些变量可能会消失，而某些变量可能会保留非预期值，如在上面的例子中，实际上执行代码后a保持d的值。
+请注意，在这个历史遗留设计中，我们使用变量a直接替换d，这意味着在调用此API之后，某些变量可能会消失，而某些变量可能会保留非预期值，如在上面的例子中，实际上执行代码后a保持d的值。
 
 因此，为了防止重要变量在优化中被重用/删除，我们提供skip_opt_set用于指定变量白名单。
 skip_opt_set中的变量不受memory_optimize API的影响。
 
 注意：
-不推荐使用此API，请避免在新代码中使用它。
+此API已弃用，请避免在新代码中使用它。
 不支持会创建子块的运算符，如While，IfElse等。
 
 参数:

@@ -29,10 +29,11 @@ BilinearInitializer
     factor = 2
     C = 2
     w_attr = fluid.initializer.ParamAttr(
-            learning_rate=0.,
-    regularizer=fluid.regularizer.L2Decay(0.), initializer=fluid.initializer.Bilinear())
+        learning_rate=0.,
+        regularizer=fluid.regularizer.L2Decay(0.),
+        initializer=fluid.initializer.Bilinear())
     x = fluid.layers.data(name="data", shape=[3, 32, 32],
-                              dtype="float32")
+                          dtype="float32")
     conv_up = fluid.layers.conv2d_transpose(
         input=x,
         num_filters=C,

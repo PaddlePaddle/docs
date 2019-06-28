@@ -14,7 +14,8 @@ DatasetFactory
 
 .. py:class:: paddle.fluid.dataset.DatasetFactory
 
-DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创建“QueueDataset”或“InMemoryDataset”，默认为“QueueDataset”。
+DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创建“QueueDataset”，“InMemoryDataset”或“FileInstantDataset”，默认为“QueueDataset”。
+
 
 **代码示例**
 
@@ -25,7 +26,8 @@ DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创
 
 .. py:method:: create_dataset(datafeed_class='QueueDataset')
 
-创建“QueueDataset”或“InMemoryDataset”，默认为“QueueDataset”。
+创建“QueueDataset”，“InMemoryDataset” 或 “FileInstantDataset”，默认为“QueueDataset”。
+
 
 参数：
     - **datafeed_class** (str) – datafeed类名，为QueueDataset或InMemoryDataset。默认为QueueDataset。
@@ -132,7 +134,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 用户可以调用此函数以了解加载进内存后所有workers中的ins数量。
 
-注意：
+.. note::
     该函数可能会导致性能不佳，因为它具有barrier。
 
 参数：
@@ -157,7 +159,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 获取shuffle数据大小，用户可以调用此函数以了解局域/全局shuffle后所有workers中的ins数量。
 
-注意：
+.. note::
     该函数可能会导致局域shuffle性能不佳，因为它具有barrier。但其不影响局域shuffle。
 
 参数：

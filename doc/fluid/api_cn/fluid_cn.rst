@@ -1253,7 +1253,7 @@ ExecutionStrategy
 
 .. py:attribute:: num_iteration_per_drop_scope
 
-int型成员。它表明了清空执行时产生的临时变量需要的程序执行重复次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为100。
+int型成员。它表明了清空执行时产生的临时变量需要的程序执行迭代次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为1。
 
 .. note::
   1. 如果在调用 ``run`` 方法时获取结果数据，``ParallelExecutor`` 会在当前程序重复执行尾部清空临时变量
@@ -1309,7 +1309,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
     import paddle.fluid.compiler as compiler
     import numpy
     import os
-    
+
     use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -1321,17 +1321,17 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
         fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-    
+
     # 仅运行一次startup program
     # 不需要优化/编译这个startup program
     startup_program.random_seed=1
-    exe.run(fluid.default_startup_program())
+    exe.run(startup_program)
 
     # 无需编译，直接运行main program
     x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data = exe.run(train_program(),
-                        feed={"X": x},
-                        fetch_list=[loss.name])
+    loss_data, = exe.run(train_program,
+                     feed={"X": x},
+                     fetch_list=[loss.name])
 
     # 另一种方法是，编译这个main program然后运行。
     # 参考CompiledProgram以获取更多信息。
@@ -1343,11 +1343,11 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
         os.environ['CPU_NUM'] = str(2)
 
     compiled_prog = compiler.CompiledProgram(
-            train_program()).with_data_parallel(
-            loss_name=loss.name)
-    loss_data = exe.run(compiled_prog,
-                        feed={"X": x},
-                        fetch_list=[loss.name])
+        train_program).with_data_parallel(
+        loss_name=loss.name)
+    loss_data, = exe.run(compiled_prog,
+                         feed={"X": x},
+                         fetch_list=[loss.name])
 
 
 参数:
@@ -1370,7 +1370,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 
     cpu = fluid.CPUPlace()
     exe = fluid.Executor(cpu)
-    #执行训练或测试过程
+    # 执行训练或测试过程
     exe.close()
 
 
@@ -1403,10 +1403,11 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
      
             #仅运行startup程序一次
             exe.run(fluid.default_startup_program())
-     
+
             x = numpy.random.random(size=(10, 1)).astype('float32')
             outs = exe.run(feed={'X': x},
                            fetch_list=[loss.name])
+                           
 参数：  
   - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
   - **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
@@ -1479,7 +1480,8 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 .. code-block:: python
 
         import paddle.fluid as fluid
-        place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
+
+        place = fluid.CPUPlace() # 通过设置place = fluid.CUDAPlace(0)使用GPU
         exe = fluid.Executor(place)
         x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
         y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
@@ -1489,7 +1491,8 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
         filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
         dataset.set_filelist(filelist)
         exe.run(fluid.default_startup_program())
-        exe.train_from_dataset(program=fluid.default_main_program(),dataset=dataset)
+        exe.infer_from_dataset(program=fluid.default_main_program(),
+                               dataset=dataset)
 
 
 .. _cn_api_fluid_global_scope:
@@ -1508,7 +1511,7 @@ global_scope
 
         import paddle.fluid as fluid
         import numpy
-     
+
         fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
         numpy.array(fluid.global_scope().find_var("data").get_tensor())
 
@@ -1517,6 +1520,44 @@ global_scope
 返回类型：Scope
 
 
+
+
+
+
+.. _cn_api_fluid_gradients:
+
+gradients
+-------------------------------
+
+.. py:function:: paddle.fluid.gradients(targets, inputs, target_gradients=None, no_grad_set=None)
+
+将目标梯度反向传播到输入。
+
+参数：  
+  - **targets** (Variable|list[Variable]) – 目标变量
+  - **inputs** (Variable|list[Variable]) – 输入变量
+  - **target_gradients** (Variable|list[Variable]|None) – 目标的梯度变量，应与目标变量形状相同；如果设置为None，则以1初始化所有梯度变量
+  - **no_grad_sethread** (set[string]) – 在Block 0中不具有梯度的变量，所有block中被设置 ``stop_gradient=True`` 的变量将被自动加入该set
+
+
+返回：数组，包含与输入对应的梯度。如果一个输入不影响目标函数，则对应的梯度变量为None
+
+返回类型：(list[Variable])
+
+**示例代码**
+
+.. code-block:: python
+
+            import paddle.fluid as fluid
+
+            x = fluid.layers.data(name='x', shape=[2,8,8], dtype='float32')
+            x.stop_gradient=False
+            y = fluid.layers.conv2d(x, 4, 1, bias_attr=False)
+            y = fluid.layers.relu(y)
+            y = fluid.layers.conv2d(y, 4, 1, bias_attr=False)
+            y = fluid.layers.relu(y)
+            z = fluid.gradients([y], x)
+            print(z)
 
 
 
@@ -1618,7 +1659,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set_recursive_sequence_lengths([[2, 3]])
             print(t.has_valid_recursive_sequence_lengths()) # True
 
-.. py:method::  lod(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+.. py:method::  lod(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
 
 得到LoD Tensor的LoD。
 
@@ -1638,7 +1679,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set_lod([[0, 2, 5]])
             print(t.lod()) # [[0, 2, 5]]
 
-.. py:method::  recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → List[List[int]]
+.. py:method:: recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
 
 得到与LoD对应的LoDTensor的序列长度。
 
@@ -1658,7 +1699,28 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set_recursive_sequence_lengths([[2, 3]])
             print(t.recursive_sequence_lengths()) # [[2, 3]]
 
-.. py:method::  set_lod(self: paddle.fluid.core.LoDTensor, lod: List[List[int]]) → None
+
+.. py:method::  set(*args, **kwargs)
+    
+重载函数
+
+1. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[float32], arg1: paddle::platform::CPUPlace) -> None
+
+2. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[int32], arg1: paddle::platform::CPUPlace) -> None
+
+3. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[float64], arg1: paddle::platform::CPUPlace) -> None
+
+4. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[int64], arg1: paddle::platform::CPUPlace) -> None
+
+5. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[bool], arg1: paddle::platform::CPUPlace) -> None
+
+6. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[uint16], arg1: paddle::platform::CPUPlace) -> None
+
+7. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[uint8], arg1: paddle::platform::CPUPlace) -> None
+
+8. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[int8], arg1: paddle::platform::CPUPlace) -> None
+
+.. py:method::  set_lod(self: paddle.fluid.core_avx.LoDTensor, lod: List[List[int]]) → None
 
 设置LoDTensor的LoD。
 
@@ -1696,6 +1758,8 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_recursive_sequence_lengths([[2, 3]])
 
+.. py:method::  shape(self: paddle.fluid.core_avx.Tensor) → List[int]
+
 
 
 
@@ -1720,7 +1784,7 @@ LoDTensor的数组。
      
         arr = fluid.LoDTensorArray()   
 
-.. py:method:: append(self: paddle.fluid.core.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
+.. py:method:: append(self: paddle.fluid.core_avx.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
 将LoDTensor追加到LoDTensorArray后。
 
@@ -1811,17 +1875,17 @@ name_scope
 
 .. code-block:: python
           
- with fluid.name_scope("s1"):
-    a = fluid.layers.data(name='data', shape=[1], dtype='int32')
-    b = a + 1
-    with fluid.name_scope("s2"):
-       c = b * 1
-    with fluid.name_scope("s3"):
-       d = c / 1
- with fluid.name_scope("s1"):
-       f = fluid.layers.pow(d, 2.0)
- with fluid.name_scope("s4"):
-       g = f - 1
+     with fluid.name_scope("s1"):
+        a = fluid.layers.data(name='data', shape=[1], dtype='int32')
+        b = a + 1
+        with fluid.name_scope("s2"):
+           c = b * 1
+        with fluid.name_scope("s3"):
+           d = c / 1
+     with fluid.name_scope("s1"):
+           f = fluid.layers.pow(d, 2.0)
+     with fluid.name_scope("s4"):
+           g = f - 1
 
 
 
@@ -2102,9 +2166,9 @@ Program
         y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
         z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
 
-  print("main program is: {}".format(main_program))
-  
-  print("start up program is: {}".format(startup_program))
+    print("main program is: {}".format(main_program))
+      
+    print("start up program is: {}".format(startup_program))
 
 
 .. py:method:: to_string(throw_on_error, with_details=False)
@@ -2136,29 +2200,27 @@ Program
 
 创建一个新的、相同的Program。
 
-有些operator，在训练和测试之间的行为是不同的，比如batch_norm。它们有一个属性is_test来控制行为。当for_test=True时，此方法将把它们的is_test属性更改为True。
+有些operator，在训练和测试之间的行为是不同的，比如 ``batch_norm`` 。它们有一个属性 ``is_test`` 来控制行为。当 ``for_test=True`` 时，此方法将把它们的 ``is_test`` 属性更改为True。
 
 - 克隆Program用于训练时，将 ``for_test`` 设置为False。
-- 克隆Program用于测试时，将 ``for_test`` 设置为True。
-我们不会在此处对程序进行任何裁剪，因此，如果您只是想要一个用于测试的前向计算程序，请在使用Opimizer.minimize之前使用clone
+- 克隆Program用于测试时，将 ``for_test`` 设置为True。我们不会在此处对程序进行任何裁剪，因此，如果您只是想要一个用于测试的前向计算程序，请在使用 ``Opimizer.minimize`` 之前使用 ``clone``
 
-注意: 此API不会裁剪任何操作符。请在backward和optimization之前使用clone(for_test=True)。
+注意: 
+    1. ``Program.clone()`` 方法不会克隆 ``py_reader`` 
+    2. 此API不会裁剪任何算子。请在backward和optimization之前使用 ``clone(for_test=True)`` 。例如：
 
+    .. code-block:: python
 
-**代码示例**
-
-.. code-block:: python
-
-  test_program = fluid.default_main_program().clone(for_test=True)
-  optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
-  optimizer.minimize()
+          test_program = fluid.default_main_program().clone(for_test=True)
+          optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
+          optimizer.minimize()
 
 参数：
   - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True
 
 返回：一个新的、相同的Program
 
-返回类型:Program
+返回类型：Program
 
 **代码示例**
 
@@ -2166,100 +2228,97 @@ Program
 
 .. code-block:: python     
                 
-                import paddle.fluid as fluid
-                import six
-     
-                def print_prog(prog):
-                    for name, value in sorted(six.iteritems(prog.block(0).vars)):
-                        print(value)
-                    for op in prog.block(0).ops:
-                        print("op type is {}".format(op.type))
-                        print("op inputs are {}".format(op.input_arg_names))
-                        print("op outputs are {}".format(op.output_arg_names))
-                        for key, value in sorted(six.iteritems(op.all_attrs())):
-                            if key not in ['op_callstack', 'op_role_var']:
-                                print(" [ attrs: {}:   {} ]".format(key, value))
+        import paddle.fluid as fluid
+        import six
+
+
+        def print_prog(prog):
+            for name, value in sorted(six.iteritems(prog.block(0).vars)):
+                print(value)
+            for op in prog.block(0).ops:
+                print("op type is {}".format(op.type))
+                print("op inputs are {}".format(op.input_arg_names))
+                print("op outputs are {}".format(op.output_arg_names))
+                for key, value in sorted(six.iteritems(op.all_attrs())):
+                    if key not in ['op_callstack', 'op_role_var']:
+                        print(" [ attrs: {}:   {} ]".format(key, value))
 
 1.克隆一个Program，示例代码如下。
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  import six
-     
-  def print_prog(prog):
-      for name, value in sorted(six.iteritems(prog.block(0).vars)):
-        print(value)
-      for op in prog.block(0).ops:
-        print("op type is {}".format(op.type))
-        print("op inputs are {}".format(op.input_arg_names))
-        print("op outputs are {}".format(op.output_arg_names))
-        for key, value in sorted(six.iteritems(op.all_attrs())):
-            if key not in ['op_callstack', 'op_role_var']:
-                print(" [ attrs: {}:   {} ]".format(key, value))
-     
-  train_program = fluid.Program()
-  startup_program = fluid.Program()
-  with fluid.program_guard(train_program, startup_program):
-      with fluid.unique_name.guard():
-        img = fluid.layers.data(name='image', shape=[784])
-        hidden = fluid.layers.fc(input=img, size=200, act='relu')
-        hidden = fluid.layers.dropout(hidden, dropout_prob=0.5)
-        loss = fluid.layers.cross_entropy(
-                     input=fluid.layers.fc(hidden, size=10, act='softmax'),
-                     label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
-  avg_loss = fluid.layers.mean(loss)
-  test_program = train_program.clone(for_test=False)
-  sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-  print_prog(test_program)
+        import paddle.fluid as fluid
+        import six
 
-  with fluid.program_guard(train_program, startup_program):
-      with fluid.unique_name.guard():
-        sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-        sgd.minimize(avg_loss)    
+        def print_prog(prog):
+            for name, value in sorted(six.iteritems(prog.block(0).vars)):
+                print(value)
+            for op in prog.block(0).ops:
+                print("op type is {}".format(op.type))
+                print("op inputs are {}".format(op.input_arg_names))
+                print("op outputs are {}".format(op.output_arg_names))
+                for key, value in sorted(six.iteritems(op.all_attrs())):
+                    if key not in ['op_callstack', 'op_role_var']:
+                        print(" [ attrs: {}:   {} ]".format(key, value))
+
+        train_program = fluid.Program()
+        startup_program = fluid.Program()
+        with fluid.program_guard(train_program, startup_program):
+            with fluid.unique_name.guard():
+                img = fluid.layers.data(name='image', shape=[784])
+                hidden = fluid.layers.fc(input=img, size=200, act='relu')
+                hidden = fluid.layers.dropout(hidden, dropout_prob=0.5)
+                loss = fluid.layers.cross_entropy(
+                                          input=fluid.layers.fc(hidden, size=10, act='softmax'),
+                            label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
+                avg_loss = fluid.layers.mean(loss)
+                test_program = train_program.clone(for_test=False)
+        print_prog(test_program)
+        with fluid.program_guard(train_program, startup_program):
+            with fluid.unique_name.guard():
+                sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+                sgd.minimize(avg_loss)
   
 2.如果分别运行 train Program 和 test Program，则可以不使用clone。
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  import six
-  
-  def print_prog(prog):
-      for name, value in sorted(six.iteritems(prog.block(0).vars)):
-          print(value)
-      for op in prog.block(0).ops:
-          print("op type is {}".format(op.type))
-          print("op inputs are {}".format(op.input_arg_names))
-          print("op outputs are {}".format(op.output_arg_names))
-          for key, value in sorted(six.iteritems(op.all_attrs())):
-              if key not in ['op_callstack', 'op_role_var']:
-                  print(" [ attrs: {}:   {} ]".format(key, value))
-  def network(is_test):
-       img = fluid.layers.data(name='image', shape=[784])
-       hidden = fluid.layers.fc(input=img, size=200, act='relu')
-       hidden = fluid.layers.dropout(hidden, dropout_prob=0.5, is_test=is_test)
-       loss = fluid.layers.cross_entropy(
-       input=fluid.layers.fc(hidden, size=10, act='softmax'),
-       label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
-       avg_loss = fluid.layers.mean(loss)
-       return avg_loss
+        import paddle.fluid as fluid
+        import six
 
-   train_program_2 = fluid.Program()
-   startup_program_2 = fluid.Program()
-   test_program_2 = fluid.Program()
+        def print_prog(prog):
+            for name, value in sorted(six.iteritems(prog.block(0).vars)):
+                print(value)
+            for op in prog.block(0).ops:
+                print("op type is {}".format(op.type))
+                print("op inputs are {}".format(op.input_arg_names))
+                print("op outputs are {}".format(op.output_arg_names))
+                for key, value in sorted(six.iteritems(op.all_attrs())):
+                    if key not in ['op_callstack', 'op_role_var']:
+                        print(" [ attrs: {}:   {} ]".format(key, value))
+        def network(is_test):
+            img = fluid.layers.data(name='image', shape=[784])
+            hidden = fluid.layers.fc(input=img, size=200, act='relu')
+            hidden = fluid.layers.dropout(hidden, dropout_prob=0.5)
+            loss = fluid.layers.cross_entropy(
+                input=fluid.layers.fc(hidden, size=10, act='softmax'),
+                label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
+            avg_loss = fluid.layers.mean(loss)
+            return avg_loss
 
-   with fluid.program_guard(train_program_2, startup_program_2):
-       with fluid.unique_name.guard():
-       
-            sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-            sgd.minimize(avg_loss)
 
-   # 不使用测试阶段的startup program
-   with fluid.program_guard(test_program_2, fluid.Program()):
-       with fluid.unique_name.guard():
-            loss = network(is_test=True)
-   print(test_program_2)  
+        train_program_2 = fluid.Program()
+        startup_program_2 = fluid.Program()
+        test_program_2 = fluid.Program()
+        with fluid.program_guard(train_program_2, startup_program_2):
+            with fluid.unique_name.guard():
+                 sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+                 sgd.minimize(avg_loss)
+        # 不使用测试阶段的启动程序
+        with fluid.program_guard(test_program_2, fluid.Program()):
+            with fluid.unique_name.guard():
+                loss = network(is_test=True)
+        print(test_program_2)
 
 上边两个代码片段生成和打印的Program是一样的。
 

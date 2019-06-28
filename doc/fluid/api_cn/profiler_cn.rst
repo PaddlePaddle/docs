@@ -31,6 +31,7 @@ CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行�
 
     import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
+    import numpy as np
 
     epoc = 8
     dshape = [4, 3, 28, 28]
@@ -118,7 +119,7 @@ reset_profiler
 .. code-block:: python
 
     import paddle.fluid.profiler as profiler
-    with profiler.profiler(state, 'total', '/tmp/profile'):
+    with profiler.profiler('CPU', 'total', '/tmp/profile'):
     for iter in range(10):
         if iter == 2:
             profiler.reset_profiler()

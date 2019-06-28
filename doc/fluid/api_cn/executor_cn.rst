@@ -35,7 +35,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
     import paddle.fluid.compiler as compiler
     import numpy
     import os
-    
+
     use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -47,17 +47,17 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
         fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-    
+
     # 仅运行一次startup program
     # 不需要优化/编译这个startup program
     startup_program.random_seed=1
-    exe.run(fluid.default_startup_program())
+    exe.run(startup_program)
 
     # 无需编译，直接运行main program
     x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data = exe.run(train_program(),
-                        feed={"X": x},
-                        fetch_list=[loss.name])
+    loss_data, = exe.run(train_program,
+                     feed={"X": x},
+                     fetch_list=[loss.name])
 
     # 另一种方法是，编译这个main program然后运行。
     # 参考CompiledProgram以获取更多信息。
@@ -69,11 +69,11 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
         os.environ['CPU_NUM'] = str(2)
 
     compiled_prog = compiler.CompiledProgram(
-            train_program()).with_data_parallel(
-            loss_name=loss.name)
-    loss_data = exe.run(compiled_prog,
-                        feed={"X": x},
-                        fetch_list=[loss.name])
+        train_program).with_data_parallel(
+        loss_name=loss.name)
+    loss_data, = exe.run(compiled_prog,
+                         feed={"X": x},
+                         fetch_list=[loss.name])
 
 
 参数:
@@ -129,10 +129,11 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
      
             #仅运行startup程序一次
             exe.run(fluid.default_startup_program())
-     
+
             x = numpy.random.random(size=(10, 1)).astype('float32')
             outs = exe.run(feed={'X': x},
                            fetch_list=[loss.name])
+
 参数：  
   - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
   - **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
@@ -205,7 +206,8 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 .. code-block:: python
 
         import paddle.fluid as fluid
-        place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
+
+        place = fluid.CPUPlace() # 通过设置place = fluid.CUDAPlace(0)使用GPU
         exe = fluid.Executor(place)
         x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
         y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
@@ -215,7 +217,8 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
         filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
         dataset.set_filelist(filelist)
         exe.run(fluid.default_startup_program())
-        exe.train_from_dataset(program=fluid.default_main_program(),dataset=dataset)
+        exe.infer_from_dataset(program=fluid.default_main_program(),
+                               dataset=dataset)
 
 
 .. _cn_api_fluid_executor_global_scope:
@@ -234,7 +237,7 @@ global_scope
 
         import paddle.fluid as fluid
         import numpy
-     
+
         fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
         numpy.array(fluid.global_scope().find_var("data").get_tensor())
 
@@ -265,10 +268,10 @@ scope_guard
 .. code-block:: python
 
     import numpy
-    
+
     new_scope = fluid.Scope()
     with fluid.scope_guard(new_scope):
-        fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
+         fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
     numpy.array(new_scope.find_var("data").get_tensor())
 
 

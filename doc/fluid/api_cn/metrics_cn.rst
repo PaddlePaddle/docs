@@ -164,7 +164,7 @@ ChunkEvaluator
 参数:
     - **num_infer_chunks** (int|numpy.array): 给定minibatch的Interface块数。
     - **num_label_chunks** (int|numpy.array): 给定minibatch的Label块数。
-    - **num_correct_chunks** （int|numpy.array）: 给定minibatch的Interface和Label的块数
+    - **num_correct_chunks** （int|float|numpy.array）: 给定minibatch的Interface和Label的块数
 
 
 
@@ -328,7 +328,9 @@ EditDistance
 
 编辑距离是通过计算将一个字符串转换为另一个字符串所需的最小编辑操作数（添加、删除或替换）来量化两个字符串（例如单词）彼此不相似的程度一种方法。
 参考 https://en.wikipedia.org/wiki/Edit_distance。
-此EditDistance类使用更新函数获取两个输入：1、 distance：一个形状为（batch_size, 1）的numpy.array，每个元素表示两个序列之间的编辑距离；2、seq_num：一个整型/浮点型数，代表序列对的数目，并返回多个序列对的整体编辑距离。
+此EditDistance类使用更新函数获取两个输入：
+    1. distance：一个形状为（batch_size, 1）的numpy.array，每个元素表示两个序列之间的编辑距离；
+    2. seq_num：一个整型/浮点型数，代表序列对的数目，并返回多个序列对的整体编辑距离。
 
 参数:
     - **name** - 度量标准名称

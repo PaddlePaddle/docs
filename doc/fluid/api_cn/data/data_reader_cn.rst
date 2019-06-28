@@ -60,12 +60,13 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
     import numpy as np
     import paddle
-    import paddle.fluid as f
-    
+    import paddle.fluid as fluid
+
     place = fluid.CPUPlace()
+
     def reader():
         yield [np.random.random([4]).astype('float32'), np.random.random([3]).astype('float32')],
-    
+
     main_program = fluid.Program()
     startup_program = fluid.Program()
 
@@ -74,15 +75,15 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
         data_2 = fluid.layers.data(name='data_2', shape=[1, 1, 3])
         out = fluid.layers.fc(input=[data_1, data_2], size=2)
         # ...
-    
+
     feeder = fluid.DataFeeder([data_1, data_2], place)
-    
+
     exe = fluid.Executor(place)
     exe.run(startup_program)
     for data in reader():
         outs = exe.run(program=main_program,
-                        feed=feeder.feed(data),        fetch_list=[out])
-
+                       feed=feeder.feed(data),
+                       fetch_list=[out])
 
 
 .. py:method::  feed(iterable)
