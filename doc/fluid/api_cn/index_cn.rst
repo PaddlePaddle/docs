@@ -22,8 +22,6 @@ API
     optimizer_cn.rst
     profiler_cn.rst
     regularizer_cn.rst
-    recordio_writer_cn.rst
     transpiler_cn.rst
-    unique_name_cn.rst
     data/dataset_cn.rst
     data/data_reader_cn.rst
