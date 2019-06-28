@@ -113,7 +113,7 @@ Mobile 在这次升级为 lite 架构， 侧重多硬件、高性能的支持，
 
 ## 实现C++类
 
-以mul op的CPU Kernel实现为例，mul kernel执行运算的矩阵乘法的公式为*Out* = *X* * *Y*,  可见该计算由两个输入，一个输出组成; 输入输出参数分别从OP的param中获取，如mul op的param定义如下：
+以mul op的CPU Kernel实现为例，mul kernel执行运算的矩阵乘法的公式为*Out* = *X* * *Y*,  可见该计算有两个输入，一个输出组成; 输入输出参数分别从OP的param中获取，如mul op的param定义如下：
 
 ```c++
 struct MulParam {
@@ -202,6 +202,7 @@ REGISTER_LITE_KERNEL(mul, kX86, kFloat, kNCHW,
 `docker build --file paddle/fluid/lite/tools/Dockerfile.mobile --tag paddle-lite-mobile:latest . `生成镜像文件。
 
 该镜像中提供了
+
  - Android端的交叉编译环境
  - ARM Linux端的交叉编译环境
  - Android端的模拟器环境
@@ -222,18 +223,19 @@ REGISTER_LITE_KERNEL(mul, kX86, kFloat, kNCHW,
         - "armv7", 等效于使用`eabi`且`-march=armv7-a -mfloat-abi=softfp -mfpu=neon-vfpv4`。
 - `ARM_TARGET_LANG` 代表目标编译的语言， 默认为gcc，支持 gcc和clang两种。
 
-Note: ARM Linux当前仅支持在armv8上编译并测试。
+注意: ARM Linux当前仅支持在armv8上编译并测试。
 
 #### 开发
 
 添加新的ARM端kernel，主要分为3部分：
+
 1. 添加具体的数学计算，在`paddle/fluid/lite/arm/math`中添加对应的数学函数，侧重点在于代码本身的优化，充分利用NEON指令发挥其优势。
 2. 添加kernel声明和调用实例，在`paddle/fluid/lite/kernels/arm`中添加对应kernel的框架声明和调用，侧重点在于每种kernel严格对应输入输出的类型。
 3. 添加单元测试，在`paddle/fluid/lite/kernels/arm`中添加相应的单元测试，并保持其在模拟器或者真机中可以通过。
 
 #### 测试
 
-我们在镜像开发环境中添加了`arm64-v8a`和`armeabi-v7a`的Android模拟环境，在没有真机环境下，可以很方便的用于测试在对应平台上的单元测试。
+我们在镜像开发环境中添加了`arm64-v8a`和`armeabi-v7a`的Android模拟环境，在没有真机环境下，可以很方便的用于测试对应平台上的单元测试。
 
 常用步骤如下
 

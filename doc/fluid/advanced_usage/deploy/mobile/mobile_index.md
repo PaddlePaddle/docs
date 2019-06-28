@@ -96,14 +96,14 @@ public class Place {
 };
 ```
 
-Place 用于标记Kernel 的主要计算模式，比如`place.precision=INT8` 的 kernel 表示为 Int8量化的 kernel。Place 暴露给用户，用户帮助指定模型执行的硬件及量化等执行模式。
+Place 用于标记Kernel 的主要计算模式，比如`place.precision=INT8` 的 kernel 表示为 Int8量化的 kernel。Place 暴露给用户，用户帮助指定模型硬件及量化等模式。
 
 #### 代码接口 PaddlePredictor
 
 PaddlePredictor 提供的 methods 都是 native static methods。整体上运行的思路为
 载入模型 -> 设置输入 -> 运行模型 -> 获取输出/存储运行后优化的模型 -> 清理掉载入的模型
 
-我们将介绍各个步骤的有主要功能，具体接口的参数和返回值请见Javadoc：
+我们将介绍各个步骤的主要功能，具体接口的参数和返回值请见Javadoc：
 
 1. 载入模型：
 
@@ -362,7 +362,7 @@ const auto* out_data = out_tensor->data<float>();
 
 - CxxConfig 会执行完整的预测，包括图分析等较重的逻辑
   - 输入为原始的预测模型，无需做离线处理
-  - 可以讲图分析优化完的模型存储下来（借助 SaveOptimizedModel 接口），用于 `MobileConfig`
+  - 可以将图分析优化完的模型存储下来（借助 SaveOptimizedModel 接口），用于 `MobileConfig`
 - MobileConfig 考虑到手机应用的空间及初始化时长的限制，阉割掉图分析的能力，只执行预测本身
   - 更轻量级
   - 输入模型必须为图分析优化完的模型 (借助 CxxConfig 作离线处理)
@@ -372,10 +372,6 @@ const auto* out_data = out_tensor->data<float>();
 -  `void set_model_dir(const std::string& x)`
 
 使用 MobileConfig 的其余步骤 与CxxConfig 完全一致。
-
-
-
-#### 适用于 MobileConfig 的模型优化方法
 
 ### GenCode 功能介绍
 
@@ -409,6 +405,7 @@ config.set_preferred_place(Place{TARGET(kARM), PRECISION(kInt8)});
 
 - 主要的cmake选项
                 
+    - `ARM_MATH_LIB_DIR` 代表arm相关数学库的路径，可以从官网指定路径下载。
     - `ARM_TARGET_OS` 代表目标操作系统， 目前支持 "android" "armlinux"， 默认是Android
     - `ARM_TARGET_ARCH_ABI` 代表ARCH，支持输入"armv8"和"armv7"，针对OS不一样选择不一样。
         - `-DARM_TARGET_OS="android"` 时 
@@ -432,6 +429,7 @@ config.set_preferred_place(Place{TARGET(kARM), PRECISION(kInt8)});
 	    -DLITE_WITH_X86=OFF \
 	    -DLITE_WITH_ARM=ON \
 	    -DLITE_WITH_LIGHT_WEIGHT_FRAMEWORK=ON \
+        -DARM_MATH_LIB_DIR="<to_arm_math_libs_path>" \
 	    -DWITH_TESTING=ON \
 	    -DARM_TARGET_OS="android" -DARM_TARGET_ARCH_ABI="armv8" -DARM_TARGET_LANG="gcc"
 	make -j4
