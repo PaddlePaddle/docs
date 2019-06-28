@@ -117,7 +117,7 @@ TensorFlow-Fluid常用接口对应表
     "105", "`tf.reverse_sequence <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/reverse_sequence>`_", ":ref:`cn_api_fluid_layers_sequence_reverse`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.reverse_sequence.md>`_"
     "106", "`tf.reverse_v2 <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/reverse>`_", ":ref:`cn_api_fluid_layers_reverse`", "功能一致"
     "107", "`tf.round <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/round>`_", ":ref:`cn_api_fluid_layers_round`", "功能一致"
-    "108", "`tf.rsqrt <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/rsqrt>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.math.rsqrt.md>`_"
+    "108", "`tf.rsqrt <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/rsqrt>`_", ":ref:`cn_api_fluid_layers_rsqrt`", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.math.rsqrt.md>`_"
     "109", "`tf.scalar_mul <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/scalar_mul>`_", ":ref:`cn_api_fluid_layers_scale`", "功能一致"
     "110", "`tf.scatter_update <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/scatter_update>`_", ":ref:`cn_api_fluid_layers_scatter`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.scatter_update.md>`_"
     "111", "`tf.sequence_mask <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/sequence_mask>`_", ":ref:`cn_api_fluid_layers_sequence_mask`", "功能一致"
