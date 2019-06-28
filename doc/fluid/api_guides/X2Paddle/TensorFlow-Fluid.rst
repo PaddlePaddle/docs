@@ -40,7 +40,7 @@ TensorFlow-Fluid常用接口对应表
     "28", "`tf.dropout <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/dropout>`_", ":ref:`cn_api_fluid_layers_dropout`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.dropout.md>`_"
     "29", "`tf.equal <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/equal>`_", "`运算符== <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/compare_op.md>`_", "功能一致"
     "30", "`tf.exp <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/exp>`_", ":ref:`cn_api_fluid_layers_exp`", "功能一致"
-    "31", "`tf.expand_dims <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/expand_dims>`_", ":ref:`cn_api_fluid_layers_unsqueeze`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.expand_dims.md>`_"
+    "31", "`tf.expand_dims <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/expand_dims>`_", ":ref:`cn_api_fluid_layers_unsqueeze`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.expand_dims.md>`_"
     "32", "`tf.fill <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/fill>`_", ":ref:`cn_api_fluid_layers_fill_constant`", "功能一致"
     "33", "`tf.floor <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/floor>`_", ":ref:`cn_api_fluid_layers_floor`", "功能一致"
     "34", "`tf.gather <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/gather>`_", ":ref:`cn_api_fluid_layers_gather`", "功能一致"
