@@ -7,3 +7,4 @@
 
     cpu_train_best_practice.rst
     dist_training_gpu.rst
+    memory_optimize.rst

@@ -31,4 +31,3 @@
     howto/training/index_cn.rst
     howto/evaluation_and_debugging/index_cn.rst
     howto/dygraph/DyGraph.md
-    models/index_cn.rst

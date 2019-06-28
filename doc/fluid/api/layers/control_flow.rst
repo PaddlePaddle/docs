@@ -44,6 +44,7 @@ DynamicRNN
 
 ..  autoclass:: paddle.fluid.layers.DynamicRNN
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_layers_equal:
@@ -77,6 +78,7 @@ IfElse
 
 ..  autoclass:: paddle.fluid.layers.IfElse
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_layers_increment:
@@ -142,6 +144,7 @@ StaticRNN
 
 ..  autoclass:: paddle.fluid.layers.StaticRNN
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_layers_Switch:
@@ -151,6 +154,7 @@ Switch
 
 ..  autoclass:: paddle.fluid.layers.Switch
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_layers_While:
@@ -160,5 +164,6 @@ While
 
 ..  autoclass:: paddle.fluid.layers.While
     :members:
+    :inherited-members:
     :noindex:
 

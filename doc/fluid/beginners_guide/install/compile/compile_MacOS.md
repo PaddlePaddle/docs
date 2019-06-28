@@ -96,8 +96,8 @@
 
 12. 在当前机器或目标机器安装编译好的`.whl`包：
 
-		For Python2: pip install （whl包的名字）
-		For Python3: pip3.5 install （whl包的名字)
+		For Python2: pip install -U（whl包的名字）
+		For Python3: pip3.5 install -U（whl包的名字)
 
 		注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
@@ -197,7 +197,7 @@
 
 12. 在当前机器或目标机器安装编译好的`.whl`包：
 
-	`pip install （whl包的名字）`或`pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）`或`pip3 install -U（whl包的名字）`
 
 	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html/#MACPRO)
 
