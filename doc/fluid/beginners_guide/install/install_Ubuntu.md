@@ -6,8 +6,8 @@
 * *Ubuntu 14.04 (GPU版本只针对CUDA 8, CUDA 10支持)*
 * *Ubuntu 16.04*
 * *Ubuntu 18.04（GPU版本只针对CUDA10支持)*
-* *Python 2.7/3.5.1+/3.6/3.7/*
-* *pip或pip3 >= 9.0.1*
+* *Python（64 bit） 2.7/3.5.1+/3.6/3.7/*
+* *pip或pip3（64 bit） >= 9.0.1*
 
 ### 注意事项
 

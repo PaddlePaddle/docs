@@ -4,8 +4,8 @@
 
 * *64位操作系统*
 * *Windows 10 家庭版/专业版/企业版*
-* *Python 2.7/3.5.1+/3.6/3.7*
-* *pip或pip3 >= 9.0.1*
+* *Python（64 bit） 2.7/3.5.1+/3.6/3.7*
+* *pip或pip3（64 bit） >= 9.0.1*
 * *Visual Studio 2015 Update3*
 
 ## 选择CPU/GPU

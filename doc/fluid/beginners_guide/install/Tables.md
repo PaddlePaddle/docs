@@ -27,7 +27,7 @@
 		<td>  </td>
 	</tr>
 		<tr>
-		<td> Python </td>
+		<td> Python（64 bit） </td>
 		<td> 2.7.x. 或 3.5+.x </td>
 		<td> 依赖libpython2.7.so 或 libpython3.5+.so </td>
 		<td> <code> apt install python-dev </code> 或 <code> yum install python-devel </code> 如果安装python3请访问<a href="https://www.python.org">Python 官网</a></td>
