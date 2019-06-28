@@ -13664,7 +13664,7 @@ collect_fpn_proposals
 **代码示例**
 
 .. code-block:: python
-    
+
     multi_rois = []
     multi_scores = []
     for i in range(4):
@@ -14028,7 +14028,7 @@ generate_mask_labels
 generate_proposal_labels
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_classes, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], class_nums=None, use_random=True)
+.. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_classes, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], class_nums=None, use_random=True, is_cls_agnostic=False, is_cascade_rcnn=False)
 
 **该函数可以应用于 Faster-RCNN 网络，生成建议标签。**
 
@@ -14056,6 +14056,8 @@ RpnRois 是RPN的输出box， 并由 ``GenerateProposals`` 来进一步处理, �
   - **bbox_reg_weights** (list|tuple) – Box 回归权重
   - **class_nums** (int) – 种类数目
   - **use_random** (bool) – 是否使用随机采样来选择foreground（前景）和background（背景） boxes（框）
+  - **is_cls_agnostic** （bool）- 未知类别的bounding box回归，仅标识前景和背景框
+  - **is_cascade_rcnn** （bool）- 是否为 cascade RCNN 模型，为True时采样策略发生变化
 
 **代码示例**：
 
@@ -14176,7 +14178,7 @@ iou_similarity
 ..  code-block:: python
 
         import paddle.fluid as fluid
-     
+
         x = fluid.layers.data(name='x', shape=[4], dtype='float32')
         y = fluid.layers.data(name='y', shape=[4], dtype='float32')
         iou = fluid.layers.iou_similarity(x=x, y=y)
@@ -14367,20 +14369,20 @@ prior_box
     - **input** (Variable)-输入变量，格式为NCHW
     - **image** (Variable)-PriorBoxOp的输入图像数据，布局为NCHW
     - **min_sizes** (list|tuple|float值)-生成的先验框的最小尺寸
-    - **max_sizes** (list|tuple|None)-生成的先验框的最大尺寸。默认：None
+    - **max_sizes** (list|tuple|None)-生成的先验框的最大尺寸。默认：None
     - **aspect_ratios** (list|tuple|float值)-生成的先验框的纵横比。默认：[1.]
     - **variance** (list|tuple)-先验框中的变量，会被解码。默认：[0.1,0.1,0.2,0.2]
     - **flip** (bool)-是否忽略纵横比。默认：False。
-    - **clip** (bool)-是否修建溢界框。默认：False。
+    - **clip** (bool)-是否修建溢界框。默认：False。
     - **step** (list|tuple)-先验框在width和height上的步长。如果step[0] == 0.0/step[1] == 0.0，则自动计算先验框在宽度和高度上的步长。默认：[0.,0.]
-    - **offset** (float)-先验框中心位移。默认：0.5
+    - **offset** (float)-先验框中心位移。默认：0.5
     - **name** (str)-先验框操作符名称。默认：None
     - **min_max_aspect_ratios_order** (bool)-若设为True,先验框的输出以[min,max,aspect_ratios]的顺序，和Caffe保持一致。请注意，该顺序会影响后面卷基层的权重顺序，但不影响最后的检测结果。默认：False。
 
 返回：
     含有两个变量的元组(boxes,variances)
-    boxes:PriorBox的输出先验框。布局是[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
-    variances:PriorBox的扩展变量。布局上[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
+    boxes:PriorBox的输出先验框。布局是[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
+    variances:PriorBox的扩展变量。布局上[H,W,num_priors,4]。H是输入的高度，W是输入的宽度，num_priors是输入每位的总框数
 
 返回类型：元组
 
@@ -14398,7 +14400,64 @@ prior_box
         clip=True)
 
 
+.. _cn_api_fluid_layers_retinanet_detection_output:
 
+retinanet_detection_output
+-------------------------------
+
+.. py:function:: paddle.fluid.layers.retinanet_detection_output(bboxes, scores, anchors, im_info, score_threshold=0.05, nms_top_k=1000, keep_top_k=100, nms_threshold=0.3, nms_eta=1.0)
+
+**Retinanet的检测输出层**
+
+此操作通过执行以下步骤获取检测结果：
+
+1. 根据anchor框解码每个FPN级别的最高得分边界框预测。
+2. 合并所有级别的顶级预测并对其应用多级非最大抑制（NMS）以获得最终检测。
+
+
+参数：
+    - **bboxes**  (List) – 来自多个FPN级别的张量列表。每个元素都是一个三维张量，形状[N，Mi，4]代表Mi边界框的预测位置。N是batch大小，Mi是第i个FPN级别的边界框数，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
+    - **scores**  (List) – 来自多个FPN级别的张量列表。每个元素都是一个三维张量，各张量形状为[N，Mi，C]，代表预测的置信度预测。 N是batch大小，C是类编号（不包括背景），Mi是第i个FPN级别的边界框数。对于每个边界框，总共有C个评分。
+    - **anchors**  (List) – 具有形状[Mi，4]的2-D Tensor表示来自所有FPN级别的Mi anchor框的位置。每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
+    - **im_info**  (Variable) – 形状为[N，3]的2-D LoDTensor表示图像信息。 N是batch大小，每个图像信息包括高度，宽度和缩放比例。
+    - **score_threshold**  (float) – 用置信度分数剔除边界框的过滤阈值。
+    - **nms_top_k**  (int) – 根据NMS之前的置信度保留每个FPN层的最大检测数。
+    - **keep_top_k**  (int) – NMS步骤后每个图像要保留的总边界框数。 -1表示在NMS步骤之后保留所有边界框。
+    - **nms_threshold**  (float) – NMS中使用的阈值.
+    - **nms_eta**  (float) – adaptive NMS的参数.
+
+
+
+返回：
+检测输出是具有形状[No，6]的LoDTensor。 每行有六个值：[标签，置信度，xmin，ymin，xmax，ymax]。 No是此mini batch中的检测总数。 对于每个实例，第一维中的偏移称为LoD，偏移值为N + 1，N是batch大小。 第i个图像具有LoD [i + 1]  -  LoD [i]检测结果，如果为0，则第i个图像没有检测到结果。 如果所有图像都没有检测到结果，则LoD将设置为0，输出张量为空（None）。
+
+
+返回类型：变量（Variable）
+
+**代码示例**：
+
+.. code-block:: python
+
+  import paddle.fluid as fluid
+
+  bboxes = layers.data(name='bboxes', shape=[1, 21, 4],
+      append_batch_size=False, dtype='float32')
+  scores = layers.data(name='scores', shape=[1, 21, 10],
+      append_batch_size=False, dtype='float32')
+  anchors = layers.data(name='anchors', shape=[21, 4],
+      append_batch_size=False, dtype='float32')
+  im_info = layers.data(name="im_info", shape=[1, 3],
+      append_batch_size=False, dtype='float32')
+  nmsed_outs = fluid.layers.retinanet_detection_output(
+                                          bboxes=[bboxes, bboxes],
+                                          scores=[scores, scores],
+                                          anchors=[anchors, anchors],
+                                          im_info=im_info,
+                                          score_threshold=0.05,
+                                          nms_top_k=1000,
+                                          keep_top_k=100,
+                                          nms_threshold=0.3,
+                                          nms_eta=1.)
 
 
 
@@ -14431,22 +14490,12 @@ roi_perspective_transform
 **代码示例**：
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
-     
+
     x = fluid.layers.data(name='x', shape=[256, 28, 28], dtype='float32')
     rois = fluid.layers.data(name='rois', shape=[8], lod_level=1, dtype='float32')
-    out = fluid.layers.roi_perspective_transform(input, rois, 7, 7, 1.0)
-
-
-
-
-
-
-
-
-
-
+    out = fluid.layers.roi_perspective_transform(x, rois, 7, 7, 1.0)
 
 
 
