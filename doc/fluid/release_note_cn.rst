@@ -76,7 +76,7 @@ Release Notes
         * 修复了dropout、conv_transpose、activation op的反向注册，降低op的显存占用
     * 显存分配与显存复用策略重构
         * 重构Allocator底层架构，为后续扩展Allocator策略提供基础
-        * 重构Inplace策略，使其代码便于维护，并排除之前策略中变量可能存在误inplace、graph存在环等bu
+        * 重构Inplace策略，使其代码便于维护，并排除之前策略中变量可能存在误inplace、graph存在环等bug
     * 配置优化
         * 用户可通过环境变量FLAGS_conv_workspace_size_limit设置conv层的最大workspace size，单位为MB
 * 执行优化
