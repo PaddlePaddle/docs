@@ -1,22 +1,28 @@
-﻿# PaddlePaddle 预测库 Python API介绍
-Fluid提供了高度优化的[C++预测库](./native_infer.html)
-为了方便使用，我们也提供了C++预测库对应的Python接口，两者含义完全相同，下面是详细的使用说明
+# Python 预测 API介绍
+
+Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便使用，我们也提供了C++预测库对应的Python接口，两者含义完全相同，下面是详细的使用说明
+
 
 ## PaddleTensor
+
 `PaddleTensor`是预测库输入和输出的数据结构，包括以下字段
+
 * `name`(str): 指定输入的名称
 * `shape`(tuple|list): Tensor的shape
 * `data`(PaddleBuf): Tensor的数据，存储在`PaddleBuf`中，
 * `dtype`(PaddleDType): Tensor的类型
 
 ## PaddleBuf
+
 `PaddleBuf`定义了`PaddleTensor`的存储结构，创建`PaddleBuf`:
+
 ``` python
 int64_buf = PaddleBuf([1, 2, 3, 4])
 float_buf = PaddleBuf([1., 2., 3., 4.])
 ```
 
 `PadleBuf`包括以下方法
+
 * `resize`: 重新分配内存，单位为byte
 * `reset`: 重新设置数据
 * `empty`: buffer是否为空
@@ -25,12 +31,16 @@ float_buf = PaddleBuf([1., 2., 3., 4.])
 * `length`: 内存大小，单位为byte
 
 ## PaddleDType
+
 `PaddleDType`定义了`PaddleTensor`的类型，包括
+
 * `PaddleDType.INT64`: 64位整型
 * `PaddleDType.FLOAT32`: 32位浮点型
 
 ## AnalysisConfig
-`AnalysisConfig`是创建预测引擎的配置，主要包括以下方法
+
+`AnalysisConfig`是创建预测引擎的配置，主要包括以下方法  
+
 * `set_model`: 设置模型的路径
 * `model_dir`: 返回模型路径
 * `enable_use_gpu`: 设置GPU显存(单位M)和ID
@@ -42,7 +52,8 @@ float_buf = PaddleBuf([1., 2., 3., 4.])
 
 
 ## PaddlePredictor
-`PaddlePredictor`是运行预测的引擎，下面是创建和使用的说明
+
+`PaddlePredictor`是运行预测的引擎，下面是创建和使用的说明   
 
 ``` python
 # 创建预测引擎
@@ -75,14 +86,17 @@ results = predictor.run([x, y])
 **Python API 相关接口与 C++ API 完全对应，可以对照查阅**
 
 ## 完整使用示例
+
 下面是一个完整的resnet50预测示例
 
 下载[resnet50模型](http://paddle-inference-dist.bj.bcebos.com/resnet50_model.tar.gz)并解压，运行如下命令将会调用预测引擎
+
 ``` bash
 python resnet50_infer.py --model_dir model --prog_file model --params_file params --batch_size 2
 ```
 
 `resnet50_infer.py` 的内容是
+
 ``` python
 import argparse
 import numpy as np
