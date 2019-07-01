@@ -174,9 +174,9 @@ BuildStrategy配置选项
 补充：
   a. 关于 :code:`reduce_strategy` ，在 :code:`ParallelExecutor` 对于数据并行支持两种参数更新模式： :code:`AllReduce` 和 :code:`Reduce` 。在 :code:`AllReduce` 模式下，各个节点上计算得到梯度之后，调用 :code:`AllReduce` 操作，梯度在各个节点上聚合，然后各个节点分别进行参数更新。在 :code:`Reduce` 模式下，参数的更新操作被均匀的分配到各个节点上，即各个节点计算得到梯度之后，将梯度在指定的节点上进行 :code:`Reduce` ，然后在该节点上，最后将更新之后的参数Broadcast到其他节点。即：如果模型中有100个参数需要更新，训练时使用的是4个节点，在 :code:`AllReduce` 模式下，各个节点需要分别对这100个参数进行更新；在 :code:`Reduce` 模式下，各个节点需要分别对这25个参数进行更新，最后对更新的参数Broadcast到其他节点上.
   b. 关于 :code:`enable_backward_optimizer_op_deps` ，在多卡训练时，打开该选项可能会提升训练速度.
-  c. 关于 :code:`fuse_all_optimizer_ops` ，目前只支持SGD、Adam和Momentum算法，使用该选项时，参数的梯度不能是sparse类型.
-  d. 关于 :code:`fuse_all_reduce_ops` ，多GPU训练时，可以对 :code:`AllReduce` 操作进行融合，以减少 :code:`AllReduce` 的调用次数。默认情况下会将同一layer中参数的梯度的 :code:`AllReduce` 操作合并成一个，比如对于fluid.layers.fc中有Weight和Bias两个参数，打开该选项之后，原本需要两次 :code:`AllReduce` 操作，现在只用一次 :code:`AllReduce` 操作。为支持更大粒度的Fuse，Paddle提供了FLAGS_fuse_parameter_memory_size选项，用户可以指定Fuse AllReduce操作之后，每个 :code:`AllReduce` 操作的梯度字节数，比如每次 :code:`AllReduce` 调用传输64MB的梯度。目前不支持sparse参数梯度。
-  e. 关于 :code:`mkldnn_enabled_op_types` ，支持mkldnn库的Op有：transpose, sum, softmax, requantize, quantize, pool2d, lrn, gaussian_random, fc, dequantize,  :code:`conv2d_transpose` , conv2d, conv3d, concat, batch_norm, relu, tanh, sqrt, abs. 
+  c. 关于 :code:`fuse_all_optimizer_ops` ，目前只支持SGD、Adam和Momentum算法。**目前不支持sparse参数梯度**。
+  d. 关于 :code:`fuse_all_reduce_ops` ，多GPU训练时，可以对 :code:`AllReduce` 操作进行融合，以减少 :code:`AllReduce` 的调用次数。默认情况下会将同一layer中参数的梯度的 :code:`AllReduce` 操作合并成一个，比如对于fluid.layers.fc中有Weight和Bias两个参数，打开该选项之后，原本需要两次 :code:`AllReduce` 操作，现在只用一次 :code:`AllReduce` 操作。此外，为支持更大粒度的Fuse，Paddle提供了 :code:`FLAGS_fuse_parameter_memory_size` 选项，用户可以指定Fuse AllReduce操作之后，每个 :code:`AllReduce` 操作的梯度字节数，比如希望每次 :code:`AllReduce` 调用传输64MB的梯度，:code:`export FLAGS_fuse_parameter_memory_size=64` 。**目前不支持sparse参数梯度**。
+  e. 关于 :code:`mkldnn_enabled_op_types` ，支持mkldnn库的Op有：transpose, sum, softmax, requantize, quantize, pool2d, lrn, gaussian_random, fc, dequantize, conv2d_transpose, conv2d, conv3d, concat, batch_norm, relu, tanh, sqrt, abs. 
 
 3.3 ExecutionStrategy中的配置参数
 ^^^^^^^^^^^^^^^^
@@ -188,19 +188,19 @@ ExecutionStrategy配置选项
     :widths: 3, 3, 5, 5
 
     ":code:`num_iteration_per_drop_scope`", "INT", "1", "框架在运行过程中会产生一些临时变量，这些变量被放在local execution scope中。通常每经过一个batch就要清理一下local execution scope中的变量，但是由于GPU是异步设备，在清理local execution scope之前需要对所有的GPU调用一次同步操作，因此耗费的时间较长。为此我们在 :code:`execution_strategy` 中添加了 :code:`num_iteration_per_drop_scope` 选项。用户可以指定经过多少次迭代之后清理一次local execution scope."
-    ":code:`num_threads`",                  "INT", "对于CPU：2*dev_count；对于GPU：4*dev_count", ":code:`ParallelExecutor` 中根据Op之间的依赖关系确定Op的执行顺序的，即Op的输入都已经变为ready状态之后，该Op会被放到一个队列中，等待被执行。 :code:`ParallelExecutor` 内部有一个任务调度线程和一个线程池，任务调度线程从队列中取出所有Ready的Op，并将其放到线程队列中。 :code:`num_threads` 表示线程池的大小。注意：线程池不是越大越好."
+    ":code:`num_threads`",                  "INT", "对于CPU：2*dev_count；对于GPU：4*dev_count. （这是一个经验值）", ":code:`ParallelExecutor` 中根据Op之间的依赖关系确定Op的执行顺序的，即Op的输入都已经变为ready状态之后，该Op会被放到一个队列中，等待被执行。 :code:`ParallelExecutor` 内部有一个任务调度线程和一个线程池，任务调度线程从队列中取出所有Ready的Op，并将其放到线程队列中。 :code:`num_threads` 表示线程池的大小。注意：线程池不是越大越好."
 
 执行策略配置推荐
 >>>>>>>>>
 
-- 在显存足够的前提下，建议将exec_strategy.num_iteration_per_drop_scope设置成一个较大的值，比如设置exec_strategy.num_iteration_per_drop_scope=100，这样可以避免反复地申请和释放内存。该配置对小模型的优化效果非常明显。
-- 对于一些较小的模型，比如mnist、language_model等，多个线程乱序调度op的开销大于其收益，因此推荐设置exec_strategy.num_threads=1。
+- 在显存足够的前提下，建议将 :code:`exec_strategy.num_iteration_per_drop_scope` 设置成一个较大的值，比如设置 :code:`exec_strategy.num_iteration_per_drop_scope=100` ，这样可以避免反复地申请和释放内存。该配置对小模型的优化效果非常明显。
+- 对于一些较小的模型，比如mnist、language_model等，多个线程乱序调度op的开销大于其收益，因此推荐设置 :code:`exec_strategy.num_threads=1`  。
 
 
 运行时FLAGS设置
 >>>>>>>>>
 
-- FLAGS_fraction_of_gpu_memory_to_use表示每次分配GPU显存的最小单位，取值范围为0 ~ 1。由于CUDA原生的显存分配cuMalloc和释放cuFree操作均是同步操作，非常耗时，因此将FLAGS_fraction_of_gpu_memory_to_use设置成一个较大的值，比如0.92（默认值），可以显著地加速训练的速度。
+- FLAGS_fraction_of_gpu_memory_to_use表示每次分配GPU显存的最小单位，取值范围为[0, 1)。由于CUDA原生的显存分配cuMalloc和释放cuFree操作均是同步操作，非常耗时，因此将FLAGS_fraction_of_gpu_memory_to_use设置成一个较大的值，比如0.92（默认值），可以显著地加速训练的速度。
 - FLAGS_cudnn_exhaustive_search表示cuDNN在选取conv实现算法时采取穷举搜索策略，因此往往能选取到一个更快的conv实现算法，这对于CNN网络通常都是有加速的。但穷举搜索往往也会增加cuDNN的显存需求，因此用户可根据模型的实际情况选择是否设置该变量。
 - FLAGS_enable_cublas_tensor_op_math表示是否使用TensorCore加速计算cuBLAS。这个环境变量只在Tesla V100以及更新的GPU上适用，且可能会带来一定的精度损失。
 
