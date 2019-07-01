@@ -154,8 +154,8 @@ Release Notes
     * 增加已发布的模型骨干网络，Nonlocal模型增加ResNet101和I3d网络结构
     * 增加动作定位模型C-TCN，百度2018年ActivityNet比赛夺冠方案
 * PaddleNLP
-    * BERT on PaddlePaddle：支持动态混合精度训练，保证了预训练任务在混合精度训练模式下的精度；支持以多进程的方式进行多卡任务的训练，提高了多卡加速比；优化多机分布式训练的加速比，在 V100 GPU集群上将 6 机相对于单机的 FP32 训练加速效率提高至76%
-    * 发布PaddleNLP-Research，开源MRQA2019阅读理解竞赛Paddle Fluid基线、 DuConv (ACL2019) 等近期百度在 NLP 学术领域的工作
+    * ERNIE / BERT支持动态混合精度训练；支持以多进程的方式进行多卡任务的训练，提高了多卡加速比；优化多机多卡训练的加速比，在 V100 GPU集群上将 6 机相对于单机的 FP32 训练加速效率提高至76%
+    * 发布PaddleNLP-Research，开源MRQA2019阅读理解竞赛Paddle Fluid基线、 DuConv(ACL2019)、ARNOR(ACL2019)、MMPMS(IJCAI2019)、MPM(NAACL2019) 等近期百度在 NLP学术领域的工作
  
  
 工具组件
