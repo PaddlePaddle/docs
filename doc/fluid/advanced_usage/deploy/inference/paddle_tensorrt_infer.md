@@ -1,10 +1,11 @@
 # 使用Paddle-TensorRT库预测
 
-NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。PaddlePaddle 采用了子图的形式对TensorRT进行了集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNet, ResNet50, VGG19, ResNext, Se-ReNext, GoogleNet, DPN, ICNET, Deeplabv3, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
+NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习推理应用程序提供低延迟和高吞吐量。PaddlePaddle 采用了子图的形式对TensorRT进行了集成，即我们可以使用该模块来提升Paddle模型的预测性能。该模块依旧在持续开发中，目前已支持的模型有：AlexNet, MobileNetV1, ResNet50, VGG19, ResNext, Se-ReNext, GoogLeNet, DPN, ICNET, Deeplabv3, MobileNet-SSD等。在这篇文档中，我们将会对Paddle-TensorRT库的获取、使用和原理进行介绍。
 
 ## 内容
 - [编译Paddle-TRT预测库](#编译Paddle-TRT预测库)
 - [Paddle-TRT接口使用](#Paddle-TRT接口使用)
+- [Paddle-TRT参数介绍](#Paddle-TRT参数介绍)
 - [Paddle-TRT样例编译测试](#Paddle-TRT样例编译测试)
 - [Paddle-TRT INT8使用](#Paddle-TRT_INT8使用)
 - [Paddle-TRT子图运行原理](#Paddle-TRT子图运行原理)
@@ -36,10 +37,10 @@ TensorRT预测库目前仅支持使用GPU编译。
 	mkdir build
 	cd build
 	# TENSORRT_ROOT为TRT的路径，默认为 /usr，根据自己需求进行改动
-	# MKL 可以根据自己的需求自行打开
+	# MKLDNN 可以根据自己的需求自行打开
 	cmake .. \
 	      -DWITH_FLUID_ONLY=ON \
-	      -DWITH_MKL=OFF \
+	      -DWITH_MKL=ON \
 	      -DWITH_MKLDNN=OFF \
 	      -DCMAKE_BUILD_TYPE=Release \
 	      -DWITH_PYTHON=OFF   \
@@ -70,13 +71,11 @@ TensorRT预测库目前仅支持使用GPU编译。
 
 ## <a name="Paddle-TRT接口使用">Paddle-TRT接口使用</a>
 
-[`paddle_inference_api.h`]('https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/paddle_inference_api.h') 定义了使用TensorRT的所有接口。  
-
-总体上分为以下步骤：  
+Paddle-TRT预测使用总体上分为以下步骤：  
 1. 创建合适的配置AnalysisConfig.    
-2. 根据配合创建 `PaddlePredictor`.    
-3. 创建输入的tensor.   
-4. 获取输出的tensor，输出结果.   
+2. 根据配置创建 `PaddlePredictor`.    
+3. 创建输入tensor.   
+4. 获取输出tensor，输出结果.   
 
 以下的代码展示了完整的过程：
 
@@ -87,39 +86,43 @@ namespace paddle {
 using paddle::AnalysisConfig;
 
 void RunTensorRT(int batch_size, std::string model_dirname) {
-  // 1. 创建MixedRTConfig
+  // 1. 创建AnalysisConfig
   AnalysisConfig config(model_dirname);
   // config->SetModel(model_dirname + "/model",                                                                                             
-  //                     model_dirname + "/params");
-
-  config->EnableUseGpu(100, 0 /*gpu_id*/);
-  config->EnableTensorRtEngine(1 << 20 /*work_space_size*/, batch_size /*max_batch_size*/);
-
+  //                     model_dirname + "/params"); 
+  config->EnableUseGpu(10, 0 /*gpu_id*/);
+  // 我们在这里使用了 ZeroCopyTensor, 因此需要将此设置成false
+  config->SwitchUseFeedFetchOps(false);
+  config->EnableTensorRtEngine(1 << 20 /*work_space_size*/, batch_size /*max_batch_size*/, AnalysisConfig::Precision::kFloat32, false /*use_static*/);
+  
   // 2. 根据config 创建predictor
   auto predictor = CreatePaddlePredictor(config);
   // 3. 创建输入 tensor
+  int channels = 3;
   int height = 224;
   int width = 224;
-  float data[batch_size * 3 * height * width] = {0};
+  
+  float *input = new float[input_num];
+  memset(input, 0, input_num * sizeof(float));
 
-  PaddleTensor tensor;
-  tensor.shape = std::vector<int>({batch_size, 3, height, width});
-  tensor.data = PaddleBuf(static_cast<void *>(data),
-                          sizeof(float) * (batch_size * 3 * height * width));
-  tensor.dtype = PaddleDType::FLOAT32;
-  std::vector<PaddleTensor> paddle_tensor_feeds(1, tensor);
+  auto input_names = predictor->GetInputNames();
+  auto input_t = predictor->GetInputTensor(input_names[0]);
+  input_t->Reshape({batch_size, channels, height, width});
+  input_t->copy_from_cpu(input);
+  
+  // 4. 运行
+  predictor->ZeroCopyRun()
 
-  // 4. 创建输出 tensor
-  std::vector<PaddleTensor> outputs;
-  // 5. 预测
-  predictor->Run(paddle_tensor_feeds, &outputs, batch_size);
+  // 5. 获取输出
+  std::vector<float> out_data;
+  auto output_names = predictor->GetOutputNames();
+  auto output_t = predictor->GetOutputTensor(output_names[0]);
+  std::vector<int> output_shape = output_t->shape();
+  int out_num = std::accumulate(output_shape.begin(), output_shape.end(), 1, std::multiplies<int>());
 
-  const size_t num_elements = outputs.front().data.length() / sizeof(float);
-  auto *data = static_cast<float *>(outputs.front().data.data());
-  for (size_t i = 0; i < num_elements; i++) {
-    std::cout << "output: " << data[i] << std::endl;
-  }
-}
+  out_data.resize(out_num);
+  output_t->copy_to_cpu(out_data.data());
+ }
 }  // namespace paddle
 
 int main() {
@@ -129,11 +132,34 @@ int main() {
 }
 ```
 
+## <a name="Paddle-TRT参数介绍">Paddle-TRT参数介绍</a>
+
+在使用AnalysisPredictor时，我们通过配置   
+
+```c++
+config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,   
+                        batch_size        /*max_batch_size*/,     
+                        3                 /*min_subgraph_size*/, 
+                        AnalysisConfig::Precision::kFloat32 /*precision*/, 
+                        false             /*use_static*/, 
+                        false             /* use_calib_mode*/);
+```    
+的方式来指定使用Paddle-TRT子图方式来运行。以下我们将对此接口中的参数进行详细的介绍：
+
+- **`workspace_size`**，类型：int，默认值为`1 << 20`。
+- **`max_batch_size`**，类型：int，默认值1。需要提前设置最大的batch的大小，运行时batch数目不得超过此大小。
+- **`min_subgraph_size`**，类型：int，默认值3。Paddle-TRT是以子图的形式运行，为了避免性能损失，当子图内部节点个数大于`min_subgraph_size`的时候，才会使用Paddle-TRT运行。
+- **`precision`**，类型：`enum class Precision {kFloat32 = 0, kInt8,};`, 默认值为`AnalysisConfig::Precision::kFloat32`。如果需要使用Paddle-TRT calib int8的时候，需要指定precision为 `AnalysisConfig::Precision::kInt8`, 且`use_calib_mode` 为true
+- **`use_static`**，类型：bool, 默认值为false。如果指定为true，在初次运行程序的时候会将TRT的优化信息进行序列化，下次运行的时候直接加载优化的序列化信息而不需要重新生成。
+- **`use_calib_mode`**，类型：bool, 默认值为false。如果需要运行Paddle-TRT calib int8的时候，需要将此设置为true。
+ 
+**Note：** Paddle-TRT目前只支持固定shape的输入，不支持变化shape的输入。
+
 ## <a name="Paddle-TRT样例编译测试">Paddle-TRT样例编译测试</a>
 
 1. 下载样例   
 	```
-	wget http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/paddle_trt_samples.tar.gz
+	https://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/paddle_trt_samples_v1.5.tar.gz
 	```
 
 	解压后的目录如下：
@@ -185,8 +211,9 @@ int main() {
 	sh run_impl.sh BASE_DIR/fluid_inference_install_dir/  fluid_generate_calib_test SAMPLE_BASE_DIR/sample/mobilenetv1
 
 	```
-	运行结束后，在 `SAMPLE_BASE_DIR/sample/build/mobilenetv1` 模型目录下会多出一个名字为trt_calib_*的文件，即校准表。
 
+	运行结束后，在 `SAMPLE_BASE_DIR/sample/build/mobilenetv1/_opt_cache` 模型目录下会多出一个名字为trt_calib_*的文件，即校准表。
+	
 	``` shell
 	# 执行INT8预测
 	# 将带校准表的模型文件拷贝到特定地址

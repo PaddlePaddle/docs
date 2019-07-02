@@ -19,11 +19,12 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 ..  code-block:: python
 
-	place = fluid.CPUPlace()
-	img = fluid.layers.data(name='image', shape=[1, 28, 28])
-	label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-	feeder = fluid.DataFeeder([img, label], fluid.CPUPlace())
-	result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
+    import paddle.fluid as fluid
+    place = fluid.CPUPlace()
+    img = fluid.layers.data(name='image', shape=[1, 28, 28])
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    feeder = fluid.DataFeeder([img, label], fluid.CPUPlace())
+    result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
 
 
 如果您想在使用多个GPU训练模型时预先将数据单独输入GPU端，可以使用decorate_reader函数。
@@ -33,10 +34,16 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 ..  code-block:: python
 
-	place=fluid.CUDAPlace(0)
-	feeder = fluid.DataFeeder(place=place, feed_list=[data, label])
-	reader = feeder.decorate_reader(
-	    paddle.batch(flowers.train(), batch_size=16))
+    import paddle
+    import paddle.fluid as fluid
+    
+    place=fluid.CUDAPlace(0)
+    data = fluid.layers.data(name='data', shape=[3, 224, 224], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    feeder = fluid.DataFeeder(place=place, feed_list=[data, label])
+    reader = feeder.decorate_reader(
+        paddle.batch(paddle.dataset.flowers.train(), batch_size=16), multi_devices=False)
 
 
 参数：
@@ -44,23 +51,39 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
     - **place**  (Place) – place表示将数据输入CPU或GPU，如果要将数据输入GPU，请使用fluid.CUDAPlace(i)（i表示GPU的ID），如果要将数据输入CPU，请使用fluid.CPUPlace()。
     - **program**  (Program) –将数据输入的Program，如果Program为None，它将使用default_main_program() 。默认值None。
 
-抛出异常： 	``ValueError`` – 如果某些变量未在Program中出现
+抛出异常：     ``ValueError`` – 如果某些变量未在Program中出现
 
 
 **代码示例**
 
 ..  code-block:: python
 
-	# ...
-	place = fluid.CPUPlace()
-	feed_list = [
-	    main_program.global_block().var(var_name) for var_name in feed_vars_name
-	] # feed_vars_name is a list of variables' name.
-	feeder = fluid.DataFeeder(feed_list, place)
-	for data in reader():
-	    outs = exe.run(program=main_program,
-	                   feed=feeder.feed(data))
+    import numpy as np
+    import paddle
+    import paddle.fluid as fluid
 
+    place = fluid.CPUPlace()
+
+    def reader():
+        yield [np.random.random([4]).astype('float32'), np.random.random([3]).astype('float32')],
+
+    main_program = fluid.Program()
+    startup_program = fluid.Program()
+
+    with fluid.program_guard(main_program, startup_program):
+        data_1 = fluid.layers.data(name='data_1', shape=[1, 2, 2])
+        data_2 = fluid.layers.data(name='data_2', shape=[1, 1, 3])
+        out = fluid.layers.fc(input=[data_1, data_2], size=2)
+        # ...
+
+    feeder = fluid.DataFeeder([data_1, data_2], place)
+
+    exe = fluid.Executor(place)
+    exe.run(startup_program)
+    for data in reader():
+        outs = exe.run(program=main_program,
+                       feed=feeder.feed(data),
+                       fetch_list=[out])
 
 
 .. py:method::  feed(iterable)
@@ -73,6 +96,24 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 返回： 转换结果
 
 返回类型： dict
+
+**代码示例**
+
+..  code-block:: python
+
+        import numpy.random as random
+        import paddle.fluid as fluid
+        
+        def reader(limit=5):
+            for i in range(limit):
+                    yield random.random([784]).astype('float32'), random.random([1]).astype('int64'), random.random([256]).astype('float32')
+        
+        data_1 = fluid.layers.data(name='data_1', shape=[1, 28, 28])
+        data_2 = fluid.layers.data(name='data_2', shape=[1], dtype='int64')
+        data_3 = fluid.layers.data(name='data_3', shape=[16, 16], dtype='float32')
+        feeder = fluid.DataFeeder(['data_1','data_2', 'data_3'], fluid.CPUPlace())
+        
+        result = feeder.feed(reader())
 
 
 
@@ -92,7 +133,35 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 .. note::
 
-	设备数量和mini-batches数量必须一致。
+    设备数量和mini-batches数量必须一致。
+
+**代码示例**
+
+..  code-block:: python
+
+        import numpy.random as random
+        import paddle.fluid as fluid
+        
+        def reader(limit=10):
+            for i in range(limit):
+                yield [random.random([784]).astype('float32'), random.randint(10)],
+        
+        x = fluid.layers.data(name='x', shape=[1, 28, 28])
+        y = fluid.layers.data(name='y', shape=[1], dtype='int64')
+        
+        feeder = fluid.DataFeeder(['x','y'], fluid.CPUPlace())
+        place_num = 2
+        places = [fluid.CPUPlace() for x in range(place_num)]
+        data = []
+        exe = fluid.Executor(fluid.CPUPlace())
+        exe.run(fluid.default_startup_program())
+        program = fluid.CompiledProgram(fluid.default_main_program()).with_data_parallel(places=places)
+        for item in reader():
+            data.append(item)
+            if place_num == len(data):
+                exe.run(program=program, feed=list(feeder.feed_parallel(data, place_num)), fetch_list=[])
+                data = []
+
 
 .. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
@@ -108,7 +177,32 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 返回类型： dict
 
-抛出异常： 	``ValueError`` – 如果drop_last为False并且数据batch和设备数目不匹配。
+抛出异常：     ``ValueError`` – 如果drop_last为False并且数据batch和设备数目不匹配。
+
+**代码示例**
+
+..  code-block:: python
+
+        import numpy.random as random
+        import paddle
+        import paddle.fluid as fluid
+        
+        def reader(limit=5):
+            for i in range(limit):
+                yield (random.random([784]).astype('float32'), random.random([1]).astype('int64')),
+        
+        place=fluid.CUDAPlace(0)
+        data = fluid.layers.data(name='data', shape=[1, 28, 28], dtype='float32')
+        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+        
+        feeder = fluid.DataFeeder(place=place, feed_list=[data, label])
+        reader = feeder.decorate_reader(reader, multi_devices=False)
+        
+        exe = fluid.Executor(place)
+        exe.run(fluid.default_startup_program())
+        for data in reader():
+            exe.run(feed=data)
+
 
 
 .. _cn_api_paddle_data_reader_reader:
@@ -118,10 +212,10 @@ Reader
 
 在训练和测试时，PaddlePaddle需要读取数据。为了简化用户编写数据读取代码的工作，我们定义了
 
-	- reader是一个读取数据（从文件、网络、随机数生成器等）并生成数据项的函数。
-	- reader creator是返回reader函数的函数。
-	- reader decorator是一个函数，它接受一个或多个reader，并返回一个reader。
-	- batch reader是一个函数，它读取数据（从reader、文件、网络、随机数生成器等）并生成一批数据项。
+    - reader是一个读取数据（从文件、网络、随机数生成器等）并生成数据项的函数。
+    - reader creator是返回reader函数的函数。
+    - reader decorator是一个函数，它接受一个或多个reader，并返回一个reader。
+    - batch reader是一个函数，它读取数据（从reader、文件、网络、随机数生成器等）并生成一批数据项。
 
 
 Data Reader Interface
@@ -131,7 +225,7 @@ Data Reader Interface
 
 ..  code-block:: python
 
-	iterable = data_reader()
+    iterable = data_reader()
 
 从iterable生成的元素应该是单个数据条目，而不是mini batch。数据输入可以是单个项目，也可以是项目的元组，但应为 :ref:`user_guide_paddle_support_data_types` （如, numpy 1d array of float32, int, list of int）
 
@@ -140,22 +234,22 @@ Data Reader Interface
 
 ..  code-block:: python
 
-	def reader_creator_random_image(width, height):
-	    def reader():
-	        while True:
-	            yield numpy.random.uniform(-1, 1, size=width*height)
-	return reader
+    def reader_creator_random_image(width, height):
+        def reader():
+            while True:
+                yield numpy.random.uniform(-1, 1, size=width*height)
+    return reader
 
 
 多项目数据读取器创建者的示例实现：
 
 ..  code-block:: python
 
-	def reader_creator_random_image_and_label(width, height, label):
-	    def reader():
-	        while True:
-	            yield numpy.random.uniform(-1, 1, size=width*height), label
-	return reader
+    def reader_creator_random_image_and_label(width, height, label):
+        def reader():
+            while True:
+                yield numpy.random.uniform(-1, 1, size=width*height), label
+    return reader
 
 .. py:function::   paddle.reader.map_readers(func, *readers)
 
@@ -198,7 +292,7 @@ Data Reader Interface
 
 返回：新的数据读取器
 
-抛出异常： 	``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。
+抛出异常：     ``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。
 
 
 
@@ -274,32 +368,32 @@ PipeReader通过流从一个命令中读取数据，将它的stdout放到管道�
 
 ..  code-block:: python
 
-	def example_reader():
-	    for f in myfiles:
-	        pr = PipeReader("cat %s"%f)
-	        for l in pr.get_line():
-	            sample = l.split(" ")
-	            yield sample
+    def example_reader():
+        for f in myfiles:
+            pr = PipeReader("cat %s"%f)
+            for l in pr.get_line():
+                sample = l.split(" ")
+                yield sample
 
 
 .. py:method:: get_line(cut_lines=True, line_break='\n')
 
 param cut_lines:
- 	cut buffer to lines
+     cut buffer to lines
 
-type cut_lines:	bool
+type cut_lines:    bool
 
 param line_break:
- 	line break of the file, like
+     line break of the file, like
 
 or
 
 type line_break:
- 	string
+     string
 
-return:	one line or a buffer of bytes
+return:    one line or a buffer of bytes
 
-rtype:	string
+rtype:    string
 
 
 
@@ -315,11 +409,11 @@ multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
 ..  code-block:: python
 
-	reader0 = reader(["file01", "file02"])
-	reader1 = reader(["file11", "file12"])
-	reader1 = reader(["file21", "file22"])
-	reader = multiprocess_reader([reader0, reader1, reader2],
-	    queue_size=100, use_pipe=False)
+    reader0 = reader(["file01", "file02"])
+    reader1 = reader(["file11", "file12"])
+    reader1 = reader(["file21", "file22"])
+    reader = multiprocess_reader([reader0, reader1, reader2],
+        queue_size=100, use_pipe=False)
 
 
 
@@ -338,11 +432,11 @@ Fakereader将缓存它读取的第一个数据，并将其输出data_num次。�
 
 ..  code-block:: python
 
-	def reader():
-	    for i in range(10):
-	        yield i
+    def reader():
+        for i in range(10):
+            yield i
 
-	fake_reader = Fake()(reader, 100)
+    fake_reader = Fake()(reader, 100)
 
 
 Creator包包含一些简单的reader creator，可以在用户Program中使用。
@@ -374,4 +468,4 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 
 路径：recordio文件的路径，可以是字符串或字符串列表。
 
-返回： recordio文件的数据读取器
+返回：recordio文件的数据读取器

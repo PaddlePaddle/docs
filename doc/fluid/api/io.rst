@@ -44,6 +44,7 @@ PyReader
 
 ..  autoclass:: paddle.fluid.io.PyReader
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_io_save_inference_model:

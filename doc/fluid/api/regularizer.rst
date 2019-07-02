@@ -12,6 +12,7 @@ L1Decay
 
 ..  autoclass:: paddle.fluid.regularizer.L1Decay
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_regularizer_L1DecayRegularizer:
@@ -21,6 +22,7 @@ L1DecayRegularizer
 
 ..  autoclass:: paddle.fluid.regularizer.L1DecayRegularizer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_regularizer_L2Decay:
@@ -30,6 +32,7 @@ L2Decay
 
 ..  autoclass:: paddle.fluid.regularizer.L2Decay
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_regularizer_L2DecayRegularizer:
@@ -39,5 +42,6 @@ L2DecayRegularizer
 
 ..  autoclass:: paddle.fluid.regularizer.L2DecayRegularizer
     :members:
+    :inherited-members:
     :noindex:
 
