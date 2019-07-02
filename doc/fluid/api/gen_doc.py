@@ -90,11 +90,11 @@ class DocGenerator(object):
         self._print_ref_(name)
         self._print_header_(name, dot='-', is_title=False)
         if "fluid.dygraph" in self.module_prefix:
-            self.stream.write('''..  autoclass:: paddle.{0}.{1}
-                    :members:
-                    :noindex:
-                    
-                '''.format(self.module_prefix, name))
+            self.stream.write('''..  autoclass:: paddle.{0}.{1}:
+        :members:
+        :noindex:
+    
+    '''.format(self.module_prefix, name))
         else:
             self.stream.write('''..  autoclass:: paddle.{0}.{1}
         :members:

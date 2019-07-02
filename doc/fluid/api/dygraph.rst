@@ -10,83 +10,83 @@ fluid.dygraph
 BackwardStrategy
 ----------------
 
-..  autoclass:: paddle.fluid.dygraph.BackwardStrategy
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.BackwardStrategy:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_BatchNorm:
+    .. _api_fluid_dygraph_BatchNorm:
 
 BatchNorm
 ---------
 
-..  autoclass:: paddle.fluid.dygraph.BatchNorm
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.BatchNorm:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_BilinearTensorProduct:
+    .. _api_fluid_dygraph_BilinearTensorProduct:
 
 BilinearTensorProduct
 ---------------------
 
-..  autoclass:: paddle.fluid.dygraph.BilinearTensorProduct
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.BilinearTensorProduct:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_Conv2D:
+    .. _api_fluid_dygraph_Conv2D:
 
 Conv2D
 ------
 
-..  autoclass:: paddle.fluid.dygraph.Conv2D
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Conv2D:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_Conv2DTranspose:
+    .. _api_fluid_dygraph_Conv2DTranspose:
 
 Conv2DTranspose
 ---------------
 
-..  autoclass:: paddle.fluid.dygraph.Conv2DTranspose
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Conv2DTranspose:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_Conv3D:
+    .. _api_fluid_dygraph_Conv3D:
 
 Conv3D
 ------
 
-..  autoclass:: paddle.fluid.dygraph.Conv3D
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Conv3D:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_Conv3DTranspose:
+    .. _api_fluid_dygraph_Conv3DTranspose:
 
 Conv3DTranspose
 ---------------
 
-..  autoclass:: paddle.fluid.dygraph.Conv3DTranspose
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Conv3DTranspose:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_CosineDecay:
+    .. _api_fluid_dygraph_CosineDecay:
 
 CosineDecay
 -----------
 
-..  autoclass:: paddle.fluid.dygraph.CosineDecay
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.CosineDecay:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_Embedding:
+    .. _api_fluid_dygraph_Embedding:
 
 Embedding
 ---------
 
-..  autoclass:: paddle.fluid.dygraph.Embedding
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Embedding:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_enabled:
+    .. _api_fluid_dygraph_enabled:
 
 enabled
 -------
@@ -99,38 +99,38 @@ enabled
 ExponentialDecay
 ----------------
 
-..  autoclass:: paddle.fluid.dygraph.ExponentialDecay
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.ExponentialDecay:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_FC:
+    .. _api_fluid_dygraph_FC:
 
 FC
 --
 
-..  autoclass:: paddle.fluid.dygraph.FC
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.FC:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_GroupNorm:
+    .. _api_fluid_dygraph_GroupNorm:
 
 GroupNorm
 ---------
 
-..  autoclass:: paddle.fluid.dygraph.GroupNorm
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.GroupNorm:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_GRUUnit:
+    .. _api_fluid_dygraph_GRUUnit:
 
 GRUUnit
 -------
 
-..  autoclass:: paddle.fluid.dygraph.GRUUnit
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.GRUUnit:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_guard:
+    .. _api_fluid_dygraph_guard:
 
 guard
 -----
@@ -143,29 +143,29 @@ guard
 InverseTimeDecay
 ----------------
 
-..  autoclass:: paddle.fluid.dygraph.InverseTimeDecay
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.InverseTimeDecay:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_Layer:
+    .. _api_fluid_dygraph_Layer:
 
 Layer
 -----
 
-..  autoclass:: paddle.fluid.dygraph.Layer
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Layer:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_LayerNorm:
+    .. _api_fluid_dygraph_LayerNorm:
 
 LayerNorm
 ---------
 
-..  autoclass:: paddle.fluid.dygraph.LayerNorm
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.LayerNorm:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_load_persistables:
+    .. _api_fluid_dygraph_load_persistables:
 
 load_persistables
 -----------------
@@ -178,20 +178,20 @@ load_persistables
 NaturalExpDecay
 ---------------
 
-..  autoclass:: paddle.fluid.dygraph.NaturalExpDecay
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.NaturalExpDecay:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_NCE:
+    .. _api_fluid_dygraph_NCE:
 
 NCE
 ---
 
-..  autoclass:: paddle.fluid.dygraph.NCE
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.NCE:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_no_grad:
+    .. _api_fluid_dygraph_no_grad:
 
 no_grad
 -------
@@ -204,11 +204,11 @@ no_grad
 NoamDecay
 ---------
 
-..  autoclass:: paddle.fluid.dygraph.NoamDecay
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.NoamDecay:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_not_support:
+    .. _api_fluid_dygraph_not_support:
 
 not_support
 -----------
@@ -221,38 +221,38 @@ not_support
 PiecewiseDecay
 --------------
 
-..  autoclass:: paddle.fluid.dygraph.PiecewiseDecay
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.PiecewiseDecay:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_PolynomialDecay:
+    .. _api_fluid_dygraph_PolynomialDecay:
 
 PolynomialDecay
 ---------------
 
-..  autoclass:: paddle.fluid.dygraph.PolynomialDecay
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.PolynomialDecay:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_Pool2D:
+    .. _api_fluid_dygraph_Pool2D:
 
 Pool2D
 ------
 
-..  autoclass:: paddle.fluid.dygraph.Pool2D
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Pool2D:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_PRelu:
+    .. _api_fluid_dygraph_PRelu:
 
 PRelu
 -----
 
-..  autoclass:: paddle.fluid.dygraph.PRelu
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.PRelu:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_prepare_context:
+    .. _api_fluid_dygraph_prepare_context:
 
 prepare_context
 ---------------
@@ -273,11 +273,11 @@ save_persistables
 SpectralNorm
 ------------
 
-..  autoclass:: paddle.fluid.dygraph.SpectralNorm
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.SpectralNorm:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_start_gperf_profiler:
+    .. _api_fluid_dygraph_start_gperf_profiler:
 
 start_gperf_profiler
 --------------------
@@ -306,16 +306,17 @@ to_variable
 Tracer
 ------
 
-..  autoclass:: paddle.fluid.dygraph.Tracer
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.Tracer:
+        :members:
+        :noindex:
 
-                .. _api_fluid_dygraph_TreeConv:
+    .. _api_fluid_dygraph_TreeConv:
 
 TreeConv
 --------
 
-..  autoclass:: paddle.fluid.dygraph.TreeConv
-                    :members:
-                    :noindex:
+..  autoclass:: paddle.fluid.dygraph.TreeConv:
+        :members:
+        :noindex:
 
+    
