@@ -9,7 +9,7 @@ Fleet是PaddlePaddle分布式训练的高级API。Fleet的命名出自于PaddleP
 
 快速上手示例
 ------------------------------
-用户可以使用Fleet API轻易实现GPU多卡训练（单机多卡/多机多卡）。多卡训练在现代AI模型中非常常见，例如[Resnet50][Bert]等都是非常常见的需要多机多卡训练的模型。下面的代码示例，以一个简单的例子入手展示如何使用Fleet API进行单机多卡训练。代码示例可以参考：[quick-start]
+用户可以使用Fleet API轻易实现GPU多卡训练（单机多卡/多机多卡）。多卡训练在现代AI模型中非常常见，例如Resnet50、Bert等都是非常常见的需要多机多卡训练的模型。下面的代码示例，以一个简单的例子入手展示如何使用Fleet API进行单机多卡训练。代码示例可以参考：[quick-start]
 
 神经网络模型的定义如下：
 
@@ -47,7 +47,6 @@ Fleet是PaddlePaddle分布式训练的高级API。Fleet的命名出自于PaddleP
        exe.run(feed=gen_data())
 
 
-If you want to use high performance chip to do distributed training, such as distributed GPU training, **Fleet API** will help you by adding less than 10 lines of code, source code of this example is in examples/quick-start/collective_trainer.py
 如果用户想使用高性能芯片，例如GPU多卡进行训练，使用**Fleet API**可以在增加少量代码的情况下实现。
 
 .. code-block:: python
