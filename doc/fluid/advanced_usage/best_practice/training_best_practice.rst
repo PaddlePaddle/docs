@@ -72,7 +72,6 @@ Paddle提供一些粗粒度的API，这些API融合了多个细粒度API的计�
 
 Fluid提供了两种数据读取方式：**同步数据读取** 和 **异步数据读取**，详情请参考文档 `如何准备数据 <http://paddlepaddle.org/documentation/docs/zh/1.5/user_guides/howto/prepare_data/index_cn.html>`_ 。
 
-
 2.1.1 同步数据读取
 >>>>>>>>>>>>>>>
 
@@ -89,12 +88,12 @@ Fluid提供了两种数据读取方式：**同步数据读取** 和 **异步数�
         batch_time = time.time() - end
         end = time.time()
 
-用户通过调用自己编写的reader函数，reader每次输出一个batch的数据，并将数据传递给执行器。因此数据准备和执行是顺序进行的，用户可通过加入Python计时函数 :code`time.time()` 来统计数据准备部分和执行部分所占用的时间。
+用户通过调用自己编写的reader函数，reader每次输出一个batch的数据，并将数据传递给执行器。因此数据准备和执行是顺序进行的，用户可通过加入Python计时函数 time.time() 来统计数据准备部分和执行部分所占用的时间。
 
 2.1.2 异步数据读取
 >>>>>>>>>>>>>>>
 
-Paddle里面使用 :code`py_reader` 接口来实现异步数据读取，代码示例如下：
+Paddle里面使用py_reader接口来实现异步数据读取，代码示例如下：
 
 .. code-block:: python
 
@@ -144,7 +143,7 @@ Paddle里面使用 :code`py_reader` 接口来实现异步数据读取，代码�
 
 为了更好的分析模型， :code:`ParallelExecutor` 内部首先会将输入的 :code:`Program` 转为SSA Graph，然后根据 :code:`build_strategy` 中的配置，通过一系列的Pass对Graph进行优化，比如：memory optimize，operator fuse等优化。最后根据 :code:`execution_strategy` 中的配置执行训练任务。
 
-此外， :code:`ParallelExecutor` 支持数据并行，即单进程多卡和多进程多卡，关于 :code:`ParallelExecutor` 的具体介绍请参考 `文档 <http://www.paddlepaddle.org/documentation/docs/en/1.5/api_guides/low_level/parallel_executor_en.html>`_ .
+此外， :code:`ParallelExecutor` 支持数据并行，即单进程多卡和多进程多卡，关于 :code:`ParallelExecutor` 的具体介绍请参考 `文档 <http://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_guides/low_level/parallel_executor.html>`_ 。
 
 为了统一 :code:`ParallelExecutor` 接口和 :code:`Executor` 接口，Paddle提供了 :code:`fluid.compiler.CompiledProgram` 接口，在数据并行模式下，该接口底层调用的是 :code:`ParallelExecutor` 。
 
@@ -167,8 +166,8 @@ BuildStrategy配置选项
 
 说明：
  - 关于 :code:`reduce_strategy` ，在 :code:`ParallelExecutor` 对于数据并行支持两种参数更新模式： :code:`AllReduce` 和 :code:`Reduce` 。在 :code:`AllReduce` 模式下，各个节点上计算得到梯度之后，调用 :code:`AllReduce` 操作，梯度在各个节点上聚合，然后各个节点分别进行参数更新。在 :code:`Reduce` 模式下，参数的更新操作被均匀的分配到各个节点上，即各个节点计算得到梯度之后，将梯度在指定的节点上进行 :code:`Reduce` ，然后在该节点上，最后将更新之后的参数Broadcast到其他节点。即：如果模型中有100个参数需要更新，训练时使用的是4个节点，在 :code:`AllReduce` 模式下，各个节点需要分别对这100个参数进行更新；在 :code:`Reduce` 模式下，各个节点需要分别对这25个参数进行更新，最后将更新的参数Broadcast到其他节点上.
- - 关于 :code:`enable_backward_optimizer_op_deps` ，在多卡训练时，打开该选项可能会提升训练速度.
- - 关于 :code:`fuse_all_optimizer_ops` ，目前只支持SGD、Adam和Momentum算法。**注意：目前不支持sparse参数梯度**。
+ - 关于 :code:`enable_backward_optimizer_op_deps` ，在多卡训练时，打开该选项可能会提升训练速度。
+ - 关于 :code:`fuse_all_optimizer_ops` ，目前只支持SGD、Adam和Momentum算法。**注意：目前不支持sparse参数梯度** 。
  - 关于 :code:`fuse_all_reduce_ops` ，多GPU训练时，可以对 :code:`AllReduce` 操作进行融合，以减少 :code:`AllReduce` 的调用次数。默认情况下会将同一layer中参数的梯度的 :code:`AllReduce` 操作合并成一个，比如对于 :code:`fluid.layers.fc` 中有Weight和Bias两个参数，打开该选项之后，原本需要两次 :code:`AllReduce` 操作，现在只用一次 :code:`AllReduce` 操作。此外，为支持更大粒度的参数梯度融合，Paddle提供了 :code:`FLAGS_fuse_parameter_memory_size` 选项，用户可以指定融合AllReduce操作之后，每个 :code:`AllReduce` 操作的梯度字节数，比如希望每次 :code:`AllReduce` 调用传输64MB的梯度，:code:`export FLAGS_fuse_parameter_memory_size=64` 。**注意：目前不支持sparse参数梯度**。
  - 关于 :code:`mkldnn_enabled_op_types` ，支持mkldnn库的Op有：transpose, sum, softmax, requantize, quantize, pool2d, lrn, gaussian_random, fc, dequantize, conv2d_transpose, conv2d, conv3d, concat, batch_norm, relu, tanh, sqrt, abs. 
 
@@ -181,12 +180,12 @@ ExecutionStrategy配置选项
     :header: "选项", "类型", "默认值", "说明"
     :widths: 3, 3, 5, 5
 
-    ":code:`num_iteration_per_drop_scope`", "INT", "1", "经过多少次迭代之后清理一次local execution scope."
+    ":code:`num_iteration_per_drop_scope`", "INT", "1", "经过多少次迭代之后清理一次local execution scope"
     ":code:`num_threads`",                  "INT", "对于CPU：2*dev_count；对于GPU：4*dev_count. （这是一个经验值）", ":code:`ParallelExecutor` 中执行所有Op使用的线程池大小"
 
 说明：
  - 关于 :code:`num_iteration_per_drop_scope` ，框架在运行过程中会产生一些临时变量，这些变量被放在local execution scope中。通常每经过一个batch就要清理一下local execution scope中的变量，但是由于GPU是异步设备，在清理local execution scope之前需要对所有的GPU调用一次同步操作，因此耗费的时间较长。为此我们在 :code:`execution_strategy` 中添加了 :code:`num_iteration_per_drop_scope` 选项。用户可以指定经过多少次迭代之后清理一次local execution scope。
- - 关于 :code:`num_threads` ，":code:`ParallelExecutor` 根据Op之间的依赖关系确定Op的执行顺序，即：当Op的输入都已经变为ready状态之后，该Op会被放到一个队列中，等待被执行。 :code:`ParallelExecutor` 内部有一个任务调度线程和一个线程池，任务调度线程从队列中取出所有Ready的Op，并将其放到线程队列中。 :code:`num_threads` 表示线程池的大小。根据以往的经验，对于CPU任务，:code:`num_threads=2*dev_count` 时性能较好，对于GPU任务，:code:`num_threads=4*dev_count` 时性能较好。**注意：线程池不是越大越好**。
+ - 关于 :code:`num_threads` ，:code:`ParallelExecutor` 根据Op之间的依赖关系确定Op的执行顺序，即：当Op的输入都已经变为ready状态之后，该Op会被放到一个队列中，等待被执行。 :code:`ParallelExecutor` 内部有一个任务调度线程和一个线程池，任务调度线程从队列中取出所有Ready的Op，并将其放到线程队列中。 :code:`num_threads` 表示线程池的大小。根据以往的经验，对于CPU任务，:code:`num_threads=2*dev_count` 时性能较好，对于GPU任务，:code:`num_threads=4*dev_count` 时性能较好。**注意：线程池不是越大越好**。
 
 执行策略配置推荐
 >>>>>>>>>>>>>>>
@@ -202,7 +201,7 @@ CPU训练设置
 
 4. 运行时FLAGS设置
 =============
-Fluid中有一些FLAGS可以有助于性能优化
+Fluid中有一些FLAGS可以有助于性能优化：
 
 - FLAGS_fraction_of_gpu_memory_to_use表示每次分配GPU显存的最小单位，取值范围为[0, 1)。由于CUDA原生的显存分配cuMalloc和释放cuFree操作均是同步操作，非常耗时，因此将FLAGS_fraction_of_gpu_memory_to_use设置成一个较大的值，比如0.92（默认值），可以显著地加速训练的速度。
 - FLAGS_cudnn_exhaustive_search表示cuDNN在选取conv实现算法时采取穷举搜索策略，因此往往能选取到一个更快的conv实现算法，这对于CNN网络通常都是有加速的。但穷举搜索往往也会增加cuDNN的显存需求，因此用户可根据模型的实际情况选择是否设置该变量。
