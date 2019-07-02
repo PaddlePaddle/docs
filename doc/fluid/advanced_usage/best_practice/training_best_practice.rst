@@ -7,7 +7,7 @@
 开始优化您的单机训练任务
 -------------------------
 
-PaddlePaddle Fluid可以支持在现代CPU、GPU平台上进行训练。如果您发现Fluid在进行单机训练的速度较慢，您可以根据这篇文档的建议对您的Fluid程序进行优化。
+PaddlePaddle Fluid可以支持在现代CPU、GPU平台上进行训练。如果您发现Fluid进行单机训练的速度较慢，您可以根据这篇文档的建议对您的Fluid程序进行优化。
 
 神经网络训练代码通常由三个步骤组成：网络构建、数据准备、模型训练。这篇文档将分别从这三个方向介绍Fluid训练中常用的优化方法。
 
@@ -39,7 +39,7 @@ PaddlePaddle Fluid可以支持在现代CPU、GPU平台上进行训练。如果�
 
 在 :code:`use_cudnn=True` 时，框架底层调用的是cuDNN中的卷积操作。
 
-通常cuDNN库提供的操作具体很好的性能表现，其性能明显优于Paddle原生的CUDA实现，比如 :code:`conv2d` 。但是cuDNN中有些操作的性能较差，比如： :code:`conv2d_transpose` 在 :code:`batch_size=1` 时、:code:`pool2d` 在 :code:`global_pooling=True` 时等，这些情况下，cuDNN实现的性能差于Paddle的CUDA实现，建议手动设置 :code:`use_cudnn=False` 。
+通常cuDNN库提供的操作具有很好的性能表现，其性能明显优于Paddle原生的CUDA实现，比如 :code:`conv2d` 。但是cuDNN中有些操作的性能较差，比如： :code:`conv2d_transpose` 在 :code:`batch_size=1` 时、:code:`pool2d` 在 :code:`global_pooling=True` 时等，这些情况下，cuDNN实现的性能差于Paddle的CUDA实现，建议手动设置 :code:`use_cudnn=False` 。
 
 1.2 使用融合功能的API
 ^^^^^^^^^^^^^^^^
@@ -120,7 +120,7 @@ Paddle里面使用 :code`py_reader` 接口来实现异步数据读取，代码�
 2.2 优化数据准备速度的方法
 ^^^^^^^^^^^^^^^^
 
-- 为降低训练的整体时间，建议用户使用异步数据读取的方式，并开启use_double_buffer。此外，用户可根据模型的实际情况设置数据队列的大小。
+- 为降低训练的整体时间，建议用户使用异步数据读取的方式，并开启 :code:`use_double_buffer` 。此外，用户可根据模型的实际情况设置数据队列的大小。
 - 如果数据准备的时间大于模型执行的时间，或者出现了数据队列为空的情况，这时候需要考虑对Python的用户reader进行加速。常用的方法为：**使用Python多进程准备数据**。一个简单的使用多进程准备数据的示例，请参考 `YOLOv3 <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/yolov3/reader.py>`_ 。
 - Python端的数据预处理，都是使用CPU完成。如果Paddle提供了相应功能的API，可将这部分预处理功能写到模型配置中，如此Paddle就可以使用GPU来完成该预处理功能，这样也可以减轻CPU预处理数据的负担，提升总体训练速度。
 
@@ -144,7 +144,7 @@ Paddle里面使用 :code`py_reader` 接口来实现异步数据读取，代码�
 
 为了更好的分析模型， :code:`ParallelExecutor` 内部首先会将输入的 :code:`Program` 转为SSA Graph，然后根据 :code:`build_strategy` 中的配置，通过一系列的Pass对Graph进行优化，比如：memory optimize，operator fuse等优化。最后根据 :code:`execution_strategy` 中的配置执行训练任务。
 
-此外， :code:`ParallelExecutor` 支持支持数据并行，即单进程多卡和多进程多卡，关于 :code:`ParallelExecutor` 的具体介绍请参考 `文档 <http://www.paddlepaddle.org/documentation/docs/en/1.5/api_guides/low_level/parallel_executor_en.html>`_ .
+此外， :code:`ParallelExecutor` 支持数据并行，即单进程多卡和多进程多卡，关于 :code:`ParallelExecutor` 的具体介绍请参考 `文档 <http://www.paddlepaddle.org/documentation/docs/en/1.5/api_guides/low_level/parallel_executor_en.html>`_ .
 
 为了统一 :code:`ParallelExecutor` 接口和 :code:`Executor` 接口，Paddle提供了 :code:`fluid.compiler.CompiledProgram` 接口，在数据并行模式下，该接口底层调用的是 :code:`ParallelExecutor` 。
 
@@ -166,7 +166,7 @@ BuildStrategy配置选项
     ":code:`mkldnn_enabled_op_types`",           "list", "{}",    "如果是CPU训练，可以用 :code:`mkldnn_enabled_op_types` 指明模型中的那些操作可以使用MKLDNN库，如果不进行设置，模型可以使用MKLDNN库的所有操作都会使用MKLDNN库."
 
 说明：
- - 关于 :code:`reduce_strategy` ，在 :code:`ParallelExecutor` 对于数据并行支持两种参数更新模式： :code:`AllReduce` 和 :code:`Reduce` 。在 :code:`AllReduce` 模式下，各个节点上计算得到梯度之后，调用 :code:`AllReduce` 操作，梯度在各个节点上聚合，然后各个节点分别进行参数更新。在 :code:`Reduce` 模式下，参数的更新操作被均匀的分配到各个节点上，即各个节点计算得到梯度之后，将梯度在指定的节点上进行 :code:`Reduce` ，然后在该节点上，最后将更新之后的参数Broadcast到其他节点。即：如果模型中有100个参数需要更新，训练时使用的是4个节点，在 :code:`AllReduce` 模式下，各个节点需要分别对这100个参数进行更新；在 :code:`Reduce` 模式下，各个节点需要分别对这25个参数进行更新，最后对更新的参数Broadcast到其他节点上.
+ - 关于 :code:`reduce_strategy` ，在 :code:`ParallelExecutor` 对于数据并行支持两种参数更新模式： :code:`AllReduce` 和 :code:`Reduce` 。在 :code:`AllReduce` 模式下，各个节点上计算得到梯度之后，调用 :code:`AllReduce` 操作，梯度在各个节点上聚合，然后各个节点分别进行参数更新。在 :code:`Reduce` 模式下，参数的更新操作被均匀的分配到各个节点上，即各个节点计算得到梯度之后，将梯度在指定的节点上进行 :code:`Reduce` ，然后在该节点上，最后将更新之后的参数Broadcast到其他节点。即：如果模型中有100个参数需要更新，训练时使用的是4个节点，在 :code:`AllReduce` 模式下，各个节点需要分别对这100个参数进行更新；在 :code:`Reduce` 模式下，各个节点需要分别对这25个参数进行更新，最后将更新的参数Broadcast到其他节点上.
  - 关于 :code:`enable_backward_optimizer_op_deps` ，在多卡训练时，打开该选项可能会提升训练速度.
  - 关于 :code:`fuse_all_optimizer_ops` ，目前只支持SGD、Adam和Momentum算法。**注意：目前不支持sparse参数梯度**。
  - 关于 :code:`fuse_all_reduce_ops` ，多GPU训练时，可以对 :code:`AllReduce` 操作进行融合，以减少 :code:`AllReduce` 的调用次数。默认情况下会将同一layer中参数的梯度的 :code:`AllReduce` 操作合并成一个，比如对于 :code:`fluid.layers.fc` 中有Weight和Bias两个参数，打开该选项之后，原本需要两次 :code:`AllReduce` 操作，现在只用一次 :code:`AllReduce` 操作。此外，为支持更大粒度的参数梯度融合，Paddle提供了 :code:`FLAGS_fuse_parameter_memory_size` 选项，用户可以指定融合AllReduce操作之后，每个 :code:`AllReduce` 操作的梯度字节数，比如希望每次 :code:`AllReduce` 调用传输64MB的梯度，:code:`export FLAGS_fuse_parameter_memory_size=64` 。**注意：目前不支持sparse参数梯度**。
@@ -186,7 +186,7 @@ ExecutionStrategy配置选项
 
 说明：
  - 关于 :code:`num_iteration_per_drop_scope` ，框架在运行过程中会产生一些临时变量，这些变量被放在local execution scope中。通常每经过一个batch就要清理一下local execution scope中的变量，但是由于GPU是异步设备，在清理local execution scope之前需要对所有的GPU调用一次同步操作，因此耗费的时间较长。为此我们在 :code:`execution_strategy` 中添加了 :code:`num_iteration_per_drop_scope` 选项。用户可以指定经过多少次迭代之后清理一次local execution scope。
- - 关于 :code:`num_threads` ，":code:`ParallelExecutor` 中根据Op之间的依赖关系确定Op的执行顺序的，即Op的输入都已经变为ready状态之后，该Op会被放到一个队列中，等待被执行。 :code:`ParallelExecutor` 内部有一个任务调度线程和一个线程池，任务调度线程从队列中取出所有Ready的Op，并将其放到线程队列中。 :code:`num_threads` 表示线程池的大小。根据以往的经验，对于CPU任务，:code:`num_threads=2*dev_count` 时性能较好，对于GPU任务，:code:`num_threads=4*dev_count` 时性能较好。**注意：线程池不是越大越好**。
+ - 关于 :code:`num_threads` ，":code:`ParallelExecutor` 根据Op之间的依赖关系确定Op的执行顺序，即：当Op的输入都已经变为ready状态之后，该Op会被放到一个队列中，等待被执行。 :code:`ParallelExecutor` 内部有一个任务调度线程和一个线程池，任务调度线程从队列中取出所有Ready的Op，并将其放到线程队列中。 :code:`num_threads` 表示线程池的大小。根据以往的经验，对于CPU任务，:code:`num_threads=2*dev_count` 时性能较好，对于GPU任务，:code:`num_threads=4*dev_count` 时性能较好。**注意：线程池不是越大越好**。
 
 执行策略配置推荐
 >>>>>>>>>>>>>>>
