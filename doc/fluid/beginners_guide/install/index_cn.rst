@@ -3,7 +3,7 @@
 ==========
 本说明将指导您在64位操作系统编译和安装PaddlePaddle
 
-PaddlePaddle目前支持的Python版本包括：Python 2.7-3.7
+PaddlePaddle目前支持的Python版本包括：Python（64 bit） 2.7-3.7
 
 PaddlePaddle目前支持以下环境：
 
@@ -49,5 +49,4 @@ PaddlePaddle目前支持以下环境：
 	install_Windows.md
 	install_Docker.md
 	compile/fromsource.rst
-	FAQ.md
 	Tables.md

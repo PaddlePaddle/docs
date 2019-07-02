@@ -12,5 +12,6 @@ WeightedAverage
 
 ..  autoclass:: paddle.fluid.average.WeightedAverage
     :members:
+    :inherited-members:
     :noindex:
 
