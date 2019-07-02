@@ -27,14 +27,19 @@ BilinearInitializer
 .. code-block:: python
 
     factor = 2
-    w_attr = ParamAttr(learning_rate=0., regularizer=L2Decay(0.),
-                   initializer=Bilinear())
+    C = 2
+    w_attr = fluid.initializer.ParamAttr(
+        learning_rate=0.,
+        regularizer=fluid.regularizer.L2Decay(0.),
+        initializer=fluid.initializer.Bilinear())
+    x = fluid.layers.data(name="data", shape=[3, 32, 32],
+                          dtype="float32")
     conv_up = fluid.layers.conv2d_transpose(
-        input,
+        input=x,
         num_filters=C,
         output_size=None,
         filter_size=2 * factor - factor % 2,
-        padding=ceil((factor - 1) / 2.),
+        padding=int(math.ceil((factor - 1) / 2.)),
         stride=factor,
         groups=C,
         param_attr=w_attr,
@@ -72,6 +77,7 @@ ConstantInitializer
 
 .. code-block:: python
         
+        x = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
         fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.Constant(value=2.0))
 
@@ -98,8 +104,8 @@ force_init_on_cpu
 
 .. code-block:: python
 
-    if force_init_on_cpu():
-        create_op('force_cpu': force_init_on_cpu())
+    if fluid.initializer.force_init_on_cpu():
+        step = fluid.layers.create_global_var(shape=[2,3], value=1.0, dtype='float32')
 
 
 
@@ -124,8 +130,8 @@ init_on_cpu
 
 .. code-block:: python
         
-        with init_on_cpu():
-                step = fluid.layers.create_global_var()
+        with fluid.initializer.init_on_cpu():
+            step = fluid.layers.create_global_var(shape=[2,3], value=1.0, dtype='float32')
 
 
 
@@ -156,7 +162,7 @@ MSRAInitializer
 
 .. math::
 
-	x = \sqrt{\frac{6.0}{fan\_in}}
+    x = \sqrt{\frac{6.0}{fan\_in}}
 
 在正态分布中，均值为0，标准差为：
 
@@ -177,9 +183,8 @@ MSRAInitializer
 
 .. code-block:: python
 
-    fc = fluid.layers.fc(
-        input=queries, size=10,
-        param_attr=fluid.initializer.MSRA(uniform=False))
+    x = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
+    fc = fluid.layers.fc(input=x, size=10, param_attr=fluid.initializer.MSRA(uniform=False))
 
 
 
@@ -214,6 +219,7 @@ NormalInitializer
 
 .. code-block:: python
 
+        x = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
         fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.Normal(loc=0.0, scale=2.0)
 
@@ -234,6 +240,7 @@ NumpyArrayInitializer
 
 .. code-block:: python
 
+    x = fluid.layers.data(name="x", shape=[5], dtype='float32')
     fc = fluid.layers.fc(input=x, size=10,
         param_attr=fluid.initializer.NumpyArrayInitializer(numpy.array([1,2])))
 
@@ -266,6 +273,8 @@ Random Truncated Normal（高斯）分布初始化器
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
+        x = fluid.layers.data(name='x', shape=[1], dtype='float32')
         fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.TruncatedNormal(loc=0.0, scale=2.0))
 
@@ -305,7 +314,9 @@ UniformInitializer
 **代码示例**
 
 .. code-block:: python
-        
+       
+       import paddle.fluid as fluid
+       x = fluid.layers.data(name='x', shape=[1], dtype='float32')
        fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.Uniform(low=-0.5, high=0.5))
  
@@ -368,6 +379,8 @@ XavierInitializer
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
+    queries = fluid.layers.data(name='x', shape=[1], dtype='float32')
     fc = fluid.layers.fc(
         input=queries, size=10,
         param_attr=fluid.initializer.Xavier(uniform=False))

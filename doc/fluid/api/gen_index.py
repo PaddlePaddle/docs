@@ -2,20 +2,32 @@ import os.path, time
 import exceptions
 import glob
 import os
+
 if __name__ == '__main__':
-    
-    file_object = open('index_en.rst', 'w')
-    file_object.write('''=============
+    with open('index_en.rst', 'w') as file_object: 
+        file_object = open('index_en.rst', 'w')
+        file_object.write('''=============
 API Reference
 =============
 
 ..  toctree::
     :maxdepth: 1
 
+    ../flags_en.rst
+    ../api_guides/index_en.rst
+    fluid.rst
 ''')
-    file_object.write('    ../api_guides/index_en.rst'+'\n')
-    file_object.write('    fluid.rst'+'\n')
-    for file_name in sorted(glob.glob("*.rst")):
-        if file_name != ('index_en.rst' and 'fluid.rst'):
-            file_object.write('    '+file_name + "\n")
-    file_object.close( )
+
+        target_dirs = ['.', 'data']
+        
+        file_names = []
+        for target_dir in target_dirs:
+            if target_dir == '.':
+                pattern = '*.rst'
+            else:
+                pattern = target_dir + '/*.rst'
+            file_names.extend(glob.glob(pattern))
+
+        for file_name in sorted(file_names):
+            if file_name not in ['index_en.rst', 'fluid.rst']:
+                file_object.write('    '+file_name + "\n")

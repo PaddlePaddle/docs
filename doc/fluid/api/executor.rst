@@ -12,6 +12,7 @@ Executor
 
 ..  autoclass:: paddle.fluid.executor.Executor
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_executor_global_scope:

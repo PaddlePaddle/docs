@@ -12,6 +12,7 @@ DatasetFactory
 
 ..  autoclass:: paddle.fluid.dataset.DatasetFactory
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_dataset_InMemoryDataset:
@@ -21,6 +22,7 @@ InMemoryDataset
 
 ..  autoclass:: paddle.fluid.dataset.InMemoryDataset
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_dataset_QueueDataset:
@@ -30,5 +32,6 @@ QueueDataset
 
 ..  autoclass:: paddle.fluid.dataset.QueueDataset
     :members:
+    :inherited-members:
     :noindex:
 
