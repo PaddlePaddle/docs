@@ -4,7 +4,8 @@
 FleetAPI 设计说明
 ---------------
 
-Fleet是PaddlePaddle分布式训练的高级API。Fleet的命名出自于PaddlePaddle，象征一个舰队中的多只双桨船协同工作。Fleet的设计在易用性和算法可扩展性方面做出了权衡。用户可以很容易从单机版的训练程序，通过添加几行代码切换到分布式训练程序。此外，分布式训练的算法也可以通过Fleet API接口灵活定义。具体的设计原理可以参考https://github.com/PaddlePaddle/Fleet/blob/develop/README.md。当前FleetAPI还处于paddle.fluid.incubate目录下，未来功能完备后会放到paddle.fluid目录中，欢迎持续关注。
+Fleet是PaddlePaddle分布式训练的高级API。Fleet的命名出自于PaddlePaddle，象征一个舰队中的多只双桨船协同工作。Fleet的设计在易用性和算法可扩展性方面做出了权衡。用户可以很容易从单机版的训练程序，通过添加几行代码切换到分布式训练程序。此外，分布式训练的算法也可以通过Fleet API接口灵活定义。具体的设计原理可以参考https://github.com/PaddlePaddle/Fleet/blob/develop/README.md
+当前FleetAPI还处于paddle.fluid.incubate目录下，未来功能完备后会放到paddle.fluid目录中，欢迎持续关注。
 
 快速上手示例
 ------------------------------
