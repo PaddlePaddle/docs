@@ -29,7 +29,7 @@ Release Notes
 
 重要更新
 ##########
-* 训练性能在数据读取、执行调度优化、OP计算逻辑及底层cudnn、CUDAKernel、MKLDNN等方面进行了大量优化，训练性能大幅提升；进一步优化显存占用，整体具备领先优势。
+* 训练性能在数据读取、执行调度优化、Op计算逻辑及底层cuDNN API调用、CUDA kernel、MKLDNN等方面进行了大量优化，训练性能大幅提升；进一步优化显存占用，整体具备领先优势。
 * 新增基于Padding方式实现的LSTM、GRU，更方便用户学习和使用；并基于对应API新增语言模型、seq2seq翻译模型的示例模型；增强部分OP功能，更好地支持NLP中Tensor多个维度可变的任务。
 * 正式发布动态图Preview版并提供相关的API文档，并提供 7个模型动态图版本官方实现。
 * 官方模型库方面正式发布PaddleDetection物体检测统一框架，覆盖主流目标检测算法，易扩展和模块化组合使用；发布图像生成库，覆盖主流的GAN算法，可一键式运行；发布PaddleNLP-Research，包含百度在 NLP 领域最新研究工作。
@@ -42,7 +42,7 @@ Release Notes
 基础框架
 ##########
 * 安装&环境
-    * 增加Linux下对CUDA 10的支持，增加Windows下对CUDA 9的支持，cuDnn版本统一为7.3+
+    * 增加Linux下对CUDA 10的支持，增加Windows下对CUDA 9的支持，cuDNN版本统一为7.3+
     * 安装包不按照CPU处理器是否支持AVX指令集做区分，支持自动判断并选择使用AVX指令集或不使用AVX指令集
     * 针对Python2、Python3下可能版本不兼容的依赖包限制了版本范围，以支持Python相应环境下正确安装
     * 提供可全离线安装PaddlePaddle的Docker镜像
@@ -59,12 +59,12 @@ Release Notes
         * 优化concat/spilt op输入/输出个数<=4的实现，避免1次CPU->GPU的数据传输。
         * 优化recurrent op中执行器的调用方法，修改成在迭代前调用一次executor.Prepare，迭代中executor.RunPreparedContext执行计算，从而避免每次迭代反复创建op。该优化对PaddingRNN padding small和large模型分别带来23%和15%的性能提升。
         * 融合优化器Momentum op的计算，对Resnet50单GPU、4 GPU训练分别可带来1.6%、10.6%的性能提升。
-    * cuDnn使用策略优化
-        * 使用cuDnn v7中新增的算法选择API cudnnGetConvolutionForwardAlgorithm_v7优化conv_cudnn op算法选择策略，Mask-RCNN和YoloV3单GPU训练分别取得32%和11%的加速。
-        * 一些op的cuDnn实现慢于cuda实现，比如conv2d_transpose、pool2d（global_pooling=True）时，设置use_cudnn=False后，Cycle GAN、SE-ResNeXt单GPU训练分别获得33%、34%的性能提升。
+    * cuDNN使用策略优化
+        * 使用cuDNN v7中新增的算法选择API cudnnGetConvolutionForwardAlgorithm_v7优化conv_cudnn op算法选择策略，Mask-RCNN和YoloV3单GPU训练分别取得32%和11%的加速。
+        * 一些op的cuDNN实现慢于cuda实现，比如conv2d_transpose、pool2d（global_pooling=True）时，设置use_cudnn=False后，Cycle GAN、SE-ResNeXt单GPU训练分别获得33%、34%的性能提升。
     * Op CUDAKernel优化
         * 使用精心优化的CUDA kernel优化sum op，对多个LoDTensor求和这种情况优化效果特别明显，GPU执行获得3.3x的加速。
-        * 使用2D线程Block配置优化elementwise_mul grad op，加速其CUDA Kernel中的Broadcast操作。
+        * 使用2D线程Block配置优化elementwise_mul grad op，加速其CUDA kernel中的Broadcast操作。
     * Intel CPU底层计算优化
         * 增加新的OP融合Pass（conv+relu6，conv_transpose+elementwise_add）
         * 增加新的FP32 MKLDNN kernel (FC)，INT8 MKLDNN kernel (Concat)
@@ -196,7 +196,7 @@ BUG修复
 * 修复import paddle之后logging.basicConfig设置失效问题
 * 修复python/paddle/fluid/layers/ops.py在python3下报错的问题
 * 修复sequence unpad op在训练过程中不稳定的问题
-* 修复Concat Op属性axis为负数时挂掉的问题
+* 修复concat op属性axis为负数时挂掉的问题
 * 修复了enable_inplace和memory_optimize的潜在bug，保证某些op的输出变量不会被错误地复用
 * 修复了Eager Deletion策略可能会提前误删变量存储空间的bug，提高Eager Deletion策略的稳定性
 * 修复了模型图分析中拓扑排序存在bug导致的在相同模型输入情况下有不同的模型图生成的情况
