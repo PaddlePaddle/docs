@@ -89,12 +89,19 @@ class DocGenerator(object):
     def print_class(self, name):
         self._print_ref_(name)
         self._print_header_(name, dot='-', is_title=False)
-        self.stream.write('''..  autoclass:: paddle.{0}.{1}
-    :members:
-    :inherited-members:
-    :noindex:
-
-'''.format(self.module_prefix, name))
+        if "fluid.dygraph" in self.module_prefix:
+            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+                    :members:
+                    :noindex:
+                    
+                '''.format(self.module_prefix, name))
+        else:
+            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+        :members:
+        :inherited-members:
+        :noindex:
+    
+    '''.format(self.module_prefix, name))
 
     def print_method(self, name):
         self._print_ref_(name)
