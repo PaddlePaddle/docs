@@ -4,7 +4,85 @@
 FleetAPI 设计说明
 ---------------
 
-Fleet是PaddlePaddle Fluid最新优化的多机API版本， 统一了多机API的实现，兼容Transpiler/Collective两种模式。 可以在MPI环境及K8S环境下进行多机训练，以及自定义分布式训练配置。
+Fleet是PaddlePaddle分布式训练的高级API。Fleet的命名出自于PaddlePaddle，象征一个舰队中的多只双桨船协同工作。Fleet的设计在易用性和算法可扩展性方面做出了权衡。用户可以很容易从单机版的训练程序，通过添加几行代码切换到分布式训练程序。此外，分布式训练的算法也可以通过Fleet API接口灵活定义。具体的设计原理可以参考https://github.com/PaddlePaddle/Fleet/blob/develop/README.md。当前FleetAPI还处于paddle.fluid.incubate目录下，未来功能完备后会放到paddle.fluid目录中，欢迎持续关注。
+
+快速上手示例
+------------------------------
+用户可以使用Fleet API轻易实现GPU多卡训练（单机多卡/多机多卡）。多卡训练在现代AI模型中非常常见，例如[Resnet50][Bert]等都是非常常见的需要多机多卡训练的模型。下面的代码示例，以一个简单的例子入手展示如何使用Fleet API进行单机多卡训练。代码示例可以参考：[quick-start]
+
+神经网络模型的定义如下：
+
+.. code-block:: python
+
+   def mlp(input_x, input_y, hid_dim=128, label_dim=2):
+      fc_1 = fluid.layers.fc(input=input_x, size=hid_dim, act='tanh')
+      fc_2 = fluid.layers.fc(input=fc_1, size=hid_dim, act='tanh')
+      prediction = fluid.layers.fc(input=[fc_2], size=label_dim, act='softmax')
+      cost = fluid.layers.cross_entropy(input=prediction, label=input_y)
+      avg_cost = fluid.layers.mean(x=cost)
+      return avg_cost
+
+
+一个简单的训练程序如下：
+
+.. code-block:: python
+
+   import paddle.fluid as fluid
+   from nets import mlp
+   from utils import gen_data
+
+   input_x = fluid.layers.data(name="x", shape=[32], dtype='float32')
+   input_y = fluid.layers.data(name="y", shape=[1], dtype='int64')
+
+   cost = mlp(input_x, input_y)
+   optimizer = fluid.optimizer.SGD(learning_rate=0.01)
+   optimizer.minimize(cost)
+   place = fluid.CUDAPlace(0)
+
+   exe = fluid.Executor(place)
+   exe.run(fluid.default_startup_program())
+   step = 1001
+   for i in range(step):
+       exe.run(feed=gen_data())
+
+
+If you want to use high performance chip to do distributed training, such as distributed GPU training, **Fleet API** will help you by adding less than 10 lines of code, source code of this example is in examples/quick-start/collective_trainer.py
+如果用户想使用高性能芯片，例如GPU多卡进行训练，使用**Fleet API**可以在增加少量代码的情况下实现。
+
+.. code-block:: python
+
+   import paddle.fluid as fluid
+   from utils import gen_data
+   from nets import mlp
+   from paddle.fluid.incubate.fleet.collective import fleet
+   from paddle.fluid.incubate.fleet.base import role_maker
+
+   input_x = fluid.layers.data(name="x", shape=[32], dtype='float32')
+   input_y = fluid.layers.data(name="y", shape=[1], dtype='int64')
+
+   cost = mlp(input_x, input_y)
+   optimizer = fluid.optimizer.SGD(learning_rate=0.01)
+
+   role = role_maker.PaddleCloudRoleMaker()
+   fleet.init(role)
+   optimizer = fleet.distributed_optimizer(optimizer)
+   optimizer.minimize(cost)
+
+   place = fluid.CUDAPlace(0)
+
+   exe = fluid.Executor(place)
+   exe.run(fluid.default_startup_program())
+   step = 1001
+   for i in range(step):
+       exe.run(feed=gen_data())
+
+
+在单机运行多卡程序的执行命令如下：
+
+.. code-block:: python
+
+   python -m paddle.distributed.launch collective_trainer.py
+
 
 
 FleetAPI 接口说明
