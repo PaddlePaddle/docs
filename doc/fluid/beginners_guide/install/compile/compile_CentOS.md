@@ -3,8 +3,8 @@
 ## 环境准备
 
 * *CentOS 版本 (64 bit)*
-    * *6 (不支持GPU)*
-    * *7 (GPU 版本支持CUDA 8/9/10)*
+    * *CentOS 6 (不支持GPU)*
+    * *CentOS 7 (GPU 版本支持CUDA 8/9/10)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
