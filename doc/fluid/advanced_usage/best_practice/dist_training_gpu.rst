@@ -27,14 +27,14 @@ PaddlePaddle Fluid可以支持在现代GPU [#]_ 服务器集群上完成高性�
     "通信模式", "pserver模式；NCCL2模式（collective [#]_ ）", "配置方法参考：:ref:`cluster_howto`"
     "执行模式", "单进程；单进程ParallelGraph；多进程", "配置方法参考：:ref:`cluster_howto`"
     "同步AllReduce操作", "开启则使每次调用等待AllReduce同步", "设置环境变量 :code:`FLAGS_sync_nccl_allreduce`"
-    "CPU线程数", "int值，配置使用的CPU线程数", "参考本片后续说明"
+    "CPU线程数", "int值，配置使用的CPU线程数", "参考本篇后续说明"
     "预先分配足够的显存", "0~1之间的float值，预先分配显存的占比", "设置环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use`"
     "scope drop频率", "int值，设置每隔N个batch的迭代之后执行一次清理scope", "设置 :code:`fluid.ExecutionStrategy().num_iteration_per_drop_scope`"
-    "fetch频率", "代码配置", "参考本片后续说明"
+    "fetch频率", "代码配置", "参考本篇后续说明"
     "启用RDMA多机通信", "如果机器硬件支持，可以选择开启RDMA支持", "配置环境变量 :code:`NCCL_IB_DISABLE` "
-    "使用GPU完成部分图片预处理", "代码配置", "参考本片后续说明"
-    "设置通信频率（batch merge）", "代码配置", "参考本片后续说明"
-    "优化reader性能", "代码优化", "参考本片后续说明"
+    "使用GPU完成部分图片预处理", "代码配置", "参考本篇后续说明"
+    "设置通信频率（batch merge）", "代码配置", "参考本篇后续说明"
+    "优化reader性能", "代码优化", "参考本篇后续说明"
     "混合精度", "FP32训练；混合FP32,FP16训练（在V100下启用TensorCore）", "参考项目：`图像分类 <https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification>`_ "
 
 
@@ -43,7 +43,7 @@ PaddlePaddle Fluid可以支持在现代GPU [#]_ 服务器集群上完成高性�
 
 GPU分布式训练场景，使用多进程+NCCL2模式（collective）通常可以获得最好的性能。参考 :ref:`cluster_howto` 配置您的程序使用多进程NCCL2模式训练。
 
-在进程模式下，每台服务器的每个GPU卡都会对应启动一个训练进程，
+在多进程模式下，每台服务器的每个GPU卡都会对应启动一个训练进程，
 集群中的所有进程之间会互相通信完成训练。以此方式最大限度的降低进程内部资源抢占的开销。
 对比在单进程开启ParallelGraph方法，多进程模式不但可以获得更高性能，
 而且无需考虑reader在多卡下io性能不足的问题，直接使用多进程提升数据读取IO效率。
@@ -72,7 +72,7 @@ GPU分布式训练场景，使用多进程+NCCL2模式（collective）通常可�
 +++++++++++++++++
 
 PaddlePaddle Fluid使用“线程池” [#]_ 模型调度并执行Op，Op在启动GPU计算之前，
-通常需要CPU的协助，然而如果Op本身占用时间很小，“线程池”模型下又回带来额外的调度开销。
+通常需要CPU的协助，然而如果Op本身占用时间很小，“线程池”模型下又会带来额外的调度开销。
 使用多进程模式时，如果神经网络的计算图 [#]_ 节点间有较高的并发度，
 即使每个进程只在一个GPU上运行，使用多个线程可以更大限度的提升GPU利用率。
 这项配置需要根据运行模型的情况来配置，通常在多进程模式，设置线程数为1和4，
@@ -155,7 +155,7 @@ PaddlePaddle Fluid使用“线程池” [#]_ 模型调度并执行Op，Op在启�
 增大batch_size或使用设置通信频率（batch merge）
 ++++++++++++++++++++++++++++++++++++++++++
 
-分布式同步训练，跨界点通信或多或少会带来性能影响，增大训练的batch_size，
+分布式同步训练，跨节点通信或多或少会带来性能影响，增大训练的batch_size，
 可以保持通信开销不变的情况下，增大计算吞吐从而降低通信在整个训练过程中的占比来提升总体的训练吞吐。
 
 然而增大batch_size会带来同等比例的显存消耗提升，为了进一步的增大batch_size，Fluid提供“batch merge”功能，
