@@ -3,12 +3,8 @@
 
 This instruction will show you how to compile PaddlePaddle on a *64-bit desktop or laptop* and Windows 10. The Windows systems we support must meet the following requirements:
 
-* Windows 10 Family Edition / Professional Edition / Enterprise Edition
+* Windows 10 Professional Edition / Enterprise Edition
 * Visual Studio 2015 Update3
-
-## Determine which version to compile
-
-* **Only PaddlePaddle for CPU is supported.**
 
 ## Choose a compilation method
 
@@ -18,7 +14,7 @@ We provide one compilation method under the Windows system:
 
 Since the situation on host machine is more complicated, we only support specific systems.
 
-Please note: The current version does not support NCCL, distributed, AVX, warpctc and MKL related functions.
+Please note: The current version does not support NCCL and distributed related functions.
 
 
 ### ***Local compilation***
@@ -27,7 +23,7 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 
 1. Check that your computer and operating system meet our supported compilation standards
 
-	* Windows 10 Family Edition / Professional Edition / Enterprise Edition
+	* Windows 10 Professional Edition / Enterprise Edition
 
 	* Visual Studio 2015 Update3
 
@@ -54,7 +50,7 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 
 4. Switch to a more stable release branch for compilation :
 
-	- `git checkout release/1.2`
+	- `git checkout release/1.5`
 
 5. Create a directory called build and enter it:
 
@@ -76,7 +72,6 @@ Please note: The current version does not support NCCL, distributed, AVX, warpct
 			-DPYTHON_LIBRARY = $ {PYTHON_LIBRARY} 
 			-DPYTHON_EXECUTABLE = $ {PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY = ON -DWITH_GPU = OFF -DWITH_TESTING =OFF -DCMAKE_BUILD_TYPE=Release`
 
-		> If you encounter `Could NOT find PROTOBUF (missing: PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`, you can re-execute the cmake command.
 
 7. Some third-party dependencies (openblas, snappystream) currently require users to provide pre-compiled versions, or download pre-compiled files from `https://github.com/wopeizl/Paddle_deps` and place the entire `third_party` folder in the `build` directory. 
 
@@ -102,3 +97,5 @@ After the installation is complete, you can use: `python` to enter the Python in
 Please use the following command to uninstall PaddlePaddle:
 
 * ***CPU version of PaddlePaddle*** : `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
+
+* ***GPU version of PaddlePaddle*** : `pip uninstall paddlepaddle-gpu` or `pip3 uninstall paddlepaddle-gpu`
