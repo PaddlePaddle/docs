@@ -2,10 +2,11 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *CentOS 6 / 7*
-* *Python（64 bit） 2.7/3.5.1+/3.6/3.7*
-* *pip或pip3（64 bit） >= 9.0.1*
+* *CentOS 版本 (64 bit)*
+    * *CentOS 6 (不推荐，不提供编译出现问题时的官方支持)*
+    * *CentOS 7 (GPU 版本支持CUDA 8/9/10)*
+* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
+* *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
 ## 选择CPU/GPU
 
@@ -15,7 +16,6 @@
 	
 	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
 	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包8.0配合cuDNN v7.3+(官方不支持多卡）*
 	* *GPU运算能力超过1.0的硬件设备*
 
 		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
