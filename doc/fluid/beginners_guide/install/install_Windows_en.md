@@ -17,7 +17,7 @@
 * If your computer doesn’t have NVIDIA® GPU, please install the CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and it satisfies the following requirements, we recommend you to install the GPU version of PaddlePaddle
-    * *CUDA Toolkit 8.0 with cuDNN v7*
+    * *CUDA Toolkit 8.0/9.2 with cuDNN v7*
     * *GPU's computing capability exceeds 1.0*
 
 Please refer to the NVIDIA official documents for the installation process and the configuration methods of [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) and [cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/).
