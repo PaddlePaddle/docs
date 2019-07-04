@@ -17,7 +17,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
 
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
-    * *CUDA 工具包8.0/9.2配合cuDNN v7*
+    * *CUDA 工具包8.0/9.2配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
 您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
