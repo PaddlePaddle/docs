@@ -2,12 +2,12 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *Ubuntu 14.04 (GPU版本只针对CUDA 8, CUDA 10支持)*
-* *Ubuntu 16.04*
-* *Ubuntu 18.04（GPU版本只针对CUDA10支持)*
-* *Python（64 bit） 2.7/3.5.1+/3.6/3.7*
-* *pip或pip3（64 bit） >= 9.0.1*
+* *Ubuntu 版本 (64 bit)*
+    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10)*
+    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10)*
+    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10)*
+* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
+* *pip或pip3 版本 9.0.1+ (64 bit)*
 
 ## 选择CPU/GPU
 
