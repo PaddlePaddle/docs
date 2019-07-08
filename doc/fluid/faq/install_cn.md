@@ -542,7 +542,7 @@ cuda9.0需要安装哪一个版本的paddle，安装包在哪?
 Ubuntu和CentOS环境，可以把相关的驱动和库映射到容器内部。
 Windows环境，需要升级CUDA驱动。
 
-使用nvidia-docker, 只需要将命令中docker换为nvidia-docker即可。
+Ubuntu和CentOS下如果使用GPU的docker环境，需要用nvidia-docker来运行。
 
 更多请参考[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
