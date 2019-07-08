@@ -2,10 +2,11 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *CentOS 6 / 7*
-* *Python（64 bit） 2.7/3.5.1+/3.6/3.7*
-* *pip或pip3 >= 9.0.1*
+* *CentOS 版本 (64 bit)*
+    * *CentOS 6 (GPU版本支持CUDA 9/10, 仅支持单卡)*
+    * *CentOS 7 (GPU版本支持CUDA 8/9/10, 其中CUDA 8仅支持单卡)*
+* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
+* *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
 ### 注意事项
 
@@ -26,7 +27,7 @@
 
 		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):
+* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
 
 		wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm

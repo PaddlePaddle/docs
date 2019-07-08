@@ -6,7 +6,6 @@
 	:hidden:
 
 
-	benchmark_cn.md
 	cpu_profiling_cn.md
 	host_memory_profiling_cn.md
 	timeline_cn.md
