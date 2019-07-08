@@ -537,7 +537,10 @@ cuda9.0需要安装哪一个版本的paddle，安装包在哪?
 
 + 问题解答
 
-通常出现 `Cuda Error: CUDA driver version is insufficient for CUDA runtime version`, 原因在于没有把机器上CUDA相关的驱动和库映射到容器内部。
+通常出现 `Cuda Error: CUDA driver version is insufficient for CUDA runtime version`, 原因在于没有把机器上CUDA驱动偏低，需要升级CUDA驱动加以解决。
+
+Ubuntu和CentOS环境，可以把相关的驱动和库映射到容器内部。
+Windows环境，需要升级CUDA驱动。
 
 使用nvidia-docker, 命令只需要将docker换为nvidia-docker即可。
 
