@@ -2,10 +2,9 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *MacOS 10.11/10.12/10.13/10.14*
-* *Python 2.7/3.5/3.6/3.7*
-* *pip或pip3 >= 9.0.1*
+* *MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)*
+* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
+* *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
 ### 注意事项
 
@@ -29,7 +28,7 @@ MacOS系统下有4种安装方式：
 
 ## 安装步骤
 
-* CPU版PaddlePaddle：`pip install paddlepaddle` 或 `pip3 install paddlepaddle`
+* CPU版PaddlePaddle：`pip install -U paddlepaddle` 或 `pip3 install -U  paddlepaddle`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 

@@ -2,21 +2,40 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *CentOS 6 / 7*
-* *Python 2.7/3.5/3.6/3.7*
-* *pip或pip3 >= 9.0.1*
+* *CentOS 版本 (64 bit)*
+    * *CentOS 6 (不推荐，不提供编译出现问题时的官方支持)*
+    * *CentOS 7 (GPU 版本支持CUDA 8/9/10)*
+* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
+* *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
 ## 选择CPU/GPU
 
-* 目前仅支持在CentOS环境下编译安装CPU版本的PaddlePaddle
+* 如果您的计算机没有 NVIDIA® GPU，请安装CPU版本的PaddlePaddle
+
+* 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
+	
+	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *GPU运算能力超过1.0的硬件设备*
+
+		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+
+* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+
+
+		wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+		rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+		sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+		yum update -y
+		yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+
 
 ## 安装步骤
 
 在CentOS的系统下有2种编译方式：
 
 * 使用Docker编译
-* 本机编译（不支持CentOS 6）
+* 本机编译（不提供在CentOS 6下编译中遇到问题的支持）
 
 <a name="ct_docker"></a>
 ### ***使用Docker编译***
@@ -53,7 +72,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 	注意：python3.6、python3.7版本从release/1.2分支开始支持
 
@@ -63,12 +82,12 @@
 
 7. 使用以下命令安装相关依赖：
 
-		For Python2: pip install protobuf==3.1.0
-		For Python3: pip3.5 install protobuf==3.1.0
+		For Python2: pip install protobuf
+		For Python3: pip3.5 install protobuf
 
 	注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
-	> 安装protobuf 3.1.0。
+	> 安装protobuf。
 
 	`apt install patchelf`
 
@@ -81,7 +100,7 @@
 
 	* 对于需要编译**CPU版本PaddlePaddle**的用户：
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	> 我们目前不支持CentOS下使用Docker编译GPU版本的PaddlePaddle
 
@@ -95,8 +114,8 @@
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-		For Python2: pip install （whl包的名字）
-		For Python3: pip3.5 install （whl包的名字）
+		For Python2: pip install -U（whl包的名字）
+		For Python3: pip3.5 install -U（whl包的名字）
 
 	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
@@ -145,7 +164,8 @@
 		3.  找到`virtualenvwrapper.sh`： `find / -name virtualenvwrapper.sh`（请找到对应Python版本的`virtualenvwrapper.sh`）
 		4.  查看`virtualenvwrapper.sh`中的安装方法： `cat vitualenvwrapper.sh`, 该shell文件中描述了步骤及命令
 		5.  按照`virtualenvwrapper.sh`中的描述，安装`virtualwrapper`
-		6.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
+		6.  设置VIRTUALENVWRAPPER_PYTHON：`export VIRTUALENVWRAPPER_PYTHON=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
+		7.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 5. 进入虚环境：`workon paddle-venv`
 
@@ -168,7 +188,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 9. 并且请创建并进入一个叫build的目录下：
 
@@ -180,12 +200,36 @@
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python2: cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 			For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-			-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 		> 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次cmake指令。
 		> 请注意PY_VERSION参数更换为您需要的python版本
+
+
+	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持CentOS7（CUDA10/CUDA9）*)
+
+		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+
+
+			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm`
+
+
+			ii.  `rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm`
+
+
+			iii. `yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0`
+
+		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
+
+				For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+				For Python3: cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+
+	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
+
+
+
 
 11. 使用以下命令来编译：
 
@@ -195,7 +239,7 @@
 
 13. 在当前机器或目标机器安装编译好的`.whl`包：
 
-	`pip install （whl包的名字）`或`pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）`或`pip3 install -U（whl包的名字）`
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 

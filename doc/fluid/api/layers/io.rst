@@ -60,6 +60,7 @@ Preprocessor
 
 ..  autoclass:: paddle.fluid.layers.Preprocessor
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_layers_py_reader:

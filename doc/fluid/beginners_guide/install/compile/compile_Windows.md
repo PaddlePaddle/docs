@@ -2,10 +2,9 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *Windows 10 家庭版/专业版/企业版*
-* *Python 2.7/3.5/3.6/3.7*
-* *pip或pip3 >= 9.0.1*
+* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8/9.2, 且仅支持单卡)*
+* *Python 版本 2.7/3.5.1+/3.6/3.7 (64 bit)*
+* *pip 或 pip3 版本 9.0.1+ (64 bit)*
 * *Visual Studio 2015 Update3*
 
 ## 选择CPU/GPU
@@ -13,7 +12,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * *CUDA 工具包8.0配合cuDNN v7*
+    * *CUDA 工具包8.0/9.2配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
 ## 安装步骤
@@ -97,7 +96,7 @@
 
 9. 在当前机器或目标机器安装编译好的 `.whl` 包：
 
-	`pip install （whl包的名字）` 或 `pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）` 或 `pip3 install -U（whl包的名字）`
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 

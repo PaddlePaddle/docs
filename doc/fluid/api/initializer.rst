@@ -12,6 +12,7 @@ Bilinear
 
 ..  autoclass:: paddle.fluid.initializer.Bilinear
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_BilinearInitializer:
@@ -21,6 +22,7 @@ BilinearInitializer
 
 ..  autoclass:: paddle.fluid.initializer.BilinearInitializer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_Constant:
@@ -30,6 +32,7 @@ Constant
 
 ..  autoclass:: paddle.fluid.initializer.Constant
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_ConstantInitializer:
@@ -39,6 +42,7 @@ ConstantInitializer
 
 ..  autoclass:: paddle.fluid.initializer.ConstantInitializer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_force_init_on_cpu:
@@ -64,6 +68,7 @@ MSRA
 
 ..  autoclass:: paddle.fluid.initializer.MSRA
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_MSRAInitializer:
@@ -73,6 +78,7 @@ MSRAInitializer
 
 ..  autoclass:: paddle.fluid.initializer.MSRAInitializer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_Normal:
@@ -82,6 +88,7 @@ Normal
 
 ..  autoclass:: paddle.fluid.initializer.Normal
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_NormalInitializer:
@@ -91,6 +98,7 @@ NormalInitializer
 
 ..  autoclass:: paddle.fluid.initializer.NormalInitializer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_NumpyArrayInitializer:
@@ -100,6 +108,7 @@ NumpyArrayInitializer
 
 ..  autoclass:: paddle.fluid.initializer.NumpyArrayInitializer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_TruncatedNormal:
@@ -109,6 +118,7 @@ TruncatedNormal
 
 ..  autoclass:: paddle.fluid.initializer.TruncatedNormal
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_TruncatedNormalInitializer:
@@ -118,6 +128,7 @@ TruncatedNormalInitializer
 
 ..  autoclass:: paddle.fluid.initializer.TruncatedNormalInitializer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_Uniform:
@@ -127,6 +138,7 @@ Uniform
 
 ..  autoclass:: paddle.fluid.initializer.Uniform
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_UniformInitializer:
@@ -136,6 +148,7 @@ UniformInitializer
 
 ..  autoclass:: paddle.fluid.initializer.UniformInitializer
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_Xavier:
@@ -145,6 +158,7 @@ Xavier
 
 ..  autoclass:: paddle.fluid.initializer.Xavier
     :members:
+    :inherited-members:
     :noindex:
 
 .. _api_fluid_initializer_XavierInitializer:
@@ -154,5 +168,6 @@ XavierInitializer
 
 ..  autoclass:: paddle.fluid.initializer.XavierInitializer
     :members:
+    :inherited-members:
     :noindex:
 

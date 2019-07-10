@@ -13,10 +13,11 @@ API Reference
 ..  toctree::
     :maxdepth: 1
 
+    ../flags_en.rst
+    ../api_guides/index_en.rst
+    fluid.rst
 ''')
-        file_object.write('    ../api_guides/index_en.rst'+'\n')
-        file_object.write('    fluid.rst'+'\n')
-    
+
         target_dirs = ['.', 'data']
         
         file_names = []

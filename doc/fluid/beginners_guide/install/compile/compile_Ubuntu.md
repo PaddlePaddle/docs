@@ -2,20 +2,33 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *Ubuntu 14.04 /16.04 /18.04*
-* *Python 2.7/3.5/3.6/3.7*
-* *pip或pip3 >= 9.0.1*
+* *Ubuntu 版本 (64 bit)*
+    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10)*
+    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10)*
+    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10)*
+* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
+* *pip或pip3 版本 9.0.1+ (64 bit)*
 
 ## 选择CPU/GPU
 
-* 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
+## 选择CPU/GPU
 
-* 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * *CUDA 工具包9.0配合cuDNN v7*
-    * *CUDA 工具包8.0配合cuDNN v7*
-    * *CUDA 工具包8.0配合cuDNN v5*
-    * *GPU运算能力超过1.0的硬件设备*
+* 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
+
+* 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
+	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
+	* *CUDA 工具包8.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
+	* *GPU运算能力超过1.0的硬件设备*
+
+		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+
+* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+
+
+		wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+		dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+		sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
 ## 安装步骤
 
@@ -59,7 +72,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 	注意：python3.6、python3.7版本从release/1.2分支开始支持
 
@@ -69,12 +82,12 @@
 
 7. 使用以下命令安装相关依赖：
 
-		For Python2: pip install protobuf==3.1.0
-		For Python3: pip3.5 install protobuf==3.1.0
+		For Python2: pip install protobuf
+		For Python3: pip3.5 install protobuf
 
 	注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
-	> 安装protobuf 3.1.0。
+	> 安装protobuf。
 
 	`apt install patchelf`
 
@@ -89,11 +102,11 @@
 
 	*  编译**CPU版本PaddlePaddle**：
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	*  编译**GPU版本PaddlePaddle**：
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 9. 执行编译：
 
@@ -105,8 +118,8 @@
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-		For Python2: pip install （whl包的名字）
-		For Python3: pip3.5 install （whl包的名字）
+		For Python2: pip install -U（whl包的名字）
+		For Python3: pip3.5 install -U（whl包的名字）
 
 	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
@@ -123,7 +136,7 @@
 
 3. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 
-	* a. 安装Python-dev:
+	* a. 安装Python-dev（请注意Ubuntu16.04下的python2.7不支持gcc4.8，请使用gcc5.4编译Paddle）:
 
 			For Python2: apt install python-dev
 			For Python3: apt install python3.5-dev
@@ -141,7 +154,8 @@
 		4.  (Only for Python3) 设置虚环境的解释器路径：`export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5`
 		5.  查看`virtualenvwrapper.sh`中的安装方法： `cat virtualenvwrapper.sh`, 该shell文件中描述了步骤及命令
 		6.  按照`virtualenvwrapper.sh`中的描述，安装`virtualwrapper`
-		7.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
+		7.  设置VIRTUALENVWRAPPER_PYTHON：`export VIRTUALENVWRAPPER_PYTHON=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
+		8.  创建名为`paddle-venv`的虚环境： `mkvirtualenv paddle-venv`
 
 	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
@@ -167,7 +181,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 7. 并且请创建并进入一个叫build的目录下：
 
@@ -179,20 +193,25 @@
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python2: cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持ubuntu16.04/14.04*)
 
-		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl/nccl-download):
-			i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+
+
+			i. `wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+			
 			ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
-			iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
+
+
+			iii. `sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0`
 
 		2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
-			For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-			For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+				For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+				For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 	注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
@@ -204,7 +223,7 @@
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-	`pip install （whl包的名字）`或`pip3 install （whl包的名字）`
+	`pip install -U（whl包的名字）`或`pip3 install -U（whl包的名字）`
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 
