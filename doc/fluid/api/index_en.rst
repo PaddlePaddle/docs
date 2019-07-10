@@ -15,6 +15,7 @@ API Reference
     data/dataset.rst
     data_feeder.rst
     dataset.rst
+    dygraph.rst
     executor.rst
     initializer.rst
     io.rst
