@@ -7,197 +7,193 @@ Table of Contents
 * Highlights
 * Fundamental framework updates
     * Installation
-    * Optimization on Intermediate Representation IR and Pass
-    * IO optimization
+    * Dynamic Diagram Preview Version
+    * Performance Optimization
+    * Optimization of Memory
     * Execution optimization
-    * Video memory optimization
-    * Refine CPU JITKernel
-    * Low-level Intel CPU computing optimization
-    * Intel nGraph graph compiling engine integration
-    * Adjustments to basic framework functionality
-    * Accomplished basic functions in the preview version of dynamic graph Inference engine
+    * Framework basic functions enhancements
+    * OP perfect
 * Inference engine
-    * Server-side Inference Engine
-    * Mobile Inference Engine
-    * Deployment tools
+    * Server-side Deployment Library
+    * Paddle Serving
+    * PaddleSlim
 * Distributed training
 * Model construction
-    * PaddleCV Intelligent Vision
-    * PaddleNLP intelligent text processing
-    * PaddleRec intelligent recommendation
+    * Image classification
+    * PaddleDetection
+    * PaddleGAN
+    * PaddleVideo
+    * PaddleNLP
 * Tools and Components
 * Bug fixes notes
 
 Highlights
 #####################################
-* Significant improvement has been made on training speed and memory management of the fundamental framework. Full support for quantitative training has been incorporated. Integration of Intel nGraph is also accomplished. Besides, the basic functions of single-card and single-node in the preview version of dynamic graph are perfectly implemented.
-* We have officially released the model compression toolkit `PaddleSlim <https://github.com/PaddlePaddle/models/tree/develop/PaddleSlim>`_ and the model inference service `Paddle Serving <https://github.com/PaddlePaddle/Serving>`_ to broadly enhance the PaddlePaddle deployment capabilities.
-* Boosted distributed IO interfaces and the stream read capability of remote file systems. Synchronous multi-machine multi-card GPU training promotes bandwidth-insensitive training through enabling sparse communication. For low-bandwidth network, such as network of 10G, synchronous training is 10 times faster.
-* Support for the K8S ecosystem is smoothened through Paddle-K8S-Operator support in industrial environments; Kubeflow supports paddle-job.
-* We have officially released the `video classification toolkit <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/video>`_ which covers mainstream video classification models, including Non-Local, TSM, Attention Cluster, NeXtVLAD, Attention LSTM, StNet, TSN.
-* `ERNIE <https://github.com/PaddlePaddle/LARK/tree/develop/ERNIE>`_ , a Chinese semantic representation model is introduced, which attains accuracy with absolute 1-2 percentage points higher than BERT on multiple Chinese language tasks. Generic dialogue comprehension model DGU is incorporated, with support for 5 types of dialogue tasks, and reaches SOTA in 3 public datasets.
-* The Recommendation Model Based on `Graph Neural Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/gnn>`_ (GNN) is carried out, for which Benchmark expectation has been reproduced on public dataset.
-* `PaddleHub <https://github.com/PaddlePaddle/PaddleHub>`_ , a management tool for pre-trained models, has been officially released, offering three functions: pre-trained model management, command-line one-click manipulation and transfer learning. It strives to facilitate model management and conduct transfer learning more efficiently.
-* Open source `AutoDL Design <https://github.com/PaddlePaddle/AutoDL/tree/master/AutoDL%20Design>`_ is officially released to enable automatic network design.
-* Latest upgrades on the parallelization-oriented `PARL1.1 <https://github.com/PaddlePaddle/PARL>`_ . Users are allowed to implement parallelized reinforcement learning algorithms by using a decorator.
-* The model conversion tool `X2Paddle <https://github.com/PaddlePaddle/X2Paddle>`_ has been officially published, which enables transfer of inference models in other deep learning frameworks to PaddlePaddle without any compromise.
+* The training performance has been greatly optimized in data reading, execution scheduling optimization, Op computing logic and base cuDNN API call, CUDA kernel and MKLDNN. Further optimize the memory occupation, the whole has the leading advantage.
+* Add LSTM and GRU based on Padding, which is more convenient for users to learn and use. And add the new language model and the example model of seq2seq translation model based on corresponding API ; Enhanced partial OP functionality to better support Tensor multiple dimension-variable tasks in NLP.
+* Release the dynamic Preview version and provide the relevant API documents, and provide the official implementation of the seven model dynamic versions.
+* The official model library publishes the uniform framework of PaddleDetection object detection, which covers the mainstream target detection algorithm and is easy to be extended and modular. Publish image generation library, cover mainstream GAN algorithm, can run one-click; Launch Paddle NLP - Research, which includes Baidu's latest research in the NLP field.
+* Model compression framework PaddleSlim adds auto-shear strategy based on simulated annealing and lightweight model structure auto-search function (Light-NAS).
+* Distributed training releases High-Level API Fleet, single machine to distributed training cost significantly reduced; The multi-card performance of GPU is improved significantly. The speed of 4x8 v100 configuration in ResNet50, BERT and ERNIE models is more than 50% higher than that of Benchmark.
+* PaddleHub added 29 pre-training models, covering 40 models in three fields, including text, image and video.
+* Paddle Graph Learning (PGL) Preview is released to provide the most advanced graphic learning algorithms based on two computational paradigms: Wandering and messaging.
 
 Fundamental Framework Updates
 #####################################
 * Installation
-    * install\_check.run\_check() interface is introduced to provide a more graceful check on whether the installation was successful.
-* Optimization on Intermediate Representation IR and Pass
-    * The encapsulation is fulfilled of IrGraph, IrNode, IrVarNode, and IrOpNode. IR Passes scripted in Python is also enabled.
-* IO optimization
-    * PyReader optimization: the brand new interface reader = fluid.io.PyReader (..., iterable=True, ...) makes it possible to create an iterable (by 'for' loop) reader and the data will be sent to the network through the 'feed' method.
+    * Add support to CUDA 10 under Linux; add support to CUDA 9 under Windows; unify cuDNN dependency to 7.3+ on all operating systems.
+    * Installation packages no longer differentiate based on whether the AVX instruction set is supported by the CPU; include new automated judgment and selection of whether to use the AVX instruction set or not.
+    * Limit the versions of dependent packages to avoid the potential version conflicts under Python2 and Python3.
+    * Provide a new Docker mirror that supports offline installation of PaddlePaddle.
+    * Add installation tests for multi-card GPU.
+    * Remove single-card training GPU’s dependency on NCCL.
+* Dynamic Diagram Preview Version
+    * Release APIs and documentations related to dynamic diagram.
+    * Perfect fundamental functions; optimize memory and speed; support single multi-card GPU training.
+    * Add dynamic graph version implementations of 7 models including transformer, ocr recognition, resnet, and language model that have equivalent performance.
+* Performance Optimization
+    * Optimization of Reading Data
+        * Use multi-thread to optimize data reading and pre-processing; DeepLab V3 + single GPU training achieves a 63% performance improvement.
+    * Optimization of Op Computing Logistics
+        * Optimize the implementation of concat/split op with number of input/output <= 4, avoiding 1 CPU -> GPU data transmission
+        * Optimize the calling method of the executor in recurrent op: now it calls ``executor.Prepare`` before each iteration, and perform ``executor.RunPreparedContext`` during the iteration, thus avoiding the repetition of creating op in each iteration. This optimization brings 23% and 15% performance improvements to the PaddingRNN padding small and large models, respectively.
+        * Merge the calculation of the optimizer Momentum op, bringing 1.6% and 10.6% performance improvement to Resnet50 single GPU and 4 GPU training respectively.
+    * Optimization of cuDNN’s Utilization Strategy 
+        * Use the new algorithm selection API in cuDNN v7--cudnnGetConvolutionForwardAlgorithm_v7—to optimize the algorithm selection strategy of conv_cudnn op, bringing 32% and 11% acceleration to Mask-RCNN and YoloV3 single GPU training, respectively.
+        * Some ops’ cuDNN implementations are slower than the CUDA counterparts, such as conv2d_transpose、pool2d (with ``global_pooling=True``). Set ``use_cudnn = False`` to improve performance of Cycle GAN, SE-ResNeXt single GPU training by 33%, 34%, respectively.
+    * Optimization of Op CUDA Kernel
+        * Use the optimized CUDA kernel to optimize the sum op, bringing in 3.3 times acceleration to GPU execution. The effect is particularly obvious for multiple LoDTensor summation.
+        * Optimize elementwise_mul grad op with a 2D thread block configuration to speed up the Broadcast operation in its CUDA Kernel.
+    * Optimization of the Bottom-level Computing of Intel CPU
+        * Add new OP to merge Pass（conv+relu6，conv_transpose+elementwise_add）
+        * Add new FP32 MKLDNN kernel (FC)，INT8 MKLDNN kernel (Concat)
+        * Optimize several OPs, including sequence_reverse (forward), sequence_padding (forward), sequence_unpad (reverse), and bilinear interpolate (forward).
+        * Optimize MKLDNN integration (such as re-using reorder primitives to reduce the time to create a new primitive each time).
+* Optimization of Memory
+    * Optimize the Op layer memory (saving 1G or more memories on the Transformer, Mask-RCNN and other models).
+        * Improve the coverage of the inplace strategy, supporting the inplace calculation of op such as sum, softmax, softmax_with_cross_entropy, etc.
+        * Fix the reverse registration of dropout, conv_transpose, and activation op, reducing op memory usage.
+    * Memory Allocation and Memory Reuse Strategy Refactoring
+        * Refactors the underlying architecture of the Allocator to provide the foundation for subsequent extended Allocator policies.
+        * Refactors the Inplace strategy to make its code easy to maintain, and to rule out variables in previous strategies that may produce bugs such as inplace, graph existence, etc.
+    * Optimization of Configuration
+        * The user can use the environment variable ``FLAGS_conv_workspace_size_limit`` to set the maximum workspace size of the conv layer in MB.
 * Execution optimization
-    * The 'place' parameter in with\_data\_parallel can be set to specify to run model on which GPU cards to execute single-process multi-training tasks.
-    * Scheduling strategy applied on the multi-card executor is optimized, which is proved on the performance that execution speed on the ResNet50 and Transformer models has witnessed a increase of 8%~19%.
-    * For Multi-card environment, grouped Fuse for AllReduce is developed. With this manner in place, ResNet model on multi-card is accelerated by 8%~30% (the figure varies with the number of cards). Moreover, Transformer model running on multiple cards picks up speed by 4%.
-* Video Memory optimization
-    * GC strategy optimization: Eager Deletion strategy supports timely deletion of internal while\_op variables; supports non-full-quantity Eager Deletion strategy, users can set FLAGS\_memory\_fraction\_of\_eager\_deletion=0.xx to control the percentage of immediate deletion memory/memory\_space in real time.
-    * Op optimization: Optimize the backward registration mechanism of cross entropy, expand, layer\_norm, dropout, etc., and remove irrelevant variable dependencies, and improve the video memory performance.
-    * Two new FLAGS (FLAGS\_initial\_gpu\_memory\_in\_mb and FLAGS\_reallocate\_gpu\_memory\_in\_mb) to allow the users to specify the initial memory pool capacity and the reallocated memory pool capacity.
-    * Adjust the inplace\_op\_pass strategy to increase the coverage of the inplace strategy.
-    * Removed the logic for doing activation op inplace optimization on the python side, and included it to inplace\_op\_pass.
-    * Memory Profile function is provided.
-* Refine CPU JITKernel
-    * Modify the manner to call JITKernel, employ cache mechanism and interfaces to get all functions of the same type, which is convenient for developers to flexibly call desired interfaces.
-    * As JITKernel is adopted to optimize the SGD algorithm, the equivalent OP part speed is increased by 44% and the overall training speed is increased by 12% in the PyramidDNN model; On the other hand, JITKernel is used to optimize fused\_embedding\_seq\_pool, and the backward versions of corresponding ops in the PyramidDNN model is accelerated by 18% and overall training speeds up by 6%.
-* low-level Intel CPU computing optimization
-    * MKLDNN is upgraded to v0.18 and includes various performance boosts (e.g. GEMM-based convolution operations/INT8 convolution operations, etc.).
-    * GELU OP is accelerated by MKL. After optimization, the OP performance attains 3 times of the previous.
-    * Unit testing of MKLDNN-related Kernels are refined.
-* Intel nGraph graph compiling engine integration is to facilitate the support for more hardware backends for PaddlePaddle
-    * The subgraphs are transferred to the nGraph core via ngraph\_engine OP, and then optimized with graph algorithms, after which they will be dispatched to execute on CPUs. nGraph can be called at runtime with the environment variable set as FLAGS\_use\_ngraph=true.
-    * Training and inference of the ResNet50 model on the CPU is fulfilled. The performance of the ResNet50 training and inference on CPU gains notable increase compared with the direct optimization by MKLDNN.
-* Adjustments to basic framework functionality
-    * Synchronized Batch Norm operation becomes available; specifying axis in softmax is allowed; new operators are in place: spectral norm, rang, acos, asin, atanh; Npair Loss is adopted for feature learning.
-    * cosine\_decay , a new learning rate strategy, is implemented.
-    * Users can use sampled\_softmax\_with\_cross\_entropy to improve training efficiency in large dictionaries.
-    * Fuse is possible between SGD and Adam optimization algorithms. If enabled, on the Transformer model, the speed can increase by 2%, while on the Cycle GAN model, the gain turns out to be 6%.
-    * A more sophisticated lsmtp, which is able to perform clipping internal cell, initializing cell state and hidden state.
-    * A more adjustable adagrad by which users can initialize cumulative momentum.
-    * Users are allowed to handle Tensor through \_\_getitem\_\_ method.
-    * QuantizationFreezePass, ConvertToInt8Pass, and TransformForMobilePass are introduced with comprehensive support for both dynamic and static quantitative training methods and saving corresponding model.
-* Accomplished basic functions in the preview version of dynamic graph
-    * Basic functions: LRDecay, single GPU card and single-node CPU model training and evaluation.
-    * API: expose the rudimentary interfaces of dynamic graph to users; reconstruct current Layers; build Layers such as GRU, LayerNorm, NCE, PRelu.
-    * Performance: performance evaluated on the ResNet, MNIST model is essentially the same as the static graph.
-    * Dynamic graph implementation of models such as Transformer, MNIST, SE-ResNeXt.
+    * Update the default configuration of CPU_NUM to 1, which is previously the total number of logical cores of the device.
+    * Cache the OpKernel in the Operator to avoid repeatedly selecting the kernel for each run.
+    * ParallelExecutor execution mode (CompiledProgram.with_data_parallel()) optimization: reduce synchronization operation; optimize the speed at num_thread=1 — the speed increase for small models is more obvious  (16% increase for PaddingRNN small model).
+* Framework basic functions enhancements
+    * Add mkldnn_enabled_op_types option to build_strategy, giving users the flexibility to control which ops need to use the mkldnn kernel for acceleration.
+    * Add drop_local_exe_scopes interface under ParallelExecutor. The setting of num_iteration_per_drop_scope that controls when the data in the local scope is cleaned is still valid.
+    * Add automatic mixed precision training interface ``fluid.contrib.mixed_precision.decorate()`` that supports image classification, BERT and other model training.
+    * Add ``fluid.gradients()`` interface with 11 operations supporting secondary reversal, used by gradient penalty for image generation.
+    * Enhance the support for the Intel nGraph compilation engine; add the op support required by the Bert model. The BERT model can be trained by the Intel nGraph compilation engine, and the convergence effect is comparable.
+* OP perfect
+    * Enhance the fused_elewise_activation op function; add support for x+sigmoid(y), x+tanh(y) calculation modes.
+    * Add a new index, Exponential Moving Average, which makes model training smoother and more stable.
+    * Add sigmoid_focal_loss loss function
+    * Add deformable RoI pooling operation
+    * Add deformable convolution v2 operation
+    * Provide unfold operation (i.e. im2col) operation
 
 Inference Engine
 #####################################
-Server-side Inference Engine
-+++++++++++++++++++++++++++++++++++++
-* Inference library is currently integrated with PaddlePaddle/Anakin to unify interfaces for a more efficient inference process
-    * able to handle Anakin GPU submaps and CPU submaps.
-    * The Python inference interface has accepted Anakin subgraph.
-    * significant Inference acceleration on ResNet, VGG, GoogleNet, MobileNet, ShuffleNet, Faster R-CNN, YOLO, SSD and other models
-* Inference framework optimization. Inference of small models expedites noticeably
-    * Through configuring runtime\_context\_cache\_pass, focal models have obtained a speed-up of 17%.
-    * The infershape of 5 OPs are refined, so that the focal models accelerate by 13%.
-    * The ZeroCopy interface is upgraded to avoid redundant CPU copies when using AnalysisPredictor.
-* Reinforce INT8 quantitative Inference
-    * More inclusive support for INT8 Quantization through TensorRT, applicable for AlexNet, Googlenet, VGG, MobileNet, ShuffleNet and more. Utilize the information on TensorRT in an optimal manner to perform the serialization and deserialization so that a model will be initialized more speedily.
-    * Implement the INT8 quantization framework based on C++ Pass. A few new INT8 OP Kernel: Transpose, Contact, Requantize. By fine-tuning the quantization strategy in MkldnnQuantizerConfig, users can promptly get the INT8 quantization model that meets the accuracy requirements. The INT8 quantized ResNet-50/MobileNet v1 model achieved a performance 7 times/3 times higher compared with the original FP32 model (tested on the Xeon 6271 server supporting the AVX512-DL Boost instruction set).
-
-Mobile Inference Engine
-+++++++++++++++++++++++++++++++++++++
-* ARM CPU
-    * Paddle Mobile has reconstructed and enhanced efficiency of the matrix operation library sgemm and sgemv, which gives rise to performance boost of 10%~100% on most models.
-    * 19 new operators are provided in this version such as while, sequence\_expand, sequence\_pool, sequence\_softmax, gru\_unit, beam\_search, and beam\_search\_decode. Apart from that, there has also been a large amount of optimization, and the support attention-based end-to-end Model prediction.
-    * arm v8 of winograd implementation: higher inference performance on v8 hardware on IOS; winograd support for operator fusion to ensure higher efficiency after operator fusion.
-    * Direct convolution for kernel with a 3x3 sliding window, which will be more efficient than winograd and gemm on the condition that the number of channels is small.
-    * Reconstructed and optimized depthwise convolution with the kernel size 3x3: in contrast to previous versions, it supports arbitrary padding, and attains better performance and returns more reliable calculation results.
-    * Depthwise convolution with the kernel size 5x5 on armv8: the NAS model prediction speeds up by more than 30%.
-    * Complete the efficiency optimization of the deconvolution conv2d\_transpose.
-    * Consolidated with memory reuse strategy based on graph optimization. When the strategy is applied, most models can reduce memory usage by nearly 50%. It is automatically turned on for the ARM CPU (not compatible with FPGA and GPU).
-* ARM GPU
-    * Paddle Mobile completes the convolution optimization for the kernel with size 1x1, and MobileNet v1 has an average inference performance improvement of 35% on Qualcomm Adreno GPUs.
-    * Paddle Inference has preliminarily unified of Paddle Mobile and Anakin interfaces. Further integration is pending.
-
-Deployment Tools
-+++++++++++++++++++++++++++++++++++++
-* Model compression toolkit PaddleSlim
-    * Model clipping compression strategy: users can select sensitivity or uniform modes, apply it for various models such as VGG, ResNet, MobileNet, and customize clipping range.
-    * Quantitative training model compression strategy: there are two two quantitative training modes, dynamic mode and static mode. Channel quantization or overall quantization of parameters are also selectable. Users can save models with float type simulating int8 value domain, with int8 type, or with formats compatible with Paddle Mobile .
-    * Model distillation compression strategy: users are permitted to add combined loss at any layer in the teacher network and student network. FSP Loss, L2 Loss, Softmax with Cross-entropy Loss are all available methods.
-    * Other functions: Users can configure hyper-parameters of file compression task, and are allowed to combine multiple compression strategies. Moreover, checkpoints function is also applicable for distillation and clipping compression process.
+* Server-side Deployment Library
+    * Optimize “video memory optimization” function. DAM’s video memory occupation decreases from 4G to 940M; MobileNet’s video memory occupation decreases from 1G to 500M.
+    * The Paddle-TRT optimization process is migrated to model initialization to solve the problem that the Paddle-TRT initial prediction time is too long. For example, make MobileNet first predicted time drop from second level to millisecond level.
+    * Fix the issue that ``AnalysisPredictor`` allocate memory repeatedly when it loads models from memory.
+    * Enhance Python interference API; include the related user manual under “Deploy Inference Model” section on  Paddle’s documentation page.
+    * Intel INT8 Quantization Interference Improvements
+        * Continuously optimize the INT8 quantization framework (quantization after training); add five models (GoogLeNet, MobileNetV2, VGG16, VGG19, ResNet101); compared with the FP32 model, achieve a less than 1% accuracy loss and improve performance 2 to 3.7 times.
+        * Run the model that supports QAT (Quantization as Training) on the INT8 kernel; Modify the QAT model with Pass to enable it to run on the INT8 kernel (currently supports quantization/dequantization/convolution); compared to the simulation that runs on the FP32 kernel, achieve a less than 1% accuracy loss with 7 models (GoogleNet, MobileNetV1, MobileNetV2, VGG16, VGG19, ResNet50, ResNet101).
 * Paddle Serving
-    * Remote paddle inference deployment is accomplished.
-    * The server allows users to add data processing Operator, or define inference logic, and it supports model hot-loading.
-    * The client side offers a C++ SDK which can be called business logic if needed. Users are allowed to customize protobuf to define network data transfer protocols, and A/B testing capabilities.
-    * Provides sample templates for classic tasks in paddle serving, including text classification and image classification tasks.
-    * Benchmarks for latency and throughput for text classification tasks.
+    * Support GPU devices; support multi-card parallel inference.
+    * Provide the SE_ResNeXt50_32x4d model as a standard example; give image classification task benchmark of single card multiple concurrency, multi-card multi-concurrency, etc.
+    * Support large-scale sparse parameter tasks: storage and online access for very large-scale embedding in scenarios such as CTR estimation; release a stand-alone version in the first phase, supporting billion-level embedding access.
+    * Provide easy to use API interface and API demo examples.
+* PaddleSlim
+    * Integrated INT8 quantization framework
+    * New automatic shearing strategy based on simulated annealing algorithm to search for optimal shearing rate: 50% reduction in FLOPS compared to MobileNet V1 on ImageNet 1000 classification task; Top1 - Accuracy = 69.7%
+    * New Light-NAS feature: 17% reduction in FLOPS compared to MobileNet V1 for ImageNet 1000 classification tasks with no loss of accuracy
 
 Distributed training
 #####################################
-* Distributed IO optimization
-    * Pipe Reader Interface Optimization: high-efficiency IO methods are in place as maintaining flexibility of data pre-processing. Enterprise-class Linux system customization is supported. High-performance IO components are implemented. Unified maintenance is carried out in the procedure of off-line data preprocessing. Remote file system stream read capability is enhanced to support the modes in which data are loaded to memory and distributed shuffling.
-* Integration of Executor and distributed IO
-    * AsyncExecutor is integrated into Executor, equipped with a new train\_from\_dataset/infer\_from\_dataset interface. It supports Pipe Reader-based training, and accepts user-defined PipeLine program on the condition of maintaining multi-queue IO function, and provides flexible python-side data processing.
-* bandwidth insensitive training ability of synchronous multi-node multi-card GPU training
-    * Sync GPU training is capable of sparse communication and adopts sparse all reduce.
-    * Guarantee model convergence from the algorithm perspective and introduce DGCOptimizer through control of communication sparsity.
-    * Experiments on ResNet50 on imagenet prove that: in terms of model convergence, for 90 rounds of ResNet50, convergence remains stable; in high-speed interconnected network environment, sparse communication does not compromise training speed; for low network bandwidth network environment (such as 10G network) ), sparse communication has notable advantages in training speed, where the speed of synchronous training is 10 times faster than that of dense communication.
-* Collective Operator mode
-    * Collective Operator mode is available. Multiple all reduce operations are allowed under GPU. Incorporating collective op into Program through the Python API makes the development of distributed optimization algorithms much more flexible.
-* Convergence speed optimization for ResNet50 on Imagenet
-    * Dynamic BatchSize, dynamic ImageSize, and rectangular crop can be used. With FP32 precision, on v100 single-node 8 card testing environment, the convergence speed increases by 68% (acc1\>=75.9%, acc5=93.0%).
-* K8S Ecosystem Support
-    * Kubeflow has supported paddle-job and contributed to the kubeflow community.
-    * The Paddle-K8S-Operator for industrial application is supported. It can collaborate with kubeflow.
-    * The K8S environment is suitable for beginners to submit task scripts, of which reproducible tutorials are given on Baidu Cloud.
+* Distributed High-Level API Fleet
+    * Distributed Training Unified API, which supports Parameter Server and Collective mode training, greatly reducing the number of new codes for users to switch from single computer to multi-computer training
+    * Users can invoke different parallel training methods by configuring distributed policies, supporting multiple built-in RoleMaker for different distributed environments to facilitate user calls
+* New Communicator Design for Parameter Server Training
+    * Independent communication logic to Communicator to simplify asynchronous training logic
+    * Provides controllable communication switches that can be tuned to different models
+* GPU multi-computer multi-card add multi-boosting extensible feature, NLP/CV classic model multi-computer multi-card training speed up 50%
+    * Add Fused All Reduce: Reduce the number of parameter sync times by automatically merging gradient tensor
+    * New Hierachical All Reduce: Hierarchical all reduce operation
+    * New All Reduce communication concurrent capability: Increased capacity for network wave tolerance under multi-machine training
+    * Added dependency analysis between reverse and optimization algorithms: Improving the ability to communicate and compute overlap concurrency
+    * The above-mentioned new capability convergence enables more than 50 percent faster training on Bert Large (batch 16x128) and Resnet 50 (batch 32) computers (v1008 * 4 cards) than PaddlePaddle1.4.1.
+* GPU Multi-computer Multi-card Benchmark Update
+    * Speed comparisons on ResNet50, VGG16, Transformer and Bert, and reproducible benchmarks scripts.
+* Pipeline parallel capability support for CPU-GPU heterogeneous equipment
+    * Add pipeline parallel capability to support user-defined allotment calculation OP in heterogeneous hardware, exchange data through pipeline, thus realize collocation of heterogeneous computing equipment and free allocation of computing resources, and improve training speed.
+    * In the case of large IO and small computation, such as CTR prediction, Graph Neural Network has obvious speed advantage over pure GPU training.
 
 Model Construction
 #####################################
-* PaddleCV Intelligent Vision
-    * Video Classification Toolkit is formally released. It covers mainstream video classification models, including Non-Local, TSM, Attention Cluster, NeXtVLAD, Attention LSTM, StNet, TSN, and attains the level of mainstream implementations.
-    * New pre-trained ImageNet-based model: GoogleNet, ShuffleNetv2, ResNet18, ResNet34.
-    * New target detection YOLOv3 model. The effect is equivalent to the finest open implementation (mAP is 7 percentage points higher than the original author).
-    * The Simple Baselines human pose estimation model based on COCO and MPII data is realized. The effect is able to parallel mainstream implementation.
-    * npair loss is introduced to feature learning models, and raises recall@1 to 79.03% (+0.78%) based on the pre-trained model (arcmargin loss).
-* PaddleNLP intelligent text processing
-    * The Chinese semantic representation ELMo model is available. It supports multi-card training, and the training speed is twice as fast as mainstream implementation. It has been verified that the F1 value is increased by absolute 1.1% in Chinese lexical analysis tasks, and the Rouge-L value increases by 1% in Chinese reading comprehension tasks.
-    * The Chinese semantic representation model ERNIE is implemented, which has improved the accuracy by absolute 1% ~ 2% compared with the BERT Chinese model in Chinese tasks such as natural language inference, semantic similarity, named entity recognition, sentiment analysis, and question and answer matching.
-    * The read understanding model is upgraded by optimizing data pre-processing and document selection. The effect is that Rouge-L was upgraded to 65 (baseline 39.29) on DuReader validation datasets.
-    * A knowledge-aware dialogue model is added. Compared with the baseline generation dialog model, it outperforms by an average of 1 percentage point on the F1, BLEU1, and BLEU2 metrics.
-    * The dialogue model toolkit is available. It consists of Deep Attention Matching Net, a new automatic dialogue assessment tool and the BERT-based generic dialog understanding model DGU (Dialogue General Understanding), which supports five types of dialogue tasks, namely dialogue semantic matching, DA, DST, slot analysis and intention recognition, and attains the effect of SOTA on three public datasets.
-    * The PaddleNLP toolkit is released to unify the modeling of NLP tasks such as text classification, text matching, sequence labeling, reading comprehension, and intelligent dialogue. And their corresponding industrial pre-trained models are also open to use.
-* PaddleRec intelligent recommendation
-    * Deep Interest Network (DIN): DIN is fulfilled in this version. reproduce effect on public dataset and support single/multi-card training in both cpu and gpu mode. DIN is appropriate for the sorting scenarios in recommendation (such as ctr prediction). The main feature is the combination of the estimated target information in the process of modeling the historical sequence.
-    * Graph Neural Network (GNN): a session-based graph neural network recommendation model is introduced. Effect has been reproduced on public dataset. It supports single-node single-card training in both CPU and GPU mode. The model is suitable for the recall scenario in the recommendation. Using GNN to model the user's historical information can capture more complex transformation relationships underlying item sequences.
-    * Word2vec: word2vec sampling strategy is adjusted. The effect is reproduced on the public dataset. Multi-machine training support is included as well.
+* Image classification
+    * 9 ImageNet pre-training models published, including ResNet50_vc, ResNet50_vd, ResNet101_vd, ResNet 152_vd, ResNet 200_vd, ResNeXt101_64x4d, ResNeXt101_vd_64x4d, SENet 154_vd, InceptionV4
+    * ResNet50_vd is 2.62% higher than the published ResNet50, and the accuracy of ResNet101 is achieved. ResNet101_vd 1.88% better than ResNet101
+* PaddleDetection
+    * Publish a unified framework for detecting PaddleDetection objects, including Faster-RCNN (support FPN), Mask-RCNN (support FPN), Cascade-RCNN, RetinaNet, Yolo v3, SSD, FPN, Cascade RCNN and RetinaNet.
+    * Releases a series of pre-training models in which RCNN series models support ResNet, ResNet_vd, ResNeXt, ResNeXt_vd, SEResNeXt backbone networks. Yolo v3 continues to add lighter ResNet 34, MobileNet backbone networks and release pre-training models
+* PaddleGAN
+    * Release the PaddleGAN Image Generation Library, which includes CGAN, DCGAN, CycleGAN, Pix2 Pix, StarGAN, AttGAN, STGAN, supporting a variety of datasets and supporting classic GAN network structures. STGAN is an arbitrary image attribute editing model developed by Baidu Visual Technology Department.
+* PaddleVideo
+    * Optimize the already published classification model, NeXt VLAD training speed 60%, TSM speed 39%
+    * Add published model backbone networks and Nonlocal models add ResNet101 and I3d network structures
+    * Added motion positioning model C-TCN, Baidu 2018 ActivityNet Championship Scheme
+* PaddleNLP
+    * ERNIE/BERT support dynamic mixed precision training; Supporting multi-card task training in a multi-process manner, increasing the multi-card acceleration ratio; To optimize the speedup ratio of multi-machine and multi-card training, the speedup efficiency of 6 machines to 76% on V100 GPU cluster compared to single machine FP32 training is improved.
+    * Launch of PaddleNLP-Research, open source MRQA2019, Paddle Fluid baseline, DuConv (ACL2019), ARNOR (ACL2019), MMPMS (IJCAI 2019), MPM (NAACL2019) and other recent Baidu work in the NLP academic field
 
 Tools and Components
 #####################################
-* Open source AutoDL Design is officially released to enable automatic network design
-    * A series of neural networks generated with the AutoDL Design, and a total of six models trained on CIFAR10 data have saved the network structures and involved weights. Therefore, any developer or researcher interested in deep learning can easily work on PaddlePaddle and public CIFAR10 data to perform inference and model fusion on these six models, which have attained an accuracy over 98%.
-    * The source code for the encoder and the critic is made open source. The source code is based on the PaddlePaddle platform and the PARL framework developed entirely by Baidu. The code also comes with Chinese documentation and some brief demos that make it easier for users to run effortlessly. (for example, with "How many 1s is generated by RNN" as a standard, you can quickly verify the correctness of the entire framework). Moreover, users can download, install, run, and try to generate your own original neural network structure.
-* Latest upgrades on the parallelization-oriented PARL1.1. Users are allowed to implement parallelized reinforcement learning algorithms by using a decorator
-    * Parallelization can be achieved simply with a modifier (@parl.remote_class). After computing-intensive tasks, such as the data-preprocessing and simulator simulation tasks, have encountered this decorator, the data will be automatically deployed to the specified computing resources, and no longer occupy the computing resources of the main thread.
-    * Support parallelization algorithms such as IMPALA, A2C, and GA3C.
-* PaddleHub, a pre-trained model management tool, is released and strives to help users manage models and conduct transfer learning more efficiently
-    * **Pre-trained model management:**  Pre-trained model download, search, version management and other functions in the PaddlePaddle ecosystem can be completed through the hub command line.
-    * **One-click command line:**  Free from code, you can use the pre-trained model to infer straight through the command line, and quickly examine the effect of the training model. The current version supports the following models: lexical analysis LAC; sentiment analysis Senta; target detection SSD; image classification ResNet, MobileNet.
-    * **Transfer Learning:**  Provides a Finetune API based on pre-trained models. Users can complete transfer learning with a small amount of code. The API mainly includes BERT/ERNIE text classification, sequence labeling, image classification transfer.
-* The X2Paddle model conversion tool is officially released to transfer prediction models implemented in other deep learning frameworks to PaddlePaddle without loss. The tool is also attached with detailed comparison documents of TensorFlow, the Caffe framework's API , to help users transform the model to PaddlePaddle more easily
+* PaddleHub
+    * New release of PaddleHub official web site, enhanced ease of use
+        * New website http://hub.paddlepaddle.org.cn, including introduction to pre-training models for PaddlePaddle ecology
+        * Migrate learning Demo to AI Studio and AI Book for quick experience without installation
+        * New PaddleHub back-end services to support model retrieval, download and privatization deployment
+    * 29 new pre-training models covering three areas: Text, image and video; 40 pre-training models currently available
+        * CV pre-training model
+            * 11 new pre-training models for image classification: SE_ResNeXt, GoogleNet, ShuffleNet, etc.
+            * Added target detection models Faster-RCNN and YOLOv3
+            * New image generation model CycleGAN
+            * New face detection model Pyramidbox
+            * 4 new video classification models: TSN, TSM, StNet, Non-Local
+        * NLP pre-training model
+            * New semantic model ELMo
+            * 3 new emotion analysis models: Senta-BOW, Senta-CNN, Senta-GRNN
+            * New Chinese Emotional Recognition Model EmoTect
+            * New Chinese Semantic Similarity Analysis Model Simnet
+            * Upgrading the LAC lexical analysis model, adding dictionary intervention to support user-defined segmentation
+    * Fine-tune API upgrades, flexibility and performance upgrades
+        * Support for multi-card parallel, PyReader multi-threaded IO, ERNIE Text Classification Fine-tune 60% faster
+        * Simplified use logic for finetune, evaluuate, predict, etc., for ease of use
+        * Add event callback to facilitate users to quickly implement custom migration learning tasks
+        * New Tag Classification Task Fine-tune
+* Figure Learning Framework `PGL < https://github.com/PaddlePaddle/PGL > `_ (Paddle Graph Learning)
+    * The PaddlePaddle-based Graphics Framework PGL Preview is released to provide the most advanced Graphics algorithms based on Walk Based and Message Passing. PGL takes full advantage of Paddle LoD Tensor to greatly improve the efficiency of information aggregation in Message-Passing paradigm, which takes into account flexibility and efficiency.
+        * New GCN and GAT based on PGL to reach SOTA level in multiple datasets
+        * New Graphsage model based on large-scale subgraph sampling model with 50 million nodes and 2 billion edges
+        * Added node2vec, deep walk and other chart sign learning methods to reach SOTA level
+        * New PGL documentation, APIs, Tutorial, etc.
 
 BUG fixes notes
 #####################################
-* Fixed precision inconsistency in BFS occurred in backward computation.
-* Fixed redundant backward inputs created by optimizer minimize.
-* Fixed Paddle-TRT occupying too much video memory.
-* Fixed bugs in AllReduceDepPass.
-* Fixed bugs in FastThreadedExecutor.
-* Fixed bugs in Op such as Reshape, cross\_entropy, arg\_min\_max, recurrent, etc.
-* Fixed problems with VarBase construction
-* Fixed a number of problems and bugs in memory\_optimize\_pass: Adjusted the multiplexing logic from \>= to =, reduced fragmentation caused by Variable multiplexing, removing the dependency of memory\_opitmize\_pass on BlockDesc. Fixed a bug that different types of Variables would be reused mutually.
-* Fixed an issue with util.plot in python3.
-* Improved the stability of the Profiler and introduced Memory Profile function.
-* Fixed the problem that multithreading was effective only when C++ inference had been cloned within the thread.
-* fix bugs of some ops in InferShape.
-* fix bugs of some ops with input LoD length = 0.
-* fix bugs of recurrent op for StaticRNN.
-* fix bugs of dygraph when saving and loading model checkpoint.
+* Repair issues where ignore_label does not support labels in the version of softmax_with_cross_entropy operation CPU
+* Repair Logging.basicConfig setup failure after import paddle
+* Repair the problem of python/paddle/fluid/layers/ops.py reporting errors under python3
+* Repair of sequence unpad op instability during training
+* Repair the problem of dropping when the concat op attribute axis is a negative number
+* Fixed potential bugs for enable_inplace and memory_optimize to ensure that some of the op's output variables are not reused incorrectly
+* Fix the bug of Eager Deletion strategy which may erroneous delete variable storage space in advance and improve the stability of Eager Deletion strategy.
+* Fixes the case of different model graph generation with the same model input due to bugs in topology sorting in model graph analysis
+* Fixed a problem with other service thread OMP thread conflicts after the prediction ends. The fix is that in CPU mode, the prediction engine sets the number of global OMP threads to 1 after the prediction ends.
