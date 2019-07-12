@@ -375,7 +375,43 @@ You can find the docker image for each release of PaddlePaddle in the [DockerHub
 		paddlepaddle_gpu-1.5.0-cp36-cp36m-linux_x86_64.whl</a></td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-1.5.0.post107-cp37-cp37m-linux_x86_64.whl">
 		paddlepaddle_gpu-1.5.0-cp37-cp37m-linux_x86_64.whl</a></td>
-	</tr>   
+	</tr>
+	<tr>
+		<td> win_cpu_openblas </td>
+		<td> - </td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle-1.5.0-cp27-cp27m-win_amd64.whl">
+		paddlepaddle-1.5.0-cp27-cp27m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle-1.5.0-cp35-cp35m-win_amd64.whl">
+		paddlepaddle-1.5.0-cp35-cp35m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle-1.5.0-cp36-cp36m-win_amd64.whl">
+		paddlepaddle-1.5.0-cp36-cp36m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle-1.5.0-cp37-cp37m-win_amd64.whl">
+		paddlepaddle-1.5.0-cp37-cp37m-win_amd64.whl</a></td>
+	</tr>
+	<tr>
+		<td> win_cuda8_cudnn7_openblas </td>
+		<td> - </td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post87-cp27-cp27m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp27-cp27m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post87-cp35-cp35m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp35-cp35m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post87-cp36-cp36m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp36-cp36m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post87-cp37-cp37m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp37-cp37m-win_amd64.whl</a></td>
+	</tr>
+	<tr>
+		<td> win_cuda9_cudnn7_openblas </td>
+		<td> - </td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post97-cp27-cp27m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp27-cp27m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post97-cp35-cp35m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp35-cp35m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post97-cp36-cp36m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp36-cp36m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.0-win-open/paddlepaddle_gpu-1.5.0.post97-cp37-cp37m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.0-cp37-cp37m-win_amd64.whl</a></td>
+	</tr>	   
 	<tr>
 		<td> mac_cpu </td>
 		<td> - </td>
