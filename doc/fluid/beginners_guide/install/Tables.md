@@ -21,9 +21,15 @@
 		<td>  </td>
 	</tr>
 	<tr>
-		<td> GCC </td>
+		<td> GCC (Linux Only) </td>
 		<td> 4.8 / 5.4 </td>
 		<td>  推荐使用CentOS的devtools2 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> Clang (MacOS Only) </td>
+		<td> 9.0及以上 </td>
+		<td> 通常使用MacOS 10.11及以上的系统对应的Clang版本即可 </td>
 		<td>  </td>
 	</tr>
 		<tr>
@@ -47,12 +53,12 @@
 	<tr>
 		<td> openblas </td>
 		<td> any </td>
-		<td>  </td>
+		<td> 可选 </td>
 		<td>  </td>
 	</tr>
 	<tr>
 		<td> pip </td>
-		<td> 最低9.0.1 </td>
+		<td> >=9.0.1 </td>
 		<td>  </td>
 		<td> <code> apt install python-pip </code> 或 <code> yum install Python-pip </code> </td>
 	</tr>
@@ -60,7 +66,7 @@
 		<td> numpy </td>
 		<td> >=1.12.0 </td>
 		<td>  </td>
-		<td> <code> pip install numpy==1.14.0 </code> </td>
+		<td> <code> pip install numpy </code> </td>
 	</tr>
 	<tr>
 		<td> protobuf </td>
@@ -166,7 +172,7 @@
 		<tr>
 		<td> CUDA_ARCH_NAME </td>
 		<td> 是否只针对当前CUDA架构编译 </td>
-		<td> All 可选：Auto</td>
+		<td> All:编译所有可支持的CUDA架构 可选：Auto 自动识别当前环境的架构编译 </td>
 	</tr>
    </tbody>
 </table>
