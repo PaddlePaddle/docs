@@ -349,84 +349,6 @@ DGC还使用动量因子掩藏(momentum factor masking)和预训练(warm-up)来�
 
 
 
-.. _cn_api_fluid_optimizer_PipelineOptimizer:
-
-PipelineOptimizer
--------------------------------
-
-.. py:class:: paddle.fluid.optimizer.PipelineOptimizer(optimizer, cut_list=None, place_list=None, concurrency_list=None, queue_size=30, sync_steps=1, start_cpu_core_id=0)
-
-Pipeline 优化器训练。该程序将由cut_list分割。如果cut_list的长度是k，则整个程序（包括向后部分）将被分割为2 * k-1个部分。 所以place_list和concurrency_list的长度也必须是2 * k-1。 
-
-.. note::
-
-    虽然异步模式应用于管道训练中以加速，但最终的性能取决于每个管道的训练进度。 我们将在未来尝试同步模式。
-
-参数:
-    - **optimizer** (Optimizer) - 基础优化器，如SGD
-    - **cut_list** (list of Variable list) - main_program的cut变量
-    - **place_lis** (list of Place) - 某部分运行的位置
-    - **concurrency_lis** (list of int) - 并发度
-    - **queue_size** (int) - 每个部分都将使用其范围内队列(in-scope queue)中的范围并将范围生成到范围外队列(out-scope queue)。 而这个参数定范围队列大小。 这一参数可选，默认值：30。
-    - **sync_steps** (int) - 不同显卡之间的同步步数
-    - **start_cpu_core_id** (int) - 设置第一个cpu核的id。这一参数可选，默认值：0。
-
-**代码示例**
-
-.. code-block:: python
-
-        x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=0)
-        y = fluid.layers.data(name='y', shape=[1], dtype='int64', lod_level=0)
-        emb_x = layers.embedding(input=x, param_attr=fluid.ParamAttr(name="embx"), size=[10,2], is_sparse=False)
-        emb_y = layers.embedding(input=y, param_attr=fluid.ParamAttr(name="emby",learning_rate=0.9), size=[10,2], is_sparse=False)
-        concat = layers.concat([emb_x, emb_y], axis=1)
-        fc = layers.fc(input=concat, name="fc", size=1, num_flatten_dims=1, bias_attr=False)
-        loss = layers.reduce_mean(fc)
-        optimizer = fluid.optimizer.SGD(learning_rate=0.5)
-        optimizer = fluid.optimizer.PipelineOptimizer(optimizer,
-                cut_list=[[emb_x, emb_y], [loss]],
-                place_list=[fluid.CPUPlace(), fluid.CUDAPlace(0), fluid.CPUPlace()],
-                concurrency_list=[1, 1, 4],
-                queue_size=2,
-                sync_steps=1,
-                )
-        optimizer.minimize(loss)
-        place = fluid.CPUPlace()
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
-        filelist = [] # 您应该根据需求自行设置文件列表, 如: filelist = ["dataA.txt"]
-        dataset = fluid.DatasetFactory().create_dataset("FileInstantDataset")
-        dataset.set_use_var([x,y])
-        dataset.set_batch_size(batch_size)
-        dataset.set_filelist(filelist)
-        exe.train_from_dataset(
-                    fluid.default_main_program(),
-                    dataset,
-                    thread=2,
-                    debug=False,
-                    fetch_list=[],
-                    fetch_info=[],
-                    print_period=1)
-
-
-.. py:method:: extract_section_opt_ops(ops, cut_point_name)
-    
-获取指定section的优化算子(opt ops)
-
-.. py:method:: extract_section_opt_ops(ops, cut_point_name)
-  
-获取指定section的输入和输出
-
-.. py:method:: find_persistable_vars(ops, whole_parameters)
-
-获取指定section的持久性输入变量
-
-.. py:method:: extract_section_ops(ops, cut_point_name)
-
-获取指定的section的算子(ops)
-
-
-
 .. _cn_api_fluid_optimizer_ExponentialMovingAverage:
 
 ExponentialMovingAverage
@@ -856,6 +778,70 @@ MomentumOptimizer
 
 
 
+
+
+
+.. _cn_api_fluid_optimizer_PipelineOptimizer:
+
+PipelineOptimizer
+-------------------------------
+
+.. py:class:: paddle.fluid.optimizer.PipelineOptimizer(optimizer, cut_list=None, place_list=None, concurrency_list=None, queue_size=30, sync_steps=1, start_cpu_core_id=0)
+
+使用流水线模式进行训练。
+Program会根据切分列表cut_list进行分割。如果cut_list的长度是k，则整个program（包括反向部分）将被分割为2*k-1个section。 所以place_list和concurrency_list的长度也必须是2*k-1。 
+
+.. note::
+
+    虽然我们在流水线训练模式中采用异步更新的方式来加速，但最终的效果会依赖于每条流水线的训练进程。我们将在未来尝试同步模式。
+
+参数:
+    - **optimizer** (Optimizer) - 基础优化器，如SGD
+    - **cut_list** (list of Variable list) - main_program的cut变量列表
+    - **place_list** (list of Place) - 对应section运行所在的place
+    - **concurrency_list** (list of int) - 指定每个section的并发度列表
+    - **queue_size** (int) -  每个section都会消费其输入队列(in-scope queue)中的scope，并向输出队列(out-scope queue)产出scope。 此参数的作用就是指定队列的大小。 可选，默认值：30
+    - **sync_steps** (int) - 不同显卡之间的同步周期数。可选，默认值：1
+    - **start_cpu_core_id** (int) - 指定所使用的第一个CPU核的id。可选，默认值：0
+
+**代码示例**
+
+.. code-block:: python
+
+        import paddle.fluid as fluid
+        import paddle.fluid.layers as layers
+        x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=0)
+        y = fluid.layers.data(name='y', shape=[1], dtype='int64', lod_level=0)
+        emb_x = layers.embedding(input=x, param_attr=fluid.ParamAttr(name="embx"), size=[10,2], is_sparse=False)
+        emb_y = layers.embedding(input=y, param_attr=fluid.ParamAttr(name="emby",learning_rate=0.9), size=[10,2], is_sparse=False)
+        concat = layers.concat([emb_x, emb_y], axis=1)
+        fc = layers.fc(input=concat, name="fc", size=1, num_flatten_dims=1, bias_attr=False)
+        loss = layers.reduce_mean(fc)
+        optimizer = fluid.optimizer.SGD(learning_rate=0.5)
+        optimizer = fluid.optimizer.PipelineOptimizer(optimizer,
+                cut_list=[[emb_x, emb_y], [loss]],
+                place_list=[fluid.CPUPlace(), fluid.CUDAPlace(0), fluid.CPUPlace()],
+                concurrency_list=[1, 1, 4],
+                queue_size=2,
+                sync_steps=1,
+                )
+        optimizer.minimize(loss)
+        place = fluid.CPUPlace()
+        exe = fluid.Executor(place)
+        exe.run(fluid.default_startup_program())
+        filelist = [] # you should set your own filelist, e.g. filelist = ["dataA.txt"]
+        dataset = fluid.DatasetFactory().create_dataset("FileInstantDataset")
+        dataset.set_use_var([x,y])
+        dataset.set_batch_size(batch_size)
+        dataset.set_filelist(filelist)
+        exe.train_from_dataset(
+                    fluid.default_main_program(),
+                    dataset,
+                    thread=2,
+                    debug=False,
+                    fetch_list=[],
+                    fetch_info=[],
+                    print_period=1)
 
 
 
