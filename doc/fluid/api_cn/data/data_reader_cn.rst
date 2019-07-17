@@ -381,7 +381,7 @@ PipeReader通过流从一个命令中读取数据，将它的stdout放到管道�
 
 参数：
     - **cut_lines** （bool） - 将缓冲区分行。
-    - **line_break** （string） - 文件中的行分割符，比如 ‘\n’ 或者 ‘\r’。
+    - **line_break** （string） - 文件中的行分割符，比如 ‘\\n’ 或者 ‘\\r’。
 
 
 返回：一行或者一段缓冲区。
