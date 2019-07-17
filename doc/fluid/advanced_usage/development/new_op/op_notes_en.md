@@ -170,7 +170,7 @@ The Enforce prompt message cannot be empty and needs to be written, because the 
 ### 2.Op's mathematical formula
 If Op has a mathematical formula, be sure to write the mathematical formula in the code and display it in the Doc of the Python API, because the user may need to understand how Paddle implements Op when comparing the calculation results among different frameworks.
 
-**Note:** The formula preview must be done before the merge to the develop branch. Example: [dynamic_lstmp](http://paddlepaddle.org/documentation/docs/en/1.1/api/layers.html#dynamic-lstmp).
+**Note:** The formula preview must be done before the merge to the develop branch. Example: [dynamic_lstmp](https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/api/layers/nn.html#dynamic-lstmp).
 
 ### 3. The order of parameters in the Python-side Op interface
 The order of the parameters in the Python API is generally ranked by importance, taking fc as an example:
