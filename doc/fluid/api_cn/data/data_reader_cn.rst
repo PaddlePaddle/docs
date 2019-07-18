@@ -238,7 +238,7 @@ Data Reader Interface
         def reader():
             while True:
                 yield numpy.random.uniform(-1, 1, size=width*height)
-    return reader
+        return reader
 
 
 多项目数据读取器创建者的示例实现：
@@ -249,7 +249,7 @@ Data Reader Interface
         def reader():
             while True:
                 yield numpy.random.uniform(-1, 1, size=width*height), label
-    return reader
+        return reader
 
 .. py:function::   paddle.reader.map_readers(func, *readers)
 
@@ -292,7 +292,7 @@ Data Reader Interface
 
 返回：新的数据读取器
 
-抛出异常：     ``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会升高。
+抛出异常：     ``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会抛出异常。
 
 
 
@@ -378,22 +378,15 @@ PipeReader通过流从一个命令中读取数据，将它的stdout放到管道�
 
 .. py:method:: get_line(cut_lines=True, line_break='\n')
 
-param cut_lines:
-     cut buffer to lines
 
-type cut_lines:    bool
+参数：
+    - **cut_lines** （bool） - 将缓冲区分行。
+    - **line_break** （string） - 文件中的行分割符，比如 ‘\\n’ 或者 ‘\\r’。
 
-param line_break:
-     line break of the file, like
 
-or
+返回：一行或者一段缓冲区。
 
-type line_break:
-     string
-
-return:    one line or a buffer of bytes
-
-rtype:    string
+返回类型： string
 
 
 
