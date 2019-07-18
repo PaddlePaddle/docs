@@ -125,12 +125,9 @@ Compile Time -> IR -> Runtime
 
 ## Operator/OpWithKernel/OpKernel
 
-![class_diagram](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/op_op_with_kern_class_diagram.dot)
-
 ---
 
 ## Operator
-![class_diagram](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/op.dot)
 
 * `Operator` is the fundamental building block of the user interface.
     * Operator stores input/output variable names and attributes.
@@ -140,8 +137,6 @@ Compile Time -> IR -> Runtime
 ---
 
 ## OpWithKernel/Kernel
-
-![class_diagram](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/op_with_kernel.dot)
 
 * `OpWithKernel` inherits `Operator`.
 * `OpWithKernel` contains a Kernel map.
