@@ -97,7 +97,7 @@ Operator继承关系图：
 
 ## 写Op注意事项
 ### 1.Op可以支持输入输出类型
-Fluid的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可以存放任意类型，Op的输入输出`Variable`可能是是任意类型，通常情况下`Variable`中存放的是`LoDTensor`、`SlelectedRows`。
+Fluid的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可以存放任意类型，Op的输入输出`Variable`可能是是任意类型，通常情况下`Variable`中存放的是`LoDTensor`、`SelectedRows`。
 
 **注意：**
 
