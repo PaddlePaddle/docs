@@ -27,6 +27,7 @@
 * 目前 `PaddlePaddle` 仅支持 `nVidia` 显卡的 `CUDA` 驱动
 
 * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+
+
 * 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
     * 仅 Ubuntu/CentOS 支持 NCCL 2 技术
 * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
@@ -112,8 +113,8 @@
     
             pip3 install paddlepaddle
 
-    (2). **GPU版本**：如果您想使用CPU版本请参考如下命令安装  
-        
+    (2). **GPU版本**：如果您想使用CPU版本请参考如下命令安装 
+
         注意：
             * 您的计算机需要具有支持 `CUDA` 驱动的 `nVidia` 显卡
             * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+
