@@ -221,9 +221,8 @@ const int num_threads = 10;  // 假设有 10 个服务线程
 std::vector<std::thread> threads;
 std::vector<decl_type(main_predictor)> predictors;
 
-// 线程外创建所有的predictor
-predictors.emplace_back(std::move(main_predictor));
-for (int i = 1; i < num_threads; i++) {
+// 将克隆的 predictor 放入 vector 供线程使用
+for (int i = 0; i < num_threads; i++) {
     predictors.emplace_back(main_predictor->Clone());
 }
 
