@@ -149,6 +149,7 @@ create_array
 
 ..  code-block:: python
 
+  import paddle.fluid as fluid
   data = fluid.layers.create_array(dtype='float32')
 
 
@@ -391,6 +392,7 @@ greater_equal
 
 .. code-block:: python
 
+     import paddle.fluid as fluid
      out = fluid.layers.greater_equal(x=label, y=limit)
 
 
@@ -417,6 +419,7 @@ greater_than
 
 .. code-block:: python
 
+     import paddle.fluid as fluid
      out = fluid.layers.greater_than(x=label, y=limit)
 
 
@@ -564,6 +567,7 @@ less_equal
 
 .. code-block:: python
 
+     import paddle.fluid as fluid
      out = fluid.layers.less_equal(x=label, y=limit)
 
 
@@ -594,6 +598,7 @@ less_than
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     label = fluid.layers.data(name='y', shape=[1], dtype='int64')
     limit = fluid.layers.fill_constant(shape=[1], dtype='int64', value=5)
     cond = fluid.layers.less_than(x=label, y=limit)
@@ -621,6 +626,7 @@ not_equal
 
 .. code-block:: python
 
+     import paddle.fluid as fluid
      out = fluid.layers.not_equal(x=label, y=limit)
 
 
