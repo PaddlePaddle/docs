@@ -249,7 +249,7 @@ cpu_places
 
 创建 ``fluid.CPUPlace`` 对象列表。
 
-如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目默认为1，也就是说，``CPU_NUM``=1。
+如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目默认为1，也就是说， ``CPU_NUM`` =1。
 
 参数：
   - **device_count** (None|int) - 设备数目
