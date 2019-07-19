@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-echo test
-
+# tets
 # Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
