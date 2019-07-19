@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo test
 
 # Copyright (c) 2018 PaddlePaddle Authors. All Rights Reserved.
 #
@@ -29,6 +30,7 @@ else
     echo "This branch doesn't require documentation build";
     exit $exit_code;
 fi
+
 
 echo "Build Paddle library $1. This step is needed to compile Paddle API documents"
 cd external/Paddle
