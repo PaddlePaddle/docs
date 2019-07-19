@@ -63,6 +63,9 @@
 		> `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
 
 
+
+
+
 至此，您已经成功使用Docker安装PaddlePaddle，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
 <a name="dockers"></a>
