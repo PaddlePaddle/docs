@@ -113,6 +113,7 @@
             pip3 install paddlepaddle
 
     (2). **GPU版本**：如果您想使用CPU版本请参考如下命令安装  
+        
         注意：
             * 您的计算机需要具有支持 `CUDA` 驱动的 `nVidia` 显卡
             * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+
