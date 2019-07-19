@@ -201,6 +201,9 @@
 
     (1). 首先需要安装 `docker <https://www.docker.com>`_
 
+    注意：
+        * CentOS 6 不支持 `docker` 方式安装
+
     (2). 拉取预安装 PaddlePaddle 的镜像：
     ::
 
