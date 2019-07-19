@@ -3,7 +3,7 @@
 本文将指导您如何在本地进行代码开发
 
 ## 代码要求
-- 代码注释请遵守 [Doxygen](http://www.stack.nl/~dimitri/doxygen/) 的样式。
+- 代码注释请遵守 [Doxygen](http://www.doxygen.nl/) 的样式。
 - 确保编译器选项 `WITH_STYLE_CHECK` 已打开，并且编译能通过代码样式检查。
 - 所有代码必须具有单元测试。
 - 通过所有单元测试。

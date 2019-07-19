@@ -121,34 +121,28 @@ Compile Time -> IR -> Runtime
     ```
   - Automatic Model Parallelism (planned for future)
 
----
 
 ## Operator/OpWithKernel/OpKernel
 
-![class_diagram](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/op_op_with_kern_class_diagram.dot)
 
----
 
-## Operator
-![class_diagram](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/op.dot)
+### Operator
 
 * `Operator` is the fundamental building block of the user interface.
     * Operator stores input/output variable names and attributes.
     * The `InferShape` interface is used to infer the shape of the output variables based on the shapes of the input variables.
     * Use `Run` to compute the `output` variables from the `input` variables.
 
----
 
-## OpWithKernel/Kernel
 
-![class_diagram](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/op_with_kernel.dot)
+### OpWithKernel/Kernel
 
 * `OpWithKernel` inherits `Operator`.
 * `OpWithKernel` contains a Kernel map.
     * `OpWithKernel::Run` get device's kernel, and invoke `OpKernel::Compute`.
     * `OpKernelKey` is the map key. Only device place now, but may be data type later.
 
----
+
 
 ## Why separate Kernel and Operator
 

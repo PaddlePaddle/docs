@@ -28,15 +28,18 @@
 存储预测模型
 ===========
 
+存储预测模型时，一般通过 :code:`fluid.io.save_inference_model` 接口对默认的 :code:`fluid.Program` 进行裁剪，只保留预测 :code:`predict_var` 所需部分。
+裁剪后的 program 会保存在指定路径 ./infer_model/__model__ 下，参数会保存到 ./infer_model 下的各个独立文件。
+
+示例代码如下：
+
 .. code-block:: python
 
     exe = fluid.Executor(fluid.CPUPlace())
     path = "./infer_model"
-    fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'], 
+    fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'],
         target_vars=[predict_var], executor=exe)
 
-在这个示例中，:code:`fluid.io.save_inference_model` 接口对默认的 :code:`fluid.Program` 进行裁剪，只保留预测 :code:`predict_var` 所需部分。
-裁剪后的 :code:`program` 会保存在 :code:`./infer_model/__model__` 下，参数会保存到 :code:`./infer_model` 下的各个独立文件。
 
 加载预测模型
 ===========
@@ -45,11 +48,11 @@
 
     exe = fluid.Executor(fluid.CPUPlace())
     path = "./infer_model"
-    [inference_program, feed_target_names, fetch_targets] = 
+    [inference_program, feed_target_names, fetch_targets] =
         fluid.io.load_inference_model(dirname=path, executor=exe)
     results = exe.run(inference_program,
                   feed={feed_target_names[0]: tensor_img},
                   fetch_list=fetch_targets)
 
-在这个示例中，首先调用 :code:`fluid.io.load_inference_model` 接口，获得预测的 :code:`program` 、输入数据的 :code:`variable` 名称和输出结果的 :code:`variable` ;
-然后调用 :code:`executor` 执行预测的 :code:`program` 获得预测结果。
+在这个示例中，首先调用 :code:`fluid.io.load_inference_model` 接口，获得预测的 :code:`inference_program` 、输入数据的名称 :code:`feed_target_names` 和输出结果的 :code:`fetch_targets` ;
+然后调用 :code:`executor` 执行预测的 :code:`inference_program` 获得预测结果。

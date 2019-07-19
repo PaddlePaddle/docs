@@ -1,48 +1,57 @@
-***
+# **Installation on Windows**
 
-# **Install on Windows**
+## Operating Environment
 
-This instruction will show you how to install PaddlePaddle on Windows.  The following conditions must be met before you begin to install:
+* *64-bit operating system*
+* *Windows 7/8, Windows 10 Pro/Enterprise*
+* *Python 2.7/3.5/3.6/3.7*
+* *pip or pip3 >= 9.0.1*
 
-* *a 64-bit desktop or laptop*
-* *Windows 7/8 , Windows 10 Professional/Enterprise Edition*
+### Precautions
 
-**Note** : 
+* The default installation package requires your computer to support AVX instruction set and MKL. If your environment doesn’t support AVX instruction set and MKL, please download [these](./Tables.html/#ciwhls-release) `no-avx`, `openblas` versions of installation package.
+* The current version doesn’t support functions related to NCCL and distributed learning.
 
-* The current version does not support NCCL, distributed training related functions.
+## CPU or GPU
 
+* If your computer doesn’t have NVIDIA® GPU, please install the CPU version of PaddlePaddle
 
+* If your computer has NVIDIA® GPU, and it satisfies the following requirements, we recommend you to install the GPU version of PaddlePaddle
+    * *CUDA Toolkit 8.0/9.2 with cuDNN v7.3+*
+    * *GPU's computing capability exceeds 1.0*
 
+Please refer to the NVIDIA official documents for the installation process and the configuration methods of [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) and [cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/).
 
+## Installation Method
 
-## Installation Steps  
+There are 3 ways to install PaddlePaddle on Windows:
 
-### ***Install through pip***
+* pip installation (recommended)
+* [Docker installation](./install_Docker.html)
+* [source code compilation and installation](./compile/compile_Windows.html/#win_source)
 
-* Check your Python versions
+We would like to introduce the pip installation here.
 
-Python2.7.15，Python3.5.x，Python3.6.x，Python3.7.x on [Official Python](https://www.python.org/downloads/) are supported.
- 
-* Check your pip version
+## Installation Process
 
-Version of pip or pip3 should be equal to or above 9.0.1 .
+* CPU version of PaddlePaddle: `pip install paddlepaddle` or `pip3 install paddlepaddle`
+* GPU version of PaddlePaddle: `pip install paddlepaddle-gpu` or `pip3 install paddlepaddle-gpu`
 
-* Install PaddlePaddle
+There is a checking function below for [verifyig whether the installation is successful](#check). If you have any further questions, please check the [FAQ part](./FAQ.html).
 
-* ***CPU version of PaddlePaddle***:
-Execute `pip install paddlepaddle` or `pip3 install paddlepaddle` to download and install PaddlePaddle.
+Notice:
 
-* ***GPU version of PaddlePaddle***:
-Execute `pip install paddlepaddle-gpu`(python2.7) or `pip3 install paddlepaddle-gpu`(python3.x) to download and install PaddlePaddle.
- 
-## ***Verify installation***
+* The version of pip and the version of python should be corresponding: python2.7 corresponds to `pip`; python3.x corresponds to `pip3`.
+* `pip install paddlepaddle-gpu` This command will install PaddlePaddle that supports CUDA 8.0 cuDNN v7. Currently, PaddlePaddle doesn't support any other version of CUDA or cuDNN on Windows.
 
-After completing the installation, you can use `python` or `python3` to enter the python interpreter and then use `import paddle.fluid` to verify that the installation was successful.
+<a name="check"></a>
+## Installation Verification
+After completing the installation process, you can use `python` or `python3` to enter python interpreter and input `import paddle.fluid as fluid` and then `fluid.install_check.run_check()` to check whether the installation is successful.
 
-## ***How to uninstall***
+If you see `Your Paddle Fluid is installed succesfully!`, your installation is verified successful.
 
-* ***CPU version of PaddlePaddle***:
-Use the following command to uninstall PaddlePaddle : `pip uninstallpaddlepaddle `or `pip3 uninstall paddlepaddle`
+## Uninstall PaddlePaddle
 
-* ***GPU version of PaddlePaddle***:
-Use the following command to uninstall PaddlePaddle : `pip uninstall paddlepaddle-gpu` or `pip3 uninstall paddlepaddle-gpu`
+* ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
+
+* ***GPU version of PaddlePaddle***: `pip uninstall paddlepaddle-gpu` or `pip3 uninstall paddlepaddle-gpu`

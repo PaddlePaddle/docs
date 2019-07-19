@@ -44,6 +44,8 @@ The :ref:`api_fluid_CompiledProgram` is used to transform a program for various 
                     feed=feed_dict,
                     fetch_list=[loss.name])
 
+**Note**: :code:`fluid.Porgram` and :code:`compiler.CompiledPorgram` are completely different :code:`Programs`. :code:`fluid.Porgram` is composed of a series of operators. :code:`compiler.CompiledPorgram` compiles the :code:`fluid.Porgram` and converts it into a computational graph. :code:`compiler.CompiledPorgram` cannot be saved at present.
+
 
 - Related API :
  - :ref:`api_fluid_CompiledProgram`
