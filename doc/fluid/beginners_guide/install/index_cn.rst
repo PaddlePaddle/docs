@@ -65,7 +65,7 @@
 
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
 		
-	* 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
+        * 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
 
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
