@@ -249,7 +249,7 @@ cpu_places
 
 创建 ``fluid.CPUPlace`` 对象列表。
 
-如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目将由 ``multiprocessing.cpu_count()`` 确定。
+如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目默认为1，也就是说，``CPU_NUM``=1。
 
 参数：
   - **device_count** (None|int) - 设备数目
@@ -262,6 +262,7 @@ cpu_places
 
 .. code-block:: python
 
+           import paddle.fluid as fluid
            cpu_places = fluid.cpu_places()
 
 
@@ -279,6 +280,7 @@ CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应�
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         cpu_place = fluid.CPUPlace()
 
 
@@ -397,6 +399,7 @@ cuda_pinned_places
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         cuda_pinned_places_cpu_num = fluid.cuda_pinned_places()
         # 或者
         cuda_pinned_places = fluid.cuda_pinned_places(1)
@@ -428,6 +431,7 @@ cuda_places
 
 .. code-block:: python
 
+      import paddle.fluid as fluid
       cuda_places = fluid.cuda_places()
 
 .. _cn_api_fluid_CUDAPinnedPlace:
@@ -443,6 +447,7 @@ CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GP
 
 .. code-block:: python
 
+      import paddle.fluid as fluid
       place = fluid.CUDAPinnedPlace()
 
 .. _cn_api_fluid_CUDAPlace:
@@ -458,6 +463,7 @@ CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace�
 
 .. code-block:: python
 
+       import paddle.fluid as fluid
        gpu_place = fluid.CUDAPlace(0)
 
 
@@ -482,6 +488,7 @@ DataFeedDesc应由来自磁盘的有效protobuf消息初始化。
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -508,6 +515,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
     data_feed.set_dense_slots('wd')  # 名为'wd'的slot将被设置为密集的
@@ -534,6 +542,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -569,6 +578,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -606,6 +616,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -642,6 +653,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -993,6 +1005,7 @@ DistributeTranspiler
 
 .. code-block:: python
 
+  import paddle.fluid as fluid
   x = fluid.layers.data(name='x', shape=[13], dtype='float32')
   y = fluid.layers.data(name='y', shape=[1], dtype='float32')
   y_predict = fluid.layers.fc(input=x, size=1, act=None)
@@ -1053,6 +1066,7 @@ DistributeTranspiler
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     transpiler = fluid.DistributeTranspiler()
     t.transpile(
         trainer_id=0,
@@ -1162,6 +1176,7 @@ DistributeTranspiler
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     current_endpoint = "192.168.0.1:6174"
@@ -1207,6 +1222,7 @@ block中分割(split)出的元素个数的最小值。
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     config = fluid.DistributeTranspilerConfig()
     config.slice_var_up = True
 
@@ -1226,6 +1242,7 @@ ExecutionStrategy
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[13], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     y_predict = fluid.layers.fc(input=x, size=1, act=None)
@@ -1578,6 +1595,7 @@ in_dygraph_mode
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     if fluid.in_dygraph_mode():
         pass
 
@@ -1875,6 +1893,7 @@ name_scope
 
 .. code-block:: python
           
+     import paddle.fluid as fluid
      with fluid.name_scope("s1"):
         a = fluid.layers.data(name='data', shape=[1], dtype='int32')
         b = a + 1
@@ -2043,6 +2062,7 @@ ParallelExecutor
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         pe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                     loss_name=avg_cost.name,
                                     main_program=fluid.default_main_program())
@@ -2211,6 +2231,7 @@ Program
 
     .. code-block:: python
 
+          import paddle.fluid as fluid
           test_program = fluid.default_main_program().clone(for_test=True)
           optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
           optimizer.minimize()
@@ -2538,6 +2559,7 @@ scope_guard
 
 .. code-block:: python
 
+  import paddle.fluid as fluid
   import numpy
   
   new_scope = fluid.Scope()
