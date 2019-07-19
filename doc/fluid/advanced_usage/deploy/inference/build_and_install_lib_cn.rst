@@ -6,7 +6,7 @@
 直接下载安装
 -------------
 
-..  csv-table:: c++预测库列表( Linux )
+..  csv-table:: c++预测库列表
     :header: "版本说明", "预测库(1.5.1版本)", "预测库(develop版本)"
     :widths: 1, 3, 3
 
@@ -17,18 +17,6 @@
     "cuda8.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.5.1-gpu-cuda8-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda8-cudnn7-avx-mkl/fluid_inference.tgz>`_"
     "cuda9.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.5.1-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_"
     "cuda10.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.5.1-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_"
-
-
-..  csv-table:: c++预测库列表( Windows )
-    :header: "版本说明", "预测库(1.5.1版本)"
-    :widths: 1, 3
-
-    "cpu_avx_mkl", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_mkl_avx/fluid_inference_install_dir.zip>`_"
-    "cpu_avx_openblas", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_open_avx/fluid_inference_install_dir.zip>`_"
-    "cuda8.0_cudnn7_avx_mkl", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_8.0/fluid_inference_install_dir.zip>`_"
-    "cuda8.0_cudnn7_avx_openblas", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_8.0/fluid_inference_install_dir.zip>`_"
-    "cuda9.0_cudnn7_avx_mkl", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_9.0/fluid_inference_install_dir.zip>`_"
-    "cuda9.0_cudnn7_avx_openblas", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_9.0/fluid_inference_install_dir.zip>`_"
 
 
 从源码编译
