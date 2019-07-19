@@ -82,6 +82,7 @@ profile interface 。与cuda_profiler不同，此profiler可用于分析CPU和GP
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
     import numpy as np
 
@@ -118,6 +119,7 @@ reset_profiler
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
     with profiler.profiler('CPU', 'total', '/tmp/profile'):
     for iter in range(10):
@@ -155,6 +157,7 @@ start_profiler
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
 
     profiler.start_profiler('GPU')
@@ -195,6 +198,7 @@ stop_profiler
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
 
     profiler.start_profiler('GPU')

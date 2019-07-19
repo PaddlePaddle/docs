@@ -26,6 +26,7 @@ abs
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.abs(data)
 
@@ -51,6 +52,7 @@ arccosine激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.acos(data)
 
@@ -76,6 +78,7 @@ arcsine激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.asin(data)
 
@@ -102,6 +105,7 @@ arctanh激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.atan(data)
 
@@ -134,6 +138,7 @@ ceil
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.ceil(data)
 
@@ -172,6 +177,7 @@ Cosine余弦激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.cos(data)
 
@@ -203,6 +209,7 @@ cumsum
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.data(name="input", shape=[32, 784])
     result = fluid.layers.cumsum(data, axis=0)
 
@@ -238,6 +245,7 @@ Exp激活函数(Exp指以自然常数e为底的指数运算)。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.exp(data)
 
@@ -275,6 +283,7 @@ floor
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.floor(data)
 
@@ -315,6 +324,7 @@ HardShrink激活函数(HardShrink activation operator)
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.data(name="input", shape=[784])
     result = fluid.layers.hard_shrink(x=data, threshold=0.3)
 
@@ -351,6 +361,7 @@ Logsigmoid激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.logsigmoid(data)
 
@@ -386,6 +397,7 @@ Reciprocal（取倒数）激活函数
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.reciprocal(data)
 
@@ -425,6 +437,7 @@ Round取整激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.round(data)
 
@@ -456,6 +469,7 @@ rsqrt激活函数
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.rsqrt(data)
 
@@ -485,6 +499,7 @@ sigmoid激活函数
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.sigmoid(data)
 
@@ -524,6 +539,7 @@ sin
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.sin(data)
 
@@ -561,6 +577,7 @@ softplus激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.softplus(data)
 
@@ -600,6 +617,7 @@ Softshrink激活算子
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.softshrink(data)
 
@@ -638,6 +656,7 @@ softsign激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.softsign(data)
 
@@ -677,6 +696,7 @@ sqrt
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.sqrt(data)
 
@@ -714,6 +734,7 @@ square
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.square(data)
 
@@ -754,6 +775,7 @@ tanh 激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.tanh(data)
 
@@ -792,6 +814,7 @@ tanh_shrink激活函数。
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.tanh_shrink(data)
 
@@ -829,6 +852,7 @@ ThresholdedRelu激活函数
 
 .. code-block:: python
 
+  import paddle.fluid as fluid
   data = fluid.layers.data(name="input", shape=[1])
   result = fluid.layers.thresholded_relu(data, threshold=0.4)
 

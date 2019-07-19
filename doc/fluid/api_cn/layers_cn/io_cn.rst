@@ -24,6 +24,7 @@ batch
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     raw_reader = fluid.layers.io.open_files(filenames=['./data1.recordio',
                                                './data2.recordio'],
                                         shapes=[(3,224,224), (1,)],
@@ -153,6 +154,7 @@ data
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.data(name='x', shape=[784], dtype='float32')
 
 
@@ -299,6 +301,7 @@ reader变量中数据预处理块。
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     reader = fluid.layers.io.open_files(
         filenames=['./data1.recordio', './data2.recordio'],
         shapes=[(3, 224, 224), (1, )],
@@ -485,6 +488,7 @@ random_data_generator
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     reader = fluid.layers.random_data_generator(
                                  low=0.0,
                                  high=1.0,
@@ -563,6 +567,7 @@ shuffle
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     raw_reader = fluid.layers.io.open_files(filenames=['./data1.recordio',
                                                    './data2.recordio'],
                                             shapes=[(3,224,224), (1,)],
