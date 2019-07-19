@@ -41,18 +41,18 @@
 
 * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
     * Windows 安装 GPU 版本
-		* Windows 7/8/10 支持 CUDA 8/9 单卡模式
+        * Windows 7/8/10 支持 CUDA 8/9 单卡模式
 		
-		* 不支持 `nvidia-docker` 方式安装
+        * 不支持 `nvidia-docker` 方式安装
 
     * Ubuntu 安装 GPU 版本
-		* Ubuntu 14.04 支持 CUDA 8/10
+        * Ubuntu 14.04 支持 CUDA 8/10
 
-		* Ubuntu 16.04 支持 CUDA 8/9/10
+        * Ubuntu 16.04 支持 CUDA 8/9/10
 
-		* Ubuntu 18.04 支持 CUDA 10
+        * Ubuntu 18.04 支持 CUDA 10
 
-		* 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
+        * 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
 
     * CentOS 安装 GPU 版本
         * 如果您是使用本机 `pip` 安装：
@@ -126,7 +126,7 @@
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
     
-             pip install paddlepaddle
+            pip install paddlepaddle
         
         如果您是使用 Python 3，安装CPU版本的命令为：
         ::
@@ -163,18 +163,18 @@
         如果您是使用 Python 2，CUDA 8，cuDNN 7.3+，安装GPU版本的命令为：
         ::
     
-             pip install paddlepaddle-gpu==1.5.1.post87
+            pip install paddlepaddle-gpu==1.5.1.post87
 
         如果您是使用 Python 2，CUDA 9，cuDNN 7.3+，安装GPU版本的命令为：
         ::
     
-             pip install paddlepaddle-gpu==1.5.1.post97
+            pip install paddlepaddle-gpu==1.5.1.post97
         
 
         如果您是使用 Python 2，CUDA 10，cuDNN 7.3+，安装GPU版本的命令为：
         ::
     
-             pip install paddlepaddle-gpu==1.5.1.post107
+            pip install paddlepaddle-gpu==1.5.1.post107
         
         如果您是使用 Python 3，请将上述命令中的 `pip` 更换为 `pip3` 进行安装。
 
@@ -233,7 +233,7 @@
     (2). 拉取支持`CUDA 10`, `cuDNN 7.3+` 预安装 PaddlePaddle 的镜像：
     ::
 
-       nvidia-docker pull hub.baidubce.com/paddlepaddle/paddle:1.5.1-gpu-cuda10.0-cudnn7
+        nvidia-docker pull hub.baidubce.com/paddlepaddle/paddle:1.5.1-gpu-cuda10.0-cudnn7
 
     (3). 用镜像构建并进入Docker容器：
     ::
