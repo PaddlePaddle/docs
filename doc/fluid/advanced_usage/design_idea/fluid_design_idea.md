@@ -100,11 +100,13 @@ prob = ie()
 `BlockDesc`中包含本地变量的定义 [vars](../../api_guides/low_level/program.html#variable)，和一系列的operator`ops`：
 
 ```cpp
- message BlockDesc {
-  required int32 parent = 1;
-  repeated VarDesc vars = 2;
-  repeated OpDesc ops = 3;
+message BlockDesc {
+  required int32 idx = 1;
+  required int32 parent_idx = 2;
+  repeated VarDesc vars = 3;
+  repeated OpDesc ops = 4;
 }
+
 ```
 parent ID表示父块，因此block中的操作符可以引用本地定义的变量，也可以引用祖先块中定义的变量。
 
