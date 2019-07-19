@@ -36,10 +36,12 @@
         * Ubuntu 16.04 支持 CUDA 8/9/10
         * Ubuntu 18.04 支持 CUDA 10
     * CentOS 
-        * CentOS 7 支持 CUDA 9/10，支持 CUDA 8 但仅支持单卡模式
-            * 编译安装：支持 CUDA 9/10
-        * CentOS 6 支持 CUDA 8/9 单卡模式
-            * 编译安装：不推荐，不提供编译出现问题时的官方支持
+        * 如果您是使用 `pip` 和 `docker` 安装：
+			* CentOS 7 支持 CUDA 9/10，支持 CUDA 8 但仅支持单卡模式
+            * CentOS 6 支持 CUDA 8/9 单卡模式
+		* 如果您是从源码编译安装：
+			* CentOS 7 支持 CUDA 9/10
+        	* CentOS 6 不推荐，不提供编译出现问题时的官方支持
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
 
@@ -51,7 +53,7 @@
 第一种安装方式：使用 pip 安装
 ================================
 
-您可以选择“使用pip安装”、“使用docker安装”、“从源码编译安装” 三种方式中的任意一种种方式进行安装。
+您可以选择“使用pip安装”、“使用docker安装”、“从源码编译安装” 三种方式中的任意一种方式进行安装。
 
 本节将介绍使用 `pip` 的安装方式。
 
@@ -95,7 +97,7 @@
 
 5. 如果您希望使用 `pip <https://www.docker.com>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 
-- 注意：目前官方没有支持 `conda` 和 `anaconda` 进行支持，使用他们所附带的 `pip` 安装 `paddlepaddle` 也可能会带来冲突。所以建议使用纯净的 Python 环境的 `pip` 进行安装。
+- 注意：目前官方没有对 `conda` 和 `anaconda` 进行支持，使用他们所附带的 `pip` 安装 `paddlepaddle` 也可能会带来冲突。所以建议使用纯净的 Python 环境的 `pip` 进行安装。
 
 
     (1). **CPU版本**：如果您只是想安装CPU版本请参考如下命令安装  
@@ -110,7 +112,7 @@
     
             pip3 install paddlepaddle
 
-	[2]. **GPU版本**：如果您想使用CPU版本请参考如下命令安装  
+    (2). **GPU版本**：如果您想使用CPU版本请参考如下命令安装  
         注意：
             * 您的计算机需要具有支持 `CUDA` 驱动的 `nVidia` 显卡
             * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+
@@ -158,7 +160,7 @@
 第二种安装方式：使用 docker 安装
 ================================
 
-您可以选择“使用pip安装”、“使用docker安装”、“从源码编译安装” 三种方式中的任意一种种方式进行安装。
+您可以选择“使用pip安装”、“使用docker安装”、“从源码编译安装” 三种方式中的任意一种方式进行安装。
 
 本节将介绍使用 `docker` 的安装方式。
 
@@ -208,7 +210,7 @@
 
         nvidia-docker run --name paddle -it -v $PWD:/paddle hub.baidubce.com/paddlepaddle/paddle:1.5.1-gpu-cuda10.0-cudnn7 /bin/bash
 
-    或如果您需要支持 `CUDA 8` 或者 `CUDA 9` 的版本，将上述命令的 `cuda10.0` 替换成 `cuda9.0` 或者 `cuda8.0` 即可，cuDNN 仅支持 `cuDNN 7.3+`
+    或如果您需要支持 `CUDA 8` 或者 `CUDA 9` 的版本，将上述命令的 `cuda10.0` 替换成 `cuda8.0` 或者 `cuda9.0` 即可，cuDNN 仅支持 `cuDNN 7.3+`
 
 3. 如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
     ::
@@ -220,7 +222,7 @@
 第三种安装方式：使用源代码编译安装
 ====================================
 
-- 如果您只是使用 `PaddlePaddle` 建议只使用 `pip` 和 `docker` 两种安装方式中选取一种安装方式进行安装。
+- 如果您只是使用 `PaddlePaddle` ，建议从 `pip` 和 `docker` 两种安装方式中选取一种进行安装即可。
 - 如果您有开发PaddlePaddle的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
 ..	toctree::
