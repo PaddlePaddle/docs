@@ -65,7 +65,7 @@
 
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
 		
-        * 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
+        * 如果您是使用 `nvidia-docker` 安装，在CentOS 7 下支持 CUDA 8/9/10。
 
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
@@ -102,7 +102,7 @@
     如果您是使用 Python 3
     ::
     
-        python --version
+        pip3 --version
 
 4. 确认 Python 和 pip 是 64 bit，下面的命令输出的是 "64bit" 即可：
 
@@ -201,6 +201,9 @@
 
     (1). 首先需要安装 `docker <https://www.docker.com>`_
 
+    注意：
+        * CentOS 6 不支持 `docker` 方式安装
+
     (2). 拉取预安装 PaddlePaddle 的镜像：
     ::
 
@@ -223,11 +226,11 @@
         * 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
             * 仅 Ubuntu/CentOS 支持 NCCL 2 技术
 
-            * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
+        * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
 
-                * Ubuntu/CentOS，如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
+            * Ubuntu/CentOS 7 ，如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
 
-                * Windows/MacOS 不支持 `nvidia-docker` 方式安装
+            * Windows/MacOS/CentOS 6 不支持 `nvidia-docker` 方式安装
 
 
     (2). 拉取支持`CUDA 10`, `cuDNN 7.3+` 预安装 PaddlePaddle 的镜像：
