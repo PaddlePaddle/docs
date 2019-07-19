@@ -255,7 +255,7 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
   
 **定义计算过程**
 
-layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，关于 :code:`fluid.layers.sequence_expand` 的功能说明，请先阅读 :ref:`api_fluid_layers_sequence_expand` 。
+layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，关于 :code:`fluid.layers.sequence_expand` 的功能说明，请先阅读 :ref:`cn_api_fluid_layers_sequence_expand` 。
 
 序列扩充代码实现：
 
@@ -279,7 +279,7 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
 
 这里我们调用 :code:`fluid.create_lod_tensor` 创建 :code:`sequence_expand` 的输入数据，通过定义 y_d 的 LoD 值，对 x_d 进行扩充。其中，输出值只与 y_d 的 LoD 值有关，y_d 的 data 值在这里并不参与计算，维度上与LoD[-1]一致即可。
 
-:code:`fluid.create_lod_tensor()` 的使用说明请参考 :ref:`api_fluid_create_lod_tensor` 。
+:code:`fluid.create_lod_tensor()` 的使用说明请参考 :ref:`cn_api_fluid_create_lod_tensor` 。
 
 实现代码如下：
 
