@@ -267,6 +267,7 @@ scope_guard
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import numpy
 
     new_scope = fluid.Scope()
