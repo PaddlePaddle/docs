@@ -64,8 +64,6 @@
 
 
 
-
-
 至此，您已经成功使用Docker安装PaddlePaddle，更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
 <a name="dockers"></a>
