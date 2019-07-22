@@ -42,7 +42,7 @@ Windows系统下有3种安装方式：
 注：
 
 * pip与python版本对应。如果是python2.7, 建议使用`pip`命令; 如果是python3.x, 则建议使用`pip3`命令
-* `pip3 install -U paddlepaddle-gpu` 此命令将安装支持CUDA 8.0 cuDNN v7的PaddlePaddle，目前windows环境下暂不支持其他版本的CUDA和cuDNN。
+* `pip3 install -U paddlepaddle-gpu` 此命令将安装支持CUDA 9.0 cuDNN v7的PaddlePaddle，目前windows环境下暂不支持其他版本的CUDA和cuDNN。
 
 <a name="check"></a>
 ## 验证安装
