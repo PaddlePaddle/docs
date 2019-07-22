@@ -1,5 +1,4 @@
 #!/bin/bash
-#test
 
 #for module in nn
 #do
