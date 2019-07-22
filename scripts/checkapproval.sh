@@ -3,6 +3,8 @@
 API_FILES=("/FluidDoc/doc/fluid")
 
 for API_FILE in ${API_FILES[*]}; do
+  git diff --name-only upstream/$BRANCH
+  echo 111
   API_CHANGE=`git diff --name-only upstream/$BRANCH | grep "${API_FILE}" || true`
   if [ "${API_CHANGE}" ];then
     approval_line=`curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/Paddle/pulls/${GIT_PR_ID}/reviews?per_page=10000`
