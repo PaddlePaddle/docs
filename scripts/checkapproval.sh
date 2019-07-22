@@ -1,7 +1,8 @@
 #!/bin/bash
 
 API_FILES=("doc/fluid")
-
+pwd
+ls
 for API_FILE in ${API_FILES[*]}; do
   API_CHANGE=`git diff --name-only upstream/$BRANCH | grep "${API_FILE}" || true`
   if [ "${API_CHANGE}" ];then
