@@ -24,6 +24,7 @@ def check_approval(count, required_reviewers):
     json_resp = json.loads(json_buff)
     approves = 0
     approved_user_ids = []
+    print(json_resp)
     for review in json_resp:
         if review["state"] == "APPROVED":
             approves += 1
