@@ -105,7 +105,7 @@ Fluid有特定的数据传入方式：
 
 您需要使用 `fluid.layers.data` 配置数据输入层，并在 `fluid.Executor` 或 `fluid.ParallelExecutor` 中，使用 executor.run(feed=...) 传入训练数据。
 
-具体的数据准备过程，请阅读[准备数据](../../user_guides/howto/prepare_data/index.html)
+具体的数据准备过程，请阅读[准备数据](../../user_guides/howto/prepare_data/index_cn.html)
 
 
 ## 使用Operator表示对数据的操作
