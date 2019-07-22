@@ -1,14 +1,12 @@
 #!/bin/bash
 
 API_FILES=("doc/fluid")
-pwd
-ls
 for API_FILE in ${API_FILES[*]}; do
   API_CHANGE=`git diff --name-only upstream/$BRANCH | grep "${API_FILE}" || true`
   if [ "${API_CHANGE}" ];then
     approval_line=`curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/Paddle/pulls/${GIT_PR_ID}/reviews?per_page=10000`
     if [ "${API_FILE}" == "doc/fluid" ];then
-      APPROVALS=`echo ${approval_line}|python ${PADDLE_ROOT}/scripts/check_pr_approval.py 2 7534971 14105589 12605721 3064195 328693 47554610 39645414 11195205 20274488 45024560 ` 
+      APPROVALS=`echo ${approval_line}|python ./scripts/check_pr_approval.py 2 7534971 14105589 12605721 3064195 328693 47554610 39645414 11195205 20274488 45024560 ` 
     fi
   fi
   if [ "${APPROVALS}" == "FALSE" ]; then
