@@ -6,32 +6,30 @@
 直接下载安装
 -------------
 
-..  csv-table:: c++预测库列表( Windows )
-    :header: "版本说明", "预测库(1.5.1版本)"
-    :widths: 1, 3
 
-    "cpu_avx_mkl", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_mkl_avx/fluid_inference_install_dir.zip>`_"
-    "cpu_avx_openblas", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_open_avx/fluid_inference_install_dir.zip>`_"
-    "cuda8.0_cudnn7_avx_mkl", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_8.0/fluid_inference_install_dir.zip>`_"
-    "cuda8.0_cudnn7_avx_openblas", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_8.0/fluid_inference_install_dir.zip>`_"
-    "cuda9.0_cudnn7_avx_mkl", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_9.0/fluid_inference_install_dir.zip>`_"
-    "cuda9.0_cudnn7_avx_openblas", "`fluid_inference.zip <https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_9.0/fluid_inference_install_dir.zip>`_"
+| 版本说明      |     预测库(1.5.1版本)     |
+|:---------|:-------------------|
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_mkl_avx/fluid_inference_install_dir.zip) |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_open_avx/fluid_inference_install_dir.zip) |
+|    cuda8.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_8.0/fluid_inference_install_dir.zip) |
+|    cuda8.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_8.0/fluid_inference_install_dir.zip)|
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_9.0/fluid_inference_install_dir.zip) |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_9.0/fluid_inference_install_dir.zip) |
 
 
-从源码编译
-----------
+从源码编译预测库
+--------------
 用户也可以从 PaddlePaddle 核心代码编译C++预测库，只需在编译时配制下面这些编译选项：
 
-============================  =========
-选项                           值
-============================  =========
-CMAKE_BUILD_TYPE              Release
-FLUID_INFERENCE_INSTALL_DIR   安装路径
-WITH_PYTHON                   OFF（推荐）
-ON_INFER                      ON（推荐）
-WITH_GPU                      ON/OFF
-WITH_MKL                      ON/OFF
-============================  =========
+|选项                        |   值     |
+|:---------|:-------------------|
+|CMAKE_BUILD_TYPE             | Release   |
+|FLUID_INFERENCE_INSTALL_DIR  | 安装路径   |
+|WITH_PYTHON                  | OFF（推荐）|
+|ON_INFER                     | ON（推荐） |
+|WITH_GPU                     | ON/OFF    | 
+|WITH_MKL                     | ON/OFF    |
+
 
 建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
 
@@ -126,8 +124,7 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
 安装Visual Studio 2015，安装选项中选择安装内容时勾选自定义，选择安装全部关于c，c++，vc++的功能。
 
 
-编译demo过程
-------------
+### 编译demo
 
 下载并解压 fluid_inference_install_dir.zip 压缩包。
 
