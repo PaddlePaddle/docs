@@ -226,7 +226,7 @@ PyReader
   - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
   - **use_double_buffer** (bool) – 是否使用 ``double_buffer_reader`` 来加速数据输入。
   - **iterable** (bool) –  被创建的reader对象是否可迭代。
-  - **eturn_list** (bool) –  是否以list的形式将返回值
+  - **return_list** (bool) –  是否以list的形式将返回值
 
 返回: 被创建的reader对象
 
