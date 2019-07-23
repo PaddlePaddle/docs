@@ -54,7 +54,7 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
 
 	![chrome tracing](../tracing.jpeg)
 
-1. 结果如下图所示，可以放到来查看timeline的细节信息。
+1. 结果如下图所示，可以放大来查看timeline的细节信息。
 
 	![chrome timeline](./timeline.jpeg)
 
