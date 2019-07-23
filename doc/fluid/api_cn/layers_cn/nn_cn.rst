@@ -426,15 +426,15 @@ batch_norm
     - **input** (Variable) - 输入变量的排序，可以为 2, 3, 4, 5
     - **act** （string，默认None）- 激活函数类型，linear|relu|prelu|...
     - **is_test** （bool,默认False） - 指示它是否在测试阶段。
-    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean and moving_var. 更新公式为:  :math:`\(moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)\)` :math:`\(moving\_var = moving\_var * momentum + new\_var * (1. - momentum)\)` ， 默认值0.9.
+    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean 和 moving_var。更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ， 默认值0.9.
     - **epsilon** （float，默认1e-05）- 加在分母上为了数值稳定的值。默认值为1e-5。
     - **param_attr** （ParamAttr|None） - batch_norm参数范围的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为param_attr。如果没有设置param_attr的初始化函数，参数初始化为Xavier。默认：None
     - **bias_attr** （ParamAttr|None） - batch_norm bias参数的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为bias_attr。如果没有设置bias_attr的初始化函数，参数初始化为0。默认：None
     - **data_layout** （string,默认NCHW) - NCHW|NHWC
     - **in_place** （bool，默认False）- 得出batch norm可复用记忆的输入和输出
     - **name** （string，默认None）- 该层名称（可选）。若设为None，则自动为该层命名
-    - **moving_mean_name** （string，默认None）- moving_mean的名称，存储全局Mean。如果将其设置为None, ``batch_norm``将随机命名全局平均值；否则， `batch_norm`将命名全局平均值为``moving_mean_name``
-    - **moving_variance_name** （string，默认None）- moving_variance的名称，存储全局变量。如果将其设置为None,``batch_norm``将随机命名全局方差；否则， `batch_norm`将命名全局方差为``moving_mean_name``
+    - **moving_mean_name** （string，默认None）- moving_mean的名称，存储全局Mean。如果将其设置为None, ``batch_norm`` 将随机命名全局平均值；否则， ``batch_norm`` 将命名全局平均值为 ``moving_mean_name``   
+    - **moving_variance_name** （string，默认None）- moving_variance的名称，存储全局变量。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则， ``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值
     - **fuse_with_relu** （bool）- 如果为True，batch norm后该操作符执行relu
     - **use_global_stats** （bool, Default False） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。
@@ -3105,7 +3105,7 @@ embedding
     - **size** (tuple|list)-查找表参数的维度。应当有两个参数，一个代表嵌入矩阵字典的大小，一个代表每个嵌入向量的大小。
     - **is_sparse** (bool)-代表是否用稀疏更新的标志
     - **is_distributed** (bool)-是否从远程参数服务端运行查找表
-    - **padding_idx** (int|long|None)-如果为 ``None`` ，对查找结果无影响。如果padding_idx不为空，表示一旦查找表中找到input中对应的 ``padding_idz``，则用0填充输出结果。如果 :math:`padding_{i}dx<0` ,在查找表中使用的 ``padding_idx`` 值为 :math:`size[0]+dim` 。
+    - **padding_idx** (int|long|None)-如果为 ``None`` ，对查找结果无影响。如果padding_idx不为空，表示一旦查找表中找到input中对应的 ``padding_idz``，则用0填充输出结果。如果 :math:`padding\_idx<0` ,在查找表中使用的 ``padding_idx`` 值为 :math:`size[0]+dim` 。
     - **param_attr** (ParamAttr)-该层参数
     - **dtype** (np.dtype|core.VarDesc.VarType|str)-数据类型：float32,float_16,int等。
 

@@ -287,7 +287,7 @@ open_files
 Preprocessor
 -------------------------------
 
-.. py:class:: class paddle.fluid.layers.Preprocessor(reader, name=None)
+.. py:class:: paddle.fluid.layers.Preprocessor(reader, name=None)
 
 reader变量中数据预处理块。
 
