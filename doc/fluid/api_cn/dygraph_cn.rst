@@ -107,89 +107,6 @@ BatchNorm
         hidden2 = batch_norm(hidden1)
 
 
-.. py:method:: add_parameter(name, parameter)
-
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
-
-
-
-
 
 .. _cn_api_fluid_dygraph_BilinearTensorProduct:
 
@@ -239,88 +156,6 @@ BilinearTensorProduct
                'BilinearTensorProduct', size=1000)
         ret = bilinearTensorProduct(fluid.dygraph.base.to_variable(layer1),
                            fluid.dygraph.base.to_variable(layer2))
-
-
-.. py:method:: add_parameter(name, parameter)
-
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
-
 
 
 
@@ -403,86 +238,6 @@ Conv2D
 
 
 
-
-.. py:method:: add_parameter(name, parameter)
-
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
 
 
 
@@ -582,85 +337,7 @@ Conv2DTranspose
         ret = conv2DTranspose(fluid.dygraph.base.to_variable(data))
 
 
-.. py:method:: add_parameter(name, parameter)
 
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
 
 
 .. _cn_api_fluid_dygraph_Conv3D:
@@ -742,85 +419,7 @@ Conv3D
 
 
 
-.. py:method:: add_parameter(name, parameter)
 
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
 
 
 
@@ -928,85 +527,6 @@ Conv3DTranspose
         ret = conv3dTranspose(fluid.dygraph.base.to_variable(data))
 
 
-.. py:method:: add_parameter(name, parameter)
-
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
 
 
 
@@ -1045,14 +565,6 @@ CosineDecay
                     base_lr, 10000, 120) )
 
 
-.. py:method:: create_lr_var(lr)
-
-将学习率(lr)从float类型转为Variable类型。
-
-参数：
-    - **lr** - 学习率
-
-返回：Variable类型的学习率
 
 
 .. _cn_api_fluid_dygraph_Embedding:
@@ -1098,98 +610,7 @@ Embedding层
             is_sparse=False)
         static_rlt3 = emb(base.to_variable(inp_word))
 
-.. py:method:: add_parameter(name, parameter)
 
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
-
-
-
-
-
-.. _cn_api_fluid_dygraph_enabled:
-
-enabled
--------------------------------
-
-.. py:function:: paddle.fluid.dygraph.enabled()
-
-文档正在施工中，不日将为您呈现！
 
 
 
@@ -1237,14 +658,7 @@ ExponentialDecay
                   staircase=True))
 
 
-.. py:method:: create_lr_var(lr)
 
-将学习率(lr)从float类型转为Variable类型。
-
-参数：
-    - **lr** - 学习率
-
-返回：Variable类型的学习率
 
 
 
@@ -1331,85 +745,7 @@ FC
         data = to_variable( data )
         conv = fc( data )
 
-.. py:method:: add_parameter(name, parameter)
 
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
 
 
 .. _cn_api_fluid_dygraph_GroupNorm:
@@ -1450,85 +786,7 @@ GroupNorm
         ret = groupNorm(fluid.dygraph.base.to_variable(x))
 
 
-.. py:method:: add_parameter(name, parameter)
 
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
 
 
 
@@ -1561,10 +819,10 @@ GRU单元层。GRU执行步骤基于如下等式：
 `Learning Phrase Representations using RNN Encoder Decoder for Statistical Machine Translation <https://arxiv.org/pdf/1406.1078.pdf>`_ 。
 
 .. math::
-    u_t & = act_g(W_{ux}x_{t} + W_{uh}h_{t-1} + b_u)\\
-    r_t & = act_g(W_{rx}x_{t} + W_{rh}h_{t-1} + b_r)\\
-    \tilde{h_t} & = act_c(W_{cx}x_{t} + W_{ch}(r_t \odot h_{t-1}) + b_c)\\
-    h_t & = u_t \odot h_{t-1} + (1-u_t) \odot \tilde{h_t}
+    u_t & = actGate(xu_{t} + W_u h_{t-1} + b_u)\\
+    r_t & = actGate(xr_{t} + W_r h_{t-1} + b_r)\\
+    m_t & = actNode(xm_t + W_c dot(r_t, h_{t-1}) + b_m)\\
+    h_t & = dot((1-u_t), h_{t-1}) + dot(u_t, m_t)
 
 
 GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中， :math:`z_t` 会被分割成三部分： :math:`xu_t` 、 :math:`xr_t` 和 :math:`xm_t`  。
@@ -1615,87 +873,6 @@ GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中�
 
 
 
-.. py:method:: add_parameter(name, parameter)
-
-添加参数实例。被添加的参数实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **parameter** - Parameter实例
-
-返回：   传入的参数实例    
-
-
-.. py:method:: add_sublayer(name, sublayer)
-
-添加子层实例。被添加的子层实例的访问方式和self.name类似。
-
-参数：
-    - **name** - 该子层的命名
-    - **sublayer** - Layer实例
-
-返回：   传入的子层
-
-
-
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
-
-为层(layers)创建参数。
-
-参数：
-    - **attr** (ParamAttr)- 参数的参数属性
-    - **shape** - 参数的形状
-    - **dtype** - 参数的数据类型
-    - **is_bias** - 是否为偏置bias参数      
-    - **default_initializer** - 设置参数的默认初始化方法
-
-返回：    创建的参数变量
-
-
-
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
-
-为层创建变量
-
-参数：
-    - **name** - 变量名
-    - **persistable** - 是否为持久性变量
-    - **dtype** - 变量中的数据类型
-    - **type** - 变量类型   
-
-返回： 创建的变量(Variable)
-
-.. py:method:: full_name()
-
-层的全名。
-
-组成方式如下：
-
-name_scope + “/” + MyLayer.__class__.__name__
-
-返回：  层的全名
-
-
-.. py:method:: parameters(include_sublayers=True)
-
-返回一个由当前层及其子层的参数组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
-
-返回：  一个由当前层及其子层的参数组成的列表
-
-
-.. py:method:: sublayers(include_sublayers=True)
-
-返回一个由所有子层组成的列表。
-
-参数：
-    - **include_sublayers** - 如果为True，则包括子层中的各层
-
-返回： 一个由所有子层组成的列表
-
-
 
 .. _cn_api_fluid_dygraph_guard:
 
@@ -1725,6 +902,792 @@ guard
         fc2 = fluid.FC('fc2', size=4)
         ret = fc1(t)
         dy_ret = fc2(ret)
+
+
+.. _cn_api_fluid_dygraph_InverseTimeDecay:
+
+InverseTimeDecay
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.InverseTimeDecay(learning_rate, decay_steps, decay_rate, staircase=False, begin=0, step=1, dtype='float32')
+
+在初始学习率上运用逆时衰减。
+
+训练模型时，最好在训练过程中降低学习率。通过执行该函数，将对初始学习率运用逆向衰减函数。
+
+.. code-block:: text
+
+    if staircase == True:
+         decayed_learning_rate = learning_rate / (1 + decay_rate * floor(global_step / decay_step))
+    else:
+         decayed_learning_rate = learning_rate / (1 + decay_rate * global_step / decay_step)
+
+参数：
+    - **learning_rate** (Variable|float)-初始学习率
+    - **decay_steps** (int)-见以上衰减运算
+    - **decay_rate** (float)-衰减率。见以上衰减运算
+    - **staircase** (Boolean)-若为True，按间隔区间衰减学习率。默认：False
+    - **begin** (int) - 起始步，默认为0。
+    - **step** (int) - 步大小，默认为1。
+    - **dtype**  (str) - 学习率的dtype，默认为‘float32’
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    base_lr = 0.1
+    with fluid.dygraph.guard():
+        sgd_optimizer = fluid.optimizer.SGD(
+            learning_rate=fluid.dygraph.InverseTimeDecay(
+                  learning_rate=base_lr,
+                  decay_steps=10000,
+                  decay_rate=0.5,
+                  staircase=True))
+
+
+
+.. _cn_api_fluid_dygraph_Layer:
+
+Layer
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.Layer(name_scope, dtype=VarType.FP32)
+
+由多个算子组成的层。
+
+参数：
+    - **name_scope** - 层为其参数命名而采用的名称前缀。如果前缀为“my_model/layer_1”，在一个名为MyLayer的层中，参数名为“my_model/layer_1/MyLayer/w_n”，其中w是参数的基础名称，n为自动生成的具有唯一性的后缀。
+    - **dtype** - 层中变量的数据类型
+
+
+.. py:method:: full_name()
+
+层的全名。
+
+组成方式如下：
+
+name_scope + “/” + MyLayer.__class__.__name__
+
+返回：  层的全名
+
+
+.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
+
+为层(layers)创建参数。
+
+参数：
+    - **attr** (ParamAttr)- 参数的参数属性
+    - **shape** - 参数的形状
+    - **dtype** - 参数的数据类型
+    - **is_bias** - 是否为偏置bias参数      
+    - **default_initializer** - 设置参数的默认初始化方法
+
+返回：    创建的参数变量
+
+
+.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
+
+为层创建变量
+
+参数：
+    - **name** - 变量名
+    - **persistable** - 是否为持久性变量
+    - **dtype** - 变量中的数据类型
+    - **type** - 变量类型   
+
+返回： 创建的变量(Variable)
+
+
+.. py:method:: parameters(include_sublayers=True)
+
+返回一个由当前层及其子层的参数组成的列表。
+
+参数：
+    - **include_sublayers** - 如果为True，返回的列表中包含子层的参数
+
+返回：  一个由当前层及其子层的参数组成的列表
+
+
+
+.. py:method:: sublayers(include_sublayers=True)
+
+返回一个由所有子层组成的列表。
+
+参数：
+    - **include_sublayers** - 如果为True，则包括子层中的各层
+
+返回： 一个由所有子层组成的列表
+
+
+.. py:method:: add_sublayer(name, sublayer)
+
+添加子层实例。被添加的子层实例的访问方式和self.name类似。
+
+参数：
+    - **name** - 该子层的命名
+    - **sublayer** - Layer实例
+
+返回：   传入的子层
+
+
+.. py:method:: add_parameter(name, parameter)
+
+添加参数实例。被添加的参数实例的访问方式和self.name类似。
+
+参数：
+    - **name** - 该子层的命名
+    - **parameter** - Parameter实例
+
+返回：   传入的参数实例   
+
+
+.. _cn_api_fluid_dygraph_LayerNorm:
+
+LayerNorm
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.LayerNorm(name_scope, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None)
+
+
+假设特征向量存在于维度 ``begin_norm_axis ... rank (input）`` 上，计算大小为 ``H`` 的特征向量a在该维度上的矩统计量，然后使用相应的统计量对每个特征向量进行归一化。 之后，如果设置了 ``scale`` 和 ``shift`` ，则在标准化的张量上应用可学习的增益和偏差以进行缩放和移位。
+
+请参考 `Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_
+
+公式如下
+
+.. math::
+            \\\mu=\frac{1}{H}\sum_{i=1}^{H}a_i\\
+.. math::
+            \\\sigma=\sqrt{\frac{1}{H}\sum_i^H{(a_i-\mu)^2}}\\
+.. math::
+             \\h=f(\frac{g}{\sigma}(a-\mu) + b)\\
+
+- :math:`\alpha` : 该层神经元输入总和的向量表示
+- :math:`H` : 层中隐藏的神经元个数
+- :math:`g` : 可训练的缩放因子参数
+- :math:`b` : 可训练的bias参数
+
+
+参数:
+    - **name_scope** (str) – 该类的名称
+    - **scale** （bool） - 是否在归一化后学习自适应增益g。默认为True。
+    - **shift** （bool） - 是否在归一化后学习自适应偏差b。默认为True。
+    - **begin_norm_axis** （int） - ``begin_norm_axis`` 到 ``rank（input）`` 的维度执行规范化。默认1。
+    - **epsilon** （float） - 添加到方差的很小的值，以防止除零。默认1e-05。
+    - **param_attr** （ParamAttr | None） - 可学习增益g的参数属性。如果  ``scale`` 为False，则省略 ``param_attr`` 。如果 ``scale`` 为True且 ``param_attr`` 为None，则默认 ``ParamAttr`` 将作为比例。如果添加了 ``param_attr``， 则将其初始化为1。默认None。
+    - **bias_attr** （ParamAttr | None） - 可学习偏差的参数属性b。如果 ``shift`` 为False，则省略 ``bias_attr`` 。如果 ``shift`` 为True且 ``param_attr`` 为None，则默认 ``ParamAttr`` 将作为偏差。如果添加了 ``bias_attr`` ，则将其初始化为0。默认None。
+    - **act** （str） - 激活函数。默认 None
+
+
+返回： 标准化后的结果
+
+**代码示例**
+
+..  code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy
+
+    with fluid.dygraph.guard():
+        x = numpy.random.random((3, 32, 32)).astype('float32')
+        layerNorm = fluid.dygraph.nn.LayerNorm(
+              'LayerNorm', begin_norm_axis=1)
+       ret = layerNorm(fluid.dygraph.base.to_variable(x))
+
+
+
+
+
+.. _cn_api_fluid_dygraph_load_persistables:
+
+load_persistables
+-------------------------------
+
+.. py:function:: paddle.fluid.dygraph.load_persistables(dirname='save_dir')
+
+该函数尝试从dirname中加载持久性变量。
+
+
+参数:
+    - **dirname**  (str) – 目录路径。默认为save_dir
+
+
+返回:   两个字典:从文件中恢复的参数字典;从文件中恢复的优化器字典
+
+返回类型:   dict
+  
+**代码示例**
+
+.. code-block:: python
+
+    my_layer = layer(fluid.Layer)
+    param_path = "./my_paddle_model"
+    sgd = SGDOptimizer(learning_rate=1e-3)
+    param_dict, optimizer_dict = fluid.dygraph.load_persistables(my_layer.parameters(), param_path)
+    param_1 = param_dict['PtbModel_0.w_1']
+    sgd.load(optimizer_dict)
+
+
+
+.. _cn_api_fluid_dygraph_NaturalExpDecay:
+
+NaturalExpDecay
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.NaturalExpDecay(learning_rate, decay_steps, decay_rate, staircase=False, begin=0, step=1, dtype='float32')
+
+为初始学习率应用指数衰减策略。
+
+.. code-block:: text
+
+    if not staircase:
+        decayed_learning_rate = learning_rate * exp(- decay_rate * (global_step / decay_steps))
+    else:
+        decayed_learning_rate = learning_rate * exp(- decay_rate * (global_step / decay_steps))
+
+参数：
+    - **learning_rate** (Variable|float)- 类型为float32的标量值或为一个Variable。它是训练的初始学习率。
+    - **decay_steps** (int)-一个Python int32 数。
+    - **decay_rate** (float)- 一个Python float数。
+    - **staircase** (Boolean)-布尔型。若为True,每隔decay_steps衰减学习率。
+    - **begin**  – Python ‘int32’ 数，起始步(默认为0)。
+    - **step**  – Python ‘int32’ 数, 步大小(默认为1)。
+    - **dtype**  – Python ‘str’ 类型, 初始化学习率变量的dtype(默认为‘float32’)。
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    base_lr = 0.1
+    with fluid.dygraph.guard():
+        sgd_optimizer = fluid.optimizer.SGD(
+                learning_rate=fluid.dygraph.NaturalExpDecay(
+                      learning_rate=base_lr,
+                      decay_steps=10000,
+                      decay_rate=0.5,
+                      staircase=True))
+
+
+
+
+
+.. _cn_api_fluid_dygraph_NCE:
+
+NCE
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.NCE(name_scope, num_total_classes, param_attr=None, bias_attr=None, num_neg_samples=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
+
+计算并返回噪音对比估计（ noise-contrastive estimation training loss）。 
+`请参考Noise-contrastive estimation: A new estimation principle for unnormalized statistical models
+<http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_
+
+该operator默认使用均匀分布进行抽样。
+
+参数:
+    - **name_scope** (str) – 该类的名称
+    - **num_total_classes** (int) - 所有样本中的类别的总数
+    - **sample_weight** (Variable|None) - 存储每个样本权重，shape为[batch_size, 1]存储每个样本的权重。每个样本的默认权重为1.0
+    - **param_attr** (ParamAttr|None) - :math:`可学习参数/nce权重` 的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None
+    - **bias_attr** (ParamAttr|bool|None) -  nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None
+    - **num_neg_samples** (int) - 负样例的数量。默认值是10
+    - **name** (str|None) - 该layer的名称(可选)。如果设置为None，该层将被自动命名
+    - **sampler** (str) – 取样器，用于从负类别中进行取样。可以是 ‘uniform’, ‘log_uniform’ 或 ‘custom_dist’。 默认 ‘uniform’
+    - **custom_dist** (float[]) – 一个 float[] 并且它的长度为 ``num_total_classes`` 。  如果取样器类别为‘custom_dist’，则使用此参数。 custom_dist[i] 是第i个类别被取样的概率。默认为 None
+    - **seed** (int) – 取样器使用的seed。默认为0
+    - **is_sparse** (bool) – 标志位，指明是否使用稀疏更新,  :math:`weight@GRAD` 和 :math:`bias@GRAD` 会变为 SelectedRows
+
+返回： nce loss
+
+返回类型: 变量（Variable）
+
+
+**代码示例**
+
+..  code-block:: python
+
+
+    import numpy as np
+    import paddle.fluid as fluid
+
+    window_size = 5
+    dict_size = 20
+    label_word = int(window_size // 2) + 1
+    inp_word = np.array([[[1]], [[2]], [[3]], [[4]], [[5]]]).astype('int64')
+    nid_freq_arr = np.random.dirichlet(np.ones(20) * 1000).astype('float32')
+
+    with fluid.dygraph.guard():
+        words = []
+        for i in range(window_size):
+            words.append(fluid.dygraph.base.to_variable(inp_word[i]))
+
+        emb = fluid.Embedding(
+            'embedding',
+            size=[dict_size, 32],
+            param_attr='emb.w',
+            is_sparse=False)
+
+        embs3 = []
+        for i in range(window_size):
+            if i == label_word:
+                continue
+
+            emb_rlt = emb(words[i])
+            embs3.append(emb_rlt)
+
+        embs3 = fluid.layers.concat(input=embs3, axis=1)
+        nce = fluid.NCE('nce',
+                     num_total_classes=dict_size,
+                     num_neg_samples=2,
+                     sampler="custom_dist",
+                     custom_dist=nid_freq_arr.tolist(),
+                     seed=1,
+                     param_attr='nce.w',
+                     bias_attr='nce.b')
+
+        nce_loss3 = nce(embs3, words[label_word])
+
+
+
+
+.. _cn_api_fluid_dygraph_NoamDecay:
+
+NoamDecay
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.NoamDecay(d_model, warmup_steps, begin=1, step=1, dtype='float32')
+
+Noam衰减方法。noam衰减的numpy实现如下。
+
+.. code-block:: python
+
+    import numpy as np
+    # 设置超参数
+    d_model = 2
+    current_steps = 20
+    warmup_steps = 200
+    # 计算
+    lr_value = np.power(d_model, -0.5) * np.min([
+                           np.power(current_steps, -0.5),
+                           np.power(warmup_steps, -1.5) * current_steps])
+
+请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
+
+参数：
+    - **d_model** (Variable)-模型的输入和输出维度
+    - **warmup_steps** (Variable)-超参数
+    - **begin**  – 起始步(默认为0)。
+    - **step**  – 步大小(默认为1)。
+    - **dtype**  – 初始学习率的dtype(默认为‘float32’)。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    warmup_steps = 100
+    learning_rate = 0.01
+    with fluid.dygraph.guard():
+        optimizer  = fluid.optimizer.SGD(
+            learning_rate = fluid.dygraph.NoamDecay(
+                   1/(warmup_steps *(learning_rate ** 2)),
+                   warmup_steps) )
+
+
+
+.. _cn_api_fluid_dygraph_PiecewiseDecay:
+
+PiecewiseDecay
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.PiecewiseDecay(boundaries, values, begin, step=1, dtype='float32')
+
+对初始学习率进行分段(piecewise)衰减。
+
+该算法可用如下代码描述。
+
+.. code-block:: text
+
+    boundaries = [10000, 20000]
+    values = [1.0, 0.5, 0.1]
+    if step < 10000:
+        learning_rate = 1.0
+    elif 10000 <= step < 20000:
+        learning_rate = 0.5
+    else:
+        learning_rate = 0.1
+
+参数：
+    - **boundaries** -一列代表步数的数字
+    - **values** -一列学习率的值，从不同的步边界中挑选
+    - **begin**  – 用于初始化self.step_num的起始步(默认为0)。
+    - **step**  – 计算新的step_num步号时使用的步大小(默认为1)。
+    - **dtype**  – 初始化学习率变量的dtype
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    boundaries = [10000, 20000]
+    values = [1.0, 0.5, 0.1]
+    with fluid.dygraph.guard():
+        optimizer = fluid.optimizer.SGD(
+           learning_rate=fluid.dygraph.PiecewiseDecay(boundaries, values, 0) )
+
+
+
+
+
+.. _cn_api_fluid_dygraph_PolynomialDecay:
+
+PolynomialDecay
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.PolynomialDecay(learning_rate, decay_steps, end_learning_rate=0.0001, power=1.0, cycle=False, begin=0, step=1, dtype='float32')
+
+为初始学习率应用多项式衰减。
+
+
+.. code-block:: text
+
+    if cycle:
+        decay_steps = decay_steps * ceil(global_step / decay_steps)
+    else:
+        global_step = min(global_step, decay_steps)
+        decayed_learning_rate = (learning_rate - end_learning_rate) *
+            (1 - global_step / decay_steps) ^ power + end_learning_rate
+
+参数：
+    - **learning_rate** (Variable|float32)-标量float32值或变量。是训练过程中的初始学习率
+    - **decay_steps** (int32)-Python int32数
+    - **end_learning_rate** (float)-Python float数
+    - **power** (float)-Python float数
+    - **cycle** (bool)-若设为true，每decay_steps衰减学习率
+    - **begin** (int) – 起始步(默认为0)
+    - **step** (int) – 步大小(默认为1)
+    - **dtype**  (str)– 初始化学习率变量的dtype(默认为‘float32’)
+
+返回：衰减的学习率
+
+返回类型：变量（Variable）
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    start_lr = 0.01
+    total_step = 5000
+    end_lr = 0
+    with fluid.dygraph.guard():
+        optimizer  = fluid.optimizer.SGD(
+            learning_rate = fluid.dygraph.PolynomialDecay(
+            start_lr, total_step, end_lr, power=1.0) )
+
+
+
+
+.. _cn_api_fluid_dygraph_Pool2D:
+
+Pool2D
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.Pool2D(name_scope, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, exclusive=True, dtype=VarType.FP32)
+
+pooling2d操作符根据 ``input`` ， 池化类型 ``pooling_type`` ， 池化核大小 ``ksize`` , 步长 ``strides`` ，填充 ``paddings`` 这些参数得到输出。
+
+输入X和输出Out是NCHW格式，N为batch尺寸，C是通道数，H是特征高度，W是特征宽度。
+
+参数（ksize,strides,paddings）含有两个元素。这两个元素分别代表高度和宽度。输入X的大小和输出Out的大小可能不一致。
+
+
+参数：
+    - **name_scope** (str) - 该类的名称
+    - **pool_size** (int|list|tuple)  - 池化核的大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。其他情况下，若为一个整数，则它的平方值将作为池化核大小，比如若pool_size=2, 则池化核大小为2x2，默认值为-1。
+    - **pool_type** (string) - 池化类型，可以是“max”对应max-pooling，“avg”对应average-pooling，默认值为max。
+    - **pool_stride** (int|list|tuple)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。否则它是一个整数的平方值。默认值为1。
+    - **pool_padding** (int|list|tuple) - 填充大小。如果它是一个元组，它必须包含两个整数值，(pool_padding_on_Height, pool_padding_on_Width)。否则它是一个整数的平方值。默认值为0。
+    - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = true， ``ksize`` 和 ``paddings`` 将被忽略。默认值为false
+    - **use_cudnn** （bool）- 只在cudnn核中用，需要安装cudnn，默认值为True。
+    - **ceil_mode** （bool）- 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数。默认值为false。
+    - **exclusive** (bool) - 是否在平均池化模式忽略填充值。默认为True。
+
+返回：池化结果
+
+返回类型：变量（Variable）
+
+抛出异常：
+    - ``ValueError`` - 如果 ``pool_type`` 既不是“max”也不是“avg”
+    - ``ValueError`` - 如果 ``global_pooling`` 为False并且‘pool_size’为-1
+    - ``ValueError`` - 如果 ``use_cudnn`` 不是bool值
+
+**代码示例**
+
+.. code-block:: python
+
+          import paddle.fluid as fluid
+          import numpy
+
+          with fluid.dygraph.guard():
+             data = numpy.random.random((3, 32, 32)).astype('float32')
+
+             pool2d = fluid.dygraph.Pool2D("pool2d",pool_size=2,
+                            pool_type='max',
+                            pool_stride=1,
+                            global_pooling=False)
+             pool2d_res = pool2d(data)
+
+
+
+
+
+.. _cn_api_fluid_dygraph_PRelu:
+
+PRelu
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.PRelu(name_scope, mode, param_attr=None)
+
+等式：
+
+.. math::
+    y = max(0, x) + \alpha min(0, x)
+
+
+参数：
+          - **name_scope** （string）- 该类的名称。
+          - **mode** (string) - 权重共享模式。共提供三种激活方式：
+
+             .. code-block:: text
+
+                all: 所有元素使用同一个权值
+                channel: 在同一个通道中的元素使用同一个权值
+                element: 每一个元素有一个独立的权值
+          - **param_attr** (ParamAttr|None) - 可学习权重 :math:`[\alpha]` 的参数属性。
+
+
+返回： 输出Tensor与输入tensor的shape相同。
+
+返回类型：  变量（Variable）
+
+**代码示例：**
+
+.. code-block:: python
+
+          import paddle.fluid as fluid
+          import numpy as np
+
+          inp_np = np.ones([5, 200, 100, 100]).astype('float32')
+          with fluid.dygraph.guard():
+              mode = 'channel'
+              prelu = fluid.PRelu(
+                 'prelu',
+                 mode=mode,
+                 param_attr=fluid.ParamAttr(initializer=fluid.initializer.Constant(1.0)))
+              dy_rlt = prelu(fluid.dygraph.base.to_variable(inp_np))
+
+
+
+
+
+
+.. _cn_api_fluid_dygraph_save_persistables:
+
+save_persistables
+-------------------------------
+
+.. py:function:: paddle.fluid.dygraph.save_persistables(model_dict, dirname='save_dir', optimizers=None)
+
+该函数把传入的层中所有参数以及优化器进行保存。
+
+``dirname`` 用于指定保存长期变量的目录。
+
+参数:
+ - **model_dict**  (dict of Parameters) – 参数将会被保存，如果设置为None，不会处理。
+ - **dirname**  (str) – 目录路径
+ - **optimizers**  (fluid.Optimizer|list(fluid.Optimizer)|None) –  要保存的优化器。 
+
+返回: None
+  
+**代码示例**
+
+.. code-block:: python
+    
+          import paddle.fluid as fluid
+
+          ptb_model = PtbModel(
+                hidden_size=hidden_size,
+                vocab_size=vocab_size,
+                num_layers=num_layers,
+                num_steps=num_steps,
+                init_scale=init_scale)
+          sgd = fluid.optimizer.SGD(learning_rate=0.01)
+          x_data = np.arange(12).reshape(4, 3).astype('int64')
+          y_data = np.arange(1, 13).reshape(4, 3).astype('int64')
+          x_data = x_data.reshape((-1, num_steps, 1))
+          y_data = y_data.reshape((-1, 1))
+          init_hidden_data = np.zeros(
+                (num_layers, batch_size, hidden_size), dtype='float32')
+          init_cell_data = np.zeros(
+                (num_layers, batch_size, hidden_size), dtype='float32')
+          x = to_variable(x_data)
+          y = to_variable(y_data)
+          init_hidden = to_variable(init_hidden_data)
+          init_cell = to_variable(init_cell_data)
+          dy_loss, last_hidden, last_cell = ptb_model(x, y, init_hidden,
+                                                        init_cell)
+          dy_loss.backward()
+          sgd.minimize(dy_loss)
+          ptb_model.clear_gradient()
+          param_path = "./my_paddle_model"
+          fluid.dygraph.save_persistables(ptb_model.state_dict(), dirname=param_path, sgd)
+    
+    
+
+
+
+
+
+.. _cn_api_fluid_dygraph_SpectralNorm:
+
+SpectralNorm
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.SpectralNorm(name_scope, dim=0, power_iters=1, eps=1e-12, name=None)
+
+
+该层计算了fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，其参数应分别为2-D, 3-D, 4-D, 5-D。计算结果如下。
+
+步骤1：生成形状为[H]的向量U,以及形状为[W]的向量V,其中H是输入权重的第 ``dim`` 个维度，W是剩余维度的乘积。
+
+步骤2： ``power_iters`` 应该是一个正整数，用U和V迭代计算 ``power_iters`` 轮。
+
+.. math::
+
+    \mathbf{v} &:= \frac{\mathbf{W}^{T} \mathbf{u}}{\|\mathbf{W}^{T} \mathbf{u}\|_2}\\
+    \mathbf{u} &:= \frac{\mathbf{W}^{T} \mathbf{v}}{\|\mathbf{W}^{T} \mathbf{v}\|_2}
+
+步骤3：计算 \sigma(\mathbf{W}) 并权重值归一化。
+
+.. math::
+    \sigma(\mathbf{W}) &= \mathbf{u}^{T} \mathbf{W} \mathbf{v}\\
+    \mathbf{W} &= \frac{\mathbf{W}}{\sigma(\mathbf{W})}
+
+可参考: `Spectral Normalization <https://arxiv.org/abs/1802.05957>`_
+
+参数：
+    - **name_scope** (str)-该类的名称。
+    - **dim** (int)-将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1，默认为0。
+    - **power_iters** (int)-将用于计算spectral norm的功率迭代次数，默认值1。
+    - **eps** (float)-epsilon用于计算规范中的数值稳定性，默认值为1e-12
+    - **name** (str)-此层的名称，可选。
+
+返回：谱正则化后权重参数的张量变量
+
+返回类型：Variable
+
+**代码示例**：
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy
+
+    with fluid.dygraph.guard():
+        x = numpy.random.random((2, 8, 32, 32)).astype('float32')
+        spectralNorm = fluid.dygraph.nn.SpectralNorm('SpectralNorm', dim=1, power_iters=2)
+        ret = spectralNorm(fluid.dygraph.base.to_variable(x))
+
+
+
+
+
+
+
+
+.. _cn_api_fluid_dygraph_to_variable:
+
+to_variable
+-------------------------------
+
+.. py:function:: paddle.fluid.dygraph_to_variable(value, block=None, name=None)
+
+该函数会从ndarray创建一个variable。
+
+参数：
+    - **value**  (ndarray) – 需要转换的numpy值
+    - **block**  (fluid.Block) – variable所在的block，默认为None
+    - **name**  (str) – variable的名称，默认为None
+
+
+返回： 从指定numpy创建的variable
+
+返回类型：Variable
+
+**代码示例**:
+
+.. code-block:: python
+    
+    import numpy as np
+    import paddle.fluid as fluid
+
+    with fluid.dygraph.guard():
+        x = np.ones([2, 2], np.float32)
+        y = fluid.dygraph.to_variable(x)
+
+
+
+
+
+
+.. _cn_api_fluid_dygraph_TreeConv:
+
+TreeConv
+-------------------------------
+
+.. py:class:: paddle.fluid.dygraph.TreeConv(name_scope, output_size, num_filters=1, max_depth=2, act='tanh', param_attr=None, bias_attr=None, name=None)
+
+基于树结构的卷积Tree-Based Convolution运算。
+
+基于树的卷积是基于树的卷积神经网络（TBCNN，Tree-Based Convolution Neural Network）的一部分，它用于对树结构进行分类，例如抽象语法树。 Tree-Based Convolution提出了一种称为连续二叉树的数据结构，它将多路（multiway）树视为二叉树。提出 `基于树的卷积论文 <https://arxiv.org/abs/1409.5718v1>`_
+
+
+参数：
+    - **name_scope**  (str) – 该类的名称
+    - **output_size**  (int) – 输出特征宽度
+    - **num_filters**  (int) – filter数量，默认值1
+    - **max_depth**  (int) – filter的最大深度，默认值2
+    - **act**  (str) – 激活函数，默认 tanh
+    - **param_attr**  (ParamAttr) – filter的参数属性，默认None
+    - **bias_attr**  (ParamAttr) – 此层bias的参数属性，默认None
+    - **name**  (str) – 此层的名称（可选）。如果设置为None，则将自动命名层，默认为None
+
+
+返回： （Tensor）子树的特征向量。输出张量的形状是[max_tree_node_size，output_size，num_filters]。输出张量可以是下一个树卷积层的新特征向量
+
+返回类型：out（Variable）
+
+**代码示例**:
+
+.. code-block:: python
+    
+    import paddle.fluid as fluid
+    import numpy
+
+    with fluid.dygraph.guard():
+        nodes_vector = numpy.random.random((1, 10, 5)).astype('float32')
+        edge_set = numpy.random.random((1, 9, 2)).astype('int32')
+        treeConv = fluid.dygraph.nn.TreeConv(
+          'TreeConv', output_size=6, num_filters=1, max_depth=2)
+        ret = treeConv(fluid.dygraph.base.to_variable(nodes_vector), fluid.dygraph.base.to_variable(edge_set))
+
+
 
 
 

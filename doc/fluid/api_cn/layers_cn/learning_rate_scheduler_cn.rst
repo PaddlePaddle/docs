@@ -282,7 +282,7 @@ piecewise_decay
         learning_rate = 0.1
 
 参数：
-    - **boundaries** -一列代表步数的数字
+    - **boundaries** -一列代表步数的数字
     - **values** -一列学习率的值，从不同的步边界中挑选
 
 返回：衰减的学习率
