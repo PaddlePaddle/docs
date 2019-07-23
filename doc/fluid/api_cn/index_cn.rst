@@ -13,6 +13,7 @@ API
     clip_cn.rst
     data_feeder_cn.rst
     dataset_cn.rst
+    dygraph_cn.rst
     executor_cn.rst
     initializer_cn.rst
     io_cn.rst
@@ -25,3 +26,4 @@ API
     transpiler_cn.rst
     data/dataset_cn.rst
     data/data_reader_cn.rst
+
