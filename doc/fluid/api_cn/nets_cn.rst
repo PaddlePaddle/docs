@@ -30,6 +30,7 @@ he Gated Linear Units(GLU)由切分（split），sigmoid激活函数和按元素
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.data(
         name="words", shape=[-1, 6, 3, 9], dtype="float32")
     # 输出的形状为[-1, 3, 3, 9]
@@ -74,6 +75,7 @@ Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。�
 
 .. code-block:: python
 
+          import paddle.fluid as fluid
           img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
           conv_pool = fluid.nets.img_conv_group(input=img,
                                                 conv_padding=1,

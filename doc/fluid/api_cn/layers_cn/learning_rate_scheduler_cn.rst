@@ -29,6 +29,7 @@ cosine_decay
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     base_lr = 0.1
     lr = fluid.layers.cosine_decay( learning_rate = base_lr, step_each_epoch=10000, epochs=120)
 
@@ -156,6 +157,7 @@ linear_lr_warmup
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         boundaries = [100, 200]
         lr_steps = [0.1, 0.01, 0.001]
         warmup_steps = 50
@@ -225,6 +227,7 @@ Noam衰减方法。noam衰减的numpy实现如下。
 
 .. code-block:: python
 
+    import padde.fluid as fluid
     import numpy as np
     # 设置超参数
     d_model = 2

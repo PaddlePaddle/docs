@@ -34,6 +34,7 @@ anchor_generator
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     conv1 = fluid.layers.data(name='conv1', shape=[48, 16, 16], dtype='float32')
     anchor, var = fluid.layers.anchor_generator(
     input=conv1,
@@ -86,6 +87,7 @@ bipartite_match
 
 ..  code-block:: python
 
+         import paddle.fluid as fluid
          x = fluid.layers.data(name='x', shape=[4], dtype='float32')
          y = fluid.layers.data(name='y', shape=[4], dtype='float32')
          iou = fluid.layers.iou_similarity(x=x, y=y)
@@ -131,6 +133,7 @@ box_clip
 
 ..  code-block:: python
 
+    import paddle.fluid as fluid
     boxes = fluid.layers.data(
         name='boxes', shape=[8, 4], dtype='float32', lod_level=1)
     im_info = fluid.layers.data(name='im_info', shape=[3])
@@ -210,6 +213,7 @@ Bounding Box Coder
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     prior_box = fluid.layers.data(name='prior_box',
                                   shape=[512, 4],
                                   dtype='float32',
@@ -278,6 +282,7 @@ box decode过程得出decode_box，然后分配方案如下所述：
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     pb = fluid.layers.data(
         name='prior_box', shape=[4], dtype='float32')
     pbv = fluid.layers.data(
@@ -322,6 +327,7 @@ collect_fpn_proposals
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     multi_rois = []
     multi_scores = []
     for i in range(4):
@@ -402,6 +408,7 @@ density prior box的量由fixed_sizes and fixed_ratios决定。显然地，fixed
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     input = fluid.layers.data(name="input", shape=[3,6,9])
     images = fluid.layers.data(name="images", shape=[3,9,12])
     box, var = fluid.layers.density_prior_box(
@@ -468,6 +475,8 @@ detection_map
 
 ..  code-block:: python
 
+        import paddle.fluid as fluid
+        from fluid.layers import detection
         detect_res = fluid.layers.data(
             name='detect_res',
             shape=[10, 6],
@@ -581,6 +590,7 @@ distribute_fpn_proposals
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     fpn_rois = fluid.layers.data(
         name='data', shape=[4], dtype='float32', lod_level=1)
     multi_rois, restore_ind = fluid.layers.distribute_fpn_proposals(
@@ -962,6 +972,7 @@ multiclass_nms
 
 ..  code-block:: python
 
+    import paddle.fluid as fluid
     boxes = fluid.layers.data(name='bboxes', shape=[81, 4],
                               dtype='float32', lod_level=1)
     scores = fluid.layers.data(name='scores', shape=[81],
@@ -1047,6 +1058,7 @@ prior_box
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     input = fluid.layers.data(name="input", shape=[3,6,9])
     images = fluid.layers.data(name="images", shape=[3,9,12])
     box, var = fluid.layers.prior_box(
@@ -1422,6 +1434,7 @@ ssd_loss
 
 ..  code-block:: python
 
+         import paddle.fluid as fluid
          pb = fluid.layers.data(
                            name='prior_box',
                            shape=[10, 4],
@@ -1669,6 +1682,7 @@ yolov3_loss
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
     gt_box = fluid.layers.data(name='gtbox', shape=[6, 4], dtype='float32')
     gt_label = fluid.layers.data(name='gtlabel', shape=[6], dtype='int32')
