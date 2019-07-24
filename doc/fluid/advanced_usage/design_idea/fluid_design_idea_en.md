@@ -101,10 +101,11 @@ The block and program information described by the user is saved in Fluid in [pr
 `BlockDesc` contains the definition of the local variables `vars`, and a series of operators `ops`:
 
 ```cpp
- message BlockDesc {
-  required int32 parent = 1;
-  repeated VarDesc vars = 2;
-  repeated OpDesc ops = 3;
+message BlockDesc {
+  required int32 idx = 1;
+  required int32 parent_idx = 2;
+  repeated VarDesc vars = 3;
+  repeated OpDesc ops = 4;
 }
 ```
 The parent ID represents the parent block, so the operators in the block can not only reference local variables, but also reference variables defined in the ancestor block.

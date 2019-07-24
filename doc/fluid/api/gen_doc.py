@@ -18,7 +18,6 @@ import sys
 import types
 import os
 import contextlib
-
 import paddle.fluid as fluid
 
 def parse_arg():
