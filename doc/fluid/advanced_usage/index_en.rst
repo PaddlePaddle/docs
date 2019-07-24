@@ -2,8 +2,6 @@
 Advanced User Guides
 ####################
 
-..  todo::
-
 So far you have already been familiar with Fluid. And the next expectation should be building a more efficient model or inventing your original Operator. If so, read more on:
 
     - `Fluid Design Principles <../advanced_usage/design_idea/fluid_design_idea_en.html>`_ : Design principles underlying Fluid to help you understand how the framework runs.
