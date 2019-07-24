@@ -340,90 +340,13 @@ DGC还使用动量因子掩藏(momentum factor masking)和预训练(warm-up)来�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     optimizer = fluid.optimizer.DGCMomentumOptimizer(
                                         learning_rate=0.0001,
                                         momentum=0.9,
                                         rampup_step=1000,
                                         rampup_begin_step=1252,
                                         sparsity=[0.999, 0.999])
-
-
-
-.. _cn_api_fluid_optimizer_PipelineOptimizer:
-
-PipelineOptimizer
--------------------------------
-
-.. py:class:: paddle.fluid.optimizer.PipelineOptimizer(optimizer, cut_list=None, place_list=None, concurrency_list=None, queue_size=30, sync_steps=1, start_cpu_core_id=0)
-
-Pipeline 优化器训练。该程序将由cut_list分割。如果cut_list的长度是k，则整个程序（包括向后部分）将被分割为2 * k-1个部分。 所以place_list和concurrency_list的长度也必须是2 * k-1。 
-
-.. note::
-
-    虽然异步模式应用于管道训练中以加速，但最终的性能取决于每个管道的训练进度。 我们将在未来尝试同步模式。
-
-参数:
-    - **optimizer** (Optimizer) - 基础优化器，如SGD
-    - **cut_list** (list of Variable list) - main_program的cut变量
-    - **place_lis** (list of Place) - 某部分运行的位置
-    - **concurrency_lis** (list of int) - 并发度
-    - **queue_size** (int) - 每个部分都将使用其范围内队列(in-scope queue)中的范围并将范围生成到范围外队列(out-scope queue)。 而这个参数定范围队列大小。 这一参数可选，默认值：30。
-    - **sync_steps** (int) - 不同显卡之间的同步步数
-    - **start_cpu_core_id** (int) - 设置第一个cpu核的id。这一参数可选，默认值：0。
-
-**代码示例**
-
-.. code-block:: python
-
-        x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=0)
-        y = fluid.layers.data(name='y', shape=[1], dtype='int64', lod_level=0)
-        emb_x = layers.embedding(input=x, param_attr=fluid.ParamAttr(name="embx"), size=[10,2], is_sparse=False)
-        emb_y = layers.embedding(input=y, param_attr=fluid.ParamAttr(name="emby",learning_rate=0.9), size=[10,2], is_sparse=False)
-        concat = layers.concat([emb_x, emb_y], axis=1)
-        fc = layers.fc(input=concat, name="fc", size=1, num_flatten_dims=1, bias_attr=False)
-        loss = layers.reduce_mean(fc)
-        optimizer = fluid.optimizer.SGD(learning_rate=0.5)
-        optimizer = fluid.optimizer.PipelineOptimizer(optimizer,
-                cut_list=[[emb_x, emb_y], [loss]],
-                place_list=[fluid.CPUPlace(), fluid.CUDAPlace(0), fluid.CPUPlace()],
-                concurrency_list=[1, 1, 4],
-                queue_size=2,
-                sync_steps=1,
-                )
-        optimizer.minimize(loss)
-        place = fluid.CPUPlace()
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
-        filelist = [] # 您应该根据需求自行设置文件列表, 如: filelist = ["dataA.txt"]
-        dataset = fluid.DatasetFactory().create_dataset("FileInstantDataset")
-        dataset.set_use_var([x,y])
-        dataset.set_batch_size(batch_size)
-        dataset.set_filelist(filelist)
-        exe.train_from_dataset(
-                    fluid.default_main_program(),
-                    dataset,
-                    thread=2,
-                    debug=False,
-                    fetch_list=[],
-                    fetch_info=[],
-                    print_period=1)
-
-
-.. py:method:: extract_section_opt_ops(ops, cut_point_name)
-    
-获取指定section的优化算子(opt ops)
-
-.. py:method:: extract_section_opt_ops(ops, cut_point_name)
-  
-获取指定section的输入和输出
-
-.. py:method:: find_persistable_vars(ops, whole_parameters)
-
-获取指定section的持久性输入变量
-
-.. py:method:: extract_section_ops(ops, cut_point_name)
-
-获取指定的section的算子(ops)
 
 
 
@@ -624,15 +547,16 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
 LambOptimizer
 -------------------------------
 
-.. py:class:: paddle.fluid.optimizer.LambOptimizer(learning_rate=0.001, lamb_weight_decay=0.01, beta1=0.9, beta2=0.999, epsilon=1e-06, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.LambOptimizer(learning_rate=0.001, lamb_weight_decay=0.01, beta1=0.9, beta2=0.999, epsilon=1e-06, regularization=None, exclude_from_weight_decay_fn=None, name=None)
 
 LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器
-LAMB优化器旨在不降低准确性的条件下扩大训练的批量大小，支持自适应元素更新和精确的分层校正。 更多信息请参考Reducing BERT Pre-Training Time from 3 Days to 76 Minutes。
+LAMB优化器旨在不降低准确性的条件下扩大训练的批量大小，支持自适应元素更新和精确的分层校正。 更多信息请参考 `Large Batch Optimization for
+Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf>`_ 。
 参数更新如下：
 
 .. math::
 
-    \begin{align}\begin{aligned}m_t^l & = \beta_1 m_{t - 1}^l + (1 - \beta_1)g_t^l\\v_t^l & = \beta_2 v_{t - 1}^l + (1 - \beta_2)g_t^l \odot g_t^l\\\widehat{m}_t^l & = m_t^l/(1 - \beta_1^t)\\\widehat{v}_t^l & = v_t^l/(1 - \beta_2^t)\\r_1 & = \left \| w_{t-1}^l \right \|_2\\r_2 & = \left \|  \frac{\widehat{m}_t^l}{\sqrt{\widehat{v}_t^l+\epsilon}} + \lambda w_{t-1}^l \right \|_2\\r & = r_1 / r_2\\\eta^l & = r \times \eta\\w_t^l & = w_{t-1}^l -\eta ^l \times (\frac{\widehat{m}_t^l}{\sqrt{\widehat{v}_t^l+\epsilon}} + \lambda w_{t-1}^l)\end{aligned}\end{align}
+    \begin{align}\begin{aligned}m_t &= \beta_1 m_{t - 1}+ (1 - \beta_1)g_t \\\v_t &= \beta_2 v_{t - 1}  + (1 - \beta_2)g_t^2 \\\r_t &= \frac{m_t}{\sqrt{v_t}+\epsilon} \\\w_t &= w_{t-1} -\eta_t \frac{\left \| w_{t-1}\right \|}{\left \| r_t + \lambda w_{t-1}\right \|} (r_t + \lambda w_{t-1})\end{aligned}\end{align}
 
 其中 :math:`m` 为第一个时刻，:math:`v` 为第二个时刻，:math:`\eta` 为学习率，:math:`\lambda` 为LAMB权重衰减率。
 
@@ -642,7 +566,8 @@ LAMB优化器旨在不降低准确性的条件下扩大训练的批量大小，�
     - **beta1** (float) – 第一个时刻估计的指数衰减率。
     - **beta2** (float) – 第二个时刻估计的指数衰减率。
     - **epsilon** (float) – 一个小的浮点值，目的是维持数值稳定性。
-    - **regularization** – 一个正则化器，如fluid.regularizer.L1DecayRegularizer。
+    - **regularization** (Regularizer) – 一个正则化器，如fluid.regularizer.L1DecayRegularizer。
+    - **exclude_from_weight_decay_fn** (function) – 当返回值为True时从权重衰减中去除某个参数。 
     - **name** (str|None) – 名字前缀（可选项）。
 
 **代码示例**
@@ -654,8 +579,12 @@ LAMB优化器旨在不降低准确性的条件下扩大训练的批量大小，�
     data = fluid.layers.data(name='x', shape=[5], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
     cost = fluid.layers.mean(hidden)
+
+    def exclude_fn(param):
+        return param.name.endswith('.b_0')
      
-    optimizer = fluid.optimizer.Lamb(learning_rate=0.002)
+    optimizer = fluid.optimizer.Lamb(learning_rate=0.002,
+                                     exclude_from_weight_decay_fn=exclude_fn)
     optimizer.minimize(cost)
 
 
@@ -703,6 +632,7 @@ LARS支持的Momentum优化器
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     optimizer = fluid.optimizer.LarsMomentum(learning_rate=0.2, momentum=0.1, lars_weight_decay=0.001)
     optimizer.minimize(cost)
 
@@ -856,6 +786,70 @@ MomentumOptimizer
 
 
 
+
+
+
+.. _cn_api_fluid_optimizer_PipelineOptimizer:
+
+PipelineOptimizer
+-------------------------------
+
+.. py:class:: paddle.fluid.optimizer.PipelineOptimizer(optimizer, cut_list=None, place_list=None, concurrency_list=None, queue_size=30, sync_steps=1, start_cpu_core_id=0)
+
+使用流水线模式进行训练。
+Program会根据切分列表cut_list进行分割。如果cut_list的长度是k，则整个program（包括反向部分）将被分割为2*k-1个section。 所以place_list和concurrency_list的长度也必须是2*k-1。 
+
+.. note::
+
+    虽然我们在流水线训练模式中采用异步更新的方式来加速，但最终的效果会依赖于每条流水线的训练进程。我们将在未来尝试同步模式。
+
+参数:
+    - **optimizer** (Optimizer) - 基础优化器，如SGD
+    - **cut_list** (list of Variable list) - main_program的cut变量列表
+    - **place_list** (list of Place) - 对应section运行所在的place
+    - **concurrency_list** (list of int) - 指定每个section的并发度列表
+    - **queue_size** (int) -  每个section都会消费其输入队列(in-scope queue)中的scope，并向输出队列(out-scope queue)产出scope。 此参数的作用就是指定队列的大小。 可选，默认值：30
+    - **sync_steps** (int) - 不同显卡之间的同步周期数。可选，默认值：1
+    - **start_cpu_core_id** (int) - 指定所使用的第一个CPU核的id。可选，默认值：0
+
+**代码示例**
+
+.. code-block:: python
+
+        import paddle.fluid as fluid
+        import paddle.fluid.layers as layers
+        x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=0)
+        y = fluid.layers.data(name='y', shape=[1], dtype='int64', lod_level=0)
+        emb_x = layers.embedding(input=x, param_attr=fluid.ParamAttr(name="embx"), size=[10,2], is_sparse=False)
+        emb_y = layers.embedding(input=y, param_attr=fluid.ParamAttr(name="emby",learning_rate=0.9), size=[10,2], is_sparse=False)
+        concat = layers.concat([emb_x, emb_y], axis=1)
+        fc = layers.fc(input=concat, name="fc", size=1, num_flatten_dims=1, bias_attr=False)
+        loss = layers.reduce_mean(fc)
+        optimizer = fluid.optimizer.SGD(learning_rate=0.5)
+        optimizer = fluid.optimizer.PipelineOptimizer(optimizer,
+                cut_list=[[emb_x, emb_y], [loss]],
+                place_list=[fluid.CPUPlace(), fluid.CUDAPlace(0), fluid.CPUPlace()],
+                concurrency_list=[1, 1, 4],
+                queue_size=2,
+                sync_steps=1,
+                )
+        optimizer.minimize(loss)
+        place = fluid.CPUPlace()
+        exe = fluid.Executor(place)
+        exe.run(fluid.default_startup_program())
+        filelist = [] # you should set your own filelist, e.g. filelist = ["dataA.txt"]
+        dataset = fluid.DatasetFactory().create_dataset("FileInstantDataset")
+        dataset.set_use_var([x,y])
+        dataset.set_batch_size(batch_size)
+        dataset.set_filelist(filelist)
+        exe.train_from_dataset(
+                    fluid.default_main_program(),
+                    dataset,
+                    thread=2,
+                    debug=False,
+                    fetch_list=[],
+                    fetch_info=[],
+                    print_period=1)
 
 
 

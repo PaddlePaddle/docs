@@ -36,6 +36,7 @@ append_backward
 
         # 网络配置
         # 损失计算
+        import paddle.fluid as fluid
         x = fluid.layers.data(name='x', shape=[13], dtype='float32')
         y = fluid.layers.data(name='y', shape=[1], dtype='float32') 
               
