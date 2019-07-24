@@ -43,7 +43,6 @@ import paddle.fluid as fluid
 y = fluid.layers.fc(input=x, size=128, bias_attr=True)
 ```
 
-
 **2. 输入输出Tensor**
 
 整个神经网络的输入数据也是一个特殊的 Tensor，在这个 Tensor 中，一些维度的大小在定义模型时无法确定（通常包括：batch size，如果 mini-batch 之间数据可变，也会包括图片的宽度和高度等），在定义模型时需要占位。
@@ -97,7 +96,30 @@ type {
 persistable: false
 ```
 
-具体输出数值将在Executor运行时得到，详细过程会在后文展开描述。
+具体输出数值将在Executor运行时得到。获取运行时的Variable数值有两种方式：方式一是利用 `paddle.fluid.layers.Print` 创建一个打印操作，打印正在访问的张量。方式二是将Variable添加在fetch_list中。
+
+方式一的代码实现如下所示：
+
+```python
+import paddle.fluid as fluid
+data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
+data = fluid.layers.Print(data, message="Print data:")
+```
+
+运行时的输出结果：
+
+```
+1563874307	Print data: 	The place is:CPUPlace
+Tensor[fill_constant_0.tmp_0]
+	shape: [1,]
+	dtype: x
+	data: 0,
+```
+
+更多 Print API 的使用方式请查看：[Print操作命令](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/layers_cn/control_flow_cn.html#print)。
+
+方式二Fetch_list的详细过程会在后文展开描述。
+
 
 ## 数据传入
 
