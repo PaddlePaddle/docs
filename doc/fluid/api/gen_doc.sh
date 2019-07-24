@@ -17,6 +17,7 @@ do
 done
 
 python gen_doc.py --module_name "" --module_prefix "" --output fluid --to_multiple_files True
+python gen_module_index.py fluid  fluid
 
 python gen_index.py
 
