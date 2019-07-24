@@ -22,6 +22,7 @@ API Reference
     layers.rst
     metrics.rst
     nets.rst
+    nn.rst
     optimizer.rst
     profiler.rst
     recordio_writer.rst

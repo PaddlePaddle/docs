@@ -2,21 +2,7 @@
 Data Reader
 =====================
 
-DataFeeder
-==========
+..  toctree::
+    :maxdepth: 1
 
-..  automodule:: paddle.fluid.data_feeder
-    :members:
-    :noindex:
-
-Reader
-======
-
-..  automodule:: paddle.reader
-    :members:
-    :noindex:
-
-..  automodule:: paddle.reader.creator
-    :members:
-    :noindex:
-
+    data_reader/Reader.rst
