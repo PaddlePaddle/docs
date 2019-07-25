@@ -2,8 +2,8 @@
 
 ## 环境准备
 
-* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8/9.2, 且仅支持单卡)*
-* *Python 版本 2.7/3.5.1+/3.6/3.7 (64 bit)*
+* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8.0/9.0，且仅支持单卡)*
+* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
 ### 注意事项
@@ -16,7 +16,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
 
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
-    * *CUDA 工具包8.0/9.2配合cuDNN v7.3+*
+    * *CUDA 工具包8.0/9.0配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
 您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -41,7 +41,7 @@ Windows系统下有3种安装方式：
 注：
 
 * pip与python版本对应。如果是python2.7, 建议使用`pip`命令; 如果是python3.x, 则建议使用`pip3`命令
-* `pip3 install -U paddlepaddle-gpu` 此命令将安装支持CUDA 9.0 cuDNN v7的PaddlePaddle，目前windows环境下暂不支持其他版本的CUDA和cuDNN。
+* `pip3 install -U paddlepaddle-gpu` 此命令将安装支持CUDA 8.0/9.0 cuDNN v7.3+的PaddlePaddle，目前windows环境下暂不支持其他版本的CUDA和cuDNN。
 
 <a name="check"></a>
 ## 验证安装
