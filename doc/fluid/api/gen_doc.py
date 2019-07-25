@@ -76,14 +76,14 @@ class DocGenerator(object):
 
     def print_item(self, name):
         item = getattr(self.module, name, None)
-        if item is None:
-            return
         if isinstance(item, types.TypeType):
             self.print_class(name)
         elif isinstance(item, types.FunctionType):
             self.print_method(name)
         else:
-            pass
+            self.stream.close()
+            path = os.getcwd()+"/fluid/"+name+".rst"
+            os.remove(path)
 
     def print_class(self, name):
         self._print_ref_(name)
