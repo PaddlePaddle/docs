@@ -226,7 +226,7 @@ Attention during usage:
 
   .. code-block:: bash
 
-     > PADDLE_NUM_TRAINERS=<TRAINER_COUNT> python -m paddle.distributed.launch train.py --gpus <NUM_GPUS_ON_HOSTS> <ENTRYPOINT_SCRIPT> --arg1 --arg2 ...
+     > PADDLE_NUM_TRAINERS=<TRAINER_COUNT> python -m paddle.distributed.launch --gpus <NUM_GPUS_ON_HOSTS> <ENTRYPOINT_SCRIPT> --arg1 --arg2 ...
 
 Important Notes on NCCL2 Distributed Training
 ++++++++++++++++++++++++++++++++++++++++++++++
