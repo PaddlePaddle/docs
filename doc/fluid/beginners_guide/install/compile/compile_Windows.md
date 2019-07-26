@@ -96,11 +96,11 @@
 	
 	将相关路径加入环境变量中后，命令为：
 	
-	    `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release `
+     `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release `
 	
 	若设备上存在多个版本python或多个版本cuda，或者没有将路径加入环境变量，应使用命令：
 	
-	    `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DPYTHON_INCLUDE_DIR=C:\\Python36\\include -DPYTHON_LIBRARY=C:\\Python36\\Lib -DPYTHON_EXECUTABLE=C:\\Python36\\python3.exe -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=D:\\cuda`
+     `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DPYTHON_INCLUDE_DIR=C:\\Python36\\include -DPYTHON_LIBRARY=C:\\Python36\\Lib -DPYTHON_EXECUTABLE=C:\\Python36\\python3.exe -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=D:\\cuda`
 
 6. 部分第三方依赖包（openblas，snappystream）目前需要用户自己提供预编译版本，也可以到 `https://github.com/wopeizl/Paddle_deps` 下载预编译好的文件， 将整个 `third_party` 文件夹放到 `build` 目录下.
 
