@@ -98,7 +98,7 @@
 	
 	    `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release `
 	
-	若设备上存在多个版本的python或cuda版本，或者没有将路径加入环境变量，应使用命令：
+	若设备上存在多个版本python或多个版本cuda，或者没有将路径加入环境变量，应使用命令：
 	
 	    `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DPYTHON_INCLUDE_DIR=C:\\Python36\\include -DPYTHON_LIBRARY=C:\\Python36\\Lib -DPYTHON_EXECUTABLE=C:\\Python36\\python3.exe -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=D:\\cuda`
 
