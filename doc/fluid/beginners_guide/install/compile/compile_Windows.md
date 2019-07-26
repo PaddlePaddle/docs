@@ -86,7 +86,7 @@
 			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
 			 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=${CUDA_TOOLKIT_ROOT_DIR}`
 	
-    注意：上述命令中对应的参数应修改为你所在设备上的对应路径，或者将它们加入环境变量中，以编译GPU版本的PaddlePaddle的python3版本为例，
+    注意：上述命令中对应的参数应修改为你所在设备上的对应路径，或者将它们加入环境变量中，以编译GPU版本的PaddlePaddle的python3.6版本为例，
 	
 	    -DPY_VERSION 为python版本
 	    -DPYTHON_INCLUDE_DIR 为对应版本python的include目录
