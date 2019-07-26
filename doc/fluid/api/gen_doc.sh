@@ -1,9 +1,23 @@
 #!/bin/bash
-python gen_doc.py layers --submodules control_flow device io nn ops tensor learning_rate_scheduler detection metric_op > layers.rst
 
-for module in data_feeder clip metrics executor initializer io nets optimizer param_attr profiler regularizer transpiler recordio_writer backward average profiler
+#for module in nn
+#do
+#  python gen_doc.py --module_name layers.${module} --module_prefix layers --output layers/${module} --to_multiple_files True
+#done
+
+#for module in control_flow nn io ops tensor learning_rate_scheduler detection metric_op
+#do
+#  python gen_doc.py --module_name layers.${module} --module_prefix layers --output layers/${module}.rst
+#done 
+
+for module in layers data_feeder dataset clip metrics executor initializer io nets optimizer profiler regularizer transpiler recordio_writer backward average profiler unique_name dygraph
 do
-  python gen_doc.py ${module} > ${module}.rst
+  python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --to_multiple_files True
+  python gen_module_index.py ${module}  fluid.${module}
 done
 
-python gen_doc.py "" > fluid.rst
+python gen_doc.py --module_name "" --module_prefix "" --output fluid --to_multiple_files True
+python gen_module_index.py fluid  fluid
+
+python gen_index.py
+

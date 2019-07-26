@@ -201,7 +201,7 @@ Generally, the user of GAN just need to the following things:
 - Specify two optimizers for two different losses with respect to different parameters.
 ```python
 # pd for short, should be more concise.
-from paddle.v2 as pd
+import paddle as pd
 import numpy as np
 import logging
 

@@ -10,7 +10,10 @@
 ..  toctree::
     :maxdepth: 1
 
-    beginners_guide/index.rst
-    user_guides/index.rst
-    advanced_usage/index.rst
+
+    beginners_guide/index_cn.rst
+    user_guides/index_cn.rst
+    advanced_usage/index_cn.rst
+    api_cn/index_cn.rst
     faq/index_cn.rst
+    release_note_cn.rst

@@ -21,12 +21,8 @@
    label = fluid.layers.data(name="label", shape=[1])
    hidden = fluid.layers.fc(input=image, size=100, act='relu')
    prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
-   loss = fluid.layers.mean(
-       fluid.layers.cross_entropy(
-           input=prediction,
-           label=label
-       )
-   )
+   loss = fluid.layers.cross_entropy(input=prediction, label=label)
+   loss = fluid.layers.mean(loss)
 
    sgd = fluid.optimizer.SGD(learning_rate=0.001)
    sgd.minimize(loss)
@@ -45,16 +41,12 @@
 
 用户配置完模型后，参数初始化操作会被写入到\
 :code:`fluid.default_startup_program()` 中。使用 :code:`fluid.Executor()` 运行
-这一程序，即可在全局 :code:`fluid.global_scope()` 中随机初始化参数。例如:
+这一程序，初始化之后的参数默认被放在全局scope中，即 :code:`fluid.global_scope()` 。例如:
 
 .. code-block:: python
 
    exe = fluid.Executor(fluid.CUDAPlace(0))
    exe.run(program=fluid.default_startup_program())
-
-值得注意的是: 如果使用多GPU训练，参数需要先在GPU0上初始化，再经由\
-:code:`fluid.ParallelExecutor` 分发到多张显卡上。
-
 
 载入预定义参数
 ==============
@@ -72,48 +64,71 @@
 
 .. code-block:: python
 
-   ...
-   loss = fluid.layers.mean(...)
+    import paddle.fluid as fluid
+    import numpy
 
-   exe = fluid.Executor(...)
-   # the result is an numpy array
-   result = exe.run(feed={"image": ..., "label": ...}, fetch_list=[loss])
+    train_program = fluid.Program()
+    startup_program = fluid.Program()
+    with fluid.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = fluid.layers.mean(hidden)
+        sgd = fluid.optimizer.SGD(learning_rate=0.001)
+        sgd.minimize(loss)
 
-这里有几点注意事项:
+    use_cuda = True
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
 
-1. feed的数据格式，请参考文章 :ref:`user_guide_feed_data_to_executor`。
-2. :code:`Executor.run` 的返回值是 :code:`fetch_list=[...]` 的variable值。被fetch\
-   的Variable必须是persistable的。 :code:`fetch_list` 可以传入Variable的列表，\
-   也可以传入Variable的名字列表。:code:`Executor.run` 返回Fetch结果列表。
-3. 如果需要取回的数据包含序列信息，可以设置
-   :code:`exe.run(return_numpy=False, ...)` 直接返回 :code:`fluid.LoDTensor`
-   。用户可以直接访问 :code:`fluid.LoDTensor` 中的信息。
+    # Run the startup program once and only once.
+    # Not need to optimize/compile the startup program.
+    startup_program.random_seed=1
+    exe.run(startup_program)
+
+    # Run the main program directly without compile.
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data, = exe.run(train_program,
+                         feed={"X": x},
+                         fetch_list=[loss.name])
+
+    # Or use CompiledProgram:
+    compiled_prog = compiler.CompiledProgram(train_program)
+    loss_data, = exe.run(compiled_prog,
+                 feed={"X": x},
+                 fetch_list=[loss.name])
 
 多卡训练
-########
-
-执行多卡训练可以使用 :code:`fluid.ParallelExecutor` 运行训练
-:code:`fluid.Program`。例如:
+#######################
+在多卡训练中，你可以使用 :code:`fluid.compiler.CompiledProgram` 来编译 :code:`fluid.Program` ，然后调用 :code:`with_data_parallel` 。例如：
 
 .. code-block:: python
 
-   train_exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name,
-                                main_program=fluid.default_main_program())
-   train_exe.run(fetch_list=[loss.name], feed={...})
+    # NOTE: If you use CPU to run the program, you need
+    # to specify the CPU_NUM, otherwise, fluid will use
+    # all the number of the logic cores as the CPU_NUM,
+    # in that case, the batch size of the input should be
+    # greater than CPU_NUM, if not, the process will be
+    # failed by an exception.
+    if not use_cuda:
+        os.environ['CPU_NUM'] = str(2)
 
-这里有几点注意事项:
+    compiled_prog = compiler.CompiledProgram(
+        train_program).with_data_parallel(
+        loss_name=loss.name)
+    loss_data, = exe.run(compiled_prog,
+                         feed={"X": x},
+                         fetch_list=[loss.name])
 
-1. :code:`ParallelExecutor` 的构造函数需要指明要执行的 :code:`fluid.Program` ,
-   并在执行过程中不能修改。默认值是 :code:`fluid.default_main_program()` 。
-2. :code:`ParallelExecutor` 需要明确指定是否使用 CUDA 显卡进行训练。在显卡训练\
-   模式下会占用全部显卡。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 来修改占用\
-   的显卡。
+注释：
+
+1. :ref:`cn_api_fluid_CompiledProgram` 会将传入的 :code:`fluid.Program` 转为计算图，即Graph，因为 :code:`compiled_prog` 与传入的 :code:`train_program` 是完全不同的对象，目前还不能够对 :code:`compiled_prog` 进行保存。
+2. 多卡训练也可以使用 :ref:`cn_api_fluid_ParallelExecutor` ，但是现在推荐使用 :ref:`cn_api_fluid_CompiledProgram` .
+3. 如果 :code:`exe` 是用CUDAPlace来初始化的，模型会在GPU中运行。在显卡训练模式中，所有的显卡都将被占用。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 以更改被占用的显卡。
+4. 如果 :code:`exe` 是用CPUPlace来初始化的，模型会在CPU中运行。在这种情况下，多线程用于运行模型，同时线程的数目和逻辑核的数目相等。用户可以配置 ``CPU_NUM`` 以更改使用中的线程数目。
 
 进阶使用
-########
-
+###############
 .. toctree::
    :maxdepth: 2
 
-   test_while_training
-   save_load_variables
+   test_while_training.rst
