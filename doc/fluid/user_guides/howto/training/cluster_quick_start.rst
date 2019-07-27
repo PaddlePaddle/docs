@@ -1,11 +1,13 @@
 ..  _cluster_quick_start:
 
-从Paddle Fluid 1.5开始，我们推荐使用Fleet API进行分布式训练，关于Fleet API的介绍可以参考 :ref:`fleet_api`
+从Paddle Fluid 1.5.1 https://github.com/PaddlePaddle/Paddle/releases/tag/v1.5.1 开始，官方推荐使用Fleet API进行分布式训练，关于Fleet API的介绍可以参考 https://github.com/PaddlePaddle/Fleet。
 
-首先，我们假设读者已经学会单机训练，如果还没单机训练的经验，请参考 :ref:`single_training`
-想了解分布式训练，我们可以从单机模拟分布式训练开始，在单台机器上启动多个进程代表多台机器，并进行分布式训练。
+前置条件
+成功安装Paddle Fluid
+学会最基本的单机训练方法
 
-为了让读者快速上手，我们采用点击率预估任务作为示例，相关的源码可以参考https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr
+本文使用一个简单的示例，点击率预估任务，来说明如何使用Fleet API进行分布式训练的配置方法，并利用单机环境模拟分布式环境给出运行示例。
+https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr
 
 为了方便学习，这里给出的示例是单机与多机混合的代码，用户可以通过不同的启动命令进行单机或多机任务的启动。
 
@@ -91,7 +93,8 @@
 
     if __name__ == '__main__':
         main_function(args.is_local)
-  
+
+
 单机训练启动命令
 .. code:: python
     
