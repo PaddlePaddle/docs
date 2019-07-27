@@ -247,7 +247,7 @@ NCCL2模式必要参数说明
 
 .. code-block:: bash
 
-    > PADDLE_NUM_TRAINERS=<TRAINER_COUNT> python -m paddle.distributed.launch train.py --gpus <NUM_GPUS_ON_HOSTS> <ENTRYPOINT_SCRIPT> --arg1 --arg2 ...
+    > PADDLE_NUM_TRAINERS=<TRAINER_COUNT> python -m paddle.distributed.launch --gpus <NUM_GPUS_ON_HOSTS> <ENTRYPOINT_SCRIPT> --arg1 --arg2 ...
 
 
 NCCL2分布式训练注意事项
