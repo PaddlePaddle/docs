@@ -94,11 +94,11 @@
 	    -DPYTHON_EXECUTABLE 为对应版本python的可执行程序的路径
 	    -DCUDA_TOOLKIT_ROOT_DIR 为安装cuda的根目录
 	
-	将相关路径加入环境变量中后，命令为：
+	将相关路径加入环境变量中后，这个例子所用cmake命令为：
 	
      `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release `
 	
-	若设备上存在多个版本python或多个版本cuda，或者没有将路径加入环境变量，应使用命令：
+	若设备上存在多个版本python，或者多个版本cuda，或者没有将路径加入环境变量，这个例子所用cmake命令为：
 	
      `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DPYTHON_INCLUDE_DIR=C:\\Python36\\include -DPYTHON_LIBRARY=C:\\Python36\\Lib -DPYTHON_EXECUTABLE=C:\\Python36\\python3.exe -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=D:\\cuda`
 
