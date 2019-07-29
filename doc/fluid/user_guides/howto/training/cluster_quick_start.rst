@@ -131,7 +131,8 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__\ 的�
 
 任务运行的日志在工作目录的logs目录下可以查看，当您能够使用单机模拟分布式训练，可以进行真正的多机分布式训练。我们建议用户直接参\ `百度云运行分布式任务的示例 <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/deploy_ctr_on_baidu_cloud_cn.html>`__
 
-
+Paddle Fluid 1.5.1以前的版本支持的分布式训练方式，我们仍然会继续兼容，快速上手使用文档如下：
+---------------------------
 
 准备工作
 --------
