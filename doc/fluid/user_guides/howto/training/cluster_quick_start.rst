@@ -9,11 +9,16 @@
 开始，官方推荐使用Fleet API进行分布式训练，关于Fleet API的介绍可以参考
 `Fleet Design Doc <https://github.com/PaddlePaddle/Fleet>`__
 
-前置条件
+准备条件
 ~~~~~~~~
 
--  成功安装Paddle Fluid
--  学会最基本的单机训练方法
+-  [x] 成功安装Paddle
+   Fluid，如果尚未安装，请参考\ `快速开始 <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/beginners_guide/quick_start_cn.html>`__
+-  [x]
+   学会最基本的单机训练方法，请参考\ `单机训练 <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/single_node.html>`__\ 中描述的单卡训练，进行学习
+
+点击率预估任务
+~~~~~~~~~~~~~~
 
 本文使用一个简单的示例，点击率预估任务，来说明如何使用Fleet
 API进行分布式训练的配置方法，并利用单机环境模拟分布式环境给出运行示例。示例的源码来自\ `CTR
@@ -40,6 +45,7 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__
         embedding_size = 10
         args = parse_args()
         def main_function(is_local):
+            # common code for local training and distributed training
             dense_input = fluid.layers.data(
                 name="dense_input", shape=[dense_feature_dim], dtype='float32')
             sparse_input_ids = [
@@ -66,11 +72,15 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__
                                            fetch_list=[auc_var],
                                            fetch_info=["auc"],
                                            debug=False)
+                    
+            # local training
             def local_train(optimizer):
                 optimizer = fluid.optimizer.SGD(learning_rate=1e-4)
                 optimizer.minimize(loss)
                 exe.run(fluid.default_startup_program())
                 train_loop()
+                
+            # distributed training
             def dist_train(optimizer):
                 role = role_maker.PaddleCloudRoleMaker()
                 fleet.init(role)
@@ -86,18 +96,28 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__
                     fleet.init_worker()
                     exe.run(fluid.default_startup_program())
                     train_loop()
+                    
             if is_local:
                 local_train(optimizer)
             else:
                 dist_train(optimizer)
+                
         if __name__ == '__main__':
             main_function(args.is_local)
 
+-  说明：示例中使用的IO方法是dataset，想了解具体的文档和用法请参考\ `Dataset
+   API <hhttps://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/dataset_cn.html>`__\ 。示例中使用的\ ``train_from_dataset``\ 接口，想了解具体的文档和使用方法请参考\ `Executor
+   API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/executor_cn.html>`__
+
 单机训练启动命令
+^^^^^^^^^^^^^^^^
 
 .. code:: python
 
         python train.py --is_local 1
+
+单机模拟分布式训练的启动命令
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 在单机模拟多机训练的启动命令，这里我们用到了paddle内置的一个启动器launch\_ps，用户可以指定worker和server的数量进行参数服务器任务的启动
 
@@ -106,7 +126,6 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__
         python -m paddle.distributed.launch_ps --worker_num 2 --server_num 2 train.py
 
 任务运行的日志在工作目录的logs目录下可以查看，当您能够使用单机模拟分布式训练，可以进行真正的多机分布式训练。我们建议用户直接参\ `百度云运行分布式任务的示例 <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/deploy_ctr_on_baidu_cloud_cn.html>`__
-
 
 
 分布式训练快速开始
