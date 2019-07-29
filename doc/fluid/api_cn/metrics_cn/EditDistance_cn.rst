@@ -25,7 +25,7 @@ EditDistance
     batch_size = 128
     
     # 初始化编辑距离管理器
-    distances_evaluator = fluid.metrics.EditDistance("EditDistance")
+    distance_evaluator = fluid.metrics.EditDistance("EditDistance")
     # 生成128个序列对间的编辑距离，此处的最大距离是10
     edit_distances_batch0 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
     seq_num_batch0 = batch_size
