@@ -110,7 +110,7 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__\ 的�
 -  说明：示例中使用的IO方法是dataset，想了解具体的文档和用法请参考\ `Dataset
    API <hhttps://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/dataset_cn.html>`__\ 。示例中使用的\ ``train_from_dataset``\ 接口，想了解具体的文档和使用方法请参考\ `Executor
    API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/executor_cn.html>`__\ 。示例中的\ ``from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet``\ 表示引入参数服务器架构进行分布式训练，如果想更进一步了解Fleet
-   API的更多选项，请参考\ `Fleet
+   API的更多选项和示例，请参考\ `Fleet
    API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/fleet_api_howto_cn.html>`__
 
 单机训练启动命令
@@ -130,6 +130,7 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__\ 的�
         python -m paddle.distributed.launch_ps --worker_num 2 --server_num 2 train.py
 
 任务运行的日志在工作目录的logs目录下可以查看，当您能够使用单机模拟分布式训练，可以进行真正的多机分布式训练。我们建议用户直接参\ `百度云运行分布式任务的示例 <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/deploy_ctr_on_baidu_cloud_cn.html>`__
+
 
 Paddle Fluid 1.5.1以前的版本支持的分布式训练方式，我们仍然会继续兼容，快速上手使用文档如下：
 ---------------------------
