@@ -26,4 +26,6 @@ API
     profiler_cn.rst
     regularizer_cn.rst
     transpiler_cn.rst
+    unique_name_cn.rst
+
 
