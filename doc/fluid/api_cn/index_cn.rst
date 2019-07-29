@@ -11,6 +11,8 @@ API
     average_cn.rst
     backward_cn.rst
     clip_cn.rst
+    data/data_reader_cn.rst
+    data/dataset_cn.rst
     data_feeder_cn.rst
     dataset_cn.rst
     dygraph_cn.rst
@@ -24,6 +26,6 @@ API
     profiler_cn.rst
     regularizer_cn.rst
     transpiler_cn.rst
-    data/dataset_cn.rst
-    data/data_reader_cn.rst
+    unique_name_cn.rst
+
 
