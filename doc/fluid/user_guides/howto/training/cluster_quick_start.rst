@@ -120,7 +120,7 @@
 
        python -m paddle.distributed.launch_ps --worker_num 2 --server_num 2 train.py
 
-任务运行的日志在工作目录的logs目录下可以查看，当您能够使用单机模拟分布式训练，可以进行真正的多机分布式训练。我们建议用户直接参\ `百度云运行分布式任务的示例 <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/deploy_ctr_on_baidu_cloud_cn.html>`_
+任务运行的日志在工作目录的logs目录下可以查看，当您能够使用单机模拟分布式训练，可以进行真正的多机分布式训练。我们建议用户直接参考\ `百度云运行分布式任务的示例 <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/deploy_ctr_on_baidu_cloud_cn.html>`_
 
 Paddle Fluid 1.5.1以前的版本，分布式的功能在依然会保留，介绍内容如下。
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
