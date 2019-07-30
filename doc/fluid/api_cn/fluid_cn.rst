@@ -1041,8 +1041,9 @@ DistributeTranspiler
   t = fluid.DistributeTranspiler(config=config)
   t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
   exe = fluid.ParallelExecutor(
+     use_cuda=True,
      loss_name=avg_loss.name,
-     num_trainers=len(trainer_num,
+     num_trainers=trainer_num,
      trainer_id=trainer_id
   )
 
