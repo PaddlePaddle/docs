@@ -144,26 +144,9 @@ training通常在GPU多机多卡训练中使用，一般在复杂模型的训练
       print("worker_index: %d, step%d cost = %f" %
            (fleet.worker_index(), i, cost_val[0]))
 
-更多使用示例
-------------
-
-`点击率预估 <>`__
-
-`语义匹配 <>`__
-
-`向量学习 <>`__
-
-`基于Resnet50的图像分类 <>`__
-
-`基于Transformer的机器翻译 <>`__
-
-`基于Bert的语义表示学习 <>`__
 
 Fleet API相关的接口说明
 -----------------------
-
-Fleet API接口
-~~~~~~~~~~~~~
 
 -  init(role\_maker=None)
 -  fleet初始化，需要在使用fleet其他接口前先调用，用于定义多机的环境配置
@@ -186,8 +169,6 @@ Fleet API接口
 -  distributed\_optimizer(optimizer, strategy=None)
 -  分布式优化算法装饰器，用户可带入单机optimizer，并配置分布式训练策略，返回一个分布式的optimizer
 
-RoleMaker
-~~~~~~~~~
 
 -  MPISymetricRoleMaker
 
@@ -264,17 +245,12 @@ RoleMaker
                    server_endpoints=pserver_endpoints)
        fleet.init(role)
 
-Strategy
-~~~~~~~~
-
 -  Parameter Server Training
 -  Sync\_mode
 -  Collective Training
 -  LocalSGD
 -  ReduceGrad
 
-Fleet Mode
-~~~~~~~~~~
 
 -  Parameter Server Training
 
