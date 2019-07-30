@@ -1274,11 +1274,11 @@ ExecutionStrategy
 int型成员。它表明了清空执行时产生的临时变量需要的程序执行迭代次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为1。
 
 .. note::
-  1. 如果在调用 ``run`` 方法时获取结果数据，``ParallelExecutor`` 会在当前程序重复执行尾部清空临时变量
+  1. 如果在调用 ``run`` 方法时获取结果数据，``llelExecutor`` 会在当前程序重复执行尾部清空临时变量
 
   2. 在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
 
-.. py:attribute:: num_iteration_per_run
+.. py:attribute:: num_iteration_per_runPara
 它配置了当用户在python脚本中调用pe.run()时执行器会执行的迭代次数。
 
 .. py:attribute:: num_threads
@@ -1509,7 +1509,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
         filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
         dataset.set_filelist(filelist)
         exe.run(fluid.default_startup_program())
-        exe.infer_from_dataset(program=fluid.default_main_program(),
+        exe.train_from_dataset(program=fluid.default_main_program(),
                                dataset=dataset)
 
 
