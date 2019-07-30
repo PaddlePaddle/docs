@@ -43,7 +43,7 @@ Start <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/quick-start>`
                 "y": np.random.randint(2, size=(128, 1)).astype('int64')}
 
 单机Trainer定义
-^^^^^^^^^^^^^^^
+>>>>>>>>>>>>>>>
 
 .. code:: python
 
@@ -67,7 +67,7 @@ Start <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/quick-start>`
       print("step%d cost=%f" % (i, cost_val[0]))
 
 Parameter Server训练方法
-^^^^^^^^^^^^^^^^^^^^^^^^
+>>>>>>>>>>>>>>>
 
 参数服务器方法对于大规模数据，简单模型的并行训练非常适用，我们基于单机模型的定义给出其实用Parameter
 Server进行训练的示例如下：
@@ -108,7 +108,7 @@ Server进行训练的示例如下：
              (fleet.worker_index(), i, cost_val[0]))
 
 Collective训练方法
-^^^^^^^^^^^^^^^^^^
+>>>>>>>>>>>>>>>
 
 collective
 training通常在GPU多机多卡训练中使用，一般在复杂模型的训练中比较常见，我们基于上面的单机模型定义给出使用Collective方法进行分布式训练的示例如下：
@@ -144,9 +144,26 @@ training通常在GPU多机多卡训练中使用，一般在复杂模型的训练
       print("worker_index: %d, step%d cost = %f" %
            (fleet.worker_index(), i, cost_val[0]))
 
+更多使用示例
+------------
+
+`点击率预估 <>`__
+
+`语义匹配 <>`__
+
+`向量学习 <>`__
+
+`基于Resnet50的图像分类 <>`__
+
+`基于Transformer的机器翻译 <>`__
+
+`基于Bert的语义表示学习 <>`__
 
 Fleet API相关的接口说明
 -----------------------
+
+Fleet API接口
+>>>>>>>>>>>>>>>
 
 -  init(role\_maker=None)
 -  fleet初始化，需要在使用fleet其他接口前先调用，用于定义多机的环境配置
@@ -169,6 +186,8 @@ Fleet API相关的接口说明
 -  distributed\_optimizer(optimizer, strategy=None)
 -  分布式优化算法装饰器，用户可带入单机optimizer，并配置分布式训练策略，返回一个分布式的optimizer
 
+RoleMaker
+>>>>>>>>>>>>>>>
 
 -  MPISymetricRoleMaker
 
@@ -245,12 +264,17 @@ Fleet API相关的接口说明
                    server_endpoints=pserver_endpoints)
        fleet.init(role)
 
+Strategy
+>>>>>>>>>>>>>>>
+
 -  Parameter Server Training
 -  Sync\_mode
 -  Collective Training
 -  LocalSGD
 -  ReduceGrad
 
+Fleet Mode
+>>>>>>>>>>>>>>>
 
 -  Parameter Server Training
 
