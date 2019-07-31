@@ -116,7 +116,7 @@
 单机训练启动命令
 ~~~~~~~~~~~~~~~~
 
-.. code-block:: python
+.. code-block:: bash
 
    python train.py --is_local 1
 
@@ -125,7 +125,7 @@
 
 在单机模拟多机训练的启动命令，这里我们用到了paddle内置的一个启动器launch_ps，用户可以指定worker和server的数量进行参数服务器任务的启动
 
-.. code-block:: python
+.. code-block:: bash
 
    python -m paddle.distributed.launch_ps --worker_num 2 --server_num 2 train.py
 
