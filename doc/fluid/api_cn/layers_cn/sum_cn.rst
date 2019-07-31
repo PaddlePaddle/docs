@@ -23,9 +23,9 @@ sum算子。
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    input0 = fluid.layers.data(name="input0", shape=[13, 11], dtype='float32')
+    input0 = layers.data(name="input0", shape=[13, 11], dtype='float32')
     input1 = layers.data(name="input1", shape=[13, 11], dtype='float32')
-    out = fluid.layers.sum([input0,input1])
+    out = layers.sum([input0,input1])
 
 
 

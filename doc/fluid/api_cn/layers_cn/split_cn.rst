@@ -32,7 +32,7 @@ split
     # x1.shape  [-1, 3, 3, 5]
     # x2.shape  [-1, 3, 3, 5]
     
-    x0, x1, x2 = fluid.layers.split(input, num_or_sections=[2, 3, 4], dim=2)
+    x0, x1, x2 = fluid.layers.split(input, num_or_sections=3, dim=2)
     # x0.shape  [-1, 3, 2, 5]
     # x1.shape  [-1, 3, 3, 5]
     # x2.shape  [-1, 3, 4, 5]
