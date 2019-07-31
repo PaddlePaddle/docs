@@ -144,7 +144,7 @@ pooling3d操作根据输入 ``input`` ，``pool_size`` ， ``pool_type`` 参数�
 
     data = fluid.layers.data(
     name='data', shape=[3, 32, 32, 32], dtype='float32')
-    pool_out, mask = fluid.layers.adaptive_pool3d(
+    pool_out = fluid.layers.adaptive_pool3d(
                       input=data,
                       pool_size=[3, 3, 3],
                       pool_type='avg')
