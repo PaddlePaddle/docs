@@ -4383,9 +4383,9 @@ label_smooth
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
 
-    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
-    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
-    smooth_label = fluid.layers.label_smooth(
+    label = layers.data(name="label", shape=[1], dtype="float32")
+    one_hot_label = layers.one_hot(input=label, depth=10)
+    smooth_label = layers.label_smooth(
     label=one_hot_label, epsilon=0.1, dtype="float32")
 
 
@@ -5043,7 +5043,7 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
   init_h = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
   init_c = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
 
-  rnn_out, last_h, last_c = fluid.layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
+  rnn_out, last_h, last_c = layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
 
 
 
@@ -5118,8 +5118,8 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
     pre_cell = fluid.layers.data(name='pre_cell', shape=[hidden_dim], dtype='float32')
     hidden = fluid.layers.lstm_unit(
         x_t=x,
-        hidden_t_prev=prev_hidden,
-        cell_t_prev=prev_cell)
+        hidden_t_prev=pre_hidden,
+        cell_t_prev=pre_cell)
 
 
 
@@ -5373,7 +5373,7 @@ mean_iou
    import paddle.fluid as fluid
    predict = fluid.layers.data(name='predict', shape=[3, 32, 32])
    label = fluid.layers.data(name='label', shape=[1])
-   iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes)
+   iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes=5)
 
 
 
