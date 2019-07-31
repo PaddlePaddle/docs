@@ -7652,7 +7652,7 @@ sequence_expand
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
-    out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
+    out = layers.sequence_expand(x=x, y=y, ref_level=0)
 
 
 
@@ -8806,7 +8806,7 @@ SoftRelu 激活函数
 
     import paddle.fluid as fluid
 
-    x = fluid.layers.data(name=”x”, shape=[2,3,16,16], dtype=”float32”)
+    x = fluid.layers.data(name="x", shape=[3,16,16], dtype="float32")
     y = fluid.layers.soft_relu(x, threshold=20.0)
 
 
@@ -9078,7 +9078,7 @@ split
     # x1.shape  [-1, 3, 3, 5]
     # x2.shape  [-1, 3, 3, 5]
     
-    x0, x1, x2 = fluid.layers.split(input, num_or_sections=[2, 3, 4], dim=2)
+    x0, x1, x2 = fluid.layers.split(input, num_or_sections=3, dim=2)
     # x0.shape  [-1, 3, 2, 5]
     # x1.shape  [-1, 3, 3, 5]
     # x2.shape  [-1, 3, 4, 5]
@@ -9180,8 +9180,8 @@ squeeze
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    x = fluid.layers.data(name='x', shape=[5, 1, 10])
-    y = fluid.layers.sequeeze(input=x, axes=[1])
+    x = layers.data(name='x', shape=[5, 1, 10])
+    y = layers.squeeze(input=x, axes=[1])
 
 
 
@@ -9331,9 +9331,9 @@ sum算子。
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    input0 = fluid.layers.data(name="input0", shape=[13, 11], dtype='float32')
+    input0 = layers.data(name="input0", shape=[13, 11], dtype='float32')
     input1 = layers.data(name="input1", shape=[13, 11], dtype='float32')
-    out = fluid.layers.sum([input0,input1])
+    out = layers.sum([input0,input1])
 
 
 
@@ -9518,7 +9518,7 @@ topk
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    top5_values, top5_indices = fluid.layers.topk(input, k=5)
+    top5_values, top5_indices = layers.topk(input, k=5)
 
 
 
@@ -9651,8 +9651,8 @@ uniform_random_batch_size_like算子。
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
 
-    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = fluid.layers.uniform_random_batch_size_like(input, [-1, 11])
+    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = layers.uniform_random_batch_size_like(input, [-1, 11])
 
 
 
@@ -9685,7 +9685,7 @@ unsqueeze
 
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[5, 10])
-    y = fluid.layers.unsequeeze(input=x, axes=[1])
+    y = fluid.layers.unsqueeze(input=x, axes=[1])
 
 
 
