@@ -112,7 +112,7 @@ Fluid有特定的数据传入方式：
 
 在Fluid中，所有对数据的操作都由Operator表示，您可以使用内置指令来描述他们的神经网络。
 
-为了便于用户使用，在Python端，Fluid中的Operator被一步封装入`paddle.fluid.layers`，`paddle.fluid.nets` 等模块。
+为了便于用户使用，在Python端，Fluid中的Operator被封装入`paddle.fluid.layers`，`paddle.fluid.nets` 等模块。
 
 这是因为一些常见的对Tensor的操作可能是由更多基础操作构成，为了提高使用的便利性，框架内部对基础 Operator 进行了一些封装，包括创建 Operator 依赖可学习参数，可学习参数的初始化细节等，减少用户重复开发的成本。
 
