@@ -3481,7 +3481,7 @@ gaussian_random算子。
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    out = fluid.layers.gaussian_random(shape=[20, 30])
+    out = layers.gaussian_random(shape=[20, 30])
 
 
 
