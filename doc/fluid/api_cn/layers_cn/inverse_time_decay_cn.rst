@@ -38,7 +38,7 @@ inverse_time_decay
                 decay_steps=10000,
                 decay_rate=0.5,
                 staircase=True))
-        sgd_optimizer.minimize(avg_cost)
+
 
 
 
