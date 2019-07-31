@@ -698,7 +698,7 @@ BRelu 激活函数
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype=”float32”)
+    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype="float32")
     y = fluid.layers.brelu(x, t_min=1.0, t_max=20.0)
 
 
@@ -1456,7 +1456,7 @@ crop
 
     ## or
     z = fluid.layers.data(name="z", shape=[3, 5], dtype="float32")
-    crop = fluid.layers.crop(z, shape=[2, 3])
+    crop = fluid.layers.crop(z, shape=[-1, 2, 3])
 
 
 
