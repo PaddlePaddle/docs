@@ -52,7 +52,7 @@
 
      sparse_input_ids = [
            fluid.layers.data(name="C" + str(i), shape=[1], lod_level=1,
-                                               dtype="int64") for i in range(1, 27)]
+                             dtype="int64") for i in range(1, 27)]
 
        label = fluid.layers.data(name="label", shape=[1], dtype="int64")
        dataset = fluid.DatasetFactory().create_dataset()
@@ -63,7 +63,7 @@
        dataset.set_thread(thread_num)
 
        whole_filelist = ["raw_data/part-%d" % x 
-                                           for x in range(len(os.listdir("raw_data")))]
+                          for x in range(len(os.listdir("raw_data")))]
 
        dataset.set_filelist(whole_filelist)
        loss, auc_var, batch_auc_var = ctr_dnn_model_dataset(
@@ -74,10 +74,10 @@
        def train_loop(epoch=20):
            for i in range(epoch):
                exe.train_from_dataset(program=fluid.default_main_program(),
-                                                            dataset=dataset,
-                                                            fetch_list=[auc_var],
-                                                            fetch_info=["auc"],
-                                                            debug=False)
+                                      dataset=dataset,
+                                      fetch_list=[auc_var],
+                                      fetch_info=["auc"],
+                                      debug=False)
        # local training
        def local_train(optimizer):
            optimizer = fluid.optimizer.SGD(learning_rate=1e-4)
