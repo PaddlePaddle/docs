@@ -71,7 +71,7 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
   init_h = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
   init_c = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
 
-  rnn_out, last_h, last_c = fluid.layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
+  rnn_out, last_h, last_c = layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
 
 
 
