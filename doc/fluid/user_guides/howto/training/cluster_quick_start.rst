@@ -8,6 +8,7 @@
 
 从Paddle Fluid `Release 1.5.1 <https://github.com/PaddlePaddle/Paddle/releases/tag/v1.5.1>`_ 开始，官方推荐使用Fleet API进行分布式训练，关于Fleet API的介绍可以参考 `Fleet Design Doc <https://github.com/PaddlePaddle/Fleet>`_
 
+
 准备条件
 ^^^^^^^^
 
@@ -22,6 +23,7 @@
 ^^^^^^^^^^^^^^
 
 本文使用一个简单的示例，点击率预估任务，来说明如何使用Fleet API进行分布式训练的配置方法，并利用单机环境模拟分布式环境给出运行示例。示例的源码来自 `CTR with Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`_
+
 
 为了方便学习，这里给出的示例是单机与多机混合的代码，用户可以通过不同的启动命令进行单机或多机任务的启动。获取数据的部分，以及对数据预处理的逻辑可以参考 `CTR with Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`_ 的源码和说明，这里不做过多描述。
 
@@ -112,6 +114,7 @@
 
 
 * 说明：示例中使用的IO方法是dataset，想了解具体的文档和用法请参考 `Dataset API <hhttps://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/dataset_cn.html>`_ 。示例中使用的 ``train_from_dataset`` 接口，想了解具体的文档和使用方法请参考 `Executor API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/executor_cn.html>`_ 。示例中的 ``from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet`` 表示引入参数服务器架构进行分布式训练，如果想更进一步了解Fleet API的更多选项和示例，请参考 `Fleet API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/fleet_api_howto_cn.html>`_
+
 
 单机训练启动命令
 ~~~~~~~~~~~~~~~~
