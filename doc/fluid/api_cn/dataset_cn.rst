@@ -22,7 +22,7 @@ DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创
 .. code-block:: python
 
     import paddle.fluid as fluid
-    dataset = paddle.fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
 
 .. py:method:: create_dataset(datafeed_class='QueueDataset')
 
@@ -127,7 +127,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
     dataset.global_shuffle(fleet)
     exe = fluid.Executor(fluid.CPUPlace())
     exe.run(fluid.default_startup_program())
-    exe.train_from_dataset(fluid.default_main_program(), dataset)dataset.release_memory()
+    exe.train_from_dataset(fluid.default_main_program(), dataset)
     dataset.release_memory()
 
 .. py:method:: get_memory_data_size(fleet=None)
