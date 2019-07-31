@@ -63,7 +63,7 @@ crop
 
     ## or
     z = fluid.layers.data(name="z", shape=[3, 5], dtype="float32")
-    crop = fluid.layers.crop(z, shape=[2, 3])
+    crop = fluid.layers.crop(z, shape=[-1, 2, 3])
 
 
 
