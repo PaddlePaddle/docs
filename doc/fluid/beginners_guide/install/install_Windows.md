@@ -34,6 +34,8 @@ Windows系统下有3种安装方式：
 ## 安装步骤
 
 * CPU版PaddlePaddle：`pip install -U paddlepaddle` 或 `pip3 install -U paddlepaddle`
+
+
 * GPU版PaddlePaddle：`pip install -U paddlepaddle-gpu` 或 `pip3 install -U paddlepaddle-gpu`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
@@ -41,7 +43,10 @@ Windows系统下有3种安装方式：
 注：
 
 * pip与python版本对应。如果是python2.7, 建议使用`pip`命令; 如果是python3.x, 则建议使用`pip3`命令
-* `pip3 install -U paddlepaddle-gpu` 此命令将安装支持CUDA 8.0/9.0 cuDNN v7.3+的PaddlePaddle，目前windows环境下暂不支持其他版本的CUDA和cuDNN。
+
+
+* `pip3 install -U paddlepaddle-gpu` 此命令将安装支持CUDA 8.0/9.0 cuDNN v7.3+的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`pip install -U paddlepaddle-gpu==[版本号]`或 `pip3 install -U paddlepaddle-gpu==[版本号]`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu/#history), 关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html/#whls)
+
 
 <a name="check"></a>
 ## 验证安装
