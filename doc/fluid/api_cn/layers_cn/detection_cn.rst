@@ -1288,16 +1288,16 @@ rpn_target_assign
 ..  code-block:: python
 
         import paddle.fluid as fluid
-        bbox_pred = fluid.layers.data(name=’bbox_pred’, shape=[100, 4],
-                append_batch_size=False, dtype=’float32’)
-        cls_logits = fluid.layers.data(name=’cls_logits’, shape=[100, 1],
-                append_batch_size=False, dtype=’float32’)
-        anchor_box = fluid.layers.data(name=’anchor_box’, shape=[20, 4],
-                append_batch_size=False, dtype=’float32’)
+        bbox_pred = fluid.layers.data(name='bbox_pred', shape=[100, 4],
+                append_batch_size=False, dtype='float32')
+        cls_logits = fluid.layers.data(name='cls_logits', shape=[100, 1],
+                append_batch_size=False, dtype='float32')
+        anchor_box = fluid.layers.data(name='anchor_box', shape=[20, 4],
+                append_batch_size=False, dtype='float32')
         anchor_var = fluid.layers.data(name='anchor_var', shape=[20, 4],	 	 
                 append_batch_size=False, dtype='float32')
-        gt_boxes = fluid.layers.data(name=’gt_boxes’, shape=[10, 4],
-                append_batch_size=False, dtype=’float32’)
+        gt_boxes = fluid.layers.data(name='gt_boxes', shape=[10, 4],
+                append_batch_size=False, dtype='float32')
         is_crowd = fluid.layers.data(name='is_crowd', shape=[1],
                     append_batch_size=False, dtype='float32')
         im_info = fluid.layers.data(name='im_infoss', shape=[1, 3],
