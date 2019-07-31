@@ -31,7 +31,6 @@ EditDistance
     seq_num_batch0 = batch_size
 
     distance_evaluator.update(edit_distances_batch0, seq_num_batch0)
-    distance, instance_error = distance_evaluator.eval()
     avg_distance, wrong_instance_ratio = distance_evaluator.eval()
     print("the average edit distance for batch0 is %.2f and the wrong instance ratio is %.2f " % (avg_distance, wrong_instance_ratio))
     edit_distances_batch1 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
