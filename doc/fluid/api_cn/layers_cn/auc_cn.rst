@@ -37,7 +37,7 @@ auc
     data = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
     label = fluid.layers.data(name="label", shape=[1], dtype="int32")
     predict = fluid.layers.fc(input=data, size=2)
-    auc_out=fluid.layers.auc(input=prediction, label=label)
+    auc_out=fluid.layers.auc(input=predict, label=label)
 
 
 

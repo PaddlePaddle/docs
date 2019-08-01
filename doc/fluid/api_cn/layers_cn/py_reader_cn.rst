@@ -50,7 +50,7 @@ py_reader
 
   fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
 
-  exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)
+  exe = fluid.ParallelExecutor(use_cuda=True)
   for epoch_id in range(10):
       reader.start()
       try:

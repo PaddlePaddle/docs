@@ -49,7 +49,7 @@ topk
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    top5_values, top5_indices = fluid.layers.topk(input, k=5)
+    top5_values, top5_indices = layers.topk(input, k=5)
 
 
 

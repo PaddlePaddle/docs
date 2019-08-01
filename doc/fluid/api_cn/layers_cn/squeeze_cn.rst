@@ -40,8 +40,8 @@ squeeze
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    x = fluid.layers.data(name='x', shape=[5, 1, 10])
-    y = fluid.layers.sequeeze(input=x, axes=[1])
+    x = layers.data(name='x', shape=[5, 1, 10])
+    y = layers.squeeze(input=x, axes=[1])
 
 
 

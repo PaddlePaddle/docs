@@ -31,8 +31,8 @@ uniform_random_batch_size_like算子。
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
 
-    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = fluid.layers.uniform_random_batch_size_like(input, [-1, 11])
+    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = layers.uniform_random_batch_size_like(input, [-1, 11])
 
 
 
