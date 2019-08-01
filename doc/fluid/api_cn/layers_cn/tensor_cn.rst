@@ -28,8 +28,8 @@ argmax
     
     import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
-    out = fluid.layers.argmax(x=in, axis=0)
-    out = fluid.layers.argmax(x=in, axis=-1)
+    out = fluid.layers.argmax(x, axis=0)
+    out = fluid.layers.argmax(x, axis=-1)
 
 
 
@@ -64,8 +64,8 @@ argmin
     
     import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
-    out = fluid.layers.argmin(x=in, axis=0)
-    out = fluid.layers.argmin(x=in, axis=-1)
+    out = fluid.layers.argmin(x, axis=0)
+    out = fluid.layers.argmin(x, axis=-1)
 
 
 
@@ -224,7 +224,7 @@ concat
     b = fluid.layers.data(name='b', shape=[2, 3], dtype='float32')
     c = fluid.layers.data(name='c', shape=[2, 2], dtype='float32')
     d = fluid.layers.data(name='d', shape=[2, 5], dtype='float32')
-    out = fluid.layers.concat(input=[Efirst, Esecond, Ethird, Efourth])
+    out = fluid.layers.concat(input=[a, b, c, d], axis=2)
 
 
 
@@ -298,7 +298,7 @@ create_parameter
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    W = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
+    W = layers.create_parameter(shape=[784, 200], dtype='float32')
 
 
 

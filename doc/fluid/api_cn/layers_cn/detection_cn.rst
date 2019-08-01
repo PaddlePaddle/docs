@@ -138,7 +138,7 @@ box_clip
         name='boxes', shape=[8, 4], dtype='float32', lod_level=1)
     im_info = fluid.layers.data(name='im_info', shape=[3])
     out = fluid.layers.box_clip(
-        input=boxes, im_info=im_info, inplace=True)
+        input=boxes, im_info=im_info)
 
 
 
@@ -286,7 +286,7 @@ box decode过程得出decode_box，然后分配方案如下所述：
     pb = fluid.layers.data(
         name='prior_box', shape=[4], dtype='float32')
     pbv = fluid.layers.data(
-        name='prior_box_var', shape=[4], dtype='float32', append_batch_size=False))
+        name='prior_box_var', shape=[4], dtype='float32', append_batch_size=False)
     loc = fluid.layers.data(
         name='target_box', shape=[4*81], dtype='float32')
     scores = fluid.layers.data(
@@ -1288,14 +1288,16 @@ rpn_target_assign
 ..  code-block:: python
 
         import paddle.fluid as fluid
-        bbox_pred = fluid.layers.data(name=’bbox_pred’, shape=[100, 4],
-                append_batch_size=False, dtype=’float32’)
-        cls_logits = fluid.layers.data(name=’cls_logits’, shape=[100, 1],
-                append_batch_size=False, dtype=’float32’)
-        anchor_box = fluid.layers.data(name=’anchor_box’, shape=[20, 4],
-                append_batch_size=False, dtype=’float32’)
-        gt_boxes = fluid.layers.data(name=’gt_boxes’, shape=[10, 4],
-                append_batch_size=False, dtype=’float32’)
+        bbox_pred = fluid.layers.data(name='bbox_pred', shape=[100, 4],
+                append_batch_size=False, dtype='float32')
+        cls_logits = fluid.layers.data(name='cls_logits', shape=[100, 1],
+                append_batch_size=False, dtype='float32')
+        anchor_box = fluid.layers.data(name='anchor_box', shape=[20, 4],
+                append_batch_size=False, dtype='float32')
+        anchor_var = fluid.layers.data(name='anchor_var', shape=[20, 4],	 	 
+                append_batch_size=False, dtype='float32')
+        gt_boxes = fluid.layers.data(name='gt_boxes', shape=[10, 4],
+                append_batch_size=False, dtype='float32')
         is_crowd = fluid.layers.data(name='is_crowd', shape=[1],
                     append_batch_size=False, dtype='float32')
         im_info = fluid.layers.data(name='im_infoss', shape=[1, 3],
@@ -1684,9 +1686,9 @@ yolov3_loss
 
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
-    gt_box = fluid.layers.data(name='gtbox', shape=[6, 4], dtype='float32')
-    gt_label = fluid.layers.data(name='gtlabel', shape=[6], dtype='int32')
-    gt_score = fluid.layers.data(name='gtscore', shape=[6], dtype='float32')
+    gt_box = fluid.layers.data(name='gt_box', shape=[6, 4], dtype='float32')
+    gt_label = fluid.layers.data(name='gt_label', shape=[6], dtype='int32')
+    gt_score = fluid.layers.data(name='gt_score', shape=[6], dtype='float32')
     anchors = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
     anchor_mask = [0, 1, 2]
     loss = fluid.layers.yolov3_loss(x=x, gt_box=gt_box, gt_label=gt_label,

@@ -227,7 +227,7 @@ NormalInitializer
         import paddle.fluid as fluid
         x = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
         fc = fluid.layers.fc(input=x, size=10,
-            param_attr=fluid.initializer.Normal(loc=0.0, scale=2.0)
+            param_attr=fluid.initializer.Normal(loc=0.0, scale=2.0))
 
 
 .. _cn_api_fluid_initializer_NumpyArrayInitializer:

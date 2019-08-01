@@ -144,7 +144,7 @@ pooling3d操作根据输入 ``input`` ，``pool_size`` ， ``pool_type`` 参数�
 
     data = fluid.layers.data(
     name='data', shape=[3, 32, 32, 32], dtype='float32')
-    pool_out, mask = fluid.layers.adaptive_pool3d(
+    pool_out = fluid.layers.adaptive_pool3d(
                       input=data,
                       pool_size=[3, 3, 3],
                       pool_type='avg')
@@ -520,7 +520,7 @@ beam_search
         name='probs', shape=[10000], dtype='float32')
     topk_scores, topk_indices = fluid.layers.topk(probs, k=beam_size)
     accu_scores = fluid.layers.elementwise_add(
-                                          x=fluid.layers.log(x=topk_scores)),
+                                          x=fluid.layers.log(x=topk_scores),
                                           y=fluid.layers.reshape(
                                               pre_scores, shape=[-1]),
                                           axis=0)
@@ -698,7 +698,7 @@ BRelu 激活函数
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype=”float32”)
+    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype="float32")
     y = fluid.layers.brelu(x, t_min=1.0, t_max=20.0)
 
 
@@ -1456,7 +1456,7 @@ crop
 
     ## or
     z = fluid.layers.data(name="z", shape=[3, 5], dtype="float32")
-    crop = fluid.layers.crop(z, shape=[2, 3])
+    crop = fluid.layers.crop(z, shape=[-1, 2, 3])
 
 
 
@@ -3481,7 +3481,7 @@ gaussian_random算子。
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    out = fluid.layers.gaussian_random(shape=[20, 30])
+    out = layers.gaussian_random(shape=[20, 30])
 
 
 
@@ -3629,9 +3629,9 @@ step 2：
 
     import paddle.fluid as fluid
 
-    x = fluid.layers.data(name='x', shape=[3, 10, 32, 32], dtype='float32')
-    theta = fluid.layers.data(name='theta', shape=[3, 2, 3], dtype='float32')
-    grid = fluid.layers.affine_grid(theta=theta, out_shape=[3, 10, 32, 32]})
+    x = fluid.layers.data(name='x', shape=[10, 32, 32], dtype='float32')
+    theta = fluid.layers.data(name='theta', shape=[2, 3], dtype='float32')
+    grid = fluid.layers.affine_grid(theta=theta, out_shape=[3, 10, 32, 32])
     out = fluid.layers.grid_sampler(x=x, grid=grid)
 
 
@@ -4383,9 +4383,9 @@ label_smooth
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
 
-    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
-    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
-    smooth_label = fluid.layers.label_smooth(
+    label = layers.data(name="label", shape=[1], dtype="float32")
+    one_hot_label = layers.one_hot(input=label, depth=10)
+    smooth_label = layers.label_smooth(
     label=one_hot_label, epsilon=0.1, dtype="float32")
 
 
@@ -5043,7 +5043,7 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
   init_h = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
   init_c = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
 
-  rnn_out, last_h, last_c = fluid.layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
+  rnn_out, last_h, last_c = layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
 
 
 
@@ -5118,8 +5118,8 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
     pre_cell = fluid.layers.data(name='pre_cell', shape=[hidden_dim], dtype='float32')
     hidden = fluid.layers.lstm_unit(
         x_t=x,
-        hidden_t_prev=prev_hidden,
-        cell_t_prev=prev_cell)
+        hidden_t_prev=pre_hidden,
+        cell_t_prev=pre_cell)
 
 
 
@@ -5373,7 +5373,7 @@ mean_iou
    import paddle.fluid as fluid
    predict = fluid.layers.data(name='predict', shape=[3, 32, 32])
    label = fluid.layers.data(name='label', shape=[1])
-   iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes)
+   iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes=5)
 
 
 
@@ -7652,7 +7652,7 @@ sequence_expand
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
-    out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
+    out = layers.sequence_expand(x=x, y=y, ref_level=0)
 
 
 
@@ -8806,7 +8806,7 @@ SoftRelu 激活函数
 
     import paddle.fluid as fluid
 
-    x = fluid.layers.data(name=”x”, shape=[2,3,16,16], dtype=”float32”)
+    x = fluid.layers.data(name="x", shape=[3,16,16], dtype="float32")
     y = fluid.layers.soft_relu(x, threshold=20.0)
 
 
@@ -9078,7 +9078,7 @@ split
     # x1.shape  [-1, 3, 3, 5]
     # x2.shape  [-1, 3, 3, 5]
     
-    x0, x1, x2 = fluid.layers.split(input, num_or_sections=[2, 3, 4], dim=2)
+    x0, x1, x2 = fluid.layers.split(input, num_or_sections=3, dim=2)
     # x0.shape  [-1, 3, 2, 5]
     # x1.shape  [-1, 3, 3, 5]
     # x2.shape  [-1, 3, 4, 5]
@@ -9180,8 +9180,8 @@ squeeze
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    x = fluid.layers.data(name='x', shape=[5, 1, 10])
-    y = fluid.layers.sequeeze(input=x, axes=[1])
+    x = layers.data(name='x', shape=[5, 1, 10])
+    y = layers.squeeze(input=x, axes=[1])
 
 
 
@@ -9331,9 +9331,9 @@ sum算子。
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    input0 = fluid.layers.data(name="input0", shape=[13, 11], dtype='float32')
+    input0 = layers.data(name="input0", shape=[13, 11], dtype='float32')
     input1 = layers.data(name="input1", shape=[13, 11], dtype='float32')
-    out = fluid.layers.sum([input0,input1])
+    out = layers.sum([input0,input1])
 
 
 
@@ -9518,7 +9518,7 @@ topk
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    top5_values, top5_indices = fluid.layers.topk(input, k=5)
+    top5_values, top5_indices = layers.topk(input, k=5)
 
 
 
@@ -9651,8 +9651,8 @@ uniform_random_batch_size_like算子。
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
 
-    input = fluid.layers.data(name="input", shape=[13, 11], dtype='float32')
-    out = fluid.layers.uniform_random_batch_size_like(input, [-1, 11])
+    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    out = layers.uniform_random_batch_size_like(input, [-1, 11])
 
 
 
@@ -9685,7 +9685,7 @@ unsqueeze
 
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[5, 10])
-    y = fluid.layers.unsequeeze(input=x, axes=[1])
+    y = fluid.layers.unsqueeze(input=x, axes=[1])
 
 
 
