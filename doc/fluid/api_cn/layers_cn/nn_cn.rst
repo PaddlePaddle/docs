@@ -6460,7 +6460,7 @@ reduce_all
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：与逻辑运算的维度。如果为None，则计算所有元素的与逻辑并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：与逻辑运算的维度。如果为None，则计算所有元素的与逻辑并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量的维度将比输入张量小。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
@@ -6497,7 +6497,7 @@ reduce_any
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：或逻辑运算的维度。如果为None，则计算所有元素的或逻辑并返回仅包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：或逻辑运算的维度。如果为None，则计算所有元素的或逻辑并返回仅包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量的维度将比输入张量小。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
@@ -6539,7 +6539,7 @@ reduce_max
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：函数运算的维度。如果为None，则计算所有元素中的最大值并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：函数运算的维度。如果为None，则计算所有元素中的最大值并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量将比输入少一个维度。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
@@ -6590,7 +6590,7 @@ reduce_mean
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求平均值并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求平均值并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量将比输入少一个维度。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
@@ -6641,7 +6641,7 @@ reduce_min
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：函数运算的维度。如果为None，则对输入的所有元素做差并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：函数运算的维度。如果为None，则对输入的所有元素做差并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量将比输入少一个维度。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
@@ -6692,7 +6692,7 @@ reduce_prod
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：函数运算的维度。如果为None，则将输入的所有元素相乘并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：函数运算的维度。如果为None，则将输入的所有元素相乘并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量将比输入少一个维度。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
@@ -6744,7 +6744,7 @@ reduce_sum
 
 参数：
           - **input** （Variable）- 输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）- 求和运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）- 求和运算的维度。如果为None，则对输入的所有元素求和并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）- 是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量将比输入少一个维度。
           - **name** （str | None）- 这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
