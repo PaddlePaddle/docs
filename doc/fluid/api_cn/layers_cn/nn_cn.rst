@@ -3711,10 +3711,13 @@ GRU单元层。GRU执行步骤基于如下等式：
 `Learning Phrase Representations using RNN Encoder Decoder for Statistical Machine Translation <https://arxiv.org/pdf/1406.1078.pdf>`_ 。
 
 .. math::
-    u_t & = act_g(W_{ux}x_{t} + W_{uh}h_{t-1} + b_u)\\
-    r_t & = act_g(W_{rx}x_{t} + W_{rh}h_{t-1} + b_r)\\
-    \tilde{h_t} & = act_c(W_{cx}x_{t} + W_{ch}(r_t \odot h_{t-1}) + b_c)\\
-    h_t & = u_t \odot h_{t-1} + (1-u_t) \odot \tilde{h_t}
+    u_t=actGate(xu_t+W_{u}h_{t-1}+b_u)
+.. math::
+    r_t=actGate(xr_t+W_{r}h_{t-1}+b_r)
+.. math::
+    m_t=actNode(xm_t+W_{c}dot(r_t,h_{t-1})+b_m)
+.. math::
+    h_t=dot(u_t,m_t)+dot((1-u_t),h_{t-1})
 
 
 GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中， :math:`z_t` 会被分割成三部分： :math:`xu_t` 、 :math:`xr_t` 和 :math:`xm_t`  。
