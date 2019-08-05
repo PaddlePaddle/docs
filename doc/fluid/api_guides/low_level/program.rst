@@ -19,7 +19,7 @@ Program
 
 * :code:`Block` 中的计算由顺序执行、条件选择或者循环执行三种方式组合，构成复杂的计算逻辑；
 
-* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_ 表示。
+* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 :ref:'user_guides_lod_tensor_cn' 表示。
 
 
 
@@ -61,7 +61,7 @@ Operator
 Variable
 =========
 
-Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多数情况下是一个 `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_。
+Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多数情况下是一个 :ref:'user_guides_lod_tensor_cn'。
 
 模型中所有的可学习参数都以 :code:`Variable` 的形式保留在内存空间中，您在绝大多数情况下都不需要自己来创建网络中的可学习参数， Fluid 为几乎常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，调用 :code:`fluid.layers.fc` 会直接为全连接层创建连接权值( W )和偏置（ bias ）两个可学习参数，无需显示地调用 :code:`variable` 相关接口创建可学习参数。
 
