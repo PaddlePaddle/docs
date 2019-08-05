@@ -61,7 +61,7 @@ Operator
 Variable
 =========
 
-Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多数情况下是一个 LoD-Tensor。
+Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多数情况下是一个 `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_。
 
 模型中所有的可学习参数都以 :code:`Variable` 的形式保留在内存空间中，您在绝大多数情况下都不需要自己来创建网络中的可学习参数， Fluid 为几乎常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，调用 :code:`fluid.layers.fc` 会直接为全连接层创建连接权值( W )和偏置（ bias ）两个可学习参数，无需显示地调用 :code:`variable` 相关接口创建可学习参数。
 
