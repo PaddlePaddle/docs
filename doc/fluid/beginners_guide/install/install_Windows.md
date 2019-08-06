@@ -19,6 +19,8 @@
     * *CUDA 工具包8.0/9.0配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
+注: Windows下仅支持 CUDA 8.0/9.0 的单卡模式，不支持 CUDA 9.1/9.2/10.0/10.1
+
 您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 ## 安装方式

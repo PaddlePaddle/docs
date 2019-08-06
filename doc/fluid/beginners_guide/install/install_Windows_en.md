@@ -19,6 +19,8 @@
     * *CUDA Toolkit 8.0/9.0 with cuDNN v7.3+*
     * *GPU's computing capability exceeds 1.0*
 
+Notice: Windows only supports CUDA 8.0/9.0 with single GPU, while CUDA 9.1/9.2/10.0/10.1 is not currently supported
+
 Please refer to the NVIDIA official documents for the installation process and the configuration methods of [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) and [cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/).
 
 ## Installation Method
