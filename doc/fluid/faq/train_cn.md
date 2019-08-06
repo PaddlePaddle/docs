@@ -86,6 +86,16 @@ weight名字在构建网络的时候可以通过param_attr指定，然后用`flu
 
 AUC中带有LOD 信息，需要设置`return_numpy=False `来获得返回值。
 
+##### Q: 模型运行过程中如何获取某个变量的值？
+
++ 问题描述
+
+在使用Executor运行模型时，如何获取模型中某个变量的值。
+
++ 问题解答
+
+Executor的run方法提供了`fetch_list`参数，如果用户想获取运行模型中某个变量的值，只需要该变量添加到`fetch_list`中即可，详细用法可参考[Executor的示例](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/executor_cn.html#executor)。
+
 ##### Q: 图片小数量大数据集处理方法
 
 + 问题描述
