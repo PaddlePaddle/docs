@@ -1,4 +1,4 @@
-.. _user_guide_lod_tensor_cn:
+.. _cn_user_guide_Lod\_Tensor:
 ##################
 LoD-Tensor使用说明
 ##################
