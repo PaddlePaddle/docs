@@ -19,7 +19,7 @@ Program
 
 * :code:`Block` 中的计算由顺序执行、条件选择或者循环执行三种方式组合，构成复杂的计算逻辑；
 
-* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 :ref:`cn_user_guide_Lod_Tensor` 表示。
+* :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 :ref:`cn_api_user_guides_howto_basic_concept_lod_tensor` 表示。
 
 
 
