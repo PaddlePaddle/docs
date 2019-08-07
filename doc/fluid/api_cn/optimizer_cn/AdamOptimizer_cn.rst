@@ -9,8 +9,15 @@ AdamOptimizer
 Adam更新如下：
 
 .. math::
-
-    t & = t + 1\\moment\_out & = {\beta}_1 * moment + (1 - {\beta}_1) * grad\\inf\_norm\_out & = max({\beta}_2 * inf\_norm + \epsilon, |grad|)\\learning\_rate & = \frac{learning\_rate}{1 - {\beta}_1^t}\\param\_out & = param - learning\_rate * \frac{moment\_out}{inf\_norm\_out}
+    \\t = t + 1
+.. math::
+    moment\_1\_out=\beta_1∗moment\_1+(1−\beta_1)∗grad
+.. math::
+    moment\_2\_out=\beta_2∗moment\_2+(1−\beta_2)∗grad*grad
+.. math::
+    learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
+.. math::
+    param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
 
 参数: 
     - **learning_rate** (float|Variable)-学习率，用于更新参数。作为数据参数，可以是一个浮点类型值或有一个浮点类型值的变量

@@ -9,7 +9,7 @@ reduce_any
 
 参数：
           - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：或逻辑运算的维度。如果为None，则计算所有元素的或逻辑并返回仅包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
+          - **dim** （list | int | None）：或逻辑运算的维度。如果为None，则计算所有元素的或逻辑并返回仅包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
           - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量的维度将比输入张量小。
           - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
 
