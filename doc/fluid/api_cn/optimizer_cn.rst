@@ -274,13 +274,13 @@ Adamax 更新规则:
 .. math::
     \\t = t + 1
 .. math::
-    moment\_out=\beta_1∗moment+(1−\beta_1)∗grad
+    moment\_1\_out = {\beta}_1 * moment\_1 + (1 - {\beta}_1) * grad
 .. math::
-    inf\_norm\_out=\max{(\beta_2∗inf\_norm+ϵ, \left|grad\right|)}
+    moment\_2\_out = {\beta}_2 * moment\_2 + (1 - {\beta}_2) * grad * grad
 .. math::
-    learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
+    learning\_rate = learning\_rate * \frac{\sqrt{1 - {\beta}_2^t}}{1 - {\beta}_1^t}
 .. math::
-    param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
+    param\_out = param - learning\_rate * \frac{moment\_1}{\sqrt{moment\_2} + \epsilon}\\
 
 
 论文中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
@@ -498,8 +498,15 @@ AdamOptimizer
 Adam更新如下：
 
 .. math::
-
-    t & = t + 1\\moment\_out & = {\beta}_1 * moment + (1 - {\beta}_1) * grad\\inf\_norm\_out & = max({\beta}_2 * inf\_norm + \epsilon, |grad|)\\learning\_rate & = \frac{learning\_rate}{1 - {\beta}_1^t}\\param\_out & = param - learning\_rate * \frac{moment\_out}{inf\_norm\_out}
+    \\t = t + 1
+.. math::
+    moment\_1\_out=\beta_1∗moment\_1+(1−\beta_1)∗grad
+.. math::
+    moment\_2\_out=\beta_2∗moment\_2+(1−\beta_2)∗grad*grad
+.. math::
+    learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
+.. math::
+    param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
 
 参数: 
     - **learning_rate** (float|Variable)-学习率，用于更新参数。作为数据参数，可以是一个浮点类型值或有一个浮点类型值的变量
@@ -726,7 +733,7 @@ Decayed Adagrad Optimizer
 .. math::
     moment\_out = decay*moment+(1-decay)*grad*grad
 .. math::
-    param\_out=param-\frac{learning\_rate*grad}{\sqrt{moment\_out+\epsilon }}
+    param\_out = param-\frac{learning\_rate*grad}{\sqrt{moment\_out}+\epsilon }
     
 参数:
   - **learning_rate** (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
