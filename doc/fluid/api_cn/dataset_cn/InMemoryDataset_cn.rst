@@ -29,6 +29,47 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
     dataset.load_into_memory()
 
 
+.. py:method:: set_queue_num(queue_num)
+
+设置 ``Dataset`` 的输出队列数量，训练进程从队列中获取数据。
+
+
+
+参数:
+    - **queue_num** (int) - dataset输出队列的数量。
+
+**代码示例**：
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset") 
+    dataset.set_queue_num(12)
+
+.. py:method:: set_fleet_send_batch_size(fleet_send_batch_size)
+
+设置发送batch的大小
+
+参数:
+    - **fleet_send_batch_size** (int) - 设置发送batch的大小。
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    dataset.set_fleet_send_batch_size(800)
+
+
+.. py:method:: set_merge_by_lineid(var_list, erase_duplicate_feas=True, min_merge_size=2, keep_unmerged-ins=True)
+
+通过样本id来设置合并，一些线id的实例将会在shuffle之后进行合并，你应该在一个data生成器里面解析样本id。
+
+参数:
+    - **var_list** (list) - 可以被合并的位置列表，其中的每一个元素都是一个 ``Variable`` 。一些类特征比如show和click，我们通常不把它们合并为同样的样本id，所以用户应当指定哪个类特征可以被合并。
+    - **erase_duplicate_feas** (bool) - 合并的时候是否删除重复的特征值。默认为True。
+    - **min_merge_size** (int) - 合并的最小数量。默认为2。
+    - **keep_unmerged_ins** (bool) - 是否保留没有合并的样本，比如有着独特id的样本，或者重复id的数量小于 ``min_merge_size`` 的样本。
+
 .. py:method:: local_shuffle()
 
 局域shuffle。
@@ -89,7 +130,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. py:method:: get_memory_data_size(fleet=None)
 
-用户可以调用此函数以了解加载进内存后所有workers中的ins数量。
+用户可以调用此函数以了解加载进内存后所有workers中的样本数量。
 
 .. note::
     该函数可能会导致性能不佳，因为它具有barrier。
@@ -114,7 +155,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. py:method:: get_shuffle_data_size(fleet=None)
 
-获取shuffle数据大小，用户可以调用此函数以了解局域/全局shuffle后所有workers中的ins数量。
+获取shuffle数据大小，用户可以调用此函数以了解局域/全局shuffle后所有workers中的样本数量。
 
 .. note::
     该函数可能会导致局域shuffle性能不佳，因为它具有barrier。但其不影响局域shuffle。
