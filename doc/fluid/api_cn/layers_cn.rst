@@ -41,6 +41,7 @@ fluid.layers
     layers_cn/brelu_cn.rst
     layers_cn/cast_cn.rst
     layers_cn/ceil_cn.rst
+    layers_cn/center_loss_cn.rst
     layers_cn/chunk_eval_cn.rst
     layers_cn/clip_by_norm_cn.rst
     layers_cn/clip_cn.rst
@@ -69,7 +70,6 @@ fluid.layers
     layers_cn/deformable_conv_cn.rst
     layers_cn/deformable_roi_pooling_cn.rst
     layers_cn/density_prior_box_cn.rst
-    layers_cn/detection_map_cn.rst
     layers_cn/detection_output_cn.rst
     layers_cn/diag_cn.rst
     layers_cn/dice_loss_cn.rst
@@ -141,6 +141,7 @@ fluid.layers
     layers_cn/linear_lr_warmup_cn.rst
     layers_cn/linspace_cn.rst
     layers_cn/load_cn.rst
+    layers_cn/lod_append_cn.rst
     layers_cn/lod_reset_cn.rst
     layers_cn/log_cn.rst
     layers_cn/log_loss_cn.rst

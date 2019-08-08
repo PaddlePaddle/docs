@@ -187,7 +187,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
         for i in range(limit):
             yield (random.random([784]).astype('float32'), random.random([1]).astype('int64')),
      
-    place=fluid.CPUPlace(0)
+    place=fluid.CPUPlace()
     data = fluid.layers.data(name='data', shape=[1, 28, 28], dtype='float32')
     label = fluid.layers.data(name='label', shape=[1], dtype='int64')
      

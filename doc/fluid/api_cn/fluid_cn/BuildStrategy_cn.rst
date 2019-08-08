@@ -87,14 +87,14 @@ BOOL类型，fuse_relu_depthwise_conv指示是否融合relu和depthwise_conv2d�
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
 
-    # NOTE: 如果你使用CPU计算，需要指定 ``CPU_NUM`` , 否则, ``fluid`` 
-    # 将使用所有的核的数目作为 ``CPU_NUM`` ,
-    # 这种情况下，输入的batch size应该大于 ``CPU_NUM`` , 否则, 
+    # NOTE: 如果你使用CPU计算，需要指定CPU_NUM, 否则,fluid
+    # 将使用所有的核的数目作为CPU_NUM,
+    # 这种情况下，输入的batch size应该大于CPU_NUM, 否则, 
     # 进程将会因为异常而失败。
-	if not use_cuda:
+    if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
         places = fluid.cpu_places()
-	else:
+    else:
         places = places = fluid.cuda_places()
 
     data = fluid.layers.data(name='X', shape=[1], dtype='float32')
@@ -142,7 +142,7 @@ True表示可使用，False表示不可使用。默认为None。
 
 .. py:attribute:: remove_unnecessary_lock
 
-BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，ParallelExecutor将运行得更快，默认为 True。
+BOOL类型。如果设置为True, GPU操作中的一些锁将被释放， ``ParallelExecutor`` 将运行得更快，默认为 True。
 
 **代码示例**
 
@@ -155,7 +155,7 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 .. py:attribute:: sync_batch_norm
 
-类型为bool，sync_batch_norm表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。
+类型为bool， ``sync_batch_norm`` 表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。
 
 当前的实现不支持FP16训练和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。
 
