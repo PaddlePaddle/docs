@@ -18,9 +18,11 @@ sign
 
 ..  code-block:: python
 
-    # [1, 0, -1]
     import paddle.fluid as fluid
-    data = fluid.layers.sign(np.array([3, 0, -2]))
+    import numpy as np
+
+    # [1, 0, -1]
+    data = fluid.layers.sign(np.array([3, 0, -2], dtype='int32'))
 
 
 

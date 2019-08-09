@@ -21,8 +21,10 @@ diag
         #  [3, 0, 0]
         #  [0, 4, 0]
         #  [0, 0, 5]
+
         import paddle.fluid as fluid
-        data = fluid.layers.diag(np.arange(3, 6))
+        import numpy as np
+        data = fluid.layers.diag(np.arange(3, 6, dtype='int32'))
 
 
 

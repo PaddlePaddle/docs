@@ -16,7 +16,7 @@ lod_append
         x.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         x.dims = [6, 1]
 
-    level:[1, 1, 1, 1, 1, 1, 1]
+    level:[1, 1, 1, 1, 1, 1]
 
     Then we get a 2-level LodTensor:
         x.lod = [[2, 3, 1], [1, 1, 1, 1, 1, 1]

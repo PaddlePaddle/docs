@@ -61,9 +61,6 @@ DetectionMAP
         map_evaluator = fluid.metrics.DetectionMAP(nmsed_outs, gt_label, gt_box, difficult, class_num = 3)
         cur_map, accum_map = map_evaluator.get_map_var()
 
-        # 更详细的例子请参见
-        # https://github.com/PaddlePaddle/models/blob/43cdafbb97e52e6d93cc5bbdc6e7486f27665fc8/PaddleCV/object_detection
-
 
 
 .. py:method:: get_map_var()
