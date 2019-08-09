@@ -62,7 +62,7 @@ sequence_expand
     x = fluid.layers.data(name='x', shape=[10], dtype='float32')
     y = fluid.layers.data(name='y', shape=[10, 20],
                  dtype='float32', lod_level=1)
-    out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
+    out = layers.sequence_expand(x=x, y=y, ref_level=0)
 
 
 

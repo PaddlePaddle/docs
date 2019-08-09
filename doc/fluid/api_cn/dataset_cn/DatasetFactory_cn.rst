@@ -13,7 +13,7 @@ DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创
 .. code-block:: python
 
     import paddle.fluid as fluid
-    dataset = paddle.fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
 
 .. py:method:: create_dataset(datafeed_class='QueueDataset')
 

@@ -33,7 +33,7 @@ mean_iou
    import paddle.fluid as fluid
    predict = fluid.layers.data(name='predict', shape=[3, 32, 32])
    label = fluid.layers.data(name='label', shape=[1])
-   iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes)
+   iou, wrongs, corrects = fluid.layers.mean_iou(predict, label, num_classes=5)
 
 
 
