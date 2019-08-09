@@ -1,5 +1,5 @@
 ===========
-API分类检索
+API功能分类
 ===========
 
 本模块分功能向您介绍PaddlePaddle Fluid的API体系和用法，提高您的查找效率，帮助您快速了解PaddlePaddle Fluid API的全貌，包括以下几个模块：
