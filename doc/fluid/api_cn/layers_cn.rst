@@ -70,6 +70,7 @@ fluid.layers
     layers_cn/deformable_conv_cn.rst
     layers_cn/deformable_roi_pooling_cn.rst
     layers_cn/density_prior_box_cn.rst
+    layers_cn/detection_map_cn.rst
     layers_cn/detection_output_cn.rst
     layers_cn/diag_cn.rst
     layers_cn/dice_loss_cn.rst
@@ -285,6 +286,7 @@ fluid.layers
     layers_cn/tree_conv_cn.rst
     layers_cn/unfold_cn.rst
     layers_cn/uniform_random_batch_size_like_cn.rst
+    layers_cn/uniform_random_cn.rst
     layers_cn/unique_cn.rst
     layers_cn/unique_with_counts_cn.rst
     layers_cn/unsqueeze_cn.rst

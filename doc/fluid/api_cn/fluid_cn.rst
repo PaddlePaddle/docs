@@ -37,6 +37,7 @@ fluid
     fluid_cn/ParallelExecutor_cn.rst
     fluid_cn/ParamAttr_cn.rst
     fluid_cn/Program_cn.rst
+    fluid_cn/program_guard_cn.rst
     fluid_cn/release_memory_cn.rst
     fluid_cn/scope_guard_cn.rst
     fluid_cn/Tensor_cn.rst
