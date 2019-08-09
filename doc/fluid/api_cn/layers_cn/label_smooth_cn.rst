@@ -37,9 +37,9 @@ label_smooth
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
 
-    label = fluid.layers.data(name="label", shape=[1], dtype="float32")
-    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
-    smooth_label = fluid.layers.label_smooth(
+    label = layers.data(name="label", shape=[1], dtype="float32")
+    one_hot_label = layers.one_hot(input=label, depth=10)
+    smooth_label = layers.label_smooth(
     label=one_hot_label, epsilon=0.1, dtype="float32")
 
 

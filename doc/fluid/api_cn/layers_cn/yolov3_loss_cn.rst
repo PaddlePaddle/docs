@@ -86,9 +86,9 @@ yolov3_loss
 
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
-    gt_box = fluid.layers.data(name='gtbox', shape=[6, 4], dtype='float32')
-    gt_label = fluid.layers.data(name='gtlabel', shape=[6], dtype='int32')
-    gt_score = fluid.layers.data(name='gtscore', shape=[6], dtype='float32')
+    gt_box = fluid.layers.data(name='gt_box', shape=[6, 4], dtype='float32')
+    gt_label = fluid.layers.data(name='gt_label', shape=[6], dtype='int32')
+    gt_score = fluid.layers.data(name='gt_score', shape=[6], dtype='float32')
     anchors = [10, 13, 16, 30, 33, 23, 30, 61, 62, 45, 59, 119, 116, 90, 156, 198, 373, 326]
     anchor_mask = [0, 1, 2]
     loss = fluid.layers.yolov3_loss(x=x, gt_box=gt_box, gt_label=gt_label,

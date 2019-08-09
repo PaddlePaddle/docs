@@ -60,8 +60,8 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
     pre_cell = fluid.layers.data(name='pre_cell', shape=[hidden_dim], dtype='float32')
     hidden = fluid.layers.lstm_unit(
         x_t=x,
-        hidden_t_prev=prev_hidden,
-        cell_t_prev=prev_cell)
+        hidden_t_prev=pre_hidden,
+        cell_t_prev=pre_cell)
 
 
 

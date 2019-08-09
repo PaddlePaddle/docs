@@ -33,8 +33,8 @@ create_py_reader_by_data
         loss = fluid.layers.cross_entropy(input=predict, label=label)
         return fluid.layers.mean(loss)
     
-    image = fluid.layers.data(name='image', shape=[1, 28, 28], dtypes='float32')
-    label = fluid.layers.data(name='label', shape=[1], dtypes='int64')
+    image = fluid.layers.data(name='image', shape=[1, 28, 28], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
     reader = fluid.layers.create_py_reader_by_data(capacity=64,
                                                    feed_list=[image, label])
     reader.decorate_paddle_reader(

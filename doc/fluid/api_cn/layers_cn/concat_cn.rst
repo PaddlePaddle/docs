@@ -27,7 +27,7 @@ concat
     b = fluid.layers.data(name='b', shape=[2, 3], dtype='float32')
     c = fluid.layers.data(name='c', shape=[2, 2], dtype='float32')
     d = fluid.layers.data(name='d', shape=[2, 5], dtype='float32')
-    out = fluid.layers.concat(input=[Efirst, Esecond, Ethird, Efourth])
+    out = fluid.layers.concat(input=[a, b, c, d], axis=2)
 
 
 
