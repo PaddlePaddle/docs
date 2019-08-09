@@ -145,7 +145,7 @@
 
 5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 
-	> MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig`，另外安装`cmake`即可
+	> MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig, unrar`，另外安装`cmake`即可
 
 	- a. 这里特别说明一下**CMake**的安装：
 
