@@ -14,7 +14,7 @@ Decayed Adagrad Optimizer
 .. math::
     moment\_out = decay*moment+(1-decay)*grad*grad
 .. math::
-    param\_out=param-\frac{learning\_rate*grad}{\sqrt{moment\_out+\epsilon }}
+    param\_out = param-\frac{learning\_rate*grad}{\sqrt{moment\_out}+\epsilon }
     
 参数:
   - **learning_rate** (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
