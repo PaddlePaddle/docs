@@ -8,7 +8,7 @@ profiler
 profile interface 。与cuda_profiler不同，此profiler可用于分析CPU和GPU程序。默认情况下，它记录CPU和GPU kernel，如果想分析其他程序，可以参考教程来在c++代码中添加更多代码。
 
 
-如果 state== ' All '，在profile_path 中写入文件 profile proto 。该文件记录执行期间的时间顺序信息。然后用户可以看到这个文件的时间轴，请参考 `这里 <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/advanced_usage/development/profiling/cpu_profiling_cn.md>`_
+如果 state== ' All '，在profile_path 中写入文件 profile proto 。该文件记录执行期间的时间顺序信息。然后用户可以看到这个文件的时间轴，请参考 `这里 <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/advanced_usage/development/profiling/timeline_cn.md>`_
 
 参数:
   - **state** (string) –  profiling state, 取值为 'CPU' 或 'GPU',  profiler 使用 CPU timer 或GPU timer 进行 profiling. 虽然用户可能在开始时指定了执行位置(CPUPlace/CUDAPlace)，但是为了灵活性，profiler不会使用这个位置。

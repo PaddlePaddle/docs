@@ -9,7 +9,7 @@ start_profiler
 不能使用 ``fluid.profiler.profiler``
 
 
-如果 state== ' All '，在profile_path 中写入文件 profile proto 。该文件记录执行期间的时间顺序信息。然后用户可以看到这个文件的时间轴，请参考 `这里 <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/advanced_usage/development/profiling/cpu_profiling_cn.md>`_
+如果 state== ' All '，在profile_path 中写入文件 profile proto 。该文件记录执行期间的时间顺序信息。然后用户可以看到这个文件的时间轴，请参考 `这里 <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/advanced_usage/development/profiling/timeline_cn.md>`_
 
 参数:
   - **state** (string) – profiling state, 取值为 'CPU' 或 'GPU' 或 'All', 'CPU' 代表只分析 cpu. 'GPU' 代表只分析 GPU . 'All' 会产生 timeline.
