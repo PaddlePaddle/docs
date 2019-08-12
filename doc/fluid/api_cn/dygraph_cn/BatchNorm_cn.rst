@@ -36,7 +36,7 @@ BatchNorm
 参数：
     - **name_scope** (str) - 该类的名称
     - **act** （str|None）- 激活函数类型，linear|relu|prelu|...
-    - **is_test** （bool） - 指示它是否在测试阶段。,默认False。
+    - **is_test** （bool） - 指示它是否在测试阶段。默认False。
     - **momentum** （float）- 此值用于计算 moving_mean and moving_var. 更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum` :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum` ， 默认值0.9.
     - **epsilon** （float）- 加在分母上为了数值稳定的值。默认值为1e-5。
     - **param_attr** （ParamAttr|None） - batch_norm参数范围的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为param_attr。如果没有设置param_attr的初始化函数，参数初始化为Xavier。默认：None

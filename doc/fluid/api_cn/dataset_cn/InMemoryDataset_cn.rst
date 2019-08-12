@@ -53,6 +53,8 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 参数:
     - **fleet_send_batch_size** (int) - 设置发送batch的大小。
 
+**代码示例**
+
 .. code-block:: python
 
     import paddle.fluid as fluid
@@ -65,7 +67,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 通过样本id来设置合并，一些线id的实例将会在shuffle之后进行合并，你应该在一个data生成器里面解析样本id。
 
 参数:
-    - **var_list** (list) - 可以被合并的位置列表，其中的每一个元素都是一个 ``Variable`` 。一些类特征比如show和click，我们通常不把它们合并为同样的样本id，所以用户应当指定哪个类特征可以被合并。
+    - **var_list** (list) - 可以被合并的特征列表，其中的每一个元素都是一个 ``Variable`` 。一些类特征我们通常不把它们合并为同样的样本id，所以用户应当指定哪个类特征可以被合并。
     - **erase_duplicate_feas** (bool) - 合并的时候是否删除重复的特征值。默认为True。
     - **min_merge_size** (int) - 合并的最小数量。默认为2。
     - **keep_unmerged_ins** (bool) - 是否保留没有合并的样本，比如有着独特id的样本，或者重复id的数量小于 ``min_merge_size`` 的样本。
