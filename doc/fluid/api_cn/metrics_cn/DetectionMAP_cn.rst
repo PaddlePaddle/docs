@@ -25,7 +25,7 @@ DetectionMAP
     - **background_label** (int) – 背景标签的索引，背景标签将被忽略。如果设置为-1，则所有类别将被考虑，默认为0。
     - **overlap_threshold** (float) – 判断真假阳性的阈值，默认为0.5
     - **evaluate_difficult** (bool) – 是否考虑 difficult ground truth 进行评价，默认为 True。当 gt_difficult 为 None 时，这个参数不起作用。
-    - **ap_version** (string) – 平均精度的计算方法，必须是 "integral" 或 "11point"。详情请查看 https://sanchom.wordpress.com/tag/averageprecision/。 其中，11point为：11-point 插值平均精度。积分: precision-recall曲线的自然积分。
+    - **ap_version** (string) – 平均精度的计算方法，必须是 "integral" 或 "11point"。详情请查看 https://sanchom.wordpress.com/2011/09/01/precision-recall/。 其中，11point为：11-point 插值平均精度。积分: precision-recall曲线的自然积分。
 
 **代码示例**
 
