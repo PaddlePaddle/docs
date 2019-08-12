@@ -4474,7 +4474,7 @@ im2sequence
 
 
 .. math:: 
-                        output\_size=1+\frac{(2∗padding+img\_size−block\_size+stride-1}{stride}
+                        output\_size=1+\frac{(2∗padding+img\_size−block\_size+stride-1)}{stride}
 
 每个timestep的维度为 :math:`block\_y * block\_x * input.channels` 。
 
