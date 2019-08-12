@@ -233,7 +233,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
         pserver_startup = t.get_startup_program(current_endpoint, pserver_prog)
 
         exe.run(pserver_startup)
-        fluid.io.load_persistables(exe, path, pserver_startup)
+        fluid.io.load_persistables(exe, path, pserver_prog)
         exe.run(pserver_prog)
     if training_role == "TRAINER":
         main_program = t.get_trainer_program()
