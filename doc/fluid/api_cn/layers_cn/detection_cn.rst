@@ -1575,7 +1575,7 @@ yolo_box
     - **downsample_ratio** （int） - 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
     - **name** （string） -  yolo box层的名称。默认None。
 
-返回: 具有形状[N，M，4]的三维张量；框的坐标；以及具有形状[N，M，class_num]的三维张量；框的分类得分；
+返回: 具有形状[N，M，4]的三维张量，框的坐标；以及具有形状[N，M，class_num]的三维张量，框的分类得分；
 
 返回类型:   变量（Variable）
 
