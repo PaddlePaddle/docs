@@ -1592,7 +1592,7 @@ yolo_box
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
     anchors = [10, 13, 16, 30, 33, 23]
-    loss = fluid.layers.yolo_box(x=x, img_size=608, class_num=80, anchors=anchors,
+    boxes,scores = fluid.layers.yolo_box(x=x, img_size=608, class_num=80, anchors=anchors,
                                     conf_thresh=0.01, downsample_ratio=32)
 
 
