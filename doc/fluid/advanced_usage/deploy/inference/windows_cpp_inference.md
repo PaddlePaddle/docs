@@ -21,16 +21,15 @@
 用户也可以从 PaddlePaddle 核心代码编译C++预测库，只需在编译时配制下面这些编译选项：
 
 |选项                        |   值     |
-|:---------|:-------------------|
-|CMAKE_BUILD_TYPE             | Release    |
+|:-------------|:-------------------|
+|CMAKE_BUILD_TYPE             | Release(必选)   |
 |FLUID_INFERENCE_INSTALL_DIR  | 安装路径(可选)  |
-|ON_INFER                     | ON（推荐） |
-|WITH_PYTHON                  | ON         |
+|ON_INFER                     | ON（推荐）      |
 |WITH_GPU                     | ON/OFF     | 
 |WITH_MKL                     | ON/OFF     |
 
 
-建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
+请按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
 
 Windows下安装与编译预测库步骤：(在Windows命令提示符下执行以下指令)
 
@@ -50,12 +49,13 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
 
 4. 执行cmake：
 
-     - `cmake .. -G "Visual Studio 14 2015 Win 64" -DFLUID_INFERENCE_INSTALL_DIR=${PADDLE_ROOT} -DCMAKE_BUILD_TYPE=Release -DWITH_PYTHON=ON -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON`
-     - `-DFLUID_INFERENCE_INSTALL_DIR=$PADDLE_ROOT`为可选配置选项，如未设置，则使用默认路径
+     - `cmake .. -G "Visual Studio 14 2015 Win 64" -DFLUID_INFERENCE_INSTALL_DIR=${PADDLE_ROOT} -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON`
+     - 其中`-DFLUID_INFERENCE_INSTALL_DIR=$PADDLE_ROOT`为可选配置选项，如未设置，则使用默认路径。WITH_GPU与WITH_MKL的建议值为OFF，以节省时间。
 
-5. 从`https://github.com/wopeizl/Paddle_deps`下载预编译好的第三方依赖包（openblas, snappystream），将整个`third_party`文件夹复制到`build`目录下.
+5. 从`https://github.com/wopeizl/Paddle_deps`下载预编译好的第三方依赖包（openblas, snappystream），将整个`third_party`文件夹复制到`build`目录下。
 
-6. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，先编译third_party模块，再编译其他模块.   
+6. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，先编译third_party模块，再编译inference_lib_dist模块。
+   操作方法：在Visual Studio中选择相应模块，右键选择"生成"（或者"build"）
 
 编译成功后，使用C++预测库所需的依赖（包括：（1）编译出的PaddlePaddle预测库和头文件；（2）第三方链接库和头文件；（3）版本信息与编译选项信息）
 均会存放于PADDLE_ROOT目录中。目录结构如下：
