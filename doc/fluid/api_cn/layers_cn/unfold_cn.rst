@@ -25,10 +25,10 @@ unfold
 
 参数：
     - **x**  (Variable) – 格式为[N, C, H, W]的输入张量 
-    - **kernel_size**  (int|list) – 卷积核的尺寸，应该为[k_h, k_w],或者为一个整形k，处理为[k, k]
-    - **strides**  (int|list) – 卷积步长，应该为[stride_h, stride_w],或者为一个整形stride，处理为[stride, stride],默认为[1, 1]
-    - **paddings** (int|list) – 每个维度的扩展, 应该为[padding_top, padding_left，padding_bottom, padding_right]或者[padding_h, padding_w]或者一个整型padding。如果给了[padding_h, padding_w],则应该被扩展为[padding_h, padding_w, padding_h, padding_w]. 如果给了一个整形的padding，则会使用[padding, padding, padding, padding]，默认为[0, 0, 0, 0]
-    - **dilations** (int|list) – 卷积膨胀，应当为[dilation_h, dilation_w]，或者一个整形的dilation处理为[dilation, dilation]。默认为[1, 1]。
+    - **kernel_size**  (int|list) – 卷积核的尺寸，应该为[k_h, k_w],或者为一个整型k，处理为[k, k]
+    - **strides**  (int|list) – 卷积步长，应该为[stride_h, stride_w],或者为一个整型stride，处理为[stride, stride],默认为[1, 1]
+    - **paddings** (int|list) – 每个维度的扩展, 应该为[padding_top, padding_left，padding_bottom, padding_right]或者[padding_h, padding_w]或者一个整型padding。如果给了[padding_h, padding_w],则应该被扩展为[padding_h, padding_w, padding_h, padding_w]. 如果给了一个整型的padding，则会使用[padding, padding, padding, padding]，默认为[0, 0, 0, 0]
+    - **dilations** (int|list) – 卷积膨胀，应当为[dilation_h, dilation_w]，或者一个整型的dilation处理为[dilation, dilation]。默认为[1, 1]。
 
 
 返回： 

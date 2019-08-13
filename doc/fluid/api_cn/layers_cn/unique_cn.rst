@@ -4,14 +4,14 @@ unique
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.unique(x, dtype='int32')
-unique
-为 ``x`` 返回一个unique张量和一个指向该unique张量的索引
+
+unique为 ``x`` 返回一个unique张量和一个指向该unique张量的索引。
 
 参数：
     - **x** (Variable) - 一个1维输入张量
     - **dtype** (np.dtype|core.VarDesc.VarType|str) – 索引张量的类型，int32，int64。
 
-返回：(out, index)。输出为 ``x`` 的先前指定dtype的unique张量,和一个指向输出的索引张量, 用户可以通过该函数来转换原始的 ``x`` 张量的索引。
+返回：元组(out, index)。 ``out`` 为 ``x`` 的指定dtype的unique张量, ``index`` 是一个指向 ``out`` 的索引张量, 用户可以通过该函数来转换原始的 ``x`` 张量的索引。
 
 返回类型：元组(tuple)
 

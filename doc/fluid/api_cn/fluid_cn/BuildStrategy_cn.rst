@@ -129,7 +129,7 @@ True表示可使用，False表示不可使用。默认为None。
 
 .. py:attribute:: reduce_strategy
 
-``fluid.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce strategy），即 ``AllReduce`` 和 ``Reduce`` 。如果你需要在所有执行场所上独立地进行参数优化，可以使用 ``AllReduce`` 。反之，如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行场所，随之将优化后的参数广播给其他执行场所。
+``fluid.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种减少策略（reduce strategy），即 ``AllReduce`` 和 ``Reduce`` 。如果你需要在所有执行设备上独立地进行参数优化，可以使用 ``AllReduce`` 。反之，如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
 默认值为 ``AllReduce`` 。
 
 **代码示例**

@@ -36,7 +36,7 @@ batch_norm
     - **input** (Variable) - 输入变量的排序，可以为 2, 3, 4, 5。
     - **act** （string，默认None）- 激活函数类型，linear|relu|prelu|...
     - **is_test** （bool,默认False） - 指示它是否在测试阶段。
-    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean 和 moving_var。更新公式。为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ， 默认值0.9。
+    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean 和 moving_var。更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ， 默认值0.9。
     - **epsilon** （float，默认1e-05）- 加在分母上为了数值稳定的值。默认值为1e-5。
     - **param_attr** （ParamAttr|None） - batch_norm参数范围的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为param_attr。如果没有设置param_attr的初始化函数，参数初始化为Xavier。默认：None。
     - **bias_attr** （ParamAttr|None） - batch_norm bias参数的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为bias_attr。如果没有设置bias_attr的初始化函数，参数初始化为0。默认：None。
