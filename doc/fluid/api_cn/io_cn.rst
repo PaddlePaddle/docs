@@ -96,6 +96,7 @@ load_params
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()
@@ -131,6 +132,7 @@ load_persistables
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()
@@ -224,7 +226,7 @@ PyReader
   - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
   - **use_double_buffer** (bool) – 是否使用 ``double_buffer_reader`` 来加速数据输入。
   - **iterable** (bool) –  被创建的reader对象是否可迭代。
-  - **eturn_list** (bool) –  是否以list的形式将返回值
+  - **return_list** (bool) –  是否以list的形式将返回值
 
 返回: 被创建的reader对象
 
@@ -237,6 +239,7 @@ PyReader
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     EPOCH_NUM = 3
     ITER_NUM = 5
     BATCH_SIZE = 3
@@ -278,6 +281,7 @@ PyReader
 
 .. code-block:: python
 
+   import paddle.fluid as fluid
    EPOCH_NUM = 3
    ITER_NUM = 5
    BATCH_SIZE = 10
@@ -346,6 +350,7 @@ PyReader
 
 .. code-block:: python
 
+  import paddle.fluid as fluid
   BATCH_SIZE = 10
      
   def generator():
@@ -376,6 +381,7 @@ PyReader
 
 .. code-block:: python
 
+            import paddle.fluid as fluid
             BATCH_SIZE = 10
      
             def generator():
@@ -418,6 +424,7 @@ PyReader
 
 .. code-block:: python
      
+            import paddle.fluid as fluid
             EPOCH_NUM = 3
             ITER_NUM = 15
             BATCH_SIZE = 3
@@ -464,6 +471,7 @@ PyReader
 
 .. code-block:: python
             
+            import paddle.fluid as fluid
             EPOCH_NUM = 3
             ITER_NUM = 15
             BATCH_SIZE = 3
@@ -510,6 +518,7 @@ PyReader
 
 .. code-block:: python
 
+            import paddle.fluid as fluid
             EPOCH_NUM = 3
             ITER_NUM = 15
             BATCH_SIZE = 3
@@ -636,6 +645,7 @@ save_params
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()

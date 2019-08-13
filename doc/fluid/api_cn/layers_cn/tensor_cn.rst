@@ -26,9 +26,10 @@ argmax
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
-    out = fluid.layers.argmax(x=in, axis=0)
-    out = fluid.layers.argmax(x=in, axis=-1)
+    out = fluid.layers.argmax(x, axis=0)
+    out = fluid.layers.argmax(x, axis=-1)
 
 
 
@@ -61,9 +62,10 @@ argmin
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
-    out = fluid.layers.argmin(x=in, axis=0)
-    out = fluid.layers.argmin(x=in, axis=-1)
+    out = fluid.layers.argmin(x, axis=0)
+    out = fluid.layers.argmin(x, axis=-1)
 
 
 
@@ -113,6 +115,7 @@ argsort
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
     out, indices = fluid.layers.argsort(input=x, axis=0)
 
@@ -180,6 +183,7 @@ cast
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.data(name='x', shape=[13], dtype='float32')
     result = fluid.layers.cast(x=data, dtype='float64')
 
@@ -215,11 +219,12 @@ concat
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     a = fluid.layers.data(name='a', shape=[2, 13], dtype='float32')
     b = fluid.layers.data(name='b', shape=[2, 3], dtype='float32')
     c = fluid.layers.data(name='c', shape=[2, 2], dtype='float32')
     d = fluid.layers.data(name='d', shape=[2, 5], dtype='float32')
-    out = fluid.layers.concat(input=[Efirst, Esecond, Ethird, Efourth])
+    out = fluid.layers.concat(input=[a, b, c, d], axis=2)
 
 
 
@@ -254,6 +259,7 @@ create_global_var
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     var = layers.create_global_var(shape=[2,3], value=1.0, dtype='float32',
                      persistable=True, force_cpu=True, name='new_var')
@@ -290,8 +296,9 @@ create_parameter
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    W = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
+    W = layers.create_parameter(shape=[784, 200], dtype='float32')
 
 
 
@@ -323,6 +330,7 @@ create_tensor
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     tensor = fluid.layers.create_tensor(dtype='float32')
 
 
@@ -350,6 +358,7 @@ diag
         #  [3, 0, 0]
         #  [0, 4, 0]
         #  [0, 0, 5]
+        import paddle.fluid as fluid
         data = fluid.layers.diag(np.arange(3, 6))
 
 
@@ -508,6 +517,7 @@ isfinite
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     var = fluid.layers.data(name="data",
                             shape=(4, 6),
                             dtype="float32")
@@ -540,6 +550,7 @@ linspace
 
 .. code-block:: python
 
+      import paddle.fluid as fluid
       data = fluid.layers.linspace(0, 10, 5, 'float32') # [0.0,  2.5,  5.0,  7.5, 10.0]
       data = fluid.layers.linspace(0, 10, 1, 'float32') # [0.0]
 
@@ -602,6 +613,7 @@ range
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data = fluid.layers.range(0, 10, 2, 'int32')
 
 
@@ -808,6 +820,7 @@ zeros_like
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', dtype='float32', shape=[3], append_batch_size=False)
     data = fluid.layers.zeros_like(x) # [0.0, 0.0, 0.0]
 

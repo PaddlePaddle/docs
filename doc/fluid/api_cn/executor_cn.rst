@@ -217,7 +217,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
         filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
         dataset.set_filelist(filelist)
         exe.run(fluid.default_startup_program())
-        exe.infer_from_dataset(program=fluid.default_main_program(),
+        exe.train_from_dataset(program=fluid.default_main_program(),
                                dataset=dataset)
 
 
@@ -267,6 +267,7 @@ scope_guard
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import numpy
 
     new_scope = fluid.Scope()

@@ -19,6 +19,7 @@ WeightedAverage
 
 .. code-block:: python
 
+            import paddle.fluid as fluid
             avg = fluid.average.WeightedAverage()
             avg.add(value=2.0, weight=1)
             avg.add(value=4.0, weight=2)

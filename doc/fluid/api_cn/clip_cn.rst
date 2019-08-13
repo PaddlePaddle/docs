@@ -183,7 +183,7 @@ GradientClipByValue
      w_param_attrs = fluid.ParamAttr(name=None,
                                      initializer=fluid.initializer.UniformInitializer(low=-1.0, high=1.0, seed=0),
                                      learning_rate=1.0,
-                                     regularizer=fluid.regualrizer.L1Decay(1.0),
+                                     regularizer=fluid.regularizer.L1Decay(1.0),
                                      trainable=True,
                                      gradient_clip=fluid.clip.GradientClipByValue(-1.0, 1.0))
      x = fluid.layers.data(name='x', shape=[10], dtype='float32')

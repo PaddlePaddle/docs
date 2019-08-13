@@ -21,6 +21,7 @@ https://en.wikipedia.org/wiki/Accuracy_and_precision
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     # 假设有batch_size = 128
     batch_size=128
     accuracy_manager = fluid.metrics.Accuracy()
@@ -77,6 +78,7 @@ auc函数创建四个局部变量true_positives, true_negatives, false_positives
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import numpy as np
     # 初始化auc度量
     auc_metric = fluid.metrics.Auc("ROC")
@@ -134,6 +136,7 @@ ChunkEvaluator
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         # 初始化chunck-level的评价管理。
         metric = fluid.metrics.ChunkEvaluator()
         
@@ -185,6 +188,7 @@ CompositeMetric
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         import numpy as np
         preds = [[0.1], [0.7], [0.8], [0.9], [0.2],
                  [0.2], [0.3], [0.5], [0.8], [0.6]]
@@ -271,6 +275,7 @@ DetectionMAP
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         import paddle.fluid.layers as layers
          
         batch_size = -1 # 可以为任意大小
@@ -339,19 +344,19 @@ EditDistance
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import numpy as np
     
     # 假设batch_size为128
     batch_size = 128
     
     # 初始化编辑距离管理器
-    distances_evaluator = fluid.metrics.EditDistance("EditDistance")
+    distance_evaluator = fluid.metrics.EditDistance("EditDistance")
     # 生成128个序列对间的编辑距离，此处的最大距离是10
     edit_distances_batch0 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
     seq_num_batch0 = batch_size
 
     distance_evaluator.update(edit_distances_batch0, seq_num_batch0)
-    distance, instance_error = distance_evaluator.eval()
     avg_distance, wrong_instance_ratio = distance_evaluator.eval()
     print("the average edit distance for batch0 is %.2f and the wrong instance ratio is %.2f " % (avg_distance, wrong_instance_ratio))
     edit_distances_batch1 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
@@ -361,11 +366,14 @@ EditDistance
     avg_distance, wrong_instance_ratio = distance_evaluator.eval()
     print("the average edit distance for batch0 and batch1 is %.2f and the wrong instance ratio is %.2f " % (avg_distance, wrong_instance_ratio))
 
+    distance_evaluator.reset()
+
 
 .. py:method:: distance_evaluator.reset()
 
 .. code-block:: python
 
+  import paddle.fluid as fluid
   edit_distances_batch2 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
   seq_num_batch2 = batch_size
   distance_evaluator.update(edit_distances_batch2, seq_num_batch2)
@@ -456,6 +464,7 @@ https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     import numpy as np
 
     metric = fluid.metrics.Precision() 
@@ -499,6 +508,7 @@ https://en.wikipedia.org/wiki/Precision_and_recall
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         import numpy as np
 
         metric = fluid.metrics.Recall()

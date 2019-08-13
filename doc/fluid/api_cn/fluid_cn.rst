@@ -1,5 +1,5 @@
 #################
- fluid
+fluid
 #################
 
 .. _cn_api_fluid_BuildStrategy:
@@ -120,7 +120,7 @@ BOOL类型。如果设置为True, GPU操作中的一些锁将被释放，Paralle
 
 类型为bool，sync_batch_norm表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。
 
-当前的实现不支持FP16培训和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。
+当前的实现不支持FP16训练和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。
 
 默认为 False。
 
@@ -249,7 +249,7 @@ cpu_places
 
 创建 ``fluid.CPUPlace`` 对象列表。
 
-如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目将由 ``multiprocessing.cpu_count()`` 确定。
+如果 ``device_count`` 为None，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目默认为1，也就是说， ``CPU_NUM`` =1。
 
 参数：
   - **device_count** (None|int) - 设备数目
@@ -262,6 +262,7 @@ cpu_places
 
 .. code-block:: python
 
+           import paddle.fluid as fluid
            cpu_places = fluid.cpu_places()
 
 
@@ -279,6 +280,7 @@ CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应�
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         cpu_place = fluid.CPUPlace()
 
 
@@ -397,6 +399,7 @@ cuda_pinned_places
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         cuda_pinned_places_cpu_num = fluid.cuda_pinned_places()
         # 或者
         cuda_pinned_places = fluid.cuda_pinned_places(1)
@@ -428,6 +431,7 @@ cuda_places
 
 .. code-block:: python
 
+      import paddle.fluid as fluid
       cuda_places = fluid.cuda_places()
 
 .. _cn_api_fluid_CUDAPinnedPlace:
@@ -443,6 +447,7 @@ CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GP
 
 .. code-block:: python
 
+      import paddle.fluid as fluid
       place = fluid.CUDAPinnedPlace()
 
 .. _cn_api_fluid_CUDAPlace:
@@ -458,6 +463,7 @@ CUDAPlace是一个设备描述符，它代表一个GPU，并且每个CUDAPlace�
 
 .. code-block:: python
 
+       import paddle.fluid as fluid
        gpu_place = fluid.CUDAPlace(0)
 
 
@@ -482,6 +488,7 @@ DataFeedDesc应由来自磁盘的有效protobuf消息初始化。
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -508,6 +515,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
     data_feed.set_dense_slots('wd')  # 名为'wd'的slot将被设置为密集的
@@ -534,6 +542,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -569,6 +578,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -606,6 +616,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -642,6 +653,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
     print >> f, 'batch_size: 2'
@@ -993,6 +1005,7 @@ DistributeTranspiler
 
 .. code-block:: python
 
+  import paddle.fluid as fluid
   x = fluid.layers.data(name='x', shape=[13], dtype='float32')
   y = fluid.layers.data(name='y', shape=[1], dtype='float32')
   y_predict = fluid.layers.fc(input=x, size=1, act=None)
@@ -1028,8 +1041,9 @@ DistributeTranspiler
   t = fluid.DistributeTranspiler(config=config)
   t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
   exe = fluid.ParallelExecutor(
+     use_cuda=True,
      loss_name=avg_loss.name,
-     num_trainers=len(trainer_num,
+     num_trainers=trainer_num,
      trainer_id=trainer_id
   )
 
@@ -1053,6 +1067,7 @@ DistributeTranspiler
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     transpiler = fluid.DistributeTranspiler()
     t.transpile(
         trainer_id=0,
@@ -1162,6 +1177,7 @@ DistributeTranspiler
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     current_endpoint = "192.168.0.1:6174"
@@ -1207,6 +1223,7 @@ block中分割(split)出的元素个数的最小值。
 
 .. code-block:: python
     
+    import paddle.fluid as fluid
     config = fluid.DistributeTranspilerConfig()
     config.slice_var_up = True
 
@@ -1226,6 +1243,7 @@ ExecutionStrategy
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[13], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     y_predict = fluid.layers.fc(input=x, size=1, act=None)
@@ -1491,7 +1509,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
         filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
         dataset.set_filelist(filelist)
         exe.run(fluid.default_startup_program())
-        exe.infer_from_dataset(program=fluid.default_main_program(),
+        exe.train_from_dataset(program=fluid.default_main_program(),
                                dataset=dataset)
 
 
@@ -1578,6 +1596,7 @@ in_dygraph_mode
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     if fluid.in_dygraph_mode():
         pass
 
@@ -1600,9 +1619,9 @@ LoD是多层序列（Level of Details）的缩写，通常用于不同长度的�
 
 举例:
 
-X 为 LoDTensor，它包含两个序列。第一个长度是2，第二个长度是3。
+X 为 LoDTensor，它包含两个逻辑子序列。第一个长度是2，第二个长度是3。
 
-从Lod中可以计算出X的第一维度为5， 因为5=2+3， 说明X中有5个序列。在X中的每个序列中的每个元素有2列，因此X的shape为[5,2]。
+从Lod中可以计算出X的第一维度为5， 因为5=2+3。在X中的每个序列中的每个元素有2列，因此X的shape为[5,2]。
 
 ::
 
@@ -1613,7 +1632,7 @@ X 为 LoDTensor，它包含两个序列。第一个长度是2，第二个长度�
   x.shape = [5, 2]
 
 
-LoD可以有多个level(例如，一个段落可以有多个句子，一个句子可以有多个单词)。下面的例子中，Y为LoDTensor ，lod_level为2。表示有2个序列，第一个序列的长度是2(有2个子序列)，第二个序列的长度是1。第一序列的两个子序列长度分别为2和2。第二个序列的子序列的长度是3。
+LoD可以有多个level(例如，一个段落可以有多个句子，一个句子可以有多个单词)。下面的例子中，Y为LoDTensor ，lod_level为2。表示有2个逻辑序列，第一个逻辑序列的长度是2(有2个子序列)，第二个逻辑序列的长度是1。第一个逻辑序列的两个子序列长度分别为2和2。第二个序列的子序列的长度是3。
 
 
 ::
@@ -1634,7 +1653,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
   在上面的描述中，LoD是基于长度的。在paddle内部实现中，lod是基于偏移的。因此,在内部,y.lod表示为[[0,2,3]，[0,2,4,7]](基于长度的Lod表示为为[[2-0,3-2]，[2-0,4-2,7-4]])。
 
-  可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因。当LoD在API中被称为lod时，它可能是基于偏移的。用户应该注意。
+  可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因，当LoD在API中被称为lod时，它可能是基于偏移的。用户应该注意。
 
 
 
@@ -1875,6 +1894,7 @@ name_scope
 
 .. code-block:: python
           
+     import paddle.fluid as fluid
      with fluid.name_scope("s1"):
         a = fluid.layers.data(name='data', shape=[1], dtype='int32')
         b = a + 1
@@ -2043,6 +2063,7 @@ ParallelExecutor
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         pe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                     loss_name=avg_cost.name,
                                     main_program=fluid.default_main_program())
@@ -2080,6 +2101,7 @@ ParallelExecutor
                 loss = fluid.layers.mean(hidden)
      
             place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+            exe = fluid.Executor(place)
             exe.run(startup_program)
      
             parallel_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
@@ -2123,8 +2145,9 @@ ParamAttr
    
    w_param_attrs = fluid.ParamAttr(name="fc_weight",
                                    learning_rate=0.5,
-                                   regularizer=fluid.L2Decay(1.0),
+                                   regularizer=fluid.regularizer.L2Decay(1.0),
                                    trainable=True)
+   x = fluid.layers.data(name='X', shape=[1], dtype='float32')
    y_predict = fluid.layers.fc(input=x, size=10, param_attr=w_param_attrs)
 
 
@@ -2211,6 +2234,7 @@ Program
 
     .. code-block:: python
 
+          import paddle.fluid as fluid
           test_program = fluid.default_main_program().clone(for_test=True)
           optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
           optimizer.minimize()
@@ -2538,6 +2562,7 @@ scope_guard
 
 .. code-block:: python
 
+  import paddle.fluid as fluid
   import numpy
   
   new_scope = fluid.Scope()

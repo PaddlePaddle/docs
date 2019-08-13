@@ -21,9 +21,15 @@
 		<td>  </td>
 	</tr>
 	<tr>
-		<td> GCC </td>
+		<td> GCC (Linux Only) </td>
 		<td> 4.8 / 5.4 </td>
 		<td>  推荐使用CentOS的devtools2 </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> Clang (MacOS Only) </td>
+		<td> 9.0及以上 </td>
+		<td> 通常使用MacOS 10.11及以上的系统对应的Clang版本即可 </td>
 		<td>  </td>
 	</tr>
 		<tr>
@@ -47,12 +53,12 @@
 	<tr>
 		<td> openblas </td>
 		<td> any </td>
-		<td>  </td>
+		<td> 可选 </td>
 		<td>  </td>
 	</tr>
 	<tr>
 		<td> pip </td>
-		<td> 最低9.0.1 </td>
+		<td> >=9.0.1 </td>
 		<td>  </td>
 		<td> <code> apt install python-pip </code> 或 <code> yum install Python-pip </code> </td>
 	</tr>
@@ -60,7 +66,7 @@
 		<td> numpy </td>
 		<td> >=1.12.0 </td>
 		<td>  </td>
-		<td> <code> pip install numpy==1.14.0 </code> </td>
+		<td> <code> pip install numpy </code> </td>
 	</tr>
 	<tr>
 		<td> protobuf </td>
@@ -166,7 +172,7 @@
 		<tr>
 		<td> CUDA_ARCH_NAME </td>
 		<td> 是否只针对当前CUDA架构编译 </td>
-		<td> All 可选：Auto</td>
+		<td> All:编译所有可支持的CUDA架构 可选：Auto 自动识别当前环境的架构编译 </td>
 	</tr>
    </tbody>
 </table>
@@ -216,20 +222,21 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 		<td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
 	</tr>
 	<tr>
-		<td> paddlepaddle-gpu==1.5.1 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的1.5.1版本 </td>
+		<td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==1.5.1 </td>
+		<td> 默认的支持CUDA 10.0和cuDNN 7的对应PaddlePaddle版本的安装包 </td>
 	</tr>
 	<tr>
-		<td> paddlepaddle-gpu==1.5.1.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的1.5.1版本 </td>
+		<td> paddlepaddle-gpu==[版本号].postXX 例如 paddlepaddle-gpu==1.5.1.post87 </td>
+		<td> 支持CUDA 8.0和cuDNN 7的对应PaddlePaddle版本的安装包</td>
 	</tr>	
    </tbody>
 </table>
 </p>
 
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
+> 其中`postXX` 对应的是CUDA和cuDNN的版本，`postXX`之前的数字代表Paddle的版本
 
-需要注意的是，<code> paddlepaddle-gpu </code> 命令在windows环境下，会默认安装CUDA 8.0和cuDNN 7编译的PaddlePaddle
+需要注意的是，<code> paddlepaddle-gpu </code> 命令在windows环境下，会默认安装CUDA 9.0和cuDNN 7编译的PaddlePaddle
 
 ***
 

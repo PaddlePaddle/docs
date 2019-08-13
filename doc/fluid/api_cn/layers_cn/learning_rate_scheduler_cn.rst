@@ -29,6 +29,7 @@ cosine_decay
 
 .. code-block:: python
 
+    import paddle.fluid as fluid
     base_lr = 0.1
     lr = fluid.layers.cosine_decay( learning_rate = base_lr, step_each_epoch=10000, epochs=120)
 
@@ -42,7 +43,7 @@ exponential_decay
 .. py:function:: paddle.fluid.layers.exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
 
 在学习率上运用指数衰减。
-训练模型时，在训练过程中通常推荐降低学习率。每次 ``decay_steps`` 步骤中用 ``decay_rate`` 衰减学习率。
+训练模型时，推荐在训练过程中降低学习率。每次 ``decay_steps`` 步骤中用 ``decay_rate`` 衰减学习率。
 
 .. code-block:: text
 
@@ -92,7 +93,7 @@ inverse_time_decay
 
 在初始学习率上运用逆时衰减。
 
-训练模型时，在训练过程中通常推荐降低学习率。通过执行该函数，将对初始学习率运用逆向衰减函数。
+训练模型时，最好在训练过程中降低学习率。通过执行该函数，将对初始学习率运用逆向衰减函数。
 
 .. code-block:: python
 
@@ -156,6 +157,7 @@ linear_lr_warmup
 
 .. code-block:: python
 
+        import paddle.fluid as fluid
         boundaries = [100, 200]
         lr_steps = [0.1, 0.01, 0.001]
         warmup_steps = 50
@@ -225,6 +227,7 @@ Noam衰减方法。noam衰减的numpy实现如下。
 
 .. code-block:: python
 
+    import padde.fluid as fluid
     import numpy as np
     # 设置超参数
     d_model = 2
@@ -282,7 +285,7 @@ piecewise_decay
         learning_rate = 0.1
 
 参数：
-    - **boundaries** -一列代表步数的数字
+    - **boundaries** -一列代表步数的数字
     - **values** -一列学习率的值，从不同的步边界中挑选
 
 返回：衰减的学习率
