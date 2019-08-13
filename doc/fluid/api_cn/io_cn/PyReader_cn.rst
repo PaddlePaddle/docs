@@ -26,7 +26,10 @@ PyReader
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
+    import numpy as np
+
     EPOCH_NUM = 3
     ITER_NUM = 5
     BATCH_SIZE = 3
@@ -68,7 +71,10 @@ PyReader
 
 .. code-block:: python
 
+   import paddle
    import paddle.fluid as fluid
+   import numpy as np
+
    EPOCH_NUM = 3
    ITER_NUM = 5
    BATCH_SIZE = 10
@@ -137,7 +143,10 @@ PyReader
 
 .. code-block:: python
 
+  import paddle
   import paddle.fluid as fluid
+  import numpy as np
+
   BATCH_SIZE = 10
      
   def generator():
@@ -168,7 +177,10 @@ PyReader
 
 .. code-block:: python
 
+            import paddle
             import paddle.fluid as fluid
+            import numpy as np
+
             BATCH_SIZE = 10
      
             def generator():
@@ -212,6 +224,8 @@ PyReader
 .. code-block:: python
      
             import paddle.fluid as fluid
+            import numpy as np
+
             EPOCH_NUM = 3
             ITER_NUM = 15
             BATCH_SIZE = 3
@@ -258,7 +272,10 @@ PyReader
 
 .. code-block:: python
             
+            import paddle
             import paddle.fluid as fluid
+            import numpy as np
+
             EPOCH_NUM = 3
             ITER_NUM = 15
             BATCH_SIZE = 3
@@ -306,6 +323,8 @@ PyReader
 .. code-block:: python
 
             import paddle.fluid as fluid
+            import numpy as np
+
             EPOCH_NUM = 3
             ITER_NUM = 15
             BATCH_SIZE = 3

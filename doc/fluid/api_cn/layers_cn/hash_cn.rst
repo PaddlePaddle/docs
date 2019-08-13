@@ -16,10 +16,9 @@ hash
   给出：
 
     # shape [2, 2]
-    input.data = [
+    input.data = 
         [[1, 2],
-        [3, 4]],
-    ]
+        [3, 4]]
 
     input.lod = [[0, 2]]
 
@@ -46,12 +45,12 @@ hash
     output.lod = [[0, 2]]
 
 参数：
-  - **input** (Variable) - 输入变量是一个 one-hot 词。输入变量的维数必须是2。
+  - **input** (Variable) - 输入变量是一个 one-hot 词。输入变量的维数必须是2。支持Tensor与LodTensor。
   - **hash_size** (int) - 哈希算法的空间大小。输出值将保持在 :math:`[0, hash\_size - 1]` 范围内。
   - **num_hash** (int) - 哈希次数，默认为1。
   - **name** (str, default None) - 该层的名称
 
-返回：哈希的结果变量，是一个lodtensor。
+返回：哈希的结果变量，与输入变量类型相同。
 
 返回类型： Variable
 
@@ -60,24 +59,16 @@ hash
 .. code-block:: python
 
     import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    import numpy as np
 
+    # titles形为[batch, 1]
+    titles = fluid.layers.data(name='titles', shape=[1], dtype='int32', lod_level=0)
+    # hash_r形为[batch, 2]
+    hash_r = fluid.layers.hash(name='hash_x', input=titles, num_hash=2, hash_size=1000)
+
+    # titles形为[batch, 1]并且拥有lod信息
     titles = fluid.layers.data(name='titles', shape=[1], dtype='int32', lod_level=1)
-    hash_r = fluid.layers.hash(name='hash_x', input=titles, num_hash=1, hash_size=1000)
-
-    place = fluid.core.CPUPlace()
-    exece = fluid.Executor(place)
-    exece.run(fluid.default_startup_program())
-
-    # 初始化Tensor
-    tensor = fluid.core.LoDTensor()
-    tensor.set(np.random.randint(0, 10, (3, 1)).astype("int32"), place)
-    # 设置LoD
-    tensor.set_recursive_sequence_lengths([[1, 1, 1]])
-
-    out = exece.run(feed={'titles': tensor}, fetch_list=[hash_r], return_numpy=False)
-
+    # hash_r形为[batch, 2]并且从titles继承lod信息
+    hash_r = fluid.layers.hash(name='hash_x', input=titles, num_hash=2, hash_size=1000)
 
 
 

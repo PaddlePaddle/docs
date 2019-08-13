@@ -7,7 +7,7 @@ logical_not
 
 logical_not算子
 
-它在X上以元素方式操作，并返回Out。X和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
+它在 ``X`` 上以元素方式操作，并返回 ``Out`` 。 ``X`` 和 ``Out`` 是N维布尔张量（Tensor）。 ``Out`` 的每个元素的计算公式为：
 
 .. math::
         Out = !X
@@ -28,7 +28,7 @@ logical_not算子
 
     import paddle.fluid as fluid
     left = fluid.layers.data(
-        name='left', shape=[1], dtype='int32')
+        name='left', shape=[1], dtype='bool')
     result = fluid.layers.logical_not(x=left)
 
 
