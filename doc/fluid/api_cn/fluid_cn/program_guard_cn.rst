@@ -7,9 +7,9 @@ program_guard
 
 
 
-该函数应配合使用python的“with”语句来改变全局主程序(main program)和启动程序(startup program)。
+该函数应配合使用python的 ``with`` 语句来改变全局主程序(main program)和启动程序(startup program)。
 
-“with”语句块中的layer函数将在新的main program（主程序）中添加operators（算子）和variables（变量）。
+ ``with`` 语句块中的layer函数将在新的main program（主程序）中添加operators（算子）和variables（变量）。
 
 **代码示例**
 

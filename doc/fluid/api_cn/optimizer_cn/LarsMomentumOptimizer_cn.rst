@@ -29,8 +29,20 @@ LARS支持的Momentum优化器
 .. code-block:: python
 
     import paddle.fluid as fluid
-    optimizer = fluid.optimizer.LarsMomentum(learning_rate=0.2, momentum=0.1, lars_weight_decay=0.001)
-    optimizer.minimize(cost)
+
+    np_inp = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=np.float32)
+    inp = fluid.layers.data(
+        name="inp", shape=[2, 2], append_batch_size=False)
+    out = fluid.layers.fc(inp, size=3)
+    out = fluid.layers.reduce_sum(out)
+    optimizer = fluid.optimizer.LarsMomentumOptimizer(learning_rate=0.001, momentum=0.9)
+    optimizer.minimize(out)
+
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(fluid.default_startup_program())
+    exe.run(
+        feed={"inp": np_inp},
+        fetch_list=[out.name])
 
 .. py:method:: apply_gradients(params_grads)
 

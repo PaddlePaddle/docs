@@ -53,7 +53,10 @@ conv2d_transpose
         & H_{out}\in[H'_{out},H'_{out} + strides[0])\\
         & W_{out}\in[W'_{out},W'_{out} + strides[1])\\
 
-
+注意：
+如果 ``output_size`` 为None，则 :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;
+否则， 输出size的 :math:`H_{out}` 应当介于 :math:`H^\prime_{out}`
+和 :math:`H^\prime_{out} + strides[0]` 之间, 并且输出size的 :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间, ``conv2d_transpose`` 可以自动计算kernel大小。
 
 参数:
   - **input** （Variable）- 输入张量，格式为[N, C, H, W]
