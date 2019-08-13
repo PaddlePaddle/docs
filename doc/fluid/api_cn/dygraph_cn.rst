@@ -29,6 +29,7 @@ fluid.dygraph
     dygraph_cn/NaturalExpDecay_cn.rst
     dygraph_cn/NCE_cn.rst
     dygraph_cn/NoamDecay_cn.rst
+    dygraph_cn/no_grad_cn.rst
     dygraph_cn/PiecewiseDecay_cn.rst
     dygraph_cn/PolynomialDecay_cn.rst
     dygraph_cn/Pool2D_cn.rst

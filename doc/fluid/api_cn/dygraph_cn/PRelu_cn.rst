@@ -12,8 +12,8 @@ PRelu
 
 
 参数：
-          - **name_scope** （string）- 该类的名称。
-          - **mode** (string) - 权重共享模式。共提供三种激活方式：
+          - **name_scope** （str）- 该类的名称。
+          - **mode** (str) - 权重共享模式。共提供三种激活方式：
 
              .. code-block:: text
 

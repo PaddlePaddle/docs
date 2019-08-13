@@ -11,7 +11,7 @@ embedding
 所有的输入变量都作为局部变量传入LayerHelper构造器
 
 参数：
-    - **input** (Variable)-包含IDs的张量
+    - **input** (Variable)-包含IDs信息的int64的张量变量。
     - **size** (tuple|list)-查找表参数的维度。应当有两个参数，一个代表嵌入矩阵字典的大小，一个代表每个嵌入向量的大小。
     - **is_sparse** (bool)-代表是否用稀疏更新的标志
     - **is_distributed** (bool)-是否从远程参数服务端运行查找表

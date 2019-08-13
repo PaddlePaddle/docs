@@ -7,7 +7,7 @@ logical_and
 
 logical_and算子
 
-它在X和Y上以元素方式操作，并返回Out。X、Y和Out是N维布尔张量（Tensor）。Out的每个元素的计算公式为：
+它在 ``X`` 和 ``Y`` 上以元素方式操作，并返回 ``Out`` 。``X``、 ``Y`` 和 ``Out`` 是N维布尔张量（Tensor）。 ``Out`` 的每个元素的计算公式为：
 
 .. math::
        Out = X \&\& Y
@@ -29,9 +29,9 @@ logical_and算子
 
     import paddle.fluid as fluid
     left = fluid.layers.data(
-        name='left', shape=[1], dtype='int32')
+        name='left', shape=[1], dtype='bool')
     right = fluid.layers.data(
-        name='right', shape=[1], dtype='int32')
+        name='right', shape=[1], dtype='bool')
     result = fluid.layers.logical_and(x=left, y=right)
 
 
