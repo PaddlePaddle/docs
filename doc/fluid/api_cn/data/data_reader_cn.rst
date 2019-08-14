@@ -410,7 +410,7 @@ multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
 
 
-.. py:class::paddle.reader.Fake
+.. py:class:: paddle.reader.Fake
 
 Fakereader将缓存它读取的第一个数据，并将其输出data_num次。它用于缓存来自真实reader的数据，并将其用于速度测试。
 

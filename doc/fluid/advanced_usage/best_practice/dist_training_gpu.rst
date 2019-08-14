@@ -162,7 +162,7 @@ PaddlePaddle Fluid使用“线程池” [#]_ 模型调度并执行Op，Op在启�
 通过在一个GPU上串行计算多个小的batch并积累梯度，然后再执行多机多卡之间的通信，
 此模式同样也可以被称为“可变通信频率“。使用batch merge功能，在同样的模型，
 可以极大的增加batch size，提升多机训练的总吞吐。
-使用方法可以参考实例：https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/dist_train
+使用方法可以参考实例：https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/dist_train
 
 
 优化reader性能

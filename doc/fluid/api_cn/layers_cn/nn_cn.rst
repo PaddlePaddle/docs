@@ -981,7 +981,7 @@ conv2d
 
 参数：
     - **input** (Variable) - 格式为[N,C,H,W]格式的输入图像
-    - **num_fliters** (int) - 滤波器数。和输出图像通道相同
+    - **num_filters** (int) - 滤波器数。和输出图像通道相同
     - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size，filter_size_W）。否则，滤波器为square
     - **stride** (int|tuple) - 步长(stride)大小。如果步长（stride）为元组，则必须包含两个整型数，（stride_H,stride_W）。否则，stride_H = stride_W = stride。默认：stride = 1
     - **padding** (int|tuple) - 填充（padding）大小。如果填充（padding）为元组，则必须包含两个整型数，（padding_H,padding_W)。否则，padding_H = padding_W = padding。默认：padding = 0
@@ -1029,7 +1029,8 @@ conv2d_transpose
 
 该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中 ``N`` 为batch大小， ``C`` 为通道数（channel），``H`` 为特征高度， ``W`` 为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数 ``bias_attr`` 和 ``act`` 不为 ``None``，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
 
-.. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
+.. _参考文献: https://distill.pub/2016/deconv-checkerboard/
+
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
@@ -9637,7 +9638,7 @@ uniform_random_batch_size_like算子。
         - **shape** （元组|列表）- 输出的形状。
         - **input_dim_idx** （Int）- 默认值0.输入批量大小维度的索引。
         - **output_dim_idx** （Int）- 默认值0.输出批量大小维度的索引。
-        - **min** （Float）- （默认 1.0）均匀随机的最小值。
+        - **min** （Float）- （默认 -1.0）均匀随机的最小值。
         - **max** （Float）- （默认 1.0）均匀随机的最大值。
         - **seed** （Int）- （int，default 0）用于生成样本的随机种子。0表示使用系统生成的种子。注意如果seed不为0，则此算子将始终每次生成相同的随机数。
         - **dtype** （np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_16，int等。

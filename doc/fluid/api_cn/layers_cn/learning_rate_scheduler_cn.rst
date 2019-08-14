@@ -188,7 +188,7 @@ natural_exp_decay
     if not staircase:
         decayed_learning_rate = learning_rate * exp(- decay_rate * (global_step / decay_steps))
     else:
-        decayed_learning_rate = learning_rate * exp(- decay_rate * (global_step / decay_steps))
+        decayed_learning_rate = learning_rate * exp(- decay_rate * floor(global_step / decay_steps))
 
 参数：
     - **learning_rate** - 标量float32值或变量。是训练过程中的初始学习率。

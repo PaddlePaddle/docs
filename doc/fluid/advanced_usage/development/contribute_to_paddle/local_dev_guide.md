@@ -12,7 +12,7 @@
 以下教程将指导您提交代码。
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
+跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 https://github.com/USERNAME/Paddle。
 
 ## 克隆（Clone）
 
