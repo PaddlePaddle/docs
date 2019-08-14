@@ -76,7 +76,7 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_DecayedAdagrad`
 ----------------------
 
 `FtrlOptimizer <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_ 优化器结合了 `FOBOS算法 <https://stanford.edu/~jduchi/projects/DuchiSi09b.pdf>`_ 的高精度与 `RDA算法
-<http://www1.se.cuhk.edu.hk/~sqma/SEEM5121_Spring2015/dual-averaging.pdf>`_ 的稀疏性，是目前效果非常好的一种 `Online Learning <https://en.wikipedia.org/wiki/Online_machine_learning>`_ 算法。
+<http://xueshu.baidu.com/usercenter/paper/show?paperid=101df241a792fe23d79f4ed84a820495>`_ 的稀疏性，是目前效果非常好的一种 `Online Learning <https://en.wikipedia.org/wiki/Online_machine_learning>`_ 算法。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_FtrlOptimizer`
 

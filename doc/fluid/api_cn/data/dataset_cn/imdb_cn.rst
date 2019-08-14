@@ -5,7 +5,7 @@ imdb
 
 IMDB数据集。
 
-本模块的数据集来自 https://aistudio.baidu.com/aistudio/datasetDetail/69 。这个数据集包含了25000条训练用电影评论数据，25000条测试用评论数据，且这些评论带有明显情感倾向。此外，该模块还提供了用于构建词典的API。
+此模块将从 http://ai.stanford.edu/%7Eamaas/data/sentiment/aclImdb_v1.tar.gz 下载数据集。这个数据集包含了25000条训练用电影评论数据，25000条测试用评论数据，且这些评论带有明显情感倾向。此外，该模块还提供了用于构建词典的API。
 
 
 .. py:function:: paddle.dataset.imdb.build_dict(pattern, cutoff)
