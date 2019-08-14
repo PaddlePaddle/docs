@@ -276,7 +276,7 @@ Enforce提示信息不能为空，并且需要写明，因为报错信息可以�
 ### 2.Op的数学公式
 如果Op有数学公式，一定要在代码中将数学公式写明，并在Python API的Doc中显示，因为用户在对比不同框架的计算结果时可能需要了解Paddle对Op是怎么实现的。
 
-**注意：**在merge到develop分支之前一定进行公式预览。可参考[dynamic_lstmp](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/layers_cn/nn_cn.html#dynamic-lstm)。
+**注意：**在merge到develop分支之前一定进行公式预览。可参考[dynamic_lstmp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/nn_cn.html#dynamic-lstmp)。
 
 ### 3.Op变量名的命名要规范
 在定义Op时，Op的输入输出以及属性的命名需要符合规范，具体命名规则请参考：[`name_convention`](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
