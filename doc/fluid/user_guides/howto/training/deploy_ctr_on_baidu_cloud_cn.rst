@@ -32,6 +32,13 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 3.1. 配置集群环境
 ^^^^^^^^^^^^^^^^
 
+集群的操作可以通过百度云web或者通过kubectl工具进行，推荐用 `kubectl工具 <https://kubernetes.io/docs/tasks/tools/install-kubectl/>`_ 。
+
+从Kubernetes 版本下载页面下载对应的 kubectl 客户端，关于kubectl 的其他信息，可以参见kubernetes官方安装和设置 kubectl文档。
+
+.. image:: src/ctr_kubectl_download.png
+
+* 注意：
 本操作指南给出的操作步骤都是基于linux操作环境的。
 
 - 进入“产品服务>容器引擎CCE”，点击“集群管理>集群列表”，可看到用户已创建的集群列表。从集群列表中查看创建的集群信息。
@@ -60,11 +67,7 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 3.2. 配置开发机环境
 ^^^^^^^^^^^^^^^^^
 
-配置过程需要开发机的root权限。 集群的操作可以通过百度云web或者通过kubectl工具进行，推荐用 `kubectl工具 <https://kubernetes.io/docs/tasks/tools/install-kubectl/>`_ 。
-
-从Kubernetes 版本下载页面下载对应的 kubectl 客户端，关于kubectl 的其他信息，可以参见kubernetes官方安装和设置 kubectl文档。
-
-.. image:: src/ctr_kubectl_download.png
+配置过程需要开发机的root权限。
 
 - 接下来是安装kubectl，解压下载后的文件，为kubectl添加执行权限，并放在PATH下
 
@@ -134,33 +137,7 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 ----------------
 建立分布式任务需要pod间有API互相访问的权限，可以按如下步骤
 
-.. code-block:: yaml
 
-	kind: ClusterRole
-	apiVersion: rbac.authorization.k8s.io/v1
-	metadata:
-	name: default
-	namespace: default
-	rules:
-	- apiGroups: [""]
-	resources: ["pods"]
-	verbs: ["get", "list", "watch"]
-
-	---
-	kind: ClusterRoleBinding
-	apiVersion: rbac.authorization.k8s.io/v1
-	metadata:
-	name: default
-	namespace: default
-	subjects:
-	- kind: ServiceAccount
-	name: default
-	namespace: default
-	roleRef:
-	kind: ClusterRole
-	name: default
-	apiGroup: rbac.authorization.k8s.io
-	
 执行
 
 .. code-block:: bash
@@ -172,7 +149,7 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 5. 部署任务
 ----------------
 
-- CTR模型的训练镜像存放在 `Docker Hub <https://hub.docker.com/>`_ 网站，通过kubectl加载yaml文件启动训练任务，CTR预估模型训练任务的yaml文件为volcano-ctr-demo-baiduyun.yaml.
+- CTR模型的训练镜像存放在`Docker Hub <https://hub.docker.com/>`_网站，通过kubectl加载yaml文件启动训练任务，CTR预估模型训练任务的yaml文件为volcano-ctr-demo-baiduyun.yaml.
 
 - 任务的所有脚本文件可以访问 `这里 <https://github.com/PaddlePaddle/edl/tree/develop/example/ctr>`_ 获取。
 
@@ -184,6 +161,8 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 	
 
 即可成功提交任务
+
+需要说明的是 在 volcano-ctr-demo-baiduyun.yaml 当中定义了Pod所需的image，这些image如上文，存放在Docker Hub。此镜像的Dockerfile就在ctr文件夹下。
 
 
 6. 查看结果
