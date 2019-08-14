@@ -32,14 +32,7 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 3.1. 配置集群环境
 ^^^^^^^^^^^^^^^^
 
-集群的操作可以通过百度云web或者通过kubectl工具进行，推荐用 `kubectl工具 <https://kubernetes.io/docs/tasks/tools/install-kubectl/>`_ 。
-
-从Kubernetes 版本下载页面下载对应的 kubectl 客户端，关于kubectl 的其他信息，可以参见kubernetes官方安装和设置 kubectl文档。
-
-.. image:: src/ctr_kubectl_download.png
-
-* 注意：
-本操作指南给出的操作步骤都是基于linux操作环境的。
+需要注意的是，本操作指南给出的操作步骤都是基于linux操作环境的。
 
 - 进入“产品服务>容器引擎CCE”，点击“集群管理>集群列表”，可看到用户已创建的集群列表。从集群列表中查看创建的集群信息。
 
@@ -67,7 +60,13 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 3.2. 配置开发机环境
 ^^^^^^^^^^^^^^^^^
 
-配置过程需要开发机的root权限。
+需要注意的是，配置过程需要开发机的root权限。
+
+集群的操作可以通过百度云web或者通过kubectl工具进行，推荐用 `kubectl工具 <https://kubernetes.io/docs/tasks/tools/install-kubectl/>`_ 。
+
+从Kubernetes 版本下载页面下载对应的 kubectl 客户端（1.13.4），关于kubectl 的其他信息，可以参见kubernetes官方安装和设置 kubectl文档。
+
+.. image:: src/ctr_kubectl_download.png
 
 - 接下来是安装kubectl，解压下载后的文件，为kubectl添加执行权限，并放在PATH下
 
@@ -87,7 +86,7 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 
 	kubectl get node
 
-- 接下来是安装客户端的helm，用于与上面提到的Helm实例进行交互，解压下载后的文件,按照   `官网说明 <https://helm.sh/docs/using_helm/>`_ 安装helm客户端，然后执行
+- 接下来是安装客户端的helm，用于与上面提到的Helm实例进行交互，解压下载后的文件,按照   `官网说明 <https://helm.sh/docs/using_helm/>`_ 安装helm客户端（2.12.3），然后执行
 
 .. code-block:: bash
 
