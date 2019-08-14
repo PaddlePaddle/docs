@@ -191,3 +191,7 @@ Trainer日志示例：
 
 .. image:: src/baidu_cloud/trainer-log.png
 
+Pserver日志示例：
+
+.. image:: src/baidu_cloud/pserver-log.png
+
