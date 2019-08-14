@@ -22,9 +22,9 @@
 
 |选项                        |   值     |
 |:-------------|:-------------------|
-|CMAKE_BUILD_TYPE             | Release(必选)   |
-|FLUID_INFERENCE_INSTALL_DIR  | 安装路径(可选)  |
-|ON_INFER                     | ON（推荐）      |
+|CMAKE_BUILD_TYPE             | Release    |
+|FLUID_INFERENCE_INSTALL_DIR  | 安装路径(可选) |
+|ON_INFER                     | ON（推荐）     |
 |WITH_GPU                     | ON/OFF     | 
 |WITH_MKL                     | ON/OFF     |
 
@@ -50,7 +50,8 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
 4. 执行cmake：
 
      - `cmake .. -G "Visual Studio 14 2015 Win 64" -DFLUID_INFERENCE_INSTALL_DIR=${PADDLE_ROOT} -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON`
-     - 其中`-DFLUID_INFERENCE_INSTALL_DIR=$PADDLE_ROOT`为可选配置选项，如未设置，则使用默认路径。WITH_GPU与WITH_MKL的建议值为OFF，以节省时间。
+     - `-DFLUID_INFERENCE_INSTALL_DIR=$PADDLE_ROOT`为可选配置选项，如未设置，则使用默认路径。
+     - `-DWITH_GPU`为是否使用GPU的配置选项，`-DWITH_MKL`为是否使用Intel MKL(数学核心库)的配置选项，请按需配置。
 
 5. 从`https://github.com/wopeizl/Paddle_deps`下载预编译好的第三方依赖包（openblas, snappystream），将整个`third_party`文件夹复制到`build`目录下。
 
