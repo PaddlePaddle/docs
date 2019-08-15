@@ -3,9 +3,9 @@
 ## 环境准备
 
 * *Ubuntu 版本 (64 bit)*
-    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10)*
-    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10)*
-    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10)*
+    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10.0)*
+    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10.0)*
+    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10.0)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip或pip3 版本 9.0.1+ (64 bit)*
 
@@ -267,3 +267,4 @@
 * ***GPU版本的PaddlePaddle***: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
 
 使用Docker安装PaddlePaddle的用户，请进入包含PaddlePaddle的容器中使用上述命令，注意使用对应版本的pip
+10.0
