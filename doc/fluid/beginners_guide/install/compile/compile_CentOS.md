@@ -4,7 +4,7 @@
 
 * *CentOS 版本 (64 bit)*
     * *CentOS 6 (不推荐，不提供编译出现问题时的官方支持)*
-    * *CentOS 7 (GPU 版本支持CUDA 8/9/10)*
+    * *CentOS 7 (GPU 版本支持CUDA 8/9/10.0)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
@@ -236,7 +236,7 @@
 		> 请注意PY_VERSION参数更换为您需要的python版本
 
 
-	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持CentOS7（CUDA10/CUDA9）*)
+	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持CentOS7（CUDA10.0/CUDA9）*)
 
 		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
