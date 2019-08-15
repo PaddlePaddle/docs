@@ -10,7 +10,7 @@ mnist
 
 MNIST数据集。
 
-此模块将从 http://yann.lecun.com/exdb/mnist/ 下载数据集，并将训练集和测试集解析为paddle reader creator。
+此模块将从 http://ai.stanford.edu/%7Eamaas/data/sentiment/aclImdb_v1.tar.gz 下载数据集，并将训练集和测试集解析为paddle reader creator。
 
 
 

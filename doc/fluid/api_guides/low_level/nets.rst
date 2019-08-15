@@ -33,7 +33,7 @@ API Reference 请参考 :ref:`cn_api_fluid_nets_img_conv_group`
 
 :code:`sequence_conv_pool` 是由 :ref:`cn_api_fluid_layers_sequence_conv` 与 :ref:`cn_api_fluid_layers_sequence_pool` 串联而成。
 该模块在 `自然语言处理 <https://zh.wikipedia.org/wiki/自然语言处理>`_ 以及 `语音识别 <https://zh.wikipedia.org/wiki/语音识别>`_ 等领域均有广泛应用，
-比如 `文本分类模型 <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/text_classification/nets.py>`_ ,
+比如 `文本分类模型 <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/models/classification/nets.py>`_ ,
 `TagSpace <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/tagspace/train.py>`_  以及
 `Multi-view Simnet <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/multiview_simnet/nets.py>`_ 等模型。
 
