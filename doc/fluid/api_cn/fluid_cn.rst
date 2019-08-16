@@ -29,7 +29,6 @@ fluid
     fluid_cn/global_scope_cn.rst
     fluid_cn/gradients_cn.rst
     fluid_cn/in_dygraph_mode_cn.rst
-    fluid_cn/is_compiled_with_cuda_cn.rst
     fluid_cn/LoDTensor_cn.rst
     fluid_cn/LoDTensorArray_cn.rst
     fluid_cn/memory_optimize_cn.rst
