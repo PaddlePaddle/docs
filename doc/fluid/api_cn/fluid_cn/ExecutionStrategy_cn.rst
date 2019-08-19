@@ -33,7 +33,7 @@ ExecutionStrategy
 
 .. py:attribute:: allow_op_delay
 
-这是一个bool类型成员，表示是否推迟communication operators(交流运算)的执行，这样做会使整体执行过程更快一些。但是在一些模型中，allow_op_delay会导致程序中断。默认为False。
+这是一个bool类型成员，表示是否推迟communication operators(交流运算)的执行，这样做会使整体执行过程更快一些。此选项现在已经失效，在下个版本中将会被移除。默认为False。
 
 
 

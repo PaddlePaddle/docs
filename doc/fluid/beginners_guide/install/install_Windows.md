@@ -19,6 +19,8 @@
     * *CUDA 工具包8.0配合cuDNN v7.1+， 9.0配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
+注: 目前官方发布的windows安装包仅包含 CUDA 8.0/9.0 的单卡模式，不包含 CUDA 9.1/9.2/10.0/10.1，如需使用，请通过源码自行编译。
+
 您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 ## 安装方式
@@ -27,7 +29,7 @@ Windows系统下有3种安装方式：
 
 * pip安装（推荐）
 * [Docker安装](./install_Docker.html)
-* [源码编译安装](./compile/compile_Windows.html/#win_source)
+* [源码编译安装](./compile/compile_Windows.html#win_source)
 
 这里为您介绍pip安装方式
 

@@ -25,7 +25,8 @@ auc
     - **topk** (int) - 只有预测输出的topk数才被用于auc
     - **slide_steps** - 计算批auc时，不仅用当前步也用先前步。slide_steps=1，表示用当前步；slide_steps = 3表示用当前步和前两步；slide_steps = 0，则用所有步
 
-返回：代表当前AUC的scalar
+返回：代表当前AUC的一个元组
+返回的元组为auc_out, batch_auc_out, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg]。
 
 返回类型：变量（Variable）
 

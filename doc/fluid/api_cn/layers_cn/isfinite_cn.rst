@@ -22,7 +22,7 @@ isfinite
     var = fluid.layers.data(name="data",
                             shape=(4, 6),
                             dtype="float32")
-    out = fluid.layers.isfinite(v)
+    out = fluid.layers.isfinite(var)
 
 
 

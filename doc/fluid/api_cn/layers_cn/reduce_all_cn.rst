@@ -22,16 +22,19 @@ reduce_all
 ..  code-block:: python
      
      
-        # x是一个布尔型Tensor，元素如下:
-        #    [[True, False]
-        #     [True, True]]
-        # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
         import paddle.fluid as fluid
         import paddle.fluid.layers as layers
         import numpy as np
-        fluid.layers.reduce_all(x)  # False
-        fluid.layers.reduce_all(x, dim=0)  # [True, False]
-        fluid.layers.reduce_all(x, dim=-1)  # [False, True]
-        fluid.layers.reduce_all(x, dim=1,
-                                 keep_dim=True)  # [[False], [True]]
+
+        # x是一个布尔型Tensor，元素如下:
+        #    [[True, False]
+        #     [True, True]]
+        x = layers.assign(np.array([[1, 0], [1, 1]], dtype='int32'))
+        x = layers.cast(x, 'bool')
+
+        out = layers.reduce_all(x)  # False
+        out = layers.reduce_all(x, dim=0)  # [True, False]
+        out = layers.reduce_all(x, dim=-1)  # [False, True]
+        
+        out = layers.reduce_all(x, dim=1, keep_dim=True)  # [[False], [True]]
      
