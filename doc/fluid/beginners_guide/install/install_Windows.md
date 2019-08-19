@@ -29,7 +29,7 @@ Windows系统下有3种安装方式：
 
 * pip安装（推荐）
 * [Docker安装](./install_Docker.html)
-* [源码编译安装](./compile/compile_Windows.html/#win_source)
+* [源码编译安装](./compile/compile_Windows.html#win_source)
 
 这里为您介绍pip安装方式
 
