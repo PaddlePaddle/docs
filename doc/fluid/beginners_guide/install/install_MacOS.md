@@ -34,6 +34,7 @@ MacOS系统下有4种安装方式：
 
 注：
 
+* MacOS上您需要安装unrar以支持PaddlePaddle，可以使用命令`brew install unrar`
 * pip与python版本对应。如果是python2.7, 建议使用`pip`命令; 如果是python3.x, 则建议使用`pip3`命令
 
 
