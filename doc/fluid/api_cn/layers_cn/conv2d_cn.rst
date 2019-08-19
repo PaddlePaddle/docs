@@ -43,7 +43,7 @@ conv2d
 
 参数：
     - **input** (Variable) - 格式为[N,C,H,W]格式的输入图像
-    - **num_fliters** (int) - 滤波器数。和输出图像通道相同
+    - **num_filters** (int) - 滤波器数。和输出图像通道相同
     - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size，filter_size_W）。否则，滤波器为square
     - **stride** (int|tuple) - 步长(stride)大小。如果步长（stride）为元组，则必须包含两个整型数，（stride_H,stride_W）。否则，stride_H = stride_W = stride。默认：stride = 1
     - **padding** (int|tuple) - 填充（padding）大小。如果填充（padding）为元组，则必须包含两个整型数，（padding_H,padding_W)。否则，padding_H = padding_W = padding。默认：padding = 0

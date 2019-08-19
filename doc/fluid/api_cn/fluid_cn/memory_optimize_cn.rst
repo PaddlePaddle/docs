@@ -3,7 +3,7 @@
 memory_optimize
 -------------------------------
 
-.. py:function:: paddle.fluid.memory_optimize(input_program, skip_opt_set=None, print_log=False, level=0, skip_grads=False)
+.. py:function:: paddle.fluid.memory_optimize(input_program, skip_opt_set=None, print_log=False, level=0, skip_grads=True)
 
 历史遗留的内存优化策略，通过在不同operators间重用var内存来减少总内存消耗。
 用一个简单的示例来解释该算法：

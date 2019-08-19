@@ -35,19 +35,19 @@ BatchNorm
 
 参数：
     - **name_scope** (str) - 该类的名称
-    - **act** （string，默认None）- 激活函数类型，linear|relu|prelu|...
-    - **is_test** （bool,默认False） - 指示它是否在测试阶段。
-    - **momentum** （float，默认0.9）- 此值用于计算 moving_mean and moving_var. 更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum` :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum` ， 默认值0.9.
-    - **epsilon** （float，默认1e-05）- 加在分母上为了数值稳定的值。默认值为1e-5。
+    - **act** （str|None）- 激活函数类型，linear|relu|prelu|...
+    - **is_test** （bool） - 指示它是否在测试阶段。默认False。
+    - **momentum** （float）- 此值用于计算 moving_mean and moving_var. 更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum` :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum` ， 默认值0.9.
+    - **epsilon** （float）- 加在分母上为了数值稳定的值。默认值为1e-5。
     - **param_attr** （ParamAttr|None） - batch_norm参数范围的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为param_attr。如果没有设置param_attr的初始化函数，参数初始化为Xavier。默认：None
     - **bias_attr** （ParamAttr|None） - batch_norm bias参数的属性，如果设为None或者是ParamAttr的一个属性，batch_norm创建ParamAttr为bias_attr。如果没有设置bias_attr的初始化函数，参数初始化为0。默认：None
-    - **data_layout** （string,默认NCHW) - NCHW|NHWC。默认NCHW
-    - **in_place** （bool，默认False）- 得出batch norm可复用记忆的输入和输出
-    - **moving_mean_name** （string，默认None）- moving_mean的名称，存储全局Mean均值。 
+    - **data_layout** （string) - NCHW|NHWC。默认NCHW
+    - **in_place** （bool）- 得出batch norm可复用记忆的输入和输出，默认False。
+    - **moving_mean_name** （string|None）- moving_mean的名称，存储全局Mean均值。默认为None。
     - **moving_variance_name** （string，默认None）- moving_variance的名称，存储全局方差。 
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值
     - **fuse_with_relu** （bool）- 如果为True，batch norm后该操作符执行relu。默认为False。
-    - **use_global_stats** （bool, Default False） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。
+    - **use_global_stats** （bool） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。默认为False。
     - **trainable_statistics** （bool）- eval模式下是否计算mean均值和var方差。eval模式下，trainable_statistics为True时，由该批数据计算均值和方差。默认为False。
 
 返回： 张量，在输入中运用批正则后的结果

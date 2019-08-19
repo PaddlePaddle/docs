@@ -6,7 +6,7 @@ lod_reset
 .. py:function:: paddle.fluid.layers.lod_reset(x, y=None, target_lod=None)
 
 
-设定x的LoD为y或者target_lod。如果提供y，首先将y.lod指定为目标LoD,否则y.data将指定为目标LoD。如果未提供y，目标LoD则指定为target_lod。如果目标LoD指定为Y.data或target_lod，只提供一层LoD。
+设定 ``x`` 的LoD为 ``y`` 或者 ``target_lod`` 。如果提供 ``y`` ，首先将y.lod指定为目标LoD,否则y.data将指定为目标LoD。如果未提供y，目标LoD则指定为 ``target_lod`` 。如果目标LoD指定为y.data或 ``target_lod`` ，只提供一层LoD。
 
 ::
 
@@ -59,15 +59,15 @@ lod_reset
         out.dims = [6, 1]
 
 参数：
-    - **x** (Variable)-输入变量，可以为Tensor或者LodTensor
-    - **y** (Variable|None)-若提供，输出的LoD则衍生自y
-    - **target_lod** (list|tuple|None)-一层LoD，y未提供时作为目标LoD
+    - **x** (Variable)-输入变量，可以为Tensor或者LoDTensor
+    - **y** (Variable|None)-若提供，输出的LoD则衍生自 ``y``
+    - **target_lod** (list|tuple|None)-一层LoD，``y`` 未提供时作为目标LoD
 
 返回：输出变量，该层指定为LoD
 
 返回类型：变量
 
-抛出异常：``TypeError`` - 如果y和target_lod都为空
+抛出异常：``TypeError`` - 如果 ``y`` 和 ``target_lod`` 都为空
 
 **代码示例**：
 

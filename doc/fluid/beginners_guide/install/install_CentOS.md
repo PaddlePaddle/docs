@@ -42,8 +42,8 @@ CentOS系统下有4种安装方式：
 
 * pip安装（推荐）
 * [Docker安装](./install_Docker.html)
-* [源码编译安装](./compile/compile_CentOS.html/#ct_source)
-* [Docker源码编译安装](./compile/compile_CentOS.html/#ct_docker)
+* [源码编译安装](./compile/compile_CentOS.html#ct_source)
+* [Docker源码编译安装](./compile/compile_CentOS.html#ct_docker)
 
 这里为您介绍pip安装方式
 

@@ -7,7 +7,7 @@ BackwardStrategy
 
 BackwardStrategy是描述反向过程的描述符，现有如下功能:
 
-1. ``sort_sum_gradient`` 按回溯逆序将梯度加和
+ ``sort_sum_gradient`` 按回溯逆序将梯度加和
 
 
 **代码示例**

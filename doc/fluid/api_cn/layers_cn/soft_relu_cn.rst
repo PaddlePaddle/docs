@@ -7,7 +7,7 @@ soft_relu
 
 SoftRelu 激活函数
 
-.. math::   out=ln(1+exp(max(min(x,threshold),threshold))
+.. math::   out=ln(1+exp(max(min(x,threshold),threshold)))
 
 参数:
     - **x** (variable) - SoftRelu operator的输入

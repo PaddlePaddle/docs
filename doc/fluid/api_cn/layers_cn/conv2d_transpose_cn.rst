@@ -9,7 +9,7 @@ conv2d_transpose
 
 该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中 ``N`` 为batch大小， ``C`` 为通道数（channel），``H`` 为特征高度， ``W`` 为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数 ``bias_attr`` 和 ``act`` 不为 ``None``，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
 
-.. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
+.. _参考文献: https://arxiv.org/pdf/1603.07285.pdf
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
@@ -53,7 +53,10 @@ conv2d_transpose
         & H_{out}\in[H'_{out},H'_{out} + strides[0])\\
         & W_{out}\in[W'_{out},W'_{out} + strides[1])\\
 
-
+注意：
+如果 ``output_size`` 为None，则 :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;
+否则， 输出size的 :math:`H_{out}` 应当介于 :math:`H^\prime_{out}`
+和 :math:`H^\prime_{out} + strides[0]` 之间, 并且输出size的 :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间, ``conv2d_transpose`` 可以自动计算kernel大小。
 
 参数:
   - **input** （Variable）- 输入张量，格式为[N, C, H, W]

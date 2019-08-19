@@ -15,9 +15,12 @@ roi_perspective_transform
     - **spatial_scale** (float) - 空间尺度因子，用于缩放ROI坐标，默认：1.0。
 
 返回：
- ``ROIPerspectiveTransformOp`` 的输出，它是一个4维张量，形为 (num_rois,channels,transformed_h,transformed_w)
+三变量的一个元组。 (out, mask, transform_matrix)
+ - ``out`` : ``ROIPerspectiveTransformOp`` 的输出，它是一个4维张量，形为 (num_rois,channels,transformed_h,transformed_w)。
+ - ``mask`` : ``ROIPerspectiveTransformOp`` 的掩码，它是一个4维张量，形为 (num_rois,1,transformed_h,transformed_w)。
+ - ``transform_matrix`` : ``ROIPerspectiveTransformOp`` 的转换矩阵，它是一个2维张量，形为 (num_rois,9)。
 
-返回类型：变量（Variable）
+返回类型：元组
 
 **代码示例**：
 
@@ -27,7 +30,7 @@ roi_perspective_transform
 
     x = fluid.layers.data(name='x', shape=[256, 28, 28], dtype='float32')
     rois = fluid.layers.data(name='rois', shape=[8], lod_level=1, dtype='float32')
-    out = fluid.layers.roi_perspective_transform(x, rois, 7, 7, 1.0)
+    out, mask, transform_matrix = fluid.layers.roi_perspective_transform(x, rois, 7, 7, 1.0)
 
 
 
