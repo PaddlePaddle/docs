@@ -67,7 +67,7 @@ PyReader
                 break
 
 
-2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是不可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 。
+2.如果iterable=True，则创建的Pyreader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是可迭代的。用户应将从Pyreader对象生成的数据输入 ``Executor.run(feed=...)`` 。
 
 .. code-block:: python
 
@@ -209,7 +209,7 @@ PyReader
 
 提供的 ``sample_generator`` 应该是一个python生成器，它生成的数据类型应为list(numpy.ndarray)。
 
-当Pyreader对象不可迭代时，必须设置 ``places`` 。
+当Pyreader对象可迭代时，必须设置 ``places`` 。
 
 如果所有的输入都没有LOD，这个方法比 ``decorate_sample_list_generator(paddle.batch(sample_generator, ...))`` 更快。
 

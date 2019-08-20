@@ -23,7 +23,7 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
     - **input** (Variable) - 输入变量
     - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效。为了数学稳定性，默认该项为False。
     - **name** (str|None) - 该层名称（可选）。若为空，则自动为该层命名。默认：None
-    - **axis** (Variable) - 执行softmax计算的维度索引，应该在 :math:`[-1，rank-1]` 范围内，其中rank是输入变量的秩。 默认值：-1。
+    - **axis** (int) - 执行softmax计算的维度索引，应该在 :math:`[-1，rank-1]` 范围内，其中rank是输入变量的秩。 默认值：-1。
 
 返回： softmax输出
 
