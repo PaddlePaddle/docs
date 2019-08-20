@@ -29,7 +29,7 @@
 
     * 如果您是使用 Python 3
 
-       pip3 --version
+        pip3 --version
 
 * 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
 
