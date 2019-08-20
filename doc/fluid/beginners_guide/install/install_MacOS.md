@@ -8,8 +8,37 @@
 
 ### 注意事项
 
-* 可以使用`pip -V`(Python版本为2.7)或`pip3 -V`(Python版本为3.5/3.6/3.7)，确认pip/pip3版本是否满足要求
-* 默认提供的安装包需要计算机支持AVX指令集和MKL
+* 需要确认python的版本是否满足要求
+
+    * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
+
+        python --version
+
+    * 如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7
+
+        python3 --version
+
+* 需要确认pip的版本是否满足要求，要求pip版本为9.0.1+
+
+    * 如果您是使用 Python 2 
+
+        pip --version
+
+    * 如果您是使用 Python 3
+
+       pip3 --version
+
+* 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
+
+    * 如果您是使用 Python 2
+
+        python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+    * 如果您是使用 Python 3
+    
+        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+* 默认提供的安装包需要计算机支持MKL
 
 ## 选择CPU/GPU
 
@@ -17,9 +46,10 @@
 
 ## 安装方式
 
-MacOS系统下有4种安装方式：
+MacOS系统下有5种安装方式：
 
 * pip安装（推荐）
+* [conda安装](./install_Conda.html)
 * [Docker安装](./install_Docker.html)
 * [源码编译安装](./compile/compile_MacOS.html#mac_source)
 * [Docker源码编译安装](./compile/compile_MacOS.html#mac_docker)

@@ -8,7 +8,37 @@
 
 ### 注意事项
 
-* 默认提供的安装包需要计算机支持AVX指令集和MKL，如果您的环境不支持，请在[这里](./Tables.html/#ciwhls-release)下载`openblas`版本的安装包
+* 需要确认python的版本是否满足要求
+
+    * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
+
+        python --version
+
+    * 如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7
+
+        python3 --version
+
+* 需要确认pip的版本是否满足要求，要求pip版本为9.0.1+
+
+    * 如果您是使用 Python 2 
+
+        pip --version
+
+    * 如果您是使用 Python 3
+
+       pip3 --version
+
+* 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
+
+    * 如果您是使用 Python 2
+
+        python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+    * 如果您是使用 Python 3
+    
+        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+* 默认提供的安装包需要计算机支持MKL，如果您的环境不支持，请在[这里](./Tables.html/#ciwhls-release)下载`openblas`版本的安装包
 * 当前版本暂不支持NCCL，分布式等相关功能
 
 ## 选择CPU/GPU
@@ -28,7 +58,7 @@
 Windows系统下有3种安装方式：
 
 * pip安装（推荐）
-* [Docker安装](./install_Docker.html)
+* [conda安装](./install_Conda.html)
 * [源码编译安装](./compile/compile_Windows.html#win_source)
 
 这里为您介绍pip安装方式

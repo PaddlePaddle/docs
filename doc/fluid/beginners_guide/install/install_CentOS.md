@@ -3,15 +3,45 @@
 ## 环境准备
 
 * *CentOS 版本 (64 bit)*
-    * *CentOS 6 (GPU版本支持CUDA 9/10.0, 仅支持单卡)*
-    * *CentOS 7 (GPU版本支持CUDA 8/9/10.0, 其中CUDA 8仅支持单卡)*
+    * *CentOS 6 (GPU版本支持CUDA 8/9, 仅支持单卡)*
+    * *CentOS 7 (GPU版本支持CUDA 9/10.0, 其中CUDA 8仅支持单卡)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
 ### 注意事项
 
 * 可以使用`uname -m && cat /etc/*release`查看本机的操作系统和位数信息
-* 可以使用`pip -V`(Python版本为2.7)或`pip3 -V`(Python版本为3.5/3.6/3.7)，确认pip/pip3版本是否满足要求
+* 需要确认python的版本是否满足要求
+
+    * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
+
+        python --version
+
+    * 如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7
+
+        python3 --version
+
+* 需要确认pip的版本是否满足要求，要求pip版本为9.0.1+
+
+    * 如果您是使用 Python 2 
+
+        pip --version
+
+    * 如果您是使用 Python 3
+
+       pip3 --version
+
+* 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
+
+    * 如果您是使用 Python 2
+
+        python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+    * 如果您是使用 Python 3
+    
+        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+* 默认提供的安装包需要计算机支持MKL
 * 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/beginners_guide/install/install_script.md)。
 
 ## 选择CPU/GPU
@@ -38,9 +68,10 @@
 
 ## 安装方式
 
-CentOS系统下有4种安装方式：
+CentOS系统下有5种安装方式：
 
 * pip安装（推荐）
+* [conda安装](./install_Conda.html)
 * [Docker安装](./install_Docker.html)
 * [源码编译安装](./compile/compile_CentOS.html#ct_source)
 * [Docker源码编译安装](./compile/compile_CentOS.html#ct_docker)
