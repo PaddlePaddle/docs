@@ -982,7 +982,7 @@ conv2d
 参数：
     - **input** (Variable) - 格式为[N,C,H,W]格式的输入图像
     - **num_filters** (int) - 滤波器数。和输出图像通道相同
-    - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size，filter_size_W）。否则，滤波器为square
+    - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_H，filter_size_W）。否则，滤波器为square
     - **stride** (int|tuple) - 步长(stride)大小。如果步长（stride）为元组，则必须包含两个整型数，（stride_H,stride_W）。否则，stride_H = stride_W = stride。默认：stride = 1
     - **padding** (int|tuple) - 填充（padding）大小。如果填充（padding）为元组，则必须包含两个整型数，（padding_H,padding_W)。否则，padding_H = padding_W = padding。默认：padding = 0
     - **dilation** (int|tuple) - 膨胀（dilation）大小。如果膨胀（dialation）为元组，则必须包含两个整型数，（dilation_H,dilation_W）。否则，dilation_H = dilation_W = dilation。默认：dilation = 1
@@ -1674,24 +1674,33 @@ deformable_conv
 可变形卷积层
 
 在4-D输入上计算2-D可变形卷积。给定输入图像x，输出特征图y，可变形卷积操作如下所示：
-\[y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}\]
-其中\(\Delta p_k\) 和 \(\Delta m_k\) 分别为第k个位置的可学习偏移和调制标量。
-参考可变形卷积网络v2：可变形程度越高，结果越好。
+
+ :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}`
+ 
+其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第k个位置的可学习偏移和调制标量。
+参考可变形卷积网络v2：`可变形程度越高，结果越好 <https://arxiv.org/abs/1811.11168v2>`_。
 
 **示例**
      
 输入：
-    输入形状： \((N, C_{in}, H_{in}, W_{in})\)
-    卷积核形状： \((C_{out}, C_{in}, H_f, W_f)\)
-    偏移形状： \((N, 2 * deformable\_groups * H_f * H_w, H_{in}, W_{in})\)
-    掩膜形状： \((N, deformable\_groups * H_f * H_w, H_{in}, W_{in})\)
+    输入形状： :math:`(N, C_{in}, H_{in}, W_{in})`
+
+    卷积核形状： :math:`(C_{out}, C_{in}, H_f, W_f)`
+
+    偏移形状： :math:`(N, 2 * deformable\_groups * H_f * H_w, H_{in}, W_{in})`
+
+    掩膜形状： :math:`(N, deformable\_groups * H_f * H_w, H_{in}, W_{in})`
      
 输出：
-    输出形状： \((N, C_{out}, H_{out}, W_{out})\)
+    输出形状： :math:`(N, C_{out}, H_{out}, W_{out})`
 
 其中
-    \[\begin{split}H_{out}&= \frac{(H_{in} + 2 * paddings[0] - (dilations[0] * (H_f - 1) + 1))}{strides[0]} + 1 \\
-    W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1\end{split}\]
+    
+    .. math::
+
+        H_{out}&= \frac{(H_{in} + 2 * paddings[0] - (dilations[0] * (H_f - 1) + 1))}{strides[0]} + 1
+
+        W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1
      
 
 参数：
@@ -1706,7 +1715,7 @@ deformable_conv
     - **groups** (int) – 可变形卷积层的群组数。依据Alex Krizhevsky的Deep CNN论文中的分组卷积，有：当group=2时，前一半卷积核只和前一半输入通道有关，而后一半卷积核只和后一半输入通道有关。默认groups=1。
     - **deformable_groups** (int) – 可变形群组分区数。默认deformable_groups = 1。
     - **im2col_step** (int) – 每个im2col计算的最大图像数。总batch大小应该可以被该值整除或小于该值。如果您面临内存问题，可以尝试在此处使用一个更小的值。默认im2col_step = 64。
-    - **param_attr** (ParamAttr|None) – 可变形卷积的可学习参数/权重的参数属性。如果将其设置为None或ParamAttr的一个属性，可变形卷积将创建ParamAttr作为param_attr。如果没有设置此param_attr的Initializer，该参数将被\(Normal(0.0, std)\)初始化，且其中的\(std\) 为 \((\frac{2.0 }{filter\_elem\_num})^{0.5}\)。默认值None。
+    - **param_attr** (ParamAttr|None) – 可变形卷积的可学习参数/权重的参数属性。如果将其设置为None或ParamAttr的一个属性，可变形卷积将创建ParamAttr作为param_attr。如果没有设置此param_attr的Initializer，该参数将被Normal(0.0, std)初始化，且其中的std 为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}`。默认值None。
     - **bias_attr** (ParamAttr|bool|None) – 可变形卷积层的偏置的参数属性。如果设为False，则输出单元不会加偏置。如果设为None或者ParamAttr的一个属性，conv2d会创建ParamAttr作为bias_attr。如果不设置bias_attr的Initializer，偏置会被初始化为0。默认值None。
     - **name** (str|None) – 该层的名字（可选项）。如果设为None，该层将会被自动命名。默认值None。
  
@@ -4509,7 +4518,7 @@ linear_chain_crf
     P(s) = (1/Z) exp(a_{s_1} + b_{s_L} + sum_{l=1}^L x_{s_l} + sum_{l=2}^L w_{s_{l-1},s_l})
 
 
-其中Z是正则化值，所有可能序列的P(s)之和为1，x是线性链条件随机场（linear chain CRF）的发射（emission）特征权重。
+其中Z是归一化值，所有可能序列的P(s)之和为1，x是线性链条件随机场（linear chain CRF）的发射（emission）特征权重。
 
 线性链条件随机场最终输出mini-batch每个训练样本的条件概率的对数
 
@@ -4533,7 +4542,7 @@ linear_chain_crf
 
     2.由于该函数对所有可能序列的进行全局正则化，发射特征（emission feature）权重应是未缩放的。因此如果该函数带有发射特征（emission feature），并且发射特征是任意非线性激活函数的输出，则请勿调用该函数。
 
-    3.Emission的第二维度必须和标记数字（tag number）相同
+    3.Emission的第二维度必须和标记数字（tag number）相同。
 
 参数：
     - **input** (Variable，LoDTensor，默认float类型LoDTensor) - 一个二维LoDTensor，shape为[N*D]，N是mini-batch的大小，D是总标记数。线性链条件随机场的未缩放发射权重矩阵
@@ -8845,7 +8854,7 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
     - **input** (Variable) - 输入变量
     - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效。为了数学稳定性，默认该项为False。
     - **name** (str|None) - 该层名称（可选）。若为空，则自动为该层命名。默认：None
-    - **axis** (Variable) - 执行softmax计算的维度索引，应该在 :math:`[-1，rank-1]` 范围内，其中rank是输入变量的秩。 默认值：-1。
+    - **axis** (int) - 执行softmax计算的维度索引，应该在 :math:`[-1，rank-1]` 范围内，其中rank是输入变量的秩。 默认值：-1。
 
 返回： softmax输出
 
@@ -9359,7 +9368,7 @@ Swish 激活函数
 
 参数：
     - **x** (Variable) -  Swish operator 的输入
-    - **beta** (浮点|1.0) - Swish operator 的常量beta
+    - **beta** (float|1.0) - Swish operator 的常量beta
     - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
 返回: Swish operator 的输出
