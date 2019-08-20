@@ -41,7 +41,6 @@ fluid.layers
     layers_cn/brelu_cn.rst
     layers_cn/cast_cn.rst
     layers_cn/ceil_cn.rst
-    layers_cn/center_loss_cn.rst
     layers_cn/chunk_eval_cn.rst
     layers_cn/clip_by_norm_cn.rst
     layers_cn/clip_cn.rst
@@ -142,7 +141,6 @@ fluid.layers
     layers_cn/linear_lr_warmup_cn.rst
     layers_cn/linspace_cn.rst
     layers_cn/load_cn.rst
-    layers_cn/lod_append_cn.rst
     layers_cn/lod_reset_cn.rst
     layers_cn/log_cn.rst
     layers_cn/log_loss_cn.rst
@@ -241,7 +239,6 @@ fluid.layers
     layers_cn/sequence_softmax_cn.rst
     layers_cn/sequence_unpad_cn.rst
     layers_cn/shape_cn.rst
-    layers_cn/shard_index_cn.rst
     layers_cn/shuffle_channel_cn.rst
     layers_cn/shuffle_cn.rst
     layers_cn/sigmoid_cn.rst
@@ -250,7 +247,6 @@ fluid.layers
     layers_cn/sign_cn.rst
     layers_cn/similarity_focus_cn.rst
     layers_cn/sin_cn.rst
-    layers_cn/size_cn.rst
     layers_cn/slice_cn.rst
     layers_cn/smooth_l1_cn.rst
     layers_cn/soft_relu_cn.rst
@@ -284,14 +280,10 @@ fluid.layers
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
     layers_cn/tree_conv_cn.rst
-    layers_cn/unfold_cn.rst
-    layers_cn/uniform_random_batch_size_like_cn.rst
     layers_cn/uniform_random_cn.rst
-    layers_cn/unique_cn.rst
-    layers_cn/unique_with_counts_cn.rst
+    layers_cn/uniform_random_batch_size_like_cn.rst
     layers_cn/unsqueeze_cn.rst
     layers_cn/unstack_cn.rst
-    layers_cn/var_conv_2d_cn.rst
     layers_cn/warpctc_cn.rst
     layers_cn/where_cn.rst
     layers_cn/While_cn.rst
