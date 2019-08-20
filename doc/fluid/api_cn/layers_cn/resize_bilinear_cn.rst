@@ -51,7 +51,7 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
 
 
 参数:
-    - **input** (Variable) - 双线性插值的输入张量，是一个shape为(N x C x h x w)的4d张量。
+    - **input** (Variable) - 输入为4d张量。
     - **out_shape** (list|tuple|Variable|None) - 调整双线性层的输出形状，形式为(out_h, out_w)。默认值：None。
     - **scale** (float|None) - 用于输入高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值：None。
     - **name** (str|None) - 输出变量名。
@@ -60,7 +60,7 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
     - **align_mode** （int）- 双线性插值的可选项。 可以是'0'代表src_idx = scale *（dst_indx + 0.5）-0.5；可以为'1' ，代表src_idx = scale * dst_index。
 
 
-返回： 插值运算的输出张量，其各维度是(N x C x out_h x out_w)
+返回： 4D张量，shape为(num_batches, channels, out_h, out_w)
 
 
 **代码示例**
