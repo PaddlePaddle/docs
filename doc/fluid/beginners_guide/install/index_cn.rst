@@ -46,7 +46,7 @@
 
 * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
     * Windows 安装 GPU 版本
-        * Windows 7/8/10.0 支持 CUDA 8.0/9.0 单卡模式
+        * Windows 7/8/10 支持 CUDA 8.0/9.0 单卡模式
 		
         * 不支持 `nvidia-docker` 方式安装
 
