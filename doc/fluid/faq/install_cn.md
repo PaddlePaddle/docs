@@ -50,6 +50,16 @@ Python3:
 
 ## 环境问题
 
+##### Q: 报错：libmkldnn.so not found
+
++ 问题描述
+
+paddle运行时报libmkldnn.so not found。
+
++ 问题解答
+
+请设置为 export LD_LIBRARY_PATH=/home/disk1/yitengfei/paddle_release_home/python/lib/python2.7/site-packages/paddle/libs/:$LD_LIBRARY_PATH。 注：具体请按照自己的文件路径填写。
+
 ##### Q: CPU版本可运行，GPU版本运行失败
 
 + 问题描述
@@ -470,6 +480,26 @@ Please uninstall paddle package before start unittest. Try to 'pip uninstall pad
 ## GPU
 
 ### 安装过程中报错
+
+##### Q: Error: no CUDA-capable device is detected
+
++ 问题描述
+
+使用paddle时出现no CUDA-capable device is detected错误
+
++ 问题解答
+
+没装对cuda。建议查找libcudart.so在哪个目录下，并将其加到LD_LIBRARY_PATH中。例如: find / -name libcudart.so, 可以发现libcudart.so在/usr/local/cuda-8.0/targets/x86_64-linux/lib/libcudart.so， 然后使用命令export LD_LIBRARY_PATH=/usr/local/cuda-8.0/targets/x86_64-linux/lib/libcudart.so$LD_LIBRARY_PATH即可
+
+##### Q: Error: after cudaFuncGetAttributes: invalid device function
+
++ 问题描述
+
+在A机器上编译的paddle，在B机器上跑报错Runtime Error: function_attributes(): after cudaFuncGetAttributes: invalid device function
+
++ 问题解答
+
+应该是在A上编译的时候选择的GPU的架构与B机器上的GPU架构不兼容，建议用户在B上重新编译
 
 ##### Q: Error: Can not load core_noavx.* .ImportError
 

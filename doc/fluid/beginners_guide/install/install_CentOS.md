@@ -3,8 +3,8 @@
 ## 环境准备
 
 * *CentOS 版本 (64 bit)*
-    * *CentOS 6 (GPU版本支持CUDA 9/10, 仅支持单卡)*
-    * *CentOS 7 (GPU版本支持CUDA 8/9/10, 其中CUDA 8仅支持单卡)*
+    * *CentOS 6 (GPU版本支持CUDA 9/10.0, 仅支持单卡)*
+    * *CentOS 7 (GPU版本支持CUDA 8/9/10.0, 其中CUDA 8仅支持单卡)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
@@ -42,8 +42,8 @@ CentOS系统下有4种安装方式：
 
 * pip安装（推荐）
 * [Docker安装](./install_Docker.html)
-* [源码编译安装](./compile/compile_CentOS.html/#ct_source)
-* [Docker源码编译安装](./compile/compile_CentOS.html/#ct_docker)
+* [源码编译安装](./compile/compile_CentOS.html#ct_source)
+* [Docker源码编译安装](./compile/compile_CentOS.html#ct_docker)
 
 这里为您介绍pip安装方式
 

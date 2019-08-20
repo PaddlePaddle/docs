@@ -158,6 +158,26 @@ return accuracy, avg_cost, auc_var, batch_auc_var, py_reader
 
 ## 参数相关
 
+##### Q: 本地数据传入embedding的参数矩阵
+
++ 问题描述
+
+如何将本地数据传入embedding的参数矩阵中？
+
++ 问题解答
+
+需将本地词典向量读取为numpy数据格式，然后使用fluid.initializer.NumpyArrayInitializer这个op初始化fluid.layers.embedding里的param_attr参数。即可实现加载用户自定义（或预训练）的embedding向量。
+
+##### Q: 共享向量权重
+
++ 问题描述
+
+fluid.layers.embedding中如何实现多个feature间共享该层的向量权重？
+
++ 问题解答
+
+将所有embedding层中param_attr参数里的name设置为同一个，即可实现共享向量权重。如`param_attr=fluid.ParamAttr(name="word_embedding")`。
+
 ##### Q: 手动输入参数并改变？
 
 + 问题描述
