@@ -3,9 +3,9 @@
 ## 环境准备
 
 * *Ubuntu 版本 (64 bit)*
-    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10)*
-    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10)*
-    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10)*
+    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10.0)*
+    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10.0)*
+    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10.0)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip或pip3 版本 9.0.1+ (64 bit)*
 
@@ -22,7 +22,7 @@
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
 	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
 	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包8.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
+	* *CUDA 工具包8.0配合cuDNN v7.1+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
 	* *GPU运算能力超过1.0的硬件设备*
 
 
@@ -51,6 +51,8 @@ Ubuntu系统下有4种安装方式：
 ## 安装步骤
 
 * CPU版PaddlePaddle：`pip install -U paddlepaddle` 或 `pip3 install -U paddlepaddle`
+
+
 * GPU版PaddlePaddle：`pip install -U paddlepaddle-gpu` 或 `pip3 install   -U paddlepaddle-gpu`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
@@ -58,7 +60,11 @@ Ubuntu系统下有4种安装方式：
 注：
 
 * pip与python版本对应。如果是python2.7, 建议使用`pip`命令; 如果是python3.x, 则建议使用`pip3`命令
-* `pip install -U paddlepaddle-gpu` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`pip install -U paddlepaddle-gpu==[版本号]`或 `pip3 install -U paddlepaddle-gpu==[版本号]`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu/#history)
+
+
+* `pip install -U paddlepaddle-gpu` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`pip install -U paddlepaddle-gpu==[版本号]`或 `pip3 install -U paddlepaddle-gpu==[版本号]`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu/#history)，关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html/#whls)
+
+
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html/#ciwhls)
 
 <a name="check"></a>

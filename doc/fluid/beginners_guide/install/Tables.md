@@ -98,6 +98,12 @@
 		<td> </td>
 		<td>  </td>
 	</tr>
+	<tr>
+		<td> unrar </td>
+		<td>  </td>
+		<td> </td>
+		<td> brew install unrar (For MacOS), apt-get install unrar (For Ubuntu) </td>
+	</tr>
 	</tbody>
 </table>
 </p>
@@ -222,21 +228,21 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 		<td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
 	</tr>
 	<tr>
-		<td> paddlepaddle-gpu==1.5.1 </td>
-		<td> 使用CUDA 9.0和cuDNN 7编译的1.5.1版本 </td>
+		<td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==1.5.1 </td>
+		<td> 默认安装支持CUDA 10.0和cuDNN 7的对应[版本号]的PaddlePaddle安装包 </td>
 	</tr>
 	<tr>
-		<td> paddlepaddle-gpu==1.5.1.post87 </td>
-		<td> 使用CUDA 8.0和cuDNN 7编译的1.5.1版本 </td>
+		<td> paddlepaddle-gpu==[版本号].postXX 例如 paddlepaddle-gpu==1.5.1.post87 </td>
+		<td> 支持CUDA 8.0和cuDNN 7的对应PaddlePaddle版本的安装包</td>
 	</tr>	
    </tbody>
 </table>
 </p>
 
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
+> 其中`postXX` 对应的是CUDA和cuDNN的版本，`postXX`之前的数字代表Paddle的版本
 
-需要注意的是，<code> paddlepaddle-gpu </code> 命令在windows环境下，会默认安装CUDA 8.0和cuDNN 7编译的PaddlePaddle
-
+需要注意的是，命令中<code> paddlepaddle-gpu </code> 在windows环境下，会默认安装支持CUDA 9和cuDNN 7的对应[版本号]的PaddlePaddle安装包
 ***
 
 <a name="ciwhls-release"></a>

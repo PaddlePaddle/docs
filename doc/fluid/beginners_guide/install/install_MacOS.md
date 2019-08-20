@@ -34,8 +34,13 @@ MacOS系统下有4种安装方式：
 
 注：
 
+* MacOS上您需要安装unrar以支持PaddlePaddle，可以使用命令`brew install unrar`
 * pip与python版本对应。如果是python2.7, 建议使用`pip`命令; 如果是python3.x, 则建议使用`pip3`命令
+
+
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html/#ciwhls)
+
+
 * 使用MacOS中自带Python可能会导致安装失败。对于**Python2**，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg)提供的python2.7.15；对于**Python3**，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x、python3.6.x或python3.7.x。
 
 <a name="check"></a>

@@ -32,38 +32,38 @@
 
 * 目前 `PaddlePaddle` 仅支持 `NVIDIA` 显卡的 `CUDA` 驱动
 
-* 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+
+* 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+(For CUDA9/10), 7.1+(For CUDA 8)
 
 * 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
     * 仅 Ubuntu/CentOS 支持 NCCL 2 技术
 
 * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
     * Windows 安装 GPU 版本
-        * Windows 7/8/10 支持 CUDA 8/9 单卡模式
+        * Windows 7/8/10.0 支持 CUDA 8/9 单卡模式
 		
         * 不支持 `nvidia-docker` 方式安装
 
     * Ubuntu 安装 GPU 版本
-        * Ubuntu 14.04 支持 CUDA 8/10
+        * Ubuntu 14.04 支持 CUDA 8/10.0
 
-        * Ubuntu 16.04 支持 CUDA 8/9/10
+        * Ubuntu 16.04 支持 CUDA 8/9/10.0
 
-        * Ubuntu 18.04 支持 CUDA 10
+        * Ubuntu 18.04 支持 CUDA 10.0
 
-        * 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
+        * 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10.0
 
     * CentOS 安装 GPU 版本
         * 如果您是使用本机 `pip` 安装：
-            * CentOS 7 支持 CUDA 9/10，支持 CUDA 8 但仅支持单卡模式
+            * CentOS 7 支持 CUDA 9/10.0，支持 CUDA 8 但仅支持单卡模式
 
             * CentOS 6 支持 CUDA 8/9 单卡模式
 
         * 如果您是使用本机源码编译安装：
-            * CentOS 7 支持 CUDA 9/10
+            * CentOS 7 支持 CUDA 9/10.0
 
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
 		
-        * 如果您是使用 `nvidia-docker` 安装，在CentOS 7 下支持 CUDA 8/9/10。
+        * 如果您是使用 `nvidia-docker` 安装，在CentOS 7 下支持 CUDA 8/9/10.0。
 
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
@@ -144,24 +144,24 @@
                 * 仅 Ubuntu/CentOS 支持 NCCL 2 技术
 
             * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
-                * Windows 7/8/10 支持 CUDA 8/9 单卡模式
+                * Windows 7/8/10.0 支持 CUDA 8/9 单卡模式
 
                 * Ubuntu
-                    * Ubuntu 14.04 支持 CUDA 8/10
+                    * Ubuntu 14.04 支持 CUDA 8/10.0
 
-                    * Ubuntu 16.04 支持 CUDA 8/9/10
+                    * Ubuntu 16.04 支持 CUDA 8/9/10.0
 
-                    * Ubuntu 18.04 支持 CUDA 10
+                    * Ubuntu 18.04 支持 CUDA 10.0
 
              	* CentOS 
-                    * CentOS 7 支持 CUDA 9/10 ，CUDA 8 仅具有单卡模式支持
+                    * CentOS 7 支持 CUDA 9/10.0 ，CUDA 8 仅具有单卡模式支持
 
                     * CentOS 6 支持 CUDA 8/9 单卡模式
 
                 * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
 
-        如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows下默认支持CUDA9，Ubuntu、CentOS下默认支持CUDA10：
+        如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows下默认支持CUDA9，Ubuntu、CentOS下默认支持CUDA10.0：
         ::
 
             pip install paddlepaddle-gpu 
@@ -177,7 +177,7 @@
             pip install paddlepaddle-gpu==1.5.1.post97
         
 
-        如果您是使用 Python 2，CUDA 10，cuDNN 7.3+，安装GPU版本的命令为：
+        如果您是使用 Python 2，CUDA 10.0，cuDNN 7.3+，安装GPU版本的命令为：
         ::
     
             pip install paddlepaddle-gpu==1.5.1.post107
@@ -246,12 +246,12 @@
 
         * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
 
-            * Ubuntu/CentOS 7 ，如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10
+            * Ubuntu/CentOS 7 ，如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10.0
 
             * Windows/MacOS/CentOS 6 不支持 `nvidia-docker` 方式安装
 
 
-    (2). 拉取支持`CUDA 10`, `cuDNN 7.3+` 预安装 PaddlePaddle 的镜像：
+    (2). 拉取支持`CUDA 10.0`, `cuDNN 7.3+` 预安装 PaddlePaddle 的镜像：
     ::
 
         nvidia-docker pull hub.baidubce.com/paddlepaddle/paddle:1.5.1-gpu-cuda10.0-cudnn7
