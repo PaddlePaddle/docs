@@ -12,7 +12,7 @@
 
     首先根据具体的Python版本创建Anaconda虚拟环境，前PaddlePaddle的Anaconda安装支持以下四种Python安装环境。
 
-    例如您想使用的python版本为2.7:
+    如果您想使用的python版本为2.7:
 
         conda create -n paddle_env python=2.7
 
@@ -28,7 +28,7 @@
 
         conda create -n paddle_env python=3.7
 
-    使用conda activate paddle_env命令进入Anaconda虚拟环境。
+    activate paddle_env (for Windows) 或 conda activate paddle_env (for MacOS/Linux) 命令进入Anaconda虚拟环境。
 
 2. 确认您的conda虚拟环境和需要安装PaddlePaddle的Python是您预期的位置，因为您计算机可能有多个Python。进入Anaconda的命令行终端，输入以下指令确认Python位置。
 
