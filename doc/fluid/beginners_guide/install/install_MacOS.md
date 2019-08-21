@@ -8,6 +8,16 @@
 
 ### 注意事项
 
+* 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
+
+    * 如果您是使用 Python 2，使用以下命令输出 Python 路径，根据的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
+
+        which python
+
+    * 如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
+
+        which python3 
+
 * 需要确认python的版本是否满足要求
 
     * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
@@ -22,11 +32,15 @@
 
     * 如果您是使用 Python 2 
 
-        pip --version
+        python -m ensurepip
+
+        python -m pip --version
 
     * 如果您是使用 Python 3
 
-        pip3 --version
+        python3 -m ensurepip
+
+        python3 -m pip --version
 
 * 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
 
@@ -58,14 +72,14 @@ MacOS系统下有5种安装方式：
 
 ## 安装步骤
 
-* CPU版PaddlePaddle：`pip install -U paddlepaddle` 或 `pip3 install -U  paddlepaddle`
+* CPU版PaddlePaddle：`python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
 注：
 
 * MacOS上您需要安装unrar以支持PaddlePaddle，可以使用命令`brew install unrar`
-* pip与python版本对应。如果是python2.7, 建议使用`pip`命令; 如果是python3.x, 则建议使用`pip3`命令
+* 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
 
 
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html/#ciwhls)
@@ -84,4 +98,4 @@ MacOS系统下有5种安装方式：
 
 请使用以下命令卸载PaddlePaddle：
 
-* `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
+* `python -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle`

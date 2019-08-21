@@ -46,31 +46,31 @@
 
 * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
     * Windows 安装 GPU 版本
-        * Windows 7/8/10 支持 CUDA 8.0/9.0 单卡模式
+        * Windows 7/8/10 支持 CUDA 8.0/9.0 单卡模式，不支持 CUDA 9.1/9.2/10.0/10.1
 		
         * 不支持 `nvidia-docker` 方式安装
 
     * Ubuntu 安装 GPU 版本
-        * Ubuntu 14.04 支持 CUDA 8/10.0
+        * Ubuntu 14.04 支持 CUDA 8.0/10.0，不支持CUDA 9.0/9.1/9.2/10.1
 
-        * Ubuntu 16.04 支持 CUDA 8/9/10.0
+        * Ubuntu 16.04 支持 CUDA 8.0/9.0/9.1/9.2/10.0，不支持10.1
 
-        * Ubuntu 18.04 支持 CUDA 10.0
+        * Ubuntu 18.04 支持 CUDA 10.0，不支持CUDA 8.0/9.0/9.1/9.2/10.1
 
-        * 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10.0
+        * 如果您是使用 `nvidia-docker` 安装，支持 CUDA 8.0/9.0/9.1/9.2/10.0，不支持10.1
 
     * CentOS 安装 GPU 版本
         * 如果您是使用本机 `pip` 安装：
-            * CentOS 7 支持 CUDA 9/10.0，支持 CUDA 8 但仅支持单卡模式
+            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0，不支持10.1，支持 CUDA 8.0 但仅支持单卡模式
 
-            * CentOS 6 支持 CUDA 8/9 单卡模式
+            * CentOS 6 支持 CUDA 8.0/9.0/9.1/9.2 单卡模式，不支持10.0/10.1
 
         * 如果您是使用本机源码编译安装：
-            * CentOS 7 支持 CUDA 9/10.0
+            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0
 
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
 		
-        * 如果您是使用 `nvidia-docker` 安装，在CentOS 7 下支持 CUDA 8/9/10.0。
+        * 如果您是使用 `nvidia-docker` 安装，在CentOS 7 下支持 CUDA 8.0/9.0/9.1/9.2/10.0，不支持10.1
 
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
@@ -92,13 +92,13 @@
     如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
     ::
 
-        where python
+        where python (for Windows) or which python (for MacOS/Linux)
 
     如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
 
     ::
 
-        where python3
+        where python3 (for Windows) or which python3 (for MacOS/Linux)
 
 4. 检查 Python 的版本
 
@@ -117,12 +117,14 @@
     如果您是使用 Python 2
     ::
     
-        pip --version
+        python -m ensurepip 
+        python -m pip --version
 
     如果您是使用 Python 3
     ::
     
-        pip3 --version
+        python3 -m ensurepip
+        python3 -m pip --version
 
 6. 确认 Python 和 pip 是 64 bit，并且处理器架构是x86_64（或称作 x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是 "64bit" ，第二行输出的是 "x86_64" 、 "x64" 或 "AMD64" 即可：
 
@@ -138,19 +140,19 @@
 
 7. 如果您希望使用 `pip <https://pypi.org/project/pip/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 
-    (1). **CPU版本**：如果您只是想安装CPU版本请参考如下命令安装  
+    (1). **CPU版本**：如果您只是想安装CPU版本请参考如下命令安装（使用清华源） 
 
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
     
-            pip install paddlepaddle
+            python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
         
         如果您是使用 Python 3，安装CPU版本的命令为：
         ::
     
-            pip3 install paddlepaddle
+            python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-    (2). **GPU版本**：如果您想使用GPU版本请参考如下命令安装 
+    (2). **GPU版本**：如果您想使用GPU版本请参考如下命令安装（使用清华源） 
 
         注意：
             * 需要您确认您的 GPU 满足上方列出的要求
@@ -158,25 +160,24 @@
         如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows下默认支持CUDA9，Ubuntu、CentOS下默认支持CUDA10.0：
         ::
 
-            pip install paddlepaddle-gpu 
+            python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用 Python 2，CUDA 8，cuDNN 7.1+，安装GPU版本的命令为：
         ::
     
-            pip install paddlepaddle-gpu==1.5.1.post87
+            python -m pip install paddlepaddle-gpu==1.5.1.post87 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用 Python 2，CUDA 9，cuDNN 7.3+，安装GPU版本的命令为：
         ::
     
-            pip install paddlepaddle-gpu==1.5.1.post97
-        
+            python -m pip install paddlepaddle-gpu==1.5.1.post97 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用 Python 2，CUDA 10.0，cuDNN 7.3+，安装GPU版本的命令为：
         ::
     
-            pip install paddlepaddle-gpu==1.5.1.post107
+            python -m pip install paddlepaddle-gpu==1.5.1.post107 -i https://pypi.tuna.tsinghua.edu.cn/simple
         
-        如果您是使用 Python 3，请将上述命令中的 `pip` 更换为 `pip3` 进行安装。
+        如果您是使用 Python 3，请将上述命令中的 `python` 更换为 `python3` 进行安装。
 
 8. 更多帮助信息请参考：
     `Ubuntu下安装 <install_Ubuntu.html>`_
@@ -206,27 +207,27 @@
     ::
 
         conda create --name paddle python=2.7
-        activate paddle
+        activate paddle (for Windows) or conda activate paddle (for MacOS/Linux)
 
     如果您是使用 Python3，注意：python3版本可以是3.5.1+/3.6/3.7
 
     ::
 
         conda create --name paddle python=3.7
-        activate paddle
+        activate paddle (for Windows) or conda activate paddle (for MacOS/Linux)
 
 4. 确认您需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python，进入 Anaconda 的命令行终端，输入以下指令确认 Python 位置
 
     如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
     ::
 
-        where python
+        where python (for Windows) or which python (for MacOS/Linux)
 
     如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
 
     ::
 
-        where python3
+        where python3 (for Windows) or which python3 (for MacOS/Linux)
 
 5. 检查 Python 的版本
 
@@ -245,12 +246,14 @@
     如果您是使用 Python 2
     ::
     
-        pip --version
+        python -m ensurepip 
+        python -m pip --version
 
     如果您是使用 Python 3
     ::
     
-        pip3 --version
+        python3 -m ensurepip
+        python3 -m pip --version
 
 7. 确认 Python 和 pip 是 64 bit，并且处理器架构是x86_64（或称作 x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是 "64bit" ，第二行输出的是 "x86_64" 、 "x64" 或 "AMD64" 即可：
 
@@ -295,13 +298,7 @@
             conda install paddlepaddle-gpu cudatoolkit=10.0
         
 9. 更多帮助信息请参考：
-    `Ubuntu下安装 <install_Ubuntu.html>`_
-
-    `CentOS下安装 <install_Ubuntu.html>`_
-
-    `MacOS下安装 <install_Ubuntu.html>`_
-
-    `Windows下安装 <install_Ubuntu.html>`_
+    `conda下安装 <install_Conda.html>`_
 
 
 第三种安装方式：使用 docker 安装
@@ -356,7 +353,7 @@
 
         * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_，根据您系统不同，对 CUDA 版本要求不同：
 
-            * Ubuntu/CentOS 7 ，如果您是使用 `nvidia-docker` 安装，支持 CUDA 8/9/10.0
+            * Ubuntu/CentOS 7 ，如果您是使用 `nvidia-docker` 安装，支持 CUDA 8.0/9.0/9.1/9.2/10.0
 
             * Windows/MacOS/CentOS 6 不支持 `nvidia-docker` 方式安装
 
