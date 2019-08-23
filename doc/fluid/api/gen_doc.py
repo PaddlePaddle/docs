@@ -82,8 +82,8 @@ class DocGenerator(object):
             self.print_method(name)
         else:
             self.stream.close()
-            path = os.getcwd()+"/fluid/"+name+".rst"
-            os.remove(path)
+            #path = os.getcwd()+"/fluid/"+name+".rst"
+            #os.remove(path)
 
     def print_class(self, name):
         self._print_ref_(name)
