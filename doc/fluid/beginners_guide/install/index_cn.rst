@@ -90,15 +90,32 @@
 3. 确认您需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
     如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
-    ::
+    
+        在 Windows 环境下，输出 Python 路径的命令为：
+        
+        ::
 
-        where python (for Windows) or which python (for MacOS/Linux)
+            where python
+
+        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
+
+        ::
+
+            which python
 
     如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
 
-    ::
+        在 Windows 环境下，输出 Python 路径的命令为：
 
-        where python3 (for Windows) or which python3 (for MacOS/Linux)
+        ::
+
+            where python3
+
+        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
+
+        ::
+
+            which python3
 
 4. 检查 Python 的版本
 
@@ -179,7 +196,13 @@
         
         如果您是使用 Python 3，请将上述命令中的 `python` 更换为 `python3` 进行安装。
 
-8. 更多帮助信息请参考：
+8. 验证安装
+
+    使用 python 或 python3 进入python解释器，输入import paddle.fluid ，再输入 paddle.fluid.install_check.run_check()。
+
+    如果出现 Your Paddle Fluid is installed succesfully!，说明您已成功安装。
+
+9. 更多帮助信息请参考：
     `Ubuntu下安装 <install_Ubuntu.html>`_
 
     `CentOS下安装 <install_Ubuntu.html>`_
@@ -200,36 +223,76 @@
 
 2. 需要您确认您的 处理器 满足上方列出的要求
 
-3. 如果您需要新建 conda 的虚拟环境专门给 Paddle 使用（--name后边的环境名称，您可以自己选择）：
+3. 对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源进行安装。
 
-    如果您是使用 Python2，
+    ::
+
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+        conda config --set show_channel_urls yes
+
+4. 如果您需要新建 conda 的虚拟环境专门给 Paddle 使用（--name后边的环境名称，您可以自己选择）：
+
+    如果您是使用 Python2 并且在 Window 环境下
     
     ::
 
         conda create --name paddle python=2.7
-        activate paddle (for Windows) or conda activate paddle (for MacOS/Linux)
+        activate paddle
 
-    如果您是使用 Python3，注意：python3版本可以是3.5.1+/3.6/3.7
+    如果您是使用 Python2 并且在 MacOS/Linux 环境下
+
+    ::
+
+        conda create --name paddle python=2.7
+        conda activate paddle
+
+    如果您是使用 Python3 并且在 Window 环境下，注意：python3版本可以是3.5.1+/3.6/3.7
 
     ::
 
         conda create --name paddle python=3.7
-        activate paddle (for Windows) or conda activate paddle (for MacOS/Linux)
+        activate paddle
 
-4. 确认您需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python，进入 Anaconda 的命令行终端，输入以下指令确认 Python 位置
+    如果您是使用 Python3 并且在 MacOS/Linux 环境下，注意：python3版本可以是3.5.1+/3.6/3.7
 
-    如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
     ::
 
-        where python (for Windows) or which python (for MacOS/Linux)
+        conda create --name paddle python=3.7
+        conda activate paddle
+
+5. 确认您需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python，进入 Anaconda 的命令行终端，输入以下指令确认 Python 位置
+
+    如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
+        
+        在 Windows 环境下，输出 Python 路径的命令为：
+        
+        ::
+
+            where python
+
+        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
+
+        ::
+
+            which python
 
     如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
 
-    ::
+        在 Windows 环境下，输出 Python 路径的命令为：
+        
+        ::
 
-        where python3 (for Windows) or which python3 (for MacOS/Linux)
+            where python3
 
-5. 检查 Python 的版本
+        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
+
+        ::
+
+            which python3
+
+6. 检查 Python 的版本
 
     如果您是使用 Python 2，使用以下命令确认是 2.7.15+
     ::
@@ -241,7 +304,7 @@
     
         python3 --version
     
-6. 检查 pip 的版本，确认是 9.0.1+  
+7. 检查 pip 的版本，确认是 9.0.1+  
 
     如果您是使用 Python 2
     ::
@@ -255,7 +318,7 @@
         python3 -m ensurepip
         python3 -m pip --version
 
-7. 确认 Python 和 pip 是 64 bit，并且处理器架构是x86_64（或称作 x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是 "64bit" ，第二行输出的是 "x86_64" 、 "x64" 或 "AMD64" 即可：
+8. 确认 Python 和 pip 是 64 bit，并且处理器架构是x86_64（或称作 x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是 "64bit" ，第二行输出的是 "x86_64" 、 "x64" 或 "AMD64" 即可：
 
     如果您是使用 Python 2
     ::
@@ -267,7 +330,7 @@
     
         python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
-8. 如果您希望使用 conda 进行安装PaddlePaddle可以直接使用以下命令:
+9. 如果您希望使用 conda 进行安装PaddlePaddle可以直接使用以下命令:
 
     (1). **CPU版本**：如果您只是想安装CPU版本请参考如下命令安装  
 
@@ -297,16 +360,13 @@
     
             conda install paddlepaddle-gpu cudatoolkit=10.0
 
-9. 对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源进行安装。
+10. 验证安装
 
-    ::
+    使用 python 或 python3 进入python解释器，输入import paddle.fluid ，再输入 paddle.fluid.install_check.run_check()。
 
-        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
-        conda config --set show_channel_urls yes
-        
-10. 更多帮助信息请参考：
+    如果出现 Your Paddle Fluid is installed succesfully!，说明您已成功安装。
+
+11. 更多帮助信息请参考：
     `conda下安装 <install_Conda.html>`_
 
 
@@ -400,7 +460,13 @@
 
         > paddlepaddle/paddle:1.5.1 是需要使用的image名称；/bin/bash是在Docker中要执行的命令
 
-4. 更多帮助信息请参考：`使用Docker安装 <install_Docker.html>`_。
+4. 验证安装
+
+    使用 python 或 python3 进入python解释器，输入import paddle.fluid ，再输入 paddle.fluid.install_check.run_check()。
+
+    如果出现 Your Paddle Fluid is installed succesfully!，说明您已成功安装。
+
+5. 更多帮助信息请参考：`使用Docker安装 <install_Docker.html>`_。
 	
 第四种安装方式：使用源代码编译安装
 ====================================

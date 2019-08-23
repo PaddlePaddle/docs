@@ -34,11 +34,23 @@
 
     如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
 
-        where python (for Windows) or which python (for MacOS/Linux)
+        在 Windows 环境下，输出 Python 路径的命令为：
+        
+            where python
+
+        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
+
+            which python
 
     如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
 
-        where python3 (for Windows) or which python3 (for MacOS/Linux)
+        在 Windows 环境下，输出 Python 路径的命令为：
+        
+            where python3
+
+        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
+
+            which python3
 
 3. 检查Python的版本
 
