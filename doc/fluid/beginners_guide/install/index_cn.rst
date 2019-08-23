@@ -296,8 +296,17 @@
         ::
     
             conda install paddlepaddle-gpu cudatoolkit=10.0
+
+9. 对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源进行安装。
+
+::
+
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+    conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+    conda config --set show_channel_urls yes
         
-9. 更多帮助信息请参考：
+10. 更多帮助信息请参考：
     `conda下安装 <install_Conda.html>`_
 
 
