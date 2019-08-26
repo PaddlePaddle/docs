@@ -38,7 +38,7 @@ expand运算会按给定的次数对输入各维度进行复制（tile）运算�
 ..  code-block:: python
 
         import paddle.fluid as fluid
-        x = fluid.layers.data(name='x', shape=[10], dtype='float32')
+        x = fluid.layers.fill_constant(shape=[2, 3, 1], dtype='int32', value=0)
         out = fluid.layers.expand(x=x, expand_times=[1, 2, 2])
 
 

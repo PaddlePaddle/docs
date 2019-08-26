@@ -55,7 +55,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 
 
-.. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor) → bool
+.. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → bool
 
 检查LoDTensor的lod值的正确性。
 
@@ -154,7 +154,7 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_lod([[0, 2, 5]])
 
-.. py:method::  set_recursive_sequence_lengths(self: paddle.fluid.core.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
+.. py:method::  set_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
 
 根据递归序列长度recursive_sequence_lengths设置LoDTensor的LoD。
 

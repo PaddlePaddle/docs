@@ -3,9 +3,9 @@
 ## 环境准备
 
 * *Ubuntu 版本 (64 bit)*
-    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10)*
-    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10)*
-    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10)*
+    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8/10.0)*
+    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8/9/10.0)*
+    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10.0)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip或pip3 版本 9.0.1+ (64 bit)*
 
@@ -18,7 +18,7 @@
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
 	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
 	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包8.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
+	* *CUDA 工具包8.0配合cuDNN v7.1+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
 	* *GPU运算能力超过1.0的硬件设备*
 
 		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -267,3 +267,4 @@
 * ***GPU版本的PaddlePaddle***: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
 
 使用Docker安装PaddlePaddle的用户，请进入包含PaddlePaddle的容器中使用上述命令，注意使用对应版本的pip
+10.0

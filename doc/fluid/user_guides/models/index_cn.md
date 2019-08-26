@@ -170,7 +170,7 @@
 
 **情感分析**
 
-[Senta（Sentiment Classification](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/sentiment_classification)）百度AI开放平台中情感倾向分析模型、百度自主研发的中文特色模型，是目前最好的中文情感分析模型。
+[Senta（Sentiment Classification](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/sentiment_classification)）百度AI开放平台中情感倾向分析模型、百度自主研发的中文情感分析特色模型。
 
 | **模型**      | **dev** | **test** | **模型（****finetune****）** | **dev** | **test** |
 | ------------- | ------- | -------- | ---------------------------- | ------- | -------- |

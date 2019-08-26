@@ -165,7 +165,7 @@ b=3
 #执行计算
 outs = exe.run(
     feed={'a':x,'b':y},
-    fetch_list=[a,b,result.name]
+    fetch_list=[a,b,result.name])
 #查看输出结果
 print outs
 ```

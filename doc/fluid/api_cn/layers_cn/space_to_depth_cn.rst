@@ -44,7 +44,7 @@ space_to_depth
     space_to_depthed = fluid.layers.space_to_depth(
         x=data, blocksize=2)
 
-    exe = fluid.Executor(fluid.CUDAPlace(0))
+    exe = fluid.Executor(fluid.CPUPlace())
     data_np = np.arange(0,16).reshape((1,4,2,2)).astype('float32')
     out_main = exe.run(fluid.default_main_program(),
                   feed={'data': data_np},

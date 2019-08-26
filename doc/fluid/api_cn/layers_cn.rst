@@ -280,8 +280,8 @@ fluid.layers
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
     layers_cn/tree_conv_cn.rst
-    layers_cn/uniform_random_batch_size_like_cn.rst
     layers_cn/uniform_random_cn.rst
+    layers_cn/uniform_random_batch_size_like_cn.rst
     layers_cn/unsqueeze_cn.rst
     layers_cn/unstack_cn.rst
     layers_cn/warpctc_cn.rst

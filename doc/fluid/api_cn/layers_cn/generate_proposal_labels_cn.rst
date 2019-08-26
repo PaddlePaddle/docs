@@ -49,8 +49,8 @@ RpnRois 是RPN的输出box， 并由 ``GenerateProposals`` 来进一步处理, �
                    append_batch_size=False, dtype='float32')
     im_info = fluid.layers.data(name='im_info', shape=[10, 3],
                    append_batch_size=False, dtype='float32')
-    rois, labels_int32, bbox_targets, bbox_inside_weights,
-    bbox_outside_weights = fluid.layers.generate_proposal_labels(
+    rois, labels, bbox, inside_weights,
+    outside_weights = fluid.layers.generate_proposal_labels(
                    rpn_rois, gt_classes, is_crowd, gt_boxes, im_info,
                    class_nums=10)
 

@@ -3,7 +3,7 @@
 chunk_eval
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.chunk_eval(input, label, chunk_scheme, num_chunk_types, excluded_chunk_types=None)
+.. py:function:: paddle.fluid.layers.chunk_eval(input, label, chunk_scheme, num_chunk_types, excluded_chunk_types=None, sqe_length=None)
 
 块估计（Chunk Evaluator）
 
@@ -67,6 +67,7 @@ num_tag_type是标注规则中的标签类型数，num_chunk_type是块类型数
     - **chunk_scheme** (str) - 标注规则，表示如何解码块。必须数IOB，IOE，IOBES或者plain。详情见描述
     - **num_chunk_types** (int) - 块类型数。详情见描述
     - **excluded_chunk_types** (list) - 列表包含块类型id，表示不在计数内的块类型。详情见描述
+    - **seq_length** (Variable) - 当输入和标签是张量时，指定序列长度的一个1维张量
 
 返回：元组（tuple），包含precision, recall, f1_score, num_infer_chunks, num_label_chunks, num_correct_chunks
 

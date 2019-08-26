@@ -16,7 +16,7 @@ class paddle.fluid.core.PaddleTensor
 
 * `name`(str): 指定输入的名称
 * `shape`(tuple|list): Tensor的shape
-* `data`(PaddleBuf): Tensor的数据，存储在`PaddleBuf`中，用户无需关注，可在PaddleTensor构造的时候用`numpy.ndarray`直接传入
+* `data`(numpy.ndarray): Tensor的数据，可在PaddleTensor构造的时候用`numpy.ndarray`直接传入
 * `dtype`(PaddleDType): Tensor的类型
 * `lod`(List[List[int]]): [LoD](../../../user_guides/howto/basic_concept/lod_tensor.html)信息
 
@@ -30,15 +30,15 @@ tensor = PaddleTensor(name="tensor", data=numpy.array([1, 2, 3], dtype="int32"))
 ```
 调用`PaddleTensor`的成员字段和方法输出如下：
 ``` python
->>>tensor.name
+>>> tensor.name
 'tensor'
->>>tensor.shape
+>>> tensor.shape
 [3]
->>>tensor.dtype
+>>> tensor.dtype
 PaddleDType.INT32
->>>tensor.lod
+>>> tensor.lod
 []
->>>tensor.as_ndarray()
+>>> tensor.as_ndarray()
 array([1, 2, 3], dtype=int32)
 ```
 
@@ -85,10 +85,11 @@ config = AnalysisConfig("./model/model", "./model/params")
 ``` python
 config.enable_use_gpu(100, 0) # 初始化200M显存，使用gpu id为0
 config.gpu_device_id()        # 返回正在使用的gpu id
-config.disable_gpu()          # 禁用gpu
-config.switch_ir_optim(True)      # 开启IR优化 
-config.enable_tensorrt_engine()   # 使用TensorRT优化
-config.enable_mkldnn()              # 开启MKLDNN
+config.disable_gpu()		  # 禁用gpu
+config.switch_ir_optim(True)  # 开启IR优化 
+config.enable_tensorrt_engine(precision=AnalysisConfig.Precision.kFloat32,
+                              use_calib_mode=True) # 开启TensorRT预测，精度为fp32，开启int8离线量化
+config.enable_mkldnn()		  # 开启MKLDNN
 ```
 
 
@@ -99,9 +100,9 @@ class paddle.fluid.core.PaddlePredictor
 
 `PaddlePredictor`是运行预测的引擎，由`paddle.fluid.core.create_paddle_predictor(config)`创建，主要提供以下方法
 
-* `run`: 输入和返回值均为`PaddleTensor`类型，功能为运行预测引擎，返回预测结果 
+* `run`: 输入和返回值均为`PaddleTensor`列表类型，功能为运行预测引擎，返回预测结果 
 
-#### 代码示例  
+#### 代码示例
 
 ``` python
 # 设置完AnalysisConfig后创建预测引擎PaddlePredictor
@@ -114,13 +115,33 @@ x_t = fluid.core.PaddleTensor(x)
 y = numpy.array([4], dtype = "int64")
 y_t = fluid.core.PaddleTensor(y)
 
-
 # 运行预测引擎得到结果，返回值是一个PaddleTensor的list
 results = predictor.run([x_t, y_t])
 
 # 获得预测结果，并应用到自己的应用中
 ```
+## 支持方法列表
+* PaddleTensor
+	* `as_ndarray() -> numpy.ndarray`
+* AnalysisConfig 
+	* `set_model(model_dir: str) -> None`
+	* `set_model(prog_file: str, params_file: str) -> None`
+	* `model_dir() -> str`
+	* `prog_file() -> str`
+	* `params_file() -> str`
+	* `enable_use_gpu(memory_pool_init_size_mb: int, device_id: int) -> None`
+	* `gpu_device_id() -> int`
+	* `switch_ir_optim(x: bool = True) -> None`
+	* `enable_tensorrt_engine(workspace_size: int = 1 << 20, 
+	                          max_batch_size: int, 
+                              min_subgraph_size: int, 
+                              precision: AnalysisConfig.precision,                                   				   use_static: bool, 
+                              use_calib_mode: bool) -> None`
+	* `enable_mkldnn() -> None`
+* PaddlePredictor
+	* `run(input: List[PaddleTensor]) -> List[PaddleTensor]`
 
+可参考对应的[C++预测接口](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/inference_api.cc)，其中定义了每个接口的参数和返回值
 
 ## 完整使用示例
 

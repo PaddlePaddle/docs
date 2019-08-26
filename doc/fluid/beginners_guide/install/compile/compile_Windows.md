@@ -12,7 +12,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * *CUDA 工具包8.0/9.2配合cuDNN v7.3+*
+    * *CUDA 工具包8.0 配合cuDNN v7.1+, 9.0配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
 ## 安装步骤

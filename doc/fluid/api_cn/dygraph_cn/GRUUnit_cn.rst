@@ -9,7 +9,8 @@ GRU单元层。GRU执行步骤基于如下等式：
 
 
 如果origin_mode为True，则该运算公式来自论文
-`Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling  <https://arxiv.org/pdf/1412.3555.pdf>`_ 。
+`Learning Phrase Representations using RNN Encoder-Decoder for Statistical
+Machine Translation  <https://arxiv.org/pdf/1406.1078.pdf>`_ 。
 
 公式如下:
 

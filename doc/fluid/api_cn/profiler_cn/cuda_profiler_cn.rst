@@ -6,7 +6,7 @@ cuda_profiler
 .. py:function:: paddle.fluid.profiler.cuda_profiler(output_file, output_mode=None, config=None)
 
 
-CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行性能分析。分析结果将以键-值对格式或逗号分隔的格式写入output_file。用户可以通过output_mode参数设置输出模式，并通过配置参数设置计数器/选项。默认配置是[' gpustarttimestamp '， ' gpustarttimestamp '， ' gridsize3d '， ' threadblocksize '， ' streamid '， ' enableonstart 0 '， ' conckerneltrace ']。然后，用户可使用 `NVIDIA Visual Profiler <https://developer.nvidia.com/nvidia-visual-profiler>`_ 工具来加载这个输出文件以可视化结果。
+CUDA分析器。通过CUDA运行时应用程序编程接口对CUDA程序进行性能分析。分析结果将以键-值对格式或逗号分隔的格式写入output_file。用户可以通过output_mode参数设置输出模式，并通过配置参数设置计数器/选项。默认配置是[' gpustarttimestamp '， ' gpuendtimestamp '， ' gridsize3d '， ' threadblocksize '， ' streamid '， ' enableonstart 0 '， ' conckerneltrace ']。然后，用户可使用 `NVIDIA Visual Profiler <https://developer.nvidia.com/nvidia-visual-profiler>`_ 工具来加载这个输出文件以可视化结果。
 
 
 参数:

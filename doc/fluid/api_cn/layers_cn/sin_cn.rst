@@ -12,7 +12,6 @@ sin
 
 
 参数:
-
     - **x** - sin算子的输入
     - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
 
