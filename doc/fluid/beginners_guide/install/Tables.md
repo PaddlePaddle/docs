@@ -530,7 +530,7 @@ platform tag: 类似 'linux_x86_64', 'any'
 
 使用Docker可以快速在本地启动一个包含了PaddlePaddle官方Book教程的Jupyter Notebook，可以通过网页浏览。
 PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Notebook。
-如果您想要更深入了解deep learning，PaddlePaddle Book一定是您最好的选择。
+如果您想要更深入了解deep learning，可以参考PaddlePaddle Book。
 大家可以通过它阅读教程，或者制作和分享带有代码、公式、图表、文字的交互式文档。
 
 我们提供可以直接运行PaddlePaddle Book的Docker镜像，直接运行：
