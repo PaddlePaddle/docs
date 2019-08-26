@@ -5,12 +5,8 @@ fluid
 ..  toctree::
     :maxdepth: 1
 
-    fluid/append_backward.rst
-    fluid/backward.rst
     fluid/BuildStrategy.rst
-    fluid/clip.rst
     fluid/CompiledProgram.rst
-    fluid/contrib.rst
     fluid/cpu_places.rst
     fluid/CPUPlace.rst
     fluid/create_lod_tensor.rst
@@ -23,44 +19,23 @@ fluid
     fluid/DataFeeder.rst
     fluid/default_main_program.rst
     fluid/default_startup_program.rst
-    fluid/DistMultiTrainer.rst
     fluid/DistributeTranspiler.rst
     fluid/DistributeTranspilerConfig.rst
-    fluid/dygraph.rst
-    fluid/dygraph_grad_clip.rst
     fluid/ExecutionStrategy.rst
     fluid/Executor.rst
     fluid/global_scope.rst
     fluid/gradients.rst
-    fluid/HashName.rst
     fluid/in_dygraph_mode.rst
-    fluid/initializer.rst
-    fluid/install_check.rst
-    fluid/io.rst
     fluid/is_compiled_with_cuda.rst
-    fluid/layers.rst
-    fluid/learning_rate_decay.rst
     fluid/LoDTensor.rst
     fluid/LoDTensorArray.rst
     fluid/memory_optimize.rst
-    fluid/MultiTrainer.rst
     fluid/name_scope.rst
-    fluid/nets.rst
-    fluid/optimizer.rst
     fluid/ParallelExecutor.rst
     fluid/ParamAttr.rst
-    fluid/PipelineTrainer.rst
-    fluid/profiler.rst
     fluid/Program.rst
     fluid/program_guard.rst
-    fluid/recordio_writer.rst
-    fluid/regularizer.rst
     fluid/release_memory.rst
-    fluid/RoundRobin.rst
-    fluid/Scope.rst
     fluid/scope_guard.rst
     fluid/Tensor.rst
-    fluid/TrainerDesc.rst
-    fluid/transpiler.rst
-    fluid/unique_name.rst
     fluid/WeightNormParamAttr.rst

@@ -71,6 +71,7 @@ fluid.layers
     layers/diag.rst
     layers/dice_loss.rst
     layers/distribute_fpn_proposals.rst
+    layers/double_buffer.rst
     layers/dropout.rst
     layers/dynamic_gru.rst
     layers/dynamic_lstm.rst
@@ -192,6 +193,7 @@ fluid.layers
     layers/range.rst
     layers/rank.rst
     layers/rank_loss.rst
+    layers/read_file.rst
     layers/reciprocal.rst
     layers/reduce_all.rst
     layers/reduce_any.rst
