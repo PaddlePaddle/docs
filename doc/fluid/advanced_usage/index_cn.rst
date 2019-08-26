@@ -12,7 +12,7 @@
 
     - `性能调优 <../advanced_usage/development/profiling/index_cn.html>`_ ：介绍 Fluid 使用过程中的调优方法
 
-    - `最佳实践 <../advanced_usage/best_practice/index_cn.html>`_
+    - `优秀实践 <../advanced_usage/best_practice/index_cn.html>`_
 
     - `模型压缩工具库 <../advanced_usage/paddle_slim/paddle_slim.html>`_
 
