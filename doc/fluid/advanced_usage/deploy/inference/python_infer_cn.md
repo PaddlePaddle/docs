@@ -63,12 +63,12 @@ class paddle.fluid.core.AnalysisConfig
 * `model_dir`: 返回模型文件夹路径
 * `prog_file`: 返回模型文件路径
 * `params_file`: 返回参数文件路径
-* `enable_use_gpu`: 设置GPU显存(单位M)和device id
+* `enable_use_gpu`: 设置GPU显存(单位M)和Device ID
 * `disable_gpu`: 禁用GPU
 * `gpu_device_id`: 返回使用的GPU ID
 * `switch_ir_optim`: IR优化(默认开启)
-* `enable_tensorrt_engine`: 启用TensorRT
-* `enable_mkldnn`: 启用MKLDNN
+* `enable_tensorrt_engine`: 开启TensorRT
+* `enable_mkldnn`: 开启MKLDNN
 #### 代码示例
 设置模型和参数路径有两种形式：
 * 当模型文件夹下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`
@@ -115,7 +115,7 @@ x_t = fluid.core.PaddleTensor(x)
 y = numpy.array([4], dtype = "int64")
 y_t = fluid.core.PaddleTensor(y)
 
-# 运行预测引擎得到结果，返回值是一个PaddleTensor的list
+# 运行预测引擎得到结果，返回值是一个PaddleTensor的列表
 results = predictor.run([x_t, y_t])
 
 # 获得预测结果，并应用到自己的应用中
