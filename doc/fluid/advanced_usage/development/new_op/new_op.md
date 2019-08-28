@@ -466,7 +466,7 @@ framework::OpKernelType ConvOp::GetExpectedKernelType(
 
 ### 编译
 
-运行下面命令可以进行编译：
+在`build/paddle/fluid/operators`目录下，运行下面命令可以进行编译：
 
 ```
 make mul_op
@@ -559,7 +559,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestMulOp`里�
 
 `python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
 
-请注意，**不同于Op的编译测试，运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`, 即`cmake -DWITH_TESTING=ON ..`。编译成功后，执行下面的命令来运行单元测试：
+请注意，**运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`, 即`cmake -DWITH_TESTING=ON ..`。编译成功后，执行下面的命令来运行单元测试：
 
 ```bash
 make test ARGS="-R test_mul_op -V"
