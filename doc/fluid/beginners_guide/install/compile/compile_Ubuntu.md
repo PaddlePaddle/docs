@@ -27,7 +27,7 @@
 
 
 		wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-		dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+		dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
 		sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
 ## 安装步骤
@@ -267,4 +267,3 @@
 * ***GPU版本的PaddlePaddle***: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
 
 使用Docker安装PaddlePaddle的用户，请进入包含PaddlePaddle的容器中使用上述命令，注意使用对应版本的pip
-10.0
