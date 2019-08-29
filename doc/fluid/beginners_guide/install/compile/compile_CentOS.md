@@ -130,7 +130,7 @@
 
 		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
-	> 我们目前不支持CentOS下使用Docker编译GPU版本的PaddlePaddle
+	> 我们目前不支持CentOS 6下使用Docker编译GPU版本的PaddlePaddle
 
 9. 执行编译：
 
