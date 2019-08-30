@@ -363,6 +363,32 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
     print("The LoD of the result: {}.".format(results[0].lod()))
 
 
+FAQ：
+=======
+
+问：如何打印variable的lod 信息
+
+答：
+
+1. 可以使用executor.run将你需要查看的variable fetch出来，然后打印其lod信息，注意运行时设置executor.run方法的return_numpy参数为False。
+
+  .. code-block:: python
+
+      results = exe.run(fluid.default_main_program(),
+                    feed={'x':x_d, 'y': y_d },
+                    fetch_list=[out],return_numpy=False)
+      lod_tensor = results[0]
+      print (lod_tensor.lod())
+
+2. 可以使用fluid.layers.Print()
+
+  .. code-block:: python
+
+      y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
+
+      fluid.layers.Print(y)
+
+
 总结
 ========
 
