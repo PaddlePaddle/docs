@@ -61,12 +61,12 @@
 
     * CentOS 安装 GPU 版本
         * 如果您是使用本机 `pip` 安装：
-            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0，不支持10.1，支持 CUDA 8.0 但仅支持单卡模式
+            * CentOS 7 支持 CUDA 9.0/9.2/10.0，不支持10.1，支持 CUDA 8.0/9.1 但仅支持单卡模式
 
             * CentOS 6 支持 CUDA 8.0/9.0/9.1/9.2/10.0 单卡模式，不支持10.1
 
         * 如果您是使用本机源码编译安装：
-            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0
+            * CentOS 7 支持 CUDA 9.0/9.2/10.0
 
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
 		
@@ -75,6 +75,44 @@
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
 请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html/#ciwhls>`_
+
+5. PaddlePaddle 对 NCCL 支持情况：
+=================================
+
+* Windows 支持情况
+
+    * 不支持NCCL
+
+* Ubuntu 支持情况
+
+    * Ubuntu 14.04：
+
+        * CUDA10.0 下支持NCCL v2.3.7-v2.4.8
+        
+        * CUDA8.0 下支持NCCL v2.1.15-v2.2.13
+
+    * Ubuntu 16.04:
+
+        * CUDA10.0/9.2/9.0 下支持NCCL v2.3.7-v2.4.8
+        
+        * CUDA9.1 下支持NCCL v2.1.15
+
+        * CUDA8.0 下支持NCCL v2.1.15-v2.2.13
+
+    * Ubuntu 18.04：
+
+        * CUDA10.0 下支持NCCL v2.3.7-v2.4.8
+
+* CentOS 支持情况
+
+    * CentOS 6：不支持NCCL
+
+    * CentOS 7：
+
+        * CUDA10.0/9.2/9.0 下支持NCCL v2.3.7-v2.4.8
+
+* MacOS 支持情况
+    * 不支持NCCL
 
 第一种安装方式：使用 pip 安装
 ================================

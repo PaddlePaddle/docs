@@ -4,7 +4,7 @@
 
 * *CentOS 版本 (64 bit)*
     * *CentOS 6 (不推荐，不提供编译出现问题时的官方支持)*
-    * *CentOS 7 (GPU 版本支持CUDA 8/9/10.0)*
+    * *CentOS 7 (GPU 版本支持CUDA 9/10.0)*
 * *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 
