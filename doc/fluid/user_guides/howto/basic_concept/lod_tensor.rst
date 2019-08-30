@@ -224,7 +224,7 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
         cur_len += l
         lod.append(cur_len)
     # 对待转换的 Tensor 降维
-    flattened_data = np.concatenate(data, axis=0).astype("int64")
+    flattened_data = np.concatenate(data, axis=0).astype("float32")
     flattened_data = flattened_data.reshape([len(flattened_data), 1])
     # 为 Tensor 数据添加lod信息
     res = fluid.LoDTensor()
