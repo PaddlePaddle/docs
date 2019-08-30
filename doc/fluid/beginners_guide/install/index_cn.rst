@@ -85,17 +85,31 @@
 
 * Ubuntu 支持情况
 
-    * Ubuntu 14.04：CUDA10.1 下支持NCCL v2.4.2-v2.4.8，CUDA10.0 下支持NCCL v2.3.4-v2.4.8，CUDA9.2 下支持NCCL v2.3.4-v2.4.8，CUDA9.1 下支持NCCL v2.1.15，CUDA9.0 下支持NCCL v2-v2.1.15、v2.3.4-v2.4.8，CUDA8.0 下支持NCCL v2-v2.2.13
+    * Ubuntu 14.04：
 
-    * Ubuntu 16.04：CUDA10.1 下支持NCCL v2.4.2-v2.4.8，CUDA10.0 下支持NCCL v2.3.4-v2.4.8，CUDA9.2 下支持NCCL v2.2.12-v2.4.8，CUDA9.1 下支持NCCL v2.1.15，CUDA9.0 下支持NCCL v2-v2.4.8，CUDA8.0 下支持NCCL v2-v2.2.13
+        * CUDA10.0 下支持NCCL v2.3.7-v2.4.8
+        
+        * CUDA8.0 下支持NCCL v2.1.15-v2.2.13
 
-    * Ubuntu 18.04：CUDA10.1 下支持NCCL v2.4.2-v2.4.8，CUDA10.0 下支持NCCL v2.3.4-v2.4.8
+    * Ubuntu 16.04:
+
+        * CUDA10.0/9.2/9.0 下支持NCCL v2.3.7-v2.4.8
+        
+        * CUDA9.1 下支持NCCL v2.1.15
+
+        * CUDA8.0 下支持NCCL v2.1.15-v2.2.13
+
+    * Ubuntu 18.04：
+
+        * CUDA10.0 下支持NCCL v2.3.7-v2.4.8
 
 * CentOS 支持情况
 
     * CentOS 6：不支持NCCL
 
-    * CentOS 7：CUDA10.1 下支持NCCL v2.4.2-v2.4.8，CUDA10.0 下支持NCCL v2.3.7-v2.4.8，CUDA9.2 下支持NCCL v2.3.7-v2.4.8，CUDA9.0 下支持NCCL v2.3.7-v2.4.8
+    * CentOS 7：
+
+        * CUDA10.0/9.2/9.0 下支持NCCL v2.3.7-v2.4.8
 
 * MacOS 支持情况
     * 不支持NCCL
