@@ -370,7 +370,7 @@ FAQ：
 
 答：
 
-1. 可以使用executor.run将你需要查看的variable fetch出来，然后打印其lod信息，注意运行时设置executor.run方法的return_numpy参数为False。
+1. 可以使用 `executor.run` 将你需要查看的 `variable`  fetch 出来，然后打印其 lod 信息，注意运行时设置 `executor.run` 方法的 `return_numpy` 参数为 `False`。
 
   .. code-block:: python
 
