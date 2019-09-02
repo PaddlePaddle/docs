@@ -760,7 +760,7 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
   for data in reader():
       outs = exe.run(program=main_program,
                      feed=feeder.feed(data),
-                     fetch_list=[out]))
+                     fetch_list=[out])
 
 
 .. py:method:: feed(iterable)

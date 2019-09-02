@@ -142,7 +142,7 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
   - **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
   - **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-  - **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。
+  - **use_program_cache** (bool) – 是否在不同批次间使用相同的缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。
   
 返回: 根据fetch_list来获取结果
 

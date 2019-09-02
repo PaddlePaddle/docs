@@ -488,7 +488,7 @@ beam_search
 参数:
   - **pre_ids** （Variable） -  LodTensor变量，它是上一步 ``beam_search`` 的输出。在第一步中。它应该是LodTensor，shape为 :math:`(batch\_size，1)` ， :math:`lod [[0,1，...，batch\_size]，[0,1，...，batch\_size]]`
   - **pre_scores** （Variable） -  LodTensor变量，它是上一步中beam_search的输出
-  - **ids** （Variable） - 包含候选ID的LodTensor变量。shape为 :math:`（batch\_size×beam\_ize，K）` ，其中 ``K`` 应该是 ``beam_size``
+  - **ids** （Variable） - 包含候选ID的LodTensor变量。shape为 :math:`（batch\_size×beam\_size，K）` ，其中 ``K`` 应该是 ``beam_size``
   - **scores** （Variable） - 与 ``ids`` 及其shape对应的累积分数的LodTensor变量, 与 ``ids`` 的shape相同。
   - **beam_size** （int） - 束搜索中的束宽度。
   - **end_id** （int） - 结束标记的id。
@@ -1083,7 +1083,7 @@ conv2d_transpose
   - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。
   - **padding** (int|tuple) - 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
   - **stride** (int|tuple) - 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-  - **dilation** (int|元组) - 膨胀(dilation)大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
+  - **dilation** (int|元组) - 膨胀(dilation)大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation。默认:dilation= 1。
   - **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
   - **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
   - **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
@@ -3099,11 +3099,11 @@ ELU激活层（ELU Activation Operator）
 根据 https://arxiv.org/abs/1511.07289 对输入张量中每个元素应用以下计算。
 
 .. math::
-        \\out=max(0,x)+min(0,α∗(ex−1))\\
+        \\out=max(0,x)+min(0,α∗(e^{x}−1))\\
 
 参数:
     - x(Variable)- ELU operator的输入
-    - alpha(FAOAT|1.0)- ELU的alpha值
+    - alpha(float|1.0)- ELU的alpha值
     - name (str|None) -这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
 返回: ELU操作符的输出
@@ -5104,8 +5104,8 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
 
 参数：
     - **x_t** (Variable) - 当前步的输入值，二维张量，shape为 M x N ，M是批尺寸，N是输入尺寸
-    - **hidden_t_prev** (Variable) - lstm单元的隐藏状态值，二维张量，shape为 M x S，M是批尺寸，N是lstm单元的大小
-    - **cell_t_prev** (Variable) - lstm单元的cell值，二维张量，shape为 M x S ，M是批尺寸，N是lstm单元的大小
+    - **hidden_t_prev** (Variable) - lstm单元的隐藏状态值，二维张量，shape为 M x S，M是批尺寸，S是lstm单元的大小
+    - **cell_t_prev** (Variable) - lstm单元的cell值，二维张量，shape为 M x S ，M是批尺寸，S是lstm单元的大小
     - **forget_bias** (Variable) - lstm单元的遗忘bias
     - **param_attr** (ParamAttr|None) - 可学习hidden-hidden权重的擦参数属性。如果设为None或者ParamAttr的一个属性，lstm_unit创建ParamAttr为param_attr。如果param_attr的初始化函数未设置，参数初始化为Xavier。默认：None
     - **bias_attr** (ParamAttr|None) - 可学习bias权重的bias属性。如果设为False，输出单元中则不添加bias。如果设为None或者ParamAttr的一个属性，lstm_unit创建ParamAttr为bias_attr。如果bias_attr的初始化函数未设置，bias初始化为0.默认：None
