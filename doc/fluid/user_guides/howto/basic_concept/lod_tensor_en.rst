@@ -221,7 +221,7 @@ The following three pieces of codes introduce how to create LoD-Tensor, how to t
          cur_len += l
          lod.append(cur_len)
      # decrease the dimention of transformed Tensor
-     flattened_data = np.concatenate(data, axis=0).astype("int64")
+     flattened_data = np.concatenate(data, axis=0).astype("float32")
      flattened_data = flattened_data.reshape([len(flattened_data), 1])
      # add lod information to Tensor data
      res = fluid.LoDTensor()
