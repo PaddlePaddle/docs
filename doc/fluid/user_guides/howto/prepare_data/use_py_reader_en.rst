@@ -4,7 +4,7 @@
 Use PyReader to read training and test data
 ############################################
 
-Besides Python Reader, we provide PyReader. The performance of PyReader is better than :ref:`user_guide_use_numpy_array_as_train_data` , because the process of loading data is asynchronous with the process of training model when PyReader is in use. And PyReader can coordinate with :code:`double_buffer_reader` to improve the performance of reading data. What's more, :code:`double_buffer_reader` can achieve the transformation from CPU Tensor to GPU Tensor, which improve the efficiency of reading data to some extent.
+Besides Python Reader, we provide PyReader. The performance of PyReader is better than :ref:`user_guide_use_numpy_array_as_train_data_en` , because the process of loading data is asynchronous with the process of training model when PyReader is in use. And PyReader can coordinate with :code:`double_buffer_reader` to improve the performance of reading data. What's more, :code:`double_buffer_reader` can achieve the transformation from CPU Tensor to GPU Tensor, which improve the efficiency of reading data to some extent.
 
 Create PyReader Object
 ################################
