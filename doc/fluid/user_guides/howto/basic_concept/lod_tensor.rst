@@ -224,7 +224,7 @@ recursive_seq_lens 是一个双层嵌套列表，也就是列表的列表，最�
         cur_len += l
         lod.append(cur_len)
     # 对待转换的 Tensor 降维
-    flattened_data = np.concatenate(data, axis=0).astype("int64")
+    flattened_data = np.concatenate(data, axis=0).astype("float32")
     flattened_data = flattened_data.reshape([len(flattened_data), 1])
     # 为 Tensor 数据添加lod信息
     res = fluid.LoDTensor()
@@ -361,6 +361,32 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
     print("The recursive sequence lengths of the result: {}.".format(results[0].recursive_sequence_lengths()))
     #输出 result 的 LoD
     print("The LoD of the result: {}.".format(results[0].lod()))
+
+
+FAQ：
+=======
+
+问：如何打印variable的lod 信息
+
+答：
+
+1. 可以使用 `executor.run` 将你需要查看的 `variable`  fetch 出来，然后打印其 lod 信息，注意运行时设置 `executor.run` 方法的 `return_numpy` 参数为 `False`。
+
+  .. code-block:: python
+
+      results = exe.run(fluid.default_main_program(),
+                    feed={'x':x_d, 'y': y_d },
+                    fetch_list=[out],return_numpy=False)
+      lod_tensor = results[0]
+      print (lod_tensor.lod())
+
+2. 可以使用fluid.layers.Print()
+
+  .. code-block:: python
+
+      y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
+
+      fluid.layers.Print(y)
 
 
 总结
