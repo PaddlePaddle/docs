@@ -23,15 +23,20 @@ where
         import paddle.fluid as fluid
         import paddle.fluid.layers as layers
         import numpy as np
-        # condition为张量[True, False, True]
-        out = fluid.layers.where(condition) # [[0], [2]]
-     
-        # condition为张量[[True, False], [False, True]]
-        out = fluid.layers.where(condition) # [[0, 0], [1, 1]]
-     
-        # condition为张量[False, False, False]
-        out = fluid.layers.where(condition) # [[]]
+        # tensor 为 [True, False, True]
+        condition = layers.assign(np.array([1, 0, 1], dtype='int32'))
+        condition = layers.cast(condition, 'bool')
+        out = layers.where(condition) # [[0], [2]]
 
+        # tensor 为 [[True, False], [False, True]]
+        condition = layers.assign(np.array([[1, 0], [0, 1]], dtype='int32'))
+        condition = layers.cast(condition, 'bool')
+        out = layers.where(condition) # [[0, 0], [1, 1]]
+
+        # tensor 为 [False, False, False]
+        condition = layers.assign(np.array([0, 0, 0], dtype='int32'))
+        condition = layers.cast(condition, 'bool')
+        out = layers.where(condition) # [[]]
 
 
 

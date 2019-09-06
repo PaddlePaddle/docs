@@ -12,7 +12,7 @@ image_resize_short
         - **out_short_len** (int) -  输出图像的短边长度。
         - **resample** (str) - resample方法，默认为双线性插值。
 
-返回： 4维张量，shape为(num_batch, channls, out_h, out_w)
+返回： 4维张量，shape为(num_batches, channels, out_h, out_w)
 
 返回类型: 变量（variable）
 

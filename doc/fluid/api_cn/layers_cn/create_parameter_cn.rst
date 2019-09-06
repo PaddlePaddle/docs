@@ -24,7 +24,7 @@ create_parameter
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    W = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
+    W = layers.create_parameter(shape=[784, 200], dtype='float32')
 
 
 

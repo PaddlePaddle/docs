@@ -46,9 +46,9 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
 
 返回：   三个张量， rnn_out, last_h, last_c:
 
-- rnn_out为LSTM hidden的输出结果。形为(seq_len x batch_size x hidden_size)如果is_bidirec设置为True,则形为(seq_len x batch_sze hidden_size * 2)
-- last_h(Tensor):  LSTM最后一步的隐藏状态，形状为(num_layers x batch_size x hidden_size)；如果is_bidirec设置为True，形状为(num_layers*2 x batch_size x hidden_size)
-- last_c(Tensor)： LSTM最后一步的cell状态，形状为(num_layers x batch_size x hidden_size)；如果is_bidirec设置为True，形状为(num_layers*2 x batch_size x hidden_size)
+- rnn_out为LSTM hidden的输出结果。形为(seq_len x batch_size x hidden_size)如果 ``is_bidirec`` 设置为True,则形为(seq_len x batch_sze hidden_size * 2)
+- last_h(Tensor):  LSTM最后一步的隐藏状态，形状为(num_layers x batch_size x hidden_size)；如果 ``is_bidirec`` 设置为True，形状为(num_layers*2 x batch_size x hidden_size)
+- last_c(Tensor)： LSTM最后一步的cell状态，形状为(num_layers x batch_size x hidden_size)；如果 ``is_bidirec`` 设置为True，形状为(num_layers*2 x batch_size x hidden_size)
 
 返回类型:   rnn_out(Tensor),last_h(Tensor),last_c(Tensor)
 
@@ -57,6 +57,8 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
 .. code-block:: python
 
   import paddle.fluid as fluid
+  import paddle.fluid.layers as layers
+
   emb_dim = 256
   vocab_size = 10000
   data = fluid.layers.data(name='x', shape=[-1, 100, 1],
@@ -71,7 +73,7 @@ sigmoid的计算公式为： :math:`sigmoid(x) = 1 / (1 + e^{-x})` 。
   init_h = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
   init_c = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
 
-  rnn_out, last_h, last_c = fluid.layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
+  rnn_out, last_h, last_c = layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
 
 
 

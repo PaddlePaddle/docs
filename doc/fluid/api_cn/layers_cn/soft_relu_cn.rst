@@ -7,7 +7,7 @@ soft_relu
 
 SoftRelu 激活函数
 
-.. math::   out=ln(1+exp(max(min(x,threshold),threshold))
+.. math::   out=ln(1+exp(max(min(x,threshold),threshold)))
 
 参数:
     - **x** (variable) - SoftRelu operator的输入
@@ -20,7 +20,7 @@ SoftRelu 激活函数
 
     import paddle.fluid as fluid
 
-    x = fluid.layers.data(name=”x”, shape=[2,3,16,16], dtype=”float32”)
+    x = fluid.layers.data(name="x", shape=[3,16,16], dtype="float32")
     y = fluid.layers.soft_relu(x, threshold=20.0)
 
 

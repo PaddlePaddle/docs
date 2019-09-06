@@ -22,7 +22,7 @@ BRelu 激活函数
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype=”float32”)
+    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype="float32")
     y = fluid.layers.brelu(x, t_min=1.0, t_max=20.0)
 
 

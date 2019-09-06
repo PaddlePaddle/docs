@@ -8,7 +8,7 @@ guard
 使用with语句更改全局命名空间。
 
 参数:
-  - **new_generator** (None|str|bytes) - 全局命名空间的新名称。请注意，Python2中的str在Python3中被区分为为str和bytes两种，因此这里有两种类型。 默认值None。
+  - **new_generator** (None|str|bytes) - 全局命名空间的新名称。请注意，Python2中的str在Python3中被区分为str和bytes两种，因此这里有两种类型。 默认值None。
  
 **代码示例**
 

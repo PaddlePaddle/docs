@@ -39,7 +39,7 @@ ParallelExecutor
             test_program = fluid.default_main_program().clone(for_test=True)
             fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
      
-        startup_program.random_seed=1
+
         exe.run(startup_program)
      
         train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
@@ -190,6 +190,7 @@ ParallelExecutor
                 loss = fluid.layers.mean(hidden)
      
             place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+            exe = fluid.Executor(place)
             exe.run(startup_program)
      
             parallel_exe = fluid.ParallelExecutor(use_cuda=use_cuda,

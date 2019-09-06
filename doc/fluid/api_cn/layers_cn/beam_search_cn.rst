@@ -22,7 +22,7 @@ beam_search
 参数:
   - **pre_ids** （Variable） -  LodTensor变量，它是上一步 ``beam_search`` 的输出。在第一步中。它应该是LodTensor，shape为 :math:`(batch\_size，1)` ， :math:`lod [[0,1，...，batch\_size]，[0,1，...，batch\_size]]`
   - **pre_scores** （Variable） -  LodTensor变量，它是上一步中beam_search的输出
-  - **ids** （Variable） - 包含候选ID的LodTensor变量。shape为 :math:`（batch\_size×beam\_ize，K）` ，其中 ``K`` 应该是 ``beam_size``
+  - **ids** （Variable） - 包含候选ID的LodTensor变量。shape为 :math:`（batch\_size×beam\_size，K）` ，其中 ``K`` 应该是 ``beam_size``
   - **scores** （Variable） - 与 ``ids`` 及其shape对应的累积分数的LodTensor变量, 与 ``ids`` 的shape相同。
   - **beam_size** （int） - 束搜索中的束宽度。
   - **end_id** （int） - 结束标记的id。
@@ -54,7 +54,7 @@ beam_search
         name='probs', shape=[10000], dtype='float32')
     topk_scores, topk_indices = fluid.layers.topk(probs, k=beam_size)
     accu_scores = fluid.layers.elementwise_add(
-                                          x=fluid.layers.log(x=topk_scores)),
+                                          x=fluid.layers.log(x=topk_scores),
                                           y=fluid.layers.reshape(
                                               pre_scores, shape=[-1]),
                                           axis=0)

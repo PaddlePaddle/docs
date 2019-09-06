@@ -19,11 +19,11 @@
 
 - 输入输出Layout:
 
-  2D卷积输入特征的Layout为[N, C, H, W]或[N, H, W, C], N即batch size，C是通道数，H、W是特征的高度和宽度，输出特征和输入特征的Layout一致。(相应的3D卷积输入特征的Layout为[N, C, D, H, W]或[N, D, H, W, C]，但**注意**，Fluid的卷积当前只支持[N, C, H, W]，[N, C, D, H, W]。)
+  2D卷积输入特征的Layout为[N, C, H, W]或[N, H, W, C], N即batch size，C是通道数，H、W是特征的高度和宽度，输出特征和输入特征的Layout一致。(相应的3D卷积输入特征的Layout为[N, C, D, H, W]或[N, D, H, W, C]，但 **注意**，Fluid的卷积当前只支持[N, C, H, W]，[N, C, D, H, W]。)
 
 - 卷积核的Layout:
 
-  Fluid中2D卷积的卷积核(也称权重)的Layout为[C_o, C_in / groups, f_h, f_w]，C_o、C_in表示输出、输入通道数，f_h、f_w表示卷积核窗口的高度和宽度，按行序存储。(相应的2D卷积的卷积核Layout为[C_o, C_in / groups, f_d, f_h, d_w]，同样按行序存储。)
+  Fluid中2D卷积的卷积核(也称权重)的Layout为[C_o, C_in / groups, f_h, f_w]，C_o、C_in表示输出、输入通道数，f_h、f_w表示卷积核窗口的高度和宽度，按行序存储。(相应的3D卷积的卷积核Layout为[C_o, C_in / groups, f_d, f_h, d_w]，同样按行序存储。)
 
 - 深度可分离卷积(depthwise separable convolution):
 

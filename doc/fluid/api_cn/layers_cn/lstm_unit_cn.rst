@@ -33,11 +33,11 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
 
 参数：
     - **x_t** (Variable) - 当前步的输入值，二维张量，shape为 M x N ，M是批尺寸，N是输入尺寸
-    - **hidden_t_prev** (Variable) - lstm单元的隐藏状态值，二维张量，shape为 M x S，M是批尺寸，N是lstm单元的大小
-    - **cell_t_prev** (Variable) - lstm单元的cell值，二维张量，shape为 M x S ，M是批尺寸，N是lstm单元的大小
+    - **hidden_t_prev** (Variable) - lstm单元的隐藏状态值，二维张量，shape为 M x S，M是批尺寸，S是lstm单元的大小
+    - **cell_t_prev** (Variable) - lstm单元的cell值，二维张量，shape为 M x S ，M是批尺寸，S是lstm单元的大小
     - **forget_bias** (Variable) - lstm单元的遗忘bias
-    - **param_attr** (ParamAttr|None) - 可学习hidden-hidden权重的擦参数属性。如果设为None或者ParamAttr的一个属性，lstm_unit创建ParamAttr为param_attr。如果param_attr的初始化函数未设置，参数初始化为Xavier。默认：None
-    - **bias_attr** (ParamAttr|None) - 可学习bias权重的bias属性。如果设为False，输出单元中则不添加bias。如果设为None或者ParamAttr的一个属性，lstm_unit创建ParamAttr为bias_attr。如果bias_attr的初始化函数未设置，bias初始化为0.默认：None
+    - **param_attr** (ParamAttr|None) - 可学习hidden-hidden权重的擦参数属性。如果设为None或者 ``ParamAttr`` 的一个属性，lstm_unit创建 ``ParamAttr`` 为param_attr。如果param_attr的初始化函数未设置，参数初始化为Xavier。默认：None
+    - **bias_attr** (ParamAttr|None) - 可学习bias权重的bias属性。如果设为False，输出单元中则不添加bias。如果设为None或者 ``ParamAttr`` 的一个属性，lstm_unit创建 ``ParamAttr`` 为bias_attr。如果bias_attr的初始化函数未设置，bias初始化为0.默认：None
     - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名
 
 返回：lstm单元的hidden(隐藏状态)值和cell值
@@ -60,8 +60,8 @@ lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 
     pre_cell = fluid.layers.data(name='pre_cell', shape=[hidden_dim], dtype='float32')
     hidden = fluid.layers.lstm_unit(
         x_t=x,
-        hidden_t_prev=prev_hidden,
-        cell_t_prev=prev_cell)
+        hidden_t_prev=pre_hidden,
+        cell_t_prev=pre_cell)
 
 
 

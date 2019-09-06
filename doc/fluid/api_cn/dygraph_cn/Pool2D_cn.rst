@@ -15,7 +15,7 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pooling_type`` ， 池化�
 参数：
     - **name_scope** (str) - 该类的名称
     - **pool_size** (int|list|tuple)  - 池化核的大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。其他情况下，若为一个整数，则它的平方值将作为池化核大小，比如若pool_size=2, 则池化核大小为2x2，默认值为-1。
-    - **pool_type** (string) - 池化类型，可以是“max”对应max-pooling，“avg”对应average-pooling，默认值为max。
+    - **pool_type** (str) - 池化类型，可以是“max”对应max-pooling，“avg”对应average-pooling，默认值为max。
     - **pool_stride** (int|list|tuple)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。否则它是一个整数的平方值。默认值为1。
     - **pool_padding** (int|list|tuple) - 填充大小。如果它是一个元组，它必须包含两个整数值，(pool_padding_on_Height, pool_padding_on_Width)。否则它是一个整数的平方值。默认值为0。
     - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = true， ``ksize`` 和 ``paddings`` 将被忽略。默认值为false
@@ -40,13 +40,13 @@ pooling2d操作符根据 ``input`` ， 池化类型 ``pooling_type`` ， 池化�
           import numpy
 
           with fluid.dygraph.guard():
-             data = numpy.random.random((3, 32, 32)).astype('float32')
+              data = numpy.random.random((3, 32, 32)).astype('float32')
 
-             pool2d = fluid.dygraph.Pool2D("pool2d",pool_size=2,
+              pool2d = fluid.dygraph.Pool2D("pool2d",pool_size=2,
                             pool_type='max',
                             pool_stride=1,
                             global_pooling=False)
-             pool2d_res = pool2d(data)
+              pool2d_res = pool2d(data)
 
 
 

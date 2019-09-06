@@ -522,7 +522,7 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.to_variable(x)
 	            return im
 	
 	        cur_dir = os.path.dirname(os.path.realpath(__file__))
-	        tensor_img = load_image(cur_dir + '/image/2.png')
+	        tensor_img = load_image(cur_dir + '/image/infer_3.png')
 	
 	        results = mnist_infer(fluid.dygraph.to_variable(tensor_img))
 	        lab = np.argsort(results.numpy())

@@ -23,8 +23,8 @@ argmax
     
     import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
-    out = fluid.layers.argmax(x=in, axis=0)
-    out = fluid.layers.argmax(x=in, axis=-1)
+    out = fluid.layers.argmax(x, axis=0)
+    out = fluid.layers.argmax(x, axis=-1)
 
 
 

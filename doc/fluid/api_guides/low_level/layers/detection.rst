@@ -69,7 +69,7 @@ SSD
 
 * ssd_loss：通过位置偏移预测值，置信度，检测框位置和真实框位置和标签计算损失。API Reference 请参考 :ref:`cn_api_fluid_layers_ssd_loss`
 
-* detection map: 利用mAP评估SSD网络模型。API Reference 请参考 :ref:`cn_api_fluid_layers_detection_map`
+* detection_map: 利用mAP评估SSD网络模型。API Reference 请参考 :ref:`cn_api_fluid_layers_detection_map`
 
 YOLO V3
 ---------------

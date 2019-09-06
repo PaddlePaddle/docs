@@ -41,7 +41,7 @@ box_clip
         name='boxes', shape=[8, 4], dtype='float32', lod_level=1)
     im_info = fluid.layers.data(name='im_info', shape=[3])
     out = fluid.layers.box_clip(
-        input=boxes, im_info=im_info, inplace=True)
+        input=boxes, im_info=im_info)
 
 
 

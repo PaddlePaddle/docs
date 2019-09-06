@@ -9,10 +9,10 @@ density_prior_box
 **Density Prior Box Operator**
 
 为SSD算法(Single Shot MultiBox Detector)生成density prior box。
-每个input的位置产生N个prior box，其中，N通过densities, fixed_sizes and fixed_ratios
-的量来决定。在每个input位置附近的box center格点，通过此op生成。格点坐标由densities决定，
-density prior box的量由fixed_sizes and fixed_ratios决定。显然地，fixed_sizes
-和densities相等。对于densities中的densities_i：
+每个 ``input`` 的位置产生N个prior box，其中，N通过 ``densities`` , ``fixed_sizes`` 和 ``fixed_ratios``
+的量来决定。在每个input位置附近的box center格点，通过此op生成。格点坐标由 ``densities`` 决定，
+density prior box的量由 ``fixed_sizes`` 和 ``fixed_ratios`` 决定。显然地，``fixed_sizes``
+和 ``densities`` 相等。对于 ``densities`` 中的densities_i：
 
 .. math::
 
@@ -27,7 +27,7 @@ density prior box的量由fixed_sizes and fixed_ratios决定。显然地，fixed
   - **fixed_ratios** (list|tuple|None) - 被生成的density prior boxes的固定长度，如果该属性未被设置，同时 :attr:`densities` 和 :attr:`fix_sizes` 被设置，则 :attr:`aspect_ratios` 被用于生成 density prior boxes
   - **variance** (list|tuple) - 将被用于density prior boxes编码的方差，默认值为:[0.1, 0.1, 0.2, 0.2]
   - **clip(bool)** - 是否clip超出范围的box。默认值：False
-  - **step** (list|turple) - Prior boxes在宽度和高度的步长，如果step[0] == 0.0/step[1] == 0.0, input的the density prior boxes的高度/宽度的步长将被自动计算。默认值：Default: [0., 0.]
+  - **step** (list|tuple) - Prior boxes在宽度和高度的步长，如果step[0] == 0.0/step[1] == 0.0, input的the density prior boxes的高度/宽度的步长将被自动计算。默认值：Default: [0., 0.]
   - **offset** (float) - Prior boxes中心补偿值，默认为：0.5
   - **flatten_to_2d** (bool) - 是否将output prior boxes和方差 ``flatten`` 至2维形状，第二个dim为4。默认值：False
   - **name(str)** - density prior box op的名字，默认值: None

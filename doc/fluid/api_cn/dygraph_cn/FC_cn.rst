@@ -55,11 +55,11 @@ FC
 参数:
   - **name_scope** (str) – 该类的名称
   - **size** (int) – 该层输出单元的数目
-  - **num_flatten_dims** (int, 默认为1) – fc层可以接受一个维度大于2的tensor。此时， 它首先会被扁平化(flattened)为一个二维矩阵。 参数 ``num_flatten_dims`` 决定了输入tensor的flattened方式: 前 ``num_flatten_dims`` (包含边界，从1开始数) 个维度会被扁平化为最终矩阵的第一维 (维度即为矩阵的高), 剩下的 rank(X) - num_flatten_dims 维被扁平化为最终矩阵的第二维 (即矩阵的宽)。 例如， 假设X是一个五维tensor，其形可描述为(2, 3, 4, 5, 6), 且num_flatten_dims = 3。那么扁平化的矩阵形状将会如此： (2 x 3 x 4, 5 x 6) = (24, 30)
+  - **num_flatten_dims** (int) – fc层可以接受一个维度大于2的tensor。此时， 它首先会被扁平化(flattened)为一个二维矩阵。 参数 ``num_flatten_dims`` 决定了输入tensor的flattened方式: 前 ``num_flatten_dims`` (包含边界，从1开始数) 个维度会被扁平化为最终矩阵的第一维 (维度即为矩阵的高), 剩下的 rank(X) - num_flatten_dims 维被扁平化为最终矩阵的第二维 (即矩阵的宽)。 例如， 假设X是一个五维tensor，其形可描述为[2, 3, 4, 5, 6], 且num_flatten_dims = 3。那么扁平化的矩阵形状将会如此： [2 x 3 x 4, 5 x 6] = [24, 30]。默认为1。
   - **param_attr** (ParamAttr|list of ParamAttr|None) – 该层可学习的参数/权的参数属性
   - **bias_attr** (ParamAttr|list of ParamAttr, default None) – 该层bias变量的参数属性。如果值为False， 则bias变量不参与输出单元运算。 如果值为None，bias变量被初始化为0。默认为 None。
   - **act** (str|None) – 应用于输出的Activation（激励函数）
-  - **is_test** (bool) – 表明当前执行是否处于测试阶段的标志
+  - **is_test** (bool) – 表明当前执行是否处于测试阶段的标志。默认为False。
   - **dtype** (str) – 权重的数据类型
 
 
