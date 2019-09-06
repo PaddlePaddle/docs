@@ -12,7 +12,7 @@ Swish 激活函数
 
 参数：
     - **x** (Variable) -  Swish operator 的输入
-    - **beta** (浮点|1.0) - Swish operator 的常量beta
+    - **beta** (float|1.0) - Swish operator 的常量beta
     - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
 返回: Swish operator 的输出

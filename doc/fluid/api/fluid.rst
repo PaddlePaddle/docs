@@ -26,6 +26,7 @@ fluid
     fluid/global_scope.rst
     fluid/gradients.rst
     fluid/in_dygraph_mode.rst
+    fluid/is_compiled_with_cuda.rst
     fluid/LoDTensor.rst
     fluid/LoDTensorArray.rst
     fluid/memory_optimize.rst
