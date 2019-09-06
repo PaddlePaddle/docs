@@ -2,7 +2,7 @@
 distributed
 ==================
 
-communicator_fake_rpc
+FLAGS_communicator_fake_rpc
 **************************************
 (since 1.5.0)
 
@@ -21,7 +21,7 @@ Note
 This flag is only for developer of paddlepaddle, user should not set it.
 
 
-communicator_independent_recv_thread
+FLAGS_communicator_independent_recv_thread
 **************************************
 (since 1.5.0)
 
@@ -40,7 +40,7 @@ Note
 This flag is for developer to debug and optimize the framework. User should not set it.
 
 
-communicator_max_merge_var_num
+FLAGS_communicator_max_merge_var_num
 **************************************
 (since 1.5.0)
 
@@ -59,7 +59,7 @@ Note
 This flag has strong relationship with trainer thread num. The default value should be the same with thread num.
 
 
-communicator_merge_sparse_grad
+FLAGS_communicator_merge_sparse_grad
 *******************************
 (since 1.5.0)
 
@@ -78,11 +78,11 @@ Note
 Merging sparse gradient would be time-consuming. If the sparse gradient has many duplicated ids, it will save memory and communication could be much faster. Otherwise it will not save memory.
 
 
-communicator_min_send_grad_num_before_recv
+FLAGS_communicator_min_send_grad_num_before_recv
 *******************************************
 (since 1.5.0)
 
-In communicator, there is one send thread that send gradient to parameter server and one receive thread that receive parameter from parameter server. They work independently. This flag is used to control the frequency of receive thread. Only when the send thread send at least communicator_min_send_grad_num_before_recv gradients will the receive thread receive parameter from parameter server.
+In communicator, there is one send thread that send gradient to parameter server and one receive thread that receive parameter from parameter server. They work independently. This flag is used to control the frequency of receive thread. Only when the send thread send at least FLAGS_communicator_min_send_grad_num_before_recv gradients will the receive thread receive parameter from parameter server.
 
 Values accepted
 ---------------
@@ -97,7 +97,7 @@ Note
 This flag has strong relation with the training threads of trainer. because each training thread will send it's grad. So the default value should be training thread num.
 
 
-communicator_send_queue_size
+FLAGS_communicator_send_queue_size
 *******************************************
 (since 1.5.0)
 
@@ -116,7 +116,7 @@ Note
 This flag will affect the training speed, if the queue size is larger, the speed may be faster, but may make the result worse.
 
 
-communicator_send_wait_times
+FLAGS_communicator_send_wait_times
 *******************************************
 (since 1.5.0)
 
@@ -131,7 +131,7 @@ Example
 FLAGS_communicator_send_wait_times=5 set the times that send thread will wait if merge number does not reach max_merge_var_num to 5.
 
 
-communicator_thread_pool_size
+FLAGS_communicator_thread_pool_size
 *******************************************
 (since 1.5.0)
 
@@ -150,7 +150,7 @@ Note
 Most of time user does not need to set this flag.
 
 
-dist_threadpool_size
+FLAGS_dist_threadpool_size
 *******************************************
 (Since 1.0.0)
 
@@ -165,7 +165,7 @@ Example
 FLAGS_dist_threadpool_size=10 will enable 10 threads as max number of thread used for distributed module.
 
 
-rpc_deadline
+FLAGS_rpc_deadline
 *******************************************
 (Since 1.0.0)
 
@@ -180,11 +180,11 @@ Example
 FLAGS_rpc_deadline=180000 will set deadline timeout to 3 minute.
 
 
-rpc_disable_reuse_port
+FLAGS_rpc_disable_reuse_port
 *******************************************
 (since 1.2.0)
 
-When rpc_disable_reuse_port is true, the flag of grpc GRPC_ARG_ALLOW_REUSEPORT will be set to false to
+When FLAGS_rpc_disable_reuse_port is true, the flag of grpc GRPC_ARG_ALLOW_REUSEPORT will be set to false to
 disable the use of SO_REUSEPORT if it's available.
 
 Values accepted
@@ -196,7 +196,7 @@ Example
 FLAGS_rpc_disable_reuse_port=True will disable the use of SO_REUSEPORT.
 
 
-rpc_get_thread_num
+FLAGS_rpc_get_thread_num
 *******************************************
 (Since 1.0.0)
 
@@ -211,7 +211,7 @@ Example
 FLAGS_rpc_get_thread_num=6 will use 6 threads to get parameter from parameter server.
 
 
-rpc_send_thread_num
+FLAGS_rpc_send_thread_num
 *******************************************
 (Since 1.0.0)
 
@@ -226,11 +226,11 @@ Example
 FLAGS_rpc_send_thread_num=6 will set number thread used for send to 6.
 
 
-rpc_server_profile_path
+FLAGS_rpc_server_profile_path
 *******************************************
 since(v0.15.0)
 
-Set the profiler output log file path prefix. The complete path will be rpc_server_profile_path_listener_id, listener_id is a random number.
+Set the profiler output log file path prefix. The complete path will be FLAGS_rpc_server_profile_path_listener_id, listener_id is a random number.
 
 Values accepted
 ---------------

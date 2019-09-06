@@ -3,7 +3,7 @@ memory management
 ==================
 
 
-allocator_strategy
+FLAGS_allocator_strategy
 **************************************
 (since 1.2)
 
@@ -21,7 +21,7 @@ FLAGS_allocator_strategy=naive_best_fit would use the new-designed allocator.
 
 
 
-eager_delete_scope
+FLAGS_eager_delete_scope
 *******************************************
 (since 0.12.0)
 
@@ -36,7 +36,7 @@ Example
 FLAGS_eager_delete_scope=True will make scope delete synchronously.
 
 
-eager_delete_tensor_gb
+FLAGS_eager_delete_tensor_gb
 *******************************************
 (since 1.0.0)
 
@@ -60,7 +60,7 @@ It is recommended that users enable garbage collection strategy by setting FLAGS
 
 
 
-enable_inplace_whitelist
+FLAGS_enable_inplace_whitelist
 *******************************************
 (since 1.4)
 
@@ -76,7 +76,7 @@ FLAGS_enable_inplace_whitelist=True would disable memory in-place optimization o
 
 
 
-fast_eager_deletion_mode
+FLAGS_fast_eager_deletion_mode
 *******************************************
 (since 1.3)
 
@@ -93,7 +93,7 @@ FLAGS_fast_eager_deletion_mode=True would turn on fast garbage collection strate
 FLAGS_fast_eager_deletion_mode=False would turn off fast garbage collection strategy.
 
 
-fraction_of_gpu_memory_to_use
+FLAGS_fraction_of_gpu_memory_to_use
 *******************************************
 (since 1.2.0)
 
@@ -113,7 +113,7 @@ Windows series platform will set FLAGS_fraction_of_gpu_memory_to_use to 0.5 by d
 Linux will set FLAGS_fraction_of_gpu_memory_to_use to 0.92 by default.
 
 
-free_idle_memory
+FLAGS_free_idle_memory
 *******************************************
 (since 0.15.0)
 
@@ -130,7 +130,7 @@ FLAGS_free_idle_memory=True will free idle memory when there is too much of it.
 FLAGS_free_idle_memory=False will not free idle memory.
 
 
-fuse_parameter_groups_size
+FLAGS_fuse_parameter_groups_size
 *******************************************
 (since 1.4.0)
 
@@ -146,7 +146,7 @@ FLAGS_fuse_parameter_groups_size=3 will set the size of one group parameters' gr
 
 
 
-fuse_parameter_memory_size
+FLAGS_fuse_parameter_memory_size
 *******************************************
 (since 1.5.0)
 
@@ -161,7 +161,7 @@ Example
 FLAGS_fuse_parameter_memory_size=16 set the up limited memory size of one group parameters' gradient to 16 Megabytes.
 
 
-init_allocated_mem
+FLAGS_init_allocated_mem
 *******************************************
 (since 0.15.0)
 
@@ -178,7 +178,7 @@ FLAGS_init_allocated_mem=True will make the allocated memory initialize as a non
 FLAGS_init_allocated_mem=False will not initialize the allocated memory.
 
 
-initial_cpu_memory_in_mb
+FLAGS_initial_cpu_memory_in_mb
 *******************************************
 (since 0.14.0)
 
@@ -193,7 +193,7 @@ Example
 FLAGS_initial_cpu_memory_in_mb=100, if FLAGS_fraction_of_cpu_memory_to_use*(total physical memory) > 100MB, then allocator will pre-allocate 100MB when first allocation request raises, and re-allocate 100MB again when the pre-allocated memory is exhaustive.
 
 
-initial_gpu_memory_in_mb
+FLAGS_initial_gpu_memory_in_mb
 *******************************************
 (since 1.4.0)
 
@@ -213,7 +213,7 @@ If you set this flag, the memory size set by FLAGS_fraction_of_gpu_memory_to_use
 If you don't set this flag, PaddlePaddle will use FLAGS_fraction_of_gpu_memory_to_use to allocate gpu memory.
 
 
-limit_of_tmp_allocation
+FLAGS_limit_of_tmp_allocation
 *******************************************
 (since 1.3)
 
@@ -228,7 +228,7 @@ Example
 FLAGS_limit_of_tmp_allocation=1024 will set the up limit of temporary_allocation size to 1024 bytes.
 
 
-memory_fraction_of_eager_deletion
+FLAGS_memory_fraction_of_eager_deletion
 *******************************************
 (since 1.4)
 
@@ -248,7 +248,7 @@ FLAGS_memory_fraction_of_eager_deletion=1 would release all temporary variables.
 FLAGS_memory_fraction_of_eager_deletion=0.5 would only release 50% of variables with largest memory size.
 
 
-reallocate_gpu_memory_in_mb
+FLAGS_reallocate_gpu_memory_in_mb
 *******************************************
 (since 1.4.0)
 
@@ -268,12 +268,12 @@ If this flag is set, PaddlePaddle will reallocate the gpu memory with size speci
 Else PaddlePaddle will reallocate with size set by FLAGS_fraction_of_gpu_memory_to_use.
 
 
-times_excess_than_required_tmp_allocation
+FLAGS_times_excess_than_required_tmp_allocation
 *******************************************
 (since 1.3)
 
 The FLAGS_times_excess_than_required_tmp_allocation indicates the max size the TemporaryAllocator can return. For Example
-, if the required memory size is N, and times_excess_than_required_tmp_allocation is 2.0, the TemporaryAllocator will return the available allocation that the range of size is N ~ 2*N.
+, if the required memory size is N, and FLAGS_times_excess_than_required_tmp_allocation is 2.0, the TemporaryAllocator will return the available allocation that the range of size is N ~ 2*N.
 
 Values accepted
 ---------------
@@ -284,7 +284,7 @@ Example
 FLAGS_times_excess_than_required_tmp_allocation=1024 will set the max size of the TemporaryAllocator can return to 1024*N.
 
 
-use_pinned_memory
+FLAGS_use_pinned_memory
 *******************************************
 (since 0.12.0)
 

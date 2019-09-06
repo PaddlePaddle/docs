@@ -3,7 +3,7 @@
 ==================
 
 
-paddle_num_threads
+FLAGS_paddle_num_threads
 *******************************************
 (始于0.15.0)
 
@@ -18,7 +18,7 @@ Int32型，缺省值为1。
 FLAGS_paddle_num_threads=2 - 将每个实例的最大线程数设为2。
 
 
-selected_gpus
+FLAGS_selected_gpus
 *******************************************
 (始于1.3)
 

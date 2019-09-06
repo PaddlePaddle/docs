@@ -4,7 +4,7 @@ others
 
 
 
-benchmark
+FLAGS_benchmark
 **************************************
 (since 0.12.0)
 
@@ -19,7 +19,7 @@ Example
 FLAGS_benchmark=True will do some synchronizations to test benchmark.
 
 
-inner_op_parallelism
+FLAGS_inner_op_parallelism
 *******************************************
 (since 1.3.0)
 
@@ -38,7 +38,7 @@ Note
 currently only sparse adam op supports inner_op_parallelism.
 
 
-max_body_size
+FLAGS_max_body_size
 *******************************************
 (Since 1.0.0)
 
@@ -53,7 +53,7 @@ Example
 FLAGS_max_body_size=2147483647 will set the BRPC message size to 2147483647.
 
 
-sync_nccl_allreduce
+FLAGS_sync_nccl_allreduce
 *******************************************
 (since 1.3)
 
@@ -68,7 +68,7 @@ Example
 FLAGS_sync_nccl_allreduce=True will call `cudaStreamSynchronize(nccl_stream)` in allreduce_op_handle.
 
 
-tracer_profile_fname
+FLAGS_tracer_profile_fname
 *******************************************
 (since 1.4.0)
 
