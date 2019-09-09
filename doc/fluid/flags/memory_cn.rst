@@ -3,7 +3,7 @@
 ==================
 
 
-allocator_strategy
+FLAGS_allocator_strategy
 ********************
 (始于1.2)
 
@@ -20,7 +20,7 @@ FLAGS_allocator_strategy=legacy - 使用legacy分配器。
 FLAGS_allocator_strategy=naive_best_fit - 使用新设计的分配器。
 
 
-eager_delete_scope
+FLAGS_eager_delete_scope
 *******************************************
 (始于0.12.0)
 
@@ -35,7 +35,7 @@ Bool型，缺省值为True。
 FLAGS_eager_delete_scope=True - 同步局域删除。
 
 
-eager_delete_tensor_gb
+FLAGS_eager_delete_tensor_gb
 *******************************************
 (始于1.0.0)
 
@@ -58,7 +58,7 @@ FLAGS_eager_delete_tensor_gb=-1.0 - 禁用垃圾回收策略。
 建议用户在训练大型网络时设置FLAGS_eager_delete_tensor_gb=0.0以启用垃圾回收策略。
 
 
-enable_inplace_whitelist
+FLAGS_enable_inplace_whitelist
 *******************************************
 (始于1.4)
 
@@ -73,7 +73,7 @@ Bool型，缺省值为False。
 FLAGS_enable_inplace_whitelist=True - 在特定op上禁止内存原位复用优化。
 
 
-fast_eager_deletion_mode
+FLAGS_fast_eager_deletion_mode
 *******************************************
 (始于1.3)
 
@@ -90,7 +90,7 @@ FLAGS_fast_eager_deletion_mode=True - 启用快速垃圾回收策略。
 FLAGS_fast_eager_deletion_mode=False - 禁用快速垃圾回收策略。
 
 
-fraction_of_gpu_memory_to_use
+FLAGS_fraction_of_gpu_memory_to_use
 *******************************************
 (始于1.2.0)
 
@@ -109,7 +109,7 @@ FLAGS_fraction_of_gpu_memory_to_use=0.1 - 分配总GPU内存大小的10%作为�
 Windows系列平台会将FLAGS_fraction_of_gpu_memory_to_use默认设为0.5，Linux则会默认设为0.92。
 
 
-free_idle_memory
+FLAGS_free_idle_memory
 *******************************************
 (始于0.15.0)
 
@@ -126,7 +126,7 @@ FLAGS_free_idle_memory=True - 空闲内存太多时释放。
 FLAGS_free_idle_memory=False - 不释放空闲内存。
 
 
-fuse_parameter_groups_size
+FLAGS_fuse_parameter_groups_size
 *******************************************
 (始于1.4.0)
 
@@ -141,7 +141,7 @@ Int32型，缺省值为3。
 FLAGS_fuse_parameter_groups_size=3 - 将单组参数的梯度大小设为3。
 
 
-fuse_parameter_memory_size
+FLAGS_fuse_parameter_memory_size
 *******************************************
 (始于1.5.0)
 
@@ -156,7 +156,7 @@ Double型，缺省值为-1.0。
 FLAGS_fuse_parameter_memory_size=16 - 将单组参数梯度的上限大小设为16MB。
 
 
-init_allocated_mem
+FLAGS_init_allocated_mem
 *******************************************
 (始于0.15.0)
 
@@ -173,7 +173,7 @@ FLAGS_init_allocated_mem=True - 对分配的内存进行非零初始化。
 FLAGS_init_allocated_mem=False - 不会对分配的内存进行非零初始化。
 
 
-initial_cpu_memory_in_mb
+FLAGS_initial_cpu_memory_in_mb
 *******************************************
 (始于0.14.0)
 
@@ -188,7 +188,7 @@ Uint64型，缺省值为500，单位为MB。
 FLAGS_initial_cpu_memory_in_mb=100 - 在FLAGS_fraction_of_cpu_memory_to_use*（总物理内存）大于100MB的情况下，首次提出分配请求时，分配器预先分配100MB内存，并在预分配的内存耗尽时再次分配100MB。
 
 
-initial_gpu_memory_in_mb
+FLAGS_initial_gpu_memory_in_mb
 *******************************************
 (始于1.4.0)
 
@@ -207,7 +207,7 @@ FLAGS_initial_gpu_memory_in_mb=4096 - 分配4GB作为初始GPU内存块大小。
 如果设置该flag，则FLAGS_fraction_of_gpu_memory_to_use设置的内存大小将被该flag覆盖。如果未设置该flag，PaddlePaddle将使用FLAGS_fraction_of_gpu_memory_to_use分配GPU内存。
 
 
-limit_of_tmp_allocation
+FLAGS_limit_of_tmp_allocation
 *******************************************
 (始于1.3)
 
@@ -222,7 +222,7 @@ Int64型，缺省值为-1。
 FLAGS_limit_of_tmp_allocation=1024 - 将temporary_allocation大小的上限设为1024字节。
 
 
-memory_fraction_of_eager_deletion
+FLAGS_memory_fraction_of_eager_deletion
 *******************************************
 (始于1.4)
 
@@ -242,7 +242,7 @@ FLAGS_memory_fraction_of_eager_deletion=1 - 释放所有临时变量。
 FLAGS_memory_fraction_of_eager_deletion=0.5 - 仅释放50%比例的占用内存最多的变量。
 
 
-reallocate_gpu_memory_in_mb
+FLAGS_reallocate_gpu_memory_in_mb
 *******************************************
 (始于1.4.0)
 
@@ -261,7 +261,7 @@ FLAGS_reallocate_gpu_memory_in_mb=1024 - 如果耗尽了分配的GPU内存块，
 如果设置了该flag，PaddlePaddle将重新分配该flag指定大小的gpu内存。否则分配FLAGS_fraction_of_gpu_memory_to_use指定比例的gpu内存。
 
 
-times_excess_than_required_tmp_allocation
+FLAGS_times_excess_than_required_tmp_allocation
 *******************************************
 (始于1.3)
 
@@ -276,7 +276,7 @@ Int64型，缺省值为2。
 FLAGS_times_excess_than_required_tmp_allocation=1024 - 设置TemporaryAllocator可以返回的最大大小为1024*N。
 
 
-use_pinned_memory
+FLAGS_use_pinned_memory
 *******************************************
 (始于0.12.0)
 

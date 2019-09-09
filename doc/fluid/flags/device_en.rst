@@ -3,7 +3,7 @@ device management
 ==================
 
 
-paddle_num_threads
+FLAGS_paddle_num_threads
 *******************************************
 (since 0.15.0)
 
@@ -18,7 +18,7 @@ Example
 FLAGS_paddle_num_threads=2 will enable 2 threads as max number of threads for each instance.
 
 
-selected_gpus
+FLAGS_selected_gpus
 *******************************************
 (since 1.3)
 
