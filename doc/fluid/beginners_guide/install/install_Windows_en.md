@@ -2,10 +2,9 @@
 
 ## Operating Environment
 
-* *64-bit operating system*
-* *Windows 7/8, Windows 10 Pro/Enterprise*
-* *Python 2.7/3.5/3.6/3.7*
-* *pip or pip3 >= 9.0.1*
+* *Windows 7/8/10 Pro/Enterprise(64bit)(CUDA 8.0/9.0/10.0 are supported, and only single GPU is supported)*
+* *Python 2.7.15+/3.5.1+/3.6/3.7(64bit)*
+* *pip or pip3 9.0.1+(64bit)*
 
 ### Precautions
 
@@ -17,8 +16,10 @@
 * If your computer doesn’t have NVIDIA® GPU, please install the CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and it satisfies the following requirements, we recommend you to install the GPU version of PaddlePaddle
-    * *CUDA Toolkit 8.0/9.2 with cuDNN v7.3+*
+    * *CUDA Toolkit 8.0 with cuDNN v7.1+, or 9.0/10.0 with cuDNN v7.3+*
     * *GPU's computing capability exceeds 1.0*
+
+Note: currently, the official Windows installation package only support CUDA 8.0/9.0/10.0 with single GPU, and don't support CUDA 9.1/9.2/10.1. if you need to use, please compile by yourself through the source code.
 
 Please refer to the NVIDIA official documents for the installation process and the configuration methods of [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/) and [cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/).
 
@@ -42,7 +43,7 @@ There is a checking function below for [verifyig whether the installation is suc
 Notice:
 
 * The version of pip and the version of python should be corresponding: python2.7 corresponds to `pip`; python3.x corresponds to `pip3`.
-* `pip install paddlepaddle-gpu` This command will install PaddlePaddle that supports CUDA 8.0 cuDNN v7. Currently, PaddlePaddle doesn't support any other version of CUDA or cuDNN on Windows.
+* `pip install paddlepaddle-gpu` This command will install PaddlePaddle that supports CUDA 8.0(with cuDNN v7.1+), or CUDA 9.0/10.0(with cuDNN v7.3+).
 
 <a name="check"></a>
 ## Installation Verification
