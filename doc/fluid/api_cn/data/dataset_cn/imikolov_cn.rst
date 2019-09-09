@@ -42,9 +42,7 @@ imikolov测试数据集的creator。
 返回类型：callable
 
 
-.. py:function:: paddle.dataset.imikolov.convert(path)
 
-将数据集转换为recordio格式。
 
 
 

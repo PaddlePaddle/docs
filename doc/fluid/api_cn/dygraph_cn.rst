@@ -37,4 +37,5 @@ fluid.dygraph
     dygraph_cn/save_persistables_cn.rst
     dygraph_cn/SpectralNorm_cn.rst
     dygraph_cn/to_variable_cn.rst
+    dygraph_cn/Tracer_cn.rst
     dygraph_cn/TreeConv_cn.rst

@@ -25,7 +25,7 @@ row_conv
 详细请参考 `设计文档  <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  。
 
 参数:
-    - **input** (Variable) -- 输入是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。
+    - **input** (Variable) -- 输入是一个LodTensor或Tensor，LodTensor(X)支持可变时间长度的输入序列。这个LodTensor的内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。Tensor(X)输入的形状为(B x T x N),B为batch-size。
     - **future_context_size** (int) -- 下文大小。请注意，卷积核的shape是[future_context_size + 1, D]。
     - **param_attr** (ParamAttr) --  参数的属性，包括名称、初始化器等。
     - **act** (str) -- 非线性激活函数。

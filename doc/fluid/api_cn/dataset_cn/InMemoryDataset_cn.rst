@@ -28,6 +28,36 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
     dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
     dataset.set_queue_num(12)
 
+.. py:method:: set_parse_ins_id(parse_ins_id)
+
+设置 ``Dataset`` 是否需要解析样本id。
+
+参数：
+    - **parse_ins_id** (bool) - 是否解析样本id。
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    dataset.set_parse_ins_id(True)
+
+.. py:method:: set_parse_content(parse_content)
+
+设置 ``Dataset`` 是否需要解析上下文。
+
+参数：
+    - **parse_content** (bool) - 是否需要解析上下文
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
+    dataset.set_parse_content(True)
+
 .. py:method:: set_fleet_send_batch_size(fleet_send_batch_size)
 
 设置发送batch的大小

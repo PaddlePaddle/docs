@@ -32,9 +32,7 @@ WMT14测试集creator。
 
 
 
-.. py:function:: paddle.dataset.wmt14.convert(path)
 
-将数据集转换为recordio格式。
 
 
 

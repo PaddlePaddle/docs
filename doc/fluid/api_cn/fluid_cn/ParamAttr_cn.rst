@@ -5,7 +5,7 @@ ParamAttr
 -------------------------------
 
 
-.. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
+.. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=True)
 
 该类代表了参数的各种属性。 为了使神经网络训练过程更加流畅，用户可以根据需要调整参数属性。比如learning rate（学习率）, regularization（正则化）, trainable（可训练性）, do_model_average(平均化模型)和参数初始化方法.
 
@@ -16,7 +16,7 @@ ParamAttr
     - **regularizer** (WeightDecayRegularizer) – 正则因子. 默认为None
     - **trainable** (bool) – 该参数是否可训练。默认为True
     - **gradient_clip** (BaseGradientClipAttr) – 减少参数梯度的方法。默认为None
-    - **do_model_average** (bool) – 该参数是否服从模型平均值。默认为False
+    - **do_model_average** (bool) – 模型平均值可用时该参数是否服从模型平均值。默认为True。
 
 **代码示例**
 

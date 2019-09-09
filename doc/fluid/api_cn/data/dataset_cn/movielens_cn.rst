@@ -40,10 +40,6 @@ Movielens 1-M数据集是由GroupLens Research采集的6000个用户对4000个�
 
 获取电影信息词典。
 
-.. py:function:: paddle.dataset.movielens.convert(path)
-
-将数据集转换为recordio格式。
-
 .. py:class:: paddle.dataset.movielens.MovieInfo(index, categories, title)
 
 电影ID，标题和类别信息存储在MovieInfo中。

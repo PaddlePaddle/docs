@@ -3,7 +3,7 @@
 NCE
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.NCE(name_scope, num_total_classes, param_attr=None, bias_attr=None, num_neg_samples=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
+.. py:class:: paddle.fluid.dygraph.NCE(name_scope, num_total_classes, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
 
 计算并返回噪音对比估计（ noise-contrastive estimation training loss）。 
 `请参考Noise-contrastive estimation: A new estimation principle for unnormalized statistical models

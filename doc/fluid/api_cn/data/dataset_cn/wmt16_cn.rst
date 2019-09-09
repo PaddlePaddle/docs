@@ -105,10 +105,7 @@ paddle.dataset.wmt16使用moses的tokenization脚本提供原始数据集的toke
 下载完整的数据集。
 
 
-.. py:function:: paddle.dataset.wmt16.convert(path, src_dict_size, trg_dict_size, src_lang)
 
-
-将数据集转换为recordio格式。
 
 
 

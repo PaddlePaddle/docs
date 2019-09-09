@@ -20,9 +20,7 @@ sentiment
 
 默认的测试集reader creator。
 
-.. py:function:: paddle.dataset.sentiment.convert(path)
 
-将数据集转换为recordio格式。
 
 
 

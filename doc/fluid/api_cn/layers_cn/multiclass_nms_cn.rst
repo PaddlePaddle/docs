@@ -11,8 +11,28 @@ multiclass_nms
 
 在NMS中，如果提供 ``score_threshold`` 阈值，则此算子贪婪地选择具有高于 ``score_threshold`` 的高分数的检测边界框（bounding box）的子集，然后如果nms_top_k大于-1，则选择最大的nms_top_k置信度分数。 接着，该算子基于 ``nms_threshold`` 和 ``nms_eta`` 参数，通过自适应阈值NMS移去与已经选择的框具有高IOU（intersection over union）重叠的框。
 
-在NMS步骤后，如果keep_top_k大于-1，则每个图像最多保留keep_top_k个总bbox数。
+在NMS步骤后，如果keep_top_k大于-1，则每个图像最多保留keep_top_k个总bbox数。看下面的示例：
 
+.. code-block:: python
+
+    if:
+        box1.data = (2.0, 3.0, 7.0, 5.0) format is (xmin, ymin, xmax, ymax)
+        box1.scores = (0.7, 0.2, 0.4)  which is (label0.score=0.7, label1.score=0.2, label2.cores=0.4)
+
+        box2.data = (3.0, 4.0, 8.0, 5.0)
+        box2.score = (0.3, 0.3, 0.1)
+
+        nms_threshold = 0.3
+        background_label = 0
+        score_threshold = 0
+
+
+    Then:
+        iou = 4/11 > 0.3
+        out.data = [[1, 0.3, 3.0, 4.0, 8.0, 5.0],
+                     [2, 0.4, 2.0, 3.0, 7.0, 5.0]]
+
+        Out format is (label, confidence, xmin, ymin, xmax, ymax)
 
 参数：
     - **bboxes**  (Variable) – 支持两种类型的bbox（bounding box）:
