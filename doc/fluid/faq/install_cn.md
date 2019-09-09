@@ -17,11 +17,11 @@
 
 Python2:
 
-`pip install paddlepaddle -i http://pypi.douban.com/simple/`
+`pip install paddlepaddle -i https://pypi.douban.com/simple/`
 
 Python3:
 
-`pip3 install paddlepaddle -i http://pypi.douban.com/simple/`
+`pip3 install paddlepaddle -i https://pypi.douban.com/simple/`
 
 这里也可以将 -i 后的参数换成：https://mirrors.aliyun.com/pypi/simple/
 
@@ -50,6 +50,28 @@ Python3:
 
 ## 环境问题
 
+##### Q: 如何选择mu或m版本python？
+
++ 问题描述
+
+如何选择mu或m版本python？
+
++ 问题解答
+
+通过获取python tag/abi tag/platform tag列表来选择：
+
+针对pip 7.0.1：
+    
+    python -c "from pip import pep425tags;print(pep425tags.supported_tags)"
+
+针对pip 10以上：
+
+    python -c "import pip._internal;print(pip._internal.pep425tags.get_supported())"
+
+或者从wheel包获取：
+
+    python -c "import wheel.pep425tags as w; print(w.get_supported())"
+
 ##### Q: 报错：libmkldnn.so not found
 
 + 问题描述
@@ -59,6 +81,16 @@ paddle运行时报libmkldnn.so not found。
 + 问题解答
 
 请设置为 export LD_LIBRARY_PATH=/home/disk1/yitengfei/paddle_release_home/python/lib/python2.7/site-packages/paddle/libs/:$LD_LIBRARY_PATH。 注：具体请按照自己的文件路径填写。
+
+##### Q: 报错：from .core_avx import * Import Error: libmkl_rt.so cannot open share object file: No such file or directory
+
++ 问题描述
+
+conda虚拟环境python3.5版本在import paddle.fluid as fluid时报错：from .core_avx import * Import Error: libmkl_rt.so cannot open share object file: No such file or directory。
+
++ 问题解答
+
+需要locate libmkl_rt.so的位置，例如位置为“/path1/libmkl_rt.so”，然后在.bashrc最后一行加入“export LD_LIBRARY_PATH=/path1/libmkl_rt.so:$LD_LIBRARY_PATH”，执行source .bashrc。
 
 ##### Q: CPU版本可运行，GPU版本运行失败
 
