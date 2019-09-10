@@ -3,7 +3,7 @@ cudnn
 ==================
 
 
-conv_workspace_size_limit
+FLAGS_conv_workspace_size_limit
 *******************************************
 (始于0.13.0)
 
@@ -18,7 +18,7 @@ Uint64型，缺省值为4096。即4G内存工作区。
 FLAGS_conv_workspace_size_limit=1024 - 将用于选择cuDNN卷积算法的工作区限制大小设置为1024MB。
 
 
-cudnn_batchnorm_spatial_persistent
+FLAGS_cudnn_batchnorm_spatial_persistent
 *******************************************
 (始于1.4.0)
 
@@ -37,7 +37,7 @@ FLAGS_cudnn_batchnorm_spatial_persistent=True - 开启CUDNN_BATCHNORM_SPATIAL_PE
 此模式在某些任务中可以更快，因为将为CUDNN_DATA_FLOAT和CUDNN_DATA_HALF数据类型选择优化路径。我们默认将其设置为False的原因是此模式可能使用原子整数缩减(scaled atomic integer reduction)而导致某些输入数据范围的数字溢出。
 
 
-cudnn_deterministic
+FLAGS_cudnn_deterministic
 *******************************************
 (始于0.13.0)
 
@@ -56,7 +56,7 @@ FLAGS_cudnn_deterministic=True - 选择cuDNN中的确定性函数。
 现在，在cuDNN卷积和池化Operator中启用此flag。确定性算法速度可能较慢，因此该flag通常用于调试。
 
 
-cudnn_exhaustive_search
+FLAGS_cudnn_exhaustive_search
 *******************************************
 (始于1.2.0)
 

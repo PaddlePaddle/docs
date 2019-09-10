@@ -3,7 +3,7 @@
 ==================
 
 
-enable_cublas_tensor_op_math
+FLAGS_enable_cublas_tensor_op_math
 *******************************************
 (始于1.2.0)
 
@@ -15,10 +15,10 @@ Bool型，缺省值为False。
 
 示例
 -------
-enable_cublas_tensor_op_math=True - 使用Tensor Core。
+FLAGS_enable_cublas_tensor_op_math=True - 使用Tensor Core。
 
 
-use_mkldnn
+FLAGS_use_mkldnn
 *******************************************
 (始于0.13.0)
 
