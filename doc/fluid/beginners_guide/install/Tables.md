@@ -98,12 +98,6 @@
 		<td> </td>
 		<td>  </td>
 	</tr>
-	<tr>
-		<td> unrar </td>
-		<td>  </td>
-		<td> </td>
-		<td> brew install unrar (For MacOS), apt-get install unrar (For Ubuntu) </td>
-	</tr>
 	</tbody>
 </table>
 </p>
