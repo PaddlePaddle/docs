@@ -91,7 +91,7 @@ Windows系统下有3种安装方式：
 * 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
 
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 8.0/9.0/10.0 cuDNN v7.3+的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu/#history), 关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html/#whls)
+* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 8.0(配合cuDNN v7.1+)或者CUDA 9.0/10.0(配合cuDNN v7.3+)的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu/#history), 关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html/#whls)
 
 
 <a name="check"></a>

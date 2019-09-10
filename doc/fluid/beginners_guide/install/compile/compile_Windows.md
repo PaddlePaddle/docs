@@ -2,10 +2,9 @@
 
 ## 环境准备
 
-* *64位操作系统*
-* *Windows 10 家庭版/专业版/企业版*
-* *Python（64 bit） 2.7/3.5.1+/3.6/3.7*
-* *pip或pip3（64 bit） >= 9.0.1*
+* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8.0/9.0/10.0, 且仅支持单卡)*
+* *Python 版本 2.7/3.5.1+/3.6/3.7 (64 bit)*
+* *pip 或 pip3 版本 9.0.1+ (64 bit)*
 * *Visual Studio 2015 Update3*
 
 ## 选择CPU/GPU
@@ -13,7 +12,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * *CUDA 工具包8.0配合cuDNN v7.1+，9.0/10.0配合cuDNN v7.3+*
+    * *CUDA 工具包8.0配合cuDNN v7.1+, 9.0/10.0配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
 ## 安装步骤
@@ -69,11 +68,11 @@
 
 		For Python2: `cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 		For Python3: `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	*  编译**GPU版本PaddlePaddle**：
 
@@ -86,6 +85,22 @@
 			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
 			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
 			 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=${CUDA_TOOLKIT_ROOT_DIR}`
+	
+    注意：上述命令中对应的参数应修改为你所在设备上的对应路径，或者将它们加入环境变量中，以编译GPU版本的PaddlePaddle的python3.6版本为例，
+	
+	    -DPY_VERSION 为python版本
+	    -DPYTHON_INCLUDE_DIR 为对应版本python的include目录
+	    -DPYTHON_LIBRARY 为对应版本python的lib目录
+	    -DPYTHON_EXECUTABLE 为对应版本python的可执行程序的路径
+	    -DCUDA_TOOLKIT_ROOT_DIR 为安装cuda的根目录
+	
+	将相关路径加入环境变量中后，这个例子所用cmake命令为：
+	
+     `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release `
+	
+	若设备上存在多个版本python，或者多个版本cuda，或者没有将路径加入环境变量，这个例子所用cmake命令为：
+	
+     `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DPYTHON_INCLUDE_DIR=C:\\Python36\\include -DPYTHON_LIBRARY=C:\\Python36\\Lib -DPYTHON_EXECUTABLE=C:\\Python36\\python3.exe -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=D:\\cuda`
 
 6. 部分第三方依赖包（openblas，snappystream）目前需要用户自己提供预编译版本，也可以到 `https://github.com/wopeizl/Paddle_deps` 下载预编译好的文件， 将整个 `third_party` 文件夹放到 `build` 目录下.
 
