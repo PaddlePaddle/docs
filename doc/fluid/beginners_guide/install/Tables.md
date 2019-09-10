@@ -237,6 +237,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 > 其中`postXX` 对应的是CUDA和cuDNN的版本，`postXX`之前的数字代表Paddle的版本
 
 需要注意的是，<code> paddlepaddle-gpu </code> 命令在windows环境下，会默认安装CUDA 9.0和cuDNN 7的编译的PaddlePaddle
+
 ***
 
 <a name="ciwhls-release"></a>
