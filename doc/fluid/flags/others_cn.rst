@@ -4,7 +4,7 @@
 
 
 
-benchmark
+FLAGS_benchmark
 ********************
 (始于0.12.0)
 
@@ -19,7 +19,7 @@ Bool型，缺省值为False。
 FLAGS_benchmark=True -  同步以测试基准。
 
 
-inner_op_parallelism
+FLAGS_inner_op_parallelism
 *******************************************
 (始于1.3.0)
 
@@ -38,7 +38,7 @@ FLAGS_inner_op_parallelism=5 - 将operator内的线程数设为5。
 目前只有稀疏的adam op支持inner_op_parallelism。
 
 
-max_body_size
+FLAGS_max_body_size
 *******************************************
 (始于1.0.0)
 
@@ -53,7 +53,7 @@ Int32型，缺省值为2147483647。
 FLAGS_max_body_size=2147483647 - 将BRPC消息大小设为2147483647。
 
 
-sync_nccl_allreduce
+FLAGS_sync_nccl_allreduce
 *******************************************
 (始于1.3)
 
@@ -68,7 +68,7 @@ Bool型，缺省值为True。
 FLAGS_sync_nccl_allreduce=True - 在allreduce_op_handle中调用 `cudaStreamSynchronize(nccl_stream)` 。
 
 
-tracer_profile_fname
+FLAGS_tracer_profile_fname
 *******************************************
 (始于1.4.0)
 

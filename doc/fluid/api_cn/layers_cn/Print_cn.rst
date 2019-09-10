@@ -34,16 +34,28 @@ Print
 .. code-block:: python
 
     import paddle.fluid as fluid
-     
-    input = fluid.layers.data(name="input", shape=[4, 32, 32], dtype="float32")
-    input = fluid.layers.Print(input, message = "The content of input layer:")
-    # value = some_layer(...)
-    # Print(value, summarize=10,
-    #     message="The content of some_layer: ")
 
+    input = fluid.layers.fill_constant(shape=[10,2], value=3, dtype='int64')
+    input = fluid.layers.Print(input, message="The content of input layer:")
 
+    main_program = fluid.default_main_program()
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(main_program)
 
+**运行输出**:
 
+.. code-block:: bash 
+   
+   1564546375   输出层内容:     place:CPUPlace
+   Tensor[fill_constant_0.tmp_0]
+       shape: [10,2,]
+       dtype: x
+       data: 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3, 
+       
+   # 不同的环境中运行时信息的类型可能不相同.
+   # 比如: 
+   #    如果Tensor y dtype='int64', 相应的 c++ 类型为 int64_t.
+   #    在 MacOS 和 gcc4.8.2的环境中输出的dtype为 "x" ("x" is typeid(int64_t).name()) 。
 
 
 
