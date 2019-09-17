@@ -9,11 +9,11 @@ PyReader
 在python中为数据输入创建一个reader对象。将使用python线程预取数据，并将其异步插入队列。当调用Executor.run（…）时，将自动提取队列中的数据。 
 
 参数:
-  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由 ``fluid.layers.data()`` 创建。在可迭代模式下它可以被设置为None。
-  - **capacity** (int) – 在Pyreader对象中维护的队列的容量。
+  - **feed_list** (list(Variable)|tuple(Variable))  – feed变量列表，由 ``fluid.layers.data()`` 创建。
+  - **capacity** (int) – 在Pyreader对象中维护的队列的容量。单位是batch数量。
   - **use_double_buffer** (bool) – 是否使用 ``double_buffer_reader`` 来加速数据输入。
   - **iterable** (bool) –  被创建的reader对象是否可迭代。
-  - **eturn_list** (bool) –  是否以list的形式将返回值
+  - **eturn_list** (bool) –  是否以list的形式返回值。
 
 返回: 被创建的reader对象
 
@@ -354,3 +354,6 @@ PyReader
                     executor.run(feed=data)
 
 
+.. py:method:: next()
+
+获取下一个数据。用户不应直接调用此方法。此方法用于PaddlePaddle框架内部实现Python 2.x的迭代器协议。
