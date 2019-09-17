@@ -50,7 +50,7 @@ strided_slice算子。
     starts = [1, 0, 2]
     ends = [3, 3, 4]
     axes = [0, 1, 2]
-    strided_slice = [1, 1, 1]
+    strides = [1, 1, 1]
 
     input = fluid.layers.data(
         name="input", shape=[3, 4, 5, 6], dtype='float32')
