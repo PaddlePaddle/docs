@@ -10,11 +10,11 @@ deformable_conv
 在4-D输入上计算2-D可变形卷积。给定输入图像x，输出特征图y，可变形卷积操作如下所示：
  可形变卷积v2:
 
-   :math: `y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}`
+   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}`
 
  可形变卷积v1:
 
-   :math: `y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k)}`
+   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k)}`
 
 其中 :math:`\Delta p_k 和 \Delta m_k` 分别为第k个位置的可学习偏移和调制标量。其中在可形变卷积中:math:`\Delta m_k`为1.
 参考可变形卷积网络v2: `可变形程度越高，结果越好 <https://arxiv.org/abs/1811.11168v2>`_ 和 `形变卷积<https://arxiv.org/abs/1703.06211>`_。
