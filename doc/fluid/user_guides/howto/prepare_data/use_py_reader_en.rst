@@ -21,13 +21,13 @@ You can create PyReader object as follows:
                                        name='py_reader',
                                        use_double_buffer=True)
 
-In the code, ``capacity`` is buffer size of PyReader; 
+In the code, ``capacity`` is buffer size of PyReader, the unit is batch number;
 ``shapes`` is the size of parameters in the batch (such as image and label in picture classification task); 
 ``dtypes`` is data type of parameters in the batch; 
 ``name`` is name of PyReader instance; 
 ``use_double_buffer`` is True by default, which means :code:`double_buffer_reader` is used.
 
-Attention: If you want to create multiple PyReader objects（such as two different PyReader in training and inference period respectively）， you have to appoint different names for different PyReader objects,since PaddlePaddle uses different names to distinguish different variables, and `Program.clone()` (reference to :ref:`api_fluid_Program_clone` ）can't copy PyReader objects.
+Attention: If you want to create multiple PyReader objects（such as two different PyReader in training and inference period respectively）， you have to appoint different names for different PyReader objects,since PaddlePaddle uses different names to distinguish different variables, and `Program.clone()` (reference to :ref:`api_fluid_Program` ）can't copy PyReader objects.
 
 .. code-block:: python
 
@@ -102,6 +102,9 @@ PyReader object sets the data source by :code:`decorate_paddle_reader()` or :cod
   - :code:`generator` of :code:`decorate_paddle_reader()` should return data of Numpy Array type, but :code:`generator` of :code:`decorate_tensor_provider()` should return LoDTensor type.
 
   - :code:`decorate_tensor_provider()` requires that the returned data type and size of LoDTensor of :code:`generator` have to match the appointed dtypes and shapes parameters while configuring py_reader, but :code:`decorate_paddle_reader()` doesn't have the requirements, since the data type and size can transform inside.
+
+
+  Attention: If you use PyReader for multiple GPU/CPU training, the total batch size is the batch size of :code:`generator` times device number.
 
   Specific ways are as follows:
 
