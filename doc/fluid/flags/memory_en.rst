@@ -7,7 +7,7 @@ FLAGS_allocator_strategy
 **************************************
 (since 1.2)
 
-Use to choose allocator strategy of PaddlePaddle. The allocator strategy is under development, and the non-naive_best_fit allocator is not stable yet.
+Use to choose allocator strategy of PaddlePaddle. Auto growth allocator is not stable yet.
 
 Values accepted
 ---------------
@@ -40,7 +40,7 @@ FLAGS_eager_delete_tensor_gb
 *******************************************
 (since 1.0.0)
 
-Whether to use garbage collection strategy to optimize the memory usage of network. If FLAGS_eager_delete_tensor_gb >= 0, garbage collection strategy would be enabled, and collect memory garbages when running network, which is beneficial to saving memory usage. It is only useful when you use Executor to run program, or compile program, or compile program with data parallel. If FLAGS_eager_delete_tensor_gb < 0, garbage collection strategy is disabled. Garbage collector would not release memory garbages until the memory size of garbages reaches FLAGS_eager_delete_tensor_gb GB.
+Whether to use garbage collection strategy to optimize the memory usage of network. If FLAGS_eager_delete_tensor_gb < 0, garbage collection strategy is disabled. If FLAGS_eager_delete_tensor_gb >= 0, garbage collection strategy would be enabled, and collect memory garbages when running network, which is beneficial to saving memory usage. It is only useful when you use Executor to run program, or compile program, or compile program with data parallel. Garbage collector would not release memory garbages until the memory size of garbages reaches FLAGS_eager_delete_tensor_gb GB.
 
 Values accepted
 ---------------
@@ -48,7 +48,7 @@ Double, in GB unit. The default value is 0.0.
 
 Example
 -------
-FLAGS_eager_delete_tensor_gb=0.0 would make memory garbage release immediately once it is not used. 
+FLAGS_eager_delete_tensor_gb=0.0 would make memory garbage release till the memory size of garbages reaches 0.0GB, i.e., release immediately once there is any garbage.
 
 FLAGS_eager_delete_tensor_gb=1.0 would make memory garbage release till the memory size of garbages reaches 1.0GB. 
 
@@ -83,7 +83,7 @@ Allocate a chunk of cpu memory that is this fraction of the total cpu memory siz
 
 Values accepted
 ---------------
-Double value greater than 0 which is the initial CPU memory percentage. The default value is 1.0.
+Double value in range [0, 1] which is the initial CPU memory percentage. The default value is 1.0.
 
 Example
 -------
@@ -98,7 +98,7 @@ Allocate a chunk of CUDA pinned memory that is this fraction of the total cpu me
 
 Values accepted
 ---------------
-Double value greater than 0 which is the initial CUDA pinned memory percentage. The default value is 0.5.
+Double value in range [0, 1] which is the initial CUDA pinned memory percentage. The default value is 0.5.
 
 Example
 -------
@@ -109,15 +109,15 @@ FLAGS_fraction_of_gpu_memory_to_use
 *******************************************
 (since 1.2.0)
 
-Allocate a chunk of gpu memory that is this fraction of the total gpu memory size. Future memory usage will be allocated from the chunk. If the chunk doesn't have enough gpu memory, additional chunks of the same size will be requested from gpu until the gpu has no memory left for another chunk.
+Allocate a chunk of gpu memory that is this fraction of the available gpu memory size. Future memory usage will be allocated from the chunk. If the chunk doesn't have enough gpu memory, additional chunks of the same size will be requested from gpu until the gpu has no memory left for another chunk.
 
 Values accepted
 ---------------
-Double value greater than 0 which is the initial GPU memory percentage.
+Double value in range [0, 1] which is the initial GPU memory percentage.
 
 Example
 -------
-FLAGS_fraction_of_gpu_memory_to_use=0.1 will allocate 10% total gpu memory size as initial GPU chunk.
+FLAGS_fraction_of_gpu_memory_to_use=0.1 will allocate 10% available gpu memory size as initial GPU chunk.
 
 Note
 -------

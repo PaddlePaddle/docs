@@ -7,7 +7,7 @@ FLAGS_allocator_strategy
 ********************
 (始于1.2)
 
-用于选择PaddlePaddle的分配器策略。 分配器策略正在开发中，且非naive_best_fit分配器尚未稳定。
+用于选择PaddlePaddle的分配器策略。其中auto_growth策略尚未稳定。
 
 取值范围
 ---------------
@@ -39,7 +39,7 @@ FLAGS_eager_delete_tensor_gb
 *******************************************
 (始于1.0.0)
 
-表示是否使用垃圾回收策略来优化网络的内存使用。如果FLAGS_eager_delete_tensor_gb >= 0，则启用垃圾回收策略，并在运行网络时回收内存垃圾，这有利于节省内存使用量。它仅在您使用Executor运行程序、编译程序或使用并行数据编译程序时才有用。如果FLAGS_eager_delete_tensor_gb < 0，则禁用垃圾回收策略。垃圾回收器直到垃圾的内存大小达到FLAGS_eager_delete_tensor_gb GB时才会释放内存垃圾。
+表示是否使用垃圾回收策略来优化网络的内存使用。如果FLAGS_eager_delete_tensor_gb < 0，则禁用垃圾回收策略。如果FLAGS_eager_delete_tensor_gb >= 0，则启用垃圾回收策略，并在运行网络时回收内存垃圾，这有利于节省内存使用量。它仅在您使用Executor运行程序、编译程序或使用并行数据编译程序时才有用。垃圾回收器直到垃圾的内存大小达到FLAGS_eager_delete_tensor_gb GB时才会释放内存垃圾。
 
 取值范围
 ---------------
@@ -47,7 +47,7 @@ Double型，单位为GB，缺省值为0.0。
 
 示例
 -------
-FLAGS_eager_delete_tensor_gb=0.0 - 一旦不再使用即释放内存垃圾。
+FLAGS_eager_delete_tensor_gb=0.0 - 垃圾占用大小达到0.0GB时释放内存垃圾，即一旦出现垃圾则马上释放。
 
 FLAGS_eager_delete_tensor_gb=1.0 - 垃圾占用内存大小达到1.0GB时释放内存垃圾。
 
@@ -83,7 +83,7 @@ FLAGS_fraction_of_cpu_memory_to_use
 
 取值范围
 ---------------
-Double型，大于0，表示初始分配的内存块占CPU内存的比例。缺省值为1.0。
+Double型，范围[0, 1]，表示初始分配的内存块占CPU内存的比例。缺省值为1.0。
 
 示例
 -------
@@ -98,7 +98,7 @@ FLAGS_fraction_of_cuda_pinned_memory_to_use
 
 取值范围
 ---------------
-Double型，大于0，表示初始分配的内存块占CPU内存的比例。缺省值为0.5。
+Double型，范围[0, 1]，表示初始分配的内存块占CPU内存的比例。缺省值为0.5。
 
 示例
 -------
@@ -109,15 +109,15 @@ FLAGS_fraction_of_gpu_memory_to_use
 *******************************************
 (始于1.2.0)
 
-表示分配的显存块占GPU总显存大小的比例。将来的显存使用将从该显存块分配。 如果显存块没有足够的gpu显存，将从gpu请求分配与显存块同样大小的新的显存块，直到gpu没有足够的显存为止。
+表示分配的显存块占GPU总可用显存大小的比例。将来的显存使用将从该显存块分配。 如果显存块没有足够的gpu显存，将从gpu请求分配与显存块同样大小的新的显存块，直到gpu没有足够的显存为止。
 
 取值范围
 ---------------
-Double型，大于0，表示初始分配的显存块占GPU显存的比例。
+Double型，范围[0, 1]，表示初始分配的显存块占GPU可用显存的比例。
 
 示例
 -------
-FLAGS_fraction_of_gpu_memory_to_use=0.1 - 分配总GPU显存大小的10%作为初始GPU显存块。
+FLAGS_fraction_of_gpu_memory_to_use=0.1 - 分配GPU总可用显存大小的10%作为初始GPU显存块。
 
 注意
 -------
