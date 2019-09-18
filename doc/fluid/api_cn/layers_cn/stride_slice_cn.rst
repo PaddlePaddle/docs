@@ -3,7 +3,7 @@
 strided_slice
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.strided_slice(input, axes, starts, ends, strides=strides)
+.. py:function:: paddle.fluid.layers.strided_slice(input, axes, starts, ends, strides)
 
 strided_slice算子。
 
@@ -55,4 +55,4 @@ strided_slice算子。
     input = fluid.layers.data(
         name="input", shape=[3, 4, 5, 6], dtype='float32')
 
-    out = fluid.layers.slice(input, axes=axes, starts=starts, ends=ends, strides=strides)
+    out = fluid.layers.strided_slice(input, axes=axes, starts=starts, ends=ends, strides=strides)
