@@ -52,12 +52,14 @@ reshape
       name='data_1', shape=[2, 4, 6], dtype='float32')
   reshaped_1 = fluid.layers.reshape(
       x=data_1, shape=[-1, 0, 3, 2], inplace=True)
+  # the shape of reshaped_1 is [2,4,3,2].
 
   # example 2:
   # attr shape is a list which contains tensor Variable.
   data_2 = fluid.layers.fill_constant([2,25], "int32", 3)
   dim = fluid.layers.fill_constant([1], "int32", 5)
   reshaped_2 = fluid.layers.reshape(data_2, shape=[dim, 10])
+  # the shape of reshaped_2 is [5,10].
 
 
 

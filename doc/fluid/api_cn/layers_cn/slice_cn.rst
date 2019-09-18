@@ -54,11 +54,14 @@ slice算子。
     starts = [-3, 0, 2]
     ends = [3, 2, 4]
     sliced_1 = fluid.layers.slice(input, axes=axes, starts=starts, ends=ends)
+    # sliced_1 is input[:, 0:3, 0:2, 2:4].
+
 
     # example 2:
     # attr starts is a list which contain tensor Variable.
     minus_3 = fluid.layers.fill_constant([1], "int32", -3)
     sliced_2 = fluid.layers.slice(input, axes=axes, starts=[minus_3, 0, 2], ends=ends)
+    # sliced_2 is input[:, 0:3, 0:2, 2:4].
 
 
 
