@@ -39,11 +39,11 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.to_variable(x)
 		
 		x = np.ones([2, 2], np.float32)
 		with fluid.dygraph.guard():
-	        inputs = []
-	        for _ in range(10):
-	            inputs.append(fluid.dygraph.to_variable(x))
-	        ret = fluid.layers.sums(inputs)
-	        print(ret.numpy())
+		        inputs = []
+		        for _ in range(10):
+		            inputs.append(fluid.dygraph.to_variable(x))
+		        ret = fluid.layers.sums(inputs)
+		        print(ret.numpy())
 				
 		                        
 		[[10. 10.]
