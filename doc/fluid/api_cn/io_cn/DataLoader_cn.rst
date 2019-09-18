@@ -171,7 +171,7 @@ DataLoader
 参数:
     - **dataset** (InMemoryDataset|QueueDataset) - Dataset对象。
     - **places** (list(CUDAPlace)|list(CPUPlace)) - DataLoader对象返回数据所在的place。
-    - **drop_last** (bool) - 是否丢弃最后样本数量不足batch size的batch。若drop_last = True，则每个batch的batch size均等于dataset中设置的batch size；若drop_last = False，则最后几个batch的batch size可能会小于dataset中设置的batch size。
+    - **drop_last** (bool) - 是否丢弃最后样本数量不足batch size的batch。若drop_last = True则丢弃，若drop_last = False则不丢弃。
 
 返回: 被创建的DataLoader对象，可以for-range的方式循环迭代
 

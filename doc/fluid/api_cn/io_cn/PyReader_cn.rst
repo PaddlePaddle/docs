@@ -101,40 +101,34 @@ PyReader
        for data in reader():
            executor.run(feed=data)
 
-3. return_list=True，返回值将用list表示而非dict
+3. return_list=True，返回值将用list表示而非dict，通常用于动态图模式中。
 
 .. code-block:: python
 
-   import paddle
-   import paddle.fluid as fluid
-   import numpy as np
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
 
-   EPOCH_NUM = 3
-   ITER_NUM = 5
-   BATCH_SIZE = 10
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 10
 
-   def reader_creator_random_image(height, width):
-       def reader():
-           for i in range(ITER_NUM):
-               yield np.random.uniform(low=0, high=255, size=[height, width]),
-       return reader
+    def reader_creator_random_image(height, width):
+        def reader():
+            for i in range(ITER_NUM):
+                yield np.random.uniform(low=0, high=255, size=[height, width]), \
+                    np.random.random_integers(low=0, high=9, size=[1])
+        return reader
 
-   image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-   reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=True, return_list=True)
-
-   user_defined_reader = reader_creator_random_image(784, 784)
-   reader.decorate_sample_list_generator(
-       paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
-       fluid.core.CPUPlace())
-   # 此处省略网络定义
-   executor = fluid.Executor(fluid.core.CPUPlace())
-   executor.run(fluid.default_main_program())
-
-   for _ in range(EPOCH_NUM):
-       for data in reader():
-           executor.run(feed={"image": data[0]})
-
-
+    place = fluid.CPUPlace()
+    with fluid.dygraph.guard(place):
+        py_reader = fluid.io.PyReader(capacity=2, return_list=True)
+        user_defined_reader = reader_creator_random_image(784, 784)
+        py_reader.decorate_sample_list_generator(
+            paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
+            place)
+        for image, label in py_reader():
+            relu = fluid.layers.relu(image)
 
 .. py:method:: start()
 
