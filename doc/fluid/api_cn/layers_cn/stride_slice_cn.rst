@@ -23,6 +23,7 @@ strided_slice算子。
         案例2：
                 给定：
                      data=[[1,2,3,4],[5,6,7,8],]
+                     axes=[0,1]
                      starts=[0,-1]
                      ends=[1,0]
                      strides=[1, -1]
