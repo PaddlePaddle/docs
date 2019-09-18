@@ -7,7 +7,7 @@ strided_slice
 
 strided_slice算子。
 
-我们可以借助numpy数组的索引行为理解这个OP，如果你对numpy数组熟悉的话，应该知道通过[start1：end1：step1，start2：end2：step2，... startN：endN：stepN]的语法可以进行切片，从而通过一种十分简洁的方式获取数组的某些元素。strided_slice使得我们可以通过Paddle语法的方式完成相应的切割并获取相应的元素。例如numpy中input[start1:end1:step1, start2:end2:step2, ... startN:endN:stepN]可以通过Paddle相应的API函数paddle.fluid.strided_slice(input,[0, 1, ..., N], [starts1, starts2, ..., startsN],[ends1, ends2, ..., endsN], [strides1, sttides2, ..., stridesN])完成。axes参数用于控制对应的切割维度。
+我们可以借助numpy数组的索引行为理解这个OP，如果你对numpy数组熟悉的话，应该知道通过[starts1:ends1:steps1，starts2:ends2:step2，... startsN:endsN:stepN]的语法可以进行切片，从而通过一种十分简洁的方式获取数组的某些元素。strided_slice使得我们可以通过Paddle语法的方式完成相应的切割并获取相应的元素。例如numpy中input[starts1:ends1:step1, starts2:ends2:step2, ... startsN:endsN:stepN]可以通过Paddle相应的API函数paddle.fluid.strided_slice(input,[0, 1, ..., N], [starts1, starts2, ..., startsN],[ends1, ends2, ..., endsN], [strides1, sttides2, ..., stridesN])完成。axes参数用于控制对应的切割维度。
 ::
 
         案例1：
