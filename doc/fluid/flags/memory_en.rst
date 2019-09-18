@@ -7,17 +7,17 @@ FLAGS_allocator_strategy
 **************************************
 (since 1.2)
 
-Use to choose allocator strategy of PaddlePaddle. The allocator strategy is under development, and the non-legacy allocator is not stable yet.
+Use to choose allocator strategy of PaddlePaddle. The allocator strategy is under development, and the non-naive_best_fit allocator is not stable yet.
 
 Values accepted
 ---------------
-String, enum in ['legacy', 'naive_best_fit']. The default value is 'legacy'.
+String, enum in ['naive_best_fit', 'auto_growth']. The default value is 'naive_best_fit'.
 
 Example
 --------
-FLAGS_allocator_strategy=legacy would use the legacy allocator.
+FLAGS_allocator_strategy=naive_best_fit would use the pre-allocated best fit allocator.
 
-FLAGS_allocator_strategy=naive_best_fit would use the new-designed allocator.
+FLAGS_allocator_strategy=auto_growth would use the auto growth allocator.
 
 
 
@@ -44,7 +44,7 @@ Whether to use garbage collection strategy to optimize the memory usage of netwo
 
 Values accepted
 ---------------
-Double, in GB unit. The default value is -1.0.
+Double, in GB unit. The default value is 0.0.
 
 Example
 -------
@@ -57,23 +57,6 @@ FLAGS_eager_delete_tensor_gb=-1.0 would disable garbage collection strategy.
 Note
 -------
 It is recommended that users enable garbage collection strategy by setting FLAGS_eager_delete_tensor_gb=0.0 when training large network.
-
-
-
-FLAGS_enable_inplace_whitelist
-*******************************************
-(since 1.4)
-
-Debug use to disable memory in-place in some ops. If set, some ops would not perform in-place optimization to save memory. These ops include: sigmoid, exp, relu, tanh, sqrt, ceil, floor, reciprocal, relu6, soft_relu, hard_sigmoid, batch_norm, batch_norm_grad, sum, sum_grad, scale, reshape, elementwise_add, and elementwise_add_grad.
-
-Values accepted
----------------
-Bool. The default value is False.
-
-Example
--------
-FLAGS_enable_inplace_whitelist=True would disable memory in-place optimization on certain ops.
-
 
 
 FLAGS_fast_eager_deletion_mode
@@ -92,6 +75,35 @@ FLAGS_fast_eager_deletion_mode=True would turn on fast garbage collection strate
 
 FLAGS_fast_eager_deletion_mode=False would turn off fast garbage collection strategy.
 
+FLAGS_fraction_of_cpu_memory_to_use
+*******************************************
+(since 1.2.0)
+
+Allocate a chunk of cpu memory that is this fraction of the total cpu memory size. Future memory usage will be allocated from the chunk. If the chunk doesn't have enough cpu memory, additional chunks of the same size will be requested from cpu until the cpu has no memory left for another chunk.
+
+Values accepted
+---------------
+Double value greater than 0 which is the initial CPU memory percentage. The default value is 1.0.
+
+Example
+-------
+FLAGS_fraction_of_cpu_memory_to_use=0.1 will allocate 10% total cpu memory size as initial CPU chunk.
+
+
+FLAGS_fraction_of_cuda_pinned_memory_to_use
+*******************************************
+(since 1.2.0)
+
+Allocate a chunk of CUDA pinned memory that is this fraction of the total cpu memory size. Future memory usage will be allocated from the chunk. If the chunk doesn't have enough cpu memory, additional chunks of the same size will be requested from cpu until the cpu has no memory left for another chunk.
+
+Values accepted
+---------------
+Double value greater than 0 which is the initial CUDA pinned memory percentage. The default value is 0.5.
+
+Example
+-------
+FLAGS_fraction_of_cuda_pinned_memory_to_use=0.1 will allocate 10% total cpu memory size as initial CUDA Pinned chunk.
+
 
 FLAGS_fraction_of_gpu_memory_to_use
 *******************************************
@@ -101,7 +113,7 @@ Allocate a chunk of gpu memory that is this fraction of the total gpu memory siz
 
 Values accepted
 ---------------
-Uint64 value greater than 0 which is the initial GPU memory percentage.
+Double value greater than 0 which is the initial GPU memory percentage.
 
 Example
 -------
@@ -111,23 +123,6 @@ Note
 -------
 Windows series platform will set FLAGS_fraction_of_gpu_memory_to_use to 0.5 by default.
 Linux will set FLAGS_fraction_of_gpu_memory_to_use to 0.92 by default.
-
-
-FLAGS_free_idle_memory
-*******************************************
-(since 0.15.0)
-
-Whether to free idle memory pre-allocated from system during runtime. If set, free idle memory would be released if there is too much free idle memory in the pre-allocated allocator.
-
-Values accepted
----------------
-Bool. The default value is False.
-
-Example
--------
-FLAGS_free_idle_memory=True will free idle memory when there is too much of it. 
-
-FLAGS_free_idle_memory=False will not free idle memory.
 
 
 FLAGS_fuse_parameter_groups_size
@@ -213,20 +208,6 @@ If you set this flag, the memory size set by FLAGS_fraction_of_gpu_memory_to_use
 If you don't set this flag, PaddlePaddle will use FLAGS_fraction_of_gpu_memory_to_use to allocate gpu memory.
 
 
-FLAGS_limit_of_tmp_allocation
-*******************************************
-(since 1.3)
-
-The FLAGS_limit_of_tmp_allocation indicates the up limit of temporary_allocation size, the unit is byte. If the FLAGS_limit_of_tmp_allocation is -1, the size of temporary_allocation will not be limited.
-
-Values accepted
----------------
-Int64. The default value is -1.
-
-Example
--------
-FLAGS_limit_of_tmp_allocation=1024 will set the up limit of temporary_allocation size to 1024 bytes.
-
 
 FLAGS_memory_fraction_of_eager_deletion
 *******************************************
@@ -267,21 +248,6 @@ Note
 If this flag is set, PaddlePaddle will reallocate the gpu memory with size specified by this flag.
 Else PaddlePaddle will reallocate with size set by FLAGS_fraction_of_gpu_memory_to_use.
 
-
-FLAGS_times_excess_than_required_tmp_allocation
-*******************************************
-(since 1.3)
-
-The FLAGS_times_excess_than_required_tmp_allocation indicates the max size the TemporaryAllocator can return. For Example
-, if the required memory size is N, and FLAGS_times_excess_than_required_tmp_allocation is 2.0, the TemporaryAllocator will return the available allocation that the range of size is N ~ 2*N.
-
-Values accepted
----------------
-Int64. The default value is 2.
-
-Example
--------
-FLAGS_times_excess_than_required_tmp_allocation=1024 will set the max size of the TemporaryAllocator can return to 1024*N.
 
 
 FLAGS_use_pinned_memory

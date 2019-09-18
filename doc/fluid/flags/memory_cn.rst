@@ -7,17 +7,17 @@ FLAGS_allocator_strategy
 ********************
 (始于1.2)
 
-用于选择PaddlePaddle的分配器策略。 分配器策略正在开发中，且非legacy分配器尚未稳定。
+用于选择PaddlePaddle的分配器策略。 分配器策略正在开发中，且非naive_best_fit分配器尚未稳定。
 
 取值范围
 ---------------
-String型，['legacy', 'naive_best_fit']中的一个。缺省值为'legacy'。
+String型，['naive_best_fit', 'auto_growth']中的一个。缺省值为'naive_best_fit'。
 
 示例
 --------
-FLAGS_allocator_strategy=legacy - 使用legacy分配器。
+FLAGS_allocator_strategy=naive_best_fit - 使用预分配best fit分配器。
 
-FLAGS_allocator_strategy=naive_best_fit - 使用新设计的分配器。
+FLAGS_allocator_strategy=auto_growth - 使用auto growth分配器。
 
 
 FLAGS_eager_delete_scope
@@ -43,7 +43,7 @@ FLAGS_eager_delete_tensor_gb
 
 取值范围
 ---------------
-Double型，单位为GB，缺省值为-1.0。
+Double型，单位为GB，缺省值为0.0。
 
 示例
 -------
@@ -56,21 +56,6 @@ FLAGS_eager_delete_tensor_gb=-1.0 - 禁用垃圾回收策略。
 注意
 -------
 建议用户在训练大型网络时设置FLAGS_eager_delete_tensor_gb=0.0以启用垃圾回收策略。
-
-
-FLAGS_enable_inplace_whitelist
-*******************************************
-(始于1.4)
-
-该flag用于调试，在某些ops中禁止内存原位复用。设置后，一些ops不会执行原位复用优化以节省内存。这些Ops包括：sigmoid, exp, relu, tanh, sqrt, ceil, floor, reciprocal, relu6, soft_relu, hard_sigmoid, batch_norm, batch_norm_grad, sum, sum_grad, scale, reshape, elementwise_add, and elementwise_add_grad。
-
-取值范围
----------------
-Bool型，缺省值为False。
-
-示例
--------
-FLAGS_enable_inplace_whitelist=True - 在特定op上禁止内存原位复用优化。
 
 
 FLAGS_fast_eager_deletion_mode
@@ -90,40 +75,53 @@ FLAGS_fast_eager_deletion_mode=True - 启用快速垃圾回收策略。
 FLAGS_fast_eager_deletion_mode=False - 禁用快速垃圾回收策略。
 
 
+FLAGS_fraction_of_cpu_memory_to_use
+*******************************************
+(始于1.2.0)
+
+表示分配的内存块占CPU总内存大小的比例。将来的内存使用将从该内存块分配。 如果内存块没有足够的cpu内存，将从cpu请求分配与内存块相同大小的新的内存块，直到cpu没有足够的内存为止。
+
+取值范围
+---------------
+Double型，大于0，表示初始分配的内存块占CPU内存的比例。缺省值为1.0。
+
+示例
+-------
+FLAGS_fraction_of_cpu_memory_to_use=0.1 - 分配总CPU内存大小的10%作为初始CPU内存块。
+
+
+FLAGS_fraction_of_cuda_pinned_memory_to_use
+*******************************************
+(始于1.2.0)
+
+表示分配的CUDA Pinned内存块占CPU总内存大小的比例。将来的CUDA Pinned内存使用将从该内存块分配。 如果内存块没有足够的cpu内存，将从cpu请求分配与内存块相同大小的新的内存块，直到cpu没有足够的内存为止。
+
+取值范围
+---------------
+Double型，大于0，表示初始分配的内存块占CPU内存的比例。缺省值为0.5。
+
+示例
+-------
+FLAGS_fraction_of_cuda_pinned_memory_to_use=0.1 - 分配总CPU内存大小的10%作为初始CUDA Pinned内存块。
+
+
 FLAGS_fraction_of_gpu_memory_to_use
 *******************************************
 (始于1.2.0)
 
-表示分配的内存块占GPU总内存大小的比例。将来的内存使用将从该内存块分配。 如果内存块没有足够的gpu内存，将从gpu请求分配与内存块同样大小的新的内存块，直到gpu没有足够的内存为止。
+表示分配的显存块占GPU总显存大小的比例。将来的显存使用将从该显存块分配。 如果显存块没有足够的gpu显存，将从gpu请求分配与显存块同样大小的新的显存块，直到gpu没有足够的显存为止。
 
 取值范围
 ---------------
-Uint64型，大于0，表示初始分配的内存块占GPU内存的比例。
+Double型，大于0，表示初始分配的显存块占GPU显存的比例。
 
 示例
 -------
-FLAGS_fraction_of_gpu_memory_to_use=0.1 - 分配总GPU内存大小的10%作为初始GPU 内存块。
+FLAGS_fraction_of_gpu_memory_to_use=0.1 - 分配总GPU显存大小的10%作为初始GPU显存块。
 
 注意
 -------
 Windows系列平台会将FLAGS_fraction_of_gpu_memory_to_use默认设为0.5，Linux则会默认设为0.92。
-
-
-FLAGS_free_idle_memory
-*******************************************
-(始于0.15.0)
-
-是否在运行时释放从系统预分配的空闲内存。设置后，如果预分配的分配器中有太多空闲内存，则释放空闲内存。
-
-取值范围
----------------
-Bool型，缺省值为False。
-
-示例
--------
-FLAGS_free_idle_memory=True - 空闲内存太多时释放。
-
-FLAGS_free_idle_memory=False - 不释放空闲内存。
 
 
 FLAGS_fuse_parameter_groups_size
@@ -207,21 +205,6 @@ FLAGS_initial_gpu_memory_in_mb=4096 - 分配4GB作为初始GPU内存块大小。
 如果设置该flag，则FLAGS_fraction_of_gpu_memory_to_use设置的内存大小将被该flag覆盖。如果未设置该flag，PaddlePaddle将使用FLAGS_fraction_of_gpu_memory_to_use分配GPU内存。
 
 
-FLAGS_limit_of_tmp_allocation
-*******************************************
-(始于1.3)
-
-FLAGS_limit_of_tmp_allocation表示temporary_allocation大小的上限，单位为字节。如果FLAGS_limit_of_tmp_allocation为-1，temporary_allocation的大小将没有限制。
-
-取值范围
----------------
-Int64型，缺省值为-1。
-
-示例
--------
-FLAGS_limit_of_tmp_allocation=1024 - 将temporary_allocation大小的上限设为1024字节。
-
-
 FLAGS_memory_fraction_of_eager_deletion
 *******************************************
 (始于1.4)
@@ -259,21 +242,6 @@ FLAGS_reallocate_gpu_memory_in_mb=1024 - 如果耗尽了分配的GPU内存块，
 注意
 -------
 如果设置了该flag，PaddlePaddle将重新分配该flag指定大小的gpu内存。否则分配FLAGS_fraction_of_gpu_memory_to_use指定比例的gpu内存。
-
-
-FLAGS_times_excess_than_required_tmp_allocation
-*******************************************
-(始于1.3)
-
-FLAGS_times_excess_than_required_tmp_allocation表示TemporaryAllocator可以返回的最大大小。例如，如果所需的内存大小为N，且times_excess_than_required_tmp_allocation为2.0，则TemporaryAllocator将返回大小范围为N~2*N的可用分配。
-
-取值范围
----------------
-Int64型，缺省值为2。
-
-示例
--------
-FLAGS_times_excess_than_required_tmp_allocation=1024 - 设置TemporaryAllocator可以返回的最大大小为1024*N。
 
 
 FLAGS_use_pinned_memory
