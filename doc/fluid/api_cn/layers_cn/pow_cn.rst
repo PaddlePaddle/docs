@@ -7,6 +7,8 @@ pow
 
 指数激活算子（Pow Activation Operator.）
 
+**注意**：如果使用`elementwise_pow`，请查看相关文档 :ref:`_cn_api_fluid_layers_elementwise_pow` 。
+
 .. math::
 
     out = x^{factor}
