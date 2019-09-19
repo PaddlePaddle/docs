@@ -223,7 +223,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==1.5.2 </td>
-		<td> 默认安装支持CUDA 10.0和cuDNN 7的对应[版本号]的PaddlePaddle安装包 </td>
+		<td> 默认的支持CUDA 10.0和cuDNN 7的对应PaddlePaddle版本的安装包 </td>
 	</tr>
 	<tr>
 		<td> paddlepaddle-gpu==[版本号].postXX 例如 paddlepaddle-gpu==1.5.2.post87 </td>
