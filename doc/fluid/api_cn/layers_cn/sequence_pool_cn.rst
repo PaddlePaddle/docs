@@ -21,20 +21,20 @@ sequence_pool
 ::
 
 
-    x是一级LoDTensor且pad_value = 0.0:
+    x是一级LoDTensor, 且pad_value = 0.0:
         x.lod = [[2, 3, 2, 0]]
-        x.data = [1, 3, 2, 4, 6, 5, 1]
+        x.data = [[1], [3], [2], [4], [6], [5], [1]]
         x.dims = [7, 1]
     输出为张量（Tensor）：
         out.dim = [4, 1]
         其中 out.dims[0] == len(x.lod[-1]) == 4
     对于不同的pool_type：
-        average: out.data = [2, 4, 3, 0.0], where 2=(1+3)/2, 4=(2+4+6)/3, 3=(5+1)/2
-        sum    : out.data = [4, 12, 6, 0.0], where 4=1+3, 12=2+4+6, 6=5+1
-        sqrt   : out.data = [2.82, 6.93, 4.24, 0.0], where 2.82=(1+3)/sqrt(2), 6.93=(2+4+6)/sqrt(3), 4.24=(5+1)/sqrt(2)
-        max    : out.data = [3, 6, 5, 0.0], where 3=max(1,3), 6=max(2,4,6), 5=max(5,1)
-        last   : out.data = [3, 6, 1, 0.0], where 3=last(1,3), 6=last(2,4,6), 1=last(5,1)
-        first  : out.data = [1, 2, 5, 0.0], where 1=first(1,3), 2=first(2,4,6), 5=first(5,1)
+        average: out.data = [[2], [4], [3], [0.0]], where 2=(1+3)/2, 4=(2+4+6)/3, 3=(5+1)/2
+        sum    : out.data = [[4], [12], [6], [0.0]], where 4=1+3, 12=2+4+6, 6=5+1
+        sqrt   : out.data = [[2.82], [6.93], [4.24], [0.0]], where 2.82=(1+3)/sqrt(2), 6.93=(2+4+6)/sqrt(3), 4.24=(5+1)/sqrt(2)
+        max    : out.data = [[3], [6], [5], [0.0]], where 3=max(1,3), 6=max(2,4,6), 5=max(5,1)
+        last   : out.data = [[3], [6], [1], [0.0]], where 3=last(1,3), 6=last(2,4,6), 1=last(5,1)
+        first  : out.data = [[1], [2], [5], [0.0]], where 1=first(1,3), 2=first(2,4,6), 5=first(5,1)
         
       且以上所有均满足0.0 = pad_value
 
@@ -44,7 +44,7 @@ sequence_pool
     - **is_test** (bool, 默认为 False) - 用于区分训练模式和测试两种模式。默认为False。
     - **pad_value** (float) - 用于填充输入序列为空时的池化结果，默认为0.0。
 
-返回：经过指定类型池化后的LoDTensor
+返回：经过指定类型池化后的张量
 
 返回类型：Variable
 
@@ -54,7 +54,7 @@ sequence_pool
 
     import paddle.fluid as fluid
 
-    x = fluid.layers.data(name='x', shape=[7, 1],
+    x = fluid.layers.data(name='x', shape=[7, 1], append_batch_size=False,
                  dtype='float32', lod_level=1)
     avg_x = fluid.layers.sequence_pool(input=x, pool_type='average')
     sum_x = fluid.layers.sequence_pool(input=x, pool_type='sum')
