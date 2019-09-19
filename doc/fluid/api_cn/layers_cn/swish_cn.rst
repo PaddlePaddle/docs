@@ -9,8 +9,6 @@ swish
 
 .. math::
          out = \frac{x}{1 + e^{- beta * x}}
-		 
-         out = x * sigmoid(x)
 
 参数：
     - **x** (Variable) -  Swish operator 的输入，数据类型为 float32，float64。
