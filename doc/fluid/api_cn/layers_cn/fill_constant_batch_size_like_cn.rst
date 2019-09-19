@@ -5,7 +5,7 @@ fill_constant_batch_size_like
 
 .. py:function:: paddle.fluid.layers.fill_constant_batch_size_like(input,shape,dtype,value,input_dim_idx=0,output_dim_idx=0)
 
-该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``Value`` 中提供的常量初始化该张量。该批尺寸从输入张量中获取。它还将stop_gradient设置为True.
+根据给定的shape创建一个张量并得到张量数据类型。使用 ``Value`` 中提供的常量初始化该张量,创建的批尺寸从输入张量中获取，创建张量的stop_gradient属性默认为True。
 
 参数：
     - **input** (Variable)-张量，其第input_dim_idx维可指定batch_size

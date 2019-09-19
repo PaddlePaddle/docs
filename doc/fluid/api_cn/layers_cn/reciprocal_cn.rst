@@ -14,9 +14,9 @@ Reciprocal（取倒数）激活函数
 参数:
 
     - **x** - reciprocal算子的输入
-    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
+    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否使用cudnn实现逻辑计算，如果为true需要安装cudnn
 
-返回：        Reciprocal算子的输出。
+返回：        输入参数取倒数的结果。
 
 **代码示例**：
 

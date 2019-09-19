@@ -26,8 +26,9 @@ expand运算会按给定的次数对输入各维度进行复制（tile）运算�
                 ]
 
 参数:
-        - **x** (Variable)- 一个秩在[1, 6]范围中的张量（Tensor）.
+        - **x** (Variable) - 一个秩在[1, 6]范围中的张量（Tensor）.
         - **expand_times** (list|tuple) - 每一个维度要扩展的次数.
+        - **name** (str|None) -  可选参数，OP的名称，若设为None，则自动为该层命名。
 
 返回：     expand变量是LoDTensor。expand运算后，输出（Out）的每个维度的大小等于输入（X）的相应维度的大小乘以 ``expand_times`` 给出的相应值。
 

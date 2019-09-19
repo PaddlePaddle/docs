@@ -7,7 +7,7 @@ fill_constant
 
 该功能创建一个张量，含有具体的shape,dtype和batch尺寸。并用 ``value`` 中提供的常量初始化该张量。
 
-创建张量的属性stop_gradient设为True。
+通过此OP创建的张量stop_gradient属性默认为True。
 
 参数：
     - **shape** (tuple|list|None)-输出张量的形状
@@ -16,7 +16,7 @@ fill_constant
     - **out** (Variable)-输出张量
     - **force_cpu** (True|False)-若设为true,数据必须在CPU上
 
-返回：存储着输出的张量
+返回：维度大小符合shape的并且类型为dtype和初始值为 ``value`` 的张量
 
 返回类型：变量（Variable）
 
