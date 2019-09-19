@@ -36,26 +36,6 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 
 - 进入“产品服务>容器引擎CCE”，点击“集群管理>集群列表”，可看到用户已创建的集群列表。从集群列表中查看创建的集群信息。
 
-.. image:: src/baidu_cloud/cluster-info.png
-
-- 点击左侧的"Helm>Helm实例"，点击安装链接为集群一键安装helm。百度智能云为集群安装的helm版本为2.12.3，kubectl版本为1.13.4
-
-
-
-- 为了能够从外部登录集群节点，需要为集群中安装了tiller的节点申请弹性公网。点击"更多操作>控制台"。
-
-.. image:: src/baidu_cloud/concole.png
-
-- 点击"命名空间"选择kube-system，点击"容器组"，查看tiller开头的节点。
-
-.. image:: src/baidu_cloud/tiller.png
-
-- 点击"产品服务>网络>弹性公网"
-
-.. image:: src/baidu_cloud/eip.png
-
-- 创建弹性公网实例，完成后选择创建的实例，点击"更多操作>绑定到BCC"，填写tiller开头的节点信息进行绑定。
-
 
 3.2. 配置开发机环境
 ^^^^^^^^^^^^^^^^^
@@ -86,106 +66,41 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 
 	kubectl get node
 
-- 接下来是安装客户端的helm，用于与上面提到的Helm实例进行交互，解压下载后的文件,按照   `官网说明 <https://helm.sh/docs/using_helm/>`_ 安装helm客户端（2.12.3），然后执行
 
-.. code-block:: bash
-
-	helm init --client-only
-	
-- 通过之前创建的弹性公网ip登录运行tiller的节点，账户密码为创建集群时设置的账户和密码，默认账户为root。
-
-将节点上的以下三个文件
-
-.. code-block:: bash
-
-	/etc/kubernetes/pki/ca.pem
-	/etc/kubernetes/pki/admin.pem
-	/etc/kubernetes/pki/admin-key.pem
-
-- 下载至开发机并放在相同的路径，添加四个环境变量
-
-.. code-block:: bash
-
-	export HELM_TLS_ENABLE=true
-	export HELM_TLS_CA_CERT=/etc/kubernetes/pki/ca.pem
-	export HELM_TLS_CERT=/etc/kubernetes/pki/admin.pem
-	export HELM_TLS_KEY=/etc/kubernetes/pki/admin-key.pem
-	
-- 分别执行`kubectl version`与`helm version`，如果返回client端与server端信息，则证明配置成功。
+- 执行`kubectl version`，如果返回client端与server端信息，则证明配置成功。
 
 .. image:: src/baidu_cloud/kubectl-version.png
 
-.. image:: src/baidu_cloud/helm-version.png
 
 - 如果只返回client端信息，server端信息显示"Forbidden"，检查开发机是否使用了代理，若有可以尝试关闭代理再次执行命令检查。
 
-- Git Clone `Volcano <https://github.com/volcano-sh/volcano>`_ 项目，推荐安装 Go 1.12 及以上版本，参考 `Volcano Quick Start Guide <https://github.com/volcano-sh/volcano#quick-start-guide>`_ 
+- 按照volcano的Github主页的说明进行安装
 
 安装完成后执行
 
 .. code-block:: bash
 	
-	kubectl get pods --namespace volcano-syste
+	kubectl get pods --namespace volcano-system
 	
 若出现以下信息则证明安装成功：
 
 .. image:: src/baidu_cloud/volcano.png
 
 
-4. 设置访问权限
-----------------
-建立分布式任务需要pod间有API互相访问的权限，可以按如下步骤
 
 
-执行
-
-.. code-block:: bash
-
-	kubectl create -f defaultserviceaccountclusterrole.yaml 
-	
-文件内容如下
-	
-.. code-block:: yaml
-
-	kind: ClusterRole
-	apiVersion: rbac.authorization.k8s.io/v1
-	metadata:
-	  name: default
-	  namespace: default
-	rules:
-	  - apiGroups: [""]
-	    resources: ["pods"]
-	    verbs: ["get", "list", "watch"]
-
-	---
-	kind: ClusterRoleBinding
-	apiVersion: rbac.authorization.k8s.io/v1
-	metadata:
-	  name: default
-	  namespace: default
-	subjects:
-	  - kind: ServiceAccount
-	    name: default
-	    namespace: default
-	roleRef:
-	  kind: ClusterRole
-	  name: default
-	  apiGroup: rbac.authorization.k8s.io
-
-
-
-5. 部署任务
+4. 部署任务
 ----------------
 
-- CTR模型的训练镜像存放在`Docker Hub <https://hub.docker.com/>`_网站，通过kubectl加载yaml文件启动训练任务，CTR预估模型训练任务的yaml文件为volcano-ctr-demo-baiduyun.yaml.
+- CTR模型的训练镜像存放在`Docker Hub <https://hub.docker.com/>`_网站，通过kubectl加载yaml文件启动训练任务，CTR预估模型训练任务的yaml文件为ctr-paddlepaddle-on-volcano.yaml.
 
-- 任务的所有脚本文件可以访问 `这里 <https://github.com/PaddlePaddle/edl/tree/develop/example/ctr>`_ 获取。
+- 任务的所有脚本文件可以访问 `这里 <https://github.com/volcano-sh/volcano/blob/master/example/integrations/paddlepaddle>`_ 获取。
 
 执行
 
 .. code-block:: bash
 	
-	kubectl apply -f volcano-ctr-demo-baiduyun.yaml
+	kubectl apply -f ctr-paddlepaddle-on-volcano.yaml
 	
 文件内容如下
 	
@@ -194,7 +109,7 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 	apiVersion: batch.volcano.sh/v1alpha1
 	kind: Job
 	metadata:
-	  name: edl-demo
+	  name: ctr-volcano
 	spec:
 	  minAvailable: 4
 	  schedulerName: volcano
@@ -204,187 +119,181 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 	  - event: PodFailed
 	    action: RestartJob
 	  tasks:
-	    - replicas: 2
-	      name: pserver
-	      template:
-		metadata:
-		  labels:
-		    paddle-job-pserver: fluid-ctr
-		spec:
-		  imagePullSecrets:
-		    - name: default-secret
-		  volumes:
-		  - hostPath:
-		      path: /home/work/
-		      type: ""
+	  - replicas: 2
+	    name: pserver
+	    template:
+	      metadata:
+		labels:
+		  paddle-job-pserver: fluid-ctr
+	      spec:
+		imagePullSecrets:
+		- name: default-secret
+		volumes:
+		- hostPath:
+		    path: /home/work/
+		    type: ""
+		  name: seqdata
+		containers:
+		- image: volcanosh/edlctr:v1
+		  command:
+		  - paddle_k8s
+		  - start_fluid
+		  imagePullPolicy: IfNotPresent
+		  name: pserver
+		  volumeMounts:
+		  - mountPath: /mnt/seqdata
 		    name: seqdata
-		  containers:
-		    - image: sivanzcw/edldemo:v1
-		      command:
-			- paddle_k8s
-			- start_fluid
-		      imagePullPolicy: IfNotPresent
-		      name: pserver
-		      volumeMounts:
-		      - mountPath: /mnt/seqdata
-			name: seqdata
-		      resources:
-			limits:
-			  cpu: 10
-			  memory: 30Gi
-			  ephemeral-storage: 10Gi
-			requests:
-			  cpu: 1
-			  memory: 100M
-			  ephemeral-storage: 1Gi
-		      env:
-			- name: GLOG_v
-			  value: "0"
-			- name: GLOG_logtostderr
-			  value: "1"
-			- name: TOPOLOGY
-			  value: ""
-			- name: TRAINER_PACKAGE
-			  value: /workspace
-			- name: PADDLE_INIT_NICS
-			  value: eth2
-			- name: NAMESPACE
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: metadata.namespace
-			- name: POD_IP
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: status.podIP
-			- name: POD_NAME
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: metadata.name
-			- name: PADDLE_CURRENT_IP
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: status.podIP
-			- name: PADDLE_JOB_NAME
-			  value: fluid-ctr
-			- name: PADDLE_IS_LOCAL
-			  value: "0"
-			- name: PADDLE_TRAINERS_NUM
-			  value: "2"
-			- name: PADDLE_PSERVERS_NUM
-			  value: "2"
-			- name: FLAGS_rpc_deadline
-			  value: "36000000"
-			- name: ENTRY
-			  value: cd /workspace/ctr && python train.py --is_local 0 --cloud_train 1
-			- name: PADDLE_PORT
-			  value: "30236"
-			- name: LD_LIBRARY_PATH
-			  value: /usr/local/lib:/usr/local/nvidia/lib64:/usr/local/rdma/lib64:/usr/lib64/mlnx_ofed/valgrind
-			- name: PADDLE_TRAINING_ROLE
-			  value: PSERVER
-			- name: TRAINING_ROLE
-			  value: PSERVER
-		  restartPolicy: OnFailure 
-	    - replicas: 2
-	      policies:
-	      - event: TaskCompleted
-		action: CompleteJob
-	      name: trainer
-	      template:
-		metadata:
-		  labels:
-		    paddle-job: fluid-ctr
-		spec:
-		  imagePullSecrets:
-		    - name: default-secret
-		  volumes:
-		  - hostPath:
-		      path: /home/work/
-		      type: ""
+		  resources:
+		    limits:
+		      cpu: 10
+		      memory: 30Gi
+		      ephemeral-storage: 10Gi
+		    requests:
+		      cpu: 1
+		      memory: 100M
+		      ephemeral-storage: 1Gi
+		  env:
+		  - name: GLOG_v
+		    value: "0"
+		  - name: GLOG_logtostderr
+		    value: "1"
+		  - name: TOPOLOGY
+		    value: ""
+		  - name: TRAINER_PACKAGE
+		    value: /workspace
+		  - name: NAMESPACE
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: metadata.namespace
+		  - name: POD_IP
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: status.podIP
+		  - name: POD_NAME
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: metadata.name
+		  - name: PADDLE_CURRENT_IP
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: status.podIP
+		  - name: PADDLE_JOB_NAME
+		    value: fluid-ctr
+		  - name: PADDLE_IS_LOCAL
+		    value: "0"
+		  - name: PADDLE_TRAINERS_NUM
+		    value: "2"
+		  - name: PADDLE_PSERVERS_NUM
+		    value: "2"
+		  - name: FLAGS_rpc_deadline
+		    value: "36000000"
+		  - name: ENTRY
+		    value: cd /workspace/ctr && python train.py --is_local 0 --cloud_train 1
+		  - name: PADDLE_PORT
+		    value: "30236"
+		  - name: LD_LIBRARY_PATH
+		    value: /usr/local/lib:/usr/local/nvidia/lib64:/usr/local/rdma/lib64:/usr/lib64/mlnx_ofed/valgrind
+		  - name: PADDLE_TRAINING_ROLE
+		    value: PSERVER
+		  - name: TRAINING_ROLE
+		    value: PSERVER
+		restartPolicy: OnFailure
+	  - replicas: 2
+	    policies:
+	    - event: TaskCompleted
+	      action: CompleteJob
+	    name: trainer
+	    template:
+	      metadata:
+		labels:
+		  paddle-job: fluid-ctr
+	      spec:
+		imagePullSecrets:
+		- name: default-secret
+		volumes:
+		- hostPath:
+		    path: /home/work/
+		    type: ""
+		  name: seqdata
+		containers:
+		- image: volcanosh/edlctr:v1
+		  command:
+		  - paddle_k8s
+		  - start_fluid
+		  imagePullPolicy: IfNotPresent
+		  name: trainer
+		  volumeMounts:
+		  - mountPath: /mnt/seqdata
 		    name: seqdata
-		  containers:
-		    - image: sivanzcw/edldemo:v1
-		      command:
-			- paddle_k8s
-			- start_fluid
-		      imagePullPolicy: IfNotPresent
-		      name: trainer
-		      volumeMounts:
-		      - mountPath: /mnt/seqdata
-			name: seqdata
-		      resources:
-			limits:
-			  cpu: 10
-			  memory: 30Gi
-			  ephemeral-storage: 10Gi
-			requests:
-			  cpu: 1
-			  memory: 100M
-			  ephemeral-storage: 10Gi
-		      env:
-			- name: GLOG_v
-			  value: "0"
-			- name: GLOG_logtostderr
-			  value: "1"
-			- name: TOPOLOGY
-			- name: TRAINER_PACKAGE
-			  value: /workspace
-			- name: PADDLE_INIT_NICS
-			  value: eth2
-			- name: CPU_NUM
-			  value: "2"
-			- name: NAMESPACE
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: metadata.namespace
-			- name: POD_IP
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: status.podIP
-			- name: POD_NAME
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: metadata.name
-			- name: PADDLE_CURRENT_IP
-			  valueFrom:
-			    fieldRef:
-			      apiVersion: v1
-			      fieldPath: status.podIP
-			- name: PADDLE_JOB_NAME
-			  value: fluid-ctr
-			- name: PADDLE_IS_LOCAL
-			  value: "0"
-			- name: FLAGS_rpc_deadline
-			  value: "36000000"
-			- name: PADDLE_PORT
-			  value: "30236"
-			- name: PADDLE_PSERVERS_NUM
-			  value: "2"
-			- name: PADDLE_TRAINERS_NUM
-			  value: "2"
-			- name: PADDLE_TRAINING_ROLE
-			  value: TRAINER
-			- name: TRAINING_ROLE
-			  value: TRAINER
-			- name: LD_LIBRARY_PATH
-			  value: /usr/local/lib:/usr/local/nvidia/lib64:/usr/local/rdma/lib64:/usr/lib64/mlnx_ofed/valgrind
-			- name: ENTRY
-			  value: cd /workspace/ctr && python train.py --is_local 0 --cloud_train 1
-		  restartPolicy: OnFailure
-
-	
+		  resources:
+		    limits:
+		      cpu: 10
+		      memory: 30Gi
+		      ephemeral-storage: 10Gi
+		    requests:
+		      cpu: 1
+		      memory: 100M
+		      ephemeral-storage: 10Gi
+		  env:
+		  - name: GLOG_v
+		    value: "0"
+		  - name: GLOG_logtostderr
+		    value: "1"
+		  - name: TOPOLOGY
+		  - name: TRAINER_PACKAGE
+		    value: /workspace
+		  - name: CPU_NUM
+		    value: "2"
+		  - name: NAMESPACE
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: metadata.namespace
+		  - name: POD_IP
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: status.podIP
+		  - name: POD_NAME
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: metadata.name
+		  - name: PADDLE_CURRENT_IP
+		    valueFrom:
+		      fieldRef:
+			apiVersion: v1
+			fieldPath: status.podIP
+		  - name: PADDLE_JOB_NAME
+		    value: fluid-ctr
+		  - name: PADDLE_IS_LOCAL
+		    value: "0"
+		  - name: FLAGS_rpc_deadline
+		    value: "36000000"
+		  - name: PADDLE_PORT
+		    value: "30236"
+		  - name: PADDLE_PSERVERS_NUM
+		    value: "2"
+		  - name: PADDLE_TRAINERS_NUM
+		    value: "2"
+		  - name: PADDLE_TRAINING_ROLE
+		    value: TRAINER
+		  - name: TRAINING_ROLE
+		    value: TRAINER
+		  - name: LD_LIBRARY_PATH
+		    value: /usr/local/lib:/usr/local/nvidia/lib64:/usr/local/rdma/lib64:/usr/lib64/mlnx_ofed/valgrind
+		  - name: ENTRY
+		    value: cd /workspace/ctr && python train.py --is_local 0 --cloud_train 1
+		restartPolicy: OnFailure
 	
 
 即可成功提交任务
 
-需要说明的是 在 volcano-ctr-demo-baiduyun.yaml 当中定义了Pod所需的image，这些image如上文，存放在Docker Hub。此镜像的Dockerfile就在ctr文件夹下。
+需要说明的是 在 ctr-paddlepaddle-on-volcano.yaml 当中定义了Pod所需的image，这些image如上文，存放在Docker Hub。
 
 
 6. 查看结果
@@ -416,4 +325,6 @@ Trainer日志示例：
 Pserver日志示例：
 
 .. image:: src/baidu_cloud/pserver-log.png
+
+
 
