@@ -326,7 +326,7 @@ Pserver日志示例：
 
 .. image:: src/baidu_cloud/pserver-log.png
 
-在本示例中，没经过1000个batch或者每一次pass跑完所有的训练集，都会保存一次模型，模型的路径在trainer0的POD内部的/workspace/ctr路径下
+在本示例中，每次经过1000个batch或者每一次pass跑完所有的训练集，都会保存一次模型，模型的路径在trainer0的POD内部的/workspace/ctr/models路径下
 
 .. image:: src/baidu_cloud/ctr-models.png
 
