@@ -21,7 +21,7 @@ linear_chain_crf
     P(s) = (1/Z) exp(a_{s_1} + b_{s_L} + sum_{l=1}^L x_{s_l} + sum_{l=2}^L w_{s_{l-1},s_l})
 
 
-其中Z是正则化值，所有可能序列的P(s)之和为1，x是线性链条件随机场（linear chain CRF）的发射（emission）特征权重。
+其中Z是归一化值，所有可能序列的P(s)之和为1，x是线性链条件随机场（linear chain CRF）的发射（emission）特征权重。
 
 线性链条件随机场最终输出mini-batch每个训练样本的条件概率的对数
 
@@ -45,7 +45,7 @@ linear_chain_crf
 
     2.由于该函数对所有可能序列的进行全局正则化，发射特征（emission feature）权重应是未缩放的。因此如果该函数带有发射特征（emission feature），并且发射特征是任意非线性激活函数的输出，则请勿调用该函数。
 
-    3.Emission的第二维度必须和标记数字（tag number）相同
+    3.Emission的第二维度必须和标记数字（tag number）相同。
 
 参数：
     - **input** (Variable，LoDTensor，默认float类型LoDTensor) - 一个二维LoDTensor，shape为[N*D]，N是mini-batch的大小，D是总标记数。线性链条件随机场的未缩放发射权重矩阵

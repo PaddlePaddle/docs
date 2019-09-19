@@ -25,7 +25,6 @@ fluid.layers
     layers/atan.rst
     layers/auc.rst
     layers/autoincreased_step_counter.rst
-    layers/batch.rst
     layers/batch_norm.rst
     layers/beam_search.rst
     layers/beam_search_decode.rst
@@ -38,6 +37,7 @@ fluid.layers
     layers/brelu.rst
     layers/cast.rst
     layers/ceil.rst
+    layers/center_loss.rst
     layers/chunk_eval.rst
     layers/clip.rst
     layers/clip_by_norm.rst
@@ -93,9 +93,11 @@ fluid.layers
     layers/exp.rst
     layers/expand.rst
     layers/exponential_decay.rst
+    layers/eye.rst
     layers/fc.rst
     layers/fill_constant.rst
     layers/fill_constant_batch_size_like.rst
+    layers/filter_by_instag.rst
     layers/flatten.rst
     layers/floor.rst
     layers/fsp_matrix.rst
@@ -113,6 +115,7 @@ fluid.layers
     layers/gru_unit.rst
     layers/hard_shrink.rst
     layers/hard_sigmoid.rst
+    layers/hard_swish.rst
     layers/has_inf.rst
     layers/has_nan.rst
     layers/hash.rst
@@ -138,6 +141,7 @@ fluid.layers
     layers/linear_lr_warmup.rst
     layers/linspace.rst
     layers/load.rst
+    layers/lod_append.rst
     layers/lod_reset.rst
     layers/log.rst
     layers/log_loss.rst
@@ -150,6 +154,7 @@ fluid.layers
     layers/lstm.rst
     layers/lstm_unit.rst
     layers/margin_rank_loss.rst
+    layers/match_matrix_tensor.rst
     layers/matmul.rst
     layers/maxout.rst
     layers/mean.rst
@@ -162,11 +167,12 @@ fluid.layers
     layers/natural_exp_decay.rst
     layers/nce.rst
     layers/noam_decay.rst
+    layers/Normal.rst
     layers/not_equal.rst
     layers/npair_loss.rst
     layers/one_hot.rst
     layers/ones.rst
-    layers/open_files.rst
+    layers/ones_like.rst
     layers/pad.rst
     layers/pad2d.rst
     layers/pad_constant_like.rst
@@ -178,14 +184,12 @@ fluid.layers
     layers/pool3d.rst
     layers/pow.rst
     layers/prelu.rst
-    layers/Preprocessor.rst
     layers/Print.rst
     layers/prior_box.rst
     layers/psroi_pool.rst
     layers/py_func.rst
     layers/py_reader.rst
     layers/random_crop.rst
-    layers/random_data_generator.rst
     layers/range.rst
     layers/rank.rst
     layers/rank_loss.rst
@@ -204,6 +208,7 @@ fluid.layers
     layers/reshape.rst
     layers/resize_bilinear.rst
     layers/resize_nearest.rst
+    layers/resize_trilinear.rst
     layers/retinanet_detection_output.rst
     layers/retinanet_target_assign.rst
     layers/reverse.rst
@@ -236,7 +241,7 @@ fluid.layers
     layers/sequence_softmax.rst
     layers/sequence_unpad.rst
     layers/shape.rst
-    layers/shuffle.rst
+    layers/shard_index.rst
     layers/shuffle_channel.rst
     layers/sigmoid.rst
     layers/sigmoid_cross_entropy_with_logits.rst
@@ -244,6 +249,7 @@ fluid.layers
     layers/sign.rst
     layers/similarity_focus.rst
     layers/sin.rst
+    layers/size.rst
     layers/slice.rst
     layers/smooth_l1.rst
     layers/soft_relu.rst
@@ -277,10 +283,15 @@ fluid.layers
     layers/topk.rst
     layers/transpose.rst
     layers/tree_conv.rst
+    layers/unfold.rst
+    layers/Uniform.rst
     layers/uniform_random.rst
     layers/uniform_random_batch_size_like.rst
+    layers/unique.rst
+    layers/unique_with_counts.rst
     layers/unsqueeze.rst
     layers/unstack.rst
+    layers/var_conv_2d.rst
     layers/warpctc.rst
     layers/where.rst
     layers/While.rst

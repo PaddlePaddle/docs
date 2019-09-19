@@ -39,7 +39,7 @@ yolo_box
     - **downsample_ratio** （int） - 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
     - **name** （string） -  yolo box层的名称。默认None。
 
-返回: 具有形状[N，M，4]的三维张量；框的坐标；以及具有形状[N，M，class_num]的三维张量；框的分类得分；
+返回: 具有形状[N，M，4]的三维张量，框的坐标；以及具有形状[N，M，class_num]的三维张量，框的分类得分；
 
 返回类型:   变量（Variable）
 
@@ -57,7 +57,7 @@ yolo_box
     x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
     img_size = fluid.layers.data(name='img_size',shape=[2],dtype='int64')
     anchors = [10, 13, 16, 30, 33, 23]
-    loss = fluid.layers.yolo_box(x=x, img_size=img_size, class_num=80, anchors=anchors,
+    boxes, scores = fluid.layers.yolo_box(x=x, img_size=img_size, class_num=80, anchors=anchors,
                                     conf_thresh=0.01, downsample_ratio=32)
 
 
