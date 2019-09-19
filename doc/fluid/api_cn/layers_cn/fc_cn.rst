@@ -27,11 +27,11 @@ fc
 
 上述等式中：
   - :math:`N` ：输入的数目,如果输入是Tensor列表，N等于len（input）
-  - :math:`X_i` ：第i个输入的tensor
+  - :math:`X_i` ：第i个输入的Tensor
   - :math:`W_i` ：对应第i个输入张量的第i个权重矩阵
   - :math:`b` ：该层创建的bias参数
   - :math:`Act` ：activation function(激活函数)
-  - :math:`Out` ：输出tensor
+  - :math:`Out` ：输出Tensor
 
 ::
 
@@ -60,9 +60,9 @@ fc
   - **name** (str, default None) – 用于此网络层的命名。
 
 
-返回：经过全连接层计算后的Tensor
+返回：经过全连接层计算后的张量
 
-返回类型: Variable
+返回类型: Variable(Tensor|LoDTensor) 数据类型与input类型一致的Tensor或LoDTensor。
 
 弹出异常：``ValueError`` - 如果输入tensor的维度小于2
 
