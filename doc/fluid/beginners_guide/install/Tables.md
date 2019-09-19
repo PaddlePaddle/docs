@@ -383,6 +383,18 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 		paddlepaddle-1.5.2-cp37-cp37m-win_amd64.whl</a></td>
 	</tr>  
 	<tr>
+		<td> win_cuda8_cudnn7_openblas </td>
+		<td> - </td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.2-win-open/paddlepaddle_gpu-1.5.2.post87-cp27-cp27m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.2-cp27-cp27m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.2-win-open/paddlepaddle_gpu-1.5.2.post87-cp35-cp35m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.2-cp35-cp35m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.2-win-open/paddlepaddle_gpu-1.5.2.post87-cp36-cp36m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.2-cp36-cp36m-win_amd64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.2-win-open/paddlepaddle_gpu-1.5.2.post87-cp37-cp37m-win_amd64.whl">
+		paddlepaddle_gpu-1.5.2-cp37-cp37m-win_amd64.whl</a></td>
+	</tr>  
+	<tr>
 		<td> win_cuda9_cudnn7_openblas </td>
 		<td> - </td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.5.2-win-open/paddlepaddle_gpu-1.5.2.post97-cp27-cp27m-win_amd64.whl">
