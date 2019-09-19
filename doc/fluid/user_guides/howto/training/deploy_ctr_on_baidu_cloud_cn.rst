@@ -296,7 +296,7 @@ Volcano的使用流程基本概念可以参考 `Github项目主页 <https://gith
 需要说明的是 在 ctr-paddlepaddle-on-volcano.yaml 当中定义了Pod所需的image，这些image如上文，存放在Docker Hub。
 
 
-6. 查看结果
+5. 查看结果
 ----------------
 百度云容器引擎CCE提供了web操作台方便查看pod的运行状态。
 
@@ -326,5 +326,9 @@ Pserver日志示例：
 
 .. image:: src/baidu_cloud/pserver-log.png
 
+在本示例中，没经过1000个batch或者每一次pass跑完所有的训练集，都会保存一次模型，模型的路径在trainer0的POD内部的/workspace/ctr路径下
 
+.. image:: src/baidu_cloud/ctr-models.png
+
+开发者可以在模型生成之后，用K8S的Volume机制把模型文件从POD内部暴露给集群或是公网。与此同时，本样例的CTR训练在产出模型之后，还可以通过一系列的其他组件配合，例如分布式稀疏参数服务器Cube，模型上线服务Paddle Serving，来实现端到端的训练。最佳实践可以参考  `PaddlePaddle分布式训练和Serving流程化部署 <https://github.com/PaddlePaddle/Serving/blob/master/doc/DEPLOY.md>`_ 
 
