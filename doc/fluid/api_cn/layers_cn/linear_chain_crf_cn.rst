@@ -75,7 +75,6 @@ linear_chain_crf
     import paddle.fluid as fluid
     import numpy as np
 
-    #定义网络结构，使用LodTensor
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
@@ -92,14 +91,14 @@ linear_chain_crf
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
     exe.run(startup_program)
-    #定义数据，使用LoDTensor
+    #using LoDTensor, define network
     a = fluid.create_lod_tensor(np.random.rand(12,10).astype('float32'), [[3,3,4,2]], place)
     b = fluid.create_lod_tensor(np.array([[1],[1],[2],[3],[1],[1],[1],[3],[1],[1],[1],[1]]),[[3,3,4,2]] , place)
     feed1 = {'input_data':a,'label':b}
     loss= exe.run(train_program,feed=feed1, fetch_list=[crf_cost])
     print(loss)
 
-    #定义网络结构，使用padding
+    #using padding, define network
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
@@ -120,7 +119,7 @@ linear_chain_crf
     exe = fluid.Executor(place)
     exe.run(startup_program)
 
-    #定义数据，使用padding
+    #define input data
     cc=np.random.rand(4,10,10).astype('float32')
     dd=np.random.rand(4,10,1).astype('int64')
     ll=np.array([[3,3,4,2]])
@@ -128,3 +127,10 @@ linear_chain_crf
 
     loss2= exe.run(train_program,feed=feed2, fetch_list=[crf_cost2])
     print(loss2)
+    """
+    output:
+    [array([[ 7.8902354],
+            [ 7.3602567],
+            [ 10.004011],
+            [ 5.86721  ]], dtype=float32)]
+    """
