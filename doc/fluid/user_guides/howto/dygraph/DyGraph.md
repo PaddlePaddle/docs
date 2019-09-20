@@ -394,6 +394,67 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.to_variable(x)
 
 	在使用`fluid.dygraph.guard()`时可以通过传入`fluid.CUDAPlace(0)`或者`fluid.CPUPlace()`来选择执行DyGraph的设备，通常如果不做任何处理将会自动适配您的设备。
 
+## 使用多卡训练模型
+
+目前PaddlePaddle支持通过多进程方式进行多卡训练，即每个进程对应一张卡。训练过程中，在第一次执行前向操作时，如果该操作需要参数，则会将0号卡的参数Broadcast到其他卡上，确保各个卡上的参数一致；在计算完反向操作之后，将产生的参数梯度在所有卡之间进行聚合；最后在各个GPU卡上分别进行参数更新。
+
+    place = fluid.CUDAPlace(fluid.dygraph.parallel.Env().dev_id)
+    with fluid.dygraph.guard(place):
+
+        strategy = fluid.dygraph.parallel.prepare_context()
+        mnist = MNIST("mnist")
+        adam = AdamOptimizer(learning_rate=0.001)
+        mnist = fluid.dygraph.parallel.DataParallel(mnist, strategy)
+
+        train_reader = paddle.batch(
+            paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
+        # 注意：需要确保各个进程中读取的数据是不同的
+        train_reader = fluid.contrib.reader.distributed_batch_reader(
+                train_reader)
+
+        for epoch in range(epoch_num):
+            for batch_id, data in enumerate(train_reader()):
+                dy_x_data = np.array([x[0].reshape(1, 28, 28)
+                                      for x in data]).astype('float32')
+                y_data = np.array(
+                    [x[1] for x in data]).astype('int64').reshape(-1, 1)
+
+                img = to_variable(dy_x_data)
+                label = to_variable(y_data)
+                label.stop_gradient = True
+
+                cost, acc = mnist(img, label)
+
+                loss = fluid.layers.cross_entropy(cost, label)
+                avg_loss = fluid.layers.mean(loss)
+
+                avg_loss = mnist.scale_loss(avg_loss)
+                avg_loss.backward()
+                mnist.apply_collective_grads()
+                
+                adam.minimize(avg_loss)
+                mnist.clear_gradients()
+                if batch_id % 100 == 0 and batch_id is not 0:
+                    print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
+
+
+Paddle动态图多进程多卡模型训练启动时需要指定使用的GPU，即如果使用`0,1,2,3`卡，启动方式如下：
+
+    python -m paddle.distributed.launch --selected_gpus=0,1,2,3 --log_dir ./mylog train.py 
+
+
+此时，程序会将每个进程的输出log导入到./mylog路径下：
+
+    .
+    ├── mylog
+    │   ├── workerlog.0
+    │   ├── workerlog.1
+    │   ├── workerlog.2
+    │   └── workerlog.3
+    └── train.py
+
+如果不指定`--log_dir`，程序会将打印出所有进程的输出。
+
 ## 模型参数的保存
 
 
@@ -465,7 +526,10 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.to_variable(x)
 	            success = False
 	    print("model save and load success? {}".format(success))
 
-        
+需要注意的是，如果采用多卡训练，只需要一个进程对模型参数进行保存，因此在保存模型参数时，需要进行指定保存哪个进程的参数，比如
+
+    if fluid.dygraph.parallel.Env().local_rank == 0:
+        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
 
 ## 模型评估
 
