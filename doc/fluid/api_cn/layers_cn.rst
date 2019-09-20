@@ -61,6 +61,7 @@ fluid.layers
     layers_cn/create_tensor_cn.rst
     layers_cn/crf_decoding_cn.rst
     layers_cn/crop_cn.rst
+    layers_cn/crop_tensor_cn.rst
     layers_cn/cross_entropy_cn.rst
     layers_cn/ctc_greedy_decoder_cn.rst
     layers_cn/cumsum_cn.rst
