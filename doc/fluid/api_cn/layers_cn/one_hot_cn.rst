@@ -68,5 +68,5 @@ one_hot
 .. code-block:: python
 
     import paddle.fluid as fluid
-    label = fluid.layers.data(name="label", shape=[1], dtype="int64")
+    label = fluid.layers.data(name="label", shape=[4, 1], dtype="int64")
     one_hot_label = fluid.layers.one_hot(input=label, depth=10)
