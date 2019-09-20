@@ -3,7 +3,7 @@
 stanh
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.stanh(x, scale_a=0.6666666666666666, scale_b=1.7159, name=None)
+.. py:function:: paddle.fluid.layers.stanh(x, scale_a=0.67, scale_b=1.7159, name=None)
 
 STanh 激活算子（STanh Activation Operator.）
 
@@ -16,7 +16,7 @@ STanh 激活算子（STanh Activation Operator.）
     - **scale_b** (FLOAT|1.7159) - b的缩放参数
     - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
-返回: STanh操作符的输出
+返回: 张量，激活函数STanh操作符的输出
 
 返回类型: 输出(Variable)
 
@@ -25,11 +25,16 @@ STanh 激活算子（STanh Activation Operator.）
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.stanh(x, scale_a=0.67, scale_b=1.72)
-
-
-
+    import numpy as np
+    data = fluid.layers.data(name="input", shape=[-1, 3])
+    result = fluid.layers.stanh(data,scale_a=0.67, scale_b=1.72)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    x = np.random.random(size=(3, 3)).astype('float32')
+    output= exe.run(feed={"input": x},
+                 fetch_list=[result])
+    print(output)
 
 
 
