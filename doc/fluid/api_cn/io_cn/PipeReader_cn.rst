@@ -6,7 +6,7 @@ PipeReader
 .. py:class:: paddle.fluid.io.PipeReader
 
 
-PipeReader从命令中通过流来读取数据，把数据存在一个pipe缓存中，并重定向到解析器中解析，返回预先设计格式的数据。 
+PipeReader可以通过命令从流来读取数据，把数据存在一个pipe缓存中，并重定向到解析器中解析，返回预先设计格式的数据。 
 
 你可以使用标准的Linux命令或者调用其他程序来读取数据，从HDFS, Ceph, URL, AWS S3等等。
 
