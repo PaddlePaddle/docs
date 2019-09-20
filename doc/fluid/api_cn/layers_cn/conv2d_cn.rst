@@ -5,7 +5,7 @@ conv2d
 
 .. py:function:: paddle.fluid.layers.conv2d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None)
 
-卷积二维层（convolution2D layer）根据输入、滤波器（filter）、步长（stride）、填充（padding）、dilations、一组参数计算输出。输入和输出是NCHW格式，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。滤波器是MCHW格式，M是输出图像通道数，C是输入图像通道数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果提供了bias属性和激活函数类型，bias会添加到卷积（convolution）的结果中相应的激活函数会作用在最终结果上。
+二维卷积层（convolution2D layer）根据输入、滤波器（filter）、步长（stride）、填充（padding）、dilations、一组参数计算输出。输入和输出是NCHW格式，N是批尺寸，C是通道数，H是特征层的高度，W是特征层的宽度。滤波器是MCHW格式，M是输出图像通道数，C是输入图像通道数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果提供了bias属性，bias会添加到偏差值到卷积（convolution）的结果中。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
 
 对每个输入X，有等式：
 
@@ -44,18 +44,18 @@ conv2d
 参数：
     - **input** (Variable) - 格式为[N,C,H,W]格式的输入图像
     - **num_filters** (int) - 滤波器数。和输出图像通道相同
-    - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_H，filter_size_W）。否则，滤波器为square
-    - **stride** (int|tuple) - 步长(stride)大小。如果步长（stride）为元组，则必须包含两个整型数，（stride_H,stride_W）。否则，stride_H = stride_W = stride。默认：stride = 1
-    - **padding** (int|tuple) - 填充（padding）大小。如果填充（padding）为元组，则必须包含两个整型数，（padding_H,padding_W)。否则，padding_H = padding_W = padding。默认：padding = 0
-    - **dilation** (int|tuple) - 膨胀（dilation）大小。如果膨胀（dialation）为元组，则必须包含两个整型数，（dilation_H,dilation_W）。否则，dilation_H = dilation_W = dilation。默认：dilation = 1
-    - **groups** (int) - 卷积二维层（Conv2D Layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，滤波器的前一半仅和输入通道的前一半连接。滤波器的后一半仅和输入通道的后一半连接。默认：groups = 1
-    - **param_attr** (ParamAttr|None) - conv2d的可学习参数/权重的参数属性。如果设为None或者ParamAttr的一个属性，conv2d创建ParamAttr为param_attr。如果param_attr的初始化函数未设置，参数则初始化为 :math:`Normal(0.0,std)` ，并且std为 :math:`\frac{2.0}{filter\_elem\_num}^{0.5}` 。默认为None
-    - **bias_attr** (ParamAttr|bool|None) - conv2d bias的参数属性。如果设为False，则没有bias加到输出。如果设为None或者ParamAttr的一个属性，conv2d创建ParamAttr为bias_attr。如果bias_attr的初始化函数未设置，bias初始化为0.默认为None
+    - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_height，filter_size_width）。如果filter_size是一个int型，则filter_size_height = filter_size_width = filter_size。
+    - **stride** (int|tuple) - 步长stride大小。如果步长stride是一个元组，则必须包含两个整型数，（stride_height,stride_width）。否则，stride_height = stride_width = stride。默认：stride = 1
+    - **padding** (int|tuple) - 填充padding大小。如果填充padding为元组，则必须包含两个整型数，（padding_height,padding_width)。否则，padding_height = padding_width = padding。默认：padding = 0
+    - **dilation** (int|tuple) - 膨胀比例dilation大小。如果膨胀比例dialation为元组，则必须包含两个整型数，（dilation_height,dilation_width）。否则，dilation_height = dilation_width = dilation。默认：dilation = 1
+    - **groups** (int) - 二维卷积层（Conv2D Layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算。第二组滤波器和第二组输入进行卷积计算。默认：groups = 1
+    - **param_attr** (ParamAttr|None) - conv2d 权重的参数属性，可以设置为None或者包含属性的ParamAttr类。如果设为包含属性的ParamAttr类，conv2d创建相应属性的ParamAttr类为param_attr参数。如果设置为None或者初始化函数未设置，参数默认初始化为 :math:`Normal(0.0,std)` ，并且std为 :math:`\frac{2.0}{filter\_elem\_num}^{0.5}` 。默认为None
+    - **bias_attr** (ParamAttr|False|None) - conv2d 偏置参数属性。如果设为False，则卷积不会加上偏置项。如果设为包含属性的ParamAttr类，conv2d创建相应属性的ParamAttr类为bias_attr参数。如果设置为None或者bias_attr的初始化函数未设置，bias默认初始化为0.默认为None
     - **use_cudnn** （bool） - 是否用cudnn核，仅当下载cudnn库才有效。默认：True
     - **act** (str) - 激活函数类型，如果设为None，则未添加激活函数。默认：None
     - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。
 
-返回：张量，存储卷积和非线性激活结果
+返回：张量，最终输出结果
 
 返回类型：变量（Variable）
 
@@ -67,16 +67,14 @@ conv2d
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
     data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
-    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
-
-
-
-
-
-
-
-
-
+    res = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_progrm())
+    x = np.random.rand(1, 3, 32, 32).astype("float32")
+    output = exe.run(feed={"data", x}, fetch_list=[res])
+    print(output)
 
 
