@@ -7,7 +7,9 @@ inverse_time_decay
 
 在初始学习率上运用逆时衰减。
 
-训练模型时，最好在训练过程中降低学习率。通过执行该函数，将对初始学习率运用逆向衰减函数。
+训练模型时，最好在训练过程中降低学习率。通过执行该函数，将对初始学习率运用逆时衰减函数。
+
+逆时衰减计算方式如下。
 
 .. code-block:: python
 
@@ -17,14 +19,14 @@ inverse_time_decay
          decayed_learning_rate = learning_rate / (1 + decay_rate * global_step / decay_step)
 
 参数：
-    - **learning_rate** (Variable|float)-初始学习率
-    - **decay_steps** (int)-见以上衰减运算
-    - **decay_rate** (float)-衰减率。见以上衰减运算
-    - **staircase** (Boolean)-若为True，按间隔区间衰减学习率。默认：False
+    - **learning_rate** (Variable|float) - 初始学习率
+    - **decay_steps** (int) - 学习率衰减步长，见以上衰减运算
+    - **decay_rate** (float) - 学习率衰减率。见以上衰减运算
+    - **staircase** (bool, 默认False) - 若为True，按离散区间衰减学习率，即每 ``decay_steps`` 步多衰减 ``decay_rate`` 倍。若为False，则按以上衰减运算持续衰减。默认：False
 
-返回：衰减的学习率
+返回：随step衰减的学习率
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **示例代码：**
 
