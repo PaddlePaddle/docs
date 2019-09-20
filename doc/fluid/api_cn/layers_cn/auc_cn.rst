@@ -35,12 +35,23 @@ auc
 .. code-block:: python
 
     import paddle.fluid as fluid
-    data = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
-    label = fluid.layers.data(name="label", shape=[1], dtype="int32")
-    predict = fluid.layers.fc(input=data, size=2)
-    auc_out=fluid.layers.auc(input=predict, label=label)
+    import numpy as np
 
+    data = fluid.layers.data(name="input", shape=[-1, 3, 3], dtype="float32")
+    label = fluid.layers.data(name="label", shape=[1], dtype="int")
+    fc_out = fluid.layers.fc(input=data, size=2)
+    predict = fluid.layers.softmax(input=fc_out)
+    result=fluid.layers.auc(input=predict, label=label)
 
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+
+    exe.run(fluid.default_startup_program())
+    x = np.random.rand(3, 3, 3).astype("float32")
+    y = np.array([1,0,1])
+    output= exe.run(feed={"input": x,"label": y},
+                     fetch_list=[result[0]])
+    print(output)
 
 
 
