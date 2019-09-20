@@ -64,7 +64,7 @@ embedding
 
     import paddle.fluid as fluid
     data = fluid.layers.data(name='sequence', shape=[1], dtype='int64', lod_level=1)
-    emb = fluid.layers.embedding(input=data, size=[128, 64])
+    emb = fluid.embedding(input=data, size=[128, 64])
 
 
 
