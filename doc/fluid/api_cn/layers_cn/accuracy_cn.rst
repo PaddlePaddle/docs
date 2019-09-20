@@ -16,7 +16,7 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
     - **correct** (Variable)-正确的预测个数。
     - **total** (Variable)-总共的样本数。
 
-返回: 正确率
+返回: auc_out，输出张量
 
 返回类型: 变量（Variable）
 
@@ -25,14 +25,23 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 .. code-block:: python
 
     import paddle.fluid as fluid
-    data = fluid.layers.data(name="data", shape=[-1, 32, 32], dtype="float32")
-    label = fluid.layers.data(name="label", shape=[-1,1], dtype="int32")
-    predict = fluid.layers.fc(input=data, size=10)
-    accuracy_out = fluid.layers.accuracy(input=predict, label=label, k=5)
+    import numpy as np
 
+    data = fluid.layers.data(name="input", shape=[-1, 32, 32], dtype="float32")
+    label = fluid.layers.data(name="label", shape=[-1,1], dtype="int")
+    fc_out = fluid.layers.fc(input=data, size=10)
+    predict = fluid.layers.softmax(input=fc_out)
+    result = fluid.layers.accuracy(input=predict, label=label, k=5)
 
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
 
-
+    exe.run(fluid.default_startup_program())
+    x = np.random.rand(3, 32, 32).astype("float32")
+    y = np.array([[1],[0],[1]])
+    output= exe.run(feed={"input": x,"label": y},
+                     fetch_list=[result[0]])
+    print(output)
 
 
 
