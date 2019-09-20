@@ -9,7 +9,7 @@ embedding
 
 该层包含一个指定大小的词嵌入张量矩阵，会根据 ``input`` 中提供的 ``id`` 作为索引，在词嵌入矩阵中查询每个 ``id`` 对应的张量作为输出。
 
-注意：相对于 :ref:`cn_api_fluid_layers_embedding` ，此层去除了 ``input`` shape的最后一维强制为1的限制，详细使用区别，请参考上述文档链接。
+注意：相对于 fluid.layers. :ref:`cn_api_fluid_layers_embedding` 接口，此层去除了 ``input`` shape的最后一维强制为1的限制，详细使用区别，请参考上述文档链接。
 
 ::
 
