@@ -55,7 +55,7 @@ one_hot
 
 
 参数：
-    - **input** (Variable) - 维度为 :math:[N_1, ..., 1] 的多维Tensor，维度至少两维，且最后一维必须是1。数据类型为float32或float64。
+    - **input** (Variable) - 维度为 :math:[N_1, ..., 1] 的多维Tensor，维度至少两维，且最后一维必须是1。数据类型为int32或int64。
     - **depth** (int) - 字典大小
     - **allow_out_of_range** (bool) - 指明输入的词是否可以超过字典大小。当超过字典大小时，如果 `allow_out_of_range` 为False，则会抛出`Illegal value`的异常；如果设置为True，超出的部分会以0填充。
 
