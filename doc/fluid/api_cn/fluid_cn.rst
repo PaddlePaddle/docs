@@ -24,6 +24,7 @@ fluid
     fluid_cn/default_startup_program_cn.rst
     fluid_cn/DistributeTranspiler_cn.rst
     fluid_cn/DistributeTranspilerConfig_cn.rst
+    fluid_cn/embedding_cn.rst
     fluid_cn/ExecutionStrategy_cn.rst
     fluid_cn/Executor_cn.rst
     fluid_cn/global_scope_cn.rst
