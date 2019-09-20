@@ -5,9 +5,9 @@ pool3d
 
 .. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True)
 
-函数使用上述输入参数的池化配置，为三维空间添加池化操作
+函数使用上述输入参数的池化配置，为三维空间池化操作
 
-pooling3d操作根据input，pool_type，pool_size，strides和paddings参数计算输出。 输入（X）和输出（输出）采用NCDHW格式，其中N是批量大小，C是通道数，D，H和W分别是特征的深度，高度和宽度。 参数（ksize，strides，paddings）是三个元素。 这三个元素分别代表深度，高度和宽度。 输入（X）大小和输出（Out）大小可能不同。
+pool3d操作根据 ``input`` ，池化类型 ``pool_type`` ，池化核大小 ``pool_size`` ，步长 ``pool_stride`` 和填充 ``pool_padding`` 参数计算输出。 输入（X）和输出（Out）采用NCDHW格式，其中N是批大小，C是通道数，D，H和W分别是特征的深度，高度和宽度。 参数（ ``ksize`` ，``strides`` ，``paddings`` ）含有三个整型元素。 分别代表深度，高度和宽度上的参数。 输入（X）大小和输出（Out）大小可能不同。
 
 
 例如，
@@ -59,17 +59,17 @@ pooling3d操作根据input，pool_type，pool_size，strides和paddings参数计
 
 参数：
     - **input** (Vairable) - 池化运算的输入张量。输入张量的格式为NCDHW, N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。
-    - **pool_size** (int|list|tuple) - 池化窗口的大小。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。如果是int类型，它应该是一个整数的立方。
+    - **pool_size** (int|list|tuple) - 池化窗口的大小。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。若为一个整数，则它的立方值将作为池化核大小，比如若pool_size=2, 则池化核大小为2x2x2。
     - **pool_type** (str) - 池化类型， "max" 对应max-pooling, "avg" 对应average-pooling。
-    - **pool_stride** (int|list|tuple) - 池化跨越步长。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。如果是int类型，它应该是一个整数的立方。
-    - **pool_padding** (int|list|tuple) - 填充大小。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。如果是int类型，它应该是一个整数的立方。
-    - **global_pooling** (bool) - 是否使用全局池化。如果global_pooling = true, ``pool_size`` 和 ``pool_padding`` 将被忽略。
-    - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效。
-    - **ceil_mode** (bool) - 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数。
-    - **name** (str) - 该层名称（可选）。若为空，则自动为该层命名。
-    - **exclusive** (bool) - 是否在平均池化模式忽略填充值。默认为True。
+    - **pool_stride** (int|list|tuple) - 池化跨越步长。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。若为一个整数，则表示D, H和W维度上stride均为该值。
+    - **pool_padding** (int|list|tuple) - 填充大小。如果为元组类型，那么它应该是由三个整数组成：深度，高度，宽度。若为一个整数，则表示D, H和W维度上padding均为该值。
+    - **global_pooling** (bool, 默认False) - 是否使用全局池化。如果global_pooling = true, ``pool_size`` 和 ``pool_padding`` 将被忽略。
+    - **use_cudnn** (bool, 默认True) - 是否用cudnn核，只有在cudnn库安装时有效。
+    - **ceil_mode** (bool, 默认False) - 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数。
+    - **name** (str|None) - 该层名称（可选）。若为空，则自动为该层命名。
+    - **exclusive** (bool, 默认True) - 是否在平均池化模式忽略填充值。默认为True。
 
-返回：pool3d层的输出
+返回：池化结果张量
 
 返回类型：变量（Variable）
 
@@ -77,6 +77,7 @@ pooling3d操作根据input，pool_type，pool_size，strides和paddings参数计
 
 .. code-block:: python
 
+    # max pool3d
     import paddle.fluid as fluid
     data = fluid.layers.data(
         name='data', shape=[3, 32, 32, 32], dtype='float32')
@@ -86,6 +87,28 @@ pooling3d操作根据input，pool_type，pool_size，strides和paddings参数计
                       pool_type='max',
                       pool_stride=1,
                       global_pooling=False)
+
+    # average pool3d
+    import paddle.fluid as fluid
+    data = fluid.layers.data(
+        name='data', shape=[3, 32, 32, 32], dtype='float32')
+    pool3d = fluid.layers.pool3d(
+                      input=data,
+                      pool_size=2,
+                      pool_type='avg',
+                      pool_stride=1,
+                      global_pooling=False)
+
+    # global average pool3d
+    import paddle.fluid as fluid
+    data = fluid.layers.data(
+        name='data', shape=[3, 32, 32, 32], dtype='float32')
+    pool3d = fluid.layers.pool3d(
+                      input=data,
+                      pool_size=2,
+                      pool_type='avg',
+                      pool_stride=1,
+                      global_pooling=True)
 
 
 
