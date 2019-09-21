@@ -35,7 +35,7 @@ BuildStrategy
 
 .. py:attribute:: debug_graphviz_path
 
-str类型。表示以graphviz格式向文件中写入SSA图的路径，有利于调试。默认值为""。
+str类型。表示以graphviz格式向文件中写入SSA图的路径，有利于调试。默认值为空字符串。
 
 **代码示例**
 
