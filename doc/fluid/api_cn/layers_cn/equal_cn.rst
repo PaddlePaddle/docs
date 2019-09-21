@@ -6,14 +6,14 @@ equal
 .. py:function:: paddle.fluid.layers.equal(x,y,cond=None)
 
 **equal**
-该层返回 :math:`x==y` 按逐元素运算而得的真值。
+该OP返回 :math:`x==y` 逐元素比较x和y是否相等的结果。
 
 参数：
-    - **x** (Variable)-equal的第一个操作数
-    - **y** (Variable)-equal的第二个操作数
-    - **cond** (Variable|None)-输出变量（可选），用来存储equal的结果
+    - **x** (Variable)- 比较是否相等操作的第一个Tensor，数据类型为 float32, float64，int32, int64
+    - **y** (Variable)- 比较是否相等操作的第二个Tensor，数据类型为 float32, float64, int32, int64 
+    - **cond** (Variable|None)- 输出Tensor（可选），用来存储比较是否相等操作的结果
 
-返回：张量类型的变量，存储equal的输出结果
+返回：返回逐元素比较结果的Tensor， 数据类型bool。
 
 返回类型：变量（Variable）
 
