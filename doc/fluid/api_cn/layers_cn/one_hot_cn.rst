@@ -5,7 +5,7 @@ one_hot
 
 .. py:function:: paddle.fluid.layers.one_hot(input, depth, allow_out_of_range=False)
 
-该Op将每个输入的词（input），表示成一个实数向量（one-hot vector），其长度为字典大小（depth），每个维度对应一个字典里的每个词，除了这个词对应维度上的值是1，其他元素都是0。
+该OP将输入（input）中的每个词id 转换为一个one-hot向量，其长度为字典大小（depth），该词id对应的向量维度上的值为1，其余维度的值为0。
 
 - 示例1（allow_out_of_range=False，正确执行）：
 
@@ -57,7 +57,7 @@ one_hot
 参数：
     - **input** (Variable) - 维度为 :math:[N_1, ..., 1] 的多维Tensor，维度至少两维，且最后一维必须是1。数据类型为int32或int64。
     - **depth** (int) - 字典大小
-    - **allow_out_of_range** (bool) - 指明输入的词是否可以超过字典大小。当超过字典大小时，如果 `allow_out_of_range` 为False，则会抛出`Illegal value`的异常；如果设置为True，超出的部分会以0填充。
+    - **allow_out_of_range** (bool) - 指明input中所包含的id值是否可以大于depth值。当超过depth时，如果 `allow_out_of_range` 为False，则会抛出`Illegal value`的异常；如果设置为True，该id对应的向量为0向量。
 
 返回：实数向量，数据类型为float32
 
@@ -68,5 +68,6 @@ one_hot
 .. code-block:: python
 
     import paddle.fluid as fluid
+    # 该代码对应上述第一个示例，其中输入label的shape是[4, 1]，输出one_hot_label的shape是[4, 4]
     label = fluid.layers.data(name="label", shape=[4, 1], dtype="int64")
-    one_hot_label = fluid.layers.one_hot(input=label, depth=10)
+    one_hot_label = fluid.layers.one_hot(input=label, depth=4)
