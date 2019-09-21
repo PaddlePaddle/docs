@@ -32,6 +32,7 @@ ParamAttr
                                    learning_rate=0.5,
                                    regularizer=fluid.regularizer.L2Decay(1.0),
                                    trainable=True)
+   print(w_param_attrs.name) # "fc_weight"
    x = fluid.layers.data(name='X', shape=[1], dtype='float32')
    y_predict = fluid.layers.fc(input=x, size=10, param_attr=w_param_attrs)
 

@@ -10,11 +10,11 @@ create_lod_tensor
 
 具体实现方法如下:
 
-1. 检查基于序列长度的LoD（length-based LoD），即参数中的 :code:`recursive_sequence_lengths` 是否正确。
+1. 检查基于序列长度的LoD（length-based LoD），即参数中的 :code:`recursive_seq_lens` 是否正确。
 
-2. 将 :code:`recursive_sequence_lengths` 转换为基于偏移量LoD（offset-based LoD）。
+2. 将 :code:`recursive_seq_lens` 转换为基于偏移量的LoD（offset-based LoD）。
 
-3. 基于place参数，把所提供的 :code:`data` （numpy数组、list或LoDTensor）的数据复制到CPU或GPU上。
+3. 根据place参数，把所提供的 :code:`data` （numpy数组、list或LoDTensor）的数据复制到CPU或GPU上。
 
 4. 将基于偏移量的LoD设置到输出的LoDTensor中。
 
