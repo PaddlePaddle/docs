@@ -5,7 +5,7 @@ load_inference_model
 
 .. py:function:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
 
-从指定目录中加载预测模型(Inference Model)。通过这个接口，您可以获得模型结构（Inference Program）和模型参数。如果您只想加载预训练后的模型参数，请使用 :ref:`cn_api_fluid_io_load_params` 接口。更多细节请参考 :ref:`api_guide_model_save_reader` 。
+从指定文件路径中加载预测模型(Inference Model)，即调用该接口可获得模型结构（Inference Program）和模型参数。若只想加载预训练后的模型参数，请使用 :ref:`cn_api_fluid_io_load_params` 接口。更多细节请参考 :ref:`api_guide_model_save_reader` 。
 
 参数：
   - **dirname** (str) – 待加载模型的存储路径。
@@ -17,7 +17,7 @@ load_inference_model
 返回：该接口返回一个包含三个元素的列表(program，feed_target_names, fetch_targets)。它们的含义描述如下：
   - **program** （Program）– 它是 ``Program`` 类（详见 :ref:`api_guide_Program` ）的一个实例，此处它被用于预测，因此可被成为Inference Program。
   - **feed_target_names** （list）– 它是一个字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
-  - **fetch_targets** （list）– 它是一个 ``Variable`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量，我们可以得到模型的预测结果。
+  - **fetch_targets** （list）– 它是一个 ``Variable`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
 
 **返回类型：** 列表（list）
 
