@@ -6,19 +6,18 @@ WeightNormParamAttr
 .. py:class:: paddle.fluid.WeightNormParamAttr(dim=None, name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
 
 
-权重归一化。权重归一化是将权重向量的量级与其方向解耦。`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_ 这篇paper中讨论了权重归一化的实现
+这是一个类，该类将定义权重归一化(weight normalization)的参数。权重归一化可以将神经网络中权重向量的长度与其方向解耦，权重归一化的定义与实现可以参考论文：`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_ 
 
 参数:
   - **dim** (int) - 归一化的维度。默认None。
   - **name** (str) - 参数的名称。默认None。
   - **initializer** （initializer) - 初始化参数的方法。默认None。
-  - **learning_rate** (float) - 学习率。优化时学习速率 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 。默认1.0。
+  - **learning_rate** (float32) - 学习率。优化时学习速率 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 。默认1.0。
   - **regularizer** (WeightDecayRegularizer) - 正则化因子。默认None。
   - **trainable** (bool) - 参数是否可训练。默认True。
   - **gradient_clip** (BaseGradientClipAttr) - 梯度下降裁剪（Gradient Clipping）的方法。默认None。
   - **do_model_average** (bool) - 参数是否应该model average。默认False。
 
-返回： empty program
 
 **代码示例**
 
