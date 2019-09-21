@@ -19,6 +19,7 @@ fill_constant_batch_size_like
 返回：创建的Tensor, 数据类型为dtype。
 
 返回类型：(Variable)
+
 **代码示例**：
 
 .. code-block:: python
