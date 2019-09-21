@@ -13,7 +13,7 @@ abs
 参数:
 
     - **x** - abs算子的输入
-    - **name** (str|None) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：        abs算子的输出。
 
