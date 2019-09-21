@@ -6,15 +6,17 @@ double_buffer
 .. py:function:: paddle.fluid.layers.double_buffer(reader, place=None, name=None)
 
 
-生成一个双缓冲队列reader. 数据将复制到具有双缓冲队列的位置（由place指定），如果 ``place=none`` 则将使用executor执行的位置。
+生成一个双缓冲队列reader。数据将复制到具有双缓冲队列的位置（由place指定），如果 ``place=None`` 则将使用executor执行的位置。
 
 参数:
-  - **reader** (Variable) – 需要wrap的reader
-  - **place** (Place) – 目标数据的位置. 默认是executor执行样本的位置.
-  - **name** (str) – Variable 的名字. 默认为None，不关心名称时也可以设置为None
+    - **reader** (Variable) – 需要wrap的reader变量Reader。
+    - **place** (Place) – 目标数据的位置。默认是executor执行样本的位置。
+    - **name** (str, 可选) – Variable 的名字。该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_Name`，默认值为None。
 
 
-返回： 双缓冲队列的reader
+返回：Variable(Reader)。双缓冲队列的reader。
+
+返回类型：变量(Variable)。
 
 
 **代码示例**
