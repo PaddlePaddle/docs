@@ -6,19 +6,7 @@ Executor
 
 .. py:class:: paddle.fluid.executor.Executor (place)
 
-
-
-
-执行引擎（Executor）使用python脚本驱动，支持在单/多GPU、单/多CPU环境下运行。
-Python Executor可以接收传入的program,并根据feed map(输入映射表)和fetch_list(结果获取表)
-向program中添加feed operators(数据输入算子)和fetch operators（结果获取算子)。
-feed map为该program提供输入数据。fetch_list提供program训练结束后用户预期的变量（或识别类场景中的命名）。
-
-应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
-
-Executor将全局变量存储到全局作用域中，并为临时变量创建局部作用域。
-当每一mini-batch上的前向/反向运算完成后，局部作用域的内容将被废弃，
-但全局作用域中的变量将在Executor的不同执行过程中一直存在。
+Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指定设备，在Executor执行时，需要指定被执行的Program或CompiledProgram。需要注意的是，执行器会执行Program或CompiledProgram中的所有算子。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即fluid.global_scope()。
 
 
 **示例代码**
@@ -71,16 +59,16 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 
 
 参数:
-    - **place** (fluid.CPUPlace|fluid.CUDAPlace(n)) – 指明了 ``Executor`` 的执行场所
+    - **place** (fluid.CPUPlace|fluid.CUDAPlace(n)) – 该参数表示Executor执行所在的设备。
 
 
 
 .. py:method:: close()
 
 
-关闭这个执行器(Executor)。
+关闭执行器。
 
-调用这个方法后不可以再使用这个执行器。 对于分布式训练, 该函数会释放在PServers上和目前Trainer有关联的资源。
+该接口主要用于对于分布式训练, 调用这个接口后不可以再使用改执行器。该接口会释放在PServers上和目前Trainer有关联的资源。
 
 **示例代码**
 
@@ -96,13 +84,7 @@ Executor将全局变量存储到全局作用域中，并为临时变量创建局
 
 .. py:method:: run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True,use_program_cache=False)
 
-
-调用该执行器对象的此方法可以执行program。通过feed map提供待学习数据，以及借助fetch_list得到相应的结果。
-Python执行器(Executor)可以接收传入的program,并根据输入映射表(feed map)和结果获取表(fetch_list)
-向program中添加数据输入算子(feed operators)和结果获取算子（fetch operators)。
-feed map为该program提供输入数据。fetch_list提供program训练结束后用户预期的变量（或识别类场景中的命名）。
-
-应注意，执行器会执行program中的所有算子而不仅仅是依赖于fetch_list的那部分。
+该接口用于执行指定的Program或者CompiledProgram，**注意：执行器会执行program中的所有算子**。
 
 **示例代码**
 
@@ -129,18 +111,22 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
                            fetch_list=[loss.name])
 
 参数：  
-  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
-  - **feed** (dict) – 前向输入的变量，数据,词典dict类型, 例如 {“image”: ImageData, “label”: LabelData}
-  - **fetch_list** (list) – 用户想得到的变量或者命名的列表, 该方法会根据这个列表给出结果
-  - **feed_var_name** (str) – 前向算子(feed operator)变量的名称
-  - **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称
-  - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。缺省为全局域
-  - **return_numpy** (bool) – 如果为True,则将结果张量（fetched tensor）转化为numpy
-  - **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。
+  - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未设置该参数，默认使用fluid.default_main_program()。默认为：None。
+  - **feed** (list|dict|None) – 该变量表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
+  - **fetch_list** (list) – 该变量表示模型运行之后需要返回的变量。默认为：None。
+  - **feed_var_name** (str) – 前向算子(feed operator)变量的名称。默认为："feed"。
+  - **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
+  - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认值：fluid.global_scope()。
+  - **return_numpy** (bool) – 如果为True，则将需要返回的计算结果（fetch list中指定的变量）转化为numpy。默认为：True。
+  - **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。默认为：False。
   
 返回: 根据fetch_list来获取结果
 
 返回类型: list(numpy.array)
+
+.. note::
+     1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错。应额外注意核对数据集的最后一个batch是否比可用的CPU核数或GPU卡数大。
+     2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量变量（fetch_list中的变量）拼接在一起。
 
 
 .. py:method:: infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
