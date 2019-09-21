@@ -15,19 +15,23 @@ load_inference_model
   - **pserver_endpoints** (list，可选) – 只有在分布式预测时才需要用到。当训练过程中使用分布式查找表(distributed lookup table)时, 预测时需要指定pserver_endpoints的值。它是 pserver endpoints 的列表，默认值为None。
 
 返回：该接口返回一个包含三个元素的列表(program，feed_target_names, fetch_targets)。它们的含义描述如下：
-  - **program** （Program）– 它是 ``Program`` 类（详见 :ref:`api_guide_Program` ）的一个实例，此处它被用于预测，因此可被成为Inference Program。
-  - **feed_target_names** （list）– 它是一个字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
-  - **fetch_targets** （list）– 它是一个 ``Variable`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
+  - **program** （Program）– ``Program`` （详见 :ref:`api_guide_Program` ）类的实例。此处它被用于预测，因此可被称为Inference Program。
+  - **feed_target_names** （list）– 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
+  - **fetch_targets** （list）– ``Variable`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
 
 **返回类型：** 列表（list）
 
 抛出异常：
   - ``ValueError`` – 如果接口参数 ``dirname`` 指向一个不存在的文件路径，则抛出异常。
 
+**代码示例**
+
 .. code-block:: python
 
         import paddle.fluid as fluid
         import numpy as np
+
+        # 构建模型
         main_prog = fluid.Program()
         startup_prog = fluid.Program()
         with fluid.program_guard(main_prog, startup_prog):
@@ -39,26 +43,29 @@ load_inference_model
         place = fluid.CPUPlace()
         exe = fluid.Executor(place)
         exe.run(startup_prog)
+
+        # 保存预测模型
         path = "./infer_model"
         fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'],target_vars=[hidden_b], executor=exe, main_program=main_prog)
-        tensor_img = np.array(np.random.random((1, 64, 784)), dtype=np.float32)
+
+        # 示例一: 不需要指定分布式查找表的模型加载示例，即训练时未用到distributed lookup table。
         [inference_program, feed_target_names, fetch_targets] = (fluid.io.load_inference_model(dirname=path, executor=exe))
-        
+        tensor_img = np.array(np.random.random((1, 64, 784)), dtype=np.float32)
         results = exe.run(inference_program,
                   feed={feed_target_names[0]: tensor_img},
                   fetch_list=fetch_targets)
 
-        # endpoints是pserver服务器结点列表，下面仅为一个样例
+        # 示例二: 若训练时使用了distributed lookup table，则模型加载时需要通过endpoints参数指定pserver服务器结点列表。
+        # pserver服务器结点列表主要用于分布式查找表进行ID查找时使用。下面的["127.0.0.1:2023","127.0.0.1:2024"]仅为一个样例。
         endpoints = ["127.0.0.1:2023","127.0.0.1:2024"]
-        # pserver服务器结点列表主要用于分布式查找表进行查找时使用
         [dist_inference_program, dist_feed_target_names, dist_fetch_targets] = (
             fluid.io.load_inference_model(dirname=path,
                                           executor=exe,
                                           pserver_endpoints=endpoints))
 
-        # 在这个示例中，inference program 保存在“ ./infer_model/__model__”中
-        # 参数保存在“./infer_mode ”单独的若干文件中
-        # 加载 inference program 后， executor可使用 fetch_targets 和 feed_target_names 执行Program，得到预测结果
+        # 在上述示例中，inference program 被保存在“ ./infer_model/__model__”文件内，
+        # 参数保存在“./infer_mode ”单独的若干文件内。
+        # 加载 inference program 后， executor可使用 fetch_targets 和 feed_target_names 执行Program，并得到预测结果。
 
 
 
