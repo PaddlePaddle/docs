@@ -6,15 +6,19 @@ brelu
 .. py:function:: paddle.fluid.layers.brelu(x, t_min=0.0, t_max=24.0, name=None)
 
 
-BRelu 激活函数
+BReLU 激活函数
 
-.. math::   out=max(min(x,tmin),tmax)
+.. math::   out=max(min(x,t\_min),t\_max)
 
 参数:
-    - **x** (Variable) - BReluoperator的输入
-    - **t_min** (FLOAT|0.0) - BRelu的最小值
-    - **t_max** (FLOAT|24.0) - BRelu的最大值
-    - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
+  - **x** (Variable) - 该OP的输入为多维Tensor。数据类型为float32，float64。
+  - **t_min** (float, 可选) - BRelu的最小值，默认值为0.0。
+  - **t_max** (float, 可选) - BRelu的最大值，默认值为24.0。
+  - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
+
+返回： 输出为Tensor，与 ``x`` 维度相同、数据类型相同。
+
+返回类型： Variable
 
 
 **代码示例：**
@@ -22,11 +26,12 @@ BRelu 激活函数
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[2,3,16,16], dtype="float32")
-    y = fluid.layers.brelu(x, t_min=1.0, t_max=20.0)
+    import numpy as np
 
-
-
-
-
-
+    input_brelu = np.array([[-1,6],[1,15.6]])
+    with fluid.dygraph.guard():
+        x = fluid.dygraph.to_variable(input_brelu)
+        y = fluid.layers.brelu(x, t_min=1.0, t_max=10.0)
+        print(y.numpy())
+        #[[ 1.  6.]
+        #[ 1. 10.]]
