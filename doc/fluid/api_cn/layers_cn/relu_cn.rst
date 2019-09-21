@@ -7,12 +7,12 @@ relu
 
 ReLU（Rectified Linear Unit）激活函数
 
-.. math::Out=max(0,x)
+.. math:: Out=max(0,x)
 
 
 参数:
   - **x** (Variable) - 输入的多维 ``Tensor`` ，数据类型为：float32、float64。
-  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
 返回: 与 ``x`` 维度相同数据类型相同的Tensor。
 
