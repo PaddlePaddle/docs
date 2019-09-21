@@ -188,21 +188,47 @@ MomentumOptimizer
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
 
-
-通过更新parameter_list来添加操作，进而使损失最小化。
-
-该算子相当于backward()和apply_gradients()功能的合体。
+为网络添加反向计算过程，并根据反向计算所得的梯度，更新parameter_list中的参数，最小化网络损失值loss。
 
 参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
+    - **loss** (Variable) – 需要最小化的损失值变量
+    - **startup_program** (Program|None) – 用于初始化parameter_list中参数的Program, 默认值为None，此时将使用default_startup_program
+    - **parameter_list** (list|None) – 待更新的Parameter组成的列表， 默认值为None，此时将更新所有的Parameter
+    - **no_grad_set** (set|None) – 不需要更新的Parameter的集合，默认值为None
+    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略，默认值为None
 
-返回： (optimize_ops, params_grads)，分别为附加的算子列表；一个由(param, grad) 变量对组成的列表，用于优化
+返回： (optimize_ops, params_grads)，数据类型为(list, list)，其中optimize_ops是minimize接口为网络添加的OP列表，params_grads是一个由(param, grad)变量对组成的列表，param是Parameter，grad是该Parameter对应的梯度值
 
-返回类型：   tuple
+返回类型： tuple
+
+**代码示例**：
+
+.. code-block:: python
+
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+     
+    place = fluid.CPUPlace()
+    main = fluid.Program()
+    with fluid.program_guard(main):
+        x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+        y_predict = fluid.layers.fc(input=x, size=1, act=None)
+        cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+        avg_cost = fluid.layers.mean(cost)
+        
+        moment_optimizer = fluid.optimizer.MomentumOptimizer(learning_rate=0.001, momentum=0.9)
+        moment_optimizer.minimize(avg_cost)
+        
+        fetch_list = [avg_cost]
+        train_reader = paddle.batch(
+            paddle.dataset.uci_housing.train(), batch_size=1)
+        feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
+        exe = fluid.Executor(place)
+        exe.run(fluid.default_startup_program())
+        for data in train_reader():
+            exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 
 
 
