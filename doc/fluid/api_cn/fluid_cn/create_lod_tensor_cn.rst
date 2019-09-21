@@ -23,7 +23,7 @@ create_lod_tensor
 那么， :code:`data` 为一个维度为(5, 1)的numpy整数数组； :code:`recursive_seq_lens` 为[[2, 3]]，表示每个句子含的单词个数。在该接口内部，基于序列长度的
 :code:`recursive_seq_lens` [[2, 3]]会转换为为基于偏移量的LoD [[0, 2, 5]]。
 
-请查阅 :ref:`api_guide_low_level_lod_tensor` 了解更多关于LoD的介绍。
+请查阅 :ref:`cn_user_guide_lod_tensor` 了解更多关于LoD的介绍。
 
 参数:
     - **data** (numpy.ndarray|list|LoDTensor) - 表示LoDTensor数据的numpy数组、list或LoDTensor。
