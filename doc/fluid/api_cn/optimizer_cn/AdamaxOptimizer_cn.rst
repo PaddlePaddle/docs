@@ -5,24 +5,38 @@ AdamaxOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdamaxOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None)
 
-我们参考Adam论文第7节中的Adamax优化: https://arxiv.org/abs/1412.6980 ， Adamax是基于无穷大范数的Adam算法的一个变种。
+该类参考Adam论文 `Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_中第7节的Adamax优化内容，实现了Adamax优化器，Adamax是基于无穷大范数的Adam算法的一个变种。
 
-
-Adamax 更新规则:
+Adamax参数更新的计算公式:
 
 .. math::
     \\t = t + 1
 .. math::
     moment\_out=\beta_1∗moment+(1−\beta_1)∗grad
 .. math::
-    inf\_norm\_out=\max{(\beta_2∗inf\_norm+ϵ, \left|grad\right|)}
+    inf\_norm\_out=\max{(\beta_2∗inf\_norm+epsilon, \left|grad\right|)}
 .. math::
     learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
 .. math::
     param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
 
 
-论文中没有 ``epsilon`` 参数。但是，为了数值稳定性， 防止除0错误， 增加了这个参数
+论文中没有 ``epsilon`` 参数。但是，为了保持数值稳定性， 避免除0错误， 此处增加了这个参数。
+
+参数:
+  - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
+  - **beta1** (float, 可选) - 一阶矩估计的指数衰减率，默认值为0.9
+  - **beta2** (float, 可选) - 二阶矩估计的指数衰减率，默认值为0.999
+  - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
+  - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是``fluid.regularizer.L2DecayRegularizer``，默认值为None
+  - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+
+返回：AdamaxOptimizer的实例
+
+返回类型：Optimizer
+
+.. note::
+    目前 ``AdamaxOptimizer`` 不支持 sparse parameter optimization（稀疏的parameter优化）.
 
 **代码示例**：
 
@@ -51,154 +65,6 @@ Adamax 更新规则:
     outs = exe.run(program=train_program,
                   feed={'X': x},
                    fetch_list=[loss.name])
-
-参数:
-  - **learning_rate**  (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
-  - **beta1** (float) - 第1阶段估计的指数衰减率
-  - **beta2** (float) - 第2阶段估计的指数衰减率。
-  - **epsilon** (float) -非常小的浮点值，为了数值的稳定性质
-  - **regularization** - 正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
-  - **name** - 可选的名称前缀。
-
-.. note::
-    目前 ``AdamaxOptimizer`` 不支持  sparse parameter optimization.
-
-
-
-.. py:method:: apply_gradients(params_grads)
-
-为给定的params_grads对附加优化算子，为minimize过程的第二步
-
-参数：
-    - **params_grads** (list)- 用于优化的(param, grad)对组成的列表
-
-返回：  附加在当前Program的算子组成的列表
-
-返回类型：  list
-
-**代码示例**
-
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    loss = network()
-    optimizer = fluid.optimizer.SGD(learning_rate=0.1)
-    params_grads = optimizer.backward(loss)
-    # you may append operations for params_grads here
-    # ...
-    optimizer.apply_gradients(params_grads)
-
-
-.. py:method:: apply_optimize(loss, startup_program, params_grads)
-
-为给定的params_grads对附加优化算子，为minimize过程的第二步。
-
-参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **params_grads** (list)- 用于优化的(param, grad)对组成的列表
-
-返回：  附加在当前Program的算子组成的列表
-
-返回类型：  list
-
-.. py:method:: backward(loss, startup_program=None, parameter_list=None, no_grad_set=None, callbacks=None)
-
-自动做diff来向当前program附加反向算子，为minimize过程的第一步。
-
-参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **callbacks** (list|None) – 当为某参数附加反向算子时所要运行的callables组成的列表
-
-返回：  附加在当前Program的算子组成的列表
-
-返回类型：  list
-
-**代码示例**
-
-详见apply_gradients的示例
-
-
-.. py:method:: load(stat_dict)
-
-在dygraph模式下，附带学习率衰减来加载优化器。
-
-参数：
-    - **stat_dict** – load_persistable方法加载的dict
-
-**代码示例**
-
-.. code-block:: python
-
-    from __future__ import print_function
-    import numpy as np
-    import paddle
-    import paddle.fluid as fluid
-    from paddle.fluid.optimizer import SGDOptimizer
-    from paddle.fluid.dygraph.nn import FC
-    from paddle.fluid.dygraph.base import to_variable
-
-    class MLP(fluid.Layer):
-        def __init__(self, name_scope):
-            super(MLP, self).__init__(name_scope)
-
-            self._fc1 = FC(self.full_name(), 10)
-            self._fc2 = FC(self.full_name(), 10)
-
-        def forward(self, inputs):
-            y = self._fc1(inputs)
-            y = self._fc2(y)
-            return y
-
-    with fluid.dygraph.guard():
-        mlp = MLP('mlp')
-        optimizer2 = SGDOptimizer(
-            learning_rate=fluid.layers.natural_exp_decay(
-            learning_rate=0.1,
-            decay_steps=10000,
-            decay_rate=0.5,
-            staircase=True))
-
-        train_reader = paddle.batch(
-                paddle.dataset.mnist.train(), batch_size=128, drop_last=True)
-
-        for batch_id, data in enumerate(train_reader()):
-            dy_x_data = np.array(
-                    [x[0].reshape(1, 28, 28) for x in data]).astype('float32')
-
-            y_data = np.array([x[1] for x in data]).astype('int64').reshape(
-                    128, 1)
-
-            img = to_variable(dy_x_data)
-            label = to_variable(y_data)
-            label._stop_gradient = True
-            cost = mlp(img)
-            avg_loss = fluid.layers.reduce_mean(cost)
-            avg_loss.backward()
-            optimizer.minimize(avg_loss)
-            mlp.clear_gradients()
-            fluid.dygraph.save_persistables(
-                    mlp.state_dict(), [optimizer, optimizer2], "save_dir_2")
-            if batch_id == 2:
-                    break
-
-    with fluid.dygraph.guard():
-        mlp_load = MLP('mlp')
-        optimizer_load2 = SGDOptimizer(
-                learning_rate=fluid.layers.natural_exp_decay(
-                learning_rate=0.1,
-                decay_steps=10000,
-                decay_rate=0.5,
-                staircase=True))
-        parameters, optimizers = fluid.dygraph.load_persistables(
-            "save_dir_2")
-        mlp_load.load_dict(parameters)
-        optimizer_load2.load(optimizers)
-    self.assertTrue(optimizer2._learning_rate.__dict__ == optimizer_load2._learning_rate.__dict__)
-
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
 
