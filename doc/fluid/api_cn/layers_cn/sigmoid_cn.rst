@@ -13,10 +13,10 @@ sigmoid激活函数
 
 参数：
 
-    - **x** (Tensor|LoDTensor)- 数据类型为float32，float64。Sigmoid算子的输入
+    - **x** (Tensor|LoDTensor)- 数据类型为float32，float64。激活函数的输入值。
     - **name** (str|None) - 该层名称（可选）。若为空，则自动为该层命名。默认：None
 
-返回： 与输入shape相同的张量
+返回：激活函数的输出值
 
 返回类型：Variable（Tensor），数据类型为float32的Tensor。
 

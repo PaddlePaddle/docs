@@ -23,7 +23,7 @@ linear_chain_crf
 
 其中Z是归一化值，所有可能序列的P(s)之和为1，x是线性链条件随机场（linear chain CRF）的发射（emission）特征权重。
 
-线性链条件随机场最终输出mini-batch每个训练样本的条件概率的对数
+线性链条件随机场最终输出每个batch训练样本的条件概率的对数
 
 
   1.这里 :math:`x` 代表Emission
@@ -48,17 +48,17 @@ linear_chain_crf
     3.Emission的第二维度必须和标记数字（tag number）相同。
 
 参数：
-    - **input** (LoDTensor|Tensor) - 数据类型为float32， float64的Tensor或者LoDTensor。输入为LoDTensor时，应该是一个shape为[N*D]的2-D LoDTensor，N是mini-batch的大小，D是总标记数。线性链条件随机场的未缩放发射权重矩阵；当输入为Tensor时，应该是一个shape为[N x S x D]的Tensor，N是mini-batch的大小，S为序列的最大长度，D是总标记数。
-    - **label** (Tensor|LoDTensor） - 数据类型为int64类型Tensor或者LoDTensor。输入为LoDTensor时[N x 1]，N是mini-batch的总元素数;输入为Tensor时，[N x S],N为batch数量，S为序列最大长度，ground truth。
+    - **input** (LoDTensor|Tensor) - 数据类型为float32， float64的Tensor或者LoDTensor。线性链条件随机场的发射矩阵emission。输入为LoDTensor时，是一个shape为[N*D]的2-D LoDTensor，N是每一个batch中batch对应的长度数想加的总数，D是维度。当输入为Tensor时，应该是一个shape为[N x S x D]的Tensor，N是batch_size，S为序列的最大长度，D是维度。
+    - **label** (Tensor|LoDTensor） - 数据类型为int64类型Tensor或者LoDTensor。该值为标签值。输入为LoDTensor时[N x 1]，N是mini-batch的总数;输入为Tensor时，[N x S],N为batch数量，S为序列的最大长度。
     - **Length** (Tensor) - 数据类型为int64类型的Tensor。 shape为[M x 1]的Tensor,M为mini_batch中序列的数量。
     - **param_attr** (ParamAttr) - 可学习参数的属性，为transition矩阵。详见代码示例。
 
 返回：
-    Emission的指数形式。shape与Emission相同。这是前向计算中的中间计算结果，在后向计算中还会复用。
+    Emission的指数形式。shape与Emission相同。这是前向计算中的中间计算结果，在反向计算中还会复用。
 
-    Transition的指数形式。shape为[(D+2)*D]的二维张量。这是前向计算中的中间计算结果，在后向计算中还会复用。
+    Transition的指数形式。shape为[(D+2)*D]的二维张量。这是前向计算中的中间计算结果，在反向计算中还会复用。
 
-    条件概率的对数形式。mini-batch每个训练样本的条件概率的对数。这是一个shape为[S*1]的二维张量，S是mini-batch的序列数。注：S等同于mini-batch的序列数。输出不再是LoDTensor。
+    条件概率的对数形式。每个batch训练样本的条件概率的对数。这是一个shape为[S*1]的二维张量，S是mini-batch的序列数。注：S等于mini-batch的序列数。输出不再是LoDTensor。
 
 返回类型：
     Emission的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32， float64的Tensor或者LoDTensor。

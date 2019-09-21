@@ -7,16 +7,16 @@ accuracy
 
 accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
-使用输入和标签计算准确率。 每个类别中top k 中正确预测的个数。注意：准确率的 dtype 由输入决定。 输入和标签 dtype 可以不同。
+使用输入和标签计算准确率。 如果正确的标签在topk个预测值里，则计算结果加1。注意：输出正确率的类型由input类型决定，input和lable的类型可以不一样。
 
 参数：
-    - **input** (Tensor|LoDTensor)-数据类型为float32,float64。该层的输入，即网络的预测。支持 Carry LoD
-    - **label** (Tensor|LoDTensor)-数据类型为int64，int32。数据集的标签
-    - **k** (int64|int32) - 每个类别的 top k
-    - **correct** (int64|int32)-正确的预测个数
-    - **total** (int64|int32)-总共的样本数
+    - **input** (Tensor|LoDTensor)-数据类型为float32,float64。输入为网络的预测值。
+    - **label** (Tensor|LoDTensor)-数据类型为int64，int32。输入为数据集的标签。
+    - **k** (int64|int32) - 取每个类别中k个预测值用于计算。
+    - **correct** (int64|int32)-正确预测值的个数。
+    - **total** (int64|int32)-总共的预测值。
 
-返回: 与输入shape相同的张量
+返回: 计算出来的正确率。
 
 返回类型: Variable（Tensor），数据类型为float32的Tensor
 
