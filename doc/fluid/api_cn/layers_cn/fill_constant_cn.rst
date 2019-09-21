@@ -10,11 +10,11 @@ fill_constant
 创建的LoDTensor或者SelectedRows的stop_gradient属性默认为True。
 
 参数：
-    - **shape** (tuple|list|None)- 创建LoDTensor或者SelectedRows的形状。
+    - **shape** (tuple|list)- 创建LoDTensor或者SelectedRows的形状。
     - **dtype** (np.dtype|core.VarDesc.VarType|str)- 创建LoDTensor或者SelectedRows的数据类型，支持数据类型为float16， float32， float64， int32， int64。
     - **value** (float|int)- 用于初始化输出LoDTensor或者SelectedRows的常量数据的值。
     - **force_cpu** (bool)- 用于标志LoDTensor或者SelectedRows是否创建在CPU上，默认值为False，若设为true,则数据必须在CPU上。
-    - **out** (Variable|可选)- 缺省值为None，用于存储创建的LoDTensor或者SelectedRows。
+    - **out** (Variable，可选)- 用于存储创建的LoDTensor或者SelectedRows，默认值为None。
    
 
 返回： 根据shape和dtype创建的LoDTensor或者SelectedRows。
