@@ -5,31 +5,31 @@ scale
 
 .. py:function:: paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 
-缩放算子
+缩放算子。
 
-对输入张量应用缩放和偏移加法。
+对输入Tensor进行缩放和偏置，其公式如下：
 
-if ``bias_after_scale`` = True:
-
-.. math::
-                                Out=scale*X+bias
-
-else:
+``bias_after_scale`` 为True:
 
 .. math::
-                                Out=scale*(X+bias)
+                        Out=scale*X+bias
+
+``bias_after_scale`` 为False:
+
+.. math::
+                        Out=scale*(X+bias)
 
 参数:
-        - **x** (Variable) - (Tensor) 要比例运算的输入张量（Tensor）。
-        - **scale** (FLOAT) - 比例运算的比例因子。
-        - **bias** (FLOAT) - 比例算子的偏差。
-        - **bias_after_scale** (BOOLEAN) - 在缩放之后或之前添加bias。在某些情况下，对数值稳定性很有用。
-        - **act** (basestring|None) - 应用于输出的激活函数。
-        - **name** (basestring|None)- 输出的名称。
+        - **x** (Variable) - 要进行缩放的多维Tensor，数据类型可以为int8，uint8，int16，int32，int64，float32，float64。
+        - **scale** (float) - 缩放的比例。
+        - **bias** (float) - 缩放的的偏置。 
+        - **bias_after_scale** (bool) - 判断在缩放之前或之后添加偏置。为True时，先缩放再偏置；为False时，先偏置再缩放。该参数在某些情况下，对数值稳定性很有用。
+        - **act** (str，可选) - 应用于输出的激活函数，如tanh、softmax、sigmoid、relu等。
+        - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回:        比例算子的输出张量(Tensor)
+返回: 缩放后的输出Tensor。
 
-返回类型:        变量(Variable)
+返回类型:  Variable(Tensor|LoDTensor)。
 
 **代码示例：**
 
