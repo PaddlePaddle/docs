@@ -72,10 +72,12 @@ Data Reader Interface
 
 返回：缓冲数据的读取器
 
+paddle.reader.compose
+======================================
 
 .. py:function::   paddle.reader.compose(*readers, **kwargs)
 
-创建一个数据reader，其输出是输入reader的组合。
+该函数将多个数据读取器组合为一个数据读取器。
 
 如果输入reader输出以下数据项：（1，2）3（4，5），则组合reader将输出：（1，2，3，4，5）。
 
@@ -83,7 +85,16 @@ Data Reader Interface
     - **readers** - 将被组合的多个读取器。
     - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。
 
-返回：新的数据读取器
+返回：新的数据读取器,新读取器的读入的数据是是各个输入读取器读入数据的组合。
+
+**代码示例**:
+
+.. code-block:: python	
+
+     import paddle.reader
+     reader1 = data_reader()
+     reader2 = data_reader()
+     reader_compose = paddle.reader.compose(reader1, reader2, check_alignment=False)
 
 抛出异常：     ``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会抛出异常。
 
@@ -227,7 +238,8 @@ Fakereader将缓存它读取的第一个数据，并将其输出data_num次。�
 
 Creator包包含一些简单的reader creator，可以在用户Program中使用。
 
-
+paddle.reader.creator.np_array
+======================================
 
 .. py:function:: paddle.reader.creator.np_array(x)
 
@@ -238,6 +250,8 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 
 返回： 从x创建的数据读取器
 
+paddle.reader.creator.text_file
+======================================
 
 .. py:function:: paddle.reader.creator.text_file(path)
 
@@ -247,6 +261,8 @@ Creator包包含一些简单的reader creator，可以在用户Program中使用�
 
 返回： 文本文件的数据读取器
 
+paddle.reader.creator.recordio
+======================================
 
 .. py:function::  paddle.reader.creator.recordio(paths, buf_size=100)
 
