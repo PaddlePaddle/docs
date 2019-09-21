@@ -38,6 +38,10 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 
   y.shape = [2+2+3, ...]
 
+返回：LoDTensor的实例。
+
+返回类型：LoDTensor。
+
 **示例代码**
 
 .. code-block:: python
