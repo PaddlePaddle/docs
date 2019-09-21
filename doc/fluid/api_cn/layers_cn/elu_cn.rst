@@ -13,13 +13,13 @@ ELU激活层（ELU Activation Operator）
         \\out=max(0,x)+min(0,α∗(e^{x}−1))\\
 
 参数:
-    - x(Variable)- ELU operator的输入
-    - alpha(float|1.0)- ELU的alpha值
-    - name (str|None) -这个层的名称(可选)。如果设置为None，该层将被自动命名。
+ - **x** (Variable) - 该OP的输入为Tensor。数据类型为float32或float64。
+ - **alpha** (FLOAT, 可选) - ELU的alpha值，默认值为1.0。
+ - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
 返回: ELU操作符的输出
 
-返回类型: 输出(Variable)
+返回类型： Variable - 该OP的输出为Tensor，数据类型为float32，float64。
 
 **代码示例**
 
@@ -28,10 +28,3 @@ ELU激活层（ELU Activation Operator）
     import paddle.fluid as fluid
     x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
     y = fluid.layers.elu(x, alpha=0.2)
-
-
-
-
-
-
-
