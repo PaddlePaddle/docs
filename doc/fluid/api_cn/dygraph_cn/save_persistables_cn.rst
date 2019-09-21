@@ -10,9 +10,9 @@ save_persistables
 ``dirname`` 用于指定保存目录。
 
 参数:
- - **model_dict**  (dict of Parameters) – 需要保存的模型参数字典，该字典键为str类型，值为Parameter类型。如果设置为None，则不会进行参数保存。
+ - **model_dict**  (dict of Variables) – 需要保存的模型参数字典，该字典键为str类型，值为Variable类型，其中包含了模型参数的tensor。
  - **dirname**  (str) – 指定保存的目录名。默认值为save_dir。
- - **optimizers**  (fluid.Optimizer|list(fluid.Optimizer)|None) –  指定要保存的单个优化器或者优化器列表。默认值为None。 
+ - **optimizers**  (fluid.Optimizer|list(fluid.Optimizer)，可选) –  指定要保存的单个优化器或者优化器列表，若设定了该参数，则保存优化器的学习率参数。缺省值为None。 
 
 返回: 无
   
