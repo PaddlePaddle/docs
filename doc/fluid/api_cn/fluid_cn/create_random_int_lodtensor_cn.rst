@@ -24,7 +24,7 @@ create_random_int_lodtensor
     - **low** (int) - 随机整数的下限值。
     - **high** (int) - 随机整数的上限值，必须大于或等于low。
 
-返回: 包含随机整数数据信息和序列长度信息的LoDTensor。
+返回: 包含随机整数数据信息和序列长度信息的LoDTensor，数值范围在[low, high]之间。
 
 返回类型: LoDTensor
 
