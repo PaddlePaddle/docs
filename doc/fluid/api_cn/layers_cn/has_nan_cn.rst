@@ -8,9 +8,9 @@ has_nan
 检查输入的变量(x)中是否包含NAN。
 
 参数：
-  - **x** (Variable) - 被检查的变量tensor/LoDtensor。
+  - **x** (Variable) - 被检查的变量Tensor/LoDTensor。
 
-返回：Variable(tensor)变量存储输出值，包含一个bool型数值，指明输入中是否包含NAN。
+返回：Variable(Tensor)变量存储输出值，包含一个bool型数值，指明输入中是否包含NAN。
 
 返回类型：变量(Variable)
 
