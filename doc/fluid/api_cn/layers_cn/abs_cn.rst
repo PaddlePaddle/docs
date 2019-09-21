@@ -13,7 +13,7 @@ abs
 参数:
 
     - **x** - abs算子的输入
-    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
+    - **name** (str|None) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
 返回：        abs算子的输出。
 
