@@ -13,7 +13,7 @@ cumsum
     - **exclusive** (bool) - 是否执行exclusive累加。默认为：False。
     - **reverse** (bool) - 若为True，则以相反顺序执行累加。默认为：False。
 
-返回：Variable(tensor)。是累加的结果，即累加器的输出。
+返回：Variable(Tensor)。是累加的结果，即累加器的输出。
 
 返回类型：变量(Variable)。
 
