@@ -8,9 +8,9 @@ has_inf
 检查输入的变量(x)中是否包含无穷数(inf)。
 
 参数：
-  - **x** (Variable) - 被检查的变量tensor/LoDtensor。
+  - **x** (Variable) - 被检查的变量Tensor/LoDTensor。
 
-返回：Variable(tensor)变量存储输出值，包含一个bool型数值，指明输入中是否包含无穷数(inf)。
+返回：Variable(Tensor)变量存储输出值，包含一个bool型数值，指明输入中是否包含无穷数(inf)。
 
 返回类型：变量(Variable)
 
