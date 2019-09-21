@@ -5,7 +5,7 @@ swish
 
 .. py:function:: paddle.fluid.layers.swish(x, beta=1.0, name=None)
 
-逐元素激活 Swish 激活函数，参考 `Searching for Activation Functions <https://arxiv.org/abs/1710.05941>`_ 。
+逐元素计算 Swish 激活函数，参考 `Searching for Activation Functions <https://arxiv.org/abs/1710.05941>`_ 。
 
 .. math::
          out = \frac{x}{1 + e^{- beta * x}}
@@ -13,7 +13,7 @@ swish
 参数：
     - **x** (Variable) -  Swish operator 的输入，数据类型为 float32，float64。
     - **beta** (float) - Swish operator 的常量 beta，默认值为 1.0。
-    - **name** (str|None) - 这个层的名称(可选)。如果设置为 None，该层将被自动命名。
+    - **name** (str， 可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：
    - Variable - 数据类型为 float32 或 float64，数据类型以及形状和输入 **x** 一致。
