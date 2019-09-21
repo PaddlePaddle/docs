@@ -7,7 +7,7 @@ sums
 
 该OP计算多个输入Tensor逐个元素相加的和。
 
-- 示例：3个Tensor逐个元素相加
+- 示例：3个Tensor求和
 
 .. code-block:: python
 
@@ -42,11 +42,12 @@ sums
 
     import paddle.fluid as fluid
 
-    # 多个Tensor求和，结果保存在一个新建的Variable sum0
     x0 = fluid.layers.fill_constant(shape=[16, 32], dtype='int64', value=1)
     x1 = fluid.layers.fill_constant(shape=[16, 32], dtype='int64', value=2)
     x2 = fluid.layers.fill_constant(shape=[16, 32], dtype='int64', value=3)
+
+    # 多个Tensor求和，结果保存在一个新建的Variable sum0，即sum0=x0+x1+x2
     sum0 = fluid.layers.sums(input=[x0, x1, x2])
 
-    # 多个Tensor求和，结果保存在x0，sum1和x0是对应一个Variable
+    # 多个Tensor求和，sum1和x0是是同一个Variable，相当于x0=x0+x1+x2
     sum1 = fluid.layers.sums(input=[x0, x1, x2], out=x0)
