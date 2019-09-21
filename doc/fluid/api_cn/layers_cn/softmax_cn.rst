@@ -20,26 +20,35 @@ softmax操作符计算k维向量输入中所有其他维的指数和指数值的
     Out[i,j] = \frac{exp(X[i,j])}{\sum_j exp(X[i,j])}
 
 参数：
-    - **input** (Variable) - 输入变量
+    - **input** (Tensor|LoDTensor)- 数据类型为float32，float64。
     - **use_cudnn** (bool) - 是否用cudnn核，只有在cudnn库安装时有效。为了数学稳定性，默认该项为False。
     - **name** (str|None) - 该层名称（可选）。若为空，则自动为该层命名。默认：None
     - **axis** (int) - 执行softmax计算的维度索引，应该在 :math:`[-1，rank-1]` 范围内，其中rank是输入变量的秩。 默认值：-1。
 
-返回： softmax输出
+返回： 与输入shape相同的张量
 
-返回类型：变量（Variable）
+返回类型：Variable（Tensor），数据类型为float32或float64的Tensor。
 
 **代码示例**
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[2], dtype='float32')
-    fc = fluid.layers.fc(input=x, size=10)
-    # 在第二维执行softmax
-    softmax = fluid.layers.softmax(input=fc, axis=1)
-    # 在最后一维执行softmax
-    softmax = fluid.layers.softmax(input=fc, axis=-1)
+    import numpy as np
+
+    data = fluid.layers.data(name="input", shape=[-1, 3],dtype="float32")
+    result = fluid.layers.softmax(data,axis=1)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    x = np.random.rand(3, 3).astype("float32")
+    output= exe.run(feed={"input": x},
+                     fetch_list=[result[0]])
+    print(output)
+    """
+    output:
+    array([0.22595254, 0.39276356, 0.38128382], dtype=float32)]
+    """
 
 
 
