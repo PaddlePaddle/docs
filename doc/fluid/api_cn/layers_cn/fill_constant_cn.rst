@@ -7,14 +7,14 @@ fill_constant
 
 该OP创建一个形状为shape并且数据类型为dtype的LoDTensor或者SelectedRows，同时用 ``value`` 中提供的常量初始化该LoDTensor或者SelectedRows。
 
-创建的LoDTensor的stop_gradient属性默认为True。
+创建的LoDTensor或者SelectedRows的stop_gradient属性默认为True。
 
 参数：
     - **shape** (tuple|list|None)- 创建LoDTensor或者SelectedRows的形状。
-    - **dtype** (np.dtype|core.VarDesc.VarType|str)- 创建LoDTensor或者SelectedRows的数据类型，支持数据类型为float16、 float32、 float64、 int32、 int64。
+    - **dtype** (np.dtype|core.VarDesc.VarType|str)- 创建LoDTensor或者SelectedRows的数据类型，支持数据类型为float16， float32， float64， int32， int64。
     - **value** (float|int)- 用于初始化输出LoDTensor或者SelectedRows的常量数据的值。
     - **force_cpu** (bool)- 用于标志LoDTensor或者SelectedRows是否创建在CPU上，默认值为False，若设为true,则数据必须在CPU上。
-    - **out** (Variable|可选)- 默认为None，用于存储创建的LoDTensor或者SelectedRows，
+    - **out** (Variable|可选)- 缺省值为None，用于存储创建的LoDTensor或者SelectedRows。
    
 
 返回： 根据shape和dtype创建的LoDTensor或者SelectedRows。
@@ -26,4 +26,4 @@ fill_constant
 .. code-block:: python
 
     import paddle.fluid as fluid
-    data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64', force_cpu=false)
+    data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
