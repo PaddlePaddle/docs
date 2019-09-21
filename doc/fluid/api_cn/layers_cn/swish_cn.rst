@@ -16,7 +16,7 @@ swish
     - **name** (str， 可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：
-   - Variable - 数据类型为 float32 或 float64，数据类型以及形状和输入 **x** 一致。
+   - Variable - 数据类型为 float32 或 float64，数据类型以及形状和输入 x 一致。
 
 
 **代码示例：**
@@ -27,7 +27,7 @@ swish
    import numpy as np
    from paddle import fluid
    
-   x = fluid.layers.data(name="x", shape=[3,], dtype="float32")
+   x = fluid.layers.data(name="x", shape=(3,), dtype="float32")
    y = fluid.layers.swish(x, beta=2.0)
    
    place = fluid.CPUPlace()

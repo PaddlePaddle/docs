@@ -43,6 +43,8 @@ gaussian_random
 	
 	
 .. code-block:: python
+
+    # 动态图使用
     import numpy as np
     from paddle import fluid
     import paddle.fluid.dygraph as dg
