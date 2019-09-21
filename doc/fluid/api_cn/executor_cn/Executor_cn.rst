@@ -60,15 +60,16 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指�
 
 参数:
     - **place** (fluid.CPUPlace|fluid.CUDAPlace(n)) – 该参数表示Executor执行所在的设备。
+  
+返回：初始化后的 ``Executor`` 对象
 
+返回类型: Executor
 
 
 .. py:method:: close()
 
 
-关闭执行器。
-
-该接口主要用于对于分布式训练, 调用这个接口后不可以再使用改执行器。该接口会释放在PServers上和目前Trainer有关联的资源。
+关闭执行器。该接口主要用于对于分布式训练, 调用这个接口后不可以再使用改执行器。该接口会释放在PServers上和目前Trainer有关联的资源。
 
 **示例代码**
 
@@ -84,7 +85,7 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指�
 
 .. py:method:: run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True,use_program_cache=False)
 
-该接口用于执行指定的Program或者CompiledProgram，**注意：执行器会执行program中的所有算子**。
+执行指定的Program或者CompiledProgram，**注意：执行器会执行program中的所有算子**。
 
 **示例代码**
 
