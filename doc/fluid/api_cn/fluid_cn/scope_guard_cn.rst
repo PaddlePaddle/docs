@@ -15,15 +15,12 @@ scope_guard
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  import numpy
-  
-  new_scope = fluid.Scope()
-  with fluid.scope_guard(new_scope):
-       fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
-  numpy.array(new_scope.find_var("data").get_tensor())
- 
+    import paddle.fluid as fluid
+    import numpy
 
-
-
+    new_scope = fluid.Scope()
+    with fluid.scope_guard(new_scope):
+         fluid.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), fluid.CPUPlace())
+    data = numpy.array(new_scope.find_var("data").get_tensor())
+    print(data)  # [[1. 1.]]]
 

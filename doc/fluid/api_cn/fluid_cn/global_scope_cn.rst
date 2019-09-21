@@ -6,7 +6,7 @@ global_scope
 .. py:function:: paddle.fluid.global_scope()
 
 
-获取全局/默认作用域实例。很多api使用默认 ``global_scope`` ，例如 ``Executor.run`` 。
+获取全局/默认作用域实例。很多API使用默认 ``global_scope`` ，例如 ``Executor.run`` 等。
 
 **示例代码**
 
@@ -15,15 +15,10 @@ global_scope
         import paddle.fluid as fluid
         import numpy
 
-        fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
-        numpy.array(fluid.global_scope().find_var("data").get_tensor())
+        fluid.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), fluid.CPUPlace())
+        data = numpy.array(fluid.global_scope().find_var("data").get_tensor())
+        print(data)  # [[1. 1.]]
 
 返回：全局/默认作用域实例
 
 返回类型：Scope
-
-
-
-
-
-
