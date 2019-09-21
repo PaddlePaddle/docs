@@ -3,7 +3,7 @@
 linear_chain_crf
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.linear_chain_crf(input, label, param_attr=None)
+.. py:function:: paddle.fluid.layers.linear_chain_crf(input, label, param_attr=None, length=None)
 
 线性链条件随机场（Linear Chain CRF）
 
@@ -48,41 +48,89 @@ linear_chain_crf
     3.Emission的第二维度必须和标记数字（tag number）相同。
 
 参数：
-    - **input** (Variable，LoDTensor，默认float类型LoDTensor) - 一个二维LoDTensor，shape为[N*D]，N是mini-batch的大小，D是总标记数。线性链条件随机场的未缩放发射权重矩阵
-    - **input** (Tensor，默认float类型LoDTensor) - 一个二维张量，shape为[(D+2)*D]。linear_chain_crf操作符的可学习参数。更多详情见operator注释
-    - **label** (Variable，LoDTensor，默认int64类型LoDTensor） - shape为[N*10的LoDTensor，N是mini-batch的总元素数
-    - **param_attr** (ParamAttr) - 可学习参数的属性
+    - **input** (LoDTensor|Tensor) - 数据类型为float32， float64的Tensor或者LoDTensor。输入为LoDTensor时，应该是一个shape为[N*D]的2-D LoDTensor，N是mini-batch的大小，D是总标记数。线性链条件随机场的未缩放发射权重矩阵；当输入为Tensor时，应该是一个shape为[N x S x D]的Tensor，N是mini-batch的大小，S为序列的最大长度，D是总标记数。
+    - **label** (Tensor|LoDTensor） - 数据类型为int64类型Tensor或者LoDTensor。输入为LoDTensor时[N x 1]，N是mini-batch的总元素数;输入为Tensor时，[N x S],N为batch数量，S为序列最大长度，ground truth。
+    - **Length** (Tensor) - 数据类型为int64类型的Tensor。 shape为[M x 1]的Tensor,M为mini_batch中序列的数量。
+    - **param_attr** (ParamAttr) - 可学习参数的属性，为transition矩阵。详见代码示例。
 
 返回：
-    output(Variable，Tensor，默认float类型Tensor)：shape为[N*D]的二维张量。Emission的指数。这是前向计算中的中间计算结果，在后向计算中还会复用
+    Emission的指数形式。shape与Emission相同。这是前向计算中的中间计算结果，在后向计算中还会复用。
 
-    output(Variable，Tensor，默认float类型Tensor)：shape为[(D+2)*D]的二维张量。Transition的指数。这是前向计算中的中间计算结果，在后向计算中还会复用
+    Transition的指数形式。shape为[(D+2)*D]的二维张量。这是前向计算中的中间计算结果，在后向计算中还会复用。
 
-    output(Variable,Tensor，默认float类型Tensor)：mini-batch每个训练样本的条件概率的对数。这是一个shape为[S*1]的二维张量，S是mini-batch的序列数。注：S等同于mini-batch的序列数。输出不再是LoDTensor
+    条件概率的对数形式。mini-batch每个训练样本的条件概率的对数。这是一个shape为[S*1]的二维张量，S是mini-batch的序列数。注：S等同于mini-batch的序列数。输出不再是LoDTensor。
 
-返回类型：output（Variable）
+返回类型：
+    Emission的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32， float64的Tensor或者LoDTensor。
+
+    Transition的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32， float64的Tensor或者LoDTensor。
+
+    条件概率的对数形式。Variable(Tensor)：数据类型为float32， float64的Tensor。
+
 
 **代码示例：**
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    emission = fluid.layers.data(name='emission', shape=[1000], dtype='float32')
-    target = fluid.layers.data(name='target', shape=[1], dtype='int32')
-    crf_cost = fluid.layers.linear_chain_crf(
-        input=emission,
-        label=target,
-        param_attr=fluid.ParamAttr(
+    import numpy as np
+
+    train_program = fluid.Program()
+    startup_program = fluid.Program()
+    with fluid.program_guard(train_program, startup_program):
+        input_data = fluid.layers.data(name='input_data', shape=[10], dtype='float32', lod_level=1)
+        label = fluid.layers.data(name='label', shape=[1], dtype='int', lod_level=1)
+        emission= fluid.layers.fc(input=input_data, size=10, act="tanh")
+        crf_cost = fluid.layers.linear_chain_crf(
+            input=emission,
+            label=label,
+            param_attr=fluid.ParamAttr(
             name='crfw',
-            learning_rate=0.2))
+            learning_rate=0.01))
+    use_cuda = False
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(startup_program)
+    #using LoDTensor, define network
+    a = fluid.create_lod_tensor(np.random.rand(12,10).astype('float32'), [[3,3,4,2]], place)
+    b = fluid.create_lod_tensor(np.array([[1],[1],[2],[3],[1],[1],[1],[3],[1],[1],[1],[1]]),[[3,3,4,2]] , place)
+    feed1 = {'input_data':a,'label':b}
+    loss= exe.run(train_program,feed=feed1, fetch_list=[crf_cost])
+    print(loss)
 
+    #using padding, define network
+    train_program = fluid.Program()
+    startup_program = fluid.Program()
+    with fluid.program_guard(train_program, startup_program):
+        input_data2 = fluid.layers.data(name='input_data2', shape=[10,10], dtype='float32')
+        label2 = fluid.layers.data(name='label2', shape=[10,1], dtype='int')
+        label_length = fluid.layers.data(name='length', shape=[1], dtype='int')
+        emission2= fluid.layers.fc(input=input_data2, size=10, act="tanh", num_flatten_dims=2)
+        crf_cost2 = fluid.layers.linear_chain_crf(
+            input=emission2,
+            label=label2,
+            length=label_length,
+            param_attr=fluid.ParamAttr(
+             name='crfw',
+             learning_rate=0.01))
 
+    use_cuda = False
+    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(startup_program)
 
+    #define input data
+    cc=np.random.rand(4,10,10).astype('float32')
+    dd=np.random.rand(4,10,1).astype('int64')
+    ll=np.array([[3,3,4,2]])
+    feed2 = {'input_data2':cc,'label2':dd,'length':ll}
 
-
-
-
-
-
-
-
+    loss2= exe.run(train_program,feed=feed2, fetch_list=[crf_cost2])
+    print(loss2)
+    """
+    output:
+    [array([[ 7.8902354],
+            [ 7.3602567],
+            [ 10.004011],
+            [ 5.86721  ]], dtype=float32)]
+    """
