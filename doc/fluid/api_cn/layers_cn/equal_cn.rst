@@ -10,9 +10,9 @@ equal
 参数：
     - **x** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64，int32， int64。
     - **y** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64， int32， int64。
-    - **cond** (Variable，可选) - 用来存储比较是否相等的Tensor，支持的数据类型为bool，默认值为None，当cond不为None，返回cond。
+    - **cond** (Variable，可选) - 用来存储逐元素比较的Tensor，支持的数据类型为bool，默认值为None，当cond不为None，返回cond。
 
-返回：返回逐元素比较结果的Tensor， Tensor数据类型bool。
+返回：和输入结果相同的Tensor， Tensor数据类型bool，。
 
 返回类型：变量（Variable）
 
