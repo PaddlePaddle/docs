@@ -5,14 +5,14 @@ has_inf
 
 .. py:function:: paddle.fluid.layers.has_inf(x)
 
-测试x是否包括一个无穷数
+检查输入的变量(x)中是否包含无穷数(inf)。
 
 参数：
-  - **x(variable)** - 用于被检查的Tensor/LoDTensor
+  - **x** (Variable) - 被检查的变量tensor/LoDtensor。
 
-返回： tensor变量存储输出值，包含一个bool型数值
+返回：Variable(tensor)变量存储输出值，包含一个bool型数值，指明输入中是否包含无穷数(inf)。
 
-返回类型：Variable
+返回类型：变量(Variable)
 
 **代码示例**：
 
