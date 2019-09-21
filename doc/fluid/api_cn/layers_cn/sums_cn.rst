@@ -32,7 +32,7 @@ sums
     - **input** (list) - 多个维度相同的Tensor组成的元组。支持的数据类型：float32，float64，int32，int64。
     - **out** (Variable，可选) - 求和的结果Tensor。默认值为None。
 
-返回：输入的和，数据类型和维度与输入Tensor相同。若 ``out`` 为 ``None`` ，该OP将返回OP内部新建的Variable；若 ``out`` 不为 ``None`` ，则直接返回 ``out`` 。
+返回：输入的和，数据类型和维度与输入Tensor相同。若 ``out`` 为 ``None`` ，计算结果将写入一个新的Variable；否则，计算结果将写入 ``out`` 并返回。
 
 返回类型：Variable
 
