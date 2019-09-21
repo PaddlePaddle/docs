@@ -5,28 +5,37 @@ sqrt
 
 .. py:function:: paddle.fluid.layers.sqrt(x, name=None)
 
-算数平方根激活函数。
+计算输入的算数平方根。
 
-请确保输入是非负数。有些训练当中，会出现输入为接近零的负值，此时应加上一个小值epsilon（1e-12）将其变为正数从而正确运算并进行后续的操作。
+.. math:: out=\sqrt x=x^{1/2}
 
-
-.. math::
-    out = \sqrt{x}
+<font color="#FF0000">**注意：请确保输入中的数值是非负数。**</font>
 
 参数:
 
-    - **x** - Sqrt算子的输入
-    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
+    - **x** (Variable) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
+    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` , 默认值为None。
 
-返回：       Sqrt算子的输出。
+返回：返回类型为Variable(Tensor|LoDTensor)， 数据类型同输入一致。
 
 **代码示例**：
 
 .. code-block:: python
 
+        import numpy as np
         import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784])
-        result = fluid.layers.sqrt(data)
+
+        inputs = fluid.layers.data(name="x", shape = [3], dtype='float32')
+        output = fluid.layers.sqrt(inputs)
+
+        exe = fluid.Executor(fluid.CPUPlace())
+        exe.run(fluid.default_startup_program())
+
+        img = np.array([0, 9, 36]).astype(np.float32)
+
+        res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
+        print(res)
+        # [array([0., 3., 6.], dtype=float32)] 
 
 
 
