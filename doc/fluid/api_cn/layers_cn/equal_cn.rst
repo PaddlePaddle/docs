@@ -8,9 +8,9 @@ equal
 该OP返回 :math:`x==y` 逐元素比较x和y是否相等，x和y的维度应该相同。
 
 参数：
-    - **x** (Variable)- 输入Tensor，支持的数据类型包括 float32， float64，int32， int64。
-    - **y** (Variable)- 输入Tensor，支持的数据类型包括 float32， float64， int32， int64。
-    - **cond** (Variable，可选)- 用来存储比较是否相等操作的结果，支持的数据类型为bool，默认值为None，当cond不为None，返回cond。
+    - **x** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64，int32， int64。
+    - **y** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64， int32， int64。
+    - **cond** (Variable，可选) - 用来存储比较是否相等的Tensor，支持的数据类型为bool，默认值为None，当cond不为None，返回cond。
 
 返回：返回逐元素比较结果的Tensor， Tensor数据类型bool。
 
