@@ -6,19 +6,19 @@ LoDTensor
 .. py:class:: paddle.fluid.LoDTensor
 
 
-LoDTensor是一个具有LoD信息的张量(Tensor)
+LoDTensor是一个具有LoD信息的张量（Tensor），详见 :ref:`cn_user_guide_lod_tensor` 。
 
 ``np.array(lod_tensor)`` 可以将LoDTensor转换为numpy array。
 
-``lod_tensor.lod()`` 可以获得LoD信息。
+``lod_tensor.lod()`` 可以获得LoDTensor的LoD信息。
 
 LoD是多层序列（Level of Details）的缩写，通常用于不同长度的序列。如果您不需要了解LoD信息，可以跳过下面的注解。
 
-举例:
+举例：
 
-X 为 LoDTensor，它包含两个逻辑子序列。第一个长度是2，第二个长度是3。
+x 为 LoDTensor，它包含两个逻辑子序列。第一个长度是2，第二个长度是3。
 
-从Lod中可以计算出X的第一维度为5， 因为5=2+3。在X中的每个序列中的每个元素有2列，因此X的shape为[5,2]。
+从Lod中可以计算出x的第一维度为5， 因为 ``5=2+3`` 。在x中的每个序列中的每个元素有2列，因此x的shape为[5, 2]。
 
 ::
 
@@ -29,12 +29,12 @@ X 为 LoDTensor，它包含两个逻辑子序列。第一个长度是2，第二�
   x.shape = [5, 2]
 
 
-LoD可以有多个level(例如，一个段落可以有多个句子，一个句子可以有多个单词)。下面的例子中，Y为LoDTensor ，lod_level为2。表示有2个逻辑序列，第一个逻辑序列的长度是2(有2个子序列)，第二个逻辑序列的长度是1。第一个逻辑序列的两个子序列长度分别为2和2。第二个序列的子序列的长度是3。
+LoD可以有多个level（例如，一个段落可以有多个句子，一个句子可以有多个单词）。下面的例子中，y为LoDTensor ，lod_level为2。表示有2个逻辑序列，第一个逻辑序列的长度是2（有2个子序列），第二个逻辑序列的长度是1。第一个逻辑序列的两个子序列长度分别为2和2。第二个序列的子序列的长度是3。
 
 
 ::
   
-  y.lod = [[2 1], [2 2 3]]
+  y.lod = [[2, 1], [2, 2, 3]]
 
   y.shape = [2+2+3, ...]
 
@@ -48,20 +48,19 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 .. note::
 
-  在上面的描述中，LoD是基于长度的。在paddle内部实现中，lod是基于偏移的。因此,在内部,y.lod表示为[[0,2,3]，[0,2,4,7]](基于长度的Lod表示为为[[2-0,3-2]，[2-0,4-2,7-4]])。
+  在上面的描述中，LoD是基于长度的。在paddle内部实现中，LoD是基于偏移的。因此,在内部,y.lod表示为[[0, 2, 3]，[0, 2, 4, 7]]（该LoD转换为基于长度的LoD表示为[[2-0, 3-2]，[2-0, 4-2, 7-4]]，即[[2, 1], [2, 2, 3]]）。
 
-  可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因，当LoD在API中被称为lod时，它可能是基于偏移的。用户应该注意。
-
+  因此，可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因，当LoD在API中被称为LoD时，它可能是基于偏移的，请使用时注意。
 
 
 
 .. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → bool
 
-检查LoDTensor的lod值的正确性。
+检查LoDTensor的LoD的正确性。
 
-返回:    是否带有正确的lod值
+返回：   是否带有正确的LoD。
 
-返回类型:    out (bool)
+返回类型：  bool。
 
 **示例代码**
 
@@ -73,15 +72,15 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t = fluid.LoDTensor()
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_recursive_sequence_lengths([[2, 3]])
-            print(t.has_valid_recursive_sequence_lengths()) # True
+            print(t.has_valid_recursive_sequence_lengths())  # True
 
 .. py:method::  lod(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
 
-得到LoD Tensor的LoD。
+该接口返回LoDTensor的LoD。
 
-返回：LoD Tensor的LoD。
+返回：LoDTensor的LoD。
 
-返回类型：out（List [List [int]]）
+返回类型：List [List [int]]。
 
 **示例代码**
 
@@ -97,11 +96,11 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 .. py:method:: recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
 
-得到与LoD对应的LoDTensor的序列长度。
+该接口返回与LoD对应的LoDTensor的序列长度。
 
-返回：LoD对应的一至多个序列长度。
+返回：LoDTensor的LoD对应的一至多个序列长度。
 
-返回类型：out（List [List [int]）
+返回类型：List [List [int]]。
 
 **示例代码**
 
@@ -113,35 +112,88 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t = fluid.LoDTensor()
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_recursive_sequence_lengths([[2, 3]])
-            print(t.recursive_sequence_lengths()) # [[2, 3]]
+            print(t.recursive_sequence_lengths())  # [[2, 3]]
 
 
 .. py:method::  set(*args, **kwargs)
     
-重载函数
+该接口根据输入的numpy array和设备place，设置LoDTensor的数据。
 
-1. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[float32], arg1: paddle::platform::CPUPlace) -> None
+重载函数：
 
-2. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[int32], arg1: paddle::platform::CPUPlace) -> None
+1. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float32], place: paddle::platform::CPUPlace) -> None
 
-3. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[float64], arg1: paddle::platform::CPUPlace) -> None
+2. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int32], place: paddle::platform::CPUPlace) -> None
 
-4. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[int64], arg1: paddle::platform::CPUPlace) -> None
+3. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float64], place: paddle::platform::CPUPlace) -> None
 
-5. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[bool], arg1: paddle::platform::CPUPlace) -> None
+4. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int64], place: paddle::platform::CPUPlace) -> None
 
-6. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[uint16], arg1: paddle::platform::CPUPlace) -> None
+5. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[bool], place: paddle::platform::CPUPlace) -> None
 
-7. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[uint8], arg1: paddle::platform::CPUPlace) -> None
+6. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint16], place: paddle::platform::CPUPlace) -> None
 
-8. set(self: paddle.fluid.core_avx.Tensor, arg0: numpy.ndarray[int8], arg1: paddle::platform::CPUPlace) -> None
+7. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint8], place: paddle::platform::CPUPlace) -> None
+
+8. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int8], place: paddle::platform::CPUPlace) -> None
+
+9. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float32], place: paddle::platform::CUDAPlace) -> None
+
+10. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int32], place: paddle::platform::CUDAPlace) -> None
+
+11. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float64], place: paddle::platform::CUDAPlace) -> None
+
+12. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int64], place: paddle::platform::CUDAPlace) -> None
+
+13. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[bool], place: paddle::platform::CUDAPlace) -> None
+
+14. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint16], place: paddle::platform::CUDAPlace) -> None
+
+15. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint8], place: paddle::platform::CUDAPlace) -> None
+
+16. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int8], place: paddle::platform::CUDAPlace) -> None
+
+17. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float32], place: paddle::platform::CUDAPinnedPlace) -> None
+
+18. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int32], place: paddle::platform::CUDAPinnedPlace) -> None
+
+19. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float64], place: paddle::platform::CUDAPinnedPlace) -> None
+
+20. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int64], place: paddle::platform::CUDAPinnedPlace) -> None
+
+21. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[bool], place: paddle::platform::CUDAPinnedPlace) -> None
+
+22. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint16], place: paddle::platform::CUDAPinnedPlace) -> None
+
+23. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint8], place: paddle::platform::CUDAPinnedPlace) -> None
+
+24. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int8], place: paddle::platform::CUDAPinnedPlace) -> None
+
+参数：
+    - **array** (numpy array) - 要设置的numpy array，支持的数据类型为bool, float32, float64, int32, int64, int8, uint16, uint8。
+    - **place** (CPUPlace|CUDAPlace|CUDAPinnedPlace) - 要设置的LoDTensor所在的设备。
+
+返回：空。
+
+**示例代码**
+
+.. code-block:: python
+            
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+
 
 .. py:method::  set_lod(self: paddle.fluid.core_avx.LoDTensor, lod: List[List[int]]) → None
 
-设置LoDTensor的LoD。
+该接口设置LoDTensor的LoD。
 
 参数：
-- **lod** （List [List [int]]） - 要设置的lod。
+    - **lod** （List [List [int]]） - 要设置的LoD。
+
+返回：空。
 
 **示例代码**
 
@@ -154,14 +206,18 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_lod([[0, 2, 5]])
 
+
+
 .. py:method::  set_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
 
-根据递归序列长度recursive_sequence_lengths设置LoDTensor的LoD。
+该接口根据递归序列长度 ``recursive_sequence_lengths`` 设置LoDTensor的LoD。
 
-例如，如果recursive_sequence_lengths = [[2,3]]，意味着有两个长度分别为2和3的序列，相应的lod将是[[0,2,2 + 3]]，即[[0， 2,5]]。
+例如，如果 ``recursive_sequence_lengths = [[2, 3]]``，意味着有两个长度分别为2和3的序列，相应的LoD将是[[0, 2, 2 + 3]]，即[[0, 2, 5]]。
 
 参数：
-- **recursive_sequence_lengths** （List [List [int]]） - 序列长度。
+  - **recursive_sequence_lengths** (List [List [int]]) - 递归序列长度。
+
+返回：空。
 
 **示例代码**
 
@@ -176,10 +232,22 @@ LoD可以有多个level(例如，一个段落可以有多个句子，一个句�
 
 .. py:method::  shape(self: paddle.fluid.core_avx.Tensor) → List[int]
 
+该接口返回LoDTensor的shape。
 
+返回：LoDTensor的shape。
 
+返回类型：List[int] 。
 
+**示例代码**
 
+.. code-block:: python
+            
+            import paddle.fluid as fluid
+            import numpy as np
+     
+            t = fluid.LoDTensor()
+            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+            print(t.shape())  # [5, 30]
 
 
 
