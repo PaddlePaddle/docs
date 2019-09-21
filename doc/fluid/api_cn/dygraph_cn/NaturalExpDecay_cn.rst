@@ -19,9 +19,9 @@ NaturalExpDecay
     - **decay_steps** (int) – 指定衰减的步数。
     - **decay_rate** (float) – 指定衰减率。
     - **staircase** (bool) - 若为True, 学习率衰减曲线为阶梯状折线，若为False，学习率衰减曲线为直线。默认值为False。
-    - **begin** (int) – 起始步,默认值为0。
-    - **step** (int) – 步大小，默认值为1。
-    - **dtype**  – (str) 初始化学习率变量的dtype, 默认值为"float32"。
+    - **begin** (int) – 起始步。默认值为0。
+    - **step** (int) – 步大小。默认值为1。
+    - **dtype**  – (str) 初始化学习率变量的dtype。默认值为"float32"。
 
 返回：NaturalExpDecay类对象 
 
