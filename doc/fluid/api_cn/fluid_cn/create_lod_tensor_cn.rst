@@ -6,21 +6,35 @@ create_lod_tensor
 
 .. py:function:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place)
 
+从一个numpy数组、list或LoDTensor创建一个新的LoDTensor。
 
-该函数从一个numpy数组，列表或者已经存在的lod tensor中创建一个lod tensor。
+具体实现方法如下:
 
-通过一下几步实现:
+1. 检查基于序列长度的LoD（length-based LoD），即参数中的 :code:`recursive_sequence_lengths` 是否正确。
 
-1. 检查length-based level of detail (LoD,长度为基准的细节层次)，或称recursive_sequence_lengths(递归序列长度)的正确性
+2. 将 :code:`recursive_sequence_lengths` 转换为基于偏移量LoD（offset-based LoD）。
 
-2. 将recursive_sequence_lengths转化为offset-based LoD(偏移量为基准的LoD)
+3. 基于place参数，把所提供的 :code:`data` （numpy数组、list或LoDTensor）的数据复制到CPU或GPU上。
 
-3. 把提供的numpy数组，列表或者已经存在的lod tensor复制到CPU或GPU中(依据执行场所确定)
+4. 将基于偏移量的LoD设置到输出的LoDTensor中。
 
-4. 利用offset-based LoD来设置LoD
+假设我们想创建一个LoDTensor表示词的序列，其中每个词用一个整数id表示。若待创建的LoDTensor表示2个句子，其中一个句子包含2个单词，另一个句子包含3个单词。
 
-例如：
-假如我们想用LoD Tensor来承载一词序列的数据，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么数 ``data`` 可以是一个numpy数组，形状为（5,1）。同时， ``recursive_seq_lens`` 为 [[2, 3]]，表明各个句子的长度。这个长度为基准的 ``recursive_seq_lens`` 将在函数中会被转化为以偏移量为基准的 LoD [[0, 2, 5]]。
+那么， :code:`data` 为一个维度为(5, 1)的numpy整数数组； :code:`recursive_seq_lens` 为[[2, 3]]，表示每个句子含的单词个数。在该接口内部，基于序列长度的
+:code:`recursive_seq_lens` [[2, 3]]会转换为为基于偏移量的LoD [[0, 2, 5]]。
+
+请查阅 :ref:`api_guide_low_level_lod_tensor` 了解更多关于LoD的介绍。
+
+参数:
+    - **data** (numpy.ndarray|list|LoDTensor) - 表示LoDTensor数据的numpy数组、list或LoDTensor。
+    - **recursive_seq_lens** (list[list[int]]) - 基于序列长度的LoD信息。
+    - **place** (CPUPlace|CUDAPlace) - 表示返回的LoDTensor存储在CPU或GPU place中。
+
+返回: 包含数据信息和序列长度信息的LoDTensor。
+
+返回类型: LoDTensor
+
+**代码示例**
 
 .. code-block:: python
 
@@ -28,23 +42,5 @@ create_lod_tensor
         import numpy as np
      
         t = fluid.create_lod_tensor(np.ndarray([5, 30]), [[2, 3]], fluid.CPUPlace())
-
-参考 :ref:`api_guide_tensor` 以获取更多关于LoD的信息。
-
-参数:
-  - **data** (numpy.ndarray|list|LoDTensor) – 容纳着待复制数据的一个numpy数组、列表或LoD Tensor
-  - **recursive_seq_lens** (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
-  - **place** (Place) – CPU或GPU。 指明返回的新LoD Tensor存储地点
-
-返回: 一个fluid LoDTensor对象，包含数据和 ``recursive_seq_lens`` 信息
-
-
-
-
-
-
-
-
-
 
 

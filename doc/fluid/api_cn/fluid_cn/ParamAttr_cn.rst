@@ -7,16 +7,20 @@ ParamAttr
 
 .. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, gradient_clip=None, do_model_average=False)
 
-该类代表了参数的各种属性。 为了使神经网络训练过程更加流畅，用户可以根据需要调整参数属性。比如learning rate（学习率）, regularization（正则化）, trainable（可训练性）, do_model_average(平均化模型)和参数初始化方法.
+创建一个参数属性对象，用户可设置参数的名称、初始化方式、学习率、正则化规则、是否需要训练、梯度裁剪方式、是否做模型平均等属性。
 
 参数:
-    - **name** (str) – 参数名。默认为None。
-    - **initializer** (Initializer) – 初始化该参数的方法。 默认为None
-    - **learning_rate** (float) – 参数的学习率。计算方法为 :math:`global\_lr*parameter\_lr∗scheduler\_factor` 。 默认为1.0
-    - **regularizer** (WeightDecayRegularizer) – 正则因子. 默认为None
-    - **trainable** (bool) – 该参数是否可训练。默认为True
-    - **gradient_clip** (BaseGradientClipAttr) – 减少参数梯度的方法。默认为None
-    - **do_model_average** (bool) – 该参数是否服从模型平均值。默认为False
+    - **name** (str，可选) - 参数的名称。默认值为None，表示框架自动创建参数的名称。
+    - **initializer** (Initializer，可选) - 参数的初始化方式。默认值为None，表示权重参数采用Xavier初始化方式，偏置参数采用全0初始化方式。
+    - **learning_rate** (float) - 参数的学习率。实际参数的学习率等于全局学习率乘以参数的学习率，再乘以learning rate schedule的系数。
+    - **regularizer** (WeightDecayRegularizer，可选) - 正则化因子。默认值为None，表示没有正则化因子。
+    - **trainable** (bool) - 参数是否需要训练。默认值为True，表示需要训练。
+    - **gradient_clip** (BaseGradientClipAttr，可选) - 梯度裁剪方式。默认值为None，表示不需要梯度裁剪。
+    - **do_model_average** (bool) - 是否做模型平均。默认值为False，表示不做模型平均。
+
+返回: 表示参数属性的对象。
+
+返回类型: ParamAttr
 
 **代码示例**
 
@@ -30,16 +34,5 @@ ParamAttr
                                    trainable=True)
    x = fluid.layers.data(name='X', shape=[1], dtype='float32')
    y_predict = fluid.layers.fc(input=x, size=10, param_attr=w_param_attrs)
-
-
-
-
-
-
-
-
-
-
-
 
 
