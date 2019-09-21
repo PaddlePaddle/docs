@@ -13,7 +13,7 @@ is_empty
 
 返回：布尔类型的标量。如果变量x为空则值为真
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 抛出异常：``TypeError``-如果input不是变量或cond类型不是变量
 

@@ -5,14 +5,14 @@ read_file
 
 .. py:function:: paddle.fluid.layers.read_file(reader)
 
-执行给定的reader变量并从中获取数据
+从给定的reader中读取数据
 
-reader也是变量。可以为由fluid.layers.open_files()生成的原始reader或者由fluid.layers.double_buffer()生成的装饰变量，等等。
+reader是一个变量，它可以是由函数fluid.layers.open_files()生成的原始reader，或者是由函数fluid.layers.double_buffer()生成的装饰变量，等等。
 
 参数：
-    - **reader** (Variable)-将要执行的reader
+    - **reader** (Variable)-待处理的reader
 
-返回：从给定的reader中读取数据
+返回：从reader中读取的数据元组，元组数据类型为Variable
 
 返回类型: tuple（元组）
 
