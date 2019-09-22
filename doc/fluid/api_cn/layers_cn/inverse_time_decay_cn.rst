@@ -19,14 +19,14 @@ inverse_time_decay
          decayed_learning_rate = learning_rate / (1 + decay_rate * global_step / decay_step)
 
 参数：
-    - **learning_rate** (Variable|float) - 初始学习率
-    - **decay_steps** (int) - 学习率衰减步长，见以上衰减运算
-    - **decay_rate** (float) - 学习率衰减率。见以上衰减运算
-    - **staircase** (bool, 默认False) - 若为True，按离散区间衰减学习率，即每 ``decay_steps`` 步多衰减 ``decay_rate`` 倍。若为False，则按以上衰减运算持续衰减。默认：False
+    - **learning_rate** (Variable|float) - 初始学习率，类型可以为学习率变量(Variable)或float型常量。
+    - **decay_steps** (int) - 学习率衰减步长，见以上衰减运算。
+    - **decay_rate** (float) - 学习率衰减率。见以上衰减运算。
+    - **staircase** (bool) - 若为True，按离散区间衰减学习率，即每 ``decay_steps`` 步多衰减 ``decay_rate`` 倍。若为False，则按以上衰减运算持续衰减。默认False。
 
-返回：随step衰减的学习率
+返回：Variable(Tensor) 随step衰减的学习率变量，维度为 :math:`[1]` 的1-D Tensor。
 
-返回类型：Variable
+返回类型：变量(Variable)
 
 **示例代码：**
 
