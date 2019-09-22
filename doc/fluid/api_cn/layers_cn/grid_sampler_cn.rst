@@ -50,11 +50,13 @@ step 2：
            + ws * d_e * d_n + es * d_w * d_n
 
 参数：
-  - **x** (Variable): 输入数据，形状为[N, C, H, W]
-  - **grid** (Variable): 输入网格张量，形状为[N, H, W, 2]
-  - **name** （str|None） - 该层名称（可选）。若设为None，则自动为该层命名。
+  - **x** (Variable): 输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
+  - **grid** (Variable): 输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
+  - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回： **out** (Variable): 输入X基于输入网格的双线性插值计算结果，形状为[N, C, H, W]
+返回： Variable(Tensor): 输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor
+
+返回类型：变量(Variable)，数据类型与 ``x`` 一致
 
 **代码示例：**
 

@@ -58,20 +58,20 @@ pool2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大�
 
 
 参数：
-    - **input** (Variable) - 池化操作的输入张量。输入张量为4维张量，shape为[N, C, H, W]，N为批尺寸，C是通道数，H是特征高度，W是特征宽度
+    - **input** (Variable) - 池化操作的输入张量。维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
     - **pool_size** (int|list|tuple)  - 池化核的大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。若为一个整数，则它的平方值将作为池化核大小，比如若pool_size=2, 则池化核大小为2x2。
     - **pool_type** (string) - 池化类型，可以是“max”对应max-pooling，“avg”对应average-pooling
     - **pool_stride** (int|list|tuple)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。若为一个整数，则表示H和W维度上stride均为该值。
     - **pool_padding** (int|list|tuple) - 填充大小。如果它是一个元组或列表，它必须包含两个整数值，(pool_padding_on_Height, pool_padding_on_Width)。若为一个整数，则表示H和W维度上padding均为该值。
-    - **global_pooling** （bool，默认False）- 是否用全局池化。如果global_pooling = True， ``pool_size`` 和 ``pool_padding`` 将被忽略。
-    - **use_cudnn** （bool，默认True）- 只在cudnn核中用，需要下载cudnn
-    - **ceil_mode** （bool，默认False）- 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数
-    - **name** （str|None） - 该层名称（可选）。若设为None，则自动为该层命名。
-    - **exclusive** (bool, 默认为True) - 是否在平均池化模式忽略填充值。默认为True。
+    - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = True， ``pool_size`` 和 ``pool_padding`` 将被忽略，默认False。
+    - **use_cudnn** （bool）- 只在cudnn核中用，需要下载cudnn，默认True。
+    - **ceil_mode** （bool）- 是否用ceil函数计算输出高度和宽度。默认False。如果设为False，则使用floor函数。
+    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **exclusive** (bool) - 是否在平均池化模式忽略填充值。默认为True。
 
-返回：池化结果张量
+返回： Variable(Tensor) 池化结果张量
 
-返回类型：变量（Variable）
+返回类型：变量(Variable)，数据类型与 ``input`` 一致
 
 抛出异常：
     - ``ValueError`` - 如果 ``pool_type`` 既不是“max”也不是“avg”

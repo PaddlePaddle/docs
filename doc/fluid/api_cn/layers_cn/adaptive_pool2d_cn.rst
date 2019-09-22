@@ -27,16 +27,16 @@ adaptive_pool2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池�
        Output(i ,j) &= \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
 
 参数：
-  - **input** （Variable） - 池化操作的输入张量。 输入张量的格式为NCHW，其中N是batch大小，C是通道数，H是特征的高度，W是特征的宽度。
+  - **input** （Variable） - 池化操作的输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor。 输入张量的格式为NCHW，其中N是batch大小，C是通道数，H是特征的高度，W是特征的宽度，数据类型为float32或float64。
   - **pool_size** （int|list|tuple） - 池化核大小。 如果池化核大小是元组或列表，则它必须包含两个整数（pool_size_Height，pool_size_Width。若为一个整数，则表示H和W维度上均为该值。
   - **pool_type** （string）- 池化类型，可输入“max”代表max-pooling，或者“avg”代表average-pooling。
-  - **require_index** （bool, 默认False） - 如果为False，则输出中带有最大池化点所在的索引。 如果pool_type为avg,该项不可被设置为True。
-  - **name** （str|None） - 此层的名称（可选）。 如果设置为None，则将自动命名该层。
+  - **require_index** （bool） - 如果为False，则输出中带有最大池化点所在的索引。 如果pool_type为avg,该项不可被设置为True, 默认False。
+  - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
-返回： 自适应池化结果张量
+返回： Variable(Tensor) 自适应池化结果张量
 
-返回类型: Variable
+返回类型：变量(Variable)，数据类型与 ``input`` 一致
 
 
 抛出异常:
