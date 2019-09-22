@@ -28,12 +28,12 @@ reshape
 **注意：参数** ``actual_shape`` **之后将被舍弃，只用参数** ``shape`` **来表示目标形状。**
 
 参数：
-  - **x** (Variable)：多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``，``float64``，``int32``，或 ``int64``。
-  - **shape** (list|tuple|Variable)：数据类型是 ``int32`` 。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple, 它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``shape`` 的类型是 ``Variable``，则是1-D的 ``Tensor`` 或 ``LoDTensor``。
-  - **actual_shape** (Variable|可选)：1-D ``Tensor`` 或 ``LoDTensor``，默认值：`None`。如果 ``actual_shape`` 被提供，``actual_shape`` 具有比 ``shape`` 更高的优先级，此时 ``shape`` 只能是整数列表或元组。更新提示：``actual_shape`` 在未来的版本中将被舍弃，并用 ``shape`` 代替。
-  - **act** (str|可选)：对形状改变后的输入变量做非线性激活操作，激活函数类型可以参考 :ref:`api_guide_activations` 。默认值： ``None``。
-  - **inplace** (bool|可选)：如果 ``inplace`` 为 ``True``，则 ``layers.reshape`` 的输入和输出是同一个变量，否则 ``layers.reshape`` 的输入和输出是不同的变量。默认值：``False``。请注意，如果 ``x`` 是多个OP的输入，则 ``inplace`` 必须为False。
-  - **name** (str|可选)：该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`。默认值： ``None``。
+  - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``，``float64``，``int32``，或 ``int64``。
+  - **shape** （list|tuple|Variable）- 数据类型是 ``int32`` 。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple, 它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``shape`` 的类型是 ``Variable``，则是1-D的 ``Tensor`` 或 ``LoDTensor``。
+  - **actual_shape** （Variable，可选）- 1-D ``Tensor`` 或 ``LoDTensor``，默认值：`None`。如果 ``actual_shape`` 被提供，``actual_shape`` 具有比 ``shape`` 更高的优先级，此时 ``shape`` 只能是整数列表或元组。更新提示：``actual_shape`` 在未来的版本中将被舍弃，并用 ``shape`` 代替。
+  - **act** （str，可选）- 对形状改变后的输入变量做非线性激活操作，激活函数类型可以参考 :ref:`api_guide_activations` 。默认值： ``None``。
+  - **inplace** （bool，可选）- 如果 ``inplace`` 为 ``True``，则 ``layers.reshape`` 的输入和输出是同一个变量，否则 ``layers.reshape`` 的输入和输出是不同的变量。默认值：``False``。请注意，如果 ``x`` 是多个OP的输入，则 ``inplace`` 必须为False。
+  - **name** （str，可选）- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`。默认值： ``None``。
 
 返回：多维 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``input`` 相同。如果 ``inplace`` 为 ``False``，则返回一个新的变量，否则将改变输入变量 ``x`` 自身。如果 ``act`` 为 ``None``，则直接返回形状改变后的变量，否则返回经过激活函数后的变量。
 
