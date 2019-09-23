@@ -15,7 +15,7 @@ greater_equal
 
 返回：输出结果的Tensor，数据的shape和输入x一致。
 
-返回类型：Variable，数据类型和输入x一致。
+返回类型：Variable，数据类型为bool类型。
 
 **代码示例**:
 
