@@ -3,13 +3,13 @@
 image_resize
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR', actual_shape=None, align_corners=True, align_mode=1)
+.. py:function:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR', actual_shape=None, align_corners=True, align_mode=1, data_format='NCHW')
 
 **注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 调整一个batch中图片的大小。
 
-输入张量的shape为(num_batches, channels, in_h, in_w)或者(num_batches, channels, in_d, in_h, in_w)，并且调整大小只适用于最后两、三个维度(深度，高度和宽度)。
+输入为4-D Tensor时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，输入为5-D Tensor时形状为(num_batches, channels, in_d, in_h, in_w)或者(num_batches, in_d, in_h, in_w, channels)，并且调整大小只适用于深度，高度和宽度对应的维度。
 
 支持重新取样方法:
 
@@ -116,7 +116,7 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation。
 https://en.wikipedia.org/wiki/Trilinear_interpolation。
 
 参数:
-    - **input** (Variable) - 图片调整层的输入张量，这是一个shape为(num_batches, channels, in_h, in_w)的4-D张量或者shape为(num_batches, channels, in_d, in_h, in_w)的5-D张量。
+    - **input** (Variable) - 4-D或5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
     - **out_shape** (list|tuple|Variable|None) - 图片调整层的输出，输入为4D张量时shape为(out_h, out_w)。输入为5D张量时shape为(out_d, out_h, out_w)，默认值:None。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者shape为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。
     - **scale** (float|Variable|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值:None
     - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名
@@ -124,8 +124,9 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation。
     - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`out_shape` ，因为 :code:`actual_shape` 未来将被弃用。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值:None
     - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值：True
     - **align_mode** （int）- 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；可以为'1' ，代表src_idx = scale * dst_index。
+    - **data_format** （str，可选）- 对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
 
-返回： 4维tensor，shape为 (num_batches, channls, out_h, out_w).或者5维tensor，shape为 (num_batches, channls, out_d, out_h, out_w).
+返回：4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
 返回类型: 变量（variable）
 
@@ -139,6 +140,7 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation。
     - :code:`ValueError` - scale应大于0。
     - :code:`TypeError`  - align_corners 应为bool型。
     - :code:`ValueError` - align_mode 只能取 ‘0’ 或 ‘1’。
+    - :code:`ValueError` - data_format 只能取 ‘NCHW’、‘NHWC’、‘NCDHW’ 或者 ‘NDHWC’。
 
 
 **代码示例**
