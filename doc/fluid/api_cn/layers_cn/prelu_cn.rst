@@ -20,14 +20,13 @@ prelu
 
 
 参数：
-          - **x** （Variable）- 输入为Tensor。
-          - **mode** (string) - 权重共享模式。
+          - **x** （Tensor|LoDTensor）- 数据类型为float的Tensor或者LoDTensor输入为Tensor。
+          - **mode** (str) - 权重共享模式。
           - **param_attr** (ParamAttr|None) - 可学习权重 :math:`[\alpha]` 的参数属性，可由ParamAttr创建。
-          - **name** （str | None）- 这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **name** （str|None）- 这一层的名称（可选）。默认为None。
 
-返回： 输出Tensor与输入shape相同。
+返回： Variable（Tensor|LoDTensor）数据类型为float的Tensor或者LoDTensor输入为Tensor。与输入形状相同。
 
-返回类型：  变量（Variable）
 
 **代码示例：**
 
@@ -39,7 +38,5 @@ prelu
     mode = 'channel'
     output = fluid.layers.prelu(
              x,mode,param_attr=ParamAttr(name='alpha'))
-
-
 
 

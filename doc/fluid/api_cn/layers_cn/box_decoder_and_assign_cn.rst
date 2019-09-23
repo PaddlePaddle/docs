@@ -7,7 +7,7 @@ box_decoder_and_assign
 
 边界框编码器。
 
-根据prior_box来解码目标边界框。
+根据先验框来解码目标边界框。
 
 解码方案为：
 
@@ -28,20 +28,19 @@ box decode过程得出decode_box，然后分配方案如下所述：
 
 
 参数：
-   - **prior_box** （Variable） - （Tensor，默认Tensor <float>）框列表PriorBox是一个二维张量，形状为[N，4]，它包含N个框，每个框表示为[xmin，ymin，xmax，ymax]， [xmin，ymin]是anchor框的左上坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是anchor框的右下坐标
-   - **prior_box_var** （Variable） - （Tensor，默认Tensor <float>，可选）PriorBoxVar是一个二维张量，形状为[N，4]，它包含N组variance。 PriorBoxVar默认将所有元素设置为1
-   - **target_box** （Variable） - （LoDTensor或Tensor）此输入可以是形状为[N，classnum * 4]的2-D LoDTensor。它拥有N个框的N个目标
-   - **box_score** （变量） - （LoDTensor或Tensor）此输入可以是具有形状[N，classnum]的2-D LoDTensor，每个框表示为[classnum]，其中含有各分类概率值
-   - **box_clip** （FLOAT） - （float，默认4.135，np.log（1000. / 16.））裁剪框以防止溢出
-   - **name** （str | None） - 此算子的自定义名称
+   - **prior_box** （Tensor） - 数据类型为float，double的Tensor。形状为[N，4]，它包含N个框，每个框表示为[xmin，ymin，xmax，ymax]， [xmin，ymin]是anchor框的左上坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是anchor框的右
+下坐标
+   - **prior_box_var** （Tensor） - 数据类型为float，double的Tensor，形状为[N，4]，它包含N组variance。 prior_box_var默认将所有元素设置为1
+   - **target_box** （Tensor|LoDTensor） - 数据类型为float，double的Tensor或者LoDTensor。此输入形状为[N，classnum * 4]。拥有N个目标框。
+   - **box_score** （Tensor|LoDTensor） - 数据类型为float，double的Tensor或者LoDTensor。此输入形状为[N，classnum]，每个框表示为[classnum]，其中含有各分类概率值
+   - **box_clip** （float） - （float，默认4.135，np.log（1000. / 16.））裁剪框以防止溢出
+   - **name** （str|None） - 此算子的自定义名称，默认值为None
 
 
-返回：两个变量：
+返回：
 
-     - decode_box（Variable）:( LoDTensor或Tensor）op的输出张量，形为[N，classnum * 4]，表示用M个prior_box解码的N个目标框的结果，以及每个类上的variance
-     - output_assign_box（Variable）:( LoDTensor或Tensor）op的输出张量，形为[N，4]，表示使用M个prior_box解码的N个目标框的结果和BoxScore的最佳非背景类的方差
-
-返回类型：   decode_box(Variable), output_assign_box(Variable)
+     - Variable（Tensor|LoDTensor），数据类型为float，double的Tensor或者LoDTensor。decoded_box，形为[N，classnum * 4]，表示用N个prior_box解码得到的N个目标框的结果。
+     - Variable（Tensor|LoDTensor），数据类型为float，doubleTensor或者LoDTensor。output_assign_box，形为[N，4]，表示用N个prior_box解码后得到目标框，再选择最佳非背景类的目标框结果。
 
 
 **代码示例**
@@ -59,7 +58,4 @@ box decode过程得出decode_box，然后分配方案如下所述：
         name='scores', shape=[81], dtype='float32')
     decoded_box, output_assign_box = fluid.layers.box_decoder_and_assign(
         pb, pbv, loc, scores, 4.135)
-
-
-
 

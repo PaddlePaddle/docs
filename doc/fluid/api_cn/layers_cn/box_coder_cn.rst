@@ -40,22 +40,20 @@ Bounding Box Coder
 
 
 参数：
-    - **prior_box** (Variable) - 张量，默认float类型的张量。先验框是二维张量，维度为[M,4]，存储M个框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐标
-    - **prior_box_var** (Variable|list|None) - 支持两种输入类型，一是二维张量，维度为[M,4]，存储M个prior box。另外是一个含有4个元素的list，所有prior box共用这个list。
-    - **target_box** (Variable) - LoDTensor或者Tensor，当code_type为‘encode_center_size’，输入可以是二维LoDTensor，维度为[N,4]。当code_type为‘decode_center_size’输入可以为三维张量，维度为[N,M,4]。每个框代表[xmin,ymin,xmax,ymax]，[xmin,ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐标。该张量包含LoD信息，代表一批输入。批的一个实例可以包含不同的实体数。
-    - **code_type** (string，默认encode_center_size) - 编码类型用目标框，可以是encode_center_size或decode_center_size
-    - **box_normalized** (boolean，默认true) - 是否将先验框作为正则框
-    - **name**  (string) – box编码器的名称
-    - **axis**  (int) – 在PriorBox中为axis指定的轴broadcast以进行框解码，例如，如果axis为0且TargetBox具有形状[N，M，4]且PriorBox具有形状[M，4]，则PriorBox将broadcast到[N，M，4]用于解码。 它仅在code_type为decode_center_size时有效。 默认设置为0。
+    - **prior_box** (Tensor) - 数据类型为float，double的Tensor。先验框，格式为[M,4]，M表示存储M个框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐
+标
+    - **prior_box_var** (Tensor|list|None) - 支持两种输入类型，一是float，double的Tensor，维度为[M,4]，存储M个先验框的variance。另外是一个长度为4的列表，所有先验框共用这个列表中的variance。为None时不参与计算。
+    - **target_box** (Tensor|LoDTensor) - 数据类型为float，double的Tensor或者LoDTensor，当code_type为‘encode_center_size’，输入是二维LoDTensor，维度为[N,4]，N为目标框的个数，目标框的格式与先验框相同。当code_type为‘decode_center_size’，输>入为3-D Tensor，维度为[N,M,4]。通常N表示产生检测框的个数，M表示类别数。此时目标框为偏移量。
+    - **code_type** (str，默认encode_center_size) - 编码类型用目标框，可以是encode_center_size或decode_center_size
+    - **box_normalized** (boolean，默认true) - 先验框坐标是否正则化，即是否在[0, 1]区间内。
+    - **name**  (str|None) – box_coder的名称，默认值为None。
+    - **axis**  (int，默认0) – 在PriorBox中为axis指定的轴broadcast以进行框解码，例如，如果axis为0，TargetBox具有形状[N，M，4]且PriorBox具有形状[M，4]，则PriorBox将broadcast到[N，M，4]用于解码。仅在code_type为decode_center_size时有效。
 
 
 返回：
-
-       - ``code_type`` 为 ``‘encode_center_size’`` 时，形为[N,M,4]的输出张量代表N目标框的结果，目标框用M先验框和变量编码。
-       - ``code_type`` 为 ``‘decode_center_size’`` 时，N代表batch大小，M代表解码框数
-
-返回类型：output_box（Variable）
-
+       - Variable（Tensor|LoDTensor），数据类型为float，double的Tensor或者LoDTensor。
+       - ``code_type`` 为 ``‘encode_center_size’`` 时，形状为[N,M,4]的编码结果，N为目标框的个数，M为先验框的个数。
+       - ``code_type`` 为 ``‘decode_center_size’`` 时，形状为[N,M,4]的解码结果，形状与输入目标框相同。
 
 
 **代码示例**
@@ -63,21 +61,31 @@ Bounding Box Coder
 .. code-block:: python
 
     import paddle.fluid as fluid
-    prior_box = fluid.layers.data(name='prior_box',
+    # For encode
+    prior_box_encode = fluid.layers.data(name='prior_box_encode',
                                   shape=[512, 4],
                                   dtype='float32',
                                   append_batch_size=False)
-    target_box = fluid.layers.data(name='target_box',
+    target_box_encode = fluid.layers.data(name='target_box_encode',
+                                   shape=[81,4],
+                                   dtype='float32',
+                                   append_batch_size=False)
+    output_encode = fluid.layers.box_coder(prior_box=prior_box_encode,
+                                    prior_box_var=[0.1,0.1,0.2,0.2],
+                                    target_box=target_box_encode,
+                                    code_type="encode_center_size")
+    # For decode
+    prior_box_decode = fluid.layers.data(name='prior_box_decode',
+                                  shape=[512, 4],
+                                  dtype='float32',
+                                  append_batch_size=False)
+    target_box_decode = fluid.layers.data(name='target_box_decode',
                                    shape=[512,81,4],
                                    dtype='float32',
                                    append_batch_size=False)
-    output = fluid.layers.box_coder(prior_box=prior_box,
+    output_decode = fluid.layers.box_coder(prior_box=prior_box_decode,
                                     prior_box_var=[0.1,0.1,0.2,0.2],
-                                    target_box=target_box,
+                                    target_box=target_box_decode,
                                     code_type="decode_center_size",
                                     box_normalized=False,
                                     axis=1)
-
-
-
-
