@@ -5,35 +5,41 @@ concat
 
 .. py:function:: paddle.fluid.layers.concat(input,axis=0,name=None)
 
-**Concat**
-
-这个函数将输入连接在前面提到的轴上，并将其作为输出返回。
+该OP对输入沿 ``axis`` 轴进行联结
 
 参数：
-    - **input** (list)-将要联结的张量列表
-    - **axis** (int)-数据类型为整型的轴，其上的张量将被联结
-    - **name** (str|None)-该层名称（可选）。如果设为空，则自动为该层命名。
+    - **input** (list) - 输入待联结的多维 ``Tensor`` 组成的 ``list`` ，支持的数据类型为：float32、float64、int32、int64
+    - **axis** (int)- 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-1, R)，R是输入 ``x`` 的Rank，-1表示最后一维。默认值为0。
+    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
-返回：输出的联结变量
+返回：联结后的 ``Tensor``
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **代码示例**：
 
 .. code-block:: python
-    
-    import paddle.fluid as fluid
-    a = fluid.layers.data(name='a', shape=[2, 13], dtype='float32')
-    b = fluid.layers.data(name='b', shape=[2, 3], dtype='float32')
-    c = fluid.layers.data(name='c', shape=[2, 2], dtype='float32')
-    d = fluid.layers.data(name='d', shape=[2, 5], dtype='float32')
-    out = fluid.layers.concat(input=[a, b, c, d], axis=2)
 
+  import paddle.fluid as fluid
+  import numpy as np
 
-
-
-
-
-
-
-
+  in1 = np.array([[1,2,3],
+                  [4,5,6]])
+  in2 = np.array([[11,12,13],
+                  [14,15,16]])
+  in3 = np.array([[21,22],
+                  [23,24]])
+  with fluid.dygraph.guard():
+      x1 = fluid.dygraph.to_variable(in1)
+      x2 = fluid.dygraph.to_variable(in2)
+      x3 = fluid.dygraph.to_variable(in3)
+      out1 = fluid.layers.concat(input=[x1,x2,x3], axis=-1) # same as axis=1
+      out2 = fluid.layers.concat(input=[x1,x2], axis=0)
+      print(out1.numpy())
+      # [[ 1  2  3 11 12 13 21 22]
+      #  [ 4  5  6 14 15 16 23 24]]
+      print(out2.numpy())
+      # [[ 1  2  3]
+      #  [ 4  5  6]
+      #  [11 12 13]
+      #  [14 15 16]]
