@@ -17,7 +17,7 @@ Adam更新如下：
 .. math::
     learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
 .. math::
-    param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
+    param\_out=param-learning\_rate*\frac{moment\_1}{\sqrt{moment\_2}+\epsilon}\\
 
 参数: 
     - **learning_rate** (float|Variable)-学习率，用于更新参数。作为数据参数，可以是一个浮点类型值或有一个浮点类型值的变量

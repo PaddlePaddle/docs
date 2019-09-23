@@ -13,6 +13,7 @@ softmax操作计算K维向量中指定维的指数和其他维指数值的总和
 
 .. math::
 
+
     Out[i,j] = \frac{exp(X[i,j])}{\sum_j exp(X[i,j])}
 
 参数：
@@ -30,10 +31,19 @@ softmax操作计算K维向量中指定维的指数和其他维指数值的总和
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[2], dtype='float32')
-    fc = fluid.layers.fc(input=x, size=10)
-    # 在第二维执行softmax
-    softmax = fluid.layers.softmax(input=fc, axis=1)
-    # 在最后一维执行softmax
-    softmax = fluid.layers.softmax(input=fc, axis=-1)
+    import numpy as np
+
+    data = fluid.layers.data(name="input", shape=[-1, 3],dtype="float32")
+    result = fluid.layers.softmax(data,axis=1)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    x = np.random.rand(3, 3).astype("float32")
+    output= exe.run(feed={"input": x},
+                     fetch_list=[result[0]])
+    print(output)
+    """
+    output:
+    array([0.22595254, 0.39276356, 0.38128382], dtype=float32)]
+    """
 
