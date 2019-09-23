@@ -20,7 +20,7 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 **代码示例**
 
 .. code-block:: python
-  
+
     import paddle.fluid as fluid
 
     main_program = fluid.Program()
@@ -29,10 +29,10 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
         x = fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
         y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
         z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
-    
+
     // start_up program here will share fc's weight with main program
     print("main program is: {}".format(main_program))
-      
+
     print("start up program is: {}".format(startup_program))
 
 
@@ -55,17 +55,17 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 .. code-block:: python
 
             import paddle.fluid as fluid
-     
+
             prog = fluid.default_main_program()
             prog_string = prog.to_string(throw_on_error=True, with_details=False)
             print(prog_string)
 
 .. py:method:: clone(for_test=False)
 
-**注意:** 
-    **1.** ``Program.clone()`` **方法不会克隆**  :ref:`cn_api_fluid_io_PyReader` 
+**注意:**
+    **1.** ``Program.clone()`` **方法不会克隆**  :ref:`cn_api_fluid_io_PyReader`
 
-    **2. 如果您只是想要一个用于测试的前向计算程序，请在使用** ``Opimizer.minimize`` 之前使用 ``clone``  
+    **2. 如果您只是想要一个用于测试的前向计算程序，请在使用** ``Opimizer.minimize`` 之前使用 ``clone``
 
     **3. 此API不会裁剪任何算子。请在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
 
@@ -95,8 +95,8 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 
 注意，Program Desc在clone后的顺序可能不同，这不会影响您的训练或测试进程。在下面的示例中，我们为您提供了一个简单的方法print_prog（Program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
 
-.. code-block:: python     
-                
+.. code-block:: python
+
         import paddle.fluid as fluid
         import six
 
@@ -251,14 +251,14 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 **代码示例**
 
 .. code-block:: python
-            
+
             import paddle.fluid as fluid
-     
+
             prog = fluid.default_main_program()
             num_blocks = prog.num_blocks
             print(num_blocks)
-            
-            ## 1 
+
+            ## 1
             ## 当前Program中只有一个Block，即全局的Block
 
 .. py:attribute:: random_seed
@@ -276,13 +276,13 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 .. code-block:: python
 
             import paddle.fluid as fluid
-     
+
             prog = fluid.default_main_program()
             random_seed = prog.random_seed
             print(random_seed)
             prog.random_seed = 1
             print(prog.random_seed)
-            
+
             ## 0
             ## 默认的random seed是 0
             ## 1
@@ -292,7 +292,7 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 
 获取该Program的第一个 :ref:`api_guide_Block` 。
 
-返回：该Program的第一个 :ref:`api_guide_Block` 
+返回：该Program的第一个 :ref:`api_guide_Block`
 
 返回类型：:ref:`api_guide_Block`
 
@@ -301,7 +301,7 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 .. code-block:: python
 
             import paddle.fluid as fluid
-     
+
             prog = fluid.default_main_program()
             gb_block = prog.global_block()
             print(gb_block)
@@ -348,7 +348,7 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 .. code-block:: python
 
             import paddle.fluid as fluid
-     
+
             prog = fluid.default_main_program()
             current_blk = prog.current_block()
             print(current_blk)
@@ -363,15 +363,15 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 
 返回: Generator 会yield每个Program中的变量
 
-返回类型: iterable 的 :ref:`api_guide_Variable` 
+返回类型: iterable 的 :ref:`api_guide_Variable`
 
-  
+
 **代码示例**
 
 .. code-block:: python
 
             import paddle.fluid as fluid
-     
+
             prog = fluid.default_main_program()
             img = fluid.layers.data(name='img', shape=[1,28,28], dtype='float32')
             label = fluid.layers.data(name='label', shape=[128,1], dtype='int64')
