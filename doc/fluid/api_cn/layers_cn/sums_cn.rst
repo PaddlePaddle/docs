@@ -30,9 +30,9 @@ sums
 
 参数：
     - **input** (list) - 多个维度相同的Tensor组成的元组。支持的数据类型：float32，float64，int32，int64。
-    - **out** (Variable，可选) - 求和的结果Tensor。默认值为None。
+    - **out** (Variable，可选) - 指定求和的结果Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
 
-返回：输入的和，数据类型和维度与输入Tensor相同。若 ``out`` 为 ``None`` ，计算结果将写入一个新的Variable；否则，计算结果将写入 ``out`` 并返回。
+返回：输入的和，数据类型和维度与输入Tensor相同。若 ``out`` 为 ``None`` ，返回值是一个新的Variable；否则，返回值就是 ``out`` 。
 
 返回类型：Variable
 
@@ -45,9 +45,10 @@ sums
     x0 = fluid.layers.fill_constant(shape=[16, 32], dtype='int64', value=1)
     x1 = fluid.layers.fill_constant(shape=[16, 32], dtype='int64', value=2)
     x2 = fluid.layers.fill_constant(shape=[16, 32], dtype='int64', value=3)
+    x3 = fluid.layers.fill_constant(shape=[16, 32], dtype='int64', value=0)
 
-    # 多个Tensor求和，结果保存在一个新建的Variable sum0，即sum0=x0+x1+x2
+    # 多个Tensor求和，结果保存在一个新建的Variable sum0，即sum0=x0+x1+x2，值为[[6, ..., 6], ..., [6, ..., 6]]
     sum0 = fluid.layers.sums(input=[x0, x1, x2])
 
-    # 多个Tensor求和，sum1和x0是是同一个Variable，相当于x0=x0+x1+x2
-    sum1 = fluid.layers.sums(input=[x0, x1, x2], out=x0)
+    # 多个Tensor求和，sum1和x3是同一个Variable，相当于x3=x0+x1+x2，值为[[6, ..., 6], ..., [6, ..., 6]]
+    sum1 = fluid.layers.sums(input=[x0, x1, x2], out=x3)
