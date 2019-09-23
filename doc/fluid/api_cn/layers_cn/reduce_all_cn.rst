@@ -5,17 +5,17 @@ reduce_all
 
 .. py:function:: paddle.fluid.layers.reduce_all(input, dim=None, keep_dim=False, name=None)
 
-计算给定维度上张量（Tensor）元素的与逻辑。
+该OP是对指定维度上的Tensor元素进行与逻辑（&）计算，并输出相应的计算结果。
 
 参数：
-          - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：与逻辑运算的维度。如果为None，则计算所有元素的与逻辑并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
-          - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量的维度将比输入张量小。
-          - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+    - **input** （Variable）— 输入变量为多维Tensor或LoDTensor，OP会依据C++转化规范将输入数据统一转化为bool类型数据。
+    - **dim** （list | int，可选）— 与逻辑运算的维度。如果为None，则计算所有元素的与逻辑并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。缺省值为None。
+    - **keep_dim** （bool）— 是否在输出Tensor中保留减小的维度。如 keep_dim 为true，否则结果张量的维度将比输入张量小，默认为False。
+    - **name** （str， 可选）— 这一层的名称。如果设置为None，则将自动命名这一层。缺省值为None。
 
-返回：  减少维度之后的Tensor变量。
+返回：在指定dim上进行与逻辑计算的Tensor，数据类型为bool类型。
 
-返回类型：  变量（Variable）
+返回类型：Variable，数据类型为bool类型。
 
 **代码示例**
 
@@ -35,6 +35,8 @@ reduce_all
         out = layers.reduce_all(x)  # False
         out = layers.reduce_all(x, dim=0)  # [True, False]
         out = layers.reduce_all(x, dim=-1)  # [False, True]
+        # keep_dim=False, x.shape=(2,2), out.shape=(2,)
         
         out = layers.reduce_all(x, dim=1, keep_dim=True)  # [[False], [True]]
+        # keep_dim=True, x.shape=(2,2), out.shape=(2,1)
      
