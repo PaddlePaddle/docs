@@ -5,27 +5,28 @@ AdagradOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdagradOptimizer(learning_rate, epsilon=1e-06, regularization=None, name=None, initial_accumulator_value=0.0)
 
-**Adaptive Gradient Algorithm(自适应梯度算法，简称Adagrad)**
+Adaptive Gradient 优化器(自适应梯度优化器，简称Adagrad)可以针对不同参数样本数不平均的问题，自适应地为各个参数分配不同的学习率。
 
-该算法的参数更新计算过程如下：
+其参数更新的计算过程如下：
 
 .. math::
 
     moment\_out &= moment + grad * grad\\param\_out 
     &= param - \frac{learning\_rate * grad}{\sqrt{moment\_out} + \epsilon}
 
-原始论文的算法中没有引入上述公式中的epsilon属性，此处引入该属性用于维持数值稳定性，避免除0错误发生。
 
-原始论文地址：`Adaptive Subgradient Methods for Online Learning and Stochastic Optimization <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_。
+相关论文：`Adaptive Subgradient Methods for Online Learning and Stochastic Optimization <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_。
+
+原始论文的算法中没有引入上述公式中的 ``epsilon`` 属性，此处引入该属性用于维持数值稳定性，避免除0错误发生。
 
 引入epsilon参数依据：`Per-parameter adaptive learning rate methods <http://cs231n.github.io/neural-networks-3/#ada>`_。
 
 参数：
-    - **learning_rate** (float|Variable) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable。
-    - **epsilon** (float) - 维持数值稳定性的浮点型值，默认值为1e-06
-    - **regularization (function|None)** - 正则化函数，用于减少泛化误差。例如可以是fluid.regularizer.L2DecayRegularizer，默认值为None。
-    - **name (str|None)** - 该参数供开发人员打印调试信息时使用，具体用法请参见 Name，默认值为None。
-    - **initial_accumulator_value** (float) - moment累加器的初始值，默认值为0.0。
+    - **learning_rate** (float|Variable) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable
+    - **epsilon** (float, 可选) - 维持数值稳定性的浮点型值，默认值为1e-06
+    - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
+    - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+    - **initial_accumulator_value** (float, 可选) - moment累加器的初始值，默认值为0.0
 
 **代码示例**
 
