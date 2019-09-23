@@ -73,7 +73,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 有些OP，在训练和测试之间的行为是不同的，比如  :ref:`cn_api_fluid_layers_batch_norm` 。它们有一个属性 ``is_test`` 来控制行为。当 ``for_test=True`` 时，此方法将把它们的 ``is_test`` 属性更改为True。
 
 - 克隆Program用于训练时，将 ``for_test`` 设置为False。
-- 克隆Program用于测试时，将 ``for_test`` 设置为True。虽然在这种情况下，如果您在使用了优化器之后调用 ``clone`` 我们依旧会对Program当中反向执行以及优化器相关的内容进行自动裁剪，但是，我们强烈建议您在使用优化器之前使用 ``clone`` 例如您如果使用的是 :ref:`cn_api_fluid_optimizer_Momentum` :
+- 克隆Program用于测试时，将 ``for_test`` 设置为True。虽然在这种情况下，如果您在使用了优化器之后调用 ``clone`` 我们依旧会对Program当中反向执行以及优化器相关的内容进行自动裁剪，但是，我们强烈建议您在使用优化器之前使用 ``clone`` 例如您如果使用的是 :ref:`cn_api_fluid_optimizer_Momentum` 您可以这样去使用:
 
 **代码示例**
 
