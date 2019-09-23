@@ -9,23 +9,24 @@ npair_loss
 
 参考阅读 `Improved Deep Metric Learning with Multi class N pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_
 
-NPair损失需要成对的数据。NPair损失分为两部分：第一部分是嵌入向量上的L2正则化器；第二部分是以anchor的相似矩阵和正的相似矩阵为逻辑的交叉熵损失。
+NPair损失需要成对的数据。NPair损失分为两部分：第一部分是对嵌入向量进行L2正则化；第二部分是每一对数据的相似性矩阵的每一行和映射到ont-hot之后的标签的交叉熵损失的和。
 
 参数:
-    - **anchor** (Variable) -  嵌入锚定图像的向量。尺寸=[batch_size, embedding_dims]
-    - **positive** (Variable) -  嵌入正图像的向量。尺寸=[batch_size, embedding_dims]
-    - **labels** (Variable) - 1维张量，尺寸=[batch_size]
-    - **l2_reg** (float32) - 嵌入向量的L2正则化项，默认值：0.002
+    - **anchor** (Variable) -  锚点图像的嵌入向量。尺寸=[batch_size, embedding_dims]。
+    - **positive** (Variable) -  正例图像的嵌入向量。尺寸=[batch_size, embedding_dims]。
+    - **labels** (Variable) - 标签向量。是一维张量，尺寸=[batch_size]。
+    - **l2_reg** (float32) - 嵌入向量的L2正则化系数，默认值：0.002。
 
-返回： npair loss，尺寸=[1]
+返回： 经过npair loss计算之后的结果，是一个值。
 
-返回类型：npair loss(Variable)
+返回类型：Variable（Tensor）
 
 **代码示例**：
 
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
     anchor = fluid.layers.data(
               name = 'anchor', shape = [18, 6], dtype = 'float32', append_batch_size=False)
     positive = fluid.layers.data(
@@ -33,7 +34,15 @@ NPair损失需要成对的数据。NPair损失分为两部分：第一部分是�
     labels = fluid.layers.data(
               name = 'labels', shape = [18], dtype = 'float32', append_batch_size=False)
 
-    npair_loss = fluid.layers.npair_loss(anchor, positive, labels, l2_reg = 0.002)
+    res = fluid.layers.npair_loss(anchor, positive, labels, l2_reg = 0.002)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    a = np.random.rand(18, 6).astype("float32")
+    p = np.random.rand(18, 6).astype("float32")
+    l = np.random.rand(18).astype("float32")
+    output = exe.run(feed={"anchor": a, "positive": p, "labels": l}, fetch_list=[res])
+    print(output)
 
 
 
