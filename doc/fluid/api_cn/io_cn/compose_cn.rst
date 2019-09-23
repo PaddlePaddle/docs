@@ -1,20 +1,28 @@
 .. _cn_api_fluid_io_compose:
 
-composs
+compose
 -------------------------------
 
 .. py:function:: paddle.fluid.io.compose(*readers, **kwargs)
 
-创建一个数据读取器，输出为输入数据读取器组合到一起的结果，如果输入如下：
+该接口将多个数据读取器组合为一个数据读取器，返回读取器的输出包含所有输入读取器的输出。
 
-（1，2） 3 （4，5）
+例如：如果输入为三个reader，三个reader的输出分别为：（1，2）、3、（4，5），则组合reader的输出为：（1，2，3，4，5）。
 
-输出将会为（1，2，3，4，5）。
+参数：
+    - **readers** - 将被组合的多个读取器。
+    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，输出结果中无法对齐的末
+尾数据将自动丢弃。该参数的默认值True。
 
-参数:
-    - **readers** – 要组合的输入reader
-    - **check_alignment** (bool) - 若为True，将会检查输入readers是否正确的对准，若为False，将不会检查是否对准并且不会跟踪输出，默认为True。
+返回：数据读取器。
 
-返回：新的数据reader。
+**代码示例**:
 
-Raises：ComposeNotAligned - 输出readers没有对齐，当check_alignment设置为False时将不会raise。
+.. code-block:: python
+
+     import paddle.io
+     reader1 = data_reader()
+     reader2 = data_reader()
+     reader_compose = paddle.io.compose(reader1, reader2, check_alignment=False)
+
+注意： 运行过程可能会抛出异常 ``ComposeNotAligned`` ，原因是输入的readers未对齐。 当check_alignment设置为False时，不会检查并触发该异常。

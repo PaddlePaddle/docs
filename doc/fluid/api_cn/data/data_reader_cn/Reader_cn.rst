@@ -72,32 +72,6 @@ Data Reader Interface
 
 返回：缓冲数据的读取器
 
-paddle.reader.compose
-======================================
-
-.. py:function::   paddle.reader.compose(*readers, **kwargs)
-
-该接口将多个数据读取器组合为一个数据读取器，返回读取器的输出包含所有输入读取器的输出。
-
-例如：如果输入为三个reader，三个reader的输出分别为：（1，2）、3、（4，5），则组合reader的输出为：（1，2，3，4，5）。
-
-参数：
-    - **readers** - 将被组合的多个读取器。
-    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，输出结果中无法对齐的末尾数据将自动丢弃。该参数的默认值True。
-
-返回：数据读取器。
-
-**代码示例**:
-
-.. code-block:: python	
-
-     import paddle.reader
-     reader1 = data_reader()
-     reader2 = data_reader()
-     reader_compose = paddle.reader.compose(reader1, reader2, check_alignment=False)
-
-注意： 运行时可能时可能会抛出异常 ``ComposeNotAligned`` ，原因是输入的readers未对齐。 当check_alignment设置为False，不会检查并抛出该异常。
-
 
 
 .. py:function:: paddle.reader.chain(*readers)
@@ -236,63 +210,5 @@ Fakereader将缓存它读取的第一个数据，并将其输出data_num次。�
     fake_reader = Fake()(reader, 100)
 
 
-Creator包包含一些简单的reader creator，可以在用户Program中使用。
 
-paddle.reader.creator.np_array
-======================================
 
-.. py:function:: paddle.reader.creator.np_array(x)
-
-该函数将根据输入x创建一个数据读取器，x可以是向量或矩阵。输出数据读取器内的元素数量与输入x内的元素数量相同。
-
-参数：
-    - **x** – 用于创建reader的numpy数组,可以是向量或者矩阵。
-
-返回： 数据读取器
-
-**代码示例**:
-
-.. code-block:: python
-
-     import numpy as np
-     import paddle.reader
-     x = np.zeros(5,2) 
-     reader_np_array = paddle.reader.creator.np_array(x)
-
-paddle.reader.creator.text_file
-======================================
-
-.. py:function:: paddle.reader.creator.text_file(path)
-
-该函数将从给定文本文件创建数据读取器，创建的读取器将文本中的内容逐行输出（不输出每行文本末尾的换行符‘\n’)。
-
-参数：
-    - **paths(str)** - 文本文件的路径。
-
-返回： 数据读取器
-
-**代码示例**:
-
-.. code-block:: python
-
-     import paddle.reader
-     reader_text_file = paddle.reader.creator.text_file("input_file.txt")
-
-paddle.reader.creator.recordio
-======================================
-
-.. py:function::  paddle.reader.creator.recordio(paths, buf_size=100)
-
-从给定的recordio文件路径(或多个recordio文件路径)创建数据reader，不同文件路径之间用“，”分隔。
-
-参数：
-    - **paths(str|list(str))** - recordio文件的路径，可以输入单个路径或同时输入多个路径。
-
-返回：数据读取器
-
-**代码示例**:
-
-.. code-block:: python
-
-     import paddle.reader
-     reader_recordio = paddle.reader.creator.recordio("path_to_recordio_file")
