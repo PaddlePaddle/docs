@@ -5,7 +5,7 @@ force_init_on_cpu
 
 .. py:function:: paddle.fluid.initializer.force_init_on_cpu()
 
-标志位，是否强制在CPU上进行变量初始化。
+该接口获得一个是否强制在CPU上初始化变量的布尔型标志位。
 
 返回：状态，是否应强制在CPU上强制进行变量初始化
 

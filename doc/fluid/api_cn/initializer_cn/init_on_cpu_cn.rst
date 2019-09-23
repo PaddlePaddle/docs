@@ -5,7 +5,7 @@ init_on_cpu
 
 .. py:function:: paddle.fluid.initializer.init_on_cpu()
 
-强制变量在 cpu 上初始化。
+该接口设置强制变量在 cpu 上初始化。
 
 **代码示例**
 
