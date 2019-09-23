@@ -5,86 +5,15 @@ affine_grid
 
 .. py:function:: paddle.fluid.layers.affine_grid(theta, out_shape, name=None)
 
-它使用仿射变换的参数生成(x,y)坐标的网格，这些参数对应于一组点，在这些点上，输入特征映射应该被采样以生成转换后的输出特征映射。
-
-
-
-.. code-block:: text
-
-        * 例 1:
-          给定:
-              theta = [[[x_11, x_12, x_13]
-                        [x_14, x_15, x_16]]
-                       [[x_21, x_22, x_23]
-                        [x_24, x_25, x_26]]]
-              out_shape = [2, 3, 5, 5]
-
-          Step 1:
-
-              根据out_shape生成标准化坐标
-
-              归一化坐标的值在-1和1之间
-
-              归一化坐标的形状为[2,H, W]，如下所示:
-
-              C = [[[-1.  -1.  -1.  -1.  -1. ]
-                    [-0.5 -0.5 -0.5 -0.5 -0.5]
-                    [ 0.   0.   0.   0.   0. ]
-                    [ 0.5  0.5  0.5  0.5  0.5]
-                    [ 1.   1.   1.   1.   1. ]]
-                   [[-1.  -0.5  0.   0.5  1. ]
-                    [-1.  -0.5  0.   0.5  1. ]
-                    [-1.  -0.5  0.   0.5  1. ]
-                    [-1.  -0.5  0.   0.5  1. ]
-                    [-1.  -0.5  0.   0.5  1. ]]]
-
-              C[0]是高轴坐标，C[1]是宽轴坐标。
-
-          Step2:
-
-              将C转换并重组成形为[H * W, 2]的张量,并追加到最后一个维度
-
-              我们得到:
-
-              C_ = [[-1.  -1.   1. ]
-                    [-0.5 -1.   1. ]
-                    [ 0.  -1.   1. ]
-                    [ 0.5 -1.   1. ]
-                    [ 1.  -1.   1. ]
-                    [-1.  -0.5  1. ]
-                    [-0.5 -0.5  1. ]
-                    [ 0.  -0.5  1. ]
-                    [ 0.5 -0.5  1. ]
-                    [ 1.  -0.5  1. ]
-                    [-1.   0.   1. ]
-                    [-0.5  0.   1. ]
-                    [ 0.   0.   1. ]
-                    [ 0.5  0.   1. ]
-                    [ 1.   0.   1. ]
-                    [-1.   0.5  1. ]
-                    [-0.5  0.5  1. ]
-                    [ 0.   0.5  1. ]
-                    [ 0.5  0.5  1. ]
-                    [ 1.   0.5  1. ]
-                    [-1.   1.   1. ]
-                    [-0.5  1.   1. ]
-                    [ 0.   1.   1. ]
-                    [ 0.5  1.   1. ]
-                    [ 1.   1.   1. ]]
-          Step3:
-              按下列公式计算输出
-.. math::
-
-  Output[i] = C\_ * Theta[i]^T
+该OP用于生成仿射变换前后的feature maps的坐标映射关系。在视觉应用中，根据该OP得到的映射关系，将输入feature map的像素点变换到对应的坐标，就得到了经过仿射变换的feature map。
 
 参数：
-  - **theta** (Variable)： 一类具有形状为[N, 2, 3]的仿射变换参数
-  - **out_shape** (Variable | list | tuple)：具有格式[N, C, H, W]的目标输出的shape，out_shape可以是变量、列表或元组。
-  - **name** (str|None): 此层的名称(可选)。如果没有设置，将自动命名。
+  - **theta** (Variable) - Shape为[batch_size, 2, 3]的Tensor，表示batch_size个2X3的变换矩阵。数据类型支持float32，float64。
+  - **out_shape** (Variable | list | tuple) - 类型可以是1-D Tensor、list或tuple。用于表示在仿射变换中的输出的shape，其格式[N, C, H, W]，分别为输出feature map的batch size、channel数量、高和宽。数据类型支持int32。
 
-返回： Variable: 形为[N, H, W, 2]的输出。
+返回： Shape为[N, H, W, 2]的4-D Tensor，表示仿射变换前后的坐标的映射关系。其中，N、H、W分别为仿射变换中输出feature map的batch size、高和宽。
 
-抛出异常： ValueError: 如果输入了不支持的参数类型
+返回类型：Variable
 
 **代码示例：**
 
@@ -96,12 +25,3 @@ affine_grid
     data = fluid.layers.affine_grid(theta, out_shape)
     # or
     data = fluid.layers.affine_grid(theta, [5, 3, 28, 28])
-
-
-
-
-
-
-
-
-
