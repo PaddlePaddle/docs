@@ -5,15 +5,15 @@ reduce_mean
 
 .. py:function:: paddle.fluid.layers.reduce_mean(input, dim=None, keep_dim=False, name=None)
 
-计算给定维度上张量（Tensor）元素平均值。
+该OP是对指定维度上的Tensor元素进行平均值算，并输出相应的计算结果。
 
 参数：
-          - **input** （Variable）：输入变量为Tensor或LoDTensor。
-          - **dim** （list | int | None）：函数运算的维度。如果为None，则对输入的所有元素求平均值并返回单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。
-          - **keep_dim** （bool | False）：是否在输出Tensor中保留减小的维度。除非 ``keep_dim`` 为true，否则结果张量将比输入少一个维度。
-          - **name** （str | None）：这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **input** （Variable）- 输入变量为多维Tensor或LoDTensor。
+          - **dim** （list | int ，可选）— 求平均值运算的维度。如果为None，则计算所有元素的平均值并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` ，默认值为None。
+          - **keep_dim** （bool）- 是否在输出Tensor中保留减小的维度。如 keep_dim 为true，否则结果张量的维度将比输入张量小，默认值为False。
+          - **name** （str ， 可选）— 这一层的名称。如果设置为None，则将自动命名这一层。默认值为None。
 
-返回：  运算、减少维度之后的Tensor变量。
+返回： 在指定dim上进行平均值运算的Tensor，数据类型和输入数据类型一致。
 
 返回类型：  变量（Variable）
 
