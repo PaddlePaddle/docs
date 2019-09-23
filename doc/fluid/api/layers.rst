@@ -25,7 +25,6 @@ fluid.layers
     layers/atan.rst
     layers/auc.rst
     layers/autoincreased_step_counter.rst
-    layers/batch.rst
     layers/batch_norm.rst
     layers/beam_search.rst
     layers/beam_search_decode.rst
@@ -174,7 +173,6 @@ fluid.layers
     layers/one_hot.rst
     layers/ones.rst
     layers/ones_like.rst
-    layers/open_files.rst
     layers/pad.rst
     layers/pad2d.rst
     layers/pad_constant_like.rst
@@ -186,14 +184,12 @@ fluid.layers
     layers/pool3d.rst
     layers/pow.rst
     layers/prelu.rst
-    layers/Preprocessor.rst
     layers/Print.rst
     layers/prior_box.rst
     layers/psroi_pool.rst
     layers/py_func.rst
     layers/py_reader.rst
     layers/random_crop.rst
-    layers/random_data_generator.rst
     layers/range.rst
     layers/rank.rst
     layers/rank_loss.rst
@@ -246,7 +242,6 @@ fluid.layers
     layers/sequence_unpad.rst
     layers/shape.rst
     layers/shard_index.rst
-    layers/shuffle.rst
     layers/shuffle_channel.rst
     layers/sigmoid.rst
     layers/sigmoid_cross_entropy_with_logits.rst
