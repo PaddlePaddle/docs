@@ -30,7 +30,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
         y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
         z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
 
-    // start_up program here will share fc's weight with main program
+    # start_up program here will share fc's weight with main program
     print("main program is: {}".format(main_program))
 
     print("start up program is: {}".format(startup_program))
