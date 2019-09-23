@@ -181,7 +181,7 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
     - **array** (numpy.ndarray) - 要设置的numpy array，支持的数据类型为bool, float32, float64, int8, int32, int64, uint8, uint16。
     - **place** (CPUPlace|CUDAPlace|CUDAPinnedPlace) - 要设置的LoDTensor所在的设备。
 
-返回：空。
+返回：无。
 
 **示例代码**
 
@@ -201,7 +201,7 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 参数：
     - **lod** （List [List [int]]） - 要设置的LoD。
 
-返回：空。
+返回：无。
 
 **示例代码**
 
@@ -213,6 +213,7 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
             t = fluid.LoDTensor()
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_lod([[0, 2, 5]])
+            print(t.lod())  # [[0, 2, 5]]
 
 
 
@@ -225,7 +226,7 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 参数：
   - **recursive_sequence_lengths** (List [List [int]]) - 递归序列长度。
 
-返回：空。
+返回：无。
 
 **示例代码**
 
@@ -237,6 +238,8 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
             t = fluid.LoDTensor()
             t.set(np.ndarray([5, 30]), fluid.CPUPlace())
             t.set_recursive_sequence_lengths([[2, 3]])
+            print(t.recursive_sequence_length())  # [[2, 3]]
+            print(t.lod())  # [[0, 2, 5]]
 
 .. py:method::  shape(self: paddle.fluid.core_avx.Tensor) → List[int]
 
