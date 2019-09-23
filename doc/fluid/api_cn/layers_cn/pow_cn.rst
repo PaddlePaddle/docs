@@ -11,7 +11,7 @@ pow
 
     out = x^{factor}
 
-**注意：如果使用** ``elementwise_pow``，**请查看相关文档** :ref:`cn_api_fluid_layers_elementwise_pow` 。
+**注意：如果需要对输入进行 elementwise_pow 操作，请查使用** :ref:`cn_api_fluid_layers_elementwise_pow` 。
 
 参数：
     - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``float32`` 或 ``float64`` 。
