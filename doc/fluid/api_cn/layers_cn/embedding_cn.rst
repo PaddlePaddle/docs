@@ -7,7 +7,7 @@ embedding
 
 嵌入层(Embedding Layer)
 
-**注意：相对于 fluid.** :ref:`cn_api_fluid_embedding` **，此OP要求输入Tensor shape的最后一维必须为1，详细使用区别，请参考使用代码样例。此OP将在未来的版本中被移除！**
+**注意：此OP要求输入Tensor shape的最后一维必须为1，将在未来的版本中被移除！推荐使用fluid.** :ref:`cn_api_fluid_embedding` 。
 
 该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，函数会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
@@ -58,7 +58,7 @@ embedding
     - **input** (Variable) - 存储id信息，数据类型必须为：int64，输入的shape最后一维须为1。
     - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding 层维度）。
     - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快。默认为False。
-    - **is_distributed** (bool) - 是否使用分布式的方式存储embedding 矩阵，仅在多机分布式cpu训练中使用。默认为False。
+    - **is_distributed** (bool) - 是否使用分布式的方式存储embedding矩阵，仅在多机分布式cpu训练中使用。默认为False。
     - **padding_idx** (int|long|None) - padding_idx需在区间[-vocab_size, vocab_size)，否则不生效，padding_idx<0时，padding_idx 会被改成 vocab_size + padding_idx，input中等于padding_index的id对应的embedding信息会被设置为0。如果为none，不作处理，默认为None。
     - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **dtype** (str) - 输出Tensor或LoDTensor的数据类型，数据类型必须为：float32，float64，默认为float32。
