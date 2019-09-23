@@ -5,7 +5,7 @@ im2sequence
 
 .. py:function:: paddle.fluid.layers.im2sequence(input, filter_size=1, stride=1, padding=0, input_image_size=None, out_stride=1, name=None)
 
-该OP使用filter扫描输入的Tensor并将输入Tensor转换成序列，返回Tensor的shape={input.batch_size * output_height * output_width, filter_size_height* filter_size_width * input.channels}。输入Tensor展开后的timestep的个数为output_height * output_width， 每个timestep的维度是filter_size_height* filter_size_width * input.channels。其中output_height和output_width由以下式计算:
+该OP使用filter扫描输入的Tensor并将输入Tensor转换成序列，返回值的shape={input.batch_size * output_height * output_width, filter_size_height* filter_size_width * input.channels}。返回值的timestep的个数为output_height * output_width， 每个timestep的维度是filter_size_height* filter_size_width * input.channels。其中output_height和output_width由以下式计算:
 
 
 .. math::
@@ -17,7 +17,7 @@ im2sequence
 参数:
   - **input** （Variable）- 4-D Tensor，格式为[N, C, H, W]。公式中input_height和input_width分别代表输入的高和宽。
   - **filter_size** (int|List[int]) - 滤波器大小。如果filter_size是一个List，它必须包含两个整数[filter_size_height, filter_size_width]。如果filter_size是一个int, 则滤波器大小是[filter_size, filter_size], 默认值为1。
-  - **stride** (int|List[int]) - 步长大小。如果stride是一个List，它必须包含两个整数[stride_height、stride_width]。如果stride是一个int, 则步长大小是[stride, stride], 默认值为1。
+  - **stride** (int|List[int]) - 步长大小。如果stride是一个List，它必须包含两个整数[stride_height,stride_width]。如果stride是一个int, 则步长大小是[stride, stride], 默认值为1。
   - **padding** (int|List[int]) - 填充大小。如果padding是一个List，它可以包含四个整数[padding_up, padding_left, padding_down, padding_right)，当包含两个整数[padding_height, padding_width]时，可展开为[padding_height, padding_width, padding_height, padding_width]。如果padding是一个int, 可展开为[padding, padding, padding, padding]。默认值为0。
   - **input_image_size** (Variable) - 2-D Tensor, 输入图像的实际大小, 它的维度为[batchsize，2]。当该参数不为None时，可用于batch inference。默认值为None.
   - **out_stride** (int|List[int]) - 输出步长。只有当input_image_size不为None时才有效。如果out_stride是List，它必须包含[out_stride_height, out_stride_width]，如果out_stride是int, 则可展开为[out_stride, out_stride]，默认值为1。
