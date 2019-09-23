@@ -71,6 +71,47 @@ Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多�
 Name
 =========
 
+Fluid 中的诸多Operator下的 :code:`Name` 参数常用于标记该OP对应的网络层名称，便于开发人员在打印调试信息时，快速定位各个网络层输出数据的来源位置。若在OP中不指定 :code:`Name` 参数，其默认值为None，则在打印该网络层时，Fluid 将以 ``OP名+下划线+数字`` 作为前缀进行网络层命名；若指定了 :code:`Name` 参数，则以用户指定的值进行网络层命名。
+
+此外，在 :ref:`cn_api_fluid_ParamAttr` 中，可通过指定 :code:`Name` 参数实现多个网络层的权重共享。
+
+示例代码如下：
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=1)
+    emb = fluid.layers.embedding(input=x, size=(128, 100))
+
+    # default name
+    fc_none = fluid.layers.fc(input=emb, size=1)
+    fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
+
+    # name in ParamAttr
+    w_param_attrs = fluid.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
+    print(w_param_attrs.name)  # fc_weight
+
+    # name == 'my_fc'
+    my_fc1 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs)
+    my_fc1 = fluid.layers.Print(my_fc1)  # Tensor[my_fc.tmp_1]
+
+    my_fc2 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs)
+    my_fc2 = fluid.layers.Print(my_fc2)  # Tensor[my_fc.tmp_3]
+
+    place = fluid.CPUPlace()
+    x_data = np.array([[1],[2],[3]]).astype("int64")
+    x_lodTensor = fluid.create_lod_tensor(x_data, [[1, 2]], place)
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    ret = exe.run(feed={'x': x_lodTensor}, fetch_list=[fc_none, my_fc1, my_fc2], return_numpy=False)
+
+
+在上述示例中，总共包含了三个全连接层。其中 ``fc_none`` 中未指定 :code:`Name` 参数，则以 ``OP名+下划线+数字`` 作为前缀进行命名：``fc_0.tmp_1`` ； ``my_fc1`` 和 ``my_fc2`` 两个全连接层均指定了 :code:`Name` 参数，但网络层出现同名的情况，Fluid 会在网络层名称后按照代码顺序添加后缀 ``tmp_ + 数字`` ，以进行区分。
+
+此外，上述示例中，``my_fc1`` 和 ``my_fc2`` 两个全连接层通过构建 ``ParamAttr`` ，并指定 :code:`Name` 参数，实现了网络层权重参数的共享机制。
+
 .. _api_guide_ParamAttr:
 
 =========
