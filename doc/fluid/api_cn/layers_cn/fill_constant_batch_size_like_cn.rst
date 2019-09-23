@@ -14,7 +14,7 @@ fill_constant_batch_size_like
     - **dtype** (np.dtype|core.VarDesc.VarType|str)- 创建Tensor的数据类型，支持数据类型为 float32， float64， int32， int64。
     - **value** (float|int)-  用于初始化输出Tensor的常量数据的值。
     - **input_dim_idx** (int)- 当值为0并且输入为LoDTensor的时候创建Tensor的output_dim_idx维度会设置为input的batch_size值，默认值为0。
-    - **output_dim_idx** (int) -默认为0，用于指定创建的Tensor哪个维度设置为输入batch_size的值，默认值为0。
+    - **output_dim_idx** (int) -用于指定创建的Tensor哪个维度设置为输入batch_size的值，默认值为0。
 
 返回：创建的Tensor, 数据类型为dtype。
 
