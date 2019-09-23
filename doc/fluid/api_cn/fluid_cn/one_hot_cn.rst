@@ -5,11 +5,11 @@ one_hot
 
 .. py:function:: paddle.fluid.one_hot(input, depth, allow_out_of_range=False)
 
-**注意：相对于 fluid.layers.** :ref:`cn_api_fluid_layers_one_hot` **接口，此OP移除了输入tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
+**注意：相对于fluid.layers.** :ref:`cn_api_fluid_layers_one_hot` **（此OP将在未来的版本中被弃用！），此OP移除了输入Tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
 
 该OP将输入（input）中的每个词id 转换为一个one-hot向量，其长度为字典大小（depth），该词id对应的向量维度上的值为1，其余维度的值为0。
 
-输出的tensor的shape是在输入tensor shape的最后一维后面添加了depth的维度。
+输出的Tensor的shape是在输入Tensor shape的最后一维后面添加了depth的维度。
 
 - 示例1（allow_out_of_range=False，正确执行）：
 
@@ -61,11 +61,11 @@ one_hot
 参数：
     - **input** (Variable) - 维度为 :math:`[N_1, ..., N_n]` 的多维Tensor，维度至少1维。数据类型为int32或int64。
     - **depth** (int) - 字典大小
-    - **allow_out_of_range** (bool) - 指明input中所包含的id值是否可以大于depth值。当超过depth时，如果 `allow_out_of_range` 为False，则会抛出 `Illegal value` 的异常；如果设置为True，该id对应的向量为0向量。
+    - **allow_out_of_range** (bool) - 指明input中所包含的id值是否可以大于depth值。当超过depth时，如果 `allow_out_of_range` 为False，则会抛出 `Illegal value` 的异常；如果设置为True，该id对应的向量为0向量。默认值为False。
 
-返回：转换后的one-hot实数向量。
+返回：转换后的one_hot实数向量，数据类型为float32。
 
-返回类型：Variable，数据类型为float32。
+返回类型：Variable
 
 **代码示例**：
 

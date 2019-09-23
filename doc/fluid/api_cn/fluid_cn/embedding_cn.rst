@@ -5,11 +5,11 @@ embedding
 
 .. py:function:: paddle.fluid.embedding(input, size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
 
-**注意：相对于 fluid.layers.** :ref:`cn_api_fluid_layers_embedding` **接口，此OP移除了输入tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
+**注意：相对于 fluid.layers.** :ref:`cn_api_fluid_layers_embedding` **（此OP将在未来的版本中被弃用！），此OP移除了输入Tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
 
 该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，函数会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
-输出的tensor的shape是在输入tensor shape的最后一维后面添加了emb_size的维度。
+输出的Tensor的shape是在输入Tensor shape的最后一维后面添加了emb_size的维度。
 
 注：input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
@@ -18,34 +18,38 @@ embedding
 
     Case 1:
 
-    x是lod level 为1的LoDTensor, 且padding_idx = 0
-        x.lod = [[2, 3]]
-        x.data = [[1], [3], [2], [4], [0]]
-        x.dims = [5, 1]
+    input是Tensor, 且padding_idx = -1
+        input.data = [[1, 3], [2, 4], [4, 127]]
+        input.shape = [3, 2]
+    若size = [128, 16]
+    输出为Tensor:
+        out.shape = [3, 2, 16]
+        out.data = [[[0.129435295, 0.244512452, ..., 0.436322452],
+                     [0.345421456, 0.524563927, ..., 0.144534654]],
+
+                    [[0.345249859, 0.124939536, ..., 0.19435u375],
+                     [0.945345345, 0.435394634, ..., 0.435345365]],
+
+                    [[0.945345345, 0.435394634, ..., 0.435345365],
+                     [0.0,         0.0,         ..., 0.0        ]]]  # padding data
+    输入的padding_idx小于0，则自动转换为padding_idx = -1 + 128 = 127, 对于输入id为127的词，进行padding处理。
+    
+    Case 2:
+
+    input是lod level 为1的LoDTensor, 且padding_idx = 0
+        input.lod = [[2, 3]]
+        input.data = [[1], [3], [2], [4], [0]]
+        input.shape = [5, 1]
     若size = [128, 16]
     输出为LoDTensor:
         out.lod = [[2, 3]]
-        out.dim = [5, 1, 16]
+        out.shape = [5, 1, 16]
         out.data = [[[0.129435295, 0.244512452, ..., 0.436322452]],
                     [[0.345421456, 0.524563927, ..., 0.144534654]],
                     [[0.345249859, 0.124939536, ..., 0.19435u375]],
                     [[0.945345345, 0.435394634, ..., 0.435345365]],
                     [[0.0,         0.0,         ..., 0.0        ]]]  # padding data
-    
-    Case 2:
-
-    x是Tensor, 且padding_idx = -1
-        x.data = [[1, 3], [2, 4], [4, 127]]
-        x.dims = [3, 2]
-    若size = [128, 16]
-    输出为Tensor:
-        out.dim = [3, 2, 16]
-        out.data = [[[0.129435295, 0.244512452, ..., 0.436322452],
-                     [0.345421456, 0.524563927, ..., 0.144534654]],
-                    [[0.345249859, 0.124939536, ..., 0.19435u375],
-                     [0.945345345, 0.435394634, ..., 0.435345365]],
-                    [[0.945345345, 0.435394634, ..., 0.435345365],
-                     [0.0,         0.0,         ..., 0.0        ]]]  # padding data
+    输入的padding_idx = 0，则对于输入id为0的词，进行padding处理。
 
 
 参数：
@@ -55,11 +59,11 @@ embedding
     - **is_distributed** (bool) - 是否使用分布式的方式存储embedding 矩阵，仅在多机分布式cpu训练中使用。
     - **padding_idx** (int|long|None) - padding_idx需在区间[-vocab_size, vocab_size)，否则不生效，padding_idx<0时，padding_idx 会被改成 vocab_size + padding_idx，input中等于padding_index的id对应的embedding信息会被设置为0。如果为none，不作处理，默认为None。
     - **param_attr** (ParamAttr) - 可通过param_attr设置该层权重参数的初始化方式、学习率等，默认为None。
-    - **dtype** (np.dtype|core.VarDesc.VarType|str) - 输出张量的数据类型，数据类型必须为：float32，float64，默认为float32。
+    - **dtype** (str) - 输出Tensor或LoDTensor的数据类型，数据类型必须为：float32，float64，默认为float32。
 
-返回：input对应的embedding信息。
+返回：input对应的embedding信息，数据类型和dtype定义的类型一致。
 
-返回类型：Variable，数据类型和dtype定义的类型一致。
+返回类型：Variable(Tensor|LoDTensor)
 
 **代码示例**:
 
