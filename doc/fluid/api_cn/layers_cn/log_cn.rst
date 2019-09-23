@@ -6,19 +6,19 @@ log
 .. py:function:: paddle.fluid.layers.log(x, name=None)
 
 
-给定输入张量，计算其每个元素的自然对数
+Log激活函数（计算自然对数）
 
 .. math::
                   \\Out=ln(x)\\
 
 
 参数:
-  - **x** (Variable) – 输入张量
-  - **name** (str|None, default None) – 该layer的名称，如果为None，自动命名
+  - **x** (Variable) – 该OP的输入为Tensor。数据类型为float32，float64。 
+  - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回：给定输入张量计算自然对数
+返回：Log算子自然对数输出
 
-返回类型: 变量（variable）
+返回类型: Variable - 该OP的输出为Tensor，数据类型为输入一致。
 
 
 **代码示例**
@@ -26,16 +26,18 @@ log
 ..  code-block:: python
 
   import paddle.fluid as fluid
-  x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
-  output = fluid.layers.log(x)
+  import numpy as np
 
+  # Graph Organizing
+  x = fluid.layers.data(name="x", shape=[1], dtype="float32")
+  res = fluid.layers.log(x)
+  
+  # Create an executor using CPU as an example
+  exe = fluid.Executor(fluid.CPUPlace())
+  exe.run(fluid.default_startup_program())
 
-
-
-
-
-
-
-
-
+  # Execute
+  x_i = np.array([[1], [2]]).astype(np.float32)
+  res_val, = exe.run(fluid.default_main_program(), feed={'x':x_i}, fetch_list=[res])
+  print(res_val) # [[0.], [0.6931472]]
 
