@@ -34,6 +34,7 @@ fluid
     fluid_cn/LoDTensorArray_cn.rst
     fluid_cn/memory_optimize_cn.rst
     fluid_cn/name_scope_cn.rst
+    fluid_cn/one_hot_cn.rst
     fluid_cn/ParallelExecutor_cn.rst
     fluid_cn/ParamAttr_cn.rst
     fluid_cn/Program_cn.rst
