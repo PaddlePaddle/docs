@@ -5,13 +5,13 @@ one_hot
 
 .. py:function:: paddle.fluid.one_hot(input, depth, allow_out_of_range=False)
 
-**注意：相对于fluid.layers.** :ref:`cn_api_fluid_layers_one_hot` **（此OP将在未来的版本中被弃用！），此OP移除了输入Tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
+**注意：相对于fluid.layers.** :ref:`cn_api_fluid_layers_one_hot` **（这种调用方式将在未来的版本中被弃用！），此OP移除了输入Tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
 
 该OP将输入（input）中的每个词id 转换为一个one-hot向量，其长度为字典大小（depth），该词id对应的向量维度上的值为1，其余维度的值为0。
 
 输出的Tensor（或LoDTensor）的shape是在输入shape的最后一维后面添加了depth的维度。
 
-- 示例1（allow_out_of_range=False，正确执行）：
+- 示例1（allow_out_of_range=False）：
 
 .. code-block:: python
 
@@ -27,7 +27,7 @@ one_hot
                 [0., 0., 0., 1.],
                 [1., 0., 0., 0.]]
 
-- 示例2 （allow_out_of_range=True，正确执行，超出部分填0）：
+- 示例2 （allow_out_of_range=True）：
 
 .. code-block:: python
 
@@ -44,7 +44,7 @@ one_hot
                 [0., 0., 0., 0.], ## 这一维的值是5，超过了depth，因此填成0
                 [1., 0., 0., 0.]]
 
-- 示例3 （allow_out_of_range=False，抛出异常）：
+- 示例3 （allow_out_of_range=False）：
 
 .. code-block:: python
   

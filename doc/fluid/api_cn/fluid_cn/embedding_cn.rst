@@ -5,7 +5,7 @@ embedding
 
 .. py:function:: paddle.fluid.embedding(input, size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
 
-**注意：相对于 fluid.layers.** :ref:`cn_api_fluid_layers_embedding` **（此OP将在未来的版本中被弃用！），此OP移除了输入Tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
+**注意：相对于 fluid.layers.** :ref:`cn_api_fluid_layers_embedding` **（这种调用方式将在未来的版本中被弃用！），此OP移除了输入Tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
 
 该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，函数会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
@@ -55,7 +55,7 @@ embedding
 参数：
     - **input** (Variable) - 存储id信息，数据类型必须为：int64。
     - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding 层维度）。
-    - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快。默认为False。
+    - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快。但某些optimizer不支持sparse更新，比如Adadelta，此时is_sparse必须为False。默认为False。
     - **is_distributed** (bool) - 是否使用分布式的方式存储embedding 矩阵，仅在多机分布式cpu训练中使用。默认为False。
     - **padding_idx** (int|long|None) - padding_idx需在区间[-vocab_size, vocab_size)，否则不生效，padding_idx<0时，padding_idx 会被改成 vocab_size + padding_idx，input中等于padding_index的id对应的embedding信息会被设置为0。如果为none，不作处理，默认为None。
     - **param_attr** (ParamAttr) - 可通过param_attr设置该层权重参数的初始化方式、学习率等，默认为None。
