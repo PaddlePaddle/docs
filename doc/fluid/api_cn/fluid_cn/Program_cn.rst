@@ -5,9 +5,9 @@ Program
 
 .. py:class::  paddle.fluid.Program
 
-**注意：默认情况下，PaddleFluid内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们将共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_startup_program` **在每个mini batch中运行并调整权重。**
+**注意：默认情况下，Paddle Fluid内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_startup_program` **在每个mini batch中运行并更新权重。**
 
-Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的构造函数可以创建一个python Program， 这个python Program将会在Paddle FLuid内部会被转换为底层的一种描述语言，用来创建一段 c++ 可执行程序。Program像容器一样，是一种自包含的程序语言。Program中包括至少一个块（ :ref:`api_guide_Block` ），当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`api_fluid_layers_While` 等）时，该Program将会含有嵌套块（nested block），而嵌套块内外的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
+Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的构造函数可以创建一个Program。Program像容器一样，是一种自包含的程序语言。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
 。
 
 一个Program的集合通常包含初始化程序（startup_program）与主程序(main_program)，初始化程序是一个包含一些初始化工作的Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个Program的集合可以被用来测试或者训练，被用来训练时， ``Paddle Fluid`` 将会包含所有的上下文来搭建一个训练网络，被用来测试时， ``Paddle Fluid`` 将会剪去一些与测试无关的上下文，比如反向传播的OP和变量。
@@ -206,7 +206,6 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 
 通过对 `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 的反序列化，转换成Program
 
-**注意:在序列化和反序列化之后，所有关于参数的信息都会丢失。**
 
 参数：
  - **binary_str_type** (str) – `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 二进制字符串
@@ -265,7 +264,7 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 
 **注意：必须在相关OP被添加之前设置。**
 
-程序中随机运算符的默认随机种子。0意味着从随机设备中获取随机种子。
+程序中随机运算符的默认随机种子。0意味着随机生成随机种子。
 
 返回：该Program中当前正在使用的random seed
 
@@ -312,10 +311,10 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 
 .. py:method:: block(index)
 
-返回该Program中 ， ``index`` 指定的 :ref:`api_guide_Block` 。 ``index`` 类型为int64
+返回该Program中 ， ``index`` 指定的 :ref:`api_guide_Block` 。 ``index`` 类型为int
 
 参数:
- - **index** (int64) - 需要获取的 :ref:`api_guide_Block`  的index
+ - **index** (int) - 需要获取的 :ref:`api_guide_Block`  的index
 
 返回: 该Program中index对应的那个 :ref:`api_guide_Block`
 
