@@ -5,6 +5,8 @@ ModelAverage
 
 .. py:class:: paddle.fluid.optimizer.ModelAverage(average_window_rate, min_average_window=10000, max_average_window=10000, regularization=None, name=None)
 
+ModelAverage优化器，在训练过程中在合适的窗口中累计历史 Parameters，在预测时使用取平均值后的Parameters，从而整体提高预测的精度。
+
 在滑动窗口中累积Parameters的平均值，将结果将保存在临时变量中，通过调用 ``apply()`` 方法可应用于当前模型的Parameters，使用 ``restore()`` 方法恢复当前模型Parameters的值。
 
 计算平均值的窗口大小由 ``average_window_rate`` ， ``min_average_window`` ， ``max_average_window`` 以及当前Parameters更新次数共同决定。
@@ -18,11 +20,11 @@ ModelAverage
 
 上述条件判断语句中，num_accumulates表示当前累积的次数，可以抽象理解为累积窗口的长度，窗口长度至少要达到min_average_window参数设定的长度，并且不能超过max_average_window参数或者num_updates * average_window_rate规定的长度，其中num_updates表示当前Parameters更新的次数，average_window_rate是一个计算窗口长度的系数。
  
-参数:
-  - **average_window_rate** (float) – 相对于Parameters更新次数的窗口计算比率
+参数：
+  - **average_window_rate** (float) – 相对于Parameters更新次数的窗口长度计算比率
   - **min_average_window** (int, 可选) – 平均值计算窗口长度的最小值，默认值为10000
   - **max_average_window** (int, 可选) – 平均值计算窗口长度的最大值，默认值为10000
-  - **regularization** (function, 可选) – 正则化函数，用于减少泛化误差。例如可以是``fluid.regularizer.L2DecayRegularizer``，默认值为None
+  - **regularization** (WeightDecayRegularizer, 可选) – 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
   - **name** (str, 可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
 **代码示例**
