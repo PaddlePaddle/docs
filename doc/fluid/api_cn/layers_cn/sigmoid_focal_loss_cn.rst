@@ -5,7 +5,7 @@ sigmoid_focal_loss
 
 .. py:function:: paddle.fluid.layers.sigmoid_focal_loss(x, label, fg_num, gamma=2, alpha=0.25)
 
-`Focal Loss <https://arxiv.org/abs/1708.02002>`_ 用于解决单阶段检测器存在的前景-背景不平衡的问题。该OP先计算输入x中每个元素的sigmoid值，然后计算sigmoid值与类别目标值label之间的Focal Loss。
+`Focal Loss <https://arxiv.org/abs/1708.02002>`_ 被提出用于解决计算机视觉任务中前景-背景不平衡的问题。该OP先计算输入x中每个元素的sigmoid值，然后计算sigmoid值与类别目标值label之间的Focal Loss。
 
 Focal Loss的计算过程如下：
 
