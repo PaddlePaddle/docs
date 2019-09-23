@@ -55,7 +55,7 @@ embedding
     - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding 层维度）。
     - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快。但某些optimizer不支持sparse更新，比如Adadelta，此时is_sparse必须为False。默认为False。
     - **is_distributed** (bool) - 是否使用分布式的方式存储embedding矩阵，仅在多机分布式cpu训练中使用。默认为False。
-    - **padding_idx** (int|long|None) - padding_idx需在区间[-vocab_size, vocab_size)，否则不生效，padding_idx<0时，padding_idx 会被改成 vocab_size + padding_idx，input中等于padding_index的id对应的embedding信息会被设置为0。如果为none，不作处理，默认为None。
+    - **padding_idx** (int|long|None) - padding_idx需在区间[-vocab_size, vocab_size)，否则不生效，padding_idx<0时，padding_idx 会被改成 vocab_size + padding_idx，input中等于padding_index的id对应的embedding信息会被设置为0，且这部分填充数据在训练时将不会被更新。如果为none，不作处理，默认为None。
     - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **dtype** (str) - 输出Tensor或LoDTensor的数据类型，数据类型必须为：float32，float64，默认为float32。
 
