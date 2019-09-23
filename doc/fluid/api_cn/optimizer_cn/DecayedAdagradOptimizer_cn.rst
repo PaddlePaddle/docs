@@ -29,6 +29,9 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
 返回：DecayedAdagradOptimizer的实例
 
 返回类型：paddle.fluid.Optimizer
+
+.. note::
+    当前， ``DecayedAdagradOptimizer`` 不支持Sparse Parameter Optimization（稀疏参数优化）
   
 **代码示例**
  
@@ -43,9 +46,6 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
     cost = layers.reduce_mean( trans )
     optimizer = fluid.optimizer.DecayedAdagrad(learning_rate=0.2)
     optimizer.minimize(cost)
-
-.. note::
-    当前， ``DecayedAdagradOptimizer`` 不支持Sparse Parameter Optimization（稀疏参数优化）
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
 
