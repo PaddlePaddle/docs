@@ -267,7 +267,7 @@ paddle.reader.creator.text_file
 该函数将从给定文本文件创建数据读取器，创建的读取器将文本中的内容逐行输出（不输出每行文本末尾的换行符‘\n’)。
 
 参数：
-    -**paths(str)**：文本文件的路径。
+    - **paths(str)** - 文本文件的路径。
 
 返回： 数据读取器
 
@@ -286,7 +286,7 @@ paddle.reader.creator.recordio
 从给定的recordio文件路径(或多个recordio文件路径)创建数据reader，不同文件路径之间用“，”分隔。
 
 参数：
-    -**paths(str|list(str))**：recordio文件的路径，可以输入单个路径或同时输入多个路径。
+    - **paths(str|list(str))** - recordio文件的路径，可以输入单个路径或同时输入多个路径。
 
 返回：数据读取器
 
