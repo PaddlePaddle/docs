@@ -6,41 +6,52 @@ LoDTensor
 .. py:class:: paddle.fluid.LoDTensor
 
 
-LoDTensor是一个具有LoD信息的张量（Tensor），详见 :ref:`cn_user_guide_lod_tensor` 。
+LoDTensor是一个具有LoD（Level of Details）信息的张量（Tensor），可用于表示变长序列，详见 :ref:`cn_user_guide_lod_tensor` 。
 
-``np.array(lod_tensor)`` 可以将LoDTensor转换为numpy array。
+LoDTensor可以通过 ``np.array(lod_tensor)`` 方法转换为numpy.ndarray。
 
-``lod_tensor.lod()`` 可以获得LoDTensor的LoD信息。
+如果您不需要了解LoDTensor的细节，可以跳过以下的注解。
 
-LoD是多层序列（Level of Details）的缩写，通常用于不同长度的序列。如果您不需要了解LoD信息，可以跳过下面的注解。
+下面以两个例子说明如何用LoDTensor表示变长序列。
 
-举例：
+示例1：
 
-x 为 LoDTensor，它包含两个逻辑子序列。第一个长度是2，第二个长度是3。
+假设x为一个表示变长序列的LoDTensor，它包含2个逻辑子序列，第一个序列长度是2（样本数量为2），第二个序列长度是3，总序列长度为5。
+第一个序列的数据为[1, 2], [3, 4]，第二个序列的数据为[5, 6], [7, 8], [9, 10]，每个样本数据的维度均是2，该LoDTensor最终的shape为[5, 2]，其中5为总序列长度，2为每个样本数据的维度。
 
-从Lod中可以计算出x的第一维度为5， 因为 ``5=2+3`` 。在x中的每个序列中的每个元素有2列，因此x的shape为[5, 2]。
+在逻辑上，我们可以用两种方式表示该变长序列，一种是递归序列长度的形式，即x.recursive_sequence_length = [[2, 3]]；另一种是偏移量的形式，即x.lod = [[0, 2, 2+3]]。
+这两种表示方式是等价的，您可以通过LoDTensor的相应接口来设置和获取recursive_sequence_length或LoD。
+
+在实现上，为了获得更快的序列访问速度，Paddle采用了偏移量的形式来存储不同的序列长度。因此，对recursive_sequence_length的操作最终将转换为对LoD的操作。
 
 ::
 
-  x.lod  =  [[2, 3]] 
-  
-  x.data = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]
+  x.data = [[1, 2], [3, 4], 
+            [5, 6], [7, 8], [9, 10]]
 
   x.shape = [5, 2]
 
+  x.recursive_sequence_length = [[2, 3]]
 
-LoD可以有多个level（例如，一个段落可以有多个句子，一个句子可以有多个单词）。下面的例子中，y为LoDTensor ，lod_level为2。表示有2个逻辑序列，第一个逻辑序列的长度是2（有2个子序列），第二个逻辑序列的长度是1。第一个逻辑序列的两个子序列长度分别为2和2。第二个序列的子序列的长度是3。
+  x.lod  =  [[0, 2, 5]] 
 
+示例2：
+
+LoD可以有多个level（例如，一个段落可以有多个句子，一个句子可以有多个单词）。假设y为LoDTensor ，lod_level为2。从level=0来看有2个逻辑序列，序列长度分别为2和1，表示第一个逻辑序列包含2个子序列，第二个逻辑序列包含1个子序列。从level=1来看，第一个逻辑序列包含的2个子序列长度分别为2和2，第二个逻辑序列包含的1个子序列长度为3。
+
+因此，该LoDTensor以递归序列长度形式表示为 y.recursive_sequence_length = [[2, 1], [2, 2, 3]]；相应地，以偏移量形式表示为 y.lod = [[0, 2, 3], [0, 2, 4, 7]]。
 
 ::
-  
-  y.lod = [[2, 1], [2, 2, 3]]
 
-  y.shape = [2+2+3, ...]
+  y.data = [[1, 2], [3, 4], 
+            [5, 6], [7, 8], 
+            [9, 10], [11, 12], [13, 14]]
 
-返回：LoDTensor的实例。
+  y.shape = [2+2+3, 2]
 
-返回类型：LoDTensor。
+  y.recursive_sequence_length = [[2, 1], [2, 2, 3]]
+
+  y.lod = [[0, 2, 3], [0, 2, 4, 7]]
 
 **示例代码**
 
@@ -50,17 +61,10 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
      
       t = fluid.LoDTensor()
 
-.. note::
-
-  在上面的描述中，LoD是基于长度的。在paddle内部实现中，LoD是基于偏移的。因此,在内部,y.lod表示为[[0, 2, 3]，[0, 2, 4, 7]]（该LoD转换为基于长度的LoD表示为[[2-0, 3-2]，[2-0, 4-2, 7-4]]，即[[2, 1], [2, 2, 3]]）。
-
-  因此，可以将LoD理解为recursive_sequence_length（递归序列长度）。此时，LoD必须是基于长度的。由于历史原因，当LoD在API中被称为LoD时，它可能是基于偏移的，请使用时注意。
-
-
 
 .. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → bool
 
-检查LoDTensor的LoD的正确性。
+该接口检查LoDTensor的LoD的正确性。
 
 返回：   是否带有正确的LoD。
 
@@ -100,9 +104,9 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 
 .. py:method:: recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
 
-该接口返回与LoD对应的LoDTensor的序列长度。
+该接口返回与LoDTensor的LoD对应的递归序列长度。
 
-返回：LoDTensor的LoD对应的一至多个序列长度。
+返回：LoDTensor的LoD对应的递归序列长度。
 
 返回类型：List [List [int]]。
 
@@ -174,7 +178,7 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 24. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int8], place: paddle::platform::CUDAPinnedPlace) -> None
 
 参数：
-    - **array** (numpy array) - 要设置的numpy array，支持的数据类型为bool, float32, float64, int32, int64, int8, uint16, uint8。
+    - **array** (numpy.ndarray) - 要设置的numpy array，支持的数据类型为bool, float32, float64, int8, int32, int64, uint8, uint16。
     - **place** (CPUPlace|CUDAPlace|CUDAPinnedPlace) - 要设置的LoDTensor所在的设备。
 
 返回：空。
@@ -216,7 +220,7 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 
 该接口根据递归序列长度 ``recursive_sequence_lengths`` 设置LoDTensor的LoD。
 
-例如，如果 ``recursive_sequence_lengths = [[2, 3]]``，意味着有两个长度分别为2和3的序列，相应的LoD将是[[0, 2, 2 + 3]]，即[[0, 2, 5]]。
+例如，如果 ``recursive_sequence_lengths = [[2, 3]]``，意味着有两个长度分别为2和3的序列，相应的LoD是[[0, 2, 2 + 3]]，即[[0, 2, 5]]。
 
 参数：
   - **recursive_sequence_lengths** (List [List [int]]) - 递归序列长度。
