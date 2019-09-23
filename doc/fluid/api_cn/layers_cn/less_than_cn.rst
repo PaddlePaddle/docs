@@ -6,26 +6,52 @@ less_than
 .. py:function:: paddle.fluid.layers.less_than(x, y, force_cpu=None, cond=None)
 
 
-该函数按元素出现顺序依次在X,Y上操作，并返回 ``Out`` ，它们三个都是n维tensor（张量）。
-其中，X、Y可以是任何类型的tensor，Out张量的各个元素可以通过 :math:`Out=X<Y` 计算得出。
+该OP逐元素地返回 :math:`x < y` 的逻辑值，使用重载算子 `<` 可以有相同的计算函数效果
 
 
 参数：
-    - **x** (Variable) – ``less_than`` 运算的左操作数
-    - **y** (Variable) – ``less_than`` 运算的右操作数
-    - **force_cpu** (BOOLEAN) – 值True则强制将输出变量写入CPU内存中。否则，将其写入目前所在的运算设备上。默认为True
-    - **cond** (Variable|None) – 可选的用于存储 ``less_than`` 输出结果的变量，为None则由函数自动生成Out变量
+    - **x** (Variable) - 进行比较的第一个输入，是一个多维的Tensor，数据类型可以是float32，float64，int32，int64。
+    - **y** (Variable) - 进行比较的第二个输入，是一个多维的Tensor，数据类型可以是float32，float64，int32，int64。
+    - **force_cpu** (bool) – 值为True则强制将输出变量写入CPU内存中，否则将其写入目前所在的运算设备上。默认为True。
+    - **cond** (Variable，可选) – 指定算子输出结果的Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
 
 
-返回： n维bool型tensor，其中各个元素可以通过 *Out=X<Y* 计算得出
+返回：输出结果的Tensor，数据的shape和输入x一致。
+
+返回类型： Variable，数据类型为bool。
 
 **代码示例**:
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    label = fluid.layers.data(name='y', shape=[1], dtype='int64')
-    limit = fluid.layers.fill_constant(shape=[1], dtype='int64', value=5)
-    cond = fluid.layers.less_than(x=label, y=limit)
+    import paddle.fluid.layers as layers
+    import numpy as np
+    x = fluid.layers.data(name='x', shape=[1], dtype='float64')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float64')
+    result = fluid.layers.less_than(x=x, y=y)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    x_i = np.array([[1, 2], [3, 4]]).astype(np.float64)
+    y_i = np.array([[2, 2], [1, 3]]).astype(np.float64)
+    result_value, = exe.run(fluid.default_main_program(), feed={'x':x_i, 'y':y_i}, fetch_list=[result])
+    print(result_value) # [[True, False], [False, False]]
 
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    import numpy as np
+    x = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    result = fluid.layers.fill_constant(shape=[1], dtype='float32', value=0)
+    fluid.layers.less_than(x=x, y=y, cond=result)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    x_i = np.array([[1, 2], [3, 4]]).astype(np.float64)
+    y_i = np.array([[2, 2], [1, 3]]).astype(np.float64)
+    result_value, = exe.run(fluid.default_main_program(), feed={'x':x_i, 'y':y_i}, fetch_list=[result])
+    print(result_value) # [[True, False], [False, False]]
 
