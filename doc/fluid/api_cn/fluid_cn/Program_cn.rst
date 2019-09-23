@@ -67,7 +67,7 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 
     **2. 如果您只是想要一个用于测试的前向计算程序，请在使用** ``Opimizer.minimize`` 之前使用 ``clone``
 
-    **3. 此API不会裁剪任何算子。请在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
+    **3. 此API将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
 
 
 创建一个新的、相同的Program。
@@ -77,12 +77,12 @@ Program是Paddle FLuid对于计算图的一种表达方式，使用Program 的�
 - 克隆Program用于训练时，将 ``for_test`` 设置为False。
 - 克隆Program用于测试时，将 ``for_test`` 设置为True。虽然在这种情况下，如果您在使用了优化器之后调用 ``clone`` 我们依旧会对Program当中反向执行以及优化器相关的内容进行自动裁剪，但是，我们强烈建议您在使用优化器之前使用 ``clone`` 例如您如果使用的是 :ref:`cn_api_fluid_optimizer_Momentum` :
 
-    .. code-block:: python
+ .. code-block:: python
 
-          import paddle.fluid as fluid
-          test_program = fluid.default_main_program().clone(for_test=True)
-          optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
-          optimizer.minimize()
+       import paddle.fluid as fluid
+       test_program = fluid.default_main_program().clone(for_test=True)
+       optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
+       optimizer.minimize()
 
 参数：
  - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True
