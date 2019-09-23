@@ -61,9 +61,9 @@ embedding
     - **param_attr** (ParamAttr) - 可通过param_attr设置该层权重参数的初始化方式、学习率等，默认为None。
     - **dtype** (str) - 输出Tensor或LoDTensor的数据类型，数据类型必须为：float32，float64，默认为float32。
 
-返回：input对应的embedding信息，数据类型和dtype定义的类型一致。
+返回：input映射后embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
 
-返回类型：Variable(Tensor|LoDTensor)
+返回类型：Variable
 
 **代码示例**:
 
