@@ -5,34 +5,34 @@ DGCMomentumOptimizer
 
 .. py:class:: paddle.fluid.optimizer.DGCMomentumOptimizer(learning_rate, momentum, rampup_begin_step, rampup_step=1, sparsity=[0.999], use_nesterov=False, local_grad_clip_norm=None, num_trainers=None, regularization=None, name=None)
 
-原始论文: https://arxiv.org/abs/1712.01887
+DGC（深度梯度压缩）Momentum 优化器。原始论文: https://arxiv.org/abs/1712.01887
 
-DGC通过仅发送重要梯度（稀疏更新）来减少通信带宽：仅发送大于给定阈值的梯度。
+DGC通过只传送重要梯度（稀疏更新）来减少通信带宽：即只发送大于给定阈值的梯度。
 
-为避免丢失信息，DGC在本地累积其余梯度。最终，这些梯度会积累到足够大，从而可以传输。
+为避免信息的丢失，DGC会在本地累积剩余梯度。最终，这些梯度会累积到足够大，从而可以传输。
 
-因此，DGC即时发送相对较大的梯度，但最终随时间积累而发送所有梯度。
+因此，虽然DGC只立即发送较大的梯度，但最终所有的梯度都会随时间累积发送出去。
 
-此外，为了确保不损失精度，DGC在梯度稀疏化之上采用动量修正和局部梯度修剪(clip)来维持模型性能。
+此外，为确保精度不会损失，DGC在梯度稀疏化之上采用动量修正和局部梯度修剪(clip)来维持模型性能。
 
-DGC还使用动量因子掩藏(momentum factor masking)和预训练(warm-up)来克服由于reduced通讯而导致的数据陈旧性(staleness)问题。
+DGC还使用动量因子掩藏(momentum factor masking)和预训练(warm-up)来克服由于规约（reduced)通信而导致的数据陈旧性(staleness)问题。
 
 这个优化器会执行如下操作：
 
-1. 通过从张量获取前TopK个导入值来压缩梯度，并将其用于allreduce以减少网络带宽。
-2. 调用momentum来降低cost。
+1. 从张量中获取的前TopK个重要梯度进行压缩，并将其用于allreduce通信以减少网络带宽使用。
+2. 调用momentum来优化代价函数。
 
 参数: 
     - **learning_rate** （float | Variable） - 用于更新参数的学习率。可以是浮点值或由一个浮点型数据组成的Variable。
     - **momentum** （float） - 动量因子。
     - **rampup_begin_step** （int） - 进行梯度压缩的起步点。
-    - **rampup_step** （int） - 使用稀疏期的时间。默认值为1.例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，并且rampup_step为5，则在0步时使用0.75，在1步时使用0.9375，依此类推。当达到sparsity数组末尾时，它此后延续使用0.999。
-    - **sparsity** （list [float]） - 从梯度张量中获取较为重要的元素，比率为（1-当前稀疏度）。
-    - **use_nesterov** （bool） - 启用Nesterov momentum。 True意味着使用nesterov。
-    - **local_grad_clip_norm** （float） - 如果需要，clip norm值。
-    - **num_trainers**   - 训练节点的数量。
-    - **regularization**  - 正则器，如fluid.regularizer.L2DecayRegularizer。
-    - **name**   - 可选的名称前缀。
+    - **rampup_step** （int） - 使用稀疏预热的时间步长。默认值为1。例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，并且rampup_step为100，则在0~19步时使用0.75，在20~39步时使用0.9375，依此类推。当到达sparsity数组末尾时，此后将会使用0.999。
+    - **sparsity** （list [float]） - 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。例如：如果sparsity为[0.99, 0.999]，则将传输top [1%, 0.1%]的重要元素。
+    - **use_nesterov** （bool） - 启用Nesterov momentum。 True意味着使用nesterov。默认值False。
+    - **local_grad_clip_norm** （float，可选） - 局部梯度裁减标准值。可选，默认为None，表示不需要裁减。
+    - **num_trainers** （int，可选） - 训练节点的数量。可选，默认为None。
+    - **regularization** （WeightDecayRegularizer，可选） - 正则器， 如 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer`。可选，默认为None。
+    - **name** （str，可选） - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 **代码示例**
 
