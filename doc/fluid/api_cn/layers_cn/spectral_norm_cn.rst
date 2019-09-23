@@ -7,7 +7,7 @@ spectral_norm
 
 **Spectral Normalization Layer**
 
-spectral_norm操作用于计算了fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，输入权重参数应分别为2-D, 3-D, 4-D, 5-D张量，输出张量与输入张量shape相同。谱特征值计算方式如下。
+该OP用于计算了fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，输入权重参数应分别为2-D, 3-D, 4-D, 5-D张量，输出张量与输入张量shape相同。谱特征值计算方式如下。
 
 步骤1：生成形状为[H]的向量U,以及形状为[W]的向量V,其中H是输入权重张量的第 ``dim`` 个维度，W是剩余维度的乘积。
 

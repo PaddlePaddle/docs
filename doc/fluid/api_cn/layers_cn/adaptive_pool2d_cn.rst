@@ -5,9 +5,7 @@ adaptive_pool2d
 
 .. py:function:: paddle.fluid.layers.adaptive_pool2d(input, pool_size, pool_type='max', require_index=False, name=None)
 
-函数使用上述输入参数的池化配置，为二维空间自适应池化操作
-
-adaptive_pool2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` 这些参数得到输出。
+该OP使用上述输入参数的池化配置，为二维空间自适应池化操作，根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` 这些参数得到输出。
 
 输入X和输出Out是NCHW格式，N为批大小，C是通道数，H是特征高度，W是特征宽度。参数 ``pool_size`` 含有两个整型元素, 分别代表高度和宽度上的参数。输出Out的H和W维由 ``pool_size`` 决定，即输出shape为 :math:`\left ( N,C,pool_size[0],pool_size[1] \right )`
 

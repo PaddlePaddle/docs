@@ -4,7 +4,7 @@ temporal_shift
 -------------------------------
 .. py:function:: paddle.fluid.layers.temporal_shift(x, seg_num, shift_ratio=0.25, name=None)
 
-temporal_shift 操作用于对输入X做时序通道T上的位移操作，为TSM(Temporal Shift Module)中使用的操作。
+该OP用于对输入X做时序通道T上的位移操作，为TSM(Temporal Shift Module)中使用的操作。
 
 输入（X）的形状应为[N*T, C, H, W]，N是批大小，T是 ``seg_num`` 指定的时间段号，C是通道号，H和W是特征的高度和宽度。
 

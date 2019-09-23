@@ -5,7 +5,7 @@ kldiv_loss
 
 .. py:function:: paddle.fluid.layers.kldiv_loss(x, target, reduction='mean', name=None)
 
-此运算符计算输入（X）和输入（Target）之间的Kullback-Leibler散度损失。
+该OP计算输入（X）和输入（Target）之间的Kullback-Leibler散度损失。
 
 kL发散损失计算如下：
 

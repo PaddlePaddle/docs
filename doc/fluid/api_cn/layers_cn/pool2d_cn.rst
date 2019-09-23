@@ -5,9 +5,7 @@ pool2d
 
 .. py:function:: paddle.fluid.layers.pool2d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True)
 
-函数使用上述输入参数的池化配置，为二维空间池化操作
-
-pool2d操作符根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` , 步长 ``pool_stride`` ，填充 ``pool_padding`` 这些参数得到输出。
+该OP使用上述输入参数的池化配置，为二维空间池化操作，根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` , 步长 ``pool_stride`` ，填充 ``pool_padding`` 这些参数得到输出。
 
 输入X和输出Out是NCHW格式，N为批大小，C是通道数，H是特征高度，W是特征宽度。
 
