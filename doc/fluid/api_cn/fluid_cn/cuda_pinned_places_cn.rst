@@ -13,7 +13,7 @@ cuda_pinned_places
 如果 ``device_count`` 为 ``None``，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` ，则设备数目将由 ``multiprocessing.cpu_count()`` 确定。
 
 参数：
-  - **device_count** (int，可选) - 设备数目。缺省值：``None``。
+  - **device_count** (int，可选) - 设备数目。缺省值为 ``None``。
 
 返回: ``fluid.CUDAPinnedPlace`` 对象列表。
 
