@@ -5,70 +5,71 @@ retinanet_target_assign
 
 .. py:function:: paddle.fluid.layers.retinanet_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, gt_labels, is_crowd, im_info, num_classes=1, positive_overlap=0.5, negative_overlap=0.4)
 
-**Retinanet的目标分配层**
+**该OP目前仅支持CPU** 。
 
-对于给定anchors和真实(ground-truth)框之间的Intersection-over-Union（IoU）重叠，该层可以为每个anchor分配分类和回归目标，同时这些目标标签用于训练Retinanet。每个anchor都分配有长度为num_classes的一个one-hot分类目标向量，以及一个4向量的框回归目标。分配规则如下：
+该OP是从输入anchor中找出训练检测模型 `RetinaNet <https://arxiv.org/abs/1708.02002>`_ 所需的正负样本，并为每个正负样本分配用于分类的目标值和位置回归的目标值，同时从全部anchor的类别预测值cls_logits、位置预测值bbox_pred中取出属于各正负样本的部分。
 
-1.在以下情况下，anchor被分配到真实框：
-（i）它与真实框具有最高的IoU重叠，或者（ii）与任何真实框具有高于positive_overlap（0.5）的IoU重叠。
+正负样本的查找准则如下：
+    - 若anchor与某个真值框之间的Intersection-over-Union（IoU）大于其他anchor与该真值框的IoU，则该anchor是正样本，且被分配给该真值框；
+    - 若anchor与某个真值框之间的IoU大于等于positive_overlap，则该anchor是正样本，且被分配给该真值框；
+    - 若anchor与某个真值框之间的IoU介于[0, negative_overlap)，则该anchor是负样本；
+    - 不满足以上准则的anchor不参与模型训练。
 
-2.对于所有真实框，当其IoU比率低于negative_overlap（0.4）时，将anchor点分配给背景。
+在RetinaNet中，对于每个anchor，模型都会预测一个C维的向量用于分类，和一个4维的向量用于位置回归，因此各正负样本的分类目标值也是一个C维向量，各正样本的位置回归目标值也是一个4维向量。对于正样本而言，若其被分配的真值框的类别是i，则其分类目标值的第i-1维为1，其余维度为0；其位置回归的目标值由anchor和真值框之间位置差值计算得到。对于负样本而言，其分类目标值的所有维度都为0，因负样本不参与位置回归的训练，故负样本无位置回归的目标值。
 
-当为锚点分配了第i个类别的真实框时，其C向量目标中的第i项设置为1，所有其他条目设置为0.当anchor被分配支背景时，所有项都设置为0。未被分配的锚点不会影响训练目标。回归目标是与指定anchor相关联的已编码真实框。
-
+分配结束后，从全部anchor的类别预测值cls_logits中取出属于各正负样本的部分，从针对全部anchor的位置预测值bbox_pred中取出属于各正样本的部分。
 
 
 参数：
-    - **bbox_pred**  (Variable) – 具有形状[N，M，4]的3-D张量表示M个边界框(bounding box)的预测位置。 N是batch大小，每个边界框有四个坐标值，为[xmin，ymin，xmax，ymax]。
-    - **cls_logits**  (Variable) – 具有形状[N，M，C]的3-D张量，表示预测的置信度。 N是batch大小，C是类别的数量（不包括背景），M是边界框的数量。
-    - **anchor_box**  (Variable) – 具有形状[M，4]的2-D张量，存有M个框，每个框表示为[xmin，ymin，xmax，ymax]，[xmin，ymin]是anchor的左上顶部坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是anchor的右下坐标。
-    - **anchor_var**  (Variable) – 具有形状[M，4]的2-D张量，存有anchor的扩展方差。
-    - **gt_boxes**  (Variable) – 真实框是具有形状[Ng，4]的2D LoDTensor，Ng是mini batch中真实框的总数。
-    - **gt_labels**  (variable) – 真实值标签是具有形状[Ng，1]的2D LoDTensor，Ng是mini batch输入真实值标签的总数。
-    - **is_crowd**  (Variable) – 1-D LoDTensor，标志真实值是聚群。
-    - **im_info**  (Variable) – 具有形状[N，3]的2-D LoDTensor。 N是batch大小，3分别为高度，宽度和比例。
-    - **num_classes**  (int32) – 种类数量。
-    - **positive_overlap**  (float) – 判定（anchor，gt框）对是一个正例的anchor和真实框之间最小重叠阀值。
-    - **negative_overlap**  (float) – （锚点，gt框）对是负例时anchor和真实框之间允许的最大重叠阈值。
+    - **bbox_pred**  (Variable) — 维度为 :math:`[N, M, 4]` 的3-D Tensor，表示全部anchor的位置回归预测值。其中，第一维N表示批量训练时批量内的图片数量，第二维M表示每张图片的全部anchor的数量，第三维4表示每个anchor有四个坐标值。数据类型为float32或float64。
+    - **cls_logits**  (Variable) – 维度为 :math:`[N, M, C]` 的3-D Tensor，表示全部anchor的分类预测值。 其中，第一维N表示批量训练时批量内的图片数量，第二维M表示每张图片的全部anchor的数量，第三维C表示每个anchor需预测的类别数量（ **注意：不包括背景** ）。数据类型为float32或float64。
+
+    - **anchor_box**  (Variable) – 维度为 :math:`[M, 4]` 的2-D Tensor，表示全部anchor的坐标值。其中，第一维M表示每张图片的全部anchor的数量，第二维4表示每个anchor有四个坐标值 :math:`[xmin, ymin, xmax, ymax]` ，:math:`[xmin, ymin]` 是anchor的左上顶部坐标，:math:`[xmax, ymax]` 是anchor的右下坐标。数据类型为float32或float64。anchor_box的生成请参考OP `anchor_generate <https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/api/layers/detection.html#anchor-generator>`_ 。
+    - **anchor_var**  (Variable) – 维度为 :math:`[M, 4]` 的2-D Tensor，表示在后续计算损失函数时anchor坐标值的缩放比例。其中，第一维M表示每张图片的全部anchor的数量，第二维4表示每个anchor有四个坐标缩放因子。数据类型为float32或float64。anchor_var的生成请参考OP `anchor_generate <https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/api/layers/detection.html#anchor-generator>`_ 。
+    - **gt_boxes**  (Variable) – 维度为 :math:`[G, 4]` 且LoD level必须为1的2-D LoDTensor，表示批量训练时批量内的真值框位置。其中，第一维G表示批量内真值框的总数，第二维表示每个真值框有四个坐标值。数据类型为float32或float64。
+    - **gt_labels**  (variable) – 维度为 :math:`[G, 1]` 且LoD level必须为1的2-D LoDTensor，表示批量训练时批量内的真值框类别，数值范围为 :math:`[1, C]` 。其中，第一维G表示批量内真值框的总数，第二维表示每个真值框只有1个类别。数据类型为int32。
+    - **is_crowd**  (Variable) – 维度为 :math:`[G]` 且LoD level必须为1的1-D LoDTensor，表示各真值框是否位于重叠区域，值为1表示重叠，则不参与训练。第一维G表示批量内真值框的总数。数据类型为int32。
+    - **im_info**  (Variable) – 维度为 :math:`[N, 3]` 的2-D LoDTensor，表示输入图片的尺寸信息。其中，第一维N表示批量训练时批量内的图片数量，第二维3表示各图片的尺寸信息，分别是网络输入尺寸的高和宽，以及原图缩放至网络输入尺寸的缩放比例。数据类型为float32或float64。
+    - **num_classes**  (int32) – 分类的类别数量，默认值为1。
+    - **positive_overlap**  (float32) – 判定anchor是一个正样本时anchor和真值框之间的最小IoU，默认值为0.5。
+    - **negative_overlap**  (float32) – 判定anchor是一个负样本时anchor和真值框之间的最大IoU，默认值为0.4。
 
 
 返回：
-返回元组（predict_scores，predict_location，target_label，target_bbox，bbox_inside_weight，fg_num）。 predict_scores和predict_location是Retinanet的预测结果。target_label和target_bbox为真实值。 predict_location是形为[F，4]的2D张量，target_bbox的形状与predict_location的形状相同，F是前景anchor的数量。 predict_scores是具有形状[F + B，C]的2D张量，target_label的形状是[F + B，1]，B是背景anchor的数量，F和B取决于此算子的输入。 Bbox_inside_weight标志预测位置是否为假前景，形状为[F，4]。 Fg_num是focal loss所需的前景数（包括假前景）。
+    - **predict_scores** (Variable) — 维度为 :math:`[F + B, C]` 的2-D Tensor，表示正负样本的分类预测值。其中，第一维F为正样本的数量，B为负样本的数量，第二维C为分类的类别数量。数据类型为float32或float64。
+    - **predict_location** (Variable) — 维度为 :math:`[F, 4]` 的2-D Tensor，表示正样本的位置回归预测值。其中，第一维F为正样本的数量，第二维4表示每个样本有4个坐标值。数据类型为float32或float64。
+    - **target_label** (Variable) — 维度为 :math:`[F + B, 1]` 的2-D Tensor，表示正负样本的分类目标值。其中，第一维F为正样本的数量，B为负样本的数量，第二维1表示每个样本的真值类别只有1类。数据类型为int32。
+    - **target_bbox** (Variable) — 维度为 :math:`[F, 4]` 的2-D Tensor，表示正样本的位置回归目标值。其中，第一维F为正样本的数量，第二维4表示每个样本有4个坐标值。数据类型为float32或float64。
+    - **bbox_inside_weight** (Variable) — 维度为 :math:`[F, 4]` 的2-D LoDTensor，表示位置回归预测值中是否属于假正样本，若某个正样本为假，则bbox_inside_weight中对应维度的值为0，否则为1。第一维F为正样本的数量，第二维4表示每个样本有4个坐标值。数据类型为float32或float64。
+    - **fg_num** (Variable) — 维度为 :math:`[N, 1]` 的2-D LoDTensor，表示正样本的数量与1之和。其中，第一维N表示批量训练时各批量内的图片数量。数据类型为int32。
 
 
-返回类型：tuple
+返回类型：元组(tuple)，元组中的元素predict_scores，predict_location，target_label，target_bbox，bbox_inside_weight，fg_num都是Variable。
+
 
 **代码示例**
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    bbox_pred = layers.data(name='bbox_pred', shape=[1, 100, 4],
+    import numpy as np
+ 
+    bbox_pred = fluid.layers.data(name='bbox_pred', shape=[1, 100, 4],
                       append_batch_size=False, dtype='float32')
-    cls_logits = layers.data(name='cls_logits', shape=[1, 100, 10],
+    cls_logits = fluid.layers.data(name='cls_logits', shape=[1, 100, 10],
                       append_batch_size=False, dtype='float32')
-    anchor_box = layers.data(name='anchor_box', shape=[100, 4],
+    anchor_box = fluid.layers.data(name='anchor_box', shape=[100, 4],
                       append_batch_size=False, dtype='float32')
-    anchor_var = layers.data(name='anchor_var', shape=[100, 4],
+    anchor_var = fluid.layers.data(name='anchor_var', shape=[100, 4],
                       append_batch_size=False, dtype='float32')
-    gt_boxes = layers.data(name='gt_boxes', shape=[10, 4],
+    gt_boxes = fluid.layers.data(name='gt_boxes', shape=[10, 4],
                       append_batch_size=False, dtype='float32')
-    gt_labels = layers.data(name='gt_labels', shape=[10, 1],
+    gt_labels = fluid.layers.data(name='gt_labels', shape=[10, 1],
                       append_batch_size=False, dtype='float32')
     is_crowd = fluid.layers.data(name='is_crowd', shape=[1],
                       append_batch_size=False, dtype='float32')
-    im_info = fluid.layers.data(name='im_infoss', shape=[1, 3],
+    im_info = fluid.layers.data(name='im_info', shape=[1, 3],
                       append_batch_size=False, dtype='float32')
     loc_pred, score_pred, loc_target, score_target, bbox_inside_weight, fg_num =
           fluid.layers.retinanet_target_assign(bbox_pred, cls_logits, anchor_box,
           anchor_var, gt_boxes, gt_labels, is_crowd, im_info, 10)
-
-
-
-
-
-
-
-
-
-
