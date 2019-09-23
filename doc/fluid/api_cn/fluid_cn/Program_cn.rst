@@ -13,7 +13,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 一个Program的集合通常包含初始化程序（startup_program）与主程序(main_program)，初始化程序是一个包含一些初始化工作的Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个Program的集合可以被用来测试或者训练，被用来训练时， ``Paddle Fluid`` 将会包含所有的上下文来搭建一个训练网络，被用来测试时， ``Paddle Fluid`` 将会剪去一些与测试无关的上下文，比如反向传播的OP和变量。
 
 
-返回：Empty Program
+返回：创建的空的Program
 
 返回值类型：Program
 
@@ -41,10 +41,10 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 一个用于调试的描述Program的字符串
 
 参数：
- - **throw_on_error** (bool) - 没有设置任何必需的字段时，抛出值错误。
+ - **throw_on_error** (bool) - 是否在没有设置必需字段时抛出异常。
  - **with_details** (bool) - 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
 
-返回： 调试用的对于Program的描述的字符串
+返回： 将Program转换为字符串
 
 返回类型： str
 
@@ -65,9 +65,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 **注意:**
     **1.** ``Program.clone()`` **方法不会克隆**  :ref:`cn_api_fluid_io_PyReader`
 
-    **2. 如果您只是想要一个用于测试的前向计算程序，请在使用** ``Opimizer.minimize`` 之前使用 ``clone``
-
-    **3. 此API将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
+    **2. 此API将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
 
 
 创建一个新的、相同的Program。
@@ -77,6 +75,8 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 - 克隆Program用于训练时，将 ``for_test`` 设置为False。
 - 克隆Program用于测试时，将 ``for_test`` 设置为True。虽然在这种情况下，如果您在使用了优化器之后调用 ``clone`` 我们依旧会对Program当中反向执行以及优化器相关的内容进行自动裁剪，但是，我们强烈建议您在使用优化器之前使用 ``clone`` 例如您如果使用的是 :ref:`cn_api_fluid_optimizer_Momentum` :
 
+**代码示例**
+
  .. code-block:: python
 
        import paddle.fluid as fluid
@@ -85,7 +85,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
        optimizer.minimize()
 
 参数：
- - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True
+ - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP
 
 返回：一个新的、相同的Program
 
@@ -93,7 +93,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 
 **代码示例**
 
-注意，Program Desc在clone后的顺序可能不同，这不会影响您的训练或测试进程。在下面的示例中，我们为您提供了一个简单的方法print_prog（Program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
+注意，Program在clone后的顺序可能不同，这不会影响您的训练或测试进程。在下面的示例中，我们为您提供了一个简单的方法print_prog（Program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
 
 .. code-block:: python
 
