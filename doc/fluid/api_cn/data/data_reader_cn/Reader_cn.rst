@@ -77,15 +77,15 @@ paddle.reader.compose
 
 .. py:function::   paddle.reader.compose(*readers, **kwargs)
 
-该函数将多个数据读取器组合为一个数据读取器。
+该函数将多个数据读取器组合为一个数据读取器，返回读取器的输出包含所有输入读取器的输出。
 
-如果输入reader输出以下数据项：（1，2）3（4，5），则组合reader将输出：（1，2，3，4，5）。
+例如：如果输入为三个reader，三个reader的输出分别为：（1，2）、3、（4，5），则组合reader的输出为：（1，2，3，4，5）。
 
 参数：
     - **readers** - 将被组合的多个读取器。
-    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。
+    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，输出结果中无法对齐的末尾数据将自动丢弃。该参数的默认值True。
 
-返回：新的数据读取器,新读取器的读入的数据是是各个输入读取器读入数据的组合。
+返回：数据读取器。
 
 **代码示例**:
 
@@ -96,7 +96,7 @@ paddle.reader.compose
      reader2 = data_reader()
      reader_compose = paddle.reader.compose(reader1, reader2, check_alignment=False)
 
-抛出异常：     ``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会抛出异常。
+注意： 运行时可能时可能会抛出异常``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会检查并抛出该异常。
 
 
 
@@ -243,31 +243,56 @@ paddle.reader.creator.np_array
 
 .. py:function:: paddle.reader.creator.np_array(x)
 
-如果是numpy向量，则创建一个生成x个元素的读取器。或者，如果它是一个numpy矩阵，创建一个生成x行元素的读取器。或由最高维度索引的任何子超平面。
+该函数将根据输入x创建一个数据读取器，x可以是向量或矩阵。输出数据读取器内的元素数量与输入x内的元素数量相同。
 
 参数：
-    - **x** – 用于创建reader的numpy数组。
+    - **x** – 用于创建reader的numpy数组,可以是向量或者矩阵。
 
 返回： 从x创建的数据读取器
+
+**代码示例**:
+
+.. code-block:: python
+
+     import numpy as np
+     import paddle.reader
+     x = np.zeros(5,2) 
+     reader_np_array = paddle.reader.creator.np_array(x)
 
 paddle.reader.creator.text_file
 ======================================
 
 .. py:function:: paddle.reader.creator.text_file(path)
 
-创建从给定文本文件逐行输出文本的数据读取器。将删除每行的行尾的(‘\n’)。
+该函数将从给定文本文件创建数据读取器，创建的读取器将文本中的内容逐行输出（不输出每行文本末尾的换行符‘\n’)。
 
-路径：文本文件的路径
+参数：
+    -**paths(str)**：文本文件的路径。
 
-返回： 文本文件的数据读取器
+返回： 数据读取器
+
+**代码示例**:
+
+.. code-block:: python
+
+     import paddle.reader
+     reader_text_file = paddle.reader.creator.text_file("input_file.txt")
 
 paddle.reader.creator.recordio
 ======================================
 
 .. py:function::  paddle.reader.creator.recordio(paths, buf_size=100)
 
-从给定的recordio文件路径创建数据reader，用“，”分隔“，支持全局模式。
+从给定的recordio文件路径(或多个recordio文件路径)创建数据reader，不同文件路径之间用“，”分隔。
 
-路径：recordio文件的路径，可以是字符串或字符串列表。
+参数：
+    -**paths(str|list(str))**：recordio文件的路径，可以输入单个路径或同时输入多个路径。
 
-返回：recordio文件的数据读取器
+返回：数据读取器
+
+**代码示例**:
+
+.. code-block:: python
+
+     import paddle.reader
+     reader_recordio = paddle.reader.creator.text_file("path_to_recordio_file")
