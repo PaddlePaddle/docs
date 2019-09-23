@@ -5,38 +5,35 @@ AdamaxOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdamaxOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None)
 
-该类参考Adam论文 `Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_中第7节的Adamax优化内容，实现了Adamax优化器，Adamax是基于无穷大范数的Adam算法的一个变种。
+Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节Adamax优化相关内容所实现的。Adamax算法是基于无穷大范数的 `Adam <https://arxiv.org/abs/1412.6980>`_ 算法的一个变种，使学习率更新的算法更加稳定和简单。
 
-Adamax参数更新的计算公式:
+其参数更新的计算公式如下:
 
 .. math::
     \\t = t + 1
 .. math::
     moment\_out=\beta_1∗moment+(1−\beta_1)∗grad
 .. math::
-    inf\_norm\_out=\max{(\beta_2∗inf\_norm+epsilon, \left|grad\right|)}
+    inf\_norm\_out=\max{(\beta_2∗inf\_norm+\epsilon, \left|grad\right|)}
 .. math::
     learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
 .. math::
     param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
 
+相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_
 
 论文中没有 ``epsilon`` 参数。但是，为了保持数值稳定性， 避免除0错误， 此处增加了这个参数。
 
-参数:
+参数：
   - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
   - **beta1** (float, 可选) - 一阶矩估计的指数衰减率，默认值为0.9
   - **beta2** (float, 可选) - 二阶矩估计的指数衰减率，默认值为0.999
   - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
-  - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是``fluid.regularizer.L2DecayRegularizer``，默认值为None
+  - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
   - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
-返回：AdamaxOptimizer的实例
-
-返回类型：Optimizer
-
 .. note::
-    目前 ``AdamaxOptimizer`` 不支持 sparse parameter optimization（稀疏的parameter优化）.
+    目前 ``AdamaxOptimizer`` 不支持 Sparse Parameter Optimization（稀疏参数优化）。
 
 **代码示例**：
 
