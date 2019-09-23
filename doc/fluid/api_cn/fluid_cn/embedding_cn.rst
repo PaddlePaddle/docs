@@ -5,11 +5,14 @@ embedding
 
 .. py:function:: paddle.fluid.embedding(input, size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
 
-嵌入层(Embedding Layer)
+**注意：相对于 fluid.layers.** :ref:`cn_api_fluid_layers_embedding` **接口，此OP移除了输入tensor shape的最后一维强制为1的限制，详细使用区别，请参考使用代码样例。**
 
-该层包含一个指定大小的词嵌入张量矩阵，会根据 ``input`` 中提供的 ``id`` 作为索引，在词嵌入矩阵中查询每个 ``id`` 对应的张量作为输出。
+该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，函数会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
-注意：相对于 fluid.layers. :ref:`cn_api_fluid_layers_embedding` 接口，此层去除了 ``input`` shape的最后一维强制为1的限制，详细使用区别，请参考上述文档链接。
+输出的tensor的shape是在输入tensor shape的最后一维后面添加了emb_size的维度。
+
+注：input中的id必须满足 ``0 =< id < size``，否则程序会抛异常退出。
+
 
 ::
 
@@ -46,17 +49,17 @@ embedding
 
 
 参数：
-    - **input** (Tensor|LoDTensor) - 包含 ``id`` 索引信息的Tensor或LoDTensor，取值必须为int64类型，且输入的 ``id`` 值范围须满足 :math:`0 <= id < size[0]` 。
-    - **size** (tuple|list) - 用于指定词嵌入张量矩阵的维度 :math:`(vocab\_size, emb\_dim)` ，第一个参数表示词嵌入矩阵字典的大小，第二个表示词嵌入向量的维度。
-    - **is_sparse** (bool) - 若设置为 ``True`` ， 则采用稀疏更新的方式进行参数更新，默认为 ``False`` 。
-    - **is_distributed** (bool) - 若设置为 ``True`` ， 则从远程参数服务端获取词嵌入张量矩阵，默认为 ``False`` 。
-    - **padding_idx** (int|long|None) - 若给定 ``padding_idx`` 参数，只要输入的 ``id`` 取值为 ``padding_idx`` ， 则会输出全0填充的词向量；若 :math:`padding\_idx < 0` ，则 ``padding_idx`` 会自动转换为 :math:`size[0] + padding\_idx` ，默认为 ``None`` 。
-    - **param_attr** (ParamAttr) - 可通过 ``param_attr`` 设置该层权重参数的初始化方式、学习率等，默认为 ``None`` 。
-    - **dtype** (np.dtype|core.VarDesc.VarType|str) - 输出张量的数据类型，如float16， float32，float64类型，默认为float32。
+    - **input** (Variable) - 存储id信息，数据类型必须为：int64。
+    - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding 层维度）。
+    - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快。
+    - **is_distributed** (bool) - 是否使用分布式的方式存储embedding 矩阵，仅在多机分布式cpu训练中使用。
+    - **padding_idx** (int|long|None) - padding_idx需在区间[-vocab_size, vocab_size)，否则不生效，padding_idx<0时，padding_idx 会被改成 vocab_size + padding_idx，input中等于padding_index的id对应的embedding信息会被设置为0。如果为none，不作处理，默认为None。
+    - **param_attr** (ParamAttr) - 可通过param_attr设置该层权重参数的初始化方式、学习率等，默认为None。
+    - **dtype** (np.dtype|core.VarDesc.VarType|str) - 输出张量的数据类型，数据类型必须为：float32，float64，默认为float32。
 
-返回：存储 ``input`` 映射后的词嵌入矩阵。
+返回：input对应的embedding信息。
 
-返回类型：Variable(Tensor|LoDTensor) 数据类型为float16，float32，float64的Tensor或者LoDTensor。
+返回类型：Variable，数据类型和dtype定义的类型一致。
 
 **代码示例**:
 
