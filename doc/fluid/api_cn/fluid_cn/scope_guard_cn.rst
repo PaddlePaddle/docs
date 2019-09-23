@@ -11,6 +11,8 @@ scope_guard
 参数：
   - **scope** (Scope) - 新的全局或默认的作用域。
 
+返回： 无
+
 **代码示例**
 
 .. code-block:: python
