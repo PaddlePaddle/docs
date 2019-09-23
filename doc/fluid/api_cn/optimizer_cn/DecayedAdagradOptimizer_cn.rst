@@ -22,7 +22,7 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
 参数：
   - **learning_rate** (float|Variable) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable
   - **decay** (float，可选) – 衰减率，默认值为0.95
-  - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是``fluid.regularizer.L2DecayRegularizer``，默认值为None 
+  - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None 
   - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06
   - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
