@@ -14,9 +14,9 @@ append_backward
 
 参数：
     - **loss** （Variable）- 网络的损失变量。
-    - **parameter_list** （list [str]，可选）- 指定优化器需要更新的参数名称列表。如果为 ``None`` ，则将更新所有参数。默认值：``None``。
-    - **no_grad_set** （set，可选）- ``block`` 0中变量的梯度应该被忽略。所有 ``block`` 中带有 ``stop_gradient = True`` 的所有变量都将自动添加到此集合中。默认值：``None``。
-    - **callbacks** （list [callable object]，可选）- 回调用于在反向传播构建中执行一些自定义作业。每次将新的梯度运算符添加到程序中时，将调用其中的所有可调用对象。可调用对象必须有两个输入参数： ``block`` 和 ``context`` 。 ``block`` 是将被添加到新梯度算子的块。 ``context`` 是一个映射，其键是梯度变量名，值是对应的原始变量。除此之外， ``context`` 还有另一个特殊的键值对：键是字符串 ``__ current_op_desc__`` ，值是刚刚触发可调用对象的梯度运算符的 ``op_desc`` 。默认值：``None``。
+    - **parameter_list** （list [str]，可选）- 指定优化器需要更新的参数名称列表。如果为 ``None`` ，则将更新所有参数。缺省值为 ``None``。
+    - **no_grad_set** （set，可选）- ``block`` 0中变量的梯度应该被忽略。所有 ``block`` 中带有 ``stop_gradient = True`` 的所有变量都将自动添加到此集合中。缺省值为 ``None``。
+    - **callbacks** （list [callable object]，可选）- 回调用于在反向传播构建中执行一些自定义作业。每次将新的梯度运算符添加到程序中时，将调用其中的所有可调用对象。可调用对象必须有两个输入参数： ``block`` 和 ``context`` 。 ``block`` 是将被添加到新梯度算子的块。 ``context`` 是一个映射，其键是梯度变量名，值是对应的原始变量。除此之外， ``context`` 还有另一个特殊的键值对：键是字符串 ``__ current_op_desc__`` ，值是刚刚触发可调用对象的梯度运算符的 ``op_desc`` 。缺省值为 ``None``。
 
 返回：   参数及其梯度变量的元组的列表。元组的第一个值为参数，第二个值为该参数的梯度变量。
 
@@ -29,12 +29,10 @@ append_backward
 
 .. code-block:: python
 
-        # 网络配置
-        # 损失计算
         import paddle.fluid as fluid
         x = fluid.layers.data(name='x', shape=[13], dtype='float32')
         y = fluid.layers.data(name='y', shape=[1], dtype='float32') 
-              
+        
         y_predict = fluid.layers.fc(input=x, size=1, act=None)
         loss = fluid.layers.square_error_cost(input=y_predict, label=y)
         
