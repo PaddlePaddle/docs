@@ -26,10 +26,6 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
   - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06
   - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
-返回：DecayedAdagradOptimizer的实例
-
-返回类型：paddle.fluid.Optimizer
-
 .. note::
     当前， ``DecayedAdagradOptimizer`` 不支持Sparse Parameter Optimization（稀疏参数优化）
   
