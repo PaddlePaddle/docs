@@ -5,11 +5,11 @@ softmax
 
 .. py:function:: paddle.fluid.layers.softmax(input, use_cudnn=False, name=None, axis=-1)
 
-该OP实现了softmax层。输入 ``input`` 的 ``axis`` 维会被置换到最后一维。然后，将输入 ``Tensor`` 在逻辑上展平为二维矩阵。矩阵第二维（行长度）和输入 ``axis`` 维的长度相同，第一维（列长度）是输入除最后一维之外的其他所有维长度的乘积。对于矩阵的每一行，softmax操作将包含任意实数值的K维向量（K是输入 ``axis`` 维的长度）压缩为包含\[0,1\]范围内任意实数的K维向量，并且K维实数的和为1。
+该OP实现了softmax层。输入 ``input`` 的 ``axis`` 维会被置换到最后一维；然后将输入 ``Tensor`` 在逻辑上变换为二维矩阵。矩阵第一维（列长度）是输入除最后一维之外的其他维长度的乘积，第二维（行长度）和输入 ``axis`` 维的长度相同。对于矩阵的每一行，softmax操作对其进行重新缩放，使得该行的每个元素在\[0,1\]范围内，并且总和为1。
 
-softmax操作计算K维向量中指定维的指数和其他维指数值的总和。然后给定维的指数与其他维指数值之和的比率就是softmax操作的输出。
+softmax操作计算K维向量（K是输入第 ``axis`` 维的长度）中指定维的指数值和全部维指数值的和。指定维的指数值与全部维指数值之和的比值就是softmax操作的输出。
 
-对矩阵中的每行i和每列j有：
+对矩阵中的第i行和第j列有：
 
 .. math::
 
@@ -42,8 +42,4 @@ softmax操作计算K维向量中指定维的指数和其他维指数值的总和
     output= exe.run(feed={"input": x},
                      fetch_list=[result[0]])
     print(output)
-    """
-    output:
-    array([0.22595254, 0.39276356, 0.38128382], dtype=float32)]
-    """
 
