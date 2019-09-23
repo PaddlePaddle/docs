@@ -6,10 +6,10 @@ scope_guard
 .. py:function:: paddle.fluid.scope_guard(scope)
 
 
-修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。
+该接口通过 python 的 ``with`` 语句修改全局或默认的作用域（scope），修改后，运行时中的所有变量都将分配给新的作用域。
 
 参数：
-  - **scope** - 新的全局/默认 scope。
+  - **scope** (Scope) - 新的全局或默认的作用域。
 
 **代码示例**
 
@@ -21,7 +21,7 @@ scope_guard
   new_scope = fluid.Scope()
   with fluid.scope_guard(new_scope):
        fluid.global_scope().var("data").get_tensor().set(numpy.ones((2, 2)), fluid.CPUPlace())
-  numpy.array(new_scope.find_var("data").get_tensor())
+  numpy.array(new_scope.find_var("data").get_tensor())  # array([[1., 1.], [1., 1.]])
  
 
 
