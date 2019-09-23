@@ -5,32 +5,13 @@ merge_selected_rows
 
 .. py:function:: paddle.fluid.layers.merge_selected_rows(x, name=None)
 
-**实现合并选中行（row）操作**
-
-该运算用于合并（值相加）输入张量中重复的行。输出行没有重复的行，并且按值从小到大顺序重新对行排序。
-
-::
-
-    例如：
-
-          输入:
-               X.rows = [0, 5, 5, 4, 19]
-               X.height = 20
-               X.value = [[1, 1] [2, 2] [3, 3] [4, 4] [6, 6]]
-
-
-          输出：
-               Out.row is [0, 4, 5, 19]
-               Out.height is 20
-               Out.value is: [[1, 1] [4, 4] [5, 5] [6, 6]]
-
-
+累加合并 `SelectedRows <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/selected_rows.h>`_ ( ``x`` ) 中的重复行，并对行值由小到大重新排序。
 
 参数:
-  - x (Variable) – 输入类型为SelectedRows, 选中行有可能重复
-  - name (basestring|None) – 输出变量的命名
+  - x (Variable) – 类型为 SelectedRows，选中行允许重复。
+  - name (basestring|None) – 输出变量名称。
 
-返回: 输出类型为SelectedRows，并且选中行不会重复
+返回: 含有 SelectedRows 的 Variable，选中行不重复。
 
 返回类型: 变量（Variable）
 
@@ -39,17 +20,44 @@ merge_selected_rows
 ..  code-block:: python
 
   import paddle.fluid as fluid
-  b = fluid.default_main_program().global_block()
-  var = b.create_var(
-        name="X", dtype="float32", persistable=True,
-        type=fluid.core.VarDesc.VarType.SELECTED_ROWS)
+  import numpy
+
+  place = fluid.CPUPlace()
+  block = fluid.default_main_program().global_block()
+
+  var = block.create_var(name="X2",
+                         dtype="float32",
+                         persistable=True,
+                         type=fluid.core.VarDesc.VarType.SELECTED_ROWS)
   y = fluid.layers.merge_selected_rows(var)
+  z = fluid.layers.get_tensor_from_selected_rows(y)
 
+  x_rows = [0, 2, 2, 4, 19]
+  row_numel = 2
+  np_array = numpy.ones((len(x_rows), row_numel)).astype("float32")
 
+  x = fluid.global_scope().var("X2").get_selected_rows()
+  x.set_rows(x_rows)
+  x.set_height(20)
+  x_tensor = x.get_tensor()
+  x_tensor.set(np_array, place)
 
+  exe = fluid.Executor(place=place)
+  result = exe.run(fluid.default_main_program(), fetch_list=[z])
 
-
-
-
-
-
+  print("x_rows: ", x_rows)
+  print("np_array: ", np_array)
+  print("result: ", result)
+  '''
+  Output Values:
+  ('x_rows: ', [0, 2, 2, 4, 19])
+  ('np_array: ', array([[1., 1.],
+         [1., 1.],
+         [1., 1.],
+         [1., 1.],
+         [1., 1.]], dtype=float32))
+  ('result: ', [array([[1., 1.],
+         [2., 2.],
+         [1., 1.],
+         [1., 1.]], dtype=float32)])
+  '''
