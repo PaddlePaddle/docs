@@ -20,6 +20,7 @@ L2DecayRegularizer实现L2权重衰减正则化，用于模型训练，有助于
 .. code-block:: python
 
     import paddle.fluid as fluid
+
     main_prog = fluid.Program()
     startup_prog = fluid.Program()
     with fluid.program_guard(main_prog, startup_prog):

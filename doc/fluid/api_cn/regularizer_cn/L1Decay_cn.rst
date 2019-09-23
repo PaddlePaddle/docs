@@ -23,6 +23,7 @@ L1Decay实现L1权重衰减正则化，用于模型训练，使得权重矩阵�
 .. code-block:: python
 
     import paddle.fluid as fluid
+
     main_prog = fluid.Program()
     startup_prog = fluid.Program()
     with fluid.program_guard(main_prog, startup_prog):
