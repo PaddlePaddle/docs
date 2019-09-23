@@ -5,9 +5,9 @@ AdamOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None, lazy_mode=False)
 
-该类实现了自适应矩估计优化器，出自 `Adam论文： Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 的第二节。
+Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节，能够利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
 
-Adam优化器利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。Adam优化器参数更新的计算公式如下：
+其参数更新的计算公式如下：
 
 .. math::
     \\t = t + 1
@@ -20,12 +20,14 @@ Adam优化器利用梯度的一阶矩估计和二阶矩估计动态调整每个�
 .. math::
     param\_out=param-learning\_rate*\frac{moment\_1}{\sqrt{moment\_2}+\epsilon}\\
 
+相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
+
 参数: 
     - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
     - **beta1** (float, 可选) - 一阶矩估计的指数衰减率，默认值为0.9
     - **beta2** (float, 可选) - 二阶矩估计的指数衰减率，默认值为0.999
     - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
-    - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是``fluid.regularizer.L2DecayRegularizer``，默认值为None
+    - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
     - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
     - **lazy_mode** （bool, 可选） - 设为True时，仅更新当前具有梯度的元素。官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为False
 
