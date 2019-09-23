@@ -41,7 +41,7 @@ retinanet_target_assign
     - **target_label** (Variable) — 维度为 :math:`[F + B, 1]` 的2-D Tensor，表示正负样本的分类目标值。其中，第一维F为正样本的数量，B为负样本的数量，第二维1表示每个样本的真值类别只有1类。数据类型为int32。
     - **target_bbox** (Variable) — 维度为 :math:`[F, 4]` 的2-D Tensor，表示正样本的位置回归目标值。其中，第一维F为正样本的数量，第二维4表示每个样本有4个坐标值。数据类型为float32或float64。
     - **bbox_inside_weight** (Variable) — 维度为 :math:`[F, 4]` 的2-D LoDTensor，表示位置回归预测值中是否属于假正样本，若某个正样本为假，则bbox_inside_weight中对应维度的值为0，否则为1。第一维F为正样本的数量，第二维4表示每个样本有4个坐标值。数据类型为float32或float64。
-    - **fg_num** (Variable) — 维度为 :math:`[N, 1]` 的2-D LoDTensor，表示正样本的数量。其中，第一维N表示批量内的图片数量。 **注意：由于正样本数量会用作后续损失函数的分母，为避免出现除以0的情况，该OP已将每张图片的正样本数量做加1操作** 。数据类型为int32。
+    - **fg_num** (Variable) — 维度为 :math:`[N, 1]` 的2-D Tensor，表示正样本的数量。其中，第一维N表示批量内的图片数量。 **注意：由于正样本数量会用作后续损失函数的分母，为避免出现除以0的情况，该OP已将每张图片的正样本数量做加1操作** 。数据类型为int32。
 
 
 返回类型：元组(tuple)，元组中的元素predict_scores，predict_location，target_label，target_bbox，bbox_inside_weight，fg_num都是Variable。
