@@ -5,24 +5,23 @@ load_vars
 
 .. py:function:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
-``executor`` 从指定目录加载变量。
+该接口从指定目录加载程序中的变量。
 
-有两种方法来加载变量:方法一，``vars`` 为变量的列表。方法二，将已存在的 ``Program`` 赋值给 ``main_program`` ，然后将加载 ``Program`` 中的所有变量。第一种方法优先级更高。如果指定了 vars，那么忽略 ``main_program`` 和 ``predicate`` 。
-
-``dirname`` 用于指定加载变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用 ``filename`` 来指定它。
+通过 ``vars`` 指定需要加载的变量，或者通过 ``predicate`` 筛选需要加载的变量，``vars`` 和 ``predicate`` 不能同时为None。
 
 参数:
- - **executor**  (Executor) – 加载变量的 executor
- - **dirname**  (str) – 目录路径
- - **main_program**  (Program|None) – 需要加载变量的 Program。如果为 None，则使用 default_main_Program 。默认值: None
- - **vars**  (list[Variable]|None) –  要加载的变量的列表。 优先级高于main_program。默认值: None
- - **predicate**  (function|None) – 如果不等于None，当指定main_program， 那么只有 predicate(variable)==True 时，main_program中的变量会被加载。
- - **filename**  (str|None) – 保存变量的文件。如果想分开保存变量，设置 filename=None. 默认值: None
+ - **executor**  (Executor) – 运行的执行器。
+ - **dirname**  (str) – 加载变量所在的目录路径。
+ - **main_program**  (Program，可选) – 需要加载变量的程序。如果为None，则使用默认的主程序。默认值为None。
+ - **vars**  (list[Variable]，可选) –  通过该列表指定需要加载的变量。默认值为None。
+ - **predicate**  (function，可选) – 通过该函数筛选 :math:`predicate(variable)== True` 的变量进行加载。如果通过 ``vars`` 指定了需要加载的变量，则该参数无效。默认值为None。
+ - **filename**  (str，可选) – 加载所有变量的文件。如果所有待加载变量是保存在一个文件中，则设置 ``filename`` 为该文件名；如果所有待加载变量是按照变量名称单独保存成文件，则设置 ``filename`` 为None。默认值为None。
+
+返回： 无
 
 抛出异常：
-  - ``TypeError`` - 如果参数 ``main_program`` 为 None 或为一个非 ``Program`` 的实例
-   
-返回: None
+  - ``TypeError`` - 如果main_program不是Program的实例，也不是None。
+ 
   
 **代码示例**
 
@@ -41,26 +40,26 @@ load_vars
     exe = fluid.Executor(place)
     exe.run(startup_prog)
 
-    param_path = "./my_paddle_model"
-
-    # 第一种使用方式 使用 main_program 指定变量
-    def name_has_fc(var):
-        res = "fc" in var.name
-        return res
-    fluid.io.save_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
-    fluid.io.load_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
-    #加载所有`main_program`中变量名包含 ‘fc’ 的变量
-    #并且此前所有变量应该保存在不同文件中
-
-    #用法2：使用 `vars` 来使变量具体化
+    # 用vars来指定变量。
     path = "./my_paddle_vars"
     var_list = [w, b]
     fluid.io.save_vars(executor=exe, dirname=path, vars=var_list,
                        filename="vars_file")
     fluid.io.load_vars(executor=exe, dirname=path, vars=var_list,
                        filename="vars_file")
-    # 加载w和b，它们此前应被保存在同一名为'var_file'的文件中
-    # 该文件所在路径为 "./my_paddle_model"
+    # 加载w和b。它们被保存在'var_file'的文件中，所在路径为 "./my_paddle_model"
+    # 通过predicate筛选变量。
+    
+    def name_has_fc(var):
+        res = "fc" in var.name
+        return res
+    
+    param_path = "./my_paddle_model"
+    fluid.io.save_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
+    fluid.io.load_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
+    #加载 `main_program` 中变量名包含 ‘fc’ 的所有变量
+    #并且此前所有变量应该保存在不同文件中
+
  
 
 
