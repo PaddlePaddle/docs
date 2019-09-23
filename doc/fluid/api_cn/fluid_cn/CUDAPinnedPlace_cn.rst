@@ -5,7 +5,7 @@ CUDAPinnedPlace
 
 .. py:class:: paddle.fluid.CUDAPinnedPlace
 
-CUDAPinnedPlace是一个设备描述符，它所指代的存储空间可以被GPU和CPU访问。
+``CUDAPinnedPlace`` 是一个设备描述符，它所指代的存储空间可以转移数据到 GPU 中，可以被 GPU 和 CPU 访问。
 
 **代码示例**
 

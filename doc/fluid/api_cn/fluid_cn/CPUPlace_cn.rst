@@ -5,8 +5,7 @@ CPUPlace
 
 .. py:class:: paddle.fluid.CPUPlace
 
-
-CPUPlace是设备的描述符。它代表一个CPU，可以访问CPUPlace对应的内存。
+``CPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 或 ``LoDTensor`` 的 ``CPU`` 设备，可以访问 ``CPUPlace`` 对应的内存。
 
 **代码示例**
 
