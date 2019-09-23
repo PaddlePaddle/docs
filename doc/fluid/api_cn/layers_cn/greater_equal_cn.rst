@@ -11,7 +11,7 @@ greater_equal
 参数：
     - **x** (Variable) – 进行比较的第一个输入，是一个多维的Tensor，数据类型可以是float32，float64，int32，int64。 
     - **y** (Variable) – 进行比较的第二个输入，是一个多维的Tensor，数据类型可以是float32，float64，int32，int64。
-    - **cond** (Variable，可选) – 如果为None，则创建一个Tensor来作为进行比较的输出结果，该Tensor的shape，数据类型和输入x一致；如果不为None，则将Tensor作为该OP的输出，数据shape和数据类型需要和输入x一致。缺省值为None。 
+    - **cond** (Variable，可选) – 如果为None，则创建一个Tensor来作为进行比较的输出结果，该Tensor的shape，数据类型和输入x一致；如果不为None，则将Tensor作为该OP的输出，数据shape和数据类型需要和输入x一致。默认值为None。 
 
 返回：输出结果的Tensor，数据的shape和输入x一致。
 
@@ -27,6 +27,7 @@ greater_equal
      label = layers.assign(np.array([2, 2], dtype='int32'))
      limit = layers.assign(np.array([2, 3], dtype='int32'))
      out = fluid.layers.greater_equal(x=label, y=limit) #out=[True, False]
+     out_1 = label >= limit #out1=[True, False]
 
 
 

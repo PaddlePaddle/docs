@@ -17,7 +17,7 @@ rsqrt
 
 参数:
     - **x** (Variable) – 输入是多维Tensor或LoDTensor，数据类型可以是float32和float64。 
-    - **use_cudnn** (bool) – 是否仅用于cudnn核，默认为False。若设为True，则需要安装cudnn。
+    - **name** (str，可选）— 这一层的名称（可选）。如果设置为None，则将自动命名这一层。默认值为None。。
 
 返回：对输入x进行rsqrt激活函数计算后的Tensor或LoDTensor，数据shape和输入x的shape一致。
 

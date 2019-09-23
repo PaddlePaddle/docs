@@ -8,10 +8,10 @@ reduce_all
 该OP是对指定维度上的Tensor元素进行与逻辑（&）计算，并输出相应的计算结果。
 
 参数：
-    - **input** （Variable）— 输入变量为多维Tensor或LoDTensor，OP会依据C++转化规范将输入数据统一转化为bool类型数据。
-    - **dim** （list | int，可选）— 与逻辑运算的维度。如果为None，则计算所有元素的与逻辑并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。缺省值为None。
-    - **keep_dim** （bool）— 是否在输出Tensor中保留减小的维度。如 keep_dim 为true，否则结果张量的维度将比输入张量小，默认为False。
-    - **name** （str， 可选）— 这一层的名称。如果设置为None，则将自动命名这一层。缺省值为None。
+    - **input** （Variable）— 输入变量为多维Tensor或LoDTensor，数据类型需要为bool类型。
+    - **dim** （list | int，可选）— 与逻辑运算的维度。如果为None，则计算所有元素的与逻辑并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input))` 范围内。如果 :math:`dim [i] <0` ，则维度将减小为 :math:`rank+dim[i]` 。默认值为None。
+    - **keep_dim** （bool）— 是否在输出Tensor中保留减小的维度。如 keep_dim 为true，否则结果张量的维度将比输入张量小，默认值为False。
+    - **name** （str， 可选）— 这一层的名称。如果设置为None，则将自动命名这一层。默认值为None。
 
 返回：在指定dim上进行与逻辑计算的Tensor，数据类型为bool类型。
 
