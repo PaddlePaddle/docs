@@ -54,18 +54,18 @@ one_hot
     depth = 4
     allow_out_of_range=False
 
-  输出：抛出`Illegal value`的异常
+  输出：抛出 Illegal value 的异常
     X中第2维的值是5，超过了depth，而allow_out_of_range=False表示不允许超过，因此抛异常。  
 
 
 参数：
-    - **input** (Variable) - 维度为 :math:[N_1, ..., N_n] 的多维Tensor，维度至少1维。数据类型为int32或int64。
+    - **input** (Variable) - 维度为 :math:`[N_1, ..., N_n]` 的多维Tensor，维度至少1维。数据类型为int32或int64。
     - **depth** (int) - 字典大小
-    - **allow_out_of_range** (bool) - 指明input中所包含的id值是否可以大于depth值。当超过depth时，如果 `allow_out_of_range` 为False，则会抛出`Illegal value`的异常；如果设置为True，该id对应的向量为0向量。
+    - **allow_out_of_range** (bool) - 指明input中所包含的id值是否可以大于depth值。当超过depth时，如果 `allow_out_of_range` 为False，则会抛出 `Illegal value` 的异常；如果设置为True，该id对应的向量为0向量。
 
-返回：实数向量，数据类型为float32
+返回：转换后的one-hot实数向量。
 
-返回类型：Variable
+返回类型：Variable，数据类型为float32。
 
 **代码示例**：
 
