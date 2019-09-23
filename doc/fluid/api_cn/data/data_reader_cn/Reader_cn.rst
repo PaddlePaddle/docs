@@ -96,7 +96,7 @@ paddle.reader.compose
      reader2 = data_reader()
      reader_compose = paddle.reader.compose(reader1, reader2, check_alignment=False)
 
-注意： 运行时可能时可能会抛出异常``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会检查并抛出该异常。
+注意： 运行时可能时可能会抛出异常 ``ComposeNotAligned`` ，原因是输入的readers未对齐。 当check_alignment设置为False，不会检查并抛出该异常。
 
 
 
