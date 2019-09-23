@@ -6,10 +6,10 @@ scope_guard
 .. py:function:: paddle.fluid.executor.scope_guard (scope)
 
 
-修改全局/默认作用域（scope）,  运行时中的所有变量都将分配给新的scope。
+切换全局/默认作用域（scope）。模型运行时，所有变量都将被放到新的scope中。
 
 参数：
-    - **scope** - 新的全局/默认 scope。
+    - **scope** - 新的全局/默认作用域（scope）。
 
 **代码示例**
 
