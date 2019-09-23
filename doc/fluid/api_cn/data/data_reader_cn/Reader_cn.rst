@@ -248,7 +248,7 @@ paddle.reader.creator.np_array
 参数：
     - **x** – 用于创建reader的numpy数组,可以是向量或者矩阵。
 
-返回： 从x创建的数据读取器
+返回： 数据读取器
 
 **代码示例**:
 
