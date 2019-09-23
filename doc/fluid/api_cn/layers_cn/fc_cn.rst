@@ -8,7 +8,7 @@ fc
 
 **全连接层**
 
-该函数将在神经网络中构建一个全连接层。其输入可以是一个Tensor或多个Tensor组成的list（详见参数说明），该层会为每个输入的Tensor创建一个权重（weights）变量，即一个从每个输入单元到每个输出单元的全连接权重矩阵。FC层将每个输入Tensor和其对应的权重(weights)相乘得到shape为 :math:`[M, size]` 输出Tensor，其中 ``M`` 为batch_size大小。如果有多个输入Tensor，则多个shape为 :math:`[M, size]` 的Tensor计算结果会被累加起来，作为最终输出。如果 ``bias_attr`` 非空，则会创建一个偏置变量（bias variable），并把它累加到输出结果中。如果 ``act`` 非空，将会在输出结果上应用相应的激活函数。
+该OP将在神经网络中构建一个全连接层。其输入可以是一个Tensor或多个Tensor组成的list（详见参数说明），该OP会为每个输入的Tensor创建一个权重（weights）变量，即一个从每个输入单元到每个输出单元的全连接权重矩阵。FC层将每个输入Tensor和其对应的权重(weights)相乘得到shape为 :math:`[M, size]` 输出Tensor，其中 ``M`` 为batch_size大小。如果有多个输入Tensor，则多个shape为 :math:`[M, size]` 的Tensor计算结果会被累加起来，作为最终输出。如果 ``bias_attr`` 非空，则会创建一个偏置变量（bias variable），并把它累加到输出结果中。如果 ``act`` 非空，将会在输出结果上应用相应的激活函数。
 
 当输入为单个Tensor：
 
@@ -34,7 +34,21 @@ fc
   - :math:`Out` ：输出Tensor
 
 ::
+            
+        Case 1： 
+            Given:
+                data_1.data = [[[0.1, 0.2],
+                               [0.3, 0.4]]]
+                data_1.shape = (1, 2, 2) # 1 is batch_size
 
+                out = fluid.layers.fc(input=data_1, size=1， num_flatten_dims=2)
+
+            Then:
+                out.data = [[0.83234344], [0.34936576]]
+                out.shape = (1, 2, 1)
+
+
+        Case 2: 
             Given:
                 data_1.data = [[[0.1, 0.2],
                                [0.3, 0.4]]]
@@ -51,20 +65,20 @@ fc
 
 
 参数:
-  - **input** (Variable|list of Variable) – 输入Tensor或由多个Tensor组成的list，输入Tensor的维度至少是2。
+  - **input** (Variable|list of Variable) – 维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor或由多个Tensor组成的list，输入Tensor的shape至少是2。
   - **size** (int) – 输出单元的数目
-  - **num_flatten_dims** (int, default 1) – 此层可以接受维度大于2的Tensor输入。在计算时，输入首先会被扁平化（flatten）为一个二维矩阵，之后再与权重(weights)相乘。参数 ``num_flatten_dims`` 决定了输入Tensor的flatten方式: 前 ``num_flatten_dims`` (包含边界，从1开始数) 个维度会被扁平化为二维矩阵的第一维 (即为矩阵的高), 剩下的 :math:`rank(X) - num\_flatten\_dims` 维被扁平化为二维矩阵的第二维 (即矩阵的宽)。 例如， 假设X是一个五维的Tensor，其shape为(2, 3, 4, 5, 6), 若 :math:`num\_flatten\_dims = 3` ，则扁平化的矩阵shape为： :math:`(2 x 3 x 4, 5 x 6) = (24, 30)` ，最终输出Tensor的shape为 :math:`(2, 3, 4, size)` 。
-  - **param_attr** (ParamAttr|list of ParamAttr, default None) – 可通过 ``param_attr`` 设置权重（weights）参数的初始化方式、学习率等属性。
-  - **bias_attr** (ParamAttr|list of ParamAttr, default None) – 该层bias变量的参数属性。如果值为 ``False`` ，则bias变量不参与输出单元运算。如果值为 ``None`` ，bias变量被初始化为0。默认为 None。
-  - **act** (str, default None) – 应用于输出上的激活激函数，如tanh、softmax、sigmoid，relu等。
-  - **name** (str, default None) – 用于此网络层的命名。
+  - **num_flatten_dims** (int) – 输入可以接受维度大于2的Tensor。在计算时，输入首先会被扁平化（flatten）为一个二维矩阵，之后再与权重(weights)相乘。参数 ``num_flatten_dims`` 决定了输入Tensor的flatten方式: 前 ``num_flatten_dims`` (包含边界，从1开始数) 个维度会被扁平化为二维矩阵的第一维 (即为矩阵的高), 剩下的 :math:`rank(X) - num\_flatten\_dims` 维被扁平化为二维矩阵的第二维 (即矩阵的宽)。 例如， 假设X是一个五维的Tensor，其shape为(2, 3, 4, 5, 6), 若 :math:`num\_flatten\_dims = 3` ，则扁平化的矩阵shape为： :math:`(2 x 3 x 4, 5 x 6) = (24, 30)` ，最终输出Tensor的shape为 :math:`(2, 3, 4, size)` 。默认为1。
+  - **param_attr** (ParamAttr) – 可通过param_attr设置权重（weights）参数的初始化方式、学习率等属性。默认为None。
+  - **bias_attr** (ParamAttr) – 该层bias变量的参数属性。如果值为False，则bias变量不参与输出单元运算。如果值为None，bias变量被初始化为0。默认为None。
+  - **act** (str) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
+  - **name** (str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
-返回：经过全连接层计算后的张量
+返回：经过全连接层计算后的Tensor。
 
-返回类型: Variable(Tensor|LoDTensor) 数据类型与input类型一致的Tensor或LoDTensor。
+返回类型: Variable， 数据类型与input类型一致的Tensor。
 
-弹出异常：``ValueError`` - 如果输入tensor的维度小于2
+弹出异常：``ValueError`` - 如果输入Tensor的维度小于2
 
 **代码示例**
 
