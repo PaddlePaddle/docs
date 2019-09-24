@@ -20,9 +20,7 @@ PRROIPool运算
     - **pooled_width** （integer） - （int，默认值1），池化输出的宽度。默认值：1
     - **name** （str，default None） - 此层的名称。
 
-返回： （Tensor），PRROIPoolOp的输出是形为 (num_rois，output_channels，pooled_h，pooled_w) 的4-D Tensor。
-
-返回类型：  变量（Variable）
+返回值： 返回类型为Variable（Tensor），形（Shape）为 (num_rois，output_channels，pooled_h，pooled_w) 的4-D Tensor。
 
 **代码示例：**
 
