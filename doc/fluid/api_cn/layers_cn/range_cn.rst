@@ -14,7 +14,7 @@ range
     - **step** （int32 | int64 | float32 | float64 | Variable） - 均匀分割的步长。
     - **dtype** （str） - 输出Tensor的数据类型，可为'float32'等。
 
-返回：均匀分割给定数值区间后得到的1-D Tensor。
+返回：均匀分割给定数值区间后得到的1-D Tensor, 数据类型为输入dtype。
 
 返回类型：Variable
 

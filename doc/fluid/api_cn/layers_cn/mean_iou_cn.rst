@@ -5,7 +5,7 @@ mean_iou
 
 .. py:function:: paddle.fluid.layers.mean_iou(input, label, num_classes)
 
-均值IOU（Mean  Intersection-Over-Union）是语义图像分割中的常用的评价指标之一，它首先计算每个类的IOU，然后计算类之间的平均值。IOU定义如下:
+该OP计算均值IOU, 均值IOU（Mean  Intersection-Over-Union）是语义图像分割中的常用的评价指标之一，它首先计算每个类的IOU，然后计算类之间的平均值。IOU定义如下:
 
 .. math::
 

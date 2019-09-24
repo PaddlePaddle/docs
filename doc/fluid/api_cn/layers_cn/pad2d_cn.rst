@@ -15,7 +15,7 @@ pad2d
   - **pad_value** (float32) - 以constant模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定input的format，可为 ``NCHW`` 和 ``NHWC`` ，默认值为 ``NCHW`` 。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
-返回： 对input进行2维 ``pad`` 的结果，类型和input一样的4-D Tensor。
+返回： 对input进行2维 ``pad`` 的结果，数据类型和input一样的4-D Tensor。
 
 返回类型：Variable
 
