@@ -84,8 +84,8 @@ lod_reset
     import numpy
 
     # Graph Organizing
-    x = fluid.layers.data(name='x', shape=[1, 6])
-    y = fluid.layers.data(name='y', shape=[1, 6], lod_level=2)
+    x = fluid.layers.data(name='x', shape=[6])
+    y = fluid.layers.data(name='y', shape=[6], lod_level=2)
     output = fluid.layers.lod_reset(x=x, y=y)
 
     # Create an executor using CPU as an example

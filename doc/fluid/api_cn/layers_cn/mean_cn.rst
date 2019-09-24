@@ -35,7 +35,7 @@ mean
     exe.run(fluid.default_startup_program())
 
     # Execute
-    x_ndarray = numpy.ones([2, 6]).astype(numpy.float32)
+    x_ndarray = numpy.ones([2, 3]).astype(numpy.float32)
     res, = exe.run(fluid.default_main_program(),
                    feed={'data':x_ndarray},
                    fetch_list=[output])
