@@ -5,10 +5,10 @@ pad
 
 .. py:function:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
 
-在张量上加上一个由 ``pad_value`` 给出的常数值，填充宽度由 ``paddings`` 指定。
+该OP在Tensor上加上一个由 ``pad_value`` 给出的常数值，填充宽度由 ``paddings`` 指定。
 其中，维度 ``i`` 中 ``x`` 内容前填充的值个数用 ``paddings[2i]`` 表示，维度 ``i`` 中 ``x`` 内容后填充的值个数用 ``paddings[2i+1]`` 表示。
 
-一个例子:
+**样例**：
 
 ::
 
@@ -28,14 +28,14 @@ pad
 
 
 参数:
-    - **x** (Variable) — —输入张量变量。
-    - **paddings** (list) — 一个整数列表。按顺序填充在每个维度上填充元素。 ``padding`` 长度必须是 ``rank(x)×2``
-    - **pad_value** (float) — 用来填充的常量值。
-    - **name** (str|None) — 这个层的名称(可选)。如果设置为None，该层将被自动命名。
+    - **x** (Variable) — 1维或者多维Tensor，数据类型为float32
+    - **paddings** (list of integers) — 整数列表，指定每个维度填充值的个数。维度 ``i`` 中 ``x`` 内容前填充的值个数用 ``paddings[2i]`` 表示，维度 ``i`` 中 ``x`` 内容后填充的值个数用 ``paddings[2i+1]`` 表示。 ``paddings`` 长度必须是 ``rank(x)×2``
+    - **pad_value** (float32, 可选) — 用来填充的常量值，数据类型为float。缺省值为0.
+    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回： 填充后的张量变量
+返回： 填充后的Tensor，数据类型与输入 ``x`` 相同
 
-返回类型： 变量（Variable）
+返回类型： Variable
 
 
 **代码示例**

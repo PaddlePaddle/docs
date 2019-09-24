@@ -5,9 +5,9 @@ pad_constant_like
 
 .. py:function:: paddle.fluid.layers.pad_constant_like(x, y, pad_value=0.0, name=None)
 
-使用 ``pad_value`` 填充 ``Y`` ，填充到每个axis（轴）值的数量由X和Y的形不同而指定。（（0，shape_x_0 - shape_y_0），...（0，shape_x_n - shape_y_n ））是每个axis唯一pad宽度。输入应该是k维张量（k> 0且k <7）。
+使用 ``pad_value`` 填充 ``y`` ，填充到每个维度值的数量由x和y的形状而指定，((0，x.shape[0] - y.shape[0]), ..., (0, x.shape[i] - y.shape[i]), ..., (0, x.shape[n] - y.shape[n]))是每个维度填充的宽度，对于维度i，填充宽度 ``(0, x.shape[i] - y.shape[i])`` ，表示在y的第i维开头不填充，而在末尾填充 ``x.shape[i] - y.shape[i]`` 个位置。该OP要求y与x具有相同的秩，并且对每个维度i， ``y.shape[i] <= x.shape[i]`` 。
 
-**实例如下**
+**样例**
 
 ::
 
@@ -31,15 +31,33 @@ pad_constant_like
               [[41, 42, 43]]]]
         Y.shape = (1, 3, 1, 3)
 
+    and
+        pad_value = 0.
+
+    Output is:
+        out = [[[[35, 36, 37],
+                 [0, 0, 0]],
+                [[38, 39, 40],
+                 [0, 0, 0]],
+                [[41, 42, 43],
+                 [0, 0, 0]]],
+               [[[0, 0, 0], 
+                 [0, 0, 0]],
+                [[0, 0, 0], 
+                 [0, 0, 0]],
+                [[0, 0, 0], 
+                 [0, 0, 0]]]]
+        out.shape = [2, 3, 2, 3]
+
 参数：
-          - **x** （Variable）- 输入Tensor变量。
-          - **y** （Variable）- 输出Tensor变量。
-          - **pad_value** (float) - 用于填充的常量值。
-          - **name** （str | None） - 这一层的名称（可选）。如果设置为None，则将自动命名这一层。
+          - **x** （Variable）- 1维或多维Tensor。
+          - **y** （Variable）- 1维或多维Tensor，与x具有相同的秩，而且对任意维度 ``i`` ，要求满足 ``y.shape[i] <= x.shape[i]`` 。数据类型为float32或者float64。
+          - **pad_value** (float|float64，可选) - 用于填充的常量值。默认值为0.
+          - **name** （str | None） - (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回：填充张量（Tensor）变量
+返回：经过维度填充后的Tensor，与x具有相同的shape，与y具有相同的数据类型
 
-返回类型：  变量（Variable）
+返回类型：  Variable
 
 **示例代码**
 

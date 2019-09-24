@@ -5,8 +5,7 @@ unfold
 
 .. py:function:: paddle.fluid.layers.unfold(x, kernel_size, strides=1, paddings=0, dilation=1, name=None)
 
-该函数会将在输入 ``x`` 上滑动的filter block转换为一列缓存数据。对于每一个卷积过滤器下的block，下面的元素都会被重新排成一列，当滑动的卷积过滤器走过整个特征图时，将会形成一系列的列。
-对于每一个输入形为[N, C, H, W]的 ``x`` ，都将会按照下面公式计算出一个形为[N, Cout, Lout]的输出。
+该OP实现的功能与卷积中用到的im2col函数一样，通常也被称作为im2col过程。对于每一个卷积核覆盖下的区域，元素会被重新排成一列。当卷积核在整个图片上滑动时，将会形成一系列的列向量。对于每一个输入形为[N, C, H, W]的 ``x`` ，都将会按照下面公式计算出一个形为[N, Cout, Lout]的输出。
 
 
 ..  math::
@@ -23,18 +22,31 @@ unfold
 
        Lout &= hout * wout
 
+**样例**：
+
+::
+
+      Given:
+        x.shape = [5, 10, 25, 25]
+        kernel_size = [3, 3]
+        strides = 1
+        paddings = 1
+
+      Return:
+        out.shape = [5, 90, 625]
+
+
 参数：
-    - **x**  (Variable) – 格式为[N, C, H, W]的输入张量 
-    - **kernel_size**  (int|list) – 卷积核的尺寸，应该为[k_h, k_w],或者为一个整型k，处理为[k, k]
-    - **strides**  (int|list) – 卷积步长，应该为[stride_h, stride_w],或者为一个整型stride，处理为[stride, stride],默认为[1, 1]
-    - **paddings** (int|list) – 每个维度的扩展, 应该为[padding_top, padding_left，padding_bottom, padding_right]或者[padding_h, padding_w]或者一个整型padding。如果给了[padding_h, padding_w],则应该被扩展为[padding_h, padding_w, padding_h, padding_w]. 如果给了一个整型的padding，则会使用[padding, padding, padding, padding]，默认为[0, 0, 0, 0]
-    - **dilations** (int|list) – 卷积膨胀，应当为[dilation_h, dilation_w]，或者一个整型的dilation处理为[dilation, dilation]。默认为[1, 1]。
+    - **x**  (Variable) – 输入Tensor，形状为[N, C, H, W]，数据类型为float32或者float64
+    - **kernel_size**  (int|list of int) – 卷积核的尺寸，整数或者整型列表。如果为整型列表，应包含两个元素 ``[k_h, k_w]`` ，卷积核大小为 ``k_h * k_w`` ；如果为整数k，会被当作整型列表 ``[k, k]`` 处理
+    - **strides**  (int|list of int，可选) – 卷积步长，整数或者整型列表。如果为整型列表，应该包含两个元素 ``[stride_h, stride_w]`` 。如果为整数，则 ``stride_h = stride_w = strides`` 。缺省值为1
+    - **paddings** (int|list of int，可选) – 每个维度的扩展, 整数或者整型列表。如果为整型列表，长度应该为4或者2；长度为4 对应的padding参数是：[padding_top, padding_left，padding_bottom, padding_right]，长度为2对应的padding参数是[padding_h, padding_w]，会被当作[padding_h, padding_w, padding_h, padding_w]处理。如果为整数padding，则会被当作[padding, padding, padding, padding]处理。缺省值为0
+    - **dilations** (int|list of int，可选) – 卷积膨胀，应该是整型列表或者整数。如果为整型列表，应该包含两个元素[dilation_h, dilation_w]。如果是整数dilation，会被当作整型列表[dilation, dilation]处理。缺省值为1
 
 
-返回： 
-    滑动block的输出张量，形状如上面所描述的[N, Cout, Lout]，Cout每一个滑动block里面值的总数，Lout是滑动block的总数.
+返回：   unfold操作之后的结果，形状如上面所描述的[N, Cout, Lout]，Cout每一个滑动block里面覆盖的元素个数，Lout是滑动block的个数，数据类型与 ``x`` 相同
 
-返回类型：（Variable）
+返回类型：    Variable
 
 **代码示例**:
 

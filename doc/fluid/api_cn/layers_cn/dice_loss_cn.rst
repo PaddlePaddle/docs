@@ -15,13 +15,13 @@ dice_loss定义为:
                    &= \frac{union\_area−intersection\_area}{total\_area}
 
 参数:
-    - **input** (Variable) - rank>=2的预测。第一个维度是batch大小，最后一个维度是类编号。
-    - **label** （Variable）- 与输入tensor rank相同的正确的标注数据（groud truth）。第一个维度是batch大小，最后一个维度是1。
-    - **epsilon** (float) - 将会加到分子和分母上。如果输入和标签都为空，则确保dice为1。默认值:0.00001
+    - **input** (Variable) - 分类的预测概率，rank>=2的Tensor。第一个维度的大小是batch_size，最后一个维度的大小是类别数目
+    - **label** （Variable）- 正确的标注数据(groud truth)，与输入 ``input`` 的秩相同的Tensor。第一个维度的大小是batch_size，最后一个维度的大小是1。数据类型为int32或者int64
+    - **epsilon** (float，可选) - 将会加到分子和分母上的数，浮点型的数值。如果输入和标签都为空，则确保dice为1。默认值:0.00001
 
-返回: dice_loss shape为[1]。
+返回: 按上述公式计算出来的损失函数的结果所表示的Tensor，shape为[1]，数据类型与 ``input`` 相同
 
-返回类型:  dice_loss(Variable)
+返回类型:  Variable
 
 **代码示例**
 
@@ -32,8 +32,6 @@ dice_loss定义为:
     label = fluid.layers.data(name='label', shape=[3, 224, 224, 1], dtype='float32')
     predictions = fluid.layers.softmax(x)
     loss = fluid.layers.dice_loss(input=predictions, label=label)
-
-
 
 
 
