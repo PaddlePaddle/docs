@@ -13,9 +13,9 @@ affine_channel
   - **x** (Variable):特征图输入可以是一个具有NCHW格式或NHWC格式的的4-D张量。它也可以是二维张量，此时该算法应用于第二维度的仿射变换。
   - **scale** (Variable): 形状为(C)的一维输入，第C个元素为输入的第C通道仿射变换的尺度因子。
   - **bias** (Variable):形状为(C)的一维输入，第C个元素是输入的第C个通道的仿射变换的偏置。
-  - **data_layout** (string, default NCHW): NCHW 或 NHWC，如果输入是一个2D张量，可以忽略该参数
-  - **name** (str, default None): 此层的名称
-  - **act** (str, default None): 应用于该层输出的激活函数
+  - **data_layout** (string, default NCHW): NCHW 或 NHWC，如果输入是一个2D张量，可以忽略该参数。
+  - **name** (str): 此层的名称，默认值为None。
+  - **act** (str): 应用于该层输出的激活函数，默认值为None。
 
 返回：与x具有相同形状和数据布局的张量, 数据类型与x相同
 
