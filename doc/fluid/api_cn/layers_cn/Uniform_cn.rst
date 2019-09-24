@@ -21,45 +21,47 @@ Uniform
 :math:`high = b` 。
 :math:`Z`: 正态分布常量。
 
-参数low和high应该为可支持广播的shape。
+参数low和high的shape必须能够支持广播。
 
 参数：
-    - **low** (float|list|numpy.ndarray|Variable) - 均匀分布的较低边界。
-    - **high** (float|list|numpy.ndarray|Variable) - 均匀分布的较高边界。
+    - **low** (float|list|numpy.ndarray|Variable) - 均匀分布的下边界。
+    - **high** (float|list|numpy.ndarray|Variable) - 均匀分布的上边界。
 
 **代码示例**：
 
 .. code-block:: python
 
+    import numpy as np
     from paddle.fluid import layers
     from paddle.fluid.layers import Uniform
 
-    # 一个未广播的单独的均匀分布 [3, 4]:
+    # 定义参数为float的均匀分布
     u1 = Uniform(low=3.0, high=4.0)
-    # 两个分布 [1, 3], [2, 4]
+    # 定义参数为list的均匀分布
     u2 = Uniform(low=[1.0, 2.0],
                   high=[3.0, 4.0])
-    # 4个分布
+    # 通过广播的方式，定义一个均匀分布
     u3 = Uniform(low=[[1.0, 2.0],
               [3.0, 4.0]],
          high=[[1.5, 2.5],
                [3.5, 4.5]])
 
-    # 广播:
+    # 通过广播的方式，定义一个均匀分布
     u4 = Uniform(low=3.0, high=[5.0, 6.0, 7.0])
 
-    # 作为输入的变量
-    dims = 3
+    # 一个完整的例子
+    value_npdata = np.array([0.8], dtype="float32")
+    value_tensor = layers.create_tensor(dtype="float32")
+    layers.assign(value_npdata, value_tensor)
 
-    low = layers.data(name='low', shape=[dims], dtype='float32')
-    high = layers.data(name='high', shape=[dims], dtype='float32')
-    values = layers.data(name='values', shape=[dims], dtype='float32')
+    uniform = Uniform([0.], [2.])
 
-    uniform = Uniform(low, high)
-
-    sample = uniform.sample([2, 3])
+    sample = uniform.sample([2])
+    # 一个由定义好的均匀分布随机生成的张量，shape为: [2, 1]
     entropy = uniform.entropy()
-    lp = uniform.log_prob(values)
+    # [0.6931472] with shape: [1]
+    lp = uniform.log_prob(value_tensor)
+    # [-0.6931472] with shape: [1]
 
 
 .. py:function:: sample(shape, seed=0)
@@ -68,41 +70,31 @@ Uniform
 
 参数：
     - **shape** (list) - int32的1维列表，指定生成样本的shape。
-    - **seed** (int) - 长整型数
+    - **seed** (int) - 长整型数。
     
-返回：预备好维度shape的向量
+返回：预先设计好形状的张量, 数据类型为float32
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 .. py:function:: entropy()
 
 信息熵
     
-返回：正态分布的信息熵
+返回：均匀分布的信息熵, 数据类型为float32
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 .. py:function:: log_prob(value)
 
-Log概率密度函数
+对数概率密度函数
 
 参数：
-    - **value** (Variable) - 输入向量。
+    - **value** (Variable) - 输入张量。
     
-返回：log概率
+返回：对数概率, 数据类型与value相同
 
-返回类型：变量（Variable）
+返回类型：Variable
 
-.. py:function:: kl_divergence(other)
-
-两个正态分布之间的KL-divergence。
-
-参数：
-    - **other** (Normal) - Normal实例。
-    
-返回：两个正态分布之间的KL-divergence
-
-返回类型：变量（Variable）
 
 
 

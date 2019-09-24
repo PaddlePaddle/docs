@@ -29,39 +29,38 @@ Normal
 
 .. code-block:: python
 
+    import numpy as np
     from paddle.fluid import layers
-	from paddle.fluid.layers import Normal
+	  from paddle.fluid.layers import Normal
 
-    # 定义单个数的正态分布。
+    # 定义参数为float的正态分布。
     dist = Normal(loc=0., scale=3.)
     # 定义一组有两个数的正态分布。
     # 第一组为均值1，标准差11，第二组为均值2，标准差22。
-    dist = Normal(loc=[1, 2.], scale=[11, 22.])
-    # 得到3个样本, 返回一个 3 x 2 向量。
+    dist = Normal(loc=[1., 2.], scale=[11., 22.])
+    # 得到3个样本, 返回一个 3 x 2 张量。
     dist.sample([3])
 
-    # 定义一个为两个参数的正态分布。
+    # 通过广播的方式，定义一个两个参数的正态分布。
     # 均值都是1，标准差不同。
-    dist = Normal(loc=1., scale=[11, 22.])
+    dist = Normal(loc=1., scale=[11., 22.])
 
-    # 输入变量
-    dims = 3
+    # 一个完整的例子
+    value_npdata = np.array([0.8], dtype="float32")
+    value_tensor = layers.create_tensor(dtype="float32")
+    layers.assign(value_npdata, value_tensor)
 
-    loc = layers.data(name='loc', shape=[dims], dtype='float32')
-    scale = layers.data(name='scale', shape=[dims], dtype='float32')
-    other_loc = layers.data(
-        name='other_loc', shape=[dims], dtype='float32')
-    other_scale = layers.data(
-        name='other_scale', shape=[dims], dtype='float32')
-    values = layers.data(name='values', shape=[dims], dtype='float32')
+    normal_a = Normal([0.], [1.])
+    normal_b = Normal([0.5], [2.])
 
-    normal = Normal(loc, scale)
-    other_normal = Normal(other_loc, other_scale)
-
-    sample = normal.sample([2, 3])
-    entropy = normal.entropy()
-    lp = normal.log_prob(values)
-    kl = normal.kl_divergence(other_normal)
+    sample = normal_a.sample([2])
+    # 一个由定义好的正太分布随机生成的张量，shape为: [2, 1]
+    entropy = normal_a.entropy()
+    # [1.4189385] with shape: [1]
+    lp = normal_a.log_prob(value_tensor)
+    # [-1.2389386] with shape: [1]
+    kl = normal_a.kl_divergence(normal_b)
+    # [0.34939718] with shape: [1]
 
 
 .. py:function:: sample(shape, seed=0)
@@ -70,41 +69,41 @@ Normal
 
 参数：
     - **shape** (list) - int32的1维列表，指定生成样本的shape。
-    - **seed** (int) - 长整型数
+    - **seed** (int) - 长整型数。
     
-返回：预备好维度shape的向量
+返回：预先设计好形状的张量, 数据类型为float32
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 .. py:function:: entropy()
 
 信息熵
     
-返回：正态分布的信息熵
+返回：正态分布的信息熵, 数据类型为float32
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 .. py:function:: log_prob(value)
 
-Log概率密度函数
+对数概率密度函数
 
 参数：
-    - **value** (Variable) - 输入向量。
+    - **value** (Variable) - 输入张量。
     
-返回：log概率
+返回：对数概率, 数据类型与value相同
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 .. py:function:: kl_divergence(other)
 
-两个正态分布之间的KL-divergence。
+两个正态分布之间的KL散度。
 
 参数：
-    - **other** (Normal) - Normal实例。
+    - **other** (Normal) - Normal的实例。
     
-返回：两个正态分布之间的KL-divergence
+返回：两个正态分布之间的KL散度, 数据类型为float32
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 
 
