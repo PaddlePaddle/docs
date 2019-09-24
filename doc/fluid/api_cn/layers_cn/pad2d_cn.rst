@@ -9,13 +9,12 @@ pad2d
 
 参数：
   - **input** (Variable) -类型为float32的4-D Tensor, format为[N, C, H, W]或[N, H, W, C]。
-  - **paddings** (Variable | List[int]) - 填充大小。如果paddings是一个List，它必须包含四个整数[padding_top, padding_bottom, padding_left, padding_right]。
+  - **paddings** (Variable | List[int32]) - 填充大小。如果paddings是一个List，它必须包含四个整数[padding_top, padding_bottom, padding_left, padding_right]。
     如果paddings是Variable, 则是类型为int的1-D Tensor, shape是[4]。默认值为[0,0,0,0]。
   - **mode** (str) - padding的三种模式，分别为constant(默认)、reflect、edge。constant为填充常数pad_value，reflect为填充以input边界值为轴的映射，edge为填充input边界值。具体结果可见以下示例。默认值为constant。
   - **pad_value** (float32) - 以constant模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定input的format，可为 ``NCHW`` 和 ``NHWC`` ，默认值为 ``NCHW`` 。
-  - **name** (str) - 该OP的名称，默认值为None，为None时该OP将会被自动命名。
-
+  - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 返回： 对input进行2维 ``pad`` 的结果，类型和input一样的4-D Tensor。
 
 返回类型：Variable
