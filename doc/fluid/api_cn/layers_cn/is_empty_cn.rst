@@ -9,13 +9,13 @@ is_empty
 
 参数：
     - **x** (Variable)-测试的变量
-    - **cond** (Variable|None)-输出参数。返回给定x的测试结果，默认为空（None）
+    - **cond** (Variable|None)-可选输出参数，默认为空（None）。若传入了该参数，则该参数中存储返回给定x的测试结果
 
 返回：布尔类型的标量。如果变量x为空则值为真
 
 返回类型：Variable
 
-抛出异常：``TypeError``-如果input不是变量或cond类型不是变量
+抛出异常：``TypeError``-如果input类型不是Variable或cond存储的返回结果的类型不是bool
 
 **代码示例**：
 

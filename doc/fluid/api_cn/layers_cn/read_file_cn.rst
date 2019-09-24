@@ -7,7 +7,7 @@ read_file
 
 从给定的reader中读取数据
 
-reader是一个变量，它可以是由函数fluid.layers.open_files()生成的原始reader，或者是由函数fluid.layers.double_buffer()生成的装饰变量，等等。
+reader是一个Variable，它可以是由函数fluid.layers.open_files()生成的原始reader，或者是由函数fluid.layers.double_buffer()生成的装饰变量，等等。
 
 参数：
     - **reader** (Variable)-待处理的reader
