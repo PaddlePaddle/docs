@@ -92,7 +92,16 @@ DistributeTranspiler
 .. py:method:: get_trainer_program(wait_port=True)
 
 
-该方法可以得到Trainer侧的program。
+该方法可以得到Trainer侧的program。Trainer侧的program相较于原始的单机执行的program，主要有以下不同:
+
+     - 删除了参数更新optimizer相关op，参数的更新由Pserver（参数服务器）执行
+     - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op`` ，用于发送参数的梯度与接受更新后的参数
+     - 同步模式（sync）下添加 ``send_barrier_op`` 与 ``fetch_barrier_op`` ，用于确保各个节点间的同步
+     - 同步模式（sync）下添加 ``split_op`` ，用于将参数拆分，发送到对应的Pserver
+     - 同步模式（sync）下添加 ``concat_op`` ，用于将收到的参数部分组合为原始的参数大小
+
+参数:
+     - **wait_port** (bool) - 是否等待参数服务器准备就绪后再返回program
 
 返回:    Trainer侧的program
 
@@ -115,7 +124,11 @@ DistributeTranspiler
 .. py:method:: get_pserver_program(endpoint)
 
 
-该方法可以得到Pserver（参数服务器）侧的程序
+该方法可以得到Pserver（参数服务器）侧的program。Pserver侧的program相较于原始的单机执行的program，主要有以下不同:
+     
+     - 仅包含参数更新optimizer相关op，与分布式通信相关op
+     - 0号block仅包含变量的定义及 ``listen_and_serv_op`` 
+     - Pserver为每个需要进行更新的参数新建了一个独立的block
  
 参数:    
     - **endpoint** (str) – 当前Pserver终端
@@ -143,7 +156,7 @@ DistributeTranspiler
 .. py:method:: get_pserver_programs(endpoint)
 
 
-该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
+该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。该函数返回的 ``main_program`` 与函数 ``get_pserver_program`` 的返回值一致。
 
 参数:    
     - **endpoint** (str) – 当前Pserver终端
