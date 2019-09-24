@@ -5,32 +5,30 @@ retinanet_detection_output
 
 .. py:function:: paddle.fluid.layers.retinanet_detection_output(bboxes, scores, anchors, im_info, score_threshold=0.05, nms_top_k=1000, keep_top_k=100, nms_threshold=0.3, nms_eta=1.0)
 
-**Retinanet的检测输出层**
+**注意：该OP目前仅支持CPU** 。
 
-此操作通过执行以下步骤获取检测结果：
+在 `RetinaNet <https://arxiv.org/abs/1708.02002>`_ 中，有多个 `FPN <https://arxiv.org/abs/1612.03144>`_ 层会输出用于分类的预测值和位置回归的预测值，该OP通过执行以下步骤将这些预测值转换成最终的检测结果：
 
-1. 根据anchor框解码每个FPN级别的最高得分边界框预测。
-2. 合并所有级别的顶级预测并对其应用多级非最大抑制（NMS）以获得最终检测。
+1. 在每个FPN层上，先剔除分类预测值小于score_threshold的anchor，然后按分类预测值从大到小排序，选出排名前nms_top_k的anchor，并将这些anchor与其位置回归的预测值做解码操作得到检测框。
+2. 合并全部FPN层上的检测框，对这些检测框进行非极大值抑制操作（NMS）以获得最终的检测结果。
 
 
 参数：
-    - **bboxes**  (List) – 来自多个FPN级别的张量列表。每个元素都是一个三维张量，形状[N，Mi，4]代表Mi边界框的预测位置。N是batch大小，Mi是第i个FPN级别的边界框数，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
-    - **scores**  (List) – 来自多个FPN级别的张量列表。每个元素都是一个三维张量，各张量形状为[N，Mi，C]，代表预测的置信度预测。 N是batch大小，C是类编号（不包括背景），Mi是第i个FPN级别的边界框数。对于每个边界框，总共有C个评分。
-    - **anchors**  (List) – 具有形状[Mi，4]的2-D Tensor表示来自所有FPN级别的Mi anchor框的位置。每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。
-    - **im_info**  (Variable) – 形状为[N，3]的2-D LoDTensor表示图像信息。 N是batch大小，每个图像信息包括高度，宽度和缩放比例。
-    - **score_threshold**  (float) – 用置信度分数剔除边界框的过滤阈值。
-    - **nms_top_k**  (int) – 根据NMS之前的置信度保留每个FPN层的最大检测数。
-    - **keep_top_k**  (int) – NMS步骤后每个图像要保留的总边界框数。 -1表示在NMS步骤之后保留所有边界框。
-    - **nms_threshold**  (float) – NMS中使用的阈值.
-    - **nms_eta**  (float) – adaptive NMS的参数.
+    - **bboxes**  (List) – 由来自不同FPN层的Tensor组成的列表，表示全部anchor的位置回归预测值。列表中每个元素是一个维度为 :math:`[N, Mi, 4]` 的3-D Tensor，其中，第一维N表示批量训练时批量内的图片数量，第二维Mi表示每张图片第i个FPN层上的anchor数量，第三维4表示每个anchor有四个坐标值。数据类型为float32或float64。
+    - **scores**  (List) – 由来自不同FPN层的Tensor组成的列表，表示全部anchor的分类预测值。列表中每个元素是一个维度为 :math:`[N, Mi, C]` 的3-D Tensor，其中第一维N表示批量训练时批量内的图片数量，第二维Mi表示每张图片第i个FPN层上的anchor数量，第三维C表示类别数量（ **不包括背景类** ）。数据类型为float32或float64。
+    - **anchors**  (List) – 由来自不同FPN层的Tensor组成的列表，表示全部anchor的坐标值。列表中每个元素是一个维度为 :math:`[Mi, 4]` 的2-D Tensor，其中第一维Mi表示第i个FPN层上的anchor数量，第二维4表示每个anchor有四个坐标值（[xmin, ymin, xmax, ymax]）。数据类型为float32或float64。
+    - **im_info**  (Variable) – 维度为 :math:`[N, 3]` 的2-D Tensor，表示输入图片的尺寸信息。 其中，第一维N表示批量训练时各批量内的图片数量，第二维3表示各图片的尺寸信息，分别是网络输入尺寸的高和宽，以及原图缩放至网络输入大小时的缩放比例。数据类型为float32或float64。
+    - **score_threshold**  (float32) – 在NMS步骤之前，用于滤除每个FPN层的检测框的阈值，默认值为0.05。
+    - **nms_top_k**  (int32) – 在NMS步骤之前，保留每个FPN层的检测框的数量，默认值为1000。
+    - **keep_top_k**  (int32) – 在NMS步骤之后，每张图像要保留的检测框数量，默认值为100，若设为-1，则表示保留NMS步骤后剩下的全部检测框。
+    - **nms_threshold**  (float32) – NMS步骤中用于剔除检测框的Intersection-over-Union（IoU）阈值，默认为0.3。
+    - **nms_eta**  (float32) – `Adaptive NMS <https://arxiv.org/abs/1904.03629>`_ 中用于调整IoU阈值的参数，默认值为1.，表示使用常规NMS。
+**注意：在模型输入尺寸特别小的情况，此时若用score_threshold滤除anchor，可能会导致没有任何检测框剩余。为避免这种情况出现，该OP不会对最高FPN层上的anchor做滤除。因此，要求bboxes、scores、anchors中最后一个元素是来自最高FPN层的Tensor** 。
+
+返回：维度是 :math:`[No, 6]` 的2-D LoDTensor，表示批量内的检测结果。第一维No表示批量内的检测框的总数，第二维6表示每行有六个值：[label， score，xmin，ymin，xmax，ymax]。该LoDTensor的LoD中存放了每张图片的检测框数量，第i张图片的检测框数量为 :math:`LoD[i + 1] - LoD[i]` 。如果 :math:`LoD[i + 1] - LoD[i]` 为0，则第i个图像没有检测结果。 如果批量内的全部图像都没有检测结果，则LoD中所有元素被设置为0，LoDTensor被赋为空（None）。
 
 
-
-返回：
-检测输出是具有形状[No，6]的LoDTensor。 每行有六个值：[标签，置信度，xmin，ymin，xmax，ymax]。 No是此mini batch中的检测总数。 对于每个实例，第一维中的偏移称为LoD，偏移值为N + 1，N是batch大小。 第i个图像具有LoD [i + 1]  -  LoD [i]检测结果，如果为0，则第i个图像没有检测到结果。 如果所有图像都没有检测到结果，则LoD将设置为0，输出张量为空（None）。
-
-
-返回类型：变量（Variable）
+返回类型：变量（Variable），数据类型为float32或float64。
 
 **代码示例**
 
@@ -38,24 +36,26 @@ retinanet_detection_output
 
   import paddle.fluid as fluid
 
-  bboxes = layers.data(name='bboxes', shape=[1, 21, 4],
+  bboxes_low = fluid.layers.data(name='bboxes_low', shape=[1, 44, 4],
       append_batch_size=False, dtype='float32')
-  scores = layers.data(name='scores', shape=[1, 21, 10],
+  bboxes_high = fluid.layers.data(name='bboxes_high', shape=[1, 11, 4],
+  scores_low = fluid.layers.data(name='scores_low', shape=[1, 44, 10],
       append_batch_size=False, dtype='float32')
-  anchors = layers.data(name='anchors', shape=[21, 4],
+  scores_high = fluid.layers.data(name='scores_high', shape=[1, 11, 10],
       append_batch_size=False, dtype='float32')
-  im_info = layers.data(name="im_info", shape=[1, 3],
+  anchors_low = fluid.layers.data(name='anchors_low', shape=[44, 4],
+      append_batch_size=False, dtype='float32')
+  anchors_high = fluid.layers.data(name='anchors_high', shape=[11, 4],
+      append_batch_size=False, dtype='float32')
+  im_info = fluid.layers.data(name="im_info", shape=[1, 3],
       append_batch_size=False, dtype='float32')
   nmsed_outs = fluid.layers.retinanet_detection_output(
-                                          bboxes=[bboxes, bboxes],
-                                          scores=[scores, scores],
-                                          anchors=[anchors, anchors],
+                                          bboxes=[bboxes_low, bboxes_high],
+                                          scores=[scores_low, scores_high],
+                                          anchors=[anchors_low, anchors_high],
                                           im_info=im_info,
                                           score_threshold=0.05,
                                           nms_top_k=1000,
                                           keep_top_k=100,
-                                          nms_threshold=0.3,
+                                          nms_threshold=0.45,
                                           nms_eta=1.)
-
-
-

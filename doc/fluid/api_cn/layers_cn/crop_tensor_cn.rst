@@ -5,55 +5,65 @@ crop_tensor
 
 .. py:function:: paddle.fluid.layers.crop_tensor(x, shape=None, offsets=None, name=None)
 
-根据偏移量（offsets）和形状（shape），裁剪输入张量。
+根据偏移量（offsets）和形状（shape），裁剪输入（x）Tensor。
 
-**样例**：
+**示例**：
 
 ::
 
-    * Case 1:
-        Given
-            X = [[0, 1, 2, 0, 0]
-                 [0, 3, 4, 0, 0]
-                 [0, 0, 0, 0, 0]],
-        and
-            shape = [2, 2],
-            offsets = [0, 1],
-        output is:
-            Out = [[1, 2],
-                   [3, 4]].
-    * Case 2:
-        Given
-                X =  [[[0, 1, 2, 3]
-                       [0, 5, 6, 7]
-                       [0, 0, 0, 0]],
+    * 示例1（输入为2-D Tensor）：
 
-                      [[0, 3, 4, 5]
-                       [0, 6, 7, 8]
-                       [0, 0, 0, 0]]].
-            and
-                shape = [2, 2, 3],
-                offsets = [0, 0, 1],
-            output is:
-                Out = [[[1, 2, 3]
-                        [5, 6, 7]],
+        输入：
+            X.shape = [3, 5]
+            X.data = [[0, 1, 2, 0, 0],
+                      [0, 3, 4, 0, 0],
+                      [0, 0, 0, 0, 0]]
 
-                       [[3, 4, 5]
-                        [6, 7, 8]]].
+        参数：
+            shape = [2, 2]
+            offsets = [0, 1]
+
+        输出：
+            Out.shape = [2, 2]
+            Out.data = [[1, 2],
+                        [3, 4]]
+
+    * 示例2（输入为3-D Tensor）：
+
+        输入：
+
+            X.shape = [2, 3, 4]
+            X.data =  [[[0, 1, 2, 3],
+                        [0, 5, 6, 7],
+                        [0, 0, 0, 0]],
+                       [[0, 3, 4, 5],
+                        [0, 6, 7, 8],
+                        [0, 0, 0, 0]]]
+
+        参数：
+            shape = [2, 2, 3]
+            offsets = [0, 0, 1]
+
+        输出：
+            Out.shape = [2, 2, 3]
+            Out.data = [[[1, 2, 3],
+                         [5, 6, 7]],
+                        [[3, 4, 5],
+                         [6, 7, 8]]]
 
 参数:
-  - **x** (Variable): 输入张量。
-  - **shape** (Variable|list|tuple of integer) - 输出张量的形状由参数shape指定，它可以是一个1-D的变量/列表/整数元组。如果是1-D的变量，它的秩必须与x相同。如果是列表或整数元组，则其长度必须与x的秩相同。当它是列表时，每一个元素可以是整数或者shape为[1]的变量。含有变量的方式适用于每次迭代时需要改变输出形状的情况。列表和元组中只有第一个元素可以被设置为-1，这意味着输出的第一维大小与输入相同。
-  - **offsets** (Variable|list|tuple of integer|None) - 指定每个维度上的裁剪的偏移量。它可以是一个1-D的变量/列表/整数元组。如果是1-D的变量，它的秩必须与x相同。如果是列表或整数元组，则其长度必须与x的秩相同。当它是列表时，每一个元素可以是整数或者shape为[1]的变量。含有变量的方式适用于每次迭代的偏移量（offset）都可能改变的情况。如果offsets=None，则每个维度的偏移量为0。
-  - **name** (str|None) - 该层的名称(可选)。如果设置为None，该层将被自动命名。
+  - **x** (Variable): 1-D到6-D Tensor，数据类型为float32或float64。
+  - **shape** (list|tuple|Variable) - 输出Tensor的形状，数据类型为int32。如果是列表或元组，则其长度必须与x的维度大小相同，如果是Variable，则其应该是1-D Tensor。当它是列表时，每一个元素可以是整数或者形状为[1]的Tensor。含有Variable的方式适用于每次迭代时需要改变输出形状的情况。列表和元组中只有第一个元素可以被设置为-1，这意味着输出的第一维大小与输入相同。
+  - **offsets** (list|tuple|Variable，可选) - 每个维度上裁剪的偏移量，数据类型为int32。如果是列表或元组，则其长度必须与x的维度大小相同，如果是Variable，则其应是1-D Tensor。当它是列表时，每一个元素可以是整数或者形状为[1]的Variable。含有Variable的方式适用于每次迭代的偏移量（offset）都可能改变的情况。默认值：None，每个维度的偏移量为0。
+  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回: 裁剪张量。
+返回: 裁剪后的Tensor，数据类型与输入（x）相同。
 
-返回类型: 变量（Variable）
+返回类型: Variable
 
-抛出异常: 如果形状不是列表、元组或变量，抛出ValueError
-
-抛出异常: 如果偏移量不是None、列表、元组或变量，抛出ValueError
+抛出异常：
+    - :code:`ValueError` - shape 应该是列表、元组或Variable。
+    - :code:`ValueError` - offsets 应该是列表、元组、Variable或None。
 
 **代码示例**:
 
@@ -87,12 +97,4 @@ crop_tensor
     offsets_var =  fluid.layers.data(name="dim1", shape=[1], dtype="int32", append_batch_size=False)
     crop4 = fluid.layers.crop_tensor(x, shape=[-1, 2, 3], offsets=[0, 1, offsets_var])
     # crop4.shape = [-1, 2, 3]
-
-
-
-
-
-
-
-
 
