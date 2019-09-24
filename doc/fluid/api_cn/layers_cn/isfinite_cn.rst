@@ -10,11 +10,13 @@ isfinite
 测试 x 是否包含无穷值（即 nan 或 inf）。若元素均为有穷数，返回真；否则返回假。
 
 参数：
-  - **x(variable)** - 变量。变量中包含被测试的 Tensor / LoDTensor
+  - **x(variable)** : 变量，包含被测试的 Tensor / LoDTensor。
 
-返回: Variable (Tensor)。此 Tensor 变量包含一个 bool 型结果
+返回: 
+  - Variable (Tensor / LoDTensor)，此 Tensor 变量包含一个 bool 型结果。
 
-返回类型：Variable (Tensor)，一个包含 Tensor 的变量
+返回类型
+  - Variable (Tensor / LoDTensor)，一个包含 Tensor 的变量。
 
 **代码示例**：
 
@@ -32,7 +34,7 @@ isfinite
     exe.run(fluid.default_startup_program())
 
     # Execute
-    img = numpy.array((6, 7, 8)).astype(numpy.float32)
+    img = numpy.array((4, 6)).astype(numpy.float32)
     res, = exe.run(fluid.default_main_program(), feed={'data':img}, fetch_list=[output])
     print(res)  # Output Value: [ True]
 

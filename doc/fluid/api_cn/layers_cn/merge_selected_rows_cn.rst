@@ -8,12 +8,14 @@ merge_selected_rows
 累加合并 `SelectedRows <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/selected_rows.h>`_ ( ``x`` ) 中的重复行，并对行值由小到大重新排序。
 
 参数:
-  - x (Variable) – 类型为 SelectedRows，选中行允许重复。
-  - name (basestring|None) – 输出变量名称。
+  - x (Variable) : 类型为 SelectedRows，选中行允许重复。
+  - name (basestring|None) : 输出变量名称。
 
-返回: 含有 SelectedRows 的 Variable，选中行不重复。
+返回:
+  - 含有 SelectedRows 的 Variable，选中行不重复。
 
-返回类型: 变量（Variable）
+返回类型:
+  - Variable（变量）。
 
 **代码示例**
 

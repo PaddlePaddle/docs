@@ -8,15 +8,18 @@ lod_reset
 根据给定的参数 ``y`` 或 ``target_lod`` ，重设输入 ``x`` (LoDTensor) 的 LoD 信息。
 
 参数：
-    - **x** (Variable)- 输入变量，类型为 Tensor 或者 LoDTensor。
-    - **y** (Variable|None)- 当 ``y`` 非空时，输出 LoDTensor 的 LoD 信息将与 ``y`` 的 LoD 一致。
-    - **target_lod** (list|tuple|None)- 一级 LoD，当 ``y`` 为空时，输出 LoDTensor 的 LoD 信息将与 ``target_lod`` 一致。
+    - **x** (Variable) : 输入变量，类型为 Tensor 或者 LoDTensor。
+    - **y** (Variable|None) : 当 ``y`` 非空时，输出 LoDTensor 的 LoD 信息将与 ``y`` 的 LoD 一致。
+    - **target_lod** (list|tuple|None) : 一级 LoD，当 ``y`` 为空时，输出 LoDTensor 的 LoD 信息将与 ``target_lod`` 一致。
 
-返回: Variable (LoDTensor)，重设了 LoD 信息的 LoDTensor。
+返回:
+    - Variable (LoDTensor)，重设了 LoD 信息的 LoDTensor。
 
-返回类型：Variable (LoDTensor)。
+返回类型：
+    - Variable (LoDTensor)。
 
-抛出异常：``TypeError`` - 当 ``y`` 和 ``target_lod`` 二者均为空时抛出此异常。
+抛出异常：
+    - ``TypeError`` : 当 ``y`` 和 ``target_lod`` 二者均为空时抛出此异常。
 
 ::
 
