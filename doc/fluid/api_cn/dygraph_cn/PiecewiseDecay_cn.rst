@@ -5,9 +5,9 @@ PiecewiseDecay
 
 .. py:class:: paddle.fluid.dygraph.PiecewiseDecay(boundaries, values, begin, step=1, dtype='float32')
 
-对初始学习率进行分段(piecewise)衰减。
+该接口提供对初始学习率进行分段(piecewise)衰减的功能。
 
-该算法可用如下代码描述。
+分段衰减的计算方式如下。
 
 .. code-block:: text
 
@@ -21,11 +21,11 @@ PiecewiseDecay
         learning_rate = 0.1
 
 参数：
-    - **boundaries** -一列代表步数的数字
-    - **values** -一列学习率的值，从不同的步边界中挑选
-    - **begin**  – 用于初始化self.step_num的起始步(默认为0)。
-    - **step**  – 计算新的step_num步号时使用的步大小(默认为1)。
-    - **dtype**  – 初始化学习率变量的dtype
+    - **boundaries** (list) - 指定衰减的步数边界。列表的数据元素为int类型。
+    - **values** (list) - 备选学习率列表。数据元素类型为float的列表。与边界值列表有一一对应的关系，例如在计算方式示例中，小于1000步的学习率均为1.0。
+    - **begin**  – 起始步。默认值为0。
+    - **step**  – 步大小。默认值为1。
+    - **dtype**  – 初始化学习率变量的dtype。默认值为"float32"。
 
 
 **代码示例**
