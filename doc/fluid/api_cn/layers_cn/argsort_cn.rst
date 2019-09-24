@@ -10,12 +10,12 @@ argsort
 
 参数：
     - **input** (Variable) - 输入的多维 ``Tensor`` ，支持的数据类型：float32、float64。
-    - **axis** (int)- 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-1, R)，R是输入 ``x`` 的Rank。默认值为-1，表示最后一维。
+    - **axis** (int，可选) - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``x`` 的Rank， ``axis`` 为负时与 ``axis`` +R 等价。默认值为0。
     - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
-返回：一组已排序的输出（维度与数据类型和 ``input`` 相同）和索引（数据类型为int64），
+返回：一组已排序的输出（与 ``input`` 维度相同、数据类型相同）和索引（数据类型为int64），
 
-返回类型：tuple
+返回类型：tuple[Variable]
 
 **代码示例**：
 
