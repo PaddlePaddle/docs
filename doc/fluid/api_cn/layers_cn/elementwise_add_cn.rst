@@ -41,7 +41,7 @@ elementwise_add
         - **act** （basestring | None）- 激活函数名称，作用于输出上，例如 "relu"。
         - **name** （basestring | None）- 输出的名字。
 
-返回：        维度与输入x相同的 ``Tensor`` 或 ``LoDTensor``, 数据类型与x相同。
+返回：        维度与输入x相同的 ``Tensor`` 或 ``LoDTensor`` ，数据类型与x相同。
 
 返回类型：        Variable。
 
