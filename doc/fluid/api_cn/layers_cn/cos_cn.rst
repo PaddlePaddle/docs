@@ -5,7 +5,7 @@ cos
 
 .. py:function:: paddle.fluid.layers.cos(x, name=None)
 
-Cosine余弦激活函数。
+余弦函数。
 
 .. math::
 
