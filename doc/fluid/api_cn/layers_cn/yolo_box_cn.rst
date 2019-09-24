@@ -31,8 +31,8 @@ yolo_box
 
 
 参数：
-    - **x** （Variable） -  YoloBox算子的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出。数据类型为float32或float64
-    - **img_size** （Variable） -  YoloBox算子的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为int32。
+    - **x** （Variable） -  YoloBox的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出。数据类型为float32或float64
+    - **img_size** （Variable） -  YoloBox的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为int32。
     - **anchors** （list | tuple） - anchor的宽度和高度，它将逐对解析
     - **class_num** （int） - 要预测的类数
     - **conf_thresh** （float） - 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略

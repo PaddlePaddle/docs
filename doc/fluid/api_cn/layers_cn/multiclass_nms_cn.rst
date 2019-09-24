@@ -9,7 +9,7 @@ multiclass_nms
 
 该OP用于对边界框（bounding box）和评分（scores）执行多类非极大值抑制（NMS）。
 
-在NMS中，如果提供 ``score_threshold`` 阈值，则此算子贪心地选择所有得分（scores）高于 ``score_threshold`` 的检测边界框（bounding box）的子集，如果nms_top_k大于-1，则选择最大的nms_top_k置信度分数。 接着，该算子依据 adaptive nms（基于 ``nms_threshold`` 和 ``nms_eta``），删除与已选择的框IOU(交并比)高于nms_threshold 的重叠框。
+在NMS中，如果提供 ``score_threshold`` 阈值，则此OP贪心地选择所有得分（scores）高于 ``score_threshold`` 的检测边界框（bounding box）的子集，如果nms_top_k大于-1，则选择最大的nms_top_k置信度分数。 接着，该OP依据 adaptive nms（基于 ``nms_threshold`` 和 ``nms_eta``），删除与已选择的框IOU(交并比)高于nms_threshold 的重叠框。
 
 在NMS步骤后，如果keep_top_k大于-1，则每个图像最多保留keep_top_k个框（bounding box）。
 
