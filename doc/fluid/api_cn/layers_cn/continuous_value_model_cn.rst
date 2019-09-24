@@ -5,27 +5,25 @@ continuous_value_model
 
 .. py:function:: paddle.fluid.layers.continuous_value_model(input, cvm, use_cvm=True)
 
-**continuous_value_model层**
+该OP在CTR项目中，用于去除或处理``input``中的展示和点击值。
 
-现在，continuous value model(cvm)仅考虑CTR项目中的展示和点击值。我们假设输入是一个含cvm_feature的词向量，其形状为[N * D]（D为2 + 嵌入维度）。如果use_cvm=True，它会计算log(cvm_feature)，且输出的形状为[N * D]。如果use_cvm=False，它会从输入中移除cvm_feature，且输出的形状为[N * (D - 2)]。
-    
-该层接受一个名为input的张量，嵌入后成为ID层(lod level为1)， cvm为一个show_click info。
+输入``input``是一个含展示（show）和点击（click）的词向量，其形状为math:`[N, D]` （D为2 + 嵌入维度），show和click占据词向量D的前两维。如果use_cvm=True，它会计算math:`log(show)` 和math:`log(click)` ，输出的形状为math:`[N, D]` 。如果use_cvm=False，它会从输入``input``中移除show和click，输出的形状为math:`[N, D - 2]` 。``cvm``为show和click信息，维度为：math:`[N, 2]` 。
 
 参数：
-    - **input** (Variable)-一个N x D的二维LodTensor， N为batch size， D为2 + 嵌入维度， lod level = 1。
-    - **cvm** (Variable)-一个N x 2的二维Tensor， N为batch size，2为展示和点击值。
-    - **use_cvm** (bool)-分使用/不使用cvm两种情况。如果使用cvm，输出维度和输入相等；如果不使用cvm，输出维度为输入-2（移除展示和点击值)。（cvm op是一个自定义的op，其输入是一个含embed_with_cvm默认值的序列，因此我们需要一个名为cvm的op来决定是否使用cvm。）
+    - **input** (Variable) - cvm操作的输入张量。维度为：math:`[N, D]` 的2-D LoDTensor。 N为batch大小， D为2 + 嵌入维度， lod level = 1。
+    - **cvm** (Variable) - cvm操作的展示和点击张量。维度为：math:`[N, 2]` 的2-D Tensor。 N为batch大小，2为展示和点击值。
+    - **use_cvm** (bool) - 是否使用展示和点击信息。如果使用，输出维度和输入相等，对``input``中的展示和点击值取log；如果不使用，输出维度为输入-2（移除展示和点击值)。
 
-返回：变量，一个N x D的二维LodTensor，如果使用cvm，D等于输入的维度，否则D等于输入的维度-2。
+返回：Variable(LoDTensor)变量，math:`[N, M]` 的2-D LoDTensor。如果use_cvm=True，M等于输入的维度D，否则M等于D - 2。
 
-返回类型：变量（Variable）
+返回类型：变量（Variable）,数据类型与``input``一致。
 
 **代码示例**:
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[-1, 1], lod_level=1, append_batch_size=False, dtype="int64")#, stop_gradient=False)
+    input = fluid.layers.data(name="input", shape=[-1, 1], lod_level=1, append_batch_size=False, dtype="int64")
     label = fluid.layers.data(name="label", shape=[-1, 1], append_batch_size=False, dtype="int64")
     embed = fluid.layers.embedding(
                             input=input,
