@@ -41,10 +41,11 @@ ParallelExecutor
         train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                            main_program=train_program,
                                            loss_name=loss.name)
+        # 注意：如果此处不设置share_vars_from=train_exe，测试过程中用的参数与训练使用的参数是不一致
         test_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                           main_program=test_program,
                                           share_vars_from=train_exe)
-     
+
         train_data = numpy.random.random(size=(10, 1)).astype('float32')
         loss_data, = train_exe.run(feed={"X": train_data},
                                    fetch_list=[loss.name])
@@ -70,6 +71,10 @@ ParallelExecutor
 
 抛出异常：``TypeError`` 
     - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会抛出此异常。
+
+.. note::
+     1. 如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
+     2. 如果程序中既有模型训练又有模型测试，则构建模型测试所对应的ParallelExecutor时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
 
 .. py:method::  run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
 

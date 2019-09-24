@@ -71,18 +71,27 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
             data = fluid.layers.data(name='X', shape=[1], dtype='float32')
             hidden = fluid.layers.fc(input=data, size=10)
             loss = fluid.layers.mean(hidden)
+            test_program = fluid.default_main_program().clone(for_test=True)
             fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
      
             exe.run(fluid.default_startup_program())
             build_strategy = fluid.BuildStrategy()
             build_strategy.fuse_all_reduce_ops = True
-            compiled_prog = compiler.CompiledProgram(
+            compiled_train_prog = compiler.CompiledProgram(
                      fluid.default_main_program()).with_data_parallel(
                               loss_name=loss.name, build_strategy=build_strategy)
-     
-            x = numpy.random.random(size=(10, 1)).astype('float32')
-            loss_data, = exe.run(compiled_prog,
-                                 feed={"X": x},
+            # 注意：如果此处不设置share_vars_from=compiled_train_prog，测试过程中用的参数与训练使用的参数是不一致
+            compiled_test_prog = compiler.CompiledProgram(
+                     test_program).with_data_parallel(
+                              share_vars_from=compiled_train_prog)
+
+            train_data = numpy.random.random(size=(10, 1)).astype('float32')
+            loss_data, = exe.run(compiled_train_prog,
+                                 feed={"X": train_data},
+                                 fetch_list=[loss.name])
+            test_data = numpy.random.random(size=(10, 1)).astype('float32')
+            loss_data, = exe.run(compiled_test_prog,
+                                 feed={"X": test_data},
                                  fetch_list=[loss.name])
      
 参数：
@@ -95,3 +104,7 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
 返回：配置之后的 ``CompiledProgram`` 对象
 
 返回类型: CompiledProgram
+
+.. note::
+     1. 如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
+     2. 如果程序中既有模型训练又有模型测试，则构建模型测试所对应的CompiledProgram时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
