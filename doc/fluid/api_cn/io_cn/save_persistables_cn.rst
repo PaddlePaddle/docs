@@ -29,11 +29,4 @@ save_persistables
     # `prog` 可以是由用户自定义的program
     fluid.io.save_persistables(executor=exe, dirname=param_path,
                                main_program=prog)
-    
-    
-
-
-
-
-
 
