@@ -5,7 +5,7 @@ exp
 
 .. py:function:: paddle.fluid.layers.exp(x, name=None)
 
-Exp激活函数(Exp指以自然常数e为底的指数运算)。
+对输入，逐元素进行以自然数e为底指数运算。
 
 .. math::
     out = e^x
