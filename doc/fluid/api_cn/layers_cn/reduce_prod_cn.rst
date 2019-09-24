@@ -8,7 +8,7 @@ reduce_prod
 该OP是对指定维度上的Tensor元素进行求乘积运算，并输出相应的计算结果。
 
 参数：
-          - **input** （Variable）- 输入变量为多维Tensor或LoDTensor。
+          - **input** （Variable）- 输入变量为多维Tensor或LoDTensor，支持数据类型为float32，float64，int32，int64。
           - **dim** （list | int ，可选）- 求乘积运算的维度。如果为None，则计算所有元素的乘积并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将变为 :math:`rank+dim[i]` ，默认值为None。
           - **keep_dim** （bool）- 是否在输出Tensor中保留减小的维度。如 keep_dim 为true，否则结果张量的维度将比输入张量小，默认值为False。
           - **name** （str ， 可选）- 这一层的名称。如果设置为None，则将自动命名这一层。默认值为None。
