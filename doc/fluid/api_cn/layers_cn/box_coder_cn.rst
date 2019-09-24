@@ -40,7 +40,7 @@ Bounding Box Coder
 
 
 参数：
-    - **prior_box** (Variable) - 维度为：math:`[M,4]`的2-D Tensor，M表示存储M个框，数据类型为float32或float64。先验框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐
+    - **prior_box** (Variable) - 维度为[M,4]的2-D Tensor，M表示存储M个框，数据类型为float32或float64。先验框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐
 标
     - **prior_box_var** (list|Variable|None) - 支持三种输入类型，一是维度为：math:`[M,4]`的2-D Tensor，存储M个先验框的variance，数据类型为float32或float64。另外是一个长度为4的列表，所有先验框共用这个列表中的variance，数据类型为float32或float64。为None时不参与计算。
     - **target_box** (Variable) - 数据类型为float，double的Tensor或者LoDTensor，当code_type为‘encode_center_size’，输入是二维LoDTensor，维度为[N,4]，N为目标框的个数，目标框的格式与先验框相同。当code_type为‘decode_center_size’，输>入为3-D Tensor，维度为[N,M,4]。通常N表示产生检测框的个数，M表示类别数。此时目标框为偏移量。

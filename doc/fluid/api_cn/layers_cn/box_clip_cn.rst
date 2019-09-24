@@ -23,8 +23,8 @@ box_clip
 
 
 参数：
-    - **input** (Variable)  – 维度为：math:`[N_1, N_2, ..., N_k, 4]`的多维Tensor，其中最后一维为box坐标维度。数据类型为float32或float64。
-    - **im_info** (Variable)  – 维度为：math:`[N, 3]`的2-D Tensor，N为输入图片个数。具有（高度height，宽度width，比例scale）图像的信息，其中高度和宽度是输入大小，比例是输入大小和原始大小的比率。数据类型为float32或float64。
+    - **input** (Variable)  – 维度为[N_1, N_2, ..., N_k, 4]的多维Tensor，其中最后一维为box坐标维度。数据类型为float32或float64。
+    - **im_info** (Variable)  – 维度为[N, 3]的2-D Tensor，N为输入图片个数。具有（高度height，宽度width，比例scale）图像的信息，其中高度和宽度是输入大小，比例是输入大小和原始大小的比率。数据类型为float32或float64。
     - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回： 表示剪切后的检测框的Tensor或LoDTensor，数据类型为float32或float64，形状与输入检测框相同

@@ -16,10 +16,7 @@ bipartite_match
 
 参数：
                 - **dist_matrix** （Variable）- 维度为：math:`[K,M]`的2-D LoDTensor，数据类型为float32或float64。它是由每行和每列来表示实体之间的成对距离矩阵。例如，假设一个实体是具有形状[K]的A，另一个实体是具有形状[M]的B. dist_matrix [i] [j]是
-A[i]和B[j]之间的距离。距离越大，匹配越好。
-
-                注意：此张量可以包含LoD信息以表示一批输入。该批次的一个实例可以包含不同数量的实体。
-
+A[i]和B[j]之间的距离。距离越大，匹配越好。注意：此张量可以包含LoD信息以表示一批输入。该批次的一个实例可以包含不同数量的实体。
                 - **match_type** （str，可选）- 匹配方法的类型，应为'bipartite'或'per_prediction'。默认值为None，即'bipartite'。
                 - **dist_threshold** （float32，可选）- 如果match_type为'per_prediction'，则此阈值用于根据最大距离确定额外匹配的bbox，默认值为None，即0.5。
                 - **name**  （str|None）– 该层的名称。 为可选项，默认为None。

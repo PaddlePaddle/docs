@@ -15,7 +15,7 @@ distribute_fpn_proposals
 
 
 参数：
-    - **fpn_rois** （Variable） - 维度为：math:`[N,4]`的2-D LoDTensor,其中N为检测框的个数，数据类型为float32或float64。
+    - **fpn_rois** （Variable） - 维度为[N,4]的2-D LoDTensor,其中N为检测框的个数，数据类型为float32或float64。
     - **min_level** （int32） - 产生proposal最低级别FPN层。
     - **max_level** （int32） - 产生proposal最高级别FPN层。
     - **refer_level** （int32） - 具有指定比例的FPN层的引用级别。
