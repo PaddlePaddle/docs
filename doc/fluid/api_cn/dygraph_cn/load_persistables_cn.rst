@@ -12,9 +12,14 @@ load_persistables
     - **dirname**  (str) – 指定加载的目录路径。默认值为"save_dir"。
 
 
-返回:   两个字典:从文件中恢复的模型参数字典;从文件中恢复的优化器学习率状态字典
+返回:
+    - load_var_map  – 加载的模型参数字典。
+    - load_optimizer_map  – 加载的优化器的带衰减的学习率字典。
 
-返回类型:   dict of Variable, dict of LearningRateDecay
+返回类型:   
+    - dict of Variable – 字典键为str类型，值为Variable类型。
+    - dict of LearningRateDecay – 字典键为str类型，值为LearningRateDecay类型。
+
   
 **代码示例**
 
