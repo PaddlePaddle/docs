@@ -20,7 +20,7 @@ reorder_lod_tensor_by_rank
   简言之，若有原batch：X = [Seq0, Seq1, Seq2, Seq3] 且 RankTable 中的索引为 [3,0,2,1]，那么输出即为 Out = [Seq3, Seq0, Seq2, Seq1] ，它携带着新的LoD信息。
   如果 X 的LoD信息是空的，这表明 X 不是序列型数据。这和由多个定长为1的序列组成的batch是相同的情况。此时，该函数将对 X 中数据 在第一轴(axis)上按 rank_table 里的规则加以排列。
   例如，现有 X = [Slice0, Slice1, Slice2, Slice3] ，并且它LoD信息为空，在 RankTable 索引为[3, 0, 2, 1]。则 Out = [Slice3, Slice0, Slice2, Slice1] ，并且不在其中追加LoD信息。
-  注意，该operator对 ``X`` 进行的排序所依据的 ``LoDRankTable`` 不一定是在 ``X`` 的基础上得出来的。它可以由其他不同的序列得出，并由该operator依据这个 ``LoDRankTable`` 来对  ``X`` 排序。
+  注意，该OP对 ``X`` 进行的排序所依据的 ``LoDRankTable`` 不一定是在 ``X`` 的基础上得出来的。它可以由其他不同的序列得出，并由该OP依据这个 ``LoDRankTable`` 来对  ``X`` 排序。
 
 参数：
     - **x(Variable)** - (LoDTensor)，待根据提供的 ``RankTable`` 进行排序的LoD tensor
