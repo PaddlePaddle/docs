@@ -5,7 +5,9 @@ PolynomialDecay
 
 .. py:class:: paddle.fluid.dygraph.PolynomialDecay(learning_rate, decay_steps, end_learning_rate=0.0001, power=1.0, cycle=False, begin=0, step=1, dtype='float32')
 
-为初始学习率应用多项式衰减。
+该接口提供学习率按多项式衰减的功能。通过多项式衰减函数，使得学习率值逐步从初始的`learning_rate`，衰减到`end_learning_rate`。
+
+计算方式如下。
 
 
 .. code-block:: text
@@ -18,18 +20,15 @@ PolynomialDecay
             (1 - global_step / decay_steps) ^ power + end_learning_rate
 
 参数：
-    - **learning_rate** (Variable|float32)-标量float32值或变量。是训练过程中的初始学习率
-    - **decay_steps** (int32)-Python int32数
-    - **end_learning_rate** (float)-Python float数
-    - **power** (float)-Python float数
-    - **cycle** (bool)-若设为true，每decay_steps衰减学习率
-    - **begin** (int) – 起始步(默认为0)
-    - **step** (int) – 步大小(默认为1)
-    - **dtype**  (str)– 初始化学习率变量的dtype(默认为‘float32’)
+    - **learning_rate** (Variable|float32) - 初始学习率。类型可以为学习率变量(Variable)或Python float32常量。
+    - **decay_steps** (int) - 衰减步数。必须是正整数，该参数确定衰减周期。
+    - **end_learning_rate** (float) - 最低的最终学习率。
+    - **power** (float) - 多项式的幂。 
+    - **cycle** (bool) - 学习率下降后是否重新上升。若为True，则学习率衰减到最低学习率值时，会出现上升。若为False，则学习率曲线则单调递减。
+    - **begin** (int) – 起始步。默认值为0。
+    - **step** (int) – 步大小。默认值为1。
+    - **dtype**  (str)– 初始化学习率变量的dtype。默认值为'float32'。
 
-返回：衰减的学习率
-
-返回类型：变量（Variable）
 
 **代码示例**
 
