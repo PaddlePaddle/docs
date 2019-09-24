@@ -61,13 +61,9 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. py:method:: set_batch_size(batch_size)
 
-设置batch size，训练期间有效
+该接口用于设置DataFeedDesc中的batch_size。可以在训练期间调用修改batch_size。
 
-
-参数：
-  - batch_size：batch size
-
-**代码示例：**
+**代码示例**
 
 .. code-block:: python
 
@@ -93,17 +89,18 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
 
+参数：
+  - **batch_size** (int) - 新的批尺寸。
+
+返回：无
+
 .. py:method:: set_dense_slots(dense_slots_name)
 
-指定slot经过设置后将变成密集的slot，仅在训练期间有效。
+将`dense_slots_name`指定的slots设置为密集的slot。**注意：默认情况下，所有slots都是稀疏的。**
 
-密集slot的特征将被输入一个Tensor，而稀疏slot的特征将被输入一个lodTensor
+密集slot的特征将被输入一个Tensor，而稀疏slot的特征将被输入一个LoDTensor。
 
-
-参数：
-  - **dense_slots_name** : slot名称的列表，这些slot将被设置为密集的
-
-**代码示例：**
+**代码示例**
 
 .. code-block:: python
 
@@ -129,9 +126,10 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_dense_slots(['words'])
 
-.. note::
+参数：
+  - **dense_slots_name** (list(str)) - slot名称的列表，这些slot将被设置为密集的。
 
-  默认情况下，所有slot都是稀疏的
+返回：无
 
 .. py:method:: set_use_slots(use_slots_name)
 
