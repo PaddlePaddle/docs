@@ -5,7 +5,24 @@ uniform_random_batch_size_like
 
 .. py:function:: paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32', input_dim_idx=0, output_dim_idx=0, min=-1.0, max=1.0, seed=0)
 
-该OP用输入Tensor的指定维度的值替换返回Tensor指定维度的值，并使用从均匀分布中采样的随机值初始化Tensor。
+该OP用输入Tensor指定维度的值替换返回Tensor指定维度的值，并使用从均匀分布中采样的随机值初始化Tensor。
+
+::
+
+    示例1:
+         input =[[0.946741  , 0.1357001 , 0.38086128]]    # input.shape=[1,3]
+         shape=[2,4]
+    则：
+         result=[[ 0.3443427 , -0.23056602,  0.3477049 ,  0.06139076]]    # result.shape=[1,4]
+
+    示例2:
+         input =[[0.946741  , 0.1357001 , 0.38086128]]     # input.shape=[1,3]
+         shape=[2,4]
+         input_dim_idx=1
+         output_dim_idx=1
+    则：
+         result=[[-0.23133647, -0.84195036,  0.21441269],
+                 [-0.08774924,  0.25605237, -0.09403259]]    # result.shape=[2,3]
 
 参数：
         - **input** （Variable）- 输入Tensor，input_dim_idx将指定其维度用来替换返回Tensor的指定维度。
