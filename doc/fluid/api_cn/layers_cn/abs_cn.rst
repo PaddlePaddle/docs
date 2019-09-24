@@ -11,11 +11,12 @@ abs
     out = |x|
 
 参数:
+    - **x** (Variable)- 多维Tenosr，数据类型为float32或float64。
+    - **name** (str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-    - **x** - abs算子的输入
-    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+返回：表示绝对值结果的Tensor，数据类型与x相同。
 
-返回：        abs算子的输出。
+返回类型：Variable
 
 **代码示例**：
 
@@ -24,5 +25,3 @@ abs
         import paddle.fluid as fluid
         data = fluid.layers.data(name="input", shape=[32, 784])
         result = fluid.layers.abs(data)
-
-
