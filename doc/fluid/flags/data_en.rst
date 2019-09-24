@@ -2,7 +2,7 @@
 data processing
 ==================
 
-enable_cublas_tensor_op_math
+FLAGS_enable_cublas_tensor_op_math
 *******************************************
 (since 1.2.0)
 
@@ -14,10 +14,10 @@ Bool. The default value is False.
 
 Example
 -------
-enable_cublas_tensor_op_math=True will use Tensor Core.
+FLAGS_enable_cublas_tensor_op_math=True will use Tensor Core.
 
 
-use_mkldnn
+FLAGS_use_mkldnn
 *******************************************
 (since 0.13.0)
 

@@ -5,19 +5,17 @@ linspace
 
 .. py:function:: paddle.fluid.layers.linspace(start, stop, num, dtype)
 
-在给定区间内返回固定数目的均匀间隔的值。
+该OP在给定区间内返回固定数目的均匀间隔的值。
  
-第一个entry是start，最后一个entry是stop。在Num为1的情况下，仅返回start。类似numpy的linspace功能。
-
 参数：
-    - **start** (float|Variable)-序列中的第一个entry。 它是一个浮点标量，或是一个数据类型为'float32'|'float64'、形状为[1]的张量。
-    - **stop** (float|Variable)-序列中的最后一个entry。 它是一个浮点标量，或是一个数据类型为'float32'|'float64'、形状为[1]的张量。
-    - **num** (int|Variable)-序列中的entry数。 它是一个整型标量，或是一个数据类型为int32、形状为[1]的张量。
-    - **dtype** (string)-‘float32’|’float64’，输出张量的数据类型。
+    - **start** (float|Variable) – start是区间开始的变量，可以是一个浮点标量，或是一个shape为[1]的Tensor，该Tensor的数据类型可以是float32或者是float64。
+    - **stop** (float|Variable) – end是区间结束的变量，可以是一个浮点标量，或是一个shape为[1]的Tensor，该Tensor的数据类型可以是float32或者是float64。
+    - **num** (int|Variable) – num是给定区间内需要划分的区间数，可以是一个整型标量，或是一个shape为[1]的Tensor，该Tensor的数据类型需为int32。
+    - **dtype** (string) – 输出Tensor的数据类型，可以是‘float32’或者是‘float64’。
 
-返回：存储一维张量的张量变量
+返回：表示等间隔划分结果的1-D Tensor，该Tensor的shape大小为 :math:`[num]` ，在mum为1的情况下，仅返回包含start元素值的Tensor。
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **代码示例**：
 
