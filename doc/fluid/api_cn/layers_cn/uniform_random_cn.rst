@@ -7,6 +7,14 @@ uniform_random
 
 该OP初始化一个Tensor，该Tensor的值是从均匀分布中抽样的随机值
 
+::
+
+    示例1:
+             给定：
+                 shape=[1,2]
+             则输出为：
+                 result=[[0.8505902, 0.8397286]]
+
 参数：
     - **shape** (list|tuple|Variable)-返回Tensor的维度，数据类型是int64，如果shape类型是list或者tuple，它的元素可以是整数或者形状为[1]的Tensor。如果shape的类型是Variable，则是1D的Tensor。
     - **dtype** (np.dtype|core.VarDesc.VarType|str，可选) – 数据的类型，例如float32， float64。 默认数据类型为float32。
@@ -17,6 +25,9 @@ uniform_random
     返回：表示随机初始化结果的Tensor，该Tensor的数据类型由dtype参数决定，该Tensor的维度由shape参数决定。
     
     返回类型：Variable
+
+抛出异常：
+    - :code:`ValueError`: shape的类型应该是list、tuple 或 Variable。
 
 **代码示例**：
 
