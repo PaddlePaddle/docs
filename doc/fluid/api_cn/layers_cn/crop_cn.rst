@@ -7,6 +7,8 @@ crop
 
 根据偏移量（offsets）和形状（shape），裁剪输入张量。
 
+**注意:** 此功能已被弃用，它将在以后的版本中被删除。更新说明：使用 `fluid.layers.crop_tensor <https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/nn_cn.html#crop_tensor>`_ 替代。
+
 **样例**：
 
 ::

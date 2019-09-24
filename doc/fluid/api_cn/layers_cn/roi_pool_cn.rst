@@ -18,7 +18,7 @@ Faster-RCNN.使用了roi池化。roi关于roi池化请参考 https://stackoverfl
 
 参数:
     - **input** (Variable) - 张量，ROIPoolOp的输入。输入张量的格式是NCHW。其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度
-    - **roi** (Variable) -  roi区域。
+    - **rois** (Variable) – 待池化的ROIs (Regions of Interest)，形为（num_rois,4）的2D张量，lod level 为1。给定比如[[x1,y1,x2,y2], ...],(x1,y1)为左上点坐标，(x2,y2)为右下点坐标。
     - **pooled_height** (integer) - (int，默认1)，池化输出的高度。默认:1
     - **pooled_width** (integer) -  (int，默认1) 池化输出的宽度。默认:1
     - **spatial_scale** (float) - (float，默认1.0)，用于将ROI coords从输入比例转换为池化时使用的比例。默认1.0

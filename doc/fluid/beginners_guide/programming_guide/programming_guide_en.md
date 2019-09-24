@@ -101,7 +101,29 @@ type {
 persistable: false
 ```
 
-Specific output value will be shown at the runtime of Executor. Detailed process will be explained later.
+Specific output value will be shown at the runtime of Executor. There are two ways to get runtime Variable value. The first way is to  use `paddle.fluid.layers.Print` to create a print op that will print the tensor being accessed. The second way is to add Variable to Fetch_list. 
+
+Code of the first way is as follows:
+
+```python
+import paddle.fluid as fluid
+data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
+data = fluid.layers.Print(data, message="Print data: ")
+```
+
+Output at  the runtime of Executor:
+
+```
+1563874307	Print data: 	The place is:CPUPlace
+Tensor[fill_constant_0.tmp_0]
+	shape: [1,]
+	dtype: x
+	data: 0,
+```
+
+For more information on how to use the Print API, please refer to [Print operator](https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/api/layers/control_flow.html#print).
+
+Detailed process of the second way Fetch_list will be explained later.
 
 ## Feed data
 

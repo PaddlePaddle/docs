@@ -2,7 +2,7 @@
 
 ## 环境准备
 
-* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8/9.2, 且仅支持单卡)*
+* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8.0/9.0/10.0, 且仅支持单卡)*
 * *Python 版本 2.7/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 * *Visual Studio 2015 Update3*
@@ -12,7 +12,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * *CUDA 工具包8.0/9.2配合cuDNN v7.3+*
+    * *CUDA 工具包8.0配合cuDNN v7.1+, 9.0/10.0配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
 ## 安装步骤
