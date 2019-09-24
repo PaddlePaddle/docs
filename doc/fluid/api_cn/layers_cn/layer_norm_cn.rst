@@ -39,11 +39,16 @@ layer_norm
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
-   import paddle.fluid as fluid
-   data = fluid.layers.data(name='data', shape=[3, 32, 32],
-                                           dtype='float32')
-   x = fluid.layers.layer_norm(input=data, begin_norm_axis=1)
-
+    import paddle.fluid as fluid
+    import numpy as np
+    x = fluid.layers.data(name='x', shape=[3, 32, 32], dtype='float32')
+    hidden1 = fluid.layers.layer_norm(input=x, begin_norm_axis=1)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    np_x = np.random.random(size=(8, 3, 32, 32)).astype('float32')
+    output = exe.run(feed={"x": np_x}, fetch_list = [hidden1])
+    print(output)
 
