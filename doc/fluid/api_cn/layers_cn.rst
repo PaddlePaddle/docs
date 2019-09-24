@@ -106,6 +106,7 @@ fluid.layers
     layers_cn/floor_cn.rst
     layers_cn/fsp_matrix_cn.rst
     layers_cn/gather_cn.rst
+    layers_cn/gather_nd_cn.rst
     layers_cn/gaussian_random_batch_size_like_cn.rst
     layers_cn/gaussian_random_cn.rst
     layers_cn/generate_mask_labels_cn.rst
@@ -226,6 +227,8 @@ fluid.layers
     layers_cn/sampling_id_cn.rst
     layers_cn/scale_cn.rst
     layers_cn/scatter_cn.rst
+    layers_cn/scatter_nd_add_cn.rst
+    layers_cn/scatter_nd_cn.rst
     layers_cn/selu_cn.rst
     layers_cn/sequence_concat_cn.rst
     layers_cn/sequence_conv_cn.rst
