@@ -11,7 +11,7 @@ argmin
 
 参数：
     - **x** (Variable) - 输入的多维 ``Tensor`` ，支持的数据类型：float32、float64、int8、int16、int32、int64。
-    - **axis** (int，可选) - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-1, R)，R是输入 ``x`` 的Rank， ``-1`` 表示最后一维。默认值为0。
+    - **axis** (int，可选) - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``x`` 的Rank， ``axis`` 为负时与 ``axis`` +R 等价。默认值为0。
 
 返回： ``Tensor`` ，数据类型int64
 
