@@ -7,7 +7,7 @@ deformable_conv
 
 **可变形卷积算子**
 
-deformable_conv运算对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x，输出Tensor y，可变形卷积运算如下所示：
+deformable_conv op对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x，输出Tensor y，可变形卷积运算如下所示：
 
 可形变卷积v2:
 
@@ -47,19 +47,19 @@ deformable_conv运算对输入4-D Tensor计算2-D可变形卷积。给定输入T
 参数：
     - **input** (Variable) - 形状为 :math:`[N, C, H, W]` 的输入Tensor，数据类型为float32或float64。
     - **offset** (Variable) – 可变形卷积层的输入坐标偏移，数据类型为float32或float64。
-    - **Mask** (Variable) – 可变形卷积层的输入掩码，数据类型为float32或float64。
+    - **mask** (Variable, 可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v2时，请将mask设置为None, 数据类型为float32或float64。
     - **num_filters** (int) – 卷积核数，与输出Tensor通道数相同。
-    - **filter_size** (int|tuple|None) – 卷积核大小。如果filter_size为元组，则必须包含两个整数(filter_size_H, filter_size_W)。若数据类型为int，卷积核形状为(filter_size, filter_size)。
-    - **stride** (int|tuple) – 步长大小。如果stride为元组，则必须包含两个整数(stride_H, stride_W)。否则stride_H = stride_W = stride。默认stride = 1。
-    - **padding** (int|tuple) – padding大小。如果padding为元组，则必须包含两个整数(padding_H, padding_W)。否则padding_H = padding_W = padding。默认padding = 0。
-    - **dilation** (int|tuple) – dilation大小。如果dilation为元组，则必须包含两个整数(dilation_H, dilation_W)。否则dilation_H = dilation_W = dilation。默认dilation = 1。
-    - **groups** (int) – 卷积组数。依据Alex Krizhevsky的Deep CNN论文中的分组卷积，有：当group=2时，前一半卷积核只和前一半输入通道有关，而后一半卷积核只和后一半输入通道有关。默认groups = 1。
-    - **deformable_groups** (int) – 可变形卷积组数。默认deformable_groups = 1。
-    - **im2col_step** (int) – 每个im2col计算的最大图像数。总batch大小应可以被该值整除或小于该值。如果您面临内存问题，可以尝试在此处使用一个较小的值。默认im2col_step = 64。
-    - **param_attr** (ParamAttr|None) – 可变形卷积的可学习权重的属性。如果将其设置为None或某种ParamAttr，可变形卷积将创建ParamAttr作为param_attr。如果没有设置此param_attr的Initializer，该参数将被Normal(0.0, std)初始化，且其中的std为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}` 。默认值为None。
-    - **bias_attr** (ParamAttr|bool|None) – 可变形卷积层的偏置的参数属性。如果设为False，则输出单元不会加偏置。如果设为None或者某种ParamAttr，conv2d会创建ParamAttr作为bias_attr。如果不设置bias_attr的Initializer，偏置会被初始化为0。默认值为None。
-    - **modulated** （bool）- 确定使用v1和v2中的哪个版本，如果为True，则选择使用v2。默认值为True。
-    - **name** (str|None) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **filter_size** (int|tuple) – 卷积核大小。如果filter_size为元组，则必须包含两个整数(filter_size_H, filter_size_W)。若数据类型为int，卷积核形状为(filter_size, filter_size)。
+    - **stride** (int|tuple) – 步长大小。如果stride为元组，则必须包含两个整数(stride_H, stride_W)。否则stride_H = stride_W = stride。缺省值为1。
+    - **padding** (int|tuple) – padding大小。如果padding为元组，则必须包含两个整数(padding_H, padding_W)。否则padding_H = padding_W = padding。缺省值为0。
+    - **dilation** (int|tuple) – dilation大小。如果dilation为元组，则必须包含两个整数(dilation_H, dilation_W)。否则dilation_H = dilation_W = dilation。缺省值为1。
+    - **groups** (int) – 卷积组数。依据Alex Krizhevsky的Deep CNN论文中的分组卷积，有：当group=2时，前一半卷积核只和前一半输入通道有关，而后一半卷积核只和后一半输入通道有关。缺省值为1。
+    - **deformable_groups** (int) – 可变形卷积组数。缺省值为1。
+    - **im2col_step** (int) – 每个im2col计算的最大图像数。总batch大小应可以被该值整除或小于该值。如果您面临内存问题，可以尝试在此处使用一个较小的值。缺省值为64。
+    - **param_attr** (ParamAttr，可选) – 可变形卷积的可学习权重的属性。如果将其设置为None或某种ParamAttr，可变形卷积将创建ParamAttr作为param_attr。如果没有设置此param_attr的Initializer，该参数将被Normal(0.0, std)初始化，且其中的std为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}` 。缺省值为None。
+    - **bias_attr** (ParamAttr|bool，可选) – 可变形卷积层的偏置的参数属性。如果设为False，则输出单元不会加偏置。如果设为None或者某种ParamAttr，conv2d会创建ParamAttr作为bias_attr。如果不设置bias_attr的Initializer，偏置会被初始化为0。缺省值为None。
+    - **modulated** （bool）- 确定使用v1和v2中的哪个版本，如果为True，则选择使用v2。缺省值为True。
+    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
  
 返回：可变形卷积输出的4-D Tensor。
      

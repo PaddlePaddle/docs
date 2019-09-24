@@ -5,7 +5,7 @@ flatten
 
 .. py:function::  paddle.fluid.layers.flatten(x, axis=1, name=None)
 
-flatten运算将输入的多维Tensor展平成2-D Tensor矩阵
+flatten op将输入的多维Tensor展平成2-D Tensor矩阵
 
 例如：
 
@@ -31,8 +31,8 @@ flatten运算将输入的多维Tensor展平成2-D Tensor矩阵
 
 参数：
   - **x** (Variable) - 一个维度数>=axis 的多维Tensor, 数据类型可以为float32，float64，int8，int32或int64。
-  - **axis** (int) - flatten展开的分割轴，[0, axis) 轴数据被flatten到输出矩阵的0轴，[axis, R)数据被flatten到输出矩阵的1轴，其中R是输入张量的总维度数。axis的值必须在[0,R]范围内。当 axis=0 时，若输入Tensor的维度为 :math:`[d_0, d_1，… d_n]` ，则输出张量的Tensor维度为 :math:`[1，d_0 * d_1 *… d_n]` ，默认为1。
-  - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **axis** (int) - flatten展开的分割轴，[0, axis) 轴数据被flatten到输出矩阵的0轴，[axis, R)数据被flatten到输出矩阵的1轴，其中R是输入张量的总维度数。axis的值必须在[0,R]范围内。当 axis=0 时，若输入Tensor的维度为 :math:`[d_0, d_1，… d_n]` ，则输出张量的Tensor维度为 :math:`[1，d_0 * d_1 *… d_n]` ，缺省值为1。
+  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 
 返回: 一个 2-D Tensor，它包含输入Tensor的数据，但维度发生变化。输入的[0, axis)维将沿axis展平到输出Tensor的0维度，剩余的输入维数展平到输出的1维度。
 
