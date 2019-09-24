@@ -24,7 +24,9 @@ def print_module_index(module, header):
     blank_num = 4 
     files = sorted(glob.glob(pattern), key=str.lower)
 
-    for f in files: 
+    for f in files:
+        if f == "io/PipeReader.rst": 
+            continue
         stream.write(' ' * blank_num)
         stream.write(f)
         stream.write('\n')
