@@ -14,7 +14,7 @@ ones
     - **dtype** (np.dtype|core.VarDesc.VarType|str) - 输出Tenor的数据类型。
     - **force_cpu** (bool) – 是否强制将输出Tensor写入CPU内存。如果 ``force_cpu`` 为False，则将输出Tensor写入当前所在运算设备的内存，默认为False。
 
-返回：值全为1的Tensor
+返回：值全为1的Tensor，数据类型和 ``dtype`` 定义的类型一致。
 
 返回类型：Variable
 
