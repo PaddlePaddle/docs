@@ -20,12 +20,16 @@ prelu
 
 
 参数：
-          - **x** （Tensor|LoDTensor）- 数据类型为float的Tensor或者LoDTensor输入为Tensor。
+          - **x** （Variable）- 多维Tensor或LoDTensor，数据类型为float32。
           - **mode** (str) - 权重共享模式。
-          - **param_attr** (ParamAttr|None) - 可学习权重 :math:`[\alpha]` 的参数属性，可由ParamAttr创建。
-          - **name** （str|None）- 这一层的名称（可选）。默认为None。
+          - **param_attr** (ParamAttr，可选) - 可学习权重 :math:`[\alpha]` 的参数属性，可由ParamAttr创建。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+          - **name** (str|None) – 该层的名称（可选项）,默认为None
 
-返回： Variable（Tensor|LoDTensor）数据类型为float的Tensor或者LoDTensor输入为Tensor。与输入形状相同。
+
+返回： 表示激活输出Tensor或LoDTensor，数据类型为float32。与输入形状相同。
+
+
+返回类型：Variable
 
 
 **代码示例：**

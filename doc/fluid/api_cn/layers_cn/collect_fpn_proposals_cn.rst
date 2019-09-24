@@ -20,7 +20,11 @@ collect_fpn_proposals
     - **post_nms_top_n** (int) – 所选RoIs的数目
     - **name** (str|None) – 该层的名称（可选项）,默认为None
 
-返回：Variable（LoDTensor），数据类型为float，double的LoDTensor)。选定的具有高分数的RoIs，同时具有LoD信息，形状为[M, 4]，其中M为post_nms_top_n。
+返回：表示选定具有高分数的RoIs的LoDTensor，数据类型为float32或float64，同时具有LoD信息，维度为[M, 4]，其中M为post_nms_top_n。
+
+
+返回类型：Variable
+
 
 **代码示例**
 
