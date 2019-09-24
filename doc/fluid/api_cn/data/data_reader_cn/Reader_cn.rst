@@ -91,6 +91,8 @@ Data Reader Interface
 
 .. py:function:: paddle.reader.chain(*readers)
 
+**注意：paddle.reader.chain是paddle.fluid.io.chain的别名，推荐使用paddle.fluid.io.chain。**
+
 创建一个数据读取器，其功能是将输入的多个数据读取器的输出链接在一起作为它的输出。
 
 举例来说，如果输入数据读取器的输出分别为[0，0，0]、[10，10，10]和[20，20，20]，那么调用该接口产生的新数据读取器的输出为：[0，0，0][10，10，10][20，20，20] 。
