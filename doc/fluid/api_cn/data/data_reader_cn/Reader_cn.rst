@@ -105,11 +105,12 @@ Data Reader Interface
 
 .. py:function:: paddle.reader.shuffle(reader, buf_size)
 
+**注意:paddle.reader.shuffle是paddle.fluid.io.shuffle的别名，推荐使用paddle.fluid.io.shuffle。**
+
 该接口创建一个数据读取器，其功能是将原始数据读取器的数据打乱，然后返回无序的数据。
 
 从原始数据读取器取出buf_size个数据到缓冲区，将缓冲区数据打乱，然后将无序的数据依次返回。当缓冲区数据全部输出后，再次执行上述步骤。
 
-``paddle.reader.shuffle`` 是 ``paddle.fluid.io.shuffle`` 的别名。
 
 参数：
     - **reader** (callable)  – 原始数据读取器。
@@ -133,9 +134,10 @@ Data Reader Interface
 
 .. py:function:: paddle.reader.firstn(reader, n)
 
+**注意:paddle.reader.firstn是paddle.fluid.io.firstn的别名，推荐使用paddle.fluid.io.firstn。**
+
 该接口创建一个数据读取器，它可以返回的最大样本数为n。
 
-``paddle.reader.firstn`` 是 ``paddle.fluid.io.firstn`` 的别名。 
 
 参数：
     - **reader** (callable)  – 输入的数据读取器。
