@@ -4,8 +4,7 @@ elementwise_min
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
-
-最小元素算子
+该算子逐元素对比输入的两个张量（Tensor），并且把各个位置更小的元素保存到返回结果中。
 
 等式是：
 
@@ -20,7 +19,7 @@ elementwise_min
         2. :math:`Y` 的形状（shape）是 :math:`X` 的连续子序列。
 
 对于情况2：
-        1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 将是 :math:`Y` 传到 :math:`X` 上的起始维度索引。
+        1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
         3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
@@ -40,47 +39,60 @@ elementwise_min
 参数：
         - **x** （Tensor）- 第一个输入张量（Tensor）。
         - **y** （Tensor）- 第二个输入张量（Tensor）。
-        - **axis** （INT）- （int，默认-1）。将Y传到X上的起始维度索引。
-        - **act** （basestring | None）- 激活函数名称，应用于输出。
+        - **axis** （int | -1）-  Y的维度对应到X维度上时的索引。
+        - **act** （basestring | None）- 激活函数名称，作用于输出上，例如 "relu"。
         - **name** （basestring | None）- 输出的名称。
 
-返回：        元素运算的输出。
+返回：        返回一个张量，把各个位置更小的元素保存到返回结果中。
 
-**代码示例**
+**代码示例 1**
 
 ..  code-block:: python
 
     import paddle.fluid as fluid
-    # 例1: shape(x) = (2, 3, 4, 5), shape(y) = (2, 3, 4, 5)
-    x0 = fluid.layers.data(name="x0", shape=[2, 3, 4, 5], dtype='float32')
-    y0 = fluid.layers.data(name="y0", shape=[2, 3, 4, 5], dtype='float32')
-    z0 = fluid.layers.elementwise_min(x0, y0)
-     
-    # 例2: shape(X) = (2, 3, 4, 5), shape(Y) = (5)
-    x1 = fluid.layers.data(name="x1", shape=[2, 3, 4, 5], dtype='float32')
-    y1 = fluid.layers.data(name="y1", shape=[5], dtype='float32')
-    z1 = fluid.layers.elementwise_min(x1, y1)
-     
-    # 例3: shape(X) = (2, 3, 4, 5), shape(Y) = (4, 5), with axis=-1(default) or axis=2
-    x2 = fluid.layers.data(name="x2", shape=[2, 3, 4, 5], dtype='float32')
-    y2 = fluid.layers.data(name="y2", shape=[4, 5], dtype='float32')
-    z2 = fluid.layers.elementwise_min(x2, y2, axis=2)
-     
-    # 例4: shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
-    x3 = fluid.layers.data(name="x3", shape=[2, 3, 4, 5], dtype='float32')
-    y3 = fluid.layers.data(name="y3", shape=[3, 4], dtype='float32')
-    z3 = fluid.layers.elementwise_min(x3, y3, axis=1)
-     
-    # 例5: shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
-    x4 = fluid.layers.data(name="x4", shape=[2, 3, 4, 5], dtype='float32')
-    y4 = fluid.layers.data(name="y4", shape=[2], dtype='float32')
-    z4 = fluid.layers.elementwise_min(x4, y4, axis=0)
-     
-    # 例6: shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
-    x5 = fluid.layers.data(name="x5", shape=[2, 3, 4, 5], dtype='float32')
-    y5 = fluid.layers.data(name="y5", shape=[2], dtype='float32')
-    z5 = fluid.layers.elementwise_min(x5, y5, axis=0)
-     
+    import numpy as np
+
+    def gen_data():
+        return {
+            "x": np.array([2, 3, 4]),
+            "y": np.array([1, 5, 2])
+        }
+
+    x = fluid.layers.data(name="x", shape=[3], dtype='float32')
+    y = fluid.layers.data(name="y", shape=[3], dtype='float32')
+    z = fluid.layers.elementwise_max(x, y)
+
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    z_value = exe.run(feed=gen_data(),
+                        fetch_list=[z.name])
+
+    print(z_value) #[1, 3, 2]
+
+**代码示例 2**
+
+..  code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    def gen_data():
+        return {
+            "x": np.ones((2, 3, 4, 5)).astype('float32'),
+            "y": np.zeros((3, 4)).astype('float32')
+        }
+
+    x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
+    y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
+    z = fluid.layers.elementwise_max(x, y, axis=1)
+
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+
+    z_value = exe.run(feed=gen_data(),
+                        fetch_list=[z.name])
+
+    print(z_value)#[[[[0., 0., 0., 0., 0.] .... [0., 0., 0., 0., 0.]]]]
 
 
 
