@@ -19,7 +19,7 @@ PipeReader从命令的输出流中读取数据，把数据存在一个pipe缓存
 参数:    
     - **command** (str) – 该参数表示产生数据来源的命令。
     - **bufsize** (int) – 该参数表示pipe缓存的大小，默认为8192。
-    - **file_type** (str) – command操作文件类型，默认为plain。
+    - **file_type** (str) – command操作文件类型，可选类型只能为plain或者gzip，默认为plain。
 
 返回： 返回一个PipeReader实例。
 
