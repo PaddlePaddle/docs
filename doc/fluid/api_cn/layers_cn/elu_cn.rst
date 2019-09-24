@@ -10,11 +10,11 @@ ELU激活层（ELU Activation Operator）
 根据 https://arxiv.org/abs/1511.07289 对输入张量中每个元素应用以下计算。
 
 .. math::
-        \\out=max(0,x)+min(0,α∗(ex−1))\\
+        \\out=max(0,x)+min(0,α∗(e^{x}−1))\\
 
 参数:
     - x(Variable)- ELU operator的输入
-    - alpha(FAOAT|1.0)- ELU的alpha值
+    - alpha(float|1.0)- ELU的alpha值
     - name (str|None) -这个层的名称(可选)。如果设置为None，该层将被自动命名。
 
 返回: ELU操作符的输出
