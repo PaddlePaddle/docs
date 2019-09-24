@@ -61,6 +61,7 @@ fluid.layers
     layers_cn/create_tensor_cn.rst
     layers_cn/crf_decoding_cn.rst
     layers_cn/crop_cn.rst
+    layers_cn/crop_tensor_cn.rst
     layers_cn/cross_entropy_cn.rst
     layers_cn/ctc_greedy_decoder_cn.rst
     layers_cn/cumsum_cn.rst
@@ -157,7 +158,6 @@ fluid.layers
     layers_cn/lstm_cn.rst
     layers_cn/lstm_unit_cn.rst
     layers_cn/margin_rank_loss_cn.rst
-    layers_cn/match_matrix_tensor_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
     layers_cn/mean_cn.rst
@@ -285,7 +285,6 @@ fluid.layers
     layers_cn/thresholded_relu_cn.rst
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
-    layers_cn/tree_conv_cn.rst
     layers_cn/unfold_cn.rst
     layers_cn/Uniform_cn.rst
     layers_cn/uniform_random_cn.rst
@@ -294,7 +293,6 @@ fluid.layers
     layers_cn/unique_with_counts_cn.rst
     layers_cn/unsqueeze_cn.rst
     layers_cn/unstack_cn.rst
-    layers_cn/var_conv_2d_cn.rst
     layers_cn/warpctc_cn.rst
     layers_cn/where_cn.rst
     layers_cn/While_cn.rst
