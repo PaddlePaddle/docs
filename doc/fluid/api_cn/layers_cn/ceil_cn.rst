@@ -5,7 +5,7 @@ ceil
 
 .. py:function:: paddle.fluid.layers.ceil(x, name=None)
 
-向上取整运算激活函数。
+向上取整运算函数。
 
 .. math::
     out = \left \lceil x \right \rceil
