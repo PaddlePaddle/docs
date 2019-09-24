@@ -34,7 +34,7 @@ SoftReLU 激活函数.
     img = np.array([[0, 1],[2, 3]]).astype(np.float32)
 
     res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-    print(res)    
+    print(res) # [array([[0.6931472, 1.3132616], [2.126928 , 3.0485873]], dtype=float32)]
 
 
 

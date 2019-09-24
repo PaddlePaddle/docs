@@ -47,7 +47,7 @@ scale
     img = np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)
 
     res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-    print(res)
+    print(res) # [array([[ 3.,  5.,  7.], [ 9., 11., 13.]], dtype=float32)]
 
 
 

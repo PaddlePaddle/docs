@@ -32,4 +32,4 @@ shape层。
     img = np.ones((3, 100, 100)).astype(np.float32)
 
     res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-    print(res)
+    print(res) # [array([  3, 100, 100], dtype=int32)]
