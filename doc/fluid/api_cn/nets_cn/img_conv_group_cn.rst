@@ -21,7 +21,7 @@ Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。�
        - **pool_type** （str） - 池化类型可以是最大池化的 ``max`` 和平均池化的 ``avg`` 。默认：max。
        - **use_cudnn** （bool） - 是否使用cudnn内核，仅在安装cudnn库时才有效。默认值：True
        
-返回：  使用Convolution2d，BatchNorm，DropOut和Pool2d进行串行计算后的最终结果。
+返回： Tensor。使用Convolution2d，BatchNorm，DropOut和Pool2d进行串行计算后的最终结果。
 
 返回类型： Variable
 

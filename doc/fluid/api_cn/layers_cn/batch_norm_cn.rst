@@ -54,7 +54,7 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
     - **fuse_with_relu** （bool）- 如果为True，batch_norm后该操作符执行relu。默认：None。
     - **use_global_stats** （bool） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。默认：False。
 
-返回： 张量，在输入中运用批正则后的结果。
+返回： 维度和输入相同的Tensor，在输入中运用批正则后的结果。
 
 返回类型：Variable
 

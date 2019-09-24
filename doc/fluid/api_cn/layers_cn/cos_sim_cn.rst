@@ -19,7 +19,7 @@ cos_sim
     - **X** (Variable) - cos_sim操作函数的第一个输入。
     - **Y** (Variable) - cos_sim操作函数的第二个输入。
 
-返回：输出两个输入的余弦相似度。
+返回：LoDTensor。输出两个输入的余弦相似度。
 
 返回类型：Variable
 

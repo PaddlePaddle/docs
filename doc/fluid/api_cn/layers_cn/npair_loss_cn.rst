@@ -17,7 +17,7 @@ NPair损失需要成对的数据。NPair损失分为两部分：第一部分是�
     - **labels** (Variable) - 标签向量。是一维张量，尺寸=[batch_size]。
     - **l2_reg** (float32) - 嵌入向量的L2正则化系数，默认：0.002。
 
-返回： 经过npair loss计算之后的结果，是一个值。
+返回： Tensor。经过npair loss计算之后的结果，是一个值。
 
 返回类型：Variable
 
