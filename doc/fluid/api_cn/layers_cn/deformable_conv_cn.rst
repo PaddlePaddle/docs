@@ -7,7 +7,7 @@ deformable_conv
 
 **可变形卷积算子**
 
-deformable_conv运算对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x，输出Tensor y，可变形卷积操作如下所示：
+deformable_conv运算对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x，输出Tensor y，可变形卷积运算如下所示：
 
 可形变卷积v2:
 

@@ -47,8 +47,10 @@ flatten运算将输入的多维Tensor展平成2-D Tensor矩阵
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[4, 4, 3], dtype="float32")
+    x = fluid.layers.data(name="x", shape=[4, 4, 3], append_batch_size=False, dtype="float32")
+    # x shape is [4, 4, 3]
     out = fluid.layers.flatten(x=x, axis=2)
+    # out shape is [16, 3]
 
 
 
