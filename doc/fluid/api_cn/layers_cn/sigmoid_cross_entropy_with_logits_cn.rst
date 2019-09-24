@@ -5,9 +5,9 @@ sigmoid_cross_entropy_with_logits
 
 .. py:function:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits(x, label, ignore_index=-100, name=None, normalize=False)
 
-在类别不相互独立的分类任务中，该函数可以衡量按元素的可能性误差。可以这么认为，为单一数据点预测标签，它们之间不是完全互斥的关系。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
+在每个类别独立的分类任务中，该OP可以计算按元素的概率误差。可以将其视为预测数据点的标签，其中标签不是互斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
-逻辑loss可通过下式计算：
+logistic loss可通过下式计算：
 
 .. math::
     loss = -Labels * log(sigma(X)) - (1 - Labels) * log(1 - sigma(X))
@@ -17,7 +17,7 @@ sigmoid_cross_entropy_with_logits
 .. math::
     sigma(X) = \frac{1}{1 + exp(-X)}
 
-代入最开始的式子，
+代入上方计算logistic loss公式中:
 
 .. math::
     loss = X - X * Labels + log(1 + exp(-X))
@@ -35,12 +35,12 @@ sigmoid_cross_entropy_with_logits
   - **x** (Variable) - (Tensor, 默认 Tensor<float>)，形为 N x D 的二维张量，N为batch大小，D为类别数目。该输入是一个由先前运算得出的logit组成的张量。logit是未标准化(unscaled)的log概率， 公式为 :math:`log(\frac{p}{1-p})`
   - **label** (Variable) -  (Tensor, 默认 Tensor<float>) 具有和X相同类型，相同形状的二维张量。该输入张量代表了每个logit的可能标签
   - **ignore_index** （int） - （int，默认kIgnoreIndex）指定被忽略的目标值，它不会影响输入梯度
-  - **name** (basestring|None) - 输出的名称
-  - **normalize** （bool） - 如果为true，则将输出除以除去ignore_index对应目标外的目标数
+  - **name** (str|None) - 输出的名称, 可选参数，默认为None，则自动命名该层
+  - **normalize** （bool） - 如果为true，则将输出除以除去ignore_index对应目标外的目标数，默认为False
 
-返回： (Tensor, 默认Tensor<float>), 形为 N x D 的二维张量，其值代表了按元素的逻辑loss
+返回： Variable(Tensor, 默认Tensor<float>), 形为 N x D 的二维张量，其值代表了按元素的logistic loss
 
-返回类型：Variable
+返回类型：变量(Variable)
 
 
 
