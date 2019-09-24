@@ -19,7 +19,7 @@ fsp_matrix op用于计算两个4-D Tensor特征图的求解过程（FSP）矩阵
     - **x** (Variable): 一个形状为 :math:`[batch\_size, x\_channel, height, width]` 的 4-D 特征图Tensor, 数据类型为float32或float64。
     - **y** (Variable)：一个形状为 :math:`[batch\_size, y\_channel, height, width]` 的 4-D 特征图Tensor, 数据类型为float32或float64。y_channel可以与输入（x）的x_channel不同，而其他维度必须与输入（x）相同。
 
-返回：一个形状为 :math:`[batch\_size, x\_channel, y\_channel]` 的fsp矩阵, 是一个 3-D Tensor，数据类型与输入数据类型一致。其中，x_channel是输入x的通道数，y_channel是输入y的通道数。
+返回：一个形状为 :math:`[batch\_size, x\_channel, y\_channel]` 的fsp矩阵, 是一个 3-D Tensor，数据类型与输入数据类型一致。其中，x_channel是输入x的通道数，y_channel是输入y的通道数。数据类型为float32或float64。
 
 返回类型：Variable
 

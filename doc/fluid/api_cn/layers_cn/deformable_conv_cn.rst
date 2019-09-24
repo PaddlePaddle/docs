@@ -61,7 +61,7 @@ deformable_conv op对输入4-D Tensor计算2-D可变形卷积。给定输入Tens
     - **modulated** （bool）- 确定使用v1和v2中的哪个版本，如果为True，则选择使用v2。缺省值为True。
     - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
  
-返回：可变形卷积输出的4-D Tensor。
+返回：可变形卷积输出的4-D Tensor，数据类型为float32或float64。
      
 返回类型：Variable
      

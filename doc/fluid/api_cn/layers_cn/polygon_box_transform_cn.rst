@@ -15,7 +15,7 @@ polygon_box_transform
     - **input** （Variable） - 形状为 :math:`[batch\_size，geometry\_channels，height，width]` 的4-D Tensor，数据类型为float32或float64。
     - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 
-返回：polygon_box_transform输出的真实坐标，是一个 4-D Tensor。
+返回：polygon_box_transform输出的真实坐标，是一个 4-D Tensor。数据类型为float32或float64。
 
 返回类型：Variable
 
