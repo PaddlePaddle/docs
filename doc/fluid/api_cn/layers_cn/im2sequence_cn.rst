@@ -9,7 +9,7 @@ im2sequence
 
 
 .. math::
-    output\_height = 1 + \frac{padding\_up + padding\_down + input\_height - filter\_size\_height + stride\_height-1}{stride\_height}
+    output\_height = 1 + \frac{padding\_up + padding\_down + input\_height - filter\_size\_height + stride\_height-1}{stride\_height} \\
     output\_width = 1 + \frac{padding\_left + padding\_right + input\_width - filter\_size\_width + stride\_width-1}{stride\_width}
 
 其中符号的意义如下所示。
@@ -21,7 +21,7 @@ im2sequence
   - **padding** (int|List[int]) - 填充大小。如果padding是一个List，它可以包含四个整数[padding_up, padding_left, padding_down, padding_right)，当包含两个整数[padding_height, padding_width]时，可展开为[padding_height, padding_width, padding_height, padding_width]。如果padding是一个int, 可展开为[padding, padding, padding, padding]。默认值为0。
   - **input_image_size** (Variable) - 2-D Tensor, 输入图像的实际大小, 它的维度为[batchsize，2]。当该参数不为None时，可用于batch inference。默认值为None.
   - **out_stride** (int|List[int]) - 输出步长。只有当input_image_size不为None时才有效。如果out_stride是List，它必须包含[out_stride_height, out_stride_width]，如果out_stride是int, 则可展开为[out_stride, out_stride]，默认值为1。
-  - **name** (str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **name** (str) - 该OP的名称，默认值为None，为None时该OP将会被自动命名。
 
 返回： shape为{batch_size * output_height * output_width, filter_size_height * filter_size_width * input.channels}的序列, 2-D Tensor。
 
