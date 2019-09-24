@@ -27,6 +27,7 @@ def print_module_index(module, header):
     for f in files:
         if f == "io/PipeReader.rst": 
             continue
+
         stream.write(' ' * blank_num)
         stream.write(f)
         stream.write('\n')
