@@ -6,7 +6,7 @@ Executor
 
 .. py:class:: paddle.fluid.executor.Executor (place)
 
-Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指定设备，在Executor执行时，需要指定被执行的Program或CompiledProgram。需要注意的是，执行器会执行Program或CompiledProgram中的所有算子。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即fluid.global_scope()。
+Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传入设备，在Executor执行时，需要指定被执行的Program或CompiledProgram，需要注意的是，执行器会执行Program或CompiledProgram中的所有算子。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即fluid.global_scope()。
 
 
 **示例代码**
@@ -59,7 +59,7 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指�
 
 
 参数:
-    - **place** (fluid.CPUPlace|fluid.CUDAPlace(n)) – 该参数表示Executor执行所在的设备。
+    - **place** (fluid.CPUPlace|fluid.CUDAPlace(N)) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。
   
 返回：初始化后的 ``Executor`` 对象
 
@@ -69,7 +69,7 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指�
 .. py:method:: close()
 
 
-关闭执行器。该接口主要用于对于分布式训练, 调用这个接口后不可以再使用改执行器。该接口会释放在PServers上和目前Trainer有关联的资源。
+关闭执行器。该接口主要用于对于分布式训练, 调用该接口后不可以再使用该执行器。该接口会释放在PServers上和目前Trainer有关联的资源。
 
 **示例代码**
 
@@ -85,7 +85,7 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指�
 
 .. py:method:: run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True,use_program_cache=False)
 
-执行指定的Program或者CompiledProgram，**注意：执行器会执行program中的所有算子**。
+执行指定的Program或者CompiledProgram，**注意：执行器会执行Program中的所有算子**。
 
 **示例代码**
 
@@ -112,8 +112,8 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指�
                            fetch_list=[loss.name])
 
 参数：  
-  - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未设置该参数，默认使用fluid.default_main_program()。默认为：None。
-  - **feed** (list|dict|None) – 该变量表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
+  - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为fluid.default_main_program()。默认为：None。
+  - **feed** (list|dict) – 该变量表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
   - **fetch_list** (list) – 该变量表示模型运行之后需要返回的变量。默认为：None。
   - **feed_var_name** (str) – 前向算子(feed operator)变量的名称。默认为："feed"。
   - **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
@@ -126,8 +126,8 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要指�
 返回类型: list(numpy.array)
 
 .. note::
-     1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错。应额外注意核对数据集的最后一个batch是否比可用的CPU核数或GPU卡数大。
-     2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量变量（fetch_list中的变量）拼接在一起。
+     1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
+     2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
 
 .. py:method:: infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)

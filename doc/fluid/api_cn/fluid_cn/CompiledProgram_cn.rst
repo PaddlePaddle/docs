@@ -90,7 +90,7 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
   - **build_strategy** （BuildStrategy）: 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``fluid.BuildStrategy`` 。 默认为None。
   - **exec_strategy** （ExecutionStrategy） -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。 关于exec_strategy更多信息，请参阅 ``fluid.ExecutionStrategy`` 。 默认为None。
   - **share_vars_from** （CompiledProgram） - 如果设置了share_vars_from，当前的CompiledProgram将与share_vars_from指定的CompiledProgram共享参数值。需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的CompiledProgram在调用with_data_parallel时，需要将share_vars_from设置为训练对应的CompiledProgram。由于CompiledProgram只有在第一次执行时才会将变量分发到其他设备上，因此share_vars_from指定的CompiledProgram必须在当前CompiledProgram之前运行。默认为None。
-  - **places** （list(CUDAPlace)|list(CPUPlace)|None） - 该参数指定模型运行所在的设备。如果希望在GPU0和GPU1上运行，places为[fluid.CUDAPlace(0), fluid.CUDAPlace(1)]；如果希望使用2个CPU运行，places为[fluid.CPUPlace()]*2。如果没有设置该参数，模型执行时，将从环境变量中获取可用的设备：如果使用GPU，模型执行时，从环境变量FLAGS_selected_gpus或CUDA_VISIBLE_DEVICES中获取当前可用的设备ID；如果使用CPU，模型执行时，从环境变量CPU_NUM中获取当前可利用的CPU个数。例如：export CPU_NUM=4，如果没有设置该环境变量，执行器会在环境变量中添加该变量，并将其值设为1。
+  - **places** （list(CUDAPlace)|list(CPUPlace)） - 该参数指定模型运行所在的设备。如果希望在GPU0和GPU1上运行，places为[fluid.CUDAPlace(0), fluid.CUDAPlace(1)]；如果希望使用2个CPU运行，places为[fluid.CPUPlace()] * 2。 如果没有设置该参数，模型执行时，将从环境变量中获取可用的设备：如果使用GPU，模型执行时，从环境变量FLAGS_selected_gpus或CUDA_VISIBLE_DEVICES中获取当前可用的设备ID；如果使用CPU，模型执行时，从环境变量CPU_NUM中获取当前可利用的CPU个数。例如：export CPU_NUM=4，如果没有设置该环境变量，执行器会在环境变量中添加该变量，并将其值设为1。
 
 返回：配置之后的 ``CompiledProgram`` 对象
 

@@ -132,7 +132,7 @@ ParallelExecutor
 
 返回： 模型运行之后获取的结果列表，列表中元素类型为Ndarray。
 
-返回类型：List
+返回类型：list(numpy.array)
 
 抛出异常:
      - ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，抛出此异常
