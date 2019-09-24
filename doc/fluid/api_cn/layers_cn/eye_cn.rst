@@ -5,17 +5,17 @@ eye
 
 .. py:function:: paddle.fluid.layers.eye(num_rows, num_columns=None, batch_shape=None, dtype='float32')
 
-这个函数用来构建一个元素一样的向量，或一个向量batch。
+该OP用来构建单位矩阵，或一个批次的单位矩阵。
 
 参数：
-    - **num_rows** (int) - 每一个batch向量的行数。
-    - **num_columns** (int) - 每一个batch向量的列数，若为None，则等于num_rows。
-    - **batch_shape** (list(int)) - 如若提供，则返回向量将会有一个此shape的主要的batch size。
-    - **dtype** (string) - 'float32'|'int32'|...，返回向量的数据类型
+    - **num_rows** (int) - 每一个批矩阵的行数，数据类型为非负int32。
+    - **num_columns** (int) - 每一个批矩阵的列数，数据类型为非负int32。若为None，则默认等于num_rows。
+    - **batch_shape** (list(int)) - 如若提供，则返回向量的主批次维度将为batch_shape。
+    - **dtype** (string) - 返回张量的数据类型，可为int32，int64，float16，float32，float64。
     
-返回：一个元素一样的向量，shape为batch_shape + [num_rows, num_columns]。
+返回：shape为batch_shape + [num_rows, num_columns]的张量。
 
-返回类型：变量（Variable）
+返回类型：Variable（Tensor|LoDTensor）数据类型为int32，int64，float16，float32，float64的Tensor或者LoDTensor。
 
 **代码示例**：
 
