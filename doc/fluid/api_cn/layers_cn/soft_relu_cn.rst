@@ -23,9 +23,18 @@ SoftReLU 激活函数.
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
 
-    x = fluid.layers.data(name="x", shape=[3,16,16], dtype="float32")
-    y = fluid.layers.soft_relu(x, threshold=20.0)
+    inputs = fluid.layers.data(name="x", shape=[2, 2], dtype="float32")
+    output = fluid.layers.soft_relu(inputs, threshold=20.0)
+
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(fluid.default_startup_program())
+
+    img = np.array([[0, 1],[2, 3]]).astype(np.float32)
+
+    res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
+    print(res)    
 
 
 

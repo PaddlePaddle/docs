@@ -36,9 +36,18 @@ scale
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
      
-    x = fluid.layers.data(name="X", shape=[1, 2, 5, 5], dtype='float32')
-    y = fluid.layers.scale(x, scale = 2.0, bias = 1.0)
+    inputs = fluid.layers.data(name="x", shape=[2, 3], dtype='float32')
+    output = fluid.layers.scale(inputs, scale = 2.0, bias = 1.0)
+
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(fluid.default_startup_program())
+
+    img = np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)
+
+    res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
+    print(res)
 
 
 
