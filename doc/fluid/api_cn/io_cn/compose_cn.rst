@@ -25,4 +25,4 @@ compose
      reader2 = data_reader()
      reader_compose = paddle.io.compose(reader1, reader2, check_alignment=False)
 
-注意： 运行过程可能会抛出异常 ``ComposeNotAligned`` ，原因是输入的readers未对齐。 当check_alignment设置为False时，不会检查并触发该异常。
+注意： 运行过程可能会抛出异常 ``ComposeNotAligned`` ，原因是输入的readers数据未对齐。 当check_alignment设置为False时，不会检查并触发该异常。
