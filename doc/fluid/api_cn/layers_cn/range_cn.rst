@@ -12,7 +12,7 @@ range
     - **start** （int32 | int64 | float32 | float64 | Variable） - 区间起点，且区间包括此值, 当类型是Variable时，是shape为[1]的1-D Tensor。
     - **end** （int32 | int64 | float32 | float64| Variable） - 区间终点，通常区间不包括此值。但当step不是整数，且浮点数取整会影响输出的长度时例外。
     - **step** （int32 | int64 | float32 | float64 | Variable） - 均匀分割的步长。
-    - **dtype** （str） - 输出Tensor的数据类型,可为'float32'等。
+    - **dtype** （str） - 输出Tensor的数据类型，可为'float32'等。
 
 返回：均匀分割给定数值区间后得到的1-D Tensor。
 
