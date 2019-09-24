@@ -7,10 +7,10 @@ Program
 
 **注意：默认情况下，Paddle Fluid内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_main_program` **在每个mini batch中运行并更新权重。**
 
-Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的构造函数可以创建一个Program。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
+Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构造函数可以创建一个Program。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`cn_api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
 。
 
-一个Program的集合通常包含初始化程序（startup_program）与主程序(main_program)，初始化程序是一个包含一些初始化工作的Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个Program的集合可以被用来测试或者训练，被用来训练时， ``Paddle Fluid`` 将会包含所有的OP和变量来搭建一个训练网络，被用来测试时， 可以通过调用Program相关的接口例如：`clone` 剪去一些与测试无关的OP和变量，比如反向传播的OP和变量。
+一个Program的集合通常包含初始化程序（startup_program）与主程序(main_program)，初始化程序是一个包含一些初始化工作的Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个Program的集合可以被用来测试或者训练，被用来训练时， ``Paddle Fluid`` 将会利用所有用户使用的OP和变量来搭建一个训练网络，被用来测试时， 可以通过调用Program相关的接口例如：`clone` 剪去一些与测试无关的OP和变量，比如反向传播的OP和变量。
 
 
 返回：创建的空的Program
@@ -48,38 +48,44 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 
 返回类型： str
 
-抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` ，但没有设置任何必需的字段时，抛出 ``ValueError`` 。
+抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` ，当没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
 **代码示例**
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
+        import paddle.fluid as fluid
 
-            prog = fluid.default_main_program()
-            prog_string = prog.to_string(throw_on_error=True, with_details=False)
-            print(prog_string)
+        prog = fluid.default_main_program()
+        a = fluid.layers.data(name="X", shape=[2,3], dtype="float32", append_batch_size=False)
+        c = fluid.layers.fc(a, size=3)
+        prog_string = prog.to_string(throw_on_error=True, with_details=False)
+        prog_string_with_details = prog.to_string(throw_on_error=False, with_details=True)
+        print(prog_string)
+        print("\n =============== with_details =============== \n")
+        print(prog_string_with_details)
 
 .. py:method:: clone(for_test=False)
 
 **注意:**
-    **1.** ``Program.clone()`` **方法不会克隆**  :ref:`cn_api_fluid_io_PyReader`
+    **1.** ``Program.clone()`` **方法不会克隆例如**  :ref:`cn_api_fluid_io_PyReader` **这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失**
 
-    **2. 此API将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
+    **2. 此API当** ``for_test=True`` **时为将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
 
 
-创建一个新的、相同的Program。
+创建一个新的、基本相同的Program。
 
 有些OP，在训练和测试之间的行为是不同的，比如  :ref:`cn_api_fluid_layers_batch_norm` 。它们有一个属性 ``is_test`` 来控制行为。当 ``for_test=True`` 时，此方法将把它们的 ``is_test`` 属性更改为True。
 
 - 克隆Program用于训练时，将 ``for_test`` 设置为False。
-- 克隆Program用于测试时，将 ``for_test`` 设置为True。虽然在这种情况下，如果您在使用了优化器之后调用 ``clone`` 我们依旧会对Program当中反向执行以及优化器相关的内容进行自动裁剪，但是，我们强烈建议您在使用优化器之前使用 ``clone`` 例如您如果使用的是 :ref:`cn_api_fluid_optimizer_Momentum` 您可以这样去使用:
+- 克隆Program用于测试时，将 ``for_test`` 设置为True。虽然在这种情况下，如果在使用了优化器之后调用 ``clone`` 我们依旧会对Program当中反向执行以及优化器相关的内容进行自动裁剪，但是，我们强烈建议在使用优化器之前使用 ``clone`` 例如如果使用的是 :ref:`cn_api_fluid_optimizer_Momentum` 可以这样去使用:
 
 **代码示例**
 
  .. code-block:: python
 
        import paddle.fluid as fluid
+       ## 我们推荐在使用 Optimizer前使用clone()接口
        test_program = fluid.default_main_program().clone(for_test=True)
        optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
        optimizer.minimize()
@@ -87,13 +93,13 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 参数：
  - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP
 
-返回：一个新的、相同的Program
+返回：一个新的、基本相同的Program
 
 返回类型： Program
 
 **代码示例**
 
-注意，Program在clone后的顺序可能不同，这不会影响您的训练或测试进程。在下面的示例中，我们为您提供了一个简单的方法print_prog（Program）来打印程序描述，以确保clone后您仍能得到同样的打印结果：
+注意，Program在clone后的顺序可能不同，这不会影响的训练或测试进程。在下面的示例中，我们提供了一个简单的方法print_prog（Program）来打印程序描述，以确保clone后仍能得到同样的打印结果：
 
 .. code-block:: python
 
@@ -262,7 +268,24 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program 的�
 
 .. py:attribute:: random_seed
 
-**注意：必须在相关OP被添加之前设置。**
+**注意：必须在相关OP被添加之前设置。例如**
+
+**代码示例**
+
+.. code-block:: python
+
+            import paddle.fluid as fluid
+
+            prog = fluid.default_main_program()
+            random_seed = prog.random_seed
+            x_var = fluid.layers.data(name="X", shape=[3,3], dtype="float32", append_batch_size=False)
+
+            # 这里我们必须要在fluid.layers.dropout之前设置random_seed
+            print(random_seed)
+            prog.random_seed = 1
+            z_var = fluid.layers.dropout(x_var, 0.7)
+
+            print(prog.random_seed)
 
 程序中随机运算符的默认随机种子。0意味着随机生成随机种子。
 
