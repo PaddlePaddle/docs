@@ -66,8 +66,8 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
     import numpy as np
     x = fluid.layers.data(name='x', shape=[3, 7, 3, 7], dtype='float32', append_batch_size=False)
     hidden1 = fluid.layers.fc(input=x, size=200)
-    param_attr = fluid.ParamAttr(name='instance_norm_w', initializer=fluid.initializer.Constant(value=1.0))
-    bias_attr = fluid.ParamAttr(name='instance_norm_b', initializer=fluid.initializer.Constant(value=0.0))
+    param_attr = fluid.ParamAttr(name='batch_norm_w', initializer=fluid.initializer.Constant(value=1.0))
+    bias_attr = fluid.ParamAttr(name='batch_norm_b', initializer=fluid.initializer.Constant(value=0.0))
     hidden2 = fluid.layers.batch_norm(input=hidden1, param_attr = param_attr, bias_attr = bias_attr)
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
