@@ -9,7 +9,7 @@ label_smooth
 
 
 由于直接优化正确标签的对数似然可能会导致过拟合，降低模型的适应能力，因此提出了标签平滑的方法来降低模型置信度。
-标签平滑使用标签 :math:`y` 自身和一些固定模式随机分布变量 :math:`\mu` 。对 :math:`k` 标签，我们有：
+标签平滑使用标签 :math:`y` 和一些固定模式随机分布变量 :math:`\mu` 。对 :math:`k` 标签，计算方式如下。
 
 .. math::
             \tilde{y_k} = (1 - \epsilon) * y_k + \epsilon * \mu_k,
@@ -21,12 +21,12 @@ label_smooth
 
 参数：
   - **label** （Variable） - 包含标签数据的输入变量。 标签数据应使用 one-hot 表示。
-  - **prior_dist** （Variable） - 用于平滑标签的先验分布。 如果未提供，则使用均匀分布。 prior_dist的shape应为 :math:`(1，class\_num)` 。
-  - **epsilon** （float） - 用于混合原始真实分布和固定分布的权重。
-  - **dtype** （np.dtype | core.VarDesc.VarType | str） - 数据类型：float32，float_64，int等。
-  - **name** （str | None） - 此层的名称（可选）。 如果设置为None，则将自动命名图层。
+  - **prior_dist** （Variable） - 用于平滑标签的先验分布，是维度为 :math:`[1，class\_num]` 的2D Tensor。 如果未提供，则使用均匀分布。默认值为None。
+  - **epsilon** （float） - 用于混合原始真实分布和固定分布的权重。默认值为0.1。
+  - **dtype** （np.dtype|core.VarDesc.VarType|str） - 指定数据类型，数据类型可以为float32，float_64，int等。默认值为"float32"。
+  - **name** （str，可选) - 此层的名称。 如果为设置，则自动命名该层。默认值为None。
 
-返回：张量变量, 包含平滑后的标签
+返回：张量变量, 为平滑后的标签数据
 
 返回类型: Variable
 
