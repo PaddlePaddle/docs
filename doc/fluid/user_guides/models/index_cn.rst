@@ -162,7 +162,7 @@ DQN 及其变体，并测试了它们在 Atari 游戏中的表现。
 
 本例所开放的DAM (Deep Attention Matching Network)为百度自然语言处理部发表于ACL-2018的工作，用于检索式聊天机器人多轮对话中应答的选择。DAM受Transformer的启发，其网络结构完全基于注意力(attention)机制，利用栈式的self-attention结构分别学习不同粒度下应答和语境的语义表示，然后利用cross-attention获取应答与语境之间的相关性，在两个大规模多轮对话数据集上的表现均好于其它模型。
 
-- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/dialogue_model_toolkit/deep_attention_matching>`__
+- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/Research/ACL2018-DAM>`__
 
 AnyQ
 ----
