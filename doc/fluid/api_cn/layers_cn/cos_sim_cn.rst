@@ -21,7 +21,7 @@ cos_sim
 
 返回：输出两个输入的余弦相似度。
 
-返回类型：Variable（Tensor）
+返回类型：Variable
 
 **代码示例**：
 

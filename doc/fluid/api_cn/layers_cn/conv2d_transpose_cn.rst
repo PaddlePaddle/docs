@@ -59,7 +59,7 @@ conv2d_transpose
   - **num_filters** (int) - 滤波器（卷积核）的个数，与输出图片的通道数相同。
   - **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组，则必须包含两个整型数，（output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
   - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_height, filter_size_width）。否则，filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， ``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。
-  - **padding** (int|tuple) - 填充padding大小。输入的每个特征层四周填充的0的数量，padding_height代表特征层上下两边每一边填充0的数量，padding_width代表特征层左右两边每一边填充0的数量。如果padding是一个元组，它必须包含两个整数(padding_height，padding_width)。否则，padding_height = padding_width = padding。默认：padding = 0。
+  - **padding** (int|tuple) - 填充padding大小。padding参数在输入特征层每边添加 :math::``dilation * (kernel_size - 1) - padding`` 个0。如果padding是一个元组，它必须包含两个整数(padding_height，padding_width)。否则，padding_height = padding_width = padding。默认：padding = 0。
   - **stride** (int|tuple) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，则必须包含两个整型数，形式为(stride_height，stride_width)。否则，stride_height = stride_width = stride。默认：stride = 1。
   - **dilation** (int|tuple) - 膨胀比例(dilation)大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据`可视化效果图<https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_较好理解。如果膨胀比例dilation是一个元组，那么元组必须包含两个整型数，形式为(dilation_height, dilation_width)。否则，dilation_height = dilation_width = dilation。默认：dilation= 1。
   - **groups** (int) - 二维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
@@ -71,7 +71,7 @@ conv2d_transpose
 
 返回：如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
-返回类型：Variable（Tensor），数据类型和输入相同。
+返回类型：Variable
 
 **代码示例**：
 

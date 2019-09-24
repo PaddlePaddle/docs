@@ -56,7 +56,7 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
 
 返回： 张量，在输入中运用批正则后的结果。
 
-返回类型：Variable（Tensor），数据类型和输入相同。
+返回类型：Variable
 
 **代码示例**：
 

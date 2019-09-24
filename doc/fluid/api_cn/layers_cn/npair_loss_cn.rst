@@ -19,7 +19,7 @@ NPair损失需要成对的数据。NPair损失分为两部分：第一部分是�
 
 返回： 经过npair loss计算之后的结果，是一个值。
 
-返回类型：Variable（Tensor）
+返回类型：Variable
 
 **代码示例**：
 

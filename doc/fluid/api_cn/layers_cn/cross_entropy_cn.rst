@@ -35,7 +35,7 @@ cross_entropy
 
 返回： 表示交叉熵结果的Tensor，数据类型与input相同。若soft_label=False，则返回值维度与label维度相同；若soft_label=True，则返回值维度为 :math:[N_1, N_2, ..., N_k, 1] 。
 
-返回类型：Variable（Tensor）
+返回类型：Variable
 
 
 **代码示例**：
