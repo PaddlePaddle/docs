@@ -135,7 +135,7 @@ Data Reader Interface
 
 该接口创建一个数据读取器，它可以返回的最大样本数为n。
 
-``paddle.reader.firstn`` 是 ``paddle.fluid.io.firstn`` 的别名。
+``paddle.reader.firstn`` 是 ``paddle.fluid.io.firstn`` 的别名。 
 
 参数：
     - **reader** (callable)  – 输入的数据读取器。
