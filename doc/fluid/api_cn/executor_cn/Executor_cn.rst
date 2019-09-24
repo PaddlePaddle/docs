@@ -119,7 +119,7 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
   - **fetch_var_name** (str) – 结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认值：fluid.global_scope()。
   - **return_numpy** (bool) – 如果为True，则将需要返回的计算结果（fetch list中指定的变量）转化为numpy。默认为：True。
-  - **use_program_cache** (bool) – 是否跨批使用缓存程序设置。设置为True时，只有当（1）程序没有用数据并行编译，并且（2）program、 feed变量名和fetch_list变量名与上一步相比没有更改时，运行速度才会更快。默认为：False。
+  - **use_program_cache** (bool) – 是否对输入的Program进行缓存。如果该参数为True，在以下情况时，模型运行速度可能会更快：输入的program为 ``fluid.Program`` ，并且模型运行过程中，调用该接口的参数（program、 feed变量名和fetch_list变量）名始终不变。默认为：False。
   
 返回: 根据fetch_list来获取结果
 
