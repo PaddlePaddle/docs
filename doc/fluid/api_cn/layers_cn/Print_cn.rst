@@ -7,7 +7,7 @@ Print
 
 **Print操作命令**
 
-该OP创建一个打印操作，打印正在访问的Tensor。
+该OP创建一个打印操作，打印正在访问的Tensor内容。
 
 封装传入的Tensor，以便无论何时访问Tensor，都会打印信息message和Tensor的当前值。
 
@@ -19,15 +19,15 @@ Print
     - **print_tensor_name** (bool)-可选，指明是否打印Tensor名称，默认为True
     - **print_tensor_type** (bool)-可选，指明是否打印Tensor类型，默认为True
     - **print_tensor_shape** (bool)-可选，指明是否打印Tensor维度信息，默认为True
-    - **print_tensor_lod** (bool)-可选，指明是否打印Tensor的lod信息，默认为True
-    - **print_phase** (str)-可选，指明打印的阶段，包括 ``forward`` , ``backward`` 和 ``both`` 。默认为 ``both`` 。设置为 ``forward`` 时，只打印Tensor的前向信息；设置为 ``backward`` 时，只打印Tensor的梯度信息；设置为 ``both`` 时，则同时打印Tensor的前向信息以及梯度信息。
+    - **print_tensor_lod** (bool)-可选，指明是否打印Tensor的LoD信息，默认为True
+    - **print_phase** (str)-可选，指明打印的阶段，包括 ``forward`` , ``backward`` 和 ``both`` ，默认为 ``both`` 。设置为 ``forward`` 时，只打印Tensor的前向信息；设置为 ``backward`` 时，只打印Tensor的梯度信息；设置为 ``both`` 时，则同时打印Tensor的前向信息以及梯度信息。
 
 返回：输出Tensor
 
 返回类型：Variable
 
 .. note::
-   输入和输出是两个不同的变量，在接下来的过程中，你应该使用输出变量而非输入变量，否则打印层将失去backward的信息。
+   输入和输出是两个不同的Variable，在接下来的过程中，应该使用输出Variable而非输入Variable，否则打印层将失去backward的信息。
 
 **代码示例**：
 
@@ -38,7 +38,8 @@ Print
     import numpy as np
 
     x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
-    x = fluid.layers.Print(x, message="The content of input layer:")
+    # 注意输出是使用Print的output 
+    x = fluid.layers.Print(x, message="The content of input layer:") 
     
     y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
     out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
