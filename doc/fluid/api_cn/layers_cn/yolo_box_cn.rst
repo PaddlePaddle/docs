@@ -6,9 +6,9 @@ yolo_box
 .. py:function:: paddle.fluid.layers.yolo_box(x, img_size, anchors, class_num, conf_thresh, downsample_ratio, name=None)
 
 
-该运算符从YOLOv3网络的输出生成YOLO检测框。
+该运算符基于YOLOv3网络的输出结果，生成YOLO检测框。
 
-先前网络的输出形状为[N，C，H，W]，而H和W应相同，用来指定网格大小。对每个网格点预测给定的数目的框，这个数目记为S，由anchor的数量指定。 在第二维（通道维度）中，C应该等于S *（5 + class_num），class_num是源数据集中对象类别数目（例如coco数据集中的80），此外第二个（通道）维度中还有4个框位置坐标x，y，w，h，以及anchor box的one-hot key的置信度得分。
+连接 yolo_box 网络的输出形状应为[N，C，H，W]，其中 H 和 W 相同，用来指定网格大小。对每个网格点预测给定的数目的框，这个数目记为 S ，由 anchor 的数量指定。 在第二维（通道维度）中，C应该等于S *（5 + class_num），class_num是源数据集中对象类别数目（例如coco数据集中的80），此外第二个（通道）维度中还有4个框位置坐标x，y，w，h，以及anchor box的one-hot key的置信度得分。
 
 假设4个位置坐标是 :math:`t_x` ，:math:`t_y` ，:math:`t_w` ， :math:`t_h`
 ，则框的预测算法为：
@@ -31,15 +31,17 @@ yolo_box
 
 
 参数：
-    - **x** （Variable） -  YoloBox算子的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出
-    - **img_size** （Variable） -  YoloBox算子的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小
+    - **x** （Variable） -  YoloBox算子的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出。数据类型为float32或float64
+    - **img_size** （Variable） -  YoloBox算子的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为int32。
     - **anchors** （list | tuple） - anchor的宽度和高度，它将逐对解析
     - **class_num** （int） - 要预测的类数
     - **conf_thresh** （float） - 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略
     - **downsample_ratio** （int） - 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
-    - **name** （string） -  yolo box层的名称。默认None。
+    - **name(None|str)** – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
-返回: 具有形状[N，M，4]的三维张量，框的坐标；以及具有形状[N，M，class_num]的三维张量，框的分类得分；
+返回: 
+     1. 框的坐标，形为[N，M，4]的三维张量
+     2. 框的分类得分， 形为 [N，M，class_num]的三维张量
 
 返回类型:   变量（Variable）
 
