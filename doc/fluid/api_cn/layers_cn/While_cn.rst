@@ -49,7 +49,7 @@ While
     img1 = np.array([4, 5, 6]).astype(np.float32)
 
     exe.run(fluid.default_main_program(), feed={'x0':img0, 'x1':img1}, fetch_list=[])
-    # NOTE: The output below may vary in different environments.
+    # 运行结果可能因具体运行环境不同而不同
     # 
     # 1569319544		The place is:CPUPlace
     # Tensor[array_read_0.tmp_0]
