@@ -56,8 +56,8 @@ Network,ICNet)进行语义分割，相比其他分割算法，ICNet兼顾了准�
 
 在图像生成任务中，我们介绍了如何使用DCGAN和ConditioanlGAN来进行手写数字的生成，另外还介绍了用于风格迁移的CycleGAN.
 
-- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/c_gan>`__
-- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/cycle_gan>`__
+- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/PaddleGAN>`__
+- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/PaddleGAN>`__
 
 场景文字识别
 ------------
