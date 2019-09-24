@@ -47,8 +47,8 @@ Image Synthesis refers to generating a target image based on an input vector. Th
 
 In the image synthesis task, we introduced how to use DCGAN and ConditioanlGAN to generate handwritten numbers, and also introduced CycleGAN for style migration.
 
-- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/c_gan>`__
-- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/cycle_gan>`__
+- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/PaddleGAN>`__
+- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/PaddleGAN>`__
 
 Scene Text Recognition
 -----------------------
@@ -131,7 +131,7 @@ In many scenarios of natural language processing, it is necessary to measure the
 
 The DAM (Deep Attention Matching Network) introduced in this example is the work of Baidu Natural Language Processing Department published in ACL-2018, which is used for the selection of responses in multi-round dialogue of retrieval chat robots. Inspired by Transformer, DAM is based entirely on the attention mechanism. It uses the stack-type self-attention structure to learn the semantic representations of responses and contexts at different granularities, and then uses cross-attention to obtain relativity between responses and contexts. The performance on the two large-scale multi-round dialogue datasets is better than other models.
 
-- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/dialogue_model_toolkit/deep_attention_matching>`__
+- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/Research/ACL2018-DAM>`__
 
 AnyQ
 ----
