@@ -12,8 +12,7 @@ generate_proposal_labels
 RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs`` ，即该OP的输入。然后，在该OP中按以下规则对 ``RPN RoIs`` 进行分类：
 
 - 与某个groundtruth的重叠面积大于 ``fg_thresh`` ，则该box被标记为foreground box。
-- 与某个groundtruth的重叠面积大于 ``bg_thresh_lo`` 且小于 ``bg_thresh_hi`` ，则该box被标记为background box
-。
+- 与某个groundtruth的重叠面积大于 ``bg_thresh_lo`` 且小于 ``bg_thresh_hi`` ，则该box被标记为background box。
 
 按上述规则筛选出一批boxes后，在对这些boxes做随机采样，以保证foreground boxes的数量不高于batch_size_per_im * fg_fraction。
 
@@ -41,9 +40,9 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs`` ，
 
 - **rois** - Shape为 ``[P, 4]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size`` 。每个RoIs以 ``[xmin, ymin, xmax, ymax]`` 的格式表示。数据类型与 ``rpn_rois`` 一致。
 - **labels_int32** - Shape为 ``[P, 1]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size`` 。表示每个RoI的类别ID。数据类型为int32。
-- **bbox_targets** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor，表示所有RoIs的回归目标（box label）。数据类型支持float32。
-- **bbox_inside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。foreground boxes回归loss的权重。数据类型支持float32。
-- **bbox_outside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。回归loss的权重。数据类型支持float32。
+- **bbox_targets** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor，表示所有RoIs的回归目标（box label）。数据类型与 ``rpn_rois`` 一致。
+- **bbox_inside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。foreground boxes回归loss的权重。数据类型与 ``rpn_rois`` 一致。
+- **bbox_outside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。回归loss的权重。数据类型与 ``rpn_rois`` 一致。
 
 返回类型：元组
 

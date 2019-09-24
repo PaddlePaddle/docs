@@ -34,11 +34,11 @@ rpn_target_assign
         - **use_random** (bool，可选) – 布尔类型。是否使用随机采样来选择foreground boxes和background boxes。缺省值为True。
 
 返回: 元组。格式为 ``(predicted_scores, predicted_location, target_label, target_bbox, bbox_inside_weight)``
-   - **predicted_scores** 和 **predicted_location** 是RPN的预测结果。
-   - **target_label** 和 **target_bbox** 是groundtruth。
-   - **predicted_location** 是一个形为 ``[F，4]`` 的2D Tensor， **target_bbox** 的形与 **predicted_location** 相同，F是foreground anchors的数量。
-   - **predicted_scores** 是一个shape为 ``[F + B，1]`` 的2D Tensor， **target_label** 的形与 **predict_scores** 的形相同，B是background anchors的数量，F和B取决于此算子的输入。
-   - **Bbox_inside_weight** 标志着predicted_loction是否为 ``fake_fg`` (假前景)，其形为[F,4]。
+   - **predicted_scores** (Varible) - RPN预测的类别结果。Shape为 ``[F + B，1]`` 的2D Tensor。 ``F`` 为foreground anchor的数量，B为background anchor的数量。数据类型与 ``bbox_pred`` 一致。
+   - **predicted_location** (Variable) - RPN预测的位置结果。Shape为 ``[F, 4]`` 的2D Tensor。数据类型与 ``bbox_pred`` 一致。
+   - **target_label** (Variable) - Shape为 ``[F + B，1]`` 的2D Tensor。数据类型为int32。
+   - **target_bbox** (Variable) - Shape为 ``[F, 4]`` 的2D Tensor。数据类型与 ``bbox_pred`` 一致。
+   - **Bbox_inside_weight** (Variable) - Shape为 ``[F, 4]`` 的2D Tensor。数据类型与 ``bbox_pred`` 一致。
 
 返回类型：元组
 

@@ -15,7 +15,7 @@ warpctc
     - **blank** (int，可选) - 空格标记的ID，其取值范围为 ``[0，num_classes+1)`` 。数据类型支持int32。缺省值为0。
     - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持bool。缺省值为False。
 
-返回：Shape为[batch_size，1]的2-D Tensor，表示每一个序列的CTC loss。
+返回：Shape为[batch_size，1]的2-D Tensor，表示每一个序列的CTC loss。数据类型与 ``input`` 一致。
 
 返回类型：Variable
 

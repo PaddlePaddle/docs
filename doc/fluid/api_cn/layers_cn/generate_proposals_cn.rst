@@ -35,7 +35,10 @@ generate_proposals
         - **eta** (float，可选) - 浮点型数字。自适应阈值的衰减系数。仅在自适应NMS中且自适应阈值大于0.5时生效，在每次迭代中 ``adaptive_threshold = adaptive_treshold * eta`` 。缺省值为1.0。
 
 
-返回： 元组，格式为 ``(rpn_rois, rpn_roi_probs)`` ，其中 ``rpn_rois`` 表示产出的RoIs, shape为 ``[N, 4]`` ，N为RoIs的数量。 ``rpn_roi_probs`` 表示RoIs的得分，shape为 ``[N, 1]`` ，N为RoIs的数量。
+返回： 元组，格式为 ``(rpn_rois, rpn_roi_probs)`` 
+
+- **rpn_rois** (Variable) - 表示产出的RoIs, shape为 ``[N, 4]`` 的2D LoDTensor， N为RoIs的数量。数据类型与 ``scores`` 一致。
+- **rpn_roi_probs** (Variable) - 表示RoIs的得分，shape为 ``[N, 1]`` ，N为RoIs的数量。数据类型与 ``scores`` 一致。
 
 返回类型：元组
 
