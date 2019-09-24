@@ -5,37 +5,37 @@ layer_norm
 
 .. py:function:: paddle.fluid.layers.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
 
-假设特征向量存在于维度 ``begin_norm_axis ... rank (input）`` 上，计算大小为 ``H`` 的特征向量a在该维度上的矩统计量，然后使用相应的统计量对每个特征向量进行归一化。 之后，如果设置了 ``scale`` 和 ``shift`` ，则在标准化的张量上应用可学习的增益和偏差以进行缩放和移位。
+该OP实现了层正则化层（Layer Normalization Layer），其可以应用于小批量输入数据。更多详情请参考：`Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_
 
-请参考 `Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_
-
-公式如下
+计算公式如下
 
 .. math::
-            \\\mu=\frac{1}{H}\sum_{i=1}^{H}a_i\\
-.. math::
-            \\\sigma=\sqrt{\frac{1}{H}\sum_i^H{(a_i-\mu)^2}}\\
-.. math::
-             \\h=f(\frac{g}{\sigma}(a-\mu) + b)\\
+            \\\mu=\frac{1}{H}\sum_{i=1}^{H}x_i\\
 
-- :math:`\alpha` : 该层神经元输入总和的向量表示
-- :math:`H` : 层中隐藏的神经元个数
-- :math:`g` : 可训练的缩放因子参数
-- :math:`b` : 可训练的bias参数
+            \\\sigma=\sqrt{\frac{1}{H}\sum_i^H{(x_i-\mu)^2} + \epsilon}\\
 
+             \\y=f(\frac{g}{\sigma}(x-\mu) + b)\\
 
-参数:
-  - **input** （Variable） - 输入张量变量。
-  - **scale** （bool） - 是否在归一化后学习自适应增益g。默认为True。
-  - **shift** （bool） - 是否在归一化后学习自适应偏差b。默认为True。
-  - **begin_norm_axis** （int） - ``begin_norm_axis`` 到 ``rank（input）`` 的维度执行规范化。默认1。
-  - **epsilon** （float） - 添加到方差的很小的值，以防止除零。默认1e-05。
-  - **param_attr** （ParamAttr | None） - 可学习增益g的参数属性。如果  ``scale`` 为False，则省略 ``param_attr`` 。如果 ``scale`` 为True且 ``param_attr`` 为None，则默认 ``ParamAttr`` 将作为比例。如果添加了 ``param_attr``， 则将其初始化为1。默认None。
-  - **bias_attr** （ParamAttr | None） - 可学习偏差的参数属性b。如果 ``shift`` 为False，则省略 ``bias_attr`` 。如果 ``shift`` 为True且 ``param_attr`` 为None，则默认 ``ParamAttr`` 将作为偏差。如果添加了 ``bias_attr`` ，则将其初始化为0。默认None。
-  - **act** （str） - 激活函数。默认 None
-  - **name** （str） - 该层的名称， 可选的。默认为None，将自动生成唯一名称。
+- :math:`x` : 该层神经元的向量表示
+- :math:`H` : 层中隐藏神经元个数
+- :math:`\epsilon` : 添加较小的值到方差中以防止除零
+- :math:`g` : 可训练的比例参数
+- :math:`b` : 可训练的偏差参数
 
-返回： 标准化后的结果
+参数：
+  - **input** （Variable） - 维度为任意维度的多维 ``Tensor`` ，数据类型为float32或float64。
+  - **scale** （bool, 可选） - 指明是否在归一化后学习自适应增益 ``g`` 。默认值：True。
+  - **shift** （bool, 可选） - 指明是否在归一化后学习自适应偏差 ``b`` 。默认值：True。
+  - **begin_norm_axis** （int, 可选） - 指明归一化将沿着 ``begin_norm_axis`` 到 ``rank（input）`` 的维度执行。默认值：1。
+  - **epsilon** （float, 可选） - 指明在计算过程中是否添加较小的值到方差中以防止除零。默认值：1e-05。
+  - **param_attr** （ParamAttr, 可选） - 指明可学习参数 ``g`` 的参数属性。如果 ``scale`` 为False，则省略 ``param_attr`` 。如果 ``scale`` 为True且 ``param_attr`` 为None，则以默认的方式生成 ``ParamAttr`` 对象，将参数初始化为1。默认值：None。
+  - **bias_attr** （ParamAttr, 可选） - 指明可学习参数 ``b`` 的参数属性。如果 ``shift`` 为False，则省略 ``bias_attr`` 。如果 ``shift`` 为True且 ``param_attr`` 为None，则以默认的方式生成 ``ParamAttr`` 对象，将参数初始化为0。默认值：None。
+  - **act** （str, 可选） - 指明激活函数类型。默认值：None。
+  - **name** （str, 可选） - 指明层的名称。若设为None，则自动为该层命名。默认值：None。
+
+返回：表示标准化后的结果的 ``Tensor`` ，数据类型和 ``input`` 一致，返回维度和 ``input`` 一致。
+
+返回类型：Variable
 
 **代码示例**
 
@@ -45,12 +45,5 @@ layer_norm
    data = fluid.layers.data(name='data', shape=[3, 32, 32],
                                            dtype='float32')
    x = fluid.layers.layer_norm(input=data, begin_norm_axis=1)
-
-
-
-
-
-
-
 
 
