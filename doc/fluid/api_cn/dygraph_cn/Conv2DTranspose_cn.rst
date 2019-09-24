@@ -5,93 +5,71 @@ Conv2DTranspose
 
 .. py:class:: paddle.fluid.dygraph.Conv2DTranspose(name_scope, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None)
 
+该接口将在神经网络中构建一个二维卷积转置层（Convlution2D Transpose Layer），其根据输入（input）、滤波器参数（num_filters、filter_size）、步长（stride）、填充（padding）、膨胀系数（dilation）、组数（groups）来计算得到输出特征图。输入和输出是 ``NCHW`` 格式，N是批数据大小，C是特征图个数，H是特征图高度，W是特征图宽度。滤波器是 ``MCHW`` 格式，M是输出特征图个数，C是输入特征图个数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入特征图个数除以组数的结果。如果提供了偏移属性和激活函数类型，卷积的结果会和偏移相加，激活函数会作用在最终结果上。转置卷积的计算过程相当于卷积的反向计算，转置卷积又被称为反卷积（但其实并不是真正的反卷积）。详情请参考： `Conv2DTranspose <http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf>`_ 。
 
-2-D卷积转置层（Convlution2D transpose layer）
-
-该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充（padding）来计算输出。输入(Input)和输出(Output)为NCHW格式，其中 ``N`` 为batch大小， ``C`` 为通道数（channel），``H`` 为特征高度， ``W`` 为特征宽度。参数(膨胀、步长、填充)分别都包含两个元素。这两个元素分别表示高度和宽度。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数 ``bias_attr`` 和 ``act`` 不为 ``None``，则在卷积的输出中加入偏置，并对最终结果应用相应的激活函数。
-
-.. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
-
-输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
+输入 ``X`` 和输出 ``Out`` 的函数关系如下：
 
 .. math::
                         Out=\sigma (W*X+b)\\
 
 其中：
-    -  :math:`X` : 输入张量，具有 ``NCHW`` 格式
+    - :math:`X` ：输入特征图， ``NCHW`` 格式的 ``Tensor``
+    - :math:`W` ：滤波器， ``MCHW`` 格式的 ``Tensor``
+    - :math:`*` ：卷积操作
+    - :math:`b` ：偏移值，2-D ``Tensor`` ，维度为 ``[M,1]``
+    - :math:`\sigma` ：激活函数
+    - :math:`Out` ：输出值， ``Out`` 和 ``X`` 的维度可能不同
 
-    -  :math:`W` : 滤波器张量，具有 ``NCHW`` 格式
+**输出维度计算示例**
 
-    -  :math:`*` : 卷积操作
+- 输入：
 
-    -  :math:`b` : 偏置（bias），二维张量，shape为 ``[M,1]``
+  输入维度： :math:`(N,C_{in},H_{in},W_{in})`
 
-    -  :math:`σ` : 激活函数
+  滤波器维度： :math:`(C_{out},C_{in},H_{f},W_{f})`
 
-    -  :math:`Out` : 输出值，Out和 ``X`` 的 ``shape`` 可能不一样
+- 输出：
 
-**样例**：
+  输出维度： :math:`(N,C_{out},H_{out},W_{out})`
 
-输入：
-
-.. math::
-
-    输入张量的shape :  （N，C_{in}， H_{in}， W_{in})
-
-    滤波器（filter）shape ： （C_{in}, C_{out}, H_f, W_f)
-
-输出：
-
-.. math::
-    输出张量的 shape ： （N，C_{out}, H_{out}, W_{out})
-
-其中
+- 其中
 
 .. math::
 
-        & H'_{out} = (H_{in}-1)*strides[0]-2*paddings[0]+dilations[0]*(H_f-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[1]-2*paddings[1]+dilations[1]*(W_f-1)+1 \\
-        & H_{out}\in[H'_{out},H'_{out} + strides[0])\\
-        & W_{out}\in[W'_{out},W'_{out} + strides[1])\\
+        & H'_{out} = (H_{in}-1)*strides[0]-2*paddings[0]+dilations[0]*(H_f-1)+1
+        
+        & W'_{out} = (W_{in}-1)*strides[1]-2*paddings[1]+dilations[1]*(W_f-1)+1
+        
+        & H_{out}\in[H'_{out},H'_{out} + strides[0])
+        
+        & W_{out}\in[W'_{out},W'_{out} + strides[1])
 
+参数：
+    - **name_scope** (str) - 类的名称。
+    - **num_filters** (int) - 滤波器的个数，和输出特征图个数相同。
+    - **output_size** (int|tuple, 可选) - 输出特征图的大小。如果 ``output_size`` 是一个元组，则必须包含两个整型数，分别表示特征图高度和宽度。如果 ``output_size`` 是整型，表示特征图高度和宽度均为 ``output_size`` 。如果 ``output_size`` 为None，则会根据 ``filter_size`` 、 ``padding`` 和 ``stride`` 来计算 ``output_size`` 。如果 ``output_size`` 和 ``filter_size`` 同时指定，那么它们应满足上面的公式。默认值：None。
+    - **filter_size** (int|tuple, 可选) - 滤波器大小。如果 ``filter_size`` 是一个元组，则必须包含两个整型数，分别表示滤波器高度和宽度。否则，表示滤波器高度和宽度均为 ``filter_size`` 。如果 ``filter_size`` 为None，则会根据 ``output_size`` 、 ``padding`` 和 ``stride`` 来计算 ``filter_size`` 。默认值：None。
+    - **padding** (int|tuple, 可选) - 填充大小。如果 ``padding`` 为元组，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding`` 。默认值：0。
+    - **stride** (int|tuple, 可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride`` 。默认值：1。
+    - **dilation** (int|tuple, 可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation`` 。默认值：1。
+    - **groups** (int, 可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，滤波器的前一半仅和输入特征图的前一半连接。滤波器的后一半仅和输入特征图的后一半连接。默认值：1。
+    - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **use_cudnn** (bool, 可选) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+    - **act** (str, 可选) -  应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值：None。
 
-
-参数:
-    - **name_scope** (str) - 该类的名称
-    - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数（ channel ）相同
-    - **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果output_size=None,则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。默认为None。
-    - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果filter_size=None，则内部会计算输出大小。默认为None。
-    - **padding** (int|tuple) - 填充大小。如果padding是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
-    - **stride** (int|tuple) - 步长大小。如果stride是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-    - **dilation** (int|元组) - 膨胀(dilation)大小。如果dilation是一个元组，那么元组的形式为(dilation_H, dilation_W)。否则，dilation_H = dilation_W = dilation_W。默认:dilation= 1。
-    - **groups** (int) - Conv2d转置层的groups个数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，前半部分滤波器只连接到输入通道的前半部分，而后半部分滤波器只连接到输入通道的后半部分。默认值:group = 1。
-    - **param_attr** (ParamAttr|None) - conv2d_transfer中可学习参数/权重的属性。如果param_attr值为None或ParamAttr的一个属性，conv2d_transfer使用ParamAttrs作为param_attr的值。如果没有设置的param_attr初始化器，那么使用Xavier初始化。默认值:None。
-    - **bias_attr** (ParamAttr|bool|None) - conv2d_tran_bias中的bias属性。如果设置为False，则不会向输出单元添加偏置。如果param_attr值为None或ParamAttr的一个属性，将conv2d_transfer使用ParamAttrs作为，bias_attr。如果没有设置bias_attr的初始化器，bias将初始化为零。默认值:None。
-    - **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
-    - **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认值:None。
-
-
-返回： 存储卷积转置结果的张量。
-
-返回类型: 变量（variable）
-
-抛出异常:
-    -  ``ValueError`` : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
+返回：无
 
 **代码示例**
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    import numpy
+    import numpy as np
 
     with fluid.dygraph.guard():
-        data = numpy.random.random((3, 32, 32)).astype('float32')
+        data = np.random.random((3, 32, 32, 5)).astype('float32')
         conv2DTranspose = fluid.dygraph.nn.Conv2DTranspose(
               'Conv2DTranspose', num_filters=2, filter_size=3)
         ret = conv2DTranspose(fluid.dygraph.base.to_variable(data))
-
-
-
-
 
