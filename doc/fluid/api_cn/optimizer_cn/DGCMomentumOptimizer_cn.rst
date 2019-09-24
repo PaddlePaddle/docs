@@ -7,15 +7,15 @@ DGCMomentumOptimizer
 
 DGC（深度梯度压缩）Momentum 优化器。原始论文: https://arxiv.org/abs/1712.01887
 
-DGC通过只传送重要梯度（稀疏更新）来减少通信带宽：即只发送大于给定阈值的梯度。
+DGC通过只传送重要梯度（稀疏更新）的方式，即只发送大于给定阈值的梯度，来减少通信带宽使用。
 
-为避免信息的丢失，DGC会在本地累积剩余梯度。最终，这些梯度会累积到足够大，从而可以传输。
+DGC会在本地累加剩余梯度以避免信息的丢失。最终这些梯度会大到足以传输。
 
-因此，虽然DGC只立即发送较大的梯度，但最终所有的梯度都会随时间累积发送出去。
+因此，DGC只会立即发送大梯度，但随时间流逝所有梯度终将发送出去。
 
-此外，为确保精度不会损失，DGC在梯度稀疏化之上采用动量修正和局部梯度修剪(clip)来维持模型性能。
+为确保精度不会损失，DGC在梯度稀疏化之上采用动量修正和局部梯度修剪(clip)来维持模型性能。
 
-DGC还使用动量因子掩藏(momentum factor masking)和预训练(warm-up)来克服由于规约（reduced)通信而导致的数据陈旧性(staleness)问题。
+DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-up）来克服由于规约（reduced）通信而导致的数据陈旧性（staleness）问题。
 
 这个优化器会执行如下操作：
 
@@ -28,7 +28,7 @@ DGC还使用动量因子掩藏(momentum factor masking)和预训练(warm-up)来�
     - **rampup_begin_step** （int） - 进行梯度压缩的起步点。
     - **rampup_step** （int） - 使用稀疏预热的时间步长。默认值为1。例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，并且rampup_step为100，则在0~19步时使用0.75，在20~39步时使用0.9375，依此类推。当到达sparsity数组末尾时，此后将会使用0.999。
     - **sparsity** （list [float]） - 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。例如：如果sparsity为[0.99, 0.999]，则将传输top [1%, 0.1%]的重要元素。
-    - **use_nesterov** （bool） - 启用Nesterov momentum。 True意味着使用nesterov。默认值False。
+    - **use_nesterov** （bool） - 启用Nesterov momentum。 True意味着使用Nesterov。默认值False。
     - **local_grad_clip_norm** （float，可选） - 局部梯度裁减标准值。可选，默认为None，表示不需要裁减。
     - **num_trainers** （int，可选） - 训练节点的数量。可选，默认为None。
     - **regularization** （WeightDecayRegularizer，可选） - 正则器， 如 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer`。可选，默认为None。
