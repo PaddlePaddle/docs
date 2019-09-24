@@ -5,10 +5,11 @@ ExponentialDecay
 
 .. py:class:: paddle.fluid.dygraph.ExponentialDecay(learning_rate, decay_steps, decay_rate, staircase=False, begin=0, step=1, dtype="float32")
 
-该接口提供一种学习率按指数衰减的功能。
+该接口提供学习率按指数衰减的功能。
 
-在学习率上运用指数衰减。
-训练模型时，推荐在训练过程中降低学习率。每次 ``decay_steps`` 步骤中用 ``decay_rate`` 衰减学习率。
+训练模型时，在训练过程中降低学习率。每 ``decay_steps`` 步，以 ``decay_rate`` 衰减学习率。
+
+学习率衰减计算方式如下。
 
 .. code-block:: text
 
@@ -18,13 +19,13 @@ ExponentialDecay
         decayed_learning_rate = learning_rate * decay_rate ^ (global_step / decay_steps)
 
 参数：
-    - **learning_rate** (Variable|float) - 初始学习率。
+    - **learning_rate** (Variable|float) - 初始学习率。类型可以为学习率变量(Variable)或float型常量。
     - **decay_steps** (int) - 衰减步数。必须是正整数，决定衰减周期。
     - **decay_rate** (float)- 衰减率。
     - **staircase** (bool) - 若为True，则以不连续的间隔衰减学习速率即阶梯型衰减。若为False，则以标准指数型衰减。默认值为False。
     - **begin** (int) - 起始步。默认值为0。
     - **step** (int) - 步大小。默认值为1。
-    - **dtype**  (str) - 学习率的数据类型，默认值为"float32"
+    - **dtype**  (str) - 学习率的数据类型。默认值为"float32"。
 
 
 **代码示例**
