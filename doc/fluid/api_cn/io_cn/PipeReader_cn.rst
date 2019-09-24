@@ -21,6 +21,8 @@ PipeReader从命令的输出流中读取数据，把数据存在一个pipe缓存
     - **bufsize** (int) – 该参数表示pipe缓存的大小，默认为8192。
     - **file_type** (str) – command操作文件类型，默认为plain。
 
+返回： 返回一个PipeReader实例。
+
 **代码示例**
 
 ..  code-block:: python
