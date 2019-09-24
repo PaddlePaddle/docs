@@ -64,6 +64,18 @@ In Fluid， :code:`Variable` can contain any type of value -- in most cases a Lo
 
 All the learnable parameters in the model are kept in the memory space in form of :code:`Variable` . In most cases, you do not need to create the learnable parameters in the network by yourself. Fluid provides encapsulation for almost common basic computing modules of the neural network. Taking the simplest full connection model as an example, calling :code:`fluid.layers.fc` directly creates two learnable parameters for the full connection layer, namely, connection weight (W) and bias, without explicitly calling :code:`Variable` related interfaces to create learnable parameters.
 
+.. _api_guide_Name:
+
+=========
+Name
+=========
+
+.. _api_guide_ParamAttr:
+
+=========
+ParamAttr
+=========
+
 ==================
 Related API
 ==================
