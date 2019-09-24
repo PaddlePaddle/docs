@@ -7,7 +7,7 @@ relu6
 
 relu6激活函数
 
-.. math:: out=min(max(0, x), 6)
+.. math:: out=min(max(0, x), threshold)
 
 
 参数:
