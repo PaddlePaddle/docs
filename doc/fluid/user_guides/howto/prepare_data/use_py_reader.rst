@@ -25,11 +25,11 @@
 其中，
 
 - feed_list为需要输入的数据层变量列表；
-- capacity为PyReader对象的缓存区大小；
+- capacity为PyReader对象的缓存区大小，单位为batch数量；
 - use_double_buffer默认为True，表示使用 :code:`double_buffer_reader` 。建议开启，可提升数据读取速度；
 - iterable默认为True，表示该PyReader对象是可For-Range迭代的。当iterable=True时，PyReader与Program解耦，定义PyReader对象不会改变Program；当iterable=False时，PyReader会在Program中插入数据读取相关的op。
 
-需要注意的是：`Program.clone()` (参见 :ref:`cn_api_fluid_Program_clone` ）不能实现PyReader对象的复制。如果您要创建多个不同PyReader对象（例如训练和预测阶段需创建两个不同的PyReader），则需重定义两个PyReader对象。
+需要注意的是：`Program.clone()` (参见 :ref:`cn_api_fluid_Program` ）不能实现PyReader对象的复制。如果您要创建多个不同PyReader对象（例如训练和预测阶段需创建两个不同的PyReader），则需重定义两个PyReader对象。
 若需要共享训练阶段和测试阶段的模型参数，您可以通过 :code:`fluid.unique_name.guard()` 的方式来实现。
 注：Paddle采用变量名区分不同变量，且变量名是根据 :code:`unique_name` 模块中的计数器自动生成的，每生成一个变量名计数值加1。 :code:`fluid.unique_name.guard()` 的作用是重置 :code:`unique_name` 模块中的计数器，保证多次调用 :code:`fluid.unique_name.guard()` 配置网络时对应变量的变量名相同，从而实现参数共享。
 
@@ -46,7 +46,10 @@
         label = fluid.layers.data(name='label', dtype='int64', shape=[1])
         reader = fluid.io.PyReader(feed_list=[image, label], capacity=64)
 
-        # Here, we omitted the definition of loss of the model
+        # Definition of models
+        fc = fluid.layers.fc(image, size=10)
+        xe = fluid.layers.softmax_with_cross_entropy(fc, label)
+        loss = fluid.layers.reduce_mean(xe)
         return loss , reader
 
     # Create main program and startup program for training
@@ -79,6 +82,8 @@ PyReader对象通过 :code:`decorate_sample_generator()` ， :code:`decorate_sam
 - :code:`decorate_sample_list_generator()` 要求 :code:`generator` 返回的数据格式为[(img_1, label_1), (img_2, label_2), ..., (img_n, label_n)]，其中img_i和label_i均为每个样本的Numpy Array类型数据，n为batch size。
 
 - :code:`decorate_batch_generator()` 要求 :code:`generator` 返回的数据的数据格式为[batched_imgs, batched_labels]，其中batched_imgs和batched_labels为batch级的Numpy Array或LoDTensor类型数据。
+
+值得注意的是，使用PyReader做多GPU卡（或多CPU核）训练时，实际的总batch size为用户传入的 :code:`generator` 的batch size乘以设备数量。
 
 当PyReader的iterable=True（默认）时，必须给这三个方法传 :code:`places` 参数，
 指定将读取的数据转换为CPU Tensor还是GPU Tensor。当PyReader的iterable=False时，不需传places参数。
@@ -178,7 +183,10 @@ PyReader对象通过 :code:`decorate_sample_generator()` ， :code:`decorate_sam
         # 创建PyReader对象
         reader = fluid.io.PyReader(feed_list=[image, label], capacity=64, iterable=ITERABLE)
 
-        # Here, we omitted the definition of loss of the model
+        # Definition of models
+        fc = fluid.layers.fc(image, size=10)
+        xe = fluid.layers.softmax_with_cross_entropy(fc, label)
+        loss = fluid.layers.reduce_mean(xe)
         return loss , reader
 
     # 创建训练的main_program和startup_program
