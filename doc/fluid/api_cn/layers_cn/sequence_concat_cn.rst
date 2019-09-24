@@ -7,7 +7,7 @@ sequence_concat
 
 **注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用concat函数（fluid.layers.** :ref:`cn_api_fluid_layers_concat` **）。**
 
-**此OP仅支持LoDTensor** ，通过LoDTensor的LoD信息将输入的多个LoDTensor进行连接（concat），输出连接后的LoDTensor。
+**该OP仅支持LoDTensor** ，通过LoDTensor的LoD信息将输入的多个LoDTensor进行连接（concat），输出连接后的LoDTensor。
 
 ::
 
@@ -22,6 +22,7 @@ sequence_concat
         x2.data = [[6], [7], [8], [9]]
         x2.shape = [4, 1]
     且必须满足：len(x1.lod[0]) == len(x2.lod[0])
+    
     输出为LoDTensor：
         out.lod = [[0, 3+2, 5+4]]
         out.data = [[1], [2], [3], [6], [7], [4], [5], [8], [9]]
