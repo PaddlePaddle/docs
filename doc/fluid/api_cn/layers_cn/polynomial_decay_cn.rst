@@ -17,10 +17,10 @@ polynomial_decay
             (1 - global_step / decay_steps) ^ power + end_learning_rate
 
 参数：
-    - **learning_rate** (Variable|float32) - 训练过程中的初始学习率，数据类型为float32的常数或变量。
-    - **decay_steps** (int32) - 衰减步数，数据类型为 int32
-    - **end_learning_rate** (float) - 训练过程的最终学习率，数据类型为 float32 或 float64
-    - **power** (float) - 多项式衰减系数，数据类型为 float32 或 float64
+    - **learning_rate** (Variable|float) - 训练过程中的初始学习率，数据类型为float的常数或变量。
+    - **decay_steps** (int) - 衰减步数
+    - **end_learning_rate** (float) - 训练过程的最终学习率
+    - **power** (float) - 多项式衰减系数
     - **cycle** (bool) - step 超出 decay_steps 后是否继续循环，默认为False
 
 返回：衰减的学习率
