@@ -6,7 +6,7 @@ English | [简体中文](./README_cn.md)
 FluidDoc consolidates all the documentations related to Paddle. It supplies the contents to PaddlePaddle.org via CI. 
 
 # Architecture
-FluidDoc submodules Paddle, Book, Models, Mobile and Anakin under `external` folder. All submodules should be put under `external` as standard practice. 
+FluidDoc submodules Paddle, Book under `external` folder. All submodules should be put under `external` as standard practice. 
 
 FluidDoc then uses them as references to load up the documents. The FluidDoc constructs the whole doc-tree under the `FluidDoc/doc/fluid` folder. The entry point is `FluidDoc/doc/fluid/index_cn.rst` and `FluidDoc/doc/fluid/index_en.rst`
 
@@ -22,7 +22,7 @@ To preview documents constructured by FluidDoc. Please follow the [regular previ
 # Publish New release
 1. Checkout a new release branch. The branch name should follow `release/<version>`
 1. Update the documentations on the submodules or within FluidDoc
-1. Make sure all the submodules are ready for release. Paddle, book, model, mobile and Anakin should all have stable commits. Note: Paddle repo should update the API RST files accordinly if Paddle changes the included module/classes. 
+1. Make sure all the submodules are ready for release. Paddle, book should all have stable commits. Note: Paddle repo should update the API RST files accordinly if Paddle changes the included module/classes. 
 1. Update the submodules under `external` folder and commit the changes.
 1. Git push the branch to Github, Travis CI will start several builds to publish the documents to the PaddlePaddle.org server
 1. Please notify the PaddlePaddle.org team that the release content is ready. PaddlePaddle.org team should enable the version and update the default version to the latest one. PaddlePaddle.org should also update the search index accordingly (Until the search server is up)

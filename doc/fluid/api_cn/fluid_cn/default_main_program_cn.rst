@@ -6,20 +6,20 @@ default_main_program
 .. py:function:: paddle.fluid.default_main_program()
 
 
+此接口可以获取当前用于存储op和variable描述信息的 ``default main program``
 
+``fluid.layers`` 接口中添加的op和variable会存储在 ``default main program`` 中
 
+``default main program`` 是fluid的许多编程接口中Program参数的默认值。例如对于 ``Executor.run()`` 如果用户没有传入Program参数，会默认使用 ``default main program`` 
 
-此函数用于获取默认或全局main program(主程序)。该主程序用于训练和测试模型。
+可以使用 :ref:`cn_api_fluid_program_guard` 来替换 ``default main program`` 
 
-``fluid.layers`` 中的所有layer函数可以向 ``default_main_program`` 中添加operators（算子）和variables（变量）。
+参数: 
+    - 无
 
-``default_main_program`` 是fluid的许多编程接口（API）的Program参数的缺省值。例如,当用户program没有传入的时候，
-``Executor.run()`` 会默认执行 ``default_main_program`` 。
+返回： 当前默认用于存储op和variable描述的Program
 
-
-返回： main program
-
-返回类型: Program
+返回类型： :ref:`cn_api_fluid_Program`
 
 **代码示例**
 
