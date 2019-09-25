@@ -14,7 +14,7 @@ clip
 
 
 参数：
-        - **x** (Variable)- 1维或者多维Tensor，数据类型为float32
+        - **x** (Variable)- 多维Tensor，数据类型为float32
         - **min** (float)- 最小值，输入Tensor中小于该值的元素由min代替。
         - **max** (float)- 最大值，输入Tensor中大于该值的元素由max替换。
         - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。

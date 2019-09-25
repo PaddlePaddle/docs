@@ -15,8 +15,8 @@ dice_loss定义为:
                    &= \frac{union\_area−intersection\_area}{total\_area}
 
 参数:
-    - **input** (Variable) - 分类的预测概率，rank>=2的Tensor。第一个维度的大小是batch_size，最后一个维度的大小是类别数目。数据类型是float32或者float64
-    - **label** （Variable）- 正确的标注数据(groud truth)，与输入 ``input`` 的秩相同的Tensor。第一个维度的大小是batch_size，最后一个维度的大小是1。数据类型为int32或者int64
+    - **input** (Variable) - 分类的预测概率，秩大于等于2的多维Tensor，维度为 :math:`[N_1, N_2, ..., N_k, D]` 。第一个维度的大小是batch_size，最后一维的大小D是类别数目。数据类型是float32或者float64
+    - **label** (Variable)- 正确的标注数据(groud truth)，与输入 ``input`` 的秩相同的Tensor，维度为 :math:`[N_1, N_2, ..., N_k, 1]` 。第一个维度的大小是batch_size，最后一个维度的大小是1。数据类型为int32或者int64
     - **epsilon** (float，可选) - 将会加到分子和分母上的数，浮点型的数值。如果输入和标签都为空，则确保dice为1。默认值:0.00001
 
 返回: 按上述公式计算出来的损失函数的结果所表示的Tensor，shape为[batch_size, 1]，数据类型与 ``input`` 相同

@@ -41,10 +41,10 @@ crop
 
 
 参数:
-  - **x** (Variable): 1维或者多维Tensor，数据类型为float32
+  - **x** (Variable): 多维Tensor，数据类型为float32
   - **shape** (Variable|list/tuple of integers) - 指定输出Tensor的形状，它可以是一个Tensor/整数列表/整数元组。如果是Tensor，它的秩必须与x相同，它的形状指定了输出Tensor的形状，它的元素的数值在这里不起作用，该方式适用于每次迭代时候需要改变输出形状的情况。如果是整数列表/元组，则其长度必须与x的秩相同
-  - **offsets** (Variable|list/tuple of integers|None，可选) - 指定每个维度上的裁剪的偏移量，它可以是一个Tensor，或者一个整数列表/整数元组。如果是一个Tensor，它的秩必须与x相同，这种方法适用于每次迭代的偏移量（offset）都可能改变的情况。如果是一个整数列表/元组，则长度必须与x的秩相同，如果offsets=None，则每个维度的偏移量为0。缺省值为None
-  - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
+  - **offsets** (Variable|list/tuple of integers|None，可选) - 指定每个维度上的裁剪的偏移量，它可以是一个Tensor，或者一个整数列表/整数元组。如果是一个Tensor，它的秩必须与x相同，这种方法适用于每次迭代的偏移量（offset）都可能改变的情况。如果是一个整数列表/元组，则长度必须与x的秩相同，如果offsets=None，则每个维度的偏移量为0。默认值为None
+  - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回: 经过形状裁剪之后的Tensor，与输入x具有相同的数据类型
 

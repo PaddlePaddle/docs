@@ -50,8 +50,8 @@ pad_constant_like
         out.shape = [2, 3, 2, 3]
 
 参数：
-          - **x** （Variable）- 1维或多维Tensor。
-          - **y** （Variable）- 1维或多维Tensor，与x具有相同的秩，而且对任意维度 ``i`` ，要求满足 ``y.shape[i] <= x.shape[i]`` 。数据类型为float32或者float64。
+          - **x** （Variable）- 多维Tensor
+          - **y** （Variable）- 多维Tensor，与x具有相同的秩，而且对任意维度 ``i`` ，要求满足 ``y.shape[i] <= x.shape[i]`` 。数据类型为float32或float64
           - **pad_value** (float，可选) - 用于填充的常量值。默认值为0.
           - **name** （str | None） - (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
