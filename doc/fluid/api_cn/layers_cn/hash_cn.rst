@@ -29,11 +29,11 @@ hash
 
   place = fluid.core.CPUPlace()
 
-  # Graph Organizing
+  # 构建网络
   x = fluid.layers.data(name="x", shape=[1], dtype="int32", lod_level=1)
   res = fluid.layers.hash(name="res",input=x, hash_size=1000, num_hash=4)
 
-  # Create an executor using CPU as an example
+  # 创建CPU执行器
   exe = fluid.Executor(place)
   exe.run(fluid.default_startup_program())
 
