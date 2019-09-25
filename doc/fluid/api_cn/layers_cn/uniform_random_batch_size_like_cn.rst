@@ -34,9 +34,9 @@ uniform_random_batch_size_like
         - **min** （float，可选）- 均匀随机的最小值，为闭区间。数据类型为float。默认值为 1.0。
         - **max** （float，可选）- 均匀随机的最大值，为开区间。数据类型为float。默认值为1.0。
         - **seed** （int，可选）- 用于生成样本的随机种子。0表示使用系统生成的种子，数据类型为int。注意如果seed不为0，则此算子将始终每次生成相同的随机数。默认值为0。
-        - **dtype** （np.dtype | core.VarDesc.VarType | str） - 返回结果的数据类型：float32，float16，int等。
+        - **dtype** （np.dtype | core.VarDesc.VarType | str，可选） - 输出Tensor的数据类型，支持float32（默认）， float64。
 
-返回:      表示随机初始化结果的tensor，数据类型由dtype参数设置。
+返回:      表示随机初始化结果的Tensor，数据类型由dtype参数设置，该Tensor的维度由shape参数和输入Tensor的指定维度共同决定。
 
 返回类型:        Variable
 
