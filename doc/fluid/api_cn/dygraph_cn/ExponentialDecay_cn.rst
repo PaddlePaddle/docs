@@ -17,7 +17,7 @@ ExponentialDecay
         decayed_learning_rate = learning_rate * decay_rate ^ (global_step / decay_steps)
 
 参数：
-    - **learning_rate** (Variable|float) - 初始学习率。如果设置为Variable，则是标量tensor，数据量类型可以为float32，float64。也可以设置为Python float值。
+    - **learning_rate** (Variable|float) - 初始学习率。如果设置为Variable，则是标量Tensor，数据类型可以为float32，float64。也可以设置为Python float值。
     - **decay_steps** (int) - 衰减步数。必须是正整数，该参数确定衰减周期。
     - **decay_rate** (float)- 衰减率。
     - **staircase** (bool) - 若为True，则以不连续的间隔衰减学习速率即阶梯型衰减。若为False，则以标准指数型衰减。默认值为False。
