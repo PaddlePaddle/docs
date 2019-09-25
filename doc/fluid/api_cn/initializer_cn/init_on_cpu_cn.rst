@@ -19,6 +19,3 @@ init_on_cpu
 
 
 
-
-
-

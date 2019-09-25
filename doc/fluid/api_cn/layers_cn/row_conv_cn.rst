@@ -50,3 +50,5 @@ row_conv
                         append_batch_size=False)
   out = fluid.layers.row_conv(input=x, future_context_size=2)
 
+
+

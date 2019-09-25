@@ -30,4 +30,3 @@ Random Truncated Normal(高斯)分布初始化函数
 
 
 
-
