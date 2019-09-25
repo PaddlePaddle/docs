@@ -7,6 +7,22 @@ Switch
 
 该类用于实现Switch分支控制功能。Switch分支包含多个case分支和一个default分支，Switch控制流会依次检查各case分支条件是否满足，并仅执行第一个满足条件的case分支后面的语句。若不存在满足条件的case分支，则仅执行default分支后面的语句。
 
+成员函数：
+    - **case(cond)** - Switch的case分支，其参数cond为bool型的标量Variable。只有当前case分支的cond为True，且之前的case分支的cond均为False，该case分支后的语句才会执行，且不再执行之后的case后的语句。
+    - **default()** - Switch的default分支。当所有case分支的cond均为False时，执行default分支后的语句。
+
+注意：case和default函数只能用于Switch的scope内部，示例如下：
+
+..  code-block:: python
+
+    with fluid.layers.Switch() as switch:
+        with switch.case(cond1):
+            i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=1)
+        with switch.case(cond2):
+            i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=2)
+        with switch.default():
+            i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=0)
+
 参数：
     - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
@@ -46,4 +62,3 @@ Switch
 
 
 
-    
