@@ -5,33 +5,33 @@ softmax_with_cross_entropy
 
 .. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False, axis=-1)
 
-该OP实现了带有交叉熵损失的softmax层，其在输出层已被广泛使用。该函数首先计算输入在 ``axis`` 维度上的softmax归一化值，之后计算交叉熵损失。这种计算方式提供了数值上更稳定的梯度值。
+该OP实现了带有交叉熵损失的softmax层。该函数会将softmax操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的梯度值。
 
-因为该运算在内部对 ``logits`` 执行softmax运算，所以它需要未标准化的 ``logits`` 。该运算不应该对softmax运算的输出进行操作，否则会产生错误的结果。
+因为该运算对 ``logits`` 的 ``axis`` 维执行softmax运算，所以它需要未缩放的 ``logits`` 。该运算不应该对softmax运算的输出进行操作，否则会产生错误的结果。
 
-当 ``soft_label`` 为 ``False`` 时，该运算期望互斥的硬标签，批次中的每一个样本都以1.0的概率分类到一个类别中，其仅有一个标签。
+当 ``soft_label`` 为 ``False`` 时， ``label`` 除了 ``axis`` 维度上的形状为1，其余维度和 ``logits`` 一致，表示一批数据中的每一个样本仅可分类到一个类别。
 
 涉及到的等式如下:
 
-1. 硬标签（one-hot label, 每个样本仅可分到一个类别）
+1. 硬标签（每个样本仅可分到一个类别）
 
 .. math::
-   loss_j =  -\text{logit}_{label_j} +\log\left(\sum_{i=0}^{K}\exp(\text{logit}_i)\right), j = 1,..., K
+   loss_j =  -\text{logits}_{label_j} +\log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right), j = 1,..., K
 
 2. 软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
 
 .. math::
-   loss_j =  -\sum_{i=0}^{K}\text{label}_i\left(\text{logit}_i - \log\left(\sum_{i=0}^{K}\exp(\text{logit}_i)\right)\right), j = 1,...,K
+   loss_j =  -\sum_{i=0}^{K}\text{label}_i\left(\text{logits}_i - \log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right)\right), j = 1,...,K
 
-3. 如果 ``numeric_stable_mode`` 为 ``True`` ，softmax结果首先经由下式计算得出，然后通过softmax结果和 ``label`` 计算交叉熵损失。
+3. 如果 ``numeric_stable_mode`` 为 ``True`` ，softmax结果首先经由下式计算得出，然后使用softmax结果和 ``label`` 计算交叉熵损失。
 
 .. math::
-    max_j           &= \max_{i=0}^{K}{\text{logit}_i} \\
-    log\_max\_sum_j &= \log\sum_{i=0}^{K}\exp(logit_i - max_j)\\
-    softmax_j &= \exp(logit_j - max_j - {log\_max\_sum}_j)
+    max_j           &= \max_{i=0}^{K}{\text{logits}_i} \\
+    log\_max\_sum_j &= \log\sum_{i=0}^{K}\exp(logits_i - max_j)\\
+    softmax_j &= \exp(logits_j - max_j - {log\_max\_sum}_j)
 
 参数：
-  - **logits** (Variable) - 维度为任意维的多维 ``tensor`` ，数据类型为float32或float64。表示未标准化的输入。
+  - **logits** (Variable) - 维度为任意维的多维 ``tensor`` ，数据类型为float32或float64。表示未缩放的输入。
   - **label** (Variable) - 如果 ``soft_label`` 为True， ``label`` 是一个和 ``logits`` 维度相同的的 ``Tensor`` 。如果 ``soft_label`` 为False， ``label`` 是一个在axis维度上大小为1，其它维度上与 ``logits`` 维度相同的 ``Tensor`` 。
   - **soft_label** (bool, 可选) - 指明是否将输入标签当作软标签。默认值：False。
   - **ignore_index** (int, 可选) - 指明要无视的目标值，使其不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认值：kIgnoreIndex（-100）。 
