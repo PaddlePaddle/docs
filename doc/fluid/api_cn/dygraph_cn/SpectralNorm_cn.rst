@@ -5,7 +5,7 @@ SpectralNorm
 
 .. py:class:: paddle.fluid.dygraph.SpectralNorm(name_scope, dim=0, power_iters=1, eps=1e-12, name=None)
 
-该OP用于计算fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，输入权重参数应分别为2-D, 3-D, 4-D, 5-D张量，输出张量与输入张量维度相同。谱特征值计算方式如下：
+该接口用于构建谱归一化层，用于计算fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，输入权重参数应分别为2-D, 3-D, 4-D, 5-D张量，输出张量与输入张量维度相同。谱特征值计算方式如下：
 
 步骤1：生成形状为[H]的向量U,以及形状为[W]的向量V,其中H是输入权重张量的第 ``dim`` 个维度，W是剩余维度的乘积。
 
@@ -29,7 +29,7 @@ SpectralNorm
     - **dim** (int, 可选) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1。默认值：0。
     - **power_iters** (int, 可选) - 将用于计算的 ``SpectralNorm`` 功率迭代次数，默认值：1。
     - **eps** (float, 可选) -  ``eps`` 用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零。默认值：1e-12。
-    - **name** (str, 可选) - 层的名称。默认值：None。
+    - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：无
 
