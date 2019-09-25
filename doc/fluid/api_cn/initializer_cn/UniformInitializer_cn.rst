@@ -8,9 +8,9 @@ UniformInitializer
 随机均匀分布初始化器
 
 参数：
-        - **low** (float) - 下界 
-        - **high** (float) - 上界
-        - **seed** (int) - 随机种子
+    - **low** (float) - 下界 
+    - **high** (float) - 上界
+    - **seed** (int) - 随机种子
 
 **代码示例**
 

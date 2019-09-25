@@ -5,7 +5,8 @@ resize_nearest
 
 .. py:function:: paddle.fluid.layers.resize_nearest(input, out_shape=None, scale=None, name=None, actual_shape=None, align_corners=True, data_format='NCHW')
 
-该层对输入进行放缩，在高度方向宽度方向进行最邻近插值（nearest neighbor interpolation）操作。
+该OP对输入图片进行大小调整，在高度方向宽度方向进行最邻近插值（nearest neighbor interpolation）操作。
+
 输出形状按优先级顺序依据 ``actual_shape`` , ``out_shape`` 和 ``scale`` 而定。
 
 **注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
@@ -47,17 +48,19 @@ resize_nearest
 最邻近插值的详细介绍请参照： `Wiki Nearest-neighbor interpolation <https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation>`_
 
 
-
 参数:
   - **input** (Variable) - 4-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
-  - **out_shape** (list|tuple|Variable|None) - 调整双线性层的输出形状，形式为(out_h, out_w)。默认值：None。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者shape为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。
-  - **scale** (float|Variable|None) – 输入高、宽的乘法器。 ``out_shape`` 和 ``scale`` 二者至少设置其一。 ``out_shape`` 具有比 ``scale`` 更高的优先级。 默认: None
-  - **name** (str|None) – 输出变量的命名
-  - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`out_shape` , 因为 :code:`out_shape` 未来将被弃用。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值:None
-  - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值：True
+  - **out_shape** (list|tuple|Variable|None) - 双线性插值法调整后的输出，维度为[out_h, out_w]的2-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者shape为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
+  - **scale** (float|Variable|None) – 输入高宽的乘数因子。 ``out_shape`` 和 ``scale`` 二者至少设置其一。 ``out_shape`` 具有比 ``scale`` 更高的优先级。 默认值为None。
+  - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
+  - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`out_shape` , 因为 :code:`out_shape` 未来将被弃用。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值为None。
+  - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为True。
   - **data_format** （str，可选）- 数据格式，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，默认值：'NCHW'。
 
 返回：4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)。
+
+返回类型：Variable
+
 
 **代码示例**
 
