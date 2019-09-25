@@ -5,24 +5,26 @@ square
 
 .. py:function:: paddle.fluid.layers.square(x,name=None)
 
-取平方激活函数。
+该OP执行逐元素取平方运算。
 
 .. math::
     out = x^2
 
 参数:
-    - **x** : 平方操作符的输入
-    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
+    - **x** (Variable) - 任意维度的Tensor，支持的数据类型： float32，float64。
+    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
-返回：平方后的结果
+返回：返回取平方后的Tensor，维度和数据类型同输入一致。
+
+返回类型：Variable
 
 **代码示例**：
 
 .. code-block:: python
 
         import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784])
-        result = fluid.layers.square(data)
+        data = fluid.layers.data(name="input", shape=[32, 784], dtype='float32')
+        result = fluid.layers.square(data) #result.shape=[32, 784], type=float32
 
 
 
