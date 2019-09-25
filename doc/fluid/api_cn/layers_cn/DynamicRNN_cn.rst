@@ -11,7 +11,8 @@ DynamicRNN
 DynamicRNN可以处理一批序列数据，其中每个样本序列的长度可以不同，每个序列的长度信息记录在LoD里面。
 DynamicRNN会按照时间步将输入序列展开，用户可以在 :code:`with` block中定义如何处理每个时间步。
 
-<font color="#FF0000">**注意：目前不支持在DynamicRNN中任何层上配置 :code:`is_sparse = True` **</font> 。
+
+**注意：目前不支持在DynamicRNN中任何层上配置** :code:`is_sparse = True` 。
 
 
 step_input
@@ -258,4 +259,4 @@ output
     # 获得RNN的计算结果
     hidden, out = drnn()
     # 提取最后一个时间步的计算结果
-    last = fluid.layers.sequence_last_step(rnn_output)
+    last = fluid.layers.sequence_last_step(out)
