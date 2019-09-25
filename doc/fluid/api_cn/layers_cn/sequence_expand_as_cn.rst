@@ -5,51 +5,47 @@ sequence_expand_as
 
 .. py:function:: paddle.fluid.layers.sequence_expand_as(x, y, name=None)
 
-Sequence Expand As Layer
+Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 进行扩展。当前实现要求 ``y`` 的lod层数必须为1，且 ``x`` 的第一维必须和 ``y`` 的第0层lod的大小相同，无需考虑 ``x`` 的lod。
 
-这一层将根据y的第0级lod扩展输入变量x。当前实现要求输入（Y）的lod层数必须为1，输入（X）的第一维应当和输入（Y）的第0层lod的大小相同，不考虑输入（X）的lod。
-
-以下示例解释sequence_expand如何工作：
+示例如下：
 
 ::
 
-    * 例1:
-    给定一维LoDTensor input(X)
-        X.data = [[a], [b], [c], [d]]
-        X.dims = [4, 1]
-    和 input(Y)
-        Y.lod = [[0, 3, 6, 7, 8]]
-    ref_level: 0
-    得到1级 LoDTensor
-        Out.lod =  [[0,            3,              6,  7,  8]]
-        Out.data = [[a], [a], [a], [b], [b], [b], [c], [d]]
-        Out.dims = [8, 1]
+    例1:
+    给定输入一维LoDTensor x：
+        x.data = [[a], [b], [c], [d]]
+        x.dims = [4, 1]
+    和输入 y：
+        y.lod = [[0, 3, 6, 7, 8]]
 
-    *例2
+    输出为1级LoDTensor：
+        out.lod =  [[0,            3,              6,  7,  8]]
+        out.data = [[a], [a], [a], [b], [b], [b], [c], [d]]
+        out.dims = [8, 1]
 
-    给定一个 input(X)：
-        X.data = [[a, b], [c, d], [e, f]]
-        X.dims = [3, 2]
+::
 
-    和 input(Y):
-        Y.lod = [[0, 2, 3, 6]]
-    ref_level: 0
+    例2：
+    给定输入一维LoDTensor x：
+        x.data = [[a, b], [c, d], [e, f]]
+        x.dims = [3, 2]
+    和输入 y：
+        y.lod = [[0, 2, 3, 6]]
 
-    得到输出张量：
-
-        Out.lod =  [[0,             2,     3,                    6]]
-        Out.data = [[a, b], [a, b] [c, d], [e, f], [e, f], [e, f]]
-        Out.dims = [6, 2]
+    输出为1级LoDTensor：
+        out.lod =  [[0,             2,     3,                    6]]
+        out.data = [[a, b], [a, b] [c, d], [e, f], [e, f], [e, f]]
+        out.dims = [6, 2]
 
 
 参数：
-    - **x** (Variable) - 输入变量，类型为Tensor或LoDTensor
-    - **y** (Variable) - 输入变量，为LoDTensor
-    - **name** (str|None) - 该层名称（可选）。如果设为空，则自动为该层命名
+    - **x** (Variable) - 输入变量，Tensor或LoDTensor。
+    - **y** (Variable) - 输入变量，LoDTensor。
+    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
 返回：扩展变量，LoDTensor
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 
 **代码示例**：
