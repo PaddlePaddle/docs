@@ -28,7 +28,7 @@ BilinearTensorProduct
     - **param_attr**  (ParamAttr) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr**  (ParamAttr) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
 
-返回：维度为[batch_size, size]的2D Tensor
+返回：维度为[batch_size, size]的2D Tensor，数据类型与输入数据类型相同。
 
 返回类型： Variable
 
