@@ -436,7 +436,7 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.to_variable(x)
                 if batch_id % 100 == 0 and batch_id is not 0:
                     print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
 
-修改的地方主要有三处：
+动态图单卡训练转多卡训练需要修改的地方主要有四处：
 1. 需要从环境变量获取设备的ID，即：
 	
 	    place = fluid.CUDAPlace(fluid.dygraph.parallel.Env().dev_id)
@@ -481,7 +481,7 @@ Paddle动态图多进程多卡模型训练启动时需要指定使用的GPU，�
 	trainers_endpoints: 127.0.0.1:6170,127.0.0.1:6171,127.0.0.1:6172,127.0.0.1:6173 , node_id: 0 , current_node_ip: 127.0.0.1 , num_nodes: 1 , node_ips: ['127.0.0.1'] , nranks: 4
 
 
-此时，程序会将每个进程的输出log导入到./mylog路径下：
+此时，程序会将每个进程的输出log导出到./mylog路径下：
 
     .
     ├── mylog

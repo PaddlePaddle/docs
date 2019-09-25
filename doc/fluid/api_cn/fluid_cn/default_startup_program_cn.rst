@@ -10,17 +10,17 @@ default_startup_program
 
 
 
-该函数可以获取默认/全局 startup program (启动程序)。
+该函数可以获取默认/全局 startup :ref:`cn_api_fluid_Program` (初始化启动程序)。
 
-``fluid.layers`` 中的layer函数会新建参数、readers(读取器)、NCCL句柄作为全局变量。
+ :ref:`_cn_api_fluid_layers` 中的函数会新建参数或 :ref:`cn_api_paddle_data_reader_reader` (读取器) 或 `NCCL <https://developer.nvidia.com/nccl>`_ 句柄作为全局变量。
 
-startup_program会使用内在的operators（算子）去初始化他们，并由layer函数将这些operators追加到startup program中。
+startup_program会使用内在的OP（算子）去初始化他们，并由 :ref:`_cn_api_fluid_layers` 中的函数将这些OP追加到startup :ref:`cn_api_fluid_Program` 中。
 
-该函数将返回默认的或当前的startup_program。用户可以使用 ``fluid.program_guard`` 去切换program。
+该函数将返回默认的或当前的startup_program。用户可以使用 :ref:`cn_api_fluid_program_guard`  去切换 :ref:`cn_api_fluid_default_startup_program` 。
 
-返回: startup program
+返回: 当前的默认/全局 初始化 :ref:`cn_api_fluid_Program`
 
-返回类型: Program
+返回类型: :ref:`cn_api_fluid_Program`
 
 **代码示例：**
 
