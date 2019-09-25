@@ -273,6 +273,7 @@ fluid.layers
     layers_cn/stack_cn.rst
     layers_cn/stanh_cn.rst
     layers_cn/StaticRNN_cn.rst
+    layers_cn/strided_slice_cn.rst
     layers_cn/sum_cn.rst
     layers_cn/sums_cn.rst
     layers_cn/swish_cn.rst
