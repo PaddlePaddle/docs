@@ -146,7 +146,11 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 .. py:method:: train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 
 
-从预定义的数据集中训练。 数据集在paddle.fluid.dataset中定义。 给定Program（或CompiledProgram），train_from_dataset将使用paddle.fluid.dataset中的所有数据样本。 scope可由用户给出, 默认情况下使用的scope是global_scope()。训练中的线程数是thread个， 默认值为0，表示使用paddle.fluid.dataset中用户配置的线程数。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。当用户设置fetch_list和fetch_info时（两者长度需要一致）时，会打印出fetch_list中所有变量的值，打印该值的间隔为print_period。train_from_dataset可以非常容易地用于大规模分布式多线程在线和离线训练。
+从预定义的数据集中训练。 数据集在Paddle的高性能IO模块paddle.fluid.dataset中定义。 给定Program（或CompiledProgram），train_from_dataset将使用paddle.fluid.dataset中的所有数据样本。输入scope可由用户给出, 默认情况下使用的scope是global_scope()。训练中的线程数是thread个， 默认值为0，表示使用paddle.fluid.dataset中用户配置的线程数。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。当用户设置fetch_list和fetch_info时（两者长度需要一致）时，会打印出fetch_list中所有变量的值，打印该值的间隔为print_period。
+
+train_from_dataset的线程数可以与dataset的线程数不同，在本接口内会自动调整，用户可以灵活配置dataset的preload线程数、shuffle线程数、数据queue的数目，以及train_from_dataset的线程数。
+
+train_from_dataset可以非常容易扩展到大规模分布式在线和离线训练。例如可以与Paddle Fleet配合使用，完成千亿或万亿级别大规模稀疏参数的CTR训练，并且性能出色。
 
 注意：train_from_dataset将销毁每次运行在executor中创建的所有资源。
 

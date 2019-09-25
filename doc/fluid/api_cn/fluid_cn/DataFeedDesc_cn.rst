@@ -5,11 +5,7 @@ DataFeedDesc
 
 .. py:class:: paddle.fluid.DataFeedDesc(proto_file)
 
-数据描述符，描述输入训练数据格式。
-
-这个类目前只用于AsyncExecutor(有关类AsyncExecutor的简要介绍，请参阅注释)
-
-DataFeedDesc应由来自磁盘的有效protobuf消息初始化。
+描述训练数据的格式。输入是一个文件路径名，其内容是protobuf message。
 
 可以参考 :code:`paddle/fluid/framework/data_feed.proto` 查看我们如何定义message
 
@@ -38,25 +34,22 @@ DataFeedDesc应由来自磁盘的有效protobuf消息初始化。
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
 
-但是，用户通常不应该关心消息格式；相反，我们鼓励他们在将原始日志文件转换为AsyncExecutor可以接受的训练文件的过程中，使用 :code:`Data Generator` 生成有效数据描述。
-
-DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含义，您可以修改它以更好地满足您的需要。例如:
+用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如:
 
 .. code-block:: python
 
     import paddle.fluid as fluid
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
-    data_feed.set_dense_slots('wd')  # 名为'wd'的slot将被设置为dense的
-    data_feed.set_use_slots('wd')    # 名为'wd'的slot将被用于训练
+    data_feed.set_dense_slots('words')  # 名为'words'的slot将被设置为dense的
+    data_feed.set_use_slots('words')    # 名为'words'的slot将被用于训练
 
     # 最后，可以打印变量详细信息便于排查错误
-
     print(data_feed.desc())
 
 
 参数：
-  - **proto_file** (string) - 包含数据feed中描述的磁盘文件
+  - **proto_file** (string) - 包含数据描述的protobuf message的磁盘文件
 
 
 .. py:method:: set_batch_size(batch_size)
@@ -174,9 +167,9 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. py:method:: desc()
 
-返回此DataFeedDesc的protobuf信息
+返回此DataFeedDesc的protobuf message
 
-返回：一个message字符串
+返回：一个protobuf message字符串
 
 **代码示例：**
 
@@ -203,9 +196,4 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
     print(data_feed.desc())
-
-
-
-
-
 
