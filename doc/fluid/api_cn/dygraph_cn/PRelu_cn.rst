@@ -5,7 +5,7 @@ PRelu
 
 .. py:class:: paddle.fluid.dygraph.PRelu(name_scope, mode, param_attr=None)
 
-该OP实现了 ``PRelu`` 激活函数的三种激活方式。
+该接口用于创建 ``PRelu`` 对象，其中实现了 ``PRelu`` 激活函数的三种激活方式。
 
 计算公式如下：
 
@@ -23,7 +23,7 @@ PRelu
             channel：在同一个通道中的元素使用同一个 :math:`[\alpha]` 值
             element：每一个元素有一个独立的 :math:`[\alpha]` 值
 
-    - **param_attr** (ParamAttr, 可选) - 可学习权重 :math:`[\alpha]` 的参数属性。默认值：None。
+    - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
 返回：无
 
