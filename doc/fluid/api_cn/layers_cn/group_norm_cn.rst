@@ -8,16 +8,18 @@ group_norm
 参考论文： `Group Normalization <https://arxiv.org/abs/1803.08494>`_
 
 参数：
-  - **input** (Variable)：输入张量变量
-  - **groups** (int)：从 channel 中分离出来的 group 的数目
-  - **epsilon** (float)：为防止方差除零，增加一个很小的值
-  - **param_attr** (ParamAttr|None)：可学习标度的参数属性 :math:`g`,如果设置为False，则不会向输出单元添加标度。如果设置为0，偏差初始化为1。默认值:None
-  - **bias_attr** (ParamAttr|None)：可学习偏置的参数属性 :math:`b ` , 如果设置为False，则不会向输出单元添加偏置量。如果设置为零，偏置初始化为零。默认值:None。
-  - **act** (str):将激活应用于输出的 group normalizaiton
-  - **data_layout** (string|NCHW): 只支持NCHW。
-  - **name** (str):这一层的名称（可选）
+  - **input** (Variable)：输入为4-D Tensor，数据类型为float32或float64。
+  - **groups** (int)：从 channel 中分离出来的 group 的数目。
+  - **epsilon** (float)：为防止方差除以零，增加一个很小的值。
+  - **param_attr** (ParamAttr，可选)：可学习标度的参数属性 :math:`g` ，如果设置为False，则不会向输出单元添加标度。如果设置为0，偏差初始化为1。默认值：None
+  - **bias_attr** (ParamAttr，可选)：可学习偏置的参数属性 :math:`b` ，如果设置为False，则不会向输出单元添加偏置量。如果设置为零，偏置初始化为零。默认值：None。
+  - **act** (str，可选)：将激活应用于输出的 group normalizaiton。
+  - **data_layout** (str，可选)：数据格式，支持 NCHW (num_batches，channels，height，width) 或 NHWC (num_batches，height，width，channels)，默认值：‘NCHW’。
+  - **name** (str，可选)：该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回： Variable: 一个张量变量，它是对输入进行 group normalization 后的结果。
+返回：group normalization 的结果，数据类型和格式与 input 一致。
+
+返回类型：Variable
 
 **代码示例：**
 

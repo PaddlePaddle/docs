@@ -5,25 +5,24 @@ l2_normalize
 
 .. py:function:: paddle.fluid.layers.l2_normalize(x,axis,epsilon=1e-12,name=None)
 
-L2正则（L2 normalize Layer）
-
-该层用欧几里得距离之和对维轴的x归一化。对于1-D张量（系数矩阵的维度固定为0），该层计算公式如下：
+该OP计算欧几里得距离之和对x进行归一化。对于1-D张量（系数矩阵的维度固定为0）
+计算公式如下：
 
 .. math::
 
-    y=\frac{x}{\sqrt{\sum x^{2}+epsion}}
+    y=\frac{x}{\sqrt{\sum x^{2}+epsilon}}
 
-对于x多维的情况，该函数分别对维度轴上的每个1-D切片单独归一化
+对于输入为多维Tensor的情况，该OP分别对维度轴上的每个1-D切片单独归一化
 
 参数：
-    - **x** (Variable|list)- l2正则层（l2_normalize layer）的输入
-    - **axis** (int)-运用归一化的轴。如果轴小于0，归一化的维是rank(X)+axis。-1是最后维
-    - **epsilon** (float)-epsilon用于避免分母为0，默认值为1e-12
-    - **name** (str|None)-该层名称（可选）。如果设为空，则自动为该层命名
+    - **x** (Variable) - 维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
+    - **axis** (int) - 归一化的轴。如果轴小于0，归一化的维是rank(X)+axis。其中，-1用来表示最后一维。
+    - **epsilon** (float) - epsilon，用于避免除0，默认值为1e-12。
+    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
-    返回：输出张量，同x的维度一致
+    返回：与输入x的维度一致的Tensor
 
-    返回类型：变量
+    返回类型：Variable
 
 **代码示例**：
 

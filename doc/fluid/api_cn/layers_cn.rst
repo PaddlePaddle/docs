@@ -1,3 +1,5 @@
+.. _cn_api_fluid_layers:
+
 =======================
 fluid.layers
 =======================
@@ -106,6 +108,7 @@ fluid.layers
     layers_cn/floor_cn.rst
     layers_cn/fsp_matrix_cn.rst
     layers_cn/gather_cn.rst
+    layers_cn/gather_nd_cn.rst
     layers_cn/gaussian_random_batch_size_like_cn.rst
     layers_cn/gaussian_random_cn.rst
     layers_cn/generate_mask_labels_cn.rst
@@ -158,7 +161,6 @@ fluid.layers
     layers_cn/lstm_cn.rst
     layers_cn/lstm_unit_cn.rst
     layers_cn/margin_rank_loss_cn.rst
-    layers_cn/match_matrix_tensor_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
     layers_cn/mean_cn.rst
@@ -227,6 +229,8 @@ fluid.layers
     layers_cn/sampling_id_cn.rst
     layers_cn/scale_cn.rst
     layers_cn/scatter_cn.rst
+    layers_cn/scatter_nd_add_cn.rst
+    layers_cn/scatter_nd_cn.rst
     layers_cn/selu_cn.rst
     layers_cn/sequence_concat_cn.rst
     layers_cn/sequence_conv_cn.rst
@@ -286,7 +290,6 @@ fluid.layers
     layers_cn/thresholded_relu_cn.rst
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
-    layers_cn/tree_conv_cn.rst
     layers_cn/unfold_cn.rst
     layers_cn/Uniform_cn.rst
     layers_cn/uniform_random_cn.rst
@@ -295,7 +298,6 @@ fluid.layers
     layers_cn/unique_with_counts_cn.rst
     layers_cn/unsqueeze_cn.rst
     layers_cn/unstack_cn.rst
-    layers_cn/var_conv_2d_cn.rst
     layers_cn/warpctc_cn.rst
     layers_cn/where_cn.rst
     layers_cn/While_cn.rst
