@@ -98,58 +98,15 @@ Data Reader Interface
 
 .. py:function:: paddle.reader.shuffle(reader, buf_size)
 
-**注意:paddle.reader.shuffle是paddle.fluid.io.shuffle的别名，推荐使用paddle.fluid.io.shuffle。**
+**注意：paddle.reader.shuffle是paddle.fluid.io.shuffle的别名，推荐使用paddle.fluid.io.shuffle。**
 
-该接口创建一个数据读取器，其功能是将原始数据读取器的数据打乱，然后返回无序的数据。
-
-从原始数据读取器取出buf_size个数据到缓冲区，将缓冲区数据打乱，然后将无序的数据依次返回。当缓冲区数据全部输出后，再次执行上述步骤。
-
-
-参数：
-    - **reader** (callable)  – 原始数据读取器。
-    - **buf_size** (int)  – 缓冲区保存数据的个数。
-
-返回： 返回无序数据的数据读取器
-
-返回类型： callable
-
-..  code-block:: python
-
-    import paddle
-    def reader():
-        for i in range(5):
-            yield i
-    shuffled_reader = paddle.reader.shuffle(reader, 3)
-    for e in shuffled_reader():
-        print(e)
-    # 输出结果是0~4的无序排列
-
+详见 :ref:`cn_api_fluid_io_shuffle` 接口的使用文档。
 
 .. py:function:: paddle.reader.firstn(reader, n)
 
-**注意:paddle.reader.firstn是paddle.fluid.io.firstn的别名，推荐使用paddle.fluid.io.firstn。**
+**注意：paddle.reader.firstn是paddle.fluid.io.firstn的别名，推荐使用paddle.fluid.io.firstn。**
 
-该接口创建一个数据读取器，它可以返回的最大样本数为n。
-
-
-参数：
-    - **reader** (callable)  – 输入的数据读取器。
-    - **n** (int)  – 可以返回的最大样本数。
-
-返回： 新的的数据读取器。
-
-返回类型： callable
-
-..  code-block:: python
-
-    import paddle
-    def reader():
-        for i in range(100):
-            yield i
-    firstn_reader = paddle.reader.firstn(reader, 5)
-    for e in firstn_reader():
-        print(e)
-    # 输出结果为:0 1 2 3 4 
+详见 :ref:`cn_api_fluid_io_firstn` 接口的使用文档。
 
 .. py:function:: paddle.reader.xmap_readers(mapper, reader, process_num, buffer_size, order=False)
 
