@@ -58,10 +58,10 @@ strided_slice算子。
 
     import paddle.fluid as fluid
     input = fluid.layers.data(
-        name="input", shape=[3, 4, 5, 6], dtype='float32')
+        name="input", shape=[3, 4, 5, 6], dtype='float32', append_batch_size=False)
     # example 1:
     # attr starts is a list which doesn't contain tensor Variable.
-    axes = [0, 1, 2]
+    axes = [1, 2, 3]
     starts = [-3, 0, 2]
     ends = [3, 2, 4]
     strides_1 = [1, 1, 1]
