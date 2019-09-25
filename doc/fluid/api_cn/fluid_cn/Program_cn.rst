@@ -70,10 +70,10 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 **注意:**
     **1.** ``Program.clone()`` **方法不会克隆例如**  :ref:`cn_api_fluid_io_PyReader` **这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失**
 
-    **2. 此API当** ``for_test=True`` **时为将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
+    **2. 此API当** ``for_test=True`` **时将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
 
 
-创建一个新的、基本相同的Program。
+当 ``for_test=True`` 时创建一个新的、仅包含当前Program前向内容的Program。否则创建一个新的，和当前Program完全相同的Program
 
 有些OP，在训练和测试之间的行为是不同的，比如  :ref:`cn_api_fluid_layers_batch_norm` 。它们有一个属性 ``is_test`` 来控制行为。当 ``for_test=True`` 时，此方法将把它们的 ``is_test`` 属性更改为True。
 
@@ -93,7 +93,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 参数：
  - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP
 
-返回：一个新的、基本相同的Program
+返回：当 ``for_test=True`` 时返回一个新的、仅包含当前Program前向内容的Program。否则返回一个新的，和当前Program完全相同的Program
 
 返回类型： Program
 
