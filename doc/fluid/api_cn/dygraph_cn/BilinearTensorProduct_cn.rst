@@ -17,7 +17,7 @@ BilinearTensorProduct
 - :math:`y` ：第二个输入，分别包含N个元素，维度为[batch_size, N]
 - :math:`W_i` ：第i个学习到的权重，维度为[M,N]
 - :math:`out_i` ：输出的第i个元素
-- :math:`y^T` ： :math:`y_2` 的转置
+- :math:`y^T` ： :math:`y` 的转置
 
 
 参数：
