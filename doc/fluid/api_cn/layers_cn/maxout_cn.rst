@@ -24,7 +24,7 @@ maxout
 参数：
     - **x** (Variable) - 维度为[N,C,H,W]的4-D Tensor，其中N为 batch size ，C为通道数，H和W为特征图的高和宽。数据类型为float32。maxout算子的输入张量。
     - **groups** （int32）- 指定将输入张量的channel通道维度进行分组的数目。输出的通道数量为通道数除以组数。
-    - **name** (str|None) – 该层的名称（可选项）,默认为None
+    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
 返回：表示为输出的Tensor，数据类型为float32。输出维度也是NCHW。其中N为 batch size，C为通道数，H和W为特征的高和宽。

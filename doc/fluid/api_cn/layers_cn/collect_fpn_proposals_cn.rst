@@ -18,7 +18,7 @@ collect_fpn_proposals
     - **multi_scores** (list) - 要收集的FPN层的最低级
     - **max_level** (int) – 要收集的FPN层的最高级
     - **post_nms_top_n** (int) – 所选RoIs的数目
-    - **name** (str|None) – 该层的名称（可选项）,默认为None
+    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：表示选定具有高分数的RoIs的LoDTensor，数据类型为float32或float64，同时具有LoD信息，维度为[M, 4]，其中M为post_nms_top_n。
 
