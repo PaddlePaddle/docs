@@ -31,7 +31,7 @@ softmax_with_cross_entropy
     softmax_j &= \exp(logits_j - max_j - {log\_max\_sum}_j)
 
 参数：
-  - **logits** (Variable) - 维度为任意维的多维 ``tensor`` ，数据类型为float32或float64。表示未缩放的输入。
+  - **logits** (Variable) - 维度为任意维的多维 ``Tensor`` ，数据类型为float32或float64。表示未缩放的输入。
   - **label** (Variable) - 如果 ``soft_label`` 为True， ``label`` 是一个和 ``logits`` 维度相同的的 ``Tensor`` 。如果 ``soft_label`` 为False， ``label`` 是一个在axis维度上大小为1，其它维度上与 ``logits`` 维度相同的 ``Tensor`` 。
   - **soft_label** (bool, 可选) - 指明是否将输入标签当作软标签。默认值：False。
   - **ignore_index** (int, 可选) - 指明要无视的目标值，使其不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认值：kIgnoreIndex（-100）。 
