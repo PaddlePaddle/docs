@@ -5,34 +5,44 @@ squeeze
 
 .. py:function:: paddle.fluid.layers.squeeze(input, axes, name=None)
 
-向张量维度中移除单维输入。传入用于压缩的轴。如果未提供轴，所有的单一维度将从维中移除。如果选择的轴的形状条目不等于1，则报错。
+该OP会根据axes压缩输入Tensor的维度。如果指定了axes，则会删除axes中指定的维度，axes指定的维度要等于1。如果没有指定axes，那么所有等于1的维度都会被删除。
 
-::
+- 例1：
 
+.. code-block:: python
 
-    例如：
-
-    例1：
-        给定
-            X.shape = (1,3,1,5)
+        输入：
+            X.shape = [1,3,1,5]
             axes = [0]
-        得到
-            Out.shape = (3,1,5)
-    例2：
-        给定
-            X.shape = (1,3,1,5)
+        输出;
+            Out.shape = [3,1,5]
+- 例2：
+
+.. code-block:: python
+
+        输入：
+            X.shape = [1,3,1,5]
             axes = []
-        得到
-            Out.shape = (3,5)
+        输出:
+            Out.shape = [3,5]
+- 例3：
+
+.. code-block:: python
+
+        输入:
+            X.shape = [1,3,1,5]
+            axes = [-2]
+        输出：
+            Out.shape = [1,3,5]
 
 参数：
-        - **input** (Variable)-将要压缩的输入变量
-        - **axes** (list)-一列整数，代表压缩的维
-        - **name** (str|None)-该层名称
+        - **input** (Variable) - 输入任意维度的Tensor。 支持的数据类型：float32，float64，int8，int32，int64。
+        - **axes** (list) - 输入一个或一列整数，代表要压缩的轴。axes的范围： :math:`[-rank(input), rank(input))` 。 axes为负数时， :math:`axes=axes+rank(input)` 。
+        - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 默认值为None。
 
-返回：输出压缩的变量
+返回: 返回对维度进行压缩后的Tensor。数据类型与输入Tensor一致。
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **代码示例**：
 
@@ -41,7 +51,7 @@ squeeze
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     x = layers.data(name='x', shape=[5, 1, 10])
-    y = layers.squeeze(input=x, axes=[1])
+    y = layers.squeeze(input=x, axes=[1]) #y.shape=[5, 10]
 
 
 
