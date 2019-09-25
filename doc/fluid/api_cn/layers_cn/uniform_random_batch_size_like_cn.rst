@@ -5,30 +5,32 @@ uniform_random_batch_size_like
 
 .. py:function:: paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32', input_dim_idx=0, output_dim_idx=0, min=-1.0, max=1.0, seed=0)
 
-该OP用输入Tensor指定维度的值替换返回Tensor指定维度的值，并使用从均匀分布中采样的随机值初始化Tensor。
+该OP使用从均匀分布中采样的随机值初始化一个Tensor，且该Tensor指定维度将被设置为与输入Tensor指定维度相同的值。
 
 ::
 
     示例1:
-         input =[[0.946741  , 0.1357001 , 0.38086128]]    # input.shape=[1,3]
-         shape=[2,4]
-    则：
-         result=[[ 0.3443427 , -0.23056602,  0.3477049 ,  0.06139076]]    # result.shape=[1,4]
+              给定：  
+                   input =[[0.946741  , 0.1357001 , 0.38086128]]    # input.shape=[1,3]
+                   shape=[2,4]
+              则：
+                   result=[[ 0.3443427 , -0.23056602,  0.3477049 ,  0.06139076]]    # result.shape=[1,4]
 
     示例2:
-         input =[[0.946741  , 0.1357001 , 0.38086128]]     # input.shape=[1,3]
-         shape=[2,4]
-         input_dim_idx=1
-         output_dim_idx=1
-    则：
-         result=[[-0.23133647, -0.84195036,  0.21441269],
-                 [-0.08774924,  0.25605237, -0.09403259]]    # result.shape=[2,3]
+              给定：
+                   input =[[0.946741  , 0.1357001 , 0.38086128]]     # input.shape=[1,3]
+                   shape=[2,4]
+                   input_dim_idx=1
+                   output_dim_idx=1
+              则：
+                   result=[[-0.23133647, -0.84195036,  0.21441269],
+                          [-0.08774924,  0.25605237, -0.09403259]]    # result.shape=[2,3]
 
 参数：
-        - **input** （Variable）- 输入Tensor，input_dim_idx将指定其维度用来替换返回Tensor的指定维度。
-        - **shape** （list|tuple）- 设置返回Tensor的维度，其中output_dim_idx参数指定维度的值将被替代。数据类型为int。
+        - **input** （Variable）- 输入Tensor，input_dim_idx将指定其维度用来设置输出Tensor的指定维度。
+        - **shape** （list|tuple）- 输出Tensor的维度，其中output_dim_idx参数指定维度将被设置为与输入Tensor指定维度相同的值。数据类型为int。
         - **input_dim_idx** （int，可选）- 输入Tensor指定维度的索引，数据类型为int。默认值为0。
-        - **output_dim_idx** （int，可选）- 返回Tensor指定维度的索引，数据类型为int。默认值为0。
+        - **output_dim_idx** （int，可选）- 输出Tensor指定维度的索引，数据类型为int。默认值为0。
         - **min** （float，可选）- 均匀随机的最小值，为闭区间。数据类型为float。默认值为 1.0。
         - **max** （float，可选）- 均匀随机的最大值，为开区间。数据类型为float。默认值为1.0。
         - **seed** （int，可选）- 用于生成样本的随机种子。0表示使用系统生成的种子，数据类型为int。注意如果seed不为0，则此算子将始终每次生成相同的随机数。默认值为0。
