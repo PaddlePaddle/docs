@@ -11,8 +11,7 @@ compose
 
 参数：
     - **readers** - 将被组合的多个读取器。
-    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，输出结果中无法对齐的末
-尾数据将自动丢弃。该参数的默认值True。
+    - **check_alignment** (bool) - 可选，指明是否对输入reader进行对齐检查，默认值为True。如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐并自动丢弃无法对齐的末尾数据。
 
 返回：数据读取器。
 
