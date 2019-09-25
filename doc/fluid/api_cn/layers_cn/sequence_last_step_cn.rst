@@ -39,9 +39,9 @@ sequence_last_step
             out.data = [[1.], [2.], [4.], [0.0], [1.]]
             where 1.=last(1.), 2.=last(3., 2.), 4.=last(4.), 0.0 = pad_value, 1=last(6., 5., 1.)
 
-参数：**input** (Variable)- 类型为LoDTensor的输入序列，仅支持lod_level不超过2的LoDTensor，数据类型为float32或float64。
+参数：**input** (Variable)- 类型为LoDTensor的输入序列，仅支持lod_level不超过2的LoDTensor，数据类型为float32。
 
-返回：每个输入序列中的最后一步特征向量组成的LoDTensor，数据类型和输入一致，为float32或float64。
+返回：每个输入序列中的最后一步特征向量组成的LoDTensor，数据类型为float32。
 
 返回类型：Variable
 
