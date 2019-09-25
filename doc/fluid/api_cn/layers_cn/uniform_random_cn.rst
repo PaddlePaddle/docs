@@ -27,7 +27,7 @@ uniform_random
 返回类型：Variable
 
 抛出异常：
-    - :code:`ValueError`: shape的类型应该是list、tuple 或 Variable。
+    - :code:`TypeError`: shape的类型应该是list、tuple 或 Variable。
 
 **代码示例**：
 
