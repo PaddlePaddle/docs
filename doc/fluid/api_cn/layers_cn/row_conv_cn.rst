@@ -5,7 +5,7 @@ row_conv
 
 .. py:function:: paddle.fluid.layers.row_conv(input, future_context_size, param_attr=None, act=None)
 
-行卷积（Row-convolution operator）称为超前卷积（lookahead convolution）。下面关于DeepSpeech2的paper中介绍了这个operator
+该接口为行卷积（Row-convolution operator）或称之为超前卷积（lookahead convolution），最早介绍于DeepSpeech2论文中，论文链接：
 
     `<http://www.cs.cmu.edu/~dyogatam/papers/wang+etal.iclrworkshop2016.pdf>`_
 
@@ -25,12 +25,12 @@ row_conv
 详细请参考 `设计文档  <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  。
 
 参数:
-    - **input** (Variable) -- 输入是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。
-    - **future_context_size** (int) -- 下文大小。请注意，卷积核的shape是[future_context_size + 1, D]。
+    - **input** (Variable) -- 支持输入类型为LodTensor和Tensor，它支持可变时间长度的输入序列。当输入input为LodTensor时，其内部张量是一个具有形状(T x N)的矩阵，其中T是这个mini batch中的总的timestep，N是输入数据维数。当输入input为Tensor时，其形状为(B x T x N)的三维矩阵，B为mini batch大小，T为每个batch输入中的最大timestep，N是输入数据维数。当输入input为LoDTensor，形状为[9, N],LoD信息为[2, 3, 4]，等价于输入input为形状是[3, 4, N]的Tensor。
+    - **future_context_size** (int) -- 下文大小。请注意，卷积核的shape是[future_context_size + 1, N]，N和输入input的数据维度N保持一致。
     - **param_attr** (ParamAttr) --  参数的属性，包括名称、初始化器等。
     - **act** (str) -- 非线性激活函数。
 
-返回: 输出(Out)是一个LodTensor，它支持可变时间长度的输入序列。这个LodTensor的内部量是一个形状为 T x N 的矩阵，和X的 shape 一样。
+返回：表示row_conv计算结果的Variable，数据类型、维度和input相同。
 
 
 **代码示例**
@@ -38,9 +38,15 @@ row_conv
 ..  code-block:: python
 
   import paddle.fluid as fluid
-
-  x = fluid.layers.data(name='x', shape=[16],
-                        dtype='float32', lod_level=1)
+  # LoDTensor input
+  x = fluid.layers.data(name='x', shape=[9, 16],
+                        dtype='float32', lod_level=3,
+                        append_batch_size=False)
   out = fluid.layers.row_conv(input=x, future_context_size=2)
 
+  # Tensor input
+  x = fluid.layers.data(name='x', shape=[9, 4, 16],
+                        dtype='float32',
+                        append_batch_size=False)
+  out = fluid.layers.row_conv(input=x, future_context_size=2)
 
