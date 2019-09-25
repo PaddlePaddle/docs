@@ -11,9 +11,9 @@ rank_loss
 
 .. math::
 
-    C_{i,j} &= -\tilde{P_{ij}} * o_{i,j} + \log(1 + e^{o_{i,j}}) \\
+    C_{i,j} &= -\tilde{P_{ij}} * o_{i,j} + \log(1 + e^{o_{i,j}})
 
-    o_{i,j} &=  o_i - o_j  \\
+    o_{i,j} &=  o_i - o_j
 
     \tilde{P_{i,j}} &= \left \{0, 0.5, 1 \right \} \ or \ \left \{0, 1 \right \}
 
