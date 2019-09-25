@@ -135,7 +135,7 @@ Variable
             backward_strategy.sort_sum_gradient = True
             loss2.backward(backward_strategy)
 
-.. py:method:: gradeint()
+.. py:method:: gradient()
 
 **注意：**
 
