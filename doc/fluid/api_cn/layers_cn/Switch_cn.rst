@@ -5,13 +5,10 @@ Switch
 
 .. py:class:: paddle.fluid.layers.Switch (name=None)
 
-Switch类实现的功能十分类似if-elif-else。它可以在学习率调度器(learning rate scheduler)中调整学习率。
-::
-  语义上，
-      1. switch控制流挨个检查cases
-      2. 各个case的条件是一个布尔值(boolean)，它是一个标量(scalar)变量
-      3. 它将执行第一个匹配的case后面的分支，如果没有匹配的case，但若存在一个default case,则会执行default case后面的语句
-      4. 一旦匹配了一个case,它降会执行这个case所对应的分支，且仅此分支。
+该类用于实现Switch分支控制功能。Switch分支包含多个case分支和一个default分支，Switch控制流会依次检查各case分支条件是否满足，并仅执行第一个满足条件的case分支后面的语句。若不存在满足条件的case分支，则仅执行default分支后面的语句。
+
+参数：
+    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 **代码示例**
 
@@ -31,9 +28,9 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
         shape=[1], dtype='float32', value=1.0)
     two_var = fluid.layers.fill_constant(
         shape=[1], dtype='float32', value=2.0)
-
-    global_step = fluid.layers.autoincreased_step_counter(
-           counter_name='@LR_DECAY_COUNTER@', begin=0, step=1)
+    
+    # 将参数中的begin设为非0值，则进入Switch的default分支，输出数组中的数字将为2
+    global_step = fluid.layers.autoincreased_step_counter(counter_name='@LR_DECAY_COUNTER@', begin=0, step=1) 
 
     with fluid.layers.control_flow.Switch() as switch:
         with switch.case(global_step == zero_var):
@@ -41,15 +38,12 @@ Switch类实现的功能十分类似if-elif-else。它可以在学习率调度�
         with switch.default():
             fluid.layers.assign(input=two_var, output=lr)
 
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(fluid.default_startup_program())
+
+    res = exe.run(fluid.default_main_program(), feed={}, fetch_list=[lr])
+    print(res) # [array([1.], dtype=float32)]
 
 
 
-
-
-
-
-
-
-
-
-
+    
