@@ -29,7 +29,7 @@ strided_slice算子。
                      strides=[1,-1]
 
                 则：
-                     result=[[8,6,7],]
+                     result=[[8,7,6],]
 
        
         示例3：
