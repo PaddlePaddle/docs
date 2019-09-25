@@ -38,7 +38,7 @@ DataFeedDesc应由来自磁盘的有效protobuf消息初始化。
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
 
-但是，用户通常不应该关心消息格式;相反，我们鼓励他们在将原始日志文件转换为AsyncExecutor可以接受的训练文件的过程中，使用 :code:`Data Generator` 生成有效数据描述。
+但是，用户通常不应该关心消息格式；相反，我们鼓励他们在将原始日志文件转换为AsyncExecutor可以接受的训练文件的过程中，使用 :code:`Data Generator` 生成有效数据描述。
 
 DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含义，您可以修改它以更好地满足您的需要。例如:
 
@@ -47,10 +47,10 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
     import paddle.fluid as fluid
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
-    data_feed.set_dense_slots('wd')  # 名为'wd'的slot将被设置为密集的
+    data_feed.set_dense_slots('wd')  # 名为'wd'的slot将被设置为dense的
     data_feed.set_use_slots('wd')    # 名为'wd'的slot将被用于训练
 
-    # 最后，可以打印变量详细信息便于排出错误
+    # 最后，可以打印变量详细信息便于排查错误
 
     print(data_feed.desc())
 
@@ -139,7 +139,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 设置一个特定的slot是否用于训练。一个数据集包含了很多特征，通过这个函数可以选择哪些特征将用于指定的模型。
 
 参数：
-  - **use_slots_name** :将在训练中使用的slot名列表
+  - **use_slots_name** (list):将在训练中使用的slot名列表，类型为list，其中每个元素为一个字符串
 
 **代码示例：**
 
@@ -169,7 +169,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. note::
 
-  默认值不用于所有slot
+  默认值是不使用所有slot
 
 
 .. py:method:: desc()

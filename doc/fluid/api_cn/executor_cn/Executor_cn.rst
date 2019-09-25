@@ -143,51 +143,18 @@ feed map为该program提供输入数据。fetch_list提供program训练结束后
 返回类型: list(numpy.array)
 
 
-.. py:method:: infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
-
-infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。 infer_from_dataset（）可以非常容易地用于多线程中的评估。
-
-参数：  
-  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
-  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
-  - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0
-  - **debug** (bool) – 是否开启debug模式，默认为False
-  - **fetch_list** (Variable List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None
-  - **fetch_info** (String List) – 每个变量的打印信息，默认为None
-  - **print_period** (int) – 每两次打印之间间隔的mini-batches的数量，默认为100
-
-返回: None
-
-**示例代码**
-
-.. code-block:: python
-
-  import paddle.fluid as fluid
-  place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
-  exe = fluid.Executor(place)
-  x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
-  y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
-  dataset = fluid.DatasetFactory().create_dataset()
-  dataset.set_use_var([x, y])
-  dataset.set_thread(1)
-  filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
-  dataset.set_filelist(filelist)
-  exe.run(fluid.default_startup_program())
-  exe.infer_from_dataset(program=fluid.default_main_program(),dataset=dataset)
-     
-
 .. py:method:: train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 
-从预定义的数据集中训练。 数据集在paddle.fluid.dataset中定义。 给定程序（或编译程序），train_from_dataset将使用数据集中的所有数据样本。 输入范围可由用户给出。 默认情况下，范围是global_scope()。训练中的线程总数是thread。 训练中使用的线程数将是数据集中threadnum的最小值，同时也是此接口中线程的值。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
+
+从预定义的数据集中训练。 数据集在paddle.fluid.dataset中定义。 给定Program（或CompiledProgram），train_from_dataset将使用paddle.fluid.dataset中的所有数据样本。 scope可由用户给出, 默认情况下使用的scope是global_scope()。训练中的线程数是thread个， 默认值为0，表示使用paddle.fluid.dataset中用户配置的线程数。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。当用户设置fetch_list和fetch_info时（两者长度需要一致）时，会打印出fetch_list中所有变量的值，打印该值的间隔为print_period。train_from_dataset可以非常容易地用于大规模分布式多线程在线和离线训练。
 
 注意：train_from_dataset将销毁每次运行在executor中创建的所有资源。
 
 参数：  
-  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
-  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
+  - **program** (Program|CompiledProgram) – 需要执行的program，如果没有给定那么默认使用default_main_program (类型是Program)
+  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的Dataset。默认为None
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。默认为0，表示使用传入的dataset的线程数
   - **debug** (bool) – 是否开启debug模式，默认为False
   - **fetch_list** (Variable List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None
@@ -213,5 +180,41 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
         exe.run(fluid.default_startup_program())
         exe.train_from_dataset(program=fluid.default_main_program(),
                                dataset=dataset)
+
+
+.. py:method:: infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
+
+从预定义的数据集中做预测。 数据集在paddle.fluid.dataset中定义。infer_from_dataset的参数与train_from_dataset相同，两者的区别是infer_from_dataset没有发送梯度和更新参数。infer_from_dataset可以非常容易地用于大规模分布式多线程中的离线评估。
+
+注意：infer_from_dataset将销毁每次运行在executor中创建的所有资源。
+
+参数：  
+  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (类型是Program)
+  - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义Dataset。默认为None
+  - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。默认为0，表示使用传入的dataset的线程数
+  - **debug** (bool) – 是否开启debug模式，默认为False
+  - **fetch_list** (Variable List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None
+  - **fetch_info** (String List) – 每个变量的打印信息，默认为None
+  - **print_period** (int) – 每两次打印之间间隔的mini-batches的数量，默认为100
+
+返回: None
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.fluid as fluid
+  place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
+  exe = fluid.Executor(place)
+  x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
+  y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
+  dataset = fluid.DatasetFactory().create_dataset()
+  dataset.set_use_var([x, y])
+  dataset.set_thread(1)
+  filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
+  dataset.set_filelist(filelist)
+  exe.run(fluid.default_startup_program())
+  exe.infer_from_dataset(program=fluid.default_main_program(),dataset=dataset)
 
 
