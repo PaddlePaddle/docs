@@ -4,26 +4,26 @@ elementwise_pow
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
-该算子逐元素对输入张量（Tensor）进行幂操作。
+该接口逐元素对输入Tensor进行幂操作。
 
 等式是：
 
 .. math::
         Out = X ^ Y
 
-- :math:`X` ：任何维度的张量（Tensor）。
-- :math:`Y` ：维度必须小于或等于X维度的张量（Tensor）。
+- :math:`X` ：多维Tensor。
+- :math:`Y` ：多维Tensor。
 
 此运算算子有两种情况：
-        1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
-        2. :math:`Y` 的形状（shape）是 :math:`X` 的连续子序列。
+        1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
+        2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
 
 对于情况2：
-        1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
+        1. 用 :math:`Y` 的 ``shape`` 匹配 :math:`X` 的 ``shape``，其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
         2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾随维度将被忽略，例如shape（Y）=（2,1）=>（2）。
+        3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
-**代码示例**
+例如：
 
 ..  code-block:: text
 
@@ -35,13 +35,15 @@ elementwise_pow
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
 
 参数：
-        - **x** （Tensor）- 第一个输入张量（Tensor）。
-        - **y** （Tensor）- 第二个输入张量（Tensor）。
-        - **axis** （int | -1）-  Y的维度对应到X维度上时的索引。
-        - **act** （basestring | None）- 激活函数名称，作用于输出上，例如 "relu"。
-        - **name** （basestring | None）- 输出的名字。
+        - **x** （Variable）- 多维Tensor。
+        - **y** （Variable）- 多维Tensor。
+        - **axis** （int32, 可选）- Y的维度对应到X维度上时的索引。默认值为 -1。
+        - **act** （string, 可选）- 激活函数名称，作用于输出上。默认值为None。详细请参考 :ref:`api_guide_activations` ， 常见的激活函数有: ``relu`` ``tanh`` ``sigmoid`` 等。
+        - **name** （string, 可选）- 输出的名字。默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-返回：   返回一个Tensor，每个元素是输入Tensor的幂结果。
+返回：    把各个位置更大的元素保存到返回结果中， ``shape`` 与X的相同。
+
+返回类型： 多维Tensor。
 
 **代码示例**
 
