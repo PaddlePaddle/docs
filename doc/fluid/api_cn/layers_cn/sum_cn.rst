@@ -5,16 +5,14 @@ sum
 
 .. py:function:: paddle.fluid.layers.sum(x)
 
-sum算子。
-
-该算子对输入张量求和。所有输入都可以携带LoD（详细程度）信息，但是输出仅与第一个输入共享LoD信息。
+该OP用于对输入的多个Tensor或LoDTensor求和。如果输入的是LoDTensor，输出仅与第一个输入共享LoD信息（序列信息）。
 
 参数：
-        - **x** （Variable）- （vector <Tensor>）sum算子的输入张量（Tensor）。
+    **x** (list[Variable]) - 输入的多个Variable，用list[Variable]表示。Variable可以是Tensor或LoDTensor，不同Variable之间的形状与类型必须相同。
 
-返回:        (Tensor）求和算子的输出张量。
+返回：对输入 ``x`` 中各个Variable求和后的结果，与输入 ``x`` 的形状、类型相同
 
-返回类型：        Variable
+返回类型：Variable
 
 
 **代码示例：**
