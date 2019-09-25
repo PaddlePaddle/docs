@@ -25,14 +25,10 @@ clip算子限制给定输入的值在一个区间内。间隔使用参数"min"�
 **代码示例：**
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
     input = fluid.layers.data(
         name='data', shape=[1], dtype='float32')
     reward = fluid.layers.clip(x=input, min=-1.0, max=1.0)
-
-
-
-
 
 
