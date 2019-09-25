@@ -14,9 +14,9 @@ sampling_id
         - **seed** （int）- 随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此算子将始终每次生成相同的随机数。默认值为0
         - **dtype** （np.dtype | core.VarDesc.VarType | str）- 指定输出数据的类型。
 
-返回：采样的数据Tensor
+返回：采样的数据张量（Tensor）
 
-返回类型：Variable
+返回类型：变量（Variable）
 
 
 **代码示例：**
