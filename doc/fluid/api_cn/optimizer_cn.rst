@@ -35,3 +35,4 @@ fluid.optimizer
     optimizer_cn/LookaheadOptimizer_cn.rst
     optimizer_cn/RecomputeOptimizer_cn.rst
     optimizer_cn/LookaheadOptimizer_cn.rst
+    optimizer_cn/RecomputeOptimizer_cn.rst
