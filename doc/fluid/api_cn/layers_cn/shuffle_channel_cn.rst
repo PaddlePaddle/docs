@@ -5,9 +5,7 @@ shuffle_channel
 
 .. py:function:: paddle.fluid.layers.shuffle_channel(x, group, name=None)
 
-**Shuffle Channel 运算（通道重排运算）**
-
-该算子将输入 ``x`` 的通道混洗重排。 它将每个组中的输入通道分成 ``group`` 个子组，并通过逐个从每个子组中选择元素来获得新的顺序。
+该OP将输入 ``x`` 的通道混洗重排。 它将每个组中的输入通道分成 ``group`` 个子组，并通过逐一从每个子组中选择元素来获得新的顺序。
 
 请参阅 https://arxiv.org/pdf/1707.01083.pdf
 
@@ -45,12 +43,12 @@ shuffle_channel
                   [0.8, 0.9]]]]
 
 参数：
-  - **x** (Variable) – 输入张量变量。 应是形状为[N，C，H，W]的4-D张量
+  - **x** (Variable) – 输入Tensor。 维度为[N，C，H，W]的4-D Tensor。
   - **group** (int) – 表示子组的数目，它应该整除通道数。
 
-返回：通道混洗结果是一个张量变量，其形状和类型与输入相同。
+返回：一个形状和类型与输入相同的Tensor。
 
-返回类型：输出（Variable）
+返回类型：Variable
 
 
 **代码示例：**

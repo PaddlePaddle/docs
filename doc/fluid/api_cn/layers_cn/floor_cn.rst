@@ -5,35 +5,25 @@ floor
 
 .. py:function:: paddle.fluid.layers.floor(x, name=None)
 
-
-向下取整运算激活函数。
+向下取整函数。
 
 .. math::
     out = \left \lfloor x \right \rfloor
 
+参数：
+    - **x** - 该OP的输入为多维Tensor。数据类型必须为float32或float64。
+    - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
-参数:
+返回：输出为Tensor，与 ``x`` 维度相同、数据类型相同。
 
-    - **x** - Floor算子的输入
-    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
-
-
-返回：        Floor算子的输出。
+返回类型：Variable
 
 **代码示例**：
 
 .. code-block:: python
 
         import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784])
-        result = fluid.layers.floor(data)
-
-
-
-
-
-
-
-
-
-
+        data1 = fluid.layers.fill_constant(shape=[3, 2], value=2.5, dtype='float32') # [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
+        data2 = fluid.layers.fill_constant(shape=[2, 3], value=-2.5, dtype='float64') # [[-2.5, -2.5, -2.5], [-2.5, -2.5, -2.5]]
+        result1 = fluid.layers.floor(data1) # [[2., 2.], [2., 2.], [2., 2.]]
+        result2 = fluid.layers.floor(data2) # [[-3., -3., -3.], [-3., -3., -3.]]
