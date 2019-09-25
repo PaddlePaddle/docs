@@ -61,7 +61,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. py:method:: set_batch_size(batch_size)
 
-该接口用于设置DataFeedDesc中的batch_size。可以在训练期间调用修改batch_size。
+该接口用于设置DataFeedDesc中的 :code:`batch_size` 。可以在训练期间调用修改 :code:`batch_size` 。
 
 **代码示例**
 
@@ -96,7 +96,7 @@ DataFeedDesc也可以在运行时更改。一旦你熟悉了每个字段的含�
 
 .. py:method:: set_dense_slots(dense_slots_name)
 
-将`dense_slots_name`指定的slots设置为密集的slot。**注意：默认情况下，所有slots都是稀疏的。**
+将 :code:`dense_slots_name` 指定的slots设置为密集的slot。**注意：默认情况下，所有slots都是稀疏的。**
 
 密集slot的特征将被输入一个Tensor，而稀疏slot的特征将被输入一个LoDTensor。
 
