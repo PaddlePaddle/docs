@@ -38,20 +38,20 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
 
 
 参数：
-    - **input** (Variable) - batch_norm算子的输入特征，是一个Variable类型，输入维度可以是 2, 3, 4, 5。
+    - **input** (Variable) - batch_norm算子的输入特征，是一个Variable类型，输入维度可以是 2, 3, 4, 5。数据类型：float32和float64。
     - **act** （string）- 激活函数类型，可以是leaky_realu、relu、prelu等。默认：None。
     - **is_test** （bool） - 指示它是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认：False。
     - **momentum** （float）- 此值用于计算 moving_mean 和 moving_var。更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ， 默认：0.9。
     - **epsilon** （float）- 加在分母上为了数值稳定的值。默认：1e-5。
-    - **param_attr** （ParamAttr|None） - batch_norm 权重参数的属性，可以设置为None或者一个ParamAttr的类（ParamAttr中可以指定参数的各种属性）。 如果设为None，则默认的参数初始化为1.0。如果在ParamAttr指定了属性时, batch_norm创建相应属性的param_attr（权重）参数。默认：None。
-    - **bias_attr** （ParamAttr|None） - batch_norm bias参数的属性，可以设置为None或者一个ParamAttr的类（ParamAttr中可以指定参数的各种属性）。如果设为None，默认的参数初始化为0.0。如果在ParamAttr指定了参数的属性时, batch_norm创建相应属性的bias_attr（偏置）参数。默认：None。
+    - **param_attr** (ParamAttr|None) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。batch_norm算子默认的权重初始化是1.0。
+    - **bias_attr** （ParamAttr|None）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。batch_norm算子默认的偏置初始化是0.0。
     - **data_layout** （string) - 指定输入数据格式，数据格式可以为NCHW或者NHWC。默认：NCHW。
     - **in_place** （bool）- batch_norm的输出复用输入的tensor，可以节省显存。默认：False。
-    - **name** （string，默认None）- 该层名称（可选）。若设为None，则自动为该层命名。默认：None。
+    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:api_guide_Name ，默认值为None。
     - **moving_mean_name** （string）- moving_mean的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则， ``batch_norm`` 将命名全局均值为 ``moving_mean_name`` 。默认：None。
     - **moving_variance_name** （string）- moving_variance的名称，存储全局变量。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则， ``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 。默认：None。
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值。
-    - **fuse_with_relu** （bool）- 如果为True，batch_norm后该操作符执行relu。默认：None。
+    - **fuse_with_relu** （bool）- 如果为True，batch_norm后该操作符执行relu。默认：False。
     - **use_global_stats** （bool） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。默认：False。
 
 返回： 维度和输入相同的Tensor，在输入中运用批正则后的结果。

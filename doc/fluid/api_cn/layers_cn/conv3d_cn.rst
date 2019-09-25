@@ -44,18 +44,18 @@ conv3d
     W_{out}&= \frac{(W_{in} + 2 * paddings[2] - (dilations[2] * (W_f - 1) + 1))}{strides[2]} + 1
 
 参数：
-    - **input** (Variable) - 格式为[N,C,D,H,W]格式的输入图像。
+    - **input** (Variable) - 输入，格式为[N,C,D,H,W]格式的5-D Tensor。数据类型：float32和float64。
     - **num_fliters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_depth, filter_size_height, filter_size_width)。如果filter_size是一个int型，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
     - **stride** (int|tuple) - 步长(stride)大小。滤波器和输入进行卷积计算时滑动的步长。如果步长（stride）为元组，则必须包含三个整型数， (stride_depth, stride_height, stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认：stride = 1。
-    - **padding** (int|tuple) - 填充（padding）大小。padding参数在输入特征层每边添加 :math::``dilation * (kernel_size - 1) - padding`` 个0。如果填充（padding）为元组，则必须包含三个整型数，(padding_depth, padding_height, padding_width)。否则， padding_depth = padding_height = padding_width = padding。默认：padding = 0。
+    - **padding** (int|tuple) - 填充（padding）大小。padding参数在输入特征层每边添加padding个0。如果填充（padding）为元组，则必须包含三个整型数，(padding_depth, padding_height, padding_width)。否则， padding_depth = padding_height = padding_width = padding。默认：padding = 0。
     - **dilation** (int|tuple) - 膨胀比例（dilation）大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据`可视化效果图<https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_较好理解。如果膨胀比例（dialation）为元组，则必须包含三个整型数， (dilation_depth, dilation_height, dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认：dilation = 1。
     - **groups** (int) - 三维卷积层（conv3d layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：groups = 1。
-    - **param_attr** (ParamAttr|None) - conv3d 权重的参数属性。可以设置为None或者包含属性的ParamAttr类。如果设置为包含属性的ParamAttr类，conv3d创建相应属性的ParamAttr类为param_attr参数。如果param_attr设置为None或者ParamAttr里的初始化函数未设置，参数初始化为 :math:`Normal(0.0,std)`，并且std为 :math:`\left ( \frac{2.0}{filter\_elem\_num} \right )^{0.5}` 。默认：None。
-    - **bias_attr** (ParamAttr|False|None) - conv3d 偏置参数属性。如果设为False，则卷积不会加上偏置项。如果设为包含属性的ParamAttr类，conv3d创建相应属性的ParamAttr类为bias_attr参数。如果bias_attr设为None或者ParamAttr的初始化函数未设置，bias参数初始化为0。默认：None。
+    - **param_attr** (ParamAttr|None) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv3d算子默认的权重初始化是Xavier。
+    - **bias_attr** （ParamAttr|False|None）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv3d算子默认的偏置初始化是0.0。
     - **use_cudnn** （bool） - 是否用cudnn核，仅当下载cudnn库才有效。默认：True。
     - **act** (str) - 激活函数类型，如果设为None，则未添加激活函数。默认：None。
-    - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。默认：None。
+    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:api_guide_Name ，默认值为None。
 
 返回：维度和输入相同的Tensor。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
 

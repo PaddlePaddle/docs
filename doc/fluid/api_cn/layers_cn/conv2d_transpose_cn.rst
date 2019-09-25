@@ -55,16 +55,16 @@ conv2d_transpose
 如果指定了output_size， ``conv2d_transpose`` 可以自动计算滤波器的大小。
 
 参数:
-  - **input** （Variable）- 输入图像，格式为[N, C, H, W]的张量。
+  - **input** （Variable）- 输入，格式为[N, C, H, W]的4-D Tensor。数据类型：float32和float64。
   - **num_filters** (int) - 滤波器（卷积核）的个数，与输出图片的通道数相同。
   - **output_size** (int|tuple|None) - 输出图片的大小。如果output_size是一个元组，则必须包含两个整型数，（output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。
   - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_height, filter_size_width）。否则，filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， ``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。
-  - **padding** (int|tuple) - 填充padding大小。padding参数在输入特征层每边添加 :math::``dilation * (kernel_size - 1) - padding`` 个0。如果padding是一个元组，它必须包含两个整数(padding_height，padding_width)。否则，padding_height = padding_width = padding。默认：padding = 0。
+  - **padding** (int|tuple) - 填充padding大小。padding参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个0。如果padding是一个元组，它必须包含两个整数(padding_height，padding_width)。否则，padding_height = padding_width = padding。默认：padding = 0。
   - **stride** (int|tuple) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，则必须包含两个整型数，形式为(stride_height，stride_width)。否则，stride_height = stride_width = stride。默认：stride = 1。
   - **dilation** (int|tuple) - 膨胀比例(dilation)大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据`可视化效果图<https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_较好理解。如果膨胀比例dilation是一个元组，那么元组必须包含两个整型数，形式为(dilation_height, dilation_width)。否则，dilation_height = dilation_width = dilation。默认：dilation= 1。
   - **groups** (int) - 二维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
-  - **param_attr** (ParamAttr|None) - conv2d_transpose 权重的参数属性。可以设置为None或者包含属性的ParamAttr类。如果设为包含属性的ParamAttr类，conv2d_transpose创建相应属性的ParamAttr类为param_attr参数。如果param_attr设置为None或者ParamAttr里的初始化函数未设置，那么默认使用Xavier初始化。默认：None。
-  - **bias_attr** (ParamAttr|False|None) - conv2d_transpose 偏置参数属性。如果设置为False，则不会向输出单元添加偏置项。如果设为包含属性的ParamAttr类，conv2d_transpose创建相应属性的ParamAttr类为bias_attr参数。如果bias_attr设置为None或者ParamAttr里的初始化函数未设置，bias将初始化为零。默认：None。
+  - **param_attr** (ParamAttr|None) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv2d_transpose算子默认的权重初始化是Xavier。
+  - **bias_attr** （ParamAttr|False|None）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv2d_transpose算子默认的偏置初始化是0.0。
   - **use_cudnn** (bool) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认：True。
   - **act** (str) -  激活函数类型，如果设置为None，则不使用激活函数。默认：None。
   - **name** (str|None) -  该layer的名称(可选)。如果设置为None， 将自动命名该层。默认：True。

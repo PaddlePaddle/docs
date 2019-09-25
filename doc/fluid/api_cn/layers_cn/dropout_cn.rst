@@ -12,12 +12,12 @@ dropout操作
 dropout op可以从Program中删除，提高执行效率。
 
 参数：
-    - **x** (Variable) - 输入张量。
+    - **x** (Variable) - 输入，多维Tensor。数据类型：float32和float64。
     - **dropout_prob** (float32) - 输入单元的丢弃概率，即输入单元设置为0的概率。默认：0.5。
     - **is_test** (bool) - 标记是否是测试阶段。默认：False。
-    - **seed** (int32) - 整型数据，用于创建随机种子。如果该参数设为None，则使用随机种子。注：如果给定一个整型种子，始终丢弃相同的输出单元。训练过程中勿用固定不变的种子。
-    - **name** (str|None) - 该层名称。如果设置为None，则自动为该层命名。默认：None。
-    - **dropout_implementation** (string) - 丢弃单元的方式，有两种'downgrade_in_infer'和'upscale_in_train'两种选择，默认：'downgrade_in_infer'。具体作用可以参考一下描述。
+    - **seed** (int) - 整型数据，用于创建随机种子。如果该参数设为None，则使用随机种子。注：如果给定一个整型种子，始终丢弃相同的输出单元。训练过程中勿用固定不变的种子。
+    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:api_guide_Name ，默认值为None。
+    - **dropout_implementation** (str) - 丢弃单元的方式，有两种'downgrade_in_infer'和'upscale_in_train'两种选择，默认：'downgrade_in_infer'。具体作用可以参考一下描述。
 
       1. downgrade_in_infer(default), 在预测时减小输出结果
 
