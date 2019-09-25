@@ -76,3 +76,5 @@ load_persistables
         save_dir="save_dir"
         fluid.dygraph.save_persistables(mlp.state_dict(), dirname=save_dir, optimizers=sgd)
         para_dict, opt_dict = fluid.dygraph.load_persistables(dirname=save_dir)
+        para_name = 'mlp/MLP_0/FC_0.b_0'
+        para = para_dict[para_name]
