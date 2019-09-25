@@ -45,7 +45,7 @@ GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中�
 
 参数:
     - **name_scope** (str) – 该类的名称。
-    - **size** (int) – 输出数据的维度。
+    - **size** (int) – 输出数据Tensor最后一位的维度大小。
     - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     注意：
       - 该权重矩阵形为 :math:`(T×3D)` ， :math:`D` 是隐藏状态的规模（hidden size）
