@@ -5,34 +5,32 @@ relu6
 
 .. py:function:: paddle.fluid.layers.relu6(x, threshold=6.0, name=None)
 
-relu6激活算子（Relu6 Activation Operator）
+relu6激活函数
 
-.. math::
-
-    \\out=min(max(0, x), 6)\\
+.. math:: out=min(max(0, x), threshold)
 
 
 参数:
-    - **x** (Variable) - Relu6 operator的输入
-    - **threshold** (FLOAT|6.0) - Relu6的阈值
-    - **name** (str|None) -这个层的名称(可选)。如果设置为None，该层将被自动命名。
+    - **x** (Variable) - 输入的多维 ``Tensor`` ，数据类型为：float32、float64。
+    - **threshold** (float) - relu6的阈值。默认值为6.0
+    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
-返回: Relu6操作符的输出
+返回: 与 ``x`` 维度相同、数据类型相同的 ``Tensor``。
 
-返回类型: 输出(Variable)
+返回类型: Variable
 
 
 **代码示例：**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.relu6(x, threshold=6.0)
+  import paddle.fluid as fluid
+  import numpy as np
 
-
-
-
-
-
-
+  in1 = np.array([[-1,0],[2.5,7.8]])
+  with fluid.dygraph.guard():
+      x1 = fluid.dygraph.to_variable(in1)
+      out1 = fluid.layers.relu6(x=x1, threshold=6.0)
+      print(out1.numpy())
+      # [[0.  0. ]
+      #  [2.5 6. ]]
