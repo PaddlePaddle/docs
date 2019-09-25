@@ -70,6 +70,50 @@ All the learnable parameters in the model are kept in the memory space in form o
 Name
 =========
 
+In Fluid, some operators contain the parameter :code:`name` , such as :ref:`api_fluid_layers_fc` . This parameter is often used to name the network layer corresponding to the OP, which can help developers quickly locate the source of the output data from each network layer when printing debugg information. If the :code:`name` parameter is not specified in the OP, the default value is None. When printing the network layer, Fluid will automatically generate a unique identifier such as ``OPName_number.tmp_number`` to name the layer. The numbers are automatically incremented to distinguish different network layers under the same OP. If :code:`name` parameter is specified, the network layer is named with the ``nameValue_number.tmp_number`` as the unique identifier.
+
+In addition, the weights of multiple network layers can be shared by specifying the :code:`name` parameter in :ref:`api_fluid_ParamAttr`.
+
+Sample Code:
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=1)
+    emb = fluid.layers.embedding(input=x, size=(128, 100))
+
+    # default name
+    fc_none = fluid.layers.fc(input=emb, size=1)
+    fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
+
+    fc_none1 = fluid.layers.fc(input=emb, size=1)
+    fc_none1 = fluid.layers.Print(fc_none1)  # Tensor[fc_1.tmp_1]
+
+    # name in ParamAttr
+    w_param_attrs = fluid.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
+    print(w_param_attrs.name)  # fc_weight
+
+    # name == 'my_fc'
+    my_fc1 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs)
+    my_fc1 = fluid.layers.Print(my_fc1)  # Tensor[my_fc.tmp_1]
+
+    my_fc2 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs)
+    my_fc2 = fluid.layers.Print(my_fc2)  # Tensor[my_fc.tmp_3]
+
+    place = fluid.CPUPlace()
+    x_data = np.array([[1],[2],[3]]).astype("int64")
+    x_lodTensor = fluid.create_lod_tensor(x_data, [[1, 2]], place)
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    ret = exe.run(feed={'x': x_lodTensor}, fetch_list=[fc_none, fc_none1, my_fc1, my_fc2], return_numpy=False)
+
+
+In the above example, there are four fully connected layers. ``fc_none`` and ``fc_none1`` are not specified :code:`name` parameter, so this two layers are named ``fc_0.tmp_1`` and ``fc_1.tmp_1`` in the form ``OPName_number.tmp_number`` , where the numbers in ``fc_1`` and ``fc_0`` are automatically incremented to distinguish between this two fully connected layers. The other two fully connected layers ``my_fc1`` and ``my_fc2`` both specify the :code:`name` parameter, but the values are the same. Fluid will add the suffix ``tmp_number`` after the name in code order to distinguish the two layers. So the network layer names are ``my_fc.tmp_1`` and ``my_fc.tmp_3`` .
+
+In addition, in the above example, the ``my_fc1`` and ``my_fc2`` two fully connected layers implement the sharing of weight parameters by constructing ``ParamAttr`` and specifying the :code:`name` parameter.
+
 .. _api_guide_ParamAttr:
 
 =========
