@@ -52,11 +52,11 @@ embedding
 
 参数：
     - **input** (Variable) - 存储id信息，数据类型必须为：int64。
-    - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding 层维度）。
-    - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快。但某些optimizer不支持sparse更新，比如Adadelta，此时is_sparse必须为False。默认为False。
+    - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding层维度）。
+    - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快，推荐使用稀疏更新的方式。但某些optimizer不支持sparse更新，比如 :ref:`cn_api_fluid_optimizer_AdadeltaOptimizer` 、 :ref:`cn_api_fluid_optimizer_AdamaxOptimizer` 、 :ref:`cn_api_fluid_optimizer_DecayedAdagradOptimizer` 、 :ref:`cn_api_fluid_optimizer_FtrlOptimizer` 、 :ref:`cn_api_fluid_optimizer_LambOptimizer` 、:ref:`cn_api_fluid_optimizer_LarsMomentumOptimizer` ，此时is_sparse必须为False。默认为False。
     - **is_distributed** (bool) - 是否使用分布式的方式存储embedding矩阵，仅在多机分布式cpu训练中使用。默认为False。
     - **padding_idx** (int|long|None) - padding_idx需在区间[-vocab_size, vocab_size)，否则不生效，padding_idx<0时，padding_idx 会被改成 vocab_size + padding_idx，input中等于padding_index的id对应的embedding信息会被设置为0，且这部分填充数据在训练时将不会被更新。如果为none，不作处理，默认为None。
-    - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。此外，可以通过 ``param_attr`` 参数加载用户自定义或预训练的词向量。只需将本地词向量转为numpy数据格式，且保证本地词向量的shape和embedding的 ``size`` 参数一致，然后使用 :ref:`cn_api_fluid_initializer_NumpyArrayInitializer` 进行初始化，即可实现加载自定义或预训练的词向量。详细使用方法见代码示例2。
     - **dtype** (str|np.dtype|core.VarDesc.VarType) - 输出Tensor或LoDTensor的数据类型，数据类型必须为：float32，float64，默认为float32。
 
 返回：input映射后embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
@@ -69,7 +69,18 @@ embedding
 
     import paddle.fluid as fluid
     data = fluid.layers.data(name='sequence', shape=[1], dtype='int64', lod_level=1)
-    emb = fluid.embedding(input=data, size=[128, 64])
+
+    # 示例 1
+    emb_1 = fluid.embedding(input=data, size=[128, 64])
+
+    # 示例 2: 加载用户自定义或预训练的词向量
+    weight_data = np.random.random(size=(128, 100))  # numpy格式的词向量数据
+    w_param_attrs = fluid.ParamAttr(
+        name="emb_weight",
+        learning_rate=0.5,
+        initializer=fluid.initializer.NumpyArrayInitializer(weight_data),
+        trainable=True)
+    emb_2 = fluid.embedding(input=data, size=(128, 100), param_attr=w_param_attrs, dtype='float32')
 
 
 
