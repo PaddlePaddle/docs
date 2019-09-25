@@ -5,10 +5,10 @@ simple_img_conv_pool
 
 .. py:function:: paddle.fluid.nets.simple_img_conv_pool(input, num_filters, filter_size, pool_size, pool_stride, pool_padding=0, pool_type='max', global_pooling=False, conv_stride=1, conv_padding=0, conv_dilation=1, conv_groups=1, param_attr=None, bias_attr=None, act=None, use_cudnn=True)
 
- ``simple_img_conv_pool`` 由一个conv2d和一个pool2d OP组成。
+ ``simple_img_conv_pool`` 由一个conv2d( :ref:`cn_api_fluid_layers_conv2d` )和一个pool2d( :ref:`cn_api_fluid_layers_pool2d` ) OP组成。
 
 参数：
-    - **input** (Variable) - 输入图像, Tensor, 格式为[N，C，H，W]。数据类型是float32或者float64
+    - **input** (Variable) - 输入图像, 4-D Tensor, 格式为[N，C，H，W]。数据类型是float32或者float64
     - **num_filters** (int) - 卷积核的数目，整数。
     - **filter_size** (int | list | tuple) - conv2d卷积核大小，整数或者整型列表或者整型元组。如果 ``filter_size`` 是列表或元组，则它必须包含两个整数(filter_size_H，filter_size_W)。如果是整数，则filter_size_H = filter_size_W = filter_size。
     - **pool_size** (int | list | tuple) - pool2d池化层大小，整数或者整型列表或者整型元组。如果pool_size是列表或元组，则它必须包含两个整数(pool_size_H，pool_size_W)。如果是整数，则pool_size_H = pool_size_W = pool_size。
@@ -24,6 +24,7 @@ simple_img_conv_pool
     - **bias_attr** (ParamAttr | bool | None，可选) - conv2d的bias参数属性。如果设置为False，则不会向输出单元添加bias。如果将其设置为None或ParamAttr的一个属性，则conv2d将创建ParamAttr作为bias_attr。如果设置bias_attr为None，则将其初始化为零。默认值：None
     - **act** (str，可选) - conv2d的激活类型，字符串，可以是'relu', 'softmax', 'sigmoid'等激活函数的类型。如果设置为None，则不附加激活。默认值：None。
     - **use_cudnn** (bool，可选) - 是否使用cudnn内核，仅在安装cudnn库时才有效。默认值：True。
+    - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
 返回： 输入input经过conv2d和pool2d之后输入的结果，数据类型与input相同
 

@@ -5,9 +5,11 @@ ctc_greedy_decoder
 
 .. py:function:: paddle.fluid.layers.ctc_greedy_decoder(input, blank, name=None)
 
+**注意：该OP的输入input必须是2维LoDTensor, lod_level为1** 
+
 该OP用于贪婪策略解码序列，步骤如下:
     1. 获取输入中的每一行的最大值索引，也就是numpy.argmax(input, axis=0)。
-    2. 对于step1结果中的每个序列，在两个空格之间合并重复部分（即合并重复的上一步中的到的索引值）并删除所有空格。
+    2. 对于step1结果中的每个序列，合并两个空格之间的重复部分并删除所有空格。
 
 
 **样例**：
@@ -45,13 +47,13 @@ ctc_greedy_decoder
 
 
 参数:
-        - **input** (Variable) — (LoDTensor)，变长序列的概率，它是一个具有LoD信息的二维张量。它的形状是[Lp, num_classes + 1]，其中Lp是所有输入序列长度的和，num_classes是类别数目(不包括空白标签)。数据类型是float32或者float32
+        - **input** (Variable) — 变长序列的概率，2维LoDTensor, lod_level为1。它的形状是[Lp, num_classes + 1]，其中Lp是所有输入序列长度的和，num_classes是类别数目(不包括空白标签)。数据类型是float32或者float64
         - **blank** (int) — Connectionist Temporal Classification (CTC) loss空白标签索引,  其数值属于半开区间[0,num_classes + 1）
-        - **name** (str) — (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+        - **name** (str) — (str|None，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
-返回： CTC贪婪解码结果是一个形为(Lp,1)的二维张量，其中Lp是所有输出序列的长度之和。如果结果中的所有序列都为空，则输出LoDTensor 为[-1]，其中LoD[[]] 形为[1,1]。
+返回： CTC贪婪解码结果是一个形为(Lp,1)的2维LoDTensor，lod_level为1，其中Lp是所有输出序列的长度之和。如果结果中的所有序列都为空，则输出LoDTensor为[-1]，其lod信息为空。
 
-返回类型： 变量Variable
+返回类型： Variable
 
 
 **代码示例**
@@ -60,7 +62,6 @@ ctc_greedy_decoder
 
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[8], dtype='float32')
-
     cost = fluid.layers.ctc_greedy_decoder(input=x, blank=0)
 
 

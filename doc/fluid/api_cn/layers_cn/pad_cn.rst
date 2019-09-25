@@ -5,7 +5,7 @@ pad
 
 .. py:function:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
 
-该OP在Tensor上加上一个由 ``pad_value`` 给出的常数值，填充宽度由 ``paddings`` 指定。
+该OP在Tensor上填充一个由 ``pad_value`` 给出的常数值，填充宽度由 ``paddings`` 指定。
 其中，维度 ``i`` 中 ``x`` 内容前填充的值个数用 ``paddings[2i]`` 表示，维度 ``i`` 中 ``x`` 内容后填充的值个数用 ``paddings[2i+1]`` 表示。
 
 **样例**：
@@ -45,8 +45,7 @@ pad
     # x 为一个秩为2的张量
     import paddle.fluid as fluid
     x = fluid.layers.data(name='data', shape=[224], dtype='float32')
-    out = fluid.layers.pad(
-        x=x, paddings=[0, 1, 1, 2], pad_value=0.)
+    out = fluid.layers.pad(x=x, paddings=[0, 1, 1, 2], pad_value=0.)
 
 
 
