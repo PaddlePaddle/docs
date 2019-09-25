@@ -22,6 +22,7 @@ In brief：
 
 * :code:`Block` contains descriptions of computation and computational objects. The description of computation is called Operator; the object of computation (or the input and output of Operator) is unified as Tensor. In Fluid, Tensor is represented by 0-leveled `LoD-Tensor <http://paddlepaddle.org/documentation/docs/zh/1.2/user_guides/howto/prepare_data/lod_tensor.html#permalink-4-lod-tensor>`_ .
 
+.. _api_guide_Block_en:
 
 =========
 Block
@@ -55,6 +56,7 @@ This is because some common operations on Tensor may consist of more basic opera
 
 More information can be read for reference. `Fluid Design Idea <../../advanced_usage/design_idea/fluid_design_idea.html>`_
 
+.. _api_guide_Variable_en:
 
 =========
 Variable
