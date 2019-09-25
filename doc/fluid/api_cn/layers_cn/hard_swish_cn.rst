@@ -37,7 +37,6 @@ hard_swish
     x = fluid.layers.data(name="x", shape=shape, dtype=DATATYPE)
     y = fluid.layers.hard_swish(x)
 
-    place = fluid.CPUPlace()
     place = fluid.CUDAPlace(0)
     exe = fluid.Executor(place)
     out, = exe.run(feed={'x':x_data}, fetch_list=[y.name])
