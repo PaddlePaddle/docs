@@ -16,7 +16,7 @@ LookaheadOptimizer
 参数:
     - **inner_optimizer** (Optimizer) - 基础优化器，如SGD
     - **alpha** (float) - Lookahead 的学习率
-    - **k** (k) - 慢参数更新的频率：k次一更新
+    - **k** (int) - 慢参数更新的频率：k次一更新
 
 **代码示例**
 
