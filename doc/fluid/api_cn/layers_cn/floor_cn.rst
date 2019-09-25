@@ -5,18 +5,18 @@ floor
 
 .. py:function:: paddle.fluid.layers.floor(x, name=None)
 
-向下取整运算激活函数。
+向下取整函数。
 
 .. math::
     out = \left \lfloor x \right \rfloor
 
-参数:
-    - **x** - 该OP的输入为多维Tensor。数据类型为float32，float64。
+参数：
+    - **x** - 该OP的输入为多维Tensor。数据类型必须为float32或float64。
     - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
-返回： 输出为Tensor，与 ``x`` 维度相同、数据类型相同。
+返回：输出为Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型： Variable
+返回类型：Variable
 
 **代码示例**：
 
