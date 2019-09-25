@@ -7,12 +7,12 @@ Executor
 
 Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传入设备。
 
-参数:
+参数：
     - **place** (fluid.CPUPlace()|fluid.CUDAPlace(N)) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。
   
 返回：初始化后的 ``Executor`` 对象
 
-返回类型: Executor
+返回类型：Executor
 
 **示例代码**
 
@@ -67,6 +67,8 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
 
 关闭执行器。该接口主要用于对于分布式训练，调用该接口后不可以再使用该执行器。该接口会释放在PServers上和目前Trainer有关联的资源。
 
+返回：无
+
 **示例代码**
 
 .. code-block:: python
@@ -93,9 +95,9 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
   - **return_numpy** (bool) – 该参数表示是否将返回返回的计算结果（fetch list中指定的变量）转化为numpy；如果为False，则每个变量返回的类型为LoDTensor，否则返回变量的类型为numpy.ndarray。默认为：True。
   - **use_program_cache** (bool) – 该参数表示是否对输入的Program进行缓存。如果该参数为True，在以下情况时，模型运行速度可能会更快：输入的program为 ``fluid.Program`` ，并且模型运行过程中，调用该接口的参数（program、 feed变量名和fetch_list变量）名始终不变。默认为：False。
   
-返回: 返回fetch_list中指定的变量值
+返回：返回fetch_list中指定的变量值
 
-返回类型: List
+返回类型：List
 
 .. note::
      1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
@@ -140,7 +142,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None
   - **print_period** (int) – 每两次打印之间间隔的mini-batches的数量，默认为100
 
-返回: None
+返回：None
 
 **示例代码**
 
@@ -176,7 +178,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None
   - **print_period** (int) – 每两次打印之间间隔的mini-batches的数量，默认为100
 
-返回: None
+返回：None
 
 **示例代码**
 

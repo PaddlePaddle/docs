@@ -20,7 +20,7 @@ ParallelExecutor
 
 返回：初始化后的 ``ParallelExecutor`` 对象
 
-返回类型: ParallelExecutor
+返回类型：ParallelExecutor
 
 抛出异常：``TypeError`` 
     - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会抛出此异常。
@@ -86,11 +86,11 @@ ParallelExecutor
     - **feed_dict** – 该参数已经停止使用。默认为：None。
     - **return_numpy** (bool) – 该变量表示是否将fetched tensor转换为numpy。默认为：True。
 
-返回: 返回fetch_list中指定的变量值
+返回：返回fetch_list中指定的变量值
 
-返回类型: List
+返回类型：List
 
-抛出异常:
+抛出异常：
      - ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，抛出此异常
      - ``TypeError`` - 如果feed参数是list类型，但是它里面的元素不是dict类型时，抛出此异常
 
@@ -150,6 +150,8 @@ ParallelExecutor
 .. py:method::  drop_local_exe_scopes()
 
 立即清除scope中的临时变量。模型运行过程中，生成的中间临时变量将被放到local execution scope中，为了避免对临时变量频繁的申请与释放，ParallelExecutor中采取的策略是间隔若干次迭代之后清理一次临时变量。ParallelExecutor在ExecutionStrategy中提供了num_iteration_per_drop_scope选项，该选项表示间隔多少次迭代之后清理一次临时变量。如果num_iteration_per_drop_scope值为100，但是希望在迭代50次之后清理一次临时变量，可以通过手动调用该接口。
+
+返回：无
 
 **代码示例**
 

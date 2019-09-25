@@ -13,7 +13,7 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
 
 返回：初始化后的 ``CompiledProgram`` 对象
 
-返回类型: CompiledProgram
+返回类型：CompiledProgram
 
 **代码示例**
 
@@ -58,7 +58,7 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
 
 返回：配置之后的 ``CompiledProgram`` 对象
 
-返回类型: CompiledProgram
+返回类型：CompiledProgram
 
 .. note::
      1. 如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
