@@ -9,9 +9,9 @@ LookaheadOptimizer
 
 .. math::
 
-        slow\_param_t &= slow\_param_{t-1} + \\alpha * (fast\_param_{t-1} - slow\_param_{t-1})
+  & slow\_param_t = slow\_param_{t-1} + \alpha * (fast\_param_{t-1} - slow\_param_{t-1})
 
-        fast\_param_t &=  slow\_param_t
+  & fast\_param_t = slow\_param_t
 
 参数:
     - **inner_optimizer** (Optimizer) - 基础优化器，如SGD
