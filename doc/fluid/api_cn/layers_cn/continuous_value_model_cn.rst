@@ -5,6 +5,8 @@ continuous_value_model
 
 .. py:function:: paddle.fluid.layers.continuous_value_model(input, cvm, use_cvm=True)
 
+**注意：该OP仅支持在CPU运行。**
+
 该OP在CTR项目中，用于去除或处理 ``input`` 中的展示和点击值。
 
 输入 ``input`` 是一个含展示（show）和点击（click）的词向量，其形状为 :math:`[N, D]` （D为 `2 + 嵌入维度` ），show和click占据词向量D的前两维。如果 ``use_cvm=True`` ，它会计算 :math:`log(show)` 和 :math:`log(click)` ，输出的形状为 :math:`[N, D]` 。如果 ``use_cvm=False`` ，它会从输入 ``input`` 中移除show和click，输出的形状为 :math:`[N, D - 2]` 。 ``cvm`` 为show和click信息，维度为 :math:`[N, 2]` 。
