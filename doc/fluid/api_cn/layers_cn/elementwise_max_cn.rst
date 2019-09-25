@@ -4,7 +4,7 @@ elementwise_max
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_max(x, y, axis=-1, act=None, name=None)
-该接口逐元素对比输入的两个多维Tensor，并且把各个位置更大的元素保存到返回结果中。
+该OP逐元素对比输入的两个多维Tensor，并且把各个位置更大的元素保存到返回结果中。
 
 等式是：
 

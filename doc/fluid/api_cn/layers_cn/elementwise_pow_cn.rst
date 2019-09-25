@@ -4,7 +4,7 @@ elementwise_pow
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
-该接口逐元素对输入Tensor进行幂操作。
+该OP逐元素对输入Tensor进行幂操作。
 
 等式是：
 
