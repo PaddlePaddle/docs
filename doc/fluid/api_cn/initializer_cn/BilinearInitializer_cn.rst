@@ -5,7 +5,11 @@ BilinearInitializer
 
 .. py:class:: paddle.fluid.initializer.BilinearInitializer())
 
-该接口为参数初始化函数，用于转置卷积函数中，对输入进行上采样。用户通过任意整型因子放大shape为(B，C，H，W)的特征图。用法如下：
+该接口为参数初始化函数，用于转置卷积函数中，对输入进行上采样。用户通过任意整型因子放大shape为(B，C，H，W)的特征图。
+
+返回：对象
+
+用法如下：
 
 **代码示例**:
 
@@ -18,7 +22,7 @@ BilinearInitializer
     w_attr = fluid.ParamAttr(
         learning_rate=0.,
         regularizer=fluid.regularizer.L2Decay(0.),
-        initializer=fluid.initializer.Bilinear())
+        initializer=fluid.initializer.BilinearInitializer())
     x = fluid.layers.data(name="data", shape=[4, H, W],
                           dtype="float32")
     conv_up = fluid.layers.conv2d_transpose(

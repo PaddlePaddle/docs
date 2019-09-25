@@ -23,8 +23,10 @@ MSRAInitializer
 
 参数：
     - **uniform** (bool) - 为True表示使用均匀分布，为False表示使用正态分布
-    - **fan_in** (float) - MSRAInitializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
-    - **seed** (int) - 随机种子
+    - **fan_in** (float16|float32) - MSRAInitializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
+    - **seed** (int32) - 随机种子
+
+返回：对象
 
 .. note:: 
 

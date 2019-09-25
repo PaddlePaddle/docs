@@ -8,7 +8,9 @@ ConstantInitializer
 该接口为常量初始化函数，用于权重初始化，通过输入的value值初始化输入变量；
 
 参数：
-        - **value** (float) - 用于初始化输入变量的值；
+        - **value** (float16|float32) - 用于初始化输入变量的值；
+
+返回：对象
 
 **代码示例**
 

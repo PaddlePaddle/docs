@@ -8,9 +8,11 @@ TruncatedNormalInitializer
 Random Truncated Normal(高斯)分布初始化函数
 
 参数：
-    - **loc** (float) - 正态分布的平均值
-    - **scale** (float) - 正态分布的标准差
-    - **seed** (int) - 随机种子
+    - **loc** (float16|float32) - 正态分布的平均值
+    - **scale** (float16|float32) - 正态分布的标准差
+    - **seed** (int32) - 随机种子
+
+返回：对象
 
 **代码示例**
 
