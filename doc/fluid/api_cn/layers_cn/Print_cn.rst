@@ -38,7 +38,7 @@ Print
     import numpy as np
 
     x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
-    # 注意输出是使用Print的output 
+    # 注意下行输出是使用Print的output 
     x = fluid.layers.Print(x, message="The content of input layer:") 
     
     y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
