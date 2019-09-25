@@ -11,7 +11,7 @@ The workspace limit size in MB unit for choosing cuDNN convolution algorithms. T
 
 Values accepted
 ---------------
-Uint64. The default value is 4096. That is to say, 4G memory workspace.
+Uint64. The default value is 512. That is to say, 512MB memory workspace.
 
 Example
 -------

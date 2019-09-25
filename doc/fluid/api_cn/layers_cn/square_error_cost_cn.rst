@@ -5,26 +5,19 @@ square_error_cost
 
 .. py:function:: paddle.fluid.layers.square_error_cost(input,label)
 
-方差估计层（Square error cost layer）
+该OP用于计算预测值和目标值的方差估计。
 
-该层接受输入预测值和目标值，并返回方差估计
-
-对于预测值X和目标值Y，公式为：
+对于预测值input和目标值label，公式为：
 
 .. math::
 
-    Out = (X-Y)^{2}
-
-在以上等式中：
-    - **X** : 输入预测值，张量（Tensor)
-    - **Y** : 输入目标值，张量（Tensor）
-    - **Out** : 输出值，维度和X的相同
+    Out = (input-label)^{2}
 
 参数：
-    - **input** (Variable) - 输入张量（Tensor），带有预测值
-    - **label** (Variable) - 标签张量（Tensor），带有目标值
+    - **input** (Variable) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
+    - **label** (Variable) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
 
-返回：张量变量，存储输入张量和标签张量的方差
+返回：预测值和目标值的方差
 
 返回类型：变量（Variable）
 
