@@ -8,7 +8,7 @@ brelu
 
 BReLU 激活函数
 
-.. math::   out=max(min(x,t\_min),t\_max)
+.. math::   out=min(max(x,t\_min),t\_max)
 
 参数:
   - **x** (Variable) - 该OP的输入为多维Tensor。数据类型为float32，float64。
