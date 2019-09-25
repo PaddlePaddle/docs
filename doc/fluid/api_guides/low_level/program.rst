@@ -22,7 +22,7 @@ Program
 * :code:`Block` 中包含对计算和计算对象的描述。计算的描述称之为 Operator；计算作用的对象（或者说 Operator 的输入和输出）被统一为 Tensor，在Fluid中，Tensor 用层级为0的 :ref:`Lod_Tensor  <cn_user_guide_lod_tensor>` 表示。
 
 
-
+.. _api_guide_Block:
 
 =========
 Block
@@ -56,6 +56,7 @@ Operator
 
 更多内容可参考阅读 `Fluid设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_
 
+.. _api_guide_Variable:
 
 =========
 Variable

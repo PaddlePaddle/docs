@@ -14,9 +14,9 @@ append_backward
 
 参数：
     - **loss** ( :ref:`api_guide_Variable` ) - 网络的损失变量。
-    - **parameter_list** （list [str]，可选）- 指定优化器需要更新的参数名称列表。如果为 ``None`` ，则将更新所有参数。缺省值为 ``None``。
-    - **no_grad_set** （set，可选）-  无梯度的 :ref:`api_guide_Variable` 的集合。`block0` ( :ref:`api_guide_Block` ) 中 :ref:`api_guide_Variable` 的梯度应该被忽略。所有的 :ref:`api_guide_Block` 中带有 ``stop_gradient = True`` 的所有 :ref:`api_guide_Variable` 都会被自动添加到此集合中。缺省值为 ``None``。
-    - **callbacks** （list [callable object]，可选）- 回调函数列表。用于在反向传播构建中执行一些自定义作业。每次将新的梯度OP添加到程序中时，将调用其中的所有可调用对象。可调用对象必须有两个输入参数： :ref:`api_guide_Block` 和 ``context`` 。 :ref:`api_guide_Block` 是将被添加到新梯度算子的块。 ``context`` 是一个映射，其键是梯度 :ref:`api_guide_Variable` 名，值是对应的原始 :ref:`api_guide_Variable` 。除此之外， ``context`` 还有另一个特殊的键值对：键是字符串 ``__ current_op_desc__`` ，值是刚刚触发可调用对象的梯度OP的 ``op_desc`` 。缺省值为 ``None``。
+    - **parameter_list** （list [str]，可选）- 指定优化器需要更新的参数名称列表。如果为 ``None`` ，则将更新所有参数。默认值为 ``None``。
+    - **no_grad_set** （set [str]，可选）-  在 `block0` ( :ref:`api_guide_Block` ) 中要忽略梯度的 :ref:`api_guide_Variable` 的名字的集合。所有的 :ref:`api_guide_Block` 中带有 ``stop_gradient = True`` 的所有 :ref:`api_guide_Variable` 的名字都会被自动添加到此集合中。如果该参数不为 ``None``，则会将该参数集合的内容添加到默认的集合中。默认值为 ``None``。
+    - **callbacks** （list [callable object]，可选）- 回调函数列表。用于在反向传播构建中执行一些自定义作业。每次将新的梯度OP添加到程序中时，将调用其中的所有可调用对象。可调用对象必须有两个输入参数： :ref:`api_guide_Block` 和 ``context`` 。 :ref:`api_guide_Block` 是将被添加到新梯度算子的块。 ``context`` 是一个映射，其键是梯度 :ref:`api_guide_Variable` 名，值是对应的原始 :ref:`api_guide_Variable` 。除此之外， ``context`` 还有另一个特殊的键值对：键是字符串 ``__ current_op_desc__`` ，值是刚刚触发可调用对象的梯度OP的 ``op_desc`` 。默认值为 ``None``。
 
 返回：   参数及其梯度 :ref:`api_guide_Variable` 的元组的列表。元组的第一个值为参数，第二个值为该参数的梯度 :ref:`api_guide_Variable` 。
 
@@ -30,14 +30,18 @@ append_backward
 .. code-block:: python
 
         import paddle.fluid as fluid
+
         x = fluid.layers.data(name='x', shape=[13], dtype='float32')
-        y = fluid.layers.data(name='y', shape=[1], dtype='float32') 
-        
+        y = fluid.layers.data(name='y', shape=[1], dtype='float32')
         y_predict = fluid.layers.fc(input=x, size=1, act=None)
         loss = fluid.layers.square_error_cost(input=y_predict, label=y)
-        
         avg_loss = fluid.layers.mean(loss)
-        param_grad_list = fluid.backward.append_backward(loss=avg_loss)
+
+        p_g_list1 = fluid.backward.append_backward(loss=avg_loss)  # len(p_g_list1) == 2
+        p_g_list2 = fluid.backward.append_backward(loss=avg_loss, parameter_list=[p_g_list1[0][0].name])  # len(p_g_list1) == 1
+        p_g_list3 = fluid.backward.append_backward(loss=avg_loss, no_grad_set=set([p_g_list1[0][0].name]))  # len(p_g_list1) == 1
+        p_g_list4 = fluid.backward.append_backward(loss=avg_loss, parameter_list=[p_g_list1[0][0].name], no_grad_set=set([p_g_list1[0][0].name]))  # len(p_g_list1) == 0
+
 
 
 
