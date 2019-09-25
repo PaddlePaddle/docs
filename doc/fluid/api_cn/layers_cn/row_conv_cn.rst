@@ -30,7 +30,7 @@ row_conv
     - **param_attr** (ParamAttr) --  参数的属性，包括名称、初始化器等。
     - **act** (str) -- 非线性激活函数。
 
-返回：表示row_conv计算结果的Variable，数据类型、维度和input相同。
+返回：表示row_conv计算结果的Variable，数据类型、维度和输入input相同。
 
 
 **代码示例**
