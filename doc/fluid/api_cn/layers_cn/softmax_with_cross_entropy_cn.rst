@@ -49,11 +49,10 @@ softmax_with_cross_entropy
 
 ..  code-block:: python
 
-  import paddle.fluid as fluid
-  data = fluid.layers.data(name='data', shape=[128], dtype='float32')
-        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-        fc = fluid.layers.fc(input=data, size=100)
-        out = fluid.layers.softmax_with_cross_entropy(
-        logits=fc, label=label)
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='data', shape=[128], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    fc = fluid.layers.fc(input=data, size=100)
+    out = fluid.layers.softmax_with_cross_entropy(logits=fc, label=label)
 
 
