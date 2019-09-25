@@ -21,7 +21,7 @@ Uniform
 :math:`high = b` 。
 :math:`Z`: 正态分布常量。
 
-参数low和high的shape必须能够支持广播。
+参数low和high的维度必须能够支持广播。
 
 参数：
     - **low** (float|list|numpy.ndarray|Variable) - 均匀分布的下边界。
@@ -57,7 +57,7 @@ Uniform
     uniform = Uniform([0.], [2.])
 
     sample = uniform.sample([2])
-    # 一个由定义好的均匀分布随机生成的张量，shape为: [2, 1]
+    # 一个由定义好的均匀分布随机生成的张量，维度为: [2, 1]
     entropy = uniform.entropy()
     # [0.6931472] with shape: [1]
     lp = uniform.log_prob(value_tensor)
@@ -66,13 +66,13 @@ Uniform
 
 .. py:function:: sample(shape, seed=0)
 
-生成指定形状的样本
+生成指定维度的样本
 
 参数：
-    - **shape** (list) - int32的1维列表，指定生成样本的shape。
+    - **shape** (list) - int32的1维列表，指定生成样本的维度。
     - **seed** (int) - 长整型数。
     
-返回：预先设计好形状的张量, 数据类型为float32
+返回：预先设计好维度的张量, 数据类型为float32
 
 返回类型：Variable
 

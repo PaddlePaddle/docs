@@ -54,7 +54,7 @@ Normal
     normal_b = Normal([0.5], [2.])
 
     sample = normal_a.sample([2])
-    # 一个由定义好的正太分布随机生成的张量，shape为: [2, 1]
+    # 一个由定义好的正太分布随机生成的张量，维度为: [2, 1]
     entropy = normal_a.entropy()
     # [1.4189385] with shape: [1]
     lp = normal_a.log_prob(value_tensor)
@@ -65,13 +65,13 @@ Normal
 
 .. py:function:: sample(shape, seed=0)
 
-生成指定形状的样本
+生成指定维度的样本
 
 参数：
-    - **shape** (list) - int32的1维列表，指定生成样本的shape。
+    - **shape** (list) - int32的1维列表，指定生成样本的维度。
     - **seed** (int) - 长整型数。
     
-返回：预先设计好形状的张量, 数据类型为float32
+返回：预先设计好维度的张量, 数据类型为float32
 
 返回类型：Variable
 
