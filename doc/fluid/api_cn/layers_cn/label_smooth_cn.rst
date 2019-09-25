@@ -20,13 +20,13 @@ label_smooth
 查看更多关于标签平滑的细节 https://arxiv.org/abs/1512.00567
 
 参数：
-  - **label** （Variable） - 包含标签数据的输入变量。 标签数据应使用 one-hot 表示。
+  - **label** （Variable） - 包含标签数据的输入变量。 标签数据应使用 one-hot 表示，是维度为 :math:[N_1, ..., Depth]的多维Tensor，其中Depth为字典大小。
   - **prior_dist** （Variable） - 用于平滑标签的先验分布，是维度为 :math:`[1，class\_num]` 的2D Tensor。 如果未提供，则使用均匀分布。默认值为None。
   - **epsilon** （float） - 用于混合原始真实分布和固定分布的权重。默认值为0.1。
-  - **dtype** （np.dtype|core.VarDesc.VarType|str） - 指定数据类型，数据类型可以为float32，float_64，int等。默认值为"float32"。
-  - **name** （str，可选) - 此层的名称。 如果为设置，则自动命名该层。默认值为None。
+  - **dtype** （np.dtype|core.VarDesc.VarType|str） - 指定数据类型，数据类型可以为float32。默认值为"float32"。
+  - **name** （str，可选) - 指定此层的名称。 如果为设置，则自动命名该层。默认值为None。
 
-返回：张量变量, 为平滑后的标签数据
+返回：为平滑后的Tensor，数据类型为dtype设置的数据类型，维度也与输入的label参数维度相同。
 
 返回类型: Variable
 
