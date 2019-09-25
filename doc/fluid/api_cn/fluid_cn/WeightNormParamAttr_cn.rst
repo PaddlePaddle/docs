@@ -12,7 +12,7 @@ WeightNormParamAttr
   - **dim** (int) - 归一化过程中权重向量（Weight Vector）的维度，默认为None。
   - **name** (None|str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认为None。
   - **initializer** （Initializer) - 初始化参数的方法，默认为None。
-  - **learning_rate** (float32) - 学习率。优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
+  - **learning_rate** (float32) - 学习率, 优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
   - **regularizer** (WeightDecayRegularizer) - 正则化方法，默认为None。
   - **trainable** (bool) - 可选，指明参数是否可训练，默认为True。
   - **gradient_clip** (BaseGradientClipAttr) - 梯度裁剪（Gradient Clipping）的方法，默认为None。
