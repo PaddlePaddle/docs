@@ -16,7 +16,7 @@ data
 参数：
     - **name** (str)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
     - **shape** (list|tuple)- 声明维度信息的list或tuple。
-    - **dtype** (np.dtype|VarType|str)- 数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。
+    - **dtype** (np.dtype|VarType|str)- 数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为float32。
     - **type** (VarType)- 输出类型，支持VarType.LOD_TENSOR，VarType.SELECTED_ROWS，VarType.NCCL_ID。默认为VarType.LOD_TENSOR。
 
 返回：全局变量，可进行数据访问
