@@ -29,7 +29,7 @@ sequence_reshape
 
 
 参数：
-    - **input** (Variable) - 维度为 :math:`[M, K]` 的二维LoDTensor，且仅支持lod_level为1。
+    - **input** (Variable) - 维度为 :math:`[M, K]` 的二维LoDTensor，且仅支持lod_level为1。数据类型为int32，int64，float32或float64。
     - **new_dim** (int)- 指定reshape后的新维度，即对输入LoDTensor重新reshape后的新维度。
 
 返回：根据新维度重新reshape后的LoDTensor，数据类型和输入一致。

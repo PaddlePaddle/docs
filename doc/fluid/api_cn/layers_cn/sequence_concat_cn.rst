@@ -30,7 +30,7 @@ sequence_concat
 
 
 参数:
-        - **input** (list of Variable) – 多个LoDTensor组成的list，要求每个输入LoDTensor的LoD长度必须一致。
+        - **input** (list of Variable) – 多个LoDTensor组成的list，要求每个输入LoDTensor的LoD长度必须一致。数据类型为float32，float64或int64。
         - **name** (str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回: 输出连接后的LoDTensor，数据类型和输入一致。

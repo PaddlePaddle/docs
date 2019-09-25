@@ -31,7 +31,7 @@ sequence_reverse
 
 
 参数:
-  - **x** (Variable) – 输入是LoD level为1的LoDTensor。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。
+  - **x** (Variable) – 输入是LoD level为1的LoDTensor。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。数据类型为float32，float64，int8，int32或int64。
   - **name** (str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：输出在每个序列上反转后的LoDTensor，数据类型和输入类型一致。

@@ -27,7 +27,7 @@ get_tensor_from_selected_rows
 
 
 参数：
-  - **x** (SelectedRows) - SelectedRows类型的输入。
+  - **x** (SelectedRows) - SelectedRows类型的输入，数据类型为float32，float64，int32或int64。
   - **name** (str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回： 从SelectedRows中转化而来的LoDTensor，数据类型和输入一致。
