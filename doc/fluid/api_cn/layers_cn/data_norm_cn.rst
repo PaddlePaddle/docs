@@ -24,7 +24,7 @@ data_norm
         y_i &\gets \gamma \hat{x_i} + \beta \qquad &//\ scale\ and\ shift
 
 参数:
-  - **input** （variable） - 输入变量，它是一个LoDTensor。
+  - **input** （Variable） - 输入变量，它是一个LoDTensor。
   - **act** （string，默认None） - 激活函数类型，线性| relu | prelu | ...
   - **epsilon** （float，默认1e-05） -
   - **param_attr** （ParamAttr） - 参数比例的参数属性。

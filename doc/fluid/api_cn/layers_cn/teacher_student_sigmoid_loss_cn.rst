@@ -8,9 +8,9 @@ teacher_student_sigmoid_loss
 **Teacher Student Log Loss Layer（教师--学生对数损失层）**
 
 定制化需求，用于student萃取teacher的值。此图层接受输入预测和目标标签，并返回teacher_student损失。
-z表示是否点击，z'表示精排q值。label取值范围{-2，-1，[0, 2]}
-精排q值不存在时，点击时label为-1，否则为-2。
-精排q值存在时，点击时label为z'，否则为1 + z'。
+z表示是否点击，z'表示teacher q值。label取值范围{-2，-1，[0, 2]}
+teacher q值不存在时，点击时label为-1，否则为-2。
+teacher q值存在时，点击时label为z'，否则为1 + z'。
 
 .. math::
 
@@ -19,7 +19,7 @@ z表示是否点击，z'表示精排q值。label取值范围{-2，-1，[0, 2]}
 其中：
     - :math:`x` ：预测输入值。
     - :math:`z` ：是否点击。
-    - :math:`z'` ：精排q值。
+    - :math:`z'` ：teacher q值。
 
 
 参数：
