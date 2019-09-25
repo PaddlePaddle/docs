@@ -17,7 +17,7 @@ reciprocal 对输入Tensor取倒数
     - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
-返回： 对输入取倒数得到的Tensor，输出Tensor数据类型与输入相同，输出Tensor维度和输入维度相同。
+返回： 对输入取倒数得到的Tensor，输出Tensor数据类型和维度与输入相同。
 
 **代码示例**：
 
