@@ -5,19 +5,19 @@ elementwise_sub
 
 .. py:function:: paddle.fluid.layers.elementwise_sub(x, y, axis=-1, act=None, name=None)
 
-该函数是逐元素相减算子，输入x逐元素与输入y相减，并将各个位置的输出元素保存到返回结果中。
+该OP是逐元素相减算子，输入 ``x`` 与输入 ``y`` 逐元素相减，并将各个位置的输出元素保存到返回结果中。
 
 等式是：
 
 .. math::
        Out = X - Y
 
-- :math:`X` ：任意维度的张量（Tensor）。
-- :math:`Y` ：一个维度必须小于等于X维度的张量（Tensor）。
+- :math:`X` ：多维Tensor。
+- :math:`Y` ：维度必须小于等于X维度的Tensor。
 
 对于这个运算算子有2种情况：
-        1. :math:`Y` 的形状（shape）与 :math:`X` 相同。
-        2. :math:`Y` 的形状（shape）是 :math:`X` 的连续子序列。
+        1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
+        2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
 
 对于情况2:
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
@@ -36,13 +36,14 @@ elementwise_sub
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
 
 参数：
-        - **x** （Variable）- 第一个输入张量（Tensor）。数据类型为 ``int`` 或 ``float32`` 或 ``float64`` 。
-        - **y** （Variable）- 第二个输入张量（Tensor）。数据类型为 ``int`` 或 ``float32`` 或 ``float64`` 。
-        - **axis** （int | -1）- Y的维度对应到X维度上时的索引。
-        - **act** （basestring | None）- 激活函数名称，作用于输出上，例如 "relu"。
-        - **name** （basestring | None）- 输出的名字。
+        - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``int`` 或 ``float32`` 或 ``float64`` 。
+        - **y** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``int`` 或 ``float32`` 或 ``float64`` 。
+        - **axis** （int32，可选）-  ``y`` 的维度对应到 ``x`` 维度上时的索引。默认值为 -1。
+        - **act** （str，可选）- 激活函数名称，作用于输出上。默认值为None。详细请参考 :ref:`api_guide_activations` ， 常见的激活函数有: ``relu`` ``tanh`` ``sigmoid`` 等。
+        - **name** （str，可选）- 输出的名字。默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-返回：        维度与输入x相同的 ``Tensor`` 或 ``LoDTensor`` ，数据类型与x相同。
+
+返回：        维度与 ``x`` 相同的 ``Tensor`` 或 ``LoDTensor`` ，数据类型与 ``x`` 相同。
 
 返回类型：        Variable。
 
