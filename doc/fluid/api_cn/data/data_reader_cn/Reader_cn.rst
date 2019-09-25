@@ -91,16 +91,9 @@ Data Reader Interface
 
 .. py:function:: paddle.reader.chain(*readers)
 
-创建一个数据reader，其输出是链接在一起的输入数据reader的输出。
+**注意：paddle.reader.chain是paddle.fluid.io.chain的别名，推荐使用paddle.fluid.io.chain。**
 
-如果输入reader输出以下数据条目：[0，0，0][1，1，1][2，2，2]，链接reader将输出：[0，0，0，1，1，1，2，2，2] 。
-
-参数：
-    - **readers** – 输入的数据。
-
-返回： 新的数据读取器
-
-返回类型： callable
+详见 :ref:`cn_api_fluid_io_chain` 接口的使用文档。
 
 
 .. py:function:: paddle.reader.shuffle(reader, buf_size)
