@@ -60,7 +60,7 @@ Conv3D
 返回类型：变量（Variable）
 
 抛出异常：
-  - ``ValueError`` - 如果 ``input`` 的形和 ``filter_size`` ， ``stride`` , ``padding`` 和 ``groups`` 不匹配。
+  - ``ValueError`` - 如果 ``input`` 的维度和 ``filter_size`` ， ``stride`` , ``padding`` ， ``groups`` 不匹配。
 
 **代码示例**：
 
