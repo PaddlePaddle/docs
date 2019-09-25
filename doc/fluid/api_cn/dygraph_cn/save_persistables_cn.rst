@@ -54,15 +54,5 @@ save_persistables
             cost = mlp(img)
             avg_loss = fluid.layers.reduce_mean(cost)
             avg_loss.backward()
-            sgd.minimize(avg_loss)
-            break
-        save_dir="save_dir"
-        fluid.dygraph.save_persistables(mlp.state_dict(), dirname=save_dir, optimizers=sgd) 
-    
-    
-
-
-
-
-
+            sgd.minimize(avg_loss)该函数把传入的层中所有参数以及优化器进行保存。
 
