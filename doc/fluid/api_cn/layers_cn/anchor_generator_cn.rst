@@ -8,7 +8,6 @@ anchor_generator
 **Anchor generator operator**
 
 为Faster RCNN算法生成anchor，输入的每一位产生N个anchor，N=size(anchor_sizes)*size(aspect_ratios)。生成anchor的顺序首先是aspect_ratios循环，然后是anchor_sizes循环。
-**该OP仅支持CPU**
 
 参数：
     - **input** (Variable) - 维度为[N,C,H,W]的4-D Tensor。数据类型为float32或float64。
