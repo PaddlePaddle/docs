@@ -39,10 +39,13 @@ bpr_loss
 
     import paddle.fluid as fluid
      
-    neg_size = 10
+    neg_size = 3
+    # label=[0]
     label = fluid.layers.data(
               name="label", shape=[1], dtype="int64")
+    # predict = [0.1, 0.2, 0.3, 0.4]
     predict = fluid.layers.data(
               name="predict", shape=[neg_size + 1], dtype="float32")
+    # bpr_Loss : label [0] 表示predict中下标0表示正例，即为0.1, 负例有3个为0.2,0.3,0.4
     cost = fluid.layers.bpr_loss(input=predict, label=label)
 
