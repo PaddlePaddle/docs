@@ -6,10 +6,10 @@ scope_guard
 .. py:function:: paddle.fluid.scope_guard(scope)
 
 
-该接口通过 python 的 ``with`` 语句修改全局或默认的作用域（scope），修改后，运行时中的所有变量都将分配给新的作用域。
+该接口通过 python 的 ``with`` 语句修改运行时作用域（Scope），修改后，运行时中的所有变量都将分配给新的作用域。
 
 参数：
-  - **scope** (Scope) - 新的全局或默认的作用域。
+  - **scope** (Scope) - 新的运行时作用域。
 
 返回： 无
 
