@@ -22,8 +22,8 @@ bipartite_match
 
 返回：
 
-         - matched_indices，维度为[N，M]的2-D Tensor, 数据类型为int32。 N是批量大小。如果match_indices[i][j]为-1，则表示B[j]与第i个实例中的任何实体都不匹配。否则，这意味着在第i个实例中B[j]与行match_indices[i][j]匹配。第i个实>例的行号保存在match_indices[i][j]中。
-         - matched_distance，维度为[N，M]的2-D Tensor, 数据类型为float32，。 N是批量大小。如果match_indices[i][j]为-1，则match_distance[i][j]也为-1.0。否则，假设match_distance[i][j]=d，并且每个实例的行偏移称为LoD。然后match_distance[i][j]=dist_matrix[d]+ LoD[i]][j]。
+         - matched_indices（Variable）- 维度为[N，M]的2-D Tensor, 数据类型为int32。 N是批量大小。如果match_indices[i][j]为-1，则表示B[j]与第i个实例中的任何实体都不匹配。否则，这意味着在第i个实例中B[j]与行match_indices[i][j]匹配。第i个实>例的行号保存在match_indices[i][j]中。
+         - matched_distance（Variable）- 维度为[N，M]的2-D Tensor, 数据类型为float32，。 N是批量大小。如果match_indices[i][j]为-1，则match_distance[i][j]也为-1.0。否则，假设match_distance[i][j]=d，并且每个实例的行偏移称为LoD。然后match_distance[i][j]=dist_matrix[d]+ LoD[i]][j]。
 
 
 返回类型：Tuple
