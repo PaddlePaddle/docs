@@ -38,9 +38,9 @@ sequence_first_step
           out.data = [[1.], [3.], [4.], [0.0], [6.]]
           where 1.=first(1.), 3.=first(3., 2.), 4.=first(4.), 0.0 = pad_value, 6.=first(6., 5., 1.)
 
-参数：**input** (Variable)- 类型为LoDTensor的输入序列，仅支持lod_level不超过2的LoDTensor。数据类型为float32或float64。
+参数：**input** (Variable)- 类型为LoDTensor的输入序列，仅支持lod_level不超过2的LoDTensor，数据类型为float32或float64。
 
-返回：每个输入序列中的第一个step的特征向量组成的LoDTensor，数据类型和输入一致
+返回：每个输入序列中的第一个step的特征向量组成的LoDTensor，数据类型和输入一致，为float32或float64。
 
 返回类型：Variable
 
