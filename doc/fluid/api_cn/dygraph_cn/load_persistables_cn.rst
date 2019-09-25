@@ -13,12 +13,12 @@ load_persistables
 
 
 返回:
-    - load_var_map  – 加载的模型参数字典。
-    - load_optimizer_map  – 加载的优化器的带衰减的学习率字典。
+    - load_var_map  – 加载的模型参数字典。该字典键为str类型，值为Parameter类型，其中包含的数据类型可以为float32，float64的多维Tensor。
+    - load_optimizer_map  – 加载的优化器的带衰减的学习率字典。该字典键为str类型，值为`LearningRateDecay`类型。
 
 返回类型:   
-    - dict of Variable – 字典键为str类型，值为Variable类型。
-    - dict of LearningRateDecay – 字典键为str类型，值为LearningRateDecay类型。
+    - dict of Variable – 模型参数字典。字典键为str类型，值为Variable类型，数据类型可以为float16，float32, .... , int16，int32，....的多维Tensor。
+    - dict of LearningRateDecay – 优化器带衰减的学习率对象字典。字典键为str类型，值为LearningRateDecay类型。
 
   
 **代码示例**
