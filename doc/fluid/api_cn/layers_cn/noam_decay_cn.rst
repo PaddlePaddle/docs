@@ -5,7 +5,9 @@ noam_decay
 
 .. py:function:: paddle.fluid.layers.noam_decay(d_model,warmup_steps)
 
-Noam衰减方法。noam衰减的numpy实现如下。
+Noam衰减方法
+
+noam衰减的numpy实现如下：
 
 .. code-block:: python
 
@@ -23,8 +25,8 @@ Noam衰减方法。noam衰减的numpy实现如下。
 请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
 
 参数：
-    - **d_model** (Variable)-模型的输入和输出维度
-    - **warmup_steps** (Variable)-超参数
+    - **d_model** (Variable|int) - 模型的输入、输出向量特征维度。类型可设置为标量Tensor，或python int。
+    - **warmup_steps** (Variable|int) - 预热步数，类型可设置为标量Tensor，或python int。
 
 返回：衰减的学习率
 
