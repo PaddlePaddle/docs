@@ -24,11 +24,11 @@ NoamDecay
 请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
 
 参数：
-    - **d_model** (Variable|int) - 模型的输入、输出向量特征维度，为超参数。类型可以设置为标量Tensor，也可以设置为Python int。
-    - **warmup_steps** (Variable|int) - 预热步数，为超参数。类型可以设置为标量Tensor，也可以设置为为Python int。
-    - **begin** (int) – 起始步。默认值为0。
-    - **step** (int) – 步大小。默认值为1。
-    - **dtype** (str) – 学习率值的数据类型，默认值为‘float32’。
+    - **d_model** (Variable|int) - 模型的输入、输出向量特征维度，为超参数。如果设置为Variable类型值，则数据类型可以为int32，int64的标量Tensor，也可以设置为Python int。
+    - **warmup_steps** (Variable|int) - 预热步数，为超参数。如果设置为Variable类型，则数据类型为int32，int64的标量Tensor，也可以设置为为Python int。
+    - **begin** (int) – 起始步。即以上运算式子中current_steps的初始值。默认值为0。
+    - **step** (int) – 步大小。即以上运算式子中current_steps的递增值。默认值为1。
+    - **dtype** (str) – 学习率值的数据类型。默认值为‘float32’。
 
 **代码示例**
 
