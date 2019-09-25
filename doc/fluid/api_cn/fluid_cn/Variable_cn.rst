@@ -317,7 +317,7 @@ Properties
 
   **2.** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下，不支持该属性，该值为零**
 
-此 :ref:`api_guide_Variable` 的 ``LOD`` 信息，关于 ``LOD`` 可以参考 :ref:`api_fluid_LoDTensor` 相关内容
+此 :ref:`api_guide_Variable` 的 ``LoD`` 信息，关于 ``LoD`` 可以参考 :ref:`api_fluid_LoDTensor` 相关内容
 
 .. py:attribute:: type
 
