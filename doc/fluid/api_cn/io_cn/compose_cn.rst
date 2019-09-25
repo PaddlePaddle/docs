@@ -24,7 +24,7 @@ compose
          def reader():
             for i in range(10):
                 yield i
-     return reader
+         return reader
 
      reader = fluid.io.compose(reader_creator_10(0), reader_creator_10(0))
 
