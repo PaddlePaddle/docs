@@ -9,14 +9,14 @@ WeightNormParamAttr
 该类定义了权重归一化(Weight Normalization)的参数。权重归一化可以将神经网络中权重向量的长度与其方向解耦，权重归一化的定义与实现可以参考论文：`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_
 
 参数:
-  - **dim** (int)-归一化过程中权重向量（Weight Vector）的维度，默认为None。
-  - **name** (None|str)-该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认为None。
-  - **initializer** （Initializer)-初始化参数的方法，默认为None。
-  - **learning_rate** (float32)-学习率。优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
-  - **regularizer** (WeightDecayRegularizer)-正则化方法，默认为None。
-  - **trainable** (bool)-可选，指明参数是否可训练，默认为True。
-  - **gradient_clip** (BaseGradientClipAttr)-梯度裁剪（Gradient Clipping）的方法，默认为None。
-  - **do_model_average** (bool)-可选，指明参数是否需要模型平均化操作（Model Average），默认为False。
+  - **dim** (int) - 归一化过程中权重向量（Weight Vector）的维度，默认为None。
+  - **name** (None|str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认为None。
+  - **initializer** （Initializer) - 初始化参数的方法，默认为None。
+  - **learning_rate** (float32) - 学习率。优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
+  - **regularizer** (WeightDecayRegularizer) - 正则化方法，默认为None。
+  - **trainable** (bool) - 可选，指明参数是否可训练，默认为True。
+  - **gradient_clip** (BaseGradientClipAttr) - 梯度裁剪（Gradient Clipping）的方法，默认为None。
+  - **do_model_average** (bool) - 可选，指明参数是否需要模型平均化操作（Model Average），默认为False。
 
 
 **代码示例**
