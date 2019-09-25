@@ -5,12 +5,12 @@ TruncatedNormalInitializer
 
 .. py:class:: paddle.fluid.initializer.TruncatedNormalInitializer(loc=0.0, scale=1.0, seed=0)
 
-Random Truncated Normal（高斯）分布初始化器
+Random Truncated Normal(高斯)分布初始化函数
 
 参数：
-        - **loc** （float） - 正态分布的平均值
-        - **scale** （float） - 正态分布的标准差
-        - **seed** （int） - 随机种子
+    - **loc** (float) - 正态分布的平均值
+    - **scale** (float) - 正态分布的标准差
+    - **seed** (int) - 随机种子
 
 **代码示例**
 

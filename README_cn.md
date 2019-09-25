@@ -9,7 +9,7 @@ FluidDoc包含了所有PaddlePaddle相关的文档，它通过CI系统为PaddleP
 
 # 架构
 
-FluidDoc将Paddle, Book, Models, Mobile and Anakin作为子模块，并放置在 `external` 目录下。按照标准做法，所有的子模块应当置于`external` 目录下
+FluidDoc将Paddle, Book 作为子模块，并放置在 `external` 目录下。按照标准做法，所有的子模块应当置于`external` 目录下
 
 FluidDoc通过引用这些子模块来加载这些Repo中的文档。FluidDoc在 `FluidDoc/doc/fluid` 目录下构建了文档的整体树形结构。可以分别在 `FluidDoc/doc/fluid/index_cn.rst` 和 `FluidDoc/doc/fluid/index_en.rst` 查看。
 
@@ -26,7 +26,7 @@ FluidDoc 需要Paddle Repo的python模块去编译生成API文档。但由于Pad
 ## 发布新的分支
 1. 创建一个新的分支，此分支的名字应遵循`release/<version>`
 1. 在FluidDoc和子模块中更新文档
-1. 确认所有的子模块中处于发布就绪的状态。Paddle, book, model, mobile and Anakin 应全部有稳定的commit
+1. 确认所有的子模块中处于发布就绪的状态。Paddle, book 应全部有稳定的commit
 请注意：如果Paddle Repo更改了module/classes，涉及API文档的RST文件应当也被更新
 1. 在 `external` 中更新文件然后commit文档变更
 1. 将这个分支push到Github，Travis CI将会启动几项构建工作以把文档发布到PaddlePaddle.org的服务器

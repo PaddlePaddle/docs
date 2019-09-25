@@ -5,7 +5,7 @@ box_clip
 
 .. py:function:: paddle.fluid.layers.box_clip(input, im_info, name=None)
 
-将box框剪切为 ``im_info`` 给出的大小。对于每个输入框，公式如下：
+将检测框框剪切为 ``im_info`` 给出的大小。对于每个输入框，公式如下：
 
 ::
 
@@ -14,7 +14,7 @@ box_clip
     xmax = max(min(xmax, im_w - 1), 0)
     ymax = max(min(ymax, im_h - 1), 0)
 
-其中im_w和im_h是从im_info计算的：
+其中im_w和im_h是通过im_info计算的：
 
 ::
 
@@ -23,13 +23,13 @@ box_clip
 
 
 参数：
-    - **input (variable)**  – 输入框，最后一个维度为4
-    - **im_info (variable)**  – 具有（高度height，宽度width，比例scale）排列的形为[N，3]的图像的信息。高度和宽度是输入大小，比例是输入大小和原始大小的比率
-    - **name (str)**  – 该层的名称。 为可选项
+    - **input** (Variable)  – 维度为[N_1, N_2, ..., N_k, 4]的多维Tensor，其中最后一维为box坐标维度。数据类型为float32或float64。
+    - **im_info** (Variable)  – 维度为[N, 3]的2-D Tensor，N为输入图片个数。具有（高度height，宽度width，比例scale）图像的信息，其中高度和宽度是输入大小，比例是输入大小和原始大小的比率。数据类型为float32或float64。
+    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回：剪切后的tensor
+返回： 表示剪切后的检测框的Tensor或LoDTensor，数据类型为float32或float64，形状与输入检测框相同
 
-返回类型： Variable
+返回类型：Variable
 
 
 **代码示例**
@@ -42,13 +42,3 @@ box_clip
     im_info = fluid.layers.data(name='im_info', shape=[3])
     out = fluid.layers.box_clip(
         input=boxes, im_info=im_info)
-
-
-
-
-
-
-
-
-
-

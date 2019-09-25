@@ -6,8 +6,6 @@ L1Decay
 
 .. py:attribute::   paddle.fluid.regularizer.L1Decay(regularization_coeff=0.0)
 
-``L1Decay`` 是 ``L1DecayRegularizer`` 的别名。
-
 L1Decay实现L1权重衰减正则化，用于模型训练，使得权重矩阵稀疏。
 
 具体实现中，L1权重衰减正则化的计算公式如下：

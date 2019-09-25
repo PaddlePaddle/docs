@@ -5,8 +5,6 @@ L2Decay
 
 .. py:attribute::   paddle.fluid.regularizer.L2Decay
 
-``L2Decay`` 是 ``L2DecayRegularizer`` 的别名。
-
 L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模型对训练数据过拟合。
 
 具体实现中，L2权重衰减正则化的计算公式如下：

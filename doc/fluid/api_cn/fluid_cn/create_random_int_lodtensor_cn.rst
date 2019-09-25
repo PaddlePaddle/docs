@@ -6,29 +6,27 @@ create_random_int_lodtensor
 
 .. py:function:: paddle.fluid.create_random_int_lodtensor(recursive_seq_lens, base_shape, place, low, high)
 
+创建一个包含随机整数的LoDTensor。
 
+具体实现方法如下：
 
-该函数创建一个存储多个随机整数的LoD Tensor。
+1. 基于序列长度 :code:`recursive_seq_lens` 和 :code:`base_shape` 产生返回值的维度。返回值的第一维等于序列总长度，其余维度为 :code:`base_shape` 。
 
-该函数是经常在书中出现的案例，所以我们根据新的API： ``create_lod_tensor`` 更改它然后放在LoD Tensor板块里来简化代码。
+2. 创建一个包含随机整数的numpy数组，并作为 :code:`data` 参数传入 :ref:`cn_api_fluid_create_lod_tensor` 接口中创建LoDTensor返回。
 
-该函数实现以下功能：
-
-1. 根据用户输入的length-based ``recursive_seq_lens`` （基于长度的递归序列长）和在 ``basic_shape`` 中的基本元素形状计算LoDTensor的整体形状
-2. 由此形状，建立numpy数组
-3. 使用API： ``create_lod_tensor`` 建立LoDTensor
-
-
-假如我们想用LoD Tensor来承载一词序列，其中每个词由一个整数来表示。现在，我们意图创建一个LoD Tensor来代表两个句子，其中一个句子有两个词，另外一个句子有三个。那么 ``base_shape`` 为[1], 输入的length-based ``recursive_seq_lens`` 是 [[2, 3]]。那么LoDTensor的整体形状应为[5, 1]，并且为两个句子存储5个词。
+假设我们想创建一个LoDTensor表示序列信息，共包含2个序列，维度分别为[2, 30]和[3, 30]，那么序列长度 :code:`recursive_seq_lens` 传入[[2, 3]]，:code:`base_shape` 传入[30]（即除了序列长度以外的维度）。
+最后返回的LoDTensor的维度为[5, 30]，其中第一维5为序列总长度，其余维度为 :code:`base_shape` 。
 
 参数:
-    - **recursive_seq_lens** (list) – 一组列表的列表， 表明了由用户指明的length-based level of detail信息
-    - **base_shape** (list) – LoDTensor所容纳的基本元素的形状
-    - **place** (Place) –  CPU或GPU。 指明返回的新LoD Tensor存储地点
-    - **low** (int) – 随机数下限
-    - **high** (int) – 随机数上限
+    - **recursive_seq_lens** (list[list[int]]) - 基于序列长度的LoD信息。
+    - **base_shape** (list) - 除第一维以外输出结果的维度信息。
+    - **place** (CPUPlace|CUDAPlace) - 表示返回的LoDTensor存储在CPU或GPU place中。
+    - **low** (int) - 随机整数的下限值。
+    - **high** (int) - 随机整数的上限值，必须大于或等于low。
 
-返回: 一个fluid LoDTensor对象，包含张量数据和 ``recursive_seq_lens`` 信息
+返回: 包含随机整数数据信息和序列长度信息的LoDTensor，数值范围在[low, high]之间。
+
+返回类型: LoDTensor
 
 **代码示例**
 
@@ -37,4 +35,5 @@ create_random_int_lodtensor
         import paddle.fluid as fluid
      
         t = fluid.create_random_int_lodtensor(recursive_seq_lens=[[2, 3]],base_shape=[30], place=fluid.CPUPlace(), low=0, high=10)
+        print(t.shape()) # [5, 30]
 
