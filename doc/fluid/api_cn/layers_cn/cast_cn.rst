@@ -9,7 +9,7 @@ cast
 
 参数：
     - **x** (Variable) - 输入的多维Tensor或LoDTensor，支持的数据类型为：bool、float16、float32、float64、uint8、int32、int64。
-    - **dtype** (str|np.dtype|core.VarDesc.VarType) - 输出Tensor的数据类型，例如：int32、np.int32等。
+    - **dtype** (str|np.dtype|core.VarDesc.VarType) - 输出Tensor的数据类型。支持的数据类型为：bool、float16、float32、float64、int8、int32、int64、uint8。
 
 返回：Tensor或LoDTensor，维度与 ``x`` 相同，数据类型为 ``dtype``
 
