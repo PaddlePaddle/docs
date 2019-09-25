@@ -5,14 +5,16 @@ gather_nd
 
 .. py:function:: paddle.fluid.layers.gather_nd(input, index, name=None)
 
-该OP实际上是 :code:`gather` 的高维推广，并且支持多轴同时索引。 :code:`index` 是一个K维度的张量，它可以认为是从 :code:`input` 中取K-1维张量，每一个元素是一个切片：
+该OP是 :code:`gather` 的高维推广，并且支持多轴同时索引。 :code:`index` 是一个K维度的张量，它可以认为是从 :code:`input` 中取K-1维张量，每一个元素是一个切片：
 
 .. math::
     output[(i_0, ..., i_{K-2})] = input[index[(i_0, ..., i_{K-2})]]
 
 显然， :code:`index.shape[-1] <= input.rank` 并且输出张量的维度是 :code:`index.shape[:-1] + input.shape[index.shape[-1]:]` 。 
 
-.. code-block:: python
+示例：
+
+::
 
          给定:
              input = [[[ 0,  1,  2,  3],
@@ -32,7 +34,7 @@ gather_nd
                          [16, 17, 18, 19],
                          [20, 21, 22, 23]]
 
-         - 案列 2:
+         - 案例 2:
 
              index = [[0,2]]
              gather_nd(input, index)
