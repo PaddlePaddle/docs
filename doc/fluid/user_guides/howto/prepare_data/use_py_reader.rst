@@ -27,7 +27,7 @@
 - feed_list为需要输入的数据层变量列表；
 - capacity为PyReader对象的缓存区大小，单位为batch数量；
 - use_double_buffer默认为True，表示使用 :code:`double_buffer_reader` 。建议开启，可提升数据读取速度；
-- iterable默认为True，表示该PyReader对象是可For-Range迭代的。当iterable=True时，PyReader与Program解耦，定义PyReader对象不会改变Program；当iterable=False时，PyReader会在Program中插入数据读取相关的op。
+- iterable默认为True，表示该PyReader对象是可For-Range迭代的。推荐设置iterable=True。当iterable=True时，PyReader与Program解耦，定义PyReader对象不会改变Program；当iterable=False时，PyReader会在Program中插入数据读取相关的op。
 
 需要注意的是：`Program.clone()` (参见 :ref:`cn_api_fluid_Program` ）不能实现PyReader对象的复制。如果您要创建多个不同PyReader对象（例如训练和预测阶段需创建两个不同的PyReader），则需重定义两个PyReader对象。
 若需要共享训练阶段和测试阶段的模型参数，您可以通过 :code:`fluid.unique_name.guard()` 的方式来实现。
