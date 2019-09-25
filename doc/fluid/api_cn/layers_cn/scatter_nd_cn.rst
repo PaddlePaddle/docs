@@ -9,7 +9,7 @@ scatter_nd
 
 参数：
     - **index** (Variable) - 输入的索引张量，数据类型为非负int32或非负int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= len(shape)`
-    - **updates** (Variable) - 输入的更新张量。形状必须是 :code:`index.shape[:-1] + shape[index.shape[-1]:]` 。
+    - **updates** (Variable) - 输入的更新张量。形状必须是 :code:`index.shape[:-1] + shape[index.shape[-1]:]` 。数据类型可以是int32，int64，float32，float64。
     - **shape** (tuple|list) - 要求输出张量的形状。类型是tuple或者list。
     - **name** (string) - 该层的名字，默认值为None，表示会自动命名。
     
