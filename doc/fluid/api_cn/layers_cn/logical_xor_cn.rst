@@ -33,6 +33,7 @@ logical_xor
     x = fluid.layers.data(name='x', shape=[2], dtype='bool')
     y = fluid.layers.data(name='y', shape=[2], dtype='bool')
     res = fluid.layers.logical_xor(x=x, y=y)
+    # The comment lists another available method.
     # res = fluid.layers.fill_constant(shape=[2], dtype='bool', value=0)
     # fluid.layers.logical_xor(x=x, y=y, out=res)
 
