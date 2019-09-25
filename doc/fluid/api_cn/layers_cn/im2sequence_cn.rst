@@ -5,7 +5,7 @@ im2sequence
 
 .. py:function:: paddle.fluid.layers.im2sequence(input, filter_size=1, stride=1, padding=0, input_image_size=None, out_stride=1, name=None)
 
-该OP使用filter扫描输入的Tensor并将输入Tensor转换成序列，返回值的shape={input.batch_size * output_height * output_width, filter_size_height* filter_size_width * input.channels}。返回值的timestep的个数为output_height * output_width， 每个timestep的维度是filter_size_height* filter_size_width * input.channels。其中output_height和output_width由以下式计算:
+该OP使用 `filter` 扫描输入的Tensor并将输入Tensor转换成序列，返回值的 `shape={input.batch_size * output_height * output_width, filter_size_height* filter_size_width * input.channels}` 。返回值的timestep的个数为 `output_height * output_width` ， 每个timestep的维度是 `filter_size_height* filter_size_width * input.channels` 。其中 `output_height` 和 `output_width` 由以下式计算:
 
 
 .. math::
@@ -15,15 +15,15 @@ im2sequence
 其中符号的意义如下所示。
 
 参数:
-  - **input** （Variable）- 类型为float32的4-D Tensor，格式为[N, C, H, W]。公式中input_height和input_width分别代表输入的高和宽。
-  - **filter_size** (int32 | List[int32]) - 滤波器大小。如果filter_size是一个List，它必须包含两个整数[filter_size_height, filter_size_width]。如果filter_size是一个int32, 则滤波器大小是[filter_size, filter_size], 默认值为1。
-  - **stride** (int32 | List[int32]) - 步长大小。如果stride是一个List，它必须包含两个整数[stride_height,stride_width]。如果stride是一个int32, 则步长大小是[stride, stride], 默认值为1。
-  - **padding** (int32 | List[int32]) - 填充大小。如果padding是一个List，它可以包含四个整数[padding_up, padding_left, padding_down, padding_right)，当包含两个整数[padding_height, padding_width]时，可展开为[padding_height, padding_width, padding_height, padding_width]。如果padding是一个int, 可展开为[padding, padding, padding, padding]。默认值为0。
-  - **input_image_size** (Variable, 可选) - 2-D Tensor, 输入图像的实际大小, 它的维度为[batchsize，2]。当该参数不为None时，可用于batch inference。默认值为None.
-  - **out_stride** (int32 | List[int32]) - 输出步长。只有当input_image_size不为None时才有效。如果out_stride是List，它必须包含[out_stride_height, out_stride_width]，如果out_stride是int32, 则可展开为[out_stride, out_stride]，默认值为1。
+  - **input** （Variable）- 类型为float32的4-D Tensor，格式为 `[N, C, H, W]` 。公式中 `input_height` 和 `input_width` 分别代表输入的高和宽。
+  - **filter_size** (int32 | List[int32]) - 滤波器大小。如果 `filter_size` 是一个List，它必须包含两个整数 `[filter_size_height, filter_size_width]` 。如果 `filter_size` 是一个int32, 则滤波器大小是 `[filter_size, filter_size]` , 默认值为1。
+  - **stride** (int32 | List[int32]) - 步长大小。如果stride是一个List，它必须包含两个整数 `[stride_height,stride_width]` 。如果stride是一个int32, 则步长大小是 `[stride, stride]` , 默认值为1。
+  - **padding** (int32 | List[int32]) - 填充大小。如果padding是一个List，它可以包含四个整数 `[padding_up, padding_left, padding_down, padding_right]` ，当包含两个整数 `[padding_height, padding_width]` 时，可展开为 `[padding_height, padding_width, padding_height, padding_width]` 。如果padding是一个int, 可展开为 `[padding, padding, padding, padding]` 。默认值为0。
+  - **input_image_size** (Variable, 可选) - 2-D Tensor, 输入图像的实际大小, 它的维度为 `[batchsize，2]` 。当该参数不为None时，可用于batch inference。默认值为None.
+  - **out_stride** (int32 | List[int32]) - 输出步长。只有当input_image_size不为None时才有效。如果out_stride是List，它必须包含 `[out_stride_height, out_stride_width]` ，如果out_stride是int32, 则可展开为 `[out_stride, out_stride]` ，默认值为1。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 
-返回： 数据类型为float32，shape为{batch_size * output_height * output_width, filter_size_height * filter_size_width * input.channels}的 2-D LodTensor。
+返回： 数据类型为float32, `shape` 为 `{batch_size * output_height * output_width, filter_size_height * filter_size_width * input.channels}` 的 2-D LodTensor。
 
 返回类型: Variable
 
