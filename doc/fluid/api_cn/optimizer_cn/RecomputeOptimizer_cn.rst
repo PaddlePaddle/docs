@@ -155,7 +155,7 @@ RecomputeOptimizer
     - **parameter_list** (list) – 待更新的Variables组成的列表
     - **no_grad_set** (set|None) – 应该被无视的Variables集合
     - **callbacks** (list|None) – 当为某参数附加反向算子时所要运行的callables组成的列表
-    - **checkpoints** (list) – 一批作为checkpoints的Variables
+    - **checkpoints** (list|None) – 一批作为checkpoints的Variables
 
 返回：  附加在当前Program的算子组成的列表
 
