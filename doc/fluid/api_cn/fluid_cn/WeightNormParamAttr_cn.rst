@@ -11,11 +11,11 @@ WeightNormParamAttr
 参数:
   - **dim** (int) - 归一化过程中权重向量(Weight Vector)的维度，默认为None。
   - **name** (None|str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认为None。
-  - **initializer** （Initializer) - 初始化参数的方法，默认为None。
+  - **initializer** （Initializer) - 初始化参数方法类，例如 ``initializer = fluid.initializer.ConstantInitializer(1.0)`` ，Paddle中 ``Initializer`` 类的详细定义参见 :ref:`cn_api_fluid_initializer_Bilinear` ，默认为None。
   - **learning_rate** (float32) - 学习率，优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
-  - **regularizer** (WeightDecayRegularizer) - 正则化方法，默认为None。
+  - **regularizer** (WeightDecayRegularizer) - 正则化方法类，例如 ``regularizer = fluid.regularizer.L2DecayRegularizer(regularization_coeff=0.1)`` 。Paddle中 ``regularizer`` 类的详细定义参见 :ref:`cn_api_fluid_regularizer_L1DecayRegularizer`，默认为None。
   - **trainable** (bool) - 可选，指明参数是否可训练，默认为True。
-  - **gradient_clip** (BaseGradientClipAttr) - 梯度裁剪(Gradient Clipping)的方法，默认为None。
+  - **gradient_clip** - 梯度裁剪(Gradient Clipping)的方法类，例如 ``gradient_clip = fluid.clip.GradientClipByNorm(clip_norm=2.0))`` 。Paddle中 ``GradientClip`` 类的详细定义参见 :ref:`cn_api_fluid_clip_GradientClipByNorm` 。默认为None。
   - **do_model_average** (bool) - 可选，指明参数是否需要模型平均化操作(Model Average)，默认为False。
 
 
