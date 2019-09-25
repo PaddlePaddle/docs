@@ -6,12 +6,18 @@ DistributeTranspiler
 .. py:class:: paddle.fluid.transpiler.DistributeTranspiler (config=None)
 
 
-该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有Pserver和NCCL2两种模式。
-当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即pserver,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
+该类可以把fluid program转变为分布式数据并行计算程序（distributed data-parallelism programs）,可以有PServer和NCCL2两种模式。
+当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即PServer,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
 在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。
 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``ParallelExecutor`` 来启动NCCL2分布式模式。 
 
 
+参数：
+        - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性。
+
+返回：初始化后的DistributeTranspiler实例
+
+返回类型：实例（DistributeTranspiler）
 
 
 **代码示例**
@@ -64,7 +70,7 @@ DistributeTranspiler
 
 .. py:method:: transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
 
-该方法可以运行该transpiler（转译器）。转译输入程序。
+通过此方法，可根据用户配置将单机的program转换为当前节点可用的数据并行的分布式program。
 
 参数:    
     - **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
@@ -75,6 +81,9 @@ DistributeTranspiler
     - **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
      - **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
     - **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
+
+返回：None
+
 
 **代码示例**
 
