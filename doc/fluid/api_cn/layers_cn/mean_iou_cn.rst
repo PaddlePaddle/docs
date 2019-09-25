@@ -19,9 +19,9 @@ mean_iou
     - **num_classes** (int32) - 类别数目。
 
 返回: 
-    - **mean_iou** (Variable): 类型为float32的1-D Tensor，shape为[1]， 均值IOU的计算结果。
-    - **out_wrong** (Variable) : 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中错误的个数。
-    - **out_correct** (Variable) :类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中正确的个数。
+    - **mean_iou** (Variable) - 类型为float32的1-D Tensor，shape为[1]， 均值IOU的计算结果。
+    - **out_wrong** (Variable) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中错误的个数。
+    - **out_correct** (Variable) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中正确的个数。
 
 
 **代码示例**
