@@ -15,7 +15,7 @@ cos
 
 参数:
     - **x** (Variable) - 该OP的输入为多维Tensor，数据类型为float32，float64。
-    - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
+    - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 
 返回：输出为Tensor，与 ``x`` 维度相同、数据类型相同。
