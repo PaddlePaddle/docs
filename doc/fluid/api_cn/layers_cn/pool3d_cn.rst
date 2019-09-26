@@ -5,11 +5,11 @@ pool3d
 
 .. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True, data_format="NCDHW")
 
-该OP使用上述输入参数的池化配置，为三维空间池化操作，根据 ``input`` ，池化类型 ``pool_type`` ，池化核大小 ``pool_size`` ，步长 ``pool_stride`` 和填充 ``pool_padding`` 参数计算输出。
+该OP使用上述输入参数的池化配置，为三维空间池化操作，根据 ``input`` ，池化核大小 ``pool_size`` ，池化类型 ``pool_type`` ，步长 ``pool_stride`` 和填充 ``pool_padding`` 等参数计算输出。
 
 输入 ``input`` 和输出（Out）采用NCDHW或NDHWC格式，其中N是批大小，C是通道数，D，H和W分别是特征的深度，高度和宽度。
 
-参数 ``ksize`` ，``strides`` 含有三个整型元素。 分别代表深度，高度和宽度上的参数。
+参数 ``pool_size`` 和 ``pool_stride`` 含有三个整型元素。 分别代表深度，高度和宽度维度上的参数。
 
 输入 ``input`` 和输出（Out）的形状可能不同。
 
@@ -26,61 +26,61 @@ pool3d
 
 .. math::
 
-    D_{out} &= \frac{(D_{in} - ksize[0] + pad\_depth\_front + pad\_depth\_back)}{strides[0]} + 1\\
-    H_{out} &= \frac{(H_{in} - ksize[1] + pad\_height\_top + pad\_height\_bottom)}{strides[2]} + 1\\
-    W_{out} &= \frac{(W_{in} - ksize[2] + pad\_width\_left + pad\_width\_right)}{strides[2]} + 1
+    D_{out} &= \frac{(D_{in} - pool\_size[0] + pad\_depth\_front + pad\_depth\_back)}{pool\_stride[0]} + 1\\
+    H_{out} &= \frac{(H_{in} - pool\_size[1] + pad\_height\_top + pad\_height\_bottom)}{pool\_stride[1]} + 1\\
+    W_{out} &= \frac{(W_{in} - pool\_size[2] + pad\_width\_left + pad\_width\_right)}{pool\_stride[2]} + 1
 
 当 ``ceil_mode`` = true时，
 
 .. math::
 
-    D_{out} &= \frac{(D_{in} - ksize[0] + pad\_depth\_front + pad\_depth\_back + strides[0] -1)}{strides[0]} + 1\\
-    H_{out} &= \frac{(H_{in} - ksize[1] + pad\_height\_top + pad\_height\_bottom + strides[1] -1)}{strides[1]} + 1\\
-    W_{out} &= \frac{(W_{in} - ksize[2] + pad\_width\_left + pad\_width\_right + strides[2] -1)}{strides[2]} + 1
+    D_{out} &= \frac{(D_{in} - pool\_size[0] + pad\_depth\_front + pad\_depth\_back + pool\_stride[0] -1)}{pool\_stride[0]} + 1\\
+    H_{out} &= \frac{(H_{in} - pool\_size[1] + pad\_height\_top + pad\_height\_bottom + pool\_stride[1] -1)}{pool\_stride[1]} + 1\\
+    W_{out} &= \frac{(W_{in} - pool\_size[2] + pad\_width\_left + pad\_width\_right + pool\_stride[2] -1)}{pool\_stride[2]} + 1
 
 当 ``exclusive`` = false时，
 
 .. math::
-    dstart &= i * strides[0] - pad\_depth\_front \\
-    dend &= dstart + ksize[0] \\
-    hstart &= j * strides[1] - pad\_height\_top \\
-    hend &= hstart + ksize[1] \\
-    wstart &= k * strides[2] - pad\_width\_left \\
-    wend &= wstart + ksize[2] \\
-    Output(i ,j, k) &= \frac{sum(Input[dstart:dend, hstart:hend, wstart:wend])}{ksize[0] * ksize[1] * ksize[2]}
+    dstart &= i * pool\_stride[0] - pad\_depth\_front \\
+    dend &= dstart + pool\_size[0] \\
+    hstart &= j * pool\_stride[1] - pad\_height\_top \\
+    hend &= hstart + pool\_size[1] \\
+    wstart &= k * pool\_stride[2] - pad\_width\_left \\
+    wend &= wstart + pool\_size[2] \\
+    Output(i ,j, k) &= \frac{sum(Input[dstart:dend, hstart:hend, wstart:wend])}{pool\_size[0] * pool\_size[1] * pool\_size[2]}
 
 如果 ``exclusive`` = true:
 
 .. math::
-    dstart &= max(0, i * strides[0] - pad\_depth\_front) \\
-    dend &= min(D, dstart + ksize[0]) \\
-    hstart &= max(0, j * strides[1] - pad\_height\_top) \\
-    hend &= min(H, hstart + ksize[1]) \\
-    wstart &= max(0, k * strides[2] - pad\_width\_left) \\
-    wend & = min(W, wstart + ksize[2]) \\
+    dstart &= max(0, i * pool\_stride[0] - pad\_depth\_front) \\
+    dend &= min(D, dstart + pool\_size[0]) \\
+    hstart &= max(0, j * pool\_stride[1] - pad\_height\_top) \\
+    hend &= min(H, hstart + pool\_size[1]) \\
+    wstart &= max(0, k * pool\_stride[2] - pad\_width\_left) \\
+    wend & = min(W, wstart + pool\_size[2]) \\
     Output(i ,j, k) & = \frac{sum(Input[dstart:dend, hstart:hend, wstart:wend])}{(dend - dstart) * (hend - hstart) * (wend - wstart)}
 
 如果 ``pool_padding`` = "SAME":
 
 .. math::
-    D_{out} = \frac{(D_{in} + strides[0] - 1)}{strides[0]}
+    D_{out} = \frac{(D_{in} + pool\_stride[0] - 1)}{pool\_stride[0]}
 
 .. math::
-    H_{out} = \frac{(H_{in} + strides[1] - 1)}{strides[1]}
+    H_{out} = \frac{(H_{in} + pool\_stride[1] - 1)}{pool\_stride[1]}
 
 .. math::
-    W_{out} = \frac{(W_{in} + strides[2] - 1)}{strides[2]}
+    W_{out} = \frac{(W_{in} + pool\_stride[2] - 1)}{pool\_stride[2]}
 
 如果 ``pool_padding`` = "VALID":
 
 .. math::
-    D_{out} = \frac{(D_{in} - ksize[0])}{strides[0]} + 1
+    D_{out} = \frac{(D_{in} - pool\_size[0])}{pool\_stride[0]} + 1
 
 .. math::
-    H_{out} = \frac{(H_{in} - ksize[1])}{strides[1]} + 1
+    H_{out} = \frac{(H_{in} - pool\_size[1])}{pool\_stride[1]} + 1
 
 .. math::
-    W_{out} = \frac{(W_{in} - ksize[2])}{strides[2]} + 1
+    W_{out} = \frac{(W_{in} - pool\_size[2])}{pool\_stride[2]} + 1
 
 
 参数：
@@ -92,7 +92,7 @@ pool3d
     - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = True，已设置的 ``pool_size`` 和 ``pool_padding`` 会被忽略， ``pool_size`` 将被设置为 :math:`[D_{in}, H_{in}, W_{in}]` ， ``pool_padding`` 将被设置为0。默认值：False。
     - **use_cudnn** （bool）- 是否使用cudnn内核。只有已安装cudnn库时才有效。默认值:True。
     - **ceil_mode** （bool）- 是否用ceil函数计算输出的深度、高度和宽度。计算细节可参考上述 ``ceil_mode`` = true或  ``ceil_mode`` = false 时的计算公式。默认值：False。
-    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值：None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
     - **exclusive** (bool) - 是否在平均池化模式忽略填充值。计算细节可参考上述 ``exclusive`` = true或  ``exclusive`` = false 时的计算公式。默认值：True。
     - **data_format** (str) - 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NDCHW"。
 

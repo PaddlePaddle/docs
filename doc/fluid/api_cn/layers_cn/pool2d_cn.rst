@@ -5,11 +5,11 @@ pool2d
 
 .. py:function:: paddle.fluid.layers.pool2d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True, data_format="NCHW")
 
-该OP使用上述输入参数的池化配置，为二维空间池化操作，根据 ``input`` ，池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` , 步长 ``pool_stride`` ，填充 ``pool_padding`` 这些参数得到输出。
+该OP使用上述输入参数的池化配置，为二维空间池化操作，根据 ``input`` ，池化核大小 ``pool_size`` ，池化类型 ``pool_type`` ，步长 ``pool_stride`` ，填充 ``pool_padding`` 等参数得到输出。
 
 输入 ``input`` 和输出（out）采用NCHW或NHWC格式，N为批大小，C是通道数，H是特征高度，W是特征宽度。
 
-参数 ``ksize`` 和 ``strides`` 含有两个整型元素。分别表示高度和宽度上的参数。
+参数 ``pool_size`` 和 ``pool_stride`` 含有两个整型元素，分别表示高度和宽度维度上的参数。
 
 输入 ``input`` 和输出（out）的形状可能不同。
 
@@ -25,52 +25,52 @@ pool2d
 如果 ``ceil_mode`` = false：
 
 .. math::
-    H_{out} = \frac{(H_{in} - ksize[0] + pad\_height\_top + pad\_height\_bottom)}{strides[0]} + 1
+    H_{out} = \frac{(H_{in} - pool\_size[0] + pad\_height\_top + pad\_height\_bottom)}{pool\_stride[0]} + 1
 
 .. math::
-    W_{out} = \frac{(W_{in} - ksize[1] + pad\_width\_left + pad\_width\_right)}{strides[1]} + 1
+    W_{out} = \frac{(W_{in} - pool\_size[1] + pad\_width\_left + pad\_width\_right)}{pool\_stride[1]} + 1
 
 如果 ``ceil_mode`` = true：
 
 .. math::
-    H_{out} = \frac{(H_{in} - ksize[0] + pad\_height\_top + pad\_height\_bottom + strides[0] - 1)}{strides[0]} + 1
+    H_{out} = \frac{(H_{in} - pool\_size[0] + pad\_height\_top + pad\_height\_bottom + pool\_stride[0] - 1)}{pool\_stride[0]} + 1
 
 .. math::
-    W_{out} = \frac{(W_{in} - ksize[1] + pad\_width\_left + pad\_width\_right + strides[1] - 1)}{strides[1]} + 1
+    W_{out} = \frac{(W_{in} - pool\_size[1] + pad\_width\_left + pad\_width\_right + pool\_stride[1] - 1)}{pool\_stride[1]} + 1
 
 如果 ``exclusive`` = false:
 
 .. math::
-    hstart &= i * strides[0] - pad\_height\_top \\
-    hend   &= hstart + ksize[0] \\
-    wstart &= j * strides[1] - pad\_width\_left \\
-    wend   &= wstart + ksize[1] \\
-    Output(i ,j) &= \frac{sum(Input[hstart:hend, wstart:wend])}{ksize[0] * ksize[1]}
+    hstart &= i * pool\_stride[0] - pad\_height\_top \\
+    hend   &= hstart + pool\_size[0] \\
+    wstart &= j * pool\_stride[1] - pad\_width\_left \\
+    wend   &= wstart + pool\_size[1] \\
+    Output(i ,j) &= \frac{sum(Input[hstart:hend, wstart:wend])}{pool\_size[0] * pool\_size[1]}
 
 如果 ``exclusive`` = true:
 
 .. math::
-    hstart &= max(0, i * strides[0] - pad\_height\_top) \\
-    hend &= min(H, hstart + ksize[0]) \\
-    wstart &= max(0, j * strides[1] - pad\_width\_left) \\
-    wend & = min(W, wstart + ksize[1]) \\
+    hstart &= max(0, i * pool\_stride[0] - pad\_height\_top) \\
+    hend &= min(H, hstart + pool\_size[0]) \\
+    wstart &= max(0, j * pool\_stride[1] - pad\_width\_left) \\
+    wend & = min(W, wstart + pool\_size[1]) \\
     Output(i ,j) & = \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
 
 如果 ``pool_padding`` = "SAME":
 
 .. math::
-    H_{out} = \frac{(H_{in} + strides[0] - 1)}{strides[0]}
+    H_{out} = \frac{(H_{in} + pool\_stride[0] - 1)}{pool\_stride[0]}
 
 .. math::
-    W_{out} = \frac{(W_{in} + strides[1] - 1)}{strides[1]}
+    W_{out} = \frac{(W_{in} + pool\_stride[1] - 1)}{pool\_stride[1]}
 
 如果 ``pool_padding`` = "VALID":
 
 .. math::
-    H_{out} = \frac{(H_{in} - ksize[0])}{strides[0]} + 1
+    H_{out} = \frac{(H_{in} - pool\_size[0])}{pool\_stride[0]} + 1
 
 .. math::
-    W_{out} = \frac{(W_{in} - ksize[1])}{strides[1]} + 1
+    W_{out} = \frac{(W_{in} - pool\_size[1])}{pool\_stride[1]} + 1
 
 参数：
     - **input** (Variable) - 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float32或float64。
@@ -81,7 +81,7 @@ pool2d
     - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = True， 已设置的 ``pool_size`` 和 ``pool_padding`` 会被忽略， ``pool_size`` 将被设置为 :math:`[H_{in}, W_{in}]` ， ``pool_padding`` 将被设置为0。默认值：False。
     - **use_cudnn** （bool）- 是否使用cudnn内核。只有已安装cudnn库时才有效。默认值：True。
     - **ceil_mode** （bool）- 是否用ceil函数计算输出高度和宽度。计算细节可参考上述 ``ceil_mode`` = true或  ``ceil_mode`` = false 时的计算公式。默认值：False。
-    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值：None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
     - **exclusive** (bool) - 是否在平均池化模式忽略填充值。计算细节可参考上述 ``exclusive`` = true或 ``exclusive`` = false 时的计算公式。默认值：True。
     - **data_format** (str) - 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
