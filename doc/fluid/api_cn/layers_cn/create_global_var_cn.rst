@@ -11,9 +11,9 @@ create_global_var
     - **shape** (list[int])- 指定输出Tensor的形状，它可以是一个整数列表。
     - **value** (float)- 变量的值，填充新创建的变量。
     - **dtype** (str|numpy.dtype，可选)– 初始化数据类型。可设置的字符串值有："float32"，"float64"，"int32"，"int64"。
-    - **persistable** (bool)- 是否为永久变量，默认：False。
-    - **force_cpu** (bool)- 是否将该变量压入CPU，默认值为 False。
-    - **name** (str|None)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **persistable** (bool，可选)- 是否为永久变量，默认：False。
+    - **force_cpu** (bool，可选)- 是否将该变量压入CPU，默认值为 False。
+    - **name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：创建的Tensor变量
 
