@@ -5,7 +5,8 @@ map_readers
 
 .. py:function::   paddle.fluid.io.map_readers(func, *readers)
 
-该接口将创建一个数据读取器，其中 `func` 函数的输出将作为新数据读取器的输出，输入的 `readers` 的输出将作为函数 `func` 的输入参数。
+该接口将创建一个数据读取器，其中 `func` 函数的输出将直接作为新数据读取器的输出，输入 `readers` 的输出将作为函数 `func` 的输入参数。
+例如：
 
 参数：
     - **func**  - 读取数据并返回数据项的函数， `func` 的输出将直接作为新创建的数据读取器的输出。 
@@ -23,11 +24,11 @@ map_readers
    def func(x):
        return d[x]
 
-   def read():
+   def reader():
        yield "h"
        yield "i"
 
-   r = paddle.reader.map_readers(func, read)
+   map_reader_result = paddle.reader.map_readers(func, reader)
 
 
 
