@@ -39,7 +39,7 @@ space_to_depth
 参数:
   - **x** (Variable) – 输入，4维Tensor或LoD Tensor
   - **blocksize** (int) – 在每个特征图上选择元素时采用的块大小，应该 >= 2
-  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：输出，4维Tensor或LoD Tensor
 
