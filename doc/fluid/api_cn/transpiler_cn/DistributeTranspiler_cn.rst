@@ -79,7 +79,7 @@ DistributeTranspiler
     - **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
     - **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
     - **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
-    - **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。Pserver模式不使用该参数
+    - **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。PServer模型下，当用户需要使用增量训练时，必须要指定该参数。
 
 返回：None
 
