@@ -56,7 +56,7 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
 
 参数：
     - **cond** (Variable)- cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示N个输入数据的对应的执行条件。数据类型为bool。
-    - **Name** (str，可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` , 默认值为None。
+    - **Name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 **返回：**    
 
