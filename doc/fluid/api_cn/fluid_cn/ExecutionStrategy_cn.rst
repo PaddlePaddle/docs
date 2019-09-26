@@ -5,7 +5,7 @@ ExecutionStrategy
 
 .. py:class:: paddle.fluid.ExecutionStrategy
 
-``ExecutionStrategy`` 通过配置 ``ExecutionStrategy``的成员变量， 允许用户更加精准地控制program在 ``Executor`` 中的运行方式。
+``ExecutionStrategy`` 通过配置 ``ExecutionStrategy`` 的成员变量， 允许用户更加精准地控制program在 ``Executor`` 中的运行方式。
 
 返回：初始化后的ExecutionStrategy的实例
 
