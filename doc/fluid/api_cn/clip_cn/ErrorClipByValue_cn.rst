@@ -8,15 +8,18 @@ ErrorClipByValue
 将张量值的范围压缩到 [min, max]。
 
 
-给定一个张量 ``t`` ，该操作将它的值压缩到 ``min`` 和 ``max``  之间
+给定一个张量 ``t`` （该张量传入方式见代码示例），该操作将它的值压缩到 ``min`` 和 ``max``  之间
 
 - 任何小于min（最小值）的值都被设置为min
 
 - 任何大于max（最大值）的值都被设置为max
 
+
 参数:
  - **max** (foat) - 要修剪的最大值。
  - **min** (float) - 要修剪的最小值。如果用户没有设置，将被框架默认设置为 ``-max`` 
+
+返回：无
   
 **代码示例**
  
@@ -39,10 +42,5 @@ ErrorClipByValue
      prog_clip.block(0).var(hidden1.name)._set_error_clip(
         fluid.clip.ErrorClipByValue(
             max=CLIP_MAX, min=CLIP_MIN)）
-
-
-
-
-
 
 
