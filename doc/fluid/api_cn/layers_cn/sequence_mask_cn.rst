@@ -34,9 +34,9 @@ sequence_mask
   - **x** (Variable) - 输入张量，其元素是小于等于 ``maxlen`` 的整数，Tensor或LoDTensor。
   - **maxlen** (int，可选) - 序列的最大长度。默认为空，此时 ``maxlen`` 取 ``x`` 中所有元素的最大值。
   - **dtype** (np.dtype|core.VarDesc.VarType|str，可选) - 输出的数据类型，默认为 ``int64`` 。
-  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回： mask张量，LoDTensor。
+返回： mask张量，Tensor或LoDTensor。
 
 返回类型： Variable
 
