@@ -9,7 +9,7 @@ RecomputeOptimizer
 
 在前向运算过程中，反向运算会用到的Variable都会保存在内存中，当模型深度很深时，这会占用大量的内存。
 
-重计算将深度学习网络切分为k个部分（segments）。在每个segment，运行反向运算时会首先运算前向计算。这对节省内存非常有益。
+重计算将深度学习网络切分为k个部分（segments）。在每个segment，运行反向运算时会首先运算前向计算。在重计算模式下，前向计算除了checkpoint和一些必须存储在内存中的特殊Variable，其他临时Variable都会被释放，这对节省内存非常有益。
 
 把一个深度学习网络切分为k个segments的Variables被称为checkpoints。用户在使用运行RecomputeOptimizer之前需要先设置checkpoints。
 
@@ -61,7 +61,7 @@ RecomputeOptimizer
 参数：
     - **params_grads** (list)- 用于优化的(param, grad)对组成的列表
 
-返回：  附加在当前Program的算子组成的列表
+返回：  附加在当前Program的优化算子组成的列表
 
 返回类型：  list
 
@@ -157,7 +157,7 @@ RecomputeOptimizer
     - **callbacks** (list|None) – 当为某参数附加反向算子时所要运行的callables组成的列表
     - **checkpoints** (list|None) – 一批作为checkpoints的Variables
 
-返回：  附加在当前Program的算子组成的列表
+返回：  由(param, grad)对构成的列表，其中param是参数，grad是其对应的梯度
 
 返回类型：  list
 
