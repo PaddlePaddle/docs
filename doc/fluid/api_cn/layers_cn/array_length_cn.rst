@@ -5,21 +5,14 @@ array_length
 
 .. py:function:: paddle.fluid.layers.array_length(array)
 
-**得到输入LoDTensorArray的长度**
-
-此功能用于查找输入数组LOD_TENSOR_ARRAY的长度。
-
-相关API:
-    - :ref:`cn_api_fluid_layers_array_read`
-    - :ref:`cn_api_fluid_layers_array_write`
-    - :ref:`cn_api_fluid_layers_While`
+该OP用于获取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 的长度。可以与 :ref:`cn_api_fluid_layers_array_read` 、 :ref:`cn_api_fluid_layers_array_write` 、 :ref:`cn_api_fluid_layers_While` OP结合使用，实现LoDTensorArray的遍历与读写。
 
 参数：
-    - **array** (LOD_TENSOR_ARRAY)-输入数组，用来计算数组长度
+    - **array** (LoDTensorArray) - 输入的数组LoDTensorArray
 
-返回：输入数组LoDTensorArray的长度
+返回：shape为[1]的1-D Tensor, 表示数组LoDTensorArray的长度，数据类型为int64
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **代码示例**:
 
