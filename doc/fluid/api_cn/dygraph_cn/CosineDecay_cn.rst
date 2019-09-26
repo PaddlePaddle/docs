@@ -11,7 +11,7 @@ CosineDecay
 
 .. math::
 
-    decayed\_lr = learning\_rate * 0.5 * (math.cos * (global_step * \frac{math.pi}{step_each_epoch} ) + 1)
+    decayed\_lr = learning\_rate * 0.5 * (math.cos * (global\_step * \frac{math.pi}{step\_each\_epoch} ) + 1)
 
 
 参数：
