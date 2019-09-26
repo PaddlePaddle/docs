@@ -52,7 +52,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
         data = fluid.layers.data(name='X', shape=[1], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
-        adam = fluid.optimizer.Adamax(learning_rate=0.2)
+        adam = fluid.optimizer.AdamaxOptimizer(learning_rate=0.2)
         adam.minimize(loss)
      
     # Run the startup program once and only once.
