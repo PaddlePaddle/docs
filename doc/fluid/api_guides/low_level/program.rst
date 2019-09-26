@@ -23,6 +23,7 @@ Program
 
 
 
+.. _api_guide_Block:
 
 =========
 Block
@@ -56,6 +57,7 @@ Operator
 
 更多内容可参考阅读 `Fluid设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_
 
+.. _api_guide_Variable:
 
 =========
 Variable
@@ -70,6 +72,50 @@ Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多�
 =========
 Name
 =========
+
+Fluid 中部分Operator里包含 :code:`name` 参数，如 :ref:`cn_api_fluid_layers_fc` 。该参数常用于标记此类OP对应的网络层名称，便于开发人员在打印调试信息时，快速定位各个网络层输出数据的来源位置。若在OP中不指定 :code:`name` 参数，其默认值为None，则在打印该网络层时，Fluid 将自动生成形如 ``OP名_数字.tmp_数字`` 的唯一标识对网络层进行命名，其中的数字会自动递增，以区分同名OP下的不同网络层；若指定了 :code:`name` 参数，则以 ``name值_数字.tmp_数字`` 作为唯一标识进行网络层命名。
+
+此外，在 :ref:`cn_api_fluid_ParamAttr` 中，可通过指定 :code:`name` 参数实现多个网络层的权重共享。
+
+示例代码如下：
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=1)
+    emb = fluid.layers.embedding(input=x, size=(128, 100))
+
+    # default name
+    fc_none = fluid.layers.fc(input=emb, size=1)
+    fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
+
+    fc_none1 = fluid.layers.fc(input=emb, size=1)
+    fc_none1 = fluid.layers.Print(fc_none1)  # Tensor[fc_1.tmp_1]
+
+    # name in ParamAttr
+    w_param_attrs = fluid.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
+    print(w_param_attrs.name)  # fc_weight
+
+    # name == 'my_fc'
+    my_fc1 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs)
+    my_fc1 = fluid.layers.Print(my_fc1)  # Tensor[my_fc.tmp_1]
+
+    my_fc2 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs)
+    my_fc2 = fluid.layers.Print(my_fc2)  # Tensor[my_fc.tmp_3]
+
+    place = fluid.CPUPlace()
+    x_data = np.array([[1],[2],[3]]).astype("int64")
+    x_lodTensor = fluid.create_lod_tensor(x_data, [[1, 2]], place)
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    ret = exe.run(feed={'x': x_lodTensor}, fetch_list=[fc_none, fc_none1, my_fc1, my_fc2], return_numpy=False)
+
+
+在上述示例中，总共包含了四个全连接层。其中 ``fc_none`` 和 ``fc_none1`` 均未指定 :code:`name` 参数，则以 ``OP名_数字.tmp_数字`` 分别进行命名：``fc_0.tmp_1`` 和 ``fc_1.tmp_1`` ，其中 ``fc_1``  和 ``fc_0`` 中的数字自动递增以区分两个全连接层；另外两个全连接层 ``my_fc1`` 和 ``my_fc2`` 均指定了 :code:`name` 参数，但取值相同，Fluid 会在网络层名称后按照代码顺序以后缀 ``tmp_数字`` 进行区分，即网络层名称分别为 ``my_fc.tmp_1`` 和 ``my_fc.tmp_3`` 。
+
+此外，上述示例中，``my_fc1`` 和 ``my_fc2`` 两个全连接层通过构建 ``ParamAttr`` ，并指定 :code:`name` 参数，实现了网络层权重参数的共享机制。
 
 .. _api_guide_ParamAttr:
 
