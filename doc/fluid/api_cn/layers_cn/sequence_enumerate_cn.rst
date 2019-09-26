@@ -25,12 +25,12 @@ sequence_enumerate
             out.dims = [5, 2]
 
 参数：
-        - **input** （Variable）- 输入序列，形状为 ``[d_1, 1]`` 的LodTensor。
+        - **input** （Variable）- 输入序列，形状为 ``[d_1, 1]`` ，lod level为1的LodTensor。数据类型支持int32，int64，float32或float64。
         - **win_size** （int）- 子序列窗口大小。
         - **pad_value** （int，可选）- 填充值，默认为0。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：      枚举序列，LoDTensor。
+返回：      枚举序列，形状为 ``[d_1, win_size]`` ，lod_level为1的LoDTensor。数据类型与输入 ``input`` 一致。
 
 返回类型：   Variable
 
