@@ -55,12 +55,12 @@ sequence_pad
 
 
 参数：
-    - **x** (Vairable) - 输入变量，LoDTensor。
-    - **pad_value** (Variable) - 填充值，可以是标量或tensor，维度和序列的时间步长相等。如果是标量,则自动广播到时间步长的维度。
+    - **x** (Vairable) - 输入，维度为 ``[M, K]`` 的LoDTensor，仅支持lod_level为1, 数据的batch_size为lod大小减1。数据类型为int32，int64，float32或float64。
+    - **pad_value** (Variable) - 填充值，可以是标量或Tensor，维度和序列的时间步长相等。如果是标量,则自动广播到时间步长的维度。
     - **maxlen** (int，可选) - 填充序列的长度。默认为None，此时以序列中最长序列的长度为准，其他所有序列填充至该长度。当是某个特定的正整数，最大长度必须大于最长初始序列的长度。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：元素为两个LoDTensor的Python tuple，元素分别为填充后的变量 ``Out`` ，序列长度信息 ``Length`` 。
+返回：元素为两个LoDTensor的Python tuple。第一个元素为填充后的变量 ``Out`` ，形状为 ``[batch_size, maxlen, K]`` ，lod level为0的LoDTensor，数据类型与输入 ``x`` 相同。第二个元素为序列长度信息 ``Length`` ，lod level为0，长度为2的一维的LoDTensor，数据类型为int64。
 
 返回类型：tuple
 
