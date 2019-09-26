@@ -5,37 +5,21 @@ increment
 
 .. py:function:: paddle.fluid.layers.increment(x, value=1.0, in_place=True)
 
-
-该函数为输入 ``x`` 增加 ``value`` 大小, ``value`` 即函数中待传入的参数。该函数默认直接在原变量 ``x`` 上进行运算。
-
-.. note::
-    ``x`` 中元素个数必须为1
+使输入Tensor ``x`` 的数据累加 ``value`` , 该OP通常用于循环次数的计数。
 
 参数:
-    - **x** (Variable|list) – 含有输入值的张量(tensor)
-    - **value** (float) – 需要增加在 ``x`` 变量上的值
-    - **in_place** (bool) – 判断是否在x变量本身执行操作，True原地执行，False时，返回增加后的副本
+    - **x** (Variable) – 元素个数为1的Tensor，数据类型必须为float32，float64，int32，int64。
+    - **value** (float，可选) – 需要增加的值，默认为1.0。
+    - **in_place** (bool，可选) – 输出Tensor是否和输入Tensor ``x`` 复用同一块内存，默认为True。
 
-返回： 每个元素增加后的对象
+返回：累加计算后的Tensor，形状、数据类型和 ``x`` 一致。
 
-返回类型：变量(variable)
+返回类型：Variable
 
 **代码示例**
 
 ..  code-block:: python
 
     import paddle.fluid as fluid
-    data = fluid.layers.data(name='data', shape=[1], dtype='float32',
-                         append_batch_size=False)
-    data = fluid.layers.increment(x=data, value=3.0, in_place=True)
-
-
-
-
-
-
-
-
-
-
-
+    counter = fluid.layers.zeros(shape=[1], dtype='float32') # [0.]
+    fluid.layers.increment(counter) # [1.]
