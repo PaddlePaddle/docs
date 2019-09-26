@@ -5,18 +5,16 @@ array_write
 
 .. py:function:: paddle.fluid.layers.array_write(x, i, array=None)
 
-
-该函数将给定的输入变量（即 ``x`` ）写入一个作为输出的 ``LOD_TENSOR_ARRAY`` 变量的某一指定位置中，
-这一位置由数组下标(即 ``i`` )指明。 如果 ``LOD_TENSOR_ARRAY`` (即 ``array`` )未指定（即为None值）， 一个新的 ``LOD_TENSOR_ARRAY`` 将会被创建并作为结果返回。
+该OP将输入的变量 ``x`` 写入到数组 :ref:`LoDTensorArray` ``array`` 的第i个位置，并返回修改后的LoDTensorArray，如果 ``array`` 为None，则创建一个新的LoDTensorArray。
 
 参数:
-    - **x** (Variable|list) – 待从中读取数据的输入张量(tensor)
-    - **i** (Variable|list) – 输出结果 ``LOD_TENSOR_ARRAY`` 的下标, 该下标指向输入张量 ``x`` 写入输出数组的位置
-    - **array** (Variable|list) – 会被输入张量 ``x`` 写入的输出结果 ``LOD_TENSOR_ARRAY`` 。如果该项值为None， 一个新的 ``LOD_TENSOR_ARRAY`` 将会被创建并作为结果返回
+    - **x** (Variable) – 待写入的数据，多维Tensor或LoDTensor
+    - **i** (Variable) – shape为[1]的1-D Tensor，表示写入到输出数组LoDTensorArray的位置，数据类型为int64
+    - **array** (Variable，可选) – 指定写入 ``x`` 的数组LoDTensorArray。默认值为None, 此时将创建新的LoDTensorArray并作为结果返回
 
-返回: 输入张量 ``x`` 所写入的输出结果 ``LOD_TENSOR_ARRAY``
+返回: 写入输入 ``x`` 之后的LoDTensorArray
 
-返回类型: 变量（Variable）
+返回类型: Variable
 
 **代码示例**
 
