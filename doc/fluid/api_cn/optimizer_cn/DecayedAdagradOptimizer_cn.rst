@@ -40,7 +40,7 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
     x = layers.data( name='x', shape=[-1, 10], dtype='float32' )
     trans = layers.fc( x, 100 )
     cost = layers.reduce_mean( trans )
-    optimizer = fluid.optimizer.DecayedAdagrad(learning_rate=0.2)
+    optimizer = fluid.optimizer.DecayedAdagradOptimizer(learning_rate=0.2)
     optimizer.minimize(cost)
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
