@@ -13,8 +13,8 @@ SGDOptimizer
 
 参数:
   - **learning_rate** (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
-  - **regularization** - 一个正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
-  - **name** - 可选的名称前缀。
+  - **regularization** - 一个正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 。
+  - **name** (str|None) - 可选的名称前缀。
   
   
 **代码示例**
@@ -196,9 +196,9 @@ SGDOptimizer
     - **no_grad_set** (set|None) – 应该被无视的Variables集合
     - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
 
-返回： (optimize_ops, params_grads)，分别为附加的算子列表；一个由(param, grad) 变量对组成的列表，用于优化
+返回： 附加的算子列表和由(param, grad) 变量对组成的元组，用于优化。
 
-返回类型：   tuple
+返回类型：tuple(optimize_ops, params_grads)
 
 
 

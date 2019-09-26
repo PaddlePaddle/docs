@@ -16,11 +16,11 @@ MomentumOptimizer
     & else:\\&\quad   param = param - learning\_rate * velocity
 
 参数：
-    - **learning_rate** (float|Variable) - 学习率，用于参数更新。作为数据参数，可以是浮点型值或含有一个浮点型值的变量
-    - **momentum** (float) - 动量因子
-    - **use_nesterov** (bool) - 赋能牛顿动量
-    - **regularization** - 正则化函数，比如fluid.regularizer.L2DecayRegularizer
-    - **name** - 名称前缀（可选）
+    - **learning_rate** (float|Variable) - 学习率，用于参数更新。作为数据参数，可以是浮点型值或含有一个浮点型值的变量。
+    - **momentum** (float) - 动量因子。
+    - **use_nesterov** (bool) - 赋能牛顿动量，默认值False。
+    - **regularization** - 正则化函数，，例如 :code:`fluid.regularizer.L2DecayRegularizer`，默认值None。
+    - **name** (str|None) - 名称前缀（可选）。
 
 **代码示例**：
 
@@ -194,15 +194,15 @@ MomentumOptimizer
 该算子相当于backward()和apply_gradients()功能的合体。
 
 参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
+    - **loss** (Variable) – 用于优化过程的损失值变量。
+    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program。
+    - **parameter_list** (list) – 待更新的Variables组成的列表。
+    - **no_grad_set** (set|None) – 应该被无视的Variables集合。
+    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略。
 
-返回： (optimize_ops, params_grads)，分别为附加的算子列表；一个由(param, grad) 变量对组成的列表，用于优化
+返回： 附加的算子列表和由(param, grad) 变量对组成的元组，用于优化。
 
-返回类型：   tuple
+返回类型：tuple(optimize_ops, params_grads)
 
 
 

@@ -29,12 +29,12 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
 
 
 参数:
-  - **learning_rate** (float|Variable)-全局学习率。
-  - **l1** (float) - L1 regularization strength.
-  - **l2** (float) - L2 regularization strength.
-  - **lr_power** (float) - 学习率降低指数
-  - **regularization** - 正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 
-  - **name** — 可选的名称前缀
+  - **learning_rate** (float|Variable)- 全局学习率。
+  - **l1** (float) - L1 regularization strength，默认值0.0。
+  - **l2** (float) - L2 regularization strength，默认值0.0。
+  - **lr_power** (float) - 学习率降低指数，默认值-0.5。
+  - **regularization** - 正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 。
+  - **name** (str|None) — 可选的名称前缀。
 
 抛出异常：
   - ``ValueError`` - 如果 ``learning_rate`` , ``rho`` ,  ``epsilon`` , ``momentum``  为 None.
@@ -69,8 +69,7 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
             exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 
 
-.. note::
-     目前, FtrlOptimizer 不支持 sparse parameter optimization
+**注意：目前, FtrlOptimizer 不支持 sparse parameter optimization。**
 
 
 
@@ -223,8 +222,8 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
     - **no_grad_set** (set|None) – 应该被无视的Variables集合
     - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
 
-返回： (optimize_ops, params_grads)，分别为附加的算子列表；一个由(param, grad) 变量对组成的列表，用于优化
+返回： 附加的算子列表和由(param, grad) 变量对组成的元组，用于优化。
 
-返回类型：   tuple
+返回类型：tuple(optimize_ops, params_grads)
 
 

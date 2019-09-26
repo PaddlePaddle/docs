@@ -30,12 +30,12 @@ RMSPropOptimizer
       
 参数：
     - **learning_rate** （float） - 全局学习率。
-    - **rho** （float） - rho是等式中的 :math:`rho` ，默认设置为0.95。
-    - **epsilon** （float） - 等式中的epsilon是平滑项，避免被零除，默认设置为1e-6。
-    - **momentum** （float） - 方程中的β是动量项，默认设置为0.0。
+    - **rho** （float） - rho是等式中的 :math:`rho` ，默认值0.95。
+    - **epsilon** （float） - 等式中的epsilon是平滑项，避免被零除，默认值1e-6。
+    - **momentum** （float） - 方程中的β是动量项，默认值0.0。
     - **centered** （bool） - 如果为True，则通过梯度的估计方差,对梯度进行归一化；如果False，则由未centered的第二个moment归一化。将此设置为True有助于模型训练，但会消耗额外计算和内存资源。默认为False。
     - **regularization**  - 正则器项，如 ``fluid.regularizer.L2DecayRegularizer`` 。
-    - **name**  - 可选的名称前缀。
+    - **name** (str|None) - 可选的名称前缀。
     
 抛出异常:
     - ``ValueError`` -如果 ``learning_rate`` ， ``rho`` ， ``epsilon`` ， ``momentum`` 为None。
@@ -212,18 +212,15 @@ RMSPropOptimizer
 该算子相当于backward()和apply_gradients()功能的合体。
 
 参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
+    - **loss** (Variable) – 用于优化过程的损失值变量。
+    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program。
+    - **parameter_list** (list) – 待更新的Variables组成的列表。
+    - **no_grad_set** (set|None) – 应该被无视的Variables集合。
+    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略。
 
-返回： (optimize_ops, params_grads)，分别为附加的算子列表；一个由(param, grad) 变量对组成的列表，用于优化
+返回： 附加的算子列表和由(param, grad) 变量对组成的元组，用于优化。
 
-返回类型：   tuple
-
-
-
+返回类型：tuple(optimize_ops, params_grads)
 
 
 
