@@ -17,7 +17,7 @@ py_reader
   - **shapes** (list|tuple) – 一个列表或元组，shapes[i]是代表第i个数据shape，因此shape[i]也是元组或列表。
   - **dtypes** (list|tuple) – 一个string的列表或元组。为 ``shapes`` 对应元素的数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。
   - **lod_levels** (list|tuple) – lod_level的整型列表或元组
-  - **name** (basestring) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
   - **use_double_buffer** (bool) – 是否使用双缓冲区，双缓冲区是为了预读下一个batch的数据、异步CPU -> GPU拷贝。默认值为True。
 
 返回：reader，从reader中可以获取feed的数据，其dtype和feed的数据dtype相同。
