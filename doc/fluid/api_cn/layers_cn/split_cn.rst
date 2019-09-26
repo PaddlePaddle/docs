@@ -8,10 +8,10 @@ split
 将输入Tensor分割成多个子Tensor。
 
 参数：
-    - **input** (Variable) - 输入变量，为数据类型为int32，int64，float32，float64的多维Tensor或者LoDTensor。
+    - **input** (Variable) - 输入变量，为数据类型为float32，float64，int32，int64的多维Tensor或者LoDTensor。
     - **num_or_sections** (int|list) - 整数或元素为整数的列表。如果\ ``num_or_sections``\ 是一个整数，则表示Tensor平均划分为的相同大小子Tensor的数量。如果\ ``num_or_sections``\ 是一个整数列表，则列表的长度代表子Tensor的数量，列表中的整数依次代表子Tensor的需要分割成的维度的大小。列表长度不能超过输入Tensor待分割的维度的大小。
     - **dim** (int) - 需要分割的维度。如果dim < 0,划分的维度为rank(input) + dim，数据类型为int32，int64。
-    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：分割后的Tensor列表。
 
