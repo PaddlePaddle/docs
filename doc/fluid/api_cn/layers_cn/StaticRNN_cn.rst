@@ -5,60 +5,103 @@ StaticRNN
 
 .. py:class:: paddle.fluid.layers.StaticRNN(name=None)
 
-StaticRNN可以处理一批序列数据。每个样本序列的长度必须相等。StaticRNN将拥有自己的参数，如输入、输出和存储器等。请注意，输入的第一个维度表示序列长度，且输入的所有序列长度必须相同。并且输入和输出的每个轴的含义是相同的。
+该OP用来处理一批序列数据，其中每个样本序列的长度必须相等。StaticRNN将序列按照时间步长展开，用户需要定义每个时间步中的处理逻辑。
 
-**代码示例**
-
-.. code-block:: python
-
-        import paddle.fluid as fluid
-        import paddle.fluid.layers as layers
-        
-        vocab_size, hidden_size=10000, 200
-        x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
-        x_emb = layers.embedding(
-                input=x,
-                size=[vocab_size, hidden_size],
-                dtype='float32',
-                is_sparse=False)
-        x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
-      
-        rnn = fluid.layers.StaticRNN()
-        with rnn.step():
-           word = rnn.step_input(x_emb)
-           prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
-           hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
-           rnn.update_memory(prev, hidden)  # set prev to hidden
-           rnn.step_output(hidden)
-        
-        result = rnn()
-
-StaticRNN将序列展开为时间步长。用户需要定义如何在with步骤中处理每个时间步长。
-
-内存用作在time step之间缓存数据。内存的初始值可以是填充常量值的变量或指定变量。
-
-StaticRNN可以将多个变量标记为其输出。使用rnn()获取输出序列。
-
+参数：
+  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 .. py:method:: step()
 
-用户在该代码块中定义RNN中的operators。
+定义在每个时间步执行的操作。step语句里面定义的OP会被执行sequence_len次(sequence_len是输入序列的长度)。
 
 
 .. py:method:: memory(init=None, shape=None, batch_ref=None, init_value=0.0, init_batch_dim_idx=0, ref_batch_dim_idx=1)
  
 为静态RNN创建一个内存变量。
-如果init不为None，则此变量将初始化内存。 如果init为None，则必须设置shape和batch_ref，并且此函数将初始化init变量。
+如果init不为None，则用init将初始化memory。 如果init为None，则必须设置shape和batch_ref，函数会使用shape和batch_ref创建新的Variable来初始化init。
 
 参数：
-  - **init** (Variable|None) - 初始化过的变量，如果没有设置，则必须提供shape和batch_ref，默认值None
-  - **shape** (list|tuple) - boot memory的形状，注意其不包括batch_size，默认值None
-  - **batch_ref** (Variable|None) - batch引用变量，默认值None
-  - **init_value** (float) - boot memory的初始化值，默认值0.0
-  - **init_batch_dim_idx** (int) - init变量的batch_size轴，默认值0
-  - **ref_batch_dim_idx** (int) - batch_ref变量的batch_size轴
+  - **init** (Variable，可选) - 用来初始化memory的Tensor。如果没有设置，则必须提供shape和batch_ref参数。默认值None。
+  - **shape** (list|tuple) - 当init为None时用来设置memory的维度，注意不包括batch_size。默认值None。
+  - **batch_ref** (Variable，可选) - 当init为None时batch的引用变量，默认值None。
+  - **init_value** (float，可选) - 当init为None时用来设置memory的初始值，默认值0.0。
+  - **init_batch_dim_idx** (int，可选) - init变量的batch_size轴，默认值0。
+  - **ref_batch_dim_idx** (int，可选) - batch_ref变量的batch_size轴，默认值1。
 
-返回：内存变量
+返回：返回创建的memory变量。
+
+返回类型；Variable
+
+
+**代码示例一**
+
+.. code-block:: python
+
+      import paddle.fluid as fluid
+      import paddle.fluid.layers as layers
+
+      vocab_size, hidden_size=10000, 200
+      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
+
+      # 创建处理用的word sequence
+      x_emb = layers.embedding(
+          input=x,
+          size=[vocab_size, hidden_size],
+          dtype='float32',
+          is_sparse=False)
+      # 把batch size变换到第1维。
+      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+
+      rnn = fluid.layers.StaticRNN()
+      with rnn.step():
+          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+          word = rnn.step_input(x_emb)
+          # 创建memory变量作为prev，batch size来自于word变量。
+          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
+          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+          # 用处理完的hidden变量更新prev变量。
+          rnn.update_memory(prev, hidden)
+
+**代码示例二**
+
+.. code-block:: python
+
+      import paddle.fluid as fluid
+      import paddle.fluid.layers as layers
+
+      vocab_size, hidden_size=10000, 200
+      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
+
+      # 创建处理用的word sequence
+      x_emb = layers.embedding(
+          input=x,
+          size=[vocab_size, hidden_size],
+          dtype='float32',
+          is_sparse=False)
+      # 把batch size变换到第1维。
+      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+      boot_memory = fluid.layers.data(name='boot', shape=[hidden_size], dtype='float32', lod_level=1)
+
+      rnn = fluid.layers.StaticRNN()
+      with rnn.step():
+          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+          word = rnn.step_input(x_emb)
+          # 用init初始化memory。
+          prev = rnn.memory(init=boot_memory)
+          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+          # 用处理完的hidden变量更新prev变量。
+          rnn.update_memory(prev, hidden)
+
+.. py:method:: step_input(x)
+
+标记StaticRNN的输入序列。
+
+参数：
+  - **x** (Variable) – 输入序列，x的形状应为[seq_len, ...]。
+
+返回：输入序列中当前时间步的数据。
+
+返回类型：Variable
 
 
 **代码示例**
@@ -70,67 +113,123 @@ StaticRNN可以将多个变量标记为其输出。使用rnn()获取输出序列
 
       vocab_size, hidden_size=10000, 200
       x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
+
+      # 创建处理用的word sequence
       x_emb = layers.embedding(
           input=x,
           size=[vocab_size, hidden_size],
           dtype='float32',
           is_sparse=False)
+      # 把batch size变换到第1维。
       x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
 
       rnn = fluid.layers.StaticRNN()
       with rnn.step():
+          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
           word = rnn.step_input(x_emb)
+          # 创建memory变量作为prev，batch size来自于word变量。
           prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
           hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+          # 用处理完的hidden变量更新prev变量。
           rnn.update_memory(prev, hidden)
-
-.. py:method:: step_input(x)
-
-标记作为StaticRNN输入的序列。
-
-参数：
-  - **x** (Variable) – 输入序列，x的形状应为[seq_len, ...]。
-
-返回：输入序列中的当前时间步长。
-
-
 
 .. py:method:: step_output(o)
 
-标记作为StaticRNN输出的序列。
+标记StaticRNN输出的序列。
 
 参数：
   -**o** (Variable) – 输出序列
 
-返回：None
+返回：无
 
+
+**代码示例**
+
+.. code-block:: python
+
+      import paddle.fluid as fluid
+      import paddle.fluid.layers as layers
+
+      vocab_size, hidden_size=10000, 200
+      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
+
+      # 创建处理用的word sequence
+      x_emb = layers.embedding(
+          input=x,
+          size=[vocab_size, hidden_size],
+          dtype='float32',
+          is_sparse=False)
+      # 把batch size变换到第1维。
+      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+
+      rnn = fluid.layers.StaticRNN()
+      with rnn.step():
+          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+          word = rnn.step_input(x_emb)
+          # 创建memory变量作为prev，batch size来自于word变量。
+          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
+          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+          # 用处理完的hidden变量更新prev变量。
+          rnn.update_memory(prev, hidden)
+          # 把每一步处理后的hidden标记为输出序列。
+          rnn.step_output(hidden)
+
+      result = rnn()
 
 .. py:method:: output(*outputs)
 
 标记StaticRNN输出变量。
 
 参数：
-  -**outputs** – 输出变量
+  -**outputs** – 输出Tensor，可同时将多个Variable标记为输出。
 
-返回：None
+返回：无
+
+
+**代码示例**
+
+.. code-block:: python
+
+      import paddle.fluid as fluid
+      import paddle.fluid.layers as layers
+
+      vocab_size, hidden_size=10000, 200
+      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
+
+      # 创建处理用的word sequence
+      x_emb = layers.embedding(
+          input=x,
+          size=[vocab_size, hidden_size],
+          dtype='float32',
+          is_sparse=False)
+      # 把batch size变换到第1维。
+      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+
+      rnn = fluid.layers.StaticRNN()
+      with rnn.step():
+          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+          word = rnn.step_input(x_emb)
+          # 创建memory变量作为prev，batch size来自于word变量。
+          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
+          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+          # 用处理完的hidden变量更新prev变量。
+          rnn.update_memory(prev, hidden)
+          # 把每一步的hidden和word标记为输出。
+          rnn.output(hidden，word)
+
+      result = rnn()
 
 
 .. py:method:: update_memory(mem, var)
 
-将内存从ex_mem更新为new_mem。请注意，ex_mem和new_mem的形状和数据类型必须相同。
+
+将memory从ex_mem更新为new_mem。
 
 参数：    
-  - **mem** (Variable) – 内存变量
-  - **var** (Variable) – RNN块中产生的普通变量
+  - **mem** (Variable) – memory接口定义的变量。
+  - **var** (Variable) – RNN块中产生的变量，用来更新memory。var的维度和数据类型必须与mem一致。
 
-返回：None
+返回：无
 
-
-
-
-
-
-
-
-
+代码示例参考前述示例。
 
