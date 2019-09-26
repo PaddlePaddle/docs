@@ -50,13 +50,4 @@ LayerNorm
         layernorm = fluid.LayerNorm('LayerNorm', begin_norm_axis=1)
         ret = layernorm(x)
 
-属性
-::::::::::::
-.. py:attribute:: weight
-
-本层的可学习参数，类型为 ``Parameter``
-
-.. py:attribute:: bias
-
-本层的可学习偏置，类型为 ``Parameter``
 

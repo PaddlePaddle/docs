@@ -45,12 +45,4 @@ SpectralNorm
         spectralNorm = fluid.dygraph.nn.SpectralNorm('SpectralNorm', dim=1, power_iters=2)
         ret = spectralNorm(fluid.dygraph.base.to_variable(x))
 
-属性
-::::::::::::
-.. py:attribute:: weight
 
-本层的可学习参数，类型为 ``Parameter``
-
-.. py:attribute:: bias
-
-本层的可学习偏置，类型为 ``Parameter``
