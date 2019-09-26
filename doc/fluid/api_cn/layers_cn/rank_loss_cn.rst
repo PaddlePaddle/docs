@@ -18,18 +18,17 @@ rank_loss
     \tilde{P_{i,j}} &= \left \{0, 0.5, 1 \right \} \ or \ \left \{0, 1 \right \}
 
 参数：
-  - **label** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示A的排名是否高于B。
-  - **left** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示RankNet对文档A的输出得分。
-  - **right** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示RankNet对文档B的输出得分。
-  - **name** (str, 可选)：该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值：None。
+    - **label** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示A的排名是否高于B。
+    - **left** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示RankNet对文档A的输出得分。
+    - **right** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示RankNet对文档B的输出得分。
+    - **name** (str, 可选)：该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值：None。
 
 返回：表示排序损失层输出值的 ``Tensor`` ，数据类型为float32，返回值维度为 :math:`[batch,1]` 。
 
 返回类型：Variable
 
 抛出异常：
-
-  - ``ValueError`` - 输入 ``label`` ， ``left`` ，和 ``right`` 至少有一个不是 ``Variable`` 类型。
+    - ``ValueError`` - 输入 ``label`` ， ``left`` ，和 ``right`` 至少有一个不是 ``Variable`` 类型。
 
 **代码示例**
 
