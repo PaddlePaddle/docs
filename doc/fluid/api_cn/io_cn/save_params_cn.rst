@@ -9,7 +9,7 @@ save_params
 
 ``dirname`` 用于指定保存参数的目标路径。若想将参数保存到多个独立文件中，设置 ``filename=None`` ； 若想将所有参数保存在单个文件中，请设置 ``filename`` 来指定该文件的名称。
 
-注意：有些变量不是参数，但它们对于训练是必要的。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。如果您想要储存您的模型用于预测，请使用save_inference_model API。更多细节请参考 :ref:`api_guide_model_save_reader` 。
+注意：有些变量不是参数，但它们对于训练是必要的，如可视化时或者debug时存储中间变量。因此，调用 ``save_params()`` 和 ``load_params()`` 来保存和加载参数是不够的，可以使用 ``save_persistables()`` 和 ``load_persistables()`` 代替这两个函数。如果您想要储存您的模型用于预测，请使用save_inference_model API。更多细节请参考 :ref:`api_guide_model_save_reader` 。
 
 
 参数:
