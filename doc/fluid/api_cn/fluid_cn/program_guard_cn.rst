@@ -3,7 +3,7 @@
 program_guard
 -------------------------------
 
-.. py:function::paddle.fluid.program_guard(main_program, startup_program=None)
+.. py:function:: paddle.fluid.program_guard(main_program, startup_program=None)
 
 该接口应配合使用python的 ``with`` 语句来将 ``with`` block 里的算子和变量添加进指定的全局主程序（main program）和启动程序（startup program）。
 
