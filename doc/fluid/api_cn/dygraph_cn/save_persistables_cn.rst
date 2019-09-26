@@ -5,7 +5,7 @@ save_persistables
 
 .. py:function:: paddle.fluid.dygraph.save_persistables(model_dict, dirname='save_dir', optimizers=None)
 
-该接口将模型所有参数以及优化器状态保存到指定目录。优化器状态目前仅支持保存带衰减的学习率状态，即`LearningRateDecay`的状态。
+该接口将模型所有参数以及优化器状态保存到指定目录。优化器状态目前仅支持保存带衰减的学习率状态，即 ``LearningRateDecay`` 的状态。
 
 参数:
  - **model_dict**  (dict of Parameter) – 需要保存的模型参数字典，该字典键为str类型，值为Parameter类型，其中包含了数据类型可以为float32，float64的多维Tensor。
