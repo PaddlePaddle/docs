@@ -37,7 +37,7 @@ sequence_slice
   - **input** (Variable) – 输入变量，类型为LoDTensor，承载着完整的序列
   - **offset** (Variable) – 指定每个序列切片的起始索引
   - **length** (Variable) – 指定每个子序列的长度
-  - **name** (str|None) – 该层的命名，可选项。 如果None, 则自动命名该层
+  - **name** (str, 可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：Variable(LoDTensor) 序列切片运算结果
 
