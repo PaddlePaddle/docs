@@ -6,12 +6,10 @@ Conv3DTranspose
 .. py:class:: paddle.fluid.dygraph.Conv3DTranspose(name_scope, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None)
 
 
-3-D卷积转置层（Convlution3D transpose layer)
-
-该层根据 输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW格式。其中 ``N`` 为batch大小， ``C`` 为通道数（channel）, ``D``  为特征深度, ``H`` 为特征高度， ``W`` 为特征宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
+该接口用于构建 ``Conv3DTranspose`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。3D卷积转置层（Convlution3D transpose layer)根据输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW格式。其中 ``N`` 为batch大小， ``C`` 为通道数（channel）, ``D``  为特征深度, ``H`` 为特征高度， ``W`` 为特征宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
 
-.. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
+.. _参考文献: https://arxiv.org/abs/1603.07285
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
@@ -19,13 +17,13 @@ Conv3DTranspose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
-    -  :math:`X` : 输入图像，具有NCDHW格式的张量（Tensor）
+    -  :math:`X` : 输入图像，维度为[N,C,D,H,W]的5D Tensor
 
-    -  :math:`W` : 滤波器，具有NCDHW格式的张量（Tensor）
+    -  :math:`W` : 滤波器，维度为 [M,C,D,H,W] 的5D Tensor, 其中M为滤波器数目
 
-    -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）
+    -  :math:`*` : 卷积操作（**注意** 转置卷积本质上的计算还是卷积）
 
-    -  :math:`b` : 偏置（bias），二维张量，shape为 ``[M,1]``
+    -  :math:`b` : Bias值，维度为 [M,1] 的2D Tensor
 
     -  :math:`σ` : 激活函数
 
@@ -36,25 +34,24 @@ Conv3DTranspose
 
 输入:
 
-    输入的shape：:math:`（N,C_{in}, D_{in}, H_{in}, W_{in}）`
+    输入Tensor的维度：:math:`[N,C_{in}, D_{in}, H_{in}, W_{in}]`
 
-    滤波器的shape：:math:`（C_{in}, C_{out}, D_f, H_f, W_f）`
+    滤波器Tensor的维度：:math:`[C_{in}, C_{out}, D_f, H_f, W_f]`
 
 
 
 输出:
 
-    输出的shape：:math:`（N,C_{out}, D_{out}, H_{out}, W_{out}）`
+    输出Tensor的维度：:math:`[N,C_{out}, D_{out}, H_{out}, W_{out}]`
 
 
 其中：
 
 .. math::
-
-
     D'_{out}=(D_{in}-1)*strides[0]-2*paddings[0]+dilations[0]*(D_f-1)+1 \\
     H'_{out}=(H_{in}-1)*strides[1]-2*paddings[1]+dilations[1]*(H_f-1)+1 \\
     W'_{out}=(W_{in}-1)*strides[2]-2*paddings[2]+dilations[2]*(W_f-1)+1 \\
+.. math::
     D_{out}\in[D'_{out},D'_{out} + strides[0]) \\
     H_{out}\in[H'_{out},H'_{out} + strides[1]) \\
     W_{out}\in[W'_{out},W'_{out} + strides[2]) 
@@ -74,7 +71,7 @@ Conv3DTranspose
       - **filter_size** (int|tuple，可选 - 滤波器大小。如果 ``filter_size`` 是一个tuple，则形式为(filter_size_H, filter_size_W)。否则，滤波器将是一个方阵。如果 ``filter_size=None`` ，则内部会计算输出大小。
       - **padding** (int|tuple) - 填充大小。如果 ``padding`` 是一个元组，它必须包含两个整数(padding_H、padding_W)。否则，padding_H = padding_W = padding。默认:padding = 0。
       - **stride** (int|tuple) - 步长大小。如果 ``stride`` 是一个元组，那么元组的形式为(stride_H、stride_W)。否则，stride_H = stride_W = stride。默认:stride = 1。
-      - **dilation** (int|tuple) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据`可视化效果图<https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认:dilation= 1。
+      - **dilation** (int|tuple) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认:dilation= 1。
       - **groups** (int) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
       - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
       - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
@@ -106,7 +103,15 @@ Conv3DTranspose
                use_cudnn=False)
         ret = conv3dTranspose(fluid.dygraph.base.to_variable(data))
 
+属性
+::::::::::::
+.. py:attribute:: weight
 
+本层的可学习参数，类型为 ``Parameter``
+
+.. py:attribute:: bias
+
+本层的可学习偏置，类型为 ``Parameter``
 
 
 
