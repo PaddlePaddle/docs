@@ -22,8 +22,8 @@ Normal
 :math:`Z`: 正态分布常量。
 
 参数：
-    - **loc** (float|list|numpy.ndarray|Variable) - 正态分布平均值。
-    - **scale** (float|list|numpy.ndarray|Variable) - 正态分布标准差。
+    - **loc** (float|list|numpy.ndarray|Variable) - 正态分布平均值。数据类型为float32。
+    - **scale** (float|list|numpy.ndarray|Variable) - 正态分布标准差。数据类型为float32。
 
 **代码示例**：
 
@@ -68,7 +68,7 @@ Normal
 生成指定维度的样本
 
 参数：
-    - **shape** (list) - int32的1维列表，指定生成样本的维度。
+    - **shape** (list) - 1维列表，指定生成样本的维度。数据类型为int32。
     - **seed** (int) - 长整型数。
     
 返回：预先设计好维度的张量, 数据类型为float32
@@ -88,7 +88,7 @@ Normal
 对数概率密度函数
 
 参数：
-    - **value** (Variable) - 输入张量。
+    - **value** (Variable) - 输入张量。数据类型为float32或float64。
     
 返回：对数概率, 数据类型与value相同
 
