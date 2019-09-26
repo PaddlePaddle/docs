@@ -16,7 +16,7 @@ uniform_random
                  result=[[0.8505902, 0.8397286]]
 
 参数：
-    - **shape** (list|tuple|Variable)-输出Tensor的维度，数据类型是int64，如果shape类型是list或者tuple，它的元素可以是整数或者形状为[1]的Tensor。如果shape的类型是Variable，则是1D的Tensor。
+    - **shape** (list|tuple|Variable)-输出Tensor的维度，shape类型支持list，tuple，Variable。如果shape类型是list或者tuple，它的元素可以是整数或者形状为[1]的Tensor，其中整数的数据类型为int，Tensor的数据类型为int64。如果shape的类型是Variable，则是1D的Tensor，Tensor的数据类型为int64。
     - **dtype** (np.dtype|core.VarDesc.VarType|str，可选) – 输出Tensor的数据类型，支持float32（默认）， float64。
     - **min** (float，可选）-均匀随机分布的最小值，为闭区间。数据类型为float。默认值为-1.0。
     - **max** (float，可选)-均匀随机分布的最大值，为开区间。数据类型为float。默认值为1.0。
