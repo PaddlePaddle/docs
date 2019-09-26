@@ -20,11 +20,11 @@ huber_loss
 
 
 参数:
-  - **input** （Variable） - 输入的预测数据，维度为[batch_size, 1] 的2D-Tensor，且最后一维必须是1。数据类型为float32或float64。
-  - **label** （Variable） - 输入的真实标签，维度为[batch_size, 1] 的2D-Tensor，且最后一维必须是1。数据类型为float32或float64。
+  - **input** （Variable） - 输入的预测数据，维度为[batch_size, 1] 或[batch_size]的Tensor。数据类型为float32或float64。
+  - **label** （Variable） - 输入的真实标签，维度为[batch_size, 1] 或[batch_size]的Tensor。数据类型为float32或float64。
   - **delta** （float） -  Huber损失的阈值参数，用于控制Huber损失对线性误差或平方误差的侧重。数据类型为float32。
 
-返回： 计算出的Huber损失，维度为[batch_size, 1] 的二维Tensor，数据类型与input相同。
+返回： 计算出的Huber损失，数据维度和数据类型与label相同的Tensor。
 
 返回类型: Variable
 
