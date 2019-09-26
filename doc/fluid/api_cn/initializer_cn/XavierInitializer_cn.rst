@@ -23,8 +23,8 @@ XavierInitializer
 
 参数：
     - **uniform** (bool) - 是否用均匀分布，默认为True。如果为False，则使用正态分布。
-    - **fan_in** (float) - 当前网络层的输入神经元个数。如果为None，则从变量中推断。
-    - **fan_out** (float) - 当前网络层的输出神经元个数。如果为None，则从变量中推断。
+    - **fan_in** (float) - 当前网络层的输入神经元个数。如果为None，则从变量中推断，默认为None。
+    - **fan_out** (float) - 当前网络层的输出神经元个数。如果为None，则从变量中推断，默认为None。
     - **seed** (int) - 随机种子
 
 .. note::

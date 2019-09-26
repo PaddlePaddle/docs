@@ -25,10 +25,12 @@ noam衰减的numpy实现如下：
 请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
 
 参数：
-    - **d_model** (Variable|int) - 模型的输入、输出向量特征维度。类型可设置为标量Tensor，或python int。
-    - **warmup_steps** (Variable|int) - 预热步数，类型可设置为标量Tensor，或python int。
+    - **d_model** (Variable|int) - 模型的输入、输出向量特征维度。类型可设置为标量Tensor，或int值。
+    - **warmup_steps** (Variable|int) - 预热步数，类型可设置为标量Tensor，或int值。
 
 返回：衰减的学习率
+
+返回类型： Variable
 
 **代码示例**：
 

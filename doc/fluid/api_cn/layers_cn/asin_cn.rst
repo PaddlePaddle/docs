@@ -12,10 +12,12 @@ arcsine激活函数。
 
 
 参数:
-    - **x(Variable)** - asin的输入，数据类型为 float32 或 float64
+    - **x(Variable)** - asin的输入Tensor，数据类型为 float32 或 float64
     - **name(None|str)** – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
-返回：  `asin` 的输出，数据类型与 `x` 相同。
+返回：  `asin` 的输出Tensor，数据类型与 `x` 相同。
+
+返回类型： Variable
 
 **代码示例**：
 
