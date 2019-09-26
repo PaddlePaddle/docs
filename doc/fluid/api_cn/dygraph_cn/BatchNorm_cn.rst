@@ -5,7 +5,7 @@ BatchNorm
 
 .. py:class:: paddle.fluid.dygraph.BatchNorm(name_scope, num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, fuse_with_relu=False, use_global_stats=False, trainable_statistics=False)
 
-该接口用于构建批归一化层（Batch Normalization Layer），可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
+该接口用于构建 ``BatchNorm`` 类，可返回一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
 当use_global_stats = False时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是minibatch的统计数据。计算公式如下：
 
@@ -43,8 +43,8 @@ BatchNorm
     - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
     - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **dtype** (str, 可选) - 指明输入 ``Tensor`` 的数据类型，可以为float32或float64。默认值："float32"。
-    - **data_layout** (string, 可选) - 指定输入数据格式，数据格式可以为"NCHW"或者"NHWC"。默认值："NCHW"。
+    - **dtype** (str, 可选) - 指明输入 ``Tensor`` 的数据类型，可以为float32或float64。默认值：float32。
+    - **data_layout** (string, 可选) - 指定输入数据格式，数据格式可以为“NCHW”或者“NHWC”。默认值：“NCHW”。
     - **in_place** (bool, 可选) - 指示 ``batch_norm`` 的输出是否可以复用输入内存。默认值：False。
     - **moving_mean_name** (str, 可选) - ``moving_mean`` 的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则， ``batch_norm`` 将命名全局均值为 ``moving_mean_name`` 。默认值：None。
     - **moving_variance_name** (string, 可选) - ``moving_var`` 的名称，存储全局方差。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则， ``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 。默认值：None。
