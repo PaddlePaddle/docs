@@ -98,7 +98,7 @@ DistributeTranspiler
      - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op`` ，用于发送参数的梯度与接受更新后的参数
 
 参数:
-     - **wait_port** (bool) - 是否等待参数服务器准备就绪后再返回program
+     - **wait_port** (bool,默认值True) - 是否等待参数服务器准备就绪后再返回program
 
 返回:    Trainer侧的program
 
