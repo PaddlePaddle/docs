@@ -8,7 +8,7 @@ Variable
 **注意：**
   **1. 请不要直接调用** `Variable` **的构造函数，因为这会造成严重的错误发生！**
 
-  **2. 在静态图形模式下：请使用** `Block.create_var` **创建一个静态的** `Variable` **，该静态的** `Variable` **在使用** :ref:`cn_api_fluid_executor` **执行前是没有实际是数据的。**
+  **2. 在静态图形模式下：请使用** `Block.create_var` **创建一个静态的** `Variable` **，该静态的** `Variable` **在使用** :ref:`cn_api_fluid_executor` **执行前是没有实际数据的。**
 
   **3. 在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下：请使用** :ref:`cn_api_fluid_dygraph_to_variable` 创建一个拥有实际数据的 :ref:`api_guide_Variable`
 
@@ -50,7 +50,7 @@ Variable
 
   **2.** ``detach`` **后的**  :ref:`api_guide_Variable` **将会成为临时变量**
 
-返回一个新的，和当前计算图分离的，但是拥有当前 :ref:`api_guide_Variable` 其内容的临时变量
+产生一个新的，和当前计算图分离的，但是拥有当前 :ref:`api_guide_Variable` 其内容的临时变量
 
 返回：一个新的，和当前计算图分离的，但是拥有当前 :ref:`api_guide_Variable` 其内容的临时 :ref:`api_guide_Variable`
 
@@ -82,7 +82,7 @@ Variable
 
 返回：``numpy`` 的数组，表示当前 :ref:`api_guide_Variable` 的实际值
 
-返回类型：ndarray，``dtype`` 和输入的 ``Dtype`` 一致
+返回类型：ndarray，``dtype`` 和输入的 ``dtype`` 一致
 
 **示例代码**
   .. code-block:: python
@@ -127,6 +127,8 @@ Variable
             inputs2 = []
             for _ in range(10):
                 tmp = fluid.dygraph.base.to_variable(x)
+                # 如果这里我们不为输入tmp设置stop_gradient=False，那么后面loss2也将因为这个链路都不需要梯度
+                # 而不产生梯度
                 tmp.stop_gradient=False
                 inputs2.append(tmp)
             ret2 = fluid.layers.sums(inputs2)
@@ -249,7 +251,7 @@ Properties
 
 .. py:attribute:: stop_gradient
 
-**注意：该属性在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下默认值为** ``True`` **，而参数的该属性默认值为** ``False`` **。在静态图下默认值为** ``False``
+**注意：该属性在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下除参数以外默认值为** ``True`` **，而参数的该属性默认值为** ``False`` **。在静态图下所有的** :ref:`api_guide_Variable` **该属性默认值都为** ``False``
 
 是否从此 :ref:`api_guide_Variable` 开始，之前的相关部分都停止梯度计算
 
