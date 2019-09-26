@@ -36,12 +36,8 @@ ExecutionStrategy
 
 .. py:attribute:: num_iteration_per_drop_scope
 
-int型成员。它表明了清空执行时产生的临时变量需要的program执行迭代次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为1。
+int型成员。该选项表示间隔多少次迭代之后清理一次临时变量。模型运行过程中，生成的中间临时变量将被放到local execution scope中，为了避免对临时变量频繁的申请与释放，通常将其设为较大的值（比如10或者100）。默认值为100。
 
-.. note::
-  1. 如果在调用 ``run`` 方法时获取结果数据，``Executor`` 会在当前program重复执行尾部清空临时变量
-
-  2. 在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
 
 .. py:attribute:: num_iteration_per_run
 
