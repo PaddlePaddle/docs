@@ -10,7 +10,7 @@ create_tensor
 参数：
     - **dtype** (str|numpy.dtype) - 创建的Tensor的数据类型。
     - **name** (str， 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-    - **persistable** (bool) - 用于设置创建的LoDTensor的persistable属性，若不设置则默认设置为False。
+    - **persistable** (bool) - 用于设置创建的Tensor的persistable属性，若不设置则默认设置为False。
 
 返回： 创建的Tensor，数据类型为dtype。
 
