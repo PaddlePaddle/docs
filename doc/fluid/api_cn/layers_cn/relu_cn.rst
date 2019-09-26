@@ -5,34 +5,30 @@ relu
 
 .. py:function:: paddle.fluid.layers.relu(x, name=None)
 
-Relu接受一个输入数据(张量)，输出一个张量。将线性函数y = max(0, x)应用到张量中的每个元素上。
+ReLU（Rectified Linear Unit）激活函数
 
-.. math::
-              \\Out=\max(0,x)\\
+.. math:: Out=max(0,x)
 
 
 参数:
-  - **x** (Variable):输入张量。
-  - **name** (str|None，默认None) :如果设置为None，该层将自动命名。
+  - **x** (Variable) - 输入的多维 ``Tensor`` ，数据类型为：float32、float64。
+  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
-返回: 与输入形状相同的输出张量。
+返回: 与 ``x`` 维度相同、数据类型相同的 ``Tensor`` 。
 
-返回类型: 变量（Variable）
+返回类型: Variable
 
 **代码示例**:
 
 ..  code-block:: python
-      
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[3, 4], dtype="float32")
-    output = fluid.layers.relu(x)
 
+  import paddle.fluid as fluid
+  import numpy as np
 
-
-
-
-
-
-
-
-
+  in1 = np.array([[-1,0],[1,2.6]])
+  with fluid.dygraph.guard():
+      x1 = fluid.dygraph.to_variable(in1)
+      out1 = fluid.layers.relu(x1)
+      print(out1.numpy())
+      # [[0.  0. ]
+      #  [1.  2.6]]
