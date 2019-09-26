@@ -12,7 +12,7 @@ abs
 
 参数:
     - **x** (Variable)- 多维Tenosr，数据类型为float32或float64。
-    - **name** (str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：表示绝对值结果的Tensor，数据类型与x相同。
 
