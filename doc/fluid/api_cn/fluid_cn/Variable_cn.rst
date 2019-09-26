@@ -280,9 +280,9 @@ Properties
 
 .. py:attribute:: persistable
 
-**注意：**
+**注意：该属性我们即将废弃，此介绍仅为了帮助用户理解概念， 1.6版本后用户可以不再关心该属性**
 
-  **1. 该属性在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下默认值为** ``False`` **，而参数的该属性默认值为** ``True`` **。在静态图下默认值为** ``False``
+  **1. 该属性除参数以外默认值为** ``False`` **，而参数的该属性默认值为** ``True`` 。
 
   **2. 该属性在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下一经初始化即不能修改，这是由于在动态执行时，**  :ref:`api_guide_Variable` **的生命周期将由** ``Python`` **自行控制不再需要通过该属性来修改**
 
