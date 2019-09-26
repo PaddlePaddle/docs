@@ -5,9 +5,9 @@ ExecutionStrategy
 
 .. py:class:: paddle.fluid.ExecutionStrategy
 
-``ExecutionStrategy`` 允许用户更加精准地控制program在 ``Executor`` 中的运行方式。可以通过在 ``Executor`` 中设置本成员来实现。
+``ExecutionStrategy`` 通过配置 ``ExecutionStrategy``的成员变量， 允许用户更加精准地控制program在 ``Executor`` 中的运行方式。
 
-返回：初始化后的ExecutionStrategy的实例，可用来配置CPU多线程训练/GPU多卡训练的属性
+返回：初始化后的ExecutionStrategy的实例
 
 返回类型：ExecutionStrategy
 
@@ -34,19 +34,12 @@ ExecutionStrategy
                                      exec_strategy=exec_strategy)
 
 
-
-.. py:attribute:: allow_op_delay
-
-bool类型成员，表示是否推迟communication operators(交流运算)的执行，这样做会使整体执行过程更快一些。此选项现在已经失效，在下个版本中将会被移除。默认为False。
-
-
-
 .. py:attribute:: num_iteration_per_drop_scope
 
-int型成员。它表明了清空执行时产生的临时变量需要的程序执行迭代次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为1。
+int型成员。它表明了清空执行时产生的临时变量需要的program执行迭代次数。因为临时变量的形状可能在两次重复过程中保持一致，所以它会使整体执行过程更快。默认值为1。
 
 .. note::
-  1. 如果在调用 ``run`` 方法时获取结果数据，``Executor`` 会在当前程序重复执行尾部清空临时变量
+  1. 如果在调用 ``run`` 方法时获取结果数据，``Executor`` 会在当前program重复执行尾部清空临时变量
 
   2. 在一些NLP模型里，该成员会致使GPU内存不足。此时，你应减少 ``num_iteration_per_drop_scope`` 的值
 
@@ -56,7 +49,7 @@ int型成员。它配置了当用户在python脚本中调用pe.run()时执行器
 
 .. py:attribute:: num_threads
 
-int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``Executor`` 的program中的operator（算子，运算）。如果 :math:`num\_threads=1` ，则所有的operator将一个接一个地执行，但在不同的程序重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num\_threads=device\_count∗4` ；对CPU， :math:`num\_threads=CPU\_NUM∗4` 。在 ``Executor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ， ``Executor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
+int型成员。它代表了线程池(thread pool)的大小。这些线程会被用来执行当前 ``Executor`` 的program中的operator（算子，运算）。如果 :math:`num\_threads=1` ，则所有的operator将一个接一个地执行，但在不同的program重复周期(iterations)中执行顺序可能不同。如果该成员没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num\_threads=device\_count∗4` ；对CPU， :math:`num\_threads=CPU\_NUM∗4` 。在 ``Executor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ， ``Executor`` 可以通过调用 ``multiprocessing.cpu_count()`` 获取CPU数目(cpu count)。默认值为0。
 
 
 
