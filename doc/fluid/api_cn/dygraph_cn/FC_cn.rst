@@ -8,7 +8,7 @@ FC
 
 **全连接层**
 
-该接口用于构建 ``FC`` 类，可返回一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个全连接层。其输入可以是一个 ``Tensor`` 或多个 ``Tensor`` 组成的list（详见参数说明），该接口会为每个输入的Tensor创建一个权重（weights）变量，即一个从每个输入单元到每个输出单元的全连接权重矩阵。全连接层将每个输入Tensor和其对应的权重(weights)相乘得到shape为 :math:`[N, size]` 的输出Tensor，其中N为batch_size大小。如果有多个输入Tensor，则多个shape为 :math:`[N, size]` 的Tensor计算结果会被累加起来，作为最终输出。如果 ``bias_attr`` 非空，则会创建一个偏置变量（bias Variable），并把它累加到输出结果中。如果 ``act`` 非空，将会在输出结果上应用相应的激活函数。
+该接口用于构建 ``FC`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个全连接层。其输入可以是一个 ``Tensor`` 或多个 ``Tensor`` 组成的list（详见参数说明），该接口会为每个输入的Tensor创建一个权重（weights）变量，即一个从每个输入单元到每个输出单元的全连接权重矩阵。全连接层将每个输入Tensor和其对应的权重(weights)相乘得到shape为 :math:`[N, size]` 的输出Tensor，其中N为batch_size大小。如果有多个输入Tensor，则多个shape为 :math:`[N, size]` 的Tensor计算结果会被累加起来，作为最终输出。如果 ``bias_attr`` 非空，则会创建一个偏置变量（bias Variable），并把它累加到输出结果中。如果 ``act`` 非空，将会在输出结果上应用相应的激活函数。
 
 当输入为单个 ``Tensor`` ：
 
@@ -91,4 +91,14 @@ FC
         fc = FC( "fc", 64, num_flatten_dims=2)
         data = to_variable(data)
         conv = fc(data)
+
+属性
+::::::::::::
+.. py:attribute:: weight
+
+本层的可学习参数，类型为 ``Parameter``
+
+.. py:attribute:: bias
+
+本层的可学习偏置，类型为 ``Parameter``
 

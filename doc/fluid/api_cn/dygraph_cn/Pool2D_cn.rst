@@ -5,7 +5,7 @@ Pool2D
 
 .. py:class:: paddle.fluid.dygraph.Pool2D(name_scope, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, exclusive=True, dtype=VarType.FP32)
 
-该接口用于构建 ``Pool2D`` 类，可返回一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个二维池化层，并使用上述输入参数的池化配置，为二维空间池化操作，根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` , 步长 ``pool_stride`` ，填充 ``pool_padding`` 这些参数得到输出。
+该接口用于构建 ``Pool2D`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个二维池化层，并使用上述输入参数的池化配置，为二维空间池化操作，根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` , 步长 ``pool_stride`` ，填充 ``pool_padding`` 这些参数得到输出。
 
 输入X和输出Out是NCHW格式，N为批大小，C是通道数，H是特征高度，W是特征宽度。参数（ ``ksize``, ``strides``, ``paddings`` ）含有两个整型元素。分别表示高度和宽度上的参数。输入X的大小和输出Out的大小可能不一致。
 
@@ -85,4 +85,14 @@ Pool2D
                       pool_stride=1,
                       global_pooling=False)
         pool2d_res = pool2d(to_variable(data))
+
+属性
+::::::::::::
+.. py:attribute:: weight
+
+本层的可学习参数，类型为 ``Parameter``
+
+.. py:attribute:: bias
+
+本层的可学习偏置，类型为 ``Parameter``
 
