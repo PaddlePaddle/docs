@@ -73,12 +73,3 @@ one_hot
     # 该代码对应上述第一个示例，其中输入label的shape是[4]，输出one_hot_label的shape是[4, 4]
     label = fluid.layers.data(name="label", shape=[4], append_batch_size=False, dtype="int64")
     one_hot_label = fluid.one_hot(input=label, depth=4)
-
-
-
-
-
-
-
-
-

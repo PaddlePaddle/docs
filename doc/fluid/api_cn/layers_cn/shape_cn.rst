@@ -10,7 +10,7 @@ shape层。
 获得输入Tensor的shape。
 
 参数：
-        - **input** （Variable）-  输入的多维Tensor，数据类型为int32，int64，float32，float64。
+        - **input** （Variable）-  输入的多维Tensor，数据类型为float32，float64，int32，int64。
 
 返回： 一个Tensor，表示输入Tensor的shape。
 

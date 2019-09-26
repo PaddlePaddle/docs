@@ -86,8 +86,8 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
     - **no_grad_set** (set|None) – 应该被无视的Variables集合
     - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
 
-返回： 附加的算子列表和由(param, grad) 变量对组成的元组，用于优化。
+返回： (optimize_ops, params_grads)，数据类型为(list, list)，其中optimize_ops是minimize接口为网络添加的OP列表，params_grads是一个由(param, grad)变量对组成的列表，param是Parameter，grad是该Parameter对应的梯度值
 
-返回类型：tuple(optimize_ops, params_grads)
+返回类型： tuple
 
 
