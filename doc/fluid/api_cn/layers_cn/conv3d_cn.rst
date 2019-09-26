@@ -55,7 +55,7 @@ conv3d
     - **bias_attr** （ParamAttr|False|None）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv3d算子默认的偏置初始化是0.0。
     - **use_cudnn** （bool） - 是否用cudnn核，仅当下载cudnn库才有效。默认：True。
     - **act** (str) - 激活函数类型，如果设为None，则未添加激活函数。默认：None。
-    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:api_guide_Name ，默认值为None。
+    - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：维度和输入相同的Tensor。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
 
