@@ -5,23 +5,27 @@ sequence_expand
 
 .. py:function:: paddle.fluid.layers.sequence_expand(x, y, ref_level=-1, name=None)
 
-序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层lod对输入 ``x`` 进行扩展。注意 ``x`` 的lod level最多为1，而 ``x`` 的秩最少为2。当 ``x`` 的秩大于2时，将被当作是一个二维张量处理。
+序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层lod对输入 ``x`` 进行扩展。 ``x`` 的lod level最多为1，若 ``x`` 的lod level为1，则 ``x`` 的lod大小必须与 ``y`` 的第 ``ref_level`` 层lod大小相等；若 ``x`` 的lod level为0，则 ``x`` 的第一维大小必须与 ``y`` 第 ``ref_level`` 层大小相等。 ``x`` 的秩最少为2，当 ``x`` 的秩大于2时，将被当作是一个二维张量处理。
 
-范例如下：
+注意，该OP的输入 ``x`` 和 ``y`` 只能是LodTensor。
+
+范例解释如下：
 
 ::
 
     例1：
-    给定输入一维LoDTensor x：
-      x.lod  = [[2,        2]]
+    假设两个长度为2的序列[a][b]和[c][d]，欲将其扩展为4个长度为2的序列[a][b]、[a][b]、[c][d]、[c][d]。
+    序列[a][b]扩展2次，[c][d]扩展2次，扩展所需依据的lod为[2, 2]，则：
+    给定输入一维LoDTensor x
+      x.lod  = [[2,        2]]    #表示两个序列的长度为2
       x.data = [[a], [b], [c], [d]]
       x.dims = [4, 1]
-    和输入 y：
-      y.lod = [[2,    2],
-              [3, 3, 1, 1]]
-    指定 ref_level = 0
+    和输入 y
+      y.lod = [[2,    2],     #第0层lod，指定按该层扩展，表示分别扩展2次
+               [3, 3, 1, 1]]  #第1层lod，注意，因为指定ref_level为0，所以这一层与运算无关
+    指定 ref_level = 0，依据y的第0层lod进行扩展，
 
-    输出为1级LoDTensor：
+    经过sequence_expand，输出为1级LoDTensor out
       out.lod =  [[2,        2,        2,        2]]
       out.data = [[a], [b], [a], [b], [c], [d], [c], [d]]
       out.dims = [8, 1]
@@ -29,22 +33,24 @@ sequence_expand
 ::
 
     例2：
-    给定输入一维LoDTensor x：
+    假设有3个长度维1的序列[a]、[b]、[c]，现在要将其扩展为长度是2、0、1的序列[a][a][a]、[c][c][c]。
+    显然，扩展后的序列lod为[2, 0, 3]，则：
+    给定输入一维LoDTensor x
       x.data = [[a], [b], [c]]
       x.dims = [3, 1]
-    和输入 y：
+    和输入 y
       y.lod = [[2, 0, 3]]
     默认 ref_level = -1
 
-    输出为1级LoDTensor：
+    经过sequence_expand，输出为1级LoDTensor out
       out.data = [[a], [a], [c], [c], [c]]
       out.dims = [5, 1]
 
 参数：
-    - **x** (Variable) - 输入变量，Tensor或LoDTensor。
+    - **x** (Variable) - 输入变量，LoDTensor。
     - **y** (Variable) - 输入变量，LoDTensor。
     - **ref_level** (int，可选) - 扩展 ``x`` 所依据的 ``y`` 的lod层。默认值-1，表示lod的最后一层。
-    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：扩展变量，LoDTensor
 
