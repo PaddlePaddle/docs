@@ -5,7 +5,7 @@ GradientClipByGlobalNorm
 
 .. py:class:: paddle.fluid.clip.GradientClipByGlobalNorm(clip_norm, group_name='default_group')
  
-通过多个张量的范数之和的比率，来剪切（clip）多个张量（张量不是从该函数传入， 通过 ``fluid.program_guard`` 的 ``main_program`` 参数传入，即公式中的 :math:`t\_list` 见代码实例）。
+通过多个张量的范数之和的比率，来剪切（clip）多个张量（张量不是从该类传入， 通过 ``fluid.program_guard`` 的 ``main_program`` 参数传入，即公式中的 :math:`t\_list` 见代码实例）。
 
 给定一个张量列表 :math:`t\_list` 和一个剪切比率 ``clip_norm`` ，返回该类的实例作为 ``set_gradient_clip`` 方法的第一个参数， ``set_gradient_clip`` 第二个参数是用来计算被剪切的张量列表（该值默认为 ``None`` 会基于所有张量列表来计算全局范数 ``global_norm`` 。
 
