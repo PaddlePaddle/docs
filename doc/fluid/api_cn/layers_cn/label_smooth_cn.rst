@@ -17,7 +17,8 @@ label_smooth
 其中 :math:`1-\epsilon` 和 :math:`\epsilon` 分别是权重， :math:`\tilde{y_k}` 是平滑后的标签。 通常μ 使用均匀分布
 
 
-查看更多关于标签平滑的细节 https://arxiv.org/abs/1512.00567
+关于更多标签平滑的细节， `查看论文  <https://arxiv.org/abs/1512.00567>`_ 。
+
 
 参数：
   - **label** （Variable） - 包含标签数据的输入变量。 标签数据应使用 one-hot 表示，是维度为 :math:[N_1, ..., Depth]的多维Tensor，其中Depth为字典大小。
