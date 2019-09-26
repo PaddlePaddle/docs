@@ -5,7 +5,7 @@ PRelu
 
 .. py:class:: paddle.fluid.dygraph.PRelu(name_scope, mode, param_attr=None)
 
-该接口用于构建 ``PRelu`` 类，可返回一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了 ``PRelu`` 激活函数的三种激活方式。
+该接口用于构建 ``PRelu`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了 ``PRelu`` 激活函数的三种激活方式。
 
 计算公式如下：
 
@@ -42,4 +42,13 @@ PRelu
         prelu = fluid.PRelu('prelu', mode=mode, param_attr=fluid.ParamAttr(initializer=fluid.initializer.Constant(1.0)))
         dy_rlt = prelu(inp_np)
 
+属性
+::::::::::::
+.. py:attribute:: weight
+
+本层的可学习参数，类型为 ``Parameter``
+
+.. py:attribute:: bias
+
+本层的可学习偏置，类型为 ``Parameter``
 
