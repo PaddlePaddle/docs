@@ -5,7 +5,7 @@ BilinearTensorProduct
 
 .. py:class:: paddle.fluid.dygraph.BilinearTensorProduct(name_scope, size, name=None, act=None, param_attr=None, bias_attr=None)
 
-该层可将一对张量进行双线性乘积计算，例如：
+该接口用于构建 ``BilinearTensorProduct`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。双线性乘积计算式子如下。
 
 .. math::
 
@@ -22,7 +22,7 @@ BilinearTensorProduct
 
 参数：
     - **name_scope**  (str) – 指定类的名称。
-    - **size**  (int) – 该层输出Tensor的最后一维大小。
+    - **size**  (int) – 该层的维度大小。
     - **name**  (str，可选) – 该层的名称。若未设置，则自动生成该层的名称。默认值为None。
     - **act**  (str，可选) – 对输出应用的激励函数。默认值为None。
     - **param_attr**  (ParamAttr) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
@@ -47,6 +47,14 @@ BilinearTensorProduct
         ret = bilinearTensorProduct(fluid.dygraph.base.to_variable(layer1),
                            fluid.dygraph.base.to_variable(layer2))
 
+属性
+::::::::::::
+.. py:attribute:: weight
 
+本层的可学习参数，类型为 ``Parameter``
+
+.. py:attribute:: bias
+
+本层的可学习偏置，类型为 ``Parameter``
 
 
