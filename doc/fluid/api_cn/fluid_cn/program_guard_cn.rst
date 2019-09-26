@@ -5,15 +5,13 @@ program_guard
 
 .. py:function::paddle.fluid.program_guard(main_program, startup_program=None)
 
+该接口应配合使用python的 ``with`` 语句来将 ``with`` block 里的算子和变量添加进指定的全局主程序（main program）和启动程序（startup program）。
 
-
-该接口应配合使用python的 ``with`` 语句来改变全局主程序（main program）和启动程序（startup program）。
-
-``with`` 语句块中的layer函数将在新的main program（主程序）中添加operators（算子）和variables（变量）。
+``with`` 语句块中的fluid.layers下各接口将在新的main program（主程序）中添加operators（算子）和variables（变量）。
 
 参数：
     - **main_program** (Program) – “with”语句中将使用的新的main program。
-    - **startup_program** (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序。默认值为None。
+    - **startup_program** (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序，即仍使用default_startup_program。默认值为None。
 
 **代码示例**
 
