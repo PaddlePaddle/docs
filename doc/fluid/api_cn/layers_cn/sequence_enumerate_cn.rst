@@ -7,6 +7,8 @@ sequence_enumerate
 
 枚举形状为 ``[d_1, 1]`` 的输入序列所有长度为 ``win_size`` 的子序列，生成一个形状为 ``[d_1, win_size]`` 的新序列，需要时以 ``pad_value`` 填充。
 
+注意,该OP的输入 ``input`` 只能是LodTensor。
+
 范例如下：
 
 ::
@@ -26,7 +28,7 @@ sequence_enumerate
         - **input** （Variable）- 输入序列，形状为 ``[d_1, 1]`` 的LodTensor。
         - **win_size** （int）- 子序列窗口大小。
         - **pad_value** （int，可选）- 填充值，默认为0。
-        - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：      枚举序列，LoDTensor。
 
