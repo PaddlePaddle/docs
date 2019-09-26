@@ -86,13 +86,4 @@ Pool2D
                       global_pooling=False)
         pool2d_res = pool2d(to_variable(data))
 
-属性
-::::::::::::
-.. py:attribute:: weight
-
-本层的可学习参数，类型为 ``Parameter``
-
-.. py:attribute:: bias
-
-本层的可学习偏置，类型为 ``Parameter``
 
