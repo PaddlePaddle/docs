@@ -45,4 +45,3 @@ SpectralNorm
         spectralNorm = fluid.dygraph.nn.SpectralNorm('SpectralNorm', dim=1, power_iters=2)
         ret = spectralNorm(fluid.dygraph.base.to_variable(x))
 
-
