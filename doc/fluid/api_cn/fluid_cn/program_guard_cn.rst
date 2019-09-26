@@ -24,7 +24,7 @@ program_guard
         data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10, act='relu')
 
-需要注意的是，如果用户不需要构建自己的启动程序或者主程序，可以传入一个临时的program。
+例如，当组的网不需要startup_program初始化各变量时，可以传入一个临时的program。
 
 **代码示例**
 
