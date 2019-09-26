@@ -5,14 +5,12 @@ transpose
 
 .. py:function:: paddle.fluid.layers.transpose(x,perm,name=None)
 
-根据perm对输入矩阵维度进行重排。
-
-返回张量（tensor）的第i维对应输入维度矩阵的perm[i]。
+该OP根据perm对输入矩阵维度进行重排。返回张量（tensor）的第i维对应输入维度矩阵的perm[i]。
 
 参数：
-    - **x** (Variable) - 输入张量（Tensor)
-    - **perm** (list) - 输入维度矩阵的转置
-    - **name** (str) - 该层名称（可选）
+    - **x** (Variable) - 输入维：x:[N_1, N_2, ..., N_k, D]多维Tensor。
+    - **perm** (list) - perm长度必须和X的维度相同，并依照perm中数据进行维度重排。
+    - **name** (str) - 该层名称（可选）。
 
 返回： 转置后的张量（Tensor）
 
