@@ -5,7 +5,7 @@ SGDOptimizer
 
 .. py:class:: paddle.fluid.optimizer.SGDOptimizer(learning_rate, regularization=None, name=None)
 
-随机梯度下降算法的优化器
+该接口实现随机梯度下降算法的优化器
 
 .. math::
             \\param\_out=param-learning\_rate*grad\\

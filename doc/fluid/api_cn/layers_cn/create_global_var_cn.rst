@@ -5,7 +5,7 @@ create_global_var
 
 .. py:function:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
-在全局块中创建一个新的Tensor，Tensor的值为 ``value`` 。
+该OP在全局块中创建一个新的Tensor，Tensor的值为 ``value`` 。
 
 参数：
     - **shape** (list[int])- 指定输出Tensor的形状，它可以是一个整数列表。
