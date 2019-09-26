@@ -96,9 +96,6 @@ DistributeTranspiler
 
      - 删除了参数更新optimizer相关op，参数的更新由Pserver（参数服务器）执行
      - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op`` ，用于发送参数的梯度与接受更新后的参数
-     - 同步模式（sync）下添加 ``send_barrier_op`` 与 ``fetch_barrier_op`` ，用于确保各个节点间的同步
-     - 同步模式（sync）下添加 ``split_op`` ，用于将参数拆分，发送到对应的Pserver
-     - 同步模式（sync）下添加 ``concat_op`` ，用于将收到的参数部分组合为原始的参数大小
 
 参数:
      - **wait_port** (bool) - 是否等待参数服务器准备就绪后再返回program
