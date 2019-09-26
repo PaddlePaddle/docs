@@ -5,16 +5,16 @@ data
 
 .. py:function:: paddle.fluid.layers.data(name, shape, append_batch_size=True, dtype='float32', lod_level=0, type=VarType.LOD_TENSOR, stop_gradient=True)
 
-该OP会生成可被计算图中的所有算子（operator）访问的全局变量。
+该OP会在全局block中创建变量（Variable），该全局变量可被计算图中的算子（operator）访问。
 
 注意：
 
   不推荐使用 ``paddle.fluid.layers.data`` ，因其在之后的版本中会被删除。请使用 ``paddle.fluid.data`` 。 
 
-  ``paddle.fluid.layers.data`` 在编译期间会使用shape推断网络中变量的维度，但不会检查输入数据的shape是否与符合要求。 ``paddle.fluid.data`` 会在运行过程中由Executor/ParallelExecutor检查输入数据的维度。
+  ``paddle.fluid.layers.data`` 在组网期间会设置创建的变量维度（shape）和数据类型（dtype），但不会检查输入数据的维度和数据类型是否符合要求。 ``paddle.fluid.data`` 会在运行过程中由Executor/ParallelExecutor检查输入数据的维度。
 
 参数：
-    - **name** (str)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str)- 被创建的变量的名字，具体用法请参见 :ref:`api_guide_Name` 。
     - **shape** (list)- 声明维度信息的list。如果 ``append_batch_size`` 为True且内部没有维度值为-1，则应将其视为每个样本的形状。 否则，应将其视为batch数据的形状。
     - **append_batch_size** (bool)-
 
