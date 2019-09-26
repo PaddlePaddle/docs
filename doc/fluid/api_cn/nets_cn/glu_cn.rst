@@ -3,8 +3,8 @@
 glu
 -------------------------------
 .. py:function:: paddle.fluid.nets.glu(input, dim=-1)
-T
-he Gated Linear Units(GLU)由切分（split），sigmoid激活函数和按元素相乘组成。沿着给定维将input拆分成两个大小相同的部分，a和b，计算如下：
+
+门控线性单元 Gated Linear Units (GLU) 由 :ref:`cn_api_fluid_layers_split` ，:ref:`cn_api_fluid_layers_sigmoid` 和 :ref:`cn_api_fluid_layers_elementwise_mul` 组成。特定的，沿着给定维度将输入拆分成两个大小相同的部分，:math:`a` 和 :math:`b` ，按如下方式计算：
 
 .. math::
 
@@ -13,10 +13,10 @@ he Gated Linear Units(GLU)由切分（split），sigmoid激活函数和按元素
 参考论文: `Language Modeling with Gated Convolutional Networks <https://arxiv.org/pdf/1612.08083.pdf>`_
 
 参数：
-    - **input** (Variable) - 输入变量，张量或者LoDTensor
-    - **dim** (int) - 拆分的维度。如果 :math:`dim<0`，拆分的维为 :math:`rank(input)+dim`。默认为-1
+    - **input** (Variable) - 输入变量，Tensor 或 LoDTensor。
+    - **dim** (int) - 拆分的维度。如果 :math:`dim<0` ，拆分的维为 :math:`rank(input) + dim` 。默认为 -1，即最后一维。
 
-返回：变量 —— 变量的大小为输入的一半
+返回: 计算结果，大小为输入大小的一半
 
 返回类型：变量（Variable）
 

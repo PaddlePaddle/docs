@@ -7,7 +7,7 @@ log_loss
 
 **负log loss层**
 
-该层对输入的预测结果和目的标签进行计算，返回负log loss损失值。
+该层对输入的预测结果和目标标签进行计算，返回负对数损失值。
 
 .. math::
 
@@ -15,14 +15,14 @@ log_loss
 
 
 参数:
-  - **input** (Variable|list) – 形为[N x 1]的二维张量, 其中N为batch大小。 该输入是由先前运算得来的概率集。
-  - **label** (Variable|list) – 形为[N x 1]的二维张量，承载着正确标记的数据， 其中N为batch大小。
+  - **input** (Variable) – 形为 [N x 1] 的二维张量, 其中 N 为 batch 大小。 该输入是由前驱算子计算得来的概率。
+  - **label** (Variable) – 形为 [N x 1] 的二维张量，真值标签， 其中 N 为 batch 大小。
   - **epsilon** (float) – epsilon
-  - **name** (string) – log_loss层的名称
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回： 形为[N x 1]的二维张量，承载着负log_loss值
+返回： 形为[N x 1]的二维张量，计算出的负log_loss值
 
-返回类型: 变量（Variable）
+返回类型: Variable
 
 
 **代码示例**

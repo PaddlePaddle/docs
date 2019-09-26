@@ -5,21 +5,21 @@ gaussian_random_batch_size_like
 
 .. py:function:: paddle.fluid.layers.gaussian_random_batch_size_like(input, shape, input_dim_idx=0, output_dim_idx=0, mean=0.0, std=1.0, seed=0, dtype='float32')
 
-用于使用高斯随机发生器初始化张量。分布的defalut均值为0.并且分布的defalut标准差（std）为1.用户可以通过输入参数设置mean和std。
+使用高斯随机发生器初始化张量。高斯分布的默认均值（mean）为0，默认标准差（std）为 1 。用户可以通过输入参数设置 mean 和 std 。
 
 参数：
         - **input** （Variable）- 其input_dim_idx'th维度指定batch_size的张量（Tensor）。
-        - **shape** （元组|列表）- 输出的形状。
-        - **input_dim_idx** （Int）- 默认值0.输入批量大小维度的索引。
-        - **output_dim_idx** （Int）- 默认值0.输出批量大小维度的索引。
-        - **mean** （Float）- （默认值0.0）高斯分布的平均值（或中心值）。
-        - **std** （Float）- （默认值 1.0）高斯分布的标准差（std或spread）。
-        - **seed** （Int）- （默认为0）用于随机数引擎的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此算子将始终每次生成相同的随机数。
-        - **dtype** （np.dtype | core.VarDesc.VarType | str）- 输出数据的类型为float32，float_16，int等。
+        - **shape** （tuple|list）- 输出的形状。
+        - **input_dim_idx** （Int）- （默认值0）输入批量大小维度的索引。
+        - **output_dim_idx** （Int）- （默认值0）输出批量大小维度的索引。
+        - **mean** （float）- （默认值 0.0）高斯分布的平均值（或中心值）。
+        - **std** （float）- （默认值 1.0）高斯分布的标准差（std或spread）。
+        - **seed** （int）- （默认值为 0）用于随机数发生器的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此算子每次将始终生成相同的随机数。
+        - **dtype** （np.dtype | core.VarDesc.VarType | str）- 输出数据的类型，float32、float_16、int 等。
 
-返回：        指定形状的张量将使用指定值填充。
+返回：指定形状的张量，使用从高斯分布抽样产生的随机数填充。
 
-返回类型：        输出（Variable）。
+返回类型：Variable
 
 
 
