@@ -9,13 +9,13 @@ create_py_reader_by_data
 
 参数：
   - **capacity** (int) - ``py_reader`` 维护的缓冲区的容量数据个数.
-  - **feed_list** (list(Variable)) - feed变量列表，这些变量由 :code:`fluid.layers.data()` 创建。
+  - **feed_list** (list(Variable)) - feed变量列表，这些变量一般由 :code:`fluid.data()` 创建。
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
   - **use_double_buffer** (bool，可选) - 是否使用双缓冲区，双缓冲区是为了预读下一个batch的数据、异步CPU -> GPU拷贝。默认值为True。
 
 返回：能够从feed变量列表读取数据的reader，数据类型和feed变量列表中变量的数据类型相同。
 
-返回类型：Variable
+返回类型：reader
 
 **代码示例：**
 
@@ -34,8 +34,8 @@ create_py_reader_by_data
     MEMORY_OPT = False
     USE_CUDA = False
 
-    image = fluid.layers.data(name='image', shape=[1, 28, 28], dtype='float32')
-    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    image = fluid.data(name='image', shape=[-1, 1, 28, 28], dtype='float32')
+    label = fluid.data(name='label', shape=[-1, 1], dtype='int64')
     reader = fluid.layers.create_py_reader_by_data(capacity=64,
                                                    feed_list=[image, label])
     reader.decorate_paddle_reader(
