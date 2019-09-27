@@ -37,7 +37,7 @@ py_reader
   import paddle.dataset.mnist as mnist
 
   def network(image, label):
-    # 用户自定义网络，此处以softmax回归为例
+      # 用户自定义网络，此处以softmax回归为例
       predict = fluid.layers.fc(input=image, size=10, act='softmax')
       return fluid.layers.cross_entropy(input=predict, label=label)
          
@@ -77,7 +77,7 @@ py_reader
 
   def network(reader):
       img, label = fluid.layers.read_file(reader)
-    # 用户自定义网络，此处以softmax回归为例
+      # 用户自定义网络，此处以softmax回归为例
       predict = fluid.layers.fc(input=img, size=10, act='softmax')
       loss = fluid.layers.cross_entropy(input=predict, label=label)        
       return fluid.layers.mean(loss)
