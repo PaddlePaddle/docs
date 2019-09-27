@@ -23,7 +23,6 @@
 |选项                        |   值     |
 |:-------------|:-------------------|
 |CMAKE_BUILD_TYPE             | Release    |
-|FLUID_INFERENCE_INSTALL_DIR  | 安装路径(可选) |
 |ON_INFER                     | ON (推荐)     |
 |WITH_GPU                     | ON/OFF     | 
 |WITH_MKL                     | ON/OFF     |

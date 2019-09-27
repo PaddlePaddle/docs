@@ -21,7 +21,6 @@ Important Compilation Flags:
 |Option                       |   Value    |
 |:-------------|:-------------------|
 |CMAKE_BUILD_TYPE             | Release    |
-|FLUID_INFERENCE_INSTALL_DIR  | Install Path (optional) |
 |ON_INFER                     | ON (recommended)    |
 |WITH_GPU                     | ON/OFF     |
 |WITH_MKL                     | ON/OFF     |
