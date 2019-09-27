@@ -72,9 +72,5 @@ Last step is to register mkldnn output memory object format inside of Output ten
 
 Example of registring MKL-DNN format in output tensor:
 
-    auto output_format =
-        (mkldnn::memory::format)dst_memory->get_primitive_desc()
-            .desc()
-            .data.format;
     out->set_layout(framework::DataLayout::kMKLDNN);
-    out->set_format(output_format);
+    out->set_format(platform::GetMKLDNNFormat(*dst_memory));
