@@ -11,13 +11,12 @@ GradientClipByNorm
 
 .. math::
 
-        & if (norm(X) <= clip\_norm):
-
-        \\ Out = X\\
-
-        & if (norm(X) > clip\_norm):
-
-        \\ Out = \frac{clip\_norm∗X}{norm(X)}\\
+  Out=\left\{
+  \begin{aligned}
+   X & & if (norm(X) <= clip\_norm)\\
+  \frac{clip\_norm∗X}{norm(X)}  & & if (norm(X) > clip\_norm) \\
+  \end{aligned}
+  \right.
 
 
 其中 :math:`norm（X）` 代表 :math:`X` 的L2范数
