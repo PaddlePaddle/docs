@@ -35,7 +35,7 @@ hsigmoid
     - **is_custom** (bool，可选) – 是否使用用户自定义二叉树取代默认二叉树结构。如果设置为True，请务必设置 ``path_table``  ， ``path_code`` ， ``num_classes`` ，否则必须设置num_classes。默认值为False。
     - **is_sparse** (bool，可选) – 是否使用稀疏更新方式。如果设置为True，W的梯度和输入梯度将会变得稀疏。默认值为False。
 
-返回: 层次sigmoid计算后的Tensor，形状为[N, 1]。
+返回: 层次sigmoid计算后的Tensor，形状为[N, 1]，数据类型和 ``input`` 一致。
 
 返回类型: Variable
 
@@ -48,3 +48,10 @@ hsigmoid
       x = fluid.layers.data(name='x', shape=[1, 10], dtype='float32')
       y = fluid.layers.data(name='y', shape=[1, 1], dtype='int64')
       out = fluid.layers.hsigmoid(input=x, label=y, num_classes=8)
+      # [[0.9, 0.9, 0.9], [0.9, 0.9, 0.9], [0.9, 0.9, 0.9], [0.9, 0.9, 0.9]]
+      x = fluid.layers.fill_constant(shape=[4, 3], value=0.9, dtype='float32')
+      y = fluid.layers.fill_constant(
+          shape=[4, 1], value=1, dtype='int64')  # [[1], [1], [1], [1]]
+      # [[0.62792355], [0.62792355], [0.62792355], [0.62792355]]
+      out = fluid.layers.hsigmoid(input=x, label=y, num_classes=2, param_attr=fluid.initializer.Constant(
+          value=0.05), bias_attr=fluid.initializer.Constant(value=.0))
