@@ -11,7 +11,7 @@ program_guard
 
 参数：
     - **main_program** (Program) – “with”语句中将使用的新的main program。
-    - **startup_program** (Program) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序，即仍使用default_startup_program。默认值为None。
+    - **startup_program** (Program，可选) – “with”语句中将使用的新的startup program。若传入 ``None`` 则不改变当前的启动程序，即仍使用default_startup_program。默认值为None。
 
 **代码示例**
 
