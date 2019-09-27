@@ -12,8 +12,7 @@ tensor_array_to_tensor
   - **axis** (int，可选) - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``input`` 中Tensor的Rank，``axis`` 为负时与 ``axis`` +R 等价。默认值为1。
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
-    连接后的输出LoDTensor，输入LoDTensorArray沿指定axis连接。
+返回：LoDTensor
 
 返回类型： Variable
 
