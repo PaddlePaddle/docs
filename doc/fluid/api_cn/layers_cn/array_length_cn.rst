@@ -21,14 +21,28 @@ array_length
     import paddle.fluid as fluid
     tmp = fluid.layers.zeros(shape=[10], dtype='int32')
     i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
+    #tmp是shape为[10]的Tensor，将tmp写入到数组arr下标为10的位置，arr的长度因此为11
     arr = fluid.layers.array_write(tmp, i=i)
+    #查看arr的长度
     arr_len = fluid.layers.array_length(arr)
 
+    #可以通过executor打印出LoDTensorArray的长度
+    input = fluid.layers.Print(arr_len, message="The length of LoDTensorArray:")
+    main_program = fluid.default_main_program()
+    exe = fluid.Executor(fluid.CPUPlace())
+    exe.run(main_program)
 
+**运行输出**
 
+.. code-block:: python
 
-
-
-
-
-
+    1569576542	The length of LoDTensorArray:	The place is:CPUPlace
+    Tensor[array_length_0.tmp_0]
+	shape: [1,]
+	dtype: l
+	data: 11,
+    
+    #输出shape为[1]的Tensor，值为11，表示LoDTensorArray长度为11
+    #dtype为对应C++数据类型，在不同环境下可能显示值不同，但本质一致
+    #例如：如果Tensor中数据类型是int64，则对应的C++数据类型为int64_t，所以dtype值为typeid(int64_t).name()，
+    #      其在MacOS下为'x'，linux下为'l'，Windows下为'__int64'，都表示64位整型变量
