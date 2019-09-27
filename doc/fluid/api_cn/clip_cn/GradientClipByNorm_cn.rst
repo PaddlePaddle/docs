@@ -5,20 +5,28 @@ GradientClipByNorm
 
 .. py:class:: paddle.fluid.clip.GradientClipByNorm(clip_norm)
 
-将输入张量 :math:`X` 转换为L2范数不超过给定的二范数最大值（:math:`max\_norm`）的张量。（张量不是从该函数传入， 通过 ``fluid.program_guard`` 的 ``main_program`` 参数传入）。
+将输入多维Tensor :math:`X` 转换为L2范数不超过给定的二范数最大值（``clip_norm``）的多维Tensor。（多维Tensor不是从该类传入， 而是通过 ``fluid.program_guard`` 的 ``main_program`` 参数传入）。
 
-该类限制了输入张量 :math:`X` 的L2范数不会超过 :math:`max\_norm` 。
-如果 :math:`X` 的L2范数小于或等于 :math:`max\_norm` ，输出 :math:`X` 。
-如果 :math:`X` 的L2范数大于 :math:`max\_norm` ， :math:`X` 将被线性缩放到L2范数等于 :math:`max\_norm` ，如以下公式所示:
+该类限制了输入多维Tensor :math:`X` 的L2范数不会超过``clip_norm``。
+
+如果 :math:`X` 的L2范数小于或等于``clip_norm``，输出 :math:`X` 。
 
 .. math::
-            \\Out = \frac{max\_norm∗X}{norm(X)}\\
+            \\Out = X\\
+
+如果 :math:`X` 的L2范数大于``clip_norm``， :math:`X` 将被线性缩放到L2范数等于``clip_norm`` ，如以下公式所示:
+
+.. math::
+            \\Out = \frac{clip\_norm∗X}{norm(X)}\\
+
 
 其中 :math:`norm（X）` 代表 :math:`X` 的L2范数
 
+.. math::
+  \\norm(X) = (\sum_{i=1}^{n}|x_i|^2)^{\frac{1}{2}}\\
 
 参数:
- - **clip_norm** (float) - 二范数最大值（:math:`max\_norm`)
+ - **clip_norm** (float) - 二范数最大值
 
 
 **代码示例**
