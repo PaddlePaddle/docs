@@ -11,11 +11,12 @@ GradientClipByNorm
 
 .. math::
 
-  Out=\left\{
-  \begin{aligned}
-   X & & if (norm(X) <= clip\_norm)\\
-  \frac{clip\_norm∗X}{norm(X)}  & & if (norm(X) > clip\_norm) \\
-  \end{aligned}
+  Out=
+  \left\{
+  \begin{array}{lr}
+  X & & if (norm(X) <= clip\_norm)\\
+  \frac{clip\_norm∗X}{norm(X)} & & if (norm(X) > clip\_norm) \\
+  \end{array}
   \right.
 
 
