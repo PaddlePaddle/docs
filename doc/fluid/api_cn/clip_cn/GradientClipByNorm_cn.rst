@@ -9,15 +9,15 @@ GradientClipByNorm
 
 该类限制了输入多维Tensor :math:`X` 的L2范数不会超过 ``clip_norm`` 。
 
-如果 :math:`X` 的L2范数小于或等于 ``clip_norm`` ，输出 :math:`X` 。
-
 .. math::
-            \\Out = X\\
 
-如果 :math:`X` 的L2范数大于 ``clip_norm`` ， :math:`X` 将被线性缩放到L2范数等于 ``clip_norm`` ，如以下公式所示:
+        & if (norm(X) <= clip\_norm):
 
-.. math::
-            \\Out = \frac{clip\_norm∗X}{norm(X)}\\
+        \\ Out = X\\
+
+        & if (norm(X) > clip\_norm):
+
+        \\ Out = \frac{clip\_norm∗X}{norm(X)}\\
 
 
 其中 :math:`norm（X）` 代表 :math:`X` 的L2范数
