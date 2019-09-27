@@ -5,7 +5,7 @@ softmax_with_cross_entropy
 
 .. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False, axis=-1)
 
-该OP实现了带有交叉熵损失的softmax层。该函数会将softmax操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的梯度值。
+该OP实现了softmax交叉熵损失函数。该函数会将softmax操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的梯度值。
 
 因为该运算对 ``logits`` 的 ``axis`` 维执行softmax运算，所以它需要未缩放的 ``logits`` 。该运算不应该对softmax运算的输出进行操作，否则会产生错误的结果。
 
