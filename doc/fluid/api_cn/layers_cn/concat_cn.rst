@@ -10,7 +10,7 @@ concat
 参数：
     - **input** (list) - 输入待联结的多维 ``Tensor`` 组成的 ``list`` ，支持的数据类型为：float32、float64、int32、int64。
     - **axis** (int，可选) - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``input`` 中 ``Tensor`` 的Rank， ``axis`` 为负时与 ``axis`` +R 等价。默认值为0。
-    - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：联结后的 ``Tensor`` ，数据类型和 ``input`` 相同。
 
