@@ -5,7 +5,7 @@ array_write
 
 .. py:function:: paddle.fluid.layers.array_write(x, i, array=None)
 
-该OP将输入的变量 ``x`` 写入到数组 :ref:`LoDTensorArray` ``array`` 的第i个位置，并返回修改后的LoDTensorArray，如果 ``array`` 为None，则创建一个新的LoDTensorArray。常与 :ref:`cn_api_fluid_layers_array_write` OP联合使用对LoDTensorArray进行读写。
+该OP将输入的变量 ``x`` 写入到数组 :ref:`cn_api_fluid_LoDTensorArray` ``array`` 的第i个位置，并返回修改后的LoDTensorArray，如果 ``array`` 为None，则创建一个新的LoDTensorArray。常与 :ref:`cn_api_fluid_layers_array_write` OP联合使用对LoDTensorArray进行读写。
 
 参数:
     - **x** (Variable) – 待写入的数据，多维Tensor或LoDTensor，数据类型支持float32，float64，int32，int64
