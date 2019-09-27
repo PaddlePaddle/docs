@@ -5,7 +5,7 @@
 ###########
 
 1. PaddlePaddle的显存分配策略
-==========================
+===========================
 
 1.1. 显存预分配策略
 ----------------
@@ -24,9 +24,9 @@
 
 .. code-block:: python
 
-  chunk_size = FLAGS_fraction_of_gpu_memory_to_use * 单张GPU卡的可用显存
+  chunk_size = FLAGS_fraction_of_gpu_memory_to_use * 单张GPU卡的当前可用显存值
 
-:code:`FLAGS_fraction_of_gpu_memory_to_use` 的默认值为0.92，即框架预先分配显卡92%的可用显存。
+:code:`FLAGS_fraction_of_gpu_memory_to_use` 的默认值为0.92，即框架预先分配显卡92%的当前可用显存值。
 
 若你的GPU卡上有其他任务占用显存，你可以适当将 :code:`FLAGS_fraction_of_gpu_memory_to_use` 减少，保证框架能预分配到合适的chunk，例如：
 
@@ -39,7 +39,7 @@
 
 1.2. 显存自增长AutoGrowth策略
 --------------------------
-在1.6+的版本中，PaddlePaddle支持显存自增长AutoGrowth策略，按需分配显存。
+在1.6+的版本中，PaddlePaddle支持显存自增长AutoGrowth策略，按需分配显存。若您希望按需分配显存，您可选择使用显存自增长AutoGrowth策略。
 
 在前几次显存分配时，会调用 :code:`cudaMalloc` 按需分配，但释放时不会调用 :code:`cudaFree` 返回给GPU，而是在框架内部缓存起来。
 
@@ -63,14 +63,14 @@
 
 
 2. PaddlePaddle的存储优化策略
-==========================
+===========================
 
 PaddlePaddle提供了多种通用存储优化方法，优化你的网络的存储占用（包括显存和内存)。
 
 2.1. GC策略: 存储垃圾及时回收
 -------------------------
 
-GC（Garbage Collection）的原理是在网络运行阶段及时释放无用变量的存储空间，达到节省存储空间的目的。GC适用于使用Executor，ParallelExecutor做模型训练/预测的场合。
+GC（Garbage Collection）的原理是在网络运行阶段及时释放无用变量的存储空间，达到节省存储空间的目的。GC适用于使用Executor，ParallelExecutor做模型训练/预测的场合，但不适用于C++预测库接口。
 
 **GC策略已于1.6+版本中默认开启。**
 
@@ -110,7 +110,7 @@ GC内部会根据变量占用的存储空间大小，对变量进行降序排列
 
 Inplace策略的原理是Op的输出复用Op输入的存储空间。例如，reshape操作的输出和输入可复用同一片存储空间。
 
-Inplace策略适用于使用ParallelExecutor或CompiledProgram+with_data_parallel的场合，通过 :code:`BuildStrategy` 设置。
+Inplace策略适用于使用ParallelExecutor或CompiledProgram+with_data_parallel的场合，通过 :code:`BuildStrategy` 设置。此策略不支持使用Executor+Program做单卡训练、使用C++预测库接口等场合。
 
 **Inplace策略已于1.6+版本中默认开启。**
 
