@@ -10,7 +10,7 @@ to_variable
 参数：
     - **value** (ndarray) – 需要转换的ndarray对象，维度可以为多维，数据类型为np\.float16、np\.float32、np\.float64、np\.int16、np\.int32、np\.int64、np\.uint8、np\.uint16中的一种。
     - **block** (fluid.Block, 可选) – Variable所在的Block，默认值为None。
-    - **name**  (str, 可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name**  (str, 可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 
 返回：从指定ndarray对象创建的 ``Tensor`` ，数据类型和 ``value`` 一致，返回值维度和 ``value`` 一致
