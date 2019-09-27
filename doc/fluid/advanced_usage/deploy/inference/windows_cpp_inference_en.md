@@ -1,7 +1,104 @@
 Model Inference on Windows
 ===========================
 
-Set up Environment
+Pre-Built Inference Libraries
+-------------
+
+| Version      |     Inference Libraries(v1.5.1)     |
+|:---------|:-------------------|
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_mkl_avx/fluid_inference_install_dir.zip) |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_open_avx/fluid_inference_install_dir.zip) |
+|    cuda8.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_8.0/fluid_inference_install_dir.zip) |
+|    cuda8.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_8.0/fluid_inference_install_dir.zip)|
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_mkl_avx_9.0/fluid_inference_install_dir.zip) |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/gpu_open_avx_9.0/fluid_inference_install_dir.zip) |
+
+
+Build From Source Code
+--------------
+Important Compilation Flags:
+
+|选项                        |   值     |
+|:-------------|:-------------------|
+|CMAKE_BUILD_TYPE             | Release    |
+|FLUID_INFERENCE_INSTALL_DIR  | Install Path (optional) |
+|ON_INFER                     | ON (recommended)    |
+|WITH_GPU                     | ON/OFF     |
+|WITH_MKL                     | ON/OFF     |
+
+
+**Paddle Windows Inference Library Compilation Steps**
+
+1. Clone Paddle source code from GitHub:
+   ```bash
+   git clone https://github.com/PaddlePaddle/Paddle.git
+   cd Paddle
+   ```
+
+2. Run Cmake command
+   ```bash
+   # create build directory
+   mkdir build
+
+   # change to the build directory
+   cd build
+
+   cmake .. -G "Visual Studio 14 2015 Win 64" -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON
+   # use -DWITH_GPU to control we are building CPU or GPU version
+   # use -DWITH_MKL to select math library: Intel MKL or OpenBLAS
+
+   # By default on Windows we use /MT for C Runtime Library, If you want to use /MD, please use the below command
+   # If you have no ideas the differences between the two, use the above one
+   cmake .. -G "Visual Studio 14 2015 Win 64" -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DMSVC_STATIC_CRT=OFF
+   ```
+
+3. Open the `paddle.sln` using VisualStudio 2015，choose the`x64` for Solution Platforms，and `Release` for Solution Configurations，then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build)
+
+The inference library will be installed in `fluid_inference_install_dir`:
+
+     fluid_inference_install_dir/
+     ├── CMakeCache.txt
+     ├── paddle
+     │   ├── include
+     │   │   ├── paddle_anakin_config.h
+     │   │   ├── paddle_analysis_config.h
+     │   │   ├── paddle_api.h
+     │   │   ├── paddle_inference_api.h
+     │   │   ├── paddle_mkldnn_quantizer_config.h
+     │   │   └── paddle_pass_builder.h
+     │   └── lib
+     │       ├── libpaddle_fluid.a
+     │       └── libpaddle_fluid.so
+     ├── third_party
+     │   ├── boost
+     │   │   └── boost
+     │   ├── eigen3
+     │   │   ├── Eigen
+     │   │   └── unsupported
+     │   └── install
+     │       ├── gflags
+     │       ├── glog
+     │       ├── mkldnn
+     │       ├── mklml
+     │       ├── protobuf
+     │       ├── snappy
+     │       ├── snappystream
+     │       ├── xxhash
+     │       └── zlib
+     └── version.txt
+
+version.txt constains the detailed configurations about the library，including git commit ID、math library, CUDA, CUDNN versions：
+
+
+     GIT COMMIT ID: cc9028b90ef50a825a722c55e5fda4b7cd26b0d6
+     WITH_MKL: ON
+     WITH_MKLDNN: ON
+     WITH_GPU: ON
+     CUDA version: 8.0
+     CUDNN version: v7
+
+
+Inference Demo Compilation
 -------------------
 
 ### Hardware Environment
@@ -51,7 +148,7 @@ After the execution, the directory build is shown in the picture below. Then ple
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image3.png">
 </p>
 
-Modify the attribute of build as `/MT` :
+Modify `Runtime Library` to `/MT`(default) or `/MD` according to the inference library version :
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image4.png">
