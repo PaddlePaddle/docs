@@ -5,14 +5,16 @@ random_crop
 
 .. py:function:: paddle.fluid.layers.random_crop(x, shape, seed=None)
 
-该operator对batch中每个实例进行随机裁剪。这意味着每个实例的裁剪位置不同，裁剪位置由均匀分布随机生成器决定。所有裁剪的实例都具有相同的shape，由参数shape决定。
+该操作对batch中每个实例进行随机裁剪，即每个实例的裁剪位置不同，裁剪位置由均匀分布随机数生成器决定。所有裁剪后的实例都具有相同的维度，由 ``shape`` 参数决定。
 
 参数:
-    - **x(Variable)** - 一组随机裁剪的实例
-    - **shape(int)** - 裁剪实例的形状
-    - **seed(int|变量|None)** - 默认情况下，随机种子从randint(-65536,-65536)中取得
+    - **x(Variable)** - 多维Tensor。
+    - **shape(list(int))** - 裁剪后最后几维的形状，注意， ``shape`` 的个数小于 ``x`` 的秩。
+    - **seed(int|Variable，可选)** - 设置随机数种子，默认情况下，种子是[-65536,-65536)中一个随机数，默认值：None。
 
-返回: 裁剪后的batch
+返回: 裁剪后的Tensor。
+
+返回类型：Variable
 
 **代码示例**:
 
@@ -20,9 +22,15 @@ random_crop
 
    import paddle.fluid as fluid
    img = fluid.layers.data("img", [3, 256, 256])
+   # cropped_img的shape: [-1, 3, 224, 224]
    cropped_img = fluid.layers.random_crop(img, shape=[3, 224, 224])
+   
+   # cropped_img2的shape: [-1, 2, 224, 224]
+   # cropped_img2 = fluid.layers.random_crop(img, shape=[2，224, 224])
+   
 
-
+   # cropped_img2的shape: [-1, 3, 128, 224]
+   # cropped_img2 = fluid.layers.random_crop(img, shape=[128, 224])
 
 
 
