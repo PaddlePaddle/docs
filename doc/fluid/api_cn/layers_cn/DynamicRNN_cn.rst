@@ -9,11 +9,13 @@ DynamicRNN
 可使用 :ref:`cn_api_fluid_layers_StaticRNN` 。
 
 DynamicRNN可以处理一批序列数据，其中每个样本序列的长度可以不同，每个序列的长度信息记录在LoD里面。
-DynamicRNN会按照时间步将输入序列展开，用户可以在 :code:`with` block中定义如何处理每个时间步。
+DynamicRNN会按照时间步 (time step) 将输入序列展开，用户可以在 :code:`with` block中定义每个时间步要进行的运算。
 
 
 **注意：目前不支持在DynamicRNN中任何层上配置** :code:`is_sparse = True` 。
 
+参数：
+    - **name** (str，可选) - 具体用法参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 step_input
 ^^^^^^^^^^^^^^^^^^^^^
@@ -48,7 +50,7 @@ step_input
       with drnn.block():
           # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
           word = drnn.step_input(embedding)
-          将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
+          # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
           memory = drnn.memory(shape=[200])
           hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
           # 用hidden更新memory
@@ -88,7 +90,7 @@ static_input
 
     sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
     encoder_proj = fluid.layers.data(name='encoder_proj', dtype='float32', shape=[32], lod_level=1)
-    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10], lod_level=1)
+    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10])
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
@@ -152,7 +154,7 @@ memory
     import paddle.fluid as fluid
 
     sentence = fluid.layers.data(name='sentence', shape=[32], dtype='float32', lod_level=1)
-    boot_memory = fluid.layers.data(name='boot', shape=[10], dtype='float32', lod_level=1)
+    boot_memory = fluid.layers.data(name='boot', shape=[10], dtype='float32')
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
@@ -236,7 +238,7 @@ output
 
     sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
     encoder_proj = fluid.layers.data(name='encoder_proj', dtype='float32', shape=[32], lod_level=1)
-    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10], lod_level=1)
+    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10])
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
