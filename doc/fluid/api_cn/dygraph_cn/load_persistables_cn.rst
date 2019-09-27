@@ -5,11 +5,11 @@ load_persistables
 
 .. py:function:: paddle.fluid.dygraph.load_persistables(dirname='save_dir')
 
-该接口从指定目录加载模型参数以及优化器学习率状态。其中加载优化器学习率，仅加载带衰减的学习率状态，例如学习率类型为`LearningRateDecay`的状态。
+该接口从指定目录加载模型参数以及优化器学习率状态。其中加载优化器学习率，仅支持加载带衰减的学习率状态，例如学习率类型为 `LearningRateDecay`的状态。
 
 
 参数:
-    - **dirname**  (str) – 指定加载的目录路径。默认值为"save_dir"。
+    - **dirname**  (str) – 加载的目录路径。默认值为"save_dir"。
 
 
 返回:
@@ -18,7 +18,7 @@ load_persistables
 
 返回类型:   
     - **dict of Variable** – 模型参数字典。字典键为str类型，值为Variable类型，数据类型可以为float32, float64的多维Tensor。
-    - **dict of LearningRateDecay** – 优化器带衰减的学习率对象字典。字典键为str类型，值为LearningRateDecay类型。
+    - **dict of LearningRateDecay** – 优化器带衰减的学习率对象字典。字典键为str类型，值为 :ref:`api_guide_learning_rate_scheduler` 类型。
 
   
 **代码示例**
