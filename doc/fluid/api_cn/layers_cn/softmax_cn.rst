@@ -17,7 +17,7 @@ softmax操作计算K维向量（K是输入第 ``axis`` 维的长度）中指定�
 参数：
     - **input** (Variable) - 任意维度的多维 ``Tensor`` ，数据类型为float32或float64。
     - **use_cudnn** (bool, 可选) - 指示是否用cudnn核，只有在cudnn库安装时有效。为了提高数值的稳定性，默认值：False。
-    - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值：None。
+    - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     - **axis** (int, 可选) - 指示进行softmax计算的维度索引，其范围应为 :math:`[-1，rank-1]` ，其中rank是输入变量的秩。默认值：-1。
 
 返回：表示softmax操作结果的 ``Tensor`` ，数据类型和 ``input`` 一致，返回维度和 ``input`` 一致。
