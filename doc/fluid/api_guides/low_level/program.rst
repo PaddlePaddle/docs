@@ -23,6 +23,7 @@ Program
 
 
 
+.. _api_guide_Block:
 
 =========
 Block
@@ -56,6 +57,7 @@ Operator
 
 更多内容可参考阅读 `Fluid设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_
 
+.. _api_guide_Variable:
 
 =========
 Variable
