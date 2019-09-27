@@ -19,6 +19,17 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 参数：
     - **name** (str，可选) - 具体用法参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
+成员函数列表：
+    - :ref:`cn_api_fluid_layers_DynamicRNN_step_input` ，设置输入变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_static_input` ，设置静态输入变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_block` ，定义每个时间步执行的运算
+    - :ref:`cn_api_fluid_layers_DynamicRNN_memory` ，创建用于在时间步之间传递信息的变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_update_memory` ，更新需要传递的时间步信息
+    - :ref:`cn_api_fluid_layers_DynamicRNN_output` ，设置时间步的输出变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_call` ，获取RNN的输出序列
+
+
+.. _cn_api_fluid_layers_DynamicRNN_step_input:
 
 step_input
 ^^^^^^^^^^^^^^^^^^^^^
@@ -34,7 +45,7 @@ step_input
 
 参数：
     - **x** (Variable) - 输入序列LoDTensor，代表由长度不同的多个序列组成的minibatch，要求 :code:`x.lod_level >= 1`。输入x第一个维度的值等于minibatch内所有序列的长度之和。RNN有多个输入序列时，多个输入LoDTensor的第一个维度必须相同，其它维度可以不同。
-    - **level** (int) - 用于拆分步骤的LoD层级，取值范围是 :code:`[0, x.lod_level)`，默认值是0。
+    - **level** (int) - 用于拆分输入序列的LoD层级，取值范围是 :code:`[0, x.lod_level)`，默认值是0。
 
 返回： 输入序列每个时间步的数据。执行第 :code:`step_idx` 个时间步时，若输入 :code:`x` 中有 :code:`num_sequences` 个长度不小于 :code:`step_idx` 的序列，则这个时间步返回值中只包含了这 :code:`num_sequences` 个序列第 :code:`step_idx` 时间步的数据。
 
@@ -68,8 +79,9 @@ step_input
 
       # 获得RNN的计算结果
       rnn_output = drnn()
-      # 提取最后一个时间步的计算结果
-      last = fluid.layers.sequence_last_step(rnn_output)
+
+
+.. _cn_api_fluid_layers_DynamicRNN_static_input:
 
 static_input
 ^^^^^^^^^^^^^^^^^^^^^
@@ -122,6 +134,8 @@ static_input
     rnn_output = drnn()
 
 
+.. _cn_api_fluid_layers_DynamicRNN_block:
+
 block
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -131,6 +145,9 @@ block
 
 抛出异常：
     - :code:`ValueError`：当RNN :code:`block()` 接口被多次调用时。
+
+
+.. _cn_api_fluid_layers_DynamicRNN_memory:
 
 memory
 ^^^^^^^^^^^^^^^^^^^^^
@@ -204,6 +221,8 @@ memory
     rnn_output = drnn()
 
 
+.. _cn_api_fluid_layers_DynamicRNN_update_memory:
+
 update_memory
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -223,16 +242,15 @@ update_memory
     - :code:`ValueError`：当 :code:`ex_mem` 不是使用 :code:`memory()` 接口定义的memory时。
     - :code:`ValueError`：当 :code:`update_memory()` 接口在 :code:`step_input()` 接口之前被调用时。
 
+
+.. _cn_api_fluid_layers_DynamicRNN_output:
+
 output
 ^^^^^^^^^^^^^^^^^^^^^
 
 .. py:method:: output(*outputs)
 
 设置outputs为RNN每个时间步的输出变量。
-
-若定义了 :code:`drnn = DynamicRNN()`，则可以调用 :code:`drnn()` 获得输出序列，该输出序列是通过将每一个时间步的output数据合并得到的一个LoDTensor。
-当RNN的输入x（通过 :code:`step_input()` 接口设置）的 :code:`x.lod_level` 为1时，该输出LoDTensor将会和输入x持有完全相同的LoD信息。
-通过 :code:`drnn()` 获取的RNN输出LoDTensor中包含了所有时间步的计算结果，可调用 :ref:`cn_api_fluid_layers_sequence_last_step` 获取最后一个时间步的计算结果。
 
 参数：
     - **\*outputs** (Variable ...) - 输出Tensor，可同时将多个Variable标记为输出。
@@ -241,6 +259,30 @@ output
 
 抛出异常：
     - :code:`ValueError`：当 :code:`output()` 接口在RNN :code:`block()` 接口外面被调用时。
+
+
+.. _cn_api_fluid_layers_DynamicRNN_call:
+
+\_\_call\_\_
+^^^^^^^^^^^^^^^^^^^^^
+
+.. py:method:: __call__()
+
+获取RNN计算的输出序列。
+
+若定义了 :code:`drnn = DynamicRNN()`，则可以调用 :code:`drnn()` 获得输出序列，该输出序列是通过将每一个时间步的output数据合并得到的一个LoDTensor。
+当RNN的输入x（通过 :code:`step_input()` 接口设置）的 :code:`x.lod_level` 为1时，该输出LoDTensor将会和输入x持有完全相同的LoD信息。
+通过 :code:`drnn()` 获取的RNN输出LoDTensor中包含了所有时间步的计算结果，可调用 :ref:`cn_api_fluid_layers_sequence_last_step` 获取最后一个时间步的计算结果。
+
+参数：
+    无
+
+返回：RNN的输出序列。
+
+返回类型：Variable或Variable list
+
+抛出异常：
+    - :code:`ValueError` ：当 :code:`__call__()` 接口在RNN :code:`block()` 定义之前被调用时。
 
 **代码示例**
 
