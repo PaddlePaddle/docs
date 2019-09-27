@@ -14,7 +14,7 @@ GradientClipByNorm
   Out=
   \left\{
   \begin{aligned}
-  &  X & & if (norm(X) <= clip\_norm)\\
+  &  X & & if (norm(X) \leq clip\_norm)\\
   &  \frac{clip\_norm∗X}{norm(X)} & & if (norm(X) > clip\_norm) \\
   \end{aligned}
   \right.
