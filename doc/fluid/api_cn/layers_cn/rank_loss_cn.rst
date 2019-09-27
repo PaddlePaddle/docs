@@ -21,7 +21,7 @@ rank_loss
     - **label** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示A的排名是否高于B。
     - **left** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示RankNet对文档A的输出得分。
     - **right** (Variable)：维度为 :math:`[batch,1]` 的2-D ``Tensor`` ，数据类型为float32。其中batch表示批数据的大小。表示RankNet对文档B的输出得分。
-    - **name** (str, 可选)：该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值：None。
+    - **name** (str, 可选)：具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：表示排序损失层输出值的 ``Tensor`` ，数据类型为float32，返回值维度为 :math:`[batch,1]` 。
 
