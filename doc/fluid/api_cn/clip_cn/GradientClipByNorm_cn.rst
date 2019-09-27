@@ -8,13 +8,13 @@ GradientClipByNorm
 将输入张量 :math:`X` 转换为L2范数不超过给定的二范数最大值（:math:`max\_norm`）的张量。（张量不是从该函数传入， 通过 ``fluid.program_guard`` 的 ``main_program`` 参数传入）。
 
 该类限制了输入张量 :math:`X` 的L2范数不会超过 :math:`max\_norm` 。
-如果 :math:`X` 的 L2范数小于或等于 :math:`max\_norm` ，输出 :math:`X` 。
+如果 :math:`X` 的L2范数小于或等于 :math:`max\_norm` ，输出 :math:`X` 。
 如果 :math:`X` 的L2范数大于 :math:`max\_norm` ， :math:`X` 将被线性缩放到L2范数等于 :math:`max\_norm` ，如以下公式所示:
 
 .. math::
             \\Out = \frac{max\_norm∗X}{norm(X)}\\
 
-其中 :math:`norm（X）` 代表 :math:`X` 的 L2 范数
+其中 :math:`norm（X）` 代表 :math:`X` 的L2范数
 
 
 参数:
