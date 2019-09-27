@@ -25,6 +25,7 @@ Important Compilation Flags:
 |ON_INFER                     | ON (recommended)    |
 |WITH_GPU                     | ON/OFF     |
 |WITH_MKL                     | ON/OFF     |
+|WITH_PYTHON                  | OFF     |
 
 
 **Paddle Windows Inference Library Compilation Steps**
