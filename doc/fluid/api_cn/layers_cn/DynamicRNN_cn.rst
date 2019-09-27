@@ -45,7 +45,7 @@ step_input
 
 参数：
     - **x** (Variable) - 输入序列LoDTensor，代表由长度不同的多个序列组成的minibatch，要求 :code:`x.lod_level >= 1`。输入x第一个维度的值等于minibatch内所有序列的长度之和。RNN有多个输入序列时，多个输入LoDTensor的第一个维度必须相同，其它维度可以不同。
-    - **level** (int) - 用于拆分输入序列的LoD层级，取值范围是 :code:`[0, x.lod_level)`，默认值是0。
+    - **level** (int，可选) - 用于拆分输入序列的LoD层级，取值范围是 :code:`[0, x.lod_level)`，默认值是0。
 
 返回： 输入序列每个时间步的数据。执行第 :code:`step_idx` 个时间步时，若输入 :code:`x` 中有 :code:`num_sequences` 个长度不小于 :code:`step_idx` 的序列，则这个时间步返回值中只包含了这 :code:`num_sequences` 个序列第 :code:`step_idx` 时间步的数据。
 
