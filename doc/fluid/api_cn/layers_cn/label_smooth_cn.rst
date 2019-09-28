@@ -7,7 +7,7 @@ label_smooth
 
 该OP实现了标签平滑的功能。标签平滑是一种对分类器层进行正则化的机制，称为标签平滑正则化(LSR)。由于直接优化正确标签的对数似然可能会导致过拟合，降低模型的适应能力，因此提出了标签平滑的方法来降低模型置信度。更多详情请参考：`Label Smoothing <https://arxiv.org/abs/1512.00567>`_
 
-标签平滑使用标签 :math:`y` 自身和一些固定模式随机分布变量 :math:`\mu` 。对 :math:`k` 标签，我们有：
+标签平滑使用原始标签 :math:`y` 和先验分布变量 :math:`\mu` 。对 :math:`k` 标签，我们有：
 
 .. math::
             \tilde{y_k} = (1 - \epsilon) * y_k + \epsilon * \mu_k
