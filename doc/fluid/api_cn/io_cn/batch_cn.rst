@@ -8,7 +8,7 @@ batch
 该接口是一个reader的装饰器。返回的reader将输入reader的数据打包成指定的batch_size大小的批处理数据（batched data）。
 
 参数：
-    - **reader** (Variable)- 读取数据的数据reader。
+    - **reader** (generator)- 读取数据的数据reader。
     - **batch_size** (int)- 批尺寸。
     - **drop_last** (bool) - 若设置为True，则当最后一个batch不等于batch_size时，丢弃最后一个batch；若设置为False，则不会。默认值为False。
 
@@ -21,7 +21,18 @@ batch
 .. code-block:: python
     
     import paddle.fluid as fluid
-    import paddle.dataset.mnist as mnist
-    
-    batch_reader = fluid.io.batch(mnist.train(), batch_size=5)
+
+    def reader():
+        for i in range(10):
+            yield i
+    batch_reader = fluid.io.batch(reader, batch_size=2)
+              
+
+
+
+
+
+
+
+
 
