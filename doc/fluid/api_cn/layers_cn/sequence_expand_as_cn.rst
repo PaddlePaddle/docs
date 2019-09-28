@@ -14,16 +14,16 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
 ::
 
     例1:
-    假设，有4个长度维1的序列[a]、[b]、[c]和[d]，现在要将其扩展为长度是3、4、1、1的序列[a][a][a]、[b][b][b]、[c]和[d]。
+    假设，有4个长度维1的序列[a]、[b]、[c]和[d]，现在要将其扩展为长度是3、3、1、1的序列[a][a][a]、[b][b][b]、[c]和[d]。
     显然，扩展后的序列lod为[0, 3, 6, 7, 8]，则：
     给定输入一维LoDTensor x
         x.data = [[a], [b], [c], [d]]
         x.dims = [4, 1]
     和输入 y
-        y.lod = [[0, 3, 6, 7, 8]]
+        y.lod = [[3, 3, 1, 1]]    #为了便于理解这里用基于长度lod表示
     
     经过sequence_expand_as运算，得到输出1级LoDTensor out
-        out.lod =  [[0,            3,              6,  7,  8]]
+        out.lod =  [[0,            3,              6,  7,  8]]    #基于偏移的lod，等价于基于长度的[[3, 3, 1, 1]]
         out.data = [[a], [a], [a], [b], [b], [b], [c], [d]]
         out.dims = [8, 1]
     
@@ -36,10 +36,10 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
         x.data = [[a, b], [c, d], [e, f]]
         x.dims = [3, 2]
     和输入 y：
-        y.lod = [[0, 2, 3, 6]]
+        y.lod = [[2, 1, 3]]    #为了便于理解这里用基于长度lod表示
 
     输出为1级LoDTensor：
-        out.lod =  [[0,             2,     3,                    6]]
+        out.lod =  [[0,             2,     3,                    6]]    #基于偏移的lod，等价于基于长度的[[2, 1, 3]]
         out.data = [[a, b], [a, b] [c, d], [e, f], [e, f], [e, f]]
         out.dims = [6, 2]
 
@@ -62,11 +62,44 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
+    import numpy as np
 
-    x = fluid.layers.data(name='x', shape=[10], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[10, 20],
-                     dtype='float32', lod_level=1)
+    x = fluid.data(name='x', shape=[1], dtype='float32')
+    y = fluid.data(name='y', shape=[1], dtype='float32', lod_level=1)
     out = layers.sequence_expand_as(x=x, y=y)
+
+    exe = fluid.Executor(fluid.CPUPlace())
+    place = fluid.CPUPlace()
+
+    np_data = np.array([[1], [2], [3], [4]]).astype('float32')
+    x_lod_tensor = fluid.create_lod_tensor(np_data, [[2, 2]], place)
+    print(x_lod_tensor)
+    #lod: {{0, 2, 4}}
+    #    dim: 4, 1
+    #    layout: NCHW
+    #    dtype: float
+    #    data: [1 2 3 4]
+
+    y_lod_tensor = fluid.create_random_int_lodtensor([[3,3,1,1]], [1], 
+                                                    place, low=0, high=1)
+    print(y_lod_tensor)
+    #lod: {{0, 3, 6, 7, 8}}
+    #    dim: 8, 1
+    #    layout: NCHW
+    #    dtype: int64_t
+    #    data: [0 0 1 0 1 1 1 0]
+
+    out_main = exe.run(fluid.default_main_program(), 
+                      feed={'x': x_lod_tensor, 'y': y_lod_tensor}, 
+                      fetch_list=[out], return_numpy=False)
+    print(out_main[0])
+    #lod: {{0, 3, 6, 7, 8}}
+    #    dim: 8, 1
+    #    layout: NCHW
+    #    dtype: float
+    #    data: [1 1 1 2 2 2 3 4]
+
+
 
 
 
