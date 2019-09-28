@@ -1,3 +1,5 @@
+.. _en_user_guide_lod_tensor:
+
 #####################
 LoD-Tensor User Guide
 #####################
