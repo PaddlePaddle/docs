@@ -26,15 +26,18 @@ save_params
 .. code-block:: python
     
     import paddle.fluid as fluid
+    
+    params_path = "./my_paddle_model"
+    image = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    feeder = fluid.DataFeeder(feed_list=[image, label], place=fluid.CPUPlace())
+    predict = fluid.layers.fc(input=image, size=10, act='softmax')
+
+    loss = fluid.layers.cross_entropy(input=predict, label=label)
+    avg_loss = fluid.layers.mean(loss)
+
     exe = fluid.Executor(fluid.CPUPlace())
-    param_path = "./my_paddle_model"
-    prog = fluid.default_main_program()
-    fluid.io.save_params(executor=exe, dirname=param_path,
-                         main_program=None)
-                         
-
-
-
-
-
+    exe.run(fluid.default_startup_program())
+    fluid.io.save_params(executor=exe, dirname=params_path)
+    # 网络中fc层的参数weight和bias将会分别存储在"./my_paddle_model"路径下。                    
 
