@@ -17,16 +17,16 @@ sequence_expand
     假设两个长度为2的序列[a][b]和[c][d]，欲将其扩展为4个长度为2的序列[a][b]、[a][b]、[c][d]、[c][d]。
     序列[a][b]扩展2次，[c][d]扩展2次，扩展所需依据的lod为[2, 2]，则：
     给定输入一维LoDTensor x
-      x.lod  = [[2,        2]]    #表示两个序列的长度为2
+      x.lod  = [[2,        2]]    #表示两个序列的长度为2，为了便于理解这里用基于长度lod表示
       x.data = [[a], [b], [c], [d]]
       x.dims = [4, 1]
     和输入 y
-      y.lod = [[2,    2],     #第0层lod，指定按该层扩展，表示分别扩展2次
+      y.lod = [[2,    2],     #第0层lod，指定按该层扩展，表示分别扩展2次，为了便于理解这里用基于长度lod表示
                [3, 3, 1, 1]]  #第1层lod，注意，因为指定ref_level为0，所以这一层与运算无关
     指定 ref_level = 0，依据y的第0层lod进行扩展，
 
     经过sequence_expand，输出为1级LoDTensor out
-      out.lod =  [[2,        2,        2,        2]]
+      out.lod =  [[0,        2,        4,        6,      8]]  #基于偏移的lod，等价于基于长度的[[2, 2, 2, 2]]
       out.data = [[a], [b], [a], [b], [c], [d], [c], [d]]
       out.dims = [8, 1]
 
@@ -75,7 +75,7 @@ sequence_expand
     np_data = np.array([[1], [2], [3], [4]]).astype('float32')
     x_lod_tensor = fluid.create_lod_tensor(np_data, [[2, 2]], place)
     print(x_lod_tensor)
-    #lod: {{0, 2, 4}}
+    #lod: [[0, 2, 4]]
     #    dim: 4, 1
     #    layout: NCHW
     #    dtype: float
@@ -84,7 +84,7 @@ sequence_expand
     y_lod_tensor = fluid.create_random_int_lodtensor([[2, 2], [3,3,1,1]], [1],
                                                      place, low=0, high=1)
     print(y_lod_tensor)
-    #lod: {{0, 2, 4}{0, 3, 6, 7, 8}}
+    #lod: [[0, 2, 4][0, 3, 6, 7, 8]]
     #    dim: 8, 1
     #    layout: NCHW
     #    dtype: int64_t
@@ -94,7 +94,7 @@ sequence_expand
                       feed={'x': x_lod_tensor, 'y': y_lod_tensor}, 
                       fetch_list=[out], return_numpy=False)
     print(out_main[0])
-    #lod: {{0, 2, 4, 6, 8}}
+    #lod: [[0, 2, 4, 6, 8]]
     #    dim: 8, 1
     #    layout: NCHW
     #    dtype: float
