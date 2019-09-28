@@ -74,7 +74,7 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
     np_data = np.array([[1], [2], [3], [4]]).astype('float32')
     x_lod_tensor = fluid.create_lod_tensor(np_data, [[2, 2]], place)
     print(x_lod_tensor)
-    #lod: {{0, 2, 4}}
+    #lod: [[0, 2, 4]]
     #    dim: 4, 1
     #    layout: NCHW
     #    dtype: float
@@ -83,7 +83,7 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
     y_lod_tensor = fluid.create_random_int_lodtensor([[3,3,1,1]], [1], 
                                                     place, low=0, high=1)
     print(y_lod_tensor)
-    #lod: {{0, 3, 6, 7, 8}}
+    #lod: [[0, 3, 6, 7, 8]]
     #    dim: 8, 1
     #    layout: NCHW
     #    dtype: int64_t
@@ -93,7 +93,7 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
                       feed={'x': x_lod_tensor, 'y': y_lod_tensor}, 
                       fetch_list=[out], return_numpy=False)
     print(out_main[0])
-    #lod: {{0, 3, 6, 7, 8}}
+    #lod: [[0, 3, 6, 7, 8]]
     #    dim: 8, 1
     #    layout: NCHW
     #    dtype: float
