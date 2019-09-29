@@ -8,7 +8,7 @@ gaussian_random
 生成数据符合高斯随机分布的张量。
 
 参数：
-        - **shape** （Tuple[int]）- 生成张量的形状。
+        - **shape** （Tuple[int] | List[int]）- 生成张量的形状。
         - **mean** （float）- 随机张量的均值，默认值为 0.0。
         - **std** （float）- 随机张量的标准差，默认值为 1.0。
         - **seed** （int）- 随机数种子，默认值为0。注：seed 设置为 0 表示使用系统的随机数种子。注意如果 seed 不为 0，则此算子每次将始终生成相同的随机数。
@@ -16,7 +16,11 @@ gaussian_random
 
 返回：        
 
-        - Variable - 符合高斯分布的随机张量。形状为 shape，数据类型为 dtype。
+        - 符合高斯分布的随机张量。形状为 shape，数据类型为 dtype。
+
+返回类型：
+
+       - Variable
 
 
 **代码示例：**
@@ -38,8 +42,8 @@ gaussian_random
     x_np, = exe.run(main, feed={}, fetch_list=[x])
 	
 	x_np
-	# array([[2.3060477, 2.676496 , 3.9911983],
-	#        [0.9990833, 2.8675377, 2.2279181]], dtype=float32)
+    # array([[2.3060477, 2.676496 , 3.9911983],
+    #        [0.9990833, 2.8675377, 2.2279181]], dtype=float32)
 	
 	
 .. code-block:: python
@@ -54,9 +58,9 @@ gaussian_random
         x = fluid.layers.gaussian_random((2, 4), mean=2., dtype="float32", seed=10)
         x_np = x.numpy()
 	
-	x_np
-	# array([[2.3060477 , 2.676496  , 3.9911983 , 0.9990833 ],
-	#        [2.8675377 , 2.2279181 , 0.79029655, 2.8447366 ]], dtype=float32)
+    x_np
+    # array([[2.3060477 , 2.676496  , 3.9911983 , 0.9990833 ],
+    #        [2.8675377 , 2.2279181 , 0.79029655, 2.8447366 ]], dtype=float32)
 
 
 
