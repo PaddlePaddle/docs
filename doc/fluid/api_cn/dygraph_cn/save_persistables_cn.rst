@@ -18,53 +18,53 @@ save_persistables
 
 .. code-block:: python
     
-import paddle
-import paddle.fluid.optimizer as optimizer
-import paddle.fluid as fluid
-import numpy as np
-from paddle.fluid.dygraph.base import to_variable
-from paddle.fluid.dygraph.nn import FC
-from paddle.fluid.optimizer import SGDOptimizer
+    import paddle
+    import paddle.fluid.optimizer as optimizer
+    import paddle.fluid as fluid
+    import numpy as np
+    from paddle.fluid.dygraph.base import to_variable
+    from paddle.fluid.dygraph.nn import FC
+    from paddle.fluid.optimizer import SGDOptimizer
 
-class MLP(fluid.Layer):
-    def __init__(self, name_scope):
-        super(MLP, self).__init__(name_scope)
-        self._fc1 = FC(self.full_name(), 10)
-        self._fc2 = FC(self.full_name(), 10)
+    class MLP(fluid.Layer):
+        def __init__(self, name_scope):
+            super(MLP, self).__init__(name_scope)
+            self._fc1 = FC(self.full_name(), 10)
+            self._fc2 = FC(self.full_name(), 10)
 
-    def forward(self, inputs):
-        y = self._fc1(inputs)
-        y = self._fc2(y)
-        return y
+        def forward(self, inputs):
+            y = self._fc1(inputs)
+            y = self._fc2(y)
+            return y
 
-train_reader = paddle.batch(
-            paddle.dataset.mnist.train(), batch_size=128, drop_last=True)
+    train_reader = paddle.batch(
+                paddle.dataset.mnist.train(), batch_size=128, drop_last=True)
 
-with fluid.dygraph.guard():
-    mlp = MLP("mlp")
-    sgd = SGDOptimizer(learning_rate=fluid.layers.natural_exp_decay(
-        learning_rate=0.1,
-        decay_steps=1,
-        decay_rate=0.5,
-        staircase=True))
+    with fluid.dygraph.guard():
+        mlp = MLP("mlp")
+        sgd = SGDOptimizer(learning_rate=fluid.layers.natural_exp_decay(
+            learning_rate=0.1,
+            decay_steps=1,
+            decay_rate=0.5,
+            staircase=True))
 
-    for batch_id, data in enumerate(train_reader()):
-        dy_x_data = np.array(
-            [x[0].reshape(1, 28, 28) for x in data]).astype('float32')
-        y_data = np.array([x[1] for x in data]).astype('int64').reshape(
-            128, 1)
+        for batch_id, data in enumerate(train_reader()):
+            dy_x_data = np.array(
+                [x[0].reshape(1, 28, 28) for x in data]).astype('float32')
+            y_data = np.array([x[1] for x in data]).astype('int64').reshape(
+                128, 1)
 
-        img = to_variable(dy_x_data)
-        label = to_variable(y_data)
-        label._stop_gradient = True
+            img = to_variable(dy_x_data)
+            label = to_variable(y_data)
+            label._stop_gradient = True
 
-        cost = mlp(img)
-        avg_loss = fluid.layers.reduce_mean(cost)
-        avg_loss.backward()
+            cost = mlp(img)
+            avg_loss = fluid.layers.reduce_mean(cost)
+            avg_loss.backward()
 
-        sgd.minimize(avg_loss)
-        break
+            sgd.minimize(avg_loss)
+            break
 
-    save_dir="save_dir"
-    fluid.dygraph.save_persistables(mlp.state_dict(), dirname=save_dir, optimizers=sgd)
+        save_dir="save_dir"
+        fluid.dygraph.save_persistables(mlp.state_dict(), dirname=save_dir, optimizers=sgd)
 
