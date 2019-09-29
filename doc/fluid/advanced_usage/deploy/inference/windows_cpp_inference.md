@@ -26,7 +26,7 @@
 |ON_INFER                     | ON (推荐)     |
 |WITH_GPU                     | ON/OFF     | 
 |WITH_MKL                     | ON/OFF     |
-|WITH_PYTHON                  | OFF (编译PYTHON API)     |
+|WITH_PYTHON                  | OFF        |
 
 
 请按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
