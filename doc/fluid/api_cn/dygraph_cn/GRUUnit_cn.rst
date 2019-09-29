@@ -45,7 +45,7 @@ GRU单元的输入包括 :math:`z_t` ， :math:`h_{t-1}` 。在上述等式中�
     - **size** (int) – 输入数据的维度大小。
     - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     **注意**
-      - <font color="#FF0000">**该权重维度为 :math:`[T, 3×D]` ， :math:`D` 是隐藏状态的规模（hidden size）, 其值与输入size相关，计算方式为size除以3取整**</font> 。
+      - 该权重维度为 :math:`[T, 3×D]` ， :math:`D` 是隐藏状态的规模（hidden size）, 其值与输入size相关，计算方式为size除以3取整 。
       - 该权重矩阵的所有元素由两部分组成， 一是update gate和reset gate的权重，维度为 :math:`[D, 2×D]` 的2D Tensor，数据类型为float32或float64；二是候选隐藏状态（candidate hidden state）的权重矩阵，维度为 :math:`[D, D]` 的2D Tensor，数据类型为float32或float64。如果该函数参数值为None或者 ``ParamAttr`` 类中的属性之一，gru_unit则会创建一个 ``ParamAttr`` 类的对象作为param_attr。如果param_attr没有被初始化，那么会由Xavier来初始化它。默认值为None。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。在update gates（更新门），reset gates(重置门)以及candidate calculations（候选隐藏状态计算）中，各有一个维度为 :math:`[1, 3D]` 的偏置参数。如果设置值为False，那么上述三者的偏置参数不参与运算。若值为None或者 ``ParamAttr`` 类中的属性之一，gru_unit则会创建一个 ``ParamAttr`` 类的对象作为 bias_attr。如果bias_attr没有被初始化，那它会被默认初始化为0。默认值为None。
     - **activation** (str，可选) –  神经元 “actNode” 的激励函数（activation）类型。默认类型为‘tanh’。
