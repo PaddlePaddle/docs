@@ -13,13 +13,13 @@ NaturalExpDecay
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * exp^{- decay\_rate * \frac{global\_step}{decay\_steps}} 
+    decayed\_learning\_rate = learning\_rate * e^{- decay\_rate * \frac{global\_step}{decay\_steps}} 
 
 当staircase为True时，计算公式为：
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * exp^{- decay\_rate * math.floor(\frac{global\_step}{decay\_steps})} 
+    decayed\_learning\_rate = learning\_rate * e^{- decay\_rate * math.floor(\frac{global\_step}{decay\_steps})} 
 
 式中，
 
