@@ -44,7 +44,7 @@ Conv3D
 参数：
     - **name_scope** (str) - 该类的名称。
     - **num_fliters** (int) - 滤波器数。和输出图像的通道数相同。
-    - **filter_size** (int|tuple|None) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_D, filter_size_H, filter_size_W)。如果filter_size是一个int型，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
+    - **filter_size** (int|tuple，可选) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_D, filter_size_H, filter_size_W)。如果filter_size是一个int型，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
     - **stride** (int|tuple) - 步长(stride)大小。滤波器和输入进行卷积计算时滑动的步长。如果步长（stride）为元组，则必须包含三个整型数， (stride_D, stride_H, stride_W)。否则，stride_D = stride_H = stride_W = stride。默认：stride = 1。
     - **padding** (int|tuple) - 填充（padding）大小。padding参数在输入特征层每边添加 :math:`dilation * (kernel_size - 1) - padding` 个0。如果填充（padding）为元组，则必须包含三个整型数，(padding_D, padding_H, padding_W)。否则， padding_D = padding_H = padding_W = padding。默认：padding = 0。
     - **dilation** (int|tuple) - 膨胀（dilation）大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀（dialation）为元组，则必须包含两个整型数， (dilation_D, dilation_H, dilation_W)。否则，dilation_D = dilation_H = dilation_W = dilation。默认：dilation = 1。
@@ -55,9 +55,9 @@ Conv3D
     - **act** (str) - 激活函数类型，如果设为None，则未添加激活函数。默认值为None。
 
 
-返回：维度和输入相同的Tensor。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
+返回：返回值是卷积操作的结果，维度为 :math:`[N, C_{out}, D_{out}, H_{out}, W_{out}]` 的5-D Tensor，数据类型与输入相同。
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 抛出异常：
   - ``ValueError`` - 如果 ``input`` 的维度和 ``filter_size`` ， ``stride`` , ``padding`` ， ``groups`` 不匹配。
