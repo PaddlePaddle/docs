@@ -37,7 +37,7 @@ Variable
         .. code-block:: python
 
             import paddle.fluid as fluid
-
+            import numpy as np
             with fluid.dygraph.guard():
                 new_variable = fluid.dygraph.to_variable(np.arange(10))
 
@@ -246,7 +246,7 @@ Variable
         print(new_variable.to_string(True, True))
 
 
-Properties
+属性
 ::::::::::::
 
 .. py:attribute:: stop_gradient

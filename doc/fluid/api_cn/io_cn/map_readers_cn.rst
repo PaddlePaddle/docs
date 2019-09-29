@@ -20,7 +20,8 @@ map_readers
 
 .. code-block:: python
 
-   import paddle.reader
+
+   import paddle.fluid as fluid
    d = {"h": 0, "i": 1}
    def func(x):
        return d[x]
@@ -29,7 +30,8 @@ map_readers
        yield "h"
        yield "i"
 
-   map_reader_result = paddle.reader.map_readers(func, reader)
+   map_reader_result = fluid.io.map_readers(func, reader)
+
 
 
 

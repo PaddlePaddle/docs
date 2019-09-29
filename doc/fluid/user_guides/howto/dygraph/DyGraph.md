@@ -16,6 +16,7 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 *  和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的静态图模式执行
 
+有关的动态图机制更多的实际模型示例请参考[Paddle/models/dygraph](https://github.com/PaddlePaddle/models/tree/develop/dygraph)
 
 ## 设置和基本用法
 
