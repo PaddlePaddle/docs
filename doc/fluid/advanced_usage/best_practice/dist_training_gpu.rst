@@ -92,7 +92,7 @@ PaddlePaddle Fluid可以支持在现代GPU [#]_ 服务器集群上完成高性�
 
 1、使用GPU完成部分图片预处理
 
-如果可能，使用GPU完成可以部分数据预处理，比如图片Tensor的归一化：
+如果可能，使用GPU完成部分数据预处理，比如图片Tensor的归一化：
 
 .. code-block:: python
    :linenos:
