@@ -20,6 +20,11 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 1. 从源码编译时，TensorRT预测库目前仅支持使用GPU编译，且需要设置编译选项TENSORRT_ROOT为TensorRT所在的路径。
 2. Windows支持需要TensorRT 版本5.0以上。
 3. Paddle-TRT目前仅支持固定输入shape。
+4. 若使用用户自行安装的TensorRT，需要手动在`NvInfer.h`文件中为`class IPluginFactory`和`class IGpuAllocator`分别添加虚析构函数：
+	```c++
+    virtual ~IPluginFactory() {};
+	virtual ~IGpuAllocator() {};
+    ```
 
 ## 内容
 - [Paddle-TRT使用介绍](#Paddle-TRT使用介绍)
@@ -54,7 +59,8 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 
 ## <a name="Paddle-TRT样例编译测试">Paddle-TRT样例编译测试</a>
 
-1. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.6.tar.gz)并解压，进入`sample/paddle-TRT`目录下。
+1. 下载或编译带有 TensorRT 的paddle预测库，参考[安装与编译C++预测库](./build_and_install_lib_cn.html)。
+2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.6.tar.gz)并解压，进入`sample/paddle-TRT`目录下。
 
 	`paddle-TRT` 文件夹目录结构如下：
 
@@ -77,9 +83,9 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 	- `mobilenetv1` 为模型文件夹
 	- `run.sh` 为预测运行脚本文件
 
-在这里假设样例所在的目录为 `SAMPLE_BASE_DIR/sample/paddle-TRT`
+	在这里假设样例所在的目录为 `SAMPLE_BASE_DIR/sample/paddle-TRT`
 
-2. 配置编译与运行脚本
+3. 配置编译与运行脚本
 	
     编译运行预测样例之前，需要根据运行环境配置编译与运行脚本`run.sh`。`run.sh`的选项与路径配置的部分如下：
 	
@@ -98,7 +104,7 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
     
     按照实际运行环境配置`run.sh`中的选项开关和所需lib路径。
 
-3. 编译与运行样例   
+4. 编译与运行样例   
 
 	```shell
 	sh run.sh
