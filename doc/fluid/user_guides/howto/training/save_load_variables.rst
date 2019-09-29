@@ -112,6 +112,44 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 另外，需特别注意运行 :code:`fluid.default_startup_program()` 必须在调用 :code:`fluid.io.load_params`
 之前。如果在之后运行，可能会覆盖已加载的模型参数导致错误。
 
+通过numpy数组设置模型参数值
+===========================
+
+用户可以灵活地使用numpy数组设置模型参数的值，具体示例如下：
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+    main_prog = fluid.Program()
+    startup_prog = fluid.Program()
+    with fluid.program_guard(main_prog, startup_prog):
+        data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
+        w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32', name='fc_w')
+        b = fluid.layers.create_parameter(shape=[200], dtype='float32', name='fc_b')
+        hidden_w = fluid.layers.matmul(x=data, y=w)
+        hidden_b = fluid.layers.elementwise_add(hidden_w, b)
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(startup_prog)
+
+    for block in main_prog.blocks:
+        for param in block.all_parameters():
+            pd_var = fluid.global_scope().find_var(param.name)
+            pd_param = pd_var.get_tensor()
+            print("load: {}, shape: {}".format(param.name, param.shape))
+            print("Before setting the numpy array value: {}".format(np.array(pd_param).ravel()[:5]))
+            pd_param.set(np.ones(param.shape), place)
+            print("After setting the numpy array value: {}".format(np.array(pd_param).ravel()[:5]))
+
+    # 输出结果：
+    # load: fc_w, shape: (784, 200)
+    # Before setting the numpy array value: [ 0.00121664  0.00700346 -0.05220041 -0.05879825  0.05155897]
+    # After setting the numpy array value: [1. 1. 1. 1. 1.]
+    # load: fc_b, shape: (200,)
+    # Before setting the numpy array value: [-0.098886   -0.00530401 -0.05821943 -0.01038218  0.00760134]
+    # After setting the numpy array value: [1. 1. 1. 1. 1.]
+
 预测模型的保存和加载
 ##############################
 
