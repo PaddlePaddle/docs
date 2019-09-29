@@ -5,13 +5,13 @@ ModelAverage
 
 .. py:class:: paddle.fluid.optimizer.ModelAverage(average_window_rate, min_average_window=10000, max_average_window=10000, regularization=None, name=None)
 
-ModelAverage优化器，在训练过程中在合适的窗口中累计历史 Parameters，在预测时使用取平均值后的Parameters，从而整体提高预测的精度。
+ModelAverage优化器，在训练过程中累积特定连续的历史Parameters，累积的历史范围可以用传入的average_window参数来控制，在预测时使用平均后的Parameters，通常可以提高预测的精度。
 
 在滑动窗口中累积Parameters的平均值，将结果将保存在临时变量中，通过调用 ``apply()`` 方法可应用于当前模型的Parameters，使用 ``restore()`` 方法恢复当前模型Parameters的值。
 
-计算平均值的窗口大小由 ``average_window_rate`` ， ``min_average_window`` ， ``max_average_window`` 以及当前Parameters更新次数共同决定。
+计算平均值的窗口大小由 ``average_window_rate`` ， ``min_average_window`` ， ``max_average_window`` 以及当前Parameters更新次数(num_updates)共同决定。
 
-累积次数超出最大窗口长度时，丢弃旧的计算所得的和值，这几个参数的作用通过以下示例代码说明：
+累积次数（num_accumulates）大于特定窗口阈值(average_window)时，将累积的Parameters临时变量置为0.0，这几个参数的作用通过以下示例代码说明：
 
 .. code-block:: python
 
@@ -23,7 +23,7 @@ ModelAverage优化器，在训练过程中在合适的窗口中累计历史 Para
 参数：
   - **average_window_rate** (float) – 相对于Parameters更新次数的窗口长度计算比率
   - **min_average_window** (int, 可选) – 平均值计算窗口长度的最小值，默认值为10000
-  - **max_average_window** (int, 可选) – 平均值计算窗口长度的最大值，默认值为10000
+  - **max_average_window** (int, 可选) – 平均值计算窗口长度的最大值，推荐设置为一轮训练中mini-batchs的数目，默认值为10000
   - **regularization** (WeightDecayRegularizer, 可选) – 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
   - **name** (str, 可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
@@ -51,12 +51,13 @@ ModelAverage优化器，在训练过程中在合适的窗口中累计历史 Para
         # 构建ModelAverage优化器
         model_average = fluid.optimizer.ModelAverage(0.15,
                                           min_average_window=10000,
-                                          max_average_window=20000)
+                                          max_average_window=12500)
         exe.run(startup_program)
-        x = numpy.random.random(size=(10, 1)).astype('float32')
-        outs = exe.run(program=train_program,
-                       feed={'X': x},
-                       fetch_list=[loss.name])
+        for i in range(12500):
+            x = numpy.random.random(size=(10, 1)).astype('float32')
+            outs = exe.run(program=train_program,
+                        feed={'X': x},
+                        fetch_list=[loss.name])
        # 应用ModelAverage
         with model_average.apply(exe):
              x = numpy.random.random(size=(10, 1)).astype('float32')
@@ -99,12 +100,14 @@ ModelAverage优化器，在训练过程中在合适的窗口中累计历史 Para
         # 构建ModelAverage优化器
         model_average = fluid.optimizer.ModelAverage(0.15,
                                           min_average_window=10000,
-                                          max_average_window=20000)
+                                          max_average_window=12500)
         exe.run(startup_program)
+        for i in range(12500):
         x = numpy.random.random(size=(10, 1)).astype('float32')
         outs = exe.run(program=train_program,
-                       feed={'X': x},
-                       fetch_list=[loss.name])
+                    feed={'X': x},
+                    fetch_list=[loss.name])
+
        # 应用ModelAverage
         with model_average.apply(exe):
              x = numpy.random.random(size=(10, 1)).astype('float32')
@@ -145,12 +148,14 @@ ModelAverage优化器，在训练过程中在合适的窗口中累计历史 Para
         # 构建ModelAverage优化器
         model_average = fluid.optimizer.ModelAverage(0.15,
                                           min_average_window=10000,
-                                          max_average_window=20000)
+                                          max_average_window=12500)
         exe.run(startup_program)
+        for i in range(12500):
         x = numpy.random.random(size=(10, 1)).astype('float32')
         outs = exe.run(program=train_program,
-                       feed={'X': x},
-                       fetch_list=[loss.name])
+                    feed={'X': x},
+                    fetch_list=[loss.name])
+
        # 应用ModelAverage
         with model_average.apply(exe, False):
              x = numpy.random.random(size=(10, 1)).astype('float32')
