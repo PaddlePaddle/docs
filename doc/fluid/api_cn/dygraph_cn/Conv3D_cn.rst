@@ -55,9 +55,7 @@ Conv3D
     - **act** (str，可选) - 激活函数类型，如果设为None，则未添加激活函数。默认值为None。
 
 
-返回：返回值是卷积操作的结果，维度为 :math:`[N, C_{out}, D_{out}, H_{out}, W_{out}]` 的5-D Tensor，数据类型与输入数据类型相同。
-
-返回类型：Variable
+返回：无
 
 抛出异常：
   - ``ValueError`` - 如果 ``input`` 的维度和 ``filter_size`` ， ``stride`` , ``padding`` ， ``groups`` 不匹配。
