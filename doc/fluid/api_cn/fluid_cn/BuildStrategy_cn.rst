@@ -5,7 +5,7 @@ BuildStrategy
 
 .. py:class:: paddle.fluid.BuildStrategy
 
-``BuildStrategy`` 使用户更精准地控制 ``ParallelExecutor`` 中SSA图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
+``BuildStrategy`` 使用户更方便地控制[ ``ParallelExecutor`` ](../fluid_cn.html\#parallelexecutor)中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
 **代码示例**
 
@@ -35,7 +35,7 @@ BuildStrategy
 
 .. py:attribute:: debug_graphviz_path
 
-str类型。表示以graphviz格式向文件中写入SSA图的路径，有利于调试。默认值为空字符串。
+str类型。表示以graphviz格式向文件中写入计算图的路径，有利于调试。默认值为空字符串。
 
 **代码示例**
 
@@ -48,7 +48,7 @@ str类型。表示以graphviz格式向文件中写入SSA图的路径，有利于
 
 .. py:attribute:: enable_sequential_execution
 
-bool类型。如果设置为True，则OP的执行顺序将与program中的执行顺序相同。默认为False。
+bool类型。如果设置为True，则算子的执行顺序将与program中的执行顺序相同。默认为False。
 
 **代码示例**
 
@@ -61,7 +61,7 @@ bool类型。如果设置为True，则OP的执行顺序将与program中的执行
 
 .. py:attribute:: fuse_broadcast_ops
      
-bool类型。表明是否融合(fuse) broadcast ops。值得注意的是，在Reduce模式中，融合broadcast ops可以使程序运行更快，因为这个过程等同于延迟执行所有的broadcast ops。在这种情况下，所有的nccl streams仅用于一段时间内的NCCLReduce操作。默认为False。
+bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模式下有效，使程序运行更快。默认为False。
 
 **代码示例**
 
@@ -152,7 +152,7 @@ bool类型或None。设为True时可用于减少总内存消耗，False表示不
 
 .. py:attribute:: reduce_strategy
 
-``fluid.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种reduce策略，即 ``AllReduce`` 和 ``Reduce`` 。如果用户需要在所有执行设备上独立地进行参数优化，可以使用 ``AllReduce`` 。如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
+``fluid.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种参数梯度聚合策略，即 ``AllReduce`` 和 ``Reduce`` 。如果用户需要在所有执行设备上独立地进行参数更新，可以使用 ``AllReduce`` 。如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
 默认值为 ``AllReduce`` 。
 
 **代码示例**
@@ -165,7 +165,7 @@ bool类型或None。设为True时可用于减少总内存消耗，False表示不
 
 .. py:attribute:: remove_unnecessary_lock
 
-bool类型。如果设置为True, GPU操作中的一些锁将被释放， ``ParallelExecutor`` 将运行得更快，默认为True。
+bool类型。设置True会去除GPU操作中的一些锁操作， ``ParallelExecutor`` 将运行得更快，默认为True。
 
 **代码示例**
 
@@ -178,7 +178,7 @@ bool类型。如果设置为True, GPU操作中的一些锁将被释放， ``Para
 
 .. py:attribute:: sync_batch_norm
 
-bool类型。表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。当前的实现不支持FP16训练和CPU。仅在一台机器上进行同步式批正则，不适用于多台机器。默认为 False。
+bool类型。表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。当前的实现不支持FP16训练和CPU。并且目前**仅支持**仅在一台机器上进行同步式批正则。默认为 False。
 
 **代码示例**
 
