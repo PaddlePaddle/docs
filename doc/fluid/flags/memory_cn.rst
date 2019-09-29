@@ -190,19 +190,20 @@ FLAGS_initial_gpu_memory_in_mb
 *******************************************
 (始于1.4.0)
 
-分配一块指定大小的GPU内存块。之后的内存使用将从该内存块分配。如果内存块没有足够的gpu内存，将从gpu请求大小为FLAGS_reallocate_gpu_memory_in_mb的内存块，直到gpu没有剩余内存为止。
+预分配一块指定大小的GPU显存块。之后的显存使用将从该显存块分配。如果显存块没有足够的显存，将从GPU请求大小为FLAGS_reallocate_gpu_memory_in_mb的显存块，直到GPU没有剩余显存为止。
 
 取值范围
 ---------------
-Uint64型，大于0，为初始GPU内存大小，单位为MB。
+Uint64型，大于0，为初始GPU显存大小，单位为MB。
 
 示例
 -------
-FLAGS_initial_gpu_memory_in_mb=4096 - 分配4GB作为初始GPU内存块大小。
+FLAGS_initial_gpu_memory_in_mb=4096 - 分配4GB作为初始GPU显存块大小。
 
 注意
 -------
-如果设置该flag，则FLAGS_fraction_of_gpu_memory_to_use设置的内存大小将被该flag覆盖。如果未设置该flag，PaddlePaddle将使用FLAGS_fraction_of_gpu_memory_to_use分配GPU内存。
+如果设置该flag，则FLAGS_fraction_of_gpu_memory_to_use设置的显存大小将被该flag覆盖。PaddlePaddle将用该flag指定的值分配初始GPU显存。
+如果未设置该flag，即flag默认值为0时，会关闭此显存策略。PaddlePaddle会使用FLAGS_fraction_of_gpu_memory_to_use的策略来分配初始显存块。
 
 
 FLAGS_memory_fraction_of_eager_deletion
@@ -229,20 +230,20 @@ FLAGS_reallocate_gpu_memory_in_mb
 *******************************************
 (始于1.4.0)
 
-如果耗尽了分配的GPU内存块，则重新分配额外的GPU内存块。
+如果耗尽了分配的GPU显存块，则重新分配额外的GPU显存块。
 
 取值范围
 ---------------
-Int64型，大于0，单位为MB。
+Int64型，大于0，为重新分配的显存大小，单位为MB。
 
 示例
 -------
-FLAGS_reallocate_gpu_memory_in_mb=1024 - 如果耗尽了分配的GPU内存块，重新分配1GB。
+FLAGS_reallocate_gpu_memory_in_mb=1024 - 如果耗尽了分配的GPU显存块，重新分配1GB。
 
 注意
 -------
-如果设置了该flag，PaddlePaddle将重新分配该flag指定大小的gpu内存。否则分配FLAGS_fraction_of_gpu_memory_to_use指定比例的gpu内存。
-
+如果设置了该flag，则FLAGS_fraction_of_gpu_memory_to_use设置的显存大小将被该flag覆盖，PaddlePaddle将用该flag指定的值重分配额外GPU显存。
+如果未设置该flag，即flag默认值为0时，会关闭此显存策略。PaddlePaddle会使用FLAGS_fraction_of_gpu_memory_to_use的策略来重新分配额外显存。
 
 FLAGS_use_pinned_memory
 *******************************************
