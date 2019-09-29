@@ -45,14 +45,14 @@ Conv3D
     - **name_scope** (str) - 该类的名称。
     - **num_fliters** (int) - 滤波器数。和输出图像的通道数相同。
     - **filter_size** (int|tuple，可选) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_D, filter_size_H, filter_size_W)。如果filter_size是一个int型，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
-    - **stride** (int|tuple) - 步长(stride)大小。滤波器和输入进行卷积计算时滑动的步长。如果步长（stride）为元组，则必须包含三个整型数， (stride_D, stride_H, stride_W)。否则，stride_D = stride_H = stride_W = stride。默认：stride = 1。
-    - **padding** (int|tuple) - 填充（padding）大小。padding参数在输入特征层每边添加 :math:`dilation * (kernel_size - 1) - padding` 个0。如果填充（padding）为元组，则必须包含三个整型数，(padding_D, padding_H, padding_W)。否则， padding_D = padding_H = padding_W = padding。默认：padding = 0。
-    - **dilation** (int|tuple) - 膨胀（dilation）大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀（dialation）为元组，则必须包含两个整型数， (dilation_D, dilation_H, dilation_W)。否则，dilation_D = dilation_H = dilation_W = dilation。默认：dilation = 1。
-    - **groups** (int) - 卷积三维层（Conv3D Layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，滤波器的前一半仅和输入通道的前一半连接。滤波器的后一半仅和输入通道的后一半连接。默认：groups = 1。
+    - **stride** (int|tuple，可选) - 步长(stride)大小。滤波器和输入进行卷积计算时滑动的步长。如果步长（stride）为元组，则必须包含三个整型数， (stride_D, stride_H, stride_W)。否则，stride_D = stride_H = stride_W = stride。默认：stride = 1。
+    - **padding** (int|tuple，可选) - 填充（padding）大小。padding参数在输入特征层每边添加 :math:`dilation * (kernel_size - 1) - padding` 个0。如果填充（padding）为元组，则必须包含三个整型数，(padding_D, padding_H, padding_W)。否则， padding_D = padding_H = padding_W = padding。默认：padding = 0。
+    - **dilation** (int|tuple，可选) - 膨胀（dilation）大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀（dialation）为元组，则必须包含两个整型数， (dilation_D, dilation_H, dilation_W)。否则，dilation_D = dilation_H = dilation_W = dilation。默认：dilation = 1。
+    - **groups** (int，可选) - 卷积三维层（Conv3D Layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，滤波器的前一半仅和输入通道的前一半连接。滤波器的后一半仅和输入通道的后一半连接。默认：groups = 1。
     - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
-    - **use_cudnn** （bool） - 是否用cudnn核，仅当下载cudnn库才有效。默认值为True。
-    - **act** (str) - 激活函数类型，如果设为None，则未添加激活函数。默认值为None。
+    - **use_cudnn** （bool，可选） - 是否用cudnn核，仅当下载cudnn库才有效。默认值为True。
+    - **act** (str，可选) - 激活函数类型，如果设为None，则未添加激活函数。默认值为None。
 
 
 返回：返回值是卷积操作的结果，维度为 :math:`[N, C_{out}, D_{out}, H_{out}, W_{out}]` 的5-D Tensor，数据类型与输入数据类型相同。
