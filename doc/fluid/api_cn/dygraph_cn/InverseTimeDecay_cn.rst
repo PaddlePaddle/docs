@@ -23,7 +23,7 @@ InverseTimeDecay
 
 式中，
 
-- :math:`decayed\_learning_rate` ： 衰减后的学习率。
+- :math:`decayed\_learning\_rate` ： 衰减后的学习率。
 式子中各参数详细介绍请看参数说明。
 
 参数：
