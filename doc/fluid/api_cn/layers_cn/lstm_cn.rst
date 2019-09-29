@@ -5,7 +5,7 @@ lstm
 
 .. py:function::  paddle.fluid.layers.lstm(input, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=0.0, is_bidirec=False, is_test=False, name=None, default_initializer=None, seed=-1)
 
-如果您的设备是GPU，本op将使用cudnn LSTM实现
+<font color="#FF0000">**注意：该OP仅支持 GPU 设备运行**</font>
 
 一个没有 peephole 连接的四门长短期记忆网络。在前向传播中，给定迭代的输出ht和单元输出ct可由递归输入ht-1、单元输入ct-1和上一层输入xt计算，给定矩阵W、R和bias bW, bR由下式计算:
 

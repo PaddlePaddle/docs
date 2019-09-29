@@ -11,14 +11,19 @@ LSTMP层(具有循环映射的LSTM)在LSTM层后有一个分离的映射层，�
 公式如下：
 
 .. math::
-
-        i_t & = \sigma(W_{ix}x_{t} + W_{ir}r_{t-1} + W_{ic}c_{t-1} + b_i)\\
-        f_t & = \sigma(W_{fx}x_{t} + W_{fr}r_{t-1} + W_{fc}c_{t-1} + b_f)\\
-        \tilde{c_t} & = act_g(W_{cx}x_t + W_{cr}r_{t-1} + b_c)\\
-        o_t & = \sigma(W_{ox}x_{t} + W_{or}r_{t-1} + W_{oc}c_t + b_o)\\
-        c_t & = f_t \odot c_{t-1} + i_t \odot \tilde{c_t}\\
-        h_t & = o_t \odot act_h(c_t)\\
-        r_t & = \overline{act_h}(W_{rh}h_t)\\
+        i_t & = \sigma(W_{ix}x_{t} + W_{ir}r_{t-1} + W_{ic}c_{t-1} + b_i)
+.. math::
+        f_t & = \sigma(W_{fx}x_{t} + W_{fr}r_{t-1} + W_{fc}c_{t-1} + b_f)
+.. math::
+        \tilde{c_t} & = act_g(W_{cx}x_t + W_{cr}r_{t-1} + b_c)
+.. math::
+        o_t & = \sigma(W_{ox}x_{t} + W_{or}r_{t-1} + W_{oc}c_t + b_o)
+.. math::
+        c_t & = f_t \odot c_{t-1} + i_t \odot \tilde{c_t}
+.. math::
+        h_t & = o_t \odot act_h(c_t)
+.. math::
+        r_t & = \overline{act_h}(W_{rh}h_t)
 
 
 在以上公式中：

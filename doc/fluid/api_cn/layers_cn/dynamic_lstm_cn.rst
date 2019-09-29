@@ -5,10 +5,16 @@ dynamic_lstm
 
 .. py:function::  paddle.fluid.layers.dynamic_lstm(input, size, h_0=None, c_0=None, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', dtype='float32', name=None)
 
-LSTM，即Long-Short Term Memory(长短期记忆)运算。
+该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf>`_。
 
-默认实现方式为diagonal/peephole连接(https://arxiv.org/pdf/1402.1128.pdf)，公式如下：
+<font color="#FF0000">**注意：**</font>
+      - <font color="#FF0000">**该OP仅支持 LoDTensor 作为输入，如果您需要处理的是Tensor**</font>
+      - <font color="#FF0000">**在实现的时候为了提升效率，用户必须将LSTM的输入先进行线性变换，将维度为 [T, D] 的输入映射为 [T, 4D] 的多维 LoDTensor，然后再传给该OP **</font>
 
+该OP的默认实现方式为 diagonal/peephole 连接，参见 `Gers, F. A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_。
+如果需要禁用 peephole 连接方法，将 use_peepholes 设为 False 即可。 
+
+该OP对于序列中每一个时间步的计算公式如下：
 
 .. math::
       i_t=\sigma (W_{ix}x_{t}+W_{ih}h_{t-1}+W_{ic}c_{t-1}+b_i)
@@ -23,70 +29,52 @@ LSTM，即Long-Short Term Memory(长短期记忆)运算。
 .. math::
       h_t=o_t\odot act_h(c_t)
 
-W 代表了权重矩阵(weight matrix)，例如 :math:`W_{xi}` 是从输入门（input gate）到输入的权重矩阵, :math:`W_{ic}` ，:math:`W_{fc}` ，  :math:`W_{oc}` 是对角权重矩阵(diagonal weight matrix)，用于peephole连接。在此实现方式中，我们使用向量来代表这些对角权重矩阵。
-
-其中：
-      - :math:`b` 表示bias向量（ :math:`b_i` 是输入门的bias向量）
-      - :math:`σ` 是非线性激励函数（non-linear activations），比如逻辑sigmoid函数
-      - :math:`i` ，:math:`f` ，:math:`o` 和 :math:`c` 分别为输入门(input gate)，遗忘门(forget gate)，输出门（output gate）,以及神经元激励向量（cell activation vector）这些向量和神经元输出激励向量（cell output activation vector） :math:`h` 有相同的大小。
-      - :math:`⊙` 意为按元素将两向量相乘
-      - :math:`act_g` , :math:`act_h` 分别为神经元(cell)输入、输出的激励函数(activation)。常常使用tanh函数。
-      - :math:`\widetilde{c_t}` 也被称为候选隐藏状态(candidate hidden state)。可根据当前输入和之前的隐藏状态计算而得
-
-将 ``use_peepholes`` 设为False来禁用 peephole 连接方法。 公式等详细信息请参考 http://www.bioinf.jku.at/publications/older/2604.pdf 。
-
-注意， :math:`W_{xi}x_t, W_{xf}x_t, W_{xc}x_t,W_{xo}x_t` 这些在输入 :math:`x_t` 上的操作不包括在此运算中。用户可以在LSTM operator之前选择使用全连接运算。
-
-
-
+公式中的概念信息如下：
+      - :math:`x_{t}` 表示时间步 :math:`t` 的输入
+      - :math:`h_{t}` 表示时间步 :math:`t` 的 hidden 信息
+      - :math:`h_{t-1}, c_{t-1}` 分别表示前一个时间步的 hidden 和 cell 信息
+      - :math:`i_t` ，:math:`f_t` ，:math:`o_t` 和 :math:`c_t` 分别为 input gate，forget gate，output gate，cell
+      - :math:`W` 表示 weight （例如， :math:`W_{ix}` 是在计算 input gate :math:`i_t` 时，对输入 :math:`x_{t}` 做线性变换的 weight）
+      - :math:`b` 表示 bias （例如， :math:`b_{i}` 是 input gate 的 bias）
+      - :math:`σ` 表示 gate 的非线性激活函数，默认为 sigmoid
+      - :math:`act_g， act_h` 分别表示 cell 输入和 cell 输出的非线性激活函数，默认为 tanh
+      - :math:`⊙` 表示矩阵的 Hadamard product，即对两个维度相同的矩阵，将相同位置的元素相乘，得到另一个维度相同的矩阵
 
 参数:
-  - **input** (Variable) (LoDTensor) - LodTensor类型，支持variable time length input sequence（时长可变的输入序列）。 该LoDTensor中底层的tensor是一个形为(T X 4D)的矩阵，其中T为此mini-batch上的总共时间步数。D为隐藏层的大小、规模(hidden size)
-  - **size** (int) – 4 * 隐藏层大小
-  - **h_0** (Variable) – 最初的隐藏状态（hidden state），可选项。默认值为0。它是一个(N x D)张量，其中N是batch大小，D是隐藏层大小。
-  - **c_0** (Variable) – 最初的神经元状态（cell state）， 可选项。 默认值0。它是一个(N x D)张量, 其中N是batch大小。h_0和c_0仅可以同时为None，不能只其中一个为None。
-  - **param_attr** (ParamAttr|None) – 可学习的隐藏层权重的参数属性。
-    注意：
-                      - Weights = :math:`\{W_{ch}, W_{ih},  W_{fh},  W_{oh} \}`
-                      - 形为(D x 4D), 其中D是hidden size（隐藏层规模）
+  - **input** ( :ref:`api_guide_Variable` ) 维度为 :math:`[T, 4D]` 的多维 LoDTensor（必须在传入该OP前对维度为 :math:`[T, D]` 的输入经过线性变换得到），其中 T 为 batch 中所有样本的长度之和，D 为 hidden_size（隐层大小），数据类型为 float32 或者 float64。
+  - **size** (int) – 必须为 4D，即 4 * hidden_size（隐层大小）。
+  - **h_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[N, D]` 的多维 Tensor，其中 N 是 batch_size，D 是 hidden_size，如果为 None，该OP会自动设置为全0的向量。默认值为None。
+  - **c_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[N, D]` 的多维 Tensor，其中 N 是 batch_size，D 是 hidden_size，如果为 None，该OP会自动设置为全0的向量；:math:`h_0, c_0` 如果要设置为None，必须同时为None。默认值为None。
+  - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。如果为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。如果用户需要设置此属性，维度必须等于 :math:`[D, 4D]`。默认值为None。
+  - **bias_attr** (ParamAttr，可选) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。如果用户需要设置此属性，如果 use_peepholes=true，维度需为 :math:`[1, 4D]`, use_peepholes=true，维度需为 :math:`[1 x 7D]`。默认值为None。   
+  - **use_peepholes** (bool，可选) – 是否使用 peephole 连接。默认值为True。
+  - **is_reverse** (bool，可选) – 是否将输入的数据根据根据样本长度进行逆序，同时会将输出进行逆序，用户拿到结果之后，不需要再逆序。默认值为False。
+  - **gate_activation** (str，可选) – 应用于input gate，forget gate， output gate 的激活函数。默认值为sigmoid。
+  - **cell_activation** (str，可选) – 用于cell输入的激活函数。默认值为tanh。
+  - **candidate_activation** (str，可选) – 用于cell输出的激活函数。默认值为tanh。
+  - **dtype** (str，可选) – 数据类型为 "float32" 或者 "float64"。默认值为 "float32"。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-    如果它被设为None或者 ``ParamAttr`` 属性之一, dynamic_lstm会创建 ``ParamAttr`` 对象作为param_attr。如果没有对param_attr初始化（即构造函数没有被设置）， Xavier会负责初始化参数。默认为None。
-  - **bias_attr** (ParamAttr|None) – 可学习的bias权重的属性, 包含两部分，input-hidden bias weights（输入隐藏层的bias权重）和 peephole connections weights（peephole连接权重）。如果 ``use_peepholes`` 值为 ``True`` ， 则意为使用peephole连接的权重。
-    另外：
-      - use_peepholes = False - Biases = :math:`\{ b_c,b_i,b_f,b_o \}` - 形为(1 x 4D)。
-      - use_peepholes = True - Biases = :math:`\{ b_c,b_i,b_f,b_o,W_{ic},W_{fc},W_{oc} \}` - 形为 (1 x 7D)。
+返回：经过lstm运算输出的 hidden 和 cell 的，维度为 :math:`[T, D]` 的 LoDTensor，且LoD保持与输入一致，dtype与输入一致。
 
-    如果它被设为None或 ``ParamAttr`` 的属性之一， ``dynamic_lstm`` 会创建一个 ``ParamAttr`` 对象作为bias_attr。 如果没有对bias_attr初始化（即构造函数没有被设置），bias会被初始化为0。默认值为None。
-  - **use_peepholes** (bool) – （默认: True） 是否使用diagonal/peephole连接方式
-  - **is_reverse** (bool) – （默认: False） 是否计算反LSTM(reversed LSTM)
-  - **gate_activation** (str) – （默认: "sigmoid"）应用于input gate（输入门），forget gate（遗忘门）和 output gate（输出门）的激励函数（activation），默认为sigmoid
-  - **cell_activation** (str) – （默认: tanh）用于神经元输出的激励函数(activation), 默认为tanh
-  - **candidate_activation** (str) – （默认: tanh）candidate hidden state（候选隐藏状态）的激励函数(activation), 默认为tanh
-  - **dtype** (str) – 即 Data type（数据类型）。 可以选择 [“float32”, “float64”]，默认为“float32”
-  - **name** (str|None) – 该层的命名，可选项。如果值为None, 将会自动对该层命名
-
-返回：隐藏状态（hidden state），LSTM的神经元状态。两者都是（T x D）形，且LoD保持与输入一致
-
-返回类型: 元组（tuple）
+返回类型: tuple（ :ref:`api_guide_Variable` , :ref:`api_guide_Variable` ）
 
 
 **代码示例**
 
 ..  code-block:: python
 
-  import paddle.fluid as fluid
-  emb_dim = 256
-  vocab_size = 10000
-  hidden_dim = 512
+      import paddle.fluid as fluid
+      emb_dim = 256
+      vocab_size = 10000
+      hidden_dim = 512
 
-  data = fluid.layers.data(name='x', shape=[1],
-                 dtype='int32', lod_level=1)
-  emb = fluid.layers.embedding(input=data, size=[vocab_size, emb_dim], is_sparse=True)
-     
-  forward_proj = fluid.layers.fc(input=emb, size=hidden_dim * 4,
-                                 bias_attr=False)
-  forward, _ = fluid.layers.dynamic_lstm(
-      input=forward_proj, size=hidden_dim * 4, use_peepholes=False)
+      data = fluid.layers.data(name='x', shape=[1], dtype='int32', lod_level=1)
+      emb = fluid.layers.embedding(input=data, size=[vocab_size, emb_dim], is_sparse=True)
+      
+      forward_proj = fluid.layers.fc(input=emb, size=hidden_dim * 4, bias_attr=False)
+      forward, _ = fluid.layers.dynamic_lstm(input=forward_proj, size=hidden_dim * 4, use_peepholes=False)
+      print(forward.shape)  # (-1, 512)
 
 
 
