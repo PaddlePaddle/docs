@@ -103,10 +103,10 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
                                           max_average_window=12500)
         exe.run(startup_program)
         for i in range(12500):
-        x = numpy.random.random(size=(10, 1)).astype('float32')
-        outs = exe.run(program=train_program,
-                    feed={'X': x},
-                    fetch_list=[loss.name])
+            x = numpy.random.random(size=(10, 1)).astype('float32')
+            outs = exe.run(program=train_program,
+                        feed={'X': x},
+                        fetch_list=[loss.name])
 
        # 应用ModelAverage
         with model_average.apply(exe):
@@ -151,10 +151,10 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
                                           max_average_window=12500)
         exe.run(startup_program)
         for i in range(12500):
-        x = numpy.random.random(size=(10, 1)).astype('float32')
-        outs = exe.run(program=train_program,
-                    feed={'X': x},
-                    fetch_list=[loss.name])
+            x = numpy.random.random(size=(10, 1)).astype('float32')
+            outs = exe.run(program=train_program,
+                        feed={'X': x},
+                        fetch_list=[loss.name])
 
        # 应用ModelAverage
         with model_average.apply(exe, False):
