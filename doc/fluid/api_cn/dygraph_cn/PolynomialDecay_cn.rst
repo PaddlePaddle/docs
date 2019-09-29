@@ -9,25 +9,34 @@ PolynomialDecay
 
 计算方式如下。
 
+若cycle为True，则计算公式为：
 
-.. code-block:: text
+.. math::
 
-    if cycle:
-        decay_steps = decay_steps * ceil(global_step / decay_steps)
-    else:
-        global_step = min(global_step, decay_steps)
-        decayed_learning_rate = (learning_rate - end_learning_rate) *
-            (1 - global_step / decay_steps) ^ power + end_learning_rate
+    decay\_steps &= decay\_steps * math.ceil(\frac{global\_step}{decay\_steps})  \\
+    decayed\_learning\_rate &= (learning\_rate-end\_learning\_rate)*(1-\frac{global\_step}{decay\_steps})^{power}+end\_learning\_rate
+
+若cycle为False，则计算公式为：
+
+.. math::
+
+    global\_step &= min(global\_step, decay\_steps) \\
+    decayed\_learning\_rate &= (learning\_rate-end\_learning\_rate)*(1-\frac{global\_step}{decay\_steps})^{power}+end\_learning\_rate
+
+式中，
+
+- :math:`decayed\_learning\_rate` ： 衰减后的学习率。
+式子中各参数详细介绍请看参数说明。
 
 参数：
     - **learning_rate** (Variable|float32) - 初始学习率。如果设置为Variable，则是标量tensor，数据量类型可以为float32，float64。也可以设置为Python float值。
     - **decay_steps** (int) - 衰减步数。必须是正整数，该参数确定衰减周期。
-    - **end_learning_rate** (float) - 最低的最终学习率。
-    - **power** (float) - 多项式的幂。 
-    - **cycle** (bool) - 学习率下降后是否重新上升。若为True，则学习率衰减到最低学习率值时，会出现上升。若为False，则学习率曲线则单调递减。
-    - **begin** (int) – 起始步，即以上运算式子中global_step的初始化值。默认值为0。
-    - **step** (int) – 步大小，即以上运算式子中global_step的递增值。默认值为1。
-    - **dtype** (str)– 初始化学习率变量的数据类型。默认值为"float32"。
+    - **end_learning_rate** (float，可选) - 最小的最终学习率。默认值为0.0001。
+    - **power** (float，可选) - 多项式的幂。默认值为1.0。
+    - **cycle** (bool，可选) - 学习率下降后是否重新上升。若为True，则学习率衰减到最低学习率值时，会出现上升。若为False，则学习率曲线则单调递减。默认值为False。
+    - **begin** (int，可选) – 起始步，即以上运算式子中global_step的初始化值。默认值为0。
+    - **step** (int，可选) – 步大小，即以上运算式子中global_step的递增值。默认值为1。
+    - **dtype** (str，可选)– 初始化学习率变量的数据类型。默认值为"float32"。
 
 
 **代码示例**
