@@ -14,7 +14,7 @@ conv2d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
-    - :math:`X` ：输入图像，NCHW格式的张量（Tensor）
+    - :math:`X` ：输入，NCHW格式的张量（Tensor）
     - :math:`W` ：滤波器，MCHW格式的张量（Tensor）
     - :math:`*` ： 卷积操作
     - :math:`b` ：偏置值，二维张量（Tensor），shape为 ``[M,1]``
