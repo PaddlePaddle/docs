@@ -8,7 +8,7 @@ save_persistables
 该接口将模型所有参数以及优化器状态保存到指定目录。优化器状态目前仅支持保存带衰减的学习率状态，即 ``LearningRateDecay`` 的状态。
 
 参数:
- - **model_dict**  (dict of Parameter) – 需要保存的模型参数字典，该字典键为str类型，值为Parameter类型，其中包含了数据类型可以为float32，float64的多维Tensor。
+ - **model_dict**  (dict of Parameter) – 需要保存的模型参数字典，该字典键为str类型，值为Parameter类型，通常可以通过 state_dict接口获取。
  - **dirname**  (str，可选) – 指定保存的目录名。默认值为"save_dir"。
  - **optimizers**  (fluid.Optimizer|list(fluid.Optimizer)，可选) –  可以设定为单个优化器，也可以设定为由多个优化器构成的列表。保存优化器中带衰减的学习率参数。默认值为None。 
  
