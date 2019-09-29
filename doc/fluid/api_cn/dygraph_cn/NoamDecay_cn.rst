@@ -5,23 +5,20 @@ NoamDecay
 
 .. py:class:: paddle.fluid.dygraph.NoamDecay(d_model, warmup_steps, begin=1, step=1, dtype='float32')
 
-该接口提供一种Noam衰减方法。
+该接口提供Noam衰减学习率的功能。
 
-以numpy实现的Noam衰减的计算方式如下。
+Noam衰减的计算方式如下。
 
-.. code-block:: python
+.. math::
 
-    import numpy as np
-    # 设置超参数
-    d_model = 2
-    current_steps = 20
-    warmup_steps = 200
-    # 计算学习率
-    lr_value = np.power(d_model, -0.5) * np.min([
-                           np.power(current_steps, -0.5),
-                           np.power(warmup_steps, -1.5) * current_steps])
+    decayed\_learning\_rate = d_{model}^{-0.5} * min(current\_steps^{-0.5}, current\_steps * warmup\_steps^{-1.5})
 
-关于Noam衰减的细节请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
+关于Noam衰减的细节请参考 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
+
+式中，
+
+- :math:`decayed\_learning\_rate` ： 衰减后的学习率。
+式子中各参数详细介绍请看参数说明。
 
 参数：
     - **d_model** (Variable|int) - 模型的输入、输出向量特征维度，为超参数。如果设置为Variable类型值，则数据类型可以为int32或int64的标量Tensor，也可以设置为Python int。
