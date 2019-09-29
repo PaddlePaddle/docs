@@ -23,7 +23,7 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     - **epsilon** (float) - 维持数值稳定性的浮点型值，默认值为1.0e-6。
     - **rho** (float) - 算法中的衰减率，默认值为0.95。
     - **regularization** (WeightDecayRegularizer，可选) - 正则化方法，例如fluid.regularizer.L2DecayRegularizer等。默认值为None，表示无正则化。
-    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 **代码示例**
 

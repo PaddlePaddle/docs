@@ -16,8 +16,8 @@ data
 参数：
     - **name** (str)- 被创建的变量的名字，具体用法请参见 :ref:`api_guide_Name` 。
     - **shape** (list|tuple)- 声明维度信息的list或tuple。
-    - **dtype** (np.dtype|VarType|str)- 数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为float32。
-    - **lod_level** (int)- LoDTensor变量的LoD level数，0意味着输入不是变长序列。LoD level是PaddlePaddle的高级特性，一般任务中不会需要更改此默认值，关于LoD level的详细适用场景和用法请见 :ref:`_en_user_guide_lod_tensor` 。默认值为0。
+    - **dtype** (np.dtype|VarType|str，可选)- 数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为float32。
+    - **lod_level** (int，可选)- LoDTensor变量的LoD level数，0意味着输入不是变长序列。LoD level是PaddlePaddle的高级特性，一般任务中不会需要更改此默认值，关于LoD level的详细适用场景和用法请见 :ref:`cn_user_guide_lod_tensor` 。默认值为0。
 
 返回：全局变量，可进行数据访问
 

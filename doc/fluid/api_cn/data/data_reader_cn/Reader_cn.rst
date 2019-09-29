@@ -44,20 +44,6 @@ Data Reader Interface
                 yield numpy.random.uniform(-1, 1, size=width*height), label
         return reader
 
-.. py:function::   paddle.reader.map_readers(func, *readers)
-
-创建使用每个数据读取器的输出作为参数输出函数返回值的数据读取器。
-
-参数：
-    - **func**  - 使用的函数. 函数类型应为(Sample) => Sample
-    - **readers**  - 其输出将用作func参数的reader。
-
-类型：callable
-
-返回： 被创建数据的读取器
-
-返回类型： callable
-
 
 .. py:function::  paddle.reader.buffered(reader, size)
 
