@@ -27,7 +27,7 @@ gather
 
 参数:
         - **input** (Variable) - 输入, 秩 ``rank >= 1`` 。
-        - **index** (Variable) - 索引，秩 ``rank = 1`` 。
+        - **index** (Variable) - 索引，秩 ``rank = 1``, 数据类型为 int32 或 int64。
         - **overwrite** (bool) - 具有相同索引时在反向更新梯度的模式。如果为 ``True`` ，则使用覆盖模式更新相同索引的梯度；如果为 ``False`` ，则使用累积模式更新相同索引的梯度。默认值为 ``True`` 。
 
 返回：和输入的秩相同的输出张量。

@@ -8,7 +8,7 @@ gaussian_random_batch_size_like
 使用高斯随机发生器初始化张量。高斯分布的默认均值（mean）为0，默认标准差（std）为 1 。用户可以通过输入参数设置 mean 和 std 。
 
 参数：
-        - **input** （Variable）- 其input_dim_idx'th维度指定batch_size的张量（Tensor）。
+        - **input** （Variable）- 其 input_dim_idx'th 维度指定 batch_size 的张量（Tensor）。
         - **shape** （tuple|list）- 输出的形状。
         - **input_dim_idx** （Int）- （默认值0）输入批量大小维度的索引。
         - **output_dim_idx** （Int）- （默认值0）输出批量大小维度的索引。
@@ -17,7 +17,7 @@ gaussian_random_batch_size_like
         - **seed** （int）- （默认值为 0）用于随机数发生器的随机种子。0表示使用系统生成的种子。请注意，如果seed不为0，则此算子每次将始终生成相同的随机数。
         - **dtype** （np.dtype | core.VarDesc.VarType | str）- 输出数据的类型，float32、float_16、int 等。
 
-返回：指定形状的张量，使用从高斯分布抽样产生的随机数填充。
+返回：指定形状的张量，由从高斯分布抽样产生的随机数所填充。
 
 返回类型：Variable
 
