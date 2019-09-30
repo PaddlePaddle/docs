@@ -58,7 +58,7 @@ PaddlePaddle Fluid可以支持在现代GPU [#]_ 服务器集群上完成高性�
 - 关于AllReduce融合 :code:`fuse_all_reduce_ops` ，默认情况下会将同一layer中参数的梯度的AllReduce操作合并成一个，比如对于 :code:`fluid.layers.fc` 中有Weight和Bias两个参数，打开该选项之后，原本需要两次AllReduce操作，现在只用一次AllReduce 操作。此外，为支持更大粒度的参数梯度融合，Paddle提供了 :code:`FLAGS_fuse_parameter_memory_size` 和 :code:`FLAGS_fuse_parameter_groups_size` 两个环境变量选项。用户可以指定融合AllReduce操作之后，每个AllReduce操作的梯度字节数，比如希望每次AllReduce调用传输16MB的梯度，:code:`export FLAGS_fuse_parameter_memory_size=16` ，经验值为总通信量的十分之一。可以指定每次AllReduce操作的最大层数，即到达该层数就进行AllReduce，如指定50层 :code:`export FLAGS_fuse_parameter_groups_size=50` 。注意：目前不支持sparse参数梯度。
 - 关于使用分级式reduce :code:`use_hierarchical_allreduce` 。对于多机模式，针对小数据量的通信，Ring AllReduce通信效率低，采用Hierarchical AllReduce可以解决该问题。
 - 关于降低scope drop频率 :code:`num_iteration_per_drop_scope` 和fetch频率 :code:`fetch_frequency` 。减少scope drop和fetch频率，可以减少频繁的变量内存申请、释放和拷贝，从而提升性能。
-- 其他训练策略的参数可以参考 `这里 <../training_best_practice.html>`_
+- 其他训练策略的参数可以参考 `这里 <../best_practice/training_best_practice.html>`_
 
 设置这些参数可以参考：
 
