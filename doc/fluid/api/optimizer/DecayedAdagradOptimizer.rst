@@ -9,5 +9,6 @@ DecayedAdagradOptimizer
 ..  autoclass:: paddle.fluid.optimizer.DecayedAdagradOptimizer
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 
