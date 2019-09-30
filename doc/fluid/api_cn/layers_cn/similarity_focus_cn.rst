@@ -70,11 +70,11 @@ similarity_focus
 
 
 参数:
-  - **input** (Variable) – 输入张量(默认类型为float)。应为一个四维张量，形为[BatchSize, A, B, C]
+  - **input** (Variable) – 输入张量，应为一个四维张量，形为[BatchSize, A, B, C]，数据类型为 float32 或者 float64。
   - **axis** (int) – 指明要选择的轴。 可能取值为 1, 2 或 3。
   - **indexes** (list) – 指明选择维度的索引列表。
 
-返回：一个和输入张量同形、同类型的张量变量
+返回：一个和输入 Variable 同形状、同数据类型的 Variable
 
 返回类型：Variable
 

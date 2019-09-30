@@ -11,8 +11,8 @@ nce
 该层默认使用均匀分布进行抽样。
 
 参数:
-    - **input** (Variable) -  输入变量, 2-D 张量，形状为 [batch_size, dim]。
-    - **label** (Variable) -  标签，2-D 张量，形状为 [batch_size, num_true_class]。
+    - **input** (Variable) -  输入变量, 2-D 张量，形状为 [batch_size, dim]，数据类型为 float32 或者 float64。
+    - **label** (Variable) -  标签，2-D 张量，形状为 [batch_size, num_true_class]，数据类型为 int64。
     - **num_total_classes** (int) - 所有样本中的类别的总数。
     - **sample_weight** (Variable，可选) - 存储每个样本权重，shape 为 [batch_size, 1] 存储每个样本的权重。每个样本的默认权重为1.0。
     - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
@@ -24,7 +24,7 @@ nce
     - **seed** (int，可选) – 采样器使用的seed。默认为0
     - **is_sparse** (bool，可选) – 标志位，指明是否使用稀疏更新, 为 ``True`` 时 :math:`weight@GRAD` 和 :math:`bias@GRAD` 的类型会变为 SelectedRows。默认为 ``False`` 。
 
-返回： nce loss
+返回： nce loss，数据类型与 **input** 相同
 
 返回类型: Variable
 

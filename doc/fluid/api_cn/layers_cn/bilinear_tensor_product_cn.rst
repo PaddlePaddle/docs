@@ -20,8 +20,8 @@ bilinear_tensor_product
   - :math:`y^\mathrm{T}`: :math:`y_{2}` 的转置。
 
 参数：
-    - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M]。
-    - **y** (Variable): 2-D 输入张量，形状为 [batch_size, N]。
+    - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M], 数据类型为 float32 或 float64。
+    - **y** (Variable): 2-D 输入张量，形状为 [batch_size, N]，数据类型与 **x** 一致。
     - **size** (int): 此层的维度。
     - **act** (str, 可选): 应用到该层输出的激活函数。
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为 None。
