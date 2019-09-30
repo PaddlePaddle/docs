@@ -94,6 +94,14 @@ class DocGenerator(object):
     :noindex:
 
 '''.format(self.module_prefix, name))
+        elif "fluid.optimizer" in self.module_prefix:
+            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+    :members:
+    :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
+    :noindex:
+
+'''.format(self.module_prefix, name))
         else:
             self.stream.write('''..  autoclass:: paddle.{0}.{1}
     :members:
