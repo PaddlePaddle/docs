@@ -16,6 +16,30 @@ transpose
 
 返回类型：变量（Variable）
 
+**示例**:
+
+.. code-block:: python
+
+         x = [[[ 1  2  3  4] [ 5  6  7  8] [ 9 10 11 12]]
+             [[13 14 15 16] [17 18 19 20] [21 22 23 24]]]
+         shape(x) =  [2,3,4]
+
+         # 例0
+         perm0 = [1,0,2]
+         y_perm0 = [[[ 1  2  3  4] [13 14 15 16]]
+                   [[ 5  6  7  8]  [17 18 19 20]]
+                   [[ 9 10 11 12]  [21 22 23 24]]]
+         shape(y_perm0) = [3,2,4]
+
+         # 例1
+         perm1 = [2,1,0]
+         y_perm1 = [[[ 1 13] [ 5 17] [ 9 21]]
+                   [[ 2 14] [ 6 18] [10 22]]
+                   [[ 3 15]  [ 7 19]  [11 23]]
+                   [[ 4 16]  [ 8 20]  [12 24]]]
+         shape(y_perm1) = [4,3,2]
+
+
 **代码示例**:
 
 .. code-block:: python
@@ -23,10 +47,11 @@ transpose
     # 请使用 append_batch_size=False 来避免
     # 在数据张量中添加多余的batch大小维度
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[5, 10, 15],
+    x = fluid.layers.data(name='x', shape=[2, 3, 4],
                     dtype='float32', append_batch_size=False)
     x_transposed = fluid.layers.transpose(x, perm=[1, 0, 2])
-
+    print x_transposed.shape
+    #(3L, 2L, 4L)
 
 
 
