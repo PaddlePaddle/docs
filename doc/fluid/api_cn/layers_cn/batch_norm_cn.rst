@@ -38,7 +38,7 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
 
 
 参数：
-    - **input** (Variable) - batch_norm算子的输入特征，是一个Variable类型，输入维度可以是 2, 3, 4, 5。数据类型：float32和float64。
+    - **input** (Variable) - batch_norm算子的输入特征，是一个Variable类型，输入维度可以是 2, 3, 4, 5。数据类型：flaot16, float32, float64。
     - **act** （string）- 激活函数类型，可以是leaky_realu、relu、prelu等。默认：None。
     - **is_test** （bool） - 指示它是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认：False。
     - **momentum** （float）- 此值用于计算 moving_mean 和 moving_var。更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ， 默认：0.9。

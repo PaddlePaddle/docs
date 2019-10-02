@@ -14,7 +14,7 @@ conv2d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
-    - :math:`X` ：输入图像，NCHW格式的张量（Tensor）
+    - :math:`X` ：输入，NCHW格式的张量（Tensor）
     - :math:`W` ：滤波器，MCHW格式的张量（Tensor）
     - :math:`*` ： 卷积操作
     - :math:`b` ：偏置值，二维张量（Tensor），shape为 ``[M,1]``
@@ -42,7 +42,7 @@ conv2d
     W_{out} = \frac{\left ( W_{in}+2*paddings[1]-\left ( dilations[1]*\left ( W_{f}-1 \right )+1 \right ) \right )}{strides[1]}+1
 
 参数：
-    - **input** (Variable) - 输入，格式为[N,C,H,W]的4-D Tensor。数据类型：float32和float64。
+    - **input** (Variable) - 输入，格式为[N,C,H,W]的4-D Tensor。数据类型：float16, float32, float64。
     - **num_filters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_height，filter_size_width）。否则，filter_size_height = filter_size_width = filter_size。
     - **stride** (int|tuple) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果步长stride是一个元组，则必须包含两个整型数，（stride_height,stride_width）。否则，stride_height = stride_width = stride。默认：stride = 1。
