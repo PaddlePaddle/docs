@@ -11,7 +11,7 @@ Auc
 该接口创建四个局部变量true_positives, true_negatives, false_positives和false_negatives，用于计算Auc。为了离散化AUC曲线，使用临界值的线性间隔来计算召回率和准确率的值。用false positive的召回值高度计算ROC曲线面积，用recall的准确值高度计算PR曲线面积。
 
 参数：
-    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     - **curve** (str) - 将要计算的曲线名的详情，曲线包括ROC（默认）或者PR（Precision-Recall-curve）。
 
 返回：初始化后的 ``Auc`` 对象
