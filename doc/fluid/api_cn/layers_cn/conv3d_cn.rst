@@ -44,7 +44,7 @@ conv3d
     W_{out}&= \frac{(W_{in} + 2 * paddings[2] - (dilations[2] * (W_f - 1) + 1))}{strides[2]} + 1
 
 参数：
-    - **input** (Variable) - 输入，格式为[N,C,D,H,W]格式的5-D Tensor。数据类型：float32和float64。
+    - **input** (Variable) - 输入，格式为[N,C,D,H,W]格式的5-D Tensor。数据类型：float16, float32, float64。
     - **num_fliters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_depth, filter_size_height, filter_size_width)。如果filter_size是一个int型，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
     - **stride** (int|tuple) - 步长(stride)大小。滤波器和输入进行卷积计算时滑动的步长。如果步长（stride）为元组，则必须包含三个整型数， (stride_depth, stride_height, stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认：stride = 1。
