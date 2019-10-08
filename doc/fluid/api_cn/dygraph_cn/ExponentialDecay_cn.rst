@@ -9,17 +9,22 @@ ExponentialDecay
 
 指数衰减的计算方式如下。
 
-当staircase为False时，计算公式为：
+.. math::
+
+    decayed\_learning\_rate = learning\_rate * decay\_rate ^ y 
+
+
+当staircase为False时，y对应的计算公式为：
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * decay\_rate ^ \frac{global\_step}{decay\_steps} 
+    y = \frac{global\_step}{decay\_steps} 
 
-当staircase为True时，计算公式为：
+当staircase为True时，y对应的计算公式为：
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * decay\_rate ^ {math.floor(\frac{global\_step}{decay\_steps})}
+    y = math.floor(\frac{global\_step}{decay\_steps})}
 
 式中，
 
