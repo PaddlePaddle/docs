@@ -9,17 +9,21 @@ NaturalExpDecay
 
 自然指数衰减的计算方式如下。
 
-当staircase为False时，计算公式为：
+.. math::
+
+    decayed\_learning\_rate = learning\_rate * e^{- decay\_rate * y} 
+
+当staircase为False时，y对应的计算公式为：
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * e^{- decay\_rate * \frac{global\_step}{decay\_steps}} 
+    y = \frac{global\_step}{decay\_steps}
 
-当staircase为True时，计算公式为：
+当staircase为True时，y对应的计算公式为：
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * e^{- decay\_rate * math.floor(\frac{global\_step}{decay\_steps})} 
+    y = math.floor(\frac{global\_step}{decay\_steps}) 
 
 式中，
 
@@ -27,7 +31,7 @@ NaturalExpDecay
 式子中各参数详细介绍请看参数说明。
 
 参数：
-    - **learning_rate** (Variable|float) - 初始学习率值。如果设置为Variable，则是标量tensor，数据量类型可以为float32，float64。也可以设置为Python float值。
+    - **learning_rate** (Variable|float) - 初始学习率值。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的float类型。
     - **decay_steps** (int) – 指定衰减的步长。该参数确定衰减的周期。
     - **decay_rate** (float) – 指定衰减率。
     - **staircase** (bool，可选) - 若为True, 学习率变化曲线呈阶梯状，若为False，学习率变化值曲线为平滑的曲线。默认值为False。
