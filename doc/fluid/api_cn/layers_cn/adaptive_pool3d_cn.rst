@@ -72,8 +72,7 @@ adaptive_pool3d
     
     import paddle.fluid as fluid
 
-    data = fluid.layers.data(
-    name='data', shape=[3, 32, 32, 32], dtype='float32')
+    data = fluid.data(name='data', shape=[None, 3, 32, 32, 32], dtype='float32')
     pool_out = fluid.layers.adaptive_pool3d(
                       input=data,
                       pool_size=[3, 3, 3],
@@ -100,8 +99,7 @@ adaptive_pool3d
     
     import paddle.fluid as fluid
 
-    data = fluid.layers.data(
-    name='data', shape=[3, 32, 32, 32], dtype='float32')
+    data = fluid.data(name='data', shape=[None, 3, 32, 32, 32], dtype='float32')
     pool_out = fluid.layers.adaptive_pool3d(
                       input=data,
                       pool_size=[3, 3, 3],

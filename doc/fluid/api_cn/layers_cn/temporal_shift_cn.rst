@@ -46,7 +46,7 @@ temporal_shift
 .. code-block:: python
 
     import paddle.fluid as fluid
-    input = fluid.layers.data(name='input', shape=[4,2,2], dtype='float32')
+    input = fluid.data(name='input', shape=[None,4,2,2], dtype='float32')
     out = fluid.layers.temporal_shift(x=input, seg_num=2, shift_ratio=0.2)
 
 

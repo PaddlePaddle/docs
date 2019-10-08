@@ -39,22 +39,22 @@ kL发散损失计算如下：
 .. code-block:: python
 
     # 'batchmean' reduction, loss shape 为[N]
-    x = fluid.layers.data(name='x', shape=[4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
+    x = fluid.data(name='x', shape=[None,4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
     target = fluid.layers.data(name='target', shape=[4,2,2], dtype='float32')
     loss = fluid.layers.kldiv_loss(x=x, target=target, reduction='batchmean') # shape=[-1]
 
     # 'mean' reduction, loss shape 为[1]
-    x = fluid.layers.data(name='x', shape=[4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
+    x = fluid.data(name='x', shape=[None,4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
     target = fluid.layers.data(name='target', shape=[4,2,2], dtype='float32')
     loss = fluid.layers.kldiv_loss(x=x, target=target, reduction='mean') # shape=[1]
 
     # 'sum' reduction, loss shape 为[1]
-    x = fluid.layers.data(name='x', shape=[4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
+    x = fluid.data(name='x', shape=[None,4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
     target = fluid.layers.data(name='target', shape=[4,2,2], dtype='float32')
     loss = fluid.layers.kldiv_loss(x=x, target=target, reduction='sum') # shape=[1]
 
     # 'none' reduction, loss shape 与X相同
-    x = fluid.layers.data(name='x', shape=[4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
+    x = fluid.data(name='x', shape=[None,4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]
     target = fluid.layers.data(name='target', shape=[4,2,2], dtype='float32')
     loss = fluid.layers.kldiv_loss(x=x, target=target, reduction='none') # shape=[-1, 4, 2, 2]
 

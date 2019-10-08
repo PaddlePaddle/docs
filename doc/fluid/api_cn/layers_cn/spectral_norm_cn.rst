@@ -41,7 +41,7 @@ spectral_norm
 
 .. code-block:: python
 
-   weight = fluid.layers.data(name='weight', shape=[2, 8, 32, 32], append_batch_size=False, dtype='float32')
+   weight = fluid.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
    x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
 
 

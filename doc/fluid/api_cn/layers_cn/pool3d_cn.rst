@@ -114,11 +114,9 @@ pool3d
 .. code-block:: python
 
     import paddle.fluid as fluid
-    data_NCDHW = fluid.layers.data(
-        name='data', shape=[2, 3, 8, 8, 8], dtype='float32', append_batch_size=False)
+    data_NCDHW = fluid.data(name='data', shape=[None, 3, 8, 8, 8], dtype='float32')
 
-    data_NDHWC = fluid.layers.data(
-        name='data', shape=[2, 8, 8, 8, 3], dtype='float32', append_batch_size=False)
+    data_NDHWC = fluid.data(name='data', shape=[None, 8, 8, 8, 3], dtype='float32')
 
     # example 1:
     # ceil_mode = False

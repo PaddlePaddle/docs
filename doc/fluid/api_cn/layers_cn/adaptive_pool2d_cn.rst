@@ -60,8 +60,7 @@ adaptive_pool2d
     #             output[:, :, i, j] = avg(input[:, :, hstart: hend, wstart: wend])
     #
     import paddle.fluid as fluid
-    data = fluid.layers.data(
-        name='data', shape=[3, 32, 32], dtype='float32')
+    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
     pool_out = fluid.layers.adaptive_pool2d(
                       input=data,
                       pool_size=[3, 3],
@@ -82,8 +81,7 @@ adaptive_pool2d
     #             output[:, :, i, j] = max(input[:, :, hstart: hend, wstart: wend])
     #
     import paddle.fluid as fluid
-    data = fluid.layers.data(
-        name='data', shape=[3, 32, 32], dtype='float32')
+    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
     pool_out = fluid.layers.adaptive_pool2d(
                       input=data,
                       pool_size=[3, 3],
