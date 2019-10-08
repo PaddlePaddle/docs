@@ -48,7 +48,7 @@ str类型。表示以graphviz格式向文件中写入计算图的路径，有利
 
 .. py:attribute:: enable_sequential_execution
 
-bool类型。如果设置为True，则算子的执行顺序将与program中的执行顺序相同。默认为False。
+bool类型。如果设置为True，则算子的执行顺序将与算子定义的执行顺序相同。默认为False。
 
 **代码示例**
 
@@ -98,7 +98,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
 .. py:attribute:: gradient_scale_strategy
 
-``fluid.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义 *loss@grad* 的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
+``fluid.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
 **代码示例**
 
