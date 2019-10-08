@@ -7,14 +7,24 @@ ExponentialDecay
 
 该接口提供一种学习率按指数函数衰减的功能。
 
-计算方式如下。
+指数衰减的计算方式如下。
 
-.. code-block:: text
+当staircase为False时，计算公式为：
 
-    if staircase == True:
-        decayed_learning_rate = learning_rate * decay_rate ^ floor(global_step / decay_steps)
-    else:
-        decayed_learning_rate = learning_rate * decay_rate ^ (global_step / decay_steps)
+.. math::
+
+    decayed\_learning\_rate = learning\_rate * decay\_rate ^ \frac{global\_step}{decay\_steps} 
+
+当staircase为True时，计算公式为：
+
+.. math::
+
+    decayed\_learning\_rate = learning\_rate * decay\_rate ^ {math.floor(\frac{global\_step}{decay\_steps})}
+
+式中，
+
+- :math:`decayed\_learning\_rate` ： 衰减后的学习率。
+式子中各参数详细介绍请看参数说明。
 
 参数：
     - **learning_rate** (Variable|float) - 初始学习率。如果设置为Variable，则是标量Tensor，数据类型可以为float32，float64。也可以设置为Python float值。
