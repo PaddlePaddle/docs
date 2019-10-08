@@ -52,7 +52,7 @@ step 2：
 参数：
   - **x** (Variable): 输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
   - **grid** (Variable): 输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
-  - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
 
 返回： Variable(Tensor): 输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor
 
