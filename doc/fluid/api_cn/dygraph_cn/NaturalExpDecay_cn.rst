@@ -11,19 +11,19 @@ NaturalExpDecay
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * e^{- decay\_rate * y} 
+    decayed\_learning\_rate = learning\_rate * e^{y} 
 
 当staircase为False时，y对应的计算公式为：
 
 .. math::
 
-    y = \frac{global\_step}{decay\_steps}
+    y = - decay\_rate * \frac{global\_step}{decay\_steps}
 
 当staircase为True时，y对应的计算公式为：
 
 .. math::
 
-    y = math.floor(\frac{global\_step}{decay\_steps}) 
+    y = - decay\_rate * math.floor(\frac{global\_step}{decay\_steps}) 
 
 式中，
 
