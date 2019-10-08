@@ -36,12 +36,12 @@ array_read
     arr = fluid.layers.create_array(dtype='float32')
     tmp = fluid.layers.fill_constant(shape=[3, 2], dtype='int64', value=5)
     i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-    #写入Tensor后，arr由空数组变为长度为11的数组
+    #tmp是shape为[3,2]的Tensor，将其写入空数组arr的下标10的位置，则arr的长度变为11
     arr = fluid.layers.array_write(tmp, i, array=arr)
-    #在下标为10的位置读取数据
+    #读取arr的下标10的位置的数据
     item = fluid.layers.array_read(arr, i)
 
-    #可以通过executor打印出返回值
+    #可以通过executor打印出该数据
     input = fluid.layers.Print(item, message="The LoDTensor of the i-th position:")
     main_program = fluid.default_main_program()
     exe = fluid.Executor(fluid.CPUPlace())
@@ -57,7 +57,7 @@ array_read
 	    dtype: l
 	    data: 5,5,5,5,5,5,
 
-    #输出了shape为[3, 2]的Tensor
+    #输出了shape为[3,2]的Tensor
     #dtype为对应C++数据类型，在不同环境下可能显示值不同，但本质一致
     #例如：如果Tensor中数据类型是int64，则对应的C++数据类型为int64_t，所以dtype值为typeid(int64_t).name()，
     #      其在MacOS下为'x'，linux下为'l'，Windows下为'__int64'，都表示64位整型变量

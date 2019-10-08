@@ -18,6 +18,7 @@ fluid
     fluid_cn/cuda_places_cn.rst
     fluid_cn/CUDAPinnedPlace_cn.rst
     fluid_cn/CUDAPlace_cn.rst
+    fluid_cn/data_cn.rst
     fluid_cn/DataFeedDesc_cn.rst
     fluid_cn/DataFeeder_cn.rst
     fluid_cn/default_main_program_cn.rst
@@ -42,4 +43,5 @@ fluid
     fluid_cn/release_memory_cn.rst
     fluid_cn/scope_guard_cn.rst
     fluid_cn/Tensor_cn.rst
+    fluid_cn/Variable_cn.rst
     fluid_cn/WeightNormParamAttr_cn.rst
