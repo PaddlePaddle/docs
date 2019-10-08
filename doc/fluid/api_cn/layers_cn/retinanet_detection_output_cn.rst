@@ -36,19 +36,20 @@ retinanet_detection_output
 
   import paddle.fluid as fluid
 
-  bboxes_low = fluid.layers.data(name='bboxes_low', shape=[1, 44, 4],
-      append_batch_size=False, dtype='float32')
-  bboxes_high = fluid.layers.data(name='bboxes_high', shape=[1, 11, 4],
-  scores_low = fluid.layers.data(name='scores_low', shape=[1, 44, 10],
-      append_batch_size=False, dtype='float32')
-  scores_high = fluid.layers.data(name='scores_high', shape=[1, 11, 10],
-      append_batch_size=False, dtype='float32')
-  anchors_low = fluid.layers.data(name='anchors_low', shape=[44, 4],
-      append_batch_size=False, dtype='float32')
-  anchors_high = fluid.layers.data(name='anchors_high', shape=[11, 4],
-      append_batch_size=False, dtype='float32')
-  im_info = fluid.layers.data(name="im_info", shape=[1, 3],
-      append_batch_size=False, dtype='float32')
+  bboxes_low = fluid.data(name='bboxes_low', shape=[1, 44, 4],
+      dtype='float32')
+  bboxes_high = fluid.data(name='bboxes_high', shape=[1, 11, 4],
+      dtype='float32')
+  scores_low = fluid.data(name='scores_low', shape=[1, 44, 10],
+      dtype='float32')
+  scores_high = fluid.data(name='scores_high', shape=[1, 11, 10],
+      dtype='float32')
+  anchors_low = fluid.data(name='anchors_low', shape=[44, 4],
+      dtype='float32')
+  anchors_high = fluid.data(name='anchors_high', shape=[11, 4],
+      dtype='float32')
+  im_info = fluid.data(name="im_info", shape=[1, 3],
+      dtype='float32')
   nmsed_outs = fluid.layers.retinanet_detection_output(
                                           bboxes=[bboxes_low, bboxes_high],
                                           scores=[scores_low, scores_high],
