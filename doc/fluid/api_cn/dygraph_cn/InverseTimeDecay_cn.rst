@@ -27,7 +27,7 @@ InverseTimeDecay
 式子中各参数详细介绍请看参数说明。
 
 参数：
-    - **learning_rate** (Variable|float) - 初始学习率值。如果设置为Variable，则是标量tensor，数据量类型可以为float32，float64。也可以设置为Python float值。
+    - **learning_rate** (Variable|float) - 初始学习率值。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的float类型。
     - **decay_steps** (int) - 衰减步数，见以上衰减运算式子。
     - **decay_rate** (float)- 衰减率。见以上衰减运算。
     - **staircase** (bool，可选) - 指定是否按阶梯状衰减。若为True, 学习率变化曲线呈阶梯状。若为False，学习率变化值曲线为平滑的曲线。默认值为False。
