@@ -19,7 +19,7 @@ CosineDecay
 式子中各参数详细介绍请看参数说明。
 
 参数：
-    - **learning_rate** (Variable | float) - 初始学习率。如果设置为Variable，则是标量tensor，数据量类型可以为float32，float64。也可以设置为Python float值。
+    - **learning_rate** (Variable | float) - 初始学习率。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的float类型。
     - **step_each_epoch** （int） - 遍历一遍训练数据所需的步数。
     - **begin** (int，可选) - 起始步，即以上公式中global_step的初始化值。默认值为0。
     - **step** (int，可选) - 步大小，即以上公式中global_step的每次的增量值。默认值为1。
