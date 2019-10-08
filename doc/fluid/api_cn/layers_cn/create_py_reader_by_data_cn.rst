@@ -34,8 +34,8 @@ create_py_reader_by_data
     MEMORY_OPT = False
     USE_CUDA = False
 
-    image = fluid.data(name='image', shape=[-1, 1, 28, 28], dtype='float32')
-    label = fluid.data(name='label', shape=[-1, 1], dtype='int64')
+    image = fluid.data(name='image', shape=[None, 1, 28, 28], dtype='float32')
+    label = fluid.data(name='label', shape=[None, 1], dtype='int64')
     reader = fluid.layers.create_py_reader_by_data(capacity=64,
                                                    feed_list=[image, label])
     reader.decorate_paddle_reader(
