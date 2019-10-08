@@ -24,7 +24,7 @@ ExponentialDecay
 
 .. math::
 
-    y = math.floor(\frac{global\_step}{decay\_steps})}
+    y = math.floor(\frac{global\_step}{decay\_steps})
 
 式中，
 
