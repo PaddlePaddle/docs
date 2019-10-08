@@ -6,13 +6,13 @@ DistributeTranspiler
 .. py:class:: paddle.fluid.transpiler.DistributeTranspiler (config=None)
 
 
-该类可以把fluid program转变为分布式数据并行计算的program（distributed data-parallelism programs）,可以有PServer和NCCL2两种模式。
-当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即PServer,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
-在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。 
+该类可以把fluid program转变为分布式数据并行计算的program, 有PServer和NCCL2两种模式。
+在Pserver（全称：parameter server）模式下， 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于parameter server的分布式架构(即PServer,参数服务器)来进行训练的program。
+在NCCL2模式下, 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于NCCL2的分布式架构来进行训练的program。在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。 
 
 
 参数：
-        - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性。
+        - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性, 请参考：`DistributeTranspilerConfig` 相关文档。
 
 返回：初始化后的DistributeTranspiler实例
 
@@ -73,13 +73,12 @@ DistributeTranspiler
 
 参数:    
     - **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
-    - **program** (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()`` 
-    - **startup_program** (Program|None) - 要转译的 ``startup_program`` ,默认为 ``fluid.default_startup_program()``
+    - **program** (Program|None) – 待transpile（转译）的main program, 默认为 ``fluid.default_main_program()`` 
     - **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
     - **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
     - **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
-    - **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
-    - **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。PServer模型下，当用户需要使用增量训练时，必须要指定该参数。
+    - **startup_program** (Program|None) – 待transpile（转译）的startup program，默认为 ``fluid.default_startup_program()``
+    - **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式时，需要将当前endpoint（终端）传入该参数。PServer模型下，当用户需要使用增量训练时，必须要指定该参数。
 
 返回：None
 

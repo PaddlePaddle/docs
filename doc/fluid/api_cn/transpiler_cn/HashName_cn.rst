@@ -5,7 +5,7 @@ HashName
 
 .. py:class:: paddle.fluid.transpiler.HashName(pserver_endpoints)
 
-该方法使用 python ``Hash()`` 函数将变量散列到多个parameter server终端。
+该方法使用 python ``Hash()`` 函数将变量散列到多个parameter server节点。
 
 参数:
   - **pserver_endpoints** (list) - endpoint （ip:port）的 list 
@@ -18,9 +18,11 @@ HashName
 
 .. code-block:: python
 
+          import paddle.fluid.transpiler.HashName as HashName
+
           pserver_endpoints = [“127.0.0.1:6007”, “127.0.0.1:6008”]
           vars = [“var1”,”var2”,”var3”,”var4”,”var5”]
-          rr = RoundRobin(pserver_endpoints)
+          rr = HashName(pserver_endpoints)
           rr.dispatch(vars)
 
 
@@ -34,8 +36,10 @@ HashName
 
 .. code-block:: python
 
+          import paddle.fluid.transpiler.HashName as HashName 
+
           pserver_endpoints = [“127.0.0.1:6007”, “127.0.0.1:6008”]
           vars = [“var1”,”var2”,”var3”,”var4”,”var5”]
-          rr = RoundRobin(pserver_endpoints)
+          rr = HashName(pserver_endpoints)
           rr.reset()
 

@@ -20,6 +20,8 @@ RoundRobin
 
 .. code-block:: python
 
+          import paddle.fluid.transpiler.RoundRobin as RoundRobin
+
           pserver_endpoints = [“127.0.0.1:6007”, “127.0.0.1:6008”]
           vars = [“var1”,”var2”,”var3”,”var4”,”var5”]
           rr = RoundRobin(pserver_endpoints)
