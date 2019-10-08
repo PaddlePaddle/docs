@@ -6,13 +6,14 @@ DistributeTranspiler
 .. py:class:: paddle.fluid.DistributeTranspiler (config=None)
 
 
-该类可以把fluid program转变为分布式数据并行计算的program（distributed data-parallelism programs）,可以有PServer和NCCL2两种模式。
-当program在Pserver（全称：parameter server）模式下， ``main_program`` (主程序)转为使用一架远程parameter server(即PServer,参数服务器)来进行参数优化，并且优化图会被输入到一个pserver program中。
-在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。
+该类可以把fluid program转变为分布式数据并行计算的program, 有PServer和NCCL2两种模式。
+在Pserver（全称：parameter server）模式下， 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于parameter server的分布式架构(即PServer,参数服务器)来进行训练的program。
+在NCCL2模式下, 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于NCCL2的分布式架构来进行训练的program。在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播
+算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。
 
 
 参数：
-        - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性。
+        - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性, 请参考：`DistributeTranspilerConfig` 相关文档。
 
 返回：初始化后的DistributeTranspiler实例
 
