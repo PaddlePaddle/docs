@@ -11,9 +11,9 @@ Noam衰减的计算方式如下。
 
 .. math::
 
-    decayed\_learning\_rate = d_{model}^{-0.5} * min(current\_steps^{-0.5}, current\_steps * warmup\_steps^{-1.5})
+    decayed\_learning\_rate = d_{model}^{-0.5} * min(global\_steps^{-0.5}, global\_steps * warmup\_steps^{-1.5})
 
-关于Noam衰减的细节请参考 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
+关于Noam衰减的更多细节请参考 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
 
 式中，
 
@@ -21,10 +21,10 @@ Noam衰减的计算方式如下。
 式子中各参数详细介绍请看参数说明。
 
 参数：
-    - **d_model** (Variable|int) - 模型的输入、输出向量特征维度，为超参数。如果设置为Variable类型值，则数据类型可以为int32或int64的标量Tensor，也可以设置为Python int。
+    - ** :math:`d_{model}` ** (Variable|int) - 模型的输入、输出向量特征维度，为超参数。如果设置为Variable类型值，则数据类型可以为int32或int64的标量Tensor，也可以设置为Python int。
     - **warmup_steps** (Variable|int) - 预热步数，为超参数。如果设置为Variable类型，则数据类型为int32或int64的标量Tensor，也可以设置为为Python int。
-    - **begin** (int，可选) – 起始步。即以上运算式子中current_steps的初始值。默认值为0。
-    - **step** (int，可选) – 步大小。即以上运算式子中current_steps的递增值。默认值为1。
+    - **begin** (int，可选) – 起始步。即以上运算式子中global_steps的初始值。默认值为0。
+    - **step** (int，可选) – 步大小。即以上运算式子中global_steps的递增值。默认值为1。
     - **dtype** (str，可选) – 学习率值的数据类型。默认值为‘float32’。
 
 **代码示例**
@@ -39,6 +39,3 @@ Noam衰减的计算方式如下。
             learning_rate = fluid.dygraph.NoamDecay(
                    1/(warmup_steps *(learning_rate ** 2)),
                    warmup_steps) )
-
-
-
