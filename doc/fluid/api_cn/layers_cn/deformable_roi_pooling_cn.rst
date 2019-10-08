@@ -45,15 +45,15 @@ deformable_roi_pooling
     #position_sensitive为False
 
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input",
+    input = fluid.data(name="input",
                               shape=[2, 192, 64, 64],
                               dtype='float32',
                               append_batch_size=False)
-    rois = fluid.layers.data(name="rois",
+    rois = fluid.data(name="rois",
                              shape=[4],
                              dtype='float32',
                              lod_level=1)
-    trans = fluid.layers.data(name="trans",
+    trans = fluid.data(name="trans",
                               shape=[2, 384, 64, 64],
                               dtype='float32',
                               append_batch_size=False)
@@ -73,15 +73,15 @@ deformable_roi_pooling
     #position_sensitive为True
 
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input",
+    input = fluid.data(name="input",
                               shape=[2, 192, 64, 64],
                               dtype='float32',
                               append_batch_size=False)
-    rois = fluid.layers.data(name="rois",
+    rois = fluid.data(name="rois",
                              shape=[4],
                              dtype='float32',
                              lod_level=1)
-    trans = fluid.layers.data(name="trans",
+    trans = fluid.data(name="trans",
                               shape=[2, 384, 64, 64],
                               dtype='float32',
                               append_batch_size=False)
