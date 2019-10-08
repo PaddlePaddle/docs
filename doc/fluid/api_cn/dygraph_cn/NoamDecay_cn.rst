@@ -21,7 +21,7 @@ Noam衰减的计算方式如下。
 式子中各参数详细介绍请看参数说明。
 
 参数：
-    - **d_model**  (Variable|int) - 模型的输入、输出向量特征维度，为超参数。如果设置为Variable类型值，则数据类型可以为int32或int64的标量Tensor，也可以设置为Python int。
+    - **d$_{model}$**  (Variable|int) - 模型的输入、输出向量特征维度，为超参数。如果设置为Variable类型值，则数据类型可以为int32或int64的标量Tensor，也可以设置为Python int。
     - **warmup_steps** (Variable|int) - 预热步数，为超参数。如果设置为Variable类型，则数据类型为int32或int64的标量Tensor，也可以设置为为Python int。
     - **begin** (int，可选) – 起始步。即以上运算式子中global_steps的初始值。默认值为0。
     - **step** (int，可选) – 步大小。即以上运算式子中global_steps的递增值。默认值为1。
