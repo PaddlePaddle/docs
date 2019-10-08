@@ -6,12 +6,11 @@ name_scope
 .. py:function:: paddle.fluid.name_scope(prefix=None)
 
 
-为operators生成层次名称前缀
+该OP为operators生成不同的命名空间。此OP用于调试和可视化，不建议用在其它方面。
 
-注意： 这个函数只能用于调试和可视化。不要将其用于分析，比如graph/program转换。
 
 参数：
-  - **prefix** (str) - 前缀
+  - **prefix** (str，可选) - 名称前缀。默认值为None。
 
 **示例代码**
 
@@ -30,5 +29,22 @@ name_scope
      with fluid.name_scope("s4"):
            g = f - 1
 
+     # 没有指定的话默认OP在default main program中。
+     for op in fluid.default_main_program().block(0).ops:
+         # elementwise_add在/s1/中创建
+         if op.type == 'elementwise_add':
+             self.assertEqual(op.desc.attr("op_namescope"), '/s1/')
+         # elementwise_mul在/s1/s2中创建
+         elif op.type == 'elementwise_mul':
+             self.assertEqual(op.desc.attr("op_namescope"), '/s1/s2/')
+         # elementwise_div在/s1/s3中创建
+         elif op.type == 'elementwise_div':
+             self.assertEqual(op.desc.attr("op_namescope"), '/s1/s3/')
+         # elementwise_sum在/s4/中创建
+         elif op.type == 'elementwise_sub':
+             self.assertEqual(op.desc.attr("op_namescope"), '/s4/')
+         # pow在/s1_1/中创建
+         elif op.type == 'pow':
+             self.assertEqual(op.desc.attr("op_namescope"), '/s1_1/')
 
 

@@ -5,7 +5,7 @@ reset_profiler
 
 .. py:function:: paddle.fluid.profiler.reset_profiler()
 
-清除之前的时间记录。此接口不适用于 ``fluid.profiler.cuda_profiler`` ，它只适用于 ``fluid.profiler.start_profiler`` , ``fluid.profiler.stop_profiler`` , ``fluid.profiler.profiler`` 。
+清除之前的性能分析记录。此接口不能和 :ref:`cn_api_fluid_profiler_cuda_profiler` 一起使用 ，但它可以和 :ref:`cn_api_fluid_profiler_start_profiler` 、:ref:`cn_api_fluid_profiler_stop_profiler` 和 :ref:`cn_api_fluid_profiler_profiler` 一起使用。
 
 **代码示例**
 
@@ -18,11 +18,3 @@ reset_profiler
         if iter == 2:
             profiler.reset_profiler()
         # ...
-
-
-
-
-
-
-
-
