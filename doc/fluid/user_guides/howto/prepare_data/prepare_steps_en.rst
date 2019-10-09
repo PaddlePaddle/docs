@@ -4,52 +4,104 @@
 Prepare Steps
 #############
 
-PaddlePaddle Fluid supports two methods to feed data into networks:
+Data preparation in PaddlePaddle Fluid can be separated into 3 steps.
 
-1. Synchronous method - Python Reader：Firstly, use :code:`fluid.layers.data` to set up data input layer. Then, feed in the training data through :code:`executor.run(feed=...)` in :code:`fluid.Executor` or :code:`fluid.ParallelExecutor` .
+Step 1: Define a reader to generate training/testing data
+##########################################################
 
-2. Asynchronous method - py_reader：Firstly, use :code:`fluid.layers.py_reader` to set up data input layer. Then configure the data source with functions :code:`decorate_paddle_reader` or :code:`decorate_tensor_provider` of :code:`py_reader` . After that, call :code:`fluid.layers.read_file` to read data.
+The generated data type can be Numpy Array or LoDTensor. According to the different data formats returned by the reader, it can be divided into Batch Reader and Sample Reader.
 
+The batch reader yields a mini-batch data for each, while the sample reader yields a sample data for each.
 
+If your reader yields a sample data, we provide a data augmentation and batching tool for you: :code:`Python Reader` .
 
-Comparisons of the two methods:
+Step 2: Define data layer variables in network
+###############################################
 
-=========================  ====================================================   ===============================================
-Aspects                                   Synchronous Python Reader                       Asynchronous py_reader
-=========================  ====================================================   ===============================================
-API interface                          :code:`executor.run(feed=...)`                 :code:`fluid.layers.py_reader`
-data type                                   Numpy Array                                Numpy Array or LoDTensor
-data augmentation          carried out by other libraries on Python end            carried out by other libraries on Python end 
-velocity                                        slow                                            rapid
-recommended applications                model debugging                                      industrial training
-=========================  ====================================================   ===============================================
+Users should use :code:`fluid.layers.data` to define data layer variables. Name, dtype and shape are required when defining. For example,
 
-Synchronous Python Reader
-##########################
+.. code-block:: python
 
-Fluid provides Python Reader to feed in data.
+    import paddle.fluid as fluid
 
-Python Reader is a pure Python-side interface, and data feeding is synchronized with the model training/prediction process. Users can pass in data through Numpy Array. For specific operations, please refer to:
+    image = fluid.layers.data(name='image', dtype='float32', shape=[28, 28])
+    label = fluid.layers.data(name='label', dtype='int64', shape=[1])
 
 
-.. toctree::
-   :maxdepth: 1
+Notice that, the shape defined here is the dimension of each sample. PaddlePaddle Fluid would prepend -1 in dimension 0, representing the batch size dimension. That is to say, image.shape and label.shape are [-1, 28, 28] and [-1, 1] respectively in this example.
 
-   feeding_data_en.rst
+If users do not want the -1 adding in dimension 0, we provide append_batch_size=False to remove this addition. For example,
 
-Python Reader supports advanced functions like group batch, shuffle. For specific operations, please refer to：
+.. code-block:: python
 
-.. toctree::
-   :maxdepth: 1
+   import paddle.fluid as fluid
 
-   reader.md
+   image = fluid.layers.data(name='image', dtype='float32', shape=[28, 28], append_batch_size=False)
+   label = fluid.layers.data(name='label', dtype='int64', shape=[1], append_batch_size=False)
 
-Asynchronous py_reader
-########################
+Now, image.shape is [28, 28] and label.shape is [1] exactly.
 
-Fluid provides asynchronous data feeding method PyReader. It is more efficient as data feeding is not synchronized with the model training/prediction process. For specific operations, please refer to：
+Step 3: Send the data to network for training/testing
+######################################################
 
-.. toctree::
-   :maxdepth: 1
+PaddlePaddle Fluid provides 2 methods for sending data to the network: Asynchronous DataLoader API, and Synchronous Feed Method.
 
-   use_py_reader_en.rst
+- Asynchronous DataLoader API
+
+User should use :code:`fluid.io.DataLoader` to define a DataLoader object and use its setter method to set the data source.
+When using DataLoader API, the process of data sending works asynchronously with network training/testing.
+It is an efficient way for sending data and recommended to use.
+
+- Synchronous Feed Method
+
+User should create the feeding data beforehand and use :code:`executor.run(feed=...)` to send the data to :code:`fluid.Executor` or :code:`fluid.ParallelExecutor` .
+Data preparation and network training/testing work synchronously, which is less efficient.
+
+Comparison of these 2 methods are as follows:
+
+==========================  =================================   ======================================
+Comparison item                 Synchronous Feed Method              Asynchronous DataLoader API
+==========================  =================================   ======================================
+API                           :code:`executor.run(feed=...)`          :code:`fluid.io.DataLoader`
+Data type                       Numpy Array or LoDTensor                Numpy Array or LoDTensor
+Data augmentation            use Python for data augmentation       use Python for data augmentation
+Speed                                     slow                                    rapid
+Recommended applications            model debugging                        industrial training
+==========================  =================================   ======================================
+
+Choose different usages for different data formats
+###################################################
+
+According to the different data formats of reader, users should choose different usages for data preparation.
+
+Read data from sample reader
++++++++++++++++++++++++++++++
+
+If user-defined reader is a sample reader, users should use the following steps:
+
+Step 1. Batching
+=================
+
+Use the data reader interfaces in PaddlePaddle Fluid for data augmentation and batching. Please refer to `Python Reader <./reader.html>`_ for details.
+
+Step 2. Sending data
+=====================
+
+If using Asynchronous DataLoader API, please use :code:`set_sample_generator` or :code:`set_sample_list_generator` to set the data source for DataLoader. Please refer to :ref:`user_guide_use_py_reader_en` for details.
+
+If using Synchronous Feed Method, please use DataFeeder to convert the reader data to LoDTensor before sending to the network. Please refer to :ref:`api_fluid_DataFeeder` for details.
+
+Read data from sample reader
++++++++++++++++++++++++++++++
+
+Step 1. Batching
+=================
+
+Since the reader has been a batch reader, this step can be skipped.
+
+Step 2. Sending data
+=====================
+
+If using Asynchronous DataLoader API, please use :code:`set_batch_generator` to set the data source for DataLoader. Please refer to :ref:`user_guide_use_py_reader_en` for details.
+
+If using Synchronous Feed Method, please refer to :ref:`user_guide_use_numpy_array_as_train_data_en` for details.
