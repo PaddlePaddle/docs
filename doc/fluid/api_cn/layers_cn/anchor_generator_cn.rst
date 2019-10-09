@@ -33,7 +33,7 @@ anchor_generator
 .. code-block:: python
 
     import paddle.fluid as fluid
-    conv1 = fluid.layers.data(name='conv1', shape=[48, 16, 16], dtype='float32')
+    conv1 = fluid.data(name='conv1', shape=[None, 48, 16, 16], dtype='float32')
     anchor, var = fluid.layers.anchor_generator(
     input=conv1,
     anchor_sizes=[64, 128, 256, 512],

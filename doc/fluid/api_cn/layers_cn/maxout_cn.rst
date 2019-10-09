@@ -38,8 +38,8 @@ maxout
 .. code-block:: python
 
     import paddle.fluid as fluid
-    input = fluid.layers.data(
+    input = fluid.data(
         name='data',
-        shape=[256, 32, 32],
+        shape=[None, 256, 32, 32],
         dtype='float32')
     out = fluid.layers.maxout(input, groups=2)

@@ -36,8 +36,8 @@ distribute_fpn_proposals
 .. code-block:: python
 
     import paddle.fluid as fluid
-    fpn_rois = fluid.layers.data(
-        name='data', shape=[4], dtype='float32', lod_level=1)
+    fpn_rois = fluid.data(
+        name='data', shape=[None, 4], dtype='float32', lod_level=1)
     multi_rois, restore_ind = fluid.layers.distribute_fpn_proposals(
         fpn_rois=fpn_rois,
         min_level=2,

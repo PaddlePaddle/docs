@@ -49,14 +49,14 @@ box decode过程得出decode_box，然后分配方案如下所述：
 .. code-block:: python
 
     import paddle.fluid as fluid
-    pb = fluid.layers.data(
-        name='prior_box', shape=[4], dtype='float32')
-    pbv = fluid.layers.data(
-        name='prior_box_var', shape=[4], dtype='float32', append_batch_size=False))
-    loc = fluid.layers.data(
-        name='target_box', shape=[4*81], dtype='float32')
-    scores = fluid.layers.data(
-        name='scores', shape=[81], dtype='float32')
+    pb = fluid.data(
+        name='prior_box', shape=[None, 4], dtype='float32')
+    pbv = fluid.data(
+        name='prior_box_var', shape=[4], dtype='float32')
+    loc = fluid.data(
+        name='target_box', shape=[None, 4*81], dtype='float32')
+    scores = fluid.data(
+        name='scores', shape=[None, 81], dtype='float32')
     decoded_box, output_assign_box = fluid.layers.box_decoder_and_assign(
         pb, pbv, loc, scores, 4.135)
 
