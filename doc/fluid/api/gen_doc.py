@@ -83,7 +83,8 @@ class DocGenerator(object):
         else:
             self.stream.close()
             path = os.getcwd()+"/fluid/"+name+".rst"
-            os.remove(path)
+            if name != "PipeReader":
+                os.remove(path)
 
     def print_class(self, name):
         self._print_ref_(name)
