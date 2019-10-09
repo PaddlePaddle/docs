@@ -241,7 +241,7 @@ Variable
 
 **注意：**
 
-  **1. 该API参数只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 获取该 :ref:`api_guide_Variable` 的静态描述字符串
 
