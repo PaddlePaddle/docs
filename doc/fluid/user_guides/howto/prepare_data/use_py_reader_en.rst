@@ -4,8 +4,8 @@
 Asynchronous Data Reading
 ############################################
 
-Besides Python Reader, we provide DataLoader. The performance of DataLoader is better than :ref:`user_guide_use_numpy_array_as_train_data_en` , because data reading and model training process is asynchronous
-when DataLoader is in use, and it can cooperate with :code:`double_buffer_reader` to improve the performance of reading data. What's more, :code:`double_buffer_reader` can achieve the asynchronous transformation from CPU Tensor to GPU Tensor, which improve the efficiency of reading data to some extent.
+Besides synchronous data reading, we provide DataLoader. The performance of DataLoader is better than :ref:`user_guide_use_numpy_array_as_train_data_en` , because data reading and model training process is asynchronous
+when DataLoader is in use, and it can cooperate with :code:`double_buffer_reader` to improve the performance of reading data. What's more, :code:`double_buffer_reader` can achieve the asynchronous transformation from CPU Tensor to GPU Tensor, which improves the efficiency of reading data to some extent.
 
 Create DataLoader Object
 ################################
@@ -28,7 +28,7 @@ In the code,
 
 - ``feed_list`` is the list of input variables; 
 - ``capacity`` is the buffer size of the DataLoader object in batches; 
-- ``use_double_buffer`` is True by default, which means ``double_buffer_reader`` is used. It is Recommended to use, because it can improve data reading speed;
+- ``use_double_buffer`` is True by default, which means ``double_buffer_reader`` is used. It is recommended, because it can improve data reading speed;
 - ``iterable`` is True by default, which means the DataLoader object is For-Range iterative. When ``iterable = True`` ,  DataLoader decouples from the Program, which means defining DataLoader objects does not change Program; when When ``iterable = False`` , DataLoader inserts operators related to data reading into Program.
 
 
@@ -90,7 +90,7 @@ DataLoader object sets the data source by :code:`set_sample_generator()`,  :code
 
 Please note that, when using DataLoader for multi-GPU card (or multi-CPU core) training, the actual total batch size is the batch size of incoming user generator multiplied by the number of devices.
 
-When :code:`iterable = True` (default) of DataLoader, ``places`` parameters must be passed to these three methods, specifying whether to convert data to CPU Tensor or GPU Tensor. When :code:`iterable = False` of DataLoader, there is no need to pass the places parameter.
+When :code:`iterable = True` (default) of DataLoader, ``places`` parameters must be passed to these three methods, specifying whether to convert data to CPU Tensor or GPU Tensor. When :code:`iterable = False` of DataLoader, there is no need to pass the ``places`` parameter.
 
 For example, suppose we have two readers, ``fake_sample_reader`` returns one sample's data at a time and ``fake_batch_reader`` returns one batch's data at a time.
 
@@ -232,9 +232,9 @@ Examples of using DataLoader to train and test models are as follows:
 
     test_loader.set_sample_list_generator(fluid.io.batch(mnist.test(), 512), places=places)
 
-- Step 2, we choose different ways to run the network according to whether the DataLoader object is Iterable or not. 
+- Step 2, we choose different ways to run the network according to whether the DataLoader object is iterable or not. 
 
-If :code:`iterable = True`, the DataLoader object is a Python generator that can iterate directly useing for-range. The results returned by for-range are passed to the executor through the ``feed`` parameter of ``exe.run()``.
+If :code:`iterable = True`, the DataLoader object is a Python generator that can iterate directly using for-range. The results returned by for-range are passed to the executor through the ``feed`` parameter of ``exe.run()``.
 
 .. code-block:: python
 
