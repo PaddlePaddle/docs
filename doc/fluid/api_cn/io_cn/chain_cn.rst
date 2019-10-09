@@ -10,7 +10,7 @@ chain
 举例来说，如果输入数据读取器的输出分别为[0，0，0]、[10，10，10]和[20，20，20]，那么调用该接口产生的新数据读取器的输出为：[0，0，0][10，10，10][20，20，20] 。
 
 参数：
-    - **readers** – 输入的数据读取器。
+    - **readers(list)** – 输入的数据读取器。
 
 返回： 新的数据读取器。
 
@@ -21,6 +21,7 @@ chain
 ..  code-block:: python
 
     import paddle
+
     def reader_creator_3(start):
         def reader():
             for i in range(start, start + 3):
