@@ -5,7 +5,9 @@ init_on_cpu
 
 .. py:function:: paddle.fluid.initializer.init_on_cpu()
 
-强制变量在 cpu 上初始化。
+该接口设置强制变量在 cpu 上初始化。
+
+返回：无
 
 **代码示例**
 
@@ -14,9 +16,6 @@ init_on_cpu
         import paddle.fluid as fluid
         with fluid.initializer.init_on_cpu():
             step = fluid.layers.create_global_var(shape=[2,3], value=1.0, dtype='float32')
-
-
-
 
 
 

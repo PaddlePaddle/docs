@@ -5,23 +5,24 @@ load_persistables
 
 .. py:function:: paddle.fluid.io.load_persistables(executor, dirname, main_program=None, filename=None)
 
-该函数从给定 ``main_program`` 中取出所有 ``persistable==True`` 的变量（即长期变量），然后将它们从目录 ``dirname`` 中或 ``filename`` 指定的文件中加载出来。
+该接口从给定的 ``main_program`` 中取出所有 ``persistable==True`` 的变量（即持久性变量，详见 :ref:`api_guide_model_save_reader` ），并根据目录 ``dirname``  或 ``filename`` 提供的参数文件对这些持久性变量进行赋值。
 
-``dirname`` 用于指定存有长期变量的目录。如果变量保存在指定目录的若干文件中，设置文件名 None; 如果所有变量保存在一个文件中，请使用filename来指定它。
+使用 ``dirname`` 指定持久性变量的存储路径。若持久性变量以分离文件的形式保存在 ``dirname`` 指定的目录下，则设置 ``filename`` 值为None；若所有持久性变量保存在一个单独的二进制文件中，则使用 ``filename`` 来指明这个二进制文件。
 
 参数:
-    - **executor**  (Executor) – 加载变量的 executor
-    - **dirname**  (str) – 目录路径
-    - **main_program**  (Program|None) – 需要加载变量的 Program。如果为 None，则使用 default_main_Program 。默认值: None
-    - **filename**  (str|None) – 保存变量的文件。如果想分开保存变量，设置 filename=None. 默认值: None
+    - **executor**  (Executor) – 加载持久性变量的 ``executor`` （详见 :ref:`api_guide_executor` ） 。
+    - **dirname**  (str) – 持久性变量的存储路径。
+    - **main_program**  (Program，可选) – 筛选模型中持久性变量所依据的 ``Program`` （详见 :ref:`api_guide_Program` ）。若为None, 则使用全局默认的  ``default_main_program`` 。默认值为None。
+    - **filename**  (str，可选) – 若模型中的持久性变量是以若干文件形式存储在 ``dirname`` 指定的目录下，则设置 ``filename`` 值为None。反之，需要通过 ``filename`` 来指明单一模型持久性变量存储文件的名称。 默认值为None。
 
-返回: None
+**返回：** 无
   
 **代码示例**
 
 .. code-block:: python
 
     import paddle.fluid as fluid
+
     exe = fluid.Executor(fluid.CPUPlace())
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()

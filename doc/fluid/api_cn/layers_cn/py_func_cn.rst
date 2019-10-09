@@ -5,28 +5,24 @@ py_func
 
 .. py:function:: paddle.fluid.layers.py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None)
 
-PyFunc运算。
+PaddlePaddle Fluid通过该接口在Python端注册OP。所注册的Python OP的前向函数是 ``func``, 反向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func`` ，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为LoDTensor类型； ``out``  为 ``func`` 的输出， 既可以是LoDTensor类型, 也可以是NumPy数组。
 
-用户可以使用 ``py_func`` 在Python端注册operator。 ``func`` 的输入 ``x`` 是LoDTensor，输出可以是numpy数组或LoDTensor。 Paddle将在前向部分调用注册的 ``func`` ，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None）。
+反向函数 ``backward_func`` 的输入依次为：前向输入 ``x`` 、前向输出 ``out`` 、 ``out`` 的梯度。 如果 ``out`` 的某些变量没有梯度，则 ``backward_func`` 的相关输入变量为None。如果 ``x`` 的某些变量没有梯度，则用户应在 ``backward_func`` 中主动返回None。 
 
-在调用此函数之前，应正确设置 ``out`` 的数据类型和形状。 但是，``out`` 和 ``x`` 对应梯度的数据类型和形状将自动推断而出。
+在调用该接口之前，还应正确设置 ``out`` 的数据类型和形状，而 ``out`` 和 ``x`` 对应梯度的数据类型和形状将自动推断而出。
 
-``backward_func`` 的输入顺序为：前向输入x，前向输出 ``out`` 和反向输入 ``out`` 的梯度。 如果 ``out`` 的某些变量没有梯度，则输入张量在Python端将为None。
-
-如果in的某些变量没有梯度，则用户应返回None。
-
-此功能还可用于调试正在运行的网络，可以通过添加没有输出的py_func运算，并在func中打印输入x。
+此功能还可用于调试正在运行的网络，可以通过添加没有输出的 ``py_func`` 运算，并在 ``func`` 中打印输入 ``x`` 。
 
 参数:
-    - **func** （callable） - 前向Python函数。
-    - **x** (Variable|list(Variable)|tuple(Variable)) -  func的输入。
-    - **out** (Variable|list(Variable)|tuple(Variable)) -  func的输出。 Paddle无法自动推断out的形状和数据类型。 应事先创建 ``out`` 。
-    - **backward_func** (callable|None) - 反向Python函数。 None意味着没有反向计算。 默认None。
-    - **skip_vars_in_backward_input** (Variable|list(Variable)|tuple(Variable)) -  backward_func输入中不需要的变量。 这些变量必须是x和out中的一个。 如果设置，这些变量将不是backward_func的输入，仅在backward_func不是None时有用。 默认None。
+    - **func** （callable） - 所注册的Python OP的前向函数，运行网络时，将根据该函数与前向输入 ``x`` ，计算前向输出 ``out`` 。
+    - **x** (Variable) -  前向函数 ``func`` 的输入，可以为 Variable | tuple[Variable] | list[Variale]， 其中 Variable 为LoDTensor类型。
+    - **out** (Variable) -  前向函数 ``func`` 输出，可以为 Variable | tuple[Variable] | list[Variale]，其中 Variable 既可以为LoDTensor类型，也可以为NumPy数组。由于Paddle无法自动推断 ``out`` 的形状和数据类型，必须应事先创建 ``out`` 。
+    - **backward_func** (callable，可选) - 所注册的Python OP的反向函数。默认值为None，意味着没有反向计算。若不为None，则会在运行网络反向时调用 ``backward_func`` 计算 ``x`` 的梯度。 
+    - **skip_vars_in_backward_input** (Variable，可选) -  ``backward_func`` 的输入中不需要的变量，可以是 单个Variable | list[Variable] | tuple[Variable]。 这些变量必须是 ``x`` 和 ``out`` 中的一个。默认值为None，意味着没有变量需要从 ``x`` 和 ``out`` 中去除。若不为None，则这些变量将不是 ``backward_func`` 的输入。该参数仅在 ``backward_func`` 不为None时有用。
 
-返回: 传入的 ``out``
+返回: 前向函数的输出 ``out``
 
-返回类型: out (Variable|list(Variable)|tuple(Variable))
+返回类型: Variable | list[Variable] | tuple[Variable]
 
 **代码示例**:
 

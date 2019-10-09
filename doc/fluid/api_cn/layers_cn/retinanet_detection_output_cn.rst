@@ -22,7 +22,7 @@ retinanet_detection_output
     - **nms_top_k**  (int32) – 在NMS步骤之前，保留每个FPN层的检测框的数量，默认值为1000。
     - **keep_top_k**  (int32) – 在NMS步骤之后，每张图像要保留的检测框数量，默认值为100，若设为-1，则表示保留NMS步骤后剩下的全部检测框。
     - **nms_threshold**  (float32) – NMS步骤中用于剔除检测框的Intersection-over-Union（IoU）阈值，默认为0.3。
-    - **nms_eta**  (float32) – `Adaptive NMS <https://arxiv.org/abs/1904.03629>`_ 中用于调整IoU阈值的参数，默认值为1.，表示使用常规NMS。
+    - **nms_eta**  (float32) – NMS步骤中用于调整nms_threshold的参数。默认值为1.，表示nms_threshold的取值在NMS步骤中一直保持不变，即其设定值。若nms_eta小于1.，则表示当nms_threshold的取值大于0.5时，每保留一个检测框就调整一次nms_threshold的取值，即nms_threshold = nms_threshold * nms_eta，直到nms_threshold的取值小于等于0.5后结束调整。
 **注意：在模型输入尺寸特别小的情况，此时若用score_threshold滤除anchor，可能会导致没有任何检测框剩余。为避免这种情况出现，该OP不会对最高FPN层上的anchor做滤除。因此，要求bboxes、scores、anchors中最后一个元素是来自最高FPN层的Tensor** 。
 
 返回：维度是 :math:`[No, 6]` 的2-D LoDTensor，表示批量内的检测结果。第一维No表示批量内的检测框的总数，第二维6表示每行有六个值：[label， score，xmin，ymin，xmax，ymax]。该LoDTensor的LoD中存放了每张图片的检测框数量，第i张图片的检测框数量为 :math:`LoD[i + 1] - LoD[i]` 。如果 :math:`LoD[i + 1] - LoD[i]` 为0，则第i个图像没有检测结果。 如果批量内的全部图像都没有检测结果，则LoD中所有元素被设置为0，LoDTensor被赋为空（None）。
