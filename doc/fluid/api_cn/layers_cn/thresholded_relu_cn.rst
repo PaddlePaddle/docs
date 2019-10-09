@@ -34,7 +34,7 @@ thresholded_relu
      from paddle import fluid
    
      x = fluid.layers.data(name="x", shape=(3,), dtype="float32")
-     y = fluid.layers.thresholded_relu(x, beta=0.1)
+     y = fluid.layers.thresholded_relu(x, threshold=0.1)
    
      place = fluid.CPUPlace()
      exe = fluid.Executor(place)
