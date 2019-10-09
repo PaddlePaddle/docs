@@ -29,8 +29,8 @@ ClipByNorm算子
 .. code-block:: python
 
     import paddle.fluid as fluid
-    input = fluid.layers.data(
-        name='data', shape=[1], dtype='float32')
+    input = fluid.data(
+        name='data', shape=[None, 1], dtype='float32')
     reward = fluid.layers.clip_by_norm(x=input, max_norm=1.0)
 
 
