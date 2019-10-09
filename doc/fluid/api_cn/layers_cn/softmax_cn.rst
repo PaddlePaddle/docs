@@ -26,7 +26,7 @@ softmax
 
     Out[i,j] = \frac{exp(X[i,j])}{\sum_j exp(X[i,j])}
 
-- 示例1（矩阵一共有三维。axis = -1，表示沿着最后一维（即第二维）做softmax操作）
+- 示例1（矩阵一共有三维。axis = -1，表示沿着最后一维（即第三维）做softmax操作）
 
 .. code-block:: python
 
