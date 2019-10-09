@@ -5,8 +5,6 @@ retinanet_target_assign
 
 .. py:function:: paddle.fluid.layers.retinanet_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, gt_labels, is_crowd, im_info, num_classes=1, positive_overlap=0.5, negative_overlap=0.4)
 
-**注意：该OP目前仅支持CPU** 。
-
 该OP是从输入anchor中找出训练检测模型 `RetinaNet <https://arxiv.org/abs/1708.02002>`_ 所需的正负样本，并为每个正负样本分配用于分类的目标值和位置回归的目标值，同时从全部anchor的类别预测值cls_logits、位置预测值bbox_pred中取出属于各正负样本的部分。
 
 正负样本的查找准则如下：
