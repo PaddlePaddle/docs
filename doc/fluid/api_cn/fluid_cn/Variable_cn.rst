@@ -22,24 +22,22 @@ Variable
 
 **示例代码：**
 
-        在静态图形模式下：
+在静态图形模式下：
+    .. code-block:: python
 
-        .. code-block:: python
+        import paddle.fluid as fluid
+        cur_program = fluid.Program()
+        cur_block = cur_program.current_block()
+        new_variable = cur_block.create_var(name="X",
+                                            shape=[-1, 23, 48],
+                                            dtype='float32')
+在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
+    .. code-block:: python
 
-            import paddle.fluid as fluid
-            cur_program = fluid.Program()
-            cur_block = cur_program.current_block()
-            new_variable = cur_block.create_var(name="X",
-                                                shape=[-1, 23, 48],
-                                                dtype='float32')
-        在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
-
-        .. code-block:: python
-
-            import paddle.fluid as fluid
-            import numpy as np
-            with fluid.dygraph.guard():
-                new_variable = fluid.dygraph.to_variable(np.arange(10))
+        import paddle.fluid as fluid
+        import numpy as np
+        with fluid.dygraph.guard():
+            new_variable = fluid.dygraph.to_variable(np.arange(10))
 
 
 .. py:method:: detach()
@@ -275,6 +273,50 @@ Variable
         print(new_variable.to_string(True))
         print("\n=============with detail===============\n")
         print(new_variable.to_string(True, True))
+
+
+.. py:method:: astype(self, dtype)
+
+将该 :ref:`api_guide_Variable` 中的数据转换成目标 ``Dtype``
+
+**参数：**
+ - **self** ( :ref:`api_guide_Variable` ) - 当前 :ref:`api_guide_Variable` ， 用户不需要传入。
+ - **dtype** (int | float | float64) - 希望转换成的 ``Dtype``
+
+
+返回：一个全新的转换了 ``Dtype`` 的 :ref:`api_guide_Variable`
+
+返回类型： :ref:`api_guide_Variable`
+
+
+**示例代码**
+
+在静态图模式下：
+    .. code-block:: python
+
+        import paddle.fluid as fluid
+
+        startup_prog = fluid.Program()
+        main_prog = fluid.Program()
+        with fluid.program_guard(startup_prog, main_prog):
+            original_variable = fluid.data(name = "new_variable", shape=[2,2], dtype='float32')
+            new_variable = original_variable.astype('int64')
+            print("new var's dtype is: {}".format(new_variable.dtype))
+
+
+在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
+    .. code-block:: python
+
+        import paddle.fluid as fluid
+        import numpy as np
+
+        x = np.ones([2, 2], np.float32)
+        with fluid.dygraph.guard():
+            original_variable = fluid.dygraph.to_variable(x)
+            print("original var's dtype is: {}, numpy dtype is {}".format(original_variable.dtype, original_variable.numpy().dtype))
+            new_variable = original_variable.astype('int64')
+            print("new var's dtype is: {}, numpy dtype is {}".format(new_variable.dtype, new_variable.numpy().dtype))
+
 
 
 属性
