@@ -18,29 +18,16 @@ Batch级的Reader每次返回一个Batch的数据，Sample级的Reader每次返�
 
 Step 2: 在网络配置中定义数据层变量
 ###################################
-用户需使用 :code:`fluid.layers.data` 在网络中定义数据层变量。定义数据层变量时需指明数据层的名称name、数据类型dtype和维度shape。例如：
+用户需使用 :code:`fluid.data` 在网络中定义数据层变量。定义数据层变量时需指明数据层的名称name、数据类型dtype和维度shape。例如：
 
 .. code-block:: python
 
     import paddle.fluid as fluid
 
-    image = fluid.layers.data(name='image', dtype='float32', shape=[28, 28])
-    label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+    image = fluid.data(name='image', dtype='float32', shape=[None, 28, 28])
+    label = fluid.data(name='label', dtype='int64', shape=[None, 1])
 
-
-需要注意的是，此处的shape是单个样本的维度，PaddlePaddle Fluid会在shape第0维位置添加-1，表示batch_size的维度，即此例中image.shape为[-1, 28, 28]，
-label.shape为[-1, 1]。
-
-若用户不希望框架在第0维位置添加-1，则可通过append_batch_size=False参数控制，即：
-
-.. code-block:: python
-
-   import paddle.fluid as fluid
-
-   image = fluid.layers.data(name='image', dtype='float32', shape=[28, 28], append_batch_size=False)
-   label = fluid.layers.data(name='label', dtype='int64', shape=[1], append_batch_size=False)
-
-此时，image.shape为[28, 28]，label.shape为[1]。
+其中，None表示不确定的维度。此例子中None的含义为batch size。
 
 Step 3: 将数据送入网络进行训练/预测
 ###################################

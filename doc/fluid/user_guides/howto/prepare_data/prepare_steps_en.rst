@@ -18,28 +18,16 @@ If your reader yields a sample data, we provide a data augmentation and batching
 Step 2: Define data layer variables in network
 ###############################################
 
-Users should use :code:`fluid.layers.data` to define data layer variables. Name, dtype and shape are required when defining. For example,
+Users should use :code:`fluid.data` to define data layer variables. Name, dtype and shape are required when defining. For example,
 
 .. code-block:: python
 
     import paddle.fluid as fluid
 
-    image = fluid.layers.data(name='image', dtype='float32', shape=[28, 28])
-    label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+    image = fluid.data(name='image', dtype='float32', shape=[None, 28, 28])
+    label = fluid.data(name='label', dtype='int64', shape=[None, 1])
 
-
-Notice that, the shape defined here is the dimension of each sample. PaddlePaddle Fluid would prepend -1 in dimension 0, representing the batch size dimension. That is to say, image.shape and label.shape are [-1, 28, 28] and [-1, 1] respectively in this example.
-
-If users do not want the -1 adding in dimension 0, we provide append_batch_size=False to remove this addition. For example,
-
-.. code-block:: python
-
-   import paddle.fluid as fluid
-
-   image = fluid.layers.data(name='image', dtype='float32', shape=[28, 28], append_batch_size=False)
-   label = fluid.layers.data(name='label', dtype='int64', shape=[1], append_batch_size=False)
-
-Now, image.shape is [28, 28] and label.shape is [1] exactly.
+None means that the dimension is uncertain. In this example, None means the batch size.
 
 Step 3: Send the data to network for training/testing
 ######################################################
