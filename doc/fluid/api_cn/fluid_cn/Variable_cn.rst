@@ -101,7 +101,9 @@ Variable
 
 .. py:method:: set_value()
 
-**注意：该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 为此 :ref:`api_guide_Variable` 设置一个新的值。
 
