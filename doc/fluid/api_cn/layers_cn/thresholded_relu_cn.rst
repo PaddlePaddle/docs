@@ -31,15 +31,19 @@ thresholded_relu
     # 静态图使用
     import numpy as np
     from paddle import fluid
+    
     x = fluid.data(name="x", shape=(-1, 3), dtype="float32")
     y = fluid.layers.thresholded_relu(x, threshold=0.1)
+
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
+
     start = fluid.default_startup_program()
     main = fluid.default_main_program()
     data = np.random.randn(2, 3).astype("float32")
     exe.run(start)
     y_np, = exe.run(main, feed={"x": data}, fetch_list=[y])
+
     data
     # array([[ 0.21134382, -1.1805999 ,  0.32876605],
     #        [-1.2210793 , -0.7365624 ,  1.0013918 ]], dtype=float32)

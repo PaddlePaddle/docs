@@ -26,7 +26,7 @@ create_tensor
     type: LOD_TENSOR
     lod_tensor {
         tensor {
-        data_type: INT8
+        data_type: FP32
         }
     }
     }

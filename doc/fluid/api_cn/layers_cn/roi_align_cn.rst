@@ -35,10 +35,10 @@ Region of Interests align(直译：有意义、有价值选区对齐) 用于实�
 ..  code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(
-            name='data', shape=[256, 32, 32], dtype='float32')
-    rois = fluid.layers.data(
-            name='rois', shape=[4], dtype='float32')
+    x = fluid.data(
+            name='data', shape=[None, 256, 32, 32], dtype='float32')
+    rois = fluid.data(
+            name='rois', shape=[None, 4], dtype='float32')
     align_out = fluid.layers.roi_align(input=x,
                                        rois=rois,
                                        pooled_height=7,
