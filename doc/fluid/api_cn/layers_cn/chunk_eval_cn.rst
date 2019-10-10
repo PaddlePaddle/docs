@@ -5,13 +5,11 @@ chunk_eval
 
 .. py:function:: paddle.fluid.layers.chunk_eval(input, label, chunk_scheme, num_chunk_types, excluded_chunk_types=None, sqe_length=None)
 
-块估计（Chunk Evaluator）
+该OP计算语块识别（chunk detection）的准确率、召回率和F1值，常用于命名实体识别（NER，语块识别的一种）等序列标注任务中。
 
-该功能计算并输出块检测（chunk detection）的准确率、召回率和F1值。
+语块识别的基础请参考 `Chunking with Support Vector Machines <https://www.aclweb.org/anthology/N01-1025>`_
 
-chunking的一些基础请参考 `Chunking with Support Vector Machines <https://aclanthology.info/pdf/N/N01/N01-1025.pdf>`_
-
-ChunkEvalOp计算块检测（chunk detection）的准确率、召回率和F1值，并支持IOB，IOE，IOBES和IO标注方案。以下是这些标注方案的命名实体（NER）标注例子：
+该OP支持IOB，IOE，IOBES和IO（plain）的标注方式。以下是这些标注方式在命名实体识别示例中的使用：
 
 ::
 
@@ -25,9 +23,9 @@ ChunkEvalOp计算块检测（chunk detection）的准确率、召回率和F1值�
     IOBES  B-PER  E-PER   O      O   I-ORG          I-ORG  I-ORG E-ORG  O   S-LOC
     ====== ====== ======  =====  ==  ============   =====  ===== =====  ==  =========
 
-有三种块类别（命名实体类型），包括PER（人名），ORG（机构名）和LOC（地名），标签形式为标注类型（tag type）-块类型（chunk type）。
+例中有PER（人名），ORG（机构名）和LOC（地名）三种语块类型（命名实体类型）。可以看到，一个完整的标签包括标注类型（tag type）和语块类型（chunk type），形式为 ``标注类型-语块类型（tag type-chunk type）`` 。
 
-由于计算实际上用的是标签id而不是标签，需要额外注意将标签映射到相应的id，这样CheckEvalOp才可运行。关键在于id必须在列出的等式中有效。
+由于该OP在计算实现上使用的是标签id而非标签字符串，为使其能正确运行，标签id要能够转换为相应的标注类型（tag type）和语块类型（chunk type）。该OP使用了下面的方式完成映射转换：
 
 ::
 
@@ -35,7 +33,7 @@ ChunkEvalOp计算块检测（chunk detection）的准确率、召回率和F1值�
     tag_type = label % num_tag_type
     chunk_type = label / num_tag_type
 
-num_tag_type是标注规则中的标签类型数，num_chunk_type是块类型数，tag_type从下面的表格中获取值。
+其中num_tag_type是标注方式中的标签类型（tag type）数，各标注方式的tag type取值如下：
 
 ::
 
@@ -46,7 +44,7 @@ num_tag_type是标注规则中的标签类型数，num_chunk_type是块类型数
     IOE     -     0      1     -
     IOBES   0     1      2     3
 
-仍以NER为例，假设标注规则是IOB块类型为ORG，PER和LOC。为了满足以上等式，标签图如下：
+据此，在上面的NER例子中，若标注方式是IOB，语块类型包括ORG、PER和LOC三种，则所有标签及其对应id如下：
 
 ::
 
@@ -59,19 +57,19 @@ num_tag_type是标注规则中的标签类型数，num_chunk_type是块类型数
     I-LOC  5
     O      6
 
-不难证明等式的块类型数为3，IOB规则中的标签类型数为2.例如I-LOC的标签id为5，I-LOC的标签类型id为1，I-LOC的块类型id为2，与等式的结果一致。
+从标签id可以正确的得到其对应的标注类型（tag type）和语块类型（chunk type）。
 
 参数：
-    - **input** (Variable) - 网络的输出预测
-    - **label** (Variable) - 测试数据集的标签
-    - **chunk_scheme** (str) - 标注规则，表示如何解码块。必须数IOB，IOE，IOBES或者plain。详情见描述
-    - **num_chunk_types** (int) - 块类型数。详情见描述
-    - **excluded_chunk_types** (list) - 列表包含块类型id，表示不在计数内的块类型。详情见描述
-    - **seq_length** (Variable) - 当输入和标签是张量时，指定序列长度的一个1维张量
+    - **input** (Variable) - 表示网络预测的标签，为Tensor或LoD level为1的LoDTensor。Tensor时，其形状为 :math:`[N, M, 1]` ，其中 :math:`N` 表示batch size， :math:`M` 表示序列长度；LoDTensor时，其形状为 :math:`[N, 1]` 或 :math:`[N]` ，其中 :math:`N` 表示所有序列长度之和。数据类型为int64。
+    - **label** (Variable) - 表示真实标签（ground-truth）的Tensor或LoDTensor，和 ``input`` 具有相同形状、LoD和数据类型。
+    - **chunk_scheme** (str) - 标注方式，必须是IOB，IOE，IOBES或者plain中的一种。
+    - **num_chunk_types** (int) - 表示标签中的语块类型数。
+    - **excluded_chunk_types** (list，可选) - 表示不计入统计的语块类型，需要为语块类型（int表示）的列表。默认值为空的list。
+    - **seq_length** (Variable，可选) - 当输入 ``input`` 和 ``label`` 是Tensor而非LoDTensor时，用来指示输入中每个序列长度的1-D Tensor。数据类型为int64。可以为空，默认为None。
 
-返回：元组（tuple），包含precision, recall, f1_score, num_infer_chunks, num_label_chunks, num_correct_chunks
+返回：Variable的元组。元组中包含准确率、召回率、F1值，以及识别出的语块数目、标签中的语块数目、正确识别的语块数目。每个均是单个元素的Tensor，准确率、召回率、F1值的数据类型为float32，其他的数据类型为int64。
 
-返回类型：tuple（元组）
+返回类型：tuple
 
 **代码示例**：
 

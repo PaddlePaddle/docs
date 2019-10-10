@@ -19,7 +19,7 @@ create_random_int_lodtensor
 
 参数:
     - **recursive_seq_lens** (list[list[int]]) - 基于序列长度的LoD信息。
-    - **base_shape** (list) - 除第一维以外输出结果的维度信息。
+    - **base_shape** (list[int]) - 除第一维以外输出结果的维度信息。
     - **place** (CPUPlace|CUDAPlace) - 表示返回的LoDTensor存储在CPU或GPU place中。
     - **low** (int) - 随机整数的下限值。
     - **high** (int) - 随机整数的上限值，必须大于或等于low。
