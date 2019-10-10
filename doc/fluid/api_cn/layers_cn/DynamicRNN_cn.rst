@@ -1,7 +1,7 @@
 .. _cn_api_fluid_layers_DynamicRNN:
 
 DynamicRNN
--------------------------------
+===================
 
 .. py:class:: paddle.fluid.layers.DynamicRNN(name=None)
 
@@ -31,8 +31,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_step_input:
 
-step_input
-^^^^^^^^^^^^^^^^^^^^^
+成员函数 :code:`step_input`
+-----------------------------
 
 .. py:method:: step_input(x, level=0)
 
@@ -83,8 +83,8 @@ step_input
 
 .. _cn_api_fluid_layers_DynamicRNN_static_input:
 
-static_input
-^^^^^^^^^^^^^^^^^^^^^
+成员函数 :code:`static_input`
+-----------------------------
 
 .. py:method:: static_input(x)
 
@@ -136,8 +136,8 @@ static_input
 
 .. _cn_api_fluid_layers_DynamicRNN_block:
 
-block
-^^^^^^^^^^^^^^^^^^^^^
+成员函数 :code:`block`
+-----------------------------
 
 .. py:method:: block()
 
@@ -149,8 +149,8 @@ block
 
 .. _cn_api_fluid_layers_DynamicRNN_memory:
 
-memory
-^^^^^^^^^^^^^^^^^^^^^
+成员函数 :code:`memory`
+-----------------------------
 
 .. py:method:: memory(init=None, shape=None, value=0.0, need_reorder=False, dtype='float32')
 
@@ -223,8 +223,8 @@ memory
 
 .. _cn_api_fluid_layers_DynamicRNN_update_memory:
 
-update_memory
-^^^^^^^^^^^^^^^^^^^^^
+成员函数 :code:`update_memory`
+-----------------------------
 
 .. py:method:: update_memory(ex_mem, new_mem)
 
@@ -245,8 +245,8 @@ update_memory
 
 .. _cn_api_fluid_layers_DynamicRNN_output:
 
-output
-^^^^^^^^^^^^^^^^^^^^^
+成员函数 :code:`output`
+-----------------------------
 
 .. py:method:: output(*outputs)
 
@@ -263,8 +263,8 @@ output
 
 .. _cn_api_fluid_layers_DynamicRNN_call:
 
-\_\_call\_\_
-^^^^^^^^^^^^^^^^^^^^^
+成员函数 :code:`__call__`
+-----------------------------
 
 .. py:method:: __call__()
 
