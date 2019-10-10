@@ -5,36 +5,9 @@ WeightedAverage
 
 .. py:class:: paddle.fluid.average.WeightedAverage
 
-计算加权平均值。只能计算Python的数值和numpy的ndarray，内部由累加器来存储相应的值。
+计算加权平均值。
 
-该类包含以下方法
-
-reset()
-
-重置计数器
-
-返回： 无
-
-
-add(value, weight)
-
-往累加器添加值和weight信息
-
-参数：
-    - **value (int|float|ndarray)**  - 往累加器中添加的value值
-    - **weight (int|float|ndarray)**  – value对应的权重。如果类型为ndarray，shape必须等于[1]
-
-返回：无
-
-eval()
-
-根据添加的值和weight信息，计算加权平均值
-
-如果没有添加任何值，会报出ValueError的异常
-
-返回：所有的添加到计数器中所有value的值
-
-返回类型：数据类型和value一致，如果添加的value同时包含python（int或float）和和numpy的ndarray，则返回numpy的ndarray
+平均计算完全通过Python完成。它们不会改变Paddle的程序，也不会修改NN模型的配置。它们完全是Python函数的包装器。
 
 **示例代码**
 
