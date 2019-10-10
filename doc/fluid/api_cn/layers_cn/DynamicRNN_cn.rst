@@ -62,7 +62,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
       import paddle.fluid as fluid
 
-      sentence = fluid.layers.data(name='sentence', shape=[1], dtype='int64', lod_level=1)
+      sentence = fluid.data(name='sentence', shape=[None, 1], dtype='int64', lod_level=1)
       embedding = fluid.layers.embedding(input=sentence, size=[65536, 32], is_sparse=True)
 
       drnn = fluid.layers.DynamicRNN()
@@ -108,9 +108,9 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
     import paddle.fluid as fluid
 
-    sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
-    encoder_proj = fluid.layers.data(name='encoder_proj', dtype='float32', shape=[32], lod_level=1)
-    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10])
+    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
+    encoder_proj = fluid.data(name='encoder_proj', shape=[None, 32], dtype='float32', lod_level=1)
+    decoder_boot = fluid.data(name='boot', shape=[None, 10], dtype='float32')
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
@@ -178,8 +178,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
     import paddle.fluid as fluid
 
-    sentence = fluid.layers.data(name='sentence', shape=[32], dtype='float32', lod_level=1)
-    boot_memory = fluid.layers.data(name='boot', shape=[10], dtype='float32')
+    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
+    boot_memory = fluid.data(name='boot', shape=[None, 10], dtype='float32')
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
@@ -203,7 +203,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
     import paddle.fluid as fluid
 
-    sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
+    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
@@ -290,9 +290,9 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
     import paddle.fluid as fluid
 
-    sentence = fluid.layers.data(name='sentence', dtype='float32', shape=[32], lod_level=1)
-    encoder_proj = fluid.layers.data(name='encoder_proj', dtype='float32', shape=[32], lod_level=1)
-    decoder_boot = fluid.layers.data(name='boot', dtype='float32', shape=[10])
+    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
+    encoder_proj = fluid.data(name='encoder_proj', shape=[None, 32], dtype='float32', lod_level=1)
+    decoder_boot = fluid.data(name='boot', shape=[None, 10], dtype='float32')
 
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
