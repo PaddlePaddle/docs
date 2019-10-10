@@ -16,8 +16,8 @@ You can create DataLoader object as follows:
 
     import paddle.fluid as fluid
 
-    image = fluid.layers.data(name='image', dtype='float32', shape=[784])
-    label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+    image = fluid.data(name='image', dtype='float32', shape=[None, 784])
+    label = fluid.data(name='label', dtype='int64', shape=[None, 1])
 
     ITERABLE = True
 
@@ -48,8 +48,8 @@ An example of configuring networks during the training and testing periods by Da
     import paddle.dataset.mnist as mnist
 
     def network():
-        image = fluid.layers.data(name='image', dtype='float32', shape=[784])
-        label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+        image = fluid.data(name='image', dtype='float32', shape=[None, 784])
+        label = fluid.data(name='label', dtype='int64', shape=[None, 1])
         loader = fluid.io.DataLoader.from_generator(feed_list=[image, label], capacity=64)
 
         # Define model.
@@ -115,14 +115,14 @@ For example, suppose we have two readers, ``fake_sample_reader`` returns one sam
             batch_label = np.random.random_integers(size=(batch_size, 1), low=0, high=9).astype('int64')
             yield batch_image, batch_label
 
-    image1 = fluid.layers.data(name='image1', dtype='float32', shape=[784])
-    label1 = fluid.layers.data(name='label1', dtype='int64', shape=[1])
+    image1 = fluid.data(name='image1', dtype='float32', shape=[None, 784])
+    label1 = fluid.data(name='label1', dtype='int64', shape=[None, 1])
 
-    image2 = fluid.layers.data(name='image2', dtype='float32', shape=[784])
-    label2 = fluid.layers.data(name='label2', dtype='int64', shape=[1])
+    image2 = fluid.data(name='image2', dtype='float32', shape=[None, 784])
+    label2 = fluid.data(name='label2', dtype='int64', shape=[None, 1])
 
-    image3 = fluid.layers.data(name='image3', dtype='float32', shape=[784])
-    label3 = fluid.layers.data(name='label3', dtype='int64', shape=[1])
+    image3 = fluid.data(name='image3', dtype='float32', shape=[None, 784])
+    label3 = fluid.data(name='label3', dtype='int64', shape=[None, 1])
 
 The corresponding DataLoader are defined as follows:
 
@@ -179,8 +179,8 @@ Examples of using DataLoader to train and test models are as follows:
 
     def network():
         # Create data holder.
-        image = fluid.layers.data(name='image', dtype='float32', shape=[784])
-        label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+        image = fluid.data(name='image', dtype='float32', shape=[None, 784])
+        label = fluid.data(name='label', dtype='int64', shape=[None, 1])
 
         # Create DataLoader object.
         reader = fluid.io.DataLoader.from_generator(feed_list=[image, label], capacity=64, iterable=ITERABLE)
