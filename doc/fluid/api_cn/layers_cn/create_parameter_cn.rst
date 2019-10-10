@@ -11,7 +11,7 @@ create_parameter
 
 参数：
     - **shape** (list[int])- 指定输出Tensor的形状，它可以是一个整数列表。
-    - **dtype** (str|numpy.dtype，可选)– 初始化数据类型。可设置的字符串值有："float32"，"float64"，"int32"，"int64"。
+    - **dtype** (str|numpy.dtype，可选)– 初始化数据类型。可设置的字符串值有："float16"，"float32"，"float64"。
     - **attr** (ParamAttr)- 参数的属性。
     - **is_bias** (bool，可选)- 当default_initializer为空，该值会对选择哪个默认初始化程序产生影响。如果is_bias为真，则使用initializer.Constant(0.0)，否则使用Xavier()， 默认值False。
     - **default_initializer** (Initializer，可选)- 参数的初始化程序，默认值为空。
