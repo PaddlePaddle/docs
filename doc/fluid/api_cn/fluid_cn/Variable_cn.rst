@@ -22,24 +22,22 @@ Variable
 
 **示例代码：**
 
-        在静态图形模式下：
+在静态图形模式下：
+    .. code-block:: python
 
-        .. code-block:: python
+        import paddle.fluid as fluid
+        cur_program = fluid.Program()
+        cur_block = cur_program.current_block()
+        new_variable = cur_block.create_var(name="X",
+                                            shape=[-1, 23, 48],
+                                            dtype='float32')
+在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
+    .. code-block:: python
 
-            import paddle.fluid as fluid
-            cur_program = fluid.Program()
-            cur_block = cur_program.current_block()
-            new_variable = cur_block.create_var(name="X",
-                                                shape=[-1, 23, 48],
-                                                dtype='float32')
-        在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
-
-        .. code-block:: python
-
-            import paddle.fluid as fluid
-            import numpy as np
-            with fluid.dygraph.guard():
-                new_variable = fluid.dygraph.to_variable(np.arange(10))
+        import paddle.fluid as fluid
+        import numpy as np
+        with fluid.dygraph.guard():
+            new_variable = fluid.dygraph.to_variable(np.arange(10))
 
 
 .. py:method:: detach()
@@ -98,6 +96,39 @@ Variable
         data = to_variable(data)
         x = fc(data)
         print(x.numpy())
+
+.. py:method:: set_value()
+
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+为此 :ref:`api_guide_Variable` 设置一个新的值。
+
+**参数:**
+
+  - **value**: ( :ref:`api_guide_Variable` 或 ``ndarray`` ) 要赋值给此 :ref:`api_guide_Variable` 的新的值。
+
+返回：无
+
+抛出异常： ``ValueError`` - 当要赋于的新值的 ``shape`` 和此 :ref:`api_guide_Variable` 原有的 ``shape`` 不同时，抛出 ``ValueError`` 。
+
+**示例代码**
+  .. code-block:: python
+
+        import paddle.fluid as fluid
+        from paddle.fluid.dygraph.base import to_variable
+        from paddle.fluid.dygraph import FC
+        import numpy as np
+
+        data = np.ones([3, 32, 32], dtype='float32')
+        with fluid.dygraph.guard():
+            fc = fluid.dygraph.FC("fc", 4)
+            t = to_variable(data)
+            fc(t)  # 使用默认参数值调用前向
+            custom_weight = np.random.randn(1024, 4).astype("float32")
+            fc.weight.set_value(custom_weight)  # 将参数修改为自定义的值
+            out = fc(t)  # 使用新的参数值调用前向
 
 .. py:method:: backward()
 
@@ -212,7 +243,7 @@ Variable
 
 **注意：**
 
-  **1. 该API参数只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 获取该 :ref:`api_guide_Variable` 的静态描述字符串
 
@@ -244,6 +275,50 @@ Variable
         print(new_variable.to_string(True))
         print("\n=============with detail===============\n")
         print(new_variable.to_string(True, True))
+
+
+.. py:method:: astype(self, dtype)
+
+将该 :ref:`api_guide_Variable` 中的数据转换成目标 ``Dtype``
+
+**参数：**
+ - **self** ( :ref:`api_guide_Variable` ) - 当前 :ref:`api_guide_Variable` ， 用户不需要传入。
+ - **dtype** (int | float | float64) - 希望转换成的 ``Dtype``
+
+
+返回：一个全新的转换了 ``Dtype`` 的 :ref:`api_guide_Variable`
+
+返回类型： :ref:`api_guide_Variable`
+
+
+**示例代码**
+
+在静态图模式下：
+    .. code-block:: python
+
+        import paddle.fluid as fluid
+
+        startup_prog = fluid.Program()
+        main_prog = fluid.Program()
+        with fluid.program_guard(startup_prog, main_prog):
+            original_variable = fluid.data(name = "new_variable", shape=[2,2], dtype='float32')
+            new_variable = original_variable.astype('int64')
+            print("new var's dtype is: {}".format(new_variable.dtype))
+
+
+在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
+    .. code-block:: python
+
+        import paddle.fluid as fluid
+        import numpy as np
+
+        x = np.ones([2, 2], np.float32)
+        with fluid.dygraph.guard():
+            original_variable = fluid.dygraph.to_variable(x)
+            print("original var's dtype is: {}, numpy dtype is {}".format(original_variable.dtype, original_variable.numpy().dtype))
+            new_variable = original_variable.astype('int64')
+            print("new var's dtype is: {}, numpy dtype is {}".format(new_variable.dtype, new_variable.numpy().dtype))
+
 
 
 属性
@@ -290,11 +365,7 @@ Variable
 
 .. py:attribute:: name
 
-**注意：**
-
-  **1. 在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下，那么同一个** :ref:`api_guide_Block` **中的两个或更多** :ref:`api_guide_Variable` **拥有相同** ``name`` **将意味着他们会共享相同的内容。通常我们使用这种方式来实现参数共享**
-
-  **2. 该属性在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下一经初始化即不能修改，这是由于在动态执行时，**  :ref:`api_guide_Variable` **的生命周期将由** ``Python`` **自行控制不再需要通过该属性来修改**
+**注意：在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下，那么同一个** :ref:`api_guide_Block` **中的两个或更多** :ref:`api_guide_Variable` **拥有相同** ``name`` **将意味着他们会共享相同的内容。通常我们使用这种方式来实现参数共享**
 
 此 :ref:`api_guide_Variable` 的名字（str）
 

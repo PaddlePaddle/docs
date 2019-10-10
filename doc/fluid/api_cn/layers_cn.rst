@@ -134,6 +134,7 @@ fluid.layers
     layers_cn/image_resize_short_cn.rst
     layers_cn/increment_cn.rst
     layers_cn/inverse_time_decay_cn.rst
+    layers_cn/instance_norm_cn.rst
     layers_cn/iou_similarity_cn.rst
     layers_cn/is_empty_cn.rst
     layers_cn/isfinite_cn.rst

@@ -68,7 +68,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 .. py:method:: clone(for_test=False)
 
 **注意:**
-    **1.** ``Program.clone()`` **方法不会克隆例如**  :ref:`cn_api_fluid_io_PyReader` **这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失**
+    **1.** ``Program.clone()`` **方法不会克隆例如**  :ref:`cn_api_fluid_io_DataLoader` **这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失**
 
     **2. 此API当** ``for_test=True`` **时将会裁剪部分OP和变量。为防止错误的裁剪，推荐在** :ref:`cn_api_fluid_backward_append_backward` **和执行优化器之前使用** ``clone(for_test=True)`` 。
 

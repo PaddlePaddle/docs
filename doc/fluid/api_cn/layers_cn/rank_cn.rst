@@ -19,8 +19,8 @@ rank
 .. code-block:: python
 
        import paddle.fluid as fluid
-       input = fluid.layers.data(
+       input = fluid.data(
             name="input", shape=[3, 100, 100], dtype="float32")
-       rank = fluid.layers.rank(input) # rank=(3,)
+       rank = fluid.layers.rank(input) # rank=(4,)
 
 

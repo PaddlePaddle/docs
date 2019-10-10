@@ -135,7 +135,8 @@ results = predictor.run([x_t, y_t])
 	* `enable_tensorrt_engine(workspace_size: int = 1 << 20, 
 	                          max_batch_size: int, 
                               min_subgraph_size: int, 
-                              precision: AnalysisConfig.precision,                                   				   use_static: bool, 
+                              precision: AnalysisConfig.precision,
+                              use_static: bool, 
                               use_calib_mode: bool) -> None`
 	* `enable_mkldnn() -> None`
 * PaddlePredictor

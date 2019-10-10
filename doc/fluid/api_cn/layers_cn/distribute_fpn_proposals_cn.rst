@@ -20,7 +20,7 @@ distribute_fpn_proposals
     - **max_level** （int32） - 产生proposal最高级别FPN层。
     - **refer_level** （int32） - 具有指定比例的FPN层的引用级别。
     - **refer_scale** （int32） - 具有指定级别的FPN层的引用比例。
-    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。 
 
 返回：
 
@@ -36,8 +36,8 @@ distribute_fpn_proposals
 .. code-block:: python
 
     import paddle.fluid as fluid
-    fpn_rois = fluid.layers.data(
-        name='data', shape=[4], dtype='float32', lod_level=1)
+    fpn_rois = fluid.data(
+        name='data', shape=[None, 4], dtype='float32', lod_level=1)
     multi_rois, restore_ind = fluid.layers.distribute_fpn_proposals(
         fpn_rois=fpn_rois,
         min_level=2,
