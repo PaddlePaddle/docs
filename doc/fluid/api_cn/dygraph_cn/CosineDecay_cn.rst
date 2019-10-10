@@ -23,7 +23,7 @@ CosineDecay
     - **step_each_epoch** （int） - 遍历一遍训练数据所需的步数。
     - **begin** (int，可选) - 起始步，即以上公式中global_step的初始化值。默认值为0。
     - **step** (int，可选) - 步大小，即以上公式中global_step的每次的增量值。默认值为1。
-    - **dtype**  (str，可选) - 初始化学习率变量的数据类型。默认值为"float32"。
+    - **dtype**  (str，可选) - 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
 
 **代码示例**
