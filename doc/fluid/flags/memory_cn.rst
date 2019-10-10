@@ -7,7 +7,7 @@ FLAGS_allocator_strategy
 ********************
 (始于1.2)
 
-用于选择PaddlePaddle的分配器策略。其中auto_growth策略尚未稳定。
+用于选择PaddlePaddle的分配器策略。
 
 取值范围
 ---------------
