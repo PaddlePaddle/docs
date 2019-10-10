@@ -5,7 +5,7 @@ create_parameter
 
 .. py:function:: paddle.fluid.layers.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
 
-该OP创建一个参数。该参数是一个可学习的变量，拥有梯度并且可优化。
+该OP创建一个参数。该参数是一个可学习的变量, 拥有梯度并且可优化。
 
 **注意：这是一个低级别的API。如果您希望自己创建新的op，这个API将非常有用，无需使用layers。**
 
