@@ -36,7 +36,7 @@ PolynomialDecay
     - **cycle** (bool，可选) - 学习率下降后是否重新上升。若为True，则学习率衰减到最低学习率值时，会出现上升。若为False，则学习率曲线则单调递减。默认值为False。
     - **begin** (int，可选) – 起始步，即以上运算式子中global_step的初始化值。默认值为0。
     - **step** (int，可选) – 步大小，即以上运算式子中global_step的递增值。默认值为1。
-    - **dtype** (str，可选)– 初始化学习率变量的数据类型。默认值为"float32"。
+    - **dtype** (str，可选)– 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
 
 **代码示例**
