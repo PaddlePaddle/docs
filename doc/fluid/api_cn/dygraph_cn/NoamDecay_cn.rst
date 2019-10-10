@@ -27,6 +27,8 @@ Noam衰减的计算方式如下。
     - **step** (int，可选) – 步大小。即以上运算式子中global_steps的递增值。默认值为1。
     - **dtype** (str，可选) – 学习率值的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
+返回： 无
+
 **代码示例**
 
 .. code-block:: python
