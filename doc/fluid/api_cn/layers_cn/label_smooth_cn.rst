@@ -26,7 +26,7 @@ label_smooth
   - **dtype** （np.dtype|core.VarDesc.VarType|str，可选） - 输入 ``Tensor`` 的数据类型，，数据类型可以为”float32“或”float64“。默认值为”float32“。
   - **name** （str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：为平滑后标签的``Tensor``，数据类型为dtype设置的数据类型，维度也与输入的label参数维度相同。
+返回：为平滑后标签的 ``Tensor`` ，数据类型为dtype设置的数据类型，维度也与输入的label参数维度相同。
 
 返回类型: Variable
 
