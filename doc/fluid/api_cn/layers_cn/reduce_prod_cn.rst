@@ -26,7 +26,7 @@ reduce_prod
       #    [[0.2, 0.3, 0.5, 0.9]
       #     [0.1, 0.2, 0.6, 0.7]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      x = fluid.layers.data(name='x', shape=[2, 4], dtype='float32')
+      x = fluid.data(name='x', shape=[2, 4], dtype='float32')
       fluid.layers.reduce_prod(x)  # [0.0002268]
       fluid.layers.reduce_prod(x, dim=0)  # [0.02, 0.06, 0.3, 0.63]
       fluid.layers.reduce_prod(x, dim=-1)  # [0.027, 0.0084]
@@ -37,7 +37,7 @@ reduce_prod
       #      [[[1.0, 2.0], [3.0, 4.0]],
       #      [[5.0, 6.0], [7.0, 8.0]]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      y = fluid.layers.data(name='y', shape=[2, 2, 2], dtype='float32')
+      y = fluid.data(name='y', shape=[2, 2, 2], dtype='float32')
       fluid.layers.reduce_prod(y, dim=[1, 2]) # [24.0, 1680.0]
       fluid.layers.reduce_prod(y, dim=[0, 1]) # [105.0, 384.0]
 
