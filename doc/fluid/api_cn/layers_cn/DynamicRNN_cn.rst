@@ -43,7 +43,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 当输入x的 :code:`x.lod_level >= 2` 时，输入序列将按指定level进行展开，每个时间步携带 :code:`x.lod_level - level - 1` 层LoD信息，
 此时要求多个输入序列的LoD在指定level上的信息完全一样。
 
-- 示例：
+- 示例1
 
 .. code-block:: text
 
@@ -262,6 +262,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 .. py:method:: memory(init=None, shape=None, value=0.0, need_reorder=False, dtype='float32')
 
 为RNN创建一个memory变量，用于在时间步之间传递信息。
+它可以用一个已有的Tensor来初始化，也可以初始化为一个特定维度的常量Tensor。
 
 参数：
     - **init** (Variable，可选) – 设置memory初始值的LoDTensor。如果init不是None，将使用init来初始化memory，要求持有与输入LoDTensor（通过 :code:`step_input` 设置的输入）相同的序列个数。如果输入init的LoD信息为空，则会被当成由 :code:`init.shape[0]` 个长度为1序列组成。默认值是None。
@@ -335,7 +336,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. py:method:: update_memory(ex_mem, new_mem)
 
-将需要传递的时间步信息更新。
+将需要在时间步之间传递的信息更新。
 
 参数：
   - **ex_mem** (Variable) - 上一个时间步的信息。
