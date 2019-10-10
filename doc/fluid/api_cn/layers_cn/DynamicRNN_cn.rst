@@ -5,8 +5,8 @@ DynamicRNN
 
 .. py:class:: paddle.fluid.layers.DynamicRNN(name=None)
 
-**该OP仅支持LoDTensor，即要求输入数据的LoD信息不为空**。输入数据不是LoDTensor时，
-可使用 :ref:`cn_api_fluid_layers_StaticRNN` 。
+**注意：该类型的输入仅支持LoDTensor，如果您需要处理的输入数据是Tensor类型，
+请使用StaticRNN（ fluid.layers.** :ref:`cn_api_fluid_layers_StaticRNN` **)。**
 
 DynamicRNN可以处理一批序列数据，其中每个样本序列的长度可以不同，每个序列的长度信息记录在LoD里面。
 DynamicRNN会按照时间步 (time step) 将输入序列展开，用户可以在 :code:`block` 中定义每个时间步要进行的运算。
@@ -14,7 +14,8 @@ DynamicRNN会按照时间步 (time step) 将输入序列展开，用户可以在
 DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数据进行收缩处理，移除已经处理完的序列的信息。
 因此，随着时间步的增加，每个时间步处理的样本数（batch size）会逐渐减少。
 
-**注意：目前不支持在DynamicRNN的** :code:`block` **中任何层上配置** :code:`is_sparse = True` 。
+.. warning::
+  目前不支持在DynamicRNN的 :code:`block` 中任何层上配置 :code:`is_sparse = True` 。
 
 参数：
     - **name** (str，可选) - 具体用法参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
@@ -31,8 +32,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_step_input:
 
-成员函数 :code:`step_input`
------------------------------
+成员函数 step_input
+---------------------------------
 
 .. py:method:: step_input(x, level=0)
 
@@ -42,10 +43,44 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 当输入x的 :code:`x.lod_level >= 2` 时，输入序列将按指定level进行展开，每个时间步携带 :code:`x.lod_level - level - 1` 层LoD信息，
 此时要求多个输入序列的LoD在指定level上的信息完全一样。
 
+- 示例：
+
+.. code-block:: text
+
+    # 输入，其中Si代表维度为[1, N]的数据
+    level = 0
+    x.lod = [[2, 1, 3]]
+    x.shape = [6, N]
+    x.data = [[S0],
+              [S0],
+              [S1],
+              [S2],
+              [S2],
+              [S2]]
+
+    # 输出
+    # step 0，持有3个序列的time step数据
+    out.lod = [[]]
+    out.shape = [3, N]
+    out.data = [[S2],
+                [S0],
+                [S1]]
+
+    # step 1，持有2个序列的time step数据
+    out.lod = [[]]
+    out.shape = [2, N]
+    out.data = [[S2],
+                [S0]]
+
+    # step 2，持有1个序列的time step数据
+    out.lod = [[]]
+    out.shape = [1, N]
+    out.data = [[S2]]
+
 
 参数：
     - **x** (Variable) - 输入序列LoDTensor，代表由长度不同的多个序列组成的minibatch，要求 :code:`x.lod_level >= 1`。输入x第一个维度的值等于minibatch内所有序列的长度之和。RNN有多个输入序列时，多个输入LoDTensor的第一个维度必须相同，其它维度可以不同。
-    - **level** (int，可选) - 用于拆分输入序列的LoD层级，取值范围是 :code:`[0, x.lod_level)`，默认值是0。
+    - **level** (int，可选) - 用于拆分输入序列的LoD层级，取值范围是 :math:`[0, x.lod\_level)`，默认值是0。
 
 返回： 输入序列每个时间步的数据。执行第 :code:`step_idx` 个时间步时，若输入 :code:`x` 中有 :code:`num_sequences` 个长度不小于 :code:`step_idx` 的序列，则这个时间步返回值中只包含了这 :code:`num_sequences` 个序列第 :code:`step_idx` 时间步的数据。
 
@@ -83,12 +118,84 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_static_input:
 
-成员函数 :code:`static_input`
------------------------------
+成员函数 static_input
+---------------------------------
 
 .. py:method:: static_input(x)
 
 将变量设置为RNN的静态输入。
+
+- 示例1，静态输入携带LoD信息
+
+.. code-block:: text
+
+    # RNN的输入见step_input中的示例
+    # 静态输入，其中Si代表维度为[1, M]的数据
+    x.lod = [[3, 1, 2]]
+    x.shape = [6, M]
+    x.data = [[S0],
+              [S0],
+              [S0],
+              [S1],
+              [S2],
+              [S2]]
+
+    # step 0，持有3个序列对应的数据
+    out.lod = [[2, 3, 1]]
+    out.shape = [6, M]
+    out.data = [[S2],
+                [S2],
+                [S0],
+                [S0],
+                [S0],
+                [S1]]
+
+    # step 1，持有2个序列对应的数据
+    out.lod = [[2, 3]]
+    out.shape = [5, M]
+    out.data = [[S2],
+                [S2],
+                [S0],
+                [S0],
+                [S0]]
+
+    # step 2，持有1个序列对应的数据
+    out.lod = [[2]]
+    out.shape = [2, M]
+    out.data = [[S2],
+                [S2]]
+
+
+- 示例2，静态输入不携带LoD信息
+
+.. code-block:: text
+
+    # RNN的输入见step_input中的示例
+    # 静态输入，其中Si代表维度为[1, M]的数据
+    x.lod = [[]]
+    x.shape = [3, M]
+    x.data = [[S0],
+              [S1],
+              [S2]]
+
+    # step 0，持有3个序列对应的数据
+    out.lod = [[]]
+    out.shape = [3, M]
+    out.data = [[S2],
+                [S0],
+                [S1]]
+
+    # step 1，持有2个序列对应的数据
+    out.lod = [[]]
+    out.shape = [2, M]
+    out.data = [[S2],
+                [S0]]
+
+    # step 2，持有1个序列对应的数据
+    out.lod = [[]]
+    out.shape = [1, M]
+    out.data = [[S2]]
+
 
 参数:
     - **x** (Variable) - 静态输入序列LoDTensor，要求持有与输入LoDTensor（通过 :code:`step_input` 设置的输入）相同的序列个数。如果输入x的LoD信息为空，则会被当成由 :code:`x.shape[0]` 个长度为1序列组成。
@@ -136,8 +243,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_block:
 
-成员函数 :code:`block`
------------------------------
+成员函数 block
+---------------------------------
 
 .. py:method:: block()
 
@@ -149,8 +256,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_memory:
 
-成员函数 :code:`memory`
------------------------------
+成员函数 memory
+---------------------------------
 
 .. py:method:: memory(init=None, shape=None, value=0.0, need_reorder=False, dtype='float32')
 
@@ -172,7 +279,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
     - :code:`TypeError`：当init被设置了，但是不是Variable类型时。
     - :code:`ValueError`：当 :code:`memory()` 接口在 :code:`step_input()` 接口之前被调用时。
 
-**示例代码一**
+**代码示例一**
 
 ..  code-block:: python
 
@@ -197,7 +304,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
     rnn_output = drnn()
 
 
-**示例代码二**
+**代码示例二**
 
 ..  code-block:: python
 
@@ -223,8 +330,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_update_memory:
 
-成员函数 :code:`update_memory`
------------------------------
+成员函数 update_memory
+---------------------------------
 
 .. py:method:: update_memory(ex_mem, new_mem)
 
@@ -245,8 +352,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_output:
 
-成员函数 :code:`output`
------------------------------
+成员函数 output
+---------------------------------
 
 .. py:method:: output(*outputs)
 
@@ -263,8 +370,8 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 .. _cn_api_fluid_layers_DynamicRNN_call:
 
-成员函数 :code:`__call__`
------------------------------
+成员函数 __call__
+---------------------------------
 
 .. py:method:: __call__()
 
