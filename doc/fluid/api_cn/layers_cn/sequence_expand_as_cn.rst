@@ -7,7 +7,7 @@ sequence_expand_as
 
 Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 进行扩展。当前实现要求 ``y`` 的lod层数（level）必须为1，且 ``x`` 的第一维必须和 ``y`` 的第0层lod大小相同，所以扩展后的LodTensor具有和 ``y`` 相同的lod。扩展结果与输入 ``x`` 的lod无关，所以无需考虑 ``x`` 的lod。
 
-注意，该OP的输入 ``x`` 和 ``y`` 只能是LodTensor。
+注意，该OP的输入 ``x`` 可以是Tensor或LoDTensor， ``y`` 只能是LodTensor。
 
 范例解释如下：
 
@@ -47,11 +47,11 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
 
 
 参数：
-    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` 的二维LoDTensor，第一维必须与输入 ``y`` 的第0层lod大小相同，且仅支持lod_level为1。数据类型支持int32，int64，float32或float64。
+    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` 的二维Tensor或LoDTensor，第一维必须与输入 ``y`` 的第0层lod大小相同，且仅支持lod_level为1。数据类型支持int32，int64，float32或float64。
     - **y** (Variable) - 输入变量，LoDTensor，lod level必须为1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：扩展变量，维度为 :math:`[M, K]` 的二维LoDTensor，N由输入 ``y`` 的lod决定，且仅支持lod_level为1。数据类型与输入 ``x`` 一致。
+返回：扩展变量，维度为 :math:`[N, K]` 的二维LoDTensor，N由输入 ``y`` 的lod决定，且仅支持lod_level为1。数据类型与输入 ``x`` 一致。
 
 返回类型：Variable
 
