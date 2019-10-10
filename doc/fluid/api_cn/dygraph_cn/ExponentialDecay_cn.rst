@@ -38,7 +38,7 @@ ExponentialDecay
     - **staircase** (bool) - 若为True，则以不连续的间隔衰减学习速率即阶梯型衰减。若为False，则以标准指数型衰减。默认值为False。
     - **begin** (int) - 起始步，即以上运算式子中global_step的初始化值。默认值为0。
     - **step** (int) - 步大小，即以上运算式子中global_step的每次的增量值，使得global_step随着训练的次数递增。默认值为1。
-    - **dtype** (str) - 初始化学习率变量的数据类型。默认值为"float32"。
+    - **dtype** (str) - 初始化学习率变量的数据类型，可以为"float32", "float64"。 默认值为"float32"。
 
 
 **代码示例**
