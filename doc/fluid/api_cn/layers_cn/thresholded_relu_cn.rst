@@ -5,7 +5,7 @@ thresholded_relu
 
 .. py:function:: paddle.fluid.layers.thresholded_relu(x,threshold=None)
 
-ThresholdedRelu激活函数
+逐元素计算 ThresholdedRelu激活函数。
 
 .. math::
 
@@ -15,24 +15,59 @@ ThresholdedRelu激活函数
       \end{matrix}\right.
 
 参数：
-- **x** -ThresholdedRelu激活函数的输入
-- **threshold** (FLOAT)-激活函数threshold的位置。[默认1.0]。
+  - **x** (Variable) -ThresholdedRelu Op 的输入，多维 Tensor 或 LoDTensor，数据类型为 float32，float64。
+  - **threshold** (float，可选)-激活函数的 threshold 值，如 threshold 值为 None，则其值为 1.0。
 
-返回：ThresholdedRelu激活函数的输出
+返回：
+   - 多维 Tensor 或 LoDTensor, 数据类型为 float32 或 float64， 和输入 x 的数据类型相同，形状和输入 x 相同。
+
+返回类型：
+  - Variable
 
 **代码示例**：
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  data = fluid.layers.data(name="input", shape=[1])
-  result = fluid.layers.thresholded_relu(data, threshold=0.4)
+    # 静态图使用
+    import numpy as np
+    from paddle import fluid
+    
+    x = fluid.data(name="x", shape=(-1, 3), dtype="float32")
+    y = fluid.layers.thresholded_relu(x, threshold=0.1)
+
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+
+    start = fluid.default_startup_program()
+    main = fluid.default_main_program()
+    data = np.random.randn(2, 3).astype("float32")
+    exe.run(start)
+    y_np, = exe.run(main, feed={"x": data}, fetch_list=[y])
+
+    data
+    # array([[ 0.21134382, -1.1805999 ,  0.32876605],
+    #        [-1.2210793 , -0.7365624 ,  1.0013918 ]], dtype=float32)
+    y_np
+    # array([[ 0.21134382, -0.        ,  0.32876605],
+    #        [-0.        , -0.        ,  1.0013918 ]], dtype=float32)
 
 
+.. code-block:: python
 
-
-
-
-
-
-
+    # 动态图使用
+    import numpy as np
+    from paddle import fluid
+    import paddle.fluid.dygraph as dg
+    
+    data = np.random.randn(2, 3).astype("float32")
+    place = fluid.CPUPlace()
+    with dg.guard(place) as g:
+        x = dg.to_variable(data)
+        y = fluid.layers.thresholded_relu(x, threshold=0.1)
+        y_np = y.numpy()
+    data
+    # array([[ 0.21134382, -1.1805999 ,  0.32876605],
+    #        [-1.2210793 , -0.7365624 ,  1.0013918 ]], dtype=float32)
+    y_np
+    # array([[ 0.21134382, -0.        ,  0.32876605],
+    #        [-0.        , -0.        ,  1.0013918 ]], dtype=float32)

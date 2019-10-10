@@ -5,47 +5,43 @@ lstm_unit
 
 .. py:function:: paddle.fluid.layers.lstm_unit(x_t, hidden_t_prev, cell_t_prev, forget_bias=0.0, param_attr=None, bias_attr=None, name=None)
 
-Lstm unit layer
 
-lstm步的等式：
+Long-Short Term Memory（LSTM）循环神经网络计算单元。该OP用于完成单个时间步内LSTM的计算，基于论文 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv.org/abs/1409.2329>`_ 中的描述实现，
+
+并在forget gate（遗忘门）中增加了 ``forget_bias`` 来控制遗忘力度，公式如下：
 
 .. math::
 
     i_{t} &= \sigma \left ( W_{x_{i}}x_{t}+W_{h_{i}}h_{t-1}+b_{i} \right ) \\
-    f_{t} &= \sigma \left ( W_{x_{f}}x_{t}+W_{h_{f}}h_{t-1}+b_{f} \right ) \\
+    f_{t} &= \sigma \left ( W_{x_{f}}x_{t}+W_{h_{f}}h_{t-1}+b_{f}+forget\_bias \right ) \\
     c_{t} &= f_{t}c_{t-1}+i_{t}tanh\left ( W_{x_{c}}x_{t} +W_{h_{c}}h_{t-1}+b_{c}\right ) \\
     o_{t} &= \sigma \left ( W_{x_{o}}x_{t}+W_{h_{o}}h_{t-1}+b_{o} \right ) \\
     h_{t} &= o_{t}tanh \left ( c_{t} \right )
 
-lstm单元的输入包括 :math:`x_{t}` ， :math:`h_{t-1}` 和 :math:`c_{t-1}` 。:math:`h_{t-1}` 和 :math:`c_{t-1}` 的第二维应当相同。在此实现过程中，线性转换和非线性转换分离。以 :math:`i_{t}` 为例。线性转换运用到fc层，等式为：
+其中， :math:`x_{t}` 对应 ``x_t``， 表示当前时间步的输入； :math:`h_{t-1}` 和 :math:`c_{t-1}` 对应 ``hidden_t_prev`` 和 ``cell_t_prev``，表示上一时间步的hidden和cell输出；
+:math:`i_{t}, f_{t}, c_{t}, o_{t}, h_{t}` 分别为input gate（输入门）、forget gate（遗忘门）、cell、output gate（输出门）和hidden的计算。
 
-.. math::
-
-    L_{i_{t}} = W_{x_{i}}x_{t} + W_{h_{i}}h_{t-1} + b_{i}
-
-非线性转换运用到lstm_unit运算，方程如下：
-
-.. math::
-
-    i_{t} = \sigma \left ( L_{i_{t}} \right )
-
-该层有 :math:`h_{t}` 和 :math:`c_{t}` 两个输出。
 
 参数：
-    - **x_t** (Variable) - 当前步的输入值，二维张量，shape为 M x N ，M是批尺寸，N是输入尺寸
-    - **hidden_t_prev** (Variable) - lstm单元的隐藏状态值，二维张量，shape为 M x S，M是批尺寸，N是lstm单元的大小
-    - **cell_t_prev** (Variable) - lstm单元的cell值，二维张量，shape为 M x S ，M是批尺寸，N是lstm单元的大小
-    - **forget_bias** (Variable) - lstm单元的遗忘bias
-    - **param_attr** (ParamAttr|None) - 可学习hidden-hidden权重的擦参数属性。如果设为None或者 ``ParamAttr`` 的一个属性，lstm_unit创建 ``ParamAttr`` 为param_attr。如果param_attr的初始化函数未设置，参数初始化为Xavier。默认：None
-    - **bias_attr** (ParamAttr|None) - 可学习bias权重的bias属性。如果设为False，输出单元中则不添加bias。如果设为None或者 ``ParamAttr`` 的一个属性，lstm_unit创建 ``ParamAttr`` 为bias_attr。如果bias_attr的初始化函数未设置，bias初始化为0.默认：None
-    - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名
+    - **x_t** (Variable) - 表示当前时间步的输入的Tensor，形状为 :math:`[N, M]` ，其中 :math:`N` 为batch_size， :math:`M` 为输入的特征维度大小。数据类型为float32或float64。
+    - **hidden_t_prev** (Variable) - 表示前一时间步hidden输出的Tensor，形状为 :math:`[N, D]`，其中 :math:`N` 为batch_size， :math:`D` 为LSTM中隐单元的数目。数据类型与 ``x_t`` 相同。
+    - **cell_t_prev** (Variable) - 表示前一时间步cell输出的Tensor，和  ``hidden_t_prev`` 具有相同形状和数据类型。
+    - **forget_bias** (float，可选) - 额外添加在遗忘门中的偏置项(参见公式)。默认值为0。
+    - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：lstm单元的hidden(隐藏状态)值和cell值
+返回：Variable的二元组，包含了两个形状均为 :math:`[N, D]` 的Tensor，分别表示hiddel和cell输出，即公式中的 :math:`h_{t}` 和 :math:`c_{t}` 。数据类型与输入 ``x_t`` 相同。
 
-返回类型：tuple（元组）
+返回类型：tuple
 
 抛出异常:
-  - ``ValueError`` - ``x_t``，``hidden_t_prev`` 和 ``cell_t_prev`` 的阶不为2，或者 ``x_t`` ，``hidden_t_prev`` 和 ``cell_t_prev`` 的第一维不一致，或者 ``hidden_t_prev`` 和 ``cell_t_prev`` 的第二维不一致
+    - :code:`ValueError`： ``x_t`` 的阶不为2
+    - :code:`ValueError`： ``hidden_t_prev`` 的阶不为2
+    - :code:`ValueError`： ``cell_t_prev`` 的阶不为2
+    - :code:`ValueError`： ``x_t`` 、``hidden_t_prev`` 和 ``cell_t_prev`` 的第一维大小必须相同
+    - :code:`ValueError`： ``hidden_t_prev`` 和 ``cell_t_prev`` 的第二维大小必须相同
+
 
 **代码示例**：
 

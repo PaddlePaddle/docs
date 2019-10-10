@@ -267,7 +267,7 @@ The definition of its corresponding backward operator, if applicable, is similar
 <a name="Compilation"></a>
 ### Compilation
 
-Run the following commands to compile.
+In folder `build/paddle/fluid/operators`, run the following commands to compile.
 
 ```
 make mul_op
@@ -357,7 +357,7 @@ In the backward operator test:
 
 Any new unit testing file of the format `test_*.py`  added to the directory `python/paddle/fluid/tests/unittests/` is automatically added to the project to compile.
 
-Note that **unlike the compile test for Ops, running unit tests requires compiling the entire project** and requires compiling with flag `WITH_TESTING` on i.e. `cmake paddle_dir -DWITH_TESTING=ON`.
+Note that **running unit tests requires compiling the entire project** and requires compiling with flag `WITH_TESTING` on i.e. `cmake paddle_dir -DWITH_TESTING=ON`.
 
 After successfully compiling the project, run the following command to run unit tests:
 

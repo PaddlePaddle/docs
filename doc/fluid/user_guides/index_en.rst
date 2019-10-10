@@ -8,7 +8,7 @@ If you have got the hang of Beginner's Guide, and wish to model practical proble
 you with some detailed operations:
 
 
-    - `Basic Concepts <../user_guides/howto/basic_concept/index_en.html>`_ ：It explains basic concepts of Fluid.
+    - `LoD-Tensor Concepts <../user_guides/howto/basic_concept/index_en.html>`_ ：It explains basic concepts of Fluid LoD-Tensor.
 
     - `Prepare Data <../user_guides/howto/prepare_data/index_en.html>`_ ：This section introduces data types supported and data transmission methods when you are training your networks with Fluid.
 

@@ -1,4 +1,3 @@
-***
 # **Compile on Windows from Source Code**
 
 This instruction will show you how to compile PaddlePaddle on a *64-bit desktop or laptop* and Windows 10. The Windows systems we support must meet the following requirements:
@@ -59,8 +58,7 @@ Please note: The current version does not support NCCL and distributed related f
 
 6. Execute cmake:
 
-	> For details on the compilation options, see [the compilation options list](../Tables.html/#Compile).
-
+	> For details on the compilation options, see [the compilation options list](../Tables.html/#Compile).	
 	* For users who need to compile **the CPU version PaddlePaddle**:
 
 		For Python2:`cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR = $ {PYTHON_INCLUDE_DIRS} 

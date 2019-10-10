@@ -12,3 +12,4 @@ fluid.clip
     clip_cn/GradientClipByGlobalNorm_cn.rst
     clip_cn/GradientClipByNorm_cn.rst
     clip_cn/GradientClipByValue_cn.rst
+    clip_cn/set_gradient_clip_cn.rst

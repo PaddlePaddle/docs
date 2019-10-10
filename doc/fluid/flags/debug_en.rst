@@ -2,7 +2,7 @@
 debug
 ==================
 
-check_nan_inf
+FLAGS_check_nan_inf
 **************************************
 (since 0.13.0)
 
@@ -17,7 +17,7 @@ Example
 FLAGS_check_nan_inf=True will check the result of Operator whether the result has Nan or Inf.
 
 
-cpu_deterministic
+FLAGS_cpu_deterministic
 *******************************************
 (since 0.15.0)
 
@@ -32,7 +32,7 @@ Example
 FLAGS_cpu_deterministic=True will make the result of computation deterministic in CPU side.
 
 
-enable_rpc_profiler
+FLAGS_enable_rpc_profiler
 *******************************************
 (Since 1.0.0)
 
@@ -47,7 +47,7 @@ Example
 FLAGS_enable_rpc_profiler=True will enable rpc profiler and record the timeline to profiler file.
 
 
-multiple_of_cupti_buffer_size
+FLAGS_multiple_of_cupti_buffer_size
 *******************************************
 (since 1.4.0)
 
@@ -62,7 +62,7 @@ Example
 FLAGS_multiple_of_cupti_buffer_size=1 set the multiple of the CUPTI device buffer size to 1.
 
 
-reader_queue_speed_test_mode
+FLAGS_reader_queue_speed_test_mode
 *******************************************
 (since 1.1.0)
 

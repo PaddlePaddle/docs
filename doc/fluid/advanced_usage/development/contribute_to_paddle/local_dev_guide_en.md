@@ -78,39 +78,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## Build and test
 
-It needs a variety of development tools to build PaddlePaddle source code and generate documentation. For convenience, our standard development procedure is to put these tools together into a Docker image,called  *development mirror* , usually named as `paddle:latest-dev` or `paddle:[version tag]-dev`,such as `paddle:0.11.0-dev` . Then all that need `cmake && make` ,such as IDE configuration,are replaced by `docker run paddle:latest-dev` .
-
-You need to bulid this development mirror under the root directory of source code directory tree
-
-```bash
-➜  docker build -t paddle:latest-dev .
-```
-
-Then you can start building PaddlePaddle source code with this development mirror.For example,to build a Paddleddle which are not dependent on GPU but in support of AVX commands and including unit test,you can:
-
-```bash
-➜  docker run -v $(pwd):/paddle -e "WITH_GPU=OFF" -e "WITH_AVX=ON" -e "WITH_TESTING=ON" paddle:latest-dev
-```
-
-If you want to build PaddlePaddle based on Python3,you can:
-
-```bash
-➜  docker run -v $(pwd):/paddle -e "PY_VERSION=3.5" -e "WITH_FLUID_ONLY=ON" -e "WITH_GPU=OFF" -e "WITH_AVX=ON" -e "WITH_TESTING=ON" paddle:latest-dev
-```
-
-Except for the build of PaddlePaddle as `./build/libpaddle.so` and the output of `./build/paddle.deb` file, there is an output of `build/Dockerfile`. What we need to do is to package the PaddlePaddle as a *produce mirror*（ `paddle:prod` ）with following commands.
-
-```bash
-➜  docker build -t paddle:prod -f build/Dockerfile .
-```
-
-Run all unit tests with following commands:
-
-```bash
-➜  docker run -it -v $(pwd):/paddle paddle:latest-dev bash -c "cd /paddle/build && ctest"
-```
-
-Please refer to [Installation and run with Docker](../../../beginners_guide/install/install_Docker.html) about more information of construction and test.
+Please refer to [Compile From Source Code](../../../beginners_guide/install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
+Please refer to [Op Unit Tests](../../../advanced_usage/development/new_op/new_op_en.html#unit-tests) about more information of running unit tests.
 
 ## Commit
 

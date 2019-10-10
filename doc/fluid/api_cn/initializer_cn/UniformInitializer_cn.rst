@@ -8,9 +8,11 @@ UniformInitializer
 随机均匀分布初始化器
 
 参数：
-        - **low** (float) - 下界 
-        - **high** (float) - 上界
-        - **seed** (int) - 随机种子
+    - **low** (float16|float32) - 下界 
+    - **high** (float16|float32) - 上界
+    - **seed** (int32) - 随机种子
+
+返回：对象
 
 **代码示例**
 
@@ -21,7 +23,6 @@ UniformInitializer
        fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.Uniform(low=-0.5, high=0.5))
  
-
 
 
 

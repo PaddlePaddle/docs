@@ -5,19 +5,19 @@ create_global_var
 
 .. py:function:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
-在全局块中创建一个新的带有 ``value`` 的张量。
+该OP在全局块中创建一个新的Tensor，Tensor的值为 ``value`` 。
 
 参数：
-    - **shape** (list[int])-变量的维度
-    - **value** (float)-变量的值。填充新创建的变量
-    - **dtype** (string)-变量的数据类型
-    - **persistable** (bool)-如果是永久变量。默认：False
-    - **force_cpu** (bool)-将该变量压入CPU。默认：False
-    - **name** (str|None)-变量名。如果设为空，则自动创建变量名。默认：None.
+    - **shape** (list[int])- 指定输出Tensor的形状，它可以是一个整数列表。
+    - **value** (float)- 变量的值，填充新创建的变量。
+    - **dtype** (str|numpy.dtype，可选)– 初始化数据类型。
+    - **persistable** (bool，可选)- 是否为永久变量，默认：False。
+    - **force_cpu** (bool，可选)- 是否将该变量压入CPU，默认值为 False。
+    - **name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：创建的变量
+返回：创建的Tensor变量
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **代码示例**：
 

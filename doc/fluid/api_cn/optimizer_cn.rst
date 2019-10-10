@@ -9,6 +9,7 @@ fluid.optimizer
     :maxdepth: 1
 
     optimizer_cn/Adadelta_cn.rst
+    optimizer_cn/AdadeltaOptimizer_cn.rst
     optimizer_cn/Adagrad_cn.rst
     optimizer_cn/AdagradOptimizer_cn.rst
     optimizer_cn/Adam_cn.rst
@@ -31,3 +32,5 @@ fluid.optimizer
     optimizer_cn/RMSPropOptimizer_cn.rst
     optimizer_cn/SGD_cn.rst
     optimizer_cn/SGDOptimizer_cn.rst
+    optimizer_cn/LookaheadOptimizer_cn.rst
+    optimizer_cn/RecomputeOptimizer_cn.rst
