@@ -59,18 +59,17 @@ generate_mask_labels
     
     import paddle.fluid as fluid
 
-    im_info = fluid.layers.data(name="im_info", shape=[3],
-        dtype="float32")
-    gt_classes = fluid.layers.data(name="gt_classes", shape=[1],
+    im_info = fluid.data(name="im_info", shape=[None, 3], dtype="float32")
+    gt_classes = fluid.data(name="gt_classes", shape=[None, 1],
         dtype="float32", lod_level=1)
-    is_crowd = fluid.layers.data(name="is_crowd", shape=[1],
+    is_crowd = fluid.data(name="is_crowd", shape=[None, 1],
         dtype="float32", lod_level=1)
-    gt_masks = fluid.layers.data(name="gt_masks", shape=[2],
+    gt_masks = fluid.data(name="gt_masks", shape=[None, 2],
         dtype="float32", lod_level=3)
     # rois, roi_labels 可以是fluid.layers.generate_proposal_labels的输出
-    rois = fluid.layers.data(name="rois", shape=[4],
+    rois = fluid.data(name="rois", shape=[None, 4],
         dtype="float32", lod_level=1)
-    roi_labels = fluid.layers.data(name="roi_labels", shape=[1],
+    roi_labels = fluid.data(name="roi_labels", shape=[None, 1],
         dtype="int32", lod_level=1)
     mask_rois, mask_index, mask_int32 = fluid.layers.generate_mask_labels(
         im_info=im_info,
