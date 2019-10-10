@@ -11,12 +11,12 @@ swish
          out = \frac{x}{1 + e^{- beta * x}}
 
 参数：
-    - **x** (Variable) -  多维 Tensor，数据类型为 float32，float64。
+    - **x** (Variable) -  多维 Tensor 或 LoDTensor，数据类型为 float32，float64。
     - **beta** (float) - Swish operator 的常量 beta，默认值为 1.0。
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_fluid_ParamAttr` ，一般无需设置，默认值为None。
 
 返回：
-    - Swish op 的结果，多维 Tensor。数据类型为 float32 或 float64 的 Tensor，数据类型以及形状和输入 x 一致。
+    - Swish op 的结果，多维 Tensor 或 LoDTensor。数据类型为 float32 或 float64，数据类型以及形状和输入 x 一致。
 
 返回类型：
     - Variable
