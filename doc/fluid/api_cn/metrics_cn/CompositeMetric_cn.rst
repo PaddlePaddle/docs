@@ -9,7 +9,7 @@ CompositeMetric
 
 **注意，只有输入参数列表完全相同的评价指标才可被加入到同一个CompositeMetric实例内。**
 
-继承自：[MetricBase](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/metrics_cn.html#paddle.fluid.metrics.MetricBase)
+继承自：MetricBase
 
 **代码示例**
 
@@ -41,7 +41,7 @@ CompositeMetric
 向容器内添加一个新的评价指标。注意新添加的评价指标的输入参数列表必须与容器里已有的其他指标保持一致。
 
 参数:
-    - **metric** (MetricBase) – 评价指标对象，一个[MetricBase](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/metrics_cn.html#paddle.fluid.metrics.MetricBase)的实例。
+    - **metric** (MetricBase) – 评价指标对象，一个MetricBase的实例。
 
 返回：无
 
