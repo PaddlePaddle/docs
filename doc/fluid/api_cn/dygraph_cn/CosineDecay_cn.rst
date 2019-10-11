@@ -5,21 +5,25 @@ CosineDecay
 
 .. py:class:: paddle.fluid.dygraph.CosineDecay(learning_rate, step_each_epoch, epochs, begin=0, step=1, dtype='float32')
 
-使用 cosine decay 的衰减方式进行学习率调整。
+该接口提供按余弦函数衰减学习率的功能。
 
-在训练模型时，建议一边进行训练一边降低学习率。 通过使用此方法，学习率将通过如下cosine衰减策略进行衰减：
+余弦衰减的计算方式如下。
 
 .. math::
 
-    decayed\_lr = learning\_rate * 0.5 * (math.cos * (epoch * \frac{math.pi}{epochs} ) + 1)
+    decayed\_learning\_rate = learning\_rate * 0.5 * (math.cos(global\_step * \frac{math.pi}{step\_each\_epoch} ) + 1)
 
+式中，
+
+- :math:`decayed\_learning\_rate` ： 衰减后的学习率。
+式子中各参数详细介绍请看参数说明。
 
 参数：
-    - **learning_rate** (Variable | float) - 初始学习率。
-    - **step_each_epoch** （int） - 一次迭代中的步数。
-    - **begin** (int) - 起始步，默认为0。
-    - **step** (int) - 步大小，默认为1。
-    - **dtype**  (str) - 学习率的dtype，默认为‘float32’
+    - **learning_rate** (Variable | float) - 初始学习率。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的float类型。
+    - **step_each_epoch** （int） - 遍历一遍训练数据所需的步数。
+    - **begin** (int，可选) - 起始步，即以上公式中global_step的初始化值。默认值为0。
+    - **step** (int，可选) - 步大小，即以上公式中global_step的每次的增量值。默认值为1。
+    - **dtype**  (str，可选) - 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
 
 **代码示例**

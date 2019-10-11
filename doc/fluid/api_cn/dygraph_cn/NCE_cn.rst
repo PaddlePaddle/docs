@@ -5,29 +5,21 @@ NCE
 
 .. py:class:: paddle.fluid.dygraph.NCE(name_scope, num_total_classes, param_attr=None, bias_attr=None, num_neg_samples=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
 
-计算并返回噪音对比估计（ noise-contrastive estimation training loss）。 
-`请参考Noise-contrastive estimation: A new estimation principle for unnormalized statistical models
-<http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_
+该接口用于构建 ``NCE`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了 ``NCE`` 损失函数的功能，其默认使用均匀分布进行抽样，计算并返回噪音对比估计（ noise-contrastive estimation training loss）。更多详情请参考：`Noise-contrastive estimation: A new estimation principle for unnormalized statistical models <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_
 
-该operator默认使用均匀分布进行抽样。
-
-参数:
+参数：
     - **name_scope** (str) – 该类的名称。
     - **num_total_classes** (int) - 所有样本中的类别的总数。
-    - **sample_weight** (Variable|None) - 存储每个样本权重，shape为[batch_size, 1]存储每个样本的权重。每个样本的默认权重为1.0。
-    - **param_attr** (ParamAttr|None) - :math:`可学习参数/nce权重` 的参数属性。如果它没有被设置为ParamAttr的一个属性，nce将创建ParamAttr为param_attr。如没有设置param_attr的初始化器，那么参数将用Xavier初始化。默认值:None。
-    - **bias_attr** (ParamAttr|bool|None) -  nce偏置的参数属性。如果设置为False，则不会向输出添加偏置（bias）。如果值为None或ParamAttr的一个属性，则bias_attr=ParamAtt。如果没有设置bias_attr的初始化器，偏置将被初始化为零。默认值:None。
-    - **num_neg_samples** (int) - 负样例的数量。默认值是10。
-    - **name** (str|None) - 该layer的名称(可选)。如果设置为None，该层将被自动命名。
-    - **sampler** (str) – 取样器，用于从负类别中进行取样。可以是 ‘uniform’, ‘log_uniform’ 或 ‘custom_dist’。 默认 ‘uniform’。
-    - **custom_dist** (float[]) – 一个 float[] 并且它的长度为 ``num_total_classes`` 。  如果取样器类别为‘custom_dist’，则使用此参数。 custom_dist[i] 是第i个类别被取样的概率。默认为 None
-    - **seed** (int) – 取样器使用的seed。默认为0。
-    - **is_sparse** (bool) – 标志位，指明是否使用稀疏更新,  :math:`weight@GRAD` 和 :math:`bias@GRAD` 会变为 SelectedRows。默认为False。
+    - **sample_weight** (Variable, 可选) - 维度为\[batch_size, 1\]，存储每个样本的权重。每个样本的默认权重为1.0。默认值：None。
+    - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **num_neg_samples** (int, 可选) - 负样本的数量。默认值：10。
+    - **sampler** (str, 可选) – 指明采样器的类型，用于从负类别中进行采样。可以是 ``uniform`` 、 ``log_uniform`` 或 ``custom_dist`` 。 默认值： ``uniform`` 。
+    - **custom_dist** (float[], 可选) – float[] 类型的数据，并且它的长度为 ``num_total_classes`` 。如果采样器类别为 ``custom_dist`` ，则使用此参数。custom_dist\[i\]是第i个类别被取样的概率。默认值：None
+    - **seed** (int, 可选) – 采样器使用的随机种子。默认值：0。
+    - **is_sparse** (bool, 可选) – 指明是否使用稀疏更新，如果为True， :math:`weight@GRAD` 和 :math:`bias@GRAD` 会变为 SelectedRows。默认值：False。
 
-返回： nce loss
-
-返回类型: 变量（Variable）
-
+返回：无
 
 **代码示例**
 
@@ -74,6 +66,12 @@ NCE
 
         nce_loss3 = nce(embs3, words[label_word])
 
+属性
+::::::::::::
+.. py:attribute:: weight
 
+本层的可学习参数，类型为 ``Parameter``
 
+.. py:attribute:: bias
 
+本层的可学习偏置，类型为 ``Parameter``

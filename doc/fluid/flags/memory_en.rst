@@ -7,7 +7,7 @@ FLAGS_allocator_strategy
 **************************************
 (since 1.2)
 
-Use to choose allocator strategy of PaddlePaddle. Auto growth allocator is not stable yet.
+Use to choose allocator strategy of PaddlePaddle.
 
 Values accepted
 ---------------
@@ -192,11 +192,11 @@ FLAGS_initial_gpu_memory_in_mb
 *******************************************
 (since 1.4.0)
 
-Allocate a chunk of GPU memory whose byte size is specified by the flag. Future memory usage will be allocated from the chunk. If the chunk doesn't have enough gpu memory, additional chunks of the gpu memory will be requested from gpu with size specified by FLAGS_reallocate_gpu_memory_in_mb until the gpu has no memory left for the additional chunk.
+Allocate a chunk of GPU memory whose byte size is specified by the flag. Future memory usage will be allocated from the chunk. If the chunk doesn't have enough GPU memory, additional chunks of the GPU memory will be requested from GPU with size specified by FLAGS_reallocate_gpu_memory_in_mb until the GPU has no memory left for the additional chunk.
 
 Values accepted
 ---------------
-Uint64 value greater than 0 which is the initial GPU memory size in MB.
+Uint64 value greater than 0 which is the initial GPU memory size in MB. 
 
 Example
 -------
@@ -204,8 +204,8 @@ FLAGS_initial_gpu_memory_in_mb=4096 will allocate 4 GB as initial GPU chunk.
 
 Note
 -------
-If you set this flag, the memory size set by FLAGS_fraction_of_gpu_memory_to_use will be overrided by this flag.
-If you don't set this flag, PaddlePaddle will use FLAGS_fraction_of_gpu_memory_to_use to allocate gpu memory.
+If you set this flag, the memory size set by FLAGS_fraction_of_gpu_memory_to_use will be overrided by this flag, PaddlePaddle will allocate the initial gpu memory with size specified by this flag.
+If you don't set this flag, the dafault value 0 will disable this GPU memory strategy. PaddlePaddle will use FLAGS_fraction_of_gpu_memory_to_use to allocate the initial GPU chunk.
 
 
 
@@ -237,7 +237,7 @@ Re-allocate additional GPU chunk if run out of allocated GPU memory chunk.
 
 Values accepted
 ---------------
-Int64 value greater than 0 in MB
+Int64 value greater than 0 in MB which is the re-allocated GPU memory size in MB
 
 Example
 -------
@@ -245,9 +245,8 @@ FLAGS_reallocate_gpu_memory_in_mb=1024 will re-allocate 1 GB if run out of GPU m
 
 Note
 -------
-If this flag is set, PaddlePaddle will reallocate the gpu memory with size specified by this flag.
-Else PaddlePaddle will reallocate with size set by FLAGS_fraction_of_gpu_memory_to_use.
-
+If this flag is set, the memory size set by FLAGS_fraction_of_gpu_memory_to_use will be overrided by this flag, PaddlePaddle will re-allocate the gpu memory with size specified by this flag.
+If you don't set this flag, the dafault value 0 will disable this GPU memory strategy. PaddlePaddle will use FLAGS_fraction_of_gpu_memory_to_use to re-allocate GPU memory.
 
 
 FLAGS_use_pinned_memory
