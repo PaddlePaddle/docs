@@ -83,7 +83,8 @@ class DocGenerator(object):
         else:
             self.stream.close()
             path = os.getcwd()+"/fluid/"+name+".rst"
-            os.remove(path)
+            if name != "PipeReader":
+                os.remove(path)
 
     def print_class(self, name):
         self._print_ref_(name)
@@ -91,6 +92,14 @@ class DocGenerator(object):
         if "fluid.dygraph" in self.module_prefix:
             self.stream.write('''..  autoclass:: paddle.{0}.{1}
     :members:
+    :noindex:
+
+'''.format(self.module_prefix, name))
+        elif "fluid.optimizer" in self.module_prefix:
+            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+    :members:
+    :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 
 '''.format(self.module_prefix, name))
