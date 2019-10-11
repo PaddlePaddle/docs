@@ -37,8 +37,8 @@ box_clip
 ..  code-block:: python
 
     import paddle.fluid as fluid
-    boxes = fluid.layers.data(
-        name='boxes', shape=[8, 4], dtype='float32', lod_level=1)
-    im_info = fluid.layers.data(name='im_info', shape=[3])
+    boxes = fluid.data(
+        name='boxes', shape=[None, 8, 4], dtype='float32', lod_level=1)
+    im_info = fluid.data(name='im_info', shape=[None, 3])
     out = fluid.layers.box_clip(
         input=boxes, im_info=im_info)

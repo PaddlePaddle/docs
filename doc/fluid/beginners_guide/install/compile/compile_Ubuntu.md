@@ -11,8 +11,6 @@
 
 ## 选择CPU/GPU
 
-## 选择CPU/GPU
-
 * 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
 
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle

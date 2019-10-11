@@ -21,6 +21,6 @@ zeros_like
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', dtype='float32', shape=[3], append_batch_size=False)
+    x = fluid.data(name='x', dtype='float32', shape=[3])
     data = fluid.layers.zeros_like(x) # [0.0, 0.0, 0.0]
 
