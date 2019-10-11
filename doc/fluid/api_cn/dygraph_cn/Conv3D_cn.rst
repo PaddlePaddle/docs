@@ -57,9 +57,6 @@ Conv3D
 
 返回：无
 
-抛出异常：
-  - ``ValueError`` - 如果 ``input`` 的维度和 ``filter_size`` ， ``stride`` , ``padding`` ， ``groups`` 不匹配。
-
 **代码示例**：
 
 .. code-block:: python
