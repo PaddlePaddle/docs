@@ -23,7 +23,7 @@ BilinearTensorProduct
 参数：
     - **name_scope**  (str) – 指定类的名称。
     - **size**  (int) – 该层的维度大小。
-    - **name**  (str，可选) – 该层的名称。若未设置，则自动生成该层的名称。默认值为None。
+    - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     - **act**  (str，可选) – 对输出应用的激励函数。默认值为None。
     - **param_attr**  (ParamAttr) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr**  (ParamAttr) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
