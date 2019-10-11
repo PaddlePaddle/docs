@@ -31,7 +31,7 @@ dynamic_decode
     encoder_output = fluid.data(name="encoder_output",
                             shape=[-1, 32, 128],
                             dtype="float32")
-    trg_embeder = lambda x: layers.embedding(
+    trg_embeder = lambda x: fluid.embedding(
         x, size=[10000, 128], param_attr=fluid.ParamAttr(name="trg_embedding"))
     output_layer = lambda x: layers.fc(x,
                                     size=10000,
@@ -46,5 +46,3 @@ dynamic_decode
                                 beam_size=4,
                                 embedding_fn=trg_embeder,
                                 output_fn=output_layer)
-    outputs = dynamic_decode(
-        decoder=decoder, inits=decoder_cell.get_initial_states(encoder_output))

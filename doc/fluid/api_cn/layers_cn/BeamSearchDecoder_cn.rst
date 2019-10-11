@@ -24,7 +24,7 @@ BeamSearchDecoder
         
     import paddle.fluid as fluid
     from paddle.fluid.layers import GRUCell, BeamSearchDecoder
-    trg_embeder = lambda x: layers.embedding(
+    trg_embeder = lambda x: fluid.embedding(
         x, size=[10000, 128], param_attr=fluid.ParamAttr(name="trg_embedding"))
     output_layer = lambda x: layers.fc(x,
                                     size=10000,
@@ -37,7 +37,6 @@ BeamSearchDecoder
                                 start_token=0,
                                 end_token=1,
                                 beam_size=4,
-                                vocab_size=10000,
                                 embedding_fn=trg_embeder,
                                 output_fn=output_layer)
 
