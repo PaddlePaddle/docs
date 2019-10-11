@@ -28,8 +28,8 @@ ELASTIC CTR
 本方案整体流程如下图所示：
 
 
-.. image:: elastic_ctr/overview.png
-   :target: elastic_ctr/overview.png
+.. image:: src/overview.png
+   :target: src/overview.png
    :alt: image
 
 
@@ -81,8 +81,8 @@ ELASTIC CTR
 申请容器引擎示例:
 
 
-.. image:: elastic_ctr/ctr_node.png
-   :target: elastic_ctr/ctr_node.png
+.. image:: src/ctr_node.png
+   :target: src/ctr_node.png
    :alt: image
 
 
@@ -141,8 +141,8 @@ ELASTIC CTR
    $ kubectl apply -f https://raw.githubusercontent.com/volcano-sh/volcano/master/installer/volcano-development.yaml
 
 
-.. image:: elastic_ctr/ctr_volcano_install.png
-   :target: elastic_ctr/ctr_volcano_install.png
+.. image:: src/ctr_volcano_install.png
+   :target: src/ctr_volcano_install.png
    :alt: image
 
 
@@ -194,8 +194,8 @@ ELASTIC CTR
    $ kubectl get pod
 
 
-.. image:: elastic_ctr/file_server_pod.png
-   :target: elastic_ctr/file_server_pod.png
+.. image:: src/file_server_pod.png
+   :target: src/file_server_pod.png
    :alt: image
 
 
@@ -204,8 +204,8 @@ ELASTIC CTR
    $ kubectl get service
 
 
-.. image:: elastic_ctr/file_server_svc.png
-   :target: elastic_ctr/file_server_svc.png
+.. image:: src/file_server_svc.png
+   :target: src/file_server_svc.png
    :alt: image
 
 
@@ -223,8 +223,8 @@ ELASTIC CTR
    $ kubectl get service
 
 
-.. image:: elastic_ctr/cube.png
-   :target: elastic_ctr/cube.png
+.. image:: src/cube.png
+   :target: src/cube.png
    :alt: image
 
 
@@ -244,8 +244,8 @@ ELASTIC CTR
    $ kubectl get pod
 
 
-.. image:: elastic_ctr/paddleserving_pod.png
-   :target: elastic_ctr/paddleserving_pod.png
+.. image:: src/paddleserving_pod.png
+   :target: src/paddleserving_pod.png
    :alt: image
 
 
@@ -254,8 +254,8 @@ ELASTIC CTR
    $ kubectl get service
 
 
-.. image:: elastic_ctr/paddleserving_svc.png
-   :target: elastic_ctr/paddleserving_svc.png
+.. image:: src/paddleserving_svc.png
+   :target: src/paddleserving_svc.png
    :alt: image
 
 
@@ -283,8 +283,8 @@ ELASTIC CTR
 如果出现最后wait 5min这样的字样，说明上一轮的模型已经配送成功了，接下来就可以做最后PaddleServing的测试了。
 
 
-.. image:: elastic_ctr/transfer.png
-   :target: elastic_ctr/transfer.png
+.. image:: src/transfer.png
+   :target: src/transfer.png
    :alt: image
 
 
@@ -304,8 +304,8 @@ ELASTIC CTR
 我们可以通过\ ``kubectl logs edl-demo-trainer-0``\ 来查看训练的进度，如果pass一直为0就继续等待，通常需要大概3-5分钟的之间会完成第一轮pass，这时候就会生成inference_model。
 
 
-.. image:: elastic_ctr/ctr.png
-   :target: elastic_ctr/ctr.png
+.. image:: src/ctr.png
+   :target: src/ctr.png
    :alt: image
 
 
@@ -322,16 +322,16 @@ ELASTIC CTR
 可以通过检查pserver和trainer的log来检查任务运行状态。 Trainer日志示例：
 
 
-.. image:: elastic_ctr/ctr_trainer_log.png
-   :target: elastic_ctr/ctr_trainer_log.png
+.. image:: src/ctr_trainer_log.png
+   :target: src/ctr_trainer_log.png
    :alt: image
 
 
 pserver日志示例：
 
 
-.. image:: elastic_ctr/ctr_pserver_log.png
-   :target: elastic_ctr/ctr_pserver_log.png
+.. image:: src/ctr_pserver_log.png
+   :target: src/ctr_pserver_log.png
    :alt: image
 
 
@@ -357,8 +357,8 @@ pserver日志示例：
 如果运行正常的话，会在一段时间后退出，紧接着就可以在log/ctr_prediction.INFO的最后几行看到类似于这样的日志
 
 
-.. image:: elastic_ctr/paddleclient.png
-   :target: elastic_ctr/paddleclient.png
+.. image:: src/paddleclient.png
+   :target: src/paddleclient.png
    :alt: image
 
 
@@ -373,8 +373,8 @@ pserver日志示例：
 然后在train.py当中给出数据集的读取方式
 
 
-.. image:: elastic_ctr/pyreader.png
-   :target: elastic_ctr/pyreader.png
+.. image:: src/pyreader.png
+   :target: src/pyreader.png
    :alt: image
 
 
@@ -404,24 +404,24 @@ pserver日志示例：
 在ctr.yaml文件当中，我们会发现这个是在volcano的框架下定义的Job。在Job里面，我们给出了很多Pserver和Trainer的定义，在总体的Job也给出了MinAvailable数量的定义。Pserver和Trainer下面有自己的Replicas，环境变量当中有PSERVER_NUM和TRAINER_MODEL和TRAINER_NUM的数量。通常MinAvailable= PServer Num + Trainer Num，这样我们就可以启动相应的服务。
 
 
-.. image:: elastic_ctr/ctryaml1.png
-   :target: elastic_ctr/ctryaml1.png
+.. image:: src/ctryaml1.png
+   :target: src/ctryaml1.png
    :alt: image
 
 
 如上图所示，我们需要在min_available处设置合理的数字。例如一个POD占用一个CPU，那么我们就要对集群的总CPU数有一个预估，不要过于接近或事超过集群CPU总和的上限。否则无法满足Volcano的Gang-Schedule机制，就会出现无法分配资源，一直处于Pending的情况。然后第二个红框当中是
 
 
-.. image:: elastic_ctr/ctryaml2.png
-   :target: elastic_ctr/ctryaml2.png
+.. image:: src/ctryaml2.png
+   :target: src/ctryaml2.png
    :alt: image
 
 
 如上图所示，这个部分是用来专门做模型的输出，这里我们不需要做任何的改动，只要保留一个副本就可以。
 
 
-.. image:: elastic_ctr/ctryaml3.png
-   :target: elastic_ctr/ctryaml3.png
+.. image:: src/ctryaml3.png
+   :target: src/ctryaml3.png
    :alt: image
 
 
@@ -433,14 +433,14 @@ pserver日志示例：
 在cube.yaml文件当中，我们可以看到每一个cube的节点的定义，有一个\ ``cubeserver pod``\ 和\ ``cube serverservice``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
 
 
-.. image:: elastic_ctr/cube_config1.png
-   :target: elastic_ctr/cube_config1.png
+.. image:: src/cube_config1.png
+   :target: src/cube_config1.png
    :alt: image
 
 
 
-.. image:: elastic_ctr/cube_config2.png
-   :target: elastic_ctr/cube_config2.png
+.. image:: src/cube_config2.png
+   :target: src/cube_config2.png
    :alt: image
 
 
