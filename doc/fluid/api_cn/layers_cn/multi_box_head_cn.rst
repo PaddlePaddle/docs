@@ -25,7 +25,7 @@ multi_box_head
 
         - **num_classes** (int) - 类别数。
         - **aspect_ratios**  (list(float) | tuple(float) | list(list(float)) | tuple(tuple(float)) - 候选框的宽高比， ``aspect_ratios`` 和 ``input`` 的个数必须相等。如果每个特征层提取先验框的 ``aspect_ratio`` 多余一个，写成嵌套的list，例如[[2., 3.]]。
-        - **min_ratio** (int）- 先验框的长度和 ``base_size`` 的最小比率，注意，这里是百分比，加入比率为0.2，这里应该给20.0。默认值: None。
+        - **min_ratio** (int）- 先验框的长度和 ``base_size`` 的最小比率，注意，这里是百分比，假如比率为0.2，这里应该给20.0。默认值: None。
         - **max_ratio** (int）- 先验框的长度和 ``base_size`` 的最大比率，注意事项同 ``min_ratio`` 。默认值: None。
         - **min_sizes** (list(float) | tuple(float) | None）- 每层提取的先验框的最小长度，如果输入个数len(inputs)<= 2，则必须设置 ``min_sizes`` ，并且 ``min_sizes`` 的个数应等于len(inputs)。默认值：None。
         - **max_sizes** (list | tuple | None）- 每层提取的先验框的最大长度，如果len(inputs）<= 2，则必须设置 ``max_sizes`` ，并且 ``min_sizes`` 的长度应等于len(inputs)。默认值：None。
@@ -56,13 +56,13 @@ multi_box_head
         
         import paddle.fluid as fluid
      
-        images = fluid.layers.data(name='data', shape=[3, 300, 300], dtype='float32')
-        conv1 = fluid.layers.data(name='conv1', shape=[512, 19, 19], dtype='float32')
-        conv2 = fluid.layers.data(name='conv2', shape=[1024, 10, 10], dtype='float32')
-        conv3 = fluid.layers.data(name='conv3', shape=[512, 5, 5], dtype='float32')
-        conv4 = fluid.layers.data(name='conv4', shape=[256, 3, 3], dtype='float32')
-        conv5 = fluid.layers.data(name='conv5', shape=[256, 2, 2], dtype='float32')
-        conv6 = fluid.layers.data(name='conv6', shape=[128, 1, 1], dtype='float32')
+        images = fluid.data(name='data', shape=[None, 3, 300, 300], dtype='float32')
+        conv1 = fluid.data(name='conv1', shape=[None, 512, 19, 19], dtype='float32')
+        conv2 = fluid.data(name='conv2', shape=[None, 1024, 10, 10], dtype='float32')
+        conv3 = fluid.data(name='conv3', shape=[None, 512, 5, 5], dtype='float32')
+        conv4 = fluid.data(name='conv4', shape=[None, 256, 3, 3], dtype='float32')
+        conv5 = fluid.data(name='conv5', shape=[None, 256, 2, 2], dtype='float32')
+        conv6 = fluid.data(name='conv6', shape=[None, 128, 1, 1], dtype='float32')
         
         mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
           inputs=[conv1, conv2, conv3, conv4, conv5, conv6],
@@ -83,13 +83,13 @@ multi_box_head
         
         import paddle.fluid as fluid
      
-        images = fluid.layers.data(name='data', shape=[3, 300, 300], dtype='float32')
-        conv1 = fluid.layers.data(name='conv1', shape=[512, 19, 19], dtype='float32')
-        conv2 = fluid.layers.data(name='conv2', shape=[1024, 10, 10], dtype='float32')
-        conv3 = fluid.layers.data(name='conv3', shape=[512, 5, 5], dtype='float32')
-        conv4 = fluid.layers.data(name='conv4', shape=[256, 3, 3], dtype='float32')
-        conv5 = fluid.layers.data(name='conv5', shape=[256, 2, 2], dtype='float32')
-        conv6 = fluid.layers.data(name='conv6', shape=[128, 1, 1], dtype='float32')
+        images = fluid.data(name='data', shape=[None, 3, 300, 300], dtype='float32')
+        conv1 = fluid.data(name='conv1', shape=[None, 512, 19, 19], dtype='float32')
+        conv2 = fluid.data(name='conv2', shape=[None, 1024, 10, 10], dtype='float32')
+        conv3 = fluid.data(name='conv3', shape=[None, 512, 5, 5], dtype='float32')
+        conv4 = fluid.data(name='conv4', shape=[None, 256, 3, 3], dtype='float32')
+        conv5 = fluid.data(name='conv5', shape=[None, 256, 2, 2], dtype='float32')
+        conv6 = fluid.data(name='conv6', shape=[None, 128, 1, 1], dtype='float32')
         
         mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
           inputs=[conv1, conv2, conv3, conv4, conv5, conv6],
