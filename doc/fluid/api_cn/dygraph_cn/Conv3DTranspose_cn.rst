@@ -76,16 +76,12 @@ Conv3DTranspose
       - **groups** (int，可选) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认值为1。
       - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
       - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-      - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值为True。
+      - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有安装Paddle GPU版时才有效。默认值为True。
       - **act** (str，可选) -  激活函数类型，如果设置为None，则不使用激活函数。默认值为None。
-      - **name** (str，可选) - 该layer的名称。如果未设置， 将自动命名该layer。默认值为True。
+      - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 
 返回： 无
-
-抛出异常:
-    -  ``ValueError``  - 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
-
 
 **代码示例**
 
