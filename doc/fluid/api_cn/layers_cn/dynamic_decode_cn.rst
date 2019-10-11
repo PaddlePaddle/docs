@@ -46,3 +46,5 @@ dynamic_decode
                                 beam_size=4,
                                 embedding_fn=trg_embeder,
                                 output_fn=output_layer)
+    outputs = dynamic_decode(	
+        decoder=decoder, inits=decoder_cell.get_initial_states(encoder_output))
