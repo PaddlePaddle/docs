@@ -5,10 +5,10 @@ guard
 
 .. py:function:: paddle.fluid.dygraph.guard(place=None)
 
-创建一个dygraph上下文，用于运行dygraph。
+通过with语句创建一个dygraph运行的context，执行context代码。
 
 参数：
-    - **place** (fluid.CPUPlace|fluid.CUDAPlace|None) – 执行场所
+    - **place** (fluid.CPUPlace|fluid.CUDAPlace, 可选) –  动态图执行的设备，可以选择cpu，gpu，如果用户未制定，则根据用户paddle编译的方式来选择运行的设备，如果编译的cpu版本，则在cpu上运行，如果是编译的gpu版本，则在gpu上运行。默认值：None。
 
 返回： None
 

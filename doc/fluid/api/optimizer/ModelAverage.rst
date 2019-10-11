@@ -8,6 +8,5 @@ ModelAverage
 
 ..  autoclass:: paddle.fluid.optimizer.ModelAverage
     :members:
-    :inherited-members:
     :noindex:
 
