@@ -5,28 +5,29 @@ NoamDecay
 
 .. py:class:: paddle.fluid.dygraph.NoamDecay(d_model, warmup_steps, begin=1, step=1, dtype='float32')
 
-Noam衰减方法。noam衰减的numpy实现如下。
+该接口提供Noam衰减学习率的功能。
 
-.. code-block:: python
+Noam衰减的计算方式如下。
 
-    import numpy as np
-    # 设置超参数
-    d_model = 2
-    current_steps = 20
-    warmup_steps = 200
-    # 计算
-    lr_value = np.power(d_model, -0.5) * np.min([
-                           np.power(current_steps, -0.5),
-                           np.power(warmup_steps, -1.5) * current_steps])
+.. math::
 
-请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
+    decayed\_learning\_rate = d_{model}^{-0.5} * min(global\_steps^{-0.5}, global\_steps * warmup\_steps^{-1.5})
+
+关于Noam衰减的更多细节请参考 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
+
+式中，
+
+- :math:`decayed\_learning\_rate` ： 衰减后的学习率。
+式子中各参数详细介绍请看参数说明。
 
 参数：
-    - **d_model** (Variable)-模型的输入和输出维度
-    - **warmup_steps** (Variable)-超参数
-    - **begin**  – 起始步(默认为0)。
-    - **step**  – 步大小(默认为1)。
-    - **dtype**  – 初始学习率的dtype(默认为‘float32’)。
+    - **d$_{model}$**  (Variable|int) - 模型的输入、输出向量特征维度，为超参数。如果设置为Variable类型值，则数据类型可以为int32或int64的标量Tensor，也可以设置为Python int。
+    - **warmup_steps** (Variable|int) - 预热步数，为超参数。如果设置为Variable类型，则数据类型为int32或int64的标量Tensor，也可以设置为为Python int。
+    - **begin** (int，可选) – 起始步。即以上运算式子中global_steps的初始值。默认值为0。
+    - **step** (int，可选) – 步大小。即以上运算式子中global_steps的递增值。默认值为1。
+    - **dtype** (str，可选) – 学习率值的数据类型，可以为"float32", "float64"。默认值为"float32"。
+
+返回： 无
 
 **代码示例**
 
@@ -40,6 +41,3 @@ Noam衰减方法。noam衰减的numpy实现如下。
             learning_rate = fluid.dygraph.NoamDecay(
                    1/(warmup_steps *(learning_rate ** 2)),
                    warmup_steps) )
-
-
-
