@@ -44,20 +44,6 @@ Data Reader Interface
                 yield numpy.random.uniform(-1, 1, size=width*height), label
         return reader
 
-.. py:function::   paddle.reader.map_readers(func, *readers)
-
-创建使用每个数据读取器的输出作为参数输出函数返回值的数据读取器。
-
-参数：
-    - **func**  - 使用的函数. 函数类型应为(Sample) => Sample
-    - **readers**  - 其输出将用作func参数的reader。
-
-类型：callable
-
-返回： 被创建数据的读取器
-
-返回类型： callable
-
 
 .. py:function::  paddle.reader.buffered(reader, size)
 
@@ -73,66 +59,24 @@ Data Reader Interface
 返回：缓冲数据的读取器
 
 
-.. py:function::   paddle.reader.compose(*readers, **kwargs)
-
-创建一个数据reader，其输出是输入reader的组合。
-
-如果输入reader输出以下数据项：（1，2）3（4，5），则组合reader将输出：（1，2，3，4，5）。
-
-参数：
-    - **readers** - 将被组合的多个读取器。
-    - **check_alignment** (bool) - 如果为True，将检查输入reader是否正确对齐。如果为False，将不检查对齐，将丢弃跟踪输出。默认值True。
-
-返回：新的数据读取器
-
-抛出异常：     ``ComposeNotAligned`` – reader的输出不一致。 当check_alignment设置为False，不会抛出异常。
-
-
-
 .. py:function:: paddle.reader.chain(*readers)
 
-创建一个数据reader，其输出是链接在一起的输入数据reader的输出。
+**注意：paddle.reader.chain是paddle.fluid.io.chain的别名，推荐使用paddle.fluid.io.chain。**
 
-如果输入reader输出以下数据条目：[0，0，0][1，1，1][2，2，2]，链接reader将输出：[0，0，0，1，1，1，2，2，2] 。
-
-参数：
-    - **readers** – 输入的数据。
-
-返回： 新的数据读取器
-
-返回类型： callable
+详见 :ref:`cn_api_fluid_io_chain` 接口的使用文档。
 
 
 .. py:function:: paddle.reader.shuffle(reader, buf_size)
 
-创建数据读取器，该reader的数据输出将被无序排列。
+**注意：paddle.reader.shuffle是paddle.fluid.io.shuffle的别名，推荐使用paddle.fluid.io.shuffle。**
 
-由原始reader创建的迭代器的输出将被缓冲到shuffle缓冲区，然后进行打乱。打乱缓冲区的大小由参数buf_size决定。
-
-参数：
-    - **reader** (callable)  – 输出会被打乱的原始reader
-    - **buf_size** (int)  – 打乱缓冲器的大小
-
-返回： 输出会被打乱的reader
-
-返回类型： callable
-
-
+详见 :ref:`cn_api_fluid_io_shuffle` 接口的使用文档。
 
 .. py:function:: paddle.reader.firstn(reader, n)
 
-限制reader可以返回的最大样本数。
+**注意：paddle.reader.firstn是paddle.fluid.io.firstn的别名，推荐使用paddle.fluid.io.firstn。**
 
-参数：
-    - **reader** (callable)  – 要读取的数据读取器。
-    - **n** (int)  – 返回的最大样本数 。
-
-返回： 装饰reader
-
-返回类型： callable
-
-
-
+详见 :ref:`cn_api_fluid_io_firstn` 接口的使用文档。
 
 .. py:function:: paddle.reader.xmap_readers(mapper, reader, process_num, buffer_size, order=False)
 
@@ -225,33 +169,3 @@ Fakereader将缓存它读取的第一个数据，并将其输出data_num次。�
     fake_reader = Fake()(reader, 100)
 
 
-Creator包包含一些简单的reader creator，可以在用户Program中使用。
-
-
-
-.. py:function:: paddle.reader.creator.np_array(x)
-
-如果是numpy向量，则创建一个生成x个元素的读取器。或者，如果它是一个numpy矩阵，创建一个生成x行元素的读取器。或由最高维度索引的任何子超平面。
-
-参数：
-    - **x** – 用于创建reader的numpy数组。
-
-返回： 从x创建的数据读取器
-
-
-.. py:function:: paddle.reader.creator.text_file(path)
-
-创建从给定文本文件逐行输出文本的数据读取器。将删除每行的行尾的(‘\n’)。
-
-路径：文本文件的路径
-
-返回： 文本文件的数据读取器
-
-
-.. py:function::  paddle.reader.creator.recordio(paths, buf_size=100)
-
-从给定的recordio文件路径创建数据reader，用“，”分隔“，支持全局模式。
-
-路径：recordio文件的路径，可以是字符串或字符串列表。
-
-返回：recordio文件的数据读取器

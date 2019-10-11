@@ -10,10 +10,13 @@
 
 - `如何写新的Python op <./new_python_op.html>`_
 
+- `如何在框架外部自定义C++ op <./custom_op.html>`_
+
 .. toctree::
    :hidden:
 
    new_op.md
    op_notes.md
    new_python_op.md
+   custom_op.md
 
