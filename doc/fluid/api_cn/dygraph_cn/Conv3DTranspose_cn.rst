@@ -62,14 +62,14 @@ Conv3DTranspose
 
     由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-    如果指定了output_size， ``conv3d_transpose`` 可以自动计算滤波器的大小。
+    如果指定了output_size， 其可以自动计算滤波器的大小。
 
 
 参数:
       - **name_scope** （str）- 该类的名称。
       - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数相同。
       - **output_size** (int|tuple，可选) - 输出图片的大小。如果 ``output_size`` 是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果未设置,则内部会使用filter_size、padding和stride来计算output_size。如果 ``output_size`` 和 ``filter_size`` 是同时指定的，那么它们应满足上面的公式。默认值为None。output_size和filter_size不能同时为None。
-      - **filter_size** (int|tuple，可选 - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， ``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。默认值为None。output_size和filter_size不能同时为None。
+      - **filter_size** (int|tuple，可选 - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， 其会根据output_size、padding和stride计算出滤波器大小。默认值为None。output_size和filter_size不能同时为None。
       - **padding** (int|tuple，可选) - 填充padding大小。padding参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个0。如果padding是一个元组，它必须包含三个整数(padding_depth，padding_height，padding_width)。否则，padding_depth = padding_height = padding_width = padding。默认值为0。
       - **stride** (int|tuple，可选) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，那么元组的形式为(stride_depth，stride_height，stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认值为1。
       - **dilation** (int|tuple，可选) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据  `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_  较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认值为1。
