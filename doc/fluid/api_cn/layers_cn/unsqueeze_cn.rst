@@ -5,19 +5,30 @@ unsqueeze
 
 .. py:function:: paddle.fluid.layers.unsqueeze(input, axes, name=None)
 
-向张量shape中插入一个维度。该接口接受axes列表，来指定要插入的维度位置。相应维度变化可以在输出变量中axes指定的索引位置上体现。
+该OP向输入（input）的shape中一个或多个位置（axes）插入维度
 
-比如：
-    给定一个张量，例如维度为[3,4,5]的张量，使用 axes列表为[0,4]来unsqueeze它，则输出维度为[1,3,4,5,1]
+- 示例：
 
+.. code-block:: python
+
+    输入：
+      X.shape = [2, 3]
+      X.data = [[1, 2, 3], 
+                [4，5，6]]
+      axes = [0, 2]
+    输出（在X的第0维和第2维插入新维度）：
+      Out.shape = [1, 2, 1, 3]
+      Out.data = [[[[1, 2, 3]],
+                    [[4, 5, 6]]]]
+      
 参数：
-    - **input** (Variable)- 未压缩的输入变量
-    - **axes** (list)- 一列整数，代表要插入的维数
+    - **input** (Variable) - 维度为 :math:[N_1, N2, ..., N_D]的多维Tensor
+    - **axes** (list)- 整数数列，每个数代表要插入维度的位置
     - **name** (str|None) - 该层名称
 
-返回：输出未压缩变量
+返回：扩展维度后的多维Tensor
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **代码示例**：
 
@@ -26,13 +37,3 @@ unsqueeze
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[5, 10])
     y = fluid.layers.unsqueeze(input=x, axes=[1])
-
-
-
-
-
-
-
-
-
-
