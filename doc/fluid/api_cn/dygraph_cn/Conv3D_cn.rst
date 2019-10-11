@@ -51,7 +51,7 @@ Conv3D
     - **groups** (int，可选) - 三维卷积层（Conv3D Layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认值为1。
     - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
-    - **use_cudnn** （bool，可选） - 是否用cudnn核，仅当下载cudnn库才有效。默认值为True。
+    - **use_cudnn** （bool，可选） - 是否用cudnn内核，只有安装Paddle GPU版时才有效。默认值为True。
     - **act** (str，可选) - 激活函数类型，如果设为None，则未添加激活函数。默认值为None。
 
 
