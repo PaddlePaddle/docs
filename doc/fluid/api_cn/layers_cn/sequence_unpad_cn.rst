@@ -11,11 +11,9 @@ sequence_unpad
 
 .. py:function:: paddle.fluid.layers.sequence_unpad(x, length, name=None)
 
-:red:`注意：该OP的输入为Tensor，输出为LoDTensor。`
+:red:`注意：该OP的输入为Tensor，输出为LoDTensor。该OP用于移除填充元素，与之对应，还存在进行数据填充的OP sequence_pad，详情见：`  :ref:`cn_api_fluid_layers_sequence_pad`
 
 该OP根据length的信息，将input中padding（填充）元素移除，并且返回一个LoDTensor。
-
-存在OP sequence_pad正好与之相反，能够进行填充数据，详情见： :ref:`cn_api_fluid_layers_sequence_pad`
 
 ::
 
@@ -38,8 +36,8 @@ sequence_unpad
 
 
 参数:
-  - **x** (Variable) – 包含填充元素的Tensor，其维度大小不能小于2，数据类型支持float32, float64,int32, int64。
-  - **length** (Variable) – 存储每个样本实际长度信息的1D Tesnor，该Tensor的第0维必须与x参数的第0维一致。数据类型为int64。
+  - **x** (Variable) – 包含填充元素的Tensor，其维度大小不能小于2，支持的数据类型：float32, float64,int32, int64。
+  - **length** (Variable) – 存储每个样本实际长度信息的1D Tesnor，该Tensor维度的第0维必须与x维度的第0维一致。支持的数据类型：int64。
   - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：将输入的填充元素移除，并返回一个LoDTensor，其递归序列长度与length参数的信息一致，其数据类型和输入一致。
@@ -55,7 +53,7 @@ sequence_unpad
 
     # example 1:
     x = fluid.data(name='x', shape=[10, 5], dtype='float32')
-    len = fluid.data(name='length', shape=[1], dtype='int64')
+    len = fluid.data(name='length', shape=[10], dtype='int64')
     out = fluid.layers.sequence_unpad(x=x, length=len)
 
     # example 2:
