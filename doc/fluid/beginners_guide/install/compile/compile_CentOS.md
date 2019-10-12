@@ -238,7 +238,7 @@
 		> 请注意PY_VERSION参数更换为您需要的python版本
 
 
-	* 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.0/CUDA9**)
+	* 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.0/CUDA9)**)
 
 		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
@@ -273,15 +273,16 @@
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 
-## ***验证安装***
+## **验证安装**
 安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
  `fluid.install_check.run_check()`
 
 如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
 
-## ***如何卸载***
+## **如何卸载**
 请使用以下命令卸载PaddlePaddle：
 
-* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
+* **CPU版本的PaddlePaddle**: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
+* **GPU版本的PaddlePaddle**: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
 
 使用Docker安装PaddlePaddle的用户，请进入包含PaddlePaddle的容器中使用上述命令，注意使用对应版本的pip
