@@ -65,8 +65,8 @@ output[i][j]的值取决于能否在index中第i+1个区间中找到对应的数
     import paddle.fluid.layers as layers
      
     input = fluid.data( name="x", shape=[3, 6], dtype='float32' )
-    index = fluid.data( name='index', shape=[12, 1], dtype='int64')
-    updates = fluid.data( name='updates', shape=[12, 1], dtype='float32')
+    index = fluid.data( name='index', shape=[12, 1], dtype='int64', lod_level=1)
+    updates = fluid.data( name='updates', shape=[12, 1], dtype='float32', lod_level=1)
     output = fluid.layers.sequence_scatter(input, index, updates)
 
 

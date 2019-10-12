@@ -67,7 +67,7 @@ sequence_softmax
     
     y = fluid.data(name='y', shape=[7],
                  dtype='float32', lod_level=1)
-    x_sequence_softmax = fluid.layers.sequence_softmax(input=y)
+    y_sequence_softmax = fluid.layers.sequence_softmax(input=y)
 
 
 
