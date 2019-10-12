@@ -54,13 +54,13 @@ sequence_unpad
     import numpy
 
     # example 1:
-    x = fluid.layers.data(name='x', shape=[10, 5], dtype='float32')
-    len = fluid.layers.data(name='length', shape=[1], dtype='int64')
+    x = fluid.data(name='x', shape=[10, 5], dtype='float32')
+    len = fluid.data(name='length', shape=[1], dtype='int64')
     out = fluid.layers.sequence_unpad(x=x, length=len)
 
     # example 2:
     # 使用sequence_pad填充数据
-    input = fluid.layers.data(name='input', shape=[10, 5], dtype='float32', lod_level=1)
+    input = fluid.data(name='input', shape=[10, 5], dtype='float32', lod_level=1)
     pad_value = fluid.layers.assign(input=numpy.array([0.0], dtype=numpy.float32))
     pad_data, len = fluid.layers.sequence_pad(x=input, pad_value=pad_value)
 

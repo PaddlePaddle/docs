@@ -52,7 +52,7 @@ output[i][j]的值取决于能否在index中第i+1个区间中找到对应的数
       - **updates** (Variable) - 包含updates信息的LoDTensor，lod level和index一致，数据类型与input的数据类型一致。数据类型支持float32，float64，int32，int64。 
       - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回： 包含更新了updates信息之后的Tensor，其维度和input的维度完全一致，数据类型与input的数据类型一致。
+返回：在input的基础上使用updates进行更新后得到的Tensor，其维度和input的维度完全一致，数据类型与input的数据类型一致。
 
 返回类型：Variable
 
@@ -64,9 +64,9 @@ output[i][j]的值取决于能否在index中第i+1个区间中找到对应的数
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
      
-    input = layers.data( name="x", shape=[3, 6], append_batch_size=False, dtype='float32' )
-    index = layers.data( name='index', shape=[12, 1], dtype='int64')
-    updates = layers.data( name='updates', shape=[12, 1], dtype='float32')
+    input = fluid.data( name="x", shape=[3, 6], dtype='float32' )
+    index = fluid.data( name='index', shape=[12, 1], dtype='int64')
+    updates = fluid.data( name='updates', shape=[12, 1], dtype='float32')
     output = fluid.layers.sequence_scatter(input, index, updates)
 
 

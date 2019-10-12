@@ -13,6 +13,7 @@ uniform_random_batch_size_like
               给定：  
                    input =[[0.946741  , 0.1357001 , 0.38086128]]    # input.shape=[1,3]
                    shape=[2,4]
+              此时，output_dim_idx = 0， input_dim_idx = 0，result.shape[0] = input.shape[0]
               则：
                    result=[[ 0.3443427 , -0.23056602,  0.3477049 ,  0.06139076]]    # result.shape=[1,4]
 
@@ -22,6 +23,7 @@ uniform_random_batch_size_like
                    shape=[2,4]
                    input_dim_idx=1
                    output_dim_idx=1
+              此时，output_dim_idx = 1， input_dim_idx = 1，result.shape[1] = input.shape[1]
               则：
                    result=[[-0.23133647, -0.84195036,  0.21441269],
                           [-0.08774924,  0.25605237, -0.09403259]]    # result.shape=[2,3]
@@ -49,7 +51,7 @@ uniform_random_batch_size_like
     import paddle.fluid.layers as layers
     
     
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    input = fluid.data(name="input", shape=[13, 11], dtype='float32')
     # examp 1:
     # input_dim_idx和output_dim_idx使用默认值 
     out1 = layers.uniform_random_batch_size_like(input, [3, 5]) 

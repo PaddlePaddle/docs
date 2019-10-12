@@ -50,7 +50,7 @@ uniform_random
 
         # example 3:
         # attr shape is a Variable, the data type must be int64
-        var_shape = fluid.layers.data(name='var_shape',shape=[2],append_batch_size=False)
+        var_shape = fluid.data(name='var_shape', shape=[2])
         result_3 = fluid.layers.uniform_random(var_shape)
 
         exe = fluid.Executor(fluid.CPUPlace())

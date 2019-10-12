@@ -23,7 +23,7 @@ sequence_softmax
 
 输入Tensor的维度可为 :math:`[N，1]` 或者 :math:`[N]` ，推荐使用 :math:`[N]` 。
 
-例如，对有6个样本的batch，每个样本的长度为2，3，4，1，2，3，其lod信息为[[0, 3, 5, 9, 10, 12, 15]]，根据lod信息将第0维度划分为6份，在 :math:`X[0:3,:],X[3:5,:],X[5:9,:],X[9:10,:],X[10:12,:],X[12:15,:]`  中进行softmax运算。
+例如，对有6个样本的batch，每个样本的长度为3，2，4，1，2，3，其lod信息为[[0, 3, 5, 9, 10, 12, 15]]，根据lod信息将第0维度划分为6份，在 :math:`X[0:3,:],X[3:5,:],X[5:9,:],X[9:10,:],X[10:12,:],X[12:15,:]`  中进行softmax运算。
 
 ::
 
@@ -61,11 +61,11 @@ sequence_softmax
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[7, 1],
+    x = fluid.data(name='x', shape=[7, 1],
                  dtype='float32', lod_level=1)
     x_sequence_softmax = fluid.layers.sequence_softmax(input=x)
     
-    y = fluid.layers.data(name='y', shape=[7],
+    y = fluid.data(name='y', shape=[7],
                  dtype='float32', lod_level=1)
     x_sequence_softmax = fluid.layers.sequence_softmax(input=y)
 
