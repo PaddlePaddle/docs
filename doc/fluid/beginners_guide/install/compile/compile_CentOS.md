@@ -2,11 +2,11 @@
 
 ## 环境准备
 
-* *CentOS 版本 (64 bit)*
-    * *CentOS 6 (不推荐，不提供编译出现问题时的官方支持)*
-    * *CentOS 7 (GPU 版本支持CUDA 9/10.0)*
-* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
-* *pip 或 pip3 版本 9.0.1+ (64 bit)*
+* **CentOS 版本 (64 bit)**
+    * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
+    * **CentOS 7 (GPU 版本支持CUDA 9/10.0)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -14,9 +14,9 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 	
-	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *GPU运算能力超过1.0的硬件设备*
+	* **CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
+	* **CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
+	* **GPU运算能力超过1.0的硬件设备**
 
 		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -38,7 +38,7 @@
 * 本机编译（不提供在CentOS 6下编译中遇到问题的支持）
 
 <a name="ct_docker"></a>
-### ***使用Docker编译***
+### **使用Docker编译**
 
 [Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源
 
@@ -127,8 +127,10 @@
 	>请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
 
 	* 对于需要编译**CPU版本PaddlePaddle**的用户：
-
 		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+
+        * 对于需要编译**GPU版本PaddlePaddle**的用户：
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	> 我们目前不支持CentOS 6下使用Docker编译GPU版本的PaddlePaddle
 
@@ -152,7 +154,7 @@
 > 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 来安装
 
 <a name="ct_source"></a>
-### ***本机编译***
+### **本机编译**
 
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
 
@@ -236,7 +238,7 @@
 		> 请注意PY_VERSION参数更换为您需要的python版本
 
 
-	* 对于需要编译**GPU版本PaddlePaddle**的用户：(*仅支持CentOS7（CUDA10.0/CUDA9）*)
+	* 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.0/CUDA9**)
 
 		1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
