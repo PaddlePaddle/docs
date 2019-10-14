@@ -5,7 +5,7 @@ uniform_random
 
 .. py:function:: paddle.fluid.layers.uniform_random(shape, dtype='float32', min=-1.0, max=1.0, seed=0)
 
-该OP使用从范围[min，max]内均匀分布采样的随机值初始化一个Tensor。
+该OP使用从范围[min，max)内均匀分布采样的随机值初始化一个Tensor。
 
 ::
 

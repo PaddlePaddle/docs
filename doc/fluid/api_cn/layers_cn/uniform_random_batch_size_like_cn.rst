@@ -5,7 +5,7 @@ uniform_random_batch_size_like
 
 .. py:function:: paddle.fluid.layers.uniform_random_batch_size_like(input, shape, dtype='float32', input_dim_idx=0, output_dim_idx=0, min=-1.0, max=1.0, seed=0)
 
-该OP使用从范围[min，max]内均匀分布采样的随机值初始化一个Tensor，且输出Tensor的
+该OP使用从范围[min，max)内均匀分布采样的随机值初始化一个Tensor，且输出Tensor的
 指定维度将被设置为与输入Tensor指定维度相同的值。
 
 ::
