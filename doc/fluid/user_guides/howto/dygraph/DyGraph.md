@@ -121,33 +121,34 @@ Dygraph将非常适合和Numpy一起使用，使用`fluid.dygraph.to_variable(x)
 	
 完整代码如下：
 		
-				
-		import paddle.fluid as fluid
-		import numpy as np
-		
-		
-		class MyLayer(fluid.dygraph.Layer):
-		    def __init__(self, name_scope):
-		        super(MyLayer, self).__init__(name_scope)
-		
-		    def forward(self, inputs):
-		        x = fluid.layers.relu(inputs)
-		        self._x_for_debug = x
-		        x = fluid.layers.elementwise_mul(x, x)
-		        x = fluid.layers.reduce_sum(x)
-		        return [x]
-		
-		
-		if __name__ == '__main__':
-		    np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
-		    with fluid.dygraph.guard():
-		        var_inp = fluid.dygraph.to_variable(np_inp)
-		        my_layer = MyLayer("my_layer")
-		        x = my_layer(var_inp)[0]
-		        dy_out = x.numpy()
-		        x.backward()
-		        dy_grad = my_layer._x_for_debug.gradient()
-		        my_layer.clear_gradients() # 将参数梯度清零以保证下一轮训练的正确性
+        import paddle.fluid as fluid
+        import numpy as np
+        
+        
+        class MyLayer(fluid.dygraph.Layer):
+            def __init__(self, name_scope):
+                super(MyLayer, self).__init__(name_scope)
+            
+            def forward(self, inputs):
+                x = fluid.layers.relu(inputs)
+                self._x_for_debug = x
+                x = fluid.layers.elementwise_mul(x, x)
+                x = fluid.layers.reduce_sum(x)
+                return [x]
+        
+        
+        if __name__ == '__main__':
+            np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
+            with fluid.dygraph.guard():
+                var_inp = fluid.dygraph.to_variable(np_inp)
+                var_inp.stop_gradient = False
+                my_layer = MyLayer("my_layer")
+                x = my_layer(var_inp)[0]
+                dy_out = x.numpy()
+                x.backward()
+                dy_grad = my_layer._x_for_debug.gradient()
+                my_layer.clear_gradients()  # 将参数梯度清零以保证下一轮训练的正确性
+                
 
 ## 使用DyGraph训练模型
 
