@@ -146,7 +146,7 @@ class MyLayer(fluid.dygraph.Layer):
 
 
 if __name__ == '__main__':
-    np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
+    np_inp = np.array([[1.0, 2.0, -1.0]], dtype=np.float32)
     with fluid.dygraph.guard():
         var_inp = fluid.dygraph.to_variable(np_inp)
         my_layer = MyLayer("my_layer")
