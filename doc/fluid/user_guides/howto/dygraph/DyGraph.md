@@ -157,8 +157,10 @@ if __name__ == '__main__':
         my_layer.clear_gradients()  # 将参数梯度清零以保证下一轮训练的正确性
 ```
 
-在动态图模式下，除参数以外的所有 :ref:`api_guide_Variable` 的 ``stop_gradient`` 属性默认值都为 ``True``，而参数的 ``stop_gradient`` 属性默认值为 ``False``。
-该属性用于避免不必要的反向运算。
+### 关于自动剪枝
+
+在动态图模式下，除参数以外的所有 ``Variable`` 的 ``stop_gradient`` 属性默认值都为 ``True``，而参数的 ``stop_gradient`` 属性默认值为 ``False``。
+该属性用于自动剪枝，避免不必要的反向运算。
 
 例如：
 
