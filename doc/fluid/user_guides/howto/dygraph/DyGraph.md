@@ -134,9 +134,11 @@ import numpy as np
 class MyLayer(fluid.dygraph.Layer):
     def __init__(self, name_scope):
         super(MyLayer, self).__init__(name_scope)
+        self.fc = fluid.dygraph.nn.FC(self.full_name(), size=12)
     
     def forward(self, inputs):
         x = fluid.layers.relu(inputs)
+        x = self.fc(x)
         self._x_for_debug = x
         x = fluid.layers.elementwise_mul(x, x)
         x = fluid.layers.reduce_sum(x)
@@ -147,13 +149,40 @@ if __name__ == '__main__':
     np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
     with fluid.dygraph.guard():
         var_inp = fluid.dygraph.to_variable(np_inp)
-        var_inp.stop_gradient = False
         my_layer = MyLayer("my_layer")
         x = my_layer(var_inp)[0]
         dy_out = x.numpy()
         x.backward()
         dy_grad = my_layer._x_for_debug.gradient()
         my_layer.clear_gradients()  # 将参数梯度清零以保证下一轮训练的正确性
+```
+
+在动态图模式下，除参数以外的所有 :ref:`api_guide_Variable` 的 ``stop_gradient`` 属性默认值都为 ``True``，而参数的 ``stop_gradient`` 属性默认值为 ``False``。
+该属性用于避免不必要的反向运算。
+
+例如：
+
+```python
+import paddle.fluid as fluid
+import numpy as np
+
+with fluid.dygraph.guard():
+    value0 = np.arange(26).reshape(2, 13).astype("float32")
+    value1 = np.arange(6).reshape(2, 3).astype("float32")
+    value2 = np.arange(10).reshape(2, 5).astype("float32")
+    fc = fluid.FC("fc1", size=5, dtype="float32")
+    fc2 = fluid.FC("fc2", size=3, dtype="float32")
+    a = fluid.dygraph.to_variable(value0)
+    b = fluid.dygraph.to_variable(value1)
+    c = fluid.dygraph.to_variable(value2)
+    out1 = fc(a)
+    out2 = fc2(b)
+    out1.stop_gradient = True
+    out = fluid.layers.concat(input=[out1, out2, c], axis=1)
+    out.backward()
+    # 可以发现这里fc参数的梯度都为0
+    assert (fc._w.gradient() == 0).all()
+    assert (out1.gradient() == 0).all()
 ```
 
 ## 使用DyGraph训练模型
