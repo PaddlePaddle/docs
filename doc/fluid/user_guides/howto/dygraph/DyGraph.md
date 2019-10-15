@@ -230,8 +230,8 @@ with fluid.dygraph.guard():
                 padding=conv_padding,
                 dilation=conv_dilation,
                 groups=conv_groups,
-                param_attr=None,
-                bias_attr=None,
+                param_attr=param_attr,
+                bias_attr=bias_attr,
                 act=act,
                 use_cudnn=use_cudnn)
     
@@ -320,7 +320,6 @@ with fluid.dygraph.guard():
         train_reader = paddle.batch(
             paddle.dataset.mnist.train(), batch_size=32, drop_last=True)
         mnist = MNIST("mnist")
-        id, data = list(enumerate(train_reader()))[0]
         adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
         for epoch in range(epoch_num):
             for batch_id, data in enumerate(train_reader()):
