@@ -159,8 +159,33 @@ if __name__ == '__main__':
 
 ### 关于自动剪枝
 
+每个 ``Variable`` 都有一个 ``stop_gradient`` 属性，可以用于细粒度地在反向梯度计算时排除部分子图，以提高效率。
+
+如果OP只有一个输入需要梯度，那么该OP的输出也需要梯度。
+相反，只有当OP的所有输入都不需要梯度时，该OP的输出也不需要梯度。
+在所有的 ``Variable`` 都不需要梯度的子图中，反向计算就不会进行计算了。
+
 在动态图模式下，除参数以外的所有 ``Variable`` 的 ``stop_gradient`` 属性默认值都为 ``True``，而参数的 ``stop_gradient`` 属性默认值为 ``False``。
 该属性用于自动剪枝，避免不必要的反向运算。
+
+例如：
+
+```python
+import paddle.fluid as fluid
+import numpy as np
+
+with fluid.dygraph.guard():
+    x = fluid.dygraph.to_variable(np.random.randn(5, 5))  # 默认stop_gradient=True
+    y = fluid.dygraph.to_variable(np.random.randn(5, 5))  # 默认stop_gradient=True
+    z = fluid.dygraph.to_variable(np.random.randn(5, 5))
+    z.stop_gradient = False
+    a = x + y
+    a.stop_gradient  # True
+    b = a + z
+    b.stop_gradient  # False
+```
+
+当你想冻结你的模型的一部分，或者你事先知道你不会使用某些参数的梯度的时候，这个功能是非常有用的。
 
 例如：
 
@@ -179,7 +204,7 @@ with fluid.dygraph.guard():
     c = fluid.dygraph.to_variable(value2)
     out1 = fc(a)
     out2 = fc2(b)
-    out1.stop_gradient = True
+    out1.stop_gradient = True  # 将不会对out1这部分子图做反向计算
     out = fluid.layers.concat(input=[out1, out2, c], axis=1)
     out.backward()
     # 可以发现这里fc参数的梯度都为0
