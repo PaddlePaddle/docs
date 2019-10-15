@@ -137,8 +137,8 @@ class MyLayer(fluid.dygraph.Layer):
         self.fc = fluid.dygraph.nn.FC(self.full_name(), size=12)
     
     def forward(self, inputs):
-        x = fluid.layers.relu(inputs)
-        x = self.fc(x)
+        x = self.fc(inputs)
+        x = fluid.layers.relu(x)
         self._x_for_debug = x
         x = fluid.layers.elementwise_mul(x, x)
         x = fluid.layers.reduce_sum(x)
