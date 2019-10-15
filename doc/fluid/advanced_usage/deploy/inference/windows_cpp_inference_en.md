@@ -151,11 +151,11 @@ After the execution, the directory build is shown in the picture below. Then ple
 Modify `Runtime Library` to `/MT`(default) or `/MD` according to the inference library version :
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image4.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/project_property.png">
 </p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image5.png">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/runtime_library.png">
 </p>
 
 Modify option of building and generating as `Release` .
