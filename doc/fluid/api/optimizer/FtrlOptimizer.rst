@@ -9,5 +9,6 @@ FtrlOptimizer
 ..  autoclass:: paddle.fluid.optimizer.FtrlOptimizer
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

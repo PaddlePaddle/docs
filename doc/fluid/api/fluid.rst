@@ -15,27 +15,35 @@ fluid
     fluid/cuda_places.rst
     fluid/CUDAPinnedPlace.rst
     fluid/CUDAPlace.rst
+    fluid/data.rst
     fluid/DataFeedDesc.rst
     fluid/DataFeeder.rst
     fluid/default_main_program.rst
     fluid/default_startup_program.rst
     fluid/DistributeTranspiler.rst
     fluid/DistributeTranspilerConfig.rst
+    fluid/embedding.rst
     fluid/ExecutionStrategy.rst
     fluid/Executor.rst
     fluid/global_scope.rst
     fluid/gradients.rst
     fluid/in_dygraph_mode.rst
     fluid/is_compiled_with_cuda.rst
+    fluid/load.rst
+    fluid/load_op_library.rst
     fluid/LoDTensor.rst
     fluid/LoDTensorArray.rst
     fluid/memory_optimize.rst
     fluid/name_scope.rst
+    fluid/one_hot.rst
     fluid/ParallelExecutor.rst
     fluid/ParamAttr.rst
     fluid/Program.rst
     fluid/program_guard.rst
     fluid/release_memory.rst
+    fluid/require_version.rst
+    fluid/save.rst
     fluid/scope_guard.rst
     fluid/Tensor.rst
+    fluid/Variable.rst
     fluid/WeightNormParamAttr.rst
