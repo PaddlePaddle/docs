@@ -5,14 +5,7 @@ EditDistance
 
 .. py:class:: paddle.fluid.metrics.EditDistance(name)
 
-编辑距离是通过计算将一个字符串转换为另一个字符串所需的最小编辑操作数（添加、删除或替换）来量化两个字符串（例如单词）彼此不相似的程度一种方法。
-参考 https://en.wikipedia.org/wiki/Edit_distance。
-此EditDistance类使用更新函数获取两个输入：
-    1. distance：一个形状为（batch_size, 1）的numpy.array，每个元素表示两个序列之间的编辑距离；
-    2. seq_num：一个整型/浮点型数，代表序列对的数目，并返回多个序列对的整体编辑距离。
-
-参数:
-    - **name** - 度量标准名称
+用于管理字符串的编辑距离。编辑距离是通过计算将一个字符串转换为另一个字符串所需的最小编辑操作数（添加、删除或替换）来量化两个字符串（例如单词）彼此不相似的程度一种方法。 参考 https://en.wikipedia.org/wiki/Edit_distance。
 
 **代码示例**
 
@@ -41,26 +34,24 @@ EditDistance
     print("the average edit distance for batch0 and batch1 is %.2f and the wrong instance ratio is %.2f " % (avg_distance, wrong_instance_ratio))
 
 
-.. py:method:: distance_evaluator.reset()
+.. py:method:: reset()
 
-.. code-block:: python
+清空存储结果。
 
-  import paddle.fluid as fluid
-  edit_distances_batch2 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
-  seq_num_batch2 = batch_size
-  distance_evaluator.update(edit_distances_batch2, seq_num_batch2)
-  avg_distance, wrong_instance_ratio = distance_evaluator.eval()
-  print("the average edit distance for batch2 is %.2f and the wrong instance ratio is %.2f " % (avg_distance, wrong_instance_ratio))
+参数：无
+
+返回：无
 
 
 .. py:method:: update(distances, seq_num)
 
-更新整体的编辑距离。
+更新存储结果
 
 参数：
-    - **distances** – 一个形状为(batch_size, 1)的numpy.array，每个元素代表两个序列间的距离。(edit) – 
+    - **distances** – 一个形状为(batch_size, 1)的numpy.array，每个元素代表两个序列间的距离。
     - **seq_num** – 一个整型/浮点型值，代表序列对的数量。
 
+返回：无
 
 .. py:method:: eval()
 
