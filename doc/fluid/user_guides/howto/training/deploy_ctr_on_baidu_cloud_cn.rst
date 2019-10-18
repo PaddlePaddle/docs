@@ -76,7 +76,7 @@ ELASTIC CTR
 `百度智能云CCE容器引擎帮助文档-创建集群 <https://cloud.baidu.com/doc/CCE/GettingStarted/24.5C.E5.88.9B.E5.BB.BA.E9.9B.86.E7.BE.A4.html#.E6.93.8D.E4.BD.9C.E6.AD.A5.E9.AA.A4>`_\ ，在百度智能云上建立一个集群，节点配置需要满足如下要求
 
 
-* CPU核数 &gt; 4
+* CPU核数 > 4
 
 申请容器引擎示例:
 
