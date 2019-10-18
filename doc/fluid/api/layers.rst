@@ -29,6 +29,7 @@ fluid.layers
     layers/batch_norm.rst
     layers/beam_search.rst
     layers/beam_search_decode.rst
+    layers/BeamSearchDecoder.rst
     layers/bilinear_tensor_product.rst
     layers/bipartite_match.rst
     layers/box_clip.rst
@@ -37,7 +38,9 @@ fluid.layers
     layers/bpr_loss.rst
     layers/brelu.rst
     layers/cast.rst
+    layers/Categorical.rst
     layers/ceil.rst
+    layers/center_loss.rst
     layers/chunk_eval.rst
     layers/clip.rst
     layers/clip_by_norm.rst
@@ -58,11 +61,13 @@ fluid.layers
     layers/create_tensor.rst
     layers/crf_decoding.rst
     layers/crop.rst
+    layers/crop_tensor.rst
     layers/cross_entropy.rst
     layers/ctc_greedy_decoder.rst
     layers/cumsum.rst
     layers/data.rst
     layers/data_norm.rst
+    layers/Decoder.rst
     layers/deformable_conv.rst
     layers/deformable_roi_pooling.rst
     layers/density_prior_box.rst
@@ -73,6 +78,7 @@ fluid.layers
     layers/distribute_fpn_proposals.rst
     layers/double_buffer.rst
     layers/dropout.rst
+    layers/dynamic_decode.rst
     layers/dynamic_gru.rst
     layers/dynamic_lstm.rst
     layers/dynamic_lstmp.rst
@@ -93,13 +99,17 @@ fluid.layers
     layers/exp.rst
     layers/expand.rst
     layers/exponential_decay.rst
+    layers/eye.rst
     layers/fc.rst
     layers/fill_constant.rst
     layers/fill_constant_batch_size_like.rst
+    layers/filter_by_instag.rst
     layers/flatten.rst
     layers/floor.rst
     layers/fsp_matrix.rst
     layers/gather.rst
+    layers/gather_nd.rst
+    layers/gather_tree.rst
     layers/gaussian_random.rst
     layers/gaussian_random_batch_size_like.rst
     layers/generate_mask_labels.rst
@@ -111,8 +121,10 @@ fluid.layers
     layers/grid_sampler.rst
     layers/group_norm.rst
     layers/gru_unit.rst
+    layers/GRUCell.rst
     layers/hard_shrink.rst
     layers/hard_sigmoid.rst
+    layers/hard_swish.rst
     layers/has_inf.rst
     layers/has_nan.rst
     layers/hash.rst
@@ -123,6 +135,7 @@ fluid.layers
     layers/image_resize.rst
     layers/image_resize_short.rst
     layers/increment.rst
+    layers/instance_norm.rst
     layers/inverse_time_decay.rst
     layers/iou_similarity.rst
     layers/is_empty.rst
@@ -138,6 +151,7 @@ fluid.layers
     layers/linear_lr_warmup.rst
     layers/linspace.rst
     layers/load.rst
+    layers/lod_append.rst
     layers/lod_reset.rst
     layers/log.rst
     layers/log_loss.rst
@@ -149,23 +163,29 @@ fluid.layers
     layers/lrn.rst
     layers/lstm.rst
     layers/lstm_unit.rst
+    layers/LSTMCell.rst
     layers/margin_rank_loss.rst
     layers/matmul.rst
     layers/maxout.rst
     layers/mean.rst
     layers/mean_iou.rst
     layers/merge_selected_rows.rst
+    layers/mse_loss.rst
     layers/mul.rst
     layers/multi_box_head.rst
     layers/multiclass_nms.rst
+    layers/multiclass_nms2.rst
     layers/multiplex.rst
+    layers/MultivariateNormalDiag.rst
     layers/natural_exp_decay.rst
     layers/nce.rst
     layers/noam_decay.rst
+    layers/Normal.rst
     layers/not_equal.rst
     layers/npair_loss.rst
     layers/one_hot.rst
     layers/ones.rst
+    layers/ones_like.rst
     layers/open_files.rst
     layers/pad.rst
     layers/pad2d.rst
@@ -181,6 +201,7 @@ fluid.layers
     layers/Preprocessor.rst
     layers/Print.rst
     layers/prior_box.rst
+    layers/prroi_pool.rst
     layers/psroi_pool.rst
     layers/py_func.rst
     layers/py_reader.rst
@@ -204,9 +225,12 @@ fluid.layers
     layers/reshape.rst
     layers/resize_bilinear.rst
     layers/resize_nearest.rst
+    layers/resize_trilinear.rst
     layers/retinanet_detection_output.rst
     layers/retinanet_target_assign.rst
     layers/reverse.rst
+    layers/rnn.rst
+    layers/RNNCell.rst
     layers/roi_align.rst
     layers/roi_perspective_transform.rst
     layers/roi_pool.rst
@@ -218,6 +242,8 @@ fluid.layers
     layers/sampling_id.rst
     layers/scale.rst
     layers/scatter.rst
+    layers/scatter_nd.rst
+    layers/scatter_nd_add.rst
     layers/selu.rst
     layers/sequence_concat.rst
     layers/sequence_conv.rst
@@ -236,6 +262,7 @@ fluid.layers
     layers/sequence_softmax.rst
     layers/sequence_unpad.rst
     layers/shape.rst
+    layers/shard_index.rst
     layers/shuffle.rst
     layers/shuffle_channel.rst
     layers/sigmoid.rst
@@ -244,6 +271,7 @@ fluid.layers
     layers/sign.rst
     layers/similarity_focus.rst
     layers/sin.rst
+    layers/size.rst
     layers/slice.rst
     layers/smooth_l1.rst
     layers/soft_relu.rst
@@ -263,6 +291,7 @@ fluid.layers
     layers/stack.rst
     layers/stanh.rst
     layers/StaticRNN.rst
+    layers/strided_slice.rst
     layers/sum.rst
     layers/sums.rst
     layers/swish.rst
@@ -277,8 +306,12 @@ fluid.layers
     layers/topk.rst
     layers/transpose.rst
     layers/tree_conv.rst
+    layers/unfold.rst
+    layers/Uniform.rst
     layers/uniform_random.rst
     layers/uniform_random_batch_size_like.rst
+    layers/unique.rst
+    layers/unique_with_counts.rst
     layers/unsqueeze.rst
     layers/unstack.rst
     layers/warpctc.rst
