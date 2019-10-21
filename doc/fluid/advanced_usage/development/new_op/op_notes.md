@@ -110,16 +110,29 @@ Fluid的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可�
 ### 3.OpKernel需要注册的数据类型
 目前要求所有OpKernel都要注册double和float数据类型。
 
-### 4.Op兼容性问题
+### 4.GetExpectedKernelType方法重写
+GetExpectedKernelType方法是OperatorWithKernel类中用于获取指定类型（例如double，float）Kernel的方法，该方法通过获取Variable内部的Tensor数据类型得知需要的Kernel类型，但是由于Tensor在此处可能尚未被初始化，因此会导致报出`holder_ should not be null. Tensor not initialized yet when Tensor::type()`的错误，仅凭该错误信息用户无法得知具体出错的Op，因此需要在GetExpectedKernelType方法内添加相应的检查拦截此错误，实现注意事项如下：
+
+- 如果输入变量均为相同数据类型的Variable，建议不实现该方法，默认使用基类OperatorWithKernel中的GetExpectedKernelType方法，该基类方法对输入Variable进行了完备的检查
+- 如果需要根据某一输入变量获取Kernel类型，请使用`OperatorWithKernel::IndicateVarDataType`接口获取Variable的dtype，使用示例如下：
+```
+  framework::OpKernelType GetExpectedKernelType(
+      const framework::ExecutionContext& ctx) const override {
+    return framework::OpKernelType(
+        OperatorWithKernel::IndicateVarDataType(ctx, "X"), ctx.GetPlace());
+  }
+```
+
+### 5.Op兼容性问题
 对Op的修改需要考虑兼容性问题，要保证Op修改之后，之前的模型都能够正常加载及运行。<font color="#FF0000">**所以现在不允许对已有的Op新增输入或者输出，不允许减去Op的已有属性及修改默认值**</font> 。
 
-### 5.ShareDataWith的调用
+### 6.ShareDataWith的调用
 ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操作的时候需要特别注意，在Op内部不能将ShareDataWith作用在Op的输出上，即Op输出的Tensor必须是Malloc出来的。
 
-### 6.稀疏梯度参数更新方法
+### 7.稀疏梯度参数更新方法
 目前稀疏梯度在做更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如velocity）的更新。
 
-### 7.显存优化
+### 8.显存优化
 通常反向Op会依赖于前向Op的某些输入(Input)、输出(Output)，以供反向Op计算使用。但有些情况下，反向Op不需要前向Op的所有输入和输出；有些情况下，反向Op只需要前向Op的部分输入和输出；有些情况下，反向Op只需要使用前向Op中输入和输出变量的Shape和LoD信息。若Op开发者在注册反向Op时，将不必要的前向Op输入和输出作为反向Op的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
 所以在写注册反向Op时需要注意以下几点：
@@ -175,7 +188,7 @@ REGISTER_OPERATOR(slice_grad, ops::SliceOpGrad,
                   ops::SliceOpGradNoNeedBufferVarsInference);
 ```
 
-### 8.混合设备调用
+### 9.混合设备调用
 由于GPU是异步执行的，当CPU调用返回之后，GPU端可能还没有真正的执行，所以如果在Op中创建了GPU运行时需要用到的临时变量，当GPU开始运行的时候，该临时变量可能在CPU端已经被释放，这样可能会导致GPU计算出错。
 
 关于GPU中的一些同步和异步操作：
@@ -195,7 +208,7 @@ The following device operations are asynchronous with respect to the host:
 
 更多内容可参考：[Asynchronous Concurrent Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#asynchronous-concurrent-execution)，[API synchronization behavior](https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html#api-sync-behavior)
 
-### 9. LoD 在 Op 内部的传导规范
+### 10. LoD 在 Op 内部的传导规范
 
 [LoD](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/lod_tensor.md) 是 Paddle Fluid 框架用来表示变长序列数据的属性，除了仅支持输入是 padding  data 的 Op 外，所有 Op 的实现都要考虑 LoD 的传导问题。
 
