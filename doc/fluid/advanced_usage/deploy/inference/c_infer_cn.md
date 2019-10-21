@@ -177,9 +177,8 @@ int main() {
     int shape[4] = {batch, channel, height, width};
     int shape_size = 4;
     float* data = (float *) malloc(sizeof(float) * (batch * channel * height * width));
-    if (PD_PaddleBufEmpty(buf))
-        PD_PaddleBufReset(buf, (void *)(data),
-                        sizeof(float) * (batch * channel * height * width));
+    PD_PaddleBufReset(buf, (void *)(data),
+                    sizeof(float) * (batch * channel * height * width));
 
     char* name[5] = {'d', 'a', 't', 'a', '\0'};
     PD_SetPaddleTensorName(input, name);
