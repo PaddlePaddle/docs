@@ -611,23 +611,21 @@ Loss at epoch 0 step 0: [0.5767452]
 
 ## 模型参数的保存
 
+动态图由于模型和优化器在不同的对象中存储，模型参数和优化器信息要分别存储。 
 
- 在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir", optimizers=None)`来保存`your_model_object`中所有的模型参数, 以及使用`learning rate decay`的优化器。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
+ 在模型训练中可以使用 `paddle.fluid.dygraph.save_dygraph(state_dict, model_path)` 来保存模型参数的dict或优化器信息的dict。
 
-同样可以使用`models，optimizers =     fluid.dygraph.load_persistables("save_dir")`获取保存的模型参数和优化器。
+同样可以使用 `paddle.fluid.dygraph.load_dygraph(model_path)` 获取保存的模型参数的dict和优化器信息的dict。
 
+再使用`your_modle_object.set_dict(para_dict)`接口来恢复保存的模型参数从而达到继续训练的目的。
 
-再使用`your_modle_object.load_dict(models)`接口来恢复保存的模型参数从而达到继续训练的目的。
-
-以及使用`your_optimizer_object.load(optimizers)`接口来恢复保存的优化器中的`learning rate decay`值
-
-
-
+以及使用`your_optimizer_object.set_dict(opti_dict)`接口来恢复保存的优化器中的`learning rate decay`值。
 
 下面的代码展示了如何在“手写数字识别”任务中保存参数并且读取已经保存的参数来继续训练。
 
-
 ```python
+import paddle.fluid as fluid
+
 with fluid.dygraph.guard():
     epoch_num = 5
     BATCH_SIZE = 64
@@ -660,14 +658,14 @@ with fluid.dygraph.guard():
             avg_loss.backward()
             adam.minimize(avg_loss)
             if batch_id == 20:
-                fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir", adam)
+                fluid.dygraph.save_dygraph(mnist.state_dict(), "paddle_dy")
             mnist.clear_gradients()
 
             if batch_id == 20:
                 for param in mnist.parameters():
                     dy_param_init_value[param.name] = param.numpy()
-                model, _ = fluid.dygraph.load_persistables("save_dir")
-                mnist.load_dict(model)
+                model, _ = fluid.dygraph.load_dygraph("paddle_dy")
+                mnist.set_dict(model)
                 break
         if epoch == 0:
             break
@@ -685,7 +683,7 @@ with fluid.dygraph.guard():
 
 ```python
     if fluid.dygraph.parallel.Env().local_rank == 0:
-        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
+        fluid.dygraph.save_dygraph(mnist.state_dict(), "paddle_dy")
 ```
 
 ## 模型评估
@@ -728,7 +726,7 @@ def inference_mnist():
     with fluid.dygraph.guard():
         mnist_infer = MNIST("mnist")
         # load checkpoint
-        model_dict, _ = fluid.dygraph.load_persistables("save_dir")
+        model_dict, _ = fluid.dygraph.load_dygraph("paddle_dy")
         mnist_infer.load_dict(model_dict)
         print("checkpoint loaded")
 
@@ -794,7 +792,7 @@ with fluid.dygraph.guard():
         print("Loss at epoch {} , Test avg_loss is: {}, acc is: {}".format(
             epoch, test_cost, test_acc))
 
-    fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
+    fluid.dygraph.save_dygraph(mnist.state_dict(), "paddle_dy")
     print("checkpoint saved")
 
     inference_mnist()
