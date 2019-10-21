@@ -130,12 +130,12 @@ bool PD_PredictorRun(const PD_AnalysisConfig* config, PD_Tensor* inputs, int in_
 ```
 
 `PD_PredictorRun`是运行预测的引擎。输入的参数解释如下：
-`config`(`PD_AnalysisConfig`): 用于设置预测的配置变量。
-`inputs`(`PD_Tensor*`): 输入的`PD_Tensor`的指针。如果有多个`PD_Tensor`作为输入，则`inputs`将指向第一个，其数组的大小由`in_size`决定。
-`in_size`(`int`): 输入的`PD_Tensor`的个数。
-`output_data`(`PD_Tensor*`): 输出的`PD_Tensor`的指针。
-`out_size`(`int**`): 输出的`PD_Tensor`的个数。是指针的指针，需要新建后传值进入函数，函数执行完会得到赋值，即，获得输出的`PD_Tensor`的个数。
-`batch_size`(`int`): `batch_size`的大小。
+* `config`(`PD_AnalysisConfig`): 用于设置预测的配置变量。
+* `inputs`(`PD_Tensor*`): 输入的`PD_Tensor`的指针。如果有多个`PD_Tensor`作为输入，则`inputs`将指向第一个，其数组的大小由`in_size`决定。
+* `in_size`(`int`): 输入的`PD_Tensor`的个数。
+* `output_data`(`PD_Tensor**`): 输出的`PD_Tensor`的指针。
+* `out_size`(`int*`): 输出的`PD_Tensor`的个数。是指针的指针，需要新建后传值进入函数，函数执行完会得到赋值，即，获得输出的`PD_Tensor`的个数。
+* `batch_size`(`int`): `batch_size`的大小。
 
 #### 代码示例
 
