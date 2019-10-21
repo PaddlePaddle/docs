@@ -6,7 +6,7 @@ Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便�
 
 ## C预测相关数据结构
 
-使用C预测API与C++预测API不完全一样，C预测主要包括`PD_Tensor`, `PD_DataType`, `PD_AnalysisConfig`和`PD_PaddleBuf`，分别对应于C++ API中的`PaddleTensor`，`PaddleDType`，`AnalysisConfig`和`PaddleBuf`。另外，C预测API提供了`PD_ZeroCopyData`。接下来将会进一步介绍。本次的Release的C-API目前暂时只支持单输入单输出的模型，后续我们将会继续提供更多的支持。
+使用C预测API与C++预测API不完全一样，C预测主要包括`PD_Tensor`, `PD_DataType`, `PD_AnalysisConfig`和`PD_PaddleBuf`，分别对应于C++ API中的`PaddleTensor`，`PaddleDType`，`AnalysisConfig`和`PaddleBuf`。接下来将会进一步介绍。本次的Release的C-API目前暂时只支持单输入单输出的模型，后续我们将会继续提供更多的支持。
 
 ### PD_Tensor
 
