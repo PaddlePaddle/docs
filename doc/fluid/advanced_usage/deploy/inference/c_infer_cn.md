@@ -181,7 +181,7 @@ int main() {
     PD_PaddleBufReset(buf, (void *)(data),
                     sizeof(float) * (batch * channel * height * width));
 
-    char* name[5] = {'d', 'a', 't', 'a', '\0'};
+    char name[5] = {'d', 'a', 't', 'a', '\0'};
     PD_SetPaddleTensorName(input, name);
     PD_SetPaddleTensorDType(input, PD_DataType::PD_FLOAT32);
     PD_SetPaddleTensorShape(input, shape, shape_size);
