@@ -23,6 +23,7 @@ fluid.dygraph
     dygraph/InverseTimeDecay.rst
     dygraph/Layer.rst
     dygraph/LayerNorm.rst
+    dygraph/load_dygraph.rst
     dygraph/load_persistables.rst
     dygraph/NaturalExpDecay.rst
     dygraph/NCE.rst
@@ -34,6 +35,7 @@ fluid.dygraph
     dygraph/Pool2D.rst
     dygraph/PRelu.rst
     dygraph/prepare_context.rst
+    dygraph/save_dygraph.rst
     dygraph/save_persistables.rst
     dygraph/SpectralNorm.rst
     dygraph/start_gperf_profiler.rst

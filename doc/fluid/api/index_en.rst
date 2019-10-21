@@ -24,7 +24,6 @@ API Reference
     nets.rst
     optimizer.rst
     profiler.rst
-    recordio_writer.rst
     regularizer.rst
     transpiler.rst
     unique_name.rst
