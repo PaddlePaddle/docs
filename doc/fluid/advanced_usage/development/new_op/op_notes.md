@@ -111,10 +111,10 @@ Fluid的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可�
 目前要求所有OpKernel都要注册double和float数据类型。
 
 ### 4.GetExpectedKernelType方法重写
-GetExpectedKernelType方法是OperatorWithKernel类中用于获取指定类型（例如double，float）Kernel的方法，该方法通过获取Variable内部的Tensor数据类型得知需要的Kernel类型，但是由于Tensor在此处可能尚未被初始化，因此会导致报出`holder_ should not be null. Tensor not initialized yet when Tensor::type()`的错误，仅凭该错误信息用户无法得知具体出错的Op，因此需要在GetExpectedKernelType方法内添加相应的检查拦截此错误，实现注意事项如下：
+GetExpectedKernelType方法是OperatorWithKernel类中用于获取指定设备（例如CPU，GPU）上指定数据类型（例如double，float）的OpKernel的方法。该方法通过获取Variable内部的Tensor数据类型得知需要的Kernel数据类型，但是由于Tensor在此处可能尚未被初始化，因此会导致报出`holder_ should not be null. Tensor not initialized yet when Tensor::type()`的错误，例如[Paddle issue #19522](https://github.com/PaddlePaddle/Paddle/issues/19522) 。用户仅凭该错误信息无法得知具体出错的Op，因此需要在GetExpectedKernelType方法内添加相应的检查拦截此错误，实现注意事项如下：
 
 - 如果输入变量均为相同数据类型的Variable，建议不实现该方法，默认使用基类OperatorWithKernel中的GetExpectedKernelType方法，该基类方法对输入Variable进行了完备的检查
-- 如果需要根据某一输入变量获取Kernel类型，请使用`OperatorWithKernel::IndicateVarDataType`接口获取Variable的dtype，使用示例如下：
+- 如果需要根据某一输入变量获取Kernel类型，请使用`OperatorWithKernel::IndicateVarDataType`接口获取Variable的dtype，使用示例如下，具体请参考[Paddle PR #20044](https://github.com/PaddlePaddle/Paddle/pull/20044)：
 ```
   framework::OpKernelType GetExpectedKernelType(
       const framework::ExecutionContext& ctx) const override {
