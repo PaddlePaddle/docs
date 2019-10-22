@@ -13,28 +13,28 @@ Executor
 
 例如上文实现的加法运算，当构建好 Program 后，需要创建 Executor，执行startup Program 和训练 Program：
 
-```python
-import paddle.fluid as fluid
-import numpy
+.. code-block:: python
 
-a = fluid.data(name="a",shape=[1],dtype='float32')
-b = fluid.data(name="b",shape=[1],dtype='float32')
+    import paddle.fluid as fluid
+    import numpy
 
-result = fluid.layers.elementwise_add(a,b)
+    a = fluid.data(name="a",shape=[1],dtype='float32')
+    b = fluid.data(name="b",shape=[1],dtype='float32')
 
-# 定义执行器，并且制定执行的设备为CPU
-cpu = fluid.core.CPUPlace()
-exe = fluid.Executor(cpu)
+    result = fluid.layers.elementwise_add(a,b)
 
-exe.run(fluid.default_startup_program())
+    # 定义执行器，并且制定执行的设备为CPU
+    cpu = fluid.core.CPUPlace()
+    exe = fluid.Executor(cpu)
 
-x = numpy.array([5]).astype("float32")
-y = numpy.array([7]).astype("float32")
+    exe.run(fluid.default_startup_program())
 
-outs = exe.run(
-        feed={'a':x,'b':y},
-        fetch_list=[result])
-		
-# 打印输出结果，[array([12.], dtype=float32)]
-print( outs )
-```
+    x = numpy.array([5]).astype("float32")
+    y = numpy.array([7]).astype("float32")
+
+    outs = exe.run(
+            feed={'a':x,'b':y},
+            fetch_list=[result])
+
+    # 打印输出结果，[array([12.], dtype=float32)]
+    print( outs )

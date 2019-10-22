@@ -1,12 +1,12 @@
 .. _cn_user_guide_lod_tensor:
 
-##################
+=========
 LoDTensor
-##################
+=========
 
 LoD(Level-of-Detail) Tensor是Paddle的高级特性，是对Tensor的一种扩充。LoDTensor通过牺牲灵活性来提升训练的效率。
 
-注：对于大部分用户来说，无需关注LoDTensor的用法。
+**注：对于大部分用户来说，无需关注LoDTensor的用法。**
 
 
 变长序列的解决方案
@@ -18,10 +18,9 @@ LoD(Level-of-Detail) Tensor是Paddle的高级特性，是对Tensor的一种扩�
 
 但是对于一部分nlp任务来说，一个batch内的句子长度无法做到接近，比如聊天任务，需要计算query和多个答案之间的相似度，答案必须在一个batch中，这些答案的长度差异可能会非常大，最长的几百个token，最短的10几个token，如果采用padding的方式，计算量会增加几十倍，这种场景非常适合LoDTensor。LoDTensor存储了样本的长度信息，不需要增加padding的词，能给大幅减少计算量，从而提高训练的速度。
 
-注：如果训练样本无法通过排序、分桶等手段，使得一个batch内的样本的长度非常接近，推荐用户使用LoDTensor；其他情况下，建议用户使用padding的组网方式。
-
 LoDTensor将长度不一致的维度拼接为一个大的维度，并引入了一个索引数据结构（LoD）来将张量分割成序列。LoDTensor进行了维度拼接之后，rank大小和之前padding的方式不一致，在一些运算（如dot attention）逻辑比padding方式要复杂。
 
+**注：如果训练样本无法通过排序、分桶等手段，使得一个batch内的样本的长度非常接近，推荐用户使用LoDTensor；其他情况下，建议用户使用padding的组网方式。**
 
 LoD 索引
 ===========
@@ -300,7 +299,7 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
                     feed={'x':x_d, 'y': y_d },
                     fetch_list=[out],return_numpy=False)
 
-**查看LodTensor结果**
+**查看LoDTensor结果**
 
 由于LoDTensor的特殊属性，无法直接print查看内容，常用操作时将LoD-Tensor作为网络的输出fetch出来，然后执行 numpy.array(lod_tensor), 就能转成numpy array：
 
