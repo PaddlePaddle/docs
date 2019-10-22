@@ -2,9 +2,9 @@
 进阶使用
 ########
 
-如果您非常熟悉 Paddle，期望获得更高效的模型或者定义自己的Operator，请阅读：
+如果您已比较熟练使用PaddlePaddle来完成常规任务，期望获得更高效的模型或者定义自己的Operator，请阅读：
 
-    - `Paddle 设计思想 <../advanced_usage/design_idea/fluid_design_idea.html>`_：介绍 Paddle 底层的设计思想，帮助您更好的理解框架运作过程
+    - `设计思想 <../advanced_usage/design_idea/fluid_design_idea.html>`_：介绍 Paddle 底层的设计思想，帮助您更好的理解框架运作过程
 
     - `预测部署 <../advanced_usage/deploy/index_cn.html>`_ ：介绍如何应用训练好的模型进行预测
 
