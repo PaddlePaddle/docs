@@ -258,6 +258,7 @@ nvcc relu_op.cu -c -o relu_op.cu.o -ccbin cc -DPADDLE_WITH_CUDA -DEIGEN_USE_GPU 
     -I ${include_dir}/third_party/install/xxhash/include \
     -I ${include_dir}/third_party/boost \
     -I ${include_dir}/third_party/eigen3 \
+    -I ${include_dir}/third_party/dlpack/include \
     -I ${include_dir}/third_party/threadpool/src/extern_threadpool \
     -I ${include_dir} \
 
@@ -269,6 +270,7 @@ g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 \
   -I ${include_dir}/third_party/install/zlib/include \
   -I ${include_dir}/third_party/boost \
   -I ${include_dir}/third_party/eigen3 \
+  -I ${include_dir}/third_party/dlpack/include \
   -I ${include_dir} \
   -L /usr/local/cuda/lib64 \
   -L ${lib_dir} -lpaddle_framework -lcudart
