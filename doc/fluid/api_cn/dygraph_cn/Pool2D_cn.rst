@@ -61,7 +61,7 @@ Pool2D
     - **use_cudnn** （bool, 可选）- 是否用cudnn核，只有已安装cudnn库时才有效。默认True。
     - **ceil_mode** （bool, 可选）- 是否用ceil函数计算输出高度和宽度。如果设为False，则使用floor函数。默认为False。
     - **exclusive** (bool, 可选) - 是否在平均池化模式忽略填充值。默认为True。
-    - **dtype** (core.VarDesc.VarType, 可选) - 数据类型，可以为float32或float64。默认为float32。
+    - **dtype** (str, 可选) - 输入的数据类型，可以为float32或float64。默认为float32。
 
 返回：无
 
