@@ -161,6 +161,14 @@ PD_PredictorRun(config, input, in_size, &output, &output_size, batch_size);
 ``` C
 #include "c_api.h"
 
+/*
+ * The main procedures to run a predictor according to c-api:
+ * 1. Create config to set how to process the inference.
+ * 2. Prepare the input for the inference.
+ * 3. Call PD_PredictorRun() to start. 
+ * 4. Obtain the output, and transform the PD_PaddleBuf data to expected data type. 
+ * 5. According to the size of the PD_PaddleBuf's data's size, print all the output data. 
+ */
 int main() {
     PD_AnalysisConfig* config = PD_NewAnalysisConfig();
     PD_DisableGpu(config);
@@ -189,14 +197,16 @@ int main() {
 
     PD_Tensor* output = PD_NewPaddleTensor();
     
-    // 注意output_size和out_size，前者是表示输出的PD_Tensor有多少个output输出，后者是指的当前的一个输出的out_data的size大小
-    int output_size;
+    /* Mention that the the output_size and data_size is different. 
+     * output_size is the size of PD_Tensor, for this version is one. 
+     * data_size is for the specific one PD_Tensor, the data's size.
+     */
     PD_PredictorRun(config, input, in_size, &output, &output_size, batch);
 
     const char* output_name = PD_GetPaddleTensorName(output);
     PD_PaddleBuf* out_buf = PD_GetPaddleTensorData(output);
     float* out_data = (float *) PD_PaddleBufData(out_buf);
-    size_t out_size = PD_PaddleBufLength(out_buf) / sizeof(float);
+    int data_size = PD_PaddleBufLength(out_buf) / sizeof(float);
     return 0;
 }
 ```
