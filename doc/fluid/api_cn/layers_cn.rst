@@ -173,6 +173,7 @@ fluid.layers
     layers_cn/mean_cn.rst
     layers_cn/mean_iou_cn.rst
     layers_cn/merge_selected_rows_cn.rst
+    layers_cn/mse_loss_cn.rst
     layers_cn/mul_cn.rst
     layers_cn/multi_box_head_cn.rst
     layers_cn/multiclass_nms_cn.rst
