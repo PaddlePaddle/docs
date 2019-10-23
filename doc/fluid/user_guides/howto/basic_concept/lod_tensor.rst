@@ -1,28 +1,26 @@
 .. _cn_user_guide_lod_tensor:
 
-##################
-LoD-Tensor使用说明
-##################
+=========
+LoDTensor
+=========
 
-LoD(Level-of-Detail) Tensor是Fluid中特有的概念，它在Tensor基础上附加了序列信息。Fluid中可传输的数据包括：输入、输出、网络中的可学习参数，全部统一使用LoD-Tensor表示。
+LoD(Level-of-Detail) Tensor是Paddle的高级特性，是对Tensor的一种扩充。LoDTensor通过牺牲灵活性来提升训练的效率。
 
-阅读本文档将帮助您了解 Fluid 中的 LoD-Tensor 设计思想，以便您更灵活的使用这一数据类型。
+**注：对于大部分用户来说，无需关注LoDTensor的用法。**
 
-变长序列的挑战
+
+变长序列的解决方案
 ================
 
-大多数的深度学习框架使用Tensor表示一个mini-batch。
+现在主流的训练框架都采用batch的训练方式，即一个batch中包含多个样本。在nlp的任务中，一个batch中包含N个句子，句子的长度可能会不一致，为了解决这种长度不一致问题，Paddle提供了两种解决方案：1）padding，即在句子的结尾（或开头）添加padding id（建议的方式）；2）LoDTensor，tensor中同时保存序列的长度信息。
 
-例如一个mini-batch中有10张图片，每幅图片大小为32x32，则这个mini-batch是一个10x32x32的 Tensor。
+对于padding的方式，会增加框架的计算量，但是对于大部分nlp任务，可以通过分桶、排序等机制，使得一个batch内的句子长度尽可能接近、能够降低padding id的比例，padding对于训练的计算量影响可以忽略。而且可以通过引入mask（记录哪些位置是padding id）信息，来移除padding id对于训练效果的影响。
 
-或者在处理NLP任务中，一个mini-batch包含N个句子，每个字都用一个D维的one-hot向量表示，假设所有句子都用相同的长度L，那这个mini-batch可以被表示为NxLxD的Tensor。
+但是对于一部分nlp任务来说，一个batch内的句子长度无法做到接近，比如聊天任务，需要计算query和多个答案之间的相似度，答案必须在一个batch中，这些答案的长度差异可能会非常大，最长的几百个token，最短的10几个token，如果采用padding的方式，计算量会增加几十倍，这种场景非常适合LoDTensor。LoDTensor存储了样本的长度信息，不需要增加padding的词，能给大幅减少计算量，从而提高训练的速度。
 
-上述两个例子中序列元素都具有相同大小，但是在许多情况下，训练数据是变长序列。基于这一场景，大部分框架采取的方法是确定一个固定长度，对小于这一长度的序列数据以0填充。
+LoDTensor将长度不一致的维度拼接为一个大的维度，并引入了一个索引数据结构（LoD）来将张量分割成序列。LoDTensor进行了维度拼接之后，rank大小和之前padding的方式不一致，在一些运算（如dot attention）逻辑比padding方式要复杂。
 
-在Fluid中，由于LoD-Tensor的存在，我们不要求每个mini-batch中的序列数据必须保持长度一致，因此您不需要执行填充操作，也可以满足处理NLP等具有序列要求的任务需求。
-
-Fluid引入了一个索引数据结构（LoD）来将张量分割成序列。
-
+**注：如果训练样本无法通过排序、分桶等手段，使得一个batch内的样本的长度非常接近，推荐用户使用LoDTensor；其他情况下，建议用户使用padding的组网方式。**
 
 LoD 索引
 ===========
@@ -301,7 +299,7 @@ layers.sequence_expand通过获取 y 的 lod 值对 x 的数据进行扩充，�
                     feed={'x':x_d, 'y': y_d },
                     fetch_list=[out],return_numpy=False)
 
-**查看LodTensor结果**
+**查看LoDTensor结果**
 
 由于LoDTensor的特殊属性，无法直接print查看内容，常用操作时将LoD-Tensor作为网络的输出fetch出来，然后执行 numpy.array(lod_tensor), 就能转成numpy array：
 
