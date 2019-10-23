@@ -5,8 +5,7 @@ gather_tree
 
 .. py:function:: paddle.fluid.layers.gather_tree(ids, parents)
 
-该OP在整个束搜索(Beam Search)结束后使用。在搜索结束后，可以获得每个时间步选择的的候选词id及其对应的在搜索树中的parent节点，
- ``ids`` 和 ``parents`` 的形状布局均为 :math:`[max\_time, batch\_size, beam\_size]` ，该OP从最后一个时间步回溯产生完整的id序列。
+该OP在整个束搜索(Beam Search)结束后使用。在搜索结束后，可以获得每个时间步选择的的候选词id及其对应的在搜索树中的parent节点， ``ids`` 和 ``parents`` 的形状布局均为 :math:`[max\_time, batch\_size, beam\_size]` ，该OP从最后一个时间步回溯产生完整的id序列。
 
 
 示例：

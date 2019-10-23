@@ -113,6 +113,7 @@ fluid.layers
     layers_cn/fsp_matrix_cn.rst
     layers_cn/gather_cn.rst
     layers_cn/gather_nd_cn.rst
+    layers_cn/gather_tree_cn.rst
     layers_cn/gaussian_random_batch_size_like_cn.rst
     layers_cn/gaussian_random_cn.rst
     layers_cn/generate_mask_labels_cn.rst
@@ -173,6 +174,7 @@ fluid.layers
     layers_cn/mean_cn.rst
     layers_cn/mean_iou_cn.rst
     layers_cn/merge_selected_rows_cn.rst
+    layers_cn/mse_loss_cn.rst
     layers_cn/mul_cn.rst
     layers_cn/multi_box_head_cn.rst
     layers_cn/multiclass_nms_cn.rst
