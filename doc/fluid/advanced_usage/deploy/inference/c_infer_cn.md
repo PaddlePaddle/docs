@@ -36,7 +36,7 @@ Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便�
 * `void PD_PaddleBufReset(PD_PaddleBuf* buf, void* data, size_t length)`: 重新设置`PD_PaddleBuf`指针指向的数据的数据本身，也可以用作`PD_PaddleBuf`指针数据的初始化赋值。
 * `bool PD_PaddleBufEmpty(PD_PaddleBuf* buf)`: 判断一个`PD_PaddleBuf`的指针指向的数据是否为空。
 * `void* PD_PaddleBufData(PD_PaddleBuf* buf)`: 返回一个`PD_PaddleBuf`的指针指向的数据的结果，用void*表示，返回之后，用户可以自行转换成相应的数据类型。
-* `size_t PD_PaddleBufLength(PD_PaddleBuf* buf)`: 返回一个`PD_PaddleBuf`的指针指向的数据的长度大小。
+* `size_t PD_PaddleBufLength(PD_PaddleBuf* buf)`: 返回一个`PD_PaddleBuf`的指针指向的数据的字节长度。如果需要得到数组的长度大小需要除以sizeof(float)（此处是以float的数据类型为例）。
 
 ### PD_DataType
 
@@ -66,7 +66,7 @@ if (PD_PaddleBufEmpty(buf))
   PD_PaddleBufReset(buf, (void *)(data),
                   sizeof(float) * (batch * channel * height * width));
 float* data__ = (float *) PD_PaddleBufData(buf);
-size_t length__ = PD_PaddleBufLength(buf);
+size_t size__ = PD_PaddleBufLength(buf) / sizeof(float);
 ```
 设置了`PD_PaddleBuf`之后，就可以顺利完成对`PD_Tensor`的设置。
 ``` C
