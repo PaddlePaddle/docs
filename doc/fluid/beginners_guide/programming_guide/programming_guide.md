@@ -1,81 +1,46 @@
 
 # 编程指南
 
-本文档将指导您如何用Fluid API编程并搭建一个简单的神经网络。阅读完本文档，您将掌握：
+目前飞桨（PaddlePaddle，以下简称Paddle）已经同时支持动态图和静态图两种编程方式，
+本文主要侧重于介绍静态图的编程方法，关于动态图编程方法，请参考[动态图机制-DyGraph](../../user_guides/howto/dygraph/DyGraph.html)。
 
-- Fluid有哪些核心概念
-- 如何在fluid中定义运算过程
-- 如何使用executor运行fluid操作
-- 如何从逻辑层对实际问题建模
-- 如何调用API（层，数据集，损失函数，优化方法等等）
+阅读完本文档，您将了解在Paddle静态图编程方式中，如何表示和定义数据变量，以及如何完整的组建一个深度学习网络并进行训练。
 
-在进行模型搭建之前，首先需要明确几个Fluid核心使用概念：
+## 数据的表示和定义
 
-## 使用Tensor表示数据
+Paddle和其他主流框架一样，使用Tensor数据结构来承载数据，包括模型中的可学习参数（如网络权重、偏置等），
+网络中每一层的输入输出数据，常量数据等。
 
-Fluid和其他主流框架一样，使用Tensor数据结构来承载数据。
+Tensor可以简单理解成一个多维数组，一般而言可以有任意多的维度。
+不同的Tensor可以具有自己的数据类型和形状，同一Tensor中每个元素的数据类型是一样的，
+Tensor的形状就是Tensor的维度。关于Tensor的详细介绍请参阅：[Tensor](../../user_guides/howto/basic_concept/tensor.html) 。
 
-在神经网络中传递的数据都是Tensor,Tensor可以简单理解成一个多维数组，一般而言可以有任意多的维度。不同的Tensor可以具有自己的数据类型和形状，同一Tensor中每个元素的数据类型是一样的，Tensor的形状就是Tensor的维度。
-
-下图直观地表示1～6维的Tensor：
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/beginners_guide/image/tensor.jpg" width="400">
-</p>
-
-
-在 Fluid 中存在三种特殊的 Tensor：
-
-**1. 模型中的可学习参数**
-
-模型中的可学习参数（包括网络权重、偏置等）生存期和整个训练任务一样长，会接受优化算法的更新，在 Fluid 中以 Variable 的子类 Parameter 表示。
-
-在Fluid中可以通过`fluid.layers.create_parameter`来创建可学习参数：
-
-```python
-w = fluid.layers.create_parameter(name="w",shape=[1],dtype='float32')
-```
-
-
-一般情况下，您不需要自己来创建网络中的可学习参数，Fluid 为大部分常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，下面的代码片段会直接为全连接层创建连接权值（W）和偏置（ bias ）两个可学习参数，无需显式地调用 Parameter 相关接口来创建。
-
-```python
-import paddle.fluid as fluid
-y = fluid.layers.fc(input=x, size=128, bias_attr=True)
-```
-
-**2. 输入输出Tensor**
-
-整个神经网络的输入数据也是一个特殊的 Tensor，在这个 Tensor 中，一些维度的大小在定义模型时无法确定（通常包括：batch size，如果 mini-batch 之间数据可变，也会包括图片的宽度和高度等），在定义模型时需要占位。
-
-
-Fluid 中使用 `fluid.layers.data` 来接收输入数据， `fluid.layers.data` 需要提供输入 Tensor 的形状信息，当遇到无法确定的维度时，相应维度指定为 None ，如下面的代码片段所示：
+在Paddle中我们使用 `fluid.data` 来创建数据变量， `fluid.data` 需要指定Tensor的形状信息和数据类型，
+当遇到无法确定的维度时，可以将相应维度指定为None，如下面的代码片段所示：
 
 ```python
 import paddle.fluid as fluid
 
-#定义x的维度为[3,None]，其中我们只能确定x的第一的维度为3，第二个维度未知，要在程序执行过程中才能确定
-x = fluid.layers.data(name="x", shape=[3,None], dtype="int64")
+# 定义一个数据类型为int64的二维数据变量x，x第一维的维度为3，第二个维度未知，要在程序执行过程中才能确定，因此x的形状可以指定为[3, None]
+x = fluid.data(name="x", shape=[3, None], dtype="int64")
 
-#batch size无需显示指定，框架会自动补充第0维为batch size，并在运行时填充正确数值
-a = fluid.layers.data(name="a",shape=[3,4],dtype='int64')
-
-#若图片的宽度和高度在运行时可变，将宽度和高度定义为None。
-#shape的三个维度含义分别是：channel、图片的宽度、图片的高度
-b = fluid.layers.data(name="image",shape=[3,None,None],dtype="float32")
+# 大多数网络都会采用batch方式进行数据组织，batch大小在定义时不确定，因此batch所在维度（通常是第一维）可以指定为None
+batched_x = fluid.data(name="batched_x", shape=[None, 3, None], dtype='int64')
 ```
 
-其中，dtype=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看：[Fluid目前支持的数据类型](../../user_guides/howto/prepare_data/feeding_data.html#fluid)。
-
-**3. 常量 Tensor**
-
-Fluid 通过 `fluid.layers.fill_constant` 来实现常量Tensor，用户可以指定Tensor的形状，数据类型和常量值。代码实现如下所示：
+除 `fluid.data` 之外，我们还可以使用 `fluid.layers.fill_constant` 来创建常量，
+如下代码将创建一个维度为[3, 4], 数据类型为int64的Tensor，其中所有元素均为16（value参数所指定的值）。
 
 ```python
 import paddle.fluid as fluid
-data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
+data = fluid.layers.fill_constant(shape=[3, 4], value=16, dtype='int64')
 ```
 
-需要注意的是，上述定义的tensor并不具有值，它们仅表示将要执行的操作，如您直接打印data将会得到描述该data的一段信息：
+以上例子中，我们只使用了一种数据类型"int64"，即有符号64位整数数据类型，更多Paddle目前支持的数据类型请查看：[支持的数据类型](../../user_guides/howto/prepare_data/feeding_data.html#fluid)。
+
+需要注意的是，在静态图编程方式中，上述定义的Tensor并不具有值（即使创建常量的时候指定了value），
+它们仅表示将要执行的操作，在网络执行时（训练或者预测）才会进行真正的赋值操作，
+如您直接打印上例代码中的data将会得对其信息的描述：
 
 ```python
 print data
@@ -89,90 +54,90 @@ type {
     lod_tensor {
         tensor {
             data_type: INT64
-            dims: 1
+            dims: 3
+            dims: 4
         }
     }
 }
 persistable: false
 ```
 
-具体输出数值将在Executor运行时得到。获取运行时的Variable数值有两种方式：方式一是利用 `paddle.fluid.layers.Print` 创建一个打印操作，打印正在访问的张量。方式二是将Variable添加在fetch_list中。
+在网络执行过程中，获取Tensor数值有两种方式：方式一是利用 `paddle.fluid.layers.Print` 创建一个打印操作，
+打印正在访问的Tensor。方式二是将Variable添加在fetch_list中。
 
 方式一的代码实现如下所示：
 
 ```python
 import paddle.fluid as fluid
-data = fluid.layers.fill_constant(shape=[1], value=0, dtype='int64')
+
+data = fluid.layers.fill_constant(shape=[3, 4], value=16, dtype='int64')
 data = fluid.layers.Print(data, message="Print data:")
+
+place = fluid.CPUPlace()
+exe = fluid.Executor(place)
+exe.run(fluid.default_startup_program())
+
+ret = exe.run()
 ```
 
 运行时的输出结果：
 
 ```
-1563874307	Print data: 	The place is:CPUPlace
+1571742368	Print data:	The place is:CPUPlace
 Tensor[fill_constant_0.tmp_0]
-	shape: [1,]
+	shape: [3,4,]
 	dtype: x
-	data: 0,
+	data: 16,16,16,16,16,16,16,16,16,16,16,16,
 ```
-
-更多 Print API 的使用方式请查看：[Print操作命令](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/layers_cn/control_flow_cn.html#print)。
 
 方式二Fetch_list的详细过程会在后文展开描述。
 
+## 数据读取
 
-## 数据传入
+使用 `fluid.data` 创建数据变量之后，我们需要把网络执行所需要的数据读取到对应变量中，
+具体的数据准备过程，请阅读[准备数据](../../user_guides/howto/prepare_data/index_cn.html)。
 
-Fluid有特定的数据传入方式：
+## 组建网络
 
-您需要使用 `fluid.layers.data` 配置数据输入层，并在 `fluid.Executor` 或 `fluid.ParallelExecutor` 中，使用 executor.run(feed=...) 传入训练数据。
+在Paddle中，数据计算类API统一称为Operator（算子），简称OP，大多数OP在 `paddle.fluid.layers` 模块中提供。
 
-具体的数据准备过程，请阅读[准备数据](../../user_guides/howto/prepare_data/index.html)
-
-
-## 使用Operator表示对数据的操作
-
-在Fluid中，所有对数据的操作都由Operator表示，您可以使用内置指令来描述他们的神经网络。
-
-为了便于用户使用，在Python端，Fluid中的Operator被封装入`paddle.fluid.layers`，`paddle.fluid.nets` 等模块。
-
-这是因为一些常见的对Tensor的操作可能是由更多基础操作构成，为了提高使用的便利性，框架内部对基础 Operator 进行了一些封装，包括创建 Operator 依赖可学习参数，可学习参数的初始化细节等，减少用户重复开发的成本。
-
-例如用户可以利用`paddle.fluid.layers.elementwise_add()`实现两个输入Tensor的加法运算：
+例如用户可以利用 `paddle.fluid.layers.elementwise_add()` 实现两个输入Tensor的加法运算：
 
 ```python
-#定义网络
+# 定义变量
 import paddle.fluid as fluid
-a = fluid.layers.data(name="a",shape=[1],dtype='float32')
-b = fluid.layers.data(name="b",shape=[1],dtype='float32')
+a = fluid.data(name="a", shape=[None, 1], dtype='int64')
+b = fluid.data(name="b", shape=[None, 1], dtype='int64')
 
+# 组建网络（此处网络仅由一个操作构成，即elementwise_add）
 result = fluid.layers.elementwise_add(a,b)
 
-#定义Exector
-cpu = fluid.core.CPUPlace() #定义运算场所，这里选择在CPU下训练
-exe = fluid.Executor(cpu) #创建执行器
-exe.run(fluid.default_startup_program()) #网络参数初始化
+# 准备运行网络
+cpu = fluid.CPUPlace() # 定义运算设备，这里选择在CPU下训练
+exe = fluid.Executor(cpu) # 创建执行器
+exe.run(fluid.default_startup_program()) # 网络参数初始化
 
-#准备数据
+# 读取输入数据
 import numpy
 data_1 = int(input("Please enter an integer: a="))
 data_2 = int(input("Please enter an integer: b="))
 x = numpy.array([[data_1]])
 y = numpy.array([[data_2]])
 
-#执行计算
+# 运行网络
 outs = exe.run(
-feed={'a':x,'b':y},
-fetch_list=[result.name])
+    feed={'a':x, 'b':y}, # 将输入数据x, y分别赋值给变量a，b
+    fetch_list=[result] # 通过fetch_list参数指定需要获取的变量结果
+    )
 
-#验证结果
+# 输出计算结果
 print "%d+%d=%d" % (data_1,data_2,outs[0][0])
 ```
 
 输出结果：
 ```
-a=7
-b=3
+Please enter an integer: a=7
+Please enter an integer: b=3
 7+3=10
 ```
 
@@ -184,11 +149,13 @@ b=3
 
 ```python
 ...
-#执行计算
+# 运行网络
 outs = exe.run(
-    feed={'a':x,'b':y},
-    fetch_list=[a,b,result.name])
-#查看输出结果
+    feed={'a':x, 'b':y}, # 将输入数据x, y分别赋值给变量a，b
+    fetch_list=[a, b, result] # 通过fetch_list参数指定需要获取的变量结果
+    )
+
+# 输出计算结果
 print outs
 ```
 
@@ -197,28 +164,29 @@ print outs
 [array([[7]]), array([[3]]), array([[10]])]
 ```
 
-## 使用Program描述神经网络模型
+## 组建更加复杂的网络
 
-Fluid不同于其他大部分深度学习框架，去掉了静态计算图的概念，代之以Program的形式动态描述计算过程。这种动态的计算描述方式，兼具网络结构修改的灵活性和模型搭建的便捷性，在保证性能的同时极大地提高了框架对模型的表达能力。
-
-开发者的所有 Operator 都将写入 Program ，在Fluid内部将自动转化为一种叫作 ProgramDesc 的描述语言，Program 的定义过程就像在写一段通用程序，有开发经验的用户在使用 Fluid 时，会很自然的将自己的知识迁移过来。
-
-其中，Fluid通过提供顺序、分支和循环三种执行结构的支持，让用户可以通过组合描述任意复杂的模型。
+Paddle提供顺序、分支和循环三种执行逻辑，用户可以通过组合描述任意复杂的模型。
 
 **顺序执行：**
 
 用户可以使用顺序执行的方式搭建网络：
 
 ```python
-x = fluid.layers.data(name='x',shape=[13], dtype='float32')
+x = fluid.data(name='x', shape=[None, 13], dtype='float32')
 y_predict = fluid.layers.fc(input=x, size=1, act=None)
-y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+y = fluid.data(name='y', shape=[None, 1], dtype='float32')
 cost = fluid.layers.square_error_cost(input=y_predict, label=y)
 ```
 
-**条件分支——switch、if else：**
+**条件分支和循环：**
 
-Fluid 中有 switch 和 if-else 类来实现条件选择，用户可以使用这一执行结构在学习率调节器中调整学习率或其他希望的操作：
+某些场景下，用户需要根据当前网络中的某些状态，来具体决定后续使用哪一种操作，
+或者需要根据某些网络状态来重复执行某些操作，针对这类需求，
+Paddle提供了 `fluid.layers.Switch` 和 `fluid.layers.IfElse` 
+两个API来实现条件分支的操作，以及 `fluid.layers.While` 来实现循环操作。
+
+下面的代码展示了如何使用 `fluid.layers.Switch` API来根据当前训练的step数进行动态学习率的调整：
 
 ```python
 lr = fluid.layers.tensor.create_global_var(
@@ -240,183 +208,96 @@ with fluid.layers.control_flow.Switch() as switch:
         fluid.layers.tensor.assign(input=two_var, output=lr)
 ```
 
+其他控制流API的使用方法，请参见文档：[IfElse](../../api_cn/layers_cn/IfElse_cn.html) 和 [While](../../api_cn/layers_cn/While_cn.html) 。
 
-关于 Fluid 中 Program 的详细设计思想，可以参考阅读[Fluid设计思想](../../advanced_usage/design_idea/fluid_design_idea.html)
-更多 Fluid 中的控制流，可以参考阅读[API文档](../../api_cn/layers_cn.html#control-flow)
+## 一个完整的网络示例
 
-## 使用Executor执行Program
+一个典型的模型通常包含4个部分，分别是：输入数据定义，搭建网络（模型前向计算逻辑），定义损失函数，以及选择优化算法。
 
-Fluid的设计思想类似于高级编程语言C++和JAVA等。程序的执行过程被分为编译和执行两个阶段。
+下面我们通过一个非常简单的数据预测网络（线性回归），来完整的展示如何使用Paddle静态图方式完成一个深度学习模型的组建和训练。
 
-用户完成对 Program 的定义后，Executor 接受这段 Program 并转化为C++后端真正可执行的 FluidProgram，这一自动完成的过程叫做编译。
+问题描述：给定一组数据 $<X,Y>$，求解出函数 $f$，使得 $y=f(x)$，其中$X$,$Y$均为一维张量。最终网络可以依据输入$x$，准确预测出$y_{\_predict}$。
 
-编译过后需要 Executor 来执行这段编译好的 FluidProgram。
+1. 定义数据
 
-例如上文实现的加法运算，当构建好 Program 后，需要创建 Executor，进行初始化 Program 和训练 Program：
-
-```python
-#定义Exector
-cpu = fluid.core.CPUPlace() #定义运算场所，这里选择在CPU下训练
-exe = fluid.Executor(cpu) #创建执行器
-exe.run(fluid.default_startup_program()) #用来进行初始化的program
-
-#训练Program，开始计算
-#feed以字典的形式定义了数据传入网络的顺序
-#fetch_list定义了网络的输出
-outs = exe.run(
-    feed={'a':x,'b':y},
-    fetch_list=[result.name])
-```
-
-## 代码实例
-
-至此，您已经对Fluid核心概念有了初步认识了，不妨尝试配置一个简单的网络吧。如果感兴趣的话可以跟随本部分，完成一个非常简单的数据预测。已经掌握这部分内容的话，可以跳过本节阅读[What's next](#what_next)。
-
-从逻辑层面明确了输入数据格式、模型结构、损失函数以及优化算法后，需要使用 PaddlePaddle 提供的 API 及算子来实现模型逻辑。一个典型的模型主要包含4个部分，分别是：输入数据格式定义，模型前向计算逻辑，损失函数以及优化算法。
-
-1. 问题描述
-
-    给定一组数据 $<X,Y>$，求解出函数 $f$，使得 $y=f(x)$，其中$X$,$Y$均为一维张量。最终网络可以依据输入$x$，准确预测出$y_{\_predict}$。
-
-2. 定义数据
-
-    假设输入数据X=[1 2 3 4]，Y=[2,4,6,8]，在网络中定义：
+    假设输入数据X=[1 2 3 4]，Y=[2 4 6 8]，在网络中定义：
 
     ```python
-    #定义X数值
-    train_data=numpy.array([[1.0],[2.0],[3.0],[4.0]]).astype('float32')
-    #定义期望预测的真实值y_true
-    y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
+    # 定义X数值
+    train_data=numpy.array([[1.0], [2.0], [3.0], [4.0]]).astype('float32')
+    # 定义期望预测的真实值y_true
+    y_true = numpy.array([[2.0], [4.0], [6.0], [8.0]]).astype('float32')
     ```
 
-3. 搭建网络（定义前向计算逻辑）
+2. 搭建网络（定义前向计算逻辑）
 
     接下来需要定义预测值与输入的关系，本次使用一个简单的线性回归函数进行预测：
 
     ```python
-    #定义输入数据类型
-    x = fluid.layers.data(name="x",shape=[1],dtype='float32')
-    #搭建全连接网络
-    y_predict = fluid.layers.fc(input=x,size=1,act=None)
+    # 定义输入数据类型
+    x = fluid.data(name="x", shape=[None, 1], dtype='float32')
+    y = fluid.data(name="y", shape=[None, 1], dtype='float32')
+    # 搭建全连接网络
+    y_predict = fluid.layers.fc(input=x, size=1, act=None)
     ```
 
-    这样的网络就可以进行预测了，虽然输出结果只是一组随机数，离预期结果仍相差甚远：
-
-    ```python
-    #加载库
-    import paddle.fluid as fluid
-    import numpy
-    #定义数据
-    train_data=numpy.array([[1.0],[2.0],[3.0],[4.0]]).astype('float32')
-    y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
-    #定义预测函数
-    x = fluid.layers.data(name="x",shape=[1],dtype='float32')
-    y_predict = fluid.layers.fc(input=x,size=1,act=None)
-    #参数初始化
-    cpu = fluid.core.CPUPlace()
-    exe = fluid.Executor(cpu)
-    exe.run(fluid.default_startup_program())
-    #开始训练
-    outs = exe.run(
-        feed={'x':train_data},
-        fetch_list=[y_predict.name])
-    #观察结果
-    print outs
-    ```
-
-    输出结果：
-
-    ```
-    [array([[0.74079144],
-               [1.4815829 ],
-               [2.2223744 ],
-               [2.9631658 ]], dtype=float32)]
-    ```
-
-4. 添加损失函数
+3. 添加损失函数
 
     完成模型搭建后，如何评估预测结果的好坏呢？我们通常在设计的网络中添加损失函数，以计算真实值与预测值的差。
 
     在本例中，损失函数采用[均方差函数](https://en.wikipedia.org/wiki/Mean_squared_error)：
+    
     ```python
     cost = fluid.layers.square_error_cost(input=y_predict, label=y)
     avg_cost = fluid.layers.mean(cost)
     ```
-    输出一轮计算后的预测值和损失函数：
 
-    ```python
-    #加载库
-    import paddle.fluid as fluid
-    import numpy
-    #定义数据
-    train_data=numpy.array([[1.0],[2.0],[3.0],[4.0]]).astype('float32')
-    y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
-    #定义网络
-    x = fluid.layers.data(name="x",shape=[1],dtype='float32')
-    y = fluid.layers.data(name="y",shape=[1],dtype='float32')
-    y_predict = fluid.layers.fc(input=x,size=1,act=None)
-    #定义损失函数
-    cost = fluid.layers.square_error_cost(input=y_predict,label=y)
-    avg_cost = fluid.layers.mean(cost)
-    #参数初始化
-    cpu = fluid.core.CPUPlace()
-    exe = fluid.Executor(cpu)
-    exe.run(fluid.default_startup_program())
-    #开始训练
-    outs = exe.run(
-        feed={'x':train_data,'y':y_true},
-        fetch_list=[y_predict.name,avg_cost.name])
-    #观察结果
-    print outs
-    ```
-    输出结果:
+4. 网络优化
 
-    ```
-    [array([[0.9010564],
-        [1.8021128],
-        [2.7031693],
-        [3.6042256]], dtype=float32), array([9.057577], dtype=float32)]
-    ```
-
-    可以看到第一轮计算后的损失函数为9.0，仍有很大的下降空间。
-
-5. 网络优化
-
-    确定损失函数后，可以通过前向计算得到损失值，然后通过链式求导法则得到参数的梯度值。
-
-    获取梯度值后需要更新参数，最简单的算法是随机梯度下降法：w=w−η⋅g，由`fluid.optimizer.SGD`实现：
+    确定损失函数后，可以通过前向计算得到损失值，并根据损失值对网络参数进行更新，最简单的算法是随机梯度下降法：w=w−η⋅g，由 `fluid.optimizer.SGD` 实现：
+    
     ```python
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.01)
+    sgd_optimizer.minimize(avg_cost)
+ 
     ```
+    
     让我们的网络训练100次，查看结果：
 
     ```python
-    #加载库
+    # 加载库
     import paddle.fluid as fluid
     import numpy
-    #定义数据
+ 
+    # 定义输入数据
     train_data=numpy.array([[1.0],[2.0],[3.0],[4.0]]).astype('float32')
     y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
-    #定义网络
-    x = fluid.layers.data(name="x",shape=[1],dtype='float32')
-    y = fluid.layers.data(name="y",shape=[1],dtype='float32')
+ 
+    # 组建网络
+    x = fluid.data(name="x",shape=[None, 1],dtype='float32')
+    y = fluid.data(name="y",shape=[None, 1],dtype='float32')
     y_predict = fluid.layers.fc(input=x,size=1,act=None)
-    #定义损失函数
+ 
+    # 定义损失函数
     cost = fluid.layers.square_error_cost(input=y_predict,label=y)
     avg_cost = fluid.layers.mean(cost)
-    #定义优化方法
+ 
+    # 选择优化方法
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.01)
     sgd_optimizer.minimize(avg_cost)
-    #参数初始化
-    cpu = fluid.core.CPUPlace()
+ 
+    # 网络参数初始化
+    cpu = fluid.CPUPlace()
     exe = fluid.Executor(cpu)
     exe.run(fluid.default_startup_program())
-    ##开始训练，迭代100次
+ 
+    # 开始训练，迭代100次
     for i in range(100):
         outs = exe.run(
-            feed={'x':train_data,'y':y_true},
-            fetch_list=[y_predict.name,avg_cost.name])
-    #观察结果
+            feed={'x':train_data, 'y':y_true},
+            fetch_list=[y_predict, avg_cost])
+    
+    # 输出训练结果
     print outs
     ```
 
@@ -427,16 +308,17 @@ outs = exe.run(
             [5.9935956],
             [7.8866425]], dtype=float32), array([0.01651453], dtype=float32)]
     ```
-    可以看到100次迭代后，预测值已经非常接近真实值了，损失值也从初始值9.05下降到了0.01。
+    
+    可以看到100次迭代后，预测值已经非常接近真实值了，损失值也下降到了0.0165。
 
     恭喜您！已经成功完成了第一个简单网络的搭建，想尝试线性回归的进阶版——房价预测模型，请阅读：[线性回归](../../beginners_guide/basics/fit_a_line/README.cn.html)。更多丰富的模型实例可以在[模型库](../../user_guides/models/index_cn.html)中找到。
 
 <a name="what_next"></a>
-## What's next
+## 进一步学习
 
 如果您已经掌握了基本操作，可以进行下一阶段的学习了：
 
-跟随这一教程将学习到如何对实际问题建模并使用fluid构建模型：[配置简单的网络](../../user_guides/howto/configure_simple_model/index_cn.html)。
+跟随这一教程将学习到如何对实际问题建模并使用Paddle构建模型：[配置简单的网络](../../user_guides/howto/configure_simple_model/index_cn.html)。
 
 完成网络搭建后，可以开始在单机或多机上训练您的网络了，详细步骤请参考[训练神经网络](../../user_guides/howto/training/index_cn.html)。
 
