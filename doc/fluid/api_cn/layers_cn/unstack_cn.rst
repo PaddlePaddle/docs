@@ -5,32 +5,31 @@ unstack
 
 .. py:function:: paddle.fluid.layers.unstack(x, axis=0, num=None)
 
-实现了unstack层。
-
-沿 ``axis`` 轴，该层对输入 ``x`` 进行unstack运算。
-
-如果 ``axis`` <0，则将其以 :math:`axis+rank(x)` 代之。
-
-如果 ``num`` 为 None，则它可以从 ``x.shape[axis]`` 中推断而来。
-
-如果 ``x.shape[axis]`` <= 0或者Unknown, 则抛出异常 ``ValueError`` 。
+该OP将单个dim为 ``D`` 的Tensor沿 ``axis`` 轴unpack为 ``num`` 个dim为 ``(D-1)`` 的Tensor
 
 参数:
-  - **x** (Variable|list(Variable)|tuple(Variable)) – 输入变量
-  - **axis** (int|None) – 对输入进行unstack运算所在的轴
-  - **num** (int|None) - 输出变量的数目
+      - **x** (Variable | list(Variable) | tuple(Variable)) – 输入x为 ``dim > 0`` 的Tensor，
+      支持的数据类型: float32，float64，int32，int64。
 
-返回: 经unstack运算后的变量
+      - **axis** (int | 可选) – 输入Tensor进行unpack运算所在的轴，axis的范围为：``[-D, D)`` ，
+      如果 ``axis < 0`` ，则 :math:`axis = axis + dim(x)`，axis的默认值为0。
+
+      - **num** (int | 可选) - axis轴的长度，一般无需设置，默认值为 ``None`` 。
+
+返回: 长度为num的Tensor列表, 数据类型与输入Tensor相同，dim为 ``(D-1)``。
 
 返回类型: list(Variable)
+
+抛出异常：
+      - :code:`ValueError`：``x.shape[axis]`` <= 0 或 ``axis`` 不在[-D, D)范围内
 
 **代码示例**：
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[5, 10], dtype='float32')
-    y = fluid.layers.unstack(x, axis=1)
+    x = fluid.layers.data(name='x', shape=[2, 3, 5], dtype='float32')  #创建一个shape=[2, 3, 5]的Tensor
+    y = fluid.layers.unstack(x, axis=1)  #沿着第1轴进行unpack, unpack后为3个shape=[2，5]的Tensor
 
 
 

@@ -15,8 +15,8 @@
 
     import paddle.fluid as fluid
 
-    image = fluid.layers.data(name='image', dtype='float32', shape=[784])
-    label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+    image = fluid.data(name='image', dtype='float32', shape=[None, 784])
+    label = fluid.data(name='label', dtype='int64', shape=[None, 1])
 
     ITERABLE = True
 
@@ -43,8 +43,8 @@
     import paddle.dataset.mnist as mnist
 
     def network():
-        image = fluid.layers.data(name='image', dtype='float32', shape=[784])
-        label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+        image = fluid.data(name='image', dtype='float32', shape=[None, 784])
+        label = fluid.data(name='label', dtype='int64', shape=[None, 1])
         loader = fluid.io.DataLoader.from_generator(feed_list=[image, label], capacity=64)
 
         # Definition of models
@@ -112,14 +112,14 @@ DataLoader对象通过 :code:`set_sample_generator()` ， :code:`set_sample_list
             batch_label = np.random.random_integers(size=(batch_size, 1), low=0, high=9).astype('int64')
             yield batch_image, batch_label
 
-    image1 = fluid.layers.data(name='image1', dtype='float32', shape=[784])
-    label1 = fluid.layers.data(name='label1', dtype='int64', shape=[1])
+    image1 = fluid.data(name='image1', dtype='float32', shape=[None, 784])
+    label1 = fluid.data(name='label1', dtype='int64', shape=[None, 1])
 
-    image2 = fluid.layers.data(name='image2', dtype='float32', shape=[784])
-    label2 = fluid.layers.data(name='label2', dtype='int64', shape=[1])
+    image2 = fluid.data(name='image2', dtype='float32', shape=[None, 784])
+    label2 = fluid.data(name='label2', dtype='int64', shape=[None, 1])
 
-    image3 = fluid.layers.data(name='image3', dtype='float32', shape=[784])
-    label3 = fluid.layers.data(name='label3', dtype='int64', shape=[1])
+    image3 = fluid.data(name='image3', dtype='float32', shape=[None, 784])
+    label3 = fluid.data(name='label3', dtype='int64', shape=[None, 1])
 
 对应的DataLoader设置如下：
 
@@ -178,8 +178,8 @@ DataLoader对象通过 :code:`set_sample_generator()` ， :code:`set_sample_list
 
     def network():
         # 创建数据层对象
-        image = fluid.layers.data(name='image', dtype='float32', shape=[784])
-        label = fluid.layers.data(name='label', dtype='int64', shape=[1])
+        image = fluid.data(name='image', dtype='float32', shape=[None, 784])
+        label = fluid.data(name='label', dtype='int64', shape=[None, 1])
 
         # 创建DataLoader对象
         reader = fluid.io.DataLoader.from_generator(feed_list=[image, label], capacity=64, iterable=ITERABLE)

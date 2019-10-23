@@ -9,5 +9,6 @@ LambOptimizer
 ..  autoclass:: paddle.fluid.optimizer.LambOptimizer
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

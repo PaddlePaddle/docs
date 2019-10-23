@@ -7,7 +7,7 @@ FLAGS_allocator_strategy
 **************************************
 (since 1.2)
 
-Use to choose allocator strategy of PaddlePaddle. Auto growth allocator is not stable yet.
+Use to choose allocator strategy of PaddlePaddle.
 
 Values accepted
 ---------------

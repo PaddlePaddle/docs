@@ -9,5 +9,6 @@ Momentum
 ..  autoclass:: paddle.fluid.optimizer.Momentum
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

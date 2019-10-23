@@ -60,6 +60,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 
 例如：
 
+
 .. code-block:: python
 
     import paddle.fluid as fluid
@@ -68,6 +69,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
     param_path = "./my_paddle_model"
     prog = fluid.default_main_program()
     fluid.io.save_params(executor=exe, dirname=param_path, main_program=None)
+
 
 上面的例子中，通过调用 :code:`fluid.io.save_params` 函数，PaddlePaddle Fluid会对默认
 :code:`fluid.Program` 也就是 :code:`prog` 中的所有模型变量进行扫描，
@@ -89,6 +91,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 
 例如：
 
+
 .. code-block:: python
 
     import paddle.fluid as fluid
@@ -98,6 +101,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
     prog = fluid.default_main_program()
     fluid.io.load_params(executor=exe, dirname=param_path,
                          main_program=prog)
+
 
 上面的例子中，通过调用 :code:`fluid.io.load_params` 函数，PaddlePaddle Fluid会对
 :code:`prog` 中的所有模型变量进行扫描，筛选出其中所有的模型参数，
@@ -116,6 +120,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 ===========================
 
 用户可以灵活地使用numpy数组设置模型参数的值，具体示例如下：
+
 
 .. code-block:: python
 
@@ -177,6 +182,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 
 例如：
 
+
 .. code-block:: python
 
     import paddle.fluid as fluid
@@ -185,6 +191,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
     path = "./models"
     prog = fluid.default_main_program()
     fluid.io.save_persistables(exe, path, prog)
+
 
 上面的例子中，通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认 :code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，并将他们保存到指定的 :code:`path` 目录下。
 
@@ -226,6 +233,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 
 对于训练过程中待保存参数的trainer， 例如：
 
+
 .. code-block:: python
 
     import paddle.fluid as fluid
@@ -241,6 +249,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
 .. code-block:: bash
     hadoop fs -mkdir /remote/$path
     hadoop fs -put $path /remote/$path
+
 
 上面的例子中，0号trainer通过调用 :code:`fluid.io.save_persistables` 函数，PaddlePaddle Fluid会从默认
 :code:`fluid.Program` 也就是 :code:`prog` 的所有模型变量中找出长期变量，并将他们保存到指定的 :code:`path` 目录下。然后通过调用第三方的文件系统（如HDFS）将存储的模型进行上传到所有PServer都可访问的位置。

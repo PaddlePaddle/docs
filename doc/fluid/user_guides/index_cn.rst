@@ -4,23 +4,23 @@
 
 ..  todo::
 
-如果您已经掌握了新手入门阶段的内容，期望可以针对实际问题建模、搭建自己网络，本模块提供了一些 Fluid 的使用细节供您参考：
+如果您已经掌握了新手入门阶段的内容，期望可以针对实际问题建模、搭建自己网络，本模块提供了一些 Paddle 的使用细节供您参考：
 
-    - `LoD-Tensor概念 <../user_guides/howto/basic_concept/index_cn.html>`_ ：介绍了Fluid LoD-Tensor的基本概念
+    - `基本概念 <../user_guides/howto/basic_concept/index_cn.html>`_ ：介绍了 Paddle 基本概念
 
-    - `准备数据 <../user_guides/howto/prepare_data/index_cn.html>`_ ：介绍使用 Fluid 训练网络时，数据的支持类型及传输方法
+    - `准备数据 <../user_guides/howto/prepare_data/index_cn.html>`_ ：介绍使用 Paddle 训练网络时，数据的支持类型及传输方法
 
-    - `配置简单的网络 <../user_guides/howto/configure_simple_model/index_cn.html>`_： 介绍如何针对问题建模，并利用 Fluid 中相关算子搭建网络
+    - `配置简单的网络 <../user_guides/howto/configure_simple_model/index_cn.html>`_： 介绍如何针对问题建模，并利用 Paddle 中相关算子搭建网络
 
-    - `训练神经网络 <../user_guides/howto/training/index_cn.html>`_：介绍如何使用 Fluid 进行单机训练、多机训练、以及保存和载入模型变量
+    - `训练神经网络 <../user_guides/howto/training/index_cn.html>`_：介绍如何使用 Paddle 进行单机训练、多机训练、以及保存和载入模型变量
 
-    - `DyGraph模式 <../user_guides/howto/dygraph/DyGraph.html>`_：介绍在 Fluid 下使用DyGraph
+    - `DyGraph模式 <../user_guides/howto/dygraph/DyGraph.html>`_：介绍在 Paddle 下使用DyGraph
 
-    - `模型评估与调试 <../user_guides/howto/evaluation_and_debugging/index_cn.html>`_：介绍在 Fluid 下进行模型评估和调试的方法。
+    - `模型评估与调试 <../user_guides/howto/evaluation_and_debugging/index_cn.html>`_：介绍在 Paddle 下进行模型评估和调试的方法。
 
-基于 Fluid 复现的多领域经典模型：
+基于 Paddle 复现的多领域经典模型：
 
-    - `Fluid 模型库 <../user_guides/models/index_cn.html>`_
+    - `模型库 <../user_guides/models/index_cn.html>`_
 
 ..  toctree::
     :hidden:
@@ -31,4 +31,4 @@
     howto/training/index_cn.rst
     howto/evaluation_and_debugging/index_cn.rst
     howto/dygraph/DyGraph.md
-    models/index_cn.md
+    models/index_cn.rst

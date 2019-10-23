@@ -40,7 +40,9 @@ fluid.layers
     layers_cn/box_decoder_and_assign_cn.rst
     layers_cn/bpr_loss_cn.rst
     layers_cn/brelu_cn.rst
+    layers_cn/BeamSearchDecoder_cn.rst
     layers_cn/cast_cn.rst
+    layers_cn/Categorical_cn.rst
     layers_cn/ceil_cn.rst
     layers_cn/center_loss_cn.rst
     layers_cn/chunk_eval_cn.rst
@@ -82,6 +84,8 @@ fluid.layers
     layers_cn/dynamic_gru_cn.rst
     layers_cn/dynamic_lstm_cn.rst
     layers_cn/dynamic_lstmp_cn.rst
+    layers_cn/dynamic_decode_cn.rst
+    layers_cn/Decoder_cn.rst
     layers_cn/DynamicRNN_cn.rst
     layers_cn/edit_distance_cn.rst
     layers_cn/elementwise_add_cn.rst
@@ -120,6 +124,7 @@ fluid.layers
     layers_cn/grid_sampler_cn.rst
     layers_cn/group_norm_cn.rst
     layers_cn/gru_unit_cn.rst
+    layers_cn/GRUCell_cn.rst
     layers_cn/hard_shrink_cn.rst
     layers_cn/hard_sigmoid_cn.rst
     layers_cn/hard_swish_cn.rst
@@ -161,6 +166,7 @@ fluid.layers
     layers_cn/lrn_cn.rst
     layers_cn/lstm_cn.rst
     layers_cn/lstm_unit_cn.rst
+    layers_cn/LSTMCell_cn.rst
     layers_cn/margin_rank_loss_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
@@ -171,6 +177,7 @@ fluid.layers
     layers_cn/multi_box_head_cn.rst
     layers_cn/multiclass_nms_cn.rst
     layers_cn/multiplex_cn.rst
+    layers_cn/MultivariateNormalDiag_cn.rst
     layers_cn/natural_exp_decay_cn.rst
     layers_cn/nce_cn.rst
     layers_cn/noam_decay_cn.rst
@@ -219,6 +226,7 @@ fluid.layers
     layers_cn/retinanet_detection_output_cn.rst
     layers_cn/retinanet_target_assign_cn.rst
     layers_cn/reverse_cn.rst
+    layers_cn/rnn_cn.rst
     layers_cn/roi_align_cn.rst
     layers_cn/roi_perspective_transform_cn.rst
     layers_cn/roi_pool_cn.rst
@@ -226,6 +234,7 @@ fluid.layers
     layers_cn/row_conv_cn.rst
     layers_cn/rpn_target_assign_cn.rst
     layers_cn/rsqrt_cn.rst
+    layers_cn/RNNCell_cn.rst
     layers_cn/sampled_softmax_with_cross_entropy_cn.rst
     layers_cn/sampling_id_cn.rst
     layers_cn/scale_cn.rst

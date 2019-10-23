@@ -9,5 +9,6 @@ Adamax
 ..  autoclass:: paddle.fluid.optimizer.Adamax
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

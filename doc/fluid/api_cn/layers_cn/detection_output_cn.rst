@@ -35,14 +35,10 @@ detection_output
 .. code-block:: python
     
     import paddle.fluid as fluid
-    pb = fluid.layers.data(name='prior_box', shape=[10, 4],
-             append_batch_size=False, dtype='float32')
-    pbv = fluid.layers.data(name='prior_box_var', shape=[10, 4],
-              append_batch_size=False, dtype='float32')
-    loc = fluid.layers.data(name='target_box', shape=[2, 21, 4],
-              append_batch_size=False, dtype='float32')
-    scores = fluid.layers.data(name='scores', shape=[2, 21, 10],
-              append_batch_size=False, dtype='float32')
+    pb = fluid.data(name='prior_box', shape=[10, 4], dtype='float32')
+    pbv = fluid.data(name='prior_box_var', shape=[10, 4], dtype='float32')
+    loc = fluid.data(name='target_box', shape=[2, 21, 4], dtype='float32')
+    scores = fluid.data(name='scores', shape=[2, 21, 10], dtype='float32')
     nmsed_outs = fluid.layers.detection_output(scores=scores,
                            loc=loc,
                            prior_box=pb,
