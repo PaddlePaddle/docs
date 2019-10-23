@@ -17,16 +17,13 @@ To make MKL-DNN cache working with multi-threading scenarios:
 * reading and modifying operations on MKL-DNN cache are ensured to be thread safe
 * cache key contains Thread ID (when applicable)
 
-It was checked that it is more efficient (performance wise) to remove cache entries (in case of cache clearing mode) considering executed model's input shape, rather just remove cache entries based on LIFO order. That
-is the reason why shape based cached was designed (second level MKL-DNN cache).
+It was checked that it is more efficient (performance wise) to remove cache entries (in case of cache clearing mode) considering executed model's input shape, rather just remove cache entries based on FIFO order. That
+is the reason why shape based cached was designed (second level MKL-DNN cache). Currently model's input shape that is a key for second level cache is not related to input shape which is part of key in first level cache.
 
 ##### a. Operational modes of MKL-DNN cache
 Cache default mode is normal operating mode of MKL-DNN cache, suitable for single and multi-threaded execution e.g. Thread ID is part of cache key name that is used for referring cached objects.
 
-Cache clearing mode is a special operation mode designed for single threaded usage e.g. (Thread ID is not part of cache key). In this mode when set capacity of cache is to be exceeded (by adding next entry) then the registered entries corresponding to oldest input shape used by PaddlePaddle in given session , are erased.  
-
-It is possible to call platform::set_cur_mkldnn_session_id() to enumerate sessions of PaddlePaddle execution directly. At that situation no Thread ID is added to the key , as enumeration itself is suitable to differentiate among
-non MKL-DNN threads used.
+Cache clearing mode is a special operation mode designed for single threaded usage e.g. (Thread ID is not part of cache key). In this mode when set capacity of cache is to be exceeded (by adding next entry) then the registered entries corresponding to oldest input shape used by PaddlePaddle in given session , are erased (Refer to  __section b.__ for details on erasing cache entries based on input shape). Input shape is registered as a key for second level cache in AnalysisPredictor::MkldnnPreSet().
 
 ##### b. Adding object to MKL-DNN cache 
 
@@ -84,5 +81,5 @@ than backward kernel of the same instance of operator. In that situation hashing
 ensure MKL-DNN cache consistency.
 
 ### 4. Store once created MKL-DNN objects in order To avoid MKL-DNN recreation
-While MKL-DNN computational algorithms are fast to be executed, preparing to execution e.g. Creation of computational primitives and its primitive descriptors takes significant time. We can save some time on recreation
+While MKL-DNN computational algorithms are fast to be executed, preparing to execution e.g. Creation of computational primitives and its primitive descriptors takes significant time (From 2% up to 40% for latency mode inference, depends on Platform instruction sets and MKL-DNN version). We can save some time on recreation
 of computational MKL-DNN primitives and its primitive descriptors, by storing once created MKL-DNN objects in a cache and refer to them in subsequent iterations when needed. 
