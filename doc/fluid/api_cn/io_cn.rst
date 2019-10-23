@@ -16,6 +16,7 @@ fluid.io
     io_cn/compose_cn.rst
     io_cn/Fake_cn.rst
     io_cn/firstn_cn.rst
+    io_cn/load_cn.rst
     io_cn/load_inference_model_cn.rst
     io_cn/load_params_cn.rst
     io_cn/load_persistables_cn.rst
@@ -24,6 +25,7 @@ fluid.io
     io_cn/multiprocess_reader_cn.rst
     io_cn/PipeReader_cn.rst
     io_cn/PyReader_cn.rst
+    io_cn/save_cn.rst
     io_cn/save_inference_model_cn.rst
     io_cn/save_params_cn.rst
     io_cn/save_persistables_cn.rst
