@@ -54,7 +54,8 @@ type {
     lod_tensor {
         tensor {
             data_type: INT64
-            dims: 2
+            dims: 3
+            dims: 4
         }
     }
 }
@@ -105,8 +106,8 @@ Tensor[fill_constant_0.tmp_0]
 ```python
 # 定义变量
 import paddle.fluid as fluid
-a = fluid.data(name="a", shape=[None, 1], dtype='float32')
-b = fluid.data(name="b", shape=[None, 1], dtype='float32')
+a = fluid.data(name="a", shape=[None, 1], dtype='int64')
+b = fluid.data(name="b", shape=[None, 1], dtype='int64')
 
 # 组建网络（此处网络仅由一个操作构成，即elementwise_add）
 result = fluid.layers.elementwise_add(a,b)
