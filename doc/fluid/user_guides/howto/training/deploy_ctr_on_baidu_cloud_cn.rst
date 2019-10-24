@@ -10,7 +10,7 @@ ELASTIC CTR
 
 * `1. 总体概览 <#head1>`_
 * `2. 前置需求 <#head2>`_
-* `3. 分布式训练+serving方案一键部署 <#head3>`_
+* `3. 分布式训练+Serving方案一键部署 <#head3>`_
 * `4. 查看结果 <#head4>`_
 * `5. 二次开发指南 <#head5>`_
 
@@ -37,11 +37,11 @@ ELASTIC CTR
 
 
 * trainer/pserver: 训练环节采用PaddlePaddle parameter server模式，对应trainer和pserver角色。分布式训练使用\ `volcano <https://volcano.sh/>`_\ 做批量任务管理工具
-* file server: 训练产出的模型文件，托管到File Server，供下游模块下载；训练产出的文件包括：ProgramDesc和模型参数，模型参数中最大的embedding由工具转换为seqfile格式，经过一系列流程配送到cube分布式稀疏参数服务，其余模型参数保持不变，配送到Paddle Serving模块
-* cube-transfer: 负责监控上游训练作业产出的模型文件（hadoop sequence file）变化，拉取到本地，并调用cube-builder构建cube字典文件；通知cube-agent节点拉取最新的字典文件，并维护各个cube-server上版本一致性
+* file server: 训练产出的模型文件，托管到File Server，供下游模块下载；训练产出的文件包括：ProgramDesc和模型参数，模型参数中最大的embedding由工具转换为seqfile格式，经过一系列流程配送到Cube分布式稀疏参数服务，其余模型参数保持不变，配送到Paddle Serving模块
+* cube-transfer: 负责监控上游训练作业产出的模型文件（hadoop sequence file）变化，拉取到本地，并调用cube-builder构建Cube字典文件；通知cube-agent节点拉取最新的字典文件，并维护各个cube-server上版本一致性
 * cube-builder: 负责将训练作业产出的模型文件（hadoop sequence file格式）转换成可以被cube-server加载的字典文件。字典文件具有特定的数据结构，针对尺寸和内存中访问做了高度优化
-* Cube-Server: 提供分片kv读写能力的服务节点
-* Cube-agent: 与cube-server同机部署，接收cube-transfer下发的字典文件更新命令，拉取数据到本地，通知cube-server进行更新
+* cube-server: 提供分片kv读写能力的服务节点
+* cube-agent: 与cube-server同机部署，接收cube-transfer下发的字典文件更新命令，拉取数据到本地，通知cube-server进行更新
 * Paddle Serving: 加载CTR预估任务模型ProgramDesc和dense参数，提供预测服务
 * Client: CTR预估任务的demo客户端
 
@@ -60,7 +60,7 @@ ELASTIC CTR
 
 **第2节 前置需求** 指导用户从零开始，在百度云上申请BCE集群，并部署volcano工具。本方案需使用\ `volcano <https://volcano.sh/>`_\ 做训练环节批量任务管理工具，目前在百度云上验证通过
 
-**第3节 分布式训练+serving方案部署** 使用paddle-suite.sh，一键部署分布式训练+serving完整流程；并详细解释脚本每一步的工作和含义
+**第3节 分布式训练+Serving方案部署** 使用paddle-suite.sh，一键部署分布式训练+serving完整流程；并详细解释脚本每一步的工作和含义
 
 **第4节 查看结果** 根据各个pod输出，验证一键安装状态
 
@@ -148,7 +148,7 @@ ELASTIC CTR
    :alt: image
 
 
-3. :raw-html-m2r:`<span id='head3'>分布式训练+serving方案一键部署</span>`
+3. :raw-html-m2r:`<span id='head3'>分布式训练+Serving方案一键部署</span>`
 =============================================================================
 
 3.1 下载部署方案脚本文件
@@ -431,10 +431,10 @@ pserver日志示例：
 
 如上图所示
 
-5.3 指定cube参数服务器的分片数量和副本数量
+5.3 指定Cube参数服务器的分片数量和副本数量
 ------------------------------------------
 
-在cube.yaml文件当中，我们可以看到每一个cube的节点的定义，有一个\ ``cubeserver pod``\ 和\ ``cube serverservice``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
+在cube.yaml文件当中，我们可以看到每一个Cube的节点的定义，有一个\ ``cubeserver pod``\ 和\ ``cube serverservice``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
 
 
 .. image:: src/cube_config1.png
