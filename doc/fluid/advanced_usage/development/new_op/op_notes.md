@@ -117,18 +117,21 @@ GetExpectedKernelType方法是OperatorWithKernel类中用于获取指定设备�
 
 基类OperatorWithKernel中的GetExpectedKernelType方法对于派生类Op的所有输入变量进行了完备的初始化检查，建议在新增的Op中直接使用基类的此方法，例如：
 
-- [MeanOp](https://github.com/PaddlePaddle/Paddle/blob/7f17da4c0e17da3805c6c0983dfa71b58a6b32ff/paddle/fluid/operators/mul_op.cc#L117)：该Op的所有输入变量在Run之前应该全部被初始化，初始化检查是必要且合理的
+- [MeanOp](https://github.com/PaddlePaddle/Paddle/blob/3556514e971bdbb98fdf0f556371c527f4dfa98c/paddle/fluid/operators/mean_op.cc#L39)：该Op的所有输入变量在Run之前应该全部被初始化，初始化检查是必要且合理的
 
-但是在一些特殊情况下，直接使用基类的GetExpectedKernelType方法无法满足需求，则需要对该方法进行重写，具体情况及示例如下：
+但是在一些情况下，直接使用基类的GetExpectedKernelType方法无法满足需求，则需要对该方法进行重写，具体情况及示例如下：
 
-1. Op包含Dispensable的输入变量
-    - [ConvOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/conv_op.cc#L206)：该Op存在可选的输入变量Bias等
+1. OP的输入有多个，且数据类型不同，例如 [AccuracyOp](https://github.com/PaddlePaddle/Paddle/blob/370f0345b6d35a513c8e64d519a0edfc96b9276c/paddle/fluid/operators/metrics/accuracy_op.cc#L80)，需要重写GetExpectedKernelType方法，指定用某一输入变量获取kernel类型
 
-2. Op的部分输入变量即使未被初始化也属于合理情况
-    - [ConcatOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/concat_op.cc#L90)：该Op的输入变量X中有Tensor未被初始化也视为合理情况
+2. Op包含Dispensable的输入变量，该类输入变量是可选的，当用户未输入时，该类变量未被初始化属于合理情况，例如 [ConvOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/conv_op.cc#L206)，存在Bias等可选的输入变量，需要重写GetExpectedKernelType方法，指定用必须提供的输入变量获取kernel类型
 
-3. Op Kernel类型需要特殊处理
-    - [MulOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/mul_op.cc#L89)：该Op使用了mkldnn库，需要单独处理
+3. Op的部分输入变量即使未被初始化也属于合理情况，例如 [ConcatOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/concat_op.cc#L90)，输入变量X中有个Tensor需要连接，其中可能包含未被初始化的Tensor，需要重写GetExpectedKernelType方法，使用输入变量X获取kernel的过程中，合理忽略掉部分Tensor为空的情况
+
+4. OP的Kernel类型与输入变量无关（可能由其他参数指定），例如 [FillOp](https://github.com/PaddlePaddle/Paddle/blob/efbdad059634bef022d4a3f5b00aef6ef8e88ed6/paddle/fluid/operators/one_hot_op.cc#L72)，该Op没有输入，Kernel类型通过Op的dtype参数指定，因此需要重写GetExpectedKernelType方法，用参数指定的数据类型获取kernel类型
+
+5. Op Kernel的部分参数在使用某些库时，需要指定为相应的值，因此需要重写GetExpectedKernelType方法，覆盖默认参数
+    - 使用CUDNN库：需要指定OpKernel的LibraryType为kCUDNN，例如 [AffineGridOp](https://github.com/PaddlePaddle/Paddle/blob/370f0345b6d35a513c8e64d519a0edfc96b9276c/paddle/fluid/operators/affine_grid_op.cc#L78)
+    - 使用MKLDNN库：需要指定OpKernel的LibraryType和DataLayout为kMKLDNN [MulOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/mul_op.cc#L89)
 
 #### 4.2 重写此方法时需要对输入变量进行初始化检查
 
