@@ -17,10 +17,10 @@ To make MKL-DNN cache working with multi-threading scenarios:
 * reading and modifying operations on MKL-DNN cache are ensured to be thread safe
 * cache key contains Thread ID (when applicable)
 
-This design was for supporting dynamic shape. Since MKLDNN primitives are sensitive to src/dst shape, if new input shape comes, we need to create new one, that means there will be many primitives cached and MKL-DNN cache would consume lots of memory. By introducing second level cache, we can consider these kind of primitive as a group, once reach memory limitation, we can clear a whole group instead of just one primitive, and release more memory.
+The design of MKL-DNN cache is to support dynamic shapes scenario (BERT model for example). Since MKLDNN primitives are sensitive to src/dst shape, if new input shape comes, new primitive needs to be created. That means there will be many primitives cached and MKL-DNN cache would consume lots of memory. By introducing second level cache, we can consider these kind of primitive as a group, once reach memory limitation, we can clear a whole group instead of just one primitive, and release more memory.
 
 Performance-wise it is better to clear group of primitives at once rather than to erase one primitive based on FIFO. More over when searching a cache it is also more efficient to have grouped primitives via input shape , so 
-we referring to specific primitive we consider only primitives in a group not all registered mkl-dnn cached objects. 
+we referring to specific primitive we consider only primitives in a group not all registered MKL-DNN cached objects. 
 
 Currently model's input shape that is a key for second level cache is not related to input shape which is part of key in first level cache.
 
