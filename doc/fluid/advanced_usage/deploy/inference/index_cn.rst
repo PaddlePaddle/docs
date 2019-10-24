@@ -18,6 +18,7 @@
    build_and_install_lib_cn.rst
    native_infer.md
    python_infer_cn.md
+   c_infer_cn.md
    paddle_tensorrt_infer.md
    paddle_gpu_benchmark.md
    windows_cpp_inference.md
