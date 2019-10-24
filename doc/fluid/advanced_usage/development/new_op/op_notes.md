@@ -113,7 +113,20 @@ Fluid的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可�
 ### 4.GetExpectedKernelType方法重写
 GetExpectedKernelType方法是OperatorWithKernel类中用于获取指定设备（例如CPU，GPU）上指定数据类型（例如double，float）的OpKernel的方法。该方法通过获取Variable内部的Tensor数据类型得知需要的Kernel数据类型，但是由于Tensor在此处可能尚未被初始化，因此会导致报出`holder_ should not be null. Tensor not initialized yet when Tensor::type()`的错误，例如[Paddle issue #19522](https://github.com/PaddlePaddle/Paddle/issues/19522) 。用户仅凭该错误信息无法得知具体出错的Op，因此需要在GetExpectedKernelType方法内添加相应的检查拦截此错误，实现注意事项如下：
 
-- 如果输入变量均为相同数据类型的Variable，建议不实现该方法，默认使用基类OperatorWithKernel中的GetExpectedKernelType方法，该基类方法对输入Variable进行了完备的检查
+- 如果输入变量均为相同数据类型的Variable，且在Op Run之前所有的输入变量均已被初始化，且OpKernel类型也不需要特殊处理，则建议不实现该方法，默认使用基类OperatorWithKernel中的GetExpectedKernelType方法，该基类方法对所有输入的Variable进行了完备的检查。对于是否需要重写此方法，说明示例如下：
+
+  - 可以不重写GetExpectedKernelType方法的Op示例
+    - [MeanOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/mean_op.cc#L27)：输入变量在Run之前必须被初始化
+
+  - 需要重写GetExpectedKernelType方法的Op示例1：包含Dispensable的输入变量
+    - [ConvOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/conv_op.cc#L206)：存在可选的输入变量，该类变量可能未被初始化
+
+  - 需要重写GetExpectedKernelType方法的Op示例2：输入Variable即使未初始化也属于合理情况
+    - [ConcatOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/concat_op.cc#L90)：输入X中有Tensor未被初始化也视为合理情况
+
+  - 需要重写GetExpectedKernelType方法的Op示例3：Op Kernel类型需要特殊处理
+    - [MulOp](https://github.com/PaddlePaddle/Paddle/blob/250e72d254ccbe3521c29aa2801a1cb15b75ea73/paddle/fluid/operators/mul_op.cc#L89)：可能使用了mkldnn库，需要单独处理
+
 - 如果需要根据某一输入变量获取Kernel类型，请使用`OperatorWithKernel::IndicateVarDataType`接口获取Variable的dtype，使用示例如下，具体请参考[Paddle PR #20044](https://github.com/PaddlePaddle/Paddle/pull/20044)：
 ```
   framework::OpKernelType GetExpectedKernelType(
