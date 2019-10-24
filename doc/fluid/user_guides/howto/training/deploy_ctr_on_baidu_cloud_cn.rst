@@ -434,7 +434,7 @@ pserver日志示例：
 5.3 指定Cube参数服务器的分片数量和副本数量
 ------------------------------------------
 
-在cube.yaml文件当中，我们可以看到每一个Cube的节点的定义，有一个\ ``cubeserver pod``\ 和\ ``cube serverservice``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
+在cube.yaml文件当中，我们可以看到每一个Cube的节点的定义，有一个\ ``cube server pod``\ 和\ ``cube server service``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
 
 
 .. image:: src/cube_config1.png
