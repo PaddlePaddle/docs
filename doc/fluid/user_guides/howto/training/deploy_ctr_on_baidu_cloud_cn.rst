@@ -23,7 +23,7 @@ ELASTIC CTR
 * 整体方案在k8s环境一键部署，可快速搭建与验证效果
 * 基于Paddle transpiler模式的大规模分布式高速训练
 * 训练资源弹性伸缩
-* 工业级稀疏参数Serving组件，高并发条件下单位时间吞吐总量是redis的13倍 [\ `注1 <#annotation_1>`_\ ]
+* 工业级稀疏参数Serving组件，高并发条件下单位时间吞吐总量是Redis的13倍 [\ `注1 <#annotation_1>`_\ ]
 
 本方案整体流程如下图所示：
 
@@ -448,7 +448,7 @@ pserver日志示例：
    :alt: image
 
 
-以上两个图片，一个是对cube POD的定义，一个是对cubeSERVICE的定义。如果需要扩展Cube分片数量，可以复制POD和SERVICE的定义，并重命名它们。示例程序给出的是2个分片，复制之后第3个可以命名为cube-2。
+以上两个图片，一个是对Cube POD的定义，一个是对CubeSERVICE的定义。如果需要扩展Cube分片数量，可以复制POD和SERVICE的定义，并重命名它们。示例程序给出的是2个分片，复制之后第3个可以命名为cube-2。
 
 5.4 Serving适配新的模型
 -----------------------
@@ -469,10 +469,10 @@ pserver日志示例：
 注释
 ====
 
-注1. :raw-html-m2r:`<span id='annotation_1'>Cube和redis性能对比测试环境</span>`
+注1. :raw-html-m2r:`<span id='annotation_1'>Cube和Redis性能对比测试环境</span>`
 -----------------------------------------------------------------------------------
 
-Cube和Redis均在百度云环境上部署，测试时只测试单个cube server和redis server节点的性能。
+Cube和Redis均在百度云环境上部署，测试时只测试单个Cube server和Redis server节点的性能。
 
 client端和server端分别位于2台独立的云主机，机器间ping延时为0.3ms-0.5ms。
 
@@ -485,9 +485,9 @@ Cube测试环境
 
 首先用本方案一键部署脚本部署完成。
 
-用Paddle Serving的cube客户端SDK，编写测试代码
+用Paddle Serving的Cube客户端SDK，编写测试代码
 
-基本原理，启动k个线程，每个线程访问M次cube server，每次批量获取N个key，总时间加和求平均。
+基本原理，启动k个线程，每个线程访问M次Cube server，每次批量获取N个key，总时间加和求平均。
 
 .. list-table::
    :header-rows: 1
@@ -527,11 +527,11 @@ Redis测试环境
 
 测试key 1-1000000之间随机整数，value为40字节字符串
 
-server端部署redis-sever (latest stable 5.0.6)
+server端部署Redis-server (latest stable 5.0.6)
 
 client端为基于\ `redisplusplus <https://github.com/sewenew/redis-plus-plus>`_\ 编写的客户端\ `get_values.cpp <https://github.com/PaddlePaddle/Serving/blob/master/doc/resource/get_value.cpp>`_
 
-基本原理：启动k个线程，每个线程访问M次redis server，每次用mget批量获取N个key。总时间加和求平均。
+基本原理：启动k个线程，每个线程访问M次Redis server，每次用mget批量获取N个key。总时间加和求平均。
 
 调用方法：
 
@@ -581,8 +581,8 @@ client端为基于\ `redisplusplus <https://github.com/sewenew/redis-plus-plus>`
 测试结论
 ^^^^^^^^
 
-由于Redis高效的时间驱动模型和全内存操作，在单并发时，redis平均响应时间比cube少接近50% (1100us vs. 1680us)
+由于Redis高效的时间驱动模型和全内存操作，在单并发时，Redis平均响应时间比Cube少接近50% (1100us vs. 1680us)
 
-在扩展性方面，redis受制于单线程模型，随并发数增加，响应时间加倍增加，而总吞吐在1000qps左右即不再上涨；而cube则随着压测并发数增加，总的qps一直上涨，说明cube能够较好处理并发请求，具有良好的扩展能力。
+在扩展性方面，Redis受制于单线程模型，随并发数增加，响应时间加倍增加，而总吞吐在1000qps左右即不再上涨；而Cube则随着压测并发数增加，总的qps一直上涨，说明Cube能够较好处理并发请求，具有良好的扩展能力。
 
 RocksDB在线程数较少的时候，平均响应时间和qps慢于Redis，但是在16以及更多线程的测试当中，RocksDB提供了更快的响应时间和更大的qps。
