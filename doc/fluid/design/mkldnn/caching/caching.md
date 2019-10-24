@@ -17,8 +17,12 @@ To make MKL-DNN cache working with multi-threading scenarios:
 * reading and modifying operations on MKL-DNN cache are ensured to be thread safe
 * cache key contains Thread ID (when applicable)
 
-It was checked that it is more efficient (performance wise) to remove cache entries (in case of cache clearing mode) considering executed model's input shape, rather just remove cache entries based on FIFO order. That
-is the reason why shape based cached was designed (second level MKL-DNN cache). Currently model's input shape that is a key for second level cache is not related to input shape which is part of key in first level cache.
+This design was for supporting dynamic shape. Since MKLDNN primitives are sensitive to src/dst shape, if new input shape comes, we need to create new one, that means there will be many primitives cached and MKL-DNN cache would consume lots of memory. By introducing second level cache, we can consider these kind of primitive as a group, once reach memory limitation, we can clear a whole group instead of just one primitive, and release more memory.
+
+Performance-wise it is better to clear group of primitives at once rather than to erase one primitive based on FIFO. More over when searching a cache it is also more efficient to have grouped primitives via input shape , so 
+we referring to specific primitive we consider only primitives in a group not all registered mkl-dnn cached objects. 
+
+Currently model's input shape that is a key for second level cache is not related to input shape which is part of key in first level cache.
 
 ##### a. Operational modes of MKL-DNN cache
 Cache default mode is normal operating mode of MKL-DNN cache, suitable for single and multi-threaded execution e.g. Thread ID is part of cache key name that is used for referring cached objects.
