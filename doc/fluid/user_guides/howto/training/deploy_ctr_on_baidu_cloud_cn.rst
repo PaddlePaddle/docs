@@ -584,3 +584,5 @@ client端为基于\ `redisplusplus <https://github.com/sewenew/redis-plus-plus>`
 由于Redis高效的时间驱动模型和全内存操作，在单并发时，redis平均响应时间比cube少接近50% (1100us vs. 1680us)
 
 在扩展性方面，redis受制于单线程模型，随并发数增加，响应时间加倍增加，而总吞吐在1000qps左右即不再上涨；而cube则随着压测并发数增加，总的qps一直上涨，说明cube能够较好处理并发请求，具有良好的扩展能力。
+
+RocksDB在线程数较少的时候，平均响应时间和qps慢于Redis，但是在16以及更多线程的测试当中，RocksDB提供了更快的响应时间和更大的qps。
