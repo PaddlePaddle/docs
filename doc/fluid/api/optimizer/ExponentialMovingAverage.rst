@@ -9,5 +9,6 @@ ExponentialMovingAverage
 ..  autoclass:: paddle.fluid.optimizer.ExponentialMovingAverage
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

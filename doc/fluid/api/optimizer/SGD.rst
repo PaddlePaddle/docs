@@ -9,5 +9,6 @@ SGD
 ..  autoclass:: paddle.fluid.optimizer.SGD
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

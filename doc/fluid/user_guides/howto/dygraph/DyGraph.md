@@ -134,9 +134,11 @@ import numpy as np
 class MyLayer(fluid.dygraph.Layer):
     def __init__(self, name_scope):
         super(MyLayer, self).__init__(name_scope)
+        self.fc = fluid.dygraph.nn.FC(self.full_name(), size=12)
     
     def forward(self, inputs):
-        x = fluid.layers.relu(inputs)
+        x = self.fc(inputs)
+        x = fluid.layers.relu(x)
         self._x_for_debug = x
         x = fluid.layers.elementwise_mul(x, x)
         x = fluid.layers.reduce_sum(x)
@@ -144,16 +146,70 @@ class MyLayer(fluid.dygraph.Layer):
 
 
 if __name__ == '__main__':
-    np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
+    np_inp = np.array([[1.0, 2.0, -1.0]], dtype=np.float32)
     with fluid.dygraph.guard():
         var_inp = fluid.dygraph.to_variable(np_inp)
-        var_inp.stop_gradient = False
         my_layer = MyLayer("my_layer")
         x = my_layer(var_inp)[0]
         dy_out = x.numpy()
         x.backward()
         dy_grad = my_layer._x_for_debug.gradient()
         my_layer.clear_gradients()  # 将参数梯度清零以保证下一轮训练的正确性
+```
+
+### 关于自动剪枝
+
+每个 ``Variable`` 都有一个 ``stop_gradient`` 属性，可以用于细粒度地在反向梯度计算时排除部分子图，以提高效率。
+
+如果OP只有一个输入需要梯度，那么该OP的输出也需要梯度。
+相反，只有当OP的所有输入都不需要梯度时，该OP的输出也不需要梯度。
+在所有的 ``Variable`` 都不需要梯度的子图中，反向计算就不会进行计算了。
+
+在动态图模式下，除参数以外的所有 ``Variable`` 的 ``stop_gradient`` 属性默认值都为 ``True``，而参数的 ``stop_gradient`` 属性默认值为 ``False``。
+该属性用于自动剪枝，避免不必要的反向运算。
+
+例如：
+
+```python
+import paddle.fluid as fluid
+import numpy as np
+
+with fluid.dygraph.guard():
+    x = fluid.dygraph.to_variable(np.random.randn(5, 5))  # 默认stop_gradient=True
+    y = fluid.dygraph.to_variable(np.random.randn(5, 5))  # 默认stop_gradient=True
+    z = fluid.dygraph.to_variable(np.random.randn(5, 5))
+    z.stop_gradient = False
+    a = x + y
+    a.stop_gradient  # True
+    b = a + z
+    b.stop_gradient  # False
+```
+
+当你想冻结你的模型的一部分，或者你事先知道你不会使用某些参数的梯度的时候，这个功能是非常有用的。
+
+例如：
+
+```python
+import paddle.fluid as fluid
+import numpy as np
+
+with fluid.dygraph.guard():
+    value0 = np.arange(26).reshape(2, 13).astype("float32")
+    value1 = np.arange(6).reshape(2, 3).astype("float32")
+    value2 = np.arange(10).reshape(2, 5).astype("float32")
+    fc = fluid.FC("fc1", size=5, dtype="float32")
+    fc2 = fluid.FC("fc2", size=3, dtype="float32")
+    a = fluid.dygraph.to_variable(value0)
+    b = fluid.dygraph.to_variable(value1)
+    c = fluid.dygraph.to_variable(value2)
+    out1 = fc(a)
+    out2 = fc2(b)
+    out1.stop_gradient = True  # 将不会对out1这部分子图做反向计算
+    out = fluid.layers.concat(input=[out1, out2, c], axis=1)
+    out.backward()
+    # 可以发现这里fc参数的梯度都为0
+    assert (fc._w.gradient() == 0).all()
+    assert (out1.gradient() == 0).all()
 ```
 
 ## 使用DyGraph训练模型
@@ -201,8 +257,8 @@ if __name__ == '__main__':
                 padding=conv_padding,
                 dilation=conv_dilation,
                 groups=conv_groups,
-                param_attr=None,
-                bias_attr=None,
+                param_attr=param_attr,
+                bias_attr=bias_attr,
                 act=act,
                 use_cudnn=use_cudnn)
     
@@ -291,7 +347,6 @@ if __name__ == '__main__':
         train_reader = paddle.batch(
             paddle.dataset.mnist.train(), batch_size=32, drop_last=True)
         mnist = MNIST("mnist")
-        id, data = list(enumerate(train_reader()))[0]
         adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
         for epoch in range(epoch_num):
             for batch_id, data in enumerate(train_reader()):
@@ -556,23 +611,21 @@ Loss at epoch 0 step 0: [0.5767452]
 
 ## 模型参数的保存
 
+动态图由于模型和优化器在不同的对象中存储，模型参数和优化器信息要分别存储。 
 
- 在模型训练中可以使用`                    fluid.dygraph.save_persistables(your_model_object.state_dict(), "save_dir", optimizers=None)`来保存`your_model_object`中所有的模型参数, 以及使用`learning rate decay`的优化器。也可以自定义需要保存的“参数名” - “参数对象”的Python Dictionary传入。
+ 在模型训练中可以使用 `paddle.fluid.dygraph.save_dygraph(state_dict, model_path)` 来保存模型参数的dict或优化器信息的dict。
 
-同样可以使用`models，optimizers =     fluid.dygraph.load_persistables("save_dir")`获取保存的模型参数和优化器。
+同样可以使用 `paddle.fluid.dygraph.load_dygraph(model_path)` 获取保存的模型参数的dict和优化器信息的dict。
 
+再使用`your_modle_object.set_dict(para_dict)`接口来恢复保存的模型参数从而达到继续训练的目的。
 
-再使用`your_modle_object.load_dict(models)`接口来恢复保存的模型参数从而达到继续训练的目的。
-
-以及使用`your_optimizer_object.load(optimizers)`接口来恢复保存的优化器中的`learning rate decay`值
-
-
-
+以及使用`your_optimizer_object.set_dict(opti_dict)`接口来恢复保存的优化器中的`learning rate decay`值。
 
 下面的代码展示了如何在“手写数字识别”任务中保存参数并且读取已经保存的参数来继续训练。
 
-
 ```python
+import paddle.fluid as fluid
+
 with fluid.dygraph.guard():
     epoch_num = 5
     BATCH_SIZE = 64
@@ -605,14 +658,14 @@ with fluid.dygraph.guard():
             avg_loss.backward()
             adam.minimize(avg_loss)
             if batch_id == 20:
-                fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir", adam)
+                fluid.dygraph.save_dygraph(mnist.state_dict(), "paddle_dy")
             mnist.clear_gradients()
 
             if batch_id == 20:
                 for param in mnist.parameters():
                     dy_param_init_value[param.name] = param.numpy()
-                model, _ = fluid.dygraph.load_persistables("save_dir")
-                mnist.load_dict(model)
+                model, _ = fluid.dygraph.load_dygraph("paddle_dy")
+                mnist.set_dict(model)
                 break
         if epoch == 0:
             break
@@ -630,7 +683,7 @@ with fluid.dygraph.guard():
 
 ```python
     if fluid.dygraph.parallel.Env().local_rank == 0:
-        fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
+        fluid.dygraph.save_dygraph(mnist.state_dict(), "paddle_dy")
 ```
 
 ## 模型评估
@@ -673,7 +726,7 @@ def inference_mnist():
     with fluid.dygraph.guard():
         mnist_infer = MNIST("mnist")
         # load checkpoint
-        model_dict, _ = fluid.dygraph.load_persistables("save_dir")
+        model_dict, _ = fluid.dygraph.load_dygraph("paddle_dy")
         mnist_infer.load_dict(model_dict)
         print("checkpoint loaded")
 
@@ -739,7 +792,7 @@ with fluid.dygraph.guard():
         print("Loss at epoch {} , Test avg_loss is: {}, acc is: {}".format(
             epoch, test_cost, test_acc))
 
-    fluid.dygraph.save_persistables(mnist.state_dict(), "save_dir")
+    fluid.dygraph.save_dygraph(mnist.state_dict(), "paddle_dy")
     print("checkpoint saved")
 
     inference_mnist()

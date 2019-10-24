@@ -9,5 +9,6 @@ LarsMomentumOptimizer
 ..  autoclass:: paddle.fluid.optimizer.LarsMomentumOptimizer
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

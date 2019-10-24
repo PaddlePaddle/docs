@@ -31,7 +31,7 @@ Long-Short Term Memory（LSTM）循环神经网络计算单元。该OP用于完�
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：Variable的二元组，包含了两个形状均为 :math:`[N, D]` 的Tensor，分别表示hiddel和cell输出，即公式中的 :math:`h_{t}` 和 :math:`c_{t}` 。数据类型与输入 ``x_t`` 相同。
+返回：Variable的二元组，包含了两个形状和数据类型均与 ``hidden_t_prev`` 相同的Tensor，分别表示hiddel和cell输出，即公式中的 :math:`h_{t}` 和 :math:`c_{t}` 。
 
 返回类型：tuple
 
