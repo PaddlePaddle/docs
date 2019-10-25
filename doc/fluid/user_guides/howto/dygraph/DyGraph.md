@@ -19,9 +19,9 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 ## 设置和基本用法
 
-1. 升级到最新的PaddlePaddle 1.5:		
+1. 升级到最新的PaddlePaddle 1.6.0:		
 		
-		pip install -q --upgrade paddlepaddle==1.5
+		pip install -q --upgrade paddlepaddle==1.6.0
 
 
 
