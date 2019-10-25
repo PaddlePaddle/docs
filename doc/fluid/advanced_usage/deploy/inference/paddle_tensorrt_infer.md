@@ -21,7 +21,7 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 2. Windows支持需要TensorRT 版本5.0以上。
 3. Paddle-TRT目前仅支持固定输入shape。
 4. 若使用用户自行安装的TensorRT，需要手动在`NvInfer.h`文件中为`class IPluginFactory`和`class IGpuAllocator`分别添加虚析构函数：
-	```c++
+	``` c++
     virtual ~IPluginFactory() {};
 	virtual ~IGpuAllocator() {};
     ```
@@ -37,7 +37,7 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 
 在使用AnalysisPredictor时，我们通过配置AnalysisConfig中的接口
 
-```c++
+``` c++
 config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,   
                         batch_size        /* max_batch_size*/,     
                         3                 /* min_subgraph_size*/, 
@@ -106,7 +106,7 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 
 4. 编译与运行样例   
 
-	```shell
+	``` shell
 	sh run.sh
 	```
  
@@ -123,7 +123,7 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 2. 编译测试INT8样例
 	将`run.sh`文件中的`mobilenet_test`改为`fluid_generate_calib_test`，运行
     
-    ```shell   
+    ``` shell   
     sh run.sh  
     ```
 
@@ -131,13 +131,13 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
     
     生成校准表后，将带校准表的模型文件拷贝到特定地址
     
-    ```shell   
+    ``` shell   
     cp -rf SAMPLE_BASE_DIR/sample/paddle-TRT/build/mobilenetv1/ SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib  
     ```
     
 	将`run.sh`文件中的`fluid_generate_calib_test`改为`fluid_int8_test`，将模型路径改为`SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib`，运行
     
-	```shell   
+	``` shell   
     sh run.sh  
     ```
     
