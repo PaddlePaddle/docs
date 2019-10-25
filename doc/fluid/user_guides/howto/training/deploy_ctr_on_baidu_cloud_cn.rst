@@ -10,7 +10,7 @@ ELASTIC CTR
 
 * `1. 总体概览 <#head1>`_
 * `2. 前置需求 <#head2>`_
-* `3. 分布式训练+serving方案一键部署 <#head3>`_
+* `3. 分布式训练+Serving方案一键部署 <#head3>`_
 * `4. 查看结果 <#head4>`_
 * `5. 二次开发指南 <#head5>`_
 
@@ -20,10 +20,10 @@ ELASTIC CTR
 本项目提供了端到端的CTR训练和二次开发的解决方案，主要特点：
 
 
-* 使用K8S集群解决原来在物理集群上训练时，会出现类似于配置参数冗杂，环境搭建繁复等问题。
-* 使用基于Kube-batch开发的Volcano框架来进行任务提交和弹性调度。
-* 使用Paddle Serving来进行模型的上线和预测。
-* 使用Cube作为稀疏参数的分布式存储，在预测端与Paddle Serving对接。
+* 整体方案在k8s环境一键部署，可快速搭建与验证效果
+* 基于Paddle transpiler模式的大规模分布式高速训练
+* 训练资源弹性伸缩
+* 工业级稀疏参数Serving组件，高并发条件下单位时间吞吐总量是Redis的13倍 [\ `注1 <#annotation_1>`_\ ]
 
 本方案整体流程如下图所示：
 
@@ -37,11 +37,13 @@ ELASTIC CTR
 
 
 * trainer/pserver: 训练环节采用PaddlePaddle parameter server模式，对应trainer和pserver角色。分布式训练使用\ `volcano <https://volcano.sh/>`_\ 做批量任务管理工具
-* file server: 训练产出的模型文件，托管到File Server，供下游模块下载；训练产出的文件包括：ProgramDesc和模型参数，模型参数中最大的embedding由工具转换为seqfile格式，经过一系列流程配送到cube分布式稀疏参数服务，其余模型参数保持不变，配送到Paddle Serving模块
-* cube-transfer: 负责监控上游训练作业产出的模型文件（hadoop sequence file）变化，拉取到本地，并调用cube-builder构建cube字典文件；通知cube-agent节点拉取最新的字典文件，并维护各个cube-server上版本一致性
+* file server: 训练产出的模型文件，托管到File Server，供下游模块下载；训练产出的文件包括：ProgramDesc和模型参数，模型参数中最大的embedding由工具转换为seqfile格式，经过一系列流程配送到Cube分布式稀疏参数服务，其余模型参数保持不变，配送到Paddle Serving模块
+* cube-transfer: 负责监控上游训练作业产出的模型文件（hadoop sequence file）变化，拉取到本地，并调用cube-builder构建Cube字典文件；通知cube-agent节点拉取最新的字典文件，并维护各个cube-server上版本一致性
 * cube-builder: 负责将训练作业产出的模型文件（hadoop sequence file格式）转换成可以被cube-server加载的字典文件。字典文件具有特定的数据结构，针对尺寸和内存中访问做了高度优化
-* Cube-Server: 提供分片kv读写能力的服务节点
-* Cube-agent: 与cube-server同机部署，接收cube-transfer下发的字典文件更新命令，拉取数据到本地，通知cube-server进行更新
+* cube-server: 提供分片kv读写能力的服务节点
+* cube-agent: 与cube-server同机部署，接收cube-transfer下发的字典文件更新命令，拉取数据到本地，通知cube-server进行更新
+* Paddle Serving: 加载CTR预估任务模型ProgramDesc和dense参数，提供预测服务
+* Client: CTR预估任务的demo客户端
 
 以上组件串联完成从训练到预测部署的所有流程。本文档所提供的一键部署脚本\ `paddle-suite.sh <https://github.com/PaddlePaddle/Serving/blob/master/doc/resource/paddle-suite.sh>`_\ 可一键部署上述所有组件。
 
@@ -58,7 +60,7 @@ ELASTIC CTR
 
 **第2节 前置需求** 指导用户从零开始，在百度云上申请BCE集群，并部署volcano工具。本方案需使用\ `volcano <https://volcano.sh/>`_\ 做训练环节批量任务管理工具，目前在百度云上验证通过
 
-**第3节 分布式训练+serving方案部署** 使用paddle-suite.sh，一键部署分布式训练+serving完整流程；并详细解释脚本每一步的工作和含义
+**第3节 分布式训练+Serving方案部署** 使用paddle-suite.sh，一键部署分布式训练+serving完整流程；并详细解释脚本每一步的工作和含义
 
 **第4节 查看结果** 根据各个pod输出，验证一键安装状态
 
@@ -76,7 +78,7 @@ ELASTIC CTR
 `百度智能云CCE容器引擎帮助文档-创建集群 <https://cloud.baidu.com/doc/CCE/GettingStarted/24.5C.E5.88.9B.E5.BB.BA.E9.9B.86.E7.BE.A4.html#.E6.93.8D.E4.BD.9C.E6.AD.A5.E9.AA.A4>`_\ ，在百度智能云上建立一个集群，节点配置需要满足如下要求
 
 
-* CPU核数 &gt; 4
+* CPU核数 > 4
 
 申请容器引擎示例:
 
@@ -146,7 +148,7 @@ ELASTIC CTR
    :alt: image
 
 
-3. :raw-html-m2r:`<span id='head3'>分布式训练+serving方案一键部署</span>`
+3. :raw-html-m2r:`<span id='head3'>分布式训练+Serving方案一键部署</span>`
 =============================================================================
 
 3.1 下载部署方案脚本文件
@@ -397,6 +399,8 @@ pserver日志示例：
 
    $ docker build -t ${DOCKER_IMAGE_NAME} .
    $ docker push  ${DOCKER_IMAGE_NAME}
+   
+推荐使用百度云提供的镜像仓库，这里是说明文档\ `推送镜像到镜像仓库 <https://cloud.baidu.com/doc/CCE/s/Yjxppt74z/#%E6%8E%A8%E9%80%81%E9%95%9C%E5%83%8F%E5%88%B0%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93>`_\ 
 
 5.2 指定训练规模
 ----------------
@@ -427,10 +431,10 @@ pserver日志示例：
 
 如上图所示
 
-5.3 指定cube参数服务器的分片数量和副本数量
+5.3 指定Cube参数服务器的分片数量和副本数量
 ------------------------------------------
 
-在cube.yaml文件当中，我们可以看到每一个cube的节点的定义，有一个\ ``cubeserver pod``\ 和\ ``cube serverservice``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
+在cube.yaml文件当中，我们可以看到每一个Cube的节点的定义，有一个\ ``cube server pod``\ 和\ ``cube server service``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
 
 
 .. image:: src/cube_config1.png
@@ -444,7 +448,7 @@ pserver日志示例：
    :alt: image
 
 
-以上两个图片，一个是对cube POD的定义，一个是对cubeSERVICE的定义。如果需要扩展Cube分片数量，可以复制POD和SERVICE的定义，并重命名它们。示例程序给出的是2个分片，复制之后第3个可以命名为cube-2。
+以上两个图片，一个是对Cube POD的定义，一个是对CubeSERVICE的定义。如果需要扩展Cube分片数量，可以复制POD和SERVICE的定义，并重命名它们。示例程序给出的是2个分片，复制之后第3个可以命名为cube-2。
 
 5.4 Serving适配新的模型
 -----------------------
@@ -460,3 +464,125 @@ pserver日志示例：
 用户可在此基础上进行修改。
 
 关于Paddle Serving的完整开发模式，可参考\ `Serving从零开始写一个预测服务 <https://github.com/PaddlePaddle/Serving/blob/develop/doc/CREATING.md>`_\ ，以及\ `Paddle Serving的其他文档 <https://github.com/PaddlePaddle/Serving/tree/develop/doc>`_
+
+
+注释
+====
+
+注1. :raw-html-m2r:`<span id='annotation_1'>Cube和Redis性能对比测试环境</span>`
+-----------------------------------------------------------------------------------
+
+Cube和Redis均在百度云环境上部署，测试时只测试单个Cube server和Redis server节点的性能。
+
+client端和server端分别位于2台独立的云主机，机器间ping延时为0.3ms-0.5ms。
+
+机器配置：Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz 32核
+
+Cube测试环境
+^^^^^^^^^^^^
+
+测试key 64bit整数，value为10个float （40字节）
+
+首先用本方案一键部署脚本部署完成。
+
+用Paddle Serving的Cube客户端SDK，编写测试代码
+
+基本原理，启动k个线程，每个线程访问M次Cube server，每次批量获取N个key，总时间加和求平均。
+
+.. list-table::
+   :header-rows: 1
+
+   * - 并发数 （压测线程数）
+     - batch size
+     - 平均响应时间 (us)
+     - total qps
+   * - 1
+     - 1000
+     - 1312
+     - 762
+   * - 4
+     - 1000
+     - 1496
+     - 2674
+   * - 8
+     - 1000
+     - 1585
+     - 5047
+   * - 16
+     - 1000
+     - 1866
+     - 8574
+   * - 24
+     - 1000
+     - 2236
+     - 10733
+   * - 32
+     - 1000
+     - 2602
+     - 12298
+     
+
+Redis测试环境
+^^^^^^^^^^^^^
+
+测试key 1-1000000之间随机整数，value为40字节字符串
+
+server端部署Redis-server (latest stable 5.0.6)
+
+client端为基于\ `redisplusplus <https://github.com/sewenew/redis-plus-plus>`_\ 编写的客户端\ `get_values.cpp <https://github.com/PaddlePaddle/Serving/blob/master/doc/resource/get_value.cpp>`_
+
+基本原理：启动k个线程，每个线程访问M次Redis server，每次用mget批量获取N个key。总时间加和求平均。
+
+调用方法：
+
+.. code-block:: bash
+
+   $ ./get_values -h 192.168.1.1 -t 3 -r 10000 -b 1000
+
+其中
+-h server所在主机名
+-t 并发线程数
+-r 每线程请求次数
+-b 每个mget请求的key个数
+
+.. list-table::
+   :header-rows: 1
+
+   * - 并发数 （压测线程数）
+     - batch size
+     - 平均响应时间 (us)
+     - total qps
+   * - 1
+     - 1000
+     - 1159
+     - 862
+   * - 4
+     - 1000
+     - 3537
+     - 1079
+   * - 8
+     - 1000
+     - 7726
+     - 1073
+   * - 16
+     - 1000
+     - 15440
+     - 1034
+   * - 24
+     - 1000
+     - 24279
+     - 1004
+   * - 32
+     - 1000
+     - 32570
+     - 996
+
+
+测试结论
+^^^^^^^^
+
+由于Redis高效的时间驱动模型和全内存操作，在单并发时，Redis平均响应时间比Cube少接近50% (1100us vs. 1680us)
+
+在扩展性方面，Redis受制于单线程模型，随并发数增加，响应时间加倍增加，而总吞吐在1000qps左右即不再上涨；而Cube则随着压测并发数增加，总的qps一直上涨，说明Cube能够较好处理并发请求，具有良好的扩展能力。
+
+RocksDB在线程数较少的时候，平均响应时间和qps慢于Redis，但是在16以及更多线程的测试当中，RocksDB提供了更快的响应时间和更大的qps。
