@@ -2,7 +2,7 @@
 
 ## 环境准备
 
-* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8/9.2, 且仅支持单卡)*
+* *Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 8.0/9.0/10.0, 且仅支持单卡)*
 * *Python 版本 2.7/3.5.1+/3.6/3.7 (64 bit)*
 * *pip 或 pip3 版本 9.0.1+ (64 bit)*
 * *Visual Studio 2015 Update3*
@@ -12,7 +12,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * *CUDA 工具包8.0 配合cuDNN v7.1+, 9.0配合cuDNN v7.3+*
+    * *CUDA 工具包8.0配合cuDNN v7.1+, 9.0/10.0配合cuDNN v7.3+*
     * *GPU运算能力超过1.0的硬件设备*
 
 ## 安装步骤
@@ -24,7 +24,7 @@
 <a name="win_source"></a>
 ### ***本机编译***
 
-1. 安装必要的工具 cmake，git 以及 python ：
+1. 安装必要的工具 cmake，git 以及 python：
 
     > cmake 需要3.5 及以上版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
 
@@ -32,11 +32,11 @@
 
     > 需要安装`numpy, protobuf, wheel` 。python2.7下, 请使用`pip`命令; 如果是python3.x, 请使用`pip3`命令。
 
-        * 安装 numpy 包可以通过命令 `pip install numpy` 或 `pip3 install numpy`
+		* 安装 numpy 包可以通过命令 `pip install numpy` 或 `pip3 install numpy`
 
-        * 安装 protobuf 包可以通过命令 `pip install protobuf` 或 `pip3 install protobuf`
+		* 安装 protobuf 包可以通过命令 `pip install protobuf` 或 `pip3 install protobuf`
 
-        * 安装 wheel 包可以通过命令 `pip install wheel` 或 `pip3 install wheel`
+		* 安装 wheel 包可以通过命令 `pip install wheel` 或 `pip3 install wheel`
 
     > git可以在官网[下载](https://gitforwindows.org/)，并添加到环境变量中。
 
@@ -51,7 +51,7 @@
 
 	例如：
 
-	`git checkout release/1.2`
+	`git checkout release/1.5`
 
 	注意：python3.6、python3.7版本从release/1.2分支开始支持
 
@@ -62,55 +62,37 @@
 
 5. 执行cmake：
 
-	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	> 具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
 
 	*  编译**CPU版本PaddlePaddle**：
-
-		For Python2: `cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
-			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
-
-		For Python3: `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
-			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+	
+	`cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
 	*  编译**GPU版本PaddlePaddle**：
-
-		For Python2: `cmake .. -G "Visual Studio 14 2015 Win64" -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
-			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
-			 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=${CUDA_TOOLKIT_ROOT_DIR}`
-
-		For Python3: `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS}
-			 -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-			 -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
-			 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=${CUDA_TOOLKIT_ROOT_DIR}`
 	
-    注意：上述命令中对应的参数应修改为你所在设备上的对应路径，或者将它们加入环境变量中，以编译GPU版本的PaddlePaddle的python3.6版本为例，
-	
-	    -DPY_VERSION 为python版本
-	    -DPYTHON_INCLUDE_DIR 为对应版本python的include目录
-	    -DPYTHON_LIBRARY 为对应版本python的lib目录
-	    -DPYTHON_EXECUTABLE 为对应版本python的可执行程序的路径
-	    -DCUDA_TOOLKIT_ROOT_DIR 为安装cuda的根目录
-	
-	将相关路径加入环境变量中后，这个例子所用cmake命令为：
-	
-     `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release `
-	
-	若设备上存在多个版本python，或者多个版本cuda，或者没有将路径加入环境变量，这个例子所用cmake命令为：
-	
-     `cmake .. -G "Visual Studio 14 2015 Win64" -DPY_VERSION=3.6 -DPYTHON_INCLUDE_DIR=C:\\Python36\\include -DPYTHON_LIBRARY=C:\\Python36\\Lib -DPYTHON_EXECUTABLE=C:\\Python36\\python3.exe -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DCUDA_TOOLKIT_ROOT_DIR=D:\\cuda`
+	`cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
-6. 部分第三方依赖包（openblas，snappystream）目前需要用户自己提供预编译版本，也可以到 `https://github.com/wopeizl/Paddle_deps` 下载预编译好的文件， 将整个 `third_party` 文件夹放到 `build` 目录下.
+	默认为Python2，Python3请添加：
 
-7. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，先编译third_party模块，然后编译其他模块
+	> -DPY_VERSION=3（或3.5、3.6、3.7）
 
-8. 编译成功后进入 `\paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
+	如果你的设备信息包含多个Python或CUDA版本，你也可以通过设置路径变量，来指定特定版本的Python或CUDA：
 
-	`cd \paddle\build\python\dist`
+	> -DPYTHON_EXECUTABLE 为python的可执行程序(python.exe)的路径
 
-9. 在当前机器或目标机器安装编译好的 `.whl` 包：
+	> -DCUDA_TOOLKIT_ROOT_DIR 为cuda安装目录的根路径
+
+	例如：（仅作示例，请根据你的设备路径信息进行设置）
+	
+	`cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"`
+
+6. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
+
+7. 编译成功后进入 `\Paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
+
+	`cd \Paddle\build\python\dist`
+
+8. 在当前机器或目标机器安装编译好的 `.whl` 包：
 
 	`pip install -U（whl包的名字）` 或 `pip3 install -U（whl包的名字）`
 

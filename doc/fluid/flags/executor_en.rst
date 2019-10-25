@@ -3,7 +3,7 @@ executor
 ==================
 
 
-enable_parallel_graph
+FLAGS_enable_parallel_graph
 *******************************************
 (since 1.2.0)
 
@@ -18,7 +18,7 @@ Example
 FLAGS_enable_parallel_graph=False will force disable parallel graph execution mode by ParallelExecutor.
 
 
-pe_profile_fname
+FLAGS_pe_profile_fname
 *******************************************
 (since 1.3.0)
 
@@ -33,7 +33,7 @@ Example
 FLAGS_pe_profile_fname="./parallel_executor.perf" will store the profile result to parallel_executor.perf.
 
 
-print_sub_graph_dir
+FLAGS_print_sub_graph_dir
 *******************************************
 (since 1.2.0)
 
@@ -48,7 +48,7 @@ Example
 FLAGS_print_sub_graph_dir="./sub_graphs.txt" will print the disconnected subgraphs to "./sub_graphs.txt".
 
 
-use_ngraph
+FLAGS_use_ngraph
 *******************************************
 (since 1.4.0)
 

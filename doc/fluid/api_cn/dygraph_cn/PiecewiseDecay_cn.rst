@@ -5,28 +5,25 @@ PiecewiseDecay
 
 .. py:class:: paddle.fluid.dygraph.PiecewiseDecay(boundaries, values, begin, step=1, dtype='float32')
 
-对初始学习率进行分段(piecewise)衰减。
+该接口提供对初始学习率进行分段(piecewise)常数衰减的功能。
 
-该算法可用如下代码描述。
+分段常数衰减的过程举例描述如下。
 
 .. code-block:: text
 
-    boundaries = [10000, 20000]
-    values = [1.0, 0.5, 0.1]
-    if step < 10000:
-        learning_rate = 1.0
-    elif 10000 <= step < 20000:
-        learning_rate = 0.5
-    else:
-        learning_rate = 0.1
+    例如，设定的boundaries列表为[10000, 20000]，候选学习率常量列表values为[1.0, 0.5, 0.1]，则：
+    1、在当前训练步数global_step小于10000步，学习率值为1.0。
+    2、在当前训练步数global_step大于或等于10000步，并且小于20000步时，学习率值为0.5。
+    3、在当前训练步数global_step大于或等于20000步时，学习率值为0.1。
 
 参数：
-    - **boundaries** -一列代表步数的数字
-    - **values** -一列学习率的值，从不同的步边界中挑选
-    - **begin**  – 用于初始化self.step_num的起始步(默认为0)。
-    - **step**  – 计算新的step_num步号时使用的步大小(默认为1)。
-    - **dtype**  – 初始化学习率变量的dtype
+    - **boundaries** (list) - 指定衰减的步数边界。列表的数据元素为Python int类型。
+    - **values** (list) - 备选学习率列表。数据元素类型为Python float的列表。与边界值列表有对应的关系。
+    - **begin** (int) – 起始步，即以上举例描述中global_step的初始化值。
+    - **step** (int，可选) – 步大小，即以上举例描述中global_step每步的递增值。默认值为1。
+    - **dtype** (str，可选) – 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
+返回： 无
 
 **代码示例**
 

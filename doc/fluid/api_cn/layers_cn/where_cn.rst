@@ -4,17 +4,15 @@ where
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.where(condition)
-     
-返回一个秩为2的int64型张量，指定condition中真实元素的坐标。
-     
-输出的第一维是真实元素的数量，第二维是condition的秩（维数）。如果没有真实元素，则将生成空张量。
+
+该OP计算输入元素中为True的元素在输入中的坐标（index）。
         
 参数：
-    - **condition** （Variable） - 秩至少为1的布尔型张量。
+    - **condition** （Variable）– 输入秩至少为1的多维Tensor，数据类型是bool类型。
 
-返回：存储一个二维张量的张量变量
+返回：输出condition元素为True的坐标（index），将所有的坐标（index）组成一个2-D的Tensor。
 
-返回类型：变量（Variable）
+返回类型：Variable，数据类型是int64。
      
 **代码示例**：
 
@@ -37,7 +35,5 @@ where
         condition = layers.assign(np.array([0, 0, 0], dtype='int32'))
         condition = layers.cast(condition, 'bool')
         out = layers.where(condition) # [[]]
-
-
 
 

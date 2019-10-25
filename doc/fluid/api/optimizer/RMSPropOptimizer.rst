@@ -9,5 +9,6 @@ RMSPropOptimizer
 ..  autoclass:: paddle.fluid.optimizer.RMSPropOptimizer
     :members:
     :inherited-members:
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 

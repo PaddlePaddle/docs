@@ -1,3 +1,5 @@
+.. _cn_api_fluid_layers:
+
 =======================
 fluid.layers
 =======================
@@ -28,7 +30,6 @@ fluid.layers
     layers_cn/atan_cn.rst
     layers_cn/auc_cn.rst
     layers_cn/autoincreased_step_counter_cn.rst
-    layers_cn/batch_cn.rst
     layers_cn/batch_norm_cn.rst
     layers_cn/beam_search_cn.rst
     layers_cn/beam_search_decode_cn.rst
@@ -39,8 +40,11 @@ fluid.layers
     layers_cn/box_decoder_and_assign_cn.rst
     layers_cn/bpr_loss_cn.rst
     layers_cn/brelu_cn.rst
+    layers_cn/BeamSearchDecoder_cn.rst
     layers_cn/cast_cn.rst
+    layers_cn/Categorical_cn.rst
     layers_cn/ceil_cn.rst
+    layers_cn/center_loss_cn.rst
     layers_cn/chunk_eval_cn.rst
     layers_cn/clip_by_norm_cn.rst
     layers_cn/clip_cn.rst
@@ -61,6 +65,7 @@ fluid.layers
     layers_cn/create_tensor_cn.rst
     layers_cn/crf_decoding_cn.rst
     layers_cn/crop_cn.rst
+    layers_cn/crop_tensor_cn.rst
     layers_cn/cross_entropy_cn.rst
     layers_cn/ctc_greedy_decoder_cn.rst
     layers_cn/cumsum_cn.rst
@@ -79,6 +84,8 @@ fluid.layers
     layers_cn/dynamic_gru_cn.rst
     layers_cn/dynamic_lstm_cn.rst
     layers_cn/dynamic_lstmp_cn.rst
+    layers_cn/dynamic_decode_cn.rst
+    layers_cn/Decoder_cn.rst
     layers_cn/DynamicRNN_cn.rst
     layers_cn/edit_distance_cn.rst
     layers_cn/elementwise_add_cn.rst
@@ -96,13 +103,17 @@ fluid.layers
     layers_cn/exp_cn.rst
     layers_cn/expand_cn.rst
     layers_cn/exponential_decay_cn.rst
+    layers_cn/eye_cn.rst
     layers_cn/fc_cn.rst
     layers_cn/fill_constant_batch_size_like_cn.rst
     layers_cn/fill_constant_cn.rst
+    layers_cn/filter_by_instag_cn.rst
     layers_cn/flatten_cn.rst
     layers_cn/floor_cn.rst
     layers_cn/fsp_matrix_cn.rst
     layers_cn/gather_cn.rst
+    layers_cn/gather_nd_cn.rst
+    layers_cn/gather_tree_cn.rst
     layers_cn/gaussian_random_batch_size_like_cn.rst
     layers_cn/gaussian_random_cn.rst
     layers_cn/generate_mask_labels_cn.rst
@@ -114,8 +125,10 @@ fluid.layers
     layers_cn/grid_sampler_cn.rst
     layers_cn/group_norm_cn.rst
     layers_cn/gru_unit_cn.rst
+    layers_cn/GRUCell_cn.rst
     layers_cn/hard_shrink_cn.rst
     layers_cn/hard_sigmoid_cn.rst
+    layers_cn/hard_swish_cn.rst
     layers_cn/has_inf_cn.rst
     layers_cn/has_nan_cn.rst
     layers_cn/hash_cn.rst
@@ -127,6 +140,7 @@ fluid.layers
     layers_cn/image_resize_short_cn.rst
     layers_cn/increment_cn.rst
     layers_cn/inverse_time_decay_cn.rst
+    layers_cn/instance_norm_cn.rst
     layers_cn/iou_similarity_cn.rst
     layers_cn/is_empty_cn.rst
     layers_cn/isfinite_cn.rst
@@ -141,6 +155,7 @@ fluid.layers
     layers_cn/linear_lr_warmup_cn.rst
     layers_cn/linspace_cn.rst
     layers_cn/load_cn.rst
+    layers_cn/lod_append_cn.rst
     layers_cn/lod_reset_cn.rst
     layers_cn/log_cn.rst
     layers_cn/log_loss_cn.rst
@@ -152,24 +167,28 @@ fluid.layers
     layers_cn/lrn_cn.rst
     layers_cn/lstm_cn.rst
     layers_cn/lstm_unit_cn.rst
+    layers_cn/LSTMCell_cn.rst
     layers_cn/margin_rank_loss_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
     layers_cn/mean_cn.rst
     layers_cn/mean_iou_cn.rst
     layers_cn/merge_selected_rows_cn.rst
+    layers_cn/mse_loss_cn.rst
     layers_cn/mul_cn.rst
     layers_cn/multi_box_head_cn.rst
     layers_cn/multiclass_nms_cn.rst
     layers_cn/multiplex_cn.rst
+    layers_cn/MultivariateNormalDiag_cn.rst
     layers_cn/natural_exp_decay_cn.rst
     layers_cn/nce_cn.rst
     layers_cn/noam_decay_cn.rst
+    layers_cn/Normal_cn.rst
     layers_cn/not_equal_cn.rst
     layers_cn/npair_loss_cn.rst
     layers_cn/one_hot_cn.rst
     layers_cn/ones_cn.rst
-    layers_cn/open_files_cn.rst
+    layers_cn/ones_like_cn.rst
     layers_cn/pad_cn.rst
     layers_cn/pad_constant_like_cn.rst
     layers_cn/pad2d_cn.rst
@@ -181,14 +200,12 @@ fluid.layers
     layers_cn/pool3d_cn.rst
     layers_cn/pow_cn.rst
     layers_cn/prelu_cn.rst
-    layers_cn/Preprocessor_cn.rst
     layers_cn/Print_cn.rst
     layers_cn/prior_box_cn.rst
     layers_cn/psroi_pool_cn.rst
     layers_cn/py_func_cn.rst
     layers_cn/py_reader_cn.rst
     layers_cn/random_crop_cn.rst
-    layers_cn/random_data_generator_cn.rst
     layers_cn/range_cn.rst
     layers_cn/rank_cn.rst
     layers_cn/rank_loss_cn.rst
@@ -207,9 +224,11 @@ fluid.layers
     layers_cn/reshape_cn.rst
     layers_cn/resize_bilinear_cn.rst
     layers_cn/resize_nearest_cn.rst
+    layers_cn/resize_trilinear_cn.rst
     layers_cn/retinanet_detection_output_cn.rst
     layers_cn/retinanet_target_assign_cn.rst
     layers_cn/reverse_cn.rst
+    layers_cn/rnn_cn.rst
     layers_cn/roi_align_cn.rst
     layers_cn/roi_perspective_transform_cn.rst
     layers_cn/roi_pool_cn.rst
@@ -217,10 +236,13 @@ fluid.layers
     layers_cn/row_conv_cn.rst
     layers_cn/rpn_target_assign_cn.rst
     layers_cn/rsqrt_cn.rst
+    layers_cn/RNNCell_cn.rst
     layers_cn/sampled_softmax_with_cross_entropy_cn.rst
     layers_cn/sampling_id_cn.rst
     layers_cn/scale_cn.rst
     layers_cn/scatter_cn.rst
+    layers_cn/scatter_nd_add_cn.rst
+    layers_cn/scatter_nd_cn.rst
     layers_cn/selu_cn.rst
     layers_cn/sequence_concat_cn.rst
     layers_cn/sequence_conv_cn.rst
@@ -239,6 +261,7 @@ fluid.layers
     layers_cn/sequence_softmax_cn.rst
     layers_cn/sequence_unpad_cn.rst
     layers_cn/shape_cn.rst
+    layers_cn/shard_index_cn.rst
     layers_cn/shuffle_channel_cn.rst
     layers_cn/shuffle_cn.rst
     layers_cn/sigmoid_cn.rst
@@ -266,6 +289,7 @@ fluid.layers
     layers_cn/stack_cn.rst
     layers_cn/stanh_cn.rst
     layers_cn/StaticRNN_cn.rst
+    layers_cn/strided_slice_cn.rst
     layers_cn/sum_cn.rst
     layers_cn/sums_cn.rst
     layers_cn/swish_cn.rst
@@ -279,9 +303,12 @@ fluid.layers
     layers_cn/thresholded_relu_cn.rst
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
-    layers_cn/tree_conv_cn.rst
+    layers_cn/unfold_cn.rst
+    layers_cn/Uniform_cn.rst
     layers_cn/uniform_random_cn.rst
     layers_cn/uniform_random_batch_size_like_cn.rst
+    layers_cn/unique_cn.rst
+    layers_cn/unique_with_counts_cn.rst
     layers_cn/unsqueeze_cn.rst
     layers_cn/unstack_cn.rst
     layers_cn/warpctc_cn.rst

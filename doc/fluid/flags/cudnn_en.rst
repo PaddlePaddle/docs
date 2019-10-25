@@ -3,7 +3,7 @@ cudnn
 ==================
 
 
-conv_workspace_size_limit
+FLAGS_conv_workspace_size_limit
 *******************************************
 (since 0.13.0)
 
@@ -11,14 +11,14 @@ The workspace limit size in MB unit for choosing cuDNN convolution algorithms. T
 
 Values accepted
 ---------------
-Uint64. The default value is 4096. That is to say, 4G memory workspace.
+Uint64. The default value is 512. That is to say, 512MB memory workspace.
 
 Example
 -------
 FLAGS_conv_workspace_size_limit=1024 set the workspace limit size for choosing cuDNN convolution algorithms to 1024MB.
 
 
-cudnn_batchnorm_spatial_persistent
+FLAGS_cudnn_batchnorm_spatial_persistent
 *******************************************
 (since 1.4.0)
 
@@ -37,7 +37,7 @@ Note
 This mode can be faster in some tasks because an optimized path will be selected for CUDNN_DATA_FLOAT and CUDNN_DATA_HALF data types. The reason we set it to False by default is that this mode may use scaled atomic integer reduction which may cause a numerical overflow for some input data range.
 
 
-cudnn_deterministic
+FLAGS_cudnn_deterministic
 *******************************************
 (since 0.13.0)
 
@@ -56,7 +56,7 @@ Note
 Now this flag is enabled in cuDNN convolution and pooling operator. The deterministic algorithms may slower, so this flag is generally used for debugging.
 
 
-cudnn_exhaustive_search
+FLAGS_cudnn_exhaustive_search
 *******************************************
 (since 1.2.0)
 

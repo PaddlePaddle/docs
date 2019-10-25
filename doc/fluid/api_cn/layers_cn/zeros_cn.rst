@@ -7,30 +7,20 @@ zeros
 
 **zeros**
 
-该函数创建一个张量，含有具体的维度和dtype，初始值为0.
-
-也将stop_gradient设置为True。
+该OP创建形状为 ``shape`` 、数据类型为 ``dtype`` 且值全为0的Tensor，该OP会将stop_gradient设置为True，即停止梯度更新。
 
 参数：
-    - **shape** (tuple|list|None)-输出张量的维
-    - **dtype** (np.dtype|core.VarDesc.VarType|str)-输出张量的数据类型
-    - **force_cpu** (bool,default False)-是否将输出保留在CPU上
+    - **shape** (tuple|list) - 输出Tensor的形状。
+    - **dtype** (np.dtype|core.VarDesc.VarType|str) - 输出Tensor的数据类型，数据类型必须为float16、float32、float64、int32或int64。
+    - **force_cpu** (bool) - 是否强制将输出Tensor写入CPU内存。如果 ``force_cpu`` 为False，则将输出Tensor写入当前所在运算设备的内存，默认为False。
 
-返回：存储在输出中的张量
+返回：值全为0的Tensor，数据类型和 ``dtype`` 定义的类型一致。
 
-返回类型：变量（Variable）
+返回类型：Variable
 
 **代码示例**：
 
 .. code-block:: python
 
     import paddle.fluid as fluid
-    data = fluid.layers.zeros(shape=[1], dtype='int64')
-
-
-
-
-
-
-
-
+    data = fluid.layers.zeros(shape=[3, 2], dtype='float32') # [[0., 0.], [0., 0.], [0., 0.]]

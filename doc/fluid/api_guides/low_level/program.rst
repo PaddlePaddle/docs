@@ -23,6 +23,7 @@ Program
 
 
 
+.. _api_guide_Block:
 
 =========
 Block
@@ -56,6 +57,7 @@ Operator
 
 更多内容可参考阅读 `Fluid设计思想 <../../advanced_usage/design_idea/fluid_design_idea.html>`_
 
+.. _api_guide_Variable:
 
 =========
 Variable
@@ -65,6 +67,68 @@ Fluid 中的 :code:`Variable` 可以包含任何类型的值———在大多�
 
 模型中所有的可学习参数都以 :code:`Variable` 的形式保留在内存空间中，您在绝大多数情况下都不需要自己来创建网络中的可学习参数， Fluid 为几乎常见的神经网络基本计算模块都提供了封装。以最简单的全连接模型为例，调用 :code:`fluid.layers.fc` 会直接为全连接层创建连接权值( W )和偏置（ bias ）两个可学习参数，无需显示地调用 :code:`variable` 相关接口创建可学习参数。
 
+.. _api_guide_Name:
+
+=========
+Name
+=========
+
+Fluid 中部分网络层里包含了 :code:`name` 参数，如 :ref:`cn_api_fluid_layers_fc` 。此 :code:`name` 一般用来作为网络层输出、权重的前缀标识，具体规则如下：
+
+* 用于网络层输出的前缀标识。若网络层中指定了 :code:`name` 参数，Fluid 将以 ``name值_数字.tmp_数字`` 作为唯一标识对网络层输出进行命名；未指定 :code:`name` 参数时，则以 ``OP名_数字.tmp_数字`` 的方式进行命名，其中的数字会自动递增，以区分同名OP下的不同网络层。
+
+* 用于权重或偏置变量的前缀标识。若在网络层中通过 ``param_attr`` 和 ``bias_attr`` 创建了权重变量或偏置变量， 如 :ref:`cn_api_fluid_layers_embedding` 、 :ref:`cn_api_fluid_layers_fc` ，则 Fluid 会自动生成 ``前缀.w_数字`` 或 ``前缀.b_数字`` 的唯一标识对其进行命名，其中 ``前缀`` 为用户指定的 :code:`name` 或自动生成的 ``OP名_数字`` 。若在 ``param_attr`` 和 ``bias_attr`` 中指定了 :code:`name` ，则用此 :code:`name` ，不再自动生成。细节请参考示例代码。
+
+此外，在 :ref:`cn_api_fluid_ParamAttr` 中，可通过指定 :code:`name` 参数实现多个网络层的权重共享。
+
+示例代码如下：
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=1)
+    emb = fluid.layers.embedding(input=x, size=(128, 100))  # embedding_0.w_0
+    emb = fluid.layers.Print(emb) # Tensor[embedding_0.tmp_0]
+
+    # default name
+    fc_none = fluid.layers.fc(input=emb, size=1)  # fc_0.w_0, fc_0.b_0
+    fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
+ 
+    fc_none1 = fluid.layers.fc(input=emb, size=1)  # fc_1.w_0, fc_1.b_0
+    fc_none1 = fluid.layers.Print(fc_none1)  # Tensor[fc_1.tmp_1]
+
+    # name in ParamAttr
+    w_param_attrs = fluid.ParamAttr(name="fc_weight", learning_rate=0.5, trainable=True)
+    print(w_param_attrs.name)  # fc_weight
+
+    # name == 'my_fc'
+    my_fc1 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_0
+    my_fc1 = fluid.layers.Print(my_fc1)  # Tensor[my_fc.tmp_1]
+
+    my_fc2 = fluid.layers.fc(input=emb, size=1, name='my_fc', param_attr=w_param_attrs) # fc_weight, my_fc.b_1
+    my_fc2 = fluid.layers.Print(my_fc2)  # Tensor[my_fc.tmp_3]
+
+    place = fluid.CPUPlace()
+    x_data = np.array([[1],[2],[3]]).astype("int64")
+    x_lodTensor = fluid.create_lod_tensor(x_data, [[1, 2]], place)
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+    ret = exe.run(feed={'x': x_lodTensor}, fetch_list=[fc_none, fc_none1, my_fc1, my_fc2], return_numpy=False)
+
+
+上述示例中， ``fc_none`` 和 ``fc_none1`` 均未指定 :code:`name` 参数，则以 ``OP名_数字.tmp_数字`` 分别对该OP输出进行命名：``fc_0.tmp_1`` 和 ``fc_1.tmp_1`` ，其中 ``fc_0``  和 ``fc_1`` 中的数字自动递增以区分两个全连接层； ``my_fc1`` 和 ``my_fc2`` 均指定了 :code:`name` 参数，但取值相同，Fluid 以后缀 ``tmp_数字`` 进行区分，即 ``my_fc.tmp_1`` 和 ``my_fc.tmp_3`` 。
+
+对于网络层中创建的变量， ``emb`` 层和 ``fc_none`` 、 ``fc_none1`` 层均默认以 ``OP名_数字`` 为前缀对权重或偏置变量进行命名，如 ``embedding_0.w_0`` 、 ``fc_0.w_0`` 、 ``fc_0.b_0`` ，其前缀与OP输出的前缀一致。 ``my_fc1`` 层和 ``my_fc2`` 层则优先以 ``ParamAttr`` 中指定的 ``fc_weight`` 作为共享权重的名称。而偏置变量 ``my_fc.b_0`` 和 ``my_fc.b_1`` 则次优地以 :code:`name` 作为前缀标识。
+
+在上述示例中，``my_fc1`` 和 ``my_fc2`` 两个全连接层通过构建 ``ParamAttr`` ，并指定 :code:`name` 参数，实现了网络层权重变量的共享机制。
+
+.. _api_guide_ParamAttr:
+
+=========
+ParamAttr
+=========
 
 =========
 相关API

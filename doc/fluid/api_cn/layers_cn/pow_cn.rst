@@ -5,20 +5,22 @@ pow
 
 .. py:function:: paddle.fluid.layers.pow(x, factor=1.0, name=None)
 
-指数激活算子（Pow Activation Operator.）
+该OP是指数激活算子：
 
 .. math::
 
     out = x^{factor}
 
-参数
-    - **x** (Variable) - Pow operator的输入
-    - **factor** (FLOAT|1.0) - Pow的指数因子
-    - **name** (str|None) -这个层的名称(可选)。如果设置为None，该层将被自动命名。
+**注意：如果需要对输入进行 elementwise_pow 操作，请查使用** :ref:`cn_api_fluid_layers_elementwise_pow` 。
 
-返回: 输出Pow操作符
+参数：
+    - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``float32`` 或 ``float64`` 。
+    - **factor** （float32|Variable，可选）- ``float32`` 或形状为[1]的 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``。Pow OP的指数因子。默认值：1.0。
+    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值： ``None``。
 
-返回类型: 输出(Variable)
+返回：维度与输入 `x` 相同的 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``x`` 相同。
+
+返回类型：Variable。
 
 
 **代码示例：**
@@ -26,8 +28,17 @@ pow
 .. code-block:: python
 
     import paddle.fluid as fluid
+
     x = fluid.layers.data(name="x", shape=[3,10,32,32], dtype="float32")
-    y = fluid.layers.pow(x, factor=2.0)
+
+    # example 1: argument factor is float
+    y_1 = fluid.layers.pow(x, factor=2.0)
+    # y_1 is x^{2.0}
+
+    # example 2: argument factor is Variable
+    factor_tensor = fluid.layers.fill_constant([1], "float32", 3.0)
+    y_2 = fluid.layers.pow(x, factor=factor_tensor)
+    # y_2 is x^{2.0}
 
 
 

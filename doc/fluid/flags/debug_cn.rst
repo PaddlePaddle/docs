@@ -3,7 +3,7 @@
 ==================
 
 
-check_nan_inf
+FLAGS_check_nan_inf
 ********************
 (始于0.13.0)
 
@@ -18,7 +18,7 @@ Bool型，缺省值为False。
 FLAGS_check_nan_inf=True - 检查Operator的结果是否含有Nan或Inf。
 
 
-cpu_deterministic
+FLAGS_cpu_deterministic
 *******************************************
 (始于0.15.0)
 
@@ -33,7 +33,7 @@ Bool型，缺省值为False。
 FLAGS_cpu_deterministic=True - 在CPU侧确定计算结果。
 
 
-enable_rpc_profiler
+FLAGS_enable_rpc_profiler
 *******************************************
 (始于1.0.0)
 
@@ -48,7 +48,7 @@ Bool型，缺省值为False。
 FLAGS_enable_rpc_profiler=True - 启用RPC分析器并在分析器文件中记录时间线。
 
 
-multiple_of_cupti_buffer_size
+FLAGS_multiple_of_cupti_buffer_size
 *******************************************
 (始于1.4.0)
 
@@ -63,7 +63,7 @@ Int32型，缺省值为1。
 FLAGS_multiple_of_cupti_buffer_size=1 - 将CUPTI设备缓冲区大小的倍数设为1。
 
 
-reader_queue_speed_test_mode
+FLAGS_reader_queue_speed_test_mode
 *******************************************
 (始于1.1.0)
 

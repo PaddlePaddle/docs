@@ -3,7 +3,7 @@
 ==================
 
 
-enable_parallel_graph
+FLAGS_enable_parallel_graph
 *******************************************
 (始于1.2.0)
 
@@ -18,7 +18,7 @@ Bool型，缺省值为False。
 FLAGS_enable_parallel_graph=False - 通过ParallelExecutor强制禁用并行图执行模式。
 
 
-pe_profile_fname
+FLAGS_pe_profile_fname
 *******************************************
 (始于1.3.0)
 
@@ -33,7 +33,7 @@ String型，缺省值为empty ("")。
 FLAGS_pe_profile_fname="./parallel_executor.perf" - 将配置文件结果存储在parallel_executor.perf中。
 
 
-print_sub_graph_dir
+FLAGS_print_sub_graph_dir
 *******************************************
 (始于1.2.0)
 
@@ -48,7 +48,7 @@ String型，缺省值为empty ("")。
 FLAGS_print_sub_graph_dir="./sub_graphs.txt" - 将断开连接的子图打印到"./sub_graphs.txt"。
 
 
-use_ngraph
+FLAGS_use_ngraph
 *******************************************
 (始于1.4.0)
 

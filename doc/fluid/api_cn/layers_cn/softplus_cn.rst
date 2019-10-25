@@ -5,24 +5,26 @@ softplus
 
 .. py:function:: paddle.fluid.layers.softplus(x,name=None)
 
-softplus激活函数。
+softplus激活函数
 
 .. math::
     out = \ln(1 + e^{x})
 
 参数：
-    - **x** - Softplus操作符的输入
-    - **use_cudnn** (BOOLEAN) – （bool，默认为false）是否仅用于cudnn核，需要安装cudnn
+    - **x** (Variable) - 张量（Tensor）
+    - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。
 
-返回：Softplus操作后的结果
+返回: 张量(Tensor)
+
+返回类型: 变量(Variable)
 
 **代码示例**：
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784])
-        result = fluid.layers.softplus(data)
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name="input", shape=[32, 784])
+    result = fluid.layers.softplus(data)
 
 
 

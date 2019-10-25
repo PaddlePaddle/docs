@@ -55,14 +55,14 @@ API Reference 请参考 :ref:`cn_api_fluid_layers_floor`
 sin
 ------------------
 
-对输入 :code:`Tensor` 逐元素取正玄。
+对输入 :code:`Tensor` 逐元素取正弦。
 
 API Reference 请参考 :ref:`cn_api_fluid_layers_sin`
 
 cos
 ------------------
 
-对输入 :code:`Tensor` 逐元素取余玄。
+对输入 :code:`Tensor` 逐元素取余弦。
 
 API Reference 请参考 :ref:`cn_api_fluid_layers_cos`
 

@@ -9,3 +9,4 @@ fluid.clip
     clip/GradientClipByGlobalNorm.rst
     clip/GradientClipByNorm.rst
     clip/GradientClipByValue.rst
+    clip/set_gradient_clip.rst

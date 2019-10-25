@@ -3,30 +3,32 @@
 softshrink
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.softshrink(x, name=None)
+.. py:function:: paddle.fluid.layers.softshrink(x, alpha=None)
 
-Softshrink激活算子
+Softshrink激活函数
 
 .. math::
-        out = \begin{cases}
-                    x - \lambda, \text{if } x > \lambda \\
-                    x + \lambda, \text{if } x < -\lambda \\
-                    0,  \text{otherwise}
-              \end{cases}
+    out = \begin{cases}
+        x - \alpha, \text{if } x > \alpha \\
+        x + \alpha, \text{if } x < -\alpha \\
+        0,  \text{otherwise}
+        \end{cases}
 
 参数：
-        - **x** - Softshrink算子的输入
-        - **lambda** （FLOAT）- 非负偏移量。
+    - **x** (Variable0 - 张量（Tensor）
+    - **alpha** (float) - 上面公式中alpha的值
 
-返回：       Softshrink算子的输出
+返回: 张量(Tensor)
+
+返回类型: 变量(Variable)
 
 **代码示例**：
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784])
-        result = fluid.layers.softshrink(data)
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name="input", shape=[32, 784])
+    result = fluid.layers.softshrink(data)
 
 
 

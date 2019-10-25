@@ -6,7 +6,7 @@ Advanced User Guides
 
 So far you have already been familiar with Fluid. And the next expectation should be building a more efficient model or inventing your original Operator. If so, read more on:
 
-    - `Fluid Design Principles <../advanced_usage/design_idea/fluid_design_idea_en.html>`_ : Design principles underlying Fluid to help you understand how the framework runs.
+    - `Design Principles of Fluid <../advanced_usage/design_idea/fluid_design_idea_en.html>`_ : Design principles underlying Fluid to help you understand how the framework runs.
 
 	- `Deploy Inference Model <../advanced_usage/deploy/index_en.html>`_ ：How to deploy the trained network to perform practical inference
 
