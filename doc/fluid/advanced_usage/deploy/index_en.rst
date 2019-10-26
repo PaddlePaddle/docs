@@ -4,7 +4,7 @@ Deploy Inference Model
 
 - `Server side Deployment <inference/index_en.html>`_ : This section illustrates Fluid C++ API to support deployment and release of trained models.
 
-- `Paddle Mobile <mobile/index_en.html>`_ : Embedded deep learning framework Paddle-Mobile organized by PaddlePaddle.
+- `Paddle Lite <mobile/index_en.html>`_ : Embedded deep learning framework Paddle-Lite organized by PaddlePaddle.
 
 ..  toctree::
     :hidden:
