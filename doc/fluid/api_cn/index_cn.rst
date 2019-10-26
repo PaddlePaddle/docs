@@ -25,3 +25,5 @@ API Reference
     regularizer_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
+    data/data_feeder_cn.rst
+    data/dataset_cn.rst
