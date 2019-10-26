@@ -6,7 +6,7 @@
 -------------
 
 
-| 版本说明      |     预测库(1.5.2版本)     |
+| 版本说明      |     预测库(1.6.0版本)     |
 |:---------|:-------------------|
 |    cpu_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/cpu_mkl_avx/fluid_inference_install_dir.zip) |
 |    cuda8.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/gpu_mkl_avx_8.0/fluid_inference_install_dir.zip) |
