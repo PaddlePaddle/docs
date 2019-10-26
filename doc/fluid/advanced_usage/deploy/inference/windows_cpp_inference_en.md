@@ -4,7 +4,7 @@ Model Inference on Windows
 Pre-Built Inference Libraries
 -------------
 
-| Version      |     Inference Libraries(v1.5.1)     |
+| Version      |     Inference Libraries(v1.6.0)     |
 |:---------|:-------------------|
 |    cpu_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_mkl_avx/fluid_inference_install_dir.zip) |
 |    cpu_avx_openblas | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.1-win/cpu_open_avx/fluid_inference_install_dir.zip) |
