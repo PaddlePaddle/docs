@@ -83,7 +83,7 @@ config = AnalysisConfig("./model/model", "./model/params")
 
 其他预测引擎配置选项示例如下
 ``` python
-config.enable_use_gpu(100, 0) # 初始化200M显存，使用gpu id为0
+config.enable_use_gpu(100, 0) # 初始化100M显存，使用gpu id为0
 config.gpu_device_id()        # 返回正在使用的gpu id
 config.disable_gpu()		  # 禁用gpu
 config.switch_ir_optim(True)  # 开启IR优化 
