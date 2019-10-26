@@ -22,7 +22,7 @@ Paddle Fluid采用 AnalysisPredictor 进行预测。AnalysisPredictor 是一个�
 
 #### AnalysisPredictor 预测示例
 
-```c++
+``` c++
 #include "paddle_inference_api.h"
 
 namespace paddle {
@@ -97,19 +97,6 @@ int main() {
 
 AnalysisConfig管理AnalysisPredictor的预测配置，提供了模型路径设置、预测引擎运行设备选择以及多种优化预测流程的选项。配置方法如下：
 
-#### 设置模型和参数路径
-从磁盘加载模型时，根据模型和参数文件存储方式不同，设置AnalysisConfig加载模型和参数的路径有两种形式：
-
-* combined形式：模型文件夹`model_dir`下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`。
-``` c++
-config->SetModel("./model_dir");
-```
-
-* 非combined形式：模型文件夹`model_dir`下只有一个模型文件`model`和一个参数文件`params`时，传入模型文件和参数文件路径。
-``` c++
-config->SetModel("./model_dir/model", "./model_dir/params");
-```
-
 #### 通用优化配置
 ``` c++
 config->SwitchIrOptim(true);  // 开启计算图分析优化，包括OP融合等
@@ -119,6 +106,20 @@ config->EnableMemoryOptim();  // 开启内存/显存复用
 ``` c++
 config->SwitchUseFeedFetchOps(false);  // 关闭feed和fetch OP使用，使用ZeroCopy接口必须设置此项
 ```
+
+#### 设置模型和参数路径
+从磁盘加载模型时，根据模型和参数文件存储方式不同，设置AnalysisConfig加载模型和参数的路径有两种形式：
+
+* 非combined形式：模型文件夹`model_dir`下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`。
+``` c++
+config->SetModel("./model_dir");
+```
+
+* combined形式：模型文件夹`model_dir`下只有一个模型文件`model`和一个参数文件`params`时，传入模型文件和参数文件路径。
+``` c++
+config->SetModel("./model_dir/model", "./model_dir/params");
+```
+
 
 #### 配置CPU预测
 
@@ -147,7 +148,7 @@ ZeroCopyTensor是AnalysisPredictor的输入/输出数据结构。ZeroCopyTensor�
 
 **Note:** 使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`。
 
-```c++
+``` c++
 // 通过创建的AnalysisPredictor获取输入和输出的tensor
 auto input_names = predictor->GetInputNames();
 auto input_t = predictor->GetInputTensor(input_names[0]);
@@ -177,7 +178,7 @@ float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
 
 	`inference` 文件夹目录结构如下：
 
-	```shell
+	``` shell
     inference
     ├── CMakeLists.txt
     ├── mobilenet_test.cc
@@ -198,7 +199,7 @@ float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
 	
     编译运行预测样例之前，需要根据运行环境配置编译与运行脚本`run.sh`。`run.sh`的选项与路径配置的部分如下：
 	
-    ```shell
+    ``` shell
     # 设置是否开启MKL、GPU、TensorRT，如果要使用TensorRT，必须打开GPU
     WITH_MKL=ON
     WITH_GPU=OFF
@@ -215,7 +216,7 @@ float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
 
 4. 编译与运行样例   
 
-	```shell
+	``` shell
 	sh run.sh
 	```
 
