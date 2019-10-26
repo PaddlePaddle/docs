@@ -10,6 +10,8 @@ API Reference
     average_cn.rst
     backward_cn.rst
     clip_cn.rst
+    data/data_feeder_cn.rst
+    data/dataset_cn.rst
     data_feeder_cn.rst
     dataset_cn.rst
     dygraph_cn.rst
@@ -25,5 +27,3 @@ API Reference
     regularizer_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
-    data/data_feeder_cn.rst
-    data/dataset_cn.rst
