@@ -42,13 +42,13 @@ Users can also compile C++ inference libraries from the PaddlePaddle core code b
    # change to the build directory
    cd build
 
-   cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
    # use -DWITH_GPU to control we are building CPU or GPU version
    # use -DWITH_MKL to select math library: Intel MKL or OpenBLAS
 
    # By default on Windows we use /MT for C Runtime Library, If you want to use /MD, please use the below command
    # If you have no ideas the differences between the two, use the above one
-   cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
 
 3. Open the `paddle.sln` using VisualStudio 2015，choose the`x64` for Solution Platforms，and `Release` for Solution Configurations，then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build)
@@ -80,8 +80,6 @@ The inference library will be installed in `fluid_inference_install_dir`:
      │       ├── mkldnn
      │       ├── mklml
      │       ├── protobuf
-     │       ├── snappy
-     │       ├── snappystream
      │       ├── xxhash
      │       └── zlib
      └── version.txt
@@ -129,7 +127,7 @@ Decompress Paddle, Release and fluid_install_dir compressed package.
 First enter into Paddle/paddle/fluid/inference/api/demo_ci, then create and enter into directory /build, finally use cmake to generate vs2015 solution file.
 Commands are as follows:
 
-`cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_patddle\paddle_fluid.lib`
+`cmake .. -G "Visual Studio 14 2015" -A x64 -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_patddle\paddle_fluid.lib`
 
 Note:
 
