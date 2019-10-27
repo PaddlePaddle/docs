@@ -5,13 +5,13 @@
 直接下载安装
 -------------
 
-
 | 版本说明      |     预测库(1.6.0版本)     |
 |:---------|:-------------------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/cpu_mkl_avx/fluid_inference_install_dir.zip) |
-|    cuda8.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/gpu_mkl_avx_8.0/fluid_inference_install_dir.zip) |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/gpu_mkl_avx_9.0/fluid_inference_install_dir.zip) |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/gpu_mkl_avx_10.0/fluid_inference_install_dir.zip) |
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/mkl/cpu/fluid_inference_install_dir.zip) |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/open/cpu/fluid_inference_install_dir.zip) |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/open/post97/fluid_inference_install_dir.zip) |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/mkl/post97/fluid_inference_install_dir.zip) |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/mkl/post107/fluid_inference_install_dir.zip) |
 
 从源码编译预测库
 --------------
