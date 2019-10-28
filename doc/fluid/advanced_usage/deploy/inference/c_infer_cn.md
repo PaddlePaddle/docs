@@ -1,6 +1,6 @@
 # C 预测 API介绍
 
-Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便使用，我们也提供了封装C++预测库对应的C接口，下面是详细的使用说明。
+Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便使用，我们也提供了封装C++预测库对应的C接口。C接口的使用方式，首先是需要`#include c_api.h`，头文件`c_api.h`可以在Paddle的仓库中的`paddle/fluid/inference/capi/c_api.h`找到。另外需要加入相关的编译的包`(Linux下)libpaddle_fluid_c.so/(Windows下)paddle_fluid_c.lib`的位置。下面是详细的使用说明。
 
 
 
