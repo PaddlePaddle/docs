@@ -69,7 +69,7 @@ Another situation is when clearing of cache does happen is cache clearing mode: 
 no space for next objects is in a cache , then MKL-DNN cache is partially cleared. By default cache is NOT working in clearing mode e.g. cache will store all objects it was given. To enable MKL-DNN cache clearing mode one needs to
 set capacity of MKL-DNN cache with  *SetMkldnnCacheCapacity* (by default capacity is set to 0, meaning no clearing depending on size of cache, any positive value is allowed and it will mean size of second level cache e.g. number of different input shapes cached groups that can be cached - size of second level cache ).
 
-Cache clearing mode is to use in single-threaded scenario where available memory resources are limited. In particular It is to be used when executed model accept inputs of various shapes (NLP models).
+Cache clearing mode is to use in single-threaded scenario where available memory resources are limited. In particular it is to be used when executed model accept inputs of various shapes (NLP models).
 
 ### 3. Transfer of MKL-DNN objects & Tensors from Forward ops to Grad ops.
 
