@@ -5,13 +5,13 @@
 直接下载安装
 -------------
 
-
 | 版本说明      |     预测库(1.6.0版本)     |
 |:---------|:-------------------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/cpu_mkl_avx/fluid_inference_install_dir.zip) |
-|    cuda8.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/gpu_mkl_avx_8.0/fluid_inference_install_dir.zip) |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/gpu_mkl_avx_9.0/fluid_inference_install_dir.zip) |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-inference-lib.bj.bcebos.com/1.5.2-win/gpu_mkl_avx_10.0/fluid_inference_install_dir.zip) |
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/mkl/cpu/fluid_inference_install_dir.zip) |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/open/cpu/fluid_inference_install_dir.zip) |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/open/post97/fluid_inference_install_dir.zip) |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/mkl/post97/fluid_inference_install_dir.zip) |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.0/win-infer/mkl/post107/fluid_inference_install_dir.zip) |
 
 从源码编译预测库
 --------------
@@ -43,11 +43,11 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
 
    cd build
 
-   cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
    # -DWITH_GPU`为是否使用GPU的配置选项，-DWITH_MKL 为是否使用Intel MKL(数学核心库)的配置选项，请按需配置。
 
    # Windows默认使用 /MT 模式进行编译，如果想使用 /MD 模式，请使用以下命令。如不清楚两者的区别，请使用上面的命令
-   cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
 
 3. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，编译inference_lib_dist项目。
@@ -82,8 +82,6 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
      │       ├── mkldnn
      │       ├── mklml
      │       ├── protobuf
-     │       ├── snappy
-     │       ├── snappystream
      │       ├── xxhash
      │       └── zlib
      └── version.txt
@@ -130,7 +128,7 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
 进入 Paddle/paddle/fluid/inference/api/demo_ci 目录，新建build目录并进入，然后使用cmake生成vs2015的solution文件。
 指令为：
 
-`cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_MKL=ON -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib`
+`cmake .. -G "Visual Studio 14 2015" -A x64 -DWITH_GPU=OFF -DWITH_MKL=ON -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib`
 
 注：
 
