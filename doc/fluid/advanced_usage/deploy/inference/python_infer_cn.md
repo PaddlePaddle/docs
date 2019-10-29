@@ -87,7 +87,7 @@ config.enable_use_gpu(100, 0) # 初始化100M显存，使用gpu id为0
 config.gpu_device_id()        # 返回正在使用的gpu id
 config.disable_gpu()		  # 禁用gpu
 config.switch_ir_optim(True)  # 开启IR优化 
-config.enable_tensorrt_engine(precision=AnalysisConfig.Precision.kFloat32,
+config.enable_tensorrt_engine(precision_mode=AnalysisConfig.Precision.Float32,
                               use_calib_mode=True) # 开启TensorRT预测，精度为fp32，开启int8离线量化
 config.enable_mkldnn()		  # 开启MKLDNN
 ```
@@ -135,7 +135,7 @@ results = predictor.run([x_t, y_t])
 	* `enable_tensorrt_engine(workspace_size: int = 1 << 20, 
 	                          max_batch_size: int, 
                               min_subgraph_size: int, 
-                              precision: AnalysisConfig.precision,
+                              precision_mode: AnalysisConfig.precision,
                               use_static: bool, 
                               use_calib_mode: bool) -> None`
 	* `enable_mkldnn() -> None`
