@@ -20,6 +20,5 @@ If you have been armed with certain level of deep learning knowledge, and it hap
 ..  toctree::
     :hidden:
 
-    install/index_en.rst
     basics/index_en.rst
     programming_guide/programming_guide_en.md
