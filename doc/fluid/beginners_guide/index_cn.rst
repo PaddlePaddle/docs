@@ -12,7 +12,7 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
 当您第一次来到PaddlePaddle，请您首先阅读以下文档，了解安装方法：
 
-- `安装说明 <../beginners_guide/install/index_cn.html>`_：我们支持在Ubuntu/CentOS/Windows/MacOS环境上的安装
+- `安装说明 <https://www.paddlepaddle.org.cn/install/doc/index>`_：我们支持在Ubuntu/CentOS/Windows/MacOS环境上的安装
 
 这里为您提供了更多学习资料:
 
