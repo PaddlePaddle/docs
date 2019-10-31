@@ -64,7 +64,6 @@ Release Notes
     * Paddle2ONNX和X2Paddle全面升级，飞桨和其他框架的模型互转更加方便。
     * 发布飞桨联邦学习框架PaddleFL
 
-
 用户体验提升
 #########
 * 编程易用性提升
