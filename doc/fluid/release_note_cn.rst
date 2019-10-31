@@ -13,26 +13,33 @@ Release Notes
     * 文档优化
     * 编译优化
     * Windows支持增强
-* 基础框架
-    * 安装&环境
-    * 动态图Preview版
+* 训练框架
     * 性能优化
-    * 显存优化
-    * 执行优化
-    * 框架基础功能增强
-    * OP完善 
+    * OP优化
+    * Intel N-Graph集成
+    * 动态图
 * 预测部署
-    * 服务端部署库
+    * 服务器云端预测库
+    * 移动、嵌入式端侧预测库
     * Paddle Serving
     * PaddleSlim
 * 分布式训练
+    * 性能优化
+    * 容错
+    * 部署
 * 模型建设
-    * 图像分类 
-    * PaddleDetection
-    * PaddleGAN 
-    * PaddleVideo         
-    * PaddleNLP   
+    * 易用性优化
+    * PaddleNLP
+    * PaddleCV
+    * PaddleSpeech 
+    * PaddleRec    
 * 工具组件
+    * PaddleHub
+    * PGL 图学习框架
+    * PARL 深度强化学习框架
+    * PaddleFL 联邦学习
+    * Paddle2ONNX
+    * X2Paddle
 * BUG修复
 
 重要更新
@@ -56,7 +63,6 @@ Release Notes
     * 飞桨深度强化学习框架PARL并行能力进一步提升，支持进化算法。
     * Paddle2ONNX和X2Paddle全面升级，飞桨和其他框架的模型互转更加方便。
     * 发布飞桨联邦学习框架PaddleFL
-
 
 用户体验提升
 #########
@@ -315,8 +321,7 @@ Release Notes
     * 支持大规模并行进化算法，可数百个CPU并发搜索索（https://github.com/PaddlePaddle/PARL/tree/develop/examples/ES）。
     * 上线更加全面的官方PARL文档（https://parl.readthedocs.io/en/latest/）。
 * PaddleFL 联邦学习 
-    * eFL 联邦学习 
-发布飞桨联邦学习框架PaddleFL，方便快捷地支持联邦学习和AI隐私算法研究，并实现了FedAvg算法和基于差分隐私的SGD算法，支持分布式安全共享学习算法调研。https://github.com/PaddlePaddle/PaddleFL
+    * 发布飞桨联邦学习框架PaddleFL，方便快捷地支持联邦学习和AI隐私算法研究，并实现了FedAvg算法和基于差分隐私的SGD算法，支持分布式安全共享学习算法调研。https://github.com/PaddlePaddle/PaddleFL
 * Paddle2ONNX
     * 对应升级paddle2onnx至0.2版本。
     * 新增pip安装方式。
