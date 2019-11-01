@@ -19,18 +19,20 @@ fluid.optimizer
     optimizer_cn/DecayedAdagrad_cn.rst
     optimizer_cn/DecayedAdagradOptimizer_cn.rst
     optimizer_cn/DGCMomentumOptimizer_cn.rst
+    optimizer_cn/Dpsgd_cn.rst
+    optimizer_cn/DpsgdOptimizer_cn.rst
     optimizer_cn/ExponentialMovingAverage_cn.rst
     optimizer_cn/Ftrl_cn.rst
     optimizer_cn/FtrlOptimizer_cn.rst
     optimizer_cn/LambOptimizer_cn.rst
     optimizer_cn/LarsMomentum_cn.rst
     optimizer_cn/LarsMomentumOptimizer_cn.rst
+    optimizer_cn/LookaheadOptimizer_cn.rst
     optimizer_cn/ModelAverage_cn.rst
     optimizer_cn/Momentum_cn.rst
     optimizer_cn/MomentumOptimizer_cn.rst
     optimizer_cn/PipelineOptimizer_cn.rst
+    optimizer_cn/RecomputeOptimizer_cn.rst
     optimizer_cn/RMSPropOptimizer_cn.rst
     optimizer_cn/SGD_cn.rst
     optimizer_cn/SGDOptimizer_cn.rst
-    optimizer_cn/LookaheadOptimizer_cn.rst
-    optimizer_cn/RecomputeOptimizer_cn.rst
