@@ -169,6 +169,7 @@ fluid.layers
     layers_cn/lstm_unit_cn.rst
     layers_cn/LSTMCell_cn.rst
     layers_cn/margin_rank_loss_cn.rst
+    layers_cn/match_matrix_tensor_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
     layers_cn/mean_cn.rst
@@ -178,6 +179,7 @@ fluid.layers
     layers_cn/mul_cn.rst
     layers_cn/multi_box_head_cn.rst
     layers_cn/multiclass_nms_cn.rst
+    layers_cn/multiclass_nms2_cn.rst
     layers_cn/multiplex_cn.rst
     layers_cn/MultivariateNormalDiag_cn.rst
     layers_cn/natural_exp_decay_cn.rst
@@ -202,6 +204,7 @@ fluid.layers
     layers_cn/prelu_cn.rst
     layers_cn/Print_cn.rst
     layers_cn/prior_box_cn.rst
+    layers_cn/prroi_pool_cn.rst
     layers_cn/psroi_pool_cn.rst
     layers_cn/py_func_cn.rst
     layers_cn/py_reader_cn.rst
@@ -303,6 +306,7 @@ fluid.layers
     layers_cn/thresholded_relu_cn.rst
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
+    layers_cn/tree_conv_cn.rst
     layers_cn/unfold_cn.rst
     layers_cn/Uniform_cn.rst
     layers_cn/uniform_random_cn.rst
@@ -311,6 +315,7 @@ fluid.layers
     layers_cn/unique_with_counts_cn.rst
     layers_cn/unsqueeze_cn.rst
     layers_cn/unstack_cn.rst
+    layers_cn/var_conv_2d_cn.rst
     layers_cn/warpctc_cn.rst
     layers_cn/where_cn.rst
     layers_cn/While_cn.rst

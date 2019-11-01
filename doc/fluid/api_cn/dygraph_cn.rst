@@ -17,6 +17,7 @@ fluid.dygraph
     dygraph_cn/Conv3DTranspose_cn.rst
     dygraph_cn/CosineDecay_cn.rst
     dygraph_cn/Embedding_cn.rst
+    dygraph_cn/enabled_cn.rst
     dygraph_cn/ExponentialDecay_cn.rst
     dygraph_cn/FC_cn.rst
     dygraph_cn/GroupNorm_cn.rst
@@ -26,15 +27,22 @@ fluid.dygraph
     dygraph_cn/Layer_cn.rst
     dygraph_cn/LayerNorm_cn.rst
     dygraph_cn/load_dygraph_cn.rst
+    dygrapg_cn/load_persistables_cn.rst
     dygraph_cn/NaturalExpDecay_cn.rst
     dygraph_cn/NCE_cn.rst
     dygraph_cn/NoamDecay_cn.rst
-    dygraph_cn/no_grad_cn.rst
+    dygraph_cn/no_grad_cn.rst   
+    dygraph_cn/not_support_cn.rst  
     dygraph_cn/PiecewiseDecay_cn.rst
     dygraph_cn/PolynomialDecay_cn.rst
     dygraph_cn/Pool2D_cn.rst
     dygraph_cn/PRelu_cn.rst
+    dygraph_cn/prepare_context_cn.rst  
     dygraph_cn/save_dygraph_cn.rst
+    dygraph_cn/save_persistables_cn.rst
     dygraph_cn/SpectralNorm_cn.rst
+    dygraph_cn/start_gperf_profiler_cn.rst
+    dygraph_cn/stop_gperf_profiler_cn.rst
     dygraph_cn/to_variable_cn.rst
+    dygraph_cn/Tracer_cn.rst
     dygraph_cn/TreeConv_cn.rst
