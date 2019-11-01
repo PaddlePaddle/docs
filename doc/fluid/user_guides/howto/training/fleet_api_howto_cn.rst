@@ -145,17 +145,17 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
 更多使用示例
 ------------
 
-`点击率预估 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`_
+`点击率预估 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/distribute_ctr>`_
 
-`语义匹配 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/semantic_matching>`_
+`语义匹配 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/simnet_bow>`_
 
 `向量学习 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/word2vec>`_
 
-`基于Resnet50的图像分类 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/resnet50>`_
+`基于Resnet50的图像分类 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/resnet>`_
 
-`基于Transformer的机器翻译 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/transformer>`_
+`基于Transformer的机器翻译 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/transformer>`_
 
-`基于Bert的语义表示学习 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/bert>`_
+`基于Bert的语义表示学习 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/bert>`_
 
 Fleet API相关的接口说明
 -----------------------
