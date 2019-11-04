@@ -15,8 +15,7 @@ fluid.io
     io_cn/chain_cn.rst
     io_cn/compose_cn.rst
     io_cn/ComposeNotAligned_cn.rst
-    io_cn/DataLoader_cn.rst    
-    io_cn/Fake_cn.rst   
+    io_cn/DataLoader_cn.rst  
     io_cn/firstn_cn.rst
     io_cn/load_cn.rst
     io_cn/load_inference_model_cn.rst
