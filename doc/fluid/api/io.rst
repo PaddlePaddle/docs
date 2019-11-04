@@ -12,7 +12,6 @@ fluid.io
     io/compose.rst
     io/ComposeNotAligned.rst
     io/DataLoader.rst
-    io/Fake.rst
     io/firstn.rst
     io/load.rst
     io/load_inference_model.rst
