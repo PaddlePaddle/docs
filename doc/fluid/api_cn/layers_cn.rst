@@ -101,7 +101,7 @@ fluid.layers
     layers_cn/equal_cn.rst
     layers_cn/exp_cn.rst
     layers_cn/expand_cn.rst
-    layers_cn/expend_as_cn.rst
+    layers_cn/expand_as_cn.rst
     layers_cn/exponential_decay_cn.rst
     layers_cn/eye_cn.rst
     layers_cn/fc_cn.rst
