@@ -22,7 +22,7 @@ fluid.layers
     layers_cn/argmax_cn.rst
     layers_cn/argmin_cn.rst
     layers_cn/argsort_cn.rst
-    layers_cn/array_length_cn.zrst
+    layers_cn/array_length_cn.rst
     layers_cn/array_read_cn.rst
     layers_cn/array_write_cn.rst
     layers_cn/asin_cn.rst
