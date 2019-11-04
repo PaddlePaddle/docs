@@ -70,7 +70,6 @@ fluid.layers
     layers/deformable_conv.rst
     layers/deformable_roi_pooling.rst
     layers/density_prior_box.rst
-    layers/detection_map.rst
     layers/detection_output.rst
     layers/diag.rst
     layers/dice_loss.rst
@@ -97,6 +96,7 @@ fluid.layers
     layers/equal.rst
     layers/exp.rst
     layers/expand.rst
+    layers/expand_as.rst
     layers/exponential_decay.rst
     layers/eye.rst
     layers/fc.rst
@@ -164,7 +164,6 @@ fluid.layers
     layers/lstm_unit.rst
     layers/LSTMCell.rst
     layers/margin_rank_loss.rst
-    layers/match_matrix_tensor.rst
     layers/matmul.rst
     layers/maxout.rst
     layers/mean.rst
@@ -174,7 +173,6 @@ fluid.layers
     layers/mul.rst
     layers/multi_box_head.rst
     layers/multiclass_nms.rst
-    layers/multiclass_nms2.rst
     layers/multiplex.rst
     layers/MultivariateNormalDiag.rst
     layers/natural_exp_decay.rst
@@ -301,7 +299,6 @@ fluid.layers
     layers/thresholded_relu.rst
     layers/topk.rst
     layers/transpose.rst
-    layers/tree_conv.rst
     layers/unfold.rst
     layers/Uniform.rst
     layers/uniform_random.rst
@@ -310,7 +307,6 @@ fluid.layers
     layers/unique_with_counts.rst
     layers/unsqueeze.rst
     layers/unstack.rst
-    layers/var_conv_2d.rst
     layers/warpctc.rst
     layers/where.rst
     layers/While.rst

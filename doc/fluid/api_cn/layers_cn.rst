@@ -74,7 +74,6 @@ fluid.layers
     layers_cn/deformable_conv_cn.rst
     layers_cn/deformable_roi_pooling_cn.rst
     layers_cn/density_prior_box_cn.rst
-    layers_cn/detection_map_cn.rst
     layers_cn/detection_output_cn.rst
     layers_cn/diag_cn.rst
     layers_cn/dice_loss_cn.rst
@@ -102,6 +101,7 @@ fluid.layers
     layers_cn/equal_cn.rst
     layers_cn/exp_cn.rst
     layers_cn/expand_cn.rst
+    layers_cn/expend_as_cn.rst
     layers_cn/exponential_decay_cn.rst
     layers_cn/eye_cn.rst
     layers_cn/fc_cn.rst
@@ -202,6 +202,7 @@ fluid.layers
     layers_cn/prelu_cn.rst
     layers_cn/Print_cn.rst
     layers_cn/prior_box_cn.rst
+    layers_cn/prroi_pool_cn.rst
     layers_cn/psroi_pool_cn.rst
     layers_cn/py_func_cn.rst
     layers_cn/py_reader_cn.rst
