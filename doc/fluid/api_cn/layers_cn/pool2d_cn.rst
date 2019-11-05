@@ -92,10 +92,15 @@ pool2d
 抛出异常：
     - ``ValueError`` - 如果 ``pool_type`` 既不是"max"也不是"avg"。
     - ``ValueError`` - 如果 ``global_pooling`` 为False并且 ``pool_size`` 为-1。
-    - ``ValueError`` - 如果 ``use_cudnn`` 不是bool值。
+    - ``TypeError`` - 如果 ``use_cudnn`` 不是bool值。
     - ``ValueError`` - 如果 ``data_format`` 既不是"NCHW"也不是"NHWC"。
     - ``ValueError`` - 如果 ``pool_padding`` 是字符串，既不是"SAME"也不是"VALID"。
+    - ``ValueError`` - 如果 ``pool_padding`` 是"VALID"，但是 ``ceil_mode`` 是True。
     - ``ValueError`` - 如果 ``pool_padding`` 含有4个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
+    - ``ShapeError`` - 如果 ``input`` 既不是4-D Tensor 也不是5-D Tensor。
+    - ``ShapeError`` - 如果 ``input`` 的维度减去 ``pool_stride`` 的尺寸大小不是2。
+    - ``ShapeError`` - 如果 ``pool_size`` 和 ``pool_stride`` 的尺寸大小不相等。
+    - ``ShapeError`` - 如果计算出的输出形状的元素值不大于0。
 
 
 **代码示例**
