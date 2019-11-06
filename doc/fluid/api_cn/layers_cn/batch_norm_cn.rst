@@ -3,7 +3,7 @@
 batch_norm
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.batch_norm(input, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, fuse_with_relu=False, use_global_stats=False)
+.. py:function:: paddle.fluid.layers.batch_norm(input, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False)
 
 批正则化层（Batch Normalization Layer）
 
@@ -51,7 +51,6 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
     - **moving_mean_name** （string）- moving_mean的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则， ``batch_norm`` 将命名全局均值为 ``moving_mean_name`` 。默认：None。
     - **moving_variance_name** （string）- moving_variance的名称，存储全局变量。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则， ``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 。默认：None。
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值。
-    - **fuse_with_relu** （bool）- 如果为True，batch_norm后该操作符执行relu。默认：False。
     - **use_global_stats** （bool） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。默认：False。
 
 返回： 维度和输入相同的Tensor，在输入中运用批正则后的结果。
