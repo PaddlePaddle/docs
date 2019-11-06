@@ -3,7 +3,7 @@
 BatchNorm
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.BatchNorm(name_scope, num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, fuse_with_relu=False, use_global_stats=False, trainable_statistics=False)
+.. py:class:: paddle.fluid.dygraph.BatchNorm(name_scope, num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False, trainable_statistics=False)
 
 该接口用于构建 ``BatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
@@ -49,7 +49,6 @@ BatchNorm
     - **moving_mean_name** (str, 可选) - ``moving_mean`` 的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则， ``batch_norm`` 将命名全局均值为 ``moving_mean_name`` 。默认值：None。
     - **moving_variance_name** (string, 可选) - ``moving_var`` 的名称，存储全局方差。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则， ``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 。默认值：None。
     - **do_model_average_for_mean_and_var** (bool, 可选) - 指示是否为mean和variance做模型均值。默认值：False。
-    - **fuse_with_relu** (bool, 可选) - 如果为True，将在执行 ``batch_norm`` 后执行 ``relu`` 操作。默认值：False。
     - **use_global_stats** (bool, 可选) – 指示是否使用全局均值和方差。在预测或测试模式下，将 ``use_global_stats`` 设置为true或将 ``is_test`` 设置为true，这两种行为是等效的。在训练模式中，当设置 ``use_global_stats`` 为True时，在训练期间也将使用全局均值和方差。默认值：False。
     - **trainable_statistics** (bool, 可选) - eval模式下是否计算mean均值和var方差。eval模式下，trainable_statistics为True时，由该批数据计算均值和方差。默认值：False。
 
