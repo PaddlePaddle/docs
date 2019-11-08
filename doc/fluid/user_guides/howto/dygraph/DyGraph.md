@@ -78,7 +78,7 @@ print(loss.gradient())
 
 ## 基于DyGraph构建网络
 		
-1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**三个部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必须要使用继承自`fluid.dygraph.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
+1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**两部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必须要使用继承自`fluid.dygraph.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
 
 	1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.dygraph.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
         
