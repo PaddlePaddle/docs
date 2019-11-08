@@ -8,7 +8,7 @@ FC
 
 **全连接层**
 
-该接口用于构建 ``FC`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个全连接层。其输入可以是一个 ``Tensor`` 或多个 ``Tensor`` 组成的list（详见参数说明），该接口会为每个输入的Tensor创建一个权重（weights）变量，即一个从每个输入单元到每个输出单元的全连接权重矩阵。全连接层将每个输入Tensor和其对应的权重(weights)相乘得到shape为 :math:`[N, size]` 的输出Tensor，其中N为batch_size大小。如果有多个输入Tensor，则多个shape为 :math:`[N, size]` 的Tensor计算结果会被累加起来，作为最终输出。如果 ``bias_attr`` 非空，则会创建一个偏置变量（bias Variable），并把它累加到输出结果中。如果 ``act`` 非空，将会在输出结果上应用相应的激活函数。
+该接口用于构建 ``FC`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个全连接层。其输入可以是一个 ``Tensor`` 或多个 ``Tensor`` 组成的list（详见参数说明），该接口会为每个输入的Tensor创建一个权重（weights）变量，即一个从每个输入单元到每个输出单元的全连接权重矩阵。全连接层将每个输入Tensor和其对应的权重(weights)相乘得到shape为 :math:`[N, size]` 的输出Tensor，其中N为batch_size大小。如果有多个输入Tensor，则多个shape为 :math:`[N, size]` 的Tensor计算结果会被累加起来，作为最终输出。如果 ``bias_attr`` 为False，表示不会为该层添加偏置。如果 ``act`` 非空，将会在输出结果上应用相应的激活函数。
 
 当输入为单个 ``Tensor`` ：
 
@@ -70,7 +70,7 @@ FC
   - **size** (int) – 全连接层输出单元的数目，即输出 ``Tensor`` 的特征维度。
   - **num_flatten_dims** (int, 可选) – fc层可以接受一个维度大于2的tensor。此时， 它首先会被扁平化(flattened)为一个二维矩阵。 参数 ``num_flatten_dims`` 决定了输入tensor的flattened方式: 前 ``num_flatten_dims`` (包含边界，从1开始数) 个维度会被扁平化为最终矩阵的第一维 (维度即为矩阵的高), 剩下的 rank(X) - num_flatten_dims 维被扁平化为最终矩阵的第二维 (即矩阵的宽)。 例如， 假设X是一个五维tensor，其形可描述为[2, 3, 4, 5, 6], 且num_flatten_dims = 3。那么扁平化的矩阵形状将会如此： [2 x 3 x 4, 5 x 6] = [24, 30]。默认为1。
   - **param_attr** (ParamAttr|list of ParamAttr, 可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-  - **bias_attr** (ParamAttr|list of ParamAttr, 可选) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+  - **bias_attr** (ParamAttr|list of ParamAttr|bool, 可选) – 指定偏置参数属性的对象，若 `bias_attr` 为bool类型，如果设置为False，表示不会为该层添加偏置；如果设置为True，表示使用默认的偏置参数属性。默认值为None，表示使用默认的偏置参数属性。默认的偏置参数属性将偏置参数的初始值设为0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **act** (str, 可选) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
   - **is_test** (bool, 可选) – 表明当前执行是否处于测试阶段的标志。默认为False。
   - **dtype** (str, 可选) – 权重的数据类型，可以为float32或float64。默认为float32。
