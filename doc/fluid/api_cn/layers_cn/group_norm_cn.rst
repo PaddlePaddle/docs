@@ -14,7 +14,7 @@ group_norm
   - **param_attr** (ParamAttr|bool，可选) ：指定权重参数属性的对象。若 ``param_attr`` 为bool类型，只支持为False，表示没有权重参数。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **bias_attr** (ParamAttr|bool，可选) : 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **act** (str，可选)：将激活应用于输出的 group normalizaiton。
-  - **data_layout** (str，可选)：输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
+  - **data_layout** (str，可选)：指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
   - **name** (str，可选)：具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：4-D Tensor，数据类型和格式与 `input` 一致。
@@ -23,6 +23,9 @@ group_norm
 
 抛出异常：
     - ``ValueError`` - 如果 ``data_layout`` 既不是"NCHW"也不是"NHWC"。
+    - ``ValueError`` - 如果 ``groups`` 小于1，或者 ``groups`` 大于输入的通道数。
+    - ``ShapeError`` - 如果  ``param_attr`` (Scale) 或者 ``bias_attr`` (Bias) 不是 1-D Tensor。
+    - ``ShapeError`` - 如果  ``param_attr`` (Scale) 或者 ``bias_attr`` (Bias) 的大小与输入的通道数不相等。
 
 **代码示例：**
 
