@@ -94,7 +94,7 @@ conv3d_transpose
 
 抛出异常:
     - ``ValueError`` - 如果输入的shape、filter_size、stride、padding和groups不匹配。
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCHW"也不是"NHWC"。
+    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
     - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
     - ``ValueError`` - 如果 ``padding`` 含有5个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
     - ``ValueError`` - 如果 ``output_size`` 和 ``filter_size`` 同时为None。
