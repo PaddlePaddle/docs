@@ -58,9 +58,9 @@ DetectionMAP
         nmsed_outs = fluid.layers.detection_output(scores=scores,
             loc=loc, prior_box=pb, prior_box_var=pbv)
          
-        gt_box = fluid.layers.data(name="gt_box", shape=[batch_size, 4], dtype="float32")
-        gt_label = fluid.layers.data(name="gt_label", shape=[batch_size, 1], dtype="float32")
-        difficult = fluid.layers.data(name="difficult", shape=[batch_size, 1], dtype="float32")
+        gt_box = fluid.layers.data(name="gt_box", shape=[batch_size, 4], append_batch_size=False, dtype="float32")
+        gt_label = fluid.layers.data(name="gt_label", shape=[batch_size, 1], append_batch_size=False, dtype="float32")
+        difficult = fluid.layers.data(name="difficult", shape=[batch_size, 1], append_batch_size=False, dtype="float32")
         
         exe = fluid.Executor(fluid.CUDAPlace(0))
         map_evaluator = fluid.metrics.DetectionMAP(nmsed_outs, gt_label, gt_box, difficult, class_num = 3)
