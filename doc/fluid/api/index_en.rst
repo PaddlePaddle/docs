@@ -24,3 +24,4 @@ API Reference
     regularizer.rst
     transpiler.rst
     unique_name.rst
+    recompute.rst
