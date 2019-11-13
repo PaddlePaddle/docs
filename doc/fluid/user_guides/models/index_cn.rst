@@ -8,7 +8,7 @@
 
 在深度学习时代，图像分类的准确率大幅度提升，在图像分类任务中，我们向大家介绍了如何在经典的数据集ImageNet上，训练常用的模型，包括AlexNet、VGG、GoogLeNet、ResNet、Inception-v4、MobileNet、DPN(Dual
 Path
-Network)、SE-ResNeXt模型，也开源了\ `训练的模型 <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/image_classification/README_cn.md#已有模型及其性能>`__\ 方便用户下载使用。同时提供了能够将Caffe模型转换为PaddlePaddle
+Network)、SE-ResNeXt模型，也开源了\ `训练的模型 <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/image_classification/README.md#已有模型及其性能>`__\ 方便用户下载使用。同时提供了能够将Caffe模型转换为PaddlePaddle
 Fluid模型配置和参数文件的工具。
 
 -  `AlexNet <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models>`__
@@ -35,7 +35,7 @@ COCO <http://cocodataset.org/#home>`__\ 数据训练通用物体检测模型，�
 开放环境中的检测人脸，尤其是小的、模糊的和部分遮挡的人脸也是一个具有挑战的任务。我们也介绍了如何基于 `WIDER FACE <http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/>`_ 数据训练百度自研的人脸检测PyramidBox模型，该算法于2018年3月份在WIDER FACE的多项评测中均获得 `第一名 <http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/WiderFace_Results.html>`_。
 
 -  `Single Shot MultiBox
-   Detector <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/object_detection/README_cn.md>`__
+   Detector <https://github.com/PaddlePaddle/PaddleDetection/blob/master/README_cn.md>`__
 -  `Face Detector: PyramidBox <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/face_detection/README_cn.md>`_
 
 图像语义分割
@@ -56,8 +56,8 @@ Network,ICNet)进行语义分割，相比其他分割算法，ICNet兼顾了准�
 
 在图像生成任务中，我们介绍了如何使用DCGAN和ConditioanlGAN来进行手写数字的生成，另外还介绍了用于风格迁移的CycleGAN.
 
-- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/c_gan>`__
-- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/gan/cycle_gan>`__
+- `DCGAN & ConditionalGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/PaddleGAN/c_gan>`__
+- `CycleGAN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/PaddleGAN/cycle_gan>`__
 
 场景文字识别
 ------------
@@ -85,7 +85,7 @@ Network,ICNet)进行语义分割，相比其他分割算法，ICNet兼顾了准�
 视频分类是视频理解任务的基础，与图像分类不同的是，分类的对象不再是静止的图像，而是一个由多帧图像构成的、包含语音数据、包含运动信息等的视频对象，因此理解视频需要获得更多的上下文信息，不仅要理解每帧图像是什么、包含什么，还需要结合不同帧，知道上下文的关联信息。视频分类方法主要包含基于卷积神经网络、基于循环神经网络、或将这两者结合的方法。该任务中我们介绍基于Fluid的视频分类模型，目前包含Temporal Segment Network(TSN)模型，后续会持续增加更多模型。
 
 
-- `TSN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/video_classification>`__
+- `TSN <https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/PaddleVideo>`__
 
 
 
@@ -121,7 +121,7 @@ RNN 结构的 NMT 得以应运而生，例如基于卷积神经网络 CNN
 Attention 学习语言中的上下文依赖。相较于RNN/CNN,
 这种结构在单层内计算复杂度更低、易于并行化、对长程依赖更易建模，最终在多种语言之间取得了最好的翻译效果。
 
--  `Transformer <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/neural_machine_translation/transformer/README.md>`__
+-  `Transformer <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/PaddleMT/transformer/README.md>`__
 
 强化学习
 --------
@@ -137,7 +137,7 @@ AlphaGo 就是 DRL
 Q-Network, DQN)。本实例就是利用PaddlePaddle Fluid这个灵活的框架，实现了
 DQN 及其变体，并测试了它们在 Atari 游戏中的表现。
 
--  `DeepQNetwork <https://github.com/PaddlePaddle/models/blob/develop/PaddleRL/DeepQNetwork/README_cn.md>`__
+-  `DeepQNetwork <https://github.com/PaddlePaddle/models/blob/develop/legacy/PaddleRL/DeepQNetwork/README_cn.md>`__
 
 中文词法分析
 ------------
@@ -162,7 +162,7 @@ DQN 及其变体，并测试了它们在 Atari 游戏中的表现。
 
 本例所开放的DAM (Deep Attention Matching Network)为百度自然语言处理部发表于ACL-2018的工作，用于检索式聊天机器人多轮对话中应答的选择。DAM受Transformer的启发，其网络结构完全基于注意力(attention)机制，利用栈式的self-attention结构分别学习不同粒度下应答和语境的语义表示，然后利用cross-attention获取应答与语境之间的相关性，在两个大规模多轮对话数据集上的表现均好于其它模型。
 
-- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/dialogue_model_toolkit/deep_attention_matching>`__
+- `Deep Attention Matching Network <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/Research/ACL2018-DAM/README.md>`__
 
 AnyQ
 ----
@@ -182,7 +182,7 @@ SimNet是百度自然语言处理部于2013年自主研发的语义匹配框架�
 
 百度阅读理解数据集是由百度自然语言处理部开源的一个真实世界数据集，所有的问题、原文都来源于实际数据(百度搜索引擎数据和百度知道问答社区)，答案是由人类回答的。每个问题都对应多个答案，数据集包含200k问题、1000k原文和420k答案，是目前最大的中文MRC数据集。百度同时开源了对应的阅读理解模型，称为DuReader，采用当前通用的网络分层结构，通过双向attention机制捕捉问题和原文之间的交互关系，生成query-aware的原文表示，最终基于query-aware的原文表示通过point network预测答案范围。
 
--  `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/reading_comprehension>`_
+-  `DuReader in PaddlePaddle Fluid <https://github.com/PaddlePaddle/models/tree/release/1.6/PaddleNLP/Research/ACL2018-DuReader>`_
 
 
 个性化推荐
@@ -195,5 +195,5 @@ SimNet是百度自然语言处理部于2013年自主研发的语义匹配框架�
 - `TagSpace <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/tagspace>`_
 - `GRU4Rec <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/gru4rec>`_
 - `SequenceSemanticRetrieval <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/ssr>`_
-- `DeepCTR <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/ctr/README.cn.md>`_
+- `DeepCTR <https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/ctr/README.md>`_
 - `Multiview-Simnet <https://github.com/PaddlePaddle/models/tree/develop/PaddleRec/multiview_simnet>`_
