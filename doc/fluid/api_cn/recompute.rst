@@ -41,6 +41,8 @@ Forward Recomputation Backpropagation（FRB）的思想是将深度学习网络�
 
 .. image:: image/recompute.png
 
+注：该例子完整代码位于 `source <https://github.com/PaddlePaddle/examples/blob/master/community_examples/recompute/demo.py>`_
+
 添加FRB后，前向计算中需要存储的中间Variable从4个(红点)变为2个(蓝点)，
 从而节省了这部分内存。当然了，重计算的部分也产生了新的中间变量，
 这就需要根据实际情况来做权衡了。这个例子里的网络比较浅，通常来讲，
@@ -84,7 +86,6 @@ Forward Recomputation Backpropagation（FRB）的思想是将深度学习网络�
             # 运行优化算法
             sgd.minimize(cost)
 
-注：以上例子完整代码位于 `source? <?>`_
 
 **2. 在Fleet API中使用Recompute**
 
@@ -106,15 +107,30 @@ Forward Recomputation Backpropagation（FRB）的思想是将深度学习网络�
 为了帮助您快速地用Fleet API使用Recompute任务，我们提供了一些例子：
 
 - 用Recompute做Bert Fine-tuning:  `source? <???>`_
+
 - 用Recompute做Bert Pre-training: `source? <???>`_
 
 Q&A
 -------
 
-- 是否支持带有随机性的Op？
+- **是否支持带有随机性的Op？**
 
-- 有没有更多Recompute的官方例子？
+  目前Fluid中带随机性的Op有：dropout，Recompute支持
+  dropout Operator，可以保证重计算与初次计算结果保持一致。
 
-- 有没有添加checkpoint的建议？
+- **有没有更多Recompute的官方例子？**
 
-- 为什么使用checkpoint以后，我的batch size反而变小了？
+  更多Recompute的例子将更新在 `examples <https://github.com/PaddlePaddle/examples/tree/master/community_examples/recompute>`_ 
+  和 `Fleet <https://github.com/PaddlePaddle/Fleet>`_ 库下，欢迎关注。
+  
+- **有没有添加checkpoints的建议？**
+
+  我们建议将子网络连接部分的变量添加为checkpoints，即：
+  如果一个变量能将网络完全分为前后两部分，那么建议将其
+  加入checkpoints。checkpoints的数目对内存消耗影响也很
+  大，如果checkpoints很少，那么Recompute起的作用有限；
+  如果checkpoints数量过多，那么checkpoints本身占用的内
+  存量就很大，内存消耗可能不降反升。
+
+  我们后续会添加一个估算内存用量的工具，可以对每个Operator
+  运算前后的显存用量做可视化，帮助用户定位问题。
