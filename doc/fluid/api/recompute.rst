@@ -5,7 +5,11 @@ Forward Recomputation Backpropagation
 Context
 ---------
 
-As the amounts of training data increases, training deeper neural network models becomes more and more popular. The current deep-learning training usually keeps the hidden layer outputs in memory in the forward propagation, and the number of outputs increases linearly with the increase of the number of model layers, which becomes a challenge of the memory size of common devices.
+As the amount of training data increases, training deeper neural network models becomes more and more popular. Current deep-learning training usually keeps the hidden layer outputs in memory during the forward propagation,
+and the number of outputs increases linearly with
+the increase of the number of model layers,
+which becomes a challenge of the memory size
+for common devices.
  
 
 Theory
@@ -15,12 +19,18 @@ As we know, a training process of a deep-learning network contains 3 steps:
 
 - **Forward Propagation**：Running forward operators and generate temporary variables as output
 - **Backward Propagation**：Running backward operators to compute gradients of parameters
-- **Optimization**：Appling optimization algorithm to update parameters 
+- **Optimization**：Applying optimization algorithm to update parameters 
 
-When the model becomes very deep, the number of temporary variables generated in the forward propagation process can reach tens of thousands, occupying a large amount of memory. 
-The `Garbage Collection mechanism <https://paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/best_practice/memory_optimize.html>`_ in Paddle can delete useless variables for the sake of saving memory. However, some variable serves as inputs of backward operators, they must be kept in memory until particular operator finish.
+When the model becomes deeper, the number of temporary variables
+generated in the forward propagation process can reach tens
+of thousands, occupying a large amount of memory. 
+The `Garbage Collection mechanism <https://paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/best_practice/memory_optimize.html>`_
+in Paddle can delete useless variables for the sake of saving memory.
+However, some variables serve as inputs of backward operators,
+they must be kept in memory until particular operator finish.
 
-Take a simple example, define a network contains two `mul` operators, the forward propagation works as follows:
+Take a simple example, define a network contains two `mul` operators,
+the forward propagation works as follows:
 
 .. math::
 
@@ -35,9 +45,11 @@ where :math:`x, y, z` are vectors， :math:`W_1, W_2` are matrix。It is easy to
 
 We can see that :math:`y` is used in the backward propagation process, 
 thus it must be kept in the memory during the whole forward propagation.
+When network grows deeper, more 'y's need to be stored,
+adding more requirements to the memory.
 
-Forward Recomputation Backpropagation(FRB) split a deep network to k segments.
-For each segment, in forward propagration, 
+Forward Recomputation Backpropagation(FRB) splits a deep network to k segments.
+For each segment, in forward propagation, 
 most of the temporary variables are erased in time, 
 except for some special variables (we will talk about that later); 
 in backward propagation, the forward operators will be recomputed
@@ -47,7 +59,8 @@ In short, FBR runs forward operators twice.
 But how to split the network? A deep learning network usually consists
 of connecting modules in series:
 ResNet-50 contains 16 blocks and Bert-Large contains 24 transformers.
-It is a good choice to treat such modules as segments. The variables between segments are
+It is a good choice to treat such modules as segments. 
+The variables among segments are
 called as checkpoints.
 
 The following picture is a network with 4 fc layers, 3 relu layers, 
@@ -68,8 +81,8 @@ After applying FBR, the forward computation only needs to store
 dots), saving the corresponding memories. It is notable that
 recomputing operators generate new intermediate variables at the same time,
 a trade-off needs to be considered in this situation.
-But FBR usually saves much more memory than it spends.
-
+While according to our experiments,
+FBR usually saves rather than increase the memory load.
 
 Usage
 ---------
@@ -81,7 +94,7 @@ and the
 `document <https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/optimizer_cn/RecomputeOptimizer_cn.html>`_
 of RecomputeOptimizer.
 
-There are 2 methods to apply RecomputeOptimizer to your Paddle
+There are 2 methods to apply RecomputeOptimizer in your Paddle
 program: call RecomputeOptimizer directly or use it with Fleet
 API. For single-GPU card training or CPU training, we recommend
 directly calling; For multi-GPU training, we
@@ -136,13 +149,7 @@ RecomputeOptimizer to Fluid takes two steps:
     optimizer = fleet.distributed_optimizer(optimizer, strategy=dist_strategy)
     optimizer.minimize(loss)
 
-We supply some examples of using recompute in Fleet API
-to help users quickly deploying recomputing. We also
-post corresponding training speed, test results and
-memory usages of these examples.
-
-We supply some examples of using recompute in Fleet API
-to help users quickly deploying recomputing.
+We supply some examples of using recompute in Fleet API for users.
 We also post corresponding training speed,
 test results and memory usages of these examples for reference.
 
@@ -161,7 +168,7 @@ and RecomputeOptimizer is able to keep the outputs of
 first-computation and recomputation consistent.
 
 
-- **Are there more official example of Recompute?**
+- **Are there more official examples of Recompute?**
 
   More examples will be updated at `examples <https://github.com/PaddlePaddle/examples/tree/master/community_examples/recompute>`_
 and `Fleet <https://github.com/PaddlePaddle/Fleet>`_ . Feel free to
@@ -175,7 +182,7 @@ that is, set a variable as a checkpoint if it
 can separate the network into two parts without short-cut connections.
 The number of checkpoints is also important:
 too few checkpoints will reduce the memory saved by recomputing while
-too many checkpoints will occupy a lot of memory itself.
+too many checkpoints will occupy a lot of memory themselves.
 We will add a tool to estimate the memory usage with specific checkpoints,
 helping users to choose checkpointing variables.
 
