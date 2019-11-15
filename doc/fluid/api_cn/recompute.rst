@@ -12,11 +12,15 @@ Forward Recomputation Backpropagation
 
 我们知道，深度学习网络的一次训练迭代包含三个步骤：
 
-- **前向计算**：运行前向算子(Operator) 来计算前向Variable的值
+- **前向计算**：运行前向算子(Operator) 来计算中间隐层(Variable)的值
 - **反向计算**：运行反向算子来计算参数(Parameter)的梯度
 - **优化**：应用优化算法以更新参数值
 
-在前向计算过程中，前向算子会输出大量的中间计算结果(Variables)，当模型层数加深时，其数量可达成千上万个，占据大量的内存。Fluid的Garbage Collection机制[链接]会及时清除无用的中间结果，以节省内存。然而，有些中间结果是反向算子的输入，这些Variable必须存储在内存中，直到相应的反向算子计算完毕。
+在前向计算过程中，前向算子会输出大量的中间计算结果，在Paddle中，使用
+Variable来存储这些隐层的中间结果。当模型层数加深时，其数量可达成千上万个，
+占据大量的内存。Paddle的 `显存回收机制 <https://paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/best_practice/memory_optimize.html>`_ 
+会及时清除无用的中间结果，以节省存储。
+然而，有些中间结果是反向算子的输入，这些Variable必须存储在内存中，直到相应的反向算子计算完毕。
 
 举个简单的例子, 我们定义一个由mul算子构成的网络，其前向计算为：
 
@@ -35,7 +39,14 @@ Forward Recomputation Backpropagation
 
 Forward Recomputation Backpropagation（FRB）的思想是将深度学习网络切分为k个部分（segments）。对每个segment而言：前向计算时，除了小部分必须存储在内存中的Variable外(我们后续会讨论这些特殊Variable)，其他中间结果都将被删除；在反向计算中，首先重新计算一遍前向算子，以获得中间结果，再运行反向算子。简而言之，FRB和普通的网络迭代相比，多计算了一遍前向算子。
 
-那么问题来了，如何切分网络呢？我们知道深度学习网络通常是由一个个模块串联得到的，比如ResNet-50由16个block串联而成，Bert-Large由24个transformer串联而成，那么以两个子模块中间的变量作为切分点就是一个很好的选择。我们把切分segments的变量叫做checkpoints。
+我们把切分网络的变量叫做checkpoints。
+那么问题来了，如何选择checkpoints呢？自从FRB方法提出以来 \ :sup:`[1], [2]`，大量学者在研究这一关键问题。
+我们知道深度学习网络通常是由一个个模块串联得到的，比如ResNet-50由16个block串联而成，
+Bert-Large由24个transformer串联而成，以两个子模块中间的变量作为切分点就是一个很好的选择。
+对于非串联的网络（比如含有大量shortcut结构的网络），FRB也支持对其做切分，
+只是可能多耗费一点内存（用于存储shortcut的Variable）。
+Mitsuru Kusumoto  \ :sup:`[3]` 等提出了一种基于动态规划的算法，
+可以根据指定的内存自动搜索合适的checkpoints，支持各种各样的网络结构。
 
 下图是由4个fc Layer、3个relu Layer、1个sigmoid Layer和1个log-loss Layer串联而成的一个网络：最左侧为其前向计算流程、中间是普通的前向计算和反向计算流程、最右侧为添加FRB后的前向计算和反向计算流程。其中方框代表算子(Operator)，红点代表前向计算的中间结果、蓝点代表checkpoints。
 
@@ -51,7 +62,7 @@ Forward Recomputation Backpropagation（FRB）的思想是将深度学习网络�
 使用方法
 ---------
 
-我们实现了基于Fluid的FRB算法，叫做RecomputeOptimizer，
+我们实现了基于Paddle的FRB算法，叫做RecomputeOptimizer，
 您可以根据其 `源码 <https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/optimizer.py>`_
 与
 `文档 <https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/optimizer_cn/RecomputeOptimizer_cn.html>`_
@@ -86,14 +97,17 @@ Forward Recomputation Backpropagation（FRB）的思想是将深度学习网络�
             # 运行优化算法
             sgd.minimize(cost)
 
+Recompute原则上适用于所有Optimizer。
 
 **2. 在Fleet API中使用Recompute**
 
 `Fleet API <https://github.com/PaddlePaddle/Fleet>`_ 
 是基于Fluid的分布式计算高层API。在Fleet API中添加RecomputeOptimizer
 仅需要2步：
+
 - 设置dist_strategy.forward_recompute为True；
-- 设置recompute_checkpoints。
+
+- 设置dist_strategy.recompute_checkpoints。
 
 .. code-block:: python
 
@@ -104,18 +118,19 @@ Forward Recomputation Backpropagation（FRB）的思想是将深度学习网络�
     optimizer = fleet.distributed_optimizer(optimizer, strategy=dist_strategy)
     optimizer.minimize(loss)
 
-为了帮助您快速地用Fleet API使用Recompute任务，我们提供了一些例子：
+为了帮助您快速地用Fleet API使用Recompute任务，我们提供了一些例子，
+并且给出了这些例子的计算速度、效果和显存节省情况：
 
-- 用Recompute做Bert Fine-tuning:  `source? <???>`_
+- 用Recompute做Bert Fine-tuning:  `source <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/recompute/bert>`_
 
-- 用Recompute做Bert Pre-training: `source? <???>`_
+- 用Recompute做目标检测：开发中.
 
 Q&A
 -------
 
 - **是否支持带有随机性的Op？**
 
-  目前Fluid中带随机性的Op有：dropout，Recompute支持
+  目前Paddle中带随机性的Op有：dropout，Recompute支持
   dropout Operator，可以保证重计算与初次计算结果保持一致。
 
 - **有没有更多Recompute的官方例子？**
@@ -126,11 +141,20 @@ Q&A
 - **有没有添加checkpoints的建议？**
 
   我们建议将子网络连接部分的变量添加为checkpoints，即：
-  如果一个变量能将网络完全分为前后两部分，那么建议将其
-  加入checkpoints。checkpoints的数目对内存消耗影响也很
-  大，如果checkpoints很少，那么Recompute起的作用有限；
-  如果checkpoints数量过多，那么checkpoints本身占用的内
-  存量就很大，内存消耗可能不降反升。
+  如果一个变量能将网络完全分为前后两部分，那么建议将其加入checkpoints。
+  checkpoints的数目会影响内存的消耗：如果checkpoints很少，
+  那么Recompute起的作用有限；如果checkpoints数量过多，
+  那么checkpoints本身占用的内存量就较大，内存消耗可能不降反升。
 
-  我们后续会添加一个估算内存用量的工具，可以对每个Operator
-  运算前后的显存用量做可视化，帮助用户定位问题。
+  我们后续会添加一个估算内存用量的工具，
+  可以对每个Operator运算前后的显存用量做可视化，
+  帮助用户定位问题。
+
+[1] Tianqi Chen, Bing Xu, Chiyuan Zhang, and Carlos Guestrin . Training deep nets with sublinear memory cost.
+arXiv preprint, arXiv:1604.06174, 2016. 
+
+[2] Audrunas Gruslys , Rémi Munos , Ivo Danihelka , Marc Lanctot , and Alex Graves. Memory efficient
+backpropagation through time. In Advances in Neural Information Processing Systems (NIPS), pages 4125 4133,
+2016.
+
+[3] Kusumoto, Mitsuru, et al. "A Graph Theoretic Framework of Recomputation Algorithms for Memory-Efficient Backpropagation." arXiv preprint arXiv:1905.11722 (2019). 
