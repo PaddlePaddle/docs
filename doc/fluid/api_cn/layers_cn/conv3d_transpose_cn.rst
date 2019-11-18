@@ -86,17 +86,21 @@ conv3d_transpose
   - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认：True。
   - **act** (str，可选) -  激活函数类型，如果设置为None，则不使用激活函数。默认：None。
   - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
-  - **data_format** (str，可选) - 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCDHW"。
+  - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCDHW"。
 
 返回：5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
 返回类型：Variable
 
 抛出异常:
-    - ``ValueError``  : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCHW"也不是"NHWC"。
+    - ``ValueError`` - 如果输入的shape、filter_size、stride、padding和groups不匹配。
+    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
     - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
     - ``ValueError`` - 如果 ``padding`` 含有5个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
+    - ``ValueError`` - 如果 ``output_size`` 和 ``filter_size`` 同时为None。
+    - ``ShapeError`` - 如果输入不是5-D Tensor。
+    - ``ShapeError`` - 如果输入和滤波器的维度大小不相同。
+    - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
 **代码示例**
 

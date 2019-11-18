@@ -28,7 +28,7 @@ data_norm
   - **act** （string，默认None） - 激活函数类型，线性| relu | prelu | ...
   - **epsilon** （float，默认1e-05） -
   - **param_attr** （ParamAttr） - 参数比例的参数属性。
-  - **data_layout** （string，默认NCHW） -  NCHW | NHWC
+  - **data_layout** （str，可选） -  指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
   - **in_place** （bool，默认值False） - 使data_norm的输入和输出复用同一块内存。
   - **name** （string，默认None） - 此层的名称（可选）。 如果设置为None，则将自动命名该层。
   - **moving_mean_name** （string，Default None） - 存储全局Mean的moving_mean的名称。
