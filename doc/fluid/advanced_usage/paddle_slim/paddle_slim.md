@@ -60,7 +60,7 @@ Paddle-Slim工具库有以下特点：
 **图 1**为模型压缩工具的架构图，从上到下为API依赖关系。蒸馏模块、量化模块和剪切模块都间接依赖底层的paddle框架。目前，模型压缩工具作为了PaddlePaddle框架的一部分，所以已经安装普通版本paddle的用户需要重新下载安装支持模型压缩功能的paddle，才能使用压缩功能。
 
 <p align="center">
-<img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_0.png?raw=true" height=252 width=406 hspace='10'/> <br />
+<img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_0.png?raw=true" height=350 width=600 hspace='10'/> <br />
 <strong>图 1</strong>
 </p>
 
@@ -69,7 +69,7 @@ Paddle-Slim工具库有以下特点：
 我们将每个压缩算法称为压缩策略，在迭代训练模型的过程中调用用户注册的压缩策略完成模型压缩，如**图2**所示。其中，模型压缩工具封装好了模型训练逻辑，用户只需要提供训练模型需要的网络结构、数据、优化策略（optimizer）等，在[使用文档](https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/usage.md)会对此详细介绍。
 
 <p align="center">
-<img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_1.png?raw=true" height=255 width=646 hspace='10'/> <br />
+<img src="https://github.com/PaddlePaddle/models/blob/develop/PaddleSlim/docs/images/framework_1.png?raw=true" height=255 width=600 hspace='10'/> <br />
 <strong>图 2</strong>
 </p>
 
