@@ -4,13 +4,8 @@ dynamic_lstmp
 -------------------------------
 .. py:function:: paddle.fluid.layers.dynamic_lstmp(input, size, proj_size, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', proj_activation='tanh', dtype='float32', name=None, h_0=None, c_0=None, cell_clip=None, proj_clip=None)
 
-.. raw:: html
-
-    <style> .red {color:red; font-weight:bold} </style>
-
-.. role:: red
-
-:red:`注意：在实现的时候为了提升效率，用户必须将输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4×hidden_size] 输入，然后再传给该OP。`
+.. note::
+    在实现的时候为了提升效率，用户必须将输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4×hidden_size] 输入，然后再传给该OP。
 
 该OP实现了LSTMP（LSTM Projected）层。LSTMP层在LSTM层之后有一个单独的的线性映射层。 -- `Sak, H., Senior, A., & Beaufays, F. (2014) <https://ai.google/research/pubs/pub43905.pdf>`_。
 
