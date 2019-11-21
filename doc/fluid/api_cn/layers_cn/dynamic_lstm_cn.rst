@@ -7,15 +7,9 @@ dynamic_lstm
 
 该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf>`_。
 
-.. raw:: html
-
-    <style> .red {color:red; font-weight:bold} </style>
-
-.. role:: red
-
-:red:`注意：`
-      - :red:`该OP仅支持 LoDTensor 作为输入，如果您需要处理的是Tensor，请使用` :ref:`cn_api_fluid_layers_lstm` 。
-      - :red:`在实现的时候为了提升效率，用户必须将LSTM的输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4 × hidden_size] 输入，然后再传给该OP。`
+.. note::
+    - 该OP仅支持 LoDTensor 作为输入，如果您需要处理的是Tensor，请使用 :ref:`cn_api_fluid_layers_lstm` 。
+    - 在实现的时候为了提升效率，用户必须将LSTM的输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4 × hidden_size] 输入，然后再传给该OP。
 
 该OP的默认实现方式为 diagonal/peephole 连接，参见 `Gers, F. A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_。
 如果需要禁用 peephole 连接方法，将 use_peepholes 设为 False 即可。 
