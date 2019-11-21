@@ -5,7 +5,8 @@ cuda_places
 
 .. py:function:: paddle.fluid.cuda_places(device_ids=None)
 
-<font color="#FF0000">**注意：多卡任务请先使用 FLAGS_selected_gpus 环境变量设置可见的GPU设备，下个版本将会修正 CUDA_VISIBLE_DEVICES 环境变量无效的问题。 **</font> 
+.. note::
+    多卡任务请先使用 FLAGS_selected_gpus 环境变量设置可见的GPU设备，下个版本将会修正 CUDA_VISIBLE_DEVICES 环境变量无效的问题。
 
 该接口根据 ``device_ids`` 创建一个或多个 ``fluid.CUDAPlace`` 对象，并返回所创建的对象列表。
 

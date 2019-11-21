@@ -150,11 +150,8 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
 .. py:method:: load_dict(stat_dict, include_sublayers=True)
 
-.. raw:: html
-    <style> .red {color:red; font-weight:bold} </style>
-.. role:: red
-
-:red:`注意：该函数将被弃用。请使用set_dict函数。`
+.. warning::
+    该函数将被弃用。请使用set_dict函数。
 
 根据传入的 ``stat_dict`` 设置参数。 所有参数将由 ``stat_dict`` 中的 ``Tensor`` 设置。
 

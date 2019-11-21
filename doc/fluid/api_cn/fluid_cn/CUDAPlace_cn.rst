@@ -5,7 +5,8 @@ CUDAPlace
 
 .. py:class:: paddle.fluid.CUDAPlace
 
-<font color="#FF0000">**注意：多卡任务请先使用 FLAGS_selected_gpus 环境变量设置可见的GPU设备，下个版本将会修正 CUDA_VISIBLE_DEVICES 环境变量无效的问题。 **</font> 
+.. note::
+    多卡任务请先使用 FLAGS_selected_gpus 环境变量设置可见的GPU设备，下个版本将会修正 CUDA_VISIBLE_DEVICES 环境变量无效的问题。
 
 ``CUDAPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 或 ``LoDTensor`` 的 GPU 设备。
 每个 ``CUDAPlace`` 有一个 ``dev_id`` （设备id）来表明当前的 ``CUDAPlace`` 所代表的显卡编号，编号从 0 开始。
