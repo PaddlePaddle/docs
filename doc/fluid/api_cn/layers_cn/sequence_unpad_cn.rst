@@ -1,9 +1,3 @@
-.. raw:: html
-
-    <style> .red {color:red; font-weight:bold} </style>
-
-.. role:: red
-
 .. _cn_api_fluid_layers_sequence_unpad:
 
 sequence_unpad
@@ -11,7 +5,8 @@ sequence_unpad
 
 .. py:function:: paddle.fluid.layers.sequence_unpad(x, length, name=None)
 
-:red:`注意：该OP的输入为Tensor，输出为LoDTensor。该OP用于移除填充元素，与之对应，还存在进行数据填充的OP sequence_pad，详情见：`  :ref:`cn_api_fluid_layers_sequence_pad`
+.. note::
+    该OP的输入为Tensor，输出为LoDTensor。该OP用于移除填充元素，与之对应，还存在进行数据填充的OP sequence_pad，详情见： :ref:`cn_api_fluid_layers_sequence_pad`
 
 该OP根据length的信息，将input中padding（填充）元素移除，并且返回一个LoDTensor。
 
