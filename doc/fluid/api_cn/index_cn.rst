@@ -27,3 +27,4 @@ API Reference
     regularizer_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
+    localsgd_cn.rst
