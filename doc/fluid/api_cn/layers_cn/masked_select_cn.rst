@@ -8,7 +8,7 @@ masked_select
 该OP将根据mask Tensor的真值选取输入Tensor元素，并返回一个一维Tensor
 
 参数：
-          - **input** （Variable）- 输入Tensor，数据类型为float32。
+          - **input** （Variable）- 输入Tensor，数据类型为int32, float32, float64。
           - **mask** （Variable）- mask Tensor， 数据类型为bool。
 
 
@@ -50,7 +50,7 @@ masked_select
     main = fluid.default_main_program()
     exe.run(start)
     masked_select_result= exe.run(main, feed={'input':input_data, 'mask':mask_data}, fetch_list=[result])
-    # print(masked_select)
+    # print(masked_select_result)
     # [0.38972723 0.36218056 0.7892614  0.50122297 0.14408113 0.85540855
     #   0.30984417 0.7577004  0.26214206 0.32359877 0.6314582  0.2128865 ]
 
