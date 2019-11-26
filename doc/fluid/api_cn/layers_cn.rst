@@ -169,6 +169,7 @@ fluid.layers
     layers_cn/lstm_unit_cn.rst
     layers_cn/LSTMCell_cn.rst
     layers_cn/margin_rank_loss_cn.rst
+    layers_cn/masked_select_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
     layers_cn/mean_cn.rst
