@@ -174,11 +174,17 @@
 		<td> 是否打开预测优化 </td>
 		<td> OFF </td>
 	</tr>
-	</tr>
+	<tr>
 		<tr>
 		<td> CUDA_ARCH_NAME </td>
 		<td> 是否只针对当前CUDA架构编译 </td>
 		<td> All:编译所有可支持的CUDA架构 可选：Auto 自动识别当前环境的架构编译 </td>
+	</tr>
+	<tr>
+		<tr>
+		<td> TENSORRT_ROOT </td>
+		<td> 指定TensorRT路徑 </td>
+		<td> 不指定會自動搜尋TensorRT </td>
 	</tr>
    </tbody>
 </table>
