@@ -62,11 +62,11 @@ Users can also compile C++ inference libraries from the PaddlePaddle core code b
    cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
 
-3. Open the `paddle.sln` using VisualStudio 2015，choose the`x64` for Slution Platforms，and `Release` for Solution Configurations，then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build)
+3. Open the `paddle.sln` using VisualStudio 2015, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build).
 
 The inference library will be installed in `fluid_inference_install_dir`.
 
-version.txt constains the detailed configurations about the library，including git commit ID、math library, CUDA, CUDNN versions：
+version.txt constains the detailed configurations about the library, including git commit ID、math library, CUDA, CUDNN versions：
 
 
      GIT COMMIT ID: cc9028b90ef50a825a722c55e5fda4b7cd26b0d6
@@ -100,30 +100,42 @@ The operating system is win10 family version in the experimental environment.
 
 Install Visual Studio 2015. Please choose "customize" for the options of contents to be installed and choose to install all functions relevant to c, c++ and vc++.
 
+### Other requirements
 
-Usage of Inference demo
-------------------------
+1. You need to download the Windows inference library or compile the inference library from Paddle source code.
+
+2. You need to run the command to get the Paddle source code.
+```bash
+git clone https://github.com/PaddlePaddle/Paddle.git
+```
+
+### Usage of Inference demo
 
 #### Compile with script
 
-Run the run_windows_demo.bat from cmd on windows, and input parameters as required according to the prompts. Some options of the script are as follows:
+Run the run_windows_demo.bat from cmd on windows, and input parameters as required according to the prompts.
+```dos
+# Path is the directory where you downloaded paddle.
+cd path\Paddle\paddle\fluid\inference\api\demo_ci
+run_windows_demo.bat 
+```
+Some options of the script are as follows:
 
-```bash
+```dos
 gpu_inference=Y # Use gpu_inference_lib or not(Y/N), default: N.
 use_mkl=Y # Use MKL or not(Y/N), default: Y.
 use_gpu=Y  # Whether to use GPU for prediction, defalut: N.
 
-paddle_inference_lib=path\\fluid_inference_install_dir # Set the path of paddle inference library.
-cuda_lib_dir=path\\lib\\x64  # Set the path of cuda library.
-vcvarsall_dir=path\\vc\\vcvarsall.bat  # Set the path of visual studio command prompt.
+paddle_inference_lib=path\fluid_inference_install_dir # Set the path of paddle inference library.
+cuda_lib_dir=path\lib\x64  # Set the path of cuda library.
+vcvarsall_dir=path\vc\vcvarsall.bat  # Set the path of visual studio command prompt.
 ```
 
 #### Compile manually
 
-Decompress Paddle, Release and fluid_install_dir compressed package.
-
-```bash
-cd Paddle/paddle/fluid/inference/api/demo_ci
+```dos
+# Path is the directory where you downloaded paddle.
+cd path\Paddle\paddle\fluid\inference\api\demo_ci
 mkdir build
 cd build
 cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_patddle\paddle_fluid.lib -DMSVC_STATIC_CRT=ON
@@ -161,15 +173,15 @@ In the dependent packages provided, please copy openblas and model files under R
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image8.png">
 </p>
 
-Enter into Release in cmd and run:
+[Download model](http://paddle-inference-dist.bj.bcebos.com/word2vec.inference.model.tar.gz) and decompress it to the current directory. Run the command:
 
   1.  Open GLOG
 
   	`set GLOG_v=100`
 
-  2.  Start inference
+  2.  Start inference. Path is the directory where you decompres model.
 
-  	`simple_on_word2vec.exe --dirname=.\word2vec.inference.model`
+  	`Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
@@ -185,7 +197,7 @@ This example uses Analysisconfig to manage the Analysispredictor prediction conf
 ``` c++
 AnalysisConfig config;
 ```
-**Note:** With ZeroCopyTensor，you must set `config->SwitchUseFeedFetchOps(false)` when creating the config.
+**Note:** With ZeroCopyTensor, you must set `config->SwitchUseFeedFetchOps(false)` when creating the config.
 ``` c++
 config->SwitchUseFeedFetchOps(false);  // Turn off the use of feed and fetch OP, this must be set when using the ZeroCopy interface.
 config->EnableUseGpu(100 /*Set the GPU initial memory pool to 100MB*/,  0 /*Set GPU ID to 0*/); // Turn on GPU prediction
@@ -199,7 +211,7 @@ config->SetModel("./model_dir/__model__", "./model_dir/__params__");
 #### Manage input with ZeroCopyTensor
 ZeroCopyTensor is the input/output data structure of AnalysisPredictor
 
-**Note:** With ZeroCopyTensor，you must set `config->SwitchUseFeedFetchOps(false)` when creating the config.
+**Note:** With ZeroCopyTensor, you must set `config->SwitchUseFeedFetchOps(false)` when creating the config.
 
 ``` c++
 auto input_names = predictor->GetInputNames();

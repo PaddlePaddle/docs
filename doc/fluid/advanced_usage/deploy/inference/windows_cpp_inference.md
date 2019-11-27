@@ -102,29 +102,45 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
 
 安装Visual Studio 2015，安装选项中选择安装内容时勾选自定义，选择安装全部关于c，c++，vc++的功能。
 
+### 其他要求
 
+1. 你需要直接下载Windows预测库或者从Paddle源码编译预测库，确保windows预测库存在。
+
+2. 你需要下载Paddle源码，确保demo文件和脚本文件存在：
+```bash
+git clone https://github.com/PaddlePaddle/Paddle.git
+``` 
 ### 编译demo
-
-下载并解压 fluid_inference_install_dir.zip 压缩包，Paddle/paddle/fluid/inference/api/demo_ci目录下的demo支持两种编译运行方式。
 
 ####使用脚本编译运行
  
-在 Paddle/paddle/fluid/inference/api/demo_ci 目录下，打开cmd窗口，运行脚本run_windows_demo.bat，根据提示按需输入参数，run_windows_demo.bat 的部分选项如下：
+打开cmd窗口，使用下面的命令:
+```dos
+# path为下载Paddle的目录
+cd path\Paddle\paddle\fluid\inference\api\demo_ci 
+run_windows_demo.bat
+```
 
-```bash
+其中，run_windows_demo.bat 的部分选项如下，请根据提示按需输入参数：
+
+```dos
 gpu_inference=Y #是否使用GPU预测库，默认使用CPU预测库
 use_mkl=Y #该预测库是否使用MKL，默认为Y
 use_gpu=Y  #是否使用GPU进行预测，默认为N。使用GPU预测需要下载GPU版本预测库
 
-paddle_inference_lib=path/fluid_inference_install_dir #设置paddle预测库的路径
-cuda_lib_dir=path/lib/x64  #设置cuda库的路径
-vcvarsall_dir=path/vc/vcvarsall.bat  #设置visual studio 本机工具命令提示符路径
+paddle_inference_lib=path\fluid_inference_install_dir #设置paddle预测库的路径
+cuda_lib_dir=path\lib\x64  #设置cuda库的路径
+vcvarsall_dir=path\vc\vcvarsall.bat  #设置visual studio #本机工具命令提示符路径
 ```
-
 ####手动编译运行
- 进入 Paddle/paddle/fluid/inference/api/demo_ci 目录，新建build目录并进入，然后使用cmake生成vs2015的solution文件。
- 指令为：
-
+ 
+打开cmd窗口，使用下面的命令:
+```dos
+# path为下载Paddle的目录
+cd path\Paddle\paddle\fluid\inference\api\demo_ci
+mkdir build
+cd build
+```
 `cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=ON -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON`
 
 注：
@@ -153,15 +169,15 @@ Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到�
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image7.png">
 </p>
 
-通过cmd进到Release目录执行：
+[下载模型](http://paddle-inference-dist.bj.bcebos.com/word2vec.inference.model.tar.gz)并解压到当前目录，执行命令：
 
   1.  开启GLOG
 
   	`set GLOG_v=100`
 
-  2.  进行预测
+  2.  进行预测，path为模型解压后的目录
 
-  	`simple_on_word2vec.exe --dirname=.\word2vec.inference.model`
+  	`Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
@@ -174,11 +190,11 @@ Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到�
 本示例使用了AnalysisConfig管理AnalysisPredictor的预测配置，提供了模型路径设置、预测引擎运行设备选择以及使用ZeroCopyTensor管理输入/输出的设置。配置方法如下：
 
 #### 创建AnalysisConfig
-``` c
+```C++
 AnalysisConfig config;
 ```
 **Note:** 使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`。
-``` c
+```C++
 config->SwitchUseFeedFetchOps(false);  // 关闭feed和fetch OP使用，使用ZeroCopy接口必须设置此项
 config->EnableUseGpu(100 /*设定GPU初始显存池为MB*/,  0 /*设定GPU ID为0*/); //开启GPU预测
 ```
@@ -187,7 +203,7 @@ config->EnableUseGpu(100 /*设定GPU初始显存池为MB*/,  0 /*设定GPU ID为
 从磁盘加载模型时，根据模型和参数文件存储方式不同，设置AnalysisConfig加载模型和参数的路径有两种形式，此处使用combined形式：
 
 * combined形式：模型文件夹`model_dir`下只有一个模型文件`__model__`和一个参数文件`__params__`时，传入模型文件和参数文件路径。
-``` c
+```C++
 config->SetModel("./model_dir/__model__", "./model_dir/__params__");
 ```
 
@@ -196,7 +212,7 @@ ZeroCopyTensor是AnalysisPredictor的输入/输出数据结构
 
 **Note:** 使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`。
 
-``` c
+```C++
 // 通过创建的AnalysisPredictor获取输入tensor
 auto input_names = predictor->GetInputNames();
 auto input_t = predictor->GetInputTensor(input_names[0]);
@@ -206,12 +222,12 @@ input_t->Reshape({batch_size, channels, height, width});
 ```
 
 #### 运行预测引擎
-```C
+```C++
 predictor->ZeroCopyRun();
 ```
 
 #### 使用ZeroCopyTensor管理输出
-```C
+```C++
 auto output_names = predictor->GetOutputNames();
 auto output_t = predictor->GetOutputTensor(output_names[0]);
 ```
