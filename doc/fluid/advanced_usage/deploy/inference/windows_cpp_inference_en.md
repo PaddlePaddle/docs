@@ -122,10 +122,12 @@ vcvarsall_dir=path\\vc\\vcvarsall.bat  # Set the path of visual studio command p
 
 Decompress Paddle, Release and fluid_install_dir compressed package.
 
-First enter into Paddle/paddle/fluid/inference/api/demo_ci, then create and enter into directory /build, finally use cmake to generate vs2015 solution file.
-Commands are as follows:
-
-`cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_patddle\paddle_fluid.lib -DMSVC_STATIC_CRT=ON`
+```bash
+cd Paddle/paddle/fluid/inference/api/demo_ci
+mkdir build
+cd build
+cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_patddle\paddle_fluid.lib -DMSVC_STATIC_CRT=ON
+```
 
 Note:
 
@@ -173,90 +175,9 @@ Enter into Release in cmd and run:
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
 </p>
 
-Complete code example
---------------
-
-```C++
-#include <gflags/gflags.h>
-#include <glog/logging.h>
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <numeric>
-
-#include "paddle/include/paddle_inference_api.h"
-
-DEFINE_string(modeldir, "", "Directory of the inference model.");
-DEFINE_bool(use_gpu, false, "Whether use gpu.");
-
-namespace paddle {
-namespace demo {
-
-void RunAnalysis() {
-
-  // 1.  create AnalysisConfig and modify associated options
-  AnalysisConfig config;
-  if (FLAGS_modeldir.empty()) {
-    LOG(INFO) << "Usage: ./mobilenet --modeldir=path/to/your/model";
-    exit(1);
-  }
-
-  if (FLAGS_use_gpu) {
-    config.EnableUseGpu(100, 0);
-  }
-  config.SetModel(FLAGS_modeldir + "/__model__",
-                  FLAGS_modeldir + "/__params__");
-
-  // use ZeroCopyTensor, must be set to false here
-  config.SwitchUseFeedFetchOps(false);
-
-  // 2. create predictor and prepare input data
-  std::unique_ptr<PaddlePredictor> predictor = CreatePaddlePredictor(config);
-  int batch_size = 1;
-  int channels = 3;
-  int height = 300;
-  int width = 300;
-  int nums = batch_size * channels * height * width;
-
-  float *input = new float[nums];
-  for(int i = 0; i < nums; ++i)
-    input[i] = 0;
-
-  // 3. creating input tensors using zerocopytensor
-  auto input_names = predictor->GetInputNames();
-  auto input_t = predictor->GetInputTensor(input_names[0]);
-  input_t->Reshape({batch_size, channels, height, width});
-  input_t->copy_from_cpu(input);
-
-  // 4. run prediction engine
-  predictor->ZeroCopyRun();
-
-  // 5. get ouput
-  std::vector<float> out_data;
-  auto output_names = predictor->GetOutputNames();
-  auto output_t = predictor->GetOutputTensor(output_names[0]);
-  std::vector<int> output_shape = output_t->shape();
-  int out_num = std::accumulate(output_shape.begin(), output_shape.end(), 1, std::multiplies<int>());
-
-  out_data.resize(out_num);
-  output_t->copy_to_cpu(out_data.data());
-  delete [] input;
-}
-
-}  // namespace demo
-}  // namespace paddle
-
-int main(int argc, char** argv) {
-  google::ParseCommandLineFlags(&argc, &argv, true);
-  paddle::demo::RunAnalysis();
-  return 0;
-}
-
-```
-
 ## Using AnalysisConfig to manage prediction configurations
+
+[Complete code example](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/demo_ci/windows_mobilenet.cc)
 
 This example uses Analysisconfig to manage the Analysispredictor prediction configuration. The configuration method is as follows:
 

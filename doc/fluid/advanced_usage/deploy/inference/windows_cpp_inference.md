@@ -167,91 +167,9 @@ Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到�
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
 </p>
 
-完整代码示例
---------------
-
-```C
-#include <gflags/gflags.h>
-#include <glog/logging.h>
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <numeric>
-
-#include "paddle/include/paddle_inference_api.h"
-
-DEFINE_string(modeldir, "", "Directory of the inference model.");
-DEFINE_bool(use_gpu, false, "Whether use gpu.");
-
-namespace paddle {
-namespace demo {
-
-void RunAnalysis() {
-
-  // 1. 创建AnalysisConfig
-  AnalysisConfig config;
-  if (FLAGS_modeldir.empty()) {
-    LOG(INFO) << "Usage: ./mobilenet --modeldir=path/to/your/model";
-    exit(1);
-  }
-
-  if (FLAGS_use_gpu) {
-    config.EnableUseGpu(100, 0);
-  }
-  // 模型从磁盘进行加载
-  config.SetModel(FLAGS_modeldir  "/__model__",
-                  FLAGS_modeldir  "/__params__");
-
-  // 使用ZeroCopyTensor，此处必须设置为false
-  config.SwitchUseFeedFetchOps(false);
-
-  // 2. 根据config 创建predictor，准备输入数据，
-  std::unique_ptr<PaddlePredictor> predictor = CreatePaddlePredictor(config);
-  int batch_size = 1;
-  int channels = 3;
-  int height = 300;
-  int width = 300;
-  int nums = batch_size * channels * height * width;
-
-  float *input = new float[nums];
-  for(int i = 0; i < nums; i)
-    input[i] = 0;
-
-  // 3. 使用ZeroCopyTensor接口，创建输入
-  auto input_names = predictor->GetInputNames();
-  auto input_t = predictor->GetInputTensor(input_names[0]);
-  input_t->Reshape({batch_size, channels, height, width});
-  input_t->copy_from_cpu(input);
-
-  // 4. 运行预测引擎
-  predictor->ZeroCopyRun();
-
-  // 5. 获取输出
-  std::vector<float> out_data;
-  auto output_names = predictor->GetOutputNames();
-  auto output_t = predictor->GetOutputTensor(output_names[0]);
-  std::vector<int> output_shape = output_t->shape();
-  int out_num = std::accumulate(output_shape.begin(), output_shape.end(), 1, std::multiplies<int>());
-
-  out_data.resize(out_num);
-  output_t->copy_to_cpu(out_data.data());
-  delete [] input;
-}
-
-}  // namespace demo
-}  // namespace paddle
-
-int main(int argc, char** argv) {
-  google::ParseCommandLineFlags(&argc, &argv, true);
-  paddle::demo::RunAnalysis();
-  return 0;
-}
-
-```
-
 ## 使用AnalysisConfig管理预测配置
+
+[完整的代码示例](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/demo_ci/windows_mobilenet.cc)
 
 本示例使用了AnalysisConfig管理AnalysisPredictor的预测配置，提供了模型路径设置、预测引擎运行设备选择以及使用ZeroCopyTensor管理输入/输出的设置。配置方法如下：
 
