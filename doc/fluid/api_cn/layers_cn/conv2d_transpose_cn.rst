@@ -104,7 +104,7 @@ conv2d_transpose
     import numpy as np
     data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
     param_attr = fluid.ParamAttr(name='conv2d.weight', initializer=fluid.initializer.Xavier(uniform=False), learning_rate=0.001)
-    res = fluid.layers.conv2d_transpose(input=data, output_size=66, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
+    res = fluid.layers.conv2d_transpose(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
     exe.run(fluid.default_startup_program())
