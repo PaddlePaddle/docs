@@ -121,9 +121,9 @@
 
 请您进入Docker容器后，执行如下命令
 
-* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle`
+* **CPU版本的PaddlePaddle**: `pip uninstall paddlepaddle`
 
-* ***GPU版本的PaddlePaddle***: `pip uninstall paddlepaddle-gpu`
+* **GPU版本的PaddlePaddle**: `pip uninstall paddlepaddle-gpu`
 
 或通过`docker rm [Name of container]`来直接删除Docker容器
 
