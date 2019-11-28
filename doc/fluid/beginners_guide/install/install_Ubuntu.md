@@ -2,12 +2,12 @@
 
 ## 环境准备
 
-* *Ubuntu 版本 (64 bit)*
-    * *Ubuntu 14.04 (GPU 版本支持 CUDA 8.0/10.0)*
-    * *Ubuntu 16.04 (GPU 版本支持 CUDA 8.0/9.0/9.1/9.2/10.0)*
-    * *Ubuntu 18.04 (GPU 版本支持 CUDA 10.0)*
-* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
-* *pip或pip3 版本 9.0.1+ (64 bit)*
+* **Ubuntu 版本 (64 bit)**
+    * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip或pip3 版本 9.0.1+ (64 bit)**
 
 ### 注意事项
 
@@ -64,10 +64,9 @@
 * 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
 
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
-	* *CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)*
-	* *CUDA 工具包8.0配合cuDNN v7.1+(如需多卡支持，需配合NCCL2.1.15-2.2.13）*
-	* *GPU运算能力超过1.0的硬件设备*
+	* **CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
+	* **CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
+	* **GPU运算能力超过1.0的硬件设备**
 
 
 	您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -75,9 +74,9 @@
 * 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
 
-		wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-		dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-		sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+	wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+	dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+	sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
 	
 
@@ -97,7 +96,6 @@ Ubuntu系统下有5种安装方式：
 
 * CPU版PaddlePaddle：`python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
-
 * GPU版PaddlePaddle：`python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 或 `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
@@ -105,7 +103,6 @@ Ubuntu系统下有5种安装方式：
 注：
 
 * 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
-
 
 * `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu/#history)，关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html/#whls)
 
@@ -122,6 +119,6 @@ Ubuntu系统下有5种安装方式：
 ## 如何卸载
 请使用以下命令卸载PaddlePaddle：
 
-* ***CPU版本的PaddlePaddle***: `python -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle`
+* **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle`
 
-* ***GPU版本的PaddlePaddle***: `python -m pip uninstall paddlepaddle-gpu` 或 `python3 -m pip uninstall paddlepaddle-gpu`
+* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu` 或 `python3 -m pip uninstall paddlepaddle-gpu`
