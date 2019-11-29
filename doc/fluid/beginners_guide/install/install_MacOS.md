@@ -2,9 +2,9 @@
 
 ## 环境准备
 
-* *MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)*
-* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
-* *pip 或 pip3 版本 9.0.1+ (64 bit)*
+* **MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 ### 注意事项
 
@@ -67,6 +67,7 @@ MacOS系统下有5种安装方式：
 * [Docker安装](./install_Docker.html)
 * [源码编译安装](./compile/compile_MacOS.html#mac_source)
 * [Docker源码编译安装](./compile/compile_MacOS.html#mac_docker)
+
 
 这里为您介绍pip安装方式
 
