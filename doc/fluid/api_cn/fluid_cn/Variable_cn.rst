@@ -178,9 +178,9 @@ Variable
 
 获取该 :ref:`api_guide_Variable` 的梯度值
 
-返回：该 :ref:`api_guide_Variable` 的梯度 ``ndarray`` 值
+返回：如果 :ref:`api_guide_Variable` 的类型是LoDTensor（参见 :ref:`cn_user_guide_lod_tensor` ），返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值；如果 :ref:`api_guide_Variable` 的类型是SelectedRows，返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值和类型为 ``ndarray`` 的词id组成的tuple。
 
-返回类型：``ndarray``
+返回类型：``ndarray`` 或者 ``tuple of ndarray`` , 返回类型 ``tuple of ndarray`` 仅在 :ref:`cn_api_fluid_dygraph_Embedding` 层稀疏更新时产生。
 
 
 **示例代码**
