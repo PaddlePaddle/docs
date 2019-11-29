@@ -80,10 +80,6 @@
 
     (2). **GPU版本**：如果您想使用GPU版本请参考如下命令安装 
 
-        如果您是使用 CUDA 8，cuDNN 7.1+，安装GPU版本的命令为：
-    
-            conda install paddlepaddle-gpu cudatoolkit=8.0
-
         如果您是使用 CUDA 9，cuDNN 7.3+，安装GPU版本的命令为：
     
             conda install paddlepaddle-gpu cudatoolkit=9.0
