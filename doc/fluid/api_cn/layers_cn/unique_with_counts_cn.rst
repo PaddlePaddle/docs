@@ -6,7 +6,7 @@ unique_with_counts
 .. py:function:: paddle.fluid.layers.unique_with_counts(x, dtype='int32')
 该OP对输入Tensor元素进行去重，获取去重后结果Tensor，同时获取去重后结果在原始输入中的计数Tensor以及在原始输入中的索引Tensor。
 
-注:该OP仅支持 **CPU** ，同时仅支持 **Tensor**
+注:该OP仅支持 **Tensor**
 
 参数：
     - **x** (Variable) – 数据shape为 :math:`[N]` 的一维Tensor，数据类型为 float32，float64，int32，int64。
