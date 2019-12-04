@@ -32,7 +32,7 @@ NCE
     window_size = 5
     dict_size = 20
     label_word = int(window_size // 2) + 1
-    inp_word = np.array([[[1]], [[2]], [[3]], [[4]], [[5]]]).astype('int64')
+    inp_word = np.array([[1], [2], [3], [4], [5]]).astype('int64')
     nid_freq_arr = np.random.dirichlet(np.ones(20) * 1000).astype('float32')
 
     with fluid.dygraph.guard():
@@ -64,6 +64,7 @@ NCE
                      param_attr='nce.w',
                      bias_attr='nce.b')
 
+        wl = fluid.layers.unsqueeze(words[label_word], axes=[0])
         nce_loss3 = nce(embs3, words[label_word])
 
 属性

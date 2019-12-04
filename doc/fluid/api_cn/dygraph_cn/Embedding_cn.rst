@@ -9,7 +9,7 @@ Embedding
 
 该接口用于构建 ``Embedding`` 的一个可调用对象，具体用法参照 ``代码示例`` 。其根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
-要求input的最后一维必须等于1，输出的Tensor的shape是将输入Tensor shape的最后一维的1替换为emb_size。
+输出的Tensor的shape是在输入Tensor shape的最后一维后面添加了emb_size的维度。
 
 注：input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
@@ -19,8 +19,8 @@ Embedding
     Case 1:
 
     input是Tensor, 且padding_idx = -1
-        input.data = [[[1], [3]], [[2], [4]], [[4], [127]]]
-        input.shape = [3, 2, 1]
+        input.data = [[1, 3], [2, 4], [4, 127]]
+        input.shape = [3, 2]
     若size = [128, 16]
     输出为Tensor:
         out.shape = [3, 2, 16]
@@ -29,11 +29,11 @@ Embedding
 
                     [[0.345249859, 0.124939536, ..., 0.194353745],
                      [0.945345345, 0.435394634, ..., 0.435345365]],
-                     
+
                     [[0.945345345, 0.435394634, ..., 0.435345365],
                      [0.0,         0.0,         ..., 0.0        ]]]  # padding data
     输入的padding_idx小于0，则自动转换为padding_idx = -1 + 128 = 127, 对于输入id为127的词，进行padding处理。
-    
+
     Case 2:
 
     input是lod level 为1的LoDTensor, 且padding_idx = 0
@@ -43,12 +43,12 @@ Embedding
     若size = [128, 16]
     输出为LoDTensor:
         out.lod = [[2, 3]]
-        out.shape = [5, 16]
-        out.data = [[0.129435295, 0.244512452, ..., 0.436322452],
-                    [0.345421456, 0.524563927, ..., 0.144534654],
-                    [0.345249859, 0.124939536, ..., 0.194353745],
-                    [0.945345345, 0.435394634, ..., 0.435345365],
-                    [0.0,         0.0,         ..., 0.0        ]]  # padding data
+        out.shape = [5, 1, 16]
+        out.data = [[[0.129435295, 0.244512452, ..., 0.436322452]],
+                    [[0.345421456, 0.524563927, ..., 0.144534654]],
+                    [[0.345249859, 0.124939536, ..., 0.194353745]],
+                    [[0.945345345, 0.435394634, ..., 0.435345365]],
+                    [[0.0,         0.0,         ..., 0.0        ]]]  # padding data
     输入的padding_idx = 0，则对于输入id为0的词，进行padding处理。
 
 参数：
@@ -73,7 +73,8 @@ Embedding
     import numpy as np
 
     # 示例 1
-    inp_word = np.array([[[1]]]).astype('int64')
+    inp_word = np.array([[2, 3, 5], [4, 2, 1]]).astype('int64')
+    inp_word.shape  # [2, 3]
     dict_size = 20
     with fluid.dygraph.guard():
         emb = fluid.dygraph.Embedding(
@@ -82,6 +83,7 @@ Embedding
             param_attr='emb.w',
             is_sparse=False)
         static_rlt3 = emb(base.to_variable(inp_word))
+        static_rlt3.shape  # [2, 3, 32]
 
     # 示例 2: 加载用户自定义或预训练的词向量
     weight_data = np.random.random(size=(128, 100))  # numpy格式的词向量数据
