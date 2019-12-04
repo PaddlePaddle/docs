@@ -8,9 +8,9 @@
 * 非paddlecloud集群环境任务提交实例
 * 最佳实践
 
-在阅读本文档时，我们假设您已经准备好使用__飞桨__平台相关环境，更多关于如何安装__飞桨__的信息可参考[安装文档](https://www.paddlepaddle.org.cn)。
+在阅读本文档时，我们假设您已经准备好使用__飞桨__平台相关环境，更多关于如何安装__飞桨__的信息可参考[安装文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/beginners_guide/install/index_cn.html)。
 
-备注：collective模式指的是多GPU同步训练模式，有别于异步训练或参数服务器模式；多GPU同步训练既包括单机多GPU卡形式，也包括多机多GPU卡模式。
+备注：collective模式指的是多GPU同步训练模式，有别于异步训练或参数服务器模式；多GPU同步训练既包括单机多GPU卡方式，也包括多机多GPU卡方式。
 
 ## 快速开始
 
@@ -164,9 +164,13 @@ $ python -m paddle.distributed.launch --help
 ```
 
 用户只需要配置以下参数：
+
 * --cluster_node_ips： 集群中所有节点的IP地址列表，以','分隔，例如：192.168.1.2,192.168.1.3
+
 * --node_ip: 当前节点的IP地址
-* --started_port：起始端口号，假设起始端口号为51340，并且节点上使用的GPU卡数为4，那么GPU卡上对应训练进程的端口号分别为51340、51341和51342。请确保相应的端口号可用。
+
+* --started_port：起始端口号，假设起始端口号为51340，并且节点上使用的GPU卡数为4，那么GPU卡上对应训练进程的端口号分别为51340、51341、51342和51343。请确保相应的端口号可用。
+
 * --selected_gpus：使用的gpu卡。
 
 我们假设用户使用的训练集群包含两个节点（机器），IP地址分别为192.168.1.2和192.168.1.3，并且每个节点上使用的GPU卡数为4，那么在两个节点的终端上分别运行如下任务：
@@ -400,7 +404,8 @@ optimizer.minimize(cost, fluid.default_startup_program())
 另外，DistributedStrategy用于定义分布式运行策略，如是否启用tensor fusion功能，是否使用local sgd等。role_maker主要用于定义训练集群的环境，主要包括训练集群中所有训练节点的IP地址和每个训练节点的rank_id。
 
 我们推荐使用PaddleCloudRoleMaker并使用paddle.distributed.launch启动程序；这样，PaddleCloudRoleMaker可自动获取训练集群相关信息。
-模型保存和加载附加说明
+
+### 模型保存和加载附加说明
 
 对于Collective模式的分布式训练，我们通常只需要保存rank_id为0的训练节点上参数信息，因此，上面代码中的模型保存本分可以改为以下形式：
 
@@ -413,13 +418,13 @@ if fleet.worker_index() == 0 and os.path.exists(model_path):
 
 然而，当需要保存每个训练节点上的参数信息时，通常根据训练节点的rank_id，将参数保存在不同的目录，避免参数覆盖，例如：
 
-::
-
+```python
   # model saving
   # Step 4:
   if os.path.exists(model_path):
       model_path = os.path.join(model_path, str(fleet.worker_index())
       fleet.save_persistables(exe, model_path)
+```
 
 ## 离线评估工具
 
@@ -433,7 +438,7 @@ if fleet.worker_index() == 0 and os.path.exists(model_path):
 
 本例中我们假设以ResNet50网络最后一层FC的输出向量作为评估向量，并根据离线计算所得的评估向量和在线服务的预测向量判断在线服务是否正确。如果对于相同的输入数据，离线评估向量和在线服务的预测向量相同，则认为部署的在线服务工作正常；反之则认为部署的在线服务存在错误。
 
-evalulate.py
+__evalulate.py__
 
 ```python
 from __future__ import absolute_import
@@ -598,18 +603,20 @@ LocalSGD采用多个step之后再同步参数，该方法一方面减少通信�
 
 ![algorithm](src/fleetapi_lsgd_algorithm.png)
 
-其中同步步长K参数设置是人为设定的，该参数影响了整个模型的精度和速度。显然可以看出K越大，通信开销减少，但是随着同步次数减少，模型精度下降明显。因此我们采用自适应步长的方法可以有效避免人为设置的不确定性，兼顾速度和精度，提高整体性能。自适应步长通信的主要原理是在模型参数变化剧烈的时候，减少 K，通过更多的同步参数，而保证模型收敛以及精度；在模型参数趋于稳定的时候，增大 K ，从而减少通信次数，提高模型吞吐量。为了衡量模型参数的变化程度，文献[1]采用学习率和训练损失，从而得到自适应的训练步长。
+其中同步步长K参数设置是人为设定的，该参数影响了整个模型的精度和速度。显然可以看出K越大，通信开销减少，但是随着同步次数减少，模型精度下降明显。因此我们采用自适应步长的方法可以有效避免人为设置的不确定性，兼顾速度和精度，提高整体性能。自适应步长通信的主要原理是在模型参数变化剧烈的时候，减少 K，通过更多的同步参数，而保证模型收敛以及精度；在模型参数趋于稳定的时候，增大 K ，从而减少通信次数，提高模型吞吐量。为了衡量模型参数的变化程度，文献[2]采用学习率和训练损失，从而得到自适应的训练步长。
 
 #### 自定义步长LocalSGD训练方式
 
 选项 | 类型 | 可选值 | 说明
-:------------- | :------------------ | :-------------
+:------------ | :------------ | :------------ | :------------
 use_local_sgd | bool  | False/True | 是否开启Local SGD，默认不开启
 local_sgd_is_warm_steps | int | 大于0 | 训练多少轮之后才使用Local SGD方式训练
 local_sgd_steps | int | 大于0 | Local SGD的步长
 
 说明：
+
 * Local SGD的warmup步长 local_sgd_is_warm_steps影响最终模型的泛化能力，一般需要等到模型参数稳定之后在进行Local SGD训练，经验值可以将学习率第一次下降时的epoch作为warmup步长，之后再进行Local SGD训练。
+
 * Local SGD步长local_sgd_steps ，一般该值越大，通信次数越少，训练速度越快，但随之而来的时模型精度下降。经验值设置为2或者4。
 
 通过设置上述三个参数即可实现LocalSGD训练，只需要在原分布式训练代码添加几个部分：
@@ -654,7 +661,9 @@ else:
 
 #### 自适应步长LocalSGD训练方式
 
-自适应步长LocalSGD需要依赖于学习率，因此只适用于SGD等可以获取全局学习率的优化方法，而无法应用于Adam等方法。因此相较于自定义步长LocalSGD训练方式不需要设置local step步长参数 local_sgd_steps以及warmup步长参数 local_sgd_is_warm_steps。相应的，需要添加获取当前的训练损失以及当前的学习率。具体的添加步骤如下：
+自适应步长LocalSGD需要依赖于学习率，因此只适用于SGD等可以获取全局学习率的优化方法，而无法应用于Adam等方法。因此相较于自定义步长LocalSGD训练方式不需要设置local step步长参数 local_sgd_steps以及warmup步长参数 local_sgd_is_warm_steps。相应的，需要添加获取当前的训练损失以及当前的学习率。
+
+具体的添加步骤如下：
 
 * 获取当前的训练损失: 由于是分布式训练每张卡的训练损失不一致，因此需要在每一轮结束的时候，同步各自的训练损失
 
@@ -762,8 +771,8 @@ if args.fp16:
 
 ## FAQ
 
-*如何设置使用Executor执行程序?
-  + 默认地，Fleet API使用ParallelExecutor执行，为了使用Executor执行程序，可以做如下配置：
+1. 如何设置使用Executor执行程序?
+    + 默认地，Fleet API使用ParallelExecutor执行，为了使用Executor执行程序，可以做如下配置：
 
   ```python
     strategy = DistributedStrategy()
