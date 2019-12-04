@@ -316,6 +316,7 @@ fluid.layers
     layers_cn/warpctc_cn.rst
     layers_cn/where_cn.rst
     layers_cn/While_cn.rst
+    layers_cn/while_loop_cn.rst
     layers_cn/yolo_box_cn.rst
     layers_cn/yolov3_loss_cn.rst
     layers_cn/zeros_cn.rst
