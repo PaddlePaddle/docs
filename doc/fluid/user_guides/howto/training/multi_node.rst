@@ -8,5 +8,6 @@
     cluster_quick_start.rst
     cluster_howto.rst
     fleet_api_howto_cn.rst
+    fleet_api_collective_howto_cn.md
     train_on_baidu_cloud_cn.rst
     deploy_ctr_on_baidu_cloud_cn.rst
