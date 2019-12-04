@@ -112,7 +112,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 ``` 
 ### 编译demo
 
-####使用脚本编译运行
+#### 使用脚本编译运行
  
 打开cmd窗口，使用下面的命令:
 ```dos
@@ -132,7 +132,7 @@ paddle_inference_lib=path\fluid_inference_install_dir #设置paddle预测库的�
 cuda_lib_dir=path\lib\x64  #设置cuda库的路径
 vcvarsall_dir=path\vc\vcvarsall.bat  #设置visual studio #本机工具命令提示符路径
 ```
-####手动编译运行
+#### 手动编译运行
  
 打开cmd窗口，使用下面的命令:
 ```dos
@@ -231,4 +231,4 @@ predictor->ZeroCopyRun();
 auto output_names = predictor->GetOutputNames();
 auto output_t = predictor->GetOutputTensor(output_names[0]);
 ```
-**Note:** 关于AnalysisPredictor的更多介绍，请参考[C预测API介绍](./native_infer.html)
+**Note:** 关于AnalysisPredictor的更多介绍，请参考[C++预测API介绍](./native_infer.html)
