@@ -26,7 +26,7 @@ switch_case
     - ``TypeError`` - 如果 ``branch_fns`` 中的2-tuple的第一个元素的类型不是整数。
     - ``ValueError`` - 如果 ``branch_fns`` 中的2-tuple的第一个元素值不唯一。
     - ``TypeError`` - 如果 ``branch_fns`` 中的2-tuple的第二个元素不是可调用对象。
-    - ``TypeError`` - 当 ``default`` 不是None时，又不是可调用对象。
+    - ``TypeError`` - 当 ``default`` 不是None又不是可调用对象时。
 
 
 **代码示例**：

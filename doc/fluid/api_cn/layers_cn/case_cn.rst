@@ -23,7 +23,7 @@ case
     - ``TypeError`` - 如果 ``pred_fn_pairs`` 的tuple类型的元素大小不是2。
     - ``TypeError`` - 如果 ``pred_fn_pairs`` 中的2-tuple的第一个元素的类型不是Variable。
     - ``TypeError`` - 如果 ``pred_fn_pairs`` 中的2-tuple的第二个元素不是可调用对象。
-    - ``TypeError`` - 当 ``default`` 不是None时，又不是可调用对象。
+    - ``TypeError`` - 当 ``default`` 不是None又不是可调用对象时。
 
 **代码示例**：
 
