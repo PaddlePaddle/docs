@@ -6,7 +6,7 @@ ____________________________________
 
 .. py::function:: paddle.fluid.layers.while_loop(cond, body, loop_vars, name=None)
 
-该API用于实现类似while的循环控制功能，只要循环条件 ``cond`` 的返回值为True，``while_loop`` 则会循环执行循环体 ``body`` ，直到 ``cond`` 的返回值为true。
+该API用于实现类似while的循环控制功能，只要循环条件 ``cond`` 的返回值为True，``while_loop`` 则会循环执行循环体 ``body`` ，直到 ``cond`` 的返回值为False。
 
 参数：
     - **cond** (callable) - 返回boolean类型张量的可调用函数，用以判断循环是否继续执行。
