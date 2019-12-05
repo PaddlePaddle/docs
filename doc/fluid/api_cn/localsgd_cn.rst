@@ -194,4 +194,5 @@ https://github.com/PaddlePaddle/Fleet/tree/develop/examples/local_sgd/resnet
 参考文献
 ---------
 [1] Lin T, Stich S U, Patel K K, et al. Don't Use Large Mini-Batches, Use Local SGD[J]. arXiv preprint arXiv:1808.07217, 2018.
+
 [2] Wang J, Joshi G. Adaptive communication strategies to achieve the best error-runtime trade-off in local-update SGD[J]. arXiv preprint arXiv:1810.08313, 2018.
