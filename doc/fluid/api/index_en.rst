@@ -5,7 +5,6 @@ API Reference
 ..  toctree::
     :maxdepth: 1
 
-    ../flags_en.rst
     ../api_guides/index_en.rst
     fluid.rst
     backward.rst
