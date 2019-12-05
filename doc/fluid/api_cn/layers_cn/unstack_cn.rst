@@ -8,7 +8,7 @@ unstack
 该OP将单个dim为 ``D`` 的Tensor沿 ``axis`` 轴unpack为 ``num`` 个dim为 ``(D-1)`` 的Tensor
 
 参数:
-      - **x** (Variable | list(Variable) | tuple(Variable)) – 输入x为 ``dim > 0`` 的Tensor，
+      - **x** (Variable) – 输入x为 ``dim > 0`` 的Tensor，
       支持的数据类型: float32，float64，int32，int64。
 
       - **axis** (int | 可选) – 输入Tensor进行unpack运算所在的轴，axis的范围为：``[-D, D)`` ，
