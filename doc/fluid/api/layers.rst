@@ -310,6 +310,7 @@ fluid.layers
     layers/warpctc.rst
     layers/where.rst
     layers/While.rst
+    layers/while_loop.rst
     layers/yolo_box.rst
     layers/yolov3_loss.rst
     layers/zeros.rst
