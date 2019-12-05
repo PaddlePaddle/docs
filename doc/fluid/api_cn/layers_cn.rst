@@ -41,6 +41,7 @@ fluid.layers
     layers_cn/bpr_loss_cn.rst
     layers_cn/brelu_cn.rst
     layers_cn/BeamSearchDecoder_cn.rst
+    layers_cn/case_cn.rst
     layers_cn/cast_cn.rst
     layers_cn/Categorical_cn.rst
     layers_cn/ceil_cn.rst
@@ -296,6 +297,7 @@ fluid.layers
     layers_cn/sums_cn.rst
     layers_cn/swish_cn.rst
     layers_cn/Switch_cn.rst
+    layers_cn/switch_case_cn.rst
     layers_cn/tanh_cn.rst
     layers_cn/tanh_shrink_cn.rst
     layers_cn/target_assign_cn.rst
