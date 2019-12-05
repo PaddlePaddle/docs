@@ -5,7 +5,7 @@ gelu
 
 .. py:function:: paddle.fluid.layers.gelu(x)
 
-逐元素计算 Gelu激活函数。更多细节请参考 [Gaussian Error Linear Units](https://arxiv.org/abs/1606.08415)。
+逐元素计算 Gelu激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
 
 
 .. math::
