@@ -2,7 +2,7 @@
 
 ## 环境准备
 
-* **CentOS 版本 (64 bit)*
+* **CentOS 版本 (64 bit)**
     * **CentOS 6 (GPU版本支持CUDA 9.0/9.1/9.2/10.0, 仅支持单卡)**
     * **CentOS 7 (GPU版本支持CUDA 9.2/10.0, 其中CUDA 9.1仅支持单卡)**
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
@@ -103,10 +103,10 @@ CentOS系统下有5种安装方式：
 * 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
 
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu/#history), 关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html/#whls)
+* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu#history), 关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html#whls)
 
 
-* 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html/#ciwhls)
+* 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html#ciwhls)
 
 <a name="check"></a>
 ## **验证安装**

@@ -76,7 +76,7 @@
 
 9. 执行cmake：
 
-	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	>具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 	>请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -143,7 +143,7 @@
 
 	- g. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
 
-5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
+5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 
 	> MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig, unrar`，另外安装`cmake`即可
 
@@ -178,7 +178,7 @@
 
 9. 执行cmake：
 
-	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	>具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
@@ -198,7 +198,7 @@
 
 	`pip install -U（whl包的名字）`或`pip3 install -U（whl包的名字）`
 
-	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html/#MACPRO)
+	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html#MACPRO)
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 
