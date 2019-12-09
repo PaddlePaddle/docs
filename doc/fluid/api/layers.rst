@@ -46,6 +46,7 @@ fluid.layers
     layers/clip_by_norm.rst
     layers/collect_fpn_proposals.rst
     layers/concat.rst
+    layers/cond.rst
     layers/continuous_value_model.rst
     layers/conv2d.rst
     layers/conv2d_transpose.rst
