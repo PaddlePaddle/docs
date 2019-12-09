@@ -5,8 +5,9 @@ TracedLayer
 
 .. py:class:: paddle.fluid.dygraph.TracedLayer(program, parameters, feed_names, fetch_names)
 
-TracedLayer是一个由动态图模型转换而来的callable对象。TracedLayer内部会将动态图模型转换为静态图模型，并使用 ``Executor`` 和 ``CompiledProgram``
-运行静态图模型。转换后的静态图模型与原动态图模型共享参数。
+TracedLayer用于将动态图模型转换为静态图模型，转换后的模型可保存做在线预测使用。除此以外，转换后的静态图模型可使用静态图的pass做优化，获得比动态图更好的性能。
+
+TracedLayer使用 ``Executor`` 和 ``CompiledProgram`` 运行静态图模型。转换后的静态图模型与原动态图模型共享参数。
 
 所有的TracedLayer对象均不应通过构造函数创建，而应通过调用静态方法 ``TracedLayer.trace(layer, inputs)`` 创建。
 
@@ -45,9 +46,14 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
         in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
         out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
+
+        # 内部使用Executor运行静态图模型
         out_static_graph = static_layer([in_var])
         print(len(out_static_graph)) # 1
         print(out_static_graph[0].shape) # (2, 10)
+
+        # 将静态图模型保存为预测模型
+        static_layer.save_inference_model(dirname='./saved_infer_model')
 
 .. py:method:: set_strategy(build_strategy=None, exe_strategy=None)
 
