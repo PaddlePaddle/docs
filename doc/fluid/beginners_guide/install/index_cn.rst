@@ -59,7 +59,7 @@
         * 如果您是使用 **nvidia-docker** 安装，在CentOS 7 下支持 CUDA 9.0/9.1/9.2/10.0，不支持10.1
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
-请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html/#ciwhls>`_ .
+请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html#ciwhls>`_ .
 
 5. PaddlePaddle 对 NCCL 支持情况：
 =================================
