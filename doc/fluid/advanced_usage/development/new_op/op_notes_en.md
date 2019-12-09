@@ -110,7 +110,7 @@ Never make any modification of the input data inside Op, as there may be other O
 Currently all OpKernel are required to register double and float data types.
 
 ### 4.Op compatibility issue
-The modification of Op needs to consider the compatibility problem. Please ensure that the previous model can be loaded and run normally after the modification of Op. <font color="#FF0000">**So it is not allowed to add input or output to the existing Ops. It is not allowed to remove the existing properties of Op and modify the default value**</font>.
+The modification of Op needs to consider the compatibility problem. Please ensure that the previous model can be loaded and run normally after the modification of Op which means that the model trained by the old version can be loaded and run with Paddle inference library of new version. <font color="#FF0000">**So developers should ensure that the Input, Output and Attribute of OPs cannot be modified (except for documents) or deleted. And developers can add Input, Output and Attribute, but the added Input and Output must be set to be dispensable, and the default value of added Attribute must be set. For more details, please refer to [OP Input/Output/Attribute Compatibility Modification](https://github.com/PaddlePaddle/Paddle/wiki/OP-Input-Output-Attribute-Compatibility-Modification(English-Version))**</font>.
 
 ### 5.Call ShareDataWith
 The function of ShareDataWith is to make the two Tensors share the underlying buffer. When calling this operation, special attention should be paid. In the Op, the ShareDataWith cannot be applied to the output of Op. In other words, the Tensor of the Op output must be from Malloc.
