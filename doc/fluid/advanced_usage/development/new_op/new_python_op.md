@@ -14,12 +14,12 @@ def py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None):
 
 其中，
 
-- `x` 是Python Op的输入变量，可以是单个 `Variable` 或者 `List[Variable]` 。多个Variable必须以list[Variale]的形式传入，其中Variable为LoDTensor或Tenosr。
-- `out` 是Python Op的输出变量，可以是单个 `Variable` 或者 `List[Variable]` 。其中Variable既可以为LoDTensor或Tensor，也可以为numpy数组。
+- `x` 是Python Op的输入变量，可以是单个 `Variable` | `tuple[Variable]` | `list[Variable]` 。多个Variable以tuple[Variable]或list[Variale]的形式传入，其中Variable为LoDTensor或Tenosr。
+- `out` 是Python Op的输出变量，可以是单个 `Variable` | `tuple[Variable]` | `list[Variable]` 。其中Variable既可以为LoDTensor或Tensor，也可以为numpy数组。
 - `func` 是Python Op的前向函数。在运行网络前向时，框架会调用 `out = func(*x)` ，根据前向输入 `x` 和前向函数 `func` 计算前向输出 `out`。在 ``func`` 建议先主动将LoDTensor转换为numpy数组，方便灵活的使用numpy相关的操作，如果未转换成numpy，则可能某些操作无法兼容。
 - `backward_func` 是Python Op的反向函数。若 `backward_func` 为 `None` ，则该Python Op没有反向计算逻辑；
   若 `backward_func` 不为 `None`，则框架会在运行网路反向时调用 `backward_func` 计算前向输入 `x` 的梯度。
-- `skip_vars_in_backward_input` 为反向函数 `backward_func` 中不需要的输入，可以是单个 `Variable` 或者 `List[Variable]` 。
+- `skip_vars_in_backward_input` 为反向函数 `backward_func` 中不需要的输入，可以是单个 `Variable` | `tuple[Variable]` | `list[Variable]` 。
 
 
 ## 如何使用py_func编写Python Op
@@ -46,7 +46,7 @@ def backward_func(x_1, x_2, ..., x_n, y_1, y_2, ..., y_m, dy_1, dy_2, ..., dy_m)
 
 若反向函数不需要某些前向输入变量或前向输出变量，可设置 `skip_vars_in_backward_input` 进行排除（步骤三中会叙述具体的排除方法）。
 
-注：，x_1, ..., x_n为输入的多个LodTensor，请以list[Variable]的形式在py_func中传入。建议先主动将LodTensor通过numpy.array转换为数组，否则Python与numpy中的某些操作可能无法兼容使用在LodTensor上。
+注：，x_1, ..., x_n为输入的多个LodTensor，请以tuple(Variable)或list[Variable]的形式在py_func中传入。建议先主动将LodTensor通过numpy.array转换为数组，否则Python与numpy中的某些操作可能无法兼容使用在LodTensor上。
 
 此处我们利用numpy的相关API完成tanh的前向函数和反向函数编写。下面给出多个前向与反向函数定义的示例：
 
@@ -58,7 +58,7 @@ def tanh(x):
     # 可以直接将LodTensor作为np.tanh的输入参数
     return np.tanh(x)
 
-# 前向函数2：将两个2-D LodTenosr相加，必须以list[Variable]形式传入
+# 前向函数2：将两个2-D LodTenosr相加，输入多个LodTensor以list[Variable]或tuple(Variable)形式
 def element_wise_add(x, y): 
     # 必须先手动将LodTensor转换为numpy数组，否则无法支持numpy的shape操作
     x = np.array(x)    
