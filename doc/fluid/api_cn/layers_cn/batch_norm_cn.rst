@@ -17,16 +17,14 @@ batch_norm
 ``input`` 是mini-batch的输入。
 
 .. math::
-    \mu_{\beta}        &\gets \frac{1}{m} \sum_{i=1}^{m} x_i                                 \qquad &//\
+    \mu_{\beta} &\gets \frac{1}{m} \sum_{i=1}^{m} x_i  \qquad &//\
     \ mini-batch\ mean \\
-    \sigma_{\beta}^{2} &\gets \frac{1}{m} \sum_{i=1}^{m}(x_i - \mu_{\beta})^2               \qquad &//\
-    \mini-batch\ variance \\
-    \hat{x_i}          &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \qquad &//\
-    \normalize \\
-    y_i &\gets \gamma \hat{x_i} + \beta                                                      \qquad &//\
-    \scale\ and\ shift
+    \sigma_{\beta}^{2} &\gets \frac{1}{m} \sum_{i=1}^{m}(x_i - \mu_{\beta})^2  \qquad &//\
+    \ mini-batch\ variance \\
+    \hat{x_i}  &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \qquad &//\ normalize \\
+    y_i &\gets \gamma \hat{x_i} + \beta  \qquad &//\ scale\ and\ shift
 
-    moving\_mean = moving\_mean * momentum + mini\_batch\_mean * (1. - momentum)            
+    moving\_mean = moving\_mean * momentum + mini\_batch\_mean * (1. - momentum) \\          
     moving\_variance = moving\_variance * momentum + mini\_batch\_var * (1. - momentum)     
 
 moving_mean和moving_var是训练过程中统计得到的全局均值和方差，在预测或者评估中使用。
