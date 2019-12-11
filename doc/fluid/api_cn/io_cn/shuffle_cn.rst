@@ -21,9 +21,19 @@ shuffle
 
     import paddle.fluid as fluid
     def reader():
-        for i in range(5):
+        for i in range(10):
             yield i
-    shuffled_reader = fluid.io.shuffle(reader, 3)
+    shuffled_reader = fluid.io.shuffle(reader, 5)
     for e in shuffled_reader():
         print(e)
-    # 输出结果是0~4的无序排列
+    # 输出结果是0~4的无序排列，加上5~9的无序排列
+    #1
+    #4
+    #0
+    #2
+    #3
+    #8
+    #6
+    #5
+    #7
+    #9
