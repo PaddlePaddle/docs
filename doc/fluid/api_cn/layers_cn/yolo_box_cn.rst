@@ -3,7 +3,7 @@
 yolo_box
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.yolo_box(x, img_size, anchors, class_num, conf_thresh, downsample_ratio, name=None)
+.. py:function:: paddle.fluid.layers.yolo_box(x, img_size, anchors, class_num, conf_thresh, downsample_ratio, clip_bbox=True,name=None)
 
 
 该运算符基于YOLOv3网络的输出结果，生成YOLO检测框。
@@ -37,6 +37,7 @@ yolo_box
     - **class_num** （int） - 要预测的类数
     - **conf_thresh** （float） - 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略
     - **downsample_ratio** （int） - 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
+    - **clip_bbox** （bool） - 是否将输出的bbox裁剪到 :attr:`img_size` 范围内，默认为True。
     - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
 
 返回: 
