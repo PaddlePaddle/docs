@@ -688,7 +688,7 @@ with fluid.dygraph.guard():
 
 ## 模型评估
 
-当我们需要在DyGraph模式下利用搭建的模型进行预测任务，请在`fluid.dygraph.guard()`上下文中调用一次`YourModel.eval()`接口来启动预测模式。例如，在之前的手写数字识别模型中我们可以使用`mnist.eval()`来启动预测模式。需要显示地调用`YourModel.eval()`启动预测模式的原因是，我们默认在`fluid.dygraph.guard()`上下文中是训练模式，训练模式下DyGraph在运行前向网络的时候会自动求导，添加反向网络；而在预测时，DyGraph将只需要执行前向的预测网络，不需要进行自动求导并执行反向网络。
+当我们需要在DyGraph模式下利用搭建的模型进行预测任务，请在`fluid.dygraph.guard()`上下文中调用一次`YourModel.eval()`接口来切换到预测模式。例如，在之前的手写数字识别模型中我们可以使用`mnist.eval()`来切换到预测模式。需要显示地调用`YourModel.eval()`切换到预测模式的原因是，我们默认在`fluid.dygraph.guard()`上下文中是训练模式，训练模式下DyGraph在运行前向网络的时候会自动求导，添加反向网络；而在预测时，DyGraph只需要执行前向的预测网络，不需要进行自动求导并执行反向网络。
 
 **请注意，如果您在`GPU`设备中运行`YourModel`模型，并且未调用`loss.backward`（通常来说，是进行预测时），则必须调用`YourModel.eval()`，以避免构建反向网络，否则有可能会导致显存不足。**
 
