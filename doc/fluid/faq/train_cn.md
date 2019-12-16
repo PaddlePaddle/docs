@@ -182,7 +182,7 @@ return accuracy, avg_cost, auc_var, batch_auc_var, py_reader
 
 + 问题描述
 
-如何查看paddle.fluid.layers.fc生成的 w和b 的值
+如何查看paddle.fluid.layers.fc生成的w和b的值
 
 + 问题解答
 
