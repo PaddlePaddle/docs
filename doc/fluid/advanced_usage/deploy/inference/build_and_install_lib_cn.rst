@@ -20,7 +20,6 @@
     "ubuntu14.04_cuda10.0_cudnn7_avx_mkl_trt5", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-gpu-cuda10-cudnn7-avx-mkl-trt5/fluid_inference.tgz>`_", 
     "nv-jetson-cuda10-cudnn7.5-trt5", "`fluid_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-nv-jetson-cuda10-cudnn7.5-trt5/fluid_inference.tar.gz>`_", 
 
-**Note:所提供的C++预测库均使用GCC 4.8编译。**
 
 从源码编译
 ----------
