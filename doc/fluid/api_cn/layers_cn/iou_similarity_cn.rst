@@ -3,7 +3,7 @@
 iou_similarity
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.iou_similarity(x, y, name=None)
+.. py:function:: paddle.fluid.layers.iou_similarity(x, y, box_normalized=True, name=None)
 
 **IOU Similarity Operator**
 
