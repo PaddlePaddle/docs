@@ -3,7 +3,7 @@
 BatchNorm
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.BatchNorm(name_scope, num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False, trainable_statistics=False)
+.. py:class:: paddle.fluid.dygraph.BatchNorm(num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False, trainable_statistics=False)
 
 该接口用于构建 ``BatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
@@ -35,7 +35,6 @@ BatchNorm
 - :math:`\beta` : 可训练的偏差参数
 
 参数：
-    - **name_scope** (str) - 该类的名称。
     - **num_channels** (int) - 指明输入 ``Tensor`` 的通道数量。
     - **act** (str, 可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
     - **is_test** (bool, 可选) - 指示是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认值：False。
@@ -65,7 +64,7 @@ BatchNorm
     x = np.random.random(size=(3, 10, 3, 7)).astype('float32')
     with fluid.dygraph.guard():
         x = to_variable(x)
-        batch_norm = fluid.BatchNorm("batch_norm", 10)
+        batch_norm = fluid.BatchNorm(10)
         hidden1 = batch_norm(x)
 
 
