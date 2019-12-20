@@ -36,6 +36,7 @@ fluid.layers
     layers/box_decoder_and_assign.rst
     layers/bpr_loss.rst
     layers/brelu.rst
+    layers/case.rst
     layers/cast.rst
     layers/Categorical.rst
     layers/ceil.rst
@@ -45,6 +46,7 @@ fluid.layers
     layers/clip_by_norm.rst
     layers/collect_fpn_proposals.rst
     layers/concat.rst
+    layers/cond.rst
     layers/continuous_value_model.rst
     layers/conv2d.rst
     layers/conv2d_transpose.rst
@@ -290,6 +292,7 @@ fluid.layers
     layers/sums.rst
     layers/swish.rst
     layers/Switch.rst
+    layers/switch_case.rst
     layers/tanh.rst
     layers/tanh_shrink.rst
     layers/target_assign.rst

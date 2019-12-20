@@ -108,11 +108,9 @@ pool2d
 .. code-block:: python
 
     import paddle.fluid as fluid
-    data_NCHW = fluid.layers.data(
-        name='data', shape=[2, 3, 8, 8], dtype='float32', append_batch_size=False)
+    data_NCHW = fluid.data(name='data', shape=[None, 3, 8, 8], dtype='float32')
 
-    data_NHWC = fluid.layers.data(
-        name='data', shape=[2, 8, 8, 3], dtype='float32', append_batch_size=False)
+    data_NHWC = fluid.data(name='data', shape=[None, 8, 8, 3], dtype='float32')
 
     # example 1:
     # ceil_mode = False

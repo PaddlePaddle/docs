@@ -3,7 +3,7 @@
 PRelu
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.PRelu(name_scope, mode, param_attr=None)
+.. py:class:: paddle.fluid.dygraph.PRelu(mode, input_shape=None, param_attr=None, dtype="float32")
 
 该接口用于构建 ``PRelu`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了 ``PRelu`` 激活函数的三种激活方式。
 
@@ -14,7 +14,6 @@ PRelu
 
 
 参数：
-    - **name_scope** (str) - 该类的名称。
     - **mode** (str) - 权重共享模式。共提供三种激活方式：
 
         .. code-block:: text
@@ -23,7 +22,9 @@ PRelu
             channel：在同一个通道中的元素使用同一个 :math:`[\alpha]` 值
             element：每一个元素有一个独立的 :math:`[\alpha]` 值
 
+    - **input_shape** (list 或 tuple，可选) - 输入的维度，该参数仅在mode参数为"all"时需要设置。默认为None。
     - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
 返回：无
 

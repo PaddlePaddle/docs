@@ -3,7 +3,7 @@
 logical_not
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.logical_not(, out=None, name=None)
+.. py:function:: paddle.fluid.layers.logical_not(x, out=None, name=None)
 
 该OP逐元素的对 ``X`` LoDTensor/Tensor进行逻辑非运算
 
