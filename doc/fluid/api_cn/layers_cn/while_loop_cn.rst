@@ -12,6 +12,7 @@ ____________________________________
     - **cond** (callable) - 返回boolean类型张量的可调用函数，用以判断循环是否继续执行。
     - **body** (callable) - 循环执行的结构体。其返回一个tensor的列表或元组，且这些tensor的长度，结构，类型和 ``loop_vars`` 中的相同。
     - **loop_vars** (list|tuple) - tensor的列表或是元组，其传入至 ``cond`` 和 ``body`` 中，得到循环条件和输出值。
+    - **is_test** (bool, 可选) - 用于表明是否在测试阶段执行，默认值为False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`。一般无需设置，默认值为None。
 
 返回：循环迭代之后 ``body`` 的返回值，和 ``loop_vars`` 具有相同的结构。
