@@ -177,11 +177,11 @@ In the dependent packages provided, please copy openblas and model files under R
 
   1.  Open GLOG
 
-  	`set GLOG_v=100`
+      `set GLOG_v=100`
 
   2.  Start inference. Path is the directory where you decompres model.
 
-  	`Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
+      `Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
