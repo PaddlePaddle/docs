@@ -3,12 +3,12 @@
 Layer
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.Layer(name_scope, dtype=core.VarDesc.VarType.FP32)
+.. py:class:: paddle.fluid.dygraph.Layer(name_scope=None, dtype=core.VarDesc.VarType.FP32)
 
 基于OOD实现的动态图Layer，包含该Layer的参数、前序运行的结构等信息。
 
 参数：
-    - **name_scope** (str) - 为Layer内部参数命名而采用的名称前缀。如果前缀为“my_model/layer_1”，在一个类名为MyLayer的Layer中，参数名为“my_model/layer_1/MyLayer/w_n”，其中w是参数的名称，n为自动生成的具有唯一性的后缀。
+    - **name_scope** (str，可选) - 为Layer内部参数命名而采用的名称前缀。如果前缀为“mylayer”，在一个类名为MyLayer的Layer中，参数名为“mylayer_0.w_n”，其中w是参数的名称，n为自动生成的具有唯一性的后缀。如果为None，前缀名将为小写的类名。默认值为None。
     - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
 
 返回：无
@@ -21,14 +21,14 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
 返回类型：str
 
-.. py:method:: create_parameter(attr, shape, dtype, is_bias=False, default_initializer=None)
+.. py:method:: create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 
 为Layer创建参数。
 
 参数：
-    - **attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **shape** (list) - 参数的形状。列表中的数据类型必须为int。
-    - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
+    - **attr** (ParamAttr，可选) - 指定权重参数属性的对象，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。默认值为None。
+    - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为“float32”。
     - **is_bias** (bool, 可选) - 是否是偏置参数。默认值：False。
     - **default_initializer** (Initializer, 可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 :ref:`cn_api_fluid_initializer_XavierInitializer` ，设置bias参数的初始化方式为 :ref:`cn_api_fluid_initializer_ConstantInitializer` 。默认值：None。
 
@@ -122,7 +122,7 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
     import paddle.fluid as fluid
     with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding("emb", [10, 10])
+        emb = fluid.dygraph.Embedding([10, 10])
         state_dict = emb.state_dict()
         fluid.save_dygraph(state_dict, "paddle_dy")
 
@@ -142,7 +142,7 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
     import paddle.fluid as fluid
     with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding("emb", [10, 10])
+        emb = fluid.dygraph.Embedding([10, 10])
         state_dict = emb.state_dict()
         fluid.save_dygraph(state_dict, "paddle_dy")
         para_state_dict, _ = fluid.load_dygraph("paddle_dy")
@@ -167,7 +167,7 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
     import paddle.fluid as fluid
     with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding("emb", [10, 10])
+        emb = fluid.dygraph.Embedding([10, 10])
         state_dict = emb.state_dict()
         fluid.save_dygraph(state_dict, "paddle_dy")
         para_state_dict, _ = fluid.load_dygraph("paddle_dy")

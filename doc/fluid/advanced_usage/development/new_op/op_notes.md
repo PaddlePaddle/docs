@@ -148,7 +148,7 @@ GetExpectedKernelType方法是OperatorWithKernel类中用于获取指定设备�
 如果未使用带有初始化检查的方法，直接使用了`Tensor->type()`，可能会导致报出`holder_ should not be null. Tensor not initialized yet when Tensor::type()`的错误，例如[Paddle issue #19522](https://github.com/PaddlePaddle/Paddle/issues/19522) ，用户仅凭该错误信息将无法得知具体出错的Op，不利于调试。
 
 ### 5.Op兼容性问题
-对Op的修改需要考虑兼容性问题，要保证Op修改之后，之前的模型都能够正常加载及运行。<font color="#FF0000">**所以现在不允许对已有的Op新增输入或者输出，不允许减去Op的已有属性及修改默认值**</font> 。
+对Op的修改需要考虑兼容性问题，要保证Op修改之后，之前的模型都能够正常加载及运行，即新版本的Paddle预测库能成功加载运行旧版本训练的模型。<font color="#FF0000">**所以，需要保证Op的Input、Output和Attribute不能被修改（文档除外）或删除，可以新增Input、Output和Attribute，但是新增的Input，Output必须设置AsDispensable，新增的Attribute必须设置默认值。更多详细内容请参考[OP修改规范：Input/Output/Attribute只能做兼容修改](https://github.com/PaddlePaddle/Paddle/wiki/OP-Input-Output-Attribute-Compatibility-Modification)**</font> 。
 
 ### 6.ShareDataWith的调用
 ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操作的时候需要特别注意，在Op内部不能将ShareDataWith作用在Op的输出上，即Op输出的Tensor必须是Malloc出来的。

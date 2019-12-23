@@ -60,7 +60,7 @@
 
 5. 执行cmake：
 
-    > 具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+    > 具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 
     *  编译**CPU版本PaddlePaddle**：
 	
@@ -96,17 +96,17 @@
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 
-## ***验证安装***
+## **验证安装**
 安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
  `fluid.install_check.run_check()`
 
 如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
 
-## ***如何卸载***
+## **如何卸载**
 请使用以下命令卸载PaddlePaddle：
 
-* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
+* **CPU版本的PaddlePaddle**: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 
-* ***GPU版本的PaddlePaddle***: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
+* **GPU版本的PaddlePaddle**: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
 
 使用Docker安装PaddlePaddle的用户，请进入包含PaddlePaddle的容器中使用上述命令，注意使用对应版本的pip

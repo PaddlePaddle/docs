@@ -125,7 +125,7 @@
 
 8. 执行cmake：
 
-	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	>具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 	>请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
 
 	* 对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -201,7 +201,7 @@
 
 5. 进入虚环境：`workon paddle-venv`
 
-6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖：
+6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖：
 
 	* 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 
@@ -228,7 +228,7 @@
 
 10. 执行cmake：
 
-	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	>具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
