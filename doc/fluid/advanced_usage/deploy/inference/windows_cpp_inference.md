@@ -171,13 +171,13 @@ Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到�
 
 [下载模型](http://paddle-inference-dist.bj.bcebos.com/word2vec.inference.model.tar.gz)并解压到当前目录，执行命令：
 
-  1.  开启GLOG
+  1. 开启GLOG
 
-  	`set GLOG_v=100`
+     `set GLOG_v=100`
 
-  2.  进行预测，path为模型解压后的目录
+  2. 进行预测，path为模型解压后的目录
 
-  	`Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
+     `Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
