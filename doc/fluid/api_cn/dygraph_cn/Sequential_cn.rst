@@ -9,7 +9,7 @@ Sequential
 传递给构造函数的参数可以是可迭代的 Layer 或可迭代的 name Layer 对。
 
 参数：
-    - **layers** (iterable) - 可迭代的 Layer 或可迭代的 name Layer 对。
+    - **layers** (tuple) - 可迭代的 Layer 或可迭代的 name Layer 对。
 
 返回：无
 
@@ -24,19 +24,17 @@ Sequential
         data = fluid.dygraph.to_variable(data)
         # 使用 iterable Layers 创建 Sequential 容器
         model1 = fluid.dygraph.Sequential(
-            fluid.FC('fc1', 2),
-            fluid.FC('fc2', 3)
+            fluid.Linear(10, 1), fluid.Linear(1, 2)
         )
-        model1[0]  # 访问 fc1 子层
+        model1[0]  # 访问第一个子层
         res1 = model1(data)  # 顺序执行
-        # 使用 iterable name-Layer 对创建 Sequential 容器
+        # 使用 iterable name Layer 对创建 Sequential 容器
         model2 = fluid.dygraph.Sequential(
-            ('l1', fluid.FC('l1', 2)),
-            ('l2', fluid.FC('l2', 3))
+            ('l1', fluid.Linear(10, 2)),
+            ('l2', fluid.Linear(2, 3))
         )
-        model2['l1']  # 访问 fc1 子层
-        model2.add_sublayer('l3', fluid.FC('l3', 3))  # 添加子层
-        print([l.full_name() for l in model2.sublayers()])  # ['l1/FC_0', 'l2/FC_0', 'l3/FC_0']
+        model2['l1']  # 访问 l1 子层
+        model2.add_sublayer('l3', fluid.Linear(3, 3))  # 添加子层
         res2 = model2(data)  # 顺序执行
 
 
