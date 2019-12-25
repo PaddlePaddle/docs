@@ -178,6 +178,16 @@ return accuracy, avg_cost, auc_var, batch_auc_var, py_reader
 
 需将本地词典向量读取为numpy数据格式，然后使用fluid.initializer.NumpyArrayInitializer这个op初始化fluid.layers.embedding里的param_attr参数。即可实现加载用户自定义（或预训练）的embedding向量。
 
+##### Q: 如何查看w和b的值
+
++ 问题描述
+
+如何查看paddle.fluid.layers.fc生成的w和b的值？
+
++ 问题描述
+
+可以通过param_t = fluid.global_scope().find_var(param_name).get_tensor()查看，param_name可以自己指定，如果不知道的话，可以通过param_list = fluid.framework.default_main_program().block(0).all_parameters()看一下。
+
 ##### Q: 共享向量权重
 
 + 问题描述
