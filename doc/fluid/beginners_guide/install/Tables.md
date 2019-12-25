@@ -183,8 +183,8 @@
 	<tr>
 		<tr>
 		<td> TENSORRT_ROOT </td>
-		<td> 指定TensorRT路徑 </td>
-		<td> 不指定會自動搜尋TensorRT </td>
+		<td> 指定TensorRT路径 </td>
+		<td> Windows下默认值为'/'，Linux下默认值为 '/usr/' </td>
 	</tr>
    </tbody>
 </table>
