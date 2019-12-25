@@ -20,7 +20,7 @@ PaddlePaddle has two-dimensional (pool2d), three-dimensional convolution (pool3d
 
 - ``num_channels`` : It is used to determine the number of ``channel`` of input. If it is not set or is set to ``None``, its actual value will be automatically set to the ``channel`` quantity of input.
 
-- ``pooling_type`` : It receives one of ``agg`` and ``max`` as the pooling method. The default value is  ``max`` . ``max`` means maximum pooling, i.e. calculating the maximum value of the data in the pooled ``filter`` area as output; and ``avg`` means averaging pooling, i.e. calculating the average of the data in the pooled  ``filter`` area as output.
+- ``pool_type`` : It receives one of ``agg`` and ``max`` as the pooling method. The default value is  ``max`` . ``max`` means maximum pooling, i.e. calculating the maximum value of the data in the pooled ``filter`` area as output; and ``avg`` means averaging pooling, i.e. calculating the average of the data in the pooled  ``filter`` area as output.
 
 - ``pool_stride`` : It is the stride size in which the pooling ``filter`` moves on the input feature map.
 
