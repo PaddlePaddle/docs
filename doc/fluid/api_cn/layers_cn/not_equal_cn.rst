@@ -30,8 +30,7 @@ not_equal
      out = fluid.layers.not_equal(x=label, y=limit) # out=[False, True]
      out1 = fluid.layers.not_equal(x=label, y=limit, cond=out_cond) #out1=[False, True] out_cond=[False, True]
      out2 = fluid.layers.not_equal(x=label, y=limit, force_cpu=False) #out2=[False, True]
-     out3 = x ! y #out3=[False, True] 
-
+     out3 = label != limit #out3=[False, True]
 
 
 

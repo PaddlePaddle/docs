@@ -25,14 +25,13 @@ greater_equal
      import paddle.fluid as fluid
      import paddle.fluid.layers as layers
      import numpy as np
-     label = layers.assign(np.array([2, 2], dtype='int32'))
-     limit = layers.assign(np.array([2, 3], dtype='int32'))
+     label = fluid.layers.assign(np.array([2, 2], dtype='int32'))
+     limit = fluid.layers.assign(np.array([2, 3], dtype='int32'))
      out_cond =fluid.data(name="input1", shape=[2], dtype='bool')
      out = fluid.layers.greater_equal(x=label, y=limit) #out=[True, False]
      out1 = fluid.layers.greater_equal(x=label, y=limit, cond=out_cond) #out1=[True, False], out_cond=[True, False]
      out2 = fluid.layers.greater_equal(x=label, y=limit, force_cpu=False) #out2=[True, False]
      out3 = label >= limit #out3=[True, False]
-
 
 
 

@@ -24,15 +24,13 @@ greater_than
      import paddle.fluid as fluid
      import paddle.fluid.layers as layers
      import numpy as np
-     label = layers.assign(np.array([2, 3], dtype='int32'))
-     limit = layers.assign(np.array([3, 2], dtype='int32'))
+     label = fluid.layers.assign(np.array([2, 3], dtype='int32'))
+     limit = fluid.layers.assign(np.array([3, 2], dtype='int32'))
      out_cond =fluid.data(name="input1", shape=[2], dtype='bool')
      out = fluid.layers.greater_than(x=label, y=limit) #out=[False, True]
      out1 = fluid.layers.greater_than(x=label, y=limit, cond=out_cond) #out1=[False, True], out_cond=[False, True]
      out2 = fluid.layers.greater_than(x=label, y=limit, force_cpu=False) #out2=[False, True]
      out3 = label > limit #out3=[False, True]
-
-
 
 
 

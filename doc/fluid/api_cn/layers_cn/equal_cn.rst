@@ -23,15 +23,12 @@ equal
 
     import paddle.fluid as fluid
     import numpy as np
-    
     out_cond =fluid.data(name="input1", shape=[2], dtype='bool')
     label = fluid.layers.assign(np.array([3, 3], dtype="int32"))
     limit = fluid.layers.assign(np.array([3, 2], dtype="int32"))
     out0 = fluid.layers.equal(x=label,y=limit) #out1=[True, False]
-    out1 = fluid.layers.equal(x=label_cond,y=limit, cond=out_cond) #out2=[True, False] out_cond=[True, False]
+    out1 = fluid.layers.equal(x=label,y=limit, cond=out_cond) #out2=[True, False] out_cond=[True, False]
     out2 = fluid.layers.equal(x=label,y=limit,force_cpu=False) #out3=[True, False]
-    out3 = x == y # out3=[True, False] 
-
-
+    out3 = label == limit # out3=[True, False]
 
 
