@@ -28,7 +28,7 @@ not_equal
      limit = fluid.layers.assign(np.array([3, 2], dtype="int32"))
      out_cond = fluid.layers.assign(np.array([1, 2], dtype="int32"))
      out = fluid.layers.not_equal(x=label, y=limit) # out=[False, True]
-     out1 = fluid.layers.not_equal(x=label_cond, y=limit, cond=out_cond) #out1=[False, True] out_cond=[False, True]
+     out1 = fluid.layers.not_equal(x=label, y=limit, cond=out_cond) #out1=[False, True] out_cond=[False, True]
      out2 = fluid.layers.not_equal(x=label, y=limit, force_cpu=False) #out2=[False, True]
      out3 = x ! y #out3=[False, True] 
 
