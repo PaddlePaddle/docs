@@ -16,11 +16,11 @@ PRelu
 参数：
     - **mode** (str) - 权重共享模式。共提供三种激活方式：
 
-        .. code-block:: text
-            
-            all：所有元素使用同一个 :math:`[\alpha]` 值
-            channel：在同一个通道中的元素使用同一个 :math:`[\alpha]` 值
-            element：每一个元素有一个独立的 :math:`[\alpha]` 值
+    .. code-block:: text
+
+        all：所有元素使用同一个 :math:`[\alpha]` 值
+        channel：在同一个通道中的元素使用同一个 :math:`[\alpha]` 值
+        element：每一个元素有一个独立的 :math:`[\alpha]` 值
 
     - **channel_or_input_shape** (int 或 list 或 tuple，可选) - 通道数或输入的维度。该参数仅在mode参数为"channel"或"element"时有用。当mode为“channel”时参数为int，当mode为“element”时参数为list或tuple。默认为None。
     - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
