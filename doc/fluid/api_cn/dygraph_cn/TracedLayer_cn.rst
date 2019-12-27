@@ -5,7 +5,7 @@ TracedLayer
 
 .. py:class:: paddle.fluid.dygraph.TracedLayer(program, parameters, feed_names, fetch_names)
 
-TracedLayer用于将动态图模型转换为静态图模型，转换后的模型可保存做在线预测使用。除此以外，转换后的静态图模型可使用静态图的pass做优化，获得比动态图更好的性能。
+TracedLayer用于将前向动态图模型转换为静态图模型，主要用于将动态图保存后做在线C++预测。除此以外，用户也可使用转换后的静态图模型在Python端做预测，通常比原先的动态图性能更好。
 
 TracedLayer使用 ``Executor`` 和 ``CompiledProgram`` 运行静态图模型。转换后的静态图模型与原动态图模型共享参数。
 
@@ -30,19 +30,19 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 .. code-block:: python
 
     import paddle.fluid as fluid
-    from paddle.fluid.dygraph import FC, to_variable, TracedLayer
+    from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
     import numpy as np
 
     class ExampleLayer(fluid.dygraph.Layer):
-        def __init__(self, name_scope):
-            super(ExampleLayer, self).__init__(name_scope)
-            self._fc = FC(self.full_name(), 10)
+        def __init__(self):
+            super(ExampleLayer, self).__init__()
+            self._fc = Linear(3, 10)
 
         def forward(self, input):
             return self._fc(input)
 
     with fluid.dygraph.guard():
-        layer = ExampleLayer("example_layer")
+        layer = ExampleLayer()
         in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
         out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
@@ -70,19 +70,19 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 .. code-block:: python
 
     import paddle.fluid as fluid
-    from paddle.fluid.dygraph import FC, to_variable, TracedLayer
+    from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
     import numpy as np
 
     class ExampleLayer(fluid.dygraph.Layer):
-        def __init__(self, name_scope):
-            super(ExampleLayer, self).__init__(name_scope)
-            self._fc = FC(self.full_name(), 10)
+        def __init__(self):
+            super(ExampleLayer, self).__init__()
+            self._fc = Linear(3, 10)
 
         def forward(self, input):
             return self._fc(input)
 
     with fluid.dygraph.guard():
-        layer = ExampleLayer("example_layer")
+        layer = ExampleLayer()
         in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
 
@@ -115,19 +115,19 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 .. code-block:: python
 
     import paddle.fluid as fluid
-    from paddle.fluid.dygraph import FC, to_variable, TracedLayer
+    from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
     import numpy as np
 
     class ExampleLayer(fluid.dygraph.Layer):
-        def __init__(self, name_scope):
-            super(ExampleLayer, self).__init__(name_scope)
-            self._fc = FC(self.full_name(), 10)
+        def __init__(self):
+            super(ExampleLayer, self).__init__()
+            self._fc = Linear(3, 10)
 
         def forward(self, input):
             return self._fc(input)
 
     with fluid.dygraph.guard():
-        layer = ExampleLayer("example_layer")
+        layer = ExampleLayer()
         in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
         out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
