@@ -72,6 +72,10 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
 返回类型：list
 
+.. py:method:: clear_gradients()
+
+清除该层所有参数的梯度。
+
 .. py:method:: forward(*inputs, **kwargs)
 
 定义每次调用时执行的计算。应该被所有子类覆盖。

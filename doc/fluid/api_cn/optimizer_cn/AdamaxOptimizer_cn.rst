@@ -29,6 +29,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
   - **beta1** (float, 可选) - 一阶矩估计的指数衰减率，默认值为0.9
   - **beta2** (float, 可选) - 二阶矩估计的指数衰减率，默认值为0.999
   - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
+  - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
   - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
   - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
@@ -100,8 +101,9 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 
 
+.. py:method:: clear_gradients()
 
+该函数仅在动态图模式下使用。
 
-
-
+清除需要优化的参数的梯度。
 

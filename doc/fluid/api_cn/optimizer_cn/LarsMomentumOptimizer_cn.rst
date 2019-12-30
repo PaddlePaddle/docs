@@ -19,6 +19,7 @@ LarsMomentumOptimizer
 参数：
   - **learning_rate** (float|Variable) - 学习率，用于参数更新。作为数据参数，可以是浮点型值或含有一个浮点型值的变量。
   - **momentum** (float) - 动量因子。
+  - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
   - **lars_coeff** (float，可选) - 定义LARS本地学习率的权重，默认值0.001。
   - **lars_weight_decay** (float，可选) - 使用LARS进行衰减的权重衰减系数，默认值0.0005。
   - **regularization** - 正则化函数，例如 :code:`fluid.regularizer.L2DecayRegularizer`。
@@ -66,6 +67,9 @@ LarsMomentumOptimizer
 返回类型： tuple
 
 
+.. py:method:: clear_gradients()
 
+该函数仅在动态图模式下使用。
 
+清除需要优化的参数的梯度。
 

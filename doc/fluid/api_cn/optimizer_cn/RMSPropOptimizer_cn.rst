@@ -30,6 +30,7 @@ RMSPropOptimizer
       
 参数：
     - **learning_rate** （float） - 全局学习率。
+    - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **rho** （float，可选） - rho是等式中的 :math:`rho` ，默认值0.95。
     - **epsilon** （float，可选） - 等式中的epsilon是平滑项，避免被零除，默认值1e-6。
     - **momentum** （float，可选） - 方程中的β是动量项，默认值0.0。
@@ -117,5 +118,9 @@ RMSPropOptimizer
 
 
 
+.. py:method:: clear_gradients()
 
+该函数仅在动态图模式下使用。
+
+清除需要优化的参数的梯度。
 

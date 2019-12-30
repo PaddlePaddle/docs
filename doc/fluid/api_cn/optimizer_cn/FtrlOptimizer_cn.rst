@@ -30,6 +30,7 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
 
 参数:
   - **learning_rate** (float|Variable)- 全局学习率。
+  - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
   - **l1** (float，可选) - L1 regularization strength，默认值0.0。
   - **l2** (float，可选) - L2 regularization strength，默认值0.0。
   - **lr_power** (float，可选) - 学习率降低指数，默认值-0.5。
@@ -90,4 +91,10 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
 
 返回类型： tuple
 
+
+.. py:method:: clear_gradients()
+
+该函数仅在动态图模式下使用。
+
+清除需要优化的参数的梯度。
 

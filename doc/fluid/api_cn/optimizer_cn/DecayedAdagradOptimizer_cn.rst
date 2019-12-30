@@ -21,6 +21,7 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
     
 参数：
   - **learning_rate** (float|Variable) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable
+  - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
   - **decay** (float，可选) – 衰减率，默认值为0.95
   - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None 
   - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06
@@ -78,4 +79,11 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
     exe.run(
         feed={"inp": np_inp},
         fetch_list=[out.name])
+
+
+.. py:method:: clear_gradients()
+
+该函数仅在动态图模式下使用。
+
+清除需要优化的参数的梯度。
 

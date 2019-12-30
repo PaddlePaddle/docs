@@ -24,6 +24,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 参数: 
     - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
+    - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **beta1** (float|Variable, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.9
     - **beta2** (float|Variable, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.999
     - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
@@ -158,4 +159,11 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     outs = exe.run(program=fluid.default_main_program(),
                    feed={'X': x, 'Y': y},
                    fetch_list=[loss.name])
+
+
+.. py:method:: clear_gradients()
+
+该函数仅在动态图模式下使用。
+
+清除需要优化的参数的梯度。
 

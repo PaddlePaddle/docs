@@ -22,6 +22,7 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     - **learning_rate** (float|Variable) - 全局学习率。
     - **epsilon** (float) - 维持数值稳定性的浮点型值，默认值为1.0e-6。
     - **rho** (float) - 算法中的衰减率，默认值为0.95。
+    - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **regularization** (WeightDecayRegularizer，可选) - 正则化方法，例如fluid.regularizer.L2DecayRegularizer等。默认值为None，表示无正则化。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
@@ -67,4 +68,10 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
         learning_rate=0.0003, epsilon=1.0e-6, rho=0.95)
     optimizer_ops, params_grads = optimizer.minimize(cost)
 
+
+.. py:method:: clear_gradients()
+
+该函数仅在动态图模式下使用。
+
+清除需要优化的参数的梯度。
 

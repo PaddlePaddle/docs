@@ -13,6 +13,7 @@ SGDOptimizer
 
 参数:
   - **learning_rate** (float|Variable) - 用于更新参数的学习率。可以是浮点值，也可以是具有一个浮点值作为数据元素的变量。
+  - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
   - **regularization** - 一个正则化器，例如 ``fluid.regularizer.L2DecayRegularizer`` 。
   - **name** (str, 可选) - 可选的名称前缀，一般无需设置，默认值为None。
   
@@ -94,4 +95,9 @@ SGDOptimizer
 
 
 
+.. py:method:: clear_gradients()
+
+该函数仅在动态图模式下使用。
+
+清除需要优化的参数的梯度。
 

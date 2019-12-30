@@ -29,6 +29,7 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
     - **beta1** (float) – 第一个动量估计的指数衰减率。
     - **beta2** (float) – 第二个动量估计的指数衰减率。
     - **epsilon** (float) – 一个小的浮点值，目的是维持数值稳定性。
+    - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **regularization** (Regularizer) – 一个正则化器，如fluid.regularizer.L1DecayRegularizer。
     - **exclude_from_weight_decay_fn** (function) – 当某个参数作为输入该函数返回值为 ``True`` 时，为该参数跳过权重衰减。 
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
@@ -93,8 +94,9 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
 
 
 
+.. py:method:: clear_gradients()
 
+该函数仅在动态图模式下使用。
 
-
-
+清除需要优化的参数的梯度。
 
