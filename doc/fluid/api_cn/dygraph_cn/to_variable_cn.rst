@@ -3,7 +3,7 @@
 to_variable
 -------------------------------
 
-.. py:function:: paddle.fluid.dygraph_to_variable(value, block=None, name=None, zero_copy=None)
+.. py:function:: paddle.fluid.dygraph.to_variable(value, block=None, name=None, zero_copy=None)
 
 该函数实现从numpy\.ndarray对象或者Variable对象创建一个 ``Variable`` 类型的对象。
 
