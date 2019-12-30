@@ -106,9 +106,7 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
     - **feed** (list(int), 可选) - 预测模型输入变量的索引。若为None，则TracedLayer的所有输入变量均会作为预测模型的输入。默认值为None。
     - **fetch** (list(int), 可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
 
-返回: 包含2个list的tuple，其中第一个list是保存的预测模型的输入变量名称，第二个list是保存的预测模型的输出变量名称。这两个list可用于用户在Python端加载预测模型，并使用静态图模式运行program的场合。
-
-返回类型: tuple
+返回: 无
 
 **代码示例**
 
@@ -126,12 +124,19 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
         def forward(self, input):
             return self._fc(input)
 
+    save_dirname = './saved_infer_model'
+    in_np = np.random.random([2, 3]).astype('float32')
+
     with fluid.dygraph.guard():
         layer = ExampleLayer()
-        in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
         out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
-        feed_var_names, fetch_var_names = static_layer.save_inference_model(
-                    './saved_infer_model', feed=[0], fetch=[0])
-        print(feed_var_names) # [u'feed_0']
-        print(fetch_var_names) # [u'save_infer_model/scale_0']
+        static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
+
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    program, feed_vars, fetch_vars = fluid.io.load_inference_model(save_dirname,
+                                        exe)
+
+    fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
+    print(fetch.shape) # (2, 10)
