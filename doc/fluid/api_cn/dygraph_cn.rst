@@ -41,5 +41,6 @@ fluid.dygraph
     dygraph_cn/Sequential_cn.rst
     dygraph_cn/SpectralNorm_cn.rst
     dygraph_cn/to_variable_cn.rst
+    dygraph_cn/TracedLayer_cn.rst
     dygraph_cn/Tracer_cn.rst
     dygraph_cn/TreeConv_cn.rst
