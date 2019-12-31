@@ -93,8 +93,12 @@ CentOS系统下有5种安装方式：
 
 ## 安装步骤
 
-* CPU版PaddlePaddle：`python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-* GPU版PaddlePaddle：`python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 或 `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+* CPU版PaddlePaddle：
+  * 对于Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple` 
+  * 对于Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+* GPU版PaddlePaddle：
+  * 对于Python 2： `python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 
+  * 对于Python 3： `python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
