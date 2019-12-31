@@ -175,11 +175,19 @@
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
     
+            python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+
+            或
+
             python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
         
         如果您是使用 Python 3，安装CPU版本的命令为：
         ::
     
+            python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+
+            或
+
             python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
 
     (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装（使用清华源） 
@@ -191,16 +199,28 @@
         如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下默认支持CUDA10.0：
         ::
 
+            python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
+
+            或
+
             python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用 Python 2，CUDA 9，cuDNN 7.3+，安装GPU版本的命令为：
         ::
-    
+
+            python -m pip install paddlepaddle-gpu==1.6.2.post97 -i https://mirror.baidu.com/pypi/simple
+
+            或
+
             python -m pip install paddlepaddle-gpu==1.6.2.post97 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用 Python 2，CUDA 10.0，cuDNN 7.3+，安装GPU版本的命令为：
         ::
-    
+
+            python -m pip install paddlepaddle-gpu==1.6.2.post107 -i https://mirror.baidu.com/pypi/simple
+
+            或
+
             python -m pip install paddlepaddle-gpu==1.6.2.post107 -i https://pypi.tuna.tsinghua.edu.cn/simple
         
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装。
