@@ -25,10 +25,12 @@ fluid.dygraph
     dygraph_cn/InverseTimeDecay_cn.rst
     dygraph_cn/Layer_cn.rst
     dygraph_cn/LayerNorm_cn.rst
+    dygraph_cn/Linear_cn.rst
     dygraph_cn/load_dygraph_cn.rst
     dygraph_cn/NaturalExpDecay_cn.rst
     dygraph_cn/NCE_cn.rst
     dygraph_cn/NoamDecay_cn.rst
+    dygraph_cn/ParameterList_cn.rst
     dygraph_cn/no_grad_cn.rst    
     dygraph_cn/PiecewiseDecay_cn.rst
     dygraph_cn/PolynomialDecay_cn.rst
@@ -36,7 +38,9 @@ fluid.dygraph
     dygraph_cn/PRelu_cn.rst
     dygraph_cn/prepare_context_cn.rst  
     dygraph_cn/save_dygraph_cn.rst
+    dygraph_cn/Sequential_cn.rst
     dygraph_cn/SpectralNorm_cn.rst
     dygraph_cn/to_variable_cn.rst
+    dygraph_cn/TracedLayer_cn.rst
     dygraph_cn/Tracer_cn.rst
     dygraph_cn/TreeConv_cn.rst

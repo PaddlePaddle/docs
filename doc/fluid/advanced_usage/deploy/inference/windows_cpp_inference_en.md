@@ -5,13 +5,13 @@ Install and Compile C++ Inference Library on Windows
 Direct Download and Install
 -------------
 
-| Version      |     Inference Libraries(v1.6.1)   | Compiler | Build tools | cuDNN | CUDA |
+| Version      |     Inference Libraries(v1.6.2)   | Compiler | Build tools | cuDNN | CUDA |
 |:---------|:-------------------|:-------------------|:----------------|:--------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/mkl/post97/fluid_inference_install_dir.zip) |  MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/mkl/post107/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.4.1  |   10    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/open/post97/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/mkl/post97/fluid_inference_install_dir.zip) |  MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/mkl/post107/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.4.1  |   10    |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/open/post97/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
 
 ### Hardware Environment
 
@@ -177,11 +177,11 @@ In the dependent packages provided, please copy openblas and model files under R
 
   1.  Open GLOG
 
-  	`set GLOG_v=100`
+      `set GLOG_v=100`
 
   2.  Start inference. Path is the directory where you decompres model.
 
-  	`Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
+      `Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">

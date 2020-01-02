@@ -5,13 +5,13 @@
 下载安装包与对应的测试环境
 -------------
 
-| 版本说明      |     预测库(1.6.1版本)     |       编译器        |    构建工具      |  cuDNN  |  CUDA  |
+| 版本说明      |     预测库(1.6.2版本)     |       编译器        |    构建工具      |  cuDNN  |  CUDA  |
 |:---------|:-------------------|:-------------------|:----------------|:--------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/mkl/post97/fluid_inference_install_dir.zip) |  MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/mkl/post107/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.4.1  |   10    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.1/win-infer/open/post97/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.11.1  |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/mkl/post97/fluid_inference_install_dir.zip) |  MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/mkl/post107/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.4.1  |   10    |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.6.2/win-infer/open/post97/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.11.1  |  7.3.1  |   9    |
 
 ### 硬件环境
 
@@ -171,13 +171,13 @@ Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到�
 
 [下载模型](http://paddle-inference-dist.bj.bcebos.com/word2vec.inference.model.tar.gz)并解压到当前目录，执行命令：
 
-  1.  开启GLOG
+  1. 开启GLOG
 
-  	`set GLOG_v=100`
+     `set GLOG_v=100`
 
-  2.  进行预测，path为模型解压后的目录
+  2. 进行预测，path为模型解压后的目录
 
-  	`Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
+     `Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">

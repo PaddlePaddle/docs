@@ -3,7 +3,7 @@
 BilinearTensorProduct
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.BilinearTensorProduct(name_scope, size, name=None, act=None, param_attr=None, bias_attr=None)
+.. py:class:: paddle.fluid.dygraph.BilinearTensorProduct(input1_dim, input2_dim, output_dim, name=None, act=None, param_attr=None, bias_attr=None, dtype="float32")
 
 该接口用于构建 ``BilinearTensorProduct`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。双线性乘积计算式子如下。
 
@@ -21,12 +21,14 @@ BilinearTensorProduct
 
 
 参数：
-    - **name_scope**  (str) – 指定类的名称。
-    - **size**  (int) – 该层的维度大小。
+    - **input1_dim**  (int) – 第一个输入的维度大小。
+    - **input1_dim**  (int) – 第二个输入的维度大小。
+    - **output_dim**  (int) – 输出的维度。
     - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     - **act**  (str，可选) – 对输出应用的激励函数。默认值为None。
     - **param_attr**  (ParamAttr) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr**  (ParamAttr) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+    - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 返回：维度为[batch_size, size]的2D Tensor，数据类型与输入数据类型相同。
 
@@ -43,7 +45,7 @@ BilinearTensorProduct
         layer1 = numpy.random.random((5, 5)).astype('float32')
         layer2 = numpy.random.random((5, 4)).astype('float32')
         bilinearTensorProduct = fluid.dygraph.nn.BilinearTensorProduct(
-               'BilinearTensorProduct', size=1000)
+               input1_dim=5, input2_dim=4, output_dim=1000)
         ret = bilinearTensorProduct(fluid.dygraph.base.to_variable(layer1),
                            fluid.dygraph.base.to_variable(layer2))
 
