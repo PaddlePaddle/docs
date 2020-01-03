@@ -1,40 +1,30 @@
 # 动态图机制-DyGraph
 
-
-
 PaddlePaddle的DyGraph模式是一种动态的图执行机制，可以立即执行结果，无需构建整个图。同时，和以往静态的执行计算图不同，DyGraph模式下您的所有操作可以立即获得执行结果，而不必等待所构建的计算图全部执行完成，这样可以让您更加直观地构建PaddlePaddle下的深度学习任务，以及进行模型的调试，同时还减少了大量用于构建静态计算图的代码，使得您编写、调试网络的过程变得更加便捷。
-
-
 
 PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：      
 
-*	更加灵活便捷的代码组织结构： 使用python的执行控制流程和面向对象的模型设计
-
-
-* 	更加便捷的调试功能： 直接使用python的打印方法即时打印所需要的结果，从而检查正在运行的模型结果便于测试更改
-
-
-*  和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的静态图模式执行
+* 更加灵活便捷的代码组织结构：使用python的执行控制流程和面向对象的模型设计
+* 更加便捷的调试功能：直接使用python的打印方法即时打印所需要的结果，从而检查正在运行的模型结果便于测试更改
+* 和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的静态图模式执行
 
 有关的动态图机制更多的实际模型示例请参考[Paddle/models/dygraph](https://github.com/PaddlePaddle/models/tree/develop/dygraph)
 
 ## 设置和基本用法
 
-1. 升级到最新的PaddlePaddle 1.6.0:		
+1. 升级到最新的PaddlePaddle 1.6.0:
 
-```
-pip install -q --upgrade paddlepaddle==1.6.0
-```
-
-
+    ```
+    pip install -q --upgrade paddlepaddle==1.6.0
+    ```
 
 2. 使用`fluid.dygraph.guard(place=None)` 上下文：
 
-```python
-import paddle.fluid as fluid
-with fluid.dygraph.guard():
-    # write your executable dygraph code here             
-```
+    ```python
+    import paddle.fluid as fluid
+    with fluid.dygraph.guard():
+        # write your executable dygraph code here             
+    ```
 
 现在您就可以在`fluid.dygraph.guard()`上下文环境中使用DyGraph的模式运行网络了，DyGraph将改变以往PaddlePaddle的执行方式： 现在他们将会立即执行，并且将计算结果返回给Python。	
 	
@@ -80,7 +70,7 @@ print(loss.gradient())
 		
 1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**两部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必须要使用继承自`fluid.dygraph.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
 
-	1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.dygraph.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
+    1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.dygraph.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
         
         ```python
         class MyLayer(fluid.dygraph.Layer):
@@ -107,7 +97,7 @@ print(loss.gradient())
         np_inp = np.array([1.0, 2.0, -1.0], dtype=np.float32)
         ```
 
-	2. 转换输入的`ndarray`为`Variable`, 并执行前向网络获取返回值： 使用`fluid.dygraph.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`my_layer(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
+    2. 转换输入的`ndarray`为`Variable`, 并执行前向网络获取返回值： 使用`fluid.dygraph.to_variable(np_inp)`转换Numpy输入为DyGraph接收的输入，然后使用`my_layer(var_inp)[0]`调用callable object并且获取了`x`作为返回值，利用`x.numpy()`方法直接获取了执行得到的`x`的`ndarray`返回值。
 
         ```python
         with fluid.dygraph.guard():
@@ -117,7 +107,7 @@ print(loss.gradient())
             dy_out = x.numpy()
         ```
 	
-	3. 计算梯度：自动微分对于实现机器学习算法（例如用于训练神经网络的反向传播）来说很有用， 使用`x.backward()`方法可以从某个`fluid.Varaible`开始执行反向网络，同时利用`my_layer._x_for_debug.gradient()`获取了网络中`x`梯度的`ndarray` 返回值：
+    3. 计算梯度：自动微分对于实现机器学习算法（例如用于训练神经网络的反向传播）来说很有用， 使用`x.backward()`方法可以从某个`fluid.Varaible`开始执行反向网络，同时利用`my_layer._x_for_debug.gradient()`获取了网络中`x`梯度的`ndarray` 返回值：
 
         ```python
             x.backward()
@@ -161,7 +151,7 @@ if __name__ == '__main__':
 
 每个 ``Variable`` 都有一个 ``stop_gradient`` 属性，可以用于细粒度地在反向梯度计算时排除部分子图，以提高效率。
 
-如果OP只有一个输入需要梯度，那么该OP的输出也需要梯度。
+如果OP只要有一个输入需要梯度，那么该OP的输出也需要梯度。
 相反，只有当OP的所有输入都不需要梯度时，该OP的输出也不需要梯度。
 在所有的 ``Variable`` 都不需要梯度的子图中，反向计算就不会进行计算了。
 
@@ -217,7 +207,6 @@ with fluid.dygraph.guard():
 接下来我们将以“手写数字识别”这个最基础的模型为例，展示如何利用DyGraph模式搭建并训练一个模型：
 
 有关手写数字识别的相关理论知识请参考[PaddleBook](https://github.com/PaddlePaddle/book/tree/develop/02.recognize_digits)中的内容，我们在这里默认您已经了解了该模型所需的深度学习理论知识。
-
 
 1. 准备数据，我们使用`paddle.dataset.mnist`作为训练所需要的数据集：
 
@@ -817,7 +806,6 @@ No optimizer loaded. If you didn't save optimizer, please ignore this. The progr
 checkpoint loaded
 Inference result of image/infer_3.png is: 3
 ```
-
 
 ## 编写兼容的模型
 
