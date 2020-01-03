@@ -178,9 +178,9 @@ Variable
 
 获取该 :ref:`api_guide_Variable` 的梯度值
 
-返回：如果 :ref:`api_guide_Variable` 的类型是LoDTensor（参见 :ref:`cn_user_guide_lod_tensor` ），返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值；如果 :ref:`api_guide_Variable` 的类型是SelectedRows，返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值和类型为 ``ndarray`` 的词id组成的tuple。
+返回：该 :ref:`api_guide_Variable` 的梯度 ``ndarray`` 值
 
-返回类型：``ndarray`` 或者 ``tuple of ndarray`` , 返回类型 ``tuple of ndarray`` 仅在 :ref:`cn_api_fluid_dygraph_Embedding` 层稀疏更新时产生。
+返回类型：``ndarray``
 
 
 **示例代码**
@@ -189,7 +189,6 @@ Variable
         import paddle.fluid as fluid
         import numpy as np
 
-        # example1: 返回ndarray
         x = np.ones([2, 2], np.float32)
         with fluid.dygraph.guard():
             inputs2 = []
@@ -203,20 +202,6 @@ Variable
             backward_strategy.sort_sum_gradient = True
             loss2.backward(backward_strategy)
             print(loss2.gradient())
-
-        # example2: 返回tuple of ndarray
-        with fluid.dygraph.guard():
-            embedding = fluid.dygraph.Embedding(
-                name_scope='embedding',
-                size=[20, 32],
-                param_attr='emb.w',
-                is_sparse=True)
-            x_data = np.arange(12).reshape(4, 3).astype('int64')
-            x_data = x_data.reshape((-1, 3, 1))
-            x = fluid.dygraph.base.to_variable(x_data)
-            out = embedding(x)
-            out.backward()
-            print(embedding._w.gradient())
 
 .. py:method:: clear_gradient()
 
