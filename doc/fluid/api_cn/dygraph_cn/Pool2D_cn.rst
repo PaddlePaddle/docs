@@ -3,7 +3,7 @@
 Pool2D
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.Pool2D(name_scope, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, exclusive=True, dtype=VarType.FP32)
+.. py:class:: paddle.fluid.dygraph.Pool2D(pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, exclusive=True)
 
 该接口用于构建 ``Pool2D`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个二维池化层，并使用上述输入参数的池化配置，为二维空间池化操作，根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` , 步长 ``pool_stride`` ，填充 ``pool_padding`` 这些参数得到输出。
 
@@ -52,7 +52,6 @@ Pool2D
     Output(i ,j) & = \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
 
 参数：
-    - **name_scope** (str) - 该类的名称。
     - **pool_size** (int|list|tuple, 可选) - 池化核的大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。若为一个整数，则它的平方值将作为池化核大小，比如若pool_size=2, 则池化核大小为2x2。默认值：-1。
     - **pool_type** (str, 可选) - 池化类型，可以是”max“对应max-pooling，“avg”对应average-pooling。默认为”max“。
     - **pool_stride** (int|list|tuple, 可选)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数，(pool_stride_Height, pool_stride_Width)。若为一个整数，则表示H和W维度上stride均为该值。默认值为1。
@@ -61,7 +60,6 @@ Pool2D
     - **use_cudnn** （bool, 可选）- 是否用cudnn核，只有已安装cudnn库时才有效。默认True。
     - **ceil_mode** （bool, 可选）- 是否用ceil函数计算输出高度和宽度。如果设为False，则使用floor函数。默认为False。
     - **exclusive** (bool, 可选) - 是否在平均池化模式忽略填充值。默认为True。
-    - **dtype** (str, 可选) - 输入的数据类型，可以为float32或float64。默认为float32。
 
 返回：无
 
@@ -80,7 +78,7 @@ Pool2D
 
     with fluid.dygraph.guard():
         data = np.random.random((3, 32, 32, 5)).astype('float32')
-        pool2d = fluid.dygraph.Pool2D("pool2d",pool_size=2,
+        pool2d = fluid.dygraph.Pool2D(pool_size=2,
                       pool_type='max',
                       pool_stride=1,
                       global_pooling=False)

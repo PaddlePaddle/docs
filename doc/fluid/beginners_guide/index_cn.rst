@@ -24,5 +24,6 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
     :hidden:
 
     quick_start_cn.rst
+    install/index_cn.rst
     basics/index_cn.rst
     programming_guide/programming_guide.md

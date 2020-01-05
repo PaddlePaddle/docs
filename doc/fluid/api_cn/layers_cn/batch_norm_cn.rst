@@ -17,13 +17,15 @@ batch_norm
 ``input`` 是mini-batch的输入。
 
 .. math::
-    \mu_{\beta}        &\gets \frac{1}{m} \sum_{i=1}^{m} x_i                                 \quad &// mini-batch-mean \\
-    \sigma_{\beta}^{2} &\gets \frac{1}{m} \sum_{i=1}^{m}(x_i - \mu_{\beta})^2               \quad &// mini-batch-variance \\
-    \hat{x_i}          &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \quad &// normalize \\
-    y_i &\gets \gamma \hat{x_i} + \beta                                                      \quad &// scale-and-shift
+    \mu_{\beta} &\gets \frac{1}{m} \sum_{i=1}^{m} x_i  \qquad &//\
+    \ mini-batch\ mean \\
+    \sigma_{\beta}^{2} &\gets \frac{1}{m} \sum_{i=1}^{m}(x_i - \mu_{\beta})^2  \qquad &//\
+    \ mini-batch\ variance \\
+    \hat{x_i}  &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \qquad &//\ normalize \\
+    y_i &\gets \gamma \hat{x_i} + \beta  \qquad &//\ scale\ and\ shift
 
-    moving\_mean = moving\_mean * momentum + mini\_batch\_mean * (1. - momentum)                     \global mean
-    moving\_variance = moving\_variance * momentum + mini\_batch\_var * (1. - momentum)              \global variance
+    moving\_mean = moving\_mean * momentum + mini\_batch\_mean * (1. - momentum) \\          
+    moving\_variance = moving\_variance * momentum + mini\_batch\_var * (1. - momentum)     
 
 moving_mean和moving_var是训练过程中统计得到的全局均值和方差，在预测或者评估中使用。
 
@@ -41,7 +43,7 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
     - **input** (Variable) - batch_norm算子的输入特征，是一个Variable类型，输入维度可以是 2, 3, 4, 5。数据类型：flaot16, float32, float64。
     - **act** （string）- 激活函数类型，可以是leaky_realu、relu、prelu等。默认：None。
     - **is_test** （bool） - 指示它是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认：False。
-    - **momentum** （float）- 此值用于计算 moving_mean 和 moving_var。更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ， 默认：0.9。
+    - **momentum** （float|Variable）- 此值用于计算 moving_mean 和 moving_var，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1. - momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ， 默认：0.9。
     - **epsilon** （float）- 加在分母上为了数值稳定的值。默认：1e-5。
     - **param_attr** (ParamAttr|None) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。batch_norm算子默认的权重初始化是1.0。
     - **bias_attr** （ParamAttr|None）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。batch_norm算子默认的偏置初始化是0.0。
@@ -75,4 +77,29 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
     output = exe.run(feed={"x": np_x}, fetch_list = [hidden2])
     print(output)
 
+.. code-block:: python
+
+    # batch_norm with momentum as Variable
+    import paddle.fluid as fluid
+    import paddle.fluid.layers.learning_rate_scheduler as lr_scheduler
+    
+    def get_decay_momentum(momentum_init, decay_steps, decay_rate):
+        global_step = lr_scheduler._decay_step_counter()
+        momentum = fluid.layers.create_global_var(
+            shape=[1],
+            value=float(momentum_init),
+            dtype='float32',
+            # set persistable for save checkpoints and resume
+            persistable=True,
+            name="momentum")
+        div_res = global_step / decay_steps
+        decayed_momentum = momentum_init * (decay_rate**div_res)
+        fluid.layers.assign(decayed_momentum, momentum)
+        
+        return momentum
+    
+    x = fluid.data(name='x', shape=[3, 7, 3, 7], dtype='float32')
+    hidden1 = fluid.layers.fc(input=x, size=200, param_attr='fc1.w')
+    momentum = get_decay_momentum(0.9, 1e5, 0.9)
+    hidden2 = fluid.layers.batch_norm(input=hidden1, momentum=momentum)
 

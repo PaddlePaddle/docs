@@ -110,7 +110,7 @@ conv3d_transpose
     import numpy as np
     data = fluid.layers.data(name='data', shape=[3, 12, 32, 32], dtype='float32')
     param_attr = fluid.ParamAttr(name='conv3d.weight', initializer=fluid.initializer.Xavier(uniform=False), learning_rate=0.001)
-    res = fluid.layers.conv3d_transpose(input=data, output_size=(14, 66, 66), num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
+    res = fluid.layers.conv3d_transpose(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
     exe.run(fluid.default_startup_program())

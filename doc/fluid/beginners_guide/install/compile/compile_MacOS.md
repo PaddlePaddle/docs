@@ -2,9 +2,9 @@
 
 ## 环境准备
 
-* *MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)*
-* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
-* *pip 或 pip3 版本 9.0.1+ (64 bit)*
+* **MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -17,7 +17,7 @@
 * 本机源码编译
 
 <a name="mac_docker"></a>
-### ***使用Docker编译***
+### **使用Docker编译**
 
 [Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源
 
@@ -76,7 +76,7 @@
 
 9. 执行cmake：
 
-	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	>具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 	>请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -106,7 +106,7 @@
 
 <a name="mac_source"></a>
 <br/><br/>
-### ***本机编译***
+### **本机编译**
 
 **请严格按照以下指令顺序执行**
 
@@ -143,7 +143,7 @@
 
 	- g. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
 
-5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html/#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
+5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 
 	> MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig, unrar`，另外安装`cmake`即可
 
@@ -178,7 +178,7 @@
 
 9. 执行cmake：
 
-	>具体编译选项含义请参见[编译选项表](../Tables.html/#Compile)
+	>具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 
 	*  对于需要编译**CPU版本PaddlePaddle**的用户：
 
@@ -198,19 +198,19 @@
 
 	`pip install -U（whl包的名字）`或`pip3 install -U（whl包的名字）`
 
-	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html/#MACPRO)
+	> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html#MACPRO)
 
 恭喜，至此您已完成PaddlePaddle的编译安装
 
-## ***验证安装***
+## **验证安装**
 安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
  `fluid.install_check.run_check()`
 
 如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
 
-## ***如何卸载***
+## **如何卸载**
 请使用以下命令卸载PaddlePaddle
 
-* ***CPU版本的PaddlePaddle***: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
+* **CPU版本的PaddlePaddle**: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
 
 使用Docker安装PaddlePaddle的用户，请进入包含PaddlePaddle的容器中使用上述命令，注意使用对应版本的pip

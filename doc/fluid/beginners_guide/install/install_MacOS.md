@@ -2,9 +2,9 @@
 
 ## 环境准备
 
-* *MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)*
-* *Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)*
-* *pip 或 pip3 版本 9.0.1+ (64 bit)*
+* **MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 ### 注意事项
 
@@ -68,11 +68,14 @@ MacOS系统下有5种安装方式：
 * [源码编译安装](./compile/compile_MacOS.html#mac_source)
 * [Docker源码编译安装](./compile/compile_MacOS.html#mac_docker)
 
+
 这里为您介绍pip安装方式
 
 ## 安装步骤
 
-* CPU版PaddlePaddle：`python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+* CPU版PaddlePaddle：
+  * 对于Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple` 
+  * 对于Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
@@ -82,7 +85,7 @@ MacOS系统下有5种安装方式：
 * 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
 
 
-* 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html/#ciwhls)
+* 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html#ciwhls)
 
 
 * 使用MacOS中自带Python可能会导致安装失败。对于**Python2**，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg)提供的python2.7.15；对于**Python3**，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x、python3.6.x或python3.7.x。
