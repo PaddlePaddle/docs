@@ -7,7 +7,7 @@ soft_relu
 
 SoftReLU 激活函数.
 
-.. math::   out=ln(1+exp(max(min(x,threshold),threshold)))
+.. math::   out=ln(1+exp(max(min(x,threshold),-threshold)))
 
 参数:
     - **x** (Variable) - SoftReLU激活函数的输入，为数据类型为float32，float64的多维Tensor或者LoDTensor。
