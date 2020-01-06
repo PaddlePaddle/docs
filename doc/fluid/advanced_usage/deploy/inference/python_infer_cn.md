@@ -125,7 +125,7 @@ results = predictor.run([x_t, y_t])
 
 ### 使用ZeroCopyTensor管理输入/输出
 
-`ZeroCopyTensor`是`AnalysisPredictor`的另外一种输入/输出数据结构，与`PaddleTensor`等同，不需要同时使用。`ZeroCopyTensor`的使用可以避免预测时候准备输入以及获取输出时多余的数据拷贝，提高预测性能。
+`ZeroCopyTensor`是`PaddlePredictor`的另外一种输入/输出数据结构，与`PaddleTensor`等同。`ZeroCopyTensor`相比于`PaddleTensor`，可以避免预测时候准备输入以及获取输出时多余的数据拷贝，提高预测性能。
 
 注意: 需要注意的是，使用`ZeroCopyTensor`，务必在创建`config`时设置`config.switch_use_feed_fetch_ops(False)`用于显式地在模型运行的时候删去`feed`和`fetch`ops，不会影响模型的效果，但是能提升性能。
 
