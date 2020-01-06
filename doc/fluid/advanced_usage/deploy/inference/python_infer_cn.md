@@ -123,7 +123,7 @@ results = predictor.run([x_t, y_t])
 # 获得预测结果，并应用到自己的应用中
 ```
 
-### 使用`ZeroCopyTensor`管理输入/输出
+### 使用ZeroCopyTensor管理输入/输出
 
 `ZeroCopyTensor`是`AnalysisPredictor`的另外一种输入/输出数据结构，与`PaddleTensor`等同，不需要同时使用。`ZeroCopyTensor`的使用可以避免预测时候准备输入以及获取输出时多余的数据拷贝，提高预测性能。
 
@@ -189,7 +189,7 @@ python resnet50_infer.py --model_file ./model/model --params_file ./model/params
 
 `resnet50_infer.py` 的内容是
 
-### `PaddleTensor`的完整使用示例
+### PaddleTensor的完整使用示例
 
 ``` python
 import argparse
@@ -246,7 +246,7 @@ if __name__ == "__main__":
     main()    
 ```
 
-### `ZeroCopyTensor`的完整使用示例
+### ZeroCopyTensor的完整使用示例
 
 ``` python
 import argparse
