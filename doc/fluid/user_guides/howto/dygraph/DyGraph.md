@@ -104,7 +104,7 @@ print(loss.gradient())
         ```python
         with fluid.dygraph.guard():
             var_inp = fluid.dygraph.to_variable(np_inp)
-            my_layer = MyLayer()
+            my_layer = MyLayer(np_inp.shape[-1])
             x = my_layer(var_inp)[0]
             dy_out = x.numpy()
         ```
@@ -141,7 +141,7 @@ if __name__ == '__main__':
     np_inp = np.array([[1.0, 2.0, -1.0]], dtype=np.float32)
     with fluid.dygraph.guard():
         var_inp = fluid.dygraph.to_variable(np_inp)
-        my_layer = MyLayer(input_size=3)
+        my_layer = MyLayer(np_inp.shape[-1])
         x = my_layer(var_inp)[0]
         dy_out = x.numpy()
         x.backward()
