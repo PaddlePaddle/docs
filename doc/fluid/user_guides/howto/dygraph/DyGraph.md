@@ -70,18 +70,20 @@ print(loss.gradient())
 		
 1. 编写一段用于DyGraph执行的Object-Oriented-Designed, PaddlePaddle模型代码主要由以下**两部分**组成： **请注意，如果您设计的这一层结构是包含参数的，则必须要使用继承自`fluid.dygraph.Layer`的Object-Oriented-Designed的类来描述该层的行为。**
 
-    1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.dygraph.Layer`，其中需要调用基类的`__init__`方法，并且实现带有参数`name_scope`（用来标识本层的名字）的`__init__`构造函数，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
+    1. 建立一个可以在DyGraph模式中执行的，Object-Oriented的网络，需要继承自`fluid.dygraph.Layer`，其中需要调用基类的`__init__`方法，在构造函数中，我们通常会执行一些例如参数初始化，子网络初始化的操作，执行这些操作时不依赖于输入的动态信息:
         
         ```python
         class MyLayer(fluid.dygraph.Layer):
-            def __init__(self, name_scope):
-                super(MyLayer, self).__init__(name_scope)
+            def __init__(self, input_size):
+                super(MyLayer, self).__init__()
+                self.linear = fluid.dygraph.nn.Linear(input_size, 12)
         ```
     
-    2. 实现一个`forward(self, *inputs)`的执行函数，该函数将负责执行实际运行时网络的执行逻辑， 该函数将会在每一轮训练/预测中被调用，这里我们将执行一个简单的`relu` -> `elementwise add` -> `reduce sum`：
+    2. 实现一个`forward(self, *inputs)`的执行函数，该函数将负责执行实际运行时网络的执行逻辑， 该函数将会在每一轮训练/预测中被调用，这里我们将执行一个简单的 `linear` -> `relu` -> `elementwise add` -> `reduce sum`：
 
         ```python
             def forward(self, inputs):
+                x = self.linear(inputs)
                 x = fluid.layers.relu(inputs)
                 self._x_for_debug = x
                 x = fluid.layers.elementwise_mul(x, x)
@@ -102,7 +104,7 @@ print(loss.gradient())
         ```python
         with fluid.dygraph.guard():
             var_inp = fluid.dygraph.to_variable(np_inp)
-            my_layer = MyLayer("my_layer")
+            my_layer = MyLayer(np_inp.shape[-1])
             x = my_layer(var_inp)[0]
             dy_out = x.numpy()
         ```
@@ -122,12 +124,12 @@ import numpy as np
 
 
 class MyLayer(fluid.dygraph.Layer):
-    def __init__(self, name_scope):
-        super(MyLayer, self).__init__(name_scope)
-        self.fc = fluid.dygraph.nn.FC(self.full_name(), size=12)
+    def __init__(self, input_size):
+        super(MyLayer, self).__init__()
+        self.linear = fluid.dygraph.nn.Linear(input_size, 12)
     
     def forward(self, inputs):
-        x = self.fc(inputs)
+        x = self.linear(inputs)
         x = fluid.layers.relu(x)
         self._x_for_debug = x
         x = fluid.layers.elementwise_mul(x, x)
@@ -139,7 +141,7 @@ if __name__ == '__main__':
     np_inp = np.array([[1.0, 2.0, -1.0]], dtype=np.float32)
     with fluid.dygraph.guard():
         var_inp = fluid.dygraph.to_variable(np_inp)
-        my_layer = MyLayer("my_layer")
+        my_layer = MyLayer(np_inp.shape[-1])
         x = my_layer(var_inp)[0]
         dy_out = x.numpy()
         x.backward()
@@ -187,8 +189,8 @@ with fluid.dygraph.guard():
     value0 = np.arange(26).reshape(2, 13).astype("float32")
     value1 = np.arange(6).reshape(2, 3).astype("float32")
     value2 = np.arange(10).reshape(2, 5).astype("float32")
-    fc = fluid.FC("fc1", size=5, dtype="float32")
-    fc2 = fluid.FC("fc2", size=3, dtype="float32")
+    fc = fluid.Linear(13, 5, dtype="float32")
+    fc2 = fluid.Linear(3, 3, dtype="float32")
     a = fluid.dygraph.to_variable(value0)
     b = fluid.dygraph.to_variable(value1)
     c = fluid.dygraph.to_variable(value2)
@@ -198,7 +200,7 @@ with fluid.dygraph.guard():
     out = fluid.layers.concat(input=[out1, out2, c], axis=1)
     out.backward()
     # 可以发现这里fc参数的梯度都为0
-    assert (fc._w.gradient() == 0).all()
+    assert (fc.weight.gradient() == 0).all()
     assert (out1.gradient() == 0).all()
 ```
 
@@ -220,7 +222,7 @@ with fluid.dygraph.guard():
     ```python
     class SimpleImgConvPool(fluid.dygraph.Layer):
         def __init__(self,
-                     name_scope,
+                     num_channels,
                      num_filters,
                      filter_size,
                      pool_size,
@@ -236,10 +238,10 @@ with fluid.dygraph.guard():
                      use_cudnn=False,
                      param_attr=None,
                      bias_attr=None):
-            super(SimpleImgConvPool, self).__init__(name_scope)
+            super(SimpleImgConvPool, self).__init__()
     
             self._conv2d = fluid.dygraph.Conv2D(
-                self.full_name(),
+                num_channels=num_channels,
                 num_filters=num_filters,
                 filter_size=filter_size,
                 stride=conv_stride,
@@ -252,7 +254,6 @@ with fluid.dygraph.guard():
                 use_cudnn=use_cudnn)
     
             self._pool2d = fluid.dygraph.Pool2D(
-                self.full_name(),
                 pool_size=pool_size,
                 pool_type=pool_type,
                 pool_stride=pool_stride,
@@ -272,28 +273,30 @@ with fluid.dygraph.guard():
 
     ```python
     class MNIST(fluid.dygraph.Layer):
-        def __init__(self, name_scope):
-            super(MNIST, self).__init__(name_scope)
+        def __init__(self):
+            super(MNIST, self).__init__()
     
             self._simple_img_conv_pool_1 = SimpleImgConvPool(
-                self.full_name(), 20, 5, 2, 2, act="relu")
+                1, 20, 5, 2, 2, act="relu")
     
             self._simple_img_conv_pool_2 = SimpleImgConvPool(
-                self.full_name(), 50, 5, 2, 2, act="relu")
+                20, 50, 5, 2, 2, act="relu")
     
-            pool_2_shape = 50 * 4 * 4
+            self.pool_2_shape = 50 * 4 * 4
             SIZE = 10
-            scale = (2.0 / (pool_2_shape**2 * SIZE))**0.5
-            self._fc = fluid.dygraph.FC(self.full_name(),
-                                        10,
-                                        param_attr=fluid.param_attr.ParamAttr(
-                                            initializer=fluid.initializer.NormalInitializer(
-                                                loc=0.0, scale=scale)),
-                                        act="softmax")
+            scale = (2.0 / (self.pool_2_shape**2 * SIZE))**0.5
+            self._fc = fluid.dygraph.Linear(
+                        self.pool_2_shape,
+                        10,
+                        param_attr=fluid.param_attr.ParamAttr(
+                            initializer=fluid.initializer.NormalInitializer(
+                                loc=0.0, scale=scale)),
+                        act="softmax")
     
         def forward(self, inputs, label=None):
             x = self._simple_img_conv_pool_1(inputs)
             x = self._simple_img_conv_pool_2(x)
+            x = fluid.layers.reshape(x, shape=[-1, self.pool_2_shape])
             x = self._fc(x)
             if label is not None:
                 acc = fluid.layers.accuracy(input=x, label=label)
@@ -306,7 +309,9 @@ with fluid.dygraph.guard():
 
     ```python
     with fluid.dygraph.guard():
-        mnist = MNIST("mnist")
+        mnist = MNIST()
+        train_reader = paddle.batch(
+                paddle.dataset.mnist.train(), batch_size=32, drop_last=True)
         id, data = list(enumerate(train_reader()))[0]
         dy_x_data = np.array(
             [x[0].reshape(1, 28, 28)
@@ -335,8 +340,8 @@ with fluid.dygraph.guard():
         BATCH_SIZE = 64
         train_reader = paddle.batch(
             paddle.dataset.mnist.train(), batch_size=32, drop_last=True)
-        mnist = MNIST("mnist")
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
+        mnist = MNIST()
+        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
         for epoch in range(epoch_num):
             for batch_id, data in enumerate(train_reader()):
                 dy_x_data = np.array([x[0].reshape(1, 28, 28)
@@ -370,8 +375,8 @@ with fluid.dygraph.guard():
         epoch_num = 5
         BATCH_SIZE = 64
     
-        mnist = MNIST("mnist")
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
+        mnist = MNIST()
+        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
         train_reader = paddle.batch(
             paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
     
@@ -452,16 +457,17 @@ with fluid.dygraph.guard():
 ```python
 place = fluid.CUDAPlace(fluid.dygraph.parallel.Env().dev_id)
 with fluid.dygraph.guard(place):
-
     strategy = fluid.dygraph.parallel.prepare_context()
-    mnist = MNIST("mnist")
-    adam = AdamOptimizer(learning_rate=0.001)
+    epoch_num = 5
+    BATCH_SIZE = 64
+    mnist = MNIST()
+    adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
     mnist = fluid.dygraph.parallel.DataParallel(mnist, strategy)
 
     train_reader = paddle.batch(
         paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
     train_reader = fluid.contrib.reader.distributed_batch_reader(
-            train_reader)
+        train_reader)
 
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(train_reader()):
@@ -470,8 +476,8 @@ with fluid.dygraph.guard(place):
             y_data = np.array(
                 [x[1] for x in data]).astype('int64').reshape(-1, 1)
 
-            img = to_variable(dy_x_data)
-            label = to_variable(y_data)
+            img = fluid.dygraph.to_variable(dy_x_data)
+            label = fluid.dygraph.to_variable(y_data)
             label.stop_gradient = True
 
             cost, acc = mnist(img, label)
@@ -482,7 +488,7 @@ with fluid.dygraph.guard(place):
             avg_loss = mnist.scale_loss(avg_loss)
             avg_loss.backward()
             mnist.apply_collective_grads()
-            
+
             adam.minimize(avg_loss)
             mnist.clear_gradients()
             if batch_id % 100 == 0 and batch_id is not 0:
@@ -500,8 +506,8 @@ with fluid.dygraph.guard(place):
 
     ```python
     strategy = fluid.dygraph.parallel.prepare_context()
-    mnist = MNIST("mnist")
-    adam = AdamOptimizer(learning_rate=0.001)
+    mnist = MNIST()
+    adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
     mnist = fluid.dygraph.parallel.DataParallel(mnist, strategy)
     ```
 
@@ -619,8 +625,8 @@ with fluid.dygraph.guard():
     epoch_num = 5
     BATCH_SIZE = 64
 
-    mnist = MNIST("mnist")
-    adam = fluid.optimizer.Adam(learning_rate=0.001)
+    mnist = MNIST()
+    adam = fluid.optimizer.Adam(learning_rate=0.001, parameter_list=mnist.parameters())
     train_reader = paddle.batch(
         paddle.dataset.mnist.train(), batch_size= BATCH_SIZE, drop_last=True)
 
@@ -715,7 +721,7 @@ def test_mnist(reader, model, batch_size):
 
 def inference_mnist():
     with fluid.dygraph.guard():
-        mnist_infer = MNIST("mnist")
+        mnist_infer = MNIST()
         # load checkpoint
         model_dict, _ = fluid.dygraph.load_dygraph("paddle_dy")
         mnist_infer.load_dict(model_dict)
@@ -741,8 +747,8 @@ def inference_mnist():
 with fluid.dygraph.guard():
     epoch_num = 1
     BATCH_SIZE = 64
-    mnist = MNIST("mnist")
-    adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001)
+    mnist = MNIST()
+    adam = fluid.optimizer.AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
     test_reader = paddle.batch(
         paddle.dataset.mnist.test(), batch_size=BATCH_SIZE, drop_last=True)
 
@@ -818,8 +824,8 @@ epoch_num = 1
 BATCH_SIZE = 64
 exe = fluid.Executor(fluid.CPUPlace())
 
-mnist = MNIST("mnist")
-sgd = fluid.optimizer.SGDOptimizer(learning_rate=1e-3)
+mnist = MNIST()
+sgd = fluid.optimizer.SGDOptimizer(learning_rate=1e-3, parameter_list=mnist.parameters())
 train_reader = paddle.batch(
     paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
 img = fluid.layers.data(
