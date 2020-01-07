@@ -113,11 +113,11 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
     with fluid.dygraph.guard():
         value = np.arange(26).reshape(2, 13).astype("float32")
         a = fluid.dygraph.to_variable(value)
-        fc = fluid.Linear(13, 5, dtype="float32")
+        linear = fluid.Linear(13, 5, dtype="float32")
         optimizer = fluid.optimizer.LambOptimizer(learning_rate=0.02,
                                       exclude_from_weight_decay_fn=exclude_fn,
-                                      parameter_list = fc.parameters())
-        out = fc(a)
+                                      parameter_list=linear.parameters())
+        out = linear(a)
         out.backward()
         optimizer.minimize(out)
         optimizer.clear_gradients()

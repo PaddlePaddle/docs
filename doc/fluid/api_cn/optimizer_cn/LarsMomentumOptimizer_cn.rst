@@ -83,10 +83,10 @@ LarsMomentumOptimizer
     with fluid.dygraph.guard():
         value = np.arange(26).reshape(2, 13).astype("float32")
         a = fluid.dygraph.to_variable(value)
-        fc = fluid.Linear(13, 5, dtype="float32")
+        linear = fluid.Linear(13, 5, dtype="float32")
         optimizer = fluid.optimizer.LarsMomentumOptimizer(learning_rate=0.001, momentum=0.9,
-                                      parameter_list = fc.parameters())
-        out = fc(a)
+                                      parameter_list=linear.parameters())
+        out = linear(a)
         out.backward()
         optimizer.minimize(out)
         optimizer.clear_gradients()

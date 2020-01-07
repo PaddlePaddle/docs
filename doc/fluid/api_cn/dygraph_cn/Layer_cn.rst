@@ -86,13 +86,13 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
     with fluid.dygraph.guard():
         value = np.arange(26).reshape(2, 13).astype("float32")
         a = fluid.dygraph.to_variable(value)
-        fc = fluid.Linear(13, 5, dtype="float32")
-        adam = fluid.optimizer.Adam( learning_rate = 0.01, 
-                                     parameter_list = fc.parameters() )
-        out = fc(a)
+        linear = fluid.Linear(13, 5, dtype="float32")
+        adam = fluid.optimizer.Adam(learning_rate=0.01, 
+                                    parameter_list=linear.parameters())
+        out = linear(a)
         out.backward()
         adam.minimize(out)
-        fc.clear_gradients()
+        linear.clear_gradients()
 
 .. py:method:: forward(*inputs, **kwargs)
 

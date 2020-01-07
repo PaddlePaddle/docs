@@ -85,10 +85,10 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     with fluid.dygraph.guard():
         value = np.arange(26).reshape(2, 13).astype("float32")
         a = fluid.dygraph.to_variable(value)
-        fc = fluid.Linear(13, 5, dtype="float32")
+        linear = fluid.Linear(13, 5, dtype="float32")
         optimizer = fluid.optimizer.AdadeltaOptimizer(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
-                                      parameter_list = fc.parameters())
-        out = fc(a)
+                                                      parameter_list=linear.parameters())
+        out = linear(a)
         out.backward()
         optimizer.minimize(out)
         optimizer.clear_gradients()
