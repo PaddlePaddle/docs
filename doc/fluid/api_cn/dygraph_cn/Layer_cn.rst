@@ -76,6 +76,24 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
 清除该层所有参数的梯度。
 
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    with fluid.dygraph.guard():
+        value = np.arange(26).reshape(2, 13).astype("float32")
+        a = fluid.dygraph.to_variable(value)
+        fc = fluid.Linear(13, 5, dtype="float32")
+        adam = fluid.optimizer.Adam( learning_rate = 0.01, 
+                                     parameter_list = fc.parameters() )
+        out = fc(a)
+        out.backward()
+        adam.minimize(out)
+        fc.clear_gradients()
+
 .. py:method:: forward(*inputs, **kwargs)
 
 定义每次调用时执行的计算。应该被所有子类覆盖。

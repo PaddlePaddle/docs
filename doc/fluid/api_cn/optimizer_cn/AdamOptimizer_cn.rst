@@ -167,3 +167,21 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 清除需要优化的参数的梯度。
 
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    with fluid.dygraph.guard():
+        value = np.arange(26).reshape(2, 13).astype("float32")
+        a = fluid.dygraph.to_variable(value)
+        fc = fluid.Linear(13, 5, dtype="float32")
+        optimizer = fluid.optimizer.Adam(learning_rate=0.02,
+                                      parameter_list = fc.parameters())
+        out = fc(a)
+        out.backward()
+        optimizer.minimize(out)
+        optimizer.clear_gradients()
+
