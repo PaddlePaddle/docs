@@ -18,9 +18,9 @@ PRelu
 
     .. code-block:: text
 
-        all：所有元素使用同一个 :math:`[\alpha]` 值
-        channel：在同一个通道中的元素使用同一个 :math:`[\alpha]` 值
-        element：每一个元素有一个独立的 :math:`[\alpha]` 值
+        all：所有元素使用同一个alpha值
+        channel：在同一个通道中的元素使用同一个alpha值
+        element：每一个元素有一个独立的alpha值
 
     - **channel** (int，可选) - 通道数。该参数在mode参数为"channel"时是必须的。默认为None。
     - **input_shape** (int 或 list 或 tuple，可选) - 输入的维度。该参数在mode参数为"element"时是必须的。默认为None。
