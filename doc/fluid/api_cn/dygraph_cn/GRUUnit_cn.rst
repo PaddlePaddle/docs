@@ -33,7 +33,6 @@ GRUUnit
 :math:`W_{uh}, b_u` 、 :math:`W_{rh}, b_r` 和 :math:`W_{ch}, b_c` 分别代表更新门、重置门和候选隐状态在计算时使用的权重矩阵和偏置。在实现上，三个权重矩阵合并为一个维度为 :math:`[D, D \times 3]` 的Tensor存放。
 
 参数:
-    - **name_scope** (str) – 该类的名称。
     - **size** (int) – 输入数据的维度大小。
     - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     **注意**
@@ -64,7 +63,7 @@ GRUUnit
     hidden_input = numpy.random.rand(T, D).astype('float32')
     with fluid.dygraph.guard():
         x = numpy.random.random((3, 32, 32)).astype('float32')
-        gru = fluid.dygraph.GRUUnit('gru', size=D * 3)
+        gru = fluid.dygraph.GRUUnit(size=D * 3)
         dy_ret = gru(
         base.to_variable(input), base.to_variable(hidden_input))
 
