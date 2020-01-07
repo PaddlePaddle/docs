@@ -59,12 +59,12 @@ Variable
 
      import paddle.fluid as fluid
      from paddle.fluid.dygraph.base import to_variable
-     from paddle.fluid.dygraph import FC
+     from paddle.fluid.dygraph import Linear
      import numpy as np
 
      data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
      with fluid.dygraph.guard():
-           fc = FC("fc", 64, num_flatten_dims=2)
+           fc = Linear(32, 64)
            data = to_variable(data)
            x = fc(data)
            y = x.detach()
@@ -87,12 +87,12 @@ Variable
 
     import paddle.fluid as fluid
     from paddle.fluid.dygraph.base import to_variable
-    from paddle.fluid.dygraph import FC
+    from paddle.fluid.dygraph import Linear
     import numpy as np
 
     data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
     with fluid.dygraph.guard():
-        fc = FC("fc", 64, num_flatten_dims=2)
+        fc = Linear(32, 64)
         data = to_variable(data)
         x = fc(data)
         print(x.numpy())
@@ -118,12 +118,12 @@ Variable
 
         import paddle.fluid as fluid
         from paddle.fluid.dygraph.base import to_variable
-        from paddle.fluid.dygraph import FC
+        from paddle.fluid.dygraph import Linear
         import numpy as np
 
-        data = np.ones([3, 32, 32], dtype='float32')
+        data = np.ones([3, 1024], dtype='float32')
         with fluid.dygraph.guard():
-            fc = fluid.dygraph.FC("fc", 4)
+            fc = fluid.dygraph.Linear(1024, 4)
             t = to_variable(data)
             fc(t)  # 使用默认参数值调用前向
             custom_weight = np.random.randn(1024, 4).astype("float32")
@@ -354,8 +354,8 @@ Variable
             value0 = np.arange(26).reshape(2, 13).astype("float32")
             value1 = np.arange(6).reshape(2, 3).astype("float32")
             value2 = np.arange(10).reshape(2, 5).astype("float32")
-            fc = fluid.FC("fc1", size=5, dtype="float32")
-            fc2 = fluid.FC("fc2", size=3, dtype="float32")
+            fc = fluid.Linear(13, 5, dtype="float32")
+            fc2 = fluid.Linear(3, 3, dtype="float32")
             a = fluid.dygraph.to_variable(value0)
             b = fluid.dygraph.to_variable(value1)
             c = fluid.dygraph.to_variable(value2)
@@ -365,7 +365,7 @@ Variable
             out = fluid.layers.concat(input=[out1, out2, c], axis=1)
             out.backward()
             # 可以发现这里fc的参数变成了
-            assert (fc._w.gradient() == 0).all()
+            assert (fc.weight.gradient() == 0).all()
             assert (out1.gradient() == 0).all()
 
 .. py:attribute:: persistable
