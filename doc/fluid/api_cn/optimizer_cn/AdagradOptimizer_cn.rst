@@ -24,6 +24,7 @@ Adaptive Gradient 优化器(自适应梯度优化器，简称Adagrad)可以针�
 参数：
     - **learning_rate** (float|Variable) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable
     - **epsilon** (float, 可选) - 维持数值稳定性的浮点型值，默认值为1e-06
+    - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **regularization** (WeightDecayRegularizer, 可选) - 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
     - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
     - **initial_accumulator_value** (float, 可选) - moment累加器的初始值，默认值为0.0
@@ -86,7 +87,9 @@ Adaptive Gradient 优化器(自适应梯度优化器，简称Adagrad)可以针�
         fetch_list=[out.name])
 
 
+.. py:method:: clear_gradients()
 
+该函数仅在动态图模式下使用。
 
-
+清除需要优化的参数的梯度。
 
