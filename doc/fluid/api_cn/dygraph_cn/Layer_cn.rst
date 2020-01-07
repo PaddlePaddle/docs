@@ -97,7 +97,7 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
         for name, param in model.named_parameters():
             print(name, param)
 
-.. py:method:: named_sublayers(include_sublayers=True)
+.. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
 
 返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
 
