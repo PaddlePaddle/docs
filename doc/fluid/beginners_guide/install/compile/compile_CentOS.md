@@ -267,6 +267,9 @@
 
 	`make -j$(nproc)`
 
+	> 使用多核编译
+        > 如果编译过程中显示“Too many open files”错误时，请使用指令 ulimit -n 8192 来增大当前进程允许打开的文件数，一般来说8192可以保证编译完成。
+
 12. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包： `cd /paddle/build/python/dist`
 
 13. 在当前机器或目标机器安装编译好的`.whl`包：
