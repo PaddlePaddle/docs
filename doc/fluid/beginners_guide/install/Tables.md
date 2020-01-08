@@ -104,6 +104,12 @@
 		<td> </td>
 		<td> brew install unrar (For MacOS), apt-get install unrar (For Ubuntu) </td>
 	</tr>
+	<tr>
+		<td> gperftools </td>
+		<td>  </td>
+		<td> 可选，在使用 -DWITH_PROFILER=ON 编译选项时需要 </td>
+		<td> apt-get install gperf  libgoogle-perftools-dev (For Ubuntu), yum install gperftools gperftools-devel (For Centos) </td>
+	</tr>
 	</tbody>
 </table>
 </p>
