@@ -9,3 +9,4 @@
     dist_training_gpu.rst
     training_best_practice.rst
     memory_optimize.rst
+    gpu_training_with_low_bandwidth_dgc.md
