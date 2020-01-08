@@ -156,11 +156,11 @@ class paddle.fluid.core.AnalysisPredictor
 
 `AnalysisPredictor`是运行预测的引擎，继承于`PaddlePredictor`，同样是由`paddle.fluid.core.create_paddle_predictor(config)`创建，主要提供以下方法
 
-* `zero_copy_run()`: 
-* `get_input_names()`: 
-* `get_input_tensor(input_name: str)`: 
-* `get_output_names()`: 
-* `get_output_tensor(output_name: str)`: 
+* `zero_copy_run()`: 运行预测引擎，返回预测结果
+* `get_input_names()`: 获取输入的名称
+* `get_input_tensor(input_name: str)`: 根据输入的名称获取对应的`ZeroCopyTensor`
+* `get_output_names()`: 获取输出的名称
+* `get_output_tensor(output_name: str)`: 根据输出的名称获取对应的`ZeroCopyTensor`
 
 #### 代码示例
 
@@ -212,10 +212,10 @@ output_tensor = predictor.get_output_tensor(output_names[0])
 	* `run(input: List[PaddleTensor]) -> List[PaddleTensor]`
 * AnalysisPredictor
     * `zero_copy_run() -> None`
-    * `get_input_names() -> List[str]`: 
-    * `get_input_tensor(input_name: str)`: 
-    * `get_output_names() -> List[str]`: 
-    * `get_output_tensor(output_name: str)`: 
+    * `get_input_names() -> List[str]`
+    * `get_input_tensor(input_name: str)`
+    * `get_output_names() -> List[str]`
+    * `get_output_tensor(output_name: str)`
 
 可参考对应的[C++预测接口](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/inference_api.cc)，其中定义了每个接口的参数和返回值
 
