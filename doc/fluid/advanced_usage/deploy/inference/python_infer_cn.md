@@ -213,9 +213,9 @@ output_tensor = predictor.get_output_tensor(output_names[0])
 * AnalysisPredictor
     * `zero_copy_run() -> None`
     * `get_input_names() -> List[str]`
-    * `get_input_tensor(input_name: str)`
+    * `get_input_tensor(input_name: str) -> ZeroCopyTensor`
     * `get_output_names() -> List[str]`
-    * `get_output_tensor(output_name: str)`
+    * `get_output_tensor(output_name: str) -> ZeroCopyTensor`
 
 可参考对应的[C++预测接口](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/inference_api.cc)，其中定义了每个接口的参数和返回值
 
