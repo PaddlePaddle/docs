@@ -96,7 +96,10 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
 
 .. py:method:: clear_gradients()
 
-该函数仅在动态图模式下使用。
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
 
 清除需要优化的参数的梯度。
 
