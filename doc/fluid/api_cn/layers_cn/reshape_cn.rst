@@ -67,7 +67,11 @@ reshape
   reshaped_2 = fluid.layers.reshape(data_2, shape=[dim, 10])
   # the shape of reshaped_2 is [5,10].
 
-
+  # example 3:
+  data_3 = fluid.data(
+      name="data_3", shape=[2,4,6], dtype='float32')
+  reshaped_3 = fluid.layers.reshape(x=data_3, shape=[6,8])
+  # the shape of reshaped_3 is [6,8].
 
 
 
