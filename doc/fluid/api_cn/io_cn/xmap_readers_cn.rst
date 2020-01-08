@@ -22,7 +22,7 @@ xmap_readers
 
 .. code-block:: python
 
-    import paddle.reader as reader
+    import paddle
     import time
 
     def reader_creator_10(dur):
@@ -41,7 +41,7 @@ xmap_readers
     for order in orders:
         for t_num in thread_num:
             for size in buffer_size:
-                user_reader = reader.xmap_readers(mapper,
+                user_reader = paddle.fluid.io.xmap_readers(mapper,
                                                   reader_creator_10(0),
                                                   t_num, size, order)
                 for n in range(3):

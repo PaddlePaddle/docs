@@ -28,7 +28,7 @@ chain
                 yield [i, i, i]
         return reader
 
-    c = paddle.reader.chain(reader_creator_3(0), reader_creator_3(10), reader_creator_3(20))
+    c = paddle.fluid.io.chain(reader_creator_3(0), reader_creator_3(10), reader_creator_3(20))
     for e in c():
         print(e)
     # 输出结果如下：

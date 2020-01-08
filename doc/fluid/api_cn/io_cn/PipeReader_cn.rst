@@ -30,7 +30,7 @@ PipeReader从命令的输出流中读取数据，把数据存在一个pipe缓存
            import paddle
            def example_reader(filelist):
                for f in filelist:
-                   pr = paddle.reader.PipeReader("cat %s"%f)
+                   pr = paddle.fluid.io.PipeReader("cat %s"%f)
                    for l in pr.get_line():
                        sample = l.split(" ")
                        yield sample
