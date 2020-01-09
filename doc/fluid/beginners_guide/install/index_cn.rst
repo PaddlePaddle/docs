@@ -170,7 +170,7 @@
 
 7. 如果您希望使用 `pip <https://pypi.org/project/pip/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 
-    (1). **CPU版本** ：如果您只是想安装CPU版本请参考如下命令安装（使用清华源） 
+    (1). **CPU版本** ：如果您只是想安装CPU版本请参考如下命令安装 
 
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
@@ -190,7 +190,7 @@
 
             python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-    (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装（使用清华源） 
+    (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
 
         注意：
 
