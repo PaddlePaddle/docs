@@ -69,6 +69,8 @@ class paddle.fluid.core.AnalysisConfig
 * `switch_ir_optim`: IR优化(默认开启)
 * `enable_tensorrt_engine`: 开启TensorRT
 * `enable_mkldnn`: 开启MKLDNN
+* `disable_glog_info`: 禁用预测中的glog日志
+* `delete_pass`: 预测的时候删除指定的pass
 #### 代码示例
 设置模型和参数路径有两种形式：
 * 当模型文件夹下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`
@@ -120,9 +122,74 @@ results = predictor.run([x_t, y_t])
 
 # 获得预测结果，并应用到自己的应用中
 ```
+
+### 使用ZeroCopyTensor管理输入/输出
+
+`ZeroCopyTensor`是`AnalysisPredictor`的一种输入/输出数据结构，与`PaddleTensor`等同。`ZeroCopyTensor`相比于`PaddleTensor`，可以避免预测时候准备输入以及获取输出时多余的数据拷贝，提高预测性能。
+
+注意: 需要注意的是，使用`ZeroCopyTensor`，务必在创建`config`时设置`config.switch_use_feed_fetch_ops(False)`用于显式地在模型运行的时候删去`feed`和`fetch`ops，不会影响模型的效果，但是能提升性能。
+
+``` python
+# 创建predictor
+predictor = create_paddle_predictor(config)
+
+# 获取输入的名称
+input_names = predictor.get_input_names()
+input_tensor = predictor.get_input_tensor(input_names[0])
+
+# 设置输入
+fake_input = numpy.random.randn(1, 3, 318, 318).astype("float32")
+input_tensor.copy_from_cpu(fake_input)
+
+# 运行predictor
+predictor.zero_copy_run()
+
+# 获取输出
+output_names = predictor.get_output_names()
+output_tensor = predictor.get_output_tensor(output_names[0])
+output_data = output_tensor.copy_to_cpu() # numpy.ndarray类型
+```
+
+### AnalysisPredictor
+
+class paddle.fluid.core.AnalysisPredictor
+
+`AnalysisPredictor`是运行预测的引擎，继承于`PaddlePredictor`，同样是由`paddle.fluid.core.create_paddle_predictor(config)`创建，主要提供以下方法
+
+* `zero_copy_run()`: 运行预测引擎，返回预测结果
+* `get_input_names()`: 获取输入的名称
+* `get_input_tensor(input_name: str)`: 根据输入的名称获取对应的`ZeroCopyTensor`
+* `get_output_names()`: 获取输出的名称
+* `get_output_tensor(output_name: str)`: 根据输出的名称获取对应的`ZeroCopyTensor`
+
+#### 代码示例
+
+``` python
+# 设置完AnalysisConfig后创建预测引擎PaddlePredictor
+predictor = create_paddle_predictor(config)
+
+# 获取输入的名称
+input_names = predictor.get_input_names()
+input_tensor = predictor.get_input_tensor(input_names[0])
+
+# 设置输入
+fake_input = numpy.random.randn(1, 3, 318, 318).astype("float32")
+input_tensor.copy_from_cpu(fake_input)
+
+# 运行predictor
+predictor.zero_copy_run()
+
+# 获取输出
+output_names = predictor.get_output_names()
+output_tensor = predictor.get_output_tensor(output_names[0])
+```
+
 ## 支持方法列表
 * PaddleTensor
 	* `as_ndarray() -> numpy.ndarray`
+* ZeroCopyTensor
+    * `copy_from_cpu(input: numpy.ndarray) -> None`
+    * `copy_to_cpu() -> numpy.ndarray`
 * AnalysisConfig 
 	* `set_model(model_dir: str) -> None`
 	* `set_model(prog_file: str, params_file: str) -> None`
@@ -139,8 +206,16 @@ results = predictor.run([x_t, y_t])
                               use_static: bool, 
                               use_calib_mode: bool) -> None`
 	* `enable_mkldnn() -> None`
+    * `disable_glog_info() -> None`
+    * `delete_pass(pass_name: str) -> None`
 * PaddlePredictor
 	* `run(input: List[PaddleTensor]) -> List[PaddleTensor]`
+* AnalysisPredictor
+    * `zero_copy_run() -> None`
+    * `get_input_names() -> List[str]`
+    * `get_input_tensor(input_name: str) -> ZeroCopyTensor`
+    * `get_output_names() -> List[str]`
+    * `get_output_tensor(output_name: str) -> ZeroCopyTensor`
 
 可参考对应的[C++预测接口](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/pybind/inference_api.cc)，其中定义了每个接口的参数和返回值
 
@@ -155,6 +230,8 @@ python resnet50_infer.py --model_file ./model/model --params_file ./model/params
 ```
 
 `resnet50_infer.py` 的内容是
+
+### PaddleTensor的完整使用示例
 
 ``` python
 import argparse
@@ -205,6 +282,62 @@ def parse_args():
     parser.add_argument("--batch_size", type=int, default=1, help="batch size")
 
     return parser.parse_args()
+
+
+if __name__ == "__main__":
+    main()    
+```
+
+### ZeroCopyTensor的完整使用示例
+
+``` python
+import argparse
+import numpy as np
+from paddle.fluid.core import AnalysisConfig
+from paddle.fluid.core import create_paddle_predictor
+
+
+def main():
+    args = parse_args()
+
+    # 设置AnalysisConfig
+    config = set_config(args)
+
+    # 创建PaddlePredictor
+    predictor = create_paddle_predictor(config)
+
+    # 获取输入的名称
+    input_names = predictor.get_input_names()
+    input_tensor = predictor.get_input_tensor(input_names[0])
+
+    # 设置输入
+    fake_input = np.random.randn(1, 3, 318, 318).astype("float32")
+    input_tensor.copy_from_cpu(fake_input)
+
+    # 运行predictor
+    predictor.zero_copy_run()
+
+    # 获取输出
+    output_names = predictor.get_output_names()
+    output_tensor = predictor.get_output_tensor(output_names[0])
+    output_data = output_tensor.copy_to_cpu() # numpy.ndarray类型
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model_file", type=str, help="model filename")
+    parser.add_argument("--params_file", type=str, help="parameter filename")
+    parser.add_argument("--batch_size", type=int, default=1, help="batch size")
+
+    return parser.parse_args()
+
+
+def set_config(args):
+    config = AnalysisConfig(args.model_file, args.params_file)
+    config.disable_gpu()
+    config.switch_use_feed_fetch_ops(False)
+    config.switch_specify_input_names(True)
+    return config
 
 
 if __name__ == "__main__":
