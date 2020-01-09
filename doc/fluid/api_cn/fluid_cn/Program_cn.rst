@@ -401,3 +401,29 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
                 print(var)
 
             # 这里将会打印出当前Program中所有的Variable
+
+.. py:method:: all_parameters()
+
+获取当前Program中所有的 :ref:`api_guide_parameter` 。返回值是一个列表。
+
+返回: 一个包含当前Program中所有参数的列表。
+
+返回类型: list[ :ref:`api_guide_parameter` ]
+
+
+**代码示例**
+
+.. code-block:: python
+
+            import paddle.fluid as fluid
+
+            program = fluid.default_main_program()
+            data = fluid.data(name='x', shape=[None, 13], dtype='float32')
+            hidden = fluid.layers.fc(input=data, size=10)
+            loss = fluid.layers.mean(hidden)
+            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+
+            for param in program.all_parameters():
+                print(param)
+
+            # 这里将会打印出当前Program中所有的Parameters
