@@ -29,7 +29,7 @@ Initially a request of ``NHWC`` and ``NCHW`` execution of program were implement
 performance-wise MKL-DNN is designed to work on data arrangements of its own choice (for example blocked formats ``NCHW16C``, ``NCHW8C`` etc.) rather than forcing MKL-DNN to use ``NHWC`` or ``NCHW`` data layout. 
 
 Current solution is that MKL-DNN kernels are working on data layout best suitable for their performance, but
-when upon completion of final MKL-DNN operator there has to be conversion (reorder) to either ``NCHW`` or ``NHWC`` Paddle data arrangement. Important note is that last operator executing MKL-DNN ekrenel may not have a ``data_format`` attribute hence there is need to store information on to what PaddlePaddle layout to convert to from MKL-DNN layouts. For this purpose We have global variable kept per thread (Thread Local Storage).
+when upon completion of final MKL-DNN operator there has to be conversion (reorder) to either ``NCHW`` or ``NHWC`` Paddle data arrangement. Important note is that last operator executing MKL-DNN kernel may not have a ``data_format`` attribute hence there is need to store information on to what PaddlePaddle layout to convert to from MKL-DNN layouts. For this purpose We have global variable kept per thread (Thread Local Storage).
 
 To address the difference with shape description mechanism for shape transformation was added : *platform::MatchShapeToLayout()* which perform needed shape modification upon entering and exiting MKL-DNN execution thread of operators. 
 
