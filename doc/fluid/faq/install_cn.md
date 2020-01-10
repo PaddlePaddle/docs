@@ -17,13 +17,13 @@
 
 Python2:
 
-`pip install paddlepaddle -i http://pypi.douban.com/simple/`
+`pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
 
 Python3:
 
-`pip3 install paddlepaddle -i http://pypi.douban.com/simple/`
+`pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
 
-这里也可以将 -i 后的参数换成：https://mirrors.aliyun.com/pypi/simple/
+这里也可以将 -i 后的参数换成：https://pypi.tuna.tsinghua.edu.cn/simple、https://mirrors.aliyun.com/pypi/simple/、https://pypi.douban.com/simple/
 
 ##### Q: github下载耗时
 
