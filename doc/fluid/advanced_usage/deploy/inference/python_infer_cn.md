@@ -190,6 +190,11 @@ output_tensor = predictor.get_output_tensor(output_names[0])
 * ZeroCopyTensor
     * `copy_from_cpu(input: numpy.ndarray) -> None`
     * `copy_to_cpu() -> numpy.ndarray`
+    * `reshape(input: numpy.ndarray|List) -> None`
+    * `shape() -> List[int]`
+    * `set_lod(input: numpy.ndarray|List) -> None`
+    * `lod() -> List[int]`
+    * `type() -> PaddleDType`
 * AnalysisConfig 
 	* `set_model(model_dir: str) -> None`
 	* `set_model(prog_file: str, params_file: str) -> None`
@@ -312,6 +317,7 @@ def main():
 
     # 设置输入
     fake_input = np.random.randn(1, 3, 318, 318).astype("float32")
+    input_tensor.reshape([1, 3, 318, 318])
     input_tensor.copy_from_cpu(fake_input)
 
     # 运行predictor
