@@ -426,4 +426,32 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
             for param in program.all_parameters():
                 print(param)
 
-            # 这里将会打印出当前Program中所有的Parameters
+            # 这里将会打印出当前Program中所有的Parameters，在本例中，输出结果是:
+            #
+            # name: "fc_0.w_0"
+            # type {
+            # type: LOD_TENSOR
+            # lod_tensor {
+            #     tensor {
+            #       data_type: FP32
+            #       dims: 13
+            #       dims: 10
+            #     }
+            #   }
+            # }
+            #
+            # persistable: true
+            # name: "fc_0.b_0"
+            # type {
+            # type: LOD_TENSOR
+            # lod_tensor {
+            #     tensor {
+            #       data_type: FP32
+            #       dims: 10
+            #     }
+            #   }
+            # }
+            # persistable: true
+            #
+            # 这里print(param)将会打印出一个参数所有的属性，包括name，type和persistable，
+            # 你可以访问一个参数的指定属性，例如param.name，param.type
