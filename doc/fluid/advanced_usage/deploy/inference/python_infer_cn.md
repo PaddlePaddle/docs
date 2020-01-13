@@ -194,7 +194,7 @@ output_tensor = predictor.get_output_tensor(output_names[0])
     * `reshape(input: numpy.ndarray|List[int]) -> None`
     * `shape() -> List[int]`
     * `set_lod(input: numpy.ndarray|List[List[int]]) -> None`
-    * `lod() -> List[int]`
+    * `lod() -> List[List[int]]`
     * `type() -> PaddleDType`
 * AnalysisConfig 
 	* `set_model(model_dir: str) -> None`
