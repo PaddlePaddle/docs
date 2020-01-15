@@ -32,7 +32,7 @@ load_dygraph
         fluid.save_dygraph( state_dict, "paddle_dy")
         adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000) )
         state_dict = adam.state_dict()
-        fluid.save_dygraph( state_dict, "padle_dy")
+        fluid.save_dygraph( state_dict, "paddle_dy")
 
         para_state_dict, opti_state_dict = fluid.load_dygraph( "paddle_dy")
 
