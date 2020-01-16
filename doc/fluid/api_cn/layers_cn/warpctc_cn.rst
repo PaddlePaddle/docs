@@ -9,7 +9,7 @@ warpctc
 
 参数：
     - **input** (Variable) - 可以是3-D Tensor或2-D LoDTensor。当输入类型是3-D Tensor时，则表示输入是经过padding的定长序列，其shape必须是 ``[seq_length, batch_size, num_classes + 1]`` 。当输入类型是2-D LoDTensor时，则表示输入为变长序列，其shape必须为 ``[Lp，num_classes+1]`` ， ``Lp`` 是所有输入序列长度之和。以上shape中的 ``num_classes`` 是实际类别数，不包括空白标签。该输入不需要经过softmax操作，因为该OP的内部对 ``input`` 做了softmax操作。数据类型仅支持float32。
-    - **label** (Variable) - 可以是2-D Tensor或2-D LoDTensor，shape为 ``[Lg，1]`` ，其中 ``Lg`` 为是所有labels序列的长度和。 ``label`` 中的数值为字符ID。当label是2-D Tensor时，则表示当前label为经过padding的定长序列。当label是2-D LoDTensor时，则表示当前label为变长序列。数据类型支持int32。
+    - **label** (Variable) - 可以是3-D Tensor或2-D LoDTensor，需要跟 ``input`` 保持一致。当输入类型为3-D Tensor时，表示输入是经过padding的定长序列，其shape为 ``[batch_size, label_length]`` ，其中， ``label_length`` 是最长的label序列的长度。当输入类型是2-D LoDTensor时，则表示输入为变长序列，其shape必须为 ``[Lp, 1]`` ， 其中 ``Lp`` 是所有labels序列的长度和。 ``label`` 中的数值为字符ID。数据类型支持int32。
     - **input_length** (Variable) - 必须是1-D Tensor。仅在输入为定长序列时使用，表示输入数据中每个序列的长度，shape为 ``[batch_size]`` 。数据类型支持int64。默认为None。
     - **label_length** (Variable) - 必须是1-D Tensor。仅在label为定长序列时使用，表示label中每个序列的长度，shape为 ``[batch_size]`` 。数据类型支持int64。默认为None。
     - **blank** (int，可选) - 空格标记的ID，其取值范围为 ``[0，num_classes+1)`` 。数据类型支持int32。缺省值为0。
@@ -22,10 +22,69 @@ warpctc
 **代码示例**：
 
 .. code-block:: python
-
+    # using LoDTensor
     import paddle.fluid as fluid
-    label = fluid.layers.data(name='label', shape=[11, 8],
-                              dtype='float32', lod_level=1)
-    predict = fluid.layers.data(name='predict', shape=[11, 1],
-                                dtype='float32')
-    cost = fluid.layers.warpctc(input=predict, label=label)
+    import numpy as np
+
+    # lengths of logit sequences
+    seq_lens = [2,6]
+    # lengths of label sequences
+    label_lens = [2,3]
+    # class num
+    class_num = 5
+
+    logits = fluid.data(name='logits',shape=[None, class_num+1],
+                        dtype='float32',lod_level=1)
+    label = fluid.data(name='label', shape=[None, 1],
+                       dtype='int32', lod_level=1)
+    cost = fluid.layers.warpctc(input=logits, label=label)
+    place = fluid.CPUPlace()
+    x = fluid.create_lod_tensor(
+             np.random.rand(np.sum(seq_lens), class_num+1).astype("float32"),
+             [seq_lens], place)
+    y = fluid.create_lod_tensor(
+             np.random.randint(0, class_num, [np.sum(label_lens), 1]).astype("int32"),
+             [label_lens], place)
+    exe = fluid.Executor(place)
+    output= exe.run(fluid.default_main_program(),
+                    feed={"logits": x,"label": y},
+                    fetch_list=[cost.name])
+    print(output)
+
+.. code-block:: python
+    # using Tensor
+    import paddle.fluid as fluid
+    import numpy as np
+
+    # length of the longest logit sequence
+    max_seq_length = 5
+    # length of the longest label sequence
+    max_label_length = 3
+    # number of logit sequences
+    batch_size = 16
+    # class num
+    class_num = 5
+    logits = fluid.data(name='logits',
+                   shape=[max_seq_length, batch_size, class_num+1],
+                   dtype='float32')
+    logits_length = fluid.data(name='logits_length', shape=[None],
+                     dtype='int64')
+    label = fluid.data(name='label', shape=[batch_size, max_label_length],
+                   dtype='int32')
+    label_length = fluid.data(name='labels_length', shape=[None],
+                     dtype='int64')
+    cost = fluid.layers.warpctc(input=logits, label=label,
+                    input_length=logits_length,
+                    label_length=label_length)
+    place = fluid.CPUPlace()
+    x = np.random.rand(max_seq_length, batch_size, class_num+1).astype("float32")
+    y = np.random.randint(0, class_num, [batch_size, max_label_length]).astype("int32")
+    exe = fluid.Executor(place)
+    output= exe.run(fluid.default_main_program(),
+                    feed={"logits": x,
+                          "label": y,
+                          "logits_length": np.array([max_seq_length]*batch_size).astype("int64"),
+                          "labels_length": np.array([max_label_length]*batch_size).astype("int64")},
+                          fetch_list=[cost.name])
+    print(output)
+
