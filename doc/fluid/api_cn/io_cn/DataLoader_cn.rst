@@ -6,7 +6,7 @@ DataLoader
 .. py:class:: paddle.fluid.io.DataLoader
 
 
-.. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False)
+.. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False)
 
 创建一个DataLoader对象用于加载Python生成器产生的数据。数据会由Python线程预先读取，并异步送入一个队列中。
 
@@ -25,6 +25,7 @@ DataLoader
     - **use_double_buffer** (bool) - 是否使用 ``double_buffer_reader`` 。若use_double_buffer=True，DataLoader会异步地预读取下一个batch的数据，可加速数据读取过程，但同时会占用少量的CPU/GPU存储，即一个batch输入数据的存储空间。
     - **iterable** (bool) - 所创建的DataLoader对象是否可迭代。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。仅在iterable = True模式下有效。若return_list = False，每个设备上的返回数据均是str -> LoDTensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(LoDTensor)。推荐在静态图模式下使用return_list = False，在动态图模式下使用return_list = True。
+    - **use_multiprocess** (bool) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有效, 在静态图模式下，该参数设置与否均无任何影响。默认值为False。
 
 返回: 被创建的DataLoader对象
 
