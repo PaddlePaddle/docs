@@ -29,16 +29,19 @@
 --------------
 用户也可以从 PaddlePaddle 核心代码编译C++预测库，只需在编译时配制下面这些编译选项：
 
-|选项                        |   值     |
-|:-------------|:-------------------|
-|CMAKE_BUILD_TYPE             | Release    |
-|ON_INFER                     | ON (推荐)     |
-|WITH_GPU                     | ON/OFF     | 
-|WITH_MKL                     | ON/OFF     |
-|WITH_PYTHON                  | OFF        |
-
+|选项       |说明               |   值     |
+|:-------------|:-------|:------------|
+|CMAKE_BUILD_TYPE |  配置生成器上的构建类型，windows预测库目前只支持Release          | Release    |
+|ON_INFER |    是否生成预测库，编译预测库时必须设置为ON                | ON         |
+|WITH_GPU |   是否支持GPU                  | ON/OFF     | 
+|WITH_MKL |   是否使用Intel MKL(数学核心库)                 | ON/OFF     |
+|WITH_PYTHON | 是否内嵌PYTHON解释器                | OFF(推荐)        |
+|MSVC_STATIC_CRT|是否使用/MT 模式进行编译，Windows默认使用 /MT 模式进行编译 |ON/OFF|
+|CUDA_TOOKIT_ROOT_DIR|编译GPU预测库时，需设置CUDA的根目录|YOUR_CUDA_PATH|
 
 请按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
+
+更多具体编译选项含义请参见[编译选项表](../../../beginners_guide/install/Tables.html/#Compile)
 
 Windows下安装与编译预测库步骤：(在Windows命令提示符下执行以下指令)
 
@@ -49,17 +52,21 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
    ```
 
 2. 执行cmake：
+   - 编译CPU预测
    ```bash
-   # 创建build目录用于编译
+   # 创建并进入build目录
    mkdir build
-
    cd build
 
    cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
-   # -DWITH_GPU`为是否使用GPU的配置选项，-DWITH_MKL 为是否使用Intel MKL(数学核心库)的配置选项，请按需配置。
 
    # Windows默认使用 /MT 模式进行编译，如果想使用 /MD 模式，请使用以下命令。如不清楚两者的区别，请使用上面的命令
    cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   ```
+   - 编译GPU预测库:
+   ```bash
+   # -DCUDA_TOOKIT_ROOT_DIR 为cuda根目录，例如-DCUDA_TOOKIT_ROOT_DIR="D:\\cuda"
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
 3. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，编译inference_lib_dist项目。
@@ -111,17 +118,17 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
 git clone https://github.com/PaddlePaddle/Paddle.git
 ``` 
 ### 编译demo
-
+Windows下编译预测demo步骤：(在Windows命令提示符下执行以下指令)
 #### 使用脚本编译运行
  
-打开cmd窗口，使用下面的命令:
+进入到demo_ci目录，运行脚本`run_windows_demo.bat`，根据提示按需输入参数:
 ```dos
 # path为下载Paddle的目录
 cd path\Paddle\paddle\fluid\inference\api\demo_ci 
 run_windows_demo.bat
 ```
 
-其中，run_windows_demo.bat 的部分选项如下，请根据提示按需输入参数：
+其中，run_windows_demo.bat 的部分选项如下：
 
 ```dos
 gpu_inference=Y #是否使用GPU预测库，默认使用CPU预测库
@@ -134,101 +141,101 @@ vcvarsall_dir=path\vc\vcvarsall.bat  #设置visual studio #本机工具命令提
 ```
 #### 手动编译运行
  
-打开cmd窗口，使用下面的命令:
-```dos
-# path为下载Paddle的目录
-cd path\Paddle\paddle\fluid\inference\api\demo_ci
-mkdir build
-cd build
-```
-`cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=ON -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON`
+1. 进入demo_ci目录，创建并进入build目录
+   ```dos
+   # path为下载Paddle的目录
+   cd path\Paddle\paddle\fluid\inference\api\demo_ci
+   mkdir build
+   cd build
+   ```
 
-注：
+2. 执行cmake（cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到环境变量中):
+   - 使用CPU预测库编译demo
+   ```dos
+   # -DDEMO_NAME 是要编译的文件 
+   # -DDPADDLE_LIB是预测库目录，例如-DPADDLE_LIB=D:\fluid_inference_install_dir
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
+   -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON
+   ```
+   - 使用GPU预测库编译demo
+   ```dos
+   # -DCUDA_LIB CUDA的库目录，例如-DCUDA_LIB=D:\cuda\lib\x64
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
+   -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON -DCUDA_LIB=YOUR_CUDA_LIB
+   ```
+3. 使用Blend for Visual Studio 2015 打开 `cpp_inference_demo.sln` 文件，选择平台为`x64`，配置为`Release`，编译simple_on_word2vec项目。 
+   操作方法: 在Visual Studio中选择相应模块，右键选择"生成"（或者"build"）
 
--DDEMO_NAME 是要编译的文件
+4. [下载模型](http://paddle-inference-dist.bj.bcebos.com/word2vec.inference.model.tar.gz)并解压到当前目录，执行命令：
+   ```dos
+   # 开启GLOG
+   set GLOG_v=100
+   # 进行预测，path为模型解压后的目录
+   Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model
+   ```
 
--DPADDLE_LIB fluid_inference_install_dir，例如
--DPADDLE_LIB=D:\fluid_inference_install_dir
-
-
-Cmake可以在[官网进行下载](https://cmake.org/download/)，并添加到环境变量中。
-
-执行完毕后，build 目录如图所示，打开箭头指向的 solution 文件：
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image3.png">
-</p>
-
-编译生成选项改成 `Release` 。
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image6.png">
-</p>
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image7.png">
-</p>
-
-[下载模型](http://paddle-inference-dist.bj.bcebos.com/word2vec.inference.model.tar.gz)并解压到当前目录，执行命令：
-
-  1. 开启GLOG
-
-     `set GLOG_v=100`
-
-  2. 进行预测，path为模型解压后的目录
-
-     `Release\simple_on_word2vec.exe --dirname=path\word2vec.inference.model`
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_usage/deploy/inference/image/image9.png">
-</p>
-
-## 使用AnalysisConfig管理预测配置
+### 实现一个简单预测demo
 
 [完整的代码示例](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/inference/api/demo_ci/windows_mobilenet.cc)
 
-本示例使用了AnalysisConfig管理AnalysisPredictor的预测配置，提供了模型路径设置、预测引擎运行设备选择以及使用ZeroCopyTensor管理输入/输出的设置。配置方法如下：
+本示例使用了AnalysisConfig管理AnalysisPredictor的预测配置，提供了模型路径设置、预测引擎运行设备选择以及使用ZeroCopyTensor管理输入/输出的设置。具体步骤如下：
 
-#### 创建AnalysisConfig
-```C++
-AnalysisConfig config;
-```
-**Note:** 使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`。
-```C++
-config->SwitchUseFeedFetchOps(false);  // 关闭feed和fetch OP使用，使用ZeroCopy接口必须设置此项
-config->EnableUseGpu(100 /*设定GPU初始显存池为MB*/,  0 /*设定GPU ID为0*/); //开启GPU预测
-```
+1. 创建AnalysisConfig
+   ```C++
+   AnalysisConfig config;
+   config->SwitchUseFeedFetchOps(false);  // 关闭feed和fetch OP使用，使用ZeroCopy接口必须设置此项
+   // config->EnableUseGpu(100 /*设定GPU初始显存池为MB*/,  0 /*设定GPU ID为0*/); //开启GPU预测
+   ```
 
-#### 设置模型和参数路径
-从磁盘加载模型时，根据模型和参数文件存储方式不同，设置AnalysisConfig加载模型和参数的路径有两种形式，此处使用combined形式：
+2. 在config中设置模型和参数路径
 
-* combined形式：模型文件夹`model_dir`下只有一个模型文件`__model__`和一个参数文件`__params__`时，传入模型文件和参数文件路径。
-```C++
-config->SetModel("./model_dir/__model__", "./model_dir/__params__");
-```
+   从磁盘加载模型时，根据模型和参数文件存储方式不同，设置AnalysisConfig加载模型和参数的路径有两种形式，此处使用combined形式：
+   - 非combined形式：模型文件夹`model_dir`下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`。
+   ``` c++
+   config->SetModel("path\\model_dir\\__model__")
+   ```
+   - combined形式：模型文件夹`model_dir`下只有一个模型文件`__model__`和一个参数文件`__params__`时，传入模型文件和参数文件路径。
+   ```C++
+   config->SetModel("path\\model_dir\\__model__", "path\\model_dir\\__params__");
+   ```
+3. 创建predictor，准备输入数据
+   ```C++
+   std::unique_ptr<PaddlePredictor> predictor = CreatePaddlePredictor(config);
+   int batch_size = 1;
+   int channels = 3; // channels，height，width三个参数必须与模型中对应输入的shape一致
+   int height = 300;
+   int width = 300;
+   int nums = batch_size * channels * height * width;
 
-#### 使用ZeroCopyTensor管理输入
-ZeroCopyTensor是AnalysisPredictor的输入/输出数据结构
+   float* input = new float[nums];
+   for (int i = 0; i < nums; ++i) input[i] = 0;
+   ```
+4. 使用ZeroCopyTensor管理输入
+   ```C++
+   // 通过创建的AnalysisPredictor获取输入Tensor，该Tensor为ZeroCopyTensor
+   auto input_names = predictor->GetInputNames();
+   auto input_t = predictor->GetInputTensor(input_names[0]);
 
-**Note:** 使用ZeroCopyTensor，务必在创建config时设置`config->SwitchUseFeedFetchOps(false);`。
+   // 对Tensor进行reshape，将准备好的输入数据从CPU拷贝到ZeroCopyTensor中
+   input_t->Reshape({batch_size, channels, height, width});
+   input_t->copy_from_cpu(input);
+   ```
 
-```C++
-// 通过创建的AnalysisPredictor获取输入tensor
-auto input_names = predictor->GetInputNames();
-auto input_t = predictor->GetInputTensor(input_names[0]);
+5. 运行预测引擎
+   ```C++
+   predictor->ZeroCopyRun();
+   ```
 
-// 对tensor进行reshape，channels，height，width三个参数的设置必须与模型中输入所要求的一致
-input_t->Reshape({batch_size, channels, height, width});
-```
+6. 使用ZeroCopyTensor管理输出
+   ```C++
+   auto output_names = predictor->GetOutputNames();
+   auto output_t = predictor->GetOutputTensor(output_names[0]);
+   std::vector<int> output_shape = output_t->shape();
+   int out_num = std::accumulate(output_shape.begin(), output_shape.end(), 1,
+                                 std::multiplies<int>());
 
-#### 运行预测引擎
-```C++
-predictor->ZeroCopyRun();
-```
-
-#### 使用ZeroCopyTensor管理输出
-```C++
-auto output_names = predictor->GetOutputNames();
-auto output_t = predictor->GetOutputTensor(output_names[0]);
-```
+   out_data.resize(out_num); 
+   output_t->copy_to_cpu(out_data.data()); // 将ZeroCopyTensor中数据拷贝到cpu中，得到输出数据
+   delete[] input;
+   ```
 **Note:** 关于AnalysisPredictor的更多介绍，请参考[C++预测API介绍](./native_infer.html)
