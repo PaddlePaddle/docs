@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH="/home/FluidDoc"
+DIR_PATH="/home/FluidDoc"
 
-/bin/bash -x ${PATH}/scripts/checkapproval.sh
-/bin/bash -x ${PATH}/scripts/check_api_cn.sh
+/bin/bash -x ${DIR_PATH}/scripts/checkapproval.sh
+/bin/bash -x ${DIR_PATH}/scripts/check_api_cn.sh
