@@ -71,7 +71,7 @@ lstm
   emb_dim = 256
   vocab_size = 10000
   data = fluid.layers.data(name='x', shape=[-1, 100, 1],
-                 dtype='int32')
+                 dtype='int64')
   emb = fluid.layers.embedding(input=data, size=[vocab_size, emb_dim], is_sparse=True)
   batch_size = 20
   max_len = 100
