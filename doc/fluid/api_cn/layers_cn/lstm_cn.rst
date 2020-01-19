@@ -85,7 +85,7 @@ lstm
   rnn_out, last_h, last_c = layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
   rnn_out.shape  # (-1, 100, 150)
   last_h.shape  # (1, 20, 150)
-  layt_c.shape  # (1, 20, 150)
+  last_c.shape  # (1, 20, 150)
 
 
 
