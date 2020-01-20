@@ -5,7 +5,10 @@ description of Tensors interoperability among Paddle and MKL-DNN Tensors please 
 
 ### Introduction
 
-PaddlePaddle does support execution of program/model using ``NCHW`` as well as ``NHWC`` data arrangement.
+PaddlePaddle does support execution of program/model using ``NCHW`` as well as ``NHWC`` data arrangement. Reasons for introducing data arrangements are:
+* Execution performance of some of non MKL-DNN operators in ``NHWC`` may be faster that when ``NCHW`` data arrangement is used 
+* Convenience of use as sometimes user got his data prepared already in ``NHWC`` data arrangement.
+
 Choice among ``NCHW`` and ``NHWC`` is controlled with ``data_format`` attributes following operators:
 * conv
 * conv transposed
@@ -13,10 +16,12 @@ Choice among ``NCHW`` and ``NHWC`` is controlled with ``data_format`` attributes
 * LRN
 * batch norm
 
-Having operators to control what layout (data arrangement) input and output data of operators is allow
+Other operators (those without data_format) are implemented so that they execute properly regardless the layout, for example elementwise operations.
+
+Having operators to control what layout (data arrangement) input and output data of operators is, allow
 in theory to specify models that partially to work on ``NCHW`` and partially to work on ``NHWC`` data arrangement.However it was agreed on that given model will only have one type of data arrangement at during it execution. 
-Hence either all ``data_format`` attributes are set to ``NCHW`` (default) or to ``NHWC``, there is no support
-for having some operators having ``data_format`` set to ``NCHW`` while some others to ``NHWC``.
+Hence either all ``data_format`` attributes are set to ``NCHW`` (default) or to ``NHWC``, there is no support for having some operators having ``data_format`` set to ``NCHW`` while some others to ``NHWC``.
+
 
 Another element to consider is that PaddlePaddle ``NHWC`` data layout as supported by non-MKLDNN CPU implementations is that ``NHWC`` data arrangement is only applicable to input signal e.g. parameters of listed operators are
 always using ``NCHW`` PaddlePaddle layout.
