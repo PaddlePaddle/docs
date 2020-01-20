@@ -15,6 +15,9 @@ for files in `echo $git_files`;do
            pip install Paddle/build/opt/paddle/share/wheels/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
         fi
         paddle version
+        api_file=`echo $files|sed 's#doc/fluid/api_cn/##g'`
+        cd /FluidDoc/doc/fluid/api_cn/
+        python chinese_samplecode_processor.py $api_file
     fi
 done
 
