@@ -3,6 +3,7 @@
 git_files=`git diff --numstat upstream/$BRANCH`
 
 for files in git_files;do
+    echo $files
     echo $files|grep 'doc/fluid/api_cn/.*/.*.rst'
     if [ $? -eq 0 ];then
         if [ "$night" == "develop" ];then
