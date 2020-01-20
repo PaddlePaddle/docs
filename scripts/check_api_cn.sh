@@ -13,7 +13,7 @@ for files in `echo $git_files`;do
            mkdir Paddle/build && cd Paddle/build
            cmake .. -DWITH_GPU=OFF -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
            make -j`nproc`
-           pip install Paddle/build/opt/paddle/share/wheels/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+           pip install python/dist/paddlepaddle-0.0.0-cp27-cp27mu-linux_x86_64.whl 
         fi
         paddle version
         api_file=`echo $files|sed 's#doc/fluid/api_cn/##g'`
