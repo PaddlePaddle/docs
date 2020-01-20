@@ -11,7 +11,8 @@ for files in `echo $git_files`;do
         else
            git clone https://github.com/PaddlePaddle/Paddle.git
            mkdir Paddle/build && cd Paddle/build
-           cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+           cmake .. -DWITH_GPU=OFF -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+           make -j`nproc`
            pip install Paddle/build/opt/paddle/share/wheels/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
         fi
         paddle version
