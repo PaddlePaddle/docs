@@ -7,7 +7,8 @@ for files in `echo $git_files`;do
     echo $files|grep 'doc/fluid/api_cn/.*/.*.rst'
     if [ $? -eq 0 ];then
         if [ "$night" == "develop" ];then
-           pip install paddlepaddle
+           wget -q https://paddle-wheel.bj.bcebos.com/0.0.0-cpu-mkl/paddlepaddle-0.0.0-cp27-cp27mu-linux_x86_64.whl
+           pip install paddlepaddle-0.0.0-cp27-cp27mu-linux_x86_64.whl
         else
            git clone https://github.com/PaddlePaddle/Paddle.git
            mkdir build && cd build
