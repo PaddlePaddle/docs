@@ -7,20 +7,19 @@
 -------------
 
 ..  csv-table:: 
-    :header: "版本说明", "预测库(1.6.2版本)", "预测库(develop版本)"
+    :header: "版本说明", "预测库(1.6.3版本)", "预测库(develop版本)"
     :widths: 3, 2, 2
 
-    "ubuntu14.04_cpu_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-cpu-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-mkl/fluid_inference.tgz>`_"
-    "ubuntu14.04_cpu_avx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-cpu-avx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-openblas/fluid_inference.tgz>`_"
-    "ubuntu14.04_cpu_noavx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-cpu-noavx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-noavx-openblas/fluid_inference.tgz>`_"
-    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_"
-    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_"
-    "ubuntu14.04_cuda8.0_cudnn7_avx_mkl_trt4", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-gpu-cuda8-cudnn7-avx-mkl-trt4/fluid_inference.tgz>`_", 
-    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl_trt5", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-gpu-cuda9-cudnn7-avx-mkl-trt5/fluid_inference.tgz>`_", 
-    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl_trt5", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-gpu-cuda10-cudnn7-avx-mkl-trt5/fluid_inference.tgz>`_", 
-    "nv-jetson-cuda10-cudnn7.5-trt5", "`fluid_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/1.6.2-nv-jetson-cuda10-cudnn7.5-trt5/fluid_inference.tar.gz>`_", 
+    "ubuntu14.04_cpu_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-cpu-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-mkl/fluid_inference.tgz>`_"
+    "ubuntu14.04_cpu_avx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-cpu-avx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-openblas/fluid_inference.tgz>`_"
+    "ubuntu14.04_cpu_noavx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-cpu-noavx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-noavx-openblas/fluid_inference.tgz>`_"
+    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_"
+    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_"
+    "ubuntu14.04_cuda8.0_cudnn7_avx_mkl_trt4", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-gpu-cuda8-cudnn7-avx-mkl-trt4/fluid_inference.tgz>`_", 
+    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl_trt5", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-gpu-cuda9-cudnn7-avx-mkl-trt5/fluid_inference.tgz>`_", 
+    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl_trt5", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-gpu-cuda10-cudnn7-avx-mkl-trt5/fluid_inference.tgz>`_", 
+    "nv-jetson-cuda10-cudnn7.5-trt5", "`fluid_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/1.6.3-nv-jetson-cuda10-cudnn7.5-trt5/fluid_inference.tar.gz>`_", 
 
-**Note:所提供的C++预测库均使用GCC 4.8编译。**
 
 从源码编译
 ----------
