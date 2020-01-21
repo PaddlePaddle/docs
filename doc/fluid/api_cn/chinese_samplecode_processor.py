@@ -7,7 +7,6 @@ import multiprocessing
 import sys
 
 
-# theses files' apis will connect server, causing process wait ,so remove them
 def removeSomeApis(filenames):
     filenames.remove('./fluid_cn/DistributeTranspiler_cn.rst')
     filenames.remove('./transpiler_cn/DistributeTranspiler_cn.rst')
@@ -16,7 +15,6 @@ def removeSomeApis(filenames):
     filenames.remove('./transpiler_cn/memory_optimize_cn.rst')
     filenames.remove('./transpiler_cn/release_memory_cn.rst')
     filenames.remove('./transpiler_cn/RoundRobin_cn.rst')
-    # avoid deleting list elements while iterating, one solution we can delete from tail
     for i in range(len(filenames)-1, -1, -1):
         length = len(filenames[i].split("/"))
         if length == 2:
@@ -35,8 +33,6 @@ def find_all(src_str, substr):
 
 def extract_sample_code(srcfile, status_all):
     filename = srcfile.name
-    # to debug
-    # print(filename)
     srcc = srcfile.read()
     srcfile.seek(0, 0)
     srcls = srcfile.readlines()
@@ -50,11 +46,9 @@ def extract_sample_code(srcfile, status_all):
             if srcls[i].find(".. code-block:: python") != -1:
                 content = ""
                 start = i
-                # remove indent error
                 startindent = srcls[start + 2][:srcls[start + 2].find("import")]
                 content += srcls[start + 2][len(startindent):]
                 for j in range(start + 3, len(srcls)):
-                    # planish a blank line
                     if not srcls[j].startswith(startindent) and srcls[j] != '\n':
                         break
                     if srcls[j].find(" code-block:: python") != -1:
@@ -67,12 +61,10 @@ def extract_sample_code(srcfile, status_all):
 
 
 def run_sample_code(content, filename):
-    # three status ,-1:no sample code; 1: running error; 0:normal
     fname = filename.split("/")[-1].replace("_cn", "").replace(".rst", "") + ".py"
     tempf = open("temp/" + fname, 'w')
     tempf.write(content)
     tempf.close()
-    # cmd = ["/opt/anaconda3/envs/paddle_env/bin/python3.7", "temp/" + fname]
     cmd = ["python", "temp/" + fname]
 
     subprc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -118,7 +110,6 @@ else:
 
 
 status_groups = {-1: [], 0: [], 1: []}
-# polishes show format
 ci_pass = True
 for one_file in output:
     for dicts in one_file:
