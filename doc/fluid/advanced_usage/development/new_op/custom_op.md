@@ -72,18 +72,19 @@ class Relu2Kernel : public framework::OpKernel<T> {
 };
 
 // 定义反向OP的输入Y和dY、输出dX、属性:
-class Relu2GradMaker : public framework::SingleGradOpDescMaker {
+template <typename T>
+class Relu2GradMaker : public framework::SingleGradOpMaker<T> {
  public:
-  using framework::SingleGradOpDescMaker::SingleGradOpDescMaker;
+  using framework::SingleGradOpMaker<T>::SingleGradOpMaker;
 
-  std::unique_ptr<framework::OpDesc> Apply() const override {
-    auto* op = new framework::OpDesc();
+  std::unique_ptr<T> Apply() const override {
+    auto* op = new T();
     op->SetType("relu2_grad");
-    op->SetInput("Y", Output("Y"));
-    op->SetInput(framework::GradVarName("Y"), OutputGrad("Y"));
-    op->SetAttrMap(Attrs());
-    op->SetOutput(framework::GradVarName("X"), InputGrad("X"));
-    return std::unique_ptr<framework::OpDesc>(op);
+    op->SetInput("Y", this->Output("Y"));
+    op->SetInput(framework::GradVarName("Y"), this->OutputGrad("Y"));
+    op->SetAttrMap(this->Attrs());
+    op->SetOutput(framework::GradVarName("X"), this->InputGrad("X"));
+    return std::unique_ptr<T>(op);
   }
 };
 
@@ -124,7 +125,11 @@ namespace ops = paddle::operators;
 using CPU = paddle::platform::CPUDeviceContext;
 // 注册前向和反向op
 // 为了和框架内部的relu区分，这里注册的OP type为relu2
-REGISTER_OPERATOR(relu2, ops::Relu2Op, ops::Relu2OpMaker, ops::Relu2GradMaker);
+REGISTER_OPERATOR(relu2,
+                  ops::Relu2Op,
+                  ops::Relu2OpMaker,
+                  ops::Relu2GradMaker<paddle::framework::OpDesc>,
+                  ops::Relu2GradMaker<paddle::imperative::OpBase>);
 REGISTER_OPERATOR(relu2_grad, ops::Relu2GradOp);
 // 注册CPU的Kernel
 REGISTER_OP_CPU_KERNEL(relu2,
@@ -252,24 +257,15 @@ echo $include_dir
 echo $lib_dir
 
 # PaddlePaddel >=1.6.1, 仅需要include ${include_dir} 和 ${include_dir}/third_party
-nvcc relu_op.cu -c -o relu_op.cu.o -ccbin cc -DPADDLE_WITH_CUDA -DEIGEN_USE_GPU -DPADDLE_USE_DSO -Xcompiler -fPIC -std=c++11 -Xcompiler -fPIC -w --expt-relaxed-constexpr -O3 -DNVCC \
+nvcc relu_op.cu -c -o relu_op.cu.o -ccbin cc -DPADDLE_WITH_CUDA -DEIGEN_USE_GPU -DPADDLE_USE_DSO -DPADDLE_WITH_MKLDNN -Xcompiler -fPIC -std=c++11 -Xcompiler -fPIC -w --expt-relaxed-constexpr -O3 -DNVCC \
     -I ${include_dir} \
     -I ${include_dir}/third_party \
 
-g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 \
+g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 -DPADDLE_WITH_MKLDNN \
   -I ${include_dir} \
   -I ${include_dir}/third_party \
   -L /usr/local/cuda/lib64 \
   -L ${lib_dir} -lpaddle_framework -lcudart
-
-# PaddlePaddel 1.6.0, 需要include的third_party如下:
-#  -I ${include_dir}/third_party/install/protobuf/include \
-#  -I ${include_dir}/third_party/install/glog/include \
-#  -I ${include_dir}/third_party/install/gflags/include \
-#  -I ${include_dir}/third_party/install/xxhash/include \
-#  -I ${include_dir}/third_party/boost \
-#  -I ${include_dir}/third_party/eigen3 \
-#  -I ${include_dir}/third_party/dlpack/include \
 ```
 
 
@@ -277,7 +273,8 @@ g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 \
 注意点: 
 
 1. NVCC编译GPU OP的cu文件时，需要加 `-DPADDLE_WITH_CUDA -DEIGEN_USE_GPU -DPADDLE_USE_DSO` 。
-2. 可多个OP编译到同一个动态库中。
+2. 如果安装的PaddlePaddle不包含MKLDNN，则需要去掉编译选项`-DPADDLE_WITH_MKLDNN`。默认的安装包已包含MKLDNN。
+3. 可多个OP编译到同一个动态库中。
 
 
 
