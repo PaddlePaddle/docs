@@ -275,6 +275,7 @@ g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 -DPADDLE
 1. NVCC编译GPU OP的cu文件时，需要加 `-DPADDLE_WITH_CUDA -DEIGEN_USE_GPU -DPADDLE_USE_DSO` 。
 2. 如果安装的PaddlePaddle不包含MKLDNN，则需要去掉编译选项`-DPADDLE_WITH_MKLDNN`。默认的安装包已包含MKLDNN。
 3. 可多个OP编译到同一个动态库中。
+4. 通过pip方式安装的PaddlePaddle由GCC 4.8编译得到，由于GCC 4.8和GCC 5以上**C++11 ABI不兼容**，您编写的自定义OP，需要通过GCC 4.8编译。若是GCC 5及以上的环境上使用自定义OP，推荐使用[Docker安装PaddlePaddle](https://www.paddlepaddle.org.cn/install/doc/docker)，使得编Paddle和编译自定义OP的GCC版本相同。
 
 
 
