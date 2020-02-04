@@ -49,8 +49,10 @@ append_backward
         p_g_list3 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights_name)  # [(my_fc.w_0, my_fc.w_0@GRAD)]
         # 返回不包含 my_fc.b_0 的其他param_grad的list
         p_g_list4 = fluid.backward.append_backward(loss=avg_loss, no_grad_set=set(['my_fc.b_0']))  # [(my_fc.w_0, my_fc.w_0@GRAD)]
-        # 返回为[], 因为所有的param_grad均被传入的no_grad_set过滤掉了
-        p_g_list5 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights, no_grad_set=set(all_weights_name))  # []
+        # 返回为[], 因为所有的param_grad均被传入的no_grad_set过滤掉了, 传入的no_grad_set可以是 param(Variable类型)的set
+        p_g_list5 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights, no_grad_set=set(all_weights))  # []
+        # 传入的no_grad_set也可以是值为param.name(str类型)的set
+        p_g_list6 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights, no_grad_set=set(all_weights_name))  # []
 
 
 
