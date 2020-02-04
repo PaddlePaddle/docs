@@ -37,12 +37,14 @@ spectral_norm
 
 返回类型：变量(Variable)，数据类型与输入 ``weight`` 一致。
 
-**代码示例**：
+**代码示例：**
 
 .. code-block:: python
 
-   weight = fluid.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
-   x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
+    import paddle.fluid as fluid
+
+    weight = fluid.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
+    x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
 
 
 
