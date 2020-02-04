@@ -33,14 +33,24 @@ append_backward
 
         x = fluid.layers.data(name='x', shape=[13], dtype='float32')
         y = fluid.layers.data(name='y', shape=[1], dtype='float32')
-        y_predict = fluid.layers.fc(input=x, size=1, act=None)
+        y_predict = fluid.layers.fc(input=x, size=1, act=None, name='my_fc')
         loss = fluid.layers.square_error_cost(input=y_predict, label=y)
         avg_loss = fluid.layers.mean(loss)
 
-        p_g_list1 = fluid.backward.append_backward(loss=avg_loss)  # len(p_g_list1) == 2
-        p_g_list2 = fluid.backward.append_backward(loss=avg_loss, parameter_list=[p_g_list1[0][0].name])  # len(p_g_list1) == 1
-        p_g_list3 = fluid.backward.append_backward(loss=avg_loss, no_grad_set=set([p_g_list1[0][0].name]))  # len(p_g_list1) == 1
-        p_g_list4 = fluid.backward.append_backward(loss=avg_loss, parameter_list=[p_g_list1[0][0].name], no_grad_set=set([p_g_list1[0][0].name]))  # len(p_g_list1) == 0
+        # 获取main_program中所有weight参数, 不包括bias.
+        all_weights = [param for param in fluid.default_main_program().block(0).all_parameters() if 'w_' in param.name]  # [my_fc.w_0]
+        all_weights_name = [w.name for w in all_weights]
+
+        # 若parameter_list为默认值(None), 则返回包含所有param_grad的list
+        p_g_list1 = fluid.backward.append_backward(loss=avg_loss)  # [(my_fc.w_0, my_fc.w_0@GRAD), (my_fc.b_0, my_fc.b_0@GRAD)]
+        # 返回与传入parameter_list对应的param_grad的list, 传入的parameter_list可以是 param(Variable类型)的list
+        p_g_list2 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights)  # [(my_fc.w_0, my_fc.w_0@GRAD)]
+        # 传入的parameter_list也可以是值为param.name(str类型)的list
+        p_g_list3 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights_name)  # [(my_fc.w_0, my_fc.w_0@GRAD)]
+        # 返回不包含 my_fc.b_0 的其他param_grad的list
+        p_g_list4 = fluid.backward.append_backward(loss=avg_loss, no_grad_set=set(['my_fc.b_0']))  # [(my_fc.w_0, my_fc.w_0@GRAD)]
+        # 返回为[], 因为所有的param_grad均被传入的no_grad_set过滤掉了
+        p_g_list5 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights, no_grad_set=set(all_weights_name))  # []
 
 
 
