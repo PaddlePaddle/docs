@@ -31,8 +31,8 @@ append_backward
 
         import paddle.fluid as fluid
 
-        x = fluid.layers.data(name='x', shape=[13], dtype='float32')
-        y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+        x = fluid.data(name='x', shape=[None, 13], dtype='float32')
+        y = fluid.data(name='y', shape=[None, 1], dtype='float32')
         y_predict = fluid.layers.fc(input=x, size=1, act=None, name='my_fc')
         loss = fluid.layers.square_error_cost(input=y_predict, label=y)
         avg_loss = fluid.layers.mean(loss)
