@@ -116,11 +116,11 @@ def extract_sample_code(srcfile, status_all):
                 start = i
 
                 blank_line = 1
-                while srcls[start + blank_line].strip() == '':  # or if not len(srcls[start + blank_line].strip()):
+                while srcls[start + blank_line].strip() == '':
                     blank_line += 1
 
                 startindent = ""
-                # remove indent error
+
                 if srcls[start + blank_line].find("from") != -1:
                     startindent += srcls[start + blank_line][:srcls[start + blank_line].find("from")]
                 elif srcls[start + blank_line].find("import") != -1:
@@ -129,7 +129,6 @@ def extract_sample_code(srcfile, status_all):
                     startindent += check_indent(srcls[start + blank_line])
                 content += srcls[start + blank_line][len(startindent):]
                 for j in range(start + blank_line + 1, len(srcls)):
-                    # planish a blank line
                     if not srcls[j].startswith(startindent) and srcls[j] != '\n':
                         break
                     if srcls[j].find(" code-block:: python") != -1:
@@ -155,7 +154,7 @@ def run_sample_code(content, filename):
 
     if subprc.returncode != 0:
         print("\nSample code error found in ", filename, ":\n")
-        #print(err)
+        print(err)
         status = 1
     else:
         status = 0
