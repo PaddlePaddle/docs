@@ -197,6 +197,16 @@
 		<td> Whether to Compile ANAKIN </td>
 		<td> OFF </td>
 	</tr>
+	<tr>
+		<td> CUDA_ARCH_NAME </td>
+		<td> Build for which GPU architecture </td>
+		<td> All:all available GPU architectures Auto:Automatically detect current GPU architecture </td>
+	</tr>
+	<tr>
+		<td> TENSORRT_ROOT </td>
+		<td> Assign TensoRRT path </td>
+		<td> If this flag is not assigned, Paddle will detect TensorRT automatically. </td>
+	</tr>
    </tbody>
 </table>
 </p>
