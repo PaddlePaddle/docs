@@ -7,7 +7,7 @@ for files in `echo $git_files`;do
     if [ $? -eq 0 ];then
         if [ "$night" == "develop" ];then
            wget -q https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda9-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl 
-           pip install -U paddlepaddle-0.0.0-cp27-cp27mu-linux_x86_64.whl
+           pip install paddlepaddle-0.0.0-cp27-cp27mu-linux_x86_64.whl
         else
            git clone https://github.com/PaddlePaddle/Paddle.git
            mkdir Paddle/build && cd Paddle/build
