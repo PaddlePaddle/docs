@@ -21,7 +21,7 @@ for files in `echo $git_files`;do
         api_file=`echo $files|sed 's#doc/fluid/api_cn/##g'`
         cd /FluidDoc/doc/fluid/api_cn/
         grep -w "$api_file" /FluidDoc/scripts/api_white_list.txt
-        if [ $? -eq 0 ];then
+        if [ $? -ne 0 ];then
             python chinese_samplecode_processor.py $api_file
             if [ $? -ne 0 ];then
                 exit 5
