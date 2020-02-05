@@ -74,21 +74,6 @@ def check_indent(code_line):
     return indent
 
 
-def removeSomeApis(filenames):
-    filenames.remove('./fluid_cn/DistributeTranspiler_cn.rst')
-    filenames.remove('./transpiler_cn/DistributeTranspiler_cn.rst')
-    filenames.remove('./transpiler_cn/DistributeTranspilerConfig_cn.rst')
-    filenames.remove('./transpiler_cn/HashName_cn.rst')
-    filenames.remove('./transpiler_cn/memory_optimize_cn.rst')
-    filenames.remove('./transpiler_cn/release_memory_cn.rst')
-    filenames.remove('./transpiler_cn/RoundRobin_cn.rst')
-    for i in range(len(filenames)-1, -1, -1):
-        length = len(filenames[i].split("/"))
-        if length == 2:
-            filenames.pop(i)
-    return filenames
-
-
 def find_all(src_str, substr):
     indices = []
     get_one = src_str.find(substr)

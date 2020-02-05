@@ -19,7 +19,7 @@ RoundRobin
 **代码示例**
 
 .. code-block:: python
-
+fds
           import paddle.fluid.transpiler.RoundRobin as RoundRobin
 
           pserver_endpoints = [“127.0.0.1:6007”, “127.0.0.1:6008”]

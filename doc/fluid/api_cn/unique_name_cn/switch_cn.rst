@@ -27,6 +27,6 @@ switch
         name2 = fluid.unique_name.generate('fc')
         print(name2)  # fc_0
 
-        #fluid.unique_name.switch(pre_generator)  # 切换回原命名空间
-        #name3 = fluid.unique_name.generate('fc')
-        #print(name3)  # fc_2, 因为原命名空间已生成fc_0, fc_1
+        fluid.unique_name.switch(pre_generator)  # 切换回原命名空间
+        name3 = fluid.unique_name.generate('fc')
+        print(name3)  # fc_2, 因为原命名空间已生成fc_0, fc_1
