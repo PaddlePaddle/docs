@@ -74,15 +74,6 @@ def check_indent(code_line):
     return indent
 
 
-def removeSomeApis(filenames):
-    # avoid deleting list elements while iterating, one solution we can delete from tail
-    for i in range(len(filenames) - 1, -1, -1):
-        length = len(filenames[i].split("/"))
-        if length == 2:
-            filenames.pop(i)
-    return filenames
-
-
 def find_all(src_str, substr):
     indices = []
     get_one = src_str.find(substr)
@@ -182,7 +173,6 @@ if os.path.isdir("my_paddle_vars"):
 if not os.path.isdir("temp"):
     os.mkdir("temp")
 
-output = []
 
 if len(sys.argv) < 2:
     print("Error: inadequate number of arguments")
@@ -196,6 +186,7 @@ else:
     output.append(res)
 
 
+output = []
 status_groups = {-1: [], 0: [], 1: []}
 # polishes show format
 ci_pass = True
