@@ -74,6 +74,15 @@ def check_indent(code_line):
     return indent
 
 
+def removeSomeApis(filenames):
+    # avoid deleting list elements while iterating, one solution we can delete from tail
+    for i in range(len(filenames) - 1, -1, -1):
+        length = len(filenames[i].split("/"))
+        if length == 2:
+            filenames.pop(i)
+    return filenames
+
+
 def find_all(src_str, substr):
     indices = []
     get_one = src_str.find(substr)
@@ -88,7 +97,7 @@ def extract_sample_code(srcfile, status_all):
     srcc = srcfile.read()
     srcfile.seek(0, 0)
     srcls = srcfile.readlines()
-    srcls = remove_desc_code(srcls, filename)
+    srcls = remove_desc_code(srcls, filename) # remove description info for samplecode
     status = []
     sample_code_begins = find_all(srcc, " code-block:: python")
     if len(sample_code_begins) == 0:
@@ -105,7 +114,7 @@ def extract_sample_code(srcfile, status_all):
                     blank_line += 1
 
                 startindent = ""
-
+                # remove indent error
                 if srcls[start + blank_line].find("from") != -1:
                     startindent += srcls[start + blank_line][:srcls[start + blank_line].find("from")]
                 elif srcls[start + blank_line].find("import") != -1:
@@ -114,6 +123,7 @@ def extract_sample_code(srcfile, status_all):
                     startindent += check_indent(srcls[start + blank_line])
                 content += srcls[start + blank_line][len(startindent):]
                 for j in range(start + blank_line + 1, len(srcls)):
+                    # planish a blank line
                     if not srcls[j].startswith(startindent) and srcls[j] != '\n':
                         break
                     if srcls[j].find(" code-block:: python") != -1:
@@ -126,6 +136,7 @@ def extract_sample_code(srcfile, status_all):
 
 
 def run_sample_code(content, filename):
+    # three status ,-1:no sample code; 1: running error; 0:normal
     fname = filename.split("/")[-1].replace("_cn", "").replace(".rst", "") + ".py"
     tempf = open("temp/" + fname, 'w')
     content = "# -*- coding: utf-8 -*-\n" + content
@@ -156,6 +167,18 @@ def test(file):
     return temp
 
 
+if os.path.isdir("temp"):
+    shutil.rmtree("temp")
+if os.path.isdir("infer_model"):
+    shutil.rmtree("infer_model")
+if os.path.isdir("image"):
+    shutil.rmtree("image")
+if os.path.isdir("my_paddle_model"):
+    shutil.rmtree("my_paddle_model")
+if os.path.isdir("my_paddle_vars"):
+    shutil.rmtree("my_paddle_vars")
+
+
 if not os.path.isdir("temp"):
     os.mkdir("temp")
 
@@ -174,6 +197,7 @@ else:
 
 
 status_groups = {-1: [], 0: [], 1: []}
+# polishes show format
 ci_pass = True
 for one_file in output:
     for dicts in one_file:
