@@ -173,6 +173,7 @@ if os.path.isdir("my_paddle_vars"):
 if not os.path.isdir("temp"):
     os.mkdir("temp")
 
+output = []
 
 if len(sys.argv) < 2:
     print("Error: inadequate number of arguments")
@@ -186,7 +187,6 @@ else:
     output.append(res)
 
 
-output = []
 status_groups = {-1: [], 0: [], 1: []}
 # polishes show format
 ci_pass = True
