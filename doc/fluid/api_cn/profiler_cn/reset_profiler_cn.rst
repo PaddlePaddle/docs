@@ -15,6 +15,6 @@ reset_profiler
     import paddle.fluid.profiler as profiler
     with profiler.profiler('CPU', 'total', '/tmp/profile'):
         for iter in range(10):
-            if iter == 2:
-                profiler.reset_profiler()
+        if iter == 2:
+            profiler.reset_profiler()
             # ...
