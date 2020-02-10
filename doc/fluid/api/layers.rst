@@ -113,6 +113,7 @@ fluid.layers
     layers/gather_tree.rst
     layers/gaussian_random.rst
     layers/gaussian_random_batch_size_like.rst
+    layers/gelu.rst
     layers/generate_mask_labels.rst
     layers/generate_proposal_labels.rst
     layers/generate_proposals.rst
