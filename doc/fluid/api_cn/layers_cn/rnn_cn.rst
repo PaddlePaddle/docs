@@ -4,7 +4,7 @@ rnn
 -------------------------------
 
 
-.. py:method:: paddle.fluid.layers.rnn(inputs, initial_states=None, sequence_length=None, time_major=False, is_reverse=False, **kwargs)
+.. py:method:: paddle.fluid.layers.rnn(cell, inputs, initial_states=None, sequence_length=None, time_major=False, is_reverse=False, **kwargs)
     
 
 rnn创建一个由RNNCell :code:`cell` 指定的递归神经网络，该神经网络重复执行 :code:`cell.call()` 直至达到 :code:`inputs` 的最大长度。
