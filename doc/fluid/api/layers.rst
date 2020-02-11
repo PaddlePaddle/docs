@@ -96,6 +96,7 @@ fluid.layers
     layers/elu.rst
     layers/embedding.rst
     layers/equal.rst
+    layers/erf.rst
     layers/exp.rst
     layers/expand.rst
     layers/expand_as.rst
