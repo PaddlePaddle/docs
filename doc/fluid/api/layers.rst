@@ -154,6 +154,7 @@ fluid.layers
     layers/linear_lr_warmup.rst
     layers/linspace.rst
     layers/load.rst
+    layers/locality_aware_nms.rst
     layers/lod_append.rst
     layers/lod_reset.rst
     layers/log.rst
