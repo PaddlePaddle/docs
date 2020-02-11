@@ -101,6 +101,7 @@ fluid.layers
     layers_cn/elu_cn.rst
     layers_cn/embedding_cn.rst
     layers_cn/equal_cn.rst
+    layers_cn/erf_cn.rst
     layers_cn/exp_cn.rst
     layers_cn/expand_cn.rst
     layers_cn/expand_as_cn.rst
