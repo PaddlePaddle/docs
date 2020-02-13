@@ -13,8 +13,6 @@ API Reference
     dataset_cn.rst
     dygraph_cn.rst
     executor_cn.rst
-    index.rst
-    index_cn.rst
     initializer_cn.rst
     io_cn.rst
     layers_cn.rst
