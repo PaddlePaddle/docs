@@ -8,3 +8,4 @@ switch_case
 
 ..  autofunction:: paddle.fluid.layers.switch_case
     :noindex:
+
