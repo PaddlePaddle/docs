@@ -38,7 +38,7 @@ ____________________________________
     import paddle.fluid.layers as layers
     
     def cond(i, ten):   # 参数和loop_vars相对应
-        return i < 10
+        return i < ten
     
     def body(i, ten):   # 参数和loop_vars相对应
         i = i + 1
