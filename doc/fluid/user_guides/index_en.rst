@@ -25,8 +25,7 @@ Reproduced classic models of multiple directions in Fluid：
 ..  toctree::
     :hidden:
 
-    howto/basic_concept/index_en.rst
-    howto/prepare_data/index_en.rst
-    howto/configure_simple_model/index_en.rst
-    howto/training/index_en.rst
-    howto/evaluation_and_debugging/index_en.rst
+    simple_case/index_en.rst
+    nlp_case/index_en.rst
+    rec_case/index_en.rst
+    tools/index_en.rst
