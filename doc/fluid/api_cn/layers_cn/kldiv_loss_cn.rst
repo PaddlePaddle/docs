@@ -34,9 +34,11 @@ kL发散损失计算如下：
 
 返回类型：变量(Variable)，数据类型与输入 ``x`` 一致。
 
-**代码示例**：
+**代码示例：**
 
 .. code-block:: python
+
+    import paddle.fluid as fluid
 
     # 'batchmean' reduction, loss shape 为[N]
     x = fluid.data(name='x', shape=[None,4,2,2], dtype='float32') # shape=[-1, 4, 2, 2]

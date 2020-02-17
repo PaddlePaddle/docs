@@ -7,12 +7,9 @@ API Reference
 
     ../api_guides/index_cn.rst
     fluid_cn.rst
-    average_cn.rst
+    api_tree_cn.rst
     backward_cn.rst
     clip_cn.rst
-    data/data_feeder_cn.rst
-    data/dataset_cn.rst
-    data_feeder_cn.rst
     dataset_cn.rst
     dygraph_cn.rst
     executor_cn.rst

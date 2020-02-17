@@ -3,7 +3,7 @@
 crf_decoding
 -------------------------------
 
-.. py:function::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None)
+.. py:function::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None, length=None)
 
 
 
