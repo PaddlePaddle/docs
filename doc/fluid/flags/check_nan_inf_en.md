@@ -30,7 +30,7 @@ export PADDLE_INF_NAN_SKIP_OP="mul,softmax_with_cross_entropy"
 ##### 2.2 Skip op role check
 The currently accepted types are: forward, backward, optimize, rpc, dist, lrsched, loss, default.
 In fp32 training, it is not necessary to skip the nan inf check of the op role.
-However in `fp16` training, inf will be corrected in the back propagation, so it is generally necessary to skip the backward check, which is also the reason of add this function.
+However in `fp16` training, inf will be corrected in the backpropagation, so it is generally necessary to skip the backward check, which is why this feature is added.
 In the following setting, the previous setting only skips the backward check, and the latter setting skips both the backward and optimize checks.
 Same as above, the op role skipping only supports exact matching.
 ```
@@ -64,8 +64,8 @@ The name of the op and tensor which has nan or inf will be displayed in the end.
 ![cpu_nan_inf_op_var.png](check_nan_inf_files/cpu_nan_inf_op_var.png)
 
 ## <span id="speed">Speed</span>
-Test environment: v100 32G single card, Resnet50 model, imagenet dataset.
-`The speed may be different under different environment and different model datasets. The following speeds are only for reference`
+Test environment: v100 32G single card, Resnet50 model, Imagenet dataset.
+`The speed may be different under different environments and different model datasets. The following speeds are only for reference`
 > Without check nan inf speed, 307.7 images/s per card. 
 Check nan inf speed, 250.2 images/s per card.
 
