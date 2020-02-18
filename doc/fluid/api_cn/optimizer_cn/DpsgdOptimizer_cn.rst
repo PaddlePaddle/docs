@@ -19,9 +19,9 @@ Dpsgd优化器是参考CCS16论文 `《Deep Learning with Differential Privacy�
 
 参数：
   - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
-  - **clip** (float, 可选) - 裁剪梯度的L2正则项值的阈值下界，若梯度L2正则项值小于clip，则取clip作为梯度L2正则项值，默认值为0.9
-  - **batch_size** (float, 可选) - 每个batch训练的样本数，默认值为0.999
-  - **sigma** (float, 可选) - 参数更新时，会在梯度后添加一个满足高斯分布的噪声。此为高斯噪声的方差，默认值为1e-08
+  - **clip** (float， 可选) - 裁剪梯度的L2正则项值的阈值下界，若梯度L2正则项值小于clip，则取clip作为梯度L2正则项值，默认值为0.9
+  - **batch_size** (float， 可选) - 每个batch训练的样本数，默认值为0.999
+  - **sigma** (float， 可选) - 参数更新时，会在梯度后添加一个满足高斯分布的噪声。此为高斯噪声的方差，默认值为1e-08
 
 .. note::
     目前 ``DpsgdOptimizer`` 不支持 Sparse Parameter Optimization（稀疏参数优化）。
