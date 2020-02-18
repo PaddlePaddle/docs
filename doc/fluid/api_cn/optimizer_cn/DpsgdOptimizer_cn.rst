@@ -7,11 +7,20 @@ DpsgdOptimizer
 
 Dpsgd优化器是参考CCS16论文 `《Deep Learning with Differential Privacy》 <https://arxiv.org/abs/1607.00133>`_ 相关内容实现的。
 
+其参数更新的计算公式如下:
+
+.. math::
+    g\_clip_t = \frac{g_t}{\max{(1, \frac{||g_t||^2}{clip})}}\\
+.. math::
+    g\_noise_t = g\_clip_t + \frac{gaussian\_noise(\sigma)}{batch\_size}\\
+.. math::
+    param\_out=param−learning\_rate*g\_noise_t
+
 
 参数：
   - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
-  - **clip** (float, 可选) - 梯度的L2正则项值裁剪的下界阈值，若梯度L2正则项值小于clip，则取clip作为梯度L2正则项值，默认值为0.9
-  - **batch_size** (float, 可选) - 每个batch的训练样本数，默认值为0.999
+  - **clip** (float, 可选) - 裁剪梯度的L2正则项值的阈值下界，若梯度L2正则项值小于clip，则取clip作为梯度L2正则项值，默认值为0.9
+  - **batch_size** (float, 可选) - 每个batch训练的样本数，默认值为0.999
   - **sigma** (float, 可选) - 参数更新时，会在梯度后添加一个满足高斯分布的噪声。此为高斯噪声的方差，默认值为1e-08
 
 .. note::
@@ -51,10 +60,10 @@ Dpsgd优化器是参考CCS16论文 `《Deep Learning with Differential Privacy�
 
 参数：
     - **loss** (Variable) – 需要最小化的损失值变量
-    - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
-    - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
-    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成集合，默认值为None
-    - **grad_clip** (GradClipBase, 可选) – 梯度裁剪的策略，静态图模式不需要使用本参数，当前本参数只支持在dygraph模式下的梯度裁剪，未来本参数可能会调整，默认值为None
+    - **startup_program** (Program， 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` ， 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
+    - **parameter_list** (list， 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
+    - **no_grad_set** (set， 可选) – 不需要更新的Parameter或者Parameter.name组成集合，默认值为None
+    - **grad_clip** (GradClipBase， 可选) – 梯度裁剪的策略，静态图模式不需要使用本参数，当前本参数只支持在dygraph模式下的梯度裁剪，未来本参数可能会调整，默认值为None
 
 返回： (optimize_ops, params_grads)，数据类型为(list, list)，其中optimize_ops是minimize接口为网络添加的OP列表，params_grads是一个由(param, grad)变量对组成的列表，param是Parameter，grad是该Parameter对应的梯度值
 
