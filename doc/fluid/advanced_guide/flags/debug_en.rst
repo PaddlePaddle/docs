@@ -79,3 +79,8 @@ FLAGS_reader_queue_speed_test_mode=True will enable the pyreader test mode.
 Note
 -------
 This flag will work only when you are using py_reader.
+
+..	toctree::
+	:hidden:
+
+	check_nan_inf_en.md
