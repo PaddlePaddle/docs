@@ -32,7 +32,7 @@ prepare_context
         strategy=dygraph.parallel.prepare_context()
 
         linear = Linear(1, 10, act="softmax")
-        adam = fluid.optimizer.AdamOptimizer()
+        adam = fluid.optimizer.AdamOptimizer(0.01)
 
         # make the module become the data parallelism module
         linear = dygraph.parallel.DataParallel(linear, strategy)
