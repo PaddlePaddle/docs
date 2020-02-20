@@ -18,38 +18,16 @@ prepare_context
 
 .. code-block:: python
 
-    import numpy as np
-    import paddle.fluid as fluid
     import paddle.fluid.dygraph as dygraph
-    from paddle.fluid.optimizer import AdamOptimizer
-    from paddle.fluid.dygraph.nn import Linear
-    from paddle.fluid.dygraph.base import to_variable
-
-    place = fluid.CUDAPlace(0)
-    with fluid.dygraph.guard(place=place):
-
-        # prepare the data parallel context
+    import paddle.fluid as fluid
+    with fluid.dygraph.guard():
         strategy=dygraph.parallel.prepare_context()
+        emb = fluid.dygraph.Embedding([10, 10])
+        emb = dygraph.parallel.DataParallel(emb, strategy)
 
-        linear = Linear(1, 10, act="softmax")
-        adam = fluid.optimizer.AdamOptimizer(0.01)
+        state_dict = emb.state_dict()
+        fluid.save_dygraph( state_dict, "paddle_dy")
 
-        # make the module become the data parallelism module
-        linear = dygraph.parallel.DataParallel(linear, strategy)
+        para_state_dict, _ = fluid.load_dygraph( "paddle_dy")
 
-        x_data = np.random.random(size=[10, 1]).astype(np.float32)
-        data = to_variable(x_data)
-
-        hidden = linear(data)
-        avg_loss = fluid.layers.mean(hidden)
-
-        # scale the loss according to the number of trainers.
-        avg_loss = linear.scale_loss(avg_loss)
-
-        avg_loss.backward()
-
-        # collect the gradients of trainers.
-        linear.apply_collective_grads()
-
-        adam.minimize(avg_loss)
-        linear.clear_gradients()
+        emb.set_dict( para_state_dict )
