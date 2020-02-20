@@ -24,6 +24,7 @@ fluid.dygraph
     dygraph_cn/guard_cn.rst
     dygraph_cn/InverseTimeDecay_cn.rst
     dygraph_cn/Layer_cn.rst
+    dygraph_cn/LayerList_cn.rst
     dygraph_cn/LayerNorm_cn.rst
     dygraph_cn/Linear_cn.rst
     dygraph_cn/load_dygraph_cn.rst
@@ -41,5 +42,6 @@ fluid.dygraph
     dygraph_cn/Sequential_cn.rst
     dygraph_cn/SpectralNorm_cn.rst
     dygraph_cn/to_variable_cn.rst
+    dygraph_cn/TracedLayer_cn.rst
     dygraph_cn/Tracer_cn.rst
     dygraph_cn/TreeConv_cn.rst

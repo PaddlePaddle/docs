@@ -13,6 +13,7 @@ Conditional branch, for the input of a batch, according to the given conditions,
 
 Please refer to :ref:`api_fluid_layers_IfElse`
 
+**Note:** A new OP :ref:`api_fluid_layers_cond` is highly recommended instead of ``IfElse`` . OP :ref:`api_fluid_layers_cond` is easier to use and is called with less code but does the same thing as ``IfElse`` .
 
 Switch
 ======
@@ -25,6 +26,8 @@ Switch, like the :code:`switch-case` declaration commonly found in programming l
 
 Please refer to :ref:`api_fluid_layers_Switch`
 
+**Note:** A new OP :ref:`api_fluid_layers_case` is highly recommended instead of ``Switch`` . OP :ref:`api_fluid_layers_case` is easier to use and is called with less code but does the same thing as ``Switch`` .
+
 While
 =====
 
@@ -35,6 +38,9 @@ When the condition is true, repeatedly execute logic in the :code:`block` which 
 * :ref:`api_fluid_layers_array_write` : Writes the Variable back to the specified location in :code:`LOD_TENSOR_ARRAY` and stores the result of the calculation.
 
 Please refer to :ref:`api_fluid_layers_While`
+
+**Note**: A new OP :ref:`api_fluid_layers_while_loop` is highly recommended instead of ``While`` . OP :ref:`api_fluid_layers_while_loop` is easier to use and is called with less code but does the same thing as ``While`` .
+
 
 DynamicRNN
 ==========

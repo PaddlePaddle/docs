@@ -50,7 +50,7 @@ transpose
     x = fluid.layers.data(name='x', shape=[2, 3, 4],
                     dtype='float32', append_batch_size=False)
     x_transposed = fluid.layers.transpose(x, perm=[1, 0, 2])
-    print x_transposed.shape
+    print(x_transposed.shape)
     #(3L, 2L, 4L)
 
 

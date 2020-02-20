@@ -81,11 +81,11 @@ FTRL 原始论文: ( `https://www.eecs.tufts.edu/~dsculley/papers/ad-click-predi
 该算子相当于backward()和apply_gradients()功能的合体。
 
 参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
+    - **loss** (Variable) – 需要最小化的损失值变量
+    - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
+    - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
+    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
+    - **grad_clip** (GradClipBase, 可选) – 梯度裁剪的策略，静态图模式不需要使用本参数，当前本参数只支持在dygraph模式下的梯度裁剪，未来本参数可能会调整，默认值为None
 
 返回： (optimize_ops, params_grads)，数据类型为(list, list)，其中optimize_ops是minimize接口为网络添加的OP列表，params_grads是一个由(param, grad)变量对组成的列表，param是Parameter，grad是该Parameter对应的梯度值
 
