@@ -5,10 +5,10 @@ load_op_library
 
 .. py:class:: paddle.fluid.load_op_library
 
-``load_op_library`` 用于自定义C++算子中，用来加载算子动态共享库。加载库后，注册好的算子及其Kernel实现将在PaddlePaddle主进程中可以被调用。 请注意，自定义运算符的类型不能与框架中的现有运算符相同。
+``load_op_library`` 用于自定义C++算子中，用来加载算子动态共享库。加载库后，注册好的算子及其Kernel实现将在PaddlePaddle主进程中可以被调用。 请注意，自定义算子的类型不能与框架中的现有算子类型相同。
 
 参数：
-    - **lib_filename** (str) – 动态库的名字。
+    - **lib_filename** (str) – 动态共享库的名字。
 
 **代码示例**
 
