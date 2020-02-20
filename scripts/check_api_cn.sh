@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git_files=`git diff --numstat upstream/$BRANCH`
+git_files=`git diff --numstat upstream/$BRANCH|awk '{print $NF}'`
 
 
 if [ "$night" == "develop" ];then
