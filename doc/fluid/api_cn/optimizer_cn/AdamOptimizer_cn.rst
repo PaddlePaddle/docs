@@ -3,7 +3,7 @@
 AdamOptimizer
 -------------------------------
 
-.. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, regularization=None, name=None, lazy_mode=False)
+.. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameter_list=None, regularization=None, name=None, lazy_mode=False)
 
 Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节，能够利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
 
@@ -33,7 +33,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     - **lazy_mode** （bool, 可选） - 设为True时，仅更新当前具有梯度的元素。官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为False
 
 
-**代码示例**：
+**代码示例**
 
 .. code-block:: python
 
@@ -135,7 +135,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 返回类型： tuple
 
-**代码示例**：
+**代码示例**
 
 .. code-block:: python
 
@@ -187,4 +187,54 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         out.backward()
         optimizer.minimize(out)
         optimizer.clear_gradients()
+
+
+.. py:method:: current_step_lr()
+
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+获取当前步骤的学习率。当不使用LearningRateDecay时，每次调用的返回值都相同，否则返回当前步骤的学习率。
+
+返回：当前步骤的学习率。
+
+返回类型：float
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    # example1: LearningRateDecay is not used, return value is all the same
+    with fluid.dygraph.guard():
+        emb = fluid.dygraph.Embedding([10, 10])
+        adam = fluid.optimizer.Adam(0.001, parameter_list = emb.parameters())
+        lr = adam.current_step_lr()
+        print(lr) # 0.001
+
+    # example2: PiecewiseDecay is used, return the step learning rate
+    with fluid.dygraph.guard():
+        inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+        linear = fluid.dygraph.nn.Linear(10, 10)
+        inp = fluid.dygraph.to_variable(inp)
+        out = linear(inp)
+        loss = fluid.layers.reduce_mean(out)
+
+        bd = [2, 4, 6, 8]
+        value = [0.2, 0.4, 0.6, 0.8, 1.0]
+        adam = fluid.optimizer.Adam(fluid.dygraph.PiecewiseDecay(bd, value, 0),
+                           parameter_list=linear.parameters())
+
+        # first step: learning rate is 0.2
+        np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+
+        # learning rate for different steps
+        ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
+        for i in range(12):
+            adam.minimize(loss)
+            lr = adam.current_step_lr()
+            np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
 
