@@ -1,5 +1,5 @@
 .. _cn_api_fluid_optimizer_LambOptimizer:
-#
+
 LambOptimizer
 -------------------------------
 
