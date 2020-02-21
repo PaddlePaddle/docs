@@ -20,18 +20,28 @@ Fluid contains common classification metrics, such as Precision, Recall, Accurac
 
 .. code-block:: python
 
-	>>> import paddle.fluid as fluid
-   	>>> label = fluid.layers.data(name="label", shape=[1], dtype="int32")
-	>>> data = fluid.layers.data(name="data", shape=[32, 32], dtype="int32")
-	>>> pred = fluid.layers.fc(input=data, size=1000, act="tanh")
-	>>> acc = fluid.metrics.Precision()
-	>>> for pass_iter in range(PASSES):
-	>>>   acc.reset()
-	>>>   for data in train_reader():
-	>>>       loss, preds, labels = exe.run(fetch_list=[cost, preds, labels])
-	>>>       acc.update(preds=preds, labels=labels)
-	>>>   numpy_acc = acc.eval()
-		
+
+   import paddle.fluid as fluid
+   import numpy as np
+
+   metric = fluid.metrics.Precision()
+
+   # generate the preds and labels
+
+   preds = [[0.1], [0.7], [0.8], [0.9], [0.2],
+            [0.2], [0.3], [0.5], [0.8], [0.6]]
+
+   labels = [[0], [1], [1], [1], [1],
+             [0], [0], [0], [0], [0]]
+
+   preds = np.array(preds)
+   labels = np.array(labels)
+
+   metric.update(preds=preds, labels=labels)
+   numpy_precision = metric.eval()
+
+   print("expect precision: %.2f and got %.2f" % (3.0 / 5.0, numpy_precision))
+
 
 As for other tasks such as MultiTask Learning, Metric Learning, and Learning To Rank, please refer to the API documentation for their various metric construction methods.
 
@@ -41,20 +51,20 @@ Fluid supports custom metrics and is flexible enough to support a wide range of 
 
 .. code-block:: python
 
-	>>> class MyMetric(MetricBase):
-	>>>     def __init__(self, name=None):
-	>>>         super(MyMetric, self).__init__(name)
-	>>>         self.counter = 0  # simple counter
+   class MyMetric(MetricBase):
+       def __init__(self, name=None):
+           super(MyMetric, self).__init__(name)
+           self.counter = 0  # simple counter
 
-	>>>     def reset(self):
-	>>>         self.counter = 0
+       def reset(self):
+           self.counter = 0
 
-	>>>     def update(self, preds, labels):
-	>>>         if not _is_numpy_(preds):
-	>>>             raise ValueError("The 'preds' must be a numpy ndarray.")
-	>>>         if not _is_numpy_(labels):
-	>>>             raise ValueError("The 'labels' must be a numpy ndarray.")
-	>>>         self.counter += sum(preds == labels)
+       def update(self, preds, labels):
+           if not _is_numpy_(preds):
+               raise ValueError("The 'preds' must be a numpy ndarray.")
+           if not _is_numpy_(labels):
+               raise ValueError("The 'labels' must be a numpy ndarray.")
+           self.counter += sum(preds == labels)
 
-	>>>     def eval(self):
-	>>>         return self.counter
+       def eval(self):
+           return self.counter
