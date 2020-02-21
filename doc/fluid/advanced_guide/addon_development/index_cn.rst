@@ -1,11 +1,11 @@
-﻿..  _addon_development:
+..  _addon_development:
 
 ########
 二次开发
 ########
 
 ..  toctree::
-    :hidden:
+    :maxdepth: 1
 
     design_idea/fluid_design_idea.md
     new_op/index_cn.rst

@@ -1,5 +1,3 @@
-﻿..  _performance_improving_:
-
 ########
 性能调优
 ########
@@ -11,6 +9,5 @@
     singlenode_training_improving/memory_optimize.rst
     multinode_training_improving/cpu_train_best_practice.rst
     multinode_training_improving/dist_training_gpu.rst
-    multinode_training_improving/gpu_training_with_recompute.rst
     inference_improving/paddle_tensorrt_infer.md
     analysis_tools/index_cn.rst

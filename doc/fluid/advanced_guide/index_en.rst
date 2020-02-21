@@ -8,19 +8,19 @@ Advanced User Guides
 
 So far you have already been familiar with PaddlePaddle. And the next expectation, read more on:
 
-    - `Data Preparing <../advanced_guide/data_preparing/index_cn.html>`_：How to prepare the data efficently.
+    - `Prepare Data <data_preparing/index_en.html>`_：How to prepare the data efficently.
 
-    - `Distributed Training <../advanced_guide/distributed_training/index_cn.html>`_ ：How to apply the distributed training in your projects.
+    - `Distributed Training <distributed_training/index_en.html>`_ ：How to apply the distributed training in your projects.
 
-    - `Deploy Inference Model  <../advanced_guide/inference_deployment/index_cn.html>`_ ：How to deploy the trained network to perform practical inference
+    - `Deploy Inference Model  <inference_deployment/index_en.html>`_ ：How to deploy the trained network to perform practical inference
 
-    - `Performance Profiling  <../advanced_guide/performance_improving/index_cn.html>`_ ：How to do profiling for Fluid programs
+    - `Practice Improving  <performance_improving/index_en.html>`_ ：How to do profiling for Fluid programs
 
-    - `Model Evalution <../advanced_guide/evaluation_debugging/index_cn.html>`_ ：How to evalute your program.
+    - `Model Evalution and Debugging <evaluation_debugging/index_en.html>`_ ：How to evalute your program.
 
-    - `Add on development <../advanced_guide/addon_development/index_cn.html>`_ ：How to contribute codes and documentation to our communities
+    - `Addon Development <addon_development/index_en.html>`_ ：How to contribute codes and documentation to our communities
 
-    - `Env FLAGS <../advanced_guide/flags/index_cn.html>`_ 
+    - `FLAGS <flags_en.html>`_ 
 
 
 ..  toctree::
