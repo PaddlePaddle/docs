@@ -3,6 +3,8 @@
 group_norm
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function::  paddle.fluid.layers.group_norm(input, groups, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, data_layout='NCHW', name=None)
 
 参考论文： `Group Normalization <https://arxiv.org/abs/1803.08494>`_

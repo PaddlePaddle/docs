@@ -3,6 +3,8 @@
 save
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.io.save(program, model_path)
 
 该接口将传入的参数、优化器信息和网络描述保存到 ``model_path`` 。

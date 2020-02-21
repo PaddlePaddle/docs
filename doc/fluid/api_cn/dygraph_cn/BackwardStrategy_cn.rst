@@ -3,6 +3,8 @@
 BackwardStrategy
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:class:: paddle.fluid.dygraph.BackwardStrategy
 
 **注意：该API只在动态图下生效**

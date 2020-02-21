@@ -3,6 +3,8 @@
 CosineDecay
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:class:: paddle.fluid.dygraph.CosineDecay(learning_rate, step_each_epoch, epochs, begin=0, step=1, dtype='float32')
 
 该接口提供按余弦函数衰减学习率的功能。
