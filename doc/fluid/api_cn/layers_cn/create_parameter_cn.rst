@@ -3,6 +3,8 @@
 create_parameter
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
 
 该OP创建一个参数。该参数是一个可学习的变量, 拥有梯度并且可优化。

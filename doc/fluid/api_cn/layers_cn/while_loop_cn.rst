@@ -4,6 +4,8 @@ while_loop
 ____________________________________
 
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.while_loop(cond, body, loop_vars, is_test=False, name=None)
 
 该API用于实现类似while的循环控制功能，只要循环条件 ``cond`` 的返回值为True，``while_loop`` 则会循环执行循环体 ``body`` ，直到 ``cond`` 的返回值为False。

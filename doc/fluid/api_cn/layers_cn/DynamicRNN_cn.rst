@@ -3,6 +3,8 @@
 DynamicRNN
 ===================
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.layers.DynamicRNN(name=None)
 
 **注意：该类型的输入仅支持LoDTensor，如果您需要处理的输入数据是Tensor类型，

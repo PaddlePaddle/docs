@@ -3,6 +3,8 @@
 RecomputeOptimizer
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.optimizer.RecomputeOptimizer(optimizer)
 
 通常来讲，一个深度学习的训练流程包含了三个子步骤：首先，运行前向算子来计算Variable和loss的值；其次，运行反向算子来计算参数的梯度；最后，应用优化算法以更新参数值。

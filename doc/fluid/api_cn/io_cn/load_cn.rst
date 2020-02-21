@@ -3,6 +3,8 @@
 load
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.io.load(program, model_path)
 
 该接口从Program中过滤出参数和优化器信息，然后从文件中获取相应的值。

@@ -3,6 +3,8 @@
 set_gradient_clip
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.clip.set_gradient_clip(clip, param_list=None, program=None)
 
 给指定参数做梯度裁剪。
