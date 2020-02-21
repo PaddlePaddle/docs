@@ -3,7 +3,7 @@
 AdadeltaOptimizer
 -------------------------------
 
-.. py:class:: paddle.fluid.optimizer.AdadeltaOptimizer(learning_rate, epsilon=1.0e-6, rho=0.95, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.AdadeltaOptimizer(learning_rate, epsilon=1.0e-6, rho=0.95, parameter_list=None, regularization=None, name=None)
 
 **注意：此接口不支持稀疏参数更新。**
 
@@ -22,6 +22,7 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     - **learning_rate** (float|Variable) - 全局学习率。
     - **epsilon** (float) - 维持数值稳定性的浮点型值，默认值为1.0e-6。
     - **rho** (float) - 算法中的衰减率，默认值为0.95。
+    - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **regularization** (WeightDecayRegularizer，可选) - 正则化方法，例如fluid.regularizer.L2DecayRegularizer等。默认值为None，表示无正则化。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
@@ -67,4 +68,80 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
         learning_rate=0.0003, epsilon=1.0e-6, rho=0.95)
     optimizer_ops, params_grads = optimizer.minimize(cost)
 
+
+.. py:method:: clear_gradients()
+
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+清除需要优化的参数的梯度。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    with fluid.dygraph.guard():
+        value = np.arange(26).reshape(2, 13).astype("float32")
+        a = fluid.dygraph.to_variable(value)
+        linear = fluid.Linear(13, 5, dtype="float32")
+        optimizer = fluid.optimizer.AdadeltaOptimizer(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
+                                                      parameter_list=linear.parameters())
+        out = linear(a)
+        out.backward()
+        optimizer.minimize(out)
+        optimizer.clear_gradients()
+
+
+.. py:method:: current_step_lr()
+
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+获取当前步骤的学习率。当不使用LearningRateDecay时，每次调用的返回值都相同，否则返回当前步骤的学习率。
+
+返回：当前步骤的学习率。
+
+返回类型：float
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    # example1: LearningRateDecay is not used, return value is all the same
+    with fluid.dygraph.guard():
+        emb = fluid.dygraph.Embedding([10, 10])
+        adam = fluid.optimizer.Adam(0.001, parameter_list = emb.parameters())
+        lr = adam.current_step_lr()
+        print(lr) # 0.001
+
+    # example2: PiecewiseDecay is used, return the step learning rate
+    with fluid.dygraph.guard():
+        inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+        linear = fluid.dygraph.nn.Linear(10, 10)
+        inp = fluid.dygraph.to_variable(inp)
+        out = linear(inp)
+        loss = fluid.layers.reduce_mean(out)
+
+        bd = [2, 4, 6, 8]
+        value = [0.2, 0.4, 0.6, 0.8, 1.0]
+        adam = fluid.optimizer.Adam(fluid.dygraph.PiecewiseDecay(bd, value, 0),
+                           parameter_list=linear.parameters())
+
+        # first step: learning rate is 0.2
+        np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+
+        # learning rate for different steps
+        ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
+        for i in range(12):
+            adam.minimize(loss)
+            lr = adam.current_step_lr()
+            np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
 
