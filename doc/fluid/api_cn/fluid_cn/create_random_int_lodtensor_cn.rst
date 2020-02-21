@@ -4,6 +4,8 @@
 create_random_int_lodtensor
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.create_random_int_lodtensor(recursive_seq_lens, base_shape, place, low, high)
 
 创建一个包含随机整数的LoDTensor。

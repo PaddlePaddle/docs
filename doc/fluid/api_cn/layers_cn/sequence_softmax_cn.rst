@@ -3,6 +3,8 @@
 sequence_softmax
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.sequence_softmax(input, use_cudnn=False, name=None)
 
 .. note::

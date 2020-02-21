@@ -3,6 +3,8 @@
 BuildStrategy
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.BuildStrategy
 
 ``BuildStrategy`` 使用户更方便地控制[ ``ParallelExecutor`` ](../fluid_cn.html\#parallelexecutor)中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。

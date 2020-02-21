@@ -3,6 +3,8 @@
 FC
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:class:: paddle.fluid.dygraph.FC(name_scope, size, num_flatten_dims=1, param_attr=None, bias_attr=None, act=None, is_test=False, dtype='float32')
 
 
