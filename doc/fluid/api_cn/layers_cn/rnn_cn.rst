@@ -4,6 +4,8 @@ rnn
 -------------------------------
 
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:method:: paddle.fluid.layers.rnn(cell, inputs, initial_states=None, sequence_length=None, time_major=False, is_reverse=False, **kwargs)
     
 
