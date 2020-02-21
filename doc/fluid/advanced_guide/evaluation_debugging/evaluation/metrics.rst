@@ -16,8 +16,9 @@ paddle.fluid.metrics模块提供了一系列常用的模型评价指标; 用户�
 
 不同类型的任务，会选用不同的评价指标。
  
-回归问题通常会用RMSE(均方根误差)，MAE(平均绝对误差)，R-Square(R平方)等
+回归问题通常会用RMSE(均方根误差)、MAE(平均绝对误差)、R-Square(R平方)等
 AUC(Area Under Cure)指标则常被用在分类任务(classification)上
+
 目标检测任务(Object Detection)则经常会用到mAP(Mean Average Precision) 
  
 paddle.fluid.metrics中包含了一些常用分类指标，例如Precision, Recall, Accuracy等 
@@ -27,16 +28,25 @@ paddle.fluid.metrics中包含了一些常用分类指标，例如Precision, Reca
 .. code-block:: python
 
    import paddle.fluid as fluid
-   label = fluid.layers.data(name="label", shape=[1], dtype="int32")
-   data = fluid.layers.data(name="data", shape=[32, 32], dtype="int32")
-   pred = fluid.layers.fc(input=data, size=1000, act="tanh")
-   acc = fluid.metrics.Precision()
-   for pass_iter in range(PASSES):
-     acc.reset()
-     for data in train_reader():
-         loss, preds, labels = exe.run(fetch_list=[cost, pred, label])
-         acc.update(preds=preds, labels=labels)
-     numpy_acc = acc.eval()
+   import numpy as np
+
+   metric = fluid.metrics.Precision()
+
+   # generate the preds and labels
+
+   preds = [[0.1], [0.7], [0.8], [0.9], [0.2],
+            [0.2], [0.3], [0.5], [0.8], [0.6]]
+
+   labels = [[0], [1], [1], [1], [1],
+             [0], [0], [0], [0], [0]]
+
+   preds = np.array(preds)
+   labels = np.array(labels)
+
+   metric.update(preds=preds, labels=labels)
+   numpy_precision = metric.eval()
+
+   print("expect precision: %.2f and got %.2f" % (3.0 / 5.0, numpy_precision))
 
 
 自定义指标
