@@ -15,8 +15,8 @@ load
 参数:
  - **program**  ( :ref:`cn_api_fluid_Program` ) – 要加载的Program。
  - **model_path**  (str) – 保存program的文件前缀。格式为 ``目录名称/文件前缀`` 。
- - **executor** (Executor, optional) - 当startup program没有运行时，用于初始化参数的Executor。默认值：None。
- - **var_list** (list, optional) - 加载使用[save_params，save_persistables，save_vars]接口保存的单个模型文件的变量列表。默认值：None。
+ - **executor** (Executor, 可选) - 当startup program没有运行时，用于初始化参数的Executor。默认值：None。
+ - **var_list** (list, 可选) - 加载使用[save_params，save_persistables，save_vars]接口保存的单个模型文件的变量列表。默认值：None。
 
 返回: 无
 
@@ -44,5 +44,5 @@ load
     z = fluid.layers.fc(y, 10)
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
-    fluid.load(fluid.default_main_program(), "./test_path")
+    fluid.load(fluid.default_main_program(), "./test_path", exe)
 
