@@ -4,7 +4,9 @@ dynamic_decode
 -------------------------------
 
 
-.. py:method:: dynamic_decode(decoder, inits=None, max_step_num=None, output_time_major=False, impute_finished=False, is_test=False, **kwargs):
+**注意：该API仅支持【静态图】模式**
+
+.. py:method:: dynamic_decode(decoder, inits=None, max_step_num=None, output_time_major=False, **kwargs):
     
 该接口重复执行 :code:`decoder.step()` 直到 其返回的表示完成状态的Tensor中的值全部为True或解码步骤达到 :code:`max_step_num`。
 

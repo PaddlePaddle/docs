@@ -96,6 +96,7 @@ fluid.layers
     layers/elu.rst
     layers/embedding.rst
     layers/equal.rst
+    layers/erf.rst
     layers/exp.rst
     layers/expand.rst
     layers/expand_as.rst
@@ -113,6 +114,7 @@ fluid.layers
     layers/gather_tree.rst
     layers/gaussian_random.rst
     layers/gaussian_random_batch_size_like.rst
+    layers/gelu.rst
     layers/generate_mask_labels.rst
     layers/generate_proposal_labels.rst
     layers/generate_proposals.rst
@@ -152,6 +154,7 @@ fluid.layers
     layers/linear_lr_warmup.rst
     layers/linspace.rst
     layers/load.rst
+    layers/locality_aware_nms.rst
     layers/lod_append.rst
     layers/lod_reset.rst
     layers/log.rst

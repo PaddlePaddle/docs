@@ -401,3 +401,57 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
                 print(var)
 
             # 这里将会打印出当前Program中所有的Variable
+
+.. py:method:: all_parameters()
+
+获取当前Program中所有的 :ref:`api_guide_parameter` 。返回值是一个列表。
+
+返回: 一个包含当前Program中所有参数的列表。
+
+返回类型: list[ :ref:`api_guide_parameter` ]
+
+
+**代码示例**
+
+.. code-block:: python
+
+            import paddle.fluid as fluid
+
+            program = fluid.default_main_program()
+            data = fluid.data(name='x', shape=[None, 13], dtype='float32')
+            hidden = fluid.layers.fc(input=data, size=10)
+            loss = fluid.layers.mean(hidden)
+            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+
+            for param in program.all_parameters():
+                print(param)
+
+            # 这里将会打印出当前Program中所有的Parameters，在本例中，输出结果是:
+            #
+            # name: "fc_0.w_0"
+            # type {
+            # type: LOD_TENSOR
+            # lod_tensor {
+            #     tensor {
+            #       data_type: FP32
+            #       dims: 13
+            #       dims: 10
+            #     }
+            #   }
+            # }
+            #
+            # persistable: true
+            # name: "fc_0.b_0"
+            # type {
+            # type: LOD_TENSOR
+            # lod_tensor {
+            #     tensor {
+            #       data_type: FP32
+            #       dims: 10
+            #     }
+            #   }
+            # }
+            # persistable: true
+            #
+            # 这里print(param)将会打印出一个参数所有的属性，包括name，type和persistable，
+            # 你可以访问一个参数的指定属性，例如param.name，param.type

@@ -3,6 +3,8 @@
 DGCMomentumOptimizer
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.optimizer.DGCMomentumOptimizer(learning_rate, momentum, rampup_begin_step, rampup_step=1, sparsity=[0.999], use_nesterov=False, local_grad_clip_norm=None, num_trainers=None, regularization=None, name=None)
 
 DGC（深度梯度压缩）Momentum 优化器。原始论文: https://arxiv.org/abs/1712.01887
@@ -91,11 +93,11 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
 自动做diff来向当前program附加反向算子，为minimize过程的第一步。
 
 参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **callbacks** (list|None) – 当为某参数附加反向算子时所要运行的callables组成的列表
+    - **loss** (Variable) – 需要最小化的损失值变量
+    - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
+    - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
+    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
+    - **callbacks** (list, 可选) – 当为某参数附加反向算子时所要运行的callables组成的列表
 
 返回：  附加在当前Program的算子组成的列表
 

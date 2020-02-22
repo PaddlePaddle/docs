@@ -3,6 +3,8 @@
 no_grad
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:method:: paddle.fluid.dygraph.no_grad(func)
 
 在动态图模式中，此装饰器将会避免 ``func`` 被装饰时创建反向传播网络。

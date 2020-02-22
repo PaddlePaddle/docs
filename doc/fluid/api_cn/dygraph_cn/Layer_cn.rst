@@ -72,6 +72,81 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
 返回类型：list
 
+.. py:method:: clear_gradients()
+
+清除该层所有参数的梯度。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    with fluid.dygraph.guard():
+        value = np.arange(26).reshape(2, 13).astype("float32")
+        a = fluid.dygraph.to_variable(value)
+        linear = fluid.Linear(13, 5, dtype="float32")
+        adam = fluid.optimizer.Adam(learning_rate=0.01, 
+                                    parameter_list=linear.parameters())
+        out = linear(a)
+        out.backward()
+        adam.minimize(out)
+        linear.clear_gradients()
+
+
+.. py:method:: named_parameters(prefix='', include_sublayers=True)
+
+返回层中所有参数的迭代器，生成名称和参数的元组。
+
+参数：
+    - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
+    - **include_sublayers** (bool, 可选) - 是否返回子层的参数。如果为True，返回的列表中包含子层的参数。默认值：True。
+
+返回：产出名称和参数的元组的迭代器。
+
+返回类型：iterator
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+
+    with fluid.dygraph.guard():
+        fc1 = fluid.Linear(10, 3)
+        fc2 = fluid.Linear(3, 10, bias_attr=False)
+        model = fluid.dygraph.Sequential(fc1, fc2)
+        for name, param in model.named_parameters():
+            print(name, param)
+
+.. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
+
+返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
+
+参数：
+    - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
+    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
+    - **include_self** (bool, 可选) - 是否包含该层自身。默认值：False。
+    - **layers_set** (set, 可选): 记录重复子层的集合。默认值：None。
+
+返回：产出名称和子层的元组的迭代器。
+
+返回类型：iterator
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+
+    with fluid.dygraph.guard():
+        fc1 = fluid.Linear(10, 3)
+        fc2 = fluid.Linear(3, 10, bias_attr=False)
+        model = fluid.dygraph.Sequential(fc1, fc2)
+        for prefix, layer in model.named_sublayers():
+            print(prefix, layer)
+
 .. py:method:: forward(*inputs, **kwargs)
 
 定义每次调用时执行的计算。应该被所有子类覆盖。

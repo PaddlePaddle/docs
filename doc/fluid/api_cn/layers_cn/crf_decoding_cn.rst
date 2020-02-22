@@ -3,7 +3,9 @@
 crf_decoding
 -------------------------------
 
-.. py:function::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None)
+**注意：该API仅支持【静态图】模式**
+
+.. py:function::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None, length=None)
 
 
 
