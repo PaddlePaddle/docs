@@ -41,7 +41,7 @@ BasicDecoder是 :ref:`cn_api_fluid_layers_Decoder` 的子类，它组装了 :ref
             decoder_cell = layers.GRUCell(hidden_size=128)
             decoder = layers.BasicDecoder(decoder_cell, helper, output_fn=output_layer)
             decoder_outputs, _, _ = layers.dynamic_decode(
-                decoder=decoder, inits=decoder_cell.get_initial_states(encoder_output))
+                decoder=decoder, inits=decoder_cell.get_initial_states(trg_emb))
 
 .. py:method:: initialize(initial_cell_states)
 
