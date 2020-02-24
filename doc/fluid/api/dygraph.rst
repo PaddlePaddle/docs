@@ -16,7 +16,6 @@ fluid.dygraph
     dygraph/dygraph_to_static_output.rst
     dygraph/Embedding.rst
     dygraph/ExponentialDecay.rst
-    dygraph/FC.rst
     dygraph/GroupNorm.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
