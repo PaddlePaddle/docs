@@ -13,6 +13,7 @@ fluid.dygraph
     dygraph/Conv3D.rst
     dygraph/Conv3DTranspose.rst
     dygraph/CosineDecay.rst
+    dygraph/dygraph_to_static_output.rst
     dygraph/Embedding.rst
     dygraph/ExponentialDecay.rst
     dygraph/FC.rst

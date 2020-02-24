@@ -13,9 +13,9 @@ API Reference
     :maxdepth: 1
 
 ''')
-    file_object.write('    ../api_guides/index.rst'+'\n')
+    file_object.write('    ../api_guides/index_cn.rst'+'\n')
     file_object.write('    fluid_cn.rst'+'\n')
     for file_name in sorted(glob.glob("*.rst")):
-        if file_name != ('index_cn.rst' and 'fluid_cn.rst'):
+        if file_name != 'index.rst' and file_name != 'index_cn.rst' and file_name != 'fluid_cn.rst':
             file_object.write('    '+file_name + "\n")
     file_object.close( )

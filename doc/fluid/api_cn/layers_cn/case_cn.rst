@@ -3,6 +3,8 @@
 case
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.case(pred_fn_pairs, default=None, name=None)
 
 该OP的运行方式类似于python的if-elif-elif-else。

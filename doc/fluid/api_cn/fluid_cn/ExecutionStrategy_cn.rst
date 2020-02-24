@@ -3,6 +3,8 @@
 ExecutionStrategy
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.ExecutionStrategy
 
 通过设置 ``ExecutionStrategy`` 中的选项，用户可以对执行器的执行配置进行调整，比如设置执行器中线程池的大小等。

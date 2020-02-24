@@ -3,6 +3,8 @@
 Executor
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.executor.Executor (place)
 
 Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传入设备。
