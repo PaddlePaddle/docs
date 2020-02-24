@@ -17,7 +17,7 @@ TrainingHelper是 :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作为解�
 **示例代码**
 
 .. code-block:: python
-        
+
             import paddle.fluid as fluid
             import paddle.fluid.layers as layers
             trg_emb = fluid.data(name="trg_emb",
@@ -29,7 +29,7 @@ TrainingHelper是 :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作为解�
             helper = layers.TrainingHelper(trg_emb, trg_seq_length)
             decoder_cell = layers.GRUCell(hidden_size=128)
             decoder = layers.BasicDecoder(decoder_cell, helper)
-            decoder_output, _, _ = layers.dynamic_decode(
+            outputs = layers.dynamic_decode(
                 decoder,
                 inits=decoder_cell.get_initial_states(trg_emb),
                 is_test=False)

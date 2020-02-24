@@ -16,12 +16,13 @@ GreedyEmbeddingHelper是 :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作
 **示例代码**
 
 .. code-block:: python
-        
+
             import paddle.fluid as fluid
             import paddle.fluid.layers as layers
-            trg_emb = fluid.data(name="trg_emb",
-                                 shape=[None, None, 128],
-                                 dtype="float32")
+
+            start_tokens = fluid.data(name="start_tokens",
+                                 shape=[None],
+                                 dtype="int64")
             
             trg_embeder = lambda x: fluid.embedding(
                 x, size=[10000, 128], param_attr=fluid.ParamAttr(name="trg_embedding"))
@@ -31,11 +32,11 @@ GreedyEmbeddingHelper是 :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作
                                             param_attr=fluid.ParamAttr(name=
                                                                     "output_w"),
                                             bias_attr=False)
-            helper = layers.GreedyEmbeddingHelper(trg_embeder, start_tokens=0, end_token=1)
+            helper = layers.GreedyEmbeddingHelper(trg_embeder, start_tokens=start_tokens, end_token=1)
             decoder_cell = layers.GRUCell(hidden_size=128)
             decoder = layers.BasicDecoder(decoder_cell, helper, output_fn=output_layer)
-            decoder_outputs, _, _ = layers.dynamic_decode(
-                decoder=decoder, inits=decoder_cell.get_initial_states(encoder_output))
+            outputs = layers.dynamic_decode(
+                decoder=decoder, inits=decoder_cell.get_initial_states(start_tokens))
 
 .. py:method:: initialize()
 
