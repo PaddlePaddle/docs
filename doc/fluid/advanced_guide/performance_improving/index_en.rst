@@ -3,7 +3,7 @@ Practice Improving
 ###############
 
 ..  toctree::
-    :hidden:
+    :maxdepth: 1
 
 
     multinode_training_improving/cpu_train_best_practice_en.rst

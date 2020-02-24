@@ -16,4 +16,4 @@
     advanced_guide/index_cn.rst
     api_cn/index_cn.rst
     faq/index_cn.rst
-	release_note_en.rst
+    release_note_cn.md

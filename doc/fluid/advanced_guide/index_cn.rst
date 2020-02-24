@@ -1,5 +1,3 @@
-﻿..  _user_guide_:
-
 ########
 进阶指南
 ########
@@ -14,9 +12,9 @@
 
     - `性能调优 <../advanced_guide/performance_improving/index_cn.html>`_ ：介绍飞桨使用过程中的调优方法
 
-    - `模型评估与调试 <../advanced_guide/evaluation_debugging/index_cn.html>`_ ：介绍模型评估与调试的典型方法
+    - `模型评估/调试 <../advanced_guide/evaluation_debugging/index_cn.html>`_ ：介绍模型评估与调试的典型方法
 
-    - `二次开发 <../advanced_guide/addon_development/index_cn.html>`_ ：介绍如何新增Operator和如何向飞桨社区贡献代码和文档
+    - `二次开发 <../advanced_guide/addon_development/index_cn.html>`_ ：介绍如何新增Operator和如何向飞桨开源社区贡献代码
 
     - `环境变量FLAGS <../advanced_guide/flags/index_cn.html>`_ 
 
