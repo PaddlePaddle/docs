@@ -1,5 +1,5 @@
-.. ctr:
-
+.. role:: raw-html-m2r(raw)
+   :format: html
 
 
 ELASTIC CTR
@@ -14,7 +14,8 @@ ELASTIC CTR
 * `4. 查看结果 <#head4>`_
 * `5. 二次开发指南 <#head5>`_
 
-`<span id='head_1'>1. 总体概览</span>`
+:raw-html-m2r:`<span id='head_1'>1. 总体概览</span>`
+-------------
 
 本项目提供了端到端的CTR训练和二次开发的解决方案，主要特点：
 
@@ -65,12 +66,13 @@ ELASTIC CTR
 
 **第5节 二次开发** 提出本一键部署方案可定制改善的部分，给出具体修改位置等
 
-`<span id='head2'>2. 前置需求</span>`
+:raw-html-m2r:`<span id='head2'>2. 前置需求</span>`
+------------
 
 运行本方案前，需要用户已经搭建好k8s集群，并安装好volcano组件。k8s环境部署比较复杂，本文不涉及。百度智能云CCE容器引擎申请后即可使用，仅以百度云上创建k8s为例。
 
 2.1 创建k8s集群
----------------
+^^^^^^^^^^^^
 
 请参考
 `百度智能云CCE容器引擎帮助文档-创建集群 <https://cloud.baidu.com/doc/CCE/GettingStarted/24.5C.E5.88.9B.E5.BB.BA.E9.9B.86.E7.BE.A4.html#.E6.93.8D.E4.BD.9C.E6.AD.A5.E9.AA.A4>`_\ ，在百度智能云上建立一个集群，节点配置需要满足如下要求
@@ -89,7 +91,7 @@ ELASTIC CTR
 创建完成后，即可参考\ `百度智能云CCE容器引擎帮助文档-查看集群 <https://cloud.baidu.com/doc/CCE/GettingStarted.html#.E6.9F.A5.E7.9C.8B.E9.9B.86.E7.BE.A4>`_\ ，查看刚刚申请的集群信息。
 
 2.2 如何操作集群
-----------------
+^^^^^^^^^^^^^
 
 集群的操作可以通过百度云web或者通过kubectl工具进行，推荐用kubectl工具。
 
@@ -119,7 +121,7 @@ ELASTIC CTR
 * 关于kubectl的其他信息，可以参考\ `Overview of kubectl <https://kubernetes.io/docs/reference/kubectl/overview/>`_\ 。
 
 2.3 设置访问权限
-----------------
+^^^^^^^^^^
 
 建立分布式任务需要pod间有API互相访问的权限，可以按如下步骤
 
@@ -130,7 +132,7 @@ ELASTIC CTR
 注意： --namespace 指定的default 为创建集群时候的名称
 
 2.4 安装Volcano
----------------
+^^^^^^^^^^
 
 我们使用volcano作为训练阶段的批量任务管理工具。关于volcano的详细信息，请参考\ `官方网站 <https://volcano.sh/>`_\ 的Documentation。
 
@@ -146,15 +148,16 @@ ELASTIC CTR
    :alt: image
 
 
-3.`<span id='head3'>分布式训练+Serving方案一键部署</span>`
+3. :raw-html-m2r:`<span id='head3'>分布式训练+Serving方案一键部署</span>`
+---------------------------------
 
 3.1 下载部署方案脚本文件
-------------------------
+^^^^^^^^^^^^
 
 请将\ `本方案所需所有脚本文件 <https://github.com/PaddlePaddle/edl/tree/develop/example/ctr/script>`_\ 下载到本地
 
 3.2 一键部署
-------------
+^^^^^^^^^^^
 
 执行以下脚本，一键将所有组件部署到k8s集群。
 
@@ -169,7 +172,7 @@ ELASTIC CTR
 **注**\ ：以下\ **3.3-3.8节所述内容已经在一键部署脚本中包含，无需手动执行**\ 。但为方便理解，将该脚本的每一步执行过程给出说明。
 
 3.3 选择一个node作为输出节点
-----------------------------
+^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -178,7 +181,7 @@ ELASTIC CTR
 这句话的意思是给这个node做一个标记，之后的文件服务和模型产出都被强制分配在这个node上进行，把NAME的一串字符替换 \$NODE_NAME即可。
 
 3.4 启动文件服务器
-------------------
+^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -209,7 +212,7 @@ ELASTIC CTR
 
 
 3.5 启动Cube稀疏参数服务器
---------------------------
+^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -230,7 +233,7 @@ ELASTIC CTR
 **注**\ ：分片数量可根据稀疏字典大小灵活修改，参考5.3节。
 
 3.6 启动Paddle Serving
-----------------------
+^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -259,7 +262,7 @@ ELASTIC CTR
 
 
 3.7 启动Cube稀疏参数服务器配送工具
-----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -288,7 +291,7 @@ ELASTIC CTR
 
 
 3.8 执行Paddle CTR分布式训练
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -308,10 +311,11 @@ ELASTIC CTR
    :alt: image
 
 
-4. `<span id='head4'>`\ 查看结果\ :raw-html-m2r:`<span>`
+4. :raw-html-m2r:`<span id='head4'>`\ 查看结果\ :raw-html-m2r:`<span>`
+-------------------------------------------
 
 4.1 查看训练日志
-----------------
+^^^^^^^^^^^^^
 
 百度云容器引擎CCE提供了web操作台方便查看pod的运行状态。
 
@@ -334,7 +338,7 @@ pserver日志示例：
 
 
 4.2 验证Paddle Serving预测结果
-------------------------------
+^^^^^^^^^^^^^^^^^^^
 
 执行
 
@@ -360,10 +364,11 @@ pserver日志示例：
    :alt: image
 
 
-5. `<span id='head5'>二次开发指南</span>`
+5. :raw-html-m2r:`<span id='head5'>二次开发指南</span>`
+-----------------------------
 
 5.1 指定数据集的输入和读取方式
-------------------------------
+^^^^^^^^^^^^^^^^^^^
 
 现有的数据的输入是从edldemo镜像当中的/workspace/ctr/data/download.sh目录进行下载。下载之后会解压在/workspace/ctr/data/raw文件夹当中，包含train.txt和test.txt。所有的数据的每一行通过空格隔开40个属性。
 
@@ -398,7 +403,7 @@ pserver日志示例：
 推荐使用百度云提供的镜像仓库，这里是说明文档\ `推送镜像到镜像仓库 <https://cloud.baidu.com/doc/CCE/s/Yjxppt74z/#%E6%8E%A8%E9%80%81%E9%95%9C%E5%83%8F%E5%88%B0%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93>`_\ 
 
 5.2 指定训练规模
-----------------
+^^^^^^^^^^^^^^
 
 在ctr.yaml文件当中，我们会发现这个是在volcano的框架下定义的Job。在Job里面，我们给出了很多Pserver和Trainer的定义，在总体的Job也给出了MinAvailable数量的定义。Pserver和Trainer下面有自己的Replicas，环境变量当中有PSERVER_NUM和TRAINER_MODEL和TRAINER_NUM的数量。通常MinAvailable= PServer Num + Trainer Num，这样我们就可以启动相应的服务。
 
@@ -427,7 +432,7 @@ pserver日志示例：
 如上图所示
 
 5.3 指定Cube参数服务器的分片数量和副本数量
-------------------------------------------
+^^^^^^^^^^^^^^^^^^^^
 
 在cube.yaml文件当中，我们可以看到每一个Cube的节点的定义，有一个\ ``cube server pod``\ 和\ ``cube server service``\ 。如果我们需要增加cube的副本数和分片数，只需要在yaml文件中复制相关的定义和环境变量即可。
 
@@ -446,7 +451,7 @@ pserver日志示例：
 以上两个图片，一个是对Cube POD的定义，一个是对CubeSERVICE的定义。如果需要扩展Cube分片数量，可以复制POD和SERVICE的定义，并重命名它们。示例程序给出的是2个分片，复制之后第3个可以命名为cube-2。
 
 5.4 Serving适配新的模型
------------------------
+^^^^^^^^^^^^^^^^^^^
 
 在本示例中，我们如果按照5.1节的方式，修改了CTR模型训练脚本的feed数据格式，就需要相应修改Serving的代码，以适应新的feed样例字段数量和数据类型。
 
@@ -462,7 +467,7 @@ pserver日志示例：
 
 
 注释
-
+----------
 
 注1. :raw-html-m2r:`<span id='annotation_1'>Cube和Redis性能对比测试环境</span>`
 -----------------------------------------------------------------------------------

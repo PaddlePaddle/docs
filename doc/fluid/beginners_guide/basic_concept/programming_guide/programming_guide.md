@@ -322,6 +322,6 @@ with fluid.layers.control_flow.Switch() as switch:
 
 完成网络搭建后，可以开始在单机上训练您的网络了，详细步骤请参考[单机训练](../../coding_practice/single_node.html)。
 
-除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[快速入门](../../index_cn.html)、[典型案例](../../../user_guides/index_cn.html)和[进阶指南](../../../advanced_guide/index_cn.html)。
+除此之外，使用文档模块根据开发者的不同背景划分了三个学习阶段：[快速上手](../../index_cn.html)、[典型案例](../../../user_guides/index_cn.html)和[进阶指南](../../../advanced_guide/index_cn.html)。
 
 如果您希望阅读更多场景下的应用案例，可以参考[典型案例](../../../user_guides/index_cn.html)。已经具备深度学习基础知识的用户，也可以从[进阶指南](../../../advanced_guide/index_cn.html)开始阅读。
