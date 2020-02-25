@@ -250,7 +250,7 @@ StaticRNN
           # 用处理完的hidden变量更新prev变量。
           rnn.update_memory(prev, hidden)
           # 把每一步的hidden和word标记为输出。
-          rnn.output(hidden，word)
+          rnn.output(hidden, word)
 
       result = rnn()
 
