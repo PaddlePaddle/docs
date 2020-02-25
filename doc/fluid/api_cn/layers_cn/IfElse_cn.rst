@@ -57,7 +57,7 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
         exe.run(fluid.default_startup_program())
 
         res = exe.run(fluid.default_main_program(), feed={"x":x_d, "y":y_d}, fetch_list=[out])
-        print res
+        print(res)
         # [array([-1.], dtype=float32)] 
 
 参数：
