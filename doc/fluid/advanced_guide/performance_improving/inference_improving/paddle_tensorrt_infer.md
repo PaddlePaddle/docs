@@ -20,8 +20,8 @@ NVIDIA TensorRT 是一个高性能的深度学习预测库，可为深度学习�
 1. 从源码编译时，TensorRT预测库目前仅支持使用GPU编译，且需要设置编译选项TENSORRT_ROOT为TensorRT所在的路径。
 2. Windows支持需要TensorRT 版本5.0以上。
 3. Paddle-TRT目前仅支持固定输入shape。
-4. 若使用用户自行安装的TensorRT，需要手动在`NvInfer.h`文件中为`class IPluginFactory`和`class IGpuAllocator`分别添加虚析构函数：
-    ``` c++
+4. 下载安装TensorRT后，需要手动在`NvInfer.h`文件中为`class IPluginFactory`和`class IGpuAllocator`分别添加虚析构函数：
+	``` c++
     virtual ~IPluginFactory() {};
     virtual ~IGpuAllocator() {};
     ```
@@ -59,8 +59,9 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 
 ## <a name="Paddle-TRT样例编译测试">Paddle-TRT样例编译测试</a>
 
-1. 下载或编译带有 TensorRT 的paddle预测库，参考[安装与编译C++预测库](../../inference_deployment/inference/build_and_install_lib_cn.html)。
-2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.6.tar.gz)并解压，进入`sample/paddle-TRT`目录下。
+1. 下载或编译带有 TensorRT 的paddle预测库，参考[安装与编译C++预测库](./build_and_install_lib_cn.html)。
+2. 从[NVIDIA官网](https://developer.nvidia.com/nvidia-tensorrt-download)下载对应本地环境中cuda和cudnn版本的TensorRT，需要登陆NVIDIA开发者账号。
+3. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)并解压，进入`sample/paddle-TRT`目录下。
 
     `paddle-TRT` 文件夹目录结构如下：
 
@@ -85,8 +86,8 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 
     在这里假设样例所在的目录为 `SAMPLE_BASE_DIR/sample/paddle-TRT`
 
-3. 配置编译与运行脚本
-
+4. 配置编译与运行脚本
+	
     编译运行预测样例之前，需要根据运行环境配置编译与运行脚本`run.sh`。`run.sh`的选项与路径配置的部分如下：
 
     ```shell
@@ -95,20 +96,17 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
     WITH_GPU=ON
     USE_TENSORRT=ON
 
-    # 按照运行环境设置预测库路径、CUDA库路径、CUDNN库路径、模型路径
+    # 按照运行环境设置预测库路径、CUDA库路径、CUDNN库路径、TensorRT路径、模型路径
     LIB_DIR=YOUR_LIB_DIR
     CUDA_LIB_DIR=YOUR_CUDA_LIB_DIR
     CUDNN_LIB_DIR=YOUR_CUDNN_LIB_DIR
+    TENSORRT_ROOT_DIR=YOUR_TENSORRT_ROOT_DIR
     MODEL_DIR=YOUR_MODEL_DIR
     ```
 
     按照实际运行环境配置`run.sh`中的选项开关和所需lib路径。
 
-4. 编译与运行样例  
-
-    ``` shell
-    sh run.sh
-    ```
+5. 编译与运行样例   
 
 
 ## <a name="Paddle-TRT_INT8使用">Paddle-TRT INT8使用</a>
