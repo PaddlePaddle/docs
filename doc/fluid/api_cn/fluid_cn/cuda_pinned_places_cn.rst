@@ -8,10 +8,14 @@ cuda_pinned_places
 
 
 
-该接口创建 ``device_count`` 个 ``fluid.CUDAPinnedPlace`` 对象，并返回所创建的对象列表。
+该接口创建 ``device_count`` 个 ``fluid.CUDAPinnedPlace`` ( fluid. :ref:`cn_api_fluid_CUDAPinnedPlace` ) 对象，并返回所创建的对象列表。
 
-如果 ``device_count`` 为 ``None``，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` 环境变量，则设备数目会默认设为1，也就是说， ``CPU_NUM=1``。
-``CPU_NUM`` 表示在当前任务中使用的设备数目。如果 ``CPU_NUM`` 与物理核心数相同，可以加速程序的运行。
+如果 ``device_count`` 为 ``None``，实际设备数目将由当前任务中使用的GPU设备数决定。用户可通过以下2种方式设置任务可用的GPU设备：
+
+- 设置环境变量 ``FLAGS_selected_gpus`` ，例如 ``export FLAGS_selected_gpus='0,1'``。
+- 设置环境变量 ``CUDA_VISIBLE_DEVICES`` ，例如 ``export CUDA_VISIBLE_DEVICES='0,1'``。
+
+关于如何设置任务中使用的GPU设备，具体请查看 fluid. :ref:`cn_api_fluid_cuda_places`  。
 
 参数：
   - **device_count** (int，可选) - 设备数目。默认值为 ``None``。
@@ -24,8 +28,9 @@ cuda_pinned_places
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        cuda_pinned_places_cpu_num = fluid.cuda_pinned_places()
-        # 或者
-        cuda_pinned_places = fluid.cuda_pinned_places(1)
-
+    import paddle.fluid as fluid
+    # 1）不设置任何环境变量，默认使用所有的GPU，8卡的机器则将创建8个CUDAPinnedPlace
+    # 2）export FLAGS_selected_gpus='0,1'，则创建2个CUDAPinnedPlace
+    cuda_pinned_places = fluid.cuda_pinned_places()
+    # 3）创建1个CUDAPinnedPlace
+    cuda_pinned_places = fluid.cuda_pinned_places(1)
