@@ -56,7 +56,7 @@
             * CentOS 6 支持 CUDA 9.0/9.1/9.2/10.0/10.1 单卡模式
         * 如果您是使用本机源码编译安装：
 
-            * CentOS 7 支持 CUDA 9.0/9.2/10.0/10.1
+            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0/10.1，CUDA 9.1 仅支持单卡模式
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
         * 如果您是使用 **nvidia-docker** 安装，在CentOS 7 下支持 CUDA 9.0/9.1/9.2/10.0/10.1
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
