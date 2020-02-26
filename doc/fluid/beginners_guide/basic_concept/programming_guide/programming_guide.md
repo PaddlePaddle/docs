@@ -166,7 +166,7 @@ print outs
 
 ## 组建更加复杂的网络
 
-某些场景下，用户需要根据当前网络中的某些状态，来具体决定后续使用哪一种操作，或者需要根据某些网络状态来重复执行某些操作，在动态图中，可以方便的使用Python的控制流语句（如for，if-else等）来进行条件判断，但是在静态图中，由于组网阶段并没有实际执行操作，也没有产生中间计算结果，因此无法使用Python的控制流语句来进行条件判断，为此静态图提供了多个控制流OP来实现条件判断。这里以[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)为例来说明如何在静态图中实现条件循环的操作。
+某些场景下，用户需要根据当前网络中的某些状态，来具体决定后续使用哪一种操作，或者重复执行某些操作。在动态图中，可以方便的使用Python的控制流语句（如for，if-else等）来进行条件判断，但是在静态图中，由于组网阶段并没有实际执行操作，也没有产生中间计算结果，因此无法使用Python的控制流语句来进行条件判断，为此静态图提供了多个控制流API来实现条件判断。这里以[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)为例来说明如何在静态图中实现条件循环的操作。
 
 while_loop API用于实现类似while/for的循环控制功能，使用一个callable的方法cond作为参数来表示循环的条件，只要cond的返回值为True，while_loop就会循环执行循环体body（也是一个callable的方法），直到 cond 的返回值为False。对于while_loop API的详细定义和具体说明请参考文档[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)。
 
@@ -202,7 +202,7 @@ def body(i, dummy):
 
 i = layers.fill_constant(shape=[1], dtype='int64', value=0) # 循环计数器
 ten = layers.fill_constant(shape=[1], dtype='int64', value=10) # 循环次数
-out, ten = layers.while_loop(cond, body, [i, ten]) # while_loop的返回值是一个tensor列表，其长度，结构，类型与loop_vars相同
+out, ten = layers.while_loop(cond=cond, body=body, loop_vars=[i, ten]) # while_loop的返回值是一个tensor列表，其长度，结构，类型与loop_vars相同
 
 exe = fluid.Executor(fluid.CPUPlace())
 res = exe.run(fluid.default_main_program(), feed={}, fetch_list=out)
@@ -210,7 +210,7 @@ print(res) #[array([10])]
 
 ```
 
-限于篇幅，上面仅仅用一个最简单的例子来说明如何在静态图中实现循环操作，循环操作在很多应用中都有着重要作用，比如NLP中常用的Transformer模型，在解码（生成）阶段的Beam Search算法中，需要使用循环操作来进行候选的选取与生成，可以参考[Transformer](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/PaddleMT/transformer)模型的实现来进一步学习while_loop在复杂场景下的用法。
+限于篇幅，上面仅仅用一个最简单的例子来说明如何在静态图中实现循环操作。循环操作在很多应用中都有着重要作用，比如NLP中常用的Transformer模型，在解码（生成）阶段的Beam Search算法中，需要使用循环操作来进行候选的选取与生成，可以参考[Transformer](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/PaddleMT/transformer)模型的实现来进一步学习while_loop在复杂场景下的用法。
 
 除while_loop之外，飞桨还提供fluid.layers.cond API来实现条件分支的操作，以及fluid.layers.switch_case和fluid.layers.case API来实现分支控制功能，具体用法请参考文档：[cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/cond_cn.html)，[switch_case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/switch_case_cn.html)和[case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/case_cn.html#case)
 
