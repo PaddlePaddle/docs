@@ -256,7 +256,7 @@ int main() {
     // 执行预测引擎
     PD_ZeroCopyRun(predictor);
 
-    // 获取预测输入
+    // 获取预测输出
     PD_ZeroCopyTensor output;
     PD_InitZeroCopyTensor(&output);
     output.name = (char *)(PD_GetOutputName(predictor, 0));
