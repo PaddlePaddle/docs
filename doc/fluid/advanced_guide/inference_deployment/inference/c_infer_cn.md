@@ -104,7 +104,7 @@ input.dtype = PD_FLOAT32;
 * `length`: 输入数据的实际的<strong>字节长度</strong>。
 * `capacity`: 为数据分配的内存大小，必定大于等于`length`。
 
-#### 示例代码
+### 示例代码
 ``` C
 PD_ZeroCopyTensor input;
 PD_InitZeroCopyTensor(&input);
@@ -178,12 +178,11 @@ input.dtype = PD_FLOAT32;
 PD_Predictor *predictor = PD_NewPredictor(config);
 
 int input_num = PD_GetInputNum(predictor);
-printf("Input num: %d\n", input_num); // 根据本例，这里input_num值为1，不过后续还是会以for循环示例指明具体用法
+printf("Input num: %d\n", input_num);
 int output_num = PD_GetOutputNum(predictor);
 printf("Output num: %d\n", output_num);
-for (int i = 0; i < input_num; ++i) {
-    PD_SetZeroCopyInput(predictor, &input);
-}
+
+PD_SetZeroCopyInput(predictor, &input); // 这里只有一个输入，根据多输入情况，可以传入一个数组
 
 PD_ZeroCopyRun(predictor); // 执行预测引擎
 
