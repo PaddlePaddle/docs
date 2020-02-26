@@ -214,7 +214,7 @@ float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
 3. When the number of CPU cores available is enough, you can increase the num value in the setting `config->SetCpuMathLibraryNumThreads(num);`.
 
 ### Tuning on GPU
-1. You can try to open the TensorRT subgraph acceleration engine. Through the graph analysis, Paddle can automatically fuse certain subgraphs, and call NVIDIA's TensorRT for acceleration. For details, please refer to [Use Paddle-TensorRT Library for inference](./paddle_tensorrt_infer_en.html)。
+1. You can try to open the TensorRT subgraph acceleration engine. Through the graph analysis, Paddle can automatically fuse certain subgraphs, and call NVIDIA's TensorRT for acceleration. For details, please refer to [Use Paddle-TensorRT Library for inference](../../performance_improving/inference_improving/paddle_tensorrt_infer_en.html)。
 
 ### Tuning with multi-thread
 Paddle Fluid supports optimizing prediction performance by running multiple AnalysisPredictors on different threads, and supports CPU and GPU environments.
