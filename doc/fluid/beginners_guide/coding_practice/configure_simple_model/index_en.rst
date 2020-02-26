@@ -35,16 +35,16 @@ After getting clear of the of input data format, model structure, loss function 
 Data Layer
 -----------
 
-PaddlePaddle provides :code:`fluid.layers.data()` to describe format of input data.
+PaddlePaddle provides :code:`fluid.data()` to describe format of input data.
 
-The output of :code:`fluid.layers.data()` is a Variable which is in fact a Tensor. Tensor can represent multi-demensional data with its great expressive feature.In order to accurately describe data structure, it is usually necessary to indicate the shape and type of data. The shape is int vector and type can be a string. About current supported data type, please refer to    :ref:`user_guide_paddle_support_data_types_en` . Data is often read in form of batch to train model. Since batch size may vary and data operator infers batch size according to actual data, here the batch size is ignored when shape is provided. It's enough to care for the shape of single sample. For more advanced usage, please refer to :ref:`user_guide_customize_batch_size_rank_en` .  :math:`x` is real number vector of :math:`13` dimenstions while :math:`y` is a real number. Data layer can be defined as follows:
+The output of :code:`fluid.data()` is a Variable which is in fact a Tensor. Tensor can represent multi-demensional data with its great expressive feature.In order to accurately describe data structure, it is usually necessary to indicate the shape and type of data. The shape is int vector and type can be a string. About current supported data type, please refer to    :ref:`user_guide_paddle_support_data_types_en` . Data is often read in form of batch to train model. Since batch size may vary and data operator infers batch size according to actual data, here the batch size is ignored when shape is provided. It's enough to care for the shape of single sample. For more advanced usage, please refer to :ref:`user_guide_customize_batch_size_rank_en` .  :math:`x` is real number vector of :math:`13` dimenstions while :math:`y` is a real number. Data layer can be defined as follows:
 
 .. code-block:: python
 
-    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    x = fluid.data(name='x', shape=[13], dtype='float32')
+    y = fluid.data(name='y', shape=[1], dtype='float32')
 
-Data in this example model are relatively simple. In fact, data operator can describe variable-length and nested sequence data. You can also use :code:`open_files` to open file to train. For more detailed documentation, please refer to :ref:`user_guide_prepare_data_en` .
+Data in this example model are relatively simple. In fact, data operator can describe variable-length and nested sequence data. For more detailed documentation, please refer to :ref:`user_guide_prepare_data_en` .
 
 Logic of Forward Computing
 ---------------------------
