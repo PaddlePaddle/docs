@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git_files=`git diff --numstat upstream/$BRANCH`
+git_files=`git diff --numstat upstream/$BRANCH|awk '{print $NF}'`
 
 
 if [ "$night" == "develop" ];then
@@ -15,6 +15,8 @@ else
 fi
 
 for files in `echo $git_files`;do
+  grep "code-block" $files
+  if [ $? -eq 0 ] ;then 
     echo $files|grep 'doc/fluid/api_cn/.*/.*.rst'
     if [ $? -eq 0 ];then
         api_file=`echo $files|sed 's#doc/fluid/api_cn/##g'`
@@ -27,5 +29,6 @@ for files in `echo $git_files`;do
             fi
         fi 
     fi
+  fi
 done
 

@@ -3,6 +3,8 @@
 DGCMomentumOptimizer
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.optimizer.DGCMomentumOptimizer(learning_rate, momentum, rampup_begin_step, rampup_step=1, sparsity=[0.999], use_nesterov=False, local_grad_clip_norm=None, num_trainers=None, regularization=None, name=None)
 
 DGC（深度梯度压缩）Momentum 优化器。原始论文: https://arxiv.org/abs/1712.01887
@@ -104,85 +106,6 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
 **代码示例**
 
 详见apply_gradients的示例
-
-
-.. py:method:: load(stat_dict)
-
-在dygraph模式下，附带学习率衰减来加载优化器。
-
-参数：
-    - **stat_dict** – load_persistable方法加载的dict
-
-**代码示例**
-
-.. code-block:: python
-
-    from __future__ import print_function
-    import numpy as np
-    import paddle
-    import paddle.fluid as fluid
-    from paddle.fluid.optimizer import SGDOptimizer
-    from paddle.fluid.dygraph.nn import FC
-    from paddle.fluid.dygraph.base import to_variable
-
-    class MLP(fluid.Layer):
-        def __init__(self, name_scope):
-            super(MLP, self).__init__(name_scope)
-
-            self._fc1 = FC(self.full_name(), 10)
-            self._fc2 = FC(self.full_name(), 10)
-
-        def forward(self, inputs):
-            y = self._fc1(inputs)
-            y = self._fc2(y)
-            return y
-
-    with fluid.dygraph.guard():
-        mlp = MLP('mlp')
-        optimizer2 = SGDOptimizer(
-            learning_rate=fluid.layers.natural_exp_decay(
-            learning_rate=0.1,
-            decay_steps=10000,
-            decay_rate=0.5,
-            staircase=True))
-
-        train_reader = paddle.batch(
-                paddle.dataset.mnist.train(), batch_size=128, drop_last=True)
-
-        for batch_id, data in enumerate(train_reader()):
-            dy_x_data = np.array(
-                    [x[0].reshape(1, 28, 28) for x in data]).astype('float32')
-
-            y_data = np.array([x[1] for x in data]).astype('int64').reshape(
-                    128, 1)
-
-            img = to_variable(dy_x_data)
-            label = to_variable(y_data)
-            label._stop_gradient = True
-            cost = mlp(img)
-            avg_loss = fluid.layers.reduce_mean(cost)
-            avg_loss.backward()
-            optimizer.minimize(avg_loss)
-            mlp.clear_gradients()
-            fluid.dygraph.save_persistables(
-                    mlp.state_dict(), [optimizer, optimizer2], "save_dir_2")
-            if batch_id == 2:
-                    break
-
-    with fluid.dygraph.guard():
-        mlp_load = MLP('mlp')
-        optimizer_load2 = SGDOptimizer(
-                learning_rate=fluid.layers.natural_exp_decay(
-                learning_rate=0.1,
-                decay_steps=10000,
-                decay_rate=0.5,
-                staircase=True))
-        parameters, optimizers = fluid.dygraph.load_persistables(
-            "save_dir_2")
-        mlp_load.load_dict(parameters)
-        optimizer_load2.load(optimizers)
-    self.assertTrue(optimizer2._learning_rate.__dict__ == optimizer_load2._learning_rate.__dict__)
-
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
 

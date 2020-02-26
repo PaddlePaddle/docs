@@ -3,6 +3,8 @@
 guard
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:function:: paddle.fluid.dygraph.guard(place=None)
 
 通过with语句创建一个dygraph运行的context，执行context代码。
@@ -20,11 +22,11 @@ guard
     import paddle.fluid as fluid
 
     with fluid.dygraph.guard():
-        inp = np.ones([3, 32, 32], dtype='float32')
+        inp = np.ones([3, 1024], dtype='float32')
         t = fluid.dygraph.base.to_variable(inp)
-        fc1 = fluid.FC('fc1', size=4, bias_attr=False, num_flatten_dims=1)
-        fc2 = fluid.FC('fc2', size=4)
-        ret = fc1(t)
-        dy_ret = fc2(ret)
+        linear1 = fluid.Linear(1024, 4, bias_attr=False)
+        linear2 = fluid.Linear(4, 4)
+        ret = linear1(t)
+        dy_ret = linear2(ret)
 
 

@@ -3,6 +3,8 @@
 name_scope
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.name_scope(prefix=None)
 
 

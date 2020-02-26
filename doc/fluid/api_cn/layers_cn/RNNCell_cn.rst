@@ -4,6 +4,8 @@ RNNCell
 -------------------------------
 
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.layers.RNNCell(name=None)
 RNNCell是抽象的基类，代表将输入和状态映射到输出和新状态的计算，主要用于RNN。
 

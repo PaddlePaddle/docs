@@ -3,6 +3,8 @@
 RoundRobin
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.transpiler.RoundRobin(pserver_endpoints)
 
 该方法使用 ``RoundRobin`` 的方式将变量散列到多个parameter server终端。
