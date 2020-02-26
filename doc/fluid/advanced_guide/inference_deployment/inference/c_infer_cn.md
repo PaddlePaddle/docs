@@ -86,9 +86,10 @@ PD_SwitchUseFeedFetchOps(config, false);
 * `PD_UINT8`: 8位无符号整型
 
 #### 代码示例
-首先可以新建一个`PD_ZeroCopyTensor`的指针。
+首先可以新建一个`PD_ZeroCopyTensor`。
 ``` C
-PD_ZeroCopyTensor* input = PD_NewZeroCopyTensor();
+PD_ZeroCopyTensor input;
+PD_InitZeroCopyTensor(&input);
 ```
 调用设置`PD_ZeroCopyTensor`的数据类型的方式如下: 
 ``` C
@@ -115,7 +116,7 @@ input.data.length = input.data.capacity;
 input.data.data = malloc(input.data.capacity);
 // 设置数据的输入的形状 shape
 int shape[] = {1, 3, 300, 300};
-input.shape.data = static_cast<int *>(shape);
+input.shape.data = (int *)shape;
 input.shape.capacity = sizeof(shape);
 input.shape.length = sizeof(shape);
 // 设置输入数据的类型
@@ -164,7 +165,7 @@ input.data.length = input.data.capacity;
 input.data.data = malloc(input.data.capacity);
 // 设置数据的输入的形状(shape)
 int shape[] = {1, 3, 300, 300};
-input.shape.data = static_cast<int *>(shape);
+input.shape.data = (int *)shape;
 input.shape.capacity = sizeof(shape);
 input.shape.length = sizeof(shape);
 // 设置输入数据的类型
@@ -245,7 +246,7 @@ int main() {
 
     // 设置数据的输入的形状(shape)
     int shape[] = {1, 3, 318, 318};
-    input.shape.data = (int *)(shape);
+    input.shape.data = (int *)shape;
     input.shape.capacity = sizeof(shape);
     input.shape.length = sizeof(shape);
     // 设置输入数据的类型
