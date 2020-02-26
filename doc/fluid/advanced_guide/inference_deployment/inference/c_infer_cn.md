@@ -133,8 +133,8 @@ input.dtype = PD_FLOAT32;
 * `int PD_GetOutputNum(const PD_Predictor* predictor)`: 获取模型输出的个数。
 * `const char* PD_GetInputName(const PD_Predictor* predictor, int n)`: 获取模型第`n`个输入的名称。
 * `const char* PD_GetOutputName(const PD_Predictor* predictor, int n)`: 获取模型第`n`个输出的名称。
-* `void PD_SetZeroCopyInput(PD_Predictor* predictor, const PD_ZeroCopyTensor* tensor)`: 使用`PD_ZeroCopyTensor`数据结构设置模型输入的具体值、形状、lod等信息。
-* `void PD_GetZeroCopyOutput(PD_Predictor* predictor, PD_ZeroCopyTensor* tensor)`: 使用`PD_ZeroCopyTensor`数据结构获取模型输出的具体值、形状、lod等信息。
+* `void PD_SetZeroCopyInput(PD_Predictor* predictor, const PD_ZeroCopyTensor* tensor)`: 使用`PD_ZeroCopyTensor`数据结构设置模型输入的具体值、形状、lod等信息。目前只支持一阶lod。
+* `void PD_GetZeroCopyOutput(PD_Predictor* predictor, PD_ZeroCopyTensor* tensor)`: 使用`PD_ZeroCopyTensor`数据结构获取模型输出的具体值、形状、lod等信息。目前只支持一阶lod。
 * `void PD_ZeroCopyRun(PD_Predictor* predictor)`: 运行预测的引擎，完成模型由输入到输出的计算。
 
 #### 代码示例
