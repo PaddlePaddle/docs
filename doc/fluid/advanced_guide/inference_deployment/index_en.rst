@@ -10,4 +10,4 @@ Deploy Inference Model
     :hidden:
 
     inference/index_en.rst 
-    paddleslim/paddle_slim_en.md
+    paddleslim/paddle_slim_en.rst
