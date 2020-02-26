@@ -1,6 +1,6 @@
 .. _install_or_build_cpp_inference_lib_en:
 
-Install and Compile C++ Inference Library
+Install and Compile C++ Inference Library on Linux
 =============================================
 
 Direct Download and Installation
