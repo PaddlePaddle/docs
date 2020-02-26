@@ -61,11 +61,11 @@ API详细使用方法参考 :ref:`cn_api_fluid_ParallelExecutor` ，简单实例
 提高数据IO速度
 ==========
 
-要提高CPU分布式的数据IO速度，可以首先考虑使用dataset API进行IO。 dataset是一种多生产者多消费者模式的数据读取方法，默认情况下耦合数据读取线程与训练线程，在多线程的训练中，dataset表现出极高的性能优势。
+要提高CPU分布式的数据IO速度，可以首先考虑使用dataset API进行数据读取。 dataset是一种多生产者多消费者模式的数据读取方法，默认情况下耦合数据读取线程与训练线程，在多线程的训练中，dataset表现出极高的性能优势。
 
 API接口介绍可以参考：https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dataset_cn/QueueDataset_cn.html
 
-结合实际的网络，比如CTR-DNN模型，引入的方法可以参考：https://github.com/PaddlePaddle/models/tree/release/1.7/PaddleRec/ctr/dnn#dataset数据读取
+结合实际的网络，比如CTR-DNN模型，引入的方法可以参考：https://github.com/PaddlePaddle/models/tree/release/1.7/PaddleRec/ctr/dnn
 
 最后使用 :code:`train_from_dataset` 接口来进行网络的训练：
 
@@ -91,7 +91,7 @@ CPU分布式训练速度进一步提高的核心在于选择合适的分布式�
     from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler.distributed_strategy_factory import DistributedStrategyFactory
 
 然后指定CPU分布式运行的训练策略，目前可选配置有四种：同步训练（Sync）、异步训练（Async）、半异步训练（Half-Async）以及GEO训练。不同策略的细节，可以查看设计文档：
-https://github.com/PaddlePaddle/Fleet/blob/develop/markdown_doc/transpiler/transpiler_cpu.md#paddlepaddle-fluid-cpu分布式训练transplier使用指南
+https://github.com/PaddlePaddle/Fleet/blob/develop/markdown_doc/transpiler/transpiler_cpu.md
 
 通过如下代码引入上述策略的默认配置，并进行CPU分布式训练：
 
