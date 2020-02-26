@@ -6,6 +6,8 @@
 WeightNormParamAttr
 -------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.WeightNormParamAttr
     :members:
     :inherited-members:

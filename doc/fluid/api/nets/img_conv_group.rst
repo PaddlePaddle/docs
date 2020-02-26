@@ -6,6 +6,8 @@
 img_conv_group
 --------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.nets.img_conv_group
     :noindex:
 

@@ -6,6 +6,8 @@
 CompiledProgram
 ---------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.CompiledProgram
     :members:
     :inherited-members:

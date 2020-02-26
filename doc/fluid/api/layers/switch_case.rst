@@ -6,6 +6,8 @@
 switch_case
 -----------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.switch_case
     :noindex:
 

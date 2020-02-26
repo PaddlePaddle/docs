@@ -6,6 +6,8 @@
 memory_optimize
 ---------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.memory_optimize
     :noindex:
 

@@ -6,6 +6,8 @@
 while_loop
 ----------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.while_loop
     :noindex:
 

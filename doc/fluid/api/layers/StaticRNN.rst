@@ -6,6 +6,8 @@
 StaticRNN
 ---------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.layers.StaticRNN
     :members:
     :inherited-members:

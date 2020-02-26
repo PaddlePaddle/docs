@@ -6,6 +6,8 @@
 GRUCell
 -------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.layers.GRUCell
     :members:
     :inherited-members:

@@ -6,6 +6,8 @@
 create_py_reader_by_data
 ------------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.create_py_reader_by_data
     :noindex:
 

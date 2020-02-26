@@ -6,6 +6,8 @@
 ExponentialMovingAverage
 ------------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.optimizer.ExponentialMovingAverage
     :members:
     :inherited-members:

@@ -6,6 +6,8 @@
 HashName
 --------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.transpiler.HashName
     :members:
     :inherited-members:

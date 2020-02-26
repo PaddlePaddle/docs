@@ -6,6 +6,8 @@
 save_vars
 ---------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.io.save_vars
     :noindex:
 

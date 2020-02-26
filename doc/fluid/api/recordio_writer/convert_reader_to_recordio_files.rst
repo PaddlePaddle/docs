@@ -6,6 +6,8 @@
 convert_reader_to_recordio_files
 --------------------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.recordio_writer.convert_reader_to_recordio_files
     :noindex:
 

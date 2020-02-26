@@ -6,6 +6,8 @@
 ModelAverage
 ------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.optimizer.ModelAverage
     :members:
     :inherited-members:
