@@ -3,6 +3,8 @@
 save_dygraph
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:function:: paddle.fluid.dygraph.save_dygraph(state_dict, model_path)
 
 该接口将传入的参数或优化器的 ``dict`` 保存到磁盘上。
@@ -12,7 +14,7 @@ save_dygraph
 注： ``model_path`` 不可以是一个目录。
 
 该接口会根据 ``state_dict`` 的内容，自动给 ``model_path`` 添加 ``.pdparams`` 或者 ``.pdopt`` 后缀，
-生成 ``model_path + ".pdparms"`` 或者 ``model_path + ".pdopt"`` 文件。
+生成 ``model_path + ".pdparams"`` 或者 ``model_path + ".pdopt"`` 文件。
 
 参数:
  - **state_dict**  (dict of Parameters) – 要保存的模型参数的 ``dict`` 。
@@ -27,17 +29,15 @@ save_dygraph
     import paddle.fluid as fluid
 
     with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding( "emb", [10, 10])
+        emb = fluid.dygraph.Embedding(
+            size=[10, 32],
+            param_attr='emb.w',
+            is_sparse=False)
         state_dict = emb.state_dict()
         fluid.save_dygraph(state_dict, "paddle_dy")  # 会保存为 paddle_dy.pdparams
 
-        adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000) )
+        adam = fluid.optimizer.Adam(
+            learning_rate=fluid.layers.noam_decay(100, 10000),
+            parameter_list = emb.parameters())
         state_dict = adam.state_dict()
         fluid.save_dygraph(state_dict, "paddle_dy")  # 会保存为 paddle_dy.pdopt
-    
-    
-
-
-
-
-

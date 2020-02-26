@@ -1,17 +1,14 @@
-.. raw:: html
-   
-    <style> .red {color:red; font-weight:bold} </style>
-
-.. role:: red
-
 .. _cn_api_fluid_layers_sequence_softmax:
 
 sequence_softmax
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.sequence_softmax(input, use_cudnn=False, name=None)
 
-:red:`注意：该OP的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用`  :ref:`cn_api_fluid_layers_softmax` 
+.. note::
+    该OP的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用 :ref:`cn_api_fluid_layers_softmax`
 
 该OP根据LoD信息将输入的第0维度进行划分，在划分的每一个区间内部进行运算。
 

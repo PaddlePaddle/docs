@@ -15,63 +15,14 @@ Tensor用于表示多维张量，可以通过 ``np.array(tensor)`` 方法转换�
 
       t = fluid.Tensor()
 
-.. py:method::  set(*args, **kwargs)
+.. py:method::  set(array, place, zero_copy=False)
 
 该接口根据输入的numpy array和设备place，设置Tensor的数据。
-
-重载函数：
-
-1. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float32], place: paddle::platform::CPUPlace) -> None
-
-2. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int32], place: paddle::platform::CPUPlace) -> None
-
-3. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float64], place: paddle::platform::CPUPlace) -> None
-
-4. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int64], place: paddle::platform::CPUPlace) -> None
-
-5. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[bool], place: paddle::platform::CPUPlace) -> None
-
-6. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint16], place: paddle::platform::CPUPlace) -> None
-
-7. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint8], place: paddle::platform::CPUPlace) -> None
-
-8. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int8], place: paddle::platform::CPUPlace) -> None
-
-9. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float32], place: paddle::platform::CUDAPlace) -> None
-
-10. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int32], place: paddle::platform::CUDAPlace) -> None
-
-11. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float64], place: paddle::platform::CUDAPlace) -> None
-
-12. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int64], place: paddle::platform::CUDAPlace) -> None
-
-13. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[bool], place: paddle::platform::CUDAPlace) -> None
-
-14. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint16], place: paddle::platform::CUDAPlace) -> None
-
-15. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint8], place: paddle::platform::CUDAPlace) -> None
-
-16. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int8], place: paddle::platform::CUDAPlace) -> None
-
-17. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float32], place: paddle::platform::CUDAPinnedPlace) -> None
-
-18. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int32], place: paddle::platform::CUDAPinnedPlace) -> None
-
-19. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[float64], place: paddle::platform::CUDAPinnedPlace) -> None
-
-20. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int64], place: paddle::platform::CUDAPinnedPlace) -> None
-
-21. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[bool], place: paddle::platform::CUDAPinnedPlace) -> None
-
-22. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint16], place: paddle::platform::CUDAPinnedPlace) -> None
-
-23. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[uint8], place: paddle::platform::CUDAPinnedPlace) -> None
-
-24. set(self: paddle.fluid.core_avx.Tensor, array: numpy.ndarray[int8], place: paddle::platform::CUDAPinnedPlace) -> None
 
 参数：
     - **array** (numpy.ndarray) - 要设置的numpy array，支持的数据类型为bool, float32, float64, int8, int32, int64, uint8, uint16。
     - **place** (CPUPlace|CUDAPlace|CUDAPinnedPlace) - 要设置的Tensor所在的设备。
+    - **zero_copy** (bool，可选) - 是否与输入的numpy数组共享内存。此参数仅适用于CPUPlace。默认值为False。
 
 返回：无。
 

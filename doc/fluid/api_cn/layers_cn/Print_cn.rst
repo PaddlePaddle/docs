@@ -3,7 +3,9 @@
 Print
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.Print(input, first_n=-1, message=None, summarize=-1, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
+**注意：该API仅支持【静态图】模式**
+
+.. py:function:: paddle.fluid.layers.Print(input, first_n=-1, message=None, summarize=20, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
 
 **Print操作命令**
 
@@ -13,7 +15,7 @@ Print
 
 参数：
     - **input** (Variable)-将要打印的Tensor
-    - **summarize** (int)-打印Tensor中的元素数目，如果值为-1则打印所有元素
+    - **summarize** (int)-打印Tensor中的元素数目，如果值为-1则打印所有元素。默认值为20
     - **message** (str)-打印Tensor信息前自定义的字符串类型消息，作为前缀打印
     - **first_n** (int)-打印Tensor的次数
     - **print_tensor_name** (bool)-可选，指明是否打印Tensor名称，默认为True

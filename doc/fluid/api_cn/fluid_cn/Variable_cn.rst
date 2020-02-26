@@ -59,14 +59,14 @@ Variable
 
      import paddle.fluid as fluid
      from paddle.fluid.dygraph.base import to_variable
-     from paddle.fluid.dygraph import FC
+     from paddle.fluid.dygraph import Linear
      import numpy as np
 
      data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
      with fluid.dygraph.guard():
-           fc = FC("fc", 64, num_flatten_dims=2)
+           linear = Linear(32, 64)
            data = to_variable(data)
-           x = fc(data)
+           x = linear(data)
            y = x.detach()
 
 .. py:method:: numpy()
@@ -87,14 +87,14 @@ Variable
 
     import paddle.fluid as fluid
     from paddle.fluid.dygraph.base import to_variable
-    from paddle.fluid.dygraph import FC
+    from paddle.fluid.dygraph import Linear
     import numpy as np
 
     data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
     with fluid.dygraph.guard():
-        fc = FC("fc", 64, num_flatten_dims=2)
+        linear = Linear(32, 64)
         data = to_variable(data)
-        x = fc(data)
+        x = linear(data)
         print(x.numpy())
 
 .. py:method:: set_value()
@@ -118,17 +118,17 @@ Variable
 
         import paddle.fluid as fluid
         from paddle.fluid.dygraph.base import to_variable
-        from paddle.fluid.dygraph import FC
+        from paddle.fluid.dygraph import Linear
         import numpy as np
 
-        data = np.ones([3, 32, 32], dtype='float32')
+        data = np.ones([3, 1024], dtype='float32')
         with fluid.dygraph.guard():
-            fc = fluid.dygraph.FC("fc", 4)
+            linear = fluid.dygraph.Linear(1024, 4)
             t = to_variable(data)
-            fc(t)  # 使用默认参数值调用前向
+            linear(t)  # 使用默认参数值调用前向
             custom_weight = np.random.randn(1024, 4).astype("float32")
-            fc.weight.set_value(custom_weight)  # 将参数修改为自定义的值
-            out = fc(t)  # 使用新的参数值调用前向
+            linear.weight.set_value(custom_weight)  # 将参数修改为自定义的值
+            out = linear(t)  # 使用新的参数值调用前向
 
 .. py:method:: backward()
 
@@ -178,9 +178,9 @@ Variable
 
 获取该 :ref:`api_guide_Variable` 的梯度值
 
-返回：该 :ref:`api_guide_Variable` 的梯度 ``ndarray`` 值
+返回：如果 :ref:`api_guide_Variable` 的类型是LoDTensor（参见 :ref:`cn_user_guide_lod_tensor` ），返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值；如果 :ref:`api_guide_Variable` 的类型是SelectedRows，返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值和类型为 ``ndarray`` 的词id组成的tuple。
 
-返回类型：``ndarray``
+返回类型：``ndarray`` 或者 ``tuple of ndarray`` , 返回类型 ``tuple of ndarray`` 仅在 :ref:`cn_api_fluid_dygraph_Embedding` 层稀疏更新时产生。
 
 
 **示例代码**
@@ -189,6 +189,7 @@ Variable
         import paddle.fluid as fluid
         import numpy as np
 
+        # example1: 返回ndarray
         x = np.ones([2, 2], np.float32)
         with fluid.dygraph.guard():
             inputs2 = []
@@ -202,6 +203,19 @@ Variable
             backward_strategy.sort_sum_gradient = True
             loss2.backward(backward_strategy)
             print(loss2.gradient())
+
+        # example2: 返回tuple of ndarray
+        with fluid.dygraph.guard():
+            embedding = fluid.dygraph.Embedding(
+                size=[20, 32],
+                param_attr='emb.w',
+                is_sparse=True)
+            x_data = np.arange(12).reshape(4, 3).astype('int64')
+            x_data = x_data.reshape((-1, 3, 1))
+            x = fluid.dygraph.base.to_variable(x_data)
+            out = embedding(x)
+            out.backward()
+            print(embedding.weight.gradient())
 
 .. py:method:: clear_gradient()
 
@@ -339,18 +353,18 @@ Variable
             value0 = np.arange(26).reshape(2, 13).astype("float32")
             value1 = np.arange(6).reshape(2, 3).astype("float32")
             value2 = np.arange(10).reshape(2, 5).astype("float32")
-            fc = fluid.FC("fc1", size=5, dtype="float32")
-            fc2 = fluid.FC("fc2", size=3, dtype="float32")
+            linear = fluid.Linear(13, 5, dtype="float32")
+            linear2 = fluid.Linear(3, 3, dtype="float32")
             a = fluid.dygraph.to_variable(value0)
             b = fluid.dygraph.to_variable(value1)
             c = fluid.dygraph.to_variable(value2)
-            out1 = fc(a)
-            out2 = fc2(b)
+            out1 = linear(a)
+            out2 = linear2(b)
             out1.stop_gradient = True
             out = fluid.layers.concat(input=[out1, out2, c], axis=1)
             out.backward()
-            # 可以发现这里fc的参数变成了
-            assert (fc._w.gradient() == 0).all()
+            # 可以发现这里linear的参数变成了
+            assert (linear.weight.gradient() == 0).all()
             assert (out1.gradient() == 0).all()
 
 .. py:attribute:: persistable

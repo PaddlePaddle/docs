@@ -3,6 +3,8 @@
 load_dygraph
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:function:: paddle.fluid.dygraph.load_dygraph(model_path)
 
 该接口尝试从磁盘中加载参数或优化器的 ``dict`` 。
@@ -27,12 +29,12 @@ load_dygraph
     import paddle.fluid as fluid
 
     with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding( "emb", [10, 10])
+        emb = fluid.dygraph.Embedding([10, 10])
         state_dict = emb.state_dict()
         fluid.save_dygraph( state_dict, "paddle_dy")
         adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000) )
         state_dict = adam.state_dict()
-        fluid.save_dygraph( state_dict, "padle_dy")
+        fluid.save_dygraph( state_dict, "paddle_dy")
 
         para_state_dict, opti_state_dict = fluid.load_dygraph( "paddle_dy")
 

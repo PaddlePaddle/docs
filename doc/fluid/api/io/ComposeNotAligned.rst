@@ -11,3 +11,4 @@ ComposeNotAligned
     :inherited-members:
     :noindex:
 
+This indicates an error state of compose API, which will raise when outputs of readers are not aligned.

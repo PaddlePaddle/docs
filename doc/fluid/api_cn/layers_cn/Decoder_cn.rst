@@ -4,6 +4,8 @@ Decoder
 -------------------------------
 
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.layers.Decoder()
 
     

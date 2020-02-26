@@ -11,7 +11,7 @@ noam衰减的numpy实现如下：
 
 .. code-block:: python
 
-    import padde.fluid as fluid
+    import paddle.fluid as fluid
     import numpy as np
     # 设置超参数
     d_model = 2
@@ -36,7 +36,7 @@ noam衰减的numpy实现如下：
 
 .. code-block:: python
 
-        import padde.fluid as fluid
+        import paddle.fluid as fluid
         warmup_steps = 100
         learning_rate = 0.01
         lr = fluid.layers.learning_rate_scheduler.noam_decay(

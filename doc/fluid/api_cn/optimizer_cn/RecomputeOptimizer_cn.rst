@@ -3,6 +3,8 @@
 RecomputeOptimizer
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.optimizer.RecomputeOptimizer(optimizer)
 
 通常来讲，一个深度学习的训练流程包含了三个子步骤：首先，运行前向算子来计算Variable和loss的值；其次，运行反向算子来计算参数的梯度；最后，应用优化算法以更新参数值。
@@ -150,12 +152,12 @@ RecomputeOptimizer
 带checkpoint的backward函数
 
 参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **callbacks** (list|None) – 当为某参数附加反向算子时所要运行的callables组成的列表
-    - **checkpoints** (list|None) – 一批作为checkpoints的Variables
+    - **loss** (Variable) – 需要最小化的损失值变量
+    - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
+    - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
+    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的的集合，默认值为None
+    - **callbacks** (list, 可选) – 当为某参数附加反向算子时所要运行的callables组成的列表
+    - **checkpoints** (list, 可选) – 一批作为checkpoints的Variables
 
 返回：  由(param, grad)对构成的列表，其中param是参数，grad是其对应的梯度
 

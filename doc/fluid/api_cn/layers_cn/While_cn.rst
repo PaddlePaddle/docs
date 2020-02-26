@@ -3,11 +3,16 @@
 While
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.layers.While (cond, is_test=False, name=None)
 
 
 该类用于实现while循环控制功能，只要循环条件cond为True，就循环执行while循环体中的语句，直到cond为False为止。
 
+.. note::
+    如果参数 ``cond`` 的形状为[1]，强烈建议您使用新的OP :ref:`cn_api_fluid_layers_while_loop` 而不是 ``While``。
+    OP :ref:`cn_api_fluid_layers_while_loop` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``While`` 一样。
 
 参数：
     - **cond** (Variable) – 用于判断循环继续进行的条件，为数据类型bool型的Tensor，其shape必须为[1]。

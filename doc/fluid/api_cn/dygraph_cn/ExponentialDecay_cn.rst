@@ -3,6 +3,8 @@
 ExponentialDecay
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:class:: paddle.fluid.dygraph.ExponentialDecay(learning_rate, decay_steps, decay_rate, staircase=False, begin=0, step=1, dtype=’float32‘)
 
 该接口提供一种学习率按指数函数衰减的功能。

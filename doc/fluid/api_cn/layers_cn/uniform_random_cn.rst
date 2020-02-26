@@ -16,7 +16,7 @@ uniform_random
                  result=[[0.8505902, 0.8397286]]
 
 参数：
-    - **shape** (list|tuple|Variable)-输出Tensor的维度，shape类型支持list，tuple，Variable。如果shape类型是list或者tuple，它的元素可以是整数或者形状为[1]的Tensor，其中整数的数据类型为int，Tensor的数据类型为int64。如果shape的类型是Variable，则是1D的Tensor，Tensor的数据类型为int64。
+    - **shape** (list|tuple|Variable)-输出Tensor的维度，shape类型支持list，tuple，Variable。如果shape类型是list或者tuple，它的元素可以是整数或者形状为[1]的Tensor，其中整数的数据类型为int，Tensor的数据类型为int32或int64。如果shape的类型是Variable，则是1D的Tensor，Tensor的数据类型为int32或int64。
     - **dtype** (np.dtype|core.VarDesc.VarType|str，可选) – 输出Tensor的数据类型，支持float32（默认）， float64。
     - **min** (float，可选)-要生成的随机值范围的下限，min包含在范围中。支持的数据类型：float。默认值为-1.0。
     - **max** (float，可选)-要生成的随机值范围的上限，max不包含在范围中。支持的数据类型：float。默认值为1.0。
@@ -46,16 +46,22 @@ uniform_random
         # example 2:
         # attr shape is a list which contains tensor Variable.
         dim_1 = fluid.layers.fill_constant([1],"int64",3)
-        result_2 = fluid.layers.uniform_random(shape=[dim_1, 5])
+        dim_2 = fluid.layers.fill_constant([1],"int32",5)
+        result_2 = fluid.layers.uniform_random(shape=[dim_1, dim_2])
 
         # example 3:
-        # attr shape is a Variable, the data type must be int64
-        var_shape = fluid.data(name='var_shape', shape=[2])
+        # attr shape is a Variable, the data type must be int32 or int64
+        var_shape = fluid.data(name='var_shape', shape=[2], dtype="int64")
         result_3 = fluid.layers.uniform_random(var_shape)
+        var_shape_int32 = fluid.data(name='var_shape_int32', shape=[2], dtype="int32")
+        result_4 = fluid.layers.uniform_random(var_shape_int32)
+        shape_1 = np.array([3,4]).astype("int64")
+        shape_2 = np.array([3,4]).astype("int32")
 
         exe = fluid.Executor(fluid.CPUPlace())
         exe.run(startup_program)
-        outs = exe.run(train_program, feed = {'var_shape':np.array([3,4])}, fetch_list=[result_1, result_2, result_3])
+        outs = exe.run(train_program, feed = {'var_shape':shape_1, 'var_shape_int32':shape_2}, 
+                       fetch_list=[result_1, result_2, result_3, result_4])
 
 
 

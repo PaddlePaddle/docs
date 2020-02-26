@@ -3,6 +3,8 @@
 gru_unit
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.gru_unit(input, hidden, size, param_attr=None, bias_attr=None, activation='tanh', gate_activation='sigmoid', origin_mode=False)
 
 Gated Recurrent Unit（GRU）循环神经网络计算单元。该OP用于完成单个时间步内GRU的计算，支持以下两种计算方式：
@@ -57,12 +59,12 @@ Gated Recurrent Unit（GRU）循环神经网络计算单元。该OP用于完成�
     import paddle.fluid as fluid
 
     dict_dim, emb_dim = 128, 64
-    data = fluid.layers.data(name='step_data', shape=[1], dtype='int32')
-    emb = fluid.layers.embedding(input=data, size=[dict_dim, emb_dim])
+    data = fluid.data(name='step_data', shape=[None], dtype='int64')
+    emb = fluid.embedding(input=data, size=[dict_dim, emb_dim])
     hidden_dim = 512
     x = fluid.layers.fc(input=emb, size=hidden_dim * 3)
-    pre_hidden = fluid.layers.data(
-        name='pre_hidden', shape=[hidden_dim], dtype='float32')
+    pre_hidden = fluid.data(
+        name='pre_hidden', shape=[None, hidden_dim], dtype='float32')
     hidden = fluid.layers.gru_unit(
         input=x, hidden=pre_hidden, size=hidden_dim * 3)
 

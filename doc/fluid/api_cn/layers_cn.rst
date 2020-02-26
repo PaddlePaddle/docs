@@ -41,6 +41,7 @@ fluid.layers
     layers_cn/bpr_loss_cn.rst
     layers_cn/brelu_cn.rst
     layers_cn/BeamSearchDecoder_cn.rst
+    layers_cn/case_cn.rst
     layers_cn/cast_cn.rst
     layers_cn/Categorical_cn.rst
     layers_cn/ceil_cn.rst
@@ -50,6 +51,7 @@ fluid.layers
     layers_cn/clip_cn.rst
     layers_cn/collect_fpn_proposals_cn.rst
     layers_cn/concat_cn.rst
+    layers_cn/cond_cn.rst
     layers_cn/continuous_value_model_cn.rst
     layers_cn/conv2d_cn.rst
     layers_cn/conv2d_transpose_cn.rst
@@ -74,7 +76,6 @@ fluid.layers
     layers_cn/deformable_conv_cn.rst
     layers_cn/deformable_roi_pooling_cn.rst
     layers_cn/density_prior_box_cn.rst
-    layers_cn/detection_map_cn.rst
     layers_cn/detection_output_cn.rst
     layers_cn/diag_cn.rst
     layers_cn/dice_loss_cn.rst
@@ -100,8 +101,10 @@ fluid.layers
     layers_cn/elu_cn.rst
     layers_cn/embedding_cn.rst
     layers_cn/equal_cn.rst
+    layers_cn/erf_cn.rst
     layers_cn/exp_cn.rst
     layers_cn/expand_cn.rst
+    layers_cn/expand_as_cn.rst
     layers_cn/exponential_decay_cn.rst
     layers_cn/eye_cn.rst
     layers_cn/fc_cn.rst
@@ -116,6 +119,7 @@ fluid.layers
     layers_cn/gather_tree_cn.rst
     layers_cn/gaussian_random_batch_size_like_cn.rst
     layers_cn/gaussian_random_cn.rst
+    layers_cn/gelu_cn.rst
     layers_cn/generate_mask_labels_cn.rst
     layers_cn/generate_proposal_labels_cn.rst
     layers_cn/generate_proposals_cn.rst
@@ -169,6 +173,7 @@ fluid.layers
     layers_cn/lstm_unit_cn.rst
     layers_cn/LSTMCell_cn.rst
     layers_cn/margin_rank_loss_cn.rst
+    layers_cn/masked_select_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
     layers_cn/mean_cn.rst
@@ -202,6 +207,7 @@ fluid.layers
     layers_cn/prelu_cn.rst
     layers_cn/Print_cn.rst
     layers_cn/prior_box_cn.rst
+    layers_cn/prroi_pool_cn.rst
     layers_cn/psroi_pool_cn.rst
     layers_cn/py_func_cn.rst
     layers_cn/py_reader_cn.rst
@@ -294,6 +300,7 @@ fluid.layers
     layers_cn/sums_cn.rst
     layers_cn/swish_cn.rst
     layers_cn/Switch_cn.rst
+    layers_cn/switch_case_cn.rst
     layers_cn/tanh_cn.rst
     layers_cn/tanh_shrink_cn.rst
     layers_cn/target_assign_cn.rst
@@ -314,6 +321,7 @@ fluid.layers
     layers_cn/warpctc_cn.rst
     layers_cn/where_cn.rst
     layers_cn/While_cn.rst
+    layers_cn/while_loop_cn.rst
     layers_cn/yolo_box_cn.rst
     layers_cn/yolov3_loss_cn.rst
     layers_cn/zeros_cn.rst

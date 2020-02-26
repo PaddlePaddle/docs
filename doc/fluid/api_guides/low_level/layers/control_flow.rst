@@ -13,6 +13,7 @@ IfElse
 
 请参考 :ref:`cn_api_fluid_layers_IfElse`            
 
+**注意：** 强烈建议您使用新的OP :ref:`cn_api_fluid_layers_cond` 而不是 ``IfElse``。:ref:`cn_api_fluid_layers_cond` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``IfElse`` 一样。
 
 Switch
 ======
@@ -25,6 +26,8 @@ Switch
 
 请参考 :ref:`cn_api_fluid_layers_Switch`
 
+**注意：** 强烈建议您使用新的OP :ref:`cn_api_fluid_layers_case` 而不是 ``Switch``。 :ref:`cn_api_fluid_layers_case` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``Switch`` 一样。
+
 While
 =====
 
@@ -35,6 +38,8 @@ While 循环，当条件判断为真时，循环执行 :code:`While` 控制流�
 * :ref:`cn_api_fluid_layers_array_write` ：将 Variable 写回到 :code:`LOD_TENSOR_ARRAY` 指定的位置，存储计算结果。
 
 请参考 :ref:`cn_api_fluid_layers_While`
+
+**注意：** 强烈建议您使用新的OP :ref:`cn_api_fluid_layers_while_loop` 而不是 ``While``。 :ref:`cn_api_fluid_layers_while_loop` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``While`` 一样。
 
 DynamicRNN
 ==========

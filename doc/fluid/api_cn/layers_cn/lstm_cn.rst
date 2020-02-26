@@ -3,15 +3,12 @@
 lstm
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function::  paddle.fluid.layers.lstm(input, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=0.0, is_bidirec=False, is_test=False, name=None, default_initializer=None, seed=-1)
 
-.. raw:: html
-
-    <style> .red {color:red; font-weight:bold} </style>
-
-.. role:: red
-
-:red:`注意：该OP仅支持 GPU 设备运行`
+.. note::
+    该OP仅支持 GPU 设备运行
 
 该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf>`_。
 

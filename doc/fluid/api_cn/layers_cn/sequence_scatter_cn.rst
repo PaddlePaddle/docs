@@ -1,17 +1,14 @@
-.. raw:: html
-
-    <style> .red {color:red; font-weight:bold} </style>
-
-.. role:: red
-
 .. _cn_api_fluid_layers_sequence_scatter:
 
 sequence_scatter
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.sequence_scatter(input, index, updates, name=None)
 
-:red:`注意：该OP的输入index，updates必须是LoDTensor。` 
+.. note::
+    该OP的输入index，updates必须是LoDTensor。
 
 该OP根据index提供的位置将updates中的信息更新到输出中。
 

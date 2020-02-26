@@ -3,6 +3,8 @@
 spectral_norm
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.spectral_norm(weight, dim=0, power_iters=1, eps=1e-12, name=None)
 
 **Spectral Normalization Layer**
@@ -31,18 +33,20 @@ spectral_norm
     - **dim** (int) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1，默认为0。
     - **power_iters** (int) - 将用于计算spectral norm的功率迭代次数，默认值1
     - **eps** (float) - epsilon用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零，默认1e-12
-    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
 
 返回：Variable(Tensor) 谱正则化后权重张量，维度与输入 ``weight`` 一致。
 
 返回类型：变量(Variable)，数据类型与输入 ``weight`` 一致。
 
-**代码示例**：
+**代码示例：**
 
 .. code-block:: python
 
-   weight = fluid.layers.data(name='weight', shape=[2, 8, 32, 32], append_batch_size=False, dtype='float32')
-   x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
+    import paddle.fluid as fluid
+
+    weight = fluid.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
+    x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
 
 
 

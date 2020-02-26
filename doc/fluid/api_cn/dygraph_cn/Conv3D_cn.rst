@@ -3,7 +3,7 @@
 Conv3D
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.Conv3D(name_scope, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None)
+.. py:class:: paddle.fluid.dygraph.Conv3D(num_channels, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, dtype="float32")
 
 
 该接口用于构建 ``Conv3D`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。3D卷积层（convolution3D layer）根据输入、滤波器（filter）、步长（stride）、填充（padding）、膨胀（dilations）、组数参数计算得到输出。输入和输出是[N, C, D, H, W]的多维tensor，其中N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。卷积三维（Convlution3D）和卷积二维（Convlution2D）相似，但多了一维深度（depth）。如果提供了bias属性和激活函数类型，bias会添加到卷积（convolution）的结果中相应的激活函数会作用在最终结果上。
@@ -42,7 +42,7 @@ Conv3D
     W_{out}&= \frac{(W_{in} + 2 * paddings[2] - (dilations[2] * (W_f - 1) + 1))}{strides[2]} + 1
 
 参数：
-    - **name_scope** (str) - 该类的名称。
+    - **num_channels** (int) - 输入图像的通道数。
     - **num_fliters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_D, filter_size_H, filter_size_W)。如果filter_size是一个int型，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
     - **stride** (int|tuple，可选) - 步长(stride)大小。滤波器和输入进行卷积计算时滑动的步长。如果步长（stride）为元组，则必须包含三个整型数， (stride_D, stride_H, stride_W)。否则，stride_D = stride_H = stride_W = stride。默认值为1。
@@ -53,6 +53,7 @@ Conv3D
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **use_cudnn** （bool，可选） - 是否用cudnn内核，只有安装Paddle GPU版时才有效。默认值为True。
     - **act** (str，可选) - 激活函数类型，如果设为None，则未添加激活函数。默认值为None。
+    - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
 
 返回：无

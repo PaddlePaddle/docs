@@ -36,6 +36,7 @@ fluid.layers
     layers/box_decoder_and_assign.rst
     layers/bpr_loss.rst
     layers/brelu.rst
+    layers/case.rst
     layers/cast.rst
     layers/Categorical.rst
     layers/ceil.rst
@@ -45,6 +46,7 @@ fluid.layers
     layers/clip_by_norm.rst
     layers/collect_fpn_proposals.rst
     layers/concat.rst
+    layers/cond.rst
     layers/continuous_value_model.rst
     layers/conv2d.rst
     layers/conv2d_transpose.rst
@@ -70,7 +72,6 @@ fluid.layers
     layers/deformable_conv.rst
     layers/deformable_roi_pooling.rst
     layers/density_prior_box.rst
-    layers/detection_map.rst
     layers/detection_output.rst
     layers/diag.rst
     layers/dice_loss.rst
@@ -95,8 +96,10 @@ fluid.layers
     layers/elu.rst
     layers/embedding.rst
     layers/equal.rst
+    layers/erf.rst
     layers/exp.rst
     layers/expand.rst
+    layers/expand_as.rst
     layers/exponential_decay.rst
     layers/eye.rst
     layers/fc.rst
@@ -111,6 +114,7 @@ fluid.layers
     layers/gather_tree.rst
     layers/gaussian_random.rst
     layers/gaussian_random_batch_size_like.rst
+    layers/gelu.rst
     layers/generate_mask_labels.rst
     layers/generate_proposal_labels.rst
     layers/generate_proposals.rst
@@ -150,6 +154,7 @@ fluid.layers
     layers/linear_lr_warmup.rst
     layers/linspace.rst
     layers/load.rst
+    layers/locality_aware_nms.rst
     layers/lod_append.rst
     layers/lod_reset.rst
     layers/log.rst
@@ -164,7 +169,6 @@ fluid.layers
     layers/lstm_unit.rst
     layers/LSTMCell.rst
     layers/margin_rank_loss.rst
-    layers/match_matrix_tensor.rst
     layers/matmul.rst
     layers/maxout.rst
     layers/mean.rst
@@ -174,7 +178,6 @@ fluid.layers
     layers/mul.rst
     layers/multi_box_head.rst
     layers/multiclass_nms.rst
-    layers/multiclass_nms2.rst
     layers/multiplex.rst
     layers/MultivariateNormalDiag.rst
     layers/natural_exp_decay.rst
@@ -292,6 +295,7 @@ fluid.layers
     layers/sums.rst
     layers/swish.rst
     layers/Switch.rst
+    layers/switch_case.rst
     layers/tanh.rst
     layers/tanh_shrink.rst
     layers/target_assign.rst
@@ -301,7 +305,6 @@ fluid.layers
     layers/thresholded_relu.rst
     layers/topk.rst
     layers/transpose.rst
-    layers/tree_conv.rst
     layers/unfold.rst
     layers/Uniform.rst
     layers/uniform_random.rst
@@ -310,10 +313,10 @@ fluid.layers
     layers/unique_with_counts.rst
     layers/unsqueeze.rst
     layers/unstack.rst
-    layers/var_conv_2d.rst
     layers/warpctc.rst
     layers/where.rst
     layers/While.rst
+    layers/while_loop.rst
     layers/yolo_box.rst
     layers/yolov3_loss.rst
     layers/zeros.rst

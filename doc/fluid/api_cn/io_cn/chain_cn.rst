@@ -5,9 +5,9 @@ chain
 
 .. py:function:: paddle.fluid.io.chain(*readers)
 
-创建一个数据读取器，其功能是将输入的多个数据读取器的输出链接在一起作为它的输出。
+该接口将多个数据读取器组成一个数据读取器，它依次返回多个数据读取器的输出数据，同时不改变输出数据原先的格式。
 
-举例来说，如果有3个输入读取器且输出分别为[0，0，0]、[10，10，10]和[20，20，20]，那么调用该接口产生的新数据读取器的输出为：[[0，0，0], [10，10，10], [20，20，20]] 。
+举例来说，如果有3个输入读取器且输出分别为[0，0，0]、[10，10，10]和[20，20，20]，那么调用该接口产生的新数据读取器的输出为[0，0，0], [10，10，10], [20，20，20]。
 
 参数：
     - **readers(list)** – 输入的数据读取器。
@@ -20,7 +20,7 @@ chain
 
 ..  code-block:: python
 
-    import paddle
+    import paddle.fluid as fluid
 
     def reader_creator_3(start):
         def reader():
@@ -28,7 +28,7 @@ chain
                 yield [i, i, i]
         return reader
 
-    c = paddle.reader.chain(reader_creator_3(0), reader_creator_3(10), reader_creator_3(20))
+    c = fluid.io.chain(reader_creator_3(0), reader_creator_3(10), reader_creator_3(20))
     for e in c():
         print(e)
     # 输出结果如下：

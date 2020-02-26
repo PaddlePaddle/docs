@@ -3,6 +3,8 @@
 PiecewiseDecay
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:class:: paddle.fluid.dygraph.PiecewiseDecay(boundaries, values, begin, step=1, dtype='float32')
 
 该接口提供对初始学习率进行分段(piecewise)常数衰减的功能。

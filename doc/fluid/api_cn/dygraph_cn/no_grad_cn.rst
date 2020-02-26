@@ -3,6 +3,8 @@
 no_grad
 -------------------------------
 
+**注意：该API仅支持【动态图】模式**
+
 .. py:method:: paddle.fluid.dygraph.no_grad(func)
 
 在动态图模式中，此装饰器将会避免 ``func`` 被装饰时创建反向传播网络。
@@ -21,11 +23,11 @@ no_grad
     @fluid.dygraph.no_grad
     def test_layer():
         with fluid.dygraph.guard():
-            inp = np.ones([3, 32, 32], dtype='float32')
+            inp = np.ones([3, 1024], dtype='float32')
             t = fluid.dygraph.base.to_variable(inp)
-            fc1 = fluid.FC('fc1', size=4, bias_attr=False, num_flatten_dims=1)
-            fc2 = fluid.FC('fc2', size=4)
-            ret = fc1(t)
-            dy_ret = fc2(ret)
+            linear1 = fluid.Linear(1024, 4, bias_attr=False)
+            linear2 = fluid.Linear(4, 4)
+            ret = linear1(t)
+            dy_ret = linear2(ret)
 
     test_layer()
