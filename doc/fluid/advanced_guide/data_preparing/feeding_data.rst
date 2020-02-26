@@ -4,7 +4,7 @@
 同步数据读取
 ##############
 
-PaddlePaddle Fluid支持使用 :code:`fluid.layers.data()` 配置数据层；
+PaddlePaddle Fluid支持使用 :code:`fluid.data()` 配置数据层；
 再使用 Numpy Array 或者直接使用Python创建C++的
 :code:`fluid.LoDTensor` , 通过 :code:`Executor.run(feed=...)` 传给
 :code:`fluid.Executor` 或 :code:`fluid.ParallelExecutor` 。
@@ -12,29 +12,25 @@ PaddlePaddle Fluid支持使用 :code:`fluid.layers.data()` 配置数据层；
 数据层配置
 ##########
 
-通过 :code:`fluid.layers.data()` 可以配置神经网络中需要的数据层。具体方法为:
+通过 :code:`fluid.data()` 可以配置神经网络中需要的数据层。具体方法为:
 
 .. code-block:: python
 
    import paddle.fluid as fluid
 
-   image = fluid.layers.data(name="image", shape=[3, 224, 224])
-   label = fluid.layers.data(name="label", shape=[1], dtype="int64")
+   image = fluid.data(name="image", shape=[3, 224, 224])
+   label = fluid.data(name="label", shape=[1], dtype="int64")
 
    # use image/label as layer input
    prediction = fluid.layers.fc(input=image, size=1000, act="softmax")
    loss = fluid.layers.cross_entropy(input=prediction, label=label)
    ...
 
-上段代码中，:code:`image` 和 :code:`label` 是通过 :code:`fluid.layers.data`
+上段代码中，:code:`image` 和 :code:`label` 是通过 :code:`fluid.data`
 创建的两个输入数据层。其中 :code:`image` 是 :code:`[3, 224, 224]` 维度的浮点数据;
 :code:`label` 是 :code:`[1]` 维度的整数数据。这里需要注意的是:
 
-1. Fluid中默认使用 :code:`-1` 表示 batch size 维度，默认情况下会在 :code:`shape`
-   的第一个维度添加 :code:`-1` 。 所以 上段代码中， 我们可以接受将一个
-   :code:`[32, 3, 224, 224]` 的numpy array传给 :code:`image` 。 如果想自定义batch size
-   维度的位置的话，请设置 :code:`fluid.layers.data(append_batch_size=False)` 。
-   请参考进阶使用中的 :ref:`user_guide_customize_batch_size_rank` 。
+1. Executor在执行的时候，会检查定义的数据层数据和feed的数据的 :code:`shape` 和 :code:`dtype` 是否一致，如果不一致，程序会报错退出。对于一些任务，在不同的轮数，数据的某些维度会变化，可以将维度的值设置为None，例如第0维会变化，可以将 :code:`shape` 设置为 :code:`[None, 100]` 。
 
 
 2. Fluid中用来做类别标签的数据类型是 :code:`int64`，并且标签从0开始。可用数据类型请参考 :ref:`user_guide_paddle_support_data_types`。
@@ -79,7 +75,7 @@ PaddlePaddle Fluid支持使用 :code:`fluid.layers.data()` 配置数据层；
 
 .. code-block:: python
 
-   sentence = fluid.layers.data(name="sentence", dtype="int64", shape=[1], lod_level=1)
+   sentence = fluid.data(name="sentence", dtype="int64", shape=[1], lod_level=1)
 
    ...
 
@@ -121,36 +117,6 @@ PaddlePaddle Fluid支持使用 :code:`fluid.layers.data()` 配置数据层；
    )
 
 上述代码中，GPU0会训练 32 个样本，而 GPU1训练 16 个样本。
-
-
-.. _user_guide_customize_batch_size_rank:
-
-自定义BatchSize维度
--------------------
-
-PaddlePaddle Fluid默认batch size是数据的第一维度，以 :code:`-1` 表示。但是在高级
-使用中，batch_size 可以固定，也可以是其他维度或者多个维度来表示。这都需要设置
-:code:`fluid.layers.data(append_batch_size=False)` 来完成。
-
-1. 固定batch size维度
-
-  .. code-block:: python
-
-     image = fluid.layers.data(name="image", shape=[32, 784], append_batch_size=False)
-
-  这里，:code:`image` 永远是一个 :code:`[32, 784]` 大小的矩阵。
-
-2. 使用其他维度表示batch size
-
-  .. code-block:: python
-
-     sentence = fluid.layers.data(name="sentence",
-                                  shape=[80, -1, 1],
-                                  append_batch_size=False,
-                                  dtype="int64")
-
-  这里 :code:`sentence` 的中间维度是batch size。这种数据排布会用在定长的循环神经
-  网络中。
 
 
 .. _user_guide_paddle_support_data_types:
