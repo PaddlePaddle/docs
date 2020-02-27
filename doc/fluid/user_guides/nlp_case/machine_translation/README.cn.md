@@ -608,7 +608,7 @@ for data in loader():
 ```txt
 Original sentence:
 A man in an orange hat starring at something .
-Translated score and sentence:
+Translated sentence:
 Ein Mann mit einem orangen Schutzhelm starrt auf etwas .
 Ein Mann mit einem gelben Schutzhelm starrt auf etwas .
 Ein Mann mit einem gelben Schutzhelm starrt etwas an .
