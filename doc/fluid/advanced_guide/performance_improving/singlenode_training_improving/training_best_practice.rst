@@ -13,7 +13,7 @@ PaddlePaddle Fluid可以支持在现代CPU、GPU平台上进行训练。如果�
 
 
 1. 网络构建过程中的配置优化
-=============
+==================
 
 这部分优化与具体的模型有关，在这里，我们列举出一些优化过程中遇到过的一些示例。
 
@@ -35,7 +35,8 @@ cuDNN是NVIDIA提供的深度神经网络计算库，其中包含了很多神经
                                bias_attr=None,
                                use_cudnn=True,
                                act=None,
-                               name=None)
+                               name=None,
+                               data_format="NCHW")
 
 在 :code:`use_cudnn=True` 时，框架底层调用的是cuDNN中的卷积操作。
 
@@ -70,7 +71,7 @@ Paddle提供一些粗粒度的API，这些API融合了多个细粒度API的计�
 - 数据读取部分：用户需要在Python端从磁盘中加载数据，然后将数据feed到Fluid的执行器中。
 - 数据预处理部分：用户需要在Python端进行数据预处理，比如图像任务通常需要进行数据增强、裁剪等。
 
-Fluid提供了两种数据读取方式：**同步数据读取** 和 **异步数据读取**，详情请参考文档 `如何准备数据 <http://paddlepaddle.org/documentation/docs/zh/1.5/user_guides/howto/prepare_data/index_cn.html>`_ 。
+Fluid提供了两种数据读取方式： **同步数据读取** :ref:`user_guide_use_numpy_array_as_train_data` 和 **异步数据读取** :ref:`user_guides_use_py_reader` ，详情请参考文档 :ref:`user_guide_prepare_data` 。
 
 2.1.1 同步数据读取
 >>>>>>>>>>>>>>>
@@ -134,7 +135,7 @@ Paddle里面使用py_reader接口来实现异步数据读取，代码示例如�
 执行调度器
 >>>>>>>>>>>>>>>
 
-..  csv-table:: 
+..  csv-table::
     :header: "执行器 ", "执行对象", "执行策略"
     :widths: 3, 3, 5
 
@@ -152,7 +153,7 @@ Paddle里面使用py_reader接口来实现异步数据读取，代码示例如�
 BuildStrategy配置选项
 >>>>>>>>>>>>>>>
 
-..  csv-table:: 
+..  csv-table::
     :header: "选项", "类型", "默认值", "说明"
     :widths: 3, 3, 3, 5
 
@@ -169,14 +170,14 @@ BuildStrategy配置选项
  - 关于 :code:`enable_backward_optimizer_op_deps` ，在多卡训练时，打开该选项可能会提升训练速度。
  - 关于 :code:`fuse_all_optimizer_ops` ，目前只支持SGD、Adam和Momentum算法。**注意：目前不支持sparse参数梯度** 。
  - 关于 :code:`fuse_all_reduce_ops` ，多GPU训练时，可以对 :code:`AllReduce` 操作进行融合，以减少 :code:`AllReduce` 的调用次数。默认情况下会将同一layer中参数的梯度的 :code:`AllReduce` 操作合并成一个，比如对于 :code:`fluid.layers.fc` 中有Weight和Bias两个参数，打开该选项之后，原本需要两次 :code:`AllReduce` 操作，现在只用一次 :code:`AllReduce` 操作。此外，为支持更大粒度的参数梯度融合，Paddle提供了 :code:`FLAGS_fuse_parameter_memory_size` 选项，用户可以指定融合AllReduce操作之后，每个 :code:`AllReduce` 操作的梯度字节数，比如希望每次 :code:`AllReduce` 调用传输64MB的梯度，:code:`export FLAGS_fuse_parameter_memory_size=64` 。**注意：目前不支持sparse参数梯度**。
- - 关于 :code:`mkldnn_enabled_op_types` ，支持mkldnn库的Op有：transpose, sum, softmax, requantize, quantize, pool2d, lrn, gaussian_random, fc, dequantize, conv2d_transpose, conv2d, conv3d, concat, batch_norm, relu, tanh, sqrt, abs. 
+ - 关于 :code:`mkldnn_enabled_op_types` ，支持mkldnn库的Op有：transpose, sum, softmax, requantize, quantize, pool2d, lrn, gaussian_random, fc, dequantize, conv2d_transpose, conv2d, conv3d, concat, batch_norm, relu, tanh, sqrt, abs.
 
 3.3 ExecutionStrategy中的配置参数
 ^^^^^^^^^^^^^^^^
 ExecutionStrategy配置选项
 >>>>>>>>>>>>>>>
 
-..  csv-table:: 
+..  csv-table::
     :header: "选项", "类型", "默认值", "说明"
     :widths: 3, 3, 5, 5
 
