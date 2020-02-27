@@ -56,12 +56,20 @@ blocks中包含：
 block的概念与通用程序一致，例如在下列这段C++代码中包含三个block：
 
 ``` cpp
-int main(){ //block 0
-	int i = 0;
-	if (i<10){ //block 1
-		for (int j=0;j<10;j++){ //block 2
-		}
+#include <iostream>
+
+int main() {
+	int x = 5; // block 0
+	int y = 4; // block 0
+	int out;   // block 0
+	
+	if (x < y) { // block 0
+	    out = 1; // block 1
+	} else {
+	    out = 0; // block 2
 	}
+	
+	std::cout << out << std::endl;
 	return 0;
 }
 ```
@@ -69,27 +77,20 @@ int main(){ //block 0
 类似的，在下列 Paddle 的 Program 包含3段block：
 
 ```python
-import paddle.fluid as fluid  # block 0
+import paddle.fluid as fluid
 
-limit = fluid.layers.fill_constant_batch_size_like(
-    input=label, dtype='int64', shape=[1], value=5.0)
-cond = fluid.layers.less_than(x=label, y=limit)
+x = fluid.data(name='x', shape=[1], dtype='int64') # block 0
+y = fluid.data(name='y', shape=[1], dtype='int64') # block 0
 
-ie = fluid.layers.IfElse(cond)
-with ie.true_block(): # block 1
-    true_image = ie.input(image)
-    hidden = fluid.layers.fc(input=true_image, size=100, act='tanh')
-    prob = fluid.layers.fc(input=hidden, size=10, act='softmax')
-    ie.output(prob)
+def true_block():
+    return fluid.layers.fill_constant(dtype='int64', value=1, shape=[1]) # block 1
+    
+def false_block():
+    return fluid.layers.fill_constant(dtype='int64', value=0, shape=[1]) # block 2
 
-with ie.false_block(): # block 2
-    false_image = ie.input(image)
-    hidden = fluid.layers.fc(
-        input=false_image, size=200, act='tanh')
-    prob = fluid.layers.fc(input=hidden, size=10, act='softmax')
-    ie.output(prob)
+condition = fluid.layers.less_than(x, y) # block 0
 
-prob = ie()
+out = fluid.layers.cond(condition, true_block, false_block) # block 0
 ```
 ### BlockDesc and ProgramDesc
 
