@@ -15,7 +15,7 @@ Release Notes
 
 **端到端开发套件**：PaddleDetection和PaddleSeg新增大量模型实现及预训练模型，典型模型的训练速度和精度提升，模型压缩和部署能力大幅提升，使用体验全面优化。发布ElasticRec推荐排序系统，通过K8S进行部署，支持流式训练和在线预测服务。
 
-**工具组件**：PaddleHub新增52个预训练模型，总数超过100，功能和体验持续优化；多任务学习框架PALM升级内核，开放API调用，支持更多的任务类型；联邦学习PaddleFL新增公开数据集。深度强化学习框架PARL和飞桨图学习框架PGL也对应版本升级，支持更多功能，k开放更多算法和基线。
+**工具组件**：PaddleHub新增52个预训练模型，总数超过100，功能和体验持续优化；多任务学习框架PALM升级内核，开放API调用，支持更多的任务类型；联邦学习PaddleFL新增公开数据集。深度强化学习框架PARL和飞桨图学习框架PGL也对应版本升级，支持更多功能，开放更多算法和基线。
 
 
 
@@ -53,7 +53,7 @@ Release Notes
 - 优化RecomputeOptimizer提升batchsize, 在Bert-large模型上最大batchsize比不使用RecomputeOptimizer增大533.62%，比上一版本提升一倍。
 - OP性能优化
 - 实现embedding和sequence_pool的融合算子fuse_emb_seq_pool，优化bloom_filter中的murmurhash3_x64_128，有效提升部分NLP模型的训练速度。
-- 优化了mean op的GPU性能，输入数据为32*32*8*8的Tensor时，前向计算速度提升2.7倍。
+- 优化了mean op的GPU性能，输入数据为32\*32\*8\*8的Tensor时，前向计算速度提升2.7倍。
 - 优化assign、lod_reset op，避免不需要的显存拷贝和data transform。
 - 优化了stack OP的kernel实现，XLnet/Ernie模型GPU单卡性能提升4.1%。
 - 动态图
@@ -351,3 +351,4 @@ Release Notes
 - 修复部分动态图模式下reshape、Conv2D相关的bug；修复网络中部分参数无梯度，导致程序crash 的bug。
 - 修复GradientClip在参数服务器模式下运行错误的BUG。
 - 修复参数服务器全异步模式下内存泄露的问题。
+

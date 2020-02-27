@@ -398,3 +398,4 @@ This version focuses on enhancement of the framework functions, includes improvi
 - Fix some bugs related to reshape and Conv2D depthwisecoin dynamic graph mode; fix the problem of some parameters in the network having no gradient, causing the bug of program crash.
 - Fix the bug of running error of GradientClip in parameter server mode.
 - Fix the problem of memory leak in full asynchronous mode of the parameter server.
+
