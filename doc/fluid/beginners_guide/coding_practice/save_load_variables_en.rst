@@ -126,8 +126,8 @@ In the above example, by calling the :code:`fluid.io.save_persistables` function
     path = "./models"
     startup_prog = fluid.default_startup_program()
     exe.run(startup_prog)
-    fluid.io.load_persistables(exe, path, startup_prog)
     main_prog = fluid.default_main_program()
+    fluid.io.load_persistables(exe, path, main_prog)
     exe.run(main_prog)
     
 In the above example, by calling the :code:`fluid.io.load_persistables` function, PaddlePaddle Fluid will find persistable variables from all model variables in the default :code:`fluid.Program` , e.t. :code:`prog` . and load them one by one from the specified :code:`path` directory to continue training.
