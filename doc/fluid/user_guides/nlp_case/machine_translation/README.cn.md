@@ -213,7 +213,7 @@ max_length = 256  # 解码生成句子的最大长度
 beam_size = 4  # beam search的柱宽度
 batch_size = 64  # batch 中的样本数
 
-model_save_dir = "machine_translation.inference.model"
+model_file = "machine_translation"
 ```
 
 接着定义所需要的数据输入：
@@ -538,7 +538,7 @@ for pass_id in six.moves.xrange(EPOCH_NUM):
                 (pass_id, batch_id, loss_val))
         batch_id += 1
     # 保存模型
-    fluid.io.save_params(exe, model_save_dir, main_program=train_prog)
+    fluid.save(train_prog, model_file)
 ```
 
 ## 应用模型
@@ -572,7 +572,7 @@ loader.set_batch_generator(inputs_generator(batch_size,
 # 定义执行器，加载参数并绑定Program
 exe = fluid.Executor(places[0])
 exe.run(startup_prog)
-fluid.io.load_params(exe, model_save_dir, main_program=infer_prog)
+fluid.load(infer_prog, model_file, exe)
 prog = fluid.CompiledProgram(infer_prog).with_data_parallel()
 ```
 
