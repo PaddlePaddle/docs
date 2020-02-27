@@ -168,7 +168,7 @@ Paddle里面使用 paddle.fluid.io. :ref:`cn_api_fluid_io_DataLoader` 接口来�
 
 另外，Paddle提供的一些FLAGS也能很好的帮助分析性能。如果用户希望评估一下在完全没有数据读取开销情况下模型的性能，可以设置一下环境变量：:code:`FLAGS_reader_queue_speed_test_mode` ，在该变量为True情况下，C++端从数据队列中获取数据之后，不会从数据队列中移除，这样能够保证数据队列始终不为空，从而避免了C++端读取数据时的等待开销。
 
-**需要特别注意的是， :code:`FLAGS_reader_queue_speed_test_mode` 只能在性能分析的时候打开，正常训练模型时需要关闭。**
+**需要特别注意的是，** :code:`FLAGS_reader_queue_speed_test_mode` **只能在性能分析的时候打开，正常训练模型时需要关闭。**
 
 为降低训练的整体时间，建议用户使用异步数据读取的方式，并开启 :code:`use_double_buffer=True` 。用户可根据模型的实际情况设置数据队列的大小。
 如果数据准备的时间大于模型执行的时间，或者出现了数据队列为空的情况，就需要考虑对数据读取Reader进行加速。
@@ -301,6 +301,7 @@ Paddle中有一些FLAGS可以有助于性能优化：
 (1) 尽可能的使用飞桨提供的单个layer实现所需操作。
 (2) 采用异步数据读取。
 (3) 模型训练相关优化：
+
     - 使用ParallelExecutor作为底层执行器。单卡训练，也可以调用with_data_parallel方法。代码示例：
 
     .. code-block:: python
