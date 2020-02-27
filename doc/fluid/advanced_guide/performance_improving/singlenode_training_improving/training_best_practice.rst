@@ -86,7 +86,7 @@ cuDNN是NVIDIA提供的深度神经网络计算库，其中包含了很多神经
 Paddle提供了两种方式从Data Reader中读取数据： :ref:`user_guide_use_numpy_array_as_train_data` 和 :ref:`user_guides_use_py_reader` ，详情请参考文档 :ref:`user_guide_prepare_data` 。
 
 2.1 同步数据读取
->>>>>>>>>>>>>>>
+^^^^^^^^^^^^^^^^
 
 同步数据读取是一种简单并且直观的数据准备方式，代码示例如下：
 
@@ -121,7 +121,7 @@ Paddle提供了两种方式从Data Reader中读取数据： :ref:`user_guide_use
 
 
 2.2 异步数据读取
->>>>>>>>>>>>>>>
+^^^^^^^^^^^^^^^^
 
 Paddle里面使用 paddle.fluid.io. :ref:`cn_api_fluid_io_DataLoader` 接口来实现异步数据读取，代码示例如下：
 
