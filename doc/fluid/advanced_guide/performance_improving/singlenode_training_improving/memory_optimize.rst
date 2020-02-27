@@ -7,10 +7,34 @@
 1. PaddlePaddle的显存分配策略
 ===========================
 
-1.1. 显存预分配策略
+1.1. 显存自增长AutoGrowth策略
+--------------------------
+自1.6+的版本起，PaddlePaddle支持显存自增长AutoGrowth策略，按需分配显存，且已于1.7+版本中默认开启，方便用户在同一张GPU卡上同时运行多个任务。
+
+由于原生的CUDA系统调用 :code:`cudaMalloc` 和 :code:`cudaFree` 均是同步操作，非常耗时。
+因此显存自增长AutoGrowth策略会缓存已分配到的显存，供后续分配使用，具体方式为：
+
+- 在前几次显存分配时，框架会调用 :code:`cudaMalloc` 按需分配，但释放时不会调用 :code:`cudaFree` 返回给GPU，而是在框架内部缓存起来。
+
+- 在随后的显存分配时，框架会首先检查缓存的显存中是否有合适的块，若有则从中分割出所需的显存空间返回，否则才调用 :code:`cudaMalloc` 直接从GPU中分配。随后的显存释放亦会缓存起来供后续分配使用。
+
+因此，显存自增长AutoGrowth策略会在前几个batch训练时分配较慢（因为频繁调用 :code:`cudaMalloc` ），在随后训练过程中基本不会影响模型训练速度。
+
+1.2. 显存预分配策略
 ----------------
 
-由于原生的CUDA系统调用 :code:`cudaMalloc` 和 :code:`cudaFree` 均是同步操作，非常耗时。因此PaddlePaddle采用了显存预分配的策略加速显存分配。具体方式为：
+除了显存自增长AutoGrowth策略以外，PaddlePaddle还提供了显存预分配策略。显存预分配策略是PaddlePaddle 1.7版本前的默认显存分配策略。
+
+显存预分配策略会在第一次分配时分配很大chunk_size的显存块，随后的显存分配大多从预分配的显存块中切分获得。
+其中，chunk_size由环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use` 确定，chunk_size的计算公式为：
+
+.. code-block:: python
+
+  chunk_size = FLAGS_fraction_of_gpu_memory_to_use * 单张GPU卡的当前可用显存值
+
+:code:`FLAGS_fraction_of_gpu_memory_to_use` 的默认值为0.92，即框架预先分配显卡92%的当前可用显存值。
+
+显存预分配策略分配显存的具体方式为：
 
 - 在分配requested_size大小的显存时，
     - 若requested_size <= chunk_size，则框架会预先分配chunk_size大小的显存池chunk，并从chunk中分出requested_size大小的块返回。之后每次申请显存都会从chunk中分配。
@@ -20,15 +44,7 @@
     - 若free_size <= chunk_size，则框架会将该显存放回预分配的chunk中，而不是直接返回给CUDA。
     - 若free_size > chunk_size，则框架会直接调用 :code:`cudaFree` 将显存返回给CUDA。
 
-上述的chunk_size由环境变量 :code:`FLAGS_fraction_of_gpu_memory_to_use` 确定，chunk_size的计算公式为：
-
-.. code-block:: python
-
-  chunk_size = FLAGS_fraction_of_gpu_memory_to_use * 单张GPU卡的当前可用显存值
-
-:code:`FLAGS_fraction_of_gpu_memory_to_use` 的默认值为0.92，即框架预先分配显卡92%的当前可用显存值。
-
-若你的GPU卡上有其他任务占用显存，你可以适当将 :code:`FLAGS_fraction_of_gpu_memory_to_use` 减少，保证框架能预分配到合适的chunk，例如：
+若你的GPU卡上有其他任务占用显存，你可以适当将 :code:`FLAGS_fraction_of_gpu_memory_to_use` 减少，保证框架能预分配到合适的显存块，例如：
 
 .. code-block:: shell
 
@@ -37,29 +53,21 @@
 若 :code:`FLAGS_fraction_of_gpu_memory_to_use` 设为0，则每次显存分配和释放均会调用 :code:`cudaMalloc` 和 :code:`cudaFree` ，会严重影响性能，不建议你使用。
 只有当你想测量网络的实际显存占用量时，你可以设置 :code:`FLAGS_fraction_of_gpu_memory_to_use` 为0，观察nvidia-smi显示的显存占用情况。
 
-1.2. 显存自增长AutoGrowth策略
---------------------------
-在1.6+的版本中，PaddlePaddle支持显存自增长AutoGrowth策略，按需分配显存。若您希望按需分配显存，您可选择使用显存自增长AutoGrowth策略。
+1.3. 显存分配策略的选择方式
+-----------------------
+自1.6+版本起，PaddlePaddle同时支持显存自增长AutoGrowth策略和显存预分配策略，并通过环境变量 :code:`FLAGS_allocator_strategy` 控制。
 
-在前几次显存分配时，会调用 :code:`cudaMalloc` 按需分配，但释放时不会调用 :code:`cudaFree` 返回给GPU，而是在框架内部缓存起来。
-
-在随后的显存分配时，会首先检查缓存的显存中是否有合适的块，若有则从中分割出所需的显存空间返回，否则才调用 :code:`cudaMalloc` 直接从GPU中分配。随后的显存释放亦会缓存起来供后续分配使用。
-
-因此，显存自增长AutoGrowth策略会在前几个batch训练时分配较慢（因为频繁调用 :code:`cudaMalloc` ），在随后训练过程中基本不会影响模型训练速度。
-
-显存自增长AutoGrowth策略通过设置环境变量 :code:`FLAGS_allocator_strategy` 开启，设置方式为：
+选择显存自增长AutoGrowth的方式为：
 
 .. code-block:: shell
 
-  export FLAGS_allocator_strategy=auto_growth
+  export FLAGS_allocator_strategy=auto_growth # 选择显存自增长AutoGrowth策略
 
-对应地，显存预分配策略通过以下方法开启：
+选择显存预分配策略的方式为：
 
 .. code-block:: shell
 
-  export FLAGS_allocator_strategy=naive_best_fit
-
-环境变量 :code:`FLAGS_allocator_strategy` 的默认值为naive_best_fit，表示默认使用显存预分配策略。
+  export FLAGS_allocator_strategy=naive_best_fit # 选择显存预分配策略
 
 
 2. PaddlePaddle的存储优化策略
