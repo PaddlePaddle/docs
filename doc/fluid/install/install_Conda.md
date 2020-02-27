@@ -10,7 +10,7 @@
 
 1. 创建虚拟环境
 
-    首先根据具体的Python版本创建Anaconda虚拟环境，前PaddlePaddle的Anaconda安装支持以下四种Python安装环境。
+    首先根据具体的Python版本创建Anaconda虚拟环境，PaddlePaddle的Anaconda安装支持以下四种Python安装环境。
 
     如果您想使用的python版本为2.7:
 
