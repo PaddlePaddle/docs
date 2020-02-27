@@ -6,6 +6,8 @@
 release_memory
 --------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.transpiler.release_memory
     :noindex:
 

@@ -6,6 +6,8 @@
 set_gradient_clip
 -----------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.clip.set_gradient_clip
     :noindex:
 

@@ -6,6 +6,8 @@
 ExecutionStrategy
 -----------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.ExecutionStrategy
     :members:
     :inherited-members:

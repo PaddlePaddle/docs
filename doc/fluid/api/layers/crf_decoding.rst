@@ -6,6 +6,8 @@
 crf_decoding
 ------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.crf_decoding
     :noindex:
 

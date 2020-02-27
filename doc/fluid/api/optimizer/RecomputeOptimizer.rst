@@ -6,6 +6,8 @@
 RecomputeOptimizer
 ------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.optimizer.RecomputeOptimizer
     :members:
     :inherited-members:

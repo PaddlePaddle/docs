@@ -6,6 +6,8 @@
 autoincreased_step_counter
 --------------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.autoincreased_step_counter
     :noindex:
 

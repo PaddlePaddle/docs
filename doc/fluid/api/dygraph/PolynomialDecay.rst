@@ -6,6 +6,8 @@
 PolynomialDecay
 ---------------
 
+**Note: This API is only avaliable in [Dynamic Graph] mode**
+
 ..  autoclass:: paddle.fluid.dygraph.PolynomialDecay
     :members:
     :noindex:

@@ -6,6 +6,8 @@
 gru_unit
 --------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.gru_unit
     :noindex:
 
