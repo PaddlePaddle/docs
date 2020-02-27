@@ -85,10 +85,10 @@ Use python to enter the python interpreter, enter import paddle.fluid, and then 
 ##Notice
 For domestic users who cannot connect to the Anaconda official source, you can add Tsinghua source to install it according to the following command.
     `
-        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
-        conda config --set show_channel_urls yes
+       conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+       conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+       conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+       conda config --set show_channel_urls yes
     `
 
 
