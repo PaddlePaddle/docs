@@ -56,6 +56,7 @@ Release Notes
         - 优化了mean op的GPU性能，输入数据为32\*32\*8\*8的Tensor时，前向计算速度提升2.7倍。
         - 优化assign、lod_reset op，避免不需要的显存拷贝和data transform。
         - 优化了stack OP的kernel实现，XLnet/Ernie模型GPU单卡性能提升4.1%。
+
 - 动态图
     - 功能优化
         - 移除了动态图Layers 中的 name_scope 参数，使得用户更方便继承和调用。
