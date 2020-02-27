@@ -249,8 +249,8 @@ Release Notes
         - 全面优化文档逻辑，提供如工业质检、眼底筛查等工业场景的AIStudio实战教程。
 
 - ElasticRec（https://github.com/PaddlePaddle/ElasticRec）
-    -
-    - 发布了ElasticRec推荐排序系统，通过K8S进行部署，支持流式训练和在线预测服务。
+    - 发布ElasticRec推荐排序系统
+        - 通过K8S进行部署，支持流式训练和在线预测服务。
 
 ## 工具组件
 
