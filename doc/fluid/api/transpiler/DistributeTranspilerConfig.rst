@@ -6,6 +6,8 @@
 DistributeTranspilerConfig
 --------------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.transpiler.DistributeTranspilerConfig
     :members:
     :inherited-members:

@@ -6,6 +6,8 @@
 dygraph_to_static_output
 ------------------------
 
+**Note: This API is only avaliable in [Dynamic Graph] mode**
+
 ..  autofunction:: paddle.fluid.dygraph.dygraph_to_static_output
     :noindex:
 

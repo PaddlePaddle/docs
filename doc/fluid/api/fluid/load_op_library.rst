@@ -6,6 +6,8 @@
 load_op_library
 ---------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.load_op_library
     :noindex:
 

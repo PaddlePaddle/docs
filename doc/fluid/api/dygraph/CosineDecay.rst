@@ -6,6 +6,8 @@
 CosineDecay
 -----------
 
+**Note: This API is only avaliable in [Dynamic Graph] mode**
+
 ..  autoclass:: paddle.fluid.dygraph.CosineDecay
     :members:
     :noindex:

@@ -6,6 +6,8 @@
 save_dygraph
 ------------
 
+**Note: This API is only avaliable in [Dynamic Graph] mode**
+
 ..  autofunction:: paddle.fluid.dygraph.save_dygraph
     :noindex:
 

@@ -6,6 +6,8 @@
 sequence_expand_as
 ------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.sequence_expand_as
     :noindex:
 

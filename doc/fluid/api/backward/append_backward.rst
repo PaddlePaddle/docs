@@ -6,6 +6,8 @@
 append_backward
 ---------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.backward.append_backward
     :noindex:
 

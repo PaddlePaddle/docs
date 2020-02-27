@@ -6,6 +6,8 @@
 create_random_int_lodtensor
 ---------------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.create_random_int_lodtensor
     :noindex:
 

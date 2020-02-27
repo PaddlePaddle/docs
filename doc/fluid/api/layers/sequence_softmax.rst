@@ -6,6 +6,8 @@
 sequence_softmax
 ----------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.sequence_softmax
     :noindex:
 

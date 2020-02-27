@@ -6,6 +6,8 @@
 load_program_state
 ------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.io.load_program_state
     :noindex:
 

@@ -6,6 +6,8 @@
 global_scope
 ------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.executor.global_scope
     :noindex:
 

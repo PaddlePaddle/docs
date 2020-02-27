@@ -6,6 +6,8 @@
 sequence_last_step
 ------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.sequence_last_step
     :noindex:
 

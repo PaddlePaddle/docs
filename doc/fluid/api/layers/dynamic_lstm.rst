@@ -6,6 +6,8 @@
 dynamic_lstm
 ------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.dynamic_lstm
     :noindex:
 

@@ -6,6 +6,8 @@
 BackwardStrategy
 ----------------
 
+**Note: This API is only avaliable in [Dynamic Graph] mode**
+
 ..  autoclass:: paddle.fluid.dygraph.BackwardStrategy
     :members:
     :noindex:
