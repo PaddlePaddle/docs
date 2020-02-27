@@ -28,7 +28,7 @@ With :code:`fluid.data()` , you can configure data layer in neural network. Deta
 
 In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.data` . :code:`image` is float data of shape :code:`[3, 224, 224]` ; :code:`label` is the int data of shape :code:`[1]` . Note that:
 
-1. When the Executor executes, it checks whether the :code:`shape` and :code:`dtype` defined in the data layer's data and feed data are consistent. If they are not consistent, the program will exit with an error. For some tasks, in different rounds, some dimensions of the data will change, You can set the dimension value to None. For example, if the 0th dimension will change, you can set :code:`shape` to :code:`[None , 100]`.
+1. When the program is executing, executor will check whether the :code:`shape` and :code:`dtype` defined and feeded are consistent. If they are not consistent, the program will exit with an error. In some tasks, the dimension will change in different training steps. For this case, the value of the dimension can be set to None. For example, the :code:`shape` can be set to :code:`[None, 100]` when the 0th dimension will change.
 
 2. Data type of category labels in Fluid is :code:`int64` and the label starts from 0. About the supported data types,please refer to :ref:`user_guide_paddle_support_data_types_en` .
 
