@@ -40,5 +40,4 @@ fluid.dygraph
     dygraph/SpectralNorm.rst
     dygraph/to_variable.rst
     dygraph/TracedLayer.rst
-    dygraph/Tracer.rst
     dygraph/TreeConv.rst
