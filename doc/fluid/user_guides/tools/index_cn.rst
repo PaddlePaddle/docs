@@ -5,4 +5,4 @@
 ..  toctree::
     :titlesonly:
 
-    deploy_ctr_on_baidu_cloud_cn.rst
+    elastic_ctr/deploy_ctr_on_baidu_cloud_cn.md
