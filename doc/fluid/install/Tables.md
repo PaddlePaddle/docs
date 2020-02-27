@@ -504,6 +504,40 @@ platform tag: 类似 'linux_x86_64', 'any'
 </p>
 
 
+<a name="ciwhls-gcc8.2-develop"></a>
+</br></br>
+## **多版本whl包列表(gcc8.2)-develop**
+<p align="center">
+<table>
+	<thead>
+	<tr>
+		<th> 版本说明 </th>
+		<th> cp27-cp27mu </th>
+		<th> cp27-cp27m </th>
+		<th> cp35-cp35m	</th>
+		<th> cp36-cp36m	</th>
+		<th> cp37-cp37m	</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td> cuda10.1-cudnn7-mkl </td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl">
+		paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-0.0.0-cp27-cp27m-linux_x86_64.whl">
+		paddlepaddle_gpu-0.0.0-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-0.0.0-cp35-cp35m-linux_x86_64.whl">
+		paddlepaddle_gpu-0.0.0-cp35-cp35m-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-0.0.0-cp36-cp36m-linux_x86_64.whl">
+		paddlepaddle_gpu-0.0.0-cp36-cp36m-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl">
+		paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl</a></td>
+	</tr>
+   </tbody>
+</table>
+</p>
+
+
 <a name="ciwhls-gcc8.2-release"></a>
 </br></br>
 ## **多版本whl包列表(gcc8.2)-release**
@@ -522,10 +556,10 @@ platform tag: 类似 'linux_x86_64', 'any'
 	<tbody>
 	<tr>
 		<td> cuda10.1-cudnn7-mkl </td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.0.gcc8.post107-cp27-cp27m-linux_x86_64.whl">
-		paddlepaddle_gpu-1.7.0.gcc8.post107-cp27-cp27m-linux_x86_64.whl</a></td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.0.gcc8.post107-cp27-cp27mu-linux_x86_64.whl">
 		paddlepaddle_gpu-1.7.0.gcc8.post107-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.0.gcc8.post107-cp27-cp27m-linux_x86_64.whl">
+		paddlepaddle_gpu-1.7.0.gcc8.post107-cp27-cp27m-linux_x86_64.whl</a></td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.0.gcc8.post107-cp35-cp35m-linux_x86_64.whl">
 		paddlepaddle_gpu-1.7.0.gcc8.post107-cp35-cp35m-linux_x86_64.whl</a></td>
 		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.0-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.0.gcc8.post107-cp36-cp36m-linux_x86_64.whl">
