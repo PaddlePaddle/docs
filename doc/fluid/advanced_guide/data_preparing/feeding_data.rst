@@ -18,8 +18,8 @@ PaddlePaddle Fluid支持使用 :code:`fluid.data()` 配置数据层；
 
    import paddle.fluid as fluid
 
-   image = fluid.data(name="image", shape=[3, 224, 224])
-   label = fluid.data(name="label", shape=[1], dtype="int64")
+   image = fluid.data(name="image", shape=[None, 3, 224, 224])
+   label = fluid.data(name="label", shape=[None, 1], dtype="int64")
 
    # use image/label as layer input
    prediction = fluid.layers.fc(input=image, size=1000, act="softmax")
@@ -27,10 +27,10 @@ PaddlePaddle Fluid支持使用 :code:`fluid.data()` 配置数据层；
    ...
 
 上段代码中，:code:`image` 和 :code:`label` 是通过 :code:`fluid.data`
-创建的两个输入数据层。其中 :code:`image` 是 :code:`[3, 224, 224]` 维度的浮点数据;
-:code:`label` 是 :code:`[1]` 维度的整数数据。这里需要注意的是:
+创建的两个输入数据层。其中 :code:`image` 是 :code:`[None, 3, 224, 224]` 维度的浮点数据;
+:code:`label` 是 :code:`[None, 1]` 维度的整数数据。这里需要注意的是:
 
-1. Executor在执行的时候，会检查定义的数据层数据和feed的数据的 :code:`shape` 和 :code:`dtype` 是否一致，如果不一致，程序会报错退出。对于一些任务，在不同的轮数，数据的某些维度会变化，可以将维度的值设置为None，例如第0维会变化，可以将 :code:`shape` 设置为 :code:`[None, 100]` 。
+1. Executor在执行的时候，会检查定义的数据层数据和feed的数据的 :code:`shape` 和 :code:`dtype` 是否一致，如果不一致，程序会报错退出。对于一些任务，在不同的轮数，数据的某些维度会变化，可以将维度的值设置为None，例如第0维会变化，可以将 :code:`shape` 设置为 :code:`[None, 3, 224, 224]` 。
 
 
 2. Fluid中用来做类别标签的数据类型是 :code:`int64`，并且标签从0开始。可用数据类型请参考 :ref:`user_guide_paddle_support_data_types`。
@@ -65,17 +65,17 @@ PaddlePaddle Fluid支持使用 :code:`fluid.data()` 配置数据层；
 序列数据是PaddlePaddle Fluid支持的特殊数据类型，可以使用 :code:`LoDTensor` 作为
 输入数据类型。它需要用户: 1. 传入一个mini-batch需要被训练的所有数据;
 2.每个序列的长度信息。
-用户可以使用 :code:`fluid.create_lod_tensor` 来创建 :code:`LoDTensor`。
+用户可以使用 :code:`fluid.create_lod_tensor` 来创建 :code:`LoDTensor` 。
 
-传入序列信息的时候，需要设置序列嵌套深度，:code:`lod_level`。
-例如训练数据是词汇组成的句子，:code:`lod_level=1`；训练数据是 词汇先组成了句子，
-句子再组成了段落，那么 :code:`lod_level=2`。
+传入序列信息的时候，需要设置序列嵌套深度，:code:`lod_level` 。
+例如训练数据是词汇组成的句子，:code:`lod_level=1` ；训练数据是 词汇先组成了句子，
+句子再组成了段落，那么 :code:`lod_level=2` 。
 
 例如:
 
 .. code-block:: python
 
-   sentence = fluid.data(name="sentence", dtype="int64", shape=[1], lod_level=1)
+   sentence = fluid.data(name="sentence", dtype="int64", shape=[None, 1], lod_level=1)
 
    ...
 
@@ -87,8 +87,8 @@ PaddlePaddle Fluid支持使用 :code:`fluid.data()` 配置数据层；
      )
    })
 
-训练数据 :code:`sentence` 包含三个样本，他们的长度分别是 :code:`4, 1, 2`。
-他们分别是 :code:`data[0:4]`， :code:`data[4:5]` 和 :code:`data[5:7]`。
+训练数据 :code:`sentence` 包含三个样本，他们的长度分别是 :code:`4, 1, 2` 。
+他们分别是 :code:`data[0:4]`， :code:`data[4:5]` 和 :code:`data[5:7]` 。
 
 如何分别设置ParallelExecutor中每个设备的训练数据
 ------------------------------------------------

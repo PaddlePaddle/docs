@@ -18,17 +18,17 @@ With :code:`fluid.data()` , you can configure data layer in neural network. Deta
 
    import paddle.fluid as fluid
 
-   image = fluid.data(name="image", shape=[3, 224, 224])
-   label = fluid.data(name="label", shape=[1], dtype="int64")
+   image = fluid.data(name="image", shape=[None, 3, 224, 224])
+   label = fluid.data(name="label", shape=[None, 1], dtype="int64")
 
    # use image/label as layer input
    prediction = fluid.layers.fc(input=image, size=1000, act="softmax")
    loss = fluid.layers.cross_entropy(input=prediction, label=label)
    ...
 
-In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.data` . :code:`image` is float data of shape :code:`[3, 224, 224]` ; :code:`label` is the int data of shape :code:`[1]` . Note that:
+In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.data` . :code:`image` is float data of shape :code:`[None, 3, 224, 224]` ; :code:`label` is the int data of shape :code:`[None, 1]` . Note that:
 
-1. When the program is executing, executor will check whether the :code:`shape` and :code:`dtype` defined and feeded are consistent. If they are not consistent, the program will exit with an error. In some tasks, the dimension will change in different training steps. For this case, the value of the dimension can be set to None. For example, the :code:`shape` can be set to :code:`[None, 100]` when the 0th dimension will change.
+1. When the program is executing, executor will check whether the :code:`shape` and :code:`dtype` defined and feeded are consistent. If they are not consistent, the program will exit with an error. In some tasks, the dimension will change in different training steps. For this case, the value of the dimension can be set to None. For example, the :code:`shape` can be set to :code:`[None, 3, 224, 224]` when the 0th dimension will change.
 
 2. Data type of category labels in Fluid is :code:`int64` and the label starts from 0. About the supported data types,please refer to :ref:`user_guide_paddle_support_data_types_en` .
 
@@ -76,7 +76,7 @@ For example:
 
 .. code-block:: python
 
-   sentence = fluid.data(name="sentence", dtype="int64", shape=[1], lod_level=1)
+   sentence = fluid.data(name="sentence", dtype="int64", shape=[None, 1], lod_level=1)
 
    ...
 
