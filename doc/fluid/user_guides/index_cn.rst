@@ -21,8 +21,6 @@
     - `自然语言处理 <../user_guides/nlp_case/index_cn.html>`_： 介绍使用 Paddle 实现自然语言处理方向的案例
 
     - `推荐 <../user_guides/rec_case/index_cn.html>`_：介绍如何使用 Paddle 完成推荐领域任务的案例
-	
-	- `模型库 <../user_guides/models/index_cn.html>`_：介绍了 Paddle 经典的模型库
 
     - `工具组件 <../user_guides/tools/index_cn.html>`_：介绍在 Paddle 工具组件的使用案例
 
@@ -33,7 +31,6 @@
     cv_case/index_cn.rst
     nlp_case/index_cn.rst
     rec_case/index_cn.rst
-	models/index_cn.rst
     tools/index_cn.rst
 	
 
