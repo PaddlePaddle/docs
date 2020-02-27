@@ -7,4 +7,4 @@
     :titlesonly:
 
     gan/README.cn.md
-
+    image_classification/README.cn.md

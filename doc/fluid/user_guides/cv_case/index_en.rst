@@ -7,4 +7,4 @@ Computer Vision
     :titlesonly:
 
     gan/README.md
-
+    image_classification/README.md
