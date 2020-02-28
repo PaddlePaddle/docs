@@ -9,6 +9,5 @@
 
    configure_simple_model/index_cn.rst
    single_node.rst
-   test_while_training.rst
    save_load_variables.rst
 
