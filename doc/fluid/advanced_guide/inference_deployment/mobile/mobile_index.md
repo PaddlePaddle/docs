@@ -13,17 +13,17 @@ Paddle-Lite为Paddle-Mobile的升级版，定位支持包括手机移动端在�
 
 ### 高性能
 极致的 ARM CPU 性能优化，针对不同微架构特点实现kernel的定制，最大发挥计算性能，在主流模型上展现出领先的速度优势。
-支持INT8量化计算，结合 [PaddleSlim 模型压缩工具](https://github.com/PaddlePaddle/models/tree/v1.5/PaddleSlim) 中 INT8量化训练功能，可以提供高精度高性能的预测能力。
+支持量化模型，结合[PaddleSlim 模型压缩工具](https://github.com/PaddlePaddle/models/tree/v1.5/PaddleSlim) 中量化功能，可以提供高精度高性能的预测能力。
 在Huawei NPU， FPGA上也具有有很好的性能表现。
 
-最新 Benchmark 位于 [benchmark](https://paddle-lite.readthedocs.io/zh/latest/benchmark/benchmark.html)。
+最新性能数据位于 [Benchmark 文档](https://paddle-lite.readthedocs.io/zh/latest/benchmark/benchmark.html)。
 
 ### 通用性
 硬件方面，Paddle-Lite 的架构设计为多硬件兼容支持做了良好设计。除了支持ARM CPU、Mali GPU、Adreno GPU，还特别支持了华为 NPU，以及 FPGA 等边缘设备广泛使用的硬件。即将支持支持包括寒武纪、比特大陆等AI芯片，未来会增加对更多硬件的支持。
 
 模型支持方面，Paddle-Lite和PaddlePaddle训练框架的Op对齐，提供更广泛的模型支持能力。目前已严格验证18个模型85个OP的精度和性能，对视觉类模型做到了较为充分的支持，覆盖分类、检测和定位，包含了特色的OCR模型的支持。未来会持续增加更多模型的支持验证。
 
-框架兼容方面：除了PaddlePaddle外，对其他训练框架也提供兼容支持。当前，支持Caffe 和 TensorFlow 训练出来的模型，通过X2Paddle (https://github.com/PaddlePaddle/X2Paddle) 转换工具实现。接下来将会对ONNX等格式模型提供兼容支持。
+框架兼容方面：除了PaddlePaddle外，对其他训练框架也提供兼容支持。当前，支持Caffe 和 TensorFlow 训练出来的模型，通过[X2Paddle] (https://github.com/PaddlePaddle/X2Paddle) 转换工具实现。接下来将会对ONNX等格式模型提供兼容支持。
 
 ## 架构
 
