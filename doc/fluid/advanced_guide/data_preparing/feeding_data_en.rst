@@ -4,7 +4,7 @@
 Take Numpy Array as Training Data
 #################################
 
-PaddlePaddle Fluid supports configuring data layer with :code:`fluid.layers.data()` .
+PaddlePaddle Fluid supports configuring data layer with :code:`fluid.data()` .
 Then you can use Numpy Array or directly use Python to create C++
 :code:`fluid.LoDTensor` , and then feed it to :code:`fluid.Executor` or :code:`fluid.ParallelExecutor` 
 through :code:`Executor.run(feed=...)` .
@@ -12,23 +12,23 @@ through :code:`Executor.run(feed=...)` .
 Configure Data Layer
 ############################
 
-With :code:`fluid.layers.data()` , you can configure data layer in neural network. Details are as follows:
+With :code:`fluid.data()` , you can configure data layer in neural network. Details are as follows:
 
 .. code-block:: python
 
    import paddle.fluid as fluid
 
-   image = fluid.layers.data(name="image", shape=[3, 224, 224])
-   label = fluid.layers.data(name="label", shape=[1], dtype="int64")
+   image = fluid.data(name="image", shape=[None, 3, 224, 224])
+   label = fluid.data(name="label", shape=[None, 1], dtype="int64")
 
    # use image/label as layer input
    prediction = fluid.layers.fc(input=image, size=1000, act="softmax")
    loss = fluid.layers.cross_entropy(input=prediction, label=label)
    ...
 
-In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.layers.data` . :code:`image` is float data of shape :code:`[3, 224, 224]` ; :code:`label` is the int data of shape :code:`[1]` . Note that:
+In the code above, :code:`image` and :code:`label` are two input data layers created by :code:`fluid.data` . :code:`image` is float data of shape :code:`[None, 3, 224, 224]` ; :code:`label` is the int data of shape :code:`[None, 1]` . Note that:
 
-1. :code:`-1` is represented for the dimension of batch size by default in Fluid. And :code:`-1` is added to the first dimension of :code:`shape` by default. Therefore in the code above, it would be alright to transfer numpy array of :code:`[32, 3, 224, 224]` to :code:`image` . If you want to customize the position of the batch size dimension, please set :code:`fluid.layers.data(append_batch_size=False)` .Please refer to the tutorial in the advanced user guide: :ref:`user_guide_customize_batch_size_rank_en` .
+1. When the program is executing, executor will check whether the :code:`shape` and :code:`dtype` defined and feeded are consistent. If they are not consistent, the program will exit with an error. In some tasks, the dimension will change in different training steps. For this case, the value of the dimension can be set to None. For example, the :code:`shape` can be set to :code:`[None, 3, 224, 224]` when the 0th dimension will change.
 
 2. Data type of category labels in Fluid is :code:`int64` and the label starts from 0. About the supported data types,please refer to :ref:`user_guide_paddle_support_data_types_en` .
 
@@ -76,7 +76,7 @@ For example:
 
 .. code-block:: python
 
-   sentence = fluid.layers.data(name="sentence", dtype="int64", shape=[1], lod_level=1)
+   sentence = fluid.data(name="sentence", dtype="int64", shape=[None, 1], lod_level=1)
 
    ...
 
@@ -121,32 +121,6 @@ For example:
    )
 
 In the code above, GPU0 will train 32 samples and GPU1 will train 16 samples.
-
-.. _user_guide_customize_batch_size_rank_en:
-
-Customize the BatchSize dimension
-------------------------------------
-
-Batch size is the first dimension of data by default in PaddlePaddle Fluid, indicated by :code:`-1` .But in advanced usage, batch_size could be fixed or respresented by other dimension or multiple dimensions, which could be implemented by setting :code:`fluid.layers.data(append_batch_size=False)` .
-
-1. fixed BatchSize dimension
-
-  .. code-block:: python
-
-     image = fluid.layers.data(name="image", shape=[32, 784], append_batch_size=False)
-
-  Here :code:`image` is always a matrix with size of :code:`[32, 784]` .
-
-2. batch size expressed by other dimension
-
-  .. code-block:: python
-
-     sentence = fluid.layers.data(name="sentence",
-                                  shape=[80, -1, 1],
-                                  append_batch_size=False,
-                                  dtype="int64")
-
-  Here the middle dimension of :code:`sentence` is batch size. This type of data layout is applied in fixed-length recurrent neural networks.
 
 .. _user_guide_paddle_support_data_types_en:
 

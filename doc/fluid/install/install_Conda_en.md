@@ -14,6 +14,7 @@ Before performing PaddlePaddle installation, please make sure that your Anaconda
 First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports the following four Python installation environments.
 
 If you want to use python version 2.7:
+    
     conda create -n paddle_env python=2.7
 
 If you want to use python version 3.5:
@@ -40,6 +41,7 @@ If you are using Python 3, use the following command to get the Python path. Dep
      In a Windows environment, the command to get the Python path is:  where python3
          
      In a Windows environment, the command to get the Python path is:  which python3 
+
 
 3.Check the version of Python
 
@@ -88,6 +90,7 @@ For domestic users who cannot connect to the Anaconda official source, you can a
      conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
      conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
      conda config --set show_channel_urls yes 
+
 
 
 

@@ -3,19 +3,19 @@ Release Notes
 ==============
 ##  重要更新
 
-本版本对框架功能层面进行了重点增强，预测部署能力全面提升，分布式发布PLSC支持超大规模分类，并对参数服务器模式进行优化整合。对编译选项、编译依赖以及代码库进行了全面清理优化。模型库持续完善，优化了整体层次结构，增加了动态图模型实现。端到端开发套件和工具组件进一步完善。
+本版本对框架功能层面进行了重点增强，预测部署能力全面提升，分布式训练发布PLSC支持超大规模分类，并对参数服务器模式进行优化整合。对编译选项、编译依赖以及代码库进行了全面清理优化。模型库持续完善，优化了整体层次结构，增加了动态图模型实现。端到端开发套件和工具组件进一步完善。
 
 **训练框架**：增加自动混合精度训练AMP接口和新控制流接口；优化Tensor使用方式和显存分配策略；新增支持Nvidia DALI GPU数据预处理库；持续优化基础OP的功能和性能；动态图的功能进一步完善，性能大幅提升，对data independent的动态图模型提供转为静态图可预测部署模型的功能；框架调试分析功能和易用性全面提升。
 
-**预测部署**：服务器端预测库的Python API大幅优化，新增R语言、Go语言调用预测库的使用方法和示例，强化了量化支持能力；Paddle Lite支持无校准数据的训练后量化方法生成的模型，加强对OpenCL的支持，支持昆仑XPU的预测；模型压缩库PaddleSlim重构裁剪、量化、蒸馏、搜索接口，新增大规模可扩展知识蒸馏框架 Pantheon，与模型库充分打通。
+**预测部署**：服务器端预测库的Python API大幅优化，新增R语言、Go语言调用预测库的使用方法和示例，强化了量化支持能力；Paddle Lite支持无校准数据的训练后量化方法生成的模型，加强对OpenCL的支持，支持昆仑XPU的预测；模型压缩库PaddleSlim重构裁剪、量化、蒸馏、搜索接口，与模型库充分打通，新增大规模可扩展知识蒸馏框架 Pantheon。
 
-**分布式方面**：参数服务器模式下针对transpiler的同步、半异步、全异步三种模式，后端实现上统一到communicator中，前端接口统一到fleet中，通过fleet strategy灵活选择不同模式；发布大规模分类库PLSC，通过模型并行支持超多类别的分类任务。
+**分布式训练**：参数服务器模式下针对transpiler半异步、全异步、GEO三种模式，后端实现上统一到communicator中，前端接口统一到fleet中，通过fleet strategy灵活选择不同模式；发布大规模分类库PLSC，通过模型并行支持超多类别的分类任务。
 
 **基础模型库**：发布语音合成库Parakeet，包括多个前沿合成算法；PaddleCV新增14个图像分类预训练模型，3D和跟踪方向模型持续丰富；PaddleNLP的分词和词性标注模型支持jieba分词；PaddleRec增加多任务模型MMoE。模型库整体增加了广泛的动态图模型实现。模型库整体层次结构做了调整优化。
 
 **端到端开发套件**：PaddleDetection和PaddleSeg新增大量模型实现及预训练模型，典型模型的训练速度和精度提升，模型压缩和部署能力大幅提升，使用体验全面优化。发布ElasticRec推荐排序系统，通过K8S进行部署，支持流式训练和在线预测服务。
 
-**工具组件**：PaddleHub新增52个预训练模型，总数超过100，功能和体验持续优化；多任务学习框架PALM升级内核，开放API调用，支持更多的任务类型；联邦学习PaddleFL新增公开数据集。
+**工具组件**：PaddleHub新增52个预训练模型，总数超过100，功能和体验持续优化；多任务学习框架PALM升级内核，开放API调用，支持更多的任务类型；联邦学习PaddleFL新增公开数据集。深度强化学习框架PARL和飞桨图学习框架PGL也对应版本升级，支持更多功能，开放更多算法和基线。
 
 
 
@@ -47,13 +47,13 @@ Release Notes
         - 增加对Nvidia DALI GPU数据预处理库的支持，可用于加速图片，视频，语音等数据预处理。
     - 自动混合精度训练优化
         - 实现如下优化策略，并配合DALI数据预处理，ResNet50模型训练吞吐大幅提升：V100单卡混合精度训练吞吐从600+ images/sec提升到1000+ images/sec；单机8卡吞吐达到7840 image/sec，4机32卡吞吐达到28594 images/sec。
-            - 增强batch_norm和conv2d等op对NHWC数据布局输入的支持，以使用Tensor Core技术加速fp16计算。
+            - 增加batch_norm和conv2d等op对NHWC数据布局输入的支持，以使用Tensor Core加速fp16计算或减少访存耗时。
             - 基于IR Pass机制对模型中的部分op pattern进行融合，如batch_norm和relu等。
             - 优化elementwise(add,mul)等op的计算kernel。
     - 优化RecomputeOptimizer提升batchsize, 在Bert-large模型上最大batchsize比不使用RecomputeOptimizer增大533.62%，比上一版本提升一倍。
     - OP性能优化
         - 实现embedding和sequence_pool的融合算子fuse_emb_seq_pool，优化bloom_filter中的murmurhash3_x64_128，有效提升部分NLP模型的训练速度。
-        - 优化了mean op的GPU性能，输入数据为32*32*8*8的Tensor时，前向计算速度提升2.7倍。
+        - 优化了mean op的GPU性能，输入数据为32\*32\*8\*8的Tensor时，前向计算速度提升2.7倍。
         - 优化assign、lod_reset op，避免不需要的显存拷贝和data transform。
         - 优化了stack OP的kernel实现，XLnet/Ernie模型GPU单卡性能提升4.1%。
 - 动态图
@@ -70,7 +70,7 @@ Release Notes
         - 优化了python 与c++ 交互，GradMaker、OperatorBase、allocator等。基于LSTM的语言模型任务p在P40机器上性能提升提升270%。
         - 针对optimize中多次调用optimized_guard无用代码导致的性能问题，移除了冗余代码。Transformer模型（batch_size=64）在P40机器上，SGD、Adam等优化器有5%~8%%的性能提升。
         - 针对AdamOptimizer中额外添加scale_op更新beta参数对性能的影响，将beta更新逻辑融合到adam_op中，减少op kernel调用开销。Dialogue-PLATO模型P40机器上性能提升9.67%。
-        - 优化动态图异步DataLoader，在Mnist、ResNet、等模型上整体训练速度提升约30%。
+        - 优化动态图异步DataLoader，对于Mnist、ResNet等CV模型任务在P40机器上单卡训练速度提升超过40%。
         - 新增numpy bridge功能，支持在cpu模式下Tensor和ndarray之间共享底层数据，避免创建Variable时numpy输入需要拷贝的问题，提升效率。
         - 显存优化：提前删除反向不需要Tensor Buffer的前向变量空间的优化策略，在ResNet等模型上最大batch size提升20%-30%以上。
     - 动态图部署
@@ -95,7 +95,7 @@ Release Notes
     - Python API
         - 支持从内存读写模型，以满足模型加密的需求。
         - 不再在预测模型最后添加 Scale 算子。
-        - 新增对ZeroCopy预测的支持，与C++接口基本一致，支持以numpy.ndarray作为输入和输出，在Python端使用更加方便。
+        - 新增ZeroCopy API，与C++接口基本一致，支持以numpy.ndarray作为输入和输出，在Python端使用更加方便。
         - 在AnalysisConfig中增加多个接口，完整覆盖C++预测的功能，包括删除pass、禁用预测glog等。
     - 其他编程语言的支持
         - 新增R语言、Go语言调用预测库的使用方法和示例
@@ -105,11 +105,11 @@ Release Notes
         - 打通Paddle Lite以子图方式接入，已验证 ResNet50。
         - 新增MKL-DNN FC INT8 kernel的支持
         - Paddle-TensorRT支持Ernie模型，Ernie模型（seq length=128） 在T4卡上fp16预测速度为3.6ms, 比fp32加速37%。
-        - 量化：在ERNIE INT8精度相比于FP32 精度提升2%下，ERNIE INT8在第二代至强可扩展平台6271上单线程性能优化提升2.70倍，多线程性能提升1.79倍
+        - 量化：ERNIE INT8精度相比于FP32 精度略有下降，但其在第二代至强可扩展平台6271上单线程性能优化提升2.70倍，多线程性能提升1.79倍
 - 移动/嵌入式端Paddle Lite（https://github.com/PaddlePaddle/Paddle-Lite）
     - 对应发布v2.3版本。
     - model_optimize_tool多项功能升级。
-    - 支持“无校准数据的训练后量化方法”，减小模型存储空间（2~4倍）。
+    - 支持“无校准数据的训练后量化方法”，模型存储空间可减少2~4倍。
     - OpenCL：完成30个Image2D Kernel迁移，涵盖14个OP。
     - 对FPGA、NPU的支持进一步加强；支持昆仑XPU的预测。
     - 发布全新官网文档；新增“无校准数据的训练后量化方法”使用文档。
@@ -123,10 +123,10 @@ Release Notes
         - 量化:
             - 新增基于KL散度的离线量化功能，支持对Embedding层量化。
             - 新增对FC的QAT MKL-DNN量化策略支持
-            - 新增PostTrainingQuantization，完整实现训练后量化功能：支持量化30种OP，支持灵活设置需要量化的OP，生成统一格式的量化模型，具有耗时短、易用性强、精度损失较小的优点。
+            - 新增PostTrainingQuantization，完整实现训练后量化功能：支持量化30种OP，支持灵活设置需要量化的OP。
             - 量化训练支持设定需要量化的OP类型。
         - 裁剪: 重构剪裁实现，方便扩展支持更多类型的网络。
-        - 搜索:
+        - 网络结构搜索:
             - 支持SA搜索，增加更多的搜索空间，支持用户自定义搜索空间。
             - 新增one-shot搜索算法，搜索速度比上个版本快20倍。
     - 新增大规模可扩展知识蒸馏框架 Pantheon
@@ -147,12 +147,12 @@ Release Notes
 - 参数服务器模式：
     - 大幅降低训练过程中的内存占用，在1亿规模embedding任务上，Trainer端内存可以降低90%
     - 大幅降低分布式保存模型、加载模型的内存占用， Pserver端内存峰值最大可降低为原先的$1/N，N$为Pserver节点个数。
-    - 优化GEO-SGD 稠密参数通信
+    - 优化GEO模式 稠密参数通信
     - 支持分布式AUC指标计算
     - 新增分布式Barrier功能
-    - 非Fleet的transpiler API加入过期警示， 该API计划在PaddlePaddle-Fluid 2.0中移除
-    - Communicator加入半异步模式和同步模式
-    - TrainFromDataset训练接口支持半异步模式和同步模式
+    - 非Fleet的transpiler API加入过期警示， 该API计划在下一个版本中移除
+    - Communicator加入半异步模式
+    - TrainFromDataset训练接口支持半异步模式
     - Fleet加入DistributedStrategy， 进一步提升分布式易用性， 整合目前分布式相关FLAG
     - Fleet pslib模式支持一个program多loss训练，优化训练性能
     - 千亿稀疏模式支持k8s环境。
@@ -167,10 +167,10 @@ Release Notes
 
 - PaddleNLP
     - seq2seq支持RL和GAN等训练模式
-    - 发布分词和词性标注训练模型，利用知识蒸馏框架 Pantheon，在自有数据集上比paddleNLP上LAC上F1值提升1%；合入jieba分词，通过加入use_paddle标签来开启深度学习模型模式；并在在jieba加入paddle版本检测和回退机制，保障用户体验。
+    - 发布分词和词性标注训练模型，利用知识蒸馏框架 Pantheon，在自有数据集上比PaddleNLP上LAC上F1值提升1%；合入jieba分词，通过加入use_paddle标签来开启深度学习模型模式；并在在jieba加入paddle版本检测和回退机制，保障用户体验。
     - 增加动态图模型实现：word2vec、senta、transformer、bert、seq2seq、LAC。
 - PaddleSpeech
-    - 语音合成：发布合成库Parakeet
+    - 发布语音合成库Parakeet (Paddle PARAllel text-to-speech toolkit)
         - 实现语音合成模型数据预处理、训练和合成等的标准工作流
         - 提供对常见数据集的开箱即用的预处理实现
         - 提供语音合成领域常用模型组件，为实现模型提供支持
@@ -182,11 +182,11 @@ Release Notes
             - SE_ResNet18_vd，SE_ResNet34_vd，SE_ResNeXt50_vd_32x4d，ResNeXt152_vd_32x4d
             - Res2Net50_26w_4s，Res2Net50_14w_8s，Res2Net50_vd_26w_4s
             - HRNet_W18_C，HRNet_W30_C，HRNet_W32_C，HRNet_W40_C，HRNet_W44_C，HRNet_W48_C，HRNet_W64_C  
-        - 支持使用DALI加速数据预处理，在ImageNet训练上获得1.5倍(ResNet50) 至3倍以上(ShuffleNet）)加速，并大幅提升GPU利用率。
+        - 支持使用DALI加速数据预处理，在ImageNet训练上获得1.5倍(ResNet50) 至3倍以上(ShuffleNet)加速，并大幅提升GPU利用率。
     - 3D方向:
         - 发布模型PointNet++、PointRCNN。
     - 跟踪模型库 :
-         - 发布模型SiamFC、SiamRPN、SiamMASK、ATOM、ATP。
+         - 发布模型SiamFC、ATOM。
     - 增加动态图模型实现: MobileNet-v1/v2、YOLOv3、FasterRCNN、MaskRCNN、视频分类TSM模型、视频动作定位BMN模型。
 
 - PaddleRec
@@ -215,7 +215,7 @@ Release Notes
     - 检测模型压缩 :
         - 裁剪: 发布MobileNet-YOLOv3裁剪方案和模型，在VOC数据集上FLOPs - 69.6%, mAP + 1.4%，在COCO数据集上FLOPS-28.8%, mAP + 0.9%; 发布ResNet50vd-dcn-YOLOv3裁剪方案和模型，在COCO数据集上FLOPS - 18.4%, mAP + 0.8%。
         - 蒸馏: 发布MobileNet-YOLOv3蒸馏方案和模型，在VOC数据上mAP + 2.8%，在COCO数据上mAP + 2.1%。
-        - 量化: 发布YOLOv3-MobileNet和BlazeFace的量化模型。
+        - 量化: 发布YOLOv3和BlazeFace的量化模型。
         - 裁剪+蒸馏: 发布MobileNet-YOLOv3裁剪+蒸馏方案和模型，在COCO数据集上FLOPS - 69.6%，GPU下预测加速64.5%，mAP - 0.3 %; 发布ResNet50vd-dcn-YOLOv3裁剪+蒸馏方案和模型，基于COCO数据FLOPS - 43.7%，GPU下预测加速24.0%，mAP + 0.6 %。
         - 搜索: 开源BlazeFace-Nas的完整搜索方案。
     - 预测部署:
@@ -242,14 +242,13 @@ Release Notes
         - 优化模型导出环节，支持图像预处理和后处理的GPU化，性能提升10%~20%。
         - 提供U-Net, ICNet, PSPNet, DeepLabv3+等模型的在不同尺寸图像的预测性能Benchmark，便于用户根据性能进行模型选型。  
     - 体验优化  
-        -  新增学习率warmup功能，支持与不同的学习率Decay策略配合使用，提升Fine-tuning的稳定性。
+        - 新增学习率warmup功能，支持与不同的学习率Decay策略配合使用，提升Fine-tuning的稳定性。
         - 支持对标注图使用伪彩色图像格式的保存，提升标注图片的预览体验。  
         - 新增自动保存mIoU最优模型的功能。  
         - 全面优化文档逻辑，提供如工业质检、眼底筛查等工业场景的AIStudio实战教程。
 
 - ElasticRec（https://github.com/PaddlePaddle/ElasticRec）
-    -
-    - 发布了ElasticRec推荐排序系统，通过K8S进行部署，支持流式训练和在线预测服务。
+    - 发布ElasticRec推荐排序系统，通过K8S进行部署，支持流式训练和在线预测服务。
 
 ## 工具组件
 
@@ -302,6 +301,19 @@ Release Notes
     - 优化fl_distribute_transpiler，使FedAvg strategy新增对adam optimizer支持；
     - 新增SecAgg strategy（Secure Aggregation），用于实现安全的参数聚合；
 
+- 深度强化学习框架PARL（https://github.com/PaddlePaddle/PARL）
+    - 发布v1.3版。
+    - 新增对Multi-Agent RL算法支持，包括MADDPG。
+    - 新增对多卡训练的支持，发布多卡DQN算法示例。
+    - 开源连续控制领域的SOTA算法TD3和SAC。
+    - 开源NeurIPS2019强化学习挑战赛事冠军模型实现和训练方案，开放训练好的模型（可考虑公开课）
+- 飞桨图学习框架PGL（https://github.com/PaddlePaddle/PGL）
+    - 发布v1.1版：
+    - 新增对权威图学习数据集OGB的支持，全面支持nodepropered、linkpred、graphpropered三大类型任务，并发布SOTA基线。
+    - 发布图推荐解决方案PGL-Rec和知识图嵌入算法集PGL-KE。
+    - 易用化改进，发布PGL高阶API。
+    - 其他升级点：多进程图采样优化，加速GraphSAGE类模型3倍；新增基于Lod Tensor的Graph Batch算子，Graph Pooling算子；Model Zoo新增模型，包括分布式异构图算法、GraphZoom、PinSage等。
+
 ## 代码重构和升级
 
 - 编译
@@ -332,9 +344,9 @@ Release Notes
 - 修复一些 GFLAGS 不能在预测库外进行指定的问题。
 - 修复 Analysistor 多线程下若干 Pass 导致预测随机 core 的问题。（fc_gru_fuse_pass，seqconv_eltadd_relu_fuse_pass，attention_lstm_fuse_pass，embedding_fc_lstm_fuse_pass，fc_lstm_fuse_pass，seq_concat_fc_fuse_pass）
 - 修复了在使用 NativePredictor 指定使用 CPU 预测后，在同一进程内使用 AnalysisConfig 指定 GPU 不生效的错误。
-- 修复-DWITH_MKL=OFF时编译报错（setup.py拷贝与op_function_cmd出错）的bug。
+- 修复Windows上-DWITH_MKL=OFF时编译报错的bug。
 - 修复py_func OP无法输入tuple(Variable) 的bug，新增如何写PythonOP的代码示例。
 - 修复sigmoid cudnn kernel错调用成tanh cudnn kernel的问题。
-- 修复部分动态图模式下reshape、depthwiseconv相关的bug；修复网络中部分参数无梯度，导致程序crash 的bug。
+- 修复部分动态图模式下reshape、Conv2D相关的bug；修复网络中部分参数无梯度，导致程序crash 的bug。
 - 修复GradientClip在参数服务器模式下运行错误的BUG。
 - 修复参数服务器全异步模式下内存泄露的问题。

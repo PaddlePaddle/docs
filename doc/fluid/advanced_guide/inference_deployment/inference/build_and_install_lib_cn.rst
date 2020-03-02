@@ -1,6 +1,6 @@
 .. _install_or_build_cpp_inference_lib:
 
-安装与编译C++预测库
+安装与编译 Linux 预测库
 ===========================
 
 直接下载安装
