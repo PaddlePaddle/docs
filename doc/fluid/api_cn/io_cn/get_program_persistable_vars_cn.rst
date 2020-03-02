@@ -1,6 +1,6 @@
 .. _cn_api_fluid_io_get_program_persistable_vars:
 
-load
+get_program_persistable_vars
 -------------------------------
 
 .. py:function:: paddle.fluid.io.get_program_persistable_vars(program)

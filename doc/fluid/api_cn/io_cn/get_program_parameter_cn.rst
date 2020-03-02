@@ -1,6 +1,6 @@
 .. _cn_api_fluid_io_get_program_parameter:
 
-load
+get_program_parameter
 -------------------------------
 
 .. py:function:: paddle.fluid.io.get_program_parameter(program)
