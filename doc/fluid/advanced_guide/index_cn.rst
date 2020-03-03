@@ -28,5 +28,5 @@
     performance_improving/index_cn.rst
     evaluation_debugging/index_cn.rst
     addon_development/index_cn.rst
-    flags_cn.rst
+    flags/flags_cn.rst
 
