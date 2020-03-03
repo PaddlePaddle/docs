@@ -20,7 +20,7 @@ So far you have already been familiar with PaddlePaddle. And the next expectatio
 
     - `Addon Development <addon_development/index_en.html>`_ ：How to contribute codes and documentation to our communities
 
-    - `FLAGS <flags_en.html>`_ 
+    - `FLAGS <flasgs/flags_en.html>`_ 
 
 
 ..  toctree::
@@ -32,6 +32,6 @@ So far you have already been familiar with PaddlePaddle. And the next expectatio
     performance_improving/index_en.rst
     evaluation_debugging/index_en.rst
     addon_development/index_en.rst
-    flags_en.rst
+    flags/flags_en.rst
 
 

@@ -118,7 +118,7 @@ NVIDIA Jetson是NVIDIA推出的嵌入式AI平台，Paddle Inference支持在 NVI
         make inference_lib_dist -j4
 
     3. 样例测试
-      请参照官网样例：https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/deploy/inference/paddle_tensorrt_infer.html#id2
+      请参照官网样例：https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/inference_improving/paddle_tensorrt_infer.html#id2
     
     **FAQ**
 
