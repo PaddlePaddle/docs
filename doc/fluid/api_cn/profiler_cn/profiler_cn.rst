@@ -3,7 +3,7 @@
 profiler
 -------------------------------
 
-.. py:function:: paddle.fluid.profiler.profiler(state, sorted_key=None, profile_path='/tmp/profile')
+.. py:function:: paddle.fluid.profiler.profiler(state, sorted_key=None, profile_path='/tmp/profile', tracer_option='Default')
 
 通用性能分析器 。与 :ref:`cn_api_fluid_profiler_cuda_profiler` 不同，此分析器可用于分析CPU和GPU程序。
 
@@ -11,6 +11,7 @@ profiler
   - **state** (str) –  性能分析状态, 取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成 `性能分析的时间轴信息 <../../advanced_usage/development/profiling/timeline_cn.html>`_ 。
   - **sorted_key** (str，可选) – 性能分析结果的打印顺序，取值为None、'call'、'total'、'max'、'min'、'ave'之一。默认值为None，表示按照第一次结束时间顺序打印；'call'表示按调用的数量进行排序；'total'表示按总执行时间排序；'max'表示按最大执行时间排序；'min'表示按最小执行时间排序；'ave'表示按平均执行时间排序。
   - **profile_path** (str，可选) –  如果性能分析状态为'All', 将生成的时间轴信息写入profile_path，默认输出文件为 ``/tmp/profile`` 。
+  - **tracer_option** (str，可选) –   性能分析选项取值为 'Default' 或 'OpDetail' 或 'AllOpDetail', 此选项用于设置性能分析层次并打印不同层次的性能分析结果， `Default` 选项打印不同Op类型的性能分析结果， `OpDetail` 则会打印不同OP类型更详细的性能分析结果，比如compute和data transform。 `AllOpDetail` 和 `OpDetail` 类似，但是打印的是不同Op名字的性能分析结果。
 
 抛出异常：
   - ``ValueError`` – 如果state取值不在 ['CPU', 'GPU', 'All']中，或sorted_key取值不在 [None, 'calls', 'total', 'max', 'min', 'ave']中，则抛出异常。
@@ -39,7 +40,7 @@ profiler
 
 **结果示例**
 
-.. code-block:: python
+.. code-block:: text
 
     #### sorted_key = 'total', 'calls', 'max', 'min', 'ave' 结果 ####
     # 示例结果中，除了Sorted by number of xxx in descending order in the same thread 这句随着sorted_key变化而不同，其余均相同。
