@@ -49,7 +49,7 @@ elementwise_add
 
 **代码示例 1**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     import numpy as np
@@ -68,9 +68,15 @@ elementwise_add
                         fetch_list=[z.name])
     print(z_value) # [3., 8., 6.]
 
+**代码输出值 1**
+
+.. code-block:: text
+
+    [array([3, 8, 6])]
+
 **代码示例 2**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     import numpy as np
@@ -89,9 +95,10 @@ elementwise_add
                         fetch_list=[z.name])
     print(z_value) # z.shape=[2,3,4,5]
 
+
 **代码示例 3**
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle.fluid as fluid
     import numpy as np
@@ -109,7 +116,3 @@ elementwise_add
     z_value = exe.run(feed=gen_data(),
                         fetch_list=[z.name])
     print(z_value) # z.shape=[2,3,4,5]
-
-
-
-

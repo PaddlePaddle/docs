@@ -93,7 +93,6 @@ def extract_sample_code(srcfile, status_all):
     sample_code_begins = find_all(srcc, " code-block:: python")
     if len(sample_code_begins) == 0:
         status.append(-1)
-
     else:
         for i in range(0, len(srcls)):
             if srcls[i].find(".. code-block:: python") != -1:
@@ -120,9 +119,18 @@ def extract_sample_code(srcfile, status_all):
                     if srcls[j].find(" code-block:: python") != -1:
                         break
                     content += srcls[j].replace(startindent, "", 1)
-                status.append(run_sample_code(content, filename))
+                code_status,code_results = run_sample_code(content, filename)
+                code_content = ""
+                if code_return == 0 and j + blank_line < len(srcls)  and code_status == 0 and srcls[j + blank_line].find(".. code-block:: text") != -1:
+                    for k in range(j, len(srcls)):
+                        if srcls[k].find(" code-block:: python") != -1:
+                            break
+                        code_content += srcls[k]
+                    if code_content.find(code_results) == -1:
+                        code_status = 2
+        status.append(code_status)
+        status_all[filename] = status
 
-    status_all[filename] = status
     return status_all
 
 
@@ -136,7 +144,7 @@ def run_sample_code(content, filename):
     cmd = ["python", "temp/" + fname]
 
     subprc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    _, error = subprc.communicate()
+    code_result, error = subprc.communicate()
     err = "".join(error.decode(encoding='utf-8'))
 
     if subprc.returncode != 0:
@@ -145,8 +153,8 @@ def run_sample_code(content, filename):
         status = 1
     else:
         status = 0
-    os.remove("temp/" + fname)
-    return status
+    #os.remove("temp/" + fname)
+    return status,code_result
 
 def test(file):
     temp = []
@@ -183,6 +191,11 @@ else:
     if not os.path.exists(sys.argv[1]):
         print("File not found")
         sys.exit(1)
+    with open('../../../scripts/return_white_list.txt', 'r') as f:
+        if f.read().find(sys.argv[1]) == -1:
+            code_return = 0
+        else:
+            code_return = 1
     res = test(sys.argv[1])    
     output.append(res)
 
