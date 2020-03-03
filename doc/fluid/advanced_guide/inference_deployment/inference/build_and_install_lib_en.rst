@@ -121,7 +121,7 @@ NVIDIA Jetson is an AI computing platform in embedded systems introduced by NVID
         make inference_lib_dist -j4
       
     3. Test with samples
-      Please refer to samples on https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/deploy/inference/paddle_tensorrt_infer.html#id2
+      Please refer to samples on https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/inference_improving/paddle_tensorrt_infer.html#id2
 
     **FAQ**
 
