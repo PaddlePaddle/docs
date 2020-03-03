@@ -40,6 +40,7 @@ profiler
 
 **结果示例**
 
+.. code-block:: text
 
     #### sorted_key = 'total', 'calls', 'max', 'min', 'ave' 结果 ####
     # 示例结果中，除了Sorted by number of xxx in descending order in the same thread 这句随着sorted_key变化而不同，其余均相同。
