@@ -153,7 +153,7 @@ def run_sample_code(content, filename):
         status = 1
     else:
         status = 0
-    #os.remove("temp/" + fname)
+    os.remove("temp/" + fname)
     return status,code_result
 
 def test(file):
