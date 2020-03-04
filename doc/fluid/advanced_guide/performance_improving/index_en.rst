@@ -8,5 +8,6 @@ Practice Improving
 
     multinode_training_improving/cpu_train_best_practice_en.rst
     multinode_training_improving/gpu_training_with_recompute_en.rst
+    multinode_training_improving/gpu_training_with_low_bandwidth_dgc_en.md
     inference_improving/paddle_tensorrt_infer_en.md
     analysis_tools/index_en.rst

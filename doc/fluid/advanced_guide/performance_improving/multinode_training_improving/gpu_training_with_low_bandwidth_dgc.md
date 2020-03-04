@@ -78,7 +78,7 @@ $w^{(i)}$在T次稀疏更新后的权重为,
 $$
 w\_{t+T}^{(i)}=w\_{t}^{(i)}-\\eta\\left(\\cdots+\\nabla\_{k, t+1}^{(i)}+\\nabla\_{k, t}^{(i)}\\right) \\tag{6}
 $$
-相比传统动量SGD，方程6缺失了累积衰减因子$\sum\_{\tau=0}^{T-1} m^{\tau}$，会导致收敛精度的损失。如下图A，正常梯度更新从A点到B点，但是方程6则从A点到C点。当稀疏度很高时，会显著降低模型性能，所以需要在方程5基础上对梯度进行修正。
+相比传统动量SGD，方程6缺失了累积衰减因子$\sum\_{\tau=0}^{T-1} m^{\tau}$，会导致收敛精度的损失。如下图(a)，正常梯度更新从A点到B点，但是方程6则从A点到C点。当稀疏度很高时，会显著降低模型性能，所以需要在方程5基础上对梯度进行修正。
 <p align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_guide/performance_improving/multinode_training_improving/images/dgc_without_momentum_correction.png" width="320"/>
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/advanced_guide/performance_improving/multinode_training_improving/images/dgc_with_momentum_correction.png" width="320"/>
