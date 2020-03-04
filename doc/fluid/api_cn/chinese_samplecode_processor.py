@@ -84,6 +84,7 @@ def find_all(src_str, substr):
 
 
 def extract_sample_code(srcfile, status_all):
+    run_code = 0
     filename = srcfile.name
     srcc = srcfile.read()
     srcfile.seek(0, 0)
@@ -119,15 +120,23 @@ def extract_sample_code(srcfile, status_all):
                     if srcls[j].find(" code-block:: python") != -1:
                         break
                     content += srcls[j].replace(startindent, "", 1)
+                    #content += srcls[j]
                 code_status,code_results = run_sample_code(content, filename)
+                run_code += 1
                 code_content = ""
-                if code_return == 0 and j + blank_line < len(srcls)  and code_status == 0 and srcls[j + blank_line].find(".. code-block:: text") != -1:
+                print(white_return_code)
+                print(run_code)
+                if code_return == 0 and j + blank_line < len(srcls) and code_status == 0 and run_code not in white_return_code:
+                    if srcls[j + blank_line].find(".. code-block:: text") == -1:
+                        code_status = 2 
+                        break
                     for k in range(j, len(srcls)):
                         if srcls[k].find(" code-block:: python") != -1:
                             break
                         code_content += srcls[k]
                     if code_content.find(code_results) == -1:
                         code_status = 2
+        print(111,code_status)
         status.append(code_status)
         status_all[filename] = status
 
@@ -182,6 +191,8 @@ if not os.path.isdir("temp"):
     os.mkdir("temp")
 
 output = []
+white_return_code = []
+code_return = 1
 
 if len(sys.argv) < 2:
     print("Error: inadequate number of arguments")
@@ -192,15 +203,19 @@ else:
         print("File not found")
         sys.exit(1)
     with open('../../../scripts/return_white_list.txt', 'r') as f:
-        if f.read().find(sys.argv[1]) == -1:
+        if f.read().find(sys.argv[1]) != -1:
             code_return = 0
-        else:
-            code_return = 1
+
+    with open('../../../scripts/return_white_list.txt', 'r') as f:
+        for line in f.readlines():
+            l = line.split()            
+            if sys.argv[1] == l[0]:
+                white_return_code = list(map(int,l[1:]))
     res = test(sys.argv[1])    
     output.append(res)
 
 
-status_groups = {-1: [], 0: [], 1: []}
+status_groups = {-1: [], 0: [], 1: [], 2: []}
 # polishes show format
 ci_pass = True
 for one_file in output:
@@ -216,10 +231,8 @@ for one_file in output:
             else:
                 for u in range(0, len(status)):
                     status_groups[status[u]].append(key + '_' + str(u + 1))
-
-error_api = status_groups[-1] + status_groups[1]
+error_api = status_groups[-1] + status_groups[1] + status_groups[2]
 total_error_number = len(error_api)
-
 
 print("****************************************************")
 print("----------------End of the Check--------------------")
@@ -228,12 +241,16 @@ if total_error_number > 0:
     print("Error sample code number is:{}".format(total_error_number))
     type_one_number = len(status_groups[-1])
     type_two_number = len(status_groups[1])
+    type_three_number = len(status_groups[2])
     if type_one_number > 0:
         print("Error type one sample number is:{}".format(type_one_number))
         print("Error raised from type one:no sample code.", str(status_groups[-1]))
     if type_two_number > 0:
         print("Error type two sample number is:{}".format(type_two_number))
         print("Error raised from type two:running error sample code.", str(status_groups[1]))
+    if type_three_number > 0:
+        print("Error type three sample number is:{}".format(type_three_number))
+        print("Error raised from type three:return error sample code.", str(status_groups[2]))
 if not ci_pass:
     print("Mistakes found in sample codes.")
     exit(1)
