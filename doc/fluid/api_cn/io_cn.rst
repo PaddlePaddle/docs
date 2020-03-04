@@ -17,6 +17,8 @@ fluid.io
     io_cn/ComposeNotAligned_cn.rst
     io_cn/DataLoader_cn.rst  
     io_cn/firstn_cn.rst
+    io_cn/get_program_parameter_cn.rst
+    io_cn/get_program_persistable_vars_cn.rst
     io_cn/load_cn.rst
     io_cn/load_inference_model_cn.rst
     io_cn/load_params_cn.rst
