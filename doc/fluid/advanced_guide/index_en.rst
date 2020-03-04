@@ -20,7 +20,7 @@ So far you have already been familiar with PaddlePaddle. And the next expectatio
 
     - `Addon Development <addon_development/index_en.html>`_ ：How to contribute codes and documentation to our communities
 
-    - `FLAGS <flasgs/flags_en.html>`_ 
+    - `FLAGS <flags/flags_en.html>`_ 
 
 
 ..  toctree::
