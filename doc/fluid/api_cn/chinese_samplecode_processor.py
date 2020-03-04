@@ -124,8 +124,6 @@ def extract_sample_code(srcfile, status_all):
                 code_status,code_results = run_sample_code(content, filename)
                 run_code += 1
                 code_content = ""
-                print(white_return_code)
-                print(run_code)
                 if code_return == 0 and j + blank_line < len(srcls) and code_status == 0 and run_code not in white_return_code:
                     if srcls[j + blank_line].find(".. code-block:: text") == -1:
                         code_status = 2 
@@ -136,7 +134,6 @@ def extract_sample_code(srcfile, status_all):
                         code_content += srcls[k]
                     if code_content.find(code_results) == -1:
                         code_status = 2
-        print(111,code_status)
         status.append(code_status)
         status_all[filename] = status
 
