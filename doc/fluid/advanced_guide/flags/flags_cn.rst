@@ -7,11 +7,11 @@
     :maxdepth: 1
 
 
-    flags/cudnn_cn.rst
-    flags/data_cn.rst
-    flags/debug_cn.rst
-    flags/device_cn.rst
-    flags/distributed_cn.rst
-    flags/executor_cn.rst
-    flags/memory_cn.rst
-    flags/others_cn.rst
+    cudnn_cn.rst
+    data_cn.rst
+    debug_cn.rst
+    device_cn.rst
+    distributed_cn.rst
+    executor_cn.rst
+    memory_cn.rst
+    others_cn.rst
