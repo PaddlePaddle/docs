@@ -14,8 +14,9 @@ While
     如果参数 ``cond`` 的形状为[1]，强烈建议您使用新的OP :ref:`cn_api_fluid_layers_while_loop` 而不是 ``While``。
     OP :ref:`cn_api_fluid_layers_while_loop` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``While`` 一样。
 
-    ``While`` 类似于C++中的while，在 ``While`` 中创建的局部变量是无法通过 ``Executor`` 中的 ``fetch_list`` 来捕获的。
-    若想实现该功能，请参考示例代码2 或参考 `issue#22724 <https://github.com/PaddlePaddle/Paddle/issues/22724>`_ 。
+**注意：**
+    在 ``While`` 中创建的局部变量类似于C++中的while，无法被外部引用，因此无法通过 ``Executor`` 中的 ``fetch_list`` 来获取。
+    若想实现该功能，PaddlePaddle提供了 ``assign`` 接口将局部变量赋值到外部，请参考示例代码2 或参考 `issue#22724 <https://github.com/PaddlePaddle/Paddle/issues/22724>`_ 。
 
 参数：
     - **cond** (Variable) – 用于判断循环继续进行的条件，为数据类型bool型的Tensor，其shape必须为[1]。
