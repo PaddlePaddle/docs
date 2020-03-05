@@ -21,6 +21,7 @@ fluid
     fluid/default_main_program.rst
     fluid/default_startup_program.rst
     fluid/disable_dygraph.rst
+    fluid/device_guard.rst
     fluid/DistributeTranspiler.rst
     fluid/DistributeTranspilerConfig.rst
     fluid/embedding.rst
