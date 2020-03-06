@@ -4,7 +4,7 @@
 
 * **Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 9.0/10.0, 且仅支持单卡)**
 * **Python 版本 2.7/3.5.1+/3.6/3.7 (64 bit)**
-* **pip 或 pip3 版本 9.0.1+ (64 bit)**
+* **pip 版本 9.0.1+ (64 bit)**
 * **Visual Studio 2015 Update3**
 
 ## 选择CPU/GPU
