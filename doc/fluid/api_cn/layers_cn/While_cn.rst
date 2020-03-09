@@ -60,7 +60,7 @@ While
     one = fluid.layers.fill_constant(shape=[1], dtype='float32', value=1)
     data = fluid.data(name='data', shape=[1], dtype='float32')
 
-    sums = fluid.layers.fill_constant(shape=[1], dtype='float32', value=0)  # 在 While 外先定义要捕获的变量，需和要捕获的 While 内部的变量名称不同
+    sums = fluid.layers.fill_constant(shape=[1], dtype='float32', value=0)  # 在 While 外先定义要获取的变量，需和要获取的 While 内部的变量名称不同
 
     cond = fluid.layers.less_than(x=i, y=loop_len)
     while_op = fluid.layers.While(cond=cond)
