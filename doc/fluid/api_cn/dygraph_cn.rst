@@ -16,6 +16,7 @@ fluid.dygraph
     dygraph_cn/Conv3D_cn.rst
     dygraph_cn/Conv3DTranspose_cn.rst
     dygraph_cn/CosineDecay_cn.rst
+    dygraph_cn/DataParallel_cn.rst
     dygraph_cn/Embedding_cn.rst
     dygraph_cn/ExponentialDecay_cn.rst
     dygraph_cn/FC_cn.rst
