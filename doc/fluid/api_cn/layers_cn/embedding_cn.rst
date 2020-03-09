@@ -74,6 +74,8 @@ embedding
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
+
     data = fluid.layers.data(name='sequence', shape=[1], dtype='int64', lod_level=1)
 
     # 示例 1
