@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*
 import math
 import os
 import pickle
@@ -124,8 +125,9 @@ def extract_sample_code(srcfile, status_all):
                 code_status,code_results = run_sample_code(content, filename)
                 run_code += 1
                 code_content = ""
-                if code_return == 0 and j + blank_line < len(srcls) and code_status == 0 and run_code not in white_return_code:
-                    if srcls[j + blank_line].find(".. code-block:: text") == -1:
+                if code_return == 0 and code_status == 0 and run_code not in white_return_code:
+                    if j + blank_line < len(srcls) and srcls[j + blank_line].find(".. code-block:: text") == -1:
+                        print("Cannot find the return result of the sample code.If you have returned a reault, please check the format of the result.If you think the sample code of this api is not suitable for the return result，please add the white list in FIle: FluidDoc/scripts/return_white_list.txt first. And you must have one TPM(saxon-zh or swtkiwi or Boyan-Liu) approve for the white list.""")
                         code_status = 2 
                         break
                     for k in range(j, len(srcls)):
@@ -133,10 +135,13 @@ def extract_sample_code(srcfile, status_all):
                             break
                         code_content += srcls[k]
                     if code_content.find(code_results) == -1:
+                        print("""Mistake found in  the return result of sample code.There maybe two reasons for this error:
+    1. The input of the sample code is a random number.Please add the white list in FIle: FluidDoc/scripts/return_white_list.txt first .And you must have one TPM(saxon-zh or swtkiwi or Boyan-Liu) approve for the white list.
+    2. The return value of the sample code is incorrect. Please check the code and reset the return value.""")
+                        
                         code_status = 2
-        status.append(code_status)
-        status_all[filename] = status
-
+                status.append(code_status)
+                status_all[filename] = status
     return status_all
 
 
