@@ -1,6 +1,6 @@
 .. _install_or_build_cpp_inference_lib:
 
-安装与编译C++预测库
+安装与编译 Linux 预测库
 ===========================
 
 直接下载安装
@@ -118,7 +118,7 @@ NVIDIA Jetson是NVIDIA推出的嵌入式AI平台，Paddle Inference支持在 NVI
         make inference_lib_dist -j4
 
     3. 样例测试
-      请参照官网样例：https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/deploy/inference/paddle_tensorrt_infer.html#id2
+      请参照官网样例：https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/inference_improving/paddle_tensorrt_infer.html#id2
     
     **FAQ**
 

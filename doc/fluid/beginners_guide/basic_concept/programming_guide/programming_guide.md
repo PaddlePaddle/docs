@@ -166,49 +166,53 @@ print outs
 
 ## 组建更加复杂的网络
 
-Paddle提供顺序、分支和循环三种执行逻辑，用户可以通过组合描述任意复杂的模型。
+某些场景下，用户需要根据当前网络中的某些状态，来具体决定后续使用哪一种操作，或者重复执行某些操作。在动态图中，可以方便的使用Python的控制流语句（如for，if-else等）来进行条件判断，但是在静态图中，由于组网阶段并没有实际执行操作，也没有产生中间计算结果，因此无法使用Python的控制流语句来进行条件判断，为此静态图提供了多个控制流API来实现条件判断。这里以[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)为例来说明如何在静态图中实现条件循环的操作。
 
-**顺序执行：**
+while_loop API用于实现类似while/for的循环控制功能，使用一个callable的方法cond作为参数来表示循环的条件，只要cond的返回值为True，while_loop就会循环执行循环体body（也是一个callable的方法），直到 cond 的返回值为False。对于while_loop API的详细定义和具体说明请参考文档[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)。
 
-用户可以使用顺序执行的方式搭建网络：
-
-```python
-x = fluid.data(name='x', shape=[None, 13], dtype='float32')
-y_predict = fluid.layers.fc(input=x, size=1, act=None)
-y = fluid.data(name='y', shape=[None, 1], dtype='float32')
-cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-```
-
-**条件分支和循环：**
-
-某些场景下，用户需要根据当前网络中的某些状态，来具体决定后续使用哪一种操作，
-或者需要根据某些网络状态来重复执行某些操作，针对这类需求，
-Paddle提供了 `fluid.layers.Switch` 和 `fluid.layers.IfElse`
-两个API来实现条件分支的操作，以及 `fluid.layers.While` 来实现循环操作。
-
-下面的代码展示了如何使用 `fluid.layers.Switch` API来根据当前训练的step数进行动态学习率的调整：
+下面的例子中，使用while_loop API进行条件循环操作，其实现的功能相当于在python中实现如下代码：
 
 ```python
-lr = fluid.layers.tensor.create_global_var(
-        shape=[1],
-        value=0.0,
-        dtype='float32',
-        persistable=True,
-        name="learning_rate")
-
-one_var = fluid.layers.fill_constant(
-        shape=[1], dtype='float32', value=1.0)
-two_var = fluid.layers.fill_constant(
-        shape=[1], dtype='float32', value=2.0)
-
-with fluid.layers.control_flow.Switch() as switch:
-    with switch.case(global_step == zero_var):
-        fluid.layers.tensor.assign(input=one_var, output=lr)
-    with switch.default():
-        fluid.layers.tensor.assign(input=two_var, output=lr)
+i = 0
+ten = 10
+while i < ten:
+    i = i + 1
+print('i =', i)
 ```
 
-其他控制流API的使用方法，请参见文档：[IfElse](../../../api_cn/layers_cn/IfElse_cn.html) 和 [While](../../../api_cn/layers_cn/While_cn.html) 。
+在静态图中使用while_loop API实现以上代码的逻辑：
+
+```python
+# 该代码要求安装飞桨1.7+版本
+
+# 该示例代码展示整数循环+1，循环10次，输出计数结果
+import paddle.fluid as fluid
+import paddle.fluid.layers as layers
+
+# 定义cond方法，作为while_loop的判断条件
+def cond(i, ten):
+    return i < ten 
+
+# 定义body方法，作为while_loop的执行体，只要cond返回值为True，while_loop就会一直调用该方法进行计算
+# 由于在使用while_loop OP时，cond和body的参数都是由while_loop的loop_vars参数指定的，所以cond和body必须有相同数量的参数列表，因此body中虽然只需要i这个参数，但是仍然要保持参数列表个数为2，此处添加了一个dummy参数来进行"占位"
+def body(i, dummy):
+    # 计算过程是对输入参数i进行自增操作，即 i = i + 1
+    i = i + 1
+    return i, dummy
+
+i = layers.fill_constant(shape=[1], dtype='int64', value=0) # 循环计数器
+ten = layers.fill_constant(shape=[1], dtype='int64', value=10) # 循环次数
+out, ten = layers.while_loop(cond=cond, body=body, loop_vars=[i, ten]) # while_loop的返回值是一个tensor列表，其长度，结构，类型与loop_vars相同
+
+exe = fluid.Executor(fluid.CPUPlace())
+res = exe.run(fluid.default_main_program(), feed={}, fetch_list=out)
+print(res) #[array([10])]
+
+```
+
+限于篇幅，上面仅仅用一个最简单的例子来说明如何在静态图中实现循环操作。循环操作在很多应用中都有着重要作用，比如NLP中常用的Transformer模型，在解码（生成）阶段的Beam Search算法中，需要使用循环操作来进行候选的选取与生成，可以参考[Transformer](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/PaddleMT/transformer)模型的实现来进一步学习while_loop在复杂场景下的用法。
+
+除while_loop之外，飞桨还提供fluid.layers.cond API来实现条件分支的操作，以及fluid.layers.switch_case和fluid.layers.case API来实现分支控制功能，具体用法请参考文档：[cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/cond_cn.html)，[switch_case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/switch_case_cn.html)和[case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/case_cn.html#case)
 
 ## 一个完整的网络示例
 

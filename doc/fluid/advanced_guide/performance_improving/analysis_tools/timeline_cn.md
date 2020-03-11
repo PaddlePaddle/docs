@@ -52,7 +52,6 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
 
 1. 打开chrome浏览器，访问<chrome://tracing/>，用`load`按钮来加载生成的`timeline`文件。
 
-    ![chrome tracing](../tracing.jpeg)
 
 1. 结果如下图所示，可以放大来查看timeline的细节信息。
 

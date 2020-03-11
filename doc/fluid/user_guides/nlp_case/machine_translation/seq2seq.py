@@ -31,7 +31,7 @@ max_length = 256
 beam_size = 4
 batch_size = 64
 
-model_save_dir = "machine_translation.inference.model"
+model_file = "machine_translation"
 
 
 class DecoderCell(layers.RNNCell):
@@ -289,7 +289,7 @@ def train(use_cuda):
             print('pass_id: %d, batch_id: %d, loss: %f' %
                   (pass_id, batch_id, loss_val))
             batch_id += 1
-        fluid.io.save_params(exe, model_save_dir, main_program=train_prog)
+        fluid.save(train_prog, model_file)
 
 
 def infer(use_cuda):
@@ -312,7 +312,7 @@ def infer(use_cuda):
 
     exe = fluid.Executor(places[0])
     exe.run(startup_prog)
-    fluid.io.load_params(exe, model_save_dir, main_program=infer_prog)
+    fluid.load(infer_prog, model_file, exe)
     prog = fluid.CompiledProgram(infer_prog).with_data_parallel()
 
     for data in loader():

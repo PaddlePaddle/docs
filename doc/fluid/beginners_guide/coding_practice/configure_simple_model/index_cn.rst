@@ -33,16 +33,16 @@
 数据层
 ------
 
-PaddlePaddle提供了 :code:`fluid.layers.data()` 算子来描述输入数据的格式。
+PaddlePaddle提供了 :code:`fluid.data()` 算子来描述输入数据的格式。
 
-:code:`fluid.layers.data()` 算子的输出是一个Variable。这个Variable的实际类型是Tensor。Tensor具有强大的表征能力，可以表示多维数据。为了精确描述数据结构，通常需要指定数据shape以及数值类型type。其中shape为一个整数向量，type可以是一个字符串类型。目前支持的数据类型参考    :ref:`user_guide_paddle_support_data_types` 。 模型训练一般会使用batch的方式读取数据，而batch的size在训练过程中可能不固定。data算子会依据实际数据来推断batch size，所以这里提供shape时不用关心batch size，只需关心一条样本的shape即可，更高级用法请参考 :ref:`user_guide_customize_batch_size_rank`。从上知，:math:`x` 为 :math:`13` 维的实数向量，:math:`y` 为实数，可使用下面代码定义数据层：
+:code:`fluid.data()` 算子的输出是一个Variable。这个Variable的实际类型是Tensor。Tensor具有强大的表征能力，可以表示多维数据。为了精确描述数据结构，通常需要指定数据shape以及数值类型type。其中shape为一个整数向量，type可以是一个字符串类型。目前支持的数据类型参考    :ref:`user_guide_paddle_support_data_types` 。 模型训练一般会使用batch的方式读取数据，而batch的size在训练过程中可能不固定。data算子会依据实际数据来推断batch size，所以这里提供shape时不用关心batch size，只需关心一条样本的shape即可，更高级用法请参考 :ref:`user_guide_customize_batch_size_rank`。从上知，:math:`x` 为 :math:`13` 维的实数向量，:math:`y` 为实数，可使用下面代码定义数据层：
 
 .. code-block:: python
 
-    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    x = fluid.data(name='x', shape=[13], dtype='float32')
+    y = fluid.data(name='y', shape=[1], dtype='float32')
 
-该模型使用的数据比较简单，事实上data算子还可以描述变长的、嵌套的序列数据。也可以使用 :code:`open_files` 打开文件进行训练。更详细的文档可参照 :ref:`user_guide_prepare_data`。
+该模型使用的数据比较简单，事实上data算子还可以描述变长的、嵌套的序列数据。更详细的文档可参照 :ref:`user_guide_prepare_data`。
 
 前向计算逻辑
 ------------
