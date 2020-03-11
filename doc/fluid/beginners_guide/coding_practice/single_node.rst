@@ -60,7 +60,7 @@
 
 执行单卡训练可以使用 :code:`fluid.Executor()` 中的 :code:`run()` 方法，运行训练\
 :code:`fluid.Program` 即可。在运行的时候，用户可以通过 :code:`run(feed=...)`\
-参数传入数据；用户可以通过 :code:`run(fetch=...)` 获取持久的数据。例如:\
+参数传入数据；用户可以通过 :code:`run(fetch=...)` 获取输出数据。例如:\
 
 .. code-block:: python
 
