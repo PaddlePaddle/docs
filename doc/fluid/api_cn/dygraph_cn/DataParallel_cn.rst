@@ -13,7 +13,7 @@ DataParallel
 
 参数：
     - **layers** (Layer) - 需要在数据并行模式下运行的模型。
-    - **strategy** (ParallelStrategy) - 数据并行化策略。
+    - **strategy** (ParallelStrategy) - 数据并行化策略。由 :ref:`cn_api_fluid_dygraph_prepare_context` 产生的对象。
 
 返回：
     None
@@ -30,13 +30,13 @@ DataParallel
    place = fluid.CUDAPlace(fluid.dygraph.parallel.Env().dev_id)
    with fluid.dygraph.guard(place=place):
 
-       # prepare the data parallel context
+       # 准备数据并行模式下的环境配置
        strategy=dygraph.parallel.prepare_context()
 
        linear = Linear(1, 10, act="softmax")
        adam = fluid.optimizer.AdamOptimizer(parameter_list=linear.parameters())
 
-       # make the module become the data parallelism module
+       # 使用户的模型linear变成数据并行模式下的模型
        linear = dygraph.parallel.DataParallel(linear, strategy)
 
        x_data = np.random.random(size=[10, 1]).astype(np.float32)
@@ -45,12 +45,12 @@ DataParallel
        hidden = linear(data)
        avg_loss = fluid.layers.mean(hidden)
 
-       # scale the loss according to the number of trainers.
+       # 根据trainers的数量来损失值进行缩放
        avg_loss = linear.scale_loss(avg_loss)
 
        avg_loss.backward()
 
-       # collect the gradients of trainers.
+       # 对多个trainers下模型的参数梯度进行平均 
        linear.apply_collective_grads()
 
        adam.minimize(avg_loss)
@@ -58,7 +58,7 @@ DataParallel
 
 .. py:method:: scale_loss(loss)
 
-对损失值进行缩放。在数据并行模式下，损失值根据 ``trainers`` 的数量缩放一定的比例；反之，返回原始的损失值。
+对损失值进行缩放。在数据并行模式下，损失值根据 ``trainers`` 的数量缩放一定的比例；反之，返回原始的损失值。在 ``backward`` 前调用，示例如上。
 
 参数：
     - **loss** (Variable) - 当前模型的损失值
@@ -69,5 +69,5 @@ DataParallel
 
 .. py:method:: apply_collective_grads()
 
-使用AllReduce模式来计算数据并行模式下多个模型之间参数梯度的均值。
+使用AllReduce模式来计算数据并行模式下多个 ``trainers`` 模型之间参数梯度的均值。在 ``backward`` 之后调用，示例如上。
 
