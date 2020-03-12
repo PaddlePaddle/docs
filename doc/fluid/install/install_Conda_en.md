@@ -21,7 +21,7 @@ If you want to use python version 3.6: `conda create -n paddle_env python=3.6`
 
 If you want to use python version 3.7: `conda create -n paddle_env python=3.7`
 
-activate paddle_env (for Windows) or conda activate paddle_env (for MacOS / Linux) command to enter the Anaconda virtual environment.
+Activate paddle_env (for Windows) or conda activate paddle_env (for MacOS / Linux) command to enter the Anaconda virtual environment.
 
 2.Confirm that your conda virtual environment and the Python loaction which is preapared to install PaddlePaddle are where you expected them for your computer may have multiple Pythons environments. Enter Anaconda's command line terminal and enter the following command to confirm the Python location.
 
@@ -29,13 +29,13 @@ If you are using Python 2, use the following command to get the Python path. Dep
     
      In a Windows environment, the command to get the Python path is:  where python
          
-     In a Windows environment, the command to get the Python path is:  which python
+     In a MacOS/Linux environment, the command to get the Python path is:  which python
 
 If you are using Python 3, use the following command to get the Python path. Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
     
      In a Windows environment, the command to get the Python path is:  where python3
          
-     In a Windows environment, the command to get the Python path is:  which python3 
+     In a MacOS/Linux environment, the command to get the Python path is:  which python3 
 
 
 3.Check the version of Python
