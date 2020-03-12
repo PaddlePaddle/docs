@@ -27,7 +27,7 @@ Env通常需要和 `fluid.dygraph.parallel.DataParallel` 一起使用，用于�
             # 准备数据并行的环境
             strategy = dygraph.parallel.prepare_context()
             linear = Linear(1, 10, act="softmax")
-            adam = fluid.optimizer.AdamOptimizer()
+            adam = fluid.optimizer.AdamOptimizer(parameter_list=linear.parameters())
             # 配置模型为并行模型
             linear = dygraph.parallel.DataParallel(linear, strategy)
             x_data = np.random.random(size=[10, 1]).astype(np.float32)

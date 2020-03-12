@@ -8,3 +8,4 @@ transpiler_cn/RoundRobin_cn.rst
 optimizer_cn/Dpsgd_cn.rst
 io_cn/ComposeNotAligned_cn.rst
 dygraph_cn/DataParallel_cn.rst
+dygraph_cn/Env_cn.rst

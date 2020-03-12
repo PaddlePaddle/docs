@@ -45,7 +45,7 @@ DataParallel
        hidden = linear(data)
        avg_loss = fluid.layers.mean(hidden)
 
-       # 根据trainers的数量来损失值进行缩放
+       # 根据trainers的数量来损失值进行缩放，其中trainers为参与训练GPU卡的数量。
        avg_loss = linear.scale_loss(avg_loss)
 
        avg_loss.backward()
@@ -58,7 +58,7 @@ DataParallel
 
 .. py:method:: scale_loss(loss)
 
-对损失值进行缩放。在数据并行模式下，损失值根据 ``trainers`` 的数量缩放一定的比例；反之，返回原始的损失值。在 ``backward`` 前调用，示例如上。
+对损失值进行缩放。在数据并行模式下，损失值根据 ``trainers`` 的数量缩放一定的比例；反之，返回原始的损失值。在 ``backward`` 前调用，示例如上。其中 ``trainers`` 为参与训练GPU卡的数量。
 
 参数：
     - **loss** (Variable) - 当前模型的损失值
@@ -69,5 +69,5 @@ DataParallel
 
 .. py:method:: apply_collective_grads()
 
-使用AllReduce模式来计算数据并行模式下多个 ``trainers`` 模型之间参数梯度的均值。在 ``backward`` 之后调用，示例如上。
+使用AllReduce模式来计算数据并行模式下多个 ``trainers`` 模型之间参数梯度的均值。在 ``backward`` 之后调用，示例如上。其中 ``trainers`` 为参与训练GPU卡的数量。
 
