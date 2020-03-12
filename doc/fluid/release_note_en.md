@@ -79,7 +79,7 @@ This version focuses on enhancement of the framework functions, includes improvi
     - Optimize the `RecomputeOptimizer` to enable bigger batchsize. The batchsize of Bert-large model increases by 533.62% while using the `RecomputeOptimizer`.
     - OP Performance Optimization
         - Implements the fusion operator called `fuse_emb_seq_pool` of `embedding` and `sequence_pool`. Optimizes the `murmurhash3_x64_128` in `bloom_filter`. These optimization increases the training speed of some NLP models.
-        - Optimizes the GPU performance of `mean op`. When a data of 3232 8 *8 tensor is input, the forward calculation speed is increased by 2.7 times.
+        - Optimizes the GPU performance of `mean op`. When a data of 32 *32 *8 *8 tensor is input, the forward calculation speed is increased by 2.7 times.
         - Optimizes OPs of `assign` and `lod_reset`, to avoid nnecessary GPU memory copy and data transform.
         - Optimizes the kernel implementation of stack OP. The performance of a single card of GPU in the XLnet/Ernie model is improved by 4.1%.
 - Dynamic Graph
@@ -98,6 +98,7 @@ This version focuses on enhancement of the framework functions, includes improvi
         - Optimizes asynchronous DataLoader of the dynamic graph. For the Mnist, ResNet and other CV models , the single card training speed is improved by more than 40% on the P40 machine.
         - Adds numpy bridge function, to support sharing the underlying data between Tensor and ndarray in CPU mode. This can avoid the copy problem of numpy input when creating variables, and improve efficiency.
         - Optimizes the GPU memory by the forward variable space strategy, which can delete the Tensor Buffer not required in reverse calculation in advance. The maximum batch size is increased by more than 20%-30% in some models such as ResNet.
+         - To reduce the performance impact caused by adding extra `scale_op` to update the beta parameter in `AdamOptimizer`.  Iintegrate the updating logic of `beta` into `adam_op` to reduce the cost of calling op kernel.  The performance  of  is improved by 9.67%  on the P40 machine.
     - Dynamic Graph Deployment
         - Supports the `TracedLayer` interface to convert the dynamic graph model into the static graph.
 - Debugging Analysis
@@ -133,10 +134,10 @@ This version focuses on enhancement of the framework functions, includes improvi
 - Mobile/Embedded End-side [Paddle Lite](https://github.com/PaddlePaddle/Paddle-Lite)
     - Releases the version v2.3.
     - Upgrades the functions of Model_optimize_tool.
-    - Supports "The post-training quantization method without calibration data". The model storage space can be reduced by 2 to 4 times.    
+    - Supports "The post-training quantization method without calibration data". The model storage space can be reduced by 2 to 4 times.  
     - OpenCL: The migration of 30 Image2D Kernels are finished and 14 Ops are covered.
     - Strenthens the capability with FPGA, NPU. Supports Kunlun XPU for inference.
-    - Releases a new official website document. Adds the document of "post-training quantization method without calibration data"   
+    - Releases a new official website document. Adds the document of "post-training quantization method without calibration data"  
 - [Paddle Serving](https://github.com/PaddlePaddle/Serving):
     - Releases the forecast service of remote text vector representation of the bert-type semantic understanding model.
     - Release the paddle-gpu-serving WHL package. Supports pip installation and Python codes.
@@ -201,7 +202,7 @@ This version focuses on enhancement of the framework functions, includes improvi
         - Adds 14 pre-training models including SENet-vd, Res2Net, and HRNet series of models:
         - Supports accelerating data preprocessing by using DALI. On the ImageNet training, 1.5 times (ResNet50) to more than 3 times (ShuffleNet) the acceleration is obtained and the GPU utilization is greatly improved.
     - 3D Vision:
-        - Releases PointNet++, PointRCNN models.    
+        - Releases PointNet++, PointRCNN models.  
     - Tracking Model Library:
          - Releases SiamFC and ATOM models,
     - Add dynamic graph model implementations for the following models: MobileNet-v1/v2, YOLOv3, FasterRCNN, MaskRCNN, video classification TSM model, and video motion positioning BMN model.
@@ -248,17 +249,18 @@ This version focuses on enhancement of the framework functions, includes improvi
       - Fast-SCNN tailoring solution and model on Cityscapes dataset.
       - Deeplabv3p-Xception and Deeplabv3p-MobilenetV2 distillation solutions on Cityscapes dataset.
       - Deeplabv3p-MobilenetV2 search solution on Cityscapes dataset.
-      - Deeplabv3p-Mobilenet quantitative solution and model on Cityscapes dataset.      
+      - Deeplabv3p-Mobilenet quantitative solution and model on Cityscapes dataset.  
   - Enhance the deployment capability
       - Adds the lightweight deployment of Python.
       - The TensorRT acceleration support for FP16 and Int8 quantitative models is added.
       - Adds the tutorials for human portraits segmentation Paddle-Lite mobile deployment of DeepLabv3p-MobileNetV2
       - Optimizes the Model exportation step. Supports GPU implementation of image preprocessing and post processing. The performance is improved by 10%-20%.
-      - Provides the benchmark for the prediction performance of U-Net, ICNet, PSPNet, DeepLabv3+, and other models for images of different sizes to facilitate users to select models based on performance.      
+      - Provides the benchmark for the prediction performance of U-Net, ICNet, PSPNet, DeepLabv3+, and other models for images of different sizes to facilitate users to select models based on performance.  
   - Experience Optimization
       - Adds a learning rate function called warmup. Supports using with different learning rate decay strategies to improve fine-tuning stability.
       - Adds the function of automatically saving an optimal mIoU model.
       - The document logic is comprehensively optimized. An AIStudio practical tutorial on industrial scenarios such as industrial quality inspection and fundus screening is provided.
+     - Marked imaged can be saved in pseudo-color image format to improve their preview experience.
 - [ElasticRec](https://github.com/PaddlePaddle/ElasticRec)
     - An ElasticRec recommended sorting system is released. It is deployed through K8S. Streaming training and online inference service are supported.
 
@@ -270,13 +272,13 @@ This version focuses on enhancement of the framework functions, includes improvi
         - Image classification: A total of 36 image classification models such as ResNext-WSL and EfficientNet are added.
         - Object detection: Five detection models such as pedestrian detection and vehicle detection are added.
         - Key point detection: Two models for key point detection of face and body posture are added.
-        - Face mask detection: Two PyramidBox-Lite-based face mask detection models are added.                
+        - Face mask detection: Two PyramidBox-Lite-based face mask detection models are added.  
         - Universal face detection: Four universal Face detection models such as Ultra Light Fast Generic Face Detector and PyramidBox-Lite are added.
     - Function:
         - Bert Service, a text vector representation service based on Paddle Serving is added.
-        - Task flexibility is enhanced. An hook mechanism supports the loading of user-defined codes is added.            
+        - Task flexibility is enhanced. An hook mechanism supports the loading of user-defined codes is added.  
         - Code results are optimized. The command line execution speed is increased by 50%.
-        - Dataset and Reader are refactored, The quantity of adaptive user-defined dataset codes is reduced by 60%.        
+        - Dataset and Reader are refactored, The quantity of adaptive user-defined dataset codes is reduced by 60%.  
         - The AutoFinetune interface is optimized. Multi-experiment visualization effect display is supportsed.
     - Experience Optimization
         - The logic is fully optimized. Rich AIStudio tutorial contents are added.
@@ -285,7 +287,7 @@ This version focuses on enhancement of the framework functions, includes improvi
   - Python3 and Windows are supported.
   - Release APIs and the multi-task learning kernel are upgraded.
     - Support independent task saver.
-  - Continuous training and inference are supported, Dataset files can be switched over freely under a single execution.    
+  - Continuous training and inference are supported, Dataset files can be switched over freely under a single execution.  
   - Supports model customization.
   - The multi-task learning kernel is refactored and fix some bugs.
 - Upgrade multi-task learning ability.
@@ -306,6 +308,8 @@ This version focuses on enhancement of the framework functions, includes improvi
     - According to the added components, the original samples are modified in example and the femnist_demo and submitter_demo examples are added
     - Fl_distribute_transpiler is optimized to add the support of FedAvg strategy for the adam optimizer.
     - SecAgg strategy (Secure Aggregation) is added to achieve secure parameter aggregation.
+    - The scheduler and submitter functions are added: The scheduler is used to control whether the trainer participates in update during training. The submitter is used to complete the function of submitting paddleFL tasks in the MPI clus
+    - A LEAF dataset federated learning open dataset is added. An API is added to set a benchmark. Classical datasets in the image classification, emotion analysis, character inference, and other fields , such as MNIST and Sentiment140, are supported.
 - Deep Reinforcement Learning Framework [PARL](https://github.com/PaddlePaddle/PARL)
   - Version v1.3 is released.
   - The support for the Multi-Agent RL algorithm including MADDPG is added.
@@ -314,15 +318,15 @@ This version focuses on enhancement of the framework functions, includes improvi
   - Implementation and training solution for the open source NeurIPS2019 reforcement learning challenge champion model. Trained models are open (Consideration can be given to open class)
 - Paddle Graph Learning Framework [PGL](https://github.com/PaddlePaddle/PGL)
   -  Version v1.1 is released:
-    - The support for the authoritative graph learning database OGB is added. Three types of tasks including nodepropered, linkpred, and graphpropered are fully supported. A SOTA baseline is released.�C  Decouples the forecast library from third_party. Refactors 28 third-party-dependent compilation codes to facilitate the unified management of external dependencies.
+    - The support for the authoritative graph learning database OGB is added. Three types of tasks including nodepropered, linkpred, and graphpropered are fully supported. A SOTA baseline is released.C  Decouples the forecast library from third_party. Refactors 28 third-party-dependent compilation codes to facilitate the unified management of external dependencies.
     - A graph solution PGL-Rec and a knowledge graph embedding algorithm set PGL-KE are released.
-    - An improvement on ease of use is made. A high-order API of PGL is released.    
+    - An improvement on ease of use is made. A high-order API of PGL is released.  
     - Other upgrade points: Sampling of a multi-process graph is optimized and a GraphSAGE kind of models is accelerated by three times. Lod Tensor-based Graph Batch and Graph Pooling operators are added. Models including distributed heterogeneous task graph algorithm, GraphZoom, and PinSage are added for Model Zoo.
 
 ## Code Reconstruction and Upgrade
 - Compilation
     - A compilation thus improving the code quality.
-      �C  Fixes the codes corresponding to the warnings of -Wno-error=sign-compare (at a total of more than 100 points). An error will be reported for all subsequent warnings of this kind during compilation, option WITH_NCCL is added. Single-card users can display and specify WITH_NCCL=OFF to accelerate compilation.
+      C  Fixes the codes corresponding to the warnings of -Wno-error=sign-compare (at a total of more than 100 points). An error will be reported for all subsequent warnings of this kind during compilation, option WITH_NCCL is added. Single-card users can display and specify WITH_NCCL=OFF to accelerate compilation.
     - A compilation option WITH_TP_CACHE is added to cache third-party source codes to avoid repeated downloading. Windows users can set it to ON to speed up compilation and improve compilation stability.
     - The `CUDA_ARCH_NAME` default value is set to `Auto` (`All` indicates compiling all GPU architectures and `Auto` indicates compiling only the current machine GPU architecture). For developers, a lot of compilation time is saved using `Auto` than using `All`, thus improving development efficiency.
     - Redundant links and products and needless file copying are reduced, thus speeding up the compilation in Windows.

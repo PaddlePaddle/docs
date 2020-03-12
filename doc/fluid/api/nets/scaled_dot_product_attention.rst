@@ -6,6 +6,8 @@
 scaled_dot_product_attention
 ----------------------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.nets.scaled_dot_product_attention
     :noindex:
 

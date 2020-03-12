@@ -6,6 +6,8 @@
 DataFeedDesc
 ------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.DataFeedDesc
     :members:
     :inherited-members:

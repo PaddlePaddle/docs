@@ -6,6 +6,8 @@
 conv3d_transpose
 ----------------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.conv3d_transpose
     :noindex:
 

@@ -6,6 +6,8 @@
 py_reader
 ---------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.py_reader
     :noindex:
 

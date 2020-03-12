@@ -6,6 +6,8 @@
 cond
 ----
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autofunction:: paddle.fluid.layers.cond
     :noindex:
 

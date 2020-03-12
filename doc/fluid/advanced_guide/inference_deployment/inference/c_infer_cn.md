@@ -15,7 +15,7 @@ Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便�
 
 * `PD_AnalysisConfig* PD_NewAnalysisConfig()`: 新建一个`PD_AnalysisConfig`的指针。
 * `void PD_DeleteAnalysisConfig(PD_AnalysisConfig* config)`: 删除一个`PD_AnalysisConfig`的指针。
-* `void PD_SetModel(PD_AnalysisConfig* config, const char* model_dir, const char* params_path)`: 设置模型的路径，输入的参数包括`PD_AnalysisConfig`，`model_dir`，`params_path`，其中`model_dir`是指的是模型保存位置的路径，一般不用包括文件名，`params_path`为可选参数，<strong>注意</strong>: 
+* `void PD_SetModel(PD_AnalysisConfig* config, const char* model_dir, const char* params_path)`: 设置模型的路径，输入的参数包括`PD_AnalysisConfig`，`model_dir`，`params_path`，其中`model_dir`是指的是模型保存位置的路径，一般不用包括文件名，`params_path`为可选参数，<strong>注意</strong>:
     - 如果不给定`params_path`，即`params_path`为`NULL`，则认为该模型的参数存储路径与`model_dir`一致，且模型文件和参数文件是按照默认的文件名存储的，此时参数文件可能有多个。此时，需要用户输入参数与模型文件的`model_dir`，即<strong>模型和参数保存的路径名</strong>，不需要指定文件名，同时，需要显式地设置`params_path`为`NULL`。
     - 如果提供了`params_path`，为了方便用户的自定义，则在指明`model_dir`路径最后需要加上模型文件的文件名传入，即`model_dir`传入对应的<strong>模型文件的路径</strong>，`params_path`传入对应的<strong>模型参数文件的路径</strong>，需要指定文件名。
 * `const char* PD_ModelDir(const PD_AnalysisConfig* config)`: 如果未指明`PD_SetModel()`的`params_path`，则可以返回模型文件夹路径。
@@ -27,7 +27,11 @@ Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便�
 * `void PD_DisableGpu(PD_AnalysisConfig* config)`: 禁用GPU。
 * `int PD_GpuDeviceId(const PD_AnalysisConfig* config)`: 返回使用的GPU设备的ID。
 * `void PD_SwitchIrOptim(PD_AnalysisConfig* config, bool x)`: 设置预测是否开启IR优化。
+<<<<<<< HEAD
 * `void PD_EnableTensorRtEngine(PD_AnalysisConfig* config, int workspace_size, int max_batch_size, int min_subgraph_size, Precision precision, bool use_static, bool use_calib_mode)`: 开启TensorRT。关于参数的解释，详见[使用Paddle-TensorRT库预测](../../performance_improving/inference_improving/paddle_tensorrt_infer.html)。
+=======
+* `void PD_EnableTensorRtEngine(PD_AnalysisConfig* config, int workspace_size, int max_batch_size, int min_subgraph_size, Precision precision, bool use_static, bool use_calib_mode)`: 开启TensorRT。关于参数的解释，详见``使用Paddle-TensorRT库预测``。
+>>>>>>> e061bc64eb226fda0ea9c97c66a81dd43929353b
 * `void PD_EnableMKLDNN(PD_AnalysisConfig* config)`: 开启MKLDNN。
 
 #### 代码示例
@@ -91,7 +95,7 @@ PD_SwitchUseFeedFetchOps(config, false);
 PD_ZeroCopyTensor input;
 PD_InitZeroCopyTensor(&input);
 ```
-调用设置`PD_ZeroCopyTensor`的数据类型的方式如下: 
+调用设置`PD_ZeroCopyTensor`的数据类型的方式如下:
 ``` C
 input.dtype = PD_FLOAT32;
 ```
@@ -209,10 +213,10 @@ PD_GetZeroCopyOutput(predictor, &output);
  * The main procedures to run a predictor according to c-api:
  * 1. Create config to set how to process the inference.
  * 2. Prepare the input PD_ZeroCopyTensor for the inference.
- * 3. Set PD_Predictor. 
- * 4. Call PD_ZeroCopyRun() to start. 
- * 5. Obtain the output. 
- * 6. According to the size of the PD_PaddleBuf's data's size, print all the output data. 
+ * 3. Set PD_Predictor.
+ * 4. Call PD_ZeroCopyRun() to start.
+ * 5. Obtain the output.
+ * 6. According to the size of the PD_PaddleBuf's data's size, print all the output data.
  */
 int main() {
     // 配置 PD_AnalysisConfig
@@ -231,7 +235,7 @@ int main() {
     printf("Input num: %d\n", input_num);
     int output_num = PD_GetOutputNum(predictor);
     printf("Output num: %d\n", output_num);
-    
+
     // 设置输入的数据结构
     PD_ZeroCopyTensor input;
     PD_InitZeroCopyTensor(&input);

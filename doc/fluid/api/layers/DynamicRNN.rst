@@ -6,6 +6,8 @@
 DynamicRNN
 ----------
 
+**Note: This API is only avaliable in [Static Graph] mode**
+
 ..  autoclass:: paddle.fluid.layers.DynamicRNN
     :members:
     :inherited-members:
