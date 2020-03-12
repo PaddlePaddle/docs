@@ -1,12 +1,18 @@
 # Release Notes
 
 ## 重要更新
-本版本对框架功能层面进行了重点增强，预测部署能力全面提升，分布式训练发布PLSC支持超大规模分类，并对参数服务器模式进行优化整合。对编译选项、编译依赖以及代码库进行了全面清理优化。模型库持续完善，优化了整体层次结构，增加了动态图模型实现。端到端开发套件和工具组件进一步完善。
-**训练框架：**增加自动混合精度训练AMP接口和新控制流接口；优化Tensor使用方式和显存分配策略；新增支持Nvidia DALI GPU数据预处理库；持续优化基础OP的功能和性能；动态图的功能进一步完善，性能大幅提升，对data independent的动态图模型提供转为静态图可预测部署模型的功能；框架调试分析功能和易用性全面提升。
-**预测部署**：服务器端预测库的Python API大幅优化，新增R语言、Go语言调用预测库的使用方法和示例，强化了量化支持能力；Paddle Lite支持无校准数据的训练后量化方法生成的模型，加强对OpenCL的支持，支持昆仑XPU的预测；模型压缩库PaddleSlim重构裁剪、量化、蒸馏、搜索接口，与模型库充分打通，新增大规模可扩展知识蒸馏框架 Pantheon。
-**分布式训练**：参数服务器模式下针对transpiler半异步、全异步、GEO三种模式，后端实现上统一到communicator中，前端接口统一到fleet中，通过fleet strategy灵活选择不同模式；发布大规模分类库PLSC，通过模型并行支持超多类别的分类任务。
+本版本对框架功能层面进行了重点增强，预测部署能力全面提升，分布式训练发布PLSC支持超大规模分类，并对参数服务器模式进行优化整合。对编译选项、编译依赖以及代码库进行了全面清理优化。模型库持续完善，优化了整体层次结构，增加了动态图模型实现。端到端开发套件和工具组件进一步完善。  
+
+**训练框架**：增加自动混合精度训练AMP接口和新控制流接口；优化Tensor使用方式和显存分配策略；新增支持Nvidia DALI GPU数据预处理库；持续优化基础OP的功能和性能；动态图的功能进一步完善，性能大幅提升，对data independent的动态图模型提供转为静态图可预测部署模型的功能；框架调试分析功能和易用性全面提升。
+
+**预测部署**：服务器端预测库的Python API大幅优化，新增R语言、Go语言调用预测库的使用方法和示例，强化了量化支持能力；Paddle Lite支持无校准数据的训练后量化方法生成的模型，加强对OpenCL的支持，支持昆仑XPU的预测；模型压缩库PaddleSlim重构裁剪、量化、蒸馏、搜索接口，与模型库充分打通，新增大规模可扩展知识蒸馏框架 Pantheon。  
+
+**分布式训练**：参数服务器模式下针对transpiler半异步、全异步、GEO三种模式，后端实现上统一到communicator中，前端接口统一到fleet中，通过fleet strategy灵活选择不同模式；发布大规模分类库PLSC，通过模型并行支持超多类别的分类任务。  
+
 **基础模型库**：发布语音合成库Parakeet，包括多个前沿合成算法；PaddleCV新增14个图像分类预训练模型，3D和跟踪方向模型持续丰富；PaddleNLP的分词和词性标注模型支持jieba分词；PaddleRec增加多任务模型MMoE。模型库整体增加了广泛的动态图模型实现。模型库整体层次结构做了调整优化。
-**端到端开发套件**：PaddleDetection和PaddleSeg新增大量模型实现及预训练模型，典型模型的训练速度和精度提升，模型压缩和部署能力大幅提升，使用体验全面优化。发布ElasticRec推荐排序系统，通过K8S进行部署，支持流式训练和在线预测服务。
+
+**端到端开发套件**：PaddleDetection和PaddleSeg新增大量模型实现及预训练模型，典型模型的训练速度和精度提升，模型压缩和部署能力大幅提升，使用体验全面优化。发布ElasticRec推荐排序系统，通过K8S进行部署，支持流式训练和在线预测服务。  
+
 **工具组件**：PaddleHub新增52个预训练模型，总数超过100，功能和体验持续优化；多任务学习框架PALM升级内核，开放API调用，支持更多的任务类型；联邦学习PaddleFL新增公开数据集。深度强化学习框架PARL和飞桨图学习框架PGL也对应版本升级，支持更多功能，开放更多算法和基线。
 
 ## 训练框架
@@ -18,7 +24,7 @@
         - 支持控制流中的condition部分使用CPU数据或GPU数据
     - 部分API参数支持使用变量列表：针对部分API的parameter_list或no_grad_set参数只支持使用字符串列表的情况，增加对变量列表的支持，使用如下API时不再需要提前获取相关变量的name属性：
         - fluid.backward.append_backward(loss, parameter_list=None, no_grad_set=None, callbacks=None)
-        - fluid.backward.gradients(targets, inputs, target_gradients=None, no_grad_set=None)    
+        - fluid.backward.gradients(targets, inputs, target_gradients=None, no_grad_set=None)  
         - 各种Optimizer的minimize方法，如Adam的minimize：minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
 - 基础功能优化
     - 支持使用numpy的float16类型设置Tensor数据，无需先转换为uint16类型。
@@ -42,7 +48,7 @@
     - 优化RecomputeOptimizer提升batchsize, 在Bert-large模型上最大batchsize比不使用RecomputeOptimizer增大533.62%，比上一版本提升一倍。
     - OP性能优化
         - 实现embedding和sequence_pool的融合算子fuse_emb_seq_pool，优化bloom_filter中的murmurhash3_x64_128，有效提升部分NLP模型的训练速度。
-        - 优化了mean op的GPU性能，输入数据为32*32*8*8的Tensor时，前向计算速度提升2.7倍。
+        - 优化了mean op的GPU性能，输入数据为32 * 32 * 8 * 8的Tensor时，前向计算速度提升2.7倍。
         - 优化assign、lod_reset op，避免不需要的显存拷贝和data transform。
         - 优化了stack OP的kernel实现，XLnet/Ernie模型GPU单卡性能提升4.1%。
 - 动态图
@@ -59,7 +65,6 @@
         - 优化了python 与c++ 交互，GradMaker、OperatorBase、allocator等。基于LSTM的语言模型任务p在P40机器上性能提升提升270%。
         - 针对optimize中多次调用optimized_guard无用代码导致的性能问题，移除了冗余代码。Transformer模型（batch_size=64）在P40机器上，SGD、Adam等优化器有5%~8%%的性能提升。
         - 针对AdamOptimizer中额外添加scale_op更新beta参数对性能的影响，将beta更新逻辑融合到adam_op中，减少op kernel调用开销。Dialogue-PLATO模型P40机器上性能提升9.67%。
-        - To reduce the performance impact caused by adding extra `scale_op` to update the beta parameter in `AdamOptimizer`.To reduce the performance impact caused by adding extra `scale_op` to update the beta parameter in `AdamOptimizer`,  Iintegrate the updating logic of `beta` into `adam_op` to reduce the cost of calling op kernel.  The performance  偶发of  is improved by 9.67%  on the P40 machine.
         - 优化动态图异步DataLoader，对于Mnist、ResNet等CV模型任务在P40机器上单卡训练速度提升超过40%。
         - 新增numpy bridge功能，支持在cpu模式下Tensor和ndarray之间共享底层数据，避免创建Variable时numpy输入需要拷贝的问题，提升效率。
         - 显存优化：提前删除反向不需要Tensor Buffer的前向变量空间的优化策略，在ResNet等模型上最大batch size提升20%-30%以上。
@@ -156,13 +161,13 @@
     - seq2seq支持RL和GAN等训练模式
     - 发布分词和词性标注训练模型，利用知识蒸馏框架 Pantheon，在自有数据集上比PaddleNLP上LAC上F1值提升1%；合入jieba分词，通过加入use_paddle标签来开启深度学习模型模式；并在在jieba加入paddle版本检测和回退机制，保障用户体验。
     - 增加动态图模型实现：word2vec、senta、transformer、bert、seq2seq、LAC。
-- PaddleSpeech    
+- PaddleSpeech  
     - 发布语音合成库Parakeet (Paddle PARAllel text-to-speech toolkit)
         - 实现语音合成模型数据预处理、训练和合成等的标准工作流
         - 提供对常见数据集的开箱即用的预处理实现
         - 提供语音合成领域常用模型组件，为实现模型提供支持
         - 发布语音合成模型 DeepVoice3、ClarinNet 、TransformerTTS、FastSpeech、WaveNet、WaveFlow
-- PaddleCV        
+- PaddleCV  
     - 图像分类:
         - 新增预训练模型SENet-vd、Res2Net、HRNet系列模型总共14个：
             - SE_ResNet18_vd，SE_ResNet34_vd，SE_ResNeXt50_vd_32x4d，ResNeXt152_vd_32x4d
@@ -228,7 +233,6 @@
   - 体验优化
       - 新增学习率warmup功能，支持与不同的学习率Decay策略配合使用，提升Fine-tuning的稳定性。
       - 支持对标注图使用伪彩色图像格式的保存，提升标注图片的预览体验。
-      - Marked imaged can be saved in pseudo-color image format to improve their preview experience.•   Optimizes the logic of documents. Provides AIStudio practical tutorial on industrial scenarios such as industrial quality inspection and fundus screening.
       - 新增自动保存mIoU最优模型的功能。
       - 全面优化文档逻辑，提供如工业质检、眼底筛查等工业场景的AIStudio实战教程。
 - [ElasticRec](https://github.com/PaddlePaddle/ElasticRec)
@@ -276,9 +280,7 @@
   - 新增RoBERTa中文预训练模型
 - 联邦学习[PaddleFL](https://github.com/PaddlePaddle/PaddleFL)：
     - 新增scheduler与submitter功能：scheduler可用于在训练过程中控制trainer是否参加更新 。submitter可用于完成在MPI集群提交paddleFL任务的功能
-    - The scheduler and submitter functions are added: The scheduler is used to control whether the trainer participates in update during training. The submitter is used to complete the function of submitting paddleFL tasks in the MPI clus–    Supports the models NeurIPS2019, which is the reforcement learning challenge champion modelReleases the version v1.1:
     - 新增LEAF dataset联邦学习公开数据集，并添加api，用于设置benchmark。支持图像分类，情感分析，字符预测等领域的经典数据集，如MNIST，Sentiment140
-    - A LEAF dataset federated learning open dataset is added. An API is added to set a benchmark. Classical datasets in the image classification, emotion analysis, character inference, and other fields , such as MNIST and Sentiment140, are supported.–    Releases a garaph solution called PGL-Rec and a knowledge graph embedding algorithm set called PGL-KE.– Releases a high-order API of PGL.
     - 根据新增组件，在example中修改了原有的样例，并添加了femnist_demo, submitter_demo样例
     - 优化fl_distribute_transpiler，使FedAvg strategy新增对adam optimizer支持；
     - 新增SecAgg strategy（Secure Aggregation），用于实现安全的参数聚合；
