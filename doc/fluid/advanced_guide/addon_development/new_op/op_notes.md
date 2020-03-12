@@ -157,12 +157,30 @@ ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操�
 目前稀疏梯度在做更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如velocity）的更新。
 
 ### 8.显存优化
+
+#### 8.1 为可原位计算的Op注册Inplace
+有些Op的计算逻辑中，输出可以复用输入的显存空间，也可称为原位计算。例如[`reshape_op`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/reshape_op.cc)中，输出`Out`可以复用输入`X`的显存空间，因为该Op的计算逻辑不会改变`X`的实际数据，只是修改它的shape，输出和输入复用同一块显存空间不影响结果。对于这类OP，可以注册`Inlace`，从而让框架在运行时自动地进行显存优化。
+
+fluid提供了`DECLARE_INPLACE_OP_INFERER`宏用于注册`Inplace`，该宏第一个参数是一个类名，如`ReshapeOpInplaceInToOut`；第二个参数是一对复用的输入输出，以`{"X", "Out"}`的形式给出。在`REGISTER_OPERATOR`时，
+可以将类名传传入，从而为该Op注册`Inplace`。
+
+```
+DECLARE_INPLACE_OP_INFERER(ReshapeOpInplaceInToOut, {"X", "Out"});
+
+REGISTER_OPERATOR(
+    reshape, ops::ReshapeOp, ops::ReshapeOpMaker,
+    paddle::framework::DefaultGradOpMaker<paddle::framework::OpDesc, true>,
+    paddle::framework::DefaultGradOpMaker<paddle::imperative::OpBase, true>,
+    ops::ReshapeOpInplaceInToOut);
+```
+
+#### 8.2 减少OP中的无关变量
 通常反向Op会依赖于前向Op的某些输入(Input)、输出(Output)，以供反向Op计算使用。但有些情况下，反向Op不需要前向Op的所有输入和输出；有些情况下，反向Op只需要前向Op的部分输入和输出；有些情况下，反向Op只需要使用前向Op中输入和输出变量的Shape和LoD信息。若Op开发者在注册反向Op时，将不必要的前向Op输入和输出作为反向Op的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
 所以在写注册反向Op时需要注意以下几点：
 
-- Fluid提供的`DefaultGradOpDescMaker`，默认会将前向op的所有输入(`Input`）、输出(`Output`)以及输出变量所对应的梯度(`Output@Grad`)作为反向Op的输入，将前向Op输入所对应的梯度(`Input@Grad`)作为反向Op的输出。所以在使用`DefaultGradOpDescMaker`时需要考虑是否有些变量在计算中不被用到。
-- 如果`DefaultGradOpDescMaker`不能够满足需求，需要用户自己手动构建`GradOpDescMaker`，具体实现请参考[相关文档](new_op.html#permalink-4--gradprotomaker-);
+- Fluid提供的`DefaultGradOpMaker`，默认会将前向op的所有输入(`Input`）、输出(`Output`)以及输出变量所对应的梯度(`Output@Grad`)作为反向Op的输入，将前向Op输入所对应的梯度(`Input@Grad`)作为反向Op的输出。所以在使用`DefaultGradOpMaker`时需要考虑是否有些变量在计算中不被用到。
+- 如果`DefaultGradOpMaker`不能够满足需求，需要用户自己手动构建`GradOpMaker`，具体实现请参考[相关文档](new_op.html#gradopmaker);
 - 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，需要对该变量（以下称该变量为`X`）在反向Op中进行注册`NoNeedBufferVarsInference`。**一旦注册了`NoNeedBufferVarsIference`，反向op中就不能读写该变量对应的Tensor中的buffer，只能调用Tensor的dims()和lod()方法，同时，反向Op中的`GetExpectedKernelType()`必须要重写，并且`GetExpectedKernelType()`中不能访问`X`变量中Tensor的type()方法**。比如在`SliceOpGrad`中只会用到`Input`中变量的Shape信息，所以需要为对`Input`在`SliceOpGrad`上进行注册：
 ```
 namespace paddle {
@@ -185,19 +203,30 @@ class SliceOpGrad : public framework::OperatorWithKernel {
 };
 
 
-class SliceOpGradMaker : public framework::SingleGradOpDescMaker {
+template <typename T>
+class SliceOpGradMaker : public framework::SingleGradOpMaker<T> {
  public:
-  using framework::SingleGradOpDescMaker::SingleGradOpDescMaker;
+  using framework::SingleGradOpMaker<T>::SingleGradOpMaker;
 
  protected:
-  std::unique_ptr<framework::OpDesc> Apply() const override {
-    auto* bind = new framework::OpDesc();
-    bind->SetInput("Input", Input("Input"));
-    bind->SetInput(framework::GradVarName("Out"), OutputGrad("Out"));
-    bind->SetOutput(framework::GradVarName("Input"), InputGrad("Input"));
-    bind->SetAttrMap(Attrs());
+  void Apply(GradOpPtr<T> bind) const override {
+    bind->SetInput("Input", this->Input("Input"));
+    if (this->HasInput("StartsTensor")) {
+      bind->SetInput("StartsTensor", this->Input("StartsTensor"));
+    }
+    if (this->HasInput("EndsTensor")) {
+      bind->SetInput("EndsTensor", this->Input("EndsTensor"));
+    }
+    if (this->HasInput("StartsTensorList")) {
+      bind->SetInput("StartsTensorList", this->Input("StartsTensorList"));
+    }
+    if (this->HasInput("EndsTensorList")) {
+      bind->SetInput("EndsTensorList", this->Input("EndsTensorList"));
+    }
+    bind->SetInput(framework::GradVarName("Out"), this->OutputGrad("Out"));
+    bind->SetOutput(framework::GradVarName("Input"), this->InputGrad("Input"));
+    bind->SetAttrMap(this->Attrs());
     bind->SetType("slice_grad");
-    return std::unique_ptr<framework::OpDesc>(bind);
   }
 };
 
@@ -207,8 +236,11 @@ DECLARE_NO_NEED_BUFFER_VARS_INFERENCE(SliceOpGradNoNeedBufferVarsInference,
 }  // namespace paddle
 namespace ops = paddle::operators;
 REGISTER_OPERATOR(slice, ops::SliceOp, ops::SliceOpMaker,
-                  ops::SliceOpGradMaker);
+                  ops::SliceOpGradMaker<paddle::framework::OpDesc>,
+                  ops::SliceOpGradMaker<paddle::imperative::OpBase>);
 REGISTER_OPERATOR(slice_grad, ops::SliceOpGrad,
+                  ops::SliceDoubleOpGradMaker<paddle::framework::OpDesc>,
+                  ops::SliceDoubleOpGradMaker<paddle::imperative::OpBase>,
                   ops::SliceOpGradNoNeedBufferVarsInference);
 ```
 

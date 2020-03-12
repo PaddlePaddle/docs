@@ -16,7 +16,7 @@
 
     - `二次开发 <../advanced_guide/addon_development/index_cn.html>`_ ：介绍如何新增Operator和如何向飞桨开源社区贡献代码
 
-    - `环境变量FLAGS <../advanced_guide/flags/index_cn.html>`_ 
+    - `环境变量FLAGS <../advanced_guide/flags/flags_cn.html>`_ 
 
 
 ..  toctree::
@@ -28,5 +28,5 @@
     performance_improving/index_cn.rst
     evaluation_debugging/index_cn.rst
     addon_development/index_cn.rst
-    flags_cn.rst
+    flags/flags_cn.rst
 
