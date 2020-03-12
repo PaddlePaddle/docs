@@ -61,6 +61,9 @@ class MulOpMaker : public framework::OpProtoAndCheckerMaker {
     AddInput("X", "(Tensor), The first input tensor of mul op.");
     AddInput("Y", "(Tensor), The second input tensor of mul op.");
     AddOutput("Out", "(Tensor), The output tensor of mul op.");
+    AddAttr<bool>("use_mkldnn",
+                  "(bool, default false) Only used in mkldnn kernel")
+        .SetDefault(false);
     AddAttr<int>(
         "x_num_col_dims",
         R"DOC((int, default 1), The mul_op can take tensors with more than two
@@ -91,18 +94,34 @@ class MulOpMaker : public framework::OpProtoAndCheckerMaker {
         )DOC")
         .SetDefault(1)
         .EqualGreaterThan(1);
+    AddAttr<float>(
+        "scale_x",
+        "scale_x to be used for int8 mul input data x. scale_x has the"
+        "same purpose as scale_in in OPs that support quantization."
+        "Only to be used with MKL-DNN INT8")
+        .SetDefault(1.0f);
+    AddAttr<std::vector<float>>(
+        "scale_y",
+        "scale_y to be used for int8 mul input data y. scale_y has the"
+        "same purpose as scale_weights in OPs that support quantization."
+        "Only to be used with MKL-DNN INT8")
+        .SetDefault({1.0f});
+    AddAttr<float>("scale_out",
+                   "scale_out to be used for int8 output data."
+                   "Only used with MKL-DNN INT8")
+        .SetDefault(1.0f);
+    AddAttr<bool>(
+        "force_fp32_output",
+        "(bool, default false) Force quantize kernel output FP32, only "
+        "used in quantized MKL-DNN.")
+        .SetDefault(false);
     AddComment(R"DOC(
 Mul Operator.
-
 This operator is used to perform matrix multiplication for input $X$ and $Y$.
-
 The equation is:
-
 $$Out = X * Y$$
-
 Both the input $X$ and $Y$ can carry the LoD (Level of Details) information,
 or not. But the output only shares the LoD information with input $X$.
-
 )DOC");
   }
 };
@@ -112,34 +131,34 @@ or not. But the output only shares the LoD information with input $X$.
 
 开发者通过覆盖`framework::OpProtoAndCheckerMaker`中的`Make`函数来定义Op所对应的Proto，通过`AddInput`添加输入参数，通过`AddOutput`添加输出参数，通过`AddAttr`添加属性参数，通过`AddComment`添加Op的注释。这些函数会将对应内容添加到`OpProto`中。
 
-上面的代码在`MulOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，并解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
+上面的代码在`MulOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，以及`use_mkldnn`等属性，并解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
-### 定义GradProtoMaker类
-通常情况下，每个Op的会有一个对应的`GradProtoMaker`，为方便代码编写，fluid提供了默认的`GradProtoMaker`，即：`DefaultGradProtoMaker`。`DefaultGradProtoMaker`会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
+### 定义GradOpMaker类
+通常情况下，大部分Op只有一个对应的反向Op，每个Op的会有一个对应的`GradOpMaker`。为方便代码编写，fluid为只有提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`MulOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，fluid还提供了一个默认的`GradOpMaker`，
+[`DefaultGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L227)，该模板类会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
 
 **注意:**
 不要将反向Op不会用到的变量放到反向Op的输入列表中，这样会导致这些不会被反向Op用到的变量的空间不能够及时回收，进而有可能导致用到该Op的模型可以设置的batch_size较低。
-比如`relu`操作的前向操作为：`out.device(d) = x.cwiseMax(static_cast<T>(0));`反向操作为：`dx.device(d) = dout * (out > static_cast<T>(0)).template cast<T>();`。显然，反向操作中只是用到了`out`、`dout`、`dx`，没有用到`x`。
+比如`relu`操作的前向操作为：`out.device(d) = x.cwiseMax(static_cast<T>(0));`反向操作为：`dx.device(d) = dout * (out > static_cast<T>(0)).template cast<T>();`。显然，反向操作中只是用到了`out`、`dout`、`dx`，没有用到`x`。因此，通常不建议使用默认的`DefaultGradOpMaker`。
 
 
-下面示例定义了`MulOp`的GradProtoMaker。
+下面示例定义了`MulOp`的`GradOpMaker`。
 
 ```cpp
-class MulOpGradMaker : public framework::SingleGradOpDescMaker {
+template <typename T>
+class MulOpGradMaker : public framework::SingleGradOpMaker<T> {
  public:
-  using framework::SingleGradOpDescMaker::SingleGradOpDescMaker;
+  using framework::SingleGradOpMaker<T>::SingleGradOpMaker;
 
  protected:
-  std::unique_ptr<framework::OpDesc> Apply() const override {
-    std::unique_ptr<framework::OpDesc> retv(new framework::OpDesc());
+  void Apply(GradOpPtr<T> retv) const override {
     retv->SetType("mul_grad");
-    retv->SetInput("X", Input("X"));
-    retv->SetInput("Y", Input("Y"));
-    retv->SetInput(framework::GradVarName("Out"), OutputGrad("Out"));
-    retv->SetOutput(framework::GradVarName("X"), InputGrad("X"));
-    retv->SetOutput(framework::GradVarName("Y"), InputGrad("Y"));
-    retv->SetAttrMap(Attrs());
-    return retv;
+    retv->SetInput("X", this->Input("X"));
+    retv->SetInput("Y", this->Input("Y"));
+    retv->SetInput(framework::GradVarName("Out"), this->OutputGrad("Out"));
+    retv->SetOutput(framework::GradVarName("X"), this->InputGrad("X"));
+    retv->SetOutput(framework::GradVarName("Y"), this->InputGrad("Y"));
+    retv->SetAttrMap(this->Attrs());
   }
 };
 ```
@@ -148,7 +167,8 @@ class MulOpGradMaker : public framework::SingleGradOpDescMaker {
 
 - 有些Op的前向逻辑和反向逻辑是一样的，比如[`ScaleOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/scale_op.cc).这种情况下，前向Op和反向Op的Kernel可以为同一个。
 - 有些前向Op所对应的反向Op可能有多个，比如[`SumOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sum_op.cc)，这种情况下，`GradMaker`需要继承`framework::GradOpDescMakerBase`。
-- 有些Op的反向对应另一个Op的前向，比如[`SplitOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h)，这种情况下，[`SplitGradMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h#L52)中定义的`SplitOp`反向Op的Type就是`concat`，
+- 有些Op的反向对应另一个Op的前向，比如[`SplitOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h)，这种情况下，[`SplitGradMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h#L157)中定义的`SplitOp`反向Op的Type就是`concat`，
+- 为高效地同时支持动态图和静态图，`SingleGradOpMaker`是一个模板类，在注册Operator时需要同时注册`MulOpGradMaker<OpDesc>`（静态图使用）和`MulOpGradMaker<OpBase>`（动态图使用）。
 
 ### 定义Operator类
 
@@ -159,12 +179,16 @@ class MulOp : public framework::OperatorWithKernel {
  public:
   using framework::OperatorWithKernel::OperatorWithKernel;
 
- protected:
   void InferShape(framework::InferShapeContext* ctx) const override {
-    PADDLE_ENFORCE(ctx->HasInput("X"), "Input(X) of MulOp should not be null.");
-    PADDLE_ENFORCE(ctx->HasInput("Y"), "Input(Y) of MulOp should not be null.");
-    PADDLE_ENFORCE(ctx->HasOutput("Out"),
-                   "Output(Out) of MulOp should not be null.");
+    PADDLE_ENFORCE_EQ(
+        ctx->HasInput("X"), true,
+        platform::errors::NotFound("Input(X) of MulOp should not be null."));
+    PADDLE_ENFORCE_EQ(
+        ctx->HasInput("Y"), true,
+        platform::errors::NotFound("Input(Y) of MulOp should not be null."));
+    PADDLE_ENFORCE_EQ(
+        ctx->HasOutput("Out"), true,
+        platform::errors::NotFound("Output(Out) of MulOp should not be null."));
 
     auto x_dims = ctx->GetInputDim("X");
     auto y_dims = ctx->GetInputDim("Y");
@@ -176,23 +200,42 @@ class MulOp : public framework::OperatorWithKernel {
             << " x_num_col_dims=" << x_num_col_dims
             << " y_num_col_dims=" << y_num_col_dims;
 
+    PADDLE_ENFORCE_NE(framework::product(y_dims), 0,
+                      platform::errors::PreconditionNotMet(
+                          "The Input variable Y(%s) has not "
+                          "been initialized. You may need to confirm "
+                          "if you put exe.run(startup_program) "
+                          "after optimizer.minimize function.",
+                          ctx->Inputs("Y").front()));
     PADDLE_ENFORCE_GT(
         x_dims.size(), x_num_col_dims,
-        "The input tensor X's rank of MulOp should be larger than "
-        "x_num_col_dims.");
+        platform::errors::InvalidArgument(
+            "The input tensor X's dimensions of MulOp "
+            "should be larger than x_num_col_dims. But received X's "
+            "dimensions = %d, X's shape = [%s], x_num_col_dims = %d.",
+            x_dims.size(), x_dims, x_num_col_dims));
     PADDLE_ENFORCE_GT(
         y_dims.size(), y_num_col_dims,
-        "The input tensor Y's rank of MulOp should be larger than "
-        "y_num_col_dims: %ld vs %ld",
-        y_dims.size(), y_num_col_dims);
+        platform::errors::InvalidArgument(
+            "The input tensor Y's dimensions of MulOp "
+            "should be larger than y_num_col_dims. But received Y's "
+            "dimensions = %d, Y's shape = [%s], y_num_col_dims = %d.",
+            y_dims.size(), y_dims, y_num_col_dims));
 
     auto x_mat_dims = framework::flatten_to_2d(x_dims, x_num_col_dims);
     auto y_mat_dims = framework::flatten_to_2d(y_dims, y_num_col_dims);
 
-    PADDLE_ENFORCE_EQ(x_mat_dims[1], y_mat_dims[0],
-                      "First matrix's width must be equal with second matrix's "
-                      "height. %s, %s",
-                      x_mat_dims[1], y_mat_dims[0]);
+    PADDLE_ENFORCE_EQ(
+        x_mat_dims[1], y_mat_dims[0],
+        platform::errors::InvalidArgument(
+            "After flatten the input tensor X and Y to 2-D dimensions "
+            "matrix X1 and Y1, the matrix X1's width must be equal with matrix "
+            "Y1's height. But received X's shape = [%s], X1's shape = [%s], "
+            "X1's "
+            "width = %s; Y's shape = [%s], Y1's shape = [%s], Y1's height = "
+            "%s.",
+            x_dims, x_mat_dims, x_mat_dims[1], y_dims, y_mat_dims,
+            y_mat_dims[0]));
     std::vector<int64_t> output_dims;
     output_dims.reserve(
         static_cast<size_t>(x_num_col_dims + y_dims.size() - y_num_col_dims));
@@ -208,10 +251,34 @@ class MulOp : public framework::OperatorWithKernel {
     ctx->SetOutputDim("Out", framework::make_ddim(output_dims));
     ctx->ShareLoD("X", /*->*/ "Out");
   }
+
+  framework::OpKernelType GetExpectedKernelType(
+      const framework::ExecutionContext& ctx) const {
+    framework::LibraryType library = framework::LibraryType::kPlain;
+    framework::DataLayout layout = framework::DataLayout::kAnyLayout;
+    int customized_type_value =
+        framework::OpKernelType::kDefaultCustomizedTypeValue;
+    auto input_data_type = OperatorWithKernel::IndicateVarDataType(ctx, "X");
+#ifdef PADDLE_WITH_MKLDNN
+    if (library == framework::LibraryType::kPlain &&
+        platform::CanMKLDNNBeUsed(ctx)) {
+      library = framework::LibraryType::kMKLDNN;
+      layout = framework::DataLayout::kMKLDNN;
+
+      if (input_data_type == framework::DataTypeTrait<int8_t>::DataType() ||
+          input_data_type == framework::DataTypeTrait<uint8_t>::DataType()) {
+        customized_type_value = kMULMKLDNNINT8;
+      }
+    }
+#endif
+
+    return framework::OpKernelType(input_data_type, ctx.GetPlace(), layout,
+                                   library, customized_type_value);
+  }
 };
 ```
 
-[`MulOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/mul_op.cc#L22)继承自`OperatorWithKernel`。`public`成员：
+[`MulOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/mul_op.cc#L30)继承自`OperatorWithKernel`。`public`成员：
 
 ```cpp
 using framework::OperatorWithKernel::OperatorWithKernel;
@@ -226,10 +293,12 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
   : OperatorWithKernel(type, inputs, outputs, attrs) {}
 ```
 
-还需要重写`InferShape`接口。`InferShape`为const函数，不能修改Op的成员变量，参数为`framework::InferShapeContext* ctx`，通过该参数可获取到输入输出以及属性。它的功能是：
+此外，Operator类通常需要重写`InferShape`接口，并在有必要时重写`GetExpectedKernelType`接口。`InferShape`为const函数，不能修改Op的成员变量，参数为`framework::InferShapeContext* ctx`，通过该参数可获取到输入输出以及属性。它的功能是：
 
   - 做检查， 尽早报错：检查输入数据维度、类型等是否合法。
   - 设置输出Tensor的形状以及LoD信息。
+
+`GetExpectedKernelType`接口OperatorWithKernel类中用于获取指定设备（例如CPU，GPU）上指定数据类型（例如double，float）的OpKernel的方法。该方法的重写可见请参考[写C++ OP相关注意事项](op_notes.html#getexpectedkerneltype)。
 
 通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
 
@@ -286,7 +355,7 @@ y_dim[i] = x_dim[i] + z_dim[i]
 - 运算： -1和其他数做任何运算都要等于-1
 
 **参考代码**
-1. 判断的实现方法可以参考cross_entropy_op.cc，cross_entropy_op 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
+1. 判断的实现方法可以参考[cross_entropy_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/cross_entropy_op.cc#L39)，cross_entropy_op 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
 
 ```cpp
     bool contain_unknown_dim = framework::contain_unknown_dim(x_dims) ||
@@ -300,37 +369,40 @@ y_dim[i] = x_dim[i] + z_dim[i]
     }
 ```
 
-2. 运算的实现可以参考concat_op.cc，concat在InferShape判断时，除了进行concat轴之外，其他的维度完全一致；在生成output的维度时，把concat轴的维度求和，其他的维度和输入保持一致。
+2. 运算的实现可以参考[concat_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/concat_op.cc#L59)，concat在InferShape判断时，调用`ComputeAndCheckShape`，除了进行concat轴之外，其他的维度完全一致；在生成output的维度时，把concat轴的维度求和，其他的维度和输入保持一致。
 
 ```cpp
-    auto out_dims = ins[0];
+    const size_t n = inputs_dims.size();
+    auto out_dims = inputs_dims[0];
     size_t in_zero_dims_size = out_dims.size();
     for (size_t i = 1; i < n; i++) {
       for (size_t j = 0; j < in_zero_dims_size; j++) {
         if (j == axis) {
-          if (ctx->IsRuntime()) {
-            out_dims[axis] += ins[i][j];
+          if (is_runtime) {
+            out_dims[axis] += inputs_dims[i][j];
           } else {
-            if (ins[i][j] == -1) {
+            if (inputs_dims[i][j] == -1) {
               out_dims[axis] = -1;
             } else {
-              out_dims[axis] += ins[i][j];
+              out_dims[axis] += inputs_dims[i][j];
             }
           }
         } else {
           bool check_shape =
-              ctx->IsRuntime() || (out_dims[j] > 0 && ins[i][j] > 0);
+              is_runtime || (out_dims[j] > 0 && inputs_dims[i][j] > 0);
           if (check_shape) {
             // check all shape in run time
-            PADDLE_ENFORCE_EQ(out_dims[j], ins[i][j],
-                              "Input tensors should have the same "
-                              "elements except the specify axis.");
+            PADDLE_ENFORCE_EQ(
+                inputs_dims[0][j], inputs_dims[i][j],
+                "ShapeError: Dimension %d in inputs' shapes must be equal. "
+                "But recevied input[0]'s shape = "
+                "[%s], input[%d]'s shape = [%s].",
+                j, inputs_dims[0], i, inputs_dims[i]);
           }
         }
       }
     }
 ```
-
 
 
 ### 定义OpKernel类
@@ -405,9 +477,12 @@ class MulKernel : public framework::OpKernel<T> {
 
     ```cpp
     namespace ops = paddle::operators;
-    REGISTER_OPERATOR(mul, ops::MulOp, ops::MulOpMaker,
-                  ops::MulOpGradMaker)
-    REGISTER_OPERATOR(mul_grad, ops::MulGradOp)
+    REGISTER_OPERATOR(mul, ops::MulOp, ops::MulOpMaker, ops::MulOpInferVarType,
+                      ops::MulOpGradMaker<paddle::framework::OpDesc>,
+                      ops::MulOpGradMaker<paddle::imperative::OpBase>);
+
+    REGISTER_OPERATOR(mul_grad, ops::MulGradOp);
+
     REGISTER_OP_CPU_KERNEL(mul,
                   ops::MulKernel<paddle::platform::CPUDeviceContext, float>,
                   ops::MulKernel<paddle::platform::CPUDeviceContext, double>);
@@ -416,11 +491,7 @@ class MulKernel : public framework::OpKernel<T> {
                   ops::MulGradKernel<paddle::platform::CPUDeviceContext, double>);
     ```
 
-    在上面的代码中：
-
-       - `REGISTER_OPERATOR` ： 注册`ops::MulOp`类，类型名为`mul`，该类的`ProtoMaker`为`ops::MulOpMaker`，注册`ops::MulOpGrad`，类型名为`mul_grad`。
-
-       - `REGISTER_OP_CPU_KERNEL` ：注册`ops::MulKernel`类，并特化模板参数为`paddle::platform::CPUPlace`和`float`类型，同理，注册`ops::MulGradKernel`类。
+    在上面的代码中，使用`REGISTER_OPERATOR`注册了`ops::MulOp`类，类型名为`mul`，该类的`ProtoMaker`为`ops::MulOpMaker`，其`GradOpMaker`分别是`ops::MulOpGradMaker<paddle::framework::OpDesc>`（静态图使用）和`ops::MulOpGradMaker<paddle::imperative::OpBase>`(动态图使用)，并使用`REGISTER_OPERATOR`注册`ops::MulGradOp`，类型名为`mul_grad`。然后，使用`REGISTER_OP_CPU_KERNEL`注册了`ops::MulKernel`类，并特化模板参数为设备为`paddle::platform::CPUPlace`、数据类型为`float`类型和`double`类型；同理，注册`ops::MulGradKernel`类。
 
 
 - 在 `.cu`文件中注册CUDA Kernel。
@@ -442,27 +513,8 @@ class MulKernel : public framework::OpKernel<T> {
 
 **注意：**
 
-在运行Op时，框架系统会根据输入数据所在的设备、输入数据的类型等信息自动的选择合适的OpKernel，比如输入的数据是在GPU上，并且为`float`类型，框架系统会选择由`REGISTER_OP_CUDA_KERNEL`注册的`ops::MulKernel<paddle::platform::CUDADeviceContext, float>`。如果用户希望指定运行时可被调用的OpKernel，用户需要覆盖`framework::OperatorWithKernel`中的`GetExpectedKernelType`函数，比如`ConvOp`会根据属性`use_cudnn`为`false`还是为`true`决定是否调用cudnn库中提供的conv操作。
+在运行Op时，框架系统会根据输入数据所在的设备、输入数据的类型等信息自动的选择合适的OpKernel，比如输入的数据是在GPU上，并且为`float`类型，框架系统会选择由`REGISTER_OP_CUDA_KERNEL`注册的`ops::MulKernel<paddle::platform::CUDADeviceContext, float>`。如果用户希望指定运行时可被调用的OpKernel，用户需要覆盖`framework::OperatorWithKernel`中的`GetExpectedKernelType`函数，比如`MulOp`会根据属性`use_mkldnn`为`false`还是为`true`决定是否调用mkldnn库来完成计算。
 
-```
-framework::OpKernelType ConvOp::GetExpectedKernelType(
-    const framework::ExecutionContext& ctx) const {
-  int customized_type_value =
-      framework::OpKernelType::kDefaultCustomizedTypeValue;
-  framework::LibraryType library{framework::LibraryType::kPlain};
-  auto input_data_type = ctx.Input<Tensor>("Input")->type();
-  std::string data_format = ctx.Attr<std::string>("data_format");
-  framework::DataLayout layout = framework::StringToDataLayout(data_format);
-#ifdef PADDLE_WITH_CUDA
-  if (ctx.Attr<bool>("use_cudnn")) {
-    library = framework::LibraryType::kCUDNN;
-  }
-#endif
-  auto type = framework::OpKernelType(input_data_type, ctx.GetPlace(), layout,
-                                      library, customized_type_value);
-  return type;
-}
-```
 
 ### 编译
 
