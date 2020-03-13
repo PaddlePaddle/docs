@@ -5,7 +5,7 @@ Install and Compile C++ Inference Library on Windows
 Direct Download and Install
 -------------
 
-| Version      |     Inference Libraries(v1.7.0)   | Compiler | Build tools | cuDNN | CUDA |
+| Version      |     Inference Libraries(v1.7.1)   | Compiler | Build tools | cuDNN | CUDA |
 |:---------|:-------------------|:-------------------|:----------------|:--------|:-------|
 |    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.7.1/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
 |    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.7.1/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |

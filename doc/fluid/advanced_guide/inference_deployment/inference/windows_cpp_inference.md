@@ -5,7 +5,7 @@
 下载安装包与对应的测试环境
 -------------
 
-| 版本说明      |     预测库(1.7.0版本)     |       编译器        |    构建工具      |  cuDNN  |  CUDA  |
+| 版本说明      |     预测库(1.7.1版本)     |       编译器        |    构建工具      |  cuDNN  |  CUDA  |
 |:---------|:-------------------|:-------------------|:----------------|:--------|:-------|
 |    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.7.1/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
 |    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.7.1/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
