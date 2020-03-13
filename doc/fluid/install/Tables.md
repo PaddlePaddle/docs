@@ -556,16 +556,16 @@ platform tag: 类似 'linux_x86_64', 'any'
 	<tbody>
 	<tr>
 		<td> cuda10.1-cudnn7-mkl </td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1.gcc8.post107-cp27-cp27mu-linux_x86_64.whl">
-		paddlepaddle_gpu-1.7.1.gcc8.post107-cp27-cp27mu-linux_x86_64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1.gcc8.post107-cp27-cp27m-linux_x86_64.whl">
-		paddlepaddle_gpu-1.7.1.gcc8.post107-cp27-cp27m-linux_x86_64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1.gcc8.post107-cp35-cp35m-linux_x86_64.whl">
-		paddlepaddle_gpu-1.7.1.gcc8.post107-cp35-cp35m-linux_x86_64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1.gcc8.post107-cp36-cp36m-linux_x86_64.whl">
-		paddlepaddle_gpu-1.7.1.gcc8.post107-cp36-cp36m-linux_x86_64.whl</a></td>
-		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1.gcc8.post107-cp37-cp37m-linux_x86_64.whl">
-		paddlepaddle_gpu-1.7.1.gcc8.post107-cp37-cp37m-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1-cp27-cp27mu-linux_x86_64.whl">
+		paddlepaddle_gpu-1.7.1-cp27-cp27mu-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1-cp27-cp27m-linux_x86_64.whl">
+		paddlepaddle_gpu-1.7.1-cp27-cp27m-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1-cp35-cp35m-linux_x86_64.whl">
+		paddlepaddle_gpu-1.7.1-cp35-cp35m-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1-cp36-cp36m-linux_x86_64.whl">
+		paddlepaddle_gpu-1.7.1-cp36-cp36m-linux_x86_64.whl</a></td>
+		<td> <a href="https://paddle-wheel.bj.bcebos.com/1.7.1-gpu-cuda10.1-cudnn7-mkl_gcc8.2/paddlepaddle_gpu-1.7.1-cp37-cp37m-linux_x86_64.whl">
+		paddlepaddle_gpu-1.7.1-cp37-cp37m-linux_x86_64.whl</a></td>
 	</tr>
    </tbody>
 </table>
