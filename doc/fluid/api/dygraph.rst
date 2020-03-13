@@ -29,6 +29,7 @@ fluid.dygraph
     dygraph/NCE.rst
     dygraph/no_grad.rst
     dygraph/NoamDecay.rst
+    dygraph/ParallelEnv.rst
     dygraph/ParameterList.rst
     dygraph/PiecewiseDecay.rst
     dygraph/PolynomialDecay.rst
