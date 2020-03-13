@@ -381,11 +381,6 @@
 
             * 需要您确认您的 GPU 满足上方列出的要求
 
-        如果您是使用 CUDA 8，cuDNN 7.1+，安装GPU版本的命令为：
-        ::
-    
-            conda install paddlepaddle-gpu cudatoolkit=8.0
-
         如果您是使用 CUDA 9，cuDNN 7.3+，安装GPU版本的命令为：
         ::
     
@@ -455,7 +450,7 @@
 
         * 您的计算机需要具有支持 CUDA 驱动的 NVIDIA 显卡
 
-        * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+(For CUDA9/10), 7.1+(For CUDA 8)
+        * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.3+(For CUDA9/10)
 
         * 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
@@ -463,7 +458,7 @@
 
         * 需要安装 `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_ ，根据您系统不同，对 CUDA 版本要求不同：
 
-            * Ubuntu/CentOS 7 ，如果您是使用 nvidia-docker 安装，支持 CUDA 8.0/9.0/9.1/9.2/10.0
+            * Ubuntu/CentOS 7 ，如果您是使用 nvidia-docker 安装，支持 CUDA 9.0/9.1/9.2/10.0
 
             * Windows/MacOS/CentOS 6 不支持 nvidia-docker 方式安装
 
