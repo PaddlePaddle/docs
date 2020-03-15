@@ -2,13 +2,14 @@
 
 ## 环境准备
 
-* **Windows 7/8/10 专业版/企业版 (64bit) (GPU版本支持CUDA 9.0/10.0，且仅支持单卡)**
+* **Windows 7/8/10 专业版/企业版 (64bit)**
+    * **GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1，且仅支持单卡**
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
 * **pip 版本 9.0.1+ (64 bit)**
 
 ### 注意事项
 
-* 确认您安装PaddlePaddle的 Python是您预期的版本，因为您计算机可能有多个 Python，使用以下命令
+* 确认您安装PaddlePaddle的 Python 是您预期的版本，因为您计算机可能有多个 Python，使用以下命令
 
     python --version
 
@@ -48,7 +49,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
 
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
-    * **CUDA 工具包9.0/10.0配合cuDNN v7.3+**
+    * **CUDA 工具包 9.0/10.0 配合 cuDNN v7.3+**
     * **GPU运算能力超过1.0的硬件设备**
 
 注: 目前官方发布的windows安装包仅包含 CUDA 9.0/10.0 的单卡模式，不包含 CUDA 9.1/9.2/10.1，如需使用，请通过源码自行编译。
