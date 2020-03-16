@@ -287,7 +287,7 @@ with fluid.program_guard(dg_program):
     # 计算生成图片被判别为真实样本的loss
     dg_loss = loss(
         dg_logit,
-        fluid.layers.fill_constant_batch_size_like(
+        fluid.layers.fill_constant(
             input=noise, dtype='float32', shape=[-1, 1], value=1.0))
 
 ```

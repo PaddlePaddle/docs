@@ -74,7 +74,7 @@ Similarly, the following Program contains 3 blocks:
 ```python
 import paddle.fluid as fluid # block 0
 
-limit = fluid.layers.fill_constant_batch_size_like(
+limit = fluid.layers.fill_constant(
     Input=label, dtype='int64', shape=[1], value=5.0)
 cond = fluid.layers.less_than(x=label, y=limit)
 

@@ -89,7 +89,7 @@ def deconv(x,
 
 def conv_cond_concat(x, y):
     """Concatenate conditioning vector on feature map axis."""
-    ones = fluid.layers.fill_constant_batch_size_like(
+    ones = fluid.layers.fill_constant(
         x, [-1, y.shape[1], x.shape[2], x.shape[3]], "float32", 1.0)
     return fluid.layers.concat([x, ones * y], 1)
 

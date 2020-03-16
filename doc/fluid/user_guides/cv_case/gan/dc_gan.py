@@ -75,7 +75,7 @@ def train(args):
 
         dg_logit = D(g_img)
         dg_loss = loss(dg_logit,
-                       fluid.layers.fill_constant_batch_size_like(
+                       fluid.layers.fill_constant(
                            input=noise,
                            dtype='float32',
                            shape=[-1, 1],
