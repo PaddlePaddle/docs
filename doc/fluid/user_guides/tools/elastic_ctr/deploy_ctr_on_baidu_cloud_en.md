@@ -18,11 +18,11 @@ This project aims to provide end to end CTR training and redevelopment. Main fea
 - Entire program is deployed in k8s environment within one click. The process is fast to be built and tested. 
 - Large Scale Distribution high-speed training based on the Paddle transpiler model
 - Auto Scaling of the training resources
-- Industrial level Sparse Feature Serving components, under High Concurrency Condition, qps is 13 times those of redis. \[[注1](#annotation_1)\]
+- Industrial level Sparse Feature Serving components, under High Concurrency Condition, qps is 13 times those of redis. \[[Note 1](#annotation_1)\]
 
 The program chart is shown below:
 
-![image](elastic_ctr/overview.png)
+![image](elastic_ctr/overview_en.png)
 
 In the chart：
 
