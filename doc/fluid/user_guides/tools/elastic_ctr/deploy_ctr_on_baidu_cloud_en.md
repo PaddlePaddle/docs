@@ -327,7 +327,7 @@ As shown in the figure above, this part is used to specifically output the model
 
 如上图所示
 
-### 5.3 指定cube参数服务器的分片数量和副本数量
+### 5.3 Specify the number of shards and replicas of the cube parameter server
 
 In the cube.yaml file, we can see the definition of each cube node, there is a `cubeserver pod` and `cube serverservice`. If we need to increase the number of cube copies and shards, we only need to copy the relevant definitions and environment variables in the yaml file.
 
