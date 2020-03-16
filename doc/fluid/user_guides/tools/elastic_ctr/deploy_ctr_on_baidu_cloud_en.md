@@ -325,7 +325,7 @@ As shown in the figure above, this part is used to specifically output the model
 
 ![image](elastic_ctr/ctryaml3.png)
 
-如上图所示
+as the image showing above
 
 ### 5.3 Specify the number of shards and replicas of the cube parameter server
 
