@@ -22,7 +22,7 @@ This project aims to provide end to end CTR training and redevelopment. Main fea
 
 The program chart is shown below:
 
-![image](elastic_ctr/overview_en.png)
+![image](elastic_ctr/overview-en.png)
 
 In the chart：
 
