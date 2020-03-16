@@ -135,7 +135,7 @@ $ bash paddle-suite.sh
 
 Please refer to **Chapter 3.3-3.8**to check if every stop is current. And in **Chapter 4** verify the training process and inference results.
 
-**[Attention！！！]**：以下**The content between Chapter 3.3 - 3.8 are all included in one-click deployment script, no need to carry out manually**. But to make it easier to comprehend, the details and principles are given in the following.
+**[Attention！！！]**：**The content between Chapter 3.3 - 3.8 are all included in one-click deployment script, no need to carry out manually**. But to make it easier to comprehend, the details and principles are given in the following.
 
 ### 3.3 Pick one node for output model
 
