@@ -74,11 +74,11 @@ def train(args):
         g_program_test = dg_program.clone(for_test=True)
 
         dg_logit = D(g_img)
+        noise_shape = fluid.layers.shape(noise)
         dg_loss = loss(dg_logit,
                        fluid.layers.fill_constant(
-                           input=noise,
                            dtype='float32',
-                           shape=[-1, 1],
+                           shape=[noise_shape[0], 1],
                            value=1.0))
 
     opt = fluid.optimizer.Adam(learning_rate=LEARNING_RATE)
