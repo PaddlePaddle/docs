@@ -116,3 +116,6 @@ elementwise_add
     z_value = exe.run(feed=gen_data(),
                         fetch_list=[z.name])
     print(z_value) # z.shape=[2,3,4,5]
+
+
+
