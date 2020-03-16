@@ -242,13 +242,13 @@ This section describes how to use pip to install.
 
 9. For more information to help, please refer to:
 
-    `install under Ubuntu <install_Ubuntu.html>`_
+    `install under Ubuntu <install_Ubuntu_en.html>`_
 
-    `install under CentOS <install_CentOS.html>`_
+    `install under CentOS <install_CentOS_en.html>`_
 
-    `install under MacOS <install_MacOS.html>`_
+    `install under MacOS <install_MacOS_en.html>`_
 
-    `install under Windows <install_Windows.html>`_
+    `install under Windows <install_Windows_en.html>`_
 
 
 The second way to install: use Conda to install
@@ -412,7 +412,7 @@ This section describes how to use Conda to install.
 
 11. For more information to help, please refer to:
 
-    `install under conda <install_Conda.html>`_
+    `install under conda <install_Conda_en.html>`_
 
 
 The third way to install: use Docker to install
@@ -518,7 +518,7 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
 
 5. For more help, refer to:
 
-   `use Docker to install <install_Docker.html>`_
+   `use Docker to install <install_Docker_en.html>`_
 
 	
 The fourth way to install: compile and install with source code
