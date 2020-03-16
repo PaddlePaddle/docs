@@ -289,7 +289,7 @@ with fluid.program_guard(dg_program):
     dg_loss = loss(
         dg_logit,
         fluid.layers.fill_constant(
-            input=noise, dtype='float32', shape=[noise_shape[0], 1], value=1.0))
+            dtype='float32', shape=[noise_shape[0], 1], value=1.0))
 
 ```
 使用adam作为优化器，分别优化判别真实图片的loss和判别生成图片的loss。
