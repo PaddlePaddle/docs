@@ -47,13 +47,13 @@ Detailed explanations on how to execute the above custom development can be foun
 
 Summary of the content:
 
-**Chapter 2 Preconditions ** Guide the users to start from 0 Apply for CCE group on Baidu Cloud, and install [volcano](https://volcano.sh/) tools. This program requires using volcano for training batch tasks management tools, currently meet the testing requirement on Baidu Cloud
+** Chapter 2 Preconditions ** Guide the users to start from 0 Apply for CCE group on Baidu Cloud, and install [volcano](https://volcano.sh/) tools. This program requires using volcano for training batch tasks management tools, currently meet the testing requirement on Baidu Cloud
 
-**Chapter 3 Distributed training + serving program installment ** Use paddle-suite.sh, deploy distributed training and serving entire process with one click. Explain in details every step of the work and its meaning in the footnote script.
+** Chapter 3 Distributed training + serving program installment ** Use paddle-suite.sh, deploy distributed training and serving entire process with one click. Explain in details every step of the work and its meaning in the footnote script.
 
-**Chapter 4 Check the result ** Produce output according to each pod, check the installation status with one click.
+** Chapter 4 Check the result ** Produce output according to each pod, check the installation status with one click.
 
-**Chapter 5 Custom Development ** Propose the parts that can be improved in a customized manner with one click; provide the detailed location for modification
+** Chapter 5 Custom Development ** Propose the parts that can be improved in a customized manner with one click; provide the detailed location for modification
 
 ## <span id='head2'>2. Preconditions</span>
 
@@ -393,7 +393,7 @@ Redis-server (latest stable 5.0.6) deployed on the server side
 The client is the client get_values.cpp based on 
 [redisplusplus](https://github.com/sewenew/redis-plus-plus), and the client here [get_values.cpp](https://github.com/PaddlePaddle/Serving/blob/master/doc/resource/get_value.cpp)
 
-Basic principle: start k threads, each thread accesses the redis server M times, and each time obtains N keys in batches using mget. The total time is summed and averaged.
+Principle: start k threads, each thread accesses the redis server M times, and each time obtains N keys in batches using mget. The total time is summed and averaged.
 
 Run the command：
 
@@ -407,7 +407,7 @@ In the commnad:
 \-r request times per thread
 \-b number of keys per mget request
 
-并发数 （压测线程数） | batch size | 平均响应时间 (us) | total qps
+Concurrency （Threads Num） | batch size | Average Response Time (us) | Total QPS
 -------|------------|-------------|---------------------------
 1  | 1000 | 1643 | 608
 4  | 1000 | 4878  | 819
@@ -417,11 +417,11 @@ In the commnad:
 32 | 1000 | 37668 | 849
 
 
-### RocksDB测试环境
+### RocksDB test environment 
 
-测试key 1-1000000之间随机整数，value为40字节字符串
+Test a random integer between key 1-1000000, and the value is a 40-byte string
 
-基本原理：启动k个线程，每个线程访问M次rocksDB，每次用mget批量获取N个key。总时间加和求平均。
+Principle：start K threads，visit RocksDB M times by calling mget() per thread，fetching N keys per mget request. The total time is summed and averaged.
 
 Concurrency （Threads Num） | batch size | Average Response Time (us) | Total QPS
 -------|------------|-------------|---------------------------
