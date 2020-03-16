@@ -47,13 +47,13 @@ Detailed explanations on how to execute the above custom development can be foun
 
 Summary of the content:
 
-** Chapter 2 Preconditions ** Guide the users to start from 0 Apply for CCE group on Baidu Cloud, and install [volcano](https://volcano.sh/) tools. This program requires using volcano for training batch tasks management tools, currently meet the testing requirement on Baidu Cloud
+**Chapter 2 Preconditions** Guide the users to start from 0 Apply for CCE group on Baidu Cloud, and install [volcano](https://volcano.sh/) tools. This program requires using volcano for training batch tasks management tools, currently meet the testing requirement on Baidu Cloud
 
-** Chapter 3 Distributed training + serving program installment ** Use paddle-suite.sh, deploy distributed training and serving entire process with one click. Explain in details every step of the work and its meaning in the footnote script.
+**Chapter 3 Distributed training + serving program installment** Use paddle-suite.sh, deploy distributed training and serving entire process with one click. Explain in details every step of the work and its meaning in the footnote script.
 
-** Chapter 4 Check the result ** Produce output according to each pod, check the installation status with one click.
+**Chapter 4 Check the result** Produce output according to each pod, check the installation status with one click.
 
-** Chapter 5 Custom Development ** Propose the parts that can be improved in a customized manner with one click; provide the detailed location for modification
+**Chapter 5 Custom Development** Propose the parts that can be improved in a customized manner with one click; provide the detailed location for modification
 
 ## <span id='head2'>2. Preconditions</span>
 
