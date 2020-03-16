@@ -25,6 +25,8 @@ Overview
 
 	- `Models Zoo <../user_guides/models/index_en.html>`_：introduces the models zoo of Paddle
 
+    - `Tools <../user_guides/tools/index_en.html>`_：introduces cases of using paddle tools
+
 ..  toctree::
     :hidden:
 
@@ -32,6 +34,7 @@ Overview
     nlp_case/index_en.rst
     rec_case/index_en.rst
 	models/index_cn.rst
+    tools/index_en.rst
 
 
 We packaged Jupyter, PaddlePaddle, and various dependency softwares into a Docker image. It frees you from installing these softwares by yourself, and you only need to just install Docker. For various Linux versions, please refer to https://www.docker.com . If you use docker on `Windows <https://www.docker.com/docker-windows>`_ or `Mac <https://www.docker.com/docker-mac>`_ , consider `allocate more Memory and CPU resources to Docker  <http://stackoverflow.com/a/39720010/724872>`_ .
