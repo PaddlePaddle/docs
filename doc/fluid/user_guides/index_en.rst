@@ -19,6 +19,8 @@ Overview
    
     - `Simple Case <../user_guides/simple_case/index_en.html>`_ ：introduces basic cases of Paddle
 
+    - `Computer Vision <../user_guides/cv_case/index_en.html>`_ ：introduces cases of using paddle to realize Computer Vision task
+
     - `Natural Language Processing <../user_guides/nlp_case/index_en.html>`_：introduces cases of using paddle to realize Natural Language Processing tasks
 
     - `Recommend <../user_guides/rec_case/index_en.html>`_：introduces cases of using paddle to realize Recommend tasks
@@ -29,6 +31,7 @@ Overview
     :hidden:
 
     simple_case/index_en.rst
+    cv_case/index_en.rst
     nlp_case/index_en.rst
     rec_case/index_en.rst
 	models/index_cn.rst
