@@ -56,64 +56,56 @@ Fluid 使用 :code:`sums` 执行对输入数据的加和。
 
 API reference 请参考：:ref:`cn_api_fluid_layers_sums`
 
-
-7. fill_constant_batch_size_like
----------------------------------
-
-Fluid 使用 :code:`fill_constant_batch_size_like` 创建一个具有特定形状、类型和 batch_size 的 Tensor。并且该Tensor的初始值可以被指定为任意常数。其中 batch_size 信息由该tensor的 :code:`input_dim_idx` 和 :code:`output_dim_idx` 确定。
-
-API reference 请参考：:ref:`cn_api_fluid_layers_fill_constant_batch_size_like`
-
-8. fill_constant
+7. fill_constant
 -----------------
 
 Fluid 使用 :code:`fill_constant` 创建一个具有特定形状和类型的 Tensor。可以通过 :code:`value` 设置该变量的初始值。
 
 API reference 请参考： :ref:`cn_api_fluid_layers_fill_constant`
 
-9. assign
+8. assign
 ---------------
 
 Fluid 使用 :code:`assign` 复制一个变量。
 
 API reference 请参考：:ref:`cn_api_fluid_layers_assign`
 
-10. argmin
+9. argmin
 --------------
 
 Fluid 使用 :code:`argmin` 计算输入 Tensor 指定轴上最小元素的索引。
 
 API reference 请参考：:ref:`cn_api_fluid_layers_assign`
 
-11. argmax
+10. argmax
 -----------
 
 Fluid 使用 :code:`argmax` 计算输入 Tensor 指定轴上最大元素的索引。
 
 API reference 请参考：:ref:`cn_api_fluid_layers_argmax`
 
-12. argsort
+11. argsort
 ------------
 
 Fluid 使用 :code:`argsort` 对输入 Tensor 在指定轴上进行排序，并返回排序后的数据变量及其对应的索引值。
 
 API reference 请参考： :ref:`cn_api_fluid_layers_argsort`
 
-13. ones
+12. ones
 -------------
 
 Fluid 使用 :code:`ones` 创建一个指定大小和数据类型的Tensor，且初始值为1。
 
 API reference 请参考： :ref:`cn_api_fluid_layers_ones`
 
-14. zeros
+13. zeros
 ---------------
 
 Fluid 使用 :code:`zeros` 创建一个指定大小和数据类型的Tensor，且初始值为0。
 
 API reference 请参考： :ref:`cn_api_fluid_layers_zeros`
 
-15. reverse
+14. reverse
 -------------------
 
 Fluid 使用 :code:`reverse` 沿指定轴反转 Tensor。

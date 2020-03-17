@@ -326,10 +326,11 @@ with fluid.program_guard(dg_program):
     dg_logit = D(g_img)
 
     # Calculate the loss of the generated image as the real sample
+    noise_shape = fluid.layers.shape(noise)
     dg_loss = loss(
         dg_logit,
-        fluid.layers.fill_constant_batch_size_like(
-            input=noise, dtype='float32', shape=[-1, 1], value=1.0))
+        fluid.layers.fill_constant(
+            dtype='float32', shape=[noise_shape[0], 1], value=1.0))
 
 ```
 Adam is used as the optimizer to distinguish the loss of the real picture and the loss of the generated picture.
