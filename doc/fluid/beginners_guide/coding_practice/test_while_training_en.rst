@@ -70,7 +70,7 @@ For example:
 
    test_program = fluid.Program()
    with fluid.unique_name.guard():
-       with fluid.program_gurad(test_program, fluid.Program()):
+       with fluid.program_guard(test_program, fluid.Program()):
            test_loss = network(is_test=True)
 
    # fluid.default_main_program() is the train program
