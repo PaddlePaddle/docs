@@ -9,8 +9,6 @@ fluid.initializer
     initializer/BilinearInitializer.rst
     initializer/Constant.rst
     initializer/ConstantInitializer.rst
-    initializer/force_init_on_cpu.rst
-    initializer/init_on_cpu.rst
     initializer/MSRA.rst
     initializer/MSRAInitializer.rst
     initializer/Normal.rst
