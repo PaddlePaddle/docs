@@ -113,7 +113,7 @@
        main_function(args.is_local)
 
 
-* 说明：示例中使用的IO方法是dataset，想了解具体的文档和用法请参考 `Dataset API <hhttps://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/dataset_cn.html>`_ 。示例中使用的 ``train_from_dataset`` 接口，想了解具体的文档和使用方法请参考 `Executor API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/executor_cn.html>`_ 。示例中的 ``from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet`` 表示引入参数服务器架构进行分布式训练，如果想更进一步了解Fleet API的更多选项和示例，请参考 `Fleet API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/fleet_api_howto_cn.html>`_
+* 说明：示例中使用的IO方法是dataset，想了解具体的文档和用法请参考 `Dataset API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/dataset_cn.html>`_ 。示例中使用的 ``train_from_dataset`` 接口，想了解具体的文档和使用方法请参考 `Executor API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/executor_cn.html>`_ 。示例中的 ``from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet`` 表示引入参数服务器架构进行分布式训练，如果想更进一步了解Fleet API的更多选项和示例，请参考 `Fleet API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/user_guides/howto/training/fleet_api_howto_cn.html>`_
 
 
 单机训练启动命令
