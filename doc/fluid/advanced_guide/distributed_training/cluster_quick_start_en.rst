@@ -15,7 +15,7 @@ Preparation
 
 -  [x] Install Paddle Fluid. If not already installed, please refer to
    `Beginner’s
-   Guide <https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/beginners_guide/index_en.html>`__.
+   Guide <https://www.paddlepaddle.org.cn/documentation/docs/en/1.7/beginners_guide/index_en.html>`__.
 -  [x] Master the most basic single node training method. Please refer
    to the single card training described in `Single-node
    training <https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/user_guides/howto/training/single_node_en.html>`__.
@@ -124,14 +124,14 @@ Fleet <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/ctr>`__.
 
 -  Note: The IO method used in this example is dataset, please refer to
    `Dataset
-   API <https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/api/dataset.html>`__
+   API <https://www.paddlepaddle.org.cn/documentation/docs/en/1.7/api/dataset.html>`__
    for specific documents and usage. For the ``train_from_dataset``
    interface, please refer to `Executor
-   API <https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/api/executor.html>`__.
+   API <https://www.paddlepaddle.org.cn/documentation/docs/en/1.7/api/executor.html>`__.
    ``from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet``
    in this example means to introduce parameter server architecture for
    distributed training, which you can refer to `Fleet
-   API <https://www.paddlepaddle.org.cn/documentation/docs/en/1.5/beginners_guide/index_en.html>`__
+   API <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.6/user_guides/howto/training/fleet_api_howto_cn.html>`__
    for getting more about the options and examples of Fleet API.
 
 Start command of single node training
