@@ -17,6 +17,7 @@ paddle.fluid.metrics模块提供了一系列常用的模型评价指标; 用户�
 不同类型的任务，会选用不同的评价指标。
  
 回归问题通常会用RMSE(均方根误差)、MAE(平均绝对误差)、R-Square(R平方)等
+
 AUC(Area Under Cure)指标则常被用在分类任务(classification)上
 
 目标检测任务(Object Detection)则经常会用到mAP(Mean Average Precision) 
