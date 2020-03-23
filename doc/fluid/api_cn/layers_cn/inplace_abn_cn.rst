@@ -25,7 +25,8 @@ inplace_abn
     - **moving_variance_name** （string）- moving_variance的名称，存储全局变量。如果将其设置为None, ``inplace_abn`` 将随机命名全局方差；否则， ``inplace_abn`` 将命名全局方差为 ``moving_variance_name`` 。默认：None。
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值。
     - **use_global_stats** （bool） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。默认：False。
-		- **act_alpha** (float)  - 当 ``act`` 参数为None、leaky-relu、elu时，会使用就地批正则化激活算法，可通过此参数给定leaky-relu、elu的 ``alpha`` 值。
+    - **act_alpha** （float） – 当 ``act`` 参数为None、leaky-relu、elu时，会使用就地批正则化激活算法，可通过此参数给定leaky-relu、elu的 ``alpha`` 值。默认：1.0。
+
 
 返回： 维度和输入相同的Tensor，在输入中运用批正则后的结果。
 
