@@ -13,6 +13,7 @@ fluid.dygraph
     dygraph/Conv3D.rst
     dygraph/Conv3DTranspose.rst
     dygraph/CosineDecay.rst
+    dygraph/Dropout.rst
     dygraph/dygraph_to_static_output.rst
     dygraph/Embedding.rst
     dygraph/ExponentialDecay.rst
@@ -28,6 +29,7 @@ fluid.dygraph
     dygraph/NaturalExpDecay.rst
     dygraph/NCE.rst
     dygraph/no_grad.rst
+    dygraph/no_grad_guard.rst
     dygraph/NoamDecay.rst
     dygraph/ParallelEnv.rst
     dygraph/ParameterList.rst
