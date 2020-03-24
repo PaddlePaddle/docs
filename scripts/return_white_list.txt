@@ -1,1 +1,18 @@
 layers_cn/elementwise_add_cn.rst 2 3
+dygraph_cn/NaturalExpDecay_cn.rst 0
+dygraph_cn/TracedLayer_cn.rst 0
+dygraph_cn/Tracer_cn.rst 0
+dygraph_cn/InverseTimeDecay_cn.rst 0
+dygraph_cn/ExponentialDecay_cn.rst 0
+dygraph_cn/save_dygraph_cn.rst 0
+dygraph_cn/BackwardStrategy_cn.rst 0
+dygraph_cn/guard_cn.rst 0
+dygraph_cn/to_variable_cn.rst 0
+dygraph_cn/PiecewiseDecay_cn.rst 0
+dygraph_cn/FC_cn.rst 0
+dygraph_cn/NoamDecay_cn.rst 0
+dygraph_cn/no_grad_cn.rst 0
+dygraph_cn/CosineDecay_cn.rst 0
+dygraph_cn/load_dygraph_cn.rst 0
+dygraph_cn/prepare_context_cn.rst 0
+dygraph_cn/PolynomialDecay_cn.rst 0

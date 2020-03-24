@@ -125,21 +125,20 @@ def extract_sample_code(srcfile, status_all):
                 code_status,code_results = run_sample_code(content, filename)
                 run_code += 1
                 code_content = ""
-                if code_return == 0 and code_status == 0 and run_code not in white_return_code:
-                    if j + blank_line < len(srcls) and srcls[j + blank_line].find(".. code-block:: text") == -1 or j + blank_line > len(srcls):
-                        print("Cannot find the return result of the sample code.If you have returned a reault, please check the format of the result.If you think the sample code of this api is not suitable for the return result，please add the white list in FIle: FluidDoc/scripts/return_white_list.txt first.""")
-                        code_status = 2 
-                        break
-                    for k in range(j, len(srcls)):
-                        if srcls[k].find(" code-block:: python") != -1:
-                            break
-                        code_content += srcls[k]
-                    if code_content.find(code_results) == -1:
-                        print("""Mistake found in  the return result of sample code.There maybe two reasons for this error:
-    1. The input of the sample code is a random number.Please add the white list in FIle: FluidDoc/scripts/return_white_list.txt first.
-    2. The return value of the sample code is incorrect. Please check the code and reset the return value.""")
-                        
-                        code_status = 2
+                if run_code not in white_return_code and 0 not in white_return_code:
+                    if code_results == "":
+                        code_status = 3
+                    else:
+                        if j + blank_line < len(srcls) and srcls[j + blank_line].find(".. code-block:: text") == -1 or j + blank_line > len(srcls):
+                            code_status = 3
+                        else:
+                            for k in range(j, len(srcls)):
+                                if srcls[k].find(" code-block:: python") != -1:
+                                    break
+                                code_content += srcls[k]
+                            if code_content.find(code_results) == -1:
+                                code_status = 2
+
                 status.append(code_status)
                 status_all[filename] = status
     return status_all
@@ -217,7 +216,7 @@ else:
     output.append(res)
 
 
-status_groups = {-1: [], 0: [], 1: [], 2: []}
+status_groups = {-1: [], 0: [], 1: [], 2: [], 3: []}
 # polishes show format
 ci_pass = True
 for one_file in output:
@@ -233,7 +232,7 @@ for one_file in output:
             else:
                 for u in range(0, len(status)):
                     status_groups[status[u]].append(key + '_' + str(u + 1))
-error_api = status_groups[-1] + status_groups[1] + status_groups[2]
+error_api = status_groups[-1] + status_groups[1] + status_groups[2] + status_groups[3]
 total_error_number = len(error_api)
 
 print("****************************************************")
@@ -244,6 +243,7 @@ if total_error_number > 0:
     type_one_number = len(status_groups[-1])
     type_two_number = len(status_groups[1])
     type_three_number = len(status_groups[2])
+    type_four_number = len(status_groups[3])
     if type_one_number > 0:
         print("Error type one sample number is:{}".format(type_one_number))
         print("Error raised from type one:no sample code.", str(status_groups[-1]))
@@ -253,6 +253,13 @@ if total_error_number > 0:
     if type_three_number > 0:
         print("Error type three sample number is:{}".format(type_three_number))
         print("Error raised from type three:return error sample code.", str(status_groups[2]))
+        print("""Mistake found in  the return result of sample code.There maybe two reasons for this error:
+    1. The input of the sample code is a random number.Please add the white list in FIle: FluidDoc/scripts/return_white_list.txt first.
+    2. The return value of the sample code is incorrect. Please check the code and reset the return value.""")
+    if type_four_number > 0:
+        print("Error type three sample number is:{}".format(type_four_number))
+        print("Error raised from type three:return error sample code.", str(status_groups[3]))
+        print("Cannot find the return result of the sample code.If you have returned a reault, please check the format of the result.If you think the sample code of this api is not suitable for the return result，please add the white list in FIle: FluidDoc/scripts/return_white_list.txt first.""")
 if not ci_pass:
     print("Mistakes found in sample codes.")
     exit(1)

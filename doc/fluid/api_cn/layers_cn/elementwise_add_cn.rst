@@ -72,7 +72,7 @@ elementwise_add
 
 .. code-block:: text
 
-    [array([3, 8, 6])]
+   [array([3, 8, 6])]
 
 **代码示例 2**
 
