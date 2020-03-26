@@ -78,7 +78,6 @@ lstm
   batch_size = 20
   max_len = 100
   dropout_prob = 0.2
-  seq_len = 100
   hidden_size = 150
   num_layers = 1
   init_h = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
