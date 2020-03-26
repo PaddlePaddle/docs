@@ -57,7 +57,7 @@ lstm
 
 返回： 经过lstm运算输出的三个Tensor的tuple，包括
 
-- rnn_out：LSTM hidden的输出结果的Tensor，数据类型与input一致，维度为 :math:`[seq\_len, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[seq\_len, batch\_size, hidden\_size*2]`
+- rnn_out：LSTM hidden的输出结果的Tensor，数据类型与input一致，维度为 :math:`[batch\_size, seq\_len, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[batch\_size, seq\_len, hidden\_size*2]`
 - last_h：LSTM最后一步的hidden状态的Tensor，数据类型与input一致，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[num\_layers*2, batch\_size, hidden\_size]`
 - last_c：LSTM最后一步的cell状态的Tensor，数据类型与input一致，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[num\_layers*2, batch\_size, hidden\_size]`
 
