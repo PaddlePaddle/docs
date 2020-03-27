@@ -19,7 +19,7 @@ import types
 import os
 import contextlib
 import paddle.fluid as fluid
-#import paddle.tensor as tensor
+import paddle.tensor as tensor
 
 def parse_arg():
     parser = argparse.ArgumentParser()
