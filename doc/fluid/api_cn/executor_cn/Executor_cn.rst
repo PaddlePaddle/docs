@@ -5,12 +5,12 @@ Executor
 
 **注意：该API仅支持【静态图】模式**
 
-.. py:class:: paddle.fluid.executor.Executor (place)
+.. py:class:: paddle.fluid.executor.Executor (place=None)
 
-Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传入设备。
+Executor支持单GPU、多GPU以及CPU运行。
 
 参数：
-    - **place** (fluid.CPUPlace()|fluid.CUDAPlace(N)) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。
+    - **place** (fluid.CPUPlace()|fluid.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本来设置默认设备。当PaddlePaddle是CPU版时，默认运行设备将会设置为 `fluid.CPUPlace()` ；当PaddlePaddle是GPU版本时，默认执行设备将会设置为 `fluid.CUDAPlace(0)` 。默认值为None。 
   
 返回：初始化后的 ``Executor`` 对象
 
@@ -25,9 +25,13 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
     import numpy
     import os
 
-    use_cuda = True
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    exe = fluid.Executor(place)
+    # 显式设置运行设备
+    # use_cuda = True
+    # place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    # exe = fluid.Executor(place)
+
+    # 如果不显示设置运行设备，PaddlePaddle会设置默认运行设备
+    exe = fluid.Executor()
 
     train_program = fluid.Program()
     startup_program = fluid.Program()
@@ -54,8 +58,13 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
     # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
-    if not use_cuda:
-        os.environ['CPU_NUM'] = str(2)
+
+    # 显式设置运行设备
+    # if not use_cuda:
+    #    os.environ['CPU_NUM'] = str(2)
+
+    # 未显示设置运行设备且安装的Paddle为CPU版本
+    # os.environ['CPU_NUM'] = str(2)
 
     compiled_prog = compiler.CompiledProgram(
         train_program).with_data_parallel(
