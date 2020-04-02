@@ -30,7 +30,9 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
     - **beta2** (float) – 第二个动量估计的指数衰减率。
     - **epsilon** (float) – 一个小的浮点值，目的是维持数值稳定性。
     - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
-    - **regularization** (Regularizer) – 一个正则化器，如fluid.regularizer.L1DecayRegularizer。
+    - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
+      :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
+      如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
     - **exclude_from_weight_decay_fn** (function) – 当某个参数作为输入该函数返回值为 ``True`` 时，为该参数跳过权重衰减。 
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
 

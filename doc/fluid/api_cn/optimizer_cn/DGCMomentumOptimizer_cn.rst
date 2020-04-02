@@ -33,7 +33,9 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
     - **use_nesterov** （bool） - 启用Nesterov momentum。 True意味着使用Nesterov。默认值False。
     - **local_grad_clip_norm** （float，可选） - 局部梯度裁减标准值。可选，默认为None，表示不需要裁减。
     - **num_trainers** （int，可选） - 训练节点的数量。可选，默认为None。
-    - **regularization** （WeightDecayRegularizer，可选） - 正则器， 如 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer`。可选，默认为None。
+    - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
+      :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
+      如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
     - **name** （str，可选） - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 **代码示例**
