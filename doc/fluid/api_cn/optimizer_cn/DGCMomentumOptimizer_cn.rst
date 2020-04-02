@@ -119,8 +119,9 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
     - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
     - **parameter_list** (list) – 待更新的Variables组成的列表
     - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **grad_clip** (GradClipBase|None) – 梯度裁剪的策略
-
+    - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
+      默认值为None，此时将不进行梯度裁剪。
+       
 返回： (optimize_ops, params_grads)，分别为附加的算子列表；一个由(param, grad) 变量对组成的列表，用于优化
 
 返回类型：   tuple

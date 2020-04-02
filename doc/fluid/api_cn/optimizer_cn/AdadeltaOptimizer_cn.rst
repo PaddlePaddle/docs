@@ -49,7 +49,8 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     - **startup_program** (Program，可选) – 参数所在的startup program。默认值为None，表示 :ref:`cn_api_fluid_default_startup_program` 。
     - **parameter_list** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表。默认值为None，表示所有参数均需要更新。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合。默认值为None。
-    - **grad_clip** (GradClipBase，可选) – 梯度裁剪的策略，目前仅在动态图模式下有效。
+    - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
+      默认值为None，此时将不进行梯度裁剪。
 
 返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。
 
