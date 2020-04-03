@@ -41,6 +41,7 @@ hook(Layer, input) -> None or modified input
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
 
     # forward_pre_hook函数修改了layer的输入：input = input * 2
     def forward_pre_hook(layer, input):
@@ -88,6 +89,7 @@ hook(Layer, input, output) -> None or modified output
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
 
     # forward_post_hook函数改变了layer的输出：output = output * 2
     def forward_post_hook(layer, input, output):
@@ -100,15 +102,15 @@ hook(Layer, input, output) -> None or modified output
         # 注册hook
         forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
 
-        value = np.arange(26).reshape(2, 13).astype("float32")
-        in = fluid.dygraph.to_variable(value0)
+        value1 = np.arange(26).reshape(2, 13).astype("float32")
+        in1 = fluid.dygraph.to_variable(value1)
 
-        out0 = linear(in)
+        out0 = linear(in1)
 
         # remove the hook
         forward_post_hook_handle.remove()
 
-        out1 = linear(in)
+        out1 = linear(in1)
 
         # hook改变了layer的输出（output = output * 2），所以out0等于out1 * 2
         assert (out0.numpy() == (out1.numpy()) * 2).any()
