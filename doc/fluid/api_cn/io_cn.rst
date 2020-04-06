@@ -10,13 +10,16 @@ fluid.io
     :maxdepth: 1
 
     io_cn/batch_cn.rst
+    io_cn/BatchSampler_cn.rst
     io_cn/buffered_cn.rst
     io_cn/cache_cn.rst
     io_cn/chain_cn.rst
     io_cn/compose_cn.rst
     io_cn/ComposeNotAligned_cn.rst
     io_cn/DataLoader_cn.rst  
+    io_cn/Dataset_cn.rst
     io_cn/firstn_cn.rst
+    io_cn/Flowers_cn.rst
     io_cn/get_program_parameter_cn.rst
     io_cn/get_program_persistable_vars_cn.rst
     io_cn/load_cn.rst
@@ -25,6 +28,7 @@ fluid.io
     io_cn/load_persistables_cn.rst
     io_cn/load_program_state_cn.rst
     io_cn/load_vars_cn.rst
+    io_cn/MNIST_cn.rst
     io_cn/map_readers_cn.rst
     io_cn/multiprocess_reader_cn.rst
     io_cn/PyReader_cn.rst
