@@ -19,12 +19,13 @@ BilinearInitializer
     import math
     factor = 2
     C = 2
+    B = 8
     H = W = 32
-    w_attr = fluid.ParamAttr(
+    w_attr = fluid.param_attr.ParamAttr(
         learning_rate=0.,
         regularizer=fluid.regularizer.L2Decay(0.),
-        initializer=fluid.initializer.BilinearInitializer())
-    x = fluid.layers.data(name="data", shape=[4, H, W],
+        initializer=fluid.initializer.Bilinear())
+    x = fluid.data(name="data", shape=[B, 3, H, W],
                           dtype="float32")
     conv_up = fluid.layers.conv2d_transpose(
         input=x,

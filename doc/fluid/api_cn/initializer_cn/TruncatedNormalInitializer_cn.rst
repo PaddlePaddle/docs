@@ -19,7 +19,7 @@ Random Truncated Normal(高斯)分布初始化函数
 .. code-block:: python
 
         import paddle.fluid as fluid
-        x = fluid.layers.data(name='x', shape=[1], dtype='float32')
+        x = fluid.data(name='x', shape=[None, 1], dtype='float32')
         fc = fluid.layers.fc(input=x, size=10,
             param_attr=fluid.initializer.TruncatedNormal(loc=0.0, scale=2.0))
 
