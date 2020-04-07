@@ -29,7 +29,6 @@ fluid.dygraph
     dygraph/NaturalExpDecay.rst
     dygraph/NCE.rst
     dygraph/no_grad.rst
-    dygraph/no_grad_guard.rst
     dygraph/NoamDecay.rst
     dygraph/ParallelEnv.rst
     dygraph/ParameterList.rst
