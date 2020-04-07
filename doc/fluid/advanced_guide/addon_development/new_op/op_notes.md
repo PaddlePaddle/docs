@@ -181,7 +181,7 @@ REGISTER_OPERATOR(
 
 - Fluid提供的`DefaultGradOpMaker`，默认会将前向op的所有输入(`Input`）、输出(`Output`)以及输出变量所对应的梯度(`Output@Grad`)作为反向Op的输入，将前向Op输入所对应的梯度(`Input@Grad`)作为反向Op的输出。所以在使用`DefaultGradOpMaker`时需要考虑是否有些变量在计算中不被用到。
 - 如果`DefaultGradOpMaker`不能够满足需求，需要用户自己手动构建`GradOpMaker`，具体实现请参考[相关文档](new_op.html#gradopmaker);
-- 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，需要对该变量（以下称该变量为`X`）在反向Op中进行注册`NoNeedBufferVarsInference`。**一旦注册了`NoNeedBufferVarsIference`，反向op中就不能读写该变量对应的Tensor中的buffer，只能调用Tensor的dims()和lod()方法，同时，反向Op中的`GetExpectedKernelType()`必须要重写，并且`GetExpectedKernelType()`中不能访问`X`变量中Tensor的type()方法**。比如在`SliceOpGrad`中只会用到`Input`中变量的Shape信息，所以需要为对`Input`在`SliceOpGrad`上进行注册：
+- 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，则可以通过`DECLARE_NO_NEED_BUFFER_VARS_INFERER`接口对该变量（以下称该变量为`X`）在反向Op中进行注册`NoNeedBufferVars`。**一旦注册了`NoNeedBufferVars`，反向op中就不能读写该变量对应的Tensor中的buffer，只能调用Tensor的dims()和lod()方法，同时，反向Op中的`GetExpectedKernelType()`必须要重写，并且`GetExpectedKernelType()`中不能访问`X`变量中Tensor的type()方法**。比如在`SliceOpGrad`中只会用到`Input`中变量的Shape信息，所以需要为对`Input`在`SliceOpGrad`上进行注册：
 ```
 namespace paddle {
 namespace operators {
@@ -230,8 +230,8 @@ class SliceOpGradMaker : public framework::SingleGradOpMaker<T> {
   }
 };
 
-DECLARE_NO_NEED_BUFFER_VARS_INFERENCE(SliceOpGradNoNeedBufferVarsInference,
-                                      "Input");
+DECLARE_NO_NEED_BUFFER_VARS_INFERER(SliceOpGradNoNeedBufferVarsInference,
+                                    "Input");
 }  // namespace operators
 }  // namespace paddle
 namespace ops = paddle::operators;
