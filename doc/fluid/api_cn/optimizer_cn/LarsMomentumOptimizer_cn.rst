@@ -22,7 +22,9 @@ LarsMomentumOptimizer
   - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
   - **lars_coeff** (float，可选) - 定义LARS本地学习率的权重，默认值0.001。
   - **lars_weight_decay** (float，可选) - 使用LARS进行衰减的权重衰减系数，默认值0.0005。
-  - **regularization** - 正则化函数，例如 :code:`fluid.regularizer.L2DecayRegularizer`。
+  - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
+    :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
+    如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
   - **name** (str, 可选) - 可选的名称前缀，一般无需设置，默认值为None。
 
 

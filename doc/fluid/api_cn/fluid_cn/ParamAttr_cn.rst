@@ -17,7 +17,9 @@ ParamAttr
     - **name** (str，可选) - 参数的名称。默认值为None，表示框架自动创建参数的名称。
     - **initializer** (Initializer，可选) - 参数的初始化方式。默认值为None，表示权重参数采用Xavier初始化方式，偏置参数采用全0初始化方式。
     - **learning_rate** (float) - 参数的学习率。实际参数的学习率等于全局学习率乘以参数的学习率，再乘以learning rate schedule的系数。
-    - **regularizer** (WeightDecayRegularizer，可选) - 正则化因子。默认值为None，表示没有正则化因子。
+    - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
+      :ref:`cn_api_fluid_regularizer_L2Decay` ，如果在 ``optimizer`` (例如 :ref:`cn_api_fluid_optimizer_SGDOptimizer` ) 中也
+      设置了正则化，``optimizer`` 中的正则化将被忽略。默认值为None，表示没有正则化。
     - **trainable** (bool) - 参数是否需要训练。默认值为True，表示需要训练。
     - **do_model_average** (bool) - 是否做模型平均。默认值为False，表示不做模型平均。
 

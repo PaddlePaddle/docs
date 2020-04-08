@@ -18,7 +18,9 @@ WeightNormParamAttr
   - **name** (None|str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认为None。
   - **initializer** （Initializer) - 初始化参数方法，例如 ``initializer = fluid.initializer.ConstantInitializer(1.0)`` 。默认为None，如果为None则使用默认初始化函数 `Xavier()` 。
   - **learning_rate** (float32) - 学习率，优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
-  - **regularizer** (WeightDecayRegularizer) - 正则化方法，例如 ``regularizer = fluid.regularizer.L2DecayRegularizer(regularization_coeff=0.1)`` 。默认为None，如果为None则对权重不做正则化。
+  - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
+    :ref:`cn_api_fluid_regularizer_L2Decay` ，如果在 ``optimizer`` (例如 :ref:`cn_api_fluid_optimizer_SGDOptimizer` ) 中也
+    设置了正则化，``optimizer`` 中的正则化将被忽略。默认值为None，表示没有正则化。
   - **trainable** (bool) - 可选，指明参数是否可训练，默认为True。
   - **do_model_average** (bool) - 可选，指明参数是否需要模型平均化操作(Model Average)，默认为False。
 
