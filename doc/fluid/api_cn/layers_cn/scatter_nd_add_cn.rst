@@ -54,9 +54,9 @@ scatter_nd_add
 .. code-block:: python
 
         import paddle.fluid as fluid
-        ref = fluid.layers.data(name='ref', shape=[3, 5, 9, 10], dtype='float32', append_batch_size=False)
-        index = fluid.layers.data(name='index', shape=[3, 2], dtype='int32', append_batch_size=False)
-        updates = fluid.layers.data(name='update', shape=[3, 9, 10], dtype='float32', append_batch_size=False)
+        ref = fluid.data(name='ref', shape=[3, 5, 9, 10], dtype='float32')
+        index = fluid.data(name='index', shape=[3, 2], dtype='int32')
+        updates = fluid.data(name='update', shape=[3, 9, 10], dtype='float32')
         output = fluid.layers.scatter_nd_add(ref, index, updates)
 
 

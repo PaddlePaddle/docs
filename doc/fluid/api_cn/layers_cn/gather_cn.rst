@@ -39,8 +39,8 @@ gather
 ..  code-block:: python
   
   import paddle.fluid as fluid
-  x = fluid.layers.data(name='x', shape=[-1, 5], dtype='float32')
-  index = fluid.layers.data(name='index', shape=[-1, 1], dtype='int32')
+  x = fluid.data(name='x', shape=[-1, 5], dtype='float32')
+  index = fluid.data(name='index', shape=[-1, 1], dtype='int32')
   output = fluid.layers.gather(x, index)
 
 
