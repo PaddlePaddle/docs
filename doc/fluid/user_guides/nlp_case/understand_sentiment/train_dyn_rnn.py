@@ -42,7 +42,7 @@ def parse_args():
 
 
 def dynamic_rnn_lstm(data, input_dim, class_dim, emb_dim, lstm_size):
-    emb = fluid.layers.embedding(
+    emb = fluid.embedding(
         input=data, size=[input_dim, emb_dim], is_sparse=True)
     sentence = fluid.layers.fc(input=emb, size=lstm_size * 4, act='tanh')
 
