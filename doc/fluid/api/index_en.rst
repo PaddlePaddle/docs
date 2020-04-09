@@ -22,5 +22,6 @@ API Reference
     optimizer.rst
     profiler.rst
     regularizer.rst
+    tensor.rst
     transpiler.rst
     unique_name.rst
