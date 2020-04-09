@@ -33,7 +33,7 @@ ExecutionStrategy
 
     train_exe = fluid.ParallelExecutor(use_cuda=False,
                                        loss_name=avg_loss.name,
-                                     exec_strategy=exec_strategy)
+                                       exec_strategy=exec_strategy)
 
 
 .. py:attribute:: num_iteration_per_drop_scope
