@@ -47,7 +47,7 @@ LayerNorm
     x = numpy.random.random((3, 32, 32)).astype('float32')
     with fluid.dygraph.guard():
         x = to_variable(x)
-        layernorm = fluid.LayerNorm('LayerNorm', begin_norm_axis=1)
-        ret = layernorm(x)
+        layerNorm = fluid.LayerNorm([32, 32])
+        ret = layerNorm(x)
 
 
