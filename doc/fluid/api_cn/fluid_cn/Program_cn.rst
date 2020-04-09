@@ -62,7 +62,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
         prog_string = prog.to_string(throw_on_error=True, with_details=False)
         prog_string_with_details = prog.to_string(throw_on_error=False, with_details=True)
         print("program string without detail: {}".format(prog_string))
-        print("program string with detail: {}".format(prog_string_with_detail))
+        print("program string with detail: {}".format(prog_string_with_details))
 
 .. py:method:: clone(for_test=False)
 
