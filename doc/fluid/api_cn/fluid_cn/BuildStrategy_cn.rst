@@ -109,6 +109,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
     import os
     import numpy as np
+    import paddle.fluid as fluid
     import paddle.fluid.compiler as compiler
 
     use_cuda = True
