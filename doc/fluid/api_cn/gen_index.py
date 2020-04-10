@@ -14,6 +14,9 @@ API Reference
 
 ''')
     file_object.write('    ../api_guides/index_cn.rst'+'\n')
+    file_object.write('    nn_cn.rst'+'\n')
+    file_object.write('    tensor_cn.rst'+'\n')
+    file_object.write('    framework_cn.rst'+'\n')
     file_object.write('    fluid_cn.rst'+'\n')
     for file_name in sorted(glob.glob("*.rst")):
         if file_name != 'index.rst' and file_name != 'index_cn.rst' and file_name != 'fluid_cn.rst':
