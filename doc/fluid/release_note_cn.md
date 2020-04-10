@@ -62,7 +62,7 @@
         - 支持named_sublayers、named_parameters功能，方便用户编程。
         - 支持Linear lr warmup decay策略。
     - 性能优化
-        - 优化了python 与c++ 交互，GradMaker、OperatorBase、allocator等。基于LSTM的语言模型任务p在P40机器上性能提升提升270%。
+        - 优化了python 与c++ 交互，GradMaker、OperatorBase、allocator等。基于LSTM的语言模型任务在P40机器上性能提升提升270%。
         - 针对optimize中多次调用optimized_guard无用代码导致的性能问题，移除了冗余代码。Transformer模型（batch_size=64）在P40机器上，SGD、Adam等优化器有5%~8%%的性能提升。
         - 针对AdamOptimizer中额外添加scale_op更新beta参数对性能的影响，将beta更新逻辑融合到adam_op中，减少op kernel调用开销。Dialogue-PLATO模型P40机器上性能提升9.67%。
         - 优化动态图异步DataLoader，对于Mnist、ResNet等CV模型任务在P40机器上单卡训练速度提升超过40%。
@@ -331,3 +331,23 @@
 - 修复部分动态图模式下reshape、Conv2D相关的bug；修复网络中部分参数无梯度，导致程序crash 的bug。
 - 修复GradientClip在参数服务器模式下运行错误的BUG。
 - 修复参数服务器全异步模式下内存泄露的问题。
+
+## 兼容性说明
+- 静态图：1.7版本对上一版本（1.6.0~1.6.3）完全兼容，1.6+版本训练的模型均可在1.7版本下进行训练或预测。
+- 动态图：1.7版本作了大量提升易用性的优化，有部分升级无法兼顾兼容性：
+	- paddle.fluid.dygraph提供的API中统一移除了”name_scope”参数：该参数在设计和使用上均没有实际意义，属于冗余参数，为了减少调用API的复杂性，统一进行移除。
+	- 部分API参数列表变更：
+		- Conv2D、Conv2DTranspose、Conv3D、Conv3DTranspose：添加必选参数 num_channels (required, int)，用于表示输入图像的通道数。
+		- LayerNorm：移除 begin_norm_axis参数；添加必选参数 normalized_shape (required, int | list | tuple)，用于表示需规范化的shape。
+		- NCE：添加必选参数 dim (required, int)，用于表示输入的维度（一般为词嵌入的维度）。
+		- PRelu：添加参数 input_shape (list | tuple)，用于表示输入的维度，该参数仅在mode参数为”all”时为必选参数。
+		- BilinearTensorProduct：移除参数 size，添加必选参数 input1_dim (required, int) 和 input2_dim (required, int)，分别用于表示第一个和第二个输入的维度大小。
+		- GroupNorm：添加必选参数 num_channels (required, int)，用于表示输入的通道数。
+		- SpectralNorm：添加必选参数 weight_shape (required, list | tuple)，用于表示权重参数的shape。
+		- TreeConv：添加参数 feature_size (required, int)，用于表示nodes_vector的shape最后一维的维度。
+	- API使用方式变更：
+		- Embedding：不再要求输入数据的最后一维必须为1，而且输出的shape的规则发生了改变，比如在NLP任务中，1.6版的Embedding要求输入数据的shape形如[batch_size, seq_len, 1]，在1.7版本为保证输出的shape同样为[batch_size, seq_len, embedding_size]，输入的shape需为[batch_size, seq_len]，
+		- FC API被删除，替换用法为Linear，具体迁移方法请见Linear API的文档。
+		- Optimizer定义时，需显式指定要优化的参数列表，参数列表可以通过Layer的 parameters() 接口直接获取。
+	- 参数名称的变化：
+		- 1.7 版本参数名称为了和静态图统一，命名规则进行了调整，增量训练无法加载上一版本(1.6.0~1.6.3)保存的模型。
