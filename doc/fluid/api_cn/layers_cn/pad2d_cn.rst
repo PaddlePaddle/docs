@@ -55,5 +55,5 @@ pad2d
 .. code-block:: python
 
     import paddle.fluid as fluid
-    data = fluid.data(name='data', shape=[1, 1, 2, 3], dtype='float32')
+    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
     result = fluid.layers.pad2d(input=data, paddings=[0, 1, 2, 3], mode='reflect')
