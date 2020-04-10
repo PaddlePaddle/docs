@@ -23,3 +23,6 @@ API Reference
     regularizer_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
+    nn_cn.rst
+    tensor_cn.rst
+    framework_cn.rst
