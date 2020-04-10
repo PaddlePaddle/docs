@@ -6,3 +6,4 @@ paddle.tensor
     :maxdepth: 1
 
     tensor/math.rst
+    tensor/random.rst
