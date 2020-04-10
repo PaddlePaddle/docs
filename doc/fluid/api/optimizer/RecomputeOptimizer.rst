@@ -9,5 +9,6 @@ RecomputeOptimizer
 ..  autoclass:: paddle.fluid.optimizer.RecomputeOptimizer
     :members:
     :inherited-members:
-    :exclude-members: minimize, load, clear_gradients, current_step_lr, set_dict, state_dict
+    :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
+
