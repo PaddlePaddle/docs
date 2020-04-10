@@ -1,6 +1,6 @@
-======
-tensor
-======
+=============
+paddle.tensor
+=============
 
 ..  toctree::
     :maxdepth: 1

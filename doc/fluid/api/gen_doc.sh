@@ -15,7 +15,7 @@ do
   python gen_module_index.py tensor.${module} ${module}
 done
 
-python gen_module_index.py tensor tensor
+python gen_module_index.py tensor paddle.tensor
 
 
 python gen_index.py
