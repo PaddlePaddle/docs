@@ -358,3 +358,27 @@ This version focuses on enhancement of the framework functions, includes improvi
 - Fix some bugs related to reshape and Conv2D depthwisecoin dynamic graph mode; fix the problem of some parameters in the network having no gradient, causing the bug of program crash.
 - Fix the bug of running error of GradientClip in parameter server mode.
 - Fix the problem of memory leak in full asynchronous mode  of the parameter server.
+
+## Compatibility instructions
+
+- Static diagram: Version 1.7 is fully compatible with the previous version (1.6.0 ~ 1.6.3). The model trained in version 1.6+ can be trained or predicted in version 1.7.
+- Dynamic diagram: In version 1.7, a lot of optimization has been made to improve usability. Some upgrades fail to take compatibility into account:
+  - The "name_scope"parameter is removed from the API provided by paddle.fluid.dygraph in a unified way: this parameter has no practical significance in design and use, and belongs to redundant parameter. In order to reduce the complexity of calling API, it is removed in a unified way.
+  - Some API parameter list change:
+
+        - Conv2D、Conv2DTranspose、Conv3D、Conv3DTranspose: add required parameter `num_channels` (required,int), which is used to represent the channel number of the input image.
+        - LayerNorm: remove `begin_norm_axis` parameter, add required parameter `normalized_shape` (required, int | list | tuple), which is used to represent shape to be normalized.
+        - NCE: remove parameter `dim` (required, int), which is used to represent input dimension (generally the dimension of word embedded).
+        - PRelu: add parameter `input_shape` (list | tuple), which is used to represent input dimension, this parameter is required only when the mode parameter is "all".
+        - BilinearTensorProduct: remove parameter `size`, add required parameter `input1_dim` (required, int) and `input2_dim` (required, int),which are used to represent the dimension size of the first and second input respectively.
+        - GroupNorm: add required parameter `num_channels` (required, int), which is used to represent the channel number of the input.
+        - SpectralNorm: add required parameter `weight_shape` (required, list | tuple), which is used to represent the shape of weight parameters.
+        - TreeConv: add parameter `feature_size` (required, int), which is used to represent the last dimension of shape of nodes_vector.
+  - API usage changes:
+
+        - Embedding: it is no longer required that the last dimension of the input data must be 1, and the rules of the output shape have changed.For example, in NLP tasks, Embedding in version 1.6 requires the shape of the input data to be [batch_size, seq_len, 1]. In version 1.7, to ensure that the output shape is also [batch_size, seq_len, embedding_size], the input shape must be [batch_size, seq_len]，
+        - FC API is deleted, replace with Linear. Please refer to the documentation of linear API for specific migration methods.
+        - When defining Optimizer, you need to explicitly specify the parameter list to be optimized. The parameter list can be obtained directly through the parameters() of Layer.
+
+    - Change of the parameter name:
+    - In order to unify the parameter name of version 1.7 with the static diagram, the naming rules have been adjusted, and incremental training cannot load the model saved in the previous version (1.6.0 ~ 1.6.3).
