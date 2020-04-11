@@ -8,7 +8,7 @@ API Reference
     ../api_guides/index_en.rst
     nn.rst
     tensor.rst
-    fluid.rst 
+    fluid.rst
     backward.rst
     clip.rst
     data/data_reader.rst
