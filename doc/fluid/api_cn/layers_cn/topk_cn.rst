@@ -55,13 +55,13 @@ topk
     top5_values, top5_indices = layers.topk(input, k=5) #top5_values.shape=[13, 5]，top5_indices.shape=[13, 5]
 
     # 1D Tensor
-    input = layers.data(name="input", shape=[13], dtype='float32')
-    top5_values, top5_indices = layers.topk(input, k=5) #top5_values.shape=[5]，top5_indices.shape=[5]
+    input1 = layers.data(name="input1", shape=[13], dtype='float32')
+    top5_values, top5_indices = layers.topk(input1, k=5) #top5_values.shape=[5]，top5_indices.shape=[5]
 
     # k=Variable
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    input2 = layers.data(name="input2", shape=[13, 11], dtype='float32')
     vk = layers.data(name="vk", shape=[1], dtype='int32') # 把k值保存在vk.data[0]中
-    vk_values, vk_indices = layers.topk(input, k=vk) #vk_values.shape=[13, k]，vk_indices.shape=[13, k]
+    vk_values, vk_indices = layers.topk(input2, k=vk) #vk_values.shape=[13, k]，vk_indices.shape=[13, k]
 
 
 

@@ -3,6 +3,8 @@
 sequence_unpad
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.sequence_unpad(x, length, name=None)
 
 .. note::

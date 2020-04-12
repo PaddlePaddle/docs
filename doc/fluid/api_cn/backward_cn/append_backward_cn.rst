@@ -3,6 +3,8 @@
 append_backward
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.backward.append_backward(loss, parameter_list=None, no_grad_set=None, callbacks=None)
 
 该接口将向主程序（``main_program``）追加反向部分 。

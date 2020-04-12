@@ -3,6 +3,8 @@
 StaticRNN
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.layers.StaticRNN(name=None)
 
 该OP用来处理一批序列数据，其中每个样本序列的长度必须相等。StaticRNN将序列按照时间步长展开，用户需要定义每个时间步中的处理逻辑。
@@ -248,7 +250,7 @@ StaticRNN
           # 用处理完的hidden变量更新prev变量。
           rnn.update_memory(prev, hidden)
           # 把每一步的hidden和word标记为输出。
-          rnn.output(hidden，word)
+          rnn.output(hidden, word)
 
       result = rnn()
 

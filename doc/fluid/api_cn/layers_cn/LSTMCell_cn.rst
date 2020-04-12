@@ -4,6 +4,8 @@ LSTMCell
 -------------------------------
 
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.layers.LSTMCell(hidden_size, param_attr=None, bias_attr=None, gate_activation=None, activation=None, forget_bias=1.0, dtype="float32", name="LSTMCell")
     
 长短期记忆单元（Long-Short Term Memory）。通过对 :code:`fluid.contrib.layers.rnn_impl.BasicLSTMUnit` 包装，来让它可以应用于RNNCell。    
@@ -36,7 +38,7 @@ LSTMCell
 .. code-block:: python
 
     import paddle.fluid.layers as layers
-    cell = layers.rnn.LSTMCell(hidden_size=256)
+    cell = layers.LSTMCell(hidden_size=256)
 
 
 .. py:method:: call(inputs, states)

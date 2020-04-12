@@ -3,6 +3,8 @@
 save_vars
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.io.save_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
 该接口将 ``Program`` 的变量保存到文件中。

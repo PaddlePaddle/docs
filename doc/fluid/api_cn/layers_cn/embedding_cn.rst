@@ -3,6 +3,8 @@
 embedding
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.embedding(input, size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
 
 嵌入层(Embedding Layer)
@@ -72,6 +74,8 @@ embedding
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
+
     data = fluid.layers.data(name='sequence', shape=[1], dtype='int64', lod_level=1)
 
     # 示例 1

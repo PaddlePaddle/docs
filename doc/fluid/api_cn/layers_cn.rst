@@ -108,7 +108,6 @@ fluid.layers
     layers_cn/exponential_decay_cn.rst
     layers_cn/eye_cn.rst
     layers_cn/fc_cn.rst
-    layers_cn/fill_constant_batch_size_like_cn.rst
     layers_cn/fill_constant_cn.rst
     layers_cn/filter_by_instag_cn.rst
     layers_cn/flatten_cn.rst
@@ -117,7 +116,6 @@ fluid.layers
     layers_cn/gather_cn.rst
     layers_cn/gather_nd_cn.rst
     layers_cn/gather_tree_cn.rst
-    layers_cn/gaussian_random_batch_size_like_cn.rst
     layers_cn/gaussian_random_cn.rst
     layers_cn/gelu_cn.rst
     layers_cn/generate_mask_labels_cn.rst
@@ -313,7 +311,6 @@ fluid.layers
     layers_cn/unfold_cn.rst
     layers_cn/Uniform_cn.rst
     layers_cn/uniform_random_cn.rst
-    layers_cn/uniform_random_batch_size_like_cn.rst
     layers_cn/unique_cn.rst
     layers_cn/unique_with_counts_cn.rst
     layers_cn/unsqueeze_cn.rst

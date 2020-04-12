@@ -3,14 +3,21 @@
 set_gradient_clip
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.clip.set_gradient_clip(clip, param_list=None, program=None)
+
+.. warning::
+    此API对位置使用的要求较高，其必须位于组建网络之后， ``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐使用 ``minimize(loss, grad_clip=clip)`` 做梯度裁剪。
+    有三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
+    如果 ``set_gradient_clip(clip)`` 与 ``minimize(loss, grad_clip=clip)`` 被同时使用，``set_gradient_clip`` 将不会生效。
 
 给指定参数做梯度裁剪。
 
 参数:
-    - **clip** (BaseGradientClipAttr) - BaseGradientClipAttr子类的实例，如 :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 等，用于描述具体的裁剪方法和属性。
+    - **clip** (GradientClipBase) - 梯度裁剪的策略，如 :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 等，用于描述具体的裁剪方法和属性。
     - **param_list** (list(Variable)，可选) - 需要裁剪的参数列表，可以是参数或参数名称列表。默认值为None，表示裁剪 ``program`` 中的所有参数。
-    - **program** (Program，可选) - 参数所在的Program。默认值为None，表示使用 :ref:`cn_api_fluid_default_main_program`。
+    - **program** (Program，可选) - 参数所在的Program。默认值为None，表示使用 :ref:`cn_api_fluid_default_main_program` 。
 
 返回: 无。
 
@@ -57,3 +64,17 @@ set_gradient_clip
             param_list=[param_var1, param_var2])
         sgd = fluid.optimizer.SGD(learning_rate=1e-3)
         sgd.minimize(loss)
+
+    # network 4: use set_gradient_clip and minimize(grad_clip=clip) together
+    with fluid.program_guard(fluid.Program(), fluid.Program()):
+        loss = network()
+        param_var1 = fluid.default_main_program().global_block().var("fc1_param")
+        param_var2 = fluid.default_main_program().global_block().var("fc2_param")
+        clip1 = fluid.clip.GradientClipByValue(min=-1.0, max=1.0), param_list=[param_var1, param_var2])
+        clip2 = fluid.clip.GradientClipByNorm(clip_norm=1.0), param_list=[param_var1, param_var2])
+        # 设置梯度裁剪策略：clip1
+        fluid.clip.set_gradient_clip(clip1)
+        sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+        # 设置梯度裁剪策略：clip2
+        sgd.minimize(loss, grad_clip=clip2)
+        # 有设置冲突时，set_gradient_clip将不会生效，将以clip2的策略进行梯度裁剪

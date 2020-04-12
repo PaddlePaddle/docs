@@ -72,6 +72,29 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 
 返回类型：list
 
+.. py:method:: clear_gradients()
+
+清除该层所有参数的梯度。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    with fluid.dygraph.guard():
+        value = np.arange(26).reshape(2, 13).astype("float32")
+        a = fluid.dygraph.to_variable(value)
+        linear = fluid.Linear(13, 5, dtype="float32")
+        adam = fluid.optimizer.Adam(learning_rate=0.01, 
+                                    parameter_list=linear.parameters())
+        out = linear(a)
+        out.backward()
+        adam.minimize(out)
+        linear.clear_gradients()
+
+
 .. py:method:: named_parameters(prefix='', include_sublayers=True)
 
 返回层中所有参数的迭代器，生成名称和参数的元组。

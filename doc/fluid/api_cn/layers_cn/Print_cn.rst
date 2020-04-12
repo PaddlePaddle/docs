@@ -3,6 +3,8 @@
 Print
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.Print(input, first_n=-1, message=None, summarize=20, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
 
 **Print操作命令**

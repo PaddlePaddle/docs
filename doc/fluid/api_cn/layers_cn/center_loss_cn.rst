@@ -3,6 +3,8 @@
 center_loss
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.center_loss(input, label, num_classes, alpha, param_attr, update_center=True)
 
 该OP接收一个来自于最后一个隐藏层的输出和目标标签作为输入，返回损失值。为每一个类别提供一个类别中心，计算mini-batch中每个样本与对应类别中心的距离的平均值作为center loss。
