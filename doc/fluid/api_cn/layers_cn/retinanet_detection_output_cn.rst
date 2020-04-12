@@ -57,4 +57,4 @@ retinanet_detection_output
       nms_top_k=1000,
       keep_top_k=100,
       nms_threshold=0.45,
-      nms_eta=1.)
+      nms_eta=1.0)
