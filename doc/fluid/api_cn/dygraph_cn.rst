@@ -23,6 +23,7 @@ fluid.dygraph
     dygraph_cn/GroupNorm_cn.rst
     dygraph_cn/GRUUnit_cn.rst
     dygraph_cn/guard_cn.rst
+    dygraph_cn/InstanceNorm_cn.rst
     dygraph_cn/InverseTimeDecay_cn.rst
     dygraph_cn/Layer_cn.rst
     dygraph_cn/LayerList_cn.rst

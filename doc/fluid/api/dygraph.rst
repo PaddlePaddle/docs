@@ -27,6 +27,7 @@ fluid.dygraph
     dygraph/GroupNorm.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
+    dygraph/InstanceNorm.rst
     dygraph/InverseTimeDecay.rst
     dygraph/Layer.rst
     dygraph/LayerList.rst
