@@ -13,10 +13,18 @@ fluid.dygraph
     dygraph/Conv3D.rst
     dygraph/Conv3DTranspose.rst
     dygraph/CosineDecay.rst
+    dygraph/DataParallel.rst
+    dygraph/disable_dygraph.rst
     dygraph/Dropout.rst
+    dygraph/dygraph_to_static_code.rst
+    dygraph/dygraph_to_static_func.rst
     dygraph/dygraph_to_static_output.rst
+    dygraph/dygraph_to_static_program.rst
     dygraph/Embedding.rst
+    dygraph/enable_dygraph.rst
+    dygraph/enabled.rst
     dygraph/ExponentialDecay.rst
+    dygraph/grad.rst
     dygraph/GroupNorm.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst

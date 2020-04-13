@@ -20,14 +20,15 @@ fluid
     fluid/DataFeeder.rst
     fluid/default_main_program.rst
     fluid/default_startup_program.rst
-    fluid/disable_dygraph.rst
     fluid/device_guard.rst
+    fluid/disable_dygraph.rst
     fluid/DistributeTranspiler.rst
     fluid/DistributeTranspilerConfig.rst
     fluid/embedding.rst
     fluid/enable_dygraph.rst
     fluid/ExecutionStrategy.rst
     fluid/Executor.rst
+    fluid/get_flags.rst
     fluid/global_scope.rst
     fluid/gradients.rst
     fluid/in_dygraph_mode.rst
@@ -47,6 +48,7 @@ fluid
     fluid/require_version.rst
     fluid/save.rst
     fluid/scope_guard.rst
+    fluid/set_flags.rst
     fluid/Tensor.rst
     fluid/Variable.rst
     fluid/WeightNormParamAttr.rst

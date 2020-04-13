@@ -20,6 +20,7 @@ fluid.dygraph
     dygraph_cn/Embedding_cn.rst
     dygraph_cn/ExponentialDecay_cn.rst
     dygraph_cn/FC_cn.rst
+    dygraph_cn/grad_cn.rst
     dygraph_cn/GroupNorm_cn.rst
     dygraph_cn/GRUUnit_cn.rst
     dygraph_cn/guard_cn.rst

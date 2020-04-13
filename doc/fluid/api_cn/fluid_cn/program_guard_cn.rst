@@ -23,7 +23,7 @@ program_guard
     main_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(main_program, startup_program):
-        data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+        data = fluid.data(name='image', shape=[None, 784, 784], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10, act='relu')
 
 例如，当组的网不需要startup_program初始化各变量时，可以传入一个临时的program。
@@ -36,5 +36,5 @@ program_guard
     main_program = fluid.Program()
     # 如果您不需要关心startup program,传入一个临时值即可
     with fluid.program_guard(main_program, fluid.Program()):
-        data = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+        data = fluid.data(name='image', shape=[None, 784, 784], dtype='float32')
 

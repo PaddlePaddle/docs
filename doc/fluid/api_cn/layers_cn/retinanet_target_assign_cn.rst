@@ -50,7 +50,6 @@ retinanet_target_assign
 .. code-block:: python
 
     import paddle.fluid as fluid
-    import numpy as np
  
     bbox_pred = fluid.data(name='bbox_pred', shape=[1, 100, 4],
                       dtype='float32')

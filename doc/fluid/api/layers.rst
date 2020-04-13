@@ -25,6 +25,7 @@ fluid.layers
     layers/atan.rst
     layers/auc.rst
     layers/autoincreased_step_counter.rst
+    layers/BasicDecoder.rst
     layers/batch_norm.rst
     layers/beam_search.rst
     layers/beam_search_decode.rst
@@ -68,6 +69,7 @@ fluid.layers
     layers/cumsum.rst
     layers/data.rst
     layers/data_norm.rst
+    layers/DecodeHelper.rst
     layers/Decoder.rst
     layers/deformable_conv.rst
     layers/deformable_roi_pooling.rst
@@ -104,6 +106,7 @@ fluid.layers
     layers/eye.rst
     layers/fc.rst
     layers/fill_constant.rst
+    layers/fill_constant_batch_size_like.rst
     layers/filter_by_instag.rst
     layers/flatten.rst
     layers/floor.rst
@@ -112,6 +115,7 @@ fluid.layers
     layers/gather_nd.rst
     layers/gather_tree.rst
     layers/gaussian_random.rst
+    layers/gaussian_random_batch_size_like.rst
     layers/gelu.rst
     layers/generate_mask_labels.rst
     layers/generate_proposal_labels.rst
@@ -119,6 +123,7 @@ fluid.layers
     layers/get_tensor_from_selected_rows.rst
     layers/greater_equal.rst
     layers/greater_than.rst
+    layers/GreedyEmbeddingHelper.rst
     layers/grid_sampler.rst
     layers/group_norm.rst
     layers/gru_unit.rst
@@ -136,6 +141,7 @@ fluid.layers
     layers/image_resize.rst
     layers/image_resize_short.rst
     layers/increment.rst
+    layers/inplace_abn.rst
     layers/instance_norm.rst
     layers/inverse_time_decay.rst
     layers/iou_similarity.rst
@@ -237,6 +243,7 @@ fluid.layers
     layers/rpn_target_assign.rst
     layers/rsqrt.rst
     layers/sampled_softmax_with_cross_entropy.rst
+    layers/SampleEmbeddingHelper.rst
     layers/sampling_id.rst
     layers/scale.rst
     layers/scatter.rst
@@ -302,10 +309,12 @@ fluid.layers
     layers/tensor_array_to_tensor.rst
     layers/thresholded_relu.rst
     layers/topk.rst
+    layers/TrainingHelper.rst
     layers/transpose.rst
     layers/unfold.rst
     layers/Uniform.rst
     layers/uniform_random.rst
+    layers/uniform_random_batch_size_like.rst
     layers/unique.rst
     layers/unique_with_counts.rst
     layers/unsqueeze.rst

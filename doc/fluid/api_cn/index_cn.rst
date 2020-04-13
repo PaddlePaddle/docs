@@ -7,6 +7,7 @@ API Reference
 
     ../api_guides/index_cn.rst
     fluid_cn.rst
+    api_tree_cn.rst
     backward_cn.rst
     clip_cn.rst
     dataset_cn.rst

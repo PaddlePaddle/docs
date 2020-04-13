@@ -43,31 +43,12 @@ scaled_dot_product_attention
 
 .. code-block:: python
 
-          import paddle.fluid as fluid
-          
-          queries = fluid.layers.data(name="queries",
-                                      shape=[3, 5, 9],
-                                      dtype="float32",
-                                      append_batch_size=False)
-          queries.stop_gradient = False
-          keys = fluid.layers.data(name="keys",
-                                   shape=[3, 6, 9],
-                                   dtype="float32",
-                                   append_batch_size=False)
-          keys.stop_gradient = False
-          values = fluid.layers.data(name="values",
-                                     shape=[3, 6, 10],
-                                     dtype="float32",
-                                     append_batch_size=False)
-          values.stop_gradient = False
-          contexts = fluid.nets.scaled_dot_product_attention(queries, keys, values)
-          contexts.shape  # [3, 5, 10]
+    import paddle.fluid as fluid
 
-
-
-
-
-
-
+    queries = fluid.data(name="queries", shape=[3, 5, 9], dtype="float32")
+    keys = fluid.data(name="keys", shape=[3, 6, 9], dtype="float32")
+    values = fluid.data(name="values", shape=[3, 6, 10], dtype="float32")
+    contexts = fluid.nets.scaled_dot_product_attention(queries, keys, values)
+    contexts.shape  # [3, 5, 10]
 
 

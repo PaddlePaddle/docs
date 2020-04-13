@@ -19,8 +19,10 @@ API Reference
     layers.rst
     metrics.rst
     nets.rst
+    nn.rst
     optimizer.rst
     profiler.rst
     regularizer.rst
+    tensor.rst
     transpiler.rst
     unique_name.rst

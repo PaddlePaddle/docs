@@ -38,7 +38,7 @@ LSTMCell
 .. code-block:: python
 
     import paddle.fluid.layers as layers
-    cell = layers.rnn.LSTMCell(hidden_size=256)
+    cell = layers.LSTMCell(hidden_size=256)
 
 
 .. py:method:: call(inputs, states)

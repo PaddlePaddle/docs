@@ -93,8 +93,7 @@ RecomputeOptimizer
                     cost,
                     startup_program=None,
                     parameter_list=None,
-                    no_grad_set=None,
-                    checkpoints=[fc_1, pred])
+                    no_grad_set=None)
 
                 program = cost.block.program
                 with framework.program_guard(program, None):
@@ -139,8 +138,7 @@ RecomputeOptimizer
                     cost,
                     startup_program=None,
                     parameter_list=None,
-                    no_grad_set=None,
-                    checkpoints=[fc_1, pred])
+                    no_grad_set=None)
 
                 optimize_ops = sgd.apply_optimize(
                     cost, startup_program=None, params_grads=params_grads)
@@ -188,45 +186,8 @@ RecomputeOptimizer
                     cost,
                     startup_program=None,
                     parameter_list=None,
-                    no_grad_set=None,
-                    checkpoints=[fc_1, pred])
+                    no_grad_set=None)
                 print("Finished backward")
 
-
-.. py:method:: load(stat_dict)
-
-Recompute Optimizer 目前不支持load函数
-
-参数：
-    - **stat_dict** – load_persistable方法加载的dict
-
-**代码示例**
-
-.. code-block:: python
-
-
-                import paddle.fluid as fluid
-                import paddle.compat as cpt
-
-                def mlp(input_x, input_y, hid_dim=128, label_dim=2):
-                    fc_1 = fluid.layers.fc(input=input_x, size=hid_dim)
-                    prediction = fluid.layers.fc(input=[fc_1], size=label_dim, act='softmax')
-                    cost = fluid.layers.cross_entropy(input=prediction, label=input_y)
-                    sum_cost = fluid.layers.reduce_mean(cost)
-                    return sum_cost, fc_1, prediction
-
-                input_x = fluid.layers.data(name="x", shape=[32], dtype='float32')
-                input_y = fluid.layers.data(name="y", shape=[1], dtype='int64')
-                cost, fc_1, pred = mlp(input_x, input_y)
-                print("Finished FF")
-
-                sgd = fluid.optimizer.Adam(learning_rate=0.01)
-                sgd = fluid.optimizer.RecomputeOptimizer(sgd)
-                sgd._set_checkpoints([fc_1, pred])
-                try:
-                    stat_dict = {}
-                    sgd.load(stat_dict)
-                except NotImplementedError as e:
-                    print(cpt.get_exception_message(e))
 
 
