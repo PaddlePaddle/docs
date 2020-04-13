@@ -57,7 +57,7 @@ lstm
 
 返回： 经过lstm运算输出的三个Tensor的tuple，包括
 
-- rnn_out：LSTM hidden的输出结果的Tensor，数据类型与input一致，维度为 :math:`[seq\_len, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[seq\_len, batch\_size, hidden\_size*2]`
+- rnn_out：LSTM hidden的输出结果的Tensor，数据类型与input一致，维度为 :math:`[batch\_size, seq\_len, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[batch\_size, seq\_len, hidden\_size*2]`
 - last_h：LSTM最后一步的hidden状态的Tensor，数据类型与input一致，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[num\_layers*2, batch\_size, hidden\_size]`
 - last_c：LSTM最后一步的cell状态的Tensor，数据类型与input一致，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[num\_layers*2, batch\_size, hidden\_size]`
 
@@ -73,12 +73,11 @@ lstm
   emb_dim = 256
   vocab_size = 10000
   data = fluid.layers.data(name='x', shape=[-1, 100, 1],
-                 dtype='int32')
+                 dtype='int64')
   emb = fluid.layers.embedding(input=data, size=[vocab_size, emb_dim], is_sparse=True)
   batch_size = 20
   max_len = 100
   dropout_prob = 0.2
-  seq_len = 100
   hidden_size = 150
   num_layers = 1
   init_h = layers.fill_constant( [num_layers, batch_size, hidden_size], 'float32', 0.0 )
@@ -87,7 +86,7 @@ lstm
   rnn_out, last_h, last_c = layers.lstm(emb, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=dropout_prob)
   rnn_out.shape  # (-1, 100, 150)
   last_h.shape  # (1, 20, 150)
-  layt_c.shape  # (1, 20, 150)
+  last_c.shape  # (1, 20, 150)
 
 
 
