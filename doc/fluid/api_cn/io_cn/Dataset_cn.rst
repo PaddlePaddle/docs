@@ -11,4 +11,4 @@ Dataset
 
 ``__getitem__`` : 根据给定索引获取数据集中指定样本，在 ``fluid.io.DataLoader`` 中需要使用此函数通过下标获取样本。
 
-``__len__`` : 返回数据集样本个数， ``fluid.io.BatchSampler`` 中需求样本个数来生成下标序列。
+``__len__`` : 返回数据集样本个数， ``fluid.io.BatchSampler`` 中需要样本个数来生成下标序列。

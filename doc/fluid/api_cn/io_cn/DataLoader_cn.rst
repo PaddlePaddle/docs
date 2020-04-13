@@ -21,7 +21,7 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
     - **batch_sampler** (BatchSampler) - ``fluid.io.BatchSampler`` 或其子类的实例，DataLoader通过 ``batch_sampler`` 产生的mini-batch索引列表来 ``dataset`` 中索引样本并组成mini-batch。默认值为None。
     - **batch_size** (int) - 每mini-batch中样本个数，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``fluid.io.BatchSampler`` 。默认值为1。
     - **shuffle** (bool) - 生成mini-batch索引列表时是否对索引打乱顺序，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``fluid.io.BatchSampler`` 。默认值为False。
-    - **drop_last** (bool) - 是否丢弃因数据集样本数不能被 ``batch_size`` 整除而产生的最后一个不完成的mini-batch，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``fluid.io.BatchSampler`` 。默认值为False。
+    - **drop_last** (bool) - 是否丢弃因数据集样本数不能被 ``batch_size`` 整除而产生的最后一个不完整的mini-batch，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``fluid.io.BatchSampler`` 。默认值为False。
     - **collate_fn** (callable) - 通过此参数指定如果将样本列表组合为mini-batch数据，当 ``collate_fn`` 为None时，默认为将样本个字段在第0维上堆叠(同 ``np.stack(..., axis=0)`` )为mini-batch的数据。默认值为None。
     - **num_workers** (int) - 用于加载数据的子进程个数，若为0即为不开启子进程，在主进程中进行数据加载。默认值为0。
     - **use_buffer_reader** (bool) - 是否使用缓存读取器 。若 ``use_buffer_reader`` 为True，DataLoader会异步地预读取下一个mini-batch的数据，可加速数据读取过程，但同时会占用少量的CPU/GPU存储，即一个batch输入数据的存储空间。默认值为True。
