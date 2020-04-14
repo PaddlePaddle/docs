@@ -216,20 +216,20 @@ This section describes how to use pip to install.
         If you are using Python 2, CUDA 9, cuDNN 7.3+, command to install GPU version:
         ::
 
-            python -m pip install paddlepaddle-gpu==1.7.1.post97 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==1.7.2.post97 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle-gpu==1.7.1.post97 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==1.7.2.post97 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         If you are using Python 2, CUDA 10.0, cuDNN 7.3+, command to install GPU version:
         ::
 
-            python -m pip install paddlepaddle-gpu==1.7.1.post107 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==1.7.2.post107 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle-gpu==1.7.1.post107 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==1.7.2.post107 -i https://pypi.tuna.tsinghua.edu.cn/simple
         
         If you are using Python 3, please change **python** in the above command to **python3** and install.
 
@@ -437,12 +437,12 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
     (2). Pull the image of the preinstalled PaddlePaddle:
     ::
 
-        docker pull hub.baidubce.com/paddlepaddle/paddle:1.7.1
+        docker pull hub.baidubce.com/paddlepaddle/paddle:1.7.2
 
     (3). Use the image to build and enter the Docker container:
     ::
 
-        docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.7.1 /bin/bash
+        docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.7.2 /bin/bash
 
         > --name [Name of container] set the name of Docker;
 
@@ -450,7 +450,7 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
 
         > -v Parameter is used to share files between the host and the container. dir1 is the host directory and dir2 is the directory mounted inside the container. Users can customize their own mounting directory by setting dir1 and dir2.For example, $PWD:/paddle specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container; 
 
-        > hub.baidubce.com/paddlepaddle/paddle:1.7.1 is the image name you need to use；/bin/bash is the command to be executed in Docker
+        > hub.baidubce.com/paddlepaddle/paddle:1.7.2 is the image name you need to use；/bin/bash is the command to be executed in Docker
 
 2. **GPU version**
 
@@ -478,12 +478,12 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
     (2). Pull the image that supports CUDA 10.0, cuDNN 7.3 + pre installed PaddlePaddle:
     ::
 
-        nvidia-docker pull hub.baidubce.com/paddlepaddle/paddle:1.7.1-gpu-cuda10.0-cudnn7
+        nvidia-docker pull hub.baidubce.com/paddlepaddle/paddle:1.7.2-gpu-cuda10.0-cudnn7
 
     (3). Use the image to build and enter the docker container:
     ::
 
-        nvidia-docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.7.1-gpu-cuda10.0-cudnn7 /bin/bash
+        nvidia-docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.7.2-gpu-cuda10.0-cudnn7 /bin/bash
 
         > --name [Name of container] set name of Docker;
 
@@ -491,7 +491,7 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
 
         > -v Parameter is used to share files between the host and the container. dir1 is the host directory and dir2 is the directory mounted inside the container. Users can customize their own mounting directory by setting dir1 and dir2.For example, $PWD:/paddle specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
 
-        > hub.baidubce.com/paddlepaddle/paddle:1.7.1 is the image name you need to use；/bin/bash is the command to be executed in Docker
+        > hub.baidubce.com/paddlepaddle/paddle:1.7.2 is the image name you need to use；/bin/bash is the command to be executed in Docker
 
     Or if you need the version supporting **CUDA 9**, replace **cuda10.0** of the above command with **cuda9.0** 
 
@@ -499,7 +499,7 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
 
     ::
 
-        docker run --name paddle -it -v dir1:dir2 paddlepaddle/paddle:1.7.1 /bin/bash
+        docker run --name paddle -it -v dir1:dir2 paddlepaddle/paddle:1.7.2 /bin/bash
 
         > --name [Name of container] set name of Docker;
 
@@ -507,7 +507,7 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
 
         > -v Parameter is used to share files between the host and the container. dir1 is the host directory and dir2 is the directory mounted inside the container. Users can customize their own mounting directory by setting dir1 and dir2.For example, $PWD:/paddle specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container; 
 
-        > paddlepaddle/paddle:1.7.1 is the image name you need to use；/bin/bash is the command to be executed in docker
+        > paddlepaddle/paddle:1.7.2 is the image name you need to use；/bin/bash is the command to be executed in docker
 
 4. Verify installation
 
