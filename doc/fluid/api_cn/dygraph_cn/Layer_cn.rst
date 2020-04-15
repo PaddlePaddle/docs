@@ -13,6 +13,18 @@ Layer
 
 返回：无
 
+.. py:method:: train()
+
+将此层及其所有子层设置为训练模式。这只会影响某些模块，如Dropout和BatchNorm。
+
+返回：无
+
+.. py:method:: eval()
+
+将此层及其所有子层设置为预测模式。这只会影响某些模块，如Dropout和BatchNorm。
+
+返回：无
+
 .. py:method:: full_name()
 
 Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__.__name__ 。

@@ -16,6 +16,7 @@ fluid.dygraph
     dygraph_cn/Conv3D_cn.rst
     dygraph_cn/Conv3DTranspose_cn.rst
     dygraph_cn/CosineDecay_cn.rst
+    dygraph_cn/Dropout_cn.rst
     dygraph_cn/Embedding_cn.rst
     dygraph_cn/ExponentialDecay_cn.rst
     dygraph_cn/FC_cn.rst
@@ -34,7 +35,7 @@ fluid.dygraph
     dygraph_cn/NoamDecay_cn.rst
     dygraph_cn/ParallelEnv_cn.rst
     dygraph_cn/ParameterList_cn.rst
-    dygraph_cn/no_grad_cn.rst    
+    dygraph_cn/no_grad_cn.rst
     dygraph_cn/PiecewiseDecay_cn.rst
     dygraph_cn/PolynomialDecay_cn.rst
     dygraph_cn/Pool2D_cn.rst

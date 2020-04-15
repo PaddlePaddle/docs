@@ -15,6 +15,7 @@ fluid.dygraph
     dygraph/CosineDecay.rst
     dygraph/DataParallel.rst
     dygraph/disable_dygraph.rst
+    dygraph/Dropout.rst
     dygraph/dygraph_to_static_code.rst
     dygraph/dygraph_to_static_func.rst
     dygraph/dygraph_to_static_output.rst
