@@ -29,6 +29,7 @@ bmm
 **示例**:
 
 .. code-block:: python
+    
     import paddle
     # size input1: (2, 2, 3) and input2: (2, 3, 2)
     input1 = np.array([[[1.0, 1.0, 1.0],[2.0, 2.0, 2.0]],[[3.0, 3.0, 3.0],[4.0, 4.0, 4.0]]])
