@@ -6,6 +6,9 @@ API Reference
     :maxdepth: 1
 
     ../api_guides/index_cn.rst
+    framework_cn.rst
+    nn_cn.rst
+    tensor_cn.rst
     fluid_cn.rst
     api_tree_cn.rst
     backward_cn.rst
