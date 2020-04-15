@@ -37,12 +37,10 @@ noam衰减的numpy实现如下：
 .. code-block:: python
 
         import paddle.fluid as fluid
+        d_model = 0.01
         warmup_steps = 100
         learning_rate = 0.01
-        lr = fluid.layers.learning_rate_scheduler.noam_decay(
-                       1/(warmup_steps *(learning_rate ** 2)),
-                       warmup_steps)
-
+        lr = fluid.layers.noam_decay(d_model, warmup_steps, learning_rate)
 
 
 

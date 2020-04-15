@@ -62,9 +62,9 @@ multiclass_nms
 ..  code-block:: python
 
     import paddle.fluid as fluid
-    boxes = fluid.layers.data(name='bboxes', shape=[81, 4],
+    boxes = fluid.data(name='bboxes', shape=[None, 81, 4],
                               dtype='float32', lod_level=1)
-    scores = fluid.layers.data(name='scores', shape=[81],
+    scores = fluid.data(name='scores', shape=[None, 81],
                               dtype='float32', lod_level=1)
     out = fluid.layers.multiclass_nms(bboxes=boxes,
                                       scores=scores,
