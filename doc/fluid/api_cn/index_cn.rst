@@ -24,5 +24,6 @@ API Reference
     optimizer_cn.rst
     profiler_cn.rst
     regularizer_cn.rst
+    tensor_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
