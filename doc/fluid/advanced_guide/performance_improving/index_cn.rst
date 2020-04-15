@@ -12,3 +12,4 @@
     multinode_training_improving/gpu_training_with_recompute.rst
     inference_improving/paddle_tensorrt_infer.md
     analysis_tools/index_cn.rst
+    device_switching/device_switching.md
