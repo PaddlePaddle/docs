@@ -32,7 +32,7 @@ Log1p激活函数（计算自然对数）
 
  # Graph Organizing
  x = fluid.data(name="x", shape=[2,1], dtype="float32")
- res = paddle.log1p(x) # paddle.log1p等价于paddle.tensor.log1p
+ res = paddle.log1p(x) # paddle.log1p等价于 paddle.tensor.log1p
 
  # Create an executor using CPU as an example
  exe = fluid.Executor(fluid.CPUPlace())
