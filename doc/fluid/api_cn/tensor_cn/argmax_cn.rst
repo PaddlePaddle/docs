@@ -10,7 +10,7 @@ argmax
 
 参数：
     - **input** (Variable) - 输入的多维 ``Tensor`` ，支持的数据类型：float32、float64、int8、int16、int32、int64。
-    - **axis** (int，可选) - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``input`` 的Rank， ``axis`` 为负时与 ``axis`` +R 等价。默认值为0。
+    - **axis** (int，可选) - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``input`` 的Rank， ``axis`` -R与绝对值相同的R等价。默认值为0。
     - **dtype** (np.dtype|core.VarDesc.VarType|str)- 输出Tensor的数据类型，可选值为int32，int64，默认值为None，将返回int64类型的结果。
     - **out** (Variable, 可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
     - **keepdims** （bool，可选）- 是否保留进行max index操作的维度，默认值为False。
