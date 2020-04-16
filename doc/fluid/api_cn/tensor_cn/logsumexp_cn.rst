@@ -19,7 +19,7 @@ logsumexp
 
 返回：  Tensor，数据类型和输入数据类型一致。
 
-返回类型：  变量（Variable）
+返回类型：Variable
 
 **代码示例1**
 
