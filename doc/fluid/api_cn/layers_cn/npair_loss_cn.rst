@@ -26,23 +26,14 @@ NPair损失需要成对的数据。NPair损失分为两部分：第一部分是�
 .. code-block:: python
 
     import paddle.fluid as fluid
-    import numpy as np
-    anchor = fluid.layers.data(
-              name = 'anchor', shape = [18, 6], dtype = 'float32', append_batch_size=False)
-    positive = fluid.layers.data(
-              name = 'positive', shape = [18, 6], dtype = 'float32', append_batch_size=False)
-    labels = fluid.layers.data(
-              name = 'labels', shape = [18], dtype = 'float32', append_batch_size=False)
+    anchor = fluid.data(
+                  name = 'anchor', shape = [18, 6], dtype = 'float32', append_batch_size=False)
+    positive = fluid.data(
+                  name = 'positive', shape = [18, 6], dtype = 'float32', append_batch_size=False)
+    labels = fluid.data(
+                  name = 'labels', shape = [18], dtype = 'float32', append_batch_size=False)
 
-    res = fluid.layers.npair_loss(anchor, positive, labels, l2_reg = 0.002)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    a = np.random.rand(18, 6).astype("float32")
-    p = np.random.rand(18, 6).astype("float32")
-    l = np.random.rand(18).astype("float32")
-    output = exe.run(feed={"anchor": a, "positive": p, "labels": l}, fetch_list=[res])
-    print(output)
+    npair_loss = fluid.layers.npair_loss(anchor, positive, labels, l2_reg = 0.002)
 
 
 

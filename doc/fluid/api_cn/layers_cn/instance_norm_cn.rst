@@ -39,16 +39,7 @@ NCHW[batch,in_channels,in_height,in_width]
 .. code-block:: python
     
     import paddle.fluid as fluid
-    import numpy as np
-    x = fluid.layers.data(name='x', shape=[3, 7, 3, 7], dtype='float32', append_batch_size=False)
-    hidden1 = fluid.layers.fc(input=x, size=200)
-    param_attr = fluid.ParamAttr(name='instance_norm_w', initializer=fluid.initializer.Constant(value=1.0))
-    bias_attr = fluid.ParamAttr(name='instance_norm_b', initializer=fluid.initializer.Constant(value=0.0))
-    hidden2 = fluid.layers.instance_norm(input=hidden1, param_attr = param_attr, bias_attr = bias_attr)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    np_x = np.random.random(size=(3, 7, 3, 7)).astype('float32')
-    output = exe.run(feed={"x": np_x}, fetch_list = [hidden2])
-    print(output)
+    x = fluid.data(name='x', shape=[3, 7, 3, 7], dtype='float32')
+    hidden1 = fluid.layers.fc(input=x, size=200, param_attr='fc1.w')
+    hidden2 = fluid.layers.instance_norm(input=hidden1)
 
