@@ -13,9 +13,9 @@
 以下图为例，全连接层参数按行切分到不同的GPU卡上。每次训练迭代过程中，各张GPU卡分别以各自的训练数据计算隐层的输出特征(feature)，并通过集合通信操作AllGather得到汇聚后的特征。接着，各张GPU卡以汇聚后的特征和部分全连接层参数计算部分logit值(partial logit)，并基于此计算神经网络的损失值。
 
 
-.. image:: /Users/lilong12/Library/Application Support/typora-user-images/image-20200409115649662.png
-   :target: /Users/lilong12/Library/Application Support/typora-user-images/image-20200409115649662.png
-   :alt: image-20200409115649662
+.. image:: ./plsc_overview.png
+   :target: ./plsc_overview.png
+   :alt: plsc_overview
 
 
 这个方案可以有效解决全连接层参数量随分类类别数线性增长导致的显存空间不足的问题。然而，为了实现这一方案，开发者需要基于现有的深度学习平台设计和实现上例描述的所有操作，包括全连接层参数的切分和集合通信等，动辄需要数百行实现代码，大大增加了开发者的负担。
@@ -30,12 +30,8 @@
 安装飞桨
 ^^^^^^^^
 
-可以参考官网下载并安装飞桨。
+可以参考官网下载并安装飞桨: `飞桨安装文档<https://www.paddlepaddle.org.cn/install/quick>`_。
 
-
-.. image:: /Users/lilong12/Library/Application Support/typora-user-images/image-20200409115841962.png
-   :target: /Users/lilong12/Library/Application Support/typora-user-images/image-20200409115841962.png
-   :alt: image-20200409115841962
 
 
 安装PLSC
@@ -137,9 +133,9 @@ PLSC支持多机分布式训练。一方面，通过多机分布式训练可以�
 下图给出使用不同数量的节点时的训练速度（吞吐）。实验中使用的训练数据集为MS1M-ArcFace，分类类别数为85742，每个节点配备8张NVIDIA V100 GPUs，backbone模型为ResNet50。如图所示，使用飞桨大规模分类库可以取得近似线性的加速比。
 
 
-.. image:: https://mmbiz.qpic.cn/mmbiz_png/sKia1FKFiafgjpFUhibU5Jup0Xgm0k8tu9hiayb1ROGWbia2fAHQJY4N7ibCK3rRZXvn9aSVPNibSTVkljQjxyPusVic3g/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1
-   :target: https://mmbiz.qpic.cn/mmbiz_png/sKia1FKFiafgjpFUhibU5Jup0Xgm0k8tu9hiayb1ROGWbia2fAHQJY4N7ibCK3rRZXvn9aSVPNibSTVkljQjxyPusVic3g/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1
-   :alt: img
+.. image:: ./plsc_performance.png
+   :target: ./plsc_performance.png
+   :alt: performance
 
 
 PLSC提供从训练到部署的全流程解决方案
