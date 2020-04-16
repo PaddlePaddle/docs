@@ -8,8 +8,8 @@ eye
 该OP用来构建单位矩阵。
 
 参数：
-    - **num_rows** (int) - 每一个批矩阵的行数，数据类型为非负int32。
-    - **num_columns** (int) - 每一个批矩阵的列数，数据类型为非负int32。若为None，则默认等于num_rows。
+    - **num_rows** (int) - 生成单位矩阵的行数，数据类型为非负int32。
+    - **num_columns** (int) - 生成单位矩阵的列数，数据类型为非负int32。若为None，则默认等于num_rows。
     - **out**  (Variable， 可选) -  指定算子输出结果的LoDTensor/Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
     - **dtype** (string,  可选) - 返回张量的数据类型，可为int32，int64，float16，float32，float64。
     - **stop_gradient** (bool， 可选) - 是否对此OP停止计算梯度，默认值为False。

@@ -6,7 +6,7 @@ log1p
 .. py:function:: paddle.tensor.log1p(x, out=None, name=None)
 
 
-Log1p激活函数（计算自然对数）
+该OP计算Log1p（加一的自然对数）结果。
 
 .. math::
                   \\Out=ln(x+1)\\
@@ -30,14 +30,13 @@ Log1p激活函数（计算自然对数）
  import paddle.fluid as fluid
  import numpy as np
 
- # Graph Organizing
  x = fluid.data(name="x", shape=[2,1], dtype="float32")
  res = paddle.log1p(x) # paddle.log1p等价于 paddle.tensor.log1p
 
- # Create an executor using CPU as an example
+ # 举例选择CPU计算环境
  exe = fluid.Executor(fluid.CPUPlace())
 
- # Execute
+ # 执行静态图，输出结果
  x_i = np.array([[0], [1]]).astype(np.float32)
  res_val, = exe.run(fluid.default_main_program(), feed={'x':x_i}, fetch_list=[res])
  print(res_val) # [[0.], [0.6931472]]

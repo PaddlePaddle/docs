@@ -11,7 +11,7 @@ t
     - **input** (Variable) - 输入：N维(N<=2)Tensor，可选的数据类型为float16, float32, float64, int32, int64。
     - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
-返回： 与input相同维度的Tensor
+返回： N维Tensor
 
 返回类型：Variable
 

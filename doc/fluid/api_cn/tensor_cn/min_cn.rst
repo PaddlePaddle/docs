@@ -5,7 +5,7 @@ min
 
 .. py:function:: paddle.tensor.min(input, dim=None, keep_dim=False, out=None, name=None)
 
-该OP是对指定维度上的Tensor元素求最大值运算，并输出相应的计算结果。等价于 :ref:`cn_api_fluid_layers_reduce_min`
+该OP是对指定维度上的Tensor元素求最小值运算，并输出相应的计算结果。等价于 :ref:`cn_api_fluid_layers_reduce_min`
 
 参数：
           - **input** （Variable）- 输入变量为多维Tensor或LoDTensor，支持数据类型为float32，float64，int32，int64。
