@@ -65,7 +65,7 @@ Executor支持单GPU、多GPU以及CPU运行。
     #    os.environ['CPU_NUM'] = str(2)
 
     # 未显示设置运行设备且安装的Paddle为CPU版本
-    # os.environ['CPU_NUM'] = str(2)
+    os.environ['CPU_NUM'] = str(2)
 
     compiled_prog = compiler.CompiledProgram(
         train_program).with_data_parallel(
