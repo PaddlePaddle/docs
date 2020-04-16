@@ -31,6 +31,7 @@ bmm
 .. code-block:: python
     
     import paddle
+    import paddle.fluid
     # size input1: (2, 2, 3) and input2: (2, 3, 2)
     input1 = np.array([[[1.0, 1.0, 1.0],[2.0, 2.0, 2.0]],[[3.0, 3.0, 3.0],[4.0, 4.0, 4.0]]])
     input2 = np.array([[[1.0, 1.0],[2.0, 2.0],[3.0, 3.0]],[[4.0, 4.0],[5.0, 5.0],[6.0, 6.0]]])
