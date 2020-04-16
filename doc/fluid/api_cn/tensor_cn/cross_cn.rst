@@ -5,13 +5,13 @@ cross
 
 .. py:function:: paddle.cross(input, other, dim=None)
 
-该OP返回在``dim``维度上，两个张量``input``和``other``的向量积（叉积）。``input``和``other``必须有相同的形状，
-且指定的``dim``维上``size``必须为3，如果``dim``未指定，默认选取第一个``size``等于3的维度。
+该OP返回在 ``dim`` 维度上，两个张量 ``input`` 和 ``other`` 的向量积（叉积）。 ``input`` 和 ``other`` 必须有相同的形状，
+且指定的 ``dim`` 维上 ``size`` 必须为3，如果 ``dim`` 未指定，默认选取第一个 ``size`` 等于3的维度。
         
 **参数**：
     - **input** （Variable）– 第一个输入张量。
     - **other** （Variable）– 第二个输入张量。
-    - **dim**    (int, optional) – 沿着此维进行叉积操作，若未指定，则默认选取第一个``size``等于3的维度
+    - **dim**    (int, optional) – 沿着此维进行叉积操作，若未指定，则默认选取第一个 ``size`` 等于3的维度
 
 **返回**：
     - **Variable** ，数据类型同输入。

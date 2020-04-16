@@ -5,12 +5,11 @@ roll
 
 .. py:function:: paddle.roll(input, shifts, dims=None):
 
-该OP沿着指定维度对输入``input``进行循环滚动，当元素移动到最后位置时，会从第一个位置重新插入。如果``dims``为``None``，则 
-输入在被循环滚动之前，会先展平成``1-D Tensor``，滚动操作完成后恢复成原来的形状。
-        
+该OP沿着指定维度对输入 ``input`` 进行循环滚动，当元素移动到最后位置时，会从第一个位置重新插入。如果 ``dims`` 为 ``None`` ，则输入在被循环滚动之前，会先展平成 ``1-D Tensor`` ，滚动操作完成后恢复成原来的形状。
+
 **参数**：
     - **input** （Variable）– 输入张量。
-    - **shifts** (int|list|tuple) - 滚动位移。如果``shifts``是一个元组或者列表，则``dims``必须是相同大小的元组或者列表，输入张量将依次沿着每个维度滚动相应的数值。
+    - **shifts** (int|list|tuple) - 滚动位移。如果 ``shifts`` 是一个元组或者列表，则 ``dims`` 必须是相同大小的元组或者列表，输入张量将依次沿着每个维度滚动相应的数值。
     - **dim**    (int|list|tuple, optinal) – 滚动轴。
 
 **返回**：
