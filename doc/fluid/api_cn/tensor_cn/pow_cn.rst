@@ -9,11 +9,11 @@ pow
 
 .. math::
 
-    out = x^{factor}
+    out = x^{exponent}
 
 参数：
     - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``float32`` 或 ``float64`` 。
-    - **factor** （float32|Variable，可选）- ``float32`` 或形状为[1]的 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``。Pow OP的指数因子。默认值：1.0。
+    - **exponent** （float32|Variable，可选）- ``float32`` 或形状为[1]的 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``。Pow OP的指数因子。默认值：1.0。
     - **out** (Variable, 可选) - 默认值None，如果out不为空，则该运算结果存储在out变量中。 
     - **name** (str，可选) - 默认值None，输出的名称。该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_name`。当out和name同时不为空时，结果输出变量名与out保持一致。
 
