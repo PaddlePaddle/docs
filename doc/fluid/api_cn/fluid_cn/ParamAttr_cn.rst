@@ -8,7 +8,7 @@ ParamAttr
 .. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=False)
 
 .. note::
-    该类中的 ``gradient_clip`` 属性在2.0版本会废弃，推荐使用 ``minimize(loss, grad_clip=clip)`` 做梯度裁剪。共有三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 
+    该类中的 ``gradient_clip`` 属性在2.0版本会废弃，推荐在初始化 ``optimizer`` 时设置梯度裁剪。共有三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 
     :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
 
 创建一个参数属性对象，用户可设置参数的名称、初始化方式、学习率、正则化规则、是否需要训练、梯度裁剪方式、是否做模型平均等属性。

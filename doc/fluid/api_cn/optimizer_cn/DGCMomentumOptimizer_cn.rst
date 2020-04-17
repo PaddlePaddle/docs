@@ -5,7 +5,7 @@ DGCMomentumOptimizer
 
 **注意：该API仅支持【静态图】模式**
 
-.. py:class:: paddle.fluid.optimizer.DGCMomentumOptimizer(learning_rate, momentum, rampup_begin_step, rampup_step=1, sparsity=[0.999], use_nesterov=False, local_grad_clip_norm=None, num_trainers=None, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.DGCMomentumOptimizer(learning_rate, momentum, rampup_begin_step, rampup_step=1, sparsity=[0.999], use_nesterov=False, local_grad_clip_norm=None, num_trainers=None, regularization=None, grad_clip=None, name=None)
 
 DGC（深度梯度压缩）Momentum 优化器。原始论文: https://arxiv.org/abs/1712.01887
 
@@ -36,6 +36,7 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
     - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
       :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
       如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
+    - **grad_clip** (GradientClipByNorm, 可选) – 梯度裁剪的策略，``DGCMomentumOptimizer`` 仅支持 :ref:`cn_api_fluid_clip_GradientClipByNorm` 裁剪策略，如果不为该类型，将会抛出类型异常。默认值为None，此时将不进行梯度裁剪。
     - **name** （str，可选） - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 **代码示例**
@@ -109,7 +110,7 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
 
 详见apply_gradients的示例
 
-.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
+.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 
 
 通过更新parameter_list来添加操作，进而使损失最小化。
@@ -121,8 +122,6 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
     - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
     - **parameter_list** (list) – 待更新的Variables组成的列表
     - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
-      默认值为None，此时将不进行梯度裁剪。
        
 返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 

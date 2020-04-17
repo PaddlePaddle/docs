@@ -10,7 +10,7 @@ GradientClipByValue
 
 输入的 Tensor 不是从该类里传入， 而是默认会选择 ``Program`` 中全部的梯度，如果 ``need_clip`` 不为None，则可以只选择部分参数进行梯度裁剪。
 
-该类需要在 ``optimizer.minimize(grad_clip)`` 进行设置后才能生效，可参看 ``optimizer`` 文档(例如： :ref:`cn_api_fluid_optimizer_SGDOptimizer` )。
+该类需要在初始化 ``optimizer`` 时进行设置后才能生效，可参看 ``optimizer`` 文档(例如： :ref:`cn_api_fluid_optimizer_SGDOptimizer` )。
 
 给定一个 Tensor  ``t`` ，该操作将它的值压缩到 ``min`` 和 ``max`` 之间
 
@@ -50,8 +50,8 @@ GradientClipByValue
         #   return Parameter.name=="fc_0.w_0"
         # clip = fluid.clip.GradientClipByValue(min=-1, max=1, need_clip=fileter_func)
 
-        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1)
-        sgd_optimizer.minimize(loss, grad_clip=clip)
+        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1, grad_clip=clip)
+        sgd_optimizer.minimize(loss)
 
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -87,8 +87,8 @@ GradientClipByValue
         # clip = fluid.clip.GradientClipByValue(min=-1, max=1, need_clip=fileter_func)
 
         sgd_optimizer = fluid.optimizer.SGD(
-        learning_rate=0.1, parameter_list=linear.parameters())
-        sgd_optimizer.minimize(loss, grad_clip=clip)
+            learning_rate=0.1, parameter_list=linear.parameters(), grad_clip=clip)
+        sgd_optimizer.minimize(loss)
 
 
 
