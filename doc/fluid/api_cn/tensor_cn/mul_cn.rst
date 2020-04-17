@@ -29,7 +29,7 @@ mul算子
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
     
     import paddle
     import paddle.fluid as fluid
