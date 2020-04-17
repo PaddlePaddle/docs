@@ -21,7 +21,7 @@ randn
 
 **示例代码**
 
-..  code-block:: python
+.. code-block:: python
 
      # declarative mode
      import paddle
