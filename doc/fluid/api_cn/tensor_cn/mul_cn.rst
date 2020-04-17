@@ -11,7 +11,7 @@ mul算子
 公式是：
 
 .. math::
-        Out = x * y
+        out = x * y
 
 输入x和y都可以携带LoD（详细程度）信息。但输出仅与输入x共享LoD信息。
 

@@ -8,8 +8,7 @@ pow
 该OP是指数激活算子：
 
 .. math::
-
-    out = x^{exponent}
+        out = x^{exponent}
 
 参数：
     - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``float32`` 或 ``float64`` 。
