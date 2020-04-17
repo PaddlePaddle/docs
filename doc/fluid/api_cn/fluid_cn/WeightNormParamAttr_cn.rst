@@ -8,7 +8,7 @@ WeightNormParamAttr
 .. py:class:: paddle.fluid.WeightNormParamAttr(dim=None, name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=False)
 
 .. note::
-    该类中的 ``gradient_clip`` 属性在2.0版本会废弃，推荐使用 ``minimize(loss, grad_clip=clip)`` 做梯度裁剪。共有三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 
+    该类中的 ``gradient_clip`` 属性在2.0版本会废弃，推荐在初始化 ``optimizer`` 时设置梯度裁剪。共有三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 
     :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
 
 该类定义了权重归一化(Weight Normalization)的参数。权重归一化可以将神经网络中权重向量的长度与其方向解耦，详细的定义与实现可以参考论文：`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_

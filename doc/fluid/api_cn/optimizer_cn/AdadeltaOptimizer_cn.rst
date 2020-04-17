@@ -3,7 +3,7 @@
 AdadeltaOptimizer
 -------------------------------
 
-.. py:class:: paddle.fluid.optimizer.AdadeltaOptimizer(learning_rate, epsilon=1.0e-6, rho=0.95, parameter_list=None, regularization=None, name=None)
+.. py:class:: paddle.fluid.optimizer.AdadeltaOptimizer(learning_rate, epsilon=1.0e-6, rho=0.95, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
 **注意：此接口不支持稀疏参数更新。**
 
@@ -26,6 +26,8 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
       :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
       如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
+    - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
+      默认值为None，此时将不进行梯度裁剪。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 **代码示例**
@@ -42,7 +44,7 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     optimizer_ops, params_grads = optimizer.minimize(cost)
 
 
-.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
+.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 
 为训练网络添加反向和参数优化部分，进而使损失最小化。
 
@@ -51,8 +53,6 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     - **startup_program** (Program，可选) – 参数所在的startup program。默认值为None，表示 :ref:`cn_api_fluid_default_startup_program` 。
     - **parameter_list** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表。默认值为None，表示所有参数均需要更新。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合。默认值为None。
-    - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
-      默认值为None，此时将不进行梯度裁剪。
 
 返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
