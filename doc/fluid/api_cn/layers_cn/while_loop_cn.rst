@@ -10,6 +10,9 @@ ____________________________________
 
 该API用于实现类似while的循环控制功能，只要循环条件 ``cond`` 的返回值为True，``while_loop`` 则会循环执行循环体 ``body`` ，直到 ``cond`` 的返回值为False。
 
+**注意：**
+    ``body`` 中定义的局部变量无法使用 ``Executor`` 的 ``fetch_list`` 来获取的，变量需在 ``body`` 外定义并将其置于 ``loop_vars`` 中进行循环更新后才可通过 ``fetch_list`` 获取。
+
 参数：
     - **cond** (callable) - 返回boolean类型张量的可调用函数，用以判断循环是否继续执行。 ``cond`` 的参数和 ``loop_vars`` 相对应。
     - **body** (callable) - 循环执行的结构体。其返回一个包含tensor或LoDTensorArray的列表或元组，且这些tensor或LoDTensorArray的长度，结构，类型和 ``loop_vars`` 中的相同。 且``body`` 的参数与 ``loop_vars`` 相对应。
@@ -49,8 +52,8 @@ ____________________________________
     main_program = fluid.default_main_program()
     startup_program = fluid.default_startup_program()
     with fluid.program_guard(main_program, startup_program):
-        i = layers.fill_constant(shape=[1], dtype='int64', value=0)   # 循环计数器
-        ten = layers.fill_constant(shape=[1], dtype='int64', value=10)   # 循环次数
+        i = layers.fill_constant(shape=[1], dtype='int64', value=0)     # 循环计数器
+        ten = layers.fill_constant(shape=[1], dtype='int64', value=10)  # 循环次数
         i, ten = layers.while_loop(cond, body, [i, ten])
                 
         exe = fluid.Executor(fluid.CPUPlace())
