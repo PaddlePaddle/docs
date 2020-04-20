@@ -22,7 +22,7 @@ arange
 .. code-block:: python
 
     import paddle
-    import paddle.fluid
+    import paddle.fluid as fluid
     with fluid.dygraph.guard():
                  # x: [0, 2, 4]
                  # x dtype: float32
