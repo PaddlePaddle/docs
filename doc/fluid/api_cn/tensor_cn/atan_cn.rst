@@ -8,7 +8,7 @@ atan
 arctanh 激活函数。
 
 .. math::
-    out = tanh^{-1}(x)
+        out = tanh^{-1}(x)
 
 参数:
     - **x(Variable)** - atan的输入Tensor，数据类型为 float32 或 float64

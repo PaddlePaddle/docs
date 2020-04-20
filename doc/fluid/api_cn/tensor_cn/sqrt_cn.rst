@@ -7,7 +7,8 @@ sqrt
 
 计算输入的算数平方根。
 
-.. math:: out=\sqrt x=x^{1/2}
+.. math::
+        out=\sqrt x=x^{1/2}
 
 .. note::
     请确保输入中的数值是非负数。

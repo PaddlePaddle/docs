@@ -8,7 +8,7 @@ tanh
 tanh 激活函数
 
 .. math::
-    out = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
+        out = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
 
 
 参数:
