@@ -1,6 +1,6 @@
 # 运行时设备切换
 
-Paddle提供了[fluid.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CUDAPlace_cn.html)以及[fluid.CPUPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CPUPlace_cn.html)用于指定运行时的设备。这两个接口用于指定全局的设备，在Paddle2.0中，我们提供了[device_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/fluid_cn/device_guard_cn.html)接口，用于指定部分OP的运行设备，此教程会介绍device_guard的使用场景，以及如何使用该接口对模型进行优化。
+Paddle提供了[fluid.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CUDAPlace_cn.html)以及[fluid.CPUPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CPUPlace_cn.html)用于指定运行时的设备。这两个接口用于指定全局的设备，从2.0版本开始，Paddle提供了[device_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/fluid_cn/device_guard_cn.html)接口，用于指定部分OP的运行设备，此教程会介绍device_guard的使用场景，以及如何使用该接口对模型进行优化。
 
 如果使用了`fluid.CUDAPlace`设置了全局的执行设备，框架将尽可能地将OP设置在GPU上执行，因此有可能会遇到显存不够的情况。`device_guard`可以用于设置OP的执行设备，如果将部分层设置在CPU上运行，就能够充分利用CPU大内存的优势，避免显存超出。
 
@@ -69,8 +69,8 @@ out = fluid.layers.crop_tensor(data1, shape=shape)
 place = fluid.CUDAPlace(0) 
 exe = fluid.Executor(place)
 exe.run(fluid.default_startup_program())
-with profiler.profiler('All', 'total', tracer_option="OpDetail") as prof:
-    for i in range(100):
+with profiler.profiler('All', 'total') as prof:
+    for i in range(10):
         result = exe.run(fetch_list=[out])
 ```
 
@@ -114,7 +114,7 @@ ParallelExecutor::Run                                       10          17.3578 
 ```
 ### 通过log查看发生数据传输的具体位置
 
-以上的示例程序比较简单，我们只用看profile report就能知道具体是哪些算子发生了数据传输。但是当模型比较复杂时，就需要去查看更加详细的调试信息，这时候可以打印出运行时的log。依然以上述程序为例，执行`GLOG_v=3 python test_case.py`，会得到如下log信息，会发现发生了2次数据传输：
+以上的示例程序比较简单，我们只用看profile report就能知道具体是哪些算子发生了数据传输。但是当模型比较复杂时，可能需要去查看更加详细的调试信息，可以打印出运行时的log去确定发生数据传输的具体位置。依然以上述程序为例，执行`GLOG_vmodule=operator=3 python test_case.py`，会得到如下log信息，会发现发生了2次数据传输：
 
 - `shape`输出的结果在CPU上，在`slice`运行时，`shape`的输出被拷贝到GPU上
 - `slice`执行完的结果在GPU上，当`crop_tensor`执行时，它会被拷贝到CPU上。
@@ -150,17 +150,43 @@ out = fluid.layers.crop_tensor(data1, shape=shape)
 place = fluid.CUDAPlace(0) 
 exe = fluid.Executor(place)
 exe.run(fluid.default_startup_program())
-with profiler.profiler('All', 'total', tracer_option="OpDetail") as prof:
-    for i in range(100):
+with profiler.profiler('All', 'total') as prof:
+    for i in range(10):
         result = exe.run(fetch_list=[out])
 ```
-再次观察profile report中`GpuMemCpy Summary`的内容，可以看到`GpuMemCpySync`已经被消除。在实际的模型中，若`GpuMemCpySync` 调用耗时占比较大，并且可以通过设置`device_guard`避免，那么就能够带来明显的性能提升。
+再次观察profile report中`GpuMemCpy Summary`的内容，可以看到`GpuMemCpySync`已经被消除。在实际的模型中，若`GpuMemCpySync` 调用耗时占比较大，并且可以通过设置`device_guard`避免，那么就能够带来一定的性能提升。
 
-```
+```text
+------------------------->     Profiling Report     <-------------------------
+
+Note! This Report merge all thread info into one.
+Place: All
+Time unit: ms
+Sorted by total time in descending order in the same thread
+
+Total time: 14.5345
+  Computation time       Total: 4.47587     Ratio: 30.7948%
+  Framework overhead     Total: 10.0586     Ratio: 69.2052%
+
 -------------------------     GpuMemCpy Summary     -------------------------
 
-GpuMemcpy                Calls: 10          Total: 1.05651     Ratio: 1.82925%
-  GpuMemcpyAsync         Calls: 10          Total: 1.05651     Ratio: 1.82925%
+GpuMemcpy                Calls: 10          Total: 0.457033    Ratio: 3.14447%
+  GpuMemcpyAsync         Calls: 10          Total: 0.457033    Ratio: 3.14447%
+
+-------------------------       Event Summary       -------------------------
+
+Event                                                       Calls       Total       CPU Time (Ratio)        GPU Time (Ratio)        Min.        Max.        Ave.        Ratio.
+FastThreadedSSAGraphExecutorPrepare                         10          7.70113     7.689066 (0.998433)     0.012064 (0.001567)     0.032657    7.39363     0.770113    0.529852
+fill_constant                                               20          2.62299     2.587022 (0.986287)     0.035968 (0.013713)     0.071097    0.342082    0.13115     0.180466
+shape                                                       10          1.93504     1.935040 (1.000000)     0.000000 (0.000000)     0.026774    1.6016      0.193504    0.133134
+Fetch                                                       10          0.880496    0.858512 (0.975032)     0.021984 (0.024968)     0.07392     0.140896    0.0880496   0.0605797
+  GpuMemcpyAsync:GPU->CPU                                   10          0.457033    0.435049 (0.951898)     0.021984 (0.048102)     0.037836    0.071424    0.0457033   0.0314447
+crop_tensor                                                 10          0.705426    0.671506 (0.951916)     0.033920 (0.048084)     0.05841     0.123901    0.0705426   0.0485346
+slice                                                       10          0.324241    0.324241 (1.000000)     0.000000 (0.000000)     0.024299    0.07213     0.0324241   0.0223084
+eager_deletion                                              30          0.250524    0.250524 (1.000000)     0.000000 (0.000000)     0.004171    0.016235    0.0083508   0.0172365
+ScopeBufferedMonitor::post_local_exec_scopes_process        10          0.047794    0.047794 (1.000000)     0.000000 (0.000000)     0.003344    0.014131    0.0047794   0.00328831
+InitLocalVars                                               1           0.034629    0.034629 (1.000000)     0.000000 (0.000000)     0.034629    0.034629    0.034629    0.00238254
+ScopeBufferedMonitor::pre_local_exec_scopes_process         10          0.032231    0.032231 (1.000000)     0.000000 (0.000000)     0.002952    0.004076    0.0032231   0.00221755
 ```
 
 ### 总结
