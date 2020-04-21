@@ -106,7 +106,8 @@ Executor支持单GPU、多GPU以及CPU运行。
   - **scope** (Scope) – 该参数表示执行当前program所使用的作用域，用户可以为不同的program指定不同的作用域。默认值：fluid.global_scope()。
   - **return_numpy** (bool) – 该参数表示是否将返回的计算结果（fetch list中指定的变量）转化为numpy；如果为False，则每个变量返回的类型为LoDTensor，否则返回变量的类型为numpy.ndarray。默认为：True。
   - **use_program_cache** (bool) – 该参数表示是否对输入的Program进行缓存。如果该参数为True，在以下情况时，模型运行速度可能会更快：输入的program为 ``fluid.Program`` ，并且模型运行过程中，调用该接口的参数（program、 feed变量名和fetch_list变量）名始终不变。默认为：False。
-  - **return_merged** (bool) – 该参数表示是否按照执行设备维度将返回的计算结果（fetch list中指定的变量）进行合并。如果 ``return_merged`` 设为False，返回值类型是一个Tensor的二维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的二维列表（ ``return_numpy`` 设为True时）。如果 ``return_merged`` 设为True，返回值类型是一个Tensor的一维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的一维列表（ ``return_numpy`` 设为True时）。更多细节请参考示例代码2。如果返回的计算结果是变长的，请设置 ``return_merged`` 为False，即不按照执行设备维度合并返回的计算结果。该参数的默认值为True，但这仅是为了兼容性考虑，在未来的版本中默认值可能会更改为False。
+  - **return_merged** (bool) – 该参数表示是否按照执行设备维度将返回的计算结果（fetch list中指定的变量）进行合并。如果 ``return_merged`` 设为False，返回值类型是一个Tensor/LoDTensorArray的二维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的二维列表（ ``return_numpy`` 设为True时）。如果 ``return_merged`` 设为True，返回值类型是一个Tensor/LoDTensorArray的一维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的一维列表（ ``return_numpy`` 设为True时）。更多细节请参考示例代码2。如果返回的计算结果是变长的，请设置 ``return_merged`` 为False，即不按照执行设备维度合并返回的计算结果。该参数的默认值为True，但这仅是为了兼容性考虑，在未来的版本中默认值可能会更改为False。
+  - **use_prune** (bool) - 该参数表示是否对输入的Program进行剪枝。如果该参数为True，输入的Program会在run之前根据 ``feed`` 和 ``fetch_list`` 进行剪枝，剪枝的逻辑是将产生 ``feed`` 的 ``Variable`` 和 ``Operator`` 以及不产生 ``fetch_list`` 的 ``Variable`` 和 ``Operator`` 进行裁剪。默认为：False，表示不进行剪枝。请注意，如果将 ``Optimizer.minimize()`` 方法返回的 ``tuple`` 传入 ``fetch_list`` 中，则 ``use_prune`` 会被重写为True，并且会开启剪枝。
 
 返回：返回fetch_list中指定的变量值
 
@@ -133,13 +134,17 @@ Executor支持单GPU、多GPU以及CPU运行。
             loss = fluid.layers.mean(hidden)
             adam = fluid.optimizer.Adam()
             adam.minimize(loss)
+            i = fluid.layers.zeros(shape=[1], dtype='int64')
+            array = fluid.layers.array_write(x=loss, i=i)
      
             #仅运行startup程序一次
             exe.run(fluid.default_startup_program())
 
             x = numpy.random.random(size=(10, 1)).astype('float32')
-            outs = exe.run(feed={'X': x},
-                           fetch_list=[loss.name])
+            loss_val, array_val = exe.run(feed={'X': x},
+                                          fetch_list=[loss.name, array.name])
+            print(array_val)
+            # [array([0.02153828], dtype=float32)]
 
 
 **示例代码2**
