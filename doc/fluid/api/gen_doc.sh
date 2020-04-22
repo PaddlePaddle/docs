@@ -25,5 +25,14 @@ done
 
 python gen_module_index.py nn paddle.nn
 
+for module in math
+do
+  python gen_doc.py --module_name tensor.${module} --module_prefix tensor.${module} --output tensor/${module} --output_name complex --to_multiple_files True --output_dir complex
+  python gen_module_index.py complex.tensor.${module} ${module}
+done
+
+python gen_module_index.py complex.tensor tensor
+python gen_module_index.py complex paddle.complex
+
 python gen_index.py
 

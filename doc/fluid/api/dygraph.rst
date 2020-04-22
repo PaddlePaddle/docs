@@ -14,6 +14,7 @@ fluid.dygraph
     dygraph/Conv3DTranspose.rst
     dygraph/CosineDecay.rst
     dygraph/DataParallel.rst
+    dygraph/declarative.rst
     dygraph/disable_dygraph.rst
     dygraph/Dropout.rst
     dygraph/dygraph_to_static_code.rst
@@ -28,6 +29,7 @@ fluid.dygraph
     dygraph/GroupNorm.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
+    dygraph/InstanceNorm.rst
     dygraph/InverseTimeDecay.rst
     dygraph/Layer.rst
     dygraph/LayerList.rst
@@ -45,6 +47,7 @@ fluid.dygraph
     dygraph/Pool2D.rst
     dygraph/PRelu.rst
     dygraph/prepare_context.rst
+    dygraph/ProgramTranslator.rst
     dygraph/save_dygraph.rst
     dygraph/Sequential.rst
     dygraph/SpectralNorm.rst

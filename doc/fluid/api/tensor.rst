@@ -8,3 +8,4 @@ paddle.tensor
     tensor/linalg.rst
     tensor/math.rst
     tensor/random.rst
+    tensor/stat.rst
