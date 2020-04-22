@@ -28,9 +28,8 @@ gather
     import numpy as np
     with fluid.dygraph.guard():
         input_1 = np.array([[1,2,3],[4,5,6],[7,8,9]])
-        # input is a variable which shape is [5, 1, 10]
-        index_1 = np.array([0,1,2])
+        index_1 = np.array([0,1])
         input = fluid.dygraph.to_variable(input_1)
         index = fluid.dygraph.to_variable(index_1)
         output = paddle.fluid.layers.gather(input, index)
-        # output.shape [5, 1, 10]
+        # expected output: [[1, 2, 3],[4, 5, 6]]

@@ -8,7 +8,7 @@ squeeze
 
 **参数**：
         - **input** (Variable) - 输入任意维度的Tensor。 支持的数据类型：float32，float64，int8，int32，int64。
-        - **axes** (list) - 输入一个或一列整数，代表要压缩的轴。axes的范围： [−rank(input),rank(input)) 。 axes为负数时， axes=axes+rank(input) 。
+        - **axes** (list) - 输入一个或一列整数，代表要压缩的轴。axes的范围： [−rank(input),rank(input))] 。 axes为负数时， axes=axes+rank(input) 。
         - **name** (str，可选) - 一般无需设置，默认值为None。
 
 **返回**：返回对维度进行压缩后的Tensor。数据类型与输入Tensor一致。
