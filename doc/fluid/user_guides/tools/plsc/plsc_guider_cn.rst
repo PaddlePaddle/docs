@@ -1,6 +1,6 @@
 
-飞桨大规模分类库使用手册
-========================
+飞桨大规模分类库简介
+===================
 
 图像分类技术日趋成熟，ResNet网络在ImageNet数据集上的top5准确率已超过96%。然而，如何高效地完成百万类别甚至是更大规模的分类任务，则是一个极具挑战性的课题。
 
@@ -30,7 +30,7 @@
 安装飞桨
 ^^^^^^^^
 
-可以参考官网下载并安装飞桨: `飞桨安装文档<https://www.paddlepaddle.org.cn/install/quick>`_。
+可以参考官网下载并安装飞桨: `飞桨安装文档 <https://www.paddlepaddle.org.cn/install/quick>`_。
 
 
 
@@ -93,18 +93,21 @@ PLSC库在多个数据集上可以取得SOTA的训练精度，下表列出PLSC�
      - agendb_30
      - cfp_ff
      - cfp_fp
+     - MegaFace (Id/Ver)
    * - ResNet50
      - MS1M-ArcFace
      - 0.99817
      - 0.99827
      - 0.99857
      - 0.96314
+     - 0.980/0.993
    * - ResNet50
      - CASIA
      - 0.98950
      - 0.90950
      - 0.99057
      - 0.91500
+     - N/A
 
 
 备注：上述模型训练使用的loss_type为'dist_arcface'。更多关于ArcFace的内容请参考
