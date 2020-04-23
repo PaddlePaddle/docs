@@ -10,6 +10,8 @@ some of its operators:
 - gelu*
 - sum**
 
+![](images/inplace.svg)   
+
 There are two parts of in-place support:
 - in-place execution support within an operator
 - onednn inplace C-API pass 
