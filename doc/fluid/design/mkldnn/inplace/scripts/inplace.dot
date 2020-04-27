@@ -7,18 +7,15 @@ digraph G {
   a -> e1
   e1 -> b
   b[label="b"]
-  e[label="e"]
+  e[label="b"]
   
   subgraph cluster_0 {
       label="in-placed"
   b -> e2
   d -> e2
   e2 -> e
-  var[label="var X",shape=rectangle]
   }
   
-  b -> var[style=dashed]
-  e -> var[style=dashed]
   
   e -> e3
   f -> e3 -> g
