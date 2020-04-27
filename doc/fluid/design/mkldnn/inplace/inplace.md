@@ -30,7 +30,11 @@ Hence there are two parts of in-place support:
 ### in-place execution support within an operator
 oneDNN primitive to have in-place execution needs to have same oneDNN memoery object passed as input (src) and output(dst). In details we check if holded pointers to allocated buffers are the same for input and output
 and this indicated if we use one oneDNN memory object or two. for example:
-https://github.com/PaddlePaddle/Paddle/blob/663eca451d0a4a7680c1389bcf9cf4f593df6142/paddle/fluid/operators/mkldnn/activation_mkldnn_op.cc#L93-L95
+
+`auto src_memory_p = handler.AcquireSrcMemory(x);`
+`auto dst_memory_p = x->IsSharedBufferWith(*y) ? 
+           src_memory_p : handler.AcquireDstMemory(y);`
+
 
 
 \* onednn gelu kernel is able to perform in-place execution , but currently gelu op does not support in-place support
