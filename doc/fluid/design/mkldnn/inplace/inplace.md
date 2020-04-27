@@ -72,9 +72,11 @@ When sub-graph is aligned with restrictions then in-place computation can be ena
 1. changing the name of output of in-place to be output node 
 2. renaming output var in output lists of node representing operator
 3. Changing the name of input var in next op inputs list
+4. If next Op is performing in-place computation then we need to updated next op's output as well not to break its
+   in-place computation.
+5. 
 
 
-Additionaly 
 
 
 
