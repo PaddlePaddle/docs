@@ -82,6 +82,5 @@ We can see that there are two *top_k* operators after *elementwise_add* operator
 consists of : input node -> in-place op -> output node -> next op -> next op's output. For presented there will be 8 patterns detected. Important thing is to remember original name of output , before it is renamed , so later we can
 replace this orignal name in all of next op instanced.
 
-
-
 \* onednn gelu kernel is able to perform in-place execution , but currently gelu op does not support in-place support
+\*\* sum kernel is using oneDNN sum primitive that does not provide in-place exection , so in-place computation is done faked through external buffer. So it was not added into oneDNN inplace pass.
