@@ -75,6 +75,7 @@ When sub-graph is aligned with restrictions then in-place computation can be ena
 4. If next Op is performing in-place computation then we need to updated next op's output as well not to break its
    in-place computation.
 5. if there are multiple operators after our in-place operator then we need to update all of them (their input vars). For example in the following picture:
+
 ![](images/multi-output-inplace.svg)   
 
 We can see that there are two *top_k* operators after *elementwise_add* operator that is set to work in-placed. Each of *top_k* is having its own list of input vars, so we need to rename relvant input var to new name. 
