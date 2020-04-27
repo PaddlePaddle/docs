@@ -27,7 +27,7 @@ Hence there are two parts of in-place support:
 - in-place execution support within an operator
 - onednn inplace C-API pass
 
-### in-place execution support within an operator
+#### in-place execution support within an operator
 oneDNN primitive to have in-place execution needs to have same oneDNN memory object passed as input (src) and output(dst). In details we check if holded pointers to allocated buffers are the same for input and output
 and this indicated if we use one oneDNN memory object or two. for example:
 
@@ -36,7 +36,7 @@ and this indicated if we use one oneDNN memory object or two. for example:
 `auto dst_memory_p = x->IsSharedBufferWith(*y) ? 
            src_memory_p : handler.AcquireDstMemory(y);`
 
-### oneDNN in-place pass
-
+#### oneDNN in-place pass
+As mentioned earlier idea of in-place pass is to locate operators with oneDNN kerenels that can perform in-place execution and then modify output node's variables to match input node's variable of the operator.
 
 \* onednn gelu kernel is able to perform in-place execution , but currently gelu op does not support in-place support
