@@ -50,10 +50,11 @@ share a tensor. This is not enough for oneDNN in-place C-API execution as oneDNN
 computation for all required (to have in-place execution) operators of PaddlePaddle and some of operators wouldb have to
 simulare in-place computation through the external buffer which would not bring any benefits, so there is no point enabling those in-place computations for C-API inference.
 
+##### Restrictions
 oneDNN in-place pass is taking adventage of graph pattern detector. So pattern consists of :
 Node(Var 1) -> Node(Op to be inplaced) -> Node(Var2) -> Node (next op after in-placed one) -> Node (Var3)
 Pattern is restricted so that in-placed to be op is of is oneDNN type. Due to fact that some operators have
-more than  onei input and their output may be consumed by more than one operator it is expected that pattern
+more than  one input and their output may be consumed by more than one operator it is expected that pattern
 maybe detected multiple times for the same operator e.g. once for one input, then for second intpu etc..
 
 Just having oneDNN operator capable of in-place is not enough to have in-place execution enabled, hence follwing rules
