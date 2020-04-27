@@ -78,7 +78,9 @@ When sub-graph is aligned with restrictions then in-place computation can be ena
 
 ![](images/multi-output-inplace.svg)   
 
-We can see that there are two *top_k* operators after *elementwise_add* operator that is set to work in-placed. Each of *top_k* is having its own list of input vars, so we need to rename relvant input var to new name. 
+We can see that there are two *top_k* operators after *elementwise_add* operator that is set to work in-placed. Each of *top_k* is having its own list of input vars, so we need to rename relvant input var to new name. As in-place pattern
+consists of : input node -> in-place op -> output node -> next op -> next op's output. For presented there will be 8 patterns detected. Important thing is to remember original name of output , before it is renamed , so later we can
+replace this orignal name in all of next op instanced.
 
 
 
