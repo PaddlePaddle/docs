@@ -6,8 +6,7 @@ Idea of In-place execution is present on following picture:
 ![](images/inplace.svg)   
 
 Examplary graph presents three operators where one of them (type of elementwise_add) is to be performing in-place computation. In-place computation means that input variable(Tensor) is used for both input and output. This means that one of inputs will be overwritten with computational results. In presented picture in-place operator (elementwise_add) is 
-having two input nodes: *b* and *d*  and output *e*. *b* and *e* are underneath represented by a one, shared variable
-*X*. So this means that variable *X* is initially holding some input data and afer the operator computation , input data is lost and replaced by computation's result.
+having two input nodes: *b* and *d*  and output *b*. So *b* is used for input and output and underneath it is represented by a one, shared Tensor. So this means that variable *b* is initially holding some input data and after the operator computation , input data is lost and replaced by computation's result.
 
 Currently assumption is that if operator can have in-place processing then all its kernel (including oneDNN) should be able to work properly in in-place mode. To match this functionality oneDNN integration was extended to support in-place execution for some of its operators:
 - activations
@@ -52,7 +51,7 @@ simulare in-place computation through the external buffer which would not bring 
 
 ##### Restrictions
 oneDNN in-place pass is taking adventage of graph pattern detector. So pattern consists of :
-Node(Var 1) -> Node(Op to be inplaced) -> Node(Var2) -> Node (next op after in-placed one) -> Node (Var3)
+Node (Var 1) -> Node(Op to be inplaced) -> Node(Var2) -> Node (next op after in-placed one) -> Node (Var3)
 Pattern is restricted so that in-placed to be op is of is oneDNN type. Due to fact that some operators have
 more than  one input and their output may be consumed by more than one operator it is expected that pattern
 maybe detected multiple times for the same operator e.g. once for one input, then for second intpu etc..
@@ -66,6 +65,17 @@ are checked by oneDNN in-place pass:
 
 So, in the picture we are seeing that in-place pass is considering to enable in-place execution for softmax oneDNN kernel. All is fine, but next operator after softmax is layer norm. Layer norm is already reusing input of softmax due to some earlier memory optimization pass being applied. If we make softmax op to perform in-place computation, then
 it will also make layer norm to work in-place (b -> a). The thing is that layer norm cannot work in-place, so if we force it do so layer norm will produce invalid result.
+
+##### In-place pass modification to graph when applied
+
+When sub-graph is aligned with restrictions then in-place computation can be enabled. This is done by:
+1. changing the name of output of in-place to be output node 
+2. renaming output var in output lists of node representing operator
+3. Changing the name of input var in next op inputs list
+
+
+Additionaly 
+
 
 
 \* onednn gelu kernel is able to perform in-place execution , but currently gelu op does not support in-place support
