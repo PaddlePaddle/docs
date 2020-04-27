@@ -37,6 +37,18 @@ and this indicated if we use one oneDNN memory object or two. for example:
            src_memory_p : handler.AcquireDstMemory(y);`
 
 #### oneDNN in-place pass
-As mentioned earlier idea of in-place pass is to locate operators with oneDNN kerenels that can perform in-place execution and then modify output node's variables to match input node's variable of the operator.
+As mentioned earlier idea of in-place pass is to locate operators with oneDNN kerenels that can perform in-place execution and then modify output node's variables to match input node's variable of the operator. 
+
+##### Identifying operators with oneDNN kernels capable of in-place execution
+This identification is a result of two checks:
+- Whether operator does have *inplaceinferer* structure
+- Whether operator is on a list of oneDNN's in-place supported operators
+
+*InplaceInferer* is a struct that declares a mapping (one of inputs to one of outputs) indicating that
+considerable operator can perform in-place execution and both vars (mentioned input and output in *InplaceInferer*) will
+share a tensor. This is not enough for oneDNN in-place C-API execution as oneDNN library may not provide in-place 
+computation for all required (to have in-place execution) operators of PaddlePaddle.
+
+
 
 \* onednn gelu kernel is able to perform in-place execution , but currently gelu op does not support in-place support
