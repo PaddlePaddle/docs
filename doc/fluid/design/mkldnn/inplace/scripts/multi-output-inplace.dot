@@ -1,0 +1,25 @@
+digraph G {
+
+  op1[label="elementwise_add"]
+  op2[label="top_k"]
+  op3[label="top_k"]
+  
+  
+  c[label="a"]
+  
+  subgraph cluster_0 {
+  label="in-placed"
+  a -> op1
+  b-> op1
+  op1 -> c
+  }
+  
+  
+  c -> op2
+  c -> op3 
+  
+  op2 -> d
+  op2 -> e
+  op3 -> g
+  op3 -> h
+}
