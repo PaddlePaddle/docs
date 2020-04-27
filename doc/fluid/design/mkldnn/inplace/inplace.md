@@ -32,6 +32,7 @@ oneDNN primitive to have in-place execution needs to have same oneDNN memoery ob
 and this indicated if we use one oneDNN memory object or two. for example:
 
 `auto src_memory_p = handler.AcquireSrcMemory(x);`
+
 `auto dst_memory_p = x->IsSharedBufferWith(*y) ? 
            src_memory_p : handler.AcquireDstMemory(y);`
 
