@@ -28,8 +28,8 @@ default_main_program
         import paddle.fluid as fluid
      
         #示例网络:
-        data = fluid.layers.data(name='image', shape=[3, 224, 224], dtype='float32')
-        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+        data = fluid.data(name='image', shape=[None, 3, 224, 224], dtype='float32')
+        label = fluid.data(name='label', shape=[None, 1], dtype='int64')
     
         conv1 = fluid.layers.conv2d(data, 4, 5, 1, act=None)
         bn1 = fluid.layers.batch_norm(conv1, act='relu')
