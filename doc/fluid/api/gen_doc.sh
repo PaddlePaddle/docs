@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for module in layers dataset clip metrics executor initializer io nets optimizer profiler regularizer transpiler backward profiler unique_name dygraph
+for module in layers dataset clip metrics executor initializer io nets optimizer profiler regularizer transpiler backward profiler unique_name dygraph framework
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name fluid --to_multiple_files True
   python gen_module_index.py ${module}  fluid.${module}
@@ -33,6 +33,8 @@ done
 
 python gen_module_index.py complex.tensor tensor
 python gen_module_index.py complex paddle.complex
+python gen_module_index.py framework paddle.framework
+
 
 python gen_index.py
 
