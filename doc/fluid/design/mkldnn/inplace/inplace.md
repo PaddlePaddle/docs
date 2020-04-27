@@ -56,6 +56,10 @@ Pattern is restricted so that in-placed to be op is of is oneDNN type. Due to fa
 more than  onei input and their output may be consumed by more than one operator it is expected that pattern
 maybe detected multiple times for the same operator e.g. once for one input, then for second intpu etc..
 
+Just having oneDNN operator capable of in-place is not enough to have in-place execution enabled, hence follwing rules
+are checked by oneDNN in-place pass:
+1. If intput node to in-place operator is also an input to diffrent operator , then in-place computation cannot be performed , as there is a risk that other operator consuming in-placed op operator will be executed after in-placed operator and therfore get invalid input data (overwritten by in-place computation)
+2. If after in-placed operator there is another operator that is reusing input var
 
 
 
