@@ -59,11 +59,12 @@ maybe detected multiple times for the same operator e.g. once for one input, the
 Just having oneDNN operator capable of in-place is not enough to have in-place execution enabled, hence follwing rules
 are checked by oneDNN in-place pass:
 1. If intput node to in-place operator is also an input to diffrent operator , then in-place computation cannot be performed , as there is a risk that other operator consuming in-placed op operator will be executed after in-placed operator and therfore get invalid input data (overwritten by in-place computation)
-2. If after in-placed operator there is another operator that is reusing in-place op's input var then in-place cannot happen. Next picture presents the idea.
+2. If after in-placed operator there is another operator that is reusing in-place op's input var then in-place cannot happen unless next op can perform in-place computation. Next picture presents the idea.
 
 ![](images/unwanted-inplace.svg)   
 
-
+So, in the picture we are seeing that in-place pass is considering to enable in-place execution for softmax oneDNN kernel. All is fine, but next operator after softmax is layer norm. Layer norm is already reusing input of softmax due to some earlier memory optimization pass being applied. If we make softmax op to perform in-place computation, then
+it will also make layer norm to work in-place (b -> a). The thing is that layer norm cannot work in-place, so if we force it do so layer norm will produce invalid result.
 
 
 \* onednn gelu kernel is able to perform in-place execution , but currently gelu op does not support in-place support
