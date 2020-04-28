@@ -3,7 +3,7 @@
 randperm
 -------------------------------
 
-.. py:function:: paddle.tensor.random.randperm(n, out=None, dtype="int64", device=None, stop_gradient=True)
+.. py:function:: paddle.tensor.random.randperm(n, out=None, dtype="int64", device=None, stop_gradient=True, seed=0)
 
 该OP返回一个数值在0到n-1、顺序随机的整数排列。
 
@@ -13,6 +13,7 @@ randperm
   - **dtype** (np.dtype|core.VarDesc.VarType|str, optional): 整数排列的数据类型，支持 `int64` 和 `int32` ，默认是 `int64` 。
   - **device** (str, optional): 指定整数排列所在的设备内存。设置为 `cpu` 则保存在 `cpu` 内存中，设置为 `gpu` ，则保存在 `gpu` 内存中，设置为 `None` 则保存在运行的设备内存中。默认是 `None` 。
   - **stop_gradient** (bool, optional): 返回的整数排列是否记录并更新梯度，默认是 `True` 。 
+  - **seed** (int, optional): 设置随机种子。`seed` 等于0时，每次返回不同的整数排列；`seed` 不等于0时，相同的 `seed` 返回相同的整数排列。
 
 返回:  一个数值在0到n-1、顺序随机的整数排列。
 
