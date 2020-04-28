@@ -5,7 +5,7 @@ Idea of In-place execution is present on following picture:
 
 ![](images/inplace.svg)   
 
-Examplary graph presents three operators where one of them (type of elementwise_add) is to be performing in-place computation. In-place computation means that input variable(Tensor) is used for both input and output. This means that one of inputs will be overwritten with computational results. In presented picture in-place operator (elementwise_add) is 
+Exemplary graph presents three operators where one of them (type of elementwise_add) is to be performing in-place computation. In-place computation means that input variable(Tensor) is used for both input and output. This means that one of inputs will be overwritten with computational results. In presented picture in-place operator (elementwise_add) is 
 having two input nodes: *b* and *d*  and output *b*. So *b* is used for input and output and underneath it is represented by a one, shared Tensor. So this means that variable *b* is initially holding some input data and after the operator computation , input data is lost and replaced by computation's result.
 
 Currently assumption is that if operator can have in-place processing then all its kernel (including oneDNN) should be able to work properly in in-place mode. To match this functionality oneDNN integration was extended to support in-place execution for some of its operators:
@@ -69,7 +69,7 @@ it will also make layer norm to work in-place (b -> a). The thing is that layer 
 ##### In-place pass modification to graph when applied
 
 When sub-graph is aligned with restrictions then in-place computation can be enabled. This is done by:
-1. changing the name of output of in-place to be output node 
+1. changing the name of output node of in-place op to be match input node of in-place op.
 2. renaming output var in output lists of node representing operator
 3. Changing the name of input var in next op inputs list
 4. If next Op is performing in-place computation then we need to updated next op's output as well not to break its
