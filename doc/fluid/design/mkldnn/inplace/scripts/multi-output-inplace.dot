@@ -11,7 +11,7 @@ subgraph cluster_before {
   
   subgraph cluster_0 {
   style=solid
-  label="in-placed"
+  label="to be in-placed"
   a -> op1
   b-> op1
   op1 -> c
@@ -44,7 +44,7 @@ subgraph cluster_after {
   
   subgraph cluster_0b {
   style=solid
-  label="in-placed"
+  label="applied in-placed"
   ab -> op1b
   bb-> op1b
   op1b -> cb

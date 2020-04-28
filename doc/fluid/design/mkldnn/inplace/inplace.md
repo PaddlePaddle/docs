@@ -74,7 +74,7 @@ When sub-graph is aligned with restrictions then in-place computation can be ena
 3. Changing the name of input var in next op inputs list
 4. If next Op is performing in-place computation then we need to updated next op's output as well not to break its
    in-place computation.
-5. if there are multiple operators after our in-place operator then we need to update all of them (their input vars). For example in the following picture:
+5. if there are multiple operators after our in-place operator then we need to update all of them (their input vars). Idea is presented in the following picture:
 
 ![](images/multi-output-inplace.svg)   
 
