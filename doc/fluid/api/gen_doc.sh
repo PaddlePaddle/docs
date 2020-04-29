@@ -38,7 +38,6 @@ done
 python gen_doc.py --module_name "" --module_prefix "" --output nn --output_name nn --to_multiple_files True
 python gen_module_index.py nn paddle.nn
 
-
 # index.rst
 python gen_index.py
 
