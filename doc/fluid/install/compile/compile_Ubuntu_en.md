@@ -151,7 +151,7 @@ Please follow the steps below to install:
 
 Congratulations, now you have completed the compilation and installation of PaddlePaddle. You only need to enter the Docker container and run PaddlePaddle to start using. For more Docker usage, please refer to [official docker documentation](https://docs.docker.com)
 
-> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
+> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get update && apt-get install -y vim` in the container.
 
 <a name="ubt_source"></a>
 ### ***Local compilation***
