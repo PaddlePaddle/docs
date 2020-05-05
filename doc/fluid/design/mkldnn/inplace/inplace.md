@@ -5,7 +5,7 @@ Idea of In-place execution is present on following picture:
 
 ![](images/inplace.svg)   
 
-Exemplary graph presents three operators where one of them (type of elementwise_add) is to be performing in-place computation. In-place computation means that input variable(Tensor) is used for both input and output. This means that one of inputs will be overwritten with computational results. In presented picture in-place operator (elementwise_add) is 
+Exemplary graph presents three operators where one of them (type of elementwise_add) is to be performing in-place computation. In-place computation means that input variable (Tensor) is used for both input and output. This means that one of inputs will be overwritten with computational results. In presented picture in-place operator (elementwise_add) is 
 having two input nodes: *b* and *d*  and output *b*. So *b* is used for input and output and underneath it is represented by a one, shared Tensor. So this means that variable *b* is initially holding some input data and after the operator computation , input data is lost and replaced by computation's result.
 
 Currently assumption is that if operator can have in-place processing then all its kernel (including oneDNN) should be able to work properly in in-place mode. To match this functionality oneDNN integration was extended to support in-place execution for some of its operators:
