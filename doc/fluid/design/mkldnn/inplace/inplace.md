@@ -69,9 +69,9 @@ it will also make layer norm to work in-place (b -> a). The thing is that layer 
 ##### In-place pass modification to graph when applied
 
 When sub-graph is aligned with restrictions then in-place computation can be enabled. This is done by:
-1. changing the name of output node of in-place op to be match input node of in-place op.
-2. renaming output var in output lists of node representing operator
-3. Changing the name of input var in next op inputs list
+1. Changing the name of output node of in-place op to be match input node of in-place op.
+2. Renaming output var in output lists of node representing operator.
+3. Changing the name of input var in next op inputs list.
 4. If next Op is performing in-place computation then we need to updated next op's output as well not to break its
    in-place computation.
 5. if there are multiple operators after our in-place operator then we need to update all of them (their input vars). Idea is presented in the following picture:
