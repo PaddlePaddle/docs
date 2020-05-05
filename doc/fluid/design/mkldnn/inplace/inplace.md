@@ -15,7 +15,7 @@ Currently assumption is that if operator can have in-place processing then all i
 - gelu*
 - sum**
 
-Adventages of in-place computation is:
+Adventages of in-place computation are:
 * lower memory usage.
 * improved performance of operators.
 
