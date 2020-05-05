@@ -44,7 +44,7 @@ This identification is a result of two checks:
 - Whether operator is on a list of oneDNN's in-place supported operators
 
 *InplaceInferer* is a struct that declares a mapping (one of inputs to one of outputs) indicating that
-considerable operator can perform in-place execution and both vars (mentioned input and output in *InplaceInferer*) will
+considered operator can perform in-place execution and both vars (mentioned input and output in *InplaceInferer*) will
 share a tensor. This is not enough for oneDNN in-place C-API execution as oneDNN library may not provide in-place 
 computation for all required (to have in-place execution) operators of PaddlePaddle and some of operators would have to
 simulate in-place computation through the external buffer which would not bring any benefits, so there is no point enabling those in-place computations for C-API inference.
