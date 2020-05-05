@@ -28,7 +28,7 @@ Hence there are two parts of in-place support:
 
 #### in-place execution support within an operator
 For in-place execution, oneDNN primitive needs to have the same oneDNN memory object passed as input (src) and output (dst). More precisely, we check if pointers to allocated buffers are the same for input and output
-and this indicated if we use one oneDNN memory object or two. for example:
+and this indicates if we use one oneDNN memory object or two. For example:
 
 `auto src_memory_p = handler.AcquireSrcMemory(x);`
 
