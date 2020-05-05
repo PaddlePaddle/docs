@@ -63,7 +63,7 @@ are checked by oneDNN in-place pass:
 
 ![](images/unwanted-inplace.svg)   
 
-So, in the picture we are seeing that in-place pass is considering to enable in-place execution for softmax oneDNN kernel. All is fine, but next operator after softmax is layer norm. Layer norm is already reusing input of softmax due to some earlier memory optimization pass being applied. If we make softmax op to perform in-place computation, then
+In the picture we are seeing that in-place pass is considering to enable in-place execution for softmax oneDNN kernel. All is fine, but next operator after softmax is layer norm. Layer norm is already reusing input of softmax due to some earlier memory optimization pass being applied. If we make softmax op to perform in-place computation, then
 it will also make layer norm to work in-place (b -> a). The thing is that layer norm cannot work in-place, so if we force it do so layer norm will produce invalid result.
 
 ##### In-place pass modification to graph when applied
