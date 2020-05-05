@@ -19,7 +19,7 @@ Adventages of in-place computation are:
 * lower memory usage
 * improved performance of operators
 
-To have in-place computation We need to analyze graph to search for where in-place execution could happen
+To have in-place computation, we need to analyze graph to search for where in-place execution could happen
 and then make some of variables to be shared by input and output of in-place capable operator.
 
 Hence there are two parts of in-place support:
