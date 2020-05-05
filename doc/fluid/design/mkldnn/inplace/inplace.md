@@ -16,15 +16,15 @@ Currently assumption is that if operator can have in-place processing then all i
 - sum**
 
 Adventages of in-place computation are:
-* lower memory usage.
-* improved performance of operators.
+* lower memory usage
+* improved performance of operators
 
 To have in-place computation We need to analyze graph to search for where in-place execution could happen
 and then make some of variables to be shared by input and output of in-place capable operator.
 
 Hence there are two parts of in-place support:
 - in-place execution support within an operator
-- onednn inplace C-API pass
+- oneDNN inplace C-API pass
 
 #### in-place execution support within an operator
 For in-place execution, oneDNN primitive needs to have the same oneDNN memory object passed as input (src) and output (dst). More precisely, we check if pointers to allocated buffers are the same for input and output
@@ -40,7 +40,7 @@ As mentioned earlier, idea of in-place pass is to locate operators with oneDNN k
 
 ##### Identifying operators with oneDNN kernels capable of in-place execution
 This identification is a result of two checks:
-- Whether operator does have *inplaceinferer* structure
+- Whether operator does have *inplaceInferer* structure
 - Whether operator is on a list of oneDNN's in-place supported operators
 
 *InplaceInferer* is a struct that declares a mapping (one of inputs to one of outputs) indicating that
@@ -82,7 +82,6 @@ We can see that there are two *top_k* operators after *elementwise_add* operator
 consists of: input node -> in-place op -> output node -> next op -> next op's output. For presented graph, there will be 8 patterns detected. Important thing is to remember original name of output, before it is renamed, so later we can
 replace this original name in all of next op instances.
 
-\* oneDNN gelu kernel is able to perform in-place execution, but currently gelu op does not support in-place.
-
+\* oneDNN gelu kernel is able to perform in-place execution, but currently gelu op does not support in-place execution.
 
 \*\* sum kernel is using oneDNN sum primitive that does not provide in-place exection, so in-place computation is done faked through external buffer. So it was not added into oneDNN inplace pass.
