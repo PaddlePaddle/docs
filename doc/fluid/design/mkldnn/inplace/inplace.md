@@ -36,7 +36,7 @@ and this indicates if we use one oneDNN memory object or two. For example:
            src_memory_p : handler.AcquireDstMemory(y);`
 
 #### oneDNN in-place pass
-As mentioned earlier idea of in-place pass is to locate operators with oneDNN kerenels that can perform in-place execution and then modify output node's variables to match input node's variable of the operator. 
+As mentioned earlier, idea of in-place pass is to locate operators with oneDNN kerenels that can perform in-place execution and then modify output node's variables to match input node's variable of the operator. 
 
 ##### Identifying operators with oneDNN kernels capable of in-place execution
 This identification is a result of two checks:
