@@ -1,7 +1,7 @@
 ## Introduction
 
 PaddlePaddle is implementing concept of in-place execution of some of operators.
-Idea of In-place execution is present on following picture:
+The idea of in-place execution is present on following picture:
 
 ![](images/inplace.svg)   
 
