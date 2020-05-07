@@ -109,7 +109,7 @@ Please follow the steps below to install:
 
     `mkdir -p /paddle/build && cd /paddle/build`
 
-7. Use the following command to install the dependencies: 
+7. Use the following command to install the dependencies:
 
 
         For Python2: pip install protobuf
@@ -143,9 +143,15 @@ Please follow the steps below to install:
 
     > Use multicore compilation
 
+    Note: if compile fail, normally because you did config git properly,  read the following blog: [stackoverflow](hhttps://stackoverflow.com/questions/35821245/github-server-certificate-verification-failed).
+
+    Or you can just disable SSL verification, (if the project does not require a high level of security other than login/password) by typing:
+
+    `git config --global http.sslverify false`
+
 10. After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package: `cd /paddle/build/python/dist`
 
-11. Install the compiled `.whl` package on the current machine or target machine: 
+11. Install the compiled `.whl` package on the current machine or target machine:
 
         For Python2: pip install -U (whl package name)
         For Python3: pip3.5 install -U (whl package name)
