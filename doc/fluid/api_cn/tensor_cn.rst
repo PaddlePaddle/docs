@@ -39,7 +39,6 @@ paddle.tensor
     tensor_cn/kron_cn.rst
     tensor_cn/linspace_cn.rst
     tensor_cn/log1p_cn.rst
-    tensor_cn/addcmul_cn.rst
     tensor_cn/logsumexp_cn.rst
     tensor_cn/math_cn.rst
     tensor_cn/matmul_cn.rst
