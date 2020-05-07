@@ -1,7 +1,7 @@
 digraph G {
 
-  e1[label="softmax"]
-  e2[label="layer_norm"]
+  e1[label="softmax\n<oneDNN>"]
+  e2[label="layer_norm\n<Paddle CPU>"]
   
   c[label="b"]
   e[label="a"]

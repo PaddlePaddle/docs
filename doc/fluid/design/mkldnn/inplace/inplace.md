@@ -51,7 +51,7 @@ simulate in-place computation through the external buffer which would not bring 
 
 ##### Restrictions
 oneDNN in-place pass is taking advantage of graph pattern detector. So pattern consists of:
-Node (Var 1) -> Node (Op to be inplaced) -> Node (Var2) -> Node (next op after in-placed one) -> Node (Var3)
+Node (Var 1) -> Node (oneDNN Op to be inplaced) -> Node (Var2) -> Node (next op - any typei, oneDNN/native CPU - after in-placed one) -> Node (Var3)
 Pattern is restricted so that in-placed to be op is of oneDNN type. Due to fact that some operators have
 more than one input and their output may be consumed by more than one operator it is expected that pattern
 maybe detected multiple times for the same operator e.g. once for one input, then for second input etc..
@@ -63,8 +63,8 @@ are checked by oneDNN in-place pass:
 
 ![](images/unwanted-inplace.svg)   
 
-In the picture we are seeing that in-place pass is considering to enable in-place execution for softmax oneDNN kernel. All is fine, but next operator after softmax is layer norm. Layer norm is already reusing input of softmax due to some earlier memory optimization pass being applied. If we make softmax op to perform in-place computation, then
-it will also make layer norm to work in-place (b -> a). The thing is that layer norm cannot work in-place, so if we force it do so layer norm will produce invalid result.
+In the picture we are seeing that in-place pass is considering to enable in-place execution for softmax oneDNN kernel. All is fine, but next operator after softmax is layer norm (non-oneDNN). Layer norm is already reusing input of softmax due to some earlier memory optimization pass being applied. If we make softmax op to perform in-place computation, then
+it will also make layer norm to work in-place (b -> a). The thing is that layer norm cannot work in-place (InplaceInferer is not present), so if we force it do so layer norm will produce invalid result.
 
 ##### In-place pass modification to graph when applied
 
@@ -79,7 +79,17 @@ When sub-graph is aligned with restrictions then in-place computation can be ena
 ![](images/multi-output-inplace.svg)   
 
 We can see that there are two *top_k* operators after *elementwise_add* operator that is set to work in-placed. Each of *top_k* is having its own list of input vars, so we need to rename relevant input var to new name. As in-place pattern
-consists of: input node -> in-place op -> output node -> next op -> next op's output. For presented graph, there will be 8 patterns detected. Important thing is to remember original name of output, before it is renamed, so later we can
+consists of: input node -> in-place op -> output node -> next op -> next op's output. For presented graph, there will be 8 patterns detected:
+- b -> elementwise_add -> c -> top_k (left one) -> d
+- b -> elementwise_add -> c -> top_k (left one) -> e
+- b -> elementwise_add -> c -> top_k (right one) -> g
+- b -> elementwise_add -> c -> top_k (right one) -> h
+- a -> elementwise_add -> c -> top_k (left one) -> d
+- a -> elementwise_add -> c -> top_k (left one) -> e
+- a -> elementwise_add -> c -> top_k (right one) -> g
+- a -> elementwise_add -> c -> top_k (right one) -> h
+
+Important thing is to remember original name of output, before it is renamed, so later we can
 replace this original name in all of next op instances.
 
 \* oneDNN gelu kernel is able to perform in-place execution, but currently gelu op does not support in-place execution.
