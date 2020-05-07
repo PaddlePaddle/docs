@@ -90,7 +90,7 @@ Please follow the steps below to install:
 
 4. After entering Docker, enter the Paddle Directory:
 
-    `cd paddle`
+    `cd ../paddle`
 
 5. Switch to a more stable release branch for compilation:
 
