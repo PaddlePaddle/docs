@@ -51,7 +51,7 @@ simulate in-place computation through the external buffer which would not bring 
 
 ##### Restrictions
 oneDNN in-place pass is taking advantage of graph pattern detector. So pattern consists of:
-Node (Var 1) -> Node (oneDNN Op to be inplaced) -> Node (Var2) -> Node (next op - any typei, oneDNN/native CPU - after in-placed one) -> Node (Var3)
+Node (Var 1) -> Node (oneDNN Op to be inplaced) -> Node (Var2) -> Node (next op - any type, oneDNN/native CPU - after in-placed one) -> Node (Var3)
 Pattern is restricted so that in-placed to be op is of oneDNN type. Due to fact that some operators have
 more than one input and their output may be consumed by more than one operator it is expected that pattern
 maybe detected multiple times for the same operator e.g. once for one input, then for second input etc..
