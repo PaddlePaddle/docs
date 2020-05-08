@@ -45,7 +45,7 @@ addmm
     out = paddle.addmm( input=input, x=x, y=y, alpha=5.0, beta=0.5 )
 
     data_x = np.ones((2, 2)).astype(np.float32)
-    data_y = np.ones((2, 2)).astype(np.float32)
+    data_y = np.ones((2, 2)).astype(np.cfloat32)
     data_input = np.ones((2, 2)).astype(np.float32)
 
     place =  fluid.CUDAPlace(0) if fluid.core.is_compiled_with_cuda() else fluid.CPUPlace()
