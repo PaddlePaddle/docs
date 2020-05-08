@@ -3,7 +3,7 @@
 roll
 -------------------------------
 
-.. py:function:: paddle.roll(input, shifts, dims=None):
+.. py:function:: paddle.fluid.layers.roll(input, shifts, dims=None):
 
 该OP沿着指定维度对输入 ``input`` 进行循环滚动，当元素移动到最后位置时，会从第一个位置重新插入。如果 ``dims`` 为 ``None`` ，则输入在被循环滚动之前，会先展平成 ``1-D Tensor`` ，滚动操作完成后恢复成原来的形状。
 
@@ -28,12 +28,12 @@ roll
                             [7.0, 8.0, 9.0]])
         with fluid.dygraph.guard():
             x = fluid.dygraph.to_variable(data)
-            out_z1 = paddle.roll(x, shifts=1)
+            out_z1 = fluid.layers.roll(x, shifts=1)
             print(out_z1.numpy())
             #[[9. 1. 2.]
             # [3. 4. 5.]
             # [6. 7. 8.]]
-            out_z2 = paddle.roll(x, shifts=1, dims=0)
+            out_z2 = fluid.layers.roll(x, shifts=1, dims=0)
             print(out_z2.numpy())
             #[[7. 8. 9.]
             # [1. 2. 3.]

@@ -3,7 +3,7 @@
 kron
 -------------------------------
 
-.. py:function:: paddle.tensor.kron(x, y, out=None, name=None)
+.. py:function:: paddle.fluid.layers.kron(x, y, out=None, name=None)
 
 
 Kronecker Product 算子。
@@ -61,7 +61,7 @@ Kronecker Product 算子。
   with dg.guard(place):
       a_var = dg.to_variable(a)
       b_var = dg.to_variable(b)
-      c_var = paddle.kron(a_var, b_var)
+      c_var = fluid.layers.kron(a_var, b_var)
       c_np = c_var.numpy()
   print(c_np)
 

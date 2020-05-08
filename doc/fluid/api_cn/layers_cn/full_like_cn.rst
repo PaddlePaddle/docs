@@ -3,7 +3,7 @@
 full_like
 -------------------------------
 
-.. py:function:: paddle.full_like(input, fill_value, out=None, dtype=None, device=None, stop_gradient=True, name=None)
+.. py:function:: paddle.fluid.layers.full_like(input, fill_value, out=None, dtype=None, device=None, stop_gradient=True, name=None)
 
 该OP创建一个和input具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
 
@@ -28,7 +28,7 @@ full_like
     import paddle.fluid as fluid
     import numpy as np
     input = fluid.data(name='input', dtype='float32', shape=[2, 3])
-    output = paddle.full_like(input, 2.0)
+    output = fluid.layers..full_like(input, 2.0)
     exe = fluid.Executor(fluid.CPUPlace())
     exe.run(fluid.default_startup_program())
     img=np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)

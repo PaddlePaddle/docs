@@ -3,7 +3,7 @@
 randn
 -------------------------------
 
-.. py:function:: paddle.tensor.random.randn(shape, out=None, dtype=None, device=None, stop_gradient=True, name=None)
+.. py:function:: paddle.fluid.layers.randn(shape, out=None, dtype=None, device=None, stop_gradient=True, name=None)
 
 该 API 用于生成数据符合标准正态随机分布（均值为 0，方差为 1 的正态随机分布）的 Tensor。
 
@@ -26,7 +26,7 @@ randn
      # declarative mode
      import paddle
      import paddle.fluid as fluid
-     data = paddle.randn([2, 4])
+     data = fluid.layers.randn([2, 4])
      place = fluid.CPUPlace()
      exe = fluid.Executor(place)
      res, = exe.run(fluid.default_main_program(), feed={}, fetch_list=[data])
@@ -42,7 +42,7 @@ randn
     import paddle.fluid.dygraph as dg
     place = fluid.CPUPlace()
     with dg.guard(place) as g:
-        x = paddle.randn([2, 4])
+        x = fluid.layers.randn([2, 4])
         x_np = x.numpy()
         print(x_np)
         # [[ 1.5149173  -0.26234224 -0.592486    1.4523455 ]

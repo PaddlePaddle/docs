@@ -3,7 +3,7 @@
 cross
 -------------------------------
 
-.. py:function:: paddle.cross(input, other, dim=None)
+.. py:function:: paddle.fluid.layers.cross(input, other, dim=None)
 
 该OP返回在 ``dim`` 维度上，两个张量 ``input`` 和 ``other`` 的向量积（叉积）。 ``input`` 和 ``other`` 必须有相同的形状，
 且指定的 ``dim`` 维上 ``size`` 必须为3，如果 ``dim`` 未指定，默认选取第一个 ``size`` 等于3的维度。
@@ -34,12 +34,12 @@ cross
         with fluid.dygraph.guard():
             x = fluid.dygraph.to_variable(data_x)
             y = fluid.dygraph.to_variable(data_y)
-            out_z1 = paddle.cross(x, y)
+            out_z1 = fluid.layers.cross(x, y)
             print(out_z1.numpy())
             #[[-1. -1. -1.]
             # [ 2.  2.  2.]
             # [-1. -1. -1.]]
-            out_z2 = paddle.cross(x, y, dim=1)
+            out_z2 = fluid.layers.cross(x, y, dim=1)
             print(out_z2.numpy())
             #[[0. 0. 0.]
             # [0. 0. 0.]

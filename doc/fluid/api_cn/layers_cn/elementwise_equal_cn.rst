@@ -3,7 +3,7 @@
 elementwise_equal
 -------------------------------
 
-.. py:function:: paddle.elementwise_equal(x, y, name=None)
+.. py:function:: paddle.fluid.layers.elementwise_equal(x, y, name=None)
 
 该OP返回 :math:`x==y` 逐元素比较x和y是否相等。
 
@@ -26,4 +26,4 @@ elementwise_equal
     
     label = fluid.layers.assign(np.array([3, 3], dtype="int32"))
     limit = fluid.layers.assign(np.array([3, 2], dtype="int32"))
-    out1 = paddle.elementwise_equal(x=label, y=limit) #out1=[True, False]
+    out1 = fluid.layers.elementwise_equal(x=label, y=limit) #out1=[True, False]

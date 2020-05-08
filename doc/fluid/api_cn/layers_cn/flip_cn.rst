@@ -3,7 +3,7 @@
 flip
 -------------------------------
 
-.. py:function:: paddle.flip(input, dims, name=None):
+.. py:function:: paddle.fluid.layers.flip(input, dims, name=None):
 
 该OP沿指定轴反转n维tensor.
 
@@ -45,6 +45,6 @@ flip
     img = np.arange(12).reshape((3,2,2)).astype(np.float32)
     with fluid.dygraph.guard():
       inputs = fluid.dygraph.to_variable(img)
-      ret = paddle.flip(inputs, [0, 1])
+      ret = fluid.layers.flip(inputs, [0, 1])
       print(ret.numpy()) # [[[10,11][8, 9]],[[6, 7],[4, 5]] [[2, 3],[0, 1]]]
 

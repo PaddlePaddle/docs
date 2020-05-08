@@ -3,7 +3,7 @@
 log1p
 -------------------------------
 
-.. py:function:: paddle.tensor.log1p(x, out=None, name=None)
+.. py:function:: paddle.fluid.layers.log1p(x, out=None, name=None)
 
 
 该OP计算Log1p（加一的自然对数）结果。
@@ -31,7 +31,7 @@ log1p
  import numpy as np
 
  x = fluid.data(name="x", shape=[2,1], dtype="float32")
- res = paddle.log1p(x) # paddle.log1p等价于 paddle.tensor.log1p
+ res = fluid.layers.log1p(x) 
 
  # 举例选择CPU计算环境
  exe = fluid.Executor(fluid.CPUPlace())

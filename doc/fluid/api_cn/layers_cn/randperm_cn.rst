@@ -3,7 +3,7 @@
 randperm
 -------------------------------
 
-.. py:function:: paddle.tensor.random.randperm(n, out=None, dtype="int64", device=None, stop_gradient=True, seed=0)
+.. py:function:: paddle.fluid.layers.randperm(n, out=None, dtype="int64", device=None, stop_gradient=True, seed=0)
 
 该OP返回一个数值在0到n-1、顺序随机的整数排列。
 
@@ -31,16 +31,16 @@ randperm
     # the random seed in computer, so the output in the next example
     # will be change.
     with fluid.dygraph.guard():
-        out_1 = paddle.randperm(6)
+        out_1 = fluid.layers.randperm(6)
         print(out_1.numpy())  # Random permutation, for example [2 4 5 0 3 1]
 
         out_2 = fluid.dygraph.to_variable(
 				np.array([0, 1, 2, 3])).astype(np.int64)
-        paddle.randperm(6, out_2)
+        fluid.layers.randperm(6, out_2)
         print(out_2.numpy())  # Random permutation, for example [5 0 2 4 1 3]
 
-        out_3 = paddle.randperm(6, dtype="int32", device="cpu")
+        out_3 = fluid.layers.randperm(6, dtype="int32", device="cpu")
         print(out_3.numpy())  # Random permutation, for example [3 1 4 2 5 0]
 
-        out_4 = paddle.randperm(6, device="cpu", stop_gradient=True)
+        out_4 = fluid.layers.randperm(6, device="cpu", stop_gradient=True)
         print(out_4.numpy())  # Random permutation, for example [3 1 5 2 0 4]     

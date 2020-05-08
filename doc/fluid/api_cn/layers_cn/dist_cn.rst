@@ -3,7 +3,7 @@
 dist
 -------------------------------
 
-.. py:function:: paddle.tensor.linalg.dist(x, y, p=2)
+.. py:function:: paddle.fluid.layers.linalg.dist(x, y, p=2)
 
 该OP用于计算 `(x-y)` 的 p 范数（p-norm），需要注意这不是严格意义上的范数，仅作为距离的度量。输入 `x` 和 `y` 的形状（shape）必须是可广播的（broadcastable）。其含义如下，详情请参考 `numpy的广播概念 <https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html>`_ ：
 
@@ -65,11 +65,11 @@ z (4-D Tensor):  8 x 7 x 6 x 5
     with fluid.dygraph.guard():
         x = fluid.dygraph.to_variable(np.array([[3, 3],[3, 3]]).astype(np.float32))
         y = fluid.dygraph.to_variable(np.array([[3, 3],[3, 1]]).astype(np.float32))
-        out = paddle.dist(x, y, 0)
+        out = fluid.layers.dist(x, y, 0)
         print(out.numpy()) # out = [1.]
-        out = paddle.dist(x, y, 2)
+        out = fluid.layers.dist(x, y, 2)
         print(out.numpy()) # out = [2.]
-        out = paddle.dist(x, y, float("inf"))
+        out = fluid.layers.dist(x, y, float("inf"))
         print(out.numpy()) # out = [2.]
-        out = paddle.dist(x, y, float("-inf"))
+        out = fluid.layers.dist(x, y, float("-inf"))
         print(out.numpy()) # out = [0.]

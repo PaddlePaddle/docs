@@ -3,7 +3,7 @@
 index_select
 -------------------------------
 
-.. py:function:: paddle.index_select(input, index, dim=0)
+.. py:function:: paddle.fluid.layers.index_select(input, index, dim=0)
 
 该OP沿着指定维度 ``dim`` 对输入 ``input`` 进行索引，取 ``index`` 中指定的相应项，然后返回到一个新的张量。这里 ``index`` 是一个 ``1-D`` 张量。除 ``dim`` 维外，返回的张量其余维度大小同输入 ``input`` ， ``dim`` 维大小等于 ``index`` 的大小。
         
@@ -31,12 +31,12 @@ index_select
         with fluid.dygraph.guard():
             x = fluid.dygraph.to_variable(data)
             index = fluid.dygraph.to_variable(data_index)
-            out_z1 = paddle.index_select(x, index)
+            out_z1 = fluid.layers.index_select(x, index)
             print(out_z1.numpy())
             #[[1. 2. 3. 4.]
             # [5. 6. 7. 8.]
             # [5. 6. 7. 8.]]
-            out_z2 = paddle.index_select(x, index, dim=1)
+            out_z2 = fluid.layers.index_select(x, index, dim=1)
             print(out_z2.numpy())
             #[[ 1.  2.  2.]
             # [ 5.  6.  6.]

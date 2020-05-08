@@ -3,7 +3,7 @@
 arange
 -------------------------------
 
-.. py:function:: paddle.tensor.arange(start, end, step=1, dtype=None, name=None)
+.. py:function:: paddle.fluid.layers.arange(start, end, step=1, dtype=None, name=None)
 
 该API根据step均匀分隔给定数值区间[start, end)，并返回该分隔结果。
 
@@ -24,6 +24,6 @@ arange
     import paddle
     import paddle.fluid as fluid
     with fluid.dygraph.guard():
-                 x = paddle.arange(0, 6, 2) 
+                 x = fluid.layers.arange(0, 6, 2) 
                  # x: [0, 2, 4]
                  # x dtype: float32

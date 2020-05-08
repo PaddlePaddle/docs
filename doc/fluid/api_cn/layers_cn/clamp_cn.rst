@@ -3,7 +3,7 @@
 clamp
 -------------------------------
 
-.. py:function:: paddle.clamp(input, min=None, max=None, output=None, name=None)
+.. py:function:: paddle.fluid.layers.clamp(input, min=None, max=None, output=None, name=None)
 
 该OP将输入的所有元素进行剪裁，使得输出元素限制在[min, max]内，具体公式如下：
 
@@ -34,8 +34,8 @@ clamp
                     [4.5,6.4]]).astype('float32')
     with fluid.dygraph.guard():
         x1 = fluid.dygraph.to_variable(in1)
-        out1 = paddle.tensor.clamp(x1, min=3.5, max=5.0)
-        out2 = paddle.tensor.clamp(x1, min=2.5)
+        out1 = fluid.layers.clamp(x1, min=3.5, max=5.0)
+        out2 = fluid.layers.clamp(x1, min=2.5)
         print(out1.numpy())
         # [[3.5, 3.5]
         # [4.5, 5.0]]

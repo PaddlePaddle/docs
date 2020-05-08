@@ -3,7 +3,7 @@
 t
 -------------------------------
 
-.. py:function:: paddle.tensor.t(input, name=None)
+.. py:function:: paddle.fluid.layers.t(input, name=None)
 
 该OP对小于等于2维的Tensor进行数据转置。0维和1维Tensor返回本身，2维Tensor等价于perm设置为0，1的 :ref:`cn_api_fluid_layers_transpose` 函数。
 
@@ -21,16 +21,16 @@ t
 
         # 例1 (0-D tensor)
         x = tensor([0.79])
-        paddle.t(x) = tensor([0.79])
+        fluid.layers.t(x) = tensor([0.79])
 
         # 例2 (1-D tensor)
         x = tensor([0.79, 0.84, 0.32])
-        paddle.t(x) = tensor([0.79, 0.84, 0.32])
+        fluid.layers.t(x) = tensor([0.79, 0.84, 0.32])
 
         # 例3 (2-D tensor)
         x = tensor([0.79, 0.84, 0.32],
                     [0.64, 0.14, 0.57])
-        paddle.t(x) = tensor([0.79, 0.64],
+        fluid.layers.t(x) = tensor([0.79, 0.64],
                             [0.84, 0.14],
                             [0.32, 0.57])
 
@@ -42,7 +42,7 @@ t
     import paddle
     import paddle.fluid as fluid
     x = fluid.data(name='x', shape=[2, 3], dtype='float32')
-    x_transposed = paddle.t(x) # paddle.t 等价于 paddle.tensor.t
+    x_transposed = fluid.layers.t(x) # paddle.t 等价于 paddle.tensor.t
     print(x_transposed.shape)
     #(3L, 2L)
 

@@ -3,7 +3,7 @@
 nonzero
 -------------------------------
 
-.. py:function:: paddle.nonzero(input, as_tuple=False)
+.. py:function:: paddle.fluid.layers.nonzero(input, as_tuple=False)
 
 该OP返回输入 ``input`` 中非零元素的坐标。如果输入 ``input`` 有 ``n`` 维，共包含 ``z`` 个非零元素，当 ``as_tuple = False`` 时，
 返回结果是一个 ``shape`` 等于 ``[z x n]`` 的 ``Tensor`` , 第 ``i`` 行代表输入中第 ``i`` 个非零元素的坐标；当 ``as_tuple = True`` 时，
@@ -33,12 +33,12 @@ nonzero
             x1 = fluid.dygraph.to_variable(data1)
             x2 = fluid.dygraph.to_variable(data2)
             x3 = fluid.dygraph.to_variable(data3)
-            out_z1 = paddle.nonzero(x1)
+            out_z1 = fluid.layers.nonzero(x1)
             print(out_z1.numpy())
             #[[0 0]
             # [1 1]
             # [2 2]]
-            out_z1_tuple = paddle.nonzero(x1, as_tuple=True)
+            out_z1_tuple = fluid.layers.nonzero(x1, as_tuple=True)
             for out in out_z1_tuple:
                 print(out.numpy())
             #[[0]
@@ -47,19 +47,19 @@ nonzero
             #[[0]
             # [1]
             # [2]]
-            out_z2 = paddle.nonzero(x2)
+            out_z2 = fluid.layers.nonzero(x2)
             print(out_z2.numpy())
             #[[1]
             # [3]]
-            out_z2_tuple = paddle.nonzero(x2, as_tuple=True)
+            out_z2_tuple = fluid.layers.nonzero(x2, as_tuple=True)
             for out in out_z2_tuple:
                 print(out.numpy())
             #[[1]
             # [3]]
-            out_z3 = paddle.nonzero(x3)
+            out_z3 = fluid.layers.nonzero(x3)
             print(out_z3.numpy())
             #[]
-            out_z3_tuple = paddle.nonzero(x3, as_tuple=True)
+            out_z3_tuple = fluid.layers.nonzero(x3, as_tuple=True)
             for out in out_z3_tuple:
                 print(out.numpy())
             #[]         

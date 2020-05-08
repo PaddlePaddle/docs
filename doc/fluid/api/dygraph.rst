@@ -53,7 +53,7 @@ fluid.dygraph
     dygraph/Pool2D.rst
     dygraph/PRelu.rst
     dygraph/prepare_context.rst
-    dygraph/ProgramTranslator.rstdeclarative
+    dygraph/ProgramTranslator.rst
     dygraph/save_dygraph.rst
     dygraph/Sequential.rst
     dygraph/SpectralNorm.rst

@@ -3,7 +3,7 @@
 logsumexp
 -------------------------------
 
-.. py:function:: paddle.tensor.math.logsumexp(x, dim=None, keepdim=False, out=None, name=None)
+.. py:function:: paddle.fluid.layers.logsumexp(x, dim=None, keepdim=False, out=None, name=None)
 
 该OP对输入Tensor的元素以e为底做指数运算，然后根据指定维度做求和之后取自然对数
 
@@ -32,7 +32,7 @@ logsumexp
     with fluid.dygraph.guard():
       np_x = np.random.uniform(0.1, 1, [10]).astype(np.float32)
       x = fluid.dygraph.to_variable(np_x)
-      print(paddle.logsumexp(x).numpy())
+      print(fluid.layers.logsumexp(x).numpy())
 
 **代码示例2**
 
@@ -45,5 +45,5 @@ logsumexp
     with fluid.dygraph.guard():
         np_x = np.random.uniform(0.1, 1, [2, 3, 4]).astype(np.float32)
         x = fluid.dygraph.to_variable(np_x)
-        print(paddle.logsumexp(x, dim=1).numpy())
-        print(paddle.logsumexp(x, dim=[0, 2]).numpy())
+        print(fluid.layers.logsumexp(x, dim=1).numpy())
+        print(fluid.layers.logsumexp(x, dim=[0, 2]).numpy())
