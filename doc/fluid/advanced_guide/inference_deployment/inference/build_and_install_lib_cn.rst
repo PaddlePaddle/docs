@@ -39,19 +39,14 @@ WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需�
 
 建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
 
-首先从github拉取最新代码并安装nccl
+首先从github拉取最新代码
 
 .. code-block:: bash
 
   git clone https://github.com/paddlepaddle/paddle
   # 建议使用git checkout切换到Paddle稳定的版本，如：
-  git checkout v1.6.2
+  git checkout v1.7.2
 
-  git clone https://github.com/NVIDIA/nccl.git
-  make -j4
-  make install
-
-**note**： 单卡机器上不会用到nccl但仍存在依赖， 后续会考虑将此依赖去除。
 
 **Server端预测库源码编译**
 
@@ -164,28 +159,21 @@ NVIDIA Jetson是NVIDIA推出的嵌入式AI平台，Paddle Inference支持在 NVI
      │       ├── libpaddle_fluid.a
      │       └── libpaddle_fluid.so
      ├── third_party
-     │   ├── boost
-     │   │   └── boost
-     │   ├── eigen3
-     │   │   ├── Eigen
-     │   │   └── unsupported
      │   └── install
      │       ├── gflags
      │       ├── glog
      │       ├── mkldnn
      │       ├── mklml
-     │       ├── protobuf
-     │       ├── xxhash
-     │       └── zlib
+     │       └── protobuf
      └── version.txt
 
 version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使用OpenBlas或MKL数学库、CUDA/CUDNN版本号，如：
 
   .. code-block:: text
 
-     GIT COMMIT ID: cc9028b90ef50a825a722c55e5fda4b7cd26b0d6
+     GIT COMMIT ID: 0231f58e592ad9f673ac1832d8c495c8ed65d24f
      WITH_MKL: ON
      WITH_MKLDNN: ON
      WITH_GPU: ON
-     CUDA version: 8.0
+     CUDA version: 10.1
      CUDNN version: v7
