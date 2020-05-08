@@ -3,6 +3,8 @@
 spectral_norm
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.spectral_norm(weight, dim=0, power_iters=1, eps=1e-12, name=None)
 
 **Spectral Normalization Layer**
@@ -37,12 +39,14 @@ spectral_norm
 
 返回类型：变量(Variable)，数据类型与输入 ``weight`` 一致。
 
-**代码示例**：
+**代码示例：**
 
 .. code-block:: python
 
-   weight = fluid.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
-   x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
+    import paddle.fluid as fluid
+
+    weight = fluid.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
+    x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
 
 
 

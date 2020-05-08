@@ -30,7 +30,7 @@ CUDA性能分析器。该分析器通过调用CUDA运行时编程接口，对CUD
 
     epoc = 8
     dshape = [4, 3, 28, 28]
-    data = fluid.layers.data(name='data', shape=[3, 28, 28], dtype='float32')
+    data = fluid.data(name='data', shape=[None, 3, 28, 28], dtype='float32')
     conv = fluid.layers.conv2d(data, 20, 3, stride=[1, 1], padding=[1, 1])
 
     place = fluid.CUDAPlace(0)

@@ -34,16 +34,14 @@ add_position_encoding
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-     
-  tensor = fluid.layers.data(
-        name='tensor',
-        shape=[32, 64, 512],
-        dtype='float32',
-        append_batch_size=False)
-  position_tensor = fluid.layers.add_position_encoding(
-        input=tensor, alpha=1.0, beta=1.0)
+    import paddle.fluid as fluid
 
+    tensor = fluid.data(
+        name='tensor',
+        shape=[None, 64, 512],
+        dtype='float32')
+    position_tensor = fluid.layers.add_position_encoding(
+        input=tensor, alpha=1.0, beta=1.0)
 
 
 

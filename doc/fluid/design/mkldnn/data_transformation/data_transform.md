@@ -13,8 +13,12 @@ We can distinguish following scenarios(presented below on the picture):
 
 ### Paddle(CPU) kernel is followed by MKL-DNN kernel
 In a situation when Paddle(CPU) kernel finished execution, its outcome is one or many Tensors of Paddle layout. Each of those
-Tensors to be feed into MKL-DNN kernel, needs to be transformed to be of MKL-DNN layout. For this scenario conversion of Paddle Tensor to MKL-DNN Tensor is done by just
-changing layout flag to MKL-DNN and picking MKL-DNN format that match Paddle Tensor rank. This is computationally cheap operation as there is no real data rearrangement.
+Tensors to be feed into MKL-DNN kernel, needs to be transformed to be of MKL-DNN layout. For this scenario conversion of Paddle Tensor to MKL-DNN Tensor is done by:
+* changing layout flag to MKL-DNN
+* picking MKL-DNN format that match Paddle Tensor rank
+* Rearrange dims order to NCHW
+
+Those are computationally cheap operation as there is no real data rearrangement. More information on conversion from Paddle layout to MKL-DNN Tensor can be found in relevant [document](../nhwc/nhwc.md)
 
 This scenario is drawn on the picture with bold lines. Starting from Paddle(CPU) op on the left side , following arrows drawn in bold and finishing with MKL-DNN op on the right side of picture.
 
@@ -22,7 +26,7 @@ This scenario is drawn on the picture with bold lines. Starting from Paddle(CPU)
 In this situation MKL-DNN kernel finished its execution and as a result it produced one or more output Tensors. Each of those Tensors are of MKL-DNN layout and to be fed into Paddle(CPU) kernel,
 they need to be converted into Paddle layout. In a detail MKL-DNN Tensor arrangement (mkl-dnn memory format) is checked if it is compatible with Paddle(CPU) layout and if positive then
 just layout of Tensor is set as Paddle and mkl-dnn format is set to ``undef``. In case when MKL-DNN Tensor data arrangement is not compatible with Paddle layout then actual data arrangement
-is performed. For example MKL-DNN Tensor is 4D and having format ``NCHW16C`` and to convert it into Paddle layout we need to rearrange data to be ``NCHW`` format. To do so
+is performed. For example MKL-DNN Tensor is 4D and having format ``NCHW16C`` and to convert it into Paddle layout of ``NCHW`` we need to rearrange data to be ``NCHW`` format. To do so
 MKL-DNN Reorder primitive is created that can do data rearrangement. 
 
 This scenario is marked on the picture with outlined, empty inside arrows. Starting from MKL-DNN op on the left side , following empty arrows finishing with Paddle(CPU) op on the right side of picture.

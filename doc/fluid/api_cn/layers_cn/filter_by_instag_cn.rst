@@ -26,6 +26,7 @@ Lod为[1，1，1，1]，filter tags为[1]，从上面的定义中，带有标签
     - **ins_tag** (Variable) - 输入变量(LoDTensor),通常为1维列表，通过lod info来分割。
     - **filter_tag** (Variable) - 输入变量(1D Tensor/List)，通常为持有tags的列表。
     - **is_lod** (Bool) – 指定样本是否为lod tensor的布尔值。
+    - **out_val_if_empty** (Int64) - 如果batch内样本被全部过滤，输出会被指定成这个值。
     
 返回：过滤之后的样本（LoDTensor）和 损失权重（Tensor）。
 

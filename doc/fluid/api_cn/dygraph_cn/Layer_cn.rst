@@ -13,6 +13,18 @@ Layer
 
 返回：无
 
+.. py:method:: train()
+
+将此层及其所有子层设置为训练模式。这只会影响某些模块，如Dropout和BatchNorm。
+
+返回：无
+
+.. py:method:: eval()
+
+将此层及其所有子层设置为预测模式。这只会影响某些模块，如Dropout和BatchNorm。
+
+返回：无
+
 .. py:method:: full_name()
 
 Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__.__name__ 。
@@ -20,6 +32,100 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 返回：Layer的全名
 
 返回类型：str
+
+.. py:method:: register_forward_pre_hook(hook)
+
+为Layer注册一个 ``forward pre-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之前被调用。
+
+``hook`` 函数具有以下形式：它的 ``input`` 是 ``Layer`` 的 ``input`` ，并且可以返回一个元组或者单个修改值；如果返回单个修改值，则将值包装到一个元组中。用户可以使用该函数来查看或修改 ``Layer`` ``forward`` 函数的输入。
+
+hook(Layer, input) -> None or modified input
+
+参数：
+    - **hook** (function) - 被注册为 ``forward pre-hook`` 的函数
+
+返回：一个 ``HookRemoveHelper`` 类对象，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
+
+返回类型： ``HookRemoveHelper`` 类对象
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = (input[0] * 2)
+        return input_return
+
+    with fluid.dygraph.guard():
+        linear = fluid.Linear(13, 5, dtype="float32")
+
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook)
+
+        value0 = np.arange(26).reshape(2, 13).astype("float32")
+        in0 = fluid.dygraph.to_variable(value0)
+        out0 = linear(in0)
+
+        # 移除hook
+        forward_pre_hook_handle.remove()
+
+        value1 = value0 * 2
+        in1 = fluid.dygraph.to_variable(value1)
+        out1 = linear(in1)
+
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
+
+.. py:method:: register_forward_post_hook(hook)
+
+为Layer注册一个 ``forward post-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之后被调用。
+
+``hook`` 函数具有以下形式，它的 ``input`` 和 ``output`` 是 ``Layer`` 的 ``input`` 和 ``output`` 。用户可以用该函数来查看和修改 ``Layer`` ``forward`` 函数的输出。
+
+hook(Layer, input, output) -> None or modified output
+
+参数：
+    - **hook** (function) - 被注册为 ``forward post-hook`` 的函数
+
+返回：一个 ``HookRemoveHelper`` 类对象，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
+
+返回类型： ``HookRemoveHelper`` 类对象
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    # forward_post_hook函数改变了layer的输出：output = output * 2
+    def forward_post_hook(layer, input, output):
+        # 改变输出值
+        return output * 2
+
+    with fluid.dygraph.guard():
+        linear = fluid.Linear(13, 5, dtype="float32")
+
+        # 注册hook
+        forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
+
+        value1 = np.arange(26).reshape(2, 13).astype("float32")
+        in1 = fluid.dygraph.to_variable(value1)
+
+        out0 = linear(in1)
+
+        # remove the hook
+        forward_post_hook_handle.remove()
+
+        out1 = linear(in1)
+
+        # hook改变了layer的输出（output = output * 2），所以out0等于out1 * 2
+        assert (out0.numpy() == (out1.numpy()) * 2).any()
 
 .. py:method:: create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 
@@ -71,6 +177,81 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 返回： 一个由所有子层组成的列表，列表中的元素类型为Layer。
 
 返回类型：list
+
+.. py:method:: clear_gradients()
+
+清除该层所有参数的梯度。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    with fluid.dygraph.guard():
+        value = np.arange(26).reshape(2, 13).astype("float32")
+        a = fluid.dygraph.to_variable(value)
+        linear = fluid.Linear(13, 5, dtype="float32")
+        adam = fluid.optimizer.Adam(learning_rate=0.01, 
+                                    parameter_list=linear.parameters())
+        out = linear(a)
+        out.backward()
+        adam.minimize(out)
+        linear.clear_gradients()
+
+
+.. py:method:: named_parameters(prefix='', include_sublayers=True)
+
+返回层中所有参数的迭代器，生成名称和参数的元组。
+
+参数：
+    - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
+    - **include_sublayers** (bool, 可选) - 是否返回子层的参数。如果为True，返回的列表中包含子层的参数。默认值：True。
+
+返回：产出名称和参数的元组的迭代器。
+
+返回类型：iterator
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+
+    with fluid.dygraph.guard():
+        fc1 = fluid.Linear(10, 3)
+        fc2 = fluid.Linear(3, 10, bias_attr=False)
+        model = fluid.dygraph.Sequential(fc1, fc2)
+        for name, param in model.named_parameters():
+            print(name, param)
+
+.. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
+
+返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
+
+参数：
+    - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
+    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
+    - **include_self** (bool, 可选) - 是否包含该层自身。默认值：False。
+    - **layers_set** (set, 可选): 记录重复子层的集合。默认值：None。
+
+返回：产出名称和子层的元组的迭代器。
+
+返回类型：iterator
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+
+    with fluid.dygraph.guard():
+        fc1 = fluid.Linear(10, 3)
+        fc2 = fluid.Linear(3, 10, bias_attr=False)
+        model = fluid.dygraph.Sequential(fc1, fc2)
+        for prefix, layer in model.named_sublayers():
+            print(prefix, layer)
 
 .. py:method:: forward(*inputs, **kwargs)
 

@@ -3,6 +3,8 @@
 cond
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:function:: paddle.fluid.layers.cond(pred, true_fn=None, false_fn=None, name=None)
 
 如果 ``pred`` 是 ``True`` ，该API返回 ``true_fn()`` ，否则返回 ``false_fn()`` 。

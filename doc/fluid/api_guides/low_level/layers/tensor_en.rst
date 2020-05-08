@@ -56,64 +56,56 @@ Fluid uses :code:`sums` to sum up the input data.
 
 API reference  : :ref:`api_fluid_layers_sums`
 
-
-7. fill_constant_batch_size_like
----------------------------------
-
-Fluid uses :code:`fill_constant_batch_size_like` to create a Tensor with a specific shape, type, and batch_size. And the initial value of the Tensor can be specified as an arbitrary constant. The batch_size information is determined by the tensor's :code:`input_dim_idx` and :code:`output_dim_idx`.
-
-API reference  : :ref:`api_fluid_layers_fill_constant_batch_size_like`
-
-8. fill_constant
+7. fill_constant
 -----------------
 
 Fluid uses :code:`fill_constant` to create a Tensor with a specific shape and type. The initial value of this variable can be set via :code:`value`.
 
 API reference : :ref:`api_fluid_layers_fill_constant`
 
-9. assign
+8. assign
 ---------------
 
 Fluid uses :code:`assign` to duplicate a variable.
 
 API reference  : :ref:`api_fluid_layers_assign`
 
-10. argmin
+9. argmin
 --------------
 
 Fluid uses :code:`argmin` to calculate the index of the smallest element on the specified axis of Tensor.
 
 API reference  : :ref:`api_fluid_layers_argmin`
 
-11. argmax
+10. argmax
 -----------
 
 Fluid uses :code:`argmax` to calculate the index of the largest element on the specified axis of Tensor.
 
 API reference  : :ref:`api_fluid_layers_argmax`
 
-12. argsort
+11. argsort
 ------------
 
 Fluid uses :code:`argsort` to sort the input Tensor on the specified axis and it will return the sorted data variables and their corresponding index values.
 
 API reference : :ref:`api_fluid_layers_argsort`
 
-13. ones
+12. ones
 -------------
 
 Fluid uses :code:`ones` to create a Tensor of the specified size and data type with an initial value of 1.
 
 API reference : :ref:`api_fluid_layers_ones`
 
-14. zeros
+13. zeros
 ---------------
 
 Fluid uses :code:`zeros` to create a Tensor of the specified size and data type with an initial value of zero.
 
 API reference : :ref:`api_fluid_layers_zeros`
 
-15. reverse
+14. reverse
 -------------------
 
 Fluid uses :code:`reverse` to invert Tensor along the specified axis.

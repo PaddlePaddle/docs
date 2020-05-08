@@ -3,6 +3,8 @@
 RecomputeOptimizer
 -------------------------------
 
+**注意：该API仅支持【静态图】模式**
+
 .. py:class:: paddle.fluid.optimizer.RecomputeOptimizer(optimizer)
 
 通常来讲，一个深度学习的训练流程包含了三个子步骤：首先，运行前向算子来计算Variable和loss的值；其次，运行反向算子来计算参数的梯度；最后，应用优化算法以更新参数值。
@@ -91,8 +93,7 @@ RecomputeOptimizer
                     cost,
                     startup_program=None,
                     parameter_list=None,
-                    no_grad_set=None,
-                    checkpoints=[fc_1, pred])
+                    no_grad_set=None)
 
                 program = cost.block.program
                 with framework.program_guard(program, None):
@@ -137,8 +138,7 @@ RecomputeOptimizer
                     cost,
                     startup_program=None,
                     parameter_list=None,
-                    no_grad_set=None,
-                    checkpoints=[fc_1, pred])
+                    no_grad_set=None)
 
                 optimize_ops = sgd.apply_optimize(
                     cost, startup_program=None, params_grads=params_grads)
@@ -150,12 +150,12 @@ RecomputeOptimizer
 带checkpoint的backward函数
 
 参数：
-    - **loss** (Variable) – 用于优化过程的损失值变量
-    - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
-    - **parameter_list** (list) – 待更新的Variables组成的列表
-    - **no_grad_set** (set|None) – 应该被无视的Variables集合
-    - **callbacks** (list|None) – 当为某参数附加反向算子时所要运行的callables组成的列表
-    - **checkpoints** (list|None) – 一批作为checkpoints的Variables
+    - **loss** (Variable) – 需要最小化的损失值变量
+    - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
+    - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
+    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的的集合，默认值为None
+    - **callbacks** (list, 可选) – 当为某参数附加反向算子时所要运行的callables组成的列表
+    - **checkpoints** (list, 可选) – 一批作为checkpoints的Variables
 
 返回：  由(param, grad)对构成的列表，其中param是参数，grad是其对应的梯度
 
@@ -186,45 +186,8 @@ RecomputeOptimizer
                     cost,
                     startup_program=None,
                     parameter_list=None,
-                    no_grad_set=None,
-                    checkpoints=[fc_1, pred])
+                    no_grad_set=None)
                 print("Finished backward")
 
-
-.. py:method:: load(stat_dict)
-
-Recompute Optimizer 目前不支持load函数
-
-参数：
-    - **stat_dict** – load_persistable方法加载的dict
-
-**代码示例**
-
-.. code-block:: python
-
-
-                import paddle.fluid as fluid
-                import paddle.compat as cpt
-
-                def mlp(input_x, input_y, hid_dim=128, label_dim=2):
-                    fc_1 = fluid.layers.fc(input=input_x, size=hid_dim)
-                    prediction = fluid.layers.fc(input=[fc_1], size=label_dim, act='softmax')
-                    cost = fluid.layers.cross_entropy(input=prediction, label=input_y)
-                    sum_cost = fluid.layers.reduce_mean(cost)
-                    return sum_cost, fc_1, prediction
-
-                input_x = fluid.layers.data(name="x", shape=[32], dtype='float32')
-                input_y = fluid.layers.data(name="y", shape=[1], dtype='int64')
-                cost, fc_1, pred = mlp(input_x, input_y)
-                print("Finished FF")
-
-                sgd = fluid.optimizer.Adam(learning_rate=0.01)
-                sgd = fluid.optimizer.RecomputeOptimizer(sgd)
-                sgd._set_checkpoints([fc_1, pred])
-                try:
-                    stat_dict = {}
-                    sgd.load(stat_dict)
-                except NotImplementedError as e:
-                    print(cpt.get_exception_message(e))
 
 

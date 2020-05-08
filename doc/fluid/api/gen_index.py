@@ -13,13 +13,11 @@ API Reference
 ..  toctree::
     :maxdepth: 1
 
-    ../flags_en.rst
     ../api_guides/index_en.rst
-    fluid.rst
 ''')
 
         target_dirs = ['.', 'data']
-        
+
         file_names = []
         for target_dir in target_dirs:
             if target_dir == '.':
@@ -27,7 +25,16 @@ API Reference
             else:
                 pattern = target_dir + '/*.rst'
             file_names.extend(glob.glob(pattern))
+ 
+        for file_name in sorted(file_names):
+            with open(file_name, 'r')as f:
+                for i in range(2):
+                    line = f.readline().strip()
+                    if line.find('paddle.') != -1:
+                        file_object.write('    '+file_name + "\n")
+                        file_names.remove(file_name)
 
+        file_object.write('    '+'fluid.rst' + "\n")
         for file_name in sorted(file_names):
             if file_name not in ['index_en.rst', 'fluid.rst']:
                 file_object.write('    '+file_name + "\n")

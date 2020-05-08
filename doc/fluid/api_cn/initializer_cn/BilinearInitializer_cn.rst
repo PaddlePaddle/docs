@@ -16,6 +16,7 @@ BilinearInitializer
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import math
     factor = 2
     C = 2
     H = W = 32
