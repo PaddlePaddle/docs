@@ -83,7 +83,7 @@ class DocGenerator(object):
     def print_section(self, name):
         self._print_header_(name, dot='=', is_title=False)
 
-    def print_item(self, name):
+    def print_item(self, name, output_name):
         item = getattr(self.module, name, None)
         if isinstance(item, types.TypeType):
             self.print_class(name)
@@ -91,7 +91,7 @@ class DocGenerator(object):
             self.print_method(name)
         else:
             self.stream.close()
-            path = os.getcwd()+"/fluid/"+name+".rst"
+            path = os.getcwd()+"/"+output_name+"/"+name+".rst"
             if name != "PipeReader":
                 os.remove(path)
 
@@ -208,7 +208,7 @@ def generate_doc(module_name, module_prefix, output, output_name, to_multiple_fi
             header_name = api
             with gen.guard(os.path.join(output, api + '.rst')):
                 gen.print_header_reminder()
-                gen.print_item(api)
+                gen.print_item(api, output_name)
 
 
 def main():
