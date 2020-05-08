@@ -47,6 +47,6 @@ addmm
     exe = fluid.Executor(place)
     results = exe.run(fluid.default_main_program(), 
                       fetch_list=[out], feed={"input": data_input, 'x': data_x, "y": data_y})
-    print( np.array(results[0]) )
+    print(np.array(results[0]))
     # [[10.5 10.5]
     # [10.5 10.5]]
