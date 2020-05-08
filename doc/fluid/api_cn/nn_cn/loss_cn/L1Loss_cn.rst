@@ -7,27 +7,27 @@ L1Loss
 
 该损失函数的数学计算公式如下：
 
-当 `reduction` 设置为 `none` 时，
+当 `reduction` 设置为 ``'none'`` 时，
     
     .. math::
         Out = |input - label|
 
-当 `reduction` 设置为 `mean` 时，
+当 `reduction` 设置为 ``'mean'`` 时，
 
     .. math::
        Out = MEAN(|input - label|)
 
-当 `reduction` 设置为 `sum` 时，
+当 `reduction` 设置为 ``'sum'`` 时，
     
     .. math::
        Out = SUM(|input - label|)
 
 输入input和标签label的维度是[N, *], 其中N是batch_size， `*` 是任意其他维度。
 如果 :attr:`reduction` 是 ``'none'``, 则输出Loss的维度为 [N, *], 与输入input相同。
-如果 :attr:`reduction` 是 ``'mean'`` 或 ``'mean'``, 则输出Loss的维度为 [1]。
+如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出Loss的维度为 [1]。
 
 参数：
-    - **reduction** (string, 可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'none'``, ``'none'`` 。默认为 ``'mean'``，计算 `L1Loss` 的均值。设置为``'sum'``时，计算 `L1Loss` 的总和。设置为 ``'none'`` 时，则返回L1Loss。数据类型为string。
+    - **reduction** (string, 可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `L1Loss` 的均值；设置为 ``'sum'`` 时，计算 `L1Loss` 的总和；设置为 ``'none'`` 时，则返回L1Loss。数据类型为string。
 
 返回：返回计算L1Loss的可调用对象。
 
