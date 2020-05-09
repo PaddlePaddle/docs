@@ -3,7 +3,7 @@
 trace
 -------------------------------
 
-.. py:function:: paddle.trace(input, offset=0, dim1=0, dim2=1)
+.. py:function:: fluid.layers.trace(input, offset=0, dim1=0, dim2=1)
 
 该 OP 计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果。
 
@@ -31,18 +31,18 @@ trace
 
 ..  code-block:: python
 
-    import paddle.tensor as tensor
+    import paddle.fluid as fluid
     import paddle.fluid.dygraph as dg
     import numpy as np
-            
+    
     case1 = np.random.randn(2, 3).astype('float32')
     case2 = np.random.randn(3, 10, 10).astype('float32')
     case3 = np.random.randn(3, 10, 5, 10).astype('float32')
-            
+    
     with dg.guard():
         case1 = dg.to_variable(case1)
         case2 = dg.to_variable(case2)
         case3 = dg.to_variable(case3)
-        data1 = tensor.trace(case1) # data1.shape = [1]
-        data2 = tensor.trace(case2, offset=1, dim1=1, dim2=2) # data2.shape = [3]
-        data3 = tensor.trace(case3, offset=-3, dim1=1, dim2=-1) # data2.shape = [3, 5]
+        data1 = fluid.layers.trace(case1) # data1.shape = [1]
+        data2 = fluid.layers.trace(case2, offset=1, dim1=1, dim2=2) # data2.shape = [3]
+        data3 = fluid.layers.trace(case3, offset=-3, dim1=1, dim2=-1) # data2.shape = [3, 5]

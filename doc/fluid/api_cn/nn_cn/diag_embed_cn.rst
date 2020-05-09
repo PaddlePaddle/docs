@@ -1,9 +1,9 @@
-.. _cn_api_functional_diag_embed:
+.. _cn_api_fluid_layers_nn_diag_embed:
 
 diag_embed
 -------------------------------
 
-.. py:function:: paddle.functional.diag_embed(input, offset=0, dim1=-2, dim2=-1):
+.. py:function:: fluid.layers.diag_embed(input, offset=0, dim1=-2, dim2=-1):
 
     该 OP 创建一个 Tensor，其在指定的 2D 平面（由 ``dim1`` 和 ``dim2`` 指定）上的对角线由输入 ``input`` 填充。
     默认的，指定的 2D 平面由返回 Tensor 的最后两维组成。
@@ -28,7 +28,7 @@ diag_embed
 
 ..  code-block:: python
 
-    import paddle.nn.functional as F
+    import paddle.fluid as fluid
     import paddle.fluid.dygraph as dg
     import numpy as np
     
@@ -36,7 +36,7 @@ diag_embed
     # [[ 0.7545889 , -0.25074545,  0.5929117 ],
     #  [-0.6097662 , -0.01753256,  0.619769  ]]
     with dg.guard():
-        data1 = F.diag_embed(diag_embed)
+        data1 = fluid.layers.diag_embed(diag_embed)
         data1.numpy()
         # [[[ 0.7545889 ,  0.        ,  0.        ],
         #  [ 0.        , -0.25074545,  0.        ],
@@ -46,7 +46,7 @@ diag_embed
         #  [ 0.        , -0.01753256,  0.        ],
         #  [ 0.        ,  0.        ,  0.619769  ]]]
 
-        data2 = F.diag_embed(diag_embed, offset=-1, dim1=0, dim2=2)
+        data2 = fluid.layers.diag_embed(diag_embed, offset=-1, dim1=0, dim2=2)
         data2.numpy()
         # [[[ 0.        ,  0.        ,  0.        ,  0.        ],
         #   [ 0.7545889 ,  0.        ,  0.        ,  0.        ],
@@ -58,7 +58,7 @@ diag_embed
         #   [ 0.        , -0.01753256,  0.        ,  0.        ],
         #   [ 0.        ,  0.        ,  0.619769  ,  0.        ]]]
 
-        data3 = F.diag_embed(diag_embed, offset=1, dim1=0, dim2=2)
+        data3 = fluid.layers.diag_embed(diag_embed, offset=1, dim1=0, dim2=2)
         data3.numpy()
         # [[[ 0.        ,  0.7545889 ,  0.        ,  0.        ],
         #   [ 0.        , -0.6097662 ,  0.        ,  0.        ]],
