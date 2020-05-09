@@ -30,19 +30,18 @@ full
 .. code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
 
     data1 = paddle.full(shape=[2,1], fill_value=0, dtype='int64') # data1=[[0],[0]]
     data2 = paddle.full(shape=[2,1], fill_value=5, dtype='int64', device='gpu') # data2=[[5],[5]]
 
     # attr shape is a list which contains Variable Tensor.
-    positive_2 = fluid.layers.fill_constant([1], "int32", 2)
+    positive_2 = paddle.fill_constant([1], "int32", 2)
     data3 = paddle.full(shape=[1, positive_2], dtype='float32', fill_value=1.5) # data3=[1.5, 1.5]
 
     # attr shape is an Variable Tensor.
-    shape = fluid.layers.fill_constant([1,2], "int32", 2) # shape=[2,2]
+    shape = paddle.fill_constant([1,2], "int32", 2) # shape=[2,2]
     data4 = paddle.full(shape=shape, dtype='bool', fill_value=True) # data4=[[True,True],[True,True]]
   
     # attr value is an Variable Tensor.
-    val = fluid.layers.fill_constant([1], "float32", 2.0) # val=[2.0]
+    val = paddle.fill_constant([1], "float32", 2.0) # val=[2.0]
     data5 = paddle.full(shape=[2,1], fill_value=val, dtype='float32') #data5=[[2.0],[2.0]]
