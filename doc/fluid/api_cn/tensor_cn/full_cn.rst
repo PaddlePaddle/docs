@@ -3,7 +3,7 @@
 full
 -------------------------------
 
-.. py:function:: paddle.full_like(shape, fill_value, out=None, dtype=None, device=None, stop_gradient=True, name=None)
+.. py:function:: paddle.full(shape, fill_value, out=None, dtype=None, device=None, stop_gradient=True, name=None)
 
 该OP创建一个和具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
 
