@@ -1,6 +1,6 @@
 # 运行时设备切换
 
-Paddle提供了[fluid.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CUDAPlace_cn.html)以及[fluid.CPUPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CPUPlace_cn.html)用于指定运行时的设备。这两个接口用于指定全局的设备，从2.0版本开始，Paddle提供了[device_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/fluid_cn/device_guard_cn.html)接口，用于指定部分OP的运行设备，此教程会介绍device_guard的使用场景，以及如何使用该接口对模型进行优化。
+Paddle提供了[fluid.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CUDAPlace_cn.html)以及[fluid.CPUPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CPUPlace_cn.html)用于指定运行时的设备。这两个接口用于指定全局的设备，从1.8版本开始，Paddle提供了[device_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/fluid_cn/device_guard_cn.html)接口，用于指定部分OP的运行设备，此教程会介绍device_guard的使用场景，以及如何使用该接口对模型进行优化。
 
 如果使用了`fluid.CUDAPlace`设置了全局的执行设备，框架将尽可能地将OP设置在GPU上执行，因此有可能会遇到显存不够的情况。`device_guard`可以用于设置OP的执行设备，如果将部分层设置在CPU上运行，就能够充分利用CPU大内存的优势，避免显存超出。
 
