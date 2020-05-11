@@ -16,11 +16,11 @@ in_dygraph_mode
 
 .. code-block:: python
 
-    from __future__ import print_function
     import paddle.fluid as fluid
-    if fluid.in_dygraph_mode():
-        print('running in dygraph mode')
-    else:
-        print('not running in dygraph mode')
+
+    fluid.enable_dygraph()          # 现在进入 dygragh 模式
+    print(fluid.in_dygraph_mode())  # True
+    fluid.disable_dygraph()
+    print(fluid.in_dygraph_mode())  # False
 
 
