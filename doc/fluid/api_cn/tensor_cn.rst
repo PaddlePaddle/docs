@@ -1,0 +1,80 @@
+=======================
+paddle.tensor
+=======================
+
+
+
+
+..  toctree::
+    :maxdepth: 1
+
+    tensor_cn/addcmul_cn.rst
+    tensor_cn/add_cn.rst
+    tensor_cn/addmm_cn.rst
+    tensor_cn/allclose_cn.rst
+    tensor_cn/arange_cn.rst
+    tensor_cn/argmax_cn.rst
+    tensor_cn/atan_cn.rst
+    tensor_cn/bmm_cn.rst
+    tensor_cn/cholesky_cn.rst
+    tensor_cn/clamp_cn.rst
+    tensor_cn/concat_cn.rst
+    tensor_cn/cross_cn.rst
+    tensor_cn/dist_cn.rst
+    tensor_cn/div_cn.rst
+    tensor_cn/dot_cn.rst
+    tensor_cn/einsum_cn.rst
+    tensor_cn/elementwise_equal_cn.rst
+    tensor_cn/elementwise_sum_cn.rst
+    tensor_cn/equal_cn.rst
+    tensor_cn/erf_cn.rst
+    tensor_cn/eye_cn.rst
+    tensor_cn/flip_cn.rst
+    tensor_cn/full_cn.rst
+    tensor_cn/full_like_cn.rst
+    tensor_cn/gather_cn.rst
+    tensor_cn/index_select_cn.rst
+    tensor_cn/inverse_cn.rst
+    tensor_cn/isnan_cn.rst
+    tensor_cn/kron_cn.rst
+    tensor_cn/linspace_cn.rst
+    tensor_cn/log1p_cn.rst
+    tensor_cn/logsumexp_cn.rst
+    tensor_cn/math_cn.rst
+    tensor_cn/matmul_cn.rst
+    tensor_cn/max_cn.rst
+    tensor_cn/meshgrid_cn.rst
+    tensor_cn/min_cn.rst
+    tensor_cn/mm_cn.rst
+    tensor_cn/mul_cn.rst
+    tensor_cn/nonzero_cn.rst
+    tensor_cn/norm_cn.rst
+    tensor_cn/ones_cn.rst
+    tensor_cn/ones_like_cn.rst
+    tensor_cn/pow_cn.rst
+    tensor_cn/rand_cn.rst
+    tensor_cn/randint_cn.rst
+    tensor_cn/randn_cn.rst
+    tensor_cn/randperm_cn.rst
+    tensor_cn/roll_cn.rst
+    tensor_cn/sin_cn.rst
+    tensor_cn/sort_cn.rst
+    tensor_cn/split_cn.rst
+    tensor_cn/sqrt_cn.rst
+    tensor_cn/squeeze_cn.rst
+    tensor_cn/stack_cn.rst
+    tensor_cn/std_cn.rst
+    tensor_cn/sum_cn.rst
+    tensor_cn/tanh_cn.rst
+    tensor_cn/t_cn.rst
+    tensor_cn/tensordot_cn.rst
+    tensor_cn/trace_cn.rst
+    tensor_cn/transpose_cn.rst
+    tensor_cn/tril_cn.rst
+    tensor_cn/triu_cn.rst
+    tensor_cn/unbind_cn.rst
+    tensor_cn/unsqueeze_cn.rst
+    tensor_cn/var_cn.rst
+    tensor_cn/where_cn.rst
+    tensor_cn/zeros_cn.rst
+    tensor_cn/zeros_like_cn.rst
