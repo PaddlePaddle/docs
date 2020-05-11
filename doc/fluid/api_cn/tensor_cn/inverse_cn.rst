@@ -27,22 +27,9 @@ inverse
 
     import numpy as np
     import paddle
-    import paddle.fluid as fluid
 
     mat_np = np.array([[2, 0], [0, 2]]).astype("float32")
-
-    # example for static graph
-    input = fluid.data("input", shape=[2, 2], dtype="float32")
-    out = paddle.inverse(input)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    results = exe.run(feed={"input": mat_np},
-                      fetch_list=[out.name])
-    print(results[0]) # [[0.5, 0], [0, 0.5]]
-
-    # example for dynamic graph
-    with fluid.dygraph.guard():
-        mat = fluid.dygraph.to_variable(mat_np)
+    with paddle.imperative.guard():
+        mat = paddle.imperative.to_variable(mat_np)
         inv = paddle.inverse(mat)
-        print(inv) # [[0.5, 0], [0, 0.5]]
+        print(inv.numpy()) # [[0.5, 0], [0, 0.5]]
