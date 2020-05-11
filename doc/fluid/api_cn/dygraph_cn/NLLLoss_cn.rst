@@ -1,7 +1,7 @@
 NLLLoss
 -------------------------------
 
-.. py:function:: paddle.nn.loss.NLLLoss(weight=None, reduction='mean', ignore_index=-100)
+.. py:function:: paddle.fluid.dygraph.NLLLoss(weight=None, reduction='mean', ignore_index=-100)
 
 该OP计算输入input和标签label间的 `negative log likelihood loss` 损失 ，可用于训练一个 `n` 类分类器。
 
@@ -55,7 +55,7 @@ NLLLoss
             with fluid.program_guard(prog, startup_prog):
                 input = fluid.data(name='input', shape=[10, 10], dtype='float32')
                 label = fluid.data(name='label', shape=[10], dtype='int64')
-                nll_loss = paddle.nn.loss.NLLLoss()
+                nll_loss = fluid.dygraph.NLLLoss()
                 res = nll_loss(input, label)
                 exe = fluid.Executor(place)
                 static_result = exe.run(
