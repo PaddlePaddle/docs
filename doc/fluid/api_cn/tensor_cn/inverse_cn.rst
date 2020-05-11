@@ -16,6 +16,11 @@ inverse
 
 返回类型：Variable
 
+抛出异常：
+    - :code:`TypeError` ，input不是Variable类型，或者数据类型不是float32、float64时
+    - :code:`ValueError` ，input的维数小于2时
+    - :code:`TypeError` ，out不是Variable类型，或者数据类型和input不相同时
+
 **代码示例**：
 
 .. code-block:: python
