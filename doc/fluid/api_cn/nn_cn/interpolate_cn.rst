@@ -13,13 +13,14 @@ Inerpolate
 
 支持的插值方法:
 
+    NEAREST：最近邻插值
+
     BILINEAR：双线性插值
 
     TRALINEAR：三线性插值
 
     BICUBIC：双三次插值
 
-    NEAREST：最近邻插值
 
 
 
