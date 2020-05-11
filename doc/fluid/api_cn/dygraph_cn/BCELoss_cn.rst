@@ -3,7 +3,7 @@
 BCELoss
 -------------------------------
 
-.. py:function:: paddle.nn.BCELoss(input, label, weight=None, reduction='mean')
+.. py:function:: paddle.fluid.dygraph.BCELoss(input, label, weight=None, reduction='mean')
 
 该接口用于创建一个BCELoss的可调用类，用于计算输入和标签之间的二值交叉熵损失值。二值交叉熵损失函数公式如下：
 
@@ -55,7 +55,7 @@ BCELoss
     import paddle
     input = fluid.data(name="input", shape=[3, 1], dtype='float32')
     label = fluid.data(name="label", shape=[3, 1], dtype='float32')
-    bce_loss = paddle.nn.loss.BCELoss()
+    bce_loss = fluid.dygraph.BCELoss()
     output = bce_loss(input, label)
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
