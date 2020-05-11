@@ -6,9 +6,6 @@ API Reference
     :maxdepth: 1
 
     ../api_guides/index_en.rst
-    complex.rst
-    nn.rst
-    tensor.rst
     fluid.rst
     backward.rst
     clip.rst
@@ -17,7 +14,6 @@ API Reference
     dataset.rst
     dygraph.rst
     executor.rst
-    index.rst
     initializer.rst
     io.rst
     layers.rst
