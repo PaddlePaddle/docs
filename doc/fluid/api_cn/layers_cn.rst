@@ -209,6 +209,7 @@ fluid.layers
     layers_cn/psroi_pool_cn.rst
     layers_cn/py_func_cn.rst
     layers_cn/py_reader_cn.rst
+    layers_cn/randint_cn.rst
     layers_cn/random_crop_cn.rst
     layers_cn/range_cn.rst
     layers_cn/rank_cn.rst
