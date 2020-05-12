@@ -42,7 +42,7 @@ t
     import paddle
     import paddle.fluid as fluid
     x = fluid.data(name='x', shape=[2, 3], dtype='float32')
-    x_transposed = fluid.layers.t(x) # paddle.t 等价于 paddle.tensor.t
+    x_transposed = fluid.layers.t(x)
     print(x_transposed.shape)
     #(3L, 2L)
 
