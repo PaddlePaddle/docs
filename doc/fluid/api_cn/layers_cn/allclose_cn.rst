@@ -1,9 +1,9 @@
-.. _cn_api_tensor_allclose:
+.. _cn_api_fluid_layers_allclose:
 
 allclose
 -------------------------------
 
-.. py:function:: paddle.allclose(input, other, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
+.. py:function:: paddle.fluid.layers.allclose(input, other, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
 逐个检查input和other的所有元素是否均满足如下条件：
 
@@ -34,9 +34,9 @@ allclose
     use_cuda = fluid.core.is_compiled_with_cuda()
     a = fluid.data(name="a", shape=[2], dtype='float32')
     b = fluid.data(name="b", shape=[2], dtype='float32')
-    result = paddle.allclose(a, b, rtol=1e-05, atol=1e-08,
+    result = fluid.layers.allclose(a, b, rtol=1e-05, atol=1e-08,
                             equal_nan=False, name="ignore_nan")
-    result_nan = paddle.allclose(a, b, rtol=1e-05, atol=1e-08,
+    result_nan = fluid.layers.allclose(a, b, rtol=1e-05, atol=1e-08,
                                 equal_nan=True, name="equal_nan")
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
