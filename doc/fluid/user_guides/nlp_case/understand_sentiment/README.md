@@ -257,12 +257,12 @@ print("Loading IMDB word dict....")
 word_dict = paddle.dataset.imdb.word_dict()
 
 print ("Reading training data....")
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.imdb.train(word_dict), buf_size=25000),
     batch_size=BATCH_SIZE)
 print("Reading testing data....")
-test_reader = paddle.batch(
+test_reader = fluid.io.batch(
     paddle.dataset.imdb.test(word_dict), batch_size=BATCH_SIZE)
 ```
 Word_dict is a dictionary sequence, which is the correspondence between words and labels. You can see it specifically by running the next code:
