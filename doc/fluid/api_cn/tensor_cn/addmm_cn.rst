@@ -1,10 +1,10 @@
-.. _cn_api_tensor_addmm:
+.. _cn_api_fluid_layers_addmm:
 
 
 addmm
 -------------------------------
 
-.. py:function:: paddle.addmm(input, x, y, alpha=1.0, beta=1.0, name=None)
+.. py:function:: fluid.layers.addmm(input, x, y, alpha=1.0, beta=1.0, name=None)
 
 计算x和y的乘积，将结果乘以标量alpha，再加上input与beta的乘积，得到输出。其中input与x、y乘积的维度必须是可广播的。
 
