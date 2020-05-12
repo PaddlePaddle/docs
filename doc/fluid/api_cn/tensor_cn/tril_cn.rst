@@ -10,7 +10,7 @@ tril
 
 参数:
     - **input** (Variable) : 输入Tensor input，数据类型支持 `float32`, `float64`, `int32`, `int64` 。
-    - **diagonal** (int，可选) : 指定的对角线，默认值为0。diagonal = 0，主对角线; diagonal > 0，主对角线之上; diagonal < 0，主对角线之下。
+    - **diagonal** (int，可选) : 指定的对角线，默认值为0。如果diagonal = 0，表示主对角线; 如果diagonal是正数，表示主对角线之上的对角线; 如果diagonal是负数，表示主对角线之下的对角线。
     - **name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：计算得到的Tensor。Tensor数据类型与输入 `input` 数据类型一致。
@@ -48,7 +48,7 @@ tril
     # array([[ 1,  2,  3,  0], 
     #        [ 5,  6,  7,  8],
     #        [ 9, 10, 11, 12]])
-    
+   
     # example 3, negative diagonal value
     tril = tensor.tril(x, diagonal=-1)
     tril_out, = exe.run(fluid.default_main_program(), feed={"x": data},
