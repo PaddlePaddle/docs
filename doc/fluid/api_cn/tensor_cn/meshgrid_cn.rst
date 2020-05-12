@@ -1,10 +1,10 @@
 
-.. _cn_api_paddle_tensor_meshgrid:
+.. _cn_api_fluid_layers_meshgrid:
 
 meshgrid
 -------------------------------
 
-.. py:function:: paddle.tensor.meshgrid(input, name=None)
+.. py:function:: fluid.layers.meshgrid(input, name=None)
 
 该OP的输入是tensor list, 包含 k 个一维Tensor，对每个Tensor做扩充操作，输出 k 个 k 维tensor。
 
@@ -30,7 +30,7 @@ k 个 k 维Tensor，每个Tensor的形状均为(N1, N2, ..., Nk)。
     input_1 = np.random.randint(0, 100, [100, ]).astype('int32')
     input_2 = np.random.randint(0, 100, [200, ]).astype('int32')
     exe = fluid.Executor(place=fluid.CPUPlace())
-    grid_x, grid_y = paddle.tensor.meshgrid([x, y])
+    grid_x, grid_y = fluid.layers.meshgrid([x, y])
     res_1, res_2 = exe.run(fluid.default_main_program(),
                             feed={'x': input_1,
                                   'y': input_2},
@@ -51,6 +51,6 @@ k 个 k 维Tensor，每个Tensor的形状均为(N1, N2, ..., Nk)。
     with fluid.dygraph.guard():
         tensor_3 = fluid.dygraph.to_variable(input_3)
         tensor_4 = fluid.dygraph.to_variable(input_4)
-        grid_x, grid_y = paddle.tensor.meshgrid([tensor_3, tensor_4])
+        grid_x, grid_y = fluid.layers.meshgrid([tensor_3, tensor_4])
     #the shape of grid_x is (100, 200)
     #the shape of grid_y is (100, 200)    
