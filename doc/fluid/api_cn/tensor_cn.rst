@@ -36,6 +36,7 @@ paddle.tensor
     tensor_cn/index_select_cn.rst
     tensor_cn/inverse_cn.rst
     tensor_cn/isnan_cn.rst
+    tensor_cn/kron_cn.rst
     tensor_cn/linspace_cn.rst
     tensor_cn/log1p_cn.rst
     tensor_cn/logsumexp_cn.rst
