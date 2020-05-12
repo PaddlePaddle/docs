@@ -8,7 +8,7 @@ unbind
 
 **参数**：
        - **input** (Variable) - 输入变量，数据类型为float32，float64，int32，int64的多维Tensor。
-       - **axis** (int32|int64，可选) - 数据类型为int32或int64,表示需要分割的维度。如果dim < 0，则划分的维度为rank(input) + dim。默认值为0。
+       - **axis** (int32|int64，可选) - 数据类型为int32或int64,表示需要分割的维度。如果axis < 0，则划分的维度为rank(input) + axis。默认值为0。
 
 **返回**：分割后的Tensor列表。
 
