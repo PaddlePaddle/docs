@@ -55,7 +55,7 @@ NLLLoss
             with fluid.program_guard(prog, startup_prog):
                 input = fluid.data(name='input', shape=[10, 10], dtype='float32')
                 label = fluid.data(name='label', shape=[10], dtype='int64')
-                nll_loss = fluid.dygraph.loss.NLLLoss()
+                nll_loss = fluid.dygraph.NLLLoss()
                 res = nll_loss(input, label)
                 exe = fluid.Executor(place)
                 static_result = exe.run(
