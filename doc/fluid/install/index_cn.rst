@@ -214,20 +214,20 @@
         如果您是使用 Python 2，CUDA 9，cuDNN 7.3+，安装GPU版本的命令为：
         ::
 
-            python -m pip install paddlepaddle-gpu==1.7.2.post97 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==1.8.0.post97 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle-gpu==1.7.2.post97 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==1.8.0.post97 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用 Python 2，CUDA 10.0，cuDNN 7.3+，安装GPU版本的命令为：
         ::
 
-            python -m pip install paddlepaddle-gpu==1.7.2.post107 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==1.8.0.post107 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle-gpu==1.7.2.post107 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==1.8.0.post107 -i https://pypi.tuna.tsinghua.edu.cn/simple
         
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装。
 
@@ -430,12 +430,12 @@
     (2). 拉取预安装 PaddlePaddle 的镜像：
     ::
 
-        docker pull hub.baidubce.com/paddlepaddle/paddle:1.7.2
+        docker pull hub.baidubce.com/paddlepaddle/paddle:1.8.0
 
     (3). 用镜像构建并进入Docker容器：
     ::
 
-        docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.7.2 /bin/bash
+        docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.8.0 /bin/bash
 
         > --name [Name of container] 设定Docker的名称；
 
@@ -443,7 +443,7 @@
 
         > -v 参数用于宿主机与容器里文件共享；其中dir1为宿主机目录，dir2为挂载到容器内部的目录，用户可以通过设定dir1和dir2自定义自己的挂载目录；例如：$PWD:/paddle 指定将宿主机的当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
-        > hub.baidubce.com/paddlepaddle/paddle:1.7.2 是需要使用的image名称；/bin/bash是在Docker中要执行的命令
+        > hub.baidubce.com/paddlepaddle/paddle:1.8.0 是需要使用的image名称；/bin/bash是在Docker中要执行的命令
 
 2. **GPU 版本**
 
@@ -471,12 +471,12 @@
     (2). 拉取支持 CUDA 10.0 , cuDNN 7.3+ 预安装 PaddlePaddle 的镜像：
     ::
 
-        nvidia-docker pull hub.baidubce.com/paddlepaddle/paddle:1.7.2-gpu-cuda10.0-cudnn7
+        nvidia-docker pull hub.baidubce.com/paddlepaddle/paddle:1.8.0-gpu-cuda10.0-cudnn7
 
     (3). 用镜像构建并进入Docker容器：
     ::
 
-        nvidia-docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.7.2-gpu-cuda10.0-cudnn7 /bin/bash
+        nvidia-docker run --name paddle -it -v dir1:dir2 hub.baidubce.com/paddlepaddle/paddle:1.8.0-gpu-cuda10.0-cudnn7 /bin/bash
 
         > --name [Name of container] 设定Docker的名称；
 
@@ -484,7 +484,7 @@
 
         > -v 参数用于宿主机与容器里文件共享；其中dir1为宿主机目录，dir2为挂载到容器内部的目录，用户可以通过设定dir1和dir2自定义自己的挂载目录；例如：$PWD:/paddle 指定将宿主机的当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
-        > hub.baidubce.com/paddlepaddle/paddle:1.7.2-gpu-cuda10.0-cudnn7 是需要使用的image名称；/bin/bash是在Docker中要执行的命令  
+        > hub.baidubce.com/paddlepaddle/paddle:1.8.0-gpu-cuda10.0-cudnn7 是需要使用的image名称；/bin/bash是在Docker中要执行的命令  
 
     或如果您需要支持 **CUDA 9** 的版本，将上述命令的 **cuda10.0** 替换成 **cuda9.0** 即可
 
@@ -492,7 +492,7 @@
 
     ::
 
-        docker run --name paddle -it -v dir1:dir2 paddlepaddle/paddle:1.7.2 /bin/bash
+        docker run --name paddle -it -v dir1:dir2 paddlepaddle/paddle:1.8.0 /bin/bash
 
         > --name [Name of container] 设定Docker的名称；
 
@@ -500,7 +500,7 @@
 
         > -v 参数用于宿主机与容器里文件共享；其中dir1为宿主机目录，dir2为挂载到容器内部的目录，用户可以通过设定dir1和dir2自定义自己的挂载目录；例如：$PWD:/paddle 指定将宿主机的当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
-        > paddlepaddle/paddle:1.7.2 是需要使用的image名称；/bin/bash是在Docker中要执行的命令
+        > paddlepaddle/paddle:1.8.0 是需要使用的image名称；/bin/bash是在Docker中要执行的命令
 
 4. 验证安装
 
