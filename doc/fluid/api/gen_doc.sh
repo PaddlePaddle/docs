@@ -18,7 +18,7 @@ done
 
 python gen_module_index.py tensor paddle.tensor
 
-for module in math manipulation
+for module in math manipulation linalg
 do
   python gen_doc.py --module_name tensor.${module} --module_prefix tensor.${module} --output tensor/${module} --output_name complex --to_multiple_files True --output_dir complex
   python gen_module_index.py complex.tensor.${module} ${module}
