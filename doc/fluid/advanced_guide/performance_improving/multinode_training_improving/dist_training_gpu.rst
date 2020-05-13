@@ -23,11 +23,11 @@ PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分�
 优化reader性能需要考虑的点包括：
 
  - 使用 :code:`DataLoader` 。参考 `这里 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/io_cn/DataLoader_cn.html#dataloader>`_ 使用DataLoader，并建议开启 :code:`use_double_buffer` 。
- - reader返回uint8类型数据。图片在解码后一般会以uint8类型存储，如果在reader中转换成float类型数据，会将数据体积扩大4倍。直接返回uint8数据，然后在GPU上转化成float类型进行训练
- - 减少reader初始化时间 (infinite read)
-   在训练任务开始执行第一轮训练时，reader开始异步的，不断的从磁盘或其他存储中读取数据并执行预处理，然后将处理好的数据
+ - reader返回uint8类型数据。图片在解码后一般会以uint8类型存储，如果在reader中转换成float类型数据，会将数据体积扩大4倍。直接返回uint8数据，然后在GPU上转化成float类型进行训练可以提升数据读取效率。
+ - 减少reader初始化时间 (infinite read)。
+   在训练任务开始执行第一轮训练时，reader开始异步地不断的从磁盘或其他存储中读取数据并执行预处理，然后将处理好的数据
    填充到队列中供计算使用。从0开始填充这个队列直到数据可以源源不断供给计算，需要一定时间的预热。所以，如果每轮训练
-   都重新填充队列，会产生一些时间的开销。所以，在使用DataLoader时，可以让reader函数不断的产生数据，直到训练循环手动break：
+   都重新填充队列，会产生一些时间的开销。所以，在使用DataLoader时，可以让reader函数不断的产生数据，直到训练循环结束：
 
    .. code-block:: python
       :linenos:
@@ -47,7 +47,8 @@ PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分�
                   exe.run()
           data_loader.reset()
 
-另外，可以使用DALI库提升数据处理性能。DALI是NVIDIA开发的数据加载库，更多内容请参考`DALI文档 <https://docs.nvidia.com/deeplearning/dali/user-guide/docs/index.html>`_。飞桨中如何结合使用DALI库请参考`DALI使用示例 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/resnet>`_。
+
+另外，可以使用DALI库提升数据处理性能。DALI是NVIDIA开发的数据加载库，更多内容请参考 `官网文档 <https://docs.nvidia.com/deeplearning/dali/user-guide/docs/index.html>`_ 。飞桨中如何结合使用DALI库请参考 `使用示例 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/resnet>`_ 。
 
 2、训练策略设置
 ===========
