@@ -5,6 +5,12 @@ abs
 
 .. py:function:: paddle.fluid.layers.abs(x, name=None)
 
+:alias_main: paddle.abs
+:alias: paddle.abs,paddle.tensor.abs,paddle.tensor.math.abs
+:old_api: paddle.fluid.layers.abs
+
+
+
 绝对值激活函数。
 
 .. math::

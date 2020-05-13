@@ -5,6 +5,11 @@ Conv3DTranspose
 
 .. py:class:: paddle.fluid.dygraph.Conv3DTranspose(num_channels, num_filters, filter_size, output_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, dtype="float32")
 
+:alias_main: paddle.nn.Conv3DTranspose
+:alias: paddle.nn.Conv3DTranspose,paddle.nn.layer.Conv3DTranspose,paddle.nn.layer.conv.Conv3DTranspose
+
+
+
 
 该接口用于构建 ``Conv3DTranspose`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。3D卷积转置层（Convlution3D transpose layer)根据输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW格式。其中 ``N`` 为batch大小， ``C`` 为通道数（channel）, ``D``  为特征深度, ``H`` 为特征高度， ``W`` 为特征宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
@@ -57,7 +62,6 @@ Conv3DTranspose
     W_{out}\in[W'_{out},W'_{out} + strides[2]) 
 
 
-**注意** :
     如果output_size为None，则 :math:`D_{out}` = :math:`D^\prime_{out}` , :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;否则，指定的output_size_depth（输出特征层的深度） :math:`D_{out}` 应当介于 :math:`D^\prime_{out}` 和 :math:`D^\prime_{out} + strides[0]` 之间（不包含 :math:`D^\prime_{out} + strides[0]` ），指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[1]` 之间（不包含 :math:`H^\prime_{out} + strides[1]` ）, 并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[2]` 之间（不包含 :math:`W^\prime_{out} + strides[2]` ）。 
 
     由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。

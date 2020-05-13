@@ -5,6 +5,12 @@ in_dygraph_mode
 
 .. py:function:: paddle.fluid.in_dygraph_mode()
 
+:alias_main: paddle.in_dygraph_mode
+:alias: paddle.in_dygraph_mode
+:old_api: .fluid.framework.in_dygraph_mode
+
+
+
 该接口检查程序是否在动态图模式中运行。
 可以通过 ``fluid.dygraph.guard`` 接口开启动态图模式。
 

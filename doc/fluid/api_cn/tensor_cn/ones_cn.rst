@@ -5,6 +5,11 @@ ones
 
 .. py:function:: paddle.ones(shape, dtype, out=None, device=None)
 
+:alias_main: paddle.ones
+:alias: paddle.ones,paddle.tensor.ones,paddle.tensor.creation.ones
+
+
+
 
 该OP创建形状为 ``shape`` 、数据类型为 ``dtype`` 且值全为1的Tensor。
 

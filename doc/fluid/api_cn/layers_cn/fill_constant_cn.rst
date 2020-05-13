@@ -5,6 +5,12 @@ fill_constant
 
 .. py:function:: paddle.fluid.layers.fill_constant(shape,dtype,value,force_cpu=False,out=None)
 
+:alias_main: paddle.fill_constant
+:alias: paddle.fill_constant,paddle.tensor.fill_constant,paddle.tensor.creation.fill_constant
+:old_api: paddle.fluid.layers.fill_constant
+
+
+
 该OP创建一个形状为shape并且数据类型为dtype的Tensor，同时用 ``value`` 中提供的常量初始化该Tensor。
 
 创建的Tensor的stop_gradient属性默认为True。

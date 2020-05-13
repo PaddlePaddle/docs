@@ -3,9 +3,12 @@
 PolynomialDecay
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
 .. py:class:: paddle.fluid.dygraph.PolynomialDecay(learning_rate, decay_steps, end_learning_rate=0.0001, power=1.0, cycle=False, begin=0, step=1, dtype='float32')
+
+:api_attr: 动态图
+
+
 
 该接口提供学习率按多项式衰减的功能。通过多项式衰减函数，使得学习率值逐步从初始的 ``learning_rate``，衰减到 ``end_learning_rate`` 。
 

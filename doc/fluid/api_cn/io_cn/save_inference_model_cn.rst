@@ -3,13 +3,15 @@
 save_inference_model
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.io.save_inference_model(dirname, feeded_var_names, target_vars, executor, main_program=None, model_filename=None, params_filename=None, export_for_deployment=True,  program_only=False)
 
+:api_attr: 静态图
+
+
+
 修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见 :ref:`api_guide_Program` ）。 所得到的 ``Inference Program`` 及其对应的所有相关参数均被保存到 ``dirname`` 指定的目录中。若只想保存训练后的模型参数，请使用 :ref:`cn_api_fluid_io_save_params` 接口。更多细节请参考 :ref:`api_guide_model_save_reader` 。
 
-**注意：dirname用于指定保存预测模型结构和参数的目录。若需要将模型参数保存在指定目录的若干文件中，请设置params_filename的值为None; 若需要将所有模型参数保存在一个单独的二进制文件中，请使用params_filename来指定该二进制文件的名称。**
 
 参数:
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。

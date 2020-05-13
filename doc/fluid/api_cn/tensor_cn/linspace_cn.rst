@@ -5,9 +5,13 @@ linspace
 
 .. py:function:: paddle.linspace(start, stop, num, dtype, out=None, device=None, name=None)
 
+:alias_main: paddle.linspace
+:alias: paddle.linspace,paddle.tensor.linspace,paddle.tensor.creation.linspace
+
+
+
 该OP在给定区间内返回固定数目的均匀间隔的值。
 
-**注意：该OP不进行梯度计算**
  
 参数：
     - **start** (float|Variable) – start是区间开始的变量，可以是一个浮点标量，或是一个shape为[1]的Tensor，该Tensor的数据类型可以是float32或者是float64。

@@ -5,6 +5,11 @@ addcmul
 
 .. py:function:: paddle.addcmul(input, tensor1, tensor2, value=1.0, out=None, name=None)
 
+:alias_main: paddle.addcmul
+:alias: paddle.addcmul,paddle.tensor.addcmul,paddle.tensor.math.addcmul
+
+
+
 计算tensor1和tensor2的逐元素乘积，然后将结果乘以标量value，再加到input上输出。其中input, tensor1, tensor2的维度必须是可广播的。
 
 计算过程的公式为：

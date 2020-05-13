@@ -6,6 +6,11 @@ addmm
 
 .. py:function:: paddle.addmm(input, x, y, alpha=1.0, beta=1.0, name=None)
 
+:alias_main: paddle.addmm
+:alias: paddle.addmm,paddle.tensor.addmm,paddle.tensor.math.addmm
+
+
+
 计算x和y的乘积，将结果乘以标量alpha，再加上input与beta的乘积，得到输出。其中input与x、y乘积的维度必须是可广播的。
 
 计算过程的公式为：

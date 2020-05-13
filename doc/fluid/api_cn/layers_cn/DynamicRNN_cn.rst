@@ -3,11 +3,13 @@
 DynamicRNN
 ===================
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.layers.DynamicRNN(name=None)
 
-**注意：该类型的输入仅支持LoDTensor，如果您需要处理的输入数据是Tensor类型，
+:api_attr: 静态图
+
+
+
 请使用StaticRNN（ fluid.layers.** :ref:`cn_api_fluid_layers_StaticRNN` **)。**
 
 DynamicRNN可以处理一批序列数据，其中每个样本序列的长度可以不同，每个序列的长度信息记录在LoD里面。

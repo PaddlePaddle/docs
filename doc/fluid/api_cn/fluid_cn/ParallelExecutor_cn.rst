@@ -3,15 +3,16 @@
 ParallelExecutor
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
 
-``ParallelExecutor`` 是 ``Executor`` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式， ``ParallelExecutor`` 在构造时会将参数分发到不同的节点上，并将输入的 ``Program`` 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。如果使用GPU运行模型，即 ``use_cuda=True`` ，节点指代GPU， ``ParallelExecutor`` 将自动获取在当前机器上可用的GPU资源，用户也可以通过在环境变量设置可用的GPU资源，例如：希望使用GPU0、GPU1计算，export CUDA_VISIBLEDEVICES=0,1；如果在CPU上进行操作，即 ``use_cuda=False`` ，节点指代CPU，**注意：此时需要用户在环境变量中手动添加 CPU_NUM ，并将该值设置为CPU设备的个数，例如：export CPU_NUM=4，如果没有设置该环境变量，执行器会在环境变量中添加该变量，并将其值设为1**。
+:api_attr: 静态图
+
+
+
 
 参数:
     - **use_cuda** (bool) – 该参数表示是否使用GPU执行。
-    - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字。**注意：如果是数据并行模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。
     - **main_program** (Program) – 需要被执行的Program 。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为fluid.default_main_program()。 默认为：None。
     - **share_vars_from** (ParallelExecutor) - 如果设置了share_vars_from，当前的ParallelExecutor将与share_vars_from指定的ParallelExecutor共享参数值。需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的ParallelExecutor在调用with_data_parallel时，需要将share_vars_from设置为训练所对应的ParallelExecutor。由于ParallelExecutor只有在第一次执行时才会将参数变量分发到其他设备上，因此share_vars_from指定的ParallelExecutor必须在当前ParallelExecutor之前运行。默认为：None。
     - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。 关于exec_strategy更多信息，请参阅 ``fluid.ExecutionStrategy`` 。 默认为：None。

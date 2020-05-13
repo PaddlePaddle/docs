@@ -5,6 +5,12 @@ elementwise_mul
 
 .. py:function:: paddle.fluid.layers.elementwise_mul(x, y, axis=-1, act=None, name=None)
 
+:alias_main: paddle.elementwise_mul
+:alias: paddle.elementwise_mul,paddle.tensor.elementwise_mul,paddle.tensor.math.elementwise_mul
+:old_api: paddle.fluid.layers.elementwise_mul
+
+
+
 该OP是逐元素相乘算子，输入 ``x`` 与输入 ``y`` 逐元素相乘，并将各个位置的输出元素保存到返回结果中。
 
 等式是：

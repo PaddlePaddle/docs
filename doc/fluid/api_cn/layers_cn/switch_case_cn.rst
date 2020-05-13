@@ -3,9 +3,12 @@
 switch_case
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.switch_case(branch_index, branch_fns, default=None, name=None)
+
+:api_attr: 静态图
+
+
 
 该OP的运行方式类似于c++的switch/case。
 

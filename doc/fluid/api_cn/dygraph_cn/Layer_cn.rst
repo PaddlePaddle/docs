@@ -5,6 +5,12 @@ Layer
 
 .. py:class:: paddle.fluid.dygraph.Layer(name_scope=None, dtype=core.VarDesc.VarType.FP32)
 
+:alias_main: paddle.nn.Layer
+:alias: paddle.nn.Layer
+:old_api: paddle.fluid.dygraph.layers.Layer
+
+
+
 基于OOD实现的动态图Layer，包含该Layer的参数、前序运行的结构等信息。
 
 参数：

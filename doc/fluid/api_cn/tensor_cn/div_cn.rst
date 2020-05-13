@@ -5,6 +5,11 @@ div
 
 .. py:function:: paddle.div(x, y, out=None, name=None)
 
+:alias_main: paddle.div
+:alias: paddle.div,paddle.tensor.div,paddle.tensor.math.div
+
+
+
 该OP是逐元素相除算子，输入 ``x`` 与输入 ``y`` 逐元素相除，并将各个位置的输出元素保存到返回结果中。
 
 等式是：

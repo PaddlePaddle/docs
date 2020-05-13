@@ -3,11 +3,13 @@
 BackwardStrategy
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
 .. py:class:: paddle.fluid.dygraph.BackwardStrategy
 
-**注意：该API只在动态图下生效**
+:api_attr: 动态图
+
+
+
 
 BackwardStrategy是描述动态图反向执行的策略，主要功能是定义动态图反向执行时的不同策略
 

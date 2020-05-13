@@ -4,6 +4,11 @@ squeeze
 
 .. py:function:: paddle.tensor.squeeze(input, zxes, name=None)
 
+:alias_main: paddle.squeeze
+:alias: paddle.squeeze,paddle.tensor.squeeze,paddle.tensor.manipulation.squeeze
+
+
+
 该OP会根据axes压缩输入Tensor的维度。如果指定了axes，则会删除axes中指定的维度，axes指定的维度要等于1。如果没有指定axes，那么所有等于1的维度都会被删除。
 
 **参数**：

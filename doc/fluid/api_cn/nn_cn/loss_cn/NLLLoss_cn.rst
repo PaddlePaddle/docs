@@ -3,6 +3,11 @@ NLLLoss
 
 .. py:function:: paddle.nn.loss.NLLLoss(weight=None, reduction='mean', ignore_index=-100)
 
+:alias_main: paddle.nn.NLLLoss
+:alias: paddle.nn.NLLLoss,paddle.nn.layer.NLLLoss,paddle.nn.layer.loss.NLLLoss
+
+
+
 该OP计算输入input和标签label间的 `negative log likelihood loss` 损失 ，可用于训练一个 `n` 类分类器。
 
 如果提供 `weight` 参数的话，它是一个 `1-D` 的tensor, 里面的值对应类别的权重。当你的训练集样本

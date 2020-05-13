@@ -5,6 +5,11 @@ triu
 
 .. py:function:: paddle.tensor.triu(input, diagonal=0, name=None)
 
+:alias_main: paddle.triu
+:alias: paddle.triu,paddle.tensor.triu,paddle.tensor.creation.triu
+
+
+
 返回输入矩阵 `input` 的上三角部分，其余部分被设为0。
 矩形的上三角部分被定义为对角线上和上方的元素。
 

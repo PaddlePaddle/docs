@@ -3,9 +3,12 @@
 DataFeedDesc
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.DataFeedDesc(proto_file)
+
+:api_attr: 静态图
+
+
 
 描述训练数据的格式。输入是一个文件路径名，其内容是protobuf message。
 
@@ -91,7 +94,6 @@ DataFeedDesc
 
 .. py:method:: set_dense_slots(dense_slots_name)
 
-将 :code:`dense_slots_name` 指定的slots设置为密集的slot。**注意：默认情况下，所有slots都是稀疏的。**
 
 密集slot的特征将被输入一个Tensor，而稀疏slot的特征将被输入一个LoDTensor。
 

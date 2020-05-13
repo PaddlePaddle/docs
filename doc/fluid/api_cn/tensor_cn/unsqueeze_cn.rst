@@ -4,6 +4,11 @@ unsqueeze
 
 .. py:function:: paddle.tensor.unsqueeze(input, axes, name=None)
 
+:alias_main: paddle.unsqueeze
+:alias: paddle.unsqueeze,paddle.tensor.unsqueeze,paddle.tensor.manipulation.unsqueeze
+
+
+
 该OP向输入（input）的shape中一个或多个位置（axes）插入维度。
 
 **参数**：

@@ -4,6 +4,11 @@ ReLU
 -------------------------------
 .. py:class:: paddle.nn.ReLU(inplace=False)
 
+:alias_main: paddle.nn.ReLU
+:alias: paddle.nn.ReLU,paddle.nn.layer.ReLU,paddle.nn.layer.activation.ReLU
+
+
+
 
 **ReLU（Rectified Linear Unit）激活层：**
 

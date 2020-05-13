@@ -5,6 +5,11 @@ BCELoss
 
 .. py:function:: paddle.nn.BCELoss(input, label, weight=None, reduction='mean')
 
+:alias_main: paddle.nn.BCELoss
+:alias: paddle.nn.BCELoss,paddle.nn.layer.BCELoss,paddle.nn.layer.loss.BCELoss
+
+
+
 该接口用于创建一个BCELoss的可调用类，用于计算输入和标签之间的二值交叉熵损失值。二值交叉熵损失函数公式如下：
 
 当 `weight` 不为空时，公式为：
@@ -33,7 +38,6 @@ BCELoss
   Out = SUM(Out)
 
 
-**注意：输入数据一般是 `fluid.layers.sigmoid` 的输出。因为是二分类，所以标签值应该是0或者1。
 
 输入input和标签label的维度是[N, *], 其中N是batch_size， `*` 是任意其他维度。
 如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 [N, *], 与输入input的形状相同。

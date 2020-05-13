@@ -5,6 +5,11 @@ sort
 
 .. py:function:: paddle.sort(input, axis=-1, descending=False, out=None, name=None)
 
+:alias_main: paddle.sort
+:alias: paddle.sort,paddle.tensor.sort,paddle.tensor.search.sort
+
+
+
 对输入变量沿给定轴进行排序，输出排序好的数据和相应的索引，其维度和输入相同。**默认升序排列，如果需要降序排列设置** ``descending=True`` 。
 
 

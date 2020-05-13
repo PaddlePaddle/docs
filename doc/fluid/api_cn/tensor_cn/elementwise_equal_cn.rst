@@ -5,6 +5,11 @@ elementwise_equal
 
 .. py:function:: paddle.elementwise_equal(x, y, name=None)
 
+:alias_main: paddle.elementwise_equal
+:alias: paddle.elementwise_equal,paddle.tensor.elementwise_equal,paddle.tensor.logic.elementwise_equal
+
+
+
 该OP返回 :math:`x==y` 逐元素比较x和y是否相等。
 
 参数：

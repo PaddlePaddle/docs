@@ -5,6 +5,12 @@ reshape
 
 .. py:function::  paddle.fluid.layers.reshape(x, shape, actual_shape=None, act=None, inplace=False, name=None)
 
+:alias_main: paddle.reshape
+:alias: paddle.reshape,paddle.tensor.reshape,paddle.tensor.manipulation.reshape
+:old_api: paddle.fluid.layers.reshape
+
+
+
 该OP在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。
 
 目标形状可由 ``shape`` 或 ``actual_shape`` 给出。当两个属性同时被指定时，``actual_shape`` 的优先级高于 ``shape`` ，但此时 ``shape`` 只能是整数列表或元组，且在编译时仍然应该正确地设置 ``shape`` 以保证形状推断。
@@ -25,7 +31,6 @@ reshape
   2. 给定一个形状为[2,4,6]的三维张量x，目标形状为[2,3,-1,2]，则将x变换为形状为[2,3,4,2]的4-D张量，且x的数据保持不变。在这种情况下，目标形状的一个维度被设置为-1，这个维度的值是从x的元素总数和剩余维度推断出来的。
   3. 给定一个形状为[2,4,6]的三维张量x，目标形状为[-1,0,3,2]，则将x变换为形状为[2,4,3,2]的4-D张量，且x的数据保持不变。在这种情况下，0对应位置的维度值将从x的对应维数中复制,-1对应位置的维度值由x的元素总数和剩余维度推断出来。
 
-**注意：参数** ``actual_shape`` **之后将被舍弃，只用参数** ``shape`` **来表示目标形状。**
 
 参数：
   - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``，``float64``，``int32``，或 ``int64``。

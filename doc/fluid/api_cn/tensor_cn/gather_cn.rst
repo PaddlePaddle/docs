@@ -4,6 +4,11 @@ gather
 
 .. py:function:: paddle.tensor.gather(input, index, overwrite=True)
 
+:alias_main: paddle.gather
+:alias: paddle.gather,paddle.tensor.gather,paddle.tensor.manipulation.gather
+
+
+
 根据索引 index 获取输入（input）的最外层维度的条目，并将它们拼接在一起。
 
 .. math::

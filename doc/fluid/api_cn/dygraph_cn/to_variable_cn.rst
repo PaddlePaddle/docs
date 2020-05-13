@@ -3,9 +3,12 @@
 to_variable
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
 .. py:function:: paddle.fluid.dygraph.to_variable(value, name=None, zero_copy=None)
+
+:api_attr: 动态图
+
+
 
 该函数实现从numpy\.ndarray对象或者Variable对象创建一个 ``Variable`` 类型的对象。
 

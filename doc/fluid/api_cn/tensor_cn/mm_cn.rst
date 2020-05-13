@@ -5,6 +5,11 @@ mm
 
 .. py:function:: paddle.mm(input, mat2, out=None, name=None)
 
+:alias_main: paddle.mm
+:alias: paddle.mm,paddle.tensor.mm,paddle.tensor.math.mm
+
+
+
 用于两个输入矩阵的相乘。
 
 两个输入的形状可为任意维度，但当任一输入维度大于3时，两个输入的维度必须相等。

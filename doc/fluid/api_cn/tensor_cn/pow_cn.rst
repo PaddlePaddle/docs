@@ -5,6 +5,11 @@ pow
 
 .. py:function:: paddle.pow(input, exponent, out=None, name=None):
 
+:alias_main: paddle.pow
+:alias: paddle.pow,paddle.tensor.pow,paddle.tensor.math.pow
+
+
+
 该OP是指数激活算子：
 
 .. math::

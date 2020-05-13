@@ -3,9 +3,12 @@
 linear_chain_crf
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.linear_chain_crf(input, label, param_attr=None, length=None)
+
+:api_attr: 静态图
+
+
 
 线性链条件随机场（Linear Chain CRF）
 
@@ -41,7 +44,6 @@ linear_chain_crf
 
 
 
-**注意：**
 
     1.条件随机场（CRF）的特征函数由发射特征(emission feature）和转移特征（transition feature）组成。发射特征（emission feature）权重在调用函数前计算，而不在函数里计算。
 

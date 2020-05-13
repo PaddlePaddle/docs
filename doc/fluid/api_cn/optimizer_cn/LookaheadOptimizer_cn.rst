@@ -3,9 +3,12 @@
 LookaheadOptimizer
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.optimizer.LookaheadOptimizer(inner_optimizer, alpha=0.5, k=5)
+
+:api_attr: 静态图
+
+
 
 本类实现了Lookahead优化算法：https://arxiv.org/abs/1907.08610。Lookahead优化算法在内存中保存两部分参数：快参数和慢参数。每个训练步次，inner_optimizer都更新快参数；每隔k个训练步次，Lookahead更新慢参数，如下：
 

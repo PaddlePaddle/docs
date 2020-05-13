@@ -3,9 +3,12 @@
 PipelineOptimizer
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.optimizer.PipelineOptimizer(optimizer, cut_list=None, place_list=None, concurrency_list=None, queue_size=30, sync_steps=1, start_cpu_core_id=0)
+
+:api_attr: 静态图
+
+
 
 使用流水线模式进行训练。
 Program会根据切分列表cut_list进行分割。如果cut_list的长度是k，则整个program（包括反向部分）将被分割为2*k-1个section。 所以place_list和concurrency_list的长度也必须是2*k-1。 

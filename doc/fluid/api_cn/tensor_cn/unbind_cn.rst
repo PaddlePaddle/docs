@@ -4,6 +4,11 @@ unbind
 
 .. py:function:: paddle.tensor.unbind(input, axis=0)
 
+:alias_main: paddle.tensor.unbind
+:alias: paddle.tensor.unbind,paddle.tensor.manipulation.unbind
+
+
+
 该OP将输入Tensor按照指定的维度分割成多个子Tensor。
 
 **参数**：

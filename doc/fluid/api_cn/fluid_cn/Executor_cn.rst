@@ -4,9 +4,12 @@ Executor
 -------------------------------
 
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.Executor (place=None)
+
+:api_attr: 静态图
+
+
 
 Executor支持单GPU、多GPU以及CPU运行。
 

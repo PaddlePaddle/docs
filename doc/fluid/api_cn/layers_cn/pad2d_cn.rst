@@ -5,6 +5,12 @@ pad2d
 
 .. py:function::  paddle.fluid.layers.pad2d(input, paddings=[0, 0, 0, 0], mode='constant', pad_value=0.0, data_format='NCHW', name=None)
 
+:alias_main: paddle.nn.functional.pad2d
+:alias: paddle.nn.functional.pad2d,paddle.nn.functional.common.pad2d
+:old_api: paddle.fluid.layers.pad2d
+
+
+
 该OP依照 paddings 和 mode 属性对input进行2维 ``pad`` 。
 
 参数：

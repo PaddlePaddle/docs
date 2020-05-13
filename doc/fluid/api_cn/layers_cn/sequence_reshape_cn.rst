@@ -3,11 +3,13 @@
 sequence_reshape
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.sequence_reshape(input, new_dim)
 
-**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用reshape函数（fluid.layers.** :ref:`cn_api_fluid_layers_reshape` **）。**
+:api_attr: 静态图
+
+
+
 
 **该OP仅支持LoDTensor** ，在指定 ``new_dim`` 参数下，通过序列原始长度、和原始shape计算出新的shape，以输出包含新维度（new_dim）下的LoDTensor。目前仅支持1-level LoDTensor，请确保(原长度*原维数)可以除以新的维数，且每个序列没有余数。
 

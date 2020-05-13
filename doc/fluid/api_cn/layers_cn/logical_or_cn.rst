@@ -5,6 +5,12 @@ logical_or
 
 .. py:function:: paddle.fluid.layers.logical_or(x, y, out=None, name=None)
 
+:alias_main: paddle.logical_or
+:alias: paddle.logical_or,paddle.tensor.logical_or,paddle.tensor.logic.logical_or
+:old_api: paddle.fluid.layers.logical_or
+
+
+
 该OP逐元素的对 ``X`` 和 ``Y`` 两LoDTensor/Tensor进行逻辑或运算。
 
 .. math::

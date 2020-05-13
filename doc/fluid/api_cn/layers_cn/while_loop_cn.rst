@@ -4,13 +4,18 @@ while_loop
 ____________________________________
 
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.while_loop(cond, body, loop_vars, is_test=False, name=None)
 
+:api_attr: 静态图
+:alias_main: paddle.nn.while_loop
+:alias: paddle.nn.while_loop,paddle.nn.control_flow.while_loop
+:old_api: paddle.fluid.layers.while_loop
+
+
+
 该API用于实现类似while的循环控制功能，只要循环条件 ``cond`` 的返回值为True，``while_loop`` 则会循环执行循环体 ``body`` ，直到 ``cond`` 的返回值为False。
 
-**注意：**
     ``body`` 中定义的局部变量无法使用 ``Executor`` 的 ``fetch_list`` 来获取的，变量需在 ``body`` 外定义并将其置于 ``loop_vars`` 中进行循环更新后才可通过 ``fetch_list`` 获取。
 
 参数：

@@ -5,6 +5,11 @@ where
 
 .. py:function:: paddle.where(condition, x, y, name=None)
 
+:alias_main: paddle.where
+:alias: paddle.where,paddle.tensor.where,paddle.tensor.search.where
+
+
+
 该OP返回一个根据输入 ``condition``, 选择 ``x`` 或 ``y`` 的元素组成的多维 ``Tensor``  ：
 
 .. math::

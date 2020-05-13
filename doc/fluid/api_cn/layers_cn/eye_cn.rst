@@ -5,6 +5,12 @@ eye
 
 .. py:function:: paddle.fluid.layers.eye(num_rows, num_columns=None, batch_shape=None, dtype='float32')
 
+:alias_main: paddle.eye
+:alias: paddle.eye,paddle.tensor.eye,paddle.tensor.creation.eye
+:old_api: paddle.fluid.layers.eye
+
+
+
 该OP用来构建单位矩阵，或一个批次的单位矩阵。
 
 参数：

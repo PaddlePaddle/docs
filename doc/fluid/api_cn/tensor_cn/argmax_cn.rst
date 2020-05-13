@@ -5,6 +5,11 @@ argmax
 
 .. py:function:: paddle.argmax(input, axis=None, dtype=None, out=None, keepdims=False, name=None)
 
+:alias_main: paddle.argmax
+:alias: paddle.argmax,paddle.tensor.argmax,paddle.tensor.search.argmax
+
+
+
 
 该OP沿 ``axis`` 计算输入 ``input`` 的最大元素的索引。
 

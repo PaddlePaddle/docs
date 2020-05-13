@@ -5,6 +5,11 @@ sqrt
 
 .. py:function:: paddle.sqrt(x, name=None, out=None)
 
+:alias_main: paddle.sqrt
+:alias: paddle.sqrt,paddle.tensor.sqrt,paddle.tensor.math.sqrt
+
+
+
 计算输入的算数平方根。
 
 .. math::

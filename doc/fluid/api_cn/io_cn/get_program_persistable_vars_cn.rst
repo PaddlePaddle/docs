@@ -5,6 +5,10 @@ get_program_persistable_vars
 
 .. py:function:: paddle.fluid.io.get_program_persistable_vars(program)
 
+:api_attr: 静态图
+
+
+
 该接口从Program中获取所有persistable的变量。
 
 参数:

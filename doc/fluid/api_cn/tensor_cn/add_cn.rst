@@ -5,6 +5,11 @@ add
 
 .. py:function:: paddle.add(x, y, alpha=1, out=None, name=None)
 
+:alias_main: paddle.add
+:alias: paddle.add,paddle.tensor.add,paddle.tensor.math.add
+
+
+
 该OP是逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
 
 等式为：

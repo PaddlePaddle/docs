@@ -3,9 +3,12 @@
 lstm_unit
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.lstm_unit(x_t, hidden_t_prev, cell_t_prev, forget_bias=0.0, param_attr=None, bias_attr=None, name=None)
+
+:api_attr: 静态图
+
+
 
 
 Long-Short Term Memory（LSTM）循环神经网络计算单元。该OP用于完成单个时间步内LSTM的计算，基于论文 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv.org/abs/1409.2329>`_ 中的描述实现，

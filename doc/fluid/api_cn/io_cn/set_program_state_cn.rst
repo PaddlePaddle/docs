@@ -5,11 +5,14 @@ set_program_state
 
 .. py:function:: paddle.fluid.io.set_program_state(program, state_dict)
 
+:api_attr: 静态图
+
+
+
 利用 ``state_dict`` 设置 ``Program`` 的参数和优化器信息。
 
 如果参数的 shape 或 dtype 不匹配，则会引发异常。
 
-**注意：必须在运行 start_up_program 之后调用此函数。**
 
 参数:
     - **program** (Program) - 需要被设置的 ``Program`` 。

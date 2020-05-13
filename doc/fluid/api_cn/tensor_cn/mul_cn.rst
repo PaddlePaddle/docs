@@ -5,6 +5,11 @@ mul
 
 .. py:function:: paddle.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, out=None, name=None)
 
+:alias_main: paddle.mul
+:alias: paddle.mul,paddle.tensor.mul,paddle.tensor.math.mul
+
+
+
 
 mul算子
 此运算是用于对输入x和y执行矩阵乘法。
