@@ -16,6 +16,7 @@ fluid.dygraph
     dygraph/DataParallel.rst
     dygraph/declarative.rst
     dygraph/disable_dygraph.rst
+    dygraph/disable_imperative.rst
     dygraph/Dropout.rst
     dygraph/dygraph_to_static_code.rst
     dygraph/dygraph_to_static_func.rst
@@ -23,6 +24,7 @@ fluid.dygraph
     dygraph/dygraph_to_static_program.rst
     dygraph/Embedding.rst
     dygraph/enable_dygraph.rst
+    dygraph/enable_imperative.rst
     dygraph/enabled.rst
     dygraph/ExponentialDecay.rst
     dygraph/grad.rst
