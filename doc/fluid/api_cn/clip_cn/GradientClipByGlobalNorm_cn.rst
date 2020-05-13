@@ -58,14 +58,14 @@ GradientClipByGlobalNorm
         #   return Parameter.name=="fc_0.w_0"
         # clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0, need_clip=fileter_func)
 
-        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1)
-        sgd_optimizer.minimize(loss, grad_clip=clip)
+        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1, grad_clip=clip)
+        sgd_optimizer.minimize(loss)
 
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
     x = np.random.uniform(-100, 100, (10, 2)).astype('float32')
     exe.run(startup_prog)
-    out = exe.run(main_prog, feed={'x': x}, fetch_list=loss)
+    out = exe.run(main_prog, feed={'x': x}, fetch_list=[loss])
 
 
 **代码示例2：动态图**
@@ -95,5 +95,7 @@ GradientClipByGlobalNorm
         # clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0, need_clip=fileter_func)
 
         sgd_optimizer = fluid.optimizer.SGD(
-        learning_rate=0.1, parameter_list=linear.parameters())
-        sgd_optimizer.minimize(loss, grad_clip=clip)
+            learning_rate=0.1, 
+            parameter_list=linear.parameters(),
+            grad_clip=clip)
+        sgd_optimizer.minimize(loss)

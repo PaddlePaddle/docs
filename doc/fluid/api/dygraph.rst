@@ -48,6 +48,7 @@ fluid.dygraph
     dygraph/PRelu.rst
     dygraph/prepare_context.rst
     dygraph/ProgramTranslator.rst
+    dygraph/ReduceLROnPlateau.rst
     dygraph/save_dygraph.rst
     dygraph/Sequential.rst
     dygraph/SpectralNorm.rst

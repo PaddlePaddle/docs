@@ -40,7 +40,8 @@ fluid.dygraph
     dygraph_cn/PolynomialDecay_cn.rst
     dygraph_cn/Pool2D_cn.rst
     dygraph_cn/PRelu_cn.rst
-    dygraph_cn/prepare_context_cn.rst  
+    dygraph_cn/prepare_context_cn.rst
+    dygraph_cn/ReduceLROnPlateau_cn.rst
     dygraph_cn/save_dygraph_cn.rst
     dygraph_cn/Sequential_cn.rst
     dygraph_cn/SpectralNorm_cn.rst
