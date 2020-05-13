@@ -62,7 +62,7 @@ PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分�
     ":code:`num_threads`", "int", "1", "CPU线程数"
     ":code:`nccl_comm_num`", "int", "1", "nccl通信器数量"
     ":code:`fuse_all_reduce_ops`", "bool", "False", "多卡训练时，将AllReduce操纵进行融合"
-    ":code:`use_hierarchical_allreduce` ", "bool", "False","分级式reduce"
+    ":code:`use_hierarchical_allreduce` ", "bool", "False", "分级式reduce"
     ":code:`num_iteration_per_drop_scope`", "int", "1", "scope drop频率，设置每隔几个batch的迭代之后执行一次清理scope"
     ":code:`fetch_frequency`", "int", "1", "fetch的刷新频率"
     ":code:`fuse_bn_act_ops`", "bool", "False", "是否开启batch normalization和激活函数的融合"
