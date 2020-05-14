@@ -44,14 +44,16 @@ WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需�
 .. code-block:: bash
 
   git clone https://github.com/paddlepaddle/Paddle
+  cd Paddle
   # 建议使用git checkout切换到Paddle稳定的版本，如：
   git checkout v1.7.2
 
-**note**: 如果您是多卡机器，需要安装nccl；如果您是单卡机器则可以在编译时显示指定WITH_NCCL=OFF来跳过这一步。注意如果WITH_NCCL=ON，且没有安装NCCL，则编译会报错。
+**note**: 如果您是多卡机器，建议安装NCCL；如果您是单卡机器则可以在编译时显示指定WITH_NCCL=OFF来跳过这一步。注意如果WITH_NCCL=ON，且没有安装NCCL，则编译会报错。
 
 .. code-block:: bash
 
   git clone https://github.com/NVIDIA/nccl.git
+  cd nccl
   make -j4
   make install
 
