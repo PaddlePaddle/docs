@@ -68,6 +68,7 @@ paddle.tensor
     tensor_cn/tanh_cn.rst
     tensor_cn/t_cn.rst
     tensor_cn/tensordot_cn.rst
+    tensor_cn/trace_cn.rst
     tensor_cn/transpose_cn.rst
     tensor_cn/tril_cn.rst
     tensor_cn/triu_cn.rst

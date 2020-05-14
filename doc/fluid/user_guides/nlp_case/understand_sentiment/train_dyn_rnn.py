@@ -79,16 +79,16 @@ def train(use_cuda, params_dirname):
 
     print("Reading training data....")
     if args.enable_ce:
-        train_reader = paddle.batch(
+        train_reader = fluid.io.batch(
             paddle.dataset.imdb.train(word_dict), batch_size=BATCH_SIZE)
     else:
-        train_reader = paddle.batch(
-            paddle.reader.shuffle(
+        train_reader = fluid.io.batch(
+            fluid.io.shuffle(
                 paddle.dataset.imdb.train(word_dict), buf_size=25000),
             batch_size=BATCH_SIZE)
 
     print("Reading testing data....")
-    test_reader = paddle.batch(
+    test_reader = fluid.io.batch(
         paddle.dataset.imdb.test(word_dict), batch_size=BATCH_SIZE)
 
     feed_order = ['words', 'label']
