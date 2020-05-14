@@ -82,8 +82,7 @@ BeamSearchDecoder
 此函数输入形状为 :math:`[batch\_size,s_0，s_1，...]` 的tensor t，由minibatch中的样本 :math:`t[0]，...，t[batch\_size-1]` 组成。将其扩展为形状 :math:`[ batch\_size,beam\_size,s_0，s_1，...]` 的tensor，由 :math:`t[0]，t[0]，...，t[1]，t[1]，...` 组成，其中每个minibatch中的样本重复 :math:`beam\_size` 次。
 
 参数：
-  - **probs** (Variable) - 形状为 :math:`[batch\_size,beam\_size,vocab\_size]` 的tensor，表示对数概率。其数据类型应为float32。
-  - **finish** (Variable) - 形状为 :math:`[batch\_size,beam\_size]` 的tensor，表示所有beam的完成状态。其数据类型应为bool。
+  - **x** (Variable) - 形状为 :math:`[batch\_size, ...]` 的tenosr。数据类型应为float32，float64，int32，int64或bool。
 
 返回：具有与 :code:`x` 相同的形状和数据类型的tensor，其中未完成的beam保持不变，而已完成的beam被替换成特殊的tensor(tensor中所有概率质量被分配给EOS标记)。
 
