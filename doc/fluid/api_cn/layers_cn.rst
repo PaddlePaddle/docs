@@ -157,6 +157,7 @@ fluid.layers
     layers_cn/increment_cn.rst
     layers_cn/inverse_time_decay_cn.rst
     layers_cn/index_select_cn.rst
+    layers_cn/index_sample_cn.rst
     layers_cn/instance_norm_cn.rst
     layers_cn/interpolate_cn.rst
     layers_cn/iou_similarity_cn.rst
