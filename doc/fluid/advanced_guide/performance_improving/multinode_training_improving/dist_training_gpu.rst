@@ -7,27 +7,18 @@
 开始优化您的GPU分布式训练任务
 ---------------------------
 
-PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分布式训练。
-通常可以通过以下方法优化在多机多卡环境训练性能，建议在进行性能优化时，
-检查每项优化点并验证对应提升，从而提升最终的性能。
+PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分布式训练。通常可以通过以下方法优化在多机多卡环境训练性能，建议在进行性能优化时，检查每项优化点并验证对应提升，从而提升最终的性能。
 
-一个简单的验证当前的训练程序是否需要进一步优化性能的方法，
-是查看GPU的计算利用率 [#]_ ，通常用 :code:`nvidia-smi` 命令查看。
-如果GPU利用率较低，则可能存在较大的优化空间。
-下面主要从数据准备、训练策略设置和训练方式三个方面介绍GPU分布式训练中常用的优化方法。
+一个简单的验证当前的训练程序是否需要进一步优化性能的方法，是查看GPU的计算利用率 [#]_ ，通常用 :code:`nvidia-smi` 命令查看。如果GPU利用率较低，则可能存在较大的优化空间。下面主要从数据准备、训练策略设置和训练方式三个方面介绍GPU分布式训练中常用的优化方法。
 
 1、数据准备
 ===========
 
-数据读取的优化在GPU训练中至关重要，尤其在不断增加batch_size提升吞吐时，计算对reader性能会有更高对要求，
-优化reader性能需要考虑的点包括：
+数据读取的优化在GPU训练中至关重要，尤其在不断增加batch_size提升吞吐时，计算对reader性能会有更高对要求，优化reader性能需要考虑的点包括：
 
  - 使用 :code:`DataLoader` 。参考 `这里 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/io_cn/DataLoader_cn.html#dataloader>`_ 使用DataLoader，并建议开启 :code:`use_double_buffer` 。
  - reader返回uint8类型数据。图片在解码后一般会以uint8类型存储，如果在reader中转换成float类型数据，会将数据体积扩大4倍。直接返回uint8数据，然后在GPU上转化成float类型进行训练可以提升数据读取效率。
- - 减少reader初始化时间 (infinite read)。
-   在训练任务开始执行第一轮训练时，reader开始异步地不断的从磁盘或其他存储中读取数据并执行预处理，然后将处理好的数据
-   填充到队列中供计算使用。从0开始填充这个队列直到数据可以源源不断供给计算，需要一定时间的预热。所以，如果每轮训练
-   都重新填充队列，会产生一些时间的开销。所以，在使用DataLoader时，可以让reader函数不断的产生数据，直到训练循环结束：
+ - 减少reader初始化时间 (infinite read)。在训练任务开始执行第一轮训练时，reader开始不断异步地从磁盘或其他存储中读取数据并执行预处理，然后将处理好的数据填充到队列中供计算使用。从0开始填充这个队列直到数据可以源源不断供给计算，需要一定时间的预热。所以，如果每轮训练都重新填充队列，会产生一些时间的开销。所以，在使用DataLoader时，可以让reader函数不断地产生数据，直到训练循环结束：
 
    .. code-block:: python
       :linenos:
@@ -109,13 +100,7 @@ PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分�
 
 1、Local SGD
 
-GPU多机多卡同步训练过程中存在慢trainer现象，
-即每步中训练快的trainer的同步通信需要等待训练慢的trainer。
-由于每步中慢trainer的rank具有随机性，
-因此我们使用局部异步训练的方式——LocalSGD，
-通过多步异步训练（无通信阻塞）实现慢trainer时间均摊，
-从而提升同步训练性能。
-Local SGD训练方式主要有三个参数，分别是：
+GPU多机多卡同步训练过程中存在慢trainer现象，即每步中训练快的trainer的同步通信需要等待训练慢的trainer。由于每步中慢trainer的rank具有随机性，因此我们使用局部异步训练的方式——LocalSGD，通过多步异步训练（无通信阻塞）实现慢trainer时间均摊，从而提升同步训练性能。Local SGD训练方式主要有三个参数，分别是：
 
 ..  csv-table:: 
     :header: "选项", "类型", "可选值", "说明"
@@ -130,18 +115,14 @@ Local SGD训练方式主要有三个参数，分别是：
 - Local SGD的warmup步长 :code:`local_sgd_is_warm_steps` 影响最终模型的泛化能力，一般需要等到模型参数稳定之后在进行Local SGD训练，经验值可以将学习率第一次下降时的epoch作为warmup步长，之后再进行Local SGD训练。
 - Local SGD步长 :code:`local_sgd_steps` ，一般该值越大，通信次数越少，训练速度越快，但随之而来的时模型精度下降。经验值设置为2或者4。
 
-具体的Local SGD的训练代码可以参考：
-https://github.com/PaddlePaddle/Fleet/tree/develop/examples/local_sgd/resnet
+具体的Local SGD的训练代码可以参考：https://github.com/PaddlePaddle/Fleet/tree/develop/examples/local_sgd/resnet
 
 
 2、使用混合精度训练
 
-V100 GPU提供了 `Tensor Core <https://www.nvidia.com/en-us/data-center/tensorcore/>`_ 可以在混合精度计算
-场景极大的提升性能。使用混合精度计算的例子可以参考：
-https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification#using-mixed-precision-training
+V100 GPU提供了 `Tensor Core <https://www.nvidia.com/en-us/data-center/tensorcore/>`_ 可以在混合精度计算场景极大的提升性能。使用混合精度计算的例子可以参考：https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification#using-mixed-precision-training
 
-目前Paddle只提供在两个模型（ResNet, BERT）的混合精度计算实现并支持static loss scaling，其他模型使用混合精度也
-可以参考以上的实现完成验证。
+目前Paddle只提供在两个模型（ResNet, BERT）的混合精度计算实现并支持static loss scaling，其他模型使用混合精度也可以参考以上的实现完成验证。
 
 附录
 ----
