@@ -43,14 +43,22 @@ WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需�
 
 .. code-block:: bash
 
-  git clone https://github.com/paddlepaddle/paddle
+  git clone https://github.com/paddlepaddle/Paddle
   # 建议使用git checkout切换到Paddle稳定的版本，如：
   git checkout v1.7.2
+
+**note**: 如果您是多卡机器，需要安装nccl；如果您是单卡机器则可以在编译时显示指定WITH_NCCL=OFF来跳过这一步。注意如果WITH_NCCL=ON，且没有安装NCCL，则编译会报错。
+
+.. code-block:: bash
+
+  git clone https://github.com/NVIDIA/nccl.git
+  make -j4
+  make install
 
 
 **Server端预测库源码编译**
 
-下面的代码片段配制编译选项并进行编译（需要将PADDLE_ROOT替换为PaddlePaddle预测库的安装路径）：
+下面的代码片段配制编译选项并进行编译（需要将PADDLE_ROOT替换为PaddlePaddle预测库的安装路径，WITH_NCCL根据实际情况进行修改）：
 
   .. code-block:: bash
 
@@ -64,6 +72,7 @@ WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需�
            -DWITH_MKL=OFF \
            -DWITH_GPU=OFF  \
            -DON_INFER=ON \
+           -DWITH_NCCL=OFF \
            ..
       make
       make inference_lib_dist
