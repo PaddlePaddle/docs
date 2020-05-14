@@ -156,6 +156,7 @@ fluid.layers
     layers/image_resize_short.rst
     layers/increment.rst
     layers/index_select.rst
+    layers/index_sample.rst
     layers/inplace_abn.rst
     layers/instance_norm.rst
     layers/interpolate.rst
