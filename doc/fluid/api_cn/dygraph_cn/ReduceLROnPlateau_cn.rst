@@ -5,7 +5,7 @@ ReduceLROnPlateau
 
 **注意：该API仅支持【动态图】模式**
 
-.. py:class:: paddle.fluid.dygraph.ReduceLROnPlateau(learning_rate, mode='min', decay_rate=0.1, patience=10, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=0, dtype='float32')
+.. py:class:: paddle.fluid.dygraph.ReduceLROnPlateau(learning_rate, mode='min', decay_rate=0.1, patience=10, verbose=False, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-8, dtype='float32')
 
 该接口为 ``loss`` 自适应的学习率衰减策略。当 ``loss`` 停止下降时，降低学习率。其思想是：一旦模型表现不再提升，将学习率降低2-10倍对模型的训练往往有益。
 
@@ -21,12 +21,14 @@ ReduceLROnPlateau
       （注意：仅在特殊用法时，可以将其设置为 `'max'` ，此时判断逻辑相反， ``loss`` 停止上升学习率才减小）
     - **decay_rate** (float，可选) - 学习率衰减的比例。`new_lr = origin_lr * decay_rate` ，它是值小于1.0的float型数字，默认: 0.1。
     - **patience** (int，可选) - 当 ``loss`` 连续 ``patience`` 个epoch没有下降时，学习率才会减小。默认：10。
+    - **verbose** (bool，可选) - 如果为 ``True`` ， 会在每次更新optimizer中的learning_rate时，打印信息。默认：``False`` 。
     - **threshold** (float，可选) - ``threshold`` 和 ``threshold_mode`` 两个参数将会决定 ``loss`` 最小变化的阈值。小于该阈值的变化
       将会被忽视。默认：1e-4。
     - **threshold_mode** (str，可选) - `'rel'` 和 `'abs'` 之一。在 `'rel'` 模式下， ``loss`` 最小变化的阈值是 `last_loss * threshold` ，
       其中 ``last_loss`` 是 ``loss`` 在上个epoch的值。在 `'abs'` 模式下，``loss`` 最小变化的阈值是 `threshold` 。 默认：`'rel'`。
     - **cooldown** (int，可选) - 在学习速率被降低之后，重新恢复正常操作之前等待的epoch数量。默认：0。
     - **min_lr** (float，可选) - 最小的学习率。减小后的学习率最低下界限。默认：0。
+    - **eps** (float，可选) - 每次更新学习率时最小的衰减，如果新旧学习率间的差异小于 ``eps`` ，则不会更新。默认值:1e-8。
     - **dtype** (str，可选) – 学习率值的数据类型，可以为"float32", "float64"。默认："float32"。
 
 返回： ``loss`` 自适应的学习率
@@ -50,6 +52,7 @@ ReduceLROnPlateau
                                     learning_rate = 1.0,
                                     decay_rate = 0.5,
                                     patience = 5,
+                                    verbose = True,
                                     cooldown = 3),
                 parameter_list = linear.parameters())
 
