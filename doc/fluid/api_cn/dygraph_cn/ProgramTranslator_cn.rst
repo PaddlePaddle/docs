@@ -195,7 +195,7 @@ ProgramTranslator
 
 .. py:method:: save_inference_model(dirname, feed=None, fetch=None)
 
-将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，构建成新的Program，并将此Program和相关参数保存到指定dirname路径下，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
+将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，构建成新的Program，并将此Program和相关参数保存到指定dirname路径下，被保存的模型可以被 :ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
 
 参数：
     - **dirname** (str) - 存储预测模型的目录。
