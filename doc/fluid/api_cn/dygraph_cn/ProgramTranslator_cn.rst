@@ -10,7 +10,7 @@ ProgramTranslator
 参数：
     无。
 
-返回：``ProgramTranslator`` 单例对象。
+返回：ProgramTranslator 单例对象。
 
 返回类型：ProgramTranslator。
 
@@ -29,7 +29,7 @@ ProgramTranslator
 全局开启或关闭动态图转化为静态图。
 
 参数：
-    - **enable_declarative** (bool) - 设置``True``或者``False``来打开或关闭``declarative`` 。
+    - **enable_declarative** (bool) - 设置True或者False来打开或关闭declarative 。
 
 返回：None。
 
@@ -59,15 +59,15 @@ ProgramTranslator
 
 .. py::method:: get_output(dygraph_func, *args, **kwargs)
 
-返回动态图函数输出的``VarBase``，只是该动态图函数的数值计算过程会被转化为静态图模式运行。
+返回动态图函数输出的VarBase，只是该动态图函数的数值计算过程会被转化为静态图模式运行。
 
 参数：
     - **dygraph_func** (callable) - 动态图函数。
     - **args, kwargs** - 动态图函数的输入。
 
-返回：包含数值结果的``VarBase``或者``VarBase``的元组，是输入动态图函数的返回值。
+返回：包含数值结果的VarBase或者VarBase的元组，是输入动态图函数的返回值。
 
-返回类型：``VarBase``或者``VarBase``的元组。
+返回类型：VarBase或者VarBase的元组。
 
 **示例代码**
 
@@ -93,7 +93,7 @@ ProgramTranslator
 
 .. py::method:: get_func(dygraph_func)
 
-返回一个可调用函数，该函数是输入动态图函数接口转化为静态图组网接口。组网接口不像动态图接口，其并不直接返回数据结果。用户需要自行处理对应的``Program``和``Eexecutor``。
+返回一个可调用函数，该函数是输入动态图函数接口转化为静态图组网接口。组网接口不像动态图接口，其并不直接返回数据结果。用户需要自行处理对应的Program和Eexecutor。
 
 参数：
     - **dygraph_func** (callable) - 动态图函数。
@@ -124,7 +124,7 @@ ProgramTranslator
 
 .. py::method:: get_program(dygraph_func, *args, **kwargs)
 
-返回动态图函数转化后的静态图``Program``和输入输出``Varaible``。用户可以使用``Executor``来跑该``Program``。
+返回动态图函数转化后的静态图Program和输入输出Varaible。用户可以使用Executor来跑该Program。
 
 参数：
     - **dygraph_func** (callable) - 动态图函数。
@@ -133,8 +133,8 @@ ProgramTranslator
 返回：元组(main_program, startup_program, inputs, outputs)
     main_program: 转化后的main program。
     startup_program: 转化后的startup program。
-    inputs: 输入``Variable``的列表，这些``Variable``可以在执行去feed。
-    outputs: 输出``Variable``的列表，这些``Variable``可以在运行时被fetch。
+    inputs: 输入Variable的列表，这些Variable可以在执行去feed。
+    outputs: 输出Variable的列表，这些Variable可以在运行时被fetch。
 
 返回类型：类型为(Program, Program, list(Variable), list(Variable)) 的元组。
 
@@ -195,15 +195,15 @@ ProgramTranslator
 
 .. py::method:: save_inference_model(dirname, feed=None, fetch=None)
 
-将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，来构建为新的预测``Program``，然后其和相应参数被保存在指定路径``dirname``，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
+将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，来构建为新的预测Program，然后其和相应参数被保存在指定路径dirname，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
 
 参数：
     - **dirname** (str) - 存储预测模型的目录。
-    - **feed (list[int], 可选)** - 要保存的输入``Variable``的序号。如果为``None``，所有动态图函数的输入会被作为预测模型的输入保存。默认值为``None``。
-    - **fetch (list[int], 可选)** - 要保存的输出``Variable``的序号。如果为``None``，所有
-动态图函数的return输出会被作为预测模型的输出保存。默认值为``None``。
+    - **feed (list[int], 可选)** - 要保存的输入Variable的序号。如果为None，所有动态图函数的输入会被作为预测模型的输入保存。默认值为None。
+    - **fetch (list[int], 可选)** - 要保存的输出Variable的序号。如果为None，所有
+动态图函数的return输出会被作为预测模型的输出保存。默认值为None。
 
-返回：``None``。
+返回：None。
 
 **示例代码**
 
@@ -247,9 +247,9 @@ ProgramTranslator
 
 .. py::method:: get_program_cache()
 
-返回``ProgramCache``单例。这个方法是PaddlePaddle开发者用来管理``ProgramTranslator``中的Program缓存，普通用户不需要使用这个方法。
+返回ProgramCache单例。这个方法是PaddlePaddle开发者用来管理ProgramTranslator中的Program缓存，普通用户不需要使用这个方法。
 
-返回：``ProgramTranslator``中的``ProgramCache``。
+返回：ProgramTranslator中的ProgramCache。
 
 返回类型：ProgramCache。
 

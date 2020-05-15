@@ -6,7 +6,7 @@ declarative
 .. py:decorator:: paddle.fluid.dygraph.jit.declarative
 
 本装饰器将函数内的动态图API转化为静态图API。此装饰器自动处理静态图模式下的
-``Program``和``Executor``并将结果作为动态图``VarBase``返回。
+Program和Executor并将结果作为动态图VarBase返回。
 
 **示例代码**
 
