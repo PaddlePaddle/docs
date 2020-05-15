@@ -65,9 +65,9 @@ ProgramTranslator
     - **dygraph_func** (callable) - 动态图函数。
     - **args, kwargs** - 动态图函数的输入。
 
-返回：包含数值结果的``VarBase``或者``VarBase``的元组，是输入动态图函数的返回值
+返回：包含数值结果的``VarBase``或者``VarBase``的元组，是输入动态图函数的返回值。
 
-返回类型：``VarBase``或者``VarBase``的元组
+返回类型：``VarBase``或者``VarBase``的元组。
 
 **示例代码**
 
@@ -131,12 +131,12 @@ ProgramTranslator
     - **args, kwargs** - 动态图函数的输入。
 
 返回：元组(main_program, startup_program, inputs, outputs)
-    main_program: 转化后的main program
-    startup_program: 转化后的startup program
-    inputs: 输入``Variable``的列表，这些``Variable``可以在执行去feed
-    outputs: 输出``Variable``的列表，这些``Variable``可以在运行时被fetch
+    main_program: 转化后的main program。
+    startup_program: 转化后的startup program。
+    inputs: 输入``Variable``的列表，这些``Variable``可以在执行去feed。
+    outputs: 输出``Variable``的列表，这些``Variable``可以在运行时被fetch。
 
-返回类型：类型为(Program, Program, list(Variable), list(Variable)) 的元组
+返回类型：类型为(Program, Program, list(Variable), list(Variable)) 的元组。
 
 **示例代码**
 
@@ -195,7 +195,7 @@ ProgramTranslator
 
 .. py::method:: save_inference_model(dirname, feed=None, fetch=None)
 
-将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，来构建为新的预测``Program``，然后其和相应参数被保存在指定路径``dirname``，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口。
+将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，来构建为新的预测``Program``，然后其和相应参数被保存在指定路径``dirname``，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
 
 参数：
     - **dirname** (str) - 存储预测模型的目录。
@@ -227,23 +227,23 @@ ProgramTranslator
             loss = fluid.layers.mean(z)
             return z, loss
 
-        with fluid.dygraph.guard(fluid.CPUPlace()):
-            net = SimpleNet(8, 8)
-            adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
-            x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
-            for i in range(10):
-                loss, out = net(x)
-                loss.backward()
-                adam.minimize(loss)
-                net.clear_gradients()
-        # 保存模型
-        # 注意fetch=[0]意味着我们将序号为0的动态图return输出'z'作为预测输出
-        prog_trans = ProgramTranslator()
-        prog_trans.save_inference_model("./dy2stat_infer_model", fetch=[0])
+    with fluid.dygraph.guard(fluid.CPUPlace()):
+        net = SimpleNet(8, 8)
+        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
+        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+        for i in range(10):
+            loss, out = net(x)
+            loss.backward()
+            adam.minimize(loss)
+            net.clear_gradients()
+    # 保存模型
+    # 注意fetch=[0]意味着我们将序号为0的动态图return输出'z'作为预测输出
+    prog_trans = ProgramTranslator()
+    prog_trans.save_inference_model("./dy2stat_infer_model", fetch=[0])
 
-        # 在这个例子中，预测模型会根据输出'z'进行裁剪。被裁剪后的Program 会被保
-        # 存在"./dy2stat_infer_model" 文件夹，并且参数也会保存为同一个文件夹下
-        # 不同文件。
+    # 在这个例子中，预测模型会根据输出'z'进行裁剪。被裁剪后的Program 会被保
+    # 存在"./dy2stat_infer_model" 文件夹，并且参数也会保存为同一个文件夹下
+    # 不同文件。
 
 .. py::method:: get_program_cache()
 
