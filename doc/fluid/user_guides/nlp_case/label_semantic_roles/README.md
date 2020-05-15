@@ -388,8 +388,8 @@ The data introduction section mentions the payment of the CoNLL 2005 training se
 crf_decode = fluid.layers.crf_decoding(
     input=feature_out, param_attr=fluid.ParamAttr(name='crfw'))
 
-train_data = paddle.batch(
-    paddle.reader.shuffle(
+train_data = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.conll05.test(), buf_size=8192),
     batch_size=BATCH_SIZE)
 
