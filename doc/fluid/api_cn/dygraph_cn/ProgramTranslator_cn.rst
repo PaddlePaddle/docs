@@ -42,7 +42,7 @@ ProgramTranslator
 
     @fluid.dygraph.jit.declarative
     def func(x):
-    x = fluid.dygraph.to_variable(x)
+        x = fluid.dygraph.to_variable(x)
         if fluid.layers.mean(x) > 0:
             x_v = x - 1
         else:
@@ -77,12 +77,12 @@ ProgramTranslator
     import numpy as np
 
     def func(x):
-    x = fluid.dygraph.to_variable(x)
-    if fluid.layers.mean(x) > 0:
-        x_v = x - 1
-    else:
-        x_v = x + 1
-    return x_v
+        x = fluid.dygraph.to_variable(x)
+        if fluid.layers.mean(x) > 0:
+            x_v = x - 1
+        else:
+            x_v = x + 1
+        return x_v
 
     prog_trans = fluid.dygraph.ProgramTranslator()
 
@@ -220,11 +220,11 @@ ProgramTranslator
             self._linear = Linear(in_size, out_size)
 
         @declarative
-            def forward(self, x):
-                y = self._linear(x)
-                z = self._linear(y)
-                loss = fluid.layers.mean(z)
-                return z, loss
+        def forward(self, x):
+            y = self._linear(x)
+            z = self._linear(y)
+            loss = fluid.layers.mean(z)
+            return z, loss
 
         with fluid.dygraph.guard(fluid.CPUPlace()):
             net = SimpleNet(8, 8)
