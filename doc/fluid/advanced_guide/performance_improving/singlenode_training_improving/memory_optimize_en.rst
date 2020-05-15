@@ -77,6 +77,9 @@ Use Pre-Allocation strategy:
 
   export FLAGS_allocator_strategy=naive_best_fit # Use Pre-Allocation strategy
 
+Plus, since version 1.7.2+, PaddlePaddle provides an environment variable :code:`FLAGS_gpu_memory_limit_mb`, which controls the maximum gpu memory limit that the process can allocate.
+If it is equal to 0, there would be no limit and all gpu memory would be available to the process. If it is larger than 0, the process would raise out of memory error if the allocated 
+memory exceeds the limit even though there is available memory on the gpu card. The unit is MB and default value is 0.
 
 2. Memory Optimization Strategy
 ===========================
