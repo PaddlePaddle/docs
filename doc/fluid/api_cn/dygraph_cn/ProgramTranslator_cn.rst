@@ -5,7 +5,7 @@ ProgramTranslator
 
 .. py:class:: paddle.fluid.dygraph.dygraph_to_static.ProgramTranslator()
 
-将动态图函数转为静态图函数的类。该类的是单例（singleton）。
+将动态图函数转为静态图函数的类。该类是个单例（singleton）。
 
 参数：
     无。
@@ -124,7 +124,7 @@ ProgramTranslator
 
 .. py:method:: get_program(dygraph_func, *args, **kwargs)
 
-返回动态图函数转化后的静态图Program和输入输出Varaible。用户可以使用Executor来跑该Program。
+返回动态图函数转化后的静态图Program和输入输出Varaible。用户可以使用Executor来执行该Program。
 
 参数：
     - **dygraph_func** (callable) - 动态图函数。
@@ -195,13 +195,12 @@ ProgramTranslator
 
 .. py:method:: save_inference_model(dirname, feed=None, fetch=None)
 
-将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，来构建为新的预测Program，然后其和相应参数被保存在指定路径dirname，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
+将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，构建成新的Program，并将此Program和相关参数保存到指定dirname路径下，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
 
 参数：
     - **dirname** (str) - 存储预测模型的目录。
     - **feed (list[int], 可选)** - 要保存的输入Variable的序号。如果为None，所有动态图函数的输入会被作为预测模型的输入保存。默认值为None。
-    - **fetch (list[int], 可选)** - 要保存的输出Variable的序号。如果为None，所有
-动态图函数的return输出会被作为预测模型的输出保存。默认值为None。
+    - **fetch (list[int], 可选)** - 要保存的输出Variable的序号。如果为None，所有动态图函数的return输出会被作为预测模型的输出保存。默认值为None。
 
 返回：None。
 
