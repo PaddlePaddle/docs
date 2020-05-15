@@ -59,7 +59,7 @@ ProgramTranslator
 
 .. py:method:: get_output(dygraph_func, *args, **kwargs)
 
-返回动态图函数输出的VarBase，只是该动态图函数的数值计算过程会被转化为静态图模式运行。
+返回动态图函数输出的VarBase，但是该动态图函数的数值计算过程会被转化为静态图模式运行。
 
 参数：
     - **dygraph_func** (callable) - 动态图函数。
@@ -93,7 +93,7 @@ ProgramTranslator
 
 .. py:method:: get_func(dygraph_func)
 
-返回一个可调用函数，该函数是输入动态图函数接口转化为静态图组网接口。组网接口不像动态图接口，其并不直接返回数据结果。用户需要自行处理对应的Program和Eexecutor。
+返回一个可调用函数，该函数将输入动态图函数接口转化为静态图组网接口。组网接口不像动态图接口，其并不直接返回数据结果。用户需要自行处理对应的Program和Eexecutor。
 
 参数：
     - **dygraph_func** (callable) - 动态图函数。
@@ -199,8 +199,8 @@ ProgramTranslator
 
 参数：
     - **dirname** (str) - 存储预测模型的目录。
-    - **feed (list[int], 可选)** - 要保存的输入Variable的序号。如果为None，所有动态图函数的输入会被作为预测模型的输入保存。默认值为None。
-    - **fetch (list[int], 可选)** - 要保存的输出Variable的序号。如果为None，所有动态图函数的return输出会被作为预测模型的输出保存。默认值为None。
+    - **feed (list[int], 可选)** - 预测模型要保存的输入Variable的序号。如果为None，则动态图函数的所有输入变量将被保存。默认值为None。
+    - **fetch (list[int], 可选)** - 预测模型要保存的输出Variable的序号。如果为None，则动态图函数的所有输出变量将被保存。默认值为None。
 
 返回：None。
 
