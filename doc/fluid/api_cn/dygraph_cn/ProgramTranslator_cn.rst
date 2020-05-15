@@ -24,7 +24,7 @@ ProgramTranslator
     fluid.dygraph.ProgramTranslator()
     fluid.dygraph.ProgramTranslator.get_instance()
 
-.. py::method:: enable(enable_declarative)
+.. py:method:: enable(enable_declarative)
 
 全局开启或关闭动态图转化为静态图。
 
@@ -57,7 +57,7 @@ ProgramTranslator
     with fluid.dygraph.guard():
         print(func(x).numpy()) # [[2. 2.]]
 
-.. py::method:: get_output(dygraph_func, *args, **kwargs)
+.. py:method:: get_output(dygraph_func, *args, **kwargs)
 
 返回动态图函数输出的VarBase，只是该动态图函数的数值计算过程会被转化为静态图模式运行。
 
@@ -91,7 +91,7 @@ ProgramTranslator
         x_v = prog_trans.get_output(func, x)
         print(x_v.numpy()) # [[0. 0.]]
 
-.. py::method:: get_func(dygraph_func)
+.. py:method:: get_func(dygraph_func)
 
 返回一个可调用函数，该函数是输入动态图函数接口转化为静态图组网接口。组网接口不像动态图接口，其并不直接返回数据结果。用户需要自行处理对应的Program和Eexecutor。
 
@@ -122,7 +122,7 @@ ProgramTranslator
     static_func = prog_trans.get_func(func)
     print(callable(static_func)) # True
 
-.. py::method:: get_program(dygraph_func, *args, **kwargs)
+.. py:method:: get_program(dygraph_func, *args, **kwargs)
 
 返回动态图函数转化后的静态图Program和输入输出Varaible。用户可以使用Executor来跑该Program。
 
@@ -162,7 +162,7 @@ ProgramTranslator
     print([o.name for o in outputs])
     # ['_generated_var_4'] 需要被fetch的输出Variable名字，对应x_v
 
-.. py::method:: get_code(dygraph_func)
+.. py:method:: get_code(dygraph_func)
 
 返回动态图函数转化后的静态图代码字符串。
 
@@ -193,7 +193,7 @@ ProgramTranslator
     code = prog_trans.get_code(func)
     print(type(code)) # <class 'str'>
 
-.. py::method:: save_inference_model(dirname, feed=None, fetch=None)
+.. py:method:: save_inference_model(dirname, feed=None, fetch=None)
 
 将现有模型保存为预测模型。保存过程会裁剪main program，只保存和预测输入输出有关的部分，来构建为新的预测Program，然后其和相应参数被保存在指定路径dirname，被保存的模型可以被 `:ref:`cn_api_fluid_io_load_inference_model` 或者C++预测接口使用。
 
@@ -245,7 +245,7 @@ ProgramTranslator
     # 存在"./dy2stat_infer_model" 文件夹，并且参数也会保存为同一个文件夹下
     # 不同文件。
 
-.. py::method:: get_program_cache()
+.. py:method:: get_program_cache()
 
 返回ProgramCache单例。这个方法是PaddlePaddle开发者用来管理ProgramTranslator中的Program缓存，普通用户不需要使用这个方法。
 
