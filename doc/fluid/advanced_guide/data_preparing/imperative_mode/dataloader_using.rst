@@ -22,15 +22,15 @@ Step 1: 自定义Reader生成训练/预测数据
 如果您的数据是Sample形式的数据，但是想要在外部以Batch为单位组件数据，并对整个Batch的数据进行预处理，我们提供了相关的工具，详细内容请参见： `数据预处理工具 <../static_mode/reader_cn.html>`_ ，此处仅通过简单的例子说明如下：
 
 
-```python
-import paddle
+.. code-block:: python
 
-mnist_train = paddle.dataset.mnist.train()
-mnist_train_batch_reader = paddle.batch(mnist_train, 128) # 128 为 batch size
-```
+    import paddle
+
+    mnist_train = paddle.dataset.mnist.train()
+    mnist_train_batch_reader = paddle.batch(mnist_train, 128) # 128 为 batch size
+
 
 在上面例子中，mnist_train生成的数据是Sample为单位的，经过 :code:`paddle.batch` 处理后，会以一个Batch（包含128个Sample）为单位生成数据。
-
 
 Step 2. 创建DataLoader并设置自定义Reader
 ######################################
