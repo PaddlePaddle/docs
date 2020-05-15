@@ -8,7 +8,7 @@ Advanced User Guides
 
 So far you have already been familiar with PaddlePaddle. And the next expectation, read more on:
 
-    - `Prepare Data <data_preparing/index_en.html>`_：How to prepare the data efficiently.
+    - `Prepare Data <data_preparing/static_mode/index_en.html>`_：How to prepare the data efficiently.
 
     - `Distributed Training <distributed_training/index_en.html>`_ ：How to apply the distributed training in your projects.
 
@@ -26,7 +26,7 @@ So far you have already been familiar with PaddlePaddle. And the next expectatio
 ..  toctree::
     :hidden:
 
-    data_preparing/index_en.rst
+    data_preparing/static_mode/index_en.rst
     distributed_training/index_en.rst
     inference_deployment/index_en.rst
     performance_improving/index_en.rst
