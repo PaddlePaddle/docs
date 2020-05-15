@@ -389,7 +389,7 @@ crf_decode = fluid.layers.crf_decoding(
     input=feature_out, param_attr=fluid.ParamAttr(name='crfw'))
 
 train_data = fluid.io.batch(
-    paddle.reader.shuffle(
+    fluid.io.shuffle(
         paddle.dataset.conll05.test(), buf_size=8192),
     batch_size=BATCH_SIZE)
 
