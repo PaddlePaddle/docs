@@ -98,9 +98,9 @@ def optimizer_func():
 def train(if_use_cuda, params_dirname, is_sparse=True):
     place = fluid.CUDAPlace(0) if if_use_cuda else fluid.CPUPlace()
 
-    train_reader = paddle.batch(
+    train_reader = fluid.io.batch(
         paddle.dataset.imikolov.train(word_dict, N), BATCH_SIZE)
-    test_reader = paddle.batch(
+    test_reader = fluid.io.batch(
         paddle.dataset.imikolov.test(word_dict, N), BATCH_SIZE)
 
     first_word = fluid.data(name='firstw', shape=[None, 1], dtype='int64')
