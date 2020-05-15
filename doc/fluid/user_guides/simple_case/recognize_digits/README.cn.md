@@ -365,12 +365,12 @@ def optimizer_program():
 BATCH_SIZE = 64
 
 # 每次读取训练集中的500个数据并随机打乱，传入batched reader中，batched reader 每次 yield 64个数据
-train_reader = paddle.batch(
+train_reader = fluid.io.batch(
         paddle.reader.shuffle(
             paddle.dataset.mnist.train(), buf_size=500),
         batch_size=BATCH_SIZE)
 # 读取测试集的数据，每次 yield 64个数据
-test_reader = paddle.batch(
+test_reader = fluid.io.batch(
             paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
 ```
 
