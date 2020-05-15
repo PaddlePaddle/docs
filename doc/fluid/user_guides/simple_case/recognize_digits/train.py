@@ -88,17 +88,17 @@ def train(nn_type,
     main_program = fluid.default_main_program()
 
     if args.enable_ce:
-        train_reader = paddle.batch(
+        train_reader = fluid.io.batch(
             paddle.dataset.mnist.train(), batch_size=BATCH_SIZE)
-        test_reader = paddle.batch(
+        test_reader = fluid.io.batch(
             paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
         startup_program.random_seed = 90
         main_program.random_seed = 90
     else:
-        train_reader = paddle.batch(
+        train_reader = fluid.io.batch(
             paddle.reader.shuffle(paddle.dataset.mnist.train(), buf_size=500),
             batch_size=BATCH_SIZE)
-        test_reader = paddle.batch(
+        test_reader = fluid.io.batch(
             paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
 
     img = fluid.data(name='img', shape=[None, 1, 28, 28], dtype='float32')
