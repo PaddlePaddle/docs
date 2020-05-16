@@ -1,4 +1,4 @@
-# 动态图机制-DyGraph
+# 命令式编程模式(动态图)机制-DyGraph
 
 PaddlePaddle的DyGraph模式是一种动态的图执行机制，可以立即执行结果，无需构建整个图。同时，和以往静态的执行计算图不同，DyGraph模式下您的所有操作可以立即获得执行结果，而不必等待所构建的计算图全部执行完成，这样可以让您更加直观地构建PaddlePaddle下的深度学习任务，以及进行模型的调试，同时还减少了大量用于构建静态计算图的代码，使得您编写、调试网络的过程变得更加便捷。
 
@@ -6,9 +6,9 @@ PaddlePaddle DyGraph是一个更加灵活易用的模式，可提供：
 
 * 更加灵活便捷的代码组织结构：使用python的执行控制流程和面向对象的模型设计
 * 更加便捷的调试功能：直接使用python的打印方法即时打印所需要的结果，从而检查正在运行的模型结果便于测试更改
-* 和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的静态图模式执行
+* 和静态执行图通用的模型代码：同样的模型代码可以使用更加便捷的DyGraph调试，执行，同时也支持使用原有的声明式编程模式(静态图)模式执行
 
-有关的动态图机制更多的实际模型示例请参考[Paddle/models/dygraph](https://github.com/PaddlePaddle/models/tree/develop/dygraph)
+有关的命令式编程模式机制更多的实际模型示例请参考[Paddle/models/dygraph](https://github.com/PaddlePaddle/models/tree/develop/dygraph)
 
 ## 设置和基本用法
 
@@ -157,7 +157,7 @@ if __name__ == '__main__':
 相反，只有当OP的所有输入都不需要梯度时，该OP的输出也不需要梯度。
 在所有的 ``Variable`` 都不需要梯度的子图中，反向计算就不会进行计算了。
 
-在动态图模式下，除参数以外的所有 ``Variable`` 的 ``stop_gradient`` 属性默认值都为 ``True``，而参数的 ``stop_gradient`` 属性默认值为 ``False``。
+在命令式编程模式模式下，除参数以外的所有 ``Variable`` 的 ``stop_gradient`` 属性默认值都为 ``True``，而参数的 ``stop_gradient`` 属性默认值为 ``False``。
 该属性用于自动剪枝，避免不必要的反向运算。
 
 例如：
@@ -495,7 +495,7 @@ with fluid.dygraph.guard(place):
                 print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
 ```
 
-动态图单卡训练转多卡训练需要修改的地方主要有四处：
+命令式编程模式单卡训练转多卡训练需要修改的地方主要有四处：
 1. 需要从环境变量获取设备的ID，即：
 
     ```python
@@ -528,7 +528,7 @@ with fluid.dygraph.guard(place):
     mnist.apply_collective_grads()
     ```
 
-Paddle动态图多进程多卡模型训练启动时需要指定使用的GPU，即如果使用`0,1,2,3`卡，启动方式如下：
+Paddle命令式编程模式多进程多卡模型训练启动时需要指定使用的GPU，即如果使用`0,1,2,3`卡，启动方式如下：
 
 ```
 python -m paddle.distributed.launch --selected_gpus=0,1,2,3 --log_dir ./mylog train.py
@@ -606,7 +606,7 @@ Loss at epoch 0 step 0: [0.5767452]
 
 ## 模型参数的保存
 
-动态图由于模型和优化器在不同的对象中存储，模型参数和优化器信息要分别存储。
+命令式编程模式由于模型和优化器在不同的对象中存储，模型参数和优化器信息要分别存储。
 
  在模型训练中可以使用 `paddle.fluid.dygraph.save_dygraph(state_dict, model_path)` 来保存模型参数的dict或优化器信息的dict。
 
@@ -817,7 +817,7 @@ Inference result of image/infer_3.png is: 3
 
 ## 编写兼容的模型
 
-以上一步中手写数字识别的例子为例，动态图的模型代码可以直接用于静态图中作为模型代码，执行时，直接使用PaddlePaddle静态图执行方式即可，这里以静态图中的`executor`为例, 模型代码可以直接使用之前的模型代码，执行时使用`Executor`执行即可
+以上一步中手写数字识别的例子为例，命令式编程模式的模型代码可以直接用于声明式编程模式中作为模型代码，执行时，直接使用PaddlePaddle声明式编程模式执行方式即可，这里以声明式编程模式中的`executor`为例, 模型代码可以直接使用之前的模型代码，执行时使用`Executor`执行即可
 
 ```python
 epoch_num = 1

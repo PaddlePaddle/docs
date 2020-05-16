@@ -11,7 +11,7 @@
 - `Operator <operator.html>`_ : Operator表示对数据的操作。
 - `Program <program.html>`_ : Program表示对计算过程的描述。
 - `Executor <executor.html>`_ : Executor表示执行引擎。
-- `动态图机制-DyGraph <./dygraph/DyGraph.html>`_ : 介绍飞桨动态图执行机制。
+- `命令式编程模式(动态图)机制-DyGraph <./dygraph/DyGraph.html>`_ : 介绍飞桨命令式编程模式执行机制。
 
 ..  toctree::
     :hidden:
