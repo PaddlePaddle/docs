@@ -216,14 +216,14 @@ def loss_func(logits, label, trg_sequence_length):
 
 
 def optimizer_func():
-    fluid.clip.set_gradient_clip(clip=fluid.clip.GradientClipByGlobalNorm(
-        clip_norm=5.0))
+    clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=5.0)
     lr_decay = fluid.layers.learning_rate_scheduler.noam_decay(hidden_dim,
                                                                1000)
     return fluid.optimizer.Adam(
         learning_rate=lr_decay,
         regularization=fluid.regularizer.L2DecayRegularizer(
-            regularization_coeff=1e-4))
+            regularization_coeff=1e-4),
+        grad_clip=clip)
 
 
 def inputs_generator(batch_size, pad_id, is_train=True):
