@@ -168,7 +168,7 @@ class MulOpGradMaker : public framework::SingleGradOpMaker<T> {
 - 有些Op的前向逻辑和反向逻辑是一样的，比如[`ScaleOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/scale_op.cc).这种情况下，前向Op和反向Op的Kernel可以为同一个。
 - 有些前向Op所对应的反向Op可能有多个，比如[`SumOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sum_op.cc)，这种情况下，`GradMaker`需要继承`framework::GradOpDescMakerBase`。
 - 有些Op的反向对应另一个Op的前向，比如[`SplitOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h)，这种情况下，[`SplitGradMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h#L157)中定义的`SplitOp`反向Op的Type就是`concat`，
-- 为高效地同时支持动态图和静态图，`SingleGradOpMaker`是一个模板类，在注册Operator时需要同时注册`MulOpGradMaker<OpDesc>`（静态图使用）和`MulOpGradMaker<OpBase>`（动态图使用）。
+- 为高效地同时支持命令式编程模式(动态图)和声明式编程模式(静态图)，`SingleGradOpMaker`是一个模板类，在注册Operator时需要同时注册`MulOpGradMaker<OpDesc>`（声明式编程模式使用）和`MulOpGradMaker<OpBase>`（命令式编程模式使用）。
 
 ### 定义Operator类
 
@@ -303,7 +303,7 @@ MulOp(const std::string &type, const framework::VariableNameMap &inputs,
 通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
 
 ### InferShape区分 compile time 和 run time
-在我们的静态图网络中，`InferShape`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，框架内部用-1来表示，在run time时，用实际的维度表示，因此维度的值在compile time和 run time时可能不一致，如果存在维度的判断和运算操作，InferShape就需要区分compile time 和 run time。
+在我们的声明式编程模式网络中，`InferShape`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，框架内部用-1来表示，在run time时，用实际的维度表示，因此维度的值在compile time和 run time时可能不一致，如果存在维度的判断和运算操作，InferShape就需要区分compile time 和 run time。
 
 以下两种情况需要区分compile time和 run time。
 
@@ -491,7 +491,7 @@ class MulKernel : public framework::OpKernel<T> {
                   ops::MulGradKernel<paddle::platform::CPUDeviceContext, double>);
     ```
 
-    在上面的代码中，使用`REGISTER_OPERATOR`注册了`ops::MulOp`类，类型名为`mul`，该类的`ProtoMaker`为`ops::MulOpMaker`，其`GradOpMaker`分别是`ops::MulOpGradMaker<paddle::framework::OpDesc>`（静态图使用）和`ops::MulOpGradMaker<paddle::imperative::OpBase>`(动态图使用)，并使用`REGISTER_OPERATOR`注册`ops::MulGradOp`，类型名为`mul_grad`。然后，使用`REGISTER_OP_CPU_KERNEL`注册了`ops::MulKernel`类，并特化模板参数为设备为`paddle::platform::CPUPlace`、数据类型为`float`类型和`double`类型；同理，注册`ops::MulGradKernel`类。
+    在上面的代码中，使用`REGISTER_OPERATOR`注册了`ops::MulOp`类，类型名为`mul`，该类的`ProtoMaker`为`ops::MulOpMaker`，其`GradOpMaker`分别是`ops::MulOpGradMaker<paddle::framework::OpDesc>`（声明式编程模式使用）和`ops::MulOpGradMaker<paddle::imperative::OpBase>`(命令式编程模式使用)，并使用`REGISTER_OPERATOR`注册`ops::MulGradOp`，类型名为`mul_grad`。然后，使用`REGISTER_OP_CPU_KERNEL`注册了`ops::MulKernel`类，并特化模板参数为设备为`paddle::platform::CPUPlace`、数据类型为`float`类型和`double`类型；同理，注册`ops::MulGradKernel`类。
 
 
 - 在 `.cu`文件中注册CUDA Kernel。

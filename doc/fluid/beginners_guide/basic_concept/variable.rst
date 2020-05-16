@@ -32,7 +32,7 @@ Paddle 为大部分常见的神经网络基本计算模块都提供了封装。�
 
 **2. 占位 Variable**
 
-在静态图模式下，组网的时候通常不知道实际输入的信息，此刻需要一个占位的 :code:`Variable`，表示一个待提供输入的 :code:`Variable`
+在声明式编程模式(静态图)模式下，组网的时候通常不知道实际输入的信息，此刻需要一个占位的 :code:`Variable`，表示一个待提供输入的 :code:`Variable`
 
 Paddle 中使用 :code:`fluid.data` 来接收输入数据， :code:`fluid.data` 需要提供输入 Tensor 的形状信息，当遇到无法确定的维度时，相应维度指定为 None ，如下面的代码片段所示：
 
