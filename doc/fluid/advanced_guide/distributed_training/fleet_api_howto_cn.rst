@@ -51,8 +51,8 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
      from nets import mlp
      from utils import gen_data
 
-     input_x = fluid.layers.data(name="x", shape=[32], dtype='float32')
-     input_y = fluid.layers.data(name="y", shape=[1], dtype='int64')
+     input_x = fluid.data(name="x", shape=[None, 32], dtype='float32')
+     input_y = fluid.data(name="y", shape=[None, 1], dtype='int64')
 
      cost = mlp(input_x, input_y)
      optimizer = fluid.optimizer.SGD(learning_rate=0.01)
@@ -79,8 +79,8 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
      from paddle.fluid.incubate.fleet.base import role_maker
      from utils import gen_data
 
-     input_x = fluid.layers.data(name="x", shape=[32], dtype='float32')
-     input_y = fluid.layers.data(name="y", shape=[1], dtype='int64')
+     input_x = fluid.data(name="x", shape=[None, 32], dtype='float32')
+     input_y = fluid.data(name="y", shape=[None, 1], dtype='int64')
 
      cost = mlp(input_x, input_y)
      optimizer = fluid.optimizer.SGD(learning_rate=0.01)
@@ -119,8 +119,8 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
      from paddle.fluid.incubate.fleet.base import role_maker
      from utils import gen_data
 
-     input_x = fluid.layers.data(name="x", shape=[32], dtype='float32')
-     input_y = fluid.layers.data(name="y", shape=[1], dtype='int64')
+     input_x = fluid.data(name="x", shape=[None, 32], dtype='float32')
+     input_y = fluid.data(name="y", shape=[None, 1], dtype='int64')
 
      cost = mlp(input_x, input_y)
      optimizer = fluid.optimizer.SGD(learning_rate=0.01)
