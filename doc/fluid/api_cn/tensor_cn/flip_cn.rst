@@ -5,6 +5,11 @@ flip
 
 .. py:function:: paddle.flip(input, dims, name=None):
 
+:alias_main: paddle.flip
+:alias: paddle.flip,paddle.tensor.flip,paddle.tensor.manipulation.flip
+
+
+
 该OP沿指定轴反转n维tensor.
 
 参数：

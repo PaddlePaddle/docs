@@ -3,6 +3,11 @@ std
 
 .. py:function:: paddle.std(input, axis=None, keepdim=False, unbiased=True, out=None, name=None)
 
+:alias_main: paddle.std
+:alias: paddle.std,paddle.tensor.std,paddle.tensor.stat.std
+
+
+
 根据指定的axis计算input的标准差。
 
 参数：

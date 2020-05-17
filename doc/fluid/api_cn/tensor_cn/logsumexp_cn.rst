@@ -5,6 +5,11 @@ logsumexp
 
 .. py:function:: paddle.tensor.math.logsumexp(x, dim=None, keepdim=False, out=None, name=None)
 
+:alias_main: paddle.logsumexp
+:alias: paddle.logsumexp,paddle.tensor.logsumexp,paddle.tensor.math.logsumexp
+
+
+
 该OP对输入Tensor的元素以e为底做指数运算，然后根据指定维度做求和之后取自然对数
 
 .. math::

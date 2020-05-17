@@ -5,6 +5,12 @@ linspace
 
 .. py:function:: paddle.linspace(start, stop, num, dtype, out=None, device=None, name=None)
 
+:alias_main: paddle.linspace
+:alias: paddle.linspace,paddle.tensor.linspace,paddle.tensor.creation.linspace
+:update_api: paddle.fluid.layers.linspace
+
+
+
 该OP在给定区间内返回固定数目的均匀间隔的值。
 
 **注意：该OP不进行梯度计算**

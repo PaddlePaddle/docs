@@ -5,6 +5,9 @@ InMemoryDataset
 
 .. py:class:: paddle.fluid.dataset.InMemoryDataset
 
+
+
+
 InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类由DatasetFactory创建。
 
 **代码示例**:

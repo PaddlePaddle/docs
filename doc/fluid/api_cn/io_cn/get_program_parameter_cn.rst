@@ -5,6 +5,10 @@ get_program_parameter
 
 .. py:function:: paddle.fluid.io.get_program_parameter(program)
 
+:api_attr: 声明式编程模式（静态图)
+
+
+
 该接口从Program中获取所有参数。
 
 参数:

@@ -5,6 +5,9 @@ AdadeltaOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdadeltaOptimizer(learning_rate, epsilon=1.0e-6, rho=0.95, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+
+
+
 **注意：此接口不支持稀疏参数更新。**
 
 Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING RATE METHOD <https://arxiv.org/abs/1212.5701>`_ 。

@@ -3,9 +3,12 @@
 CompiledProgram
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.CompiledProgram(program_or_graph, build_strategy=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等，关于build_strategy更多信息。请参阅  ``fluid.BuildStrategy`` 。
 

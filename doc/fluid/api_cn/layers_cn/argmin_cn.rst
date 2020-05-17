@@ -5,6 +5,12 @@ argmin
 
 .. py:function:: paddle.fluid.layers.argmin(x, axis=0)
 
+:alias_main: paddle.argmin
+:alias: paddle.argmin,paddle.tensor.argmin,paddle.tensor.search.argmin
+:old_api: paddle.fluid.layers.argmin
+
+
+
 **argmin**
 
 该OP沿 ``axis`` 计算输入 ``x`` 的最小元素的索引。

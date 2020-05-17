@@ -5,6 +5,9 @@ linspace
 
 .. py:function:: paddle.fluid.layers.linspace(start, stop, num, dtype)
 
+
+
+
 该OP在给定区间内返回固定数目的均匀间隔的值。
  
 参数：

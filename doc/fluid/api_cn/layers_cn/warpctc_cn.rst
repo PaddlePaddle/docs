@@ -5,6 +5,12 @@ warpctc
 
 .. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, input_length=None, label_length=None)
 
+:alias_main: paddle.nn.functional.warpctc
+:alias: paddle.nn.functional.warpctc,paddle.nn.functional.extension.warpctc
+:old_api: paddle.fluid.layers.warpctc
+
+
+
 该OP用于计算 `CTC loss <https://www.cs.toronto.edu/~graves/icml_2006.pdf>`_ 。该OP的底层调用了第三方 `baidu-research::warp-ctc <https://github.com/baidu-research/warp-ctc>`_ 的实现。
 
 参数：

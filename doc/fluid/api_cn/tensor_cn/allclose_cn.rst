@@ -5,6 +5,11 @@ allclose
 
 .. py:function:: paddle.allclose(input, other, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
+:alias_main: paddle.allclose
+:alias: paddle.allclose,paddle.tensor.allclose,paddle.tensor.logic.allclose
+
+
+
 逐个检查input和other的所有元素是否均满足如下条件：
 
 ..  math::

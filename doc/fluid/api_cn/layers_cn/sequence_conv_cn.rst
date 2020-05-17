@@ -3,9 +3,12 @@
 sequence_conv
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.sequence_conv(input, num_filters, filter_size=3, filter_stride=1, padding=True, padding_start=None, bias_attr=None, param_attr=None, act=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 **注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用conv2d函数（fluid.layers.** :ref:`cn_api_fluid_layers_conv2d` **）。**
 

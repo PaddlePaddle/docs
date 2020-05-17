@@ -5,6 +5,9 @@ accuracy
 
 .. py:function:: paddle.fluid.layers.accuracy(input, label, k=1, correct=None, total=None)
 
+
+
+
 accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
 使用输入和标签计算准确率。 如果正确的标签在topk个预测值里，则计算结果加1。注意：输出正确率的类型由input类型决定，input和lable的类型可以不一样。

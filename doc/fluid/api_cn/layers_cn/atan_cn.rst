@@ -5,6 +5,12 @@ atan
 
 .. py:function:: paddle.fluid.layers.atan(x, name=None)
 
+:alias_main: paddle.atan
+:alias: paddle.atan,paddle.tensor.atan,paddle.tensor.math.atan
+:update_api: paddle.fluid.layers.atan
+
+
+
 arctanh激活函数。
 
 .. math::

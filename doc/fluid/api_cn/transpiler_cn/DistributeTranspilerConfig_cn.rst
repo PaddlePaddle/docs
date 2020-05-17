@@ -3,9 +3,12 @@
 DistributeTranspilerConfig
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.transpiler.DistributeTranspilerConfig
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 单机任务切换为分布式任务的配置类，用户可根据需求进行配置，如指定同步/异步训练，指定节点个数及模型切分逻辑。
 

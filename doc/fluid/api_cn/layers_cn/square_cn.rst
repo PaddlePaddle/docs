@@ -5,6 +5,12 @@ square
 
 .. py:function:: paddle.fluid.layers.square(x,name=None)
 
+:alias_main: paddle.square
+:alias: paddle.square,paddle.tensor.square,paddle.tensor.math.square
+:old_api: paddle.fluid.layers.square
+
+
+
 该OP执行逐元素取平方运算。
 
 .. math::

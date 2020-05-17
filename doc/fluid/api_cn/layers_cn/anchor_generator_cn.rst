@@ -5,6 +5,12 @@ anchor_generator
 
 .. py:function:: paddle.fluid.layers.anchor_generator(input, anchor_sizes=None, aspect_ratios=None, variance=[0.1, 0.1, 0.2, 0.2], stride=None, offset=0.5, name=None)
 
+:alias_main: paddle.nn.functional.anchor_generator
+:alias: paddle.nn.functional.anchor_generator,paddle.nn.functional.vision.anchor_generator
+:old_api: paddle.fluid.layers.anchor_generator
+
+
+
 **Anchor generator operator**
 
 为RCNN算法生成anchor，输入的每一位产生N个anchor，N=size(anchor_sizes)*size(aspect_ratios)。生成anchor的顺序首先是aspect_ratios循环，然后是anchor_sizes循环。

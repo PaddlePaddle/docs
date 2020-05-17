@@ -5,6 +5,12 @@ unique
 
 .. py:function:: paddle.fluid.layers.unique(x, dtype='int32')
 
+:alias_main: paddle.unique
+:alias: paddle.unique,paddle.tensor.unique,paddle.tensor.manipulation.unique
+:old_api: paddle.fluid.layers.unique
+
+
+
 unique为 ``x`` 返回一个unique张量和一个指向该unique张量的索引。
 
 参数：

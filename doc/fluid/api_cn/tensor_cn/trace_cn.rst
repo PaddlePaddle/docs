@@ -5,6 +5,11 @@ trace
 
 .. py:function:: paddle.trace(input, offset=0, dim1=0, dim2=1)
 
+:alias_main: paddle.trace
+:alias: paddle.trace,paddle.tensor.trace,paddle.tensor.math.trace
+
+
+
 该 OP 计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果。
 
 如果输入是 2D Tensor，则返回对角线元素之和。 

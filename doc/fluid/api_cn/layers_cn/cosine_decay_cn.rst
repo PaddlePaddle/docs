@@ -5,6 +5,12 @@ cosine_decay
 
 .. py:function:: paddle.fluid.layers.cosine_decay(learning_rate, step_each_epoch, epochs)
 
+:alias_main: paddle.nn.functional.cosine_decay
+:alias: paddle.nn.functional.cosine_decay,paddle.nn.functional.learning_rate.cosine_decay
+:old_api: paddle.fluid.layers.cosine_decay
+
+
+
 使用 cosine decay 的衰减方式进行学习率调整。
 
 在训练模型时，建议一边进行训练一边降低学习率。 通过使用此方法，学习速率将通过如下cosine衰减策略进行衰减：

@@ -4,6 +4,11 @@ equal
 -------------------------------
 .. py:function:: paddle.equal(x, y, axis=-1, name=None)
 
+:alias_main: paddle.equal
+:alias: paddle.equal,paddle.tensor.equal,paddle.tensor.logic.equal
+
+
+
 该OP返回 :math:`x==y` 逐元素比较x和y是否相等，所有的元素都相同则返回True，否则返回False。
 
 参数：

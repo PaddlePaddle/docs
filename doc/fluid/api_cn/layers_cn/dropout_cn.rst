@@ -5,6 +5,12 @@ dropout
 
 .. py:function:: paddle.fluid.layers.dropout(x,dropout_prob,is_test=False,seed=None,name=None,dropout_implementation='downgrade_in_infer')
 
+:alias_main: paddle.nn.functional.dropout
+:alias: paddle.nn.functional.dropout,paddle.nn.functional.common.dropout
+:old_api: paddle.fluid.layers.dropout
+
+
+
 dropout操作
 
 丢弃或者保持x的每个元素独立。Dropout是一种正则化手段，通过在训练过程中阻止神经元节点间的相关性来减少过拟合。根据给定的丢弃概率，dropout操作符按丢弃概率随机将一些神经元输出设置为0，其他的仍保持不变。

@@ -5,6 +5,12 @@ lrn
 
 .. py:function:: paddle.fluid.layers.lrn(input, n=5, k=1.0, alpha=0.0001, beta=0.75, name=None, data_format='NCHW')
 
+:alias_main: paddle.nn.functional.lrn
+:alias: paddle.nn.functional.lrn,paddle.nn.functional.norm.lrn
+:old_api: paddle.fluid.layers.lrn
+
+
+
 
 该OP实现了局部响应正则化层（Local Response Normalization Layer），用于对局部输入区域正则化，执行一种侧向抑制（lateral inhibition）。更多详情参考： `ImageNet Classification with Deep Convolutional Neural Networks <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>`_
 

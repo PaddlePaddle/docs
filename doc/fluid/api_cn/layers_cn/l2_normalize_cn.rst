@@ -5,6 +5,12 @@ l2_normalize
 
 .. py:function:: paddle.fluid.layers.l2_normalize(x,axis,epsilon=1e-12,name=None)
 
+:alias_main: paddle.nn.functional.l2_normalize
+:alias: paddle.nn.functional.l2_normalize,paddle.nn.functional.norm.l2_normalize
+:old_api: paddle.fluid.layers.l2_normalize
+
+
+
 该OP计算欧几里得距离之和对x进行归一化。对于1-D张量（系数矩阵的维度固定为0）
 计算公式如下：
 
