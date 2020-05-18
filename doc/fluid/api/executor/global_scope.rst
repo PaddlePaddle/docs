@@ -6,6 +6,8 @@
 global_scope
 ------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.executor.global_scope
     :noindex:
 

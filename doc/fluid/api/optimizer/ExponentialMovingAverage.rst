@@ -6,6 +6,8 @@
 ExponentialMovingAverage
 ------------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.optimizer.ExponentialMovingAverage
     :members:
     :inherited-members:

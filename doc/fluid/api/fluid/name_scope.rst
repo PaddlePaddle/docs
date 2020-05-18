@@ -6,6 +6,8 @@
 name_scope
 ----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.name_scope
     :noindex:
 

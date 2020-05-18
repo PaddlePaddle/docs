@@ -6,6 +6,8 @@
 RNNCell
 -------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.layers.RNNCell
     :members:
     :inherited-members:

@@ -6,6 +6,8 @@
 Executor
 --------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.Executor
     :members:
     :inherited-members:

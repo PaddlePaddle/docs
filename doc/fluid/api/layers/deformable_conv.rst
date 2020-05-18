@@ -6,6 +6,8 @@
 deformable_conv
 ---------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.deformable_conv
     :noindex:
 

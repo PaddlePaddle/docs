@@ -6,6 +6,8 @@
 dynamic_lstm
 ------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.dynamic_lstm
     :noindex:
 

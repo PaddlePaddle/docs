@@ -6,6 +6,8 @@
 While
 -----
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.layers.While
     :members:
     :inherited-members:

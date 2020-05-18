@@ -6,6 +6,8 @@
 HashName
 --------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.transpiler.HashName
     :members:
     :inherited-members:

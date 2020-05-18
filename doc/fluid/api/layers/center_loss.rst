@@ -6,6 +6,8 @@
 center_loss
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.center_loss
     :noindex:
 

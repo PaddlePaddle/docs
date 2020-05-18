@@ -6,6 +6,8 @@
 conv3d
 ------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.conv3d
     :noindex:
 

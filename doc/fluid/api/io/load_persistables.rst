@@ -6,6 +6,8 @@
 load_persistables
 -----------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.io.load_persistables
     :noindex:
 

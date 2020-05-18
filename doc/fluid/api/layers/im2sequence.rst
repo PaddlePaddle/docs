@@ -6,6 +6,8 @@
 im2sequence
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.im2sequence
     :noindex:
 

@@ -6,6 +6,8 @@
 grad
 ----
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autofunction:: paddle.fluid.dygraph.grad
     :noindex:
 

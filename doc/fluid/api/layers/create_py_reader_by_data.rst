@@ -6,6 +6,8 @@
 create_py_reader_by_data
 ------------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.create_py_reader_by_data
     :noindex:
 

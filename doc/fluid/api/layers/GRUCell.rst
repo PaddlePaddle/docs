@@ -6,6 +6,8 @@
 GRUCell
 -------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.layers.GRUCell
     :members:
     :inherited-members:
