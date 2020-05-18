@@ -5,6 +5,9 @@ pow
 
 .. py:function:: paddle.fluid.layers.pow(x, factor=1.0, name=None)
 
+
+
+
 该OP是指数激活算子：
 
 .. math::
@@ -38,7 +41,7 @@ pow
     # example 2: argument factor is Variable
     factor_tensor = fluid.layers.fill_constant([1], "float32", 3.0)
     y_2 = fluid.layers.pow(x, factor=factor_tensor)
-    # y_2 is x^{2.0}
+    # y_2 is x^{3.0}
 
 
 

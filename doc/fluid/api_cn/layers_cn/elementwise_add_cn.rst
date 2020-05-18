@@ -5,6 +5,12 @@ elementwise_add
 
 .. py:function:: paddle.fluid.layers.elementwise_add(x, y, axis=-1, act=None, name=None)
 
+:alias_main: paddle.elementwise_add
+:alias: paddle.elementwise_add,paddle.tensor.elementwise_add,paddle.tensor.math.elementwise_add
+:old_api: paddle.fluid.layers.elementwise_add
+
+
+
 该OP是逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
 
 等式为：
@@ -61,11 +67,12 @@ elementwise_add
     x = fluid.layers.data(name="x", shape=[3], dtype='float32')
     y = fluid.layers.data(name="y", shape=[3], dtype='float32')
     z = fluid.layers.elementwise_add(x, y)
+    # z = x + y
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
     z_value = exe.run(feed=gen_data(),
                         fetch_list=[z.name])
-    print(z_value) #[3., 8., 6.]
+    print(z_value) # [3., 8., 6.]
 
 **代码示例 2**
 
@@ -81,6 +88,7 @@ elementwise_add
     x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
     y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
     z = fluid.layers.elementwise_add(x, y, axis=1)
+    # z = x + y
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
     z_value = exe.run(feed=gen_data(),
@@ -100,6 +108,7 @@ elementwise_add
         }
     x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
     y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
+    # z = x + y
     z = fluid.layers.elementwise_add(x, y, axis=3)
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)

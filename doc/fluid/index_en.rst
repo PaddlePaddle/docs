@@ -10,4 +10,4 @@
     advanced_guide/index_en.rst
     api/index_en.rst
     faq/index_en.rst
-	release_note_en.rst	
+    release_note_en.md

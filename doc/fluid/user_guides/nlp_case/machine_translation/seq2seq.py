@@ -31,7 +31,7 @@ max_length = 256
 beam_size = 4
 batch_size = 64
 
-model_save_dir = "machine_translation.inference.model"
+model_file = "machine_translation"
 
 
 class DecoderCell(layers.RNNCell):
@@ -216,14 +216,14 @@ def loss_func(logits, label, trg_sequence_length):
 
 
 def optimizer_func():
-    fluid.clip.set_gradient_clip(clip=fluid.clip.GradientClipByGlobalNorm(
-        clip_norm=5.0))
+    clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=5.0)
     lr_decay = fluid.layers.learning_rate_scheduler.noam_decay(hidden_dim,
                                                                1000)
     return fluid.optimizer.Adam(
         learning_rate=lr_decay,
         regularization=fluid.regularizer.L2DecayRegularizer(
-            regularization_coeff=1e-4))
+            regularization_coeff=1e-4),
+        grad_clip=clip)
 
 
 def inputs_generator(batch_size, pad_id, is_train=True):
@@ -289,7 +289,7 @@ def train(use_cuda):
             print('pass_id: %d, batch_id: %d, loss: %f' %
                   (pass_id, batch_id, loss_val))
             batch_id += 1
-        fluid.io.save_params(exe, model_save_dir, main_program=train_prog)
+        fluid.save(train_prog, model_file)
 
 
 def infer(use_cuda):
@@ -312,7 +312,7 @@ def infer(use_cuda):
 
     exe = fluid.Executor(places[0])
     exe.run(startup_prog)
-    fluid.io.load_params(exe, model_save_dir, main_program=infer_prog)
+    fluid.load(infer_prog, model_file, exe)
     prog = fluid.CompiledProgram(infer_prog).with_data_parallel()
 
     for data in loader():

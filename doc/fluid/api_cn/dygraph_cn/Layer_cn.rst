@@ -5,11 +5,26 @@ Layer
 
 .. py:class:: paddle.fluid.dygraph.Layer(name_scope=None, dtype=core.VarDesc.VarType.FP32)
 
+
+
+
 基于OOD实现的动态图Layer，包含该Layer的参数、前序运行的结构等信息。
 
 参数：
     - **name_scope** (str，可选) - 为Layer内部参数命名而采用的名称前缀。如果前缀为“mylayer”，在一个类名为MyLayer的Layer中，参数名为“mylayer_0.w_n”，其中w是参数的名称，n为自动生成的具有唯一性的后缀。如果为None，前缀名将为小写的类名。默认值为None。
     - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
+
+返回：无
+
+.. py:method:: train()
+
+将此层及其所有子层设置为训练模式。这只会影响某些模块，如Dropout和BatchNorm。
+
+返回：无
+
+.. py:method:: eval()
+
+将此层及其所有子层设置为预测模式。这只会影响某些模块，如Dropout和BatchNorm。
 
 返回：无
 
@@ -20,6 +35,100 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 返回：Layer的全名
 
 返回类型：str
+
+.. py:method:: register_forward_pre_hook(hook)
+
+为Layer注册一个 ``forward pre-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之前被调用。
+
+``hook`` 函数具有以下形式：它的 ``input`` 是 ``Layer`` 的 ``input`` ，并且可以返回一个元组或者单个修改值；如果返回单个修改值，则将值包装到一个元组中。用户可以使用该函数来查看或修改 ``Layer`` ``forward`` 函数的输入。
+
+hook(Layer, input) -> None or modified input
+
+参数：
+    - **hook** (function) - 被注册为 ``forward pre-hook`` 的函数
+
+返回：一个 ``HookRemoveHelper`` 类对象，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
+
+返回类型： ``HookRemoveHelper`` 类对象
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = (input[0] * 2)
+        return input_return
+
+    with fluid.dygraph.guard():
+        linear = fluid.Linear(13, 5, dtype="float32")
+
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook)
+
+        value0 = np.arange(26).reshape(2, 13).astype("float32")
+        in0 = fluid.dygraph.to_variable(value0)
+        out0 = linear(in0)
+
+        # 移除hook
+        forward_pre_hook_handle.remove()
+
+        value1 = value0 * 2
+        in1 = fluid.dygraph.to_variable(value1)
+        out1 = linear(in1)
+
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
+
+.. py:method:: register_forward_post_hook(hook)
+
+为Layer注册一个 ``forward post-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之后被调用。
+
+``hook`` 函数具有以下形式，它的 ``input`` 和 ``output`` 是 ``Layer`` 的 ``input`` 和 ``output`` 。用户可以用该函数来查看和修改 ``Layer`` ``forward`` 函数的输出。
+
+hook(Layer, input, output) -> None or modified output
+
+参数：
+    - **hook** (function) - 被注册为 ``forward post-hook`` 的函数
+
+返回：一个 ``HookRemoveHelper`` 类对象，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
+
+返回类型： ``HookRemoveHelper`` 类对象
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+    import numpy as np
+
+    # forward_post_hook函数改变了layer的输出：output = output * 2
+    def forward_post_hook(layer, input, output):
+        # 改变输出值
+        return output * 2
+
+    with fluid.dygraph.guard():
+        linear = fluid.Linear(13, 5, dtype="float32")
+
+        # 注册hook
+        forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
+
+        value1 = np.arange(26).reshape(2, 13).astype("float32")
+        in1 = fluid.dygraph.to_variable(value1)
+
+        out0 = linear(in1)
+
+        # remove the hook
+        forward_post_hook_handle.remove()
+
+        out1 = linear(in1)
+
+        # hook改变了layer的输出（output = output * 2），所以out0等于out1 * 2
+        assert (out0.numpy() == (out1.numpy()) * 2).any()
 
 .. py:method:: create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 

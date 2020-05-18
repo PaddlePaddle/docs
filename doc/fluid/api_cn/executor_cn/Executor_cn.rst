@@ -3,14 +3,17 @@
 Executor
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
-.. py:class:: paddle.fluid.executor.Executor (place)
+.. py:class:: paddle.fluid.executor.Executor (place=None)
 
-Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传入设备。
+:api_attr: 声明式编程模式（静态图)
+
+
+
+Executor支持单GPU、多GPU以及CPU运行。
 
 参数：
-    - **place** (fluid.CPUPlace()|fluid.CUDAPlace(N)) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。
+    - **place** (fluid.CPUPlace()|fluid.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本来设置默认设备。当PaddlePaddle是CPU版时，默认运行设备将会设置为 `fluid.CPUPlace()` ；当PaddlePaddle是GPU版本时，默认执行设备将会设置为 `fluid.CUDAPlace(0)` 。默认值为None。
   
 返回：初始化后的 ``Executor`` 对象
 
@@ -25,9 +28,13 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
     import numpy
     import os
 
-    use_cuda = True
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    exe = fluid.Executor(place)
+    # 显式设置运行设备
+    # use_cuda = True
+    # place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    # exe = fluid.Executor(place)
+
+    # 如果不显示设置运行设备，PaddlePaddle会设置默认运行设备
+    exe = fluid.Executor()
 
     train_program = fluid.Program()
     startup_program = fluid.Program()
@@ -54,8 +61,13 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
     # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
-    if not use_cuda:
-        os.environ['CPU_NUM'] = str(2)
+
+    # 显式设置运行设备
+    # if not use_cuda:
+    #    os.environ['CPU_NUM'] = str(2)
+
+    # 未显示设置运行设备且安装的Paddle为CPU版本
+    os.environ['CPU_NUM'] = str(2)
 
     compiled_prog = compiler.CompiledProgram(
         train_program).with_data_parallel(
@@ -96,6 +108,7 @@ Executor支持单GPU、多GPU以及CPU运行。在Executor构造时，需要传�
   - **scope** (Scope) – 该参数表示执行当前program所使用的作用域，用户可以为不同的program指定不同的作用域。默认值：fluid.global_scope()。
   - **return_numpy** (bool) – 该参数表示是否将返回返回的计算结果（fetch list中指定的变量）转化为numpy；如果为False，则每个变量返回的类型为LoDTensor，否则返回变量的类型为numpy.ndarray。默认为：True。
   - **use_program_cache** (bool) – 该参数表示是否对输入的Program进行缓存。如果该参数为True，在以下情况时，模型运行速度可能会更快：输入的program为 ``fluid.Program`` ，并且模型运行过程中，调用该接口的参数（program、 feed变量名和fetch_list变量）名始终不变。默认为：False。
+  - **use_prune** (bool) – 该参数表示是否对输入的Program进行剪枝。如果该参数为True，输入的Program会在run之前根据 ``feed`` 和 ``fetch_list`` 进行剪枝，剪枝的逻辑是将产生 ``feed`` 的 ``Variable`` 和 ``Operator`` 以及不产生 ``fetch_list`` 的 ``Variable`` 和 ``Operator`` 进行裁剪。默认为：False，表示不进行剪枝。请注意，如果将 ``Optimizer.minimize()`` 方法返回的 ``tuple`` 传入 ``fetch_list`` 中，则 ``use_prune`` 会被重写为True，并且会开启剪枝。
   
 返回：返回fetch_list中指定的变量值
 

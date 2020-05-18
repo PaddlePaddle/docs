@@ -4,6 +4,12 @@ topk
 -------------------------------
 .. py:function:: paddle.fluid.layers.topk(input, k, name=None)
 
+:alias_main: paddle.topk
+:alias: paddle.topk,paddle.tensor.topk,paddle.tensor.search.topk
+:old_api: paddle.fluid.layers.topk
+
+
+
 此OP用于查找输入Tensor的最后一维的前k个最大项，返回它们的值和索引。
 如果输入是1-D Tensor，则找到Tensor的前k个最大项，并输出前k个最大项的值和索引。如果输入是更高阶的Tensor，则该OP会基于最后一维计算前k项。
 
@@ -55,13 +61,13 @@ topk
     top5_values, top5_indices = layers.topk(input, k=5) #top5_values.shape=[13, 5]，top5_indices.shape=[13, 5]
 
     # 1D Tensor
-    input = layers.data(name="input", shape=[13], dtype='float32')
-    top5_values, top5_indices = layers.topk(input, k=5) #top5_values.shape=[5]，top5_indices.shape=[5]
+    input1 = layers.data(name="input1", shape=[13], dtype='float32')
+    top5_values, top5_indices = layers.topk(input1, k=5) #top5_values.shape=[5]，top5_indices.shape=[5]
 
     # k=Variable
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
+    input2 = layers.data(name="input2", shape=[13, 11], dtype='float32')
     vk = layers.data(name="vk", shape=[1], dtype='int32') # 把k值保存在vk.data[0]中
-    vk_values, vk_indices = layers.topk(input, k=vk) #vk_values.shape=[13, k]，vk_indices.shape=[13, k]
+    vk_values, vk_indices = layers.topk(input2, k=vk) #vk_values.shape=[13, k]，vk_indices.shape=[13, k]
 
 
 

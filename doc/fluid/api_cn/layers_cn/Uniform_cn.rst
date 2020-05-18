@@ -5,6 +5,9 @@ Uniform
 
 .. py:class:: paddle.fluid.layers.Uniform(low, high)
 
+
+
+
 均匀分布
 
 概率密度函数（pdf）为：

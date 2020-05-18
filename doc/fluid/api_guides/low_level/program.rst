@@ -75,7 +75,7 @@ Name
 
 Fluid 中部分网络层里包含了 :code:`name` 参数，如 :ref:`cn_api_fluid_layers_fc` 。此 :code:`name` 一般用来作为网络层输出、权重的前缀标识，具体规则如下：
 
-* 用于网络层输出的前缀标识。若网络层中指定了 :code:`name` 参数，Fluid 将以 ``name值_数字.tmp_数字`` 作为唯一标识对网络层输出进行命名；未指定 :code:`name` 参数时，则以 ``OP名_数字.tmp_数字`` 的方式进行命名，其中的数字会自动递增，以区分同名OP下的不同网络层。
+* 用于网络层输出的前缀标识。若网络层中指定了 :code:`name` 参数，Fluid 将以 ``name值.tmp_数字`` 作为唯一标识对网络层输出进行命名；未指定 :code:`name` 参数时，则以 ``OP名_数字.tmp_数字`` 的方式进行命名，其中的数字会自动递增，以区分同名OP下的不同网络层。
 
 * 用于权重或偏置变量的前缀标识。若在网络层中通过 ``param_attr`` 和 ``bias_attr`` 创建了权重变量或偏置变量， 如 :ref:`cn_api_fluid_layers_embedding` 、 :ref:`cn_api_fluid_layers_fc` ，则 Fluid 会自动生成 ``前缀.w_数字`` 或 ``前缀.b_数字`` 的唯一标识对其进行命名，其中 ``前缀`` 为用户指定的 :code:`name` 或自动生成的 ``OP名_数字`` 。若在 ``param_attr`` 和 ``bias_attr`` 中指定了 :code:`name` ，则用此 :code:`name` ，不再自动生成。细节请参考示例代码。
 
@@ -95,7 +95,7 @@ Fluid 中部分网络层里包含了 :code:`name` 参数，如 :ref:`cn_api_flui
     # default name
     fc_none = fluid.layers.fc(input=emb, size=1)  # fc_0.w_0, fc_0.b_0
     fc_none = fluid.layers.Print(fc_none)  # Tensor[fc_0.tmp_1]
- 
+
     fc_none1 = fluid.layers.fc(input=emb, size=1)  # fc_1.w_0, fc_1.b_0
     fc_none1 = fluid.layers.Print(fc_none1)  # Tensor[fc_1.tmp_1]
 

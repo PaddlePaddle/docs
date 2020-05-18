@@ -2,13 +2,13 @@
 工具组件
 ################
 
+..  todo::
 
-本章由1篇文档组成，将指导您如何使用PaddlePaddle工具组件完成深度学习任务
-
-本章文档涉及大量了深度学习基础知识，也介绍了如何使用PaddlePaddle实现这些内容，请参阅以下说明了解如何使用：
+这里PaddlePaddle为大家提供了两篇案例文章：百度云分布式训练CTR预估任务和Serving流程一键部署的案例文章，以及飞桨大规模分类库使用的案例文章。
 
 
 ..  toctree::
     :titlesonly:
 
-    deploy_ctr_on_baidu_cloud_cn.rst
+    elastic_ctr/deploy_ctr_on_baidu_cloud_cn.rst
+    plsc/plsc_guider_cn.rst

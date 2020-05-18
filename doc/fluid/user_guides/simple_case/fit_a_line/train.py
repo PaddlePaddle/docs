@@ -74,18 +74,16 @@ def main():
     batch_size = 20
 
     if args.enable_ce:
-        train_reader = paddle.batch(
+        train_reader = fluid.io.batch(
             paddle.dataset.uci_housing.train(), batch_size=batch_size)
-        test_reader = paddle.batch(
+        test_reader = fluid.io.batch(
             paddle.dataset.uci_housing.test(), batch_size=batch_size)
     else:
-        train_reader = paddle.batch(
-            paddle.reader.shuffle(
-                paddle.dataset.uci_housing.train(), buf_size=500),
+        train_reader = fluid.io.batch(
+            fluid.io.shuffle(paddle.dataset.uci_housing.train(), buf_size=500),
             batch_size=batch_size)
-        test_reader = paddle.batch(
-            paddle.reader.shuffle(
-                paddle.dataset.uci_housing.test(), buf_size=500),
+        test_reader = fluid.io.batch(
+            fluid.io.shuffle(paddle.dataset.uci_housing.test(), buf_size=500),
             batch_size=batch_size)
 
     # feature vector of length 13
@@ -172,7 +170,7 @@ def main():
          ] = fluid.io.load_inference_model(params_dirname, infer_exe)
         batch_size = 10
 
-        infer_reader = paddle.batch(
+        infer_reader = fluid.io.batch(
             paddle.dataset.uci_housing.test(), batch_size=batch_size)
 
         infer_data = next(infer_reader())

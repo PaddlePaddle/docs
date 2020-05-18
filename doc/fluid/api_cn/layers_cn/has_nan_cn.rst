@@ -5,6 +5,12 @@ has_nan
 
 .. py:function:: paddle.fluid.layers.has_nan(x)
 
+:alias_main: paddle.has_nan
+:alias: paddle.has_nan,paddle.tensor.has_nan,paddle.tensor.search.has_nan
+:old_api: paddle.fluid.layers.has_nan
+
+
+
 检查输入的变量(x)中是否包含NAN。
 
 参数：

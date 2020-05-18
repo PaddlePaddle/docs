@@ -74,11 +74,11 @@ def train(args):
         g_program_test = dg_program.clone(for_test=True)
 
         dg_logit = D(g_img)
+        noise_shape = fluid.layers.shape(noise)
         dg_loss = loss(dg_logit,
-                       fluid.layers.fill_constant_batch_size_like(
-                           input=noise,
+                       fluid.layers.fill_constant(
                            dtype='float32',
-                           shape=[-1, 1],
+                           shape=[noise_shape[0], 1],
                            value=1.0))
 
     opt = fluid.optimizer.Adam(learning_rate=LEARNING_RATE)
@@ -93,13 +93,12 @@ def train(args):
         exe = fluid.Executor(fluid.CUDAPlace(0))
     exe.run(fluid.default_startup_program())
     if args.enable_ce:
-        train_reader = paddle.batch(
+        train_reader = fluid.io.batch(
             paddle.dataset.mnist.train(), batch_size=args.batch_size)
     else:
 
-        train_reader = paddle.batch(
-            paddle.reader.shuffle(
-                paddle.dataset.mnist.train(), buf_size=60000),
+        train_reader = fluid.io.batch(
+            fluid.io.shuffle(paddle.dataset.mnist.train(), buf_size=60000),
             batch_size=args.batch_size)
 
     NUM_TRAIN_TIMES_OF_DG = 2

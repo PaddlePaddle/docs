@@ -5,6 +5,12 @@ acos
 
 .. py:function:: paddle.fluid.layers.acos(x, name=None)
 
+:alias_main: paddle.acos
+:alias: paddle.acos,paddle.tensor.acos,paddle.tensor.math.acos
+:old_api: paddle.fluid.layers.acos
+
+
+
 arccosine激活函数。
 
 .. math::

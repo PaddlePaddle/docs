@@ -52,7 +52,6 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
 
 3. Open chrome and visit <chrome://tracing/>, use `load` button to load the generated `timeline` file.
 
-    ![chrome tracing](./tracing.jpeg)
 
 
 

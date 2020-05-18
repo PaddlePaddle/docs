@@ -6,6 +6,9 @@ zeros_like
 .. py:function:: paddle.fluid.layers.zeros_like(x, out=None)
 
 
+
+
+
 该OP创建一个和x具有相同的形状和数据类型的全零Tensor。
 
 参数：

@@ -2,7 +2,7 @@
 Server-side Deployment
 ######################
 
-PaddlePaddle Fluid provides C++ API to support deployment and release of trained models.
+PaddlePaddle provides various methods to support deployment and release of trained models.
 
 .. toctree::
    :titlesonly:
@@ -10,5 +10,4 @@ PaddlePaddle Fluid provides C++ API to support deployment and release of trained
    build_and_install_lib_en.rst
    windows_cpp_inference_en.md
    native_infer_en.md
-   paddle_tensorrt_infer_en.md
    paddle_gpu_benchmark_en.md

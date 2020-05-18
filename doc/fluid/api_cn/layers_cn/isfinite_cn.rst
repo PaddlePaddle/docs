@@ -5,6 +5,12 @@ isfinite
 
 .. py:function:: paddle.fluid.layers.isfinite(x)
 
+:alias_main: paddle.isfinite
+:alias: paddle.isfinite,paddle.tensor.isfinite,paddle.tensor.logic.isfinite
+:old_api: paddle.fluid.layers.isfinite
+
+
+
 ``注意：此算子的输入 Tensor / LoDTensor 数据类型必须为 int32 / float / double 之一。``
 
 测试 x 是否包含无穷值（即 nan 或 inf）。若元素均为有穷数，返回真；否则返回假。

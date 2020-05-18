@@ -174,7 +174,7 @@ float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
 
 ## <a name="C++预测样例编译测试"> C++预测样例编译测试</a>
 1. 下载或编译paddle预测库，参考[安装与编译C++预测库](./build_and_install_lib_cn.html)。
-2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.6.tar.gz)并解压，进入`sample/inference`目录下。  
+2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)并解压，进入`sample/inference`目录下。   
 
 	`inference` 文件夹目录结构如下：
 
@@ -205,10 +205,11 @@ float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
     WITH_GPU=OFF
     USE_TENSORRT=OFF
 
-    # 按照运行环境设置预测库路径、CUDA库路径、CUDNN库路径、模型路径
+    # 按照运行环境设置预测库路径、CUDA库路径、CUDNN库路径、TensorRT路径、模型路径
     LIB_DIR=YOUR_LIB_DIR
     CUDA_LIB_DIR=YOUR_CUDA_LIB_DIR
     CUDNN_LIB_DIR=YOUR_CUDNN_LIB_DIR
+    TENSORRT_ROOT_DIR=YOUR_TENSORRT_ROOT_DIR
     MODEL_DIR=YOUR_MODEL_DIR
     ```
 
@@ -227,12 +228,12 @@ float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
 3. 在CPU可用核心数足够时，可以将设置`config->SetCpuMathLibraryNumThreads(num);`中的num值调高一些。
 
 ### GPU下预测
-1. 可以尝试打开 TensorRT 子图加速引擎, 通过计算图分析，Paddle可以自动将计算图中部分子图融合，并调用NVIDIA的 TensorRT 来进行加速，详细内容可以参考 [使用Paddle-TensorRT库预测](./paddle_tensorrt_infer.html)。
+1. 可以尝试打开 TensorRT 子图加速引擎, 通过计算图分析，Paddle可以自动将计算图中部分子图融合，并调用NVIDIA的 TensorRT 来进行加速，详细内容可以参考 [使用Paddle-TensorRT库预测](../../performance_improving/inference_improving/paddle_tensorrt_infer.html)。
 
 ### 多线程预测
 Paddle Fluid支持通过在不同线程运行多个AnalysisPredictor的方式来优化预测性能，支持CPU和GPU环境。
 
-使用多线程预测的样例详见[C++预测样例编译测试](#C++预测样例编译测试)中下载的[预测样例](https://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/paddle_trt_samples_v1.6.tar.gz)中的
+使用多线程预测的样例详见[C++预测样例编译测试](#C++预测样例编译测试)中下载的[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)中的
 `thread_mobilenet_test.cc`文件。可以将`run.sh`中`mobilenet_test`替换成`thread_mobilenet_test`再执行
 
 ```

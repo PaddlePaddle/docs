@@ -13,13 +13,23 @@ fluid.dygraph
     dygraph/Conv3D.rst
     dygraph/Conv3DTranspose.rst
     dygraph/CosineDecay.rst
+    dygraph/DataParallel.rst
+    dygraph/declarative.rst
+    dygraph/disable_dygraph.rst
+    dygraph/Dropout.rst
+    dygraph/dygraph_to_static_code.rst
+    dygraph/dygraph_to_static_func.rst
     dygraph/dygraph_to_static_output.rst
+    dygraph/dygraph_to_static_program.rst
     dygraph/Embedding.rst
+    dygraph/enable_dygraph.rst
+    dygraph/enabled.rst
     dygraph/ExponentialDecay.rst
-    dygraph/FC.rst
+    dygraph/grad.rst
     dygraph/GroupNorm.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
+    dygraph/InstanceNorm.rst
     dygraph/InverseTimeDecay.rst
     dygraph/Layer.rst
     dygraph/LayerList.rst
@@ -30,12 +40,14 @@ fluid.dygraph
     dygraph/NCE.rst
     dygraph/no_grad.rst
     dygraph/NoamDecay.rst
+    dygraph/ParallelEnv.rst
     dygraph/ParameterList.rst
     dygraph/PiecewiseDecay.rst
     dygraph/PolynomialDecay.rst
     dygraph/Pool2D.rst
     dygraph/PRelu.rst
     dygraph/prepare_context.rst
+    dygraph/ProgramTranslator.rst
     dygraph/save_dygraph.rst
     dygraph/Sequential.rst
     dygraph/SpectralNorm.rst

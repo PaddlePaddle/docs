@@ -3,9 +3,15 @@
 case
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.case(pred_fn_pairs, default=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.nn.case
+:alias: paddle.nn.case,paddle.nn.control_flow.case
+:old_api: paddle.fluid.layers.case
+
+
 
 该OP的运行方式类似于python的if-elif-elif-else。
 

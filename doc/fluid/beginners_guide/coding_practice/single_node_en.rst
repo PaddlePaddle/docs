@@ -13,8 +13,8 @@ For example:
 
    import paddle.fluid as fluid
 
-   image = fluid.layers.data(name="image", shape=[784])
-   label = fluid.layers.data(name="label", shape=[1])
+   image = fluid.data(name="image", shape=[None, 784], dtype='float32')
+   label = fluid.data(name="label", shape=[None, 1], dtype='int64')
    hidden = fluid.layers.fc(input=image, size=100, act='relu')
    prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
    loss = fluid.layers.cross_entropy(input=prediction, label=label)
@@ -51,7 +51,7 @@ Single-card Training
 #####################
 
 Single-card training can be performed through calling :code:`run()` of :code:`fluid.Executor()` to run training :code:`fluid.Program` .
-In the runtime, feed data with :code:`run(feed=...)` and get persistable data with :code:`run(fetch=...)` . For example:
+In the runtime, users can feed data with :code:`run(feed=...)` and get output data with :code:`run(fetch=...)` . For example:
 
 .. code-block:: python
 
@@ -61,7 +61,7 @@ In the runtime, feed data with :code:`run(feed=...)` and get persistable data wi
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        data = fluid.data(name='X', shape=[None, 1], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
         sgd = fluid.optimizer.SGD(learning_rate=0.001)
@@ -81,21 +81,16 @@ In the runtime, feed data with :code:`run(feed=...)` and get persistable data wi
     loss_data, = exe.run(train_program,
                          feed={"X": x},
                          fetch_list=[loss.name])
-    # Or 
-    # compiled_prog = compiler.CompiledProgram(train_program)
-    # loss_data, = exe.run(compiled_prog,
-    #              feed={"X": x},
-    #              fetch_list=[loss.name])
+    # Or use CompiledProgram:
+    compiled_prog = fluid.CompiledProgram(train_program)
+    loss_data, = exe.run(compiled_prog,
+                 feed={"X": x},
+                 fetch_list=[loss.name])
 
-Notes:
-
-1. About data type supported by feed, please refer to the article :ref:`user_guide_feed_data_to_executor_en`.
-2. The return value of :code:`Executor.run` is the variable value of :code:`fetch_list=[...]` .The fetched Variable must be persistable. :code:`fetch_list` can be fed with either Variable list or name list of variables . :code:`Executor.run` returns Fetch result list.
-3. If the fetched data contain sequence information,  you can set :code:`exe.run(return_numpy=False, ...)` to directly get :code:`fluid.LoDTensor` . You can directly access the information in :code:`fluid.LoDTensor` .
 
 Multi-card Training
 #######################
-In multi-card training, you can use :code:`fluid.compiler.CompiledProgram` to compile the :code:`fluid.Program`, and then call :code:`with_data_parallel`. For example:
+In multi-card training, you can use :code:`fluid.CompiledProgram` to compile the :code:`fluid.Program`, and then call :code:`with_data_parallel`. For example:
 
 .. code-block:: python
 
@@ -108,7 +103,7 @@ In multi-card training, you can use :code:`fluid.compiler.CompiledProgram` to co
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
 
-    compiled_prog = compiler.CompiledProgram(
+    compiled_prog = fluid.CompiledProgram(
         train_program).with_data_parallel(
         loss_name=loss.name)
     loss_data, = exe.run(compiled_prog,

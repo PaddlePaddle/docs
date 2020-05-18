@@ -19,20 +19,21 @@
 通过克隆训练 :code:`fluid.Program` 生成测试 :code:`fluid.Program`
 =======================================================================
 
-用:code:`Program.clone()` 方法可以复制出新的 :code:`fluid.Program` 。 通过设置
+用 :code:`Program.clone()` 方法可以复制出新的 :code:`fluid.Program` 。 通过设置
 :code:`Program.clone(for_test=True)` 复制含有用于测试的操作 :code:`fluid.Program` 。简单的使用方法如下:
 
 .. code-block:: python
 
    import paddle.fluid as fluid
 
-   img = fluid.layers.data(name="image", shape=[784])
+   image = fluid.data(name="image", shape=[None, 784], dtype='float32')
+   label = fluid.data(name="label", shape=[None, 1], dtype="int64")
+
    prediction = fluid.layers.fc(
-     input=fluid.layers.fc(input=img, size=100, act='relu'),
+     input=fluid.layers.fc(input=image, size=100, act='relu'),
      size=10,
      act='softmax'
    )
-   label = fluid.layers.data(name="label", shape=[1], dtype="int64")
    loss = fluid.layers.mean(fluid.layers.cross_entropy(input=prediction, label=label))
    acc = fluid.layers.accuracy(input=prediction, label=label)
 
@@ -64,9 +65,9 @@ PaddlePaddle Fluid中使用 :code:`fluid.unique_name` 包来随机初始化用�
    import paddle.fluid as fluid
 
    def network(is_test):
-       file_obj = fluid.layers.open_files(filenames=["test.recordio"] if is_test else ["train.recordio"], ...)
-       img, label = fluid.layers.read_file(file_obj)
-       hidden = fluid.layers.fc(input=img, size=100, act="relu")
+       image = fluid.data(name="image", shape=[None, 784], dtype='float32')
+       label = fluid.data(name="label", shape=[None, 1], dtype="int64")
+       hidden = fluid.layers.fc(input=image, size=100, act="relu")
        hidden = fluid.layers.batch_norm(input=hidden, is_test=is_test)
        ...
        return loss
@@ -78,7 +79,7 @@ PaddlePaddle Fluid中使用 :code:`fluid.unique_name` 包来随机初始化用�
 
    test_program = fluid.Program()
    with fluid.unique_name.guard():
-       with fluid.program_gurad(test_program, fluid.Program()):
+       with fluid.program_guard(test_program, fluid.Program()):
            test_loss = network(is_test=True)
 
    # fluid.default_main_program() is the train program

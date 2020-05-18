@@ -5,6 +5,9 @@ ConstantInitializer
 
 .. py:class:: paddle.fluid.initializer.ConstantInitializer(value=0.0, force_cpu=False)
 
+
+
+
 该接口为常量初始化函数，用于权重初始化，通过输入的value值初始化输入变量；
 
 参数：

@@ -47,7 +47,7 @@ def stacked_lstm_net(data, input_dim, class_dim, emb_dim, hid_dim,
                      stacked_num):
     assert stacked_num % 2 == 1
 
-    emb = fluid.layers.embedding(
+    emb = fluid.embedding(
         input=data, size=[input_dim, emb_dim], is_sparse=True)
 
     fc1 = fluid.layers.fc(input=emb, size=hid_dim)
@@ -99,11 +99,11 @@ def train(use_cuda, params_dirname):
     print("Reading training data....")
 
     if args.enable_ce:
-        train_reader = paddle.batch(
+        train_reader = fluid.io.batch(
             paddle.dataset.imdb.train(word_dict), batch_size=BATCH_SIZE)
     else:
-        train_reader = paddle.batch(
-            paddle.reader.shuffle(
+        train_reader = fluid.io.batch(
+            fluid.io.shuffle(
                 paddle.dataset.imdb.train(word_dict), buf_size=25000),
             batch_size=BATCH_SIZE)
 

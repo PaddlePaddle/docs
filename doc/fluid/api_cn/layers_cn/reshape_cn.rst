@@ -5,6 +5,12 @@ reshape
 
 .. py:function::  paddle.fluid.layers.reshape(x, shape, actual_shape=None, act=None, inplace=False, name=None)
 
+:alias_main: paddle.reshape
+:alias: paddle.reshape,paddle.tensor.reshape,paddle.tensor.manipulation.reshape
+:old_api: paddle.fluid.layers.reshape
+
+
+
 该OP在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。
 
 目标形状可由 ``shape`` 或 ``actual_shape`` 给出。当两个属性同时被指定时，``actual_shape`` 的优先级高于 ``shape`` ，但此时 ``shape`` 只能是整数列表或元组，且在编译时仍然应该正确地设置 ``shape`` 以保证形状推断。
@@ -54,10 +60,10 @@ reshape
 
   # example 1:
   # attr shape is a list which doesn't contain tensor Variable.
-  data_1 = fluid.layers.data(
-      name='data_1', shape=[2, 4, 6], dtype='float32')
+  data_1 = fluid.data(
+    name='data_1', shape=[2, 4, 6], dtype='float32')
   reshaped_1 = fluid.layers.reshape(
-      x=data_1, shape=[-1, 0, 3, 2], inplace=True)
+    x=data_1, shape=[-1, 0, 3, 2], inplace=True)
   # the shape of reshaped_1 is [2,4,3,2].
 
   # example 2:
@@ -69,7 +75,7 @@ reshape
 
   # example 3:
   data_3 = fluid.data(
-      name="data_3", shape=[2,4,6], dtype='float32')
+    name="data_3", shape=[2,4,6], dtype='float32')
   reshaped_3 = fluid.layers.reshape(x=data_3, shape=[6,8])
   # the shape of reshaped_3 is [6,8].
 

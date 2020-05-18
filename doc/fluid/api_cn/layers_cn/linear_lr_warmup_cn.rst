@@ -5,6 +5,12 @@ linear_lr_warmup
 
 .. py:function:: paddle.fluid.layers.linear_lr_warmup(learning_rate, warmup_steps, start_lr, end_lr)
 
+:alias_main: paddle.nn.functional.linear_lr_warmup
+:alias: paddle.nn.functional.linear_lr_warmup,paddle.nn.functional.learning_rate.linear_lr_warmup
+:old_api: paddle.fluid.layers.linear_lr_warmup
+
+
+
 
 该OP使用学习率优化策略-线性学习率热身(warm up)对学习率进行初步调整。在正常调整学习率之前，先逐步增大学习率，具体原理可参考： `Bag of Tricks for Image Classification with Convolutional Neural Networks <https://arxiv.org/abs/1812.01187>`_
 

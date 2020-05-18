@@ -193,14 +193,3 @@ def image_reader_creator(image_path, label_path, n):
 reader = image_reader_creator("/path/to/image_file", "/path/to/label_file", 1024)
 paddle.train(paddle.batch(reader, 128), {"image":0, "label":1}, ...)
 ```
-
-### How is `paddle.train` implemented
-
-An example implementation of paddle.train is:
-
-```python
-def train(batch_reader, mapping, batch_size, total_pass):
-    for pass_idx in range(total_pass):
-        for mini_batch in batch_reader(): # this loop will never end in online learning.
-            do_forward_backward(mini_batch, mapping)
-```

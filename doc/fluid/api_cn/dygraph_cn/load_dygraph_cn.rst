@@ -3,9 +3,12 @@
 load_dygraph
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
 .. py:function:: paddle.fluid.dygraph.load_dygraph(model_path)
+
+:api_attr: 命令式编程模式（动态图)
+
+
 
 该接口尝试从磁盘中加载参数或优化器的 ``dict`` 。
 
@@ -32,7 +35,8 @@ load_dygraph
         emb = fluid.dygraph.Embedding([10, 10])
         state_dict = emb.state_dict()
         fluid.save_dygraph( state_dict, "paddle_dy")
-        adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000) )
+        adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000) ,
+                                     parameter_list = emb.parameters() )
         state_dict = adam.state_dict()
         fluid.save_dygraph( state_dict, "paddle_dy")
 

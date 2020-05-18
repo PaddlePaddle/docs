@@ -5,6 +5,9 @@ NCE
 
 .. py:class:: paddle.fluid.dygraph.NCE(num_total_classes, dim, param_attr=None, bias_attr=None, num_neg_samples=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False, dtype="float32")
 
+
+
+
 该接口用于构建 ``NCE`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了 ``NCE`` 损失函数的功能，其默认使用均匀分布进行抽样，计算并返回噪音对比估计（ noise-contrastive estimation training loss）。更多详情请参考：`Noise-contrastive estimation: A new estimation principle for unnormalized statistical models <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_
 
 参数：

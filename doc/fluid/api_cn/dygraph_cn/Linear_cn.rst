@@ -5,6 +5,12 @@ Linear
 
 .. py:class:: paddle.fluid.dygraph.Linear(input_dim, output_dim, param_attr=None, bias_attr=None, act=None, dtype='float32')
 
+:alias_main: paddle.nn.Linear
+:alias: paddle.nn.Linear,paddle.nn.layer.Linear,paddle.nn.layer.common.Linear
+:old_api: paddle.fluid.dygraph.Linear
+
+
+
 
 **线性变换层：**
 
@@ -14,7 +20,7 @@ Linear
 
 其中，:math:`X` 为输入的 Tensor， :math:`W` 和 :math:`b` 分别为权重和偏置。
 
-与 FC 层不同，Linear 层只接受一个 Tensor 的输入。
+Linear 层只接受一个 Tensor 的输入。
 Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状为 :math:`[N，*，output_dim]` 的输出张量，
 其中 :math:`N` 是批量大小，:math:`*` 表示任意数量的附加尺寸。
 如果 bias_attr 不是 None，则将创建一个 bias 变量并将其添加到输出中。
@@ -36,7 +42,7 @@ Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状
 
     from paddle.fluid.dygraph.base import to_variable
     import paddle.fluid as fluid
-    from paddle.fluid.dygraph import FC
+    from paddle.fluid.dygraph import Linear
     import numpy as np
 
     data = np.random.uniform( -1, 1, [30, 10, 32] ).astype('float32')
