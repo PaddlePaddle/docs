@@ -80,7 +80,7 @@ class Mnist(Model):
     def __init__(self, name_scope):
         super(Mnist, self).__init__()
         self.fc = Linear(input_dim=784, output_dim=10, act="softmax")
-        
+
     # 定义网络结构的前向计算过程
     def forward(self, inputs):
         outputs = self.fc(inputs)
@@ -132,7 +132,7 @@ vision.transform。图像预处理模块transform包括一系列的图像增强�
 
 | transform的数据处理实现  | 函数功能 | |
 | :--------   | :-----   | :---- |
-|  Compose  | 组合多种数据变换 | 
+|  Compose  | 组合多种数据变换 |
 |  Resize  | 将图像转换为固定大小 |  
 | RandomResizedCrop  |  根据输入比例对图像做随机剪切，然后resize到指定大小   |  
 |  CenterCrop  | 以图像的中心为中心对图像做剪切 |  |
@@ -151,7 +151,7 @@ vision.transform。图像预处理模块transform包括一系列的图像增强�
 使用方法如下：
 ```
 
-from paddle.incubate.hapi.vision.transforms import transforms 
+from paddle.incubate.hapi.vision.transforms import transforms
 import cv2
 
 img_path = "./output/sample.jpg"
@@ -195,4 +195,3 @@ transformer等等。使用这些现有的模型，可以快速的完成神经网
 - [transformer](https://github.com/PaddlePaddle/hapi/tree/master/examples/transformer)
 - [seq2seq](https://github.com/PaddlePaddle/hapi/tree/master/examples/seq2seq)
 - [style-transfer](https://github.com/PaddlePaddle/hapi/tree/master/examples/style-transfer)
-

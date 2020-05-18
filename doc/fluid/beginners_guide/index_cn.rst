@@ -20,3 +20,4 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
     basic_concept/index_cn.rst
     coding_practice/index_cn.rst
+    hapi.md
