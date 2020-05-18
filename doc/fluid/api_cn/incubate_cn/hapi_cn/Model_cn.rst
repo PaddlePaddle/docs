@@ -251,8 +251,10 @@ Model
 **代码示例**：
 
 .. code-block:: python
-
+    import paddle.fluid as fluid
+    
     from paddle.incubate.hapi.model import Model, Input, set_device
+
     class MyModel(Model):
         def __init__(self):
             super(MyModel, self).__init__()
@@ -306,6 +308,7 @@ Model
 .. code-block:: python
 
     1. 使用Dataset训练，并设置batch_size的例子。
+    import paddle.fluid as fluid
 
     from paddle.incubate.hapi.model import Model, Input, set_device
     from paddle.incubate.hapi.loss import CrossEntropy
