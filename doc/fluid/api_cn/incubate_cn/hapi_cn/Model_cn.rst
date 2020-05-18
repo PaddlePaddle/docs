@@ -18,6 +18,7 @@ Model
     from paddle.incubate.hapi.model import Model, Input, set_device
     from paddle.incubate.hapi.loss import CrossEntropy
     from paddle.incubate.hapi.datasets import MNIST
+    from paddle.incubate.hapi.metrics import Accuracy
 
     class MyModel(Model):
         def __init__(self):
@@ -26,7 +27,7 @@ Model
         def forward(self, x):
             y = self._fc(x)
             return y
-    device = set_device('gpu')
+    device = set_device('cpu')
 
     # 切换成动态图模式，默认使用静态图模式
     fluid.enable_dygraph(device)
@@ -34,14 +35,14 @@ Model
     model = MyModel()
     optim = fluid.optimizer.SGD(learning_rate=1e-3,
         parameter_list=model.parameters())
-    
+
     inputs = [Input([None, 784], 'float32', name='x')]
     labels = [Input([None, 1], 'int64', name='label')]
-    
-    mnist_data = MNIST(mode='train')
+
+    mnist_data = MNIST(mode='train', chw_format=False)
     model.prepare(optim,
                     CrossEntropy(average=True),
-                    hapi.metrics.Accuracy(),
+                    Accuracy(),
                     inputs,
                     labels,
                     device=device)
@@ -67,18 +68,19 @@ Model
     import numpy as np
     import paddle.fluid as fluid
 
+    from paddle.fluid.dygraph import Linear
     from paddle.incubate.hapi.loss import CrossEntropy
     from paddle.incubate.hapi.model import Model, Input, set_device
 
     class MyModel(Model):
         def __init__(self):
             super(MyModel, self).__init__()
-            self._fc = Linear(784, 1, act='softmax')
+            self._fc = Linear(784, 10, act='softmax')
         def forward(self, x):
             y = self._fc(x)
             return y
 
-    device = set_device('gpu')
+    device = set_device('cpu')
     fluid.enable_dygraph(device)
 
     model = MyModel()
@@ -122,12 +124,12 @@ Model
     class MyModel(Model):
         def __init__(self):
             super(MyModel, self).__init__()
-            self._fc = fluid.dygraph.Linear(784, 1, act='softmax')
+            self._fc = fluid.dygraph.Linear(784, 10, act='softmax')
         def forward(self, x):
             y = self._fc(x)
             return y
 
-    device = set_device('gpu')
+    device = set_device('cpu')
     fluid.enable_dygraph(device)
 
     model = MyModel()
@@ -173,7 +175,7 @@ Model
             y = self._fc(x)
             return y
 
-    device = set_device('gpu')
+    device = set_device('cpu')
     fluid.enable_dygraph(device)
 
     model = MyModel()
@@ -321,7 +323,7 @@ Model
     from paddle.incubate.hapi.vision.models import LeNet
 
     dynamic = True
-    device = set_device(FLAGS.device)
+    device = set_device('cpu')
     fluid.enable_dygraph(device) if dynamic else None
 
     train_dataset = MNIST(mode='train')
@@ -355,7 +357,7 @@ Model
     from paddle.incubate.hapi.vision.models import LeNet
 
     dynamic = True
-    device = set_device(FLAGS.device)
+    device = set_device('cpu')
     fluid.enable_dygraph(device) if dynamic else None
 
     train_dataset = MNIST(mode='train')
@@ -510,8 +512,9 @@ Model
 .. code-block:: python
 
     import paddle.fluid as fluid
-    from paddle.incubate.hapi.model import Model
-    
+
+    from paddle.incubate.hapi.model import Model, Input
+
     class MyModel(Model):
         def __init__(self):
             super(MyModel, self).__init__()
@@ -519,7 +522,7 @@ Model
         def forward(self, x):
             y = self._fc(x)
             return y
-    
+
     model = MyModel()
     inputs = [Input([-1, 1, 784], 'float32', name='input')]
     model.prepare(inputs=inputs)
