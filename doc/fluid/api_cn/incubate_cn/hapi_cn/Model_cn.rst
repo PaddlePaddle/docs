@@ -15,7 +15,7 @@ Model
     import paddle
     import paddle.fluid as fluid
 
-    from paddle.incubate.hapi import Model, Input, set_device
+    from paddle.incubate.hapi.model import Model, Input, set_device
     from paddle.incubate.hapi.loss import CrossEntropy
     from paddle.incubate.hapi.dataset import MNIST
 
@@ -66,7 +66,7 @@ Model
 
     import numpy as np
     import paddle.fluid as fluid
-    from paddle.incubate.hapi import Model, Input, set_device
+    from paddle.incubate.hapi.model import Model, Input, set_device
 
     class MyModel(Model):
         def __init__(self):
@@ -113,7 +113,7 @@ Model
 
     import numpy as np
     import paddle.fluid as fluid
-    from paddle.incubate.hapi import Model, Input, set_device
+    from paddle.incubate.hapi.model import Model, Input, set_device
 
     class MyModel(Model):
         def __init__(self):
@@ -159,7 +159,7 @@ Model
 
     import numpy as np
     import paddle.fluid as fluid
-    from paddle.incubate.hapi import Model, Input, set_device
+    from paddle.incubate.hapi.model import Model, Input, set_device
 
     class MyModel(Model):
         def __init__(self):
@@ -196,7 +196,7 @@ Model
 .. code-block:: python
 
     import paddle.fluid as fluid
-    from paddle.incubate.hapi import Model, set_device
+    from paddle.incubate.hapi.model import Model, set_device
     
     class MyModel(Model):
         def __init__(self):
@@ -227,7 +227,7 @@ Model
 .. code-block:: python
 
     import paddle.fluid as fluid
-    from paddle.incubate.hapi import Model, set_device
+    from paddle.incubate.hapi.model import Model, set_device
     
     class MyModel(Model):
         def __init__(self):
@@ -252,7 +252,7 @@ Model
 
 .. code-block:: python
     import paddle.fluid as fluid
-    
+
     from paddle.incubate.hapi.model import Model, Input, set_device
 
     class MyModel(Model):
@@ -506,7 +506,7 @@ Model
 .. code-block:: python
 
     import paddle.fluid as fluid
-    from paddle.incubate.hapi import Model
+    from paddle.incubate.hapi.model import Model
     
     class MyModel(Model):
         def __init__(self):
