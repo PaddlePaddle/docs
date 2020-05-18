@@ -506,44 +506,19 @@ Model
 
 .. code-block:: python
 
-    # declarative mode
-    import numpy as np
-    from paddle.incubate.hapi.metrics import Accuracy
-    from paddle.incubate.hapi.datasets import MNIST
-    from paddle.incubate.hapi.vision.transforms import Compose,Resize
-    from paddle.incubate.hapi.vision.models import LeNet
-    from paddle.incubate.hapi.model import Input, set_device
-
-    class MnistDataset(MNIST):
-        def __init__(self, mode, return_label=True):
-            super(MnistDataset, self).__init__(mode=mode)
-            self.return_label = return_label
-
-        def __getitem__(self, idx):
-            img = np.reshape(self.images[idx], [1, 28, 28])
-            if self.return_label:
-                return img, np.array(self.labels[idx]).astype('int64')
-            return img,
-
-        def __len__(self):
-            return len(self.images)
-
-    inputs = [Input([-1, 1, 28, 28], 'float32', name='image')]
-
-    test_dataset = MnistDataset(mode='test', return_label=False)
-
-    model = LeNet()
+    import paddle.fluid as fluid
+    from paddle.incubate.hapi import Model
+    
+    class MyModel(Model):
+        def __init__(self):
+            super(MyModel, self).__init__()
+            self._fc = fluid.dygraph.Linear(784, 1, act='softmax')
+        def forward(self, x):
+            y = self._fc(x)
+            return y
+    
+    model = MyModel()
+    inputs = [Input([-1, 1, 784], 'float32', name='input')]
     model.prepare(inputs=inputs)
 
-    result = model.predict(test_dataset, batch_size=64)
-    print(result)
-
-    # imperative mode
-    import paddle.fluid.dygraph as dg
-    place = set_device('cpu')
-    with dg.guard(place) as g:
-        model = LeNet()
-        model.prepare(inputs=inputs)
-
-        result = model.predict(test_dataset, batch_size=64)
-        print(result)
+    model.save_inference_model('checkpoint/test')
