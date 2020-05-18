@@ -6,6 +6,8 @@
 dynamic_decode
 --------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.dynamic_decode
     :noindex:
 

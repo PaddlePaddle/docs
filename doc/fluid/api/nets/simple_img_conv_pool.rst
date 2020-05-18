@@ -6,6 +6,8 @@
 simple_img_conv_pool
 --------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.nets.simple_img_conv_pool
     :noindex:
 

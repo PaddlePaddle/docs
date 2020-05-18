@@ -6,6 +6,8 @@
 create_random_int_lodtensor
 ---------------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.create_random_int_lodtensor
     :noindex:
 

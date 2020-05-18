@@ -6,6 +6,8 @@
 LookaheadOptimizer
 ------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.optimizer.LookaheadOptimizer
     :members:
     :inherited-members:

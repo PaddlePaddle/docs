@@ -3,7 +3,7 @@
 multi_box_head
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:function:: paddle.fluid.layers.multi_box_head(inputs, image, base_size, num_classes, aspect_ratios, min_ratio=None, max_ratio=None, min_sizes=None, max_sizes=None, steps=None, step_w=None, step_h=None, offset=0.5, variance=[0.1, 0.1, 0.2, 0.2], flip=True, clip=False, kernel_size=1, pad=0, stride=1, name=None, min_max_aspect_ratios_order=False)
 

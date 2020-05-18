@@ -6,6 +6,8 @@
 DynamicRNN
 ----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.layers.DynamicRNN
     :members:
     :inherited-members:

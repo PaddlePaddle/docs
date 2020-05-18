@@ -6,6 +6,8 @@
 dynamic_gru
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.dynamic_gru
     :noindex:
 

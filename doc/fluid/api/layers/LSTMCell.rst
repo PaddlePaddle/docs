@@ -6,6 +6,8 @@
 LSTMCell
 --------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.layers.LSTMCell
     :members:
     :inherited-members:

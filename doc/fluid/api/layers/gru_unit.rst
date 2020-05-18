@@ -6,6 +6,8 @@
 gru_unit
 --------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.gru_unit
     :noindex:
 

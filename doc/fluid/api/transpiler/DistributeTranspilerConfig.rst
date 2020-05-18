@@ -6,6 +6,8 @@
 DistributeTranspilerConfig
 --------------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.transpiler.DistributeTranspilerConfig
     :members:
     :inherited-members:

@@ -6,6 +6,8 @@
 ExponentialDecay
 ----------------
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autoclass:: paddle.fluid.dygraph.ExponentialDecay
     :members:
     :noindex:

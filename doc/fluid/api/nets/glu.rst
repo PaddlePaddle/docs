@@ -6,6 +6,8 @@
 glu
 ---
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.nets.glu
     :noindex:
 

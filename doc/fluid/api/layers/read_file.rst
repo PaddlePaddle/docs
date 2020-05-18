@@ -6,6 +6,8 @@
 read_file
 ---------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.read_file
     :noindex:
 

@@ -3,7 +3,7 @@
 WeightNormParamAttr
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:class:: paddle.fluid.WeightNormParamAttr(dim=None, name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=False)
 

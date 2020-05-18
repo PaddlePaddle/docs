@@ -3,7 +3,7 @@
 CosineDecay
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
+:api_attr: 命令式编程模式(动态图)
 
 .. py:class:: paddle.fluid.dygraph.CosineDecay(learning_rate, step_each_epoch, epochs, begin=0, step=1, dtype='float32')
 

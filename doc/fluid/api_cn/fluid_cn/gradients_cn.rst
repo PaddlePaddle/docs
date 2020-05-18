@@ -3,7 +3,7 @@
 gradients
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:function:: paddle.fluid.gradients(targets, inputs, target_gradients=None, no_grad_set=None)
 

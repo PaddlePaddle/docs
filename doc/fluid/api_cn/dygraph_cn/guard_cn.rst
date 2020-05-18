@@ -3,7 +3,7 @@
 guard
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
+:api_attr: 命令式编程模式(动态图)
 
 .. py:function:: paddle.fluid.dygraph.guard(place=None)
 

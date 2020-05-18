@@ -3,7 +3,7 @@
 data
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:function:: paddle.fluid.layers.data(name, shape, append_batch_size=True, dtype='float32', lod_level=0, type=VarType.LOD_TENSOR, stop_gradient=True)
 

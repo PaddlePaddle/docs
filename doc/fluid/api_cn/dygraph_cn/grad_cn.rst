@@ -3,7 +3,7 @@
 grad
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
+:api_attr: 命令式编程模式(动态图)
 
 .. py:method:: paddle.fluid.dygraph.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None, backward_strategy=None)
 

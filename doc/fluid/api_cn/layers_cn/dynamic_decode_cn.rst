@@ -4,7 +4,7 @@ dynamic_decode
 -------------------------------
 
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:method:: dynamic_decode(decoder, inits=None, max_step_num=None, output_time_major=False, **kwargs):
     

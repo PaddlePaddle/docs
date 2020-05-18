@@ -3,7 +3,7 @@
 LookaheadOptimizer
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:class:: paddle.fluid.optimizer.LookaheadOptimizer(inner_optimizer, alpha=0.5, k=5)
 

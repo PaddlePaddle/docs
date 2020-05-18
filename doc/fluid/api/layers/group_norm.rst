@@ -6,6 +6,8 @@
 group_norm
 ----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.group_norm
     :noindex:
 

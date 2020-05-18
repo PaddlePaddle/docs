@@ -6,6 +6,8 @@
 sequence_conv
 -------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.sequence_conv
     :noindex:
 

@@ -6,6 +6,8 @@
 case
 ----
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.case
     :noindex:
 

@@ -6,6 +6,8 @@
 set_gradient_clip
 -----------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.clip.set_gradient_clip
     :noindex:
 
