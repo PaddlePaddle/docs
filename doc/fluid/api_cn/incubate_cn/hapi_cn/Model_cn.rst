@@ -17,7 +17,7 @@ Model
 
     from paddle.incubate.hapi.model import Model, Input, set_device
     from paddle.incubate.hapi.loss import CrossEntropy
-    from paddle.incubate.hapi.dataset import MNIST
+    from paddle.incubate.hapi.datasets import MNIST
 
     class MyModel(Model):
         def __init__(self):
@@ -66,6 +66,8 @@ Model
 
     import numpy as np
     import paddle.fluid as fluid
+
+    from paddle.incubate.hapi.loss import CrossEntropy
     from paddle.incubate.hapi.model import Model, Input, set_device
 
     class MyModel(Model):
@@ -76,7 +78,7 @@ Model
             y = self._fc(x)
             return y
 
-    device = hapi.set_device('gpu')
+    device = set_device('gpu')
     fluid.enable_dygraph(device)
 
     model = MyModel()
@@ -113,6 +115,8 @@ Model
 
     import numpy as np
     import paddle.fluid as fluid
+
+    from paddle.incubate.hapi.loss import CrossEntropy
     from paddle.incubate.hapi.model import Model, Input, set_device
 
     class MyModel(Model):
@@ -307,7 +311,7 @@ Model
 
 .. code-block:: python
 
-    1. 使用Dataset训练，并设置batch_size的例子。
+    # 1. 使用Dataset训练，并设置batch_size的例子。
     import paddle.fluid as fluid
 
     from paddle.incubate.hapi.model import Model, Input, set_device
@@ -342,7 +346,7 @@ Model
             batch_size=64,
             save_dir='mnist_checkpoint')
 
-    2. 使用Dataloader训练的例子.
+    # 2. 使用Dataloader训练的例子.
 
     from paddle.incubate.hapi.model import Model, Input, set_device
     from paddle.incubate.hapi.loss import CrossEntropy
