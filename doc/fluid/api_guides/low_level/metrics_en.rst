@@ -36,7 +36,7 @@ Sequence labeling task evaluation
 ----------------------------------
 In the sequence labeling task, the group of tokens is called a chunk, and the model will group and classify the input tokens at the same time. The commonly used evaluation method is the chunk evaluation method.
 
-- The chunk evaluation method :code:`ChunkEvaluator` receives the output of the :code:`chunk_eval` interface, and accumulates the statistics of chunks in each mini-batch , and finally calculates the accuracy, recall and F1 values. :code:`ChunkEvaluator` supports four labeling modes: IOB, IOE, IOBES and IO. You can refer to the documentation `Chunking with Support Vector Machines <https://aclanthology.info/pdf/N/N01/N01-1025.pdf>`_.
+- The chunk evaluation method :code:`ChunkEvaluator` receives the output of the :code:`chunk_eval` interface, and accumulates the statistics of chunks in each mini-batch , and finally calculates the accuracy, recall and F1 values. :code:`ChunkEvaluator` supports four labeling modes: IOB, IOE, IOBES and IO. You can refer to the documentation `Chunking with Support Vector Machines <https://www.researchgate.net/publication/315054959_Chunking_with_Support_Vector_Machines>`_.
 
   For API Reference,  please refer to :ref:`api_fluid_metrics_ChunkEvaluator`
 

@@ -75,7 +75,7 @@ API Reference: :ref:`api_fluid_optimizer_DecayedAdagrad`
 8. Ftrl/FtrlOptimizer
 ----------------------
 
-`FtrlOptimizer <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_ Optimizer combines the high accuracy of `FOBOS algorithm <https://stanford.edu/~jduchi/projects/DuchiSi09b.pdf>`_ and the sparsity of `RDA algorithm <http://www1.se.cuhk.edu.hk/~sqma/SEEM5121_Spring2015/dual-averaging.pdf>`_ , which is an `Online Learning <https://en.wikipedia.org/wiki/Online_machine_learning>`_ algorithm with significantly satisfying effect.
+`FtrlOptimizer <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_ Optimizer combines the high accuracy of `FOBOS algorithm <https://stanford.edu/~jduchi/projects/DuchiSi09b.pdf>`_ and the sparsity of `RDA algorithm <https://xueshu.baidu.com/usercenter/paper/show?paperid=101df241a792fe23d79f4ed84a820495>`_ algorithm with significantly satisfying effect.
 
 API Reference: :ref:`api_fluid_optimizer_FtrlOptimizer`
 

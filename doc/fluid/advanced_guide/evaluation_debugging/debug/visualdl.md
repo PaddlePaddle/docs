@@ -1,20 +1,32 @@
 
-# VisualDL 工具简介
-
-
 <p align="center">
   <img src="http://visualdl.bj.bcebos.com/images/vdl-logo.png" width="70%"/>
 </p>
+[![Build Status](https://travis-ci.org/PaddlePaddle/VisualDL.svg?branch=develop)](https://travis-ci.org/PaddlePaddle/VisualDL)
+[![Documentation Status](https://img.shields.io/badge/docs-latest-brightgreen.svg?style=flat)](https://github.com/PaddlePaddle/VisualDL/tree/develop/docs)
+[![Release](https://img.shields.io/github/release/PaddlePaddle/VisualDL.svg)](https://github.com/PaddlePaddle/VisualDL/releases)
+[![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
 
-
-
+## 介绍
 VisualDL是深度学习模型可视化分析工具，以丰富的图表呈现训练参数变化趋势、模型结构、数据样本、高维数据分布等。可帮助用户更清晰直观地理解深度学习模型训练过程及模型结构，进而实现高效的模型优化。
 
-VisualDL提供丰富的可视化功能，支持实时训练参数分析、图结构、数据样本可视化及高维数据降维呈现等诸多功能。具体功能使用方式，请参见 **VisualDL 使用指南**。项目正处于高速迭代中，敬请期待新组件的加入。
+VisualDL提供丰富的可视化功能，支持实时训练参数分析、图结构、数据样本可视化及高维数据降维呈现等诸多功能。具体功能使用方式，请参见 **VisualDL使用指南**。项目正处于高速迭代中，敬请期待新组件的加入。
 
 VisualDL原生支持python的使用， 通过在模型的Python配置中添加几行代码，便可为训练过程提供丰富的可视化支持。
 
+## 目录
 
+* [核心亮点](#核心亮点)
+
+* [安装方式](#安装方式)
+
+* [使用方式](#使用方式)
+
+* [可视化功能概览](#可视化功能概览)
+
+* [开源贡献](#开源贡献)
+
+* [更多细节](#更多细节)
 
 
 
@@ -40,13 +52,21 @@ API设计简洁易懂，使用简单。模型结构一键实现可视化。
 
 ## 安装方式
 
-使用pip安装 VisualDL 运行范例：
+### 使用pip安装
 
 ```shell
 pip install --upgrade visualdl==2.0.0a2
 ```
 
+### 使用代码安装
 
+```
+git clone https://github.com/PaddlePaddle/VisualDL.git
+cd VisualDL
+
+python setup.py bdist_wheel
+pip install --upgrade dist/visualdl-*.whl
+```
 
 ## 使用方式
 
@@ -57,15 +77,13 @@ VisualDL将训练过程中的数据、参数等信息储存至日志文件中后
 VisualDL的后端提供了Python SDK，可通过LogWriter定制一个日志记录器，接口如下：
 
 ```python
-class LogWriter(
-                logdir=None,
+class LogWriter(logdir=None,
                 comment='',
                 max_queue=10,
                 flush_secs=120,
                 filename_suffix='',
                 write_to_disk=True,
-                **kwargs
-                )
+                **kwargs)
 ```
 
 #### 接口参数
@@ -206,4 +224,4 @@ VisualDL 是由 [PaddlePaddle](http://www.paddlepaddle.org/) 和 [ECharts](http:
 
 ## 更多细节
 
-想了解更多关于VisualDL可视化功能的使用详情介绍，请查看**Visual DL 使用指南**。
+想了解更多关于VisualDL可视化功能的使用详情介绍，请查看**VisualDL使用指南**。

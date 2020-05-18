@@ -10,13 +10,13 @@ VisualDL 是一个面向深度学习任务设计的可视化工具。VisualDL �
 
 |                           组件名称                           |  展示图表  | 作用                                                         |
 | :----------------------------------------------------------: | :--------: | :----------------------------------------------------------- |
-|      <a href="#1">[ Scalar](#Scalar -- 折线图组件)</a>       |   折线图   | 动态展示损失函数值、准确率等标量数据                         |
-|      <a href="#3">[Image](#Image -- 图片可视化组件)</a>      | 图片可视化 | 显示图片，可显示输入图片和处理后的结果，便于查看中间过程的变化 |
-| <a href="#6">[High Dimensional](#High Dimensional -- 数据降维组件)</a> |  数据降维  | 将高维数据映射到 2D/3D 空间来可视化嵌入，便于观察不同数据的相关性 |
+|       <a href="#1">[ Scalar](#Scalar--折线图组件)</a>        |   折线图   | 动态展示损失函数值、准确率等标量数据                         |
+|       <a href="#3">[Image](#Image--图片可视化组件)</a>       | 图片可视化 | 显示图片，可显示输入图片和处理后的结果，便于查看中间过程的变化 |
+| <a href="#6">[High Dimensional](#High-Dimensional--数据降维组件)</a> |  数据降维  | 将高维数据映射到 2D/3D 空间来可视化嵌入，便于观察不同数据的相关性 |
 
 
 
-## Scalar -- 折线图组件
+## Scalar--折线图组件
 
 ### 介绍
 
@@ -38,7 +38,7 @@ add_scalar(tag, value, step, walltime=None)
 |walltime|int|记录数据的时间戳，默认为当前时间戳|
 
 ### Demo
-下面展示了使用 Scalar 组件记录数据的示例，代码见[Scalar组件](../../demo/components/scalar_test.py)
+下面展示了使用 Scalar 组件记录数据的示例，代码见[Scalar组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/scalar_test.py)
 ```python
 from visualdl import LogWriter
 
@@ -114,7 +114,7 @@ visualdl --logdir ./log --port 8080
 </p>
 
 
-## Image -- 图片可视化组件
+## Image--图片可视化组件
 
 ### 介绍
 
@@ -136,7 +136,7 @@ add_image(tag, img, step, walltime=None)
 |walltime|int|记录数据的时间戳，默认为当前时间戳|
 
 ### Demo
-下面展示了使用 Image 组件记录数据的示例，代码文件请见[Image组件](../../demo/components/image_test.py)
+下面展示了使用 Image 组件记录数据的示例，代码文件请见[Image组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/image_test.py)
 ```python
 import numpy as np
 from PIL import Image
@@ -191,7 +191,7 @@ visualdl --logdir ./log --port 8080
 </p>
 
 
-## High Dimensional -- 数据降维组件
+## High Dimensional--数据降维组件
 
 ### 介绍
 
@@ -216,7 +216,7 @@ add_embeddings(tag, labels, hot_vectors, walltime=None)
 |walltime|int|记录数据的时间戳，默认为当前时间戳|
 
 ### Demo
-下面展示了使用 High Dimensional 组件记录数据的示例，代码见[High Dimensional组件](../../demo/components/high_dimensional_test.py)
+下面展示了使用 High Dimensional 组件记录数据的示例，代码见[High Dimensional组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/high_dimensional_test.py)
 ```python
 from visualdl import LogWriter
 
