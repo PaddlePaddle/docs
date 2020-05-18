@@ -307,78 +307,74 @@ Model
 
     1. 使用Dataset训练，并设置batch_size的例子。
 
-    .. code-block:: python
+    from paddle.incubate.hapi.model import Model, Input, set_device
+    from paddle.incubate.hapi.loss import CrossEntropy
+    from paddle.incubate.hapi.metrics import Accuracy
+    from paddle.incubate.hapi.datasets import MNIST
+    from paddle.incubate.hapi.vision.models import LeNet
 
-        from paddle.incubate.hapi.model import Model, Input, set_device
-        from paddle.incubate.hapi.loss import CrossEntropy
-        from paddle.incubate.hapi.metrics import Accuracy
-        from paddle.incubate.hapi.datasets import MNIST
-        from paddle.incubate.hapi.vision.models import LeNet
+    dynamic = True
+    device = set_device(FLAGS.device)
+    fluid.enable_dygraph(device) if dynamic else None
 
-        dynamic = True
-        device = set_device(FLAGS.device)
-        fluid.enable_dygraph(device) if dynamic else None
+    train_dataset = MNIST(mode='train')
+    val_dataset = MNIST(mode='test')
 
-        train_dataset = MNIST(mode='train')
-        val_dataset = MNIST(mode='test')
+    inputs = [Input([None, 1, 28, 28], 'float32', name='image')]
+    labels = [Input([None, 1], 'int64', name='label')]
 
-        inputs = [Input([None, 1, 28, 28], 'float32', name='image')]
-        labels = [Input([None, 1], 'int64', name='label')]
-
-        model = LeNet()
-        optim = fluid.optimizer.Adam(
-            learning_rate=0.001, parameter_list=model.parameters())
-        model.prepare(
-            optim,
-            CrossEntropy(),
-            Accuracy(topk=(1, 2)),
-            inputs=inputs,
-            labels=labels,
-            device=device)
-        model.fit(train_dataset,
-                val_dataset,
-                epochs=2,
-                batch_size=64,
-                save_dir='mnist_checkpoint')
+    model = LeNet()
+    optim = fluid.optimizer.Adam(
+        learning_rate=0.001, parameter_list=model.parameters())
+    model.prepare(
+        optim,
+        CrossEntropy(),
+        Accuracy(topk=(1, 2)),
+        inputs=inputs,
+        labels=labels,
+        device=device)
+    model.fit(train_dataset,
+            val_dataset,
+            epochs=2,
+            batch_size=64,
+            save_dir='mnist_checkpoint')
 
     2. 使用Dataloader训练的例子.
 
-    .. code-block:: python
+    from paddle.incubate.hapi.model import Model, Input, set_device
+    from paddle.incubate.hapi.loss import CrossEntropy
+    from paddle.incubate.hapi.metrics import Accuracy
+    from paddle.incubate.hapi.datasets import MNIST
+    from paddle.incubate.hapi.vision.models import LeNet
 
-        from paddle.incubate.hapi.model import Model, Input, set_device
-        from paddle.incubate.hapi.loss import CrossEntropy
-        from paddle.incubate.hapi.metrics import Accuracy
-        from paddle.incubate.hapi.datasets import MNIST
-        from paddle.incubate.hapi.vision.models import LeNet
+    dynamic = True
+    device = set_device(FLAGS.device)
+    fluid.enable_dygraph(device) if dynamic else None
 
-        dynamic = True
-        device = set_device(FLAGS.device)
-        fluid.enable_dygraph(device) if dynamic else None
+    train_dataset = MNIST(mode='train')
+    train_loader = fluid.io.DataLoader(train_dataset,
+        places=device, batch_size=64)
+    val_dataset = MNIST(mode='test')
+    val_loader = fluid.io.DataLoader(val_dataset,
+        places=device, batch_size=64)
 
-        train_dataset = MNIST(mode='train')
-        train_loader = fluid.io.DataLoader(train_dataset,
-            places=device, batch_size=64)
-        val_dataset = MNIST(mode='test')
-        val_loader = fluid.io.DataLoader(val_dataset,
-            places=device, batch_size=64)
+    inputs = [Input([None, 1, 28, 28], 'float32', name='image')]
+    labels = [Input([None, 1], 'int64', name='label')]
 
-        inputs = [Input([None, 1, 28, 28], 'float32', name='image')]
-        labels = [Input([None, 1], 'int64', name='label')]
-
-        model = LeNet()
-        optim = fluid.optimizer.Adam(
-            learning_rate=0.001, parameter_list=model.parameters())
-        model.prepare(
-            optim,
-            CrossEntropy(),
-            Accuracy(topk=(1, 2)),
-            inputs=inputs,
-            labels=labels,
-            device=device)
-        model.fit(train_loader,
-                val_loader,
-                epochs=2,
-                save_dir='mnist_checkpoint')
+    model = LeNet()
+    optim = fluid.optimizer.Adam(
+        learning_rate=0.001, parameter_list=model.parameters())
+    model.prepare(
+        optim,
+        CrossEntropy(),
+        Accuracy(topk=(1, 2)),
+        inputs=inputs,
+        labels=labels,
+        device=device)
+    model.fit(train_loader,
+            val_loader,
+            epochs=2,
+            save_dir='mnist_checkpoint')
 
 
 .. py:function:: evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None):
