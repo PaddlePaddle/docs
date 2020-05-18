@@ -161,3 +161,11 @@ for i in range(batch_num):
 
 同时飞桨2.0对部分Paddle 1.x版本的API进行了清理，删除了部分不再推荐使用的API，具体信息请参考Release Note。
 
+
+..  toctree::
+    :hidden:
+
+    basic_concept/index_cn.rst
+    dygraph/DyGraph.md
+    hapi.md
+
