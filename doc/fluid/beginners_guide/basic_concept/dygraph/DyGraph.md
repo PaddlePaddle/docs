@@ -1,37 +1,39 @@
-从编程范式上说，飞桨兼容支持声明式编程和命令式编程，通俗地讲即静态图和动态图。其实飞桨本没有图的概念，在飞桨的设计中，把一个神经网络定义成一段类似程序的描述，也就是用户在写程序的过程中，就定义了模型表达及计算。在静态图的控制流实现方面，飞桨借助自己实现的控制流OP而不是python原生的if else和for循环，这使得在飞桨中的定义的program即一个网络模型，可以有一个内部的表达，是可以全局优化编译执行的。考虑对开发者来讲，更愿意使用python原生控制流，飞桨也做了支持，并通过解释方式执行，这就是动态图。但整体上，这两种编程范式是相对兼容统一的。飞桨将持续发布更完善的动态图功能，同时保持更强劲的性能。
+# 命令式编程使用教程
+
+从编程范式上说，飞桨兼容支持声明式编程和命令式编程，通俗地讲即静态图和动态图。其实飞桨本没有图的概念，在飞桨的设计中，把一个神经网络定义成一段类似程序的描述，也就是用户在写程序的过程中，就定义了模型表达及计算。在声明式编程的控制流实现方面，飞桨借助自己实现的控制流OP而不是python原生的if else和for循环，这使得在飞桨中的定义的program即一个网络模型，可以有一个内部的表达，是可以全局优化编译执行的。考虑对开发者来讲，更愿意使用python原生控制流，飞桨也做了支持，并通过解释方式执行，这就是命令式编程。但整体上，这两种编程范式是相对兼容统一的。飞桨将持续发布更完善的命令式编程功能，同时保持更强劲的性能。
 
 飞桨平台中，将神经网络抽象为计算表示**Operator**（算子，常简称OP）和数据表示**Variable**（变量），如 图1 所示。神经网络的每层操作均由一个或若干**Operator**组成，每个**Operator**接受一系列的**Variable**作为输入，经计算后输出一系列的**Variable**。
 <center><img src="https://ai-studio-static-online.cdn.bcebos.com/15197499f49840fcb43a38d19d9c729e19f3a7bf5ae5432a8eeca083ac4e02b7" width="600" ></center>
 <br><center>图1 Operator和Variable关系示意图</center>
 
 根据**Operator**解析执行方式不同，飞桨支持如下两种编程范式：
-* **静态图模式（声明式编程范式）**：先编译后执行的方式。用户需预先定义完整的网络结构，再对网络结构进行编译优化后，才能执行获得计算结果。
-* **动态图模式（命令式编程范式）**：解析式的执行方式。用户无需预先定义完整的网络结构，每写一行网络代码，即可同时获得计算结果。
+* **声明式编程范式（静态图模式）**：先编译后执行的方式。用户需预先定义完整的网络结构，再对网络结构进行编译优化后，才能执行获得计算结果。
+* **命令式编程范式（动态图模式）**：解析式的执行方式。用户无需预先定义完整的网络结构，每写一行网络代码，即可同时获得计算结果。
 
-举例来说，假设用户写了一行代码：y=x+1，在静态图模式下，运行此代码只会往计算图中插入一个Tensor加1的**Operator**，此时**Operator**并未真正执行，无法获得y的计算结果。但在动态图模式下，所有**Operator**均是即时执行的，运行完此代码后**Operator**已经执行完毕，用户可直接获得y的计算结果。
+举例来说，假设用户写了一行代码：y=x+1，在声明式编程下，运行此代码只会往计算图中插入一个Tensor加1的**Operator**，此时**Operator**并未真正执行，无法获得y的计算结果。但在命令式编程下，所有**Operator**均是即时执行的，运行完此代码后**Operator**已经执行完毕，用户可直接获得y的计算结果。
 
-# 为什么动态图模式越来越流行？
+## 为什么命令式编程越来越流行？
 
-静态图模式作为较早提出的一种编程范式，提供丰富的 API ，能够快速的实现各种模型；并且可以利用全局的信息进行图优化，优化性能和显存占用；在预测部署方面也可以实现无缝衔接。 但具体实践中静态图模式存在如下问题：
+声明式编程作为较早提出的一种编程范式，提供丰富的 API ，能够快速的实现各种模型；并且可以利用全局的信息进行图优化，优化性能和显存占用；在预测部署方面也可以实现无缝衔接。 但具体实践中声明式编程存在如下问题：
 1. 采用先编译后执行的方式，组网阶段和执行阶段割裂，导致调试不方便。
 2. 属于一种符号化的编程方式，要学习新的编程方式，有一定的入门门槛。
 3. 网络结构固定，对于一些树结构的任务支持的不够好。
 
-动态图的出现很好的解决了这些问题，存在以下优势：
+命令式编程的出现很好的解决了这些问题，存在以下优势：
 1. 代码运行完成后，可以立马获取结果，支持使用 IDE 断点调试功能，使得调试更方便。
 2. 属于命令式的编程方式，与编写Python的方式类似，更容易上手。
 3. 网络的结构在不同的层次中可以变化，使用更灵活。
 
 
-综合以上优势，使得动态图模式越来越受开发者的青睐，本章侧重介绍在飞桨中动态图的编程方法，包括如下几部分：
-1. 如何开启动态图模式
-2. 如何使用动态图进行模型训练
-3. 如何基于动态图进行多卡训练
-4. 如何部署动态图模型
-5. 动态图模式常见的使用技巧，如中间变量值/梯度打印、断点调试、阻断反向传递，以及某些场景下如何改写为静态图模式运行。
+综合以上优势，使得命令式编程越来越受开发者的青睐，本章侧重介绍在飞桨中命令式编程的编程方法，包括如下几部分：
+1. 如何开启命令式编程
+2. 如何使用命令式编程进行模型训练
+3. 如何基于命令式编程进行多卡训练
+4. 如何部署命令式编程的模型
+5. 命令式编程常见的使用技巧，如中间变量值/梯度打印、断点调试、阻断反向传递，以及某些场景下如何改写为声明式模式运行。
 
 
-# 1. 开启动态图模式
+## 1. 开启命令式编程
 
 此文档介绍的内容是基于2.0 alpha，请安装2.0 alpha 版本，安装方式如下:
 
@@ -39,12 +41,12 @@
 pip install -q --upgrade paddlepaddle==2.0.0a0
 ```
 
-目前飞桨默认的模式是静态图，可以通过paddle.enable_imperative()开启动态图模式(也可以通过with paddle.imperative.guard()的方式启动)：
+目前飞桨默认的模式是声明式编程，可以通过paddle.enable_imperative()开启命令式编程(也可以通过with paddle.imperative.guard()的方式启动)：
 ```
 paddle.enable_imperative()
 ```
 
-我们先通过一个实例，观察一下动态图模式开启前后执行方式的差别：
+我们先通过一个实例，观察一下命令式编程开启前后执行方式的差别：
 
 
 ```python
@@ -61,18 +63,19 @@ exe.run(paddle.default_startup_program())
 out = exe.run(fetch_list=[x], feed={'x': data})
 print("result", out)  #[[11, 11], [11, 11]]
 
-# 动态图模式
+# 命令式编程
 paddle.enable_imperative()
 x = paddle.imperative.to_variable(data)
 x += 10
 print('result', x.numpy())  #[[11, 11], [11, 11]]
 
 ```
-* 动态图模式下，所有操作在运行时就已经完成，更接近我们平时的编程方式，可以随时获取每一个操作的执行结果。
-* 静态图模式下，过程中并没有实际执行操作，上述例子中可以看到只能打印声明的类型，最后需要调用执行器来统一执行所有操作，计算结果需要通过执行器统一返回。
+* 命令式编程下，所有操作在运行时就已经完成，更接近我们平时的编程方式，可以随时获取每一个操作的执行结果。
+* 声明式编程下，过程中并没有实际执行操作，上述例子中可以看到只能打印声明的类型，最后需要调用执行器来统一执行所有操作，计算结果需要通过执行器统一返回。
 
-#  2. 使用动态图进行模型训练
-接下来我们以一个简单的手写体识别任务为例，说明如何使用飞桨的动态图来进行模型的训练。包括如下步骤：
+##  2. 使用命令式编程进行模型训练
+
+接下来我们以一个简单的手写体识别任务为例，说明如何使用飞桨的命令式编程来进行模型的训练。包括如下步骤：
 
 * 2.1 定义数据读取器：读取数据和预处理操作。
 * 2.2 定义模型和优化器：搭建神经网络结构。
@@ -87,7 +90,7 @@ print('result', x.numpy())  #[[11, 11], [11, 11]]
 
 有关该任务和数据集的详细介绍，可参考：[初识飞桨手写数字识别模型](https://aistudio.baidu.com/aistudio/projectdetail/224342)
 
-## 2.1 定义数据读取器
+### 2.1 定义数据读取器
 
 飞桨提供了多个封装好的数据集API，本任务我们可以通过调用 [paddle.dataset.mnist](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/data/dataset_cn.html) 的 train 函数和 test 函数，直接获取处理好的 MNIST 训练集和测试集；然后调用 [paddle.batch](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/batch_cn.html#batch) 接口返回 reader 的装饰器，该 reader 将输入 reader 的数据打包成指定 BATCH_SIZE 大小的批处理数据。
 
@@ -107,7 +110,7 @@ test_reader = paddle.batch(
 
 
 
-## 2.2 定义模型和优化器
+### 2.2 定义模型和优化器
 
 本节我们采用如下网络模型，该模型可以很好的完成“手写数字识别”的任务。模型由卷积层 -> 池化层 -> 卷积层 -> 池化层 -> 全连接层组成，池化层即降采样层。
 
@@ -116,9 +119,9 @@ test_reader = paddle.batch(
 
 在开始构建网络模型前，需要了解如下信息：
 
-> <font size=2>在动态图模式中，参数和变量的存储管理方式与静态图不同。动态图模式下，网络中学习的参数和中间变量，生命周期和 Python 对象的生命周期是一致的。简单来说，一个 Python 对象的生命周期结束，相应的存储空间就会释放。</font>
+> <font size=2>在命令式编程中，参数和变量的存储管理方式与声明式编程不同。命令式编程下，网络中学习的参数和中间变量，生命周期和 Python 对象的生命周期是一致的。简单来说，一个 Python 对象的生命周期结束，相应的存储空间就会释放。</font>
 
-对于一个网络模型，在模型学习的过程中参数会不断更新，所以参数需要在整个学习周期内一直保持存在，因此需要一个机制来保持网络的所有的参数不被释放，飞桨的动态图模式采用了继承自 [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Layer_cn.html#layer) 的面向对象设计的方法来管理所有的参数，该方法也更容易模块化组织代码。
+对于一个网络模型，在模型学习的过程中参数会不断更新，所以参数需要在整个学习周期内一直保持存在，因此需要一个机制来保持网络的所有的参数不被释放，飞桨的命令式编程采用了继承自 [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Layer_cn.html#layer) 的面向对象设计的方法来管理所有的参数，该方法也更容易模块化组织代码。
 
 下面介绍如何通过继承 paddle.nn.Layer 实现一个简单的ConvPool层；该层由一个 [卷积层](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Conv2D_cn.html#conv2d) 和一个 [池化层](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Pool2D_cn.html#pool2d) 组成。
 
@@ -238,11 +241,11 @@ paddle.enable_imperative()
 # 定义MNIST类的对象
 mnist = MNIST()
 # 定义优化器为AdamOptimizer，学习旅learning_rate为0.001
-# 注意动态图模式下必须传入parameter_list参数，该参数为需要优化的网络参数，本例需要优化mnist网络中的所有参数
+# 注意命令式编程下必须传入parameter_list参数，该参数为需要优化的网络参数，本例需要优化mnist网络中的所有参数
 adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
 ```
 
-## 2.3 训练
+### 2.3 训练
 
 当我们定义好上述网络结构之后，就可以进行训练了。
 
@@ -265,7 +268,7 @@ paddle.enable_imperative()
 # 定义MNIST类的对象
 mnist = MNIST()
 # 定义优化器为AdamOptimizer，学习旅learning_rate为0.001
-# 注意动态图模式下必须传入parameter_list参数，该参数为需要优化的网络参数，本例需要优化mnist网络中的所有参数
+# 注意命令式编程下必须传入parameter_list参数，该参数为需要优化的网络参数，本例需要优化mnist网络中的所有参数
 adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
 
 # 设置全部样本的训练次数
@@ -296,7 +299,7 @@ paddle.imperative.save(model_dict, "save_temp")
 ```
 
 
-## 2.4 评估测试
+### 2.4 评估测试
 
 模型训练完成，我们已经保存了训练好的模型，接下来进行评估测试。某些OP（如 dropout、batch_norm）需要区分训练模式和评估模式，以标识不同的执行状态。飞桨中OP默认采用的是训练模式（train mode），可通过如下方法切换：
 
@@ -343,9 +346,9 @@ avg_loss_val_mean = np.array(avg_loss_set).mean()
 print("Eval avg_loss is: {}, acc is: {}".format(avg_loss_val_mean, acc_val_mean))
 ```
 
-## 2.5 模型参数的保存和加载
+### 2.5 模型参数的保存和加载
 
-在动态图模式下，模型和优化器在不同的模块中，所以模型和优化器分别在不同的对象中存储，使得模型参数和优化器信息需分别存储。
+在命令式编程下，模型和优化器在不同的模块中，所以模型和优化器分别在不同的对象中存储，使得模型参数和优化器信息需分别存储。
 因此模型的保存需要单独调用模型和优化器中的 state_dict() 接口，同样模型的加载也需要单独进行处理。
 
 保存模型 ： 
@@ -377,9 +380,9 @@ print("Eval avg_loss is: {}, acc is: {}".format(avg_loss_val_mean, acc_val_mean)
 ```
 
 
-# 3. 多卡训练
+## 3. 多卡训练
 
-针对数据量、计算量较大的任务，我们需要多卡并行训练，以提高训练效率。目前动态图模式可支持GPU的单机多卡训练方式，在动态图中多卡的启动和单卡略有不同，动态图多卡通过 Python 基础库 subprocess.Popen 在每一张 GPU 上启动单独的 Python 程序的方式，每张卡的程序独立运行，只是在每一轮梯度计算完成之后，所有的程序进行梯度的同步，然后更新训练的参数。
+针对数据量、计算量较大的任务，我们需要多卡并行训练，以提高训练效率。目前命令式编程可支持GPU的单机多卡训练方式，在命令式编程中多卡的启动和单卡略有不同，多卡通过 Python 基础库 subprocess.Popen 在每一张 GPU 上启动单独的 Python 程序的方式，每张卡的程序独立运行，只是在每一轮梯度计算完成之后，所有的程序进行梯度的同步，然后更新训练的参数。
 
 我们通过一个实例了解如何进行多卡训练：
 ><font size=2>由于AI Studio上未配置多卡环境，所以本实例需在本地构建多卡环境后运行。</font>
@@ -437,7 +440,7 @@ if paddle.imperative.ParallelEnv().local_rank == 0:
     paddle.imperative.save(mnist.state_dict(),  "work_0")
 ```
 
-2、飞桨动态图多进程多卡模型训练启动时，需要指定使用的 GPU，比如使用 0,1 卡，可执行如下命令启动训练：
+2、飞桨命令式编程多进程多卡模型训练启动时，需要指定使用的 GPU，比如使用 0,1 卡，可执行如下命令启动训练：
 
 
 ```
@@ -514,15 +517,15 @@ if paddle.imperative.ParallelEnv().local_rank == 0：
 
 对模型进行评估测试时，如果需要加载模型，须确保评估和保存的操作在同一个进程中，否则可能出现模型尚未保存完成，即启动评估，造成加载出错的问题。如果不需要加载模型，则没有这个问题，在一个进程或多个进程中评估均可。
 
-# 4. 模型部署
+## 4. 模型部署
 
-## 4.1 动转静部署
-动态图虽然有非常多的优点，但是如果用户希望使用 C++ 部署已经训练好的模型，会存在一些不便利。比如，动态图中可使用 Python 原生的控制流，包含 if/else、switch、for/while，这些控制流需要通过一定的机制才能映射到 C++ 端，实现在 C++ 端的部署。
+### 4.1 动转静部署
+命令式编程虽然有非常多的优点，但是如果用户希望使用 C++ 部署已经训练好的模型，会存在一些不便利。比如，命令式编程中可使用 Python 原生的控制流，包含 if/else、switch、for/while，这些控制流需要通过一定的机制才能映射到 C++ 端，实现在 C++ 端的部署。
 
-<ul><li>如果用户使用的 if/else、switch、for/while 与输入（包括输入的值和 shape ）无关，则可以使用如下动态图模型部署方案：
-<ul><li>使用 TracedLayer 将前向动态图模型转换为静态图模型。可以将动态图保存后做在线C++预测；除此以外，用户也可使用转换后的静态图模型在Python端做预测，通常比原先的动态图性能更好。</li>
+<ul><li>如果用户使用的 if/else、switch、for/while 与输入（包括输入的值和 shape ）无关，则可以使用如下命令式编程模型部署方案：
+<ul><li>使用 TracedLayer 将前向命令式模型转换为声明式模型。可以将模型保存后做在线C++预测；除此以外，用户也可使用转换后的声明式模型在Python端做预测，通常比原先的命令式编程性能更好。</li>
 <li>所有的TracedLayer对象均不应通过构造函数创建，而需通过调用静态方法 TracedLayer.trace(layer, inputs) 创建。</li>
-<li>TracedLayer使用 Executor 和 CompiledProgram 运行静态图模型。</li></ul></li>
+<li>TracedLayer使用 Executor 和 CompiledProgram 运行声明式模型。</li></ul></li>
 
 </ul>
 
@@ -537,7 +540,7 @@ mnist = MNIST()
 in_np = np.random.random([10, 1, 28, 28]).astype('float32')
 # 将numpy的ndarray类型的数据转换为Variable类型
 input_var = paddle.imperative.to_variable(in_np)
-# 通过 TracerLayer.trace 接口将动态图模型转换为静态图模型
+# 通过 TracerLayer.trace 接口将命令式模型转换为声明式模型
 out_dygraph, static_layer = TracedLayer.trace(mnist, inputs=[input_var])
 save_dirname = './saved_infer_model'
 # 将转换后的模型保存
@@ -546,19 +549,19 @@ static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
 
 
 ```python
-# 静态图中需要使用执行器执行之前已经定义好的网络
+# 声明式编程中需要使用执行器执行之前已经定义好的网络
 place = paddle.CPUPlace()
 exe = paddle.Executor(place)
 program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
-# 静态图中需要调用执行器的run方法执行计算过程
+# 声明式编程中需要调用执行器的run方法执行计算过程
 fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 ```
 
-以上示例中，通过 [TracerLayer.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/TracedLayer_cn.html#trace) 接口来运行动态图模型并将其转换为静态图模型，该接口需要传入动态图的网络模型 mnist 和输入变量列表 [input_var]；然后调用 [save_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/TracedLayer_cn.html#save_inference_model) 接口将静态图模型保存为用于预测部署的模型，之后利用 [load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/load_inference_model_cn.html) 接口将保存的模型加载，并使用 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/executor_cn/Executor_cn.html#executor) 执行，检查结果是否正确。
+以上示例中，通过 [TracerLayer.trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/TracedLayer_cn.html#trace) 接口来运行命令式模型并将其转换为声明式模型，该接口需要传入命令式模型 mnist 和输入变量列表 [input_var]；然后调用 [save_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/TracedLayer_cn.html#save_inference_model) 接口将声明式模型保存为用于预测部署的模型，之后利用 [load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/load_inference_model_cn.html) 接口将保存的模型加载，并使用 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/executor_cn/Executor_cn.html#executor) 执行，检查结果是否正确。
 
 [save_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/dygraph_cn/TracedLayer_cn.html#save_inference_model) 保存的下来的模型，同样可以使用 C++ 加载部署，具体的操作请参考：[C++ 预测 API介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/inference_deployment/inference/native_infer.html)
 
-* 如果任务中包含了依赖数据的控制流，比如下面这个示例中if条件的判断依赖输入的shape。针对这种场景，可以使用基于ProgramTranslator的方式转成静态图的program，通过save_inference_model 接口将静态图模型保存为用于预测部署的模型，之后利用 [load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/load_inference_model_cn.html) 接口将保存的模型加载，并使用 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/executor_cn/Executor_cn.html#executor) 执行，检查结果是否正确。
+* 如果任务中包含了依赖数据的控制流，比如下面这个示例中if条件的判断依赖输入的shape。针对这种场景，可以使用基于ProgramTranslator的方式转成声明式的program，通过save_inference_model 接口将声明式模型保存为用于预测部署的模型，之后利用 [load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/load_inference_model_cn.html) 接口将保存的模型加载，并使用 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/executor_cn/Executor_cn.html#executor) 执行，检查结果是否正确。
 
 保存的下来的模型，同样可以使用 C++ 加载部署，具体的操作请参考：[C++ 预测 API介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/inference_deployment/inference/native_infer.html)
 
@@ -635,9 +638,9 @@ out = mnist( input_var, label_var)
 prog_trans.save_inference_model("./mnist_dy2stat", fetch=[0,1])
 ```
 
-## 4.2 动转静训练
+### 4.2 动转静训练
 
-由于动态图在正向执行的时候，存在python与c++交互，计算图的构建，会引起动态图在部分RNN相关的任务性能比静态图要差，为了提升这类性能的性能，可以将动态图转换为静态图的方式进行训练，转换方式非常简单，仅需要对给MNist类的forward函数添加一个declarative 装饰器，来标记需要转换的代码块。
+由于命令式编程在执行的时候，存在python与c++交互，由于计算图的构建，会引起命令式编程在部分RNN相关的任务性能比声明式编程要差，为了提升这类性能的性能，可以将命令式转换为声明式模型的方法进行训练，转换方式非常简单，仅需要对给MNist类的forward函数添加一个declarative 装饰器，来标记需要转换的代码块。
 
 ```python
 from paddle.imperative import declarative
@@ -674,9 +677,9 @@ class MNIST(paddle.nn.Layer):
 
 
 
-# 5. 使用技巧
+## 5. 使用技巧
 
-## 5.1 中间变量值、梯度打印
+### 5.1 中间变量值、梯度打印
 
 1. 用户想要查看任意变量的值，可以使用 [numpy](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/Variable_cn.html#numpy) 接口。
 
@@ -698,9 +701,9 @@ print(y.gradient())
 
 可以直接打印反向梯度的值
 
-## 5.2 断点调试
+### 5.2 断点调试
 
-因为动态图采用了命令似的编程方式，程序在执行之后，可以立马获取到执行的结果，因此在动态图中，用户可以利用IDE提供的断点调试功能，通过查 Variable 的 shape、真实值等信息，有助于发现程序中的问题。
+因为采用了命令似的编程方式，程序在执行之后，可以立马获取到执行的结果，因此在命令式编程中，用户可以利用IDE提供的断点调试功能，通过查 Variable 的 shape、真实值等信息，有助于发现程序中的问题。
 
 1. 如下图所示，在示例程序中设置两个断点，执行到第一个断点的位置，我们可以观察变量 x 和 linear1 的信息。
 
@@ -714,7 +717,7 @@ print(y.gradient())
 ![](https://ai-studio-static-online.cdn.bcebos.com/f9bc8a52eaa24181a6a6832e992feb9e726afa17764146c38fd69e8d008e7994)
 
 
-## 5.3 阻断反向传递
+### 5.3 阻断反向传递
 
 在一些任务中，只希望拿到正向预测的值，但是不希望更新参数，或者在反向的时候剪枝，减少计算量，阻断反向的传播， Paddle提供了两种解决方案： [detach](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/Variable_cn.html#detach) 接口和 [stop_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/Variable_cn.html#stop_gradient) 接口，建议用户使用 detach 接口。
 
@@ -768,7 +771,7 @@ assert (out1.gradient() == 0).all()
 
 如果OP只要有一个输入需要梯度，那么该OP的输出也需要梯度。相反，只有当OP的所有输入都不需要梯度时，该OP的输出也不需要梯度。在所有的 Variable 都不需要梯度的子图中，反向计算就不会进行计算了。
 
-在动态图模式下，除参数以外的所有 Variable 的 stop_gradient 属性默认值都为 True，而参数的 stop_gradient 属性默认值为 False。 该属性用于自动剪枝，避免不必要的反向运算。
+在命令式编程下，除参数以外的所有 Variable 的 stop_gradient 属性默认值都为 True，而参数的 stop_gradient 属性默认值为 False。 该属性用于自动剪枝，避免不必要的反向运算。
 
 使用方式如下：
 
