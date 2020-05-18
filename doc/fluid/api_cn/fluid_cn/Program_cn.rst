@@ -5,6 +5,9 @@ Program
 
 .. py:class::  paddle.fluid.Program
 
+:alias_main: paddle.Program
+:alias: paddle.Program,paddle.framework.Program
+
 **注意：默认情况下，Paddle Fluid内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_main_program` **在每个mini batch中运行并更新权重。**
 
 Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构造函数可以创建一个Program。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`cn_api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
@@ -184,7 +187,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
                 for key, value in sorted(six.iteritems(op.all_attrs())):
                     if key not in ['op_callstack', 'op_role_var']:
                         print(" [ attrs: {}:   {} ]".format(key, value))
-        
+
         def network():
             img = fluid.layers.data(name='image', shape=[784])
             hidden = fluid.layers.fc(input=img, size=200, act='relu')

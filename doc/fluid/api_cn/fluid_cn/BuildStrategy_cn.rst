@@ -3,16 +3,17 @@
 BuildStrategy
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
-
 .. py:class:: paddle.fluid.BuildStrategy
+
+:alias_main: paddle.BuildStrategy
+:alias: paddle.BuildStrategy,paddle.framework.BuildStrategy
 
 ``BuildStrategy`` 使用户更方便地控制 :ref:`cn_api_fluid_ParallelExecutor` 中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
 **代码示例**
 
 .. code-block:: python
-    
+
     import os
     import numpy as np
     import paddle.fluid as fluid
@@ -62,7 +63,7 @@ bool类型。如果设置为True，则算子的执行顺序将与算子定义的
 
 
 .. py:attribute:: fuse_broadcast_ops
-     
+
 bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模式下有效，使程序运行更快。默认为False。
 
 **代码示例**
@@ -73,7 +74,7 @@ bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模�
     build_strategy = fluid.BuildStrategy()
     build_strategy.fuse_broadcast_ops = True
 
-     
+
 .. py:attribute:: fuse_elewise_add_act_ops
 
 bool类型。表明是否融合(fuse) elementwise_add_op和activation_op。这会使整体执行过程更快。默认为False。
@@ -118,7 +119,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
     # NOTE: 如果你使用CPU计算，需要指定CPU_NUM, 否则,fluid
     # 将使用所有的核的数目作为CPU_NUM,
-    # 这种情况下，输入的batch size应该大于CPU_NUM, 否则, 
+    # 这种情况下，输入的batch size应该大于CPU_NUM, 否则,
     # 进程将会因为异常而失败。
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
@@ -191,5 +192,3 @@ bool类型。表示是否使用同步的批正则化，即在训练阶段通过�
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
     build_strategy.sync_batch_norm = True
-
-

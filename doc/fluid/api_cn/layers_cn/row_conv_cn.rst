@@ -3,9 +3,11 @@
 row_conv
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.row_conv(input, future_context_size, param_attr=None, act=None)
+
+:alias_main: paddle.nn.functional.row_conv
+:alias: paddle.nn.functional.row_conv,paddle.nn.functional.extension.row_conv
 
 该接口为行卷积（Row-convolution operator）或称之为超前卷积（lookahead convolution），最早介绍于DeepSpeech2论文中，论文链接：
 
@@ -51,6 +53,3 @@ row_conv
                         dtype='float32',
                         append_batch_size=False)
   out = fluid.layers.row_conv(input=x, future_context_size=2)
-
-
-

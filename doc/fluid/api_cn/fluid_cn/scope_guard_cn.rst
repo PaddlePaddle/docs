@@ -3,9 +3,10 @@
 scope_guard
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
-
 .. py:function:: paddle.fluid.scope_guard(scope)
+
+:alias_main: paddle.scope_guard
+:alias: paddle.scope_guard,paddle.framework.scope_guard
 
 
 该接口通过 python 的 ``with`` 语句切换作用域（scope）。

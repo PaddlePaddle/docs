@@ -5,6 +5,9 @@ relu
 
 .. py:function:: paddle.fluid.layers.relu(x, name=None)
 
+:alias_main: paddle.nn.functional.relu
+:alias: paddle.nn.functional.relu,paddle.nn.functional.activation.relu
+
 ReLU（Rectified Linear Unit）激活函数
 
 .. math:: Out=max(0,x)

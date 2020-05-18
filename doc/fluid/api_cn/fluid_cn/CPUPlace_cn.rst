@@ -5,6 +5,9 @@ CPUPlace
 
 .. py:class:: paddle.fluid.CPUPlace
 
+:alias_main: paddle.CPUPlace
+:alias: paddle.CPUPlace,paddle.framework.CPUPlace
+
 ``CPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 或 ``LoDTensor`` 的 ``CPU`` 设备。
 
 **代码示例**
@@ -13,5 +16,3 @@ CPUPlace
 
         import paddle.fluid as fluid
         cpu_place = fluid.CPUPlace()
-
-

@@ -3,9 +3,11 @@
 program_guard
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.program_guard(main_program, startup_program=None)
+
+:alias_main: paddle.program_guard
+:alias: paddle.program_guard,paddle.framework.program_guard
 
 该接口应配合使用python的 ``with`` 语句来将 ``with`` block 里的算子和变量添加进指定的全局主程序（main program）和启动程序（startup program）。
 
@@ -37,4 +39,3 @@ program_guard
     # 如果您不需要关心startup program,传入一个临时值即可
     with fluid.program_guard(main_program, fluid.Program()):
         data = fluid.data(name='image', shape=[None, 784, 784], dtype='float32')
-

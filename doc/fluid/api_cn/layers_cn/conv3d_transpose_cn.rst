@@ -3,9 +3,11 @@
 conv3d_transpose
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.conv3d_transpose(input, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format='NCDHW')
+
+:alias_main: paddle.nn.functional.conv3d_transpose
+:alias: paddle.nn.functional.conv3d_transpose,paddle.nn.functional.conv.conv3d_transpose
 
 三维转置卷积层（Convlution3D transpose layer)
 

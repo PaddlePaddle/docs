@@ -5,6 +5,10 @@ ParameterList
 
 .. py:class:: paddle.fluid.dygraph.ParameterList(parameters=None)
 
+:alias_main: paddle.nn. ParameterList
+    :alias: paddle.nn. ParameterList
+    :old_api: paddle.fluid.dygraph.container.ParameterList
+    
 参数列表容器。此容器的行为类似于Python列表，但它包含的参数将被正确地注册和添加。
 
 参数：
@@ -55,5 +59,3 @@ ParameterList
         print(len(model.params))  # 5
         res = model(x)
         print(res.shape)  # [5, 4]
-
-

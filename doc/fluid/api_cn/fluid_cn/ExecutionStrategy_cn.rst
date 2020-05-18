@@ -3,9 +3,10 @@
 ExecutionStrategy
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
-
 .. py:class:: paddle.fluid.ExecutionStrategy
+
+:alias_main: paddle.ExecutionStrategy
+:alias: paddle.ExecutionStrategy,paddle.framework.ExecutionStrategy
 
 通过设置 ``ExecutionStrategy`` 中的选项，用户可以对执行器的执行配置进行调整，比如设置执行器中线程池的大小等。
 
@@ -21,10 +22,10 @@ ExecutionStrategy
     x = fluid.layers.data(name='x', shape=[13], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     y_predict = fluid.layers.fc(input=x, size=1, act=None)
-     
+
     cost = fluid.layers.square_error_cost(input=y_predict, label=y)
     avg_loss = fluid.layers.mean(cost)
-     
+
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
     sgd_optimizer.minimize(avg_loss)
 
@@ -48,15 +49,3 @@ int型成员。它配置了当用户在python脚本中调用pe.run()时执行器
 .. py:attribute:: num_threads
 
 int型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的大小, 此线程池可用来并发执行program中的operator（算子，运算）。如果 :math:`num\_threads=1` ，则所有的operator将一个接一个地执行，但在不同的program重复周期(iterations)中执行顺序可能不同。如果该选项没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num\_threads=device\_count∗4` ；对CPU， :math:`num\_threads=CPU\_NUM∗4` 。在 ``Executor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ，则设置默认值为1， 并提示用户进行 :math:`CPU\_NUM` 的设置。
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,9 +3,11 @@
 CompiledProgram
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.CompiledProgram(program_or_graph, build_strategy=None)
+
+:alias_main: paddle.CompiledProgram
+:alias: paddle.CompiledProgram,paddle.framework.CompiledProgram
 
 CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等，关于build_strategy更多信息。请参阅  ``fluid.BuildStrategy`` 。
 
@@ -20,7 +22,7 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
 **代码示例**
 
 .. code-block:: python
-        
+
     import paddle.fluid as fluid
     import numpy
 
@@ -45,7 +47,7 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
 .. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None, places=None)
 
 该接口用于将输入的Program或Graph进行转换，以便通过数据并行模式运行该模型。用户可以通过 `build_strategy` 和 `exec_strategy` 设置计算图构建和计算图执行过程中可以进行的一些优化，例如：将梯度聚合的AllReduce操作进行融合、指定计算图运行过程中使用的线程池大小等。**注意：如果在构建CompiledProgram和调用with_data_parallel时都指定了build_strategy，在CompiledProgram中的build_strategy会被复写，因此，如果是数据并行训练，建议在调用with_data_parallel接口时设置build_strategy**。
-     
+
 参数：
   - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字，**注意：如果是模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。
   - **build_strategy** （BuildStrategy）: 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``fluid.BuildStrategy`` 。 默认为：None。

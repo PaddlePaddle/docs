@@ -5,6 +5,10 @@ Sequential
 
 .. py:class:: paddle.fluid.dygraph.Sequential(*layers)
 
+:alias_main: paddle.nn.Sequential
+    :alias: paddle.nn.Sequential
+    :old_api: paddle.fluid.dygraph.container.Sequential
+    
 顺序容器。子Layer将按构造函数参数的顺序添加到此容器中。传递给构造函数的参数可以Layers或可迭代的name Layer元组。
 
 参数：
@@ -35,5 +39,3 @@ Sequential
         model2['l1']  # 访问 l1 子层
         model2.add_sublayer('l3', fluid.Linear(3, 3))  # 添加子层
         res2 = model2(data)  # 顺序执行
-
-

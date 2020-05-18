@@ -3,9 +3,10 @@
 append_backward
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
-
 .. py:function:: paddle.fluid.backward.append_backward(loss, parameter_list=None, no_grad_set=None, callbacks=None)
+
+:alias_main: paddle.append_backward
+:alias: paddle.append_backward,paddle.framework.append_backward
 
 该接口将向主程序（``main_program``）追加反向部分 。
 
@@ -24,7 +25,7 @@ append_backward
 
 返回类型：       list[( :ref:`api_guide_Variable` , :ref:`api_guide_Variable` )]
 
-抛出：     
+抛出：
     - ``AssertionError`` - 如果 loss 不是 :ref:`api_guide_Variable` 的实例。
 
 **示例代码**
@@ -66,6 +67,3 @@ append_backward
 
         # 返回为[], 因为所有的param_grad均被传入的no_grad_set过滤掉了
         p_g_list6 = fluid.backward.append_backward(loss=avg_loss, parameter_list=all_weights, no_grad_set=set(all_weights))
-
-
-

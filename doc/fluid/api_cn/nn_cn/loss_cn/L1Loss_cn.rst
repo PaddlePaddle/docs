@@ -3,12 +3,15 @@ L1Loss
 
 .. py:function:: paddle.nn.loss.L1Loss(reduction='mean')
 
+:alias_main: paddle.nn.L1Loss
+:alias: paddle.nn.L1Loss,paddle.nn.layer.L1Loss,paddle.nn.layer.loss.L1Loss
+
 该接口用于创建一个L1Loss的可调用类，L1Loss计算输入input和标签label间的 `L1 loss` 损失。
 
 该损失函数的数学计算公式如下：
 
 当 `reduction` 设置为 ``'none'`` 时，
-    
+
     .. math::
         Out = |input - label|
 
@@ -18,7 +21,7 @@ L1Loss
        Out = MEAN(|input - label|)
 
 当 `reduction` 设置为 ``'sum'`` 时，
-    
+
     .. math::
        Out = SUM(|input - label|)
 
@@ -55,7 +58,7 @@ L1Loss
                 return_numpy=True)
 
         print(output_data)  # [array([0.2], dtype=float32)]
-        
+
         # imperative mode
         import paddle.fluid.dygraph as dg
         with dg.guard(place) as g:
@@ -64,4 +67,3 @@ L1Loss
             l1_loss = paddle.nn.loss.L1Loss(reduction='mean')
             output = l1_loss(input,label)
             print(output.numpy())  # [0.2]
-

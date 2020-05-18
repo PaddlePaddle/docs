@@ -3,9 +3,11 @@
 global_scope
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.global_scope()
+
+:alias_main: paddle.global_scope
+:alias: paddle.global_scope,paddle.framework.global_scope
 
 获取全局/默认作用域实例。很多API使用默认 ``global_scope`` ，例如 ``Executor.run`` 等。
 

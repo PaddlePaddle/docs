@@ -5,6 +5,9 @@ Conv3D
 
 .. py:class:: paddle.fluid.dygraph.Conv3D(num_channels, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, dtype="float32")
 
+:alias_main: paddle.nn.Conv3D
+:alias: paddle.nn.Conv3D,paddle.nn.layer.Conv3D,paddle.nn.layer.conv.Conv3D
+
 
 该接口用于构建 ``Conv3D`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。3D卷积层（convolution3D layer）根据输入、滤波器（filter）、步长（stride）、填充（padding）、膨胀（dilations）、组数参数计算得到输出。输入和输出是[N, C, D, H, W]的多维tensor，其中N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。卷积三维（Convlution3D）和卷积二维（Convlution2D）相似，但多了一维深度（depth）。如果提供了bias属性和激活函数类型，bias会添加到卷积（convolution）的结果中相应的激活函数会作用在最终结果上。
 
@@ -81,5 +84,3 @@ Conv3D
 .. py:attribute:: bias
 
 本层的可学习偏置，类型为 ``Parameter``
-
-

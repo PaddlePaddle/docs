@@ -4,15 +4,16 @@ Executor
 -------------------------------
 
 
-**注意：该API仅支持【静态图】模式**
-
 .. py:class:: paddle.fluid.Executor (place=None)
+
+:alias_main: paddle.Executor
+:alias: paddle.Executor,paddle.framework.Executor
 
 Executor支持单GPU、多GPU以及CPU运行。
 
 参数：
     - **place** (fluid.CPUPlace()|fluid.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()` ，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)` 。默认值为None。
-  
+
 返回：初始化后的 ``Executor`` 对象
 
 返回类型：Executor
@@ -20,7 +21,7 @@ Executor支持单GPU、多GPU以及CPU运行。
 **示例代码**
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
     import paddle.fluid.compiler as compiler
     import numpy
@@ -84,7 +85,7 @@ Executor支持单GPU、多GPU以及CPU运行。
 **示例代码**
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
 
     cpu = fluid.CPUPlace()
@@ -97,7 +98,7 @@ Executor支持单GPU、多GPU以及CPU运行。
 
 执行指定的Program或者CompiledProgram。需要注意的是，执行器会执行Program或CompiledProgram中的所有算子，而不会根据fetch_list对Program或CompiledProgram中的算子进行裁剪。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即fluid.global_scope()。
 
-参数：  
+参数：
   - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为fluid.default_main_program()。默认为：None。
   - **feed** (list|dict) – 该参数表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
   - **fetch_list** (list) – 该参数表示模型运行之后需要返回的变量。默认为：None。
@@ -123,17 +124,17 @@ Executor支持单GPU、多GPU以及CPU运行。
 
             import paddle.fluid as fluid
             import numpy
-     
+
             #首先创建执行引擎
             place = fluid.CPUPlace() # fluid.CUDAPlace(0)
             exe = fluid.Executor(place)
-     
+
             data = fluid.layers.data(name='X', shape=[1], dtype='float32')
             hidden = fluid.layers.fc(input=data, size=10)
             loss = fluid.layers.mean(hidden)
             adam = fluid.optimizer.Adam()
             adam.minimize(loss)
-     
+
             #仅运行startup程序一次
             exe.run(fluid.default_startup_program())
 
@@ -201,7 +202,7 @@ Executor支持单GPU、多GPU以及CPU运行。
 
 infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。 infer_from_dataset（）可以非常容易地用于多线程中的评估。
 
-参数：  
+参数：
   - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
@@ -229,7 +230,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
   dataset.set_filelist(filelist)
   exe.run(fluid.default_startup_program())
   exe.infer_from_dataset(program=fluid.default_main_program(),dataset=dataset)
-     
+
 
 .. py:method:: train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 
@@ -237,7 +238,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 
 注意：train_from_dataset将销毁每次运行在executor中创建的所有资源。
 
-参数：  
+参数：
   - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域

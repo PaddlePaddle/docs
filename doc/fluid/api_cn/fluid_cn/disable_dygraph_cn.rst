@@ -5,6 +5,10 @@ disable_dygraph
 
 .. py:function:: paddle.fluid.disable_dygraph()
 
+:alias_main: paddle.disable_imperative
+:alias: paddle.disable_imperative
+:old_api: .fluid.dygraph.base.disable_dygraph
+
 该接口关闭动态图模式。
 
 返回：无
@@ -19,4 +23,3 @@ disable_dygraph
     print(fluid.in_dygraph_mode())  # True
     fluid.disable_dygraph()
     print(fluid.in_dygraph_mode())  # False
-

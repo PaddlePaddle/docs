@@ -5,6 +5,10 @@ Layer
 
 .. py:class:: paddle.fluid.dygraph.Layer(name_scope=None, dtype=core.VarDesc.VarType.FP32)
 
+:alias_main: paddle.nn.Layer
+:alias: paddle.nn.Layer
+:old_api: paddle.fluid.dygraph.layers.Layer
+
 基于OOD实现的动态图Layer，包含该Layer的参数、前序运行的结构等信息。
 
 参数：
@@ -152,7 +156,7 @@ hook(Layer, input, output) -> None or modified output
     - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
     - **type** (core.VarDesc.VarType, 可选) - 变量类型，该参数不需要用户设置。默认值：core.VarDesc.VarType.LOD_TENSOR。
 
-返回：创建的 ``Tensor`` 
+返回：创建的 ``Tensor``
 
 返回类型： :ref:`cn_api_fluid_Variable`
 
@@ -193,7 +197,7 @@ hook(Layer, input, output) -> None or modified output
         value = np.arange(26).reshape(2, 13).astype("float32")
         a = fluid.dygraph.to_variable(value)
         linear = fluid.Linear(13, 5, dtype="float32")
-        adam = fluid.optimizer.Adam(learning_rate=0.01, 
+        adam = fluid.optimizer.Adam(learning_rate=0.01,
                                     parameter_list=linear.parameters())
         out = linear(a)
         out.backward()
@@ -353,4 +357,3 @@ hook(Layer, input, output) -> None or modified output
         fluid.save_dygraph(state_dict, "paddle_dy")
         para_state_dict, _ = fluid.load_dygraph("paddle_dy")
         emb.load_dict(para_state_dict)
-

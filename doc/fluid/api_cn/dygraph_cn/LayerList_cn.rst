@@ -5,6 +5,10 @@ LayerList
 
 .. py:class:: paddle.fluid.dygraph.LayerList(sublayers=None)
 
+:alias_main: paddle.nn.LayerList
+   :alias: paddle.nn.LayerList
+   :old_api: paddle.fluid.dygraph.container.LayerList
+   
 LayerList用于保存子层列表，它包含的子层将被正确地注册和添加。列表中的子层可以像常规python列表一样被索引。
 
 参数：
@@ -29,5 +33,3 @@ LayerList用于保存子层列表，它包含的子层将被正确地注册和�
             for i, l in enumerate(self.linears):
                 x = self.linears[i // 2](x) + l(x)
             return x
-
-

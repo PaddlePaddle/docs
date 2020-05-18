@@ -3,13 +3,14 @@
 gradients
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
-
 .. py:function:: paddle.fluid.gradients(targets, inputs, target_gradients=None, no_grad_set=None)
+
+:alias_main: paddle.gradients
+:alias: paddle.gradients,paddle.framework.gradients
 
 将目标梯度反向传播到输入。
 
-参数：  
+参数：
   - **targets** (Variable|list[Variable]) – 目标变量
   - **inputs** (Variable|list[Variable]) – 输入变量
   - **target_gradients** (Variable|list[Variable]|None) – 目标的梯度变量，应与目标变量形状相同；如果设置为None，则以1初始化所有梯度变量
@@ -34,6 +35,3 @@ gradients
             y = fluid.layers.relu(y)
             z = fluid.gradients([y], x)
             print(z)
-
-
-

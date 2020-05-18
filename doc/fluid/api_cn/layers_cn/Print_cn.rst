@@ -3,9 +3,11 @@
 Print
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.Print(input, first_n=-1, message=None, summarize=20, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
+
+:alias_main: paddle.Print
+:alias: paddle.Print,paddle.framework.Print
 
 **Print操作命令**
 
@@ -40,8 +42,8 @@ Print
     import numpy as np
 
     x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
-    x = fluid.layers.Print(x, message="The content of input layer:") 
-    
+    x = fluid.layers.Print(x, message="The content of input layer:")
+
     y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
     out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
     place = fluid.CPUPlace()
@@ -54,16 +56,11 @@ Print
                       fetch_list=[out],return_numpy=False)
 **运行输出**:
 
-.. code-block:: bash 
-   
+.. code-block:: bash
+
    The content of input layer:    The place is:CPUPlace
    Tensor[x]
     shape: [4,1,]
     dtype: f
     LoD: [[ 0,1,4, ]]
     data: 1.1,2.2,3.3,4.4,
-
-
-
-
-

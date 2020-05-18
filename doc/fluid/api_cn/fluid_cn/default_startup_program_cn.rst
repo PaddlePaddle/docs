@@ -8,6 +8,8 @@ default_startup_program
 
 .. py:function:: paddle.fluid.default_startup_program()
 
+:alias_main: paddle.default_startup_program
+:alias: paddle.default_startup_program,paddle.framework.default_startup_program
 
 
 该函数可以获取默认/全局 startup :ref:`cn_api_fluid_Program` (初始化启动程序)。
@@ -27,16 +29,13 @@ startup_program会使用内在的OP（算子）去初始化他们，并由 :ref:
 .. code-block:: python
 
         import paddle.fluid as fluid
-     
+
         main_program = fluid.Program()
         startup_program = fluid.Program()
         with fluid.program_guard(main_program=main_program, startup_program=startup_program):
             x = fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
             y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
             z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
-     
+
             print("main program is: {}".format(fluid.default_main_program()))
             print("start up program is: {}".format(fluid.default_startup_program()))
-
-
-

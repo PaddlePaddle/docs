@@ -3,9 +3,11 @@
 ParallelExecutor
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
+
+:alias_main: paddle.ParallelExecutor
+:alias: paddle.ParallelExecutor,paddle.framework.ParallelExecutor
 
 ``ParallelExecutor`` 是 ``Executor`` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式， ``ParallelExecutor`` 在构造时会将参数分发到不同的节点上，并将输入的 ``Program`` 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。如果使用GPU运行模型，即 ``use_cuda=True`` ，节点指代GPU， ``ParallelExecutor`` 将自动获取在当前机器上可用的GPU资源，用户也可以通过在环境变量设置可用的GPU资源，例如：希望使用GPU0、GPU1计算，export CUDA_VISIBLEDEVICES=0,1；如果在CPU上进行操作，即 ``use_cuda=False`` ，节点指代CPU，**注意：此时需要用户在环境变量中手动添加 CPU_NUM ，并将该值设置为CPU设备的个数，例如：export CPU_NUM=4，如果没有设置该环境变量，执行器会在环境变量中添加该变量，并将其值设为1**。
 
@@ -24,7 +26,7 @@ ParallelExecutor
 
 返回类型：ParallelExecutor
 
-抛出异常：``TypeError`` 
+抛出异常：``TypeError``
     - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会抛出此异常。
 
 .. note::
@@ -38,19 +40,19 @@ ParallelExecutor
     import paddle.fluid as fluid
     import numpy
     import os
-    
+
     use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    
+
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
     # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
-    
+
     exe = fluid.Executor(place)
-    
+
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
@@ -61,7 +63,7 @@ ParallelExecutor
         fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
     exe.run(startup_program)
-    
+
     train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                        main_program=train_program,
                                        loss_name=loss.name)
@@ -103,14 +105,14 @@ ParallelExecutor
 **示例代码**
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
     import numpy
     import os
 
     use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-     
+
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
     # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
@@ -126,9 +128,9 @@ ParallelExecutor
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
         fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
- 
+
         exe.run(startup_program)
- 
+
         train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                            main_program=train_program,
                                            loss_name=loss.name)
@@ -162,7 +164,7 @@ ParallelExecutor
     import paddle.fluid as fluid
     import numpy
     import os
-    
+
     use_cuda = True
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
     # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
@@ -170,24 +172,24 @@ ParallelExecutor
     # 否则程序会异常中断。
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
-    
+
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
         data = fluid.layers.data(name='X', shape=[1], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
-    
+
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
     exe.run(startup_program)
-    
+
     parallel_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
                                        main_program=train_program,
                                        loss_name=loss.name)
-    
+
     x = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = parallel_exe.run(feed={"X": x},
                                fetch_list=[loss.name])
-    
+
     parallel_exe.drop_local_exe_scopes()

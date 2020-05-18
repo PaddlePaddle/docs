@@ -3,6 +3,9 @@ MSELoss
 
 .. py:function:: paddle.nn.loss.MSELoss(input,label)
 
+:alias_main: paddle.nn.MSELoss
+:alias: paddle.nn.MSELoss,paddle.nn.layer.MSELoss,paddle.nn.layer.loss.MSELoss
+
 该OP用于计算预测值和目标值的均方差误差。
 
 对于预测值input和目标值label：
