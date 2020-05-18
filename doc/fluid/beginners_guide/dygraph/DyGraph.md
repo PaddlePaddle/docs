@@ -29,7 +29,7 @@
 1. 如何开启命令式编程
 2. 如何使用命令式编程进行模型训练
 3. 如何基于命令式编程进行多卡训练
-4. 如何部署命令式编程的模型
+4. 如何部署命令式的模型
 5. 命令式编程常见的使用技巧，如中间变量值/梯度打印、断点调试、阻断反向传递，以及某些场景下如何改写为声明式模式运行。
 
 
@@ -522,8 +522,8 @@ if paddle.imperative.ParallelEnv().local_rank == 0：
 ### 4.1 动转静部署
 命令式编程虽然有非常多的优点，但是如果用户希望使用 C++ 部署已经训练好的模型，会存在一些不便利。比如，命令式编程中可使用 Python 原生的控制流，包含 if/else、switch、for/while，这些控制流需要通过一定的机制才能映射到 C++ 端，实现在 C++ 端的部署。
 
-<ul><li>如果用户使用的 if/else、switch、for/while 与输入（包括输入的值和 shape ）无关，则可以使用如下命令式编程模型部署方案：
-<ul><li>使用 TracedLayer 将前向命令式模型转换为声明式模型。可以将模型保存后做在线C++预测；除此以外，用户也可使用转换后的声明式模型在Python端做预测，通常比原先的命令式编程性能更好。</li>
+<ul><li>如果用户使用的 if/else、switch、for/while 与输入（包括输入的值和 shape ）无关，则可以使用如下命令式模型部署方案：
+<ul><li>使用 TracedLayer 将前向命令式模型转换为声明式模型。可以将模型保存后做在线C++预测</li>
 <li>所有的TracedLayer对象均不应通过构造函数创建，而需通过调用静态方法 TracedLayer.trace(layer, inputs) 创建。</li>
 <li>TracedLayer使用 Executor 和 CompiledProgram 运行声明式模型。</li></ul></li>
 
@@ -561,7 +561,7 @@ fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 
 [save_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/dygraph_cn/TracedLayer_cn.html#save_inference_model) 保存的下来的模型，同样可以使用 C++ 加载部署，具体的操作请参考：[C++ 预测 API介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/inference_deployment/inference/native_infer.html)
 
-* 如果任务中包含了依赖数据的控制流，比如下面这个示例中if条件的判断依赖输入的shape。针对这种场景，可以使用基于ProgramTranslator的方式转成声明式的program，通过save_inference_model 接口将声明式模型保存为用于预测部署的模型，之后利用 [load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/load_inference_model_cn.html) 接口将保存的模型加载，并使用 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/executor_cn/Executor_cn.html#executor) 执行，检查结果是否正确。
+* 如果任务中包含了依赖数据的控制流，比如下面这个示例中if条件的判断依赖输入的shape。针对这种场景，可以使用基于ProgramTranslator的方式转成声明式编程的program，通过save_inference_model 接口将声明式模型保存为用于预测部署的模型，之后利用 [load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/load_inference_model_cn.html) 接口将保存的模型加载，并使用 [Executor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/executor_cn/Executor_cn.html#executor) 执行，检查结果是否正确。
 
 保存的下来的模型，同样可以使用 C++ 加载部署，具体的操作请参考：[C++ 预测 API介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/inference_deployment/inference/native_infer.html)
 
@@ -703,7 +703,7 @@ print(y.gradient())
 
 ### 5.2 断点调试
 
-因为采用了命令似的编程方式，程序在执行之后，可以立马获取到执行的结果，因此在命令式编程中，用户可以利用IDE提供的断点调试功能，通过查 Variable 的 shape、真实值等信息，有助于发现程序中的问题。
+因为采用了命令式的编程方式，程序在执行之后，可以立马获取到执行的结果，因此在命令式编程中，用户可以利用IDE提供的断点调试功能，通过查 Variable 的 shape、真实值等信息，有助于发现程序中的问题。
 
 1. 如下图所示，在示例程序中设置两个断点，执行到第一个断点的位置，我们可以观察变量 x 和 linear1 的信息。
 

@@ -12,11 +12,17 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
 如果您已经掌握了飞桨的基本概念，期望可以针对实际问题建模、搭建自己网络，编程实践中提供了一些 Paddle 的使用细节供您参考：
 
+
+- `命令式编程模式(动态图)机制-DyGraph <./dygraph/DyGraph.html>`_ : 介绍飞桨命令式编程模式执行机制
+
 - `编程实践 <../beginners_guide/coding_practice/index_cn.html>`_：介绍如何针对实际问题建模、搭建自己网络
+
 
 
 ..  toctree::
     :hidden:
 
     basic_concept/index_cn.rst
+    dygraph/DyGraph.md
     coding_practice/index_cn.rst
+
