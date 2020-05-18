@@ -6,6 +6,8 @@
 sequence_first_step
 -------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.sequence_first_step
     :noindex:
 

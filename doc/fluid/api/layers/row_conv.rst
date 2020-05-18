@@ -6,6 +6,8 @@
 row_conv
 --------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.row_conv
     :noindex:
 

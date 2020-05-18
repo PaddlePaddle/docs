@@ -6,6 +6,8 @@
 img_conv_group
 --------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.nets.img_conv_group
     :noindex:
 

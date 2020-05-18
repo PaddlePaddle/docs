@@ -6,6 +6,8 @@
 sequence_unpad
 --------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.sequence_unpad
     :noindex:
 

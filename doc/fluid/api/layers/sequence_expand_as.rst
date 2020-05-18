@@ -6,6 +6,8 @@
 sequence_expand_as
 ------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.sequence_expand_as
     :noindex:
 

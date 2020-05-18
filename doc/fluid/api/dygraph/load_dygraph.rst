@@ -6,6 +6,8 @@
 load_dygraph
 ------------
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autofunction:: paddle.fluid.dygraph.load_dygraph
     :noindex:
 

@@ -6,6 +6,8 @@
 Decoder
 -------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.layers.Decoder
     :members:
     :inherited-members:

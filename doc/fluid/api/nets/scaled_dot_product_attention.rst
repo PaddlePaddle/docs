@@ -6,6 +6,8 @@
 scaled_dot_product_attention
 ----------------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.nets.scaled_dot_product_attention
     :noindex:
 

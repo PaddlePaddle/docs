@@ -6,6 +6,8 @@
 linear_chain_crf
 ----------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.linear_chain_crf
     :noindex:
 

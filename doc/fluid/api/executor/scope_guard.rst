@@ -6,6 +6,8 @@
 scope_guard
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.executor.scope_guard
     :noindex:
 

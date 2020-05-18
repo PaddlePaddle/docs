@@ -6,6 +6,8 @@
 save_inference_model
 --------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.io.save_inference_model
     :noindex:
 

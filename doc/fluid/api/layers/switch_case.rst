@@ -6,6 +6,8 @@
 switch_case
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.switch_case
     :noindex:
 

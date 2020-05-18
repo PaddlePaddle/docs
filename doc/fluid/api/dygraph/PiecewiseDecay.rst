@@ -6,6 +6,8 @@
 PiecewiseDecay
 --------------
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autoclass:: paddle.fluid.dygraph.PiecewiseDecay
     :members:
     :noindex:

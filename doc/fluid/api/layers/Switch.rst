@@ -6,6 +6,8 @@
 Switch
 ------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.layers.Switch
     :members:
     :inherited-members:

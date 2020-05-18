@@ -6,6 +6,8 @@
 load_params
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.io.load_params
     :noindex:
 

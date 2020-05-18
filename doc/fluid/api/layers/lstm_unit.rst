@@ -6,6 +6,8 @@
 lstm_unit
 ---------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.lstm_unit
     :noindex:
 

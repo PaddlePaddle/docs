@@ -6,6 +6,8 @@
 DataFeedDesc
 ------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.DataFeedDesc
     :members:
     :inherited-members:
