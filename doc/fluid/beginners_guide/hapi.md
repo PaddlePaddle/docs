@@ -17,18 +17,18 @@ PaddleHapi具有以下特点：
 3. 提供常用的神经网络模型可供调用: 高层API中集成了计算机视觉领域和自然语言处理领域常用模型，包括但不限于mobilenet、resnet、yolov3、cyclegan、bert、transformer、seq2seq等等。同时发布了对应模型的预训练模型，用户可以直接使用这些模型或者在此基础上完成二次开发。
 
 
-![](./image/hapi_gif.gif)
+![](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/hapi/doc/fluid/beginners_guide/image/hapi_gif.gif)
 
 
 ## 目录
 
-* [特性]()
-* [快速使用]()
-* [新增功能]()
-* [使用示例]()
+* [特性](#1)
+* [快速使用](#2)
+* [新增功能](#3)
+* [使用示例](#4)
 
 
-## 特性
+## <h2 id="1">特性</h2>
 
 ### 易学易用
 
@@ -39,7 +39,7 @@ PaddleHapi具有以下特点：
 相比较与动态图的算法实现，使用高层API实现的算法可编程代码量更少，原始的动态图训练代码需要20多行代码才能完成模型的训练，使用高层API后，仅用8行代码即可实现相同的功能。
 
 使用普通API与高层API实现手写字符识别对比如下图，左边是普通动态图API的实现，右边是使用高层API的实现，可以明显发现，使用高层API的代码量更少。
-![](./image/new_hapi.png)
+![](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/hapi/doc/fluid/beginners_guide/image/new_hapi.png)
 
 
 ### 动静统一
@@ -63,7 +63,7 @@ model.prepare(optimizer, CrossEntropy(), Accuracy(), inputs, labels, device='gpu
 model.fit(train_dataset, val_dataset, batch_size=100, epochs=1, log_freq=100, save_dir="./output/")
 ```
 
-## 快速使用
+## <h3 id="2">快速使用</h3>
 
 以mnist手写字符识别为例，介绍飞桨高层API的使用方式。
 
@@ -119,7 +119,7 @@ model.fit(train_dataset, val_dataset, batch_size=100, epochs=10, log_freq=100, s
 
 高层API中通过fit函数完成训练的循环过程，只需要设置训练的数据读取器、batchsize大小，迭代的轮数epoch、训练日志打印频率log_freq，保存模型的路径即可。
 
-## 新增功能
+## <h4 id="3">新增功能</h4>
 
 除了使用高层API实现一行代码启动训练外，还新增了以下功能：
 - transform   数据增强模块
@@ -168,7 +168,7 @@ img_processed, label = trans_funcs(img, label)
 
 上述代码的效果图如下：
 
-![](./image/hapi_transform.png)
+![](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/hapi/doc/fluid/beginners_guide/image/hapi_transform.png)
 
 
 ### paddlevision
@@ -178,11 +178,11 @@ transformer等等。使用这些现有的模型，可以快速的完成神经网
 
 使用paddlevision中的模型可以简单快速的构建一个深度学习任务，比如13代码即可实现resnet在Imagenet数据集上的训练：
 
-![](./image/paddlevision.png)
+![](https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/hapi/doc/fluid/beginners_guide/image/paddlevision.png)
 
 
 
-## 更多使用示例
+## <h5 id="4">更多使用示例</h5>
 
 更多的高层API使用示例请参考：
 - [bert](https://github.com/PaddlePaddle/hapi/tree/master/examples/bert)
