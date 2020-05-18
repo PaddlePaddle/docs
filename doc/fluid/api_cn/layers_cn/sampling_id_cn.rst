@@ -5,6 +5,9 @@ sampling_id
 
 .. py:function:: paddle.fluid.layers.sampling_id(x, min=0.0, max=1.0, seed=0, dtype='float32')
 
+
+
+
 该OP从输入的多项分布中进行采样。
 
 参数：

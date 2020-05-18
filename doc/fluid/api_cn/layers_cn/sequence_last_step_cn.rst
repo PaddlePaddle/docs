@@ -3,9 +3,12 @@
 sequence_last_step
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.sequence_last_step(input)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该OP **仅支持LoDTensor类型的输入** ，将对输入的LoDTensor，在最后一层lod_level上，选取其每个序列（sequence）的最后一个时间步（time-step）的特征向量作为池化后的输出向量。
 

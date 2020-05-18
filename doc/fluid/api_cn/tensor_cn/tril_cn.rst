@@ -5,6 +5,11 @@ tril
 
 .. py:function:: paddle.tensor.tril(input, diagonal=0, name=None)
 
+:alias_main: paddle.tril
+:alias: paddle.tril,paddle.tensor.tril,paddle.tensor.creation.tril
+
+
+
 返回输入矩阵 `input` 的下三角部分，其余部分被设为0。
 矩形的下三角部分被定义为对角线上和下方的元素。
 

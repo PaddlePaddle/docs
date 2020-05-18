@@ -3,9 +3,12 @@
 crf_decoding
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None, length=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 
 

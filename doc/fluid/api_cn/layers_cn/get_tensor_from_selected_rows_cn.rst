@@ -5,6 +5,9 @@ get_tensor_from_selected_rows
 
 .. py:function::  paddle.fluid.layers.get_tensor_from_selected_rows(x, name=None)
 
+
+
+
 该OP从SelectedRows类型的输入中获取向量数据，以LoDTensor的形式输出。
 
 

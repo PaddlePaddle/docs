@@ -5,6 +5,11 @@ index_sample
 
 .. py:function:: paddle.index_sample(x, index)
 
+:alias_main: paddle.index_sample
+:alias: paddle.index_sample,paddle.tensor.index_sample,paddle.tensor.search.index_sample
+
+
+
 该OP实现对输入 ``x`` 中的元素进行批量抽样，取 ``index`` 指定的对应下标的元素，按index中出现的先后顺序组织，填充为一个新的张量。
 
 该OP中 ``x`` 与 ``index`` 都是 ``2-D`` 张量。 ``index`` 的第一维度与输入 ``x`` 的第一维度必须相同， ``index`` 的第二维度没有大小要求，可以重复索引相同下标元素。

@@ -5,6 +5,12 @@ piecewise_decay
 
 .. py:function:: paddle.fluid.layers.piecewise_decay(boundaries,values)
 
+:alias_main: paddle.nn.functional.piecewise_decay
+:alias: paddle.nn.functional.piecewise_decay,paddle.nn.functional.learning_rate.piecewise_decay
+:old_api: paddle.fluid.layers.piecewise_decay
+
+
+
 对初始学习率进行分段衰减。
 
 该算法可用如下代码描述。

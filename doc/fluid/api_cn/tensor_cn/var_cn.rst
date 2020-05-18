@@ -3,6 +3,11 @@ var
 
 .. py:function:: paddle.var(input, axis=None, keepdim=False, unbiased=True, out=None, name=None)
 
+:alias_main: paddle.var
+:alias: paddle.var,paddle.tensor.var,paddle.tensor.stat.var
+
+
+
  沿给定的轴 axis 计算输入变量所有元素的方差。
 
   参数：

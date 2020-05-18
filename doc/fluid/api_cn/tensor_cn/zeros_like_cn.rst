@@ -5,6 +5,12 @@ zeros_like
 
 .. py:function:: paddle.zeros_like(input, dtype=None, device=None, name=None)
 
+:alias_main: paddle.zeros_like
+:alias: paddle.zeros_like,paddle.tensor.zeros_like,paddle.tensor.creation.zeros_like
+:update_api: paddle.fluid.layers.zeros_like
+
+
+
 
 该OP创建一个和input具有相同的形状和数据类型的全零Tensor。
 

@@ -5,6 +5,12 @@ ones_like
 
 .. py:function:: paddle.ones_like(input, dtype=None, device=None, name=None)
 
+:alias_main: paddle.ones_like
+:alias: paddle.ones_like,paddle.tensor.ones_like,paddle.tensor.creation.ones_like
+:update_api: paddle.fluid.layers.ones_like
+
+
+
 
 该OP创建一个和input具有相同的形状和数据类型的全1Tensor。
 

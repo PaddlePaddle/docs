@@ -5,6 +5,9 @@ MultivariateNormalDiag
 
 .. py:class:: paddle.fluid.layers.MultivariateNormalDiag(loc, scale)
 
+
+
+
 多元高斯分布
 
 概率密度函数（pdf）为：

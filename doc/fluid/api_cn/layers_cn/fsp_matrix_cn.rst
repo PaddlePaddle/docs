@@ -5,6 +5,12 @@ fsp_matrix
 
 .. py:function:: paddle.fluid.layers.fsp_matrix(x, y)
 
+:alias_main: paddle.nn.functional.fsp_matrix
+:alias: paddle.nn.functional.fsp_matrix,paddle.nn.functional.vision.fsp_matrix
+:old_api: paddle.fluid.layers.fsp_matrix
+
+
+
 **FSP matrix op**
 
 fsp_matrix op用于计算两个4-D Tensor特征图的求解过程（FSP）矩阵。假设特征图x的形状为 :math:`[x\_channel，h，w]` ，特征图y的形状为 :math:`[y\_channel，h，w]` ，fsp_matrix op分两步得到x和y的fsp矩阵：

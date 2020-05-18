@@ -5,6 +5,12 @@ inverse_time_decay
 
 .. py:function:: paddle.fluid.layers.inverse_time_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
+:alias_main: paddle.nn.functional.inverse_time_decay
+:alias: paddle.nn.functional.inverse_time_decay,paddle.nn.functional.learning_rate.inverse_time_decay
+:old_api: paddle.fluid.layers.inverse_time_decay
+
+
+
 在初始学习率上运用逆时衰减。
 
 训练模型时，最好在训练过程中降低学习率。通过执行该函数，将对初始学习率运用逆时衰减函数。

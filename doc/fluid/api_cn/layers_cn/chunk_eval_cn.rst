@@ -5,6 +5,9 @@ chunk_eval
 
 .. py:function:: paddle.fluid.layers.chunk_eval(input, label, chunk_scheme, num_chunk_types, excluded_chunk_types=None, sqe_length=None)
 
+
+
+
 该OP计算语块识别（chunk detection）的准确率、召回率和F1值，常用于命名实体识别（NER，语块识别的一种）等序列标注任务中。
 
 语块识别的基础请参考 `Chunking with Support Vector Machines <https://www.aclweb.org/anthology/N01-1025>`_

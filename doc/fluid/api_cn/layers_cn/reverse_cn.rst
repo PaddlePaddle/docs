@@ -5,6 +5,12 @@ reverse
 
 .. py:function:: paddle.fluid.layers.reverse(x,axis)
 
+:alias_main: paddle.reverse
+:alias: paddle.reverse,paddle.tensor.reverse,paddle.tensor.manipulation.reverse
+:old_api: paddle.fluid.layers.reverse
+
+
+
 **reverse**
 
 该OP对输入Tensor ``x`` 在指定轴 ``axis`` 上进行数据的逆序操作。

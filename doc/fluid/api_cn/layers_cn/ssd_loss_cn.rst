@@ -5,6 +5,12 @@ ssd_loss
 
 .. py:function:: paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, prior_box_var=None, background_label=0, overlap_threshold=0.5, neg_pos_ratio=3.0, neg_overlap=0.5, loc_loss_weight=1.0, conf_loss_weight=1.0, match_type='per_prediction', mining_type='max_negative', normalize=True, sample_size=None)
 
+:alias_main: paddle.nn.functional.ssd_loss
+:alias: paddle.nn.functional.ssd_loss,paddle.nn.functional.loss.ssd_loss
+:old_api: paddle.fluid.layers.ssd_loss
+
+
+
 该OP用于SSD物体检测算法的多窗口损失层
 
 该层用于计算SSD的损失，给定位置偏移预测，置信度预测，候选框和真实框标签，以及难样本挖掘的类型。通过执行以下步骤，返回的损失是本地化损失（或回归损失）和置信度损失（或分类损失）的加权和：

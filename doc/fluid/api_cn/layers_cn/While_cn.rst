@@ -3,9 +3,12 @@
 While
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.layers.While (cond, is_test=False, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 
 该类用于实现while循环控制功能，只要循环条件cond为True，就循环执行while循环体中的语句，直到cond为False为止。

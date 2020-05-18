@@ -3,9 +3,12 @@
 sequence_conv_pool
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.nets.sequence_conv_pool(input, num_filters, filter_size, param_attr=None, act='sigmoid', pool_type='max', bias_attr=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 **注意：该OP的输入** ``input`` **必须是2维LoDTensor, lod_level为1，如果输入是Tensor，建议使用** :ref:`cn_api_fluid_nets_simple_img_conv_pool` **代替**
 

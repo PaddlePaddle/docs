@@ -5,6 +5,9 @@ tensor_array_to_tensor
 
 .. py:function:: paddle.fluid.layers.tensor_array_to_tensor(input, axis=1, name=None, use_stack=False)
 
+
+
+
 该OP将 ``input`` 这个LoDTensorArray中的所有Tensor沿 ``axis`` 指定的轴进行拼接（concat）或堆叠（stack）。
 
 示例：

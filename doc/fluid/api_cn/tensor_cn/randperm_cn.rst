@@ -5,6 +5,11 @@ randperm
 
 .. py:function:: paddle.tensor.random.randperm(n, out=None, dtype="int64", device=None, stop_gradient=True, seed=0)
 
+:alias_main: paddle.randperm
+:alias: paddle.randperm,paddle.tensor.randperm,paddle.tensor.random.randperm
+
+
+
 该OP返回一个数值在0到n-1、顺序随机的整数排列。
 
 参数: 
