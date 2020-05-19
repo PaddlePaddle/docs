@@ -210,7 +210,7 @@ print(res) #[array([10])]
 
 ```
 
-限于篇幅，上面仅仅用一个最简单的例子来说明如何在声明式编程模式中实现循环操作。循环操作在很多应用中都有着重要作用，比如NLP中常用的Transformer模型，在解码（生成）阶段的Beam Search算法中，需要使用循环操作来进行候选的选取与生成，可以参考[Transformer](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/PaddleMT/transformer)模型的实现来进一步学习while_loop在复杂场景下的用法。
+限于篇幅，上面仅仅用一个最简单的例子来说明如何在声明式编程模式中实现循环操作。循环操作在很多应用中都有着重要作用，比如NLP中常用的Transformer模型，在解码（生成）阶段的Beam Search算法中，需要使用循环操作来进行候选的选取与生成，可以参考[Transformer](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/machine_translation/transformer)模型的实现来进一步学习while_loop在复杂场景下的用法。
 
 除while_loop之外，飞桨还提供fluid.layers.cond API来实现条件分支的操作，以及fluid.layers.switch_case和fluid.layers.case API来实现分支控制功能，具体用法请参考文档：[cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/cond_cn.html)，[switch_case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/switch_case_cn.html)和[case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/case_cn.html#case)
 

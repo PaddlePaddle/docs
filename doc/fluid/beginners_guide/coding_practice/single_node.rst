@@ -123,7 +123,7 @@
 
 1. :ref:`cn_api_fluid_CompiledProgram` 会将传入的 :code:`fluid.Program` 转为计算图，即Graph，因为 :code:`compiled_prog` 与传入的 :code:`train_program` 是完全不同的对象，目前还不能够对 :code:`compiled_prog` 进行保存。
 2. 多卡训练也可以使用 :ref:`cn_api_fluid_ParallelExecutor` ，但是现在推荐使用 :ref:`cn_api_fluid_CompiledProgram` .
-3. 如果 :code:`exe` 是用CUDAPlace来初始化的，模型会在GPU中运行。在显卡训练模式中，所有的显卡都将被占用。用户可以配置 `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ 以更改被占用的显卡。
+3. 如果 :code:`exe` 是用CUDAPlace来初始化的，模型会在GPU中运行。在显卡训练模式中，所有的显卡都将被占用。用户可以配置 `CUDA_VISIBLE_DEVICES以更改被占用的显卡。
 4. 如果 :code:`exe` 是用CPUPlace来初始化的，模型会在CPU中运行。在这种情况下，多线程用于运行模型，同时线程的数目和逻辑核的数目相等。用户可以配置 ``CPU_NUM`` 以更改使用中的线程数目。
 
 进阶使用
