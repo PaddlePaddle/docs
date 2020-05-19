@@ -8,5 +8,5 @@ Distributed Training
    :maxdepth: 1
 
    cluster_quick_start_en.rst
-   cluster_howto_en.rst
+
 
