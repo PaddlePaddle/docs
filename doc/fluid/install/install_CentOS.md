@@ -92,8 +92,8 @@ CentOS系统下有3种安装方式：
 ## 安装步骤
 
 * CPU版PaddlePaddle：
-  * 对于Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * 对于Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 2： `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 * GPU版PaddlePaddle：
   * 对于Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
   * 对于Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
@@ -122,4 +122,4 @@ CentOS系统下有3种安装方式：
 
 * **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle`
 
-* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu==2.0.0a0` 或 `python3 -m pip uninstall paddlepaddle-gpu==2.0.0a0`
+* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu` 或 `python3 -m pip uninstall paddlepaddle-gpu`

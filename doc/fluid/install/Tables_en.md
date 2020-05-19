@@ -239,7 +239,7 @@ PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specif
 You can find various distributions of PaddlePaddle-gpu in [the Release History](https://pypi.org/project/paddlepaddle-gpu/#history).
 > 'postxx' corresponds to CUDA and cuDNN versions, and the number before 'postxx' represents the version of Paddle
 
-Please note that: in the commands, <code> paddlepaddle-gpu </code> will install the installation package of PaddlePaddle that supports CUDA 10.0 and cuDNN 7 by default under Windows environment.
+Please note that: in the commands, <code> paddlepaddle-gpu==2.0.0a0 </code> will install the installation package of PaddlePaddle that supports CUDA 10.0 and cuDNN 7 by default under Windows environment.
 
 
 <a name="ciwhls-release"></a>
@@ -333,12 +333,6 @@ Please note that: in the commands, <code> paddlepaddle-gpu </code> will install 
 - Vertical axis
 
 cpu-mkl: Support CPU training and prediction, use Intel MKL math library
-
-cpu-openblas: Support CPU training and prediction, use openblas math library
-
-cuda9-cudnn7-openblas: Support GPU training and prediction, use openblas math library
-
-cuda9_cudnn7-mkl: Support GPU training and prediction, use Intel MKL math library
 
 cuda10_cudnn7-mkl: Support GPU training and prediction, use Intel MKL math library
 

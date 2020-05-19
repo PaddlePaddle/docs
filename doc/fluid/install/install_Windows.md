@@ -58,7 +58,7 @@
 
 ## 安装方式
 
-Windows系统下有3种安装方式：
+Windows系统下有2种安装方式：
 
 * pip安装（推荐）
 * [源码编译安装](./compile/compile_Windows.html#win_source)
@@ -68,16 +68,16 @@ Windows系统下有3种安装方式：
 ## 安装步骤
 
 * CPU版PaddlePaddle：
-  * `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple`（推荐使用百度源） 或 `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple`（推荐使用百度源） 或 `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 * GPU版PaddlePaddle：
-  * `python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
 注：
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0(配合cuDNN v7.3+)的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu#history), 关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html#whls)
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0(配合cuDNN v7.3+)的PaddlePaddle。
 
 
 <a name="check"></a>
