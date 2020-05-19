@@ -7,6 +7,7 @@ API Reference
 
     ../api_guides/index_cn.rst
     framework_cn.rst
+    incubate_cn.rst
     nn_cn.rst
     tensor_cn.rst
     fluid_cn.rst
