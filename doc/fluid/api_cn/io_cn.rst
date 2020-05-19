@@ -37,3 +37,14 @@ fluid.io
     io_cn/shuffle_cn.rst
     io_cn/xmap_readers_cn.rst
 
+io_cn/BatchSampler_cn.rst
+io_cn/batch_cn.rst
+io_cn/DataLoader_cn.rst
+io_cn/Dataset_cn.rst
+io_cn/load_cn.rst
+io_cn/load_inference_model_cn.rst
+io_cn/load_program_state_cn.rst
+io_cn/save_cn.rst
+io_cn/save_inference_model_cn.rst
+io_cn/set_program_state_cn.rst
+io_cn/shuffle_cn.rst
