@@ -10,6 +10,9 @@ sequence_scatter
 
 
 
+
+
+
 .. note::
     该OP的输入index，updates必须是LoDTensor。
 

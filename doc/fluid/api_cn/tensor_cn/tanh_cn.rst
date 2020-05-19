@@ -11,6 +11,9 @@ tanh
 
 
 
+
+
+
 tanh 激活函数
 
 .. math::

@@ -5,6 +5,12 @@ CUDAPinnedPlace
 
 .. py:class:: paddle.fluid.CUDAPinnedPlace
 
+:alias_main: paddle.CUDAPinnedPlace
+:alias: paddle.CUDAPinnedPlace,paddle.framework.CUDAPinnedPlace
+:old_api: paddle.fluid.core.CUDAPinnedPlace
+
+
+
 
 
 

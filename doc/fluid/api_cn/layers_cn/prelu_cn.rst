@@ -7,6 +7,12 @@ prelu
 .. py:function:: paddle.fluid.layers.prelu(x, mode, param_attr=None, name=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.prelu
+:alias: paddle.declarative.prelu
+:old_api: paddle.fluid.layers.prelu
+
+
+
 
 
 

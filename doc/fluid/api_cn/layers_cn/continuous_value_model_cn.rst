@@ -11,6 +11,9 @@ continuous_value_model
 
 
 
+
+
+
 **注意：该OP仅支持在CPU运行。**
 
 该OP在CTR项目中，用于去除或处理 ``input`` 中的展示和点击值。

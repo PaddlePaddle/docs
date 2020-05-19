@@ -10,6 +10,9 @@ create_py_reader_by_data
 
 
 
+
+
+
 创建一个Python端提供数据的reader。该OP与 :ref:`cn_api_fluid_layers_py_reader` 类似，不同点在于它能够从feed变量列表读取数据。
 
 参数：

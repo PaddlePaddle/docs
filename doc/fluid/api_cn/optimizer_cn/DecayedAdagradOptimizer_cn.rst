@@ -5,6 +5,12 @@ DecayedAdagradOptimizer
 
 .. py:class:: paddle.fluid.optimizer.DecayedAdagradOptimizer(learning_rate, decay=0.95, epsilon=1e-06, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+:alias_main: paddle.optimizer.DecayedAdagradOptimizer
+:alias: paddle.optimizer.DecayedAdagradOptimizer
+:old_api: paddle.fluid.optimizer.DecayedAdagradOptimizer
+
+
+
 
 
 

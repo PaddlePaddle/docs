@@ -7,6 +7,12 @@ spectral_norm
 .. py:function:: paddle.fluid.layers.spectral_norm(weight, dim=0, power_iters=1, eps=1e-12, name=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.spectral_norm
+:alias: paddle.declarative.spectral_norm
+:old_api: paddle.fluid.layers.spectral_norm
+
+
+
 
 
 

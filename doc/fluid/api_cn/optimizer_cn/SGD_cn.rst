@@ -5,6 +5,12 @@ SGD
 
 .. py:attribute::  paddle.fluid.optimizer.SGD
 
+:alias_main: paddle.optimizer.SGD
+:alias: paddle.optimizer.SGD
+:old_api: paddle.fluid.optimizer.SGD
+
+
+
 
 
 

@@ -11,6 +11,9 @@ crop_tensor
 
 
 
+
+
+
 根据偏移量（offsets）和形状（shape），裁剪输入（x）Tensor。
 
 **示例**：

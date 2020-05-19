@@ -4,6 +4,15 @@ Auc
 -------------------------------
 .. py:class:: paddle.fluid.metrics.Auc(name, curve='ROC', num_thresholds=4095)
 
+:alias_main: paddle.metric.auc
+:alias: paddle.metric.auc
+:old_api: paddle.fluid.layers.metric_op.auc
+
+
+
+
+
+
 
 
 

@@ -9,6 +9,9 @@ get_program_parameter
 
 
 
+
+
+
 该接口从Program中获取所有参数。
 
 参数:

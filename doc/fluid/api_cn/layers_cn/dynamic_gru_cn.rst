@@ -11,6 +11,9 @@ dynamic_gru
 
 
 
+
+
+
 **注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用StaticRNN（fluid.layers.** :ref:`cn_api_fluid_layers_StaticRNN` **）。**
 
 该OP用于在完整序列上逐个时间步的进行单层Gated Recurrent Unit（GRU）的计算，单个时间步内GRU的计算支持以下两种计算方式：

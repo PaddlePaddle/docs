@@ -5,6 +5,11 @@ compose
 
 .. py:function:: paddle.fluid.io.compose(*readers, **kwargs)
 
+:alias_main: paddle.io.compose
+:alias: paddle.io.compose,paddle.io..reader.compose
+
+
+
 
 
 

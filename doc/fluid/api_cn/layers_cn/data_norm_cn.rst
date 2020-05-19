@@ -7,6 +7,12 @@ data_norm
 .. py:function:: paddle.fluid.layers.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.data_norm
+:alias: paddle.declarative.data_norm
+:old_api: paddle.fluid.layers.data_norm
+
+
+
 
 
 

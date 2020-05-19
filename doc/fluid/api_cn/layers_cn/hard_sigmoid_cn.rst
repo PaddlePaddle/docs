@@ -11,6 +11,9 @@ hard_sigmoid
 
 
 
+
+
+
 sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参见 https://arxiv.org/abs/1603.00391。
 
 .. math::

@@ -10,6 +10,9 @@ load_persistables
 
 
 
+
+
+
 该接口从给定的 ``main_program`` 中取出所有 ``persistable==True`` 的变量（即持久性变量，详见 :ref:`api_guide_model_save_reader` ），并根据目录 ``dirname``  或 ``filename`` 提供的参数文件对这些持久性变量进行赋值。
 
 使用 ``dirname`` 指定持久性变量的存储路径。若持久性变量以分离文件的形式保存在 ``dirname`` 指定的目录下，则设置 ``filename`` 值为None；若所有持久性变量保存在一个单独的二进制文件中，则使用 ``filename`` 来指明这个二进制文件。

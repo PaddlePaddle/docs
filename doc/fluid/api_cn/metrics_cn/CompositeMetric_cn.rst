@@ -5,6 +5,12 @@ CompositeMetric
 
 .. py:class:: paddle.fluid.metrics.CompositeMetric(name=None)
 
+:alias_main: paddle.metric.CompositeMetric
+:alias: paddle.metric.CompositeMetric
+:old_api: paddle.fluid.metrics.CompositeMetric
+
+
+
 
 
 

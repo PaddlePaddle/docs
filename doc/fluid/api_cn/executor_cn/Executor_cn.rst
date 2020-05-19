@@ -7,6 +7,12 @@ Executor
 .. py:class:: paddle.fluid.executor.Executor (place=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.Executor
+:alias: paddle.Executor,paddle.framework.Executor
+:old_api: paddle.fluid.executor.Executor
+
+
+
 
 
 

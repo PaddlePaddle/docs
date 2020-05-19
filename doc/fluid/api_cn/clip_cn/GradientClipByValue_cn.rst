@@ -12,6 +12,9 @@ GradientClipByValue
 
 
 
+
+
+
 将输入的多维Tensor :math:`X` 的值限制在 [min, max] 范围。
 
 输入的 Tensor 不是从该类里传入， 而是默认会选择 ``Program`` 中全部的梯度，如果 ``need_clip`` 不为None，则可以只选择部分参数进行梯度裁剪。

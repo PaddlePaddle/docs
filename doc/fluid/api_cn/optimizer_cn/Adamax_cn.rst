@@ -5,6 +5,12 @@ Adamax
 
 .. py:attribute:: paddle.fluid.optimizer.Adamax
 
+:alias_main: paddle.optimizer.Adamax
+:alias: paddle.optimizer.Adamax
+:old_api: paddle.fluid.optimizer.Adamax
+
+
+
 
 
 

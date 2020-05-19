@@ -10,6 +10,9 @@ scaled_dot_product_attention
 
 
 
+
+
+
 该接口实现了的基于点积（并进行了缩放）的多头注意力（Multi-Head Attention）机制。attention可以表述为将一个查询（query）和一组键值对（key-value pair）映射为一个输出；Multi-Head Attention则是使用多路进行attention，而且对attention的输入进行了线性变换。公式如下：
 
 

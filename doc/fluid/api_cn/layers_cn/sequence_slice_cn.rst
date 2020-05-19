@@ -10,6 +10,9 @@ sequence_slice
 
 
 
+
+
+
 **实现Sequence Slice(序列切片)运算**
 
 **该OP输入只能是LoDTensor, 如果您需要处理的是Tensor类型，请使用 :ref:`cn_api_fluid_layers_slice` 。**

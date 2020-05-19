@@ -8,6 +8,12 @@ default_startup_program
 
 .. py:function:: paddle.fluid.default_startup_program()
 
+:alias_main: paddle.default_startup_program
+:alias: paddle.default_startup_program,paddle.framework.default_startup_program
+:old_api: paddle.fluid.framework.default_startup_program
+
+
+
 
 
 

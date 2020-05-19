@@ -5,6 +5,12 @@ MomentumOptimizer
 
 .. py:class::  paddle.fluid.optimizer.MomentumOptimizer(learning_rate, momentum, parameter_list=None, use_nesterov=False, regularization=None, grad_clip=None, name=None)
 
+:alias_main: paddle.optimizer.MomentumOptimizer
+:alias: paddle.optimizer.MomentumOptimizer
+:old_api: paddle.fluid.optimizer.MomentumOptimizer
+
+
+
 
 
 

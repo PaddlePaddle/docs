@@ -11,6 +11,9 @@ elementwise_equal
 
 
 
+
+
+
 该OP返回 :math:`x==y` 逐元素比较x和y是否相等。
 
 参数：

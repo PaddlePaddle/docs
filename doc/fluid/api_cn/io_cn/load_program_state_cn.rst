@@ -6,6 +6,12 @@ load_program_state
 .. py:function:: paddle.fluid.io.load_program_state(model_path, var_list=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.io.load_program_state
+:alias: paddle.io.load_program_state
+:old_api: paddle.fluid.io.load_program_state
+
+
+
 
 
 

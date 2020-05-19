@@ -7,6 +7,12 @@ layer_norm
 .. py:function:: paddle.fluid.layers.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.layer_norm
+:alias: paddle.declarative.layer_norm
+:old_api: paddle.fluid.layers.layer_norm
+
+
+
 
 
 

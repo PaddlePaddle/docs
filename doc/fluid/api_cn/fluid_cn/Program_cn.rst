@@ -5,6 +5,12 @@ Program
 
 .. py:class::  paddle.fluid.Program
 
+:alias_main: paddle.Program
+:alias: paddle.Program,paddle.framework.Program
+:old_api: paddle.fluid.framework.Program
+
+
+
 
 
 

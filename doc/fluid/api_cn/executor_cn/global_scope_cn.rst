@@ -7,6 +7,12 @@ global_scope
 .. py:function:: paddle.fluid.global_scope()
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.global_scope
+:alias: paddle.global_scope,paddle.framework.global_scope
+:old_api: paddle.fluid.executor.global_scope
+
+
+
 
 
 

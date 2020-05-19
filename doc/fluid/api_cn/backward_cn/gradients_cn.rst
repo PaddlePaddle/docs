@@ -7,6 +7,12 @@ gradients
 .. py:function:: paddle.fluid.backward.gradients(targets, inputs, target_gradients=None, no_grad_set=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.gradients
+:alias: paddle.gradients,paddle.framework.gradients
+:old_api: paddle.fluid.backward.gradients
+
+
+
 
 
 

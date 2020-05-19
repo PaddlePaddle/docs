@@ -10,6 +10,9 @@ linear_chain_crf
 
 
 
+
+
+
 线性链条件随机场（Linear Chain CRF）
 
 条件随机场定义间接概率图，节点代表随机变量，边代表两个变量之间的依赖。CRF学习条件概率 :math:`P\left ( Y|X \right )` ， :math:`X = \left ( x_{1},x_{2},...,x_{n} \right )` 是结构性输入，:math:`Y = \left ( y_{1},y_{2},...,y_{n} \right )` 为输入标签。

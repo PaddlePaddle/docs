@@ -5,6 +5,12 @@ Ftrl
 
 .. py:attribute::  paddle.fluid.optimizer.Ftrl
 
+:alias_main: paddle.optimizer.Ftrl
+:alias: paddle.optimizer.Ftrl
+:old_api: paddle.fluid.optimizer.Ftrl
+
+
+
 
 
 

@@ -10,6 +10,9 @@ gru_unit
 
 
 
+
+
+
 Gated Recurrent Unit（GRU）循环神经网络计算单元。该OP用于完成单个时间步内GRU的计算，支持以下两种计算方式：
 
 如果origin_mode为True，则使用的运算公式来自论文

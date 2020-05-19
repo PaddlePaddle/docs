@@ -11,6 +11,9 @@ create_random_int_lodtensor
 
 
 
+
+
+
 创建一个包含随机整数的LoDTensor。
 
 具体实现方法如下：

@@ -11,6 +11,9 @@ fill_constant
 
 
 
+
+
+
 该OP创建一个形状为shape并且数据类型为dtype的Tensor，同时用 ``value`` 中提供的常量初始化该Tensor。
 
 创建的Tensor的stop_gradient属性默认为True。

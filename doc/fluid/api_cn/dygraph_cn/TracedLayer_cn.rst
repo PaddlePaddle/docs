@@ -10,6 +10,12 @@ TracedLayer
 
 
 
+
+
+
+
+
+
 TracedLayer用于将前向动态图模型转换为静态图模型，主要用于将动态图保存后做在线C++预测。除此以外，用户也可使用转换后的静态图模型在Python端做预测，通常比原先的动态图性能更好。
 
 TracedLayer使用 ``Executor`` 和 ``CompiledProgram`` 运行静态图模型。转换后的静态图模型与原动态图模型共享参数。

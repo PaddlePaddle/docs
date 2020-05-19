@@ -5,6 +5,11 @@ chain
 
 .. py:function:: paddle.fluid.io.chain(*readers)
 
+:alias_main: paddle.io.chain
+:alias: paddle.io.chain,paddle.io..reader.chain
+
+
+
 
 
 

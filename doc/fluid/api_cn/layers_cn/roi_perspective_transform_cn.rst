@@ -11,6 +11,9 @@ roi_perspective_transform
 
 
 
+
+
+
 该OP对RoI区域做透视变换，将不规则的RoI区域变成固定大小的矩形区域，透视变换是线性代数里面的一种基础变换。
 
 参数：

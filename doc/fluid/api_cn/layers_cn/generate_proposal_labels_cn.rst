@@ -11,6 +11,9 @@ generate_proposal_labels
 
 
 
+
+
+
 **注意：该OP无对应的反向OP**
 
 该OP根据RPN预测产出的bounding boxes和groundtruth，抽取出用来计算loss的foreground boxes and background boxes。

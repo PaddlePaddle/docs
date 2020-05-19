@@ -10,6 +10,9 @@ elementwise_pow
 :old_api: paddle.fluid.layers.elementwise_pow
 
 
+
+
+
 该OP逐元素对输入Tensor进行幂操作。
 
 等式是：

@@ -5,6 +5,12 @@ LarsMomentumOptimizer
 
 .. py:class:: paddle.fluid.optimizer.LarsMomentumOptimizer(learning_rate, momentum, lars_coeff=0.001, lars_weight_decay=0.0005, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+:alias_main: paddle.optimizer.LarsMomentumOptimizer
+:alias: paddle.optimizer.LarsMomentumOptimizer
+:old_api: paddle.fluid.optimizer.LarsMomentumOptimizer
+
+
+
 
 
 

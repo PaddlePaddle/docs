@@ -11,6 +11,9 @@ multiplex
 
 
 
+
+
+
 根据给定的index参数，该OP从每个输入Tensor中选择特定行构造输出Tensor。
 
 设该OP输入包含 :math:`m` 个Tensor，其中 :math:`I_{i}` 代表第i个输入Tensor，:math:`i` 处于区间 :math:`[0,m)`。

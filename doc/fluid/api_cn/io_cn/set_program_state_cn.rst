@@ -6,6 +6,12 @@ set_program_state
 .. py:function:: paddle.fluid.io.set_program_state(program, state_dict)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.io.set_program_state
+:alias: paddle.io.set_program_state
+:old_api: paddle.fluid.io.set_program_state
+
+
+
 
 
 

@@ -5,6 +5,12 @@ ProgramTranslator
 
 .. py:class:: paddle.fluid.dygraph.dygraph_to_static.ProgramTranslator()
 
+:alias_main: paddle.imperative.ProgramTranslator
+:alias: paddle.imperative.ProgramTranslator
+:old_api: paddle.fluid.dygraph.ProgramTranslator
+
+
+
 将动态图函数转为静态图函数的类。该类是个单例（singleton）。
 
 参数：

@@ -5,6 +5,11 @@ Conv3D
 
 .. py:class:: paddle.fluid.dygraph.Conv3D(num_channels, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, dtype="float32")
 
+:alias_main: paddle.nn.Conv3D
+:alias: paddle.nn.Conv3D,paddle.nn.layer.Conv3D,paddle.nn.layer.conv.Conv3D
+
+
+
 
 
 

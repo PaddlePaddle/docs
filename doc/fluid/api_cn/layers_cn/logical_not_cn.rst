@@ -11,6 +11,9 @@ logical_not
 
 
 
+
+
+
 该OP逐元素的对 ``X`` LoDTensor/Tensor进行逻辑非运算
 
 .. math::

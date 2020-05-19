@@ -5,6 +5,12 @@ default_main_program
 
 .. py:function:: paddle.fluid.default_main_program()
 
+:alias_main: paddle.default_main_program
+:alias: paddle.default_main_program,paddle.framework.default_main_program
+:old_api: paddle.fluid.framework.default_main_program
+
+
+
 
 
 

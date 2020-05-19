@@ -5,6 +5,12 @@ LayerList
 
 .. py:class:: paddle.fluid.dygraph.LayerList(sublayers=None)
 
+:alias_main: paddle.nn.LayerList
+:alias: paddle.nn.LayerList
+:old_api: paddle.fluid.dygraph.container.LayerList
+
+
+
 
 
 

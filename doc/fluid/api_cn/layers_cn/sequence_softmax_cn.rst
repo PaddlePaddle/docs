@@ -10,6 +10,9 @@ sequence_softmax
 
 
 
+
+
+
 .. note::
     该OP的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用 :ref:`cn_api_fluid_layers_softmax`
 

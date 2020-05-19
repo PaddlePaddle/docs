@@ -10,6 +10,9 @@ simple_img_conv_pool
 
 
 
+
+
+
  ``simple_img_conv_pool`` 由一个conv2d( :ref:`cn_api_fluid_layers_conv2d` )和一个pool2d( :ref:`cn_api_fluid_layers_pool2d` ) OP组成。
 
 参数：

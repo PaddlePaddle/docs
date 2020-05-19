@@ -11,6 +11,9 @@ cross_entropy
 
 
 
+
+
+
 该OP计算输入input和标签label间的交叉熵，可用于计算硬标签或软标签的交叉熵。
 
 1. 硬标签交叉熵算法：若soft_label = False, :math:`label[i_1, i_2, ..., i_k]` 表示每个样本的硬标签值:

@@ -5,6 +5,11 @@ buffered
 
 .. py:function:: paddle.fluid.io.buffered(reader, size)
 
+:alias_main: paddle.io.buffered
+:alias: paddle.io.buffered,paddle.io..reader.buffered
+
+
+
 
 
 

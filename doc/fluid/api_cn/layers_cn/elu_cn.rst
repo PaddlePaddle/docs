@@ -11,6 +11,9 @@ elu
 
 
 
+
+
+
 ELU激活层（ELU Activation Operator）
 
 根据 https://arxiv.org/abs/1511.07289 对输入Tensor中每个元素应用以下计算。

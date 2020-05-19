@@ -7,6 +7,12 @@ crf_decoding
 .. py:function::  paddle.fluid.layers.crf_decoding(input, param_attr, label=None, length=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.crf_decoding
+:alias: paddle.declarative.crf_decoding
+:old_api: paddle.fluid.layers.crf_decoding
+
+
+
 
 
 

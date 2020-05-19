@@ -11,6 +11,9 @@ resize_trilinear
 
 
 
+
+
+
 **注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 该层对输入进行放缩，基于给定的由 ``actual_shape`` , ``out_shape`` , ``scale`` 确定的输出shape，进行三线插值。三线插值是包含三个参数的线性插值方程（D方向，H方向， W方向）,在一个3D格子上进行三个方向的线性插值。更多细节，请参考维基百科：https://en.wikipedia.org/wiki/Trilinear_interpolation

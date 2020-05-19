@@ -11,6 +11,9 @@ leaky_relu
 
 
 
+
+
+
 LeakyRelu激活函数
 
 .. math::   out=max(x,α∗x)

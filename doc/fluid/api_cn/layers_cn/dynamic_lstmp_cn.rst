@@ -9,6 +9,9 @@ dynamic_lstmp
 
 
 
+
+
+
 .. note::
     在实现的时候为了提升效率，用户必须将输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4×hidden_size] 输入，然后再传给该OP。
 

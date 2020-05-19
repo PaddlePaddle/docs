@@ -10,6 +10,9 @@ to_variable
 
 
 
+
+
+
 该函数实现从numpy\.ndarray对象或者Variable对象创建一个 ``Variable`` 类型的对象。
 
 参数：

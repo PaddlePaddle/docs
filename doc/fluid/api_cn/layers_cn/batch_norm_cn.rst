@@ -7,6 +7,12 @@ batch_norm
 .. py:function:: paddle.fluid.layers.batch_norm(input, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.batch_norm
+:alias: paddle.declarative.batch_norm
+:old_api: paddle.fluid.layers.batch_norm
+
+
+
 
 
 

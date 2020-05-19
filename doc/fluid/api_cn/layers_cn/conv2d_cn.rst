@@ -7,6 +7,12 @@ conv2d
 .. py:function:: paddle.fluid.layers.conv2d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format="NCHW")
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.conv2d
+:alias: paddle.declarative.conv2d,paddle.nn.functional.conv2d,paddle.nn.functional.conv.conv2d
+:old_api: paddle.fluid.layers.conv2d
+
+
+
 
 
 

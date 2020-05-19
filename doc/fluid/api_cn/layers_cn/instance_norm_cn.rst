@@ -7,6 +7,12 @@ instance_norm
 .. py:function:: paddle.fluid.layers.instance_norm(input, epsilon=1e-05, param_attr=None, bias_attr=None, name=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.instance_norm
+:alias: paddle.declarative.instance_norm
+:old_api: paddle.fluid.layers.instance_norm
+
+
+
 
 
 

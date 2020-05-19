@@ -5,6 +5,12 @@ EditDistance
 
 .. py:class:: paddle.fluid.metrics.EditDistance(name)
 
+:alias_main: paddle.metric.EditDistance
+:alias: paddle.metric.EditDistance
+:old_api: paddle.fluid.metrics.EditDistance
+
+
+
 
 
 

@@ -10,6 +10,9 @@ prior_box
 
 
 
+
+
+
 该OP为SSD(Single Shot MultiBox Detector)算法生成候选框。输入的每个位产生N个候选框，N由min_sizes,max_sizes和aspect_ratios的数目决定，候选框的尺寸在(min_size,max_size)之间，该尺寸根据aspect_ratios在序列中生成。
 
 参数：

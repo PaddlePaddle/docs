@@ -10,6 +10,9 @@ py_func
 
 
 
+
+
+
 PaddlePaddle Fluid通过py_func在Python端注册OP。py_func的设计原理在于Paddle中的LodTensor与numpy数组可以方便的互相转换，从而可使用Python中的numpy API来自定义一个Python OP。
 
 该自定义的Python OP的前向函数是 ``func``, 反向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func`` ，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为LoDTensor类型； ``out``  为 ``func`` 的输出， 既可以是LoDTensor类型, 也可以是numpy数组。

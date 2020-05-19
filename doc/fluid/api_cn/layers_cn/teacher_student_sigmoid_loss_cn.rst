@@ -11,6 +11,9 @@ teacher_student_sigmoid_loss
 
 
 
+
+
+
 **Teacher Student Log Loss Layer（教师--学生对数损失层）**
 
 定制化需求，用于student萃取teacher的值。此图层接受输入预测和目标标签，并返回teacher_student损失。

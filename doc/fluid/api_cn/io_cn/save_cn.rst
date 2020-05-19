@@ -7,6 +7,12 @@ save
 .. py:function:: paddle.fluid.io.save(program, model_path)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.save
+:alias: paddle.save,paddle.io.save,paddle.tensor.save,paddle.tensor.io.save
+:old_api: paddle.fluid.io.save
+
+
+
 
 
 

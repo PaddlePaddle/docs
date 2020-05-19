@@ -5,6 +5,11 @@ xmap_readers
 
 .. py:function:: paddle.fluid.io.xmap_readers(mapper, reader, process_num, buffer_size, order=False)
 
+:alias_main: paddle.io.xmap_readers
+:alias: paddle.io.xmap_readers,paddle.io..reader.xmap_readers
+
+
+
 
 
 

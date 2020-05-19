@@ -7,6 +7,12 @@ row_conv
 .. py:function:: paddle.fluid.layers.row_conv(input, future_context_size, param_attr=None, act=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.row_conv
+:alias: paddle.declarative.row_conv,paddle.nn.functional.row_conv,paddle.nn.functional.extension.row_conv
+:old_api: paddle.fluid.layers.row_conv
+
+
+
 
 
 

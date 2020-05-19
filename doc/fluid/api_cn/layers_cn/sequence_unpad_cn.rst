@@ -10,6 +10,9 @@ sequence_unpad
 
 
 
+
+
+
 .. note::
     该OP的输入为Tensor，输出为LoDTensor。该OP用于移除填充元素，与之对应，还存在进行数据填充的OP sequence_pad，详情见： :ref:`cn_api_fluid_layers_sequence_pad`
 

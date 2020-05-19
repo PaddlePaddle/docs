@@ -11,6 +11,9 @@ logsigmoid
 
 
 
+
+
+
 Logsigmoid激活函数
 
 

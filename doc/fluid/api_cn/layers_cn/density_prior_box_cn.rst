@@ -12,6 +12,9 @@ density_prior_box
 
 
 
+
+
+
 该OP为SSD算法(Single Shot MultiBox Detector)生成density prior box，在每个 ``input`` 的位置产生N个候选框，其中，N由 ``densities`` , ``fixed_sizes`` 和 ``fixed_ratios`` 来计算。生成的每个输入位置附近的候选框中心（网格点）由 ``densities`` 和 ``density prior box`` 的数量计算，其中 ``density prior box`` 的数量由 ``fixed_sizes`` 和 ``fixed_ratios`` 决定。``fixed_sizes`` 和 ``densities`` 的大小一致。
 
 .. math::

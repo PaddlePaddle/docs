@@ -5,6 +5,12 @@ chunk_eval
 
 .. py:function:: paddle.fluid.layers.chunk_eval(input, label, chunk_scheme, num_chunk_types, excluded_chunk_types=None, sqe_length=None)
 
+:alias_main: paddle.metric.chunk_eval
+:alias: paddle.metric.chunk_eval
+:old_api: paddle.fluid.layers.nn.chunk_eval
+
+
+
 
 
 

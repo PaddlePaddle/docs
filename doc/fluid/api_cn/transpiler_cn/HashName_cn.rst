@@ -10,6 +10,9 @@ HashName
 
 
 
+
+
+
 该方法使用 python ``Hash()`` 函数将变量散列到多个parameter server节点。
 
 参数:

@@ -9,6 +9,9 @@ get_program_persistable_vars
 
 
 
+
+
+
 该接口从Program中获取所有persistable的变量。
 
 参数:

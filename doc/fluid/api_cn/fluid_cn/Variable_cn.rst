@@ -5,6 +5,12 @@ Variable
 
 .. py:class:: paddle.fluid.Variable
 
+:alias_main: paddle.Variable
+:alias: paddle.Variable,paddle.framework.Variable
+:old_api: paddle.fluid.framework.Variable
+
+
+
 
 
 

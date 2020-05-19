@@ -11,6 +11,9 @@ scatter
 
 
 
+
+
+
 该OP根据index中的索引值将updates数据更新到input中。
 
 .. code-block:: python

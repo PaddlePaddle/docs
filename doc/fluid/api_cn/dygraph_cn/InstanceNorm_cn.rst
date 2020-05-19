@@ -5,6 +5,11 @@ InstanceNorm
 
 .. py:class:: paddle.fluid.dygraph.InstanceNorm(num_channels, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32') 
 
+:alias_main: paddle.nn.InstanceNorm
+:alias: paddle.nn.InstanceNorm,paddle.nn.layer.InstanceNorm,paddle.nn.layer.norm.InstanceNorm
+
+
+
 该接口用于构建 ``InstanceNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。
 
 可用作卷积和全连接操作的实例正则化函数，根据每个样本的每个通道的均值和方差信息进行正则化。该层需要的数据格式如下：

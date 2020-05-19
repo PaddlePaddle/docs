@@ -11,6 +11,9 @@ gather_nd
 
 
 
+
+
+
 该OP是 :code:`gather` 的高维推广，并且支持多轴同时索引。 :code:`index` 是一个K维度的张量，它可以认为是从 :code:`input` 中取K-1维张量，每一个元素是一个切片：
 
 .. math::

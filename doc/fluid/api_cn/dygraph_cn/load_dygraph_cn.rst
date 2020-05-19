@@ -10,6 +10,12 @@ load_dygraph
 
 
 
+
+
+
+
+
+
 该接口尝试从磁盘中加载参数或优化器的 ``dict`` 。
 
 该接口会同时加载 ``model_path + ".pdparams"`` 和 ``model_path + ".pdopt"`` 中的内容。

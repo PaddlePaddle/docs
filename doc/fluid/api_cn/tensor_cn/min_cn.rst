@@ -11,6 +11,9 @@ min
 
 
 
+
+
+
 该OP是对指定维度上的Tensor元素求最小值运算，并输出相应的计算结果。等价于 :ref:`cn_api_fluid_layers_reduce_min`
 
 参数：

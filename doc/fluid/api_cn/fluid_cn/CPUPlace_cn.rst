@@ -5,6 +5,12 @@ CPUPlace
 
 .. py:class:: paddle.fluid.CPUPlace
 
+:alias_main: paddle.CPUPlace
+:alias: paddle.CPUPlace,paddle.framework.CPUPlace
+:old_api: paddle.fluid.core.CPUPlace
+
+
+
 
 
 

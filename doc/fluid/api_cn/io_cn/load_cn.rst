@@ -7,8 +7,11 @@ load
 
 :api_attr: 声明式编程模式（静态图)
 :alias_main: paddle.load
-:alias: paddle.load,paddle.tensor.load,paddle.tensor.io.load
+:alias: paddle.load,paddle.io.load,paddle.tensor.load,paddle.tensor.io.load
 :old_api: paddle.fluid.io.load
+
+
+
 
 
 

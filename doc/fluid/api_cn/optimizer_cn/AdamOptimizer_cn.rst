@@ -5,6 +5,12 @@ AdamOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameter_list=None, regularization=None, grad_clip=None, name=None, lazy_mode=False)
 
+:alias_main: paddle.optimizer.AdamOptimizer
+:alias: paddle.optimizer.AdamOptimizer
+:old_api: paddle.fluid.optimizer.AdamOptimizer
+
+
+
 
 
 

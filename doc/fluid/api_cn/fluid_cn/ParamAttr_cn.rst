@@ -7,6 +7,12 @@ ParamAttr
 
 .. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=False)
 
+:alias_main: paddle.ParamAttr
+:alias: paddle.ParamAttr,paddle.framework.ParamAttr
+:old_api: paddle.fluid.param_attr.ParamAttr
+
+
+
 
 
 

@@ -7,6 +7,12 @@ scope_guard
 .. py:function:: paddle.fluid.executor.scope_guard (scope)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.scope_guard
+:alias: paddle.scope_guard,paddle.framework.scope_guard
+:old_api: paddle.fluid.executor.scope_guard
+
+
+
 
 
 

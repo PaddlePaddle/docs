@@ -11,6 +11,9 @@ transpose
 
 
 
+
+
+
 该OP根据perm对输入的多维Tensor进行数据重排。返回多维Tensor的第i维对应输入Tensor的perm[i]维。
 
 参数：

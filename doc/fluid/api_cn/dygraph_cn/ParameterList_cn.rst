@@ -5,6 +5,12 @@ ParameterList
 
 .. py:class:: paddle.fluid.dygraph.ParameterList(parameters=None)
 
+:alias_main: paddle.nn.ParameterList
+:alias: paddle.nn.ParameterList
+:old_api: paddle.fluid.dygraph.container.ParameterList
+
+
+
 
 
 

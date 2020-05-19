@@ -5,6 +5,12 @@ DataLoader
 
 .. py:class:: paddle.fluid.io.DataLoader
 
+:alias_main: paddle.io.DataLoader
+:alias: paddle.io.DataLoader
+:old_api: paddle.fluid.io.DataLoader
+
+
+
 
 
 

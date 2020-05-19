@@ -5,6 +5,12 @@ AdadeltaOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdadeltaOptimizer(learning_rate, epsilon=1.0e-6, rho=0.95, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+:alias_main: paddle.optimizer.AdadeltaOptimizer
+:alias: paddle.optimizer.AdadeltaOptimizer
+:old_api: paddle.fluid.optimizer.AdadeltaOptimizer
+
+
+
 
 
 

@@ -11,6 +11,9 @@ atan
 
 
 
+
+
+
 arctanh激活函数。
 
 .. math::

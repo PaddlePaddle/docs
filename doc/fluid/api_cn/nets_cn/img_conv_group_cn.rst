@@ -10,6 +10,9 @@ img_conv_group
 
 
 
+
+
+
 Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。根据输入参数，img_conv_group将使用Convolution2d，BatchNorm，DropOut对Input进行连续计算，得到最后结果。
 
 参数：

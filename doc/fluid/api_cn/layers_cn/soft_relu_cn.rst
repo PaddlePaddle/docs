@@ -11,6 +11,9 @@ soft_relu
 
 
 
+
+
+
 SoftReLU 激活函数.
 
 .. math::   out=ln(1+exp(max(min(x,threshold),-threshold)))

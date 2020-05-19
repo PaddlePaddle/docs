@@ -11,6 +11,9 @@ margin_rank_loss
 
 
 
+
+
+
 margin rank loss（间隔排序损失）层。在排序问题中，它可以比较来自排序网络的输入 ``left`` 和输入 ``right`` 的得分。
 
 可用如下等式定义：

@@ -7,6 +7,12 @@ fc
 .. py:function::  paddle.fluid.layers.fc(input, size, num_flatten_dims=1, param_attr=None, bias_attr=None, act=None, name=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.fc
+:alias: paddle.declarative.fc
+:old_api: paddle.fluid.layers.fc
+
+
+
 
 
 

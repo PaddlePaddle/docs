@@ -11,6 +11,9 @@ shape
 
 
 
+
+
+
 shape层。
 
 获得输入Tensor的shape。

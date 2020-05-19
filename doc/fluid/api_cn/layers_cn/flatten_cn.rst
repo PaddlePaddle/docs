@@ -11,6 +11,9 @@ flatten
 
 
 
+
+
+
 flatten op将输入的多维Tensor展平成2-D Tensor矩阵
 
 例如：

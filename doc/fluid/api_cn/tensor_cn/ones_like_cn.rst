@@ -12,6 +12,9 @@ ones_like
 
 
 
+
+
+
 该OP创建一个和input具有相同的形状和数据类型的全1Tensor。
 
 参数：

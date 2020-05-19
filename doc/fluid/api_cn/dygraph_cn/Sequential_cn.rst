@@ -5,6 +5,12 @@ Sequential
 
 .. py:class:: paddle.fluid.dygraph.Sequential(*layers)
 
+:alias_main: paddle.nn.Sequential
+:alias: paddle.nn.Sequential
+:old_api: paddle.fluid.dygraph.container.Sequential
+
+
+
 
 
 

@@ -5,6 +5,12 @@ RMSPropOptimizer
 
 .. py:class:: paddle.fluid.optimizer.RMSPropOptimizer(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+:alias_main: paddle.optimizer.RMSPropOptimizer
+:alias: paddle.optimizer.RMSPropOptimizer
+:old_api: paddle.fluid.optimizer.RMSPropOptimizer
+
+
+
 
 
 

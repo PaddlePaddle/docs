@@ -10,6 +10,9 @@ full_like
 
 
 
+
+
+
 该OP创建一个和input具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
 
 参数：

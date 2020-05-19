@@ -10,6 +10,9 @@ lstm
 
 
 
+
+
+
 .. note::
     该OP仅支持 GPU 设备运行
 

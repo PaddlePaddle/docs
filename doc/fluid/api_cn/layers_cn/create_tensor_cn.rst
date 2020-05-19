@@ -11,6 +11,9 @@ create_tensor
 
 
 
+
+
+
 创建数据类型为dtype的Tensor。
 
 参数：

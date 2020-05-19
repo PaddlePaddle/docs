@@ -5,6 +5,12 @@ LambOptimizer
 
 .. py:class:: paddle.fluid.optimizer.LambOptimizer(learning_rate=0.001, lamb_weight_decay=0.01, beta1=0.9, beta2=0.999, epsilon=1e-06, parameter_list=None, regularization=None, grad_clip=None, exclude_from_weight_decay_fn=None, name=None)
 
+:alias_main: paddle.optimizer.LambOptimizer
+:alias: paddle.optimizer.LambOptimizer
+:old_api: paddle.fluid.optimizer.LambOptimizer
+
+
+
 
 
 

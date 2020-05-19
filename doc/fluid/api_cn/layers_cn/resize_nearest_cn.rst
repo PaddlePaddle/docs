@@ -11,6 +11,9 @@ resize_nearest
 
 
 
+
+
+
 该OP对输入图片进行大小调整，在高度方向宽度方向进行最邻近插值（nearest neighbor interpolation）操作。
 
 输出形状按优先级顺序依据 ``actual_shape`` , ``out_shape`` 和 ``scale`` 而定。

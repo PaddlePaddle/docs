@@ -5,6 +5,12 @@ AdagradOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdagradOptimizer(learning_rate, epsilon=1e-06, parameter_list=None, regularization=None, grad_clip=None, name=None, initial_accumulator_value=0.0)
 
+:alias_main: paddle.optimizer.AdagradOptimizer
+:alias: paddle.optimizer.AdagradOptimizer
+:old_api: paddle.fluid.optimizer.AdagradOptimizer
+
+
+
 
 
 

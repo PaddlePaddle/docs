@@ -5,6 +5,11 @@ firstn
 
 .. py:function:: paddle.fluid.io.firstn(reader, n)
 
+:alias_main: paddle.io.firstn
+:alias: paddle.io.firstn,paddle.io..reader.firstn
+
+
+
 
 
 

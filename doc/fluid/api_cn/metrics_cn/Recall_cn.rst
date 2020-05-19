@@ -5,6 +5,12 @@ Recall
 
 .. py:class:: paddle.fluid.metrics.Recall(name=None)
 
+:alias_main: paddle.metric.Recall
+:alias: paddle.metric.Recall
+:old_api: paddle.fluid.metrics.Recall
+
+
+
 
 
 

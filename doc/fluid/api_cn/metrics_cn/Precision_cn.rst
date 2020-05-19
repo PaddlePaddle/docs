@@ -5,6 +5,12 @@ Precision
 
 .. py:class:: paddle.fluid.metrics.Precision(name=None)
 
+:alias_main: paddle.metric.Precision
+:alias: paddle.metric.Precision
+:old_api: paddle.fluid.metrics.Precision
+
+
+
 
 
 

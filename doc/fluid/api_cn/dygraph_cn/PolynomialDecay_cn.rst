@@ -10,6 +10,9 @@ PolynomialDecay
 
 
 
+
+
+
 该接口提供学习率按多项式衰减的功能。通过多项式衰减函数，使得学习率值逐步从初始的 ``learning_rate``，衰减到 ``end_learning_rate`` 。
 
 计算方式如下。

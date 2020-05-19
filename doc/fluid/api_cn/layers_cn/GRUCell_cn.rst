@@ -9,6 +9,9 @@ GRUCell
 :api_attr: 声明式编程模式（静态图)
 
 
+
+
+
     
 门控循环单元（Gated Recurrent Unit）。通过对 :code:`fluid.contrib.layers.rnn_impl.BasicGRUUnit` 包装，来让它可以应用于RNNCell。
 

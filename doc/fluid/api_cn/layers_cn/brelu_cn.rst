@@ -12,6 +12,9 @@ brelu
 
 
 
+
+
+
 BReLU 激活函数
 
 .. math::   out=min(max(x,t\_min),t\_max)

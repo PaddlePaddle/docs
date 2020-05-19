@@ -10,6 +10,9 @@ BeamSearchDecoder
 :api_attr: 声明式编程模式（静态图)
 
 
+
+
+
     
 带beam search解码策略的解码器。该接口包装一个cell来计算概率，然后执行一个beam search步骤计算得分，并为每个解码步骤选择候选输出。更多详细信息请参阅 `Beam search <https://en.wikipedia.org/wiki/Beam_search>`_
     

@@ -5,6 +5,12 @@ ParallelEnv
 
 .. py:class:: paddle.fluid.dygraph.ParallelEnv()
 
+:alias_main: paddle.imperative.ParallelEnv
+:alias: paddle.imperative.ParallelEnv
+:old_api: paddle.fluid.dygraph.parallel.ParallelEnv
+
+
+
 **注意：**
   **这个类的曾用名为 Env， 这个旧的名字会被废弃，请使用新的类名 ParallelEnv。**
 

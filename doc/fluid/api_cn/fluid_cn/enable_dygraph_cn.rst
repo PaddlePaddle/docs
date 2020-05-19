@@ -5,6 +5,12 @@ enable_dygraph
 
 .. py:function:: paddle.fluid.enable_dygraph(place=None)
 
+:alias_main: paddle.enable_imperative
+:alias: paddle.enable_imperative
+:old_api: .fluid.dygraph.base.enable_dygraph
+
+
+
 该接口打开动态图模式。
 
 参数：

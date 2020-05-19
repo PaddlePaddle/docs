@@ -5,6 +5,12 @@ DecayedAdagrad
 
 .. py:attribute::  paddle.fluid.optimizer.DecayedAdagrad
 
+:alias_main: paddle.optimizer.DecayedAdagrad
+:alias: paddle.optimizer.DecayedAdagrad
+:old_api: paddle.fluid.optimizer.DecayedAdagrad
+
+
+
 
 
 

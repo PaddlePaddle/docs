@@ -5,6 +5,11 @@ map_readers
 
 .. py:function::   paddle.fluid.io.map_readers(func, *readers)
 
+:alias_main: paddle.io.map_readers
+:alias: paddle.io.map_readers,paddle.io..reader.map_readers
+
+
+
 
 
 

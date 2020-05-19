@@ -6,7 +6,10 @@ manual_seed
 .. py:function:: paddle.framework.manual_seed(seed)
 
 :alias_main: paddle.manual_seed
-:alias: paddle.manual_seed,paddle.framework.random.manual_seed
+:alias: paddle.manual_seed,paddle.framework.manual_seed,paddle.framework.random.manual_seed
+
+
+
 
 
 

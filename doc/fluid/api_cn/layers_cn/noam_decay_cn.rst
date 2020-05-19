@@ -11,6 +11,9 @@ noam_decay
 
 
 
+
+
+
 Noam衰减方法
 
 noam衰减的numpy实现如下：

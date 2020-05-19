@@ -11,6 +11,9 @@ tanh_shrink
 
 
 
+
+
+
 tanh_shrink激活函数
 
 .. math::

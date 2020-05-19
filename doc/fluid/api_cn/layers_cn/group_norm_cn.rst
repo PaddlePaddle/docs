@@ -7,6 +7,12 @@ group_norm
 .. py:function::  paddle.fluid.layers.group_norm(input, groups, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, data_layout='NCHW', name=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.group_norm
+:alias: paddle.declarative.group_norm
+:old_api: paddle.fluid.layers.group_norm
+
+
+
 
 
 

@@ -11,6 +11,9 @@ maxout
 
 
 
+
+
+
 假设输入形状为(N, Ci, H, W)，输出形状为(N, Co, H, W)，则 :math:`Co=Ci/groups` 运算公式如下:
 
 .. math::

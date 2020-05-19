@@ -10,6 +10,9 @@ embedding
 
 
 
+
+
+
 嵌入层(Embedding Layer)
 
 **注意：此OP将在未来的版本中被移除！该OP要求输入Tensor shape的最后一维必须为1。推荐使用fluid.** :ref:`cn_api_fluid_embedding` 。

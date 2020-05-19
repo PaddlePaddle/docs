@@ -11,6 +11,9 @@ GradientClipByNorm
 
 
 
+
+
+
 将输入的多维Tensor :math:`X` 的L2范数限制在 ``clip_norm`` 范围之内。
 
 - 如果L2范数大于 ``clip_norm`` ，则该 Tensor 会乘以一个系数进行压缩

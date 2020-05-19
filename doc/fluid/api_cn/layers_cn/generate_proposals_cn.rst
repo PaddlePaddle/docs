@@ -12,6 +12,9 @@ generate_proposals
 
 
 
+
+
+
 该OP根据每个检测框为foreground对象的概率，推选生成用于后续检测网络的RoIs。
 其中的检测框根据 ``anchors`` 和 ``bbox_deltas`` 计算得到。
 

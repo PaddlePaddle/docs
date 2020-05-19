@@ -11,6 +11,9 @@ beam_search_decode
 
 
 
+
+
+
 该OP用在整个束搜索(Beam search)结束后，通过沿 ``ids`` 中保存的搜索路径回溯，为每个源句（样本）构造完整的beam search结果序列并保存在LoDTensor中。LoDTensor的格式和解析方式如下：
 
 ::

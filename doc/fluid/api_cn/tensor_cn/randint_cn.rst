@@ -10,6 +10,9 @@ randint
 
 
 
+
+
+
 该OP使用从区间[low，high)内均匀分布采样的随机整数初始化一个Tensor。当high为None时（默认），均匀采样的区间为[0,low)。
 
 参数：

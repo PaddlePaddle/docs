@@ -5,6 +5,11 @@ sigmoid
 
 .. py:function:: paddle.fluid.layers.sigmoid(x, name=None)
 
+:alias_main: paddle.nn.functional.sigmoid
+:alias: paddle.nn.functional.sigmoid,paddle.nn.functional.activation.sigmoid
+
+
+
 
 
 

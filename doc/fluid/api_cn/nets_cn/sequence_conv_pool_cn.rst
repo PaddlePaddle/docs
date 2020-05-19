@@ -10,6 +10,9 @@ sequence_conv_pool
 
 
 
+
+
+
 **注意：该OP的输入** ``input`` **必须是2维LoDTensor, lod_level为1，如果输入是Tensor，建议使用** :ref:`cn_api_fluid_nets_simple_img_conv_pool` **代替**
 
 该接口由序列卷积( :ref:`cn_api_fluid_layers_sequence_conv` )和池化( :ref:`cn_api_fluid_layers_sequence_pool` )组成

@@ -11,6 +11,9 @@ square_error_cost
 
 
 
+
+
+
 该OP用于计算预测值和目标值的方差估计。
 
 对于预测值input和目标值label，公式为：

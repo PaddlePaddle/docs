@@ -11,6 +11,9 @@ hash
 
 
 
+
+
+
 该OP将输入 hash 成为一个整数，该数的值小于给定的 ``hash_size`` 。**仅支持输入为LoDTensor**。
 
 该OP使用的哈希算法是：xxHash - `Extremely fast hash algorithm <https://github.com/Cyan4973/xxHash/tree/v0.6.5>`_

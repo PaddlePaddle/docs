@@ -5,6 +5,11 @@ Conv2DTranspose
 
 .. py:class:: paddle.fluid.dygraph.Conv2DTranspose(num_channels, num_filters, filter_size, output_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, dtype="float32")
 
+:alias_main: paddle.nn.Conv2DTranspose
+:alias: paddle.nn.Conv2DTranspose,paddle.nn.layer.Conv2DTranspose,paddle.nn.layer.conv.Conv2DTranspose
+
+
+
 
 
 

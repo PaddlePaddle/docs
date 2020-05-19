@@ -11,6 +11,9 @@ exponential_decay
 
 
 
+
+
+
 在学习率上运用指数衰减。
 
 训练模型时，在训练过程中降低学习率。每 ``decay_steps`` 步骤中以 ``decay_rate`` 衰减学习率。

@@ -5,6 +5,12 @@ batch
 
 .. py:function:: paddle.fluid.io.batch(reader, batch_size, drop_last=False)
 
+:alias_main: paddle.io.batch
+:alias: paddle.io.batch
+:old_api: paddle.fluid.io.batch
+
+
+
 
 
 

@@ -5,6 +5,12 @@ FtrlOptimizer
 
 .. py:class:: paddle.fluid.optimizer.FtrlOptimizer(learning_rate, l1=0.0, l2=0.0, lr_power=-0.5, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+:alias_main: paddle.optimizer.FtrlOptimizer
+:alias: paddle.optimizer.FtrlOptimizer
+:old_api: paddle.fluid.optimizer.FtrlOptimizer
+
+
+
 
 
  

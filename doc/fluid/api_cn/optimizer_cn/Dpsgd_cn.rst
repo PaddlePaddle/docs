@@ -5,6 +5,12 @@ Dpsgd
 
 .. py:attribute:: paddle.fluid.optimizer.Dpsgd
 
+:alias_main: paddle.optimizer.Dpsgd
+:alias: paddle.optimizer.Dpsgd
+:old_api: paddle.fluid.optimizer.Dpsgd
+
+
+
 
 
 

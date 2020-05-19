@@ -11,6 +11,9 @@ npair_loss
 
 
 
+
+
+
 **Npair Loss Layer**
 
 参考阅读 `Improved Deep Metric Learning with Multi class N pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_

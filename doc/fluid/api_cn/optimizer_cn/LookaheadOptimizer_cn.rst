@@ -7,6 +7,12 @@ LookaheadOptimizer
 .. py:class:: paddle.fluid.optimizer.LookaheadOptimizer(inner_optimizer, alpha=0.5, k=5)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.optimizer.LookaheadOptimizer
+:alias: paddle.optimizer.LookaheadOptimizer
+:old_api: paddle.fluid.optimizer.LookaheadOptimizer
+
+
+
 
 
 

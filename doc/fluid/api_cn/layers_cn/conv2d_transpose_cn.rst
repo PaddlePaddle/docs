@@ -7,6 +7,12 @@ conv2d_transpose
 .. py:function:: paddle.fluid.layers.conv2d_transpose(input, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format='NCHW')
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.conv2d_transpose
+:alias: paddle.declarative.conv2d_transpose,paddle.nn.functional.conv2d_transpose,paddle.nn.functional.conv.conv2d_transpose
+:old_api: paddle.fluid.layers.conv2d_transpose
+
+
+
 
 
 

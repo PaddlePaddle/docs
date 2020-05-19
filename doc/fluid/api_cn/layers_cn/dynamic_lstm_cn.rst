@@ -10,6 +10,9 @@ dynamic_lstm
 
 
 
+
+
+
 该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf>`_。
 
 .. note::

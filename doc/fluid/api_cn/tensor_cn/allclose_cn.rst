@@ -10,6 +10,9 @@ allclose
 
 
 
+
+
+
 逐个检查input和other的所有元素是否均满足如下条件：
 
 ..  math::

@@ -10,6 +10,9 @@ rnn
 :api_attr: 声明式编程模式（静态图)
 
 
+
+
+
     
 
 rnn创建一个由RNNCell :code:`cell` 指定的递归神经网络，该神经网络重复执行 :code:`cell.call()` 直至达到 :code:`inputs` 的最大长度。

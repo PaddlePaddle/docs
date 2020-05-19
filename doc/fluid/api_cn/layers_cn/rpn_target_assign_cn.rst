@@ -11,6 +11,9 @@ rpn_target_assign
 
 
 
+
+
+
 该OP用于为anchors分配分类标签和回归标签，以便用这些标签对RPN进行训练。
 
 该OP将anchors分为两种类别，正和负。根据Faster-RCNN的paper，正类别anchor包括以下两种anchor:

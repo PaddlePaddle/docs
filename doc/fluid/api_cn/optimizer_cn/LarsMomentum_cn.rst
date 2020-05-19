@@ -5,6 +5,12 @@ LarsMomentum
 
 .. py:attribute::  paddle.fluid.optimizer.LarsMomentum
 
+:alias_main: paddle.optimizer.LarsMomentum
+:alias: paddle.optimizer.LarsMomentum
+:old_api: paddle.fluid.optimizer.LarsMomentum
+
+
+
 
 
 

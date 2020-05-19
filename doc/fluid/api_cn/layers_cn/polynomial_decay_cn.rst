@@ -11,6 +11,9 @@ polynomial_decay
 
 
 
+
+
+
 对初始学习率使用多项式衰减
 
 .. code-block:: text

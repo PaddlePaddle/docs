@@ -5,6 +5,12 @@ DpsgdOptimizer
 
 .. py:class:: paddle.fluid.optimizer.DpsgdOptimizer(learning_rate=0.001, clip=0.9, batch_size=0.999, sigma=1e-8)
 
+:alias_main: paddle.optimizer.DpsgdOptimizer
+:alias: paddle.optimizer.DpsgdOptimizer
+:old_api: paddle.fluid.optimizer.DpsgdOptimizer
+
+
+
 
 
 

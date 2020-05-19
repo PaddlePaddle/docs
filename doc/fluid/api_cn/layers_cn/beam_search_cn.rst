@@ -11,6 +11,9 @@ beam_search
 
 
 
+
+
+
 束搜索(Beam search)是在机器翻译等生成任务中选择候选词的一种经典算法
 
 更多细节参考 `Beam Search <https://en.wikipedia.org/wiki/Beam_search>`_

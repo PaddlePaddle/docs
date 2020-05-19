@@ -11,6 +11,9 @@ similarity_focus
 
 
 
+
+
+
 **实现SimilarityFocus(相似度聚焦)运算**
 
 通过以下三个步骤，该层生成一个和输入 ``input`` 同形的 similarity focus mask（相似度聚焦掩码）：

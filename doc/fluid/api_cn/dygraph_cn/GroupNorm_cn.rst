@@ -11,6 +11,9 @@ GroupNorm
 
 
 
+
+
+
 **Group Normalization层**
 
 该接口用于构建 ``GroupNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了组归一化层的功能。更多详情请参考： `Group Normalization <https://arxiv.org/abs/1803.08494>`_ 。

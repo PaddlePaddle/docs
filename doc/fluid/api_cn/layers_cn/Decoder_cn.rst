@@ -11,6 +11,9 @@ Decoder
 
 
 
+
+
+
     
 Decoder是dynamic_decode中使用的任何decoder实例的基类。它提供了为每一个时间步生成输出的接口，可用于生成序列。
 

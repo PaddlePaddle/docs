@@ -5,6 +5,12 @@ DetectionMAP
 
 .. py:class:: paddle.fluid.metrics.DetectionMAP(input, gt_label, gt_box, gt_difficult=None, class_num=None, background_label=0, overlap_threshold=0.5, evaluate_difficult=True, ap_version='integral')
 
+:alias_main: paddle.metric.DetectionMAP
+:alias: paddle.metric.DetectionMAP
+:old_api: paddle.fluid.metrics.DetectionMAP
+
+
+
 
 
 

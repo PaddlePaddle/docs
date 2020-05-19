@@ -10,6 +10,12 @@ embedding
 
 
 
+
+
+
+
+
+
 该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，函数会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
 输出的Tensor的shape是在输入Tensor shape的最后一维后面添加了emb_size的维度。

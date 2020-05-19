@@ -5,6 +5,12 @@ in_dygraph_mode
 
 .. py:function:: paddle.fluid.in_dygraph_mode()
 
+:alias_main: paddle.in_imperative_mode
+:alias: paddle.in_imperative_mode
+:old_api: .fluid.framework.in_dygraph_mode
+
+
+
 
 
 

@@ -11,6 +11,9 @@ assign
 
 
 
+
+
+
 该OP将输入Tensor或numpy数组拷贝至输出Tensor。
 
 参数：

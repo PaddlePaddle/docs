@@ -5,6 +5,11 @@ UpSample
 
 .. py:class:: paddle.nn.UpSample(out_shape=None, scale=None, resample='BILINEAR', actual_shape=None, align_corners=True, align_mode=1, data_format='NCHW')
 
+:alias_main: paddle.nn.UpSample
+:alias: paddle.nn.UpSample,paddle.nn.layer.UpSample,paddle.nn.layer.common.UpSample
+
+
+
 **注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 该OP用于调整一个batch中图片的大小。

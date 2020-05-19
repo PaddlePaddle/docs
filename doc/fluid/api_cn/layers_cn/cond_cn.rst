@@ -13,6 +13,9 @@ cond
 
 
 
+
+
+
 如果 ``pred`` 是 ``True`` ，该API返回 ``true_fn()`` ，否则返回 ``false_fn()`` 。
 用户如果不想在 ``callable`` 中做任何事，可以把 ``true_fn`` 或 ``false_fn`` 设为 ``None`` ，此时本API会把该 ``callable`` 视为简单返回 ``None`` 。
 

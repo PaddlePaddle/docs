@@ -10,6 +10,9 @@ DataFeedDesc
 
 
 
+
+
+
 描述训练数据的格式。输入是一个文件路径名，其内容是protobuf message。
 
 可以参考 :code:`paddle/fluid/framework/data_feed.proto` 查看我们如何定义message

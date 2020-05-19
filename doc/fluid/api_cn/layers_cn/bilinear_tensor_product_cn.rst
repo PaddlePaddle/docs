@@ -7,6 +7,12 @@ bilinear_tensor_product
 .. py:function:: paddle.fluid.layers.bilinear_tensor_product(x, y, size, act=None, name=None, param_attr=None, bias_attr=None)
 
 :api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.declarative.bilinear_tensor_product
+:alias: paddle.declarative.bilinear_tensor_product
+:old_api: paddle.fluid.layers.bilinear_tensor_product
+
+
+
 
 
 

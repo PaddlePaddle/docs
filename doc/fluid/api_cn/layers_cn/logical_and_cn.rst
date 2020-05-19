@@ -11,6 +11,9 @@ logical_and
 
 
 
+
+
+
 该OP逐元素的对 ``X`` 和 ``Y`` 两LoDTensor/Tensor进行逻辑与运算。
 
 .. math::

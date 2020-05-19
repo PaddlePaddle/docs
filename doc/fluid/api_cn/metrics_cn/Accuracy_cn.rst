@@ -4,6 +4,15 @@ Accuracy
 -------------------------------
 .. py:class:: paddle.fluid.metrics.Accuracy(name=None)
 
+:alias_main: paddle.metric.accuracy
+:alias: paddle.metric.accuracy
+:old_api: paddle.fluid.layers.metric_op.accuracy
+
+
+
+
+
+
 
 
 

@@ -10,6 +10,9 @@ RoundRobin
 
 
 
+
+
+
 该方法使用 ``RoundRobin`` 的方式将变量散列到多个parameter server终端。
 
 `RondRobin <https://en.wikipedia.org/wiki/Round-robin_scheduling>`_

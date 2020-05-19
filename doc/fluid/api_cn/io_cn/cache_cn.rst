@@ -5,6 +5,11 @@ cache
 
 .. py:function:: paddle.fluid.io.cache(reader)
 
+:alias_main: paddle.io.cache
+:alias: paddle.io.cache,paddle.io..reader.cache
+
+
+
 
 
 

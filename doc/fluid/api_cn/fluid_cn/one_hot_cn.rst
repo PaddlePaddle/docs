@@ -11,6 +11,9 @@ one_hot
 
 
 
+
+
+
 该OP将输入（input）中的每个id转换为一个one-hot向量，其长度为 ``depth`` ，该id对应的向量维度上的值为1，其余维度的值为0。
 
 输出的Tensor（或LoDTensor）的shape是在输入shape的最后一维后面添加了depth的维度。

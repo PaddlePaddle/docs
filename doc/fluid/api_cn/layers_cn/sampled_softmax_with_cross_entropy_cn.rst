@@ -11,6 +11,9 @@ sampled_softmax_with_cross_entropy
 
 
 
+
+
+
 **Sampled Softmax With Cross Entropy Operator**
 
 对于较大的输出类，采样的交叉熵损失Softmax被广泛地用作输出层。该运算符为所有示例采样若干个样本，并计算每行采样张量的SoftMax标准化值，然后计算交叉熵损失。

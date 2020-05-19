@@ -5,6 +5,12 @@ SGDOptimizer
 
 .. py:class:: paddle.fluid.optimizer.SGDOptimizer(learning_rate, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+:alias_main: paddle.optimizer.SGDOptimizer
+:alias: paddle.optimizer.SGDOptimizer
+:old_api: paddle.fluid.optimizer.SGDOptimizer
+
+
+
 
 
 
