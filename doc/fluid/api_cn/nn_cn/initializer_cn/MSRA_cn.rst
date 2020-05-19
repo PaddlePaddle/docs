@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn/initializer_cn_MSRA:
 
-	paddle.fluid.initializer.MSRA
+MSRA
+-------------------------------
+:doc_source: paddle.fluid.initializer.MSRA
+
 

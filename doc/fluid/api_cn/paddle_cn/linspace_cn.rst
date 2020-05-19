@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_linspace:
 
-	paddle.fluid.layers.linspace
+linspace
+-------------------------------
+:doc_source: paddle.fluid.layers.linspace
+
 

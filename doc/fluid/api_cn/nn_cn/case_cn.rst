@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_case:
 
-	paddle.fluid.layers.case
+case
+-------------------------------
+:doc_source: paddle.fluid.layers.case
+
 

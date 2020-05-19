@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_squeeze:
 
-	paddle.fluid.layers.squeeze
+squeeze
+-------------------------------
+:doc_source: paddle.fluid.layers.squeeze
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_metric_cn_accuracy:
 
-	paddle.fluid.layers.metric_op.accuracy
+accuracy
+-------------------------------
+:doc_source: paddle.fluid.layers.metric_op.accuracy
+
 

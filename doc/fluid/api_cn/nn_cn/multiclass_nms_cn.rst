@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_multiclass_nms:
 
-	paddle.fluid.layers.multiclass_nms
+multiclass_nms
+-------------------------------
+:doc_source: paddle.fluid.layers.multiclass_nms
+
 

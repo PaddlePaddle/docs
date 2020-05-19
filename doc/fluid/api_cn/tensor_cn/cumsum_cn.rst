@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_cumsum:
 
-	paddle.fluid.layers.cumsum
+cumsum
+-------------------------------
+:doc_source: paddle.fluid.layers.cumsum
+
 

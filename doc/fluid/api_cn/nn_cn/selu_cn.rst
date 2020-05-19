@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_selu:
 
-	paddle.fluid.layers.selu
+selu
+-------------------------------
+:doc_source: paddle.fluid.layers.selu
+
 

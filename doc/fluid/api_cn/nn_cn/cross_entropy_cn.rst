@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_cross_entropy:
 
-	paddle.fluid.layers.cross_entropy
+cross_entropy
+-------------------------------
+:doc_source: paddle.fluid.layers.cross_entropy
+
 

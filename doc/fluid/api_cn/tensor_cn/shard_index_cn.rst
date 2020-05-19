@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_shard_index:
 
-	paddle.fluid.layers.shard_index
+shard_index
+-------------------------------
+:doc_source: paddle.fluid.layers.shard_index
+
 

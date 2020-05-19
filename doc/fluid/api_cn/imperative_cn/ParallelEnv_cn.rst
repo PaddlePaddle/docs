@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_ParallelEnv:
 
-	paddle.fluid.dygraph.parallel.ParallelEnv
+ParallelEnv
+-------------------------------
+:doc_source: paddle.fluid.dygraph.parallel.ParallelEnv
+
 

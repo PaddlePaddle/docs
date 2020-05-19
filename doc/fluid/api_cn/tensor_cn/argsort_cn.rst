@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_argsort:
 
-	paddle.fluid.layers.argsort
+argsort
+-------------------------------
+:doc_source: paddle.fluid.layers.argsort
+
 

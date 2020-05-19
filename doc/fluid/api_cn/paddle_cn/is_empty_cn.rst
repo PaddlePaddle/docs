@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_is_empty:
 
-	paddle.fluid.layers.is_empty
+is_empty
+-------------------------------
+:doc_source: paddle.fluid.layers.is_empty
+
 

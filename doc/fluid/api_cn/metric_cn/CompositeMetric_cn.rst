@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_metric_cn_CompositeMetric:
 
-	paddle.fluid.metrics.CompositeMetric
+CompositeMetric
+-------------------------------
+:doc_source: paddle.fluid.metrics.CompositeMetric
+
 

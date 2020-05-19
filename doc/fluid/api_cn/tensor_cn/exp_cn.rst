@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_exp:
 
-	paddle.fluid.layers.exp
+exp
+-------------------------------
+:doc_source: paddle.fluid.layers.exp
+
 

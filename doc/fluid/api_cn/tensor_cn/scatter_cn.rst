@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_scatter:
 
-	paddle.fluid.layers.scatter
+scatter
+-------------------------------
+:doc_source: paddle.fluid.layers.scatter
+
 

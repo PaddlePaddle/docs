@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_GradientClipByGlobalNorm:
 
-	paddle.fluid.clip.GradientClipByGlobalNorm
+GradientClipByGlobalNorm
+-------------------------------
+:doc_source: paddle.fluid.clip.GradientClipByGlobalNorm
+
 

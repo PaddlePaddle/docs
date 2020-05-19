@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_resize_bilinear:
 
-	paddle.fluid.layers.resize_bilinear
+resize_bilinear
+-------------------------------
+:doc_source: paddle.fluid.layers.resize_bilinear
+
 

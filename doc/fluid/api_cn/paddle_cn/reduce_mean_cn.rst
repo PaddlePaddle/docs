@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_reduce_mean:
 
-	paddle.fluid.layers.reduce_mean
+reduce_mean
+-------------------------------
+:doc_source: paddle.fluid.layers.reduce_mean
+
 

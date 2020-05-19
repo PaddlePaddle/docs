@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_box_decoder_and_assign:
 
-	paddle.fluid.layers.box_decoder_and_assign
+box_decoder_and_assign
+-------------------------------
+:doc_source: paddle.fluid.layers.box_decoder_and_assign
+
 

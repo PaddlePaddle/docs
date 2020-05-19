@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_allclose:
 
-	paddle.tensor.allclose
+allclose
+-------------------------------
+:doc_source: paddle.tensor.allclose
+
 

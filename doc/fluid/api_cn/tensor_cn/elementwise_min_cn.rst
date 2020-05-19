@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_elementwise_min:
 
-	paddle.fluid.layers.elementwise_min
+elementwise_min
+-------------------------------
+:doc_source: paddle.fluid.layers.elementwise_min
+
 

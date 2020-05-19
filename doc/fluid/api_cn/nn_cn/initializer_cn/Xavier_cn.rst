@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn/initializer_cn_Xavier:
 
-	paddle.fluid.initializer.Xavier
+Xavier
+-------------------------------
+:doc_source: paddle.fluid.initializer.Xavier
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_PolynomialDecay:
 
-	paddle.fluid.dygraph.learning_rate_scheduler.PolynomialDecay
+PolynomialDecay
+-------------------------------
+:doc_source: paddle.fluid.dygraph.learning_rate_scheduler.PolynomialDecay
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_Embedding:
 
-	paddle.fluid.dygraph.Embedding
+Embedding
+-------------------------------
+:doc_source: paddle.fluid.dygraph.Embedding
+
 

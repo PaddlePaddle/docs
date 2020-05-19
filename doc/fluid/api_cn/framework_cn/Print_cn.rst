@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_framework_cn_Print:
 
-	paddle.fluid.layers.control_flow.Print
+Print
+-------------------------------
+:doc_source: paddle.fluid.layers.control_flow.Print
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_triu:
 
-	paddle.tensor.triu
+triu
+-------------------------------
+:doc_source: paddle.tensor.triu
+
 

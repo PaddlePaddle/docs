@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_elementwise_sum:
 
-	paddle.tensor.elementwise_sum
+elementwise_sum
+-------------------------------
+:doc_source: paddle.tensor.elementwise_sum
+
 

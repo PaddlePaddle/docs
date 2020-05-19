@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_GroupNorm:
 
-	paddle.fluid.dygraph.GroupNorm
+GroupNorm
+-------------------------------
+:doc_source: paddle.fluid.dygraph.GroupNorm
+
 
