@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_zeros:
 
-	paddle.fluid.layers.zeros
+zeros
+-------------------------------
+:doc_source: paddle.fluid.layers.zeros
+
 

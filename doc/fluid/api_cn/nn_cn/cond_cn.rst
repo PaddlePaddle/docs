@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_cond:
 
-	paddle.fluid.layers.cond
+cond
+-------------------------------
+:doc_source: paddle.fluid.layers.cond
+
 

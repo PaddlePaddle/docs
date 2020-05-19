@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_cosine_decay:
 
-	paddle.fluid.layers.cosine_decay
+cosine_decay
+-------------------------------
+:doc_source: paddle.fluid.layers.cosine_decay
+
 

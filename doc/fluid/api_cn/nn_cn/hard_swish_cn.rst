@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_hard_swish:
 
-	paddle.fluid.layers.hard_swish
+hard_swish
+-------------------------------
+:doc_source: paddle.fluid.layers.hard_swish
+
 

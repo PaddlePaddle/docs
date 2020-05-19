@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_iou_similarity:
 
-	paddle.fluid.layers.iou_similarity
+iou_similarity
+-------------------------------
+:doc_source: paddle.fluid.layers.iou_similarity
+
 

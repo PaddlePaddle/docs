@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_framework_cn_CUDAPlace:
 
-	paddle.fluid.core.CUDAPlace
+CUDAPlace
+-------------------------------
+:doc_source: paddle.fluid.core.CUDAPlace
+
 

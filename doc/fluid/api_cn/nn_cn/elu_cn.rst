@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_elu:
 
-	paddle.fluid.layers.elu
+elu
+-------------------------------
+:doc_source: paddle.fluid.layers.elu
+
 

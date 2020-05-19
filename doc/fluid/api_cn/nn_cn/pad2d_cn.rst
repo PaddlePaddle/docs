@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_pad2d:
 
-	paddle.fluid.layers.pad2d
+pad2d
+-------------------------------
+:doc_source: paddle.fluid.layers.pad2d
+
 

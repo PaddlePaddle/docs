@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_enable_imperative:
 
-	paddle.fluid.dygraph.base.enable_dygraph
+enable_imperative
+-------------------------------
+:doc_source: paddle.fluid.dygraph.base.enable_dygraph
+
 

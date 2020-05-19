@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_tanh:
 
-	paddle.fluid.layers.tanh
+tanh
+-------------------------------
+:doc_source: paddle.fluid.layers.tanh
+
 

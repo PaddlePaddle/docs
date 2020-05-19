@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_cholesky:
 
-	paddle.tensor.cholesky
+cholesky
+-------------------------------
+:doc_source: paddle.tensor.cholesky
+
 

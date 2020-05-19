@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_logsumexp:
 
-	paddle.tensor.logsumexp
+logsumexp
+-------------------------------
+:doc_source: paddle.tensor.logsumexp
+
 

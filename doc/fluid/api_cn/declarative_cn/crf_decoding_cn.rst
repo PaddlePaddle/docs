@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_declarative_cn_crf_decoding:
 
-	paddle.fluid.layers.crf_decoding
+crf_decoding
+-------------------------------
+:doc_source: paddle.fluid.layers.crf_decoding
+
 

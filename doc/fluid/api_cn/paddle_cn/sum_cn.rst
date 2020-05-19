@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_sum:
 
-	paddle.fluid.layers.reduce_sum
+sum
+-------------------------------
+:doc_source: paddle.fluid.layers.reduce_sum
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_shape:
 
-	paddle.fluid.layers.shape
+shape
+-------------------------------
+:doc_source: paddle.fluid.layers.shape
+
 

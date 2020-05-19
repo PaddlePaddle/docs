@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_hash:
 
-	paddle.fluid.layers.hash
+hash
+-------------------------------
+:doc_source: paddle.fluid.layers.hash
+
 

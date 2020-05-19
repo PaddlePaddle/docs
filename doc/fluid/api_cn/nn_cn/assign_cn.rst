@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_assign:
 
-	paddle.fluid.layers.assign
+assign
+-------------------------------
+:doc_source: paddle.fluid.layers.assign
+
 

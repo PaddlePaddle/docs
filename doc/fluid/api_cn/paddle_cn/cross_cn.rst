@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_cross:
 
-	paddle.tensor.cross
+cross
+-------------------------------
+:doc_source: paddle.tensor.cross
+
 

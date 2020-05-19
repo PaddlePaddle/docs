@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_grid_sampler:
 
-	paddle.fluid.layers.grid_sampler
+grid_sampler
+-------------------------------
+:doc_source: paddle.fluid.layers.grid_sampler
+
 

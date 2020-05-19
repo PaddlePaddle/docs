@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_Executor:
 
-	paddle.fluid.executor.Executor
+Executor
+-------------------------------
+:doc_source: paddle.fluid.executor.Executor
+
 

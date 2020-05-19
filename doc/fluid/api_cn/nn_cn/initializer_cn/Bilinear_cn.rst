@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn/initializer_cn_Bilinear:
 
-	paddle.fluid.initializer.Bilinear
+Bilinear
+-------------------------------
+:doc_source: paddle.fluid.initializer.Bilinear
+
 

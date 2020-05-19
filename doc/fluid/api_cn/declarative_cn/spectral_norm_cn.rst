@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_declarative_cn_spectral_norm:
 
-	paddle.fluid.layers.spectral_norm
+spectral_norm
+-------------------------------
+:doc_source: paddle.fluid.layers.spectral_norm
+
 

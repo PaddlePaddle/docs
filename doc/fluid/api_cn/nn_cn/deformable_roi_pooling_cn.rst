@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_deformable_roi_pooling:
 
-	paddle.fluid.layers.deformable_roi_pooling
+deformable_roi_pooling
+-------------------------------
+:doc_source: paddle.fluid.layers.deformable_roi_pooling
+
 

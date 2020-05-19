@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_scope_guard:
 
-	paddle.fluid.executor.scope_guard
+scope_guard
+-------------------------------
+:doc_source: paddle.fluid.executor.scope_guard
+
 

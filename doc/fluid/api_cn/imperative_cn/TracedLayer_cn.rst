@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_TracedLayer:
 
-	paddle.fluid.dygraph.jit.TracedLayer
+TracedLayer
+-------------------------------
+:doc_source: paddle.fluid.dygraph.jit.TracedLayer
+
 

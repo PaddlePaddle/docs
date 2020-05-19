@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_temporal_shift:
 
-	paddle.fluid.layers.temporal_shift
+temporal_shift
+-------------------------------
+:doc_source: paddle.fluid.layers.temporal_shift
+
 

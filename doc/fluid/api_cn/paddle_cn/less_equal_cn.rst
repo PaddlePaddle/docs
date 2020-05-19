@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_less_equal:
 
-	paddle.fluid.layers.less_equal
+less_equal
+-------------------------------
+:doc_source: paddle.fluid.layers.less_equal
+
 

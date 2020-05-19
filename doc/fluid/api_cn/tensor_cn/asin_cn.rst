@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_asin:
 
-	paddle.fluid.layers.asin
+asin
+-------------------------------
+:doc_source: paddle.fluid.layers.asin
+
 

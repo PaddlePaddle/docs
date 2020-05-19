@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_clamp:
 
-	paddle.tensor.clamp
+clamp
+-------------------------------
+:doc_source: paddle.tensor.clamp
+
 

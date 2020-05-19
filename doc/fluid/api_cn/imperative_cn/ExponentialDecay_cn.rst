@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_ExponentialDecay:
 
-	paddle.fluid.dygraph.learning_rate_scheduler.ExponentialDecay
+ExponentialDecay
+-------------------------------
+:doc_source: paddle.fluid.dygraph.learning_rate_scheduler.ExponentialDecay
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_declarative:
 
-	paddle.fluid.dygraph.jit.declarative
+declarative
+-------------------------------
+:doc_source: paddle.fluid.dygraph.jit.declarative
+
 

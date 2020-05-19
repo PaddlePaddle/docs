@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_equal:
 
-	paddle.tensor.equal
+equal
+-------------------------------
+:doc_source: paddle.tensor.equal
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_BatchNorm:
 
-	paddle.fluid.dygraph.BatchNorm
+BatchNorm
+-------------------------------
+:doc_source: paddle.fluid.dygraph.BatchNorm
+
 

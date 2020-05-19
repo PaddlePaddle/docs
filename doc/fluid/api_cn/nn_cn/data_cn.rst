@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_data:
 
-	paddle.fluid.data
+data
+-------------------------------
+:doc_source: paddle.fluid.data
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_framework_cn_ParallelExecutor:
 
-	paddle.fluid.parallel_executor.ParallelExecutor
+ParallelExecutor
+-------------------------------
+:doc_source: paddle.fluid.parallel_executor.ParallelExecutor
+
 

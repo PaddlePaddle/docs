@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_InverseTimeDecay:
 
-	paddle.fluid.dygraph.learning_rate_scheduler.InverseTimeDecay
+InverseTimeDecay
+-------------------------------
+:doc_source: paddle.fluid.dygraph.learning_rate_scheduler.InverseTimeDecay
+
 

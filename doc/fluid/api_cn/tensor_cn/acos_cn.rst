@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_acos:
 
-	paddle.fluid.layers.acos
+acos
+-------------------------------
+:doc_source: paddle.fluid.layers.acos
+
 

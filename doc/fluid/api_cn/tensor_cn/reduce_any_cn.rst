@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_reduce_any:
 
-	paddle.fluid.layers.reduce_any
+reduce_any
+-------------------------------
+:doc_source: paddle.fluid.layers.reduce_any
+
 

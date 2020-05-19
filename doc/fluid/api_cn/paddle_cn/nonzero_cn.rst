@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_nonzero:
 
-	paddle.tensor.nonzero
+nonzero
+-------------------------------
+:doc_source: paddle.tensor.nonzero
+
 

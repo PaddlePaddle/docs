@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_shuffle:
 
-	paddle.fluid.io.shuffle
+shuffle
+-------------------------------
+:doc_source: paddle.fluid.io.shuffle
+
 

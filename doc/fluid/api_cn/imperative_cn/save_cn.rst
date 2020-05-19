@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_save:
 
-	paddle.fluid.dygraph.checkpoint.save_dygraph
+save
+-------------------------------
+:doc_source: paddle.fluid.dygraph.checkpoint.save_dygraph
+
 

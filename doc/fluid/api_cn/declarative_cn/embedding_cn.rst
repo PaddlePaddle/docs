@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_declarative_cn_embedding:
 
-	paddle.fluid.input.embedding
+embedding
+-------------------------------
+:doc_source: paddle.fluid.input.embedding
+
 

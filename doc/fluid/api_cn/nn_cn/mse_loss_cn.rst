@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_mse_loss:
 
-	paddle.fluid.layers.mse_loss
+mse_loss
+-------------------------------
+:doc_source: paddle.fluid.layers.mse_loss
+
 
