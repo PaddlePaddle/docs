@@ -93,12 +93,12 @@ Ubuntu系统下有3种安装方式：
 ## 安装步骤
 
 * CPU版PaddlePaddle：
-  * 对于Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * 对于Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 2： `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 * GPU版PaddlePaddle：
-  * 对于Python 2： `python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * 对于Python 3： `python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
@@ -106,7 +106,7 @@ Ubuntu系统下有3种安装方式：
 
 * 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu#history)，关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html#whls)
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu#history)，关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html#whls)
 
 
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html#ciwhls)
@@ -121,6 +121,6 @@ Ubuntu系统下有3种安装方式：
 ## 如何卸载
 请使用以下命令卸载PaddlePaddle：
 
-* **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle`
+* **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle==2.0.0a0` 或 `python3 -m pip uninstall paddlepaddle`
 
-* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu` 或 `python3 -m pip uninstall paddlepaddle-gpu`
+* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu===2.0.0a0` 或 `python3 -m pip uninstall paddlepaddle-gpu`
