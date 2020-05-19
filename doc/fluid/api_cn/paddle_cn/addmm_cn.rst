@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_addmm:
 
-	paddle.tensor.addmm
+addmm
+-------------------------------
+:doc_source: paddle.tensor.addmm
+
 

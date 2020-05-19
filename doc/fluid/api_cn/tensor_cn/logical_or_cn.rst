@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_logical_or:
 
-	paddle.fluid.layers.logical_or
+logical_or
+-------------------------------
+:doc_source: paddle.fluid.layers.logical_or
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_resize_trilinear:
 
-	paddle.fluid.layers.resize_trilinear
+resize_trilinear
+-------------------------------
+:doc_source: paddle.fluid.layers.resize_trilinear
+
 

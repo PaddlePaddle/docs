@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_prroi_pool:
 
-	paddle.fluid.layers.prroi_pool
+prroi_pool
+-------------------------------
+:doc_source: paddle.fluid.layers.prroi_pool
+
 

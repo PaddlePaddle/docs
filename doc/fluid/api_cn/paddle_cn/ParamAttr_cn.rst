@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_ParamAttr:
 
-	paddle.fluid.param_attr.ParamAttr
+ParamAttr
+-------------------------------
+:doc_source: paddle.fluid.param_attr.ParamAttr
+
 

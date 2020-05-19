@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_index_select:
 
-	paddle.tensor.index_select
+index_select
+-------------------------------
+:doc_source: paddle.tensor.index_select
+
 

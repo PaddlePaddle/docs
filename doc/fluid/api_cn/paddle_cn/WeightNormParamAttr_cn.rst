@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_WeightNormParamAttr:
 
-	paddle.fluid.param_attr.WeightNormParamAttr
+WeightNormParamAttr
+-------------------------------
+:doc_source: paddle.fluid.param_attr.WeightNormParamAttr
+
 

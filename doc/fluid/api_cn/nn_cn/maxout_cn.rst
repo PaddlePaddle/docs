@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_maxout:
 
-	paddle.fluid.layers.maxout
+maxout
+-------------------------------
+:doc_source: paddle.fluid.layers.maxout
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_argmax:
 
-	paddle.fluid.layers.argmax
+argmax
+-------------------------------
+:doc_source: paddle.fluid.layers.argmax
+
 

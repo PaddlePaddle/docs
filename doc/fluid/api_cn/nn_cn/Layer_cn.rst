@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_Layer:
 
-	paddle.fluid.dygraph.layers.Layer
+Layer
+-------------------------------
+:doc_source: paddle.fluid.dygraph.layers.Layer
+
 

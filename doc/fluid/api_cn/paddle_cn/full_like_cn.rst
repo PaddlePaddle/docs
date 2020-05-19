@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_full_like:
 
-	paddle.tensor.full_like
+full_like
+-------------------------------
+:doc_source: paddle.tensor.full_like
+
 

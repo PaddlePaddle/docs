@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_elementwise_sub:
 
-	paddle.fluid.layers.elementwise_sub
+elementwise_sub
+-------------------------------
+:doc_source: paddle.fluid.layers.elementwise_sub
+
 

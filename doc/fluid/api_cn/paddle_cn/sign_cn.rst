@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_sign:
 
-	paddle.fluid.layers.sign
+sign
+-------------------------------
+:doc_source: paddle.fluid.layers.sign
+
 

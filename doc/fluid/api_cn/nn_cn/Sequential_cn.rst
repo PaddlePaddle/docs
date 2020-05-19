@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_Sequential:
 
-	paddle.fluid.dygraph.container.Sequential
+Sequential
+-------------------------------
+:doc_source: paddle.fluid.dygraph.container.Sequential
+
 

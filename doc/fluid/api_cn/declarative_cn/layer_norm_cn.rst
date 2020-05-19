@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_declarative_cn_layer_norm:
 
-	paddle.fluid.layers.layer_norm
+layer_norm
+-------------------------------
+:doc_source: paddle.fluid.layers.layer_norm
+
 

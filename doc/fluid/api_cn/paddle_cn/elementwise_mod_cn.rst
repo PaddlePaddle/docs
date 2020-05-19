@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_elementwise_mod:
 
-	paddle.fluid.layers.elementwise_mod
+elementwise_mod
+-------------------------------
+:doc_source: paddle.fluid.layers.elementwise_mod
+
 

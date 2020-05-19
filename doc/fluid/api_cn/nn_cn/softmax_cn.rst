@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_softmax:
 
-	paddle.fluid.layers.softmax
+softmax
+-------------------------------
+:doc_source: paddle.fluid.layers.softmax
+
 

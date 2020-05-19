@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_LayerNorm:
 
-	paddle.fluid.dygraph.LayerNorm
+LayerNorm
+-------------------------------
+:doc_source: paddle.fluid.dygraph.LayerNorm
+
 

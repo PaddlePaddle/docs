@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_io_cn_BatchSampler:
 
-	paddle.fluid.dataloader.BatchSampler
+BatchSampler
+-------------------------------
+:doc_source: paddle.fluid.dataloader.BatchSampler
+
 
