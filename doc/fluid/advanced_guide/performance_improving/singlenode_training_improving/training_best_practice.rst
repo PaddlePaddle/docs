@@ -172,7 +172,7 @@ Paddle里面使用 paddle.fluid.io. :ref:`cn_api_fluid_io_DataLoader` 接口来�
 
 为降低训练的整体时间，建议用户使用异步数据读取的方式，并开启 :code:`use_double_buffer=True` 。用户可根据模型的实际情况设置数据队列的大小。
 如果数据准备的时间大于模型执行的时间，或者出现了数据队列为空的情况，就需要考虑对数据读取Reader进行加速。
-常用的方法是 **使用Python多进程准备数据** ，一个简单的使用多进程准备数据的示例，可以参考 `YOLOv3 <https://github.com/PaddlePaddle/models/blob/develop/PaddleCV/yolov3/reader.py>`_ 。
+常用的方法是 **使用Python多进程准备数据** ，一个简单的使用多进程准备数据的示例，可以参考 `YOLOv3 <https://github.com/PaddlePaddle/models/blob/50cf1d814c1d267a4597885363597f5f8f4a50ad/dygraph/yolov3/README.md>`_ 。
 
 Python端的数据预处理，都是使用CPU完成。如果Paddle提供了相应功能的API，可将这部分预处理功能写到模型配置中，如此Paddle就可以使用GPU来完成该预处理功能，这样也可以减轻CPU预处理数据的负担，提升总体训练速度。
 
