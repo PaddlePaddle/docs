@@ -1,17 +1,19 @@
 ========
-fluid.io
+paddle.io
 ========
 
 ..  toctree::
     :maxdepth: 1
 
     io/batch.rst
+    io/BatchSampler.rst
     io/buffered.rst
     io/cache.rst
     io/chain.rst
     io/compose.rst
     io/ComposeNotAligned.rst
     io/DataLoader.rst
+    io/Dataset.rst
     io/firstn.rst
     io/get_program_parameter.rst
     io/get_program_persistable_vars.rst
@@ -26,9 +28,12 @@ fluid.io
     io/PyReader.rst
     io/save.rst
     io/save_inference_model.rst
+    io/save_inference_model.rst
     io/save_params.rst
     io/save_persistables.rst
     io/save_vars.rst
     io/set_program_state.rst
+    io/set_program_state.rst
+    io/shuffle.rst
     io/shuffle.rst
     io/xmap_readers.rst
