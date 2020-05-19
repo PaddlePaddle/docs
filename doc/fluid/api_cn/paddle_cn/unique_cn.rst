@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_unique:
 
-	paddle.fluid.layers.unique
+unique
+-------------------------------
+:doc_source: paddle.fluid.layers.unique
+
 

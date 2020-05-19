@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_unfold:
 
-	paddle.fluid.layers.unfold
+unfold
+-------------------------------
+:doc_source: paddle.fluid.layers.unfold
+
 

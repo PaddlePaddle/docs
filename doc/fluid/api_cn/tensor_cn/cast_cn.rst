@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_cast:
 
-	paddle.fluid.layers.cast
+cast
+-------------------------------
+:doc_source: paddle.fluid.layers.cast
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_stack:
 
-	paddle.fluid.layers.stack
+stack
+-------------------------------
+:doc_source: paddle.fluid.layers.stack
+
 

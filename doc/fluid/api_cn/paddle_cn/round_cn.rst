@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_round:
 
-	paddle.fluid.layers.round
+round
+-------------------------------
+:doc_source: paddle.fluid.layers.round
+
 

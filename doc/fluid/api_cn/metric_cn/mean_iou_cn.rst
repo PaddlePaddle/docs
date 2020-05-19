@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_metric_cn_mean_iou:
 
-	paddle.fluid.layers.nn.mean_iou
+mean_iou
+-------------------------------
+:doc_source: paddle.fluid.layers.nn.mean_iou
+
 

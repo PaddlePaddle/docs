@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_beam_search:
 
-	paddle.fluid.layers.beam_search
+beam_search
+-------------------------------
+:doc_source: paddle.fluid.layers.beam_search
+
 

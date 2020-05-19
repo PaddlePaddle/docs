@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_metric_cn_Recall:
 
-	paddle.fluid.metrics.Recall
+Recall
+-------------------------------
+:doc_source: paddle.fluid.metrics.Recall
+
 

@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_load:
 
-	paddle.fluid.dygraph.checkpoint.load_dygraph
+load
+-------------------------------
+:doc_source: paddle.fluid.dygraph.checkpoint.load_dygraph
+
 

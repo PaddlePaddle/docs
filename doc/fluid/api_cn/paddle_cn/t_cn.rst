@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_t:
 
-	paddle.tensor.t
+t
+-------------------------------
+:doc_source: paddle.tensor.t
+
 

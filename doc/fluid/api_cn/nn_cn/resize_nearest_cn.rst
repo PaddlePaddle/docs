@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_resize_nearest:
 
-	paddle.fluid.layers.resize_nearest
+resize_nearest
+-------------------------------
+:doc_source: paddle.fluid.layers.resize_nearest
+
 

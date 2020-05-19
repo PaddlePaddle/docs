@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_declarative_cn_nce:
 
-	paddle.fluid.layers.nce
+nce
+-------------------------------
+:doc_source: paddle.fluid.layers.nce
+
 

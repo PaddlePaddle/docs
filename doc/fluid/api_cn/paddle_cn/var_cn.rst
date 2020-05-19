@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_var:
 
-	paddle.tensor.var
+var
+-------------------------------
+:doc_source: paddle.tensor.var
+
 

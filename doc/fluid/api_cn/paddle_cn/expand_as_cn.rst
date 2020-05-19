@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_expand_as:
 
-	paddle.fluid.layers.expand_as
+expand_as
+-------------------------------
+:doc_source: paddle.fluid.layers.expand_as
+
 

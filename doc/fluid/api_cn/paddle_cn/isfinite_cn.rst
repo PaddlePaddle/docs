@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_isfinite:
 
-	paddle.fluid.layers.isfinite
+isfinite
+-------------------------------
+:doc_source: paddle.fluid.layers.isfinite
+
 

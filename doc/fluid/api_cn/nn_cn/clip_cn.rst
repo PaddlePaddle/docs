@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_clip:
 
-	paddle.fluid.layers.clip
+clip
+-------------------------------
+:doc_source: paddle.fluid.layers.clip
+
 

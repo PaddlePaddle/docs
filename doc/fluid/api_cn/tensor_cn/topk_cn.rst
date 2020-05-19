@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_topk:
 
-	paddle.fluid.layers.topk
+topk
+-------------------------------
+:doc_source: paddle.fluid.layers.topk
+
 

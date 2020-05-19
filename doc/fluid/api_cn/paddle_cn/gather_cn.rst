@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_gather:
 
-	paddle.fluid.layers.gather
+gather
+-------------------------------
+:doc_source: paddle.fluid.layers.gather
+
 

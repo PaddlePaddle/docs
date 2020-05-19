@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_declarative_cn_bilinear_tensor_product:
 
-	paddle.fluid.layers.bilinear_tensor_product
+bilinear_tensor_product
+-------------------------------
+:doc_source: paddle.fluid.layers.bilinear_tensor_product
+
 

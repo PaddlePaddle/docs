@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_ExecutionStrategy:
 
-	paddle.framework.ExecutionStrategy
+ExecutionStrategy
+-------------------------------
+:doc_source: paddle.framework.ExecutionStrategy
+
 

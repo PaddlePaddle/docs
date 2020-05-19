@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_framework_cn_CompiledProgram:
 
-	paddle.fluid.compiler.CompiledProgram
+CompiledProgram
+-------------------------------
+:doc_source: paddle.fluid.compiler.CompiledProgram
+
 

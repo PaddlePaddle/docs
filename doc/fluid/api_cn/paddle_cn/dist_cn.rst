@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_dist:
 
-	paddle.tensor.dist
+dist
+-------------------------------
+:doc_source: paddle.tensor.dist
+
 

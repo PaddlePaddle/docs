@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_pool3d:
 
-	paddle.fluid.layers.pool3d
+pool3d
+-------------------------------
+:doc_source: paddle.fluid.layers.pool3d
+
 

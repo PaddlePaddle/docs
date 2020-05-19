@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_tensor_cn_floor:
 
-	paddle.fluid.layers.floor
+floor
+-------------------------------
+:doc_source: paddle.fluid.layers.floor
+
 
