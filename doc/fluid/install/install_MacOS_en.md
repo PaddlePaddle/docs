@@ -64,8 +64,6 @@
 Under the MacOS system we offer 5 installation methods:
 
 * Pip installation (recommend)
-* [Conda installation](./install_Conda.html)
-* [Docker installation](./install_Docker.html)
 * [Source code compilation and installation](./compile/compile_MacOS.html#mac_source)
 * [Docker source code compilation and installation](./compile/compile_MacOS.html#mac_docker)
 
