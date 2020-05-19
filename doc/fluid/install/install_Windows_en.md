@@ -62,7 +62,6 @@ Please refer to the NVIDIA official documents for the installation process and t
 There are 3 ways to install PaddlePaddle on Windows:
 
 * pip installation (recommended)
-* [Docker installation](./install_Docker.html)
 * [source code compilation and installation](./compile/compile_Windows.html/#win_source)
 
 We would like to introduce the pip installation here.

@@ -63,8 +63,6 @@
 MacOS系统下有5种安装方式：
 
 * pip安装（推荐）
-* [conda安装](./install_Conda.html)
-* [Docker安装](./install_Docker.html)
 * [源码编译安装](./compile/compile_MacOS.html#mac_source)
 * [Docker源码编译安装](./compile/compile_MacOS.html#mac_docker)
 

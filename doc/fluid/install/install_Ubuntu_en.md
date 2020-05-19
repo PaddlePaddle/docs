@@ -85,8 +85,6 @@
 Under the Ubuntu system, we offer 5 installation methods:
 
 * Pip installation (recommended)
-* [Conda安装](./install_Conda.html)
-* [Docker installation](./install_Docker.html)
 * [Source code compilation and installation](./compile/compile_Ubuntu.html#ubt_source)
 * [Docker source code compilation and installation](./compile/compile_Ubuntu.html#ubt_docker)
 

@@ -84,8 +84,6 @@
 There are five installation methods under CentOS system:
 
 * pip installation（recommend）
-* [Conda Installation](./install_Conda_en.html)
-* [Docker Installation](./install_Docker_en.html)
 * [Compile From Source Code](./compile/compile_CentOS_en.html#ct_source)
 * [Compile From Docker Source Code](./compile/compile_CentOS_en.html#ct_docker)
 
