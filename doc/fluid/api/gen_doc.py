@@ -19,7 +19,6 @@ import types
 import os
 import contextlib
 import paddle.fluid as fluid
-import paddle.complex as complex
 #import paddle.framework as framework
 
 def parse_arg():
