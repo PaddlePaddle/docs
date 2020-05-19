@@ -97,7 +97,7 @@ Ubuntu系统下有3种安装方式：
   * 对于Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 * GPU版PaddlePaddle：
-  * 对于Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
   * 对于Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
@@ -121,6 +121,6 @@ Ubuntu系统下有3种安装方式：
 ## 如何卸载
 请使用以下命令卸载PaddlePaddle：
 
-* **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle==2.0.0a0` 或 `python3 -m pip uninstall paddlepaddle`
+* **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle`
 
-* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu===2.0.0a0` 或 `python3 -m pip uninstall paddlepaddle-gpu`
+* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu` 或 `python3 -m pip uninstall paddlepaddle-gpu`

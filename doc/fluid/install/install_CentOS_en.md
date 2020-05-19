@@ -123,6 +123,6 @@ If `Your Paddle Fluid is installed succesfully!` appears, to verify that the ins
 
 Please use the following command to uninstall PaddlePaddle:
 
-* ***CPU version of PaddlePaddle***: `python -m pip uninstall paddlepaddle==2.0.0a0` or `python3 -m pip uninstall paddlepaddle==2.0.0a0`
+* ***CPU version of PaddlePaddle***: `python -m pip uninstall paddlepaddle` or `python3 -m pip uninstall paddlepaddle`
 
-* ***GPU version of PaddlePaddle***: `python -m pip uninstall paddlepaddle-gpu==2.0.0a0` or `python3 -m pip uninstall paddlepaddle-gpu==2.0.0a0`
+* ***GPU version of PaddlePaddle***: `python -m pip uninstall paddlepaddle-gpu` or `python3 -m pip uninstall paddlepaddle-gpu`

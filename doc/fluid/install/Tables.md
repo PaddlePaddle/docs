@@ -242,7 +242,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
 > 其中`postXX` 对应的是CUDA和cuDNN的版本，`postXX`之前的数字代表Paddle的版本
 
-需要注意的是，命令中<code> paddlepaddle-gpu </code> 在windows环境下，会默认安装支持CUDA 10.0和cuDNN 7的对应[版本号]的PaddlePaddle安装包
+需要注意的是，命令中<code> paddlepaddle-gpu==2.0.0a0 </code> 在windows环境下，会默认安装支持CUDA 10.0和cuDNN 7的对应[版本号]的PaddlePaddle安装包
 
 <a name="ciwhls-release"></a>
 </br></br>
@@ -333,12 +333,6 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 - 纵轴
 
 cpu-mkl: 支持CPU训练和预测，使用Intel mkl数学库
-
-cpu-openblas: 支持CPU训练和预测，使用openblas数学库
-
-cuda9-cudnn7-openblas: 支持GPU训练和预测，使用openblas数学库
-
-cuda9_cudnn7-mkl: 支持GPU训练和预测，使用Intel mkl数学库
 
 cuda10_cudnn7-mkl: 支持GPU训练和预测，使用Intel mkl数学库
 
