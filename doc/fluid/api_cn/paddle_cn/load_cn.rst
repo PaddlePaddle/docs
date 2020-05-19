@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_load:
 
-	paddle.fluid.io.load
+load
+-------------------------------
+:doc_source: paddle.fluid.io.load
+
 

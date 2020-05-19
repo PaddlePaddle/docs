@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_metric_cn_EditDistance:
 
-	paddle.fluid.metrics.EditDistance
+EditDistance
+-------------------------------
+:doc_source: paddle.fluid.metrics.EditDistance
+
 

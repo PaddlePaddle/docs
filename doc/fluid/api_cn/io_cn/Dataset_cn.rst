@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_io_cn_Dataset:
 
-	paddle.fluid.dataloader.Dataset
+Dataset
+-------------------------------
+:doc_source: paddle.fluid.dataloader.Dataset
+
 

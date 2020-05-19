@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_roi_align:
 
-	paddle.fluid.layers.roi_align
+roi_align
+-------------------------------
+:doc_source: paddle.fluid.layers.roi_align
+
 

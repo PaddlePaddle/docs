@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_framework_cn_global_scope:
 
-	paddle.fluid.executor.global_scope
+global_scope
+-------------------------------
+:doc_source: paddle.fluid.executor.global_scope
+
 

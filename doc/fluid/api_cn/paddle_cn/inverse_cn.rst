@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_inverse:
 
-	paddle.tensor.inverse
+inverse
+-------------------------------
+:doc_source: paddle.tensor.inverse
+
 

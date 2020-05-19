@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_metric_cn_DetectionMAP:
 
-	paddle.fluid.metrics.DetectionMAP
+DetectionMAP
+-------------------------------
+:doc_source: paddle.fluid.metrics.DetectionMAP
+
 

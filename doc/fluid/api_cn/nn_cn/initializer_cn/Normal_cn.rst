@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn/initializer_cn_Normal:
 
-	paddle.fluid.initializer.Normal
+Normal
+-------------------------------
+:doc_source: paddle.fluid.initializer.Normal
+
 

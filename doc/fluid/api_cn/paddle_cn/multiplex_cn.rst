@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_multiplex:
 
-	paddle.fluid.layers.multiplex
+multiplex
+-------------------------------
+:doc_source: paddle.fluid.layers.multiplex
+
 

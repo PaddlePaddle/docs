@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_rpn_target_assign:
 
-	paddle.fluid.layers.rpn_target_assign
+rpn_target_assign
+-------------------------------
+:doc_source: paddle.fluid.layers.rpn_target_assign
+
 

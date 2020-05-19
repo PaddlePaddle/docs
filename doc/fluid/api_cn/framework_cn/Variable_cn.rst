@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_framework_cn_Variable:
 
-	paddle.fluid.framework.Variable
+Variable
+-------------------------------
+:doc_source: paddle.fluid.framework.Variable
+
 

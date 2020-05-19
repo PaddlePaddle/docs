@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_framework_cn_gradients:
 
-	paddle.fluid.backward.gradients
+gradients
+-------------------------------
+:doc_source: paddle.fluid.backward.gradients
+
 

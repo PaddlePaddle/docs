@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_meshgrid:
 
-	paddle.tensor.meshgrid
+meshgrid
+-------------------------------
+:doc_source: paddle.tensor.meshgrid
+
 

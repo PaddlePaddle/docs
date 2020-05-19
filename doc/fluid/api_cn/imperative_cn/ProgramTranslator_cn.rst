@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_imperative_cn_ProgramTranslator:
 
-	paddle.fluid.dygraph.ProgramTranslator
+ProgramTranslator
+-------------------------------
+:doc_source: paddle.fluid.dygraph.ProgramTranslator
+
 

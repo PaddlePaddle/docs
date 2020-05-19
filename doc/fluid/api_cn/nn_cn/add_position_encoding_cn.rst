@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_add_position_encoding:
 
-	paddle.fluid.layers.add_position_encoding
+add_position_encoding
+-------------------------------
+:doc_source: paddle.fluid.layers.add_position_encoding
+
 

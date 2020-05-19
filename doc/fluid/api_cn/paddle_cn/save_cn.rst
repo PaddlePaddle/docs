@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_save:
 
-	paddle.fluid.save
+save
+-------------------------------
+:doc_source: paddle.fluid.save
+
 

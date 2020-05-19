@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_detection_output:
 
-	paddle.fluid.layers.detection_output
+detection_output
+-------------------------------
+:doc_source: paddle.fluid.layers.detection_output
+
 

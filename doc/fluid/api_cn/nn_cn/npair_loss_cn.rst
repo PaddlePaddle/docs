@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_npair_loss:
 
-	paddle.fluid.layers.npair_loss
+npair_loss
+-------------------------------
+:doc_source: paddle.fluid.layers.npair_loss
+
 

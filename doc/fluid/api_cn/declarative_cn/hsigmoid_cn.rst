@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_declarative_cn_hsigmoid:
 
-	paddle.fluid.layers.hsigmoid
+hsigmoid
+-------------------------------
+:doc_source: paddle.fluid.layers.hsigmoid
+
 

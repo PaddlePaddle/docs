@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_flip:
 
-	paddle.tensor.flip
+flip
+-------------------------------
+:doc_source: paddle.tensor.flip
+
 

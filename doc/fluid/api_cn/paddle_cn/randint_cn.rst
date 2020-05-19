@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_randint:
 
-	paddle.tensor.randint
+randint
+-------------------------------
+:doc_source: paddle.tensor.randint
+
 

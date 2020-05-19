@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_box_coder:
 
-	paddle.fluid.layers.box_coder
+box_coder
+-------------------------------
+:doc_source: paddle.fluid.layers.box_coder
+
 

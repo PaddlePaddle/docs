@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_nn_cn_tanh_shrink:
 
-	paddle.fluid.layers.tanh_shrink
+tanh_shrink
+-------------------------------
+:doc_source: paddle.fluid.layers.tanh_shrink
+
 

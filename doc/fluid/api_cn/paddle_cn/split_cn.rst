@@ -1,4 +1,7 @@
-.. container:: doc_source
+.. _cn_api_paddle_cn_split:
 
-	paddle.fluid.layers.split
+split
+-------------------------------
+:doc_source: paddle.fluid.layers.split
+
 
