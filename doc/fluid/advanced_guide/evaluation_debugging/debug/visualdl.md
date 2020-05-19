@@ -1,4 +1,7 @@
 
+
+# VisualDL 使用指南
+
 <p align="center">
   <img src="http://visualdl.bj.bcebos.com/images/vdl-logo.png" width="70%"/>
 </p>
@@ -7,27 +10,12 @@
 [![Release](https://img.shields.io/github/release/PaddlePaddle/VisualDL.svg)](https://github.com/PaddlePaddle/VisualDL/releases)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE)
 
-## 介绍
+
 VisualDL是深度学习模型可视化分析工具，以丰富的图表呈现训练参数变化趋势、模型结构、数据样本、高维数据分布等。可帮助用户更清晰直观地理解深度学习模型训练过程及模型结构，进而实现高效的模型优化。
 
 VisualDL提供丰富的可视化功能，支持实时训练参数分析、图结构、数据样本可视化及高维数据降维呈现等诸多功能。具体功能使用方式，请参见 **VisualDL使用指南**。项目正处于高速迭代中，敬请期待新组件的加入。
 
 VisualDL原生支持python的使用， 通过在模型的Python配置中添加几行代码，便可为训练过程提供丰富的可视化支持。
-
-## 目录
-
-* [核心亮点](#核心亮点)
-
-* [安装方式](#安装方式)
-
-* [使用方式](#使用方式)
-
-* [可视化功能概览](#可视化功能概览)
-
-* [开源贡献](#开源贡献)
-
-* [更多细节](#更多细节)
-
 
 
 ## 核心亮点
