@@ -5,6 +5,9 @@ mul
 
 .. py:function:: paddle.fluid.layers.mul(x, y, x_num_col_dims=1, y_num_col_dims=1, name=None)
 
+
+
+
 mul算子
 此运算是用于对输入x和y执行矩阵乘法。
 公式是：

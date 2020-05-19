@@ -6,6 +6,9 @@ double_buffer
 .. py:function:: paddle.fluid.layers.double_buffer(reader, place=None, name=None)
 
 
+
+
+
 生成一个双缓冲队列Reader。Reader类有DecoratedReader和FileReader，其中DecoratedReader又可以细分成CustomReader和BufferedReader。这里是基于BufferedReader，数据将复制到具有双缓冲队列的位置（由place指定），如果 ``place=None`` 则将使用executor执行的位置。
 
 参数:

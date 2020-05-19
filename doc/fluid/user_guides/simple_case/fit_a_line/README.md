@@ -145,13 +145,13 @@ Next we define the data feeder for training. The data feeder reads a batch of da
 ```python
 BATCH_SIZE = 20
 
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.uci_housing.train(), buf_size=500),
         batch_size=BATCH_SIZE)
 
-test_reader = paddle.batch(
-    paddle.reader.shuffle(
+test_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.uci_housing.test(), buf_size=500),
         batch_size=BATCH_SIZE)
 ```
@@ -181,13 +181,13 @@ def reader_creator(train_data):
             yield d[:-1], d[-1:]  
     return reader
 
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         reader_creator(train_data), buf_size=500),
         batch_size=BATCH_SIZE)
 
-test_reader = paddle.batch(
-    paddle.reader.shuffle(
+test_reader = fluid.io.batch(
+    fluid.io.shuffle(
         reader_creator(test_data), buf_size=500),
         batch_size=BATCH_SIZE)
 ```
@@ -351,7 +351,7 @@ with fluid.scope_guard(inference_scope):
      fetch_targets] = fluid.io.load_inference_model(params_dirname, infer_exe) # load pre-predict model
     batch_size = 10
 
-    infer_reader = paddle.batch(
+    infer_reader = fluid.io.batch(
         paddle.dataset.uci_housing.test(), batch_size=batch_size) # prepare test dataset
 
     infer_data = next(infer_reader())

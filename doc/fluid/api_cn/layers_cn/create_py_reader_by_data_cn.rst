@@ -3,9 +3,12 @@
 create_py_reader_by_data
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.create_py_reader_by_data(capacity,feed_list,name=None,use_double_buffer=True)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 创建一个Python端提供数据的reader。该OP与 :ref:`cn_api_fluid_layers_py_reader` 类似，不同点在于它能够从feed变量列表读取数据。
 

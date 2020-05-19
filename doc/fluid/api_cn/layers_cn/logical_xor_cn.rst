@@ -5,6 +5,12 @@ logical_xor
 
 .. py:function:: paddle.fluid.layers.logical_xor(x, y, out=None, name=None)
 
+:alias_main: paddle.logical_xor
+:alias: paddle.logical_xor,paddle.tensor.logical_xor,paddle.tensor.logic.logical_xor
+:old_api: paddle.fluid.layers.logical_xor
+
+
+
 该OP逐元素的对 ``X`` 和 ``Y`` 两LoDTensor/Tensor进行逻辑异或运算。
 
 .. math::

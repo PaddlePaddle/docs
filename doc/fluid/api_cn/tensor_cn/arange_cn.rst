@@ -5,6 +5,12 @@ arange
 
 .. py:function:: paddle.tensor.arange(start, end, step=1, dtype=None, name=None)
 
+:alias_main: paddle.arange
+:alias: paddle.arange,paddle.tensor.arange,paddle.tensor.creation.arange
+:update_api: paddle.fluid.layers.range
+
+
+
 该API根据step均匀分隔给定数值区间[start, end)，并返回该分隔结果。
 
 **参数**：

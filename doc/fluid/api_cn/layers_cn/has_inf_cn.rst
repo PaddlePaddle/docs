@@ -5,6 +5,12 @@ has_inf
 
 .. py:function:: paddle.fluid.layers.has_inf(x)
 
+:alias_main: paddle.has_inf
+:alias: paddle.has_inf,paddle.tensor.has_inf,paddle.tensor.search.has_inf
+:old_api: paddle.fluid.layers.has_inf
+
+
+
 检查输入的变量(x)中是否包含无穷数(inf)。
 
 参数：

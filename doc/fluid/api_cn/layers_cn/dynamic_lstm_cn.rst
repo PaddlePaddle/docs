@@ -3,9 +3,12 @@
 dynamic_lstm
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function::  paddle.fluid.layers.dynamic_lstm(input, size, h_0=None, c_0=None, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', dtype='float32', name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf>`_。
 

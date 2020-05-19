@@ -5,6 +5,12 @@ not_equal
 
 .. py:function:: paddle.fluid.layers.not_equal(x, y, cond=None)
 
+:alias_main: paddle.not_equal
+:alias: paddle.not_equal,paddle.tensor.not_equal,paddle.tensor.logic.not_equal
+:old_api: paddle.fluid.layers.not_equal
+
+
+
 该OP逐元素地返回 :math:`x != y` 的逻辑值，使用重载算子 `!=` 可以有相同的计算函数效果。
 
 参数：

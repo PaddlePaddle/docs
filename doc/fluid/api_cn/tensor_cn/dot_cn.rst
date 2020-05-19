@@ -5,6 +5,11 @@ dot
 
 .. py:function:: paddle.tensor.linalg.dot(x, y, name=None)
 
+:alias_main: paddle.dot
+:alias: paddle.dot,paddle.tensor.dot,paddle.tensor.linalg.dot
+
+
+
 该OP计算向量的内积
 
 .. note::

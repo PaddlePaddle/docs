@@ -311,8 +311,8 @@ Batch is a special decorator. Its input is a reader and its output is a batched 
 ```python
 batch_size = 128   # Minibatch size
 
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.mnist.train(), buf_size=60000),
     batch_size=batch_size)
 ```

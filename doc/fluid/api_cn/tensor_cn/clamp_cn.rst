@@ -5,6 +5,11 @@ clamp
 
 .. py:function:: paddle.clamp(input, min=None, max=None, output=None, name=None)
 
+:alias_main: paddle.clamp
+:alias: paddle.clamp,paddle.tensor.clamp,paddle.tensor.math.clamp
+
+
+
 该OP将输入的所有元素进行剪裁，使得输出元素限制在[min, max]内，具体公式如下：
 
 .. math::

@@ -6,6 +6,9 @@ DistributeTranspilerConfig
 .. py:class:: paddle.fluid.DistributeTranspilerConfig
 
 
+
+
+
 .. py:attribute:: slice_var_up (bool)
 
 为多个Pserver（parameter server）将tensor切片, 默认为True。

@@ -3,9 +3,15 @@
 save
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.save(program, model_path)
+
+:api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.save
+:alias: paddle.save,paddle.tensor.save,paddle.tensor.io.save
+:old_api: paddle.fluid.save
+
+
 
 该接口将传入的参数、优化器信息和网络描述保存到 ``model_path`` 。
 

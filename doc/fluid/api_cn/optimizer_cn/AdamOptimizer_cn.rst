@@ -5,6 +5,9 @@ AdamOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameter_list=None, regularization=None, grad_clip=None, name=None, lazy_mode=False)
 
+
+
+
 Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节，能够利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
 
 其参数更新的计算公式如下：
