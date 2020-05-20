@@ -394,7 +394,7 @@ inference_scope = fluid.core.Scope()
 
 ```python
 reviews_str = [
-    'read the book forget the movie', 'this is a great movie', 'this is very bad'
+    b'read the book forget the movie', b'this is a great movie', b'this is very bad'
 ]
 reviews = [c.split() for c in reviews_str]
 
@@ -404,6 +404,7 @@ for c in reviews:
     lod.append([word_dict.get(words, UNK) for words in c])
 
 base_shape = [[len(c) for c in lod]]
+lod = np.array(sum(lod, []), dtype=np.int64)
 
 tensor_words = fluid.create_lod_tensor(lod, base_shape, place)
 ```
