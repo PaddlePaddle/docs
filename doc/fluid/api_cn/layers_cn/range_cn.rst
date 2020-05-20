@@ -26,10 +26,7 @@ range
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     data = fluid.layers.range(0, 10, 2, 'int32')
-
-
-
-
 

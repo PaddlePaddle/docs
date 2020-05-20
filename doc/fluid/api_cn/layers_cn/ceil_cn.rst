@@ -30,6 +30,18 @@ ceil
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    input_ceil = np.array([[-1.5, 6], [1, 15.6]])
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(input_ceil)
+        y = paddle.ceil(x)
+        print(y.numpy())
+        # [[-1.  6.]
+        # [ 1. 16.]]
+
   import paddle.fluid as fluid
   import numpy as np
 

@@ -25,7 +25,8 @@ create_tensor
 **代码示例**：
 
 .. code-block:: python
-    
+
+    import paddle
     """
     使用print(tensor)打印结果如下：
     type {
@@ -39,4 +40,5 @@ create_tensor
     persistable: false
     """
     import paddle.fluid as fluid
-    tensor = fluid.layers.create_tensor(dtype='float32')
+    tensor = paddle.create_tensor(dtype='float32')
+

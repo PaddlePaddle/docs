@@ -14,6 +14,7 @@ reset_profiler
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
     with profiler.profiler('CPU', 'total', '/tmp/profile'):
@@ -21,3 +22,4 @@ reset_profiler
             if iter == 2:
                 profiler.reset_profiler()
             # ...
+

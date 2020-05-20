@@ -38,16 +38,8 @@ inverse_time_decay
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        base_lr = 0.1
-        sgd_optimizer = fluid.optimizer.SGD(
-            learning_rate=fluid.layers.natural_exp_decay(
-                learning_rate=base_lr,
-                decay_steps=10000,
-                decay_rate=0.5,
-                staircase=True))
-
-
-
-
+    if staircase == True:
+         decayed_learning_rate = learning_rate / (1 + decay_rate * floor(global_step / decay_step))
+     else:
+         decayed_learning_rate = learning_rate / (1 + decay_rate * global_step / decay_step)
 

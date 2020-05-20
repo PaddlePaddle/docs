@@ -23,6 +23,21 @@ map_readers
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    d = {'h': 0, 'i': 1}
+    
+    def func(x):
+        return d[x]
+    
+    
+    def reader():
+        yield 'h'
+    
+        yield 'i'
+    
+    
+    map_reader_result = paddle.io.map_readers(func, reader)
 
    import paddle.fluid as fluid
    d = {"h": 0, "i": 1}

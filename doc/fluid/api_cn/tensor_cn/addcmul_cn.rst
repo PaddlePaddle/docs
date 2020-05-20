@@ -34,9 +34,9 @@ addcmul
 
     import paddle
     import paddle.fluid as fluid
-
-    input = fluid.data(name='input', dtype='float32', shape=[3, 4])
-    tensor1 = fluid.data(name='tenosr1', dtype='float32', shape=[1, 4])
-    tensor2 = fluid.data(name='tensor2', dtype='float32', shape=[3, 4])
+    
+    input = paddle.data(name='input', dtype='float32', shape=[3, 4])
+    tensor1 = paddle.data(name='tenosr1', dtype='float32', shape=[1, 4])
+    tensor2 = paddle.data(name='tensor2', dtype='float32', shape=[3, 4])
     data = paddle.addcmul(input, tensor1, tensor2, value=1.0)
 

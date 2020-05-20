@@ -31,6 +31,22 @@ log1p
 
 ..  code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    x = paddle.data(name='x', shape=[2, 1], dtype='float32')
+    res = paddle.log1p(x)
+    
+    # 举例选择CPU计算环境
+    exe = paddle.Executor(paddle.CPUPlace())
+    
+    # 执行静态图，输出结果
+    x_i = np.array([[0], [1]]).astype(np.float32)
+    res_val, = exe.run(paddle.default_main_program(), feed={'x': x_i},
+        fetch_list=[res])
+    print(res_val)
+
  import paddle
  import paddle.fluid as fluid
  import numpy as np

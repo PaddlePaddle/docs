@@ -22,21 +22,21 @@ topk
         input.data = [[5, 4, 2, 3],
                      [9, 7, 10, 25],
                      [6, 2, 10, 1]]
+    
         k = 2
-
+    
     输出:
         第一个输出:
         values.shape = [3, 2]
         values.data = [[5, 4],
                       [10, 25],
                       [6, 10]]
-
+    
         第二个输出:
         indices.shape = [3, 2]
         indices.data = [[0, 1],
                        [2, 3],
                        [0, 2]]
-
 
 参数：
     - **input** (Variable) - 输入的Tensor，支持的数据类型: float32，float64。
@@ -55,24 +55,24 @@ topk
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    input = layers.data(name="input", shape=[13, 11], dtype='float32')
-    top5_values, top5_indices = layers.topk(input, k=5) #top5_values.shape=[13, 5]，top5_indices.shape=[13, 5]
-
-    # 1D Tensor
-    input1 = layers.data(name="input1", shape=[13], dtype='float32')
-    top5_values, top5_indices = layers.topk(input1, k=5) #top5_values.shape=[5]，top5_indices.shape=[5]
-
-    # k=Variable
-    input2 = layers.data(name="input2", shape=[13, 11], dtype='float32')
-    vk = layers.data(name="vk", shape=[1], dtype='int32') # 把k值保存在vk.data[0]中
-    vk_values, vk_indices = layers.topk(input2, k=vk) #vk_values.shape=[13, k]，vk_indices.shape=[13, k]
-
-
-
-
-
-
-
+    输入:
+        input.shape = [3, 4]
+        input.data = [[5, 4, 2, 3],
+                     [9, 7, 10, 25],
+                     [6, 2, 10, 1]]
+    
+        k = 2
+    
+    输出:
+        第一个输出:
+        values.shape = [3, 2]
+        values.data = [[5, 4],
+                      [10, 25],
+                      [6, 10]]
+    
+        第二个输出:
+        indices.shape = [3, 2]
+        indices.data = [[0, 1],
+                       [2, 3],
+                       [0, 2]]
 

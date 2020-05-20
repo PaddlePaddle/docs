@@ -30,7 +30,13 @@ rnn创建一个由RNNCell :code:`cell` 指定的递归神经网络，该神经�
 **示例代码**
   
 .. code-block:: python
-            
+
+    import paddle
+    import paddle.fluid as fluid
+    inputs = paddle.data(name='inputs', shape=[-1, 32, 128], dtype='float32')
+    cell = fluid.layers.GRUCell(hidden_size=128)
+    outputs = fluid.layers.rnn(cell=cell, inputs=inputs)
+
   import paddle.fluid as fluid
   inputs = fluid.data(name="inputs",
                       shape=[-1, 32, 128],

@@ -32,24 +32,24 @@ logical_xor
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
     # Graph organizing
     x = fluid.layers.data(name='x', shape=[2], dtype='bool')
     y = fluid.layers.data(name='y', shape=[2], dtype='bool')
-    res = fluid.layers.logical_xor(x=x, y=y)
+    res = paddle.logical_xor(x=x, y=y)
     # The comment lists another available method.
     # res = fluid.layers.fill_constant(shape=[2], dtype='bool', value=0)
     # fluid.layers.logical_xor(x=x, y=y, out=res)
-
+    
     # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
     x_i = np.array([[1, 0], [0, 1]]).astype(np.bool)
     y_i = np.array([[1, 1], [0, 0]]).astype(np.bool)
-    res_val, = exe.run(fluid.default_main_program(), feed={'x':x_i, 'y':y_i}, fetch_list=[res])
-    print(res_val) # [[False, True], [False, True]]
+    res_val, = exe.run(paddle.default_main_program(), feed={'x': x_i, 'y': y_i},
+        fetch_list=[res])
+    print(res_val)
 

@@ -23,15 +23,20 @@ chain
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
+    
+    
     def reader_creator_3(start):
+    
         def reader():
             for i in range(start, start + 3):
                 yield [i, i, i]
         return reader
-
-    c = fluid.io.chain(reader_creator_3(0), reader_creator_3(10), reader_creator_3(20))
+    
+    
+    c = paddle.io.chain(reader_creator_3(0), reader_creator_3(10),
+        reader_creator_3(20))
     for e in c():
         print(e)
     # 输出结果如下：

@@ -19,34 +19,32 @@ StaticRNN
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      import paddle.fluid.layers as layers
-
-      vocab_size, hidden_size=10000, 200
-      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
-
-      # 创建处理用的word sequence
-      x_emb = layers.embedding(
-          input=x,
-          size=[vocab_size, hidden_size],
-          dtype='float32',
-          is_sparse=False)
-      # 把batch size变换到第1维。
-      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
-
-      rnn = fluid.layers.StaticRNN()
-      with rnn.step():
-          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
-          word = rnn.step_input(x_emb)
-          # 创建memory变量作为prev，batch size来自于word变量。
-          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
-          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
-          # 用处理完的hidden变量更新prev变量。
-          rnn.update_memory(prev, hidden)
-          # 把每一步处理后的hidden标记为输出序列。
-          rnn.step_output(hidden)
-      # 获取最终的输出结果
-      result = rnn()
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    
+    vocab_size, hidden_size = 10000, 200
+    x = layers.data(name='x', shape=[-1, 1, 1], dtype='int64')
+    
+    # 创建处理用的word sequence
+    x_emb = layers.embedding(input=x, size=[vocab_size, hidden_size], dtype=
+    
+        'float32', is_sparse=False)
+    x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+    
+    rnn = fluid.layers.StaticRNN()
+    with rnn.step():
+        # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+        word = rnn.step_input(x_emb)
+        # 创建memory变量作为prev，batch size来自于word变量。
+        prev = rnn.memory(shape=[-1, hidden_size], batch_ref=word)
+        hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+        # 用处理完的hidden变量更新prev变量。
+        rnn.update_memory(prev, hidden)
+        # 把每一步处理后的hidden标记为输出序列。
+        rnn.step_output(hidden)
+    # 获取最终的输出结果
+    result = rnn()
 
 .. py:method:: step()
 
@@ -75,60 +73,63 @@ StaticRNN
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      import paddle.fluid.layers as layers
-
-      vocab_size, hidden_size=10000, 200
-      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
-
-      # 创建处理用的word sequence
-      x_emb = layers.embedding(
-          input=x,
-          size=[vocab_size, hidden_size],
-          dtype='float32',
-          is_sparse=False)
-      # 把batch size变换到第1维。
-      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
-
-      rnn = fluid.layers.StaticRNN()
-      with rnn.step():
-          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
-          word = rnn.step_input(x_emb)
-          # 创建memory变量作为prev，batch size来自于word变量。
-          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
-          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
-          # 用处理完的hidden变量更新prev变量。
-          rnn.update_memory(prev, hidden)
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    
+    vocab_size, hidden_size = 10000, 200
+    x = layers.data(name='x', shape=[-1, 1, 1], dtype='int64')
+    
+    # 创建处理用的word sequence
+    x_emb = layers.embedding(input=x, size=[vocab_size, hidden_size], dtype=
+    
+        'float32', is_sparse=False)
+    x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+    
+    rnn = fluid.layers.StaticRNN()
+    with rnn.step():
+        # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+        word = rnn.step_input(x_emb)
+        # 创建memory变量作为prev，batch size来自于word变量。
+        prev = rnn.memory(shape=[-1, hidden_size], batch_ref=word)
+        hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+        # 用处理完的hidden变量更新prev变量。
+        rnn.update_memory(prev, hidden)
+        # 把每一步处理后的hidden标记为输出序列。
+        rnn.step_output(hidden)
+    # 获取最终的输出结果
+    result = rnn()
 
 **代码示例二**
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      import paddle.fluid.layers as layers
-
-      vocab_size, hidden_size=10000, 200
-      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
-
-      # 创建处理用的word sequence
-      x_emb = layers.embedding(
-          input=x,
-          size=[vocab_size, hidden_size],
-          dtype='float32',
-          is_sparse=False)
-      # 把batch size变换到第1维。
-      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
-      boot_memory = fluid.layers.data(name='boot', shape=[hidden_size], dtype='float32', lod_level=1)
-
-      rnn = fluid.layers.StaticRNN()
-      with rnn.step():
-          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
-          word = rnn.step_input(x_emb)
-          # 用init初始化memory。
-          prev = rnn.memory(init=boot_memory)
-          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
-          # 用处理完的hidden变量更新prev变量。
-          rnn.update_memory(prev, hidden)
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    
+    vocab_size, hidden_size = 10000, 200
+    x = layers.data(name='x', shape=[-1, 1, 1], dtype='int64')
+    
+    # 创建处理用的word sequence
+    x_emb = layers.embedding(input=x, size=[vocab_size, hidden_size], dtype=
+    
+        'float32', is_sparse=False)
+    x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+    
+    rnn = fluid.layers.StaticRNN()
+    with rnn.step():
+        # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+        word = rnn.step_input(x_emb)
+        # 创建memory变量作为prev，batch size来自于word变量。
+        prev = rnn.memory(shape=[-1, hidden_size], batch_ref=word)
+        hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+        # 用处理完的hidden变量更新prev变量。
+        rnn.update_memory(prev, hidden)
+        # 把每一步处理后的hidden标记为输出序列。
+        rnn.step_output(hidden)
+    # 获取最终的输出结果
+    result = rnn()
 
 .. py:method:: step_input(x)
 
@@ -146,30 +147,32 @@ StaticRNN
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      import paddle.fluid.layers as layers
-
-      vocab_size, hidden_size=10000, 200
-      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
-
-      # 创建处理用的word sequence
-      x_emb = layers.embedding(
-          input=x,
-          size=[vocab_size, hidden_size],
-          dtype='float32',
-          is_sparse=False)
-      # 把batch size变换到第1维。
-      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
-
-      rnn = fluid.layers.StaticRNN()
-      with rnn.step():
-          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
-          word = rnn.step_input(x_emb)
-          # 创建memory变量作为prev，batch size来自于word变量。
-          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
-          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
-          # 用处理完的hidden变量更新prev变量。
-          rnn.update_memory(prev, hidden)
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    
+    vocab_size, hidden_size = 10000, 200
+    x = layers.data(name='x', shape=[-1, 1, 1], dtype='int64')
+    
+    # 创建处理用的word sequence
+    x_emb = layers.embedding(input=x, size=[vocab_size, hidden_size], dtype=
+    
+        'float32', is_sparse=False)
+    x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+    
+    rnn = fluid.layers.StaticRNN()
+    with rnn.step():
+        # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+        word = rnn.step_input(x_emb)
+        # 创建memory变量作为prev，batch size来自于word变量。
+        prev = rnn.memory(shape=[-1, hidden_size], batch_ref=word)
+        hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+        # 用处理完的hidden变量更新prev变量。
+        rnn.update_memory(prev, hidden)
+        # 把每一步处理后的hidden标记为输出序列。
+        rnn.step_output(hidden)
+    # 获取最终的输出结果
+    result = rnn()
 
 .. py:method:: step_output(o)
 
@@ -185,34 +188,32 @@ StaticRNN
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      import paddle.fluid.layers as layers
-
-      vocab_size, hidden_size=10000, 200
-      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
-
-      # 创建处理用的word sequence
-      x_emb = layers.embedding(
-          input=x,
-          size=[vocab_size, hidden_size],
-          dtype='float32',
-          is_sparse=False)
-      # 把batch size变换到第1维。
-      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
-
-      rnn = fluid.layers.StaticRNN()
-      with rnn.step():
-          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
-          word = rnn.step_input(x_emb)
-          # 创建memory变量作为prev，batch size来自于word变量。
-          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
-          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
-          # 用处理完的hidden变量更新prev变量。
-          rnn.update_memory(prev, hidden)
-          # 把每一步处理后的hidden标记为输出序列。
-          rnn.step_output(hidden)
-
-      result = rnn()
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    
+    vocab_size, hidden_size = 10000, 200
+    x = layers.data(name='x', shape=[-1, 1, 1], dtype='int64')
+    
+    # 创建处理用的word sequence
+    x_emb = layers.embedding(input=x, size=[vocab_size, hidden_size], dtype=
+    
+        'float32', is_sparse=False)
+    x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+    
+    rnn = fluid.layers.StaticRNN()
+    with rnn.step():
+        # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+        word = rnn.step_input(x_emb)
+        # 创建memory变量作为prev，batch size来自于word变量。
+        prev = rnn.memory(shape=[-1, hidden_size], batch_ref=word)
+        hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+        # 用处理完的hidden变量更新prev变量。
+        rnn.update_memory(prev, hidden)
+        # 把每一步处理后的hidden标记为输出序列。
+        rnn.step_output(hidden)
+    # 获取最终的输出结果
+    result = rnn()
 
 .. py:method:: output(*outputs)
 
@@ -228,35 +229,32 @@ StaticRNN
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      import paddle.fluid.layers as layers
-
-      vocab_size, hidden_size=10000, 200
-      x = layers.data(name="x", shape=[-1, 1, 1], dtype='int64')
-
-      # 创建处理用的word sequence
-      x_emb = layers.embedding(
-          input=x,
-          size=[vocab_size, hidden_size],
-          dtype='float32',
-          is_sparse=False)
-      # 把batch size变换到第1维。
-      x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
-
-      rnn = fluid.layers.StaticRNN()
-      with rnn.step():
-          # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
-          word = rnn.step_input(x_emb)
-          # 创建memory变量作为prev，batch size来自于word变量。
-          prev = rnn.memory(shape=[-1, hidden_size], batch_ref = word)
-          hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
-          # 用处理完的hidden变量更新prev变量。
-          rnn.update_memory(prev, hidden)
-          # 把每一步的hidden和word标记为输出。
-          rnn.output(hidden, word)
-
-      result = rnn()
-
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    
+    vocab_size, hidden_size = 10000, 200
+    x = layers.data(name='x', shape=[-1, 1, 1], dtype='int64')
+    
+    # 创建处理用的word sequence
+    x_emb = layers.embedding(input=x, size=[vocab_size, hidden_size], dtype=
+    
+        'float32', is_sparse=False)
+    x_emb = layers.transpose(x_emb, perm=[1, 0, 2])
+    
+    rnn = fluid.layers.StaticRNN()
+    with rnn.step():
+        # 将刚才创建的word sequence标记为输入，每个时间步取一个word处理。
+        word = rnn.step_input(x_emb)
+        # 创建memory变量作为prev，batch size来自于word变量。
+        prev = rnn.memory(shape=[-1, hidden_size], batch_ref=word)
+        hidden = fluid.layers.fc(input=[word, prev], size=hidden_size, act='relu')
+        # 用处理完的hidden变量更新prev变量。
+        rnn.update_memory(prev, hidden)
+        # 把每一步处理后的hidden标记为输出序列。
+        rnn.step_output(hidden)
+    # 获取最终的输出结果
+    result = rnn()
 
 .. py:method:: update_memory(mem, var)
 

@@ -31,15 +31,25 @@ randperm
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
     # Note that, the random permutation returned by randperm depends
     # the random seed in computer, so the output in the next example
     # will be change.
-    with fluid.dygraph.guard():
+    with paddle.imperative.guard():
         out_1 = paddle.randperm(6)
-        print(out_1.numpy())  # Random permutation, for example [2 4 5 0 3 1]
+        print(out_1.numpy())
+    
+        out_2 = paddle.imperative.to_variable(np.array([0, 1, 2, 3])).astype(np
+            .int64)
+        paddle.randperm(6, out_2)
+        print(out_2.numpy())
+    
+        out_3 = paddle.randperm(6, dtype='int32', device='cpu')
+        print(out_3.numpy())
+    
+        out_4 = paddle.randperm(6, device='cpu', stop_gradient=True)
+        print(out_4.numpy())
 
-        out_2 = fluid.dygraph.to_variable(
 				np.array([0, 1, 2, 3])).astype(np.int64)
         paddle.randperm(6, out_2)
         print(out_2.numpy())  # Random permutation, for example [5 0 2 4 1 3]

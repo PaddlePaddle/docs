@@ -19,11 +19,11 @@ in_dygraph_mode
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    fluid.enable_dygraph()          # 现在进入 dygragh 模式
-    print(fluid.in_dygraph_mode())  # True
+    
+    fluid.enable_dygraph()
+    print(fluid.in_dygraph_mode())
     fluid.disable_dygraph()
-    print(fluid.in_dygraph_mode())  # False
-
+    print(fluid.in_dygraph_mode())
 

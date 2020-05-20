@@ -65,13 +65,12 @@ adaptive_pool2d
     #             wend = ceil((i + 1) * W / n)
     #             output[:, :, i, j] = avg(input[:, :, hstart: hend, wstart: wend])
     #
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
-    pool_out = fluid.layers.adaptive_pool2d(
-                      input=data,
-                      pool_size=[3, 3],
-                      pool_type='avg')
-
+    data = paddle.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
+    pool_out = fluid.layers.adaptive_pool2d(input=data, pool_size=[3, 3],
+        pool_type='avg')
+    
     # max adaptive pool2d
     # 假设输入形为[N, C, H, W], `pool_size` 为 [m, n],
     # 输出形为 [N, C, m, n], adaptive pool 将输入的 H 和 W 维度
@@ -87,12 +86,7 @@ adaptive_pool2d
     #             output[:, :, i, j] = max(input[:, :, hstart: hend, wstart: wend])
     #
     import paddle.fluid as fluid
-    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
-    pool_out = fluid.layers.adaptive_pool2d(
-                      input=data,
-                      pool_size=[3, 3],
-                      pool_type='max')
-
-
-
+    data = paddle.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
+    pool_out = fluid.layers.adaptive_pool2d(input=data, pool_size=[3, 3],
+        pool_type='max')
 

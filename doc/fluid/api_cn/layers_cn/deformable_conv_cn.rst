@@ -77,26 +77,32 @@ deformable_conv op对输入4-D Tensor计算2-D可变形卷积。给定输入Tens
 ..  code-block:: python
 
     #deformable conv v2:
-
+    
+    import paddle
     import paddle.fluid as fluid
     C_in, H_in, W_in = 3, 32, 32
     filter_size, deformable_groups = 3, 1
-    data = fluid.layers.data(name='data', shape=[C_in, H_in, W_in], dtype='float32')
-    offset = fluid.layers.data(name='offset', shape=[2*deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
-    mask = fluid.layers.data(name='mask', shape=[deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
+    data = fluid.layers.data(name='data', shape=[C_in, H_in, W_in], dtype='float32'
+        )
+    offset = fluid.layers.data(name='offset', shape=[2 * deformable_groups * 
+        filter_size ** 2, H_in, W_in], dtype='float32')
+    mask = fluid.layers.data(name='mask', shape=[deformable_groups * 
+        filter_size ** 2, H_in, W_in], dtype='float32')
     out = fluid.layers.deformable_conv(input=data, offset=offset, mask=mask,
-                                       num_filters=2, filter_size=filter_size, padding=1, modulated=True)
-
+        num_filters=2, filter_size=filter_size, padding=1, modulated=True)
+    
     #deformable conv v1:
-
+    
     import paddle.fluid as fluid
     C_in, H_in, W_in = 3, 32, 32
     filter_size, deformable_groups = 3, 1
-    data = fluid.layers.data(name='data', shape=[C_in, H_in, W_in], dtype='float32')
-    offset = fluid.layers.data(name='offset', shape=[2*deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
+    data = fluid.layers.data(name='data', shape=[C_in, H_in, W_in], dtype='float32'
+        )
+    offset = fluid.layers.data(name='offset', shape=[2 * deformable_groups * 
+        filter_size ** 2, H_in, W_in], dtype='float32')
     out = fluid.layers.deformable_conv(input=data, offset=offset, mask=None,
-                                       num_filters=2, filter_size=filter_size, padding=1, modulated=False)
-
-
+        num_filters=2, filter_size=filter_size, padding=1, modulated=False)
+    
+    #deformable conv v1:
 
 

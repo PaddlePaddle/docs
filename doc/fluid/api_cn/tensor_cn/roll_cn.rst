@@ -24,24 +24,21 @@ roll
 
 .. code-block:: python
 
-        import numpy as np
-        import paddle
-        import paddle.fluid as fluid
-
-        data = np.array([[1.0, 2.0, 3.0],
-                            [4.0, 5.0, 6.0],
-                            [7.0, 8.0, 9.0]])
-        with fluid.dygraph.guard():
-            x = fluid.dygraph.to_variable(data)
-            out_z1 = paddle.roll(x, shifts=1)
-            print(out_z1.numpy())
-            #[[9. 1. 2.]
-            # [3. 4. 5.]
-            # [6. 7. 8.]]
-            out_z2 = paddle.roll(x, shifts=1, dims=0)
-            print(out_z2.numpy())
-            #[[7. 8. 9.]
-            # [1. 2. 3.]
-            # [4. 5. 6.]]
-
+    import numpy as np
+    import paddle
+    import paddle.fluid as fluid
+    
+    data = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]])
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(data)
+        out_z1 = paddle.roll(x, shifts=1)
+        print(out_z1.numpy())
+        #[[9. 1. 2.]
+        # [3. 4. 5.]
+        # [6. 7. 8.]]
+        out_z2 = paddle.roll(x, shifts=1, dims=0)
+        print(out_z2.numpy())
+        #[[7. 8. 9.]
+        # [1. 2. 3.]
+        # [4. 5. 6.]]
 

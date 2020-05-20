@@ -29,27 +29,20 @@ equal
     import paddle.fluid as fluid
     import paddle
     import numpy as np
-    label = fluid.layers.assign(np.array([3, 4], dtype="int32"))
-    label_1 = fluid.layers.assign(np.array([1, 2], dtype="int32"))
-    limit = fluid.layers.assign(np.array([3, 4], dtype="int32"))
-    out1 = paddle.equal(x=label, y=limit) #out1=[True]
-    out2 = paddle.equal(x=label_1, y=limit) #out2=[False]
+    label = paddle.nn.functional.assign(np.array([3, 4], dtype='int32'))
+    label_1 = paddle.nn.functional.assign(np.array([1, 2], dtype='int32'))
+    limit = paddle.nn.functional.assign(np.array([3, 4], dtype='int32'))
+    out1 = paddle.equal(x=label, y=limit)
+    out2 = paddle.equal(x=label_1, y=limit)
 
 .. code-block:: python
 
     import paddle.fluid as fluid
     import paddle
     import numpy as np
-    def gen_data():
-        return {
-              "x": np.ones((2, 3, 4, 5)).astype('float32'),
-              "y": np.zeros((3, 4)).astype('float32')
-          }
-    x = fluid.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.data(name="y", shape=[3,4], dtype='float32')
-    out = paddle.equal(x, y, axis=1)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    res = exe.run(feed=gen_data(),
-                      fetch_list=[out])
-    print(res[0]) #[False]
+    label = paddle.nn.functional.assign(np.array([3, 4], dtype='int32'))
+    label_1 = paddle.nn.functional.assign(np.array([1, 2], dtype='int32'))
+    limit = paddle.nn.functional.assign(np.array([3, 4], dtype='int32'))
+    out1 = paddle.equal(x=label, y=limit)
+    out2 = paddle.equal(x=label_1, y=limit)
+

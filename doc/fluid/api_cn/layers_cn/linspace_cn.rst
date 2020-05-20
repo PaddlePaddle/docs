@@ -24,11 +24,8 @@ linspace
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      data = fluid.layers.linspace(0, 10, 5, 'float32') # [0.0,  2.5,  5.0,  7.5, 10.0]
-      data = fluid.layers.linspace(0, 10, 1, 'float32') # [0.0]
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    data = paddle.linspace(0, 10, 5, 'float32', device=None, name=None, out=None)
+    data = paddle.linspace(0, 10, 1, 'float32', device=None, name=None, out=None)
 

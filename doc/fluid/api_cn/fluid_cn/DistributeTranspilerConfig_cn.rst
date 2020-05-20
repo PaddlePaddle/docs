@@ -28,11 +28,9 @@ block中分割(split)出的元素个数的最小值。
 **代码示例**
 
 .. code-block:: python
-    
+
+    import paddle
     import paddle.fluid as fluid
     config = fluid.DistributeTranspilerConfig()
     config.slice_var_up = True
-
-
-
 

@@ -35,27 +35,49 @@ array_read
 .. code-block:: python
 
     #先创建一个LoDTensorArray，再在指定位置写入Tensor，然后从该位置读取Tensor
+    import paddle
     import paddle.fluid as fluid
     arr = fluid.layers.create_array(dtype='float32')
-    tmp = fluid.layers.fill_constant(shape=[3, 2], dtype='int64', value=5)
-    i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
+    #读取arr的下标10的位置的数据
+    tmp = paddle.full(shape=[3, 2], dtype='int64', fill_value=5, device=None,
+        stop_gradient=True)
+    i = paddle.full(shape=[1], dtype='int64', fill_value=10, device=None,
     #tmp是shape为[3,2]的Tensor，将其写入空数组arr的下标10的位置，则arr的长度变为11
+        stop_gradient=True)
     arr = fluid.layers.array_write(tmp, i, array=arr)
     #读取arr的下标10的位置的数据
     item = fluid.layers.array_read(arr, i)
-
+    
     #可以通过executor打印出该数据
-    input = fluid.layers.Print(item, message="The LoDTensor of the i-th position:")
-    main_program = fluid.default_main_program()
-    exe = fluid.Executor(fluid.CPUPlace())
+    input = paddle.Print(item, message='The LoDTensor of the i-th position:')
+    main_program = paddle.default_main_program()
+    exe = paddle.Executor(paddle.CPUPlace())
     exe.run(main_program)
 
 **输出结果**
 
 .. code-block:: python
 
-    1569588169	The LoDTensor of the i-th position:	The place is:CPUPlace
-    Tensor[array_read_0.tmp_0]
+    #先创建一个LoDTensorArray，再在指定位置写入Tensor，然后从该位置读取Tensor
+    import paddle
+    import paddle.fluid as fluid
+    arr = fluid.layers.create_array(dtype='float32')
+    #读取arr的下标10的位置的数据
+    tmp = paddle.full(shape=[3, 2], dtype='int64', fill_value=5, device=None,
+        stop_gradient=True)
+    i = paddle.full(shape=[1], dtype='int64', fill_value=10, device=None,
+    #tmp是shape为[3,2]的Tensor，将其写入空数组arr的下标10的位置，则arr的长度变为11
+        stop_gradient=True)
+    arr = fluid.layers.array_write(tmp, i, array=arr)
+    #读取arr的下标10的位置的数据
+    item = fluid.layers.array_read(arr, i)
+    
+    #可以通过executor打印出该数据
+    input = paddle.Print(item, message='The LoDTensor of the i-th position:')
+    main_program = paddle.default_main_program()
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(main_program)
+
 	    shape: [3,2,]
 	    dtype: l
 	    data: 5,5,5,5,5,5,

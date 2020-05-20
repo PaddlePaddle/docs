@@ -73,13 +73,9 @@ sequence_conv
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[10,10], append_batch_size=False, dtype='float32')
-    x_conved = fluid.layers.sequence_conv(x,2)
-
-
-
-
-
-
+    x = fluid.layers.data(name='x', shape=[10, 10], append_batch_size=False,
+        dtype='float32')
+    x_conved = fluid.layers.sequence_conv(x, 2)
 

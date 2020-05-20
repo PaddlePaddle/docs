@@ -14,29 +14,31 @@ squeeze
 
 .. code-block:: python
 
-        输入：
-            X.shape = [1,3,1,5]
-            axes = [0]
-        输出;
-            Out.shape = [3,1,5]
+    输入：
+        X.shape = [1,3,1,5]
+        axes = [0]
+    输出;
+        Out.shape = [3,1,5]
+
 - 例2：
 
 .. code-block:: python
 
-        输入：
-            X.shape = [1,3,1,5]
-            axes = []
-        输出:
-            Out.shape = [3,5]
+    输入：
+        X.shape = [1,3,1,5]
+        axes = [0]
+    输出;
+        Out.shape = [3,1,5]
+
 - 例3：
 
 .. code-block:: python
 
-        输入:
-            X.shape = [1,3,1,5]
-            axes = [-2]
-        输出：
-            Out.shape = [1,3,5]
+    输入：
+        X.shape = [1,3,1,5]
+        axes = [0]
+    输出;
+        Out.shape = [3,1,5]
 
 参数：
         - **input** (Variable) - 输入任意维度的Tensor。 支持的数据类型：float32，float64，int8，int32，int64。
@@ -51,16 +53,9 @@ squeeze
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    x = layers.data(name='x', shape=[5, 1, 10])
-    y = layers.squeeze(input=x, axes=[1]) #y.shape=[5, 10]
-
-
-
-
-
-
-
-
+    输入：
+        X.shape = [1,3,1,5]
+        axes = [0]
+    输出;
+        Out.shape = [3,1,5]
 

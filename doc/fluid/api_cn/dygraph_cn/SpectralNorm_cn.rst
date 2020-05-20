@@ -44,11 +44,13 @@ SpectralNorm
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    with fluid.dygraph.guard():
+    
+    with paddle.imperative.guard():
         weight = np.random.random((2, 8, 32, 32)).astype('float32')
-        spectralNorm = fluid.dygraph.nn.SpectralNorm(weight.shape, dim=1, power_iters=2)
+        spectralNorm = fluid.dygraph.nn.SpectralNorm(weight.shape, dim=1,
+            power_iters=2)
         ret = spectralNorm(fluid.dygraph.base.to_variable(weight))
 

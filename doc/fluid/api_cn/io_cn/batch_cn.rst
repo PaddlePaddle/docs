@@ -22,13 +22,16 @@ batch
 **代码示例**
 
 .. code-block:: python
-    
-    import paddle.fluid as fluid
 
+    import paddle
+    import paddle.fluid as fluid
+    
+    
     def reader():
         for i in range(10):
             yield i
-    batch_reader = fluid.io.batch(reader, batch_size=2)
+    
+    batch_reader = paddle.io.batch(reader, batch_size=2)
     
     for data in batch_reader():
         print(data)
@@ -38,13 +41,5 @@ batch
     # [2, 3]
     # [4, 5]
     # [6, 7]
-    # [8, 9]        
-
-
-
-
-
-
-
-
+    # [8, 9]
 

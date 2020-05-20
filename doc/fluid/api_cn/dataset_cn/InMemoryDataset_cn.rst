@@ -27,9 +27,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    dataset.set_queue_num(12)
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: set_fleet_send_batch_size(fleet_send_batch_size)
 
@@ -42,9 +40,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    dataset.set_fleet_send_batch_size(800)
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: set_merge_by_lineid(var_list, erase_duplicate_feas=True, min_merge_size=2, keep_unmerged-ins=True)
 
@@ -58,9 +54,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    dataset.set_merge_by_lineid()
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: load_into_memory()
 
@@ -70,11 +64,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: preload_into_memory()
 
@@ -84,12 +74,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.preload_into_memory()
-    dataset.wait_preload_done()
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: wait_preload_done()
 
@@ -99,12 +84,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.preload_into_memory()
-    dataset.wait_preload_done()
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: local_shuffle()
 
@@ -114,13 +94,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.local_shuffle()
-
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: global_shuffle(fleet=None)
 
@@ -132,13 +106,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.global_shuffle(fleet)
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 参数：
     - **fleet** (Fleet) – fleet单例。默认为None。
@@ -152,17 +120,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.global_shuffle(fleet)
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-    exe.train_from_dataset(fluid.default_main_program(), dataset)
-    dataset.release_memory()
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: get_memory_data_size(fleet=None)
 
@@ -180,14 +138,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    print dataset.get_memory_data_size(fleet)
-
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: get_shuffle_data_size(fleet=None)
 
@@ -205,15 +156,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-    dataset = fluid.DatasetFactory().create_dataset("InMemoryDataset")
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.global_shuffle(fleet)
-    print dataset.get_shuffle_data_size(fleet)
-
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: set_batch_size(batch_size)
 
@@ -223,9 +166,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_batch_size(128)
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 参数：
     - **batch_size** (int) - batch size
@@ -242,9 +183,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
-    dataset.set_fea_eval(1000000, True)
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 .. py:method:: desc()
 
@@ -254,9 +193,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    print(dataset.desc())
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 返回：一个字符串信息
 
@@ -268,9 +205,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_filelist(["a.txt", "b.txt"])
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 参数：
     - **filelist** (list) - 文件列表
@@ -283,9 +218,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_hdfs_config("my_fs_name", "my_fs_ugi")
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 参数：
     - **fs_name** (str) - fs名称
@@ -299,9 +232,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_pipe_command("python my_script.py")
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 参数：
     - **pipe_command** (str) - pipe命令
@@ -314,9 +245,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_thread(12)
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 参数：
     - **thread_num** (int) - 进程数量
@@ -329,9 +258,7 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_use_var([data, label])
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 
 参数：
     - **var_list** (list) - variable 列表
@@ -347,11 +274,5 @@ InMemoryDataset会向内存中加载数据并在训练前缓冲数据。此类�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
-    dataset.set_merge_by_lineid()
-    #支持slot 0
-    dataset.slots_shuffle([‘0’])
-
-
+    dataset = paddle.fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
 

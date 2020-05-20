@@ -27,10 +27,12 @@ scatter_nd
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        index = fluid.layers.data(name='index', shape=[3, 2], dtype='int64', append_batch_size=False)
-        updates = fluid.layers.data(name='update', shape=[3, 9, 10], dtype='float32', append_batch_size=False)
-        shape = [3, 5, 9, 10]
-        output = fluid.layers.scatter_nd(index, updates, shape)
-
+    import paddle
+    import paddle.fluid as fluid
+    index = fluid.layers.data(name='index', shape=[3, 2], dtype='int64',
+        append_batch_size=False)
+    updates = fluid.layers.data(name='update', shape=[3, 9, 10], dtype=
+        'float32', append_batch_size=False)
+    shape = [3, 5, 9, 10]
+    output = paddle.scatter_nd(index, updates, shape)
 

@@ -28,6 +28,8 @@ abs
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784])
-        result = fluid.layers.abs(data)
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='input', shape=[32, 784])
+    result = paddle.abs(data)
+

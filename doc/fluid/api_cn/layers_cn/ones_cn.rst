@@ -25,5 +25,7 @@ ones
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.layers.ones(shape=[2, 4], dtype='float32') # [[1., 1., 1., 1.], [1., 1., 1., 1.]]
+    data = paddle.ones(shape=[2, 4], dtype='float32', device=None, out=None)
+

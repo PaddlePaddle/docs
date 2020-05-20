@@ -39,10 +39,10 @@ NCHW[batch,in_channels,in_height,in_width]
     from paddle.fluid.dygraph.base import to_variable
     import numpy as np
     import paddle
-
-    # x's shape is [1, 3, 1, 2] 
+    
+    # x's shape is [1, 3, 1, 2]
     x = np.array([[[[1.0, 8.0]], [[10.0, 5.0]], [[4.0, 6.0]]]]).astype('float32')
-    with fluid.dygraph.guard():
+    with paddle.imperative.guard():
         x = to_variable(x)
         instanceNorm = paddle.nn.InstanceNorm(3)
         ret = instanceNorm(x)

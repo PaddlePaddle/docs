@@ -41,11 +41,10 @@ prelu
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     from paddle.fluid.param_attr import ParamAttr
-    x = fluid.data(name="x", shape=[None,5,10,10], dtype="float32")
+    x = paddle.data(name='x', shape=[None, 5, 10, 10], dtype='float32')
     mode = 'channel'
-    output = fluid.layers.prelu(
-             x,mode,param_attr=ParamAttr(name='alpha'))
-
+    output = fluid.layers.prelu(x, mode, param_attr=ParamAttr(name='alpha'))
 

@@ -27,12 +27,10 @@ is_empty
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[4, 32, 32], dtype="float32")
-    res = fluid.layers.is_empty(x=input)
+    input = fluid.layers.data(name='input', shape=[4, 32, 32], dtype='float32')
+    res = paddle.is_empty(x=input)
     # or:
     # fluid.layers.is_empty(x=input, cond=res)
-
-
-
 

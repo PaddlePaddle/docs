@@ -28,27 +28,27 @@ randn
 
 .. code-block:: python
 
-     # declarative mode
-     import paddle
-     import paddle.fluid as fluid
-     data = paddle.randn([2, 4])
-     place = fluid.CPUPlace()
-     exe = fluid.Executor(place)
-     res, = exe.run(fluid.default_main_program(), feed={}, fetch_list=[data])
-     print(res)
-     # [[-1.4187592   0.7368311  -0.53748125 -0.0146909 ]
-     #  [-0.66294265 -1.3090698   0.1898754  -0.14065823]]
+    # declarative mode
+    import paddle
+    import paddle.fluid as fluid
+    data = paddle.randn([2, 4])
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    res, = exe.run(paddle.default_main_program(), feed={}, fetch_list=[data])
+    print(res)
+    # [[-1.4187592   0.7368311  -0.53748125 -0.0146909 ]
+    #  [-0.66294265 -1.3090698   0.1898754  -0.14065823]]
 
 .. code-block:: python
 
-    # imperative mode
+    # declarative mode
     import paddle
     import paddle.fluid as fluid
-    import paddle.fluid.dygraph as dg
-    place = fluid.CPUPlace()
-    with dg.guard(place) as g:
-        x = paddle.randn([2, 4])
-        x_np = x.numpy()
-        print(x_np)
-        # [[ 1.5149173  -0.26234224 -0.592486    1.4523455 ]
-        #  [ 0.04581212 -0.85345626  1.1687907  -0.02512913]]
+    data = paddle.randn([2, 4])
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    res, = exe.run(paddle.default_main_program(), feed={}, fetch_list=[data])
+    print(res)
+    # [[-1.4187592   0.7368311  -0.53748125 -0.0146909 ]
+    #  [-0.66294265 -1.3090698   0.1898754  -0.14065823]]
+

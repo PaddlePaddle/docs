@@ -13,6 +13,8 @@ set_flags
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
+    
     fluid.set_flags({'FLAGS_eager_delete_tensor_gb': 1.0})
+

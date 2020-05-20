@@ -26,19 +26,10 @@ sampling_id
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    x = fluid.layers.data(
-    name="X",
-    shape=[13, 11],
-    dtype='float32',
-    append_batch_size=False)
-
+    x = fluid.layers.data(name='X', shape=[13, 11], dtype='float32',
+        append_batch_size=False)
+    
     out = fluid.layers.sampling_id(x)
-
-
-
-
-
-
-
 

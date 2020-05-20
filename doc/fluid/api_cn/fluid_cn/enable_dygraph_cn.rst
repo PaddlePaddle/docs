@@ -16,10 +16,11 @@ enable_dygraph
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-    fluid.enable_dygraph()  # Now we are in dygraph mode
-    print(fluid.in_dygraph_mode())  # True
+    fluid.enable_dygraph()
+    print(fluid.in_dygraph_mode())
     fluid.disable_dygraph()
-    print(fluid.in_dygraph_mode())  # False
+    print(fluid.in_dygraph_mode())
 

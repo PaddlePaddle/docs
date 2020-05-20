@@ -20,11 +20,15 @@ firstn
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
+    
     def reader():
         for i in range(100):
             yield i
-    firstn_reader = fluid.io.firstn(reader, 5)
+    
+    firstn_reader = paddle.io.firstn(reader, 5)
     for e in firstn_reader():
         print(e)
     # 输出结果为:0 1 2 3 4
+

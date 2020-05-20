@@ -32,39 +32,38 @@ GradientClipByValue
 **代码示例1：静态图**
  
 .. code-block:: python
-            
+
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-                
-    main_prog = fluid.Program()
-    startup_prog = fluid.Program()
-    with fluid.program_guard(
-            main_program=main_prog, startup_program=startup_prog):
-        image = fluid.data(
-            name='x', shape=[-1, 2], dtype='float32')
-        predict = fluid.layers.fc(input=image, size=3, act='relu') #可训练参数: fc_0.w.0, fc_0.b.0
-        loss = fluid.layers.mean(predict)
-        
+    
+    main_prog = paddle.Program()
+    startup_prog = paddle.Program()
+    with paddle.program_guard(main_program=main_prog, startup_program=startup_prog
+        ):
+        image = paddle.data(name='x', shape=[-1, 2], dtype='float32')
+        predict = fluid.layers.fc(input=image, size=3, act='relu')
+        loss = paddle.mean(predict)
+    
         # 裁剪网络中全部参数：
-        clip = fluid.clip.GradientClipByValue(min=-1, max=1)
-        
+        clip = paddle.nn.GradientClipByValue(min=-1, max=1)
+    
         # 仅裁剪参数fc_0.w_0时：
         # 为need_clip参数传入一个函数fileter_func，fileter_func接收参数的类型为Parameter，返回类型为bool
         # def fileter_func(Parameter):
         # # 可以较为方便的通过Parameter.name判断（name可以在fluid.ParamAttr中设置，默认为fc_0.w_0、fc_0.b_0）
         #   return Parameter.name=="fc_0.w_0"
         # clip = fluid.clip.GradientClipByValue(min=-1, max=1, need_clip=fileter_func)
-
-        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1, grad_clip=clip)
+    
+        sgd_optimizer = paddle.optimizer.SGDOptimizer(learning_rate=0.1,
+            grad_clip=clip)
         sgd_optimizer.minimize(loss)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
     x = np.random.uniform(-100, 100, (10, 2)).astype('float32')
     exe.run(startup_prog)
     out = exe.run(main_prog, feed={'x': x}, fetch_list=loss)
-
 
 **代码示例2：动态图**
 
@@ -72,29 +71,33 @@ GradientClipByValue
 
     import paddle
     import paddle.fluid as fluid
+    import numpy as np
     
-    with fluid.dygraph.guard():
-        linear = fluid.dygraph.Linear(10, 10)  #可训练参数: linear_0.w.0, linear_0.b.0
-        inputs = fluid.layers.uniform_random([32, 10]).astype('float32')
-        out = linear(fluid.dygraph.to_variable(inputs))
-        loss = fluid.layers.reduce_mean(out)
-        loss.backward()
-
+    main_prog = paddle.Program()
+    startup_prog = paddle.Program()
+    with paddle.program_guard(main_program=main_prog, startup_program=startup_prog
+        ):
+        image = paddle.data(name='x', shape=[-1, 2], dtype='float32')
+        predict = fluid.layers.fc(input=image, size=3, act='relu')
+        loss = paddle.mean(predict)
+    
         # 裁剪网络中全部参数：
-        clip = fluid.clip.GradientClipByValue(min=-1, max=1)
-
-        # 仅裁剪参数linear_0.w_0时：
-        # 为need_clip参数传入一个函数fileter_func，fileter_func接收参数的类型为ParamBase，返回类型为bool
-        # def fileter_func(ParamBase):
-        # # 可以通过ParamBase.name判断（name可以在fluid.ParamAttr中设置，默认为linear_0.w_0、linear_0.b_0）
-        #   return ParamBase.name == "linear_0.w_0"
-        # # 注：linear.weight、linear.bias能分别返回dygraph.Linear层的权重与偏差，可以此来判断
-        #   return ParamBase.name == linear.weight.name
+        clip = paddle.nn.GradientClipByValue(min=-1, max=1)
+    
+        # 仅裁剪参数fc_0.w_0时：
+        # 为need_clip参数传入一个函数fileter_func，fileter_func接收参数的类型为Parameter，返回类型为bool
+        # def fileter_func(Parameter):
+        # # 可以较为方便的通过Parameter.name判断（name可以在fluid.ParamAttr中设置，默认为fc_0.w_0、fc_0.b_0）
+        #   return Parameter.name=="fc_0.w_0"
         # clip = fluid.clip.GradientClipByValue(min=-1, max=1, need_clip=fileter_func)
-
-        sgd_optimizer = fluid.optimizer.SGD(
-            learning_rate=0.1, parameter_list=linear.parameters(), grad_clip=clip)
+    
+        sgd_optimizer = paddle.optimizer.SGDOptimizer(learning_rate=0.1,
+            grad_clip=clip)
         sgd_optimizer.minimize(loss)
-
-
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    x = np.random.uniform(-100, 100, (10, 2)).astype('float32')
+    exe.run(startup_prog)
+    out = exe.run(main_prog, feed={'x': x}, fetch_list=loss)
 

@@ -18,9 +18,7 @@ load_op_library
 
 .. code-block:: python
 
-       import paddle.fluid as fluid
-       #fluid.load_op_library('custom_op.so')
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    #fluid.load_op_library('custom_op.so')
 

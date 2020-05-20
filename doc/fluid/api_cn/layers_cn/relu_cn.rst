@@ -25,6 +25,18 @@ ReLU（Rectified Linear Unit）激活函数
 
 ..  code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    in1 = np.array([[-1, 0], [1, 2.6]])
+    with paddle.imperative.guard():
+        x1 = paddle.imperative.to_variable(in1)
+        out1 = paddle.nn.ReLU(x1, replace=False)
+        print(out1.numpy())
+        # [[0.  0. ]
+        #  [1.  2.6]]
+
   import paddle.fluid as fluid
   import numpy as np
 

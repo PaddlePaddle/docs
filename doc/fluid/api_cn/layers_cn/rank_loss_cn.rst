@@ -40,9 +40,10 @@ rank_loss
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    label = fluid.layers.data(name="label", shape=[-1, 1], dtype="float32")
-    left = fluid.layers.data(name="left", shape=[-1, 1], dtype="float32")
-    right = fluid.layers.data(name="right", shape=[-1, 1], dtype="float32")
+    label = fluid.layers.data(name='label', shape=[-1, 1], dtype='float32')
+    left = fluid.layers.data(name='left', shape=[-1, 1], dtype='float32')
+    right = fluid.layers.data(name='right', shape=[-1, 1], dtype='float32')
     out = fluid.layers.rank_loss(label, left, right)
 

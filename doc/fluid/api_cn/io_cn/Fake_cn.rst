@@ -21,5 +21,6 @@ Fakereader将缓存它读取的第一个数据，并将其输出data_num次。�
     def reader():
         for i in range(10):
             yield i
-
+    
     fake_reader = Fake()(reader, 100)
+

@@ -22,12 +22,14 @@ stop_profiler
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
-
+    
     profiler.start_profiler('GPU')
     for iter in range(10):
         if iter == 2:
             profiler.reset_profiler()
             # except each iteration
     profiler.stop_profiler('total', '/tmp/profile')
+

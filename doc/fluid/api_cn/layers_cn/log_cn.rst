@@ -31,6 +31,22 @@ Log激活函数（计算自然对数）
 
 ..  code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    # Graph Organizing
+    x = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    res = paddle.log(x)
+    
+    # Create an executor using CPU as an example
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    x_i = np.array([[1], [2]]).astype(np.float32)
+    res_val, = exe.run(paddle.default_main_program(), feed={'x': x_i},
+        fetch_list=[res])
+    print(res_val)
+
   import paddle.fluid as fluid
   import numpy as np
 

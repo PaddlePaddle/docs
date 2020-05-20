@@ -31,6 +31,9 @@ sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.layers.fill_constant(shape=[3, 2], value=0.5, dtype='float32') # [[0.5, 0.5], [0.5, 0.5], [0.5, 0.5]]
-    result = fluid.layers.hard_sigmoid(data) # [[0.6, 0.6], [0.6, 0.6], [0.6, 0.6]]
+    data = paddle.full(shape=[3, 2], fill_value=0.5, dtype='float32', device=
+        None, stop_gradient=True)
+    result = paddle.nn.functional.hard_sigmoid(data)
+

@@ -34,11 +34,10 @@ clamp
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    in1 = np.array([[1.2,3.5],
-                    [4.5,6.4]]).astype('float32')
-    with fluid.dygraph.guard():
-        x1 = fluid.dygraph.to_variable(in1)
+    
+    in1 = np.array([[1.2, 3.5], [4.5, 6.4]]).astype('float32')
+    with paddle.imperative.guard():
+        x1 = paddle.imperative.to_variable(in1)
         out1 = paddle.tensor.clamp(x1, min=3.5, max=5.0)
         out2 = paddle.tensor.clamp(x1, min=2.5)
         print(out1.numpy())

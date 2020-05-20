@@ -38,20 +38,22 @@ addmm
     import numpy as np
     import paddle
     import paddle.fluid as fluid
-
-    input = fluid.data(name='input', shape=[2, 2], dtype='float32')
-    x = fluid.data(name='x', shape=[2, 2], dtype='float32')
-    y = fluid.data(name='y', shape=[2, 2], dtype='float32')
-    out = paddle.addmm( input=input, x=x, y=y, alpha=5.0, beta=0.5 )
-
+    
+    input = paddle.data(name='input', shape=[2, 2], dtype='float32')
+    x = paddle.data(name='x', shape=[2, 2], dtype='float32')
+    y = paddle.data(name='y', shape=[2, 2], dtype='float32')
+    out = paddle.addmm(input=input, x=x, y=y, alpha=5.0, beta=0.5)
+    
     data_x = np.ones((2, 2)).astype(np.float32)
     data_y = np.ones((2, 2)).astype(np.float32)
     data_input = np.ones((2, 2)).astype(np.float32)
-
-    place =  fluid.CUDAPlace(0) if fluid.core.is_compiled_with_cuda() else fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    results = exe.run(fluid.default_main_program(), 
-                      fetch_list=[out], feed={"input": data_input, 'x': data_x, "y": data_y})
+    
+    place = paddle.CUDAPlace(0) if fluid.core.is_compiled_with_cuda(
+        ) else paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    results = exe.run(paddle.default_main_program(), fetch_list=[out], feed={
+        'input': data_input, 'x': data_x, 'y': data_y})
     print(np.array(results[0]))
     # [[10.5 10.5]
     # [10.5 10.5]]
+

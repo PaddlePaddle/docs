@@ -27,14 +27,12 @@ greater_equal
 
 .. code-block:: python
 
-     import paddle.fluid as fluid
-     import paddle.fluid.layers as layers
-     import numpy as np
-     label = layers.assign(np.array([2, 2], dtype='int32'))
-     limit = layers.assign(np.array([2, 3], dtype='int32'))
-     out = fluid.layers.greater_equal(x=label, y=limit) #out=[True, False]
-     out_1 = label >= limit #out1=[True, False]
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    import numpy as np
+    label = layers.assign(np.array([2, 2], dtype='int32'))
+    limit = layers.assign(np.array([2, 3], dtype='int32'))
+    out = paddle.greater_equal(x=label, y=limit)
+    out_1 = label >= limit
 

@@ -56,29 +56,24 @@ div
 
 ..  code-block:: python
 
-
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.array([2, 3, 4]).astype('float32'),
-            "y": np.array([1, 5, 2]).astype('float32')
-        }
-
-    x = fluid.data(name="x", shape=[3], dtype='float32')
-    y = fluid.data(name="y", shape=[3], dtype='float32')
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
     z = paddle.div(x, y)
     # z = x / y
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-
-    print(z_value) # [2., 0.6, 2.]
-
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
 **代码示例 2**
 
@@ -87,27 +82,21 @@ div
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.ones((2, 3, 4, 5)).astype('float32'),
-            "y": np.zeros((4, 5)).astype('float32')
-        }
-
-    x = fluid.data(name="x", shape=[2, 3, 4, 5], dtype='float32')
-    y = fluid.data(name="y", shape=[4, 5], dtype='float32')
-    z = paddle.div(x, y, name='z')
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
+    z = paddle.div(x, y)
     # z = x / y
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-
-    print(z_value[0])
-    print(z_value[0].shape) # z.shape=[2,3,4,5]
-
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
 **代码示例 3**
 
@@ -116,27 +105,21 @@ div
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.random.randint(1, 5, size=[2, 3, 4, 5]).astype('float32'),
-            "y": np.random.randint(1, 5, size=[5]).astype('float32')
-        }
-
-    x = fluid.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.data(name="y", shape=[5], dtype='float32')
-    output = fluid.data(name="output", shape=[2,3,4,5], dtype="float32")
-    z = paddle.div(x, y, out=output)
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
+    z = paddle.div(x, y)
     # z = x / y
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-    print(z_value[0])
-    print(z_value[0].shape) # z.shape=[2,3,4,5]
-
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
 **代码示例 4（动态图）**
 
@@ -145,16 +128,19 @@ div
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    with fluid.dygraph.guard(fluid.CPUPlace()):
-        np_x = np.array([2, 3, 4]).astype('float64')
-        np_y = np.array([1, 5, 2]).astype('float64')
-        x = fluid.dygraph.to_variable(np_x)
-        y = fluid.dygraph.to_variable(np_y)
-        z = paddle.div(x, y)
-        np_z = z.numpy()
-        print(np_z)  # [2., 0.6, 2.]
-
-
-
+    
+    
+    def gen_data():
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
+    z = paddle.div(x, y)
+    # z = x / y
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 

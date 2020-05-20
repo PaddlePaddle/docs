@@ -24,15 +24,10 @@ eye
 .. code-block:: python
 
     import paddle
-    data = paddle.eye(3, dtype='int32') # paddle.eye 等价于 paddle.tensor.eye
+    data = paddle.eye(3, dtype='int32')
     # [[1, 0, 0]
-    #  [0, 1, 0]
-    #  [0, 0, 1]]
+    #  [0, 1, 0]]
     data = paddle.eye(2, 3, dtype='int32')
     # [[1, 0, 0]
     #  [0, 1, 0]]
-
-
-
-
 

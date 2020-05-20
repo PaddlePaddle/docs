@@ -25,10 +25,14 @@ assign
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-    data = fluid.layers.fill_constant(shape=[3, 2], value=2.5, dtype='float64') # [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
-    result1 = fluid.layers.create_tensor(dtype='float64')
-    fluid.layers.assign(data, result1) # result1 = [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
-    result2 = fluid.layers.assign(data)  # result2 = [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
-    result3 = fluid.layers.assign(np.array([[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]], dtype='float32')) # result3 = [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
+    data = paddle.full(shape=[3, 2], fill_value=2.5, dtype='float64', device=
+        None, stop_gradient=True)
+    result1 = paddle.create_tensor(dtype='float64')
+    paddle.nn.functional.assign(data, result1)
+    result2 = paddle.nn.functional.assign(data)
+    result3 = paddle.nn.functional.assign(np.array([[2.5, 2.5], [2.5, 2.5], [
+        2.5, 2.5]], dtype='float32'))
+

@@ -29,27 +29,25 @@ load
 .. code-block:: python
 
     # example1
+    import paddle
     import paddle.fluid as fluid
-
-    x = fluid.data( name="x", shape=[10, 10], dtype='float32')
+    
+    x = paddle.data(name='x', shape=[10, 10], dtype='float32')
     y = fluid.layers.fc(x, 10)
     z = fluid.layers.fc(y, 10)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    fluid.save(fluid.default_main_program(), "./test_path")
-    fluid.load(fluid.default_main_program(), "./test_path")
-
-    # example2
-    # 注意example1和example2应该分开执行，避免干扰。
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    paddle.save(paddle.default_main_program(), './test_path')
+    paddle.load(paddle.default_main_program(), './test_path')
     import paddle.fluid as fluid
-
-    x = fluid.data( name="x", shape=[10, 10], dtype='float32')
+    
+    x = paddle.data(name='x', shape=[10, 10], dtype='float32')
     y = fluid.layers.fc(x, 10)
     z = fluid.layers.fc(y, 10)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    fluid.save(fluid.default_main_program(), "./test_path")
-    fluid.load(fluid.default_main_program(), "./test_path", exe)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    paddle.save(paddle.default_main_program(), './test_path')
+    paddle.load(paddle.default_main_program(), './test_path', exe)
 

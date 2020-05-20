@@ -44,47 +44,40 @@ ExponentialMovingAverage
     import numpy
     import paddle
     import paddle.fluid as fluid
-
+    
     data = fluid.layers.data(name='x', shape=[5], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
-    cost = fluid.layers.mean(hidden)
-
-    test_program = fluid.default_main_program().clone(for_test=True)
-
-    optimizer = fluid.optimizer.Adam(learning_rate=0.001)
+    cost = paddle.mean(hidden)
+    
+    test_program = paddle.default_main_program().clone(for_test=True)
+    
+    optimizer = paddle.optimizer.Adam(learning_rate=0.001)
     optimizer.minimize(cost)
-
+    
     global_steps = fluid.layers.learning_rate_scheduler._decay_step_counter()
-    ema = fluid.optimizer.ExponentialMovingAverage(0.999, thres_steps=global_steps)
+    ema = paddle.optimizer.ExponentialMovingAverage(0.999, thres_steps=global_steps
+        )
     ema.update()
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
     for pass_id in range(3):
         for batch_id in range(6):
             data = numpy.random.random(size=(10, 5)).astype('float32')
-            exe.run(program=fluid.default_main_program(),
-                feed={'x': data},
+            exe.run(program=paddle.default_main_program(), feed={'x': data},
                 fetch_list=[cost.name])
-
+    
         # usage 1
         with ema.apply(exe):
             data = numpy.random.random(size=(10, 5)).astype('float32')
-            exe.run(program=test_program,
-                    feed={'x': data},
-                    fetch_list=[hidden.name])
-
-
-         # usage 2
+            exe.run(program=test_program, feed={'x': data}, fetch_list=[hidden.
+                name])
         with ema.apply(exe, need_restore=False):
             data = numpy.random.random(size=(10, 5)).astype('float32')
-            exe.run(program=test_program,
-                    feed={'x': data},
-                    fetch_list=[hidden.name])
+            exe.run(program=test_program, feed={'x': data}, fetch_list=[hidden.
+                name])
         ema.restore(exe)
-
 
 .. py:method:: update()
 

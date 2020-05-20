@@ -15,28 +15,26 @@ BuildStrategy
 **代码示例**
 
 .. code-block:: python
-    
+
+    import paddle
     import os
     import numpy as np
     import paddle.fluid as fluid
-
-    os.environ["CPU_NUM"] = '2'
+    
+    os.environ['CPU_NUM'] = '2'
     places = fluid.cpu_places()
-
-    data = fluid.layers.data(name="x", shape=[1], dtype="float32")
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
-    loss = fluid.layers.mean(hidden)
-    fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    build_strategy = fluid.BuildStrategy()
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
     build_strategy.enable_inplace = True
     build_strategy.memory_optimize = True
-    build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
-    program = fluid.compiler.CompiledProgram(fluid.default_main_program())
-    program = program.with_data_parallel(loss_name=loss.name,
-                                         build_strategy=build_strategy,
-                                         places=places)
-
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: debug_graphviz_path
 
@@ -46,10 +44,25 @@ str类型。表示以graphviz格式向文件中写入计算图的路径，有利
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.debug_graphviz_path = "./graph"
-
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: enable_sequential_execution
 
@@ -59,10 +72,25 @@ bool类型。如果设置为True，则算子的执行顺序将与算子定义的
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.enable_sequential_execution = True
-
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: fuse_broadcast_ops
      
@@ -72,11 +100,26 @@ bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模�
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.fuse_broadcast_ops = True
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
-     
 .. py:attribute:: fuse_elewise_add_act_ops
 
 bool类型。表明是否融合(fuse) elementwise_add_op和activation_op。这会使整体执行过程更快。默认为False。
@@ -85,10 +128,25 @@ bool类型。表明是否融合(fuse) elementwise_add_op和activation_op。这�
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.fuse_elewise_add_act_ops = True
-
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: fuse_relu_depthwise_conv
 
@@ -98,9 +156,25 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.fuse_relu_depthwise_conv = True
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: gradient_scale_strategy
 
@@ -110,48 +184,25 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
 .. code-block:: python
 
+    import paddle
     import os
     import numpy as np
     import paddle.fluid as fluid
-    import paddle.fluid.compiler as compiler
-
-    use_cuda = True
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    # NOTE: 如果你使用CPU计算，需要指定CPU_NUM, 否则,fluid
-    # 将使用所有的核的数目作为CPU_NUM,
-    # 这种情况下，输入的batch size应该大于CPU_NUM, 否则, 
-    # 进程将会因为异常而失败。
-    if not use_cuda:
-        os.environ['CPU_NUM'] = str(2)
-        places = fluid.cpu_places()
-    else:
-        places = places = fluid.cuda_places()
-
-    data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
-    loss = fluid.layers.mean(hidden)
-    fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    fluid.default_startup_program().random_seed=1
-    exe.run(fluid.default_startup_program())
-
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.gradient_scale_strategy = \
-         fluid.BuildStrategy.GradientScaleStrategy.Customized
-    compiled_prog = compiler.CompiledProgram(
-         fluid.default_main_program()).with_data_parallel(
-                  loss_name=loss.name, build_strategy=build_strategy,
-                  places = places)
-
-    dev_count =  len(places)
-    x = np.random.random(size=(10, 1)).astype('float32')
-    loss_grad = np.ones((dev_count)).astype("float32") * 0.01
-    loss_grad_name = loss.name+"@GRAD"
-    loss_data = exe.run(compiled_prog,
-                     feed={"X": x, loss_grad_name : loss_grad},
-                     fetch_list=[loss.name, loss_grad_name])
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: memory_optimize
 
@@ -166,9 +217,25 @@ bool类型或None。设为True时可用于减少总内存消耗，False表示不
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: remove_unnecessary_lock
 
@@ -178,10 +245,25 @@ bool类型。设置True会去除GPU操作中的一些锁操作， ``ParallelExec
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.remove_unnecessary_lock = True
-
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 
 .. py:attribute:: sync_batch_norm
 
@@ -191,8 +273,23 @@ bool类型。表示是否使用同步的批正则化，即在训练阶段通过�
 
 .. code-block:: python
 
+    import paddle
+    import os
+    import numpy as np
     import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.sync_batch_norm = True
-
+    
+    os.environ['CPU_NUM'] = '2'
+    places = fluid.cpu_places()
+    
+    data = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    build_strategy = paddle.BuildStrategy()
+    build_strategy.enable_inplace = True
+    build_strategy.memory_optimize = True
+    build_strategy.reduce_strategy = paddle.BuildStrategy.ReduceStrategy.Reduce
+    program = fluid.compiler.CompiledProgram(paddle.default_main_program())
+    program = program.with_data_parallel(loss_name=loss.name, build_strategy=
+        build_strategy, places=places)
 

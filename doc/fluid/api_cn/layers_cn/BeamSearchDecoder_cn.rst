@@ -26,25 +26,17 @@ BeamSearchDecoder
 **示例代码**
 
 .. code-block:: python
-        
+
+    import paddle
     import paddle.fluid as fluid
     from paddle.fluid.layers import GRUCell, BeamSearchDecoder
-    trg_embeder = lambda x: fluid.embedding(
-        x, size=[10000, 128], param_attr=fluid.ParamAttr(name="trg_embedding"))
-    output_layer = lambda x: layers.fc(x,
-                                    size=10000,
-                                    num_flatten_dims=len(x.shape) - 1,
-                                    param_attr=fluid.ParamAttr(name=
-                                                                "output_w"),
-                                    bias_attr=False)
+    trg_embeder = lambda x: fluid.embedding(x, size=[10000, 128], param_attr=
+        paddle.ParamAttr(name='trg_embedding'))
+    output_layer = lambda x: layers.fc(x, size=10000, num_flatten_dims=len(x.
+        shape) - 1, param_attr=paddle.ParamAttr(name='output_w'), bias_attr=False)
     decoder_cell = GRUCell(hidden_size=128)
-    decoder = BeamSearchDecoder(decoder_cell,
-                                start_token=0,
-                                end_token=1,
-                                beam_size=4,
-                                embedding_fn=trg_embeder,
-                                output_fn=output_layer)
-
+    decoder = BeamSearchDecoder(decoder_cell, start_token=0, end_token=1,
+        beam_size=4, embedding_fn=trg_embeder, output_fn=output_layer)
 
 .. py:method:: tile_beam_merge_with_batch(x, beam_size)
 

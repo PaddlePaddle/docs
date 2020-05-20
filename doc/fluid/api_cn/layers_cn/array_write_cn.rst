@@ -23,6 +23,22 @@ array_write
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    tmp = paddle.full(shape=[3, 2], dtype='int64', fill_value=5, device=None,
+        stop_gradient=True)
+    i = paddle.full(shape=[1], dtype='int64', fill_value=10, device=None,
+    #将tmp写入数组arr下标为10的位置，并返回arr
+        stop_gradient=True)
+    arr = fluid.layers.array_write(tmp, i=i)
+    
+    #此时arr是长度为11的LoDTensorArray，可以通过array_read来查看下标为10的LoDTensor，并将之打印出来
+    item = fluid.layers.array_read(arr, i=i)
+    input = paddle.Print(item, message='The content of i-th LoDTensor:')
+    main_program = paddle.default_main_program()
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(main_program)
+
   import paddle.fluid as fluid
   tmp = fluid.layers.fill_constant(shape=[3, 2], dtype='int64', value=5)
   i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
@@ -39,7 +55,23 @@ array_write
 **输出结果**
 
 .. code-block:: python
-  
+
+    import paddle
+    import paddle.fluid as fluid
+    tmp = paddle.full(shape=[3, 2], dtype='int64', fill_value=5, device=None,
+        stop_gradient=True)
+    i = paddle.full(shape=[1], dtype='int64', fill_value=10, device=None,
+    #将tmp写入数组arr下标为10的位置，并返回arr
+        stop_gradient=True)
+    arr = fluid.layers.array_write(tmp, i=i)
+    
+    #此时arr是长度为11的LoDTensorArray，可以通过array_read来查看下标为10的LoDTensor，并将之打印出来
+    item = fluid.layers.array_read(arr, i=i)
+    input = paddle.Print(item, message='The content of i-th LoDTensor:')
+    main_program = paddle.default_main_program()
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(main_program)
+
   1570533133	The content of i-th LoDTensor:	The place is:CPUPlace
   Tensor[array_read_0.tmp_0]
 	  shape: [3,2,]

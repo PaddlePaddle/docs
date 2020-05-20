@@ -73,19 +73,12 @@ sequence_pad
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy
-
-    x = fluid.layers.data(name='y', shape=[10, 5],
-                     dtype='float32', lod_level=1)
-    pad_value = fluid.layers.assign(
-        input=numpy.array([0.0], dtype=numpy.float32))
+    
+    x = fluid.layers.data(name='y', shape=[10, 5], dtype='float32', lod_level=1)
+    pad_value = paddle.nn.functional.assign(input=numpy.array([0.0], dtype=
+        numpy.float32))
     out = fluid.layers.sequence_pad(x=x, pad_value=pad_value)
-
-
-
-
-
-
-
 

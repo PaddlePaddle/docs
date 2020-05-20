@@ -38,12 +38,13 @@ Dropout层可以删除，提高执行效率。
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     from paddle.fluid.dygraph.base import to_variable
     import numpy as np
-
+    
     x = np.random.random(size=(3, 10, 3, 7)).astype('float32')
-    with fluid.dygraph.guard():
+    with paddle.imperative.guard():
         x = to_variable(x)
         m = fluid.dygraph.Dropout(p=0.5)
         droped_train = m(x)

@@ -31,6 +31,15 @@ mean_iou
 
 ..  code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    iou_shape = [32, 32]
+    num_classes = 5
+    predict = fluid.layers.data(name='predict', shape=iou_shape, dtype='int64')
+    label = fluid.layers.data(name='label', shape=iou_shape, dtype='int64')
+    mean_iou, out_wrong, out_correct = paddle.metric.mean_iou(predict, label,
+        num_classes)
+
    import paddle.fluid as fluid
    iou_shape = [32, 32]
    num_classes = 5

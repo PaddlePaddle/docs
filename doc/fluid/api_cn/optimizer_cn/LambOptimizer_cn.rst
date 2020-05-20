@@ -45,19 +45,21 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-     
+    
     data = fluid.layers.data(name='x', shape=[5], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
-    cost = fluid.layers.mean(hidden)
-
+    cost = paddle.mean(hidden)
+    
+    
     def exclude_fn(param):
         return param.name.endswith('.b_0')
-     
+    
+    
     optimizer = fluid.optimizer.Lamb(learning_rate=0.002,
-                                     exclude_from_weight_decay_fn=exclude_fn)
+        exclude_from_weight_decay_fn=exclude_fn)
     optimizer.minimize(cost)
-
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 
@@ -77,28 +79,21 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
 
 .. code-block:: python
 
-    import numpy
+    import paddle
     import paddle.fluid as fluid
-     
-    x = fluid.layers.data(name='X', shape=[13], dtype='float32')
-    y = fluid.layers.data(name='Y', shape=[1], dtype='float32')
-    y_predict = fluid.layers.fc(input=x, size=1, act=None)
-    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-    loss = fluid.layers.mean(cost)
-    adam = fluid.optimizer.LambOptimizer(learning_rate=0.2)
-    adam.minimize(loss)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-     
-    x = numpy.random.random(size=(10, 13)).astype('float32')
-    y = numpy.random.random(size=(10, 1)).astype('float32')
-    exe.run(fluid.default_startup_program())
-    outs = exe.run(program=fluid.default_main_program(),
-                   feed={'X': x, 'Y': y},
-                   fetch_list=[loss.name])
-
-
+    
+    data = fluid.layers.data(name='x', shape=[5], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    cost = paddle.mean(hidden)
+    
+    
+    def exclude_fn(param):
+        return param.name.endswith('.b_0')
+    
+    
+    optimizer = fluid.optimizer.Lamb(learning_rate=0.002,
+        exclude_from_weight_decay_fn=exclude_fn)
+    optimizer.minimize(cost)
 
 .. py:method:: clear_gradients()
 
@@ -113,24 +108,21 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
+    
+    data = fluid.layers.data(name='x', shape=[5], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    cost = paddle.mean(hidden)
+    
+    
     def exclude_fn(param):
         return param.name.endswith('.b_0')
-
-    with fluid.dygraph.guard():
-        value = np.arange(26).reshape(2, 13).astype("float32")
-        a = fluid.dygraph.to_variable(value)
-        linear = fluid.Linear(13, 5, dtype="float32")
-        optimizer = fluid.optimizer.LambOptimizer(learning_rate=0.02,
-                                      exclude_from_weight_decay_fn=exclude_fn,
-                                      parameter_list=linear.parameters())
-        out = linear(a)
-        out.backward()
-        optimizer.minimize(out)
-        optimizer.clear_gradients()
-
+    
+    
+    optimizer = fluid.optimizer.Lamb(learning_rate=0.002,
+        exclude_from_weight_decay_fn=exclude_fn)
+    optimizer.minimize(cost)
 
 .. py:method:: current_step_lr()
 
@@ -148,36 +140,19 @@ Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    # example1: LearningRateDecay is not used, return value is all the same
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        adam = fluid.optimizer.Adam(0.001, parameter_list = emb.parameters())
-        lr = adam.current_step_lr()
-        print(lr) # 0.001
-
-    # example2: PiecewiseDecay is used, return the step learning rate
-    with fluid.dygraph.guard():
-        inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-        linear = fluid.dygraph.nn.Linear(10, 10)
-        inp = fluid.dygraph.to_variable(inp)
-        out = linear(inp)
-        loss = fluid.layers.reduce_mean(out)
-
-        bd = [2, 4, 6, 8]
-        value = [0.2, 0.4, 0.6, 0.8, 1.0]
-        adam = fluid.optimizer.Adam(fluid.dygraph.PiecewiseDecay(bd, value, 0),
-                           parameter_list=linear.parameters())
-
-        # first step: learning rate is 0.2
-        np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-        # learning rate for different steps
-        ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-        for i in range(12):
-            adam.minimize(loss)
-            lr = adam.current_step_lr()
-            np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+    
+    data = fluid.layers.data(name='x', shape=[5], dtype='float32')
+    hidden = fluid.layers.fc(input=data, size=10)
+    cost = paddle.mean(hidden)
+    
+    
+    def exclude_fn(param):
+        return param.name.endswith('.b_0')
+    
+    
+    optimizer = fluid.optimizer.Lamb(learning_rate=0.002,
+        exclude_from_weight_decay_fn=exclude_fn)
+    optimizer.minimize(cost)
 

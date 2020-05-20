@@ -26,14 +26,12 @@ greater_than
 
 .. code-block:: python
 
-     import paddle.fluid as fluid
-     import paddle.fluid.layers as layers
-     import numpy as np
-     label = layers.assign(np.array([2, 3], dtype='int32'))
-     limit = layers.assign(np.array([3, 2], dtype='int32'))
-     out = fluid.layers.greater_than(x=label, y=limit) #out=[False, True]
-     out1 = label > limit #out1=[False, True]
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    import numpy as np
+    label = layers.assign(np.array([2, 3], dtype='int32'))
+    limit = layers.assign(np.array([3, 2], dtype='int32'))
+    out = paddle.greater_than(x=label, y=limit)
+    out1 = label > limit
 

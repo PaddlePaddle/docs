@@ -51,18 +51,17 @@ Long-Short Term Memory（LSTM）循环神经网络计算单元。该OP用于完�
 **代码示例**：
 
 .. code-block:: python
-   
-    import paddle.fluid as fluid
 
+    import paddle
+    import paddle.fluid as fluid
+    
     dict_dim, emb_dim, hidden_dim = 128, 64, 512
-    data = fluid.data(name='step_data', shape=[None], dtype='int64')
+    data = paddle.data(name='step_data', shape=[None], dtype='int64')
     x = fluid.embedding(input=data, size=[dict_dim, emb_dim])
-    pre_hidden = fluid.data(
-        name='pre_hidden', shape=[None, hidden_dim], dtype='float32')
-    pre_cell = fluid.data(
-        name='pre_cell', shape=[None, hidden_dim], dtype='float32')
-    hidden = fluid.layers.lstm_unit(
-        x_t=x,
-        hidden_t_prev=pre_hidden,
+    pre_hidden = paddle.data(name='pre_hidden', shape=[None, hidden_dim], dtype
+        ='float32')
+    pre_cell = paddle.data(name='pre_cell', shape=[None, hidden_dim], dtype=
+        'float32')
+    hidden = fluid.layers.lstm_unit(x_t=x, hidden_t_prev=pre_hidden,
         cell_t_prev=pre_cell)
- 
+

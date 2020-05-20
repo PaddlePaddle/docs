@@ -43,27 +43,25 @@ stat_neg为计算时label=0的统计值
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    data = fluid.layers.data(name="input", shape=[-1, 32,32], dtype="float32")
-    label = fluid.layers.data(name="label", shape=[1], dtype="int")
+    
+    data = fluid.layers.data(name='input', shape=[-1, 32, 32], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int')
     fc_out = fluid.layers.fc(input=data, size=2)
-    predict = fluid.layers.softmax(input=fc_out)
-    result=fluid.layers.auc(input=predict, label=label)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    exe.run(fluid.default_startup_program())
-    x = np.random.rand(3,32,32).astype("float32")
-    y = np.array([1,0,1])
-    output= exe.run(feed={"input": x,"label": y},
-                     fetch_list=[result[0]])
+    predict = paddle.nn.functional.softmax(input=fc_out)
+    result = paddle.metric.auc(input=predict, label=label)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    
+    exe.run(paddle.default_startup_program())
+    x = np.random.rand(3, 32, 32).astype('float32')
+    y = np.array([1, 0, 1])
+    output = exe.run(feed={'input': x, 'label': y}, fetch_list=[result[0]])
     print(output)
     """
     output:
     [array([0.5])]
     """
-
 

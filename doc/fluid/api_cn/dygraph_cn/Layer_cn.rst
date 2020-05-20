@@ -55,32 +55,36 @@ hook(Layer, input) -> None or modified input
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
     # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
     def forward_pre_hook(layer, input):
         # 改变输入值
-        input_return = (input[0] * 2)
+        input_return = input[0] * 2
         return input_return
-
-    with fluid.dygraph.guard():
-        linear = fluid.Linear(13, 5, dtype="float32")
-
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
         # 注册hook
-        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook)
-
-        value0 = np.arange(26).reshape(2, 13).astype("float32")
-        in0 = fluid.dygraph.to_variable(value0)
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
         out0 = linear(in0)
-
+    
         # 移除hook
         forward_pre_hook_handle.remove()
-
+    
         value1 = value0 * 2
-        in1 = fluid.dygraph.to_variable(value1)
+        in1 = paddle.imperative.to_variable(value1)
         out1 = linear(in1)
-
+    
         # hook改变了layer的输入（input = input * 2），所以out0等于out1
         assert (out0.numpy() == out1.numpy()).any()
 
@@ -103,32 +107,38 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    # forward_post_hook函数改变了layer的输出：output = output * 2
-    def forward_post_hook(layer, input, output):
-        # 改变输出值
-        return output * 2
-
-    with fluid.dygraph.guard():
-        linear = fluid.Linear(13, 5, dtype="float32")
-
+    
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = input[0] * 2
+        return input_return
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
         # 注册hook
-        forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
-
-        value1 = np.arange(26).reshape(2, 13).astype("float32")
-        in1 = fluid.dygraph.to_variable(value1)
-
-        out0 = linear(in1)
-
-        # remove the hook
-        forward_post_hook_handle.remove()
-
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
+        out0 = linear(in0)
+    
+        # 移除hook
+        forward_pre_hook_handle.remove()
+    
+        value1 = value0 * 2
+        in1 = paddle.imperative.to_variable(value1)
         out1 = linear(in1)
-
-        # hook改变了layer的输出（output = output * 2），所以out0等于out1 * 2
-        assert (out0.numpy() == (out1.numpy()) * 2).any()
+    
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
 
 .. py:method:: create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 
@@ -189,20 +199,38 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    with fluid.dygraph.guard():
-        value = np.arange(26).reshape(2, 13).astype("float32")
-        a = fluid.dygraph.to_variable(value)
-        linear = fluid.Linear(13, 5, dtype="float32")
-        adam = fluid.optimizer.Adam(learning_rate=0.01, 
-                                    parameter_list=linear.parameters())
-        out = linear(a)
-        out.backward()
-        adam.minimize(out)
-        linear.clear_gradients()
-
+    
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = input[0] * 2
+        return input_return
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
+        out0 = linear(in0)
+    
+        # 移除hook
+        forward_pre_hook_handle.remove()
+    
+        value1 = value0 * 2
+        in1 = paddle.imperative.to_variable(value1)
+        out1 = linear(in1)
+    
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
 
 .. py:method:: named_parameters(prefix='', include_sublayers=True)
 
@@ -220,14 +248,38 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    with fluid.dygraph.guard():
-        fc1 = fluid.Linear(10, 3)
-        fc2 = fluid.Linear(3, 10, bias_attr=False)
-        model = fluid.dygraph.Sequential(fc1, fc2)
-        for name, param in model.named_parameters():
-            print(name, param)
+    import numpy as np
+    
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = input[0] * 2
+        return input_return
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
+        out0 = linear(in0)
+    
+        # 移除hook
+        forward_pre_hook_handle.remove()
+    
+        value1 = value0 * 2
+        in1 = paddle.imperative.to_variable(value1)
+        out1 = linear(in1)
+    
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
 
 .. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
 
@@ -247,14 +299,38 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    with fluid.dygraph.guard():
-        fc1 = fluid.Linear(10, 3)
-        fc2 = fluid.Linear(3, 10, bias_attr=False)
-        model = fluid.dygraph.Sequential(fc1, fc2)
-        for prefix, layer in model.named_sublayers():
-            print(prefix, layer)
+    import numpy as np
+    
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = input[0] * 2
+        return input_return
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
+        out0 = linear(in0)
+    
+        # 移除hook
+        forward_pre_hook_handle.remove()
+    
+        value1 = value0 * 2
+        in1 = paddle.imperative.to_variable(value1)
+        out1 = linear(in1)
+    
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
 
 .. py:method:: forward(*inputs, **kwargs)
 
@@ -304,11 +380,38 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        state_dict = emb.state_dict()
-        fluid.save_dygraph(state_dict, "paddle_dy")
+    import numpy as np
+    
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = input[0] * 2
+        return input_return
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
+        out0 = linear(in0)
+    
+        # 移除hook
+        forward_pre_hook_handle.remove()
+    
+        value1 = value0 * 2
+        in1 = paddle.imperative.to_variable(value1)
+        out1 = linear(in1)
+    
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
 
 .. py:method:: set_dict(stat_dict, include_sublayers=True)
 
@@ -324,13 +427,38 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        state_dict = emb.state_dict()
-        fluid.save_dygraph(state_dict, "paddle_dy")
-        para_state_dict, _ = fluid.load_dygraph("paddle_dy")
-        emb.set_dict(para_state_dict)
+    import numpy as np
+    
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = input[0] * 2
+        return input_return
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
+        out0 = linear(in0)
+    
+        # 移除hook
+        forward_pre_hook_handle.remove()
+    
+        value1 = value0 * 2
+        in1 = paddle.imperative.to_variable(value1)
+        out1 = linear(in1)
+    
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
 
 .. py:method:: load_dict(stat_dict, include_sublayers=True)
 
@@ -349,11 +477,36 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        state_dict = emb.state_dict()
-        fluid.save_dygraph(state_dict, "paddle_dy")
-        para_state_dict, _ = fluid.load_dygraph("paddle_dy")
-        emb.load_dict(para_state_dict)
+    import numpy as np
+    
+    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    
+    def forward_pre_hook(layer, input):
+        # 改变输入值
+        input_return = input[0] * 2
+        return input_return
+    
+    
+    with paddle.imperative.guard():
+        linear = fluid.Linear(13, 5, dtype='float32')
+    
+        # 注册hook
+        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook
+    
+            )
+        value0 = np.arange(26).reshape(2, 13).astype('float32')
+        in0 = paddle.imperative.to_variable(value0)
+        out0 = linear(in0)
+    
+        # 移除hook
+        forward_pre_hook_handle.remove()
+    
+        value1 = value0 * 2
+        in1 = paddle.imperative.to_variable(value1)
+        out1 = linear(in1)
+    
+        # hook改变了layer的输入（input = input * 2），所以out0等于out1
+        assert (out0.numpy() == out1.numpy()).any()
 

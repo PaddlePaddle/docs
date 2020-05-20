@@ -35,11 +35,8 @@ pixel_shuffle
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[9,4,4])
+    input = fluid.layers.data(name='input', shape=[9, 4, 4])
     output = fluid.layers.pixel_shuffle(x=input, upscale_factor=3)
-
-
-
-
 

@@ -46,86 +46,51 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
     import paddle
     import paddle.fluid as fluid
-     
-    place = fluid.CPUPlace()
-    main = fluid.Program()
-    with fluid.program_guard(main):
+    
+    place = paddle.CPUPlace()
+    main = paddle.Program()
+    with paddle.program_guard(main):
         x = fluid.layers.data(name='x', shape=[13], dtype='float32')
         y = fluid.layers.data(name='y', shape=[1], dtype='float32')
         y_predict = fluid.layers.fc(input=x, size=1, act=None)
         cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-        avg_cost = fluid.layers.mean(cost)
-        adam_optimizer = fluid.optimizer.AdamOptimizer(0.01)
+        avg_cost = paddle.mean(cost)
+        adam_optimizer = paddle.optimizer.AdamOptimizer(0.01)
         adam_optimizer.minimize(avg_cost)
-
+    
         fetch_list = [avg_cost]
-        train_reader = paddle.batch(
-            paddle.dataset.uci_housing.train(), batch_size=1)
+        train_reader = paddle.batch(paddle.dataset.uci_housing.train(),
+            batch_size=1)
         feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
+        exe = paddle.Executor(place)
+        exe.run(paddle.default_startup_program())
         for data in train_reader():
             exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 
 .. code-block:: python
 
-    # Adam with beta1/beta2 as Variable
     import paddle
     import paddle.fluid as fluid
-    import paddle.fluid.layers.learning_rate_scheduler as lr_scheduler
-
-    place = fluid.CPUPlace()
-    main = fluid.Program()
-    with fluid.program_guard(main):
-        x = fluid.data(name='x', shape=[None, 13], dtype='float32')
-        y = fluid.data(name='y', shape=[None, 1], dtype='float32')
+    
+    place = paddle.CPUPlace()
+    main = paddle.Program()
+    with paddle.program_guard(main):
+        x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[1], dtype='float32')
         y_predict = fluid.layers.fc(input=x, size=1, act=None)
         cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-        avg_cost = fluid.layers.mean(cost)
-
-        # define beta decay variable
-        def get_decayed_betas(beta1_init, beta2_init, decay_steps, decay_rate)
-            global_step = lr_scheduler._decay_step_counter()
-
-            beta1 = fluid.layers.create_global_var(
-                shape=[1],
-                value=float(beta1_init),
-                dtype='float32',
-                # set persistable for save checkpoints and resume
-                persistable=True,
-                name="beta1")
-            beta2 = fluid.layers.create_global_var(
-                shape=[1],
-                value=float(beta2_init),
-                dtype='float32',
-                # set persistable for save checkpoints and resume
-                persistable=True,
-                name="beta2")
-
-            div_res = global_step / decay_steps
-            decayed_beta1 = beta1_init * (decay_rate**div_res)
-            decayed_beta2 = beta2_init * (decay_rate**div_res)
-            fluid.layers.assign(decayed_beta1, beta1)
-            fluid.layers.assign(decayed_beta2, beta2)
-
-            return beta1, beta2
-
-        beta1, beta2 = get_decayed_betas(0.9, 0.99, 1e5, 0.9)
-        adam_optimizer = fluid.optimizer.AdamOptimizer(
-                                            learning_rate=0.01,
-                                            beta1=beta1
-                                            beta2=beta2)
+        avg_cost = paddle.mean(cost)
+        adam_optimizer = paddle.optimizer.AdamOptimizer(0.01)
         adam_optimizer.minimize(avg_cost)
-
+    
         fetch_list = [avg_cost]
-        train_reader = paddle.batch(
-            paddle.dataset.uci_housing.train(), batch_size=1)
+        train_reader = paddle.batch(paddle.dataset.uci_housing.train(),
+            batch_size=1)
         feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
+        exe = paddle.Executor(place)
+        exe.run(paddle.default_startup_program())
         for data in train_reader():
             exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
-
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 
@@ -145,27 +110,28 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 .. code-block:: python
 
-    import numpy
+    import paddle
     import paddle.fluid as fluid
-     
-    x = fluid.layers.data(name='X', shape=[13], dtype='float32')
-    y = fluid.layers.data(name='Y', shape=[1], dtype='float32')
-    y_predict = fluid.layers.fc(input=x, size=1, act=None)
-    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-    loss = fluid.layers.mean(cost)
-    adam = fluid.optimizer.AdamOptimizer(learning_rate=0.2)
-    adam.minimize(loss)
-
-    place = fluid.CPUPlace() # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
-    x = numpy.random.random(size=(10, 13)).astype('float32')
-    y = numpy.random.random(size=(10, 1)).astype('float32')
-    exe.run(fluid.default_startup_program())
-    outs = exe.run(program=fluid.default_main_program(),
-                   feed={'X': x, 'Y': y},
-                   fetch_list=[loss.name])
-
+    
+    place = paddle.CPUPlace()
+    main = paddle.Program()
+    with paddle.program_guard(main):
+        x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+        y_predict = fluid.layers.fc(input=x, size=1, act=None)
+        cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+        avg_cost = paddle.mean(cost)
+        adam_optimizer = paddle.optimizer.AdamOptimizer(0.01)
+        adam_optimizer.minimize(avg_cost)
+    
+        fetch_list = [avg_cost]
+        train_reader = paddle.batch(paddle.dataset.uci_housing.train(),
+            batch_size=1)
+        feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
+        exe = paddle.Executor(place)
+        exe.run(paddle.default_startup_program())
+        for data in train_reader():
+            exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 
 .. py:method:: clear_gradients()
 
@@ -180,20 +146,28 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    with fluid.dygraph.guard():
-        value = np.arange(26).reshape(2, 13).astype("float32")
-        a = fluid.dygraph.to_variable(value)
-        linear = fluid.Linear(13, 5, dtype="float32")
-        optimizer = fluid.optimizer.Adam(learning_rate=0.02,
-                                         parameter_list=linear.parameters())
-        out = linear(a)
-        out.backward()
-        optimizer.minimize(out)
-        optimizer.clear_gradients()
-
+    
+    place = paddle.CPUPlace()
+    main = paddle.Program()
+    with paddle.program_guard(main):
+        x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+        y_predict = fluid.layers.fc(input=x, size=1, act=None)
+        cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+        avg_cost = paddle.mean(cost)
+        adam_optimizer = paddle.optimizer.AdamOptimizer(0.01)
+        adam_optimizer.minimize(avg_cost)
+    
+        fetch_list = [avg_cost]
+        train_reader = paddle.batch(paddle.dataset.uci_housing.train(),
+            batch_size=1)
+        feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
+        exe = paddle.Executor(place)
+        exe.run(paddle.default_startup_program())
+        for data in train_reader():
+            exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 
 .. py:method:: current_step_lr()
 
@@ -211,36 +185,26 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    # example1: LearningRateDecay is not used, return value is all the same
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        adam = fluid.optimizer.Adam(0.001, parameter_list = emb.parameters())
-        lr = adam.current_step_lr()
-        print(lr) # 0.001
-
-    # example2: PiecewiseDecay is used, return the step learning rate
-    with fluid.dygraph.guard():
-        inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-        linear = fluid.dygraph.nn.Linear(10, 10)
-        inp = fluid.dygraph.to_variable(inp)
-        out = linear(inp)
-        loss = fluid.layers.reduce_mean(out)
-
-        bd = [2, 4, 6, 8]
-        value = [0.2, 0.4, 0.6, 0.8, 1.0]
-        adam = fluid.optimizer.Adam(fluid.dygraph.PiecewiseDecay(bd, value, 0),
-                           parameter_list=linear.parameters())
-
-        # first step: learning rate is 0.2
-        np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-        # learning rate for different steps
-        ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-        for i in range(12):
-            adam.minimize(loss)
-            lr = adam.current_step_lr()
-            np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+    
+    place = paddle.CPUPlace()
+    main = paddle.Program()
+    with paddle.program_guard(main):
+        x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+        y_predict = fluid.layers.fc(input=x, size=1, act=None)
+        cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+        avg_cost = paddle.mean(cost)
+        adam_optimizer = paddle.optimizer.AdamOptimizer(0.01)
+        adam_optimizer.minimize(avg_cost)
+    
+        fetch_list = [avg_cost]
+        train_reader = paddle.batch(paddle.dataset.uci_housing.train(),
+            batch_size=1)
+        feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
+        exe = paddle.Executor(place)
+        exe.run(paddle.default_startup_program())
+        for data in train_reader():
+            exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 

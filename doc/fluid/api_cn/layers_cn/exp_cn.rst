@@ -28,6 +28,18 @@ exp
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    input_exp = np.array([[-1.5, 6], [1, 15.6]])
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(input_exp)
+        y = paddle.exp(x)
+        print(y.numpy())
+        # [[2.23130160e-01 4.03428793e+02]
+        # [2.71828183e+00 5.95653801e+06]]
+
   import paddle.fluid as fluid
   import numpy as np
 

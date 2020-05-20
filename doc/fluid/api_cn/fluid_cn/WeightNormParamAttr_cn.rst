@@ -32,6 +32,15 @@ WeightNormParamAttr
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
+    fc = fluid.layers.fc(input=data, size=1000, param_attr=paddle.
+        WeightNormParamAttr(dim=None, name='weight_norm_param', initializer=
+        fluid.initializer.ConstantInitializer(1.0), learning_rate=1.0,
+        regularizer=fluid.regularizer.L2DecayRegularizer(regularization_coeff=
+        0.1), trainable=True, do_model_average=False))
+
   import paddle.fluid as fluid
   data = fluid.layers.data(name="data", shape=[3, 32, 32], dtype="float32")
   fc = fluid.layers.fc(input=data,

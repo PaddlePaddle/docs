@@ -29,11 +29,10 @@ arcsine激活函数。
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[4])
-        # if data is [-0.8183,  0.4912, -0.6444,  0.0371]
-        result = fluid.layers.asin(data)
-        # result is [-0.9585,  0.5135, -0.7003,  0.0372]
-
-
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='input', shape=[4])
+    # if data is [-0.8183,  0.4912, -0.6444,  0.0371]
+    result = paddle.asin(data)
+    # result is [-0.9585,  0.5135, -0.7003,  0.0372]
 

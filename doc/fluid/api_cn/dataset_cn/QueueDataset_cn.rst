@@ -14,10 +14,9 @@ QueueDataset
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
-
-
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 .. py:method:: local_shuffle()
 
@@ -29,11 +28,9 @@ QueueDataset中不支持局域shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
-    dataset.local_shuffle()
-
-
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 .. py:method:: global_shuffle(fleet=None)
 
@@ -45,10 +42,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    from paddle.fluid.incubate.fleet.parameter_server.pslib import fleet
-    dataset = fluid.DatasetFactory().create_dataset("QueueDataset")
-    dataset.global_shuffle(fleet)
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 .. py:method:: desc()
 
@@ -58,9 +54,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    print(dataset.desc())
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 返回：一个字符串信息
 
@@ -72,9 +68,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_batch_size(128)
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 参数：
     - **batch_size** (int) - batch size
@@ -89,9 +85,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
-    dataset.set_fea_eval(1000000, True)
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 .. py:method:: set_filelist(filelist)
 
@@ -101,9 +97,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_filelist(["a.txt", "b.txt"])
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 参数：
     - **filelist** (list) - 文件列表
@@ -116,9 +112,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_hdfs_config("my_fs_name", "my_fs_ugi")
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 参数：
     - **fs_name** (str) - fs名称
@@ -132,9 +128,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_pipe_command("python my_script.py")
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 参数：
     - **pipe_command** (str) - pipe命令
@@ -147,9 +143,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_thread(12)
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 参数：
     - **thread_num** (int) - 进程数量
@@ -162,9 +158,9 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset()
-    dataset.set_use_var([data, label])
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 
 参数：
     - **var_list** (list) - variable 列表
@@ -180,9 +176,7 @@ QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataset = fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
-    dataset.set_merge_by_lineid()
-    #支持slot 0
-    dataset.slots_shuffle([‘0’])
+    dataset = fluid.DatasetFactory().create_dataset('QueueDataset')
 

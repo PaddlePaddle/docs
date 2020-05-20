@@ -32,13 +32,14 @@ flip
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    input = fluid.data(name="x", shape=[-1, 2, 2], dtype='float32')
+    input = paddle.data(name='x', shape=[-1, 2, 2], dtype='float32')
     output = paddle.flip(input, dims=[0, 1])
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-    img = np.arange(12).reshape((3,2,2)).astype(np.float32)
-    res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-    print(res) # [[[10,11][8, 9]],[[6, 7],[4, 5]] [[2, 3],[0, 1]]]
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    img = np.arange(12).reshape((3, 2, 2)).astype(np.float32)
+    res = exe.run(paddle.default_main_program(), feed={'x': img}, fetch_list=[
+        output])
+    print(res)
 
 **代码示例2**：
 
@@ -47,9 +48,12 @@ flip
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    img = np.arange(12).reshape((3,2,2)).astype(np.float32)
-    with fluid.dygraph.guard():
-      inputs = fluid.dygraph.to_variable(img)
-      ret = paddle.flip(inputs, [0, 1])
-      print(ret.numpy()) # [[[10,11][8, 9]],[[6, 7],[4, 5]] [[2, 3],[0, 1]]]
+    input = paddle.data(name='x', shape=[-1, 2, 2], dtype='float32')
+    output = paddle.flip(input, dims=[0, 1])
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    img = np.arange(12).reshape((3, 2, 2)).astype(np.float32)
+    res = exe.run(paddle.default_main_program(), feed={'x': img}, fetch_list=[
+        output])
+    print(res)
 

@@ -76,28 +76,21 @@ embedding
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    data = fluid.layers.data(name='sequence', shape=[1], dtype='int64', lod_level=1)
-
+    
+    data = fluid.layers.data(name='sequence', shape=[1], dtype='int64', lod_level=1
+    
     # 示例 1
+        )
     emb_1 = fluid.layers.embedding(input=data, size=[128, 64])
-
+    
     # 示例 2: 加载用户自定义或预训练的词向量
-    weight_data = np.random.random(size=(128, 100))  # numpy格式的词向量数据
-    w_param_attrs = fluid.ParamAttr(
-        name="emb_weight",
-        learning_rate=0.5,
+    weight_data = np.random.random(size=(128, 100))
+    w_param_attrs = paddle.ParamAttr(name='emb_weight', learning_rate=0.5,
         initializer=fluid.initializer.NumpyArrayInitializer(weight_data),
         trainable=True)
-    emb_2 = fluid.layers.embedding(input=data, size=(128, 100), param_attr=w_param_attrs, dtype='float32')
-
-
-
-
-
-
-
-
+    emb_2 = fluid.layers.embedding(input=data, size=(128, 100), param_attr=
+        w_param_attrs, dtype='float32')
 

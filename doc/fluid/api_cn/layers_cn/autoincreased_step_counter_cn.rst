@@ -25,15 +25,8 @@ autoincreased_step_counter
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    global_step = fluid.layers.autoincreased_step_counter(
-        counter_name='@LR_DECAY_COUNTER@', begin=0, step=1)
-
-
-
-
-
-
-
-
+    global_step = fluid.layers.autoincreased_step_counter(counter_name=
+        '@LR_DECAY_COUNTER@', begin=0, step=1)
 

@@ -28,12 +28,14 @@ ReLU
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.nn as nn
     import numpy as np
-
+    
     data = np.array([-2, 0, 1]).astype('float32')
     my_relu = nn.ReLU()
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
-        res = my_relu(data)  # [0, 0, 1]
+    with paddle.imperative.guard():
+        data = paddle.imperative.to_variable(data)
+        res = my_relu(data)
+

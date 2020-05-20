@@ -43,33 +43,30 @@ NLLLoss
 
 ..  code-block:: python
 
-            # declarative mode
-            import paddle.fluid as fluid
-            import numpy as np
-            import paddle
-            input_np = np.random.random(size=(10, 10)).astype(np.float32)
-            label_np = np.random.randint(0, 10, size=(10,)).astype(np.int64)
-            prog = fluid.Program()
-            startup_prog = fluid.Program()
-            place = fluid.CPUPlace()
-            with fluid.program_guard(prog, startup_prog):
-                input = fluid.data(name='input', shape=[10, 10], dtype='float32')
-                label = fluid.data(name='label', shape=[10], dtype='int64')
-                nll_loss = paddle.nn.loss.NLLLoss()
-                res = nll_loss(input, label)
-                exe = fluid.Executor(place)
-                static_result = exe.run(
-                    prog,
-                    feed={"input": input_np,
-                          "label": label_np},
-                    fetch_list=[res])
-            print(static_result)
-            
-            # imperative mode
-            import paddle.fluid.dygraph as dg
-            with dg.guard(place) as g:
-                input = dg.to_variable(input_np)
-                label = dg.to_variable(label_np)
-                output = nll_loss(input, label)
-                print(output.numpy())
+    # declarative mode
+    import paddle.fluid as fluid
+    import numpy as np
+    import paddle
+    input_np = np.random.random(size=(10, 10)).astype(np.float32)
+    label_np = np.random.randint(0, 10, size=(10,)).astype(np.int64)
+    prog = paddle.Program()
+    startup_prog = paddle.Program()
+    place = paddle.CPUPlace()
+    with paddle.program_guard(prog, startup_prog):
+        input = paddle.data(name='input', shape=[10, 10], dtype='float32')
+        label = paddle.data(name='label', shape=[10], dtype='int64')
+        nll_loss = paddle.nn.loss.NLLLoss()
+        res = nll_loss(input, label)
+        exe = paddle.Executor(place)
+        static_result = exe.run(prog, feed={'input': input_np, 'label':
+            label_np}, fetch_list=[res])
+    print(static_result)
+    
+    # imperative mode
+    import paddle.fluid.dygraph as dg
+    with dg.guard(place) as g:
+        input = dg.to_variable(input_np)
+        label = dg.to_variable(label_np)
+        output = nll_loss(input, label)
+        print(output.numpy())
 

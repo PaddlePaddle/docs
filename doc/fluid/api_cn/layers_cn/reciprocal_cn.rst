@@ -29,18 +29,9 @@ reciprocal 对输入Tensor取倒数
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.fill_constant(shape=[2], value=4, dtype='float32') #data=[4.0, 4.0]
-        result = fluid.layers.reciprocal(data) # result=[0.25, 0.25]
-
-
-
-
-
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    data = paddle.full(shape=[2], fill_value=4, dtype='float32', device=None,
+        stop_gradient=True)
+    result = paddle.reciprocal(data)
 

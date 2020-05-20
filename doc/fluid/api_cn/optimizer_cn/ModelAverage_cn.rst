@@ -37,41 +37,9 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
 **代码示例**
 
 .. code-block:: python
-        
-    import paddle.fluid as fluid
-    import numpy
-     
-    # 首先创建执行引擎
-    place = fluid.CPUPlace()  # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
-        # 构建net
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-        hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-        optimizer = fluid.optimizer.Momentum(learning_rate=0.2, momentum=0.1)
-        optimizer.minimize(loss)
 
-        # 构建ModelAverage优化器
-        model_average = fluid.optimizer.ModelAverage(0.15,
-                                          min_average_window=10000,
-                                          max_average_window=12500)
-        exe.run(startup_program)
-        for i in range(12500):
-            x = numpy.random.random(size=(10, 1)).astype('float32')
-            outs = exe.run(program=train_program,
-                        feed={'X': x},
-                        fetch_list=[loss.name])
-       # 应用ModelAverage
-        with model_average.apply(exe):
-             x = numpy.random.random(size=(10, 1)).astype('float32')
-             exe.run(program=train_program,
-                    feed={'X': x},
-                    fetch_list=[loss.name])
-
+    if num_accumulates >= min_average_window and num_accumulates >= min(max_average_window, num_updates * average_window_rate):
+        num_accumulates = 0
 
 .. py:method:: apply(executor, need_restore=True)
 
@@ -86,41 +54,9 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
 **代码示例**
 
 .. code-block:: python
-        
-    import paddle.fluid as fluid
-    import numpy
-     
-    # 首先创建执行引擎
-    place = fluid.CPUPlace()  # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
-        # 构建net
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-        hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-        optimizer = fluid.optimizer.Momentum(learning_rate=0.2, momentum=0.1)
-        optimizer.minimize(loss)
 
-        # 构建ModelAverage优化器
-        model_average = fluid.optimizer.ModelAverage(0.15,
-                                          min_average_window=10000,
-                                          max_average_window=12500)
-        exe.run(startup_program)
-        for i in range(12500):
-            x = numpy.random.random(size=(10, 1)).astype('float32')
-            outs = exe.run(program=train_program,
-                        feed={'X': x},
-                        fetch_list=[loss.name])
-
-       # 应用ModelAverage
-        with model_average.apply(exe):
-             x = numpy.random.random(size=(10, 1)).astype('float32')
-             exe.run(program=train_program,
-                    feed={'X': x},
-                    fetch_list=[loss.name])
+    if num_accumulates >= min_average_window and num_accumulates >= min(max_average_window, num_updates * average_window_rate):
+        num_accumulates = 0
 
 .. py:method:: restore(executor)
 
@@ -134,40 +70,7 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
 **代码示例**
 
 .. code-block:: python
-        
-    import paddle.fluid as fluid
-    import numpy
-     
-    # 首先创建执行引擎
-    place = fluid.CPUPlace()  # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
-        # 构建net
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-        hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-        optimizer = fluid.optimizer.Momentum(learning_rate=0.2, momentum=0.1)
-        optimizer.minimize(loss)
 
-        # 构建ModelAverage优化器
-        model_average = fluid.optimizer.ModelAverage(0.15,
-                                          min_average_window=10000,
-                                          max_average_window=12500)
-        exe.run(startup_program)
-        for i in range(12500):
-            x = numpy.random.random(size=(10, 1)).astype('float32')
-            outs = exe.run(program=train_program,
-                        feed={'X': x},
-                        fetch_list=[loss.name])
+    if num_accumulates >= min_average_window and num_accumulates >= min(max_average_window, num_updates * average_window_rate):
+        num_accumulates = 0
 
-       # 应用ModelAverage
-        with model_average.apply(exe, False):
-             x = numpy.random.random(size=(10, 1)).astype('float32')
-             exe.run(program=train_program,
-                    feed={'X': x},
-                    fetch_list=[loss.name])
-        # 恢复网络Parameters
-        model_average.restore(exe)

@@ -33,7 +33,8 @@ rsqrt
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.data(name="input", shape=[32, 784])
-        result = fluid.layers.rsqrt(data)
+    import paddle
+    import paddle.fluid as fluid
+    data = paddle.data(name='input', shape=[32, 784])
+    result = paddle.rsqrt(data)
 

@@ -24,30 +24,51 @@ t
 
 .. code-block:: python
 
-        # 例1 (0-D tensor)
-        x = tensor([0.79])
-        paddle.t(x) = tensor([0.79])
-
-        # 例2 (1-D tensor)
-        x = tensor([0.79, 0.84, 0.32])
-        paddle.t(x) = tensor([0.79, 0.84, 0.32])
-
-        # 例3 (2-D tensor)
-        x = tensor([0.79, 0.84, 0.32],
-                    [0.64, 0.14, 0.57])
-        paddle.t(x) = tensor([0.79, 0.64],
-                            [0.84, 0.14],
-                            [0.32, 0.57])
-
+    # 例1 (0-D tensor)
+    # 例1 (0-D tensor)
+    x = tensor([0.79])
+    paddle.t(x) = tensor([0.79])
+    
+    # 例3 (2-D tensor)
+    
+    # 例2 (1-D tensor)
+    x = tensor([0.79, 0.84, 0.32])
+    paddle.t(x) = tensor([0.79, 0.84, 0.32])
+    
+    # 例3 (2-D tensor)
+    
+    # 例3 (2-D tensor)
+    x = tensor([0.79, 0.84, 0.32],
+                [0.64, 0.14, 0.57])
+    paddle.t(x) = tensor([0.79, 0.64],
+    
+    # 例3 (2-D tensor)
+                        [0.84, 0.14],
+                        [0.32, 0.57])
 
 **代码示例**:
 
 .. code-block:: python
 
-    import paddle
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[2, 3], dtype='float32')
-    x_transposed = paddle.t(x) # paddle.t 等价于 paddle.tensor.t
-    print(x_transposed.shape)
-    #(3L, 2L)
+    # 例1 (0-D tensor)
+    # 例1 (0-D tensor)
+    x = tensor([0.79])
+    paddle.t(x) = tensor([0.79])
+    
+    # 例3 (2-D tensor)
+    
+    # 例2 (1-D tensor)
+    x = tensor([0.79, 0.84, 0.32])
+    paddle.t(x) = tensor([0.79, 0.84, 0.32])
+    
+    # 例3 (2-D tensor)
+    
+    # 例3 (2-D tensor)
+    x = tensor([0.79, 0.84, 0.32],
+                [0.64, 0.14, 0.57])
+    paddle.t(x) = tensor([0.79, 0.64],
+    
+    # 例3 (2-D tensor)
+                        [0.84, 0.14],
+                        [0.32, 0.57])
 

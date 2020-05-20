@@ -38,35 +38,22 @@ save_inference_model
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    path = "./infer_model"
-
+    
+    path = './infer_model'
+    
     # 用户定义网络，此处以softmax回归为例
     image = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
     label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-    feeder = fluid.DataFeeder(feed_list=[image, label], place=fluid.CPUPlace())
+    feeder = fluid.DataFeeder(feed_list=[image, label], place=paddle.CPUPlace())
     predict = fluid.layers.fc(input=image, size=10, act='softmax')
-
+    
     loss = fluid.layers.cross_entropy(input=predict, label=label)
-    avg_loss = fluid.layers.mean(loss)
-
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # 数据输入及训练过程
-
-    # 保存预测模型。注意，用于预测的模型网络结构不需要保存标签和损失。
-    fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'], target_vars=[predict], executor=exe)
-
-    # 在这个示例中，save_inference_mode接口将根据网络的输入结点（img）和输出结点（predict）修剪默认的主程序（_main_program_）。
-    # 修剪得到的Inference Program将被保存在 “./infer_model/__model__”文件中，
-    # 模型参数将被保存在“./infer_model/”文件夹下以各自名称命名的单独文件中。
-
-
-
-
-
-
-
+    avg_loss = paddle.mean(loss)
+    
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    paddle.io.save_inference_model(dirname=path, feeded_var_names=['img'],
+        target_vars=[predict], executor=exe)
 

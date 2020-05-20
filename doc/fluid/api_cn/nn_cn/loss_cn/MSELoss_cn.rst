@@ -39,26 +39,23 @@ MSELoss
     import paddle
     from paddle import fluid
     import paddle.fluid.dygraph as dg
-
+    
     mse_loss = paddle.nn.loss.MSELoss()
-    input = fluid.data(name="input", shape=[1])
-    label = fluid.data(name="label", shape=[1])
-    place = fluid.CPUPlace()
-    input_data = np.array([1.5]).astype("float32")
-    label_data = np.array([1.7]).astype("float32")
-
+    input = paddle.data(name='input', shape=[1])
+    label = paddle.data(name='label', shape=[1])
+    place = paddle.CPUPlace()
+    input_data = np.array([1.5]).astype('float32')
+    label_data = np.array([1.7]).astype('float32')
+    
     # declarative mode
-    output = mse_loss(input,label)
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    output_data = exe.run(
-        fluid.default_main_program(),
-        feed={"input":input_data, "label":label_data},
-        fetch_list=[output],
-        return_numpy=True)
+    output = mse_loss(input, label)
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    output_data = exe.run(paddle.default_main_program(), feed={'input':
+        input_data, 'label': label_data}, fetch_list=[output], return_numpy=True)
     print(output_data)
     # [array([0.04000002], dtype=float32)]
-
+    
     # imperative mode
     with dg.guard(place) as g:
         input = dg.to_variable(input_data)
@@ -66,3 +63,4 @@ MSELoss
         output = mse_loss(input, label)
         print(output.numpy())
         # [0.04000002]
+

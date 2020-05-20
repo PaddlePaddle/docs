@@ -28,10 +28,11 @@ squeeze
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    with fluid.dygraph.guard():
-        input_1 = np.random.random([5, 1, 10]).astype("int32")
+    with paddle.imperative.guard():
+        input_1 = np.random.random([5, 1, 10]).astype('int32')
         # input is a variable which shape is [5, 1, 10]
-        input = fluid.dygraph.to_variable(input_1)
-
-        output = paddle.fluid.layers.squeeze(input, axes=[1])
+        input = paddle.imperative.to_variable(input_1)
+    
+        output = paddle.squeeze(input, axes=[1], out=None)
         # output.shape [5, 10]
+

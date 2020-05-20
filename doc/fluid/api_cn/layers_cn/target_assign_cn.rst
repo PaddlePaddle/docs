@@ -52,23 +52,10 @@ neg_indices中的第i个实例的索引称作neg_indice，则对于第i个实例
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        x = fluid.data(
-            name='x',
-            shape=[4, 20, 4],
-            dtype='float',
-            lod_level=1)
-        matched_id = fluid.data(
-            name='indices',
-            shape=[8, 20],
-            dtype='int32')
-        trg, trg_weight = fluid.layers.target_assign(
-            x,
-            matched_id,
-            mismatch_value=0)
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    x = paddle.data(name='x', shape=[4, 20, 4], dtype='float', lod_level=1)
+    matched_id = paddle.data(name='indices', shape=[8, 20], dtype='int32')
+    trg, trg_weight = paddle.nn.functional.target_assign(x, matched_id,
+        mismatch_value=0)
 

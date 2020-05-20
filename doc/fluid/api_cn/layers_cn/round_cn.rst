@@ -16,6 +16,14 @@ round
 
 .. code-block:: python
 
+    输入：
+      x.shape = [4]
+      x.data = [1.2, -0.9, 3.4, 0.9]
+    
+    输出：
+      out.shape = [4]
+      Out.data = [1., -1., 3., 1.]
+
   输入：
     x.shape = [4]
     x.data = [1.2, -0.9, 3.4, 0.9]
@@ -35,20 +43,11 @@ round
 
 .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
-
-        inputs = fluid.layers.data(name="x", shape = [3], dtype='float32')
-        output = fluid.layers.round(inputs)
-
-        exe = fluid.Executor(fluid.CPUPlace())
-        exe.run(fluid.default_startup_program())
-
-        img = np.array([1.2, -0.9, 3.4, 0.9]).astype(np.float32)
-
-        res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-        print(res)
-        # [array([ 1., -1.,  3.,  1.], dtype=float32)]
-
-
+    输入：
+      x.shape = [4]
+      x.data = [1.2, -0.9, 3.4, 0.9]
+    
+    输出：
+      out.shape = [4]
+      Out.data = [1., -1., 3., 1.]
 

@@ -45,13 +45,8 @@ sequence_reverse
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[2, 6], dtype='float32')
     x_reversed = fluid.layers.sequence_reverse(x)
-
-
-
-
-
-
 

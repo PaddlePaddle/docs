@@ -25,28 +25,32 @@ xmap_readers
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import time
-
+    
+    
     def reader_creator_10(dur):
+    
         def reader():
             for i in range(10):
                 time.sleep(dur)
                 yield i
         return reader
-
+    
+    
     def mapper(x):
-        return (x + 1)
-
-    orders = (True, False)
-    thread_num = (1, 2, 4, 8, 16)
-    buffer_size = (1, 2, 4, 8, 16)
+        return x + 1
+    
+    
+    orders = True, False
+    thread_num = 1, 2, 4, 8, 16
+    buffer_size = 1, 2, 4, 8, 16
     for order in orders:
         for t_num in thread_num:
             for size in buffer_size:
-                user_reader = fluid.io.xmap_readers(mapper,
-                                                  reader_creator_10(0),
-                                                  t_num, size, order)
+                user_reader = paddle.io.xmap_readers(mapper, reader_creator_10(
+                    0), t_num, size, order)
                 for n in range(3):
                     result = list()
                     for i in user_reader():
@@ -55,3 +59,4 @@ xmap_readers
                         result.sort()
                     for idx, e in enumerate(result):
                         assert e == mapper(idx)
+

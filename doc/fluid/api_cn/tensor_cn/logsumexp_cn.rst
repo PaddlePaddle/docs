@@ -33,11 +33,11 @@ logsumexp
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    with fluid.dygraph.guard():
-      np_x = np.random.uniform(0.1, 1, [10]).astype(np.float32)
-      x = fluid.dygraph.to_variable(np_x)
-      print(paddle.logsumexp(x).numpy())
+    
+    with paddle.imperative.guard():
+        np_x = np.random.uniform(0.1, 1, [10]).astype(np.float32)
+        x = paddle.imperative.to_variable(np_x)
+        print(paddle.logsumexp(x).numpy())
 
 **代码示例2**
 
@@ -46,9 +46,9 @@ logsumexp
     import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
+    with paddle.imperative.guard():
+        np_x = np.random.uniform(0.1, 1, [10]).astype(np.float32)
+        x = paddle.imperative.to_variable(np_x)
+        print(paddle.logsumexp(x).numpy())
 
-    with fluid.dygraph.guard():
-        np_x = np.random.uniform(0.1, 1, [2, 3, 4]).astype(np.float32)
-        x = fluid.dygraph.to_variable(np_x)
-        print(paddle.logsumexp(x, dim=1).numpy())
-        print(paddle.logsumexp(x, dim=[0, 2]).numpy())

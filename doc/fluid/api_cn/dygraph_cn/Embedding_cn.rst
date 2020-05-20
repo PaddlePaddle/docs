@@ -73,33 +73,28 @@ Embedding
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.dygraph.base as base
     import numpy as np
-
+    
     # 示例 1
     inp_word = np.array([[2, 3, 5], [4, 2, 1]]).astype('int64')
-    inp_word.shape  # [2, 3]
+    inp_word.shape
     dict_size = 20
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding(
-            size=[dict_size, 32],
-            param_attr='emb.w',
+    with paddle.imperative.guard():
+        emb = paddle.nn.Embedding(size=[dict_size, 32], param_attr='emb.w',
             is_sparse=False)
         static_rlt3 = emb(base.to_variable(inp_word))
-        static_rlt3.shape  # [2, 3, 32]
-
+        static_rlt3.shape
+    
     # 示例 2: 加载用户自定义或预训练的词向量
-    weight_data = np.random.random(size=(128, 100))  # numpy格式的词向量数据
-    w_param_attrs = fluid.ParamAttr(
-        name="emb_weight",
-        learning_rate=0.5,
+    weight_data = np.random.random(size=(128, 100))
+    w_param_attrs = paddle.ParamAttr(name='emb_weight', learning_rate=0.5,
         initializer=fluid.initializer.NumpyArrayInitializer(weight_data),
         trainable=True)
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding(
-            size=[128, 100],
-            param_attr= w_param_attrs,
+    with paddle.imperative.guard():
+        emb = paddle.nn.Embedding(size=[128, 100], param_attr=w_param_attrs,
             is_sparse=False)
         static_rlt3 = emb(base.to_variable(inp_word))
 

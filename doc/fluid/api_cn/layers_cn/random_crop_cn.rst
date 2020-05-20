@@ -26,6 +26,18 @@ random_crop
 
 ..  code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    img = paddle.data('img', [None, 3, 256, 256])
+    # cropped_img的shape: [-1, 3, 224, 224]
+    cropped_img = paddle.nn.functional.random_crop(img, shape=[3, 224, 224])
+    
+    # cropped_img2的shape: [-1, 2, 224, 224]
+    # cropped_img2 = fluid.layers.random_crop(img, shape=[2，224, 224])
+    
+    # cropped_img3的shape: [-1, 3, 128, 224]
+    # cropped_img3 = fluid.layers.random_crop(img, shape=[128, 224])
+
    import paddle.fluid as fluid
    img = fluid.data("img", [None, 3, 256, 256])
    # cropped_img的shape: [-1, 3, 224, 224]

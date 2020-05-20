@@ -34,6 +34,15 @@ ParamAttr
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    
+    w_param_attrs = paddle.ParamAttr(name='fc_weight', learning_rate=0.5,
+        regularizer=fluid.regularizer.L2Decay(1.0), trainable=True)
+    print(w_param_attrs.name)
+    x = fluid.layers.data(name='X', shape=[1], dtype='float32')
+    y_predict = fluid.layers.fc(input=x, size=10, param_attr=w_param_attrs)
+
    import paddle.fluid as fluid
    
    w_param_attrs = fluid.ParamAttr(name="fc_weight",

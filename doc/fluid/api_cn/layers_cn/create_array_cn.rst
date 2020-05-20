@@ -24,6 +24,10 @@ create_array
 
 ..  code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.create_array(dtype='float32')
+
   import paddle.fluid as fluid
   data = fluid.layers.create_array(dtype='float32') # 创建一个数据类型为float32的LoDTensorArray。
 

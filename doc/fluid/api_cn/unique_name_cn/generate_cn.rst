@@ -21,9 +21,9 @@ generate
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        name1 = fluid.unique_name.generate('fc')
-        name2 = fluid.unique_name.generate('fc')
-        print(name1, name2)  # fc_0, fc_1 
-
+    import paddle
+    import paddle.fluid as fluid
+    name1 = fluid.unique_name.generate('fc')
+    name2 = fluid.unique_name.generate('fc')
+    print(name1, name2)
 

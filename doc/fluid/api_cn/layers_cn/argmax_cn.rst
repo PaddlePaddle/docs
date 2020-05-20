@@ -24,6 +24,36 @@ argmax
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    in1 = np.array([[[5, 8, 9, 5], [0, 0, 1, 7], [6, 9, 2, 4]], [[5, 2, 4, 2],
+        [4, 7, 7, 9], [1, 7, 0, 6]]])
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(in1)
+        out1 = paddle.argmax(input=x, axis=-1, dtype=None, keepdims=False, name
+            =None, out=None)
+        out2 = paddle.argmax(input=x, axis=0, dtype=None, keepdims=False, name=
+            None, out=None)
+        out3 = paddle.argmax(input=x, axis=1, dtype=None, keepdims=False, name=
+            None, out=None)
+        out4 = paddle.argmax(input=x, axis=2, dtype=None, keepdims=False, name=
+            None, out=None)
+        print(out1.numpy())
+        # [[2 3 1]
+        #  [0 3 1]]
+        print(out2.numpy())
+        # [[0 0 0 0]
+        #  [1 1 1 1]
+        #  [0 0 0 1]]
+        print(out3.numpy())
+        # [[2 2 0 1]
+        #  [0 1 1 1]]
+        print(out4.numpy())
+        # [[2 3 1]
+        #  [0 3 1]]
+
   import paddle.fluid as fluid
   import numpy as np
 

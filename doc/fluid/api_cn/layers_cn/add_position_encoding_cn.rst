@@ -40,21 +40,10 @@ add_position_encoding
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    tensor = fluid.data(
-        name='tensor',
-        shape=[None, 64, 512],
-        dtype='float32')
-    position_tensor = fluid.layers.add_position_encoding(
-        input=tensor, alpha=1.0, beta=1.0)
-
-
-
-
-
-
-
-
-
+    
+    tensor = paddle.data(name='tensor', shape=[None, 64, 512], dtype='float32')
+    position_tensor = paddle.nn.functional.add_position_encoding(input=tensor,
+        alpha=1.0, beta=1.0)
 

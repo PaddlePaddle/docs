@@ -32,10 +32,11 @@ gather
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    with fluid.dygraph.guard():
-        input_1 = np.array([[1,2,3],[4,5,6],[7,8,9]])
-        index_1 = np.array([0,1])
-        input = fluid.dygraph.to_variable(input_1)
-        index = fluid.dygraph.to_variable(index_1)
-        output = paddle.fluid.layers.gather(input, index)
+    with paddle.imperative.guard():
+        input_1 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+        index_1 = np.array([0, 1])
+        input = paddle.imperative.to_variable(input_1)
+        index = paddle.imperative.to_variable(index_1)
+        output = paddle.gather(input, index)
         # expected output: [[1, 2, 3],[4, 5, 6]]
+

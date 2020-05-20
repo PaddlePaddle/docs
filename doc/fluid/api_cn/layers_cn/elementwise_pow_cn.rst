@@ -55,30 +55,20 @@ elementwise_pow
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.array([2, 3, 4]),
-            "y": np.array([1, 5, 2])
-        }
-
-    x = fluid.layers.data(name="x", shape=[3], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3], dtype='float32')
-    z = fluid.layers.elementwise_pow(x, y)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-
-    print(z_value) #[2, 243, 16]
-
-
-
-
-
-
-
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = fluid.layers.data(name='x', shape=[3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[3], dtype='float32')
+    z = paddle.elementwise_pow(x, y)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 

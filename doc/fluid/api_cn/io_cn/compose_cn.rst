@@ -22,13 +22,17 @@ compose
 
 .. code-block:: python
 
-     import paddle.fluid as fluid
-     def reader_creator_10(dur):
-         def reader():
+    import paddle
+    import paddle.fluid as fluid
+    
+    def reader_creator_10(dur):
+    
+        def reader():
             for i in range(10):
                 yield i
-         return reader
-
-     reader = fluid.io.compose(reader_creator_10(0), reader_creator_10(0))
+        return reader
+    
+    
+    reader = paddle.io.compose(reader_creator_10(0), reader_creator_10(0))
 
 注意： 运行过程可能会抛出异常 ``ComposeNotAligned`` ，原因是输入的readers数据未对齐。 当check_alignment设置为False时，不会检查并触发该异常。

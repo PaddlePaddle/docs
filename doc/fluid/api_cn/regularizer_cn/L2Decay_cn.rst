@@ -27,46 +27,39 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    main_prog = fluid.Program()
-    startup_prog = fluid.Program()
-    with fluid.program_guard(main_prog, startup_prog):
+    
+    main_prog = paddle.Program()
+    startup_prog = paddle.Program()
+    with paddle.program_guard(main_prog, startup_prog):
         data = fluid.layers.data(name='image', shape=[3, 28, 28], dtype='float32')
         label = fluid.layers.data(name='label', shape=[1], dtype='int64')
         hidden = fluid.layers.fc(input=data, size=128, act='relu')
         prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
         loss = fluid.layers.cross_entropy(input=prediction, label=label)
-        avg_loss = fluid.layers.mean(loss)
-    optimizer = fluid.optimizer.Adagrad(
-        learning_rate=1e-4,
-        regularization=fluid.regularizer.L2Decay(
-            regularization_coeff=0.1))
+        avg_loss = paddle.mean(loss)
+    optimizer = paddle.optimizer.Adagrad(learning_rate=0.0001, regularization=
+        fluid.regularizer.L2Decay(regularization_coeff=0.1))
     optimizer.minimize(avg_loss)
-
 
 **代码示例2**
 
 .. code-block:: python
-    
-    # 在 ParamAttr 和 optimizer 中同时设置正则化
+
+    import paddle
     import paddle.fluid as fluid
-    l1 = fluid.regularizer.L1Decay(regularization_coeff=0.1)
-    l2 = fluid.regularizer.L2Decay(regularization_coeff=0.1)
-    x = fluid.layers.uniform_random([3,4])
     
-    # 在ParamAttr中设置L1正则化
-    w_param = fluid.ParamAttr(regularizer=l1)
-    hidden1 = fluid.layers.fc(x, 8, param_attr=w_param)    # fc_0.w_0(L1), fc_0.b_0
-    hidden2 = fluid.layers.fc(hidden1, 16, param_attr=w_param)  # fc_1.w_0(L1), fc_1.b_0
-    predict = fluid.layers.fc(hidden2, 32)    # fc_3.w_0, fc_3.b_0
-    avg_loss = fluid.layers.mean(predict)
-    
-    # 在optimizer中设置L2正则化
-    optimizer = fluid.optimizer.SGD(learning_rate=1e-4, regularization=l2)
+    main_prog = paddle.Program()
+    startup_prog = paddle.Program()
+    with paddle.program_guard(main_prog, startup_prog):
+        data = fluid.layers.data(name='image', shape=[3, 28, 28], dtype='float32')
+        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+        hidden = fluid.layers.fc(input=data, size=128, act='relu')
+        prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
+        loss = fluid.layers.cross_entropy(input=prediction, label=label)
+        avg_loss = paddle.mean(loss)
+    optimizer = paddle.optimizer.Adagrad(learning_rate=0.0001, regularization=
+        fluid.regularizer.L2Decay(regularization_coeff=0.1))
     optimizer.minimize(avg_loss)
-    
-    # 将会打印出提示信息:
-    # Regularization of [fc_0.w_0, fc_1.w_0] have been set by ParamAttr or WeightNormParamAttr already. 
-    # So, the Regularization of Optimizer will not take effect for these parameters!
 

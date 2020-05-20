@@ -47,29 +47,28 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy
-     
+    
     # First create the Executor.
-    place = fluid.CPUPlace() # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
         data = fluid.layers.data(name='X', shape=[1], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-        adam = fluid.optimizer.AdamaxOptimizer(learning_rate=0.2)
+        loss = paddle.mean(hidden)
+        adam = paddle.optimizer.AdamaxOptimizer(learning_rate=0.2)
         adam.minimize(loss)
-     
+    
     # Run the startup program once and only once.
     exe.run(startup_program)
-     
+    
     x = numpy.random.random(size=(10, 1)).astype('float32')
-    outs = exe.run(program=train_program,
-                  feed={'X': x},
-                   fetch_list=[loss.name])
+    outs = exe.run(program=train_program, feed={'X': x}, fetch_list=[loss.name])
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 
@@ -87,25 +86,28 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 .. code-block:: python
 
-    import numpy
+    import paddle
     import paddle.fluid as fluid
-     
-    data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-    hidden = fluid.layers.fc(input=data, size=10)
-    loss = fluid.layers.mean(hidden)
-    adam = fluid.optimizer.Adamax(learning_rate=0.2)
-    adam.minimize(loss)
-
-    place = fluid.CPUPlace() # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
+    import numpy
+    
+    # First create the Executor.
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = paddle.mean(hidden)
+        adam = paddle.optimizer.AdamaxOptimizer(learning_rate=0.2)
+        adam.minimize(loss)
+    
+    # Run the startup program once and only once.
+    exe.run(startup_program)
+    
     x = numpy.random.random(size=(10, 1)).astype('float32')
-    exe.run(fluid.default_startup_program())
-    outs = exe.run(program=fluid.default_main_program(),
-                   feed={'X': x},
-                   fetch_list=[loss.name])
-
-
+    outs = exe.run(program=train_program, feed={'X': x}, fetch_list=[loss.name])
 
 .. py:method:: clear_gradients()
 
@@ -120,20 +122,28 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    with fluid.dygraph.guard():
-        value = np.arange(26).reshape(2, 13).astype("float32")
-        a = fluid.dygraph.to_variable(value)
-        linear = fluid.Linear(13, 5, dtype="float32")
-        optimizer = fluid.optimizer.AdamaxOptimizer(learning_rate=0.2,
-                                                    parameter_list=linear.parameters())
-        out = linear(a)
-        out.backward()
-        optimizer.minimize(out)
-        optimizer.clear_gradients()
-
+    import numpy
+    
+    # First create the Executor.
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = paddle.mean(hidden)
+        adam = paddle.optimizer.AdamaxOptimizer(learning_rate=0.2)
+        adam.minimize(loss)
+    
+    # Run the startup program once and only once.
+    exe.run(startup_program)
+    
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    outs = exe.run(program=train_program, feed={'X': x}, fetch_list=[loss.name])
 
 .. py:method:: current_step_lr()
 
@@ -151,36 +161,26 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    # example1: LearningRateDecay is not used, return value is all the same
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        adam = fluid.optimizer.Adam(0.001, parameter_list = emb.parameters())
-        lr = adam.current_step_lr()
-        print(lr) # 0.001
-
-    # example2: PiecewiseDecay is used, return the step learning rate
-    with fluid.dygraph.guard():
-        inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-        linear = fluid.dygraph.nn.Linear(10, 10)
-        inp = fluid.dygraph.to_variable(inp)
-        out = linear(inp)
-        loss = fluid.layers.reduce_mean(out)
-
-        bd = [2, 4, 6, 8]
-        value = [0.2, 0.4, 0.6, 0.8, 1.0]
-        adam = fluid.optimizer.Adam(fluid.dygraph.PiecewiseDecay(bd, value, 0),
-                           parameter_list=linear.parameters())
-
-        # first step: learning rate is 0.2
-        np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-        # learning rate for different steps
-        ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-        for i in range(12):
-            adam.minimize(loss)
-            lr = adam.current_step_lr()
-            np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+    import numpy
+    
+    # First create the Executor.
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = paddle.mean(hidden)
+        adam = paddle.optimizer.AdamaxOptimizer(learning_rate=0.2)
+        adam.minimize(loss)
+    
+    # Run the startup program once and only once.
+    exe.run(startup_program)
+    
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    outs = exe.run(program=train_program, feed={'X': x}, fetch_list=[loss.name])
 

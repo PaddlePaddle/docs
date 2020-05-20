@@ -33,40 +33,42 @@ PyReader
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
     EPOCH_NUM = 3
     ITER_NUM = 5
     BATCH_SIZE = 3
     
+    
     def network(image, label):
         # 用户定义网络，此处以softmax回归为例
         predict = fluid.layers.fc(input=image, size=10, act='softmax')
-        return fluid.layers.cross_entropy(input=predict, label=label) 
-
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
     def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
         def reader():
+        # 用户定义网络，此处以softmax回归为例
             for i in range(ITER_NUM):
-                fake_image = np.random.uniform(low=0,
-                                               high=255,
-                                               size=[height, width])
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
                 fake_label = np.ones([1])
                 yield fake_image, fake_label
         return reader
-
+    
+    
     image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
     label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-
-    reader = fluid.io.PyReader(feed_list=[image, label],
-                               capacity=4,
-                               iterable=False)
-
-    user_defined_reader = reader_creator_random_image_and_label(784, 784)
-    reader.decorate_sample_list_generator(
-        paddle.batch(user_defined_reader, batch_size=BATCH_SIZE))
     
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
     loss = network(image, label)
-    executor = fluid.Executor(fluid.CPUPlace())
-    executor.run(fluid.default_startup_program())
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
     for i in range(EPOCH_NUM):
         reader.start()
         while True:
@@ -76,10 +78,57 @@ PyReader
                 reader.reset()
                 break
 
-
 2.如果iterable=True，则创建的PyReader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是可迭代的。用户应将从PyReader对象生成的数据输入 ``Executor.run(feed=...)`` 。
 
 .. code-block:: python
+
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
+    
+    
+    def network(image, label):
+        # 用户定义网络，此处以softmax回归为例
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
+    def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
+        def reader():
+        # 用户定义网络，此处以softmax回归为例
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+        return reader
+    
+    
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
+    loss = network(image, label)
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
+    for i in range(EPOCH_NUM):
+        reader.start()
+        while True:
+            try:
+                executor.run(feed=None)
+            except fluid.core.EOFException:
+                reader.reset()
+                break
 
    import paddle
    import paddle.fluid as fluid
@@ -125,27 +174,50 @@ PyReader
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
     EPOCH_NUM = 3
     ITER_NUM = 5
-    BATCH_SIZE = 10
-
-    def reader_creator_random_image(height, width):
+    BATCH_SIZE = 3
+    
+    
+    def network(image, label):
+        # 用户定义网络，此处以softmax回归为例
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
+    def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
         def reader():
+        # 用户定义网络，此处以softmax回归为例
             for i in range(ITER_NUM):
-                yield np.random.uniform(low=0, high=255, size=[height, width]), \
-                    np.random.random_integers(low=0, high=9, size=[1])
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
         return reader
-
-    place = fluid.CPUPlace()
-    with fluid.dygraph.guard(place):
-        py_reader = fluid.io.PyReader(capacity=2, return_list=True)
-        user_defined_reader = reader_creator_random_image(784, 784)
-        py_reader.decorate_sample_list_generator(
-            paddle.batch(user_defined_reader, batch_size=BATCH_SIZE),
-            place)
-        for image, label in py_reader():
-            relu = fluid.layers.relu(image)
+    
+    
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
+    loss = network(image, label)
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
+    for i in range(EPOCH_NUM):
+        reader.start()
+        while True:
+            try:
+                executor.run(feed=None)
+            except fluid.core.EOFException:
+                reader.reset()
+                break
 
 .. py:method:: start()
 
@@ -154,6 +226,54 @@ PyReader
 **代码示例**
 
 .. code-block:: python
+
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
+    
+    
+    def network(image, label):
+        # 用户定义网络，此处以softmax回归为例
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
+    def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
+        def reader():
+        # 用户定义网络，此处以softmax回归为例
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+        return reader
+    
+    
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
+    loss = network(image, label)
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
+    for i in range(EPOCH_NUM):
+        reader.start()
+        while True:
+            try:
+                executor.run(feed=None)
+            except fluid.core.EOFException:
+                reader.reset()
+                break
 
   import paddle
   import paddle.fluid as fluid
@@ -189,31 +309,53 @@ PyReader
 
 .. code-block:: python
 
-            import paddle
-            import paddle.fluid as fluid
-            import numpy as np
-            
-            BATCH_SIZE = 10
-            
-            def generator():
-                for i in range(5):
-                    yield np.random.uniform(low=0, high=255, size=[784, 784]),
-            
-            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-            reader = fluid.io.PyReader(feed_list=[image], capacity=4, iterable=False)
-            reader.decorate_sample_list_generator(
-                paddle.batch(generator, batch_size=BATCH_SIZE))
-            
-            executor = fluid.Executor(fluid.CPUPlace())
-            executor.run(fluid.default_startup_program())
-            for i in range(3):
-                reader.start()
-                while True:
-                    try:
-                        executor.run(feed=None)
-                    except fluid.core.EOFException:
-                        reader.reset()
-                        break
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
+    
+    
+    def network(image, label):
+        # 用户定义网络，此处以softmax回归为例
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
+    def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
+        def reader():
+        # 用户定义网络，此处以softmax回归为例
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+        return reader
+    
+    
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
+    loss = network(image, label)
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
+    for i in range(EPOCH_NUM):
+        reader.start()
+        while True:
+            try:
+                executor.run(feed=None)
+            except fluid.core.EOFException:
+                reader.reset()
+                break
 
 .. py:method:: decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=None)
 
@@ -234,44 +376,54 @@ PyReader
 **代码示例**
 
 .. code-block:: python
-     
-            import paddle.fluid as fluid
-            import numpy as np
 
-            EPOCH_NUM = 3
-            ITER_NUM = 15
-            BATCH_SIZE = 3
-            
-            def network(image, label):
-                # 用户定义网络，此处以softmax回归为例
-                predict = fluid.layers.fc(input=image, size=10, act='softmax')
-                return fluid.layers.cross_entropy(input=predict, label=label)    
-            
-            def random_image_and_label_generator(height, width):
-                def generator():
-                    for i in range(ITER_NUM):
-                        fake_image = np.random.uniform(low=0,
-                                                       high=255,
-                                                       size=[height, width])
-                        fake_label = np.array([1])
-                        yield fake_image, fake_label
-                return generator
-            
-            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-            label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-            reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=True)
-            
-            user_defined_generator = random_image_and_label_generator(784, 784)
-            reader.decorate_sample_generator(user_defined_generator,
-                                             batch_size=BATCH_SIZE,
-                                             places=[fluid.CPUPlace()])
-            loss = network(image, label)
-            executor = fluid.Executor(fluid.CPUPlace())
-            executor.run(fluid.default_startup_program())
-     
-            for _ in range(EPOCH_NUM):
-                for data in reader():
-                    executor.run(feed=data, fetch_list=[loss])
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
+    
+    
+    def network(image, label):
+        # 用户定义网络，此处以softmax回归为例
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
+    def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
+        def reader():
+        # 用户定义网络，此处以softmax回归为例
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+        return reader
+    
+    
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
+    loss = network(image, label)
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
+    for i in range(EPOCH_NUM):
+        reader.start()
+        while True:
+            try:
+                executor.run(feed=None)
+            except fluid.core.EOFException:
+                reader.reset()
+                break
 
 .. py:method:: decorate_sample_list_generator(reader, places=None)
 
@@ -288,45 +440,54 @@ PyReader
 **代码示例**
 
 .. code-block:: python
-            
-            import paddle
-            import paddle.fluid as fluid
-            import numpy as np
 
-            EPOCH_NUM = 3
-            ITER_NUM = 15
-            BATCH_SIZE = 3
-            
-            def network(image, label):
-                # 用户定义网络，此处以softmax回归为例
-                predict = fluid.layers.fc(input=image, size=10, act='softmax')
-                return fluid.layers.cross_entropy(input=predict, label=label)
-               
-            def random_image_and_label_generator(height, width):
-                def generator():
-                    for i in range(ITER_NUM):
-                        fake_image = np.random.uniform(low=0,
-                                                       high=255,
-                                                       size=[height, width])
-                        fake_label = np.ones([1])
-                        yield fake_image, fake_label
-                return generator
-            
-            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-            label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-            reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=True)
-            
-            user_defined_generator = random_image_and_label_generator(784, 784)
-            reader.decorate_sample_list_generator(
-                paddle.batch(user_defined_generator, batch_size=BATCH_SIZE),
-                fluid.core.CPUPlace())
-            loss = network(image, label)
-            executor = fluid.Executor(fluid.core.CPUPlace())
-            executor.run(fluid.default_startup_program())
-     
-            for _ in range(EPOCH_NUM):
-                for data in reader():
-                    executor.run(feed=data, fetch_list=[loss])
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
+    
+    
+    def network(image, label):
+        # 用户定义网络，此处以softmax回归为例
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
+    def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
+        def reader():
+        # 用户定义网络，此处以softmax回归为例
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+        return reader
+    
+    
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
+    loss = network(image, label)
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
+    for i in range(EPOCH_NUM):
+        reader.start()
+        while True:
+            try:
+                executor.run(feed=None)
+            except fluid.core.EOFException:
+                reader.reset()
+                break
 
 .. py:method:: decorate_batch_generator(reader, places=None)
 
@@ -344,45 +505,53 @@ PyReader
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-            import numpy as np
-
-            EPOCH_NUM = 3
-            ITER_NUM = 15
-            BATCH_SIZE = 3
-            
-            def network(image, label):
-                # 用户定义网络，此处以softmax回归为例
-                predict = fluid.layers.fc(input=image, size=10, act='softmax')
-                return fluid.layers.cross_entropy(input=predict, label=label)
-            
-            def random_image_and_label_generator(height, width):
-                def generator():
-                    for i in range(ITER_NUM):
-                        batch_image = np.random.uniform(low=0,
-                                                        high=255,
-                                                        size=[BATCH_SIZE, height, width])
-                        batch_label = np.ones([BATCH_SIZE, 1])
-                        batch_image = batch_image.astype('float32')
-                        batch_label = batch_label.astype('int64')
-                        yield batch_image, batch_label
-                return generator
-            
-            image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
-            label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-            reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=True)
-            
-            user_defined_generator = random_image_and_label_generator(784, 784)
-            reader.decorate_batch_generator(user_defined_generator, fluid.CPUPlace())
-            
-            loss = network(image, label)
-            executor = fluid.Executor(fluid.CPUPlace())
-            executor.run(fluid.default_startup_program())
-     
-            for _ in range(EPOCH_NUM):
-                for data in reader():
-                    executor.run(feed=data, fetch_list=[loss])
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    EPOCH_NUM = 3
+    ITER_NUM = 5
+    BATCH_SIZE = 3
+    
+    
+    def network(image, label):
+        # 用户定义网络，此处以softmax回归为例
+        predict = fluid.layers.fc(input=image, size=10, act='softmax')
+        return fluid.layers.cross_entropy(input=predict, label=label)
+    
+    
+    def reader_creator_random_image_and_label(height, width):
+        # 用户定义网络，此处以softmax回归为例
+    
+        def reader():
+        # 用户定义网络，此处以softmax回归为例
+            for i in range(ITER_NUM):
+                fake_image = np.random.uniform(low=0, high=255, size=[height,
+                    width])
+                fake_label = np.ones([1])
+                yield fake_image, fake_label
+        return reader
+    
+    
+    image = fluid.layers.data(name='image', shape=[784, 784], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    
+    reader = fluid.io.PyReader(feed_list=[image, label], capacity=4, iterable=False
+        )
+    user_defined_reader = reader_creator_random_image_and_label(784, 784)
+    reader.decorate_sample_list_generator(paddle.batch(user_defined_reader,
+        batch_size=BATCH_SIZE))
+    loss = network(image, label)
+    executor = paddle.Executor(paddle.CPUPlace())
+    executor.run(paddle.default_startup_program())
+    for i in range(EPOCH_NUM):
+        reader.start()
+        while True:
+            try:
+                executor.run(feed=None)
+            except fluid.core.EOFException:
+                reader.reset()
+                break
 
 .. py:method:: next()
 

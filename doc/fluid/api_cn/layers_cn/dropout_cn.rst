@@ -51,14 +51,15 @@ dropout操作符可以从程序中移除，使程序变得高效。
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-    x = fluid.layers.data(name="x", shape=[32, 32], dtype="float32")
-    droped = fluid.layers.dropout(x, dropout_prob=0.5)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
+    x = fluid.layers.data(name='x', shape=[32, 32], dtype='float32')
+    droped = paddle.nn.functional.dropout(x, dropout_prob=0.5)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
     np_x = np.random.random(size=(32, 32)).astype('float32')
-    output = exe.run(feed={"x": np_x}, fetch_list = [droped])
+    output = exe.run(feed={'x': np_x}, fetch_list=[droped])
     print(output)
 

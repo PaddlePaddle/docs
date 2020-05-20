@@ -18,7 +18,7 @@ is_compiled_with_cuda
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     support_gpu = fluid.is_compiled_with_cuda()
-
 

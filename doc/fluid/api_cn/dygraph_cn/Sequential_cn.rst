@@ -19,24 +19,21 @@ Sequential
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
     data = np.random.uniform(-1, 1, [30, 10]).astype('float32')
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
         # 使用 iterable Layers 创建 Sequential 容器
-        model1 = fluid.dygraph.Sequential(
-            fluid.Linear(10, 1), fluid.Linear(1, 2)
-        )
-        model1[0]  # 访问第一个子层
-        res1 = model1(data)  # 顺序执行
+    with paddle.imperative.guard():
+        data = paddle.imperative.to_variable(data)
+        # 使用 iterable Layers 创建 Sequential 容器
+        model1 = paddle.nn.Sequential(fluid.Linear(10, 1), fluid.Linear(1, 2))
+        model1[0]
+        res1 = model1(data)
         # 使用 iterable name Layer 对创建 Sequential 容器
-        model2 = fluid.dygraph.Sequential(
-            ('l1', fluid.Linear(10, 2)),
-            ('l2', fluid.Linear(2, 3))
-        )
-        model2['l1']  # 访问 l1 子层
-        model2.add_sublayer('l3', fluid.Linear(3, 3))  # 添加子层
-        res2 = model2(data)  # 顺序执行
-
+        model2 = paddle.nn.Sequential(('l1', fluid.Linear(10, 2)), ('l2', fluid
+            .Linear(2, 3)))
+        model2['l1']
+        model2.add_sublayer('l3', fluid.Linear(3, 3))
+        res2 = model2(data)
 

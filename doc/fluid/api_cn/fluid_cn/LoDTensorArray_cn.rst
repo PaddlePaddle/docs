@@ -13,12 +13,11 @@ LoDTensorArray是由LoDTensor组成的数组，支持"[]"运算符、len()函数
 **示例代码**
 
 .. code-block:: python
-        
-        import paddle.fluid as fluid
-     
-        arr = fluid.LoDTensorArray()   
 
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    arr = fluid.LoDTensorArray()
 
 .. py:method:: append(self: paddle.fluid.core_avx.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
 
@@ -33,15 +32,8 @@ LoDTensorArray是由LoDTensor组成的数组，支持"[]"运算符、len()函数
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            arr = fluid.LoDTensorArray()
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            arr.append(t)
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    arr = fluid.LoDTensorArray()
 

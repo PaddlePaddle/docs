@@ -26,7 +26,8 @@ image_resize_short
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
+    input = fluid.layers.data(name='input', shape=[3, 6, 9], dtype='float32')
     out = fluid.layers.image_resize_short(input, out_short_len=3)
 

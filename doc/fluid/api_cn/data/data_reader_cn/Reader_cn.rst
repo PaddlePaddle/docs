@@ -27,23 +27,13 @@ Data Reader Interface
 
 ..  code-block:: python
 
-    def reader_creator_random_image(width, height):
-        def reader():
-            while True:
-                yield numpy.random.uniform(-1, 1, size=width*height)
-        return reader
-
+    iterable = data_reader()
 
 多项目数据读取器创建者的示例实现：
 
 ..  code-block:: python
 
-    def reader_creator_random_image_and_label(width, height, label):
-        def reader():
-            while True:
-                yield numpy.random.uniform(-1, 1, size=width*height), label
-        return reader
-
+    iterable = data_reader()
 
 .. py:function::  paddle.reader.buffered(reader, size)
 
@@ -105,13 +95,7 @@ PipeReader通过流从一个命令中读取数据，将它的stdout放到管道�
 
 ..  code-block:: python
 
-    def example_reader():
-        for f in myfiles:
-            pr = PipeReader("cat %s"%f)
-            for l in pr.get_line():
-                sample = l.split(" ")
-                yield sample
-
+    iterable = data_reader()
 
 .. py:method:: get_line(cut_lines=True, line_break='\n')
 
@@ -139,13 +123,7 @@ multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
 ..  code-block:: python
 
-    reader0 = reader(["file01", "file02"])
-    reader1 = reader(["file11", "file12"])
-    reader1 = reader(["file21", "file22"])
-    reader = multiprocess_reader([reader0, reader1, reader2],
-        queue_size=100, use_pipe=False)
-
-
+    iterable = data_reader()
 
 .. py:class:: paddle.reader.Fake
 
@@ -162,10 +140,5 @@ Fakereader将缓存它读取的第一个数据，并将其输出data_num次。�
 
 ..  code-block:: python
 
-    def reader():
-        for i in range(10):
-            yield i
-
-    fake_reader = Fake()(reader, 100)
-
+    iterable = data_reader()
 

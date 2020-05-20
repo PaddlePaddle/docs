@@ -58,13 +58,9 @@ unfold
 **代码示例**:
 
 .. code-block:: python
-    
+
+    import paddle
     import paddle.fluid as fluid
-    x = fluid.layers.data(name = 'data', shape = [3, 224, 224], dtype = 'float32')
-    y = fluid.layers.unfold(x, [3, 3], 1, 1, 1)
-
-
-
-
-
+    x = fluid.layers.data(name='data', shape=[3, 224, 224], dtype='float32')
+    y = paddle.nn.functional.unfold(x, [3, 3], 1, 1, 1)
 

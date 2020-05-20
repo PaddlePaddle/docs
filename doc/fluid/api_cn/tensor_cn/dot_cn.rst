@@ -32,11 +32,12 @@ dot
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    with fluid.dygraph.guard():
-      x = fluid.dygraph.to_variable(np.random.uniform(0.1, 1, [10]).astype(np.float32))
-      y = fluid.dygraph.to_variable(np.random.uniform(1, 3, [10]).astype(np.float32))
-      z = paddle.dot(x, y)
-      print(z.numpy())
-
+    
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(np.random.uniform(0.1, 1, [10]).
+            astype(np.float32))
+        y = paddle.imperative.to_variable(np.random.uniform(1, 3, [10]).astype(
+            np.float32))
+        z = paddle.dot(x, y)
+        print(z.numpy())
 

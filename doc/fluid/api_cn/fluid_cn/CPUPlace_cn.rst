@@ -14,7 +14,7 @@ CPUPlace
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        cpu_place = fluid.CPUPlace()
-
+    import paddle
+    import paddle.fluid as fluid
+    cpu_place = paddle.CPUPlace()
 

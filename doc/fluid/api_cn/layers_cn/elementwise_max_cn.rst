@@ -55,55 +55,41 @@ elementwise_max
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.array([2, 3, 4]),
-            "y": np.array([1, 5, 2])
-        }
-
-    x = fluid.layers.data(name="x", shape=[3], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3], dtype='float32')
-    z = fluid.layers.elementwise_max(x, y)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-
-    print(z_value) #[2, 5, 4]
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = fluid.layers.data(name='x', shape=[3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[3], dtype='float32')
+    z = paddle.elementwise_max(x, y)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
 **代码示例 2**
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.ones((2, 3, 4, 5)).astype('float32'),
-            "y": np.zeros((3, 4)).astype('float32')
-        }
-
-    x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
-    z = fluid.layers.elementwise_max(x, y, axis=1)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-
-    print(z_value)#[[[[1., 1., 1., 1., 1.] .... [1., 1., 1., 1., 1.]]]]
-
-
-
-
-
-
-
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = fluid.layers.data(name='x', shape=[3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[3], dtype='float32')
+    z = paddle.elementwise_max(x, y)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 

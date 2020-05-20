@@ -29,22 +29,22 @@ logical_not
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
     # Graph organizing
     x = fluid.layers.data(name='x', shape=[2], dtype='bool')
-    res = fluid.layers.logical_not(x)
+    res = paddle.logical_not(x)
     # The comment lists another availble method.
     # res = fluid.layers.fill_constant(shape=[2], dtype='bool', value=0)
     # fluid.layers.logical_not(x, out=res)
-
+    
     # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
     x_i = np.array([[1, 0]]).astype(np.bool)
-    res_val, = exe.run(fluid.default_main_program(), feed={'x':x_i}, fetch_list=[res])
-    print(res_val) # [[False, True]]
+    res_val, = exe.run(paddle.default_main_program(), feed={'x': x_i},
+        fetch_list=[res])
+    print(res_val)
 

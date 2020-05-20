@@ -88,19 +88,8 @@ similarity_focus
 
 ..  code-block:: python
 
-            import paddle.fluid as fluid
-            data = fluid.layers.data(
-              name='data', shape=[-1, 3, 2, 2], dtype='float32')
-            fluid.layers.similarity_focus(input=data, axis=1, indexes=[0])
-
-
-
-
-
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='data', shape=[-1, 3, 2, 2], dtype='float32')
+    paddle.nn.functional.similarity_focus(input=data, axis=1, indexes=[0])
 

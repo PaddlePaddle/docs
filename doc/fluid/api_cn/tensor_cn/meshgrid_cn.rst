@@ -30,32 +30,27 @@ k 个 k 维Tensor，每个Tensor的形状均为(N1, N2, ..., Nk)。
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    x = fluid.data(name='x', shape=[100], dtype='int32')
-    y = fluid.data(name='y', shape=[200], dtype='int32')
-    input_1 = np.random.randint(0, 100, [100, ]).astype('int32')
-    input_2 = np.random.randint(0, 100, [200, ]).astype('int32')
-    exe = fluid.Executor(place=fluid.CPUPlace())
+    x = paddle.data(name='x', shape=[100], dtype='int32')
+    y = paddle.data(name='y', shape=[200], dtype='int32')
+    input_1 = np.random.randint(0, 100, [100]).astype('int32')
+    input_2 = np.random.randint(0, 100, [200]).astype('int32')
+    exe = paddle.Executor(place=paddle.CPUPlace())
     grid_x, grid_y = paddle.tensor.meshgrid([x, y])
-    res_1, res_2 = exe.run(fluid.default_main_program(),
-                            feed={'x': input_1,
-                                  'y': input_2},
-                            fetch_list=[grid_x, grid_y])
-     
-    #the shape of res_1 is (100, 200)
-    #the shape of res_2 is (100, 200)
-
+    res_1, res_2 = exe.run(paddle.default_main_program(), feed={'x': input_1,
+        'y': input_2}, fetch_list=[grid_x, grid_y])
 
 ..  code-block:: python
 
-    #动态图示例
+    #静态图示例
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    input_3 = np.random.randint(0, 100, [100, ]).astype('int32')
-    input_4 = np.random.randint(0, 100, [200, ]).astype('int32')
-    with fluid.dygraph.guard():
-        tensor_3 = fluid.dygraph.to_variable(input_3)
-        tensor_4 = fluid.dygraph.to_variable(input_4)
-        grid_x, grid_y = paddle.tensor.meshgrid([tensor_3, tensor_4])
-    #the shape of grid_x is (100, 200)
-    #the shape of grid_y is (100, 200)    
+    x = paddle.data(name='x', shape=[100], dtype='int32')
+    y = paddle.data(name='y', shape=[200], dtype='int32')
+    input_1 = np.random.randint(0, 100, [100]).astype('int32')
+    input_2 = np.random.randint(0, 100, [200]).astype('int32')
+    exe = paddle.Executor(place=paddle.CPUPlace())
+    grid_x, grid_y = paddle.tensor.meshgrid([x, y])
+    res_1, res_2 = exe.run(paddle.default_main_program(), feed={'x': input_1,
+        'y': input_2}, fetch_list=[grid_x, grid_y])
+

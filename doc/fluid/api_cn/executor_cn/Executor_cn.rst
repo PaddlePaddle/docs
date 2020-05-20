@@ -22,59 +22,39 @@ Executor支持单GPU、多GPU以及CPU运行。
 **示例代码**
 
 .. code-block:: python
-    
+
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.compiler as compiler
     import numpy
     import os
-
+    
     # 显式设置运行设备
     # use_cuda = True
     # place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     # exe = fluid.Executor(place)
-
+    
     # 如果不显示设置运行设备，PaddlePaddle会设置默认运行设备
-    exe = fluid.Executor()
-
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
+    exe = paddle.Executor()
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
         data = fluid.layers.data(name='X', shape=[1], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-        fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    # 仅运行一次startup program
-    # 不需要优化/编译这个startup program
-    startup_program.random_seed=1
+        loss = paddle.mean(hidden)
+        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    startup_program.random_seed = 1
     exe.run(startup_program)
-
+    
     # 无需编译，直接运行main program
     x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data, = exe.run(train_program,
-                     feed={"X": x},
-                     fetch_list=[loss.name])
-
-    # 另一种方法是，编译这个main program然后运行。
-    # 参考CompiledProgram以获取更多信息。
-    # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
-    # 在这种情况下，输入的batch size应大于CPU_NUM，
-    # 否则程序会异常中断。
-
-    # 显式设置运行设备
-    # if not use_cuda:
-    #    os.environ['CPU_NUM'] = str(2)
-
-    # 未显示设置运行设备且安装的Paddle为CPU版本
+    loss_data, = exe.run(train_program, feed={'X': x}, fetch_list=[loss.name])
     os.environ['CPU_NUM'] = str(2)
-
-    compiled_prog = compiler.CompiledProgram(
-        train_program).with_data_parallel(
+    
+    compiled_prog = compiler.CompiledProgram(train_program).with_data_parallel(
         loss_name=loss.name)
-    loss_data, = exe.run(compiled_prog,
-                         feed={"X": x},
-                         fetch_list=[loss.name])
+    loss_data, = exe.run(compiled_prog, feed={'X': x}, fetch_list=[loss.name])
 
 .. py:method:: close()
 
@@ -86,14 +66,39 @@ Executor支持单GPU、多GPU以及CPU运行。
 **示例代码**
 
 .. code-block:: python
-    
+
+    import paddle
     import paddle.fluid as fluid
-
-    cpu = fluid.CPUPlace()
-    exe = fluid.Executor(cpu)
-    # 执行训练或测试过程
-    exe.close()
-
+    import paddle.fluid.compiler as compiler
+    import numpy
+    import os
+    
+    # 显式设置运行设备
+    # use_cuda = True
+    # place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    # exe = fluid.Executor(place)
+    
+    # 如果不显示设置运行设备，PaddlePaddle会设置默认运行设备
+    exe = paddle.Executor()
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = paddle.mean(hidden)
+        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    startup_program.random_seed = 1
+    exe.run(startup_program)
+    
+    # 无需编译，直接运行main program
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data, = exe.run(train_program, feed={'X': x}, fetch_list=[loss.name])
+    os.environ['CPU_NUM'] = str(2)
+    
+    compiled_prog = compiler.CompiledProgram(train_program).with_data_parallel(
+        loss_name=loss.name)
+    loss_data, = exe.run(compiled_prog, feed={'X': x}, fetch_list=[loss.name])
 
 .. py:method:: run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True,use_program_cache=False)
 
@@ -123,26 +128,38 @@ Executor支持单GPU、多GPU以及CPU运行。
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-            import numpy
-     
-            #首先创建执行引擎
-            place = fluid.CPUPlace() # fluid.CUDAPlace(0)
-            exe = fluid.Executor(place)
-     
-            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-            hidden = fluid.layers.fc(input=data, size=10)
-            loss = fluid.layers.mean(hidden)
-            adam = fluid.optimizer.Adam()
-            adam.minimize(loss)
-     
-            #仅运行startup程序一次
-            exe.run(fluid.default_startup_program())
-
-            x = numpy.random.random(size=(10, 1)).astype('float32')
-            outs = exe.run(feed={'X': x},
-                           fetch_list=[loss.name])
-
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.compiler as compiler
+    import numpy
+    import os
+    
+    # 显式设置运行设备
+    # use_cuda = True
+    # place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    # exe = fluid.Executor(place)
+    
+    # 如果不显示设置运行设备，PaddlePaddle会设置默认运行设备
+    exe = paddle.Executor()
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = paddle.mean(hidden)
+        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    startup_program.random_seed = 1
+    exe.run(startup_program)
+    
+    # 无需编译，直接运行main program
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data, = exe.run(train_program, feed={'X': x}, fetch_list=[loss.name])
+    os.environ['CPU_NUM'] = str(2)
+    
+    compiled_prog = compiler.CompiledProgram(train_program).with_data_parallel(
+        loss_name=loss.name)
+    loss_data, = exe.run(compiled_prog, feed={'X': x}, fetch_list=[loss.name])
 
 .. py:method:: train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 
@@ -171,21 +188,38 @@ train_from_dataset可以非常容易扩展到大规模分布式在线和离线�
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        place = fluid.CPUPlace() # 通过设置place = fluid.CUDAPlace(0)使用GPU
-        exe = fluid.Executor(place)
-        x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
-        y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
-        dataset = fluid.DatasetFactory().create_dataset()
-        dataset.set_use_var([x, y])
-        dataset.set_thread(1)
-        filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
-        dataset.set_filelist(filelist)
-        exe.run(fluid.default_startup_program())
-        exe.train_from_dataset(program=fluid.default_main_program(),
-                               dataset=dataset)
-
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.compiler as compiler
+    import numpy
+    import os
+    
+    # 显式设置运行设备
+    # use_cuda = True
+    # place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    # exe = fluid.Executor(place)
+    
+    # 如果不显示设置运行设备，PaddlePaddle会设置默认运行设备
+    exe = paddle.Executor()
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = paddle.mean(hidden)
+        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    startup_program.random_seed = 1
+    exe.run(startup_program)
+    
+    # 无需编译，直接运行main program
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data, = exe.run(train_program, feed={'X': x}, fetch_list=[loss.name])
+    os.environ['CPU_NUM'] = str(2)
+    
+    compiled_prog = compiler.CompiledProgram(train_program).with_data_parallel(
+        loss_name=loss.name)
+    loss_data, = exe.run(compiled_prog, feed={'X': x}, fetch_list=[loss.name])
 
 .. py:method:: infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 
@@ -206,6 +240,39 @@ train_from_dataset可以非常容易扩展到大规模分布式在线和离线�
 **示例代码**
 
 .. code-block:: python
+
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.compiler as compiler
+    import numpy
+    import os
+    
+    # 显式设置运行设备
+    # use_cuda = True
+    # place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    # exe = fluid.Executor(place)
+    
+    # 如果不显示设置运行设备，PaddlePaddle会设置默认运行设备
+    exe = paddle.Executor()
+    
+    train_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
+        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        hidden = fluid.layers.fc(input=data, size=10)
+        loss = paddle.mean(hidden)
+        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    startup_program.random_seed = 1
+    exe.run(startup_program)
+    
+    # 无需编译，直接运行main program
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data, = exe.run(train_program, feed={'X': x}, fetch_list=[loss.name])
+    os.environ['CPU_NUM'] = str(2)
+    
+    compiled_prog = compiler.CompiledProgram(train_program).with_data_parallel(
+        loss_name=loss.name)
+    loss_data, = exe.run(compiled_prog, feed={'X': x}, fetch_list=[loss.name])
 
   import paddle.fluid as fluid
   place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)

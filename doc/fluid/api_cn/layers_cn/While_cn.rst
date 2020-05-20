@@ -31,59 +31,50 @@ While
 .. code-block:: python
 
     # 该示例代码展示整数循环+1，循环10次，输出计数结果
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=0)           # 循环计数器
     
-    loop_len = fluid.layers.fill_constant(shape=[1],dtype='int64', value=10)    # 循环次数
-
-    cond = fluid.layers.less_than(x=i, y=loop_len)              # 循环条件   
+    i = paddle.full(shape=[1], dtype='int64', fill_value=0, device=None,
+    
+        stop_gradient=True)
+    loop_len = paddle.full(shape=[1], dtype='int64', fill_value=10, device=None,
+    
+        stop_gradient=True)
+    cond = paddle.less_than(x=i, y=loop_len)
     while_op = fluid.layers.While(cond=cond)
-    with while_op.block():  # 循环体
-        i = fluid.layers.increment(x=i, value=1, in_place=True)
-        fluid.layers.less_than(x=i, y=loop_len, cond=cond)      # 更新循环条件
-
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    res = exe.run(fluid.default_main_program(), feed={}, fetch_list=[i])
-    print(res) # [array([10])]
-
+    with while_op.block():
+        i = paddle.increment(x=i, value=1, in_place=True)
+    
+        paddle.less_than(x=i, y=loop_len, cond=cond)
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    res = exe.run(paddle.default_main_program(), feed={}, fetch_list=[i])
+    print(res)
 
 **代码示例 2**
 
 .. code-block:: python
 
+    # 该示例代码展示整数循环+1，循环10次，输出计数结果
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=0)
-    loop_len = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-    one = fluid.layers.fill_constant(shape=[1], dtype='float32', value=1)
-    data = fluid.data(name='data', shape=[1], dtype='float32')
-    sums = fluid.layers.fill_constant(shape=[1], dtype='float32', value=0)  # 在 While 外先定义要获取的变量，需和要获取的 While 内部的变量名称不同
-
-    cond = fluid.layers.less_than(x=i, y=loop_len)
+    
+    i = paddle.full(shape=[1], dtype='int64', fill_value=0, device=None,
+    
+        stop_gradient=True)
+    loop_len = paddle.full(shape=[1], dtype='int64', fill_value=10, device=None,
+    
+        stop_gradient=True)
+    cond = paddle.less_than(x=i, y=loop_len)
     while_op = fluid.layers.While(cond=cond)
     with while_op.block():
-        sums_tensor = fluid.layers.elementwise_add(x=data, y=data)
-        fluid.layers.assign(input=sums_tensor, output=sums)  # 将 While 内定义的变量 sums_tenosr 通过 layers.assign 更新至 While 外的变量 sums 中
-        i = fluid.layers.increment(x=i, value=1, in_place=True)
-        data = fluid.layers.elementwise_add(x=data, y=one)
-        fluid.layers.less_than(x=i, y=loop_len, cond=cond)
-
-    feed_data = np.ones([1]).astype('float32')
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-    res = exe.run(fluid.default_main_program(), feed={'data': feed_data}, fetch_list=sums)
-    print(res[0])  # [2.]    # 因 While 内的 data 没有将值更新到 While 外，故循环过后此处 sums 的值为 [2.]
-
-
-
-
-
-
-
-
+        i = paddle.increment(x=i, value=1, in_place=True)
+    
+        paddle.less_than(x=i, y=loop_len, cond=cond)
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    res = exe.run(paddle.default_main_program(), feed={}, fetch_list=[i])
+    print(res)
 

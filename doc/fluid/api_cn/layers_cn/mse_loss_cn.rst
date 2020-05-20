@@ -31,10 +31,9 @@ mse_loss
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    y = fluid.data(name='y', shape=[1], dtype='float32')
-    y_predict = fluid.data(name='y_predict', shape=[1], dtype='float32')
+    y = paddle.data(name='y', shape=[1], dtype='float32')
+    y_predict = paddle.data(name='y_predict', shape=[1], dtype='float32')
     cost = fluid.layers.mse_loss(input=y_predict, label=y)
-
-
 

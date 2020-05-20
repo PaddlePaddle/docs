@@ -57,65 +57,59 @@ elementwise_add
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
     def gen_data():
-        return {
-            "x": np.array([2, 3, 4]),
-            "y": np.array([1, 5, 2])
-        }
-    x = fluid.layers.data(name="x", shape=[3], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3], dtype='float32')
-    z = fluid.layers.elementwise_add(x, y)
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = fluid.layers.data(name='x', shape=[3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[3], dtype='float32')
+    z = paddle.add(x, y, alpha=1, out=None)
     # z = x + y
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-    print(z_value) # [3., 8., 6.]
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
 **代码示例 2**
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
     def gen_data():
-        return {
-            "x": np.random.randint(1, 5, size=[2, 3, 4, 5]).astype('float32'),
-            "y": np.random.randint(1, 5, size=[3, 4]).astype('float32')
-        }
-    x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
-    z = fluid.layers.elementwise_add(x, y, axis=1)
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = fluid.layers.data(name='x', shape=[3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[3], dtype='float32')
+    z = paddle.add(x, y, alpha=1, out=None)
     # z = x + y
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-    print(z_value) # z.shape=[2,3,4,5]
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
 **代码示例 3**
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
     def gen_data():
-        return {
-            "x": np.random.randint(1, 5, size=[2, 3, 4, 5]).astype('float32'),
-            "y": np.random.randint(1, 5, size=[5]).astype('float32')
-        }
-    x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = fluid.layers.data(name='x', shape=[3], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[3], dtype='float32')
+    z = paddle.add(x, y, alpha=1, out=None)
     # z = x + y
-    z = fluid.layers.elementwise_add(x, y, axis=3)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-    print(z_value) # z.shape=[2,3,4,5]
-
-
-
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 

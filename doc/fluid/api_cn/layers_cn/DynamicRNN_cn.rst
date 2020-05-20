@@ -100,26 +100,28 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 ..  code-block:: python
 
-      import paddle.fluid as fluid
-
-      sentence = fluid.data(name='sentence', shape=[None, 1], dtype='int64', lod_level=1)
-      embedding = fluid.layers.embedding(input=sentence, size=[65536, 32], is_sparse=True)
-
-      drnn = fluid.layers.DynamicRNN()
-      with drnn.block():
-          # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
-          word = drnn.step_input(embedding)
-          # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
-          memory = drnn.memory(shape=[200])
-          hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
-          # 用hidden更新memory
-          drnn.update_memory(ex_mem=memory, new_mem=hidden)
-          # 将hidden标记为RNN的输出
-          drnn.output(hidden)
-
-      # 获得RNN的计算结果
-      rnn_output = drnn()
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    sentence = paddle.data(name='sentence', shape=[None, 1], dtype='int64',
+        lod_level=1)
+    embedding = fluid.layers.embedding(input=sentence, size=[65536, 32],
+    
+        is_sparse=True)
+    drnn = fluid.layers.DynamicRNN()
+    with drnn.block():
+        # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
+        word = drnn.step_input(embedding)
+        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
+        memory = drnn.memory(shape=[200])
+        hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
+        # 用hidden更新memory
+        drnn.update_memory(ex_mem=memory, new_mem=hidden)
+        # 将hidden标记为RNN的输出
+        drnn.output(hidden)
+    
+    # 获得RNN的计算结果
+    rnn_output = drnn()
 
 .. _cn_api_fluid_layers_DynamicRNN_static_input:
 
@@ -218,33 +220,28 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
-    encoder_proj = fluid.data(name='encoder_proj', shape=[None, 32], dtype='float32', lod_level=1)
-    decoder_boot = fluid.data(name='boot', shape=[None, 10], dtype='float32')
-
+    
+    sentence = paddle.data(name='sentence', shape=[None, 1], dtype='int64',
+        lod_level=1)
+    embedding = fluid.layers.embedding(input=sentence, size=[65536, 32],
+    
+        is_sparse=True)
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
-        # 将sentence标记为RNN的输入，每个时间步取句子中的一个字进行处理
-        current_word = drnn.step_input(sentence)
-        # 将encode_proj标记为RNN的静态输入
-        encoder_word = drnn.static_input(encoder_proj)
-        # 使用boot_memory初始化memory，并且需要依据输入序列进行重排序
-        memory = drnn.memory(init=decoder_boot, need_reorder=True)
-        fc_1 = fluid.layers.fc(input=encoder_word, size=30)
-        fc_2 = fluid.layers.fc(input=current_word, size=30)
-        decoder_inputs = fc_1 + fc_2
-        hidden, _, _ = fluid.layers.gru_unit(input=decoder_inputs, hidden=memory, size=30)
+        # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
+        word = drnn.step_input(embedding)
+        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
+        memory = drnn.memory(shape=[200])
+        hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
         # 用hidden更新memory
         drnn.update_memory(ex_mem=memory, new_mem=hidden)
-        out = fluid.layers.fc(input=hidden, size=10, bias_attr=True, act='softmax')
-        # 将out标记为RNN的输出
-        drnn.output(out)
-
+        # 将hidden标记为RNN的输出
+        drnn.output(hidden)
+    
     # 获得RNN的计算结果
     rnn_output = drnn()
-
 
 .. _cn_api_fluid_layers_DynamicRNN_block:
 
@@ -289,50 +286,55 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
-    boot_memory = fluid.data(name='boot', shape=[None, 10], dtype='float32')
-
+    
+    sentence = paddle.data(name='sentence', shape=[None, 1], dtype='int64',
+        lod_level=1)
+    embedding = fluid.layers.embedding(input=sentence, size=[65536, 32],
+    
+        is_sparse=True)
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
-        # 将sentence标记为RNN的输入，每个时间步取句子中的一个字进行处理
-        word = drnn.step_input(sentence)
-        # 使用boot_memory初始化memory，并且需要依据输入序列进行重排序
-        memory = drnn.memory(init=boot_memory, need_reorder=True)
-        hidden = fluid.layers.fc(input=[word, memory], size=10, act='tanh')
+        # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
+        word = drnn.step_input(embedding)
+        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
+        memory = drnn.memory(shape=[200])
+        hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
         # 用hidden更新memory
         drnn.update_memory(ex_mem=memory, new_mem=hidden)
         # 将hidden标记为RNN的输出
         drnn.output(hidden)
-
+    
     # 获得RNN的计算结果
     rnn_output = drnn()
-
 
 **代码示例二**
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
-
+    
+    sentence = paddle.data(name='sentence', shape=[None, 1], dtype='int64',
+        lod_level=1)
+    embedding = fluid.layers.embedding(input=sentence, size=[65536, 32],
+    
+        is_sparse=True)
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
-        # 将sentence标记为RNN的输入，每个时间步取句子中的一个字进行处理
-        word = drnn.step_input(sentence)
-        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 10]，其中batch_size由输入sentence决定
-        memory = drnn.memory(shape=[10], dtype='float32', value=0)
-        hidden = fluid.layers.fc(input=[word, memory], size=10, act='tanh')
+        # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
+        word = drnn.step_input(embedding)
+        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
+        memory = drnn.memory(shape=[200])
+        hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
         # 用hidden更新memory
         drnn.update_memory(ex_mem=memory, new_mem=hidden)
         # 将hidden标记为RNN的输出
         drnn.output(hidden)
-
+    
     # 获得RNN的计算结果
     rnn_output = drnn()
-
 
 .. _cn_api_fluid_layers_DynamicRNN_update_memory:
 
@@ -401,31 +403,26 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    sentence = fluid.data(name='sentence', shape=[None, 32], dtype='float32', lod_level=1)
-    encoder_proj = fluid.data(name='encoder_proj', shape=[None, 32], dtype='float32', lod_level=1)
-    decoder_boot = fluid.data(name='boot', shape=[None, 10], dtype='float32')
-
+    
+    sentence = paddle.data(name='sentence', shape=[None, 1], dtype='int64',
+        lod_level=1)
+    embedding = fluid.layers.embedding(input=sentence, size=[65536, 32],
+    
+        is_sparse=True)
     drnn = fluid.layers.DynamicRNN()
     with drnn.block():
-        # 将sentence标记为RNN的输入，每个时间步取句子中的一个字进行处理
-        current_word = drnn.step_input(sentence)
-        # 将encode_proj标记为RNN的静态输入
-        encoder_word = drnn.static_input(encoder_proj)
-        # 使用boot_memory初始化memory，并且需要依据输入序列进行重排序
-        memory = drnn.memory(init=decoder_boot, need_reorder=True)
-        fc_1 = fluid.layers.fc(input=encoder_word, size=30)
-        fc_2 = fluid.layers.fc(input=current_word, size=30)
-        decoder_inputs = fc_1 + fc_2
-        hidden, _, _ = fluid.layers.gru_unit(input=decoder_inputs, hidden=memory, size=30)
+        # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
+        word = drnn.step_input(embedding)
+        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
+        memory = drnn.memory(shape=[200])
+        hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
         # 用hidden更新memory
         drnn.update_memory(ex_mem=memory, new_mem=hidden)
-        out = fluid.layers.fc(input=hidden, size=10, bias_attr=True, act='softmax')
-        # 将hidden和out标记为RNN的输出
-        drnn.output(hidden, out)
-
+        # 将hidden标记为RNN的输出
+        drnn.output(hidden)
+    
     # 获得RNN的计算结果
-    hidden, out = drnn()
-    # 提取RNN最后一个时间步的计算结果
-    last = fluid.layers.sequence_last_step(out)
+    rnn_output = drnn()
+

@@ -37,9 +37,11 @@ cross_entropy
 
 ..  code-block:: python
 
-        import paddle.fluid as fluid
-        class_num = 7
-        x = fluid.layers.data(name='x', shape=[3, 10], dtype='float32')
-        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-        predict = fluid.layers.fc(input=x, size=class_num, act='softmax')
-        cost = fluid.layers.cross_entropy(input=predict, label=label)
+    import paddle
+    import paddle.fluid as fluid
+    class_num = 7
+    x = fluid.layers.data(name='x', shape=[3, 10], dtype='float32')
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    predict = fluid.layers.fc(input=x, size=class_num, act='softmax')
+    cost = fluid.layers.cross_entropy(input=predict, label=label)
+

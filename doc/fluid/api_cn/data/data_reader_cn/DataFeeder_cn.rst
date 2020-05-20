@@ -14,13 +14,13 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    place = fluid.CPUPlace()
+    place = paddle.CPUPlace()
     img = fluid.layers.data(name='image', shape=[1, 28, 28])
     label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-    feeder = fluid.DataFeeder([img, label], fluid.CPUPlace())
+    feeder = fluid.DataFeeder([img, label], paddle.CPUPlace())
     result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
-
 
 如果您想在使用多个GPU训练模型时预先将数据单独输入GPU端，可以使用decorate_reader函数。
 
@@ -31,15 +31,11 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
     import paddle
     import paddle.fluid as fluid
-    
-    place=fluid.CUDAPlace(0)
-    data = fluid.layers.data(name='data', shape=[3, 224, 224], dtype='float32')
+    place = paddle.CPUPlace()
+    img = fluid.layers.data(name='image', shape=[1, 28, 28])
     label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-    
-    feeder = fluid.DataFeeder(place=place, feed_list=[data, label])
-    reader = feeder.decorate_reader(
-        paddle.batch(paddle.dataset.flowers.train(), batch_size=16), multi_devices=False)
-
+    feeder = fluid.DataFeeder([img, label], paddle.CPUPlace())
+    result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
 
 参数：
     - **feed_list**  (list) –  将输入模型的变量或变量的名称。
@@ -53,33 +49,13 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 ..  code-block:: python
 
-    import numpy as np
     import paddle
     import paddle.fluid as fluid
-
-    place = fluid.CPUPlace()
-
-    def reader():
-        yield [np.random.random([4]).astype('float32'), np.random.random([3]).astype('float32')],
-
-    main_program = fluid.Program()
-    startup_program = fluid.Program()
-
-    with fluid.program_guard(main_program, startup_program):
-        data_1 = fluid.layers.data(name='data_1', shape=[1, 2, 2])
-        data_2 = fluid.layers.data(name='data_2', shape=[1, 1, 3])
-        out = fluid.layers.fc(input=[data_1, data_2], size=2)
-        # ...
-
-    feeder = fluid.DataFeeder([data_1, data_2], place)
-
-    exe = fluid.Executor(place)
-    exe.run(startup_program)
-    for data in reader():
-        outs = exe.run(program=main_program,
-                       feed=feeder.feed(data),
-                       fetch_list=[out])
-
+    place = paddle.CPUPlace()
+    img = fluid.layers.data(name='image', shape=[1, 28, 28])
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    feeder = fluid.DataFeeder([img, label], paddle.CPUPlace())
+    result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
 
 .. py:method::  feed(iterable)
 
@@ -96,21 +72,13 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 ..  code-block:: python
 
-        import numpy.random as random
-        import paddle.fluid as fluid
-        
-        def reader(limit=5):
-            for i in range(limit):
-                    yield random.random([784]).astype('float32'), random.random([1]).astype('int64'), random.random([256]).astype('float32')
-        
-        data_1 = fluid.layers.data(name='data_1', shape=[1, 28, 28])
-        data_2 = fluid.layers.data(name='data_2', shape=[1], dtype='int64')
-        data_3 = fluid.layers.data(name='data_3', shape=[16, 16], dtype='float32')
-        feeder = fluid.DataFeeder(['data_1','data_2', 'data_3'], fluid.CPUPlace())
-        
-        result = feeder.feed(reader())
-
-
+    import paddle
+    import paddle.fluid as fluid
+    place = paddle.CPUPlace()
+    img = fluid.layers.data(name='image', shape=[1, 28, 28])
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    feeder = fluid.DataFeeder([img, label], paddle.CPUPlace())
+    result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
 
 .. py:method::  feed_parallel(iterable, num_places=None)
 
@@ -134,29 +102,13 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 ..  code-block:: python
 
-        import numpy.random as random
-        import paddle.fluid as fluid
-        
-        def reader(limit=10):
-            for i in range(limit):
-                yield [random.random([784]).astype('float32'), random.randint(10)],
-        
-        x = fluid.layers.data(name='x', shape=[1, 28, 28])
-        y = fluid.layers.data(name='y', shape=[1], dtype='int64')
-        
-        feeder = fluid.DataFeeder(['x','y'], fluid.CPUPlace())
-        place_num = 2
-        places = [fluid.CPUPlace() for x in range(place_num)]
-        data = []
-        exe = fluid.Executor(fluid.CPUPlace())
-        exe.run(fluid.default_startup_program())
-        program = fluid.CompiledProgram(fluid.default_main_program()).with_data_parallel(places=places)
-        for item in reader():
-            data.append(item)
-            if place_num == len(data):
-                exe.run(program=program, feed=list(feeder.feed_parallel(data, place_num)), fetch_list=[])
-                data = []
-
+    import paddle
+    import paddle.fluid as fluid
+    place = paddle.CPUPlace()
+    img = fluid.layers.data(name='image', shape=[1, 28, 28])
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    feeder = fluid.DataFeeder([img, label], paddle.CPUPlace())
+    result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
 
 .. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
@@ -178,22 +130,11 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 ..  code-block:: python
 
-        import numpy.random as random
-        import paddle
-        import paddle.fluid as fluid
-        
-        def reader(limit=5):
-            for i in range(limit):
-                yield (random.random([784]).astype('float32'), random.random([1]).astype('int64')),
-        
-        place=fluid.CUDAPlace(0)
-        data = fluid.layers.data(name='data', shape=[1, 28, 28], dtype='float32')
-        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-        
-        feeder = fluid.DataFeeder(place=place, feed_list=[data, label])
-        reader = feeder.decorate_reader(reader, multi_devices=False)
-        
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
-        for data in reader():
-            exe.run(feed=data)
+    import paddle
+    import paddle.fluid as fluid
+    place = paddle.CPUPlace()
+    img = fluid.layers.data(name='image', shape=[1, 28, 28])
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    feeder = fluid.DataFeeder([img, label], paddle.CPUPlace())
+    result = feeder.feed([([0] * 784, [9]), ([1] * 784, [1])])
+

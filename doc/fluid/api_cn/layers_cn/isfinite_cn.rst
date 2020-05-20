@@ -28,22 +28,19 @@ isfinite
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy
-
+    
     # Graph Organizing
-    var = fluid.layers.data(name="data", shape=(4, 6), dtype="float32")
-    output = fluid.layers.isfinite(var)
-
+    var = fluid.layers.data(name='data', shape=(4, 6), dtype='float32')
+    output = paddle.isfinite(var)
+    
     # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
     img = numpy.array((4, 6)).astype(numpy.float32)
-    res, = exe.run(fluid.default_main_program(), feed={'data':img}, fetch_list=[output])
-    print(res)  # Output Value: [ True]
-
-
-
+    res, = exe.run(paddle.default_main_program(), feed={'data': img},
+        fetch_list=[output])
+    print(res)
 

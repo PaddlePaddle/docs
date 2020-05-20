@@ -26,34 +26,35 @@ multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     from paddle.fluid.io import multiprocess_reader
     import numpy as np
     
     
+    
     def fake_reader(start, end):
+    
         def __impl__():
             for i in range(start, end):
                 yield [np.array([1, 2, 3]) * i],
         return __impl__
     
     
-    with fluid.program_guard(fluid.Program(), fluid.Program()):
-        place = fluid.CPUPlace()
-        image = fluid.layers.data(
-            name='image', dtype='int64', shape=[3])
-        fluid.layers.Print(image)
-        reader = fluid.io.PyReader(
-            feed_list=[image], capacity=2)
+    
+    with paddle.program_guard(paddle.Program(), paddle.Program()):
+        place = paddle.CPUPlace()
+        image = fluid.layers.data(name='image', dtype='int64', shape=[3])
+        paddle.Print(image)
+        reader = fluid.io.PyReader(feed_list=[image], capacity=2)
         image_p_1 = image + 1
-        decorated_reader = multiprocess_reader(
-            [fake_reader(1, 5), fake_reader(6, 10)], False)
+        decorated_reader = multiprocess_reader([fake_reader(1, 5), fake_reader(
+            6, 10)], False)
+        reader.decorate_sample_generator(decorated_reader, batch_size=2, places
     
-        reader.decorate_sample_generator(decorated_reader, batch_size=2, places=[place])
-    
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
-    
+            =[place])
+        exe = paddle.Executor(place)
+        exe.run(paddle.default_startup_program())
         for data in reader():
             exe.run(feed=data, fetch_list=[image_p_1])
 

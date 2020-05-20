@@ -24,6 +24,7 @@ cpu_places
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      cpu_places = fluid.cpu_places()
+    import paddle
+    import paddle.fluid as fluid
+    cpu_places = fluid.cpu_places()
 

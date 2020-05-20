@@ -35,18 +35,9 @@ log_loss
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    label = fluid.data(name='label', shape=[None, 1], dtype='float32')
-    prob = fluid.data(name='prob', shape=[None, 1], dtype='float32')
+    label = paddle.data(name='label', shape=[None, 1], dtype='float32')
+    prob = paddle.data(name='prob', shape=[None, 1], dtype='float32')
     cost = fluid.layers.log_loss(input=prob, label=label)
-
-
-
-
-
-
-
-
-
-
 

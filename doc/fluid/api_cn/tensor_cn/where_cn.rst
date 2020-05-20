@@ -37,17 +37,18 @@ where
 
 .. code-block:: python
 
-          import paddle
-          import numpy as np
-          import paddle.fluid as fluid
+    import paddle
+    import numpy as np
+    import paddle.fluid as fluid
+    
+    x_i = np.array([0.9383, 0.1983, 3.2, 1.2]).astype('float32')
+    y_i = np.array([1.0, 1.0, 1.0, 1.0]).astype('float32')
+    
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(x_i)
+        y = paddle.imperative.to_variable(y_i)
+        out = paddle.where(x > 1, x, y)
+    
+    print(out.numpy())
+    #out: [1.0, 1.0, 3.2, 1.2]
 
-          x_i = np.array([0.9383, 0.1983, 3.2, 1.2]).astype("float32")
-          y_i = np.array([1.0, 1.0, 1.0, 1.0]).astype("float32")
-
-          with fluid.dygraph.guard():
-              x = fluid.dygraph.to_variable(x_i)
-              y = fluid.dygraph.to_variable(y_i)
-              out = paddle.where(x>1, x, y)
-
-          print(out.numpy())
-          #out: [1.0, 1.0, 3.2, 1.2]

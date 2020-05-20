@@ -25,51 +25,42 @@ index_sample
 
 .. code-block:: python
 
-        import paddle
-        import paddle.fluid as fluid
-        import numpy as np
-
-        data = np.array([[1.0, 2.0, 3.0, 4.0],
-                            [5.0, 6.0, 7.0, 8.0],
-                            [9.0, 10.0, 11.0, 12.0]]).astype('float32')
-
-        data_index = np.array([[0, 1, 2],
-                                [1, 2, 3],
-                                [0, 0, 0]]).astype('int32')
-
-        target_data = np.array([[100, 200, 300, 400],
-                                [500, 600, 700, 800],
-                                [900, 1000, 1100, 1200]]).astype('int32')
-
-
-        with fluid.dygraph.guard():
-            x = fluid.dygraph.to_variable(data)
-            index = fluid.dygraph.to_variable(data_index)
-            target = fluid.dygraph.to_variable(target_data)
-
-            out_z1 = paddle.index_sample(x, index)
-            print(out_z1.numpy())
-            #[[1. 2. 3.]
-            # [6. 7. 8.]
-            # [9. 9. 9.]]
-
-            # 巧妙用法：使用topk op产出的top元素的下标
-            # 在另一个tensor中索引对应位置的元素
-            top_value, top_index = fluid.layers.topk(x, k=2)
-            out_z2 = paddle.index_sample(target, top_index)
-            print(top_value.numpy())
-            #[[ 4.  3.]
-            # [ 8.  7.]
-            # [12. 11.]]
-
-            print(top_index.numpy())
-            #[[3 2]
-            # [3 2]
-            # [3 2]]
-
-            print(out_z2.numpy())
-            #[[ 400  300]
-            # [ 800  700]
-            # [1200 1100]]
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    data = np.array([[1.0, 2.0, 3.0, 4.0], [5.0, 6.0, 7.0, 8.0], [9.0, 10.0, 
+        11.0, 12.0]]).astype('float32')
+    data_index = np.array([[0, 1, 2], [1, 2, 3], [0, 0, 0]]).astype('int32')
+    target_data = np.array([[100, 200, 300, 400], [500, 600, 700, 800], [900, 
+        1000, 1100, 1200]]).astype('int32')
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(data)
+        index = paddle.imperative.to_variable(data_index)
+        target = paddle.imperative.to_variable(target_data)
+    
+        out_z1 = paddle.index_sample(x, index)
+        print(out_z1.numpy())
+        #[[1. 2. 3.]
+        # [6. 7. 8.]
+        # [9. 9. 9.]]
+    
+        # 巧妙用法：使用topk op产出的top元素的下标
+        # 在另一个tensor中索引对应位置的元素
+        top_value, top_index = paddle.topk(x, k=2)
+        out_z2 = paddle.index_sample(target, top_index)
+        print(top_value.numpy())
+        #[[ 4.  3.]
+        # [ 8.  7.]
+        # [12. 11.]]
+    
+        print(top_index.numpy())
+        #[[3 2]
+        # [3 2]
+        # [3 2]]
+    
+        print(out_z2.numpy())
+        #[[ 400  300]
+        # [ 800  700]
+        # [1200 1100]]
 

@@ -33,15 +33,17 @@ pow
 
     import paddle
     import paddle.fluid as fluid
-    x = fluid.data(name="x", shape=[32,32], dtype="float32")
+    x = paddle.data(name='x', shape=[32, 32], dtype='float32')
     
     # 示例1: 参数exponent是个浮点数
-    res = fluid.data(name="output", shape=[32,32], dtype="float32")
+    res = paddle.data(name='output', shape=[32, 32], dtype='float32')
     y_1 = paddle.pow(x, 2.0, out=res)
     # y_1 is x^{2.0}
     
     # 示例2: 参数exponent是个变量
-    exponent_tensor = fluid.layers.fill_constant([1], "float32", 3.0)
-    res = fluid.data(name="output", shape=[32,32], dtype="float32")
+    exponent_tensor = paddle.full([1], 'float32', 3.0, device=None,
+        stop_gradient=True)
+    res = paddle.data(name='output', shape=[32, 32], dtype='float32')
     y_2 = paddle.pow(x, exponent_tensor, out=res)
     # y_2 is x^{3.0}
+

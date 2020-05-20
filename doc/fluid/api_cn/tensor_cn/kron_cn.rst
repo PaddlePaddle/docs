@@ -54,6 +54,29 @@ Kronecker Product 算子。
 
 ..  code-block:: python
 
+    import paddle
+    from paddle import fluid
+    import paddle.fluid.dygraph as dg
+    import numpy as np
+    
+    a = np.arange(1, 5).reshape(2, 2).astype(np.float32)
+    b = np.arange(1, 10).reshape(3, 3).astype(np.float32)
+    
+    place = paddle.CPUPlace()
+    with dg.guard(place):
+        a_var = dg.to_variable(a)
+        b_var = dg.to_variable(b)
+        c_var = paddle.kron(a_var, b_var)
+        c_np = c_var.numpy()
+    print(c_np)
+    
+    #[[ 1.  2.  3.  2.  4.  6.]
+    # [ 4.  5.  6.  8. 10. 12.]
+    # [ 7.  8.  9. 14. 16. 18.]
+    # [ 3.  6.  9.  4.  8. 12.]
+    # [12. 15. 18. 16. 20. 24.]
+    # [21. 24. 27. 28. 32. 36.]]
+
   import paddle
   from paddle import fluid
   import paddle.fluid.dygraph as dg

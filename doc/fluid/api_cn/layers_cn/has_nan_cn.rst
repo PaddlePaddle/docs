@@ -24,10 +24,8 @@ has_nan
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.layers.data(name="input", shape=[4, 32, 32], dtype="float32")
-    res = fluid.layers.has_nan(data)
-
-
-
+    data = fluid.layers.data(name='input', shape=[4, 32, 32], dtype='float32')
+    res = paddle.has_nan(data)
 

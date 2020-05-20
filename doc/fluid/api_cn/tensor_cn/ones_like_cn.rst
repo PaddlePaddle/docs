@@ -30,6 +30,7 @@ ones_like
 
     import paddle
     import paddle.fluid as fluid
-    x = fluid.data(name='x', dtype='float32', shape=[3])
-    data = paddle.ones_like(x) # data=[1.0, 1.0, 1.0]
-    data1 = paddle.ones_like(input=x, device="gpu") # data1=[1.0, 1.0. 1.0]
+    x = paddle.data(name='x', dtype='float32', shape=[3])
+    data = paddle.ones_like(x)
+    data1 = paddle.ones_like(input=x, device='gpu')
+

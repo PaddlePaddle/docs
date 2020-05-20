@@ -22,46 +22,51 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
 简单的样例对该OP进行说明。
 
 .. code-block:: python
-        
-        # 以下代码完成的功能：对x中大于0的数据减去10，对x中小于0的数据加上10，并将所有的数据求和
-        import numpy as np
-        import paddle.fluid as fluid
 
-        x = fluid.layers.data(name='x', shape=[4, 1], dtype='float32', append_batch_size=False)
-        y = fluid.layers.data(name='y', shape=[4, 1], dtype='float32', append_batch_size=False)
-
-        x_d = np.array([[3], [1], [-2], [-3]]).astype(np.float32)
-        y_d = np.zeros((4, 1)).astype(np.float32)
-        
-        # 比较x, y对元素的大小，输出cond, cond是shape为[4, 1]，数据类型为bool的2-D tensor。
-        # 根据输入数据x_d, y_d，可以推断出cond中的数据为[[true], [true], [false], [false]]
-        cond = fluid.layers.greater_than(x, y)
-        # 同其他常见OP不同的是，该OP返回的ie是一个IfElse OP的对象
-        ie = fluid.layers.IfElse(cond)
-
-        with ie.true_block():
-            # 在这个block中，根据cond条件，获取x中对应条件为true维度的数据，并减去10
-            out_1 = ie.input(x)
-            out_1 = out_1 - 10
-            ie.output(out_1)
-        with ie.false_block():
-            # 在这个block中，根据cond条件，获取x中对应条件为false维度的数据，并加上10
-            out_1 = ie.input(x)
-            out_1 = out_1 + 10
-            ie.output(out_1)
-
-        # 根据cond条件将两个block中处理后的数据进行合并，此处的output为输出，类型为List，List中的元素类型为Variable。
-        output = ie() #  [array([[-7.], [-9.], [ 8.], [ 7.]], dtype=float32)] 
-
-        # 将输出List中的第一个Variable获取出来，并计算所有元素和
-        out = fluid.layers.reduce_sum(output[0])
-
-        exe = fluid.Executor(fluid.CPUPlace())
-        exe.run(fluid.default_startup_program())
-
-        res = exe.run(fluid.default_main_program(), feed={"x":x_d, "y":y_d}, fetch_list=[out])
-        print(res)
-        # [array([-1.], dtype=float32)] 
+    # 以下代码完成的功能：对x中大于0的数据减去10，对x中小于0的数据加上10，并将所有的数据求和
+    import paddle
+    import numpy as np
+    import paddle.fluid as fluid
+    
+    x = fluid.layers.data(name='x', shape=[4, 1], dtype='float32',
+        append_batch_size=False)
+    y = fluid.layers.data(name='y', shape=[4, 1], dtype='float32',
+    
+        append_batch_size=False)
+    x_d = np.array([[3], [1], [-2], [-3]]).astype(np.float32)
+    y_d = np.zeros((4, 1)).astype(np.float32)
+    
+    # 比较x, y对元素的大小，输出cond, cond是shape为[4, 1]，数据类型为bool的2-D tensor。
+    # 根据输入数据x_d, y_d，可以推断出cond中的数据为[[true], [true], [false], [false]]
+    cond = paddle.greater_than(x, y)
+    # 同其他常见OP不同的是，该OP返回的ie是一个IfElse OP的对象
+    ie = fluid.layers.IfElse(cond)
+    
+    with ie.true_block():
+        # 在这个block中，根据cond条件，获取x中对应条件为false维度的数据，并加上10
+        out_1 = ie.input(x)
+        out_1 = out_1 - 10
+        ie.output(out_1)
+    
+    # 根据cond条件将两个block中处理后的数据进行合并，此处的output为输出，类型为List，List中的元素类型为Variable。
+    with ie.false_block():
+        # 在这个block中，根据cond条件，获取x中对应条件为false维度的数据，并加上10
+        out_1 = ie.input(x)
+        out_1 = out_1 + 10
+        ie.output(out_1)
+    
+    # 根据cond条件将两个block中处理后的数据进行合并，此处的output为输出，类型为List，List中的元素类型为Variable。
+    output = ie()
+    
+    # 将输出List中的第一个Variable获取出来，并计算所有元素和
+    out = paddle.sum(output[0])
+    
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    res = exe.run(paddle.default_main_program(), feed={'x': x_d, 'y': y_d},
+        fetch_list=[out])
+    print(res)
+    # [array([-1.], dtype=float32)]
 
 参数：
     - **cond** (Variable)- cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示N个输入数据的对应的执行条件。数据类型为bool。

@@ -30,6 +30,7 @@ elementwise_equal
     import paddle.fluid as fluid
     import numpy as np
     
-    label = fluid.layers.assign(np.array([3, 3], dtype="int32"))
-    limit = fluid.layers.assign(np.array([3, 2], dtype="int32"))
-    out1 = paddle.elementwise_equal(x=label, y=limit) #out1=[True, False]
+    label = paddle.nn.functional.assign(np.array([3, 3], dtype='int32'))
+    limit = paddle.nn.functional.assign(np.array([3, 2], dtype='int32'))
+    out1 = paddle.elementwise_equal(x=label, y=limit)
+

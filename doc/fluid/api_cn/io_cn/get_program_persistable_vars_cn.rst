@@ -22,9 +22,11 @@ get_program_persistable_vars
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.data(name="img", shape=[64, 784])
-    w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32', name='fc_w')
-    b = fluid.layers.create_parameter(shape=[200], dtype='float32', name='fc_b')
-    list_para  = fluid.io.get_program_persistable_vars(  fluid.default_main_program() )
+    data = paddle.data(name='img', shape=[64, 784])
+    w = paddle.create_parameter(shape=[784, 200], dtype='float32', name='fc_w')
+    b = paddle.create_parameter(shape=[200], dtype='float32', name='fc_b')
+    list_para = fluid.io.get_program_persistable_vars(paddle.default_main_program()
+        )
 

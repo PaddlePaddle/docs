@@ -43,20 +43,13 @@ beam_search_decode
 
 .. code-block:: python
 
-       import paddle.fluid as fluid
-
-       # 假设 `ids` 和 `scores` 为LoDTensorArray类型的Variable，它们保留了
-       # 所有时间步选择出的id和score
-       ids = fluid.layers.create_array(dtype='int64')
-       scores = fluid.layers.create_array(dtype='float32')
-       finished_ids, finished_scores = fluid.layers.beam_search_decode(
-                ids, scores, beam_size=5, end_id=0)
-
-
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    # 假设 `ids` 和 `scores` 为LoDTensorArray类型的Variable，它们保留了
+    # 所有时间步选择出的id和score
+    ids = fluid.layers.create_array(dtype='int64')
+    scores = fluid.layers.create_array(dtype='float32')
+    finished_ids, finished_scores = paddle.nn.beam_search_decode(ids, scores,
+        beam_size=5, end_id=0)
 

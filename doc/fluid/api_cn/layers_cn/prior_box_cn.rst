@@ -35,13 +35,11 @@ prior_box
 **代码示例**：
 
 .. code-block:: python
-    
+
+    import paddle
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[3,6,9])
-    images = fluid.layers.data(name="images", shape=[3,9,12])
-    box, var = fluid.layers.prior_box(
-        input=input,
-        image=images,
-        min_sizes=[100.],
-        flip=True,
-        clip=True)
+    input = fluid.layers.data(name='input', shape=[3, 6, 9])
+    images = fluid.layers.data(name='images', shape=[3, 9, 12])
+    box, var = fluid.layers.prior_box(input=input, image=images, min_sizes=[
+        100.0], flip=True, clip=True)
+

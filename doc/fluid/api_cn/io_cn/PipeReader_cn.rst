@@ -12,10 +12,11 @@ PipeReader从命令的输出流中读取数据，把数据存在一个pipe缓存
 
 ..  code-block:: python
 
-           cmd = "hadoop fs -cat /path/to/some/file"
-           cmd = "cat sample_file.tar.gz"
-           cmd = "curl http://someurl"
-           cmd = "python print_s3_bucket.py"
+    cmd = "hadoop fs -cat /path/to/some/file"
+    cmd = "cat sample_file.tar.gz"
+    cmd = "curl http://someurl"
+    cmd = "python print_s3_bucket.py"
+
 参数:    
     - **command** (str) – 该参数表示产生数据来源的命令。
     - **bufsize** (int) – 该参数表示pipe缓存的大小，默认为8192。
@@ -27,14 +28,10 @@ PipeReader从命令的输出流中读取数据，把数据存在一个pipe缓存
 
 ..  code-block:: python
 
-           import paddle.fluid as fluid
-           
-           def example_reader(filelist):
-               for f in filelist:
-                   pr = fluid.io.PipeReader("cat %s"%f)
-                   for l in pr.get_line():
-                       sample = l.split(" ")
-                       yield sample
+    cmd = "hadoop fs -cat /path/to/some/file"
+    cmd = "cat sample_file.tar.gz"
+    cmd = "curl http://someurl"
+    cmd = "python print_s3_bucket.py"
 
 .. py:method:: get_line(cut_lines=True,line_break='\n')
 

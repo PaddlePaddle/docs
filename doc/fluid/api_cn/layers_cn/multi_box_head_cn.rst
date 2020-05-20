@@ -19,33 +19,14 @@ multi_box_head
 
               ..  code-block:: python
 
-                  min_sizes = []
-                  max_sizes = []
-                  step = int(math.floor(((max_ratio - min_ratio)) / (num_layer - 2)))
-                  for ratio in six.moves.range(min_ratio, max_ratio + 1, step):
-                      min_sizes.append(base_size * ratio / 100.)
-                      max_sizes.append(base_size * (ratio + step) / 100.)
-                      min_sizes = [base_size * .10] + min_sizes
-                      max_sizes = [base_size * .20] + max_sizes
-
-        - **num_classes** (int) - 类别数。
-        - **aspect_ratios**  (list(float) | tuple(float) | list(list(float)) | tuple(tuple(float)) - 候选框的宽高比， ``aspect_ratios`` 和 ``input`` 的个数必须相等。如果每个特征层提取先验框的 ``aspect_ratio`` 多余一个，写成嵌套的list，例如[[2., 3.]]。
-        - **min_ratio** (int）- 先验框的长度和 ``base_size`` 的最小比率，注意，这里是百分比，假如比率为0.2，这里应该给20.0。默认值: None。
-        - **max_ratio** (int）- 先验框的长度和 ``base_size`` 的最大比率，注意事项同 ``min_ratio`` 。默认值: None。
-        - **min_sizes** (list(float) | tuple(float) | None）- 每层提取的先验框的最小长度，如果输入个数len(inputs)<= 2，则必须设置 ``min_sizes`` ，并且 ``min_sizes`` 的个数应等于len(inputs)。默认值：None。
-        - **max_sizes** (list | tuple | None）- 每层提取的先验框的最大长度，如果len(inputs）<= 2，则必须设置 ``max_sizes`` ，并且 ``min_sizes`` 的长度应等于len(inputs)。默认值：None。
-        - **steps** (list(float) | tuple(float)) - 相邻先验框的中心点步长 ，如果在水平和垂直方向上步长相同，则设置steps即可，否则分别通过step_w和step_h设置不同方向的步长。如果 ``steps``, ``ste_w`` 和 ``step_h`` 均为None，步长为输入图片的大小 ``base_size`` 和特征图大小的比例。默认值：None。
-        - **step_w** (list(float）| tuple(float)) - 水平方向上先验框中心点步长。默认值：None。
-        - **step_h** (list | tuple) - 垂直方向上先验框中心点步长。默认值：None。
-        - **offset** (float) - 左上角先验框中心在水平和垂直方向上的偏移。默认值：0.5
-        - **variance** (list | tuple) - 先验框的方差。默认值：[0.1,0.1,0.2,0.2]。
-        - **flip** (bool) - 是否翻转宽高比。默认值：False。
-        - **clip** (bool) - 是否剪切超出边界的框。默认值：False。
-        - **kernel_size** (int) - 计算回归位置和分类置信度的卷积核的大小。默认值：1。
-        - **pad** (int | list(int) | tuple(int)) - 计算回归位置和分类置信度的卷积核的填充。默认值：0。
-        - **stride** (int | list | tuple) - 计算回归位置和分类置信度的卷积核的步长。默认值：1。
-        - **name** (str) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-        - **min_max_aspect_ratios_order** (bool) - 如果设置为True，则输出先验框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响卷积层后面的权重顺序，但不会影响最终检测结果。默认值：False。
+    min_sizes = []
+    max_sizes = []
+    step = int(math.floor(((max_ratio - min_ratio)) / (num_layer - 2)))
+    for ratio in six.moves.range(min_ratio, max_ratio + 1, step):
+        min_sizes.append(base_size * ratio / 100.)
+        max_sizes.append(base_size * (ratio + step) / 100.)
+        min_sizes = [base_size * .10] + min_sizes
+        max_sizes = [base_size * .20] + max_sizes
 
 返回：
     - **mbox_loc(Variable)** - 预测框的回归位置。格式为[N，num_priors，4]，其中 ``N`` 是batch size， ``num_priors`` 是总共提取的先验框的个数。
@@ -58,55 +39,26 @@ multi_box_head
 **代码示例1: 设置min_ratio和max_ratio**
 
 ..  code-block:: python
-        
-        import paddle.fluid as fluid
-     
-        images = fluid.data(name='data', shape=[None, 3, 300, 300], dtype='float32')
-        conv1 = fluid.data(name='conv1', shape=[None, 512, 19, 19], dtype='float32')
-        conv2 = fluid.data(name='conv2', shape=[None, 1024, 10, 10], dtype='float32')
-        conv3 = fluid.data(name='conv3', shape=[None, 512, 5, 5], dtype='float32')
-        conv4 = fluid.data(name='conv4', shape=[None, 256, 3, 3], dtype='float32')
-        conv5 = fluid.data(name='conv5', shape=[None, 256, 2, 2], dtype='float32')
-        conv6 = fluid.data(name='conv6', shape=[None, 128, 1, 1], dtype='float32')
-        
-        mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
-          inputs=[conv1, conv2, conv3, conv4, conv5, conv6],
-          image=images,
-          num_classes=21,
-          min_ratio=20,
-          max_ratio=90,
-          aspect_ratios=[[2.], [2., 3.], [2., 3.], [2., 3.], [2.], [2.]],
-          base_size=300,
-          offset=0.5,
-          flip=True,
-          clip=True)
 
+    min_sizes = []
+    max_sizes = []
+    step = int(math.floor(((max_ratio - min_ratio)) / (num_layer - 2)))
+    for ratio in six.moves.range(min_ratio, max_ratio + 1, step):
+        min_sizes.append(base_size * ratio / 100.)
+        max_sizes.append(base_size * (ratio + step) / 100.)
+        min_sizes = [base_size * .10] + min_sizes
+        max_sizes = [base_size * .20] + max_sizes
 
 **代码示例2: 设置min_sizes和max_sizes**
 
 ..  code-block:: python
-        
-        import paddle.fluid as fluid
-     
-        images = fluid.data(name='data', shape=[None, 3, 300, 300], dtype='float32')
-        conv1 = fluid.data(name='conv1', shape=[None, 512, 19, 19], dtype='float32')
-        conv2 = fluid.data(name='conv2', shape=[None, 1024, 10, 10], dtype='float32')
-        conv3 = fluid.data(name='conv3', shape=[None, 512, 5, 5], dtype='float32')
-        conv4 = fluid.data(name='conv4', shape=[None, 256, 3, 3], dtype='float32')
-        conv5 = fluid.data(name='conv5', shape=[None, 256, 2, 2], dtype='float32')
-        conv6 = fluid.data(name='conv6', shape=[None, 128, 1, 1], dtype='float32')
-        
-        mbox_locs, mbox_confs, box, var = fluid.layers.multi_box_head(
-          inputs=[conv1, conv2, conv3, conv4, conv5, conv6],
-          image=images,
-          num_classes=21,
-          min_sizes=[60.0, 105.0, 150.0, 195.0, 240.0, 285.0],
-          max_sizes=[[], 150.0, 195.0, 240.0, 285.0, 300.0],
-          aspect_ratios=[[2.], [2., 3.], [2., 3.], [2., 3.], [2.], [2.]],
-          base_size=300,
-          offset=0.5,
-          flip=True,
-          clip=True)
 
-
+    min_sizes = []
+    max_sizes = []
+    step = int(math.floor(((max_ratio - min_ratio)) / (num_layer - 2)))
+    for ratio in six.moves.range(min_ratio, max_ratio + 1, step):
+        min_sizes.append(base_size * ratio / 100.)
+        max_sizes.append(base_size * (ratio + step) / 100.)
+        min_sizes = [base_size * .10] + min_sizes
+        max_sizes = [base_size * .20] + max_sizes
 

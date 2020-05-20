@@ -38,21 +38,10 @@ exponential_decay
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     base_lr = 0.1
-    sgd_optimizer = fluid.optimizer.SGD(
-        learning_rate=fluid.layers.exponential_decay(
-            learning_rate=base_lr,
-            decay_steps=10000,
-            decay_rate=0.5,
-            staircase=True))
-
-
-
-
-
-
-
-
-
+    sgd_optimizer = paddle.optimizer.SGD(learning_rate=fluid.layers.
+        exponential_decay(learning_rate=base_lr, decay_steps=10000, decay_rate=
+        0.5, staircase=True))
 

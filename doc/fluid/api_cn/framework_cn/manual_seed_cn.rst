@@ -26,12 +26,11 @@ manual_seed
 
     import paddle
     from paddle.framework import manual_seed
-
-    default_seed = paddle.fluid.default_startup_program().random_seed #default_seed为0
+    
+    default_seed = paddle.default_startup_program().random_seed
     
     manual_seed(102)
-    prog = paddle.fluid.Program()
-    prog_seed = prog.random_seed #prog_seed为102
-    update_seed = paddle.fluid.default_startup_program().random_seed #update_seed 为102
-
+    prog = paddle.Program()
+    prog_seed = prog.random_seed
+    update_seed = paddle.default_startup_program().random_seed
 

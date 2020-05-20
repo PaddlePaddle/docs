@@ -36,16 +36,11 @@ piecewise_decay
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        boundaries = [10000, 20000]
-        values = [1.0, 0.5, 0.1]
-        optimizer = fluid.optimizer.Momentum(
-            momentum=0.9,
-            learning_rate=fluid.layers.piecewise_decay(boundaries=boundaries, values=values),
-            regularization=fluid.regularizer.L2Decay(1e-4))
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    boundaries = [10000, 20000]
+    values = [1.0, 0.5, 0.1]
+    optimizer = paddle.optimizer.Momentum(momentum=0.9, learning_rate=fluid.
+        layers.piecewise_decay(boundaries=boundaries, values=values),
+        regularization=fluid.regularizer.L2Decay(0.0001))
 

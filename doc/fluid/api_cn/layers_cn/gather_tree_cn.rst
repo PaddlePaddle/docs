@@ -55,17 +55,10 @@ gather_tree
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    ids = fluid.data(name='ids',
-                     shape=[5, 2, 2],
-                     dtype='int64')
-    parents = fluid.data(name='parents',
-                         shape=[5, 2, 2],
-                         dtype='int64')
-    final_sequences = fluid.layers.gather_tree(ids, parents)
-
-
-
-
+    
+    ids = paddle.data(name='ids', shape=[5, 2, 2], dtype='int64')
+    parents = paddle.data(name='parents', shape=[5, 2, 2], dtype='int64')
+    final_sequences = paddle.nn.gather_tree(ids, parents)
 

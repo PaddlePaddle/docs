@@ -25,16 +25,17 @@ to_variable
 **代码示例**:
 
 .. code-block:: python
-    
+
+    import paddle
     import numpy as np
     import paddle.fluid as fluid
-
-    with fluid.dygraph.guard(fluid.CPUPlace()):
+    
+    with paddle.imperative.guard(paddle.CPUPlace()):
         x = np.ones([2, 2], np.float32)
-        y = fluid.dygraph.to_variable(x, zero_copy=False)
+        y = paddle.imperative.to_variable(x, zero_copy=False)
         x[0][0] = -1
-        y[0][0].numpy()  # array([1.], dtype=float32)
-        y = fluid.dygraph.to_variable(x)
+        y[0][0].numpy()
+        y = paddle.imperative.to_variable(x)
         x[0][0] = 0
-        y[0][0].numpy()  # array([0.], dtype=float32)
+        y[0][0].numpy()
 

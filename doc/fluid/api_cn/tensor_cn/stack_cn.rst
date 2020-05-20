@@ -24,19 +24,20 @@ stack
 **代码示例**:
 
 .. code-block:: python
-   
+
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    data1 = np.array([[1.0, 2.0,3.0]])
+    data1 = np.array([[1.0, 2.0, 3.0]])
     data2 = np.array([[3.0, 4.0, 5.0]])
-    data3 = np.array([[5.0, 6.0,7.0]])
-    with fluid.dygraph.guard():
-        x1 = fluid.dygraph.to_variable(data1)
-        x2 = fluid.dygraph.to_variable(data2)
-        x3 = fluid.dygraph.to_variable(data3)
+    data3 = np.array([[5.0, 6.0, 7.0]])
+    with paddle.imperative.guard():
+        x1 = paddle.imperative.to_variable(data1)
+        x2 = paddle.imperative.to_variable(data2)
+        x3 = paddle.imperative.to_variable(data3)
         result = paddle.stack([x1, x2, x3], axis=2)
         # result shape: [3, 1, 2]
         # result value: [[[1.0, 2.0]],
         #                [[3.0, 4.0]],
         #                [[5.0, 6.0]]]
+

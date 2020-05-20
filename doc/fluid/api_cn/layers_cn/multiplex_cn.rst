@@ -48,29 +48,23 @@ multiplex
 
 ..  code-block:: python
 
-     import paddle.fluid as fluid
-     import numpy as np
-
-     x1 = fluid.layers.data(name='x1', shape=[4], dtype='float32')
-     x2 = fluid.layers.data(name='x2', shape=[4], dtype='float32')
-     index = fluid.layers.data(name='index', shape=[1], dtype='int32')
-     out = fluid.layers.multiplex(inputs=[x1, x2], index=index)
-
-     exe = fluid.Executor(fluid.CPUPlace())
-     exe.run(fluid.default_startup_program())
-
-     img1 = np.array([[1, 2], [3, 4]]).astype(np.float32)
-     img2 = np.array([[5, 6], [7, 8]]).astype(np.float32)
-     index = np.array([[1], [0]]).astype(np.int32)
-
-     res = exe.run(fluid.default_main_program(), feed={'x1':img1, 'x2':img2, 'index':index}, fetch_list=[out])
-     print(res) # [array([[5., 6.], [3., 4.]], dtype=float32)]
-
-
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    x1 = fluid.layers.data(name='x1', shape=[4], dtype='float32')
+    x2 = fluid.layers.data(name='x2', shape=[4], dtype='float32')
+    index = fluid.layers.data(name='index', shape=[1], dtype='int32')
+    
+    out = paddle.multiplex(inputs=[x1, x2], index=index)
+    
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    img1 = np.array([[1, 2], [3, 4]]).astype(np.float32)
+    img2 = np.array([[5, 6], [7, 8]]).astype(np.float32)
+    index = np.array([[1], [0]]).astype(np.int32)
+    
+    res = exe.run(paddle.default_main_program(), feed={'x1': img1, 'x2': img2,
+        'index': index}, fetch_list=[out])
+    print(res)
 

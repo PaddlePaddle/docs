@@ -41,9 +41,9 @@ create_lod_tensor
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-     
-        t = fluid.create_lod_tensor(np.ndarray([5, 30]), [[2, 3]], fluid.CPUPlace())
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    t = fluid.create_lod_tensor(np.ndarray([5, 30]), [[2, 3]], paddle.CPUPlace())
 

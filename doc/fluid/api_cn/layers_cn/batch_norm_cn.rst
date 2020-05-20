@@ -69,43 +69,43 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-    x = fluid.layers.data(name='x', shape=[3, 7, 3, 7], dtype='float32', append_batch_size=False)
+    x = fluid.layers.data(name='x', shape=[3, 7, 3, 7], dtype='float32',
+        append_batch_size=False)
     hidden1 = fluid.layers.fc(input=x, size=200)
-    param_attr = fluid.ParamAttr(name='batch_norm_w', initializer=fluid.initializer.Constant(value=1.0))
-    bias_attr = fluid.ParamAttr(name='batch_norm_b', initializer=fluid.initializer.Constant(value=0.0))
-    hidden2 = fluid.layers.batch_norm(input=hidden1, param_attr = param_attr, bias_attr = bias_attr)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
+    param_attr = paddle.ParamAttr(name='batch_norm_w', initializer=paddle.nn.
+        initializer.Constant(value=1.0))
+    bias_attr = paddle.ParamAttr(name='batch_norm_b', initializer=paddle.nn.
+        initializer.Constant(value=0.0))
+    hidden2 = fluid.layers.batch_norm(input=hidden1, param_attr=param_attr,
+        bias_attr=bias_attr)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
     np_x = np.random.random(size=(3, 7, 3, 7)).astype('float32')
-    output = exe.run(feed={"x": np_x}, fetch_list = [hidden2])
+    output = exe.run(feed={'x': np_x}, fetch_list=[hidden2])
     print(output)
 
 .. code-block:: python
 
-    # batch_norm with momentum as Variable
+    import paddle
     import paddle.fluid as fluid
-    import paddle.fluid.layers.learning_rate_scheduler as lr_scheduler
-    
-    def get_decay_momentum(momentum_init, decay_steps, decay_rate):
-        global_step = lr_scheduler._decay_step_counter()
-        momentum = fluid.layers.create_global_var(
-            shape=[1],
-            value=float(momentum_init),
-            dtype='float32',
-            # set persistable for save checkpoints and resume
-            persistable=True,
-            name="momentum")
-        div_res = global_step / decay_steps
-        decayed_momentum = momentum_init * (decay_rate**div_res)
-        fluid.layers.assign(decayed_momentum, momentum)
-        
-        return momentum
-    
-    x = fluid.data(name='x', shape=[3, 7, 3, 7], dtype='float32')
-    hidden1 = fluid.layers.fc(input=x, size=200, param_attr='fc1.w')
-    momentum = get_decay_momentum(0.9, 1e5, 0.9)
-    hidden2 = fluid.layers.batch_norm(input=hidden1, momentum=momentum)
+    import numpy as np
+    x = fluid.layers.data(name='x', shape=[3, 7, 3, 7], dtype='float32',
+        append_batch_size=False)
+    hidden1 = fluid.layers.fc(input=x, size=200)
+    param_attr = paddle.ParamAttr(name='batch_norm_w', initializer=paddle.nn.
+        initializer.Constant(value=1.0))
+    bias_attr = paddle.ParamAttr(name='batch_norm_b', initializer=paddle.nn.
+        initializer.Constant(value=0.0))
+    hidden2 = fluid.layers.batch_norm(input=hidden1, param_attr=param_attr,
+        bias_attr=bias_attr)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    np_x = np.random.random(size=(3, 7, 3, 7)).astype('float32')
+    output = exe.run(feed={'x': np_x}, fetch_list=[hidden2])
+    print(output)
 

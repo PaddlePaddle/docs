@@ -31,15 +31,11 @@ roi_perspective_transform
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
+    
     x = fluid.layers.data(name='x', shape=[256, 28, 28], dtype='float32')
     rois = fluid.layers.data(name='rois', shape=[8], lod_level=1, dtype='float32')
-    out, mask, transform_matrix = fluid.layers.roi_perspective_transform(x, rois, 7, 7, 1.0)
-
-
-
-
-
-
+    out, mask, transform_matrix = fluid.layers.roi_perspective_transform(x,
+        rois, 7, 7, 1.0)
 

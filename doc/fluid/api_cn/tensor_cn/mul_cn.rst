@@ -36,16 +36,12 @@ mul算子
 **代码示例**
 
 .. code-block:: python
-    
+
     import paddle
     import paddle.fluid as fluid
-    dataX = fluid.data(name="dataX", shape=[2, 5], dtype="float32")
-    dataY = fluid.data(name="dataY", shape=[5, 3], dtype="float32")
-
-    res = fluid.data(name="output", shape=[2, 3], dtype="float32")
-    output = paddle.mul(dataX, dataY,
-                              x_num_col_dims = 1,
-                              y_num_col_dims = 1, 
-                              out=res)
-
+    dataX = paddle.data(name='dataX', shape=[2, 5], dtype='float32')
+    dataY = paddle.data(name='dataY', shape=[5, 3], dtype='float32')
+    
+    res = paddle.data(name='output', shape=[2, 3], dtype='float32')
+    output = paddle.mul(dataX, dataY, x_num_col_dims=1, y_num_col_dims=1, out=res)
 

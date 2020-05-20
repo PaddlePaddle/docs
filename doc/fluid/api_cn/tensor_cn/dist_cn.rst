@@ -67,14 +67,17 @@ z (4-D Tensor):  8 x 7 x 6 x 5
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    with fluid.dygraph.guard():
-        x = fluid.dygraph.to_variable(np.array([[3, 3],[3, 3]]).astype(np.float32))
-        y = fluid.dygraph.to_variable(np.array([[3, 3],[3, 1]]).astype(np.float32))
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(np.array([[3, 3], [3, 3]]).astype(np.
+            float32))
+        y = paddle.imperative.to_variable(np.array([[3, 3], [3, 1]]).astype(np.
+            float32))
         out = paddle.dist(x, y, 0)
-        print(out.numpy()) # out = [1.]
+        print(out.numpy())
         out = paddle.dist(x, y, 2)
-        print(out.numpy()) # out = [2.]
-        out = paddle.dist(x, y, float("inf"))
-        print(out.numpy()) # out = [2.]
-        out = paddle.dist(x, y, float("-inf"))
-        print(out.numpy()) # out = [0.]
+        print(out.numpy())
+        out = paddle.dist(x, y, float('inf'))
+        print(out.numpy())
+        out = paddle.dist(x, y, float('-inf'))
+        print(out.numpy())
+

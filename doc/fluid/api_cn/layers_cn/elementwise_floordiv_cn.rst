@@ -57,60 +57,56 @@ elementwise_floordiv
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
     def gen_data():
-        return {
-            "x": np.array([2, 3, 4]),
-            "y": np.array([1, 5, 2])
-        }
-
-    x = fluid.data(name="x", shape=[3], dtype='int64')
-    y = fluid.data(name="y", shape=[3], dtype='int64')
-    z = fluid.layers.elementwise_floordiv(x, y)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = paddle.data(name='x', shape=[3], dtype='int64')
+    y = paddle.data(name='y', shape=[3], dtype='int64')
+    z = paddle.elementwise_floordiv(x, y)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
     z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
-    print(z_value) #[2,0,2]
+    print(z_value)
 
 **代码示例 2**
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
     def gen_data():
-        return {
-            "x": np.random.randint(1, 5, size=[2, 3, 4, 5]),
-            "y": np.random.randint(1, 5, size=[3, 4])
-        }
-
-    x = fluid.data(name="x", shape=[2,3,4,5], dtype='int64')
-    y = fluid.data(name="y", shape=[3,4], dtype='int64')
-    z = fluid.layers.elementwise_floordiv(x, y, axis=1)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-    print(z_value) # z.shape=[2,3,4,5]
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = paddle.data(name='x', shape=[3], dtype='int64')
+    y = paddle.data(name='y', shape=[3], dtype='int64')
+    z = paddle.elementwise_floordiv(x, y)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
 **代码示例 3**
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
     def gen_data():
-        return {
-            "x": np.random.randint(1, 5, size=[2, 3, 4, 5]),
-            "y": np.random.randint(1, 5, size=[5])
-        }
+        return {'x': np.array([2, 3, 4]), 'y': np.array([1, 5, 2])}
+    
+    x = paddle.data(name='x', shape=[3], dtype='int64')
+    y = paddle.data(name='y', shape=[3], dtype='int64')
+    z = paddle.elementwise_floordiv(x, y)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z.name])
+    print(z_value)
 
-    x = fluid.data(name="x", shape=[2,3,4,5], dtype='int64')
-    y = fluid.data(name="y", shape=[5], dtype='int64')
-    z = fluid.layers.elementwise_floordiv(x, y, axis=3)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-    print(z_value) # z.shape=[2,3,4,5]

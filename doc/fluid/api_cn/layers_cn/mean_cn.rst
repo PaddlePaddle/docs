@@ -27,26 +27,24 @@ mean
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy
-
+    
     # Graph Organizing
-    input = fluid.layers.data(
-        name='data', shape=[2, 3], dtype='float32')
-    output = fluid.layers.mean(input)
-
+    input = fluid.layers.data(name='data', shape=[2, 3], dtype='float32')
+    output = paddle.mean(input)
+    
     # Create an executor using CPU as an example
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-
-    # Execute
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
     x_ndarray = numpy.ones([2, 3]).astype(numpy.float32)
-    res, = exe.run(fluid.default_main_program(),
-                   feed={'data':x_ndarray},
-                   fetch_list=[output])
+    res, = exe.run(paddle.default_main_program(), feed={'data': x_ndarray},
+        fetch_list=[output])
     print(res)
-    '''
+    """
     Output Value:
     [1.]
-    '''
+    """
+

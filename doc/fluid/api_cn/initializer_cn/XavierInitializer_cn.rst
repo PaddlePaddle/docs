@@ -38,14 +38,9 @@ XavierInitializer
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     queries = fluid.layers.data(name='x', shape=[1], dtype='float32')
-    fc = fluid.layers.fc(
-        input=queries, size=10,
-        param_attr=fluid.initializer.Xavier(uniform=False))
-
-
-
-
-
+    fc = fluid.layers.fc(input=queries, size=10, param_attr=paddle.nn.
+        initializer.Xavier(uniform=False))
 

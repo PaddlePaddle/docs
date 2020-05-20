@@ -111,14 +111,18 @@ conv3d_transpose
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
     data = fluid.layers.data(name='data', shape=[3, 12, 32, 32], dtype='float32')
-    param_attr = fluid.ParamAttr(name='conv3d.weight', initializer=fluid.initializer.Xavier(uniform=False), learning_rate=0.001)
-    res = fluid.layers.conv3d_transpose(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    x = np.random.rand(1, 3, 12, 32, 32).astype("float32")
-    output = exe.run(feed={"data": x}, fetch_list=[res])
+    param_attr = paddle.ParamAttr(name='conv3d.weight', initializer=paddle.nn.
+        initializer.Xavier(uniform=False), learning_rate=0.001)
+    res = paddle.nn.functional.conv3d_transpose(input=data, num_filters=2,
+        filter_size=3, act='relu', param_attr=param_attr)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    x = np.random.rand(1, 3, 12, 32, 32).astype('float32')
+    output = exe.run(feed={'data': x}, fetch_list=[res])
     print(output)
+

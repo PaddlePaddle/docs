@@ -33,11 +33,11 @@ fsp_matrix op用于计算两个4-D Tensor特征图的求解过程（FSP）矩阵
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     data = fluid.layers.data(name='data', shape=[3, 32, 32])
-    feature_map_0 = fluid.layers.conv2d(data, num_filters=2,
-                                        filter_size=3)
-    feature_map_1 = fluid.layers.conv2d(feature_map_0, num_filters=2,
-                                        filter_size=1)
+    feature_map_0 = paddle.nn.functional.conv2d(data, num_filters=2, filter_size=3)
+    feature_map_1 = paddle.nn.functional.conv2d(feature_map_0, num_filters=2,
+        filter_size=1)
     loss = fluid.layers.fsp_matrix(feature_map_0, feature_map_1)
 

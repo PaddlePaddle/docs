@@ -25,11 +25,15 @@ shuffle
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
+    
     def reader():
         for i in range(5):
             yield i
-    shuffled_reader = fluid.io.shuffle(reader, 3)
+    
+    shuffled_reader = paddle.io.shuffle(reader, 3)
     for e in shuffled_reader():
         print(e)
     # 输出结果是0~4的无序排列
+

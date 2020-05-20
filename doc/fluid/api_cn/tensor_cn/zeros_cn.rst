@@ -28,6 +28,6 @@ zeros
 .. code-block:: python
 
     import paddle
-    data = paddle.zeros(shape=[3, 2], dtype='float32') # [[0., 0.], [0., 0.], [0., 0.]]
-    data = paddle.zeros(shape=[2, 2], dtype='float32', device='cpu') # [[0., 0.], [0., 0.]]
+    data = paddle.zeros(shape=[3, 2], dtype='float32')
+    data = paddle.zeros(shape=[2, 2], dtype='float32', device='cpu')
 

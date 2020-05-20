@@ -28,17 +28,8 @@ square
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784], dtype='float32')
-        result = fluid.layers.square(data) #result.shape=[32, 784], type=float32
-
-
-
-
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='input', shape=[32, 784], dtype='float32')
+    result = paddle.square(data)
 

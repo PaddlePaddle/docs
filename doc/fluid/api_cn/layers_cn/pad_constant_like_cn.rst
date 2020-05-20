@@ -75,12 +75,10 @@ pad_constant_like
 
     # x是秩为4的tensor, x.shape = (2, 3, 2, 3)
     # y是秩为4的tensor, y.shape = (1, 3, 1, 3)
+    import paddle
     import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[2,3,2,3], dtype='float32')
-    y = fluid.data(name='y', shape=[1,3,1,3], dtype='float32')
-    out = fluid.layers.pad_constant_like(x=x, y=y, pad_value=0.)
+    x = paddle.data(name='x', shape=[2, 3, 2, 3], dtype='float32')
+    y = paddle.data(name='y', shape=[1, 3, 1, 3], dtype='float32')
+    out = paddle.nn.functional.pad_constant_like(x=x, y=y, pad_value=0.0)
     # out是秩为4的tensor, out.shape = [2, 3 ,2 , 3]
-
-
-
 

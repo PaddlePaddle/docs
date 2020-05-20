@@ -20,9 +20,12 @@ global_scope
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy
+    import paddle
+    import paddle.fluid as fluid
+    import numpy
+    
+    paddle.global_scope().var('data').get_tensor().set(numpy.ones((1, 2)),
+        paddle.CPUPlace())
+    data = numpy.array(paddle.global_scope().find_var('data').get_tensor())
+    print(data)
 
-        fluid.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), fluid.CPUPlace())
-        data = numpy.array(fluid.global_scope().find_var("data").get_tensor())
-        print(data)  # [[1. 1.]]

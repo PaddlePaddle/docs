@@ -24,27 +24,25 @@ index_select
 
 .. code-block:: python
 
-        import paddle
-        import paddle.fluid as fluid
-        import numpy as np
-
-        data = np.array([[1.0, 2.0, 3.0, 4.0],
-                            [5.0, 6.0, 7.0, 8.0],
-                            [9.0, 10.0, 11.0, 12.0]])
-        data_index = np.array([0, 1, 1]).astype('int32')
-
-        with fluid.dygraph.guard():
-            x = fluid.dygraph.to_variable(data)
-            index = fluid.dygraph.to_variable(data_index)
-            out_z1 = paddle.index_select(x, index)
-            print(out_z1.numpy())
-            #[[1. 2. 3. 4.]
-            # [5. 6. 7. 8.]
-            # [5. 6. 7. 8.]]
-            out_z2 = paddle.index_select(x, index, dim=1)
-            print(out_z2.numpy())
-            #[[ 1.  2.  2.]
-            # [ 5.  6.  6.]
-            # [ 9. 10. 10.]]
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    data = np.array([[1.0, 2.0, 3.0, 4.0], [5.0, 6.0, 7.0, 8.0], [9.0, 10.0, 
+        11.0, 12.0]])
+    data_index = np.array([0, 1, 1]).astype('int32')
+    
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(data)
+        index = paddle.imperative.to_variable(data_index)
+        out_z1 = paddle.index_select(x, index)
+        print(out_z1.numpy())
+        #[[1. 2. 3. 4.]
+        # [5. 6. 7. 8.]
+        # [5. 6. 7. 8.]]
+        out_z2 = paddle.index_select(x, index, dim=1)
+        print(out_z2.numpy())
+        #[[ 1.  2.  2.]
+        # [ 5.  6.  6.]
+        # [ 9. 10. 10.]]
 

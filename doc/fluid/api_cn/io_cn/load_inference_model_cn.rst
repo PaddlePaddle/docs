@@ -33,48 +33,35 @@ load_inference_model
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-
-        # 构建模型
-        main_prog = fluid.Program()
-        startup_prog = fluid.Program()
-        with fluid.program_guard(main_prog, startup_prog):
-            data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
-            w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32')
-            b = fluid.layers.create_parameter(shape=[200], dtype='float32')
-            hidden_w = fluid.layers.matmul(x=data, y=w)
-            hidden_b = fluid.layers.elementwise_add(hidden_w, b)
-        place = fluid.CPUPlace()
-        exe = fluid.Executor(place)
-        exe.run(startup_prog)
-
-        # 保存预测模型
-        path = "./infer_model"
-        fluid.io.save_inference_model(dirname=path, feeded_var_names=['img'],target_vars=[hidden_b], executor=exe, main_program=main_prog)
-
-        # 示例一: 不需要指定分布式查找表的模型加载示例，即训练时未用到distributed lookup table。
-        [inference_program, feed_target_names, fetch_targets] = (fluid.io.load_inference_model(dirname=path, executor=exe))
-        tensor_img = np.array(np.random.random((1, 64, 784)), dtype=np.float32)
-        results = exe.run(inference_program,
-                  feed={feed_target_names[0]: tensor_img},
-                  fetch_list=fetch_targets)
-
-        # 示例二: 若训练时使用了distributed lookup table，则模型加载时需要通过endpoints参数指定pserver服务器结点列表。
-        # pserver服务器结点列表主要用于分布式查找表进行ID查找时使用。下面的["127.0.0.1:2023","127.0.0.1:2024"]仅为一个样例。
-        endpoints = ["127.0.0.1:2023","127.0.0.1:2024"]
-        [dist_inference_program, dist_feed_target_names, dist_fetch_targets] = (
-            fluid.io.load_inference_model(dirname=path,
-                                          executor=exe,
-                                          pserver_endpoints=endpoints))
-
-        # 在上述示例中，inference program 被保存在“ ./infer_model/__model__”文件内，
-        # 参数保存在“./infer_mode ”单独的若干文件内。
-        # 加载 inference program 后， executor可使用 fetch_targets 和 feed_target_names 执行Program，并得到预测结果。
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    # 构建模型
+    main_prog = paddle.Program()
+    startup_prog = paddle.Program()
+    with paddle.program_guard(main_prog, startup_prog):
+        data = fluid.layers.data(name='img', shape=[64, 784], append_batch_size
+            =False)
+        w = paddle.create_parameter(shape=[784, 200], dtype='float32')
+        b = paddle.create_parameter(shape=[200], dtype='float32')
+        hidden_w = paddle.mm(x=data, y=w, out=None)
+        hidden_b = paddle.add(hidden_w, b, alpha=1, out=None)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(startup_prog)
+    
+    # 保存预测模型
+    path = './infer_model'
+    paddle.io.save_inference_model(dirname=path, feeded_var_names=['img'],
+        target_vars=[hidden_b], executor=exe, main_program=main_prog)
+    [inference_program, feed_target_names, fetch_targets
+        ] = paddle.io.load_inference_model(dirname=path, executor=exe)
+    tensor_img = np.array(np.random.random((1, 64, 784)), dtype=np.float32)
+    results = exe.run(inference_program, feed={feed_target_names[0]: tensor_img
+        }, fetch_list=fetch_targets)
+    endpoints = ['127.0.0.1:2023', '127.0.0.1:2024']
+    [dist_inference_program, dist_feed_target_names, dist_fetch_targets
+        ] = paddle.io.load_inference_model(dirname=path, executor=exe,
+        pserver_endpoints=endpoints)
 

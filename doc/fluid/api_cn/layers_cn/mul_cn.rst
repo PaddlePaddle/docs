@@ -32,15 +32,11 @@ mul算子
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    dataX = fluid.layers.data(name="dataX", append_batch_size = False, shape=[2, 5], dtype="float32")
-    dataY = fluid.layers.data(name="dataY", append_batch_size = False, shape=[5, 3], dtype="float32")
-    output = fluid.layers.mul(dataX, dataY,
-                              x_num_col_dims = 1,
-                              y_num_col_dims = 1)
-
-
-
-
-
+    dataX = fluid.layers.data(name='dataX', append_batch_size=False, shape=[2, 
+        5], dtype='float32')
+    dataY = fluid.layers.data(name='dataY', append_batch_size=False, shape=[5, 
+        3], dtype='float32')
+    output = paddle.mul(dataX, dataY, x_num_col_dims=1, y_num_col_dims=1, out=None)
 

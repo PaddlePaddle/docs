@@ -46,12 +46,9 @@ spectral_norm
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    weight = fluid.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
+    
+    weight = paddle.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
     x = fluid.layers.spectral_norm(weight=weight, dim=1, power_iters=2)
-
-
-
-
 

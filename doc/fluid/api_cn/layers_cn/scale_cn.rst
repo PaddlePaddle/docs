@@ -41,37 +41,35 @@ scale
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-     
-    inputs = fluid.layers.data(name="x", shape=[2, 3], dtype='float32')
-    output = fluid.layers.scale(inputs, scale = 2.0, bias = 1.0)
-
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
+    
+    inputs = fluid.layers.data(name='x', shape=[2, 3], dtype='float32')
+    output = paddle.scale(inputs, scale=2.0, bias=1.0)
+    
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
     img = np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)
-
-    res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-    print(res) # [array([[ 3.,  5.,  7.], [ 9., 11., 13.]], dtype=float32)]
+    
+    res = exe.run(paddle.default_main_program(), feed={'x': img}, fetch_list=[
+        output])
+    print(res)
 
 .. code-block:: python
 
-    # scale with parameter scale as Variable
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    inputs = fluid.layers.data(name="x", shape=[2, 3], dtype='float32')
-    scale = fluid.layers.data(name="scale", shape=[1], dtype='float32'
-                              append_batch_size=False)
-    output = fluid.layers.scale(inputs, scale = scale, bias = 1.0)
-
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
+    
+    inputs = fluid.layers.data(name='x', shape=[2, 3], dtype='float32')
+    output = paddle.scale(inputs, scale=2.0, bias=1.0)
+    
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
     img = np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)
-    scale_np = np.array([2.]).astype(np.float32)
-
-    res = exe.run(fluid.default_main_program(), feed={'x':img, 'scale':scale_np}, fetch_list=[output])
-    print(res) # [array([[ 3.,  5.,  7.], [ 9., 11., 13.]], dtype=float32)]
+    
+    res = exe.run(paddle.default_main_program(), feed={'x': img}, fetch_list=[
+        output])
+    print(res)
 

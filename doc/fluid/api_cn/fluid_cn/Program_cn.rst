@@ -24,20 +24,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    main_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(main_program=main_program, startup_program=startup_program):
-        x = fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
-        y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
-        z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
-
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
     # start_up program here will share fc's weight with main program
-    print("main program is: {}".format(main_program))
-
-    print("start up program is: {}".format(startup_program))
-
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:method:: to_string(throw_on_error, with_details=False)
 
@@ -57,15 +57,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        prog = fluid.default_main_program()
-        x = fluid.layers.data(name="X", shape=[2,3], dtype="float32", append_batch_size=False)
-        pred = fluid.layers.fc(x, size=3)
-        prog_string = prog.to_string(throw_on_error=True, with_details=False)
-        prog_string_with_details = prog.to_string(throw_on_error=False, with_details=True)
-        print("program string without detail: {}".format(prog_string))
-        print("program string with detail: {}".format(prog_string_with_details))
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:method:: clone(for_test=False)
 
@@ -108,109 +113,58 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        import six
-
-
-        def print_prog(prog):
-            for name, value in sorted(six.iteritems(prog.block(0).vars)):
-                print(value)
-            for op in prog.block(0).ops:
-                print("op type is {}".format(op.type))
-                print("op inputs are {}".format(op.input_arg_names))
-                print("op outputs are {}".format(op.output_arg_names))
-                for key, value in sorted(six.iteritems(op.all_attrs())):
-                    if key not in ['op_callstack', 'op_role_var']:
-                        print(" [ attrs: {}:   {} ]".format(key, value))
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 1.克隆一个Program，示例代码如下。
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        import six
-
-        def print_prog(prog):
-            for name, value in sorted(six.iteritems(prog.block(0).vars)):
-                print(value)
-            for op in prog.block(0).ops:
-                print("op type is {}".format(op.type))
-                print("op inputs are {}".format(op.input_arg_names))
-                print("op outputs are {}".format(op.output_arg_names))
-                for key, value in sorted(six.iteritems(op.all_attrs())):
-                    if key not in ['op_callstack', 'op_role_var']:
-                        print(" [ attrs: {}:   {} ]".format(key, value))
-
-        train_program = fluid.Program()
-        startup_program = fluid.Program()
-
-        # ``startup_program`` 被用来执行一些参数初始化工作
-        # ``main_program`` 被用来容纳网络
-        with fluid.program_guard(train_program, startup_program):
-            with fluid.unique_name.guard():
-                img = fluid.layers.data(name='image', shape=[784])
-                hidden = fluid.layers.fc(input=img, size=200, act='relu')
-                hidden = fluid.layers.dropout(hidden, dropout_prob=0.5)
-                loss = fluid.layers.cross_entropy(
-                                          input=fluid.layers.fc(hidden, size=10, act='softmax'),
-                            label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
-                avg_loss = fluid.layers.mean(loss)
-                test_program = train_program.clone(for_test=True)
-        print_prog(test_program)
-
-        # 由于需要使训练和测试参数共享，我们需要使用训练的 ``startup_program``
-        # 来代替测试用的 ``startup_program``, 尽管测试的 ``startup_program`` 里面什么也没有。
-
-        # 在Paddle Fluid中我们会通过同样的变量名来共享权重.
-        # 训练和测试程序的所有参数将会拥有同样的名字，这将会使训练和测试程序实现参数的共享，
-        # 所以我们使用训练程序的 ``startup_program`` .并且由于测试的 ``startup_program`` 什么也没有,
-        # 因此它是一个新的程序.
-        with fluid.program_guard(train_program, startup_program):
-            with fluid.unique_name.guard():
-                sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-                sgd.minimize(avg_loss)
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 2.如果分别运行 train Program 和 test Program，则可以不使用clone。
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        import six
-
-        def print_prog(prog):
-            for name, value in sorted(six.iteritems(prog.block(0).vars)):
-                print(value)
-            for op in prog.block(0).ops:
-                print("op type is {}".format(op.type))
-                print("op inputs are {}".format(op.input_arg_names))
-                print("op outputs are {}".format(op.output_arg_names))
-                for key, value in sorted(six.iteritems(op.all_attrs())):
-                    if key not in ['op_callstack', 'op_role_var']:
-                        print(" [ attrs: {}:   {} ]".format(key, value))
-        
-        def network():
-            img = fluid.layers.data(name='image', shape=[784])
-            hidden = fluid.layers.fc(input=img, size=200, act='relu')
-            hidden = fluid.layers.dropout(hidden, dropout_prob=0.5)
-            loss = fluid.layers.cross_entropy(
-                input=fluid.layers.fc(hidden, size=10, act='softmax'),
-                label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
-            avg_loss = fluid.layers.mean(loss)
-            return avg_loss
-
-        train_program_2 = fluid.Program()
-        startup_program_2 = fluid.Program()
-        test_program_2 = fluid.Program()
-        with fluid.program_guard(train_program_2, startup_program_2):
-            with fluid.unique_name.guard():
-                avg_loss = network()
-                sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-                sgd.minimize(avg_loss)
-        # 不使用测试阶段的启动程序
-        with fluid.program_guard(test_program_2, startup_program_2):
-            with fluid.unique_name.guard():
-                avg_loss = network()
-        print_prog(test_program_2)
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 上边两个代码片段生成和打印的Program是一样的。
 
@@ -230,26 +184,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    startup_prog = fluid.Program()
-    main_prog = fluid.Program()
-    with fluid.program_guard(startup_prog, main_prog):
-        x = fluid.layers.data(
-            name='X', shape=[1000, 784], dtype='float32', append_batch_size=False)
-
-        y = fluid.layers.data(
-            name='Y', shape=[784, 100], dtype='float32', append_batch_size=False)
-
-        z = fluid.layers.mul(x=x, y=y)
-
-        binary_str = fluid.default_main_program().desc.serialize_to_string()
-        prog_restored = fluid.default_main_program().parse_from_string(binary_str)
-
-        print(fluid.default_main_program())
-        print(prog_restored)
-
-        # 这里打印出的两个Program应该是一模一样的
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:attribute:: num_blocks
 
@@ -263,14 +211,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-
-            prog = fluid.default_main_program()
-            num_blocks = prog.num_blocks
-            print(num_blocks)
-
-            ## 1
-            ## 当前Program中只有一个Block，即全局的Block
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:attribute:: random_seed
 
@@ -286,22 +240,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-
-            prog = fluid.default_main_program()
-            random_seed = prog.random_seed
-            x_var = fluid.layers.data(name="X", shape=[3,3], dtype="float32", append_batch_size=False)
-            print(random_seed)
-            ## 0
-            ## 默认的random seed是 0
-
-            # 这里我们必须要在fluid.layers.dropout之前设置random_seed
-            prog.random_seed = 1
-            z_var = fluid.layers.dropout(x_var, 0.7)
-
-            print(prog.random_seed)
-            ## 1
-            ## 修改后random seed变成了 1
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:method:: global_block()
 
@@ -315,15 +267,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-
-            prog = fluid.default_main_program()
-            gb_block = prog.global_block()
-            print(gb_block)
-            ##
-            ## idx: 0
-            ## parent_idx: -1
-            ## 打印出了当前全局Block的描述
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:method:: block(index)
 
@@ -340,15 +297,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-
-            prog = fluid.default_main_program()
-            block_0 = prog.block(0)
-            print(block_0)
-            ##
-            ## idx: 0
-            ## parent_idx: -1
-            ## 打印出了0号Block的描述
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:method:: current_block()
 
@@ -362,15 +324,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-
-            prog = fluid.default_main_program()
-            current_blk = prog.current_block()
-            print(current_blk)
-            ##
-            ## idx: 0
-            ## parent_idx: -1
-            ## 打印出了当前Block的描述
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:method:: list_vars()
 
@@ -385,15 +352,20 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-
-            prog = fluid.default_main_program()
-            img = fluid.layers.data(name='img', shape=[1,28,28], dtype='float32')
-            label = fluid.layers.data(name='label', shape=[128,1], dtype='int64')
-            for var in prog.list_vars():
-                print(var)
-
-            # 这里将会打印出当前Program中所有的Variable
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
 .. py:method:: all_parameters()
 
@@ -408,43 +380,18 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+    # start_up program here will share fc's weight with main program
+    print('main program is: {}'.format(main_program))
+    print('start up program is: {}'.format(startup_program))
 
-            program = fluid.default_main_program()
-            data = fluid.data(name='x', shape=[None, 13], dtype='float32')
-            hidden = fluid.layers.fc(input=data, size=10)
-            loss = fluid.layers.mean(hidden)
-            fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-            for param in program.all_parameters():
-                print(param)
-
-            # 这里将会打印出当前Program中所有的Parameters，在本例中，输出结果是:
-            #
-            # name: "fc_0.w_0"
-            # type {
-            # type: LOD_TENSOR
-            # lod_tensor {
-            #     tensor {
-            #       data_type: FP32
-            #       dims: 13
-            #       dims: 10
-            #     }
-            #   }
-            # }
-            #
-            # persistable: true
-            # name: "fc_0.b_0"
-            # type {
-            # type: LOD_TENSOR
-            # lod_tensor {
-            #     tensor {
-            #       data_type: FP32
-            #       dims: 10
-            #     }
-            #   }
-            # }
-            # persistable: true
-            #
-            # 这里print(param)将会打印出一个参数所有的属性，包括name，type和persistable，
-            # 你可以访问一个参数的指定属性，例如param.name，param.type

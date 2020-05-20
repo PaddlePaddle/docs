@@ -27,36 +27,33 @@ triu
 
 .. code-block:: python
 
+    import paddle
     import numpy as np
     import paddle.fluid as fluid
     import paddle.tensor as tensor
-
-    data = np.arange(1, 13, dtype="int64").reshape(3,-1)
+    
+    data = np.arange(1, 13, dtype='int64').reshape(3, -1)
     # array([[ 1,  2,  3,  4],
     #        [ 5,  6,  7,  8],
     #        [ 9, 10, 11, 12]])
-    x = fluid.data(shape=(-1, 4), dtype='int64', name='x')
-    exe = fluid.Executor(fluid.CPUPlace())
-
+    x = paddle.data(shape=(-1, 4), dtype='int64', name='x')
+    exe = paddle.Executor(paddle.CPUPlace())
+    
     # example 1, default diagonal
     triu = tensor.triu(x)
-    triu_out, = exe.run(fluid.default_main_program(), feed={"x": data},
+    triu_out, = exe.run(paddle.default_main_program(), feed={'x': data},
         fetch_list=[triu], return_numpy=True)
     # array([[ 1,  2,  3,  4],
-    #        [ 0,  6,  7,  8],
-    #        [ 0,  0, 11, 12]])
-    
-    # example 2, positive diagonal value
+    #        [ 5,  6,  7,  8],
+    #        [ 0, 10, 11, 12]])
     triu = tensor.triu(x, diagonal=2)
-    triu_out, = exe.run(fluid.default_main_program(), feed={"x": data},
+    triu_out, = exe.run(paddle.default_main_program(), feed={'x': data},
         fetch_list=[triu], return_numpy=True)
-    # array([[0, 0, 3, 4],
-    #        [0, 0, 0, 8],
-    #        [0, 0, 0, 0]])
-    
-    # example 3, negative diagonal value
+    # array([[ 1,  2,  3,  4],
+    #        [ 5,  6,  7,  8],
+    #        [ 0, 10, 11, 12]])
     triu = tensor.triu(x, diagonal=-1)
-    triu_out, = exe.run(fluid.default_main_program(), feed={"x": data},
+    triu_out, = exe.run(paddle.default_main_program(), feed={'x': data},
         fetch_list=[triu], return_numpy=True)
     # array([[ 1,  2,  3,  4],
     #        [ 5,  6,  7,  8],

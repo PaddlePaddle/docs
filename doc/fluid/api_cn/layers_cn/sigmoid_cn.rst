@@ -27,29 +27,20 @@ sigmoid激活函数
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-
-        data = fluid.layers.data(name="input", shape=[-1, 3])
-        result = fluid.layers.sigmoid(data)
-        place = fluid.CPUPlace()
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
-        x = np.random.rand(3, 3)
-        output= exe.run(feed={"input": x},
-                         fetch_list=[result[0]])
-        print(output)
-        """
-        output:
-        [array([0.50797188, 0.71353652, 0.5452265 ])]
-        """
-
-
-
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    data = fluid.layers.data(name='input', shape=[-1, 3])
+    result = paddle.nn.Sigmoid(data)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    x = np.random.rand(3, 3)
+    output = exe.run(feed={'input': x}, fetch_list=[result[0]])
+    print(output)
+    """
+    output:
+    [array([0.50797188, 0.71353652, 0.5452265 ])]
+    """
 

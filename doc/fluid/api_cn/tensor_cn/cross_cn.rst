@@ -25,29 +25,23 @@ cross
 
 .. code-block:: python
 
-        import paddle
-        import paddle.fluid as fluid
-        import numpy as np
-
-        data_x = np.array([[1.0, 1.0, 1.0],
-                           [2.0, 2.0, 2.0],
-                           [3.0, 3.0, 3.0]])
-        data_y = np.array([[1.0, 1.0, 1.0],
-                           [1.0, 1.0, 1.0],
-                           [1.0, 1.0, 1.0]])
-
-        with fluid.dygraph.guard():
-            x = fluid.dygraph.to_variable(data_x)
-            y = fluid.dygraph.to_variable(data_y)
-            out_z1 = paddle.cross(x, y)
-            print(out_z1.numpy())
-            #[[-1. -1. -1.]
-            # [ 2.  2.  2.]
-            # [-1. -1. -1.]]
-            out_z2 = paddle.cross(x, y, dim=1)
-            print(out_z2.numpy())
-            #[[0. 0. 0.]
-            # [0. 0. 0.]
-            # [0. 0. 0.]]
-
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    data_x = np.array([[1.0, 1.0, 1.0], [2.0, 2.0, 2.0], [3.0, 3.0, 3.0]])
+    data_y = np.array([[1.0, 1.0, 1.0], [1.0, 1.0, 1.0], [1.0, 1.0, 1.0]])
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(data_x)
+        y = paddle.imperative.to_variable(data_y)
+        out_z1 = paddle.cross(x, y)
+        print(out_z1.numpy())
+        #[[-1. -1. -1.]
+        # [ 2.  2.  2.]
+        # [-1. -1. -1.]]
+        out_z2 = paddle.cross(x, y, dim=1)
+        print(out_z2.numpy())
+        #[[0. 0. 0.]
+        # [0. 0. 0.]
+        # [0. 0. 0.]]
 

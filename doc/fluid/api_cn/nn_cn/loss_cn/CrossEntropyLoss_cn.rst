@@ -34,33 +34,32 @@ CrossEntropyLoss
 
 ..  code-block:: python
 
-            # declarative mode
-            import paddle
-            import paddle.fluid as fluid
-            import numpy as np
-            input = fluid.data(name='input', shape=[5, 100], dtype='float64')
-            label = fluid.data(name='label', shape=[5], dtype='int64')
-            weight = fluid.data(name='weight', shape=[100], dtype='float64')
-            ce_loss = paddle.nn.loss.CrossEntropyLoss(weight=weight, reduction='mean')
-            output = ce_loss(input, label)
-            place = fluid.CPUPlace()
-            exe = fluid.Executor(place)
-            exe.run(fluid.default_startup_program())
-            input_data = np.random.random([5, 100]).astype("float64")
-            label_data = np.random.randint(0, 100, size=(5)).astype(np.int64)
-            weight_data = np.random.random([100]).astype("float64")
-            output = exe.run(fluid.default_main_program(),
-                        feed={"input": input_data, "label": label_data,"weight": weight_data},
-                        fetch_list=[output],
-                        return_numpy=True)
-            print(output)
-            # imperative mode
-            import paddle.fluid.dygraph as dg
-            with dg.guard(place) as g:
-                input = dg.to_variable(input_data)
-                label = dg.to_variable(label_data)
-                weight = dg.to_variable(weight_data)
-                ce_loss = paddle.nn.loss.CrossEntropyLoss(weight=weight, reduction='mean')
-                output = ce_loss(input, label)
-                print(output.numpy())
+    # declarative mode
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    input = paddle.data(name='input', shape=[5, 100], dtype='float64')
+    label = paddle.data(name='label', shape=[5], dtype='int64')
+    weight = paddle.data(name='weight', shape=[100], dtype='float64')
+    ce_loss = paddle.nn.loss.CrossEntropyLoss(weight=weight, reduction='mean')
+    output = ce_loss(input, label)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    input_data = np.random.random([5, 100]).astype('float64')
+    label_data = np.random.randint(0, 100, size=5).astype(np.int64)
+    weight_data = np.random.random([100]).astype('float64')
+    output = exe.run(paddle.default_main_program(), feed={'input': input_data,
+        'label': label_data, 'weight': weight_data}, fetch_list=[output],
+        return_numpy=True)
+    print(output)
+    # imperative mode
+    import paddle.fluid.dygraph as dg
+    with dg.guard(place) as g:
+        input = dg.to_variable(input_data)
+        label = dg.to_variable(label_data)
+        weight = dg.to_variable(weight_data)
+        ce_loss = paddle.nn.loss.CrossEntropyLoss(weight=weight, reduction='mean')
+        output = ce_loss(input, label)
+        print(output.numpy())
 

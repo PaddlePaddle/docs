@@ -44,16 +44,17 @@ BilinearTensorProduct
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy
-
-    with fluid.dygraph.guard():
+    
+    with paddle.imperative.guard():
         layer1 = numpy.random.random((5, 5)).astype('float32')
         layer2 = numpy.random.random((5, 4)).astype('float32')
-        bilinearTensorProduct = fluid.dygraph.nn.BilinearTensorProduct(
-               input1_dim=5, input2_dim=4, output_dim=1000)
+        bilinearTensorProduct = fluid.dygraph.nn.BilinearTensorProduct(input1_dim
+            =5, input2_dim=4, output_dim=1000)
         ret = bilinearTensorProduct(fluid.dygraph.base.to_variable(layer1),
-                           fluid.dygraph.base.to_variable(layer2))
+            fluid.dygraph.base.to_variable(layer2))
 
 属性
 ::::::::::::

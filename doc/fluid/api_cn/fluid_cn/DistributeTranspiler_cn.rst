@@ -30,13 +30,15 @@ DistributeTranspiler
     x = fluid.layers.data(name='x', shape=[13], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     y_predict = fluid.layers.fc(input=x, size=1, act=None)
-
+    
     cost = fluid.layers.square_error_cost(input=y_predict, label=y)
     avg_loss = fluid.layers.mean(cost)
-
+    
     sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
     sgd_optimizer.minimize(avg_loss)
-
+    
+    # pserver 模式下
+    
     # pserver 模式下
     pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
     trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
@@ -53,7 +55,9 @@ DistributeTranspiler
                                                         pserver_program)
     elif role == "TRAINER":
          trainer_program = t.get_trainer_program()
-
+    
+    # nccl2 模式下
+    
     # nccl2 模式下
     trainer_num = 2
     trainer_id = 0
@@ -68,8 +72,6 @@ DistributeTranspiler
         num_trainers=trainer_num,
         trainer_id=trainer_id
     )
-
-
 
 .. py:method:: transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
 
@@ -92,14 +94,51 @@ DistributeTranspiler
 
 .. code-block:: python
 
-    transpiler = fluid.DistributeTranspiler()
+    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.fc(input=x, size=1, act=None)
+    
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+    avg_loss = fluid.layers.mean(cost)
+    
+    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
+    sgd_optimizer.minimize(avg_loss)
+    
+    # pserver 模式下
+    
+    # pserver 模式下
+    pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    current_endpoint = "192.168.0.1:6174"
+    trainer_id = 0
+    trainers = 4
+    role = "PSERVER"
+    t = fluid.DistributeTranspiler()
     t.transpile(
-        trainer_id=0,
-        pservers="127.0.0.1:7000,127.0.0.1:7001",
-        trainers=2,
-        sync_mode=False,
-        current_endpoint="127.0.0.1:7000")
-
+         trainer_id, pservers=pserver_endpoints, trainers=trainers)
+    if role == "PSERVER":
+         pserver_program = t.get_pserver_program(current_endpoint)
+         pserver_startup_program = t.get_startup_program(current_endpoint,
+                                                        pserver_program)
+    elif role == "TRAINER":
+         trainer_program = t.get_trainer_program()
+    
+    # nccl2 模式下
+    
+    # nccl2 模式下
+    trainer_num = 2
+    trainer_id = 0
+    config = fluid.DistributeTranspilerConfig()
+    config.mode = "nccl2"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
+    exe = fluid.ParallelExecutor(
+        use_cuda=True,
+        loss_name=avg_loss.name,
+        num_trainers=trainer_num,
+        trainer_id=trainer_id
+    )
 
 .. py:method:: get_trainer_program(wait_port=True)
 
@@ -114,15 +153,51 @@ DistributeTranspiler
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        # 这是一个示例，请根据你的情况更改endpoint
-        pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
-        trainer_id = 0
-        trainers = 4
-        t = fluid.DistributeTranspiler()
-        t.transpile(trainer_id, trainers=trainers, pservers=pserver_endpoints)
-        trainer_program = t.get_trainer_program()
-
+    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.fc(input=x, size=1, act=None)
+    
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+    avg_loss = fluid.layers.mean(cost)
+    
+    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
+    sgd_optimizer.minimize(avg_loss)
+    
+    # pserver 模式下
+    
+    # pserver 模式下
+    pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    current_endpoint = "192.168.0.1:6174"
+    trainer_id = 0
+    trainers = 4
+    role = "PSERVER"
+    t = fluid.DistributeTranspiler()
+    t.transpile(
+         trainer_id, pservers=pserver_endpoints, trainers=trainers)
+    if role == "PSERVER":
+         pserver_program = t.get_pserver_program(current_endpoint)
+         pserver_startup_program = t.get_startup_program(current_endpoint,
+                                                        pserver_program)
+    elif role == "TRAINER":
+         trainer_program = t.get_trainer_program()
+    
+    # nccl2 模式下
+    
+    # nccl2 模式下
+    trainer_num = 2
+    trainer_id = 0
+    config = fluid.DistributeTranspilerConfig()
+    config.mode = "nccl2"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
+    exe = fluid.ParallelExecutor(
+        use_cuda=True,
+        loss_name=avg_loss.name,
+        num_trainers=trainer_num,
+        trainer_id=trainer_id
+    )
 
 .. py:method:: get_pserver_program(endpoint)
 
@@ -140,17 +215,51 @@ DistributeTranspiler
 
 .. code-block:: python
 
-          import paddle.fluid as fluid
-          # 这是一个示例，请根据你的情况更改endpoint
-          pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
-          current_endpoint = "192.168.0.1:6174"
-          trainer_id = 0
-          trainers = 4
-          t = fluid.DistributeTranspiler()
-          t.transpile(
-               trainer_id, pservers=pserver_endpoints, trainers=trainers)
-          pserver_program = t.get_pserver_program(current_endpoint)
-
+    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.fc(input=x, size=1, act=None)
+    
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+    avg_loss = fluid.layers.mean(cost)
+    
+    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
+    sgd_optimizer.minimize(avg_loss)
+    
+    # pserver 模式下
+    
+    # pserver 模式下
+    pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    current_endpoint = "192.168.0.1:6174"
+    trainer_id = 0
+    trainers = 4
+    role = "PSERVER"
+    t = fluid.DistributeTranspiler()
+    t.transpile(
+         trainer_id, pservers=pserver_endpoints, trainers=trainers)
+    if role == "PSERVER":
+         pserver_program = t.get_pserver_program(current_endpoint)
+         pserver_startup_program = t.get_startup_program(current_endpoint,
+                                                        pserver_program)
+    elif role == "TRAINER":
+         trainer_program = t.get_trainer_program()
+    
+    # nccl2 模式下
+    
+    # nccl2 模式下
+    trainer_num = 2
+    trainer_id = 0
+    config = fluid.DistributeTranspilerConfig()
+    config.mode = "nccl2"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
+    exe = fluid.ParallelExecutor(
+        use_cuda=True,
+        loss_name=avg_loss.name,
+        num_trainers=trainer_num,
+        trainer_id=trainer_id
+    )
 
 .. py:method:: get_pserver_programs(endpoint)
 
@@ -169,17 +278,51 @@ DistributeTranspiler
 
 .. code-block:: python
 
-          import paddle.fluid as fluid
-          # 这是一个示例，请根据你的情况更改endpoint
-          pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
-          current_endpoint = "192.168.0.1:6174"
-          trainer_id = 0
-          trainers = 4
-          t = fluid.DistributeTranspiler()
-          t.transpile(
-               trainer_id, pservers=pserver_endpoints, trainers=trainers)
-          pserver_program, pserver_startup_program = t.get_pserver_programs(current_endpoint)
-
+    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.fc(input=x, size=1, act=None)
+    
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+    avg_loss = fluid.layers.mean(cost)
+    
+    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
+    sgd_optimizer.minimize(avg_loss)
+    
+    # pserver 模式下
+    
+    # pserver 模式下
+    pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    current_endpoint = "192.168.0.1:6174"
+    trainer_id = 0
+    trainers = 4
+    role = "PSERVER"
+    t = fluid.DistributeTranspiler()
+    t.transpile(
+         trainer_id, pservers=pserver_endpoints, trainers=trainers)
+    if role == "PSERVER":
+         pserver_program = t.get_pserver_program(current_endpoint)
+         pserver_startup_program = t.get_startup_program(current_endpoint,
+                                                        pserver_program)
+    elif role == "TRAINER":
+         trainer_program = t.get_trainer_program()
+    
+    # nccl2 模式下
+    
+    # nccl2 模式下
+    trainer_num = 2
+    trainer_id = 0
+    config = fluid.DistributeTranspilerConfig()
+    config.mode = "nccl2"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
+    exe = fluid.ParallelExecutor(
+        use_cuda=True,
+        loss_name=avg_loss.name,
+        num_trainers=trainer_num,
+        trainer_id=trainer_id
+    )
 
 .. py:method:: get_startup_program(endpoint, pserver_program=None, startup_program=None)
 
@@ -200,17 +343,49 @@ DistributeTranspiler
 
 .. code-block:: python
 
-          pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
-          trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
-          current_endpoint = "192.168.0.1:6174"
-          trainer_id = 0
-          trainers = 4
-
-          t = fluid.DistributeTranspiler()
-          t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers)
-          pserver_program = t.get_pserver_program(current_endpoint)
-          pserver_startup_program = t.get_startup_program(current_endpoint,
-                                                          pserver_program)
-
-
+    x = fluid.layers.data(name='x', shape=[13], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[1], dtype='float32')
+    y_predict = fluid.layers.fc(input=x, size=1, act=None)
+    
+    cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+    avg_loss = fluid.layers.mean(cost)
+    
+    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
+    sgd_optimizer.minimize(avg_loss)
+    
+    # pserver 模式下
+    
+    # pserver 模式下
+    pserver_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    current_endpoint = "192.168.0.1:6174"
+    trainer_id = 0
+    trainers = 4
+    role = "PSERVER"
+    t = fluid.DistributeTranspiler()
+    t.transpile(
+         trainer_id, pservers=pserver_endpoints, trainers=trainers)
+    if role == "PSERVER":
+         pserver_program = t.get_pserver_program(current_endpoint)
+         pserver_startup_program = t.get_startup_program(current_endpoint,
+                                                        pserver_program)
+    elif role == "TRAINER":
+         trainer_program = t.get_trainer_program()
+    
+    # nccl2 模式下
+    
+    # nccl2 模式下
+    trainer_num = 2
+    trainer_id = 0
+    config = fluid.DistributeTranspilerConfig()
+    config.mode = "nccl2"
+    trainer_endpoints = "192.168.0.1:6174,192.168.0.2:6174"
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id=trainer_id, trainers=trainer_endpoints, current_endpoint="192.168.0.1:6174")
+    exe = fluid.ParallelExecutor(
+        use_cuda=True,
+        loss_name=avg_loss.name,
+        num_trainers=trainer_num,
+        trainer_id=trainer_id
+    )
 

@@ -30,17 +30,11 @@ load_params
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    exe = fluid.Executor(fluid.CPUPlace())
-    param_path = "./my_paddle_model"
-    prog = fluid.default_main_program()
-    fluid.io.load_params(executor=exe, dirname=param_path,
-                        main_program=None)
-
-
-
-
-
-
+    
+    exe = paddle.Executor(paddle.CPUPlace())
+    param_path = './my_paddle_model'
+    prog = paddle.default_main_program()
+    fluid.io.load_params(executor=exe, dirname=param_path, main_program=None)
 

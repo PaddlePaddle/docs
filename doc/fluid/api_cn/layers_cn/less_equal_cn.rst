@@ -26,14 +26,12 @@ less_equal
 
 .. code-block:: python
 
-     import paddle.fluid as fluid
-     import paddle.fluid.layers as layers
-     import numpy as np
-     label = layers.assign(np.array([1, 3], dtype='int32'))
-     limit = layers.assign(np.array([1, 2], dtype='int32'))
-     out = fluid.layers.less_equal(x=label, y=limit) #out=[True, False]
-     out1 = label<= limit #out1=[True, False]
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.fluid.layers as layers
+    import numpy as np
+    label = layers.assign(np.array([1, 3], dtype='int32'))
+    limit = layers.assign(np.array([1, 2], dtype='int32'))
+    out = paddle.less_equal(x=label, y=limit)
+    out1 = label <= limit
 

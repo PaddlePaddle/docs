@@ -28,20 +28,22 @@ Variable
 在静态图形模式下：
     .. code-block:: python
 
-        import paddle.fluid as fluid
-        cur_program = fluid.Program()
-        cur_block = cur_program.current_block()
-        new_variable = cur_block.create_var(name="X",
-                                            shape=[-1, 23, 48],
-                                            dtype='float32')
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
+
 在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
     .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-        with fluid.dygraph.guard():
-            new_variable = fluid.dygraph.to_variable(np.arange(10))
-
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: detach()
 
@@ -60,17 +62,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
-     import paddle.fluid as fluid
-     from paddle.fluid.dygraph.base import to_variable
-     from paddle.fluid.dygraph import Linear
-     import numpy as np
-
-     data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-     with fluid.dygraph.guard():
-           linear = Linear(32, 64)
-           data = to_variable(data)
-           x = linear(data)
-           y = x.detach()
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: numpy()
 
@@ -88,17 +85,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    from paddle.fluid.dygraph.base import to_variable
-    from paddle.fluid.dygraph import Linear
-    import numpy as np
-
-    data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-    with fluid.dygraph.guard():
-        linear = Linear(32, 64)
-        data = to_variable(data)
-        x = linear(data)
-        print(x.numpy())
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: set_value()
 
@@ -119,19 +111,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph.base import to_variable
-        from paddle.fluid.dygraph import Linear
-        import numpy as np
-
-        data = np.ones([3, 1024], dtype='float32')
-        with fluid.dygraph.guard():
-            linear = fluid.dygraph.Linear(1024, 4)
-            t = to_variable(data)
-            linear(t)  # 使用默认参数值调用前向
-            custom_weight = np.random.randn(1024, 4).astype("float32")
-            linear.weight.set_value(custom_weight)  # 将参数修改为自定义的值
-            out = linear(t)  # 使用新的参数值调用前向
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: backward()
 
@@ -153,23 +138,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-
-        x = np.ones([2, 2], np.float32)
-        with fluid.dygraph.guard():
-            inputs2 = []
-            for _ in range(10):
-                tmp = fluid.dygraph.base.to_variable(x)
-                # 如果这里我们不为输入tmp设置stop_gradient=False，那么后面loss2也将因为这个链路都不需要梯度
-                # 而不产生梯度
-                tmp.stop_gradient=False
-                inputs2.append(tmp)
-            ret2 = fluid.layers.sums(inputs2)
-            loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: gradient()
 
@@ -189,36 +163,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-
-        # example1: 返回ndarray
-        x = np.ones([2, 2], np.float32)
-        with fluid.dygraph.guard():
-            inputs2 = []
-            for _ in range(10):
-                tmp = fluid.dygraph.base.to_variable(x)
-                tmp.stop_gradient=False
-                inputs2.append(tmp)
-            ret2 = fluid.layers.sums(inputs2)
-            loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
-            print(loss2.gradient())
-
-        # example2: 返回tuple of ndarray
-        with fluid.dygraph.guard():
-            embedding = fluid.dygraph.Embedding(
-                size=[20, 32],
-                param_attr='emb.w',
-                is_sparse=True)
-            x_data = np.arange(12).reshape(4, 3).astype('int64')
-            x_data = x_data.reshape((-1, 3, 1))
-            x = fluid.dygraph.base.to_variable(x_data)
-            out = embedding(x)
-            out.backward()
-            print(embedding.weight.gradient())
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: clear_gradient()
 
@@ -236,25 +186,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-
-        x = np.ones([2, 2], np.float32)
-        with fluid.dygraph.guard():
-            inputs2 = []
-            for _ in range(10):
-                tmp = fluid.dygraph.base.to_variable(x)
-                tmp.stop_gradient=False
-                inputs2.append(tmp)
-            ret2 = fluid.layers.sums(inputs2)
-            loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
-            print(loss2.gradient())
-            loss2.clear_gradient()
-            print("After clear {}".format(loss2.gradient()))
-
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: to_string()
 
@@ -282,17 +219,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        cur_program = fluid.Program()
-        cur_block = cur_program.current_block()
-        new_variable = cur_block.create_var(name="X",
-                                            shape=[-1, 23, 48],
-                                            dtype='float32')
-        print(new_variable.to_string(True))
-        print("\n=============with detail===============\n")
-        print(new_variable.to_string(True, True))
-
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:method:: astype(self, dtype)
 
@@ -313,30 +245,22 @@ Variable
 在静态图模式下：
     .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        startup_prog = fluid.Program()
-        main_prog = fluid.Program()
-        with fluid.program_guard(startup_prog, main_prog):
-            original_variable = fluid.data(name = "new_variable", shape=[2,2], dtype='float32')
-            new_variable = original_variable.astype('int64')
-            print("new var's dtype is: {}".format(new_variable.dtype))
-
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下：
     .. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-
-        x = np.ones([2, 2], np.float32)
-        with fluid.dygraph.guard():
-            original_variable = fluid.dygraph.to_variable(x)
-            print("original var's dtype is: {}, numpy dtype is {}".format(original_variable.dtype, original_variable.numpy().dtype))
-            new_variable = original_variable.astype('int64')
-            print("new var's dtype is: {}, numpy dtype is {}".format(new_variable.dtype, new_variable.numpy().dtype))
-
-
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 属性
 ::::::::::::
@@ -350,25 +274,12 @@ Variable
 **示例代码**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        with fluid.dygraph.guard():
-            value0 = np.arange(26).reshape(2, 13).astype("float32")
-            value1 = np.arange(6).reshape(2, 3).astype("float32")
-            value2 = np.arange(10).reshape(2, 5).astype("float32")
-            linear = fluid.Linear(13, 5, dtype="float32")
-            linear2 = fluid.Linear(3, 3, dtype="float32")
-            a = fluid.dygraph.to_variable(value0)
-            b = fluid.dygraph.to_variable(value1)
-            c = fluid.dygraph.to_variable(value2)
-            out1 = linear(a)
-            out2 = linear2(b)
-            out1.stop_gradient = True
-            out = fluid.layers.concat(input=[out1, out2, c], axis=1)
-            out.backward()
-            # 可以发现这里linear的参数变成了
-            assert (linear.weight.gradient() == 0).all()
-            assert (out1.gradient() == 0).all()
+    import paddle
+    import paddle.fluid as fluid
+    cur_program = paddle.Program()
+    cur_block = cur_program.current_block()
+    new_variable = cur_block.create_var(name='X', shape=[-1, 23, 48], dtype=
+        'float32')
 
 .. py:attribute:: persistable
 

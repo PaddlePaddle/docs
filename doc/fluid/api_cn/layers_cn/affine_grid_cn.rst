@@ -26,9 +26,12 @@ affine_grid
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    theta = fluid.layers.data(name="x", shape=[2, 3], dtype="float32")
-    out_shape = fluid.layers.data(name="y", shape=[-1], dtype="float32")
+    theta = fluid.layers.data(name='x', shape=[2, 3], dtype='float32')
+    out_shape = fluid.layers.data(name='y', shape=[-1], dtype='float32')
     data = fluid.layers.affine_grid(theta, out_shape)
     # or
     data = fluid.layers.affine_grid(theta, [5, 3, 28, 28])
+    # or
+

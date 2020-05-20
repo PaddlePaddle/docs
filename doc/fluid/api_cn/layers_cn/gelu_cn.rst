@@ -36,23 +36,26 @@ gelu
 **代码示例**：
 
 .. code-block:: python
-    
+
     # declarative mode
+    import paddle
     import numpy as np
     from paddle import fluid
     
-    x = fluid.data(name="x", shape=(-1, 3), dtype="float32")
-    y = fluid.layers.gelu(x)
+    x = paddle.data(name='x', shape=(-1, 3), dtype='float32')
+    y = paddle.nn.functional.gelu(x)
     
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    start = fluid.default_startup_program()
-    main = fluid.default_main_program()
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    start = paddle.default_startup_program()
+    main = paddle.default_main_program()
     
-    data = np.random.randn(2, 3).astype("float32")
+    data = np.random.randn(2, 3).astype('float32')
+    # array([[ 0.87165993, -1.0541513 , -0.37214822],
+    #         [ 0.15647964,  0.32496083,  0.33045998]], dtype=float32)
     exe.run(start)
     
-    y_np, = exe.run(main, feed={"x": data}, fetch_list=[y])
+    y_np, = exe.run(main, feed={'x': data}, fetch_list=[y])
     
     data
     # array([[ 0.87165993, -1.0541513 , -0.37214822],
@@ -63,20 +66,30 @@ gelu
 
 .. code-block:: python
 
-    # imperative mode
+    # declarative mode
+    import paddle
     import numpy as np
     from paddle import fluid
-    import paddle.fluid.dygraph as dg
     
-    data = np.random.randn(2, 3).astype("float32")
-    place = fluid.CPUPlace()
-    with dg.guard(place) as g:
-        x = dg.to_variable(data)
-        y = fluid.layers.gelu(x)
-        y_np = y.numpy()
+    x = paddle.data(name='x', shape=(-1, 3), dtype='float32')
+    y = paddle.nn.functional.gelu(x)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    start = paddle.default_startup_program()
+    main = paddle.default_main_program()
+    
+    data = np.random.randn(2, 3).astype('float32')
+    # array([[ 0.87165993, -1.0541513 , -0.37214822],
+    #         [ 0.15647964,  0.32496083,  0.33045998]], dtype=float32)
+    exe.run(start)
+    
+    y_np, = exe.run(main, feed={'x': data}, fetch_list=[y])
+    
     data
     # array([[ 0.87165993, -1.0541513 , -0.37214822],
-    #        [ 0.15647964,  0.32496083,  0.33045998]], dtype=float32)
+    #         [ 0.15647964,  0.32496083,  0.33045998]], dtype=float32)
     y_np
     # array([[ 0.70456535, -0.15380788, -0.13207214],
     #        [ 0.08796856,  0.20387867,  0.2080159 ]], dtype=float32)
+

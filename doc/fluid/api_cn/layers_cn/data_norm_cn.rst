@@ -52,14 +52,9 @@ data_norm
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-
-    hidden1 = fluid.layers.data(name="hidden1", shape=[200])
-    hidden2 = fluid.layers.data_norm(name="hidden2", input=hidden1)
-
-
-
-
-
-
+    
+    hidden1 = fluid.layers.data(name='hidden1', shape=[200])
+    hidden2 = fluid.layers.data_norm(name='hidden2', input=hidden1)
 

@@ -35,10 +35,11 @@ norm
 
     import paddle
     import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[2, 3, 5], dtype='float64')
+    x = paddle.data(name='x', shape=[2, 3, 5], dtype='float64')
     
     # compute frobenius norm along last two dimensions.
-    out_fro = paddle.norm(x, p='fro', axis=[1,2])
+    out_fro = paddle.norm(x, p='fro', axis=[1, 2])
     
     # compute 2-order vector norm along last dimension.
     out_pnorm = paddle.norm(x, p=2, axis=-1)
+

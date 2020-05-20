@@ -27,80 +27,68 @@ grad
 **示例代码 1**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        def test_dygraph_grad(create_graph):
-            with fluid.dygraph.guard():
-                x = fluid.layers.ones(shape=[1], dtype='float32')
-                x.stop_gradient = False
-                y = x * x
-
-                # Since y = x * x, dx = 2 * x
-                dx = fluid.dygraph.grad(
-                        outputs=[y],
-                        inputs=[x],
-                        create_graph=create_graph,
-                        retain_graph=True)[0]
-
-                z = y + dx
-
-                # If create_graph = False, the gradient of dx
-                # would not be backpropagated. Therefore,
-                # z = x * x + dx, and x.gradient() = 2 * x = 2.0
-
-                # If create_graph = True, the gradient of dx
-                # would be backpropagated. Therefore,
-                # z = x * x + dx = x * x + 2 * x, and
-                # x.gradient() = 2 * x + 2 = 4.0
-
-                z.backward()
-                return x.gradient()
-
-        print(test_dygraph_grad(create_graph=False)) # [2.]
-        print(test_dygraph_grad(create_graph=True)) # [4.]
+    import paddle
+    import paddle.fluid as fluid
+    
+    
+    def test_dygraph_grad(create_graph):
+        with paddle.imperative.guard():
+            x = paddle.ones(shape=[1], dtype='float32', device=None, out=None)
+            x.stop_gradient = False
+            y = x * x
+    
+            # Since y = x * x, dx = 2 * x
+            dx = fluid.dygraph.grad(outputs=[y], inputs=[x], create_graph=
+                create_graph, retain_graph=True)[0]
+            z = y + dx
+    
+            # If create_graph = False, the gradient of dx
+            # would not be backpropagated. Therefore,
+            # z = x * x + dx, and x.gradient() = 2 * x = 2.0
+    
+            # If create_graph = True, the gradient of dx
+            # would be backpropagated. Therefore,
+            # z = x * x + dx = x * x + 2 * x, and
+            # x.gradient() = 2 * x + 2 = 4.0
+    
+            z.backward()
+            return x.gradient()
+    
+    
+    print(test_dygraph_grad(create_graph=False))
+    print(test_dygraph_grad(create_graph=True))
 
 **示例代码 2**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        fluid.enable_dygraph()
-
-        def test_dygraph_grad(grad_outputs=None):
-            x = fluid.layers.fill_constant(shape=[1], value=2.0, dtype='float32')
+    import paddle
+    import paddle.fluid as fluid
+    
+    
+    def test_dygraph_grad(create_graph):
+        with paddle.imperative.guard():
+            x = paddle.ones(shape=[1], dtype='float32', device=None, out=None)
             x.stop_gradient = False
+            y = x * x
+    
+            # Since y = x * x, dx = 2 * x
+            dx = fluid.dygraph.grad(outputs=[y], inputs=[x], create_graph=
+                create_graph, retain_graph=True)[0]
+            z = y + dx
+    
+            # If create_graph = False, the gradient of dx
+            # would not be backpropagated. Therefore,
+            # z = x * x + dx, and x.gradient() = 2 * x = 2.0
+    
+            # If create_graph = True, the gradient of dx
+            # would be backpropagated. Therefore,
+            # z = x * x + dx = x * x + 2 * x, and
+            # x.gradient() = 2 * x + 2 = 4.0
+    
+            z.backward()
+            return x.gradient()
+    
+    
+    print(test_dygraph_grad(create_graph=False))
+    print(test_dygraph_grad(create_graph=True))
 
-            y1 = x * x
-            y2 = x * 3
-
-            # If grad_outputs=None, dy1 = [1], dy2 = [1].
-            # If grad_outputs=[g1, g2], then:
-            #    - dy1 = [1] if g1 is None else g1
-            #    - dy2 = [1] if g2 is None else g2
-
-            # Since y1 = x * x, dx = 2 * x * dy1.
-            # Since y2 = x * 3, dx = 3 * dy2.
-            # Therefore, the final result would be:
-            # dx = 2 * x * dy1 + 3 * dy2 = 4 * dy1 + 3 * dy2.
-
-            dx = fluid.dygraph.grad(
-                outputs=[y1, y2],
-                inputs=[x],
-                grad_outputs=grad_outputs)[0]
-
-            return dx.numpy()
-
-        THREE = fluid.layers.fill_constant(shape=[1], value=3.0, dtype='float32')
-        FOUR = fluid.layers.fill_constant(shape=[1], value=4.0, dtype='float32')
-
-        # dy1 = [1], dy2 = [1]
-        print(test_dygraph_grad(None)) # [7.]
-
-        # dy1 = [1], dy2 = [4]
-        print(test_dygraph_grad([None, FOUR])) # [16.]
-
-        # dy1 = [4], dy2 = [1]
-        print(test_dygraph_grad([FOUR, None])) # [19.]
-
-        # dy1 = [3], dy2 = [4]
-        print(test_dygraph_grad([THREE, FOUR])) # [24.]

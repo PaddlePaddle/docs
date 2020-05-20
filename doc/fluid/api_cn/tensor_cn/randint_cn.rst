@@ -38,25 +38,30 @@ randint
 
     import paddle.fluid as fluid
     import paddle
-
+    
     # example 1:
     # attr shape is a list which doesn't contain tensor Variable.
-    result_1 = paddle.randint(low=-5, high=5, shape=[3, 4], dtype="int64")
-
+    result_1 = paddle.randint(low=-5, high=5, shape=[3, 4], dtype='int64')
+    
     # example 2:
     # attr shape is a list which contains tensor Variable.
-    dim_1 = fluid.layers.fill_constant([1],"int64",3)
-    dim_2 = fluid.layers.fill_constant([1],"int32",5)
-    result_2 = paddle.randint(low=-5, high=5, shape=[dim_1, dim_2], dtype="int32")
-
+    dim_1 = paddle.full([1], 'int64', 3, device=None, stop_gradient=True)
+    dim_2 = paddle.full([1], 'int32', 5, device=None, stop_gradient=True)
+    result_2 = paddle.randint(low=-5, high=5, shape=[dim_1, dim_2], dtype='int32')
+    
     # example 3:
     # attr shape is a Variable, the data type must be int64 or int32.
-    var_shape = fluid.data(name='var_shape', shape=[2], dtype="int64")
-    result_3 = paddle.randint(low=-5, high=5, shape=var_shape, dtype="int32")
-    var_shape_int32 = fluid.data(name='var_shape_int32', shape=[2], dtype="int32")
-    result_4 = paddle.randint(low=-5, high=5, shape=var_shape_int32, dtype="int64")
-
+    var_shape = paddle.data(name='var_shape', shape=[2], dtype='int64')
+    result_3 = paddle.randint(low=-5, high=5, shape=var_shape, dtype='int32')
+    var_shape_int32 = paddle.data(name='var_shape_int32', shape=[2], dtype='int32')
+    result_4 = paddle.randint(low=-5, high=5, shape=var_shape_int32, dtype='int64')
+    
     # example 4:
     # Input only one parameter
     # low=0, high=10, shape=[1], dtype='int64'
     result_4 = paddle.randint(10)
+    
+    # example 4:
+    # Input only one parameter
+    # low=0, high=10, shape=[1], dtype='int64'
+

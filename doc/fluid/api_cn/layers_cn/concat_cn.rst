@@ -26,6 +26,28 @@ concat
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    in1 = np.array([[1, 2, 3], [4, 5, 6]])
+    in2 = np.array([[11, 12, 13], [14, 15, 16]])
+    in3 = np.array([[21, 22], [23, 24]])
+    with paddle.imperative.guard():
+        x1 = paddle.imperative.to_variable(in1)
+        x2 = paddle.imperative.to_variable(in2)
+        x3 = paddle.imperative.to_variable(in3)
+        out1 = paddle.concat(input=[x1, x2, x3], axis=-1)
+        out2 = paddle.concat(input=[x1, x2], axis=0)
+        print(out1.numpy())
+        # [[ 1  2  3 11 12 13 21 22]
+        #  [ 4  5  6 14 15 16 23 24]]
+        print(out2.numpy())
+        # [[ 1  2  3]
+        #  [ 4  5  6]
+        #  [11 12 13]
+        #  [14 15 16]]
+
   import paddle.fluid as fluid
   import numpy as np
 

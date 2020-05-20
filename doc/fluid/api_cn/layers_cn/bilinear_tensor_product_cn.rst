@@ -41,6 +41,12 @@ bilinear_tensor_product
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    layer1 = fluid.layers.data('t1', shape=[-1, 5], dtype='float32')
+    layer2 = fluid.layers.data('t2', shape=[-1, 4], dtype='float32')
+    tensor = fluid.layers.bilinear_tensor_product(x=layer1, y=layer2, size=1000)
+
   import paddle.fluid as fluid
   layer1 = fluid.layers.data("t1", shape=[-1, 5], dtype="float32")
   layer2 = fluid.layers.data("t2", shape=[-1, 4], dtype="float32")

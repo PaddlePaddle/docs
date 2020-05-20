@@ -31,15 +31,8 @@ Logsigmoid激活函数
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.layers.data(name="input", shape=[32, 784])
-    result = fluid.layers.logsigmoid(data)
-
-
-
-
-
-
-
-
+    data = fluid.layers.data(name='input', shape=[32, 784])
+    result = paddle.nn.functional.logsigmoid(data)
 

@@ -40,15 +40,16 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
 **代码示例**
  
 .. code-block:: python
-        
+
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     from paddle.fluid.optimizer import DecayedAdagrad
-        
-    x = layers.data( name='x', shape=[-1, 10], dtype='float32' )
-    trans = layers.fc( x, 100 )
-    cost = layers.reduce_mean( trans )
-    optimizer = fluid.optimizer.DecayedAdagradOptimizer(learning_rate=0.2)
+    
+    x = layers.data(name='x', shape=[-1, 10], dtype='float32')
+    trans = layers.fc(x, 100)
+    cost = layers.reduce_mean(trans)
+    optimizer = paddle.optimizer.DecayedAdagradOptimizer(learning_rate=0.2)
     optimizer.minimize(cost)
 
 .. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
@@ -69,23 +70,16 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
 
 .. code-block:: python
 
-    import numpy as np
+    import paddle
     import paddle.fluid as fluid
-     
-    inp = fluid.layers.data(
-        name="inp", shape=[2, 2], append_batch_size=False)
-    out = fluid.layers.fc(inp, size=3)
-    out = fluid.layers.reduce_sum(out)
-    optimizer = fluid.optimizer.DecayedAdagrad(learning_rate=0.2)
-    optimizer.minimize(out)
-
-    np_inp = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=np.float32)
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-    exe.run(
-        feed={"inp": np_inp},
-        fetch_list=[out.name])
-
+    import paddle.fluid.layers as layers
+    from paddle.fluid.optimizer import DecayedAdagrad
+    
+    x = layers.data(name='x', shape=[-1, 10], dtype='float32')
+    trans = layers.fc(x, 100)
+    cost = layers.reduce_mean(trans)
+    optimizer = paddle.optimizer.DecayedAdagradOptimizer(learning_rate=0.2)
+    optimizer.minimize(cost)
 
 .. py:method:: clear_gradients()
 
@@ -100,20 +94,16 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    with fluid.dygraph.guard():
-        value = np.arange(26).reshape(2, 13).astype("float32")
-        a = fluid.dygraph.to_variable(value)
-        linear = fluid.Linear(13, 5, dtype="float32")
-        optimizer = fluid.optimizer.DecayedAdagradOptimizer(learning_rate=0.02,
-                                                            parameter_list=linear.parameters())
-        out = linear(a)
-        out.backward()
-        optimizer.minimize(out)
-        optimizer.clear_gradients()
-
+    import paddle.fluid.layers as layers
+    from paddle.fluid.optimizer import DecayedAdagrad
+    
+    x = layers.data(name='x', shape=[-1, 10], dtype='float32')
+    trans = layers.fc(x, 100)
+    cost = layers.reduce_mean(trans)
+    optimizer = paddle.optimizer.DecayedAdagradOptimizer(learning_rate=0.2)
+    optimizer.minimize(cost)
 
 .. py:method:: current_step_lr()
 
@@ -131,36 +121,14 @@ Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http:/
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    # example1: LearningRateDecay is not used, return value is all the same
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        adam = fluid.optimizer.Adam(0.001, parameter_list = emb.parameters())
-        lr = adam.current_step_lr()
-        print(lr) # 0.001
-
-    # example2: PiecewiseDecay is used, return the step learning rate
-    with fluid.dygraph.guard():
-        inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-        linear = fluid.dygraph.nn.Linear(10, 10)
-        inp = fluid.dygraph.to_variable(inp)
-        out = linear(inp)
-        loss = fluid.layers.reduce_mean(out)
-
-        bd = [2, 4, 6, 8]
-        value = [0.2, 0.4, 0.6, 0.8, 1.0]
-        adam = fluid.optimizer.Adam(fluid.dygraph.PiecewiseDecay(bd, value, 0),
-                           parameter_list=linear.parameters())
-
-        # first step: learning rate is 0.2
-        np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
-        # learning rate for different steps
-        ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
-        for i in range(12):
-            adam.minimize(loss)
-            lr = adam.current_step_lr()
-            np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+    import paddle.fluid.layers as layers
+    from paddle.fluid.optimizer import DecayedAdagrad
+    
+    x = layers.data(name='x', shape=[-1, 10], dtype='float32')
+    trans = layers.fc(x, 100)
+    cost = layers.reduce_mean(trans)
+    optimizer = paddle.optimizer.DecayedAdagradOptimizer(learning_rate=0.2)
+    optimizer.minimize(cost)
 

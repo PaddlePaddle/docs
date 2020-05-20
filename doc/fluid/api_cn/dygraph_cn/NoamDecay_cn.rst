@@ -39,13 +39,13 @@ Noam衰减的计算方式如下。
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     warmup_steps = 100
     learning_rate = 0.01
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        optimizer  = fluid.optimizer.SGD(
-            learning_rate = fluid.dygraph.NoamDecay(
-                   1/(warmup_steps *(learning_rate ** 2)),
-                   warmup_steps),
-            parameter_list = emb.parameters())
+    with paddle.imperative.guard():
+        emb = paddle.nn.Embedding([10, 10])
+        optimizer = paddle.optimizer.SGD(learning_rate=paddle.imperative.
+            NoamDecay(1 / (warmup_steps * learning_rate ** 2), warmup_steps),
+            parameter_list=emb.parameters())
+

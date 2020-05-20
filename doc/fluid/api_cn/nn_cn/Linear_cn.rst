@@ -38,12 +38,12 @@ Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    data = np.random.uniform( -1, 1, [30, 10, 32] ).astype('float32')
-    with fluid.dygraph.guard():
+    
+    data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
+    with paddle.imperative.guard():
         linear = paddle.nn.Linear(32, 64)
         data = to_variable(data)
-        res = linear(data)  # [30, 10, 64]
+        res = linear(data)
 
 属性
 ::::::::::::

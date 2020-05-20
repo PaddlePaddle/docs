@@ -29,17 +29,17 @@ startup_program会使用内在的OP（算子）去初始化他们，并由 :ref:
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-     
-        main_program = fluid.Program()
-        startup_program = fluid.Program()
-        with fluid.program_guard(main_program=main_program, startup_program=startup_program):
-            x = fluid.layers.data(name="x", shape=[-1, 784], dtype='float32')
-            y = fluid.layers.data(name="y", shape=[-1, 1], dtype='int32')
-            z = fluid.layers.fc(name="fc", input=x, size=10, act="relu")
-     
-            print("main program is: {}".format(fluid.default_main_program()))
-            print("start up program is: {}".format(fluid.default_startup_program()))
-
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    main_program = paddle.Program()
+    startup_program = paddle.Program()
+    with paddle.program_guard(main_program=main_program, startup_program=
+        startup_program):
+        x = fluid.layers.data(name='x', shape=[-1, 784], dtype='float32')
+        y = fluid.layers.data(name='y', shape=[-1, 1], dtype='int32')
+        z = fluid.layers.fc(name='fc', input=x, size=10, act='relu')
+    
+        print('main program is: {}'.format(paddle.default_main_program()))
+        print('start up program is: {}'.format(paddle.default_startup_program()))
 

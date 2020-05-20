@@ -29,12 +29,13 @@ split
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    with fluid.dygraph.guard():
-        input_1 = np.random.random([4, 6, 6]).astype("int32")
+    with paddle.imperative.guard():
+        input_1 = np.random.random([4, 6, 6]).astype('int32')
         # input is a variable which shape is [4, 6, 6]
-        input = fluid.dygraph.to_variable(input_1)
-
-        x0, x1, x2 = paddle.split(input, num_or_sections= 3, dim=1)
+        input = paddle.imperative.to_variable(input_1)
+    
+        x0, x1, x2 = paddle.split(input, num_or_sections=3, dim=1)
         # x0.shape [4, 2, 6]
         # x1.shape [4, 2, 6]
         # x2.shape [4, 2, 6]
+

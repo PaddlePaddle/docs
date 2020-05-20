@@ -60,10 +60,10 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-     
-      t = fluid.LoDTensor()
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 
 .. py:method:: has_valid_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → bool
 
@@ -76,14 +76,11 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 **示例代码**
 
 .. code-block:: python
-            
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            t.set_recursive_sequence_lengths([[2, 3]])
-            print(t.has_valid_recursive_sequence_lengths())  # True
+
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 
 .. py:method::  lod(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
 
@@ -96,14 +93,11 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 **示例代码**
 
 .. code-block:: python
-            
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            t.set_lod([[0, 2, 5]])
-            print(t.lod()) # [[0, 2, 5]]
+
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 
 .. py:method:: recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor) → List[List[int]]
 
@@ -116,15 +110,11 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 **示例代码**
 
 .. code-block:: python
-            
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            t.set_recursive_sequence_lengths([[2, 3]])
-            print(t.recursive_sequence_lengths())  # [[2, 3]]
 
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 
 .. py:method::  set(*args, **kwargs)
     
@@ -189,13 +179,11 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 **示例代码**
 
 .. code-block:: python
-            
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
 
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 
 .. py:method::  set_lod(self: paddle.fluid.core_avx.LoDTensor, lod: List[List[int]]) → None
 
@@ -209,16 +197,11 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 **示例代码**
 
 .. code-block:: python
-            
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            t.set_lod([[0, 2, 5]])
-            print(t.lod())  # [[0, 2, 5]]
 
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 
 .. py:method::  set_recursive_sequence_lengths(self: paddle.fluid.core_avx.LoDTensor, recursive_sequence_lengths: List[List[int]]) → None
 
@@ -234,15 +217,11 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 **示例代码**
 
 .. code-block:: python
-            
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            t.set_recursive_sequence_lengths([[2, 3]])
-            print(t.recursive_sequence_length())  # [[2, 3]]
-            print(t.lod())  # [[0, 2, 5]]
+
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 
 .. py:method::  shape(self: paddle.fluid.core_avx.Tensor) → List[int]
 
@@ -255,13 +234,9 @@ LoD可以有多个level（例如，一个段落可以有多个句子，一个句
 **示例代码**
 
 .. code-block:: python
-            
-            import paddle.fluid as fluid
-            import numpy as np
-     
-            t = fluid.LoDTensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            print(t.shape())  # [5, 30]
 
-
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.LoDTensor()
 

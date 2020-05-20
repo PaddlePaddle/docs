@@ -60,18 +60,11 @@ sequence_softmax
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[7, 1],
-                 dtype='float32', lod_level=1)
+    x = paddle.data(name='x', shape=[7, 1], dtype='float32', lod_level=1)
     x_sequence_softmax = fluid.layers.sequence_softmax(input=x)
     
-    y = fluid.data(name='y', shape=[7],
-                 dtype='float32', lod_level=1)
+    y = paddle.data(name='y', shape=[7], dtype='float32', lod_level=1)
     y_sequence_softmax = fluid.layers.sequence_softmax(input=y)
-
-
-
-
-
-
 

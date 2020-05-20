@@ -60,26 +60,23 @@ add
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.array([2, 3, 4]).astype('float32'),
-            "y": np.array([1, 5, 2]).astype('float32')
-        }
-
-    x = fluid.data(name="x", shape=[3], dtype='float32')
-    y = fluid.data(name="y", shape=[3], dtype='float32')
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
     z1 = paddle.add(x, y)
     z2 = paddle.add(x, y, alpha=10)
     # z = x + y
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z1.name, z2.name])
-
-    print(z_value[0]) # [3., 8., 6.]
-    print(z_value[1]) # [12. 53. 24.]
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z1.name, z2.name])
+    print(z_value[0])
+    print(z_value[1])
 
 **代码示例 2**
 
@@ -88,26 +85,23 @@ add
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.ones((2, 3, 4, 5)).astype('float32'),
-            "y": np.zeros((4, 5)).astype('float32')
-        }
-
-    x = fluid.data(name="x", shape=[2, 3, 4, 5], dtype='float32')
-    y = fluid.data(name="y", shape=[4, 5], dtype='float32')
-    z = paddle.add(x, y, name='z')
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
+    z1 = paddle.add(x, y)
+    z2 = paddle.add(x, y, alpha=10)
     # z = x + y
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
-
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z1.name, z2.name])
     print(z_value[0])
-    print(z_value[0].shape) # z.shape=[2,3,4,5]
+    print(z_value[1])
 
 **代码示例 3**
 
@@ -116,26 +110,23 @@ add
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
+    
+    
     def gen_data():
-        return {
-            "x": np.random.randint(1, 5, size=[2, 3, 4, 5]).astype('float32'),
-            "y": np.random.randint(1, 5, size=[5]).astype('float32')
-        }
-
-    x = fluid.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.data(name="y", shape=[5], dtype='float32')
-    z = paddle.add(x, y)
-    # z = x / y
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    z_value = exe.run(feed=gen_data(),
-                        fetch_list=[z.name])
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
+    z1 = paddle.add(x, y)
+    z2 = paddle.add(x, y, alpha=10)
+    # z = x + y
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z1.name, z2.name])
     print(z_value[0])
-    print(z_value[0].shape) # z.shape=[2,3,4,5]
-
+    print(z_value[1])
 
 **代码示例 4**
 
@@ -144,22 +135,23 @@ add
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    x = fluid.data(name="x", shape=[3], dtype="float32")
-    y = fluid.data(name='y', shape=[3], dtype='float32')
-
-    output = fluid.data(name="output", shape=[3], dtype="float32")
-    z = paddle.add(x, y, out=output)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    data1 = np.array([2, 3, 4], dtype='float32')
-    data2 = np.array([1, 5, 2], dtype='float32')
-    z_value = exe.run(feed={'x': data1,
-                            'y': data2},
-                            fetch_list=[z])
-    print(z_value[0]) # [3. 8. 6.]
-
+    
+    
+    def gen_data():
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
+    z1 = paddle.add(x, y)
+    z2 = paddle.add(x, y, alpha=10)
+    # z = x + y
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z1.name, z2.name])
+    print(z_value[0])
+    print(z_value[1])
 
 **代码示例 5（动态图）**
 
@@ -168,12 +160,21 @@ add
     import paddle
     import paddle.fluid as fluid
     import numpy as np
+    
+    
+    def gen_data():
+        return {'x': np.array([2, 3, 4]).astype('float32'), 'y': np.array([1, 5,
+            2]).astype('float32')}
+    
+    x = paddle.data(name='x', shape=[3], dtype='float32')
+    y = paddle.data(name='y', shape=[3], dtype='float32')
+    z1 = paddle.add(x, y)
+    z2 = paddle.add(x, y, alpha=10)
+    # z = x + y
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    z_value = exe.run(feed=gen_data(), fetch_list=[z1.name, z2.name])
+    print(z_value[0])
+    print(z_value[1])
 
-    with fluid.dygraph.guard():
-        np_x = np.array([2, 3, 4]).astype('float64')
-        np_y = np.array([1, 5, 2]).astype('float64')
-        x = fluid.dygraph.to_variable(np_x)
-        y = fluid.dygraph.to_variable(np_y)
-        z = paddle.add(x, y, alpha=-0.5)
-        np_z = z.numpy()
-        print(np_z)  # [1.5, 0.5, 3. ]

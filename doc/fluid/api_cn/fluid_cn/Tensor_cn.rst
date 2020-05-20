@@ -14,9 +14,10 @@ Tensor用于表示多维张量，可以通过 ``np.array(tensor)`` 方法转换�
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-
-      t = fluid.Tensor()
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.Tensor()
 
 .. py:method::  set(array, place, zero_copy=False)
 
@@ -33,11 +34,10 @@ Tensor用于表示多维张量，可以通过 ``np.array(tensor)`` 方法转换�
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-            import numpy as np
-
-            t = fluid.Tensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.Tensor()
 
 .. py:method::  shape(self: paddle.fluid.core_avx.Tensor) → List[int]
 
@@ -51,9 +51,8 @@ Tensor用于表示多维张量，可以通过 ``np.array(tensor)`` 方法转换�
 
 .. code-block:: python
 
-            import paddle.fluid as fluid
-            import numpy as np
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.Tensor()
 
-            t = fluid.Tensor()
-            t.set(np.ndarray([5, 30]), fluid.CPUPlace())
-            print(t.shape())  # [5, 30]

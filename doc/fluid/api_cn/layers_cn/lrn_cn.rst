@@ -49,9 +49,10 @@ lrn
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.layers.data(
-        name="data", shape=[3, 112, 112], dtype="float32")
+    data = fluid.layers.data(name='data', shape=[3, 112, 112], dtype='float32')
     lrn = fluid.layers.lrn(input=data)
-    print(lrn.shape)  # [-1, 3, 112, 112]
-    print(lrn.dtype)  # float32
+    print(lrn.shape)
+    print(lrn.dtype)
+

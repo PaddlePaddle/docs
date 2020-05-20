@@ -20,24 +20,23 @@ ExecutionStrategy
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[13], dtype='float32')
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     y_predict = fluid.layers.fc(input=x, size=1, act=None)
-     
+    
     cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-    avg_loss = fluid.layers.mean(cost)
-     
-    sgd_optimizer = fluid.optimizer.SGD(learning_rate=0.001)
+    avg_loss = paddle.mean(cost)
+    
+    sgd_optimizer = paddle.optimizer.SGD(learning_rate=0.001)
     sgd_optimizer.minimize(avg_loss)
-
-    exec_strategy = fluid.ExecutionStrategy()
+    
+    exec_strategy = paddle.ExecutionStrategy()
     exec_strategy.num_threads = 4
-
-    train_exe = fluid.ParallelExecutor(use_cuda=False,
-                                       loss_name=avg_loss.name,
-                                       exec_strategy=exec_strategy)
-
+    
+    train_exe = paddle.ParallelExecutor(use_cuda=False, loss_name=avg_loss.name,
+        exec_strategy=exec_strategy)
 
 .. py:attribute:: num_iteration_per_drop_scope
 

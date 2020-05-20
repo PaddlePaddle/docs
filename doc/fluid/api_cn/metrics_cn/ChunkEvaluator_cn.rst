@@ -20,31 +20,32 @@ ChunkEvaluator
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        # 初始化chunck-level的评价管理。
-        metric = fluid.metrics.ChunkEvaluator()
-        
-        # 假设模型预测10个chuncks，其中8个为正确，且真值有9个chuncks。
-        num_infer_chunks = 10
-        num_label_chunks = 9
-        num_correct_chunks = 8
-        
-        metric.update(num_infer_chunks, num_label_chunks, num_correct_chunks)
-        numpy_precision, numpy_recall, numpy_f1 = metric.eval()
-        
-        print("precision: %.2f, recall: %.2f, f1: %.2f" % (numpy_precision, numpy_recall, numpy_f1))
-         
-        # 下一个batch，完美地预测了3个正确的chuncks。
-        num_infer_chunks = 3
-        num_label_chunks = 3
-        num_correct_chunks = 3
-         
-        metric.update(num_infer_chunks, num_label_chunks, num_correct_chunks)
-        numpy_precision, numpy_recall, numpy_f1 = metric.eval()
-         
-        print("precision: %.2f, recall: %.2f, f1: %.2f" % (numpy_precision, numpy_recall, numpy_f1))
+    import paddle
+    import paddle.fluid as fluid
     
+    # 初始化chunck-level的评价管理。
+    metric = fluid.metrics.ChunkEvaluator()
+    
+    # 假设模型预测10个chuncks，其中8个为正确，且真值有9个chuncks。
+    num_infer_chunks = 10
+    num_label_chunks = 9
+    num_correct_chunks = 8
+    
+    metric.update(num_infer_chunks, num_label_chunks, num_correct_chunks)
+    numpy_precision, numpy_recall, numpy_f1 = metric.eval()
+    
+    print('precision: %.2f, recall: %.2f, f1: %.2f' % (numpy_precision,
+        numpy_recall, numpy_f1))
+    num_infer_chunks = 3
+    num_label_chunks = 3
+    num_correct_chunks = 3
+    
+    metric.update(num_infer_chunks, num_label_chunks, num_correct_chunks)
+    numpy_precision, numpy_recall, numpy_f1 = metric.eval()
+    
+    print('precision: %.2f, recall: %.2f, f1: %.2f' % (numpy_precision,
+        numpy_recall, numpy_f1))
+
 .. py:method:: update(num_infer_chunks, num_label_chunks, num_correct_chunks)
 
 该函数使用输入的(num_infer_chunks, num_label_chunks, num_correct_chunks)来累计更新ChunkEvaluator对象的对应状态，更新方式如下：

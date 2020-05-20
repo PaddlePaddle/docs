@@ -52,6 +52,14 @@ sequence_slice
 
 ..  code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    seqs = fluid.layers.data(name='x', shape=[10, 5], dtype='float32', lod_level=1)
+    offset = paddle.nn.functional.assign(input=np.array([[0, 1]]).astype('int32'))
+    length = paddle.nn.functional.assign(input=np.array([[2, 1]]).astype('int32'))
+    subseqs = fluid.layers.sequence_slice(input=seqs, offset=offset, length=length)
+
   import paddle.fluid as fluid
   import numpy as np
   seqs = fluid.layers.data(name='x', shape=[10, 5],

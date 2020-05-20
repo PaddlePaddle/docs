@@ -36,39 +36,36 @@ uniform_random
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    startup_program = fluid.Program()
-    train_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
+    
+    startup_program = paddle.Program()
+    train_program = paddle.Program()
+    with paddle.program_guard(train_program, startup_program):
         # example 1:
         # attr shape is a list which doesn't contain tensor Variable.
         result_1 = fluid.layers.uniform_random(shape=[3, 4])
-
+    
         # example 2:
         # attr shape is a list which contains tensor Variable.
-        dim_1 = fluid.layers.fill_constant([1],"int64",3)
-        dim_2 = fluid.layers.fill_constant([1],"int32",5)
+        dim_1 = paddle.full([1], 'int64', 3, device=None, stop_gradient=True)
+        dim_2 = paddle.full([1], 'int32', 5, device=None, stop_gradient=True)
         result_2 = fluid.layers.uniform_random(shape=[dim_1, dim_2])
-
+    
         # example 3:
         # attr shape is a Variable, the data type must be int32 or int64
-        var_shape = fluid.data(name='var_shape', shape=[2], dtype="int64")
+        var_shape = paddle.data(name='var_shape', shape=[2], dtype='int64')
         result_3 = fluid.layers.uniform_random(var_shape)
-        var_shape_int32 = fluid.data(name='var_shape_int32', shape=[2], dtype="int32")
+        var_shape_int32 = paddle.data(name='var_shape_int32', shape=[2], dtype=
+            'int32')
         result_4 = fluid.layers.uniform_random(var_shape_int32)
-        shape_1 = np.array([3,4]).astype("int64")
-        shape_2 = np.array([3,4]).astype("int32")
-
-        exe = fluid.Executor(fluid.CPUPlace())
+        shape_1 = np.array([3, 4]).astype('int64')
+        shape_2 = np.array([3, 4]).astype('int32')
+    
+        exe = paddle.Executor(paddle.CPUPlace())
         exe.run(startup_program)
-        outs = exe.run(train_program, feed = {'var_shape':shape_1, 'var_shape_int32':shape_2}, 
-                       fetch_list=[result_1, result_2, result_3, result_4])
-
-
-
-
-
-
+        outs = exe.run(train_program, feed={'var_shape': shape_1,
+            'var_shape_int32': shape_2}, fetch_list=[result_1, result_2,
+            result_3, result_4])
 

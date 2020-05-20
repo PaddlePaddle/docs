@@ -41,12 +41,10 @@ distribute_fpn_proposals
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    fpn_rois = fluid.data(
-        name='data', shape=[None, 4], dtype='float32', lod_level=1)
-    multi_rois, restore_ind = fluid.layers.distribute_fpn_proposals(
-        fpn_rois=fpn_rois,
-        min_level=2,
-        max_level=5,
-        refer_level=4,
-        refer_scale=224)
+    fpn_rois = paddle.data(name='data', shape=[None, 4], dtype='float32',
+        lod_level=1)
+    multi_rois, restore_ind = fluid.layers.distribute_fpn_proposals(fpn_rois=
+        fpn_rois, min_level=2, max_level=5, refer_level=4, refer_scale=224)
+

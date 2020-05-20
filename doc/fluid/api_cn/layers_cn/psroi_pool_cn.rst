@@ -48,12 +48,9 @@ psroi_pool
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[490, 28, 28], dtype='float32')
     rois = fluid.layers.data(name='rois', shape=[4], lod_level=1, dtype='float32')
     pool_out = fluid.layers.psroi_pool(x, rois, 10, 1.0, 7, 7)
-
-
-
-
 

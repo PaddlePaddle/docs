@@ -22,16 +22,15 @@ stack
         x[1].data = [ [3.0 , 4.0 ] ]
         x[2].shape = [1, 2]
         x[2].data = [ [5.0 , 6.0 ] ]
-
+    
     参数:
         axis = 0 #沿着第0维对输入x进行堆叠操作。
-
+    
     输出:
         Out.shape = [3, 1, 2]
         Out.data = [ [ [1.0, 2.0] ],
                     [ [3.0, 4.0] ],
                     [ [5.0, 6.0] ] ]
-
 
 - 例2:
 
@@ -44,15 +43,15 @@ stack
         x[1].data = [ [3.0 , 4.0 ] ]
         x[2].shape = [1, 2]
         x[2].data = [ [5.0 , 6.0 ] ]
-
+    
     参数:
-        axis = 1 or axis = -2 #沿着第1维对输入进行堆叠操作。
-
+        axis = 0 #沿着第0维对输入x进行堆叠操作。
+    
     输出:
-        Out.shape = [1, 3, 2]
-        Out.data = [ [ [1.0, 2.0]
-                      [3.0, 4.0]
-                      [5.0, 6.0] ] ]
+        Out.shape = [3, 1, 2]
+        Out.data = [ [ [1.0, 2.0] ],
+                    [ [3.0, 4.0] ],
+                    [ [5.0, 6.0] ] ]
 
 参数:
       - **x** (Variable|list(Variable)) – 输入 x 可以是单个Tensor，或是多个Tensor组成的列表。如果 x 是一个列表，那么这些Tensor的维度必须相同。 假设输入是N维Tensor :math:`[d_0,d_1,...,d_{n−1}]`，则输出变量的维度为N+1维 :math:`[d_0,d_1,...d_{axis-1},len(x),d_{axis}...,d_{n−1}]` 。支持的数据类型: float32，float64，int32，int64。
@@ -66,21 +65,20 @@ stack
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    x1 = layers.data(name='x1', shape=[1, 2], dtype='int32')
-    x2 = layers.data(name='x2', shape=[1, 2], dtype='int32')
-    #对Tensor List进行堆叠
-    data = layers.stack([x1,x2])  # 沿着第0轴进行堆叠，data.shape=[2, 1, 2]
-
-    data = layers.stack([x1,x2], axis=1)  # 沿着第1轴进行堆叠，data.shape=[1, 2, 2]
-
-    #单个Tensor的堆叠
-    data = layers.stack(x1)  # 沿着第0轴进行堆叠，data.shape=[1, 1, 2]
-
-
-
-
-
-
+    输入:
+        x[0].shape = [1, 2]
+        x[0].data = [ [1.0 , 2.0 ] ]
+        x[1].shape = [1, 2]
+        x[1].data = [ [3.0 , 4.0 ] ]
+        x[2].shape = [1, 2]
+        x[2].data = [ [5.0 , 6.0 ] ]
+    
+    参数:
+        axis = 0 #沿着第0维对输入x进行堆叠操作。
+    
+    输出:
+        Out.shape = [3, 1, 2]
+        Out.data = [ [ [1.0, 2.0] ],
+                    [ [3.0, 4.0] ],
+                    [ [5.0, 6.0] ] ]
 

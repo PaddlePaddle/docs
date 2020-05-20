@@ -37,8 +37,10 @@ create_random_int_lodtensor
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-     
-        t = fluid.create_random_int_lodtensor(recursive_seq_lens=[[2, 3]],base_shape=[30], place=fluid.CPUPlace(), low=0, high=10)
-        print(t.shape()) # [5, 30]
+    import paddle
+    import paddle.fluid as fluid
+    
+    t = fluid.create_random_int_lodtensor(recursive_seq_lens=[[2, 3]],
+        base_shape=[30], place=paddle.CPUPlace(), low=0, high=10)
+    print(t.shape())
 

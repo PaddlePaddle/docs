@@ -31,13 +31,15 @@ BReLU 激活函数
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-
-    input_brelu = np.array([[-1,6],[1,15.6]])
-    with fluid.dygraph.guard():
-        x = fluid.dygraph.to_variable(input_brelu)
-        y = fluid.layers.brelu(x, t_min=1.0, t_max=10.0)
+    
+    input_brelu = np.array([[-1, 6], [1, 15.6]])
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(input_brelu)
+        y = paddle.nn.functional.brelu(x, t_min=1.0, t_max=10.0)
         print(y.numpy())
         #[[ 1.  6.]
         #[ 1. 10.]]
+

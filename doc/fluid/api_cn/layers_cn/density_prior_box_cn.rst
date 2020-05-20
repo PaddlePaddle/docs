@@ -51,15 +51,12 @@ density_prior_box
 **代码示例**
 
 .. code-block:: python
-    
+
+    import paddle
     import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[3,6,9])
-    images = fluid.layers.data(name="images", shape=[3,9,12])
-    box, var = fluid.layers.density_prior_box(
-        input=input,
-        image=images,
-        densities=[4, 2, 1],
-        fixed_sizes=[32.0, 64.0, 128.0],
-        fixed_ratios=[1.],
-        clip=True,
-        flatten_to_2d=True)
+    input = fluid.layers.data(name='input', shape=[3, 6, 9])
+    images = fluid.layers.data(name='images', shape=[3, 9, 12])
+    box, var = fluid.layers.density_prior_box(input=input, image=images,
+        densities=[4, 2, 1], fixed_sizes=[32.0, 64.0, 128.0], fixed_ratios=[1.0
+        ], clip=True, flatten_to_2d=True)
+

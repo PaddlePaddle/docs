@@ -32,9 +32,10 @@ inverse
 
     import numpy as np
     import paddle
-
-    mat_np = np.array([[2, 0], [0, 2]]).astype("float32")
+    
+    mat_np = np.array([[2, 0], [0, 2]]).astype('float32')
     with paddle.imperative.guard():
         mat = paddle.imperative.to_variable(mat_np)
         inv = paddle.inverse(mat)
-        print(inv.numpy()) # [[0.5, 0], [0, 0.5]]
+        print(inv.numpy())
+

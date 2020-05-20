@@ -34,29 +34,33 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
     import numpy as np
-
-    class ExampleLayer(fluid.dygraph.Layer):
+    
+    
+    class ExampleLayer(paddle.nn.Layer):
+    
         def __init__(self):
             super(ExampleLayer, self).__init__()
             self._fc = Linear(3, 10)
-
+    
         def forward(self, input):
             return self._fc(input)
-
-    with fluid.dygraph.guard():
+    
+    
+    with paddle.imperative.guard():
         layer = ExampleLayer()
         in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
         out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
-
+    
         # 内部使用Executor运行静态图模型
         out_static_graph = static_layer([in_var])
-        print(len(out_static_graph)) # 1
-        print(out_static_graph[0].shape) # (2, 10)
-
+        print(len(out_static_graph))
+        print(out_static_graph[0].shape)
+    
         # 将静态图模型保存为预测模型
         static_layer.save_inference_model(dirname='./saved_infer_model')
 
@@ -74,33 +78,35 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
     import numpy as np
-
-    class ExampleLayer(fluid.dygraph.Layer):
+    
+    
+    class ExampleLayer(paddle.nn.Layer):
+    
         def __init__(self):
             super(ExampleLayer, self).__init__()
             self._fc = Linear(3, 10)
-
+    
         def forward(self, input):
             return self._fc(input)
-
-    with fluid.dygraph.guard():
+    
+    
+    with paddle.imperative.guard():
         layer = ExampleLayer()
         in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
-
         out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
-
-        build_strategy = fluid.BuildStrategy()
-        build_strategy.enable_inplace = True
-
-        exec_strategy = fluid.ExecutionStrategy()
-        exec_strategy.num_threads = 2
-
-        static_layer.set_strategy(build_strategy=build_strategy, exec_strategy=exec_strategy)
+    
+        # 内部使用Executor运行静态图模型
         out_static_graph = static_layer([in_var])
+        print(len(out_static_graph))
+        print(out_static_graph[0].shape)
+    
+        # 将静态图模型保存为预测模型
+        static_layer.save_inference_model(dirname='./saved_infer_model')
 
 .. py:method:: save_inference_model(dirname, feed=None, fetch=None)
 
@@ -117,31 +123,33 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
     import numpy as np
-
-    class ExampleLayer(fluid.dygraph.Layer):
+    
+    
+    class ExampleLayer(paddle.nn.Layer):
+    
         def __init__(self):
             super(ExampleLayer, self).__init__()
             self._fc = Linear(3, 10)
-
+    
         def forward(self, input):
             return self._fc(input)
-
-    save_dirname = './saved_infer_model'
-    in_np = np.random.random([2, 3]).astype('float32')
-
-    with fluid.dygraph.guard():
+    
+    
+    with paddle.imperative.guard():
         layer = ExampleLayer()
+        in_np = np.random.random([2, 3]).astype('float32')
         in_var = to_variable(in_np)
         out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
-        static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
+    
+        # 内部使用Executor运行静态图模型
+        out_static_graph = static_layer([in_var])
+        print(len(out_static_graph))
+        print(out_static_graph[0].shape)
+    
+        # 将静态图模型保存为预测模型
+        static_layer.save_inference_model(dirname='./saved_infer_model')
 
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    program, feed_vars, fetch_vars = fluid.io.load_inference_model(save_dirname,
-                                        exe)
-
-    fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
-    print(fetch.shape) # (2, 10)

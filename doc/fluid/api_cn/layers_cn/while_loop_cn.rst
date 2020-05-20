@@ -43,25 +43,30 @@ ____________________________________
 **示例代码**
 
 .. code-block:: python
-    
+
     # 该示例代码展示整数循环+1，循环10次，输出计数结果
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     
-    def cond(i, ten):   # 参数和loop_vars相对应
+    
+    def cond(i, ten):
         return i < ten
     
-    def body(i, ten):   # 参数和loop_vars相对应
+    
+    def body(i, ten):
         i = i + 1
         return [i, ten]
-            
-    main_program = fluid.default_main_program()
-    startup_program = fluid.default_startup_program()
-    with fluid.program_guard(main_program, startup_program):
-        i = layers.fill_constant(shape=[1], dtype='int64', value=0)     # 循环计数器
-        ten = layers.fill_constant(shape=[1], dtype='int64', value=10)  # 循环次数
+    
+    
+    main_program = paddle.default_main_program()
+    startup_program = paddle.default_startup_program()
+    with paddle.program_guard(main_program, startup_program):
+        i = layers.fill_constant(shape=[1], dtype='int64', value=0)
+        ten = layers.fill_constant(shape=[1], dtype='int64', value=10)
         i, ten = layers.while_loop(cond, body, [i, ten])
-                
-        exe = fluid.Executor(fluid.CPUPlace())
+    
+        exe = paddle.Executor(paddle.CPUPlace())
         res = exe.run(main_program, feed={}, fetch_list=[i])
-        print(res) #[array([10])]
+        print(res)
+

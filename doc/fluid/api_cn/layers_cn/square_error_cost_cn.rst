@@ -31,16 +31,9 @@ square_error_cost
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     y = fluid.layers.data(name='y', shape=[1], dtype='float32')
     y_predict = fluid.layers.data(name='y_predict', shape=[1], dtype='float32')
     cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-
-
-
-
-
-
-
-
 

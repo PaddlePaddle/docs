@@ -46,14 +46,12 @@ Focal Loss的计算过程如下：
 
 ..  code-block:: python
 
-
+    import paddle
     import paddle.fluid as fluid
+    
+    input = paddle.data(name='data', shape=[10, 80], dtype='float32')
+    label = paddle.data(name='label', shape=[10, 1], dtype='int32')
+    fg_num = paddle.data(name='fg_num', shape=[1], dtype='int32')
+    loss = fluid.layers.sigmoid_focal_loss(x=input, label=label, fg_num=fg_num,
+        gamma=2.0, alpha=0.25)
 
-    input = fluid.data(name='data', shape=[10,80], dtype='float32')
-    label = fluid.data(name='label', shape=[10,1], dtype='int32')
-    fg_num = fluid.data(name='fg_num', shape=[1], dtype='int32')
-    loss = fluid.layers.sigmoid_focal_loss(x=input,
-                                           label=label,
-                                           fg_num=fg_num,
-                                           gamma=2.0,
-                                           alpha=0.25)

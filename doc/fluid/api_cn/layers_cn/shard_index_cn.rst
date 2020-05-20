@@ -57,9 +57,9 @@ shard_index
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    label = fluid.layers.data(name="label", shape=[1], dtype="int64")
-    shard_label = fluid.layers.shard_index(input=label,
-                                           index_num=20,
-                                           nshards=2,
-                                           shard_id=0)
+    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
+    shard_label = paddle.shard_index(input=label, index_num=20, nshards=2,
+        shard_id=0)
+

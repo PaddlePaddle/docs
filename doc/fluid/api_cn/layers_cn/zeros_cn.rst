@@ -25,5 +25,7 @@ zeros
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.layers.zeros(shape=[3, 2], dtype='float32') # [[0., 0.], [0., 0.], [0., 0.]]
+    data = paddle.zeros(shape=[3, 2], dtype='float32', device=None, out=None)
+

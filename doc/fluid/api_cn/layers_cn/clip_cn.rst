@@ -33,9 +33,8 @@ clip
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    input = fluid.layers.data(
-        name='data', shape=[1], dtype='float32')
-    reward = fluid.layers.clip(x=input, min=-1.0, max=1.0)
-
+    input = fluid.layers.data(name='data', shape=[1], dtype='float32')
+    reward = paddle.nn.clip(x=input, min=-1.0, max=1.0)
 

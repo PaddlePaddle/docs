@@ -29,43 +29,44 @@ gaussian_random
 **代码示例：**
 
 .. code-block:: python
-	
-    # 静态图使用 
+
+    # 静态图使用
+    import paddle
     import numpy as np
     from paddle import fluid
-   
-    x = fluid.layers.gaussian_random((2, 3), std=2., seed=10)
-   
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    start = fluid.default_startup_program()
-    main = fluid.default_main_program()
-   
+    
+    x = fluid.layers.gaussian_random((2, 3), std=2.0, seed=10)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    start = paddle.default_startup_program()
+    main = paddle.default_main_program()
+    
     exe.run(start)
     x_np, = exe.run(main, feed={}, fetch_list=[x])
-
+    
     x_np
     # array([[2.3060477, 2.676496 , 3.9911983],
     #        [0.9990833, 2.8675377, 2.2279181]], dtype=float32)
-	
-	
+
 .. code-block:: python
 
-    # 动态图使用
+    # 静态图使用
+    import paddle
     import numpy as np
     from paddle import fluid
-    import paddle.fluid.dygraph as dg
     
-    place = fluid.CPUPlace()
-    with dg.guard(place) as g:
-        x = fluid.layers.gaussian_random((2, 4), mean=2., dtype="float32", seed=10)
-        x_np = x.numpy()       
+    x = fluid.layers.gaussian_random((2, 3), std=2.0, seed=10)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    start = paddle.default_startup_program()
+    main = paddle.default_main_program()
+    
+    exe.run(start)
+    x_np, = exe.run(main, feed={}, fetch_list=[x])
+    
     x_np
-    # array([[2.3060477 , 2.676496  , 3.9911983 , 0.9990833 ],
-    #        [2.8675377 , 2.2279181 , 0.79029655, 2.8447366 ]], dtype=float32)
-
-
-
-
-
+    # array([[2.3060477, 2.676496 , 3.9911983],
+    #        [0.9990833, 2.8675377, 2.2279181]], dtype=float32)
 

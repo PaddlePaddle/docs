@@ -54,16 +54,9 @@ sequence_last_step
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[7, 1], append_batch_size=False,
-                 dtype='float32', lod_level=1)
+        dtype='float32', lod_level=1)
     x_last_step = fluid.layers.sequence_last_step(input=x)
-
-
-
-
-
-
-
-
 

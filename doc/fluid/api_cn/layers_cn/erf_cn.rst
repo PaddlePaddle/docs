@@ -29,23 +29,26 @@ erf
 **代码示例**：
 
 .. code-block:: python
-    
+
     # declarative mode
+    import paddle
     import numpy as np
     from paddle import fluid
     
-    x = fluid.data(name="x", shape=(-1, 3), dtype="float32")
-    y = fluid.layers.erf(x)
+    x = paddle.data(name='x', shape=(-1, 3), dtype='float32')
+    y = paddle.erf(x)
     
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    start = fluid.default_startup_program()
-    main = fluid.default_main_program()
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    start = paddle.default_startup_program()
+    main = paddle.default_main_program()
     
-    data = np.random.randn(2, 3).astype("float32")
+    data = np.random.randn(2, 3).astype('float32')
+    # array([[ 0.4643714 , -1.1509596 ,  1.2538221 ],
+    #        [ 0.34369683,  0.27478245,  1.1805398 ]], dtype=float32)
     exe.run(start)
     
-    y_np, = exe.run(main, feed={"x": data}, fetch_list=[y])
+    y_np, = exe.run(main, feed={'x': data}, fetch_list=[y])
     
     data
     # array([[ 0.4643714 , -1.1509596 ,  1.2538221 ],
@@ -56,20 +59,30 @@ erf
 
 .. code-block:: python
 
-    # imperative mode
+    # declarative mode
+    import paddle
     import numpy as np
     from paddle import fluid
-    import paddle.fluid.dygraph as dg
     
-    data = np.random.randn(2, 3).astype("float32")
-    place = fluid.CPUPlace()
-    with dg.guard(place) as g:
-        x = dg.to_variable(data)
-        y = fluid.layers.erf(x)
-        y_np = y.numpy()
+    x = paddle.data(name='x', shape=(-1, 3), dtype='float32')
+    y = paddle.erf(x)
+    
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    start = paddle.default_startup_program()
+    main = paddle.default_main_program()
+    
+    data = np.random.randn(2, 3).astype('float32')
+    # array([[ 0.4643714 , -1.1509596 ,  1.2538221 ],
+    #        [ 0.34369683,  0.27478245,  1.1805398 ]], dtype=float32)
+    exe.run(start)
+    
+    y_np, = exe.run(main, feed={'x': data}, fetch_list=[y])
+    
     data
     # array([[ 0.4643714 , -1.1509596 ,  1.2538221 ],
     #        [ 0.34369683,  0.27478245,  1.1805398 ]], dtype=float32)
     y_np
     # array([[ 0.48863927, -0.8964121 ,  0.9237998 ],
     #        [ 0.37307587,  0.30242872,  0.9049887 ]], dtype=float32)
+

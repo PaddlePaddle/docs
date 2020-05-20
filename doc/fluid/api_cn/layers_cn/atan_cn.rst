@@ -28,13 +28,10 @@ arctanh激活函数。
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[4])
-        # if data is [-0.8183,  0.4912, -0.6444,  0.0371]
-        result = fluid.layers.atan(data)
-        # result is [-0.6858,  0.4566, -0.5724,  0.0371]
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='input', shape=[4])
+    # if data is [-0.8183,  0.4912, -0.6444,  0.0371]
+    result = paddle.atan(data)
+    # result is [-0.6858,  0.4566, -0.5724,  0.0371]
 

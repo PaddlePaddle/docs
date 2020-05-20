@@ -26,14 +26,15 @@ std
 **代码示例**
 
 .. code-block:: python
-    
+
     import paddle
     import paddle.fluid as fluid
     # x is a Tensor variable with following elements:
     #    [[0.2, 0.3, 0.5, 0.9]
     #     [0.1, 0.2, 0.6, 0.7]]
     # Each example is followed by the corresponding output tensor.
-    x = fluid.data(name='x', shape=[2, 4], dtype='float32')
-    paddle.std(x)  # [0.28252685] 
-    paddle.std(x, axis=[0])  # [0.0707107, 0.07071075, 0.07071064, 0.1414217]
-    paddle.std(x, axis=[-1])  # [0.30956957, 0.29439208]
+    x = paddle.data(name='x', shape=[2, 4], dtype='float32')
+    paddle.std(x)
+    paddle.std(x, axis=[0])
+    paddle.std(x, axis=[-1])
+

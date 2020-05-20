@@ -32,15 +32,8 @@ HardShrink激活函数(HardShrink activation operator)
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.layers.data(name="input", shape=[784])
-    result = fluid.layers.hard_shrink(x=data, threshold=0.3)
-
-
-
-
-
-
-
-
+    data = fluid.layers.data(name='input', shape=[784])
+    result = paddle.nn.functional.hard_shrink(x=data, threshold=0.3)
 

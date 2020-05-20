@@ -32,11 +32,12 @@ full_like
     import paddle
     import paddle.fluid as fluid
     import numpy as np
-    input = fluid.data(name='input', dtype='float32', shape=[2, 3])
+    input = paddle.data(name='input', dtype='float32', shape=[2, 3])
     output = paddle.full_like(input, 2.0)
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-    img=np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)
-    res = exe.run(fluid.default_main_program(), feed={'input':img}, fetch_list=[output])
-    print(res) # [array([[2., 2., 2.], [2., 2., 2.]], dtype=float32)]
+    exe = paddle.Executor(paddle.CPUPlace())
+    exe.run(paddle.default_startup_program())
+    img = np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)
+    res = exe.run(paddle.default_main_program(), feed={'input': img},
+        fetch_list=[output])
+    print(res)
 

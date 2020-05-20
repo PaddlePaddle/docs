@@ -20,16 +20,10 @@ UniformInitializer
 **代码示例**
 
 .. code-block:: python
-       
-       import paddle.fluid as fluid
-       x = fluid.layers.data(name='x', shape=[1], dtype='float32')
-       fc = fluid.layers.fc(input=x, size=10,
-            param_attr=fluid.initializer.Uniform(low=-0.5, high=0.5))
- 
 
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[1], dtype='float32')
+    fc = fluid.layers.fc(input=x, size=10, param_attr=paddle.nn.initializer.
+        Uniform(low=-0.5, high=0.5))
 

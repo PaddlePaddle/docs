@@ -32,6 +32,18 @@ cos
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    input_cos = np.array([[-1, np.pi], [1, 15.6]])
+    with paddle.imperative.guard():
+        x = paddle.imperative.to_variable(input_cos)
+        y = paddle.cos(x)
+        print(y.numpy())
+        # [[ 0.54030231 -1.        ]
+        # [ 0.54030231 -0.99417763]]
+
   import paddle.fluid as fluid
   import numpy as np
 

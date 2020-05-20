@@ -28,8 +28,12 @@ floor
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data1 = fluid.layers.fill_constant(shape=[3, 2], value=2.5, dtype='float32') # [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
-        data2 = fluid.layers.fill_constant(shape=[2, 3], value=-2.5, dtype='float64') # [[-2.5, -2.5, -2.5], [-2.5, -2.5, -2.5]]
-        result1 = fluid.layers.floor(data1) # [[2., 2.], [2., 2.], [2., 2.]]
-        result2 = fluid.layers.floor(data2) # [[-3., -3., -3.], [-3., -3., -3.]]
+    import paddle
+    import paddle.fluid as fluid
+    data1 = paddle.full(shape=[3, 2], fill_value=2.5, dtype='float32', device=
+        None, stop_gradient=True)
+    data2 = paddle.full(shape=[2, 3], fill_value=-2.5, dtype='float64', device=
+        None, stop_gradient=True)
+    result1 = paddle.floor(data1)
+    result2 = paddle.floor(data2)
+

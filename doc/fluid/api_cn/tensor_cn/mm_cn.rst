@@ -73,8 +73,8 @@ mm
 
     import paddle
     import paddle.fluid as fluid
-
-    input = fluid.data(name='input', shape=[2, 3], dtype='float32')
-    mat2 = fluid.data(name='mat2', shape=[3, 2], dtype='float32')
-    out = paddle.mm(input, mat2) # out shape is [2, 2]
+    
+    input = paddle.data(name='input', shape=[2, 3], dtype='float32')
+    mat2 = paddle.data(name='mat2', shape=[3, 2], dtype='float32')
+    out = paddle.mm(input, mat2)
 

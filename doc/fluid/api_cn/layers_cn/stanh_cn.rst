@@ -30,16 +30,16 @@ STanh 激活算子（STanh Activation Operator.）
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import numpy as np
-    data = fluid.layers.data(name="input", shape=[-1, 3])
-    result = fluid.layers.stanh(data,scale_a=0.67, scale_b=1.72)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
+    data = fluid.layers.data(name='input', shape=[-1, 3])
+    result = paddle.stanh(data, scale_a=0.67, scale_b=1.72)
+    place = paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
     x = np.random.random(size=(3, 3)).astype('float32')
-    output= exe.run(feed={"input": x},
-                 fetch_list=[result])
+    output = exe.run(feed={'input': x}, fetch_list=[result])
     print(output)
     """
     output:
@@ -47,5 +47,4 @@ STanh 激活算子（STanh Activation Operator.）
            [0.25147712, 0.7484996 , 0.22902708],
            [0.62705994, 0.23110689, 0.56902856]], dtype=float32)]
     """
-
 

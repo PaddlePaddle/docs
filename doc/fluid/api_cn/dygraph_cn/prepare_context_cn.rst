@@ -22,16 +22,18 @@ prepare_context
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid.dygraph as dygraph
     import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        strategy=dygraph.parallel.prepare_context()
-        emb = fluid.dygraph.Embedding([10, 10])
+    with paddle.imperative.guard():
+        strategy = dygraph.parallel.prepare_context()
+        emb = paddle.nn.Embedding([10, 10])
+    
         emb = dygraph.parallel.DataParallel(emb, strategy)
-
+    
         state_dict = emb.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy")
+        fluid.save_dygraph(state_dict, 'paddle_dy')
+        para_state_dict, _ = fluid.load_dygraph('paddle_dy')
+    
+        emb.set_dict(para_state_dict)
 
-        para_state_dict, _ = fluid.load_dygraph( "paddle_dy")
-
-        emb.set_dict( para_state_dict )

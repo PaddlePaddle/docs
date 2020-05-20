@@ -36,16 +36,8 @@ group_norm
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
-    data = fluid.data(name='data', shape=[None, 8, 32, 32], dtype='float32')
+    data = paddle.data(name='data', shape=[None, 8, 32, 32], dtype='float32')
     x = fluid.layers.group_norm(input=data, groups=4)
-
-
-
-
-
-
-
-
-
 

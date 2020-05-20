@@ -47,17 +47,9 @@ sequence_concat
 
 ..  code-block:: python
 
-        import paddle.fluid as fluid
-        x = fluid.layers.data(name='x', shape=[10], dtype='float32')
-        y = fluid.layers.data(name='y', shape=[10], dtype='float32')
-        out = fluid.layers.sequence_concat(input=[x, y])
-
-
-
-
-
-
-
-
-
+    import paddle
+    import paddle.fluid as fluid
+    x = fluid.layers.data(name='x', shape=[10], dtype='float32')
+    y = fluid.layers.data(name='y', shape=[10], dtype='float32')
+    out = fluid.layers.sequence_concat(input=[x, y])
 

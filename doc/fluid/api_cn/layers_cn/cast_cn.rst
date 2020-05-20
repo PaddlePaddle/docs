@@ -25,6 +25,34 @@ cast
 
 .. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    import numpy as np
+    
+    place = fluid.core.CPUPlace()
+    
+    # 构建网络
+    x_lod = fluid.layers.data(name='x', shape=[1], lod_level=1)
+    cast_res1 = paddle.cast(x=x_lod, dtype='uint8')
+    cast_res2 = paddle.cast(x=x_lod, dtype=np.int32)
+    
+    # 创建CPU执行器
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    x_i_lod = fluid.core.LoDTensor()
+    x_i_lod.set(np.array([[1.3, -2.4], [0, 4]]).astype('float32'), place)
+    x_i_lod.set_recursive_sequence_lengths([[0, 2]])
+    res1 = exe.run(paddle.default_main_program(), feed={'x': x_i_lod},
+        fetch_list=[cast_res1], return_numpy=False)
+    res2 = exe.run(paddle.default_main_program(), feed={'x': x_i_lod},
+        fetch_list=[cast_res2], return_numpy=False)
+    print(np.array(res1[0]), np.array(res1[0]).dtype)
+    # [[  1 254]
+    #  [  0   4]] uint8
+    print(np.array(res2[0]), np.array(res2[0]).dtype)
+    # [[ 1 -2]
+    #  [ 0  4]] int32
+
   import paddle.fluid as fluid
   import numpy as np
 

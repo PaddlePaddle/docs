@@ -37,33 +37,31 @@ allclose
     import paddle.fluid as fluid
     import numpy as np
     use_cuda = fluid.core.is_compiled_with_cuda()
-    a = fluid.data(name="a", shape=[2], dtype='float32')
-    b = fluid.data(name="b", shape=[2], dtype='float32')
-    result = paddle.allclose(a, b, rtol=1e-05, atol=1e-08,
-                            equal_nan=False, name="ignore_nan")
-    result_nan = paddle.allclose(a, b, rtol=1e-05, atol=1e-08,
-                                equal_nan=True, name="equal_nan")
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    x = np.array([10000., 1e-07]).astype("float32")
-    y = np.array([10000.1, 1e-08]).astype("float32")
-    result_v, result_nan_v = exe.run(
-        feed={'a': x, 'b': y},
-        fetch_list=[result, result_nan])
-    print(result_v, result_nan_v)
-    # Output: (array([False]), array([False]))
-    x = np.array([10000., 1e-08]).astype("float32")
-    y = np.array([10000.1, 1e-09]).astype("float32")
-    result_v, result_nan_v = exe.run(
-        feed={'a': x, 'b': y},
-        fetch_list=[result, result_nan])
-    print(result_v, result_nan_v)
-    # Output: (array([ True]), array([ True]))
-    x = np.array([1.0, float('nan')]).astype("float32")
-    y = np.array([1.0, float('nan')]).astype("float32")
-    result_v, result_nan_v = exe.run(
-        feed={'a': x, 'b': y},
-        fetch_list=[result, result_nan])
+    a = paddle.data(name='a', shape=[2], dtype='float32')
+    b = paddle.data(name='b', shape=[2], dtype='float32')
+    result = paddle.allclose(a, b, rtol=1e-05, atol=1e-08, equal_nan=False,
+        name='ignore_nan')
+    result_nan = paddle.allclose(a, b, rtol=1e-05, atol=1e-08, equal_nan=True,
+        name='equal_nan')
+    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
+    exe = paddle.Executor(place)
+    exe.run(paddle.default_startup_program())
+    x = np.array([10000.0, 1e-07]).astype('float32')
+    y = np.array([10000.1, 1e-08]).astype('float32')
+    result_v, result_nan_v = exe.run(feed={'a': x, 'b': y}, fetch_list=[result,
+        result_nan])
     print(result_v, result_nan_v)
     # Output: (array([False]), array([ True]))
+    x = np.array([10000.0, 1e-08]).astype('float32')
+    y = np.array([10000.1, 1e-09]).astype('float32')
+    result_v, result_nan_v = exe.run(feed={'a': x, 'b': y}, fetch_list=[result,
+        result_nan])
+    print(result_v, result_nan_v)
+    # Output: (array([False]), array([ True]))
+    x = np.array([1.0, float('nan')]).astype('float32')
+    y = np.array([1.0, float('nan')]).astype('float32')
+    result_v, result_nan_v = exe.run(feed={'a': x, 'b': y}, fetch_list=[result,
+        result_nan])
+    print(result_v, result_nan_v)
+    # Output: (array([False]), array([ True]))
+

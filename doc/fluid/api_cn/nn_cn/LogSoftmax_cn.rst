@@ -25,19 +25,17 @@ LogSoftmax
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.nn as nn
     import numpy as np
-
-    data = np.array([[[-2.0, 3.0, -4.0, 5.0],
-                      [3.0, -4.0, 5.0, -6.0],
-                      [-7.0, -8.0, 8.0, 9.0]],
-                     [[1.0, -2.0, -3.0, 4.0],
-                      [-5.0, 6.0, 7.0, -8.0],
-                      [6.0, 7.0, 8.0, 9.0]]]).astype('float32')
+    
+    data = np.array([[[-2.0, 3.0, -4.0, 5.0], [3.0, -4.0, 5.0, -6.0], [-7.0, -
+        8.0, 8.0, 9.0]], [[1.0, -2.0, -3.0, 4.0], [-5.0, 6.0, 7.0, -8.0], [6.0,
+        7.0, 8.0, 9.0]]]).astype('float32')
     my_log_softnmax = nn.LogSoftmax()
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
+    with paddle.imperative.guard():
+        data = paddle.imperative.to_variable(data)
         res = my_log_softnmax(data)
         # [[[ -7.1278396   -2.1278396   -9.127839    -0.12783948]
         #   [ -2.1270514   -9.127051    -0.12705144 -11.127051  ]
@@ -45,3 +43,4 @@ LogSoftmax
         #  [[ -3.0518122   -6.051812    -7.051812    -0.051812  ]
         #   [-12.313267    -1.3132664   -0.3132665  -15.313267  ]
         #   [ -3.4401896   -2.4401896   -1.4401896   -0.44018966]]]
+

@@ -29,11 +29,10 @@ arccosine激活函数。
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[4])
-        # if data is [-0.8183,  0.4912, -0.6444,  0.0371]
-        result = fluid.layers.acos(data)
-        # result is [2.5293, 1.0573, 2.2711, 1.5336]
-
-
+    import paddle
+    import paddle.fluid as fluid
+    data = fluid.layers.data(name='input', shape=[4])
+    # if data is [-0.8183,  0.4912, -0.6444,  0.0371]
+    result = paddle.acos(data)
+    # result is [2.5293, 1.0573, 2.2711, 1.5336]
 

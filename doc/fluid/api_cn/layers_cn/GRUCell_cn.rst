@@ -37,9 +37,9 @@ GRUCell
 
 ..  code-block:: python 
 
+    import paddle
     import paddle.fluid.layers as layers
     cell = layers.GRUCell(hidden_size=256)
-
 
 .. py:method:: call(inputs, states)
 

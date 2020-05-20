@@ -29,6 +29,6 @@ ones
 .. code-block:: python
 
     import paddle
-    data = paddle.ones(shape=[3, 2], dtype='float32') # [[1., 1.], [1., 1.], [1., 1.]]
-    data = paddle.ones(shape=[2, 2], dtype='float32', device='cpu') # [[1., 1.], [1., 0.]]
+    data = paddle.ones(shape=[3, 2], dtype='float32')
+    data = paddle.ones(shape=[2, 2], dtype='float32', device='cpu')
 

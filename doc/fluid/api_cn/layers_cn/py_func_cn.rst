@@ -35,99 +35,89 @@ PaddlePaddle Fluid通过py_func在Python端注册OP。py_func的设计原理在�
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import six
-
+    
     # 自定义的前向函数，可直接输入LoDTenosor
+    
     def tanh(x):
         return np.tanh(x)
-
-    # 在反向函数中跳过前向输入x，返回x的梯度。
-    # 必须使用np.array主动将LodTensor转换为numpy，否则"+/-"等操作无法使用
+    
+    # 自定义的前向函数，可用于调试正在运行的网络（打印值）
+    
     def tanh_grad(y, dy):
         return np.array(dy) * (1 - np.square(np.array(y)))
-
+    
     # 自定义的前向函数，可用于调试正在运行的网络（打印值）
+    
     def debug_func(x):
         print(x)
     
+    
     def create_tmp_var(name, dtype, shape):
-        return fluid.default_main_program().current_block().create_var(
-            name=name, dtype=dtype, shape=shape)
-
+        return paddle.default_main_program().current_block().create_var(name=
+    
+    # 自定义的前向函数，可用于调试正在运行的网络（打印值）
+            name, dtype=dtype, shape=shape)
+    
     def simple_net(img, label):
         hidden = img
         for idx in six.moves.range(4):
             hidden = fluid.layers.fc(hidden, size=200)
-            new_hidden = create_tmp_var(name='hidden_{}'.format(idx),
-                dtype=hidden.dtype, shape=hidden.shape)
-
-            # 用户自定义的前向反向计算
-            hidden = fluid.layers.py_func(func=tanh, x=hidden,
-                out=new_hidden, backward_func=tanh_grad,
-                skip_vars_in_backward_input=hidden)
-
-            # 用户自定义的调试函数，打印出输入的LodTensor
-            fluid.layers.py_func(func=debug_func, x=hidden, out=None)
-
+            new_hidden = create_tmp_var(name='hidden_{}'.format(idx), dtype=
+                hidden.dtype, shape=hidden.shape)
+            hidden = paddle.py_func(func=tanh, x=hidden, out=new_hidden,
+                backward_func=tanh_grad, skip_vars_in_backward_input=hidden)
+            paddle.py_func(func=debug_func, x=hidden, out=None)
         prediction = fluid.layers.fc(hidden, size=10, act='softmax')
         loss = fluid.layers.cross_entropy(input=prediction, label=label)
-        return fluid.layers.mean(loss)
+        return paddle.mean(loss)
+    
+    # 自定义的前向函数，可用于调试正在运行的网络（打印值）
 
 **示例代码2**:
 
 ..  code-block:: python
-    
-    # 该示例展示了如何将LoDTensor转化为numpy数组，并利用numpy API来自定义一个OP
+
+    import paddle
     import paddle.fluid as fluid
-    import numpy as np
-
-    def element_wise_add(x, y): 
-        # 必须先手动将LodTensor转换为numpy数组，否则无法支持numpy的shape操作
-        x = np.array(x)    
-        y = np.array(y)
-
-        if x.shape != y.shape:
-            raise AssertionError("the shape of inputs must be the same!")
-
-        result = np.zeros(x.shape, dtype='int32')
-        for i in range(len(x)):
-            for j in range(len(x[0])):
-                result[i][j] = x[i][j] + y[i][j]
-
-        return result
-
+    import six
+    
+    # 自定义的前向函数，可直接输入LoDTenosor
+    
+    def tanh(x):
+        return np.tanh(x)
+    
+    # 自定义的前向函数，可用于调试正在运行的网络（打印值）
+    
+    def tanh_grad(y, dy):
+        return np.array(dy) * (1 - np.square(np.array(y)))
+    
+    # 自定义的前向函数，可用于调试正在运行的网络（打印值）
+    
+    def debug_func(x):
+        print(x)
+    
+    
     def create_tmp_var(name, dtype, shape):
-        return fluid.default_main_program().current_block().create_var(
-                    name=name, dtype=dtype, shape=shape)
+        return paddle.default_main_program().current_block().create_var(name=
+    
+    # 自定义的前向函数，可用于调试正在运行的网络（打印值）
+            name, dtype=dtype, shape=shape)
+    
+    def simple_net(img, label):
+        hidden = img
+        for idx in six.moves.range(4):
+            hidden = fluid.layers.fc(hidden, size=200)
+            new_hidden = create_tmp_var(name='hidden_{}'.format(idx), dtype=
+                hidden.dtype, shape=hidden.shape)
+            hidden = paddle.py_func(func=tanh, x=hidden, out=new_hidden,
+                backward_func=tanh_grad, skip_vars_in_backward_input=hidden)
+            paddle.py_func(func=debug_func, x=hidden, out=None)
+        prediction = fluid.layers.fc(hidden, size=10, act='softmax')
+        loss = fluid.layers.cross_entropy(input=prediction, label=label)
+        return paddle.mean(loss)
+    
+    # 自定义的前向函数，可用于调试正在运行的网络（打印值）
 
-    def py_func_demo():
-        start_program = fluid.default_startup_program()
-        main_program = fluid.default_main_program()
-
-        # 创建前向函数的输入变量
-        x = fluid.data(name='x', shape=[2,3], dtype='int32')
-        y = fluid.data(name='y', shape=[2,3], dtype='int32')
-        
-        # 创建前向函数的输出变量，必须指明变量名称name/数据类型dtype/维度shape
-        output = create_tmp_var('output','int32', [3,1])
-
-        # 输入多个LodTensor以list[Variable]或tuple(Variable)形式
-        fluid.layers.py_func(func=element_wise_add, x=[x,y], out=output)
-
-        exe=fluid.Executor(fluid.CPUPlace())
-        exe.run(start_program)
-
-        # 给program喂入numpy数组
-        input1 = np.random.randint(1, 10, size=[2,3], dtype='int32')
-        input2 = np.random.randint(1, 10, size=[2,3], dtype='int32')
-        out = exe.run(main_program, 
-                    feed={'x':input1, 'y':input2},
-                    fetch_list=[output.name])
-        print("{0} + {1} = {2}".format(input1, input2, out))
-
-    py_func_demo()
-
-    # 参考输出：
-    # [[5, 9, 9]   + [[7, 8, 4]  =  [array([[12, 17, 13]
-    #  [7, 5, 2]]     [1, 3, 3]]            [8, 8, 5]], dtype=int32)]

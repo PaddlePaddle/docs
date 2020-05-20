@@ -33,6 +33,7 @@ diag_embed
 
 ..  code-block:: python
 
+    import paddle
     import paddle.nn.functional as F
     import paddle.fluid.dygraph as dg
     import numpy as np
@@ -46,11 +47,11 @@ diag_embed
         # [[[ 0.7545889 ,  0.        ,  0.        ],
         #  [ 0.        , -0.25074545,  0.        ],
         #   [ 0.        ,  0.        ,  0.5929117 ]],
-
+    
         # [[-0.6097662 ,  0.        ,  0.        ],
         #  [ 0.        , -0.01753256,  0.        ],
         #  [ 0.        ,  0.        ,  0.619769  ]]]
-
+    
         data2 = F.diag_embed(diag_embed, offset=-1, dim1=0, dim2=2)
         data2.numpy()
         # [[[ 0.        ,  0.        ,  0.        ,  0.        ],
@@ -62,7 +63,7 @@ diag_embed
         #   [-0.6097662 ,  0.        ,  0.        ,  0.        ],
         #   [ 0.        , -0.01753256,  0.        ,  0.        ],
         #   [ 0.        ,  0.        ,  0.619769  ,  0.        ]]]
-
+    
         data3 = F.diag_embed(diag_embed, offset=1, dim1=0, dim2=2)
         data3.numpy()
         # [[[ 0.        ,  0.7545889 ,  0.        ,  0.        ],
@@ -76,3 +77,4 @@ diag_embed
         #
         #  [[ 0.        ,  0.        ,  0.        ,  0.        ],
         #   [ 0.        ,  0.        ,  0.        ,  0.        ]]]
+
