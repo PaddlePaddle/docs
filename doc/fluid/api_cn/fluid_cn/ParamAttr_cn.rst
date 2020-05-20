@@ -7,6 +7,9 @@ ParamAttr
 
 .. py:class:: paddle.fluid.ParamAttr(name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=False)
 
+
+
+
 .. note::
     该类中的 ``gradient_clip`` 属性在2.0版本会废弃，推荐在初始化 ``optimizer`` 时设置梯度裁剪。共有三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 
     :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。

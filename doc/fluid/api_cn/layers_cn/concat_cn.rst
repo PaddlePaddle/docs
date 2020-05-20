@@ -5,6 +5,12 @@ concat
 
 .. py:function:: paddle.fluid.layers.concat(input,axis=0,name=None)
 
+:alias_main: paddle.concat
+:alias: paddle.concat,paddle.tensor.concat,paddle.tensor.manipulation.concat
+:old_api: paddle.fluid.layers.concat
+
+
+
 该OP对输入沿 ``axis`` 轴进行联结。
 
 参数：

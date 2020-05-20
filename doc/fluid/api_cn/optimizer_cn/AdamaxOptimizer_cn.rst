@@ -5,6 +5,9 @@ AdamaxOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdamaxOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+
+
+
 Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节Adamax优化相关内容所实现的。Adamax算法是基于无穷大范数的 `Adam <https://arxiv.org/abs/1412.6980>`_ 算法的一个变种，使学习率更新的算法更加稳定和简单。
 
 其参数更新的计算公式如下:

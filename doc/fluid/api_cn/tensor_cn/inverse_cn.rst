@@ -5,6 +5,11 @@ inverse
 
 .. py:function:: paddle.inverse(input, out=None, name=None)
 
+:alias_main: paddle.inverse
+:alias: paddle.inverse,paddle.tensor.inverse,paddle.tensor.math.inverse
+
+
+
 计算方阵的逆。方阵是行数和列数相等的矩阵。输入可以是一个方阵（2-D张量），或者是批次方阵（维数大于2时）。
 
 **参数**：

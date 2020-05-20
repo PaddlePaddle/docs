@@ -5,6 +5,9 @@ sin
 
 .. py:function:: paddle.fluid.layers.sin(x, name=None)
 
+
+
+
 计算输入的正弦值。
 
 参数:

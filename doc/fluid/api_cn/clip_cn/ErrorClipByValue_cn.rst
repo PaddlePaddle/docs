@@ -5,6 +5,9 @@ ErrorClipByValue
 
 .. py:class:: paddle.fluid.clip.ErrorClipByValue(max, min=None)
 
+
+
+
 给定一个 Tensor  ``t`` （该 Tensor 传入方式见代码示例），对 Tensor 中的元素超出给定最大 ``max`` 和最小界 ``min`` 内区间范围 [min, max] 的元素，重设为所超出界的界值。
 
 

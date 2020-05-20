@@ -40,23 +40,29 @@ WITH_NV_JETSON                OFF              build inference libs on NV Jetson
 It is recommended to configure options according to the recommended values to avoid linking unnecessary libraries. Other options can be set if it is necessary.
 
 
-Firstly we pull the latest code from github and install nccl.
+Firstly we pull the latest code from github.
 
 .. code-block:: bash
 
-  git clone https://github.com/paddlepaddle/paddle
-  # Use git checkout to switch to stable versions such as v1.6.2
-  git checkout v1.6.2
+  git clone https://github.com/paddlepaddle/Paddle
+  cd Paddle
+  # Use git checkout to switch to stable versions such as v1.7.2
+  git checkout v1.7.2
+
+
+**note**: If your environment is a multi-card machine, it is recommended to install nccl; otherwise, you can skip this step by specifying WITH_NCCL = OFF during compilation. Note that if WITH_NCCL = ON, and NCCL is not installed, the compiler will report an error.
+
+.. code-block:: bash
 
   git clone https://github.com/NVIDIA/nccl.git
+  cd nccl
   make -j4
   make install
 
-**note**: nccl is not used but still needed in building. This dependence will be removed later.
 
 **build inference libs on server**
 
-Following codes set the configurations and execute building(PADDLE_ROOT should be set to the actual installing path of inference libs).
+Following codes set the configurations and execute building(PADDLE_ROOT should be set to the actual installing path of inference libs, WITH_NCCL should be modified according to the actual environment.).
 
   .. code-block:: bash
 
@@ -71,6 +77,7 @@ Following codes set the configurations and execute building(PADDLE_ROOT should b
            -DWITH_MKL=OFF \
            -DWITH_GPU=OFF  \
            -DON_INFER=ON \
+           -DWITH_NCCL=OFF \
            ..
       make
       make inference_lib_dist

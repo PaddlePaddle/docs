@@ -5,6 +5,9 @@ lod_append
 
 .. py:function:: paddle.fluid.layers.lod_append(x, level)
 
+
+
+
 给 ``x`` 的LoD添加 ``level`` 。
 
 简单示例：

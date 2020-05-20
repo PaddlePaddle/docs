@@ -4,6 +4,9 @@ FtrlOptimizer
 -------------------------------
 
 .. py:class:: paddle.fluid.optimizer.FtrlOptimizer(learning_rate, l1=0.0, l2=0.0, lr_power=-0.5, parameter_list=None, regularization=None, grad_clip=None, name=None)
+
+
+
  
 该接口实现FTRL (Follow The Regularized Leader) Optimizer.
 

@@ -5,6 +5,12 @@ Embedding
 
 .. py:class:: paddle.fluid.dygraph.Embedding(size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
 
+:alias_main: paddle.nn.Embedding
+:alias: paddle.nn.Embedding,paddle.nn.layer.Embedding,paddle.nn.layer.common.Embedding
+:old_api: paddle.fluid.dygraph.Embedding
+
+
+
 嵌入层(Embedding Layer)
 
 该接口用于构建 ``Embedding`` 的一个可调用对象，具体用法参照 ``代码示例`` 。其根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。

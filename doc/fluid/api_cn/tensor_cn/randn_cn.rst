@@ -5,6 +5,11 @@ randn
 
 .. py:function:: paddle.tensor.random.randn(shape, out=None, dtype=None, device=None, stop_gradient=True, name=None)
 
+:alias_main: paddle.randn
+:alias: paddle.randn,paddle.tensor.randn,paddle.tensor.random.randn
+
+
+
 该 API 用于生成数据符合标准正态随机分布（均值为 0，方差为 1 的正态随机分布）的 Tensor。
 
 参数：

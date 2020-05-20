@@ -5,6 +5,10 @@ load_vars
 
 .. py:function:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
+:api_attr: 声明式编程模式（静态图)
+
+
+
 该接口从文件中加载 ``Program`` 的变量。
 
 通过 ``vars`` 指定需要加载的变量，或者通过 ``predicate`` 筛选需要加载的变量， ``vars`` 和 ``predicate`` 不能同时为None。

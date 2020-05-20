@@ -5,6 +5,12 @@ bipartite_match
 
 .. py:function:: paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
 
+:alias_main: paddle.nn.functional.bipartite_match
+:alias: paddle.nn.functional.bipartite_match,paddle.nn.functional.vision.bipartite_match
+:old_api: paddle.fluid.layers.bipartite_match
+
+
+
 该OP实现了贪心二分匹配算法，该算法用于根据输入距离矩阵获得与最大距离的匹配。对于输入二维矩阵，二分匹配算法可以找到每一行的匹配列（匹配意味着最大距离），也可以找到每列的匹配行。此算子仅计算列到行的匹配索引。对于每个实例，匹配索引的数量是
 输入距离矩阵的列号。**该OP仅支持CPU**
 

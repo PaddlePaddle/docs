@@ -5,6 +5,12 @@ sin
 
 .. py:function:: paddle.sin(x, name=None, out=None)
 
+:alias_main: paddle.sin
+:alias: paddle.sin,paddle.tensor.sin,paddle.tensor.math.sin
+:update_api: paddle.fluid.layers.sin
+
+
+
 计算输入的正弦值。
 
 .. math::

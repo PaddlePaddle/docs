@@ -5,6 +5,9 @@ DatasetFactory
 
 .. py:class:: paddle.fluid.dataset.DatasetFactory
 
+
+
+
 DatasetFactory是一个按数据集名称创建数据集的 "工厂"，可以创建“QueueDataset”，“InMemoryDataset”或“FileInstantDataset”，默认为“QueueDataset”。
 
 

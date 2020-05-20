@@ -81,11 +81,9 @@
 
 ## Installation method
 
-There are five installation methods under CentOS system:
+There are three installation methods under CentOS system:
 
 * pip installation（recommend）
-* [Conda Installation](./install_Conda_en.html)
-* [Docker Installation](./install_Docker_en.html)
 * [Compile From Source Code](./compile/compile_CentOS_en.html#ct_source)
 * [Compile From Docker Source Code](./compile/compile_CentOS_en.html#ct_docker)
 
@@ -94,11 +92,11 @@ Here is pip installation
 ## Installation steps
 
 * CPU version of PaddlePaddle：
-  * For Python 2: `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2: `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 * GPU version of PaddlePaddle：
-  * For Python 2： `python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3： `python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 You can[Verify installation succeeded or not](#check)，if you have any questions, you can refer to [FAQ](./FAQ.html)
 
@@ -108,7 +106,7 @@ Note:
 * If it is python2.7, it is recommended to use the `python` command; if it is python3.x, it is recommended to use the 'python3' command
 
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install the PaddlePaddle that supports CUDA 10.0 cuDNN v7. If you have different requirements for CUDA or cuDNN version, you can use `python -m pip install paddlepaddle-gpu==[Version number] -i https://pypi.tuna.tsinghua.edu.cn/simple` or `python3 -m pip install paddlepaddle-gpu==[version] -i https://pypi.tuna.tsinghua.edu.cn/simple` command to install. For version number, you can see[here](https://pypi.org/project/paddlepaddle-gpu#history), for the correspondence between paddlepaddle and CUDA, cuDNN version, please see [installation package list](./Tables.html#whls)
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install the PaddlePaddle that supports CUDA 10.0 cuDNN v7. 
 
 
 * Download the latest stable installation package by default. For development installation package, please refer to [here](./Tables.html#ciwhls)

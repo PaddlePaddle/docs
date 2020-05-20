@@ -5,6 +5,12 @@ leaky_relu
 
 .. py:function:: paddle.fluid.layers.leaky_relu(x, alpha=0.02, name=None)
 
+:alias_main: paddle.nn.functional.leaky_relu
+:alias: paddle.nn.functional.leaky_relu,paddle.nn.functional.activation.leaky_relu
+:old_api: paddle.fluid.layers.leaky_relu
+
+
+
 LeakyRelu激活函数
 
 .. math::   out=max(x,α∗x)

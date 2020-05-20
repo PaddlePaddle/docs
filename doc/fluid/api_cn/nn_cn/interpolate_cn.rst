@@ -5,6 +5,11 @@ Inerpolate
 
 .. py:function:: paddle.nn.functioanl.interpolate(input, out_shape=None, scale=None, name=None, resample='BILINEAR', actual_shape=None, align_corners=True, align_mode=1, data_format='NCHW')
 
+:alias_main: paddle.nn.functional.interpolate
+:alias: paddle.nn.functional.interpolate,paddle.nn.functional.common.interpolate
+
+
+
 **注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 该OP用于调整一个batch中图片的大小。

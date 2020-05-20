@@ -3,9 +3,12 @@
 set_gradient_clip
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.clip.set_gradient_clip(clip, param_list=None, program=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 .. warning::
     此API对位置使用的要求较高，其必须位于组建网络之后， ``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐在 ``optimizer`` 初始化时设置梯度裁剪。

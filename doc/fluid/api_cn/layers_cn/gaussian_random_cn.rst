@@ -5,6 +5,9 @@ gaussian_random
 
 .. py:function:: paddle.fluid.layers.gaussian_random(shape, mean=0.0, std=1.0, seed=0, dtype='float32')
 
+
+
+
 生成数据符合高斯随机分布的 Tensor。
 
 参数：

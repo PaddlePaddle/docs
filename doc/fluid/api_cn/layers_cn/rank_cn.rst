@@ -5,6 +5,12 @@ rank
 
 .. py:function::  paddle.fluid.layers.rank(input)
 
+:alias_main: paddle.rank
+:alias: paddle.rank,paddle.tensor.rank,paddle.tensor.attribute.rank
+:old_api: paddle.fluid.layers.rank
+
+
+
 该OP用于计算输入Tensor的维度（秩）。
 
 参数：

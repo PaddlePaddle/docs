@@ -5,6 +5,9 @@ cos_sim
 
 .. py:function:: paddle.fluid.layers.cos_sim(X, Y)
 
+
+
+
 余弦相似度算子（Cosine Similarity Operator）
 
 .. math::

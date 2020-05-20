@@ -5,6 +5,11 @@ bmm
 
 .. py:function:: paddle.tensor.bmm(x, y, name=None):
 
+:alias_main: paddle.bmm
+:alias: paddle.bmm,paddle.tensor.bmm,paddle.tensor.linalg.bmm
+
+
+
 对输入x及输入y进行矩阵相乘。
 
 两个输入的维度必须等于3，并且矩阵x和矩阵y的第一维必须相等

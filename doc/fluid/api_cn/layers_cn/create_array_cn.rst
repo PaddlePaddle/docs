@@ -6,6 +6,9 @@ create_array
 .. py:function:: paddle.fluid.layers.create_array(dtype)
 
 
+
+
+
 此OP创建一个LoDTensorArray，它可以用作 :ref:`cn_api_fluid_layers_array\_write` , :ref:`cn_api_fluid_layers_array\_read` OP的输入，以及和 :ref:`cn_api_fluid_layers_While` OP
 一起创建RNN网络。
 
