@@ -216,8 +216,8 @@ def infer(use_cuda, params_dirname=None):
         # length 3, 4 and 2, respectively.
         # Note that lod info should be a list of lists.
         reviews_str = [
-            'read the book forget the movie', 'this is a great movie',
-            'this is very bad'
+            b'read the book forget the movie', b'this is a great movie',
+            b'this is very bad'
         ]
         reviews = [c.split() for c in reviews_str]
 
@@ -227,6 +227,7 @@ def infer(use_cuda, params_dirname=None):
             lod.append([np.int64(word_dict.get(words, UNK)) for words in c])
 
         base_shape = [[len(c) for c in lod]]
+        lod = np.array(sum(lod, []), dtype=np.int64)
 
         tensor_words = fluid.create_lod_tensor(lod, base_shape, place)
         assert feed_target_names[0] == "words"
