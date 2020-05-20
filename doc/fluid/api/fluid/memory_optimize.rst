@@ -6,6 +6,8 @@
 memory_optimize
 ---------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.memory_optimize
     :noindex:
 

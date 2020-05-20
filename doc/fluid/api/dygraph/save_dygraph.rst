@@ -6,6 +6,8 @@
 save_dygraph
 ------------
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autofunction:: paddle.fluid.dygraph.save_dygraph
     :noindex:
 

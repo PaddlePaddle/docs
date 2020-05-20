@@ -6,6 +6,8 @@
 device_guard
 ------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.device_guard
     :noindex:
 

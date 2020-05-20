@@ -187,13 +187,13 @@ Next we define the data feeder for training. The data feeder reads a batch of da
 ```python
 BATCH_SIZE = 20
 
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.uci_housing.train(), buf_size=500),
         batch_size=BATCH_SIZE)
 
-test_reader = paddle.batch(
-    paddle.reader.shuffle(
+test_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.uci_housing.test(), buf_size=500),
         batch_size=BATCH_SIZE)
 ```
@@ -223,13 +223,13 @@ def reader_creator(train_data):
             yield d[:-1], d[-1:]  
     return reader
 
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         reader_creator(train_data), buf_size=500),
         batch_size=BATCH_SIZE)
 
-test_reader = paddle.batch(
-    paddle.reader.shuffle(
+test_reader = fluid.io.batch(
+    fluid.io.shuffle(
         reader_creator(test_data), buf_size=500),
         batch_size=BATCH_SIZE)
 ```
@@ -393,7 +393,7 @@ with fluid.scope_guard(inference_scope):
      fetch_targets] = fluid.io.load_inference_model(params_dirname, infer_exe) # load pre-predict model
     batch_size = 10
 
-    infer_reader = paddle.batch(
+    infer_reader = fluid.io.batch(
         paddle.dataset.uci_housing.test(), batch_size=batch_size) # prepare test dataset
 
     infer_data = next(infer_reader())
@@ -431,7 +431,7 @@ In this chapter, we analyzed dataset of Boston House Price to introduce the basi
 4. Bishop C M. Pattern recognition[J]. Machine Learning, 2006, 128.
 
 <br/>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">This tutorial</span> is contributed by <a xmlns:cc="http://creativecommons.org/ns#" href="http://book.paddlepaddle.org" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a>, and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">This tutorial</span> is contributed by <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.paddlepaddle.org.cn/" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a>, and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 </div>
 <!-- You can change the lines below now. -->

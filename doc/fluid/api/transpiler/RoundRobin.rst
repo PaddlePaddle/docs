@@ -6,6 +6,8 @@
 RoundRobin
 ----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.transpiler.RoundRobin
     :members:
     :inherited-members:

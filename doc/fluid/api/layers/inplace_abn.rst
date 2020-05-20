@@ -6,6 +6,8 @@
 inplace_abn
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.inplace_abn
     :noindex:
 

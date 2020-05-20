@@ -5,7 +5,7 @@
 ### 说明
 1. 硬件要求 本文可支持在CPU、GPU下运行
 2. 对docker file cuda/cudnn的支持 如果您使用了本文配套的docker镜像，请注意：该镜像对GPU的支持仅限于CUDA 8，cuDNN 5
-3. 文档中代码和seq2seq.py不一致的问题 请注意：为使本文更加易读易用，我们拆分、调整了seq2seq.py的代码并放入本文。本文中代码与seq2seq.py的运行结果一致，如希望直接看到训练脚本输出效果，可运行[seq2seq.py](https://github.com/PaddlePaddle/book/blob/develop/08.machine_translation/seq2seq.py)。
+3. 文档中代码和seq2seq.py不一致的问题 请注意：为使本文更加易读易用，我们拆分、调整了seq2seq.py的代码并放入本文。本文中代码与seq2seq.py的运行结果一致，如希望直接看到训练脚本输出效果，可运行[seq2seq.py](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/user_guides/nlp_case/machine_translation/seq2seq.py)。
 
 ## 背景介绍
 
@@ -436,15 +436,16 @@ def loss_func(logits, label, trg_sequence_length):
     return avg_cost
 
 def optimizer_func():
-    # 设置梯度裁剪
-    fluid.clip.set_gradient_clip(
-        clip=fluid.clip.GradientClipByGlobalNorm(clip_norm=5.0))
+    # 定义梯度裁剪策略
+    clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=5.0)
     # 定义先增后降的学习率策略
     lr_decay = fluid.layers.learning_rate_scheduler.noam_decay(hidden_dim, 1000)
+    # 定义优化器
     return fluid.optimizer.Adam(
         learning_rate=lr_decay,
         regularization=fluid.regularizer.L2DecayRegularizer(
-            regularization_coeff=1e-4))
+            regularization_coeff=1e-4),
+        grad_clip=clip)
 ```
 
 ## 训练模型
@@ -629,4 +630,4 @@ Ein Mann mit einem orangen Schutzhelm starrt etwas an .
 5. Papineni K, Roukos S, Ward T, et al. [BLEU: a method for automatic evaluation of machine translation](http://dl.acm.org/citation.cfm?id=1073135)[C]//Proceedings of the 40th annual meeting on association for computational linguistics. Association for Computational Linguistics, 2002: 311-318.
 
 <br/>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">本教程</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="http://book.paddlepaddle.org" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a> 创作，采用 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享 署名-相同方式共享 4.0 国际 许可协议</a>进行许可。
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">本教程</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.paddlepaddle.org.cn/" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a> 创作，采用 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享 署名-相同方式共享 4.0 国际 许可协议</a>进行许可。

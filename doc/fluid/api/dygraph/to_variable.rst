@@ -6,6 +6,8 @@
 to_variable
 -----------
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autofunction:: paddle.fluid.dygraph.to_variable
     :noindex:
 

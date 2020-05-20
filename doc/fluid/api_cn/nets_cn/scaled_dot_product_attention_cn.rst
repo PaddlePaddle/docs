@@ -3,7 +3,7 @@
 scaled_dot_product_attention
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:function:: paddle.fluid.nets.scaled_dot_product_attention(queries, keys, values, num_heads=1, dropout_rate=0.0)
 

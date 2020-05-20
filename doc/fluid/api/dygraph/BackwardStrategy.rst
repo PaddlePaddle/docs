@@ -6,6 +6,8 @@
 BackwardStrategy
 ----------------
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autoclass:: paddle.fluid.dygraph.BackwardStrategy
     :members:
     :noindex:

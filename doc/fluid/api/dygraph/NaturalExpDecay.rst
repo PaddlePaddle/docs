@@ -6,6 +6,8 @@
 NaturalExpDecay
 ---------------
 
+:api_attr: imperative programming (dynamic graph)
+
 ..  autoclass:: paddle.fluid.dygraph.NaturalExpDecay
     :members:
     :noindex:

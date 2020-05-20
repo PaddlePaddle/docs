@@ -6,6 +6,8 @@
 release_memory
 --------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.release_memory
     :noindex:
 

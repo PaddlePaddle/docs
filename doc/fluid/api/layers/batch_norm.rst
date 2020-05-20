@@ -6,6 +6,8 @@
 batch_norm
 ----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.batch_norm
     :noindex:
 

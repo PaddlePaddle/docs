@@ -6,6 +6,8 @@
 create_parameter
 ----------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.create_parameter
     :noindex:
 

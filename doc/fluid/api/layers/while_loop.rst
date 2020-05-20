@@ -6,6 +6,8 @@
 while_loop
 ----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.while_loop
     :noindex:
 

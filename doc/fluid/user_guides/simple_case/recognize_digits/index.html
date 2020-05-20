@@ -385,12 +385,12 @@ Next We start the training process. `Paddle.dataset.mnist.train()` and `paddle.d
 BATCH_SIZE = 64
 
 # read 500 data in train dataset, randomly disorder them and then transfer it into batched reader which yield 64 data each time.
-train_reader = paddle.batch(
+train_reader = fluid.io.batch(
         paddle.reader.shuffle(
             paddle.dataset.mnist.train(), buf_size=500),
         batch_size=BATCH_SIZE)
 # read data in test dataset and yield 64 data every time
-test_reader = paddle.batch(
+test_reader = fluid.io.batch(
             paddle.dataset.mnist.test(), batch_size=BATCH_SIZE)
 ```
 

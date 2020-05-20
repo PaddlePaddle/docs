@@ -7,6 +7,7 @@ fluid.dygraph
 
     dygraph/BackwardStrategy.rst
     dygraph/BatchNorm.rst
+    dygraph/BCELoss.rst
     dygraph/BilinearTensorProduct.rst
     dygraph/Conv2D.rst
     dygraph/Conv2DTranspose.rst
@@ -14,8 +15,8 @@ fluid.dygraph
     dygraph/Conv3DTranspose.rst
     dygraph/CosineDecay.rst
     dygraph/DataParallel.rst
-    dygraph/declarative.rst
     dygraph/disable_dygraph.rst
+    dygraph/disable_imperative.rst
     dygraph/Dropout.rst
     dygraph/dygraph_to_static_code.rst
     dygraph/dygraph_to_static_func.rst
@@ -23,21 +24,27 @@ fluid.dygraph
     dygraph/dygraph_to_static_program.rst
     dygraph/Embedding.rst
     dygraph/enable_dygraph.rst
+    dygraph/enable_imperative.rst
     dygraph/enabled.rst
     dygraph/ExponentialDecay.rst
     dygraph/grad.rst
     dygraph/GroupNorm.rst
+    dygraph/GRUCell.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
     dygraph/InstanceNorm.rst
     dygraph/InverseTimeDecay.rst
+    dygraph/L1Loss.rst
     dygraph/Layer.rst
     dygraph/LayerList.rst
     dygraph/LayerNorm.rst
     dygraph/Linear.rst
     dygraph/load_dygraph.rst
+    dygraph/LSTMCell.rst
+    dygraph/MSELoss.rst
     dygraph/NaturalExpDecay.rst
     dygraph/NCE.rst
+    dygraph/NLLLoss.rst
     dygraph/no_grad.rst
     dygraph/NoamDecay.rst
     dygraph/ParallelEnv.rst

@@ -6,6 +6,8 @@
 PipelineOptimizer
 -----------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.optimizer.PipelineOptimizer
     :members:
     :inherited-members:

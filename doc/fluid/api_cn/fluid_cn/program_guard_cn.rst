@@ -3,7 +3,7 @@
 program_guard
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
+:api_attr: 声明式编程模式(静态图)
 
 .. py:function:: paddle.fluid.program_guard(main_program, startup_program=None)
 

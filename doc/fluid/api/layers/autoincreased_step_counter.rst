@@ -6,6 +6,8 @@
 autoincreased_step_counter
 --------------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.autoincreased_step_counter
     :noindex:
 

@@ -299,12 +299,12 @@ print("Loading IMDB word dict....")
 word_dict = paddle.dataset.imdb.word_dict()
 
 print ("Reading training data....")
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.imdb.train(word_dict), buf_size=25000),
     batch_size=BATCH_SIZE)
 print("Reading testing data....")
-test_reader = paddle.batch(
+test_reader = fluid.io.batch(
     paddle.dataset.imdb.test(word_dict), batch_size=BATCH_SIZE)
 ```
 Word_dict is a dictionary sequence, which is the correspondence between words and labels. You can see it specifically by running the next code:
@@ -481,7 +481,7 @@ In this chapter, we take sentiment analysis as an example to introduce end-to-en
 9. Zhou J, Xu W. [End-to-end learning of semantic role labeling using recurrent neural networks](http://www.aclweb.org/anthology/P/P15/P15-1109.pdf)[C]//Proceedings of the Annual Meeting of the Association for Computational Linguistics. 2015.
 
 <br/>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">This tutorial</span> is contributed by <a xmlns:cc="http://creativecommons.org/ns#" href="http://book.paddlepaddle.org" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a>, and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="https://www.paddlepaddle.org.cn/" property="dct:title" rel="dct:type">This tutorial</span> is contributed by <a xmlns:cc="http://creativecommons.org/ns#" href="http://book.paddlepaddle.org" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a>, and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 </div>
 <!-- You can change the lines below now. -->

@@ -6,6 +6,8 @@
 bilinear_tensor_product
 -----------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.layers.bilinear_tensor_product
     :noindex:
 

@@ -6,6 +6,8 @@
 sequence_conv_pool
 ------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.nets.sequence_conv_pool
     :noindex:
 

@@ -6,6 +6,8 @@
 save_params
 -----------
 
+:api_attr: declarative programming (static graph)
+
 ..  autofunction:: paddle.fluid.io.save_params
     :noindex:
 

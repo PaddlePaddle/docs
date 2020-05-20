@@ -6,6 +6,8 @@
 WeightNormParamAttr
 -------------------
 
+:api_attr: declarative programming (static graph)
+
 ..  autoclass:: paddle.fluid.WeightNormParamAttr
     :members:
     :inherited-members:
