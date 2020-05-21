@@ -39,6 +39,23 @@ done
 python gen_doc.py --module_name "" --module_prefix "" --output nn --output_name nn --to_multiple_files True
 python gen_module_index.py nn paddle.nn
 
+# hapi
+for module in transforms models
+do
+  python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name  incubate.hapi.vision --to_multiple_files True --output_dir  incubate/hapi/vision
+  python gen_module_index.py incubate.hapi.vision.${module} ${module}
+done
+
+for module in text callbacks distributed download loss metrics model 
+do
+  python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name  incubate.hapi --to_multiple_files True --output_dir  incubate/hapi
+  python gen_module_index.py ${module} ${module}
+done
+
+python gen_module_index.py incubate.hapi.vision vision
+python gen_module_index.py incubate.hapi hapi
+python gen_module_index.py incubate paddle.incubate
+
 # index.rst
 python gen_index.py
 

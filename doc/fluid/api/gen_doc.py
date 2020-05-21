@@ -21,7 +21,8 @@ import contextlib
 import paddle.fluid as fluid
 import paddle.tensor as tensor
 import paddle.nn as nn
-import paddle.complex as complex
+import paddle.incubate.complex as complex
+import paddle.incubate as incubate
 #import paddle.framework as framework
 
 def parse_arg():
