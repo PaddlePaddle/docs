@@ -240,7 +240,7 @@ from paddle.imperative import to_variable
 paddle.enable_imperative()
 # 定义MNIST类的对象
 mnist = MNIST()
-# 定义优化器为AdamOptimizer，学习旅learning_rate为0.001
+# 定义优化器为AdamOptimizer，学习率learning_rate为0.001
 # 注意命令式编程下必须传入parameter_list参数，该参数为需要优化的网络参数，本例需要优化mnist网络中的所有参数
 adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
 ```
@@ -267,7 +267,7 @@ from paddle.imperative import to_variable
 paddle.enable_imperative()
 # 定义MNIST类的对象
 mnist = MNIST()
-# 定义优化器为AdamOptimizer，学习旅learning_rate为0.001
+# 定义优化器为AdamOptimizer，学习率learning_rate为0.001
 # 注意命令式编程下必须传入parameter_list参数，该参数为需要优化的网络参数，本例需要优化mnist网络中的所有参数
 adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
 
