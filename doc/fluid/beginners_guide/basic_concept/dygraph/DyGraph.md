@@ -751,12 +751,6 @@ class MNIST(fluid.dygraph.Layer):
 ```
 
 
-      File "<ipython-input-1-b7b25c28bae2>", line 25
-        @declarative
-                    ^
-    TabError: inconsistent use of tabs and spaces in indentation
-
-
 
 2） 利用ProgramTranslator进行转换
 
