@@ -114,7 +114,7 @@ Notes:
 
 1. :ref:`api_fluid_CompiledProgram` will convert the input Program into a computational graph, and :code:`compiled_prog` is a completely different object from the incoming :code:`train_program`. At present, :code:`compiled_prog` can not be saved.
 2. Multi-card training can also be used: ref:`api_fluid_ParallelExecutor` , but now it is recommended to use: :ref:`api_fluid_CompiledProgram`.
-3. If :code:`exe` is initialized with CUDAPlace, the model will be run in GPU. In the mode of graphics card training, all graphics card will be occupied. Users can configure `CUDA_VISIBLE_DEVICES <http://www.acceleware.com/blog/cudavisibledevices-masking-gpus>`_ to change graphics cards that are being used. 
+3. If :code:`exe` is initialized with CUDAPlace, the model will be run in GPU. In the mode of graphics card training, all graphics card will be occupied. Users can configure `CUDA_VISIBLE_DEVICES `_ to change graphics cards that are being used. 
 4. If :code:`exe` is initialized with CPUPlace, the model will be run in CPU. In this situation, the multi-threads are used to run the model, and the number of threads is equal to the number of logic cores. Users can configure `CPU_NUM`  to change the number of threads that are being used. 
 
 Advanced Usage

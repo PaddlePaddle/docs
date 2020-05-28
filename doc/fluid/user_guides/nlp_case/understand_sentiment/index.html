@@ -425,7 +425,7 @@ Then we use `create_lod_tensor` to create the tensor of the detail level. For a 
 
 ```python
 reviews_str = [
-    'read the book forget the movie', 'this is a great movie', 'this is very bad'
+    b'read the book forget the movie', b'this is a great movie', b'this is very bad'
 ]
 reviews = [c.split() for c in reviews_str]
 
@@ -435,6 +435,7 @@ for c in reviews:
     lod.append([word_dict.get(words, UNK) for words in c])
 
 base_shape = [[len(c) for c in lod]]
+lod = np.array(sum(lod, []), dtype=np.int64)
 
 tensor_words = fluid.create_lod_tensor(lod, base_shape, place)
 ```
@@ -481,7 +482,7 @@ In this chapter, we take sentiment analysis as an example to introduce end-to-en
 9. Zhou J, Xu W. [End-to-end learning of semantic role labeling using recurrent neural networks](http://www.aclweb.org/anthology/P/P15/P15-1109.pdf)[C]//Proceedings of the Annual Meeting of the Association for Computational Linguistics. 2015.
 
 <br/>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">This tutorial</span> is contributed by <a xmlns:cc="http://creativecommons.org/ns#" href="http://book.paddlepaddle.org" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a>, and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://paddlepaddleimage.cdn.bcebos.com/bookimage/camo.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="https://www.paddlepaddle.org.cn/" property="dct:title" rel="dct:type">This tutorial</span> is contributed by <a xmlns:cc="http://creativecommons.org/ns#" href="http://book.paddlepaddle.org" property="cc:attributionName" rel="cc:attributionURL">PaddlePaddle</a>, and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 </div>
 <!-- You can change the lines below now. -->

@@ -1,24 +1,22 @@
-﻿
 # Release Note
 
 ## 重要更新
 
-本版本深度优化了命令式编程模式（动态图）的功能、性能和体验，框架基础功能也进一步强化；原生推理库性能显著优化，轻量化推理引擎PaddleLite实现了对硬件支持的极大覆盖，PaddleServing全面升级，提供功能强大简单易用的服务化部署能力。对应的开发套件和工具组件进一步丰富完善，既有套件组件的功能和体验持续提升，全新发布PaddleClas视觉分类套件和量桨Paddle Quantum量子机器学习框架。
+本版本深度优化了命令式编程模式（动态图）的功能、性能和体验，框架基础功能也进一步强化；原生推理库性能显著优化，轻量化推理引擎PaddleLite实现了对硬件支持的极大覆盖，新发布前端推理引擎Paddle.js，PaddleServing全面升级，提供功能强大简单易用的服务化部署能力。对应的开发套件和工具组件进一步丰富完善，既有套件组件的功能和体验持续提升，全新发布PaddleClas视觉分类套件和量桨Paddle Quantum量子机器学习框架。
 
-**训练框架** ：深度优化了命令式编程（动态图）功能、性能和体验，特别是增强了动静转换的能力，能支持依赖数据的控制流的动态图实现进行静态存储部署，也可以转为静态图模式训练；Data Loader的功能和梯度裁剪的使用方式进一步优化；声明式编程模式下多卡运行时fetch不定长Tensor等问题得到解决，混合精度配合重计算显示出支持大Batch训练很好的成效。新增了大量API，并新增 ComplexVariable，支持复数张量的表示和常见的复数运算。
+**训练框架：** 深度优化了命令式编程（动态图）功能、性能和体验，特别是增强了动静转换的能力，能支持依赖数据的控制流的动态图实现进行静态存储部署，也可以转为静态图模式训练；Data Loader的功能和梯度裁剪的使用方式进一步优化；声明式编程模式下多卡运行时fetch不定长Tensor等问题得到解决，混合精度配合重计算显示出支持大Batch训练很好的成效。新增了大量API，并新增 ComplexVariable，支持复数张量的表示和常见的复数运算。
 
-**预测部署** ：Paddle inference 新增CUDA下多线程多流支持、TRT子图对动态shape输入的支持，强化量化推理，性能显著优化；Paddle Serving 全面升级，功能完善，易用性显著提升；Paddle Lite进一步优化编译安装体验，全面提升对支持芯片的覆盖度（包括RK、MTK、百度昆仑、寒武纪、比特大陆、华为NPU等等）以及对应的模型数量和性能；PaddleSlim量化、裁剪和NAS功能持续强化；新增Paddle.js发布，Paddle.js是国内首个开源JavaScript深度学习前端推理引擎，可以帮助用户实现网页端深度学习模型部署，搭建如小程序、网页游戏互动、美妆、试装等应用；
+**预测部署：** Paddle inference 新增CUDA下多线程多流支持、TRT子图对动态shape输入的支持，强化量化推理，性能显著优化；Paddle Serving 全面升级，功能完善，易用性显著提升；Paddle Lite进一步优化编译安装体验，全面提升对支持芯片的覆盖度（包括RK、MTK、百度昆仑、寒武纪、比特大陆、华为NPU等等）以及对应的模型数量和性能；PaddleSlim量化、裁剪和NAS功能持续强化；发布国内首个开源JavaScript深度学习前端推理引擎Paddle.js，可以帮助用户实现网页端深度学习模型部署。
 
-**开发套件** ：全新发布PaddleClas，包含23个图像分类网络实现，117个图像预训练模型，并添加了数据增广、SSLD蒸馏等辅助策略，以及特色应用案例；PaddleSeg人像分割系列模型全面升级，新增多种遥感相关的策略方案；PaddleDetection、PaddleOCR和语音合成套件Parakeet算法覆盖更全面，速度显著提升。
+**开发套件：** 全新发布PaddleClas，包含23个图像分类网络实现，117个图像预训练模型，并添加了数据增广、SSLD蒸馏等辅助策略，以及特色应用案例；PaddleSeg人像分割系列模型全面升级，新增多种遥感相关的策略方案；PaddleDetection、PaddleOCR和语音合成套件Parakeet算法覆盖更全面，速度显著提升。
 
-**工具组件** ：PaddleHub新增包括一系列视觉预训练模型在内更多的模型，BERT类预训练模型支持动态图模式下的一键加载； PaddleFL发布1.0版本，开源基于Mulit-party Computation (MPC)的联邦学习，支持横向、纵向等多个联邦学习场景；PGL发布业界首个结合语义信息与结构信息的图神经网络模型ERNIESage；PARL开源工业界首个进化学习应用框架Evokit；全新发布量子机器学习框架量桨Paddle Quantum。
+**工具组件：** PaddleHub新增包括一系列视觉预训练模型在内更多的模型，模型总数120+； PaddleFL发布1.0版本，开源基于Mulit-party Computation (MPC)的联邦学习，支持横向、纵向等多个联邦学习场景；PGL发布业界首个结合语义信息与结构信息的图神经网络模型ERNIESage；PARL开源工业界首个进化学习应用框架Evokit；全新发布量子机器学习框架量桨Paddle Quantum。
 
-## 基础框架
+##  基础框架
 
 ### 新增API
-
 - 新增`fluid.device_guard`：设置OP的运行设备为CPU或者GPU。
-- 新增 `fluid.enable_dygraph` 和 `fluid.disable_dygraph` 接口，支持函数式启动关闭动态图模式，相对`with fluid.dygraph.guard()`的方式减少代码缩进。
+- 新增 `fluid.enable_imperative` 和 `fluid.disable_imperative` 接口，支持函数式启动关闭动态图模式，相对`with fluid.dygraph.guard()`的方式减少代码缩进。
 - 在fluid.dygraph目录新增4个API（具体定义见文档）: BCELoss, L1Loss, MSELoss, NLLLoss, InstanceNorm
 - 在fluid.layers目录新增30个API（具体定义见文档）: addmm, allclose, arange, bmm, clamp, cross, diag_embed, dist, dot, elementwise_equal, flip, full, full_like, index_select, interpolate, log1p, log_softmax, logsumexp, meshgrid, nonzero, randint, randn, randperm, resize_bicubic, resize_linear, roll, t, tril, triu
 
@@ -31,7 +29,7 @@
     -  针对动态图下`no_grad`只能通过装饰器的方式使用的问题，新增了支持context manager使用方式，更方便动态图无梯度操作的代码编写。
     - 为了方便单独设置batchnorm和dropout两个op的train/eval模式设置，将train/eval模式信息从全局设置，变成Layer内部设置；新增Layer形式的Dropout，记录模式信息。
     - 支持 `cond` `switch` `while_loop` 控制流接口和 tensor array 的读写也可在动态图下使用 ，便于高层API的统一。
-    - 修改if var在动态图模式下的行为，按var中的值进行判断，解决动态图模式下 if x > y 行为与预期不符的问题；并支持将var转换为float/long/int/len/index的功能，提动态图升易用性。
+    - 修改`if var`在动态图模式下的行为（不兼容升级），按var中的值进行判断，解决动态图模式下 if x > y 行为与预期不符的问题；并支持将var转换为float/long/int/len/index的功能，提动态图升易用性。
     - 针对任务中强依赖hook的功能，新增Layer的forward pre-hook和forward post-hook接口，可以在不改变网络输入输出的结构的情况下方便地获取、改变网络中间层变量的值，提升动态图易用性。
     - 支持cudnn algorithm cache可以在动态图模式下生效，在waveflow模型上性能提升200%。
 
