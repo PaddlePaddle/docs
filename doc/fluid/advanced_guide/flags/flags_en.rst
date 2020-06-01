@@ -2,8 +2,8 @@
 FLAGS
 ==================
 
-Method of use
---------------
+Usage
+------
 These FLAGS in PaddlePaddle can be set in two ways.
 
 - Set the FLAGS through export. For example: :code:`export FLAGS_eager_delete_tensor_gb = True` .
