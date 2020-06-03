@@ -11,4 +11,4 @@
     :hidden:
 
     inference_deployment/index_cn.rst
-
+    flags/flags_cn.rst
