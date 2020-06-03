@@ -19,7 +19,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. math::
     moment\_2\_out=\beta_2∗moment\_2+(1−\beta_2)∗grad*grad
 .. math::
-    learning\_rate=learning\_rate*frac{\sqrt{1 - beta_2^t}}{1-\beta_1^t}
+    learning\_rate=learning\_rate*\frac{\sqrt{1 - beta_2^t}}{1-\beta_1^t}
 .. math::
     param\_out=param-learning\_rate*\frac{moment\_1}{\sqrt{moment\_2}+\epsilon}\\
 
