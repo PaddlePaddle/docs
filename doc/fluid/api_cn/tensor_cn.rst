@@ -65,6 +65,7 @@ paddle.tensor
     tensor_cn/greater_than_cn.rst
     tensor_cn/has_inf_cn.rst
     tensor_cn/has_nan_cn.rst
+    tensor_cn/histogram_cn.rst
     tensor_cn/increment_cn.rst
     tensor_cn/index_sample_cn.rst
     tensor_cn/index_select_cn.rst
