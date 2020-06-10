@@ -26,7 +26,7 @@ For the first time to submit Pull Request,you need to sign CLA(Contributor Licen
 
 <div align="center">
 
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/cla_unsigned.png?raw=true"  height="330" width="400">
+<img src="https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/cla_unsigned.png?raw=true"  height="40" width="500">
 
  </div>
 
