@@ -6,7 +6,7 @@ for API_FILE in ${API_FILES[*]}; do
   if [ "${API_CHANGE}" ];then
     approval_line=`curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/FluidDoc/pulls/${GIT_PR_ID}/reviews?per_page=10000`
     if [ "${API_FILE}" == "doc/fluid" ];then
-      APPROVALS=`echo ${approval_line}|python ./scripts/check_pr_approval.py 1 31623103 27208573 29231 28379894` 
+      APPROVALS=`echo ${approval_line}|python ./scripts/check_pr_approval.py 1 2870059 27208573 29231 28379894` 
     fi
   fi
   if [ "${APPROVALS}" == "FALSE" ]; then
