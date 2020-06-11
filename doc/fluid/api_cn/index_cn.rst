@@ -9,6 +9,8 @@ API Reference
     fluid_cn.rst
     backward_cn.rst
     clip_cn.rst
+    data/data_reader_cn.rst
+    data/dataset_cn.rst
     dataset_cn.rst
     dygraph_cn.rst
     executor_cn.rst
