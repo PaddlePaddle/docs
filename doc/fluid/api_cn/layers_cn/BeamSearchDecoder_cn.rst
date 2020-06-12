@@ -4,7 +4,7 @@ BeamSearchDecoder
 -------------------------------
 
 
-:api_attr: 声明式编程模式(静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 .. py:class:: paddle.fluid.layers.BeamSearchDecoder(cell, start_token, end_token, beam_size, embedding_fn=None, output_fn=None)
     
