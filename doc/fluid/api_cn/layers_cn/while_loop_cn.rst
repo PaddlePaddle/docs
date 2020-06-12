@@ -4,7 +4,7 @@ while_loop
 ____________________________________
 
 
-:api_attr: 声明式编程模式(静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 .. py:function:: paddle.fluid.layers.while_loop(cond, body, loop_vars, is_test=False, name=None)
 
