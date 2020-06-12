@@ -6,7 +6,7 @@ sequence_first_step
 
 .. py:function:: paddle.fluid.layers.sequence_first_step(input)
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 
 

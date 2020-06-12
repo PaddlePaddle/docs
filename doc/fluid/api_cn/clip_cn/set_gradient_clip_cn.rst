@@ -6,7 +6,7 @@ set_gradient_clip
 
 .. py:function:: paddle.fluid.clip.set_gradient_clip(clip, param_list=None, program=None)
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 
 

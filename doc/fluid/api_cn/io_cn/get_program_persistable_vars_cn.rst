@@ -5,7 +5,7 @@ get_program_persistable_vars
 
 .. py:function:: paddle.fluid.io.get_program_persistable_vars(program)
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 
 

@@ -7,7 +7,7 @@ Decoder
 
 .. py:class:: paddle.fluid.layers.Decoder()
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 
 
