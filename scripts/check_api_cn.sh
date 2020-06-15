@@ -21,7 +21,7 @@ if [ $? -eq 0 ];then
     echo $api_files
     cd $PWD/doc/fluid/api_cn/
     for api_file in $api_files;do
-        if [ "$api_file" != "fluid_cn/DistributeTranspiler_cn.rst" ];then
+        if [ "$api_file" != "fluid_cn/DistributeTranspiler_cn.rst" ] && [ "$api_file" != "transpiler_cn/DistributeTranspiler_cn.rst" ];then
             echo 'api_file: '$api_file  
             python chinese_samplecode_processor.py $api_file
         fi
