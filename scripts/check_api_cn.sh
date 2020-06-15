@@ -18,8 +18,10 @@ files=`find $PWD/doc/fluid/api_cn | xargs ls -d | grep 'doc/fluid/api_cn/.*/.*.r
 if [ $? -eq 0 ];then
     se = $PWD/doc/fluid/api_cn/
     api_files=`echo $files|sed 's#'$PWD'/doc/fluid/api_cn/##g'`
+    echo $api_files
     cd $PWD/doc/fluid/api_cn/
     for api_file in $api_files;do
+        echo 'api_file: '$api_file  
         python chinese_samplecode_processor.py $api_file
     done
 fi
