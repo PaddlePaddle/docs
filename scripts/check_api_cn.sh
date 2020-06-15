@@ -14,21 +14,14 @@ else
    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl 
 fi
 
-for files in `echo $git_files`;do
-  grep "code-block" $files
-  if [ $? -eq 0 ] ;then 
-    echo $files|grep 'doc/fluid/api_cn/.*/.*.rst'
-    if [ $? -eq 0 ];then
-        api_file=`echo $files|sed 's#doc/fluid/api_cn/##g'`
-        cd /FluidDoc/doc/fluid/api_cn/
-        grep -w "$api_file" /FluidDoc/scripts/api_white_list.txt
-        if [ $? -ne 0 ];then
-            python chinese_samplecode_processor.py $api_file
-            if [ $? -ne 0 ];then
-                exit 5
-            fi
-        fi 
-    fi
-  fi
-done
+files=`find $PWD/doc/fluid/api_cn | xargs ls -d | grep 'doc/fluid/api_cn/.*/.*.rst'`
+if [ $? -eq 0 ];then
+    se = $PWD/doc/fluid/api_cn/
+    api_files=`echo $files|sed 's#'$PWD'/doc/fluid/api_cn/##g'`
+    cd $PWD/doc/fluid/api_cn/
+    for api_file in $api_files;do
+        python chinese_samplecode_processor.py $api_file
+    done
+fi
+
 
