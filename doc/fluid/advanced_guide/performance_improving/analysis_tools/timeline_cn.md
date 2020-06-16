@@ -69,7 +69,7 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
         profiler.start_profiler("All")
     elif pass_id == 0 and batch_id == 10:
         profiler.stop_profiler("total", "/tmp/profile_"+ str(trainer_id))
-
+        
     ```
 1. pserver可以通过加两个环境变量打开profile，例如：
 ```
