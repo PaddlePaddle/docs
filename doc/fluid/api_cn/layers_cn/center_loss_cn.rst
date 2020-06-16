@@ -6,7 +6,7 @@ center_loss
 
 .. py:function:: paddle.fluid.layers.center_loss(input, label, num_classes, alpha, param_attr, update_center=True)
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr: 声明式编程(静态图)专用API
 :alias_main: paddle.nn.functional.center_loss
 :alias: paddle.nn.functional.center_loss,paddle.nn.functional.loss.center_loss
 :old_api: paddle.fluid.layers.center_loss

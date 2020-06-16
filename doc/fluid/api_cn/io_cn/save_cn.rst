@@ -6,7 +6,7 @@ save
 
 .. py:function:: paddle.fluid.io.save(program, model_path)
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 
 

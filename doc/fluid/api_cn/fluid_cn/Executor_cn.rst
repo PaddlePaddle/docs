@@ -7,7 +7,7 @@ Executor
 
 .. py:class:: paddle.fluid.Executor (place=None)
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 
 
