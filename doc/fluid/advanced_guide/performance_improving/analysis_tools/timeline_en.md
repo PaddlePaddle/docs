@@ -62,7 +62,17 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
 ## Distributed
 This tool can support distributed train programs(pserver and trainer) too.
 
-1. Open traniner profiler just like how to use in [local](#local).
+1. Open traniner profiler just like how to use in [local](#local), but remember to adjust the path of profile to each trainer, since there maybe more than one trainer in the same node.
+    ```python
+    # or other method to get the unique id of the current trainer
+    trainer_id = int(os.environ.get('PADDLE_TRAINER_ID'))
+
+    if pass_id == 0 and batch_id == 5:
+        profiler.start_profiler("All")
+    elif pass_id == 0 and batch_id == 10:
+        profiler.stop_profiler("total", "/tmp/profile_"+ str(trainer_id))
+
+    ```
 
 2. Open pserver profiler: add two environment variables, e.g.:
 ```

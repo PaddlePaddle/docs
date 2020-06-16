@@ -60,9 +60,19 @@ python Paddle/tools/timeline.py --profile_path=/tmp/profile --timeline_path=time
 ## 分布式使用
 一般来说，分布式的训练程序都会有两种程序：pserver和trainer。我们提供了把pserver和trainer的profile日志用timeline来显示的方式。
 
-1. trainer打开方式与[本地使用](#local)部分的第1步相同
+1. trainer打开方式与[本地使用](#local)部分的第1步基本相同，但因为存在多个trainer，需要对每个trainer做区分。例如：
+    ```python
+    # or other method to get the unique id of the current trainer
+    trainer_id = int(os.environ.get('PADDLE_TRAINER_ID'))
 
-1. pserver可以通过加两个环境变量打开profile，例如：
+    if pass_id == 0 and batch_id == 5:
+        profiler.start_profiler("All")
+    elif pass_id == 0 and batch_id == 10:
+        profiler.stop_profiler("total", "/tmp/profile_"+ str(trainer_id))
+        
+    ```
+
+2. pserver可以通过加两个环境变量打开profile，例如：
 ```
 FLAGS_rpc_server_profile_period=10 FLAGS_rpc_server_profile_path=./tmp/pserver python train.py
 ```
