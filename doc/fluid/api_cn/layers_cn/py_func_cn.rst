@@ -3,7 +3,7 @@
 py_func
 -------------------------------
 
-:api_attr: 声明式编程模式(静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 .. py:function:: paddle.fluid.layers.py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None)
 

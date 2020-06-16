@@ -4,7 +4,7 @@ rnn
 -------------------------------
 
 
-:api_attr: 声明式编程模式(静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 .. py:method:: paddle.fluid.layers.rnn(cell, inputs, initial_states=None, sequence_length=None, time_major=False, is_reverse=False, **kwargs)
     

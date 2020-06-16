@@ -3,7 +3,7 @@
 ModelAverage
 -------------------------------
 
-:api_attr: 声明式编程模式(静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 .. py:class:: paddle.fluid.optimizer.ModelAverage(average_window_rate, min_average_window=10000, max_average_window=10000, regularization=None, name=None)
 

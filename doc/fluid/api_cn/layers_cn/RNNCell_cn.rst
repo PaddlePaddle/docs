@@ -4,7 +4,7 @@ RNNCell
 -------------------------------
 
 
-:api_attr: 声明式编程模式(静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 .. py:class:: paddle.fluid.layers.RNNCell(name=None)
 RNNCell是抽象的基类，代表将输入和状态映射到输出和新状态的计算，主要用于RNN。

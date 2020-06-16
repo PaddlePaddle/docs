@@ -4,7 +4,7 @@
 create_random_int_lodtensor
 -------------------------------
 
-:api_attr: 声明式编程模式(静态图)
+:api_attr: 声明式编程(静态图)专用API
 
 .. py:function:: paddle.fluid.create_random_int_lodtensor(recursive_seq_lens, base_shape, place, low, high)
 
