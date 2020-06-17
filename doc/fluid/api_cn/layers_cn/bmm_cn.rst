@@ -3,7 +3,7 @@
 bmm
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.bmm(x, y, name=None):
+.. py:function:: paddle.tensor.bmm(x, y, name=None):
 
 对输入x及输入y进行矩阵相乘。
 
@@ -30,6 +30,7 @@ bmm
 
 .. code-block:: python
     
+    import numpy as np
     import paddle
     import paddle.fluid as fluid
     # size input1: (2, 2, 3) and input2: (2, 3, 2)
@@ -38,7 +39,7 @@ bmm
     with fluid.dygraph.guard():
         x = fluid.dygraph.to_variable(input1)
         y = fluid.dygraph.to_variable(input2)
-        out = fluid.layers.bmm(x, y)
+        out = paddle.bmm(x, y)
         #output size: (2, 2, 2)
         #output value:
         #[[[6.0, 6.0],[12.0, 12.0]],[[45.0, 45.0],[60.0, 60.0]]]
