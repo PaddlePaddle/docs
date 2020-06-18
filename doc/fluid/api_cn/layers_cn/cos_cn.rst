@@ -5,6 +5,12 @@ cos
 
 .. py:function:: paddle.fluid.layers.cos(x, name=None)
 
+:alias_main: paddle.cos
+:alias: paddle.cos,paddle.tensor.cos,paddle.tensor.math.cos
+:old_api: paddle.fluid.layers.cos
+
+
+
 余弦函数。
 
 .. math::

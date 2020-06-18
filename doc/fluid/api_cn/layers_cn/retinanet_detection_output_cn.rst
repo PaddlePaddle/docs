@@ -5,6 +5,12 @@ retinanet_detection_output
 
 .. py:function:: paddle.fluid.layers.retinanet_detection_output(bboxes, scores, anchors, im_info, score_threshold=0.05, nms_top_k=1000, keep_top_k=100, nms_threshold=0.3, nms_eta=1.0)
 
+:alias_main: paddle.nn.functional.retinanet_detection_output
+:alias: paddle.nn.functional.retinanet_detection_output,paddle.nn.functional.vision.retinanet_detection_output
+:old_api: paddle.fluid.layers.retinanet_detection_output
+
+
+
 在 `RetinaNet <https://arxiv.org/abs/1708.02002>`_ 中，有多个 `FPN <https://arxiv.org/abs/1612.03144>`_ 层会输出用于分类的预测值和位置回归的预测值，该OP通过执行以下步骤将这些预测值转换成最终的检测结果：
 
 1. 在每个FPN层上，先剔除分类预测值小于score_threshold的anchor，然后按分类预测值从大到小排序，选出排名前nms_top_k的anchor，并将这些anchor与其位置回归的预测值做解码操作得到检测框。

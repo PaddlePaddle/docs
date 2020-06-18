@@ -5,6 +5,12 @@ pool3d
 
 .. py:function:: paddle.fluid.layers.pool3d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True, data_format="NCDHW")
 
+:alias_main: paddle.nn.functional.pool3d
+:alias: paddle.nn.functional.pool3d,paddle.nn.functional.pooling.pool3d
+:old_api: paddle.fluid.layers.pool3d
+
+
+
 该OP使用上述输入参数的池化配置，为三维空间池化操作，根据 ``input`` ，池化核大小 ``pool_size`` ，池化类型 ``pool_type`` ，步长 ``pool_stride`` 和填充 ``pool_padding`` 等参数计算输出。
 
 输入 ``input`` 和输出（Out）采用NCDHW或NDHWC格式，其中N是批大小，C是通道数，D，H和W分别是特征的深度，高度和宽度。

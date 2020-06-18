@@ -5,6 +5,9 @@ LambOptimizer
 
 .. py:class:: paddle.fluid.optimizer.LambOptimizer(learning_rate=0.001, lamb_weight_decay=0.01, beta1=0.9, beta2=0.999, epsilon=1e-06, parameter_list=None, regularization=None, grad_clip=None, exclude_from_weight_decay_fn=None, name=None)
 
+
+
+
 LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器
 LAMB的优化器旨在不降低精度的前提下增大训练的批量大小，其支持自适应的逐元素更新和精确的分层校正。 更多信息请参考 `Large Batch Optimization for
 Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf>`_ 。

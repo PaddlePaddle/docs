@@ -4,6 +4,12 @@ GradientClipByGlobalNorm
 -------------------------------
 
 .. py:class:: paddle.fluid.clip.GradientClipByGlobalNorm(clip_norm, group_name='default_group', need_clip=None)
+
+:alias_main: paddle.nn.GradientClipByGlobalNorm
+:alias: paddle.nn.GradientClipByGlobalNorm,paddle.nn.clip.GradientClipByGlobalNorm
+:old_api: paddle.fluid.clip.GradientClipByGlobalNorm
+
+
  
 将一个 Tensor列表 :math:`t\_list` 中所有Tensor的L2范数之和，限定在 ``clip_norm`` 范围内。
 
@@ -65,7 +71,7 @@ GradientClipByGlobalNorm
     exe = fluid.Executor(place)
     x = np.random.uniform(-100, 100, (10, 2)).astype('float32')
     exe.run(startup_prog)
-    out = exe.run(main_prog, feed={'x': x}, fetch_list=[loss])
+    out = exe.run(main_prog, feed={'x': x}, fetch_list=loss)
 
 
 **代码示例2：动态图**

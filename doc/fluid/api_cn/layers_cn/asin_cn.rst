@@ -5,6 +5,12 @@ asin
 
 .. py:function:: paddle.fluid.layers.asin(x, name=None)
 
+:alias_main: paddle.asin
+:alias: paddle.asin,paddle.tensor.asin,paddle.tensor.math.asin
+:old_api: paddle.fluid.layers.asin
+
+
+
 arcsine激活函数。
 
 .. math::

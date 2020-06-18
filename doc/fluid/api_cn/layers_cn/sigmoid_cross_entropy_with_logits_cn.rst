@@ -5,6 +5,12 @@ sigmoid_cross_entropy_with_logits
 
 .. py:function:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits(x, label, ignore_index=-100, name=None, normalize=False)
 
+:alias_main: paddle.nn.functional.sigmoid_cross_entropy_with_logits
+:alias: paddle.nn.functional.sigmoid_cross_entropy_with_logits,paddle.nn.functional.loss.sigmoid_cross_entropy_with_logits
+:old_api: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
+
+
+
 在每个类别独立的分类任务中，该OP可以计算按元素的概率误差。可以将其视为预测数据点的标签，其中标签不是互斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
 logistic loss可通过下式计算：

@@ -5,6 +5,9 @@ locality_aware_nms
 
 .. py:function:: paddle.fluid.layers.locality_aware_nms(bboxes, scores, score_threshold, nms_top_k, keep_top_k, nms_threshold=0.3, normalized=True, nms_eta=1.0, background_label=-1, name=None)
 
+
+
+
 **局部感知NMS**
 
 `局部感知NMS <https://arxiv.org/abs/1704.03155>`_ 用于对边界框（bounding box）和评分（scores）执行局部感知非极大值抑制（LANMS）。

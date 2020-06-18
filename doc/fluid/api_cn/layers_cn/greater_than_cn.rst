@@ -5,6 +5,12 @@ greater_than
 
 .. py:function:: paddle.fluid.layers.greater_than(x, y, cond=None)
 
+:alias_main: paddle.greater_than
+:alias: paddle.greater_than,paddle.tensor.greater_than,paddle.tensor.logic.greater_than
+:old_api: paddle.fluid.layers.greater_than
+
+
+
 该OP逐元素地返回 :math:`x > y` 的逻辑值，使用重载算子 `>` 可以有相同的计算函数效果。
 
 参数：

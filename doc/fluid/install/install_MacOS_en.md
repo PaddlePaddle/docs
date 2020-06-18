@@ -61,11 +61,9 @@
 
 ## Choose an installation method
 
-Under the MacOS system we offer 5 installation methods:
+Under the MacOS system we offer 3 installation methods:
 
 * Pip installation (recommend)
-* [Conda installation](./install_Conda.html)
-* [Docker installation](./install_Docker.html)
 * [Source code compilation and installation](./compile/compile_MacOS.html#mac_source)
 * [Docker source code compilation and installation](./compile/compile_MacOS.html#mac_docker)
 
@@ -75,8 +73,8 @@ We will introduce pip installation here.
 ## Installation steps
 
 * CPU version of PaddlePaddle：
-  * For Python 2: `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3: `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2: `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3: `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 You can[Verify installation succeeded or not](#check), if you have any questions, please check[FAQ](./FAQ.html)
 

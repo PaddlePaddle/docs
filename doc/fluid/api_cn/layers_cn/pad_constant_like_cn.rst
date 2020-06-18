@@ -5,6 +5,12 @@ pad_constant_like
 
 .. py:function:: paddle.fluid.layers.pad_constant_like(x, y, pad_value=0.0, name=None)
 
+:alias_main: paddle.nn.functional.pad_constant_like
+:alias: paddle.nn.functional.pad_constant_like,paddle.nn.functional.common.pad_constant_like
+:old_api: paddle.fluid.layers.pad_constant_like
+
+
+
 该OP使用 ``pad_value`` 填充 ``y`` ，填充到每个维度值的数量由x和y的形状而指定，((0，x.shape[0] - y.shape[0]), ..., (0, x.shape[i] - y.shape[i]), ..., (0, x.shape[n] - y.shape[n]))是每个维度填充的宽度，对于维度i，填充宽度 ``(0, x.shape[i] - y.shape[i])`` ，表示在y的第i维开头不填充，而在末尾填充 ``x.shape[i] - y.shape[i]`` 个位置。该OP要求y与x具有相同的秩，并且对每个维度i， ``y.shape[i] <= x.shape[i]`` 。
 
 **示例**：

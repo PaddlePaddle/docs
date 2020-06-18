@@ -5,6 +5,11 @@ log1p
 
 .. py:function:: paddle.tensor.log1p(x, out=None, name=None)
 
+:alias_main: paddle.log1p
+:alias: paddle.log1p,paddle.tensor.log1p,paddle.tensor.math.log1p
+
+
+
 
 该OP计算Log1p（加一的自然对数）结果。
 

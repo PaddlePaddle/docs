@@ -3,9 +3,12 @@
 sequence_slice
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.sequence_slice(input, offset, length, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 **实现Sequence Slice(序列切片)运算**
 
@@ -36,7 +39,7 @@ sequence_slice
    ``offset`` 从0开始。
 
 参数:
-  - **input** (Variable) – 输入变量，类型为LoDTensor，承载着完整的序列
+  - **input** (Variable) – 输入变量，类型为LoDTensor，承载着完整的序列。数据类型为float32，float64，int32或int64。
   - **offset** (Variable) – 指定每个序列切片的起始索引，数据类型为int32或int64。
   - **length** (Variable) – 指定每个子序列的长度，数据类型为int32或int64。
   - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。

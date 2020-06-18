@@ -5,6 +5,9 @@ sum
 
 .. py:function:: paddle.fluid.layers.sum(x)
 
+
+
+
 该OP用于对输入的一至多个Tensor或LoDTensor求和。如果输入的是LoDTensor，输出仅与第一个输入共享LoD信息（序列信息）。
 
 例1：

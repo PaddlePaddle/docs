@@ -5,6 +5,12 @@ prroi_pool
 
 .. py:function:: paddle.fluid.layers.prroi_pool(input, rois, output_channels, spatial_scale, pooled_height, pooled_width, name=None)
 
+:alias_main: paddle.nn.functional.prroi_pool
+:alias: paddle.nn.functional.prroi_pool,paddle.nn.functional.vision.prroi_pool
+:old_api: paddle.fluid.layers.prroi_pool
+
+
+
 PRROIPool运算
 
 精确区域池化方法（Precise region of interest pooling，也称为PRROIPooling）是对输入的 "感兴趣区域"(RoI)执行插值处理，将离散的特征图数据映射到一个连续空间，使用二重积分再求均值的方式实现Pooling。

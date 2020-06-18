@@ -5,6 +5,9 @@ Tensor
 
 .. py:function:: paddle.fluid.Tensor
 
+
+
+
 Tensor用于表示多维张量，可以通过 ``np.array(tensor)`` 方法转换为numpy.ndarray。
 
 **示例代码**

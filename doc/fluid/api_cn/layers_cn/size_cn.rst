@@ -5,6 +5,9 @@ size
 
 .. py:function:: paddle.fluid.layers.size(input)
 
+
+
+
 返回张量的单元数量，是一个shape为[1]的int64的张量。
 
 参数:

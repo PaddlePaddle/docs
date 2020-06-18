@@ -5,6 +5,12 @@ npair_loss
 
 .. py:function:: paddle.fluid.layers.npair_loss(anchor, positive, labels, l2_reg=0.002)
 
+:alias_main: paddle.nn.functional.npair_loss
+:alias: paddle.nn.functional.npair_loss,paddle.nn.functional.loss.npair_loss
+:old_api: paddle.fluid.layers.npair_loss
+
+
+
 **Npair Loss Layer**
 
 参考阅读 `Improved Deep Metric Learning with Multi class N pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_

@@ -5,6 +5,11 @@ full_like
 
 .. py:function:: paddle.full_like(input, fill_value, out=None, dtype=None, device=None, stop_gradient=True, name=None)
 
+:alias_main: paddle.full_like
+:alias: paddle.full_like,paddle.tensor.full_like,paddle.tensor.creation.full_like
+
+
+
 该OP创建一个和input具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
 
 参数：

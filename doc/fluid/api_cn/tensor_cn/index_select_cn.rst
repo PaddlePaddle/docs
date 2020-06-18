@@ -5,6 +5,11 @@ index_select
 
 .. py:function:: paddle.index_select(input, index, dim=0)
 
+:alias_main: paddle.index_select
+:alias: paddle.index_select,paddle.tensor.index_select,paddle.tensor.search.index_select
+
+
+
 该OP沿着指定维度 ``dim`` 对输入 ``input`` 进行索引，取 ``index`` 中指定的相应项，然后返回到一个新的张量。这里 ``index`` 是一个 ``1-D`` 张量。除 ``dim`` 维外，返回的张量其余维度大小同输入 ``input`` ， ``dim`` 维大小等于 ``index`` 的大小。
         
 **参数**：

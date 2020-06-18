@@ -5,6 +5,9 @@ NumpyArrayInitializer
 
 .. py:class:: paddle.fluid.initializer.NumpyArrayInitializer(value)
 
+
+
+
 该OP使用Numpy型数组来初始化参数变量。
 
 参数：
