@@ -7,7 +7,7 @@ ReduceLROnPlateau
 
 .. py:class:: paddle.fluid.dygraph.ReduceLROnPlateau(learning_rate, mode='min', decay_rate=0.1, patience=10, verbose=False, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-8, dtype='float32')
 
-该API为 ``loss`` 自适应的学习率衰减策略。当 ``loss`` 停止下降时，降低学习率。其思想是：一旦模型表现不再提升，将学习率降低2-10倍对模型的训练往往有益。
+该API为 ``loss`` 自适应的学习率衰减策略。默认情况下，当 ``loss`` 停止下降时，降低学习率（如果将 ``mode`` 设置为`'max'` ，此时判断逻辑相反， ``loss`` 停止上升时降低学习率）。其思想是：一旦模型表现不再提升，将学习率降低2-10倍对模型的训练往往有益。
 
 ``loss`` 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的1-D Tensor。 如果 ``loss`` 停止下降超过 ``patience`` 个epoch，学习率将会减小为
 `learning_rate * decay_rate` 。
