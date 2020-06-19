@@ -42,7 +42,6 @@ NCE
             words.append(fluid.dygraph.base.to_variable(inp_word[i]))
 
         emb = fluid.Embedding(
-            'embedding',
             size=[dict_size, 32],
             param_attr='emb.w',
             is_sparse=False)
@@ -57,17 +56,17 @@ NCE
 
         embs3 = fluid.layers.concat(input=embs3, axis=1)
         nce = fluid.NCE(
-                     num_total_classes=dict_size,
-                     dim=embs3.shape[1],
-                     num_neg_samples=2,
-                     sampler="custom_dist",
-                     custom_dist=nid_freq_arr.tolist(),
-                     seed=1,
-                     param_attr='nce.w',
-                     bias_attr='nce.b')
+                    num_total_classes=dict_size,
+                    dim=embs3.shape[1],
+                    num_neg_samples=2,
+                    sampler="custom_dist",
+                    custom_dist=nid_freq_arr.tolist(),
+                    seed=1,
+                    param_attr='nce.w',
+                    bias_attr='nce.b')
 
         wl = fluid.layers.unsqueeze(words[label_word], axes=[0])
-        nce_loss3 = nce(embs3, words[label_word])
+        nce_loss3 = nce(embs3, wl)
 
 属性
 ::::::::::::
