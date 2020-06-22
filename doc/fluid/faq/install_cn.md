@@ -230,7 +230,7 @@ MacOS本机直接通过源码编译的方式安装PaddlePaddle出现`[paddle/flu
 
 + 问题解答
 
-使用cmake版本为3.4则可。自行编译建议GCC版本:4.8、5.4以及更高。
+使用cmake版本为3.10则可。自行编译建议GCC版本:4.8、5.4以及更高。
 
 ##### Q: `wget: command not found`
 
