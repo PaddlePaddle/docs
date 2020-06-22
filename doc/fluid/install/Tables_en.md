@@ -17,7 +17,7 @@
     <tbody>
     <tr>
         <td> CMake </td>
-        <td> 3.10 </td>
+        <td> 3.10, 3.11, 3.15, 3.16(Recommend),3.17 </td>
         <td> There is an official bug in version 3.12/3.13/3.14, please skip this version </td> 
         <td>  </td>
     </tr>
