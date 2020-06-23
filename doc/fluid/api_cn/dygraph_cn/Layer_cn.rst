@@ -260,7 +260,7 @@ hook(Layer, input, output) -> None or modified output
 
 将一个Variable注册为buffer。
 
-buffer是一个非参数类型的变量，不会被优化器更新，但在对于评估和预测阶段是必要的。比如 ``BatchNorm`` 中的均值和方差。
+buffer是一个非参数类型的变量，不会被优化器更新，但在评估或预测阶段可能是必要的状态变量。比如 ``BatchNorm`` 中的均值和方差。
 
 注册的buffer默认是可持久性的，会被保存到 ``state_dict`` 中。如果指定 ``persistable`` 参数为False，则会注册一个非持久性的buffer，即不会同步和保存到 ``state_dict`` 中。
 
@@ -371,13 +371,13 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在对�
 
 .. py:method:: state_dict(destination=None, include_sublayers=True)
 
-获取当前层及其子层的所有参数。并将所有参数存放在dict结构中。
+获取当前层及其子层的所有参数和可持久性buffers。并将所有参数和buffers存放在dict结构中。
 
 参数：
-    - **destination** (dict, 可选) - 如果提供 ``destination`` ，则所有参数都将存放在 ``destination`` 中。 默认值：None。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则包括子层的参数。默认值：True。
+    - **destination** (dict, 可选) - 如果提供 ``destination`` ，则所有参数和可持久性buffers都将存放在 ``destination`` 中。 默认值：None。
+    - **include_sublayers** (bool, 可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
 
-返回：包含所有参数的dict
+返回：包含所有参数和可持久行buffers的dict
 
 返回类型：dict
 
@@ -393,11 +393,11 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在对�
 
 .. py:method:: set_dict(stat_dict, include_sublayers=True)
 
-根据传入的 ``stat_dict`` 设置参数和可持久性的buffers。 所有参数和buffers将由 ``stat_dict`` 中的 ``Tensor`` 设置。
+根据传入的 ``stat_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``stat_dict`` 中的 ``Tensor`` 设置。
 
 参数：
-    - **state_dict** (dict) - 包含所有参数和可持久性的buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数。 默认值：True。
+    - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
+    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
 
 返回：None
 
