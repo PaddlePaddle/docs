@@ -2,6 +2,7 @@
 
 DIR_PATH="/FluidDoc"
 
+/bin/bash  ${DIR_PATH}/scripts/check_code.sh
 /bin/bash  ${DIR_PATH}/scripts/check_api_cn.sh
 if [ $? -ne 0 ];then
   exit 1
