@@ -44,7 +44,7 @@ function check_style(){
 	pre-commit install
 	commit_files=on
     	for file_name in `git diff --numstat upstream/$BRANCH| awk '{print $NF}'`;do
-        	if [[ ! `pre-commit run --files $file_name` ]]; then
+        	if  ! pre-commit run --files $file_name ; then
             		git diff
             		commit_files=off
         	fi
