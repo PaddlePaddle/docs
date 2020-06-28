@@ -28,12 +28,8 @@ BENCHMARK_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}")/.." && pwd )"
 echo ${BENCHMARK_ROOT}
 
 function prepare_env(){
-    # Update pip
-    easy_install --upgrade pip
     # Install tensorflow and other packages
     pip install pre-commit==1.21 pylint==1.9.5 pytest==4.6.9
-    #apt-get update
-    #apt-get install -y git
 }
 
 function abort(){
@@ -52,7 +48,7 @@ function check_style(){
             		git diff
             		commit_files=off
         	fi
-    	#done
+    	done
     	if [ $commit_files == 'off' ];then
         	echo "code format error"
         	exit 1
