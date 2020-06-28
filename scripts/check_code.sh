@@ -43,7 +43,7 @@ function check_style(){
 	trap 'abort' 0
 	pre-commit install
 	commit_files=on
-    	for file_name in `git diff --numstat | awk '{print $NF}'`;do
+    	for file_name in `git diff --numstat upstream/$BRANCH| awk '{print $NF}'`;do
         	if [[ ! `pre-commit run --files $file_name` ]]; then
             		git diff
             		commit_files=off
