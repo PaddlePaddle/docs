@@ -28,7 +28,7 @@ full_like
     import paddle.fluid as fluid
     import numpy as np
     input = fluid.data(name='input', dtype='float32', shape=[2, 3])
-    output = fluid.layers..full_like(input, 2.0)
+    output = fluid.layers.full_like(input, 2.0)
     exe = fluid.Executor(fluid.CPUPlace())
     exe.run(fluid.default_startup_program())
     img=np.array([[1, 2, 3], [4, 5, 6]]).astype(np.float32)
