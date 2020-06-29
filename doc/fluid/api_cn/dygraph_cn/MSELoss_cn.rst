@@ -1,7 +1,7 @@
 MSELoss
 -------------------------------
 
-.. py:function:: paddle.layers.MSELoss(input,label)
+.. py:function:: paddle.fluid.dygraph.MSELoss(input,label)
 
 该OP用于计算预测值和目标值的均方差误差。
 
@@ -40,7 +40,7 @@ MSELoss
     from paddle import fluid
     import paddle.fluid.dygraph as dg
 
-    mse_loss = paddle.layers.MSELoss()
+    mse_loss = fluid.dygraph.MSELoss()
     input = fluid.data(name="input", shape=[1])
     label = fluid.data(name="label", shape=[1])
     place = fluid.CPUPlace()
