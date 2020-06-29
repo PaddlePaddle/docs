@@ -5,6 +5,12 @@ norm
 
 .. py:function:: paddle.norm(input, p='fro', axis=None, keepdim=False, out=None, name=None):
 
+:alias_main: paddle.norm
+:alias: paddle.norm,paddle.tensor.norm,paddle.tensor.linalg.norm
+:update_api: paddle.fluid.layers.l2_normalize
+
+
+
 该OP将计算给定Tensor的矩阵范数（Frobenius 范数）和向量范数（向量1范数、2范数、或者通常的p范数）.
 
 参数：

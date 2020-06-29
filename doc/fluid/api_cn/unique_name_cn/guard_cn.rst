@@ -5,6 +5,9 @@ guard
 
 .. py:function:: paddle.fluid.unique_name.guard(new_generator=None)
 
+
+
+
 该接口用于更改命名空间，与with语句一起使用。使用后，在with语句的上下文中使用新的命名空间，调用generate接口时相同前缀的名称将从0开始重新编号。
 
 参数:

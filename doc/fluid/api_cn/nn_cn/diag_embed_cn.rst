@@ -5,6 +5,11 @@ diag_embed
 
 .. py:function:: paddle.functional.diag_embed(input, offset=0, dim1=-2, dim2=-1):
 
+:alias_main: paddle.nn.functional.diag_embed
+:alias: paddle.nn.functional.diag_embed,paddle.nn.functional.extension.diag_embed
+
+
+
     该 OP 创建一个 Tensor，其在指定的 2D 平面（由 ``dim1`` 和 ``dim2`` 指定）上的对角线由输入 ``input`` 填充。
     默认的，指定的 2D 平面由返回 Tensor 的最后两维组成。
     

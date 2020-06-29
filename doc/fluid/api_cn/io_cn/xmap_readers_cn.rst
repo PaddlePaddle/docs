@@ -5,6 +5,9 @@ xmap_readers
 
 .. py:function:: paddle.fluid.io.xmap_readers(mapper, reader, process_num, buffer_size, order=False)
 
+
+
+
 多线程下，使用自定义映射器 reader 返回样本到输出队列。
 
 参数：

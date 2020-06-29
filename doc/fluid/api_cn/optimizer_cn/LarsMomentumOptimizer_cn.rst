@@ -5,6 +5,9 @@ LarsMomentumOptimizer
 
 .. py:class:: paddle.fluid.optimizer.LarsMomentumOptimizer(learning_rate, momentum, lars_coeff=0.001, lars_weight_decay=0.0005, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+
+
+
 该接口实现LARS支持的Momentum优化器
 
 公式作如下更新：

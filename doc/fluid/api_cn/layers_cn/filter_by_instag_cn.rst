@@ -5,6 +5,12 @@ filter_by_instag
 
 .. py:function:: paddle.fluid.layers.filter_by_instag(ins, ins_tag, filter_tag, is_lod)
 
+:alias_main: paddle.nn.functional.filter_by_instag
+:alias: paddle.nn.functional.filter_by_instag,paddle.nn.functional.extension.filter_by_instag
+:old_api: paddle.fluid.layers.filter_by_instag
+
+
+
 此函数通过instag来过滤ins batch，大量属于同样的tags的样本，我们可以指定我们想要的一些tags，属于这些tags的样本将会被保留在输出中，其余的将会移除。比如，一个batch有4个样本，每个样本都有自己的tag表。
 
 Ins   |   Ins_Tag |

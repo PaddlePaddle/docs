@@ -5,6 +5,9 @@ ones_like
 
 .. py:function:: paddle.fluid.layers.ones_like(x, out=None)
 
+
+
+
 ones_like
 
 该功能创建一个形状与类型与x相似的张量，初始值为1。

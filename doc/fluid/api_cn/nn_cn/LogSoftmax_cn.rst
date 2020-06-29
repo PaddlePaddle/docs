@@ -4,6 +4,11 @@ LogSoftmax
 -------------------------------
 .. py:class:: paddle.nn.LogSoftmax(axis=None)
 
+:alias_main: paddle.nn.LogSoftmax
+:alias: paddle.nn.LogSoftmax,paddle.nn.layer.LogSoftmax,paddle.nn.layer.activation.LogSoftmax
+
+
+
 
 **LogSoftmax激活层：**
 

@@ -6,6 +6,12 @@ max
 
 .. py:function:: paddle.tensor.max(input, dim=None, keep_dim=False, out=None, name=None)
 
+:alias_main: paddle.max
+:alias: paddle.max,paddle.tensor.max,paddle.tensor.math.max
+:update_api: paddle.fluid.layers.reduce_max
+
+
+
 该OP是对指定维度上的Tensor元素求最大值运算，并输出相应的计算结果。等价于 :ref:`cn_api_fluid_layers_reduce_max`
 
 参数：

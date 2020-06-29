@@ -5,6 +5,9 @@ pow
 
 .. py:function:: paddle.fluid.layers.pow(x, factor=1.0, name=None)
 
+
+
+
 该OP是指数激活算子：
 
 .. math::

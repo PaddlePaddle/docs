@@ -5,6 +5,9 @@ DpsgdOptimizer
 
 .. py:class:: paddle.fluid.optimizer.DpsgdOptimizer(learning_rate=0.001, clip=0.9, batch_size=0.999, sigma=1e-8)
 
+
+
+
 Dpsgd优化器是参考CCS16论文 `《Deep Learning with Differential Privacy》 <https://arxiv.org/abs/1607.00133>`_ 相关内容实现的。
 
 其参数更新的计算公式如下:

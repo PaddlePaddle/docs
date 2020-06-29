@@ -5,6 +5,9 @@ NCE
 
 .. py:class:: paddle.fluid.dygraph.NCE(num_total_classes, dim, param_attr=None, bias_attr=None, num_neg_samples=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False, dtype="float32")
 
+
+
+
 该接口用于构建 ``NCE`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了 ``NCE`` 损失函数的功能，其默认使用均匀分布进行抽样，计算并返回噪音对比估计（ noise-contrastive estimation training loss）。更多详情请参考：`Noise-contrastive estimation: A new estimation principle for unnormalized statistical models <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_
 
 参数：
@@ -42,7 +45,6 @@ NCE
             words.append(fluid.dygraph.base.to_variable(inp_word[i]))
 
         emb = fluid.Embedding(
-            'embedding',
             size=[dict_size, 32],
             param_attr='emb.w',
             is_sparse=False)
@@ -57,17 +59,17 @@ NCE
 
         embs3 = fluid.layers.concat(input=embs3, axis=1)
         nce = fluid.NCE(
-                     num_total_classes=dict_size,
-                     dim=embs3.shape[1],
-                     num_neg_samples=2,
-                     sampler="custom_dist",
-                     custom_dist=nid_freq_arr.tolist(),
-                     seed=1,
-                     param_attr='nce.w',
-                     bias_attr='nce.b')
+                    num_total_classes=dict_size,
+                    dim=embs3.shape[1],
+                    num_neg_samples=2,
+                    sampler="custom_dist",
+                    custom_dist=nid_freq_arr.tolist(),
+                    seed=1,
+                    param_attr='nce.w',
+                    bias_attr='nce.b')
 
         wl = fluid.layers.unsqueeze(words[label_word], axes=[0])
-        nce_loss3 = nce(embs3, words[label_word])
+        nce_loss3 = nce(embs3, wl)
 
 属性
 ::::::::::::

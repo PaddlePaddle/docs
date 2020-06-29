@@ -5,6 +5,11 @@ kron
 
 .. py:function:: paddle.tensor.kron(x, y, out=None, name=None)
 
+:alias_main: paddle.kron
+:alias: paddle.kron,paddle.tensor.kron,paddle.tensor.math.kron
+
+
+
 
 Kronecker Product 算子。
 

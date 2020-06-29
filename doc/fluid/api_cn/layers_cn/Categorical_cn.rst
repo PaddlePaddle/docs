@@ -5,6 +5,9 @@ Categorical
 
 .. py:class:: paddle.fluid.layers.Categorical(logits)
 
+
+
+
 类别分布是一种离散概率分布，其随机变量可以取K个相互独立类别的其中一个。
 
 概率质量函数（pmf）为：

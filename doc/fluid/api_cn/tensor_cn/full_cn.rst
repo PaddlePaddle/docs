@@ -5,6 +5,12 @@ full
 
 .. py:function:: paddle.full(shape, fill_value, out=None, dtype=None, device=None, stop_gradient=True, name=None)
 
+:alias_main: paddle.full
+:alias: paddle.full,paddle.tensor.full,paddle.tensor.creation.full
+:update_api: paddle.fluid.layers.fill_constant
+
+
+
 该OP创建一个和具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
 
 参数：

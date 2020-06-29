@@ -6,6 +6,9 @@ create_lod_tensor
 
 .. py:function:: paddle.fluid.create_lod_tensor(data, recursive_seq_lens, place)
 
+
+
+
 从一个numpy数组、list或LoDTensor创建一个新的LoDTensor。
 
 具体实现方法如下:

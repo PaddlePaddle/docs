@@ -16,6 +16,7 @@ fluid.dygraph
     dygraph_cn/Conv3D_cn.rst
     dygraph_cn/Conv3DTranspose_cn.rst
     dygraph_cn/CosineDecay_cn.rst
+    dygraph_cn/declarative_cn.rst
     dygraph_cn/Dropout_cn.rst
     dygraph_cn/Embedding_cn.rst
     dygraph_cn/ExponentialDecay_cn.rst
@@ -42,6 +43,8 @@ fluid.dygraph
     dygraph_cn/Pool2D_cn.rst
     dygraph_cn/PRelu_cn.rst
     dygraph_cn/prepare_context_cn.rst  
+    dygraph_cn/ProgramTranslator_cn.rst
+    dygraph_cn/ReduceLROnPlateau_cn.rst
     dygraph_cn/save_dygraph_cn.rst
     dygraph_cn/Sequential_cn.rst
     dygraph_cn/SpectralNorm_cn.rst

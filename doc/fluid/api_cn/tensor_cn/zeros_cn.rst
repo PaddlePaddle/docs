@@ -5,6 +5,12 @@ zeros
 
 .. py:function:: paddle.zeros(shape, dtype, out=None, device=None)
 
+:alias_main: paddle.zeros
+:alias: paddle.zeros,paddle.tensor.zeros,paddle.tensor.creation.zeros
+:update_api: paddle.fluid.layers.zeros
+
+
+
 该OP创建形状为 ``shape`` 、数据类型为 ``dtype`` 且值全为0的Tensor。
 
 参数：

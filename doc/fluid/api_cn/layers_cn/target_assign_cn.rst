@@ -5,6 +5,12 @@ target_assign
 
 .. py:function:: paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None, mismatch_value=None, name=None)
 
+:alias_main: paddle.nn.functional.target_assign
+:alias: paddle.nn.functional.target_assign,paddle.nn.functional.extension.target_assign
+:old_api: paddle.fluid.layers.target_assign
+
+
+
 对于每个实例，根据 ``match_indices`` 和 ``negative_indices`` 位置索引, 给输入 ``out`` 和 ``out_weight`` 赋值。输入 ``input`` 和 ``negative_indices`` 均为2-D LoDTensor。假如 ``input`` 中每个实例的行偏移称作lod，该操作计算步骤如下：
 
 1.根据match_indices赋值:

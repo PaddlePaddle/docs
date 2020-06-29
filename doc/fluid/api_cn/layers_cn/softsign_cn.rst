@@ -5,6 +5,12 @@ softsign
 
 .. py:function:: paddle.fluid.layers.softsign(x,name=None)
 
+:alias_main: paddle.nn.functional.softsign
+:alias: paddle.nn.functional.softsign,paddle.nn.functional.activation.softsign
+:old_api: paddle.fluid.layers.softsign
+
+
+
 
 softsign激活函数
 

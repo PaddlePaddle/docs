@@ -5,6 +5,12 @@ reduce_prod
 
 .. py:function:: paddle.fluid.layers.reduce_prod(input, dim=None, keep_dim=False, name=None)
 
+:alias_main: paddle.reduce_prod
+:alias: paddle.reduce_prod,paddle.tensor.reduce_prod,paddle.tensor.math.reduce_prod
+:old_api: paddle.fluid.layers.reduce_prod
+
+
+
 该OP是对指定维度上的Tensor元素进行求乘积运算，并输出相应的计算结果。
 
 参数：

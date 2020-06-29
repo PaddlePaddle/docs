@@ -5,6 +5,9 @@ where
 
 .. py:function:: paddle.fluid.layers.where(condition)
 
+
+
+
 该OP计算输入元素中为True的元素在输入中的坐标（index）。
         
 参数：

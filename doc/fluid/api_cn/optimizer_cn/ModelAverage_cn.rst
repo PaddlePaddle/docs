@@ -3,9 +3,12 @@
 ModelAverage
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.optimizer.ModelAverage(average_window_rate, min_average_window=10000, max_average_window=10000, regularization=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 ModelAverage优化器，在训练过程中累积特定连续的历史Parameters，累积的历史范围可以用传入的average_window参数来控制，在预测时使用平均后的Parameters，通常可以提高预测的精度。
 

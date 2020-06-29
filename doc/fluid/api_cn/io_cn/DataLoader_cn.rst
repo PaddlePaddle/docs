@@ -6,6 +6,9 @@ DataLoader
 .. py:class:: paddle.fluid.io.DataLoader
 
 
+
+
+
 .. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
 
 .. note::

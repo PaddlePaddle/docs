@@ -5,6 +5,11 @@ elementwise_sum
 
 .. py:function:: paddle.elementwise_sum(inputs, name=None)
 
+:alias_main: paddle.elementwise_sum
+:alias: paddle.elementwise_sum,paddle.tensor.elementwise_sum,paddle.tensor.math.elementwise_sum
+
+
+
 该OP用于对输入的一至多个Tensor或LoDTensor求和。如果输入的是LoDTensor，输出仅与第一个输入共享LoD信息（序列信息）。
 
 例1：
