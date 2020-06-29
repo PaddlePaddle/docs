@@ -27,8 +27,7 @@ reader是一个Variable，它可以是由函数fluid.layers.py_reader()生成的
                                     shapes=[(-1, 1, 28, 28), (-1, 1)],
                                     dtypes=['float32', 'int64'])
     image, label = fluid.layers.read_file(reader)
-    data_file = fluid.layers.double_buffer(
-        fluid.layers.batch(data_file, batch_size=64))
+    data_file = fluid.layers.double_buffer(reader)
     input, label = fluid.layers.read_file(data_file)
 
 
