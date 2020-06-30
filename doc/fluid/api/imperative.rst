@@ -13,6 +13,7 @@ paddle.imperative
 	imperative/grad.rst
 	imperative/guard.rst
 	imperative/InverseTimeDecay.rst
+	imperative/jit.rst
 	imperative/load.rst
 	imperative/NaturalExpDecay.rst
 	imperative/no_grad.rst
@@ -25,3 +26,4 @@ paddle.imperative
 	imperative/save.rst
 	imperative/to_variable.rst
 	imperative/TracedLayer.rst
+	imperative/TranslatedLayer.rst
