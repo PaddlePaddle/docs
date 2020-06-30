@@ -33,6 +33,7 @@ LarsMomentumOptimizer
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
 
     np_inp = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=np.float32)
     inp = fluid.layers.data(
