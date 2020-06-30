@@ -268,12 +268,12 @@ print("Loading IMDB word dict....")
 word_dict = paddle.dataset.imdb.word_dict()
 
 print ("Reading training data....")
-train_reader = paddle.batch(
-    paddle.reader.shuffle(
+train_reader = fluid.io.batch(
+    fluid.io.shuffle(
         paddle.dataset.imdb.train(word_dict), buf_size=25000),
     batch_size=BATCH_SIZE)
 print("Reading testing data....")
-test_reader = paddle.batch(
+test_reader = fluid.io.batch(
     paddle.dataset.imdb.test(word_dict), batch_size=BATCH_SIZE)
 ```
 word_dict是一个字典序列，是词和label的对应关系，运行下一行可以看到具体内容：
@@ -394,7 +394,7 @@ inference_scope = fluid.core.Scope()
 
 ```python
 reviews_str = [
-    'read the book forget the movie', 'this is a great movie', 'this is very bad'
+    b'read the book forget the movie', b'this is a great movie', b'this is very bad'
 ]
 reviews = [c.split() for c in reviews_str]
 
@@ -404,6 +404,7 @@ for c in reviews:
     lod.append([word_dict.get(words, UNK) for words in c])
 
 base_shape = [[len(c) for c in lod]]
+lod = np.array(sum(lod, []), dtype=np.int64)
 
 tensor_words = fluid.create_lod_tensor(lod, base_shape, place)
 ```

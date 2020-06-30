@@ -5,6 +5,9 @@ is_compiled_with_cuda
 
 .. py:function:: paddle.fluid.is_compiled_with_cuda()
 
+
+
+
 检查 ``whl`` 包是否可以被用来在GPU上运行模型
 
 返回：支持gpu则为True,否则为False。

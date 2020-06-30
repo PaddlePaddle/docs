@@ -8,6 +8,9 @@ cuda_pinned_places
 
 
 
+
+
+
 该接口创建 ``device_count`` 个 ``fluid.CUDAPinnedPlace`` ( fluid. :ref:`cn_api_fluid_CUDAPinnedPlace` ) 对象，并返回所创建的对象列表。
 
 如果 ``device_count`` 为 ``None``，实际设备数目将由当前任务中使用的GPU设备数决定。用户可通过以下2种方式设置任务可用的GPU设备：

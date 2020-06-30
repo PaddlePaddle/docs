@@ -5,6 +5,12 @@ flatten
 
 .. py:function::  paddle.fluid.layers.flatten(x, axis=1, name=None)
 
+:alias_main: paddle.flatten
+:alias: paddle.flatten,paddle.tensor.flatten,paddle.tensor.manipulation.flatten
+:old_api: paddle.fluid.layers.flatten
+
+
+
 flatten op将输入的多维Tensor展平成2-D Tensor矩阵
 
 例如：

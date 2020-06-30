@@ -3,9 +3,12 @@
 GRUCell
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.layers.GRUCell(hidden_size, param_attr=None, bias_attr=None, gate_activation=None, activation=None, dtype="float32", name="GRUCell")
+
+:api_attr: 声明式编程模式（静态图)
+
+
     
 门控循环单元（Gated Recurrent Unit）。通过对 :code:`fluid.contrib.layers.rnn_impl.BasicGRUUnit` 包装，来让它可以应用于RNNCell。
 
@@ -35,7 +38,7 @@ GRUCell
 ..  code-block:: python 
 
     import paddle.fluid.layers as layers
-    cell = layers.rnn.GRUCell(hidden_size=256)
+    cell = layers.GRUCell(hidden_size=256)
 
 
 .. py:method:: call(inputs, states)

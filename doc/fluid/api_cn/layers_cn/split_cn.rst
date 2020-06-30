@@ -5,6 +5,9 @@ split
 
 .. py:function:: paddle.fluid.layers.split(input,num_or_sections,dim=-1,name=None)
 
+
+
+
 该OP将输入Tensor分割成多个子Tensor。
 
 参数：

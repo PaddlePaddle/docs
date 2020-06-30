@@ -6,6 +6,9 @@ ctc_greedy_decoder
 .. py:function:: paddle.fluid.layers.ctc_greedy_decoder(input, blank, name=None)
 
 
+
+
+
 该OP用于贪婪策略解码序列，步骤如下:
     1. 获取输入中的每一行的最大值索引，也就是numpy.argmax(input, axis=0)。
     2. 对于step1结果中的每个序列，合并两个空格之间的重复部分并删除所有空格。

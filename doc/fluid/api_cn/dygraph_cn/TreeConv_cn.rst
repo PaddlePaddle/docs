@@ -5,6 +5,9 @@ TreeConv
 
 .. py:class:: paddle.fluid.dygraph.TreeConv(feature_size, output_size, num_filters=1, max_depth=2, act='tanh', param_attr=None, bias_attr=None, name=None, dtype="float32")
 
+
+
+
 该接口用于构建 ``TreeConv`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个基于树结构的卷积（Tree-Based Convolution）运算。基于树的卷积是基于树的卷积神经网络（TBCNN，Tree-Based Convolution Neural Network）的一部分，它用于对树结构进行分类，例如抽象语法树。 Tree-Based Convolution提出了一种称为连续二叉树的数据结构，它将多路（multiway）树视为二叉树。详情请参考： `基于树的卷积论文 <https://arxiv.org/abs/1409.5718v1>`_ 。
 
 

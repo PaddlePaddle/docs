@@ -57,7 +57,7 @@
         python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 * The installation package provided by default requires computer support for MKL
-* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/beginners_guide/install/install_script.md).
+* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md).
 
 ## Choose CPU/GPU
 
@@ -82,11 +82,9 @@
 
 ## Choose an installation method
 
-Under the Ubuntu system, we offer 5 installation methods:
+Under the Ubuntu system, we offer 3 installation methods:
 
 * Pip installation (recommended)
-* [Conda安装](./install_Conda.html)
-* [Docker installation](./install_Docker.html)
 * [Source code compilation and installation](./compile/compile_Ubuntu.html#ubt_source)
 * [Docker source code compilation and installation](./compile/compile_Ubuntu.html#ubt_docker)
 
@@ -95,12 +93,12 @@ We will introduce pip installation here.
 ## Installation steps
 
 * CPU version of PaddlePaddle：
-  * For Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2： `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 * GPU version PaddlePaddle：
-  * For Python 2： `python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3： `python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 You can [verify whether the installation is successful](#check), if you have any questions please see [FAQ](./FAQ.html)
 
@@ -108,7 +106,7 @@ Note:
 
 * For python2.7, we recommend to use `python` command; For python3.x, we recommend to use `python3` command.
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install PaddlePaddle supporting CUDA 10.0 cuDNN v7, if you have different requirement to the version of CUDA or cuDNN, you can use `python -m pip install paddlepaddle-gpu==[version number] -i https://pypi.tuna.tsinghua.edu.cn/simple` or  `python3 -m pip install paddlepaddle-gpu==[version number] -i https://pypi.tuna.tsinghua.edu.cn/simple` command to install, for version number please see[version number](https://pypi.org/project/paddlepaddle-gpu#history), for correspondence between paddlepaddle and CUDA and cuDNN version, please see [Installation package list](./Tables.html#whls)
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install PaddlePaddle supporting CUDA 10.0 cuDNN v7.
 
 
 * Download the latest stable installation package by default. For development installation package, please refer to[here](./Tables.html#ciwhls)

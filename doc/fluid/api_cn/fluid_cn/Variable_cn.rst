@@ -5,6 +5,9 @@ Variable
 
 .. py:class:: paddle.fluid.Variable
 
+
+
+
 **注意：**
   **1. 请不要直接调用** `Variable` **的构造函数，因为这会造成严重的错误发生！**
 

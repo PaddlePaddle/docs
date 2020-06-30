@@ -2,9 +2,12 @@
 
 dynamic_lstmp
 -------------------------------
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.dynamic_lstmp(input, size, proj_size, param_attr=None, bias_attr=None, use_peepholes=True, is_reverse=False, gate_activation='sigmoid', cell_activation='tanh', candidate_activation='tanh', proj_activation='tanh', dtype='float32', name=None, h_0=None, c_0=None, cell_clip=None, proj_clip=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 .. note::
     在实现的时候为了提升效率，用户必须将输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4×hidden_size] 输入，然后再传给该OP。

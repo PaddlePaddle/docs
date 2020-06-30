@@ -4,6 +4,12 @@ GradientClipByGlobalNorm
 -------------------------------
 
 .. py:class:: paddle.fluid.clip.GradientClipByGlobalNorm(clip_norm, group_name='default_group', need_clip=None)
+
+:alias_main: paddle.nn.GradientClipByGlobalNorm
+:alias: paddle.nn.GradientClipByGlobalNorm,paddle.nn.clip.GradientClipByGlobalNorm
+:old_api: paddle.fluid.clip.GradientClipByGlobalNorm
+
+
  
 将一个 Tensor列表 :math:`t\_list` 中所有Tensor的L2范数之和，限定在 ``clip_norm`` 范围内。
 
@@ -13,7 +19,7 @@ GradientClipByGlobalNorm
 
 输入的 Tensor列表 不是从该类里传入， 而是默认会选择 ``Program`` 中全部的梯度，如果 ``need_clip`` 不为None，则可以只选择部分参数进行梯度裁剪。
 
-该类需要在 ``optimizer.minimize(grad_clip)`` 进行设置后才能生效，可参看 ``optimizer`` 文档(例如： :ref:`cn_api_fluid_optimizer_SGDOptimizer` )。
+该类需要在初始化 ``optimizer`` 时进行设置后才能生效，可参看 ``optimizer`` 文档(例如： :ref:`cn_api_fluid_optimizer_SGDOptimizer` )。
 
 裁剪公式如下：
 
@@ -58,8 +64,8 @@ GradientClipByGlobalNorm
         #   return Parameter.name=="fc_0.w_0"
         # clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0, need_clip=fileter_func)
 
-        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1)
-        sgd_optimizer.minimize(loss, grad_clip=clip)
+        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1, grad_clip=clip)
+        sgd_optimizer.minimize(loss)
 
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -95,5 +101,7 @@ GradientClipByGlobalNorm
         # clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0, need_clip=fileter_func)
 
         sgd_optimizer = fluid.optimizer.SGD(
-        learning_rate=0.1, parameter_list=linear.parameters())
-        sgd_optimizer.minimize(loss, grad_clip=clip)
+            learning_rate=0.1, 
+            parameter_list=linear.parameters(),
+            grad_clip=clip)
+        sgd_optimizer.minimize(loss)

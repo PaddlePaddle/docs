@@ -5,6 +5,12 @@ greater_equal
 
 .. py:function:: paddle.fluid.layers.greater_equal(x, y, cond=None)
 
+:alias_main: paddle.greater_equal
+:alias: paddle.greater_equal,paddle.tensor.greater_equal,paddle.tensor.logic.greater_equal
+:old_api: paddle.fluid.layers.greater_equal
+
+
+
 该OP逐元素地返回 :math:`x >= y` 的逻辑值，使用重载算子 `>=` 可以有相同的计算函数效果。
 
 

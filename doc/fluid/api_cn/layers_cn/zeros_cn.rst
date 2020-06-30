@@ -5,6 +5,9 @@ zeros
 
 .. py:function:: paddle.fluid.layers.zeros(shape,dtype,force_cpu=False)
 
+
+
+
 **zeros**
 
 该OP创建形状为 ``shape`` 、数据类型为 ``dtype`` 且值全为0的Tensor，该OP会将stop_gradient设置为True，即停止梯度更新。

@@ -3,9 +3,12 @@
 gru_unit
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.gru_unit(input, hidden, size, param_attr=None, bias_attr=None, activation='tanh', gate_activation='sigmoid', origin_mode=False)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 Gated Recurrent Unit（GRU）循环神经网络计算单元。该OP用于完成单个时间步内GRU的计算，支持以下两种计算方式：
 
