@@ -3,9 +3,12 @@
 scope_guard
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.scope_guard(scope)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 
 该接口通过 python 的 ``with`` 语句切换作用域（scope）。

@@ -5,6 +5,9 @@ Normal
 
 .. py:class:: paddle.fluid.layers.Normal(loc, scale)
 
+
+
+
 正态分布
 
 数学公式：

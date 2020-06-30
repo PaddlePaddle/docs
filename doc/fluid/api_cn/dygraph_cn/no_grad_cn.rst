@@ -3,14 +3,16 @@
 no_grad
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
-.. py:method:: paddle.fluid.dygraph.no_grad(func)
+.. py:method:: paddle.fluid.dygraph.no_grad(func=None)
 
-在动态图模式中，此装饰器将会避免 ``func`` 被装饰时创建反向传播网络。
+:api_attr: 命令式编程模式（动态图)
 
-参数:
-    - **func** (str) – 不需要梯度的函数。
+
+
+创建一个上下文来禁用动态图梯度计算。在此模式下，每次计算的结果都将具有stop_gradient=True。
+
+也可以用作一个装饰器（确保不要用括号来初始化）。
 
 **代码示例**
 
@@ -20,6 +22,22 @@ no_grad
     import numpy as np
     import paddle.fluid as fluid
 
+    # 用作生成器
+    data = np.array([[2, 3], [4, 5]]).astype('float32')
+    with fluid.dygraph.guard():
+        l0 = fluid.Linear(2, 2)  # l0.weight.gradient() is None
+        l1 = fluid.Linear(2, 2)
+        with fluid.dygraph.no_grad():
+            # l1.weight.stop_gradient is False
+            tmp = l1.weight * 2  # tmp.stop_gradient is True
+        x = fluid.dygraph.to_variable(data)
+        y = l0(x) + tmp
+        o = l1(y)
+        o.backward()
+        print(tmp.gradient() is None)  # True
+        print(l0.weight.gradient() is None)  # False
+    
+    # 用作装饰器
     @fluid.dygraph.no_grad
     def test_layer():
         with fluid.dygraph.guard():

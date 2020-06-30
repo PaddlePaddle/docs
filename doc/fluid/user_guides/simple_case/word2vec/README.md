@@ -289,15 +289,15 @@ def optimizer_func():
 
 - Now we can start training. This version is much simpler than before. We have ready-made training and test sets: `paddle.dataset.imikolov.train()` and `paddle.dataset.imikolov.test()`. Both will return a reader. In PaddlePaddle, the reader is a Python function that reads the next piece of data when called each time . It is a Python generator.
 
-`paddle.batch` will read in a reader and output a batched reader. We can also output the training of each step and batch during the training process.
+`fluid.io.batch` will read in a reader and output a batched reader. We can also output the training of each step and batch during the training process.
 
 ```python
 def train(if_use_cuda, params_dirname, is_sparse=True):
     place = fluid.CUDAPlace(0) if if_use_cuda else fluid.CPUPlace()
 
-    train_reader = paddle.batch(
+    train_reader = fluid.io.batch(
         paddle.dataset.imikolov.train(word_dict, N), BATCH_SIZE)
-    test_reader = paddle.batch(
+    test_reader = fluid.io.batch(
         paddle.dataset.imikolov.test(word_dict, N), BATCH_SIZE)
 
     first_word = fluid.data(name='firstw', shape=[None, 1], dtype='int64')

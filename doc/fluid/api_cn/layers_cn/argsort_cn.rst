@@ -5,6 +5,12 @@ argsort
 
 .. py:function:: paddle.fluid.layers.argsort(input,axis=-1,descending=False,name=None)
 
+:alias_main: paddle.argsort
+:alias: paddle.argsort,paddle.tensor.argsort,paddle.tensor.search.argsort
+:old_api: paddle.fluid.layers.argsort
+
+
+
 对输入变量沿给定轴进行排序，输出排序好的数据和相应的索引，其维度和输入相同。**默认升序排列，如果需要降序排列设置** ``descending=True`` 。
 
 

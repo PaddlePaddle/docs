@@ -143,8 +143,8 @@ def train(use_cuda, save_dirname=None, is_local=True):
 
     # define network topology
     feature_out = db_lstm(**locals())
-    target = fluid.layers.data(
-        name='target', shape=[1], dtype='int64', lod_level=1)
+    target = fluid.data(
+        name='target', shape=[None, 1], dtype='int64', lod_level=1)
     crf_cost = fluid.layers.linear_chain_crf(
         input=feature_out,
         label=target,
@@ -165,11 +165,11 @@ def train(use_cuda, save_dirname=None, is_local=True):
         input=feature_out, param_attr=fluid.ParamAttr(name='crfw'))
 
     if args.enable_ce:
-        train_data = paddle.batch(
+        train_data = fluid.io.batch(
             paddle.dataset.conll05.test(), batch_size=BATCH_SIZE)
     else:
-        train_data = paddle.batch(
-            paddle.reader.shuffle(
+        train_data = fluid.io.batch(
+            fluid.io.shuffle(
                 paddle.dataset.conll05.test(), buf_size=8192),
             batch_size=BATCH_SIZE)
 

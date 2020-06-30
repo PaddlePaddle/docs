@@ -5,6 +5,12 @@ shuffle
 
 .. py:function:: paddle.fluid.io.shuffle(reader, buffer_size)
 
+:alias_main: paddle.shuffle
+:alias: paddle.shuffle,paddle.tensor.shuffle,paddle.tensor.random.shuffle
+:old_api: paddle.fluid.io.shuffle
+
+
+
 该接口创建一个数据读取器，其功能是将原始数据读取器的数据打乱，然后返回无序的数据。
 
 从原始数据读取器取出buf_size个数据到缓冲区，将缓冲区数据打乱，然后将无序的数据依次返回。当缓冲区数据全部输出后，再次执行上述步骤。

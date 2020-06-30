@@ -5,6 +5,9 @@ range
 
 .. py:function:: paddle.fluid.layers.range(start, end, step, dtype)
 
+
+
+
 该API根据step均匀分隔给定数值区间[start, end)，并返回该分隔结果。
 
 

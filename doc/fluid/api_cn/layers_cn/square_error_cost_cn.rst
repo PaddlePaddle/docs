@@ -5,6 +5,12 @@ square_error_cost
 
 .. py:function:: paddle.fluid.layers.square_error_cost(input,label)
 
+:alias_main: paddle.nn.functional.square_error_cost
+:alias: paddle.nn.functional.square_error_cost,paddle.nn.functional.loss.square_error_cost
+:old_api: paddle.fluid.layers.square_error_cost
+
+
+
 该OP用于计算预测值和目标值的方差估计。
 
 对于预测值input和目标值label，公式为：

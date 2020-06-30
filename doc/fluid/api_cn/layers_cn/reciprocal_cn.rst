@@ -5,6 +5,12 @@ reciprocal
 
 .. py:function:: paddle.fluid.layers.reciprocal(x, name=None)
 
+:alias_main: paddle.reciprocal
+:alias: paddle.reciprocal,paddle.tensor.reciprocal,paddle.tensor.math.reciprocal
+:old_api: paddle.fluid.layers.reciprocal
+
+
+
 reciprocal 对输入Tensor取倒数
 
 

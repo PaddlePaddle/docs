@@ -5,6 +5,12 @@ huber_loss
 
 .. py:function:: paddle.fluid.layers.huber_loss(input, label, delta)
 
+:alias_main: paddle.nn.functional.huber_loss
+:alias: paddle.nn.functional.huber_loss,paddle.nn.functional.loss.huber_loss
+:old_api: paddle.fluid.layers.huber_loss
+
+
+
 
 该OP计算输入（input）与标签（label）之间的Huber损失。Huber损失是常用的回归损失之一，相较于平方误差损失，Huber损失减小了对异常点的敏感度，更具鲁棒性。
 

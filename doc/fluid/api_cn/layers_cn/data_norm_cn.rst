@@ -3,9 +3,12 @@
 data_norm
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 **数据正则化层**
 
@@ -39,6 +42,7 @@ data_norm
   - **slot_dim** （int, 默认值为-1） -  一个slot的embedding维度，slot用来表征一类特征的集合，在pslib模式下，通常我们通过slot区分特征id，并从参数服务器（pslib）中提取它们的embedding。embedding的第一维是历史上这个embedding展示的次数。如果本op的输入是由这样的embedding连接而来，那么当这个特征id是新的或空的，则正则化结果可能不实际。为了避免这种情况，我们添加了slot_dim来定位并判断这一维是否为零。如果是的话，我们选择跳过正则化。
   - **summary_decay_rate** （float, 默认值为0.9999999） - 更新summary信息时的衰减率。
   - **sync_stats** （bool, 默认值False） - 在多GPU卡的场景下可以使用，用来同步多卡间的summary信息。
+  - **enable_scale_and_shift** (bool, 默认值False) - 在分布式全局正则化后是否做像batchnorm一样做scale&shift的操作。
 
 返回: 张量变量，是对输入数据进行正则化后的结果。
 

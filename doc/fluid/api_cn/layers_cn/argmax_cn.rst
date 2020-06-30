@@ -5,6 +5,9 @@ argmax
 
 .. py:function:: paddle.fluid.layers.argmax(x, axis=0)
 
+
+
+
 **argmax**
 
 该OP沿 ``axis`` 计算输入 ``x`` 的最大元素的索引。

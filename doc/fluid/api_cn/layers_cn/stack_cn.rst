@@ -6,6 +6,9 @@ stack
 .. py:function:: paddle.fluid.layers.stack(x, axis=0)
 
 
+
+
+
 该OP沿 ``axis`` 轴对输入 ``x`` 进行堆叠操作。
 
 - 例1:

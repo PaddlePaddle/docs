@@ -5,6 +5,9 @@ chunk_eval
 
 .. py:function:: paddle.fluid.layers.chunk_eval(input, label, chunk_scheme, num_chunk_types, excluded_chunk_types=None, sqe_length=None)
 
+
+
+
 该OP计算语块识别（chunk detection）的准确率、召回率和F1值，常用于命名实体识别（NER，语块识别的一种）等序列标注任务中。
 
 语块识别的基础请参考 `Chunking with Support Vector Machines <https://www.aclweb.org/anthology/N01-1025>`_
@@ -79,13 +82,13 @@ chunk_eval
      
     dict_size = 10000
     label_dict_len = 7
-    sequence = fluid.layers.data(
-        name='id', shape=[1], lod_level=1, dtype='int64')
-    embedding = fluid.layers.embedding(
+    sequence = fluid.data(
+        name='id', shape=[None, 1], lod_level=1, dtype='int64')
+    embedding = fluid.embedding(
         input=sequence, size=[dict_size, 512])
     hidden = fluid.layers.fc(input=embedding, size=512)
-    label = fluid.layers.data(
-        name='label', shape=[1], lod_level=1, dtype='int32')
+    label = fluid.data(
+        name='label', shape=[None, 1], lod_level=1, dtype='int64')
     crf = fluid.layers.linear_chain_crf(
         input=hidden, label=label, param_attr=fluid.ParamAttr(name="crfw"))
     crf_decode = fluid.layers.crf_decoding(
@@ -94,7 +97,7 @@ chunk_eval
         input=crf_decode,
         label=label,
         chunk_scheme="IOB",
-        num_chunk_types=(label_dict_len - 1) / 2)
+        num_chunk_types=int((label_dict_len - 1) / 2))
 
 
 

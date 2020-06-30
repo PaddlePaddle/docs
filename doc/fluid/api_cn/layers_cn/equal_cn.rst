@@ -5,6 +5,9 @@ equal
 
 .. py:function:: paddle.fluid.layers.equal(x,y,cond=None)
 
+
+
+
 该OP返回 :math:`x==y` 逐元素比较x和y是否相等，x和y的维度应该相同。
 
 参数：
