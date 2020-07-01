@@ -5,6 +5,12 @@ tanh
 
 .. py:function:: paddle.tanh(x, name=None, out=None)
 
+:alias_main: paddle.tanh
+:alias: paddle.tanh,paddle.tensor.tanh,paddle.tensor.math.tanh
+:update_api: paddle.fluid.layers.tanh
+
+
+
 tanh 激活函数
 
 .. math::

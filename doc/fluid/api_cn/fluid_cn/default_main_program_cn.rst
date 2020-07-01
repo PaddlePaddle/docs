@@ -6,6 +6,9 @@ default_main_program
 .. py:function:: paddle.fluid.default_main_program()
 
 
+
+
+
 此接口可以获取当前用于存储op和variable描述信息的 ``default main program``
 
 ``fluid.layers`` 接口中添加的op和variable会存储在 ``default main program`` 中

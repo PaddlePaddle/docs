@@ -5,6 +5,12 @@ hash
 
 .. py:function::  paddle.fluid.layers.hash(input, hash_size, num_hash=1, name=None)
 
+:alias_main: paddle.nn.functional.hash
+:alias: paddle.nn.functional.hash,paddle.nn.functional.lod.hash
+:old_api: paddle.fluid.layers.hash
+
+
+
 该OP将输入 hash 成为一个整数，该数的值小于给定的 ``hash_size`` 。**仅支持输入为LoDTensor**。
 
 该OP使用的哈希算法是：xxHash - `Extremely fast hash algorithm <https://github.com/Cyan4973/xxHash/tree/v0.6.5>`_

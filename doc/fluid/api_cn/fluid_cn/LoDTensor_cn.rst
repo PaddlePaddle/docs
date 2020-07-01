@@ -6,6 +6,9 @@ LoDTensor
 .. py:class:: paddle.fluid.LoDTensor
 
 
+
+
+
 LoDTensor是一个具有LoD（Level of Details）信息的张量（Tensor），可用于表示变长序列，详见 :ref:`cn_user_guide_lod_tensor` 。
 
 LoDTensor可以通过 ``np.array(lod_tensor)`` 方法转换为numpy.ndarray。

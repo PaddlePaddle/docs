@@ -69,6 +69,7 @@
 
   export FLAGS_allocator_strategy=naive_best_fit # 选择显存预分配策略
 
+此外，自1.7.2+版本起，PaddlePaddle提供了环境变量 :code:`FLAGS_gpu_memory_limit_mb` ，用于控制单个任务进程可分配的最大显存，单位是MB。默认值是0，表示没有限制，可分配全部显存。如果设置为大于0的值，则会在分配的显存超过限制时报错，即使此时系统还存在空闲的显存空间。
 
 2. PaddlePaddle的存储优化策略
 ===========================

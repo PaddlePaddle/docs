@@ -5,6 +5,12 @@ roi_align
 
 .. py:function:: paddle.fluid.layers.roi_align(input, rois, pooled_height=1, pooled_width=1, spatial_scale=1.0, sampling_ratio=-1, name=None)
 
+:alias_main: paddle.nn.functional.roi_align
+:alias: paddle.nn.functional.roi_align,paddle.nn.functional.vision.roi_align
+:old_api: paddle.fluid.layers.roi_align
+
+
+
 **实现RoIAlign操作。**
 
 Region of Interests align(直译：有意义、有价值选区对齐) 用于实现双线性插值，它可以将不均匀大小的输入

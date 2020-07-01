@@ -6,6 +6,9 @@ tanh
 .. py:function:: paddle.fluid.layers.tanh(x, name=None)
 
 
+
+
+
 tanh 激活函数
 
 .. math::

@@ -4,6 +4,12 @@ prior_box
 -------------------------------
 .. py:function:: paddle.fluid.layers.prior_box(input,image,min_sizes=None,max_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
 
+:alias_main: paddle.nn.functional.prior_box
+:alias: paddle.nn.functional.prior_box,paddle.nn.functional.vision.prior_box
+:old_api: paddle.fluid.layers.prior_box
+
+
+
 该OP为SSD(Single Shot MultiBox Detector)算法生成候选框。输入的每个位产生N个候选框，N由min_sizes,max_sizes和aspect_ratios的数目决定，候选框的尺寸在(min_size,max_size)之间，该尺寸根据aspect_ratios在序列中生成。
 
 参数：

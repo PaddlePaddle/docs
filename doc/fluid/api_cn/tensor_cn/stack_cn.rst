@@ -4,6 +4,12 @@ stack
 
 .. py:function:: paddle.tensor.stack(x, axis=0)
 
+:alias_main: paddle.stack
+:alias: paddle.stack,paddle.tensor.stack,paddle.tensor.manipulation.stack
+:update_api: paddle.fluid.layers.stack
+
+
+
 该OP沿 axis 轴对输入 x 进行堆叠操作。
 
 **参数**：

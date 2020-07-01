@@ -5,6 +5,12 @@ logical_and
 
 .. py:function:: paddle.fluid.layers.logical_and(x, y, out=None, name=None)
 
+:alias_main: paddle.logical_and
+:alias: paddle.logical_and,paddle.tensor.logical_and,paddle.tensor.logic.logical_and
+:old_api: paddle.fluid.layers.logical_and
+
+
+
 该OP逐元素的对 ``X`` 和 ``Y`` 两LoDTensor/Tensor进行逻辑与运算。
 
 .. math::

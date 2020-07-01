@@ -5,6 +5,12 @@ floor
 
 .. py:function:: paddle.fluid.layers.floor(x, name=None)
 
+:alias_main: paddle.floor
+:alias: paddle.floor,paddle.tensor.floor,paddle.tensor.math.floor
+:old_api: paddle.fluid.layers.floor
+
+
+
 向下取整函数。
 
 .. math::

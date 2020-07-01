@@ -5,6 +5,12 @@ density_prior_box
 
 .. py:function:: paddle.fluid.layers.density_prior_box(input, image, densities=None, fixed_sizes=None, fixed_ratios=None, variance=[0.1, 0.1, 0.2, 0.2], clip=False, steps=[0.0, 0.0], offset=0.5, flatten_to_2d=False, name=None)
 
+:alias_main: paddle.nn.functional.density_prior_box
+:alias: paddle.nn.functional.density_prior_box,paddle.nn.functional.vision.density_prior_box
+:old_api: paddle.fluid.layers.density_prior_box
+
+
+
 
 该OP为SSD算法(Single Shot MultiBox Detector)生成density prior box，在每个 ``input`` 的位置产生N个候选框，其中，N由 ``densities`` , ``fixed_sizes`` 和 ``fixed_ratios`` 来计算。生成的每个输入位置附近的候选框中心（网格点）由 ``densities`` 和 ``density prior box`` 的数量计算，其中 ``density prior box`` 的数量由 ``fixed_sizes`` 和 ``fixed_ratios`` 决定。``fixed_sizes`` 和 ``densities`` 的大小一致。
 

@@ -5,6 +5,11 @@ cross
 
 .. py:function:: paddle.cross(input, other, dim=None)
 
+:alias_main: paddle.cross
+:alias: paddle.cross,paddle.tensor.cross,paddle.tensor.linalg.cross
+
+
+
 该OP返回在 ``dim`` 维度上，两个张量 ``input`` 和 ``other`` 的向量积（叉积）。 ``input`` 和 ``other`` 必须有相同的形状，
 且指定的 ``dim`` 维上 ``size`` 必须为3，如果 ``dim`` 未指定，默认选取第一个 ``size`` 等于3的维度。
         

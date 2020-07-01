@@ -3,9 +3,12 @@
 name_scope
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.name_scope(prefix=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 
 该函数为operators生成不同的命名空间。该函数只用于调试和可视化，不建议用在其它方面。

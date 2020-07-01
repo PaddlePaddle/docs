@@ -5,6 +5,9 @@ DecayedAdagradOptimizer
 
 .. py:class:: paddle.fluid.optimizer.DecayedAdagradOptimizer(learning_rate, decay=0.95, epsilon=1e-06, parameter_list=None, regularization=None, grad_clip=None, name=None)
 
+
+
+
 Decayed Adagrad优化器，可以看做是引入了衰减率的 `Adagrad <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 算法，用于解决使用 :ref:`cn_api_fluid_optimizer_AdagradOptimizer` 优化器时，在模型训练中后期学习率急剧下降的问题。
 
 其参数更新的计算公式如下：

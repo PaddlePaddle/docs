@@ -6,6 +6,9 @@ cuda_profiler
 .. py:function:: paddle.fluid.profiler.cuda_profiler(output_file, output_mode=None, config=None)
 
 
+
+
+
 CUDA性能分析器。该分析器通过调用CUDA运行时编程接口，对CUDA程序进行性能分析，并将分析结果写入输出文件output_file。输出格式由output_mode参数控制，性能分析配置选项由config参数控制。得到输出文件后，用户可使用 `NVIDIA Visual Profiler <https://developer.nvidia.com/nvidia-visual-profiler>`_ 工具来加载这个输出文件以获得可视化结果。
 
 

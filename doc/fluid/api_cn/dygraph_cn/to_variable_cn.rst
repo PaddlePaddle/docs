@@ -3,11 +3,16 @@
 to_variable
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
 .. py:function:: paddle.fluid.dygraph.to_variable(value, name=None, zero_copy=None)
 
+
+:api_attr: 命令式编程模式（动态图)
+
+
+
 该函数实现从tuple、list、numpy\.ndarray、Variable、ComplexVariable 对象创建一个 ``Variable`` 类型的对象。
+
 
 参数：
     - **value** (tuple|list|ndarray|Variable|Tensor|ComplexVariable) – 初始化的数据。可以是tuple、list、numpy\.ndarray、Variable、ComplexVariable。

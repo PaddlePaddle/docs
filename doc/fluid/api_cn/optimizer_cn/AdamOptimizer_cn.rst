@@ -5,6 +5,9 @@ AdamOptimizer
 
 .. py:class:: paddle.fluid.optimizer.AdamOptimizer(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameter_list=None, regularization=None, grad_clip=None, name=None, lazy_mode=False)
 
+
+
+
 Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节，能够利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
 
 其参数更新的计算公式如下：
@@ -16,7 +19,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. math::
     moment\_2\_out=\beta_2∗moment\_2+(1−\beta_2)∗grad*grad
 .. math::
-    learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
+    learning\_rate=learning\_rate*\frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
 .. math::
     param\_out=param-learning\_rate*\frac{moment\_1}{\sqrt{moment\_2}+\epsilon}\\
 
@@ -81,7 +84,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         avg_cost = fluid.layers.mean(cost)
 
         # define beta decay variable
-        def get_decayed_betas(beta1_init, beta2_init, decay_steps, decay_rate)
+        def get_decayed_betas(beta1_init, beta2_init, decay_steps, decay_rate):
             global_step = lr_scheduler._decay_step_counter()
 
             beta1 = fluid.layers.create_global_var(
@@ -110,7 +113,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         beta1, beta2 = get_decayed_betas(0.9, 0.99, 1e5, 0.9)
         adam_optimizer = fluid.optimizer.AdamOptimizer(
                                             learning_rate=0.01,
-                                            beta1=beta1
+                                            beta1=beta1,
                                             beta2=beta2)
         adam_optimizer.minimize(avg_cost)
 

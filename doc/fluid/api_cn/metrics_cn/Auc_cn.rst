@@ -4,6 +4,9 @@ Auc
 -------------------------------
 .. py:class:: paddle.fluid.metrics.Auc(name, curve='ROC', num_thresholds=4095)
 
+
+
+
 **注意**：目前只用Python实现Auc，可能速度略慢
 
 该接口计算Auc，在二分类(binary classification)中广泛使用。相关定义参考 https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve 。

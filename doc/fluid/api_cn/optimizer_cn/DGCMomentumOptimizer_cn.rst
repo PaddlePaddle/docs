@@ -3,9 +3,12 @@
 DGCMomentumOptimizer
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.optimizer.DGCMomentumOptimizer(learning_rate, momentum, rampup_begin_step, rampup_step=1, sparsity=[0.999], use_nesterov=False, local_grad_clip_norm=None, num_trainers=None, regularization=None, grad_clip=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 DGC（深度梯度压缩）Momentum 优化器。原始论文: https://arxiv.org/abs/1712.01887
 
@@ -70,6 +73,29 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
 .. code-block:: python
 
     import paddle.fluid as fluid
+
+    def network():
+        x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=0)
+        y = fluid.layers.data(name='y', shape=[1], dtype='int64', lod_level=0)
+        emb_x = fluid.layers.embedding(
+                input=x,
+                size=[10, 2],
+                is_sparse=False)
+        emb_y = fluid.layers.embedding(
+                input=y,
+                size=[10, 2],
+                is_sparse=False)
+
+        concat = fluid.layers.concat([emb_x, emb_y], axis=1)
+
+        fc = fluid.layers.fc(input=concat,
+                       name="fc",
+                       size=1,
+                       num_flatten_dims=1,
+                       bias_attr=False)
+        loss = fluid.layers.reduce_mean(fc)
+        return loss
+
     loss = network()
     optimizer = fluid.optimizer.SGD(learning_rate=0.1)
     params_grads = optimizer.backward(loss)

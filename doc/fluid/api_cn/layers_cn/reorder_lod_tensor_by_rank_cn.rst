@@ -6,6 +6,9 @@ reorder_lod_tensor_by_rank
 .. py:function:: paddle.fluid.layers.reorder_lod_tensor_by_rank(x, rank_table)
 
 
+
+
+
 该OP根据 ``rank_table`` 中提供的 ``LoDRankTable`` 类型的顺序信息来实现对 ``X`` 的重新排列。
 接口参数 ``X`` 是由多个序列(Sequence)组成的的一个批序列（Batch of Sequences）， ``rank_table`` 存储着对batch中序列重新排列的 ``LoDRankTable`` 类型的顺序信息。
 

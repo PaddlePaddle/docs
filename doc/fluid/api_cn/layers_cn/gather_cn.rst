@@ -5,6 +5,9 @@ gather
 
 .. py:function:: paddle.fluid.layers.gather(input, index, overwrite=True)
 
+
+
+
 根据索引 ``index`` 获取输入（input）的最外层维度的条目，并将它们拼接在一起。
 
 .. math::

@@ -4,6 +4,9 @@ Accuracy
 -------------------------------
 .. py:class:: paddle.fluid.metrics.Accuracy(name=None)
 
+
+
+
 该接口用来计算多个mini-batch的平均准确率。Accuracy对象有两个状态value和weight。Accuracy的定义参照 https://en.wikipedia.org/wiki/Accuracy_and_precision 。
 
 参数:
