@@ -13,57 +13,74 @@ cifar-100数据集与cifar-10类似，只是它有100个类，每个类包含600
 
 
 
-.. py:function:: paddle.dataset.cifar.train100()
+方法
+::::::::::::
+paddle.dataset.cifar.train100()
+'''''''''
 
 CIFAR-100训练数据集的creator。
 
 它返回一个reader creator, reader中的每个样本的图像像素范围是[0，1]，标签范围是[0，9]。
 
-返回： 训练数据集的reader creator。
+**返回**
+ 训练数据集的reader creator。
 
-返回类型：callable
+**返回类型**
+callable
 
 
-.. py:function:: paddle.dataset.cifar.test100()
+paddle.dataset.cifar.test100()
+'''''''''
 
 CIFAR-100测试数据集的creator。
 
 它返回一个reader creator, reader中的每个样本的图像像素范围是[0，1]，标签范围是[0，9]。
 
-返回： 测试数据集的reader creator
+**返回**
+ 测试数据集的reader creator
 
-返回类型：callable
+**返回类型**
+callable
 
 
-.. py:function:: paddle.dataset.cifar.train10(cycle=False)
+paddle.dataset.cifar.train10(cycle=False)
+'''''''''
 
 CIFAR-10训练数据集的creator。
 
 它返回一个reader creator, reader中的每个样本的图像像素范围是[0，1]，标签范围是[0，9]。
 
-参数：
+**参数**
+
     - **cycle** (bool) – 是否循环使用数据集
 
-返回： 训练数据集的reader creator
+**返回**
+ 训练数据集的reader creator
 
-返回类型：callable
+**返回类型**
+callable
 
 
-.. py:function:: paddle.dataset.cifar.test10(cycle=False)
+paddle.dataset.cifar.test10(cycle=False)
+'''''''''
 
 CIFAR-10测试数据集的creator。
 
 它返回一个reader creator, reader中的每个样本的图像像素范围是[0，1]，标签范围是[0，9]。
 
-参数：
+**参数**
+
     - **cycle** (bool) – 是否循环使用数据集
 
-返回： 测试数据集的reader creator
+**返回**
+ 测试数据集的reader creator
 
-返回类型：callable
+**返回类型**
+callable
 
 
-.. py:function:: paddle.dataset.cifar.convert(path)
+paddle.dataset.cifar.convert(path)
+'''''''''
 
 将数据集转换为recordio格式。
 

@@ -11,17 +11,24 @@ log_softmax
 
         \\output = \frac{1}{1 + e^{-input}}\\
 
-参数:
+参数
+::::::::::::
+
     - **input** (Variable) - 任意维度的多维 ``Tensor`` ，数据类型为float32或float64。
     - **axis** (int, 可选) - 指示进行LogSoftmax计算的维度索引，其范围应为 :math:`[-1，rank-1]` ，其中rank是输入变量的秩。默认值：None（与-1效果相同，表示对最后一维做LogSoftmax操作）。
     - **dtype** (np.dtype|core.VarDesc.VarType|str) - 期望输出``Tensor``的数据类型。如果指定了``dtype``，输入tensor的数据类型将在计算前被转换为``dtype``类型，可以有效防止数据溢出。默认值：None。支持的类型：float32或float64。
     - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：表示log_softmax操作结果的 ``Tensor`` ，数据类型和 ``dtype`` 或者 ``input`` 一致，返回维度和 ``input`` 一致。
+返回
+::::::::::::
+表示log_softmax操作结果的 ``Tensor`` ，数据类型和 ``dtype`` 或者 ``input`` 一致，返回维度和 ``input`` 一致。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

@@ -28,18 +28,25 @@ NLLLoss
             \text{if reduction} = \text{'sum'.}
         \end{cases}
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable): - 输入 `Tensor`, 其形状为 :math:`[N, C]` , 其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
     - **label** (Variable): - 输入input对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`, 数据类型为int64。
     - **weight** (Variable, 可选): - 手动指定每个类别的权重。其默认为 `None` 。如果提供该参数的话，长度必须为 `num_classes` 。数据类型为float32或float64。
     - **reduction** (string, 可选): - 指定应用于输出结果的计算方式，可选值有: `none`, `mean`, `sum` 。默认为 `mean` ，计算 `mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。数据类型为string。
     - **ignore_index** (int64, 可选): - 指定一个忽略的标签值，此标签值不参与计算。默认值为-100。数据类型为int64。
 
-返回：返回存储表示 `negative log likihood loss` 的损失值。
+返回
+::::::::::::
+返回存储表示 `negative log likihood loss` 的损失值。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

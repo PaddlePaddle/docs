@@ -8,15 +8,22 @@ shuffle
 创建一个特殊的数据读取器，它的输出数据会被重洗(shuffle)。由原始读取器创建的迭代器得到的输出将会被暂存到shuffle缓存区，其后
 会对其进行重洗运算。shuffle缓存区的大小由参数 ``buffer_size`` 决定。
 
-参数:
+参数
+::::::::::::
+
     - **reader** (callable) – 输出会被shuffle的原始reader
     - **buffer_size** (int) – 进行shuffle的buffer的大小
 
-返回:其输出会被shuffle的一个reader（读取器）
+返回
+::::::::::::
+其输出会被shuffle的一个reader（读取器）
 
-返回类型:callable
+返回类型
+::::::::::::
+callable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -17,14 +17,21 @@ cuda_places
 如果 ``device_ids`` 不是 ``None``，它应该是使用的GPU设备ID的列表或元组。
 例如： ``device_id=[0,1,2]`` ，返回的列表将是 ``[fluid.CUDAPlace(0), fluid.CUDAPlace(1), fluid.CUDAPlace(2)]``。
 
-参数：
+参数
+::::::::::::
+
   - **device_ids** (list(int)|tuple(int)，可选) - GPU的设备ID列表或元组。默认值为 ``None``。
 
-返回: 创建的 ``fluid.CUDAPlace`` 列表。
+返回
+::::::::::::
+ 创建的 ``fluid.CUDAPlace`` 列表。
 
-返回类型：list[fluid.CUDAPlace]
+返回类型
+::::::::::::
+list[fluid.CUDAPlace]
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

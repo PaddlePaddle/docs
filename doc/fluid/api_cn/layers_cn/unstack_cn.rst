@@ -7,7 +7,9 @@ unstack
 
 该OP将单个dim为 ``D`` 的Tensor沿 ``axis`` 轴unpack为 ``num`` 个dim为 ``(D-1)`` 的Tensor
 
-参数:
+参数
+::::::::::::
+
       - **x** (Variable) – 输入x为 ``dim > 0`` 的Tensor，
       支持的数据类型: float32，float64，int32，int64。
 
@@ -16,14 +18,21 @@ unstack
 
       - **num** (int | 可选) - axis轴的长度，一般无需设置，默认值为 ``None`` 。
 
-返回: 长度为num的Tensor列表, 数据类型与输入Tensor相同，dim为 ``(D-1)``。
+返回
+::::::::::::
+ 长度为num的Tensor列表, 数据类型与输入Tensor相同，dim为 ``(D-1)``。
 
-返回类型: list(Variable)
+返回类型
+::::::::::::
+ list(Variable)
 
-抛出异常：
+抛出异常
+::::::::::::
+
       - :code:`ValueError`：``x.shape[axis]`` <= 0 或 ``axis`` 不在[-D, D)范围内
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

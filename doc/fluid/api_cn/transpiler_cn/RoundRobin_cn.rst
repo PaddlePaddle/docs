@@ -11,14 +11,21 @@ RoundRobin
 
 `RondRobin <https://en.wikipedia.org/wiki/Round-robin_scheduling>`_
 
-参数:
+参数
+::::::::::::
+
   - **pserver_endpoints** (list) - endpoint （ip:port）的 list 
 
-返回：实例化后的RoundRobin的对象
+返回
+::::::::::::
+实例化后的RoundRobin的对象
 
-返回类型：RoundRobin
+返回类型
+::::::::::::
+RoundRobin
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -30,16 +37,22 @@ RoundRobin
           rr.dispatch(vars)
 
 
-.. py:method:: dispatch(varlist)
+方法
+::::::::::::
+dispatch(varlist)
+'''''''''
 
 该方法使用RoundRobin的方式将多个参数散列到多个parameter Server终端。
 
-参数:
+**参数**
+
   - **varlist** (list) - 参数 (var1, var2, var3) 的 list
 
-返回：基于varlist中var的顺序，返回参数服务器(ip:port)的列表， 列表中的数据量和varlist的数据量一致。
+**返回**
+基于varlist中var的顺序，返回参数服务器(ip:port)的列表， 列表中的数据量和varlist的数据量一致。
 
-返回类型：list
+**返回类型**
+list
 
 **代码示例**
 
@@ -51,11 +64,13 @@ RoundRobin
           rr.dispatch(vars)
 
 
-.. py:method:: reset()
+reset()
+'''''''''
 
 该方法将重置RoundRobin内置的计数， 计数将重置为0。
 
-返回：无。
+**返回**
+无。
 
 **代码示例**
 

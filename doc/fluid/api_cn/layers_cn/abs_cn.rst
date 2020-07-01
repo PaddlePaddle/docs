@@ -10,15 +10,22 @@ abs
 .. math::
     out = |x|
 
-参数:
+参数
+::::::::::::
+
     - **x** (Variable)- 多维Tensor，数据类型为float32或float64。
     - **name** (str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回：表示绝对值结果的Tensor，数据类型与x相同。
+返回
+::::::::::::
+表示绝对值结果的Tensor，数据类型与x相同。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

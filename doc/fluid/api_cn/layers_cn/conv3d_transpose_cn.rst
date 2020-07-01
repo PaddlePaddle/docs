@@ -74,7 +74,9 @@ conv3d_transpose
 
 如果指定了output_size， ``conv3d_transpose`` 可以自动计算滤波器的大小。
 
-参数:
+参数
+::::::::::::
+
   - **input** （Variable）- 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
   - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数相同。
   - **output_size** (int|tuple，可选) - 输出图片的大小。如果output_size是一个元组，则必须包含三个整型数，（output_size_depth，output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。默认：None。output_size和filter_size不能同时为None。
@@ -90,11 +92,17 @@ conv3d_transpose
   - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCDHW"。
 
-返回：5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
+返回
+::::::::::::
+5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-抛出异常:
+抛出异常
+::::::::::::
+
     - ``ValueError`` - 如果输入的shape、filter_size、stride、padding和groups不匹配。
     - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
     - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
@@ -104,7 +112,8 @@ conv3d_transpose
     - ``ShapeError`` - 如果输入和滤波器的维度大小不相同。
     - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

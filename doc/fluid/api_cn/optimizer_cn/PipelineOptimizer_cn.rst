@@ -14,7 +14,9 @@ Program会根据切分列表cut_list进行分割。如果cut_list的长度是k�
 
     虽然我们在流水线训练模式中采用异步更新的方式来加速，但最终的效果会依赖于每条流水线的训练进程。我们将在未来尝试同步模式。
 
-参数:
+参数
+::::::::::::
+
     - **optimizer** (Optimizer) - 基础优化器，如SGD
     - **cut_list** (list of Variable list) - main_program的cut变量列表
     - **place_list** (list of Place) - 对应section运行所在的place
@@ -23,7 +25,8 @@ Program会根据切分列表cut_list进行分割。如果cut_list的长度是k�
     - **sync_steps** (int) - 不同显卡之间的同步周期数。可选，默认值：1
     - **start_cpu_core_id** (int) - 指定所使用的第一个CPU核的id。可选，默认值：0
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

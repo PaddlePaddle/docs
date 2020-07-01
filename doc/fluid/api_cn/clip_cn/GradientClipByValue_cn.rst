@@ -18,12 +18,15 @@ GradientClipByValue
 
 - 任何大于 ``max`` 的值都被设置为 ``max``
 
-参数:
+参数
+::::::::::::
+
  - **max** (foat) - 要修剪的最大值。
  - **min** (float，optional) - 要修剪的最小值。如果用户没有设置，将被自动设置为 ``-max`` （此时 ``max`` 必须大于0）。
  - **need_clip** (function, optional) - 类型: 函数。用于指定需要梯度裁剪的参数，该函数接收一个 ``Parameter`` ，返回一个 ``bool`` (True表示需要裁剪，False不需要裁剪)。默认为None，此时会裁剪网络中全部参数。
   
-**代码示例1：静态图**
+代码示例 1：静态图
+::::::::::::
  
 .. code-block:: python
             
@@ -60,7 +63,8 @@ GradientClipByValue
     out = exe.run(main_prog, feed={'x': x}, fetch_list=loss)
 
 
-**代码示例2：动态图**
+代码示例 2：动态图
+::::::::::::
 
 .. code-block:: python
 

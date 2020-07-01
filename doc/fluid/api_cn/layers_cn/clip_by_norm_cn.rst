@@ -15,16 +15,23 @@ ClipByNorm算子
 其中， :math:`norm（X）` 代表 ``x`` 的L2范数。
 
 
-参数：
+参数
+::::::::::::
+
         - **x** (Variable)- 多维Tensor或LoDTensor，数据类型为float32。clip_by_norm运算的输入，维数必须在[1,9]之间。
         - **max_norm** (float32)- 最大范数值。
         - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-返回：        表示为输出Tensor或LoDTensor，数据类型为float32。和输入(X)具有相同的形状.
+返回
+::::::::::::
+        表示为输出Tensor或LoDTensor，数据类型为float32。和输入(X)具有相同的形状.
 
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

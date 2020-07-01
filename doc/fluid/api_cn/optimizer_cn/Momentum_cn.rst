@@ -3,7 +3,7 @@
 Momentum
 -------------------------------
 
-.. py:attribute::  paddle.fluid.optimizer.Momentum
+.. py:attribute:: paddle.fluid.optimizer.Momentum
 
 ``MomentumOptimizer`` 的别名
 

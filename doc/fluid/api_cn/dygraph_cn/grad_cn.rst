@@ -7,9 +7,12 @@ grad
 
 .. py:method:: paddle.fluid.dygraph.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None, backward_strategy=None)
 
+
 对于每个 `inputs` ，计算所有 `outputs` 相对于其的梯度和。
 
-参数:
+参数
+:::::::::
+
     - **outputs** (Variable|list(Variable)|tuple(Variable)) – 用于计算梯度的图的输出变量，或多个输出变量构成的list/tuple。
     - **inputs** (Variable|list(Variable)|tuple(Variable)) - 用于计算梯度的图的输入变量，或多个输入变量构成的list/tuple。该API的每个返回值对应每个 `inputs` 的梯度。
     - **grad_outputs** (Variable|list(Variable|None)|tuple(Variable|None), 可选) - `outputs` 变量梯度的初始值。若 `grad_outputs` 为None，则 `outputs` 梯度的初始值均为全1的Tensor。若 `grad_outputs` 不为None，它必须与 `outputs` 的长度相等，此时，若 `grad_outputs` 的第i个元素为None，则第i个 `outputs` 的梯度初始值为全1的Tensor；若 `grad_outputs` 的第i个元素为Variable，则第i个 `outputs` 的梯度初始值为 `grad_outputs` 的第i个元素。默认值为None。
@@ -20,11 +23,16 @@ grad
     - **no_grad_vars** (Variable|list(Variable)|tuple(Variable)|set(Variable), 可选) - 指明不需要计算梯度的变量。默认值为None。
     - **backward_strategy** (BackwardStrategy, 可选) - 计算梯度的策略。详见 :ref:`cn_api_fluid_dygraph_BackwardStrategy` 。默认值为None。
 
-返回: 变量构成的tuple，其长度等于 `inputs` 中的变量个数，且第i个返回的变量是所有 `outputs` 相对于第i个 `inputs` 的梯度之和。
+返回
+:::::::::
+ 变量构成的tuple，其长度等于 `inputs` 中的变量个数，且第i个返回的变量是所有 `outputs` 相对于第i个 `inputs` 的梯度之和。
 
-返回类型: tuple
+返回类型
+:::::::::
+ tuple
 
-**示例代码 1**
+代码示例 1
+:::::::::
   .. code-block:: python
 
         import paddle.fluid as fluid
@@ -59,7 +67,8 @@ grad
         print(test_dygraph_grad(create_graph=False)) # [2.]
         print(test_dygraph_grad(create_graph=True)) # [4.]
 
-**示例代码 2**
+代码示例 2
+:::::::::
   .. code-block:: python
 
         import paddle.fluid as fluid

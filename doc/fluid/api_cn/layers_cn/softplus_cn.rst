@@ -10,15 +10,22 @@ softplus激活函数
 .. math::
     out = \ln(1 + e^{x})
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) - 张量（Tensor）
     - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。
 
-返回: 张量(Tensor)
+返回
+::::::::::::
+ 张量(Tensor)
 
-返回类型: 变量(Variable)
+返回类型
+::::::::::::
+ 变量(Variable)
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

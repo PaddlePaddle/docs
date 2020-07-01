@@ -12,15 +12,22 @@ DistributeTranspiler
 算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。
 
 
-参数：
+参数
+::::::::::::
+
         - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性, 请参考：`DistributeTranspilerConfig` 相关文档。
 
-返回：初始化后的DistributeTranspiler实例
+返回
+::::::::::::
+初始化后的DistributeTranspiler实例
 
-返回类型：实例（DistributeTranspiler）
+返回类型
+::::::::::::
+实例（DistributeTranspiler）
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -68,11 +75,15 @@ DistributeTranspiler
 
 
 
-.. py:method:: transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
+方法
+::::::::::::
+transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_mode=True, startup_program=None, current_endpoint='127.0.0.1:6174')
+'''''''''
 
 通过此方法，可根据用户配置将单机的program转换为当前节点可用的数据并行的分布式program。
 
-参数:
+**参数**
+
     - **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
     - **program** (Program|None) – 待transpile（转译）的program, 缺省为 ``fluid.default_main_program()``
     - **startup_program** (Program|None) - 要转译的 ``startup_program`` ,默认为 ``fluid.default_startup_program()``
@@ -82,7 +93,8 @@ DistributeTranspiler
     - **startup_program** (Program|None) – 待transpile（转译）的startup_program，默认为 ``fluid.default_main_program()``
     - **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式下时，需要将当前endpoint（终端）传入该参数。PServer模型下，当用户需要使用增量训练时，必须要指定该参数。
 
-返回：None
+**返回**
+None
 
 
 **代码示例**
@@ -98,14 +110,17 @@ DistributeTranspiler
         current_endpoint="127.0.0.1:7000")
 
 
-.. py:method:: get_trainer_program(wait_port=True)
+get_trainer_program(wait_port=True)
+'''''''''
 
 
 该方法可以得到Trainer侧的program。
 
-返回:    Trainer侧的program
+**返回**
+    Trainer侧的program
 
-返回类型:    Program
+**返回类型**
+    Program
 
 **代码示例**
 
@@ -121,17 +136,21 @@ DistributeTranspiler
         trainer_program = t.get_trainer_program()
 
 
-.. py:method:: get_pserver_program(endpoint)
+get_pserver_program(endpoint)
+'''''''''
 
 
 该方法可以得到Pserver（参数服务器）侧的程序
 
-参数:
+**参数**
+
     - **endpoint** (str) – 当前Pserver终端
 
-返回:    当前Pserver需要执行的program
+**返回**
+    当前Pserver需要执行的program
 
-返回类型:    Program
+**返回类型**
+    Program
 
 **代码示例**
 
@@ -149,17 +168,21 @@ DistributeTranspiler
           pserver_program = t.get_pserver_program(current_endpoint)
 
 
-.. py:method:: get_pserver_programs(endpoint)
+get_pserver_programs(endpoint)
+'''''''''
 
 
 该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。
 
-参数:
+**参数**
+
     - **endpoint** (str) – 当前Pserver终端
 
-返回:    (main_program, startup_program), “Program”类型的元组
+**返回**
+    (main_program, startup_program), “Program”类型的元组
 
-返回类型:    tuple
+**返回类型**
+    tuple
 
 
 **代码示例**
@@ -178,20 +201,24 @@ DistributeTranspiler
           pserver_program, pserver_startup_program = t.get_pserver_programs(current_endpoint)
 
 
-.. py:method:: get_startup_program(endpoint, pserver_program=None, startup_program=None)
+get_startup_program(endpoint, pserver_program=None, startup_program=None)
+'''''''''
 
 
 **该函数已停止使用**
 获取当前Pserver的startup_program，如果有多个被分散到不同blocks的变量，则修改operator的输入变量。
 
-参数:
+**参数**
+
     - **endpoint** (str) – 当前Pserver终端
     - **pserver_program** (Program) – 已停止使用。 先调用get_pserver_program
     - **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
 
-返回:    Pserver侧的startup_program
+**返回**
+    Pserver侧的startup_program
 
-返回类型:    Program
+**返回类型**
+    Program
 
 **代码示例**
 

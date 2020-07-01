@@ -13,20 +13,25 @@ bmm
 
 例如：若x和y分别为（b, m, k）和 （b, k, n)的矩阵，则函数的输出为一个（b, m, n）的矩阵
 
-**参数**：
+参数
+:::::::::
     
     -**x** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
     -**y** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
     -**name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
 
-**返回**：
+返回
+:::::::::
+
     - Variable (Tensor / LoDTensor)，矩阵相乘后的结果。
 
-**返回类型**：
+返回类型
+:::::::::
     - Variable（变量）。
 
 
-**示例**:
+代码示例
+:::::::::
 
 .. code-block:: python
     

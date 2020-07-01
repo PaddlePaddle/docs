@@ -60,16 +60,20 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
         print(res)
         # [array([-1.], dtype=float32)] 
 
-参数：
+参数
+::::::::::::
+
     - **cond** (Variable)- cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示N个输入数据的对应的执行条件。数据类型为bool。
     - **Name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-**返回：**    
+返回
+::::::::::::
 
 同其他常见OP不同的是，该OP调用返回一个IfElse OP对象(如例子中的 ie)，通过调用对象内部函数 ``true_block()`` ， ``false_block()`` ， ``input()`` ， ``output()`` 对输入数据进行分支处理，
 通过调用内部的 ``__call__()`` 函数，将不同分支处理的数据进行整合，作为整体的输出，输出类型为列表，列表中每个元素的类型为Variable。
 
-**内部函数：**
+内部函数
+::::::::::::
 
 - 通过调用对象中的 ``with ie.true_block()`` 函数构建block，将条件为true下的计算逻辑放入此block中。如果没有构建相应的block，则对应条件维度下的输入数据不做改变。            
 

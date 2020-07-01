@@ -13,17 +13,24 @@ clip
 
 
 
-参数：
+参数
+::::::::::::
+
         - **x** (Variable)- 多维Tensor，数据类型为float32
         - **min** (float)- 最小值，输入Tensor中小于该值的元素由min代替。
         - **max** (float)- 最大值，输入Tensor中大于该值的元素由max替换。
         - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回：  对元素的数值进行裁剪之后的Tesnor，与输入x具有相同的shape和数据类型
+返回
+::::::::::::
+  对元素的数值进行裁剪之后的Tesnor，与输入x具有相同的shape和数据类型
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

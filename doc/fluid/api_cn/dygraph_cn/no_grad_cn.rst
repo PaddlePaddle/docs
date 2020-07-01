@@ -7,11 +7,13 @@ no_grad
 
 .. py:method:: paddle.fluid.dygraph.no_grad(func=None)
 
+
 创建一个上下文来禁用动态图梯度计算。在此模式下，每次计算的结果都将具有stop_gradient=True。
 
 也可以用作一个装饰器（确保不要用括号来初始化）。
 
-**代码示例**
+代码示例
+:::::::::
 
 ..  code-block:: python
 

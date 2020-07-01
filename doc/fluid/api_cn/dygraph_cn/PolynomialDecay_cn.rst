@@ -30,7 +30,9 @@ PolynomialDecay
 - :math:`decayed\_learning\_rate` ： 衰减后的学习率。
 式子中各参数详细介绍请看参数说明。
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (Variable|float32) - 初始学习率。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的float类型。
     - **decay_steps** (int) - 衰减步数。必须是正整数，该参数确定衰减周期。
     - **end_learning_rate** (float，可选) - 最小的最终学习率。默认值为0.0001。
@@ -40,10 +42,13 @@ PolynomialDecay
     - **step** (int，可选) – 步大小，即以上运算式子中global_step的递增值。默认值为1。
     - **dtype** (str，可选)– 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
-返回： 无
+返回
+::::::::::::
+ 无
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

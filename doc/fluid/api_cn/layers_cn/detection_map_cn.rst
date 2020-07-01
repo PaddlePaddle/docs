@@ -11,7 +11,9 @@ detection_map
 
         https://arxiv.org/abs/1512.02325
 
-参数：
+参数
+::::::::::::
+
         - **detect_res** （Variable) - 用具有形状[M，6]的2-D LoDTensor来表示检测结果。每行有6个值：[label，confidence，xmin，ymin，xmax，ymax]，M是此mini-batch中检测结果的总数。对于每个实例，第一维中的偏移称为LoD，偏移量为N+1，如果LoD[i+1]-LoD[i]== 0，则表示没有检测到数据。数据类型为float32或float64。
         - **label** （Variable）- 2-D LoDTensor用来带有标签的真实数据。每行有6个值：[label，xmin，ymin，xmax，ymax，is_difficult]或5个值：[label，xmin，ymin，xmax，ymax]，其中N是此mini-batc中真实数据的总数。对于每个实例，第一维中的偏移称为LoD，偏移量为N + 1，如果LoD [i + 1] - LoD [i] == 0，则表示没有真实数据。数据类型为float32或float64。
         - **class_num** （int）- 检测类别的数目。
@@ -37,11 +39,16 @@ detection_map
 
         - **ap_version** （str）- AP算法类型，有'integral'和'11 point'两种模式，默认为'integral'。
 
-返回：Variable(具有形状[1]的Tensor），存储mAP的检测评估结果。评估结果的数据类型为float32或float64。
+返回
+::::::::::::
+Variable(具有形状[1]的Tensor），存储mAP的检测评估结果。评估结果的数据类型为float32或float64。
 
-返回类型：变量(Variable)
+返回类型
+::::::::::::
+变量(Variable)
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

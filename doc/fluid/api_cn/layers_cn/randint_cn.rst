@@ -7,7 +7,9 @@ randint
 
 该OP使用从区间[low，high)内均匀分布采样的随机整数初始化一个Tensor。当high为None时（默认），均匀采样的区间为[0,low)。
 
-参数：
+参数
+::::::::::::
+
     - **low** (int)-要生成的随机值范围的下限，low包含在范围中。当high为None时，均匀采样的区间为[0,low)。
     - **high** (int，可选)-要生成的随机值范围的上限，high不包含在范围中。默认值为None。
     - **shape** (list|tuple|Variable，可选)-输出Tensor的维度，shape类型支持list，tuple，Variable。如果shape类型是list或者tuple，它的元素可以是整数或者形状为[1]的Tensor，其中整数的数据类型为int，Tensor的数据类型为int32或int64。如果shape的类型是Variable，则是1D的Tensor，Tensor的数据类型为int32或int64。如果shape为None，则会将shape设置为[1]。默认值为None。
@@ -18,16 +20,23 @@ randint
     - **seed** (int，可选)-随机种子，用于生成样本。0表示使用系统生成的种子。注意如果种子不为0，该操作符每次都生成同样的随机数。默认为 0。
     - **name** (str，可选)-具体用法请参见:ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：表示一个随机初始化结果的Tensor，该Tensor的数据类型由dtype参数决定，该Tensor的维度由shape参数决定。
+返回
+::::::::::::
+表示一个随机初始化结果的Tensor，该Tensor的数据类型由dtype参数决定，该Tensor的维度由shape参数决定。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - :code:`TypeError`: shape的类型应该是list、tuple 或 Variable。
     - :code:`TypeError`: dtype的类型应该是int32或int64。
     - :code:`ValueError`: 该OP的high必须大于low（high为None时，则会先将high设置为low，将low设置为0，再判断low和high的大小关系）。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

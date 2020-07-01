@@ -7,11 +7,16 @@ is_compiled_with_cuda
 
 检查 ``whl`` 包是否可以被用来在GPU上运行模型
 
-返回：支持gpu则为True,否则为False。
+返回
+::::::::::::
+支持gpu则为True,否则为False。
 
-返回类型：out(boolean)
+返回类型
+::::::::::::
+out(boolean)
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

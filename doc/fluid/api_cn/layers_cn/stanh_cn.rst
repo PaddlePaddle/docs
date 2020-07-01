@@ -10,17 +10,24 @@ STanh 激活算子（STanh Activation Operator.）
 .. math::
           \\out=b*\frac{e^{a*x}-e^{-a*x}}{e^{a*x}+e^{-a*x}}\\
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor|LoDTensor) - 数据类型为float32,float64。STanh operator的输入
     - **scale_a** (float) - 输入的a的缩放参数
     - **scale_b** (float) - b的缩放参数
     - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名
 
-返回: 与输入shape相同的张量
+返回
+::::::::::::
+ 与输入shape相同的张量
 
-返回类型: Variable（Tensor），数据类型为float32的Tensor。
+返回类型
+::::::::::::
+ Variable（Tensor），数据类型为float32的Tensor。
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

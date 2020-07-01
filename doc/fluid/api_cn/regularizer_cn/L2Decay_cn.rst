@@ -3,7 +3,7 @@
 L2Decay
 -------------------------------
 
-.. py:attribute::   paddle.fluid.regularizer.L2Decay
+.. py:attribute:: paddle.fluid.regularizer.L2Decay
 
 L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模型对训练数据过拟合。
 
@@ -17,10 +17,13 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
 .. math::
             \\L2WeightDecay=reg\_coeff*parameter\\
 
-参数:
+参数
+:::::::::
+
   - **regularization_coeff** (float) – 正则化系数，默认值为0.0。
 
-**代码示例1**
+代码示例 1
+::::::::::::
 
 .. code-block:: python
 
@@ -42,7 +45,8 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
     optimizer.minimize(avg_loss)
 
 
-**代码示例2**
+代码示例 2
+::::::::::::
 
 .. code-block:: python
     

@@ -5,8 +5,11 @@ DataLoader
 
 .. py:class:: paddle.fluid.io.DataLoader
 
+方法
+::::::::::::
 
-.. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
+from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
+'''''''''
 
 .. note::
     框架保证DataLoader的数据加载顺序与用户提供的数据源读取顺序一致。
@@ -22,7 +25,8 @@ DataLoader
 ``fluid.layers.py_reader`` 的使用方式。用户可使用iterable = False模式，方便地将 ``fluid.layers.py_reader`` 的代码迁移至
 ``fluid.io.DataLoader`` 。
 
-参数:
+**参数**
+
     - **feed_list** (list(Variable)|tuple(Variable)) - feed变量列表，由 ``fluid.layers.data()`` 创建。
     - **capacity** (int) - DataLoader对象内部维护队列的容量大小。单位是batch数量。若reader读取速度较快，建议设置较大的capacity值。
     - **use_double_buffer** (bool) - 是否使用 ``double_buffer_reader`` 。若use_double_buffer=True，DataLoader会异步地预读取下一个batch的数据，可加速数据读取过程，但同时会占用少量的CPU/GPU存储，即一个batch输入数据的存储空间。
@@ -31,9 +35,11 @@ DataLoader
     - **use_multiprocess** (bool) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有效, 在静态图模式下，该参数设置与否均无任何影响。默认值为False。
     - **drop_last** (bool): 是否丢弃最后的不足CPU/GPU设备数的批次。默认值为True。在网络训练时，用户不能设置drop_last=False，此时所有CPU/GPU设备均应从DataLoader中读取到数据。在网络预测时，用户可以设置drop_last=False，此时最后不足CPU/GPU设备数的批次可以进行预测。
 
-返回: 被创建的DataLoader对象
+**返回**
+ 被创建的DataLoader对象
 
-返回类型: loader (DataLoader)
+**返回类型**
+ loader (DataLoader)
 
 **代码示例 1**
 
@@ -213,18 +219,22 @@ DataLoader
             print(run_inference(drop_last=False)) # [1.0, 4.0, 9.0]
 
 
-.. py:method:: from_dataset(dataset, places, drop_last=True)
+from_dataset(dataset, places, drop_last=True)
+'''''''''
 
 创建一个DataLoader对象用于加载Dataset产生的数据。目前，Dataset仅支持Linux系统下使用。
 
-参数:
+**参数**
+
     - **dataset** (InMemoryDataset|QueueDataset) - Dataset对象。
     - **places** (list(CUDAPlace)|list(CPUPlace)) - DataLoader对象返回数据所在的place。
     - **drop_last** (bool) - 是否丢弃最后样本数量不足batch size的batch。若drop_last = True则丢弃，若drop_last = False则不丢弃。
 
-返回: 被创建的DataLoader对象，可以for-range的方式循环迭代
+**返回**
+ 被创建的DataLoader对象，可以for-range的方式循环迭代
 
-返回类型: loader (DataLoader)
+**返回类型**
+ loader (DataLoader)
 
 **代码示例**
 

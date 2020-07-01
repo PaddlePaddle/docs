@@ -10,16 +10,23 @@ arccosine激活函数。
 .. math::
     out = cos^{-1}(x)
 
-参数:
+参数
+::::::::::::
+
     - **x(Variable)** - acos的输入Tensor，数据类型为 float32 或 float64
     - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
-返回：  `acos` 的输出Tensor，数据类型与 `x` 相同。
+返回
+::::::::::::
+  `acos` 的输出Tensor，数据类型与 `x` 相同。
 
-返回类型： Variable
+返回类型
+::::::::::::
+ Variable
 
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

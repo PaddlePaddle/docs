@@ -18,16 +18,21 @@ PiecewiseDecay
     2、在当前训练步数global_step大于或等于10000步，并且小于20000步时，学习率值为0.5。
     3、在当前训练步数global_step大于或等于20000步时，学习率值为0.1。
 
-参数：
+参数
+::::::::::::
+
     - **boundaries** (list) - 指定衰减的步数边界。列表的数据元素为Python int类型。
     - **values** (list) - 备选学习率列表。数据元素类型为Python float的列表。与边界值列表有对应的关系。
     - **begin** (int) – 起始步，即以上举例描述中global_step的初始化值。
     - **step** (int，可选) – 步大小，即以上举例描述中global_step每步的递增值。默认值为1。
     - **dtype** (str，可选) – 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
-返回： 无
+返回
+::::::::::::
+ 无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

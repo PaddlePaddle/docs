@@ -32,7 +32,9 @@ NaturalExpDecay
 - :math:`decayed\_learning\_rate` ： 衰减后的学习率。
 式子中各参数详细介绍请看参数说明。
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (Variable|float) - 初始学习率值。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的float类型。
     - **decay_steps** (int) – 指定衰减的步长。该参数确定衰减的周期。
     - **decay_rate** (float) – 指定衰减率。
@@ -41,9 +43,12 @@ NaturalExpDecay
     - **step** (int，可选) – 步大小，即以上运算式子中global_step的每次的增量值。默认值为1。
     - **dtype**  – (str，可选) 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
-返回： 无
+返回
+::::::::::::
+ 无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

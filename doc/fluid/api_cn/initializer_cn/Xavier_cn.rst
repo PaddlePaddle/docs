@@ -3,7 +3,7 @@
 Xavier
 -------------------------------
 
-.. py:attribute:: paddle.fluid.initializer.Xavier
+.. py:attrubute:: paddle.fluid.initializer.Xavier
 
 ``XavierInitializer`` 的别名
 

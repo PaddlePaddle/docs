@@ -13,17 +13,24 @@ pow
 
 **注意：如果需要对输入进行 elementwise_pow 操作，请查使用** :ref:`cn_api_fluid_layers_elementwise_pow` 。
 
-参数：
+参数
+::::::::::::
+
     - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``float32`` 或 ``float64`` 。
     - **factor** （float32|Variable，可选）- ``float32`` 或形状为[1]的 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``。Pow OP的指数因子。默认值：1.0。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值： ``None``。
 
-返回：维度与输入 `x` 相同的 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``x`` 相同。
+返回
+::::::::::::
+维度与输入 `x` 相同的 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``x`` 相同。
 
-返回类型：Variable。
+返回类型
+::::::::::::
+Variable。
 
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

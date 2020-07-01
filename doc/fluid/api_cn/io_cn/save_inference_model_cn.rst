@@ -11,7 +11,9 @@ save_inference_model
 
 **注意：dirname用于指定保存预测模型结构和参数的目录。若需要将模型参数保存在指定目录的若干文件中，请设置params_filename的值为None; 若需要将所有模型参数保存在一个单独的二进制文件中，请使用params_filename来指定该二进制文件的名称。**
 
-参数:
+参数
+::::::::::::
+
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
   - **target_vars** (list[Variable]) – ``Variable`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
@@ -27,11 +29,14 @@ save_inference_model
 
 **返回类型：** 列表（list）
 
-抛出异常：
+抛出异常
+::::::::::::
+
  - ``ValueError`` – 若 ``feed_var_names`` 不是字符串列表，则抛出异常。
  - ``ValueError`` – 若 ``target_vars`` 不是 ``Variable`` 类型列表，则抛出异常。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

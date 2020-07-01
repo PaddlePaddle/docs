@@ -3,7 +3,7 @@
 LarsMomentum
 -------------------------------
 
-.. py:attribute::  paddle.fluid.optimizer.LarsMomentum
+.. py:attribute:: paddle.fluid.optimizer.LarsMomentum
 
 ``fluid.optimizer.LarsMomentumOptimizer`` 的别名
 

@@ -6,17 +6,22 @@ DistributeTranspilerConfig
 .. py:class:: paddle.fluid.DistributeTranspilerConfig
 
 
-.. py:attribute:: slice_var_up (bool)
+属性
+::::::::::::
+slice_var_up (bool)
+'''''''''
 
 为多个Pserver（parameter server）将tensor切片, 默认为True。
 
-.. py:attribute:: split_method (PSDispatcher)
+split_method (PSDispatcher)
+'''''''''
 
 可使用 RoundRobin 或者 HashName。
 
 注意: 尝试选择最佳方法来达到Pserver间负载均衡。
 
-.. py:attribute:: min_block_size (int)
+min_block_size (int)
+'''''''''
 
 block中分割(split)出的元素个数的最小值。
 

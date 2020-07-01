@@ -7,7 +7,9 @@ pad2d
 
 该OP依照 paddings 和 mode 属性对input进行2维 ``pad`` 。
 
-参数：
+参数
+::::::::::::
+
   - **input** (Variable) - 类型为float32的4-D Tensor， format为 `[N, C, H, W]` 或 `[N, H, W, C]` 。
   - **paddings** (Variable | List[int32]) - 填充大小。如果paddings是一个List，它必须包含四个整数 `[padding_top, padding_bottom, padding_left, padding_right]` 。
     如果paddings是Variable， 则是类型为int32 的1-D Tensor，shape是 `[4]` 。默认值为 `[0,0,0,0]` 。
@@ -15,9 +17,13 @@ pad2d
   - **pad_value** (float32) - 以 `'constant'` 模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定input的format，可为 `'NCHW'` 和 `'NHWC'` ，默认值为 `'NCHW'` 。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
-返回： 对input进行2维 ``pad`` 的结果，数据类型和input一样的4-D Tensor。
+返回
+::::::::::::
+ 对input进行2维 ``pad`` 的结果，数据类型和input一样的4-D Tensor。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 **示例**：
 
@@ -50,7 +56,8 @@ pad2d
 
 
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
