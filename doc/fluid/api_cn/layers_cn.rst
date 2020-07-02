@@ -203,6 +203,7 @@ fluid.layers
     layers_cn/mul_cn.rst
     layers_cn/multi_box_head_cn.rst
     layers_cn/multiclass_nms_cn.rst
+    layers_cn/matrix_nms_cn.rst
     layers_cn/multiplex_cn.rst
     layers_cn/MultivariateNormalDiag_cn.rst
     layers_cn/natural_exp_decay_cn.rst
