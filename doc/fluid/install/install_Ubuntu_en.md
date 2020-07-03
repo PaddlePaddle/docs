@@ -64,8 +64,8 @@
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and meet the following conditions, we command you to install PaddlePaddle
-    * **CUDA toolkit 10.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-    * **CUDA toolkit 9.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
     * **Hardware devices with GPU computing power over 1.0**
 
 
