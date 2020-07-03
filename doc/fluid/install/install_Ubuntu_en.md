@@ -64,19 +64,19 @@
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and meet the following conditions, we command you to install PaddlePaddle
-	* **CUDA toolkit 10.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-	* **CUDA toolkit 9.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-	* **Hardware devices with GPU computing power over 1.0**
+    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **Hardware devices with GPU computing power over 1.0**
 
 
-	You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+    You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under ubuntu 16.04, CUDA9 and cuDNN7). For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl):
 
 
-	wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-	dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-	sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+    wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+    dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
 
 

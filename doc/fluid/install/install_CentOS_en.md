@@ -65,19 +65,19 @@
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install the GPU version of PaddlePaddle
 
-	* **CUDA toolkit 10.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-	* **CUDA toolkit 9.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-	* **Hardware devices with GPU computing power over 1.0**
+    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **Hardware devices with GPU computing power over 1.0**
 
-		You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+        You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 * 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
 
-		wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-		rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-		yum update -y
-		yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        yum update -y
+        yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
 
 ## Installation method
 
@@ -101,12 +101,12 @@ Here is pip installation
 You can[Verify installation succeeded or not](#check)，if you have any questions, you can refer to [FAQ](./FAQ.html)
 
 
-Note: 
+Note:
 
 * If it is python2.7, it is recommended to use the `python` command; if it is python3.x, it is recommended to use the 'python3' command
 
 
-* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install the PaddlePaddle that supports CUDA 10.0 cuDNN v7. 
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install the PaddlePaddle that supports CUDA 10.0 cuDNN v7.
 
 
 * Download the latest stable installation package by default. For development installation package, please refer to [here](./Tables.html#ciwhls)
