@@ -13,7 +13,9 @@ cosine_decay
     decayed\_lr = learning\_rate * 0.5 * (cos(epoch * math.pi / epochs) + 1)
 
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** （Variable | float） - 初始学习率。
     - **step_each_epoch** （int） - 一次迭代中的步数。
     - **epochs**  - 总迭代次数。
@@ -21,7 +23,8 @@ cosine_decay
 
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

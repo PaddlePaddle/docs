@@ -11,19 +11,25 @@ UCI Housing数据集。
 
 
 
-.. py:function:: paddle.dataset.uci_housing.train()
+方法
+::::::::::::
+paddle.dataset.uci_housing.train()
+'''''''''
 
 UCI_HOUSING训练集creator。
 
 它返回一个reader creator，reader中的每个样本都是正则化和价格编号后的特征。
 
-返回：训练集reader creator
+**返回**
+训练集reader creator
 
-返回类型：callable
+**返回类型**
+callable
 
 
 
-.. py:function:: paddle.dataset.uci_housing.test()
+paddle.dataset.uci_housing.test()
+'''''''''
 
 
 UCI_HOUSING测试集creator。
@@ -31,9 +37,11 @@ UCI_HOUSING测试集creator。
 它返回一个reader creator，reader中的每个样本都是正则化和价格编号后的特征。
 
 
-返回：测试集reader creator
+**返回**
+测试集reader creator
 
-返回类型：callable
+**返回类型**
+callable
 
 
 

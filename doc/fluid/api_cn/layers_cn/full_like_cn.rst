@@ -7,7 +7,9 @@ full_like
 
 该OP创建一个和input具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) – 指定输入为一个多维的Tensor，数据类型可以是bool，float16，float32，float64，int32，int64。
     - **fill_value** (bool|float|int) - 用于初始化输出Tensor的常量数据的值。默认为0。注意：该参数不可超过输出变量数据类型的表示范围。
     - **out** (Variable，可选) - 输出Tensor。如果为None，则创建一个新的Tensor作为输出Tensor，默认值为None。
@@ -16,11 +18,16 @@ full_like
     - **stop_gradient** (bool，可选) – 是否从此 Variable 开始，之前的相关部分都停止梯度计算，默认为True。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     
-返回：返回一个存储结果的Tensor。
+返回
+::::::::::::
+返回一个存储结果的Tensor。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

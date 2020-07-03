@@ -28,20 +28,29 @@ temporal_shift
 
 有关时序移动的详细信息，请参阅文件： `Temporal Shift Module <https://arxiv.org/abs/1811.08383>`_
 
-参数：
+参数
+::::::::::::
+
   - **x**  (Variable) – 时移算符的输入张量。维度为 :math:`[N*T，C，H，W]` 的4-D Tensor。N为批量大小，T为时间段数，C为信道数，H为特征高度，W为特征宽度，数据类型为float32或float64。
   - **seg_num**  (int) – 时间段编号，这应该是一个正整数。
   - **shift_ratio**  (float) – 通道的移位比、通道的第一个 ``shift_ratio`` 部分沿时间维度移动-1，通道的第二个 ``shift_ratio`` 部分沿时间维度移动1，范围须在[0, 0.5]内。默认值0.25
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
 
-返回：Variable(Tensor) 时序位移后的输出张量，维度与输入 ``x`` 一致。
+返回
+::::::::::::
+Variable(Tensor) 时序位移后的输出张量，维度与输入 ``x`` 一致。
 
-返回类型：变量(Variable)，数据类型与输入 ``x`` 一致。
+返回类型
+::::::::::::
+变量(Variable)，数据类型与输入 ``x`` 一致。
 
-抛出异常： ``TypeError`` – seg_num 必须是int类型
+抛出异常
+::::::::::::
+ ``TypeError`` – seg_num 必须是int类型
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

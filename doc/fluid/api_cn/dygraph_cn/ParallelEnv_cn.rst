@@ -14,7 +14,8 @@ ParallelEnv
 
 ParallelEnv通常需要和 `fluid.dygraph.DataParallel` 一起使用，用于配置动态图并行执行。
 
-**示例代码：**
+代码示例
+::::::::::::
     .. code-block:: python
 
         # 这个示例需要由paddle.distributed.launch启动, 用法为:
@@ -57,16 +58,17 @@ ParallelEnv通常需要和 `fluid.dygraph.DataParallel` 一起使用，用于配
             adam.minimize(avg_loss)
             linear.clear_gradients()
 
+
 属性
 ::::::::::::
-
-.. py:attribute:: nranks
+nranks
+'''''''''
 
 参与训练进程的数量，一般也是训练所使用GPU卡的数量。
 
 此属性的值等于环境变量 `PADDLE_TRAINERS_NUM` 的值。默认值为1。
 
-**示例代码**
+**代码示例**
     .. code-block:: python
 
         # 在Linux环境，提前执行此命令: export PADDLE_TRAINERS_NUM=4
@@ -77,13 +79,14 @@ ParallelEnv通常需要和 `fluid.dygraph.DataParallel` 一起使用，用于配
         # The nranks is 4
 
 
-.. py:attribute:: local_rank
+local_rank
+'''''''''
 
 当前训练进程的编号。
 
 此属性的值等于环境变量 `PADDLE_TRAINER_ID` 的值。默认值是0。
 
-**示例代码**
+**代码示例**
     .. code-block:: python
 
         # 在Linux环境，提前执行此命令: export PADDLE_TRAINER_ID=0
@@ -94,13 +97,14 @@ ParallelEnv通常需要和 `fluid.dygraph.DataParallel` 一起使用，用于配
         # The local rank is 0
 
 
-.. py:attribute:: dev_id
+dev_id
+'''''''''
 
 当前用于并行训练的GPU的编号。
 
 此属性的值等于环境变量 `FLAGS_selected_gpus` 的值。默认值是0。
 
-**示例代码**
+**代码示例**
     .. code-block:: python
 
         # 在Linux环境，提前执行此命令: export FLAGS_selected_gpus=1
@@ -111,13 +115,14 @@ ParallelEnv通常需要和 `fluid.dygraph.DataParallel` 一起使用，用于配
         # The device id are 1
 
 
-.. py:attribute:: current_endpoint
+current_endpoint
+'''''''''
 
 当前训练进程的终端节点IP与相应端口，形式为（机器节点IP:端口号）。例如：127.0.0.1:6170。
 
 此属性的值等于环境变量 `PADDLE_CURRENT_ENDPOINT` 的值。默认值为空字符串""。
 
-**示例代码**
+**代码示例**
     .. code-block:: python
             
         # 在Linux环境，提前执行此命令: export PADDLE_CURRENT_ENDPOINT=127.0.0.1:6170
@@ -128,13 +133,14 @@ ParallelEnv通常需要和 `fluid.dygraph.DataParallel` 一起使用，用于配
         # The current endpoint are 127.0.0.1:6170
 
 
-.. py:attribute:: trainer_endpoints
+trainer_endpoints
+'''''''''
 
 当前任务所有参与训练进程的终端节点IP与相应端口，用于在NCCL2初始化的时候建立通信，广播NCCL ID。
 
 此属性的值等于环境变量 `PADDLE_TRAINER_ENDPOINTS` 的值。默认值为空字符串""。
 
-**示例代码**
+**代码示例**
     .. code-block:: python
 
         # 在Linux环境，提前执行此命令: export PADDLE_TRAINER_ENDPOINTS=127.0.0.1:6170,127.0.0.1:6171

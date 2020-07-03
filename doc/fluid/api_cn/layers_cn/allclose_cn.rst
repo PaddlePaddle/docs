@@ -12,7 +12,9 @@ allclose
 
 该API的行为类似于 :math:`numpy.allclose` ，即当两个待比较Tensor的所有元素均在一定容忍误差范围内视为相等则该API返回True值。
 
-参数:
+参数
+::::::::::::
+
     - **input** (Variable) - 第一个输入待比较Tensor input。
     - **other** (Variable) - 第二个输入待比较Tensor other。
     - **rtol** (float，可选) - 相对容忍误差，默认值为1e-5。
@@ -20,11 +22,16 @@ allclose
     - **equal_nan** (bool，可选) - 如果设置为True，则两个NaN数值将被视为相等，默认值为False。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：计算得到的布尔类型单值Tensor。
+返回
+::::::::::::
+计算得到的布尔类型单值Tensor。
 
-返回类型：变量（Variable）
+返回类型
+::::::::::::
+变量（Variable）
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

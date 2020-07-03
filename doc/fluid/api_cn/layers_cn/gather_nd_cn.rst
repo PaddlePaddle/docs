@@ -49,16 +49,23 @@ gather_nd
                       = [23]
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 输入张量，数据类型可以是int32，int64，float32，float64, bool。
     - **index** (Variable) - 输入的索引张量，数据类型为非负int32或非负int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= input.rank` 。
     - **name** (string) - 该层的名字，默认值为None，表示会自动命名。
     
-返回：shape为index.shape[:-1] + input.shape[index.shape[-1]:]的Tensor|LoDTensor，数据类型与 :code:`input` 一致。
+返回
+::::::::::::
+shape为index.shape[:-1] + input.shape[index.shape[-1]:]的Tensor|LoDTensor，数据类型与 :code:`input` 一致。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

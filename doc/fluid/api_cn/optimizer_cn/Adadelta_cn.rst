@@ -3,7 +3,7 @@
 Adadelta
 -------------------------------
 
-.. py:attribute::  paddle.fluid.optimizer.Adadelta
+.. py:attribute:: paddle.fluid.optimizer.Adadelta
 
 ``AdadeltaOptimizer`` 的别名
 

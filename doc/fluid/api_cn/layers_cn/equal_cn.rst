@@ -7,16 +7,23 @@ equal
 
 该OP返回 :math:`x==y` 逐元素比较x和y是否相等，x和y的维度应该相同。
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64，int32， int64。
     - **y** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64， int32， int64。
     - **cond** (Variable，可选) - 逐元素比较的结果Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
 
-返回：输出结果的Tensor，输出Tensor的shape和输入一致，Tensor数据类型为bool。
+返回
+::::::::::::
+输出结果的Tensor，输出Tensor的shape和输入一致，Tensor数据类型为bool。
 
-返回类型：变量（Variable）
+返回类型
+::::::::::::
+变量（Variable）
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

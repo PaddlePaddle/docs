@@ -59,7 +59,9 @@ chunk_eval
 
 从标签id可以正确的得到其对应的标注类型（tag type）和语块类型（chunk type）。
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 表示网络预测的标签，为Tensor或LoD level为1的LoDTensor。Tensor时，其形状为 :math:`[N, M, 1]` ，其中 :math:`N` 表示batch size， :math:`M` 表示序列长度；LoDTensor时，其形状为 :math:`[N, 1]` 或 :math:`[N]` ，其中 :math:`N` 表示所有序列长度之和。数据类型为int64。
     - **label** (Variable) - 表示真实标签（ground-truth）的Tensor或LoDTensor，和 ``input`` 具有相同形状、LoD和数据类型。
     - **chunk_scheme** (str) - 标注方式，必须是IOB，IOE，IOBES或者plain中的一种。
@@ -67,11 +69,16 @@ chunk_eval
     - **excluded_chunk_types** (list，可选) - 表示不计入统计的语块类型，需要为语块类型（int表示）的列表。默认值为空的list。
     - **seq_length** (Variable，可选) - 当输入 ``input`` 和 ``label`` 是Tensor而非LoDTensor时，用来指示输入中每个序列长度的1-D Tensor。数据类型为int64。可以为空，默认为None。
 
-返回：Variable的元组。元组中包含准确率、召回率、F1值，以及识别出的语块数目、标签中的语块数目、正确识别的语块数目。每个均是单个元素的Tensor，准确率、召回率、F1值的数据类型为float32，其他的数据类型为int64。
+返回
+::::::::::::
+Variable的元组。元组中包含准确率、召回率、F1值，以及识别出的语块数目、标签中的语块数目、正确识别的语块数目。每个均是单个元素的Tensor，准确率、召回率、F1值的数据类型为float32，其他的数据类型为int64。
 
-返回类型：tuple
+返回类型
+::::::::::::
+tuple
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python:
 

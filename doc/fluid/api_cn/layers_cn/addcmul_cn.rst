@@ -11,7 +11,9 @@ addcmul
 ..  math::
     out = input + value * tensor1 * tensor2
 
-参数:
+参数
+::::::::::::
+
     - **input** (Variable) : 输入Tensor input，数据类型支持float32, float64, int32, int64。
     - **itensor1** (Variable) : 输入Tensor tensor1，数据类型支持float32, float64, int32, int64。
     - **itensor2** (Variable) : 输入Tensor tensor2，数据类型支持float32, float64, int32, int64。
@@ -19,11 +21,16 @@ addcmul
     - **out** (Variable, 可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：计算得到的Tensor。Tensor数据类型与输入input数据类型一致。
+返回
+::::::::::::
+计算得到的Tensor。Tensor数据类型与输入input数据类型一致。
 
-返回类型：变量（Variable）
+返回类型
+::::::::::::
+变量（Variable）
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

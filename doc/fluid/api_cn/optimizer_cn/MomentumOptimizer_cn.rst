@@ -15,7 +15,9 @@ MomentumOptimizer
     &\quad   param = param - (gradient + mu * velocity) * learning\_rate\\
     & else:\\&\quad   param = param - learning\_rate * velocity
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (float|Variable) - 学习率，用于参数更新。作为数据参数，可以是浮点型值或含有一个浮点型值的变量。
     - **momentum** (float) - 动量因子。
     - **parameter_list** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
@@ -27,7 +29,8 @@ MomentumOptimizer
       默认值为None，此时将不进行梯度裁剪。
     - **name** (str, 可选) - 可选的名称前缀，一般无需设置，默认值为None。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -58,21 +61,27 @@ MomentumOptimizer
 
 
 
-.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+方法
+::::::::::::
+minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+'''''''''
 
 为网络添加反向计算过程，并根据反向计算所得的梯度，更新parameter_list中的Parameters，最小化网络损失值loss。
 
-参数：
+**参数**
+
     - **loss** (Variable) – 需要最小化的损失值变量
     - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
     - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
         
-返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+**返回**
+ tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
-返回类型： tuple
+**返回类型**
+ tuple
 
-**代码示例**：
+**代码示例**
 
 .. code-block:: python
 
@@ -103,7 +112,8 @@ MomentumOptimizer
 
 
 
-.. py:method:: clear_gradients()
+clear_gradients()
+'''''''''
 
 **注意：**
 
@@ -131,7 +141,8 @@ MomentumOptimizer
         optimizer.clear_gradients()
 
 
-.. py:method:: current_step_lr()
+current_step_lr()
+'''''''''
 
 **注意：**
 
@@ -139,9 +150,11 @@ MomentumOptimizer
 
 获取当前步骤的学习率。当不使用LearningRateDecay时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
-返回：当前步骤的学习率。
+**返回**
+当前步骤的学习率。
 
-返回类型：float
+**返回类型**
+float
 
 **代码示例**
 

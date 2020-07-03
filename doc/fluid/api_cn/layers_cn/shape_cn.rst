@@ -9,14 +9,21 @@ shape层。
 
 获得输入Tensor的shape。
 
-参数：
+参数
+::::::::::::
+
         - **input** （Variable）-  输入的多维Tensor，数据类型为float32，float64，int32，int64。
 
-返回： 一个Tensor，表示输入Tensor的shape。
+返回
+::::::::::::
+ 一个Tensor，表示输入Tensor的shape。
 
-返回类型： Variable(Tensor)。
+返回类型
+::::::::::::
+ Variable(Tensor)。
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

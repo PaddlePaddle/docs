@@ -7,18 +7,25 @@ xmap_readers
 
 多线程下，使用自定义映射器 reader 返回样本到输出队列。
 
-参数：
+参数
+::::::::::::
+
     - **mapper** （callable）: 映射 reader 数据的函数。
     - **reader** （callable）: 产生数据的 reader。
     - **process_num** （int）: 处理样本的线程数。
     - **buffer_size** （int）: 数据缓冲队列大小。
     - **order** （bool）: 是否保持原始 reader 数据顺序，默认为 False。
 
-返回：一个用户定义的 reader `装饰器 <https://en.wikipedia.org/wiki/Python_syntax_and_semantics#Decorators>`_ 。
+返回
+::::::::::::
+一个用户定义的 reader `装饰器 <https://en.wikipedia.org/wiki/Python_syntax_and_semantics#Decorators>`_ 。
 
-返回类型：callable，可调用对象。
+返回类型
+::::::::::::
+callable，可调用对象。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

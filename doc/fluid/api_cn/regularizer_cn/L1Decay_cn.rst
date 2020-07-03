@@ -4,7 +4,7 @@
 L1Decay
 -------------------------------
 
-.. py:attribute::   paddle.fluid.regularizer.L1Decay(regularization_coeff=0.0)
+.. py:attribute:: paddle.fluid.regularizer.L1Decay(regularization_coeff=0.0)
 
 L1Decay实现L1权重衰减正则化，用于模型训练，使得权重矩阵稀疏。
 
@@ -18,10 +18,12 @@ L1Decay实现L1权重衰减正则化，用于模型训练，使得权重矩阵�
 .. math::
             \\L1WeightDecay=reg\_coeff∗sign(parameter)\\
 
-参数：
+参数
+:::::::::
   - **regularization_coeff** (float) – L1正则化系数，默认值为0.0。
 
-**代码示例1**
+代码示例 1
+::::::::::::
 
 .. code-block:: python
 
@@ -43,7 +45,8 @@ L1Decay实现L1权重衰减正则化，用于模型训练，使得权重矩阵�
     optimizer.minimize(avg_loss)
 
 
-**代码示例2**
+代码示例 2
+::::::::::::
 
 .. code-block:: python
     

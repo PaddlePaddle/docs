@@ -7,17 +7,24 @@ eye
 
 该OP用来构建单位矩阵，或一个批次的单位矩阵。
 
-参数：
+参数
+::::::::::::
+
     - **num_rows** (int) - 每一个批矩阵的行数，数据类型为非负int32。
     - **num_columns** (int) - 每一个批矩阵的列数，数据类型为非负int32。若为None，则默认等于num_rows。
     - **batch_shape** (list(int)) - 如若提供，则返回向量的主批次维度将为batch_shape。
     - **dtype** (string) - 返回张量的数据类型，可为int32，int64，float16，float32，float64。
     
-返回：shape为batch_shape + [num_rows, num_columns]的张量。
+返回
+::::::::::::
+shape为batch_shape + [num_rows, num_columns]的张量。
 
-返回类型：Variable（Tensor|LoDTensor）数据类型为int32，int64，float16，float32，float64的Tensor或者LoDTensor。
+返回类型
+::::::::::::
+Variable（Tensor|LoDTensor）数据类型为int32，int64，float16，float32，float64的Tensor或者LoDTensor。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

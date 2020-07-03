@@ -15,10 +15,13 @@ RecomputeOptimizer
 
 把一个深度学习网络切分为k个segments的Variables被称为checkpoints。用户在使用运行RecomputeOptimizer之前需要先设置checkpoints。
 
-参数: 
+参数
+::::::::::::
+ 
     - **optimizer** (Optimizer)-内部优化器
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -56,16 +59,22 @@ RecomputeOptimizer
                 print("step=%d cost=%f" % (i, cost_val[0]))
 
 
-.. py:method:: apply_gradients(params_grads)
+方法
+::::::::::::
+apply_gradients(params_grads)
+'''''''''
 
 调用self.apply_gradients
 
-参数：
+**参数**
+
     - **params_grads** (list)- 用于优化的(param, grad)对组成的列表
 
-返回：  附加在当前Program的优化算子组成的列表
+**返回**
+  附加在当前Program的优化算子组成的列表
 
-返回类型：  list
+**返回类型**
+  list
 
 **代码示例**
 
@@ -101,18 +110,22 @@ RecomputeOptimizer
 
                 print("Finished apply gradients")
 
-.. py:method:: apply_optimize(loss, startup_program, params_grads)
+apply_optimize(loss, startup_program, params_grads)
+'''''''''
 
 调用self._optimizer的apply_optimize函数
 
-参数：
+**参数**
+
     - **loss** (Variable) – 用于优化过程的损失值变量
     - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
     - **params_grads** (list)- 用于优化的(param, grad)对组成的列表
 
-返回：  附加在当前Program的算子组成的列表
+**返回**
+  附加在当前Program的算子组成的列表
 
-返回类型：  list
+**返回类型**
+  list
 
 **代码示例**
 
@@ -145,11 +158,13 @@ RecomputeOptimizer
 
                 print("Finished apply_optimize")
 
-.. py:method:: backward(loss, startup_program=None, parameter_list=None, no_grad_set=None, callbacks=None)
+backward(loss, startup_program=None, parameter_list=None, no_grad_set=None, callbacks=None)
+'''''''''
 
 带checkpoint的backward函数
 
-参数：
+**参数**
+
     - **loss** (Variable) – 需要最小化的损失值变量
     - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
     - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
@@ -157,9 +172,11 @@ RecomputeOptimizer
     - **callbacks** (list, 可选) – 当为某参数附加反向算子时所要运行的callables组成的列表
     - **checkpoints** (list, 可选) – 一批作为checkpoints的Variables
 
-返回：  由(param, grad)对构成的列表，其中param是参数，grad是其对应的梯度
+**返回**
+  由(param, grad)对构成的列表，其中param是参数，grad是其对应的梯度
 
-返回类型：  list
+**返回类型**
+  list
 
 **代码示例**
 

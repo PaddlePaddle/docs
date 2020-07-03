@@ -36,18 +36,25 @@ shard_index
     output.shape = [4, 1]
     output.data = [[-1], [-1], [2], [9]]
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable）-  输入的索引
     - **index_num** (scalar) - 索引长度
     - **nshards** (scalar) - 分片数量
     - **shard_id** (scalar) - 当前分片ID
     - **ignore_value** (scalar) - 超出分片索引范围的默认值
 
-返回：更新后的索引值
+返回
+::::::::::::
+更新后的索引值
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

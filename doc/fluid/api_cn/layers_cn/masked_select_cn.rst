@@ -7,17 +7,24 @@ masked_select
 
 该OP将根据mask Tensor的真值选取输入Tensor元素，并返回一个一维Tensor
 
-参数：
+参数
+::::::::::::
+
           - **input** （Variable）- 输入Tensor，数据类型为int32, float32, float64。
           - **mask** （Variable）- mask Tensor， 数据类型为bool。
 
 
-返回：根据mask选择后的tensor
+返回
+::::::::::::
+根据mask选择后的tensor
 
-返回类型：  Variable
+返回类型
+::::::::::::
+  Variable
 
 
-**示例代码**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

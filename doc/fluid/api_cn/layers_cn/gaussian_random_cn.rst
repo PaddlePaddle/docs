@@ -7,23 +7,30 @@ gaussian_random
 
 生成数据符合高斯随机分布的 Tensor。
 
-参数：
+参数
+::::::::::::
+
         - **shape** （Tuple[int] | List[int]）- 生成 Tensor 的形状。
         - **mean** （float）- 随机 Tensor 的均值，默认值为 0.0。
         - **std** （float）- 随机 Tensor 的标准差，默认值为 1.0。
         - **seed** （int）- 随机数种子，默认值为 0。注：seed 设置为 0 表示使用系统的随机数种子。注意如果 seed 不为 0，则此算子每次将始终生成相同的随机数。
         - **dtype** （np.dtype | core.VarDesc.VarType | str）- 输出 Tensor 的数据类型，可选值为 float32，float64。
 
-返回：        
+返回
+::::::::::::
+        
 
         - 符合高斯分布的随机 Tensor。形状为 shape，数据类型为 dtype。
 
-返回类型：
+返回类型
+::::::::::::
+
 
        - Variable
 
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 	

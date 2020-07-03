@@ -19,7 +19,9 @@ data
 
   本API创建的变量默认 ``stop_gradient`` 属性为true，这意味这反向梯度不会被传递过这个数据变量。如果用户想传递反向梯度，可以设置 ``var.stop_gradient = False`` 。
 
-参数：
+参数
+::::::::::::
+
     - **name** (str)- 被创建的变量的名字，具体用法请参见 :ref:`api_guide_Name` 。
     - **shape** (list)- 声明维度信息的list。如果 ``append_batch_size`` 为True且内部没有维度值为-1，则应将其视为每个样本的形状。 否则，应将其视为batch数据的形状。
     - **append_batch_size** (bool)-
@@ -35,11 +37,16 @@ data
     - **lod_level** (int)- LoD层。0表示输入数据不是一个序列。默认值为0。
     - **stop_gradient** (bool)- 提示是否应该停止计算梯度，默认值为True。
 
-返回：全局变量，可进行数据访问
+返回
+::::::::::::
+全局变量，可进行数据访问
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
