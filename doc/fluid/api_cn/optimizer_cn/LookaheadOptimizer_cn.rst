@@ -15,12 +15,15 @@ LookaheadOptimizer
 
   & fast\_param_t = slow\_param_t
 
-参数:
+参数
+::::::::::::
+
     - **inner_optimizer** (Optimizer) - 基础优化器，如SGD
     - **alpha** (float) - Lookahead 的学习率
     - **k** (int) - 慢参数更新的频率：k次一更新
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

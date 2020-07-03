@@ -23,11 +23,14 @@ MultivariateNormalDiag
   - :math:`det` 表示：求行列式的值
 
 
-参数：
+参数
+::::::::::::
+
     - **loc** (list|numpy.ndarray|Variable) - 形状为 :math:`[k]` 的多元高斯分布的均值列表。数据类型为float32。
     - **scale** (list|numpy.ndarray|Variable) - 形状为 :math:`[k, k]` 的多元高斯分布的对角协方差矩阵，且除对角元素外，其他元素取值均为0。数据类型为float32。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -63,25 +66,33 @@ MultivariateNormalDiag
     a.kl_divergence(b)
     # [0.06542051] with shape: [1]
 
+方法
+:::::::::
 
-.. py:function:: kl_divergence(other)
+kl_divergence(other)
+'''''''''
 
 计算相对于另一个多元高斯分布的KL散度
 
-参数：
+**参数**
+
     - **other** (MultivariateNormalDiag) - 输入的另一个多元高斯分布。数据类型为float32。
     
-返回：相对于另一个多元高斯分布的KL散度，数据类型为float32
+**返回**
+相对于另一个多元高斯分布的KL散度，数据类型为float32
 
-返回类型：Variable
+**返回类型**
+Variable
 
-.. py:function:: entropy()
-
+entropy()
+'''''''''
 信息熵
     
-返回：多元高斯分布的信息熵，数据类型为float32
+**返回**
+多元高斯分布的信息熵，数据类型为float32
 
-返回类型：Variable
+**返回类型**
+Variable
 
 
 

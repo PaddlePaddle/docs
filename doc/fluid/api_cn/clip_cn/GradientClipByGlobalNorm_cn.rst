@@ -26,12 +26,15 @@ GradientClipByGlobalNorm
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
 
-参数:
+参数
+::::::::::::
+
  - **clip_norm** (float) - 所允许的范数最大值
  - **group_name** (str, optional) - 剪切的组名
  - **need_clip** (function, optional) - 类型: 函数。用于指定需要梯度裁剪的参数，该函数接收一个 ``Parameter`` ，返回一个 ``bool`` (True表示需要裁剪，False不需要裁剪)。默认为None，此时会裁剪网络中全部参数。
   
-**代码示例1：静态图**
+代码示例 1：静态图
+::::::::::::
  
 .. code-block:: python
             
@@ -68,7 +71,8 @@ GradientClipByGlobalNorm
     out = exe.run(main_prog, feed={'x': x}, fetch_list=loss)
 
 
-**代码示例2：动态图**
+代码示例 2：动态图
+::::::::::::
 
 .. code-block:: python
 

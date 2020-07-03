@@ -39,13 +39,18 @@ BCELoss
 如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 [N, *], 与输入input的形状相同。
 如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 [1]。
 
-参数：
+参数
+::::::::::::
+
   - **weight(Variable, optional)**：- 手动指定每个batch二值交叉熵的权重，如果指定的话，维度必须是一个batch的数据的维度。数据类型是float32, float64。默认是：None。
   - **reduction(str, optional)**：- 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回BCELoss。
 
-返回：返回计算BCELoss的可调用对象。
+返回
+::::::::::::
+返回计算BCELoss的可调用对象。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

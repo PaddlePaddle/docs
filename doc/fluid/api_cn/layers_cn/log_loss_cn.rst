@@ -14,18 +14,25 @@ log_loss
     Out = -label * \log{(input + \epsilon)} - (1 - label) * \log{(1 - input + \epsilon)}
 
 
-参数:
+参数
+::::::::::::
+
   - **input** (Variable) – 形为 [N x 1] 的二维张量, 其中 N 为 batch 大小。该输入是由前驱算子计算得来的概率， 数据类型是 float32。
   - **label** (Variable) – 形为 [N x 1] 的二维张量，真值标签， 其中 N 为 batch 大小，数据类型是 float32。
   - **epsilon** (float) – epsilon
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回： 形为[N x 1]的二维张量，计算出的负log_loss值，数据类型为 float32
+返回
+::::::::::::
+ 形为[N x 1]的二维张量，计算出的负log_loss值，数据类型为 float32
 
-返回类型: Variable
+返回类型
+::::::::::::
+ Variable
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

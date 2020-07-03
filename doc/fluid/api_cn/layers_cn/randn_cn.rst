@@ -7,7 +7,9 @@ randn
 
 该 API 用于生成数据符合标准正态随机分布（均值为 0，方差为 1 的正态随机分布）的 Tensor。
 
-参数：
+参数
+::::::::::::
+
   - **shape** (list|tuple): 生成的随机 Tensor 的形状。
   - **out** (Variable, optional): 用于存储创建的 Tensor，可以是程序中已经创建的任何Variable。当该参数值为 `None` 时，将创建新的 Variable 来保存输出结果。默认值为 None。
   - **dtype** (np.dtype|core.VarDesc.VarType|str, optional): 输出 Tensor 的数据类型，可选值为 float32，float64。当该参数值为 `None` 时， 输出当 Tensor 的数据类型为 `float32` 。默认值为 None.
@@ -15,11 +17,16 @@ randn
   - **stop_gradient** (bool, optional): 是否停止输出当前变量（输出变量）的梯度值。默认值为 True。
   - **name** (str, optional): 该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回：符合标准正态分布的随机 Tensor。形状为 shape，数据类型为 dtype。
+返回
+::::::::::::
+符合标准正态分布的随机 Tensor。形状为 shape，数据类型为 dtype。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

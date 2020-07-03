@@ -8,7 +8,6 @@ Conv3DTranspose
 
 该接口用于构建 ``Conv3DTranspose`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。3D卷积转置层（Convlution3D transpose layer)根据输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW格式。其中 ``N`` 为batch大小， ``C`` 为通道数（channel）, ``D``  为特征深度, ``H`` 为特征高度， ``W`` 为特征宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
-
 .. _参考文献: https://arxiv.org/abs/1603.07285
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
@@ -65,7 +64,9 @@ Conv3DTranspose
     如果指定了output_size， 其可以自动计算滤波器的大小。
 
 
-参数:
+参数
+::::::::::::
+
       - **num_channels** (int) - 输入图像的通道数。
       - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数相同。
       - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， 其会根据output_size、padding和stride计算出滤波器大小。
@@ -82,9 +83,12 @@ Conv3DTranspose
       - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 
-返回： 无
+返回
+::::::::::::
+ 无
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
@@ -103,11 +107,14 @@ Conv3DTranspose
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter``
 

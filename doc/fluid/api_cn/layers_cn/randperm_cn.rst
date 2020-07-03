@@ -7,7 +7,9 @@ randperm
 
 该OP返回一个数值在0到n-1、顺序随机的整数排列。
 
-参数: 
+参数
+::::::::::::
+ 
   - **n** (int): 整数排列的上限，应该大于0。 
   - **out** (Variable, optional): 可选的输出变量，如果不为 `None` ，返回的整数排列保存在该变量中，默认是 `None` 。
   - **dtype** (np.dtype|core.VarDesc.VarType|str, optional): 整数排列的数据类型，支持 `int64` 和 `int32` ，默认是 `int64` 。
@@ -15,11 +17,16 @@ randperm
   - **stop_gradient** (bool, optional): 返回的整数排列是否记录并更新梯度，默认是 `True` 。 
   - **seed** (int, optional): 设置随机种子。`seed` 等于0时，每次返回不同的整数排列；`seed` 不等于0时，相同的 `seed` 返回相同的整数排列。
 
-返回:  一个数值在0到n-1、顺序随机的整数排列。
+返回
+::::::::::::
+  一个数值在0到n-1、顺序随机的整数排列。
 
-返回类型: Variable
+返回类型
+::::::::::::
+ Variable
 
-**代码示例**:
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

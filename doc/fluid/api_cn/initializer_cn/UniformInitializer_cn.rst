@@ -7,14 +7,19 @@ UniformInitializer
 
 随机均匀分布初始化器
 
-参数：
+参数
+::::::::::::
+
     - **low** (float16|float32) - 下界 
     - **high** (float16|float32) - 上界
     - **seed** (int32) - 随机种子
 
-返回：对象
+返回
+::::::::::::
+对象
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
        

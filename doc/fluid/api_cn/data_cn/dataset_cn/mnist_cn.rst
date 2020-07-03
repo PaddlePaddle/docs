@@ -9,31 +9,40 @@ MNIST数据集。
 
 
 
-.. py:function:: paddle.dataset.mnist.train()
+方法
+::::::::::::
+paddle.dataset.mnist.train()
+'''''''''
 
 MNIST训练数据集的creator。
 
 它返回一个reader creator, reader中的每个样本的图像像素范围是[-1，1]，标签范围是[0，9]。
 
-返回： 训练数据的reader creator
+**返回**
+ 训练数据的reader creator
 
-返回类型：callable
+**返回类型**
+callable
 
 
 
-.. py:function:: paddle.dataset.mnist.test()
+paddle.dataset.mnist.test()
+'''''''''
 
 MNIST测试数据集的creator。
 
 它返回一个reader creator, reader中的每个样本的图像像素范围是[-1，1]，标签范围是[0，9]。
 
-返回： 测试数据集的reader creator
+**返回**
+ 测试数据集的reader creator
 
-返回类型：callable
+**返回类型**
+callable
 
 
 
-.. py:function:: paddle.dataset.mnist.convert(path)
+paddle.dataset.mnist.convert(path)
+'''''''''
 
 将数据集转换为recordio格式。
 

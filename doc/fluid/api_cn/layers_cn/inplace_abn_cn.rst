@@ -11,7 +11,9 @@ inplace_abn
 
 此层使用就地内存计算批处理正则化和激活来实现节省内存，有关批量正则化计算，请参见 ``fluid.layers.batch_norm`` ，有关就地激活批正则化化的计算，请参考 `In-Place Activated BatchNorm for Memory-Optimized Training of DNNs <https://arxiv.org/abs/1712.02616>`_。
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - inplace_abn算子的输入特征，是一个Variable类型，输入维度可以是 2, 3, 4, 5。数据类型：flaot16, float32, float64。
     - **act** （string）- 激活函数类型，可以是leaky_realu、relu、prelu等。默认：None。
     - **is_test** （bool） - 指示它是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认：False。
@@ -28,11 +30,16 @@ inplace_abn
     - **act_alpha** （float） – 当 ``act`` 参数为None、leaky-relu、elu时，会使用就地批正则化激活算法，可通过此参数给定leaky-relu、elu的 ``alpha`` 值。默认：1.0。
 
 
-返回： 维度和输入相同的Tensor，在输入中运用批正则后的结果。
+返回
+::::::::::::
+ 维度和输入相同的Tensor，在输入中运用批正则后的结果。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

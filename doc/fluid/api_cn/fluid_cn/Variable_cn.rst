@@ -16,11 +16,12 @@ Variable
 
 :ref:`api_guide_Variable` 总是属于某一个 :ref:`api_guide_Block` 。所有 :ref:`api_guide_Variable` 都有其自己的 ``name`` ,不同 :ref:`api_guide_Block` 中的两个 :ref:`api_guide_Variable` 可以具有相同的名称。如果使用的 **不是** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式，那么同一个 :ref:`api_guide_Block` 中的两个或更多 :ref:`api_guide_Variable` 拥有相同 ``name`` 将意味着他们会共享相同的内容。通常我们使用这种方式来实现 **参数共享**
 
-:ref:`api_guide_Variable` 有很多种。它们每种都有自己的属性和用法。请参考 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_ 以获得详细信息。 :ref:`api_guide_Variable` 的大多数成员变量可以设置为 ``None``。它的意思是它不可用或稍后指定。
+:ref:`api_guide_Variable` 有很多种。它们每种都有自己的属性和用法。请参考 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_ 以获得详细信息。 :ref:`api_guide_Variable` 的大多数成员变量可以设置为 ``None`` 。它的意思是它不可用或稍后指定。
 
 如果您希望创建一个 :ref:`api_guide_Variable` 那么可以参考如下示例：
 
-**示例代码：**
+代码示例
+::::::::::::
 
 在静态图形模式下：
     .. code-block:: python
@@ -40,7 +41,10 @@ Variable
             new_variable = fluid.dygraph.to_variable(np.arange(10))
 
 
-.. py:method:: detach()
+方法
+::::::::::::
+detach()
+'''''''''
 
 **注意：**
 
@@ -50,11 +54,16 @@ Variable
 
 产生一个新的，和当前计算图分离的，但是拥有当前 :ref:`api_guide_Variable` 其内容的临时变量
 
-返回：一个新的，和当前计算图分离的，但是拥有当前 :ref:`api_guide_Variable` 其内容的临时 :ref:`api_guide_Variable`
+**返回**
 
-返回类型：（:ref:`api_guide_Variable` | 和输入的 ``Dtype`` 一致）
+一个新的，和当前计算图分离的，但是拥有当前 :ref:`api_guide_Variable` 其内容的临时 :ref:`api_guide_Variable`
 
-**示例代码**
+**返回类型**
+
+（:ref:`api_guide_Variable` | 和输入的 ``Dtype`` 一致）
+
+**代码示例**
+
   .. code-block:: python
 
      import paddle.fluid as fluid
@@ -69,7 +78,8 @@ Variable
            x = linear(data)
            y = x.detach()
 
-.. py:method:: numpy()
+numpy()
+'''''''''
 
 **注意：**
 
@@ -78,11 +88,16 @@ Variable
 
 返回一个 ``ndarray`` 来表示当前  :ref:`api_guide_Variable` 的值
 
-返回：``numpy`` 的数组，表示当前 :ref:`api_guide_Variable` 的实际值
+**返回**
 
-返回类型：ndarray，``dtype`` 和输入的 ``dtype`` 一致
+``numpy`` 的数组，表示当前 :ref:`api_guide_Variable` 的实际值
 
-**示例代码**
+**返回类型**
+
+ndarray，``dtype`` 和输入的 ``dtype`` 一致
+
+**代码示例**
+
   .. code-block:: python
 
     import paddle.fluid as fluid
@@ -97,7 +112,8 @@ Variable
         x = linear(data)
         print(x.numpy())
 
-.. py:method:: set_value()
+set_value()
+'''''''''
 
 **注意：**
 
@@ -109,11 +125,13 @@ Variable
 
   - **value**: ( :ref:`api_guide_Variable` 或 ``ndarray`` ) 要赋值给此 :ref:`api_guide_Variable` 的新的值。
 
-返回：无
+**返回**
+无
 
-抛出异常： ``ValueError`` - 当要赋于的新值的 ``shape`` 和此 :ref:`api_guide_Variable` 原有的 ``shape`` 不同时，抛出 ``ValueError`` 。
+**抛出异常**
+ ``ValueError`` - 当要赋于的新值的 ``shape`` 和此 :ref:`api_guide_Variable` 原有的 ``shape`` 不同时，抛出 ``ValueError`` 。
 
-**示例代码**
+**代码示例**
   .. code-block:: python
 
         import paddle.fluid as fluid
@@ -130,7 +148,8 @@ Variable
             linear.weight.set_value(custom_weight)  # 将参数修改为自定义的值
             out = linear(t)  # 使用新的参数值调用前向
 
-.. py:method:: backward()
+backward()
+'''''''''
 
 **注意：**
 
@@ -144,10 +163,11 @@ Variable
 
   - **backward_strategy**: ( :ref:`cn_api_fluid_dygraph_BackwardStrategy` ) 使用何种 :ref:`cn_api_fluid_dygraph_BackwardStrategy`  聚合反向的梯度
 
-返回：无
+**返回**
+无
 
 
-**示例代码**
+**代码示例**
   .. code-block:: python
 
         import paddle.fluid as fluid
@@ -168,7 +188,8 @@ Variable
             backward_strategy.sort_sum_gradient = True
             loss2.backward(backward_strategy)
 
-.. py:method:: gradient()
+gradient()
+'''''''''
 
 **注意：**
 
@@ -178,12 +199,14 @@ Variable
 
 获取该 :ref:`api_guide_Variable` 的梯度值
 
-返回：如果 :ref:`api_guide_Variable` 的类型是LoDTensor（参见 :ref:`cn_user_guide_lod_tensor` ），返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值；如果 :ref:`api_guide_Variable` 的类型是SelectedRows，返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值和类型为 ``ndarray`` 的词id组成的tuple。
+**返回**
+如果 :ref:`api_guide_Variable` 的类型是LoDTensor（参见 :ref:`cn_user_guide_lod_tensor` ），返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值；如果 :ref:`api_guide_Variable` 的类型是SelectedRows，返回该 :ref:`api_guide_Variable` 类型为 ``ndarray`` 的梯度值和类型为 ``ndarray`` 的词id组成的tuple。
 
-返回类型：``ndarray`` 或者 ``tuple of ndarray`` , 返回类型 ``tuple of ndarray`` 仅在 :ref:`cn_api_fluid_dygraph_Embedding` 层稀疏更新时产生。
+**返回类型**
+``ndarray`` 或者 ``tuple of ndarray`` , 返回类型 ``tuple of ndarray`` 仅在 :ref:`cn_api_fluid_dygraph_Embedding` 层稀疏更新时产生。
 
 
-**示例代码**
+**代码示例**
   .. code-block:: python
 
         import paddle.fluid as fluid
@@ -217,7 +240,8 @@ Variable
             out.backward()
             print(embedding.weight.gradient())
 
-.. py:method:: clear_gradient()
+clear_gradient()
+'''''''''
 
 **注意：**
 
@@ -227,10 +251,11 @@ Variable
 
 设置该 :ref:`api_guide_Variable` 的梯度为零
 
-返回：无
+**返回**
+无
 
 
-**示例代码**
+**代码示例**
   .. code-block:: python
 
         import paddle.fluid as fluid
@@ -253,7 +278,8 @@ Variable
             print("After clear {}".format(loss2.gradient()))
 
 
-.. py:method:: to_string()
+to_string()
+'''''''''
 
 **注意：**
 
@@ -266,17 +292,21 @@ Variable
  - **with_details** (bool) - 值为true时，打印更多关于 :ref:`api_guide_Variable` 的信息，如 ``error_clip`` , ``stop_gradient`` 等
 
 
-返回：用于静态描述该 :ref:`api_guide_Variable` 的字符串
+**返回**
+用于静态描述该 :ref:`api_guide_Variable` 的字符串
 
 
-返回： 将Program转换为字符串
+**返回**
+ 将Program转换为字符串
 
-返回类型： str
+**返回类型**
+ str
 
-抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` ，当没有设置任何必需的字段时，抛出 ``ValueError`` 。
+**抛出异常**
+ ``ValueError`` - 当 ``throw_on_error == true`` ，当没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
 
-**示例代码**
+**代码示例**
   .. code-block:: python
 
         import paddle.fluid as fluid
@@ -291,7 +321,8 @@ Variable
         print(new_variable.to_string(True, True))
 
 
-.. py:method:: astype(self, dtype)
+astype(self, dtype)
+'''''''''
 
 将该 :ref:`api_guide_Variable` 中的数据转换成目标 ``Dtype``
 
@@ -300,12 +331,14 @@ Variable
  - **dtype** (int | float | float64) - 希望转换成的 ``Dtype``
 
 
-返回：一个全新的转换了 ``Dtype`` 的 :ref:`api_guide_Variable`
+**返回**
+一个全新的转换了 ``Dtype`` 的 :ref:`api_guide_Variable`
 
-返回类型： :ref:`api_guide_Variable`
+**返回类型**
+ :ref:`api_guide_Variable`
 
 
-**示例代码**
+**代码示例**
 
 在静态图模式下：
     .. code-block:: python
@@ -338,13 +371,16 @@ Variable
 属性
 ::::::::::::
 
-.. py:attribute:: stop_gradient
+属性
+::::::::::::
+stop_gradient
+'''''''''
 
 **注意：该属性在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下除参数以外默认值为** ``True`` **，而参数的该属性默认值为** ``False`` **。在静态图下所有的** :ref:`api_guide_Variable` **该属性默认值都为** ``False``
 
 是否从此 :ref:`api_guide_Variable` 开始，之前的相关部分都停止梯度计算
 
-**示例代码**
+**代码示例**
   .. code-block:: python
 
         import paddle.fluid as fluid
@@ -367,7 +403,8 @@ Variable
             assert (linear.weight.gradient() == 0).all()
             assert (out1.gradient() == 0).all()
 
-.. py:attribute:: persistable
+persistable
+'''''''''
 
 **注意：该属性我们即将废弃，此介绍仅为了帮助用户理解概念， 1.6版本后用户可以不再关心该属性**
 
@@ -377,26 +414,30 @@ Variable
 
 此 :ref:`api_guide_Variable` 是否是长期存活的 :ref:`api_guide_Variable`
 
-.. py:attribute:: name
+name
+'''''''''
 
 **注意：在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下，那么同一个** :ref:`api_guide_Block` **中的两个或更多** :ref:`api_guide_Variable` **拥有相同** ``name`` **将意味着他们会共享相同的内容。通常我们使用这种方式来实现参数共享**
 
 此 :ref:`api_guide_Variable` 的名字（str）
 
 
-.. py:attribute:: shape
+shape
+'''''''''
 
 **注意：该属性是只读属性**
 
 此 :ref:`api_guide_Variable` 的维度
 
-.. py:attribute:: dtype
+dtype
+'''''''''
 
 **注意：该属性是只读属性**
 
 此 :ref:`api_guide_Variable` 的实际数据类型
 
-.. py:attribute:: lod_level
+lod_level
+'''''''''
 
 **注意：**
 
@@ -406,7 +447,8 @@ Variable
 
 此 :ref:`api_guide_Variable` 的 ``LoD`` 信息，关于 ``LoD`` 可以参考 :ref:`api_fluid_LoDTensor` 相关内容
 
-.. py:attribute:: type
+type
+'''''''''
 
 **注意：该属性是只读属性**
 

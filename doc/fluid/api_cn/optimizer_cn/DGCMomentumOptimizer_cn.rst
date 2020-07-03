@@ -24,7 +24,9 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
 1. 从张量中获取的前TopK个重要梯度进行压缩，并将其用于allreduce通信以减少网络带宽使用。
 2. 调用momentum来优化代价函数。
 
-参数: 
+参数
+::::::::::::
+ 
     - **learning_rate** （float | Variable） - 用于更新参数的学习率。可以是浮点值或由一个浮点型数据组成的Variable。
     - **momentum** （float） - 动量因子。
     - **rampup_begin_step** （int） - 进行梯度压缩的起步点。
@@ -39,7 +41,8 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
     - **grad_clip** (GradientClipByNorm, 可选) – 梯度裁剪的策略，``DGCMomentumOptimizer`` 仅支持 :ref:`cn_api_fluid_clip_GradientClipByNorm` 裁剪策略，如果不为该类型，将会抛出类型异常。默认值为None，此时将不进行梯度裁剪。
     - **name** （str，可选） - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -54,16 +57,22 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
 
 
 
-.. py:method:: apply_gradients(params_grads)
+方法
+::::::::::::
+apply_gradients(params_grads)
+'''''''''
 
 为给定的params_grads对附加优化算子，为minimize过程的第二步
 
-参数：
+**参数**
+
     - **params_grads** (list)- 用于优化的(param, grad)对组成的列表
 
-返回：  附加在当前Program的算子组成的列表
+**返回**
+  附加在当前Program的算子组成的列表
 
-返回类型：  list
+**返回类型**
+  list
 
 **代码示例**
 
@@ -78,52 +87,64 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
     optimizer.apply_gradients(params_grads)
 
 
-.. py:method:: apply_optimize(loss, startup_program, params_grads)
+apply_optimize(loss, startup_program, params_grads)
+'''''''''
 
 为给定的params_grads对附加优化算子，为minimize过程的第二步。
 
-参数：
+**参数**
+
     - **loss** (Variable) – 用于优化过程的损失值变量
     - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
     - **params_grads** (list)- 用于优化的(param, grad)对组成的列表
 
-返回：  附加在当前Program的算子组成的列表
+**返回**
+  附加在当前Program的算子组成的列表
 
-返回类型：  list
+**返回类型**
+  list
 
-.. py:method:: backward(loss, startup_program=None, parameter_list=None, no_grad_set=None, callbacks=None)
+backward(loss, startup_program=None, parameter_list=None, no_grad_set=None, callbacks=None)
+'''''''''
 
 自动做diff来向当前program附加反向算子，为minimize过程的第一步。
 
-参数：
+**参数**
+
     - **loss** (Variable) – 需要最小化的损失值变量
     - **startup_program** (Program, 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
     - **parameter_list** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
     - **callbacks** (list, 可选) – 当为某参数附加反向算子时所要运行的callables组成的列表
 
-返回：  附加在当前Program的算子组成的列表
+**返回**
+  附加在当前Program的算子组成的列表
 
-返回类型：  list
+**返回类型**
+  list
 
 **代码示例**
 
 详见apply_gradients的示例
 
-.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+'''''''''
 
 
 通过更新parameter_list来添加操作，进而使损失最小化。
 
 该算子相当于backward()和apply_gradients()功能的合体。
 
-参数：
+**参数**
+
     - **loss** (Variable) – 用于优化过程的损失值变量
     - **startup_program** (Program) – 用于初始化在parameter_list中参数的startup_program
     - **parameter_list** (list) – 待更新的Variables组成的列表
     - **no_grad_set** (set|None) – 应该被无视的Variables集合
        
-返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+**返回**
+ tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
-返回类型：   tuple
+**返回类型**
+   tuple
 

@@ -10,7 +10,8 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 简单用法如下：
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
@@ -25,7 +26,8 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 如果您想在使用多个GPU训练模型时预先将数据单独输入GPU端，可以使用decorate_reader函数。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
@@ -41,15 +43,20 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
         paddle.batch(paddle.dataset.flowers.train(), batch_size=16), multi_devices=False)
 
 
-参数：
+参数
+::::::::::::
+
     - **feed_list**  (list) –  将输入模型的变量或变量的名称。
     - **place**  (Place) – place表示将数据输入CPU或GPU，如果要将数据输入GPU，请使用fluid.CUDAPlace(i)（i表示GPU的ID），如果要将数据输入CPU，请使用fluid.CPUPlace()。
     - **program**  (Program) –将数据输入的Program，如果Program为None，它将使用default_main_program() 。默认值None。
 
-抛出异常：     ``ValueError`` – 如果某些变量未在Program中出现
+抛出异常
+::::::::::::
+     ``ValueError`` – 如果某些变量未在Program中出现
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
@@ -81,16 +88,22 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
                        fetch_list=[out])
 
 
-.. py:method::  feed(iterable)
+方法
+::::::::::::
+feed(iterable)
+'''''''''
 
 根据feed_list和iterable，将输入转换成一个数据结构，该数据结构可以输入Executor和ParallelExecutor。
 
-参数：
+**参数**
+
     - **iterable** (list|tuple) – 输入的数据
 
-返回： 转换结果
+**返回**
+ 转换结果
 
-返回类型： dict
+**返回类型**
+ dict
 
 **代码示例**
 
@@ -112,17 +125,21 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
 
 
 
-.. py:method::  feed_parallel(iterable, num_places=None)
+feed_parallel(iterable, num_places=None)
+'''''''''
 
 需要多个mini-batches。每个mini-batch都将提前在每个设备上输入。
 
-参数：
+**参数**
+
     - **iterable** (list|tuple) – 输入的数据。
     - **num_places**  (int) – 设备编号，默认值为None。
 
-返回： 转换结果
+**返回**
+ 转换结果
 
-返回类型： dict
+**返回类型**
+ dict
 
 
 
@@ -158,21 +175,26 @@ DataFeeder将reader返回的数据转换为可以输入Executor和ParallelExecut
                 data = []
 
 
-.. py:method::  decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
+decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
+'''''''''
 
 将输入数据转换成reader返回的多个mini-batches。每个mini-batch分别送入各设备中。
 
-参数：
+**参数**
+
     - **reader** (function) – reader是可以生成数据的函数。
     - **multi_devices** (bool) – 是否用多个设备。
     - **num_places** (int) – 如果multi_devices是True, 你可以指定GPU的使用数量, 如果multi_devices是None, 会使用当前机器的所有GPU ，默认值None。
     - **drop_last** (bool) – 如果最后一个batch的大小小于batch_size，选择是否删除最后一个batch，默认值True。
 
-返回： 转换结果
+**返回**
+ 转换结果
 
-返回类型： dict
+**返回类型**
+ dict
 
-抛出异常：     ``ValueError`` – 如果drop_last为False并且数据batch和设备数目不匹配。
+**抛出异常**
+     ``ValueError`` – 如果drop_last为False并且数据batch和设备数目不匹配。
 
 **代码示例**
 

@@ -37,15 +37,22 @@ gather_tree
 
 
 
-参数：
+参数
+::::::::::::
+
     - **ids** (Variable) - 形状为 :math:`[length, batch\_size, beam\_size]` 的三维Tensor，数据类型是int32或int64。包含了所有时间步选择的id。
     - **parents** (Variable) - 形状和数据类型均与 ``ids`` 相同的Tensor。包含了束搜索中每一时间步所选id对应的parent。
     
-返回：和 ``ids`` 具有相同形状和数据类型的Tensor。包含了根据parent回溯而收集产生的完整id序列。
+返回
+::::::::::::
+和 ``ids`` 具有相同形状和数据类型的Tensor。包含了根据parent回溯而收集产生的完整id序列。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

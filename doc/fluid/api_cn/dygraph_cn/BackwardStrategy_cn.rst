@@ -11,9 +11,10 @@ BackwardStrategy
 
 BackwardStrategy是描述动态图反向执行的策略，主要功能是定义动态图反向执行时的不同策略
 
-**属性：**
-
-.. py:attribute:: sort_sum_gradient
+属性
+::::::::::::
+sort_sum_gradient
+'''''''''
 
 是否按照前向执行的逆序加和多个梯度，例如当 x_var（ :ref:`api_guide_Variable` ）作为多个OP（这里以 :ref:`cn_api_fluid_layers_scale` 为例）的输入时，其产生的梯度是否按照前向书写时的
 逆序加和，默认为False

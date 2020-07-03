@@ -15,15 +15,22 @@ cos_sim
 
 输入X和Y可以都携带或者都不携带LoD(Level of Detail)信息。但输出和输入X的LoD信息保持一致。
 
-参数：
+参数
+::::::::::::
+
     - **X** (Variable) - cos_sim操作函数的第一个输入，维度为 ``[N_1, N_2, ..., N_k]`` 的多维LoDTensor, 维度不能小于2。数据类型：float32。
     - **Y** (Variable) - cos_sim操作函数的第二个输入，维度为 ``[N_1 或者 1, N_2, ..., N_k]`` 的多维Tensor。数据类型：float32。
 
-返回：LoDTensor。输出两个输入的余弦相似度。
+返回
+::::::::::::
+LoDTensor。输出两个输入的余弦相似度。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

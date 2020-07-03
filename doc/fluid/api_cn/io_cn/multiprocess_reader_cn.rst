@@ -9,17 +9,24 @@ multiprocess_reader
 
 multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。
 
-参数：
+参数
+::::::::::::
+
     - **readers** (list(generator)|tuple(generator)) - python生成器list, 用来读取数据
     - **use_pipe** (bool，可选) - use_pipe控制multiprocess_reader内部用 ``pipe`` 还是 ``queue`` 来实现进程间通信，默认为 ``True`` 使用 ``pipe`` 进行通信
     - **queue_size** (int，可选) - 如果使用queue来进行进程间通信 (``use_pipe=False``), 则该参数用来设定队列大小
 
-返回：使用多进程封装readers之后的reader
+返回
+::::::::::::
+使用多进程封装readers之后的reader
 
-返回类型：python生成器
+返回类型
+::::::::::::
+python生成器
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

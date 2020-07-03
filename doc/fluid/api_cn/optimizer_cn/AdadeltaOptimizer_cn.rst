@@ -18,7 +18,9 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     E(dx_t^2) &= \rho * E(dx_{t-1}^2) + (1-\rho) * (-g*learning\_rate)^2
 
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (float|Variable) - 全局学习率。
     - **epsilon** (float) - 维持数值稳定性的浮点型值，默认值为1.0e-6。
     - **rho** (float) - 算法中的衰减率，默认值为0.95。
@@ -30,7 +32,8 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
       默认值为None，此时将不进行梯度裁剪。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -44,19 +47,25 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     optimizer_ops, params_grads = optimizer.minimize(cost)
 
 
-.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+方法
+::::::::::::
+minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+'''''''''
 
 为训练网络添加反向和参数优化部分，进而使损失最小化。
 
-参数：
+**参数**
+
     - **loss** (Variable) – 优化器的损失变量。
     - **startup_program** (Program，可选) – 参数所在的startup program。默认值为None，表示 :ref:`cn_api_fluid_default_startup_program` 。
     - **parameter_list** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表。默认值为None，表示所有参数均需要更新。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合。默认值为None。
 
-返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+**返回**
+ tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
-返回类型: tuple
+**返回类型**
+ tuple
 
 **代码示例**
 
@@ -72,7 +81,8 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
     optimizer_ops, params_grads = optimizer.minimize(cost)
 
 
-.. py:method:: clear_gradients()
+clear_gradients()
+'''''''''
 
 **注意：**
 
@@ -99,7 +109,8 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
         optimizer.clear_gradients()
 
 
-.. py:method:: current_step_lr()
+current_step_lr()
+'''''''''
 
 **注意：**
 
@@ -107,9 +118,11 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
 
 获取当前步骤的学习率。当不使用LearningRateDecay时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
-返回：当前步骤的学习率。
+**返回**
+当前步骤的学习率。
 
-返回类型：float
+**返回类型**
+float
 
 **代码示例**
 

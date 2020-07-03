@@ -8,16 +8,23 @@ meshgrid
 
 该OP的输入是tensor list, 包含 k 个一维Tensor，对每个Tensor做扩充操作，输出 k 个 k 维tensor。
 
-参数：
+参数
+::::::::::::
+
          - **input** （Variable）- 输入变量为 k 个一维Tensor，形状分别为(N1,), (N2,), ..., (Nk, )。支持数据类型为float32，float64，int32，int64。
          - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回： 
+返回
+::::::::::::
+ 
 k 个 k 维Tensor，每个Tensor的形状均为(N1, N2, ..., Nk)。
 
-返回类型：  变量（Variable）
+返回类型
+::::::::::::
+  变量（Variable）
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

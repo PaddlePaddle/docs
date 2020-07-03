@@ -11,18 +11,25 @@ load_dygraph
 
 该接口会同时加载 ``model_path + ".pdparams"`` 和 ``model_path + ".pdopt"`` 中的内容。
 
-参数:
+参数
+::::::::::::
+
     - **model_path**  (str) – 保存state_dict的文件前缀。该路径不应该包括后缀 ``.pdparams`` 或 ``.pdopt``。
 
 
-返回: 两个 ``dict`` ，即从文件中恢复的参数 ``dict`` 和优化器 ``dict``
+返回
+::::::::::::
+ 两个 ``dict`` ，即从文件中恢复的参数 ``dict`` 和优化器 ``dict``
 
 - para_dict: 从文件中恢复的参数 ``dict``
 - opti_dict: 从文件中恢复的优化器 ``dict``
 
-返回类型: tuple(dict, dict)
+返回类型
+::::::::::::
+ tuple(dict, dict)
   
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

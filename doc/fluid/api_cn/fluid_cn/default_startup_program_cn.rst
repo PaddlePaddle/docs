@@ -18,11 +18,16 @@ startup_program会使用内在的OP（算子）去初始化他们，并由 :ref:
 
 该函数将返回默认的或当前的startup_program。用户可以使用 :ref:`cn_api_fluid_program_guard`  去切换 :ref:`cn_api_fluid_default_startup_program` 。
 
-返回: 当前的默认/全局 初始化 :ref:`cn_api_fluid_Program`
+返回
+::::::::::::
+ 当前的默认/全局 初始化 :ref:`cn_api_fluid_Program`
 
-返回类型: :ref:`cn_api_fluid_Program`
+返回类型
+::::::::::::
+ :ref:`cn_api_fluid_Program`
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -7,7 +7,8 @@ LoDTensorArray
 
 LoDTensorArray是由LoDTensor组成的数组，支持"[]"运算符、len()函数和for迭代等。
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
         
@@ -17,16 +18,21 @@ LoDTensorArray是由LoDTensor组成的数组，支持"[]"运算符、len()函数
 
 
 
-.. py:method:: append(self: paddle.fluid.core_avx.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
+方法
+::::::::::::
+append(self: paddle.fluid.core_avx.LoDTensorArray, tensor: paddle.fluid.core.LoDTensor) → None
+'''''''''
 
 该接口将LoDTensor追加到LoDTensorArray后。
 
-参数：
+**参数**
+
   - **tensor** (LoDTensor) - 追加的LoDTensor。
 
-返回：无。
+**返回**
+无。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 

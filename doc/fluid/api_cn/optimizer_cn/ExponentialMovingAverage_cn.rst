@@ -29,12 +29,15 @@ ExponentialMovingAverage
 通常 ``thres_steps`` 可以是全局的训练迭代步数。
      
 
-参数：
+参数
+::::::::::::
+
     - **decay** (float) – 指数衰减率，通常接近1，如0.999，0.9999，……
     - **thres_steps** (Variable, 可选) – 调节衰减率的阈值步数，默认值为 None。
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -83,23 +86,30 @@ ExponentialMovingAverage
         ema.restore(exe)
 
 
-.. py:method:: update()
+方法
+::::::::::::
+update()
+'''''''''
 
 更新指数滑动平均，在训练过程中需调用此方法。
 
-.. py:method:: apply(executor, need_restore=True)
+apply(executor, need_restore=True)
+'''''''''
 
 模型评测时，将滑动平均的结果作用在参数上。
 
-参数：
+**参数**
+
     - **executor** (Executor) – 将滑动平均值作用在参数上的执行器。
     - **need_restore** (bool) –是否在结束后恢复原始参数，默认值为 ``True`` 。
 
-.. py:method:: restore(executor)
+restore(executor)
+'''''''''
 
 恢复参数。
 
-参数：
+**参数**
+
     - **executor** (Executor) – 执行恢复动作的执行器。
 
 
