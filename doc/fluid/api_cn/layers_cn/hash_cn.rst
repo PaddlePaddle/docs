@@ -36,7 +36,7 @@ hash
   place = fluid.core.CPUPlace()
 
   # 构建网络
-  x = fluid.layers.data(name="x", shape=[2, 2], dtype="int32", lod_level=1)
+  x = fluid.data(name="x", shape=[2, 2], dtype="int32", lod_level=1)
   res = fluid.layers.hash(name="res", input=x, hash_size=1000, num_hash=4)
 
   # 创建CPU执行器
