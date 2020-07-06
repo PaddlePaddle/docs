@@ -36,8 +36,8 @@ hash
   place = fluid.core.CPUPlace()
 
   # 构建网络
-  x = fluid.layers.data(name="x", shape=[1], dtype="int32", lod_level=1)
-  res = fluid.layers.hash(name="res",input=x, hash_size=1000, num_hash=4)
+  x = fluid.data(name="x", shape=[2, 2], dtype="int32", lod_level=1)
+  res = fluid.layers.hash(name="res", input=x, hash_size=1000, num_hash=4)
 
   # 创建CPU执行器
   exe = fluid.Executor(place)
@@ -45,9 +45,7 @@ hash
 
   in1 = np.array([[1,2],[3,4]]).astype("int32")
   print(in1)
-  x_i = fluid.core.LoDTensor()
-  x_i.set(in1,place)
-  x_i.set_recursive_sequence_lengths([[0,2]])
+  x_i = fluid.create_lod_tensor(in1, [[0, 2]], place)
   res = exe.run(fluid.default_main_program(), feed={'x':x_i}, fetch_list=[res], return_numpy=False)
   print(np.array(res[0]))
   # [[[722]
