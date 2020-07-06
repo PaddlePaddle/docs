@@ -5,24 +5,10 @@ force_init_on_cpu
 
 .. py:function:: paddle.fluid.initializer.force_init_on_cpu()
 
-该接口获得一个是否强制在CPU上初始化变量的布尔型标志位。
 
-返回
-::::::::::::
-状态，是否应强制在CPU上强制进行变量初始化
+.. note::
+    该api已经被删除，请使用 ``device_guard`` 接口，具体请参考 :ref:`device-guard` 。
 
-返回类型
-::::::::::::
-bool
-
-代码示例
-::::::::::::
-
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    if fluid.initializer.force_init_on_cpu():
-        step = fluid.layers.create_global_var(shape=[2,3], value=1.0, dtype='float32')
 
 
 
