@@ -52,6 +52,7 @@ fluid
     fluid_cn/save_cn.rst
     fluid_cn/scope_guard_cn.rst
     fluid_cn/set_flags_cn.rst
+    fluid_cn/set_global_initializer_cn.rst
     fluid_cn/Tensor_cn.rst
     fluid_cn/Variable_cn.rst
     fluid_cn/WeightNormParamAttr_cn.rst

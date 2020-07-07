@@ -256,6 +256,87 @@ hook(Layer, input, output) -> None or modified output
         for prefix, layer in model.named_sublayers():
             print(prefix, layer)
 
+.. py:method:: register_buffer(name, variable, persistable=True)
+
+将一个Variable注册为buffer。
+
+buffer是一个非参数类型的变量，不会被优化器更新，但在评估或预测阶段可能是必要的状态变量。比如 ``BatchNorm`` 中的均值和方差。
+
+注册的buffer默认是可持久性的，会被保存到 ``state_dict`` 中。如果指定 ``persistable`` 参数为False，则会注册一个非持久性的buffer，即不会同步和保存到 ``state_dict`` 中。
+
+参数：
+    - **name** (str) - 注册buffer的名字。可以通过此名字来访问已注册的buffer。
+    - **variable** (Variable) - 将被注册为buffer的变量。
+    - **persistable** (bool, 可选) - 注册的buffer是否需要可持久性地保存到 ``state_dict`` 中。
+
+返回：None
+
+返回类型：None
+
+**代码示例**
+
+.. code-block:: python
+
+    import numpy as np
+    import paddle.fluid as fluid
+
+    with fluid.dygraph.guard():
+        linear = fluid.Linear(10, 3)
+        value = np.array([0]).astype("float32")
+        buffer = fluid.dygraph.to_variable(value)
+        linear.register_buffer("buf_name", buffer, persistable=True)
+        
+        # get the buffer by attribute.
+        print(linear.buf_name)
+
+.. py:method:: buffers(include_sublayers=True)
+
+返回一个由当前层及其子层的所有buffers组成的列表。
+
+参数：
+    - **include_sublayers** (bool, 可选) - 是否返回子层的buffers。如果为True，返回的列表中包含子层的buffers。默认值：True。
+
+返回：一个由当前层及其子层的所有buffers组成的列表，列表中的元素类型为Variable。
+
+返回类型：list
+
+.. py:method:: named_buffers(prefix='', include_sublayers=True)
+
+返回层中所有buffers的迭代器，生成名称和buffer的元组。
+
+参数：
+    - **prefix** (str, 可选) - 在所有buffer名称前加的前缀。默认值：''。
+    - **include_sublayers** (bool, 可选) - 是否返回子层的buffers。如果为True，返回的列表中包含子层的buffers。默认值：True。
+
+返回：产出名称和buffer的元组的迭代器。
+
+返回类型：iterator
+
+**代码示例**
+
+.. code-block:: python
+
+    import numpy as np
+    import paddle.fluid as fluid
+
+    with fluid.dygraph.guard():
+        fc1 = fluid.Linear(10, 3)
+        buffer1 = fluid.dygraph.to_variable(np.array([0]).astype("float32"))
+        # register a variable as buffer by specific `persistable`
+        fc1.register_buffer("buf_name_1", buffer1, persistable=True)
+
+        fc2 = fluid.Linear(3, 10)
+        buffer2 = fluid.dygraph.to_variable(np.array([1]).astype("float32"))
+        # register a buffer by assigning an attribute with Variable.
+        # The `persistable` can only be False by this way.
+        fc2.buf_name_2 = buffer2
+
+        model = fluid.dygraph.Sequential(fc1, fc2)
+
+        # get all named buffers
+        for name, buffer in model.named_buffers():
+            print(name, buffer)
+
 .. py:method:: forward(*inputs, **kwargs)
 
 定义每次调用时执行的计算。应该被所有子类覆盖。
@@ -290,13 +371,13 @@ hook(Layer, input, output) -> None or modified output
 
 .. py:method:: state_dict(destination=None, include_sublayers=True)
 
-获取当前层及其子层的所有参数。并将所有参数存放在dict结构中。
+获取当前层及其子层的所有参数和可持久性buffers。并将所有参数和buffers存放在dict结构中。
 
 参数：
-    - **destination** (dict, 可选) - 如果提供 ``destination`` ，则所有参数都将存放在 ``destination`` 中。 默认值：None。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则包括子层的参数。默认值：True。
+    - **destination** (dict, 可选) - 如果提供 ``destination`` ，则所有参数和可持久性buffers都将存放在 ``destination`` 中。 默认值：None。
+    - **include_sublayers** (bool, 可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
 
-返回：包含所有参数的dict
+返回：包含所有参数和可持久行buffers的dict
 
 返回类型：dict
 
@@ -312,11 +393,11 @@ hook(Layer, input, output) -> None or modified output
 
 .. py:method:: set_dict(stat_dict, include_sublayers=True)
 
-根据传入的 ``stat_dict`` 设置参数。 所有参数将由 ``stat_dict`` 中的 ``Tensor`` 设置。
+根据传入的 ``stat_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``stat_dict`` 中的 ``Tensor`` 设置。
 
 参数：
-    - **state_dict** (dict) - 包含所有参数的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数。 默认值：True。
+    - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
+    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
 
 返回：None
 
@@ -337,11 +418,11 @@ hook(Layer, input, output) -> None or modified output
 .. warning::
     该函数将被弃用。请使用set_dict函数。
 
-根据传入的 ``stat_dict`` 设置参数。 所有参数将由 ``stat_dict`` 中的 ``Tensor`` 设置。
+根据传入的 ``stat_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``stat_dict`` 中的 ``Tensor`` 设置。
 
 参数：
-    - **state_dict** (dict) - 包含所有参数的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数。 默认值：True。
+    - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
+    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
 
 返回：None
 

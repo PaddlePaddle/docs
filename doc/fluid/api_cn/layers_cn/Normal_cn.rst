@@ -34,7 +34,7 @@ Normal
 
     import numpy as np
     from paddle.fluid import layers
-	  from paddle.fluid.layers import Normal
+	from paddle.fluid.layers import Normal
 
     # 定义参数为float的正态分布。
     dist = Normal(loc=0., scale=3.)
