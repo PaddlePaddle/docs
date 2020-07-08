@@ -45,7 +45,6 @@ paddle
 	paddle/dot.rst
 	paddle/elementwise_add.rst
 	paddle/elementwise_div.rst
-	paddle/elementwise_equal.rst
 	paddle/elementwise_floordiv.rst
 	paddle/elementwise_max.rst
 	paddle/elementwise_min.rst
@@ -56,6 +55,7 @@ paddle
 	paddle/elementwise_sum.rst
 	paddle/enable_imperative.rst
 	paddle/equal.rst
+	paddle/equal_all.rst
 	paddle/erf.rst
 	paddle/ExecutionStrategy.rst
 	paddle/Executor.rst

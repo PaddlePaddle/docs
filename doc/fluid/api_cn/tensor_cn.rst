@@ -38,7 +38,6 @@ paddle.tensor
     tensor_cn/einsum_cn.rst
     tensor_cn/elementwise_add_cn.rst
     tensor_cn/elementwise_div_cn.rst
-    tensor_cn/elementwise_equal_cn.rst
     tensor_cn/elementwise_floordiv_cn.rst
     tensor_cn/elementwise_max_cn.rst
     tensor_cn/elementwise_min_cn.rst
@@ -48,6 +47,7 @@ paddle.tensor
     tensor_cn/elementwise_sub_cn.rst
     tensor_cn/elementwise_sum_cn.rst
     tensor_cn/equal_cn.rst
+    tensor_cn/equal_all_cn.rst
     tensor_cn/erf_cn.rst
     tensor_cn/exp_cn.rst
     tensor_cn/expand_as_cn.rst
