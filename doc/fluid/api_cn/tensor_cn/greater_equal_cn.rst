@@ -8,6 +8,7 @@ greater_equal
 :alias: paddle.greater_equal,paddle.tensor.greater_equal,paddle.tensor.logic.greater_equal
 
 该OP逐元素地返回 :math:`x >= y` 的逻辑值，相同位置前者输入大于等于后者输入则返回True，否则返回False。使用重载算子 `>=` 可以有相同的计算函数效果。
+
 **注：该OP输出的结果不返回梯度。**
 
 参数：

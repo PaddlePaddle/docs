@@ -9,6 +9,7 @@ equal_all
 :alias: paddle.equal_all,paddle.tensor.equal_all,paddle.tensor.logic.equal_all
 
 该OP返回：返回的结果只有一个元素值，如果所有相同位置的元素相同返回True，否则返回False。
+
 **注：该OP输出的结果不返回梯度。**
 
 
@@ -24,15 +25,16 @@ equal_all
 **代码示例**:
 
 .. code-block:: python
-    import numpy as np
-    import paddle
-    import paddle.imperative as imperative
-    paddle.enable_imperative()
-    paddle.enable_imperative()
-    x = imperative.to_variable(np.array([1, 2, 3]))
-    y = imperative.to_variable(np.array([1, 2, 3]))
-    z = imperative.to_variable(np.array([1, 4, 3]))
-    result1 = paddle.equal_all(x, y)
-    print(result1.numpy()) # result1 = [True ]
-    result2 = paddle.equal_all(x, z)
-    print(result2.numpy()) # result2 = [False ]
+
+     import numpy as np
+     import paddle
+     import paddle.imperative as imperative
+     paddle.enable_imperative()
+     paddle.enable_imperative()
+     x = imperative.to_variable(np.array([1, 2, 3]))
+     y = imperative.to_variable(np.array([1, 2, 3]))
+     z = imperative.to_variable(np.array([1, 4, 3]))
+     result1 = paddle.equal_all(x, y)
+     print(result1.numpy()) # result1 = [True ]
+     result2 = paddle.equal_all(x, z)
+     print(result2.numpy()) # result2 = [False ]
