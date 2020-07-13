@@ -3,7 +3,6 @@
 roll
 -------------------------------
 
-
 .. py:function:: paddle.roll(x, shifts, axis=None, name=None):
 
 :alias_main: paddle.roll
