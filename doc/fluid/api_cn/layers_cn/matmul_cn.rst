@@ -5,6 +5,9 @@ matmul
 
 .. py:function:: paddle.fluid.layers.matmul(x, y, transpose_x=False, transpose_y=False, alpha=1.0, name=None)
 
+
+
+
 输入 ``x`` 和输入 ``y`` 矩阵相乘。
 
 两个输入的形状可为任意维度，但当任一输入维度大于3时，两个输入的维度必须相等。

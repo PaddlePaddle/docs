@@ -3,14 +3,17 @@
 set_gradient_clip
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.clip.set_gradient_clip(clip, param_list=None, program=None)
 
+:api_attr: 声明式编程模式（静态图)
+
+
+
 .. warning::
-    此API对位置使用的要求较高，其必须位于组建网络之后， ``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐使用 ``minimize(loss, grad_clip=clip)`` 做梯度裁剪。
+    此API对位置使用的要求较高，其必须位于组建网络之后， ``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐在 ``optimizer`` 初始化时设置梯度裁剪。
     有三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
-    如果 ``set_gradient_clip(clip)`` 与 ``minimize(loss, grad_clip=clip)`` 被同时使用，``set_gradient_clip`` 将不会生效。
+    如果在 ``optimizer`` 中设置过梯度裁剪，又使用了 ``set_gradient_clip`` ，``set_gradient_clip`` 将不会生效。
 
 给指定参数做梯度裁剪。
 
@@ -70,11 +73,12 @@ set_gradient_clip
         loss = network()
         param_var1 = fluid.default_main_program().global_block().var("fc1_param")
         param_var2 = fluid.default_main_program().global_block().var("fc2_param")
-        clip1 = fluid.clip.GradientClipByValue(min=-1.0, max=1.0), param_list=[param_var1, param_var2])
-        clip2 = fluid.clip.GradientClipByNorm(clip_norm=1.0), param_list=[param_var1, param_var2])
+        clip1 = fluid.clip.GradientClipByValue(min=-1.0, max=1.0)
+        clip2 = fluid.clip.GradientClipByNorm(clip_norm=1.0)
         # 设置梯度裁剪策略：clip1
         fluid.clip.set_gradient_clip(clip1)
-        sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+        
         # 设置梯度裁剪策略：clip2
-        sgd.minimize(loss, grad_clip=clip2)
+        sgd = fluid.optimizer.SGD(learning_rate=1e-3, grad_clip=clip2)
+        sgd.minimize(loss)
         # 有设置冲突时，set_gradient_clip将不会生效，将以clip2的策略进行梯度裁剪

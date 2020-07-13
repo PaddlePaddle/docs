@@ -5,6 +5,9 @@ Adamax
 
 .. py:attribute:: paddle.fluid.optimizer.Adamax
 
+
+
+
 ``AdamaxOptimizer`` 的别名
 
 

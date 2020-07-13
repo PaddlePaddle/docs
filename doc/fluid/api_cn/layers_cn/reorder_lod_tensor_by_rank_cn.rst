@@ -6,6 +6,9 @@ reorder_lod_tensor_by_rank
 .. py:function:: paddle.fluid.layers.reorder_lod_tensor_by_rank(x, rank_table)
 
 
+
+
+
 该OP根据 ``rank_table`` 中提供的 ``LoDRankTable`` 类型的顺序信息来实现对 ``X`` 的重新排列。
 接口参数 ``X`` 是由多个序列(Sequence)组成的的一个批序列（Batch of Sequences）， ``rank_table`` 存储着对batch中序列重新排列的 ``LoDRankTable`` 类型的顺序信息。
 
@@ -20,13 +23,8 @@ reorder_lod_tensor_by_rank
 注意：该OP对 ``X`` 进行的排序所依据的 ``LoDRankTable`` 不一定是在 ``X`` 的基础上得出来的。它可以由其他不同的序列得出，并由该OP依据这个 ``LoDRankTable`` 来对 ``X`` 排序。
 
 参数：
-    - **x** (Variable) - 待根据提供的 ``rank_table`` 进行排序的LoDTensor
-    - **rank_table** (Variable) - 提供对 ``x`` 重新排列的 ``LoDRankTable`` 类型的顺序信息，构造方法举例如下：
-
-.. code-block:: python
-
-    rank_data = fluid.layers.data(name=data_desc[1][0], shape=data_desc[1][1])
-    rank_table = fluid.layers.control_flow.lod_rank_table(rank_data)
+    - **x** (Variable) - 待根据提供的 ``rank_table`` 进行排序的LoDTensor.
+    - **rank_table** (Variable) - 提供对 ``x`` 重新排列的 ``LoDRankTable`` 类型的顺序信息.
 
 
 返回： 重新排列后的LoDTensor
@@ -37,14 +35,32 @@ reorder_lod_tensor_by_rank
 
 .. code-block:: python
 
+    
+    import numpy as np
     import paddle.fluid as fluid
-    data_desc = (['input', [9], 0], ['ref', [5], 1])
-    data = fluid.layers.data(name=data_desc[0][0], shape=data_desc[0][1])
-    rank_data = fluid.layers.data(name=data_desc[1][0], shape=data_desc[1][1])
-    table = fluid.layers.control_flow.lod_rank_table(rank_data)
+
+    rank_data = fluid.layers.data(name='rank_data', shape=[5], dtype='float32', lod_level=2)
+    table = fluid.layers.control_flow.lod_rank_table(rank_data, level=1)
+
+    data = fluid.layers.data(name='data', shape=[9], lod_level=2)
     new_data = fluid.layers.reorder_lod_tensor_by_rank(
                      x=data, rank_table=table)
 
+
+    place=fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+
+    rank_tensor = fluid.create_lod_tensor(np.random.random([14,5]).astype("float32"), [[4,1], [3, 2, 2, 3, 4]], place)
+
+    data_ndarray = np.random.random([27, 9]).astype("float32")
+    data_lod = [[1, 2, 2, 4, 4], [2, 2, 4, 2, 2, 2, 1, 1, 2, 2, 4, 2, 1]]
+    data_tensor = fluid.create_lod_tensor(data_ndarray, data_lod, place)
+
+    out = exe.run(fluid.default_main_program(),feed={'data':data_tensor, 'rank_data':rank_tensor}, fetch_list=[new_data], return_numpy=False)
+    print(out[0])
+    # lod: {{0, 4, 5, 9, 11, 13}{0, 2, 6, 8, 9, 11, 13, 14, 15, 17, 19, 23, 25, 27}}
+    #shape: [27, 9]
 
 
 

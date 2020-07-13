@@ -5,6 +5,9 @@ NormalInitializer
 
 .. py:class:: paddle.fluid.initializer.NormalInitializer(loc=0.0, scale=1.0, seed=0)
 
+
+
+
 随机正态(高斯)分布初始化函数
 
 参数：

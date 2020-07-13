@@ -5,6 +5,9 @@ cuda_places
 
 .. py:function:: paddle.fluid.cuda_places(device_ids=None)
 
+
+
+
 .. note::
     多卡任务请先使用 FLAGS_selected_gpus 环境变量设置可见的GPU设备，下个版本将会修正 CUDA_VISIBLE_DEVICES 环境变量无效的问题。
 

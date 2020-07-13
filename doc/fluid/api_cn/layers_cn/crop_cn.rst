@@ -5,6 +5,9 @@ crop
 
 .. py:function:: paddle.fluid.layers.crop(x, shape=None, offsets=None, name=None)
 
+
+
+
 该OP根据偏移量(offsets)和形状(shape)，裁剪输入张量。
 
 **注意:** 此OP已被弃用，它将在以后的版本中被删除，请使用 :ref:`cn_api_fluid_layers_crop_tensor` 替代

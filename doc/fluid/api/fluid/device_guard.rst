@@ -4,7 +4,7 @@
 .. _api_fluid_device_guard:
 
 device_guard
------------------------
+------------
 
 ..  autofunction:: paddle.fluid.device_guard
     :noindex:

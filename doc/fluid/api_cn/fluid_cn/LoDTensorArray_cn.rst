@@ -5,6 +5,9 @@ LoDTensorArray
 
 .. py:class:: paddle.fluid.LoDTensorArray
 
+
+
+
 LoDTensorArray是由LoDTensor组成的数组，支持"[]"运算符、len()函数和for迭代等。
 
 **示例代码**

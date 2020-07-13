@@ -3,14 +3,17 @@
 lstm
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function::  paddle.fluid.layers.lstm(input, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=0.0, is_bidirec=False, is_test=False, name=None, default_initializer=None, seed=-1)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 .. note::
     该OP仅支持 GPU 设备运行
 
-该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf>`_。
+该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <https://www.bioinf.jku.at/publications/older/2604.pdf>`_。
 
 该OP的实现不包括 diagonal/peephole 连接，参见 `Gers, F. A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_。
 如果需要使用 peephole 连接方法，请使用 :ref:`cn_api_fluid_layers_dynamic_lstm` 。

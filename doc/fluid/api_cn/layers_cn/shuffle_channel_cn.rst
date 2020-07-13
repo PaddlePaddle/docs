@@ -5,6 +5,12 @@ shuffle_channel
 
 .. py:function:: paddle.fluid.layers.shuffle_channel(x, group, name=None)
 
+:alias_main: paddle.nn.functional.shuffle_channel
+:alias: paddle.nn.functional.shuffle_channel,paddle.nn.functional.vision.shuffle_channel
+:old_api: paddle.fluid.layers.shuffle_channel
+
+
+
 该OP将输入 ``x`` 的通道混洗重排。 它将每个组中的输入通道分成 ``group`` 个子组，并通过逐一从每个子组中选择元素来获得新的顺序。
 
 请参阅 https://arxiv.org/pdf/1707.01083.pdf

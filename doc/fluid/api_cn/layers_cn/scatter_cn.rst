@@ -5,6 +5,12 @@ scatter
 
 .. py:function:: paddle.fluid.layers.scatter(input, index, updates, name=None, overwrite=True)
 
+:alias_main: paddle.scatter
+:alias: paddle.scatter,paddle.tensor.scatter,paddle.tensor.manipulation.scatter
+:old_api: paddle.fluid.layers.scatter
+
+
+
 该OP根据index中的索引值将updates数据更新到input中。
 
 .. code-block:: python

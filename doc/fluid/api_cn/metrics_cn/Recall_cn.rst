@@ -5,6 +5,9 @@ Recall
 
 .. py:class:: paddle.fluid.metrics.Recall(name=None)
 
+
+
+
 召回率Recall（也称为敏感度）是指得到的相关实例数占相关实例总数的比例。https://en.wikipedia.org/wiki/Precision_and_recall 该类管理二分类任务的召回率。
 
 **代码示例**

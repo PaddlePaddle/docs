@@ -5,6 +5,12 @@ generate_proposal_labels
 
 .. py:function:: paddle.fluid.layers.generate_proposal_labels(rpn_rois, gt_classes, is_crowd, gt_boxes, im_info, batch_size_per_im=256, fg_fraction=0.25, fg_thresh=0.25, bg_thresh_hi=0.5, bg_thresh_lo=0.0, bbox_reg_weights=[0.1, 0.1, 0.2, 0.2], class_nums=None, use_random=True, is_cls_agnostic=False, is_cascade_rcnn=False)
 
+:alias_main: paddle.nn.functional.generate_proposal_labels
+:alias: paddle.nn.functional.generate_proposal_labels,paddle.nn.functional.vision.generate_proposal_labels
+:old_api: paddle.fluid.layers.generate_proposal_labels
+
+
+
 **注意：该OP无对应的反向OP**
 
 该OP根据RPN预测产出的bounding boxes和groundtruth，抽取出用来计算loss的foreground boxes and background boxes。

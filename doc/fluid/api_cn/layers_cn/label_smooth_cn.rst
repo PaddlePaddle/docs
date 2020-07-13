@@ -5,6 +5,12 @@ label_smooth
 
 .. py:function:: paddle.fluid.layers.label_smooth(label, prior_dist=None, epsilon=0.1, dtype='float32', name=None)
 
+:alias_main: paddle.nn.functional.label_smooth
+:alias: paddle.nn.functional.label_smooth,paddle.nn.functional.common.label_smooth
+:old_api: paddle.fluid.layers.label_smooth
+
+
+
 该OP实现了标签平滑的功能。标签平滑是一种对分类器层进行正则化的机制，称为标签平滑正则化(LSR)。由于直接优化正确标签的对数似然可能会导致过拟合，降低模型的适应能力，因此提出了标签平滑的方法来降低模型置信度。
 
 标签平滑使用标签 :math:`y` 和一些固定模式随机分布变量 :math:`\mu` 。对 :math:`k` 标签，标签平滑的计算方式如下。

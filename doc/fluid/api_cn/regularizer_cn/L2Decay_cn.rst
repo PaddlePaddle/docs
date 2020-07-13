@@ -5,6 +5,9 @@ L2Decay
 
 .. py:attribute::   paddle.fluid.regularizer.L2Decay
 
+
+
+
 L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模型对训练数据过拟合。
 
 该类生成的实例对象，需要设置在 :ref:`cn_api_fluid_ParamAttr` 或者 ``optimizer`` 

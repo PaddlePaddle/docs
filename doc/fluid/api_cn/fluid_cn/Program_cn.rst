@@ -5,6 +5,9 @@ Program
 
 .. py:class::  paddle.fluid.Program
 
+
+
+
 **注意：默认情况下，Paddle Fluid内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_main_program` **在每个mini batch中运行并更新权重。**
 
 Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构造函数可以创建一个Program。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`cn_api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
@@ -57,13 +60,12 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
         import paddle.fluid as fluid
 
         prog = fluid.default_main_program()
-        a = fluid.layers.data(name="X", shape=[2,3], dtype="float32", append_batch_size=False)
-        c = fluid.layers.fc(a, size=3)
+        x = fluid.layers.data(name="X", shape=[2,3], dtype="float32", append_batch_size=False)
+        pred = fluid.layers.fc(x, size=3)
         prog_string = prog.to_string(throw_on_error=True, with_details=False)
         prog_string_with_details = prog.to_string(throw_on_error=False, with_details=True)
-        print(prog_string)
-        print("\n =============== with_details =============== \n")
-        print(prog_string_with_details)
+        print("program string without detail: {}".format(prog_string))
+        print("program string with detail: {}".format(prog_string_with_details))
 
 .. py:method:: clone(for_test=False)
 
@@ -82,16 +84,19 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 **代码示例**
 
- .. code-block:: python
+   ::
 
-       import paddle.fluid as fluid
-       ## 我们推荐在使用 Optimizer前使用clone()接口
-       test_program = fluid.default_main_program().clone(for_test=True)
-       optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
-       optimizer.minimize()
+        import paddle.fluid as fluid
+        img = fluid.layers.data(name='image', shape=[784])
+        pred = fluid.layers.fc(input=img, size=10, act='relu')
+        loss = fluid.layers.mean(pred)
+        ## 我们推荐在使用 Optimizer前使用clone()接口
+        test_program = fluid.default_main_program().clone(for_test=True)
+        optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
+        optimizer.minimize(loss)
 
 参数：
- - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP
+ - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP，默认值为False
 
 返回：当 ``for_test=True`` 时返回一个新的、仅包含当前Program前向内容的Program。否则返回一个新的，和当前Program完全相同的Program
 
@@ -150,7 +155,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
                                           input=fluid.layers.fc(hidden, size=10, act='softmax'),
                             label=fluid.layers.data(name='label', shape=[1], dtype='int64'))
                 avg_loss = fluid.layers.mean(loss)
-                test_program = train_program.clone(for_test=False)
+                test_program = train_program.clone(for_test=True)
         print_prog(test_program)
 
         # 由于需要使训练和测试参数共享，我们需要使用训练的 ``startup_program``
@@ -182,7 +187,8 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
                 for key, value in sorted(six.iteritems(op.all_attrs())):
                     if key not in ['op_callstack', 'op_role_var']:
                         print(" [ attrs: {}:   {} ]".format(key, value))
-        def network(is_test):
+        
+        def network():
             img = fluid.layers.data(name='image', shape=[784])
             hidden = fluid.layers.fc(input=img, size=200, act='relu')
             hidden = fluid.layers.dropout(hidden, dropout_prob=0.5)
@@ -192,19 +198,19 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
             avg_loss = fluid.layers.mean(loss)
             return avg_loss
 
-
         train_program_2 = fluid.Program()
         startup_program_2 = fluid.Program()
         test_program_2 = fluid.Program()
         with fluid.program_guard(train_program_2, startup_program_2):
             with fluid.unique_name.guard():
-                 sgd = fluid.optimizer.SGD(learning_rate=1e-3)
-                 sgd.minimize(avg_loss)
+                avg_loss = network()
+                sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+                sgd.minimize(avg_loss)
         # 不使用测试阶段的启动程序
-        with fluid.program_guard(test_program_2, fluid.Program()):
+        with fluid.program_guard(test_program_2, startup_program_2):
             with fluid.unique_name.guard():
-                loss = network(is_test=True)
-        print(test_program_2)
+                avg_loss = network()
+        print_prog(test_program_2)
 
 上边两个代码片段生成和打印的Program是一样的。
 
@@ -268,24 +274,7 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
 .. py:attribute:: random_seed
 
-**注意：必须在相关OP被添加之前设置。例如**
-
-**代码示例**
-
-.. code-block:: python
-
-            import paddle.fluid as fluid
-
-            prog = fluid.default_main_program()
-            random_seed = prog.random_seed
-            x_var = fluid.layers.data(name="X", shape=[3,3], dtype="float32", append_batch_size=False)
-
-            # 这里我们必须要在fluid.layers.dropout之前设置random_seed
-            print(random_seed)
-            prog.random_seed = 1
-            z_var = fluid.layers.dropout(x_var, 0.7)
-
-            print(prog.random_seed)
+**注意：必须在相关OP被添加之前设置。**
 
 程序中随机运算符的默认随机种子。0意味着随机生成随机种子。
 
@@ -301,12 +290,16 @@ Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构
 
             prog = fluid.default_main_program()
             random_seed = prog.random_seed
+            x_var = fluid.layers.data(name="X", shape=[3,3], dtype="float32", append_batch_size=False)
             print(random_seed)
-            prog.random_seed = 1
-            print(prog.random_seed)
-
             ## 0
             ## 默认的random seed是 0
+
+            # 这里我们必须要在fluid.layers.dropout之前设置random_seed
+            prog.random_seed = 1
+            z_var = fluid.layers.dropout(x_var, 0.7)
+
+            print(prog.random_seed)
             ## 1
             ## 修改后random seed变成了 1
 

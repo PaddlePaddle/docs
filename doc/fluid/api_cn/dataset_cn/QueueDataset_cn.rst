@@ -5,6 +5,9 @@ QueueDataset
 
 .. py:class:: paddle.fluid.dataset.QueueDataset
 
+
+
+
 流式处理数据。
 
 **代码示例**:

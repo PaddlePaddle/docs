@@ -3,9 +3,12 @@
 guard
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
 .. py:function:: paddle.fluid.dygraph.guard(place=None)
+
+:api_attr: 命令式编程模式（动态图)
+
+
 
 通过with语句创建一个dygraph运行的context，执行context代码。
 

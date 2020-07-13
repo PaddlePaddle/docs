@@ -5,6 +5,9 @@ MetricBase
 
 .. py:class:: paddle.fluid.metrics.MetricBase(name)
 
+
+
+
 在评估神经网络效果的时候，由于我们常常需要把测试数据切分成mini-batch，并逐次将每个mini-batch送入神经网络进行预测和评估，因此我们每次只能获得当前batch下的评估结果，而并不能一次性获得整个测试集的评估结果。paddle.fluid.metrics正是为了解决这些问题而设计的，大部分paddle.fluid.metrics下的类都具有如下功能：
 
 1. 接受模型对一个batch的预测结果（numpy.array）和这个batch的原始标签（numpy.array）作为输入，并进行特定的计算（如计算准确率，召回率等）。

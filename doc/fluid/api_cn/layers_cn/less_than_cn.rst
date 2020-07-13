@@ -5,6 +5,12 @@ less_than
 
 .. py:function:: paddle.fluid.layers.less_than(x, y, force_cpu=None, cond=None)
 
+:alias_main: paddle.less_than
+:alias: paddle.less_than,paddle.tensor.less_than,paddle.tensor.logic.less_than
+:old_api: paddle.fluid.layers.less_than
+
+
+
 
 该OP逐元素地返回 :math:`x < y` 的逻辑值，使用重载算子 `<` 可以有相同的计算函数效果
 

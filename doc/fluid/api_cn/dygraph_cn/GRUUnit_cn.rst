@@ -5,6 +5,9 @@ GRUUnit
 
 .. py:class:: paddle.fluid.dygraph.GRUUnit(name_scope, size, param_attr=None, bias_attr=None, activation='tanh', gate_activation='sigmoid', origin_mode=False, dtype='float32')
 
+
+
+
 该接口用于构建 ``GRU(Gated Recurrent Unit)`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其用于完成单个时间步内GRU的计算，支持以下两种计算方式：
 
 如果origin_mode为True，则使用的运算公式来自论文
