@@ -2,6 +2,6 @@
 
 sort
 -------------------------------
-:doc_source: paddle.tensor.argsort
+:doc_source: paddle.tensor.sort
 
 
