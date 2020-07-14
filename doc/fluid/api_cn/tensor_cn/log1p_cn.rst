@@ -3,7 +3,7 @@
 log1p
 -------------------------------
 
-.. py:function:: paddle.tensor.log1p(x, out=None, name=None)
+.. py:function:: paddle.tensor.log1p(x, name=None)
 
 :alias_main: paddle.log1p
 :alias: paddle.log1p,paddle.tensor.log1p,paddle.tensor.math.log1p
@@ -19,7 +19,6 @@ log1p
 
 参数:
   - **x** (Variable) – 该OP的输入为LodTensor/Tensor。数据类型为float32，float64。 
-  - **out**  (Variable， 可选) -  指定算子输出结果的LoDTensor/Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
   - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 返回：Log1p算子自然对数输出
