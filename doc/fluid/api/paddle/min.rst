@@ -2,6 +2,6 @@
 
 min
 -------------------------------
-:doc_source: paddle.fluid.layers.reduce_min
+:doc_source: paddle.tensor.min
 
 
