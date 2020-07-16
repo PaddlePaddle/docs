@@ -6,7 +6,7 @@ dot
 .. py:function:: paddle.tensor.linalg.dot(x, y, name=None)
 
 :alias_main: paddle.dot
-:alias: paddle.dot,paddle.tensor.dot,paddle.tensor.linalg.dot
+:alias: paddle.dot, paddle.tensor.dot, paddle.tensor.linalg.dot
 
 
 
@@ -31,7 +31,6 @@ dot
 ..  code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
     import numpy as np
 
     paddle.enable_imperative()
