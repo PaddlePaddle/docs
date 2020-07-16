@@ -37,7 +37,7 @@ Variable，与输入input数据类型相同。
     import paddle.fluid as fluid
     import numpy as np
     input = fluid.data(name="x", shape=[-1, 2, 2], dtype='float32')
-    output = paddle.flip(input, dims=[0, 1])
+    output = fluid.layers.nn.flip(input, dims=[0, 1])
     exe = fluid.Executor(fluid.CPUPlace())
     exe.run(fluid.default_startup_program())
     img = np.arange(12).reshape((3,2,2)).astype(np.float32)
