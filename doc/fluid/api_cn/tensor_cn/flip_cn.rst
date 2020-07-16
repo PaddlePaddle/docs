@@ -6,7 +6,7 @@ flip
 .. py:function:: paddle.flip(x, axis, name=None):
 
 :alias_main: paddle.flip
-:alias: paddle.flip,paddle.tensor.flip,paddle.tensor.manipulation.flip
+:alias: paddle.flip, paddle.tensor.flip, paddle.tensor.manipulation.flip
 
 
 
@@ -14,7 +14,7 @@ flip
 
 参数：
     - **x** (Variable) - 输入张量。维度为多维，数据类型为bool, int32, int64, float32或float64。
-    - **axis** (list) - 需要翻转的轴。当 ``axis[i] < 0`` 时，实际的计算维度为 rank(x) + axis[i]，其中i为axis的索引。
+    - **axis** (list) - 需要翻转的轴。当 ``axis[i] < 0`` 时，实际的计算维度为 ndim(x) + axis[i]，其中i为axis的索引。
     - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
 返回：在指定axis上翻转后的张量，与输入x数据类型相同。

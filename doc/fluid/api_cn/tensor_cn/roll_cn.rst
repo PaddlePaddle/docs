@@ -6,7 +6,7 @@ roll
 .. py:function:: paddle.roll(x, shifts, axis=None, name=None):
 
 :alias_main: paddle.roll
-:alias: paddle.roll,paddle.tensor.roll,paddle.tensor.manipulation.roll
+:alias: paddle.roll, paddle.tensor.roll, paddle.tensor.manipulation.roll
 
 
 
@@ -27,7 +27,6 @@ roll
 
         import numpy as np
         import paddle
-        import paddle.fluid as fluid
 
         data = np.array([[1.0, 2.0, 3.0],
                             [4.0, 5.0, 6.0],

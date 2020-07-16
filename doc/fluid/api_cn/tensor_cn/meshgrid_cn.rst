@@ -7,7 +7,7 @@ meshgrid
 .. py:function:: paddle.tensor.meshgrid(*args, **kargs)
 
 :alias_main: paddle.meshgrid
-:alias: paddle.meshgrid,paddle.tensor.meshgrid,paddle.tensor.creation.meshgrid
+:alias: paddle.meshgrid, paddle.tensor.meshgrid, paddle.tensor.creation.meshgrid
 
 
 
@@ -24,25 +24,6 @@ k 个 k 维张量，每个张量的形状均为(N1, N2, ..., Nk)。
 
 **代码示例**
 
-..  code-block:: python
-
-    #静态图示例
-    import paddle
-    import paddle.fluid as fluid
-    import numpy as np
-    x = fluid.data(name='x', shape=[100], dtype='int32')
-    y = fluid.data(name='y', shape=[200], dtype='int32')
-    input_1 = np.random.randint(0, 100, [100, ]).astype('int32')
-    input_2 = np.random.randint(0, 100, [200, ]).astype('int32')
-    exe = fluid.Executor(place=fluid.CPUPlace())
-    grid_x, grid_y = paddle.tensor.meshgrid(x, y)
-    res_1, res_2 = exe.run(fluid.default_main_program(),
-                            feed={'x': input_1,
-                                  'y': input_2},
-                            fetch_list=[grid_x, grid_y])
-     
-    #the shape of res_1 is (100, 200)
-    #the shape of res_2 is (100, 200)
 
 
 ..  code-block:: python
