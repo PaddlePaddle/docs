@@ -28,7 +28,8 @@ fill_constant
 返回类型：变量（Variable）
 
 抛出异常：
-    - :code:`TypeError`: dtype必须是bool，float16，float32，float64，int32和int64之一，并且输出Tensor的数据类型必须与dtype相同。
+    - :code:`TypeError`: dtype不是是bool，float16，float32，float64，int32和int64之一，输出Tensor的数据类型必须与dtype相同。
+    - :code:`TypeError`: 当 `shape` 的数据类型不是list、tuple、Variable。
 
 **代码示例**：
 
