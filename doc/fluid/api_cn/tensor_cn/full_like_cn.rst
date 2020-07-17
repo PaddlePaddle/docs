@@ -22,6 +22,7 @@ full_like
 
 抛出异常：
     - ``TypeError`` - 当dtype不是bool、float16、float32、float64、int32、int64其中之一。
+    - ``TypeError`` - 如果 ``shape`` 的类型不是list或tuple或Varibable。
 
     **代码示例**：
 
