@@ -3,7 +3,7 @@
 full_like
 -------------------------------
 
-.. py:function:: paddle.full_like(input, fill_value, dtype=None, name=None)
+.. py:function:: paddle.full_like(x, fill_value, dtype=None, name=None)
 
 :alias_main: paddle.full_like
 :alias: paddle.full_like,paddle.tensor.full_like,paddle.tensor.creation.full_like
@@ -11,7 +11,7 @@ full_like
 该OP创建一个和input具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
 
 参数：
-    - **input** (Variable) – 指定输入为一个多维的Tensor，数据类型可以是bool，float16，float32，float64，int32，int64。
+    - **x** (Variable) – 指定输入为一个多维的Tensor，数据类型可以是bool，float16，float32，float64，int32，int64。
     - **fill_value** (bool|float|int) - 用于初始化输出Tensor的常量数据的值。注意：该参数不可超过输出变量数据类型的表示范围。
     - **dtype** （np.dtype|core.VarDesc.VarType|str， 可选）- 输出变量的数据类型。若参数为None，则输出变量的数据类型和输入变量相同，默认值为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
