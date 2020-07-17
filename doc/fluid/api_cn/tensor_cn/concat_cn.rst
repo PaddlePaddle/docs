@@ -18,7 +18,7 @@ concat
 返回类型：Variable
 
 抛出异常：
-    - ``TypeError`` - 如果输入的数据类型不是 float32， float64， int32， int64其中之一。
+    - ``TypeError``: - 如果输入的数据类型不是 float32， float64， int32， int64其中之一。
 
 **代码示例**：
 
