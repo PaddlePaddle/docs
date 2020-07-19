@@ -11,11 +11,11 @@ eye
 
 
 
-该OP用来构建单位矩阵，或一个批次的单位矩阵。
+该OP用来构建二维维张量，或一个批次的二维张量。
 
 参数：
-    - **num_rows** (int) - 每一个批矩阵的行数，数据类型为非负int32。
-    - **num_columns** (int, 可选) - 每一个批矩阵的列数，数据类型为非负int32。若为None，则默认等于num_rows。
+    - **num_rows** (int) - 每一个批次二维张量的行数，数据类型为非负int32。
+    - **num_columns** (int, 可选) - 每一个批次二维张量的列数，数据类型为非负int32。若为None，则默认等于num_rows。
     - **batch_shape** (list(int), 可选) - 如若提供，则返回向量的主批次维度将为batch_shape。
     - **dtype** (string， 可选) - 返回张量的数据类型，可为int32，int64，float16，float32，float64，默认数据类型为float32。
     
@@ -24,8 +24,8 @@ eye
 返回类型：Variable（Tensor|LoDTensor）数据类型为int32，int64，float16，float32，float64的Tensor或者LoDTensor。
 
 抛出异常：
-    - ``TypeError`` - 如果 ``dtype`` 的类型不是float16， float32， float64， int32， int64其中之一。
-    - ``TypeError`` - 如果 ``num_columns`` 不是非负整数。
+    - ``TypeError``: - 如果 ``dtype`` 的类型不是float16， float32， float64， int32， int64其中之一。
+    - ``TypeError``: - 如果 ``num_columns`` 不是非负整数。
 
 **代码示例**：
 
