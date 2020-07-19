@@ -11,7 +11,7 @@ full
 
 
 
-该OP创建一个和具有相同的形状和数据类型的Tensor，其中元素值均为fill_value。
+该OP创建形状大小为shape并且数据类型为dtype的Tensor，其中元素值均为fill_value。
 
 参数：
     - **shape** (list|tuple|Variable) – 指定创建Tensor的形状(shape), 数据类型为int32 或者int64。
