@@ -5,7 +5,7 @@ eye
 
 .. py:function:: paddle.tensor.eye(num_rows, num_columns=None, dtype=None, name=None)
 
-该OP用来构建单位矩阵。
+该OP用来构建单位矩阵(主对角线元素为1，其他未知元素为0)。
 
 参数：
     - **num_rows** (int) - 生成单位矩阵的行数，数据类型为非负int32。
