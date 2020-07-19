@@ -20,6 +20,7 @@ paddle.tensor
     tensor/cos.rst
     tensor/create_tensor.rst
     tensor/crop_tensor.rst
+    tensor/cross.rst
     tensor/cumsum.rst
     tensor/diag.rst
     tensor/div.rst
