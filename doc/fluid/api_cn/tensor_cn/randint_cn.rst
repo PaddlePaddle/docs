@@ -10,7 +10,7 @@ randint
 
 
 
-该OP返回服从均匀分布的、范围在[ ``low``, ``high`` )的随机Tensor。其维度为 ``shape`` ，类型为 ``dtype`` 。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low`` )。
+该OP返回服从均匀分布的、范围在[ ``low``, ``high`` )的随机Tensor。其形状为 ``shape`` ，类型为 ``dtype`` 。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low`` )。
 
 参数
 ::::::::::
@@ -28,7 +28,7 @@ randint
 ::::::::::
     - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Variable。
     - ``TypeError`` - 如果 ``dtype`` 不是int32、int64。
-    - ``ValueError`` - 如果 ``high`` 不大于 ``low``；或者 ``high`` 为 None，且 ``low`` 为 0。
+    - ``ValueError`` - 如果 ``high`` 不大于 ``low``；或者 ``high`` 为 None，且 ``low`` 不大于0。
 
 代码示例
 :::::::::::
