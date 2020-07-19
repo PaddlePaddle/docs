@@ -14,7 +14,7 @@ randn
 
 参数
 ::::::::::
-  - **shape** (list|tuple) - 生成的随机Tensor的形状。如果 ``shape`` 是list、tuple，则其中的元素可以是int，或者是形状为[1]且数据类型为int32、int64的tensor。如果 ``shape`` 是Variable，则是1D的Tensor，Tensor的数据类型为int32、int64。
+  - **shape** (list|tuple|Variable) - 生成的随机Tensor的形状。如果 ``shape`` 是list、tuple，则其中的元素可以是int，或者是形状为[1]且数据类型为int32、int64的tensor。如果 ``shape`` 是Variable，则是1D的Tensor，Tensor的数据类型为int32、int64。
   - **dtype** (str|np.dtype|core.VarDesc.VarType, 可选) - 输出Tensor的数据类型，支持float32、float64。当该参数值为None时， 输出Tensor的数据类型为float32。默认值为None.
   - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
