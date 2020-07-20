@@ -5,7 +5,7 @@ eye
 
 .. py:function:: paddle.tensor.eye(num_rows, num_columns=None, dtype=None, name=None)
 
-该OP用来构建二维张量(主对角线元素为1，其他未知元素为0)。
+该OP用来构建2-D Tensor(主对角线元素为1，其他未知元素为0)。
 
 参数：
     - **num_rows** (int) - 生成二维张量的行数，数据类型为非负int32。
