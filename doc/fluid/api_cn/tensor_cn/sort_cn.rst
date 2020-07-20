@@ -30,7 +30,7 @@ sort
     import paddle.imperative as imperative 
     import numpy as np
     
-    imperative.enable_imperative()
+    paddle.enable_imperative()
     input_array = np.array([[[5,8,9,5],
                     [0,0,1,7],
                     [6,9,2,4]],
