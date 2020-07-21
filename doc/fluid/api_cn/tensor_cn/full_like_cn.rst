@@ -16,7 +16,7 @@ full_like
     - **dtype** （np.dtype|core.VarDesc.VarType|str， 可选）- 输出变量的数据类型。若参数为None，则输出变量的数据类型和输入变量相同，默认值为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     
-返回：返回一个存储结果的Tensor。
+返回：返回一个存储结果的Tensor，数据类型和dtype相同。
 
 返回类型：Variable
 
