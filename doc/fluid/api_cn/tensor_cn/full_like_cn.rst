@@ -8,7 +8,7 @@ full_like
 :alias_main: paddle.full_like
 :alias: paddle.full_like,paddle.tensor.full_like,paddle.tensor.creation.full_like
 
-该OP创建一个和x具有相同的形状和数据类型的张量，其中元素值均为``fill_value``。
+该OP创建一个和x具有相同的形状和数据类型的张量，其中元素值均为 ``fill_value``。
 
 参数：
     - **x** (Variable) – 输入张量, 输出张量和x具有相同的形状，x的数据类型可以是bool，float16，float32，float64，int32，int64。

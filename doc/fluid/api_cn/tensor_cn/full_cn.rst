@@ -11,7 +11,7 @@ full
 
 
 
-该OP创建形状大小为shape并且数据类型为dtype的张量，其中元素值均为``fill_value``。
+该OP创建形状大小为shape并且数据类型为dtype的张量，其中元素值均为 ``fill_value``。
 
 参数：
     - **shape** (list|tuple|Variable) – 指定创建张量的形状(shape), 数据类型为int32 或者int64。
