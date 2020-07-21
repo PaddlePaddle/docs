@@ -7,7 +7,6 @@ arange
 
 :alias_main: paddle.arange
 :alias: paddle.tensor.arange, paddle.tensor.creation.arange
-:update_api: paddle.fluid.layers.range
 
 
 
