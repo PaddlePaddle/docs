@@ -38,9 +38,9 @@ sort
                     [4,7,7,9],
                     [1,7,0,6]]]).astype(np.float32)
     x = imperative.to_variable(input_array)
-    out1 = paddle.argsort(x=x, axis=-1)
-    out2 = paddle.argsort(x=x, axis=0)
-    out3 = paddle.argsort(x=x, axis=1)
+    out1 = paddle.sort(x=x, axis=-1)
+    out2 = paddle.sort(x=x, axis=0)
+    out3 = paddle.sort(x=x, axis=1)
     print(out1[0].numpy())
     #[[[5. 5. 8. 9.]
     #  [0. 0. 1. 7.]
