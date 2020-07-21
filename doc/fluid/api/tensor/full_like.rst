@@ -4,7 +4,7 @@
 .. _api_tensor_full_like:
 
 full_like
----
+----------------------------------------------
 
 ..  autofunction:: paddle.tensor.full_like
     :noindex:

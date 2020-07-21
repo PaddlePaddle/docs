@@ -4,7 +4,7 @@
 .. _api_tensor_ones:
 
 ones
----
+----------------------------------------
 
 ..  autofunction:: paddle.tensor.ones
     :noindex:
