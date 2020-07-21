@@ -15,7 +15,7 @@ eye
 
 返回：shape为 [num_rows, num_columns]的张量。
 
-返回类型：Variable（Tensor|LoDTensor）数据类型为int32，int64，float16，float32，float64的Tensor或者LoDTensor。
+返回类型：Variable（Tensor），数据类型为dtype指定的类型。
 
 抛出异常：
     - ``TypeError``: - 如果 ``dtype`` 的类型不是float16， float32， float64， int32， int64其中之一。
@@ -34,7 +34,6 @@ eye
     data = paddle.eye(2, 3, dtype='int32')
     # [[1 0 0]
     #  [0 1 0]]
-
 
 
 
