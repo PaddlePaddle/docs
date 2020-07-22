@@ -34,6 +34,8 @@ ones
     import paddle
     
     paddle.enable_imperative()
+    
+    #default dtype for ones OP
     data1 = paddle.ones(shape=[3, 2]) 
     # [[1. 1.]
     #  [1. 1.]
@@ -41,6 +43,8 @@ ones
     data2 = paddle.ones(shape=[2, 2], dtype='int32') 
     # [[1 1]
     #  [1 1]]
+
+    #attr shape is a Variable Tensor
     shape = paddle.fill_constant(shape=[2], dtype='int32', value=2)
     data3 = paddle.ones(shape=shape, dtype='int32') 
     # [[1 1]
