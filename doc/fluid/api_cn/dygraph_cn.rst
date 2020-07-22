@@ -28,6 +28,7 @@ fluid.dygraph
     dygraph_cn/guard_cn.rst
     dygraph_cn/InstanceNorm_cn.rst
     dygraph_cn/InverseTimeDecay_cn.rst
+    dygraph_cn/jit_cn.rst
     dygraph_cn/LambdaDecay_cn.rst
     dygraph_cn/Layer_cn.rst
     dygraph_cn/LayerList_cn.rst
@@ -55,4 +56,5 @@ fluid.dygraph
     dygraph_cn/to_variable_cn.rst
     dygraph_cn/TracedLayer_cn.rst
     dygraph_cn/Tracer_cn.rst
+    dygraph_cn/TranslatedLayer_cn.rst
     dygraph_cn/TreeConv_cn.rst
