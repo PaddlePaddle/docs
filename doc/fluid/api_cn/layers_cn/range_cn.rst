@@ -3,33 +3,32 @@
 range
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.range(start, end, step, dtype)
+.. py:function:: paddle.fluid.layers.range(start, end, step, dtype, name=None)
 
 
+注意：推荐使用 paddle.arange
 
+该OP以步长 ``step`` 均匀分隔给定数值区间[``start``, ``end``)，并返回分隔结果。
 
-该API根据step均匀分隔给定数值区间[start, end)，并返回该分隔结果。
-
+当 ``dtype`` 表示浮点类型时，为了避免浮点计算误差，建议给 ``end`` 加上一个极小值epsilon，使边界可以更加明确。
 
 参数：
-    - **start** （float32 | float64  | int32 | int64 | Variable） - 区间起点，且区间包括此值, 当类型是Variable时，是shape为 `[1]` 的1-D Tensor。
-    - **end**  （float32 | float64  | int32 | int64 | Variable） - 区间终点，通常区间不包括此值。但当step不是整数，且浮点数取整会影响输出的长度时例外。
-    - **step** （float32 | float64  | int32 | int64 | Variable） - 均匀分割的步长。
-    - **dtype** （str | core.VarDesc.VarType） - 输出Tensor的数据类型，可为 `'float32'`, `'float64'`, `'int32'`, `'int64'` 。
+        - **start** (float|int|Variable) - 区间起点（且区间包括此值）。当 ``start`` 类型是Variable时，是形状为[1]且数据类型为int32、int64、float32、float64的Tensor。
+        - **end** (float|int|Variable) - 区间终点（且通常区间不包括此值）。当 ``end`` 类型是Variable时，是形状为[1]且数据类型为int32、int64、float32、float64的Tensor。
+        - **step** (float|int|Variable) - 均匀分割的步长。当 ``step`` 类型是Variable时，是形状为[1]且数据类型为int32、int64、float32、float64的Tensor。
+        - **dtype** (str|np.dtype|core.VarDesc.VarType) - 输出Tensor的数据类型，支持int32、int64、float32、float64。
+        - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-返回：均匀分割给定数值区间后得到的1-D Tensor, 数据类型为输入 `dtype` 。
+返回：
+        Variable：以步长 ``step`` 均匀分割给定数值区间[``start``, ``end``)后得到的1-D Tensor, 数据类型为 ``dtype`` 。
 
-返回类型：Variable
+抛出异常：
+        - ``TypeError`` - 如果 ``dtype`` 不是float32、float64、int32、int64。
 
-
-**代码示例**：
+代码示例：
 
 .. code-block:: python
 
     import paddle.fluid as fluid
     data = fluid.layers.range(0, 10, 2, 'int32')
-
-
-
-
-
+    # [0, 2, 4, 6, 8]
