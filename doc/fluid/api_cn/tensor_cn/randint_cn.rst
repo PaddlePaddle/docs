@@ -26,7 +26,7 @@ randint
 
 抛出异常
 ::::::::::
-    - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Variable。
+    - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
     - ``TypeError`` - 如果 ``dtype`` 不是int32、int64。
     - ``ValueError`` - 如果 ``high`` 不大于 ``low``；或者 ``high`` 为None，且 ``low`` 不大于0。
 

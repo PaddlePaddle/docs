@@ -24,7 +24,7 @@ randn
 
 抛出异常
 ::::::::::
-  - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Variable。
+  - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
   - ``TypeError`` - 如果 ``dtype`` 不是float32、float64。
 
 示例代码

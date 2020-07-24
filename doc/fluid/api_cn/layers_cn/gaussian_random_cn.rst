@@ -22,7 +22,7 @@ gaussian_random
     Tensor：符合高斯随机分布的Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
 抛出异常：
-  - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Variable。
+  - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
   - ``TypeError`` - 如果 ``dtype`` 不是float32、float64。
 
 **代码示例**：
