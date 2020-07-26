@@ -8,6 +8,15 @@ if [ "$night" == "develop" ];then
    pip install -U paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
 else
    git clone https://github.com/PaddlePaddle/Paddle.git
+   
+   # cache
+   md5_content=$(cat \
+                ${PWD}/Paddle/cmake/external/*.cmake \
+                |md5sum | awk '{print $1}')
+   cache_file="/root/.cache/${tp_cache_dir}/third_party/${md5_content}.xz"
+   echo $cache_file
+   exit 0 
+
    mkdir Paddle/build && cd Paddle/build
    cmake .. -DWITH_GPU=ON -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
    make -j`nproc`
