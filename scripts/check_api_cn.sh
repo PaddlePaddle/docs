@@ -13,7 +13,7 @@ else
    md5_content=$(cat \
                 ${PWD}/Paddle/cmake/external/*.cmake \
                 |md5sum | awk '{print $1}')
-   cache_file="/root/.cache/${tp_cache_dir}/third_party/${md5_content}.xz"
+   cache_file="/root/.cache/${pr_dir}/third_party/${md5_content}.xz"
    echo $cache_file
    exit 0 
 
