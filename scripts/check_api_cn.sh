@@ -17,7 +17,7 @@ else
    cache_file="/root/.cache/${pr_dir}/third_party/${md5_content}.xz"
    if [ -f ${cache_file} ];then
      echo "use cache"
-     tar xf cache_file -C Paddle/build 
+     tar xf ${cache_file} -C Paddle/build 
    fi
 
 
