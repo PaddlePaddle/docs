@@ -10,20 +10,19 @@ concat
 :old_api: paddle.fluid.layers.concat
 
 
-
-该OP对输入沿 ``axis`` 轴进行联结。
+该OP对输入沿 ``axis`` 轴进行联结，返回一个新的Tensor。
 
 参数：
-    - **input** (list) - 输入是待联结的多维 ``Tensor`` 组成的 ``list`` ，支持的数据类型为：float32、float64、int32、int64。
-    - **axis** (int|Variable，可选) - 整数或者形状为[1]的 ``Tensor``，数据类型为 ``int32``。指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``input`` 中 ``Tensor`` 的维度， ``axis`` 为负值时与 :math:`axis + R` 等价。默认值为0。
+    - **input** (list) - 输入是待联结的多维Tensor组成的list，支持的数据类型为：float16, float32、float64、int32、int64。
+    - **axis** (int|Tensor，可选) - 整数或者形状为[1]的Tensor，数据类型为int32。指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R)，R是输入 ``input`` 中Tensor 的维度， ``axis`` 为负值时与 :math:`axis + R` 等价。默认值为0。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：联结后的 ``Tensor`` ，数据类型和 ``input`` 相同。
 
-返回类型：Variable
 
 抛出异常：
-    - ``TypeError``: - 如果输入的数据类型不是 float32， float64， int32， int64其中之一。
+    - ``TypeError``: - 如果输入的数据类型不是 float16，float32， float64， int32， int64其中之一。
+    - ``TypeError``: - 如果axis的数据类型不是int或者Tensor，当axis是Tensor的时候其数据类型不是int32或者int64时。
 
 **代码示例**：
 
