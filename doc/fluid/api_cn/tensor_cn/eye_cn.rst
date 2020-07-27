@@ -5,17 +5,16 @@ eye
 
 .. py:function:: paddle.tensor.eye(num_rows, num_columns=None, dtype=None, name=None)
 
-该OP用来构建二维张量(主对角线元素为1，其他元素为0)。
+该OP用来构建二维Tensor(主对角线元素为1，其他元素为0)。
 
 参数：
-    - **num_rows** (int) - 生成二维张量的行数，数据类型为非负int32。
-    - **num_columns** (int，可选) - 生成二维张量的列数，数据类型为非负int32。若为None，则默认等于num_rows。
-    - **dtype** (np.dtype|core.VarDesc.VarType|str， 可选) - 返回张量的数据类型，可为float16，float32，float64， int32， int64。若为None, 则默认等于float32。
+    - **num_rows** (int) - 生成二维Tensor的行数，数据类型为非负int32。
+    - **num_columns** (int，可选) - 生成二维Tensor的列数，数据类型为非负int32。若为None，则默认等于num_rows。
+    - **dtype** (np.dtype|core.VarDesc.VarType|str， 可选) - 返回Tensor的数据类型，可为float16，float32，float64， int32， int64。若为None, 则默认等于float32。
     - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：shape为 [num_rows, num_columns]的张量。
+返回：shape为 [num_rows, num_columns]的Tensor。
 
-返回类型：Variable（Tensor），数据类型为dtype指定的类型。
 
 抛出异常：
     - ``TypeError``: - 如果 ``dtype`` 的类型不是float16， float32， float64， int32， int64其中之一。
