@@ -16,8 +16,9 @@ concat
 返回：联结后的Tensor ，数据类型和 ``x`` 相同。
 
 抛出异常：
-    - ``TypeError``: - 如果输入x的数据类型不是 float16， float32， float64， int32， int64其中之一。
-    - ``TypeError``: - 如果axis的数据类型不是int或者Tensor，当axis是Tensor的时候其数据类型不是int32或者int64时。
+    - ``TypeError``: - 当输入x的数据类型不是 float16， float32， float64， int32， int64时。
+    - ``TypeError``: - 当axis的数据类型不是int或者Tensor，当axis是Tensor的时候其数据类型不是int32或者int64时。
+    - ``TypeError``: - 当输入list(Tensor)的数据类型不一致时
 
 **代码示例**：
 
