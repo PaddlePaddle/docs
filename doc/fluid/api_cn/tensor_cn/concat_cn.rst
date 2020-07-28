@@ -18,7 +18,7 @@ concat
 抛出异常：
     - ``TypeError``: - 当输入x的数据类型不是 float16， float32， float64， int32， int64时。
     - ``TypeError``: - 当axis的数据类型不是int或者Tensor，当axis是Tensor的时候其数据类型不是int32或者int64时。
-    - ``TypeError``: - 当输入list(Tensor)的数据类型不一致时
+    - ``TypeError``: - 当输入list中所有Tensor存在数据类型不一致时。
 
 **代码示例**：
 
