@@ -9,7 +9,7 @@
 - 通过所有单元测试。
 - 请遵守[提交代码的一些约定](#提交代码的一些约定)。
 
-以下教程将指导您提交代码。
+**推荐使用官方开发镜像 hub.baidubce.com/paddlepaddle/paddle:latest-dev 提交代码，以下教程将指导您提交代码。**
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
 跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
@@ -66,12 +66,12 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   README.md
+    modified:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -92,7 +92,7 @@ On branch test
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test
@@ -126,8 +126,8 @@ clang-formater.......................................(no files to check)Skipped
 ➜  git remote
 origin
 ➜  git remote -v
-origin	https://github.com/USERNAME/Paddle (fetch)
-origin	https://github.com/USERNAME/Paddle (push)
+origin    https://github.com/USERNAME/Paddle (fetch)
+origin    https://github.com/USERNAME/Paddle (push)
 ```
 
 这里 origin 是我们 clone 的远程仓库的名字，也就是自己用户名下的 Paddle，接下来我们创建一个原始 Paddle 仓库的远程主机，命名为 upstream。

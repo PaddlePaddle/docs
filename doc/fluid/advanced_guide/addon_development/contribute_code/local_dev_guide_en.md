@@ -9,7 +9,7 @@ You will learn how to develop programs in local environment under the guidelines
 - Pass through all unit tests.
 - Please follow [regulations of submitting codes](#regulations of submitting codes).
 
-The following guidiance tells you how to submit code.
+**It is recommended to use the official development mirror hub.baidubce.com/paddlepaddle/paddle:latest-dev to submit the code,The following guidiance tells you how to submit code.**
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
 Transfer to the home page of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) ,and then click button `Fork`  to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
