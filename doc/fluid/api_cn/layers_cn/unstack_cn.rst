@@ -37,7 +37,7 @@ unstack
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[2, 3, 5], dtype='float32')  #创建一个shape=[2, 3, 5]的Tensor
+    x = fluid.data(name='x', shape=[2, 3, 5], dtype='float32')  #创建一个shape=[2, 3, 5]的Tensor
     y = fluid.layers.unstack(x, axis=1)  #沿着第1轴进行unpack, unpack后为3个shape=[2，5]的Tensor
 
 
