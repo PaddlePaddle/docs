@@ -11,13 +11,14 @@ FLAGS_allocator_strategy
 
 取值范围
 ---------------
-String型，['naive_best_fit', 'auto_growth']中的一个。缺省值为'naive_best_fit'。
+String型，['naive_best_fit', 'auto_growth']中的一个。缺省值如果编译Paddle CMake时使用-DON_INFER=ON为'naive_best_fit'。
+其他默认情况为'auto_growth'。PaddlePaddle pip安装包的默认策略也是'auto_growth'
 
 示例
 --------
-FLAGS_allocator_strategy=naive_best_fit - 使用预分配best fit分配器。
+FLAGS_allocator_strategy=naive_best_fit - 使用预分配best fit分配器，PaddlePaddle会先占用大多比例的可用内存/显存，在Paddle具体数据使用时分配，这种方式预占空间较大，但内存/显存碎片较少(比如能够支持模型的最大batch size会变大)。
 
-FLAGS_allocator_strategy=auto_growth - 使用auto growth分配器。
+FLAGS_allocator_strategy=auto_growth - 使用auto growth分配器。PaddlePaddle会随着真实数据需要再占用内存/显存，但内存/显存可能会产生碎片（比如能够支持模型的最大batch size会变小）。
 
 
 FLAGS_eager_delete_scope
