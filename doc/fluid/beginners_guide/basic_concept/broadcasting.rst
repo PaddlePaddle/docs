@@ -1,4 +1,4 @@
-.. _cn_user_guide_tensor:
+.. _cn_user_guide_broadcasting:
 
 =========
 广播 (broadcasting)
