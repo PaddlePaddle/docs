@@ -40,13 +40,13 @@ full
     data3 = paddle.full(shape=[1, positive_2], dtype='float32', fill_value=1.5)
     # [[1.5 1.5]]
 
-    # attr shape is an Tensor.
+    # attr shape is a Tensor.
     shape = paddle.fill_constant([2], "int32", 2)
     data4 = paddle.full(shape=shape, dtype='bool', fill_value=True) 
     # [[True True] 
     #  [True True]]
     
-    # attr fill_value is an Tensor.
+    # attr fill_value is a Tensor.
     val = paddle.fill_constant([1], "float32", 2.0)
     data5 = paddle.full(shape=[2,1], fill_value=val, dtype='float32') i
     # [[2.0] 
