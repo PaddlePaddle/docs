@@ -3,7 +3,7 @@
 split
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.split(input,num_or_sections,dim=-1,name=None)
+.. py:function:: paddle.fluid.layers.split(input, num_or_sections, dim=-1, name=None)
 
 
 

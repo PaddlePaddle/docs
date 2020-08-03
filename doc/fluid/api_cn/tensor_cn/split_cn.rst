@@ -22,7 +22,7 @@ split
 抛出异常：
     - :code:`TypeError`：``x`` 的数据类型不是float16、float32、float64、int32或int64时 。
     - :code:`TypeError`：``num_or_sections`` 不是int、list 或 tuple时。
-    - :code:`TypeError`：``dim`` 不是 int 或 Tensor时。当 ``dim`` 为Tensor，其数据类型不是int32或int64时。
+    - :code:`TypeError`：``axis`` 不是 int 或 Tensor时。当 ``axis`` 为Tensor，其数据类型不是int32或int64时。
 
 **代码示例**：
 
