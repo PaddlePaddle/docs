@@ -12,7 +12,7 @@ common_args_en = """
     bias_attr (ParamAttr, optional): The parameter attribute for learnable bias(Bias) of this layer. For more information, please refer to :ref:`api_fluid_ParamAttr`.
     label (Tensor): The label value corresponding to input, it's data type should be int32, int64.
     learning_rate (Tensor|float): The learning rate, can be a Tensor or a float value. Default is 1e-03.
-    axis (int, optional): The axis to calculate the input tensor. Default is 0. 
+    axis (int, optional): The axis along which to operate. Default is 0. 
     epsilon (float, optional): Small float added to denominator to avoid dividing by zero. Default is 1e-05.
     is_test (bool, optional): A flag indicating whether execution is in test phase. Default is False, means not in test phase.
     shape (Tensor|tuple|list): Shape of the Tensor. If shape is a list or tuple, the elements of it should be integers or Tensors with shape [1]. If shape is Tensor, it should be an 1-D Tensor .
