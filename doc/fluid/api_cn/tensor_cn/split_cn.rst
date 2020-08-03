@@ -4,9 +4,6 @@ split
 
 .. py:function:: paddle.tensor.split(x, num_or_sections, axis=0, name=None)
 
-:alias_main: paddle.split
-:alias: paddle.tensor.split, paddle.tensor.manipulation.split
-
 
 
 该OP将输入Tensor分割成多个子Tensor。
