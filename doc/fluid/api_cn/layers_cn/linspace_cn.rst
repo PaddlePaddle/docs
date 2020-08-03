@@ -8,7 +8,7 @@ linspace
 
 
 
-该OP返回一个Tensor， Tensor填充值是在给定区间内返回固定数目的均匀间隔的值。
+该OP返回一个Tensor，Tensor的值为在区间start和stop上均匀间隔的num个值，输出Tensor的长度为num。
 **注意：该OP不进行梯度计算**
  
 参数：
