@@ -5,8 +5,6 @@ full
 
 .. py:function:: paddle.full(shape, fill_value, dtype=None, name=None)
 
-:alias_main: paddle.full
-:alias: paddle.tensor.full, paddle.tensor.creation.full
 
 
 该OP创建形状大小为shape并且数据类型为dtype的Tensor，其中元素值均为 ``fill_value``。

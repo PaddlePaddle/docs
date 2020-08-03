@@ -5,8 +5,6 @@ full_like
 
 .. py:function:: paddle.full_like(x, fill_value, dtype=None, name=None)
 
-:alias_main: paddle.full_like
-:alias: paddle.tensor.full_like, paddle.tensor.creation.full_like
 
 该OP创建一个和 ``x`` 具有相同的形状并且数据类型为 ``dtype`` 的Tensor，其中元素值均为 ``fill_value`` , 当 ``dtype`` 为None的时候，Tensor数据类型和输入 ``x`` 相同。
 
