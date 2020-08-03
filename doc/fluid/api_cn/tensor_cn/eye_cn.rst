@@ -13,7 +13,7 @@ eye
     - **dtype** (np.dtype|core.VarDesc.VarType|str， 可选) - 返回Tensor的数据类型，可为float16，float32，float64， int32， int64。若为None, 则默认等于float32。
     - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：shape为 [num_rows, num_columns]的Tensor。
+返回： ``shape`` 为 [num_rows, num_columns]的Tensor。
 
 
 抛出异常：
@@ -25,8 +25,8 @@ eye
 .. code-block:: python
 
     import paddle
-    paddle.enable_imperative()
-    data = paddle.eye(3, dtype='int32') # paddle.eye 等价于 paddle.tensor.eye
+    paddle.enable_imperative()  # Now we are in imperative mode
+    data = paddle.eye(3, dtype='int32')
     # [[1 0 0]
     #  [0 1 0]
     #  [0 0 1]]

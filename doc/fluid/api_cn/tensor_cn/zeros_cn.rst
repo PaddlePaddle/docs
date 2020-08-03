@@ -27,6 +27,18 @@ zeros
 .. code-block:: python
 
     import paddle
-    data = paddle.zeros(shape=[3, 2], dtype='float32') # [[0., 0.], [0., 0.], [0., 0.]]
-    data = paddle.zeros(shape=[2, 2], dtype='float32', device='cpu') # [[0., 0.], [0., 0.]]
+    paddle.enable_imperative()  # Now we are in imperative mode
+    data = paddle.zeros(shape=[3, 2], dtype='float32') 
+    # [[0. 0.]
+    #  [0. 0.]
+    #  [0. 0.]]
+    data = paddle.zeros(shape=[2, 2]) 
+    # [[0. 0.]
+    #  [0. 0.]]
+    
+    # shape is a Tensor
+    shape = paddle.fill_constant(shape=[2], dtype='int32', value=2)
+    data3 = paddle.ones(shape=shape, dtype='int32') 
+    # [[0 0]
+    #  [0 0]]
 
