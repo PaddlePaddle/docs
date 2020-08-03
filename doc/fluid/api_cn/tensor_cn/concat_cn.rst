@@ -32,12 +32,12 @@ concat
   import numpy as np
   
   paddle.enable_imperative()  # Now we are in imperative mode
-  in1 = np.array([[1,2,3],
-                  [4,5,6]])
-  in2 = np.array([[11,12,13],
-                  [14,15,16]])
-  in3 = np.array([[21,22],
-                  [23,24]])
+  in1 = np.array([[1, 2, 3],
+                  [4, 5, 6]])
+  in2 = np.array([[11, 12, 13],
+                  [14, 15, 16]])
+  in3 = np.array([[21, 22],
+                  [23, 24]])
   x1 = paddle.imperative.to_variable(in1)
   x2 = paddle.imperative.to_variable(in2)
   x3 = paddle.imperative.to_variable(in3)
