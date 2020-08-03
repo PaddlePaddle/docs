@@ -22,10 +22,13 @@ common_args_en = """
     include_sublayers (bool, optional): Whether include the sublayers. If True, return list includes the sublayers weights. Default is True.
     stride (tuple|int): The stride size. It can be a single integer or a tuple containing two integers, representing the strides of the convolution along the height and width. If it is a single integer, the height and width are equal to the integer. Default is 1. 
     groups (int, optional): The group number of convolution layer. When group=n, the input and convolution kernels are divided into n groups equally, the first group of convolution kernels and the first group of inputs are subjected to convolution calculation, the second group of convolution kernels and the second group of inputs are subjected to convolution calculation, ……, the nth group of convolution kernels and the nth group of inputs perform convolution calculations. Default is 1.
-    regularization (WeightDecayRegularizer, optional) – The strategy of regularization. There are two method: :ref:`api_fluid_regularizer_L1Decay` 、 :ref:`api_fluid_regularizer_L2Decay` . If a parameter has set regularizer using  :ref:`api_fluid_ParamAttr` already, the regularization setting here in optimizer will be ignored for this parameter. Otherwise, the regularization setting here in optimizer will take effect. Default None, meaning there is no regularization.
+    regularization (WeightDecayRegularizer, optional): The strategy of regularization. There are two method: :ref:`api_fluid_regularizer_L1Decay` 、 :ref:`api_fluid_regularizer_L2Decay` . If a parameter has set regularizer using  :ref:`api_fluid_ParamAttr` already, the regularization setting here in optimizer will be ignored for this parameter. Otherwise, the regularization setting here in optimizer will take effect. Default None, meaning there is no regularization.
     grad_clip (GradientClipBase, optional): Gradient cliping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three cliping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default None, meaning there is no gradient clipping.
-    dilation (tuple|int) – The dilation size. It can be a single integer or a tuple containing two integers, representing the height and width of dilation of the convolution kernel elements. If it is a single integer,the height and width of dilation are equal to the integer. Default is 1.
-    stop_gradient (bool, optional) – A boolean that mentions whether gradient should flow. Default is True, means stop calculate gradients.
+    dilation (tuple|int): The dilation size. It can be a single integer or a tuple containing two integers, representing the height and width of dilation of the convolution kernel elements. If it is a single integer,the height and width of dilation are equal to the integer. Default is 1.
+    stop_gradient (bool, optional): A boolean that mentions whether gradient should flow. Default is True, means stop calculate gradients.
+    force_cpu (bool, optional): Whether force to store the output tensor in CPU memory. If force_cpu is False, the output tensor will be stored in running device memory, otherwise it will be stored  to the CPU memory. Default is False.
+    data_format (str, optional): Specify the input data format, the output data format will be consistent with the input, which can be "NCHW" or "NHWC". N is batch size, C is channels, H is height, and W is width. Default is "NCHW".
+    grad_clip (GradientClipBase, optional): Gradient cliping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three cliping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default is None, meaning there is no gradient clipping.
 """
 
 common_args_cn = """
@@ -51,4 +54,7 @@ common_args_cn = """
     grad_clip (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
     dilation (tuple|int, 可选) - 空洞大小。可以为单个整数或包含两个整数的元组，分别表示卷积核中的元素沿着高和宽的空洞。如果为单个整数，表示高和宽的空洞都等于该整数。默认值为1。
     stop_gradient (bool，可选) - 提示是否应该停止计算梯度，默认值为True，表示停止计算梯度。
+    force_cpu (bool, 可选) - 是否强制将输出Tensor写入CPU内存。如果为False，则将输出Tensor写入当前所在运算设备的内存，否则写入CPU内存中。默认为False。
+    data_format (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批大小，C是通道数，H是高度，W是宽度。默认值为"NCHW"。
+    grad_clip (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。默认值为None，表示不使用梯度裁剪。
 """
