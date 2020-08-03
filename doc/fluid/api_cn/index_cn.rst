@@ -107,3 +107,4 @@ Note。
     io_cn.rst
     utils_cn.rst
     incubate_cn.rst
+    fluid_cn.rst
