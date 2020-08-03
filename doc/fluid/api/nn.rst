@@ -86,6 +86,7 @@ paddle.nn
     nn/maxout.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
+    nn/matrix_nms.rst
     nn/natural_exp_decay.rst
     nn/noam_decay.rst
     nn/npair_loss.rst

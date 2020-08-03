@@ -115,15 +115,6 @@ clang-formater.......................................(no files to check)Skipped
  create mode 100644 233
 ```
 
-<b> <font color="red">需要注意的是：您需要在commit中添加说明（commit message）以触发CI单测，写法如下：</font> </b>
-
-```bash
-# 触发develop分支的CI单测
-➜  git commit -m "test=develop"
-
-# 触发release/1.1分支的CI单侧
-➜  git commit -m "test=release/1.1"
-```
 
 ## 保持本地仓库最新
 

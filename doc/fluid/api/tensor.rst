@@ -20,12 +20,12 @@ paddle.tensor
     tensor/cos.rst
     tensor/create_tensor.rst
     tensor/crop_tensor.rst
+    tensor/cross.rst
     tensor/cumsum.rst
     tensor/diag.rst
     tensor/div.rst
     tensor/elementwise_add.rst
     tensor/elementwise_div.rst
-    tensor/elementwise_equal.rst
     tensor/elementwise_floordiv.rst
     tensor/elementwise_max.rst
     tensor/elementwise_min.rst
@@ -33,6 +33,7 @@ paddle.tensor
     tensor/elementwise_mul.rst
     tensor/elementwise_pow.rst
     tensor/elementwise_sub.rst
+    tensor/equal_all.rst
     tensor/erf.rst
     tensor/exp.rst
     tensor/expand.rst

@@ -11,13 +11,13 @@ Use to choose allocator strategy of PaddlePaddle.
 
 Values accepted
 ---------------
-String, enum in ['naive_best_fit', 'auto_growth']. The default value is 'naive_best_fit'.
+String, enum in ['naive_best_fit', 'auto_growth']. The default value will be 'naive_best_fit' if users compile PaddlePaddle with -DON_INFER=ON CMake flag, otherwise is 'auto_growth'. The default PaddlePaddle pip package uses 'auto_growth'.
 
 Example
 --------
-FLAGS_allocator_strategy=naive_best_fit would use the pre-allocated best fit allocator.
+FLAGS_allocator_strategy=naive_best_fit would use the pre-allocated best fit allocator. 'naive_best_fit' strategy would occupy almost all GPU memory by default but leads to less memory fragmentation (i.e., maximum batch size of models may be larger).
 
-FLAGS_allocator_strategy=auto_growth would use the auto growth allocator.
+FLAGS_allocator_strategy=auto_growth would use the auto growth allocator. 'auto_growth' strategy would allocate GPU memory on demand but may lead to more memory fragmentation (i.e., maximum batch size of models may be smaller).
 
 
 
