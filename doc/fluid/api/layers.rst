@@ -21,6 +21,7 @@ fluid.layers
     layers/array_read.rst
     layers/array_write.rst
     layers/asin.rst
+    layers/Assert.rst
     layers/assign.rst
     layers/atan.rst
     layers/auc.rst
@@ -55,6 +56,7 @@ fluid.layers
     layers/conv3d_transpose.rst
     layers/cos.rst
     layers/cos_sim.rst
+    layers/cosh.rst
     layers/cosine_decay.rst
     layers/create_array.rst
     layers/create_global_var.rst
@@ -174,15 +176,16 @@ fluid.layers
     layers/LSTMCell.rst
     layers/margin_rank_loss.rst
     layers/matmul.rst
+    layers/matrix_nms.rst
     layers/maxout.rst
     layers/mean.rst
     layers/mean_iou.rst
     layers/merge_selected_rows.rst
+    layers/mish.rst
     layers/mse_loss.rst
     layers/mul.rst
     layers/multi_box_head.rst
     layers/multiclass_nms.rst
-    layers/matrix_nms.rst
     layers/multiplex.rst
     layers/MultivariateNormalDiag.rst
     layers/natural_exp_decay.rst
@@ -229,6 +232,7 @@ fluid.layers
     layers/reorder_lod_tensor_by_rank.rst
     layers/reshape.rst
     layers/resize_bilinear.rst
+    layers/resize_linear.rst
     layers/resize_nearest.rst
     layers/resize_trilinear.rst
     layers/retinanet_detection_output.rst
@@ -276,6 +280,7 @@ fluid.layers
     layers/sign.rst
     layers/similarity_focus.rst
     layers/sin.rst
+    layers/sinh.rst
     layers/size.rst
     layers/slice.rst
     layers/smooth_l1.rst
@@ -312,6 +317,7 @@ fluid.layers
     layers/topk.rst
     layers/TrainingHelper.rst
     layers/transpose.rst
+    layers/unbind.rst
     layers/unfold.rst
     layers/Uniform.rst
     layers/uniform_random.rst

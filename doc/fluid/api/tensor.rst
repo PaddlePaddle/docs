@@ -62,12 +62,12 @@ paddle.tensor
     tensor/logical_not.rst
     tensor/logical_or.rst
     tensor/logical_xor.rst
+    tensor/manipulation.rst
     tensor/math.rst
     tensor/max.rst
     tensor/mean.rst
     tensor/min.rst
     tensor/mm.rst
-    tensor/mul.rst
     tensor/multiplex.rst
     tensor/norm.rst
     tensor/not_equal.rst

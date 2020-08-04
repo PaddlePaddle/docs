@@ -16,6 +16,7 @@ fluid.initializer
     initializer/Normal.rst
     initializer/NormalInitializer.rst
     initializer/NumpyArrayInitializer.rst
+    initializer/set_global_initializer.rst
     initializer/TruncatedNormal.rst
     initializer/TruncatedNormalInitializer.rst
     initializer/Uniform.rst

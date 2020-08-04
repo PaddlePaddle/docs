@@ -10,7 +10,7 @@ python gen_doc.py --module_name "" --module_prefix "" --output fluid --output_na
 python gen_module_index.py fluid  fluid
 
 # tensor
-for module in math random stat linalg
+for module in math manipulation random stat linalg
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name tensor --to_multiple_files True --output_dir tensor
   python gen_module_index.py tensor.${module} ${module}
@@ -18,14 +18,14 @@ done
 
 python gen_module_index.py tensor paddle.tensor
 
-for module in math manipulation linalg
-do
-  python gen_doc.py --module_name tensor.${module} --module_prefix tensor.${module} --output tensor/${module} --output_name complex --to_multiple_files True --output_dir complex
-  python gen_module_index.py complex.tensor.${module} ${module}
-done
+#for module in math manipulation linalg
+#do
+#  python gen_doc.py --module_name tensor.${module} --module_prefix tensor.${module} --output tensor/${module} --output_name complex --to_multiple_files True --output_dir complex
+#  python gen_module_index.py complex.tensor.${module} ${module}
+#done
 
-python gen_module_index.py complex.tensor tensor
-python gen_module_index.py complex paddle.complex
+#python gen_module_index.py complex.tensor tensor
+#python gen_module_index.py complex paddle.complex
 python gen_module_index.py framework paddle.framework
 
 

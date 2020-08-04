@@ -27,16 +27,21 @@ fluid.dygraph
     dygraph/ExponentialDecay.rst
     dygraph/grad.rst
     dygraph/GroupNorm.rst
+    dygraph/GRUCell.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
     dygraph/InstanceNorm.rst
     dygraph/InverseTimeDecay.rst
     dygraph/jit.rst
+    dygraph/LambdaDecay.rst
     dygraph/Layer.rst
     dygraph/LayerList.rst
     dygraph/LayerNorm.rst
     dygraph/Linear.rst
+    dygraph/LinearLrWarmup.rst
     dygraph/load_dygraph.rst
+    dygraph/LSTMCell.rst
+    dygraph/MultiStepDecay.rst
     dygraph/NaturalExpDecay.rst
     dygraph/NCE.rst
     dygraph/no_grad.rst
@@ -53,6 +58,7 @@ fluid.dygraph
     dygraph/save_dygraph.rst
     dygraph/Sequential.rst
     dygraph/SpectralNorm.rst
+    dygraph/StepDecay.rst
     dygraph/to_variable.rst
     dygraph/TracedLayer.rst
     dygraph/Tracer.rst
