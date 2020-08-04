@@ -5,9 +5,6 @@ concat
 
 .. py:function:: paddle.tensor.concat(x, axis=0, name=None)
 
-:alias_main: paddle.concat
-:alias: paddle.tensor.concat, paddle.tensor.manipulation.concat
-
 
 该OP对输入沿 ``axis`` 轴进行联结，返回一个新的Tensor。
 
