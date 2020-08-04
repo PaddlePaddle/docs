@@ -13,7 +13,7 @@ concat
 
 参数：
     - **x** (list|tuple) - 待联结的Tensor list或者Tensor tuple ，支持的数据类型为：bool, float16, float32、float64、int32、int64， ``x`` 中所有Tensor的数据类型应该一致。
-    - **axis** (int|Tensor，可选) - 指定对输入 ``x`` 进行运算的轴，数据类型为整数或者形状为[1]的 Tensor，数据类型为int32或者int64。 ``axis`` 的有效范围是[-R, R)，R是输入 ``x`` 中Tensor的维度， ``axis`` 为负值时与 :math:`axis + R` 等价。默认值为0。
+    - **axis** (int|Tensor，可选) - 指定对输入 ``x`` 进行运算的轴，可以是整数或者形状为[1]的Tensor，数据类型为int32或者int64。 ``axis`` 的有效范围是[-R, R)，R是输入 ``x`` 中Tensor的维度， ``axis`` 为负值时与 :math:`axis + R` 等价。默认值为0。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：联结后的Tensor ，数据类型和 ``x`` 中的Tensor相同。
@@ -22,7 +22,7 @@ concat
     - ``TypeError``: - 当输入 ``x`` 的类型不是list或者tuple时。
     - ``TypeError``: - 当输入 ``x`` 的数据类型不是 bool，float16， float32， float64， int32， int64时。
     - ``TypeError``: - 当 ``axis`` 的类型不是int或者Tensor时。 当 ``axis`` 是Tensor的时候其数据类型不是int32或者int64时。
-    - ``TypeError``: - 当输入 ``x`` 中所有Tensor存在数据类型不一致时。
+    - ``TypeError``: - 当输入 ``x`` 中的Tensor存在数据类型不一致时。
 
 **代码示例**：
 
