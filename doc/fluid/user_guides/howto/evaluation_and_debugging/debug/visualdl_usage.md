@@ -1,622 +1,742 @@
+
+
 # VisualDL 使用指南
 
-## 概述
+### 概述
+
 VisualDL 是一个面向深度学习任务设计的可视化工具。VisualDL 利用了丰富的图表来展示数据，用户可以更直观、清晰地查看数据的特征与变化趋势，有助于分析数据、及时发现错误，进而改进神经网络模型的设计。
 
-目前，VisualDL 支持 scalar, histogram, image, text, audio, high dimensional, graph 这七个组件：
+目前，VisualDL 支持 scalar, image, audio, graph, histogram, pr curve, high dimensional 七个组件，项目正处于高速迭代中，敬请期待新组件的加入。
 
-|组件名称|展示图表|作用|
-|:----:|:---:|:---|
-|<a href="#1">scalar</a>|折线图|动态展示损失函数值、准确率等标量数据|
-|<a href="#2">histogram</a>|直方图|动态展示参数矩阵的数值分布与变化趋势，便于查看权重矩阵、偏置项、梯度等参数的变化|
-|<a href="#3">image</a>|图片|显示图片，可显示输入图片和处理后的结果，便于查看中间过程的变化|
-|<a href="#4">text</a>|文本|展示文本，有助于 NLP 等领域的用户进行数据分析和结果判断|
-|<a href="#5">audio</a>|音频|可直接播放音频，也支持下载，有助于语音识别等领域的用户进行数据分析和结果判断|
-|<a href="#6">high dimensional</a>|坐标|将高维数据映射到 2D/3D 空间来可视化嵌入，便于观察不同数据的相关性|
-|<a href="#7">graph</a>|有向图|展示神经网络的模型结构|
+|                      组件名称                       |  展示图表  | 作用                                                         |
+| :-------------------------------------------------: | :--------: | :----------------------------------------------------------- |
+|            [ Scalar](#Scalar--标量组件)             |   折线图   | 动态展示损失函数值、准确率等标量数据                         |
+|           [Image](#Image--图片可视化组件)           | 图片可视化 | 显示图片，可显示输入图片和处理后的结果，便于查看中间过程的变化 |
+|            [Audio](#Audio--音频播放组件)            |  音频播放  | 播放训练过程中的音频数据，监控语音识别与合成等任务的训练过程 |
+|            [Graph](#Graph--网络结构组件)            |  网络结构  | 展示网络结构、节点属性及数据流向，辅助学习、优化网络结构     |
+|         [Histogram](#Histogram--直方图组件)         |   直方图   | 展示训练过程中权重、梯度等张量的分布                         |
+|          [PR Curve](#PR-Curve--PR曲线组件)          |   折线图   | 权衡精度与召回率之间的平衡关系，便于选择最佳阈值             |
+| [High Dimensional](#High-Dimensional--数据降维组件) |  数据降维  | 将高维数据映射到 2D/3D 空间来可视化嵌入，便于观察不同数据的相关性 |
 
-## 动态添加数据组件
+## Scalar -- 折线图组件
 
-要想使用 VisualDL 的 scalar, histogram, image, text, audio, high dimensional 这六个组件来添加数据，都必须先初始化记录器 `LogWriter`，以设置数据在本地磁盘的保存路径以及同步周期。此后各个组件的输入数据会先保存到本地磁盘，进而才能加载到前端网页中展示。
+### 介绍
 
-### LogWriter  --  记录器
+Scalar 组件的输入数据类型为标量，该组件的作用是将训练参数以折线图形式呈现。将损失函数值、准确率等标量数据作为参数传入 scalar 组件，即可画出折线图，便于观察变化趋势。
 
-LogWriter 是一个数据记录器，在数据记录过程中，LogWriter 会周期性地将数据写入指定路径。
+### 记录接口
 
-LogWriter 的定义为：
+Scalar 组件的记录接口如下：
 
 ```python
-class LogWriter(dir, sync_cycle)
+add_scalar(tag, value, step, walltime=None)
 ```
 
-> :param dir : 指定日志文件的保存路径。    
-> :param sync_cycle : 同步周期。经过 sync_cycle 次添加数据的操作，就执行一次将数据从内存写入磁盘的操作。    
-> :return: 函数返回一个 LogWriter 对象。        
+接口参数说明如下：
 
-例1 创建一个 LogWriter 对象
+| 参数     | 格式   | 含义                                        |
+| -------- | ------ | ------------------------------------------- |
+| tag      | string | 记录指标的标志，如`train/loss`，不能含有`%` |
+| value    | float  | 要记录的数据值                              |
+| step     | int    | 记录的步数                                  |
+| walltime | int    | 记录数据的时间戳，默认为当前时间戳          |
 
-```python
-# 创建一个 LogWriter 对象 log_writer
-log_writer = LogWriter("./log", sync_cycle=10)
-```
+### Demo
 
-LogWriter类的成员函数包括：       
+- 基础使用
 
-* `mode()`；
-* `scalar()`, `histogram()`, `image()`, `text()`, `audio()`, `embedding()`；
-
-成员函数 `mode()` 用于指定模式。模式的名称是自定义的，比如训练`train`，验证`validation`，测试`test`，第一层卷积`conv_layer1`。 有着相同模式名称的组件作为一个整体，用户可在前端网页中的 `Runs` 按钮中选择显示哪个模式的数据（默认是显示全部模式）。
-
-成员函数 `scalar()`, `histogram()`, `image()`, `text()`, `audio()`, `embedding()` 用于创建组件。
-
-例2 LogWriter 创建组件
+下面展示了使用 Scalar 组件记录数据的示例，代码文件请见[Scalar组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/scalar_test.py)
 
 ```python
-# 设定模式为 train，创建一个 scalar 组件
-with log_writer.mode("train") as logger:
-    train_scalar = logger.scalar("acc")
-# 设定模式为test，创建一个 image 组件
-with log_writer.mode("test") as shower:
-    test_image = shower.image("conv_image", 10, 1)
-```
-
-### scalar -- 折线图组件
-
-<a name="1">scalar</a> 组件的输入数据类型为标量，该组件的作用是画折线图。将损失函数值、准确率等标量数据作为参数传入 scalar 组件，即可画出折线图，便于观察变化趋势。
-
-想通过 scalar 组件画折线图，只需先设定 LogWriter 对象的成员函数 `scalar()`，即可使用 `add_record()` 函数添加数据。这两个函数的具体用法如下：
-
-* LogWriter 对象的成员函数 `scalar()`：
-
-```python
-def scalar(tag, type)   
-``` 
-
-> :param tag : 标签，tag 相同的折线在同一子框，否则不同，tag 的名称中不能有 % 这个字符。   
-> :param type : 数据类型，可选“float”, "double", "int"，默认值为 "float"。    
-> :return: 函数返回一个 ScalarWriter 对象。    
-
-* scalar 组件的成员函数 `add_record()`：
-
-```python
-def add_record(step, value)  
-```
-
-> :param step : 步进数，标记这是第几个添加的数据。   
-> :param value : 输入数据。   
-
-例3 scalar 组件示例程序 [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/scalar-demo.py)
-
-```python
-# coding=utf-8
 from visualdl import LogWriter
 
-# 创建 LogWriter 对象
-log_writer = LogWriter("./log", sync_cycle=20)
-
-# 创建 scalar 组件，模式为 train
-with log_writer.mode("train") as logger:
-    train_acc = logger.scalar("acc")
-    train_loss = logger.scalar("loss")
-
-# 创建 scalar 组件，模式设为 test， tag 设为 acc
-with log_writer.mode("test") as logger:
-    test_acc = logger.scalar("acc")
-
-value = [i/1000.0 for i in range(1000)]
-for step in range(1000):
-    # 向名称为 acc 的图中添加模式为train的数据
-    train_acc.add_record(step, value[step])
-
-    # 向名称为 loss 的图中添加模式为train的数据
-    train_loss.add_record(step, 1 / (value[step] + 1))
-    
-    # 向名称为 acc 的图中添加模式为test的数据
-    test_acc.add_record(step, 1 - value[step])
+if __name__ == '__main__':
+    value = [i/1000.0 for i in range(1000)]
+    # 初始化一个记录器
+    with LogWriter(logdir="./log/scalar_test/train") as writer:
+        for step in range(1000):
+            # 向记录器添加一个tag为`acc`的数据
+            writer.add_scalar(tag="acc", step=step, value=value[step])
+            # 向记录器添加一个tag为`loss`的数据
+            writer.add_scalar(tag="loss", step=step, value=1/(value[step] + 1))
 ```
 
-运行上述程序后，在命令行中执行
+运行上述程序后，在命令行执行
 
 ```shell
-visualdl --logdir ./log --host 0.0.0.0 --port 8080
+visualdl --logdir ./log --port 8080
 ```
 
-接着在浏览器打开 [http://0.0.0.0:8080](http://0.0.0.0:8080)，即可查看以下折线图。
+接着在浏览器打开`http://127.0.0.1:8080`，即可查看以下折线图。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/scalar-interface.png" width=800><br/>
-图1. scalar 组件展示折线图 <br/>
+  <img src="https://user-images.githubusercontent.com/48054808/82397559-478c6d00-9a83-11ea-80db-a0844dcaca35.png" width="100%"/>
 </p>
 
-VisualDL 页面的右边侧栏有各个组件的调节选项，以 scalar 组件为例：
 
-* Smoothing : 用于调节曲线的平滑度。   
-* X-axis : 折线图的横坐标参数，可选 `Step`, `Relative`, `Wall Time`，分别表示横轴设为步进数、相对值、数据采集的时间。    
-* Tooltip sorting : 标签排序方法，可选 `default`, `descending`, `ascending`, `nearest`，分别表示默认排序、按名称降序、按名称升序、按最新更新时间排序。    
+- 多组实验对比
 
-VisualDL 页面的右边侧栏的最下方还有一个 `RUNNING` 按钮，此时前端定期从后端同步数据，刷新页面。点击可切换为红色的 `STOPPED`，暂停前端的数据更新。
+下面展示了使用Scalar组件实现多组实验对比
 
-### histogram -- 直方图组件
+多组实验对比的实现分为两步：
 
-<a name="2">histogram</a> 组件的作用是以直方图的形式显示输入数据的分布。在训练过程中，把一些参数（例如权重矩阵 w，偏置项 b，梯度）传给 histogram 组件，就可以查看参数分布在训练过程中的变化趋势。
-
-想通过 histogram 组件画参数直方图，只需先设定 LogWriter 对象的成员函数 `histogram()`，即可使用 `add_record()` 函数添加数据。这两个函数的具体用法如下：
-
-* LogWriter 对象的成员函数 `histogram()`：
+1. 创建子日志文件储存每组实验的参数数据
+2. 将数据写入scalar组件时，**使用相同的tag**，即可实现对比**不同实验**的**同一类型参数**
 
 ```python
-def histogram(tag, num_buckets, type)      
-```
-
-> :param tag : 标签，结合 LogWriter 指定的模式，决定输入参数显示的子框。   
-> :param num_buckets : 直方图的柱子数量。    
-> :param type : 数据类型，可选“float”, "double", "int"，默认值为 "float"。   
-> :return: 函数返回一个 HistogramWriter 对象。    
-
-* histogram 组件的成员函数 `add_record()`：
-
-```python
-def add_record(step, data)   
-```
-
-> :param step : 步进数，标记这是第几组添加的数据。    
-> :param data : 输入参数， 数据类型为 list[]。    
-
-例4 histogram 组件示例程序 [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/histogram-demo.py)
-
-```python
-# coding=utf-8
-import numpy as np
 from visualdl import LogWriter
 
-# 创建 LogWriter 对象
-log_writer = LogWriter('./log', sync_cycle=10)
-
-# 创建 histogram 组件，模式为train
-with log_writer.mode("train") as logger:
-    param1_histogram = logger.histogram("param1", num_buckets=100)
-
-# 设定步数为 1 - 100
-for step in range(1, 101):
-    # 添加的数据为随机分布，所在区间值变小
-    interval_start = 1 + 2 * step/100.0
-    interval_end = 6 - 2 * step/100.0
-    data = np.random.uniform(interval_start, interval_end, size=(10000))
-
-    # 使用 add_record() 函数添加数据
-    param1_histogram.add_record(step, data)
+if __name__ == '__main__':
+    value = [i/1000.0 for i in range(1000)]
+    # 步骤一：创建父文件夹：log与子文件夹：scalar_test
+    with LogWriter(logdir="./log/scalar_test") as writer:
+        for step in range(1000):
+            # 步骤二：向记录器添加一个tag为`train/acc`的数据
+            writer.add_scalar(tag="train/acc", step=step, value=value[step])
+            # 步骤二：向记录器添加一个tag为`train/loss`的数据
+            writer.add_scalar(tag="train/loss", step=step, value=1/(value[step] + 1))
+    # 步骤一：创建第二个子文件夹scalar_test2       
+    value = [i/500.0 for i in range(1000)]
+    with LogWriter(logdir="./log/scalar_test2") as writer:
+        for step in range(1000):
+            # 步骤二：在同样名为`train/acc`下添加scalar_test2的accuracy的数据
+            writer.add_scalar(tag="train/acc", step=step, value=value[step])
+            # 步骤二：在同样名为`train/loss`下添加scalar_test2的loss的数据
+            writer.add_scalar(tag="train/loss", step=step, value=1/(value[step] + 1))
 ```
 
-运行上述程序后，在命令行中执行
+运行上述程序后，在命令行执行
 
 ```shell
-visualdl --logdir ./log --host 0.0.0.0 --port 8080
+visualdl --logdir ./log --port 8080
 ```
 
-接着在浏览器打开[http://0.0.0.0:8080](http://0.0.0.0:8080)，即可查看 histogram 组件的直方图。其中横坐标为参数的数值，曲线上的值为相应参数的个数。右边纵轴的值为 Step，不同 Step 的数据组用不同颜色加以区分。
+接着在浏览器打开`http://127.0.0.1:8080`，即可查看以下折线图，对比「scalar_test」和「scalar_test2」的Accuracy和Loss。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/histogram-interface.png" width=800><br/>
-图2. histogram 组件展示直方图 <br/>
+  <img src="https://user-images.githubusercontent.com/48054808/84644158-5efb3080-af31-11ea-8e64-bbe4078425f4.png" width="100%"/>
 </p>
 
-### image -- 图片可视化组件
-<a name="3">image</a> 组件用于显示图片。在程序运行过程中，将图片数据传入 image 组件，就可在 VisualDL 的前端网页看到相应图片。
+*多组实验对比的应用案例可参考AI Studio项目：[VisualDL 2.0--眼疾识别训练可视化](https://aistudio.baidu.com/aistudio/projectdetail/502834)
 
-使用 image 组件添加数据，需要先设定 LogWriter 对象的成员函数 `image()`，即可结合 `start_sampling()`, `is_sample_taken()`, `set_sample()` 和 `finish_sample()` 这四个 image 组件的成员函数来完成。这几个函数的定义及用法如下：
 
-* LogWriter 对象的成员函数 `image()`：
-   
+### 功能操作说明
+
+* 支持数据卡片「最大化」、「还原」、「坐标系转化」（y轴对数坐标）、「下载」折线图
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/scalar-icon.png" width="55%"/>
+</p>
+
+
+
+
+* 数据点Hover展示详细信息
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/scalar-tooltip.png" width="60%"/>
+</p>
+
+
+
+
+* 可搜索卡片标签，展示目标图像
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/scalar-searchlabel.png" width="90%"/>
+</p>
+
+
+
+
+* 可搜索打点数据标签，展示特定数据
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/scalar-searchstream.png" width="40%"/>
+</p>
+
+
+
+* X轴有三种衡量尺度
+
+1. Step：迭代次数
+2. Walltime：训练绝对时间
+3. Relative：训练时长
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/x-axis.png" width="40%"/>
+</p>
+
+* 可调整曲线平滑度，以便更好的展现参数整体的变化趋势
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/scalar-smooth.png" width="37%"/>
+</p>
+
+
+
+## Image -- 图片可视化组件
+
+### 介绍
+
+Image 组件用于显示图片数据随训练的变化。在模型训练过程中，将图片数据传入 Image 组件，就可在 VisualDL 的前端网页查看相应图片。
+
+### 记录接口
+
+Image 组件的记录接口如下：
+
 ```python
-def image(tag, num_samples, step_cycle)    
+add_image(tag, img, step, walltime=None)
 ```
 
-> :param tag : 标签，结合 set_sample() 的参数 index，决定图片显示的子框。   
-> :param num_samples : 设置单个 step 的采样数，页面上的图片数目也等于 num_samples。   
-> :param step_cycle : 将 step_cycle 个 step 的数据存储到日志中，默认值为 1。   
-> :return: 函数返回一个 ImageWriter 对象。   
+接口参数说明如下：
 
-* 开始新的采样周期 - 开辟一块内存空间，用于存放采样的数据：
+| 参数     | 格式          | 含义                                        |
+| -------- | ------------- | ------------------------------------------- |
+| tag      | string        | 记录指标的标志，如`train/loss`，不能含有`%` |
+| img      | numpy.ndarray | 以ndarray格式表示的图片                     |
+| step     | int           | 记录的步数                                  |
+| walltime | int           | 记录数据的时间戳，默认为当前时间戳          |
 
-```python
-def start_sampling()
-```
+### Demo
 
-* 判断该图片是否应被采样，当返回值为 `-1`，表示不用采样，否则，应被采样：
-
-```python
-def is_sample_taken() 
-```
-
-* 使用函数 `set_sample()` 添加图片数据：
+下面展示了使用 Image 组件记录数据的示例，代码文件请见[Image组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/image_test.py)
 
 ```python
-def set_sample(index, image_shape, image_data)    
-```
-
-> :param index : 索引号，与 tag 组合使用，决定图片显示的子框。    
-> :param image_shape : 图片的形状，[weight, height, 通道数(RGB 为 3，灰度图为 1)]。    
-> :param image_data : 图片的数据格式为矩阵，通常为 numpy.ndarray，经 flatten() 后变为行向量。    
-
-* 结束当前的采样周期，将已采样的数据存到磁盘，并释放这一块内存空间：
-
-```python
-def finish_sample()  
-```
-
-例5 image 组件示例程序 [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/image-demo.py)
-```python
-# coding=utf-8
 import numpy as np
-from visualdl import LogWriter
 from PIL import Image
+from visualdl import LogWriter
 
 
 def random_crop(img):
-    '''
-    此函数用于获取图片数据 img 的 100*100 的随机分块
-    '''
+    """获取图片的随机 100x100 分片
+    """
     img = Image.open(img)
     w, h = img.size
     random_w = np.random.randint(0, w - 100)
     random_h = np.random.randint(0, h - 100)
-    return img.crop((random_w, random_h, random_w + 100, random_h + 100))
+    r = img.crop((random_w, random_h, random_w + 100, random_h + 100))
+    return np.asarray(r)
 
 
-# 创建 LogWriter 对象
-log_writer = LogWriter("./log", sync_cycle=10)
-
-# 创建 image 组件，模式为train, 采样数设为 ns
-ns = 2
-with log_writer.mode("train") as logger:
-    input_image = logger.image(tag="test", num_samples=ns)
-
-# 一般要设置一个变量 sample_num，用于记录当前已采样了几个 image 数据
-sample_num = 0
-
-for step in range(6):
-    # 设置start_sampling() 的条件，满足条件时，开始采样
-    if sample_num == 0:
-        input_image.start_sampling()
-
-    # 获取idx
-    idx = input_image.is_sample_taken()
-    # 如果 idx != -1，采样，否则跳过
-    if idx != -1:
-        # 获取图片数据
-        image_path = "test.jpg"
-        image_data = np.array(random_crop(image_path))
-        # 使用 set_sample() 函数添加数据
-        # flatten() 用于把 ndarray 由矩阵变为行向量
-        input_image.set_sample(idx, image_data.shape, image_data.flatten())
-        sample_num += 1
-
-        # 如果完成了当前轮的采样，则调用finish_sample()
-        if sample_num % ns == 0:
-            input_image.finish_sampling()
-            sample_num = 0
+if __name__ == '__main__':
+    # 初始化一个记录器
+    with LogWriter(logdir="./log/image_test/train") as writer:
+        for step in range(6):
+            # 添加一个图片数据
+            writer.add_image(tag="eye",
+                             img=random_crop("../../docs/images/eye.jpg"),
+                             step=step)
 ```
 
-运行上述程序后，在命令行中执行
+运行上述程序后，在命令行执行
+
 ```shell
-visualdl --logdir ./log --host 0.0.0.0 --port 8080
+visualdl --logdir ./log --port 8080
 ```
 
-接着在浏览器打开 [http://0.0.0.0:8080](http://0.0.0.0:8080)，点击页面最上方的`SAMPLES`选项，即可查看 image 组件的展示图片。每一张子图都有一条浅绿色的横轴，拖动即可展示不同 step 的图片。
+在浏览器输入`http://127.0.0.1:8080`，即可查看图片数据。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/image-interface.png" width=800><br/>
-图3. image 组件展示图片 <br/>
+  <img src="http://visualdl.bj.bcebos.com/images/image-static.png" width="90%"/>
 </p>
 
-### text -- 文本组件
-<a name="4">text</a> 组件用于显示文本，在程序运行过程中，将文本数据传入 text 组件，即可在 VisualDL 的前端网页中查看。
 
-想要通过 text 组件添加数据，只需先设定 LogWriter 对象的成员函数 `text()`，即可使用 `add_record()` 函数来完成。这两个函数的具体用法如下：
 
-* LogWriter 对象的成员函数 `text()`：
+### 功能操作说明
+
+可搜索图片标签显示对应图片数据
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/image-search.png" width="90%"/>
+</p>
+
+
+
+支持滑动Step/迭代次数查看不同迭代次数下的图片数据
+
+<p align="center">
+  <img src="http://visualdl.bj.bcebos.com/images/image-eye.gif" width="60%"/>
+</p>
+
+
+
+## Audio--音频播放组件
+
+### 介绍
+
+Audio组件实时查看训练过程中的音频数据，监控语音识别与合成等任务的训练过程。
+
+### 记录接口
+
+Audio 组件的记录接口如下：
 
 ```python
-def text(tag)
+add_audio(tag, audio_array, step, sample_rate)
 ```
 
-> :param tag : 标签，结合 LogWriter 设定的模式，决定文本显示的子框。    
-> :return: 函数返回一个 TextWriter 对象。    
+接口参数说明如下：
 
-* text 组件的成员函数 `add_record()`：
+| 参数        | 格式          | 含义                                       |
+| ----------- | ------------- | ------------------------------------------ |
+| tag         | string        | 记录指标的标志，如`audio_tag`，不能含有`%` |
+| audio_arry  | numpy.ndarray | 以ndarray格式表示的音频                    |
+| step        | int           | 记录的步数                                 |
+| sample_rate | int           | 采样率，**注意正确填写对应音频的原采样率** |
+
+### Demo
+
+下面展示了使用 Audio 组件记录数据的示例，代码文件请见[Audio组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/audio_test.py)
 
 ```python
-def add_record(step, str)
-```
-
-> :param step : 步进数，标记这是第几组添加的数据。    
-> :param str : 输入文本，数据类型为 string。
-
-例6 text 组件示例程序 [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/text-demo.py)
-
-```python
-# coding=utf-8
 from visualdl import LogWriter
-
-# 创建 LogWriter 对象
-log_writter = LogWriter("./log", sync_cycle=10)
-
-# 创建 text 组件，模式为 train， 标签为 test
-with log_writter.mode("train") as logger:
-    vdl_text_comp = logger.text(tag="test")
-
-# 使用 add_record() 函数添加数据
-for i in range(1, 6):
-    vdl_text_comp.add_record(i, "这是第 %d 个 step 的数据。" % i)
-    vdl_text_comp.add_record(i, "This is data %d ." % i)
-```
-
-运行上述程序后，在命令行中执行
-
-```shell
-visualdl --logdir ./log --host 0.0.0.0 --port 8080
-```
-
-接着在浏览器打开 [http://0.0.0.0:8080](http://0.0.0.0:8080)，点击页面最上方的 `SAMPLES` 选项，即可查看 text 组件的展示文本。每一张小框都有一条浅绿色的横轴，拖动即可显示不同 step 的文本。
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/text-interface.png" width=800><br/>
-图4. text 组件展示文本 <br/>
-</p>
-
-### audio -- 音频播放组件
-<a name="5"> audio</a> 为音频播放组件，在程序运行过程中，将音频数据传入 audio 组件，就可以在 VisualDL 的前端网页中直接播放或下载。
-
-使用 audio 组件添加数据，需要先设定 LogWriter 对象的成员函数 `audio()`，即可结合 `start_sampling()`, `is_sample_taken()`, `set_sample()` 和 `finish_sample()` 这四个 audio 组件的成员函数来完成。这几个函数的定义和用法如下：
-
-* LogWriter 对象的成员函数 `audio()`：
-
-```python
-def audio(tag, num_samples, step_cycle)   
-```
-
-> :param tag : 标签，结合 set_sample() 的参数 index，决定音频播放的子框。      
-> :param num_samples : 设置单个 step 的采样数，页面上的音频数目也等于 num_samples。    
-> :param step_cycle : 将 step_cycle 个 step 的数据存储到日志中，默认值为 1。     
-> :return: 函数返回一个 AudioWriter 对象。      
-
-* 开始新的采样周期 - 开辟一块内存空间，用于存放采样的数据：
-
-```python
-def start_sampling()  
-```
-
-* 判断该音频是否应被采样，当返回值为 `-1`，表示不用采样，否则，应被采样：
-
-```python
-def is_sample_taken()   
-```
-
-* 使用函数 `set_sample()` 添加音频数据：
-
-```python
-def set_sample(index, audio_params, audio_data)      
-``` 
-
-> :param index : 索引号，结合 tag，决定音频播放的子框。    
-> :param audio_params : 音频的参数 [sample rate, sample width, channel]，其中 sample rate 为采样率， sample width 为每一帧采样的字节数， channel 为通道数（单声道设为1，双声道设为2，四声道设为4，以此类推）。     
-> :param audio_data ：音频数据，音频数据的格式一般为 numpy.ndarray，经 flatten() 后变为行向量。    
-
-* 结束当前的采样周期，将已采样的数据存到磁盘，并释放这一块内存空间：
-
-```python
-def finish_sample()
-```
-
-例7 audio 组件示例程序 [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/audio-demo.py)
-```python
-# coding=utf-8
 import numpy as np
 import wave
-from visualdl import LogWriter
 
 
 def read_audio_data(audio_path):
     """
-    读取音频数据
+    Get audio data.
     """
     CHUNK = 4096
     f = wave.open(audio_path, "rb")
     wavdata = []
     chunk = f.readframes(CHUNK)
-
     while chunk:
-        data = np.fromstring(chunk, dtype='uint8')
+        data = np.frombuffer(chunk, dtype='uint8')
         wavdata.extend(data)
         chunk = f.readframes(CHUNK)
-
     # 8k sample rate, 16bit frame, 1 channel
     shape = [8000, 2, 1]
-
     return shape, wavdata
 
 
-# 创建一个 LogWriter 对象
-log_writter = LogWriter("./log", sync_cycle=10)
-
-# 创建 audio 组件，模式为 train
-ns = 2
-with log_writter.mode("train") as logger:
-    input_audio = logger.audio(tag="test", num_samples=ns)
-
-# 一般要设定一个变量 audio_sample_num，用来记录当前已采样了几段 audio 数据
-audio_sample_num = 0
-
-for step in range(9):
-    # 设置 start_sampling() 的条件，满足条件时，开始采样
-    if audio_sample_num == 0:
-        input_audio.start_sampling()
-
-    # 获取 idx
-    idx = input_audio.is_sample_taken()
-    # 如果 idx != -1，采样，否则跳过
-    if idx != -1:
-        # 读取数据，音频文件的格式可以为 .wav .mp3 等
-        audio_path = "test.wav"
-        audio_shape, audio_data = read_audio_data(audio_path)
-        # 使用 set_sample()函数添加数据
-        input_audio.set_sample(idx, audio_shape, audio_data)
-        audio_sample_num += 1
-
-        # 如果完成了当前轮的采样，则调用 finish_sample()
-        if audio_sample_num % ns ==0:
-            input_audio.finish_sampling()
-            audio_sample_num = 0
+if __name__ == '__main__':
+    with LogWriter(logdir="./log") as writer:
+        audio_shape, audio_data = read_audio_data("./testing.wav")
+        audio_data = np.array(audio_data)
+        writer.add_audio(tag="audio_tag",
+                         audio_array=audio_data,
+                         step=0,
+                         sample_rate=8000)
 ```
 
-运行上述程序后，在命令行中执行
+运行上述程序后，在命令行执行
 
 ```shell
-visualdl --logdir ./log --host 0.0.0.0 --port 8080
+visualdl --logdir ./log --port 8080
 ```
 
-接着在浏览器打开[http://0.0.0.0:8080](http://0.0.0.0:8080)，点击页面最上方的 `SAMPLES` 选项，即有音频的小框，可以播放和下载。每一张小框中都有一条浅绿色的横轴，拖动即可选择不同 step 的音频段。
+在浏览器输入`http://127.0.0.1:8080`，即可查看音频数据。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/audio-interface.png" width=800><br/>
-图5. audio 组件播放音频 <br/>
+  <img src="https://user-images.githubusercontent.com/48054808/87659138-b4746880-c78f-11ea-965b-c33804e7c296.png" width="100%"/>
 </p>
 
-### high dimensional -- 数据降维组件
 
-<a name="6">high dimensional</a> 组件的作用就是将数据映射到 2D/3D 空间来做可视化嵌入，这有利于了解不同数据的相关性。high dimensional 组件支持以下两种降维算法：
+### 功能操作说明
 
-* PCA    : Principle Component Analysis 主成分分析      
-* [t-SNE](https://lvdmaaten.github.io/tsne/) : t-distributed stochastic neighbor embedding t-分布式随机领域嵌入       
+- 可搜索音频标签显示对应音频数据
 
-想使用 high dimensional 组件，只需先设定 LogWriter 对象的成员函数 `embedding()`，即可使用 `add_embeddings_with_word_dict()` 函数添加数据。这两个函数的定义及用法如下：
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/87661431-29956d00-c793-11ea-833b-172d8fc1b221.png" width="100%"/>
+</p>
 
-* LogWriter 对象的成员函数 `embedding()` 不需输入参数，函数返回一个 embeddingWriter 对象：
+
+- 支持滑动Step/迭代次数试听不同迭代次数下的音频数据
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/87661089-a07e3600-c792-11ea-8740-cbe99a64d830.png" width="60%"/>
+</p>
+
+
+- 支持播放/暂停音频数据
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/87661130-b3910600-c792-11ea-9f9f-2ae66132e9de.png" width="60%"/>
+</p>
+
+
+- 支持音量调节
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/87661497-49c52c00-c793-11ea-9eeb-471543cd2a0b.png" width="60%"/>
+</p>
+
+
+- 支持音频下载
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/87661166-c277b880-c792-11ea-8ad7-5c60bb08379b.png" width="60%"/>
+</p>
+
+
+
+## Graph--网络结构组件
+
+### 介绍
+
+Graph组件一键可视化模型的网络结构。用于查看模型属性、节点信息、节点输入输出等，并进行节点搜索，协助开发者们快速分析模型结构与了解数据流向。
+
+### Demo
+
+共有两种启动方式：
+
+- 前端模型文件拖拽上传：
+
+  - 如只需使用Graph组件，则无需添加任何参数，在命令行执行`visualdl`后即可启动面板进行上传。
+  - 如果同时需使用其他功能，在命令行指定日志文件路径（以`./log`为例）即可启动面板进行上传：
+
+  ```shell
+  visualdl --logdir ./log --port 8080
+  ```
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487396-44c31780-acd1-11ea-831a-1632e636613d.png" width="80%"/>
+</p>
+
+
+- 后端启动Graph：
+
+  - 在命令行加入参数`--model`并指定**模型文件**路径（非文件夹路径），即可启动并查看网络结构可视化：
+
+  ```shell
+  visualdl --model ./log/model --port 8080
+  ```
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84490149-51e20580-acd5-11ea-9663-1f156892c0e0.png" width="100%"/>
+</p>
+
+
+### 功能操作说明
+
+- 一键上传模型
+  - 支持模型格式：PaddlePaddle、ONNX、Keras、Core ML、Caffe、Caffe2、Darknet、MXNet、ncnn、TensorFlow Lite
+  - 实验性支持模型格式：TorchScript、PyTorch、Torch、 ArmNN、BigDL、Chainer、CNTK、Deeplearning4j、MediaPipe、ML.NET、MNN、OpenVINO、Scikit-learn、Tengine、TensorFlow.js、TensorFlow
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487396-44c31780-acd1-11ea-831a-1632e636613d.png" width="80%"/>
+</p>
+
+
+- 支持上下左右任意拖拽模型、放大和缩小模型
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487568-8784ef80-acd1-11ea-9da1-befedd69b872.GIF" width="100%"/>
+</p>
+
+
+- 搜索定位到对应节点
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487694-b9965180-acd1-11ea-8214-34f3febc1828.png" width="30%"/>
+</p>
+
+
+- 点击查看模型属性
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487751-cadf5e00-acd1-11ea-9ce2-4fdfeeea9c5a.png" width="30%"/>
+</p>
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487759-d03ca880-acd1-11ea-9294-520ef7f9e0b1.png" width="30%"/>
+</p>
+
+
+- 支持选择模型展示的信息
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487829-ee0a0d80-acd1-11ea-8563-6682a15483d9.png" width="23%"/>
+</p>
+
+
+- 支持以PNG、SVG格式导出模型结构图
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487884-ff531a00-acd1-11ea-8b12-5221db78683e.png" width="30%"/>
+</p>
+
+
+- 点击节点即可展示对应属性信息
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487941-13971700-acd2-11ea-937d-42fb524b9ee1.png" width="30%"/>
+</p>
+
+
+- 支持一键更换模型
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/84487998-27db1400-acd2-11ea-83d7-5d75832ef41d.png" width="25%"/>
+</p>
+
+
+## Histogram--直方图组件
+
+### 介绍
+
+Histogram组件以直方图形式展示Tensor（weight、bias、gradient等）数据在训练过程中的变化趋势。深入了解模型各层效果，帮助开发者精准调整模型结构。
+
+### 记录接口
+
+Histogram 组件的记录接口如下：
 
 ```python
-def embedding()  
+add_histogram(tag, values, step, walltime=None, buckets=10)
 ```
 
-* high dimensional 的成员函数 `add_embeddings_with_word_dict()`：
+接口参数说明如下：
+
+| 参数     | 格式                  | 含义                                        |
+| -------- | --------------------- | ------------------------------------------- |
+| tag      | string                | 记录指标的标志，如`train/loss`，不能含有`%` |
+| values   | numpy.ndarray or list | 以ndarray或list格式表示的数据               |
+| step     | int                   | 记录的步数                                  |
+| walltime | int                   | 记录数据的时间戳，默认为当前时间戳          |
+| buckets  | int                   | 生成直方图的分段数，默认为10                |
+
+### Demo
+
+下面展示了使用 Histogram组件记录数据的示例，代码文件请见[Histogram组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/histogram_test.py)
 
 ```python
-def add_embeddings_with_word_dict(data, Dict)  
-```
-
-> :param data : 输入数据，数据类型为 List[List(float)]。     
-> :param Dict : 字典， 数据类型为 Dict[str, int]。    
-
-例8 high dimensional 组件示例程序 [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/embedding-demo.py)
-
-```python
-# coding=utf-8
+from visualdl import LogWriter
 import numpy as np
+
+
+if __name__ == '__main__':
+    values = np.arange(0, 1000)
+    with LogWriter(logdir="./log/histogram_test/train") as writer:
+        for index in range(1, 101):
+            interval_start = 1 + 2 * index / 100.0
+            interval_end = 6 - 2 * index / 100.0
+            data = np.random.uniform(interval_start, interval_end, size=(10000))
+            writer.add_histogram(tag='default tag',
+                                 values=data,
+                                 step=index,
+                                 buckets=10)
+```
+
+运行上述程序后，在命令行执行
+
+```shell
+visualdl --logdir ./log --port 8080
+```
+
+在浏览器输入`http://127.0.0.1:8080`，即可查看训练参数直方图。
+
+### 功能操作说明
+
+- 支持数据卡片「最大化」、直方图「下载」
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86535351-42d82700-bf12-11ea-89f0-171280e7c526.png" width="60%"/>
+  </p>
+
+- 可选择Offset或Overlay模式
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86535413-c134c900-bf12-11ea-9ad6-f0ad8eafa76f.png" width="30%"/>
+  </p>
+
+
+  - Offset模式
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86536435-2b9d3780-bf1a-11ea-9981-92f837d22ae5.png" width="60%"/>
+  </p>
+
+
+  - Overlay模式
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86536458-5ab3a900-bf1a-11ea-985e-05f06c1b762b.png" width="60%"/>
+  </p>
+
+- 数据点Hover展示参数值、训练步数、频次
+
+  - 在第240次训练步数时，权重为-0.0031，且出现的频次是2734次
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86536482-80d94900-bf1a-11ea-9e12-5bea9f382b34.png" width="60%"/>
+  </p>
+
+- 可搜索卡片标签，展示目标直方图
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86536503-baaa4f80-bf1a-11ea-80ab-cd988617d018.png" width="30%"/>
+  </p>
+
+- 可搜索打点数据标签，展示特定数据流
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86536639-b894c080-bf1b-11ea-9ee5-cf815dd4bbd7.png" width="30%"/>
+  </p>
+
+## PR Curve--PR曲线组件
+
+### 介绍
+
+PR Curve以折线图形式呈现精度与召回率的权衡分析，清晰直观了解模型训练效果，便于分析模型是否达到理想标准。
+
+### 记录接口
+
+PR Curve组件的记录接口如下：
+
+```python
+add_pr_curve(tag, labels, predictions, step=None, num_thresholds=10)
+```
+
+接口参数说明如下：
+
+| 参数           | 格式                  | 含义                                        |
+| -------------- | --------------------- | ------------------------------------------- |
+| tag            | string                | 记录指标的标志，如`train/loss`，不能含有`%` |
+| labels         | numpy.ndarray or list | 以ndarray或list格式表示的实际类别           |
+| predictions    | numpy.ndarray or list | 以ndarray或list格式表示的预测类别           |
+| step           | int                   | 记录的步数                                  |
+| num_thresholds | int                   | 阈值设置的个数，默认为10，最大值为127       |
+
+### Demo
+
+下面展示了使用 PR Curve 组件记录数据的示例，代码文件请见[PR Curve组件](#https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/pr_curve_test.py)
+
+```python
+from visualdl import LogWriter
+import numpy as np
+
+with LogWriter("./log/pr_curve_test/train") as writer:
+    for step in range(3):
+        labels = np.random.randint(2, size=100)
+        predictions = np.random.rand(100)
+        writer.add_pr_curve(tag='pr_curve',
+                            labels=labels,
+                            predictions=predictions,
+                            step=step,
+                            num_thresholds=5)
+```
+
+运行上述程序后，在命令行执行
+
+```shell
+visualdl --logdir ./log --port 8080
+```
+
+接着在浏览器打开`http://127.0.0.1:8080`，即可查看PR Curve
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48054808/86738774-ee46c000-c067-11ea-90d2-a98aac445cca.png" width="100%"/>
+</p>
+
+
+### 功能操作说明
+
+- 支持数据卡片「最大化」，「还原」、「下载」PR曲线
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86740067-f18e7b80-c068-11ea-96bf-52cb7da1f799.png" width="60%"/>
+  </p>
+
+- 数据点Hover展示详细信息：阈值对应的TP、TN、FP、FN
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86740477-43370600-c069-11ea-93f0-f4d05445fbab.png" width="70%"/>
+  </p>
+
+- 可搜索卡片标签，展示目标图表
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86740670-66fa4c00-c069-11ea-9ee3-0a22e2d0dbec.png" width="50%"/>
+  </p>
+
+- 可搜索打点数据标签，展示特定数据
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86740817-809b9380-c069-11ea-9453-6531e3ff5f43.png" width="50%"/>
+  </p>
+
+
+- 支持查看不同训练步数下的PR曲线
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86741057-b04a9b80-c069-11ea-9fef-2dcc16f9cd46.png" width="50%"/>
+  </p>
+
+- X轴-时间显示类型有三种衡量尺度
+
+  - Step：迭代次数
+  - Walltime：训练绝对时间
+  - Relative：训练时长
+
+  <p align="center">
+    <img src="https://user-images.githubusercontent.com/48054808/86741304-db34ef80-c069-11ea-86eb-787b49ed3705.png" width="50%"/>
+  </p>
+
+## High Dimensional -- 数据降维组件
+
+### 介绍
+
+High Dimensional 组件将高维数据进行降维展示，用于深入分析高维数据间的关系。目前支持以下两种降维算法：
+
+ - PCA : Principle Component Analysis 主成分分析
+ - t-SNE : t-distributed stochastic neighbor embedding t-分布式随机领域嵌入
+
+### 记录接口
+
+High Dimensional 组件的记录接口如下：
+
+```python
+add_embeddings(tag, labels, hot_vectors, walltime=None)
+```
+
+接口参数说明如下：
+
+| 参数        | 格式                | 含义                                                 |
+| ----------- | ------------------- | ---------------------------------------------------- |
+| tag         | string              | 记录指标的标志，如`default`，不能含有`%`             |
+| labels      | numpy.array 或 list | 一维数组表示的标签，每个元素是一个string类型的字符串 |
+| hot_vectors | numpy.array or list | 与labels一一对应，每个元素可以看作是某个标签的特征   |
+| walltime    | int                 | 记录数据的时间戳，默认为当前时间戳                   |
+
+### Demo
+
+下面展示了使用 High Dimensional 组件记录数据的示例，代码文件请见[High Dimensional组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/high_dimensional_test.py)
+
+```python
 from visualdl import LogWriter
 
-# 创建一个 LogWriter 对象
-log_writer = LogWriter("./log", sync_cycle=10)
 
-# 创建一个 high dimensional 组件，模式设为 train
-with log_writer.mode("train") as logger:
-    train_embedding = logger.embedding()
+if __name__ == '__main__':
+    hot_vectors = [
+        [1.3561076367500755, 1.3116267195134017, 1.6785401875616097],
+        [1.1039614644440658, 1.8891609992484688, 1.32030488587171],
+        [1.9924524852447711, 1.9358920727142739, 1.2124401279391606],
+        [1.4129542689796446, 1.7372166387197474, 1.7317806077076527],
+        [1.3913371800587777, 1.4684674577930312, 1.5214136352476377]]
 
-# 第一个参数为数据，数据类型为 List[List(float)]
-hot_vectors = np.random.uniform(1, 2, size=(10, 3))
-# 第二个参数为字典，数据类型为 Dict[str, int]
-# 其中第一个分量为坐标点的名称, 第二个分量为该坐标对应原数据的第几行分量
-word_dict = {
-    "label_1": 5,
-    "label_2": 4,
-    "label_3": 3,
-    "label_4": 2,
-    "label_5": 1,}
-
-# 使用 add_embeddings_with_word_dict(data, Dict)
-train_embedding.add_embeddings_with_word_dict(hot_vectors, word_dict)
+    labels = ["label_1", "label_2", "label_3", "label_4", "label_5"]
+    # 初始化一个记录器
+    with LogWriter(logdir="./log/high_dimensional_test/train") as writer:
+        # 将一组labels和对应的hot_vectors传入记录器进行记录
+        writer.add_embeddings(tag='default',
+                              labels=labels,
+                              hot_vectors=hot_vectors)
 ```
 
-运行上述程序后，在命令行中执行
+运行上述程序后，在命令行执行
 
 ```shell
-visualdl --logdir ./log --host 0.0.0.0 --port 8080
+visualdl --logdir ./log --port 8080
 ```
 
-接着在浏览器打开[http://0.0.0.0:8080](http://0.0.0.0:8080)，点击页面最上方的 `HIGHDIMENSIONAL` 选项，即可查看数据映射后的相对位置。
+接着在浏览器打开`http://127.0.0.1:8080`，即可查看降维后的可视化数据。
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/embedding-2D.png" width=800><br/>
-图6. high dimensional 组件展示平面坐标 <br/>
+  <img src="http://visualdl.bj.bcebos.com/images/dynamic_high_dimensional.gif" width="100%"/>
 </p>
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/embedding-3D.png" width=800><br/>
-图7. high dimensional 组件展示直角坐标 <br/>
-</p>
-
-## graph -- 神经网络可视化组件
-
-<a name="7">graph</a> 组件用于神经网络模型结构的可视化，该组件可以展示 Paddle 格式和 [ONNX](https://onnx.ai) 格式保存的模型。graph 组件可帮助用户理解神经网络的模型结构，也有助于排查神经网络的配置错误。
-
-与其他需要记录数据的组件不同，使用 graph 组件的唯一要素就是指定模型文件的存放位置，即在 `visualdl` 命令中增加选项 `--model_pb` 来指定模型文件的存放路径，则可在前端看到相应效果。
-
-例9 graph 组件示例程序（下面示例展示了如何用 Paddle 保存一个 Lenet-5 模型）[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/graph-demo.py)
-
-```python
-# coding=utf-8
-import paddle.fluid as fluid
 
 
-def lenet_5(img):
-    '''
-    定义神经网络结构
-    '''
-    conv1 = fluid.nets.simple_img_conv_pool(
-        input=img,
-        filter_size=5,
-        num_filters=20,
-        pool_size=2,
-        pool_stride=2,
-        act="relu")
-
-    conv1_bn = fluid.layers.batch_norm(input=conv1)
-
-    conv2 = fluid.nets.simple_img_conv_pool(
-        input=conv1_bn,
-        filter_size=5,
-        num_filters=50,
-        pool_size=2,
-        pool_stride=2,
-        act="relu")
-
-    predition = fluid.layers.fc(input=conv2, size=10, act="softmax")
-    return predition
-
-
-# 变量赋值
-image = fluid.layers.data(name="img", shape=[1, 28, 28], dtype="float32")
-predition = lenet_5(image)
-
-place = fluid.CPUPlace()
-exe = fluid.Executor(place=place)
-exe.run(fluid.default_startup_program())
-
-# 使用函数 save_inference_model() 保存 paddle 模型
-fluid.io.save_inference_model(
-    "./paddle_lenet_5_model",
-    feeded_var_names=[image.name],
-    target_vars=[predition],
-    executor=exe)
-```
-
-运行上述程序后，在命令行中执行
-
-```shell
-visualdl --logdir ./log --host 0.0.0.0 --port 8080 --model_pb paddle_lenet_5_model
-```
-
-接着在浏览器打开[http://0.0.0.0:8080](http://0.0.0.0:8080)，点击页面最上方的`GRAPHS`选项，即可查看 Lenet-5 的模型结构。
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/VisualDL/develop/demo/component/usage-interface/graph.png" width=800><br/>
-图8. graph 组件展示 Lenet-5 的模型结构 <br/>
-</p>
