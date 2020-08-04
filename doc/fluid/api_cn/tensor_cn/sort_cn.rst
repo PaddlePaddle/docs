@@ -9,8 +9,7 @@ sort
 :alias: paddle.sort,paddle.tensor.sort,paddle.tensor.search.sort
 
 
-对输入变量沿给定轴进行排序，输出排序好的数据，其维度和输入相同。
-注：默认升序排列，如果需要降序排列设置 ``descending=True`` 。
+对输入变量沿给定轴进行排序，输出排序好的数据，其维度和输入相同。默认升序排列，如果需要降序排列设置 ``descending=True`` 。
 
 
 参数：
