@@ -15,13 +15,11 @@ MSRAInitializer
 在均匀分布中，范围为[-x,x]，其中：
 
 .. math::
-
     x = \sqrt{\frac{6.0}{fan\_in}}
 
 在正态分布中，均值为0，标准差为：
 
 .. math::
-
     \sqrt{\frac{2.0}{fan\_in}}
 
 参数：
