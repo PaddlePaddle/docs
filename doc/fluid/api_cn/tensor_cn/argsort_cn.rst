@@ -8,7 +8,7 @@ argsort
 :alias_main: paddle.argsort
 :alias: paddle.argsort,paddle.tensor.argsort,paddle.tensor.search.argsort
 
-对输入变量沿给定轴进行排序，输出排序好的数据的相应索引，其维度和输入相同。**默认升序排列，如果需要降序排列设置** ``descending=True`` 。
+对输入变量沿给定轴进行排序，输出排序好的数据的相应索引，其维度和输入相同。默认升序排列，如果需要降序排列设置 ``descending=True`` 。
 
 
 参数：
@@ -17,9 +17,8 @@ argsort
     - **descending** (bool，可选) - 指定算法排序的方向。如果设置为True，算法按照降序排序。如果设置为False或者不设置，按照升序排序。默认值为False。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：排序后索引信息（与 ``x`` 维度信息一致），数据类型为int64。
+返回：Tensor, 排序后索引信息（与 ``x`` 维度信息一致），数据类型为int64。
 
-返回类型：Tensor
 
 **代码示例**：
 
