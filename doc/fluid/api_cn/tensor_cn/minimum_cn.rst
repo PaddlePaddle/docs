@@ -24,7 +24,7 @@ minimum
 
 对于情况2：
         1. 用 :math:`Y` 的 ``shape`` 匹配 :math:`X` 的 ``shape``，其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
-        2. 如果 ``axis`` 为-1（默认值），则 :math:`axis = rank（X）-rank（Y）` 。
+        2. 如果 ``axis`` < 0（默认值为-1），则 :math:`axis = abs(X.ndim - Y.ndim) - axis - 1` 。
         3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
@@ -37,6 +37,8 @@ minimum
         shape(X) = (2, 3, 4, 5), shape(Y) = (3, 4), with axis=1
         shape(X) = (2, 3, 4, 5), shape(Y) = (2), with axis=0
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
+
+具体的飞桨的广播（broadcasting）机制可以参考 `<<PaddlePaddle广播机制文档>> <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/beginners_guide/basic_concept/broadcasting.rst>`_ 。
 
 参数：
         - **x** （Variable）- 多维Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
@@ -72,3 +74,28 @@ minimum
     print(res.numpy()) 
     # [[[1. 1. 1.]
     #   [2. 2. 2.]]]
+
+    x_data = np.array([[[1, 2, 3], [1, 2, 3]]], dtype=np.float32)
+    y_data = np.array([1, 2], dtype=np.float32)
+    x = paddle.imperative.to_variable(x_data)
+    y = paddle.imperative.to_variable(y_data)
+    res = paddle.minimum(x, y, axis=1)
+    print(res.numpy()) 
+    # [[[1. 1. 1.]
+    #   [2. 2. 2.]]]
+
+    x_data = np.array([2, 3, 5], dtype=np.float32)
+    y_data = np.array([1, 4, np.nan], dtype=np.float32)
+    x = paddle.imperative.to_variable(x_data)
+    y = paddle.imperative.to_variable(y_data)
+    res = paddle.minimum(x, y)
+    print(res.numpy()) 
+    #[ 1.  3. nan]
+
+    x_data = np.array([5, 3, np.inf], dtype=np.float32)
+    y_data = np.array([1, 4, 5], dtype=np.float32)
+    x = paddle.imperative.to_variable(x_data)
+    y = paddle.imperative.to_variable(y_data)
+    res = paddle.minimum(x, y)
+    print(res.numpy()) 
+   #[1. 3. 5.]
