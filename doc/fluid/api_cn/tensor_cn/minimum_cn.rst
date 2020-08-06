@@ -41,14 +41,13 @@ minimum
 具体的飞桨的广播（broadcasting）机制可以参考 `<<PaddlePaddle广播机制文档>> <https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/beginners_guide/basic_concept/broadcasting.rst>`_ 。
 
 参数：
-        - **x** （Variable）- 多维Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
-        - **y** （Variable）- 多维Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
+        - **x** （Tensor）- 多维Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
+        - **y** （Tensor）- 多维Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
         - **axis** （int32, 可选）- Y的维度对应到X维度上时的索引。默认值为 -1。
         - **name** （string, 可选）- 输出的名字。默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-返回：维度和数据类型与 ``x`` 相同的多维Tensor。
+返回：Tensor，维度和数据类型与 ``x`` 相同的多维Tensor。
 
-返回类型：多维Tensor。
 
 .. code-block:: python
 
