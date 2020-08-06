@@ -13,6 +13,7 @@ Conv2D
 对每个输入 ``X`` ，有等式：
 
 .. math::
+
     Out = \sigma \left ( W * X + b \right )
 
 其中：
