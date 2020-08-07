@@ -2,4 +2,4 @@
 
 name_scope
 -------------------------------
-:doc_source: paddle.fluid.dygraph.base.no_grad
+:doc_source: paddle.fluid.dygraph.no_grad
