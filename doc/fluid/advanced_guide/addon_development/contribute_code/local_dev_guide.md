@@ -24,6 +24,7 @@ docker exec -it username bash
 不同开发者启动docker的命令不一样，以上只是推荐命令。如果使用自己习惯的命令，一定要加参数--privileged（GPU的CUPTI库调用需要）
 
 **推荐使用官方开发镜像 hub.baidubce.com/paddlepaddle/paddle:latest-dev 提交代码。**
+
 **以下教程将指导您提交代码。**
 
 ## [Fork](https://help.github.com/articles/fork-a-repo/)

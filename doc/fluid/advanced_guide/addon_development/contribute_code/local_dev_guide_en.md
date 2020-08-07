@@ -9,7 +9,20 @@ You will learn how to develop programs in local environment under the guidelines
 - Pass through all unit tests.
 - Please follow [regulations of submitting codes](#regulations of submitting codes).
 
+## Use official development images(recommended)
+
+```
+# First start（CPU development）
+docker run -it --cpu-shares=20000 --name=username --net=host --privileged --rm -v $(pwd):/Paddle hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+# First start（GPU development）
+nvidia-docker run -it --cpu-shares=20000 --name=username --net=host --privileged --rm -v $(pwd):/Paddle hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+# Next start
+docker exec -it username bash
+```
+Different developers have different commands to start docker. The above are only recommended commands. If you use the command you are used to, you must add the parameter --privileged (needed by the GPU CUPTI library call)
+
 **It is recommended to use the official development mirror hub.baidubce.com/paddlepaddle/paddle:latest-dev to submit the code.**
+
 **The following guidiance tells you how to submit code.**
 
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
