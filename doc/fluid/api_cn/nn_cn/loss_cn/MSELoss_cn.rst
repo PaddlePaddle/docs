@@ -1,7 +1,7 @@
 MSELoss
 -------------------------------
 
-.. py:function:: paddle.nn.loss.MSELoss(input,label)
+.. py:function:: paddle.nn.loss.MSELoss(reduction='mean')
 
 该OP用于计算预测值和目标值的均方差误差。
 
@@ -23,9 +23,12 @@ MSELoss
     Out = \operatorname{sum}((input - label)^2)
 
 参数：
-    - **input** (Variable) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
-    - **label** (Variable) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
     - **reduction** (str, 可选) - 约简方式，可以是 'none' | 'mean' | 'sum'。设为'none'时不使用约简，设为'mean'时返回loss的均值，设为'sum'时返回loss的和。
+
+形状:
+    - **input** (Variable) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor。数据类型为float32或float64。
+    - **label** (Variable) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor。数据类型为float32或float64。
+    
 
 返回：预测值和目标值的均方差
 
