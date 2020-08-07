@@ -9,7 +9,9 @@ You will learn how to develop programs in local environment under the guidelines
 - Pass through all unit tests.
 - Please follow [regulations of submitting codes](#regulations of submitting codes).
 
-The following guidiance tells you how to submit code.
+**It is recommended to use the official development mirror hub.baidubce.com/paddlepaddle/paddle:latest-dev to submit the code.**
+**The following guidiance tells you how to submit code.**
+
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
 Transfer to the home page of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) ,and then click button `Fork`  to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
@@ -44,7 +46,7 @@ It is worth noting that before the checkout, you need to keep the current branch
 
 Paddle developers use the [pre-commit](http://pre-commit.com/) tool to manage Git pre-commit hooks. It helps us format the source code (C++, Python) and automatically check some basic things before committing (such as having only one EOL per file, not adding large files in Git, etc.).
 
-The `pre-commit` test is part of the unit test in Travis-CI. A PR that does not satisfy the hook cannot be submitted to Paddle. Install `pre-commit` first and then run it in current directory：
+The `pre-commit` test is part of the unit test in CI. A PR that does not satisfy the hook cannot be submitted to Paddle. Install `pre-commit` first and then run it in current directory：
 
 
 ```bash
@@ -54,7 +56,7 @@ The `pre-commit` test is part of the unit test in Travis-CI. A PR that does not 
 
 Paddle modify the format of C/C++ source code with `clang-format` .Make sure the version of `clang-format` is above 3.8.
 
-Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit` . Paddle developers use `pip install pre-commit` 。
+Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit` . Paddle developers use `pip install pre-commit`,, Using Paddle docker image will `pre-commit`without separate installation .
 
 ## Start development
 
@@ -78,7 +80,53 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## Build and test
 
+**Build**
+
+1.Create and enter the /Paddle/build path
+
+`mkdir -p /Paddle/build && cd /Paddle/build`
+
+2.Use the following command to install the dependencies:
+
+
+    For Python2: pip install protobuf
+    For Python3: pip3.5 install protobuf
+
+    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
+
+    > Install protobuf 3.1.0
+
+    `apt install patchelf`
+
+    > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
+
+3.Execute cmake:
+
+    > For details on the compilation options, see the [compilation options table](../Tables.html/#Compile).
+    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
+
+    * For users who need to compile the **CPU version PaddlePaddle**:
+
+        `cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+
+    * For users who need to compile the **GPU version PaddlePaddle**:
+        `cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+
+    > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS 6.
+
+4.Execute compilation:
+
+    `make -j$(nproc)`
+
+    > Use multicore compilation
+
+5.After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package.
+
 Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
+
+
+**Test**
+
 Please refer to [Op Unit Tests](../new_op/new_op_en.html#unit-tests) about more information of running unit tests.
 
 ## Commit
