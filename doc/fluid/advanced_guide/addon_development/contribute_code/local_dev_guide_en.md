@@ -69,7 +69,7 @@ The `pre-commit` test is part of the unit test in CI. A PR that does not satisfy
 
 Paddle modify the format of C/C++ source code with `clang-format` .Make sure the version of `clang-format` is above 3.8.
 
-Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit` . Paddle developers use `pip install pre-commit`,, Using Paddle docker image will `pre-commit`without separate installation .
+Note：There are differences between the installation of `yapf` with `pip install pre-commit` and that with `conda install -c conda-forge pre-commit` . Paddle developers use `pip install pre-commit`, Using Paddle docker image will `pre-commit`without separate installation .
 
 ## Start development
 
@@ -93,11 +93,11 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## Build and test
 
-**Build**
+*Build*
 
 1.Create and enter the /Paddle/build path
 
-`mkdir -p /Paddle/build && cd /Paddle/build`
+    `mkdir -p /Paddle/build && cd /Paddle/build`
 
 2.Use the following command to install the dependencies:
 
@@ -115,17 +115,18 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 3.Execute cmake:
 
-    > For details on the compilation options, see the [compilation options table](../Tables.html/#Compile).
-    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
-        `cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    `For Python2: cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    `For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+
 
     * For users who need to compile the **GPU version PaddlePaddle**:
-        `cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
-    > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS 6.
+    `For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    `For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+
 
 4.Execute compilation:
 
@@ -135,10 +136,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 5.After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package.
 
-Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
+    Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
 
 
-**Test**
+*Test*
+
+    Run Test (Run 100 times)
+    `ctest --repeat-until-fail 100 -R test_xx`
 
 Please refer to [Op Unit Tests](../new_op/new_op_en.html#unit-tests) about more information of running unit tests.
 
