@@ -11,7 +11,7 @@ PairwiseDistance
 
 
 
-该OP计算两个向量（输入x、y）之间pairwise的距离。该距离通过p范数计算：
+该OP计算两个向量（输入 ``x``、``y`` ）之间pairwise的距离。该距离通过p范数计算：
 
     .. math::
 
@@ -20,12 +20,12 @@ PairwiseDistance
 参数：
     - **p** （float, 可选）- 指定p阶的范数。默认值为2。
     - **eps** （float, 可选）- 添加一个很小的值，避免发生除零错误。默认值为1e-6。
-    - **keepdim** （bool, 可选）- 是否保留输出张量减少的维度。输出结果相对于``|x-y|``的结果减少一维，除非 :attr:`keepdim` 为True，默认值为False。
+    - **keepdim** （bool, 可选）- 是否保留输出张量减少的维度。输出结果相对于 ``|x-y|`` 的结果减少一维，除非 :attr:`keepdim` 为True，默认值为False。
 
 形状：
-    - **x** (Tensor): - :math:`(N, D)` ，其中D是向量的维度，数据类型为float32或float64。
-    - **y** (Tensor): - :math:`(N, D)` ，与``x``的形状、数据类型相同。
-    - **out** (Tensor): - :math:`(N)` ，如果 :attr:`keepdim` 为True，则形状为 :math:`(N, 1)` 。数据类型与``x``、``y``相同。
+    - **x** (Tensor) - :math:`(N, D)` ，其中D是向量的维度，数据类型为float32或float64。
+    - **y** (Tensor) - :math:`(N, D)` ，与 ``x`` 的形状、数据类型相同。
+    - **out** (Tensor) - :math:`(N)` ，如果 :attr:`keepdim` 为True，则形状为 :math:`(N, 1)` 。数据类型与 ``x``、 ``y`` 相同。
 
 **代码示例**
 

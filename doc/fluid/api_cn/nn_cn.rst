@@ -107,6 +107,7 @@ paddle.nn
     nn_cn/pad_constant_like_cn.rst
     nn_cn/ParameterList_cn.rst
     nn_cn/piecewise_decay_cn.rst
+    nn_cn/PairwiseDistance_cn.rst
     nn_cn/pixel_shuffle_cn.rst
     nn_cn/polygon_box_transform_cn.rst
     nn_cn/polynomial_decay_cn.rst
