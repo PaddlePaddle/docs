@@ -34,6 +34,7 @@ MarginRankingLoss
 形状：
     - **x** - :math:`(N, D)` ，其中D是向量的维度，数据类型为float32或float64。
     - **y** - :math:`(N, D)` ，与 ``x`` 的形状、数据类型相同。
+    - **label** - :math:`(N, D)` ，与 ``x`` 的形状、数据类型相同。
     - **out** - :math:`(N)` ，如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`(1)` , 
          否则shape和输入 `x` 保持一致 。数据类型与 ``x``、 ``y`` 相同。
 
