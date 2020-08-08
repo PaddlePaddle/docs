@@ -1,14 +1,21 @@
-.. _cn_api_paddle_nn_PairwiseDistance
+.. _cn_api_paddle_nn_PairwiseDistance:
 
 PairwiseDistance
 -------------------------------
 
-.. py:function:: paddle.nn.PairwiseLoss(p=2., eps=1e-6, keepdim=False)
+.. py:class:: paddle.nn.PairwiseLoss(p=2., eps=1e-6, keepdim=False)
+
+:alias_main: paddle.nn.PairwiseDistance
+:alias: paddle.nn.PairwiseDistance,paddle.nn.layer.PairwiseDistance,paddle.nn.layer.distance.PairwiseDistance
+
+
+
 
 该OP计算两个向量（输入x、y）之间pairwise的距离。该距离通过p范数计算：
 
     .. math::
-        \Vert x \Vert _p = \left( \sum_{i=1}^n \vert x_i \vert ^ p \right ) ^ {1/p}.
+
+            \Vert x \Vert _p = \left( \sum_{i=1}^n \vert x_i \vert ^ p \right ) ^ {1/p}.
 
 参数：
     - **p** (float, 可选): - 指定p阶的范数。默认值为2。
