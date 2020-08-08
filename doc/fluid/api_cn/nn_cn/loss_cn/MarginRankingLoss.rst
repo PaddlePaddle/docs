@@ -31,6 +31,11 @@ MarginRankingLoss
             如果设置为 ``'sum'`` ，则返回 ``margin_rank_loss`` 的总和。
             如果设置为 ``'mean'`` ，则返回 ``margin_rank_loss`` 的平均值。
             默认值为 ``'none'`` 。
+形状：
+    - **x** (Tensor) - :math:`(N, D)` ，其中D是向量的维度，数据类型为float32或float64。
+    - **y** (Tensor) - :math:`(N, D)` ，与 ``x`` 的形状、数据类型相同。
+    - **out** (Tensor) - :math:`(N)` ，如果 :attr:`keepdim` 为True，则形状为 :math:`(N, 1)` 。数据类型与 ``x``、 ``y`` 相同。
+
 返回：返回计算MarginRankingLoss的可调用对象。
 
 **代码示例**
