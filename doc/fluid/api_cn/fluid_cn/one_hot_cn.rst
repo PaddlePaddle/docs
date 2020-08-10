@@ -13,7 +13,7 @@ one_hot
 **注意：此OP要求输入Tensor shape的最后一维必须为1。
 该OP将输入（input）中的每个id转换为一个one-hot向量，其长度为 ``num_classes`` ，该id对应的向量维度上的值为1，其余维度的值为0。
 
-输出的Tensor（或LoDTensor）的shape是在输入shape的最后一维后面添加了num_classes的维度。
+输出的Tensor的shape是在输入shape的最后一维后面添加了num_classes的维度。
 
 - 示例1：
 
@@ -46,13 +46,13 @@ one_hot
 
 
 参数：
-    - **input** (Variable) - 维度为 :math:`[N_1, ..., N_n]` 的多维Tensor或LoDTensor，维度至少1维。数据类型为int32或int64。
+    - **input** (Tensor) - 维度为 :math:`[N_1, ..., N_n]` 的多维Tensor，维度至少1维。数据类型为int32或int64。
     - **num_classes** (int) - 用于定义一个one-hot向量的长度。若输入为词id，则 ``num_classes`` 通常取值为词典大小。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：转换后的one_hot Tensor或LoDTensor，数据类型为float32。
+返回：转换后的one_hot Tensor，数据类型为float32。
 
-返回类型：Variable
+返回类型：Tensor
 
 **代码示例**：
 
