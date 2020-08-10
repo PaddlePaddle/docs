@@ -85,7 +85,7 @@ softmax
 参数
 ::::::::::
     - x (Tensor) - 输入的多维 ``Tensor`` ，数据类型为：float32、float64。
-    - axis (int, 可选) - 指定对输入 ``x`` 进行运算的轴。``axis`` 的有效范围是[-R, R)，R是输入 ``x`` 的维度， ``axis`` 为负值时与 :math:`axis + R` 等价。默认值为-1。
+    - axis (int, 可选) - 指定对输入 ``x`` 进行运算的轴。``axis`` 的有效范围是[-D, D)，D是输入 ``x`` 的维度， ``axis`` 为负值时与 :math:`axis + D` 等价。默认值为-1。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
