@@ -22,26 +22,28 @@ common_args_en = """
     include_sublayers (bool, optional): Whether include the sublayers. If True, return list includes the sublayers weights. Default is True.
     stride (tuple|int): The stride size. It can be a single integer or a tuple containing two integers, representing the strides of the convolution along the height and width. If it is a single integer, the height and width are equal to the integer. Default is 1. 
     groups (int, optional): The group number of convolution layer. When group=n, the input and convolution kernels are divided into n groups equally, the first group of convolution kernels and the first group of inputs are subjected to convolution calculation, the second group of convolution kernels and the second group of inputs are subjected to convolution calculation, ……, the nth group of convolution kernels and the nth group of inputs perform convolution calculations. Default is 1.
-    regularization (WeightDecayRegularizer, optional) – The strategy of regularization. There are two method: :ref:`api_fluid_regularizer_L1Decay` 、 :ref:`api_fluid_regularizer_L2Decay` . If a parameter has set regularizer using  :ref:`api_fluid_ParamAttr` already, the regularization setting here in optimizer will be ignored for this parameter. Otherwise, the regularization setting here in optimizer will take effect. Default None, meaning there is no regularization.
+    regularization (WeightDecayRegularizer, optional): The strategy of regularization. There are two method: :ref:`api_fluid_regularizer_L1Decay` 、 :ref:`api_fluid_regularizer_L2Decay` . If a parameter has set regularizer using  :ref:`api_fluid_ParamAttr` already, the regularization setting here in optimizer will be ignored for this parameter. Otherwise, the regularization setting here in optimizer will take effect. Default None, meaning there is no regularization.
     grad_clip (GradientClipBase, optional): Gradient cliping strategy, it's an instance of some derived class of ``GradientClipBase`` . There are three cliping strategies ( :ref:`api_fluid_clip_GradientClipByGlobalNorm` , :ref:`api_fluid_clip_GradientClipByNorm` , :ref:`api_fluid_clip_GradientClipByValue` ). Default None, meaning there is no gradient clipping.
-    dilation (tuple|int) – The dilation size. It can be a single integer or a tuple containing two integers, representing the height and width of dilation of the convolution kernel elements. If it is a single integer,the height and width of dilation are equal to the integer. Default is 1.
-    stop_gradient (bool, optional) – A boolean that mentions whether gradient should flow. Default is True, means stop calculate gradients.
+    dilation (tuple|int): The dilation size. It can be a single integer or a tuple containing two integers, representing the height and width of dilation of the convolution kernel elements. If it is a single integer,the height and width of dilation are equal to the integer. Default is 1.
+    stop_gradient (bool, optional): A boolean that mentions whether gradient should flow. Default is True, means stop calculate gradients.
+    place (fluid.CPUPlace()|fluid.CUDAPlace(N)|None): This parameter represents which device the executor runs on, and N means the GPU's id. When this parameter is None, PaddlePaddle will set the default device according to its installation version. If Paddle is CPU version, the default device would be set to CPUPlace(). If Paddle is GPU version, the default device would be set to CUDAPlace(0). Default is None.
+    num_filters (int): numbers of convolution kernel, which is the output channels.
 """
 
 common_args_cn = """
-    x (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
-    y (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
+    x (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
+    y (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
     name (str, 可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
-    dtype (str, 可选) - 输出Tensor的数据类型，支持int32、int64、float32、float64。
+    dtype (str, 可选) - 输出 `Tensor` 的数据类型，支持int32、int64、float32、float64。
     param_attr (ParamAttr, 可选) – 该Layer的可学习的权重(Parameter)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
     bias_attr (ParamAttr, 可选) - 该Layer的可学习的偏置(Bias)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
     label (Tensor) - 训练数据的标签，数据类型为：int32, int64。
-    learning_rate (Tensor|float) - 学习率，可以是一个Tensor或者是一个浮点数。默认值为1e-03.
-    axis (int, 可选) - 指定对输入Tensor进行运算的轴。默认值为0。
+    learning_rate (Tensor|float) - 学习率，可以是一个 `Tensor` 或者是一个浮点数。默认值为1e-03.
+    axis (int, 可选) - 指定对输入 `Tensor` 进行运算的轴。默认值为0。
     epsilon (float, 可选) - 添加到分母上的值以防止分母除0。默认值为1e-05。
     is_test (bool, 可选) - 用于表明是否在测试阶段执行。默认值为False，表示非测试阶段。
-    shape (Tensor|tuple|list) - Tensor的形状。如果shape是一个列表或元组，则其元素应该是形状为[1]的整数或Tensor。 如果shape是Tensor，则它应该是一维Tensor。
-    keep_dim (bool) - 是否在输出Tensor中保留减小的维度。如 keep_dim 为True，否则结果张量的维度将比输入张量小，默认值为False。
+    shape (Tensor|tuple|list) - `Tensor` 的形状。如果 `shape` 是一个列表或元组，则其元素应该是形状为[1]的整数或 `Tensor` 。 如果 `shape` 是 `Tensor` ，则它应该是1-D `Tensor`。
+    keep_dim (bool) - 是否在输出 `Tensor` 中保留减小的维度。如 `keep_dim` 为True，否则结果张量的维度将比输入张量小，默认值为False。
     filter_size (tuple|list|int) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
     padding (tuple|int) – 填充大小。可以为单个整数或包含两个整数的元组，分别表示对输入高和宽两侧填充的大小。如果为单个整数，表示高和宽的填充都等于该整数。默认值为0。
     include_sublayers (bool, 可选) - 是否返回子层的参数。如果为True，返回的列表中包含子层的参数。默认值为True。
@@ -51,4 +53,6 @@ common_args_cn = """
     grad_clip (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
     dilation (tuple|int, 可选) - 空洞大小。可以为单个整数或包含两个整数的元组，分别表示卷积核中的元素沿着高和宽的空洞。如果为单个整数，表示高和宽的空洞都等于该整数。默认值为1。
     stop_gradient (bool，可选) - 提示是否应该停止计算梯度，默认值为True，表示停止计算梯度。
+    place (fluid.CPUPlace()|fluid.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为None时，PaddlePaddle会根据其安装版本来设置默认设备。当PaddlePaddle是CPU版时，默认运行设备将会设置为 `fluid.CPUPlace()` ；当PaddlePaddle是GPU版本时，默认执行设备将会设置为 `fluid.CUDAPlace(0)` 。默认值为None。
+    num_filters (int) - 卷积核数，为输出的通道数。
 """
