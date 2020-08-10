@@ -49,6 +49,7 @@ paddle.nn
     nn/exponential_decay.rst
     nn/filter_by_instag.rst
     nn/fsp_matrix.rst
+    nn/functional.rst
     nn/gather_tree.rst
     nn/gelu.rst
     nn/generate_mask_labels.rst
