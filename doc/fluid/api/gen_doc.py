@@ -18,6 +18,7 @@ import sys
 import types
 import os
 import contextlib
+import paddle.fleet as fleet
 import paddle.fluid as fluid
 import paddle.tensor as tensor
 import paddle.nn as nn
