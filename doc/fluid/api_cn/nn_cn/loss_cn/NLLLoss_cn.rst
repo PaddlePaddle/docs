@@ -38,7 +38,7 @@ NLLLoss
 
 返回
 :::::::::
-返回计算 `negative log likihood loss` 的可调用对象，输入为`x`和标签`label`。
+返回计算 `negative log likihood loss` 的可调用对象，输入为 `x` 和标签 `label` 。
 
 代码示例
 :::::::::

@@ -2,7 +2,7 @@ nll_loss
 -------------------------------
 .. py:function:: paddle.nn.functional.nll_loss(x, label, weight=None, ignore_index=-100, reduction='mean')
 
-该接口返回`negative log likelihood`。可在`paddle.nn.loss.NLLLoss`查看详情。
+该接口返回 `negative log likelihood` 。可在 `:ref:cn_api_nn_loss_NLLLoss` 查看详情。
 
 参数
 :::::::::
