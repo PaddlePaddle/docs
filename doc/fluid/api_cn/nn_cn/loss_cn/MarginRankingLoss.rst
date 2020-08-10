@@ -32,11 +32,11 @@ MarginRankingLoss
             如果设置为 ``'mean'`` ，则返回 ``margin_rank_loss`` 的平均值。
             默认值为 ``'none'`` 。
 形状：
-    - **x** - :math:`(N, D)` ，其中D是向量的维度，数据类型为float32或float64。
-    - **y** - :math:`(N, D)` ，与 ``x`` 的形状、数据类型相同。
-    - **label** - :math:`(N, D)` ，与 ``x`` 的形状、数据类型相同。
-    - **out** - :math:`(N)` ，如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`(1)` , 
-         否则shape和输入 `x` 保持一致 。数据类型与 ``x``、 ``y`` 相同。
+    - **x** - :math:`(N, *)` ，维度是[N, *], 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
+    - **y** - :math:`(N, *)` ，与 ``x`` 的形状、数据类型相同。
+    - **label** - :math:`(N, *)` ，与 ``x`` 的形状、数据类型相同。
+    - **out** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`(1)` ， 
+                否则shape和输入 `x` 保持一致 。数据类型与 ``x``、 ``y`` 相同。
 
 返回：返回计算MarginRankingLoss的可调用对象。
 
