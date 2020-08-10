@@ -161,6 +161,7 @@ paddle
 	paddle/sums.rst
 	paddle/t.rst
 	paddle/tanh.rst
+	paddle/to_tensor.rst
 	paddle/topk.rst
 	paddle/trace.rst
 	paddle/transpose.rst
