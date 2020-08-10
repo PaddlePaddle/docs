@@ -144,6 +144,7 @@ paddle.nn
     nn_cn/softshrink_cn.rst
     nn_cn/softsign_cn.rst
     nn_cn/soft_relu_cn.rst
+    nn_cn/sigmoid_cn.rst
     nn_cn/space_to_depth_cn.rst
     nn_cn/SpectralNorm_cn.rst
     nn_cn/square_error_cost_cn.rst
