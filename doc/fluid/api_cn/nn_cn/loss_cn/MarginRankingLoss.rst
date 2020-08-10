@@ -8,7 +8,7 @@ MarginRankingLoss
 该损失函数的数学计算公式如下：
 
  .. math:: 
-     margin_rank_loss = max(0, -label * (x- y) + margin)
+     margin\_rank\_loss = max(0, -label * (x- y) + margin)
 
 当 `reduction` 设置为 ``'mean'`` 时，
 
@@ -32,7 +32,7 @@ MarginRankingLoss
     - **x** - 维度是[N，*] 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
     - **y** - 与 ``x`` 的形状、数据类型相同。
     - **label** - 与 ``x`` 的形状、数据类型相同。
-    - **out** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`(1)` ，否则shape和输入 `x` 保持一致 。数据类型与 ``x``、 ``y`` 相同。
+    - **out** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`[1]` ，否则shape和输入 `x` 保持一致 。数据类型与 ``x``、 ``y`` 相同。
 
 返回
 ::::::::
