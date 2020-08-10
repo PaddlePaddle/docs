@@ -34,9 +34,9 @@ Inerpolate
 
 align_corners和align_mode是可选参数，插值的计算方法可以由它们选择。
 
-示例:
+如:
 
-::
+.. code-block:: text
 
       
       scale 计算方法：
@@ -60,8 +60,8 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
           input : (N,C,H_in,W_in)
           output: (N,C,H_out,W_out) where:
 
-          .. math:: H_out = \left \lfloor {H_{in} * scale_{}factor}} \right \rfloor
-          .. math:: W_out = \left \lfloor {W_{in} * scale_{}factor}} \right \rfloor
+          H_out = H_in * scale_factor
+          W_out = W_in * scale_factor
 
       else:
           align_corners = True
@@ -69,8 +69,8 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
           input : (N,C,H_in,W_in)
           output: (N,C,H_out,W_out) where:
 
-          .. math:: H_out = round(H_{in} * scale_{factor})
-          .. math:: W_out = round(W_{in} * scale_{factor})
+          H_out = round(H_in * scale_factor)
+          W_out = round(W_in * scale_factor)
 
       Bilinear interpolation:
 
@@ -80,8 +80,8 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
           input : (N,C,H_in,W_in)
           output: (N,C,H_out,W_out) where:
 
-          .. math:: H_out = (H_{in}+0.5) * scale_{factor} - 0.5
-          .. math:: W_out = (W_{in}+0.5) * scale_{factor} - 0.5
+          H_out = (H_in+0.5) * scale_factor - 0.5
+          W_out = (W_in+0.5) * scale_factor - 0.5
 
 
       else:
@@ -89,8 +89,8 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
           input : (N,C,H_in,W_in)
           output: (N,C,H_out,W_out) where:
 
-          .. math:: H_out = H_{in} * scale_{factor}
-          .. math:: W_out = W_{in} * scale_{factor}
+          H_out = H_in * scale_factor
+          W_out = W_in * scale_factor
 
       Bicubic interpolation:
 
@@ -100,16 +100,16 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
           input : (N,C,H_in,W_in)
           output: (N,C,H_out,W_out) where:
 
-          .. math:: H_out = (H_{in}+0.5) * scale_{factor} - 0.5
-          .. math:: W_out = (W_{in}+0.5) * scale_{factor} - 0.5
+          H_out = (H_in+0.5) * scale_factor - 0.5
+          W_out = (W_in+0.5) * scale_factor - 0.5
 
       else:
 
           input : (N,C,H_in,W_in)
           output: (N,C,H_out,W_out) where:
 
-          .. math:: H_out = H_{in} * scale_{factor}
-          .. math:: W_out = W_{in} * scale_{factor}
+          H_out = H_in * scale_factor
+          W_out = W_in * scale_factor
 
       Trilinear interpolation:
 
@@ -119,19 +119,19 @@ align_corners和align_mode是可选参数，插值的计算方法可以由它们
           input : (N,C,D_in,H_in,W_in)
           output: (N,C,D_out,H_out,W_out) where:
 
-          .. math:: D_out = (D_{in}+0.5) * scale_{factor} - 0.5
-          .. math:: H_out = (H_{in}+0.5) * scale_{factor} - 0.5
-          .. math:: W_out = (W_{in}+0.5) * scale_{factor} - 0.5
+          D_out = (D_in+0.5) * scale_factor - 0.5
+          H_out = (H_in+0.5) * scale_factor - 0.5
+          W_out = (W_in+0.5) * scale_factor - 0.5
 
 
       else:
 
-          input : :math: `(N,C,D_in,H_in,W_in)`
-          output: :math: `(N,C,D_out,H_out,W_out)` where:
+          input : (N,C,D_in,H_in,W_in)
+          output: (N,C,D_out,H_out,W_out) where:
 
-          .. math:: D_out = D_{in} * scale_{factor}
-          .. math:: H_out = H_{in} * scale_{factor}
-          .. math:: W_out = W_{in} * scale_{factor}
+          D_out = D_in * scale_factor
+          H_out = H_in * scale_factor
+          W_out = W_in * scale_factor
 
 
 有关最近邻插值的详细信息，请参阅维基百科： `最近邻插值 <https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation>`_ 
