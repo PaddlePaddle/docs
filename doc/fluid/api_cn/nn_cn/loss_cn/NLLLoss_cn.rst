@@ -44,46 +44,50 @@ NLLLoss
 
 返回
 :::::::::
-返回计算 `negative log likihood loss` 的可调用对象。
+返回计算 `negative log likelihood loss` 的可调用对象。
 
 代码示例
 :::::::::
 
-..  code-block:: python
+.. code-block:: python
 
-         import paddle
-         import numpy as np
-         
-         nll_loss = paddle.nn.layer.NLLLoss()
-         log_softmax = paddle.nn.LogSoftmax(axis=1)
-         
-         x_np = np.random.random(size=(10, 10)).astype(np.float32)
-         label_np = np.random.randint(0, 10, size=(10,)).astype(np.int64)
-         
-         place = paddle.CPUPlace()
-         
-         # imperative mode
-         paddle.enable_imperative(place)
-         x = paddle.imperative.to_variable(x_np)
-         log_out = log_softmax(x)
-         label = paddle.imperative.to_variable(label_np)
-         imperative_result = nll_loss(log_out, label)
-         print(imperative_result.numpy())
-         
-         # declarative mode
-         paddle.disable_imperative()
-         prog = paddle.Program()
-         startup_prog = paddle.Program()
-         with paddle.program_guard(prog, startup_prog):
-             x = paddle.nn.data(name='x', shape=[10, 10], dtype='float32')
-             label = paddle.nn.data(name='label', shape=[10], dtype='int64')
-             log_out = log_softmax(x)
-             res = nll_loss(log_out, label)
-         
-             exe = paddle.Executor(place)
-             declaritive_result = exe.run(
-                 prog,
-                 feed={"x": x_np,
-                       "label": label_np},
-                 fetch_list=[res])
-         print(declaritive_result)
+        import paddle
+        import numpy as np
+
+        nll_loss = paddle.nn.layer.NLLLoss()
+        log_softmax = paddle.nn.LogSoftmax(axis=1)
+
+        x_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
+                         [0.53331435, 0.07999352, 0.8549948 ],
+                         [0.25879037, 0.39530203, 0.698465  ],
+                         [0.73427284, 0.63575995, 0.18827209],
+                         [0.05689114, 0.0862954 , 0.6325046 ]]).astype(np.float32)
+        label_np = np.array([0, 2, 1, 1, 0]).astype(np.int64)
+
+        place = paddle.CPUPlace()
+
+        # imperative mode
+        paddle.enable_imperative(place)
+        x = paddle.imperative.to_variable(x_np)
+        log_out = log_softmax(x)
+        label = paddle.imperative.to_variable(label_np)
+        imperative_result = nll_loss(log_out, label)
+        print(imperative_result.numpy()) # [1.0720209]
+
+        # declarative mode
+        paddle.disable_imperative()
+        prog = paddle.Program()
+        startup_prog = paddle.Program()
+        with paddle.program_guard(prog, startup_prog):
+            x = paddle.nn.data(name='x', shape=[5, 3], dtype='float32')
+            label = paddle.nn.data(name='label', shape=[5], dtype='int64')
+            log_out = log_softmax(x)
+            res = nll_loss(log_out, label)
+
+            exe = paddle.Executor(place)
+            declaritive_result = exe.run(
+                prog,
+                feed={"x": x_np,
+                      "label": label_np},
+                fetch_list=[res])
+        print(declaritive_result) # [array([1.0720209], dtype=float32)]
