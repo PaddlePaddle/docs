@@ -39,15 +39,15 @@ common_args_en = """
 common_args_cn = """
     x (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
     y (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
-    name (str, 可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
-    dtype (str, 可选) - 输出 `Tensor` 的数据类型，支持int32、int64、float32、float64。
-    param_attr (ParamAttr, 可选) – 该Layer的可学习的权重(Parameter)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
-    bias_attr (ParamAttr, 可选) - 该Layer的可学习的偏置(Bias)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
+    name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    dtype (str，可选) - 输出 `Tensor` 的数据类型，支持int32、int64、float32、float64。
+    param_attr (ParamAttr，可选) – 该Layer的可学习的权重(Parameter)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
+    bias_attr (ParamAttr，可选) - 该Layer的可学习的偏置(Bias)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
     label (Tensor) - 训练数据的标签，数据类型为：int32, int64。
     learning_rate (Tensor|float) - 学习率，可以是一个 `Tensor` 或者是一个浮点数。默认值为1e-03.
-    axis (int, 可选) - 指定对输入 `Tensor` 进行运算的轴。默认值为0。
-    epsilon (float, 可选) - 添加到分母上的值以防止分母除0。默认值为1e-05。
-    is_test (bool, 可选) - 用于表明是否在测试阶段执行。默认值为False，表示非测试阶段。
+    axis (int，可选) - 指定对输入 `Tensor` 进行运算的轴。默认值为0。
+    epsilon (float，可选) - 添加到分母上的值以防止分母除0。默认值为1e-05。
+    is_test (bool，可选) - 用于表明是否在测试阶段执行。默认值为False，表示非测试阶段。
     shape (Tensor|tuple|list) - `Tensor` 的形状。如果 `shape` 是一个列表或元组，则其元素应该是形状为[1]的整数或 `Tensor` 。 如果 `shape` 是 `Tensor` ，则它应该是1-D `Tensor`。
     keep_dim (bool) - 是否在输出 `Tensor` 中保留减小的维度。如 `keep_dim` 为True，否则结果张量的维度将比输入张量小，默认值为False。
     filter_size (tuple|list|int) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
