@@ -109,7 +109,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
     注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
-    安装protobuf。
+    安装protobuf
 
     yum install patchelf
 
