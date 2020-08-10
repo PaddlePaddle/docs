@@ -93,6 +93,7 @@ paddle.nn
     nn_cn/linear_lr_warmup_cn.rst
     nn_cn/logsigmoid_cn.rst
     nn_cn/log_loss_cn.rst
+    nn_cn/log_softmax_cn.rst
     nn_cn/lrn_cn.rst
     nn_cn/margin_rank_loss_cn.rst
     nn_cn/maxout_cn.rst
