@@ -97,11 +97,11 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 *编译*
 
-1.创建并进入/Paddle/build路径下
+1.创建并进入/Paddle/build路径下：
 
-    `mkdir -p /Paddle/build && cd /Paddle/build`
+    mkdir -p /Paddle/build && cd /Paddle/buildi
 
-2.安装依赖
+2.安装依赖：
 
 
     For Python2: pip install protobuf
@@ -109,13 +109,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
     注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
 
-    > 安装protobuf。
+    安装protobuf。
 
-    `yum install patchelf`
+    yum install patchelf
 
-    > 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
+    安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
-3.执行cmake
+3.执行cmake：
 
 
     * 对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -128,11 +128,11 @@ no changes added to commit (use "git add" and/or "git commit -a")
     For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
-4.执行编译
+4.执行编译：
 
-    `make -j$(nproc)`
+    make -j$(nproc)
 
-    > 使用多核编译
+使用多核编译
 
 5.编译成功后进入`/Paddle/build/python/dist`目录下找到生成的`.whl`包
 
@@ -141,8 +141,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 *单元测试*
 
-    单测运行（重复运行100次）
-    `ctest --repeat-until-fail 100 -R test_xx`
+单测运行（重复运行100次）
+ctest --repeat-until-fail 100 -R test_xx
 
 关于单元测试，可参考[Op单元测试](../new_op/new_op.html#id7) 的运行方法。
 
