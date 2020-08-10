@@ -41,6 +41,7 @@ MarginRankingLoss
 **代码示例**
 
 .. code-block:: python
+
      import numpy as np 
      import paddle 
      import paddle.imperative as imperative
