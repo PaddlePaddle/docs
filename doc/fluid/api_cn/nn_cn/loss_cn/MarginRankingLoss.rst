@@ -1,14 +1,12 @@
-.. _cn_api_nn_loss_MarginRankingLoss:
-
 MarginRankingLoss
-
 -------------------------------
 
 .. py:class:: paddle.nn.loss.MarginRankingLoss(margin=0.0, reduction='mean')
 
-该接口用于创建一个 ``MarginRankingLoss`` 的可调用类，计算输入x, y 和 标签label间的 `margin rank loss` 损失。
+该接口用于创建一个 ``MarginRankingLoss`` 的可调用类，计算输入x，y 和 标签label间的 `margin rank loss` 损失。
 
 该损失函数的数学计算公式如下：
+
  .. math:: 
      margin_rank_loss = max(0, -label * (x- y) + margin)
 
@@ -27,16 +25,16 @@ MarginRankingLoss
 参数
 ::::::::
     - **margin** (float，可选)： - 用于加和的margin值，默认值为0。  
-    - **reduction** (string, 可选)： - 指定应用于输出结果的计算方式，可选值有: ``'none'`` | ``'mean'`` |  ``'sum'`` 。
+    - **reduction** (string，可选)： - 指定应用于输出结果的计算方式，可选值有: ``'none'`` | ``'mean'`` |  ``'sum'`` 。
             如果设置为 ``'none'`` ，则直接返回 ``margin_rank_loss`` 。
             如果设置为 ``'sum'`` ，则返回 ``margin_rank_loss`` 的总和。
             如果设置为 ``'mean'`` ，则返回 ``margin_rank_loss`` 的平均值。
             默认值为 ``'none'`` 。
 形状
 ::::::::
-    - **x** - :math:`(N, *)` ，维度是[N, *], 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
-    - **y** - :math:`(N, *)` ，与 ``x`` 的形状、数据类型相同。
-    - **label** - :math:`(N, *)` ，与 ``x`` 的形状、数据类型相同。
+    - **x** - 维度是[N，*] 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
+    - **y** - 与 ``x`` 的形状、数据类型相同。
+    - **label** - 与 ``x`` 的形状、数据类型相同。
     - **out** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`(1)` ， 
                 否则shape和输入 `x` 保持一致 。数据类型与 ``x``、 ``y`` 相同。
 
