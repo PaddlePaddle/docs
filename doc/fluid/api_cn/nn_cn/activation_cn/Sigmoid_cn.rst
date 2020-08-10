@@ -24,7 +24,8 @@ Sigmoid
   返回计算 ``Sigmoid`` 的可调用对象。
 
 
-**代码示例**
+代码示例
+::::::::
 
 .. code-block:: python
 
