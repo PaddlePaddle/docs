@@ -159,7 +159,6 @@ fluid.layers
     layers/index_select.rst
     layers/inplace_abn.rst
     layers/instance_norm.rst
-    layers/interpolate.rst
     layers/inverse_time_decay.rst
     layers/iou_similarity.rst
     layers/is_empty.rst
