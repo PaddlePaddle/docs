@@ -13,3 +13,4 @@ loss
     loss_cn/L1Loss_cn.rst
     loss_cn/MSELoss_cn.rst
     loss_cn/NLLLoss_cn.rst
+    loss_cn/SmoothL1Loss.rst
