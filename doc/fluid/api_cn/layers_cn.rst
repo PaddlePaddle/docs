@@ -157,6 +157,7 @@ fluid.layers
     layers_cn/increment_cn.rst
     layers_cn/inverse_time_decay_cn.rst
     layers_cn/index_select_cn.rst
+    layers_cn/inplace_abn_cn.rst
     layers_cn/index_sample_cn.rst
     layers_cn/instance_norm_cn.rst
     layers_cn/interpolate_cn.rst
@@ -175,6 +176,7 @@ fluid.layers
     layers_cn/linear_lr_warmup_cn.rst
     layers_cn/linspace_cn.rst
     layers_cn/load_cn.rst
+    layers_cn/locality_aware_nms_cn.rst
     layers_cn/lod_append_cn.rst
     layers_cn/lod_reset_cn.rst
     layers_cn/log_cn.rst
@@ -192,7 +194,6 @@ fluid.layers
     layers_cn/lstm_unit_cn.rst
     layers_cn/LSTMCell_cn.rst
     layers_cn/margin_rank_loss_cn.rst
-    layers_cn/masked_select_cn.rst
     layers_cn/matmul_cn.rst
     layers_cn/maxout_cn.rst
     layers_cn/mean_cn.rst
@@ -294,13 +295,13 @@ fluid.layers
     layers_cn/shape_cn.rst
     layers_cn/shard_index_cn.rst
     layers_cn/shuffle_channel_cn.rst
-    layers_cn/shuffle_cn.rst
     layers_cn/sigmoid_cn.rst
     layers_cn/sigmoid_cross_entropy_with_logits_cn.rst
     layers_cn/sigmoid_focal_loss_cn.rst
     layers_cn/sign_cn.rst
     layers_cn/similarity_focus_cn.rst
     layers_cn/sin_cn.rst
+    layers_cn/size_cn.rst
     layers_cn/slice_cn.rst
     layers_cn/smooth_l1_cn.rst
     layers_cn/soft_relu_cn.rst
