@@ -13,7 +13,7 @@ ReplicationPad1d
 按照 padding 对输入 以replicate模式进行 ``pad``，即填充输入的边界值。
 
 参数：
-  - **pad** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
+  - **padding** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
     默认值为[0, 0]。
   - **data_format** (str)  - 指定input的format，可为 `'NCL'` 或者 `'NLC'`，默认值为`'NCL'`。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。

@@ -26,6 +26,7 @@ paddle.nn
     nn/center_loss.rst
     nn/clip.rst
     nn/clip_by_norm.rst
+    nn/ConstantPad1d.rst
     nn/collect_fpn_proposals.rst
     nn/cond.rst
     nn/continuous_value_model.rst
@@ -92,6 +93,7 @@ paddle.nn
     nn/npair_loss.rst
     nn/one_hot.rst
     nn/pad.rst
+    nn/Pad.rst
     nn/pad_constant_like.rst
     nn/pad2d.rst
     nn/ParameterList.rst
@@ -107,8 +109,10 @@ paddle.nn
     nn/psroi_pool.rst
     nn/random_crop.rst
     nn/rank_loss.rst
+    nn/ReflectionPad1d.rst
     nn/ReLU.rst
     nn/relu6.rst
+    nn/ReplicationPad1d.rst
     nn/resize_bilinear.rst
     nn/resize_nearest.rst
     nn/resize_trilinear.rst

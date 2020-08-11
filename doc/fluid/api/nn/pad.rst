@@ -1,7 +1,7 @@
-.. _api_nn_pad:
+.. _api_nn_functional_pad:
 
 pad
 -------------------------------
-:doc_source: paddle.nn.pad
+:doc_source: paddle.nn.functional.pad
 
 
