@@ -61,13 +61,13 @@ BCELoss
     label_data = np.array([1.0, 0.0, 1.0]).astype("float32")
 
     # imperative mode
-    paddle.enable_imperative()
-    x = paddle.imperative.to_variable(x_data)
-    label = paddle.imperative.to_variable(label_data)
+    paddle.disable_static()
+    x = paddle.to_variable(x_data)
+    label = paddle.to_variable(label_data)
     bce_loss = paddle.nn.loss.BCELoss()
     output = bce_loss(x, label)
     print(output.numpy())  # [0.65537095]
-    paddle.disable_imperative()
+    paddle.enable_static()
 
     # declarative mode
     x = fluid.data(name="x", shape=[3, 1], dtype='float32')
