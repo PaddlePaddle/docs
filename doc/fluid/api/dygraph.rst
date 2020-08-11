@@ -18,10 +18,7 @@ fluid.dygraph
     dygraph/disable_dygraph.rst
     dygraph/disable_imperative.rst
     dygraph/Dropout.rst
-    dygraph/dygraph_to_static_code.rst
-    dygraph/dygraph_to_static_func.rst
-    dygraph/dygraph_to_static_output.rst
-    dygraph/dygraph_to_static_program.rst
+    dygraph/declarative.rst
     dygraph/Embedding.rst
     dygraph/enable_dygraph.rst
     dygraph/enable_imperative.rst
@@ -29,7 +26,6 @@ fluid.dygraph
     dygraph/ExponentialDecay.rst
     dygraph/grad.rst
     dygraph/GroupNorm.rst
-    dygraph/GRUCell.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
     dygraph/InstanceNorm.rst
@@ -40,7 +36,6 @@ fluid.dygraph
     dygraph/LayerNorm.rst
     dygraph/Linear.rst
     dygraph/load_dygraph.rst
-    dygraph/LSTMCell.rst
     dygraph/MSELoss.rst
     dygraph/NaturalExpDecay.rst
     dygraph/NCE.rst
