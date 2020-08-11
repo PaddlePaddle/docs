@@ -4,7 +4,7 @@ LogSoftmax
 -------------------------------
 .. py:class:: paddle.nn.LogSoftmax(axis=-1, name=None)
 
-LogSoftmax激活层，数序公式如下：
+LogSoftmax激活层，计算公式如下：
 
 .. math::
 

@@ -2,14 +2,13 @@
 
 log_softmax
 -------------------------------
-.. py:class:: paddle.nn.functional.log_softmax(x, axis=-1, dtype=None, name=None)
+.. py:function:: paddle.nn.functional.log_softmax(x, axis=-1, dtype=None, name=None)
 
 该OP实现了log_softmax层。OP的计算公式如下：
 
 .. math::
 
-    Out[i, j] = log(softmax(x)) 
-              = log(\\frac{\exp(X[i, j])}{\sum_j(exp(X[i, j])})
+    Out[i, j] = log(softmax(x)) = log(\frac{\exp(X[i, j])}{\sum_j(exp(X[i, j])})
 
 参数
 ::::::::::
@@ -20,7 +19,7 @@ log_softmax
 
 返回
 ::::::::::
-    ``Tensor`` ，形状和 ``x`` 相同，数据类型 ``dtype`` 或者和 ``x`` 相同。
+    ``Tensor`` ，形状和 ``x`` 相同，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
 代码示例
 ::::::::::
