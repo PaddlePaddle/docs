@@ -99,45 +99,35 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
     mkdir -p /Paddle/build && cd /Paddle/build
 
-2.Use the following command to install the dependencies:
+2.Execute cmake:
 
 
-    For Python2: pip install protobuf
-    For Python3: pip3.5 install protobuf
-
-Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
-
-    Install protobuf 3.1.0
-
-    apt install patchelf
-
-    Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
-
-3.Execute cmake:
-
-
-* For users who need to compile the **CPU version PaddlePaddle**:
+    * For users who need to compile the **CPU version PaddlePaddle**:
 
     For Python2: cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 
-* For users who need to compile the **GPU version PaddlePaddle**:
+    * For users who need to compile the **GPU version PaddlePaddle**:
 
     For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 
-4.Execute compilation:
+3.Execute compilation:
 
     make -j$(nproc)
 
     Use multicore compilation
 
-5.After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package.
+4.After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package.
 
 Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
 
+5.Install the compiled .whl package on the current machine or target machine:
+
+    For Python2: pip install -U（whl package name）
+    For Python3: pip3.5 install -U（whl package name）
 
 *Test*
 
