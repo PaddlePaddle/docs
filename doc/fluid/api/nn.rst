@@ -7,7 +7,6 @@ paddle.nn
 
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
-    nn/add_position_encoding.rst
     nn/affine_channel.rst
     nn/affine_grid.rst
     nn/anchor_generator.rst
@@ -28,7 +27,6 @@ paddle.nn
     nn/clip_by_norm.rst
     nn/collect_fpn_proposals.rst
     nn/cond.rst
-    nn/continuous_value_model.rst
     nn/conv2d.rst
     nn/conv2d_transpose.rst
     nn/conv3d.rst
@@ -47,7 +45,6 @@ paddle.nn
     nn/Embedding.rst
     nn/erf.rst
     nn/exponential_decay.rst
-    nn/filter_by_instag.rst
     nn/fsp_matrix.rst
     nn/gather_tree.rst
     nn/gelu.rst
@@ -67,6 +64,8 @@ paddle.nn
     nn/huber_loss.rst
     nn/image_resize.rst
     nn/image_resize_short.rst
+    nn/initializer.rst
+    nn/InstanceNorm.rst
     nn/inverse_time_decay.rst
     nn/iou_similarity.rst
     nn/kldiv_loss.rst
@@ -83,29 +82,26 @@ paddle.nn
     nn/loss.rst
     nn/lrn.rst
     nn/margin_rank_loss.rst
+    nn/matrix_nms.rst
     nn/maxout.rst
     nn/mse_loss.rst
-    nn/multiclass_nms.rst
-    nn/matrix_nms.rst
     nn/natural_exp_decay.rst
     nn/noam_decay.rst
     nn/npair_loss.rst
     nn/one_hot.rst
     nn/pad.rst
-    nn/pad_constant_like.rst
     nn/pad2d.rst
+    nn/Pad2D.rst
+    nn/pad_constant_like.rst
     nn/ParameterList.rst
     nn/piecewise_decay.rst
     nn/pixel_shuffle.rst
-    nn/polygon_box_transform.rst
     nn/polynomial_decay.rst
-    nn/pool2d.rst
     nn/Pool2D.rst
     nn/pool3d.rst
     nn/prior_box.rst
     nn/prroi_pool.rst
     nn/psroi_pool.rst
-    nn/random_crop.rst
     nn/rank_loss.rst
     nn/ReLU.rst
     nn/relu6.rst
@@ -117,15 +113,12 @@ paddle.nn
     nn/roi_align.rst
     nn/roi_perspective_transform.rst
     nn/roi_pool.rst
-    nn/row_conv.rst
-    nn/rpn_target_assign.rst
     nn/sampled_softmax_with_cross_entropy.rst
     nn/selu.rst
     nn/Sequential.rst
     nn/shuffle_channel.rst
     nn/sigmoid_cross_entropy_with_logits.rst
     nn/sigmoid_focal_loss.rst
-    nn/similarity_focus.rst
     nn/smooth_l1.rst
     nn/soft_relu.rst
     nn/softmax.rst
@@ -139,13 +132,12 @@ paddle.nn
     nn/ssd_loss.rst
     nn/swish.rst
     nn/switch_case.rst
+    nn/SyncBatchNorm.rst
     nn/tanh_shrink.rst
-    nn/target_assign.rst
     nn/teacher_student_sigmoid_loss.rst
-    nn/temporal_shift.rst
     nn/thresholded_relu.rst
     nn/unfold.rst
-    nn/warpctc.rst
+    nn/UpSample.rst
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
