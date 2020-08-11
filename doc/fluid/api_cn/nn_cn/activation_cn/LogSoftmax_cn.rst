@@ -26,22 +26,19 @@ LogSoftmax激活层，数序公式如下：
 .. code-block:: python
 
     import paddle
-    import paddle.nn.functional as F
     import numpy as np
 
-    paddle.enable_imperative()
+    paddle.disable_static()
 
     x = np.array([[[-2.0, 3.0, -4.0, 5.0],
                     [3.0, -4.0, 5.0, -6.0],
                     [-7.0, -8.0, 8.0, 9.0]],
                     [[1.0, -2.0, -3.0, 4.0],
                     [-5.0, 6.0, 7.0, -8.0],
-                    [6.0, 7.0, 8.0, 9.0]]]).astype('float32')
-    x = paddle.imperative.to_variable(x)
-    out1 = F.log_softmax(x)
-    out2 = F.log_softmax(x, dtype='float64')
-    # out1's data type is float32; out2's data type is float64
-    # out1 and out2's value is as follows:
+                    [6.0, 7.0, 8.0, 9.0]]], 'float32')
+    log_softnmax = paddle.nn.LogSoftmax()
+    x = paddle.to_variable(x)
+    out = log_softnmax(x)
     # [[[ -7.1278396   -2.1278396   -9.127839    -0.12783948]
     #   [ -2.1270514   -9.127051    -0.12705144 -11.127051  ]
     #   [-16.313261   -17.313261    -1.3132617   -0.31326184]]
