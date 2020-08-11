@@ -5,24 +5,20 @@ full_like
 
 .. py:function:: paddle.full_like(x, fill_value, dtype=None, name=None)
 
-:alias_main: paddle.full_like
-:alias: paddle.full_like,paddle.tensor.full_like,paddle.tensor.creation.full_like
 
-该OP创建一个和x具有相同的形状和数据类型的张量，其中元素值均为 ``fill_value``。
+该OP创建一个和 ``x`` 具有相同的形状并且数据类型为 ``dtype`` 的Tensor，其中元素值均为 ``fill_value`` , 当 ``dtype`` 为None的时候，Tensor数据类型和输入 ``x`` 相同。
 
 参数：
-    - **x** (Variable) – 输入张量, 输出张量和x具有相同的形状，x的数据类型可以是bool，float16，float32，float64，int32，int64。
+    - **x** (Tensor) – 输入Tensor, 输出Tensor和x具有相同的形状，x的数据类型可以是bool，float16，float32，float64，int32，int64。
     - **fill_value** (bool|float|int) - 用于初始化输出张量的常量数据的值。注意：该参数不可超过输出变量数据类型的表示范围。
     - **dtype** （np.dtype|core.VarDesc.VarType|str， 可选）- 输出变量的数据类型。若参数为None，则输出变量的数据类型和输入变量相同，默认值为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     
 返回：返回一个存储结果的Tensor，数据类型和dtype相同。
 
-返回类型：Variable
-
 抛出异常：
-    - ``TypeError``: - 当dtype不是bool、float16、float32、float64、int32、int64其中之一。
-    - ``TypeError``: - 如果 ``shape`` 的类型不是list或tuple或Varibable。
+    - ``TypeError``: - 当 ``x`` 的数据类型不是bool、float16、float32、float64、int32、int64其中之一。
+    - ``TypeError``: - 当 ``dtype`` 不是bool、float16、float32、float64、int32、int64或者None其中之一。
 
     **代码示例**：
 
