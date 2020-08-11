@@ -91,15 +91,13 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-## Build and test
+## Build
 
-*Build*
-
-1.Create and enter the /Paddle/build path
+Create and enter the /Paddle/build path
 
     mkdir -p /Paddle/build && cd /Paddle/build
 
-2.Execute cmake:
+Execute cmake:
 
 
     * For users who need to compile the **CPU version PaddlePaddle**:
@@ -114,25 +112,23 @@ no changes added to commit (use "git add" and/or "git commit -a")
     For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 
-3.Execute compilation:
+Execute compilation:
 
     make -j$(nproc)
 
-    Use multicore compilation
+    Such as: make -j16, using 16 core compilation
 
-4.After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package.
-
-Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
-
-5.Install the compiled .whl package on the current machine or target machine:
+After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package.Install the compiled .whl package on the current machine or target machine:
 
     For Python2: pip install -U（whl package name）
     For Python3: pip3.5 install -U（whl package name）
 
-*Test*
+Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
 
-Run Test (Run 100 times)
-ctest --repeat-until-fail 100 -R test_xx
+## Test
+
+    Run Test (Run 100 times)
+    ctest --repeat-until-fail 100 -R test_xx
 
 Please refer to [Op Unit Tests](../new_op/new_op_en.html#unit-tests) about more information of running unit tests.
 

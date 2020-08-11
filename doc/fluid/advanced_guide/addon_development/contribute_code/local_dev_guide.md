@@ -93,15 +93,13 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-## 编译和单元测试
+## 编译
 
-*编译*
-
-1.创建并进入/Paddle/build路径下：
+创建并进入/Paddle/build路径下：
 
     mkdir -p /Paddle/build && cd /Paddle/build
 
-2.执行cmake：
+执行cmake：
 
 
     * 对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -114,25 +112,23 @@ no changes added to commit (use "git add" and/or "git commit -a")
     For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
-3.执行编译：
+执行编译：
 
     make -j$(nproc)
 
-    使用多核编译，nproc是核数，类似make -j16
+    如：make -j16，使用16核编译
 
-4.编译成功后进入`/Paddle/build/python/dist`目录下找到生成的`.whl`包
-
-5.在当前机器或目标机器安装编译好的.whl包：
+安装编译好的whl包：首先进入/Paddle/build/python/dist目录下找到生成的.whl包后，然后当前机器或目标机器安装编译好的.whl包：
 
     For Python2: pip install -U（whl包的名字）
     For Python3: pip3.5 install -U（whl包的名字）
 
 关于编译 PaddlePaddle 的源码，请参见[从源码编译](../../../install/compile/fromsource.html) 选择对应的操作系统。
 
-*单元测试*
+## 单元测试
 
-单测运行（重复运行多次，避免随机失败，如重复运行100次的命令如下：）
-ctest --repeat-until-fail 100 -R test_xx
+    单测运行（重复运行多次，避免随机失败）如重复运行100次的命令如下:
+    ctest --repeat-until-fail 100 -R test_xx
 
 关于单元测试，可参考[Op单元测试](../new_op/new_op.html#id7) 的运行方法。
 
