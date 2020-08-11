@@ -40,7 +40,8 @@ MarginRankingLoss
 ::::::::
 返回计算MarginRankingLoss的可调用对象。
 
-**代码示例**
+代码示例
+::::::::
 
 .. code-block:: python
 
