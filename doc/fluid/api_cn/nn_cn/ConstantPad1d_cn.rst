@@ -2,7 +2,7 @@
 
 ConstantPad1d
 -------------------------------
-.. py:class:: paddle.nn.ConstantPad1d(pad=[0, 0], value=0.0, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.ConstantPad1d(padding=[0, 0], value=0.0, data_format="NCL", name=None)
 
 :alias_main: paddle.nn.ConstantPad1d
 :alias: paddle.nn.ConstantPad1d,paddle.nn.layer.ConstantPad1d,paddle.nn.common.ConstantPad1d
@@ -10,10 +10,10 @@ ConstantPad1d
 
 **ConstantPad1d**
 
-按照 pad 对输入 以constant模式进行 ``pad``，即填充固定值。
+按照 padding 对输入 以constant模式进行 ``pad``，即填充固定值。
 
 参数：
-  - **pad** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
+  - **padding** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
     默认值为[0, 0]。
   - **value** (float32) - 待填充的值，默认值为0.0。
   - **data_format** (str)  - 指定input的format，可为 `'NCL'` 或者 `'NLC'`，默认值为`'NCL'`。
@@ -32,7 +32,7 @@ ConstantPad1d
     pad = [1, 2]
     value = 0.0
     data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
-    my_pad = nn.ConstantPad1d(pad=pad, value=value)
+    my_pad = nn.ConstantPad1d(padding=pad, value=value)
     with fluid.dygraph.guard():
         data = fluid.dygraph.to_variable(data)
         result = my_pad(data)

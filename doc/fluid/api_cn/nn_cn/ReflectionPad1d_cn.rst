@@ -2,7 +2,7 @@
 
 ReflectionPad1d
 -------------------------------
-.. py:class:: paddle.nn.ReflectionPad1d(pad=[0, 0], data_format="NCHW", name=None)
+.. py:class:: paddle.nn.ReflectionPad1d(padding=[0, 0], data_format="NCL", name=None)
 
 :alias_main: paddle.nn.ReflectionPad1d
 :alias: paddle.nn.ReflectionPad1d,paddle.nn.layer.ReflectionPad1d,paddle.nn.common.ReflectionPad1d
@@ -10,7 +10,7 @@ ReflectionPad1d
 
 **ReflectionPad1d**
 
-按照 pad 对输入 以reflection模式进行 ``pad``，即填充以输入边界值为轴的映射 。
+按照 padding 对输入 以reflection模式进行 ``pad``，即填充以输入边界值为轴的映射 。
 
 参数：
   - **pad** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
@@ -30,7 +30,7 @@ ReflectionPad1d
     input_shape = (1, 2, 3)
     pad = [1, 2]
     data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
-    my_pad = nn.ReflectionPad1d(pad=pad)
+    my_pad = nn.ReflectionPad1d(padding=pad)
     with fluid.dygraph.guard():
         data = fluid.dygraph.to_variable(data)
         result = my_pad(data)
