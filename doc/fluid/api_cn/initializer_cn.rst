@@ -12,8 +12,6 @@ fluid.initializer
     initializer_cn/BilinearInitializer_cn.rst
     initializer_cn/Constant_cn.rst
     initializer_cn/ConstantInitializer_cn.rst
-    initializer_cn/force_init_on_cpu_cn.rst
-    initializer_cn/init_on_cpu_cn.rst
     initializer_cn/MSRA_cn.rst
     initializer_cn/MSRAInitializer_cn.rst
     initializer_cn/Normal_cn.rst
