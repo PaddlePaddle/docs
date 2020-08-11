@@ -39,9 +39,9 @@ nll_loss
         place = paddle.CPUPlace()
 
         # imperative mode
-        paddle.enable_imperative(place)
-        x = paddle.imperative.to_variable(x_np)
+        paddle.disable_static(place)
+        x = paddle.to_variable(x_np)
         log_out = log_softmax(x)
-        label = paddle.imperative.to_variable(label_np)
+        label = paddle.to_variable(label_np)
         imperative_result = nll_loss(log_out, label)
         print(imperative_result.numpy()) # [1.0720209]
