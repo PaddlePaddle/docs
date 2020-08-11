@@ -82,7 +82,7 @@ paddle.nn
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
-    nn/margin_rank_loss.rst
+    nn/margin_ranking_loss.rst
     nn/maxout.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
