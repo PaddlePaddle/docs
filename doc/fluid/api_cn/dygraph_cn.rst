@@ -58,3 +58,4 @@ fluid.dygraph
     dygraph_cn/Tracer_cn.rst
     dygraph_cn/TranslatedLayer_cn.rst
     dygraph_cn/TreeConv_cn.rst
+    dygraph_cn/Flatten_cn.rst
