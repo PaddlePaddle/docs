@@ -10,59 +10,142 @@ import argparse
 en_suffix = "_en.rst"
 cn_suffix = "_cn.rst"
 file_path_dict = {}
+same_api_map = {}
+alias_api_map = {}
+not_display_doc_map = {}
+display_doc_map = {}
+api_set = set()
 
 
-def _str2bool(s):
-    if s.lower() in ('yes', 'true'):
-        return True
-    elif s.lower() in ('no', 'false'):
-        return False
-    else:
-        raise argparse.ArgumentTypeError('Unsupported value encountered.')
-
-
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '--gen_cn',
-        type=_str2bool,
-        default=False,
-        help='Generate the cn documentations')
-    parser.add_argument(
-        '--gen_en',
-        type=_str2bool,
-        default=True,
-        help='Generate the en documentations')
-    return parser.parse_args()
-
-
-def gen_doc_dir(root_path='paddle'):
-    backup_path = root_path + "_" + str(int(time.time()))
-    # move old dirs
-    if os.path.isdir(root_path):
-        os.rename(root_path, backup_path)
-
-    os.mkdir(root_path)
+def get_all_api(root_path='paddle'):
     for filefiner, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
-        path = name.replace(".", "/")
-
         try:
             m = eval(name)
         except AttributeError:
             pass
         else:
             if hasattr(eval(name), "__all__"):
-                os.makedirs(path)
+                #may have duplication of api
                 for api in list(set(eval(name).__all__)):
-                    os.mknod(path + "/" + api + en_suffix)
-                    gen = EnDocGenerator()
-                    with gen.guard(path + "/" + api + en_suffix):
-                        if api != 'test, get_dict':
-                            gen.module_name = name
-                            gen.api = api
-                            gen.print_header_reminder()
-                            gen.print_item()
+                    api_all = name + "." + api
+                    if "," in api:
+                        continue
+
+                    try:
+                        fc_id = id(eval(api_all))
+                    except AttributeError:
+                        pass
+                    else:
+                        api_set.add(api_all)
+
+
+def get_all_same_api():
+    for api in api_set:
+        fc_id = id(eval(api))
+        if fc_id in same_api_map:
+            same_api_map[fc_id].append(api)
+        else:
+            same_api_map[fc_id] = [api]
+
+
+def get_not_display_doc_list(file="./not_display_doc_list"):
+    with open(file, 'r') as f:
+        for line in f.readlines():
+            line = line.strip()
+            not_display_doc_map[line] = 1
+
+
+def get_display_doc_map(file="./display_doc_list"):
+    with open(file, 'r') as f:
+        for line in f.readlines():
+            line = line.strip()
+            display_doc_map[line] = 1
+
+
+def get_alias_mapping(file="./alias_api_mapping"):
+    with open(file, 'r') as f:
+        for line in f.readlines():
+            t = line.strip().split('\t')
+            real_api = t[0].strip()
+            alias_api = t[1].strip()
+            alias_api_map[real_api] = alias_api
+
+
+def is_filter_api(api):
+    #if api in display_list, just return False
+    if api in display_doc_map:
+        return False
+
+    #check in api in not_display_list
+    for key in not_display_doc_map:
+        #find the api
+        if key == api:
+            return True
+        #find the module
+        if api.startswith(key):
+            k_segs = key.split(".")
+            a_segs = api.split(".")
+            if k_segs[len(k_segs) - 1] == a_segs[len(k_segs) - 1]:
+                return True
+
+    #check api in alias map
+    if alias_api_map.has_key(api):
+        return False
+
+    #check api start with paddle.fluid
+    #if has no alias, return True
+    #if has alias also in paddle.fluid, return True
+    #if has alias in other module, return False
+    same_apis = same_api_map[id(eval(api))]
+    if api.startswith("paddle.fluid"):
+        all_fluid_flag = True
+        for x in same_apis:
+            if not x.startswith("paddle.fluid"):
+                all_fluid_flag = False
+
+        if all_fluid_flag:
+            return True
+
+    #if the api in alias_map key, others api is alias api
+    for x in same_apis:
+        if alias_api_map.has_key(x):
+            return True
+
+    if len(same_apis) > 1:
+        # find shortest path of api as the real api
+        # others api as the alias api
+        shortest = len(same_apis[0].split("."))
+        for x in same_apis:
+            if len(x.split(".")) < shortest:
+                shortest = len(x.split("."))
+
+        if len(api.split(".")) == shortest:
+            return False
+        else:
+            return True
+    return False
+
+
+def gen_en_files(root_path='paddle'):
+    backup_path = root_path + "_" + str(int(time.time()))
+
+    for api in api_set:
+        if is_filter_api(api):
+            continue
+
+        doc_file = api.split(".")[-1]
+        path = "/".join(api.split(".")[0:-1])
+        if not os.path.exists(path):
+            os.makedirs(path)
+        f = api.replace(".", "/")
+        os.mknod(f + en_suffix)
+        gen = EnDocGenerator()
+        with gen.guard(f + en_suffix):
+            gen.module_name = ".".join(api.split(".")[0:-1])
+            gen.api = doc_file
+            gen.print_header_reminder()
+            gen.print_item()
 
 
 def clean_en_files(path="./paddle"):
@@ -70,62 +153,6 @@ def clean_en_files(path="./paddle"):
         for file in files:
             if file.endswith(en_suffix):
                 os.remove(os.path.join(root, file))
-
-
-def gen_en_files(root_path='paddle'):
-    for filefiner, name, ispkg in pkgutil.walk_packages(
-            path=paddle.__path__, prefix=paddle.__name__ + '.'):
-        path = name.replace(".", "/")
-
-        try:
-            m = eval(name)
-        except AttributeError:
-            pass
-        else:
-            if hasattr(eval(name), "__all__"):
-                for api in list(set(eval(name).__all__)):
-                    gen = EnDocGenerator()
-                    with gen.guard(path + "/" + api + en_suffix):
-                        if api != 'test, get_dict':
-                            gen.module_name = name
-                            gen.api = api
-                            gen.print_header_reminder()
-                            gen.print_item()
-
-
-def get_cn_files_path_dict(path=None):
-    if path == None:
-        path = os.getcwd() + "/../../fluid/api_cn"
-
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            file = file.replace(cn_suffix, "", 1)
-            val = str(root + "/" + file)
-            if file in file_path_dict:
-                file_path_dict[file].append(val)
-            else:
-                file_path_dict[file] = [val]
-
-
-def copy_cn_files():
-    path = "./paddle"
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            f = file.replace(en_suffix, "", 1)
-            if f in file_path_dict:
-                key = root[len(path):] + "/" + f
-                isfind = False
-                for p in file_path_dict[f]:
-                    if p.find(key) != -1:
-                        src = p + cn_suffix
-                        dst = root + "/" + f + cn_suffix
-                        shutil.copy(src, dst)
-                        isfind = True
-                        break
-                if not isfind:
-                    src = find_max_size_file(file_path_dict[f]) + cn_suffix
-                    dst = root + "/" + f + cn_suffix
-                    shutil.copy(src, dst)
 
 
 def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
@@ -147,17 +174,6 @@ def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
                         os.path.join(root, file) + "\t" + os.path.join(
                             root, ef) + "\n")
     fo.close()
-
-
-def find_max_size_file(files):
-    max_size = 0
-    file = ""
-    for f in files:
-        if os.path.getsize(f + cn_suffix) > max_size:
-            max_size = os.path.getsize(f + cn_suffix)
-            file = f
-
-    return file
 
 
 class EnDocGenerator(object):
@@ -238,20 +254,19 @@ class EnDocGenerator(object):
     def print_function(self):
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
-        self.stream.write('''..  autofunction:: paddle.{0}.{1}
+        self.stream.write('''..  autofunction:: {0}.{1}
     :noindex:
 
 '''.format(self.module_name, self.api))
 
 
 if __name__ == "__main__":
-    args = parse_args()
-    if args.gen_cn:
-        gen_doc_dir()
-        get_cn_files_path_dict()
-        copy_cn_files()
+    get_all_api()
+    get_not_display_doc_list()
+    get_display_doc_map()
+    get_all_same_api()
+    get_alias_mapping()
 
     clean_en_files()
-    if args.gen_en:
-        gen_en_files()
-        check_cn_en_match()
+    gen_en_files()
+    check_cn_en_match()
