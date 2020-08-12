@@ -23,10 +23,12 @@ fluid
     fluid/default_startup_program.rst
     fluid/device_guard.rst
     fluid/disable_dygraph.rst
+    fluid/disable_imperative.rst
     fluid/DistributeTranspiler.rst
     fluid/DistributeTranspilerConfig.rst
     fluid/embedding.rst
     fluid/enable_dygraph.rst
+    fluid/enable_imperative.rst
     fluid/ExecutionStrategy.rst
     fluid/Executor.rst
     fluid/get_flags.rst

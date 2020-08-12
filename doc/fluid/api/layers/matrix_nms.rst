@@ -4,7 +4,7 @@
 .. _api_fluid_layers_matrix_nms:
 
 matrix_nms
---------------
+----------
 
 ..  autofunction:: paddle.fluid.layers.matrix_nms
     :noindex:

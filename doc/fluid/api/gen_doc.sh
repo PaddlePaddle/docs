@@ -18,19 +18,19 @@ done
 
 python gen_module_index.py tensor paddle.tensor
 
-for module in math manipulation linalg
-do
-  python gen_doc.py --module_name tensor.${module} --module_prefix tensor.${module} --output tensor/${module} --output_name complex --to_multiple_files True --output_dir complex
-  python gen_module_index.py complex.tensor.${module} ${module}
-done
-
-python gen_module_index.py complex.tensor tensor
-python gen_module_index.py complex paddle.complex
+#for module in math manipulation linalg
+#do
+#  python gen_doc.py --module_name tensor.${module} --module_prefix tensor.${module} --output tensor/${module} --output_name complex --to_multiple_files True --output_dir complex
+#  python gen_module_index.py complex.tensor.${module} ${module}
+#done
+#
+#python gen_module_index.py complex.tensor tensor
+#python gen_module_index.py complex paddle.complex
 python gen_module_index.py framework paddle.framework
 
 
 # nn
-for module in loss
+for module in loss functional.loss
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name nn --to_multiple_files True --output_dir nn
   python gen_module_index.py nn.${module} ${module}
