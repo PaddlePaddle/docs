@@ -1,6 +1,6 @@
 .. _cn_api_fluid_layers_interpolate:
 
-Inerpolate
+interpolate
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.interpolate(input, out_shape=None, scale=None, name=None, resample='BILINEAR', actual_shape=None, align_corners=True, align_mode=1, data_format='NCHW')
