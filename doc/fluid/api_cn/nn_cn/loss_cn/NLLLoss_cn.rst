@@ -39,9 +39,9 @@ NLLLoss
 
 形状
 :::::::::
-    - **x** (Tensor): - 输入 `Tensor`, 其形状为 :math:`[N, C]` , 其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
-    - **label** (Tensor): - 输入 `x` 对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`, 数据类型为int64。
-    - **output** (Tensor): - 输入 `x` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'` ，则输出Loss形状为 `[N, *]` 。 如果 `reduction` 为 `'sum'` 或者 `'mean'` ，则输出Loss形状为 `'[1]'` 。
+    - **input** (Tensor): - 输入 `Tensor`, 其形状为 :math:`[N, C]` , 其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
+    - **label** (Tensor): - 输入 `input` 对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`, 数据类型为int64。
+    - **output** (Tensor): - 输入 `input` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'` ，则输出Loss形状为 `[N, *]` 。 如果 `reduction` 为 `'sum'` 或者 `'mean'` ，则输出Loss形状为 `'[1]'` 。
 
 代码示例
 :::::::::
@@ -54,7 +54,7 @@ NLLLoss
         nll_loss = paddle.nn.layer.NLLLoss()
         log_softmax = paddle.nn.LogSoftmax(axis=1)
 
-        x_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
+        input_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
                          [0.53331435, 0.07999352, 0.8549948 ],
                          [0.25879037, 0.39530203, 0.698465  ],
                          [0.73427284, 0.63575995, 0.18827209],
@@ -63,8 +63,8 @@ NLLLoss
 
         place = paddle.CPUPlace()
         paddle.disable_static(place)
-        x = paddle.to_variable(x_np)
-        log_out = log_softmax(x)
+        input = paddle.to_variable(input_np)
+        log_out = log_softmax(input)
         label = paddle.to_variable(label_np)
         result = nll_loss(log_out, label)
         print(result.numpy()) # [1.0720209]

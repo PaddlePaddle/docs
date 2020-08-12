@@ -2,13 +2,13 @@
 
 nll_loss
 -------------------------------
-.. py:function:: paddle.nn.functional.nll_loss(x, label, weight=None, ignore_index=-100, reduction='mean', name=None)
+.. py:function:: paddle.nn.functional.nll_loss(input, label, weight=None, ignore_index=-100, reduction='mean', name=None)
 
 该接口返回 `negative log likelihood` 。可在 :ref:`cn_api_nn_loss_NLLLoss` 查看详情。
 
 参数
 :::::::::
-    - **x** (Tensor): - 输入 `Tensor`, 其形状为 :math:`[N, C]` , 其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
+    - **input** (Tensor): - 输入 `Tensor`, 其形状为 :math:`[N, C]` , 其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
     - **label** (Tensor): - 输入x对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`, 数据类型为int64。
     - **weight** (Tensor, 可选): - 手动指定每个类别的权重。其默认为 `None` 。如果提供该参数的话，长度必须为 `num_classes` 。数据类型为float32或float64。
     - **ignore_index** (int64, 可选): - 指定一个忽略的标签值，此标签值不参与计算。默认值为-100。数据类型为int64。
@@ -29,7 +29,7 @@ nll_loss
         from paddle.nn.functional import nll_loss
         log_softmax = paddle.nn.LogSoftmax(axis=1)
         
-        x_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
+        input_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
                          [0.53331435, 0.07999352, 0.8549948 ],
                          [0.25879037, 0.39530203, 0.698465  ],
                          [0.73427284, 0.63575995, 0.18827209],
@@ -38,8 +38,8 @@ nll_loss
 
         place = paddle.CPUPlace()
         paddle.disable_static(place)
-        x = paddle.to_variable(x_np)
-        log_out = log_softmax(x)
+        input = paddle.to_variable(input_np)
+        log_out = log_softmax(input)
         label = paddle.to_variable(label_np)
         result = nll_loss(log_out, label)
         print(result.numpy()) # [1.0720209]
