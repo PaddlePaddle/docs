@@ -2,6 +2,6 @@
 
 max
 -------------------------------
-:doc_source: paddle.fluid.layers.reduce_max
+:doc_source: paddle.tensor.max
 
 
