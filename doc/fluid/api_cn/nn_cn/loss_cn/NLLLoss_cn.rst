@@ -40,11 +40,8 @@ NLLLoss
 形状
 :::::::::
     - **x** (Tensor): - 输入 `Tensor`, 其形状为 :math:`[N, C]` , 其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
-    - **label** (Tensor): - 输入x对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`, 数据类型为int64。
-
-返回
-:::::::::
-返回计算 `negative log likelihood loss` 的可调用对象。
+    - **label** (Tensor): - 输入 `x` 对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`, 数据类型为int64。
+    - **output** (Tensor): - 输入 `x` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'` ，则输出Loss形状为 `[N, *]` 。 如果 `reduction` 为 `'sum'` 或者 `'mean'` ，则输出Loss形状为 `'[1]'` 。
 
 代码示例
 :::::::::
@@ -65,29 +62,9 @@ NLLLoss
         label_np = np.array([0, 2, 1, 1, 0]).astype(np.int64)
 
         place = paddle.CPUPlace()
-
-        # imperative mode
         paddle.disable_static(place)
         x = paddle.to_variable(x_np)
         log_out = log_softmax(x)
         label = paddle.to_variable(label_np)
-        imperative_result = nll_loss(log_out, label)
-        print(imperative_result.numpy()) # [1.0720209]
-
-        # declarative mode
-        paddle.enable_static()
-        prog = paddle.static.Program()
-        startup_prog = paddle.static.Program()
-        with paddle.static.program_guard(prog, startup_prog):
-            x = paddle.nn.data(name='x', shape=[5, 3], dtype='float32')
-            label = paddle.nn.data(name='label', shape=[5], dtype='int64')
-            log_out = log_softmax(x)
-            res = nll_loss(log_out, label)
-
-            exe = paddle.static.Executor(place)
-            declaritive_result = exe.run(
-                prog,
-                feed={"x": x_np,
-                      "label": label_np},
-                fetch_list=[res])
-        print(declaritive_result) # [array([1.0720209], dtype=float32)]
+        result = nll_loss(log_out, label)
+        print(result.numpy()) # [1.0720209]

@@ -17,7 +17,7 @@ nll_loss
 
 返回
 :::::::::
-返回存储表示 `negative log likelihood loss` 的损失值。
+`Tensor` ，返回存储表示 `negative log likelihood loss` 的损失值。
 
 代码示例
 :::::::::
@@ -37,11 +37,9 @@ nll_loss
         label_np = np.array([0, 2, 1, 1, 0]).astype(np.int64)
 
         place = paddle.CPUPlace()
-
-        # imperative mode
         paddle.disable_static(place)
         x = paddle.to_variable(x_np)
         log_out = log_softmax(x)
         label = paddle.to_variable(label_np)
-        imperative_result = nll_loss(log_out, label)
-        print(imperative_result.numpy()) # [1.0720209]
+        result = nll_loss(log_out, label)
+        print(result.numpy()) # [1.0720209]
