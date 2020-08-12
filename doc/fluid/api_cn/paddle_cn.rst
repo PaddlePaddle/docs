@@ -44,8 +44,6 @@ paddle
 	paddle_cn/elementwise_add_cn.rst
 	paddle_cn/elementwise_div_cn.rst
 	paddle_cn/elementwise_floordiv_cn.rst
-	paddle_cn/elementwise_max_cn.rst
-	paddle_cn/elementwise_min_cn.rst
 	paddle_cn/elementwise_mod_cn.rst
 	paddle_cn/elementwise_mul_cn.rst
 	paddle_cn/elementwise_pow_cn.rst
@@ -95,8 +93,12 @@ paddle
 	paddle_cn/log_cn.rst
 	paddle_cn/manual_seed_cn.rst
 	paddle_cn/matmul_cn.rst
+        paddle_cn/max_cn.rst
+        paddle_cn/maximum_cn.rst
 	paddle_cn/mean_cn.rst
 	paddle_cn/meshgrid_cn.rst
+        paddle_cn/min_cn.rst
+        paddle_cn/minimum_cn.rst
 	paddle_cn/multiplex_cn.rst
 	paddle_cn/mul_cn.rst
 	paddle_cn/name_scope_cn.rst
