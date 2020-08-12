@@ -3,7 +3,7 @@
 PairwiseDistance
 -------------------------------
 
-.. py:class:: paddle.nn.PairwiseDistance(p=2., epsilon=1e-6, keepdim=False)
+.. py:class:: paddle.nn.PairwiseDistance(p=2., epsilon=1e-6, keepdim=False, name=None)
 
 该OP计算两个向量（输入 ``x``、``y`` ）之间pairwise的距离。该距离通过p范数计算：
 
