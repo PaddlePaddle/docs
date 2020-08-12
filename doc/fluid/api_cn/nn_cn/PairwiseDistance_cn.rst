@@ -3,7 +3,7 @@
 PairwiseDistance
 -------------------------------
 
-.. py:class:: paddle.nn.PairwiseDistance(p=2., eps=1e-6, keepdim=False)
+.. py:class:: paddle.nn.PairwiseDistance(p=2., epsilon=1e-6, keepdim=False)
 
 该OP计算两个向量（输入 ``x``、``y`` ）之间pairwise的距离。该距离通过p范数计算：
 
@@ -14,7 +14,7 @@ PairwiseDistance
 参数
 ::::::::
     - **p** （float，可选）- 指定p阶的范数。默认值为2。
-    - **eps** （float，可选）- 添加一个很小的值，避免发生除零错误。默认值为1e-6。
+    - **epsilon** （float，可选）- 添加到分母的一个很小值，避免发生除零错误。默认值为1e-6。
     - **keepdim** （bool，可选）- 是否保留输出张量减少的维度。输出结果相对于 ``|x-y|`` 的结果减少一维，除非 :attr:`keepdim` 为True，默认值为False。
     - **name** （str，可选） - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
