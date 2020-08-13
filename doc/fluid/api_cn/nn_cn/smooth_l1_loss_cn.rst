@@ -1,7 +1,7 @@
-SmoothL1Loss
+smooth_l1_loss
 -------------------------------
 
-.. py:class:: paddle.nn.loss.SmoothL1Loss(reduction='mean')
+.. py:function:: paddle.nn.functional.smooth_l1_loss(input, label, reduction='mean')
 
 该OP计算输入input和标签label间的SmoothL1损失，如果逐个元素的绝对误差低于1，则创建使用平方项的条件
 ，否则为L1损失。在某些情况下，它可以防止爆炸梯度, 也称为Huber损失,该损失函数的数学计算公式如下：
@@ -21,16 +21,13 @@ SmoothL1Loss
 
 参数
 ::::::::::
-    - **reduction** (string, 可选): - 指定应用于输出结果的计算方式，数据类型为string，可选值有: `none`, `mean`, `sum` 。默认为 `mean` ，计算 `mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。
-    
-调用参数
-::::::::::
     - **input** (Tensor): 输入 `Tensor`， 数据类型为float32。其形状为 :math:`[N, C]` , 其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，k >= 1。
     - **label** (Tensor): 输入input对应的标签值，数据类型为float32。数据类型和input相同。
+    - **reduction** (string, 可选): - 指定应用于输出结果的计算方式，数据类型为string，可选值有: `none`, `mean`, `sum` 。默认为 `mean` ，计算`mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。
 
 
 
-返回：返回计算 `SmoothL1Loss` 后的损失值。
+返回：返回计算 `smooth_l1_loss` 后的损失值。
 
 返回类型：Tensor
 
@@ -47,6 +44,5 @@ SmoothL1Loss
             label = np.random.rand(3,3).astype("float32")
             input = paddle.to_variable(input_data)
             label = paddle.to_variable(label_data)
-            loss = paddle.nn.SmoothL1Loss()
-            output = loss(input, label)
+            output = paddle.nn.functioanl.smooth_l1_loss(input,label)
             print(output.numpy())
