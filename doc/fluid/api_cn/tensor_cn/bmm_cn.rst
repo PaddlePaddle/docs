@@ -33,14 +33,16 @@ bmm
 .. code-block:: python
     
     import paddle
+
     # In imperative mode:
     # size input1: (2, 2, 3) and input2: (2, 3, 2)
     input1 = np.array([[[1.0, 1.0, 1.0],[2.0, 2.0, 2.0]],[[3.0, 3.0, 3.0],[4.0, 4.0, 4.0]]])
     input2 = np.array([[[1.0, 1.0],[2.0, 2.0],[3.0, 3.0]],[[4.0, 4.0],[5.0, 5.0],[6.0, 6.0]]])
-    paddle.enable_imperative()
+
+    paddle.disable_static()
     
-    x = paddle.imperative.to_variable(input1)
-    y = paddle.imperative.to_variable(input2)
+    x = paddle.to_variable(input1)
+    y = paddle.to_variable(input2)
     out = paddle.bmm(x, y)
     #output size: (2, 2, 2)
     #output value:

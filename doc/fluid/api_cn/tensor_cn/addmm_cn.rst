@@ -37,14 +37,19 @@ addmm
 
     import numpy as np
     import paddle
+
     data_x = np.ones((2, 2)).astype(np.float32)
     data_y = np.ones((2, 2)).astype(np.float32)
     data_input = np.ones((2, 2)).astype(np.float32)
-    paddle.enable_imperative()
-    x = paddle.imperative.to_variable(data_x)
-    y = paddle.imperative.to_variable(data_y)
-    input = paddle.imperative.to_variable(data_input)
+
+    paddle.disable_static()
+
+    x = paddle.to_variable(data_x)
+    y = paddle.to_variable(data_y)
+    input = paddle.to_variable(data_input)
+
     out = paddle.tensor.addmm( input=input, x=x, y=y, beta=0.5, alpha=5.0 )
+
     print( out.numpy() )
     # [[10.5 10.5]
     # [10.5 10.5]]
