@@ -18,11 +18,11 @@ linspace
     - **dtype** (string, 可选) – 输出Tensor的数据类型，可以是float32或者是float64，如果dtype的数据类型为None，输出Tensor数据类型为float32。
     - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：表示等间隔划分结果的1-D Tensor，该Tensor的shape大小为 :math:`[num]` ，在mum为1的情况下，仅返回包含start元素值的Tensor。
+返回：表示等间隔划分结果的1-D Tensor，该Tensor的shape大小为 :math:`[num]` ，在num为1的情况下，仅返回包含start元素值的Tensor。
 
 抛出异常：
     - ``TypeError`` - 当start或者stop的数据类型不是float32或者float64。
-    - ``TypeError`` - 当num的数据类型不是float32或者float64。
+    - ``TypeError`` - 当num的数据类型不是int32或者int64。
     - ``TypeError`` - 当dtype的类型不是float32或者float64。
 
 **代码示例**：
