@@ -84,7 +84,6 @@ paddle.nn
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
-    nn/margin_rank_loss.rst
     nn/matrix_nms.rst
     nn/maxout.rst
     nn/mse_loss.rst
@@ -150,3 +149,5 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
+    nn/functional/loss/margin_ranking_loss.rst
+    nn/layer/loss/MarginRankingLoss.rst
