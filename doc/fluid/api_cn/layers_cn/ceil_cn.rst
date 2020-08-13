@@ -33,9 +33,9 @@ ceil
         import paddle
         import numpy as np
 
-        paddle.enable_imperative()
+        paddle.disable_static()
         x_data = np.array([[-1.5,6],[1,15.6]]).astype(np.float32)
-        x = paddle.imperative.to_variable(x_data)
+        x = paddle.to_variable(x_data)
         res = paddle.ceil(x)
         print(res.numpy())
         # [[-1.  6.]

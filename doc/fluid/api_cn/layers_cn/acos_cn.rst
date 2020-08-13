@@ -32,9 +32,9 @@ arccosine函数。
         import paddle
         import numpy as np
 
-        paddle.enable_imperative()
+        paddle.disable_static()
         x_data = np.array([-0.8183,  0.4912, -0.6444,  0.0371]).astype(np.float32)
-        x = paddle.imperative.to_variable(x_data)
+        x = paddle.to_variable(x_data)
         res = paddle.acos(x)
         print(res.numpy())
         # [2.5293, 1.0573, 2.2711, 1.5336]
