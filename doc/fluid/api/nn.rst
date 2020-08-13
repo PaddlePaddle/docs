@@ -5,7 +5,6 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
-    nn/functional/loss/mse_loss.rst
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
     nn/affine_channel.rst
@@ -47,6 +46,7 @@ paddle.nn
     nn/erf.rst
     nn/exponential_decay.rst
     nn/fsp_matrix.rst
+    nn/functional.rst
     nn/gather_tree.rst
     nn/gelu.rst
     nn/generate_mask_labels.rst
