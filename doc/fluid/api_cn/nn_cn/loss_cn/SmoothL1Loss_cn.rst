@@ -25,8 +25,8 @@ SmoothL1Loss
     
 调用参数
 ::::::::::
-    - **x** (Tensor): 输入 `Tensor`， 数据类型为float32或float64。其形状为 :math:`[N, C]` , 其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，k >= 1。
-    - **label** (Tensor): 输入x对应的标签值，数据类型为float32。数据类型和x相同。
+    - **input** (Tensor): 输入 `Tensor`， 数据类型为float32或float64。其形状为 :math:`[N, C]` , 其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，k >= 1。
+    - **label** (Tensor): 输入x对应的标签值，数据类型为float32。数据类型和input相同。
 
 
 
@@ -40,26 +40,13 @@ SmoothL1Loss
 
             # declarative mode
             import paddle
-            import paddle.fluid as fluid
             import numpy as np
-            x = fluid.layers.data(name="x", shape=[-1, 3], dtype="float32")
-            label = fluid.layers.data(name="label", shape=[-1, 3], dtype="float32")
-            loss = paddle.nn.SmoothL1Loss()
-            result = loss(x,label)
-            place = fluid.CPUPlace()
-            exe = fluid.Executor(place)
-            exe.run(fluid.default_startup_program())
-            x = np.random.rand(3,3).astype("float32")
+
+            paddle.disable_static()
+            input = np.random.rand(3,3).astype("float32")
             label = np.random.rand(3,3).astype("float32")
-            output= exe.run(feed={"x": x, "label": label},
-                            fetch_list=[result])
-            print(output)
-            # imperative mode
-            import paddle.fluid.dygraph as dg
-            with dg.guard(place) as g:
-                x = dg.to_variable(input_data)
-                label = dg.to_variable(label_data)
-                weight = dg.to_variable(weight_data)
-                loss = paddle.nn.SmoothL1Loss()
-                output = loss(x, label)
-                print(output.numpy())
+            input = paddle.to_variable(input_data)
+            label = paddle.to_variable(label_data)
+            loss = paddle.nn.SmoothL1Loss()
+            output = loss(input, label)
+            print(output.numpy())
