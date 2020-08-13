@@ -162,3 +162,6 @@ paddle.nn
     nn_cn/while_loop_cn.rst
     nn_cn/yolov3_loss_cn.rst
     nn_cn/yolo_box_cn.rst
+    nn_cn/loss_cn/MarginRankingLoss.rst
+    nn_cn/functional_cn/margin_ranking_loss_cn.rst
+     
