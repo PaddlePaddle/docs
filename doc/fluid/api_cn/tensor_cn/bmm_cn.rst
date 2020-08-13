@@ -33,6 +33,7 @@ bmm
 .. code-block:: python
     
     import paddle
+    import numpy as np
 
     # In imperative mode:
     # size input1: (2, 2, 3) and input2: (2, 3, 2)
