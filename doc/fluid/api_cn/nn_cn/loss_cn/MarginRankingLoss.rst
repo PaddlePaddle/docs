@@ -5,12 +5,12 @@ MarginRankingLoss
 
 .. py:class:: paddle.nn.loss.MarginRankingLoss(margin=0.0, reduction='mean', name=None)
 
-该接口用于创建一个 ``MarginRankingLoss`` 的可调用类，计算输入input，other 和 标签target间的 `margin rank loss` 损失。
+该接口用于创建一个 ``MarginRankingLoss`` 的可调用类，计算输入input，other 和 标签label间的 `margin rank loss` 损失。
 
 该损失函数的数学计算公式如下：
 
  .. math:: 
-     margin\_rank\_loss = max(0, -target * (input - other) + margin)
+     margin\_rank\_loss = max(0, -label * (input - other) + margin)
 
 当 `reduction` 设置为 ``'mean'`` 时，
 
@@ -54,7 +54,7 @@ MarginRankingLoss
       
      input = paddle.to_variable(np.array([[1, 2], [3, 4]]).astype("float32"))
      other = paddle.to_variable(np.array([[2, 1], [2, 4]]).astype("float32"))
-     target = paddle.to_variable(np.array([[1, -1], [-1, -1]]).astype("float32"))
+     label = paddle.to_variable(np.array([[1, -1], [-1, -1]]).astype("float32"))
      margin_rank_loss = paddle.nn.MarginRankingLoss()
-     loss = margin_rank_loss(input, other, target) 
+     loss = margin_rank_loss(input, other, label) 
      print(loss.numpy()) # [0.75]
