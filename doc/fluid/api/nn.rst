@@ -122,6 +122,7 @@ paddle.nn
     nn/sampled_softmax_with_cross_entropy.rst
     nn/selu.rst
     nn/Sequential.rst
+    nn/Sigmoid.rst
     nn/shuffle_channel.rst
     nn/sigmoid_cross_entropy_with_logits.rst
     nn/sigmoid_focal_loss.rst
@@ -133,6 +134,7 @@ paddle.nn
     nn/softplus.rst
     nn/softshrink.rst
     nn/softsign.rst
+    nn/sigmoid.rst
     nn/space_to_depth.rst
     nn/SpectralNorm.rst
     nn/square_error_cost.rst
@@ -150,4 +152,6 @@ paddle.nn
     nn/yolo_box.rst
     nn/yolov3_loss.rst
     nn/functional/loss/margin_ranking_loss.rst
+    nn/functional/activation/sigmoid.rst
     nn/layer/loss/MarginRankingLoss.rst
+    nn/layer/activation/Sigmoid.rst

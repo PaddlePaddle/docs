@@ -1,5 +1,5 @@
 =======================
-activation
+functional
 =======================
 
 
@@ -8,4 +8,4 @@ activation
 ..  toctree::
     :maxdepth: 1
 
-    activation_cn/LeakyReLU_cn.rst
+    layer_cn/Sigmoid_cn.rst
