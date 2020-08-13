@@ -1,9 +1,9 @@
-.. _cn_api_nn_activate_Sigmoid:
+.. _cn_api_nn_layer_Sigmoid:
 
 Sigmoid
 -------------------------------
 
-.. py:class:: paddle.nn.loss.Sigmoid(name=None)
+.. py:class:: paddle.nn.layer.Sigmoid(name=None)
 
 该接口用于创建一个 ``Sigmoid`` 的可调用类。 这个类可以计算输入 `x` 经过激活函数 `sigmoid` 之后的值。
 
@@ -35,7 +35,7 @@ Sigmoid
 
      paddle.disable_static()
      input_data = np.array([1.0, 2.0, 3.0, 4.0]).astype('float32')
-     sigmoid = paddle.nn.Sigmoid()
+     m = paddle.nn.Sigmoid()
      x = paddle.to_variable(input_data)
-     output = sigmoid(x)
+     output = m(x)
      print(output.numpy()) # [0.7310586, 0.880797, 0.95257413, 0.98201376

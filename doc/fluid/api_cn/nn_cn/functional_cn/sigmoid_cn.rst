@@ -2,4 +2,4 @@
 
 sigmoid 
 -------------------------------
-:doc_source: paddle.fluid.layers.softplus
+:doc_source: paddle.fluid.layers.sigmoid
