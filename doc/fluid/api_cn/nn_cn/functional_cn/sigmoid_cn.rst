@@ -27,7 +27,6 @@ sigmoid 激活函数。
 
     import numpy as np
     import paddle
-    import paddle.fluid as fluid
     import paddle.nn.functional as F 
 
     paddle.disable_static()
