@@ -2,6 +2,6 @@
 
 less_than
 -------------------------------
-:doc_source: paddle.fluid.layers.less_than
+:doc_source: paddle.tensor.less_than
 
 
