@@ -10,7 +10,7 @@ python gen_doc.py --module_name "" --module_prefix "" --output fluid --output_na
 python gen_module_index.py fluid  fluid
 
 # tensor
-for module in math random stat linalg
+for module in math random stat linalg search
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name tensor --to_multiple_files True --output_dir tensor
   python gen_module_index.py tensor.${module} ${module}

@@ -39,8 +39,6 @@ paddle.tensor
     tensor_cn/elementwise_add_cn.rst
     tensor_cn/elementwise_div_cn.rst
     tensor_cn/elementwise_floordiv_cn.rst
-    tensor_cn/elementwise_max_cn.rst
-    tensor_cn/elementwise_min_cn.rst
     tensor_cn/elementwise_mod_cn.rst
     tensor_cn/elementwise_mul_cn.rst
     tensor_cn/elementwise_pow_cn.rst
@@ -89,9 +87,11 @@ paddle.tensor
     tensor_cn/math_cn.rst
     tensor_cn/matmul_cn.rst
     tensor_cn/max_cn.rst
+    tensor_cn/maximum_cn.rst
     tensor_cn/mean_cn.rst
     tensor_cn/meshgrid_cn.rst
     tensor_cn/min_cn.rst
+    tensor_cn/minimum_cn.rst
     tensor_cn/mm_cn.rst
     tensor_cn/mul_cn.rst
     tensor_cn/multiplex_cn.rst

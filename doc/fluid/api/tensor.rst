@@ -27,8 +27,6 @@ paddle.tensor
     tensor/elementwise_add.rst
     tensor/elementwise_div.rst
     tensor/elementwise_floordiv.rst
-    tensor/elementwise_max.rst
-    tensor/elementwise_min.rst
     tensor/elementwise_mod.rst
     tensor/elementwise_mul.rst
     tensor/elementwise_pow.rst
@@ -64,8 +62,10 @@ paddle.tensor
     tensor/logical_xor.rst
     tensor/math.rst
     tensor/max.rst
+    tensor/maximum.rst
     tensor/mean.rst
     tensor/min.rst
+    tensor/minimum.rst
     tensor/mm.rst
     tensor/mul.rst
     tensor/multiplex.rst
@@ -93,6 +93,7 @@ paddle.tensor
     tensor/scatter.rst
     tensor/scatter_nd.rst
     tensor/scatter_nd_add.rst
+    tensor/search.rst
     tensor/shape.rst
     tensor/shard_index.rst
     tensor/shuffle.rst
