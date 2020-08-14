@@ -2,6 +2,6 @@
 
 cumsum
 -------------------------------
-:doc_source: paddle.fluid.layers.cumsum
+:doc_source: paddle.tensor.cumsum
 
 

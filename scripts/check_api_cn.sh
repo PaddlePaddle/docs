@@ -13,7 +13,9 @@ else
    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl 
 fi
 
+
 for files in `echo $git_files`;do
+  cd /FluidDoc
   grep "code-block" $files
   if [ $? -eq 0 ] ;then 
     echo $files|grep 'doc/fluid/api_cn/.*/.*.rst'
