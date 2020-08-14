@@ -27,9 +27,9 @@ softmax
 
 - 示例1（矩阵一共有三维。axis = -1，表示沿着最后一维（即第三维）做softmax操作）
 
-.. code-block:: python
+.. code-block:: text
 
-  输入
+  # input
 
     x.shape = [2, 3, 4] 
 
@@ -42,7 +42,7 @@ softmax
 
     axis = -1
 
-  输出
+  # output
 
     out.shape = [2, 3, 4]
 
@@ -55,9 +55,9 @@ softmax
 
 - 示例2（矩阵一共有三维。axis = 1，表示沿着第二维做softmax操作）
 
-.. code-block:: python
+.. code-block:: text
 
-  输入
+  # input
 
     x.shape = [2, 3, 4] 
 
@@ -70,7 +70,7 @@ softmax
 
     axis = 1
 
-  输出
+  # output
 
     out.shape = [2, 3, 4]
 
