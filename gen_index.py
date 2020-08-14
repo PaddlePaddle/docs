@@ -20,21 +20,27 @@ def parse_arg():
     return parser.parse_args()
 
 
-def add_index(en_doc_review_dir, api_name):
+def add_index(en_doc_review_dir, api_name, is_class='False'):
 
     stream = open(en_doc_review_dir + '.rst', 'a')
-    stream.write('    review_tmp/' + api_name + '.rst\n')
+    if is_class == 'True':
+        stream.write('    review_tmp/' + api_name + '_class.rst\n')
+    else:
+        stream.write('    review_tmp/' + api_name + '.rst\n')
     stream.close()
     print('add index to ' + en_doc_review_dir + '.rst success')
 
 
-def add_file(en_doc_review_dir, api_path, is_class=False):
+def add_file(en_doc_review_dir, api_path, is_class='False'):
 
     api_path_list = api_path.split('.')
     api_name = api_path_list[-1]
     api_title = '_'.join(api_path_list[1:])
 
-    stream = open(en_doc_review_dir + '/' + api_name + '.rst', 'w')
+    if is_class == 'True':
+        stream = open(en_doc_review_dir + '/' + api_name + '_class.rst', 'w')
+    else:
+        stream = open(en_doc_review_dir + '/' + api_name + '.rst', 'w')
     stream.write('.. _api_' + api_title + ':\n')
     stream.write('\n')
     stream.write(api_name + '\n')
@@ -64,7 +70,7 @@ def main():
     fluid_doc_path = os.getcwd()
     en_doc_review_dir = fluid_doc_path + '/doc/fluid/api/review_tmp'
 
-    add_index(en_doc_review_dir, api_name)
+    add_index(en_doc_review_dir, api_name, is_class)
     add_file(en_doc_review_dir, api_path, is_class)
 
 
