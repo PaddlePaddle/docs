@@ -7,7 +7,7 @@ index_select
 
 
 
-该OP沿着指定轴 ``axis`` 对输入 ``x`` 进行索引，取 ``index`` 中指定的相应项，创建并返回到一个新的Tensor。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的Tensor其余维度大小和输入 ``x``相等 ， ``axis`` 维度的大小等于 ``index`` 的大小。
+该OP沿着指定轴 ``axis`` 对输入 ``x`` 进行索引，取 ``index`` 中指定的相应项，创建并返回到一个新的Tensor。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的Tensor其余维度大小和输入 ``x`` 相等 ， ``axis`` 维度的大小等于 ``index`` 的大小。
         
 **参数**：
     - **x** （Tensor）– 输入Tensor。 ``x`` 的数据类型可以是float32，float64，int32，int64。
@@ -34,7 +34,7 @@ index_select
         data = np.array([[1.0, 2.0, 3.0, 4.0],
                          [5.0, 6.0, 7.0, 8.0],
                          [9.0, 10.0, 11.0, 12.0]])
-        data_index = np.array([-1, 1, 1]).astype('int32')
+        data_index = np.array([0, 1, 1]).astype('int32')
 
         x = paddle.imperative.to_variable(data)
         index = paddle.imperative.to_variable(data_index)
