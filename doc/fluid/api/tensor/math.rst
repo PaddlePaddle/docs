@@ -5,21 +5,59 @@ math
 ..  toctree::
     :maxdepth: 1
 
+    math/abs.rst
+    math/acos.rst
     math/add.rst
     math/addcmul.rst
     math/addmm.rst
+    math/asin.rst
     math/atan.rst
+    math/ceil.rst
     math/clamp.rst
+    math/cos.rst
+    math/cosh.rst
+    math/cumsum.rst
     math/div.rst
+    math/elementwise_add.rst
+    math/elementwise_div.rst
+    math/elementwise_floordiv.rst
+    math/elementwise_max.rst
+    math/elementwise_min.rst
+    math/elementwise_mod.rst
+    math/elementwise_pow.rst
+    math/elementwise_sub.rst
     math/elementwise_sum.rst
+    math/erf.rst
+    math/exp.rst
+    math/floor.rst
+    math/increment.rst
+    math/inverse.rst
+    math/kron.rst
+    math/log.rst
     math/log1p.rst
     math/logsumexp.rst
     math/max.rst
     math/min.rst
     math/mm.rst
     math/mul.rst
+    math/multiplex.rst
+    math/multiply.rst
     math/pow.rst
+    math/reciprocal.rst
+    math/reduce_max.rst
+    math/reduce_min.rst
+    math/reduce_prod.rst
+    math/reduce_sum.rst
+    math/round.rst
+    math/rsqrt.rst
+    math/scale.rst
+    math/sign.rst
     math/sin.rst
+    math/sinh.rst
     math/sqrt.rst
+    math/square.rst
+    math/stanh.rst
     math/sum.rst
+    math/sums.rst
     math/tanh.rst
+    math/trace.rst

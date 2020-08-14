@@ -4,7 +4,7 @@
 .. _api_fluid_dygraph_InstanceNorm:
 
 InstanceNorm
----------
+------------
 
 ..  autoclass:: paddle.fluid.dygraph.InstanceNorm
     :members:

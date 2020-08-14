@@ -4,7 +4,7 @@
 .. _api_tensor_linalg_dist:
 
 dist
---------
+----
 
 ..  autofunction:: paddle.tensor.linalg.dist
     :noindex:

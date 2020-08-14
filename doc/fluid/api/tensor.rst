@@ -67,7 +67,6 @@ paddle.tensor
     tensor/min.rst
     tensor/minimum.rst
     tensor/mm.rst
-    tensor/mul.rst
     tensor/multiplex.rst
     tensor/norm.rst
     tensor/not_equal.rst

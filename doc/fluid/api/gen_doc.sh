@@ -46,7 +46,7 @@ do
   python gen_module_index.py incubate.hapi.vision.${module} ${module}
 done
 
-for module in text callbacks distributed download loss metrics model 
+for module in text callbacks distributed download loss metrics model datasets
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name  incubate.hapi --to_multiple_files True --output_dir  incubate/hapi
   python gen_module_index.py ${module} ${module}

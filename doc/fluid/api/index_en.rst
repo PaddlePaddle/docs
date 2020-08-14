@@ -6,30 +6,39 @@ API Reference
     :maxdepth: 1
 
     ../api_guides/index_en.rst
-    dataset.rst
+    complex.rst
     declarative.rst
     framework.rst
     imperative.rst
-    io.rst
+    incubate.rst
     metric.rst
     nn.rst
-    optimizer.rst
+    review_tmp.rst
     tensor.rst
     fluid.rst
     backward.rst
+    callbacks.rst
     clip.rst
     data/data_reader.rst
     data/dataset.rst
+    dataset.rst
+    datasets.rst
+    distributed.rst
+    download.rst
     dygraph.rst
     executor.rst
     fluid.rst
     initializer.rst
+    io.rst
     layers.rst
+    loss.rst
     metrics.rst
+    model.rst
     nets.rst
+    optimizer.rst
     paddle.rst
     profiler.rst
     regularizer.rst
+    text.rst
     transpiler.rst
     unique_name.rst
-    review_tmp.rst

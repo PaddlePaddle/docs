@@ -1,5 +1,5 @@
 =============
-paddle.dataset
+fluid.dataset
 =============
 
 ..  toctree::

@@ -1,6 +1,6 @@
-=============
-fluid.metrics
-=============
+=======
+metrics
+=======
 
 ..  toctree::
     :maxdepth: 1
