@@ -3,33 +3,37 @@
 ones_like
 -------------------------------
 
-.. py:function:: paddle.ones_like(input, dtype=None, device=None, name=None)
+.. py:function:: paddle.ones_like(x, dtype=None, name=None)
 
 :alias_main: paddle.ones_like
-:alias: paddle.ones_like,paddle.tensor.ones_like,paddle.tensor.creation.ones_like
-:update_api: paddle.fluid.layers.ones_like
+:alias: paddle.tensor.ones_like, paddle.tensor.creation.ones_like
 
+该OP返回一个和 ``x`` 具有相同形状的数值都为1的Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
-
-
-该OP创建一个和input具有相同的形状和数据类型的全1Tensor。
-
-参数：
-    - **input** (Variable) – 指定输入为一个多维的Tensor，数据类型可以是bool，float32，float64，int32，int64。
-    - **dtype** （np.dtype|core.VarDesc.VarType|str， 可选）- 输出变量的数据类型。若参数为空，则输出变量的数据类型和输入变量相同，默认值为None。
-    - **device** (str，可选) – 选择在哪个设备运行该操作，可选值包括None，'cpu'和'gpu'。如果 ``device`` 为None，则将选择运行Paddle程序的设备，默认为None。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+参数
+::::::::::
+    - **x** (Tensor) – 输入的Tensor，数据类型可以是bool，float16, float32，float64，int32，int64。输出Tensor的形状和 ``x`` 相同。如果 ``dtype`` 为None，则输出Tensor的数据类型与 ``x`` 相同。
+    - **dtype** (str|np.dtype|core.VarDesc.VarType, 可选) - 输出Tensor的数据类型，支持bool，float16, float32，float64，int32，int64。当该参数值为None时， 输出Tensor的数据类型与 ``x`` 相同。默认值为None.
+    - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
     
-返回：返回一个存储结果的Tensor。
+返回
+::::::::::
+    Tensor：和 ``x`` 具有相同形状的数值都为1的Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
-返回类型：Variable
+抛出异常
+::::::::::
+    - ``TypeError`` - 如果 ``dtype`` 不是bool、float16、float32、float64、int32、int64。
 
-**代码示例**：
+代码示例
+::::::::::
 
 .. code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', dtype='float32', shape=[3])
-    data = paddle.ones_like(x) # data=[1.0, 1.0, 1.0]
-    data1 = paddle.ones_like(input=x, device="gpu") # data1=[1.0, 1.0. 1.0]
+    import numpy as np
+
+    paddle.enable_imperative()
+
+    x = paddle.imperative.to_variable(np.array([1,2,3], dtype='float32'))
+    out1 = paddle.ones_like(x) # [1., 1., 1.]
+    out2 = paddle.ones_like(x, dtype='int32') # [1, 1, 1]

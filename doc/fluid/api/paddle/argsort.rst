@@ -2,6 +2,6 @@
 
 argsort
 -------------------------------
-:doc_source: paddle.fluid.layers.argsort
+:doc_source: paddle.tensor.argsort
 
 

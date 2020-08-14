@@ -113,14 +113,6 @@ clang-formater.......................................(no files to check)Skipped
  create mode 100644 233
 ```
 
-<b> <font color="red">Attention needs to be paid：you need to add commit message to trigger CI test.The command is as follows:</font> </b>
-
-```bash
-# Touch CI single test of develop branch
-➜  git commit -m "test=develop"
-# Touch CI single test of release/1.1 branch
-➜  git commit -m "test=release/1.1"
-```
 
 ## Keep the latest local repository
 

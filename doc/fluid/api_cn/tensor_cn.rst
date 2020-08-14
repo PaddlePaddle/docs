@@ -38,16 +38,14 @@ paddle.tensor
     tensor_cn/einsum_cn.rst
     tensor_cn/elementwise_add_cn.rst
     tensor_cn/elementwise_div_cn.rst
-    tensor_cn/elementwise_equal_cn.rst
     tensor_cn/elementwise_floordiv_cn.rst
-    tensor_cn/elementwise_max_cn.rst
-    tensor_cn/elementwise_min_cn.rst
     tensor_cn/elementwise_mod_cn.rst
     tensor_cn/elementwise_mul_cn.rst
     tensor_cn/elementwise_pow_cn.rst
     tensor_cn/elementwise_sub_cn.rst
     tensor_cn/elementwise_sum_cn.rst
     tensor_cn/equal_cn.rst
+    tensor_cn/equal_all_cn.rst
     tensor_cn/erf_cn.rst
     tensor_cn/exp_cn.rst
     tensor_cn/expand_as_cn.rst
@@ -65,6 +63,7 @@ paddle.tensor
     tensor_cn/greater_than_cn.rst
     tensor_cn/has_inf_cn.rst
     tensor_cn/has_nan_cn.rst
+    tensor_cn/histogram_cn.rst
     tensor_cn/increment_cn.rst
     tensor_cn/index_sample_cn.rst
     tensor_cn/index_select_cn.rst
@@ -88,9 +87,11 @@ paddle.tensor
     tensor_cn/math_cn.rst
     tensor_cn/matmul_cn.rst
     tensor_cn/max_cn.rst
+    tensor_cn/maximum_cn.rst
     tensor_cn/mean_cn.rst
     tensor_cn/meshgrid_cn.rst
     tensor_cn/min_cn.rst
+    tensor_cn/minimum_cn.rst
     tensor_cn/mm_cn.rst
     tensor_cn/mul_cn.rst
     tensor_cn/multiplex_cn.rst
