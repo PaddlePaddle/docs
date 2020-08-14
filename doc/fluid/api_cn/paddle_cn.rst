@@ -56,6 +56,7 @@ paddle
 	paddle_cn/Executor_cn.rst
 	paddle_cn/expand_as_cn.rst
 	paddle_cn/expand_cn.rst
+	paddle_cn/tile_cn.rst
 	paddle_cn/exp_cn.rst
 	paddle_cn/eye_cn.rst
 	paddle_cn/fill_constant_cn.rst
