@@ -32,7 +32,7 @@ sqrt
 
     import numpy as np
     import paddle
-    paddle.enable_imperative()
+    paddle.disable_static()
     x_data = np.array([0.1, 0.2, 0.3, 0.4])
     x = paddle.imperative.to_variable(x_data)
     out = paddle.sqrt(x)
