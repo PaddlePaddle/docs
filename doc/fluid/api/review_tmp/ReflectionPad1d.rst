@@ -3,7 +3,7 @@
 ReflectionPad1d
 ---------------
 
-..  autoclass:: paddle.nn.ReflectionPad1d
+..  autoclass:: paddle.nn.layer.common.ReflectionPad1d
     :members:
     :inherited-members:
     :noindex:
