@@ -37,6 +37,6 @@ ReLU (Rectified Linear Unit）激活层
 
     paddle.disable_static()
 
-    lrelu = paddle.nn.LeakyReLU()
-    x = paddle.to_variable(np.array([-2, 0, 1], 'float32'))
-    out = lrelu(x)  # [-0.02, 0., 1.]
+    m = paddle.nn.LeakyReLU()
+    x = paddle.ti_tensor(np.array([-2, 0, 1]))
+    out = m(x)  # [-0.02, 0., 1.]

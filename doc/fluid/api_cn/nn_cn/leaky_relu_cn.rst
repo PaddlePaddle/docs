@@ -37,5 +37,5 @@ leaky_relu激活层。计算公式如下：
 
     paddle.disable_static()
 
-    x = paddle.to_variable(np.array([-2, 0, 1]))
+    x = paddle.to_tensor(np.array([-2, 0, 1]))
     out = F.leaky_relu(x) # [-0.02, 0., 1.]
