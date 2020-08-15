@@ -7,3 +7,4 @@ paddle.review_tmp
 
     review_tmp/MarginRankingLoss.rst
     review_tmp/margin_ranking_loss.rst
+    review_tmp/AdamW.rst
