@@ -10,6 +10,7 @@ paddle.optimizer
     optimizer/Adagrad.rst
     optimizer/AdagradOptimizer.rst
     optimizer/Adam.rst
+    optimizer/AdamW.rst
     optimizer/Adamax.rst
     optimizer/AdamaxOptimizer.rst
     optimizer/AdamOptimizer.rst
