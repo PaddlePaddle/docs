@@ -73,6 +73,29 @@ DGC还使用动量因子掩藏（momentum factor masking）和预训练（warm-u
 .. code-block:: python
 
     import paddle.fluid as fluid
+
+    def network():
+        x = fluid.layers.data(name='x', shape=[1], dtype='int64', lod_level=0)
+        y = fluid.layers.data(name='y', shape=[1], dtype='int64', lod_level=0)
+        emb_x = fluid.layers.embedding(
+                input=x,
+                size=[10, 2],
+                is_sparse=False)
+        emb_y = fluid.layers.embedding(
+                input=y,
+                size=[10, 2],
+                is_sparse=False)
+
+        concat = fluid.layers.concat([emb_x, emb_y], axis=1)
+
+        fc = fluid.layers.fc(input=concat,
+                       name="fc",
+                       size=1,
+                       num_flatten_dims=1,
+                       bias_attr=False)
+        loss = fluid.layers.reduce_mean(fc)
+        return loss
+
     loss = network()
     optimizer = fluid.optimizer.SGD(learning_rate=0.1)
     params_grads = optimizer.backward(loss)

@@ -13,4 +13,3 @@ fluid.transpiler
     transpiler_cn/HashName_cn.rst
     transpiler_cn/memory_optimize_cn.rst
     transpiler_cn/release_memory_cn.rst
-    transpiler_cn/RoundRobin_cn.rst

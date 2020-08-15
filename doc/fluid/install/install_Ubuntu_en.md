@@ -57,36 +57,34 @@
         python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 * The installation package provided by default requires computer support for MKL
-* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/beginners_guide/install/install_script.md).
+* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md).
 
 ## Choose CPU/GPU
 
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and meet the following conditions, we command you to install PaddlePaddle
-	* **CUDA toolkit 10.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-	* **CUDA toolkit 9.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-	* **Hardware devices with GPU computing power over 1.0**
+    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **Hardware devices with GPU computing power over 1.0**
 
 
-	You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+    You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under ubuntu 16.04, CUDA9 and cuDNN7). For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl):
 
 
-	wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-	dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-	sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+    wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+    dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
 
 
 ## Choose an installation method
 
-Under the Ubuntu system, we offer 5 installation methods:
+Under the Ubuntu system, we offer 3 installation methods:
 
 * Pip installation (recommended)
-* [Conda安装](./install_Conda.html)
-* [Docker installation](./install_Docker.html)
 * [Source code compilation and installation](./compile/compile_Ubuntu.html#ubt_source)
 * [Docker source code compilation and installation](./compile/compile_Ubuntu.html#ubt_docker)
 
@@ -95,12 +93,12 @@ We will introduce pip installation here.
 ## Installation steps
 
 * CPU version of PaddlePaddle：
-  * For Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2： `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 * GPU version PaddlePaddle：
-  * For Python 2： `python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3： `python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 You can [verify whether the installation is successful](#check), if you have any questions please see [FAQ](./FAQ.html)
 
@@ -108,7 +106,7 @@ Note:
 
 * For python2.7, we recommend to use `python` command; For python3.x, we recommend to use `python3` command.
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install PaddlePaddle supporting CUDA 10.0 cuDNN v7, if you have different requirement to the version of CUDA or cuDNN, you can use `python -m pip install paddlepaddle-gpu==[version number] -i https://pypi.tuna.tsinghua.edu.cn/simple` or  `python3 -m pip install paddlepaddle-gpu==[version number] -i https://pypi.tuna.tsinghua.edu.cn/simple` command to install, for version number please see[version number](https://pypi.org/project/paddlepaddle-gpu#history), for correspondence between paddlepaddle and CUDA and cuDNN version, please see [Installation package list](./Tables.html#whls)
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install PaddlePaddle supporting CUDA 10.0 cuDNN v7.
 
 
 * Download the latest stable installation package by default. For development installation package, please refer to[here](./Tables.html#ciwhls)
