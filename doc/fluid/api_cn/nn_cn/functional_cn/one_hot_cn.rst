@@ -3,7 +3,7 @@
 one_hot
 -------------------------------
 
-.. py:function:: paddle.fluid.one_hot(x, num_classes)
+.. py:function:: paddle.fluid.nn.functional.one_hot(x, num_classes, name=None)
 
 :alias_main: paddle.nn.functional.one_hot
 :alias: paddle.nn.functional.one_hot,paddle.nn.functional.common.one_hot
