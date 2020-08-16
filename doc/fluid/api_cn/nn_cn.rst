@@ -95,7 +95,7 @@ paddle.nn
     nn_cn/logsigmoid_cn.rst
     nn_cn/log_loss_cn.rst
     nn_cn/lrn_cn.rst
-    nn_cn/margin_rank_loss_cn.rst
+    nn_cn/margin_ranking_loss_cn.rst
     nn_cn/maxout_cn.rst
     nn_cn/mse_loss_cn.rst
     nn_cn/multiclass_nms_cn.rst
@@ -162,3 +162,6 @@ paddle.nn
     nn_cn/while_loop_cn.rst
     nn_cn/yolov3_loss_cn.rst
     nn_cn/yolo_box_cn.rst
+    nn_cn/loss_cn/MarginRankingLoss_cn.rst
+    nn_cn/functional_cn/margin_ranking_loss_cn.rst
+     
