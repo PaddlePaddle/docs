@@ -5,10 +5,6 @@ one_hot
 
 .. py:function:: paddle.fluid.nn.functional.one_hot(x, num_classes, name=None)
 
-:alias_main: paddle.nn.functional.one_hot
-:alias: paddle.nn.functional.one_hot,paddle.nn.functional.common.one_hot
-:old_api: paddle.fluid.one_hot
-
 
 
 该OP将输入（x）中的每个id转换为一个one-hot向量，其长度为 ``num_classes`` ，该id对应的向量维度上的值为1，其余维度的值为0。
@@ -48,7 +44,7 @@ one_hot
 参数：
     - **x** (Tensor) - 维度为 :math:`[N_1, ..., N_n]` 的多维Tensor，维度至少1维。数据类型为int32或int64。
     - **num_classes** (int) - 用于定义一个one-hot向量的长度。若输入为词id，则 ``num_classes`` 通常取值为词典大小。
-    - **allow_out_of_range** (bool) - 指明x中所包含的id值是否可以大于num_classes值。当超过num_classes时，如果 `allow_out_of_range` 为False，则会抛出 `Illegal value` 的异常；如果设置为True，该id对应的向量为0向量。默认值为False。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：转换后的one_hot Tensor，数据类型为float32。
 
