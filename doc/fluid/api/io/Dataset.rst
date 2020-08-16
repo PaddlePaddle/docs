@@ -2,6 +2,10 @@
 
 Dataset
 -------------------------------
-:doc_source: paddle.fluid.dataloader.Dataset
+..  autoclass:: paddle.fluid.io.Dataset
+    :members:
+    :inherited-members:
+    :noindex:
+
 
 

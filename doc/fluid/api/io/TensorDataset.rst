@@ -1,7 +1,11 @@
 .. _api_io_TensorDataset:
 
-Dataset
+TensorDataset
 -------------------------------
-:doc_source: paddle.fluid.dataloader.TensorDataset
+..  autoclass:: paddle.fluid.io.TensorDataset
+    :members:
+    :inherited-members:
+    :noindex:
+
 
 
