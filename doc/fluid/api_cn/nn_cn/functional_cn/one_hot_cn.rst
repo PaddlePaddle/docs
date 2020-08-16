@@ -1,4 +1,4 @@
-.. _cn_api_fluid_one_hot:
+.. _cn_api_nn_functional_one_hot:
 
 one_hot
 -------------------------------
