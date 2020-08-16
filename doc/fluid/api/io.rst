@@ -14,6 +14,7 @@ fluid.io
     io/ComposeNotAligned.rst
     io/DataLoader.rst
     io/Dataset.rst
+    io/TensorDataset.rst
     io/default_collate_fn.rst
     io/firstn.rst
     io/get_program_parameter.rst
