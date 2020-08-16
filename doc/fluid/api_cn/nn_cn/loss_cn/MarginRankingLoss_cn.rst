@@ -52,9 +52,9 @@ MarginRankingLoss
      
      paddle.disable_static()
       
-     input = paddle.to_variable(np.array([[1, 2], [3, 4]]).astype("float32"))
-     other = paddle.to_variable(np.array([[2, 1], [2, 4]]).astype("float32"))
-     label = paddle.to_variable(np.array([[1, -1], [-1, -1]]).astype("float32"))
+     input = paddle.to_tensor(np.array([[1, 2], [3, 4]]).astype("float32"))
+     other = paddle.to_tensor(np.array([[2, 1], [2, 4]]).astype("float32"))
+     label = paddle.to_tensor(np.array([[1, -1], [-1, -1]]).astype("float32"))
      margin_rank_loss = paddle.nn.MarginRankingLoss()
      loss = margin_rank_loss(input, other, label) 
      print(loss.numpy()) # [0.75]

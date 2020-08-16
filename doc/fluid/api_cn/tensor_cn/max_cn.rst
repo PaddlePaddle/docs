@@ -36,7 +36,7 @@ max
     # the axis is a int element
     data_x = np.array([[0.2, 0.3, 0.5, 0.9],
                        [0.1, 0.2, 0.6, 0.7]])
-    x = paddle.to_variable(data_x)
+    x = paddle.to_tensor(data_x)
     result1 = paddle.max(x)
     print(result1.numpy())
     #[0.9]
@@ -55,7 +55,7 @@ max
     # the axis is list 
     data_y = np.array([[[1.0, 2.0], [3.0, 4.0]],
                        [[5.0, 6.0], [7.0, 8.0]]])
-    y = paddle.to_variable(data_y)
+    y = paddle.to_tensor(data_y)
     result5 = paddle.max(y, axis=[1, 2])
     print(result5.numpy())
     #[4. 8.]

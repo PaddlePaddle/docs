@@ -33,7 +33,7 @@ arctangent函数。
 
         paddle.disable_static()
         x_data = np.array([-0.8183,  0.4912, -0.6444,  0.0371]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor(x_data)
         res = paddle.atan(x)
         print(res.numpy())
         # [-0.6858,  0.4566, -0.5724,  0.0371]

@@ -33,7 +33,7 @@ abs
 
         paddle.disable_static()
         x_data = np.array([-1, -2, -3, -4]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor(x_data)
         res = paddle.abs(x)
         print(res.numpy())
         # [1, 2, 3, 4]

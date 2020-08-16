@@ -46,8 +46,8 @@ l1_loss
         paddle.disable_static()
         x_data = np.array([[1.5, 0.8], [0.2, 1.3]]).astype("float32")
         label_data = np.array([[1.7, 1], [0.4, 0.5]]).astype("float32")
-        x = paddle.to_variable(x_data)
-        label = paddle.to_variable(label_data)
+        x = paddle.to_tensor(x_data)
+        label = paddle.to_tensor(label_data)
 
         l1_loss = paddle.nn.functional.l1_loss(x, label)
         print(l1_loss.numpy())  

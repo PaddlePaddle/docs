@@ -63,8 +63,8 @@ minimum
   
     x_data = np.array([[1, 2], [3, 4]], dtype=np.float32)
     y_data = np.array([[5, 6], [7, 8]], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor(x_data)
+    y = paddle.to_tensor(y_data)
     res = paddle.minimum(x, y)
     print(res.numpy())
     #[[1. 2.]
@@ -72,8 +72,8 @@ minimum
 
     x_data = np.array([[[1, 2, 3], [1, 2, 3]]], dtype=np.float32)
     y_data = np.array([1, 2], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor(x_data)
+    y = paddle.to_tensor(y_data)
     res = paddle.minimum(x, y, axis=1)
     print(res.numpy())
     #[[[1. 1. 1.]
@@ -81,16 +81,16 @@ minimum
 
     x_data = np.array([2, 3, 5], dtype=np.float32)
     y_data = np.array([1, 4, np.nan], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor(x_data)
+    y = paddle.to_tensor(y_data)
     res = paddle.minimum(x, y)
     print(res.numpy())
     #[ 1.  3. nan]
 
     x_data = np.array([5, 3, np.inf], dtype=np.float32)
     y_data = np.array([1, 4, 5], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor(x_data)
+    y = paddle.to_tensor(y_data)
     res = paddle.minimum(x, y)
     print(res.numpy())
     #[1. 3. 5.]

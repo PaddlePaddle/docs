@@ -36,7 +36,7 @@ cos
 
         paddle.disable_static()
         x_data = np.array([[-1,np.pi],[1,15.6]]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor(x_data)
         res = paddle.cos(x)
         print(res.numpy())
         # [[ 0.54030231 -1.        ]

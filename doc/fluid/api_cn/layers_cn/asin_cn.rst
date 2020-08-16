@@ -33,7 +33,7 @@ arcsine函数。
 
         paddle.disable_static()
         x_data = np.array([-0.8183,  0.4912, -0.6444,  0.0371]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor(x_data)
         res = paddle.asin(x)
         print(res.numpy())
         # [-0.9585,  0.5135, -0.7003,  0.0372]
