@@ -9,6 +9,15 @@ done
 python gen_doc.py --module_name "" --module_prefix "" --output fluid --output_name fluid --to_multiple_files True
 python gen_module_index.py fluid  fluid
 
+for module in fleet
+do
+    python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name distributed --to_multiple_files True
+    python gen_module_index.py ${module} distributed.${module}
+done
+
+python gen_doc.py --module_name "" --module_prefix "" --output distributed --output_name distributed --to_multiple_files True
+python gen_module_index.py distributed distributed
+
 for module in meta_optimizers metrics dataset runtime utils
 do
     python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name fleet --to_multiple_files True
