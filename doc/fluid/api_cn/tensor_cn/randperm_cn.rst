@@ -8,7 +8,7 @@ randperm
 :alias_main: paddle.randperm
 :alias: paddle.tensor.randperm, paddle.tensor.random.randperm
 
-该OP返回一个数值在0到n-1、随机排列的序列。
+该OP返回一个数值在0到n-1、随机排列的1-D Tensor，数据类型为 ``dtype``。
 
 参数:
 ::::::::::
@@ -18,7 +18,7 @@ randperm
 
 返回
 ::::::::::
-  Variable：一个数值在0到n-1、随机排列的序列。数据类型为 ``dtype`` 。
+  Tensor：一个数值在0到n-1、随机排列的1-D Tensor，数据类型为 ``dtype`` 。
 
 抛出异常
 ::::::::::

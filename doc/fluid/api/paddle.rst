@@ -45,10 +45,7 @@ paddle
 	paddle/dot.rst
 	paddle/elementwise_add.rst
 	paddle/elementwise_div.rst
-	paddle/elementwise_equal.rst
 	paddle/elementwise_floordiv.rst
-	paddle/elementwise_max.rst
-	paddle/elementwise_min.rst
 	paddle/elementwise_mod.rst
 	paddle/elementwise_mul.rst
 	paddle/elementwise_pow.rst
@@ -56,6 +53,7 @@ paddle
 	paddle/elementwise_sum.rst
 	paddle/enable_imperative.rst
 	paddle/equal.rst
+	paddle/equal_all.rst
 	paddle/erf.rst
 	paddle/ExecutionStrategy.rst
 	paddle/Executor.rst
@@ -99,9 +97,11 @@ paddle
 	paddle/manual_seed.rst
 	paddle/matmul.rst
 	paddle/max.rst
+	paddle/maximum.rst
 	paddle/mean.rst
 	paddle/meshgrid.rst
 	paddle/min.rst
+	paddle/minimum.rst
 	paddle/mm.rst
 	paddle/mul.rst
 	paddle/multiplex.rst
