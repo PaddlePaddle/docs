@@ -34,9 +34,7 @@ cosine_similarity
     x2 = np.random.rand(2,3)
     x1 = paddle.to_tensor(x1)
     x2 = paddle.to_tensor(x2)
-
-    cos_sim_func = nn.CosineSimilarity(dim=0)
-    result = cos_sim_func(x1, x2)
+    result = paddle.nn.functional.cosine_similarity(x1, x2, dim=0)
     print(result.numpy())
     # [0.99806249 0.9817672  0.94987036]
 
