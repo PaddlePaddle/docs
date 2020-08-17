@@ -28,7 +28,7 @@ tile
     
     paddle.disable_static()
     np_data = np.array([1, 2, 3]).astype('int32')
-    data = paddle.to_variable(np_data)
+    data = paddle.to_tensor(np_data)
     out = paddle.tile(data, repeat_times=[2, 1])
     np_out = out1.numpy()
     # [[1, 2, 3], [1, 2, 3]]
@@ -38,7 +38,7 @@ tile
     # [[1, 2, 3, 1, 2, 3], [1, 2, 3, 1, 2, 3]]
     
     np_repeat_times = np.array([2, 1]).astype("int32")
-    repeat_times = paddle.to_variable(np_repeat_times)
+    repeat_times = paddle.to_tensor(np_repeat_times)
     out = paddle.tile(data, repeat_times=repeat_times)
     np_out = out.numpy()
     # [[1, 2, 3], [1, 2, 3]]
