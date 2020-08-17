@@ -14,16 +14,6 @@ round
 
 该OP将输入中的数值四舍五入到最接近的整数数值。
 
-.. code-block:: python
-
-  输入：
-    x.shape = [4]
-    x.data = [1.2, -0.9, 3.4, 0.9]
-
-  输出：
-    out.shape = [4]
-    Out.data = [1., -1., 3., 1.]
-
 参数:
 
     - **x** (Tenson) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
