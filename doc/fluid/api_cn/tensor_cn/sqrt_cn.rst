@@ -34,7 +34,7 @@ sqrt
     import paddle
     paddle.disable_static()
     x_data = np.array([0.1, 0.2, 0.3, 0.4])
-    x = paddle.imperative.to_variable(x_data)
+    x = paddle.to_variable(x_data)
     out = paddle.sqrt(x)
     print(out.numpy())
     # [0.31622777 0.4472136  0.54772256 0.63245553]
