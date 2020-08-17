@@ -8,9 +8,9 @@ pad
 该OP依照 pad 和 mode 属性对input进行 ``pad`` 。
 
 参数：
-  - **x** (Variable) - Tensor，format可以为 `'NCL'`, `'NLC'`, `'NCHW'`, `'NHWC'`, `'NCDHW'`
+  - **x** (Tensor) - Tensor，format可以为 `'NCL'`, `'NLC'`, `'NCHW'`, `'NHWC'`, `'NCDHW'`
     或 `'NDHWC'`，默认值为`'NCHW'`，数据类型支持float16, float32, float64, int32, int64。
-  - **pad** (Variable | List[int32]) - 填充大小。当输入维度为3时，pad的格式为[pad_left, pad_right]；
+  - **pad** (Tensor | List[int32]) - 填充大小。当输入维度为3时，pad的格式为[pad_left, pad_right]；
     当输入维度为4时，pad的格式为[pad_left, pad_right, pad_top, pad_bottom]；
     当输入维度为5时，pad的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
   - **mode** (str) - padding的四种模式，分别为 `'constant'`, `'reflect'`, `'replicate'` 和`'circular'`。
