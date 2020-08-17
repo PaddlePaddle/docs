@@ -3,7 +3,6 @@
 ComplexVariable
 -------------------------------
 
-
 .. py:class:: paddle.fluid.ComplexVariable(real, imag)
 
 :api_attr: 命令式编程模式（动态图)
@@ -11,13 +10,15 @@ ComplexVariable
 ``ComplexVariable`` 可以定义存储复数的变量。它包含两个参数 ``real`` 和 ``imag`` ,分别存储复数的实数部分与虚数部分。
 
 .. note::
-``ComplexVariable`` 不应该被直接调用。目前只支持动态图模式，请通过给  :ref:`cn_api_fluid_dygraph_to_variable` 传入复数数据的方式创建一个动态图下的复数变量。
+    ``ComplexVariable`` 不应该被直接调用。目前只支持动态图模式，请通过给  :ref:`cn_api_fluid_dygraph_to_variable` 传入复数数据的方式创建一个动态图下的复数变量。
 
-参数:
+参数
+:::::::::
     - **real** (Variable) - 存储复数的实数部分。
     - **imag** (Variable) - 存储复数的虚数部分
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
    

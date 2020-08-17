@@ -8,7 +8,7 @@ enable_dygraph
 该接口打开动态图模式。
 
 .. note::
-推荐使用 :ref:`cn_api_fluid_dygraph_enable_imperative` 。
+    推荐使用 :ref:`cn_api_fluid_dygraph_enable_imperative` 。
 
 参数
 ::::::::::::

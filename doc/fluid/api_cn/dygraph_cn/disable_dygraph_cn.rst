@@ -8,7 +8,7 @@ disable_dygraph
 该接口关闭动态图模式。
 
 .. note::
-推荐使用 :ref:`cn_api_fluid_dygraph_disable_imperative` 。
+    推荐使用 :ref:`cn_api_fluid_dygraph_disable_imperative` 。
 
 返回
 ::::::::::::
