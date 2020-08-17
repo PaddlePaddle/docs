@@ -8,7 +8,8 @@ argmax
 
 该OP沿 ``axis`` 计算输入 ``x`` 的最大元素的索引。
 
-参数：
+参数
+::::::::
     - **x** （Tensor） - 输入的多维 ``Tensor`` ，支持的数据类型：float32、float64、int16、int32、int64、uint8。
     - **axis** （int，可选） - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R），R是输入 ``x`` 的维度个数， ``axis`` 为负数时，进行计算的 ``axis`` 与 ``axis`` + R 一致。默认值为None, 将会对输入的 `x` 进行平铺展开，返回最大值的索引。
     - **dtype** （np.dtype|str）- 输出Tensor的数据类型，可选值为int32，int64，默认值为None，将返回int64类型的结果。
@@ -17,10 +18,10 @@ argmax
 
 返回
 ::::::::
-``Tensor`` ，如果设置 :attr:`dtype` 为 `int32` 时，返回的tensor的数据类型为 `int32` ，其它情况将返回的tensor的数据类型为 `int64` 。
+``Tensor`` 或者标量 ，如果axis设置为 ``None`` 则返回标量，其它情况下返回 ``tensor`` ； 如果设置 :attr:`dtype` 为 `int32` 时，返回的tensor的数据类型为 `int32` ，其它情况将返回的tensor的数据类型为 `int64` 。
 
 
-返回代码
+示例代码
 ::::::::
 
 .. code-block:: python
