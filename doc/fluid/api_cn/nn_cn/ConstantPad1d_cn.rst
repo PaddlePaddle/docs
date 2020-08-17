@@ -20,17 +20,17 @@ ConstantPad1d
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import paddle.nn as nn
     import numpy as np
+    paddle.disable_static()
+
     input_shape = (1, 2, 3)
     pad = [1, 2]
-    value = 0.0
     data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
-    my_pad = nn.ConstantPad1d(padding=pad, value=value)
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
-        result = my_pad(data)
+    my_pad = nn.ConstantPad1d(padding=pad)
+    data = paddle.to_variable(data)
+    result = my_pad(data)
     print(result.numpy())
     # [[[0. 1. 2. 3. 0. 0.]
     #   [0. 4. 5. 6. 0. 0.]]]
