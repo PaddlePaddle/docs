@@ -73,7 +73,7 @@ paddle.nn
     nn_cn/GradientClipByValue_cn.rst
     nn_cn/grid_sampler_cn.rst
     nn_cn/GroupNorm_cn.rst
-    nn_cn/hard_shrink_cn.rst
+    nn_cn/hardshrink_cn.rst
     nn_cn/hard_sigmoid_cn.rst
     nn_cn/hard_swish_cn.rst
     nn_cn/hash_cn.rst

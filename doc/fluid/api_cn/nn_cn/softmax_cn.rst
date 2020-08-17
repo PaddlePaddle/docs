@@ -2,7 +2,7 @@
 
 softmax
 -------------------------------
-.. py:class:: paddle.nn.functional.softmax(x, axis=-1, name=None)
+.. py:functional:: paddle.nn.functional.softmax(x, axis=-1, name=None)
 
 该OP实现了softmax层。OP的计算过程如下：
 
@@ -27,9 +27,9 @@ softmax
 
 - 示例1（矩阵一共有三维。axis = -1，表示沿着最后一维（即第三维）做softmax操作）
 
-.. code-block:: python
+.. code-block:: text
 
-  输入
+  # input
 
     x.shape = [2, 3, 4] 
 
@@ -42,7 +42,7 @@ softmax
 
     axis = -1
 
-  输出
+  # output
 
     out.shape = [2, 3, 4]
 
@@ -55,9 +55,9 @@ softmax
 
 - 示例2（矩阵一共有三维。axis = 1，表示沿着第二维做softmax操作）
 
-.. code-block:: python
+.. code-block:: text
 
-  输入
+  # input
 
     x.shape = [2, 3, 4] 
 
@@ -70,7 +70,7 @@ softmax
 
     axis = 1
 
-  输出
+  # output
 
     out.shape = [2, 3, 4]
 
@@ -101,7 +101,7 @@ softmax
     import paddle.nn.functional as F
     import numpy as np
 
-    paddle.enable_imperative()
+    paddle.disable_static()
 
     x = np.array([[[2.0, 3.0, 4.0, 5.0],
                     [3.0, 4.0, 5.0, 6.0],
@@ -109,7 +109,7 @@ softmax
                     [[1.0, 2.0, 3.0, 4.0],
                     [5.0, 6.0, 7.0, 8.0],
                     [6.0, 7.0, 8.0, 9.0]]], 'float32')
-    x = paddle.imperative.to_variable(x)
+    x = paddle.to_variable(x)
     out = F.softmax(x)
     # [[[0.0320586 , 0.08714432, 0.23688282, 0.64391426],
     #   [0.0320586 , 0.08714432, 0.23688282, 0.64391426],
