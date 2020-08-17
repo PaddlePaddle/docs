@@ -9,6 +9,15 @@ done
 python gen_doc.py --module_name "" --module_prefix "" --output fluid --output_name fluid --to_multiple_files True
 python gen_module_index.py fluid  fluid
 
+for module in meta_optimizers metrics dataset runtime utils
+do
+    python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name fleet --to_multiple_files True
+    python gen_module_index.py ${module} fleet.${module}
+done
+
+python gen_doc.py --module_name "" --module_prefix "" --output fleet --output_name fleet --to_multiple_files True
+python gen_module_index.py fleet fleet
+
 # tensor
 for module in math random stat linalg search
 do
