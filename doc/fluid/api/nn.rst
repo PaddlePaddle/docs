@@ -5,6 +5,7 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
+    nn/activation.rst
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
     nn/add_position_encoding.rst
@@ -54,6 +55,7 @@ paddle.nn
     nn/exponential_decay.rst
     nn/filter_by_instag.rst
     nn/fsp_matrix.rst
+    nn/functional.rst
     nn/gather_tree.rst
     nn/gelu.rst
     nn/generate_mask_labels.rst
@@ -64,7 +66,7 @@ paddle.nn
     nn/GradientClipByValue.rst
     nn/grid_sampler.rst
     nn/GroupNorm.rst
-    nn/hard_shrink.rst
+    nn/hardshrink.rst
     nn/hard_sigmoid.rst
     nn/hard_swish.rst
     nn/hash.rst
@@ -159,4 +161,6 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
+    nn/functional/loss/margin_ranking_loss.rst
+    nn/layer/loss/MarginRankingLoss.rst
     nn/ZeroPad2d.rst
