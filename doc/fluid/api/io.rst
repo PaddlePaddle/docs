@@ -7,6 +7,9 @@ fluid.io
 
     io/batch.rst
     io/BatchSampler.rst
+    io/Sampler.rst
+    io/SequenceSampler.rst
+    io/RandomSampler.rst
     io/buffered.rst
     io/cache.rst
     io/chain.rst
