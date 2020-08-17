@@ -4,7 +4,7 @@ CosineSimilarity
 -------------------------------
 .. py:class:: paddle.nn.CosineSimilarity(dim=1, eps=1e-8)
 
-**ConstantPad1d**
+**CosineSimilarity**
 
 计算x1与x2沿dim维度的余弦相似度。
 
