@@ -35,7 +35,7 @@ argmin
                     [[5,2,4,2],
                     [4,7,7,9],
                     [1,7,0,6]]])
-    x =  paddle.to_variable(data)
+    x =  paddle.to_tensor(data)
     out1 = paddle.argmin(x)
     print(out1.numpy())
     # 4 
