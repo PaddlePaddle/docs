@@ -50,6 +50,8 @@ paddle.nn
     nn_cn/ConstantPad2d_cn.rst
     nn_cn/ConstantPad3d_cn.rst
     nn_cn/cosine_decay_cn.rst
+    nn_cn/cosine_similarity_cn.rst
+    nn_cn/CosineSimilarity_cn.rst
     nn_cn/cross_entropy_cn.rst
     nn_cn/data_cn.rst
     nn_cn/deformable_roi_pooling_cn.rst

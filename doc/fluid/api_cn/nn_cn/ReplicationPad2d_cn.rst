@@ -2,7 +2,7 @@
 
 ReplicationPad2d
 -------------------------------
-.. py:class:: paddle.nn.ReplicationPad2d(padding=[0, 0, 0, 0], data_format="NCHW", name=None)
+.. py:class:: paddle.nn.ReplicationPad2d(padding, data_format="NCHW", name=None)
 
 **ReplicationPad2d**
 
@@ -10,7 +10,6 @@ ReplicationPad2d
 
 参数：
   - **padding** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right, pad_top, pad_bottom]。
-    默认值为[0, 0, 0, 0]。
   - **data_format** (str)  - 指定input的format，可为 `'NCHW'` 或者 `'NHWC'`，默认值为`'NCHW'`。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 

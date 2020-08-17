@@ -26,15 +26,19 @@ paddle.nn
     nn/center_loss.rst
     nn/clip.rst
     nn/clip_by_norm.rst
-    nn/ConstantPad1d.rst
     nn/collect_fpn_proposals.rst
     nn/cond.rst
+    nn/ConstantPad1d.rst
+    nn/ConstantPad2d.rst
+    nn/ConstantPad3d.rst
     nn/continuous_value_model.rst
     nn/conv2d.rst
     nn/conv2d_transpose.rst
     nn/conv3d.rst
     nn/conv3d_transpose.rst
     nn/cosine_decay.rst
+    nn/cosine_similarity.rst
+    nn/CosineSimilarity.rst
     nn/cross_entropy.rst
     nn/data.rst
     nn/deformable_roi_pooling.rst
@@ -68,6 +72,7 @@ paddle.nn
     nn/huber_loss.rst
     nn/image_resize.rst
     nn/image_resize_short.rst
+    nn/initializer.rst
     nn/inverse_time_decay.rst
     nn/iou_similarity.rst
     nn/kldiv_loss.rst
@@ -84,24 +89,22 @@ paddle.nn
     nn/loss.rst
     nn/lrn.rst
     nn/margin_rank_loss.rst
+    nn/matrix_nms.rst
     nn/maxout.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
-    nn/matrix_nms.rst
     nn/natural_exp_decay.rst
     nn/noam_decay.rst
     nn/npair_loss.rst
     nn/one_hot.rst
     nn/pad.rst
-    nn/Pad.rst
-    nn/pad_constant_like.rst
     nn/pad2d.rst
+    nn/pad_constant_like.rst
     nn/ParameterList.rst
     nn/piecewise_decay.rst
     nn/pixel_shuffle.rst
     nn/polygon_box_transform.rst
     nn/polynomial_decay.rst
-    nn/pool2d.rst
     nn/Pool2D.rst
     nn/pool3d.rst
     nn/prior_box.rst
@@ -110,9 +113,12 @@ paddle.nn
     nn/random_crop.rst
     nn/rank_loss.rst
     nn/ReflectionPad1d.rst
+    nn/ReflectionPad2d.rst
     nn/ReLU.rst
     nn/relu6.rst
     nn/ReplicationPad1d.rst
+    nn/ReplicationPad2d.rst
+    nn/ReplicationPad3d.rst
     nn/resize_bilinear.rst
     nn/resize_nearest.rst
     nn/resize_trilinear.rst
@@ -153,3 +159,4 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
+    nn/ZeroPad2d.rst

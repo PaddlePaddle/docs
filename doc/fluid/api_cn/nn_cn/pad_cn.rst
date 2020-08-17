@@ -3,17 +3,16 @@
 pad
 -------------------------------
 
-.. py:function:: paddle.nn.functional.pad(input, pad=[0,0,0,0], mode="constant", value=0.0, data_format="NCHW", name=None)
+.. py:function:: paddle.nn.functional.pad(x, pad, mode="constant", value=0.0, data_format="NCHW", name=None)
 
 该OP依照 pad 和 mode 属性对input进行 ``pad`` 。
 
 参数：
-  - **input** (Variable) - Tensor，format可以为 `'NCL'`, `'NLC'`, `'NCHW'`, `'NHWC'`, `'NCDHW'`
+  - **x** (Variable) - Tensor，format可以为 `'NCL'`, `'NLC'`, `'NCHW'`, `'NHWC'`, `'NCDHW'`
     或 `'NDHWC'`，默认值为`'NCHW'`，数据类型支持float16, float32, float64, int32, int64。
   - **pad** (Variable | List[int32]) - 填充大小。当输入维度为3时，pad的格式为[pad_left, pad_right]；
     当输入维度为4时，pad的格式为[pad_left, pad_right, pad_top, pad_bottom]；
     当输入维度为5时，pad的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
-    默认值为[0, 0, 0, 0]。
   - **mode** (str) - padding的四种模式，分别为 `'constant'`, `'reflect'`, `'replicate'` 和`'circular'`。
     `'constant'` 表示填充常数 `value`；`'reflect'` 表示填充以input边界值为轴的映射；`'replicate'` 表示
     填充input边界值；`'circular'`为循环填充input。具体结果可见以下示例。默认值为 `'constant'` 。
@@ -29,8 +28,8 @@ pad
 
 .. code-block:: text
 
-      Input = [[[[[1., 2., 3.],
-                       [4., 5., 6.]]]]]
+      x = [[[[[1., 2., 3.],
+              [4., 5., 6.]]]]]
 
       Case 0:
           pad = [2, 2, 1, 1, 0, 0],

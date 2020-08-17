@@ -2,7 +2,7 @@
 
 ConstantPad1d
 -------------------------------
-.. py:class:: paddle.nn.ConstantPad1d(padding=[0, 0], value=0.0, data_format="NCL", name=None)
+.. py:class:: paddle.nn.ConstantPad1d(padding, value=0.0, data_format="NCL", name=None)
 
 **ConstantPad1d**
 
@@ -10,7 +10,6 @@ ConstantPad1d
 
 参数：
   - **padding** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
-    默认值为[0, 0]。
   - **value** (float32) - 待填充的值，默认值为0.0。
   - **data_format** (str)  - 指定input的format，可为 `'NCL'` 或者 `'NLC'`，默认值为`'NCL'`。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。

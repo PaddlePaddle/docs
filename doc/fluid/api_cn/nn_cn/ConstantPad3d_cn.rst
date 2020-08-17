@@ -2,7 +2,7 @@
 
 ConstantPad3d
 -------------------------------
-.. py:class:: paddle.nn.ConstantPad3d(padding=[0, 0, 0, 0, 0, 0], value=0.0, data_format="NCDHW", name=None)
+.. py:class:: paddle.nn.ConstantPad3d(padding, value=0.0, data_format="NCDHW", name=None)
 
 **ConstantPad3d**
 
@@ -10,7 +10,6 @@ ConstantPad3d
 
 参数：
   - **padding** (Variable | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
-    默认值为[0, 0, 0, 0, 0, 0]。
   - **value** (float32) - 待填充的值，默认值为0.0。
   - **data_format** (str)  - 指定input的format，可为 `'NCDHW'` 或者 `'NDHWC'`，默认值为`'NCDHW'`。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
