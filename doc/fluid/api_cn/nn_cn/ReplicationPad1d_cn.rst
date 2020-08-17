@@ -4,10 +4,6 @@ ReplicationPad1d
 -------------------------------
 .. py:class:: paddle.nn.ReplicationPad1d(padding=[0, 0], data_format="NCL", name=None)
 
-:alias_main: paddle.nn.ReplicationPad1d
-:alias: paddle.nn.ReplicationPad1d,paddle.nn.layer.ReplicationPad1d,paddle.nn.common.ReplicationPad1d
-
-
 **ReplicationPad1d**
 
 按照 padding 对输入 以replicate模式进行 ``pad``，即填充输入的边界值。

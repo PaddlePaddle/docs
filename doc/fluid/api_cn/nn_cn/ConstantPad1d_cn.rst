@@ -4,10 +4,6 @@ ConstantPad1d
 -------------------------------
 .. py:class:: paddle.nn.ConstantPad1d(padding=[0, 0], value=0.0, data_format="NCL", name=None)
 
-:alias_main: paddle.nn.ConstantPad1d
-:alias: paddle.nn.ConstantPad1d,paddle.nn.layer.ConstantPad1d,paddle.nn.common.ConstantPad1d
-
-
 **ConstantPad1d**
 
 按照 padding 对输入 以constant模式进行 ``pad``，即填充固定值。

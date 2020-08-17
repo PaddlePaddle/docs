@@ -5,12 +5,6 @@ pad
 
 .. py:function:: paddle.nn.functional.pad(input, pad=[0,0,0,0], mode="constant", value=0.0, data_format="NCHW", name=None)
 
-:alias_main: paddle.nn.functional.pad
-:alias: paddle.nn.functional.pad,paddle.nn.functional.common.pad
-:old_api: paddle.fluid.layers.pad
-
-
-
 该OP依照 pad 和 mode 属性对input进行 ``pad`` 。
 
 参数：
@@ -75,37 +69,30 @@ pad
 
 .. code-block:: python
 
-    # declarative mode
     import numpy as np
     import paddle
     import paddle.nn.functional as F
 
-    input_shape = (1, 1, 3)
-    data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
-    # [[[1. 2. 3.]]]
-    x = paddle.data(name="x", shape=input_shape)
-    y = F.pad(x, pad=[2, 3], value=1, mode='constant')
-    place = paddle.CPUPlace()
-    exe = paddle.Executor(place)
-    outputs = exe.run(feed={'x': data}, fetch_list=[y.name])
-    print(outputs[0])
+    paddle.disable_static()
+
+    # example 1
+    x_shape = (1, 1, 3)
+    x = np.arange(np.prod(x_shape), dtype=np.float32).reshape(x_shape) + 1
+    tensor_x = paddle.to_variable(x)
+    y = F.pad(tensor_x, pad=[2, 3], value=1, mode='constant')
+    print(y.numpy())
     # [[[1. 1. 1. 2. 3. 1. 1. 1.]]]
 
-    # imperative mode
-    import paddle.fluid.dygraph as dg
-    input_shape = (1, 1, 2, 3)
-    # [[[[1. 2. 3.]
-    #    [4. 5. 6.]]]]
-    pad = [1, 2, 1, 1]
-    input_data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
-    with dg.guard(place) as g:
-        input = dg.to_variable(input_data)
-        output = paddle.nn.functional.pad(input=input, pad=pad, mode="circular")
-        print(output.numpy())
-        # [[[[6. 4. 5. 6. 4. 5.]
-        #    [3. 1. 2. 3. 1. 2.]
-        #    [6. 4. 5. 6. 4. 5.]
-        #    [3. 1. 2. 3. 1. 2.]]]]
+    # example 2
+    x_shape = (1, 1, 2, 3)
+    x = np.arange(np.prod(x_shape), dtype=np.float32).reshape(x_shape) + 1
+    tensor_x = paddle.to_variable(x)
+    y = F.pad(tensor_x, pad=[1, 2, 1, 1], value=1, mode='circular')
+    print(y.numpy())
+    # [[[[6. 4. 5. 6. 4. 5.]
+    #    [3. 1. 2. 3. 1. 2.]
+    #    [6. 4. 5. 6. 4. 5.]
+    #    [3. 1. 2. 3. 1. 2.]]]]
 
 
 

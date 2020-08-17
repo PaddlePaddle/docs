@@ -4,12 +4,6 @@ Pad
 -------------------------------
 .. py:class:: paddle.nn.Pad(pad=[0, 0, 0, 0], mode='constant', value=0.0, data_format="NCHW", name=None)
 
-:alias_main: paddle.nn.Pad
-:alias: paddle.nn.Pad,paddle.nn.layer.Pad,paddle.nn.common.Pad
-:update_api: paddle.fluid.layers.pad
-
-
-
 **Pad**
 
 按照 pad 和 mode 属性对input进行 ``pad`` 。
@@ -21,7 +15,7 @@ Pad
     3. 当输入维度为5时，pad的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
     默认值为[0, 0, 0, 0]。
   - **mode** (str) - padding的四种模式，分别为 `'constant'`, `'reflect'`, `'replicate'` 和`'circular'`。
-    1. `'constant'` 为填充常数 `pad_value`
+    1. `'constant'` 为填充常数 `value`
     2. `'reflect'` 为填充以input边界值为轴的映射
     3. `'replicate'` 为填充input边界值
     4. `'circular' `为循环填充input
@@ -36,16 +30,20 @@ Pad
 
 ..  code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.nn as nn
     import numpy as np
-    data = np.ones((1, 1, 2, 2)).astype('float32')
-    my_pad = nn.Pad(pad=[1, 1, 1, 1])
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
-        result = my_pad(data)
-    print(result.numpy())
-    # [[[[0. 0. 0. 0.]
-    #    [0. 1. 1. 0.]
-    #    [0. 1. 1. 0.]
-    #    [0. 0. 0. 0.]]]]
+    paddle.disable_static()
+
+    x_shape = (1, 1, 3, 4)
+    x = np.arange(np.prod(x_shape), dtype=np.float32).reshape(x_shape) + 1
+    tensor_x = paddle.to_variable(x)
+    my_pad = nn.Pad2D(paddings=[1, 1, 1, 1])
+    y = my_pad(tensor_x)
+    print(y.numpy())
+    # [[[[ 0.  0.  0.  0.  0.  0.]
+    #    [ 0.  1.  2.  3.  4.  0.]
+    #    [ 0.  5.  6.  7.  8.  0.]
+    #    [ 0.  9. 10. 11. 12.  0.]
+    #    [ 0.  0.  0.  0.  0.  0.]]]]

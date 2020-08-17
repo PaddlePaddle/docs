@@ -4,10 +4,6 @@ ReflectionPad1d
 -------------------------------
 .. py:class:: paddle.nn.ReflectionPad1d(padding=[0, 0], data_format="NCL", name=None)
 
-:alias_main: paddle.nn.ReflectionPad1d
-:alias: paddle.nn.ReflectionPad1d,paddle.nn.layer.ReflectionPad1d,paddle.nn.common.ReflectionPad1d
-
-
 **ReflectionPad1d**
 
 按照 padding 对输入 以reflection模式进行 ``pad``，即填充以输入边界值为轴的映射 。
