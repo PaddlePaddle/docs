@@ -9,6 +9,7 @@ dataset
     dataset/conll05.rst
     dataset/imdb.rst
     dataset/imikolov.rst
+    dataset/mnist.rst
     dataset/movielens.rst
     dataset/sentiment.rst
     dataset/uci_housing.rst

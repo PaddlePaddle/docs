@@ -10,6 +10,7 @@ fluid
 
     fluid_cn/BuildStrategy_cn.rst
     fluid_cn/CompiledProgram_cn.rst
+    fluid_cn/ComplexVariable_cn.rst
     fluid_cn/cpu_places_cn.rst
     fluid_cn/CPUPlace_cn.rst
     fluid_cn/create_lod_tensor_cn.rst
