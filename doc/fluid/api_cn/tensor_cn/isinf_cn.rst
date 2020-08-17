@@ -1,11 +1,11 @@
-.. _cn_api_tensor_isnan:
+.. _cn_api_tensor_isinf:
 
-isnan
+isinf
 -----------------------------
 
-.. py:function:: paddle.tensor.isnan(x, name=None)
+.. py:function:: paddle.tensor.isinf(x, name=None)
 
-返回输入tensor的每一个值是否为 `+/-NaN` 。
+返回输入tensor的每一个值是否为 `+/-INF` 。
 
 参数
 :::::::::
@@ -14,7 +14,7 @@ isnan
 
 返回
 :::::::::
-``Tensor``, 每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-NaN` 。
+``Tensor``, 每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-INF` 。
 
 代码示例
 :::::::::
@@ -27,5 +27,5 @@ isnan
     paddle.disable_static(cpu)
     x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
     x = paddle.to_variable(x_np)
-    out = paddle.tensor.isnan(x)
-    print(out.numpy())  # [False False False False False  True  True]
+    out = paddle.tensor.isinf(x)
+    print(out.numpy())  # [ True False False  True False False False]

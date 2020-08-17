@@ -50,6 +50,8 @@ paddle.tensor
     tensor/increment.rst
     tensor/is_empty.rst
     tensor/isfinite.rst
+    tensor/isinf.rst
+    tensor/isnan.rst
     tensor/less_equal.rst
     tensor/less_than.rst
     tensor/linalg.rst
