@@ -97,6 +97,7 @@ paddle.tensor
     tensor_cn/multiplex_cn.rst
     tensor_cn/nonzero_cn.rst
     tensor_cn/norm_cn.rst
+    tensor_cn/normal_cn.rst
     tensor_cn/not_equal_cn.rst
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
@@ -137,6 +138,7 @@ paddle.tensor
     tensor_cn/square_cn.rst
     tensor_cn/squeeze_cn.rst
     tensor_cn/stack_cn.rst
+    tensor_cn/standard_normal_cn.rst
     tensor_cn/stanh_cn.rst
     tensor_cn/std_cn.rst
     tensor_cn/strided_slice_cn.rst

@@ -104,6 +104,7 @@ paddle
     paddle_cn/name_scope_cn.rst
     paddle_cn/no_grad_cn.rst
 	paddle_cn/nonzero_cn.rst
+	paddle_cn/normal_cn.rst
 	paddle_cn/not_equal_cn.rst
 	paddle_cn/ones_cn.rst
 	paddle_cn/ones_like_cn.rst
@@ -150,6 +151,7 @@ paddle
 	paddle_cn/square_cn.rst
 	paddle_cn/squeeze_cn.rst
 	paddle_cn/stack_cn.rst
+	paddle_cn/standard_normal.rst
 	paddle_cn/stanh_cn.rst
 	paddle_cn/std_cn.rst
 	paddle_cn/strided_slice_cn.rst
