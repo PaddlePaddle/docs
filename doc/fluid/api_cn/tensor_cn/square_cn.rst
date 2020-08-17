@@ -36,13 +36,3 @@ square
     out = paddle.square(x)
     print(out.numpy())
     # [0.16 0.04 0.01 0.09]
-
-
-
-
-
-
-
-
-
-
