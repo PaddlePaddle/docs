@@ -19,16 +19,17 @@ ReflectionPad1d
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import paddle.nn as nn
     import numpy as np
+    paddle.disable_static()
+
     input_shape = (1, 2, 3)
     pad = [1, 2]
     data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
     my_pad = nn.ReflectionPad1d(padding=pad)
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
-        result = my_pad(data)
+    data = paddle.to_tensor(data)
+    result = my_pad(data)
     print(result.numpy())
     # [[[2. 1. 2. 3. 2. 1.]
     #   [5. 4. 5. 6. 5. 4.]]]

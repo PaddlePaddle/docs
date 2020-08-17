@@ -28,7 +28,7 @@ ReplicationPad2d
     pad = [1, 0, 1, 2]
     data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
     my_pad = nn.ReplicationPad2d(padding=pad)
-    data = paddle.to_variable(data)
+    data = paddle.to_tensor(data)
     result = my_pad(data)
     print(result.numpy())
     # [[[[1. 1. 2. 3.]

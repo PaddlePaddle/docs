@@ -19,16 +19,17 @@ ReplicationPad1d
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import paddle.nn as nn
     import numpy as np
+    paddle.disable_static()
+
     input_shape = (1, 2, 3)
     pad = [1, 2]
     data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
     my_pad = nn.ReplicationPad1d(padding=pad)
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
-        result = my_pad(data)
+    data = paddle.to_tensor(data)
+    result = my_pad(data)
     print(result.numpy())
     # [[[1. 1. 2. 3. 3. 3.]
     #   [1. 4. 5. 6. 6. 6.]]]

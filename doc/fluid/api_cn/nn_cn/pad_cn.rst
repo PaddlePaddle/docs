@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_functional_pad:
+.. _cn_api_paddle_nn_pad:
 
 pad
 -------------------------------
@@ -77,7 +77,7 @@ pad
     # example 1
     x_shape = (1, 1, 3)
     x = np.arange(np.prod(x_shape), dtype=np.float32).reshape(x_shape) + 1
-    tensor_x = paddle.to_variable(x)
+    tensor_x = paddle.to_tensor(x)
     y = F.pad(tensor_x, [2, 3], value=1, mode='constant')
     print(y.numpy())
     # [[[1. 1. 1. 2. 3. 1. 1. 1.]]]
@@ -85,7 +85,7 @@ pad
     # example 2
     x_shape = (1, 1, 2, 3)
     x = np.arange(np.prod(x_shape), dtype=np.float32).reshape(x_shape) + 1
-    tensor_x = paddle.to_variable(x)
+    tensor_x = paddle.to_tensor(x)
     y = F.pad(tensor_x, [1, 2, 1, 1], value=1, mode='circular')
     print(y.numpy())
     # [[[[6. 4. 5. 6. 4. 5.]
