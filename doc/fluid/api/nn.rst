@@ -5,6 +5,7 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
+    nn/activation.rst
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
     nn/add_position_encoding.rst
@@ -49,6 +50,7 @@ paddle.nn
     nn/exponential_decay.rst
     nn/filter_by_instag.rst
     nn/fsp_matrix.rst
+    nn/functional.rst
     nn/gather_tree.rst
     nn/gelu.rst
     nn/generate_mask_labels.rst
@@ -59,7 +61,7 @@ paddle.nn
     nn/GradientClipByValue.rst
     nn/grid_sampler.rst
     nn/GroupNorm.rst
-    nn/hard_shrink.rst
+    nn/hardshrink.rst
     nn/hard_sigmoid.rst
     nn/hard_swish.rst
     nn/hash.rst
@@ -67,6 +69,7 @@ paddle.nn
     nn/huber_loss.rst
     nn/image_resize.rst
     nn/image_resize_short.rst
+    nn/initializer.rst
     nn/inverse_time_decay.rst
     nn/iou_similarity.rst
     nn/kldiv_loss.rst
@@ -82,7 +85,7 @@ paddle.nn
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
-    nn/margin_rank_loss.rst
+    nn/matrix_nms.rst
     nn/maxout.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
@@ -91,14 +94,13 @@ paddle.nn
     nn/npair_loss.rst
     nn/one_hot.rst
     nn/pad.rst
-    nn/pad_constant_like.rst
     nn/pad2d.rst
+    nn/pad_constant_like.rst
     nn/ParameterList.rst
     nn/piecewise_decay.rst
     nn/pixel_shuffle.rst
     nn/polygon_box_transform.rst
     nn/polynomial_decay.rst
-    nn/pool2d.rst
     nn/Pool2D.rst
     nn/pool3d.rst
     nn/prior_box.rst
@@ -148,3 +150,5 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
+    nn/functional/loss/margin_ranking_loss.rst
+    nn/layer/loss/MarginRankingLoss.rst

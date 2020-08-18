@@ -104,7 +104,7 @@ crop_tensor
     # crop3.shape = [-1, 2, 3]
 
     # offsets is a list in which each element is a constant or Tensor
-    offsets_var =  fluid.data(name="dim1", shape=[1], dtype="int32")
+    offsets_var =  fluid.data(name="offset", shape=[1], dtype="int32")
     crop4 = fluid.layers.crop_tensor(x, shape=[-1, 2, 3], offsets=[0, 1, offsets_var])
     # crop4.shape = [-1, 2, 3]
 

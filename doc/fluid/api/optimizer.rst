@@ -28,7 +28,6 @@ paddle.optimizer
     optimizer/ModelAverage.rst
     optimizer/Momentum.rst
     optimizer/MomentumOptimizer.rst
-    optimizer/PipelineOptimizer.rst
     optimizer/RecomputeOptimizer.rst
     optimizer/RMSPropOptimizer.rst
     optimizer/SGD.rst

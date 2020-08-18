@@ -2,6 +2,6 @@
 
 ExecutionStrategy
 -------------------------------
-:doc_source: paddle.framework.ExecutionStrategy
+:doc_source: paddle.fluid.ExecutionStrategy
 
 
