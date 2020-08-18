@@ -17,9 +17,14 @@ fluid.dygraph
     dygraph_cn/Conv3D_cn.rst
     dygraph_cn/Conv3DTranspose_cn.rst
     dygraph_cn/CosineDecay_cn.rst
+    dygraph_cn/disable_dygraph_cn.rst
+    dygraph_cn/disable_imperative_cn.rst
     dygraph_cn/Dropout_cn.rst
     dygraph_cn/declarative_cn.rst
     dygraph_cn/Embedding_cn.rst
+    dygraph_cn/enable_dygraph_cn.rst
+    dygraph_cn/enable_imperative_cn.rst
+    dygraph_cn/enabled_cn.rst
     dygraph_cn/ExponentialDecay_cn.rst
     dygraph_cn/grad_cn.rst
     dygraph_cn/GroupNorm_cn.rst
