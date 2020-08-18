@@ -5,9 +5,6 @@ cumsum
 
 .. py:function:: paddle.cumsum(x, axis=None, dtype=None, name=None)
 
-:alias_main: paddle.tensor.cumsum
-:alias: paddle.tensor.cumsum,paddle.tensor.math.cumsum
-
 
 
 沿给定 ``axis`` 计算张量 ``x`` 的累加和。结果的第一个元素和输入的第一个元素相同。
