@@ -7,3 +7,4 @@ functional
 
     functional/l1_loss.rst
     functional/nll_loss.rst
+    functional/mse_loss.rst
