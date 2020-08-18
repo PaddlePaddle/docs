@@ -2,7 +2,7 @@
 
 leaky_relu
 -------------------------------
-.. py:functional:: paddle.nn.functional.leaky_relu(x, negative_slope=0.01, name=None)
+.. py:function:: paddle.nn.functional.leaky_relu(x, negative_slope=0.01, name=None)
 
 leaky_relu激活层。计算公式如下：
 
@@ -12,7 +12,7 @@ leaky_relu激活层。计算公式如下：
         \left\{
         \begin{aligned}
         &x, & & if \ x >= 0 \\
-        &negative_slope * x, & & otherwise \\
+        &negative\_slope * x, & & otherwise \\
         \end{aligned}
         \right. \\
 

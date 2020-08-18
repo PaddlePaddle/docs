@@ -12,7 +12,7 @@ ReLU (Rectified Linear Unit）激活层
         \left\{
         \begin{aligned}
         &x, & & if \ x >= 0 \\
-        &negative_slope * x, & & otherwise \\
+        &negative\_slope * x, & & otherwise \\
         \end{aligned}
         \right. \\
 
