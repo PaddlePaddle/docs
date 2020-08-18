@@ -13,7 +13,7 @@ DataParallel
 
 ``python -m paddle.distributed.launch –selected_gpus=0,1 dynamic_graph_test.py``
 
-其中``dynamic_graph_test.py`` 脚本的代码可以是下面的示例代码。
+其中 ``dynamic_graph_test.py`` 脚本的代码可以是下面的示例代码。
 
 参数：
     - **Layer** (Layer) - 需要通过数据并行方式执行的模型。
