@@ -3,6 +3,6 @@
 isfinite
 -------------------------------
 
-..  autofunction:: paddle.tensor.isfinite
+..  autofunction:: paddle.tensor.math.isfinite
     :noindex:
 

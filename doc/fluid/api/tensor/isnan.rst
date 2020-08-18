@@ -3,6 +3,6 @@
 isnan
 -------------------------------
 
-..  autofunction:: paddle.tensor.isnan
+..  autofunction:: paddle.tensor.math.isnan
     :noindex:
 

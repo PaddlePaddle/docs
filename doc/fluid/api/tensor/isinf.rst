@@ -3,6 +3,6 @@
 isinf
 -------------------------------
 
-..  autofunction:: paddle.tensor.isinf
+..  autofunction:: paddle.tensor.math.isinf
     :noindex:
 
