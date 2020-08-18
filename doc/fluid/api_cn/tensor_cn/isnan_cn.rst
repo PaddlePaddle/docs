@@ -25,6 +25,6 @@ isnan
     import numpy as np
     paddle.disable_static()
     x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
-    x = paddle.to_variable(x_np)
+    x = paddle.to_tensor(x_np)
     out = paddle.tensor.isnan(x)
     print(out.numpy())  # [False False False False False  True  True]
