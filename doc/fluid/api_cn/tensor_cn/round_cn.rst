@@ -14,7 +14,7 @@ round
     - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回：
-    - Tensor，对输入x四舍五入后的Tensor，形状、数据类型与输入 x 一致。
+    - Tensor，对输入x四舍五入后的Tensor，形状、数据类型与输入x一致。
 
 
 **代码示例**：
