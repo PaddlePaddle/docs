@@ -60,6 +60,7 @@ paddle.tensor
     tensor/logical_not.rst
     tensor/logical_or.rst
     tensor/logical_xor.rst
+    tensor/manipulation.rst
     tensor/math.rst
     tensor/max.rst
     tensor/maximum.rst
