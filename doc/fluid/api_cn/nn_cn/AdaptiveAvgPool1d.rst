@@ -1,0 +1,57 @@
+AdaptiveAvgPool1d
+-------------------------------
+
+.. py:function:: paddle.nn.AdaptiveAvgPool1d(output_size)
+
+该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算一维的自适应平均池化。输入和输出都是3维Tensor，
+默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度.
+
+计算公式如下:
+
+..  math::
+    lstart &= floor(i * L_{in} / L_{out})
+    lend &= ceil((i + 1) * L_{in} / L_{out})
+    Output(i) &= \\frac{sum(Input[lstart:lend])}{(lstart - lend)}
+
+参数
+:::::::::
+    - **output_size** (int): 算子输出特征图的长度，其数据类型为int。
+
+形状
+:::::::::
+    - **x** (Tensor): 当前算子的输入, 其是一个形状为 `[N, C, L]` 的3维Tensor。其中 `N` 是batch size,
+        `C` 是通道数, `L` 是输入特征的长度。 其数据类型为float32或者float64。
+
+返回
+:::::::::
+计算AdaptiveAvgPool1d的可调用对象
+
+抛出异常
+:::::::::
+    - ``ValueError`` - 如果 ``output_size`` 不是int类型值。
+
+代码示例
+:::::::::
+
+.. code-block:: python
+
+        # average adaptive pool1d
+        # suppose input data in shape of [N, C, L], `output_size` is m or [m],
+        # output shape is [N, C, m], adaptive pool divide L dimension
+        # of input data into m grids averagely and performs poolings in each
+        # grid to get output.
+        # adaptive avg pool performs calculations as follow:
+        #
+        #     for i in range(m):
+        #         lstart = floor(i * L / m)
+        #         lend = ceil((i + 1) * L / m)
+        #         output[:, :, i] = sum(input[:, :, lstart: lend])/(lstart - lend)
+        #
+        import paddle
+        import paddle.nn as nn
+        paddle.disable_static()
+        
+        data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
+        AdaptiveAvgPool1d = nn.AdaptiveAvgPool1d(output_size=16)
+        pool_out = AdaptiveAvgPool1d(data)
+        # pool_out shape: [1, 3, 16]
