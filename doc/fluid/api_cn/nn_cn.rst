@@ -164,7 +164,7 @@ paddle.nn
     nn_cn/yolo_box_cn.rst
     nn_cn/loss_cn/MarginRankingLoss_cn.rst
     nn_cn/functional_cn/margin_ranking_loss_cn.rst
-    nn_cn/AdaptiveAvgPool1d.rst
-    nn_cn/AdaptiveMaxPool1d.rst
-    nn_cn/AvgPool1d.rst
-    nn_cn/MaxPool1d.rst
+    nn_cn/AdaptiveAvgPool1d_cn.rst
+    nn_cn/AdaptiveMaxPool1d_cn.rst
+    nn_cn/AvgPool1d_cn.rst
+    nn_cn/MaxPool1d_cn.rst
