@@ -13,7 +13,7 @@ prod
     - **x** (Tensor) - 一个多维的Tensor，支持数据类型为float32，float64，int32，int64。
     - **axis** (int，可选) - 求乘积运算的维度。如果是None，则计算所有元素的乘积并返回包含单个元素的Tensor，否则该参数必须在 :math:`[-x.ndim, x.ndim)` 范围内。如果 :math:`axis[i] < 0` ，则维度将变为 :math:`x.ndim + axis[i]` ，默认为None。
     - **keepdim** (bool，可选) - 是否在输出 `Tensor` 中保留减小的维度。如 `keep_dim` 为True，否则结果张量的维度将比输入张量小，默认值为False。
-    - **dtype** (str，可选) - 输出Tensor的数据类型，支持int32、int64、float32、float64。如果指定了该参数，那么在执行操作之前，输入Tensor将被转换为dtype类型. 这对于防>止数据类型溢出非常有用。>默认为：None。
+    - **dtype** (str，可选) - 输出Tensor的数据类型，支持int32、int64、float32、float64。如果指定了该参数，那么在执行操作之前，输入Tensor将被转换为dtype类型. 这对于防止数据类型溢出非常有用。若参数为空，则输出变量的数据类型和输入变量相同，默认为：None。
     - **name** （str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回：指定axis上累乘的结果的Tensor。
