@@ -1,4 +1,4 @@
-，adaptive_avg_pool3d
+adaptive_avg_pool3d
 -------------------------------
 
 .. py:function:: paddle.nn.functional.adaptive_avg_pool3d(x, output_size, data_format='NCDHW', name=None)
@@ -22,7 +22,7 @@
 
     wend &= ceil((k + 1) * W_{in} / W_{out})
 
-    Output(i ,j, k) &= \\frac{sum(Input[dstart:dend, hstart:hend, wstart:wend])}{(dend - dstart) * (hend - hstart) * (wend - wstart)}
+    Output(i ,j, k) &= \frac{sum(Input[dstart:dend, hstart:hend, wstart:wend])}{(dend - dstart) * (hend - hstart) * (wend - wstart)}
  
 
 

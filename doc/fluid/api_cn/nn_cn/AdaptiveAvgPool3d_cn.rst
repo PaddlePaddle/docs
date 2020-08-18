@@ -22,7 +22,7 @@ AdaptiveAvgPool3d
 
     wend &= ceil((k + 1) * W_{in} / W_{out})
 
-    Output(i ,j, k) &= \\frac{sum(Input[dstart:dend, hstart:hend, wstart:wend])}{(dend - dstart) * (hend - hstart) * (wend - wstart)}
+    Output(i ,j, k) &= \frac{sum(Input[dstart:dend, hstart:hend, wstart:wend])}{(dend - dstart) * (hend - hstart) * (wend - wstart)}
 
 参数
 :::::::::

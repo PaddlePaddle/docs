@@ -18,7 +18,7 @@ AdaptiveAvgPool2d
 
     wend &= ceil((j + 1) * W_{in} / W_{out})
 
-    Output(i ,j) &= \\frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
+    Output(i ,j) &= \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
 
 
 参数
