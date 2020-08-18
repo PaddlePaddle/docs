@@ -43,3 +43,7 @@ argmax
      print(out2.numpy())
      # [[2 2 0 1]
      #  [0 1 1 1]]
+     out3 = paddle.argmax(x, axis=-1)
+     print(out3.numpy())
+     # [[2 3 1]
+     #  [0 3 1]

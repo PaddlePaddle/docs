@@ -42,3 +42,7 @@ argmin
     print(out2.numpy())
     # [[1 1 1 2]
     #  [2 0 2 0]]
+    out3 = paddle.argmin(x, axis=-1)
+    print(out3.numpy())
+    # [[0 0 2]
+    #  [1 0 2]]
