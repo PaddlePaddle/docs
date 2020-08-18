@@ -28,7 +28,7 @@ split
     import numpy as np
     import paddle
     
-    paddle.enable_imperative()
+    paddle.disable_static()
     # x is a Tensor which shape is [3, 9, 5]
     x_np = np.random.random([3, 9, 5]).astype("int32")
     x = paddle.imperative.to_variable(x_np)
