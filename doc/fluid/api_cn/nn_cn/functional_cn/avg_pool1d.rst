@@ -26,7 +26,7 @@ avg_pool1d
     - **count_include_pad** (bool): 是否用额外padding的值计算平均池化结果，默认为True。
     - **ceil_mode** (bool): 是否用ceil函数计算输出的height和width，如果设置为False,
         则使用floor函数来计算，默认为False。
-    - **name** (str，可选): - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 
 返回

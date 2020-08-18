@@ -26,7 +26,7 @@ max_pool1d
     - **ceil_mode** (bool): 是否用ceil函数计算输出的height和width，如果设置为False,
         则使用floor函数来计算，默认为False。
     - **return_indices** (bool): 是否返回最大值的索引，默认为False。
-    - **name** (str，可选): - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 
 返回
