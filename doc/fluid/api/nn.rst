@@ -152,3 +152,5 @@ paddle.nn
     nn/yolov3_loss.rst
     nn/functional/loss/margin_ranking_loss.rst
     nn/layer/loss/MarginRankingLoss.rst
+    nn/AdaptiveAvgPool2d.rst
+    nn/AdaptiveAvgPool3d.rst
