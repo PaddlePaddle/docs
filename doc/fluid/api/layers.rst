@@ -117,7 +117,6 @@ fluid.layers
     layers/eye.rst
     layers/fc.rst
     layers/fill_constant.rst
-    layers/fill_constant_batch_size_like.rst
     layers/filter_by_instag.rst
     layers/flatten.rst
     layers/flip.rst
@@ -129,7 +128,6 @@ fluid.layers
     layers/gather_nd.rst
     layers/gather_tree.rst
     layers/gaussian_random.rst
-    layers/gaussian_random_batch_size_like.rst
     layers/gelu.rst
     layers/generate_mask_labels.rst
     layers/generate_proposal_labels.rst
@@ -345,7 +343,6 @@ fluid.layers
     layers/unfold.rst
     layers/Uniform.rst
     layers/uniform_random.rst
-    layers/uniform_random_batch_size_like.rst
     layers/unique.rst
     layers/unique_with_counts.rst
     layers/unsqueeze.rst
