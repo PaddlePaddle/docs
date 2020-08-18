@@ -9,11 +9,11 @@ DataParallel
 
 通过数据并行模式执行动态图模型。
 
-目前，``DataParallel``仅支持以多进程的方式执行动态图模型。使用方式如下：
+目前，``DataParallel`` 仅支持以多进程的方式执行动态图模型。使用方式如下：
 
 ``python -m paddle.distributed.launch –selected_gpus=0,1 dynamic_graph_test.py``
 
-示例中``dynamic_graph_test.py``的代码可以是下面的代码示例。
+示例中 ``dynamic_graph_test.py`` 的代码可以是下面的代码示例。
 
 参数：
     - **Layer** (Layer) - 需要通过数据并行方式执行的模型。
@@ -65,9 +65,9 @@ DataParallel
 
 .. py:method:: scale_loss(loss)
 
-缩放模型损失值``loss``。在数据并行模式中，损失值``loss``需要根据并行训练进程的数目进行缩放。
+缩放模型损失值 ``loss`` 。在数据并行模式中，损失值 ``loss`` 需要根据并行训练进程的数目进行缩放。
 
-如果不在数据并行模式下，会直接返回原 ``loss``。
+如果不在数据并行模式下，会直接返回原 ``loss`` 。
 
 参数：
     - **loss** (Variable) - 当前模型的损失值。
@@ -108,9 +108,12 @@ DataParallel
         adam.minimize(avg_loss)
         linear.clear_gradients()
 
+
 .. py::method:: apply_collective_grads()
 
 AllReduce（规约）参数的梯度值。
+
+返回：无
 
 **代码示例**
 
