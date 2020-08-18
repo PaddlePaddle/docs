@@ -3,7 +3,7 @@
 .. _api_tensor_math_prod:
 
 prod
--------
+----
 
 ..  autofunction:: paddle.tensor.math.prod
     :noindex:
