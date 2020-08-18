@@ -5,21 +5,17 @@ round
 
 .. py:function:: paddle.round(x, name=None)
 
-:alias_main: paddle.round
-:alias: paddle.round,paddle.tensor.round,paddle.tensor.math.round
-:old_api: paddle.fluid.layers.round
-
-
 
 
 该OP将输入中的数值四舍五入到最接近的整数数值。
 
 参数:
+    - **x** (Tensor) - 输入的 `Tensor` ，数据类型为： float16, float32, float64。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
-    - **x** (Tenson) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+返回：
+    - Tensor，对输入x四舍五入后的Tensor，形状、数据类型与输入 x 一致。
 
-返回：返回类型为Tensor， 数据类型同输入一致。
 
 **代码示例**：
 
@@ -29,7 +25,7 @@ round
     import paddle
     paddle.disable_static()
     x_data = np.array([-0.5, -0.2, 0.6, 1.5])
-    x = paddle.to_variable(x_data)
+    x = paddle.to_tensor(x_data)
     out = paddle.round(x)
     print(out.numpy())
     # [-1. -0.  1.  2.]

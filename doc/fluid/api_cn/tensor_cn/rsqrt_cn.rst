@@ -5,9 +5,6 @@ rsqrt
 
 .. py:function:: paddle.rsqrt(x, name=None)
 
-:alias_main: paddle.rsqrt
-:alias: paddle.rsqrt,paddle.tensor.rsqrt,paddle.tensor.math.rsqrt
-:old_api: paddle.fluid.layers.rsqrt
 
 
 
@@ -22,13 +19,11 @@ rsqrt
 
 
 参数:
-    - **x** (Tensor) - 支持任意维度的Tensor。数据类型为float32，float64。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
-
-返回：对输入x进行rsqrt激活函数计算后的Tensor，数据shape和输入x的shape一致。
-
-返回类型：Tensor，数据类型和输入数据类型一致。
+返回：
+    - Tensor，对输入x进行rsqrt激活后的Tensor，形状、数据类型与输入x一致。
 
 **代码示例**：
 
@@ -38,7 +33,7 @@ rsqrt
     import paddle
     paddle.disable_static()
     x_data = np.array([0.1, 0.2, 0.3, 0.4])
-    x = paddle.to_variable(x_data)
+    x = paddle.to_tensor(x_data)
     out = paddle.rsqrt(x)
     print(out.numpy())
     # [3.16227766 2.23606798 1.82574186 1.58113883]

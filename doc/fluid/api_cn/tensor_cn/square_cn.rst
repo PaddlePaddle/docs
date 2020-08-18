@@ -5,9 +5,6 @@ square
 
 .. py:function:: paddle.square(x,name=None)
 
-:alias_main: paddle.square
-:alias: paddle.square,paddle.tensor.square,paddle.tensor.math.square
-:old_api: paddle.fluid.layers.square
 
 
 
@@ -17,12 +14,12 @@ square
     out = x^2
 
 参数:
-    - **x** (Variable) - 任意维度的Tensor，支持的数据类型： float32，float64。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
-返回：返回取平方后的Tensor，维度和数据类型同输入一致。
+返回：
+    - Tensor，对输入x取平方后的Tensor，维度和数据类型同输入一致。
 
-返回类型：Tensor
 
 **代码示例**：
 
@@ -32,7 +29,7 @@ square
     import paddle
     paddle.disable_static()
     x_data = np.array([-0.4, -0.2, 0.1, 0.3])
-    x = paddle.to_variable(x_data)
+    x = paddle.to_tensor(x_data)
     out = paddle.square(x)
     print(out.numpy())
     # [0.16 0.04 0.01 0.09]
