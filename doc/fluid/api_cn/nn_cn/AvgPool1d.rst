@@ -3,7 +3,7 @@ AvgPool1d
 
 .. py:function:: paddle.nn.AvgPool1d(kernel_size, stride=None, padding=0, count_include_pad=True, ceil_mode=False)
 
-该算子根据输入 `x` , `kernel_size` 等参数对一个输入Tensor计算一维的平均池化。输入和输出都是3维Tensor，
+该算子根据输入 `x` , `kernel_size` 等参数对一个输入Tensor计算1D的平均池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度。
 
 计算公式如下:
@@ -27,8 +27,8 @@ AvgPool1d
 
 形状
 :::::::::
-    - **x** (Tensor): 当前算子的输入, 其是一个形状为 `[N, C, L]` 的3维Tensor。其中 `N` 是batch size,
-        `C` 是通道数, `L` 是输入特征的长度。 其数据类型为float32或者float64。
+    - **x** (Tensor): 默认形状为（批大小，通道数，长度），即NCL格式的3-D Tensor。 其数据类型为float32或float64.
+    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。 其数据类型与输入x相同。
 
 返回
 :::::::::
@@ -39,7 +39,7 @@ AvgPool1d
     - ``ValueError`` - 如果 ``padding`` 是字符串但不是 "SAME" 和 "VALID" 。
     - ``ValueError`` - 如果 ``padding`` 是 "VALID" 但 `ceil_mode` 被设置为True。
     - ``ValueError`` - 如果 ``padding`` 是一个长度大于1的list或turple。
-    - ``ShapeError`` - 如果输入x不是一个3维矩阵。
+    - ``ShapeError`` - 如果输入x不是一个3-D Tensor。
     - ``ShapeError`` - 如果计算得到的输出形状小于等于0。
 
 代码示例
