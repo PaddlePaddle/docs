@@ -42,7 +42,7 @@ paddle
 	paddle/disable_imperative.rst
 	paddle/dist.rst
 	paddle/distribution.rst
-        paddle/div.rst
+	paddle/div.rst
 	paddle/dot.rst
 	paddle/elementwise_add.rst
 	paddle/elementwise_div.rst
