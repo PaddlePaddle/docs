@@ -11,16 +11,20 @@ adaptive_avg_pool2d
 ..  math::
 
     hstart &= floor(i * H_{in} / H_{out})
+
     hend &= ceil((i + 1) * H_{in} / H_{out})
+
     wstart &= floor(j * W_{in} / W_{out})
+
     wend &= ceil((j + 1) * W_{in} / W_{out})
+
     Output(i ,j) &= \\frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
+
 
 参数
 :::::::::
     - **x** (Tensor): 当前算子的输入, 是一个4维Tensor。 其数据类型为float16, float32, float64, int32或int64.
-    - **output_size** (int|list|turple): 算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含两个
-        元素，H和W。H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
+    - **output_size** (int|list|turple): 算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含两个元素，H和W。H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
     - **data_format** (str): 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
