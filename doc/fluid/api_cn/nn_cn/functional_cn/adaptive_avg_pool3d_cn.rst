@@ -65,6 +65,7 @@ adaptive_avg_pool3d
         #                 output[:, :, i, j, k] =
         #                     avg(input[:, :, dstart:dend, hstart: hend, wstart: wend])
         import paddle
+        import numpy as np
         paddle.disable_static()
         input_data = np.random.rand(2, 3, 8, 32, 32)
         x = paddle.to_tensor(input_data)
