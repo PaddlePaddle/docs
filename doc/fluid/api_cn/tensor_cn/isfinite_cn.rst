@@ -23,8 +23,7 @@ isfinite
 
     import paddle
     import numpy as np
-    cpu = paddle.CPUPlace()
-    paddle.disable_static(cpu)
+    paddle.disable_static()
     x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
     x = paddle.to_variable(x_np)
     out = paddle.tensor.isfinite(x)
