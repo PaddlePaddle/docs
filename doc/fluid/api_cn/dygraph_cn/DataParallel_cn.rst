@@ -13,7 +13,7 @@ DataParallel
 
 ``python -m paddle.distributed.launch –selected_gpus=0,1 dynamic_graph_test.py``
 
-示例中 ``dynamic_graph_test.py`` 的代码可以是下面的代码示例。
+其中``dynamic_graph_test.py`` 脚本的代码可以是下面的示例代码。
 
 参数：
     - **Layer** (Layer) - 需要通过数据并行方式执行的模型。
@@ -109,7 +109,7 @@ DataParallel
         linear.clear_gradients()
 
 
-.. py::method:: apply_collective_grads()
+.. py:method:: apply_collective_grads()
 
 AllReduce（规约）参数的梯度值。
 
