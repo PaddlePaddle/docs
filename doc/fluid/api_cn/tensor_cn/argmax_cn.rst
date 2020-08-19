@@ -18,7 +18,7 @@ argmax
 
 返回
 ::::::::
-``Tensor`` 或者标量 ，如果axis设置为 ``None`` 则返回标量，其它情况下返回 ``tensor`` ； 如果设置 :attr:`dtype` 为 `int32` 时，返回的tensor的数据类型为 `int32` ，其它情况将返回的tensor的数据类型为 `int64` 。
+``Tensor``, 如果设置 :attr:`dtype` 为 `int32` 时，返回的tensor的数据类型为 `int32` ，其它情况将返回的tensor的数据类型为 `int64` 。
 
 
 示例代码
@@ -30,20 +30,15 @@ argmax
      import paddle
 
      paddle.disable_static()
-     data = np.array([[[5,8,9,5],
-                     [0,0,1,7],
-                     [6,9,2,4]],
-                     [[5,2,4,2],
-                     [4,7,7,9],
-                     [1,7,0,6]]])
-     x =  paddle.to_tensor(data)
+     data = np.array([[5,8,9,5],
+                      [0,0,1,7],
+                      [6,9,2,4]])
+     x =  paddle.to_variable(data)
      out1 = paddle.argmax(x)
-     print(out1.numpy()) # 2 
+     print(out1.numpy()) # 2
      out2 = paddle.argmax(x, axis=1)
-     print(out2.numpy())
-     # [[2 2 0 1]
-     #  [0 1 1 1]]
+     print(out2.numpy()) 
+     # [2 3 1]
      out3 = paddle.argmax(x, axis=-1)
-     print(out3.numpy())
-     # [[2 3 1]
-     #  [0 3 1]
+     print(out3.numpy()) 
+     # [2 3 1]
