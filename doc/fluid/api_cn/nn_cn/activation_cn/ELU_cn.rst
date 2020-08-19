@@ -2,11 +2,11 @@
 
 ELU
 -------------------------------
-.. py:class:: paddle.nn.ELU(x, alpha=1.0, name=None)
+.. py:class:: paddle.nn.ELU(alpha=1.0, name=None)
 
 ELU激活层（ELU Activation Operator）
 
-根据 https://arxiv.org/abs/1511.07289 对输入Tensor中每个元素应用以下计算。
+根据 `Exponential Linear Units <https://arxiv.org/abs/1511.07289>` 对输入Tensor中每个元素应用以下计算。
 
 .. math::
 

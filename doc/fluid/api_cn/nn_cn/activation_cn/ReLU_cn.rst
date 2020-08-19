@@ -1,8 +1,8 @@
 .. _cn_api_nn_ReLU:
 
-ELU
+ReLU
 -------------------------------
-.. py:class:: paddle.nn.ReLU(x, name=None)
+.. py:class:: paddle.nn.ReLU(name=None)
 
 ReLU激活层（Rectified Linear Unit）。计算公式如下：
 

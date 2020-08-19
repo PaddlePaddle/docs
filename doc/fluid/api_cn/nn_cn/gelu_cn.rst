@@ -24,7 +24,7 @@ gelu激活层（GELU Activation Operator）
 参数:
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
- - approximate (bool, 可选) - 是否使用近似计算，默认值为 False。
+ - approximate (bool, 可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。
  - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
@@ -41,15 +41,8 @@ gelu激活层（GELU Activation Operator）
     import numpy as np
 
     paddle.disable_static()
-    data = np.random.randn(2, 3).astype("float32")
-    x = paddle.to_tensor(data)
-
-    out = F.gelu(x)
     
-    data
-    # array([[ 0.87165993, -1.0541513 , -0.37214822],
-    #         [ 0.15647964,  0.32496083,  0.33045998]], dtype=float32)
-    out
-    # array([[ 0.70456535, -0.15380788, -0.13207214],
-    #        [ 0.08796856,  0.20387867,  0.2080159 ]], dtype=float32)
+    x = paddle.to_tensor(np.array([[-1, 0.5],[1, 1.5]]))
+    out1 = F.gelu(x) # [-0.158655 0.345731 0.841345 1.39979]
+    out2 = F.gelu(x, True) # [-0.158808 0.345714 0.841192 1.39957]
 
