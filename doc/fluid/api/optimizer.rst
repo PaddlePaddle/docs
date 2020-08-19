@@ -32,3 +32,5 @@ paddle.optimizer
     optimizer/RMSPropOptimizer.rst
     optimizer/SGD.rst
     optimizer/SGDOptimizer.rst
+    optimizer/AdamW.rst
+    optimizer/Optimizer.rst
