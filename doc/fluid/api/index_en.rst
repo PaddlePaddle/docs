@@ -9,7 +9,6 @@ API Reference
     fluid.rst
     backward.rst
     clip.rst
-    data/data_reader.rst
     data/dataset.rst
     dataset.rst
     dygraph.rst
