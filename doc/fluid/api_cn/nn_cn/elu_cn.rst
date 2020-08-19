@@ -18,7 +18,7 @@ elu激活层（ELU Activation Operator）
 参数:
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
- - alpha (float, 可选) - ELU的alpha值，默认值为1.0。
+ - alpha (float, 可选) - elu的alpha值，默认值为1.0。
  - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回

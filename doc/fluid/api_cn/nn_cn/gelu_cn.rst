@@ -7,7 +7,7 @@ gelu
 
 gelu激活层（GELU Activation Operator）
 
-逐元素计算 Gelu激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
+逐元素计算 gelu激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
 
 如果使用近似计算：
 
@@ -41,7 +41,7 @@ gelu激活层（GELU Activation Operator）
     import numpy as np
 
     paddle.disable_static()
-    
+
     x = paddle.to_tensor(np.array([[-1, 0.5],[1, 1.5]]))
     out1 = F.gelu(x) # [-0.158655 0.345731 0.841345 1.39979]
     out2 = F.gelu(x, True) # [-0.158808 0.345714 0.841192 1.39957]
