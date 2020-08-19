@@ -6,6 +6,7 @@ API Reference
     :maxdepth: 1
 
     ../api_guides/index_en.rst
+    fleet.rst
     dataset.rst
     declarative.rst
     framework.rst
