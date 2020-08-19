@@ -6,7 +6,7 @@
 DistributedStrategy
 -------------------
 
-..  autoclass:: paddle.distributed.fleet.base.DistributedStrategy
+..  autoclass:: paddle.distributed.fleet.DistributedStrategy
     :members:
     :inherited-members:
     :noindex:

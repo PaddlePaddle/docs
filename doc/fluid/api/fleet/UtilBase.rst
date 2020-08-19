@@ -6,7 +6,7 @@
 UtilBase
 --------
 
-..  autoclass:: paddle.distributed.fleet.base.UtilBase
+..  autoclass:: paddle.distributed.fleet.UtilBase
     :members:
     :inherited-members:
     :noindex:
