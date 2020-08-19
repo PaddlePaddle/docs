@@ -3,7 +3,7 @@
 elu
 -------------------------------
 
-.. py:functional:: paddle.nn.functional.elu(x, alpha=1.0, name=None)
+.. py:function:: paddle.nn.functional.elu(x, alpha=1.0, name=None)
 
 elu激活层（ELU Activation Operator）
 

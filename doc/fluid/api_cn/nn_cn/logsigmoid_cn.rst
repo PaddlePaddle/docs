@@ -3,7 +3,7 @@
 logsigmoid
 -------------------------------
 
-.. py:functional:: paddle.nn.functional.logsigmoid(x, name=None)
+.. py:function:: paddle.nn.functional.logsigmoid(x, name=None)
 
 logsigmoid激活层。计算公式如下：
 

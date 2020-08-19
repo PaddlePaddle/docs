@@ -3,7 +3,7 @@
 relu
 -------------------------------
 
-.. py:functional:: paddle.nn.functional.relu(x, name=None)
+.. py:function:: paddle.nn.functional.relu(x, name=None)
 
 relu激活层（Rectified Linear Unit）。计算公式如下：
 

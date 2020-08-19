@@ -3,7 +3,7 @@
 gelu
 -------------------------------
 
-.. py:functional:: paddle.nn.functional.gelu(x, approximate=False, name=None)
+.. py:function:: paddle.nn.functional.gelu(x, approximate=False, name=None)
 
 gelu激活层（GELU Activation Operator）
 
