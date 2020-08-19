@@ -13,3 +13,4 @@ functional
     functional_cn/normalize_cn.rst
     functional_cn/margin_ranking_loss_cn.rst
     functional_cn/mse_loss_cn.rst
+    functional_cn/sigmoid_cn.rst
