@@ -40,6 +40,7 @@ paddle
 	paddle_cn/diag_cn.rst
 	paddle_cn/disable_dygraph_cn.rst
 	paddle_cn/dist_cn.rst
+	paddle_cn/distribution_cn.rst
 	paddle_cn/dot_cn.rst
 	paddle_cn/elementwise_add_cn.rst
 	paddle_cn/elementwise_div_cn.rst
