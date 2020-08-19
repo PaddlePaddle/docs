@@ -17,6 +17,7 @@ fluid.dygraph
     dygraph_cn/Conv3D_cn.rst
     dygraph_cn/Conv3DTranspose_cn.rst
     dygraph_cn/CosineDecay_cn.rst
+    dygraph_cn/DataParallel_cn.rst
     dygraph_cn/disable_dygraph_cn.rst
     dygraph_cn/disable_imperative_cn.rst
     dygraph_cn/Dropout_cn.rst
