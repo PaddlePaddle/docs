@@ -1,9 +1,9 @@
-.. _cn_api_fluid_layers_Normal:
+.. _cn_api_distribution_Normal:
 
 Normal
 -------------------------------
 
-.. py:class:: paddle.fluid.layers.Normal(loc, scale)
+.. py:class:: paddle.distribution.Normal(loc, scale, name=None)
 
 
 
@@ -27,6 +27,7 @@ Normal
 参数：
     - **loc** (float|list|numpy.ndarray|Variable) - 正态分布平均值。数据类型为float32。
     - **scale** (float|list|numpy.ndarray|Variable) - 正态分布标准差。数据类型为float32。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 **代码示例**：
 
@@ -34,7 +35,7 @@ Normal
 
     import numpy as np
     from paddle.fluid import layers
-	from paddle.fluid.layers import Normal
+	from paddle.distribution import Normal
 
     # 定义参数为float的正态分布。
     dist = Normal(loc=0., scale=3.)
@@ -62,6 +63,8 @@ Normal
     # [1.4189385] with shape: [1]
     lp = normal_a.log_prob(value_tensor)
     # [-1.2389386] with shape: [1]
+    p = normal_a.probs(value_tensor)
+    # [0.28969154] with shape: [1]
     kl = normal_a.kl_divergence(normal_b)
     # [0.34939718] with shape: [1]
 
@@ -94,6 +97,17 @@ Normal
     - **value** (Variable) - 输入张量。数据类型为float32或float64。
     
 返回：对数概率, 数据类型与value相同
+
+返回类型：Variable
+
+.. py:function:: probs(value)
+
+概率密度函数
+
+参数：
+    - **value** (Variable) - 输入张量。数据类型为float32或float64。
+    
+返回：概率, 数据类型与value相同
 
 返回类型：Variable
 

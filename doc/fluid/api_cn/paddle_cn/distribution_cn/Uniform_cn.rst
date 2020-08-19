@@ -1,9 +1,9 @@
-.. _cn_api_fluid_layers_Uniform:
+.. _cn_api_distribution_Uniform:
 
 Uniform
 -------------------------------
 
-.. py:class:: paddle.fluid.layers.Uniform(low, high)
+.. py:class:: paddle.distribution.Uniform(low, high, name=None)
 
 
 
@@ -29,6 +29,7 @@ Uniform
 参数：
     - **low** (float|list|numpy.ndarray|Variable) - 均匀分布的下边界。数据类型为float32。
     - **high** (float|list|numpy.ndarray|Variable) - 均匀分布的上边界。数据类型为float32。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 **代码示例**：
 
@@ -36,7 +37,7 @@ Uniform
 
     import numpy as np
     from paddle.fluid import layers
-    from paddle.fluid.layers import Uniform
+    from paddle.distribution import Uniform
 
     # 定义参数为float的均匀分布
     u1 = Uniform(low=3.0, high=4.0)
@@ -65,6 +66,8 @@ Uniform
     # [0.6931472] with shape: [1]
     lp = uniform.log_prob(value_tensor)
     # [-0.6931472] with shape: [1]
+    p = uniform.probs(value_tensor)
+    # [0.5] with shape: [1]
 
 
 .. py:function:: sample(shape, seed=0)
@@ -98,7 +101,16 @@ Uniform
 
 返回类型：Variable
 
+.. py:function:: probs(value)
 
+概率密度函数
+
+参数：
+    - **value** (Variable) - 输入张量。数据类型为float32或float64。
+    
+返回：概率, 数据类型与value相同
+
+返回类型：Variable
 
 
 
