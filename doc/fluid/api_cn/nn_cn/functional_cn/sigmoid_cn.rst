@@ -1,24 +1,24 @@
-.. _cn_api_tensor_cn_square:
+.. _cn_api_nn_functional_sigmoid:
 
-square
+sigmoid
 -------------------------------
 
-.. py:function:: paddle.square(x,name=None)
+.. py:function:: paddle.nn.functional.sigmoid(x, name=None)
 
 
 
-
-该OP执行逐元素取平方运算。
+sigmoid激活函数
 
 .. math::
-    out = x^2
+    out = \frac{1}{1 + e^{-x}}
 
-参数:
+
+参数：
     - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64。
     - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回：
-    - Tensor，对输入x取平方后的Tensor，形状、数据类型与输入x一致。
+    - Tensor，对输入x进行sigmoid激活后的Tensor，形状、数据类型与输入x一致。
 
 
 **代码示例**：
@@ -27,9 +27,10 @@ square
 
     import numpy as np
     import paddle
+    import paddle.nn.functional as F
     paddle.disable_static()
     x_data = np.array([-0.4, -0.2, 0.1, 0.3])
     x = paddle.to_tensor(x_data)
-    out = paddle.square(x)
+    out = F.sigmoid(x)
     print(out.numpy())
-    # [0.16 0.04 0.01 0.09]
+    # [0.40131234 0.450166   0.52497919 0.57444252]
