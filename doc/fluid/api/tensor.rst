@@ -93,7 +93,6 @@ paddle.tensor
     tensor/scatter.rst
     tensor/scatter_nd.rst
     tensor/scatter_nd_add.rst
-    tensor/search.rst
     tensor/shape.rst
     tensor/shard_index.rst
     tensor/shuffle.rst
@@ -107,7 +106,6 @@ paddle.tensor
     tensor/squeeze.rst
     tensor/stack.rst
     tensor/stanh.rst
-    tensor/stat.rst
     tensor/strided_slice.rst
     tensor/sum.rst
     tensor/sums.rst

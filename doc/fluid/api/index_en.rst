@@ -14,6 +14,7 @@ API Reference
     metric.rst
     nn.rst
     optimizer.rst
+    review_tmp.rst
     tensor.rst
     fluid.rst
     backward.rst
@@ -32,4 +33,3 @@ API Reference
     regularizer.rst
     transpiler.rst
     unique_name.rst
-    review_tmp.rst

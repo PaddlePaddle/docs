@@ -9,3 +9,5 @@ random
     random/randint.rst
     random/randn.rst
     random/randperm.rst
+    random/shuffle.rst
+    random/uniform.rst
