@@ -2,7 +2,9 @@
 
 softmax
 -------------------------------
-.. py:functional:: paddle.nn.functional.softmax(x, axis=-1, name=None)
+
+.. py:function:: paddle.nn.functional.softmax(x, axis=-1, name=None)
+
 
 该OP实现了softmax层。OP的计算过程如下：
 
