@@ -30,7 +30,7 @@ python gen_module_index.py framework paddle.framework
 
 
 # nn
-for module in loss
+for module in loss activation
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name nn --to_multiple_files True --output_dir nn
   python gen_module_index.py nn.${module} ${module}

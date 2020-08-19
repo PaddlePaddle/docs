@@ -5,6 +5,7 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
+    nn/activation.rst
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
     nn/add_position_encoding.rst
@@ -60,7 +61,7 @@ paddle.nn
     nn/GradientClipByValue.rst
     nn/grid_sampler.rst
     nn/GroupNorm.rst
-    nn/hard_shrink.rst
+    nn/hardshrink.rst
     nn/hard_sigmoid.rst
     nn/hard_swish.rst
     nn/hash.rst
@@ -81,10 +82,10 @@ paddle.nn
     nn/Linear.rst
     nn/linear_lr_warmup.rst
     nn/log_loss.rst
+    nn/log_softmax.rst
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
-    nn/margin_rank_loss.rst
     nn/matrix_nms.rst
     nn/maxout.rst
     nn/mse_loss.rst
@@ -150,3 +151,5 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
+    nn/functional/loss/margin_ranking_loss.rst
+    nn/layer/loss/MarginRankingLoss.rst
