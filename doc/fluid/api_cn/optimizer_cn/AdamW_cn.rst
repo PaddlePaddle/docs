@@ -1,47 +1,43 @@
-.. _cn_api_fluid_optimizer_AdamaxOptimizer:
+.. _cn_api_fluid_optimizer_AdamOptimizer:
 
-AdamaxOptimizer
+AdamOptimizer
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adamax(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.0, grad_clip=None, name=None, lazy_mode=False)
 
 
 
 
-Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节Adamax优化相关内容所实现的。Adamax算法是基于无穷大范数的 `Adam <https://arxiv.org/abs/1412.6980>`_ 算法的一个变种，使学习率更新的算法更加稳定和简单。
+AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`,用来解决Adam优化器中L2正则化失效的问题。
 
-其参数更新的计算公式如下:
+其参数更新的计算公式如下：
 
 .. math::
     \\t = t + 1
 .. math::
-    moment\_out=\beta_1∗moment+(1−\beta_1)∗grad
+    moment\_1\_out=\beta_1∗moment\_1+(1−\beta_1)∗grad
 .. math::
-    inf\_norm\_out=\max{(\beta_2∗inf\_norm+\epsilon, \left|grad\right|)}
+    moment\_2\_out=\beta_2∗moment\_2+(1−\beta_2)∗grad*grad
 .. math::
-    learning\_rate=\frac{learning\_rate}{1-\beta_1^t}
+    learning\_rate=learning\_rate*\frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
 .. math::
-    param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
+    param\_out=param-learning\_rate*\(frac{moment\_1}{\sqrt{moment\_2}+\epsilon} + \lambda * param \\)
 
-相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_
+相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
-论文中没有 ``epsilon`` 参数。但是，为了保持数值稳定性， 避免除0错误， 此处增加了这个参数。
+参数: 
+    - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
+    - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
+    - **beta1** (float|Variable, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.9
+    - **beta2** (float|Variable, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.999
+    - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
+    - **weight_decay** (float|Tensor) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Variable类型。默认值为0.0
+    - **apply_decay_param_fun** (function|None): 传入函数时，只有可以使 apply_decay_param_fun(Tensor)==True的Tensor会更新参数。只有在想要指定要更新的参数时使用。默认值为None
+    - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
+      默认值为None，此时将不进行梯度裁剪。
+    - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+    - **lazy_mode** （bool, 可选） - 设为True时，仅更新当前具有梯度的元素。官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为False
 
-参数：
-  - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
-  - **beta1** (float, 可选) - 一阶矩估计的指数衰减率，默认值为0.9
-  - **beta2** (float, 可选) - 二阶矩估计的指数衰减率，默认值为0.999
-  - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
-  - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
-    - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是float类型的L2正则化系数或者正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
-    :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
-    如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
-  - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
-    默认值为None，此时将不进行梯度裁剪。
-  - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
-
-.. note::
-    目前 ``AdamaxOptimizer`` 不支持 Sparse Parameter Optimization（稀疏参数优化）。
 
 **代码示例**
 
@@ -56,12 +52,12 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     inp = paddle.to_tensor(inp)
     out = linear(inp)
     loss = paddle.mean(out)
-    adam = paddle.optimizer.Adam(learning_rate=0.1,
+    adam = paddle.optimizer.AdamW(weight_decay=0.01, learning_rate=0.1,
             parameters=linear.parameters())
     out.backward()
     adam.step()
     adam.clear_grad()
-     
+
 
 .. py:method:: minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
@@ -71,33 +67,40 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     - **loss** (Tensor) – 需要最小化的损失值变量
     - **startup_program** (Program, 可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
     - **parameters** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
-    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成集合，默认值为None
-        
+    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
+         
 返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+
+返回类型： tuple
 
 **代码示例**
 
 .. code-block:: python
 
-    import numpy
+    import paddle
     import paddle.fluid as fluid
-     
-    data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-    hidden = fluid.layers.fc(input=data, size=10)
-    loss = fluid.layers.mean(hidden)
-    adam = paddle.optimizer.Adamax(learning_rate=0.2)
-    adam.minimize(loss)
 
-    place = fluid.CPUPlace() # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
-    x = numpy.random.random(size=(10, 1)).astype('float32')
-    exe.run(fluid.default_startup_program())
-    outs = exe.run(program=fluid.default_main_program(),
-                   feed={'X': x},
-                   fetch_list=[loss.name])
+    place = fluid.CPUPlace()
+    main = fluid.Program()
+    with fluid.program_guard(main):
+        x = fluid.data(name='x', shape=[None, 13], dtype='float32')
+        y = fluid.data(name='y', shape=[None, 1], dtype='float32')
+        y_predict = fluid.layers.fc(input=x, size=1, act=None)
+        cost = fluid.layers.square_error_cost(input=y_predict, label=y)
+        avg_cost = fluid.layers.mean(cost)
 
+        adam_optimizer = paddle.optimizer.AdamW(weight_decay=0.01,
+                                learning_rate=0.01)
+        adam_optimizer.minimize(avg_cost)
 
+        fetch_list = [avg_cost]
+        train_reader = paddle.batch(
+            paddle.dataset.uci_housing.train(), batch_size=1)
+        feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
+        exe = fluid.Executor(place)
+        exe.run(fluid.default_startup_program())
+        for data in train_reader():
+            exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 
 .. py:method:: clear_gradients()
 
@@ -119,7 +122,8 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5, dtype="float32")
-    optimizer = paddle.optimizer.Adamax(learning_rate=0.02,
+    optimizer = paddle.optimizer.AdamW(weight_decay=0.01,
+                                     learning_rate=0.02,
                                      parameters=linear.parameters())
     out = linear(a)
     out.backward()
@@ -147,7 +151,8 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
 
-    adam = paddle.optimizer.Adamax(0.1, parameters=linear.parameters())
+    adam = paddle.optimizer.AdamW(weight_decay=0.01,
+                                 learning_rate=0.1, parameters=linear.parameters())
 
     # set learning rate manually by python float value
     lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
@@ -189,13 +194,12 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 .. code-block:: python
 
-
     import numpy as np
     import paddle
     # example1: LearningRateDecay is not used, return value is all the same
     paddle.disable_static()
     emb = paddle.nn.Embedding([10, 10])
-    adam = paddle.optimizer.Adamax(0.001, parameters = emb.parameters())
+    adam = paddle.optimizer.AdamW(learning_rate=0.001, parameters = emb.parameters(),weight_decay=0.01)
     lr = adam.current_step_lr()
     print(lr) # 0.001
 
@@ -209,8 +213,9 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    adam = paddle.optimizer.Adamax(paddle.PiecewiseDecay(bd, value, 0),
-                           parameters=linear.parameters())
+    adam = paddle.optimizer.AdamW(paddle.PiecewiseDecay(bd, value, 0),
+                           parameters=linear.parameters(),
+                           weight_decay=0.01)
 
     # first step: learning rate is 0.2
     np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
