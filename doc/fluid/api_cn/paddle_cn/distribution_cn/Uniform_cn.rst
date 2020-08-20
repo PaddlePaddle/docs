@@ -24,7 +24,7 @@ Uniform
 :math:`high = b` 。
 :math:`Z`: 正态分布常量。
 
-参数low和high的维度必须能够支持广播。  :ref:`_user_guide_broadcasting`.
+参数low和high的维度必须能够支持广播。  :ref:`user_guide_broadcasting`.
 
 参数：
     - **low** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的下边界。数据类型为float32或int。
