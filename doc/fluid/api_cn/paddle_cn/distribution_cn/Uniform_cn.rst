@@ -37,65 +37,28 @@ Uniform
 
     import numpy as np
     import paddle
-    from paddle.distribution import Normal
+    from paddle.distribution import Uniform
 
     paddle.disable_static()
-    # Define a single scalar Normal distribution.
-    dist = Normal(loc=0., scale=3.)
-    # Define a batch of two scalar valued Normals.
-    # The first has mean 1 and standard deviation 11, the second 2 and 22.
-    dist = Normal(loc=[1., 2.], scale=[11., 22.])
-    # Get 3 samples, returning a 3 x 2 tensor.
-    dist.sample([3])
+    # Without broadcasting, a single uniform distribution [3, 4]:
+    u1 = Uniform(low=3.0, high=4.0)
+    # 2 distributions [1, 3], [2, 4]
+    u2 = Uniform(low=[1.0, 2.0], high=[3.0, 4.0])
+    # 4 distributions
+    u3 = Uniform(low=[[1.0, 2.0], [3.0, 4.0]],
+            high=[[1.5, 2.5], [3.5, 4.5]])
 
-    # Define a batch of two scalar valued Normals.
-    # Both have mean 1, but different standard deviations.
-    dist = Normal(loc=1., scale=[11., 22.])
+    # With broadcasting:
+    u4 = Uniform(low=3.0, high=[5.0, 6.0, 7.0])
 
     # Complete example
     value_npdata = np.array([0.8], dtype="float32")
     value_tensor = paddle.to_tensor(value_npdata)
 
-    normal_a = Normal([0.], [1.])
-    normal_b = Normal([0.5], [2.])
-    sample = normal_a.sample([2])
-    # a random tensor created by normal distribution with shape: [2, 1]
-    entropy = normal_a.entropy()
-    # [1.4189385] with shape: [1]
-    lp = normal_a.log_prob(value_tensor)
-    # [-1.2389386] with shape: [1]
-    p = normal_a.probs(value_tensor)
-    # [0.28969154] with shape: [1]
-    kl = normal_a.kl_divergence(normal_b)
-    # [0.34939718] with shape: [1]
-
-    import numpy as np
-    from paddle.fluid import layers
-    from paddle.distribution import Uniform
-
-    # 定义参数为float的均匀分布
-    u1 = Uniform(low=3.0, high=4.0)
-    # 定义参数为list的均匀分布
-    u2 = Uniform(low=[1.0, 2.0],
-                  high=[3.0, 4.0])
-    # 通过广播的方式，定义一个均匀分布
-    u3 = Uniform(low=[[1.0, 2.0],
-              [3.0, 4.0]],
-         high=[[1.5, 2.5],
-               [3.5, 4.5]])
-
-    # 通过广播的方式，定义一个均匀分布
-    u4 = Uniform(low=3.0, high=[5.0, 6.0, 7.0])
-
-    # 一个完整的例子
-    value_npdata = np.array([0.8], dtype="float32")
-    value_tensor = layers.create_tensor(dtype="float32")
-    layers.assign(value_npdata, value_tensor)
-
     uniform = Uniform([0.], [2.])
 
     sample = uniform.sample([2])
-    # 一个由定义好的均匀分布随机生成的张量，维度为: [2, 1]
+    # a random tensor created by uniform distribution with shape: [2, 1]
     entropy = uniform.entropy()
     # [0.6931472] with shape: [1]
     lp = uniform.log_prob(value_tensor)
