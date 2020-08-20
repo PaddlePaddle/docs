@@ -14,17 +14,17 @@ binary_cross_entropy_with_logits
 首先，该OP可通过下式计算损失函数：
 
 .. math::
-    Out = -Labels * \\log(\\sigma(Logit)) - (1 - Labels) * \\log(1 - \\sigma(Logit))
+    Out = -Labels * \log(\sigma(Logit)) - (1 - Labels) * \log(1 - \sigma(Logit))
 
-其中 :math:`\\sigma(Logit) = \\frac{1}{1 + \\e^{-Logit}}` ， 代入上方计算公式中:
-
-.. math::
-    Out = Logit - Logit * Labels + \\log(1 + \\e^{-Logit})
-
-为了计算稳定性，防止当 :math:`X<0` 时， :math:`e(-X)` 溢出，loss将采用以下公式计算:
+其中 :math:`\sigma(Logit) = \frac{1}{1 + \e^{-Logit}}` ， 代入上方计算公式中:
 
 .. math::
-    Out = \\max(Logit, 0) - Logit * Labels + \\log(1 + \\e^{-\|Logit\|})
+    Out = Logit - Logit * Labels + \log(1 + \e^{-Logit})
+
+为了计算稳定性，防止当 :math:`X<0` 时， :math:`e^(-X)` 溢出，loss将采用以下公式计算:
+
+.. math::
+    Out = \max(Logit, 0) - Logit * Labels + \log(1 + \e^{-\|Logit\|})
 
 然后，当 ``weight`` or ``pos_weight`` 不为None的时候，改算子会在输出Out上乘以相应的权重。张量 ``weight`` 给Batch中的每一个元素赋予不同元素，张量 ``pos_weight`` 给每一类的正例添加相应的权重。
 
