@@ -2,6 +2,11 @@
 
 BatchSampler
 -------------------------------
-:doc_source: paddle.fluid.dataloader.BatchSampler
+
+..  autoclass:: paddle.fluid.io.BatchSampler
+    :members:
+    :inherited-members:
+    :noindex:
+
 
 
