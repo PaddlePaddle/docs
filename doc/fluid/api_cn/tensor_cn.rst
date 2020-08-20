@@ -50,7 +50,6 @@ paddle.tensor
     tensor_cn/exp_cn.rst
     tensor_cn/expand_as_cn.rst
     tensor_cn/expand_cn.rst
-    tensor_cn/tile_cn.rst
     tensor_cn/eye_cn.rst
     tensor_cn/fill_constant_cn.rst
     tensor_cn/flatten_cn.rst
@@ -146,6 +145,7 @@ paddle.tensor
     tensor_cn/t_cn.rst
     tensor_cn/tanh_cn.rst
     tensor_cn/tensordot_cn.rst
+    tensor_cn/tile_cn.rst
     tensor_cn/topk_cn.rst
     tensor_cn/trace_cn.rst
     tensor_cn/transpose_cn.rst
