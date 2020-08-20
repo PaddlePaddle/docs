@@ -2,6 +2,6 @@
 
 gelu
 -------------------------------
-:doc_source: paddle.fluid.layers.gelu
+:doc_source: paddle.nn.functional.activation.gelu
 
 

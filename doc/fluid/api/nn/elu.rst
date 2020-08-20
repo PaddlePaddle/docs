@@ -2,6 +2,6 @@
 
 elu
 -------------------------------
-:doc_source: paddle.fluid.layers.elu
+:doc_source: paddle.nn.functional.activation.elu
 
 

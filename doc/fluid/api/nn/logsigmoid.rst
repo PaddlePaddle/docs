@@ -2,6 +2,6 @@
 
 logsigmoid
 -------------------------------
-:doc_source: paddle.fluid.layers.logsigmoid
+:doc_source: paddle.nn.functional.activation.logsigmoid
 
 
