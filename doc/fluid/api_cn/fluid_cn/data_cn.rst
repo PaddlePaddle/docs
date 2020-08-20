@@ -6,10 +6,6 @@ data
 
 .. py:function:: paddle.fluid.data(name, shape, dtype='float32', lod_level=0)
 
-:api_attr: 声明式编程模式（静态图)
-:alias_main: paddle.static.data
-:alias: paddle.static.data
-:old_api: paddle.fluid.data
 
 
 
