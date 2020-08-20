@@ -154,12 +154,5 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
-    nn/functional/activation/elu.rst
-    nn/functional/activation/gelu.rst
-    nn/functional/activation/hardtanh.rst
-    nn/functional/activation/logsigmoid.rst
-    nn/functional/activation/prelu.rst
-    nn/functional/activation/relu.rst
-    nn/functional/activation/softmax.rst
     nn/functional/loss/margin_ranking_loss.rst
     nn/layer/loss/MarginRankingLoss.rst
