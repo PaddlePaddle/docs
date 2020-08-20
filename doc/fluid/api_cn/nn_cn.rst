@@ -73,7 +73,7 @@ paddle.nn
     nn_cn/GradientClipByValue_cn.rst
     nn_cn/grid_sampler_cn.rst
     nn_cn/GroupNorm_cn.rst
-    nn_cn/hard_shrink_cn.rst
+    nn_cn/hardshrink_cn.rst
     nn_cn/hard_sigmoid_cn.rst
     nn_cn/hard_swish_cn.rst
     nn_cn/hash_cn.rst
@@ -94,6 +94,7 @@ paddle.nn
     nn_cn/linear_lr_warmup_cn.rst
     nn_cn/logsigmoid_cn.rst
     nn_cn/log_loss_cn.rst
+    nn_cn/log_softmax_cn.rst
     nn_cn/lrn_cn.rst
     nn_cn/margin_ranking_loss_cn.rst
     nn_cn/maxout_cn.rst

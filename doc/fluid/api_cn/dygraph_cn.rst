@@ -17,6 +17,7 @@ fluid.dygraph
     dygraph_cn/Conv3DTranspose_cn.rst
     dygraph_cn/CosineAnnealingDecay_cn.rst
     dygraph_cn/CosineDecay_cn.rst
+    dygraph_cn/DataParallel_cn.rst
     dygraph_cn/declarative_cn.rst
     dygraph_cn/Dropout_cn.rst
     dygraph_cn/Embedding_cn.rst
@@ -58,3 +59,4 @@ fluid.dygraph
     dygraph_cn/Tracer_cn.rst
     dygraph_cn/TranslatedLayer_cn.rst
     dygraph_cn/TreeConv_cn.rst
+    dygraph_cn/enabled_cn.rst
