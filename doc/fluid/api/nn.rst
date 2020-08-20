@@ -82,6 +82,7 @@ paddle.nn
     nn/Linear.rst
     nn/linear_lr_warmup.rst
     nn/log_loss.rst
+    nn/log_softmax.rst
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst

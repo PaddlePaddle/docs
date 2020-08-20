@@ -22,7 +22,6 @@ sigmoid 激活函数。
 
 代码示例
 :::::::::
-
 .. code-block:: python
 
     import numpy as np
