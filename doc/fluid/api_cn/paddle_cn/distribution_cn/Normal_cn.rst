@@ -25,8 +25,8 @@ Normal
 :math:`Z`: 正态分布常量。
 
 参数：
-    - **loc** (float|list|numpy.ndarray|Variable) - 正态分布平均值。数据类型为float32。
-    - **scale** (float|list|numpy.ndarray|Variable) - 正态分布标准差。数据类型为float32。
+    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为float32或int。
+    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为float32或int。
     - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 **代码示例**：
@@ -34,31 +34,30 @@ Normal
 .. code-block:: python
 
     import numpy as np
-    from paddle.fluid import layers
-	from paddle.distribution import Normal
+    import paddle
+    from paddle.distribution import Normal
 
-    # 定义参数为float的正态分布。
+    paddle.disable_static()
+    # Define a single scalar Normal distribution.
     dist = Normal(loc=0., scale=3.)
-    # 定义一组有两个数的正态分布。
-    # 第一组为均值1，标准差11，第二组为均值2，标准差22。
+    # Define a batch of two scalar valued Normals.
+    # The first has mean 1 and standard deviation 11, the second 2 and 22.
     dist = Normal(loc=[1., 2.], scale=[11., 22.])
-    # 得到3个样本, 返回一个 3 x 2 张量。
+    # Get 3 samples, returning a 3 x 2 tensor.
     dist.sample([3])
 
-    # 通过广播的方式，定义一个两个参数的正态分布。
-    # 均值都是1，标准差不同。
+    # Define a batch of two scalar valued Normals.
+    # Both have mean 1, but different standard deviations.
     dist = Normal(loc=1., scale=[11., 22.])
 
-    # 一个完整的例子
+    # Complete example
     value_npdata = np.array([0.8], dtype="float32")
-    value_tensor = layers.create_tensor(dtype="float32")
-    layers.assign(value_npdata, value_tensor)
+    value_tensor = paddle.to_tensor(value_npdata)
 
     normal_a = Normal([0.], [1.])
     normal_b = Normal([0.5], [2.])
-
     sample = normal_a.sample([2])
-    # 一个由定义好的正太分布随机生成的张量，维度为: [2, 1]
+    # a random tensor created by normal distribution with shape: [2, 1]
     entropy = normal_a.entropy()
     # [1.4189385] with shape: [1]
     lp = normal_a.log_prob(value_tensor)
@@ -79,7 +78,7 @@ Normal
     
 返回：预先设计好维度的张量, 数据类型为float32
 
-返回类型：Variable
+返回类型：Tensor
 
 .. py:function:: entropy()
 
@@ -87,29 +86,29 @@ Normal
     
 返回：正态分布的信息熵, 数据类型为float32
 
-返回类型：Variable
+返回类型：Tensor
 
 .. py:function:: log_prob(value)
 
 对数概率密度函数
 
 参数：
-    - **value** (Variable) - 输入张量。数据类型为float32或float64。
+    - **value** (Tensor) - 输入张量。数据类型为float32或float64。
     
 返回：对数概率, 数据类型与value相同
 
-返回类型：Variable
+返回类型：Tensor
 
 .. py:function:: probs(value)
 
 概率密度函数
 
 参数：
-    - **value** (Variable) - 输入张量。数据类型为float32或float64。
+    - **value** (Tensor) - 输入张量。数据类型为float32或float64。
     
 返回：概率, 数据类型与value相同
 
-返回类型：Variable
+返回类型：Tensor
 
 .. py:function:: kl_divergence(other)
 
@@ -120,7 +119,7 @@ Normal
     
 返回：两个正态分布之间的KL散度, 数据类型为float32
 
-返回类型：Variable
+返回类型：Tensor
 
 
 

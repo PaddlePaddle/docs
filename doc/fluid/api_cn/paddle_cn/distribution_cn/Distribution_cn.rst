@@ -24,14 +24,14 @@ Distribution
 对数概率密度函数
 
 参数：
-    - **value** (Variable) - 输入张量。数据类型为float32或float64。
+    - **value** (Tensor) - 输入张量。
 
 .. py:function:: probs(value)
 
 概率密度函数
 
 参数：
-    - **value** (Variable) - 输入张量。数据类型为float32或float64。
+    - **value** (Tensor) - 输入张量。
 
 .. py:function:: kl_divergence(other)
 
@@ -45,18 +45,18 @@ Distribution
 对分布的参数进行验证。
 
 参数：
-    - **value** (float, list, numpy.ndarray, Variable) - 输入的数据类型。
+    - **value** (float, list, numpy.ndarray, Tensor) - 输入的数据类型。
     
-Raises ValueError：若其中一个参数为Variable，那么所有的参数都应该为Variable
+Raises ValueError：若其中一个参数为Tensor，那么所有的参数都应该为Tensor
 
 .. py:function:: _to_variable(*args)
 
-将参数args转化为Variable数据类型。
+将参数args转化为Tensor数据类型。
 
 参数：
-    - **value** (float, list, numpy.ndarray, Variable) - 输入的数据类型。
+    - **value** (float, list, numpy.ndarray, Tensor) - 输入的数据类型。
     
-返回：参数的Variable类型
+返回：参数的Tensor类型
 
 
 
