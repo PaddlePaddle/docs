@@ -1,4 +1,4 @@
-.. _api_nn_common_AdaptiveAvgPool3d:
+.. _api_nn_pooling_AdaptiveAvgPool3d:
 
 AdaptiveAvgPool3d
 -----------------

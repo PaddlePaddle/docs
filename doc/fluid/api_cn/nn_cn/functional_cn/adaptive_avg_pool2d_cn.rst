@@ -61,6 +61,8 @@ adaptive_avg_pool2d
         paddle.disable_static()
         input_data = np.random.rand(2, 3, 32, 32)
         x = paddle.to_tensor(input_data)
+        # x.shape is [2, 3, 32, 32]
         pool_out = paddle.nn.functional.adaptive_avg_pool2d(
                         x = x,
                         output_size=[3, 3])
+        # pool_out.shape is [2, 3, 3, 3]
