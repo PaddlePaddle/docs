@@ -24,5 +24,5 @@ remove_weight_norm
     conv = Conv2D(3, 5, 3)
     wn = weight_norm(conv)
     remove_weight_norm(conv)
-    print(conv.weight.shape)
-    # [5, 3, 3, 3]
+    print(conv.weight_g)
+    # AttributeError: 'Conv2D' object has no attribute 'weight_g'
