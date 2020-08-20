@@ -19,6 +19,7 @@ math
     math/mm.rst
     math/mul.rst
     math/pow.rst
+    math/sign.rst
     math/sin.rst
     math/sqrt.rst
     math/sum.rst
