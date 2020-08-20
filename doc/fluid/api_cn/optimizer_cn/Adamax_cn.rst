@@ -1,6 +1,6 @@
-.. _cn_api_fluid_optimizer_AdamaxOptimizer:
+.. _cn_api_paddle_optimizer_Adamax:
 
-AdamaxOptimizer
+Adamax
 -------------------------------
 
 .. py:class:: paddle.optimizer.Adamax(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None)

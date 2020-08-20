@@ -1,9 +1,9 @@
-.. _cn_api_fluid_optimizer_RMSPropOptimizer:
+.. _cn_api_paddle_optimizer_RMSProp:
 
-RMSPropOptimizer
+RMSProp
 -------------------------------
 
-.. py:class:: paddle.optimizer.RMSPropOptimizer(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, parameters=None, weight_decay=None, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.RMSProp(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
 
 

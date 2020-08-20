@@ -1,6 +1,6 @@
-.. _cn_api_fluid_optimizer_AdamOptimizer:
+.. _cn_api_paddle_optimizer_Optimizer:
 
-AdamOptimizer
+Optimizer
 -------------------------------
 
 .. py:class:: paddle.optimizer.Optimizer(learning_rate=0.001, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None)
