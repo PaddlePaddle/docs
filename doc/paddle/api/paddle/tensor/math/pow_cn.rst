@@ -1,28 +1,27 @@
-.. _cn_api_tensor_argmax:
+.. _cn_api_fluid_layers_pow:
 
 pow
 -------------------------------
 
-.. py:function:: paddle.pow(input, exponent, out=None, name=None):
+.. py:function:: paddle.pow(x, exponent, name=None)
 
-:alias_main: paddle.pow
-:alias: paddle.pow,paddle.tensor.pow,paddle.tensor.math.pow
-:update_api: paddle.fluid.layers.pow
 
 
 
 该OP是指数激活算子：
 
 .. math::
-        out = x^{exponent}
+
+    out = x^{exponent}
+
+**注意：如果需要对输入进行 elementwise_pow 操作，请查使用** :ref:`cn_api_fluid_layers_elementwise_pow` 。
 
 参数：
-    - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` ，数据类型为 ``float32`` 或 ``float64`` 。
-    - **exponent** （float32|Variable，可选）- ``float32`` 或形状为[1]的 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``。Pow OP的指数因子。默认值：1.0。
-    - **out** (Variable, 可选) - 默认值None，如果out不为空，则该运算结果存储在out变量中。 
-    - **name** (str，可选) - 默认值None，输出的名称。该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_name`。当out和name同时不为空时，结果输出变量名与out保持一致。
+    - **x** （Variable）- 多维 ``Variable``，数据类型为 ``float32`` 或 ``float64`` 。
+    - **exponent** （float32|Variable）- ``float32`` 或形状为[1]的 ``Variable``，数据类型为 ``float32``。
+    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值： ``None``。
 
-返回：维度与输入 `x` 相同的 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``x`` 相同。
+返回：维度与输入 `x` 相同的 ``Variable``，数据类型与 ``x`` 相同。
 
 返回类型：Variable。
 
@@ -31,17 +30,26 @@ pow
 
 .. code-block:: python
 
-    import paddle
-    import paddle.fluid as fluid
-    x = fluid.data(name="x", shape=[32,32], dtype="float32")
-    
-    # 示例1: 参数exponent是个浮点数
-    res = fluid.data(name="output", shape=[32,32], dtype="float32")
-    y_1 = paddle.pow(x, 2.0, out=res)
-    # y_1 is x^{2.0}
-    
-    # 示例2: 参数exponent是个变量
-    exponent_tensor = fluid.layers.fill_constant([1], "float32", 3.0)
-    res = fluid.data(name="output", shape=[32,32], dtype="float32")
-    y_2 = paddle.pow(x, exponent_tensor, out=res)
-    # y_2 is x^{3.0}
+            import paddle
+            import numpy as np
+            x = fluid.data(name="x", shape=[32,32], dtype="float32")
+            paddle.enable_imperative()
+            
+            # example 1: exponent is a float
+            x_data = np.array([1, 2, 3])
+            exponent = 2
+            x = paddle.imperative.to_variable(x_data)
+            res = paddle.pow(x, exponent)
+            print(res.numpy()) # [1 4 9]
+            
+            # example 2: exponent is a Variable
+            exponent = paddle.fill_constant(shape=[1], value=2, dtype='float32')
+            res = paddle.pow(x, exponent)
+            print(res.numpy()) # [1 4 9]
+
+
+
+
+
+
+

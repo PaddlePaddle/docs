@@ -1,10 +1,10 @@
-.. _cn_api_fluid_executor_scope_guard:
+.. _cn_api_fluid_scope_guard:
 
 scope_guard
 -------------------------------
 
 
-.. py:function:: paddle.fluid.executor.scope_guard (scope)
+.. py:function:: paddle.fluid.scope_guard(scope)
 
 :api_attr: 声明式编程模式（静态图)
 

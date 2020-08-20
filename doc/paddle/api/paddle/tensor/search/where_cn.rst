@@ -1,53 +1,42 @@
-.. _cn_api_tensor_where:
+.. _cn_api_fluid_layers_where:
 
 where
 -------------------------------
 
-.. py:function:: paddle.where(condition, x, y, name=None)
-
-:alias_main: paddle.where
-:alias: paddle.where,paddle.tensor.where,paddle.tensor.search.where
-:update_api: paddle.fluid.layers.cond
+.. py:function:: paddle.fluid.layers.where(condition)
 
 
 
-该OP返回一个根据输入 ``condition``, 选择 ``x`` 或 ``y`` 的元素组成的多维 ``Tensor``  ：
 
-.. math::
-      Out_i =
-      \left\{
-      \begin{aligned}
-      &X_i, & & if \ cond_i \ is \ True \\
-      &Y_i, & & if \ cond_i \ is \ False \\
-      \end{aligned}
-      \right.
-
+该OP计算输入元素中为True的元素在输入中的坐标（index）。
+        
 参数：
-    - **condition** （Variable）- 选择 ``x`` 或 ``y`` 元素的条件 。
-    - **x** （Variable）- 多维 ``Tensor`` ，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。
-    - **y** （Variable）- 多维 ``Tensor`` ，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **condition** （Variable）– 输入秩至少为1的多维Tensor，数据类型是bool类型。
 
-返回：数据类型与 ``x`` 相同的 ``Tensor`` 。
+返回：输出condition元素为True的坐标（index），将所有的坐标（index）组成一个2-D的Tensor。
 
-返回类型：Variable。
-
-
-**代码示例：**
+返回类型：Variable，数据类型是int64。
+     
+**代码示例**：
 
 .. code-block:: python
 
-          import paddle
-          import numpy as np
-          import paddle.fluid as fluid
+        import paddle.fluid as fluid
+        import paddle.fluid.layers as layers
+        import numpy as np
+        # tensor 为 [True, False, True]
+        condition = layers.assign(np.array([1, 0, 1], dtype='int32'))
+        condition = layers.cast(condition, 'bool')
+        out = layers.where(condition) # [[0], [2]]
 
-          x_i = np.array([0.9383, 0.1983, 3.2, 1.2]).astype("float32")
-          y_i = np.array([1.0, 1.0, 1.0, 1.0]).astype("float32")
+        # tensor 为 [[True, False], [False, True]]
+        condition = layers.assign(np.array([[1, 0], [0, 1]], dtype='int32'))
+        condition = layers.cast(condition, 'bool')
+        out = layers.where(condition) # [[0, 0], [1, 1]]
 
-          with fluid.dygraph.guard():
-              x = fluid.dygraph.to_variable(x_i)
-              y = fluid.dygraph.to_variable(y_i)
-              out = paddle.where(x>1, x, y)
+        # tensor 为 [False, False, False]
+        condition = layers.assign(np.array([0, 0, 0], dtype='int32'))
+        condition = layers.cast(condition, 'bool')
+        out = layers.where(condition) # [[]]
 
-          print(out.numpy())
-          #out: [1.0, 1.0, 3.2, 1.2]
+
