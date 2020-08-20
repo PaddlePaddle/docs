@@ -14,3 +14,7 @@ functional
     functional_cn/margin_ranking_loss_cn.rst
     functional_cn/mse_loss_cn.rst
     functional_cn/sigmoid_cn.rst
+    functional_cn/dropout_cn.rst
+    functional_cn/dropout2d_cn.rst
+    functional_cn/dropout3d_cn.rst
+    functional_cn/alpha_dropout_cn.rst
