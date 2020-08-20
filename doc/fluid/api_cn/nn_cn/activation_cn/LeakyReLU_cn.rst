@@ -4,7 +4,7 @@ LeakyReLU
 -------------------------------
 .. py:class:: paddle.nn.LeakyReLU(negative_slope=0.01, name=None)
 
-ReLU (Rectified Linear Unit）激活层
+LeakyReLU 激活层
 
 .. math::
 
@@ -38,5 +38,5 @@ ReLU (Rectified Linear Unit）激活层
     paddle.disable_static()
 
     m = paddle.nn.LeakyReLU()
-    x = paddle.ti_tensor(np.array([-2, 0, 1]))
+    x = paddle.to_tensor(np.array([-2, 0, 1]))
     out = m(x)  # [-0.02, 0., 1.]

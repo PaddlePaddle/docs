@@ -31,6 +31,8 @@ leaky_relu激活层。计算公式如下：
 代码示例
 ::::::::::
 
+.. code-block:: python
+
     import paddle
     import paddle.nn.functional as F
     import numpy as np
