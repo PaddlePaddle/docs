@@ -8,7 +8,7 @@ Hardtanh激活层（Hardtanh Activation Operator）。计算公式如下：
 
 .. math::
 
-    HardTanh(x)=
+    Hardtanh(x)=
         \left\{
         \begin{aligned}
         &max, & & if \ x > max \\
@@ -21,8 +21,8 @@ Hardtanh激活层（Hardtanh Activation Operator）。计算公式如下：
 
 参数
 ::::::::::
-    - min (float, 可选) - HardTanh激活计算公式中的min值。默认值为-1。
-    - max (float, 可选) - HardTanh激活计算公式中的max值。默认值为1。
+    - min (float, 可选) - Hardtanh激活计算公式中的min值。默认值为-1。
+    - max (float, 可选) - Hardtanh激活计算公式中的max值。默认值为1。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状:
@@ -41,5 +41,5 @@ Hardtanh激活层（Hardtanh Activation Operator）。计算公式如下：
     paddle.disable_static()
 
     x = paddle.to_tensor(np.array([-1.5, 0.3, 2.5]))
-    m = paddle.nn.HardTanh()
+    m = paddle.nn.Hardtanh()
     out = m(x) # # [-1., 0.3, 1.]

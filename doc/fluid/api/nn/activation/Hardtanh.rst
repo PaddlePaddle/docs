@@ -4,6 +4,4 @@ Hardtanh
 -------------------------------
 
 ..  autoclass:: paddle.nn.Hardtanh
-    :members:
-    :inherited-members:
     :noindex:

@@ -4,6 +4,4 @@ GELU
 -------------------------------
 
 ..  autoclass:: paddle.nn.GELU
-    :members:
-    :inherited-members:
     :noindex:

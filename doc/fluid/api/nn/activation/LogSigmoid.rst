@@ -4,6 +4,4 @@ LogSigmoid
 -------------------------------
 
 ..  autoclass:: paddle.nn.LogSigmoid
-    :members:
-    :inherited-members:
     :noindex:

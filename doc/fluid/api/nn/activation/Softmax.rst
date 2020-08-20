@@ -4,6 +4,4 @@ Softmax
 -------------------------------
 
 ..  autoclass:: paddle.nn.Softmax
-    :members:
-    :inherited-members:
     :noindex:

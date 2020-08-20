@@ -4,6 +4,4 @@ PReLU
 -------------------------------
 
 ..  autoclass:: paddle.nn.PReLU
-    :members:
-    :inherited-members:
     :noindex:
