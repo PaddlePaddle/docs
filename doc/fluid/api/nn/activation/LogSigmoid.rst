@@ -3,7 +3,7 @@
 LogSigmoid
 -------------------------------
 
-..  autoclass:: paddle.nn.activation.LogSigmoid
+..  autoclass:: paddle.nn.LogSigmoid
     :members:
     :inherited-members:
     :noindex:

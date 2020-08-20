@@ -3,7 +3,7 @@
 GELU
 -------------------------------
 
-..  autoclass:: paddle.nn.activation.GELU
+..  autoclass:: paddle.nn.GELU
     :members:
     :inherited-members:
     :noindex:

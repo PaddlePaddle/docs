@@ -3,7 +3,7 @@
 Softmax
 -------------------------------
 
-..  autoclass:: paddle.nn.activation.Softmax
+..  autoclass:: paddle.nn.Softmax
     :members:
     :inherited-members:
     :noindex:

@@ -3,7 +3,7 @@
 ELU
 -------------------------------
 
-..  autoclass:: paddle.nn.activation.ELU
+..  autoclass:: paddle.nn.ELU
     :members:
     :inherited-members:
     :noindex:
