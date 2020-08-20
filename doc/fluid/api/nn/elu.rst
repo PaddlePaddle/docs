@@ -2,6 +2,8 @@
 
 elu
 -------------------------------
-:doc_source: paddle.nn.functional.activation.elu
+
+..  autofunction:: paddle.nn.functional.elu
+    :noindex:
 
 

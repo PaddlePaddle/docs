@@ -2,4 +2,6 @@
 
 hardtanh
 -------------------------------
-:doc_source: paddle.nn.functional.activation.hardtanh
+
+..  autofunction:: paddle.nn.functional.hardtanh
+    :noindex:

@@ -2,6 +2,8 @@
 
 gelu
 -------------------------------
-:doc_source: paddle.nn.functional.activation.gelu
+
+..  autofunction:: paddle.nn.functional.gelu
+    :noindex:
 
 

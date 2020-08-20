@@ -2,4 +2,6 @@
 
 relu
 -------------------------------
-:doc_source: paddle.nn.functional.activation.relu
+
+..  autofunction:: paddle.nn.functional.relu
+    :noindex:

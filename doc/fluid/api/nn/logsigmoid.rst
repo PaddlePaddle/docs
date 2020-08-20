@@ -2,6 +2,8 @@
 
 logsigmoid
 -------------------------------
-:doc_source: paddle.nn.functional.activation.logsigmoid
+
+..  autofunction:: paddle.nn.functional.logsigmoid
+    :noindex:
 
 

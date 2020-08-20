@@ -2,5 +2,7 @@
 
 softmax
 -------------------------------
-:doc_source: paddle.nn.functional.activation.softmax
+
+..  autofunction:: paddle.nn.functional.softmax
+    :noindex:
 

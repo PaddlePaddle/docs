@@ -2,4 +2,6 @@
 
 prelu
 -------------------------------
-:doc_source: paddle.nn.functional.activation.prelu
+
+..  autofunction:: paddle.nn.functional.prelu
+    :noindex:
