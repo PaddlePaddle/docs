@@ -25,8 +25,8 @@ Normal
 :math:`Z`: 正态分布常量。
 
 参数：
-    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为float32或int。
-    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为float32或int。
+    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为int、float32、list、numpy.ndarray或Tensor。
+    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为int、float32、list、numpy.ndarray或Tensor。
     - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 **代码示例**：
