@@ -5,11 +5,6 @@ allclose
 
 .. py:function:: paddle.allclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
-:alias_main: paddle.allclose
-:alias: paddle.allclose,paddle.tensor.allclose,paddle.tensor.logic.allclose
-
-
-
 逐个检查x和y的所有元素是否均满足如下条件：
 
 ..  math::
@@ -27,8 +22,6 @@ allclose
 
 返回：计算得到的布尔类型单值Tensor。
 
-返回类型：Tensor
-
 **代码示例**:
 
 .. code-block:: python
@@ -40,8 +33,8 @@ allclose
 
     np_x = np.array([10000., 1e-07]).astype("float32")
     np_y = np.array([10000.1, 1e-08]).astype("float32")
-    x = paddle.to_variable(np_x)
-    y = paddle.to_variable(np_y)
+    x = paddle.to_tensor (np_x)
+    y = paddle.to_tensor (np_y)
     result1 = paddle.allclose(x, y, rtol=1e-05, atol=1e-08,
                             equal_nan=False, name="ignore_nan")
     np_result1 = result1.numpy()
@@ -53,8 +46,8 @@ allclose
 
     np_x = np.array([1.0, float('nan')]).astype("float32")
     np_y = np.array([1.0, float('nan')]).astype("float32")
-    x = paddle.to_variable(np_x)
-    y = paddle.to_variable(np_y)
+    x = paddle.to_tensor (np_x)
+    y = paddle.to_tensor (np_y)
     result1 = paddle.allclose(x, y, rtol=1e-05, atol=1e-08,
                             equal_nan=False, name="ignore_nan")
     np_result1 = result1.numpy()
