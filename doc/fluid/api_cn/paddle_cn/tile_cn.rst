@@ -2,5 +2,5 @@
 
 tile
 -------------------------------
-:doc_source: paddle.tensor.flip
+:doc_source: paddle.tensor.tile
 
