@@ -151,6 +151,7 @@ paddle.tensor
     tensor_cn/tril_cn.rst
     tensor_cn/triu_cn.rst
     tensor_cn/unbind_cn.rst
+    tensor_cn/uniform_cn.rst
     tensor_cn/unique_cn.rst
     tensor_cn/unique_with_counts_cn.rst
     tensor_cn/unsqueeze_cn.rst
