@@ -16,6 +16,7 @@ paddle.tensor
     tensor/atan.rst
     tensor/cast.rst
     tensor/ceil.rst
+    tensor/chunk.rst
     tensor/concat.rst
     tensor/cos.rst
     tensor/create_tensor.rst
@@ -122,4 +123,3 @@ paddle.tensor
     tensor/where.rst
     tensor/zeros.rst
     tensor/zeros_like.rst
-    tensor/chunk.rst

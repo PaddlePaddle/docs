@@ -23,6 +23,7 @@ paddle
 	paddle/cast.rst
 	paddle/ceil.rst
 	paddle/cholesky.rst
+	paddle/chunk.rst
 	paddle/clamp.rst
 	paddle/CompiledProgram.rst
 	paddle/concat.rst
@@ -177,4 +178,3 @@ paddle
 	paddle/where.rst
 	paddle/zeros.rst
 	paddle/zeros_like.rst
-	paddle/chunk.rst

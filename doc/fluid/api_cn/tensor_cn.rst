@@ -23,6 +23,7 @@ paddle.tensor
     tensor_cn/cast_cn.rst
     tensor_cn/ceil_cn.rst
     tensor_cn/cholesky_cn.rst
+    tensor_cn/chunk_cn.rst
     tensor_cn/clamp_cn.rst
     tensor_cn/concat_cn.rst
     tensor_cn/cond_cn.rst
@@ -160,5 +161,4 @@ paddle.tensor
     tensor_cn/where_cn.rst
     tensor_cn/zeros_cn.rst
     tensor_cn/zeros_like_cn.rst
-    tensor_cn/chunk_cn.rst
 
