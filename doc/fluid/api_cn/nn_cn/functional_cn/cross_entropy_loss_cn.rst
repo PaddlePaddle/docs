@@ -1,6 +1,6 @@
-.. _cn_api_nn_functional_nll_loss:
+.. _cn_api_nn_functional_cross_entropy_loss:
 
-nll_loss
+cross_entropy_loss
 -------------------------------
 .. py:function:: paddle.nn.functional.cross_entropy_loss(input, label, weight=None, ignore_index=-100, reduction='mean')
 
