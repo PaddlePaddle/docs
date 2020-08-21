@@ -37,7 +37,6 @@ reshape
 :::::::::
 ``Tensor``, 改变形状后的 ``Tensor``，数据类型与 ``x`` 相同。
 
-返回类型：。
 
 抛出异常：
     - :code:`TypeError`：``starts`` 的类型应该是list、tuple 或 Tensor。
