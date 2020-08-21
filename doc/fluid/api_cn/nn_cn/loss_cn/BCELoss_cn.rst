@@ -30,14 +30,14 @@ BCELoss
   Out = SUM(Out)
 
 
-**注意**：输入数据 ``input`` 一般是 ``sigmoid`` 的输出。因为是二分类，所以标签值 ``label`` 应该是0或者1。
-
+.. note::
+    输入数据 ``input`` 一般是 ``sigmoid`` 的输出。因为是二分类，所以标签值 ``label`` 应该是0或者1。
 
 参数
 :::::::::
-  - **weight** (Tensor，可选) - 手动指定每个batch二值交叉熵的权重，如果指定的话，维度必须是一个batch的数据的维度。数据类型是float32, float64。默认值是：None。
-  - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回bce_loss。
-  - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **weight** (Tensor，可选) - 手动指定每个batch二值交叉熵的权重，如果指定的话，维度必须是一个batch的数据的维度。数据类型是float32, float64。默认值是：None。
+    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回bce_loss。
+    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 形状
 :::::::::
@@ -54,32 +54,12 @@ BCELoss
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
     import paddle
-    input_data = np.array([0.5, 0.6, 0.7]).astype("float32")
-    label_data = np.array([1.0, 0.0, 1.0]).astype("float32")
 
     paddle.disable_static()
-    input = paddle.to_variable(input_data)
-    label = paddle.to_variable(label_data)
+    input = paddle.to_tensor([0.5, 0.6, 0.7], dtype='float32')
+    label = paddle.to_tensor([1.0, 0.0, 1.0], dtype='float32')
     bce_loss = paddle.nn.loss.BCELoss()
     output = bce_loss(input, label)
     print(output.numpy())  # [0.65537095]
-    paddle.enable_static()
-
-    # static mode
-    input = fluid.data(name="input", shape=[3, 1], dtype='float32')
-    label = fluid.data(name="label", shape=[3, 1], dtype='float32')
-    bce_loss = paddle.nn.loss.BCELoss()
-    output = bce_loss(input, label)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-
-    output_data = exe.run(fluid.default_main_program(),
-            feed={"input":input_data, "label":label_data},
-            fetch_list=[output],
-            return_numpy=True)
-    print(output_data)  # [array([0.65537095], dtype=float32)]
 

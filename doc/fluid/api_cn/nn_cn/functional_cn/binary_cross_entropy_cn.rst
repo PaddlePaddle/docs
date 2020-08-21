@@ -30,7 +30,8 @@ binary_cross_entropy
   Out = SUM(Out)
 
 
-**注意**：输入数据 ``input`` 一般是 ``sigmoid`` 的输出。因为是二分类，所以标签值 ``label`` 应该是0或者1。
+.. note::
+    输入数据 ``input`` 一般是 ``sigmoid`` 的输出。因为是二分类，所以标签值 ``label`` 应该是0或者1。
 
 参数
 :::::::::
@@ -42,7 +43,7 @@ binary_cross_entropy
 
 返回
 :::::::::
-    - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`(N, *)` , 与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[1]` 。
+    - 输出的结果Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[1]` 。
 
 代码示例
 :::::::::
@@ -57,5 +58,4 @@ binary_cross_entropy
     label = paddle.to_tensor([1.0, 0.0, 1.0], dtype='float32')
     output = F.binary_cross_entropy(input, label)
     print(output.numpy())  # [0.65537095]
-    paddle.enable_static()
 
