@@ -21,7 +21,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 .. math::
     learning\_rate=learning\_rate*\frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
 .. math::
-    param\_out=param-learning\_rate*(frac{moment\_1}{\sqrt{moment\_2}+\epsilon} + \lambda * param)
+    param\_out=param-learning\_rate*(\frac{moment\_1}{\sqrt{moment\_2}+\epsilon} + \lambda * param)
 
 相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
