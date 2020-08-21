@@ -16,12 +16,14 @@ one_hot
     X.shape = [4]
     X.data = [1, 1, 3, 0]
     num_classes = 4
+  
   输出：
     Out.shape = [4, 4]
     Out.data = [[0., 1., 0., 0.],
                 [0., 1., 0., 0.],
                 [0., 0., 0., 1.],
                 [1., 0., 0., 0.]]
+
 - 示例2：
 
 .. code-block:: python
@@ -29,8 +31,11 @@ one_hot
     X.shape = [4]
     X.data = [1, 1, 5, 0]
     num_classes = 4
+
   输出：抛出 Illegal value 的异常
-    X中第2维的值是5，超过了num_classes，因此抛异常。  
+    X中第2维的值是5，超过了num_classes，因此抛异常。
+
+
 参数：
     - **x** (Tensor) - 维度为 :math:`[N_1, ..., N_n]` 的多维Tensor，维度至少1维。数据类型为int32或int64。
     - **num_classes** (int) - 用于定义一个one-hot向量的长度。若输入为词id，则 ``num_classes`` 通常取值为词典大小。
@@ -52,6 +57,6 @@ one_hot
     one_hot_label = fluid.one_hot(x=label, num_classes=4)
     # one_hot_label.shape = [4, 4]
     # one_hot_label.data = [[0., 1., 0., 0.],
-                            [0., 1., 0., 0.],
-                            [0., 0., 0., 1.],
-                            [1., 0., 0., 0.]]
+    #                       [0., 1., 0., 0.],
+    #                       [0., 0., 0., 1.],
+    #                       [1., 0., 0., 0.]]
