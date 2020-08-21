@@ -122,3 +122,4 @@ paddle.tensor
     tensor/where.rst
     tensor/zeros.rst
     tensor/zeros_like.rst
+    tensor/chunk.rst
