@@ -67,6 +67,7 @@ paddle.nn
     nn/grid_sampler.rst
     nn/GroupNorm.rst
     nn/hardshrink.rst
+    nn/hardtanh.rst
     nn/hard_sigmoid.rst
     nn/hard_swish.rst
     nn/hash.rst
@@ -87,6 +88,7 @@ paddle.nn
     nn/Linear.rst
     nn/linear_lr_warmup.rst
     nn/log_loss.rst
+    nn/log_softmax.rst
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
@@ -109,6 +111,7 @@ paddle.nn
     nn/polynomial_decay.rst
     nn/Pool2D.rst
     nn/pool3d.rst
+    nn/prelu.rst
     nn/prior_box.rst
     nn/prroi_pool.rst
     nn/psroi_pool.rst
@@ -117,6 +120,7 @@ paddle.nn
     nn/ReflectionPad1d.rst
     nn/ReflectionPad2d.rst
     nn/ReLU.rst
+    nn/relu.rst
     nn/relu6.rst
     nn/ReplicationPad1d.rst
     nn/ReplicationPad2d.rst
@@ -162,5 +166,9 @@ paddle.nn
     nn/yolo_box.rst
     nn/yolov3_loss.rst
     nn/functional/loss/margin_ranking_loss.rst
+    nn/functional/activation/sigmoid.rst
     nn/layer/loss/MarginRankingLoss.rst
     nn/ZeroPad2d.rst
+    nn/AdaptiveAvgPool2d.rst
+    nn/AdaptiveAvgPool3d.rst
+    nn/layer/activation/Sigmoid.rst
