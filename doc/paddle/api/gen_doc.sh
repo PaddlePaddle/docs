@@ -1,2 +1,2 @@
 #!/bin/bash
-python gen_doc.py
+python3 gen_doc.py
