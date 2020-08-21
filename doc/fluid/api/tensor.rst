@@ -52,6 +52,7 @@ paddle.tensor
     tensor/isfinite.rst
     tensor/less_equal.rst
     tensor/less_than.rst
+    tensor/logic.rst
     tensor/linalg.rst
     tensor/linspace.rst
     tensor/load.rst

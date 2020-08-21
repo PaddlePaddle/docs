@@ -19,6 +19,7 @@ paddle.nn
     nn_cn/activation_cn.rst
     nn_cn/loss_cn.rst
     nn_cn/functional_cn.rst
+    nn_cn/layer_cn.rst
     nn_cn/adaptive_pool2d_cn.rst
     nn_cn/adaptive_pool3d_cn.rst
     nn_cn/add_position_encoding_cn.rst
