@@ -22,7 +22,7 @@ pad
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 返回： 对input进行``pad`` 的结果，数据类型和input相同。
 
-返回类型：Variable
+返回类型：Tensor
 
 **示例**：
 

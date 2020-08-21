@@ -3,20 +3,20 @@
 cosine_similarity
 -------------------------------
 
-.. py:function:: paddle.nn.functional.cosine_similarity(x1, x2, dim=1, eps=1e-8)
+.. py:function:: paddle.nn.functional.cosine_similarity(x1, x2, axis=1, eps=1e-8)
 
-该OP用于计算x1与x2沿dim维度的余弦相似度。
+该OP用于计算x1与x2沿axis维度的余弦相似度。
 
 参数：
   - **x1** (Tensor) - Tensor，数据类型支持float32, float64。
   - **x2** (Tensor) - Tensor，数据类型支持float32, float64。
-  - **dim** (int) - 指定计算的维度，会在该维度上计算余弦相似度，默认值为1。
+  - **axis** (int) - 指定计算的维度，会在该维度上计算余弦相似度，默认值为1。
   - **eps** (float) - 很小的值，防止计算时分母为0，默认值为1e-8。
   
   
 返回： 余弦相似度的计算结果，数据类型与x1, x2相同。
 
-返回类型：Variable
+返回类型：Tensor
 
 
 
@@ -34,7 +34,7 @@ cosine_similarity
     x2 = np.random.rand(2,3)
     x1 = paddle.to_tensor(x1)
     x2 = paddle.to_tensor(x2)
-    result = paddle.nn.functional.cosine_similarity(x1, x2, dim=0)
+    result = paddle.nn.functional.cosine_similarity(x1, x2, axis=0)
     print(result.numpy())
     # [0.99806249 0.9817672  0.94987036]
 
