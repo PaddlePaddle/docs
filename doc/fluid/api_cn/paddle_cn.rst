@@ -155,6 +155,7 @@ paddle
 	paddle_cn/strided_slice_cn.rst
 	paddle_cn/sums_cn.rst
 	paddle_cn/tanh_cn.rst
+	paddle_cn/tile_cn.rst
 	paddle_cn/topk_cn.rst
 	paddle_cn/trace_cn.rst
 	paddle_cn/transpose_cn.rst
