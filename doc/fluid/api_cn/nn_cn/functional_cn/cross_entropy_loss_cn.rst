@@ -1,9 +1,10 @@
-CrossEntropyLoss
+.. _cn_api_nn_functional_nll_loss:
+
+nll_loss
 -------------------------------
+.. py:function:: paddle.nn.functional.cross_entropy_loss(input, label, weight=None, ignore_index=-100, reduction='mean')
 
-.. py:function:: paddle.nn.loss.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean')
-
-该OP计算输入input和标签label间的交叉熵损失 ，它结合了`LogSoftmax` 和 `NLLLoss` 的OP计算，可用于训练一个 `n` 类分类器。
+该接口计算输入input和标签label间的交叉熵损失 ，它结合了`LogSoftmax` 和 `NLLLoss` 的计算，可用于训练一个 `n` 类分类器。
 
 如果提供 `weight` 参数的话，它是一个 `1-D` 的tensor, 每个值对应每个类别的权重。
 该损失函数的数学计算公式如下：
@@ -26,7 +27,7 @@ CrossEntropyLoss
     - **ignore_index** (int64, 可选): - 指定一个忽略的标签值，此标签值不参与计算。默认值为-100。数据类型为int64。
     - **reduction** (string, 可选): - 指定应用于输出结果的计算方式，数据类型为string，可选值有: `none`, `mean`, `sum` 。默认为 `mean` ，计算 `mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。
 
-返回：返回计算 `CrossEntropyLoss` 交叉熵后的损失值。
+返回：返回计算 `cross_entropy_loss` 交叉熵后的损失值。
 
 返回类型：Tensor
 
@@ -35,15 +36,13 @@ CrossEntropyLoss
 ..  code-block:: python
 
             import paddle
-            import numpy as np
             paddle.disable_static()
             input_data = np.random.random([5, 100]).astype("float64")
             label_data = np.random.randint(0, 100, size=(5)).astype(np.int64)
             weight_data = np.random.random([100]).astype("float64")
-            input  = paddle.to_tensor(input_data)
-            label  = paddle.to_tensor(label_data)
+            input =  paddle.to_tensor(input_data)
+            label =  paddle.to_tensor(label_data)
             weight = paddle.to_tensor(weight_data)
-            ce_loss = paddle.nn.loss.CrossEntropyLoss(weight=weight, reduction='mean')
-            output = ce_loss(input, label)
-            print(output.numpy())
+            loss = paddle.nn.functional.cross_entropy(input=input, label=label, weight=weight)
+            print(loss.numpy())
 
