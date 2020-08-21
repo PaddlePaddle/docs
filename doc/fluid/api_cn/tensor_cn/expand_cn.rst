@@ -23,6 +23,7 @@ expand
 :::::::::
 
 .. code-block:: python
+
        import paddle
        import numpy as np
                
