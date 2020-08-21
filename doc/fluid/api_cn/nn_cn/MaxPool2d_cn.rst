@@ -45,6 +45,8 @@ MaxPool2d
 :::::::::
 
 .. code-block:: python
+
+
         import paddle
         import paddle.nn as nn
         import numpy as np
