@@ -10,7 +10,7 @@ Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p` ，�
 在动态图模式下，请使用模型的`eval()` 方法切换至测试阶段。
 
 .. note::
-   对应的 `functional op` 请参考: :ref:`cn_api_nn_functional_dropout` 。
+   对应的 `functional方法` 请参考: :ref:`cn_api_nn_functional_dropout` 。
 
 参数
 :::::::::

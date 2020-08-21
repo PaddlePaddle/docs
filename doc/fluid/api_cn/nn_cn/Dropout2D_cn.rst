@@ -10,7 +10,7 @@ Dropout2D
 在动态图模式下，请使用模型的`eval()` 方法切换至测试阶段。
 
 .. note::
-   对应的 `functional op` 请参考: :ref:`cn_api_nn_functional_dropout2d` 。
+   对应的 `functional方法` 请参考: :ref:`cn_api_nn_functional_dropout2d` 。
 
 参数
 :::::::::

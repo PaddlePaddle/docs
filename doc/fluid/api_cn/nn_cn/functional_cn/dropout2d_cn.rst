@@ -8,7 +8,7 @@ dropout2d
 该算子根据丢弃概率 `p` ，在训练过程中随机将某些通道特征图置0(对一个形状为 `NCHW` 的4维张量，通道特征图指的是其中的形状为 `HW` 的2维特征图)。
 
 .. note::
-   该op基于 ```paddle.nn.functional.dropout``` 实现，如您想了解更多，请参见 :ref:`cn_api_nn_functional_dropout` 。
+   该op基于 ``paddle.nn.functional.dropout`` 实现，如您想了解更多，请参见 :ref:`cn_api_nn_functional_dropout` 。
 
 参数
 :::::::::
