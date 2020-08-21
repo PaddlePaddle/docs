@@ -6,7 +6,7 @@ reduce
 
 .. py:function:: paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=0, async_op=False)
 
-进程组内所有进程的指定tensor进行归约操作，并返回给所以进程归约的结果。
+进程组内所有进程的指定tensor进行归约操作，并返回给所有进程归约的结果。
 
 参数
 :::::::::

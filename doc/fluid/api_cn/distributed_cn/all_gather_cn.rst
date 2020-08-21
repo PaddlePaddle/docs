@@ -6,7 +6,7 @@ all_gather
 
 .. py:function:: paddle.distributed.all_gather(tensor_list, tensor, group=0, async_op=False)
 
-进程组内所有进程的指定tensor进行聚合操作，并返回给所以进程聚合的结果。
+进程组内所有进程的指定tensor进行聚合操作，并返回给所有进程聚合的结果。
 
 参数
 :::::::::
