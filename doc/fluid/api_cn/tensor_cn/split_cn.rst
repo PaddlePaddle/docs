@@ -31,7 +31,7 @@ split
     paddle.disable_static()
     # x is a Tensor which shape is [3, 9, 5]
     x_np = np.random.random([3, 9, 5]).astype("int32")
-    x = paddle.imperative.to_variable(x_np)
+    x = paddle.to_tensor(x_np)
 
     out0, out1, out22 = paddle.split(x, num_or_sections=3, axis=1)
     # out0.shape [3, 3, 5]
