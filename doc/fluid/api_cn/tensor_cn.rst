@@ -145,6 +145,7 @@ paddle.tensor
     tensor_cn/t_cn.rst
     tensor_cn/tanh_cn.rst
     tensor_cn/tensordot_cn.rst
+    tensor_cn/tile_cn.rst
     tensor_cn/topk_cn.rst
     tensor_cn/trace_cn.rst
     tensor_cn/transpose_cn.rst

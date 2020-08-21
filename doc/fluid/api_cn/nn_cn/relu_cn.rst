@@ -1,17 +1,18 @@
-.. _cn_api_nn_cn_logsigmoid:
+.. _cn_api_nn_cn_relu:
 
-logsigmoid
+relu
 -------------------------------
 
-.. py:function:: paddle.nn.functional.logsigmoid(x, name=None)
+.. py:function:: paddle.nn.functional.relu(x, name=None)
 
-logsigmoid激活层。计算公式如下：
+relu激活层（Rectified Linear Unit）。计算公式如下：
 
 .. math::
 
-    logsigmoid(x) = \log \frac{1}{1 + e^{-x}}
+    relu(x) = max(0, x)
 
 其中，:math:`x` 为输入的 Tensor
+
 
 参数
 ::::::::::
@@ -33,5 +34,5 @@ logsigmoid激活层。计算公式如下：
 
     paddle.disable_static()
 
-    x = paddle.to_tensor(np.array([1.0, 2.0, 3.0, 4.0]))
-    out = F.logsigmoid(x) # [-0.313262 -0.126928 -0.0485874 -0.0181499]
+    x = paddle.to_tensor(np.array([-2, 0, 1]).astype('float32'))
+    out = F.relu(x) # [0., 0., 1.]
