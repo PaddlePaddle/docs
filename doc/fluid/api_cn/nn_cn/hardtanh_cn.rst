@@ -36,6 +36,7 @@ hardtanh激活层（Hardtanh Activation Operator）。计算公式如下：
 .. code-block:: python
 
     import paddle
+    import paddle.nn.functional as F
     import numpy as np
 
     paddle.disable_static()
