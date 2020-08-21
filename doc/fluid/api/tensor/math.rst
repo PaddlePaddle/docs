@@ -18,7 +18,7 @@ math
     math/min.rst
     math/mm.rst
     math/mul.rst
-    math/pow.rst
+    math/power.rst
     math/sin.rst
     math/sqrt.rst
     math/sum.rst

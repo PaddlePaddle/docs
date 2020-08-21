@@ -74,7 +74,7 @@ paddle.tensor
     tensor/not_equal.rst
     tensor/ones.rst
     tensor/ones_like.rst
-    tensor/pow.rst
+    tensor/power.rst
     tensor/random.rst
     tensor/rank.rst
     tensor/reciprocal.rst
