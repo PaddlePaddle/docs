@@ -1,4 +1,4 @@
-.. _api_nn_functional_pad:
+.. _api_nn_pad:
 
 pad
 -------------------------------

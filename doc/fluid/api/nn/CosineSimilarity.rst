@@ -2,6 +2,6 @@
 
 CosineSimilarity
 -------------------------------
-:doc_source: paddle.nn.functional.CosineSimilarity
+:doc_source: paddle.nn.CosineSimilarity
 
 
