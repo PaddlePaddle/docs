@@ -7,7 +7,7 @@ Dropout
 
 Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p` ，在训练过程中随机将一些神经元输出设置为0，通过阻止神经元节点间的相关性来减少过拟合。论文请参考: `Improving neural networks by preventing co-adaptation of feature detectors <https://arxiv.org/abs/1207.0580>`_ 
 
-在动态图模式下，请使用模型的`eval()` 方法切换至测试阶段。
+在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 
 .. note::
    对应的 `functional方法` 请参考: :ref:`cn_api_nn_functional_dropout` 。
@@ -21,13 +21,13 @@ Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p` ，�
 
     1. upscale_in_train, 在训练时增大输出结果。
 
-       - train: out = input * mask / ( 1.0 - dropout_prob )
+       - train: out = input * mask / ( 1.0 - p )
        - inference: out = input
 
     2. downscale_in_infer, 在预测时减小输出结果
 
        - train: out = input * mask
-       - inference: out = input * (1.0 - dropout_prob)
+       - inference: out = input * (1.0 - p)
 
 形状
 :::::::::
