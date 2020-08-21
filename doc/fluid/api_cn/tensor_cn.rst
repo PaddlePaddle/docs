@@ -159,3 +159,4 @@ paddle.tensor
     tensor_cn/where_cn.rst
     tensor_cn/zeros_cn.rst
     tensor_cn/zeros_like_cn.rst
+    tensor_cn/numel_cn.rst
