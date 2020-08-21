@@ -8,3 +8,4 @@ functional
     functional/l1_loss.rst
     functional/nll_loss.rst
     functional/mse_loss.rst
+    functional/one_hot.rst

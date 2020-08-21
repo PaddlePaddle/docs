@@ -4,13 +4,14 @@ one_hot
 -------------------------------
 
 .. py:function:: paddle.fluid.nn.functional.one_hot(x, num_classes, name=None)
-该OP将输入（x）中的每个id转换为一个one-hot向量，其长度为 ``num_classes`` ，该id对应的向量维度上的值为1，其余维度的值为0。
+该OP将输入'x'中的每个id转换为一个one-hot向量，其长度为 ``num_classes`` ，该id对应的向量维度上的值为1，其余维度的值为0。
 
 输出的Tensor的shape是在输入shape的最后一维后面添加了num_classes的维度。
 
 - 示例1：
 
 .. code-block:: python
+
   输入：
     X.shape = [4]
     X.data = [1, 1, 3, 0]
@@ -24,7 +25,6 @@ one_hot
 - 示例2：
 
 .. code-block:: python
-  
   输入：
     X.shape = [4]
     X.data = [1, 1, 5, 0]
@@ -43,6 +43,7 @@ one_hot
 **代码示例**：
 
 .. code-block:: python
+
     import paddle.fluid as fluid
     # 该代码对应上述第一个示例，其中输入label的shape是[4]，输出one_hot_label的shape是[4, 4]
     label = fluid.layers.data(name="label", shape=[4], append_batch_size=False, dtype="int64")
