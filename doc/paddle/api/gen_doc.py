@@ -68,8 +68,8 @@ def get_alias_mapping(file="./alias_api_mapping"):
         for line in f.readlines():
             t = line.strip().split('\t')
             real_api = t[0].strip()
-            alias_api = t[1].strip()
-            alias_api_map[real_api] = alias_api
+            alias_apis = t[1].strip().split(',')
+            alias_api_map[real_api] = alias_apis
 
 
 def is_filter_api(api):
@@ -77,7 +77,7 @@ def is_filter_api(api):
     if api in display_doc_map:
         return False
 
-    #check in api in not_display_list
+    #check api in not_display_list
     for key in not_display_doc_map:
         #find the api
         if key == api:
@@ -127,6 +127,14 @@ def is_filter_api(api):
     return False
 
 
+def get_display_api(api):
+    # recomment alias api
+    if api.startswith("paddle.fluid") and alias_api_map.has_key(api):
+        return alias_api_map[api][0]
+    else:
+        return api
+
+
 def gen_en_files(root_path='paddle'):
     backup_path = root_path + "_" + str(int(time.time()))
 
@@ -134,11 +142,15 @@ def gen_en_files(root_path='paddle'):
         if is_filter_api(api):
             continue
 
+        api = get_display_api(api)
+
         doc_file = api.split(".")[-1]
         path = "/".join(api.split(".")[0:-1])
         if not os.path.exists(path):
             os.makedirs(path)
         f = api.replace(".", "/")
+        if os.path.exists(f + en_suffix):
+            continue
         os.mknod(f + en_suffix)
         gen = EnDocGenerator()
         with gen.guard(f + en_suffix):
