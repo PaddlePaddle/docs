@@ -48,6 +48,8 @@ max_pool3d
 :::::::::
 
 .. code-block:: python
+
+
           import paddle
           import paddle.nn.functional as F
           import numpy as np
