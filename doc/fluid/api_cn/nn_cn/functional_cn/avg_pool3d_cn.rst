@@ -48,6 +48,8 @@ avg_pool3d
 :::::::::
 
 .. code-block:: python
+
+
         import paddle.fluid as fluid
         import paddle
         input = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32, 32, 32]).astype(np.float32))
