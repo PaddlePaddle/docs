@@ -27,6 +27,7 @@ one_hot
 - 示例2：
 
 .. code-block:: python
+
   输入：
     X.shape = [4]
     X.data = [1, 1, 5, 0]
