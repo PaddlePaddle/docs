@@ -34,4 +34,4 @@ logsigmoid激活层。计算公式如下：
     paddle.disable_static()
 
     x = paddle.to_tensor(np.array([1.0, 2.0, 3.0, 4.0]))
-    out = F.logsigmoid(x) # [0.7310586, 0.880797, 0.95257413, 0.98201376]
+    out = F.logsigmoid(x) # [-0.313262 -0.126928 -0.0485874 -0.0181499]
