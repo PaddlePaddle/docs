@@ -10,10 +10,10 @@ all_reduce
 
 参数
 :::::::::
-    - tensor (Tensor) - 归约操作的输入tensor，同时也会将归约结果返回至此tensor中。tensor的数据类型为 `float32` 、 `float64` 、 `int32` 或 `int64` 。
+    - tensor (Tensor) - 操作的输入tensor，同时也会将归约结果返回至此tensor中。tensor的数据类型为：float32、float64、int32、int64。
     - op (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.Min|ReduceOp.PROD，可选) - 归约的具体操作，比如求和，取最大值，取最小值和求乘积，默认为求和归约。
     - group (int，可选) - 工作的进程组编号，默认为0。
-    - async_op (bool，可选) - 广播操作为同步或者异步，默认为同步。
+    - async_op (bool，可选) - 操作为同步或者异步，默认为同步。
 
 返回
 :::::::::

@@ -10,11 +10,11 @@ scatter
 
 参数
 :::::::::
-    - tensor (Tensor) - 分发操作的输出tensor。tensor的数据类型为 `float32` 、 `float64` 、 `int32` 或 `int64` 。
-    - tensor_list (list，可选) - 分发操作的输入tensor列表，默认为None。列表中的每个元素均为tensor，每个tensor的数据类型为 `float32` 、 `float64` 、 `int32` 或 `int64` 。
-    - src (int，可选) - 分发操作的源进程号，该进程号的tensor列表将分发到其他进程中。默认为0。
+    - tensor (Tensor) - 操作的输出tensor。tensor的数据类型为：float32、float64、int32、int64。
+    - tensor_list (list，可选) - 操作的输入tensor列表，默认为None。列表中的每个元素均为tensor，每个tensor的数据类型为：float32、float64、int32、int64。
+    - src (int，可选) - 操作的源进程号，该进程号的tensor列表将分发到其他进程中。默认为0。
     - group (int，可选) - 工作的进程组编号，默认为0。
-    - async_op (bool，可选) - 广播操作为同步或者异步，默认为同步。
+    - async_op (bool，可选) - 操作为同步或者异步，默认为同步。
 
 返回
 :::::::::

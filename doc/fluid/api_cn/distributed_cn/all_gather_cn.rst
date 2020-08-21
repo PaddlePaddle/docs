@@ -10,10 +10,10 @@ all_gather
 
 参数
 :::::::::
-    - tensor_list (list) - 聚合操作的输出tensor列表。列表中的每个元素均为tensor，每个tensor的数据类型为 `float32` 、 `float64` 、 `int32` 或 `int64` 。
-    - tensor (Tensor) - 聚合操作的输入tensor。tensor的数据类型为 `float32` 、 `float64` 、 `int32` 或 `int64` 。
+    - tensor_list (list) - 操作的输出tensor列表。列表中的每个元素均为tensor，每个tensor的数据类型为：float32、float64、int32、int64。
+    - tensor (Tensor) - 操作的输入tensor。tensor的数据类型为：float32、float64、int32、int64。
     - group (int，可选) - 工作的进程组编号，默认为0。
-    - async_op (bool，可选) - 广播操作为同步或者异步，默认为同步。
+    - async_op (bool，可选) - 操作为同步或者异步，默认为同步。
 
 返回
 :::::::::
