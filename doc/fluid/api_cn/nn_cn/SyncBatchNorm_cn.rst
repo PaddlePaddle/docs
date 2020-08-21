@@ -42,7 +42,9 @@ SyncBatchNorm
     - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **track_running_stats** （bool, 可选）- 是否计算全局均值和方差。默认: ``True`` ，表示计算全局均值和方差。
 
-返回： 无
+形状：
+    - input: 一个二维到五维的 ``Tensor`` 。
+    - output: 和input 相同形状的 ``Tensor`` 。
 
 **代码示例**
 
