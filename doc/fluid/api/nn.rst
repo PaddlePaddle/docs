@@ -144,7 +144,7 @@ paddle.nn
     nn/ssd_loss.rst
     nn/swish.rst
     nn/switch_case.rst
-    nn/tanh_shrink.rst
+    nn/tanhshrink.rst
     nn/target_assign.rst
     nn/teacher_student_sigmoid_loss.rst
     nn/temporal_shift.rst
