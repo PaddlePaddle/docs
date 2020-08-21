@@ -1,7 +1,7 @@
 AdaptiveMaxPool1d
 -------------------------------
 
-.. py:function:: paddle.nn.AdaptiveMaxPool1d(output_size, return_indices=False)
+.. py:function:: paddle.nn.AdaptiveMaxPool1d(output_size, return_indices=False, name=None)
 
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算1D的自适应平均池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度.
@@ -9,20 +9,24 @@ AdaptiveMaxPool1d
 计算公式如下:
 
 ..  math::
+
     lstart &= floor(i * L_{in} / L_{out})
+
     lend &= ceil((i + 1) * L_{in} / L_{out})
+
     Output(i) &= \\frac{sum(Input[lstart:lend])}{(lstart - lend)}
+
 
 参数
 :::::::::
-    - **output_size** (int): 算子输出特征图的长度，其数据类型为int。
+    - **output_size** (int|list|tuple): 算子输出特征图的长度，其数据类型为int,list或tuple。
     - **return_indices** (bool): 如果设置为True，则会与输出一起返回最大值的索引，默认为False。
 
 形状
 :::::::::
     - **x** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。 其数据类型为float32或者float64。
     - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。 其数据类型与输入x相同。
-
+    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::
@@ -30,7 +34,7 @@ AdaptiveMaxPool1d
 
 抛出异常
 :::::::::
-    - ``ValueError`` - 如果 ``output_size`` 不是int类型值。
+    - ``ValueError`` - ``output_size`` 应是一个整数或长度为1的list，tuple
 
 代码示例
 :::::::::

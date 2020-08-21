@@ -1,12 +1,12 @@
 AvgPool1d
 -------------------------------
 
-.. py:function:: paddle.nn.AvgPool1d(kernel_size, stride=None, padding=0, count_include_pad=True, ceil_mode=False)
+.. py:function:: paddle.nn.AvgPool1d(kernel_size, stride=None, padding=0, count_include_pad=True, ceil_mode=False, name=None)
 
 该算子根据输入 `x` , `kernel_size` 等参数对一个输入Tensor计算1D的平均池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度。
 
-计算公式如下:
+假设输入形状是(N, C, L)，输出形状是 (N, C, L_{out})，卷积核尺寸是k, 1d平均池化计算公式如下:
 
 ..  math::
 
@@ -24,6 +24,8 @@ AvgPool1d
     - **count_include_pad** (bool): 是否用额外padding的值计算平均池化结果，默认为True。
     - **ceil_mode** (bool): 是否用ceil函数计算输出的height和width，如果设置为False,
         则使用floor函数来计算，默认为False。
+    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+
 
 形状
 :::::::::
@@ -33,6 +35,7 @@ AvgPool1d
 返回
 :::::::::
 计算AvgPool1d的可调用对象
+
 
 抛出异常
 :::::::::
@@ -50,8 +53,8 @@ AvgPool1d
         import paddle
         import paddle.nn as nn
         paddle.disable_static()
-        
+
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
         AvgPool1d = nn.AvgPool1d(kernel_size=2, stride=2, padding=0)
         pool_out = AvgPool1d(data)
-        # pool_out shape: [1, 3, 16] 
+        # pool_out shape: [1, 3, 16]

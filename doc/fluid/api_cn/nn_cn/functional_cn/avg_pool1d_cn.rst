@@ -6,7 +6,7 @@ avg_pool1d
 该算子根据输入 `x` , `kernel_size` 等参数对一个输入Tensor计算1D的平均池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度。
 
-计算公式如下:
+假设输入形状是(N, C, L)，输出形状是 (N, C, L_{out})，卷积核尺寸是k, 1d平均池化计算公式如下:
 
 ..  math::
 
@@ -51,6 +51,7 @@ avg_pool1d
         import paddle
         import paddle.nn.functional as F
         paddle.disable_static()
+
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
         pool_out = F.avg_pool1d(data, kernel_size=2, stride=2, padding=0)
         # pool_out shape: [1, 3, 16]

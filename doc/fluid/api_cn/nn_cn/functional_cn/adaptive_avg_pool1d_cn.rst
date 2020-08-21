@@ -9,15 +9,19 @@ adaptive_avg_pool1d
 计算公式如下:
 
 ..  math::
+
     lstart &= floor(i * L_{in} / L_{out})
+
     lend &= ceil((i + 1) * L_{in} / L_{out})
+
     Output(i) &= \\frac{sum(Input[lstart:lend])}{(lstart - lend)}
+
 
 参数
 :::::::::
     - **x** (Tensor): 当前算子的输入, 其是一个形状为 `[N, C, L]` 的3-D Tensor。其中 `N` 是batch size,
         `C` 是通道数, `L` 是输入特征的长度。 其数据类型为float32或者float64。
-    - **output_size** (int): 算子输出特征图的长度，其数据类型为int。
+    - **output_size** (int|list|tuple): 算子输出特征图的长度，其数据类型为int或list, tuple。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
@@ -26,7 +30,7 @@ adaptive_avg_pool1d
 
 抛出异常
 :::::::::
-    - ``ValueError`` - 如果 ``output_size`` 不是int类型值。
+    - ``ValueError`` - ``output_size`` 应是一个整数或长度为1的list，tuple
 
 代码示例
 :::::::::
@@ -48,6 +52,7 @@ adaptive_avg_pool1d
         import paddle
         import paddle.nn.functional as F
         paddle.disable_static()
+
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
         pool_out = F.adaptive_avg_pool1d(data, output_size=16)
         # pool_out shape: [1, 3, 16])

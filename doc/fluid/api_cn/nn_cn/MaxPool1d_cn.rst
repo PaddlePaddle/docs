@@ -1,12 +1,12 @@
 MaxPool1d
 -------------------------------
 
-.. py:function:: paddle.nn.MaxPool1d(kernel_size, stride=None, padding=0, ceil_mode=False, return_indices=False)
+.. py:function:: paddle.nn.MaxPool1d(kernel_size, stride=None, padding=0, return_indices=False, ceil_mode=False, name=None)
 
 该算子根据输入 `x` , `kernel_size` 等参数对一个输入Tensor计算1D的最大值池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度。
 
-计算公式如下:
+假设输入形状是(N, C, L)，输出形状是 (N, C, L_{out})，卷积核尺寸是k, 1d最大值池化计算公式如下:
 
 ..  math::
 
@@ -21,9 +21,11 @@ MaxPool1d
     - **padding** (string|int|list|tuple): 池化补零的方式. 如果padding是一个字符串，则必须为 `SAME` 或者 `VALID` 。
         如果是turple或者list类型， 则应是 `[pad_left, pad_right]` 形式。如果padding是一个非0值，那么表示会在输入的两端
         都padding上同样长度的0。
+    - **return_indices** (bool): 是否返回最大值的索引，默认为False。
     - **ceil_mode** (bool): 是否用ceil函数计算输出的height和width，如果设置为False,
         则使用floor函数来计算，默认为False。
-    - **return_indices** (bool): 是否返回最大值的索引，默认为False。
+    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+
 
 形状
 :::::::::
