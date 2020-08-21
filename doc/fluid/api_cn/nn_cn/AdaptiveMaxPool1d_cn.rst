@@ -14,7 +14,7 @@ AdaptiveMaxPool1d
 
     lend &= ceil((i + 1) * L_{in} / L_{out})
 
-    Output(i) &= \\frac{sum(Input[lstart:lend])}{(lstart - lend)}
+    Output(i) &= max(Input[lstart:lend])
 
 
 参数
