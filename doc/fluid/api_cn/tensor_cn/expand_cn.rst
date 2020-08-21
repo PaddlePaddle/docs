@@ -12,7 +12,7 @@ expand
 参数
 :::::::::
     - x (Tensor) - 输入的Tensor，数据类型为：bool、float32、float64、int32或int64。
-    - shape (tuple|list|Tensor) - 给定输入 ``x`` 扩展后的形状,若 ``shape`` 为list或者tuple，则其中的元素值应该为整数或者1-维Tensor，若 ``shape`` 类型为Tensor，则其应该为1-维Tensor。
+    - shape (tuple|list|Tensor) - 给定输入 ``x`` 扩展后的形状,若 ``shape`` 为list或者tuple，则其中的元素值应该为整数或者1-D Tensor，若 ``shape`` 类型为Tensor，则其应该为1-D Tensor。
     - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回
