@@ -6,7 +6,7 @@
 Tanh
 ---------
 
-..  autoclass:: paddle.nn.activation.Tanh
+..  autoclass:: paddle.nn.layer.activation.Tanh
     :members:
     :inherited-members:
     :noindex:
