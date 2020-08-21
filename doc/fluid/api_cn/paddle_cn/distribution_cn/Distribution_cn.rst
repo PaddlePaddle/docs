@@ -40,23 +40,7 @@ Distribution
 参数：
     - **other** (Distribution) - Distribution的实例。
 
-.. py:function:: _validate_args(*args)
 
-对分布的参数进行验证。
-
-参数：
-    - **value** (float, list, numpy.ndarray, Tensor) - 输入的数据类型。
-    
-Raises ValueError：若其中一个参数为Tensor，那么所有的参数都应该为Tensor
-
-.. py:function:: _to_variable(*args)
-
-将参数args转化为Tensor数据类型。
-
-参数：
-    - **value** (float, list, numpy.ndarray, Tensor) - 输入的数据类型。
-    
-返回：参数的Tensor类型
 
 
 
