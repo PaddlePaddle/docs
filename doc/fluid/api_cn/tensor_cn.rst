@@ -160,5 +160,5 @@ paddle.tensor
     tensor_cn/where_cn.rst
     tensor_cn/zeros_cn.rst
     tensor_cn/zeros_like_cn.rst
-    tensor_cn/chunk.rst
+    tensor_cn/chunk_cn.rst
 

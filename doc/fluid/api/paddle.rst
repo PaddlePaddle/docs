@@ -177,3 +177,4 @@ paddle
 	paddle/where.rst
 	paddle/zeros.rst
 	paddle/zeros_like.rst
+	paddle/chunk.rst

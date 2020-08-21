@@ -172,3 +172,4 @@ paddle
 	paddle_cn/WeightNormParamAttr_cn.rst
 	paddle_cn/zeros_cn.rst
 	paddle_cn/zeros_like_cn.rst
+	paddle_cn/chunk_cn.rst
