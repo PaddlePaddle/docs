@@ -10,7 +10,7 @@ avg_pool1d
 
 ..  math::
 
-    Output(N_i, C_i, l) &= mean(Input[N_i, C_i, stride \times l:stride \times l+k])
+    Output(N_i, C_i, l) = mean(Input[N_i, C_i, stride \times l:stride \times l+k])
 
 参数
 :::::::::
