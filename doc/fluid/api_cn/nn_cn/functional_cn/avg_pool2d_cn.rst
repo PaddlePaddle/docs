@@ -46,6 +46,8 @@ avg_pool2d
 :::::::::
 
 .. code-block:: python
+
+
         import paddle
         import paddle.nn.functional as F
         import numpy as np
