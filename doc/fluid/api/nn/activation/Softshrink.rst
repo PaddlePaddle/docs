@@ -4,7 +4,7 @@
 .. _api_nn_activation_Softshrink:
 
 Softshrink
----------
+----------
 
 ..  autoclass:: paddle.nn.activation.Softshrink
     :noindex:

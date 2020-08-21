@@ -4,7 +4,7 @@
 .. _api_nn_activation_Tanhshrink:
 
 Tanhshrink
----------
+----------
 
 ..  autoclass:: paddle.nn.activation.Tanhshrink
     :noindex:
