@@ -158,18 +158,18 @@ Variable
         import paddle
         paddle.disable_static()
         x = np.ones([2, 2], np.float32)
-        inputs2 = []
+        inputs = []
         for _ in range(10):
-            tmp = paddle.to_variable(x)
-            # 如果这里我们不为输入tmp设置stop_gradient=False，那么后面loss2也将因为这个链路都不需要梯度
+            tmp = paddle.to_tensor(x)
+            # 如果这里我们不为输入tmp设置stop_gradient=False，那么后面loss也将因为这个链路都不需要梯度
             # 而不产生梯度
             tmp.stop_gradient=False
-            inputs2.append(tmp)
-        ret2 = paddle.sums(inputs2)
-        loss2 = paddle.reduce_sum(ret2)
+            inputs.append(tmp)
+        ret = paddle.sums(inputs)
+        loss = paddle.reduce_sum(ret)
         backward_strategy = paddle.BackwardStrategy()
         backward_strategy.sort_sum_gradient = True
-        loss2.backward(backward_strategy)
+        loss.backward(backward_strategy)
 
 .. py:method:: gradient()
 
