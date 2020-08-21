@@ -9,7 +9,6 @@ Distribution
 
 
 概率分布的抽象基类，在具体的分布中实现具体功能。
-正态分布是其中一个例子，更多信息请参考 :ref:`cn_api_paddle_distribution_Normal`。
 
 
 .. py:function:: sample()
