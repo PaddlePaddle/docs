@@ -2,6 +2,8 @@
 
 logsigmoid
 -------------------------------
-:doc_source: paddle.fluid.layers.logsigmoid
+
+..  autofunction:: paddle.nn.functional.logsigmoid
+    :noindex:
 
 
