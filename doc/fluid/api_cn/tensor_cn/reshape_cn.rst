@@ -33,9 +33,11 @@ reshape
   - **shape** （list|tuple|Tensor）- 数据类型是 ``int32`` 。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple, 它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``shape`` 的类型是 ``Tensor``，则是1-D的 ``Tensor`` 或 ``LoDTensor``。
   - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值： ``None``。
 
-返回：改变形状后的 ``Tensor``，数据类型与 ``x`` 相同。
+返回：
+:::::::::
+``Tensor``, 改变形状后的 ``Tensor``，数据类型与 ``x`` 相同。
 
-返回类型：Tensor。
+返回类型：。
 
 抛出异常：
     - :code:`TypeError`：``starts`` 的类型应该是list、tuple 或 Tensor。
