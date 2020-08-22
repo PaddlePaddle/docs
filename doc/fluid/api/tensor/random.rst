@@ -11,3 +11,4 @@ random
     random/randn.rst
     random/randperm.rst
     random/standard_normal.rst
+    random/uniform.rst

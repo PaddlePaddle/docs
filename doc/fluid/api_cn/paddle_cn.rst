@@ -5,7 +5,7 @@ paddle
 ..  toctree::
 	:maxdepth: 1
 
-    paddle_cn/abs_cn.rst
+	paddle_cn/abs_cn.rst
 	paddle_cn/acos_cn.rst
 	paddle_cn/addcmul_cn.rst
 	paddle_cn/addmm_cn.rst
@@ -40,6 +40,7 @@ paddle
 	paddle_cn/diag_cn.rst
 	paddle_cn/disable_dygraph_cn.rst
 	paddle_cn/dist_cn.rst
+	paddle_cn/distribution_cn.rst
 	paddle_cn/dot_cn.rst
 	paddle_cn/elementwise_add_cn.rst
 	paddle_cn/elementwise_div_cn.rst
@@ -93,19 +94,20 @@ paddle
 	paddle_cn/log_cn.rst
 	paddle_cn/manual_seed_cn.rst
 	paddle_cn/matmul_cn.rst
-        paddle_cn/max_cn.rst
-        paddle_cn/maximum_cn.rst
+	paddle_cn/max_cn.rst
+	paddle_cn/maximum_cn.rst
 	paddle_cn/mean_cn.rst
 	paddle_cn/meshgrid_cn.rst
-        paddle_cn/min_cn.rst
-        paddle_cn/minimum_cn.rst
+	paddle_cn/min_cn.rst
+	paddle_cn/minimum_cn.rst
 	paddle_cn/multiplex_cn.rst
 	paddle_cn/mul_cn.rst
-    paddle_cn/name_scope_cn.rst
-    paddle_cn/no_grad_cn.rst
+	paddle_cn/name_scope_cn.rst
+	paddle_cn/no_grad_cn.rst
 	paddle_cn/nonzero_cn.rst
 	paddle_cn/normal_cn.rst
 	paddle_cn/not_equal_cn.rst
+	paddle_cn/numel_cn.rst
 	paddle_cn/ones_cn.rst
 	paddle_cn/ones_like_cn.rst
 	paddle_cn/ParallelExecutor_cn.rst
