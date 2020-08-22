@@ -2,6 +2,6 @@
 
 expand_as
 -------------------------------
-:doc_source: paddle.fluid.layers.expand_as
+:doc_source: paddle.tensor.expand_as
 
 

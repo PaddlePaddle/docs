@@ -111,6 +111,7 @@ paddle
 	paddle/not_equal.rst
 	paddle/ones.rst
 	paddle/ones_like.rst
+	paddle/numel.rst
 	paddle/ParallelExecutor.rst
 	paddle/ParamAttr.rst
 	paddle/pow.rst

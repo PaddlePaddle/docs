@@ -29,12 +29,17 @@ paddle.nn
     nn/clip_by_norm.rst
     nn/collect_fpn_proposals.rst
     nn/cond.rst
+    nn/ConstantPad1d.rst
+    nn/ConstantPad2d.rst
+    nn/ConstantPad3d.rst
     nn/continuous_value_model.rst
     nn/conv2d.rst
     nn/conv2d_transpose.rst
     nn/conv3d.rst
     nn/conv3d_transpose.rst
     nn/cosine_decay.rst
+    nn/cosine_similarity.rst
+    nn/CosineSimilarity.rst
     nn/cross_entropy.rst
     nn/data.rst
     nn/deformable_roi_pooling.rst
@@ -87,6 +92,7 @@ paddle.nn
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
+    nn/margin_rank_loss.rst
     nn/matrix_nms.rst
     nn/maxout.rst
     nn/mse_loss.rst
@@ -111,9 +117,14 @@ paddle.nn
     nn/psroi_pool.rst
     nn/random_crop.rst
     nn/rank_loss.rst
+    nn/ReflectionPad1d.rst
+    nn/ReflectionPad2d.rst
     nn/ReLU.rst
     nn/relu.rst
     nn/relu6.rst
+    nn/ReplicationPad1d.rst
+    nn/ReplicationPad2d.rst
+    nn/ReplicationPad3d.rst
     nn/resize_bilinear.rst
     nn/resize_nearest.rst
     nn/resize_trilinear.rst
@@ -157,6 +168,7 @@ paddle.nn
     nn/functional/loss/margin_ranking_loss.rst
     nn/functional/activation/sigmoid.rst
     nn/layer/loss/MarginRankingLoss.rst
+    nn/ZeroPad2d.rst
     nn/AdaptiveAvgPool2d.rst
     nn/AdaptiveAvgPool3d.rst
     nn/layer/activation/Sigmoid.rst
