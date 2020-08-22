@@ -8,7 +8,7 @@ Tanhshrink激活层
 
 .. math::
 
-    \text{Tanhshrink}(x) = x - \text{Tanh}(x)
+    Tanhshrink(x) = x - tanh(x)
 
 其中，:math:`x` 为输入的 Tensor
 

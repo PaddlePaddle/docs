@@ -9,7 +9,7 @@ relu6激活层
 
 .. math::
 
-    \text{relu6}(x) = \min(\max(0,x), 6)
+    relu6(x) = min(max(0,x), 6)
 
 其中，:math:`x` 为输入的 Tensor
 

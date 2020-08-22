@@ -9,7 +9,7 @@ softsign激活层
 
 .. math::
 
-    \text{softsign}(x) = \frac{x}{1 + |x|}
+    softsign(x) = \frac{x}{1 + |x|}
 
 其中，:math:`x` 为输入的 Tensor
 

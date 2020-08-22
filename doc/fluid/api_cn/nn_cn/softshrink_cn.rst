@@ -9,12 +9,12 @@ softshrink激活层
 
 .. math::
 
-    \text{softshrink}(x) =
-    \begin{cases}
-    x - threshold, & \text{ if } x > threshold \\
-    x + threshold, & \text{ if } x < -threshold \\
-    0, & \text{ otherwise }
-    \end{cases}
+    softshrink(x) =
+        \begin{cases}
+        x - threshold, & if \ x > threshold \\
+        x + threshold, & if \ x < -threshold \\
+        0, & otherwise
+       \end{cases}
 
 其中，:math:`x` 为输入的 Tensor
 

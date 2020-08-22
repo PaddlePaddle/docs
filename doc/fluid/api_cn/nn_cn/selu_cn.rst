@@ -9,7 +9,7 @@ selu激活层
 
 .. math::
 
-    \text{selu}(x) = scale * (\max(0,x) + \min(0, \alpha * (\exp(x) - 1)))
+    selu(x) = scale * (max(0,x) + min(0, alpha * (e^{x} - 1)))
 
 其中，:math:`x` 为输入的 Tensor
 
