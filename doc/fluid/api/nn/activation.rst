@@ -8,6 +8,7 @@ activation
     activation/ELU.rst
     activation/GELU.rst
     activation/Hardshrink.rst
+    activation/Tanh.rst
     activation/Hardtanh.rst
     activation/LogSigmoid.rst
     activation/PReLU.rst

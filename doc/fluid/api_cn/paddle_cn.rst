@@ -21,7 +21,7 @@ paddle
 	paddle_cn/cast_cn.rst
 	paddle_cn/ceil_cn.rst
 	paddle_cn/cholesky_cn.rst
-	paddle_cn/clamp_cn.rst
+	paddle_cn/clip_cn.rst
 	paddle_cn/CompiledProgram_cn.rst
 	paddle_cn/concat_cn.rst
 	paddle_cn/cond_cn.rst
@@ -105,6 +105,7 @@ paddle
     paddle_cn/no_grad_cn.rst
 	paddle_cn/nonzero_cn.rst
 	paddle_cn/not_equal_cn.rst
+	paddle_cn/numel_cn.rst
 	paddle_cn/ones_cn.rst
 	paddle_cn/ones_like_cn.rst
 	paddle_cn/ParallelExecutor_cn.rst

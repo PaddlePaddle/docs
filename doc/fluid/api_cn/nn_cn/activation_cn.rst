@@ -11,6 +11,7 @@ activation
     activation_cn/ELU_cn.rst
     activation_cn/GELU_cn.rst
     activation_cn/Hardshrink_cn.rst
+    activation_cn/Tanh_cn.rst
     activation_cn/Hardtanh_cn.rst
     activation_cn/LeakyReLU_cn.rst
     activation_cn/LogSigmoid_cn.rst

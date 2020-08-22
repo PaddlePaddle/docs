@@ -74,6 +74,7 @@ paddle.tensor
     tensor/not_equal.rst
     tensor/ones.rst
     tensor/ones_like.rst
+    tensor/numel.rst
     tensor/pow.rst
     tensor/random.rst
     tensor/rank.rst
@@ -108,6 +109,7 @@ paddle.tensor
     tensor/squeeze.rst
     tensor/stack.rst
     tensor/stanh.rst
+    tensor/std.rst
     tensor/stat.rst
     tensor/strided_slice.rst
     tensor/sum.rst
@@ -119,6 +121,7 @@ paddle.tensor
     tensor/unique_with_counts.rst
     tensor/unsqueeze.rst
     tensor/unstack.rst
+    tensor/var.rst
     tensor/where.rst
     tensor/zeros.rst
     tensor/zeros_like.rst
