@@ -10,7 +10,7 @@ one_hot
 
 - 示例1：
 
-.. code-block:: python
+.. code-block:: text
 
   输入：
     X.shape = [4]
@@ -26,7 +26,7 @@ one_hot
 
 - 示例2：
 
-.. code-block:: python
+.. code-block:: text
 
   输入：
     X.shape = [4]
@@ -51,7 +51,6 @@ one_hot
 .. code-block:: python
 
     import paddle.fluid as fluid
-    # 该代码对应上述第一个示例，其中输入label的shape是[4]，输出one_hot_label的shape是[4, 4]
     label = fluid.layers.data(name="label", shape=[4], append_batch_size=False, dtype="int64")
     # label.shape = [4]
     # label.data = [1, 1, 3, 0]
