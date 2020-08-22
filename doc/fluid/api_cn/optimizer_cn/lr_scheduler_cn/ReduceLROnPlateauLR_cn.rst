@@ -1,6 +1,6 @@
-.. _cn_api_optimizer_ReduceLROnPlateau
+.. _cn_api_paddle_optimizer_ReduceLROnPlateau:
 
-LambdaLR
+ReduceLROnPlateau
 -----------------------------------
 
 .. py:class:: paddle.optimizer.lr_scheduler.ReduceLROnPlateau(learning_rate, mode='min', factor=0.1, patience=10, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=0, epsilon=1e-8, verbose=False)
@@ -12,7 +12,7 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
 
 参数
 :::::::::
-    - **learning_rate** （float|int）：初始学习率，可以是Python的float或int。
+    - **learning_rate** （float） - 初始学习率，数据类型为Python float。
     - **mode** （str，可选）'min' 和 'max' 之一。通常情况下，为 'min' ，此时当 loss 停止下降时学习率将减小。默认：'min' 。 （注意：仅在特殊用法时，可以将其设置为 'max' ，此时判断逻辑相反， loss 停止上升学习率才减小）
     - **fator** （float，可选） - 学习率衰减的比例。new_lr = origin_lr * factor，它是值小于1.0的float型数字，默认: 0.1。
     - **patience** （int，可选）- 当 loss 连续 patience 个epoch没有下降(mode: 'min')或上升(mode: 'max')时，学习率才会减小。默认：10。
@@ -32,14 +32,59 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
 
 .. code-block:: python
 
+    import paddle
+
+    # train on default dygraph mode
+    paddle.disable_static()
+    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
+    linear = paddle.nn.Linear(10, 10)
+    scheduler = paddle.optimizer.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
+    adam = paddle.optimizer.Adam(learning_rate=scheduler, parameter_list=linear.parameters())
+    for epoch in range(20):
+        for batch_id in range(2):
+            x = paddle.to_tensor(x)
+            out = linear(x)
+            loss = paddle.reduce_mean(out)
+            out.backward()
+            adam.minimize(loss)
+            linear.clear_gradients()
+        scheduler.step(loss)
+
+    # train on statich mode
+    paddle.enable_static()
+    main_prog = paddle.static.Program()
+    start_prog = paddle.static.Program()
+    with paddle.static.program_guard(main_prog, start_prog):
+        x = paddle.static.data(name='x', shape=[-1, 4, 5])
+        y = paddle.static.data(name='y', shape=[-1, 4, 5])
+        z = paddle.static.nn.fc(x, 100)
+        loss = paddle.mean(z)
+        scheduler = paddle.optimizer.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
+        adam = paddle.optimizer.Adam(learning_rate=scheduler)
+        adam.minimize(loss)
+        lr_var = adam._global_learning_rate()
+
+    exe = paddle.static.Executor()
+    exe.run(start_prog)
+    for epoch in range(20):
+        for batch_id in range(2):
+            out = exe.run(
+                main_prog,
+                feed={
+                    'x': np.random.randn(3, 4, 5).astype('float32'),
+                    'y': np.random.randn(3, 4, 5).astype('float32')
+                },
+                fetch_list=lr_var.name)
+        scheduler.step(out[0])
 
 
-.. py:method:: step(loss)
+.. py:method:: step(metrics, epoch=None) 
 
-需要在每个step调用该方法，其根据传入的 loss 调整optimizer中的学习率，调整后的学习率将会在下一个 ``step`` 时生效。
+step函数需要在优化器的 `step()` 函数之后调用，其根据传入的 metrics 调整optimizer中的学习率，调整后的学习率将会在下一个 ``step`` 时生效。
 
 参数：
-   loss (Tensor) - shape为[1]的1-D Tensor。将被用来判断是否需要降低学习率。如果 loss 连续 patience 个 ``steps`` 没有下降， 将会降低学习率。
+    metrics （Tensor|numpy.ndarray|float）-用来判断是否需要降低学习率。如果 loss 连续 patience 个 ``steps`` 没有下降， 将会降低学习率。可以是Tensor或者numpy.array，但是shape必须为[1] 。
+  - **epoch** （int，可选）- 指定具体的epoch数。默认值None，此时将会从-1自动累加 ``epoch`` 数。
 
 返回：
     无
