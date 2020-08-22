@@ -48,7 +48,12 @@ paddle.nn
     nn_cn/conv2d_transpose_cn.rst
     nn_cn/conv3d_cn.rst
     nn_cn/conv3d_transpose_cn.rst
+    nn_cn/ConstantPad1d_cn.rst
+    nn_cn/ConstantPad2d_cn.rst
+    nn_cn/ConstantPad3d_cn.rst
     nn_cn/cosine_decay_cn.rst
+    nn_cn/cosine_similarity_cn.rst
+    nn_cn/CosineSimilarity_cn.rst
     nn_cn/cross_entropy_cn.rst
     nn_cn/data_cn.rst
     nn_cn/deformable_roi_pooling_cn.rst
@@ -108,6 +113,7 @@ paddle.nn
     nn_cn/one_hot_cn.rst
     nn_cn/pad2d_cn.rst
     nn_cn/pad_cn.rst
+    nn_cn/Pad_cn.rst
     nn_cn/pad_constant_like_cn.rst
     nn_cn/PairwiseDistance_cn.rst
     nn_cn/ParameterList_cn.rst
@@ -124,11 +130,16 @@ paddle.nn
     nn_cn/psroi_pool_cn.rst
     nn_cn/random_crop_cn.rst
     nn_cn/rank_loss_cn.rst
+    nn_cn/ReflectionPad1d_cn.rst
+    nn_cn/ReflectionPad2d_cn.rst
     nn_cn/relu6_cn.rst
     nn_cn/relu_cn.rst
     nn_cn/resize_bilinear_cn.rst
     nn_cn/resize_nearest_cn.rst
     nn_cn/resize_trilinear_cn.rst
+    nn_cn/ReplicationPad1d_cn.rst
+    nn_cn/ReplicationPad2d_cn.rst
+    nn_cn/ReplicationPad3d_cn.rst
     nn_cn/retinanet_detection_output_cn.rst
     nn_cn/retinanet_target_assign_cn.rst
     nn_cn/roi_align_cn.rst
@@ -168,6 +179,6 @@ paddle.nn
     nn_cn/yolo_box_cn.rst
     nn_cn/loss_cn/MarginRankingLoss_cn.rst
     nn_cn/functional_cn/margin_ranking_loss_cn.rst
+    nn_cn/ZeroPad2d_cn.rst
     nn_cn/AdaptiveAvgPool2d_cn.rst
     nn_cn/AdaptiveAvgPool3d_cn.rst
-     
