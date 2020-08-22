@@ -27,7 +27,7 @@ ones
 
     import paddle
     
-    paddle.enable_imperative()
+    paddle.disable_static()
     
     #default dtype for ones OP
     data1 = paddle.ones(shape=[3, 2]) 

@@ -29,6 +29,8 @@ linspace
 .. code-block:: python
 
       import paddle
+      
+      paddle.disable_static()
       data = paddle.linspace(0, 10, 5, dtype='float32') # [0.0,  2.5,  5.0,  7.5, 10.0]
       data = paddle.linspace(0, 10, 1, dtype='float32') # [0.0]
 
