@@ -351,6 +351,7 @@ Variable
   .. code-block:: python
 
         import paddle.fluid as fluid
+        import numpy as np
 
         with fluid.dygraph.guard():
             value0 = np.arange(26).reshape(2, 13).astype("float32")
@@ -366,9 +367,9 @@ Variable
             out1.stop_gradient = True
             out = fluid.layers.concat(input=[out1, out2, c], axis=1)
             out.backward()
-            # 可以发现这里linear的参数变成了
-            assert (linear.weight.gradient() == 0).all()
-            assert (out1.gradient() == 0).all()
+            # 可以发现这里linear的参数梯度变成了None
+            assert linear.weight.gradient() is None
+            assert out1.gradient() is None
 
 .. py:attribute:: persistable
 
