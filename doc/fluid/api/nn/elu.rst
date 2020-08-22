@@ -2,6 +2,8 @@
 
 elu
 -------------------------------
-:doc_source: paddle.fluid.layers.elu
+
+..  autofunction:: paddle.nn.functional.elu
+    :noindex:
 
 
