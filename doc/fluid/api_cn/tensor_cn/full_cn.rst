@@ -34,7 +34,7 @@ full
     # [0]]
 
     # attr shape is a list which contains Tensor.
-    positive_3 = paddle.fill_constant([1], "int32", 2)
+    positive_2 = paddle.fill_constant([1], "int32", 2)
     data3 = paddle.full(shape=[1, positive_2], dtype='float32', fill_value=1.5)
     # [[1.5 1.5]]
 
