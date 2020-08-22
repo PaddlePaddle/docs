@@ -21,7 +21,7 @@ paddle
     paddle_cn/cast_cn.rst
     paddle_cn/ceil_cn.rst
     paddle_cn/cholesky_cn.rst
-    paddle_cn/clamp_cn.rst
+    paddle_cn/clip_cn.rst
     paddle_cn/CompiledProgram_cn.rst
     paddle_cn/concat_cn.rst
     paddle_cn/cond_cn.rst
@@ -155,6 +155,7 @@ paddle
     paddle_cn/strided_slice_cn.rst
     paddle_cn/sums_cn.rst
     paddle_cn/tanh_cn.rst
+    paddle_cn/tile_cn.rst
     paddle_cn/topk_cn.rst
     paddle_cn/trace_cn.rst
     paddle_cn/transpose_cn.rst
