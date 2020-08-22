@@ -23,7 +23,7 @@ paddle.tensor
     tensor_cn/cast_cn.rst
     tensor_cn/ceil_cn.rst
     tensor_cn/cholesky_cn.rst
-    tensor_cn/clamp_cn.rst
+    tensor_cn/clip_cn.rst
     tensor_cn/concat_cn.rst
     tensor_cn/cond_cn.rst
     tensor_cn/cos_cn.rst
