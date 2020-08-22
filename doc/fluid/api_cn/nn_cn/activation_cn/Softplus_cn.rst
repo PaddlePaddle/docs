@@ -2,7 +2,7 @@
 
 Softplus
 -------------------------------
-.. py:class:: paddle.nn.Softplus(name=None)
+.. py:class:: paddle.nn.Softplus(beta=1, threshold=20, name=None)
 
 Softplus激活层
 
