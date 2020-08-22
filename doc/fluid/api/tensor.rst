@@ -108,6 +108,7 @@ paddle.tensor
     tensor/squeeze.rst
     tensor/stack.rst
     tensor/stanh.rst
+    tensor/std.rst
     tensor/stat.rst
     tensor/strided_slice.rst
     tensor/sum.rst
@@ -119,6 +120,7 @@ paddle.tensor
     tensor/unique_with_counts.rst
     tensor/unsqueeze.rst
     tensor/unstack.rst
+    tensor/var.rst
     tensor/where.rst
     tensor/zeros.rst
     tensor/zeros_like.rst
