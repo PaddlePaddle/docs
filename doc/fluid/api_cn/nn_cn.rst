@@ -19,6 +19,7 @@ paddle.nn
     nn_cn/activation_cn.rst
     nn_cn/loss_cn.rst
     nn_cn/functional_cn.rst
+    nn_cn/layer_cn.rst
     nn_cn/adaptive_pool2d_cn.rst
     nn_cn/adaptive_pool3d_cn.rst
     nn_cn/add_position_encoding_cn.rst
@@ -74,6 +75,7 @@ paddle.nn
     nn_cn/grid_sampler_cn.rst
     nn_cn/GroupNorm_cn.rst
     nn_cn/hardshrink_cn.rst
+    nn_cn/hardtanh_cn.rst
     nn_cn/hard_sigmoid_cn.rst
     nn_cn/hard_swish_cn.rst
     nn_cn/hash_cn.rst
@@ -94,6 +96,7 @@ paddle.nn
     nn_cn/linear_lr_warmup_cn.rst
     nn_cn/logsigmoid_cn.rst
     nn_cn/log_loss_cn.rst
+    nn_cn/log_softmax_cn.rst
     nn_cn/lrn_cn.rst
     nn_cn/margin_ranking_loss_cn.rst
     nn_cn/maxout_cn.rst
@@ -115,6 +118,7 @@ paddle.nn
     nn_cn/pool2d_cn.rst
     nn_cn/Pool2D_cn.rst
     nn_cn/pool3d_cn.rst
+    nn_cn/prelu_cn.rst
     nn_cn/prior_box_cn.rst
     nn_cn/prroi_pool_cn.rst
     nn_cn/psroi_pool_cn.rst
@@ -164,4 +168,6 @@ paddle.nn
     nn_cn/yolo_box_cn.rst
     nn_cn/loss_cn/MarginRankingLoss_cn.rst
     nn_cn/functional_cn/margin_ranking_loss_cn.rst
+    nn_cn/AdaptiveAvgPool2d_cn.rst
+    nn_cn/AdaptiveAvgPool3d_cn.rst
      
