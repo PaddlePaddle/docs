@@ -1,4 +1,4 @@
-.. _cn_api_tensor_random_normal:
+.. _cn_api_tensor_normal:
 
 normal
 -------------------------------
@@ -7,12 +7,6 @@ normal
 
 
 该OP返回符合正态分布（均值为 ``mean`` ，标准差为 ``std`` 的正态随机分布）的随机Tensor。
-
-如果 ``mean`` 是Tensor，则表示输出Tensor中每个元素的正太分布的平均值。
-如果 ``mean`` 是float，则表示输出Tensor中所有元素的正太分布的平均值。
-
-如果 ``std`` 是Tensor，则表示输出Tensor中每个元素的正太分布的标准差。
-如果 ``std`` 是float，则表示输出Tensor中所有元素的正太分布的标准差。
 
 如果 ``mean`` 是Tensor，则输出Tensor和 ``mean`` 具有相同的形状和数据类型。
 如果 ``mean`` 不是Tensor，且 ``std`` 是Tensor，则输出Tensor和 ``std`` 具有相同的形状和数据类型。
