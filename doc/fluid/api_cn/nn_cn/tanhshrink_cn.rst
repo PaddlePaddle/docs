@@ -1,15 +1,15 @@
-.. _cn_api_nn_cn_softsign:
+.. _cn_api_nn_cn_tanhshrink:
 
-softsign
+tanhshrink
 -------------------------------
 
-.. py:function:: paddle.nn.functional.softsign(x, name=None)
+.. py:function:: paddle.nn.functional.tanhshrink(x, name=None)
 
-softsign激活层
+tanhshrink激活层
 
 .. math::
 
-    softsign(x) = \frac{x}{1 + |x|}
+    tanhshrink(x) = x - tanh(x)
 
 其中，:math:`x` 为输入的 Tensor
 
@@ -34,4 +34,4 @@ softsign激活层
     paddle.disable_static()
 
     x = paddle.to_tensor(np.array([-0.4, -0.2, 0.1, 0.3]))
-    out = F.softsign(x) # [-0.285714, -0.166667, 0.0909091, 0.230769]
+    out = F.tanhshrink(x) # [-0.020051, -0.00262468, 0.000332005, 0.00868739]
