@@ -16,6 +16,7 @@ paddle.tensor
     tensor/atan.rst
     tensor/cast.rst
     tensor/ceil.rst
+    tensor/chunk.rst
     tensor/concat.rst
     tensor/cos.rst
     tensor/create_tensor.rst

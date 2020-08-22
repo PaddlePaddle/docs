@@ -23,6 +23,7 @@ paddle
 	paddle/cast.rst
 	paddle/ceil.rst
 	paddle/cholesky.rst
+	paddle/chunk.rst
 	paddle/clamp.rst
 	paddle/CompiledProgram.rst
 	paddle/concat.rst

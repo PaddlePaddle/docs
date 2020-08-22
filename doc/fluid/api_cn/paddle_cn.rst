@@ -21,6 +21,8 @@ paddle
 	paddle_cn/cast_cn.rst
 	paddle_cn/ceil_cn.rst
 	paddle_cn/cholesky_cn.rst
+	paddle_cn/chunk_cn.rst
+	paddle_cn/clamp_cn.rst
 	paddle_cn/clip_cn.rst
 	paddle_cn/CompiledProgram_cn.rst
 	paddle_cn/concat_cn.rst
