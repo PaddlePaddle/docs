@@ -98,6 +98,7 @@ paddle.tensor
     tensor_cn/nonzero_cn.rst
     tensor_cn/norm_cn.rst
     tensor_cn/not_equal_cn.rst
+    tensor_cn/numel_cn.rst
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
     tensor_cn/pow_cn.rst

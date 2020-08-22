@@ -105,6 +105,7 @@ paddle
     paddle_cn/no_grad_cn.rst
 	paddle_cn/nonzero_cn.rst
 	paddle_cn/not_equal_cn.rst
+	paddle_cn/numel_cn.rst
 	paddle_cn/ones_cn.rst
 	paddle_cn/ones_like_cn.rst
 	paddle_cn/ParallelExecutor_cn.rst
