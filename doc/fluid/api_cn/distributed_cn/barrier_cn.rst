@@ -4,14 +4,13 @@ barrier
 -------------------------------
 
 
-.. py:function:: paddle.distributed.barrier(group=0, async_op=False)
+.. py:function:: paddle.distributed.barrier(group=0)
 
 同步进程组内的所有进程。
 
 参数
 :::::::::
     - group (int，可选) - 工作的进程组编号，默认为0。
-    - async_op (bool，可选) - 操作为同步或者异步，默认为同步。
 
 返回
 :::::::::

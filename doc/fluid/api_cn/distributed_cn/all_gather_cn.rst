@@ -4,7 +4,7 @@ all_gather
 -------------------------------
 
 
-.. py:function:: paddle.distributed.all_gather(tensor_list, tensor, group=0, async_op=False)
+.. py:function:: paddle.distributed.all_gather(tensor_list, tensor, group=0)
 
 进程组内所有进程的指定tensor进行聚合操作，并返回给所有进程聚合的结果。
 
@@ -13,7 +13,6 @@ all_gather
     - tensor_list (list) - 操作的输出tensor列表。列表中的每个元素均为tensor，每个tensor的数据类型为：float32、float64、int32、int64。
     - tensor (Tensor) - 操作的输入tensor。tensor的数据类型为：float32、float64、int32、int64。
     - group (int，可选) - 工作的进程组编号，默认为0。
-    - async_op (bool，可选) - 操作为同步或者异步，默认为同步。
 
 返回
 :::::::::

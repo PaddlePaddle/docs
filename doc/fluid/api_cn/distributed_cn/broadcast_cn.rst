@@ -4,7 +4,7 @@ broadcast
 -------------------------------
 
 
-.. py:function:: paddle.distributed.broadcast(tensor, src, group=0, async_op=False)
+.. py:function:: paddle.distributed.broadcast(tensor, src, group=0)
 
 广播一个Tensor给其他所有进程
 
@@ -13,7 +13,6 @@ broadcast
     - tensor (Tensor) - 如果当前进程编号是源，那么这个tensor变量将被发送给其他进程，否则这个tensor将接收源发送过来的数据。tensor的数据类型为：float32、float64、int32、int64。
     - src (int) - 发送源的进程编号。
     - group (int，可选) - 工作的进程组编号，默认为0。
-    - async_op (bool，可选) - 操作为同步或者异步，默认为同步。
 
 返回
 :::::::::
