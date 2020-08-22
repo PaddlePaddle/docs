@@ -50,6 +50,7 @@ paddle.tensor
     tensor/has_nan.rst
     tensor/increment.rst
     tensor/is_empty.rst
+    tensor/index_select.rst
     tensor/isfinite.rst
     tensor/less_equal.rst
     tensor/less_than.rst

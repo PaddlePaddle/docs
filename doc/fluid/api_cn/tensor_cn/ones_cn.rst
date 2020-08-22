@@ -11,7 +11,7 @@ ones
 
 参数：
     - **shape** (tuple|list|Tensor) - 输出Tensor的形状， ``shape`` 的数据类型为int32或者int64。
-    - **dtype** (np.dtype|core.VarDesc.VarType|str， 可选) - 输出Tensor的数据类型，数据类型必须为bool、 float16、float32、float64、int32或int64。如果 ``dtype`` 为None，默认数据类型为float32。
+    - **dtype** (np.dtype|str， 可选) - 输出Tensor的数据类型，数据类型必须为bool、 float16、float32、float64、int32或int64。如果 ``dtype`` 为None，默认数据类型为float32。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：值全为1的Tensor，数据类型和 ``dtype`` 定义的类型一致。
@@ -27,7 +27,7 @@ ones
 
     import paddle
     
-    paddle.enable_imperative()
+    paddle.disable_static()
     
     #default dtype for ones OP
     data1 = paddle.ones(shape=[3, 2]) 

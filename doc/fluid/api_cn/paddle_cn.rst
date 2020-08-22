@@ -65,6 +65,7 @@ paddle
 	paddle_cn/flatten_cn.rst
 	paddle_cn/flip_cn.rst
 	paddle_cn/floor_cn.rst
+	paddle_cn/full_cn.rst
 	paddle_cn/full_like_cn.rst
 	paddle_cn/gather_cn.rst
 	paddle_cn/gather_nd_cn.rst
