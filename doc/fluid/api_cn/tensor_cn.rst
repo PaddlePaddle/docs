@@ -33,7 +33,11 @@ paddle.tensor
     tensor_cn/cumsum_cn.rst
     tensor_cn/diag_cn.rst
     tensor_cn/dist_cn.rst
-    tensor_cn/div_cn.rst
+    tensor_cn/divide_cn.rst
+    tensor_cn/floor_divide_cn.rst
+    tensor_cn/remainder_cn.rst
+    tensor_cn/mod_cn.rst
+    tensor_cn/floor_mod_cn.rst
     tensor_cn/dot_cn.rst
     tensor_cn/einsum_cn.rst
     tensor_cn/elementwise_add_cn.rst
