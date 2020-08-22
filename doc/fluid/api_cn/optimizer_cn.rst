@@ -31,7 +31,6 @@ paddle.optimizer
     optimizer_cn/ModelAverage_cn.rst
     optimizer_cn/Momentum_cn.rst
     optimizer_cn/MomentumOptimizer_cn.rst
-    optimizer_cn/PipelineOptimizer_cn.rst
     optimizer_cn/RecomputeOptimizer_cn.rst
     optimizer_cn/RMSPropOptimizer_cn.rst
     optimizer_cn/SGD_cn.rst

@@ -5,7 +5,7 @@ paddle
 ..  toctree::
 	:maxdepth: 1
 
-	paddle_cn/abs_cn.rst
+    paddle_cn/abs_cn.rst
 	paddle_cn/acos_cn.rst
 	paddle_cn/addcmul_cn.rst
 	paddle_cn/addmm_cn.rst
@@ -21,7 +21,7 @@ paddle
 	paddle_cn/cast_cn.rst
 	paddle_cn/ceil_cn.rst
 	paddle_cn/cholesky_cn.rst
-	paddle_cn/clamp_cn.rst
+	paddle_cn/clip_cn.rst
 	paddle_cn/CompiledProgram_cn.rst
 	paddle_cn/concat_cn.rst
 	paddle_cn/cond_cn.rst
@@ -44,8 +44,6 @@ paddle
 	paddle_cn/elementwise_add_cn.rst
 	paddle_cn/elementwise_div_cn.rst
 	paddle_cn/elementwise_floordiv_cn.rst
-	paddle_cn/elementwise_max_cn.rst
-	paddle_cn/elementwise_min_cn.rst
 	paddle_cn/elementwise_mod_cn.rst
 	paddle_cn/elementwise_mul_cn.rst
 	paddle_cn/elementwise_pow_cn.rst
@@ -95,11 +93,16 @@ paddle
 	paddle_cn/log_cn.rst
 	paddle_cn/manual_seed_cn.rst
 	paddle_cn/matmul_cn.rst
+        paddle_cn/max_cn.rst
+        paddle_cn/maximum_cn.rst
 	paddle_cn/mean_cn.rst
 	paddle_cn/meshgrid_cn.rst
+        paddle_cn/min_cn.rst
+        paddle_cn/minimum_cn.rst
 	paddle_cn/multiplex_cn.rst
 	paddle_cn/mul_cn.rst
-	paddle_cn/name_scope_cn.rst
+    paddle_cn/name_scope_cn.rst
+    paddle_cn/no_grad_cn.rst
 	paddle_cn/nonzero_cn.rst
 	paddle_cn/not_equal_cn.rst
 	paddle_cn/ones_cn.rst
@@ -152,6 +155,7 @@ paddle
 	paddle_cn/strided_slice_cn.rst
 	paddle_cn/sums_cn.rst
 	paddle_cn/tanh_cn.rst
+	paddle_cn/tile_cn.rst
 	paddle_cn/topk_cn.rst
 	paddle_cn/trace_cn.rst
 	paddle_cn/transpose_cn.rst

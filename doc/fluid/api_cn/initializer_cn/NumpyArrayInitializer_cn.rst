@@ -22,8 +22,9 @@ NumpyArrayInitializer
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name="x", shape=[5], dtype='float32')
-    fc = fluid.layers.fc(input=x, size=10,
+    import numpy
+    x1 = fluid.data(name="x1", shape=[2, 1], dtype='float32')
+    fc = fluid.layers.fc(input=x1, size=10,
         param_attr=fluid.initializer.NumpyArrayInitializer(numpy.array([1,2])))
 
 

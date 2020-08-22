@@ -3,52 +3,58 @@
 randn
 -------------------------------
 
-.. py:function:: paddle.tensor.random.randn(shape, out=None, dtype=None, device=None, stop_gradient=True, name=None)
+.. py:function:: paddle.randn(shape, dtype=None, name=None)
 
 :alias_main: paddle.randn
-:alias: paddle.randn,paddle.tensor.randn,paddle.tensor.random.randn
+:alias: paddle.tensor.randn, paddle.tensor.random.randn
 
 
 
-该 API 用于生成数据符合标准正态随机分布（均值为 0，方差为 1 的正态随机分布）的 Tensor。
+该OP返回符合标准正态分布（均值为0，标准差为1的正态随机分布）的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
-参数：
-  - **shape** (list|tuple): 生成的随机 Tensor 的形状。
-  - **out** (Variable, optional): 用于存储创建的 Tensor，可以是程序中已经创建的任何Variable。当该参数值为 `None` 时，将创建新的 Variable 来保存输出结果。默认值为 None。
-  - **dtype** (np.dtype|core.VarDesc.VarType|str, optional): 输出 Tensor 的数据类型，可选值为 float32，float64。当该参数值为 `None` 时， 输出当 Tensor 的数据类型为 `float32` 。默认值为 None.
-  - **device** (str, optional): 用于指定输出变量是保存在 CPU 还是 GPU 内存中。可选值为 None，'cpu'，'gpu'。当该参数为 None 时， 输出变量将会自动的分配到相对应内存中。默认值为 None。
-  - **stop_gradient** (bool, optional): 是否停止输出当前变量（输出变量）的梯度值。默认值为 True。
-  - **name** (str, optional): 该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_Name` ，默认值为None。
+参数
+::::::::::
+  - **shape** (list|tuple|Tensor) - 生成的随机Tensor的形状。如果 ``shape`` 是list、tuple，则其中的元素可以是int，或者是形状为[1]且数据类型为int32、int64的Tensor。如果 ``shape`` 是Tensor，则是数据类型为int32、int64的1-D Tensor。
+  - **dtype** (str|np.dtype|core.VarDesc.VarType, 可选) - 输出Tensor的数据类型，支持float32、float64。当该参数值为None时， 输出Tensor的数据类型为float32。默认值为None.
+  - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-返回：符合标准正态分布的随机 Tensor。形状为 shape，数据类型为 dtype。
+返回
+::::::::::
+  Tensor：符合标准正态分布的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
-返回类型：Variable
+抛出异常
+::::::::::
+  - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
+  - ``TypeError`` - 如果 ``dtype`` 不是float32、float64。
 
-**示例代码**
-
-.. code-block:: python
-
-     # declarative mode
-     import paddle
-     import paddle.fluid as fluid
-     data = paddle.randn([2, 4])
-     place = fluid.CPUPlace()
-     exe = fluid.Executor(place)
-     res, = exe.run(fluid.default_main_program(), feed={}, fetch_list=[data])
-     print(res)
-     # [[-1.4187592   0.7368311  -0.53748125 -0.0146909 ]
-     #  [-0.66294265 -1.3090698   0.1898754  -0.14065823]]
+示例代码
+::::::::::
 
 .. code-block:: python
 
-    # imperative mode
     import paddle
-    import paddle.fluid as fluid
-    import paddle.fluid.dygraph as dg
-    place = fluid.CPUPlace()
-    with dg.guard(place) as g:
-        x = paddle.randn([2, 4])
-        x_np = x.numpy()
-        print(x_np)
-        # [[ 1.5149173  -0.26234224 -0.592486    1.4523455 ]
-        #  [ 0.04581212 -0.85345626  1.1687907  -0.02512913]]
+    import numpy as np
+
+    paddle.enable_imperative()
+
+    # example 1: attr shape is a list which doesn't contain Tensor.
+    result_1 = paddle.randn(shape=[2, 3])
+    # [[-2.923464    0.11934398 -0.51249987]
+    #  [ 0.39632758  0.08177969  0.2692008 ]]
+
+    # example 2: attr shape is a list which contains Tensor.
+    dim_1 = paddle.fill_constant([1], "int64", 2)
+    dim_2 = paddle.fill_constant([1], "int32", 3)
+    result_2 = paddle.randn(shape=[dim_1, dim_2, 2])
+    # [[[-2.8852394  -0.25898588]
+    #   [-0.47420555  0.17683524]
+    #   [-0.7989969   0.00754541]]
+    #  [[ 0.85201347  0.32320443]
+    #   [ 1.1399018   0.48336947]
+    #   [ 0.8086993   0.6868893 ]]]
+
+    # example 3: attr shape is a Tensor, the data type must be int64 or int32.
+    var_shape = paddle.imperative.to_variable(np.array([2, 3]))
+    result_3 = paddle.randn(var_shape)
+    # [[-2.878077    0.17099959  0.05111201]
+    #  [-0.3761474  -1.044801    1.1870178 ]]

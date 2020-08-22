@@ -10,7 +10,7 @@ python gen_doc.py --module_name "" --module_prefix "" --output fluid --output_na
 python gen_module_index.py fluid  fluid
 
 # tensor
-for module in math random stat
+for module in math random stat linalg search
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name tensor --to_multiple_files True --output_dir tensor
   python gen_module_index.py tensor.${module} ${module}
@@ -30,7 +30,7 @@ python gen_module_index.py framework paddle.framework
 
 
 # nn
-for module in loss
+for module in loss activation
 do
   python gen_doc.py --module_name ${module} --module_prefix ${module} --output ${module} --output_name nn --to_multiple_files True --output_dir nn
   python gen_module_index.py nn.${module} ${module}
