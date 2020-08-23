@@ -16,6 +16,7 @@ paddle.tensor
     tensor/atan.rst
     tensor/cast.rst
     tensor/ceil.rst
+    tensor/chunk.rst
     tensor/concat.rst
     tensor/cos.rst
     tensor/create_tensor.rst
@@ -49,6 +50,7 @@ paddle.tensor
     tensor/has_nan.rst
     tensor/increment.rst
     tensor/is_empty.rst
+    tensor/index_select.rst
     tensor/isfinite.rst
     tensor/less_equal.rst
     tensor/less_than.rst
@@ -74,6 +76,7 @@ paddle.tensor
     tensor/not_equal.rst
     tensor/ones.rst
     tensor/ones_like.rst
+    tensor/numel.rst
     tensor/pow.rst
     tensor/random.rst
     tensor/rank.rst
@@ -108,6 +111,7 @@ paddle.tensor
     tensor/squeeze.rst
     tensor/stack.rst
     tensor/stanh.rst
+    tensor/std.rst
     tensor/stat.rst
     tensor/strided_slice.rst
     tensor/sum.rst
@@ -119,6 +123,7 @@ paddle.tensor
     tensor/unique_with_counts.rst
     tensor/unsqueeze.rst
     tensor/unstack.rst
+    tensor/var.rst
     tensor/where.rst
     tensor/zeros.rst
     tensor/zeros_like.rst

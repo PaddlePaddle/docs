@@ -25,7 +25,7 @@ zeros
 .. code-block:: python
 
     import paddle
-    paddle.enable_imperative()  # Now we are in imperative mode
+    paddle.disable_static()  # Now we are in imperative mode
     data = paddle.zeros(shape=[3, 2], dtype='float32') 
     # [[0. 0.]
     #  [0. 0.]
