@@ -23,7 +23,9 @@ paddle.tensor
     tensor_cn/cast_cn.rst
     tensor_cn/ceil_cn.rst
     tensor_cn/cholesky_cn.rst
+    tensor_cn/chunk_cn.rst
     tensor_cn/clamp_cn.rst
+    tensor_cn/clip_cn.rst
     tensor_cn/concat_cn.rst
     tensor_cn/cond_cn.rst
     tensor_cn/cos_cn.rst
@@ -33,7 +35,11 @@ paddle.tensor
     tensor_cn/cumsum_cn.rst
     tensor_cn/diag_cn.rst
     tensor_cn/dist_cn.rst
-    tensor_cn/div_cn.rst
+    tensor_cn/divide_cn.rst
+    tensor_cn/floor_divide_cn.rst
+    tensor_cn/remainder_cn.rst
+    tensor_cn/mod_cn.rst
+    tensor_cn/floor_mod_cn.rst
     tensor_cn/dot_cn.rst
     tensor_cn/einsum_cn.rst
     tensor_cn/elementwise_add_cn.rst
@@ -98,6 +104,7 @@ paddle.tensor
     tensor_cn/nonzero_cn.rst
     tensor_cn/norm_cn.rst
     tensor_cn/not_equal_cn.rst
+    tensor_cn/numel_cn.rst
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
     tensor_cn/pow_cn.rst
@@ -152,6 +159,7 @@ paddle.tensor
     tensor_cn/tril_cn.rst
     tensor_cn/triu_cn.rst
     tensor_cn/unbind_cn.rst
+    tensor_cn/uniform_cn.rst
     tensor_cn/unique_cn.rst
     tensor_cn/unique_with_counts_cn.rst
     tensor_cn/unsqueeze_cn.rst
@@ -160,3 +168,4 @@ paddle.tensor
     tensor_cn/where_cn.rst
     tensor_cn/zeros_cn.rst
     tensor_cn/zeros_like_cn.rst
+
