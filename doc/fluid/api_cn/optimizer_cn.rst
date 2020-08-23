@@ -46,3 +46,4 @@ paddle.optimizer
     optimizer_cn/lr_scheduler_cn/PolynomiaLR_cn.rst
     optimizer_cn/lr_scheduler_cn/ReduceLROnPlateauLR_cn.rst
     optimizer_cn/lr_scheduler_cn/StepLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/LinearLrWarmup_cn.rst

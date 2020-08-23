@@ -13,7 +13,7 @@ Noam衰减的计算方式如下。
 
 .. math::
 
-    decayed\_learning\_rate = learning\_rate * d_{model}^{-0.5} * min(global\_steps^{-0.5}, global\_steps * warmup\_steps^{-1.5})
+    decayed\_learning\_rate = learning\_rate * d_{model}^{-0.5} * min(epoch^{-0.5}, epoch * warmup\_steps^{-1.5})
 
 关于Noam衰减的更多细节请参考 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
 

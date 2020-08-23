@@ -15,15 +15,15 @@ PolynomialLR
 
 .. math::
 
-    decay\_steps &= decay\_steps * math.ceil(\frac{global\_step}{decay\_steps})  \\
-    decayed\_learning\_rate &= (learning\_rate-end\_learning\_rate)*(1-\frac{global\_step}{decay\_steps})^{power}+end\_learning\_rate
+    decay\_steps &= decay\_steps * math.ceil(\frac{epoch}{decay\_steps})  \\
+    decayed\_learning\_rate &= (learning\_rate-end\_learning\_rate)*(1-\frac{epoch}{decay\_steps})^{power}+end\_learning\_rate
 
 若cycle为False，则计算公式为：
 
 .. math::
 
-    global\_step &= min(global\_step, decay\_steps) \\
-    decayed\_learning\_rate &= (learning\_rate-end\_learning\_rate)*(1-\frac{global\_step}{decay\_steps})^{power}+end\_learning\_rate
+    epoch &= min(epoch, decay\_steps) \\
+    decayed\_learning\_rate &= (learning\_rate-end\_learning\_rate)*(1-\frac{epoch}{decay\_steps})^{power}+end\_learning\_rate
 
 
 参数
