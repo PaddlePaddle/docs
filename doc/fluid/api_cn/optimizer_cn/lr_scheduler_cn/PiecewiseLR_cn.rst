@@ -34,6 +34,7 @@ PiecewiseLR
 :::::::::
 
 .. code-block:: python
+
     import paddle
 
     # train on default dygraph mode
@@ -78,8 +79,6 @@ PiecewiseLR
                 },
                 fetch_list=lr_var.name)
         scheduler.step()
-
-
 
 
 .. py:method:: step(epoch=None)

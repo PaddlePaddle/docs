@@ -45,6 +45,7 @@ PolynomialLR
 :::::::::
 
 .. code-block:: python
+
    import paddle
 
    # train on default dygraph mode

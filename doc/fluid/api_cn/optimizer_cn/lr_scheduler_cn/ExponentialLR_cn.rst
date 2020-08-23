@@ -3,7 +3,7 @@
 ExponentialLR
 -----------------------------------
 
-.. py:class:: paddle.optimizer.ExponentialLR(learning_rate, gamma, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr_scheduler.ExponentialLR(learning_rate, gamma, last_epoch=-1, verbose=False)
 
 该接口提供一种学习率按指数函数衰减的功能。
 

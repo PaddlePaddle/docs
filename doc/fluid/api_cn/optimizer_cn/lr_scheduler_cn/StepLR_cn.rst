@@ -3,7 +3,7 @@
 StepLR
 -----------------------------------
 
-.. py:class:: paddle.optimizer.StepLR(learning_rate, step_size, gamma=0.1, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr_scheduler.StepLR(learning_rate, step_size, gamma=0.1, last_epoch=-1, verbose=False)
 
 该接口提供一种学习率按指定 `间隔` 轮数衰减的功能。
 

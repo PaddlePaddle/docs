@@ -3,7 +3,7 @@
 MultiStepLR
 -----------------------------------
 
-.. py:class:: paddle.optimizer.MultiStepLR(learning_rate, milestones, gamma=0.1, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr_scheduler.MultiStepLR(learning_rate, milestones, gamma=0.1, last_epoch=-1, verbose=False)
 
 该接口提供一种学习率按指定轮数衰减的功能。
 
