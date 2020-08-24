@@ -34,6 +34,7 @@ data
 **代码示例**：
 
 .. code-block:: python
+
     import paddle
     import paddle.fluid as fluid
     import numpy as np
@@ -49,7 +50,7 @@ data
 
     z = x + y
 
-    # In this example, we will feed x and y with np-ndarry "1"
+    # In this example, we will feed x and y with np-ndarray "1"
     # and fetch z, like implementing "1 + 1 = 2" in PaddlePaddle
     feed_data = np.ones(shape=[3, 2, 1], dtype=np.float32)
 

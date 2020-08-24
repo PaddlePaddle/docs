@@ -91,7 +91,7 @@ InputSpec
 参数：
   - **batch_size** (int) - 被插入的batch size整型数值
 
-返回： 更新shape信息后的``InputSpec`` 对象
+返回： 更新shape信息后的 ``InputSpec`` 对象
 
 返回类型：InputSpec
 
@@ -112,7 +112,7 @@ InputSpec
 该接口将当前InputSpec对象shape[0]值移除。
 
 
-返回： 更新shape信息后的``InputSpec`` 对象
+返回： 更新shape信息后的 ``InputSpec`` 对象
 
 返回类型：InputSpec
 
