@@ -6,6 +6,6 @@
 eye
 --------
 
-..  autofunction:: paddle.tensor.creation_eye
+..  autofunction:: paddle.tensor.creation.eye
     :noindex:
 

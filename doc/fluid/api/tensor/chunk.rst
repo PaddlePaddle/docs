@@ -4,7 +4,7 @@
 .. _api_tensor_manipulation_chunk:
 
 chunk
----
+-------
 
 ..  autofunction:: paddle.tensor.manipulation.chunk
     :noindex:
