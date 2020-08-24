@@ -24,6 +24,8 @@ scatter
 .. code-block:: python
 
         import paddle
+        import paddle.fluid as fluid
+
         paddle.disable_static()
         place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
         with fluid.dygraph.guard(place=place):

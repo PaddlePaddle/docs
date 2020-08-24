@@ -23,7 +23,9 @@ all_reduce
 .. code-block:: python
 
         import paddle
+        import paddle.fluid as fluid
         from paddle.distributed import ReduceOp
+
         paddle.disable_static()
         place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
         with fluid.dygraph.guard(place=place):
