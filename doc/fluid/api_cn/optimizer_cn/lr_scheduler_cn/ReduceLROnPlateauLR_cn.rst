@@ -14,14 +14,14 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
 :::::::::
     - **learning_rate** （float） - 初始学习率，数据类型为Python float。
     - **mode** （str，可选）'min' 和 'max' 之一。通常情况下，为 'min' ，此时当 loss 停止下降时学习率将减小。默认：'min' 。 （注意：仅在特殊用法时，可以将其设置为 'max' ，此时判断逻辑相反， loss 停止上升学习率才减小）
-    - **fator** （float，可选） - 学习率衰减的比例。new_lr = origin_lr * factor，它是值小于1.0的float型数字，默认: 0.1。
+    - **factor** （float，可选） - 学习率衰减的比例。new_lr = origin_lr * factor，它是值小于1.0的float型数字，默认: 0.1。
     - **patience** （int，可选）- 当 loss 连续 patience 个epoch没有下降(mode: 'min')或上升(mode: 'max')时，学习率才会减小。默认：10。
     - **threshold** （float，可选）- threshold 和 threshold_mode 两个参数将会决定 loss 最小变化的阈值。小于该阈值的变化 将会被忽视。默认：1e-4。
     - **threshold_mode** （str，可选）- 'rel' 和 'abs' 之一。在 'rel' 模式下， loss 最小变化的阈值是 last_loss * threshold ， 其中 last_loss 是 loss 在上个epoch的值。在 'abs' 模式下，loss 最小变化的阈值是 threshold 。 默认：'rel'。
    - **cooldown** （int，可选）- 在学习速率每次减小之后，会进入时长为 ``cooldown`` 个 step 的冷静期。默认：0。
    - **min_lr** （float，可选） - 最小的学习率。减小后的学习率最低下界限。默认：0。
-   - **epsilon** （float，可选）- 如果新旧学习率间的差异小于 eps ，则不会更新。默认值:1e-8。
-    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。
+   - **epsilon** （float，可选）- 如果新旧学习率间的差异小于epsilon ，则不会更新。默认值:1e-8。
+    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 返回
 :::::::::

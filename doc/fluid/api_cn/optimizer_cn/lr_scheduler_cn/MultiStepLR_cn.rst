@@ -27,7 +27,7 @@ MultiStepLR
     - **milestones** ：（list）：轮数下标列表。必须递增。
     - **gamma** （float）：衰减率，new_lr = origin_lr * decay_rate, 衰减率必须小于等于1.0，默认值为1.0。
     - **last_epoch** （int）：上一轮的下标。默认为 `-1` 。
-    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。
+    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 
 返回

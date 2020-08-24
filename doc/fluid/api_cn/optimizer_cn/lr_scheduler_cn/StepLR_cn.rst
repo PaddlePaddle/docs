@@ -27,7 +27,7 @@ StepLR
     - **step_size** ：（int）：学习率衰减轮数间隔。
     - **gamma** （float）：衰减率，new_lr = origin_lr * decay_rate, 衰减率必须小于等于1.0，默认值为1.0。
     - **last_epoch** （int）：上一轮的下标。默认为 `-1` 。
-    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。
+    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 
 返回
@@ -39,25 +39,26 @@ StepLR
 
 .. code-block:: python
 
+    import numpy as np
     import paddle
 
     # train on default imperative mode
     paddle.disable_static()
     x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.MultiStepLR(learning_rate=0.5, milestones=[2, 4, 6], gamma=0.8, verbose=True)
-    adam = paddle.optimizer.Adam(learning_rate=scheduler, parameter_list=linear.parameters())
+    scheduler = paddle.optimizer.StepLR(learning_rate=0.5, step_size=5, gamma=0.8, verbose=True)
+    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
     for epoch in range(20):
         for batch_id in range(2):
             x = paddle.to_tensor(x)
             out = linear(x)
             loss = paddle.reduce_mean(out)
             out.backward()
-            adam.minimize(loss)
+            sgd.minimize(loss)
             linear.clear_gradients()
         scheduler.step()
 
-    # train on static mode
+    # train on statich mode
     paddle.enable_static()
     main_prog = paddle.static.Program()
     start_prog = paddle.static.Program()
@@ -66,10 +67,10 @@ StepLR
         y = paddle.static.data(name='y', shape=[-1, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.MultiStepLR(learning_rate=0.5, milestones=[2, 4, 6], gamma=0.8, verbose=True)
-        adam = paddle.optimizer.Adam(learning_rate=scheduler)
-        adam.minimize(loss)
-        lr_var = adam._global_learning_rate()
+        scheduler = paddle.optimizer.StepLR(learning_rate=0.5, step_size=5, gamma=0.8, verbose=True)
+        sgd = paddle.optimizer.SGD(learning_rate=scheduler)
+        sgd.minimize(loss)
+        lr_var = sgd._global_learning_rate()
 
     exe = paddle.static.Executor()
     exe.run(start_prog)

@@ -29,7 +29,7 @@ LinearLrWarmup
     - **start_lr** （float）：warm up的起始学习率。
     - **end_lr** （float）：warm up的最终学习率。
     - **last_epoch** （int）：上一轮的下标。默认为 `-1` 。
-    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。
+    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 
 返回

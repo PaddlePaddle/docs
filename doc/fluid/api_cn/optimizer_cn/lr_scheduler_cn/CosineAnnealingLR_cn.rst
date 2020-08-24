@@ -28,7 +28,7 @@ CosineAnnealingLR
     - **T_max** （float|int）：训练的上限轮数。
     - **eta_min** （float|int, optional）：学习率的下限，即公式中的 :math:`\eta_{min}` 。默认值为0。 
     - **last_epoch** （int，optional）: 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
-    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。
+    - **verbose** （bool）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 返回
 :::::::::
