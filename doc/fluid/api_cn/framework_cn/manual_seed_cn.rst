@@ -5,11 +5,6 @@ manual_seed
 
 .. py:function:: paddle.framework.manual_seed(seed)
 
-:alias_main: paddle.manual_seed
-:alias: paddle.manual_seed,paddle.framework.random.manual_seed
-
-
-
 
 设置并固定管理随机数生成的默认Generator的随机种子。
 
