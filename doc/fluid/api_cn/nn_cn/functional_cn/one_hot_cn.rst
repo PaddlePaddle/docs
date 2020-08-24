@@ -48,7 +48,7 @@ one_hot
 
 **代码示例**：
 
-.. code-block:: text
+.. code-block:: python
 
     import paddle
     import paddle.fluid as fluid
