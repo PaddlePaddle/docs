@@ -1,10 +1,10 @@
-.. _cn_api_nn_PRelu:
+.. _cn_api_nn_PReLU:
 
-PRelu
+PReLU
 -------------------------------
-.. py:class:: paddle.nn.PRelu(num_parameters=1, init=0.25, weight_attr=None, name=None)
+.. py:class:: paddle.nn.PReLU(num_parameters=1, init=0.25, weight_attr=None, name=None)
 
-PRelu激活层（PRelu Activation Operator）。计算公式如下：
+PReLU激活层（PReLU Activation Operator）。计算公式如下：
 
 如果使用近似计算：
 
