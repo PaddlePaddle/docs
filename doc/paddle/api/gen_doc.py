@@ -135,8 +135,9 @@ def get_display_api(api):
         return api
 
 
-def gen_en_files(root_path='paddle'):
+def gen_en_files(root_path='paddle', api_label_file="api_label"):
     backup_path = root_path + "_" + str(int(time.time()))
+    api_f = open(api_label_file, 'w')
 
     for api in api_set:
         if is_filter_api(api):
@@ -158,6 +159,9 @@ def gen_en_files(root_path='paddle'):
             gen.api = doc_file
             gen.print_header_reminder()
             gen.print_item()
+            api_f.write(doc_file + "\t" + ".. _api_{0}_{1}:\n".format("_".join(
+                gen.module_name.split(".")), gen.api))
+    api_f.close()
 
 
 def clean_en_files(path="./paddle"):
