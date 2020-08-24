@@ -9,7 +9,7 @@ squeeze
 
 .. code-block:: text
 
-    示例1:
+    Case 1:
 
         Input:
         x.shape = [1, 3, 1, 5]  # If axis is not provided, all dims equal of size 1 will be removed.
@@ -17,7 +17,7 @@ squeeze
         Output:
         out.shape = [3, 5]
 
-    示例2:
+    Case 2:
 
         Input:
         x.shape = [1, 3, 1, 5]  # If axis is provided, it will remove the dimension(s) by given axis that of size 1.
@@ -25,7 +25,7 @@ squeeze
         Output:
         out.shape = [3, 1, 5]
     
-    示例3:
+    Case 3:
 
         Input:
         x.shape = [1, 3, 1, 5]  # If the dimension of one given axis (3) is not of size 1, the dimension remain unchanged. 
@@ -33,7 +33,7 @@ squeeze
         Output:
         out.shape = [3, 5]
 
-    示例4:
+    Case 4:
 
         Input:
         x.shape = [1, 3, 1, 5]  # If axis is negative, axis = axis + ndim (number of dimensions in x). 
