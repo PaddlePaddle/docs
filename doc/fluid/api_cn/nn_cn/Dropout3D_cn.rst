@@ -34,7 +34,7 @@ Dropout3D
     paddle.disable_static()
     x = np.random.random(size=(2, 3, 4, 5, 6)).astype('float32')
     x = paddle.to_tensor(x)
-    m = paddle.nn.Dropout3d(p=0.5)
+    m = paddle.nn.Dropout3D(p=0.5)
     y_train = m(x)
     m.eval()  # switch the model to test phase
     y_test = m(x)
