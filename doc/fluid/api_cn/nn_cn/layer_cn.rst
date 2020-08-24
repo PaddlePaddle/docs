@@ -1,11 +1,7 @@
-=======================
-layer
-=======================
+.. _cn_api_nn_cn_Layer:
+
+Layer
+-------------------------------
+:doc_source: paddle.fluid.dygraph.layers.Layer
 
 
-
-
-..  toctree::
-    :maxdepth: 1
-
-    layer_cn/Sigmoid_cn.rst
