@@ -16,6 +16,7 @@ paddle.tensor
     tensor/atan.rst
     tensor/cast.rst
     tensor/ceil.rst
+    tensor/chunk.rst
     tensor/concat.rst
     tensor/cos.rst
     tensor/create_tensor.rst
@@ -49,7 +50,10 @@ paddle.tensor
     tensor/has_nan.rst
     tensor/increment.rst
     tensor/is_empty.rst
+    tensor/index_select.rst
     tensor/isfinite.rst
+    tensor/isinf.rst
+    tensor/isnan.rst
     tensor/less_equal.rst
     tensor/less_than.rst
     tensor/logic.rst
@@ -74,6 +78,7 @@ paddle.tensor
     tensor/not_equal.rst
     tensor/ones.rst
     tensor/ones_like.rst
+    tensor/numel.rst
     tensor/pow.rst
     tensor/random.rst
     tensor/rank.rst
