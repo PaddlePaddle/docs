@@ -67,8 +67,8 @@ gather_nd
     paddle.disable_static()
     input_1 = np.array([[1,2],[3,4],[5,6]])
     index_1 = np.array([0,1])
-    input = fluid.to_tensor(input_1)
-    index = fluid.to_tensor(index_1)
+    input = paddle.to_tensor(input_1)
+    index = paddle.to_tensor(index_1)
     output = paddle.gather(input, index, axis=0)
     # expected output: [[1,2],[3,4]]
 
