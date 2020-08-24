@@ -97,7 +97,6 @@ paddle
 	paddle/logical_xor.rst
 	paddle/logsumexp.rst
 	paddle/manual_seed.rst
-	paddle/masked_select.rst
         paddle/matmul.rst
 	paddle/max.rst
 	paddle/maximum.rst
