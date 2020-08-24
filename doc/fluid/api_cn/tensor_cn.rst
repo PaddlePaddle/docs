@@ -104,6 +104,7 @@ paddle.tensor
     tensor_cn/mm_cn.rst
     tensor_cn/mul_cn.rst
     tensor_cn/multiplex_cn.rst
+    tensor_cn/multiply_cn.rst
     tensor_cn/nonzero_cn.rst
     tensor_cn/norm_cn.rst
     tensor_cn/normal_cn.rst
