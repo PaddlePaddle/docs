@@ -3,52 +3,35 @@
 logsumexp
 -------------------------------
 
-.. py:function:: paddle.tensor.math.logsumexp(x, dim=None, keepdim=False, out=None, name=None)
+.. py:function:: paddle.tensor.math.logsumexp(x, axis=None, keepdim=False, name=None)
 
-:alias_main: paddle.logsumexp
-:alias: paddle.logsumexp,paddle.tensor.logsumexp,paddle.tensor.math.logsumexp
-
-
-
-该OP对输入Tensor的元素以e为底做指数运算，然后根据指定维度做求和之后取自然对数
+该OP沿着 ``axis`` 计算 ``x`` 的以e为底的指数的和的自然对数。计算公式如下：
 
 .. math::
    logsumexp(x) = \log\sum exp(x)
 
-参数：
-          - **x** （Variable）- 输入变量为多维Tensor或LoDTensor，支持数据类型为float32，float64
-          - **dim** （list | int ，可选）- 求和运算的维度。如果为None，则计算所有元素的和并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(input),rank(input)]` 范围内。如果 :math:`dim [i] <0` ，则维度将变为 :math:`rank+dim[i]` ，默认值为None。
-          - **keep_dim** （bool）- 是否在输出Tensor中保留减小的维度。如 keep_dim 为true，否则结果张量的维度将比输入张量小，默认值为False。
-          - **out** （Variable ， 可选）- 显示指定的输出变量
-          - **name** （str ， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+参数
+::::::::::
+    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64 。
+    - axis (int|list|tuple, 可选) - 指定对 ``x`` 进行计算的轴。``axis`` 可以是int、list(int)、tuple(int)。如果 ``axis`` 包含多个维度，则沿着 ``axis`` 中的所有轴进行计算。``axis`` 或者其中的元素值应该在范围[-D, D)内，D是 ``x`` 的维度。如果 ``axis`` 或者其中的元素值小于0，则等价于 :math:`axis + D` 。如果 ``axis`` 是None，则对 ``x`` 的全部元素计算平均值。默认值为None。
+    - keepdim (bool, 可选) - 是否在输出Tensor中保留减小的维度。如果 ``keepdim`` 为True，则输出Tensor和 ``x`` 具有相同的维度(减少的维度除外，减少的维度的大小为1)。否则，输出Tensor的形状会在 ``axis`` 上进行squeeze操作。默认值为False。
+    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：  Tensor，数据类型和输入数据类型一致。
+返回
+::::::::::
+    ``Tensor`` ，沿着 ``axis`` 进行logsumexp计算的结果，数据类型和 ``x`` 相同。
 
-返回类型：Variable
+代码示例
+::::::::::
 
-**代码示例1**
-
-..  code-block:: python
-
-    import paddle
-    import paddle.fluid as fluid
-    import numpy as np
-
-    with fluid.dygraph.guard():
-      np_x = np.random.uniform(0.1, 1, [10]).astype(np.float32)
-      x = fluid.dygraph.to_variable(np_x)
-      print(paddle.logsumexp(x).numpy())
-
-**代码示例2**
-
-..  code-block:: python
+.. code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
     import numpy as np
 
-    with fluid.dygraph.guard():
-        np_x = np.random.uniform(0.1, 1, [2, 3, 4]).astype(np.float32)
-        x = fluid.dygraph.to_variable(np_x)
-        print(paddle.logsumexp(x, dim=1).numpy())
-        print(paddle.logsumexp(x, dim=[0, 2]).numpy())
+    paddle.disable_static()
+
+    x = np.array([[-1.5, 0., 2.], [3., 1.2, -2.4]])
+    x = paddle.to_tensor(x)
+    out1 = paddle.logsumexp(x) # [3.4691226]
+    out2 = paddle.logsumexp(x, 1) # [2.15317821, 3.15684602]

@@ -89,7 +89,7 @@ Please follow the steps below to install:
         > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
-        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 8.0.
+        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
 
 
 4. After entering Docker, go to the paddle directory: `cd paddle`

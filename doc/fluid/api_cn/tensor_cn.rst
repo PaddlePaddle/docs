@@ -23,7 +23,9 @@ paddle.tensor
     tensor_cn/cast_cn.rst
     tensor_cn/ceil_cn.rst
     tensor_cn/cholesky_cn.rst
+    tensor_cn/chunk_cn.rst
     tensor_cn/clamp_cn.rst
+    tensor_cn/clip_cn.rst
     tensor_cn/concat_cn.rst
     tensor_cn/cond_cn.rst
     tensor_cn/cos_cn.rst
@@ -33,14 +35,16 @@ paddle.tensor
     tensor_cn/cumsum_cn.rst
     tensor_cn/diag_cn.rst
     tensor_cn/dist_cn.rst
-    tensor_cn/div_cn.rst
+    tensor_cn/divide_cn.rst
+    tensor_cn/floor_divide_cn.rst
+    tensor_cn/remainder_cn.rst
+    tensor_cn/mod_cn.rst
+    tensor_cn/floor_mod_cn.rst
     tensor_cn/dot_cn.rst
     tensor_cn/einsum_cn.rst
     tensor_cn/elementwise_add_cn.rst
     tensor_cn/elementwise_div_cn.rst
     tensor_cn/elementwise_floordiv_cn.rst
-    tensor_cn/elementwise_max_cn.rst
-    tensor_cn/elementwise_min_cn.rst
     tensor_cn/elementwise_mod_cn.rst
     tensor_cn/elementwise_mul_cn.rst
     tensor_cn/elementwise_pow_cn.rst
@@ -72,6 +76,7 @@ paddle.tensor
     tensor_cn/inverse_cn.rst
     tensor_cn/is_empty_cn.rst
     tensor_cn/isfinite_cn.rst
+    tensor_cn/isinf_cn.rst
     tensor_cn/isnan_cn.rst
     tensor_cn/kron_cn.rst
     tensor_cn/l2_normalize_cn.rst
@@ -89,18 +94,23 @@ paddle.tensor
     tensor_cn/math_cn.rst
     tensor_cn/matmul_cn.rst
     tensor_cn/max_cn.rst
+    tensor_cn/maximum_cn.rst
     tensor_cn/mean_cn.rst
     tensor_cn/meshgrid_cn.rst
     tensor_cn/min_cn.rst
+    tensor_cn/minimum_cn.rst
     tensor_cn/mm_cn.rst
     tensor_cn/mul_cn.rst
     tensor_cn/multiplex_cn.rst
     tensor_cn/nonzero_cn.rst
     tensor_cn/norm_cn.rst
+    tensor_cn/normal_cn.rst
     tensor_cn/not_equal_cn.rst
+    tensor_cn/numel_cn.rst
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
     tensor_cn/pow_cn.rst
+    tensor_cn/prod_cn.rst
     tensor_cn/rand_cn.rst
     tensor_cn/randint_cn.rst
     tensor_cn/randn_cn.rst
@@ -137,6 +147,7 @@ paddle.tensor
     tensor_cn/square_cn.rst
     tensor_cn/squeeze_cn.rst
     tensor_cn/stack_cn.rst
+    tensor_cn/standard_normal_cn.rst
     tensor_cn/stanh_cn.rst
     tensor_cn/std_cn.rst
     tensor_cn/strided_slice_cn.rst
@@ -145,12 +156,14 @@ paddle.tensor
     tensor_cn/t_cn.rst
     tensor_cn/tanh_cn.rst
     tensor_cn/tensordot_cn.rst
+    tensor_cn/tile_cn.rst
     tensor_cn/topk_cn.rst
     tensor_cn/trace_cn.rst
     tensor_cn/transpose_cn.rst
     tensor_cn/tril_cn.rst
     tensor_cn/triu_cn.rst
     tensor_cn/unbind_cn.rst
+    tensor_cn/uniform_cn.rst
     tensor_cn/unique_cn.rst
     tensor_cn/unique_with_counts_cn.rst
     tensor_cn/unsqueeze_cn.rst
@@ -159,3 +172,4 @@ paddle.tensor
     tensor_cn/where_cn.rst
     tensor_cn/zeros_cn.rst
     tensor_cn/zeros_like_cn.rst
+
