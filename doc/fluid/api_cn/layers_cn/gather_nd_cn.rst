@@ -62,6 +62,7 @@ gather_nd
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[3, 4, 5], dtype='float32')
     index = fluid.layers.data(name='index', shape=[2, 2], dtype='int32')
