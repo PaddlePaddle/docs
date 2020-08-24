@@ -15,7 +15,7 @@ bernoulli
 
 参数：
     - **x** (Tensor) - 输入的概率值。数据类型为 ``float32`` 、``float64`` .
-    - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+    - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回：
     Tensor：伯努利分布的随机Tensor，形状和数据类型为与输入 ``x`` 相同。
