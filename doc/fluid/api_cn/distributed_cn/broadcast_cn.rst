@@ -28,7 +28,7 @@ broadcast
         paddle.disable_static()
         place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
         with fluid.dygraph.guard(place=place):
-             paddle.distributed.init_process_group('nccl', 1000, 2, 1)
+             paddle.distributed.init_distributed_context('nccl', 1000, 2, 1)
              if fluid.dygraph.ParallelEnv().local_rank == 0:
                  np_data = np.array([[4, 5, 6], [4, 5, 6]])
              else:
