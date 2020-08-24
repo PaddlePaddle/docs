@@ -21,7 +21,7 @@ InverseTimeLR
 参数
 :::::::::
     - **learning_rate** （float） - 初始学习率，数据类型为Python float。
-    - **gamma** （float）：衰减率，new_lr = origin_lr * decay_rate, 衰减率必须小于等于1.0，默认值为1.0。
+    - **gamma** （float）：衰减率，new_lr = origin_lr * gamma。
     - **last_epoch** （int，可选）: 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** （bool，可选）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
