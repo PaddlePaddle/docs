@@ -23,6 +23,7 @@ paddle
 	paddle/cast.rst
 	paddle/ceil.rst
 	paddle/cholesky.rst
+	paddle/chunk.rst
 	paddle/clamp.rst
 	paddle/CompiledProgram.rst
 	paddle/concat.rst
@@ -41,6 +42,7 @@ paddle
 	paddle/diag.rst
 	paddle/disable_imperative.rst
 	paddle/dist.rst
+	paddle/distribution.rst
 	paddle/div.rst
 	paddle/dot.rst
 	paddle/elementwise_add.rst
@@ -111,6 +113,7 @@ paddle
 	paddle/not_equal.rst
 	paddle/ones.rst
 	paddle/ones_like.rst
+	paddle/numel.rst
 	paddle/ParallelExecutor.rst
 	paddle/ParamAttr.rst
 	paddle/pow.rst
