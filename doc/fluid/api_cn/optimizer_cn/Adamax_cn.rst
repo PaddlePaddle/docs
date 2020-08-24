@@ -28,7 +28,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 论文中没有 ``epsilon`` 参数。但是，为了保持数值稳定性， 避免除0错误， 此处增加了这个参数。
 
 参数：
-  - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
+  - **learning_rate** (float|LearningrateDecay) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个LearningrateDecay类，默认值为0.001
   - **beta1** (float, 可选) - 一阶矩估计的指数衰减率，默认值为0.9
   - **beta2** (float, 可选) - 二阶矩估计的指数衰减率，默认值为0.999
   - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
@@ -41,7 +41,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
   - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
 .. note::
-    目前 ``AdamaxOptimizer`` 不支持 Sparse Parameter Optimization（稀疏参数优化）。
+    目前 ``Adamax`` 不支持 Sparse Parameter Optimization（稀疏参数优化）。
 
 **代码示例**
 
@@ -56,12 +56,40 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     inp = paddle.to_tensor(inp)
     out = linear(inp)
     loss = paddle.mean(out)
-    adam = paddle.optimizer.Adam(learning_rate=0.1,
+    adam = paddle.optimizer.Adamax(learning_rate=0.1,
             parameters=linear.parameters())
     out.backward()
     adam.step()
     adam.clear_grad()
      
+
+.. py:method:: step()
+
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+执行一次优化器并进行参数更新。
+
+返回：None。
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    import numpy as np
+    paddle.disable_static()
+    value = np.arange(26).reshape(2, 13).astype("float32")
+    a = paddle.to_tensor(value)
+    linear = paddle.nn.Linear(13, 5, dtype="float32")
+    adam = paddle.optimizer.Adam(learning_rate = 0.01,
+                                parameters = linear.parameters())
+    out = linear(a)
+    out.backward()
+    adam.step()
+    adam.clear_grad()
 
 .. py:method:: minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
@@ -73,7 +101,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     - **parameters** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成集合，默认值为None
         
-返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
 **代码示例**
 
@@ -99,7 +127,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 
 
-.. py:method:: clear_gradients()
+.. py:method:: clear_grad()
 
 **注意：**
 
@@ -124,7 +152,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     out = linear(a)
     out.backward()
     optimizer.step()
-    optimizer.clear_gradients()
+    optimizer.clear_grad()
 
 .. py:method:: set_lr()
 
@@ -153,7 +181,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
     for i in range(5):
         adam.set_lr(lr_list[i])
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         print("current lr is {}".format(lr))
     # Print:
     #    current lr is 0.2
@@ -167,13 +195,13 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
         lr_var = paddle.create_global_var(
             shape=[1], value=0.7, dtype='float32')
         adam.set_lr(lr_var)
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         print("current lr is {}".format(lr))
         # Print:
         #    current lr is 0.7
 
 
-.. py:method:: current_step_lr()
+.. py:method:: get_lr()
 
 **注意：**
 
@@ -196,7 +224,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     paddle.disable_static()
     emb = paddle.nn.Embedding([10, 10])
     adam = paddle.optimizer.Adamax(0.001, parameters = emb.parameters())
-    lr = adam.current_step_lr()
+    lr = adam.get_lr()
     print(lr) # 0.001
 
     # example2: PiecewiseDecay is used, return the step learning rate
@@ -213,11 +241,11 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
                            parameters=linear.parameters())
 
     # first step: learning rate is 0.2
-    np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
 
     # learning rate for different steps
     ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
     for i in range(12):
         adam.step()
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True

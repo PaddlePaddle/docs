@@ -26,7 +26,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
 参数: 
-    - **learning_rate** (float|Variable，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Variable，默认值为0.001
+    - **learning_rate** (float|LearningrateDecay) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个LearningrateDecay类，默认值为0.001
     - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **beta1** (float|Variable, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.9
     - **beta2** (float|Variable, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.999
@@ -84,6 +84,34 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     adam.step()
     adam.clear_grad()
 
+.. py:method:: step()
+
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+执行一次优化器并进行参数更新。
+
+返回：None。
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    import numpy as np
+    paddle.disable_static()
+    value = np.arange(26).reshape(2, 13).astype("float32")
+    a = paddle.to_tensor(value)
+    linear = paddle.nn.Linear(13, 5, dtype="float32")
+    adam = paddle.optimizer.Adam(learning_rate = 0.01,
+                                parameters = linear.parameters())
+    out = linear(a)
+    out.backward()
+    adam.step()
+    adam.clear_grad()
+
 .. py:method:: minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 为网络添加反向计算过程，并根据反向计算所得的梯度，更新parameters中的Parameters，最小化网络损失值loss。
@@ -94,7 +122,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     - **parameters** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
          
-返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
 返回类型： tuple
 
@@ -126,7 +154,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         for data in train_reader():
             exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
 
-.. py:method:: clear_gradients()
+.. py:method:: clear_grad()
 
 **注意：**
 
@@ -151,7 +179,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     out = linear(a)
     out.backward()
     optimizer.step()
-    optimizer.clear_gradients()
+    optimizer.clear_grad()
 
 .. py:method:: set_lr()
 
@@ -180,7 +208,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
     for i in range(5):
         adam.set_lr(lr_list[i])
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         print("current lr is {}".format(lr))
     # Print:
     #    current lr is 0.2
@@ -194,13 +222,13 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         lr_var = paddle.create_global_var(
             shape=[1], value=0.7, dtype='float32')
         adam.set_lr(lr_var)
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         print("current lr is {}".format(lr))
         # Print:
         #    current lr is 0.7
 
 
-.. py:method:: current_step_lr()
+.. py:method:: get_lr()
 
 **注意：**
 
@@ -222,7 +250,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     paddle.disable_static()
     emb = paddle.nn.Embedding([10, 10])
     adam = paddle.optimizer.Adam(0.001, parameters = emb.parameters())
-    lr = adam.current_step_lr()
+    lr = adam.get_lr()
     print(lr) # 0.001
 
     # example2: PiecewiseDecay is used, return the step learning rate
@@ -239,11 +267,11 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
                            parameters=linear.parameters())
 
     # first step: learning rate is 0.2
-    np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
 
     # learning rate for different steps
     ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
     for i in range(12):
         adam.step()
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
