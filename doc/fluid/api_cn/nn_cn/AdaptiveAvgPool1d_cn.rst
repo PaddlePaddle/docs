@@ -1,3 +1,6 @@
+.. _cn_api_nn_AdaptiveAvgPool1d:
+
+
 AdaptiveAvgPool1d
 -------------------------------
 

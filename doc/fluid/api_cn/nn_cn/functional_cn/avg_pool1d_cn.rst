@@ -1,3 +1,6 @@
+.. _cn_api_nn_functional_avg_pool1d:
+
+
 avg_pool1d
 -------------------------------
 

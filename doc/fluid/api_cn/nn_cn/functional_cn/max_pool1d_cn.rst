@@ -1,3 +1,6 @@
+.. _cn_api_nn_functional_max_pool1d:
+
+
 max_pool1d
 -------------------------------
 

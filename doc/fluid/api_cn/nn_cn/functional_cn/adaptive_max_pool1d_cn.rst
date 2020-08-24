@@ -1,3 +1,6 @@
+.. _cn_api_nn_functional_adaptive_max_pool1d:
+
+
 adaptive_max_pool1d
 -------------------------------
 
