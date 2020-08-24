@@ -1,11 +1,11 @@
-.. _cn_api_fluid_dygraph_grad:
+.. _cn_api_paddle_grad:
 
 grad
 -------------------------------
 
 **注意：该API仅支持【动态图】模式**
 
-.. py:method:: paddle.fluid.dygraph.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None, backward_strategy=None)
+.. py:method:: paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None, backward_strategy=None)
 
 对于每个 `inputs` ，计算所有 `outputs` 相对于其的梯度和。
 
@@ -27,34 +27,34 @@ grad
 **示例代码 1**
   .. code-block:: python
 
-        import paddle.fluid as fluid
+        import paddle
+        paddle.disable_static()
 
         def test_dygraph_grad(create_graph):
-            with fluid.dygraph.guard():
-                x = fluid.layers.ones(shape=[1], dtype='float32')
-                x.stop_gradient = False
-                y = x * x
+            x = paddle.ones(shape=[1], dtype='float32')
+            x.stop_gradient = False
+            y = x * x
 
-                # Since y = x * x, dx = 2 * x
-                dx = fluid.dygraph.grad(
-                        outputs=[y],
-                        inputs=[x],
-                        create_graph=create_graph,
-                        retain_graph=True)[0]
+            # Since y = x * x, dx = 2 * x
+            dx = paddle.grad(
+                    outputs=[y],
+                    inputs=[x],
+                    create_graph=create_graph,
+                    retain_graph=True)[0]
 
-                z = y + dx
+            z = y + dx
 
-                # If create_graph = False, the gradient of dx
-                # would not be backpropagated. Therefore,
-                # z = x * x + dx, and x.gradient() = 2 * x = 2.0
+            # If create_graph = False, the gradient of dx
+            # would not be backpropagated. Therefore,
+            # z = x * x + dx, and x.gradient() = 2 * x = 2.0
 
-                # If create_graph = True, the gradient of dx
-                # would be backpropagated. Therefore,
-                # z = x * x + dx = x * x + 2 * x, and
-                # x.gradient() = 2 * x + 2 = 4.0
+            # If create_graph = True, the gradient of dx
+            # would be backpropagated. Therefore,
+            # z = x * x + dx = x * x + 2 * x, and
+            # x.gradient() = 2 * x + 2 = 4.0
 
-                z.backward()
-                return x.gradient()
+            z.backward()
+            return x.gradient()
 
         print(test_dygraph_grad(create_graph=False)) # [2.]
         print(test_dygraph_grad(create_graph=True)) # [4.]
@@ -62,16 +62,15 @@ grad
 **示例代码 2**
   .. code-block:: python
 
-        import paddle.fluid as fluid
-
-        fluid.enable_dygraph()
+        import paddle
+        paddle.disable_static()
 
         def test_dygraph_grad(grad_outputs=None):
-            x = fluid.layers.fill_constant(shape=[1], value=2.0, dtype='float32')
+            x = paddle.fill_constant(shape=[1], value=2.0, dtype='float32')
             x.stop_gradient = False
 
             y1 = x * x
-            y2 = x * 3
+            y2 = x * 3 
 
             # If grad_outputs=None, dy1 = [1], dy2 = [1].
             # If grad_outputs=[g1, g2], then:
@@ -83,24 +82,24 @@ grad
             # Therefore, the final result would be:
             # dx = 2 * x * dy1 + 3 * dy2 = 4 * dy1 + 3 * dy2.
 
-            dx = fluid.dygraph.grad(
+            dx = paddle.grad(
                 outputs=[y1, y2],
                 inputs=[x],
                 grad_outputs=grad_outputs)[0]
 
             return dx.numpy()
 
-        THREE = fluid.layers.fill_constant(shape=[1], value=3.0, dtype='float32')
-        FOUR = fluid.layers.fill_constant(shape=[1], value=4.0, dtype='float32')
+        grad_value = paddle.fill_constant(shape=[1], value=4.0, dtype='float32')
 
         # dy1 = [1], dy2 = [1]
         print(test_dygraph_grad(None)) # [7.]
 
         # dy1 = [1], dy2 = [4]
-        print(test_dygraph_grad([None, FOUR])) # [16.]
+        print(test_dygraph_grad([None, grad_value])) # [16.]
 
         # dy1 = [4], dy2 = [1]
-        print(test_dygraph_grad([FOUR, None])) # [19.]
+        print(test_dygraph_grad([grad_value, None])) # [19.]
 
         # dy1 = [3], dy2 = [4]
-        print(test_dygraph_grad([THREE, FOUR])) # [24.]
+        grad_y1 = paddle.fill_constant(shape=[1], value=3.0, dtype='float32')
+        print(test_dygraph_grad([grad_y1, grad_value])) # [24.]
