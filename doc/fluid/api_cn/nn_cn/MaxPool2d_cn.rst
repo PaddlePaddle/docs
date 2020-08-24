@@ -1,7 +1,9 @@
+.. _cn_api_nn_MaxPool2d:
+
 MaxPool2d
 -------------------------------
 
-.. py:function:: paddle.nn.MaxPool2d(kernel_size,stride=None,padding=0,ceil_mode=False,return_indices=False,data_format="NCHW",name=None))
+.. py:function:: paddle.nn.MaxPool2d(kernel_size, stride=None, padding=0, ceil_mode=False, return_indices=False, data_format="NCHW", name=None)
 该接口用于构建 `MaxPool2d` 类的一个可调用对象，其将构建一个二维平均池化层，根据输入参数 `kernel_size`, `stride`,
 `padding` 等参数对输入做最大池化操作。
 
