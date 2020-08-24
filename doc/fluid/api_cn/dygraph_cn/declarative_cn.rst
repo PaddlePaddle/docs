@@ -15,6 +15,8 @@ declarative
     import numpy as np
     from paddle.fluid.dygraph.jit import declarative
 
+    fluid.enable_dygraph()
+
     @declarative
     def func(x):
         x = fluid.dygraph.to_variable(x)
