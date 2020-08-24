@@ -60,7 +60,7 @@ LinearLrWarmup
             linear.clear_gradients()
         scheduler.step()
 
-    # train on statich mode
+    # train on static mode
     paddle.enable_static()
     main_prog = paddle.static.Program()
     start_prog = paddle.static.Program()

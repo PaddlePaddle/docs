@@ -50,7 +50,7 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
             linear.clear_gradients()
         scheduler.step(loss)
 
-    # train on statich mode
+    # train on static mode
     paddle.enable_static()
     main_prog = paddle.static.Program()
     start_prog = paddle.static.Program()
