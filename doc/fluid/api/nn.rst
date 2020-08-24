@@ -8,9 +8,11 @@ paddle.nn
     nn/activation.rst
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
-    nn/add_position_encoding.rst
+    nn/AdaptiveAvgPool2d.rst
+    nn/AdaptiveAvgPool3d.rst
     nn/affine_channel.rst
     nn/affine_grid.rst
+    nn/AlphaDropout.rst
     nn/anchor_generator.rst
     nn/assign.rst
     nn/BatchNorm.rst
@@ -32,8 +34,13 @@ paddle.nn
     nn/ConstantPad1d.rst
     nn/ConstantPad2d.rst
     nn/ConstantPad3d.rst
-    nn/continuous_value_model.rst
+    nn/Conv1d.rst
+    nn/Conv2d.rst
+    nn/Conv3d.rst
     nn/conv2d.rst
+    nn/ConvTranspose1d.rst 
+    nn/ConvTranspose2d.rst 
+    nn/ConvTranspose3d.rst 
     nn/conv2d_transpose.rst
     nn/conv3d.rst
     nn/conv3d_transpose.rst
@@ -48,12 +55,14 @@ paddle.nn
     nn/dice_loss.rst
     nn/distribute_fpn_proposals.rst
     nn/dropout.rst
+    nn/Dropout.rst
+    nn/Dropout2D.rst
+    nn/Dropout3D.rst
     nn/edit_distance.rst
     nn/elu.rst
     nn/Embedding.rst
     nn/erf.rst
     nn/exponential_decay.rst
-    nn/filter_by_instag.rst
     nn/fsp_matrix.rst
     nn/functional.rst
     nn/gather_tree.rst
@@ -66,22 +75,24 @@ paddle.nn
     nn/GradientClipByValue.rst
     nn/grid_sampler.rst
     nn/GroupNorm.rst
-    nn/hardshrink.rst
-    nn/hardtanh.rst
     nn/hard_sigmoid.rst
     nn/hard_swish.rst
+    nn/hardshrink.rst
+    nn/hardtanh.rst
     nn/hash.rst
     nn/hsigmoid.rst
     nn/huber_loss.rst
     nn/image_resize.rst
     nn/image_resize_short.rst
     nn/initializer.rst
+    nn/InstanceNorm.rst
     nn/inverse_time_decay.rst
     nn/iou_similarity.rst
     nn/kldiv_loss.rst
     nn/l2_normalize.rst
     nn/label_smooth.rst
     nn/Layer.rst
+    nn/layer.rst
     nn/LayerList.rst
     nn/LayerNorm.rst
     nn/leaky_relu.rst
@@ -92,22 +103,20 @@ paddle.nn
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
-    nn/margin_rank_loss.rst
     nn/matrix_nms.rst
     nn/maxout.rst
     nn/mse_loss.rst
-    nn/multiclass_nms.rst
     nn/natural_exp_decay.rst
     nn/noam_decay.rst
     nn/npair_loss.rst
     nn/one_hot.rst
     nn/pad.rst
+    nn/Pad2D.rst
     nn/pad2d.rst
     nn/pad_constant_like.rst
     nn/ParameterList.rst
     nn/piecewise_decay.rst
     nn/pixel_shuffle.rst
-    nn/polygon_box_transform.rst
     nn/polynomial_decay.rst
     nn/Pool2D.rst
     nn/pool3d.rst
@@ -115,12 +124,11 @@ paddle.nn
     nn/prior_box.rst
     nn/prroi_pool.rst
     nn/psroi_pool.rst
-    nn/random_crop.rst
     nn/rank_loss.rst
     nn/ReflectionPad1d.rst
     nn/ReflectionPad2d.rst
-    nn/ReLU.rst
     nn/relu.rst
+    nn/ReLU.rst
     nn/relu6.rst
     nn/ReplicationPad1d.rst
     nn/ReplicationPad2d.rst
@@ -133,15 +141,12 @@ paddle.nn
     nn/roi_align.rst
     nn/roi_perspective_transform.rst
     nn/roi_pool.rst
-    nn/row_conv.rst
-    nn/rpn_target_assign.rst
     nn/sampled_softmax_with_cross_entropy.rst
     nn/selu.rst
     nn/Sequential.rst
     nn/shuffle_channel.rst
     nn/sigmoid_cross_entropy_with_logits.rst
     nn/sigmoid_focal_loss.rst
-    nn/similarity_focus.rst
     nn/smooth_l1.rst
     nn/soft_relu.rst
     nn/softmax.rst
@@ -155,20 +160,13 @@ paddle.nn
     nn/ssd_loss.rst
     nn/swish.rst
     nn/switch_case.rst
+    nn/SyncBatchNorm.rst
     nn/tanhshrink.rst
-    nn/target_assign.rst
     nn/teacher_student_sigmoid_loss.rst
-    nn/temporal_shift.rst
     nn/thresholded_relu.rst
     nn/unfold.rst
-    nn/warpctc.rst
+    nn/UpSample.rst
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
-    nn/functional/loss/margin_ranking_loss.rst
-    nn/functional/activation/sigmoid.rst
-    nn/layer/loss/MarginRankingLoss.rst
     nn/ZeroPad2d.rst
-    nn/AdaptiveAvgPool2d.rst
-    nn/AdaptiveAvgPool3d.rst
-    nn/layer/activation/Sigmoid.rst
