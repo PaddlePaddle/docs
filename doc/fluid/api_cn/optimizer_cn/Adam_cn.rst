@@ -28,8 +28,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 参数: 
     - **learning_rate** (float|LearningrateDecay) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个LearningrateDecay类，默认值为0.001
     - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
-    - **beta1** (float|Variable, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.9
-    - **beta2** (float|Variable, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。默认值为0.999
+    - **beta1** (float|Tensor, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.9
+    - **beta2** (float|Tensor, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999
     - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
     - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是float类型的L2正则化系数或者正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
       :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
@@ -124,35 +124,29 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
          
 返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
-返回类型： tuple
 
 **代码示例**
 
 .. code-block:: python
 
-    import paddle
-    import paddle.fluid as fluid
+        import paddle
 
-    place = fluid.CPUPlace()
-    main = fluid.Program()
-    with fluid.program_guard(main):
-        x = fluid.data(name='x', shape=[None, 13], dtype='float32')
-        y = fluid.data(name='y', shape=[None, 1], dtype='float32')
-        y_predict = fluid.layers.fc(input=x, size=1, act=None)
-        cost = fluid.layers.square_error_cost(input=y_predict, label=y)
-        avg_cost = fluid.layers.mean(cost)
+        paddle.disable_static()
+        inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+        linear = paddle.nn.Linear(10, 10)
+        inp = paddle.to_tensor(inp)
+        out = linear(inp)
+        loss = paddle.mean(out)
 
-        adam_optimizer = paddle.optimizer.AdamOptimizer(0.01)
-        adam_optimizer.minimize(avg_cost)
+        beta1 = paddle.to_tensor([0.9], dtype="float32")
+        beta2 = paddle.to_tensor([0.99], dtype="float32")
 
-        fetch_list = [avg_cost]
-        train_reader = paddle.batch(
-            paddle.dataset.uci_housing.train(), batch_size=1)
-        feeder = fluid.DataFeeder(place=place, feed_list=[x, y])
-        exe = fluid.Executor(place)
-        exe.run(fluid.default_startup_program())
-        for data in train_reader():
-            exe.run(main, feed=feeder.feed(data), fetch_list=fetch_list)
+        adam = paddle.optimizer.Adam(learning_rate=0.1,
+                parameters=linear.parameters(),
+                weight_decay=0.01)
+        out.backward()
+        adam.minimize(loss)
+        adam.clear_grad()
 
 .. py:method:: clear_grad()
 
@@ -181,7 +175,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     optimizer.step()
     optimizer.clear_grad()
 
-.. py:method:: set_lr()
+.. py:method:: set_lr(value)
 
 **注意：**
 

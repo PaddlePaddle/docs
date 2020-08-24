@@ -172,7 +172,7 @@ RMSProp
     optimizer.step()
     optimizer.clear_gradients()
 
-.. py:method:: set_lr()
+.. py:method:: set_lr(value)
 
 **注意：**
 
