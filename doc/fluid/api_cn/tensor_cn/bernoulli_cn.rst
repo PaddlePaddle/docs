@@ -11,7 +11,7 @@ bernoulli
 该OP以输入 ``x`` 为概率，生成一个伯努利分布（0-1分布）的Tensor，输出Tensor的形状和数据类型与输入 ``x`` 相同。
 
 .. math::
-   out_i ~  Bernoulli(p = x_i)
+   out_i \sim Bernoulli(p = x_i)
 
 参数：
     - **x** (Tensor) - 输入的概率值。数据类型为 ``float32`` 、``float64`` .
