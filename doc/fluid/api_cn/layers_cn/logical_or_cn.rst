@@ -34,13 +34,13 @@ logical_or
 
 .. code-block:: python
 
-    import paddle
-    import numpy as np
+     import paddle
+     import numpy as np
 
-    paddle.enable_imperative()
-    x_data = np.array([True, True, False, False], dtype=np.bool)
-    y_data = np.array([True, False, True, False], dtype=np.bool)
-    x = paddle.imperative.to_variable(x_data)
-    y = paddle.imperative.to_variable(y_data)
-    res = paddle.logical_or(x, y)
-    print(res.numpy()) # [True  True  True False]
+     paddle.disable_static()
+     x_data = np.array([True, False], dtype=np.bool).reshape(2, 1)
+     y_data = np.array([True, False, True, False], dtype=np.bool).reshape(2, 2)
+     x = paddle.to_tensor(x_data)
+     y = paddle.to_tensor(y_data)
+     res = paddle.logical_or(x, y)
+     print(res.numpy()) # [[ True  True] [ True False]]

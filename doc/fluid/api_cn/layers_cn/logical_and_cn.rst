@@ -33,14 +33,13 @@ logical_and
 **代码示例：**
 
 .. code-block:: python
+     import paddle
+     import numpy as np
 
-    import paddle
-    import numpy as np
-    
-    paddle.enable_imperative()
-    x_data = np.array([True, True, False, False], dtype=np.bool)
-    y_data = np.array([True, False, True, False], dtype=np.bool)
-    x = paddle.imperative.to_variable(x_data)
-    y = paddle.imperative.to_variable(y_data)
-    res = paddle.logical_and(x, y)
-    print(res.numpy()) # [True False False False]
+     paddle.disable_static()
+     x_data = np.array([True], dtype=np.bool)
+     y_data = np.array([True, False, True, False], dtype=np.bool)
+     x = paddle.to_tensor(x_data)
+     y = paddle.to_tensor(y_data)
+     res = paddle.logical_and(x, y)
+     print(res.numpy()) # [True False True False]
