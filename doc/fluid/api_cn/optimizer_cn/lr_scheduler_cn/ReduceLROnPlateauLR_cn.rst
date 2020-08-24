@@ -34,7 +34,7 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
 
     import paddle
 
-    # train on default dygraph mode
+    # train on default imperative mode
     paddle.disable_static()
     x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
