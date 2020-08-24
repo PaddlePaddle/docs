@@ -76,6 +76,7 @@ paddle.tensor
     tensor_cn/inverse_cn.rst
     tensor_cn/is_empty_cn.rst
     tensor_cn/isfinite_cn.rst
+    tensor_cn/isinf_cn.rst
     tensor_cn/isnan_cn.rst
     tensor_cn/kron_cn.rst
     tensor_cn/l2_normalize_cn.rst
@@ -109,6 +110,7 @@ paddle.tensor
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
     tensor_cn/pow_cn.rst
+    tensor_cn/prod_cn.rst
     tensor_cn/rand_cn.rst
     tensor_cn/randint_cn.rst
     tensor_cn/randn_cn.rst

@@ -9,5 +9,6 @@ functional
     functional/nll_loss.rst
     functional/mse_loss.rst
     functional/one_hot.rst
+    functional/ctc_loss.rst
     functional/adaptive_avg_pool2d.rst
     functional/adaptive_avg_pool3d.rst
