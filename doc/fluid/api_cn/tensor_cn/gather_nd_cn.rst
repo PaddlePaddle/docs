@@ -61,15 +61,16 @@ gather_nd
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
-
+    import numpy as np
+    
     paddle.disable_static()
-    input_1 = np.array([[1,2],[3,4],[5,6]])
-    index_1 = np.array([0,1])
-    input = paddle.to_tensor(input_1)
-    index = paddle.to_tensor(index_1)
-    output = paddle.gather(input, index, axis=0)
-    # expected output: [[1,2],[3,4]]
+    np_x = np.array([[[1, 2], [3, 4], [5, 6]],
+                     [[7, 8], [9, 10], [11, 12]]])
+    np_index = [[0, 1]]
+    x = paddle.to_tensor(np_x)
+    index = paddle.to_tensor(np_index)
+    
+    output = paddle.gather_nd(x, index) #[[3, 4]]
 
 
