@@ -52,6 +52,8 @@ paddle.tensor
     tensor/is_empty.rst
     tensor/index_select.rst
     tensor/isfinite.rst
+    tensor/isinf.rst
+    tensor/isnan.rst
     tensor/less_equal.rst
     tensor/less_than.rst
     tensor/logic.rst

@@ -1,11 +1,11 @@
-.. _cn_api_tensor_isfinite:
+.. _cn_api_tensor_isinf:
 
-isfinite
+isinf
 -----------------------------
 
-.. py:function:: paddle.tensor.isfinite(x, name=None)
+.. py:function:: paddle.tensor.isinf(x, name=None)
 
-返回输入tensor的每一个值是否为 `Finite` （既非 `+/-INF` 也非 `+/-NaN` ）。
+返回输入tensor的每一个值是否为 `+/-INF` 。
 
 参数
 :::::::::
@@ -14,7 +14,7 @@ isfinite
 
 返回
 :::::::::
-``Tensor``, 每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `Finite` （既非 `+/-INF` 也非 `+/-NaN` ）。
+``Tensor``, 每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-INF` 。
 
 代码示例
 :::::::::
@@ -26,5 +26,5 @@ isfinite
     paddle.disable_static()
     x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
     x = paddle.to_tensor(x_np)
-    out = paddle.tensor.isfinite(x)
-    print(out.numpy())  # [False  True  True False  True False False]
+    out = paddle.tensor.isinf(x)
+    print(out.numpy())  # [ True False False  True False False False]

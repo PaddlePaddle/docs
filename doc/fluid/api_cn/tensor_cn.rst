@@ -76,6 +76,7 @@ paddle.tensor
     tensor_cn/inverse_cn.rst
     tensor_cn/is_empty_cn.rst
     tensor_cn/isfinite_cn.rst
+    tensor_cn/isinf_cn.rst
     tensor_cn/isnan_cn.rst
     tensor_cn/kron_cn.rst
     tensor_cn/l2_normalize_cn.rst
