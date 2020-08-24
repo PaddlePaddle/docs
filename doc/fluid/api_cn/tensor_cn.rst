@@ -110,6 +110,7 @@ paddle.tensor
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
     tensor_cn/pow_cn.rst
+    tensor_cn/prod_cn.rst
     tensor_cn/rand_cn.rst
     tensor_cn/randint_cn.rst
     tensor_cn/randn_cn.rst
