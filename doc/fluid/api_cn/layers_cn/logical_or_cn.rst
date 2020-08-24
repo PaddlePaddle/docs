@@ -16,6 +16,9 @@ logical_or
 .. math::
         Out = X || Y
 
+.. note::
+    ``paddle.logical_or`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+
 参数：
         - **x** （Variable）- 逻辑或运算的第一个输入，是一个 Variable，数据类型只能是bool。
         - **y** （Variable）- 逻辑或运算的第二个输入，是一个 Variable，数据类型只能是bool。
