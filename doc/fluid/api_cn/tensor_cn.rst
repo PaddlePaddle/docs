@@ -76,6 +76,7 @@ paddle.tensor
     tensor_cn/inverse_cn.rst
     tensor_cn/is_empty_cn.rst
     tensor_cn/isfinite_cn.rst
+    tensor_cn/isinf_cn.rst
     tensor_cn/isnan_cn.rst
     tensor_cn/kron_cn.rst
     tensor_cn/l2_normalize_cn.rst
@@ -103,11 +104,13 @@ paddle.tensor
     tensor_cn/multiplex_cn.rst
     tensor_cn/nonzero_cn.rst
     tensor_cn/norm_cn.rst
+    tensor_cn/normal_cn.rst
     tensor_cn/not_equal_cn.rst
     tensor_cn/numel_cn.rst
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
     tensor_cn/pow_cn.rst
+    tensor_cn/prod_cn.rst
     tensor_cn/rand_cn.rst
     tensor_cn/randint_cn.rst
     tensor_cn/randn_cn.rst
@@ -144,6 +147,7 @@ paddle.tensor
     tensor_cn/square_cn.rst
     tensor_cn/squeeze_cn.rst
     tensor_cn/stack_cn.rst
+    tensor_cn/standard_normal_cn.rst
     tensor_cn/stanh_cn.rst
     tensor_cn/std_cn.rst
     tensor_cn/strided_slice_cn.rst
