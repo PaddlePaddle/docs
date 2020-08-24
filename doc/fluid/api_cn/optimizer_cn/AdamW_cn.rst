@@ -3,7 +3,7 @@
 AdamW
 -------------------------------
 
-.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.0, grad_clip=None, name=None, lazy_mode=False)
+.. py:class:: paddle.optimizer.AdamW(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=0.01, grad_clip=None, name=None, lazy_mode=False)
 
 
 
@@ -31,7 +31,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     - **beta1** (float|Tensor, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.9
     - **beta2** (float|Tensor, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999
     - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
-    - **weight_decay** (float|Tensor, 可选) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Tensor类型。默认值为0.0
+    - **weight_decay** (float|Tensor, 可选) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Tensor类型。默认值为0.01
     - **apply_decay_param_fun** (function|None, 可选): 传入函数时，只有可以使 apply_decay_param_fun(Tensor)==True的Tensor会更新参数。只有在想要指定要更新的参数时使用。默认值为None
     - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
       默认值为None，此时将不进行梯度裁剪。
@@ -81,6 +81,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5, dtype="float32")
     adam = paddle.optimizer.AdamW(learning_rate = 0.01,
+                                weight_decay = 0.01,
                                 parameters = linear.parameters())
     out = linear(a)
     out.backward()
