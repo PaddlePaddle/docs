@@ -3,5 +3,6 @@
 Bilinear
 -------------------------------
 
-..  autofunction:: paddle.nn.layer.Bilinear
+..  autofunction:: paddle.nn.Bilinear
     :noindex:
+

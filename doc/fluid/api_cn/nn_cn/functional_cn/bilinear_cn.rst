@@ -11,14 +11,16 @@ bilinear
 例如:
 
 .. math::
+
        out_{i} = x1 * W_{i} * {x2^\mathrm{T}}, i=0,1,...,size-1
+
        out = out + b
 
 在这个公式中：
-  - :math:`x1`: 第一个输入，包含 :math:`in1_features` 个元素，形状为 [batch_size, in1_features]。
-  - :math:`x2`: 第二个输入，包含 :math:`in2_features` 个元素，形状为 [batch_size, in2_features]。
-  - :math:`W_{i}`: 第 :math:`i` 个被学习的权重，形状是 [in1_features, in2_features]。
-  - :math:`out_{i}`: 输出的第 :math:`i` 个元素，形状是 [batch_size, out_features]。
+  - :math:`x1`: 第一个输入，包含 :in1_features个元素，形状为 [batch_size, in1_features]。
+  - :math:`x2`: 第二个输入，包含 :in2_features个元素，形状为 [batch_size, in2_features]。
+  - :math:`W_{i}`: 第 :i个被学习的权重，形状是 [in1_features, in2_features]。
+  - :math:`out_{i}`: 输出的第 :i个元素，形状是 [batch_size, out_features]。
   - :math:`b`: 被学习的偏置参数，形状是 [1, out_features]。
   - :math:`x2^\mathrm{T}`: :math:`x2` 的转置。
 
@@ -27,7 +29,7 @@ bilinear
   - **x2** (int): 第二个输入的 `Tensor` ，数据类型为：float32、float64。
   - **weight** (Parameter) ：本层的可学习参数。形状是 [out_features, in1_features, in2_features]。
   - **bias** (Parameter, 可选) : 本层的可学习偏置。形状是 [1, out_features]。默认值为None，如果被设置成None，则不会有bias加到output结果上。
-  - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为 None。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 返回： 一个形为 [batch_size, out_features] 的 2-D 张量。
 
