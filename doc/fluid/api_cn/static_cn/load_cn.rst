@@ -1,0 +1,5 @@
+.. _cn_api_static_cn_load:
+
+load
+------------------------------
+:doc_source: paddle.fluid.load
