@@ -1,4 +1,4 @@
-.. _cn_api_static_cn/nn_cn_prelu:
+.. _cn_api_static/nn_prelu:
 
 prelu
 ------------------------------

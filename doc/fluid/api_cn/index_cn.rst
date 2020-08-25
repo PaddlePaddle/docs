@@ -99,6 +99,8 @@ Note。
     dataset_cn.rst
     tensor_cn.rst
     nn_cn.rst
+    static_cn.rst
+    static_cn/nn_cn.rst
     imperative_cn.rst
     declarative_cn.rst
     optimizer_cn.rst
@@ -120,7 +122,6 @@ Note。
     layers_cn.rst
     metrics_cn.rst
     nets_cn.rst
-    optimizer_cn.rst
     profiler_cn.rst
     regularizer_cn.rst
     transpiler_cn.rst

@@ -13,6 +13,8 @@ API Reference
     io.rst
     metric.rst
     nn.rst
+    static.rst
+    static/nn.rst
     optimizer.rst
     tensor.rst
     fluid.rst
