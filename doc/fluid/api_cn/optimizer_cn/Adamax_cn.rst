@@ -107,24 +107,25 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
 .. code-block:: python
 
-    import numpy
-    import paddle.fluid as fluid
-     
-    data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-    hidden = fluid.layers.fc(input=data, size=10)
-    loss = fluid.layers.mean(hidden)
-    adam = paddle.optimizer.Adamax(learning_rate=0.2)
+    import paddle
+    import numpy as np
+
+    paddle.disable_static()
+    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    linear = paddle.nn.Linear(10, 10)
+    inp = paddle.to_tensor(inp)
+    out = linear(inp)
+    loss = paddle.mean(out)
+
+    beta1 = paddle.to_tensor([0.9], dtype="float32")
+    beta2 = paddle.to_tensor([0.99], dtype="float32")
+
+    adam = paddle.optimizer.Adamax(learning_rate=0.1,
+            parameters=linear.parameters(),
+            weight_decay=0.01)
+    out.backward()
     adam.minimize(loss)
-
-    place = fluid.CPUPlace() # fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-     
-    x = numpy.random.random(size=(10, 1)).astype('float32')
-    exe.run(fluid.default_startup_program())
-    outs = exe.run(program=fluid.default_main_program(),
-                   feed={'X': x},
-                   fetch_list=[loss.name])
-
+    adam.clear_grad()
 
 
 .. py:method:: clear_grad()
