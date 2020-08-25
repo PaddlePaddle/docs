@@ -93,20 +93,9 @@ def is_filter_api(api):
     if api in alias_api_map:
         return False
 
-    #check api start with paddle.fluid
-    #if has no alias, return True
-    #if has alias also in paddle.fluid, return True
-    #if has alias in other module, return False
     same_apis = same_api_map[id(eval(api))]
-    if api.startswith("paddle.fluid"):
-        all_fluid_flag = True
-        for x in same_apis:
-            if not x.startswith("paddle.fluid"):
-                all_fluid_flag = False
 
-        if all_fluid_flag:
-            return True
-
+    #api not in alias map
     #if the api in alias_map key, others api is alias api
     for x in same_apis:
         if x in alias_api_map:
@@ -127,14 +116,6 @@ def is_filter_api(api):
     return False
 
 
-def get_display_api(api):
-    # recomment alias api
-    if api.startswith("paddle.fluid") and api in alias_api_map:
-        return alias_api_map[api][0]
-    else:
-        return api
-
-
 def gen_en_files(root_path='paddle', api_label_file="api_label"):
     backup_path = root_path + "_" + str(int(time.time()))
     api_f = open(api_label_file, 'w')
@@ -142,11 +123,12 @@ def gen_en_files(root_path='paddle', api_label_file="api_label"):
     for api in api_set:
         if is_filter_api(api):
             continue
-
-        raw_api = api
-        api = get_display_api(api)
-
+        module_name = ".".join(api.split(".")[0:-1])
         doc_file = api.split(".")[-1]
+
+        if isinstance(eval(module_name + "." + doc_file), types.ModuleType):
+            continue
+
         path = "/".join(api.split(".")[0:-1])
         if not os.path.exists(path):
             os.makedirs(path)
@@ -156,7 +138,7 @@ def gen_en_files(root_path='paddle', api_label_file="api_label"):
         os.mknod(f + en_suffix)
         gen = EnDocGenerator()
         with gen.guard(f + en_suffix):
-            gen.module_name = ".".join(raw_api.split(".")[0:-1])
+            gen.module_name = module_name
             gen.api = doc_file
             gen.print_header_reminder()
             gen.print_item()
