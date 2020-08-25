@@ -143,6 +143,7 @@ def gen_en_files(root_path='paddle', api_label_file="api_label"):
         if is_filter_api(api):
             continue
 
+        raw_api = api
         api = get_display_api(api)
 
         doc_file = api.split(".")[-1]
@@ -155,7 +156,7 @@ def gen_en_files(root_path='paddle', api_label_file="api_label"):
         os.mknod(f + en_suffix)
         gen = EnDocGenerator()
         with gen.guard(f + en_suffix):
-            gen.module_name = ".".join(api.split(".")[0:-1])
+            gen.module_name = ".".join(raw_api.split(".")[0:-1])
             gen.api = doc_file
             gen.print_header_reminder()
             gen.print_item()
