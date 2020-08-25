@@ -11,3 +11,4 @@ functional
     functional/ctc_loss.rst
     functional/adaptive_avg_pool2d.rst
     functional/adaptive_avg_pool3d.rst
+    functional/bilinear.rst
