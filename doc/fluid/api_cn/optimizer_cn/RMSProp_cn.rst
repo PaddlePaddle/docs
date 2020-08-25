@@ -193,7 +193,7 @@ RMSProp
     lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
     for i in range(5):
         adam.set_lr(lr_list[i])
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         print("current lr is {}".format(lr))
     # Print:
     #    current lr is 0.2
@@ -207,12 +207,12 @@ RMSProp
         lr_var = paddle.create_global_var(
             shape=[1], value=0.7, dtype='float32')
         adam.set_lr(lr_var)
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         print("current lr is {}".format(lr))
         # Print:
         #    current lr is 0.7
 
-.. py:method:: current_step_lr()
+.. py:method:: get_lr()
 
 **注意：**
 
@@ -234,7 +234,7 @@ RMSProp
     paddle.disable_static()
     emb = paddle.nn.Embedding([10, 10])
     adam = paddle.optimizer.RMSProp(0.001, parameters = emb.parameters())
-    lr = adam.current_step_lr()
+    lr = adam.get_lr()
     print(lr) # 0.001
 
     # example2: PiecewiseDecay is used, return the step learning rate
@@ -251,11 +251,11 @@ RMSProp
                            parameters=linear.parameters())
 
     # first step: learning rate is 0.2
-    np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
 
     # learning rate for different steps
     ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
     for i in range(12):
         adam.step()
-        lr = adam.current_step_lr()
+        lr = adam.get_lr()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
