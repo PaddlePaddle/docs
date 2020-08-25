@@ -9,7 +9,11 @@ selu激活层
 
 .. math::
 
-    selu(x) = scale * (max(0,x) + min(0, alpha * (e^{x} - 1)))
+    selu(x)= scale *
+             \begin{cases}
+               x, \text{if } x > 0 \\
+               alpha * e^{x} - alpha, \text{if } x <= 0
+             \end{cases}
 
 其中，:math:`x` 为输入的 Tensor
 
