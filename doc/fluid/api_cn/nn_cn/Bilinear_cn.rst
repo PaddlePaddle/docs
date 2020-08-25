@@ -3,8 +3,7 @@
 Bilinear
 -------------------------------
 
-
-.. py:function:: paddle.nn.Bilinear(x, y, size, act=None, name=None, param_attr=None, bias_attr=None)
+.. py:function:: paddle.nn.Bilinear(in1_features, in2_features, out_features, weight_attr=None, bias_attr=None, name=None)
 
 该层对两个输入执行双线性张量积。
 
@@ -40,7 +39,7 @@ Bilinear
 
 返回
 :::::::::
-``Variable``，一个形为 [batch_size, out_features] 的 2-D 张量。
+``Tensor``，一个形为 [batch_size, out_features] 的 2-D 张量。
 
 代码示例
 :::::::::
