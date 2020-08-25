@@ -20,6 +20,8 @@ API接口
     layers_cn.rst
     metrics_cn.rst
     nets_cn.rst
+    static_cn.rst
+    static_cn/nn_cn.rst
     optimizer_cn.rst
     profiler_cn.rst
     regularizer_cn.rst
