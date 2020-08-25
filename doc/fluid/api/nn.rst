@@ -33,10 +33,10 @@ paddle.nn
     nn/ConstantPad2d.rst
     nn/ConstantPad3d.rst
     nn/continuous_value_model.rst
-    nn/conv2d.rst
-    nn/conv2d_transpose.rst
-    nn/conv3d.rst
-    nn/conv3d_transpose.rst
+    nn/Conv2d.rst
+    nn/Conv3d.rst
+    nn/ConvTranspose2d.rst 
+    nn/ConvTranspose3d.rst 
     nn/cosine_decay.rst
     nn/cosine_similarity.rst
     nn/CosineSimilarity.rst

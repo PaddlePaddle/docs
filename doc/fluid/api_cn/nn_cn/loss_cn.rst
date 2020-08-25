@@ -14,3 +14,4 @@ loss
     loss_cn/MarginRankingLoss_cn.rst
     loss_cn/MSELoss_cn.rst
     loss_cn/NLLLoss_cn.rst
+    loss_cn/KLDivLoss_cn.rst
