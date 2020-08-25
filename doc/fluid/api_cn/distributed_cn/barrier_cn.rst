@@ -22,9 +22,11 @@ barrier
 
         import paddle
         import paddle.fluid as fluid
+        from fluid.dygraph.parallel import prepare_context
+
 
         paddle.disable_static()
         place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
         with fluid.dygraph.guard(place=place):
-             paddle.distributed.init_distributed_context('nccl', 1000, 2, 1)
-             paddle.distributed.barrier()
+            prepare_context()
+            paddle.distributed.barrier()

@@ -10,7 +10,7 @@ reduce
 
 参数
 :::::::::
-    - tensor (Tensor) - 操作的输入tensor，结果返回至目标进程号的tensor中。tensor的数据类型为：float32、float64、int32、int64。
+    - tensor (Tensor) - 操作的输入Tensor，结果返回至目标进程号的Tensor中。Tensor的数据类型为：float32、float64、int32、int64。
     - dst (int) - 返回操作结果的目标进程编号。
     - op (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.Min|ReduceOp.PROD，可选) - 归约的具体操作，比如求和，取最大值，取最小值和求乘积，默认为求和归约。
     - group (int，可选) - 工作的进程组编号，默认为0。
@@ -25,16 +25,16 @@ reduce
 
         import paddle
         import paddle.fluid as fluid
-
+        from fluid.dygraph.parallel import prepare_context
         paddle.disable_static()
         place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
         with fluid.dygraph.guard(place=place):
-             paddle.distributed.init_distributed_context('nccl', 1000, 2, 1)
-             if fluid.dygraph.ParallelEnv().local_rank == 0:
-                 np_data = np.array([[4, 5, 6], [4, 5, 6]])
-             else:
-                 np_data = np.array([[1, 2, 3], [1, 2, 3]])
-             data = paddle.to_tensor(np_data)
-             paddle.distributed.reduce(data, 0)
-             out = data.numpy()
-             # [[5, 7, 9], [5, 7, 9]]
+            prepare_context()
+            if fluid.dygraph.ParallelEnv().local_rank == 0:
+                np_data = np.array([[4, 5, 6], [4, 5, 6]])
+            else:
+                np_data = np.array([[1, 2, 3], [1, 2, 3]])
+            data = paddle.to_tensor(np_data)
+            paddle.distributed.reduce(data, 0)
+            out = data.numpy()
+            # [[5, 7, 9], [5, 7, 9]]
