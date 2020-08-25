@@ -90,7 +90,7 @@ def is_filter_api(api):
                 return True
 
     #check api in alias map
-    if alias_api_map.has_key(api):
+    if api in alias_api_map:
         return False
 
     #check api start with paddle.fluid
@@ -109,7 +109,7 @@ def is_filter_api(api):
 
     #if the api in alias_map key, others api is alias api
     for x in same_apis:
-        if alias_api_map.has_key(x):
+        if x in alias_api_map:
             return True
 
     if len(same_apis) > 1:
@@ -129,7 +129,7 @@ def is_filter_api(api):
 
 def get_display_api(api):
     # recomment alias api
-    if api.startswith("paddle.fluid") and alias_api_map.has_key(api):
+    if api.startswith("paddle.fluid") and api in alias_api_map:
         return alias_api_map[api][0]
     else:
         return api
@@ -213,8 +213,7 @@ class EnDocGenerator(object):
             #print("attribute error: module_name=" + self.module_name  + ", api=" + self.api)
             pass
         else:
-            if isinstance(
-                    eval(self.module_name + "." + self.api), types.TypeType):
+            if isinstance(eval(self.module_name + "." + self.api), type):
                 self.print_class()
             elif isinstance(
                     eval(self.module_name + "." + self.api),
