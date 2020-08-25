@@ -9,10 +9,10 @@ paddle.nn
     :maxdepth: 1
 
     nn_cn/Conv1d_cn.rst
-    nn/Conv2d.rst
-    nn/Conv3d.rst
-    nn/ConvTranspose2d.rst 
-    nn/ConvTranspose3d.rst
+    nn_cn/Conv2d.rst
+    nn_cn/Conv3d.rst
+    nn_cn/ConvTranspose2d.rst 
+    nn_cn/ConvTranspose3d.rst
     nn_cn/diag_embed_cn.rst
     nn_cn/interpolate_cn.rst
     nn_cn/Linear_cn.rst
