@@ -42,6 +42,7 @@ paddle.tensor
     tensor/flatten.rst
     tensor/floor.rst
     tensor/full.rst
+    tensor/full_like.rst
     tensor/gather.rst
     tensor/gather_nd.rst
     tensor/greater_equal.rst

@@ -1,7 +1,7 @@
-.. _api_nn_relu:
+.. _api_nn_ReLU:
 
-relu
+ReLU
 -------------------------------
+:doc_source: paddle.fluid.layers.relu
 
-..  autofunction:: paddle.nn.functional.relu
-    :noindex:
+

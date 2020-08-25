@@ -10,7 +10,6 @@ fluid.dygraph
 
     dygraph_cn/BackwardStrategy_cn.rst
     dygraph_cn/BatchNorm_cn.rst
-    dygraph_cn/SyncBatchNorm_cn.rst
     dygraph_cn/BilinearTensorProduct_cn.rst
     dygraph_cn/Conv2D_cn.rst
     dygraph_cn/Conv2DTranspose_cn.rst
