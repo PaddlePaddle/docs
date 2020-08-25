@@ -40,7 +40,7 @@ Bilinear
 
 返回
 :::::::::
-一个形为 [batch_size, out_features] 的 2-D 张量。
+``Variable``，一个形为 [batch_size, out_features] 的 2-D 张量。
 
 代码示例
 :::::::::
