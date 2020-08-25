@@ -8,6 +8,7 @@ API Reference
     ../api_guides/index_en.rst
     dataset.rst
     declarative.rst
+    distributed.rst
     framework.rst
     imperative.rst
     io.rst
