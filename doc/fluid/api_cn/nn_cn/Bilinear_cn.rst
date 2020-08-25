@@ -24,7 +24,8 @@ Bilinear
   - :math:`b`: 被学习的偏置参数，形状是 [1, out_features]。
   - :math:`x2^\mathrm{T}`: :math:`x2` 的转置。
 
-参数：
+参数
+:::::::::
   - **in1_features** (int): 每个 **x1** 元素的维度。
   - **in2_features** (int): 每个 **x2** 元素的维度。
   - **out_features** (int): 输出张量的维度。
@@ -32,15 +33,17 @@ Bilinear
   - **bias_attr** (ParamAttr，可选) : 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时bias的元素会被初始化成0。如果设置成False，则不会有bias加到output结果上。
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
-属性：
+属性
+:::::::::
     - **weight** 本层的可学习参数，类型为 Parameter
     - **bias** 本层的可学习偏置，类型为 Parameter
 
-返回： 一个形为 [batch_size, out_features] 的 2-D 张量。
+返回
+:::::::::
+一个形为 [batch_size, out_features] 的 2-D 张量。
 
-返回类型：Variable
-
-**代码示例：**
+代码示例
+:::::::::
 
 .. code-block:: python
 

@@ -24,18 +24,22 @@ bilinear
   - :math:`b`: 被学习的偏置参数，形状是 [1, out_features]。
   - :math:`x2^\mathrm{T}`: :math:`x2` 的转置。
 
-参数：
+参数
+:::::::::
   - **x1** (int): 第一个输入的 `Tensor` ，数据类型为：float32、float64。
   - **x2** (int): 第二个输入的 `Tensor` ，数据类型为：float32、float64。
   - **weight** (Parameter) ：本层的可学习参数。形状是 [out_features, in1_features, in2_features]。
   - **bias** (Parameter, 可选) : 本层的可学习偏置。形状是 [1, out_features]。默认值为None，如果被设置成None，则不会有bias加到output结果上。
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
-返回： 一个形为 [batch_size, out_features] 的 2-D 张量。
+返回
+:::::::::
+``Variable``，一个形为 [batch_size, out_features] 的 2-D 张量。
 
-返回类型：Variable
+返回类型：
 
-**代码示例：**
+代码示例
+:::::::::
 
 .. code-block:: python
 
