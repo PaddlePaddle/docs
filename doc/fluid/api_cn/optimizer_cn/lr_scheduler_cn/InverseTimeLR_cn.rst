@@ -4,7 +4,7 @@ InverseTimeLR
 -------------------------------
 
 
-.. py:class:: paddle.optimizer.lr_scheduler.InverseTimeLR(learning_rate, gama, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr_scheduler.InverseTimeLR(learning_rate, gamma, last_epoch=-1, verbose=False)
 
 
 该接口提供反时限学习率衰减的功能。
