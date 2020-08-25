@@ -13,3 +13,21 @@ cache
 返回：每次都会从内存中yields数据的一个装饰reader。
 
 返回类型：生成器
+
+**代码示例**
+
+..  code-block:: python
+
+    import paddle.fluid as fluid
+
+    def reader():
+        for i in range(3):
+            yield i
+
+    # All data is cached into memory
+    cached_reader = fluid.io.cache(reader)
+
+    for i in cached_reader():
+        print(i)
+ 
+    # Output: 0 1 2 

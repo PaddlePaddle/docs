@@ -12,3 +12,21 @@ buffered
     - **size** (int) – 最大buffer的大小
 
 返回:缓存的reader（读取器）
+
+**代码示例**
+
+..  code-block:: python
+
+	import paddle.fluid as fluid
+
+	def reader():
+		for i in range(3):
+			yield i
+
+	# Create a buffered reader, and the buffer size is 2.
+	buffered_reader = fluid.io.buffered(reader, 2)
+
+	for i in buffered_reader():
+		print(i)
+
+	# Output: 0 1 2
