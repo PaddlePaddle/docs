@@ -102,6 +102,7 @@ Note。
     imperative_cn.rst
     declarative_cn.rst
     optimizer_cn.rst
+    static_cn.rst
     metric_cn.rst
     framework_cn.rst
     io_cn.rst
@@ -120,7 +121,6 @@ Note。
     layers_cn.rst
     metrics_cn.rst
     nets_cn.rst
-    optimizer_cn.rst
     profiler_cn.rst
     regularizer_cn.rst
     transpiler_cn.rst

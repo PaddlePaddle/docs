@@ -14,6 +14,7 @@ API接口
     data_feeder_cn.rst
     dataset_cn.rst
     dygraph_cn.rst
+    static_cn.rst
     executor_cn.rst
     initializer_cn.rst
     io_cn.rst
