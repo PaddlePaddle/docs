@@ -17,6 +17,10 @@ functional
     functional_cn/ctc_loss_cn.rst
     functional_cn/sigmoid_cn.rst
     functional_cn/one_hot_cn.rst
+    functional_cn/dropout_cn.rst
+    functional_cn/dropout2d_cn.rst
+    functional_cn/dropout3d_cn.rst
+    functional_cn/alpha_dropout_cn.rst
     functional_cn/mse_loss_cn.rst
     functional_cn/adaptive_avg_pool2d_cn.rst
     functional_cn/adaptive_avg_pool3d_cn.rst
