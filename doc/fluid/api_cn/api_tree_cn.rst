@@ -25,5 +25,6 @@ API接口
     regularizer_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
+    static_cn.rst
 
 
