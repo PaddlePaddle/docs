@@ -1,24 +1,21 @@
-.. _cn_api_nn_functional_batch_norm:
+.. _cn_api_nn_functional_layer_norm:
 
-batch_norm
+layer_norm
 -------------------------------
 
-.. py:class:: paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', name=None):
+.. py:class:: paddle.nn.functional.layer_norm(x, normalized_shape, weight=None, bias=None, epsilon=1e-05, name=None):
 
-推荐使用nn.BatchNorm1d，nn.BatchNorm2d, nn.BatchNorm3d，由内部调用此方法。
+推荐使用nn.LayerNorm。
 
-详情见 :ref:`api_paddle_nn_cn_BatchNorm1d` 
+详情见 :ref:`api_paddle_nn_cn_LayerNorm` 
 
 参数：
     - **x** (int) - 输入，数据类型为float32, float64。
-    - **running_mean** (Tensor) - 均值的Tensor。
-    - **running_var** (Tensor) - 方差的Tensor。
-    - **weight** (Tensor) - 权重的Tensor。
-    - **bias** (Tensor) - 偏置的Tensor。
+    - **normalized_shape** (int|list|tuple) - 期望的输入是 :math:`[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]` ,如果是一个整数，会作用在最后一个维度。
+    - **weight** (Tensor) - 权重的Tensor, 默认为None。
+    - **bias** (Tensor) - 偏置的Tensor, 默认为None。
     - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-    - **momentum** (float, 可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
-    - **data_format** (string, 可选) - 指定输入数据格式，数据格式可以为“NC", "NCL", "NCHW" 或者"NCDHW"。默认值："NCHW"。
-    - **name** (string, 可选) – BatchNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (string, 可选) – LayerNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 
 返回：无
@@ -27,21 +24,15 @@ batch_norm
 **代码示例**
 
 .. code-block:: python
-
     import paddle
     import numpy as np
 
     paddle.disable_static()
-    x = np.random.seed(123)
-    x = np.random.random(size=(2, 1, 2, 3)).astype('float32')
-    running_mean = np.random.random(size=1).astype('float32')
-    running_variance = np.random.random(size=1).astype('float32')
-    weight_data = np.random.random(size=1).astype('float32')
-    bias_data = np.random.random(size=1).astype('float32')
-    x = paddle.to_tensor(x)
-    rm = paddle.to_tensor(running_mean)
-    rv = paddle.to_tensor(running_variance)
-    w = paddle.to_tensor(weight_data)
-    b = paddle.to_tensor(bias_data)
-    batch_norm_out = paddle.nn.functional.batch_norm(x, rm, rv, w, b)
-    print batch_norm_out
+    np.random.seed(123)
+    x_data = np.random.random(size=(2, 2, 2, 3)).astype('float32')
+    x = paddle.to_tensor(x_data) 
+    layer_norm = paddle.nn.functional.layer_norm(x, x.shape[1:])
+    layer_norm_out = layer_norm(x)
+
+    print(layer_norm_out.numpy)
+
