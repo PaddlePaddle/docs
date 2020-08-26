@@ -22,11 +22,9 @@ barrier
 
         import paddle
         import paddle.fluid as fluid
-        from fluid.dygraph.parallel import prepare_context
-
+        from paddle.fluid.dygraph.parallel import prepare_context
 
         paddle.disable_static()
-        place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
-        with fluid.dygraph.guard(place=place):
-            prepare_context()
-            paddle.distributed.barrier()
+        paddle.set_device('gpu:%d'%fluid.dygraph.ParallelEnv().dev_id)
+        prepare_context()
+        paddle.distributed.barrier()
