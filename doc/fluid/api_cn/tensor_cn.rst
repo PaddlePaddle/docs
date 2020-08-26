@@ -19,6 +19,7 @@ paddle.tensor
     tensor_cn/argsort_cn.rst
     tensor_cn/asin_cn.rst
     tensor_cn/atan_cn.rst
+    tensor_cn/bernoulli_cn.rst
     tensor_cn/bmm_cn.rst
     tensor_cn/cast_cn.rst
     tensor_cn/ceil_cn.rst
@@ -91,6 +92,7 @@ paddle.tensor
     tensor_cn/logical_or_cn.rst
     tensor_cn/logical_xor_cn.rst
     tensor_cn/logsumexp_cn.rst
+    tensor_cn/masked_select_cn.rst
     tensor_cn/math_cn.rst
     tensor_cn/matmul_cn.rst
     tensor_cn/max_cn.rst
@@ -110,6 +112,7 @@ paddle.tensor
     tensor_cn/ones_cn.rst
     tensor_cn/ones_like_cn.rst
     tensor_cn/pow_cn.rst
+    tensor_cn/prod_cn.rst
     tensor_cn/rand_cn.rst
     tensor_cn/randint_cn.rst
     tensor_cn/randn_cn.rst

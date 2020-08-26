@@ -96,6 +96,7 @@ paddle
 	paddle_cn/logsumexp_cn.rst
 	paddle_cn/log_cn.rst
 	paddle_cn/manual_seed_cn.rst
+	paddle_cn/masked_select_cn.rst
 	paddle_cn/matmul_cn.rst
 	paddle_cn/max_cn.rst
 	paddle_cn/maximum_cn.rst
