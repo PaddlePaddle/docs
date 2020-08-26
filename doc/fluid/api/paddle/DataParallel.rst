@@ -1,4 +1,4 @@
-.. _api_distributed_DataParallel:
+.. _api_paddle_DataParallel:
 
 DataParallel
 -------------------------------
