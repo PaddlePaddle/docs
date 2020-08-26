@@ -26,6 +26,8 @@ InputSpec
 
     input = InputSpec([None, 784], 'float32', 'x')
     label = InputSpec([None, 1], 'int64', 'label')
+    print(input)  # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
+    print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
 
 
 .. py:method:: from_tensor(tensor, name=None)
@@ -46,12 +48,12 @@ InputSpec
 .. code-block:: python
 
     import numpy as np
-    import paddle.fluid as fluid
+    import paddle
     from paddle.static import InputSpec
 
-    fluid.enable_dygraph()
+    paddle.disable_static()
 
-    x = fluid.dygraph.to_variable(np.ones([2, 2], np.float32))
+    x = paddle.to_tensor(np.ones([2, 2], np.float32))
     x_spec = InputSpec.from_tensor(x, name='x')
     print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
 
