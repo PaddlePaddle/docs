@@ -62,11 +62,11 @@ AdaptiveMaxPool1d
         paddle.disable_static()
         
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
-        AdaptiveMaxPool1d = nn.AdaptiveMaxPool1d(output_size=16)
+        AdaptiveMaxPool1d = nn.layer.AdaptiveMaxPool1d(output_size=16)
         pool_out = AdaptiveMaxPool1d(data)
         # pool_out shape: [1, 3, 16]
 
         # for return_indices = true
-        AdaptiveMaxPool1d = nn.AdaptiveMaxPool1d(output_size=16, return_indices=True)
+        AdaptiveMaxPool1d = nn.layer.AdaptiveMaxPool1d(output_size=16, return_indices=True)
         pool_out, indices = AdaptiveMaxPool1d(data)
         # pool_out shape: [1, 3, 16], indices shape: [1, 3, 16]

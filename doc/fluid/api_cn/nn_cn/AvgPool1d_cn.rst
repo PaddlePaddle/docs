@@ -54,6 +54,6 @@ AvgPool1d
         paddle.disable_static()
 
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
-        AvgPool1d = nn.AvgPool1d(kernel_size=2, stride=2, padding=0)
+        AvgPool1d = nn.layer.AvgPool1d(kernel_size=2, stride=2, padding=0)
         pool_out = AvgPool1d(data)
         # pool_out shape: [1, 3, 16]

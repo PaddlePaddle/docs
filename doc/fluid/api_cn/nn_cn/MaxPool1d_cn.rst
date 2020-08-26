@@ -53,10 +53,10 @@ MaxPool1d
         paddle.disable_static()
         
         data = paddle.to_variable(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
-        MaxPool1d = nn.MaxPool1d(kernel_size=2, stride=2, padding=0)
+        MaxPool1d = nn.layer.MaxPool1d(kernel_size=2, stride=2, padding=0)
         pool_out = MaxPool1d(data)
         # pool_out shape: [1, 3, 16]
         
-        MaxPool1d = nn.MaxPool1d(kernel_size=2, stride=2, padding=0, return_indices=True)
+        MaxPool1d = nn.layer.MaxPool1d(kernel_size=2, stride=2, padding=0, return_indices=True)
         pool_out, indices = MaxPool1d(data)
         # pool_out shape: [1, 3, 16], indices shape: [1, 3, 16]
