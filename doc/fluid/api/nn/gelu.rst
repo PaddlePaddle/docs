@@ -2,6 +2,8 @@
 
 gelu
 -------------------------------
-:doc_source: paddle.fluid.layers.gelu
+
+..  autofunction:: paddle.nn.functional.gelu
+    :noindex:
 
 
