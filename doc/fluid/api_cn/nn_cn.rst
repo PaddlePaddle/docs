@@ -189,3 +189,4 @@ paddle.nn
     nn_cn/ZeroPad2d_cn.rst
     nn_cn/AdaptiveAvgPool2d_cn.rst
     nn_cn/AdaptiveAvgPool3d_cn.rst
+    nn_cn/Bilinear_cn.rst
