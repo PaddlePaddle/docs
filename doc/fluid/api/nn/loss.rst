@@ -10,3 +10,5 @@ loss
     loss/L1Loss.rst
     loss/MSELoss.rst
     loss/NLLLoss.rst
+    loss/SmoothL1Loss.rst
+    loss/CTCLoss.rst
