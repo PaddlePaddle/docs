@@ -56,8 +56,9 @@ AdaptiveMaxPool1d
         #         lend = ceil((i + 1) * L / m)
         #         output[:, :, i] = max(input[:, :, lstart: lend])
         #
-                import paddle
+        import paddle
         import paddle.nn as nn
+        import numpy as np
         paddle.disable_static()
         
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
