@@ -28,6 +28,7 @@ paddle.nn
     nn_cn/anchor_generator_cn.rst
     nn_cn/assign_cn.rst
     nn_cn/BatchNorm_cn.rst
+    nn_cn/SyncBatchNorm_cn.rst
     nn_cn/beam_search_cn.rst
     nn_cn/beam_search_decode_cn.rst
     nn_cn/BilinearTensorProduct_cn.rst
@@ -179,6 +180,8 @@ paddle.nn
     nn_cn/yolo_box_cn.rst
     nn_cn/loss_cn/MarginRankingLoss_cn.rst
     nn_cn/functional_cn/margin_ranking_loss_cn.rst
+    nn_cn/weight_norm_cn.rst
+    nn_cn/remove_weight_norm_cn.rst
     nn_cn/Dropout_cn.rst
     nn_cn/Dropout2D_cn.rst
     nn_cn/Dropout3D_cn.rst
@@ -186,3 +189,4 @@ paddle.nn
     nn_cn/ZeroPad2d_cn.rst
     nn_cn/AdaptiveAvgPool2d_cn.rst
     nn_cn/AdaptiveAvgPool3d_cn.rst
+    nn_cn/Bilinear_cn.rst

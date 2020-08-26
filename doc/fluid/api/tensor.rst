@@ -67,6 +67,7 @@ paddle.tensor
     tensor/logical_or.rst
     tensor/logical_xor.rst
     tensor/math.rst
+    tensor/masked_select.rst
     tensor/max.rst
     tensor/maximum.rst
     tensor/mean.rst
