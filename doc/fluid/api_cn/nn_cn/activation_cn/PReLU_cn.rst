@@ -1,10 +1,10 @@
-.. _cn_api_nn_PRelu:
+.. _cn_api_nn_PReLU:
 
-PRelu
+PReLU
 -------------------------------
-.. py:class:: paddle.nn.PRelu(num_parameters=1, init=0.25, weight_attr=None, name=None)
+.. py:class:: paddle.nn.PReLU(num_parameters=1, init=0.25, weight_attr=None, name=None)
 
-PRelu激活层（PRelu Activation Operator）。计算公式如下：
+PReLU激活层（PReLU Activation Operator）。计算公式如下：
 
 如果使用近似计算：
 
@@ -23,7 +23,7 @@ PRelu激活层（PRelu Activation Operator）。计算公式如下：
 
 形状:
 ::::::::::
-    - input: 任意形状的Tensor。
+    - input: 任意形状的Tensor，默认数据类型为float32。
     - output: 和input具有相同形状的Tensor。
 
 代码示例
@@ -35,13 +35,14 @@ PRelu激活层（PRelu Activation Operator）。计算公式如下：
     import numpy as np
 
     paddle.disable_static()
+    paddle.set_default_dtype("float64")
 
     data = np.array([[[[-2.0,  3.0, -4.0,  5.0],
                        [ 3.0, -4.0,  5.0, -6.0],
                        [-7.0, -8.0,  8.0,  9.0]],
                       [[ 1.0, -2.0, -3.0,  4.0],
                        [-5.0,  6.0,  7.0, -8.0],
-                       [ 6.0,  7.0,  8.0,  9.0]]]], 'float32')
+                       [ 6.0,  7.0,  8.0,  9.0]]]], 'float64')
     x = paddle.to_tensor(data)
     m = paddle.nn.PReLU(1, 0.25)
     out = m(x)
