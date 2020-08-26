@@ -23,18 +23,16 @@ all_reduce
 .. code-block:: python
 
         import paddle
-        import paddle.fluid as fluid
         from paddle.distributed import ReduceOp
-        from paddle.fluid.dygraph.parallel import prepare_context
+        import paddle.prepare_context as prepare_context
 
         paddle.disable_static()
-        paddle.set_device('gpu:%d'%fluid.dygraph.ParallelEnv().dev_id)
+        paddle.set_device('gpu:%d'%paddle.ParallelEnv().dev_id)
         prepare_context()
-        if fluid.dygraph.ParallelEnv().local_rank == 0:
+        if paddle.ParallelEnv().local_rank == 0:
             np_data = np.array([[4, 5, 6], [4, 5, 6]])
         else:
             np_data = np.array([[1, 2, 3], [1, 2, 3]])
         data = paddle.to_tensor(np_data)
         paddle.distributed.all_reduce(data)
         out = data.numpy()
-        # [[5, 7, 9], [5, 7, 9]]

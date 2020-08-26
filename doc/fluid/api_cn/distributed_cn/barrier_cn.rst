@@ -21,10 +21,9 @@ barrier
 .. code-block:: python
 
         import paddle
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph.parallel import prepare_context
+        import paddle.prepare_context as prepare_context
 
         paddle.disable_static()
-        paddle.set_device('gpu:%d'%fluid.dygraph.ParallelEnv().dev_id)
+        paddle.set_device('gpu:%d'%paddle.ParallelEnv().dev_id)
         prepare_context()
         paddle.distributed.barrier()

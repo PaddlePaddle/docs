@@ -24,14 +24,12 @@ scatter
 .. code-block:: python
 
         import paddle
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph.parallel import prepare_context
+        import paddle.prepare_context as prepare_context
 
         paddle.disable_static()
-        paddle.set_device('gpu:%d'%fluid.dygraph.ParallelEnv().dev_id)
+        paddle.set_device('gpu:%d'%paddle.ParallelEnv().dev_id)
         prepare_context()
-
-        if fluid.dygraph.ParallelEnv().local_rank == 0:
+        if paddle.ParallelEnv().local_rank == 0:
             np_data1 = np.array([7, 8, 9])
             np_data2 = np.array([10, 11, 12])
         else:
@@ -39,8 +37,7 @@ scatter
             np_data2 = np.array([4, 5, 6])
         data1 = paddle.to_tensor(np_data1)
         data2 = paddle.to_tensor(np_data2)
-
-        if fluid.dygraph.ParallelEnv().local_rank == 0:
+        if paddle.ParallelEnv().local_rank == 0:
             paddle.distributed.scatter(data1, src=1)
         else:
             paddle.distributed.scatter(data1, tensor_list=[data1, data2], src=1)
