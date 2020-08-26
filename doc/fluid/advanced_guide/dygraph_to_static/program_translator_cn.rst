@@ -60,13 +60,69 @@ func(input_var)
 上例如果在使用TracedLayer.trace(func, inputs=[input_var])，由于trace只能记录if-else其中跑的一次算子，模型就无法按用户想要的根据input_var的形状进行if-else控制流保存。类似的控制流还有while/for循环的情况
 
 基于源代码转写的ProgramTranslator
-对于依赖数据的控制流，我们使用基于源代码转写的ProgramTranslator来进行动态图转静态图。
 
+对于依赖数据的控制流，我们使用基于源代码转写的ProgramTranslator来进行动态图转静态图。其基本原理是通过分析python代码来将动态图代码转写为静态图代码，并在底层自动帮用户使用执行器运行。其基本使用方法十分简便，只需要在要转化的函数（该函数也可以是用户自定义动态图Layer的forward函数）前添加一个装饰器@declarative，上面的例子转化为：
+
+```python
+
+from paddle.fluid.dygraph.jit import declarative
+
+@declarative
+def func(input_var)
+    # if判断与输入input_var的shape有关
+    if input_var.shape[0] > 1:
+        out = paddle.cast(input_var, "float64")
+    else:
+        out = paddle.cast(input_var, "int64")
+
+paddle.enable_imperative()
+in_np = np.array([-2]).astype('int')
+input_var = paddle.imperative.to_variable(in_np)
+func(input_var)
+```
+
+若要存储对应的模型，可以调用ProgramTranslator单例的save_inference_model，如下例：
+
+```python
+import paddle
+
+paddle.enable_imperative()
+prog_trans = paddle.imperative.ProgramTranslator()
+mnist = MNIST()
+
+in_np = np.random.random([10, 1, 28, 28]).astype('float32')
+label_np = np.random.randint(0, 10, size=(10,1)).astype( "int64")
+input_var = paddle.imperative.to_variable(in_np)
+label_var = paddle.imperative.to_variable(label_np)
+
+out = mnist( input_var, label_var)
+
+prog_trans.save_inference_model("./mnist_dy2stat", fetch=[0,1])
+```
 
 高级Debug功能
 
+TODO：留杰，雅美的PR预计可以在2.0之前合入，其中包括打印代码，设置log，报错信息的更新。合入后进一步整理更新。
 
 内部架构原理
 
+TracedLayer的原理就是trace，相对简单，因此我们在这里不展开描述。本节将主要阐述ProgramTranslator基于源代码将动态图代码转化为静态图代码。
+
+
+ProgramTranslator的总体架构图如下：
+TODO：添加图片
+
+我们将内部涉及的过程分为以下几步：
+
+1. Function与缓存
+
+2. 从Function转化为动态图源码，再进行AST（抽象语法树）解析
+
+3. AST语法树的转写为静态图AST，再生成源码
+
+4. 静态图源码作为动态图一部分运行的技术
+
+5. 易用性与Debug功能在动转静过程的实现
 
 支持的语法列表，和不支持的情况说明
+
