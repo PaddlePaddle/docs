@@ -10,7 +10,7 @@ unstack
 参数
 ::::::::::::
 
-      - **x** (Variable) – 输入x为 ``dim > 0`` 的Tensor，
+      - **x** (Tensor) – 输入x为 ``dim > 0`` 的Tensor，
       支持的数据类型: float32，float64，int32，int64。
 
       - **axis** (int | 可选) – 输入Tensor进行unpack运算所在的轴，axis的范围为：``[-D, D)`` ，
@@ -24,7 +24,7 @@ unstack
 
 返回类型
 ::::::::::::
- list(Variable)
+ list(Tensor)
 
 抛出异常
 ::::::::::::
@@ -37,7 +37,7 @@ unstack
 .. code-block:: python
 
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[2, 3, 5], dtype='float32')  #创建一个shape=[2, 3, 5]的Tensor
+    x = fluid.data(name='x', shape=[2, 3, 5], dtype='float32')  #创建一个shape=[2, 3, 5]的Tensor
     y = fluid.layers.unstack(x, axis=1)  #沿着第1轴进行unpack, unpack后为3个shape=[2，5]的Tensor
 
 
