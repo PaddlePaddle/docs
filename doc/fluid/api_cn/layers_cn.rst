@@ -313,6 +313,7 @@ fluid.layers
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
     layers_cn/TrainingHelper_cn.rst
+    layers_cn/triu_cn.rst
     layers_cn/unfold_cn.rst
     layers_cn/Uniform_cn.rst
     layers_cn/uniform_random_cn.rst
