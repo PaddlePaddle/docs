@@ -3,11 +3,7 @@
 sin
 -------------------------------
 
-.. py:function:: paddle.sin(x, name=None, out=None)
-
-:alias_main: paddle.sin
-:alias: paddle.sin,paddle.tensor.sin,paddle.tensor.math.sin
-:update_api: paddle.fluid.layers.sin
+.. py:function:: paddle.sin(x, name=None)
 
 
 
@@ -16,29 +12,23 @@ sin
 .. math::
         out = sin(x)
 
-参数:
-    - **x** (Variable) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-    - **out** (Variable, 可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
+参数：
+    - **x** (Tensor) - 输入的 `Tensor` ，数据类型为： float16, float32, float64。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
-返回：返回类型为Variable(Tensor|LoDTensor)， 数据类型同输入一致。
+返回：
+    - Tensor，对输入x计算sin值后的Tensor，形状、数据类型同输入x一致。
+
 
 **代码示例**：
 
 .. code-block:: python
 
-        import numpy as np
-        import paddle
-        import paddle.fluid as fluid
-
-        inputs = fluid.layers.data(name="x", shape = [3], dtype='float32')
-        output = paddle.sin(inputs)
-
-        exe = fluid.Executor(fluid.CPUPlace())
-        exe.run(fluid.default_startup_program())
-
-        img = np.array([0, 45, 90]).astype(np.float32)
-
-        res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-        print(res)
-        # [array([0.        , 0.8509035 , 0.89399666], dtype=float32)]
+    import numpy as np
+    import paddle
+    paddle.disable_static()
+    x_data = np.array([-0.4, -0.2, 0.1, 0.3])
+    x = paddle.to_tensor(x_data)
+    out = paddle.sin(x)
+    print(out.numpy())
+    # [-0.38941834 -0.19866933  0.09983342  0.29552021]
