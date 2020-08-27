@@ -1,7 +1,7 @@
 ConvTranspose2d
 -------------------------------
 
-.. py:class:: paddle.nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, dilation=1, groups=1, weight_attr=None, bias_attr=None, data_format="NCHW")
+.. py:class:: paddle.nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, dilation=1, weight_attr=None, bias_attr=None, data_format="NCHW")
 
 
 二维转置卷积层（Convlution2d transpose layer）
@@ -40,13 +40,13 @@ ConvTranspose2d
   - **stride** (int|tuple, 可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride`` 。默认值：1。
   - **padding** (int|tuple, 可选) - 填充大小。如果 ``padding`` 为元组，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding`` 。默认值：0。
   - **output_padding** (int|list|tuple, optional): 输出形状上一侧额外添加的大小. 默认值: 0.
-  - **dilation** (int|tuple, 可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation`` 。默认值：1。
   - **groups** (int, 可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，滤波器的前一半仅和输入特征图的前一半连接。滤波器的后一半仅和输入特征图的后一半连接。默认值：1。
+  - **dilation** (int|tuple, 可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation`` 。默认值：1。
   - **weight_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
   
-  
+
 形状:
 
     - 输入：:math:`（N，C_{in}， H_{in}， W_{in}）`
