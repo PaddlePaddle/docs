@@ -1,12 +1,12 @@
-.. _cn_api_paddle_nn_functioanl_interpolate:
+.. _cn_api_paddle_nn_UpSample:
 
-Interpolate
+UpSample
 -------------------------------
 
-.. py:function:: paddle.nn.functioanl.interpolate(x, size=None, scale_factor=None, name=None, resample='BILINEAR', actual_shape=None, align_corners=False, align_mode=0, data_format='NCHW')
+.. py:function:: paddle.nn.UpSample(x,size=None,scale_factor=None,mode='nearest',align_corners=False,align_mode=0,data_format='NCHW',name=None):
 
-:alias_main: paddle.nn.functional.interpolate
-:alias: paddle.nn.functional.interpolate,paddle.nn.functional.common.interpolate
+:alias_main: paddle.nn.UpSample
+:alias: paddle.nn.layer.UpSample,paddle.nn.layer.common.UpSample
 
 
 
@@ -170,23 +170,13 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 
 ..  code-block:: python
 
-        import paddle.nn.functional as F
+        import paddle
+        import paddle.nn as nn
+        import numpy as np
         paddle.disable_static()
-
-        # given out size
         input_data = np.random.rand(2,3,6,10).astype("float32")
-        x = paddle.to_tensor(input_data)
-        output_1 = F.interpolate(x=x, size=[12,12])
-        print(output_1.shape)
+        upsample_out  = paddle.nn.UpSample(size=[12,12])
+        input = paddle.to_tensor(input_data)
+        output = upsample_out(x=input)
+        print(output.shape)
         # [2L, 3L, 12L, 12L]
-
-        # given scale
-        output_2 = F.interpolate(x=x, scale_factor=[2,1])
-        print(output_2.shape)
-        # [2L, 3L, 12L, 10L]
-
-        # bilinear interp
-        output_3 = F.interpolate(x=x, scale_factor=[2,1], mode="bilinear")
-        print(output_2.shape)
-        # [2L, 3L, 12L, 10L]
-
