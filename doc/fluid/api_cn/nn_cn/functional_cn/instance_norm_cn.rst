@@ -44,4 +44,4 @@ instance_norm
     w = paddle.to_tensor(weight_data)
     b = paddle.to_tensor(bias_data)
     instance_norm_out = paddle.nn.functional.instance_norm(x, rm, rv, w, b)
-    print instance_norm_out
+    print(instance_norm_out)

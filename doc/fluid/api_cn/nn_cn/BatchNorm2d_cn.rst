@@ -52,8 +52,8 @@ BatchNorm2d
     - input: 形状为（批大小，通道数, 高度，宽度）的4-D Tensor 或（批大小, 通道数，宽度，高度）的4-D Tensor。
     - output: 和输入形状一样。
 
-说明：
-    目前训练时设置track_running_stats为False是无效的，实际还是会按照True的方案保存全局均值和方差。之后的版本会修复此问题。
+.. note:: 
+目前训练时设置track_running_stats为False是无效的，实际还是会按照True的方案保存全局均值和方差。之后的版本会修复此问题。
     
 
 **代码示例**
