@@ -2,4 +2,7 @@
 动态图转静态图
 ###############
 
-TODO: add index
+..  toctree::
+    :hidden:
+
+    program_translator.rst
