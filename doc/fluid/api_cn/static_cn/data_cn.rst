@@ -52,4 +52,3 @@ data
                   fetch_list=[z.name])
     # np-ndarray of shape=[3, 2, 1], dtype=float32, whose elements are 2
     print(out)
-
