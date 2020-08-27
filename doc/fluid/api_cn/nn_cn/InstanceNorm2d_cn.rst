@@ -8,17 +8,13 @@ InstanceNorm2d
 
 该接口用于构建 ``InstanceNorm2d`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。可以处理2D或者3D的Tensor, 实现了实例归一化层（Instance Normalization Layer）的功能。更多详情请参考 : Instance Normalization: The Missing Ingredient for Fast Stylization .
 
-:math:`input` is the input features over a mini-batch.
+``input`` 是mini-batch的输入。
 
 .. math::
-
-    \\mu_{\\beta} &\\gets \\frac{1}{HW} \\sum_{i=1}^{HW} x_i \\qquad &//\\
-    \\ mean\ of\ one\  feature\ map\ in\ mini-batch \\\\
-    \\sigma_{\\beta}^{2} &\\gets \\frac{1}{HW} \\sum_{i=1}^{HW}(x_i - \\
-    \\mu_{\\beta})^2 \\qquad &//\ variance\ of\ one\ feature\ map\ in\ mini-batch \\\\
-    \\hat{x_i} &\\gets \\frac{x_i - \\mu_\\beta} {\\sqrt{\\
-    \\sigma_{\\beta}^{2} + \\epsilon}} \\qquad &//\ normalize \\\\
-    y_i &\\gets \\gamma \\hat{x_i} + \\beta \\qquad &//\ scale\ and\ shift
+    \mu_{\beta}        &\gets \frac{1}{m} \sum_{i=1}^{m} x_i                                 \quad &// mean  \\
+    \sigma_{\beta}^{2} &\gets \frac{1}{m} \sum_{i=1}^{m}(x_i - \mu_{\beta})^2               \quad &// variance \\
+    \hat{x_i}          &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \quad &// normalize \\
+    y_i &\gets \gamma \hat{x_i} + \beta                                                      \quad &// scale-and-shift
 
 Note:
     `H` 是高度, `W` 是宽度.
