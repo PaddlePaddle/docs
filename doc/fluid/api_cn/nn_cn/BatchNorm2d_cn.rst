@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_BatchNorm2d:
+.. _cn_api_nn_BatchNorm2d:
 
 BatchNorm2d
 -------------------------------

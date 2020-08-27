@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_GroupNorm:
+.. _cn_api_nn_GroupNorm:
 
 GroupNorm
 -------------------------------
@@ -27,6 +27,7 @@ GroupNorm
 **代码示例**
 
 .. code-block:: python
+
    import paddle
    import numpy as np
 

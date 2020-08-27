@@ -7,7 +7,7 @@ batch_norm
 
 推荐使用nn.BatchNorm1d，nn.BatchNorm2d, nn.BatchNorm3d，由内部调用此方法。
 
-详情见 :ref:`api_paddle_nn_cn_BatchNorm1d` 
+详情见 :ref:`cn_api_nn_BatchNorm1d` 。
 
 参数：
     - **x** (int) - 输入，数据类型为float32, float64。

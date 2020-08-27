@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_LayerNorm:
+.. _cn_api_nn_LayerNorm:
 
 LayerNorm
 -------------------------------
@@ -39,6 +39,7 @@ LayerNorm
 **代码示例**
 
 .. code-block:: python
+
     import paddle
     import numpy as np
 

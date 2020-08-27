@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_InstanceNorm1d:
+.. _cn_api_nn_InstanceNorm1d:
 
 InstanceNorm1d
 -------------------------------
@@ -11,7 +11,6 @@ InstanceNorm1d
 :math:`input` is the input features over a mini-batch.
 
 .. math::
-    
     \\mu_{\\beta} &\\gets \\frac{1}{HW} \\sum_{i=1}^{HW} x_i \\qquad &//\\
     \\ mean\ of\ one\  feature\ map\ in\ mini-batch \\\\
     \\sigma_{\\beta}^{2} &\\gets \\frac{1}{HW} \\sum_{i=1}^{HW}(x_i - \\

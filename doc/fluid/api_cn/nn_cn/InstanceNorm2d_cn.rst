@@ -11,7 +11,7 @@ InstanceNorm2d
 :math:`input` is the input features over a mini-batch.
 
 .. math::
-    
+
     \\mu_{\\beta} &\\gets \\frac{1}{HW} \\sum_{i=1}^{HW} x_i \\qquad &//\\
     \\ mean\ of\ one\  feature\ map\ in\ mini-batch \\\\
     \\sigma_{\\beta}^{2} &\\gets \\frac{1}{HW} \\sum_{i=1}^{HW}(x_i - \\

@@ -7,7 +7,7 @@ layer_norm
 
 推荐使用nn.LayerNorm。
 
-详情见 :ref:`api_paddle_nn_cn_LayerNorm` 
+详情见 :ref:`cn_api_nn_LayerNorm` . 
 
 参数：
     - **x** (int) - 输入，数据类型为float32, float64。
@@ -20,10 +20,10 @@ layer_norm
 
 返回：无
 
-
 **代码示例**
 
 .. code-block:: python
+
     import paddle
     import numpy as np
 

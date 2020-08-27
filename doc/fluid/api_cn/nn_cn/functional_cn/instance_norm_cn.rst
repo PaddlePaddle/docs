@@ -1,4 +1,4 @@
-.. _cn_api_nn_functional_instance_norm:
+.. cn_api_nn_functional_instance_norm:
 
 instance_norm
 -------------------------------
@@ -7,7 +7,7 @@ instance_norm
 
 推荐使用nn.InstanceNorm1d，nn.InstanceNorm2d, nn.InstanceNorm3d，由内部调用此方法。
 
-详情见 :ref:`api_paddle_nn_cn_InstanceNorm1d` 
+详情见 :ref:`cn_api_nn_InstanceNorm1d` 。  
 
 参数：
     - **x** (int) - 输入，数据类型为float32, float64。
