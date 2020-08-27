@@ -191,6 +191,9 @@ paddle.nn
     nn_cn/AdaptiveAvgPool3d_cn.rst
     nn_cn/AdaptiveAvgPool1d_cn.rst
     nn_cn/AdaptiveMaxPool1d_cn.rst
+    nn_cn/AdaptiveMaxPool2d_cn.rst
+    nn_cn/AdaptiveMaxPool3d_cn.rst
     nn_cn/AvgPool1d_cn.rst
     nn_cn/MaxPool1d_cn.rst
     nn_cn/Bilinear_cn.rst
+    nn_cn/PixelShuffle_cn.rst

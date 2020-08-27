@@ -26,7 +26,10 @@ functional
     functional_cn/sigmoid_cn.rst
     functional_cn/adaptive_avg_pool1d_cn.rst
     functional_cn/adaptive_max_pool1d_cn.rst
+    functional_cn/adaptive_max_pool2d_cn.rst
+    functional_cn/adaptive_max_pool3d_cn.rst
     functional_cn/avg_pool1d_cn.rst
     functional_cn/max_pool1d_cn.rst
     functional_cn/cross_entropy_loss_cn.rst
     functional_cn/bilinear_cn.rst
+    functional_cn/pixel_shuffle_cn.rst
