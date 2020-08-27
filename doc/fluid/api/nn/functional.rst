@@ -16,3 +16,4 @@ functional
     functional/conv3d.rst
     nn/functional/conv_transpose2d.rst
     nn/functional/conv_transpose3d.rst
+    functional/bilinear.rst

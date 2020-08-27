@@ -172,3 +172,4 @@ paddle.nn
     nn/AdaptiveAvgPool2d.rst
     nn/AdaptiveAvgPool3d.rst
     nn/layer/activation/Sigmoid.rst
+    nn/Bilinear.rst
