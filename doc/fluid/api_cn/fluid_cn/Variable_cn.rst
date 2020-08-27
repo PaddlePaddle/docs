@@ -145,7 +145,6 @@ Variable
 
 **参数:**
 
-  - **backward_strategy** ( :ref:`cn_api_fluid_dygraph_BackwardStrategy`，可选) – 在反向传播过程中用于指定聚合梯度的策略。若设置 :code:`BackwardStrategy.sort_sum_gradient` 的值为True，则会按照前向Op的执行过程逆序聚合同一Var的梯度。更多信息请参考 :ref:`cn_api_fluid_dygraph_BackwardStrategy` 。 默认值为None，这意味着 :code:`BackwardStrategy.sort_sum_gradient` 的值为False。
   - **retain_graph** (bool，可选) – 该参数用于确定反向梯度更新完成后反向梯度计算图是否需要保留（retain_graph为True则保留反向梯度计算图）。若用户打算在执行完该方法（  :code:`backward` ）后，继续向之前已构建的计算图中添加更多的Op，则需要设置 :code:`retain_graph` 值为True（这样才会保留之前计算得到的梯度）。可以看出，将 :code:`retain_graph` 设置为False可降低内存的占用。默认值为False。
 
 返回：无
@@ -167,9 +166,7 @@ Variable
             inputs.append(tmp)
         ret = paddle.sums(inputs)
         loss = paddle.reduce_sum(ret)
-        backward_strategy = paddle.BackwardStrategy()
-        backward_strategy.sort_sum_gradient = True
-        loss.backward(backward_strategy)
+        loss.backward()
 
 .. py:method:: gradient()
 
@@ -202,9 +199,7 @@ Variable
                 inputs2.append(tmp)
             ret2 = fluid.layers.sums(inputs2)
             loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
+            loss2.backward()
             print(loss2.gradient())
 
         # example2: 返回tuple of ndarray
@@ -248,9 +243,7 @@ Variable
                 inputs2.append(tmp)
             ret2 = fluid.layers.sums(inputs2)
             loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
+            loss2.backward()
             print(loss2.gradient())
             loss2.clear_gradient()
             print("After clear {}".format(loss2.gradient()))

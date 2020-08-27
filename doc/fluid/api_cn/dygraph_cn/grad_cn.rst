@@ -5,7 +5,11 @@ grad
 
 **注意：该API仅支持【动态图】模式**
 
+<<<<<<< 016cb39c81eefb41edaf7948428397b1c1388257
 .. py:method:: paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None, backward_strategy=None)
+=======
+.. py:method:: paddle.fluid.dygraph.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
+>>>>>>> remove the dependence of  BackwardStrategy
 
 对于每个 `inputs` ，计算所有 `outputs` 相对于其的梯度和。
 
@@ -18,7 +22,6 @@ grad
     - **only_inputs** (bool, 可选) - 是否只计算 `inputs` 的梯度。若值为False，则图中所有叶节点变量的梯度均会计算，并进行累加。若值为True，则只会计算 `inputs` 的梯度。默认值为True。only_inputs=False功能正在开发中，目前尚不支持。
     - **allow_unused** (bool, 可选) - 决定当某些 `inputs` 变量不在计算图中时抛出错误还是返回None。若某些 `inputs` 变量不在计算图中（即它们的梯度为None），则当allowed_unused=False时会抛出错误，当allow_unused=True时会返回None作为这些变量的梯度。默认值为False。
     - **no_grad_vars** (Variable|list(Variable)|tuple(Variable)|set(Variable), 可选) - 指明不需要计算梯度的变量。默认值为None。
-    - **backward_strategy** (BackwardStrategy, 可选) - 计算梯度的策略。详见 :ref:`cn_api_fluid_dygraph_BackwardStrategy` 。默认值为None。
 
 返回: 变量构成的tuple，其长度等于 `inputs` 中的变量个数，且第i个返回的变量是所有 `outputs` 相对于第i个 `inputs` 的梯度之和。
 
