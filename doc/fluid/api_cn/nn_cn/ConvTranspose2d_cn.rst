@@ -45,8 +45,8 @@ ConvTranspose2d
   - **weight_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
-  - **output_size** (int|tuple，可选) - 输出图片的大小。如果output_size是一个元组，则必须包含两个整型数，（output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。默认：None。output_size和filter_size不能同时为None。
-
+  
+  
 形状:
 
     - 输入：:math:`（N，C_{in}， H_{in}， W_{in}）`
@@ -58,8 +58,8 @@ ConvTranspose2d
 
     .. math::
 
-        & H'_{out} = (H_{in}-1)*strides[0] - pad\_height\_top - pad\_height\_bottom + dilations[0]*(kernel_size[0]-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[1]- pad\_width\_left - pad\_width\_right + dilations[1]*(kernel_size[1]-1)+1 \\
+        & H'_{out} = (H_{in}-1)*strides[0] - pad\_height\_top - pad\_height\_bottom + dilations[0]*(kernel\_size[0]-1)+1\\
+        & W'_{out} = (W_{in}-1)*strides[1]- pad\_width\_left - pad\_width\_right + dilations[1]*(kernel\_size[1]-1)+1 \\
         & H_{out}\in[H'_{out},H'_{out} + strides[0])\\
         & W_{out}\in[W'_{out},W'_{out} + strides[1])\\
 
@@ -72,8 +72,8 @@ ConvTranspose2d
     如果 ``padding`` = "VALID":
 
     .. math::
-        & H'_{out} = (H_{in}-1)*strides[0] + dilations[0]*(H_f-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[1] + dilations[1]*(W_f-1)+1 \\
+        & H'_{out} = (H_{in}-1)*strides[0] + dilations[0]*(kernel\_size[0]-1)+1\\
+        & W'_{out} = (W_{in}-1)*strides[1] + dilations[1]*(kernel\_size[1]-1)+1 \\
 
 抛出异常:
     -  ``ValueError`` : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError

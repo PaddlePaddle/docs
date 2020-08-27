@@ -4,7 +4,7 @@ ConvTranspose3d
 .. py:class:: paddle.nn.ConvTranspose3d(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, dilation=1, groups=1, weight_attr=None, bias_attr=None, data_format="NCDHW")
 
 
-三维转置卷积层（Convlution3D transpose layer)
+三维转置卷积层（Convlution3d transpose layer)
 
 该层根据输入（input）、滤波器（filter）和卷积核膨胀比例（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW或者NDHWC格式。其中N为批尺寸，C为通道数（channel），D为特征深度，H为特征层高度，W为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。
 
@@ -56,9 +56,9 @@ ConvTranspose3d
 
     .. math::
 
-        & D'_{out}=(D_{in}-1)*strides[0] - pad\_depth\_front - pad\_depth\_back + dilations[0]*(kernel_size[0]-1)+1\\
-        & H'_{out} = (H_{in}-1)*strides[1] - pad\_height\_top - pad\_height\_bottom + dilations[1]*(kernel_size[1]-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[2]- pad\_width\_left - pad\_width\_right + dilations[2]*(kernel_size[2]-1)+1 \\
+        & D'_{out}=(D_{in}-1)*strides[0] - pad\_depth\_front - pad\_depth\_back + dilations[0]*(kernel\_size[0]-1)+1\\
+        & H'_{out} = (H_{in}-1)*strides[1] - pad\_height\_top - pad\_height\_bottom + dilations[1]*(kernel\_size[1]-1)+1\\
+        & W'_{out} = (W_{in}-1)*strides[2]- pad\_width\_left - pad\_width\_right + dilations[2]*(kernel\_size[2]-1)+1 \\
         & D_{out}\in[D'_{out},D'_{out} + strides[0])\\
         & H_{out}\in[H'_{out},H'_{out} + strides[1])\\
         & W_{out}\in[W'_{out},W'_{out} + strides[2])\\
@@ -73,9 +73,9 @@ ConvTranspose3d
     如果 ``padding`` = "VALID":
 
     .. math::
-        & D'_{out} = (D_{in}-1)*strides[0] + dilations[0]*(kernel_size[0]-1)+1\\
-        & H'_{out} = (H_{in}-1)*strides[1] + dilations[1]*(kernel_size[1]-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[2] + dilations[2]*(kernel_size[2]-1)+1 \\
+        & D'_{out} = (D_{in}-1)*strides[0] + dilations[0]*(kernel\_size[0]-1)+1\\
+        & H'_{out} = (H_{in}-1)*strides[1] + dilations[1]*(kernel\_size[1]-1)+1\\
+        & W'_{out} = (W_{in}-1)*strides[2] + dilations[2]*(kernel\_size[2]-1)+1 \\
 
 抛出异常:
     -  ``ValueError`` : 如果输入的shape、kernel_size、stride、padding和groups不匹配，抛出ValueError
