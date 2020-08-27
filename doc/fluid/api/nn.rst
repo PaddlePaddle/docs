@@ -5,6 +5,7 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
+    nn/activation.rst
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
     nn/add_position_encoding.rst
@@ -28,12 +29,17 @@ paddle.nn
     nn/clip_by_norm.rst
     nn/collect_fpn_proposals.rst
     nn/cond.rst
+    nn/ConstantPad1d.rst
+    nn/ConstantPad2d.rst
+    nn/ConstantPad3d.rst
     nn/continuous_value_model.rst
     nn/conv2d.rst
     nn/conv2d_transpose.rst
     nn/conv3d.rst
     nn/conv3d_transpose.rst
     nn/cosine_decay.rst
+    nn/cosine_similarity.rst
+    nn/CosineSimilarity.rst
     nn/cross_entropy.rst
     nn/data.rst
     nn/deformable_roi_pooling.rst
@@ -60,7 +66,8 @@ paddle.nn
     nn/GradientClipByValue.rst
     nn/grid_sampler.rst
     nn/GroupNorm.rst
-    nn/hard_shrink.rst
+    nn/hardshrink.rst
+    nn/hardtanh.rst
     nn/hard_sigmoid.rst
     nn/hard_swish.rst
     nn/hash.rst
@@ -81,6 +88,7 @@ paddle.nn
     nn/Linear.rst
     nn/linear_lr_warmup.rst
     nn/log_loss.rst
+    nn/log_softmax.rst
     nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
@@ -103,13 +111,20 @@ paddle.nn
     nn/polynomial_decay.rst
     nn/Pool2D.rst
     nn/pool3d.rst
+    nn/prelu.rst
     nn/prior_box.rst
     nn/prroi_pool.rst
     nn/psroi_pool.rst
     nn/random_crop.rst
     nn/rank_loss.rst
+    nn/ReflectionPad1d.rst
+    nn/ReflectionPad2d.rst
     nn/ReLU.rst
+    nn/relu.rst
     nn/relu6.rst
+    nn/ReplicationPad1d.rst
+    nn/ReplicationPad2d.rst
+    nn/ReplicationPad3d.rst
     nn/resize_bilinear.rst
     nn/resize_nearest.rst
     nn/resize_trilinear.rst
@@ -140,7 +155,7 @@ paddle.nn
     nn/ssd_loss.rst
     nn/swish.rst
     nn/switch_case.rst
-    nn/tanh_shrink.rst
+    nn/tanhshrink.rst
     nn/target_assign.rst
     nn/teacher_student_sigmoid_loss.rst
     nn/temporal_shift.rst
@@ -150,3 +165,11 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
+    nn/functional/loss/margin_ranking_loss.rst
+    nn/functional/activation/sigmoid.rst
+    nn/layer/loss/MarginRankingLoss.rst
+    nn/ZeroPad2d.rst
+    nn/AdaptiveAvgPool2d.rst
+    nn/AdaptiveAvgPool3d.rst
+    nn/layer/activation/Sigmoid.rst
+    nn/Bilinear.rst

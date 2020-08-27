@@ -4,48 +4,52 @@ no_grad
 -------------------------------
 
 
-.. py:method:: paddle.fluid.dygraph.no_grad(func=None)
+.. py:class:: paddle.fluid.dygraph.no_grad
 
 :api_attr: 命令式编程模式（动态图)
-
+:alias_main: paddle.no_grad
+:alias: paddle.no_grad
+:old_api: paddle.fluid.dygraph.no_grad
 
 
 创建一个上下文来禁用动态图梯度计算。在此模式下，每次计算的结果都将具有stop_gradient=True。
 
-也可以用作一个装饰器（确保不要用括号来初始化）。
+也可以用作一个装饰器（需要创建实例对象作为装饰器）。
 
 **代码示例**
 
 ..  code-block:: python
 
-
     import numpy as np
-    import paddle.fluid as fluid
+    import paddle
+
+    paddle.disable_static()
+
+    paddle.enable_imperative()
 
     # 用作生成器
+
     data = np.array([[2, 3], [4, 5]]).astype('float32')
-    with fluid.dygraph.guard():
-        l0 = fluid.Linear(2, 2)  # l0.weight.gradient() is None
-        l1 = fluid.Linear(2, 2)
-        with fluid.dygraph.no_grad():
-            # l1.weight.stop_gradient is False
-            tmp = l1.weight * 2  # tmp.stop_gradient is True
-        x = fluid.dygraph.to_variable(data)
-        y = l0(x) + tmp
-        o = l1(y)
-        o.backward()
-        print(tmp.gradient() is None)  # True
-        print(l0.weight.gradient() is None)  # False
-    
+    l0 = paddle.nn.Linear(2, 2)  # l0.weight.gradient() is None
+    l1 = paddle.nn.Linear(2, 2)
+    with paddle.no_grad():
+        # l1.weight.stop_gradient is False
+        tmp = l1.weight * 2  # tmp.stop_gradient is True
+    x = paddle.to_tensor(data)
+    y = l0(x) + tmp
+    o = l1(y)
+    o.backward()
+    print(tmp.gradient() is None)  # True
+    print(l0.weight.gradient() is None)  # False
+
     # 用作装饰器
-    @fluid.dygraph.no_grad
+    @paddle.no_grad()
     def test_layer():
-        with fluid.dygraph.guard():
-            inp = np.ones([3, 1024], dtype='float32')
-            t = fluid.dygraph.base.to_variable(inp)
-            linear1 = fluid.Linear(1024, 4, bias_attr=False)
-            linear2 = fluid.Linear(4, 4)
-            ret = linear1(t)
-            dy_ret = linear2(ret)
+        inp = np.ones([3, 1024], dtype='float32')
+        t = paddle.to_tensor(inp)
+        linear1 = paddle.nn.Linear(1024, 4, bias_attr=False)
+        linear2 = paddle.nn.Linear(4, 4)
+        ret = linear1(t)
+        dy_ret = linear2(ret)
 
     test_layer()
