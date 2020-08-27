@@ -113,6 +113,7 @@ Note。
     data_cn/data_reader_cn.rst
     data_cn/dataset_cn.rst
     dataset_cn.rst
+    distributed_cn.rst
     dygraph_cn.rst
     executor_cn.rst
     initializer_cn.rst
@@ -125,3 +126,4 @@ Note。
     regularizer_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
+    static_cn.rst

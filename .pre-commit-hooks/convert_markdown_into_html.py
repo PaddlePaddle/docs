@@ -81,11 +81,9 @@ def convert_markdown_into_html(argv=None):
     for filename in args.filenames:
         with open(
                 re.sub(r"README", "index", re.sub(r"\.md$", ".html",
-                                                  filename)),
-                "w",
-                encoding="utf-8") as output:
+                                                  filename)), "w") as output:
             output.write(HEAD)
-            with open(filename, encoding="utf-8") as input:
+            with open(filename) as input:
                 for line in input:
                     output.write(line)
             output.write(TAIL)
