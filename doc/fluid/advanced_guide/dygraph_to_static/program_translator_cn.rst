@@ -13,61 +13,88 @@ PaddlePaddle提供了两种动态图转静态图的方式，基于动态图trace
 
 trace指的是在模型运行时记录下其运行过哪些算子。TracedLayer就是基于这种技术，运行一遍动态图，在动态图过程记录那些已经运行了的算子保存为静态图模型。一个使用例子如下：
 
+我们先定义一个简单的Fully Connected网络：
 
 ```python
+
+import numpy as np
+import paddle
+
+class SimpleFcLayer(paddle.nn.Layer):
+    def __init__(self, feature_size, batch_size, fc_size):
+        super(SimpleFCLayer, self).__init__()
+        self._linear = paddle.nn.Linear(feature_size, fc_size)
+        self._offset = paddle.to_tensor(
+            np.random.random((batch_size, fc_size)).astype('float32'))
+
+    def forward(self, x):
+        fc = self._linear(x)
+        return fc + self._offset
+
+```
+
+接下来是TracedLayer如何存储模型：
+
+```python
+
 from paddle.imperative import TracedLayer
 
 paddle.enable_imperative()
-# 定义MNIST类的动态图模型Layer
-mnist = MNIST()
-in_np = np.random.random([10, 1, 28, 28]).astype('float32')
+
+fc_layer = SimpleFcLayer(3, 4, 2)
+in_np = np.random.random([3, 4]).astype('float32')
 # 将numpy的ndarray类型的数据转换为Variable类型
-input_var = paddle.imperative.to_variable(in_np)
+input_var = paddle.to_tensor(in_np)
 # 通过 TracerLayer.trace 接口将命令式模型转换为声明式模型
-out_dygraph, static_layer = TracedLayer.trace(mnist, inputs=[input_var])
+out_dygraph, static_layer = TracedLayer.trace(fc_layer, inputs=[input_var])
 save_dirname = './saved_infer_model'
 # 将转换后的模型保存
 static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
+
 ```
 
 载入的模型可以使用静态图方式运行
 
 ```python
+
 place = paddle.CPUPlace()
 exe = paddle.Executor(place)
 program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
 fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
-```
 
+```
 
 但是也正如我们阐述的原理，trace只是记录了算子，因此如果用户希望根据一些数据条件运行不同的算子，换而言之，在模型中引入依赖数据条件（包括输入的值或者shape）的控制流，则TracedLayer无法正常工作。比如下面
 
 ```python
 
+import paddle
+
 def func(input_var)
     # if判断与输入input_var的shape有关
     if input_var.shape[0] > 1:
-        out = paddle.cast(input_var, "float64")
+        return paddle.cast(input_var, "float64")
     else:
-        out = paddle.cast(input_var, "int64")
+        return paddle.cast(input_var, "int64")
 
 paddle.enable_imperative()
 in_np = np.array([-2]).astype('int')
-input_var = paddle.imperative.to_variable(in_np)
-func(input_var)
+input_var = paddle.to_tensor(in_np)
+out = func(input_var)
+
 ```
 
 上例如果在使用TracedLayer.trace(func, inputs=[input_var])，由于trace只能记录if-else其中跑的一次算子，模型就无法按用户想要的根据input_var的形状进行if-else控制流保存。类似的控制流还有while/for循环的情况
 
 基于源代码转写的ProgramTranslator
 
-对于依赖数据的控制流，我们使用基于源代码转写的ProgramTranslator来进行动态图转静态图。其基本原理是通过分析python代码来将动态图代码转写为静态图代码，并在底层自动帮用户使用执行器运行。其基本使用方法十分简便，只需要在要转化的函数（该函数也可以是用户自定义动态图Layer的forward函数）前添加一个装饰器@declarative，上面的例子转化为：
+对于依赖数据的控制流，我们使用基于源代码转写的ProgramTranslator来进行动态图转静态图。其基本原理是通过分析python代码来将动态图代码转写为静态图代码，并在底层自动帮用户使用执行器运行。其基本使用方法十分简便，只需要在要转化的函数（该函数也可以是用户自定义动态图Layer的forward函数）前添加一个装饰器@paddle.jit.to_static，上面的例子转化如下，并且可以依旧使用该函数运行得到结果：
 
 ```python
 
-from paddle.fluid.dygraph.jit import declarative
+import paddle
 
-@declarative
+@paddle.jit.to_static
 def func(input_var)
     # if判断与输入input_var的shape有关
     if input_var.shape[0] > 1:
@@ -79,38 +106,49 @@ paddle.enable_imperative()
 in_np = np.array([-2]).astype('int')
 input_var = paddle.imperative.to_variable(in_np)
 func(input_var)
+
 ```
 
-若要存储对应的模型，可以调用ProgramTranslator单例的save_inference_model，如下例：
+若要存储对应的模型，可以调用paddle.jit.save，我们再以SimpleFcLayer为例，需要在SimpleFcLayer的forward函数添加装饰器：
+
+```python
+
+import numpy as np
+import paddle
+
+class SimpleFcLayer(paddle.nn.Layer):
+    def __init__(self, feature_size, batch_size, fc_size):
+        super(SimpleFCLayer, self).__init__()
+        self._linear = paddle.nn.Linear(feature_size, fc_size)
+        self._offset = paddle.to_tensor(
+            np.random.random((batch_size, fc_size)).astype('float32'))
+
+    @paddle.jit.to_static
+    def forward(self, x):
+        fc = self._linear(x)
+        return fc + self._offset
+
+```
+
+存储该模型可以使用paddle.jit.save接口：
 
 ```python
 import paddle
 
 paddle.enable_imperative()
-prog_trans = paddle.imperative.ProgramTranslator()
-mnist = MNIST()
 
-in_np = np.random.random([10, 1, 28, 28]).astype('float32')
-label_np = np.random.randint(0, 10, size=(10,1)).astype( "int64")
-input_var = paddle.imperative.to_variable(in_np)
-label_var = paddle.imperative.to_variable(label_np)
+fc_layer = SimpleFcLayer(3, 4, 2)
+in_np = np.random.random([3, 4]).astype('float32')
+input_var = paddle.to_tensor(in_np)
+out = fc_layer(input_var)
 
-out = mnist( input_var, label_var)
-
-prog_trans.save_inference_model("./mnist_dy2stat", fetch=[0,1])
+paddle.jit.save(mnist, "./mnist_dy2stat", input_spec=[input_var])
 ```
-
-高级Debug功能
-
-TODO：留杰，雅美的PR预计可以在2.0之前合入，其中包括打印代码，设置log，报错信息的更新。合入后进一步整理更新。
 
 内部架构原理
 
 TracedLayer的原理就是trace，相对简单，因此我们在这里不展开描述。本节将主要阐述ProgramTranslator基于源代码将动态图代码转化为静态图代码。
 
-
-ProgramTranslator的总体架构图如下：
-TODO：添加图片
 
 转化过程发生在用户开始调用被装饰的函数，转换过程在装饰器中实现。我们将内部涉及的过程分为以下几步：
 
@@ -137,5 +175,4 @@ C. 查看最后转化的静态图代码。我们输出为一个class，这个cla
 
 D. 输出中间转化状态代码，甚至不同语法Transformer转化的代码，比如经过for循环转化后代码是什么样的。我们开放接口设定了log level来让用户可以打印中间状态转化的代码。
 
-支持的语法列表，和不支持的情况说明
 
