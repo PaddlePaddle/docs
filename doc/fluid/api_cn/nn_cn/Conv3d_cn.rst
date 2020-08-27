@@ -100,7 +100,8 @@ Conv3d
    x = np.random.uniform(-1, 1, (2, 4, 8, 8, 8)).astype('float32')
    
    paddle.disable_static()
-   x_var = dg.to_variable(x)
+   
+   x_var = paddle.to_tensor(x)
    conv = nn.Conv3d(4, 6, (3, 3, 3))
    y_var = conv(x_var)
    y_np = y_var.numpy()
