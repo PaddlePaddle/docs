@@ -1,6 +1,6 @@
-================
+======================
 paddle.optimizer
-================
+======================
 
 ..  toctree::
     :maxdepth: 1
@@ -32,3 +32,15 @@ paddle.optimizer
     optimizer/SGD.rst
     optimizer/SGDOptimizer.rst
     optimizer/Optimizer.rst
+    optimizer/NoamLR.rst
+    optimizer/PiecewiseLR.rst
+    optimizer/NaturalExpLR.rst
+    optimizer/InverseTimeLR.rst
+    optimizer/PolynomialLR.rst
+    optimizer/LinearLrWarmup.rst
+    optimizer/ExponentialLR.rst
+    optimizer/MultiStepLR.rst
+    optimizer/StepLR.rst
+    optimizer/LambdaLR.rst
+    optimizer/ReduceLROnPlateau.rst
+    optimizer/CosineAnnealingLR.rst

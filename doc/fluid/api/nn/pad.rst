@@ -2,6 +2,6 @@
 
 pad
 -------------------------------
-:doc_source: paddle.fluid.layers.pad
+:doc_source: paddle.nn.functional.pad
 
 
