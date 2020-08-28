@@ -49,16 +49,16 @@ paddle.tensor
     tensor/has_inf.rst
     tensor/has_nan.rst
     tensor/increment.rst
-    tensor/is_empty.rst
     tensor/index_select.rst
+    tensor/is_empty.rst
     tensor/isfinite.rst
     tensor/less_equal.rst
     tensor/less_than.rst
-    tensor/logic.rst
     tensor/linalg.rst
     tensor/linspace.rst
     tensor/load.rst
     tensor/log.rst
+    tensor/logic.rst
     tensor/logical_and.rst
     tensor/logical_not.rst
     tensor/logical_or.rst
@@ -70,13 +70,12 @@ paddle.tensor
     tensor/min.rst
     tensor/minimum.rst
     tensor/mm.rst
-    tensor/mul.rst
     tensor/multiplex.rst
     tensor/norm.rst
     tensor/not_equal.rst
+    tensor/numel.rst
     tensor/ones.rst
     tensor/ones_like.rst
-    tensor/numel.rst
     tensor/pow.rst
     tensor/random.rst
     tensor/rank.rst
@@ -111,8 +110,8 @@ paddle.tensor
     tensor/squeeze.rst
     tensor/stack.rst
     tensor/stanh.rst
-    tensor/std.rst
     tensor/stat.rst
+    tensor/std.rst
     tensor/strided_slice.rst
     tensor/sum.rst
     tensor/sums.rst

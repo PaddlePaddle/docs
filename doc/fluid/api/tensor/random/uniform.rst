@@ -8,3 +8,4 @@ uniform
 
 ..  autofunction:: paddle.tensor.random.uniform
     :noindex:
+

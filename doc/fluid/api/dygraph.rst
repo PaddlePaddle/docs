@@ -5,6 +5,8 @@ fluid.dygraph
 ..  toctree::
     :maxdepth: 1
 
+    dygraph/amp_guard.rst
+    dygraph/AmpScaler.rst
     dygraph/BackwardStrategy.rst
     dygraph/BatchNorm.rst
     dygraph/BilinearTensorProduct.rst
@@ -25,18 +27,24 @@ fluid.dygraph
     dygraph/enable_dygraph.rst
     dygraph/enabled.rst
     dygraph/ExponentialDecay.rst
+    dygraph/Flatten.rst
     dygraph/grad.rst
     dygraph/GroupNorm.rst
+    dygraph/GRUCell.rst
     dygraph/GRUUnit.rst
     dygraph/guard.rst
     dygraph/InstanceNorm.rst
     dygraph/InverseTimeDecay.rst
     dygraph/jit.rst
+    dygraph/LambdaDecay.rst
     dygraph/Layer.rst
     dygraph/LayerList.rst
     dygraph/LayerNorm.rst
     dygraph/Linear.rst
+    dygraph/LinearLrWarmup.rst
     dygraph/load_dygraph.rst
+    dygraph/LSTMCell.rst
+    dygraph/MultiStepDecay.rst
     dygraph/NaturalExpDecay.rst
     dygraph/NCE.rst
     dygraph/no_grad.rst
@@ -48,7 +56,6 @@ fluid.dygraph
     dygraph/Pool2D.rst
     dygraph/PRelu.rst
     dygraph/prepare_context.rst
-    dygraph/ProgramTranslator.rst
     dygraph/ReduceLROnPlateau.rst
     dygraph/save_dygraph.rst
     dygraph/Sequential.rst

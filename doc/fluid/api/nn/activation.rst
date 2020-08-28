@@ -8,7 +8,6 @@ activation
     activation/ELU.rst
     activation/GELU.rst
     activation/Hardshrink.rst
-    activation/Tanh.rst
     activation/Hardtanh.rst
     activation/LogSigmoid.rst
     activation/PReLU.rst
@@ -19,4 +18,5 @@ activation
     activation/Softplus.rst
     activation/Softshrink.rst
     activation/Softsign.rst
+    activation/Tanh.rst
     activation/Tanhshrink.rst

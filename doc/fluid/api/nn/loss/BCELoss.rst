@@ -4,7 +4,7 @@
 .. _api_nn_loss_BCELoss:
 
 BCELoss
--------------------------------
+-------
 
 ..  autoclass:: paddle.nn.loss.BCELoss
     :members:

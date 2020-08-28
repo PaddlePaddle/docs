@@ -4,7 +4,7 @@
 .. _api_nn_loss_NLLLoss:
 
 NLLLoss
--------------------------------
+-------
 
 ..  autoclass:: paddle.nn.loss.NLLLoss
     :members:

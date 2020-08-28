@@ -10,3 +10,4 @@ fluid.transpiler
     transpiler/HashName.rst
     transpiler/memory_optimize.rst
     transpiler/release_memory.rst
+    transpiler/RoundRobin.rst

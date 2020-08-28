@@ -23,10 +23,12 @@ fluid
     fluid/default_startup_program.rst
     fluid/device_guard.rst
     fluid/disable_dygraph.rst
+    fluid/disable_imperative.rst
     fluid/DistributeTranspiler.rst
     fluid/DistributeTranspilerConfig.rst
     fluid/embedding.rst
     fluid/enable_dygraph.rst
+    fluid/enable_imperative.rst
     fluid/ExecutionStrategy.rst
     fluid/Executor.rst
     fluid/get_flags.rst
@@ -34,6 +36,7 @@ fluid
     fluid/gradients.rst
     fluid/in_dygraph_mode.rst
     fluid/is_compiled_with_cuda.rst
+    fluid/is_compiled_with_xpu.rst
     fluid/load.rst
     fluid/load_op_library.rst
     fluid/LoDTensor.rst
@@ -53,3 +56,4 @@ fluid
     fluid/Tensor.rst
     fluid/Variable.rst
     fluid/WeightNormParamAttr.rst
+    fluid/XPUPlace.rst
