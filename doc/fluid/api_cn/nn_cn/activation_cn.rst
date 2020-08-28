@@ -16,7 +16,7 @@ activation
     activation_cn/LeakyReLU_cn.rst
     activation_cn/LogSigmoid_cn.rst
     activation_cn/LogSoftmax_cn.rst
-    activation_cn/PRelu_cn.rst
+    activation_cn/PReLU_cn.rst
     activation_cn/ReLU_cn.rst
     activation_cn/ReLU6_cn.rst
     activation_cn/SELU_cn.rst
