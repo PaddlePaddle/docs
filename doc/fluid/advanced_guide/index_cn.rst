@@ -10,6 +10,5 @@
 ..  toctree::
     :hidden:
 
-    dygraph_to_static/index_cn.rst
     inference_deployment/index_cn.rst
     flags/flags_cn.rst
