@@ -28,7 +28,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 论文中没有 ``epsilon`` 参数。但是，为了保持数值稳定性， 避免除0错误， 此处增加了这个参数。
 
 参数：
-  - **learning_rate** (float|LearningrateDecay) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个LearningrateDecay类，默认值为0.001
+  - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
   - **beta1** (float, 可选) - 一阶矩估计的指数衰减率，默认值为0.9
   - **beta2** (float, 可选) - 二阶矩估计的指数衰减率，默认值为0.999
   - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
@@ -161,7 +161,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
   **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**  
 
-手动设置当前 ``optimizer`` 的学习率。当使用LearningRateDecay时，无法使用该API手动设置学习率，因为这将导致冲突。
+手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
 参数：
     value (float|Tensor) - 需要设置的学习率的值。
@@ -208,7 +208,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
   **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-获取当前步骤的学习率。当不使用LearningRateDecay时，每次调用的返回值都相同，否则返回当前步骤的学习率。
+获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
 返回：当前步骤的学习率。
 
@@ -221,14 +221,14 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
     import numpy as np
     import paddle
-    # example1: LearningRateDecay is not used, return value is all the same
+    # example1: _LRScheduler is not used, return value is all the same
     paddle.disable_static()
     emb = paddle.nn.Embedding([10, 10])
     adam = paddle.optimizer.Adamax(0.001, parameters = emb.parameters())
     lr = adam.get_lr()
     print(lr) # 0.001
 
-    # example2: PiecewiseDecay is used, return the step learning rate
+    # example2: PiecewiseLR is used, return the step learning rate
     paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
@@ -238,7 +238,8 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    adam = paddle.optimizer.Adamax(paddle.PiecewiseDecay(bd, value, 0),
+    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    adam = paddle.optimizer.Adamax(scheduler,
                            parameters=linear.parameters())
 
     # first step: learning rate is 0.2
@@ -249,4 +250,5 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
     for i in range(12):
         adam.step()
         lr = adam.get_lr()
+        scheduler.step()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True

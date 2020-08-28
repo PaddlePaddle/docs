@@ -171,7 +171,7 @@ RMSProp
 
   **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**  
 
-手动设置当前 ``optimizer`` 的学习率。当使用LearningRateDecay时，无法使用该API手动设置学习率，因为这将导致冲突。
+手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
 参数：
     value (float|Tensor) - 需要设置的学习率的值。
@@ -218,7 +218,7 @@ RMSProp
 
   **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-获取当前步骤的学习率。当不使用LearningRateDecay时，每次调用的返回值都相同，否则返回当前步骤的学习率。
+获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
 返回：当前步骤的学习率。
 
@@ -230,7 +230,7 @@ RMSProp
 
     import numpy as np
     import paddle
-    # example1: LearningRateDecay is not used, return value is all the same
+    # example1: _LRScheduler is not used, return value is all the same
     paddle.disable_static()
     emb = paddle.nn.Embedding([10, 10])
     adam = paddle.optimizer.RMSProp(0.001, parameters = emb.parameters())
@@ -258,4 +258,5 @@ RMSProp
     for i in range(12):
         adam.step()
         lr = adam.get_lr()
+        scheduler.step()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True

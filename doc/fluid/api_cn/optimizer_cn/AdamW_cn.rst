@@ -26,7 +26,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
 参数: 
-    - **learning_rate** (float|LearningrateDecay) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个LearningrateDecay类，默认值为0.001
+    - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
     - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **beta1** (float|Tensor, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.9
     - **beta2** (float|Tensor, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999
@@ -160,7 +160,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
   **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**  
 
-手动设置当前 ``optimizer`` 的学习率。当使用LearningRateDecay时，无法使用该API手动设置学习率，因为这将导致冲突。
+手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
 参数：
     value (float|Tensor) - 需要设置的学习率的值。
@@ -208,7 +208,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
   **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-获取当前步骤的学习率。当不使用LearningRateDecay时，每次调用的返回值都相同，否则返回当前步骤的学习率。
+获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
 返回：当前步骤的学习率。
 
@@ -220,14 +220,14 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
     import numpy as np
     import paddle
-    # example1: LearningRateDecay is not used, return value is all the same
+    # example1: _LRScheduler is not used, return value is all the same
     paddle.disable_static()
     emb = paddle.nn.Embedding([10, 10])
     adam = paddle.optimizer.AdamW(learning_rate=0.001, parameters = emb.parameters(),weight_decay=0.01)
     lr = adam.get_lr()
     print(lr) # 0.001
 
-    # example2: PiecewiseDecay is used, return the step learning rate
+    # example2: PiecewiseLR is used, return the step learning rate
     paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
@@ -237,7 +237,8 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    adam = paddle.optimizer.AdamW(paddle.PiecewiseDecay(bd, value, 0),
+    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    adam = paddle.optimizer.AdamW(scheduler,
                            parameters=linear.parameters(),
                            weight_decay=0.01)
 
@@ -249,4 +250,5 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     for i in range(12):
         adam.step()
         lr = adam.get_lr()
+        scheduler.step()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
