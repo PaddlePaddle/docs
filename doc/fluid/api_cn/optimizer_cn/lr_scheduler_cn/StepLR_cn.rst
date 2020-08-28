@@ -9,7 +9,7 @@ StepLR
 
 衰减过程可以参考以下代码：
 
-.. code-block:: python
+.. code-block:: text 
 
      learning_rate = 0.5
      step_size = 30
