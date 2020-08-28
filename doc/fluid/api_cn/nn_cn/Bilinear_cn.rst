@@ -20,7 +20,7 @@ Bilinear
   - :math:`x2`: 第二个输入，包含 :in2_features个元素，形状为 [batch_size, in2_features]。
   - :math:`W_{i}`: 第 :i个被学习的权重，形状是 [in1_features, in2_features]。
   - :math:`out_{i}`: 输出的第 :i个元素，形状是 [batch_size, out_features]。
-  - :math:`b`: 被学习的偏置参数，形状是 [1, out_features]。
+  - :math:`b`: 被学习的偏置参数，形状是 [out_features]。
   - :math:`x2^\mathrm{T}`: :math:`x2` 的转置。
 
 参数
