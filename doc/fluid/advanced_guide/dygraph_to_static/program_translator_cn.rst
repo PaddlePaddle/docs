@@ -153,7 +153,7 @@ TracedLayer的原理就是trace，相对简单，因此我们在这里不展开�
 动态图转静态图的主体是函数（Function）。对于函数内包含的PaddlePaddle接口，如果是仅计算相关算子代码语句，那么因为PaddlePaddle动态图和静态图接口一致，我们不需要额外转换这些代码为静态图代码。但是对于动态图，此类代码接口是直接运行计算和返回结果，而对于静态图此类代码接口其实是组网。那么如果被转化的函数被调用多次，动态图转静态图后会多次组网添加对应算子，这显然会导致问题。为了解决这个问题以及为了加速动转静转化过程，我们维护了被装饰器装饰的函数（Function）与其输入形状（shape），数据类型（dtype）映射到被转化后组网的Program的缓存（Cache）。当要被转化的函数命中缓存，我们直接用对应存储的Program运行静态图得到结果，否则我们才进行语句转化，并且转化成功后的Program存储进缓存。
 
 2. 从函数转化为动态图源码，再进行AST（抽象语法树）解析
-动态图转静态图的最核心部分类似一个编译器，解析动态图代码语句为AST，再对应AST进行改写，最后反转回成静态图代码。从函数转化为代码字符串可以使用Python的inspect.getsource。从字符串Python提供了自带的ast库来解析字符串为`AST <https://docs.python.org/3/library/ast.html>`_，但是由于python2，python3的语法略有不同，为了避免我们需要额外处理这些python2，python3的不同情况，我们使用了统一python2，python3的开源AST处理`gast库 <https://github.com/serge-sans-paille/gast>`_。这些接口使得函数转化为AST没有本质上的困难。
+动态图转静态图的最核心部分类似一个编译器，解析动态图代码语句为AST，再对应AST进行改写，最后反转回成静态图代码。从函数转化为代码字符串可以使用Python的inspect.getsource。从字符串Python提供了自带的ast库来解析字符串为 `AST <https://docs.python.org/3/library/ast.html>`_ ，但是由于python2，python3的语法略有不同，为了避免我们需要额外处理这些python2，python3的不同情况，我们使用了统一python2，python3的开源AST处理 `gast库 <https://github.com/serge-sans-paille/gast>`_ 。这些接口使得函数转化为AST没有本质上的困难。
 
 3. AST语法树的转写为静态图AST，再生成源码
 这部分为动转静最核心的部分，我们对支持的各种语法进行ast转写。其中最重要的python控制流，if-else，while，for循环被分别分析转化为PaddlePaddle静态图接口cond，while_loop等接口实现。我们对想转化的每一种主要语法创建一个Transformer（这里的Transformer是python ast转写的概念，而不是自然语言处理NLP领域的Transformer），每个Transformer扫一遍AST并进行对应的改写。最后被转化完成的AST我们使用gast提供的接口转回成源码。
