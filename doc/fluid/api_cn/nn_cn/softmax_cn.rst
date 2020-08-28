@@ -2,8 +2,7 @@
 
 softmax
 -------------------------------
-
-.. py:function:: paddle.nn.functional.softmax(x, axis=-1, name=None)
+.. py:function:: paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 
 
 该OP实现了softmax层。OP的计算过程如下：
@@ -24,8 +23,7 @@ softmax
 
 .. math::
 
-
-    Out[i,j] = \frac{exp(X[i,j])}{\sum_j exp(X[i,j])}
+    softmax[i, j] = \frac{\exp(x[i, j])}{\sum_j(exp(x[i, j])}
 
 - 示例1（矩阵一共有三维。axis = -1，表示沿着最后一维（即第三维）做softmax操作）
 
@@ -86,13 +84,14 @@ softmax
 
 参数
 ::::::::::
-    - x (Tensor) - 输入的多维 ``Tensor`` ，数据类型为：float32、float64。
+    - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
     - axis (int, 可选) - 指定对输入 ``x`` 进行运算的轴。``axis`` 的有效范围是[-D, D)，D是输入 ``x`` 的维度， ``axis`` 为负值时与 :math:`axis + D` 等价。默认值为-1。
+    - dtype (str|np.dtype|core.VarDesc.VarType, 可选) - 输入Tensor的数据类型。如果指定了 ``dtype`` ，则输入Tensor的数据类型会在计算前转换到 ``dtype`` 。``dtype``可以用来避免数据溢出。如果 ``dtype`` 为None，则输出Tensor的数据类型和 ``x`` 相同。默认值为None。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::
-    ``Tensor`` ，数据类型和形状同 ``x`` 一致。
+    ``Tensor`` ，形状和 ``x`` 相同，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
 代码示例
 ::::::::::
@@ -111,8 +110,11 @@ softmax
                     [[1.0, 2.0, 3.0, 4.0],
                     [5.0, 6.0, 7.0, 8.0],
                     [6.0, 7.0, 8.0, 9.0]]], 'float32')
-    x = paddle.to_variable(x)
-    out = F.softmax(x)
+    x = paddle.to_tensor(x)
+    out1 = F.softmax(x)
+    out2 = F.softmax(x, dtype='float64')
+    # out1's data type is float32; out2's data type is float64
+    # out1 and out2's value is as follows:
     # [[[0.0320586 , 0.08714432, 0.23688282, 0.64391426],
     #   [0.0320586 , 0.08714432, 0.23688282, 0.64391426],
     #   [0.07232949, 0.19661193, 0.19661193, 0.53444665]],

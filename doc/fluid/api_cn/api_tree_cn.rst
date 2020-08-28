@@ -13,7 +13,9 @@ API接口
     data/dataset_cn.rst
     data_feeder_cn.rst
     dataset_cn.rst
+    distributed_cn.rst
     dygraph_cn.rst
+    static_cn.rst
     executor_cn.rst
     initializer_cn.rst
     io_cn.rst
@@ -25,5 +27,6 @@ API接口
     regularizer_cn.rst
     transpiler_cn.rst
     unique_name_cn.rst
+    static_cn.rst
 
 

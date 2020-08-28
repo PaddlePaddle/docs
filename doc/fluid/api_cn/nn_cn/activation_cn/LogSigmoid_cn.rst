@@ -4,11 +4,11 @@ LogSigmoid
 -------------------------------
 .. py:class:: paddle.nn.LogSigmoid(name=None)
 
-Logsigmoid激活层。计算公式如下：
+LogSigmoid激活层。计算公式如下：
 
 .. math::
 
-    Logsigmoid(x) = \log \frac{1}{1 + e^{-x}}
+    LogSigmoid(x) = \log \frac{1}{1 + e^{-x}}
 
 其中，:math:`x` 为输入的 Tensor
 
@@ -33,4 +33,4 @@ Logsigmoid激活层。计算公式如下：
 
     x = paddle.to_tensor(np.array([1.0, 2.0, 3.0, 4.0]))
     m = paddle.nn.LogSigmoid()
-    out = m(x) # [0.7310586, 0.880797, 0.95257413, 0.98201376]
+    out = m(x) # [-0.313262 -0.126928 -0.0485874 -0.0181499]

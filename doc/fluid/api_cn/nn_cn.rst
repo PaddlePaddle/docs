@@ -19,6 +19,7 @@ paddle.nn
     nn_cn/activation_cn.rst
     nn_cn/loss_cn.rst
     nn_cn/functional_cn.rst
+    nn_cn/layer_cn.rst
     nn_cn/adaptive_pool2d_cn.rst
     nn_cn/adaptive_pool3d_cn.rst
     nn_cn/add_position_encoding_cn.rst
@@ -27,6 +28,10 @@ paddle.nn
     nn_cn/anchor_generator_cn.rst
     nn_cn/assign_cn.rst
     nn_cn/BatchNorm_cn.rst
+    nn_cn/BatchNorm1d_cn.rst
+    nn_cn/BatchNorm2d_cn.rst
+    nn_cn/BatchNorm3d_cn.rst
+    nn_cn/SyncBatchNorm_cn.rst
     nn_cn/beam_search_cn.rst
     nn_cn/beam_search_decode_cn.rst
     nn_cn/BilinearTensorProduct_cn.rst
@@ -47,7 +52,12 @@ paddle.nn
     nn_cn/conv2d_transpose_cn.rst
     nn_cn/conv3d_cn.rst
     nn_cn/conv3d_transpose_cn.rst
+    nn_cn/ConstantPad1d_cn.rst
+    nn_cn/ConstantPad2d_cn.rst
+    nn_cn/ConstantPad3d_cn.rst
     nn_cn/cosine_decay_cn.rst
+    nn_cn/cosine_similarity_cn.rst
+    nn_cn/CosineSimilarity_cn.rst
     nn_cn/cross_entropy_cn.rst
     nn_cn/data_cn.rst
     nn_cn/deformable_roi_pooling_cn.rst
@@ -74,6 +84,7 @@ paddle.nn
     nn_cn/grid_sampler_cn.rst
     nn_cn/GroupNorm_cn.rst
     nn_cn/hardshrink_cn.rst
+    nn_cn/hardtanh_cn.rst
     nn_cn/hard_sigmoid_cn.rst
     nn_cn/hard_swish_cn.rst
     nn_cn/hash_cn.rst
@@ -81,6 +92,9 @@ paddle.nn
     nn_cn/huber_loss_cn.rst
     nn_cn/image_resize_cn.rst
     nn_cn/image_resize_short_cn.rst
+    nn_cn/InstanceNorm1d_cn.rst
+    nn_cn/InstanceNorm2d_cn.rst
+    nn_cn/InstanceNorm3d_cn.rst
     nn_cn/inverse_time_decay_cn.rst
     nn_cn/iou_similarity_cn.rst
     nn_cn/kldiv_loss_cn.rst
@@ -106,6 +120,7 @@ paddle.nn
     nn_cn/one_hot_cn.rst
     nn_cn/pad2d_cn.rst
     nn_cn/pad_cn.rst
+    nn_cn/Pad_cn.rst
     nn_cn/pad_constant_like_cn.rst
     nn_cn/PairwiseDistance_cn.rst
     nn_cn/ParameterList_cn.rst
@@ -116,16 +131,22 @@ paddle.nn
     nn_cn/pool2d_cn.rst
     nn_cn/Pool2D_cn.rst
     nn_cn/pool3d_cn.rst
+    nn_cn/prelu_cn.rst
     nn_cn/prior_box_cn.rst
     nn_cn/prroi_pool_cn.rst
     nn_cn/psroi_pool_cn.rst
     nn_cn/random_crop_cn.rst
     nn_cn/rank_loss_cn.rst
+    nn_cn/ReflectionPad1d_cn.rst
+    nn_cn/ReflectionPad2d_cn.rst
     nn_cn/relu6_cn.rst
     nn_cn/relu_cn.rst
     nn_cn/resize_bilinear_cn.rst
     nn_cn/resize_nearest_cn.rst
     nn_cn/resize_trilinear_cn.rst
+    nn_cn/ReplicationPad1d_cn.rst
+    nn_cn/ReplicationPad2d_cn.rst
+    nn_cn/ReplicationPad3d_cn.rst
     nn_cn/retinanet_detection_output_cn.rst
     nn_cn/retinanet_target_assign_cn.rst
     nn_cn/roi_align_cn.rst
@@ -153,7 +174,7 @@ paddle.nn
     nn_cn/ssd_loss_cn.rst
     nn_cn/swish_cn.rst
     nn_cn/switch_case_cn.rst
-    nn_cn/tanh_shrink_cn.rst
+    nn_cn/tanhshrink_cn.rst
     nn_cn/target_assign_cn.rst
     nn_cn/teacher_student_sigmoid_loss_cn.rst
     nn_cn/temporal_shift_cn.rst
@@ -165,4 +186,17 @@ paddle.nn
     nn_cn/yolo_box_cn.rst
     nn_cn/loss_cn/MarginRankingLoss_cn.rst
     nn_cn/functional_cn/margin_ranking_loss_cn.rst
-     
+    nn_cn/weight_norm_cn.rst
+    nn_cn/remove_weight_norm_cn.rst
+    nn_cn/Dropout_cn.rst
+    nn_cn/Dropout2D_cn.rst
+    nn_cn/Dropout3D_cn.rst
+    nn_cn/AlphaDropout_cn.rst
+    nn_cn/ZeroPad2d_cn.rst
+    nn_cn/AdaptiveAvgPool2d_cn.rst
+    nn_cn/AdaptiveAvgPool3d_cn.rst
+    nn_cn/AdaptiveAvgPool1d_cn.rst
+    nn_cn/AdaptiveMaxPool1d_cn.rst
+    nn_cn/AvgPool1d_cn.rst
+    nn_cn/MaxPool1d_cn.rst
+    nn_cn/Bilinear_cn.rst
