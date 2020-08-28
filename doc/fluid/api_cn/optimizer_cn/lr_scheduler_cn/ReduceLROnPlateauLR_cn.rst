@@ -33,20 +33,21 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
 .. code-block:: python
 
     import paddle
+    import numpy as np
 
-    # train on default imperative mode
+    # train on default dygraph mode
     paddle.disable_static()
     x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
-    adam = paddle.optimizer.Adam(learning_rate=scheduler, parameter_list=linear.parameters())
+    scheduler = paddle.optimizer.lr_scheduler.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
+    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
     for epoch in range(20):
         for batch_id in range(2):
             x = paddle.to_tensor(x)
             out = linear(x)
             loss = paddle.reduce_mean(out)
-            out.backward()
-            adam.minimize(loss)
+            loss.backward()
+            sgd.minimize(loss)
             linear.clear_gradients()
         scheduler.step(loss)
 
@@ -55,14 +56,13 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
     main_prog = paddle.static.Program()
     start_prog = paddle.static.Program()
     with paddle.static.program_guard(main_prog, start_prog):
-        x = paddle.static.data(name='x', shape=[-1, 4, 5])
-        y = paddle.static.data(name='y', shape=[-1, 4, 5])
+        x = paddle.static.data(name='x', shape=[None, 4, 5])
+        y = paddle.static.data(name='y', shape=[None, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
-        adam = paddle.optimizer.Adam(learning_rate=scheduler)
-        adam.minimize(loss)
-        lr_var = adam._global_learning_rate()
+        scheduler = paddle.optimizer.lr_scheduler.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
+        sgd = paddle.optimizer.SGD(learning_rate=scheduler)
+        sgd.minimize(loss)
 
     exe = paddle.static.Executor()
     exe.run(start_prog)
@@ -74,7 +74,7 @@ loss 是传入到该类方法 ``step`` 中的参数，其必须是shape为[1]的
                     'x': np.random.randn(3, 4, 5).astype('float32'),
                     'y': np.random.randn(3, 4, 5).astype('float32')
                 },
-                fetch_list=lr_var.name)
+                fetch_list=loss.name)
         scheduler.step(out[0])
 
 

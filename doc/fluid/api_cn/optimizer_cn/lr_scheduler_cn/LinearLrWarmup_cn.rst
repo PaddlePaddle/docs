@@ -41,53 +41,52 @@ LinearLrWarmup
 
 .. code-block:: python
 
-    import paddle
+     import paddle
+     import numpy as np
 
-    # train on default imperative mode
-    paddle.disable_static()
-    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
-    linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.LinearLrWarmup(
-            learning_rate=0.5, warmup_steps=20, start_lr=0, end_lr=0.5, verbose=True)
-    adam = paddle.optimizer.Adam(learning_rate=scheduler, parameter_list=linear.parameters())
-    for epoch in range(20):
-        for batch_id in range(2):
-            x = paddle.to_tensor(x)
-            out = linear(x)
-            loss = paddle.reduce_mean(out)
-            out.backward()
-            adam.minimize(loss)
-            linear.clear_gradients()
-        scheduler.step()
+     # train on default dygraph mode
+     paddle.disable_static()
+     x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
+     linear = paddle.nn.Linear(10, 10)
+     scheduler = paddle.optimizer.LinearLrWarmup(
+             learning_rate=0.5, warmup_steps=20, start_lr=0, end_lr=0.5, verbose=True)
+     sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
+     for epoch in range(20):
+         for batch_id in range(2):
+             x = paddle.to_tensor(x)
+             out = linear(x)
+             loss = paddle.reduce_mean(out)
+             loss.backward()
+             sgd.minimize(loss)
+             linear.clear_gradients()
+         scheduler.step()
 
-    # train on static mode
-    paddle.enable_static()
-    main_prog = paddle.static.Program()
-    start_prog = paddle.static.Program()
-    with paddle.static.program_guard(main_prog, start_prog):
-        x = paddle.static.data(name='x', shape=[-1, 4, 5])
-        y = paddle.static.data(name='y', shape=[-1, 4, 5])
-        z = paddle.static.nn.fc(x, 100)
-        loss = paddle.mean(z)
-        scheduler = paddle.optimizer.LinearLrWarmup(
-            learning_rate=0.5, warmup_steps=20, start_lr=0, end_lr=0.5, verbose=True)
-        adam = paddle.optimizer.Adam(learning_rate=scheduler)
-        adam.minimize(loss)
-        lr_var = adam._global_learning_rate()
+     # train on static mode
+     paddle.enable_static()
+     main_prog = paddle.static.Program()
+     start_prog = paddle.static.Program()
+     with paddle.static.program_guard(main_prog, start_prog):
+         x = paddle.static.data(name='x', shape=[None, 4, 5])
+         y = paddle.static.data(name='y', shape=[None, 4, 5])
+         z = paddle.static.nn.fc(x, 100)
+         loss = paddle.mean(z)
+         scheduler = paddle.optimizer.lr_scheduler.LinearLrWarmup(
+             learning_rate=0.5, warmup_steps=20, start_lr=0, end_lr=0.5, verbose=True)
+         sgd = paddle.optimizer.SGD(learning_rate=scheduler)
+         sgd.minimize(loss)
 
-    exe = paddle.static.Executor()
-    exe.run(start_prog)
-    for epoch in range(20):
-        for batch_id in range(2):
-            out = exe.run(
-                main_prog,
-                feed={
-                    'x': np.random.randn(3, 4, 5).astype('float32'),
-                    'y': np.random.randn(3, 4, 5).astype('float32')
-                },
-                fetch_list=lr_var.name)
-        scheduler.step()      
-
+     exe = paddle.static.Executor()
+     exe.run(start_prog)
+     for epoch in range(20):
+         for batch_id in range(2):
+             out = exe.run(
+                 main_prog,
+                 feed={
+                     'x': np.random.randn(3, 4, 5).astype('float32'),
+                     'y': np.random.randn(3, 4, 5).astype('float32')
+                 },
+                 fetch_list=loss.name)
+         scheduler.step()      
 
 .. py:method:: step(epoch=None)
 
