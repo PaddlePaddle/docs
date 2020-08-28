@@ -3,7 +3,7 @@
 one_hot
 -------------------------------
 
-.. py:function:: paddle.fluid.nn.functional.one_hot(x, num_classes, name=None)
+.. py:function:: paddle.nn.functional.one_hot(x, num_classes, name=None)
 该OP将输入'x'中的每个id转换为一个one-hot向量，其长度为 ``num_classes`` ，该id对应的向量维度上的值为1，其余维度的值为0。
 
 输出的Tensor的shape是在输入shape的最后一维后面添加了num_classes的维度。
@@ -42,16 +42,14 @@ one_hot
     - **num_classes** (int) - 用于定义一个one-hot向量的长度。若输入为词id，则 ``num_classes`` 通常取值为词典大小。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：转换后的one_hot Tensor，数据类型为float32。
-
-返回类型：Tensor
+返回：Tensor，转换后的one_hot Tensor，数据类型为float32。
 
 **代码示例**：
 
 .. code-block:: python
 
     import paddle
-    label = paddle.fluid.data(name="label", shape=[4], dtype="int64")
+    label = paddle.data(name="label", shape=[4], dtype="int64")
     # label.shape = [4]
     # label.data = [1, 1, 3, 0]
     one_hot_label = paddle.nn.functional.one_hot(x=label, num_classes=4)
