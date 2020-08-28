@@ -35,3 +35,15 @@ paddle.optimizer
     optimizer_cn/RMSPropOptimizer_cn.rst
     optimizer_cn/SGD_cn.rst
     optimizer_cn/SGDOptimizer_cn.rst
+    optimizer_cn/lr_scheduler_cn/CosineAnnealingLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/ExponentialLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/InverseTimeLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/LambdaLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/MultiStepLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/NaturalExpLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/NoamLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/PiecewiseLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/PolynomiaLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/ReduceLROnPlateauLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/StepLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/LinearLrWarmup_cn.rst

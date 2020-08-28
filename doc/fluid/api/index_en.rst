@@ -14,6 +14,7 @@ API Reference
     metric.rst
     nn.rst
     optimizer.rst
+    static.rst
     tensor.rst
     fluid.rst
     backward.rst
