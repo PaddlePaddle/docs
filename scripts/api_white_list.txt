@@ -14,3 +14,5 @@ distributed_cn/barrier_cn.rst
 distributed_cn/broadcast_cn.rst
 distributed_cn/reduce_cn.rst
 distributed_cn/scatter_cn.rst
+distributed_cn/init_parallel_env.rst
+distributed_cn/spawn.rst
