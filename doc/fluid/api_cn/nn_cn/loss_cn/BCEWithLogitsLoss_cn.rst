@@ -21,7 +21,7 @@ BCEWithLogitsLoss
 .. math::
     Out = Logit - Logit * Labels + \log(1 + e^{-Logit})
 
-为了计算稳定性，防止当 :math:`X<0` 时， :math:`e^{-X}` 溢出，loss将采用以下公式计算:
+为了计算稳定性，防止当 :math:`Logit<0` 时， :math:`e^{-Logit}` 溢出，loss将采用以下公式计算:
 
 .. math::
     Out = \max(Logit, 0) - Logit * Labels + \log(1 + e^{-\|Logit\|})

@@ -3,7 +3,7 @@
 binary_cross_entropy_with_logits
 -------------------------------
 
-.. py:function:: paddle.nn.functional.binary_cross_entropy_with_logits(weight=None, reduction='mean', pos_weight=None, name=None)
+.. py:function:: paddle.nn.functional.binary_cross_entropy_with_logits(logit, label, weight=None, reduction='mean', pos_weight=None, name=None)
 
 该OP用于计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
 
@@ -21,7 +21,7 @@ binary_cross_entropy_with_logits
 .. math::
     Out = Logit - Logit * Labels + \log(1 + e^{-Logit})
 
-为了计算稳定性，防止当 :math:`X<0` 时， :math:`e^{-X}` 溢出，loss将采用以下公式计算:
+为了计算稳定性，防止当 :math:`Logit<0` 时， :math:`e^{-Logit}` 溢出，loss将采用以下公式计算:
 
 .. math::
     Out = \max(Logit, 0) - Logit * Labels + \log(1 + e^{-\|Logit\|})
