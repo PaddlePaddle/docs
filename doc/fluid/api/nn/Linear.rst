@@ -2,6 +2,6 @@
 
 Linear
 -------------------------------
-:doc_source: paddle.fluid.dygraph.Linear
+:doc_source: paddle.nn.Linear
 
 
