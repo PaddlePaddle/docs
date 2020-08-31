@@ -112,7 +112,6 @@ RMSProp
         
 返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
-返回类型： tuple
 
 **示例代码**
 
@@ -176,7 +175,7 @@ RMSProp
 参数：
     value (float) - 需要设置的学习率的值。
 
-返回：无
+返回：None
 
 **代码示例**
 
@@ -220,9 +219,8 @@ RMSProp
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
-返回：当前步骤的学习率。
+返回：float，当前步骤的学习率。
 
-返回类型：float
 
 **代码示例**
 
