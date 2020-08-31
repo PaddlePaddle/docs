@@ -164,7 +164,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
 参数：
-    value (float|Tensor) - 需要设置的学习率的值。
+    value (float) - 需要设置的学习率的值。
 
 返回：无
 
