@@ -3,6 +3,8 @@
 spawn
 -----
 
+.. py:function:: paddle.distributed.spawn(func, args=(), nprocs=-1, join=True, daemon=False, **options)
+
 使用 ``spawn`` 方法启动多进程任务。
 
 参数

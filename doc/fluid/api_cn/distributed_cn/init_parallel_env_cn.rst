@@ -3,6 +3,8 @@
 init_parallel_env
 -----------------
 
+.. py:function:: paddle.distributed.init_parallel_env()
+
 初始化动态图模式下的并行训练环境。
 
 .. note::
