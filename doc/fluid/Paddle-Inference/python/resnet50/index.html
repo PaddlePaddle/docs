@@ -1,0 +1,108 @@
+
+<html>
+<head>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSsymbols.js", "TeX/AMSmath.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" async></script>
+  <script type="text/javascript" src="../.tools/theme/marked.js">
+  </script>
+  <link href="http://cdn.bootcss.com/highlight.js/9.9.0/styles/darcula.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
+  <link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/perfect-scrollbar/0.6.14/css/perfect-scrollbar.min.css" rel="stylesheet">
+  <link href="../.tools/theme/github-markdown.css" rel='stylesheet'>
+</head>
+<style type="text/css" >
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
+</style>
+
+
+<body>
+
+<div id="context" class="container-fluid markdown-body">
+</div>
+
+<!-- This block will be replaced by each markdown file content. Please do not change lines below.-->
+<div id="markdown" style='display:none'>
+## 运行Resnet50图像分类样例
+
+
+### 一：准备环境
+
+请您在环境中安装1.7或以上版本的Paddle，具体的安装方式请参照[飞桨官方页面](https://www.paddlepaddle.org.cn/)的指示方式。
+
+
+### 二：下载模型以及测试数据
+
+
+1）**获取预测模型**
+
+下载[模型](https://paddle-inference-dist.bj.bcebos.com/inference_demo/python/resnet50/ResNet50.tar.gz)，模型为imagenet 数据集训练得到的，如果你想获取更多的模型训练信息，请访问[这里](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification)。
+
+
+2）**获取预测样例图片**
+
+下载[样例图片](https://paddle-inference-dist.bj.bcebos.com/inference_demo/python/resnet50/ILSVRC2012_val_00000247.jpeg)。
+
+图片如下：
+<p align="left">
+    <br>
+<img src='https://paddle-inference-dist.bj.bcebos.com/inference_demo/python/resnet50/ILSVRC2012_val_00000247.jpeg' width = "200" height = "200">
+    <br>
+<p>
+
+
+### 三：运行预测
+
+文件`img_preprocess.py`包含了图像的预处理。  
+文件`infer_resnet.py` 包含了创建predictor，读取示例图片，预测，获取输出的等功能。
+
+运行：
+```
+python infer_resnet.py --model_file=./ResNet50/model --params_file=./ResNet50/params --use_gpu=1
+```
+
+运行的结果为： ('class index: ', 13)。
+13表示图片的类别。我们通过imagenet [类别映射表](https://gist.github.com/yrevar/942d3a0ac09ec9e5eb3a)， 可以找到对应的类别，即junco, snowbird，由此说明我们的分类器分类正确。
+
+### 相关链接
+- [Paddle Inference使用Quick Start！]()
+- [Paddle Inference Python Api使用]()
+
+</div>
+<!-- You can change the lines below now. -->
+
+<script type="text/javascript">
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  breaks: false,
+  smartypants: true,
+  highlight: function(code, lang) {
+    code = code.replace(/&amp;/g, "&")
+    code = code.replace(/&gt;/g, ">")
+    code = code.replace(/&lt;/g, "<")
+    code = code.replace(/&nbsp;/g, " ")
+    return hljs.highlightAuto(code, [lang]).value;
+  }
+});
+document.getElementById("context").innerHTML = marked(
+        document.getElementById("markdown").innerHTML)
+</script>
+</body>

@@ -1,0 +1,6 @@
+breathe==4.18.1
+sphinx==3.0.3
+recommonmark
+sphinx_markdown_tables==0.0.14
+sphinx_rtd_theme==0.4.3
+exhale==0.2.3
