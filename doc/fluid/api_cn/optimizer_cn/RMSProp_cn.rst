@@ -235,7 +235,8 @@ RMSProp
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    adam = paddle.optimizer.RMSProp(paddle.optimizer.PiecewiseLR(bd, value, 0),
+    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    adam = paddle.optimizer.RMSProp(scheduler,
                            parameters=linear.parameters())
 
     # first step: learning rate is 0.2
