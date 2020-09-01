@@ -79,7 +79,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
-    linear = paddle.nn.Linear(13, 5, dtype="float32")
+    linear = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.AdamW(learning_rate = 0.01,
                                 weight_decay = 0.01,
                                 parameters = linear.parameters())
@@ -144,7 +144,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
-    linear = paddle.nn.Linear(13, 5, dtype="float32")
+    linear = paddle.nn.Linear(13, 5)
     optimizer = paddle.optimizer.AdamW(weight_decay=0.01,
                                      learning_rate=0.02,
                                      parameters=linear.parameters())
