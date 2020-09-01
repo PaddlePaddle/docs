@@ -19,9 +19,9 @@ triu
 参数：
     - **input** (Variable) - 输入矩阵, 数据类型 float64， float32， int32， int64的Tensor。
     - **diagonal** (int, optional)- 参考的矩阵对角线，默认值是 0。 如果diagonal = 0，参考对角线为主对角线，将保留参考对角线上和对角线往上的所有元素；当 diagonal 为一个大于 0的值 n时，表示实际参考的对角线为矩阵主对角线往上的第 n 条对角线；当 diagonal 为一个小于 0的值 n时，表示实际参考的对角线为矩阵主对角线往下的第 n 条对角线。 主对角线由矩阵中下标为 {(i,i)}， i∈[0,min{d1,d2}−1] 的元素组成，其中 d1,d2 为矩阵的维度。    
-    - **name** (str, optional) - 默认值是 None。用户通常不需要设置，更多信息请参考 `Name <https://www.paddlepaddle.org.cn/documentation/docs/zh/api_guides/low_level/program.html#name>`_.
+    - **name** (str, optional) - 默认值是 None，用户通常不需要设置。 更多信息请参见 :ref:`api_guide_Name`。
     
-返回： Tensor，对输入矩阵按指定的参考对角线取得的上三角矩阵，数据类型和输入矩阵相同。 
+返回： 对输入矩阵按指定的参考对角线取得的上三角矩阵，数据类型和输入矩阵相同。 
 
 返回类型：Variable
 
