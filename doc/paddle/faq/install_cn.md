@@ -97,6 +97,7 @@ paddle运行时报libmkldnn.so not found。
 在本文中的例子里，`docker run` 命令里都用了 `--rm` 参数，这样保证运行结束之后的 containers 不会保留在磁盘上。可以用 `docker ps -a` 命令看到停止后但是没有删除的 containers。`docker build` 命令有时候会产生一些中间结果，是没有名字的 images，也会占用磁盘。
 
 ##### Q: Linux系统下安装了CUDA10.0+CUDNN7运行paddle报错:Cublas error, CUBLAS_STATUS_EXECUTION_FAILED
+
 + 问题解答
 
 CUDA10.0在linux版本上貌似存在问题，请更换CUDA10.1版本。
