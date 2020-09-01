@@ -169,17 +169,6 @@ Optimizer
     #    current lr is 0.5
     #    current lr is 0.6
 
-
-        # set learning rate manually by framework Tensor
-        lr_var = paddle.create_global_var(
-            shape=[1], value=0.7, dtype='float32')
-        adam.set_lr(lr_var)
-        lr = adam.get_lr()
-        print("current lr is {}".format(lr))
-        # Print:
-        #    current lr is 0.7
-
-
 .. py:method:: get_lr()
 
 **注意：**
@@ -199,7 +188,7 @@ Optimizer
     import paddle
     # example1: _LRScheduler is not used, return value is all the same
     paddle.disable_static()
-    emb = paddle.nn.Embedding([10, 10])
+    emb = paddle.nn.Embedding(10, 10, sparse=False)
     adam = paddle.optimizer.Adam(0.001, parameters = emb.parameters())
     lr = adam.get_lr()
     print(lr) # 0.001
