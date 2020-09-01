@@ -9,15 +9,23 @@ DataParallel
 
 通过数据并行模式执行动态图模型。
 
-目前，``DataParallel`` 仅支持以多进程的方式执行动态图模型。使用方式如下：
+目前，``DataParallel`` 仅支持以多进程的方式执行动态图模型。
 
-``python -m paddle.distributed.launch –selected_gpus=0,1 dynamic_graph_test.py``
+支持两种使用方式：
 
-其中 ``dynamic_graph_test.py`` 脚本的代码可以是下面的示例代码。
+1. 使用 ``paddle.distributed.spawn`` 方法启动，例如：
+
+ ``python demo.py`` (spawn need to be called in ``__main__`` method)
+
+2. 使用 ``paddle.distributed.launch`` 方法启动，例如：
+
+``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py``
+
+其中 ``demo.py`` 脚本的代码可以是下面的示例代码。
 
 参数：
     - **Layer** (Layer) - 需要通过数据并行方式执行的模型。
-    - **strategy** (ParallelStrategy) - 数据并行的策略，包括并行执行的环境配置。
+    - **strategy** (ParallelStrategy，可选) - (deprecated) 数据并行的策略，包括并行执行的环境配置。默认为None。
 
 返回：支持数据并行的 ``Layer``
 
@@ -27,38 +35,53 @@ DataParallel
 
 .. code-block:: python
 
-    import numpy as np
-    import paddle.fluid as fluid
+    import paddle
+    import paddle.nn as nn
+    import paddle.optimizer as opt
+    import paddle.distributed as dist
 
-    place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
-    with fluid.dygraph.guard(place):
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear1 = nn.Linear(10, 10)
+            self._linear2 = nn.Linear(10, 1)
+            
+        def forward(self, x):
+            return self._linear2(self._linear1(x))
 
-        # prepare the data parallel context
-        strategy = fluid.dygraph.prepare_context()
+    def train():
+        # 1. enable dynamic mode
+        paddle.disable_static()
+        
+        # 2. initialize parallel environment
+        dist.init_parallel_env()
 
-        linear = fluid.dygraph.Linear(1, 10, act="softmax")
-        adam = fluid.optimizer.AdamOptimizer(
-            learning_rate=0.001, parameter_list=linear.parameters())
+        # 3. create data parallel layer & optimizer
+        layer = LinearNet()
+        dp_layer = paddle.DataParallel(layer)
 
-        # make the module become the data parallelism module
-        linear = fluid.dygraph.DataParallel(linear, strategy)
+        loss_fn = nn.MSELoss()
+        adam = opt.Adam(
+            learning_rate=0.001, parameters=dp_layer.parameters())
 
-        x_data = np.random.random(size=[10, 1]).astype(np.float32)
-        data = fluid.dygraph.to_variable(x_data)
+        # 4. run layer
+        inputs = paddle.randn([10, 10], 'float32')
+        outputs = dp_layer(inputs)
+        labels = paddle.randn([10, 1], 'float32')
+        loss = loss_fn(outputs, labels)
+        
+        loss = dp_layer.scale_loss(loss)
+        loss.backward()
+        dp_layer.apply_collective_grads()
 
-        hidden = linear(data)
-        avg_loss = fluid.layers.mean(hidden)
+        adam.step()
+        adam.clear_grad()
 
-        # scale the loss according to the number of trainers.
-        avg_loss = linear.scale_loss(avg_loss)
-
-        avg_loss.backward()
-
-        # collect the gradients of trainers.
-        linear.apply_collective_grads()
-
-        adam.minimize(avg_loss)
-        linear.clear_gradients()
+    if __name__ == '__main__':
+        # 1. start by ``paddle.distributed.spawn`` (default)
+        dist.spawn(train, nprocs=2)
+        # 2. start by ``paddle.distributed.launch``
+        # train()
 
 .. py:method:: scale_loss(loss)
 
@@ -77,38 +100,53 @@ DataParallel
 
 .. code-block:: python
 
-    import numpy as np
-    import paddle.fluid as fluid
+    import paddle
+    import paddle.nn as nn
+    import paddle.optimizer as opt
+    import paddle.distributed as dist
 
-    place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
-    with fluid.dygraph.guard(place):
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear1 = nn.Linear(10, 10)
+            self._linear2 = nn.Linear(10, 1)
+            
+        def forward(self, x):
+            return self._linear2(self._linear1(x))
 
-        # prepare the data parallel context
-        strategy = fluid.dygraph.prepare_context()
+    def train():
+        # 1. enable dynamic mode
+        paddle.disable_static()
+        
+        # 2. initialize parallel environment
+        dist.init_parallel_env()
 
-        linear = fluid.dygraph.Linear(1, 10, act="softmax")
-        adam = fluid.optimizer.AdamOptimizer(
-            learning_rate=0.001, parameter_list=linear.parameters())
+        # 3. create data parallel layer & optimizer
+        layer = LinearNet()
+        dp_layer = paddle.DataParallel(layer)
 
-        # make the module become the data parallelism module
-        linear = fluid.dygraph.DataParallel(linear, strategy)
+        loss_fn = nn.MSELoss()
+        adam = opt.Adam(
+            learning_rate=0.001, parameters=dp_layer.parameters())
 
-        x_data = np.random.random(size=[10, 1]).astype(np.float32)
-        data = fluid.dygraph.to_variable(x_data)
+        # 4. run layer
+        inputs = paddle.randn([10, 10], 'float32')
+        outputs = dp_layer(inputs)
+        labels = paddle.randn([10, 1], 'float32')
+        loss = loss_fn(outputs, labels)
+        
+        loss = dp_layer.scale_loss(loss)
+        loss.backward()
+        dp_layer.apply_collective_grads()
 
-        hidden = linear(data)
-        avg_loss = fluid.layers.mean(hidden)
+        adam.step()
+        adam.clear_grad()
 
-        # scale the loss according to the number of trainers.
-        avg_loss = linear.scale_loss(avg_loss)
-
-        avg_loss.backward()
-
-        # collect the gradients of trainers.
-        linear.apply_collective_grads()
-
-        adam.minimize(avg_loss)
-        linear.clear_gradients()
+    if __name__ == '__main__':
+        # 1. start by ``paddle.distributed.spawn`` (default)
+        dist.spawn(train, nprocs=2)
+        # 2. start by ``paddle.distributed.launch``
+        # train()
 
 
 .. py:method:: apply_collective_grads()
@@ -121,35 +159,50 @@ AllReduce（规约）参数的梯度值。
 
 .. code-block:: python
 
-    import numpy as np
-    import paddle.fluid as fluid
+    import paddle
+    import paddle.nn as nn
+    import paddle.optimizer as opt
+    import paddle.distributed as dist
 
-    place = fluid.CUDAPlace(fluid.dygraph.ParallelEnv().dev_id)
-    with fluid.dygraph.guard(place):
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear1 = nn.Linear(10, 10)
+            self._linear2 = nn.Linear(10, 1)
+            
+        def forward(self, x):
+            return self._linear2(self._linear1(x))
 
-        # prepare the data parallel context
-        strategy = fluid.dygraph.prepare_context()
+    def train():
+        # 1. enable dynamic mode
+        paddle.disable_static()
+        
+        # 2. initialize parallel environment
+        dist.init_parallel_env()
 
-        linear = fluid.dygraph.Linear(1, 10, act="softmax")
-        adam = fluid.optimizer.AdamOptimizer(
-            learning_rate=0.001, parameter_list=linear.parameters())
+        # 3. create data parallel layer & optimizer
+        layer = LinearNet()
+        dp_layer = paddle.DataParallel(layer)
 
-        # make the module become the data parallelism module
-        linear = fluid.dygraph.DataParallel(linear, strategy)
+        loss_fn = nn.MSELoss()
+        adam = opt.Adam(
+            learning_rate=0.001, parameters=dp_layer.parameters())
 
-        x_data = np.random.random(size=[10, 1]).astype(np.float32)
-        data = fluid.dygraph.to_variable(x_data)
+        # 4. run layer
+        inputs = paddle.randn([10, 10], 'float32')
+        outputs = dp_layer(inputs)
+        labels = paddle.randn([10, 1], 'float32')
+        loss = loss_fn(outputs, labels)
+        
+        loss = dp_layer.scale_loss(loss)
+        loss.backward()
+        dp_layer.apply_collective_grads()
 
-        hidden = linear(data)
-        avg_loss = fluid.layers.mean(hidden)
+        adam.step()
+        adam.clear_grad()
 
-        # scale the loss according to the number of trainers.
-        avg_loss = linear.scale_loss(avg_loss)
-
-        avg_loss.backward()
-
-        # collect the gradients of trainers.
-        linear.apply_collective_grads()
-
-        adam.minimize(avg_loss)
-        linear.clear_gradients()
+    if __name__ == '__main__':
+        # 1. start by ``paddle.distributed.spawn`` (default)
+        dist.spawn(train, nprocs=2)
+        # 2. start by ``paddle.distributed.launch``
+        # train()

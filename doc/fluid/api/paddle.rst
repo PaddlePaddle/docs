@@ -37,6 +37,7 @@ paddle
 	paddle/CUDAPinnedPlace.rst
 	paddle/CUDAPlace.rst
 	paddle/cumsum.rst
+	paddle/DataParallel.rst
 	paddle/default_main_program.rst
 	paddle/default_startup_program.rst
 	paddle/diag.rst
@@ -97,6 +98,7 @@ paddle
 	paddle/logical_xor.rst
 	paddle/logsumexp.rst
 	paddle/manual_seed.rst
+	paddle/masked_select.rst
 	paddle/matmul.rst
 	paddle/max.rst
 	paddle/maximum.rst

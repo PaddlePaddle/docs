@@ -32,4 +32,4 @@ ReplicationPad1d
     result = my_pad(data)
     print(result.numpy())
     # [[[1. 1. 2. 3. 3. 3.]
-    #   [1. 4. 5. 6. 6. 6.]]]
+    #   [4. 4. 5. 6. 6. 6.]]]

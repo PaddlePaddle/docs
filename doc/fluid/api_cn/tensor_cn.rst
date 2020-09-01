@@ -92,6 +92,7 @@ paddle.tensor
     tensor_cn/logical_or_cn.rst
     tensor_cn/logical_xor_cn.rst
     tensor_cn/logsumexp_cn.rst
+    tensor_cn/masked_select_cn.rst
     tensor_cn/math_cn.rst
     tensor_cn/matmul_cn.rst
     tensor_cn/max_cn.rst
@@ -103,6 +104,7 @@ paddle.tensor
     tensor_cn/mm_cn.rst
     tensor_cn/mul_cn.rst
     tensor_cn/multiplex_cn.rst
+    tensor_cn/multiply_cn.rst
     tensor_cn/nonzero_cn.rst
     tensor_cn/norm_cn.rst
     tensor_cn/normal_cn.rst
