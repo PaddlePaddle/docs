@@ -38,10 +38,10 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 接下来是TracedLayer如何存储模型：
 
 .. code-block:: python
+    import paddle
+    from paddle.jit import TracedLayer
 
-    from paddle.imperative import TracedLayer
-
-    paddle.enable_imperative()
+    paddle.disable_static()
 
     fc_layer = SimpleFcLayer(3, 4, 2)
     in_np = np.random.random([3, 4]).astype('float32')
@@ -78,7 +78,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
         else:
             return paddle.cast(input_var, "int64")
 
-    paddle.enable_imperative()
+    paddle.disable_static()
     in_np = np.array([-2]).astype('int')
     input_var = paddle.to_tensor(in_np)
     out = func(input_var)
@@ -102,9 +102,9 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
         else:
             out = paddle.cast(input_var, "int64")
 
-    paddle.enable_imperative()
+    paddle.disable_static()
     in_np = np.array([-2]).astype('int')
-    input_var = paddle.imperative.to_variable(in_np)
+    input_var = paddle.to_tensor(in_np)
     func(input_var)
 
 
@@ -134,7 +134,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 
     import paddle
 
-    paddle.enable_imperative()
+    paddle.disable_static()
 
     fc_layer = SimpleFcLayer(3, 4, 2)
     in_np = np.random.random([3, 4]).astype('float32')
