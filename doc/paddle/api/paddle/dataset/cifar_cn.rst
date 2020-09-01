@@ -23,7 +23,6 @@ CIFAR-100训练数据集的creator。
 
 返回类型：callable
 
-
 .. py:function:: paddle.dataset.cifar.test100()
 
 CIFAR-100测试数据集的creator。
