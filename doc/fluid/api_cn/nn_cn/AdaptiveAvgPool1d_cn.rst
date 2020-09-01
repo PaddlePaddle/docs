@@ -22,7 +22,7 @@ AdaptiveAvgPool1d
 
 参数
 :::::::::
-    - **output_size** (int|list|tuple): 算子输出特征图的长度，其数据类型为int，list或tuple。
+    - **output_size** (int): 算子输出特征图的长度，其数据类型为int。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状
@@ -36,7 +36,7 @@ AdaptiveAvgPool1d
 
 抛出异常
 :::::::::
-    - ``ValueError`` - ``output_size`` 应是一个整数或长度为1的list，tuple
+    - ``ValueError`` - ``output_size`` 应是一个整数。
 
 代码示例
 :::::::::
