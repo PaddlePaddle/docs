@@ -7,3 +7,4 @@ FAQ
  
     train_cn.md
     install_cn.md
+    test_cn.md
