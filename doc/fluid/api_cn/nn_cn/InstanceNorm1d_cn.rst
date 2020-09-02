@@ -56,5 +56,5 @@ Note:
     instance_norm = paddle.nn.InstanceNorm1d(2)
     instance_norm_out = instance_norm(x)
 
-    print(instance_norm_out.numpy)
+    print(instance_norm_out.numpy())
 
