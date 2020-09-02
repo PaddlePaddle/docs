@@ -42,6 +42,7 @@ paddle.tensor
     tensor/flatten.rst
     tensor/floor.rst
     tensor/full.rst
+    tensor/full_like.rst
     tensor/gather.rst
     tensor/gather_nd.rst
     tensor/greater_equal.rst
@@ -66,6 +67,7 @@ paddle.tensor
     tensor/logical_or.rst
     tensor/logical_xor.rst
     tensor/math.rst
+    tensor/masked_select.rst
     tensor/max.rst
     tensor/maximum.rst
     tensor/mean.rst
