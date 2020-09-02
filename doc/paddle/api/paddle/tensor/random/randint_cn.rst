@@ -36,8 +36,8 @@ randint
 
     # example 2:
     # attr shape is a list which contains Tensor.
-    dim1 = paddle.full([1], "int64", 2)
-    dim2 = paddle.full([1], "int32", 3)
+    dim1 = paddle.full([1], 2, "int64")
+    dim2 = paddle.full([1], 3, "int32")
     out2 = paddle.randint(low=-5, high=5, shape=[dim1, dim2], dtype="int32")
     # [[0, -1, -3],  # random
     #  [4, -2,  0]]  # random

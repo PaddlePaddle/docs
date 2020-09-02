@@ -32,8 +32,8 @@ rand
     #  [0.22550228, 0.22106001, 0.7877319 ]]  # random
 
     # example 2: attr shape is a list which contains Tensor.
-    dim1 = paddle.full([1], "int64", 2)
-    dim2 = paddle.full([1], "int32", 3)
+    dim1 = paddle.full([1], 2, "int64")
+    dim2 = paddle.full([1], 3, "int32")
     out2 = paddle.rand(shape=[dim1, dim2, 2])
     # [[[0.8879919 , 0.25788337],  # random
     #   [0.28826773, 0.9712097 ],  # random
