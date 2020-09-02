@@ -63,10 +63,10 @@ SyncBatchNorm
         # [[[[0.26824948, 1.0936325],[0.26824948, -1.6301316]],[[ 0.8095662, -0.665287],[-1.2744656, 1.1301866 ]]]]
 
 
-convert_sync_batchnorm
--------------------------------
-
-.. py:function:: paddle.nn.SyncBatchNorm.convert_sync_batchnorm(layer):
+方法
+:::::::::
+convert_sync_batchnorm(layer)
+'''''''''''''''''''''''''''''
 
 该接口用于把 ``BatchNorm*d`` 层转换为 ``SyncBatchNorm`` 层。
 
