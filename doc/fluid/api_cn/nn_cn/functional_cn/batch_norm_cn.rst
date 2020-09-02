@@ -44,4 +44,4 @@ batch_norm
     w = paddle.to_tensor(weight_data)
     b = paddle.to_tensor(bias_data)
     batch_norm_out = paddle.nn.functional.batch_norm(x, rm, rv, w, b)
-    print(batch_norm_out)
+    print(batch_norm_out.numpy())
