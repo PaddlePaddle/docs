@@ -275,7 +275,7 @@ SaveLoadConfig
 
 .. py:attribute:: keep_name_table
     
-配置是否保留载入 ``paddle.load`` 载入结果中 ``structured_name`` 到真实的参数变量名的映射表。这个映射表是调用 ``paddle.save`` 时存储的，一般仅用于调试，移除此映射表不影响真实的训练和预测。默认情况下不会保留在 ``paddle.load`` 的结果中。默认值为False。
+配置是否保留 ``paddle.load`` 载入结果中 ``structured_name`` 到真实的参数变量名的映射表。这个映射表是调用 ``paddle.save`` 时存储的，一般仅用于调试，移除此映射表不影响真实的训练和预测。默认情况下不会保留在 ``paddle.load`` 的结果中。默认值为False。
 
 .. note::
     该配置仅用于 ``paddle.load`` 方法。
