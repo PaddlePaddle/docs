@@ -33,5 +33,5 @@ layer_norm
     x = paddle.to_tensor(x_data) 
     layer_norm_out = paddle.nn.functional.layer_norm(x, x.shape[1:])
 
-    print(layer_norm_out.numpy)
+    print(layer_norm_out.numpy())
 
