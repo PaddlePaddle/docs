@@ -11,8 +11,7 @@ paddle.optimizer
     optimizer/AdagradOptimizer.rst
     optimizer/Adam.rst
     optimizer/Adamax.rst
-    optimizer/AdamaxOptimizer.rst
-    optimizer/AdamOptimizer.rst
+    optimizer/AdamW.rst
     optimizer/DecayedAdagrad.rst
     optimizer/DecayedAdagradOptimizer.rst
     optimizer/DGCMomentumOptimizer.rst
@@ -29,9 +28,10 @@ paddle.optimizer
     optimizer/Momentum.rst
     optimizer/MomentumOptimizer.rst
     optimizer/RecomputeOptimizer.rst
-    optimizer/RMSPropOptimizer.rst
+    optimizer/RMSProp.rst
     optimizer/SGD.rst
     optimizer/SGDOptimizer.rst
+    optimizer/Optimizer.rst
     optimizer/NoamLR.rst
     optimizer/PiecewiseLR.rst
     optimizer/NaturalExpLR.rst

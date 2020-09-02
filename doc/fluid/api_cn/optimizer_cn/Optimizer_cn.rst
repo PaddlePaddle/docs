@@ -1,35 +1,16 @@
-.. _cn_api_paddle_optimizer_Adam:
+.. _cn_api_paddle_optimizer_Optimizer:
 
-Adam
+Optimizer
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adam(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None, lazy_mode=False)
+.. py:class:: paddle.optimizer.Optimizer(learning_rate=0.001, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
 
 
-
-Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节，能够利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
-
-其参数更新的计算公式如下：
-
-.. math::
-    \\t = t + 1
-.. math::
-    moment\_1\_out=\beta_1∗moment\_1+(1−\beta_1)∗grad
-.. math::
-    moment\_2\_out=\beta_2∗moment\_2+(1−\beta_2)∗grad*grad
-.. math::
-    learning\_rate=learning\_rate*\frac{\sqrt{1-\beta_2^t}}{1-\beta_1^t}
-.. math::
-    param\_out=param-learning\_rate*\frac{moment\_1}{\sqrt{moment\_2}+\epsilon}\\
-
-相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
+优化器的基类。
 
 参数: 
-    - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
-    - **beta1** (float|Tensor, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.9
-    - **beta2** (float|Tensor, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999
-    - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08
+    - **learning_rate** (float|_LRSeduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
     - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是float类型的L2正则化系数或者正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
       :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
@@ -37,13 +18,13 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
       默认值为None，此时将不进行梯度裁剪。
     - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
-    - **lazy_mode** （bool, 可选） - 设为True时，仅更新当前具有梯度的元素。官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为False
 
 
 **代码示例**
 
 .. code-block:: python
 
+    #以子类Adam为例
     import paddle
     import numpy as np
 
@@ -55,31 +36,6 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     loss = paddle.mean(out)
     adam = paddle.optimizer.Adam(learning_rate=0.1,
             parameters=linear.parameters())
-    out.backward()
-    adam.step()
-    adam.clear_grad()
-
-.. code-block:: python
-
-    # Adam with beta1/beta2 as Tensor and weight_decay as float
-    import paddle
-    import numpy as np
-
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
-    linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
-    out = linear(inp)
-    loss = paddle.mean(out)
-
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    adam = paddle.optimizer.Adam(learning_rate=0.1,
-            parameters=linear.parameters(),
-            beta1=beta1,
-            beta2=beta2,
-            weight_decay=0.01)
     out.backward()
     adam.step()
     adam.clear_grad()
@@ -105,6 +61,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
+    # This can be any optimizer supported by dygraph.
     adam = paddle.optimizer.Adam(learning_rate = 0.01,
                                 parameters = linear.parameters())
     out = linear(a)
@@ -260,3 +217,4 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         lr = adam.get_lr()
         scheduler.step()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+
