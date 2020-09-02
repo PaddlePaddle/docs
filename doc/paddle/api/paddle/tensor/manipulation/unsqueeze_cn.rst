@@ -1,43 +1,36 @@
-.. _cn_api_fluid_layers_unsqueeze:
-
+.. _cn_api_paddle_tensor_unsqueeze
 unsqueeze
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.unsqueeze(input, axes, name=None)
+.. py:function:: paddle.tensor.unsqueeze(x, axis, name=None)
 
+该OP向输入Tensor的Shape中一个或多个位置（axis）插入尺寸为1的维度。
 
+**参数**：
+        - **x** (Variable)- 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。
+        - **axis** (int|list|tuple|Tensor) - 表示要插入维度的位置。数据类型是 int32 。如果 axis 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 Tensor 。如果 axes 的类型是 Tensor，则是1-D Tensor。如果 axis 是负数，则 axis=axis+ndim(x)+1 。
+        - **name** （str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
+**返回**：扩展维度后的多维Tensor，数据类型与输入Tensor一致。
 
-该OP向输入（input）的shape中一个或多个位置（axes）插入维度。
-
-- 示例：
-
-.. code-block:: python
-
-    输入：
-      X.shape = [2, 3]
-      X.data = [[1, 2, 3], 
-                [4，5，6]]
-      axes = [0, 2]
-    输出（在X的第0维和第2维插入新维度）：
-      Out.shape = [1, 2, 1, 3]
-      Out.data = [[[[1, 2, 3]],
-                    [[4, 5, 6]]]]
-      
-参数：
-    - **input** (Variable)- 多维 ``Tensor``，数据类型为 ``float32``， ``float64``， ``int8``， ``int32``，或 ``int64``。
-    - **axes** (int|list|tuple|Variable) - 表示要插入维度的位置。数据类型是 ``int32`` 。如果 ``axes`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 。如果 ``axes`` 的类型是 ``Variable``，则是1-D ``Tensor``。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值： ``None``。
-
-返回：扩展维度后的多维Tensor
-
-返回类型：Variable
+**返回类型**：Tensor
 
 **代码示例**：
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[5, 10])
-    y = fluid.layers.unsqueeze(input=x, axes=[1])
-    # y.shape is [5, 1, 10]
+    import paddle
+
+    paddle.disable_static()
+    x = paddle.rand([5, 10])
+    print(x.shape)  # [5, 10]
+    
+    out1 = paddle.unsqueeze(x, axis=0)
+    print(out1.shape)  # [1, 5, 10]
+    
+    out2 = paddle.unsqueeze(x, axis=[0, 2]) 
+    print(out2.shape)  # [1, 5, 1, 10]
+
+    axis = paddle.fluid.dygraph.to_variable([0, 1, 2])
+    out3 = paddle.unsqueeze(x, axis=axis) 
+    print(out3.shape)  # [1, 1, 1, 5, 10]
