@@ -2,6 +2,6 @@
 
 topk
 -------------------------------
-:doc_source: paddle.fluid.layers.topk
+:doc_source: paddle.tensor.topk
 
 
