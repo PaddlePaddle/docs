@@ -3,7 +3,7 @@
 GroupNorm
 -------------------------------
 
-.. py:class:: paddle.nn.GroupNorm(num_channels, num_groups, epsilon=1e-05, weight_attr=None, bias_attr=None, data_layout='NCHW, 'name=None)
+.. py:class:: paddle.nn.GroupNorm(num_groups, num_channels, epsilon=1e-05, weight_attr=None, bias_attr=None, data_layout='NCHW, 'name=None)
 
 **Group Normalization层**
 
@@ -35,7 +35,7 @@ GroupNorm
    np.random.seed(123)
    x_data = np.random.random(size=(2, 6, 2, 2)).astype('float32')
    x = paddle.to_tensor(x_data) 
-   group_norm = paddle.nn.GroupNorm(num_channels=3, num_groups=6)
+   group_norm = paddle.nn.GroupNorm(num_channels=6, num_groups=6)
    group_norm_out = group_norm(x)
 
-   print(group_norm_out.numpy)
+   print(group_norm_out.numpy())
