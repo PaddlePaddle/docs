@@ -77,6 +77,6 @@ AdaptiveMaxPool3d
         pool = paddle.nn.AdaptiveMaxPool3d(output_size=4)
         out = pool(x)
         # out shape: [2, 3, 4, 4, 4]
-        pool, indices = paddle.nn.AdaptiveMaxPool3d(output_size=3, return_indices=True)
-        out = pool(x)
+        pool = paddle.nn.AdaptiveMaxPool3d(output_size=3, return_indices=True)
+        out, indices = pool(x)
         # out shape: [2, 3, 4, 4, 4], indices shape: [2, 3, 4, 4, 4]
