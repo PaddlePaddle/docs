@@ -68,10 +68,10 @@ stack
 
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
-    x1 = layers.data(name='x1', shape=[1, 2], dtype='int32')
-    x2 = layers.data(name='x2', shape=[1, 2], dtype='int32')
-    #对Tensor List进行堆叠
-    data = layers.stack([x1,x2])  # 沿着第0轴进行堆叠，data.shape=[2, 1, 2]
+    # set batch size=None
+    x1 = fluid.data(name='x1', shape=[None, 1, 2], dtype='int32')
+    x2 = fluid.data(name='x2', shape=[None, 1, 2], dtype='int32')
+    # stack Tensor list
+    data = layers.stack([x1,x2]) # stack according to axis 0, data.shape=[2, None, 1, 2]
 
-    data = layers.stack([x1,x2], axis=1)  # 沿着第1轴进行堆叠，data.shape=[1, 2, 2]
-    
+    data = layers.stack([x1,x2], axis=1) # stack according to axis 1, data.shape=[None, 2, 1, 2]
