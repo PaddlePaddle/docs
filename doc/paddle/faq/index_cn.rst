@@ -5,6 +5,5 @@ FAQ
 ..  toctree::
     :maxdepth: 1
  
-    train_cn.md
     install_cn.md
-    test_cn.md
+    train_cn.md
