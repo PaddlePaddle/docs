@@ -112,4 +112,5 @@ Python基本容器
 
 具体表现为在被装饰函数中没有返回Tensor时就使用 ``numpy.array(tensor)`` 将Tensor转化为numpy array并使用numpy接口进行运算。这种情况在动态图下因为Tensor有值是可以正常运行的，但是在静态图时由于Tensor只是组网变量，在没有运行时没有数值，因此无法进行numpy运算。
 
+遇到这种情况我们建议在动转静的函数中尽量使用PaddlePaddle接口替代numpy接口进行运算。
 
