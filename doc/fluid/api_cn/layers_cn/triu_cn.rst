@@ -26,7 +26,7 @@ triu
 
 抛出异常：
     - :code:`TypeError`：当 ``diagonal`` 的数据类型不是int时。
-    - :code:`TypeError`：当  输入 Tensor 的维度 ``dimension`` 小于2 时。
+    - :code:`TypeError`：当  输入 Tensor 的维度 ``dimension`` 小于2时。
 
 **代码示例**：
 
