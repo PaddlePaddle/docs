@@ -74,11 +74,4 @@ stack
     data = layers.stack([x1,x2])  # 沿着第0轴进行堆叠，data.shape=[2, 1, 2]
 
     data = layers.stack([x1,x2], axis=1)  # 沿着第1轴进行堆叠，data.shape=[1, 2, 2]
-
-
-
-
-
-
-
-
+    
