@@ -30,7 +30,7 @@ ProgramTranslator先将其转化为等价的Python while循环，然后按while�
 
 当x是Python容器或迭代器，则会用普通Python逻辑运行。当x是Tensor时，会转化为循环中每次对应拿出x[0], x[1], ...
 
-3.3 `for idx, val in enumerate(x)`` 循环
+3.3 ``for idx, val in enumerate(x)`` 循环
 
 当x是Python容器或迭代器，则会用普通Python逻辑运行。当x是Tensor时，idx会转化为依次0，1，...的1-D Tensor。val会转化为循环中每次对应拿出x[0], x[1], ...
 
@@ -97,13 +97,13 @@ Python基本容器
 
 1. Reshape后的变量调用其shape作为Paddle API参数。
 
-具体表现比如"x = reshape(x, shape=shape_tensor)"，再使用“x.shape[0]”的值进行其他操作。这种情况会由于动态图和静态图的本质不同而使得动态图能够运行，但静态图运行失败。其原因是动态图情况下，API是直接返回运行结果，因此x.shape在经过reshape运算后是确定的。但是在转化为静态图后，因为静态图API只是组网，shape_tensor的值在组网时是不知道的，所以reshape接口组网完，静态图并不知道x.shape的值。PaddlePaddle静态图用-1表示未知的shape值，此时x的shape每个维度会被设为-1，而不是用户期望的值。
+具体表现比如 ``x = reshape(x, shape=shape_tensor)`` ，再使用 ``x.shape[0]`` 的值进行其他操作。这种情况会由于动态图和静态图的本质不同而使得动态图能够运行，但静态图运行失败。其原因是动态图情况下，API是直接返回运行结果，因此 ``x.shape`` 在经过reshape运算后是确定的。但是在转化为静态图后，因为静态图API只是组网，``shape_tensor`` 的值在组网时是不知道的，所以 ``reshape`` 接口组网完，静态图并不知道 ``x.shape`` 的值。PaddlePaddle静态图用-1表示未知的shape值，此时 ``x`` 的shape每个维度会被设为-1，而不是用户期望的值。
 
 遇到这类情况我们建议用户尽量固定shape值，减少变化reshape操作。
 
 2. 多重list嵌套读写Tensor
 
-具体表现如“l = [[tensor1, tensor2], [tensor3, tensor4]]”，因为现在静态图将元素全是Tensor的list转化为LoDTensorArray，而Paddle的LoDTensorArray还不支持多维数组，因此这种情况无法动转静正确运行。
+具体表现如 ``l = [[tensor1, tensor2], [tensor3, tensor4]]`` ，因为现在静态图将元素全是Tensor的list转化为LoDTensorArray，而Paddle的LoDTensorArray还不支持多维数组，因此这种情况无法动转静正确运行。
 
 遇到这类情况我们建议用户尽量用一维list，或者自己使用PaddlePaddle的create_array，array_read，array_write接口编写为LoDTensorArray。
 
