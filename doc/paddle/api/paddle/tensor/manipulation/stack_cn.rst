@@ -52,7 +52,7 @@ stack
                         [5.0, 6.0] ] ]
 
 **参数**：
-        - **x** (Tensor|list[Tensor]) – 输入 x 可以是单个Tensor，或是多个Tensor组成的列表。如果 x 是一个列表，那么这些Tensor的维度必须相同。支持的数据类型: float32，float64，int32，int64。
+        - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个Tensor，且这些Tensor的维度和数据类型必须相同。支持的数据类型: float32，float64，int32，int64。
 
         - **axis** (int, 可选) – 指定对输入Tensor进行堆叠运算的轴，有效 axis 的范围是: [−(R+1),R+1)]，R是输入中第一个Tensor的维数。如果 axis < 0，则 axis=axis+R+1 。默认值为0。
 
