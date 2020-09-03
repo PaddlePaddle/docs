@@ -37,8 +37,8 @@ AdaptiveMaxPool2d
 
 形状
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCHW格式的4-D Tensor。 其数据类型为float32或者float64。
-    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCHW格式的4-D Tensor。 其数据类型与输入x相同。
+    - **x** (Tensor): 默认形状为（批大小，通道数，输出特征长度，宽度），即NCHW格式的4-D Tensor。 其数据类型为float32或者float64。
+    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度，宽度），即NCHW格式的4-D Tensor。 其数据类型与输入x相同。
 
 返回
 :::::::::
