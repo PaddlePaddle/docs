@@ -5,7 +5,6 @@ fluid.dygraph
 ..  toctree::
     :maxdepth: 1
 
-    dygraph/BackwardStrategy.rst
     dygraph/BatchNorm.rst
     dygraph/BilinearTensorProduct.rst
     dygraph/Conv2D.rst
