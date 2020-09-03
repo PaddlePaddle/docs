@@ -1,4 +1,4 @@
-﻿﻿# 框架类FAQ
+﻿# 框架类FAQ
 
 *在使用PaddlePaddle遇到问题时，请先查阅文中FAQ；如果下面的FAQ无法解决您的问题，请ISSUE提问，谢谢*
 
