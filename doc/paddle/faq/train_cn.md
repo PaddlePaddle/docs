@@ -1,4 +1,6 @@
 # 框架类FAQ
+
+
 *在使用PaddlePaddle遇到问题时，请先查阅文中FAQ；如果下面的FAQ无法解决您的问题，请ISSUE提问，谢谢*
 
 ##### 1.问题：如何不训练某层的权重？
@@ -83,7 +85,7 @@
 + 答复：这是由于ProtoBuf版本较低导致，将protobuf升级到3.6.0即可解决。
 
 ----------
-##### 17.问题：训练过程中如何固定网络和Batch Normalization（BN）？ 
+##### 17.问题：训练过程中如何固定网络和Batch Normalization（BN）？
 
 + 答复：
 
@@ -143,7 +145,7 @@
 2. `fluid.ParallelExecutor`的执行对象是Graph，ParallelExecutor内部会将Program转为Graph，这样更便于对模型进行分析。
 
 ----------
-##### 25.问题：import paddle.fluid后logging模块无法使用，如何解决？ 
+##### 25.问题：import paddle.fluid后logging模块无法使用，如何解决？
 
 + 答复：操作方法可以参考[#issue17731](https://github.com/PaddlePaddle/Paddle/issues/17731)。
 
@@ -273,4 +275,3 @@
     tb = fluid.create_lod_tensor(np.ones([5, 10]), [], place)
     print(np.array(ta))
     print(np.array(tb))
-
