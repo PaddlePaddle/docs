@@ -14,9 +14,6 @@ numel
 返回: 返回长度为1并且元素值为 ``x`` 元素个数的Tensor。
 
 
-抛出异常：
-    - ``TypeError`` - 当 ``x`` 不是Tensor或者 ``x`` 的数据类型不是bool、float16、float32、float64、int32或int64中的一个的时候
-
 **代码示例**：
 
 .. code-block:: python

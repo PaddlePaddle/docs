@@ -10,8 +10,8 @@ scatter
 
 参数
 :::::::::
-    - tensor (Tensor) - 操作的输出Tensor。Tensor的数据类型为：float32、float64、int32、int64。
-    - tensor_list (list，可选) - 操作的输入Tensor列表，默认为None。列表中的每个元素均为Tensor，每个Tensor的数据类型为：float32、float64、int32、int64。
+    - tensor (Tensor) - 操作的输出Tensor。Tensor的数据类型为：float16、float32、float64、int32、int64。
+    - tensor_list (list，可选) - 操作的输入Tensor列表，默认为None。列表中的每个元素均为Tensor，每个Tensor的数据类型为：float16、float32、float64、int32、int64。
     - src (int，可选) - 操作的源进程号，该进程号的Tensor列表将分发到其他进程中。默认为0。
     - group (int，可选) - 工作的进程组编号，默认为0。
 

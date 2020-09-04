@@ -35,9 +35,6 @@ gather
 
 返回：和输入的秩相同的输出张量。
 
-抛出异常：
-    - ``TypeError``: -  ``x`` 必须是Tensor 并且 ``x`` 的数据类型必须是uint8、float16、float32、float64、int32或者int64。
-    - ``TypeError``: - ``index`` 必须是Tensor并且数据类型必须是int32或者int64。
 
 **代码示例**
 

@@ -50,5 +50,5 @@ LayerNorm
     layer_norm = paddle.nn.LayerNorm(x_data.shape[1:])
     layer_norm_out = layer_norm(x)
 
-    print(layer_norm_out.numpy)
+    print(layer_norm_out.numpy())
 
