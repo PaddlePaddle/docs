@@ -1,0 +1,107 @@
+
+<html>
+<head>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSsymbols.js", "TeX/AMSmath.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js" async></script>
+  <script type="text/javascript" src="../.tools/theme/marked.js">
+  </script>
+  <link href="http://cdn.bootcss.com/highlight.js/9.9.0/styles/darcula.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
+  <link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/perfect-scrollbar/0.6.14/css/perfect-scrollbar.min.css" rel="stylesheet">
+  <link href="../.tools/theme/github-markdown.css" rel='stylesheet'>
+</head>
+<style type="text/css" >
+.markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+}
+</style>
+
+
+<body>
+
+<div id="context" class="container-fluid markdown-body">
+</div>
+
+<!-- This block will be replaced by each markdown file content. Please do not change lines below.-->
+<div id="markdown" style='display:none'>
+## 口罩检测
+
+
+在整个口罩检测任务中，我们会用到两个模型，一个是人脸检测模型，用来检测出图片中的所有的人脸；另外一个为人脸口罩分类模型，用来对人脸进行分类，判别该人脸是否戴有口罩。
+
+在本目录中，我们通过Paddle Inference Python 接口实现了口罩检测任务。
+
+### 运行
+
+
+**1） 下载模型**
+
+我们有两种方式下载模型：
+
+a. 通过脚本下载
+
+```
+cd models
+sh model_downloads.sh
+```
+
+b. 通过PaddleHub下载
+
+```
+# 下载paddlehub以后，通过python执行以下代码
+import paddlehub as hub
+pyramidbox_lite_mobile_mask = hub.Module(name="pyramidbox_lite_mobile_mask")
+# 将模型保存在models文件夹之中
+pyramidbox_lite_mobile_mask.processor.save_inference_model(dirname="models")
+# 通过以上命令，可以获得人脸检测和口罩佩戴判断模型，分别存储在pyramidbox_lite和mask_detector之中。文件夹中的__model__是模型结构文件，__param__文件是权重文件。
+```
+
+
+**2） 运行程序**
+
+```
+python cam_video.py
+```
+
+运行后，程序会启动机器上的摄像头并执行口罩检测流程，如果检测到有人脸不带口罩，程序会对该人脸进行红框标记，并显示到屏幕。
+
+
+![图片1](https://user-images.githubusercontent.com/5595332/81150234-266f4b00-8fb2-11ea-98e7-92909d9c6792.png)
+
+</div>
+<!-- You can change the lines below now. -->
+
+<script type="text/javascript">
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  breaks: false,
+  smartypants: true,
+  highlight: function(code, lang) {
+    code = code.replace(/&amp;/g, "&")
+    code = code.replace(/&gt;/g, ">")
+    code = code.replace(/&lt;/g, "<")
+    code = code.replace(/&nbsp;/g, " ")
+    return hljs.highlightAuto(code, [lang]).value;
+  }
+});
+document.getElementById("context").innerHTML = marked(
+        document.getElementById("markdown").innerHTML)
+</script>
+</body>
