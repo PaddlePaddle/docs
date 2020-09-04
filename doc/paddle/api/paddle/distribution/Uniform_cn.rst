@@ -85,7 +85,7 @@ Uniform
 
 .. math::
 
-    entropy(low, high) = \\log (high - low)
+    entropy(low, high) = \log (high - low)
 
 返回：均匀分布的信息熵, 数据类型为float32
 

@@ -128,9 +128,9 @@ Normal
 
 .. math::
 
-    KL\_divergence(\mu_0, \sigma_0; \mu_1, \sigma_1) = 0.5 (ratio^2 + (\\frac{diff}{\sigma_1})^2 - 1 - 2 \\ln {ratio})
+    KL\_divergence(\mu_0, \sigma_0; \mu_1, \sigma_1) = 0.5 (ratio^2 + (\frac{diff}{\sigma_1})^2 - 1 - 2 \ln {ratio})
 
-    ratio = \\frac{\sigma_0}{\sigma_1}
+    ratio = \frac{\sigma_0}{\sigma_1}
 
     diff = \mu_1 - \mu_0
 
