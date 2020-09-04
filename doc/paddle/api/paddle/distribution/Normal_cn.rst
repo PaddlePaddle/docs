@@ -88,7 +88,7 @@ Normal
 
 .. math::
 
-    entropy(\sigma) = 0.5 \\log (2 \pi e \sigma^2)
+    entropy(\sigma) = 0.5 \log (2 \pi e \sigma^2)
 
 上面的数学公式中：
 
