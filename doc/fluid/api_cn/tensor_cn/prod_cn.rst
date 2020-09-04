@@ -18,9 +18,6 @@ prod
 
 返回：指定axis上累乘的结果的Tensor。
     
-抛出异常：
-    - :code:`ValueError`：``dtype`` 的数据类型不是float32、float64、int32或int64时。
-    - :code:`ValueError`：``axis`` 的数据类型不是int、list或tuple时
     
 **代码示例**：
     
