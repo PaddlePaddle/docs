@@ -13,7 +13,7 @@ stack
 
 - 例1:
 
-.. code-block:: python
+.. code-block:: text
 
     输入:
         x[0].shape = [1, 2]
@@ -35,7 +35,7 @@ stack
 
 - 例2:
 
-.. code-block:: python
+.. code-block:: text
 
     输入:
         x[0].shape = [1, 2]
