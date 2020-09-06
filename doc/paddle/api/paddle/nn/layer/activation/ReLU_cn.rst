@@ -2,38 +2,35 @@
 
 ReLU
 -------------------------------
-.. py:class:: paddle.nn.ReLU(inplace=False)
+.. py:class:: paddle.nn.ReLU(name=None)
 
-:alias_main: paddle.nn.ReLU
-:alias: paddle.nn.ReLU,paddle.nn.layer.ReLU,paddle.nn.layer.activation.ReLU
-:update_api: paddle.fluid.layers.relu
-
-
-
-
-**ReLU（Rectified Linear Unit）激活层：**
+ReLU激活层（Rectified Linear Unit）。计算公式如下：
 
 .. math::
 
-        \\Out = max(X, 0)\\
+    ReLU(x) = max(0, x)
 
-其中，:math:`X` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor
 
-参数:
-    - **inplace** （bool，可选）- 如果 ``inplace`` 为 ``True``，则 ``ReLU`` 的输入和输出是同一个变量，否则 ``ReLU`` 的输入和输出是不同的变量。默认值：``False``。请注意，如果 ``ReLU`` 的输入同时是其它OP的输入，则 ``inplace`` 必须为False。
+参数
+::::::::::
+    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：无
+形状:
+::::::::::
+    - input: 任意形状的Tensor。
+    - output: 和input具有相同形状的Tensor。
 
-**代码示例**
+代码示例
+:::::::::
 
-..  code-block:: python
+.. code-block:: python
 
-    import paddle.fluid as fluid
-    import paddle.nn as nn
+    import paddle
     import numpy as np
+  
+    paddle.disable_static()
 
-    data = np.array([-2, 0, 1]).astype('float32')
-    my_relu = nn.ReLU()
-    with fluid.dygraph.guard():
-        data = fluid.dygraph.to_variable(data)
-        res = my_relu(data)  # [0, 0, 1]
+    x = paddle.to_tensor(np.array([-2, 0, 1]).astype('float32'))
+    m = paddle.nn.ReLU()
+    out = m(x) # [0., 0., 1.]
