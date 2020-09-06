@@ -5,12 +5,6 @@ softmax
 
 .. py:function:: paddle.fluid.layers.softmax(input, use_cudnn=False, name=None, axis=-1)
 
-:alias_main: paddle.nn.functional.softmax
-:alias: paddle.nn.functional.softmax,paddle.nn.functional.activation.softmax
-:old_api: paddle.fluid.layers.softmax
-
-
-
 该OP实现了softmax层。OP的计算过程如下：
 
 步骤1：输入 ``input`` 的 ``axis`` 维会被置换到最后一维；
