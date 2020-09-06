@@ -1,57 +1,43 @@
-.. _cn_api_fluid_layers_masked_select:
+.. _cn_api_tensor_masked_select:
 
 masked_select
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.masked_select(input, mask)
+.. py:function:: paddle.masked_select(x, mask, name=None)
 
-该OP将根据mask Tensor的真值选取输入Tensor元素，并返回一个一维Tensor
+
+
+该OP返回一个1-D 的Tensor, Tensor的值是根据 ``mask`` 对输入 ``x`` 进行选择的， ``mask`` 的数据类型是bool 。
 
 参数：
-          - **input** （Variable）- 输入Tensor，数据类型为int32, float32, float64。
-          - **mask** （Variable）- mask Tensor， 数据类型为bool。
+    - **x** (Tensor) - 输入Tensor, 数据类型为float32， float64，int32 或者int64。
+    - **mask** (Tensor) - 用于索引的二进制掩码的Tensor，数据类型维bool。
+    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    
+返回：返回一个根据 ``mask`` 选择的的Tensor
 
 
-返回：根据mask选择后的tensor
+抛出异常：
+    - ``TypeError``: - 如果 ``x`` 不是 Tensor 或者 ``x`` 是Tensor的时候的数据类型不是 float32, float64, int32, int64其中之一。
+    - ``TypeError``: - 如果 ``mask`` 不是 Tensor 或者 ``mask`` 是Tensor的时候的数据类型不是 bool。
 
-返回类型：  Variable
+**代码示例**：
 
+.. code-block:: python
 
-**示例代码**
-
-..  code-block:: python
-
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
-    mask_shape = [4,1]
-    shape = [4,4]
-    data = np.random.random(mask_shape).astype("float32")
-    input_data = np.random.randint(5,size=shape).astype("float32")
-    mask_data = data > 0.5
-
-    # print(input_data)
-    # [[0.38972723 0.36218056 0.7892614  0.50122297]
-    #  [0.14408113 0.85540855 0.30984417 0.7577004 ]
-    #  [0.97263193 0.5248062  0.07655851 0.75549215]
-    #  [0.26214206 0.32359877 0.6314582  0.2128865 ]]
-
-    # print(mask_data)
-    # [[ True]
-    #  [ True]
-    #  [False]
-    #  [ True]]
-
-    input = fluid.data(name="input",shape=[4,4],dtype="float32")
-    mask = fluid.data(name="mask",shape=[4,1],dtype="bool")
-    result = fluid.layers.masked_select(input=input, mask=mask)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    start = fluid.default_startup_program()
-    main = fluid.default_main_program()
-    exe.run(start)
-    masked_select_result= exe.run(main, feed={'input':input_data, 'mask':mask_data}, fetch_list=[result])
-    # print(masked_select_result)
-    # [0.38972723 0.36218056 0.7892614  0.50122297 0.14408113 0.85540855
-    #   0.30984417 0.7577004  0.26214206 0.32359877 0.6314582  0.2128865 ]
-
+    
+    paddle.disable_static()
+    data = np.array([[1.0, 2.0, 3.0, 4.0],
+                        [5.0, 6.0, 7.0, 8.0],
+                        [9.0, 10.0, 11.0, 12.0]]).astype('float32')
+    
+    mask_data = np.array([[True, False, False, False],
+                    [True, True, False, False],
+                    [True, False, False, False]]).astype('bool')
+    x = paddle.to_tensor(data)
+    mask = paddle.to_tensor(mask_data)
+    out = paddle.masked_select(x, mask)
+    #[1.0 5.0 6.0 9.0]
 
