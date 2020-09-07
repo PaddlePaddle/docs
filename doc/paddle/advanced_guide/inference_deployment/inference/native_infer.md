@@ -6,7 +6,9 @@
 
 
 ## 内容
-
+- [使用Config管理预测配置(2.0)](#使用Config管理预测配置)
+- [使用Tensor管理输入/输出(2.0)](#使用Tensor管理输入/输出(2.0))
+- [使用Predictor进行高性能预测(2.0)](#使用Predictor进行高性能预测)
 - [使用AnalysisPredictor进行高性能预测](#使用AnalysisPredictor进行高性能预测)
 - [使用AnalysisConfig管理预测配置](#使用AnalysisConfig管理预测配置)
 - [使用ZeroCopyTensor管理输入/输出](#使用ZeroCopyTensor管理输入/输出)
@@ -14,6 +16,150 @@
 - [性能调优](#性能调优)
 
 
+## <a name="使用Config管理预测配置(2.0)"> 使用Config管理预测配置(2.0)</a>
+2.0之后统一使用Config来管理Predictor的预测配置，提供了模型路径设置、预测引擎运行设备选择以及多种优化预测流程的选项。配置方法如下：
+
+#### 通用优化配置
+``` c++
+config->SwitchIrOptim(true);  // 开启计算图分析优化，包括OP融合等
+config->EnableMemoryOptim();  // 开启内存/显存复用
+```
+
+#### 设置模型和参数路径
+从磁盘加载模型时，根据模型和参数文件存储方式不同，设置Config加载模型和参数的路径有两种形式：
+
+* 非combined形式：模型文件夹`model_dir`下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`。
+``` c++
+config->SetModel("./model_dir");
+```
+
+* combined形式：模型文件夹`model_dir`下只有一个模型文件`model`和一个参数文件`params`时，传入模型文件和参数文件路径。
+``` c++
+config->SetModel("./model_dir/model", "./model_dir/params");
+```
+
+
+#### 配置CPU预测
+
+``` c++
+config->DisableGpu();		  // 禁用GPU
+config->EnableMKLDNN();	  	  // 开启MKLDNN，可加速CPU预测
+config->SetCpuMathLibraryNumThreads(4); 	   // 设置CPU Math库线程数，CPU核心数支持情况下可加速预测
+```
+
+#### 配置GPU预测
+``` c++
+config->EnableUseGpu(100, 0); // 初始化100M显存，使用GPU ID为0
+config->GpuDeviceId();        // 返回正在使用的GPU ID
+// 开启TensorRT预测，可提升GPU预测性能，需要使用带TensorRT的预测库
+config->EnableTensorRtEngine(1 << 20      	   /*workspace_size*/,
+                             batch_size        /*max_batch_size*/,
+                             3                 /*min_subgraph_size*/,
+                             AnalysisConfig::Precision::kFloat32 /*precision*/,
+                             false             /*use_static*/,
+                             false             /*use_calib_mode*/);
+```
+
+## <a name="使用Tensor管理输入/输出(2.0)"> 使用Tensor管理输入/输出(2.0)</a>
+
+2.0之后统一使用Tensor作为Predictor的输入/输出数据结构。
+
+``` c++
+// 通过创建的Predictor获取输入和输出的tensor
+auto input_names = predictor->GetInputNames();
+auto input_t = predictor->GetInputHandle(input_names[0]);
+auto output_names = predictor->GetOutputNames();
+auto output_t = predictor->GetOutputHandle(output_names[0]);
+
+// 对tensor进行reshape
+input_t->Reshape({batch_size, channels, height, width});
+
+// 通过CopyFromCpu接口，将cpu数据输入；通过CopyToCpu接口，将输出数据copy到cpu
+input_t->CopyFromCpu<float>(input_data /*数据指针*/);
+output_t->CopyToCpu(out_data /*数据指针*/);
+
+// 设置LOD
+std::vector<std::vector<size_t>> lod_data = {{0}, {0}};
+input_t->SetLoD(lod_data);
+
+// 获取Tensor数据指针
+float *input_d = input_t->mutable_data<float>(PaddlePlace::kGPU);  // CPU下使用PaddlePlace::kCPU
+int output_size;
+float *output_d = output_t->data<float>(PaddlePlace::kGPU, &output_size);
+```
+
+## <a name="使用Predictor进行高性能预测(2.0)"> 使用Predictor进行高性能预测(2.0)</a>
+2.0之后，统一使用 Predictor 进行预测。Predictor 是一个高性能预测引擎，该引擎通过对计算图的分析，完成对计算图的一系列的优化（如OP的融合、内存/显存的优化、 MKLDNN，TensorRT 等底层加速库的支持等），能够大大提升预测性能。
+
+为了展示完整的预测流程，下面是一个使用 Predictor 进行预测的完整示例。
+
+#### Predictor 预测示例
+
+``` c++
+#include "paddle_inference_api.h"
+
+namespace paddle_infer {
+void CreateConfig(Config* config, const std::string& model_dirname) {
+  // 模型从磁盘进行加载
+  config->SetModel(model_dirname + "/model",
+                   model_dirname + "/params");
+  // config->SetModel(model_dirname);
+  // 如果模型从内存中加载，可以使用SetModelBuffer接口
+  // config->SetModelBuffer(prog_buffer, prog_size, params_buffer, params_size);
+  config->EnableUseGpu(100 /*设定GPU初始显存池为MB*/,  0 /*设定GPU ID为0*/); //开启GPU预测
+
+  /* for cpu
+  config->DisableGpu();
+  config->EnableMKLDNN();   // 开启MKLDNN加速
+  config->SetCpuMathLibraryNumThreads(10);
+  */
+
+  config->SwitchIrDebug(true); 		// 可视化调试选项，若开启，则会在每个图优化过程后生成dot文件
+  // config->SwitchIrOptim(false); 	// 默认为true。如果设置为false，关闭所有优化
+  // config->EnableMemoryOptim(); 	// 开启内存/显存复用
+}
+
+void RunAnalysis(int batch_size, std::string model_dirname) {
+  // 1. 创建AnalysisConfig
+  Config config;
+  CreateConfig(&config, model_dirname);
+
+  // 2. 根据config 创建predictor，并准备输入数据，此处以全0数据为例
+  auto predictor = CreatePredictor(config);
+  int channels = 3;
+  int height = 224;
+  int width = 224;
+  float input[batch_size * channels * height * width] = {0};
+
+  // 3. 创建输入
+  // 使用了ZeroCopy接口，可以避免预测中多余的CPU copy，提升预测性能
+  auto input_names = predictor->GetInputNames();
+  auto input_t = predictor->GetInputHandle(input_names[0]);
+  input_t->Reshape({batch_size, channels, height, width});
+  input_t->CopyFromCpu(input);
+
+  // 4. 运行预测引擎
+  CHECK(predictor->Run());
+
+  // 5. 获取输出
+  std::vector<float> out_data;
+  auto output_names = predictor->GetOutputNames();
+  auto output_t = predictor->GetOutputHandle(output_names[0]);
+  std::vector<int> output_shape = output_t->shape();
+  int out_num = std::accumulate(output_shape.begin(), output_shape.end(), 1, std::multiplies<int>());
+
+  out_data.resize(out_num);
+  output_t->CopyToCpu(out_data.data());
+}
+}  // namespace paddle_infer
+
+int main() {
+  // 模型下载地址 http://paddle-inference-dist.cdn.bcebos.com/tensorrt_test/mobilenet.tar.gz
+  paddle::RunAnalysis(1, "./mobilenet");
+  return 0;
+}
+
+```
 
 ## <a name="使用AnalysisPredictor进行高性能预测"> 使用AnalysisPredictor进行高性能预测</a>
 Paddle Fluid采用 AnalysisPredictor 进行预测。AnalysisPredictor 是一个高性能预测引擎，该引擎通过对计算图的分析，完成对计算图的一系列的优化（如OP的融合、内存/显存的优化、 MKLDNN，TensorRT 等底层加速库的支持等），能够大大提升预测性能。

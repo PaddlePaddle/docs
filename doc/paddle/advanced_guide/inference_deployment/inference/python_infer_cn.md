@@ -8,6 +8,140 @@ Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便�
 
 使用Python预测API与C++预测API相似，主要包括`PaddleTensor`, `PaddleDType`, `AnalysisConfig`和`PaddlePredictor`，分别对应于C++ API中同名的类型。
 
+自2.0之后，提供了更直观易懂的封装，主要包括`Tensor`, `DataType`, `PrecisionType`, `Config`和`Predictor`，分别对应于C++ API中的同名类型。
+
+### DataType
+
+class paddle.fluid.inference.DataType
+
+`DataType`定义了`Tensor`的数据类型，由传入`Tensor`的numpy数组类型确定，包括以下成员
+
+* `INT64`: 64位整型
+* `INT32`: 32位整型
+* `FLOAT32`: 32位浮点型
+
+### PrecisionType
+
+class paddle.fluid.inference.PrecisionType
+
+`PrecisionType`定义了`Predictor`运行的精度模式，包括一下成员
+
+* `Float32`: fp32模式运行
+* `Half`: fp16模式运行
+* `Int8`: int8模式运行
+
+### Tensor
+
+class paddle.fluid.inference.Tensor
+
+`Tensor`是`Predictor`的一种输入/输出数据结构，通过`predictor`获取输入/输出handle得到，主要提供以下方法
+
+* `copy_from_cpu`: 从cpu获取模型运行所需输入数据
+* `copy_to_cpu`: 获取模型运行输出结果
+* `lod`: 获取lod信息
+* `set_lod`: 设置lod信息
+* `shape`: 获取shape信息
+* `reshape`: 设置shape信息
+* `type`: 获取DataType信息
+
+``` python
+# 创建predictor
+predictor = create_paddle_predictor(config)
+
+# 获取输入的名称
+input_names = predictor.get_input_names()
+input_tensor = predictor.get_input_handle(input_names[0])
+
+# 设置输入
+fake_input = numpy.random.randn(1, 3, 318, 318).astype("float32")
+input_tensor.copy_from_cpu(fake_input)
+
+# 运行predictor
+predictor.run()
+
+# 获取输出
+output_names = predictor.get_output_names()
+output_tensor = predictor.get_output_handle(output_names[0])
+output_data = output_tensor.copy_to_cpu() # numpy.ndarray类型
+```
+
+### Config
+
+class paddle.fluid.inference.Config
+
+`Config`是创建预测引擎的配置，提供了模型路径设置、预测引擎运行设备选择以及多种优化预测流程的选项，主要包括以下方法
+
+* `set_model`: 设置模型的路径
+* `model_dir`: 返回模型文件夹路径
+* `prog_file`: 返回模型文件路径
+* `params_file`: 返回参数文件路径
+* `enable_use_gpu`: 设置GPU显存(单位M)和Device ID
+* `disable_gpu`: 禁用GPU
+* `gpu_device_id`: 返回使用的GPU ID
+* `switch_ir_optim`: IR优化(默认开启)
+* `enable_tensorrt_engine`: 开启TensorRT
+* `enable_mkldnn`: 开启MKLDNN
+* `disable_glog_info`: 禁用预测中的glog日志
+* `delete_pass`: 预测的时候删除指定的pass
+
+#### 代码示例
+设置模型和参数路径有两种形式：
+* 当模型文件夹下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`
+``` python
+config = Config("./model")
+```
+* 当模型文件夹下只有一个模型文件和一个参数文件时，传入模型文件和参数文件路径
+``` python
+config = Config("./model/model", "./model/params")
+```
+使用`set_model`方法设置模型和参数路径方式同上
+
+其他预测引擎配置选项示例如下
+``` python
+config.enable_use_gpu(100, 0) # 初始化100M显存，使用gpu id为0
+config.gpu_device_id()        # 返回正在使用的gpu id
+config.disable_gpu()		  # 禁用gpu
+config.switch_ir_optim(True)  # 开启IR优化
+config.enable_tensorrt_engine(precision_mode=AnalysisConfig.Precision.Float32,
+                              use_calib_mode=True) # 开启TensorRT预测，精度为fp32，开启int8离线量化
+config.enable_mkldnn()		  # 开启MKLDNN
+```
+
+### Predictor
+
+class paddle.fluid.inference.Predictor
+
+`Predictor`是运行预测的引擎，由`paddle.fluid.inference.create_predictor(config)`创建，主要提供以下方法
+
+* `run()`: 运行预测引擎，返回预测结果
+* `get_input_names()`: 获取输入的名称
+* `get_input_handle(input_name: str)`: 根据输入的名称获取对应的`Tensor`
+* `get_output_names()`: 获取输出的名称
+* `get_output_handle(output_name: str)`: 根据输出的名称获取对应的`Tensor`
+
+#### 代码示例
+
+``` python
+# 设置完AnalysisConfig后创建预测引擎PaddlePredictor
+predictor = create_predictor(config)
+
+# 获取输入的名称
+input_names = predictor.get_input_names()
+input_handle = predictor.get_input_handle(input_names[0])
+
+# 设置输入
+fake_input = numpy.random.randn(1, 3, 318, 318).astype("float32")
+input_handle.reshape([1, 3, 318, 318])
+input_handle.copy_from_cpu(fake_input)
+
+# 运行predictor
+predictor.run()
+
+# 获取输出
+output_names = predictor.get_output_names()
+output_handle = predictor.get_output_handle(output_names[0])
+```
+
 ### PaddleTensor
 
 class paddle.fluid.core.PaddleTensor
@@ -45,7 +179,7 @@ array([1, 2, 3], dtype=int32)
 
 ### PaddleDType
 
-class paddle.fluid.core.PaddleTensor
+class paddle.fluid.core.PaddleDType
 
 `PaddleDType`定义了`PaddleTensor`的数据类型，由传入`PaddleTensor`的numpy数组类型确定，包括以下成员
 
@@ -186,6 +320,38 @@ output_tensor = predictor.get_output_tensor(output_names[0])
 ```
 
 ## 支持方法列表
+* Tensor
+    * `copy_from_cpu(input: numpy.ndarray) -> None`
+    * `copy_to_cpu() -> numpy.ndarray`
+    * `reshape(input: numpy.ndarray|List[int]) -> None`
+    * `shape() -> List[int]`
+    * `set_lod(input: numpy.ndarray|List[List[int]]) -> None`
+    * `lod() -> List[List[int]]`
+    * `type() -> DataType`
+* Config
+	* `set_model(model_dir: str) -> None`
+	* `set_model(prog_file: str, params_file: str) -> None`
+	* `model_dir() -> str`
+	* `prog_file() -> str`
+	* `params_file() -> str`
+	* `enable_use_gpu(memory_pool_init_size_mb: int, device_id: int) -> None`
+	* `gpu_device_id() -> int`
+	* `switch_ir_optim(x: bool = True) -> None`
+	* `enable_tensorrt_engine(workspace_size: int = 1 << 20,
+	                          max_batch_size: int,
+                              min_subgraph_size: int,
+                              precision_mode: PrecisionType,
+                              use_static: bool,
+                              use_calib_mode: bool) -> None`
+	* `enable_mkldnn() -> None`
+    * `disable_glog_info() -> None`
+    * `delete_pass(pass_name: str) -> None`
+* Predictor
+    * `zero_copy_run() -> None`
+    * `get_input_names() -> List[str]`
+    * `get_input_tensor(input_name: str) -> ZeroCopyTensor`
+    * `get_output_names() -> List[str]`
+    * `get_output_tensor(output_name: str) -> ZeroCopyTensor`
 * PaddleTensor
 	* `as_ndarray() -> numpy.ndarray`
 * ZeroCopyTensor
@@ -236,6 +402,63 @@ python resnet50_infer.py --model_file ./model/model --params_file ./model/params
 ```
 
 `resnet50_infer.py` 的内容是
+
+### Config+Predictor+Tensor的完整使用示例(2.0支持)
+
+``` python
+import argparse
+import numpy as np
+from paddle.fluid.inference import Config
+from paddle.fluid.inference import create_predictor
+
+
+def main():
+    args = parse_args()
+
+    # 设置AnalysisConfig
+    config = set_config(args)
+
+    # 创建PaddlePredictor
+    predictor = create_predictor(config)
+
+    # 获取输入的名称
+    input_names = predictor.get_input_names()
+    input_handle = predictor.get_input_handle(input_names[0])
+
+    # 设置输入
+    fake_input = np.random.randn(1, 3, 318, 318).astype("float32")
+    input_handle.reshape([1, 3, 318, 318])
+    input_handle.copy_from_cpu(fake_input)
+
+    # 运行predictor
+    predictor.run()
+
+    # 获取输出
+    output_names = predictor.get_output_names()
+    output_handle = predictor.get_output_handle(output_names[0])
+    output_data = output_handle.copy_to_cpu() # numpy.ndarray类型
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model_file", type=str, help="model filename")
+    parser.add_argument("--params_file", type=str, help="parameter filename")
+    parser.add_argument("--batch_size", type=int, default=1, help="batch size")
+
+    return parser.parse_args()
+
+
+def set_config(args):
+    config = Config(args.model_file, args.params_file)
+    config.disable_gpu()
+    config.switch_use_feed_fetch_ops(False)
+    config.switch_specify_input_names(True)
+    return config
+
+
+if __name__ == "__main__":
+    main()
+```
 
 ### PaddleTensor的完整使用示例
 
