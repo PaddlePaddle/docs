@@ -25,3 +25,9 @@ FAQ以常见问答对的形式收录了用户在使用Paddle框架时的高频�
 
 
     train_cn.md
+..  toctree::
+    :maxdepth: 1
+
+
+    others_cn.md
+
