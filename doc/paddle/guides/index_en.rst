@@ -9,10 +9,10 @@ Please refer to  `PaddlePaddle Github <https://github.com/PaddlePaddle/Paddle>`_
 
 Let's start with studying basic concept of PaddlePaddle:
 
-- `migration tools <./migration.html>`_：how to use migration tools to upgrade your code.
+- `migration tools <./migration_en.html>`_：how to use migration tools to upgrade your code.
 
 
 ..  toctree::
     :hidden:
 
-    migration.rst
+    migration_en.rst
