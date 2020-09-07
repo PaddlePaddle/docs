@@ -38,7 +38,7 @@ https://pypi.douban.com/simple/
 
 + 解决方法：
 
-选择“以管理员身份运行”运行CMD，重新执行安装过程, sudo pip install paddlepaddle
+选择“以管理员身份运行”运行CMD，重新执行安装过程, 使用命令sudo pip install paddlepaddle
 
 ------
 
