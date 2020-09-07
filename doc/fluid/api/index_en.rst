@@ -8,12 +8,14 @@ API Reference
     ../api_guides/index_en.rst
     dataset.rst
     declarative.rst
+    distributed.rst
     framework.rst
     imperative.rst
     io.rst
     metric.rst
     nn.rst
     optimizer.rst
+    static.rst
     tensor.rst
     fluid.rst
     backward.rst
@@ -32,3 +34,4 @@ API Reference
     regularizer.rst
     transpiler.rst
     unique_name.rst
+    review_tmp.rst
