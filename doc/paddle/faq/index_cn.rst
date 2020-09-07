@@ -9,9 +9,12 @@ FAQ以常见问答对的形式收录了用户在使用Paddle框架时的高频�
 
 内容介绍
 
-    - `安装部署类 <../faq/install.md>`_ 
-    - `模型框架类 <../faq/train_cn.md>`_ 
-
+    - `安装部署类 <../faq/install.html>`_ 
+    - `模型框架类 <../faq/train_cn.html>`_ 
+	- `数据处理 <../faq/train_cn.html#id1>`_
+        - `模型搭建 <../faq/train_cn.html#id4>`_
+        - `模型训练&评估 <../faq/train_cn.html#id6>`_
+        - `应用预测 <../faq/train_cn.html#id14>`_
 ..  toctree::
     :maxdepth: 1
  
