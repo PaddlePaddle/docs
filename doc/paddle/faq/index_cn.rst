@@ -13,7 +13,7 @@ FAQ以常见问答对的形式收录了用户在使用Paddle框架时的高频�
     - `模型框架类 <../faq/train_cn.md>`_ 
 
 ..  toctree::
-    :hidden:
+    :maxdepth: 2
  
 
     install_cn.md
