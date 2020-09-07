@@ -1,8 +1,5 @@
 # 安装类FAQ
 
-*在使用PaddlePaddle遇到问题时，请先查阅文中FAQ；如果下面的FAQ无法解决您的问题，请ISSUE提问，谢谢*
-
-
 ##### 问题：Windows环境下，使用pip install时速度慢，如何解决？
 
 + 解决方案：

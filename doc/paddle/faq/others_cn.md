@@ -1,10 +1,6 @@
 # 其他常见问题
 
 
-*在使用PaddlePaddle遇到问题时，请先查阅文中FAQ；如果下面的FAQ无法解决您的问题，请ISSUE提问，谢谢*
-
-## 其他
-
 ##### 问题：import paddle.fluid后logging模块无法使用，如何解决？
 
 + 答复：操作方法可以参考[#issue17731](https://github.com/PaddlePaddle/Paddle/issues/17731)。
