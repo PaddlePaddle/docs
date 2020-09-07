@@ -18,10 +18,6 @@ eye
 返回： ``shape`` 为batch_shape + [num_rows, num_columns]的Tensor。
 
 
-抛出异常：
-    - ``TypeError``: - 如果 ``dtype`` 的类型不是float16， float32， float64， int32， int64其中之一。
-    - ``TypeError``: - 如果 ``num_columns`` 不是非负整数或者 ``num_rows`` 不是非负整数。
-
 **代码示例**：
 
 .. code-block:: python
