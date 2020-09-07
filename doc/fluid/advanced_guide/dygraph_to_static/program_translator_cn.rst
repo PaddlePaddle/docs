@@ -141,7 +141,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     input_var = paddle.to_tensor(in_np)
     out = fc_layer(input_var)
 
-    paddle.jit.save(simple_fc, "./simple_fc_dy2stat", input_spec=[input_var])
+    paddle.jit.save(fc_layer, "./fc_layer_dy2stat", input_spec=[input_var])
 
 内部架构原理
 --------------
@@ -157,7 +157,7 @@ TracedLayer的原理就是trace，相对简单，因此我们在这里不展开�
 
 2. 动态图源码转AST（抽象语法树）
 
-动态图转静态图的最核心部分类似一个编译器，解析动态图代码语句为AST，再对应AST进行改写，最后反转回成静态图代码。从函数转化为代码字符串可以使用Python的inspect.getsource。从字符串Python提供了自带的ast库来解析字符串为 `AST <https://docs.python.org/3/library/ast.html>`_ ，但是由于Python2，Python3的语法略有不同，为了避免我们需要额外处理这些Python2，Python3的不同情况，我们使用了统一Python2，Python3的开源AST处理 `gast库 <https://github.com/serge-sans-paille/gast>`_ 。这些接口使得函数转化为AST没有本质上的困难。
+动态图转静态图的最核心部分类似一个编译器，解析动态图代码语句为AST，再对应AST进行改写，最后反转回成静态图代码。从函数转化为代码字符串可以使用Python的inspect.getsource。从字符串Python提供了自带的 `ast <https://docs.python.org/3/library/ast.html>`_ 库来解析字符串为AST，但是由于Python2，Python3的语法略有不同，为了避免我们需要额外处理这些Python2，Python3的不同情况，我们使用了统一Python2，Python3的开源AST处理 `gast库 <https://github.com/serge-sans-paille/gast>`_ 。这些接口使得函数转化为AST没有本质上的困难。
 
 3. AST改写和静态图源码转换
 
