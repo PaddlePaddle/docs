@@ -3,7 +3,7 @@
 load
 -----------------
 
-.. py:function:: paddle.fluid.dygraph.jit.load(model_path, config=None)
+.. py:function:: paddle.jit.load(model_path, config=None)
 
 :api_attr: 命令式编程模式（动态图)
 

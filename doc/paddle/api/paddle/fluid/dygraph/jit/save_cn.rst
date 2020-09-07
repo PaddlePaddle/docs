@@ -3,7 +3,7 @@
 save
 -----------------
 
-.. py:function:: paddle.fluid.dygraph.jit.save(layer, model_path, input_spec=None, config=None)
+.. py:function:: paddle.jit.save(layer, model_path, input_spec=None, config=None)
 
 将输入的经过 ``@declarative`` 装饰的 :ref:`cn_api_fluid_dygraph_Layer` 存储为 :ref:`cn_api_fluid_dygraph_TranslatedLayer` 格式的模型，
 载入后可用于预测推理或者fine-tune训练。
