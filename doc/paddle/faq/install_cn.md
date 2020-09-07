@@ -24,23 +24,6 @@ https://pypi.douban.com/simple/
 
 ------
 
-##### 问题：MacOS环境下，使用pip install时报错，`Error：No Matching distribution found for paddlepaddle` ，如何解决？
-
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-6ddccd0cad4f70363da2be2977508eca64203c8b)
-
-+ 报错分析：
-
-用户设置了从阿里云下载 `https://mirrors.aliyun.com/pypi/simple/`，但是 MacOS 对于该地址进行了限制，导致报错。
-
-+ 解决方法：
-
-建议通过如下两个地址获取pip安装包，修改 `-i` 后网址即可：
-
-https://pypi.tuna.tsinghua.edu.cn/simple
-https://pypi.douban.com/simple/
-
-------
-
 ##### 问题：使用pip install时报错，`PermissionError: [WinError 5]` ，如何解决？
 
 + 问题描述：
@@ -55,7 +38,7 @@ https://pypi.douban.com/simple/
 
 + 解决方法：
 
-选择“以管理员身份运行”运行CMD，重新执行安装过程。
+选择“以管理员身份运行”运行CMD，重新执行安装过程, sudo pip install paddlepaddle
 
 ------
 
@@ -134,9 +117,9 @@ CUDA安装错误导致。
 
 查找“libcudart.so”所在目录，并将其添加到“LD_LIBRARY_PATH”中。
 
-例如：执行`find / -name libcudart.so`, 发现libcudart.so在“/usr/local/cuda-8.0/targets/x86_64-linux/lib/libcudart.so”路径下， 使用如下命令添加即可。
+例如：执行`find / -name libcudart.so`, 发现libcudart.so在“/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.so”路径下， 使用如下命令添加即可。
 
-`export LD_LIBRARY_PATH=/usr/local/cuda-8.0/targets/x86_64-linux/lib/libcudart.so$LD_LIBRARY_PATH`
+`export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.so$LD_LIBRARY_PATH`
 
 ------
 
