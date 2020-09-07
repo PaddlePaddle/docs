@@ -13,56 +13,60 @@ SaveLoadConfig
 
     .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph import Linear
-        from paddle.fluid.dygraph import declarative
-        class SimpleNet(fluid.dygraph.Layer):
+        import paddle
+        import paddle.nn as nn
+        import paddle.optimizer as opt
+
+        class SimpleNet(nn.Layer):
             def __init__(self, in_size, out_size):
                 super(SimpleNet, self).__init__()
-                self._linear = Linear(in_size, out_size)
-            @declarative
+                self._linear = nn.Linear(in_size, out_size)
+
+            @paddle.jit.to_static
             def forward(self, x):
                 y = self._linear(x)
                 z = self._linear(y)
                 return z
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 训练模型
+
+        # enable dygraph mode
+        paddle.disable_static() 
+
+        # train model
         net = SimpleNet(8, 8)
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+        adam = opt.Adam(learning_rate=0.1, parameters=net.parameters())
+        x = paddle.randn([4, 8], 'float32')
         for i in range(10):
             out = net(x)
-            loss = fluid.layers.mean(out)
+            loss = paddle.tensor.mean(out)
             loss.backward()
-            adam.minimize(loss)
-            net.clear_gradients()
-        # 在存储模型时使用SaveLoadConfig
+            adam.step()
+            adam.clear_grad()
+
+        # use SaveLoadconfig when saving model
         model_path = "simplenet.example.model"
-        configs = fluid.dygraph.jit.SaveLoadConfig()
-        configs.model_filename = "__simplenet__"
-        fluid.dygraph.jit.save(
+        config = paddle.SaveLoadConfig()
+        config.model_filename = "__simplenet__"
+        paddle.jit.save(
             layer=net,
             model_path=model_path,
-            input_spec=[x],
-            configs=configs)
+            config=config)
 
     2. 在载入模型时使用 ``SaveLoadConfig``
 
     .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 在载入模型时使用SaveLoadconfig
+        import paddle
+
+        # enable dygraph mode
+        paddle.disable_static() 
+
+        # use SaveLoadconfig when loading model
         model_path = "simplenet.example.model"
-        configs = fluid.dygraph.jit.SaveLoadConfig()
-        configs.model_filename = "__simplenet__"
-        infer_net = fluid.dygraph.jit.load(model_path, configs=configs)
-        # 预测
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+        config = paddle.SaveLoadConfig()
+        config.model_filename = "__simplenet__"
+        infer_net = paddle.jit.load(model_path, config=config)
+        # inference
+        x = paddle.randn([4, 8], 'float32')
         pred = infer_net(x)
 
 属性
@@ -82,45 +86,48 @@ SaveLoadConfig
 **示例代码：**
     .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph import Linear
-        from paddle.fluid.dygraph import declarative
-        class SimpleNet(fluid.dygraph.Layer):
+        import paddle
+        import paddle.nn as nn
+        import paddle.optimizer as opt
+
+        class SimpleNet(nn.Layer):
             def __init__(self, in_size, out_size):
                 super(SimpleNet, self).__init__()
-                self._linear = Linear(in_size, out_size)
-            @declarative
+                self._linear = nn.Linear(in_size, out_size)
+
+            @paddle.jit.to_static
             def forward(self, x):
                 y = self._linear(x)
                 z = self._linear(y)
-                loss = fluid.layers.mean(z)
+                loss = paddle.tensor.mean(z)
                 return z, loss
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 训练模型
+
+        # enable dygraph mode
+        paddle.disable_static() 
+
+        # train model
         net = SimpleNet(8, 8)
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+        adam = opt.Adam(learning_rate=0.1, parameters=net.parameters())
+        x = paddle.randn([4, 8], 'float32')
         for i in range(10):
             out, loss = net(x)
             loss.backward()
-            adam.minimize(loss)
-            net.clear_gradients()
-        # 使用SaveLoadconfig.output_spec
+            adam.step()
+            adam.clear_grad()
+
+        # use SaveLoadconfig.output_spec
         model_path = "simplenet.example.model.output_spec"
-        configs = fluid.dygraph.jit.SaveLoadConfig()
-        # 仅在存储模型中保留预测结果，丢弃loss
-        configs.output_spec = [out]
-        fluid.dygraph.jit.save(
+        config = paddle.SaveLoadConfig()
+        config.output_spec = [out]
+        paddle.jit.save(
             layer=net,
             model_path=model_path,
-            input_spec=[x],
-            configs=configs)
-        infer_net = fluid.dygraph.jit.load(model_path, configs=configs)
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
-        # 仅有预测结果输出
+            config=config)
+
+        infer_net = paddle.jit.load(model_path)
+        x = paddle.randn([4, 8], 'float32')
         pred = infer_net(x)
+
 
 
 .. py:attribute:: model_filename
@@ -130,45 +137,47 @@ SaveLoadConfig
 **示例代码**
     .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph import Linear
-        from paddle.fluid.dygraph import declarative
-        class SimpleNet(fluid.dygraph.Layer):
+        import paddle
+        import paddle.nn as nn
+        import paddle.optimizer as opt
+
+        class SimpleNet(nn.Layer):
             def __init__(self, in_size, out_size):
                 super(SimpleNet, self).__init__()
-                self._linear = Linear(in_size, out_size)
-            @declarative
+                self._linear = nn.Linear(in_size, out_size)
+
+            @paddle.jit.to_static
             def forward(self, x):
                 y = self._linear(x)
                 z = self._linear(y)
                 return z
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 训练模型
+
+        # enable dygraph mode
+        paddle.disable_static() 
+
+        # train model
         net = SimpleNet(8, 8)
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+        adam = opt.Adam(learning_rate=0.1, parameters=net.parameters())
+        x = paddle.randn([4, 8], 'float32')
         for i in range(10):
             out = net(x)
-            loss = fluid.layers.mean(out)
+            loss = paddle.tensor.mean(out)
             loss.backward()
-            adam.minimize(loss)
-            net.clear_gradients()
+            adam.step()
+            adam.clear_grad()
+
+        # saving with configs.model_filename
         model_path = "simplenet.example.model.model_filename"
-        configs = fluid.dygraph.jit.SaveLoadConfig()
-        configs.model_filename = "__simplenet__"
-        # 配置configs.model_filename存储模型
-        fluid.dygraph.jit.save(
+        config = paddle.SaveLoadConfig()
+        config.model_filename = "__simplenet__"
+        paddle.jit.save(
             layer=net,
             model_path=model_path,
-            input_spec=[x],
-            configs=configs)
-        # [结果] 存储模型目录文件包括:
-        # __simplenet__  __variables__  __variables.info__
-        # 配置configs.model_filename载入模型
-        infer_net = fluid.dygraph.jit.load(model_path, configs=configs)
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+            config=config)
+
+        # loading with configs.model_filename
+        infer_net = paddle.jit.load(model_path, config=config)
+        x = paddle.randn([4, 8], 'float32')
         pred = infer_net(x)
 
 
@@ -179,45 +188,48 @@ SaveLoadConfig
 **示例代码**
     .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph import Linear
-        from paddle.fluid.dygraph import declarative
-        class SimpleNet(fluid.dygraph.Layer):
+        import paddle
+        import paddle.nn as nn
+        import paddle.optimizer as opt
+
+        class SimpleNet(nn.Layer):
             def __init__(self, in_size, out_size):
                 super(SimpleNet, self).__init__()
-                self._linear = Linear(in_size, out_size)
-            @declarative
+                self._linear = nn.Linear(in_size, out_size)
+
+            @paddle.jit.to_static
             def forward(self, x):
                 y = self._linear(x)
                 z = self._linear(y)
                 return z
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 训练模型
+
+        # enable dygraph mode
+        paddle.disable_static() 
+
+        # train model
         net = SimpleNet(8, 8)
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+        adam = opt.Adam(learning_rate=0.1, parameters=net.parameters())
+        x = paddle.randn([4, 8], 'float32')
         for i in range(10):
             out = net(x)
-            loss = fluid.layers.mean(out)
+            loss = paddle.tensor.mean(out)
             loss.backward()
-            adam.minimize(loss)
-            net.clear_gradients()
+            adam.step()
+            adam.clear_grad()
+
         model_path = "simplenet.example.model.params_filename"
-        configs = fluid.dygraph.jit.SaveLoadConfig()
-        configs.params_filename = "__params__"
-        # 配置configs.params_filename存储模型
-        fluid.dygraph.jit.save(
+        config = paddle.SaveLoadConfig()
+        config.params_filename = "__params__"
+
+        # saving with configs.params_filename
+        paddle.jit.save(
             layer=net,
             model_path=model_path,
-            input_spec=[x],
-            configs=configs)
-        # [结果] 存储模型目录文件包括:
-        # __model__  __params__  __variables.info__
-        # 配置configs.params_filename载入模型
-        infer_net = fluid.dygraph.jit.load(model_path, configs=configs)
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+            config=config)
+
+        # loading with configs.params_filename
+        infer_net = paddle.jit.load(model_path, config=config)
+        x = paddle.randn([4, 8], 'float32')
         pred = infer_net(x)
 
 
@@ -231,45 +243,50 @@ SaveLoadConfig
 **示例代码**
     .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph import Linear
-        from paddle.fluid.dygraph import declarative
-        class SimpleNet(fluid.dygraph.Layer):
+        import paddle
+        import paddle.nn as nn
+        import paddle.optimizer as opt
+
+        class SimpleNet(nn.Layer):
             def __init__(self, in_size, out_size):
                 super(SimpleNet, self).__init__()
-                self._linear = Linear(in_size, out_size)
-            @declarative
+                self._linear = nn.Linear(in_size, out_size)
+
+            @paddle.jit.to_static
             def forward(self, x):
                 y = self._linear(x)
                 z = self._linear(y)
                 return z
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 训练模型
+
+        # enable dygraph mode
+        paddle.disable_static() 
+
+        # train model
         net = SimpleNet(8, 8)
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+        adam = opt.Adam(learning_rate=0.1, parameters=net.parameters())
+        x = paddle.randn([4, 8], 'float32')
         for i in range(10):
             out = net(x)
-            loss = fluid.layers.mean(out)
+            loss = paddle.tensor.mean(out)
             loss.backward()
-            adam.minimize(loss)
-            net.clear_gradients()
+            adam.step()
+            adam.clear_grad()
+
         model_path = "simplenet.example.model.separate_params"
-        configs = fluid.dygraph.jit.SaveLoadConfig()
-        configs.separate_params = True
-        # 配置configs.separate_params存储模型
-        fluid.dygraph.jit.save(
+        config = paddle.jit.SaveLoadConfig()
+        config.separate_params = True
+
+        # saving with configs.separate_params
+        paddle.jit.save(
             layer=net,
             model_path=model_path,
-            input_spec=[x],
-            configs=configs)
-        # [结果] 存储模型目录文件包括:
+            config=config)
+        # [result] the saved model directory contains:
         # linear_0.b_0  linear_0.w_0  __model__  __variables.info__
-        # 配置configs.params_filename载入模型
-        infer_net = fluid.dygraph.jit.load(model_path, configs=configs)
-        x = fluid.dygraph.to_variable(np.random.random((4, 8)).astype('float32'))
+
+        # loading with configs.params_filename
+        infer_net = paddle.jit.load(model_path, config=config)
+        x = paddle.randn([4, 8], 'float32')
         pred = infer_net(x)
 
 

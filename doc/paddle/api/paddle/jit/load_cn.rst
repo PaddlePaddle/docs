@@ -3,7 +3,7 @@
 load
 -----------------
 
-.. py:function:: paddle.fluid.dygraph.jit.load(model_path, configs=None)
+.. py:function:: paddle.fluid.dygraph.jit.load(model_path, config=None)
 
 :api_attr: 命令式编程模式（动态图)
 
@@ -19,7 +19,7 @@ load
 
 参数：
     - **model_path** (str) - 存储模型的目录。
-    - **configs** (SaveLoadConfig, 可选) - 用于指定额外配置选项的 :ref:`cn_api_fluid_dygraph_jit_SaveLoadConfig` 对象。默认为 ``None``。
+    - **config** (SaveLoadConfig, 可选) - 用于指定额外配置选项的 :ref:`cn_api_fluid_dygraph_jit_SaveLoadConfig` 对象。默认为 ``None``。
 
 返回：TranslatedLayer - 一个能够执行存储模型的 ``Layer`` 对象。
 
@@ -30,77 +30,92 @@ load
     .. code-block:: python
 
         import numpy as np
-        import paddle.fluid as fluid
-        from paddle.fluid.dygraph import Linear
-        from paddle.fluid.dygraph import declarative
-        BATCH_SIZE = 32
-        BATCH_NUM = 20
-        def random_batch_reader():
-            def _get_random_images_and_labels(image_shape, label_shape):
-                image = np.random.random(size=image_shape).astype('float32')
-                label = np.random.random(size=label_shape).astype('int64')
+        import paddle
+        import paddle.nn as nn
+        import paddle.optimizer as opt
+
+        BATCH_SIZE = 16
+        BATCH_NUM = 4
+        EPOCH_NUM = 4
+
+        IMAGE_SIZE = 784
+        CLASS_NUM = 10
+
+        # define a random dataset
+        class RandomDataset(paddle.io.Dataset):
+            def __init__(self, num_samples):
+                self.num_samples = num_samples
+
+            def __getitem__(self, idx):
+                image = np.random.random([IMAGE_SIZE]).astype('float32')
+                label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
                 return image, label
-            def __reader__():
-                for _ in range(BATCH_NUM):
-                    batch_image, batch_label = _get_random_images_and_labels(
-                        [BATCH_SIZE, 784], [BATCH_SIZE, 1])
-                    yield batch_image, batch_label
-            return __reader__
-        class LinearNet(fluid.dygraph.Layer):
-            def __init__(self, in_size, out_size):
+
+            def __len__(self):
+                return self.num_samples
+
+        class LinearNet(nn.Layer):
+            def __init__(self):
                 super(LinearNet, self).__init__()
-                self._linear = Linear(in_size, out_size)
-            @declarative
+                self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
+
+            @paddle.jit.to_static
             def forward(self, x):
                 return self._linear(x)
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 1. 训练存储模型.
-        # 创建网络
-        net = LinearNet(784, 1)
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=net.parameters())
-        # 创建DataLoader
-        train_loader = fluid.io.DataLoader.from_generator(capacity=5)
-        train_loader.set_batch_generator(random_batch_reader())
-        # 训练
-        for data in train_loader():
-            img, label = data
-            label.stop_gradient = True
-            cost = net(img)
-            loss = fluid.layers.cross_entropy(cost, label)
-            avg_loss = fluid.layers.mean(loss)
-            avg_loss.backward()
-            adam.minimize(avg_loss)
-            net.clear_gradients()
+
+        def train(layer, loader, loss_fn, opt):
+            for epoch_id in range(EPOCH_NUM):
+                for batch_id, (image, label) in enumerate(loader()):
+                    out = layer(image)
+                    loss = loss_fn(out, label)
+                    loss.backward()
+                    opt.step()
+                    opt.clear_grad()
+                    print("Epoch {} batch {}: loss = {}".format(
+                        epoch_id, batch_id, np.mean(loss.numpy())))
+
+        # enable dygraph mode
+        place = paddle.CPUPlace()
+        paddle.disable_static(place) 
+
+        # 1. train & save model.
+
+        # create network
+        layer = LinearNet()
+        loss_fn = nn.CrossEntropyLoss()
+        adam = opt.Adam(learning_rate=0.001, parameters=layer.parameters())
+
+        # create data loader
+        dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
+        loader = paddle.io.DataLoader(dataset,
+            places=place,
+            batch_size=BATCH_SIZE,
+            shuffle=True,
+            drop_last=True,
+            num_workers=2)
+
+        # train
+        train(layer, loader, loss_fn, adam)
+
+        # save
         model_path = "linear.example.model"
-        fluid.dygraph.jit.save(
-            layer=net,
-            model_path=model_path,
-            input_spec=[img])
-        # 2. 载入模型 & 预测
-        # 载入模型
-        infer_net = fluid.dygraph.jit.load(model_path)
-        # 预测
-        x = fluid.dygraph.to_variable(np.random.random((1, 784)).astype('float32'))
-        pred = infer_net(x)
-        # 3. 载入模型 & fine-tune训练
-        # 载入模型
-        train_net = fluid.dygraph.jit.load(model_path)
-        train_net.train()
-        adam = fluid.optimizer.AdamOptimizer(learning_rate=0.1, parameter_list=train_net.parameters())
-        # 创建DataLoader
-        train_loader = fluid.io.DataLoader.from_generator(capacity=5)
-        train_loader.set_batch_generator(random_batch_reader())
-        # fine-tune训练
-        for data in train_loader():
-            img, label = data
-            label.stop_gradient = True
-            cost = train_net(img)
-            loss = fluid.layers.cross_entropy(cost, label)
-            avg_loss = fluid.layers.mean(loss)
-            avg_loss.backward()
-            adam.minimize(avg_loss)
-            train_net.clear_gradients()
+        paddle.jit.save(layer, model_path)
+
+        # 2. load model
+
+        # load
+        loaded_layer = paddle.jit.load(model_path)
+
+        # inference
+        loaded_layer.eval()
+        x = paddle.randn([1, IMAGE_SIZE], 'float32')
+        pred = loaded_layer(x)
+
+        # fine-tune
+        loaded_layer.train()
+        adam = opt.Adam(learning_rate=0.001, parameters=loaded_layer.parameters())
+        train(loaded_layer, loader, loss_fn, adam)
+
 
 
 2. 载入由接口 :ref:`cn_api_fluid_io_save_inference_model` 存储的模型进行预测推理及fine-tune训练。
@@ -108,61 +123,95 @@ load
     .. code-block:: python
 
         import numpy as np
+        import paddle
         import paddle.fluid as fluid
-        BATCH_SIZE = 32
-        BATCH_NUM = 20
-        def random_batch_reader():
-            def _get_random_images_and_labels(image_shape, label_shape):
-                image = np.random.random(size=image_shape).astype('float32')
-                label = np.random.random(size=label_shape).astype('int64')
+        import paddle.nn as nn
+        import paddle.optimizer as opt
+
+        BATCH_SIZE = 16
+        BATCH_NUM = 4
+        EPOCH_NUM = 4
+
+        IMAGE_SIZE = 784
+        CLASS_NUM = 10
+
+        # define a random dataset
+        class RandomDataset(paddle.io.Dataset):
+            def __init__(self, num_samples):
+                self.num_samples = num_samples
+
+            def __getitem__(self, idx):
+                image = np.random.random([IMAGE_SIZE]).astype('float32')
+                label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
                 return image, label
-            def __reader__():
-                for _ in range(BATCH_NUM):
-                    batch_image, batch_label = _get_random_images_and_labels(
-                        [BATCH_SIZE, 784], [BATCH_SIZE, 1])
-                    yield batch_image, batch_label
-            return __reader__
-        img = fluid.data(name='img', shape=[None, 784], dtype='float32')
+
+            def __len__(self):
+                return self.num_samples
+
+        image = fluid.data(name='image', shape=[None, 784], dtype='float32')
         label = fluid.data(name='label', shape=[None, 1], dtype='int64')
-        pred = fluid.layers.fc(input=img, size=10, act='softmax')
+        pred = fluid.layers.fc(input=image, size=10, act='softmax')
         loss = fluid.layers.cross_entropy(input=pred, label=label)
         avg_loss = fluid.layers.mean(loss)
+
         optimizer = fluid.optimizer.SGD(learning_rate=0.001)
         optimizer.minimize(avg_loss)
+
         place = fluid.CPUPlace()
         exe = fluid.Executor(place)
         exe.run(fluid.default_startup_program())
-        loader = fluid.io.DataLoader.from_generator(
-            feed_list=[img, label], capacity=5, iterable=True)
-        loader.set_batch_generator(random_batch_reader(), places=place)
-        # 1. 训练 & 存储预测模型
+
+        # create data loader
+        dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
+        loader = paddle.io.DataLoader(dataset,
+            feed_list=[image, label],
+            places=place,
+            batch_size=BATCH_SIZE, 
+            shuffle=True,
+            drop_last=True,
+            num_workers=2)
+
+        # 1. train and save inference model
         for data in loader():
             exe.run(
                 fluid.default_main_program(),
                 feed=data, 
                 fetch_list=[avg_loss])
+
         model_path = "fc.example.model"
         fluid.io.save_inference_model(
-            model_path, ["img"], [pred], exe)
-        # 开启命令式编程模式
-        fluid.enable_dygraph() 
-        # 2. 载入模型 & 预测
-        fc = fluid.dygraph.jit.load(model_path)
-        x = fluid.dygraph.to_variable(np.random.random((1, 784)).astype('float32'))
+            model_path, ["image"], [pred], exe)
+
+        # 2. load model
+
+        # enable dygraph mode
+        paddle.disable_static(place)
+
+        # load
+        fc = paddle.jit.load(model_path)
+
+        # inference
+        fc.eval()
+        x = paddle.randn([1, IMAGE_SIZE], 'float32')
         pred = fc(x)
-        # 3. 载入模型 & fine-tune训练
-        fc = fluid.dygraph.jit.load(model_path)
+
+        # fine-tune
         fc.train()
-        sgd = fluid.optimizer.SGD(learning_rate=0.001,
-                                    parameter_list=fc.parameters())
-        train_loader = fluid.io.DataLoader.from_generator(capacity=5)
-        train_loader.set_batch_generator(
-            random_batch_reader(), places=place)
-        for data in train_loader():
-            img, label = data
-            label.stop_gradient = True
-            cost = fc(img)
-            loss = fluid.layers.cross_entropy(cost, label)
-            avg_loss = fluid.layers.mean(loss)
-            avg_loss.backward()
-            sgd.minimize(avg_loss)
+        loss_fn = nn.CrossEntropyLoss()
+        adam = opt.Adam(learning_rate=0.001, parameters=fc.parameters())
+        loader = paddle.io.DataLoader(dataset,
+            places=place,
+            batch_size=BATCH_SIZE,
+            shuffle=True,
+            drop_last=True,
+            num_workers=2)
+        for epoch_id in range(EPOCH_NUM):
+            for batch_id, (image, label) in enumerate(loader()):
+                out = fc(image)
+                loss = loss_fn(out, label)
+                loss.backward()
+                adam.step()
+                adam.clear_grad()
+                print("Epoch {} batch {}: loss = {}".format(
+                    epoch_id, batch_id, np.mean(loss.numpy())))
+
