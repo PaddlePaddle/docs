@@ -1,6 +1,7 @@
 #!/bin/bash
 
 API_FILES=("doc/paddle/api/paddle")
+
 for API_FILE in ${API_FILES[*]}; do
   API_CHANGE=`git diff --name-only upstream/$BRANCH | grep "${API_FILE}"
   if [ "${API_CHANGE}" ];then
