@@ -18,5 +18,6 @@
 
 ..  toctree::
     :hidden:
+    :maxdepth: 1
 
     cv_case/index_cn.rst
