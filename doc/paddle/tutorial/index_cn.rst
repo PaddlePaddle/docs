@@ -2,8 +2,6 @@
 典型案例
 ########
 
-..  todo::
-
 如果您已经初步了解了PaddlePaddle，期望可以针对实际问题建模、搭建自己网络，本模块提供了一些 Paddle 的具体典型案例供您参考：
 
 本章文档将指导您如何使用PaddlePaddle完成基础的深度学习任务
@@ -18,6 +16,5 @@
 
 ..  toctree::
     :hidden:
-    :maxdepth: 1
 
     cv_case/index_cn.rst
