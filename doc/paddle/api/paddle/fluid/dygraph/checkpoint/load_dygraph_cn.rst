@@ -4,7 +4,7 @@ load
 ----
 
 
-.. py:function:: paddle.load(model_path, configs=None)
+.. py:function:: paddle.load(model_path, config=None)
 
 :api_attr: 命令式编程模式（动态图)
 
@@ -15,7 +15,7 @@ load
 
 参数:
     - **model_path** (str) – 保存state_dict的文件前缀。该路径不应该包括后缀 ``.pdparams`` 或 ``.pdopt``。
-    - **configs** (SaveLoadConfig, 可选) - 用于指定额外配置选项的 :ref:`cn_api_fluid_dygraph_jit_SaveLoadConfig` 对象，这些选项主要是用于兼容 ``paddle.io.save_inference_model`` 存储模型的格式。默认为 ``None``。
+    - **config** (SaveLoadConfig, 可选) - 用于指定额外配置选项的 :ref:`cn_api_fluid_dygraph_jit_SaveLoadConfig` 对象，这些选项主要是用于兼容 ``paddle.io.save_inference_model`` 存储模型的格式。默认为 ``None``。
 
 
 返回: 两个 ``dict`` ，即从文件中恢复的模型参数 ``dict`` 和优化器参数 ``dict``，如果只找到其中一个的存储文件，另一个返回None
