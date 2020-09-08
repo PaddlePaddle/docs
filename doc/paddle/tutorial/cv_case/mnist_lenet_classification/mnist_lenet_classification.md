@@ -2,7 +2,7 @@
 本示例教程演示如何在MNIST数据集上用LeNet进行图像分类。
 手写数字的MNIST数据集，包含60,000个用于训练的示例和10,000个用于测试的示例。这些数字已经过尺寸标准化并位于图像中心，图像是固定大小(28x28像素)，其值为0到1。该数据集的官方地址为：http://yann.lecun.com/exdb/mnist/
 
-# 环境
+## 环境
 本教程基于paddle-develop编写，如果您的环境不是本版本，请先安装paddle-develop版本。
 
 
@@ -15,7 +15,7 @@ paddle.disable_static()
     0.0.0
 
 
-# 加载数据集
+## 加载数据集
 我们使用飞桨自带的paddle.dataset完成mnist数据集的加载。
 
 
@@ -47,10 +47,10 @@ print('train_data0 label is: ' + str(train_label_0))
 
 
 
-![png](output_6_1.png)
+![png](./output_6_1.png)
 
 
-# 2.组网
+## 2.组网
 用paddle.nn下的API，如`Conv2d`、`Pool2D`、`Linead`完成LeNet的构建。
 
 
@@ -85,7 +85,7 @@ class LeNet(paddle.nn.Layer):
         return x
 ```
 
-# 3.训练方式一
+## 3.训练方式一
 组网后，开始对模型进行训练，先构建`train_loader`，加载训练数据，然后定义`train`函数，设置好损失函数后，按batch加载数据，完成模型的训练。
 
 
