@@ -1,8 +1,8 @@
 .. _user_guide_broadcasting
 
-=========
+==================
 Broadcasting
-=========
+==================
 
 PaddlePaddle provides broadcasting semantics in some APIs like other deep learning frameworks, which allows using tensors with different shapes while operating.
 In General, broadcast is the rule how the smaller tensor is “broadcast” across the larger tsnsor so that they have same shapes.

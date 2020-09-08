@@ -1,7 +1,8 @@
 .. _api_nn_softsign:
 
 softsign
--------------------------------
-:doc_source: paddle.fluid.layers.softsign
+----------
 
+..  autofunction:: paddle.nn.functional.softsign
+    :noindex:
 
