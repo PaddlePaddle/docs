@@ -718,7 +718,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     由于 ``paddle.fluid.save`` 接口原先在静态图模式下的定位是存储训练时参数，或者说存储Checkpoint，故尽管其同时存储了模型结构，目前也暂不支持从 ``paddle.fluid.save`` 的存储结果中同时载入模型和参数，后续如有需求再考虑支持。
 
 
-4.4 从 ``paddle.io.save_params/save_persistables`` 存储结果中载入参数
+4.3 从 ``paddle.io.save_params/save_persistables`` 存储结果中载入参数
 -----------------------------------------------------------------------
 
 .. note::
