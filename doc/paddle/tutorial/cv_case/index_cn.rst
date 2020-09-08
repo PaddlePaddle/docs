@@ -11,5 +11,5 @@
     :hidden:
     :titlesonly:
 
-    mnist_lenet_classification/mnist_lenet_classification.md
+    mnist_lenet_classification/mnist_lenet_classification.rst
 
