@@ -145,7 +145,7 @@ Variable
 
 **参数:**
 
-  - **backward_strategy**: ( :ref:`cn_api_fluid_dygraph_BackwardStrategy` ) 使用何种 :ref:`cn_api_fluid_dygraph_BackwardStrategy`  聚合反向的梯度
+  - **retain_graph** (bool，可选) – 该参数用于确定反向梯度更新完成后反向梯度计算图是否需要保留（retain_graph为True则保留反向梯度计算图）。若用户打算在执行完该方法（  :code:`backward` ）后，继续向之前已构建的计算图中添加更多的Op，则需要设置 :code:`retain_graph` 值为True（这样才会保留之前计算得到的梯度）。可以看出，将 :code:`retain_graph` 设置为False可降低内存的占用。默认值为False。
 
 返回：无
 
@@ -153,23 +153,20 @@ Variable
 **示例代码**
   .. code-block:: python
 
-        import paddle.fluid as fluid
         import numpy as np
-
+        import paddle
+        paddle.disable_static()
         x = np.ones([2, 2], np.float32)
-        with fluid.dygraph.guard():
-            inputs2 = []
-            for _ in range(10):
-                tmp = fluid.dygraph.base.to_variable(x)
-                # 如果这里我们不为输入tmp设置stop_gradient=False，那么后面loss2也将因为这个链路都不需要梯度
-                # 而不产生梯度
-                tmp.stop_gradient=False
-                inputs2.append(tmp)
-            ret2 = fluid.layers.sums(inputs2)
-            loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
+        inputs = []
+        for _ in range(10):
+            tmp = paddle.to_tensor(x)
+            # 如果这里我们不为输入tmp设置stop_gradient=False，那么后面loss也将因为这个链路都不需要梯度
+            # 而不产生梯度
+            tmp.stop_gradient=False
+            inputs.append(tmp)
+        ret = paddle.sums(inputs)
+        loss = paddle.reduce_sum(ret)
+        loss.backward()
 
 .. py:method:: gradient()
 
@@ -202,9 +199,7 @@ Variable
                 inputs2.append(tmp)
             ret2 = fluid.layers.sums(inputs2)
             loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
+            loss2.backward()
             print(loss2.gradient())
 
         # example2: 返回tuple of ndarray
@@ -248,9 +243,7 @@ Variable
                 inputs2.append(tmp)
             ret2 = fluid.layers.sums(inputs2)
             loss2 = fluid.layers.reduce_sum(ret2)
-            backward_strategy = fluid.dygraph.BackwardStrategy()
-            backward_strategy.sort_sum_gradient = True
-            loss2.backward(backward_strategy)
+            loss2.backward()
             print(loss2.gradient())
             loss2.clear_gradient()
             print("After clear {}".format(loss2.gradient()))
@@ -351,6 +344,7 @@ Variable
   .. code-block:: python
 
         import paddle.fluid as fluid
+        import numpy as np
 
         with fluid.dygraph.guard():
             value0 = np.arange(26).reshape(2, 13).astype("float32")
@@ -366,9 +360,9 @@ Variable
             out1.stop_gradient = True
             out = fluid.layers.concat(input=[out1, out2, c], axis=1)
             out.backward()
-            # 可以发现这里linear的参数变成了
-            assert (linear.weight.gradient() == 0).all()
-            assert (out1.gradient() == 0).all()
+            # 可以发现这里linear的参数梯度变成了None
+            assert linear.weight.gradient() is None
+            assert out1.gradient() is None
 
 .. py:attribute:: persistable
 

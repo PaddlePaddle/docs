@@ -28,7 +28,6 @@ kL发散损失计算如下：
     
 返回：Tensor KL散度损失。
 
-返回类型：变量(Tensor)，数据类型与输入 ``input`` 一致。
 
 **代码示例：**
 
@@ -45,22 +44,22 @@ kL发散损失计算如下：
     target = np.random.uniform(-10, 10, shape).astype('float32')
 
     # 'batchmean' reduction, loss shape will be [N]
-    pred_loss = F.kl_div(paddle.to_variable(input),
-                            paddle.to_variable(target), reduction='batchmean')
+    pred_loss = F.kl_div(paddle.to_tensor(input),
+                            paddle.to_tensor(target), reduction='batchmean')
     # shape=[5]
 
     # 'mean' reduction, loss shape will be [1]
-    pred_loss = F.kl_div(paddle.to_variable(input),
-                            paddle.to_variable(target), reduction='mean')
+    pred_loss = F.kl_div(paddle.to_tensor(input),
+                            paddle.to_tensor(target), reduction='mean')
     # shape=[1]
 
     # 'sum' reduction, loss shape will be [1]
-    pred_loss = F.kl_div(paddle.to_variable(input),
-                            paddle.to_variable(target), reduction='sum')
+    pred_loss = F.kl_div(paddle.to_tensor(input),
+                            paddle.to_tensor(target), reduction='sum')
     # shape=[1]
 
     # 'none' reduction, loss shape is same with input shape
-    pred_loss = F.kl_div(paddle.to_variable(input),
-                            paddle.to_variable(target), reduction='none')
+    pred_loss = F.kl_div(paddle.to_tensor(input),
+                            paddle.to_tensor(target), reduction='none')
     # shape=[5, 20]
 

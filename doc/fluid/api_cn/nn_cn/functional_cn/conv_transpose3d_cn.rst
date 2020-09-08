@@ -9,7 +9,7 @@ conv_transpose3d
 
 三维转置卷积层（Convlution3d transpose layer)
 
-该层根据输入（input）、滤波器（filter）和卷积核膨胀比例（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW或者NDHWC格式。其中N为批尺寸，C为通道数（channel），D为特征深度，H为特征层高度，W为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。
+该层根据输入（input）、卷积核（kernel）和卷积核空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW或者NDHWC格式。其中N为批尺寸，C为通道数（channel），D为特征深度，H为特征层高度，W为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。
 
 .. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
 
@@ -20,7 +20,7 @@ conv_transpose3d
 
 其中：
     -  :math:`X` : 输入，具有NCDHW或NDHWC格式的5-D Tensor
-    -  :math:`W` : 滤波器，具有NCDHW格式的5-D Tensor
+    -  :math:`W` : 卷积核，具有NCDHW格式的5-D Tensor
     -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）
     -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M,1]``
     -  :math:`σ` : 激活函数
@@ -32,7 +32,7 @@ conv_transpose3d
 
     输入的shape：:math:`（N,C_{in}, D_{in}, H_{in}, W_{in}）`
 
-    滤波器的shape：:math:`（C_{in}, C_{out}, D_f, H_f, W_f）`
+    卷积核的shape：:math:`（C_{in}, C_{out}, D_f, H_f, W_f）`
 
 输出:
 
@@ -70,17 +70,17 @@ conv_transpose3d
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-如果指定了output_size， ``conv_transpose3d`` 可以自动计算滤波器的大小。
+如果指定了output_size， ``conv_transpose3d`` 可以自动计算卷积核的大小。
 
 参数:
   - **x** (Tensor) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
-  - **weight** (Tensor) - 形状为 :math:`[M, C/g, kD, kH, kW]` 的滤波器（卷积核）。 M是输出通道数， g是分组的个数，kD是滤波器的深度，kH是滤波器的高度，kW是滤波器的宽度。
+  - **weight** (Tensor) - 形状为 :math:`[C, M/g, kD, kH, kW]` 的卷积核。 M是输出通道数， g是分组的个数，kD是卷积核的深度，kH是卷积核的高度，kW是卷积核的宽度。
   - **bias** (int|list|tuple) - 偏置项，形状为： :math:`[M,]` 。
-  - **stride** (int|list|tuple，可选) - 步长大小。滤波器和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。
+  - **stride** (int|list|tuple，可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含三个整型数，分别表示深度，垂直和水平滑动步长。否则，表示深度，垂直和水平滑动步长均为 ``stride`` 。默认值：1。
   - **padding** (int|list|tuple|str，可选) - 填充padding大小。padding参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个0。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有3种格式：(1)包含5个二元组：当 ``data_format`` 为"NCDHW"时为 [[0,0], [0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当 ``data_format`` 为"NDHWC"时为[[0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]；(2)包含6个整数值：[pad_depth_front, pad_depth_back, pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；(3)包含3个整数值：[pad_depth, pad_height, pad_width]，此时 pad_depth_front = pad_depth_back = pad_depth, pad_height_top = pad_height_bottom = pad_height, pad_width_left = pad_width_right = pad_width。若为一个整数，pad_depth = pad_height = pad_width = padding。默认值：0。
   - **output_padding** (int|list|tuple, optional): 输出形状上一侧额外添加的大小. 默认值: 0.
-  - **dilation** (int|list|tuple，可选) - 膨胀比例大小。空洞卷积时会使用该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果膨胀比例为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。
-  - **groups** (int，可选) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
+  - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果空洞大小为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。
+  - **groups** (int，可选) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和卷积核分别根据通道数量平均分为两组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算。默认：group = 1。
   - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
@@ -98,7 +98,7 @@ conv_transpose3d
     - ``ValueError`` - 如果 ``padding`` 含有5个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
     - ``ValueError`` - 如果 ``output_size`` 和 ``filter_size`` 同时为None。
     - ``ShapeError`` - 如果输入不是5-D Tensor。
-    - ``ShapeError`` - 如果输入和滤波器的维度大小不相同。
+    - ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
     - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
 **代码示例**

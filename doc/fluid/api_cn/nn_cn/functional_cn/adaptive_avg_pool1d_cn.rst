@@ -16,7 +16,7 @@ adaptive_avg_pool1d
 参数
 :::::::::
     - **x** (Tensor): 当前算子的输入, 其是一个形状为 `[N, C, L]` 的3-D Tensor。其中 `N` 是batch size, `C` 是通道数, `L` 是输入特征的长度。 其数据类型为float32或者float64。
-    - **output_size** (int|list|tuple): 算子输出特征图的长度，其数据类型为int或list, tuple。
+    - **output_size** (int): 算子输出特征图的长度，其数据类型为int。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
@@ -25,7 +25,7 @@ adaptive_avg_pool1d
 
 抛出异常
 :::::::::
-    - ``ValueError`` - ``output_size`` 应是一个整数或长度为1的list，tuple
+    - ``ValueError`` - ``output_size`` 应是一个整数。
 
 代码示例
 :::::::::

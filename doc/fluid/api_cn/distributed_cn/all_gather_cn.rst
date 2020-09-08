@@ -22,14 +22,15 @@ all_gather
 :::::::::
 .. code-block:: python
 
+        import numpy as np
         import paddle
-        import paddle.prepare_context as prepare_context
+        from paddle.distributed import init_parallel_env
 
         paddle.disable_static()
-        paddle.set_device('gpu:%d'%paddle.ParallelEnv().dev_id)
-        prepare_context()
+        paddle.set_device('gpu:%d'%paddle.distributed.ParallelEnv().dev_id)
+        init_parallel_env()
         tensor_list = []
-        if paddle.ParallelEnv().local_rank == 0:
+        if paddle.distributed.ParallelEnv().local_rank == 0:
             np_data1 = np.array([[4, 5, 6], [4, 5, 6]])
             np_data2 = np.array([[4, 5, 6], [4, 5, 6]])
             data1 = paddle.to_tensor(np_data1)
@@ -40,4 +41,4 @@ all_gather
             np_data2 = np.array([[1, 2, 3], [1, 2, 3]])
             data1 = paddle.to_tensor(np_data1)
             data2 = paddle.to_tensor(np_data2)
-            out = paddle.distributed.all_gather(tensor_list, data2)
+            paddle.distributed.all_gather(tensor_list, data2)

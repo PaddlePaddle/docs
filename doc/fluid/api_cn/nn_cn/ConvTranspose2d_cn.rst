@@ -6,7 +6,7 @@ ConvTranspose2d
 
 二维转置卷积层（Convlution2d transpose layer）
 
-该层根据输入（input）、滤波器（filter）和卷积核膨胀比例（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCHW或NHWC格式，其中N为批尺寸，C为通道数（channel），H为特征层高度，W为特征层宽度。滤波器是MCHW格式，M是输出图像通道数，C是输入图像通道数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入图像通道数除以组数的结果。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解转置卷积层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。
+该层根据输入（input）、卷积核（kernel）和空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCHW或NHWC格式，其中N为批尺寸，C为通道数（channel），H为特征层高度，W为特征层宽度。卷积核是MCHW格式，M是输出图像通道数，C是输入图像通道数，H是卷积核高度，W是卷积核宽度。如果组数大于1，C等于输入图像通道数除以组数的结果。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解转置卷积层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。
 
 .. _参考文献: https://arxiv.org/pdf/1603.07285.pdf
 
@@ -18,7 +18,7 @@ ConvTranspose2d
 
 其中：
     -  :math:`X` : 输入，具有NCHW或NHWC格式的4-D Tensor
-    -  :math:`W` : 滤波器，具有NCHW格式的4-D Tensor
+    -  :math:`W` : 卷积核，具有NCHW格式的4-D Tensor
     -  :math:`*` : 卷积计算（注意：转置卷积本质上的计算还是卷积）
     -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M,1]``
     -  :math:`σ` : 激活函数
@@ -31,17 +31,17 @@ ConvTranspose2d
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-如果指定了output_size， ``conv2d_transpose`` 可以自动计算滤波器的大小。
+如果指定了output_size， ``conv2d_transpose`` 可以自动计算卷积核的大小。
 
 参数:
   - **in_channels** (int) - 输入图像的通道数。
-  - **out_channels** (int) - 滤波器的个数，和输出特征图个数相同。
-  - **kernel_size** (int|list|tuple) - 滤波器大小。如果它是一个列表或元组，则必须包含两个整数值：（kernel_size_height，kernel_size_width）。若为一个整数，kernel_size_height = kernel_size_width = kernel_size。
-  - **stride** (int|tuple, 可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride`` 。默认值：1。
-  - **padding** (int|tuple, 可选) - 填充大小。如果 ``padding`` 为元组，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding`` 。默认值：0。
+  - **out_channels** (int) - 卷积核的个数，和输出特征图通道数相同。
+  - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
+  - **stride** (int|tuple, 可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride`` 。默认值：1。
+  - **padding** (int|tuple, 可选) - 填充大小。如果 ``padding`` 为元组或列表，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding`` 。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下方形状 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。默认值：0。
   - **output_padding** (int|list|tuple, optional): 输出形状上一侧额外添加的大小. 默认值: 0.
-  - **groups** (int, 可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，滤波器的前一半仅和输入特征图的前一半连接。滤波器的后一半仅和输入特征图的后一半连接。默认值：1。
-  - **dilation** (int|tuple, 可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation`` 。默认值：1。
+  - **groups** (int, 可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，卷积核的前一半仅和输入特征图的前一半连接。卷积核的后一半仅和输入特征图的后一半连接。默认值：1。
+  - **dilation** (int|tuple, 可选) - 空洞大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核中的元素沿着高和宽的空洞。如果为单个整数，表示高和宽的空洞都等于该整数。默认值：1。
   - **weight_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
@@ -82,7 +82,7 @@ ConvTranspose2d
     -  ``ValueError`` - 如果 ``padding`` 含有4个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
     -  ``ValueError`` - 如果 ``output_size`` 和 ``filter_size`` 同时为None。
     -  ``ShapeError`` - 如果输入不是4-D Tensor。
-    -  ``ShapeError`` - 如果输入和滤波器的维度大小不相同。
+    -  ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
     -  ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
 **代码示例**
