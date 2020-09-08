@@ -64,7 +64,7 @@ MNIST数据集使用LeNet进行图像分类
     train_data0 label is: [5]
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/user_guides/cv_case/image_classification/image/cifar.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/user_guides/cv_case/image_classification/image/cifar.png?raw=true
 
 2.组网
 ------
