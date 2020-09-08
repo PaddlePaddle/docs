@@ -66,7 +66,7 @@ MNIST数据集使用LeNet进行图像分类
 
 
 .. image:: ./mnist_lenet_classification_files/mnist_lenet_classification_6_1.png
-
+    :width: 200px
 
 2.组网
 ------
