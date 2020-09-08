@@ -1,5 +1,5 @@
-ProgramTranslator
-=================
+Dygraph to Static Graph
+=======================
 
 The imperative-style coding of PaddlePaddle takes advantage of flexibility, Pythonic coding, and easy-to-debug interface. In dygraph mode, code immediately executes kernels and gets numerical results, which allows users to enjoy traditional Pythonic code order. Therefore it is efficient to transform idea into real code and simple to debug. However, Python code is usually slower than C++ thus lots of industrial systems (such as large recommend system, mobile devices) prefer to deploy with C++ implementation.
 
@@ -38,6 +38,7 @@ Define a simple fully connected network:
 Save model by TracedLayer:
 
 .. code-block:: python
+
     import paddle
     from paddle.jit import TracedLayer
 

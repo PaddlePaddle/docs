@@ -1,8 +1,8 @@
-###################################################################
-Converting Imperative (Dygraph) Code into Declarative (Static) code
-###################################################################
+#######################
+Dygraph to Static Graph
+#######################
 
-- `ProgramTranslator <program_translator_cn.html>`_ ：Introduce the basic usage of ProgramTranslator to transform dygraph code into static code and the architecture of ProgramTranslator.
+- `Dygraph to Static Graph <program_translator_cn.html>`_ ：Introduce the basic usage for transforming dygraph code into static code and the architecture of ProgramTranslator.
 
 ..  toctree::
     :hidden:
