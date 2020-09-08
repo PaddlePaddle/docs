@@ -3,7 +3,7 @@
 API_FILES=("doc/paddle/api/paddle")
 
 for API_FILE in ${API_FILES[*]}; do
-  API_CHANGE=`git diff --name-only upstream/$BRANCH | grep "${API_FILE}"
+  API_CHANGE=`git diff --name-only upstream/$BRANCH | grep "${API_FILE}"`
   if [ "${API_CHANGE}" ];then
     approval_line=`curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/FluidDoc/pulls/${GIT_PR_ID}/reviews?per_page=10000`
     if [ "${API_FILE}" == "doc/paddle/api/paddle" ];then
@@ -17,3 +17,4 @@ for API_FILE in ${API_FILES[*]}; do
     exit 1
   fi
 done
+
