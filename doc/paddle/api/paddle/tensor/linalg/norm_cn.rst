@@ -3,7 +3,7 @@
 norm
 -------------------------------
 
-.. py:function:: paddle.norm(input, p='fro', axis=None, keepdim=False, name=None):
+.. py:function:: paddle.norm(x, p='fro', axis=None, keepdim=False, name=None):
 
 :alias_main: paddle.norm
 :alias: paddle.norm,paddle.tensor.norm,paddle.tensor.linalg.norm
