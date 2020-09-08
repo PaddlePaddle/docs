@@ -3,119 +3,122 @@ Supported Grammars
 
 The key part of ProgramTranslator is transforming Python grammar into PaddlePaddle static graph code, but there exists difference between Python and PaddlePaddle static graph which causes some limitation of the code transformation.
 
- 
+In this section we will talk about the supported grammars and unsupported grammars, also give some suggestions when the grammar is unsupported. 
 
+There are several kinds of supported grammars:
 
-ProgramTranslator本质是把Python运行语法转写为PaddlePaddle静态图代码，但是Python语法的表达能力和PaddlePaddle静态图表达能力存在不同，这使得一些代码无法被转换。
-
-本章节我们将详细讲述在动转静过程中支持转化哪些语法，不支持哪些语法，并且讲述如何改写代码能够解决语法不支持的场景。
-
-动转静支持的语法分为以下几个大类：
-
-控制流相关关键词
-------------------
-
-控制流指if-elif-else，while等能够控制程序语句执行顺序的关键字。PaddlePaddle静态图通过cond，while_loop API来实现条件判断和循环，如果动态图Python控制流的判断条件/循环条件依赖 Paddle Tensor，动转静后会被转化为等价的Paddle控制流接口，否则仍然使用Python控制流逻辑运行。在动转静过程中这些关键字的转化情况为：
-
-1. if-elif-else 条件
-
-当 ``if <条件>`` 中的条件是Tensor时，ProgramTranslator会把该if-elif-else语句转化为等价的cond API语句。否则会按普通Python if-elif-else的逻辑运行。需注意cond支持的Tensor只能是numel为1的bool Tensor，所以请使用这种Tensor进行条件判断，其他Tensor会报错。
-
-2. while 循环
-
-当while循环中的条件是Tensor时，ProgramTranslator会把该while语句转化为等价的while_loop API语句，否则会按普通Python while运行。需注意while循环条件中的Tensor只能是numel为1的bool Tensor，所以请使用这种Tensor进行条件判断，其他Tensor会报错。
-
-
-3. for 循环
-
-3.1 ``for _ in range(__)`` 循环
-
-ProgramTranslator先将其转化为等价的Python while循环，然后按while循环的逻辑进行动静转换。
-
-3.2 ``for _ in x`` 循环
-
-当x是Python容器或迭代器，则会用普通Python逻辑运行。当x是Tensor时，会转化为循环中每次对应拿出x[0], x[1], ... 。
-
-3.3 ``for idx, val in enumerate(x)`` 循环
-
-当x是Python容器或迭代器，则会用普通Python逻辑运行。当x是Tensor时，idx会转化为依次0，1，...的1-D Tensor。val会转化为循环中每次对应拿出x[0], x[1], ... 。
-
-4. break，continue
-
-ProgramTranslator 可以支持在循环中添加break，continue语句，其底层实现原理是对于要break，continue的部分在相应时候使用cond在一定条件下跳过执行。
-
-5. return
-
-ProgramTranslator 支持在循环，条件判断中return结果而不需要一定在函数末尾return。也能够支持return不同长度tuple和不同类型的Tensor。其底层实现原理是对return后的部分相应使用cond在一定条件下跳过执行。
-
-
-一些需要转化的运算类型
-------------------------
-
-1. +，-，*，/，** 等Python内置运算
-
-由于静态图有重载这些基本运算符，所以这些被ProgramTranslator转化后都适用相应重载的运算符，动转静支持此类运算。
-
-2. and，or，not 逻辑运算
-
-Python内置and，or，not逻辑运算关键词，ProgramTranslator在语句的运算时会判断逻辑运算关键词运行的对象是否是Tensor，如果都是Tensor，我们将其转化为静态图对应的逻辑运算接口并运行。
-
-3. 类型转化
-
-动态图中可以直接用Python的类型转化语法来转化Tensor类型。例如x是Tensor时，float(x)可以将x的类型转化为float。ProgramTranslator在运行时判断x是否是Tensor，如果是，则在动转静时使用静态图cast接口转化相应的Tensor类型。
-
-Python 函数相关
+Control flow keywords
 ---------------------
 
-1. print
+Control flow means those keywords that controls the execution order of program statements, for example ``if-elif-else, while`` . Conditional operation and loop were implemented as ``cond, while_loop`` APIs in PaddlePaddle static graph. If the condition of a Python dygraph control flow depends on PaddlePaddle Tensor, the ProgramTranslator will convert the control flow into equivalent PaddlePaddle control flow APIs, else it will still be executed as Python control flow. The transformations of those control flow keywords are listed below:
 
-如果x是Tensor，在动态图模式中print(x)可以打印x的值。在动转静过程中我们把此转化为静态图的Print接口实现，使得在静态图中也能打印。如果print的参数不是Tensor，那么我们没有把相应print语句进行转写。
+1. ``if-elif-else`` statements
 
-2. len
+If the condition of ``if <condition>`` is Tensor, ProgramTranslator will turn this ``if-elif-else`` statement to equivalent PaddlePaddle static graph ``cond`` statements, otherwise the ``if-elif-else`` statement is executed as normal Python conditional statement. Note that ``cond`` API only accepts input conditional Tensor with numel equals to 1, so please use this kind of Tensor to write dygraph conditional statement, other Tensors will cause error.
 
-如果x是Tensor，在动态图模式中len(x)可以获得x第0维度的长度。在动转静中我们把此转化为静态图shape接口，并返回shape的第0维。另外如果x是个TensorArray，那么len(x)将会使用静态图接口control_flow.array_length返回TensorArray的长度。对于其他情况，动转静时会按照普通Python len函数运行。
+2. ``while`` loop
 
-3. lambda 表达式
+If the condition of ``while`` is Tensor, ProgramTranslator will turn this ``while`` statement to equivalent PaddlePaddle static graph ``while_loop`` statements, otherwise the ``while`` statement is executed as normal Python ``while`` loop statement. Note that ``while_loop`` API only accepts input conditional Tensor with numel equals to 1, so please use this kind of Tensor to write dygraph loop condition statement, other Tensors will cause error.
 
-动转静允许写带有Python lambda表达式的语句，并且我们会适当改写使得返回对应结果。
+3. ``for`` loop
 
-4. 函数内再调用函数
+3.1 ``for _ in range(__)`` loop
 
-对于函数内调用其他函数的情况，ProgramTranslator也会对内部的函数递归地进行动转静，这样做的好处是可以在最外层函数加一次装饰器就能进行动转静，而不需要每个函数都加装饰器。
+Firstly, ProgramTranslator will transform it into equivalent Python while loop, then convert dygraph to static graph by same logic of ``while`` loop.
 
-报错异常相关
---------------
+3.2 ``for _ in x`` loop
 
-1. assert
+If ``x`` is a Python container, iterator, or generator, it will be executed as original Python statement. Otherwise ``x`` is a Tensor, ProgramTranslator will transform the loop into PaddlePaddle static graph loop and fetches ``x[0], x[1], ...`` as loop iteration variable in each loop iteration.
 
-如果x是Tensor，在动态图中可以通过assert x来强制x为True或者非0值，在动转静中我们把此转化为静态图Assert接口支持此功能。
+3.3 ``for idx, val in enumerate(x)`` loop
+
+If ``x`` is a Python container, iterator, or generator, it will be executed as original Python statement. Otherwise ``x`` is a Tensor, Program
+Translator will transform the  loop into PaddlePaddle static graph loop. The ``idx`` will be transformed to 1-D tensor with value ``0, 1, ...`` and the ``val`` will be transformed to ``x[0], x[1], ...`` in each loop iteration.
+
+4. ``break, continue``
+
+ProgramTranslator supports ``break, continue`` statements in loop. ProgramTranslator will add some PaddlePaddle static graph ``cond`` statements to skip execution of corresponding part when ``break, continue`` condition is meet.
+
+5. ``return``
+
+ProgramTranslator supports ``return`` in a conditonal block or loop body, not necessary to be at the end of a function. It also supports returning tuple with various length of Tensors with different dtype. The implementation is adding some PaddlePaddle static graph ``cond`` statement to skipparts of code when ``return`` is triggered.
 
 
-Python基本容器
----------------
+Some Python basic operators
+---------------------------
 
-1. list：对于一个list如果里面元素都是Tensor，那么动转静会转化其为TensorArray，静态图TensorArray可以支持append，pop，修改操作。因此ProgramTranslator在元素皆为Tensor的list中支持上面三种操作。换言之，其他list操作，比如sort无法支持。对于list中并非所有元素是Tensor的情况，ProgramTranslator会将其作为普通Python list运行。
+1. ``+, -, *, /, **, >, <, >= , <=, ==`` etc. 
 
-2. dict：ProgramTranslator会将相应的dict中的Tensor添加进静态图Program，因此使用dict是动转静支持的语法。
+Because PaddlePaddle static graph overrides those Python basic arithmetic operators and comparison operators, ProgramTranslator can support those operators.
 
-动转静无法正确运行的情况
---------------------------
+2. ``and, or, not`` logical operators
 
-1. Reshape后的变量调用其shape作为Paddle API参数。
+Python has ``and, or, not`` keywards as basic logical operators, ProgramTranslator will check whether the variables of the logical operators are Tensors, if they are Tensors, ProgramTranslator replaces the ``and, or, not`` statements into corresponding PaddlePaddle static graph logical operator and run it.
 
-具体表现比如 ``x = reshape(x, shape=shape_tensor)`` ，再使用 ``x.shape[0]`` 的值进行其他操作。这种情况会由于动态图和静态图的本质不同而使得动态图能够运行，但静态图运行失败。其原因是动态图情况下，API是直接返回运行结果，因此 ``x.shape`` 在经过reshape运算后是确定的。但是在转化为静态图后，因为静态图API只是组网，``shape_tensor`` 的值在组网时是不知道的，所以 ``reshape`` 接口组网完，静态图并不知道 ``x.shape`` 的值。PaddlePaddle静态图用-1表示未知的shape值，此时 ``x`` 的shape每个维度会被设为-1，而不是期望的值。
+3. Type casting
 
-遇到这类情况我们建议尽量固定shape值，减少reshape操作。
+In dygraph mode, users can use Python type casting grammar. For instance, if ``x`` is a Tensor, ``float(x)`` casts the data type of ``x`` to float. ProgramTranslator will check whether ``x`` is a Tensor during run time, if it is, the casting sentence will be modified to PaddlePaddle static graph ``cast`` API so that its dtype can be changed in the dygraph to static transformation.
 
-2. 多重list嵌套读写Tensor
+Python functions
+------------------------------
 
-具体表现如 ``l = [[tensor1, tensor2], [tensor3, tensor4]]`` ，因为现在静态图将元素全是Tensor的list转化为TensorArray，而Paddle的TensorArray还不支持多维数组，因此这种情况无法动转静正确运行。
+1. ``print``
 
-遇到这类情况我们建议尽量用一维list，或者自己使用PaddlePaddle的create_array，array_read，array_write接口编写为TensorArray。
+In dygraph mode, ``print(x)`` will print Tensor value if ``x`` is a Tensor. ProgramTranslator converts the built-in ``print`` to PaddlePaddle static graph ``Print`` API during dygraph to static graph transformation if the arguments are Tensors, otherwise ProgramTranslator won't convert the ``print``. 
 
-3. Tensor值在被装饰函数中转成numpy array进行运算
+2. ``len``
 
-具体表现为在被装饰函数中没有返回Tensor时就使用 ``numpy.array(tensor)`` 将Tensor转化为numpy array并使用numpy接口进行运算。这种情况在动态图下因为Tensor有值是可以正常运行的，但是在静态图时由于Tensor只是组网变量，在没有运行时没有数值，因此无法进行numpy运算。
+If ``x`` is a Tensor, ``len(x)`` can get the length at 0-dimension of ``x`` in dygraph mode. ProgramTranslator turns it to PaddlePaddle static graph ``shape`` API and returns the 0-dimension of the ``shape``, else if ``x`` is a TensorArray, then ``len(x)`` will be transformed to static graph API ``control_flow.array_length`` to return the length of TensorArray. In other cases, the ``len`` function will be executed as Python built-in ``len``
 
-遇到这种情况我们建议在动转静的函数中尽量使用PaddlePaddle接口替代numpy接口进行运算。
+3. lambda expression
 
+ProgramTranslator supports Python lambda expression and it modifies code to return the expected result.
+
+
+4. Calling function
+
+If the transformed function calls another function, ProgramTranslator also transform the called function. The benefit is that users can add one decorator at the outside function to do transformation, no need to add the decorator for each function. Note that ProgramTranslator doesn't support 
+that a function calls itself recursively, the details is in the unsupported grammars section below.
+
+
+Errors and Exceptions
+---------------------
+
+1. ``assert``
+
+If ``x`` is a Tensor, ``assert x`` statement can assert ``x`` to be ``True`` or non-zero value in dygraph mode. ProgramTranslator converts the statement into PaddlePaddle static graph ``Assert`` API to support this grammar.
+
+
+Python containers
+-----------------
+
+1. ``list``: if all elements in a list are Tensors, then ProgramTranslator converts it to TensorArray. PaddlePaddle static graph TensorArray supports append, pop, and modify, other list operations such as sort cannot be supported. When not all elements in a list are Tensors, ProgramTranslator will treat it as normal Python list.
+
+2. ``dict``: ProgramTranslator will add the Tensors in a dict into PaddlePaddle static graph ``Program``, so ``dict`` is supported by ProgramTranslator.
+
+Unsupported grammars
+--------------------
+
+1. Use the shape of output tensor of ``reshape``
+
+For example, ``x = reshape(x, shape=shape_tensor)`` , then use ``x.shape[0]`` to do other operation. Due to the difference between dygraph and static graph, it is okay in dygraph but it will fail in static graph. The reason is that APIs return computation result in dygraph mode, so ``x.shape`` has deterministic value after calling ``reshape`` . However, static graph doesn't have the value ``shape_tensor`` during building network, so PaddlePaddle doesn't know the value of ``x.shape`` after calling ``reshape``. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of ``x.shape`` in this case, not the expected value.
+
+We suggest to set fixed shape value as much as possible, reduce the reshape operation.
+
+2. List of list of Tensor
+
+For example: ``l = [[tensor1, tensor2], [tensor3, tensor4]]``, because ProgramTranslator transformed a list whose elements are all Tensors into PaddlePaddle static graph TensorArray, but TensorArray doesn't support multi-dimensions, ProgramTranslator cannot run this case.
+
+We suggest to use 1-D list at most time, or use PaddlePaddle API ``create_array, array_read, array_write`` to control TensorArray.
+
+3. Convert Tensor to numpy array and do operation
+
+For example, user doesn't return Tensor in the decorated function but call ``numpy.array(tensor)`` to convert Tensor to numpy array and then use numpy API to compute on it. In dygraph mode, it is okey because Tensor has value, but Tensor is variable for building network in static graph mode, it doesn't contain value if not in static graph running time, so we cannot do numpy calculation on it.
+
+We suggest to use PaddlePaddle APIs to replace numpy API in this case.
+
+4. A function calls itself recursively
+
+ProgramTranslator doesn't support a function calls itself recursively, the reason is that recursive function usually uses ``if-else`` for a condition to stop the recursion, the stop condition will be transformed to a ``cond`` in static graph mode. Since ``cond`` just builds network, it cannot determine how many times it recursively builds network during network built stage, so the function will recursively call itself and build network until stack overflow. Due to above reason, ProgramTranslator cannot support a function calls itself recursively now.
+
+We suggest to write non-recursive function in this case.
