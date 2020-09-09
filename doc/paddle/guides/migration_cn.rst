@@ -39,9 +39,14 @@ Paddle1to2 自动迁移您的代码到Paddle2
 Paddle 2 包含了许多API的变化，为了节约您将代码从Paddle 1迁移到Paddle
 2的时间，我们提供了自动迁移工具–Paddle1to2，能够帮助您快速完成代码迁移。
 
-.. note::
-    
-    Paddle1to2 工具随Paddle 2.0-beta安装，您无需额外安装，即可使用。
+安装方式
+~~~~~~~~
+
+paddle1to2 可以直接通过pip的方式安装，方式如下：
+
+.. code:: ipython3
+
+    ! pip install -U paddle1to2
 
 基本用法
 ~~~~~~~~
