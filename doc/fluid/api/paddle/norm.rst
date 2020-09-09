@@ -2,6 +2,6 @@
 
 norm
 -------------------------------
-:doc_source: paddle.fluid.layers.l2_normalize
+:doc_source: paddle.tensor.norm
 
 
