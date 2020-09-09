@@ -10,6 +10,7 @@
 - `LoD-Tensor <lod_tensor.html>`_ : LoD-Tensor是飞桨的高级特性，它在Tensor基础上附加了序列信息，支持处理变长数据。
 - `Operator <operator.html>`_ : Operator表示对数据的操作。
 - `Program <program.html>`_ : Program表示对计算过程的描述。
+- `Tensor` <tensor.html>`_ : Tensor概念介绍。
 - `Executor <executor.html>`_ : Executor表示执行引擎。
 
 ..  toctree::
@@ -22,4 +23,5 @@
     operator.rst
     program.rst
     executor.rst
+    Tensor.md
 
