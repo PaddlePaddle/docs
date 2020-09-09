@@ -3,12 +3,12 @@
 Paddle 1 to Paddle 2
 ====================
 
-飞桨框架v2.0的测试版，最重要的变化为API体系的全面升级以及动态图能力的全面完善。本版本飞桨的默认开发模式为动态图模式，
+飞桨框架v2.0-beta，最重要的变化为API体系的全面升级以及动态图能力的全面完善。下文将简要介绍Paddle 2的变化，
 
 主要变化
 --------
 
-在飞桨框架v2.0中，我们做了许多的升级。首先，将默认开发模式设为了动态图模式，相较于静态图而言，动态图每次执行一个运算，可以立即得到结果，能够使算法的开发变得更加高效。此外，本版本对API目录，进行了较大的调整。将API体系从1.X版本的
+在飞桨框架v2.0中，我们做了许多的升级。首先，我们全面提升了Paddle 动态图的能力。相较于静态图而言，动态图每次执行一个运算，可以立即得到结果，能够使算法的开发变得更加高效。此外，本版本对API目录，进行了较大的调整。将API体系从1.X版本的
 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。原则上，Paddle
 2仍支持Paddle 1下的所有语法。但是，我们会逐步废弃掉 ``paddle.fluid``
 下的API，强烈建议您将Paddle 1的代码迁移到Paddle
@@ -76,6 +76,7 @@ paddle1to2 可以直接通过pip的方式安装，方式如下：
    可选，是否需要输出日志文件，默认值为False，即输出日志文件。
 -  --log-filepath
    可选，输出日志的路径，默认值为“report.log”，输出日志文件的路径。
+-  --no-confirm 可选，输入文件夹时，是否逐文件确认原地写入。只在 `--write` 为True时有效，默认值为False，表示不需要逐文件确认。
 -  --log-level 可选，log级别，可为[‘DEBUG’,‘INFO’,‘WARNING’,‘ERROR’]
    默认值：‘INFO’
 -  --refactor 可选，debug时使用。
@@ -122,8 +123,7 @@ paddle1to2 可以直接通过pip的方式安装，方式如下：
 查看帮助文档
 ^^^^^^^^^^^^
 
-paddle1to2 会随着 paddle
-2.0-beta安装。所以您可以直接通过下面的方式，查看帮助文档。
+安装后，您可以通过下面的方式，查看paddle1to2的帮助文档。
 
 .. code:: ipython3
 
@@ -148,6 +148,8 @@ paddle1to2 会随着 paddle
       --inpath INPATH       The file or directory path you want to upgrade.
       --backup [BACKUP]     backup directory, default is the "~/.paddle1to2/".
       --write               Modify files in place.
+      --no-confirm          write files in-place without confirm, ignored without
+                            --write.
       --refactor {refactor_import,norm_api_alias,args_to_kwargs,refactor_kwargs,api_rename,refactor_with,post_refactor}
                             This is a debug option. Specify refactor you want to
                             run. If none, all refactors will be run.
