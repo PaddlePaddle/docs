@@ -10,7 +10,7 @@ ProgramTranslator本质是把Python运行语法转写为PaddlePaddle静态图代
 控制流相关关键词
 ------------------
 
-控制流指if-elif-else，while等能够控制程序语句执行顺序的关键字。PaddlePaddle静态图通过cond，while_loop API来实现条件判断和循环，如果动态图Python控制流的判断条件/循环条件依赖 PaddlePaddle Tensor，动转静后会被转化为等价的PaddlePaddle控制流接口，否则仍然使用Python控制流逻辑运行。在动转静过程中这些关键字的转化情况为：
+控制流指if-elif-else，while等能够控制程序语句执行顺序的关键字。PaddlePaddle静态图通过cond，while_loop API来实现条件判断和循环，如果动态图Python控制流的判断条件或循环条件依赖 PaddlePaddle Tensor，动转静后会被转化为等价的PaddlePaddle控制流接口，否则仍然使用Python控制流逻辑运行。在动转静过程中这些关键字的转化情况为：
 
 1. if-elif-else 条件
 
@@ -76,7 +76,7 @@ Python 函数相关
 
 4. 函数内再调用函数
 
-对于函数内调用其他函数的情况，ProgramTranslator也会对内部的函数递归地进行动转静，这样做的好处是可以在最外层函数加一次装饰器就能进行动转静，而不需要每个函数都加装饰器。不过注意，动转静还不支持函数递归调用自己，详细原因请查看下文动转静无法正确运行的情况。
+对于函数内调用其他函数的情况，ProgramTranslator也会对内部的函数递归地进行动转静，这样做的好处是可以在最外层函数只需加一次装饰器即可，而不需要每个函数都加装饰器。但需要注意，动转静还不支持函数递归调用自己，详细原因请查看下文动转静无法正确运行的情况。
 
 报错异常相关
 --------------
@@ -104,7 +104,7 @@ Python基本容器
 
 2. 多重list嵌套读写Tensor
 
-具体表现如 ``l = [[tensor1, tensor2], [tensor3, tensor4]]`` ，因为现在动转静将元素全是Tensor的list转化为TensorArray，而PaddlePaddle的TensorArray还不支持多维数组，因此这种情况无法动转静正确运行。
+具体表现如 ``l = [[tensor1, tensor2], [tensor3, tensor4]]`` ，因为现在动转静将元素全是Tensor的list转化为TensorArray，而PaddlePaddle的TensorArray还不支持多维数组，因此这种情况下，动转静无法正确运行。
 
 遇到这类情况我们建议尽量用一维list，或者自己使用PaddlePaddle的create_array，array_read，array_write接口编写为TensorArray。
 
@@ -116,7 +116,7 @@ Python基本容器
 
 4. 一个函数递归调用自己
 
-ProgramTranslator还无法支持一个函数递归调用自己，原因是递归常常会用 ``if-else`` 构造停止递归的条件。然而这样的停止条件在静态图下只是一个``cond``组网，组网并不能在编译阶段决定自己组多少次，会导致函数运行时一直组网递归直至栈溢出，因此ProgramTranslator还无法支持一个函数递归调用自己。
+ProgramTranslator还无法支持一个函数递归调用自己，原因是递归常常会用 ``if-else`` 构造停止递归的条件。然而这样的停止条件在静态图下只是一个 ``cond`` 组网，组网并不能在编译阶段决定自己组多少次，会导致函数运行时一直组网递归直至栈溢出，因此ProgramTranslator还无法支持一个函数递归调用自己。
 
 遇到这种情况我们建议将代码改为非递归写法。
 
