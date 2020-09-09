@@ -1,4 +1,4 @@
-﻿# 2.0-beta Release Note
+# 2.0-beta Release Note
 
 
 ## 重要更新
@@ -278,9 +278,3 @@
   - Fix mask-rcnn inference error under CPU inference 
 - 修复CPU多线程量化模型和推断过程中出现的错误 @intel
   - Fix the CPU multithread inference on oneDNN quantized INT8 models
-
-
-
-
-
-
