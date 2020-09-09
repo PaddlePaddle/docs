@@ -8,8 +8,11 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
-    nn_cn/Conv1D_cn.rst
-    nn_cn/Conv2D_cn.rst
+    nn_cn/Conv1d_cn.rst
+    nn_cn/Conv2d_cn.rst
+    nn_cn/Conv3d_cn.rst
+    nn_cn/ConvTranspose2d_cn.rst
+    nn_cn/ConvTranspose3d_cn.rst
     nn_cn/diag_embed_cn.rst
     nn_cn/interpolate_cn.rst
     nn_cn/Linear_cn.rst
