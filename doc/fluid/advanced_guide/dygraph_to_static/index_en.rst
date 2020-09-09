@@ -9,5 +9,6 @@ Dygraph to Static Graph
 ..  toctree::
     :hidden:
 
+    grammar_list_en.rst
     program_translator_en.rst
 
