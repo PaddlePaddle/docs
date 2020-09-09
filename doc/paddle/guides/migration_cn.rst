@@ -67,20 +67,20 @@ paddle1to2 可以直接通过pip的方式安装，方式如下：
 
 参数说明如下：
 
--  --inpath 输入文件路径，可以为单个文件或文件夹。
--  --write
+-  **--inpath** 输入文件路径，可以为单个文件或文件夹。
+-  **--write**
    是否原地修改输入的文件，默认值False，表示不修改。如果为True，表示对文件进行原地修改。添加此参数也表示对文件进行原地修改。
--  --backup
-   可选，是否备份源文件，默认值为’~/.paddle1to2/’，在此路径下备份源文件。
--  --no-log-file
+-  **--backup**
+   可选，是否备份源文件，默认值为 ``~/.paddle1to2/`` ，在此路径下备份源文件。
+-  **--no-log-file**
    可选，是否需要输出日志文件，默认值为False，即输出日志文件。
--  --log-filepath
-   可选，输出日志的路径，默认值为“report.log”，输出日志文件的路径。
--  --no-confirm 可选，输入文件夹时，是否逐文件确认原地写入。只在 `--write` 为True时有效，默认值为False，表示不需要逐文件确认。
--  --log-level 可选，log级别，可为[‘DEBUG’,‘INFO’,‘WARNING’,‘ERROR’]
-   默认值：‘INFO’
--  --refactor 可选，debug时使用。
--  --print-match 可选，debug时使用。
+-  **--log-filepath**
+   可选，输出日志的路径，默认值为 ``report.log`` ，输出日志文件的路径。
+-  **--no-confirm** 可选，输入文件夹时，是否逐文件确认原地写入。只在 ``--write`` 为True时有效，默认值为False，表示不需要逐文件确认。
+-  **--log-level** 可选，log级别，可为[‘DEBUG’,‘INFO’,‘WARNING’,‘ERROR’]
+   默认值：``INFO``
+-  **--refactor** 可选，debug时使用。
+-  **--print-match** 可选，debug时使用。
 
 使用教程
 ~~~~~~~~
@@ -112,10 +112,10 @@ paddle1to2 可以直接通过pip的方式安装，方式如下：
 .. parsed-literal::
 
     Cloning into 'models'...
-    remote: Enumerating objects: 8, done.[K
-    remote: Counting objects: 100% (8/8), done.[K
-    remote: Compressing objects: 100% (8/8), done.[K
-    remote: Total 35011 (delta 1), reused 0 (delta 0), pack-reused 35003[K
+    remote: Enumerating objects: 8, done.
+    remote: Counting objects: 100% (8/8), done.
+    remote: Compressing objects: 100% (8/8), done.
+    remote: Total 35011 (delta 1), reused 0 (delta 0), pack-reused 35003
     Receiving objects: 100% (35011/35011), 356.97 MiB | 1.53 MiB/s, done.
     Resolving deltas: 100% (23291/23291), done.
 
