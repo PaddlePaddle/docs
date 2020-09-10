@@ -2,7 +2,7 @@
 
 本节内容将介绍动态图转静态图（下文简称动转静）推荐的几种调试方法。
 
-注意：请确保转换前的动态图代码能够成功运行，建议使用[paddle.jit.ProgramTranslator().enable(False)](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)关闭动转静功能，直接运行动态图，如下：
+**注意**：请确保转换前的动态图代码能够成功运行，建议使用[paddle.jit.ProgramTranslator().enable(False)](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)关闭动转静功能，直接运行动态图，如下：
 ```python
 import paddle
 import numpy as np
@@ -96,35 +96,36 @@ func(np.ones([3, 2]))
 
 2. 使用`set_code_level(level)`或环境变量`TRANSLATOR_CODE_LEVEL=level`
 
-    通过调用`set_code_level`或设置环境变量`TRANSLATOR_CODE_LEVEL`，可以在log中查看转换后的代码
-```python
-@paddle.jit.to_static
-def func(x):
-    x = paddle.to_tensor(x)
-    if x > 3:
-        x = x - 1
-    return x
+    通过调用`set_code_level`或设置环境变量`TRANSLATOR_CODE_LEVEL`，可以在log中查看转换后的代码：
 
-paddle.jit.set_code_level() # 也可设置 os.environ["TRANSLATOR_CODE_LEVEL"] = '100'，效果相同
-func(np.ones([1]))
-```
-    运行结果：
+    ```python
+    @paddle.jit.to_static
+       def func(x):
+       x = paddle.to_tensor(x)
+       if x > 3:
+           x = x - 1
+       return x
 
-```bash
-2020-XX-XX 00:00:00,980-INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
-def func(x):
-    x = fluid.layers.assign(x)
+    paddle.jit.set_code_level() # 也可设置 os.environ["TRANSLATOR_CODE_LEVEL"] = '100'，效果相同
+    func(np.ones([1]))
+    ```
+   运行结果：
 
-    def true_fn_0(x):
-        x = x - 1
+    ```bash
+    2020-XX-XX 00:00:00,980-INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
+    def func(x):
+        x = fluid.layers.assign(x)
+
+        def true_fn_0(x):
+            x = x - 1
+            return x
+
+        def false_fn_0(x):
+            return x
+        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
+            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
-
-    def false_fn_0(x):
-        return x
-    x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-        3, true_fn_0, false_fn_0, (x,), (x,), (x,))
-    return x
-```
+    ```
     `set_code_level` 函数可以设置查看不同的AST Transformer转化后的代码，详情请见[set_code_level]()<!--TODO：补充set_code_level文档链接-->。
 
 ## 使用 `print`
@@ -133,15 +134,19 @@ def func(x):
 @paddle.jit.to_static
 def func(x):
     x = paddle.to_tensor(x)
+
     # 打印x，x是Paddle Tensor，实际运行时会运行Paddle Print(x)
     print(x)
+
     # 打印注释，非Paddle Tensor，实际运行时仍运行print
     print("Here call print function.")
+
     if len(x) > 3:
         x = x - 1
     else:
         x = paddle.ones(shape=[1])
     return x
+
 func(np.ones([1]))
 ```
 
@@ -165,8 +170,9 @@ ProgramTranslator在日志中记录了额外的调试信息，以帮助您了解
 - 2: 包括以上信息，还包括更详细函数转化日志
 - 3: 包括以上信息，以及更详细的动转静日志
 
+**注意**：日志中包括了源代码等信息，请在共享日志前确保它不包含敏感信息。
 
-可以在代码运行前调用`paddle.jit.set_verbosity()`：
+可以在代码运行前调用`paddle.jit.set_verbosity`控制日志详细程度：
 ```python
 paddle.jit.set_verbosity(3)
 ```
