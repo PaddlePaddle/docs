@@ -1,7 +1,8 @@
-.. _cn_api_io_cn_Dataset:
+.. _cn_api_io_Dataset:
 
 Dataset
 -------------------------------
-:doc_source: paddle.fluid.dataloader.Dataset
 
+.. py:class:: paddle.io.Dataset()
 
+待补充
