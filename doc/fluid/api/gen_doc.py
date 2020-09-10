@@ -18,10 +18,13 @@ import sys
 import types
 import os
 import contextlib
+import paddle as paddle
 import paddle.fluid as fluid
 import paddle.tensor as tensor
 import paddle.nn as nn
-import paddle.complex as complex
+import paddle.distributed.fleet as fleet
+import paddle.distributed as distributed
+#import paddle.complex as complex
 #import paddle.framework as framework
 
 def parse_arg():
@@ -156,16 +159,25 @@ def generate_doc(module_name, module_prefix, output, output_name, to_multiple_fi
     if module_prefix == "":
         module_prefix = None
 
+    print("module_name: {}".format(module_name))
+    print("module_prefix: {}".format(module_prefix))
+    print("output: {}".format(output))
+    print("output_name: {}".format(output_name))
+    print("output_dir: {}".format(output_dir))
     gen = DocGenerator()
 
     if module_name is None:
         gen.module = eval(output_name)
         gen.module_name = str(output_name)
     else:
+        print("output name: {}".format(output_name))
         gen.module = eval(output_name)
         for each_module_name in module_name.split('.'):
+            print("forloop module name: {}".format(each_module_name))
+            print("module")
+            print(gen.module)
             if not hasattr(gen.module, each_module_name):
-                raise ValueError("Cannot find fluid.{0}".format(module_name))
+                raise ValueError("Cannot find paddle.{0}".format(module_name))
             else:
                 gen.module = getattr(gen.module, each_module_name)
 
