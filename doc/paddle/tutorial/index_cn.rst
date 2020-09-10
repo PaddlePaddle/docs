@@ -11,9 +11,13 @@
 
 **内容简介**
 
+    - `简单案例 <./simple_case/index_cn.html>`_ ：介绍使用 Paddle 完成一些简单的案例
     - `计算机视觉 <./cv_case/index_cn.html>`_ ：介绍使用 Paddle 解决计算机视觉领域的案例
+    - `自然语言处理 <./nlp_case/index_cn.html>`_ ：介绍使用 Paddle 解决自然语言处理领域的案例
 
 ..  toctree::
     :hidden:
 
+    simple_case/index_cn.rst
     cv_case/index_cn.rst
+    nlp_case/index_cn.rst
