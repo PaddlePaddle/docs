@@ -1,4 +1,4 @@
-# Debugging methods
+# Debugging Methods
 
 This section will introduce several debugging methods recommended by Dynamic Graph to Static Graph (hereafter called Dynamic-to-Staic).
 
