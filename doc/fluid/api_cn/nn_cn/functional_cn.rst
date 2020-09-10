@@ -28,6 +28,11 @@ functional
     functional_cn/mse_loss_cn.rst
     functional_cn/adaptive_avg_pool2d_cn.rst
     functional_cn/adaptive_avg_pool3d_cn.rst
+    functional_cn/kl_div_cn.rst
+    functional_cn/conv2d_cn.rst
+    functional_cn/conv3d_cn.rst
+    functional_cn/conv_transpose2d_cn.rst
+    functional_cn/conv_transpose3d_cn.rst
     functional_cn/sigmoid_cn.rst
     functional_cn/adaptive_avg_pool1d_cn.rst
     functional_cn/adaptive_max_pool1d_cn.rst
