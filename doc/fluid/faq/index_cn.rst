@@ -10,7 +10,6 @@ FAQ以常见问答对的形式收录了用户在使用Paddle框架时的高频�
 如果FAQ无法解决您的问题，您也可以在PaddlePaddle的 `Github Issue <https://github.com/PaddlePaddle/Paddle/issues>`_ 中进行提问，我们会有专门的技术人员为您解答。
 
 FAQ问题集：
-======================
 
 ..  toctree::
     :maxdepth: 1
