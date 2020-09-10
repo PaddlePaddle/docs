@@ -11,9 +11,9 @@ paddle.distributed
     distributed/ParallelEnv.rst
     distributed/prepare_context.rst
     distributed/spawn.rst
-    distributed/fleet/DistributedStrategy.rst
-    distributed/fleet/PaddleCloudRoleMaker.rst
-    distributed/fleet/DatasetFactory.rst
-    distributed/fleet/UserDefinedRoleMaker.rst
-    distributed/fleet/UtilBase.rst
-
+    distributed/all_gather.rst
+    distributed/all_reduce.rst
+    distributed/barrier.rst
+    distributed/broadcast.rst
+    distributed/reduce.rst
+    distributed/scatter.rst
