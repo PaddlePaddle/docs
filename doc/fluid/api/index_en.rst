@@ -9,6 +9,7 @@ API Reference
     dataset.rst
     declarative.rst
     distributed.rst
+    fleet.rst
     framework.rst
     imperative.rst
     io.rst
