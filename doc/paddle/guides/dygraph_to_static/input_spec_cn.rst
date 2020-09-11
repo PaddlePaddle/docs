@@ -28,7 +28,7 @@ InputSpec接口暴露在 ``paddle.static`` 目录下，用于描述一个Tensor�
     print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
 
 
-InputSpec初始化中的只有`shape`是必须参数，`dtype`和`name`可以缺省，默认取值分别为`float32`和`None`。
+InputSpec初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``name`` 可以缺省，默认取值分别为 ``float32`` 和 ``None`` 。
 
 
 
@@ -123,7 +123,7 @@ InputSpec初始化中的只有`shape`是必须参数，`dtype`和`name`可以缺
 2.2 to_static函数调用
 ^^^^^^^^^^^^^^^^^^^^
 
-若用户模型训练依旧使用原生动态图，只期望在训练完成后，保存预测模型，并指定预测时需要的签名信息。可以选择在保存模型时，直接调用 ``to_static`` 函数。使用样例如下：
+若用户想在动态图下训练模型，只期望在训练完成后，保存预测模型，并指定预测时需要的签名信息。可以选择在保存模型时，直接调用 ``to_static`` 函数。使用样例如下：
 
 .. code-block:: python
 
@@ -197,4 +197,4 @@ InputSpec初始化中的只有`shape`是必须参数，`dtype`和`name`可以缺
 其中 ``input_spec`` 参数是长度为2的list，对应forward函数的x和bias_info两个参数。 ``input_spec`` 的最后一个元素是包含键名为x的InputSpec对象的dict，对应参数bias_info的Tensor签名信息。
 
 
-更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考 :ref:`_user_guide_model_save_load` 。
+更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考 :ref:`user_guide_model_save_load` 。
