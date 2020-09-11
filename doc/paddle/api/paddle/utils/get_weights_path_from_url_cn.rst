@@ -3,7 +3,7 @@
 get_weights_path_from_url
 -------------------------------
 
-.. py:class:: paddle.utils.download.get_weights_path_from_url()
+.. py:function:: paddle.utils.download.get_weights_path_from_url(url, md5sum=None)
 
  从 ``WEIGHT_HOME`` 文件夹获取权重，如果不存在，就从url下载
 
@@ -18,7 +18,7 @@ get_weights_path_from_url
 
 .. code-block:: python
 
-    from paddle.incubate.hapi.download import get_weights_path_from_url
+    from paddle.utils.download import get_weights_path_from_url
 
     resnet18_pretrained_weight_url = 'https://paddle-hapi.bj.bcebos.com/models/resnet18.pdparams'
     local_weight_path = get_weights_path_from_url(resnet18_pretrained_weight_url)

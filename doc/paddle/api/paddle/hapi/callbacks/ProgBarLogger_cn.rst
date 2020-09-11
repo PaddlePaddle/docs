@@ -3,13 +3,13 @@
 ProgBarLogger
 -------------------------------
 
-.. py:class:: paddle.callbacks.ProgBarLogger()
+.. py:class:: paddle.callbacks.ProgBarLogger(log_freq=1, verbose=2)
 
  ``ProgBarLogger`` 是一个日志回调类。
 
 参数：
-  - **log_freq** (int) - 损失值和指标打印的频率。 
-  - **verbose** (int) - 打印信息的模式。设置为0时，不打印信息；设置为1时，使用进度条的形式打印信息；是指为2时，使用行的形式打印信息。 
+  - **log_freq** (int，可选) - 损失值和指标打印的频率。默认值：1。
+  - **verbose** (int，可选) - 打印信息的模式。设置为0时，不打印信息；设置为1时，使用进度条的形式打印信息；是指为2时，使用行的形式打印信息。默认值：2。
 
 
 **代码示例**：

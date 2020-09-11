@@ -3,7 +3,7 @@
 LeNet
 -------------------------------
 
-.. py:class:: paddle.vision.models.LeNet()
+.. py:class:: paddle.vision.models.LeNet(num_classes=10)
 
  LeNet模型，来自论文`"LeCun Y, Bottou L, Bengio Y, et al. Gradient-based learning applied to document recognition[J]. Proceedings of the IEEE, 1998, 86(11): 2278-2324.`_。
 
@@ -15,6 +15,12 @@ LeNet
 
 .. code-block:: python
 
+    import paddle
     from paddle.vision.models import LeNet
 
     model = LeNet()
+
+    x = paddle.rand([1, 1, 28, 28])
+    out = model(x)
+
+    print(out.shape)

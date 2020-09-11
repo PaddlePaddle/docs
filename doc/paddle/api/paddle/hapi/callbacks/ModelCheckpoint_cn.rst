@@ -3,13 +3,13 @@
 ModelCheckpoint
 -------------------------------
 
-.. py:class:: paddle.callbacks.ModelCheckpoint()
+.. py:class:: paddle.callbacks.ModelCheckpoint(save_freq=1, save_dir=None)
 
  ``ModelCheckpoint`` 是一个日志回调类。
 
 参数：
-  - **save_freq** (int) - 间隔多少个epoch保存模型。默认值：1。 
-  - **save_dir** (int) - 保存模型的文件夹。如果不设定，将不会保存模型。默认值：None。 
+  - **save_freq** (int，可选) - 间隔多少个epoch保存模型。默认值：1。 
+  - **save_dir** (int，可选) - 保存模型的文件夹。如果不设定，将不会保存模型。默认值：None。 
 
 
 **代码示例**：
