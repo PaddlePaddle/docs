@@ -4,9 +4,9 @@ Introduction of InputSpec
 ===========================
 
 
-In PaddlePaddle(Referred to as "Paddle"), The dygraph model can be converted to static program by decorating the outermost forward function with ``paddle.jit.to_static`` . But actual Tensor data should be feeded into the model to ensure that the shape of each Tensor in the network is correctly deduced in transformation. This transformation process requires the user to explicitly execute the forward function, which increases the cost of the interface. Meanwhile, the way that need feed Tensor data fails to customize the shape of inputs, such as assigning some dimensions to None.
+In PaddlePaddle(Referred to as "Paddle"), The dygraph model can be converted to static program by decorating the outermost forward function with ``paddle.jit.to_static`` . But actual Tensor data should be feeded into the model to ensure that the shape of each Tensor in the network is correctly deduced in transformation. This transformation process needs to explicitly execute the forward function, which increases the cost of the interface. Meanwhile, the way that need feed Tensor data fails to customize the shape of inputs, such as assigning some dimensions to None.
 
-Therefore, Paddle provides the InputSpec interface. It enables users to perform the transformation more easily, and supports to customize the signature of input Tensor, such as shape, name and so on.
+Therefore, Paddle provides the InputSpec interface to perform the transformation more easily, and supports to customize the signature of input Tensor, such as shape, name and so on.
 
 
 1. InputSpec interface
@@ -76,9 +76,9 @@ An InputSpec object can also be created directly from an Numpy.ndarray by using 
 2. Basic usage
 ------------------
 
-Currently, the decorator ``paddle.jit.to_static`` support ``input_spec`` argument. It is used to specify signature information such as ``shape`` , ``dtype`` , ``name`` for each Tensor corresponding to argument from decorated function. Users do not have to feed actual data explicitly to trigger the deduction of the shape in the network. The ``input_spec`` argument specified by users in ``to_static`` will be analyzed to construct input placeholder of the network.
+Currently, the decorator ``paddle.jit.to_static`` support ``input_spec`` argument. It is used to specify signature information such as ``shape`` , ``dtype`` , ``name`` for each Tensor corresponding to argument from decorated function. Users do not have to feed actual data explicitly to trigger the deduction of the shape in the network. The ``input_spec`` argument specified in ``to_static`` will be analyzed to construct input placeholder of the network.
 
-At the same time, the ``input_spec`` enables user to easily define input Tensor shape. For example, specifying shape as ``[None, 784]`` , where ``None`` represents a variable length dimension.
+At the same time, the ``input_spec`` allow us to easily define input Tensor shape. For example, specifying shape as ``[None, 784]`` , where ``None`` represents a variable length dimension.
 
 2.1 Decorator mode of to_static
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -123,7 +123,7 @@ In the above example, ``input_spec`` in  ``to_static`` decorator is a list of In
 2.2 Call to_static directly
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the user wants to train model in dygraph mode and only expects to save the inference model after training with specified the signature information. We can call ``to_static`` function directly while saving the model. See example as follows:
+If we want to train model in dygraph mode and only expect to save the inference model after training with specified the signature information. We can call ``to_static`` function directly while saving the model. See example as follows:
 
 .. code-block:: python
 

@@ -4,9 +4,9 @@ InputSpec功能介绍
 =================
 
 
-在PaddlePaddle（下文简称：Paddle）框架中，可以通过 ``paddle.jit.to_static`` 装饰最外层forward函数，将动态图模型转换为静态图执行。但在动转静时，需要给模型传入Tensor数据并执行一次前向，以保证正确地推导出网络中各Tensor的shape。此转换流程要求用户需要显式地执行一次动态图函数，增加了用户使用接口的成本；同时，传入实际Tensor数据则无法定制化模型输入的shape，如指定某些维度为None。
+在PaddlePaddle（下文简称：Paddle）框架中，可以通过 ``paddle.jit.to_static`` 装饰最外层forward函数，将动态图模型转换为静态图执行。但在动转静时，需要给模型传入Tensor数据并执行一次前向，以保证正确地推导出网络中各Tensor的shape。此转换流程需要显式地执行一次动态图函数，增加了接口使用的成本；同时，传入实际Tensor数据则无法定制化模型输入的shape，如指定某些维度为None。
 
-因此，Paddle提供了InputSpec接口，支持用户更加便捷地执行动转静，以及定制化输入Tensor的shape、name等信息。
+因此，Paddle提供了InputSpec接口，可以更加便捷地执行动转静功能，以及定制化输入Tensor的shape、name等信息。
 
 
 一、InputSpec接口
@@ -76,9 +76,9 @@ InputSpec初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``name
 二、基本使用方法
 ------------------
 
-在动转静 ``paddle.jit.to_static`` 装饰器中，支持 ``input_spec`` 参数，用于指定被装饰函数每个Tensor类型输入参数的 ``shape`` 、 ``dtype`` 、 ``name`` 等签名信息。用户不必再显式地传入Tensor数据以触发网络层shape的推导。Paddle会解析用户在 ``to_static`` 中指定的 ``input_spec`` 参数，构建网络的起始输入，进行后续的模型组网。
+在动转静 ``paddle.jit.to_static`` 装饰器中，支持 ``input_spec`` 参数，用于指定被装饰函数每个Tensor类型输入参数的 ``shape`` 、 ``dtype`` 、 ``name`` 等签名信息。不必再显式地传入Tensor数据以触发网络层shape的推导。Paddle会解析 ``to_static`` 中指定的 ``input_spec`` 参数，构建网络的起始输入，进行后续的模型组网。
 
-同时，借助 ``input_spec`` 参数，可以友好地支持用户自定义输入Tensor的shape，比如指定shape为 ``[None, 784]`` ，其中 ``None`` 表示变长的维度。
+同时，借助 ``input_spec`` 参数，可以自定义输入Tensor的shape，比如指定shape为 ``[None, 784]`` ，其中 ``None`` 表示变长的维度。
 
 2.1 to_static装饰器模式
 ^^^^^^^^^^^^^^^^^^
@@ -123,7 +123,7 @@ InputSpec初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``name
 2.2 to_static函数调用
 ^^^^^^^^^^^^^^^^^^^^
 
-若用户想在动态图下训练模型，只期望在训练完成后，保存预测模型，并指定预测时需要的签名信息。可以选择在保存模型时，直接调用 ``to_static`` 函数。使用样例如下：
+若期望在动态图下训练模型，在训练完成后保存预测模型，并指定预测时需要的签名信息，则可以选择在保存模型时，直接调用 ``to_static`` 函数。使用样例如下：
 
 .. code-block:: python
 
