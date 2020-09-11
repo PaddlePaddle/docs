@@ -27,7 +27,7 @@ mobilenet_v1
     # model = mobilenet_v1(pretrained=True)
 
     # build mobilenet v1 with scale=0.5
-    model = mobilenet_v1(scale=0.5)
+    model_scale = mobilenet_v1(scale=0.5)
 
     x = paddle.rand([1, 3, 224, 224])
     out = model(x)
