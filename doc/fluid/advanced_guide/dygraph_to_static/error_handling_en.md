@@ -76,7 +76,7 @@ AssertionError: In user code:
 
 The above error information can be divided into three points:
 
-1. In the error stack, the call stacks related to the code transformation process are hidden by default and not displayed to users, so as to avoid confusing users.
+1. In the error stack, the call stacks related to the code transformation process are hidden by default and not displayed, so as to avoid confusion.
 
 2. In the error message processed by ProgramTranslator, a prompt "In user code:" will be included, which means that the following error stacks contains the original dynamic graph code, that is, the code written by the user:
 

@@ -1,8 +1,11 @@
 # 调试方法
 
-本节内容将介绍动态图转静态图（下文简称动转静）推荐的几种调试方法。
+本节内容将介绍动态图转静态图（下文简称：动转静）推荐的几种调试方法。
 
-**注意**：请确保转换前的动态图代码能够成功运行，建议使用[paddle.jit.ProgramTranslator().enable(False)](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)关闭动转静功能，直接运行动态图，如下：
+> **注解:**
+>
+> 请确保转换前的动态图代码能够成功运行，建议使用[paddle.jit.ProgramTranslator().enable(False)](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)关闭动转静功能，直接运行动态图，如下：
+
 ```python
 import paddle
 import numpy as np
@@ -170,7 +173,9 @@ ProgramTranslator在日志中记录了额外的调试信息，以帮助您了解
 - 2: 包括以上信息，还包括更详细函数转化日志
 - 3: 包括以上信息，以及更详细的动转静日志
 
-**注意**：日志中包括了源代码等信息，请在共享日志前确保它不包含敏感信息。
+> **注意:**
+>
+> 日志中包括了源代码等信息，请在共享日志前确保它不包含敏感信息。
 
 可以在代码运行前调用`paddle.jit.set_verbosity`控制日志详细程度：
 ```python

@@ -2,7 +2,10 @@
 
 This section will introduce several debugging methods recommended by Dynamic Graph to Static Graph (hereafter called Dynamic-to-Staic).
 
-**NOTE**: Please ensure that the dynamic graph code before transformation can run successfully. It is recommended to call [paddle.jit.ProgramTranslator().enable(False)](../../api/dygraph/ProgramTranslator_en.html#enable) to disable Dynamic-to-Static, and run dynamic graph code as follows:
+> **NOTE:**
+>
+> Please ensure that the dynamic graph code before transformation can run successfully. It is recommended to call [paddle.jit.ProgramTranslator().enable(False)](../../api/dygraph/ProgramTranslator_en.html#enable) to disable Dynamic-to-Static, and run dynamic graph code as follows:
+
 
 ```python
 import paddle
@@ -66,7 +69,7 @@ func(np.ones([3, 2]))
 
 ## Print Transformed Code
 
-There are two means to print the transformed static graph code:
+There are two ways to print the transformed static graph code:
 
 1. Use the attribute `code` of the decorated function:
     ```Python
@@ -94,7 +97,7 @@ There are two means to print the transformed static graph code:
             3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
-2. Call `set_code_level(level)` or environment variable `TRANSLATOR_CODE_LEVEL=level`
+2. Call `set_code_level(level)` or set environment variable `TRANSLATOR_CODE_LEVEL=level`
 
     You can view the transformed code in the log by calling `set_code_level` or set environment variable `TRANSLATOR_CODE_LEVEL`.
 
@@ -169,7 +172,9 @@ You can call `paddle.jit.set_verbosity(level)` or set environment variable `TRAN
 - 2: includes above and more detailed function transformation logs
 - 3: includes above and extremely verbose logging
 
-**WARNING**: The logs includes information such as source code. Please make sure logs don't contain any sensitive information before sharing them.
+> **WARNING:**
+>
+> The logs includes information such as source code. Please make sure logs don't contain any sensitive information before sharing them.
 
 You can call `paddle.jit.set_verbosity` to control the verbosity level of logs:
 ```python
