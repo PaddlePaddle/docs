@@ -44,7 +44,7 @@ paddle.tensor.manipulation.reshape	paddle.reshape,paddle.tensor.reshape
 paddle.fluid.layers.increment	paddle.increment,paddle.tensor.increment,paddle.tensor.math.increment
 paddle.fluid.compiler.CompiledProgram	paddle.static.CompiledProgram
 paddle.tensor.manipulation.flip	paddle.flip,paddle.reverse,paddle.tensor.flip,paddle.tensor.reverse
-paddle.distributed.__init__.paddle.fluid.dygraph.parallel.ParallelEnv	paddle.distributed.ParallelEnv
+paddle.fluid.dygraph.parallel.ParallelEnv	paddle.distributed.ParallelEnv
 paddle.fluid.layers.hash	paddle.nn.functional.hash,paddle.nn.functional.lod.hash
 paddle.nn.functional.activation.selu	paddle.nn.functional.selu
 paddle.nn.functional.input.embedding	paddle.nn.functional.embedding
@@ -193,7 +193,7 @@ paddle.nn.layer.conv.Conv1d	paddle.nn.Conv1d,paddle.nn.layer.Conv1d
 paddle.fluid.param_attr.ParamAttr	paddle.ParamAttr,paddle.framework.ParamAttr
 paddle.fluid.layers.retinanet_target_assign	paddle.nn.functional.retinanet_target_assign,paddle.nn.functional.vision.retinanet_target_assign
 paddle.fluid.initializer.Xavier	paddle.nn.initializer.Xavier
-paddle.distributed.__init__.paddle.fluid.dygraph.parallel.prepare_context	paddle.distributed.prepare_context
+paddle.fluid.dygraph.parallel.prepare_context	paddle.distributed.prepare_context
 paddle.tensor.math.pow	paddle.pow,paddle.tensor.pow
 paddle.fluid.layers.bipartite_match	paddle.nn.functional.bipartite_match,paddle.nn.functional.vision.bipartite_match
 paddle.fluid.input.embedding	paddle.static.nn.embedding
@@ -253,7 +253,7 @@ paddle.tensor.linalg.matmul	paddle.matmul,paddle.tensor.matmul
 paddle.fluid.layers.generate_proposals	paddle.nn.functional.generate_proposals,paddle.nn.functional.vision.generate_proposals
 paddle.nn.layer.loss.SmoothL1Loss	paddle.nn.SmoothL1Loss,paddle.nn.layer.SmoothL1Loss
 paddle.fluid.dygraph.checkpoint.save_dygraph	paddle.save,paddle.framework.save
-paddle.framework.__init__.paddle.fluid.core	paddle.framework.core
+paddle.fluid.core	paddle.framework.core
 paddle.nn.functional.vision.grid_sample	paddle.nn.functional.grid_sample
 paddle.tensor.random.rand	paddle.rand,paddle.tensor.rand
 paddle.fluid.layers.cond	paddle.nn.cond,paddle.nn.control_flow.cond
