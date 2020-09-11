@@ -78,6 +78,7 @@
   | paddle.fluid.dygraph.Conv2D | paddle.nn.Conv2d |
   | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.ConvTranspose2d |
   | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2d, paddle.nn.AvgPool2d |
+
 #### 新增API
 - 共计新增140个API，具体参考[链接](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-New-API-List)和API文档
   - 新增环境设置API：paddle.set_default_dtype, paddle.get_default_dtype, paddle.set_device, paddle.get_device, paddle.manual_seed
@@ -93,11 +94,13 @@
   - 新增概率分布类API： Distribution, normal, bernoulli
   - 新增Optimizer相关API：step, AdamW
   - 新增数据集相关API：Dataset, IterableDataset, TensorDataset, Sampler, RandomSampler, BatchSampler, DistributedBatchSampler
+
 #### 修复和完善API
 - 共计修改和完善155个API，具体参考[链接](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-Upgraded-API-List)和API文档
 - 修复随机数生成相关的API，包括：种子设置paddle.rand, randn, randint, randperm, dropout, Uniform, Normal等
 - 以下API对应的底层C++ OP进行了代码升级，理论上可以实现兼容，但不排除会出现少量不兼容的情况：linspace, concat, gather, gather_nd, split, squeeze, unsqueeze, clip, argmax, argmin, mean, norm, unique, cumsum, LeakyReLU, leaky_relu, hardshrink, embedding, margin_ranking_loss, grid_sample, affine_grid
 - 增加了relu6和Sigmoid激活函数的 oneDNN支持
+
 #### 多设备/分布式训练API
 - 动态图单机多卡训练
 	 - 新增paddle.distributed.spawn(func, args=(), nprocs=-1, join=True, daemon=False, **options)，用于启动动态图多卡训练。
