@@ -10,12 +10,12 @@ Therefore, Paddle provides the InputSpec interface. It enables users to perform 
 
 
 1. InputSpec interface
-------------------
+-------------------------
 
 1.1 Construct InputSpec object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The InputSpec interface is exposed under the ``paddle.static`` directory. It's used to describe the Tensor's signature information: shape, dtype, name. See example as follows:
+The InputSpec interface is under the ``paddle.static`` directory. It's used to describe the Tensor's signature information: shape, dtype, name. See example as follows:
 
 .. code-block:: python
 
@@ -194,6 +194,3 @@ If a function takes an argument of type dict, the element in the ``input_spec`` 
 
 
 The length of ``input_spec`` is 2 corresponding to arguments x and bias_info in forward function. The last element of ``input_spec``  is a InputSpec dict with same key corresponding to signature information of bias_info.
-
-
-More usage of ``to_static`` with ``paddle.jit.save/load`` can refer to :ref:`user_guide_model_save_load` .
