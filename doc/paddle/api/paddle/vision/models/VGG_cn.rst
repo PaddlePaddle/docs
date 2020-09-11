@@ -28,6 +28,6 @@ VGG
     vgg11 = VGG(features)
 
     x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
+    out = vgg11(x)
 
     print(out.shape)
