@@ -8,15 +8,18 @@ set_code_level
 设置代码级别，打印该级别 AST Transformer 转化后的代码。
 
 有两种方法设置代码级别：
+
+.. code-block:: text
+
   1. 调用函数 ``set_code_level``
   2. 设置环境变量 ``TRANSLATOR_CODE_LEVEL``
 
 .. note::
-函数 ``set_code_level`` 的优先级高于环境变量 ``TRANSLATOR_CODE_LEVEL``。
+    函数 ``set_code_level`` 的优先级高于环境变量 ``TRANSLATOR_CODE_LEVEL``。
 
 
 参数：
-    - **level** (int) - 打印的代码级别。默认值为100，这意味着打印的是所有 AST Transformer 转化后的代码。
+  - **level** (int) - 打印的代码级别。默认值为100，这意味着打印的是所有 AST Transformer 转化后的代码。
 
 **示例代码**
 
