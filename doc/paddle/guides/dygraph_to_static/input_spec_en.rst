@@ -4,12 +4,13 @@ Introduction of InputSpec
 ===========================
 
 
-In PaddlePaddle(Referred to as "Paddle"), The dygraph model can be converted to static program by decorating the outermost forward function with ``paddle.jit.to_static`` . But actual Tensor data should be feeded into the model to ensure that the shape of each Tensor in the network is correctly deduced in transformation. This transformation process requires the user to explicitly execute the forward function, which increases the cost of the interface；Meanwhile, the way that need feed Tensor data fails to customize the shape of inputs, such as assigning some dimensions to None.
+In PaddlePaddle(Referred to as "Paddle"), The dygraph model can be converted to static program by decorating the outermost forward function with ``paddle.jit.to_static`` . But actual Tensor data should be feeded into the model to ensure that the shape of each Tensor in the network is correctly deduced in transformation. This transformation process requires the user to explicitly execute the forward function, which increases the cost of the interface. Meanwhile, the way that need feed Tensor data fails to customize the shape of inputs, such as assigning some dimensions to None.
 
-Therefore, Paddle provides the InputSpec interface. It enables users to perform the transformation more easily, and supports to customize the signature of input Tensor, such as shape, name, and so on.
+Therefore, Paddle provides the InputSpec interface. It enables users to perform the transformation more easily, and supports to customize the signature of input Tensor, such as shape, name and so on.
 
 
-一、InputSpec interface
+1. InputSpec interface
+------------------
 
 1.1 Construct InputSpec object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -27,14 +28,14 @@ The InputSpec interface is exposed under the ``paddle.static`` directory. It's u
     print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
 
 
-In InputSpec initialization only ``shape`` is a required parameter. 'dtype' and 'name' can default with values ``Float32`` and ``None`` respectively.
+In InputSpec initialization, only ``shape`` is a required parameter. ``dtype`` and ``name`` can be default with values ``Float32`` and ``None`` respectively.
 
 
 
 1.2 Constructed from Tensor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An InputSpec object can be created directly from an Tensor by using the ``inputSpec.from_tensor`` method with same ``shape`` and ``dtype`` as the source Tensor. See example as follows:
+An InputSpec object can be created directly from a Tensor by using ``inputSpec.from_tensor`` method. It has same ``shape`` and ``dtype`` as the source Tensor. See example as follows:
 
 .. code-block:: python
 
@@ -56,7 +57,7 @@ An InputSpec object can be created directly from an Tensor by using the ``inputS
 1.3 Constructed from numpy.ndarray
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-An InputSpec object can also be created directly from an Numpy.ndarray by using the ``inputSpec.from_numpy`` method with same ``shape`` and ``dtype`` as the source ndarray. See example as follows:
+An InputSpec object can also be created directly from an Numpy.ndarray by using the ``inputSpec.from_numpy`` method. It has same ``shape`` and ``dtype`` as the source ndarray. See example as follows:
 
 .. code-block:: python
 
@@ -72,10 +73,10 @@ An InputSpec object can also be created directly from an Numpy.ndarray by using 
     If a new name is not specified in ``from_numpy`` , ``None`` is used by default.
 
 
-二、Basic usage
+2. Basic usage
 ------------------
 
-Currently, the decorator ``paddle.jit.to_static`` support ``input_spec`` argument. It is used to specify signature information such as ``shape`` , ``dtype`` , ``name`` for each Tensor corresponding to argument from decorated function. Users do not have to feed actual data explicitly to trigger the deduction of the shape in the network layer. The ``input_spec`` argument specified by users in ``to_static`` will be analyzed to construct input placeholder of the network and conduct subsequent model networking.
+Currently, the decorator ``paddle.jit.to_static`` support ``input_spec`` argument. It is used to specify signature information such as ``shape`` , ``dtype`` , ``name`` for each Tensor corresponding to argument from decorated function. Users do not have to feed actual data explicitly to trigger the deduction of the shape in the network. The ``input_spec`` argument specified by users in ``to_static`` will be analyzed to construct input placeholder of the network.
 
 At the same time, the ``input_spec`` enables user to easily define input Tensor shape. For example, specifying shape as ``[None, 784]`` , where ``None`` represents a variable length dimension.
 
@@ -114,15 +115,15 @@ A simple example as follows:
 In the above example, ``input_spec`` in  ``to_static`` decorator is a list of InputSpec objects. It is used to specify signature information corresponding x and y. After instantiating SimpleNet, ``paddle.jit.save`` can be directly called to save the static graph model without executing any other code.
 
 .. note::
-    1. Only InputSpec objects are supported in input_spec parameters, and types such as int, float, etc. are not supported temporarily.
-    2. If you specify the input_spec parameter, you need to add the corresponding InputSpec object for all non-default parameters of the decorated function. As above sample, only specifying signature information x is not supported.
+    1. Only InputSpec objects are supported in input_spec argument, and types such as int, float, etc. are not supported temporarily.
+    2. If you specify the input_spec argument, you need to add the corresponding InputSpec object for all non-default parameters of the decorated function. As above sample, only specifying signature information x is not supported.
     3. If the decorated function includes non-tensor parameters and input_spec is specified, make sure that the non-tensor parameters of the function have default values, such as ``forward(self, x, use_bn=False)`` .
 
 
 2.2 Call to_static directly
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If the user wants to train model in dygraph mode and only expects to save the inference model after training by specifying the signature information. The user can call ``to_static`` function directly while saving the model. See example as follows:
+If the user wants to train model in dygraph mode and only expects to save the inference model after training with specified the signature information. We can call ``to_static`` function directly while saving the model. See example as follows:
 
 .. code-block:: python
 
@@ -139,7 +140,7 @@ If the user wants to train model in dygraph mode and only expects to save the in
     paddle.disable_static()
     net = SimpleNet()
 
-    # train process
+    # train process (Pseudo code)
     for epoch_id in range(10):
         train_step(net, train_reader)
         
@@ -156,7 +157,7 @@ In the above example,  ``to_static(net, input_spec=...)`` can be used to process
 
 In the above two examples, the arguments of the decorated forward function correspond to the InputSpec one to one. The decorated functions with arguments of type List or dict are also supported in Paddle.
 
-If a function takes an argument of type list, the element in the ``input_Spec`` must also be an InputSpec list containing the same elements. A simple example as follows:
+If a function takes an argument of type list, the element in the ``input_spec`` must also be an InputSpec list containing the same elements. A simple example as follows:
 
 .. code-block:: python
 
@@ -175,7 +176,7 @@ If a function takes an argument of type list, the element in the ``input_Spec`` 
 
 The length of ``input_spec`` is 1 corresponding to argument inputs in forward function. ``input_spec[0]`` contains two InputSpec objects corresponding to two Tensor signature information of inputs.
 
-If a function takes an argument of type dict, the element in the ``input_Spec`` must also be an InputSpec dict containing the same keys. A simple example as follows:
+If a function takes an argument of type dict, the element in the ``input_spec`` must also be an InputSpec dict containing the same keys. A simple example as follows:
 
 .. code-block:: python
 
@@ -192,7 +193,7 @@ If a function takes an argument of type dict, the element in the ``input_Spec`` 
             return out
 
 
-The length of ``input_spec` is` 2 corresponding to arguments x and bias_info in forward function. The last element of  ``input_spec``  is a InputSpec dict with same key corresponding to signature information of bias_info.
+The length of ``input_spec`` is 2 corresponding to arguments x and bias_info in forward function. The last element of ``input_spec``  is a InputSpec dict with same key corresponding to signature information of bias_info.
 
 
 More usage of ``to_static`` with ``paddle.jit.save/load`` can refer to :ref:`user_guide_model_save_load` .

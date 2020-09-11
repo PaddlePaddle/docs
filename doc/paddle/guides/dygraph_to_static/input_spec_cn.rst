@@ -140,7 +140,7 @@ InputSpec初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``name
     paddle.disable_static()
     net = SimpleNet()
 
-    # train process
+    # train process (Pseudo code)
     for epoch_id in range(10):
         train_step(net, train_reader)
         
