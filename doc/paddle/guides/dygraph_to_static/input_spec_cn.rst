@@ -1,3 +1,5 @@
+.. _user_guide_dy2sta_input_spec_cn:
+
 InputSpec功能介绍
 =================
 
@@ -193,3 +195,6 @@ InputSpec初始化中的只有`shape`是必须参数，`dtype`和`name`可以缺
 
 
 其中 ``input_spec`` 参数是长度为2的list，对应forward函数的x和bias_info两个参数。 ``input_spec`` 的最后一个元素是包含键名为x的InputSpec对象的dict，对应参数bias_info的Tensor签名信息。
+
+
+更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考 :ref:`_user_guide_model_save_load` 。
