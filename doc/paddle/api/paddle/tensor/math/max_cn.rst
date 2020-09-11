@@ -28,7 +28,6 @@ max
 ..  code-block:: python
 
     import paddle
-
     paddle.disable_static()
 
     # the axis is a int element

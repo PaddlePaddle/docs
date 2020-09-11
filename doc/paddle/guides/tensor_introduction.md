@@ -221,7 +221,6 @@ rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
                                   [4, 5, 6, 7],
                                   [8, 9, 10, 11]])
 print("Origin Tensor:", rank_2_tensor.numpy())
-
 print("First row:", rank_2_tensor[0].numpy())
 print("First row:", rank_2_tensor[0, :].numpy())
 print("First column:", rank_2_tensor[:, 0].numpy())
@@ -337,6 +336,7 @@ Tensor after cast to int64: VarType.INT64
 
 初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。
 
+创建CPU上的Tensor：
 ```python
 cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
 print(cpu_tensor)
@@ -346,6 +346,7 @@ Tensor: generated_tensor_0
   - place: CPUPlace
 ```
 
+创建GPU上的Tensor：
 ```python
 gpu_tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
 print(gpu_tensor)
@@ -355,6 +356,8 @@ Tensor: generated_tensor_0
   - place: CUDAPlace(0)
 
 ```
+
+创建固定内存上的Tensor：
 ```python
 pin_memory_tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
 print(pin_memory_tensor)
