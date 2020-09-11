@@ -30,11 +30,8 @@ arccosine函数。
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([-0.8183,  0.4912, -0.6444,  0.0371]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
         res = paddle.acos(x)
         print(res.numpy())
         # [2.5293, 1.0573, 2.2711, 1.5336]

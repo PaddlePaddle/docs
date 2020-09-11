@@ -9,10 +9,12 @@ Please refer to  `PaddlePaddle Github <https://github.com/PaddlePaddle/Paddle>`_
 
 Let's start with studying basic concept of PaddlePaddle:
 
+- `Introduction to Tensor <tensor_introduction_en.html>`_ : Introduction of Tensor, which is the representation of data in Paddle.
 - `migration tools <./migration_en.html>`_：how to use migration tools to upgrade your code.
 
 
 ..  toctree::
     :hidden:
 
+    tensor_introduction_en.md
     migration_en.rst
