@@ -164,71 +164,71 @@
 
 - **ProgramTranslator新增语法支持**
 
-	- 新增对return语法动转静支持，使得动转静时可以在if-elif-else或者循环条件中提前return，也能return不同类型的tensor或None。@辉煌
+	- 新增对return语法动转静支持，使得动转静时可以在if-elif-else或者循环条件中提前return，也能return不同类型的tensor或None。
 
-	- 新增对print语法动转静支持，使得print(tensor)也能在动转静中打印出tensor。@威行
+	- 新增对print语法动转静支持，使得print(tensor)也能在动转静中打印出tensor。
 
-	- 新增对for遍历Tensor，for enumerate遍历Tensor，for遍历TensorList，for enumerate遍历TensorList几种语法的动转静支持，使得循环处理Tensor的相关操作在动转静中能够灵活使用。@威行
+	- 新增对for遍历Tensor，for enumerate遍历Tensor，for遍历TensorList，for enumerate遍历TensorList几种语法的动转静支持，使得循环处理Tensor的相关操作在动转静中能够灵活使用。
 
-	- 新增对assert语法动转静支持，使得assert tensor也能在动转静中保证tensor为True（bool类型）或者非0（其他数据类型）。@辉煌
+	- 新增对assert语法动转静支持，使得assert tensor也能在动转静中保证tensor为True（bool类型）或者非0（其他数据类型）。
 
-	- 新增对数据类型cast的转写支持，使得float(tensor), int(tensor) 等类似的动态图类型转化语句也能在静态图中进行类型转化。@王震
+	- 新增对数据类型cast的转写支持，使得float(tensor), int(tensor) 等类似的动态图类型转化语句也能在静态图中进行类型转化。
 
 - **ProgramTranslator易用性优化功能**
 
-	- 将动转静的返回类型从callable函数改为class StaticLayer，这个class可以调用.code，.main_program等接口更轻松获取转化后的静态图信息。@留杰
+	- 将动转静的返回类型从callable函数改为class StaticLayer，这个class可以调用.code，.main_program等接口更轻松获取转化后的静态图信息。
 
-	- 增加 set_verbosity 和 set_code_level 接口，可以让用户设置log级别来查看动转静运行过程的log或者查看中间状态转化的代码。@雅美
+	- 增加 set_verbosity 和 set_code_level 接口，可以让用户设置log级别来查看动转静运行过程的log或者查看中间状态转化的代码。
 
-	- 新增InputSpec，可以指定动转静时输入Tensor变量形状和数据类型。@留杰
+	- 新增InputSpec，可以指定动转静时输入Tensor变量形状和数据类型。
 
-	- 优化了动转静运行下如果出错显示的报错信息，使动转静后静态图运行错误的代码也能汇报到原动态图错误的代码行，并且删除python栈中动转静部分报错，使报错信息更多与用户代码相关。@雅美
+	- 优化了动转静运行下如果出错显示的报错信息，使动转静后静态图运行错误的代码也能汇报到原动态图错误的代码行，并且删除python栈中动转静部分报错，使报错信息更多与用户代码相关。
 
-	- 动转静支持用 pdb.set_trace() 进行断点调试。@雅美
+	- 动转静支持用 pdb.set_trace() 进行断点调试。
 
 - **优化部署模型存储载入接口**
 
-	- 新增 paddle.jit.save 接口用于动转静模型的保存，使接口更加易用，删除旧接口ProgramTranslator.save_inference_model 。@威行
-	- 新增 paddle.jit.load 接口用于载入静态图格式存储的预测模型，包括paddle.jit.save和paddle.io.save_inference_model保存的模型，模型载入后可在动态图下用于模型推理或者模型训练调优。@威行
+	- 新增 paddle.jit.save 接口用于动转静模型的保存，使接口更加易用，删除旧接口ProgramTranslator.save_inference_model 。
+	- 新增 paddle.jit.load 接口用于载入静态图格式存储的预测模型，包括paddle.jit.save和paddle.io.save_inference_model保存的模型，模型载入后可在动态图下用于模型推理或者模型训练调优。
 
 #### 混合精度训练
-- 增加了动态图混合精度的支持，ResNet-50模型在V100上使用混合精度相比于fp32训练加速比为2.6。@秋良
+- 增加了动态图混合精度的支持，ResNet-50模型在V100上使用混合精度相比于fp32训练加速比为2.6。
 
 #### 量化训练
 
-- 新增`ImperativeQuantAware`类，提供动态图量化训练功能，目前支持对Conv2D、Linear等层的量化，支持的模型类型包括MobileNetV1/MobileNetV2/ResNet50等。@王震
-- 模型经动态图量化训练后，使用`ImperativeQuantAware.save_quantized_model`接口保存的量化模型可利用Paddle-Lite推理库进行预测部署。@王震 @彭军才
-- 静态图量化支持Conv2d_tranpose量化，支持Linear使用per-channel形式量化 @彭军才
+- 新增`ImperativeQuantAware`类，提供动态图量化训练功能，目前支持对Conv2D、Linear等层的量化，支持的模型类型包括MobileNetV1/MobileNetV2/ResNet50等。
+- 模型经动态图量化训练后，使用`ImperativeQuantAware.save_quantized_model`接口保存的量化模型可利用Paddle-Lite推理库进行预测部署。
+- 静态图量化支持Conv2d_tranpose量化，支持Linear使用per-channel形式量化。
 #### 性能优化（含分布式）
 
-- 简化动态图模式下DataLoader底层实现逻辑，降低读取线程开销，进一步提升数据读取效率，提升模型整体训练速度。经测试MobileNetV1在V100单卡、BatchSize=128的场景下整体训练速度提升34%。@威行
-- 动态图组网API升级和性能优化，大量动态图API将直接调用自动生成的Pybind接口，提升性能。@秋良
+- 简化动态图模式下DataLoader底层实现逻辑，降低读取线程开销，进一步提升数据读取效率，提升模型整体训练速度。经测试MobileNetV1在V100单卡、BatchSize=128的场景下整体训练速度提升34%。
+- 动态图组网API升级和性能优化，大量动态图API将直接调用自动生成的Pybind接口，提升性能。
 
 #### 动态图基础功能
 
 - 支持多卡训练时配置Embedding等API使用稀疏参数梯度更新的功能。@威行
-- 增加Tensor类成员函数，包括Tensor().abs()、Tensor().add()、Tensor().cos()等120余个。@周威
-- 增加Layer的dir()接口，可以方便地查看Layer中属性和函数。@周威
-- 增加optimizer.set_lr()接口，用户可以在动态图模式下中灵活调整学习率。@周威
-- 增加全局参数初始化方式的接口set_global_initializer，可定义全局的参数初始化方法。@周威
-- 增加了对动态训练和推理的oneDNN（原MKL-DNN）支持。Resent50 oneDNN动态训练可以使用（Minist数据集）@intel
+- 增加Tensor类成员函数，包括Tensor().abs()、Tensor().add()、Tensor().cos()等120余个。
+- 增加Layer的dir()接口，可以方便地查看Layer中属性和函数。
+- 增加optimizer.set_lr()接口，用户可以在动态图模式下中灵活调整学习率。
+- 增加全局参数初始化方式的接口set_global_initializer，可定义全局的参数初始化方法。
+- 增加了对动态训练和推理的oneDNN（原MKL-DNN）支持。Resent50 oneDNN动态训练可以使用（Minist数据集）
   - Added oneDNN support for dynamic training and inference. Resent50 oneDNN dynamic training with minist dataset is enabled.
 
 #### 调试分析
 
-- 将框架内仅100处使用LOG(FATAL)抛出异常的写法统一改为使用PADDLE_THROW，优化由于框架不支持某种行为而导致的报错格式与内容。@威行
-- 完善框架内Signal Handler实现，优化执行遇到系统Signal错误时的报错格式与内容。@威行
-- 优化框架报错栈格式，将编译时python报错栈移至原生报错栈下方，提升报错信息阅读体验。@威行
-- 累计进一步完善约1300余条框架内检查报错的错误类型与提示文案，提升框架整体调试易用性。@威行
-- 动态图报错信息增强，动态图下Pybind层的报错信息进行系统性增强，提升用户体验。@秋良
+- 将框架内仅100处使用LOG(FATAL)抛出异常的写法统一改为使用PADDLE_THROW，优化由于框架不支持某种行为而导致的报错格式与内容。
+- 完善框架内Signal Handler实现，优化执行遇到系统Signal错误时的报错格式与内容。
+- 优化框架报错栈格式，将编译时python报错栈移至原生报错栈下方，提升报错信息阅读体验。
+- 累计进一步完善约1300余条框架内检查报错的错误类型与提示文案，提升框架整体调试易用性。
+- 动态图报错信息增强，动态图下Pybind层的报错信息进行系统性增强，提升用户体验。
 
 ### Bug修复
 
-- 修复动态图Layer使用add_parameter接口可能意外出现AttributeError的问题，增强输入检查。@威行
-- 修复无法正常打印int_8与uint_8类型的Tensor的问题，使数据可以正常输出。@周威
+- 修复动态图Layer使用add_parameter接口可能意外出现AttributeError的问题，增强输入检查。
+- 修复无法正常打印int_8与uint_8类型的Tensor的问题，使数据可以正常输出。
 
 #### 依赖库升级
-- 升级oneDNN（原MKL-DNN）从1.3至1.5版本 @intel
+- 升级oneDNN（原MKL-DNN）从1.3至1.5版本
   - Upgrade oneDNN from 1.3->1.5
 ## 推理
 
@@ -242,29 +242,29 @@
 	- 新增服务相关的工具类，比如 `PredictorPool`，便于创建多个predictor 时使用。
 
 #### 功能升级
-- 升级算子版本兼容信息注册表以支持更精确的Op版本信息，提升推理兼容性 @晓伟
-- 新增对TRT 7.1版本的适配支持 @zhaolong
-- Paddle-TensorRT增强对 PaddleSlim 量化模型的支持，涵盖CV上检测，分类，分割等多个任务 @裴杨
-- Python端推理新增对用户自定义OP支持。@裴杨
-- CPU端增加了`elementwise_add` 和`elementwise_mul` INT8 oneDNN（原MKL-DNN）内核支持。@intel
-- 提升了CPU端测试量化模型的易用性，支持同时对比测试原始模型和量化模型 @intel
-- 新增对Jetson Nx硬件的适配支持 @zhaolong
+- 升级算子版本兼容信息注册表以支持更精确的Op版本信息，提升推理兼容性。
+- 新增对TRT 7.1版本的适配支持。
+- Paddle-TensorRT增强对 PaddleSlim 量化模型的支持，涵盖CV上检测，分类，分割等多个任务。
+- Python端推理新增对用户自定义OP支持。
+- CPU端增加了`elementwise_add` 和`elementwise_mul` INT8 oneDNN（原MKL-DNN）内核支持。
+- 提升了CPU端测试量化模型的易用性，支持同时对比测试原始模型和量化模型。
+- 新增对Jetson Nx硬件的适配支持。
 #### 性能优化
-- 新增 conv + affine_op pass，在6248机器上，MASK-RCNN fp32单线程性能提高了26％@intel
+- 新增 conv + affine_op pass，在6248机器上，MASK-RCNN fp32单线程性能提高了26％。
   - Added conv + affine_op pass, MASK-RCNN single thread performance is improved by 26% (1.26x) on machine 6248
-- 新增fc + gru pass和oneDNN（原MKL-DNN） GRU fp32内核，使得GRU fp32模型4线程推断速度在机器Intel Xeon 6248上提高 20％@intel
+- 新增fc + gru pass和oneDNN（原MKL-DNN） GRU fp32内核，使得GRU fp32模型4线程推断速度在机器Intel Xeon 6248上提高 20％。
   - Added fc + gru fuse pass and enabled oneDNN gru fp32 kernel, speeding up GRU fp32 model inference on 4 CPU threads by 20% (1.2x) on machine Intel Xeon 6248
-- 增加了对许多Op的oneDNN inplace支持（人脸feature fp32模型提速2％）@intel
+- 增加了对许多Op的oneDNN inplace支持（人脸feature fp32模型提速2％）
   - Added support for oneDNN inplace support for many operators (speedup 2% for Feature model)
-- 优化的oneDNN LRN op，使得GoogleNet fp32模型提速1％ @intel
+- 优化的oneDNN LRN op，使得GoogleNet fp32模型提速1％
  - Optimized LRN operator (speedup 1% for GoogleNet)
 - 升级了量化模型的转换和优化 @intel
   -  Improved the transformation and optimization of quantized model
-- 优化了CUDA 的ArgMin, ArgMax OP，使得该OP的二进制大小从60M下降至1.3M @zhaolong
+- 优化了CUDA 的ArgMin, ArgMax OP，使得该OP的二进制大小从60M下降至1.3M
 
 #### Bug修复
 
-- 修复CPU下的mask-rcnn推断错误的问题 @intel
+- 修复CPU下的mask-rcnn推断错误的问题
   - Fix mask-rcnn inference error under CPU inference
-- 修复CPU多线程量化模型和推断过程中出现的错误 @intel
+- 修复CPU多线程量化模型和推断过程中出现的错误
   - Fix the CPU multithread inference on oneDNN quantized INT8 models
