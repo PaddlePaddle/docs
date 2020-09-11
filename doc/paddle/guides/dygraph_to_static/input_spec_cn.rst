@@ -10,10 +10,10 @@ InputSpec功能介绍
 
 
 一、InputSpec 对象构造方法
-------------------
+-------------------------
 
 1.1 直接构造 InputSpec 对象
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 InputSpec 接口在 ``paddle.static`` 目录下，用于描述一个 Tensor 的签名信息：shape、dtype、name。使用样例如下：
 
@@ -33,7 +33,7 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
 
 
 1.2 根据 Tensor 构造 InputSpec 对象
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 可以借助 ``InputSpec.from_tensor`` 方法，从一个 Tensor 直接创建 InputSpec 对象，其拥有与源 Tensor 相同的 ``shape`` 和 ``dtype`` 。使用样例如下：
 
@@ -55,7 +55,7 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
 
 
 1.3 根据 numpy.ndarray 构造 InputSpec 对象
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 也可以借助 ``InputSpec.from_numpy`` 方法，从一个 Numpy.ndarray 直接创建 InputSpec 对象，其拥有与源 ndarray 相同的 ``shape`` 和 ``dtype`` 。使用样例如下：
 
@@ -81,7 +81,7 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
 同时，借助 ``input_spec`` 参数，可以自定义输入 Tensor 的 shape ，比如指定 shape 为 ``[None, 784]`` ，其中 ``None`` 表示变长的维度。
 
 2.1 to_static 装饰器模式
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 如下是一个简单的使用样例：
 
@@ -154,7 +154,7 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
 
 
 2.3 支持 list 和 dict 推导
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 上述两个样例中，被装饰的 forward 函数的参数均为 Tensor 。这种情况下，参数个数必须与 InputSpec 个数相同。但当被装饰的函数参数为list或dict类型时，``input_spec`` 需要与函数参数保持相同的嵌套结构。
 
