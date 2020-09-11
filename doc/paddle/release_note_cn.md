@@ -60,6 +60,7 @@
 - 对于当前逐元素操作，不加elementwise前缀
 - 对于按照某一轴操作，不加reduce前缀
 - Conv, Pool, Dropout, BatchNorm, Pad组网类API根据输入数据类型增加1d, 2d, 3d后缀
+
   | Paddle 1.8    | Paddle 2.0-beta |
   | --------------- | ------------------------ |
   | paddle.fluid.layers.elementwise_add | paddle.add               |
