@@ -228,8 +228,8 @@ NOTE:
         for batch_id,data in enumerate(train_reader()):
             features_np=np.array([x[0] for x in data],np.float32)
             labels_np=np.array([x[1] for x in data],np.float32)
-            features=paddle.to_variable(feature_norm(features_np))
-            labels=paddle.to_variable(labels_np)
+            features=paddle.to_tensor(feature_norm(features_np))
+            labels=paddle.to_tensor(labels_np)
             #前向计算
             y_pred=model(features)
             
@@ -305,8 +305,8 @@ NOTE:
     infer_features_np = np.array([data[0] for data in infer_data]).astype("float32")
     infer_labels_np= np.array([data[1] for data in infer_data]).astype("float32")
     
-    infer_features=paddle.to_variable(feature_norm(infer_features_np))
-    infer_labels=paddle.to_variable(infer_labels_np)
+    infer_features=paddle.to_tensor(feature_norm(infer_features_np))
+    infer_labels=paddle.to_tensor(infer_labels_np)
     fetch_list=model(infer_features).numpy()
     
     sum_cost=0
