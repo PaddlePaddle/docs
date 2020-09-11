@@ -4,7 +4,7 @@ Introduction of InputSpec
 ===========================
 
 
-In PaddlePaddle(Referred to as "Paddle"), The dygraph model can be converted to static program by decorating the outermost forward function with ``paddle.jit.to_static`` . But actual Tensor data should be feeded into the model to ensure that the shape of each Tensor in the network is correctly deduced in transformation. This transformation process needs to explicitly execute the forward function, which increases the cost of the interface. Meanwhile, the way that need feed Tensor data fails to customize the shape of inputs, such as assigning some dimensions to None.
+In PaddlePaddle(Referred to as "Paddle"), The dygraph model can be converted to static program by decorating the outermost forward function of Layer with ``paddle.jit.to_static`` . But actual Tensor data should be feeded into the model to ensure that the shape of each Tensor in the network is correctly deduced in transformation. This transformation process needs to explicitly execute the forward function, which increases the cost of the interface. Meanwhile, the way that need feed Tensor data fails to customize the shape of inputs, such as assigning some dimensions to None.
 
 Therefore, Paddle provides the InputSpec interface to perform the transformation more easily, and supports to customize the signature of input Tensor, such as shape, name and so on.
 
@@ -155,7 +155,7 @@ In the above example,  ``to_static(net, input_spec=...)`` can be used to process
 2.3 Support list and dict derivation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the above two examples, the arguments of the decorated forward function correspond to the InputSpec one to one. The decorated functions with arguments of type List or dict are also supported in Paddle.
+In the above two examples, the arguments of the decorated forward function correspond to the InputSpec one to one. But when the decorated function takes arguments with a list or dict type, ``input_spec`` needs to have the same nested structure as the arguments.
 
 If a function takes an argument of type list, the element in the ``input_spec`` must also be an InputSpec list containing the same elements. A simple example as follows:
 
