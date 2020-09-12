@@ -6,7 +6,6 @@ NoamDecay
 
 .. py:class:: paddle.fluid.dygraph.NoamDecay(d_model, warmup_steps, begin=1, step=1, dtype='float32', learning_rate=1.0)
 
-:api_attr: 命令式编程模式（动态图)
 
 
 

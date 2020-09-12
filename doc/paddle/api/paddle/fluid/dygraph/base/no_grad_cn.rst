@@ -6,7 +6,6 @@ no_grad
 
 .. py:class:: paddle.fluid.dygraph.no_grad
 
-:api_attr: 命令式编程模式（动态图)
 
 
 创建一个上下文来禁用动态图梯度计算。在此模式下，每次计算的结果都将具有stop_gradient=True。

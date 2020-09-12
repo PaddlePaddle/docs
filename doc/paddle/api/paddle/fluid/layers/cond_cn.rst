@@ -6,7 +6,6 @@ cond
 
 .. py:function:: paddle.fluid.layers.cond(pred, true_fn=None, false_fn=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

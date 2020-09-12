@@ -6,7 +6,6 @@ load
 
 .. py:function:: paddle.load(model_path, config=None)
 
-:api_attr: 命令式编程模式（动态图)
 
 该接口用于从磁盘中加载Layer和Optimizer的 ``state_dict`` ，该接口会同时加载 ``model_path + ".pdparams"`` 和 ``model_path + ".pdopt"`` 中的内容。
 

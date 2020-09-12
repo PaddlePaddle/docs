@@ -6,7 +6,6 @@ global_scope
 
 .. py:function:: paddle.fluid.global_scope()
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

@@ -6,7 +6,6 @@ switch_case
 
 .. py:function:: paddle.fluid.layers.switch_case(branch_index, branch_fns, default=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

@@ -6,7 +6,6 @@ lstm
 
 .. py:function::  paddle.fluid.layers.lstm(input, init_h, init_c, max_len, hidden_size, num_layers, dropout_prob=0.0, is_bidirec=False, is_test=False, name=None, default_initializer=None, seed=-1)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

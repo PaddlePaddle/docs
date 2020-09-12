@@ -5,7 +5,6 @@ load_vars
 
 .. py:function:: paddle.fluid.io.load_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

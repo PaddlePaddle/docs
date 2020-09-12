@@ -6,7 +6,6 @@ RecomputeOptimizer
 
 .. py:class:: paddle.fluid.optimizer.RecomputeOptimizer(optimizer)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
