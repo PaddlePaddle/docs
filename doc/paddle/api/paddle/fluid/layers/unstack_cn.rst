@@ -5,9 +5,6 @@ unstack
 
 .. py:function:: paddle.fluid.layers.unstack(x, axis=0, num=None)
 
-:alias_main: paddle.unstack
-:alias: paddle.unstack,paddle.tensor.unstack,paddle.tensor.manipulation.unstack
-:old_api: paddle.fluid.layers.unstack
 
 
 

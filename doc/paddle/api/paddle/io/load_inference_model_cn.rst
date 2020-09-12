@@ -6,7 +6,6 @@ load_inference_model
 
 .. py:function:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

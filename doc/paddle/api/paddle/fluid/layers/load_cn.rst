@@ -5,7 +5,6 @@ load
 
 .. py:function:: paddle.fluid.dygraph.jit.load(model_path, configs=None)
 
-:api_attr: 命令式编程模式（动态图)
 
 将接口 :ref:`cn_api_fluid_dygraph_jit_save` 或者 :ref:`cn_api_fluid_io_save_inference_model` 存储的模型载入为 :ref:`cn_api_fluid_dygraph_TranslatedLayer` ，用于预测推理或者fine-tune训练。
 

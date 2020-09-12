@@ -5,9 +5,6 @@ softmax_with_cross_entropy
 
 .. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False, axis=-1)
 
-:alias_main: paddle.nn.functional.softmax_with_cross_entropy
-:alias: paddle.nn.functional.softmax_with_cross_entropy,paddle.nn.functional.loss.softmax_with_cross_entropy
-:old_api: paddle.fluid.layers.softmax_with_cross_entropy
 
 
 

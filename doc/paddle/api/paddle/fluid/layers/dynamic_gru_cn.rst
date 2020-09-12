@@ -6,7 +6,6 @@ dynamic_gru
 
 .. py:function::  paddle.fluid.layers.dynamic_gru(input, size, param_attr=None, bias_attr=None, is_reverse=False, gate_activation='sigmoid', candidate_activation='tanh', h_0=None, origin_mode=False)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

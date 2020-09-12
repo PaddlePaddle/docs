@@ -5,9 +5,6 @@ lrn
 
 .. py:function:: paddle.fluid.layers.lrn(input, n=5, k=1.0, alpha=0.0001, beta=0.75, name=None, data_format='NCHW')
 
-:alias_main: paddle.nn.functional.lrn
-:alias: paddle.nn.functional.lrn,paddle.nn.functional.norm.lrn
-:old_api: paddle.fluid.layers.lrn
 
 
 

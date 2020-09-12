@@ -5,9 +5,6 @@ reduce_all
 
 .. py:function:: paddle.fluid.layers.reduce_all(input, dim=None, keep_dim=False, name=None)
 
-:alias_main: paddle.reduce_all
-:alias: paddle.reduce_all,paddle.tensor.reduce_all,paddle.tensor.logic.reduce_all
-:old_api: paddle.fluid.layers.reduce_all
 
 
 

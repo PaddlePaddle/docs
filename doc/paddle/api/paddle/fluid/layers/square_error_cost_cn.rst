@@ -5,9 +5,6 @@ square_error_cost
 
 .. py:function:: paddle.fluid.layers.square_error_cost(input,label)
 
-:alias_main: paddle.nn.functional.square_error_cost
-:alias: paddle.nn.functional.square_error_cost,paddle.nn.functional.loss.square_error_cost
-:old_api: paddle.fluid.layers.square_error_cost
 
 
 

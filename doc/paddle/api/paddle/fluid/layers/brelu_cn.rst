@@ -5,9 +5,6 @@ brelu
 
 .. py:function:: paddle.fluid.layers.brelu(x, t_min=0.0, t_max=24.0, name=None)
 
-:alias_main: paddle.nn.functional.brelu
-:alias: paddle.nn.functional.brelu,paddle.nn.functional.activation.brelu
-:old_api: paddle.fluid.layers.brelu
 
 
 

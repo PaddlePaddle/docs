@@ -6,7 +6,6 @@ GRUCell
 
 .. py:class:: paddle.fluid.layers.GRUCell(hidden_size, param_attr=None, bias_attr=None, gate_activation=None, activation=None, dtype="float32", name="GRUCell")
 
-:api_attr: 声明式编程模式（静态图)
 
 
     

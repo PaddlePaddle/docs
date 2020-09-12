@@ -5,9 +5,6 @@ pixel_shuffle
 
 .. py:function:: paddle.fluid.layers.pixel_shuffle(x, upscale_factor)
 
-:alias_main: paddle.nn.functional.pixel_shuffle
-:alias: paddle.nn.functional.pixel_shuffle,paddle.nn.functional.vision.pixel_shuffle
-:old_api: paddle.fluid.layers.pixel_shuffle
 
 
 

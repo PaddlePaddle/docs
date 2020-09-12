@@ -6,8 +6,6 @@ meshgrid
 
 .. py:function:: paddle.tensor.meshgrid(*args, **kargs)
 
-:alias_main: paddle.meshgrid
-:alias: paddle.meshgrid, paddle.tensor.meshgrid, paddle.tensor.creation.meshgrid
 
 
 

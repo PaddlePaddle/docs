@@ -6,7 +6,6 @@ save_dygraph
 
 .. py:function:: paddle.fluid.dygraph.save_dygraph(state_dict, model_path)
 
-:api_attr: 命令式编程模式（动态图)
 
 
 

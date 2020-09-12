@@ -5,9 +5,6 @@ add_position_encoding
 
 .. py:function:: paddle.fluid.layers.add_position_encoding(input, alpha, beta, name=None)
 
-:alias_main: paddle.nn.functional.add_position_encoding
-:alias: paddle.nn.functional.add_position_encoding,paddle.nn.functional.extension.add_position_encoding
-:old_api: paddle.fluid.layers.add_position_encoding
 
 
 

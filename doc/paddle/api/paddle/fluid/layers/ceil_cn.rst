@@ -5,9 +5,6 @@ ceil
 
 .. py:function:: paddle.fluid.layers.ceil(x, name=None)
 
-:alias_main: paddle.ceil
-:alias: paddle.ceil,paddle.tensor.ceil,paddle.tensor.math.ceil
-:old_api: paddle.fluid.layers.ceil
 
 
 

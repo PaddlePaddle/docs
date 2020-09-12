@@ -5,9 +5,6 @@ cross_entropy
 
 .. py:function:: paddle.fluid.layers.cross_entropy(input, label, soft_label=False, ignore_index=-100)
 
-:alias_main: paddle.nn.functional.cross_entropy
-:alias: paddle.nn.functional.cross_entropy,paddle.nn.functional.loss.cross_entropy
-:old_api: paddle.fluid.layers.cross_entropy
 
 
 

@@ -5,9 +5,6 @@ shard_index
 
 .. py:function:: paddle.fluid.layers.shard_index(input, index_num, nshards, shard_id, ignore_value=-1)
 
-:alias_main: paddle.shard_index
-:alias: paddle.shard_index,paddle.tensor.shard_index,paddle.tensor.manipulation.shard_index
-:old_api: paddle.fluid.layers.shard_index
 
 
 

@@ -5,9 +5,6 @@ shuffle_channel
 
 .. py:function:: paddle.fluid.layers.shuffle_channel(x, group, name=None)
 
-:alias_main: paddle.nn.functional.shuffle_channel
-:alias: paddle.nn.functional.shuffle_channel,paddle.nn.functional.vision.shuffle_channel
-:old_api: paddle.fluid.layers.shuffle_channel
 
 
 
