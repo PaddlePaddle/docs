@@ -5,9 +5,6 @@ dice_loss
 
 .. py:function:: paddle.fluid.layers.dice_loss(input, label, epsilon=1e-05)
 
-:alias_main: paddle.nn.functional.dice_loss
-:alias: paddle.nn.functional.dice_loss,paddle.nn.functional.loss.dice_loss
-:old_api: paddle.fluid.layers.dice_loss
 
 
 

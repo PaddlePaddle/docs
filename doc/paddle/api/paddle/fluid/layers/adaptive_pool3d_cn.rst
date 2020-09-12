@@ -5,9 +5,6 @@ adaptive_pool3d
 
 .. py:function:: paddle.fluid.layers.adaptive_pool3d(input, pool_size, pool_type='max', require_index=False, name=None)
 
-:alias_main: paddle.nn.functional.adaptive_pool3d
-:alias: paddle.nn.functional.adaptive_pool3d,paddle.nn.functional.pooling.adaptive_pool3d
-:old_api: paddle.fluid.layers.adaptive_pool3d
 
 
 

@@ -5,9 +5,6 @@ argmin
 
 .. py:function:: paddle.fluid.layers.argmin(x, axis=0)
 
-:alias_main: paddle.argmin
-:alias: paddle.argmin,paddle.tensor.argmin,paddle.tensor.search.argmin
-:old_api: paddle.fluid.layers.argmin
 
 
 

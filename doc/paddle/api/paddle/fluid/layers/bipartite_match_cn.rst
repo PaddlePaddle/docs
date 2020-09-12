@@ -5,9 +5,6 @@ bipartite_match
 
 .. py:function:: paddle.fluid.layers.bipartite_match(dist_matrix, match_type=None, dist_threshold=None, name=None)
 
-:alias_main: paddle.nn.functional.bipartite_match
-:alias: paddle.nn.functional.bipartite_match,paddle.nn.functional.vision.bipartite_match
-:old_api: paddle.fluid.layers.bipartite_match
 
 
 

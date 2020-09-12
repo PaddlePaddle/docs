@@ -5,9 +5,6 @@ expand_as
 
 .. py:function:: paddle.fluid.layers.expand_as(x, target_tensor, name=None)
 
-:alias_main: paddle.expand_as
-:alias: paddle.expand_as,paddle.tensor.expand_as,paddle.tensor.manipulation.expand_as
-:old_api: paddle.fluid.layers.expand_as
 
 
 

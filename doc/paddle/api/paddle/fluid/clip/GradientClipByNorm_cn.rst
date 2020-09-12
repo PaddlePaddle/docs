@@ -5,9 +5,6 @@ GradientClipByNorm
 
 .. py:class:: paddle.fluid.clip.GradientClipByNorm(clip_norm, need_clip=None)
 
-:alias_main: paddle.nn.GradientClipByNorm
-:alias: paddle.nn.GradientClipByNorm,paddle.nn.clip.GradientClipByNorm
-:old_api: paddle.fluid.clip.GradientClipByNorm
 
 
 

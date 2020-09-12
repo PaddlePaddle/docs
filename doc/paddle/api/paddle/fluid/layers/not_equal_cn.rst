@@ -5,9 +5,6 @@ not_equal
 
 .. py:function:: paddle.fluid.layers.not_equal(x, y, cond=None, name=None)
 
-:alias_main: paddle.not_equal
-:alias: paddle.not_equal,paddle.tensor.not_equal,paddle.tensor.logic.not_equal
-:old_api: paddle.fluid.layers.not_equal
 
 
 

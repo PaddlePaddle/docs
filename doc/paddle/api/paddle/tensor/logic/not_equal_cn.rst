@@ -4,8 +4,6 @@ not_equal
 -------------------------------
 .. py:function:: paddle.not_equal(x, y, name=None)
 
-:alias_main: paddle.not_equal
-:alias: paddle.not_equal,paddle.tensor.not_equal,paddle.tensor.logic.not_equal
 
 该OP返回 :math:`x!=y` 逐元素比较x和y是否相等，相同位置的元素不相同则返回True，否则返回False。使用重载算子 `!=` 可以有相同的计算函数效果
 

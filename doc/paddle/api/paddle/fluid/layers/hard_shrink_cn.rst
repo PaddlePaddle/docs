@@ -5,9 +5,6 @@ hard_shrink
 
 .. py:function:: paddle.fluid.layers.hard_shrink(x,threshold=None)
 
-:alias_main: paddle.nn.functional.hard_shrink
-:alias: paddle.nn.functional.hard_shrink,paddle.nn.functional.activation.hard_shrink
-:old_api: paddle.fluid.layers.hard_shrink
 
 
 

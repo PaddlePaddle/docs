@@ -5,9 +5,6 @@ box_decoder_and_assign
 
 .. py:function:: paddle.fluid.layers.box_decoder_and_assign(prior_box, prior_box_var, target_box, box_score, box_clip, name=None)
 
-:alias_main: paddle.nn.functional.box_decoder_and_assign
-:alias: paddle.nn.functional.box_decoder_and_assign,paddle.nn.functional.vision.box_decoder_and_assign
-:old_api: paddle.fluid.layers.box_decoder_and_assign
 
 
 

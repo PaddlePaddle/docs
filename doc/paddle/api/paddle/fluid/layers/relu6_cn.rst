@@ -5,9 +5,6 @@ relu6
 
 .. py:function:: paddle.fluid.layers.relu6(x, threshold=6.0, name=None)
 
-:alias_main: paddle.nn.functional.relu6
-:alias: paddle.nn.functional.relu6,paddle.nn.functional.activation.relu6
-:old_api: paddle.fluid.layers.relu6
 
 
 
