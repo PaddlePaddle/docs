@@ -10,7 +10,7 @@ trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计�
 环境
 ----
 
-本教程基于paddle-develop编写，如果您的环境不是本版本，请先安装paddle-develop。
+本教程基于paddle-2.0-beta编写，如果您的环境不是本版本，请先安装paddle-2.0-beta。
 
 .. code:: ipython3
 
@@ -22,7 +22,7 @@ trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计�
 
 .. parsed-literal::
 
-    '0.0.0'
+    '2.0.0-beta0'
 
 
 
@@ -39,16 +39,15 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    --2020-09-09 14:58:26--  https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
-    正在解析主机 ocw.mit.edu (ocw.mit.edu)... 151.101.110.133
-    正在连接 ocw.mit.edu (ocw.mit.edu)|151.101.110.133|:443... 已连接。
-    已发出 HTTP 请求，正在等待回应... 200 OK
+    --2020-09-12 13:49:29--  https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
+    正在连接 172.19.57.45:3128... 已连接。
+    已发出 Proxy 请求，正在等待回应... 200 OK
     长度：5458199 (5.2M) [text/plain]
     正在保存至: “t8.shakespeare.txt”
     
-    t8.shakespeare.txt  100%[===================>]   5.21M  94.1KB/s  用时 70s       
+    t8.shakespeare.txt  100%[===================>]   5.21M  2.01MB/s  用时 2.6s      
     
-    2020-09-09 14:59:38 (75.7 KB/s) - 已保存 “t8.shakespeare.txt” [5458199/5458199])
+    2020-09-12 13:49:33 (2.01 MB/s) - 已保存 “t8.shakespeare.txt” [5458199/5458199])
     
 
 
@@ -164,6 +163,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
     import paddle
     import numpy as np
+    import paddle.nn.functional as F
     hidden_size = 1024
     class NGramModel(paddle.nn.Layer):
         def __init__(self, vocab_size, embedding_dim, context_size):
@@ -176,7 +176,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
             x = self.embedding(x)
             x = paddle.reshape(x, [-1, context_size * embedding_dim])
             x = self.linear1(x)
-            x = paddle.nn.functional.relu(x)
+            x = F.relu(x)
             x = self.linear2(x)
             return x
 
@@ -185,6 +185,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. code:: ipython3
 
+    import paddle.nn.functional as F
     vocab_size = len(vocab)
     epochs = 2
     losses = []
@@ -196,37 +197,37 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
                 x_data = data[0]
                 y_data = data[1]
                 predicts = model(x_data)
-                y_data = paddle.reshape(y_data, ([-1, 1]))
-                loss = paddle.nn.functional.softmax_with_cross_entropy(predicts, y_data)
+                y_data = paddle.reshape(y_data, shape=[-1, 1])
+                loss = F.softmax_with_cross_entropy(predicts, y_data)
                 avg_loss = paddle.mean(loss)
                 avg_loss.backward()
                 if batch_id % 500 == 0:
                     losses.append(avg_loss.numpy())
                     print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy())) 
-                optim.minimize(avg_loss)
-                model.clear_gradients()
+                optim.step()
+                optim.clear_grad()
     model = NGramModel(vocab_size, embedding_dim, context_size)
     train(model)
 
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 0, loss is: [10.252193]
-    epoch: 0, batch_id: 500, loss is: [6.894636]
-    epoch: 0, batch_id: 1000, loss is: [6.849346]
-    epoch: 0, batch_id: 1500, loss is: [6.931605]
-    epoch: 0, batch_id: 2000, loss is: [6.6860313]
-    epoch: 0, batch_id: 2500, loss is: [6.2472367]
-    epoch: 0, batch_id: 3000, loss is: [6.8818874]
-    epoch: 0, batch_id: 3500, loss is: [6.941615]
-    epoch: 1, batch_id: 0, loss is: [6.3628616]
-    epoch: 1, batch_id: 500, loss is: [6.2065206]
-    epoch: 1, batch_id: 1000, loss is: [6.5334334]
-    epoch: 1, batch_id: 1500, loss is: [6.5788]
-    epoch: 1, batch_id: 2000, loss is: [6.352103]
-    epoch: 1, batch_id: 2500, loss is: [6.6272373]
-    epoch: 1, batch_id: 3000, loss is: [6.801074]
-    epoch: 1, batch_id: 3500, loss is: [6.2274427]
+    epoch: 0, batch_id: 0, loss is: [10.252176]
+    epoch: 0, batch_id: 500, loss is: [6.6429553]
+    epoch: 0, batch_id: 1000, loss is: [6.801544]
+    epoch: 0, batch_id: 1500, loss is: [6.7114644]
+    epoch: 0, batch_id: 2000, loss is: [6.628998]
+    epoch: 0, batch_id: 2500, loss is: [6.511376]
+    epoch: 0, batch_id: 3000, loss is: [6.878798]
+    epoch: 0, batch_id: 3500, loss is: [6.8752203]
+    epoch: 1, batch_id: 0, loss is: [6.5908413]
+    epoch: 1, batch_id: 500, loss is: [6.9765778]
+    epoch: 1, batch_id: 1000, loss is: [6.603841]
+    epoch: 1, batch_id: 1500, loss is: [6.9935036]
+    epoch: 1, batch_id: 2000, loss is: [6.751287]
+    epoch: 1, batch_id: 2500, loss is: [7.1222277]
+    epoch: 1, batch_id: 3000, loss is: [6.6431484]
+    epoch: 1, batch_id: 3500, loss is: [6.6024966]
 
 
 打印loss下降曲线
@@ -248,7 +249,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    [<matplotlib.lines.Line2D at 0x14e27b3c8>]
+    [<matplotlib.lines.Line2D at 0x15c295cc0>]
 
 
 

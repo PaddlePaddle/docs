@@ -51,7 +51,7 @@ world程序。
 接下来，我们看看用飞桨如何实现这个hello, world级别的机器学习程序。
 
 导入飞桨
----------
+--------
 
 为了能够使用飞桨，我们需要先用python的\ ``import``\ 语句导入飞桨\ ``paddle``\ 。
 同时，为了能够更好的对数组进行计算和处理，我们也还需要导入\ ``numpy``\ 。
@@ -62,16 +62,16 @@ world程序。
 
     import paddle
     paddle.disable_static()
-    print("paddle version " + paddle.__version__)
+    print("paddle " + paddle.__version__)
 
 
 .. parsed-literal::
 
-    paddle version 0.0.0
+    paddle 2.0.0-beta0
 
 
 准备数据
----------
+--------
 
 在这个机器学习任务中，我们已经知道了乘客的行驶里程\ ``distance_travelled``\ ，和对应的，这些乘客的总费用\ ``total_fee``\ 。
 通常情况下，在机器学习任务中，像\ ``distance_travelled``\ 这样的输入值，一般被称为\ ``x``\ （或者特征\ ``feature``\ ），像\ ``total_fee``\ 这样的输出值，一般被称为\ ``y``\ （或者标签\ ``label``)。
@@ -104,7 +104,7 @@ world程序。
     linear = paddle.nn.Linear(in_features=1, out_features=1)
 
 准备好运行飞桨
-----------------
+--------------
 
 机器（计算机）在一开始的时候会随便猜\ ``w``\ 和\ ``b``\ ，我们先看看机器猜的怎么样。你应该可以看到，这时候的\ ``w``\ 是一个随机值，\ ``b``\ 是0.0，这是飞桨的初始化策略，也是这个领域常用的初始化策略。（如果你愿意，也可以采用其他的初始化的方式，今后你也会看到，选择不同的初始化策略也是对于做好深度学习任务来说很重要的一点）。
 
@@ -119,12 +119,12 @@ world程序。
 
 .. parsed-literal::
 
-    w before optimize: -1.7107375860214233
+    w before optimize: -1.696260690689087
     b before optimize: 0.0
 
 
 告诉飞桨怎么样学习
---------------------
+------------------
 
 前面我们定义好了神经网络（尽管是一个最简单的神经网络），我们还需要告诉飞桨，怎么样去\ **学习**\ ，从而能得到参数\ ``w``\ 和\ ``b``\ 。
 
@@ -143,7 +143,7 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
     sgd_optimizer = paddle.optimizer.SGD(learning_rate=0.001, parameters = linear.parameters())
 
 运行优化算法
----------------
+------------
 
 接下来，我们让飞桨运行一下这个优化算法，这会是一个前面介绍过的逐步调整参数的过程，你应该可以看到loss值（衡量\ ``y``\ 和\ ``y_predict``\ 的差距的\ ``loss``)在不断的降低。
 
@@ -154,8 +154,8 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
         y_predict = linear(x_data)
         loss = mse_loss(y_predict, y_data)
         loss.backward()
-        sgd_optimizer.minimize(loss)
-        linear.clear_gradients()
+        sgd_optimizer.step()
+        sgd_optimizer.clear_grad()
         
         if i%1000 == 0:
             print("epoch {} loss {}".format(i, loss.numpy()))
@@ -165,16 +165,16 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
 
 .. parsed-literal::
 
-    epoch 0 loss [2107.3943]
-    epoch 1000 loss [7.8432994]
-    epoch 2000 loss [1.7537074]
-    epoch 3000 loss [0.39211753]
-    epoch 4000 loss [0.08767726]
-    finished training， loss [0.01963376]
+    epoch 0 loss [2094.069]
+    epoch 1000 loss [7.8451133]
+    epoch 2000 loss [1.7541145]
+    epoch 3000 loss [0.39221546]
+    epoch 4000 loss [0.08769739]
+    finished training， loss [0.0196382]
 
 
 机器学习出来的参数
--------------------
+------------------
 
 经过了这样的对参数\ ``w``\ 和\ ``b``\ 的调整（\ **学习**)，我们再通过下面的程序，来看看现在的参数变成了多少。你应该会发现\ ``w``\ 变成了很接近2.0的一个值，\ ``b``\ 变成了接近10.0的一个值。虽然并不是正好的2和10，但却是从数据当中学习出来的还不错的模型的参数，可以在未来的时候，用从这批数据当中学习到的参数来预估了。（如果你愿意，也可以通过让机器多学习一段时间，从而得到更加接近2.0和10.0的参数值。)
 
@@ -190,12 +190,12 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
 
 .. parsed-literal::
 
-    w after optimize: 2.017843246459961
-    b after optimize: 9.771851539611816
+    w after optimize: 2.0178451538085938
+    b after optimize: 9.771825790405273
 
 
 hello paddle
----------------
+------------
 
 通过这个小示例，希望你已经初步了解了飞桨，能在接下来随着对飞桨的更多学习，来解决实际遇到的问题。
 
