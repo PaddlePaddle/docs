@@ -23,6 +23,7 @@ set_code_level
 
 .. code-block:: python
 
+    import os
     import paddle
 
     paddle.jit.set_code_level(2)
