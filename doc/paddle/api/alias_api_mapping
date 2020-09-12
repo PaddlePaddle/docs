@@ -3,7 +3,6 @@ paddle.fluid.layers.sigmoid_focal_loss	paddle.nn.functional.sigmoid_focal_loss,p
 paddle.fluid.layers.smooth_l1	paddle.nn.functional.smooth_l1,paddle.nn.functional.loss.smooth_l1
 paddle.nn.functional.loss.l1_loss	paddle.nn.functional.l1_loss
 paddle.nn.functional.loss.margin_ranking_loss	paddle.nn.functional.margin_ranking_loss
-paddle.nn.layer.conv	paddle.nn.conv
 paddle.nn.layer.pooling.AdaptiveAvgPool3d	paddle.nn.AdaptiveAvgPool3d,paddle.nn.layer.AdaptiveAvgPool3d
 paddle.nn.functional.common.alpha_dropout	paddle.nn.functional.alpha_dropout
 paddle.nn.functional.activation.logsigmoid	paddle.nn.functional.logsigmoid
@@ -159,7 +158,6 @@ paddle.nn.layer.conv.ConvTranspose2d	paddle.nn.ConvTranspose2d,paddle.nn.layer.C
 paddle.fluid.dygraph.container.LayerList	paddle.nn.LayerList
 paddle.fluid.compiler.ExecutionStrategy	paddle.static.ExecutionStrategy
 paddle.fluid.layers.ceil	paddle.ceil,paddle.tensor.ceil,paddle.tensor.math.ceil
-paddle.nn.layer.loss	paddle.nn.loss
 paddle.nn.layer.activation.ReLU	paddle.nn.layer.ReLU
 paddle.tensor.logic.greater_equal	paddle.greater_equal,paddle.tensor.greater_equal
 paddle.nn.layer.pooling.AvgPool2d	paddle.nn.AvgPool2d,paddle.nn.layer.AvgPool2d
@@ -266,11 +264,11 @@ paddle.fluid.layers.conv2d	paddle.static.nn.conv2d
 paddle.fluid.layers.create_parameter	paddle.static.nn.create_parameter
 paddle.tensor.creation.ones_like	paddle.ones_like,paddle.tensor.ones_like
 paddle.fluid.layers.sums	paddle.sums,paddle.tensor.sums,paddle.tensor.math.sums
-paddle.nn.functional.rnn.birnn	paddle.nn.functional.birnn
+paddle.fluid.layers.rnn.birnn	paddle.nn.functional.birnn,paddle.nn.functional.rnn.birnn
 paddle.fluid.dygraph.base.no_grad	paddle.framework.no_grad
 paddle.nn.functional.common.dropout3d	paddle.nn.functional.dropout3d
 paddle.fluid.layers.polygon_box_transform	paddle.nn.functional.polygon_box_transform,paddle.nn.functional.extension.polygon_box_transform
-paddle.nn.functional.rnn.rnn	paddle.nn.functional.rnn
+paddle.fluid.layers.rnn.rnn   paddle.nn.functional.rnn,paddle.nn.functional.rnn.rnn
 paddle.tensor.search.sort	paddle.sort,paddle.tensor.sort
 paddle.tensor.logic.equal	paddle.equal,paddle.tensor.equal
 paddle.fluid.layers.swish	paddle.nn.functional.swish,paddle.nn.functional.activation.swish
@@ -309,7 +307,6 @@ paddle.fluid.clip.GradientClipByNorm	paddle.nn.GradientClipByNorm,paddle.nn.clip
 paddle.tensor.creation.triu	paddle.triu,paddle.tensor.triu
 paddle.fluid.layers.reduce_all	paddle.reduce_all,paddle.tensor.reduce_all,paddle.tensor.logic.reduce_all
 paddle.fluid.layers.rpn_target_assign	paddle.nn.functional.rpn_target_assign,paddle.nn.functional.extension.rpn_target_assign
-paddle.nn.layer.vision	paddle.nn.vision
 paddle.fluid.layers.reduce_max	paddle.reduce_max,paddle.tensor.reduce_max,paddle.tensor.math.reduce_max
 paddle.tensor.random.randperm	paddle.randperm,paddle.tensor.randperm
 paddle.fluid.layers.deformable_conv	paddle.static.nn.deformable_conv
