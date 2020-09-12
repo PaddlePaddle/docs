@@ -83,7 +83,7 @@ NOTE:
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png?raw=true
 
 
 上图中，对角线上是各属性的直方图，非对角线上的是两个不同属性之间的相关图。
@@ -99,7 +99,7 @@ NOTE:
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_002.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_002.png?raw=true
 
 
 **数据归一化处理**
@@ -120,7 +120,7 @@ NOTE:
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_003.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_003.png?raw=true
 
 
 做归一化（或 Feature scaling）至少有以下3个理由：
@@ -288,7 +288,7 @@ NOTE:
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_004.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_004.png?raw=true
 
 
 可以从上图看出，随着训练轮次的增加，损失在呈降低趋势。但由于每次仅基于少量样本更新参数和计算损失，所以损失下降曲线会出现震荡。
@@ -352,7 +352,7 @@ NOTE:
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_005.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_005.png?raw=true
 
 
 上图可以看出，我们训练出来的模型的预测结果与真实结果是较为接近的。

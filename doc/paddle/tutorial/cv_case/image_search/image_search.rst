@@ -125,7 +125,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_001.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_001.png?raw=true?raw=true
 
 
 
@@ -203,7 +203,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_002.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_002.png?raw=true
 
 
 
@@ -393,7 +393,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_003.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_003.png?raw=true
 
 
 

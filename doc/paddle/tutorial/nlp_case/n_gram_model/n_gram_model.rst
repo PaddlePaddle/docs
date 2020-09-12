@@ -253,7 +253,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/n_gram_model_001.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/n_gram_model_001.png?raw=true
 
 
 预测

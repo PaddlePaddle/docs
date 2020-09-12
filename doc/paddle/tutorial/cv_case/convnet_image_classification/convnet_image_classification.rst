@@ -246,7 +246,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_002.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_002.png?raw=true
 
 
 The End
