@@ -21,8 +21,8 @@
 
 本文主要介绍飞桨2.0动态图存储载入体系，各接口关系如下图所示：
 
-.. image:: images/save_2.0.png
-.. image:: images/load_2.0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/save_2.0.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/load_2.0.png?raw=true
 
 1.2 静态图存储载入体系（飞桨1.x）
 ----------------------------

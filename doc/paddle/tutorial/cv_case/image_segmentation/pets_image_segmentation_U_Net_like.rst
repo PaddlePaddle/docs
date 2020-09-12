@@ -1,4 +1,4 @@
-基于U型语义分割模型实现的宠物图像分割
+基于U-Net卷积神经网络实现宠物图像分割
 =====================================
 
 本示例教程当前是基于2.0-beta版本Paddle做的案例实现，未来会随着2.0的系列版本发布进行升级。
@@ -33,7 +33,7 @@
 
 .. parsed-literal::
 
-    '0.0.0'
+    '2.0.0-beta0'
 
 
 
@@ -65,6 +65,17 @@ Pet数据集，官网：https://www.robots.ox.ac.uk/~vgg/data/pets 。
     !tar -xf images.tar.gz
     !tar -xf annotations.tar.gz
 
+
+.. parsed-literal::
+
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  755M  100  755M    0     0  1707k      0  0:07:32  0:07:32 --:--:-- 2865k0  0:12:48  524k   0  0:13:34  0:02:41  0:10:53  668k      0  0:12:45  0:03:06  0:09:39 1702k     0  1221k      0  0:10:33  0:03:25  0:07:08 3108k37  282M    0     0  1243k      0  0:10:21  0:03:52  0:06:29  719k0:05:53  566k0  1237k      0  0:10:25  0:04:43  0:05:42 1593k 0  0:09:46  0:05:28  0:04:18 2952k 1467k      0  0:08:47  0:06:43  0:02:04 1711k
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100 18.2M  100 18.2M    0     0  1602k      0  0:00:11  0:00:11 --:--:-- 3226k
+
+
 3.2 数据集概览
 ~~~~~~~~~~~~~~
 
@@ -89,10 +100,10 @@ Pet数据集，官网：https://www.robots.ox.ac.uk/~vgg/data/pets 。
    ├── test.txt
    ├── trainval.txt
    ├── trimaps
-   │    ├── Abyssinian_1.png
-   │    ├── Abyssinian_10.png
-   │    ├── ......
-   │    └── yorkshire_terrier_99.png
+   │    ├── Abyssinian_1.png
+   │    ├── Abyssinian_10.png
+   │    ├── ......
+   │    └── yorkshire_terrier_99.png
    └── xmls
          ├── Abyssinian_1.xml
          ├── Abyssinian_10.xml
@@ -315,7 +326,7 @@ DataLoader（多进程数据集加载）。
 
 
 
-.. image:: pets_image_segmentation_U_Net_like_files/pets_image_segmentation_U_Net_like_12_0.svg
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/pets_image_segmentation_U_Net_like_001.png?raw=true
 
 
 4.模型组网
@@ -436,7 +447,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                                                                kernel_size=3, 
                                                                padding='same')
             self.bn = paddle.nn.BatchNorm2d(out_channels)
-            self.upsample = paddle.nn.UpSample(scale_factor=2.0)
+            self.upsample = paddle.nn.Upsample(scale_factor=2.0)
             self.residual_conv = paddle.nn.Conv2d(in_channels, 
                                                   out_channels, 
                                                   kernel_size=1, 
@@ -467,9 +478,9 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. code:: ipython3
 
-    class PetModel(paddle.nn.Layer):
+    class PetNet(paddle.nn.Layer):
         def __init__(self, num_classes):
-            super(PetModel, self).__init__()
+            super(PetNet, self).__init__()
     
             self.conv_1 = paddle.nn.Conv2d(3, 32, 
                                            kernel_size=3,
@@ -531,7 +542,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
     
     paddle.disable_static()
     num_classes = 4
-    model = paddle.Model(PetModel(num_classes))
+    model = paddle.Model(PetNet(num_classes))
     model.summary((3, 160, 160))
 
 
@@ -540,32 +551,32 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
     --------------------------------------------------------------------------------
        Layer (type)          Input Shape         Output Shape         Param #
     ================================================================================
-          Conv2d-22    [-1, 3, 160, 160]     [-1, 32, 80, 80]             896
-      BatchNorm2d-9     [-1, 32, 80, 80]     [-1, 32, 80, 80]              64
-             ReLU-9     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
-            ReLU-12    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-          Conv2d-33    [-1, 128, 20, 20]    [-1, 128, 20, 20]           1,152
-          Conv2d-34    [-1, 128, 20, 20]    [-1, 256, 20, 20]          33,024
-    SeparableConv2d-11    [-1, 128, 20, 20]    [-1, 256, 20, 20]               0
-     BatchNorm2d-12    [-1, 256, 20, 20]    [-1, 256, 20, 20]             512
-          Conv2d-35    [-1, 256, 20, 20]    [-1, 256, 20, 20]           2,304
-          Conv2d-36    [-1, 256, 20, 20]    [-1, 256, 20, 20]          65,792
-    SeparableConv2d-12    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-        MaxPool2d-6    [-1, 256, 20, 20]    [-1, 256, 10, 10]               0
-          Conv2d-37    [-1, 128, 20, 20]    [-1, 256, 10, 10]          33,024
-          Encoder-6    [-1, 128, 20, 20]    [-1, 256, 10, 10]               0
-            ReLU-16     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
-    ConvTranspose2d-15     [-1, 64, 80, 80]     [-1, 32, 80, 80]          18,464
-     BatchNorm2d-16     [-1, 32, 80, 80]     [-1, 32, 80, 80]              64
-    ConvTranspose2d-16     [-1, 32, 80, 80]     [-1, 32, 80, 80]           9,248
-         UpSample-8     [-1, 64, 80, 80]   [-1, 64, 160, 160]               0
-          Conv2d-41   [-1, 64, 160, 160]   [-1, 32, 160, 160]           2,080
-          Decoder-8     [-1, 64, 80, 80]   [-1, 32, 160, 160]               0
-          Conv2d-42   [-1, 32, 160, 160]    [-1, 4, 160, 160]           1,156
+          Conv2d-38    [-1, 3, 160, 160]     [-1, 32, 80, 80]             896
+     BatchNorm2d-14     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
+            ReLU-14     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
+            ReLU-17    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
+          Conv2d-49    [-1, 128, 20, 20]    [-1, 128, 20, 20]           1,152
+          Conv2d-50    [-1, 128, 20, 20]    [-1, 256, 20, 20]          33,024
+    SeparableConv2d-17    [-1, 128, 20, 20]    [-1, 256, 20, 20]               0
+     BatchNorm2d-17    [-1, 256, 20, 20]    [-1, 256, 20, 20]           1,024
+          Conv2d-51    [-1, 256, 20, 20]    [-1, 256, 20, 20]           2,304
+          Conv2d-52    [-1, 256, 20, 20]    [-1, 256, 20, 20]          65,792
+    SeparableConv2d-18    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
+        MaxPool2d-9    [-1, 256, 20, 20]    [-1, 256, 10, 10]               0
+          Conv2d-53    [-1, 128, 20, 20]    [-1, 256, 10, 10]          33,024
+          Encoder-9    [-1, 128, 20, 20]    [-1, 256, 10, 10]               0
+            ReLU-21     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
+    ConvTranspose2d-17     [-1, 64, 80, 80]     [-1, 32, 80, 80]          18,464
+     BatchNorm2d-21     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
+    ConvTranspose2d-18     [-1, 32, 80, 80]     [-1, 32, 80, 80]           9,248
+         Upsample-8     [-1, 64, 80, 80]   [-1, 64, 160, 160]               0
+          Conv2d-57   [-1, 64, 160, 160]   [-1, 32, 160, 160]           2,080
+          Decoder-9     [-1, 64, 80, 80]   [-1, 32, 160, 160]               0
+          Conv2d-58   [-1, 32, 160, 160]    [-1, 4, 160, 160]           1,156
     ================================================================================
-    Total params: 167,780
-    Trainable params: 167,780
-    Non-trainable params: 0
+    Total params: 168,420
+    Trainable params: 167,140
+    Non-trainable params: 1,280
     --------------------------------------------------------------------------------
     Input size (MB): 0.29
     Forward/backward pass size (MB): 43.16
@@ -579,7 +590,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. parsed-literal::
 
-    {'total_params': 167780, 'trainable_params': 167780}
+    {'total_params': 168420, 'trainable_params': 167140}
 
 
 
@@ -629,15 +640,12 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                                      epsilon=1e-07, 
                                      centered=False,
                                      parameters=model.parameters())
-    model = paddle.Model(PetModel(num_classes, model_tools))
-    model.prepare(optim, 
-                  SoftmaxWithCrossEntropy())
-    
+    model = paddle.Model(PetModel(num_classes))
+    model.prepare(optim, SoftmaxWithCrossEntropy())
     model.fit(train_dataset, 
-        val_dataset, 
-        epochs=EPOCHS, 
-        batch_size=BATCH_SIZE
-    )
+              val_dataset, 
+              epochs=EPOCHS, 
+              batch_size=BATCH_SIZE)
 
 6.模型预测
 ----------
@@ -660,6 +668,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. code:: ipython3
 
+    print(len(predict_results))
     plt.figure(figsize=(10, 10))
     
     i = 0
@@ -678,8 +687,9 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
         plt.title('Label')
         plt.axis("off")
         
-        
-        data = val_preds[0][mask_idx][0].transpose((1, 2, 0))
+        # 模型只有一个输出，所以我们通过predict_results[0]来取出1000个预测的结果
+        # 映射原始图片的index来取出预测结果，提取mask进行展示
+        data = predict_results[0][mask_idx][0].transpose((1, 2, 0))
         mask = np.argmax(data, axis=-1)
         mask = np.expand_dims(mask, axis=-1)
     
