@@ -25,13 +25,11 @@
     
     paddle.disable_static()
     print(paddle.__version__)
-    print(paddle.__git_commit__)
 
 
 .. parsed-literal::
 
-    0.0.0
-    89af2088b6e74bdfeef2d4d78e08461ed2aafee5
+    2.0.0-beta0
 
 
 数据集
@@ -127,12 +125,12 @@
 
 
 
-.. image:: image_search_files/image_search_8_0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_001.png?raw=true
 
 
 
 构建训练数据
---------------
+------------
 
 图片检索的模型的训练样本跟我们常见的分类任务的训练样本不太一样的地方在于，每个训练样本并不是一个\ ``(image, class)``\ 这样的形式。而是（image0,
 image1,
@@ -205,12 +203,12 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: image_search_files/image_search_15_1.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_002.png
 
 
 
 把图片转换为高维的向量表示的网络
------------------------------------
+--------------------------------
 
 我们的目标是首先把图片转换为高维空间的表示，然后计算图片在高维空间表示时的相似度。
 下面的网络结构用来把一个形状为\ ``(3, 32, 32)``\ 的图片转换成形状为\ ``(8,)``\ 的向量。在有些资料中也会把这个转换成的向量称为\ ``Embedding``\ ，请注意，这与自然语言处理领域的词向量的区别。
@@ -267,8 +265,6 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 .. code:: ipython3
 
-    # 定义训练过程
-    
     def train(model):
         print('start training ... ')
         model.train()
@@ -302,8 +298,8 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
                 if batch_id % 500 == 0:
                     print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
                 avg_loss.backward()
-                opt.minimize(avg_loss)
-                model.clear_gradients()
+                opt.step()
+                opt.clear_grad()
     
     model = MyNet()
     train(model)
@@ -312,46 +308,46 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 .. parsed-literal::
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.3080945]
-    epoch: 0, batch_id: 500, loss is: [2.326215]
-    epoch: 1, batch_id: 0, loss is: [2.0898924]
-    epoch: 1, batch_id: 500, loss is: [1.8754089]
-    epoch: 2, batch_id: 0, loss is: [2.2416227]
-    epoch: 2, batch_id: 500, loss is: [1.9024051]
-    epoch: 3, batch_id: 0, loss is: [1.841417]
-    epoch: 3, batch_id: 500, loss is: [2.1239076]
-    epoch: 4, batch_id: 0, loss is: [1.9291763]
-    epoch: 4, batch_id: 500, loss is: [2.2363486]
-    epoch: 5, batch_id: 0, loss is: [2.0078473]
-    epoch: 5, batch_id: 500, loss is: [2.0765374]
-    epoch: 6, batch_id: 0, loss is: [2.080376]
-    epoch: 6, batch_id: 500, loss is: [2.1759136]
-    epoch: 7, batch_id: 0, loss is: [1.908263]
-    epoch: 7, batch_id: 500, loss is: [1.7774136]
-    epoch: 8, batch_id: 0, loss is: [1.6335764]
-    epoch: 8, batch_id: 500, loss is: [1.5713912]
-    epoch: 9, batch_id: 0, loss is: [2.287479]
-    epoch: 9, batch_id: 500, loss is: [1.7719988]
-    epoch: 10, batch_id: 0, loss is: [1.2894523]
-    epoch: 10, batch_id: 500, loss is: [1.599735]
-    epoch: 11, batch_id: 0, loss is: [1.78816]
-    epoch: 11, batch_id: 500, loss is: [1.4773489]
-    epoch: 12, batch_id: 0, loss is: [1.6737808]
-    epoch: 12, batch_id: 500, loss is: [1.8889393]
-    epoch: 13, batch_id: 0, loss is: [1.6156021]
-    epoch: 13, batch_id: 500, loss is: [1.3851049]
-    epoch: 14, batch_id: 0, loss is: [1.3854092]
-    epoch: 14, batch_id: 500, loss is: [2.0325592]
-    epoch: 15, batch_id: 0, loss is: [1.9734558]
-    epoch: 15, batch_id: 500, loss is: [1.8050598]
-    epoch: 16, batch_id: 0, loss is: [1.7084911]
-    epoch: 16, batch_id: 500, loss is: [1.8919995]
-    epoch: 17, batch_id: 0, loss is: [1.3137552]
-    epoch: 17, batch_id: 500, loss is: [1.8817297]
-    epoch: 18, batch_id: 0, loss is: [1.9453808]
-    epoch: 18, batch_id: 500, loss is: [2.1317677]
-    epoch: 19, batch_id: 0, loss is: [1.6051079]
-    epoch: 19, batch_id: 500, loss is: [1.779858]
+    epoch: 0, batch_id: 0, loss is: [2.3078856]
+    epoch: 0, batch_id: 500, loss is: [1.9325346]
+    epoch: 1, batch_id: 0, loss is: [1.9889]
+    epoch: 1, batch_id: 500, loss is: [2.0410695]
+    epoch: 2, batch_id: 0, loss is: [2.2465641]
+    epoch: 2, batch_id: 500, loss is: [1.8171736]
+    epoch: 3, batch_id: 0, loss is: [1.9939486]
+    epoch: 3, batch_id: 500, loss is: [2.1440036]
+    epoch: 4, batch_id: 0, loss is: [2.1497147]
+    epoch: 4, batch_id: 500, loss is: [2.3686018]
+    epoch: 5, batch_id: 0, loss is: [1.938681]
+    epoch: 5, batch_id: 500, loss is: [1.7729127]
+    epoch: 6, batch_id: 0, loss is: [2.0061004]
+    epoch: 6, batch_id: 500, loss is: [1.6132584]
+    epoch: 7, batch_id: 0, loss is: [1.8874661]
+    epoch: 7, batch_id: 500, loss is: [1.6153599]
+    epoch: 8, batch_id: 0, loss is: [1.9407685]
+    epoch: 8, batch_id: 500, loss is: [2.1532288]
+    epoch: 9, batch_id: 0, loss is: [1.4792883]
+    epoch: 9, batch_id: 500, loss is: [1.857158]
+    epoch: 10, batch_id: 0, loss is: [2.1518302]
+    epoch: 10, batch_id: 500, loss is: [1.790559]
+    epoch: 11, batch_id: 0, loss is: [1.7292264]
+    epoch: 11, batch_id: 500, loss is: [1.8555079]
+    epoch: 12, batch_id: 0, loss is: [1.6968924]
+    epoch: 12, batch_id: 500, loss is: [1.4554331]
+    epoch: 13, batch_id: 0, loss is: [1.3950458]
+    epoch: 13, batch_id: 500, loss is: [1.7197256]
+    epoch: 14, batch_id: 0, loss is: [1.7336586]
+    epoch: 14, batch_id: 500, loss is: [2.0465684]
+    epoch: 15, batch_id: 0, loss is: [1.7675827]
+    epoch: 15, batch_id: 500, loss is: [2.6443417]
+    epoch: 16, batch_id: 0, loss is: [1.7331158]
+    epoch: 16, batch_id: 500, loss is: [1.6207634]
+    epoch: 17, batch_id: 0, loss is: [2.0908554]
+    epoch: 17, batch_id: 500, loss is: [1.7711265]
+    epoch: 18, batch_id: 0, loss is: [1.8717268]
+    epoch: 18, batch_id: 500, loss is: [1.5269613]
+    epoch: 19, batch_id: 0, loss is: [1.5681677]
+    epoch: 19, batch_id: 500, loss is: [1.7821472]
 
 
 模型预测
@@ -397,7 +393,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: image_search_files/image_search_22_0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_003.png
 
 
 

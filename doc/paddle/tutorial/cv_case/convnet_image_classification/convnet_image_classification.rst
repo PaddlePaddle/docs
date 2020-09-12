@@ -4,7 +4,7 @@
 本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成\ `cifar10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集的图像分类任务。
 
 设置环境
-----------
+--------
 
 我们将使用飞桨2.0beta版本。
 
@@ -18,18 +18,15 @@
     
     paddle.disable_static()
     print(paddle.__version__)
-    print(paddle.__git_commit__)
-
 
 
 .. parsed-literal::
 
-    0.0.0
-    264e76cae6861ad9b1d4bcd8c3212f7a78c01e4d
+    2.0.0-beta0
 
 
 加载并浏览数据集
--------------------
+----------------
 
 我们将会使用飞桨提供的API完成数据集的下载并为后续的训练任务准备好数据迭代器。cifar10数据集由60000张大小为32
 \*
@@ -49,7 +46,7 @@
         train_labels[i, 0] = train_label
 
 浏览数据集
--------------
+----------
 
 接下来我们从数据集中随机挑选一些图片并显示，从而对数据集有一个直观的了解。
 
@@ -70,11 +67,11 @@
 
 
 
-.. image:: convnet_image_classification_files/convnet_image_classification_6_0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_001.png?raw=true
 
 
 组建网络
-----------
+--------
 
 接下来我们使用飞桨定义一个使用了三个二维卷积（\ ``Conv2d``)且每次卷积之后使用\ ``relu``\ 激活函数，两个二维池化层（\ ``MaxPool2d``\ ），和两个线性变换层组成的分类网络，来把一个\ ``(32, 32, 3)``\ 形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
 
@@ -165,8 +162,8 @@
                 if batch_id % 1000 == 0:
                     print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
                 avg_loss.backward()
-                opt.minimize(avg_loss)
-                model.clear_gradients()
+                opt.step()
+                opt.clear_grad()
     
             # evaluate model after one epoch
             model.eval()
@@ -198,36 +195,36 @@
 .. parsed-literal::
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.3024805]
-    epoch: 0, batch_id: 1000, loss is: [1.1422595]
-    [validation] accuracy/loss: 0.5575079917907715/1.2516425848007202
-    epoch: 1, batch_id: 0, loss is: [0.9350736]
-    epoch: 1, batch_id: 1000, loss is: [1.3825703]
-    [validation] accuracy/loss: 0.5959464907646179/1.1320706605911255
-    epoch: 2, batch_id: 0, loss is: [0.979844]
-    epoch: 2, batch_id: 1000, loss is: [0.87730503]
-    [validation] accuracy/loss: 0.6607428193092346/0.9754576086997986
-    epoch: 3, batch_id: 0, loss is: [0.7345351]
-    epoch: 3, batch_id: 1000, loss is: [1.0982555]
-    [validation] accuracy/loss: 0.6671326160430908/0.9667007327079773
-    epoch: 4, batch_id: 0, loss is: [0.9291839]
-    epoch: 4, batch_id: 1000, loss is: [1.1812104]
-    [validation] accuracy/loss: 0.6895966529846191/0.9075900316238403
-    epoch: 5, batch_id: 0, loss is: [0.5072213]
-    epoch: 5, batch_id: 1000, loss is: [0.60360587]
-    [validation] accuracy/loss: 0.6944888234138489/0.8740479350090027
-    epoch: 6, batch_id: 0, loss is: [0.5917944]
-    epoch: 6, batch_id: 1000, loss is: [0.7963876]
-    [validation] accuracy/loss: 0.7072683572769165/0.8597638607025146
-    epoch: 7, batch_id: 0, loss is: [0.50116754]
-    epoch: 7, batch_id: 1000, loss is: [0.95844793]
-    [validation] accuracy/loss: 0.700579047203064/0.876727819442749
-    epoch: 8, batch_id: 0, loss is: [0.87496114]
-    epoch: 8, batch_id: 1000, loss is: [0.68749857]
-    [validation] accuracy/loss: 0.7198482155799866/0.8403064608573914
-    epoch: 9, batch_id: 0, loss is: [0.8548105]
-    epoch: 9, batch_id: 1000, loss is: [0.6488569]
-    [validation] accuracy/loss: 0.7106629610061646/0.874437153339386
+    epoch: 0, batch_id: 0, loss is: [2.331658]
+    epoch: 0, batch_id: 1000, loss is: [1.6067888]
+    [validation] accuracy/loss: 0.5676916837692261/1.2106356620788574
+    epoch: 1, batch_id: 0, loss is: [1.1509854]
+    epoch: 1, batch_id: 1000, loss is: [1.3777964]
+    [validation] accuracy/loss: 0.5818690061569214/1.1748384237289429
+    epoch: 2, batch_id: 0, loss is: [1.051642]
+    epoch: 2, batch_id: 1000, loss is: [1.0261706]
+    [validation] accuracy/loss: 0.6607428193092346/0.9685573577880859
+    epoch: 3, batch_id: 0, loss is: [0.8457774]
+    epoch: 3, batch_id: 1000, loss is: [0.6820123]
+    [validation] accuracy/loss: 0.6822084784507751/0.9241172075271606
+    epoch: 4, batch_id: 0, loss is: [0.9059805]
+    epoch: 4, batch_id: 1000, loss is: [0.587117]
+    [validation] accuracy/loss: 0.7012779712677002/0.8670551180839539
+    epoch: 5, batch_id: 0, loss is: [1.0894825]
+    epoch: 5, batch_id: 1000, loss is: [0.9055369]
+    [validation] accuracy/loss: 0.6954872012138367/0.8820587992668152
+    epoch: 6, batch_id: 0, loss is: [0.4162583]
+    epoch: 6, batch_id: 1000, loss is: [0.5274862]
+    [validation] accuracy/loss: 0.7074680328369141/0.8538646697998047
+    epoch: 7, batch_id: 0, loss is: [0.52636147]
+    epoch: 7, batch_id: 1000, loss is: [0.70929015]
+    [validation] accuracy/loss: 0.7107627987861633/0.8633227944374084
+    epoch: 8, batch_id: 0, loss is: [0.57556355]
+    epoch: 8, batch_id: 1000, loss is: [0.83717]
+    [validation] accuracy/loss: 0.69319087266922/0.903077244758606
+    epoch: 9, batch_id: 0, loss is: [0.88774866]
+    epoch: 9, batch_id: 1000, loss is: [0.91165334]
+    [validation] accuracy/loss: 0.7194488644599915/0.8668457865715027
 
 
 .. code:: ipython3
@@ -244,15 +241,15 @@
 
 .. parsed-literal::
 
-    <matplotlib.legend.Legend at 0x163d6ec50>
+    <matplotlib.legend.Legend at 0x167d186d0>
 
 
 
 
-.. image:: convnet_image_classification_files/convnet_image_classification_12_1.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_002.png
 
 
 The End
 -------
 
-从上面的示例可以看到，在cifar10数据集上，使用简单的卷积神经网络，用飞桨可以达到71%以上的准确率。
+从上面的示例可以看到，在cifar10数据集上，使用简单的卷积神经网络，用飞桨可以达到71%以上的准确率。你也可以通过调整网络结构和参数，达到更好的效果。
