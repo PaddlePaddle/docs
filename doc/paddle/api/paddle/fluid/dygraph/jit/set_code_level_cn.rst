@@ -23,6 +23,7 @@ set_code_level
 .. code-block:: python
 
     import paddle
+    import os
     paddle.jit.set_code_level(2)
     # It will print the transformed code at level 2, which means to print the code after second transformer,
     # as the date of August 28, 2020, it is CastTransformer.
