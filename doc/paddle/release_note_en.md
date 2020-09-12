@@ -112,38 +112,36 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
 
 - **Model Networking**
   - Added the encapsulation of the common loss API `paddle.nn.loss.*` and metric API `paddle.metric.*`
-  - Released 12 models based on high-level API implementations
-    - Transformer, Seq2seq, LAC, BMN, ResNet, YOLOv3, VGG, MobileNet, TSM, CycleGAN, Bert, OCR
-    - The [examples] (https://github.com/PaddlePaddle/hapi/tree/master/examples) directory released in the [PaddlePaddle/hapi] (https://github.com/paddlePaddle/hapi) code repository
+  - Released 12 models based on high-level API implementations, including Transformer, Seq2seq, LAC, BMN, ResNet, YOLOv3, VGG, MobileNet, TSM, CycleGAN, Bert, OCR. The code can be found in [PaddlePaddle/hapi examples](https://github.com/PaddlePaddle/hapi/tree/master/examples).
 
 - **Model Execution**
-  - Added a `paddle.Model` encapsulation of model type to encapsulate basic functions commonly used in model development, including:
-    - providing a `Model.summary` API, which is used to view the network structure and number of parameters of the dynamic graph networking.
-    - providing a `Model.prepare` API, which is used to specify a loss function and an optimization algorithm.
-    - providing a `Model.fit` API to implement training and evaluation, which can implement the execution of user-defined functions such as model storage by callback.
-    - providing a `Model.evaluate` API to implement the computing of inference and evaluation indexes on the evaluation set.
-    - providing a `Model.predict` API to implement specific test data inference.
-    - providing a `Model.train_batch` API to implement training on a single batch of data.
-    - providing a `Model.eval_batch` API to implement evaluation on a single batch of data.
-    - providing a `Model.text_batch` API to implement testing on a single batch of data.
-    - providing a `Model.save`/`Model.load` API, which supports storing an inference model in dynamic graph training mode.
-  - Added a callback API `paddle.callbacks.*` as a model execution API, which performs logging and Checkpoint model storage, etc. Users can perform customization by inheriting `paddle.callbacks.Callback`.
+  - Added class API `paddle.Model`, which encapsulates the common model development methods:
+    - API `Model.summary`   to view the network structure and the number of parameters of the dynamic graph networking.
+    - API `Model.prepare`  to specify a loss function and an optimization algorithm.
+    - API `Model.fit`  to implement training and evaluation, which can implement the execution of user-defined functions such as model storage by callback.
+    - API `Model.evaluate`  to implement the computation of inference and evaluation indexes on the evaluation set.
+    - API `Model.predict`  to implement specific test data inference.
+    - API `Model.train_batch`  to implement training on a single batch of data.
+    - API `Model.eval_batch`  to implement evaluation on a single batch of data.
+    - API `Model.text_batch`  to implement testing on a single batch of data.
+    - API `Model.save`/`Model.load` , which supports storing an inference model in dynamic graph training mode.
+  - Added callback API `paddle.callbacks.*` as a model execution API, which performs logging and Checkpoint model saving, etc. Users can customize a callback by inheriting `paddle.callbacks.Callback`.
 
 - **Domain APIs**
-  - Added computer vision (CV) domain API `paddle.vision`
-    - Added dataset API `paddle.vision.datasets.*`, which encapsulates commonly-used datasets and supports random access to data
-    - Added 24 common data preprocessing APIs `paddle.vision.transforms.*` such as Resize and Normalize
-    - Added image classification backbone network and pre-training parameters
+  - Added computer vision (CV) APIs `paddle.vision`
+    - Added dataset API `paddle.vision.datasets.*`, which encapsulates common public datasets and supports random access to data.
+    - Added 24 common data preprocessing APIs `paddle.vision.transforms.*` such as Resize, Normalize, etc.
+    - Added image classification backbone network and pre-training parameters:
       - `paddle.vision.models.lenet` or `paddle.vision.lenet`
       - `paddle.vision.models.vgg` or `paddle.vision.vgg`
-      - `paddle.vision.models.resnet` or `paddle.vision.vgg`
+      - `paddle.vision.models.resnet` or `paddle.vision.resnet`
       - `paddle.vision.models.mobilenetv1` or `paddle.vision.mobilenetv1`
       - `paddle.vision.models.mobilenetv2` or `paddle.vision.mobilenetv2`
-  - Added natural language processing (NLP) domain API `paddle.text`
-    - Added dataset API `paddle.text.datasets.*`, which encapsulates commonly-used datasets and supports random access to data
-    - Added domain networking API `paddle.text.*`
+  - Added natural language processing (NLP)  APIs `paddle.text`.
+    - Added dataset API `paddle.text.datasets.*`, which encapsulates commonly-used datasets and supports random access to data.
+    - Added networking API `paddle.text.*`.
 - **Automatic Breakpoint Restart**
-  - Added API `train_epoch_range`, which can implement the epoch granularity-based `checkpoint` autosave and autoloading functions on a static graph and supports automatic breakpoint restart.
+  - Added API `train_epoch_range`, which implements the epoch-level `checkpoint` autosave and autoloading functions on a static graph and supports automatic breakpoint restart.
 
 ### Function Optimization (Including Distributed)
 
