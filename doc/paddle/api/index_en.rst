@@ -5,7 +5,7 @@ API Reference
 PaddlePaddle (PArallel Distributed Deep LEarning) is an efficient, flexible, and extensible deep learning framework.
 This page lists the APIs supported by PaddlePaddle 2.0-beta. You can view the information of the APIs here.
 
-In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddlePaddle/Paddle>`_ for details, or read `Release Notes <../release_note.html>`_ to learn about the features of the new version.
+In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddlePaddle/Paddle>`_ for details, or read `Release Notes <../release_note_en.html>`_ to learn about the features of the new version.
 
 **The API directory structure of PaddlePaddle 2.0-beta is as follows:**
 
@@ -62,4 +62,4 @@ In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddleP
 | paddle.text                   | NLP domain APIs such as datasets, data processing,    |
 |                               | and commonly used basic network structures like       |
 |                               | transformer                                           |
-+--------------+-------------------------------------------------------+
++-------------------------------+-------------------------------------------------------+

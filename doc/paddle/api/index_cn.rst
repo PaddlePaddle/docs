@@ -5,7 +5,7 @@ API 文档
 PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵活、可扩展的深度学习框架。
 本页列出了PaddlePaddle 2.0-beta所支持的API，您可以在此查看该API的相关信息。
 
-此外，您可参考PaddlePaddle的 `GitHub <https://github.com/PaddlePaddle/Paddle>`_ 了解详情，也可阅读 `版本说明 <../release_note.html>`_ 了解新版本的特性。
+此外，您可参考PaddlePaddle的 `GitHub <https://github.com/PaddlePaddle/Paddle>`_ 了解详情，也可阅读 `版本说明 <../release_note_cn.html>`_ 了解新版本的特性。
 
 **飞桨框架2.0的API目录结构如下：**
 
