@@ -3,7 +3,7 @@
 Sampler
 -------------------------------
 
-.. py:class:: paddle.io.Sampler(data_source=None):
+.. py:class:: paddle.io.Sampler(data_source=None)
 
 概括数据集采样器行为和方法的基类。
 

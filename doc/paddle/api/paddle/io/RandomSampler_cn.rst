@@ -3,7 +3,7 @@
 RandomSampler
 -------------------------------
 
-.. py:class:: paddle.io.RandomSampler(data_source=None, replacement=False, num_samples=None, generator=None):
+.. py:class:: paddle.io.RandomSampler(data_source=None, replacement=False, num_samples=None, generator=None)
 
 顺序迭代 ``data_source`` 返回样本下标，即一次返回 ``0, 1, 2, ..., len(data_source) - 1``
 
