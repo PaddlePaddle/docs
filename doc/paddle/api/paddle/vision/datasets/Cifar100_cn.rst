@@ -6,20 +6,19 @@ Cifar100
 .. py:class:: paddle.vision.datasets.Cifar100()
 
 
-    Implementation of `Cifar-100 <https://www.cs.toronto.edu/~kriz/cifar.html>`_
-    dataset, which has 100 categories.
+    `Cifar-100 <https://www.cs.toronto.edu/~kriz/cifar.html>`_ 数据集的实现，数据集包含100中类别.
 
     参数
 :::::::::
-        data_file(str): path to data file, can be set None if
-            :attr:`download` is True. Default None
-        mode(str): 'train', 'test' mode. Default 'train'.
-        transform(callable): transform to perform on image, None for on transform.
-        download(bool): whether to download dataset automatically if
-            :attr:`data_file` is not set. Default True
+        - data_file (str) - 数据集文件路径，如果 ``download`` 设置为 ``True`` ，此参数可以设置为None。默认值为None。
+        - mode (str) - ``'train'`` 或 ``'test'`` 模式，默认为 ``'train'`` 。
+        - transform (callable) - 图片数据的预处理，若未 ``None`` 即为不做预处理。默认值为None。
+        - download (bool) - 是否自定下载数据集文件。默认为 ``True`` 。
 
-    Returns:
-        Dataset: instance of cifar-100 dataset
+返回
+:::::::::
+
+				Cifar100数据集实例
 
     代码示例
 :::::::::
