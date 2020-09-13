@@ -1,15 +1,15 @@
-.. _cn_api_nn_cn_logsigmoid:
+.. _cn_api_nn_cn_log_sigmoid:
 
-logsigmoid
+log_sigmoid
 -------------------------------
 
-.. py:function:: paddle.nn.functional.logsigmoid(x, name=None)
+.. py:function:: paddle.nn.functional.log_sigmoid(x, name=None)
 
-logsigmoid激活层。计算公式如下：
+log_sigmoid激活层。计算公式如下：
 
 .. math::
 
-    logsigmoid(x) = \log \frac{1}{1 + e^{-x}}
+    log\_sigmoid(x) = \log \frac{1}{1 + e^{-x}}
 
 其中，:math:`x` 为输入的 Tensor
 
@@ -29,9 +29,8 @@ logsigmoid激活层。计算公式如下：
 
     import paddle
     import paddle.nn.functional as F
-    import numpy as np
 
     paddle.disable_static()
 
-    x = paddle.to_tensor(np.array([1.0, 2.0, 3.0, 4.0]))
-    out = F.logsigmoid(x) # [-0.313262 -0.126928 -0.0485874 -0.0181499]
+    x = paddle.to_tensor([1.0, 2.0, 3.0, 4.0])
+    out = F.log_sigmoid(x) # [-0.313262 -0.126928 -0.0485874 -0.0181499]
