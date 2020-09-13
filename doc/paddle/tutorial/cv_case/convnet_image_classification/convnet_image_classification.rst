@@ -67,7 +67,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_001.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_001.png?raw=true
 
 
 组建网络
@@ -246,7 +246,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_002.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_002.png?raw=true
 
 
 The End
