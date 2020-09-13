@@ -60,7 +60,7 @@ MNIST数据集使用LeNet进行图像分类
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/cv_case/image_segmentation/mnist_lenet_classification_files/mnist_lenet_classification_001.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/mnist_lenet_classification_files/mnist_lenet_classification_001.png?raw=true
 
 
 组网

@@ -82,7 +82,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png?raw=true
 
 
 .. code:: ipython3
@@ -96,7 +96,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_002.png?raw=true    
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_002.png?raw=true    
 
 
 **数据归一化处理**\  下图为大家展示各属性的取值范围分布：
@@ -115,7 +115,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_003.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_003.png?raw=true
 
 
 从上图看出，我们各属性的数值范围差异太大，甚至不能够在一个画布上充分的展示各属性具体的最大、最小值以及异常值等。下面我们进行归一化。
@@ -169,7 +169,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_004.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_004.png?raw=true
 
 
 .. code:: ipython3
@@ -287,7 +287,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_005.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_005.png?raw=true
 
 
 可以从上图看出，随着训练轮次的增加，损失在呈降低趋势。但由于每次仅基于少量样本更新参数和计算损失，所以损失下降曲线会出现震荡。
@@ -351,7 +351,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png?raw=true
 
 
 上图可以看出，我们训练出来的模型的预测结果与真实结果是较为接近的。
