@@ -351,7 +351,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_006.png?raw=true
 
 
 上图可以看出，我们训练出来的模型的预测结果与真实结果是较为接近的。
