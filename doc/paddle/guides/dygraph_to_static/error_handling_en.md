@@ -1,10 +1,13 @@
-# 报错信息处理
+# Error Handling
 
-本节内容将介绍使用动态图转静态图（下文简称：动转静）功能发生异常时，[ProgramTranslator](./program_translator_cn.html)对报错信息做的处理，以帮助您更好地理解动转静报错信息。使用动转静功能运行动态图代码时，内部可以分为2个步骤：动态图代码转换成静态图代码，运行静态图代码。接下来将分别介绍这2个步骤中的异常报错情况。
+This section will introduce the error information when an exception occurs, so as to help you better understand the Dynamic-to-Static error information.
+When running the transformed static graph code, the internal can be divided into two steps: the dynamic graph code is transformed into the static graph code, and the static graph code is run. We will introduce the error reporting in these two steps.
 
-## 动转静过程中的异常
-在动态图代码转换成静态图代码的过程中，如果ProgramTranslator无法转换一个函数时，将会显示警告信息，并尝试直接运行该函数。
-如下代码中，函数`inner_func` 在调用前被转换成静态图代码，当`x=inner_func(data)`调用该函数时，不能重复转换，会给出警告信息：
+## Exceptions in Dynamic-to-Static Transformation
+
+If ProgramTranslator cannot transform a function, it will display a warning message and try to run the function as-is.
+
+In the following code, the function `inner_func` is transformed before calling. When calling `inner_func` in `x=inner_func(data)`, it is not allowed to transform repeatedly, and a warning message will be given:
 
 ```python
 import paddle
@@ -23,22 +26,21 @@ def func():
 func()
 ```
 
-ProgramTranslator打印的警告信息如下：
-
+The warning message is as follows:
 ```bash
 WARNING: <function inner_func at 0x7fa9bcaacf50> doesn't have to be transformed to static function because it has been transformed before, it will be run as-is.
 ```
+## Exceptions in Running Transformed Code
 
-## 运行转换后的代码报错
+When an exception occurs in the transformed code by ProgramTranslator, the exception is be catched and the error message is augmented. It maps the error line of the static graph code to the dynamic graph code un-transformed, and then re-raise the exception.
 
-如果在动转静后的静态图代码中发生异常，ProgramTranslator会捕获该异常，增强异常报错信息，将静态图代码报错行映射到转换前的动态图代码，并重新抛出该异常。
-重新抛出的异常具有以下特点：
+Among the features of the re-raised exception:
 
-- 隐藏了部分对用户无用的动转静过程调用栈；
-- 转换前的代码会给出提示："In User Code:"；
-- 报错信息中包含了转换前的原始动态图代码；
+- Some useless call stacks of Dynamic-to-Static are hidden;
+- A prompt will be given before the code un-transformed: "In User Code:";
+- The error message includes references to the original dynamic graph code before transformation;
 
-例如，运行以下代码，在静态图构建时，即编译期会抛出异常：
+For example, if executing the following code, an exception is raised when the static graph is built, that is, at compile time:
 
 ```python
 import paddle
@@ -55,7 +57,6 @@ def func(x):
 func(np.ones([3, 2]))
 ```
 
-运行结果：
 ```bash
 Traceback (most recent call last):
   <ipython-input-13-f9c3ea702e3a> in <module>()
@@ -73,29 +74,30 @@ AssertionError: In user code:
     AssertionError: Only one dimension value of 'shape' in reshape can be -1. But received shape[1] is also -1.
 ```
 
-上述报错信息可以分为3点：
+The above error information can be divided into three points:
 
-1. 报错栈中，涉及代码转换过程的信息栈默认会被隐藏，不进行展示，以减少干扰信息。
+1. In the error stack, the call stacks related to the code transformation process are hidden by default and not displayed, so as to avoid confusion.
 
-2. ProgramTranslator处理后的报错信息中，会包含提示"In user code:"，表示之后的报错栈中，包含动转静前的动态图代码，即用户写的代码：
-	```bash
-	AssertionError: In user code:
+2. In the error message processed by ProgramTranslator, a prompt "In user code:" will be included, which means that the following error stacks contains the original dynamic graph code, that is, the code written by the user:
+
+    ```bash
+    AssertionError: In user code:
 
         File "<ipython-input-13-f9c3ea702e3a>", line 7, in func
-	       x = fluid.layers.reshape(x, shape=[-1, -1])
-	    File "paddle/fluid/layers/nn.py", line 6193, in reshape
-	        attrs["shape"] = get_attr_shape(shape)
-	    File "paddle/fluid/layers/nn.py", line 6169, in get_attr_shape
-	        "be -1. But received shape[%d] is also -1." % dim_idx)
-	```
-	其中，`File "<ipython-input-13-f9c3ea702e3a>", line 7, in func` 是转换前的代码位置信息，`x = fluid.layers.reshape(x, shape=[-1, -1])` 是转换前的代码。
+           x = fluid.layers.reshape(x, shape=[-1, -1])
+        File "paddle/fluid/layers/nn.py", line 6193, in reshape
+            attrs["shape"] = get_attr_shape(shape)
+        File "paddle/fluid/layers/nn.py", line 6169, in get_attr_shape
+            "be -1. But received shape[%d] is also -1." % dim_idx)
+    ```
+    `File "<ipython-input-13-f9c3ea702e3a>", line 7, in func` is the location information of un-transformed code, `x = fluid.layers.reshape(x, shape=[-1, -1])` is the code un-transformed.
 
-3. 新的异常中，包含原始报错中的的报错信息，如下：
-	```bash
-	AssertionError: Only one dimension value of 'shape' in reshape can be -1. But received shape[1] is also -1.
-	```
+3. The new exception contains the message that the exception originally reported, as follows:  
+    ```bash
+    AssertionError: Only one dimension value of 'shape' in reshape can be -1. But received shape[1] is also -1.
+    ```  
 
-运行以下代码，在静态图运行时，即运行期会抛出异常：
+If executing the following code, an exception is raised when the static graph is executed, that is, at runtime:
 
 ```Python
 @paddle.jit.to_static
@@ -107,8 +109,6 @@ def func(x):
 
 func(np.ones([3]).astype("int32"))
 ```
-
-运行结果：
 
 ```bash
 Traceback (most recent call last):
@@ -157,4 +157,4 @@ InvalidArgumentError: The 'shape' in ReshapeOp is invalid. The input tensor X'si
   [operator < reshape2 > error]  [operator < run_program > error]
 ```
 
-上述异常中，除了隐藏部分报错栈、报错定位到转换前的动态图代码外，报错信息中包含了C++报错栈`C++ Traceback`和`Error Message Summary`，这是Paddle的C++端异常信息，经处理后在Python的异常信息中显示。
+In the above exception, in addition to hiding part of the error stack and locating the error to the dynamic graph code un-transformed, the error information includes the c++ error stack `C++ Traceback` and `Error Message Summary`, which are the exception from C++ and are displayed in Python exception after processing.

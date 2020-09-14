@@ -16,4 +16,4 @@ Let's start with studying basic concept of PaddlePaddle:
     :hidden:
 
     migration_en.rst
-    dynamic_to_static/index_en.rst
+    dygraph_to_static/index_en.rst
