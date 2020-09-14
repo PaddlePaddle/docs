@@ -1,7 +1,7 @@
 # Release Note
 
 ## Important Update
-This version is the beta version of PaddlePaddle Framework v2.0. The most important change is the full upgrade of the API system and the comprehensive improvement on the imperative programming (dynamic graph) capability. This version systematically optimizes the directory structure of PaddlePaddle basic APIs, comprehensively fixes relevant issues left over from the past, fully supplements APIs, and especially provides the better high-level API functions. It also provides support for the quantitative training and mixed precision training under a dynamic graph. Perfect syntax support is implemented in the dynamic-to-static conversion. The usability is improved substantially. Dynamic graph-related functions tend to be perfect. The default development mode of PaddlePaddle is changed to the dynamic graph mode.In addition, the C++ APIs for the inference library are upgraded and optimized. Both the support of the inference library for quantitative models and the inference performance are fully enhanced.
+This version is the beta version of PaddlePaddle Framework v2.0. The most important change is the full upgrade of the API system and the comprehensive improvement on the imperative programming (dynamic graph) capability. This version systematically optimizes the directory structure of PaddlePaddle basic APIs, comprehensively fixes relevant issues left over from the past, fully supplements APIs, and especially provides the better high-level API functions. It also provides support for the quantitative training and mixed precision training under a dynamic graph. Perfect syntax support is implemented in the dynamic-to-static conversion. The usability is improved substantially. Dynamic graph-related functions tend to be perfect. In addition, the C++ APIs for the inference library are upgraded and optimized. Both the support of the inference library for quantitative models and the inference performance are fully enhanced.
 
 ## Training Framework
 
@@ -19,13 +19,13 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
   | paddle.* | The aliases of commonly used APIs are reserved in the paddle root directory, which currently include all the APIs in the paddle.tensor and paddle.framework directories |
   | paddle.tensor | APIs related to tensor operations such as creating zeros, matrix operation matmul, transforming concat, computing add, and finding argmax |
   | paddle.nn | Networking-related APIs such as Linear, Conv2d, loss function, convolution, LSTM，and activation function |
-  | paddle.static.nn | Special APIs for networking under a static graph such as input placeholder data/Input and control flow while_loop/cond |
+  | paddle.static.nn | Special APIs for networking under a static graph such as input placeholder data, fully connection fc and control flow while_loop/cond |
   | paddle.static | APIs related to the basic framework under a static graph such as Variable, Program, and Executor |
-  | paddle.framework | Universal APIs and imprerative mode APIs such as to_variable and prepare_context |
+  | paddle.framework | Universal APIs and imprerative mode APIs such as to_tensor |
   | paddle.optimizer | APIs related to optimization algorithms such as SGD, Adagrad, and Adam |
   | paddle.optimizer.lr_scheduler | APIs related to learning rate attenuation |
   | paddle.metric | APIs related to evaluation index computation such as accuracy and auc |
-  | paddle.io | APIs related to data input and output such as save, load, Dataset, and DataLoader |
+  | paddle.io | APIs related to data input and output such as Dataset, and DataLoader |
   | paddle.device | APIs related to device management such as CPUPlace and CUDAPlace |
   | paddle.distributed | Distributed related basic APIs |
   | paddle.distributed.fleet | Distributed related high-level APIs |
@@ -78,6 +78,22 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
   | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.ConvTranspose2d |
   | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2d, paddle.nn.AvgPool2d |
 
+#### Added APIs
+- Added a total of 140 APIs. See [Link] (https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-New-API-List) and the API document
+  - Added environment setting APIs: paddle.set_default_dtype, paddle.get_default_dtype, paddle.set_device, paddle.get_device, paddle.manual_seed
+  - Added tensor operation APIs: numel, chunk, masked_select, isfinite, isinf, isnan, sort, topk, Flatten, dim, tile
+  - Added networking APIs: Linear, Bilinear, Embedding, linear, bilinear, embedding
+  - Added vision networking APIs: Conv1d, ConvTranspose1d, MaxPool1d, MaxPool2d, MaxPool3d, AvgPool1d, AvgPool2d, AvgPool3d, AdaptiveMaxPool1d, AdaptiveMaxPool2d, AdaptiveMaxPool3d, ReflactionPad1d, ReflactionPad2d, ReflactionPad3d, ReplicationPad1d, ReplicationPad2d, ReplicationPad3d, ZeroPad2d, ConstantPad1d, ConstantPad2d, ConstantPad3d, PixelShuffle, Upsample, UpsamplingNearest2d, UpsamplingBilinear2d, conv1d, conv_transpose1d, avg_pool1d, avg_pool2d, avg_pool3d, max_pool1d, max_pool2d, max_pool3d, adaptive_max_pool1d, adaptive_max_pool2d, adaptive_max_pool3d, adaptive_avg_pool1d, adaptive_avg_pool3d
+  - Added text processing networking APIs: SimpleRNN, LSTM, GRU, MultiHeadAttention, Transformer, TransformerEncoder, TransformerEncoderLayer, TransformerDecoder, TransformerDecoderLayer
+  - Added activation APIs: ELU, Hardshrink, Hardtanh, PReLU, ReLU6, Tanh, Tanhshrink, Softmax
+  - Added normalization APIs: BatchNorm1d, BatchNorm2d, BatchNorm3d, SyncBatchNorm, InstanceNorm1d, InstanceNorm2d, InstanceNorm3d, weight_norm, remove_weight_norm, batch_norm, instance_norm, layer_norm, normalize
+  - Added dropout APIs: Dropout2d, Dropout3d, AlphaDropout, dropout, dropout2d, dropout3d
+  - Added similarity and loss function APIs: CosineSimilarity, PairwiseDistance, CTCLoss, KLDivLoss, BCEWithLogitsLoss, MarginRankingLoss, SmoothL1Loss, consine_similarity, binary_cross_entropy, binary_cross_entropy_with_logits, cross_entropy, ctc_loss, l1_loss, mse_loss, margin_ranking_loss, nll_loss, smooth_l1_loss
+  - Added distributed communication APIs: broadcast, all_reduce, reduce, all_gather, scatter, barrier
+  - Added probability distribution APIs: Distribution, normal, bernoulli
+  - Added optimizer-related APIs: step, AdamW
+  - Added dataset-related APIs: Dataset, IterableDataset, TensorDataset, Sampler, RandomSampler, BatchSampler, DistributedBatchSampler
+
 #### Fixing and Improving APIs
 - Modified and improved a total of 155 APIs. See [Link] (https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-Upgraded-API-List) and the API document
 - Fixed APIs related to random number generation including: seed setting paddle.rand, randn, randint, randperm, dropout, Uniform, and Normal
@@ -85,6 +101,7 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
 - Added oneDNN support for the relu6 and Sigmoid activation functions
 
 #### Multi-device/Distributed Training APIs
+
 - Single-Machine Multi-Card Training Under a Dynamic Graph
   - Added paddle.distributed.spawn(func, args=(), nprocs=-1, join=True, daemon=False, **options)，which is used to start multi-card training under a dynamic graph.
   - Added paddle.distributed.init_parallel_env(), which is used to initialize the environment of multi-card training under a dynamic graph.
@@ -175,7 +192,6 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
 
   - Added paddle.jit.save API, which is used to save a dynamic-to-static model so that the API is easier to use; deleted an old API ProgramTranslator.save_inference_model.
   - Added paddle.jit.load API, which is used to load inference models including models saved by paddle.jit.save and paddle.io.save_inference_model. After being loaded, models can be used for model inference or model training optimization in a dynamic graph.
-
 
 #### Mixed Precision Training
 - Added the support for mixed precision of dynamic graphs. The ratio of the speed when the ResNet-50 model is trained on V100 using mixed precision to the speed using fp32 is 2.6.
