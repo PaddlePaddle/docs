@@ -13,6 +13,7 @@ Auc
 
 
 参数：
+:::::::::
     - **curve** (str) - 将要计算的曲线名的模式，包括'ROC'（默认）或者'PR'（Precision-Recall-curve）。
     - **num_thresholds** (int) - 离散化AUC曲线的整数阈值数，默认是4095。
     - **name** (str，可选) – metric实例的名字，默认是'auc'。
@@ -83,6 +84,7 @@ Auc
 更新AUC计算的状态。
 
 参数:
+:::::::::
     - **preds** (numpy.array | Tensor): 一个shape为[batch_size, 2]的Numpy数组或Tensor，preds[i][j]表示第i个样本类别为j的概率。
     - **labels** (numpy.array | Tensor): 一个shape为[batch_size, 1]的Numpy数组或Tensor，labels[i]是0或1，表示第i个样本的类别。
 

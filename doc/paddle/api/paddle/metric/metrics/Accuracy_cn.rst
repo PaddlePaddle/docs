@@ -5,9 +5,10 @@ Accuracy
 
 .. py:class:: paddle.metric.Accuracy()
 
-准确率Accuracy。
+计算准确率(accuracy)。
 
 参数：
+:::::::::
     - **topk** (int|tuple(int)) - 计算准确率的top个数，默认是1。
     - **name** (str, optional) - metric实例的名字，默认是'acc'。
 
@@ -60,6 +61,7 @@ Accuracy
 计算top-k（topk中的最大值）的索引。
 
 参数：
+:::::::::
     - **pred**  (Tensor) - 预测结果为是float64或float32类型的Tensor。
     - **label**  (Tensor) - 真实的标签值是一个2D的Tensor，shape为[batch_size, 1], 数据类型为int64。
 
@@ -71,6 +73,7 @@ Accuracy
 更新metric的状态（正确预测的个数和总个数），以便计算累积的准确率。返回当前step的准确率。
 
 参数:
+:::::::::
     - **correct** (numpy.array | Tensor): 一个值为0或1的Tensor，shape是[batch_size, topk]。
 
 返回: 当前step的准确率。
@@ -80,18 +83,24 @@ Accuracy
 
 清空状态和计算结果。
 
-返回：无
+返回
+:::::::::
+  无
 
 
 .. py:function:: accumulate()
 
 累积的统计指标，计算和返回准确率。
 
-返回：准确率，一般是个标量 或 多个标量，和topk的个数一致。
+返回
+:::::::::
+  准确率，一般是个标量 或 多个标量，和topk的个数一致。
 
 
 .. py:function:: name()
 
 返回Metric实例的名字, 参考上述name，默认是'acc'。
 
-返回: 评估的名字，string类型。
+返回
+:::::::::
+  评估的名字，string类型。

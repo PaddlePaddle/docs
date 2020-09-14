@@ -6,41 +6,40 @@ Metric
 .. py:class:: paddle.metric.Metric()
 
 
-    评估器metric的基类。
+评估器metric的基类。
 
-    用法:
-        
-        m = SomeMetric()
-        for prediction, label in ...:
-            m.update(prediction, label)
-        m.accumulate()
-        
-    :code:`compute` 接口的进阶用法:
+用法:
+    
+    m = SomeMetric()
+    for prediction, label in ...:
+        m.update(prediction, label)
+    m.accumulate()
+    
+:code:`compute` 接口的进阶用法:
 
-    在 :code:`compute` 中可以使用PaddlePaddle内置的算子进行评估器的状态，而不是通过
-    Python/NumPy, 这样可以加速计算。:code:`update` 接口将 :code:`compute` 的输出作为
-    输入，内部采用Python/NumPy计算。
+在 :code:`compute` 中可以使用PaddlePaddle内置的算子进行评估器的状态，而不是通过
+Python/NumPy, 这样可以加速计算。:code:`update` 接口将 :code:`compute` 的输出作为
+输入，内部采用Python/NumPy计算。
 
-    :code: `Metric` 计算流程如下 （在{}中的表示模型和评估器的计算）:
+:code: `Metric` 计算流程如下 （在{}中的表示模型和评估器的计算）:
 
-                 inputs & labels              || ------------------
-                       |                      ||
-                    {model}                   ||
-                       |                      ||
-                outputs & labels              ||
-                       |                      ||    tensor data
-                {Metric.compute}              ||
-                       |                      ||
-              metric states(tensor)           ||
-                       |                      ||
-                {fetch as numpy}              || ------------------
-                       |                      ||
-              metric states(numpy)            ||    numpy data
-                       |                      ||
-                {Metric.update}               \/ ------------------
+             inputs & labels              || ------------------
+                   |                      ||
+                {model}                   ||
+                   |                      ||
+            outputs & labels              ||
+                   |                      ||    tensor data
+            {Metric.compute}              ||
+                   |                      ||
+          metric states(tensor)           ||
+                   |                      ||
+            {fetch as numpy}              || ------------------
+                   |                      ||
+          metric states(numpy)            ||    numpy data
+                   |                      ||
+            {Metric.update}               \/ ------------------
 
-    代码示例
-:::::::::
+**代码示例**
 
         以 计算正确率的 :code: `Accuracy` 为例，该评估器的输入为 :code: `pred` 和
         :code: `label`, 可以在 :code:`compute` 中通过 :code: `pred` 和 :code: `label`

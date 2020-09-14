@@ -12,6 +12,7 @@ Recall
 
 
 参数
+:::::::::
     - **name** (str，可选) – metric实例的名字，默认是'recall'。
 
 
@@ -75,6 +76,7 @@ Recall
 更新Recall的状态。
 
 参数:
+:::::::::
     - **preds** (numpy.array | Tensor): 预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
     - **labels** (numpy.array | Tensor): 真实标签的shape和:code: `preds` 相同，数据类型为int32或int64。
 
