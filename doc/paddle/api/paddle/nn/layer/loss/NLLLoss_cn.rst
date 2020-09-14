@@ -55,16 +55,16 @@ NLLLoss
         log_softmax = paddle.nn.LogSoftmax(axis=1)
 
         input_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
-                         [0.53331435, 0.07999352, 0.8549948 ],
-                         [0.25879037, 0.39530203, 0.698465  ],
-                         [0.73427284, 0.63575995, 0.18827209],
-                         [0.05689114, 0.0862954 , 0.6325046 ]]).astype(np.float32)
+                             [0.53331435, 0.07999352, 0.8549948 ],
+                             [0.25879037, 0.39530203, 0.698465  ],
+                             [0.73427284, 0.63575995, 0.18827209],
+                             [0.05689114, 0.0862954 , 0.6325046 ]]).astype(np.float32)
         label_np = np.array([0, 2, 1, 1, 0]).astype(np.int64)
 
         place = paddle.CPUPlace()
         paddle.disable_static(place)
-        input = paddle.to_variable(input_np)
+        input = paddle.to_tensor(input_np)
         log_out = log_softmax(input)
-        label = paddle.to_variable(label_np)
+        label = paddle.to_tensor(label_np)
         result = nll_loss(log_out, label)
         print(result.numpy()) # [1.0720209]
