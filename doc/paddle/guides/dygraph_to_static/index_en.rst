@@ -6,7 +6,7 @@ Dygraph to Static Graph
 
 - `Supported Grammars <grammar_list_en.html>`_ ：Introduce the grammars supported by ProgramTranslator and list unsupported grammars.
 
-- `Usage of InputSpec <input_spec_en.html>`_ ：Introduce the usage of InputSpec to specify the input signature from dygraph to static program.
+- `Introduction of InputSpec <input_spec_en.html>`_ ：Introduce the usage of InputSpec to specify the input signature from dygraph to static program.
 
 - `Error Handling <error_handling_en.html>`_ ：Introduce the error handling by ProgramTranslator.
 
@@ -15,8 +15,8 @@ Dygraph to Static Graph
 ..  toctree::
     :hidden:
 
-    grammar_list_en.rst
     program_translator_en.rst
+    grammar_list_en.rst
     input_spec_en.rst
     error_handling_en.md
     debugging_en.md
