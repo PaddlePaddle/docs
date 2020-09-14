@@ -443,3 +443,40 @@ Model
     model.prepare()
     result = model.predict(test_dataset, batch_size=64)
     print(len(result[0]), result[0][0].shape)
+
+
+.. py:function:: summary(input_size=None, batch_size=None, dtype=None):
+
+打印网络的基础结构和参数信息。
+
+参数：
+    - **input_size** (tuple|InputSpec|list[tuple|InputSpec，可选) - 输入张量的大小。如果网络只有一个输入，那么该值需要设定为tuple或InputSpec。如果模型有多个输入。那么该值需要设定为list[tuple|InputSpec]，包含每个输入的shape。如果该值没有设置，会将 ``self._inputs`` 作为输入。默认值：None。
+    - **batch_size** (int，可选) - 输入张量的批大小。默认值：None。
+    - **dtypes** (str，可选) - 输入张量的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
+
+返回：字典：包含网络全部参数的大小和全部可训练参数的大小。
+
+**代码示例**：
+
+.. code-block:: python
+
+    import paddle
+    from paddle.static import InputSpec
+
+    dynamic = True
+    device = paddle.set_device('cpu')
+    paddle.disable_static(device) if dynamic else None
+
+    input = InputSpec([None, 1, 28, 28], 'float32', 'image')
+    label = InputSpec([None, 1], 'int64', 'label')
+
+    model = paddle.Model(paddle.vision.LeNet(classifier_activation=None),
+        input, label)
+    optim = paddle.optimizer.Adam(
+        learning_rate=0.001, parameters=model.parameters())
+    model.prepare(
+        optim,
+        paddle.nn.CrossEntropyLoss())
+
+    params_info = model.summary()
+    print(params_info)
