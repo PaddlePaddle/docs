@@ -5,9 +5,6 @@ scatter
 
 .. py:function:: paddle.fluid.layers.scatter(input, index, updates, name=None, overwrite=True)
 
-:alias_main: paddle.scatter
-:alias: paddle.scatter,paddle.tensor.scatter,paddle.tensor.manipulation.scatter
-:old_api: paddle.fluid.layers.scatter
 
 
 

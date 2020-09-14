@@ -5,8 +5,6 @@ diag_embed
 
 .. py:function:: paddle.functional.diag_embed(input, offset=0, dim1=-2, dim2=-1):
 
-:alias_main: paddle.nn.functional.diag_embed
-:alias: paddle.nn.functional.diag_embed,paddle.nn.functional.extension.diag_embed
 
 
 

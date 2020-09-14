@@ -5,9 +5,6 @@ rank_loss
 
 .. py:function::  paddle.fluid.layers.rank_loss(label, left, right, name=None)
 
-:alias_main: paddle.nn.functional.rank_loss
-:alias: paddle.nn.functional.rank_loss,paddle.nn.functional.loss.rank_loss
-:old_api: paddle.fluid.layers.rank_loss
 
 
 

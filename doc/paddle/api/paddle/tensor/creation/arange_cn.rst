@@ -5,8 +5,6 @@ arange
 
 .. py:function:: paddle.arange(start=0, end=None, step=1, dtype=None, name=None)
 
-:alias_main: paddle.arange
-:alias: paddle.tensor.arange, paddle.tensor.creation.arange
 
 
 

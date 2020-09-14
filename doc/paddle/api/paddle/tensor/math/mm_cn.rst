@@ -5,9 +5,6 @@ mm
 
 .. py:function:: paddle.mm(input, mat2, out=None, name=None)
 
-:alias_main: paddle.mm
-:alias: paddle.mm,paddle.tensor.mm,paddle.tensor.math.mm
-:update_api: paddle.fluid.layers.matmul
 
 
 

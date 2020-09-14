@@ -5,9 +5,6 @@ clip_by_norm
 
 .. py:function:: paddle.fluid.layers.clip_by_norm(x, max_norm, name=None)
 
-:alias_main: paddle.nn.clip_by_norm
-:alias: paddle.nn.clip_by_norm,paddle.nn.clip.clip_by_norm
-:old_api: paddle.fluid.layers.clip_by_norm
 
 
 

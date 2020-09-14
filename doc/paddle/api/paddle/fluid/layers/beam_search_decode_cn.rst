@@ -5,9 +5,6 @@ beam_search_decode
 
 .. py:function:: paddle.fluid.layers.beam_search_decode(ids, scores, beam_size, end_id, name=None)
 
-:alias_main: paddle.nn.beam_search_decode
-:alias: paddle.nn.beam_search_decode,paddle.nn.decode.beam_search_decode
-:old_api: paddle.fluid.layers.beam_search_decode
 
 
 

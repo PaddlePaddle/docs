@@ -1,12 +1,9 @@
-.. _cn_api_fluid_layers_tanh:
+.. _cn_api_tensor_tanh:
 
 tanh
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.tanh(x, name=None)
-
-
-
+.. py:function:: paddle.tanh(x, name=None)
 
 
 tanh 激活函数
@@ -14,33 +11,27 @@ tanh 激活函数
 .. math::
     out = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
 
-
 参数:
 
-    - **x** - Tanh算子的输入
-    - **name** (str|None) - 该层名称（可选）。若设为None，则自动为该层命名。
+    - **x** (Tensor) - Tanh算子的输入, 多维Tensor，数据类型为 float16，float32或float64。
+    - **name** (str, 可选) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
 
-返回: 张量(Tensor)
+返回: tanh的输出Tensor，和输入有着相同类型和shape。
 
-返回类型: 变量(Variable)
+返回类型: Tensor
 
 **代码示例**：
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name="input", shape=[32, 784])
-    result = fluid.layers.tanh(data)
+    import paddle
+    import numpy as np
 
+    paddle.disable_static()
 
-
-
-
-
-
-
-
-
-
-
+    x_data = np.array([-0.4, -0.2, 0.1, 0.3])
+    x = paddle.to_tensor(x_data)
+    out = paddle.tanh(x)
+    print(out.numpy())
+    # [-0.37994896 -0.19737532  0.09966799  0.29131261]
 

@@ -5,8 +5,6 @@ inverse
 
 .. py:function:: paddle.inverse(x, name=None)
 
-:alias_main: paddle.inverse
-:alias: paddle.inverse, paddle.tensor.inverse, paddle.tensor.math.inverse
 
 
 

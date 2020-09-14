@@ -5,9 +5,6 @@ smooth_l1
 
 .. py:function:: paddle.fluid.layers.smooth_l1(x, y, inside_weight=None, outside_weight=None, sigma=None)
 
-:alias_main: paddle.nn.functional.smooth_l1
-:alias: paddle.nn.functional.smooth_l1,paddle.nn.functional.loss.smooth_l1
-:old_api: paddle.fluid.layers.smooth_l1
 
 
 

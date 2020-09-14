@@ -5,9 +5,6 @@ cast
 
 .. py:function:: paddle.fluid.layers.cast(x,dtype)
 
-:alias_main: paddle.cast
-:alias: paddle.cast,paddle.tensor.cast,paddle.tensor.manipulation.cast
-:old_api: paddle.fluid.layers.cast
 
 
 

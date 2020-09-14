@@ -5,9 +5,6 @@ reduce_mean
 
 .. py:function:: paddle.fluid.layers.reduce_mean(input, dim=None, keep_dim=False, name=None)
 
-:alias_main: paddle.reduce_mean
-:alias: paddle.reduce_mean,paddle.tensor.reduce_mean,paddle.tensor.stat.reduce_mean
-:old_api: paddle.fluid.layers.reduce_mean
 
 
 

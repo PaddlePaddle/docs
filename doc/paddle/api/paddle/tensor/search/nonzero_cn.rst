@@ -5,8 +5,6 @@ nonzero
 
 .. py:function:: paddle.nonzero(input, as_tuple=False)
 
-:alias_main: paddle.nonzero
-:alias: paddle.nonzero,paddle.tensor.nonzero,paddle.tensor.search.nonzero
 
 
 

@@ -5,9 +5,6 @@ cosine_decay
 
 .. py:function:: paddle.fluid.layers.cosine_decay(learning_rate, step_each_epoch, epochs)
 
-:alias_main: paddle.nn.functional.cosine_decay
-:alias: paddle.nn.functional.cosine_decay,paddle.nn.functional.learning_rate.cosine_decay
-:old_api: paddle.fluid.layers.cosine_decay
 
 
 

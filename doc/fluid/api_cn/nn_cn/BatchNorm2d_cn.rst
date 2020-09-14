@@ -41,7 +41,7 @@ BatchNorm2d
     - **momentum** (float, 可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
     - **weight_attr** (ParamAttr|bool, 可选) - 指定权重参数属性的对象。如果为False, 则表示每个通道的伸缩固定为1，不可改变。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_ParamAttr` 。
     - **bias_attr** (ParamAttr, 可选) - 指定偏置参数属性的对象。如果为False, 则表示每一个通道的偏移固定为0，不可改变。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_ParamAttr` 。
-    - **data_format** (string, 可选) - 指定输入数据格式，数据格式可以为“NCWH"或者"NCHW"。默认值：“NCHW”。
+    - **data_format** (string, 可选) - 指定输入数据格式，数据格式可以为"NCHW"。默认值：“NCHW”。
     - **track_running_stats** (bool, 可选) – 指示是否使用全局均值和方差。在训练时，设置为True表示在训练期间将保存全局均值和方差用于推理。推理时此属性只能设置为True。默认值：True。
     - **name** (string, 可选) – BatchNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
@@ -70,5 +70,5 @@ BatchNorm2d
     batch_norm = paddle.nn.BatchNorm2d(1)
     batch_norm_out = batch_norm(x)
 
-    print(batch_norm_out.numpy)
+    print(batch_norm_out.numpy())
 

@@ -15,6 +15,7 @@ So far you have already been familiar with PaddlePaddle. And the next expectatio
 ..  toctree::
     :hidden:
 
+    dygraph_to_static/index_en.rst
     inference_deployment/index_en.rst
     flags/flags_en.rst
 

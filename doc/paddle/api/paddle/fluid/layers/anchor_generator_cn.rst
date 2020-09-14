@@ -5,9 +5,6 @@ anchor_generator
 
 .. py:function:: paddle.fluid.layers.anchor_generator(input, anchor_sizes=None, aspect_ratios=None, variance=[0.1, 0.1, 0.2, 0.2], stride=None, offset=0.5, name=None)
 
-:alias_main: paddle.nn.functional.anchor_generator
-:alias: paddle.nn.functional.anchor_generator,paddle.nn.functional.vision.anchor_generator
-:old_api: paddle.fluid.layers.anchor_generator
 
 
 

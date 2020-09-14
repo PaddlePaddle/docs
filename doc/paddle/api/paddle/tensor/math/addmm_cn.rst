@@ -6,8 +6,6 @@ addmm
 
 .. py:function:: paddle.addmm(input, x, y, alpha=1.0, beta=1.0, name=None)
 
-:alias_main: paddle.addmm
-:alias: paddle.addmm,paddle.tensor.addmm,paddle.tensor.math.addmm
 
 
 

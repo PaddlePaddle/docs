@@ -6,7 +6,6 @@ sequence_enumerate
 
 .. py:function:: paddle.fluid.layers.sequence_enumerate(input, win_size, pad_value=0, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

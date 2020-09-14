@@ -5,9 +5,6 @@ generate_mask_labels
 
 .. py:function:: paddle.fluid.layers.generate_mask_labels(im_info, gt_classes, is_crowd, gt_segms, rois, labels_int32, num_classes, resolution)
 
-:alias_main: paddle.nn.functional.generate_mask_labels
-:alias: paddle.nn.functional.generate_mask_labels,paddle.nn.functional.vision.generate_mask_labels
-:old_api: paddle.fluid.layers.generate_mask_labels
 
 
 

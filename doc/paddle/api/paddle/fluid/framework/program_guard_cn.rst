@@ -6,7 +6,6 @@ program_guard
 
 .. py:function:: paddle.fluid.program_guard(main_program, startup_program=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
