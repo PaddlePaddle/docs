@@ -6,7 +6,7 @@
 
 同一**Tensor**的中所有元素的dtype均相同。如果你对 [Numpy](https://www.paddlepaddle.org.cn/tutorials/projectdetail/590690) 熟悉，**Tensor**是类似于 **Numpy array** 的概念。
 
-###目录
+### 目录
 
 * [Tensor的创建](#1)
 * [Tensor的shape](#2)
@@ -17,7 +17,7 @@
 
 首先，让我们开始创建一个 **Tensor** :
 
-###1. 创建类似于vector的**1-D Tensor**，其rank为1
+### 1. 创建类似于vector的**1-D Tensor**，其rank为1
 ```python
 # 可通过dtype来指定Tensor数据类型，否则会创建float32类型的Tensor
 rank_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
@@ -81,7 +81,7 @@ Tensor: generated_tensor_3
 ```
 上述不同rank的**Tensor**可以可视化的表示为：
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/image/Tensor_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png" width="600" ></center>
 <br><center>图1 不同rank的Tensor可视化表示</center>
 
 
@@ -116,7 +116,7 @@ CompleTensor[imag]: generated_tensor_0.real
 如果检测到输入数据包含complex numbers，则会自动创建一个**ComplexTensor**，**ComplexTensor**是Paddle中一种特殊的数据结构，
 其包含实部（real）与虚部（imag）两个形状与数据类型相同的**Tensor**，其结构可视化表示为：
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/image/ComplexTensor_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png" width="600" ></center>
 <br><center>图2 ComplexTensor的可视化表示</center>
 
 **Tensor**必须形状规则，类似于“矩形”的概念，也就是，沿任何一个轴（也称作维度）上，元素的数量都是相等的，如果为以下情况：
@@ -165,7 +165,7 @@ paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为
 rank_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/image/Axis_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png" width="600" ></center>
 <br><center>图3 Tensor的shape、axis、dimension、rank之间的关系</center>
 
 ```python

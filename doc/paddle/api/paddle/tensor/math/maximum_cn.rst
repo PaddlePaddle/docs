@@ -55,6 +55,7 @@ maximum
 .. code-block:: python
 
     import paddle
+    import numpy as np
     paddle.disable_static()
   
     x = paddle.to_tensor([[1, 2], [3, 4]])

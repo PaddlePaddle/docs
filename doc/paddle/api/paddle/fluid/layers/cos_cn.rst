@@ -30,7 +30,7 @@ cos
 
         import paddle
         paddle.disable_static()
-        x = paddle.to_tensor([[-1,np.pi],[1,15.6]], dtype='float32')
+        x = paddle.to_tensor([[-1, np.pi], [1, 15.6]], dtype='float32')
         res = paddle.cos(x)
         print(res.numpy())
         # [[ 0.54030231 -1.        ]

@@ -5,11 +5,11 @@ Tensor
 
 .. py:class:: paddle.Tensor
 
-``Tensor`` 是paddle中最为基础的数据结构，有几种创建Tensor的不同方式：
+``Tensor`` 是Paddle中最为基础的数据结构，有几种创建Tensor的不同方式：
 
-- 用预先存在的 ``data`` 数据创建1个Tensor，请参考 ref:`cn_api_paddle_to_tensor`
-- 创建一个指定 ``shape`` 的Tensor，请参考 ref:`cn_api_paddle_cn_ones` 、ref:`cn_api_paddle_cn_zeros`、ref:`_cn_api_paddle_cn_full`
-- 创建一个与其他Tensor具有相同 ``shape`` 与 ``dtype`` 的Tensor，请参考 ref:`cn_api_paddle_cn_ones_like` 、ref:`cn_api_paddle_cn_zeros_like`、ref:`_cn_api_paddle_cn_full_like`
+- 用预先存在的 ``data`` 数据创建1个Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
+- 创建一个指定 ``shape`` 的Tensor，请参考 :ref:`cn_api_paddle_cn_ones` 、 :ref:`cn_api_paddle_cn_zeros`、 :ref:`_cn_api_paddle_cn_full`
+- 创建一个与其他Tensor具有相同 ``shape`` 与 ``dtype`` 的Tensor，请参考 :ref:`cn_api_paddle_cn_ones_like` 、 :ref:`cn_api_paddle_cn_zeros_like`、 :ref:`_cn_api_paddle_cn_full_like`
 
 .. py:attribute:: dtype
 
@@ -126,62 +126,82 @@ Tensor
 .. py:method:: abs(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_abs`
+
+请参考 :ref:`cn_api_tensor_cn_abs`
 
 .. py:method:: acos(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_acos`
+
+请参考 :ref:`cn_api_tensor_cn_acos`
 
 .. py:method:: add(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_add`
+
+请参考 :ref:`cn_api_tensor_cn_add`
 
 .. py:method:: addcmul(tensor1, tensor2, value=1.0, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_addcmul`
+
+请参考 :ref:`cn_api_tensor_cn_addcmul`
 
 .. py:method:: addmm(x, y, beta=1.0, alpha=1.0, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_addmm`
+
+请参考 :ref:`cn_api_tensor_cn_addmm`
 
 .. py:method:: allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_allclose`
+
+请参考 :ref:`cn_api_tensor_cn_allclose`
 
 .. py:method:: argmax(axis=None, keepdim=False, dtype=int64, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_argmax`
+
+请参考 :ref:`cn_api_tensor_cn_argmax`
 
 .. py:method:: argmin(axis=None, keepdim=False, dtype=int64, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_argmin`
+
+请参考 :ref:`cn_api_tensor_cn_argmin`
 
 .. py:method:: argsort(axis=-1, descending=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_argsort`
+
+请参考 :ref:`cn_api_tensor_cn_argsort`
 
 .. py:method:: asin(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_asin`
+
+请参考 :ref:`cn_api_tensor_cn_asin`
 
 .. py:method:: astype(dtype)
 
@@ -206,8 +226,10 @@ Tensor
 .. py:method:: atan(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_atan`
+
+请参考 :ref:`cn_api_tensor_cn_atan`
 
 .. py:method:: backward(retain_graph=False)
 
@@ -236,42 +258,55 @@ Tensor
         ret = paddle.sums(inputs)
         loss = paddle.reduce_sum(ret)
         loss.backward()
-        
+
 .. py:method:: bmm(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_bmm`
+
+请参考 :ref:`cn_api_tensor_cn_bmm`
 
 .. py:method:: broadcast_to(shape, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_broadcast_to`
+
+请参考 :ref:`cn_api_tensor_cn_broadcast_to`
 
 .. py:method:: cast(dtype)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_cast`
+
+请参考 :ref:`cn_api_tensor_cn_cast`
 
 .. py:method:: ceil(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_ceil`
+
+请参考 :ref:`cn_api_tensor_cn_ceil`
 
 .. py:method:: cholesky(upper=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_cholesky`
+
+请参考 :ref:`cn_api_tensor_cn_cholesky`
 
 .. py:method:: chunk(chunks, axis=0, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_chunk`
+
+请参考 :ref:`cn_api_tensor_cn_chunk`
+
 
 .. py:method:: clear_gradient()
 
@@ -299,41 +334,54 @@ Tensor
         loss2.clear_gradient()
         print("After clear {}".format(loss2.gradient()))
 
+
 .. py:method:: clip(min=None, max=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_clip`
+
+请参考 :ref:`cn_api_tensor_cn_clip`
 
 .. py:method:: concat(axis=0, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_concat`
+
+请参考 :ref:`cn_api_tensor_cn_concat`
 
 .. py:method:: cos(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_cos`
+
+请参考 :ref:`cn_api_tensor_cn_cos`
 
 .. py:method:: cosh(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_cosh`
+
+请参考 :ref:`cn_api_tensor_cn_cosh`
 
 .. py:method:: cross(y, axis=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_cross`
+
+请参考 :ref:`cn_api_tensor_cn_cross`
 
 .. py:method:: cumsum(axis=None, dtype=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_cumsum`
+
+请参考 :ref:`cn_api_tensor_cn_cumsum`
 
 .. py:method:: detach()
 
@@ -357,146 +405,194 @@ Tensor
 .. py:method:: dim()
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_dim`
+
+请参考 :ref:`cn_api_tensor_cn_dim`
 
 .. py:method:: dist(y, p=2)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_dist`
+
+请参考 :ref:`cn_api_tensor_cn_dist`
 
 .. py:method:: divide(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_divide`
+
+请参考 :ref:`cn_api_tensor_cn_divide`
 
 .. py:method:: dot(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_dot`
+
+请参考 :ref:`cn_api_tensor_cn_dot`
 
 .. py:method:: elementwise_add(y, axis=-1, act=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_elementwise_add`
+
+请参考 :ref:`cn_api_tensor_cn_elementwise_add`
 
 .. py:method:: elementwise_div(y, axis=-1, act=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_elementwise_div`
+
+请参考 :ref:`cn_api_tensor_cn_elementwise_div`
 
 .. py:method:: elementwise_floordiv(y, axis=-1, act=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_elementwise_floordiv`
+
+请参考 :ref:`cn_api_tensor_cn_elementwise_floordiv`
 
 .. py:method:: elementwise_mod(y, axis=-1, act=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_elementwise_mod`
+
+请参考 :ref:`cn_api_tensor_cn_elementwise_mod`
 
 .. py:method:: elementwise_pow(y, axis=-1, act=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_elementwise_pow`
+
+请参考 :ref:`cn_api_tensor_cn_elementwise_pow`
 
 .. py:method:: elementwise_sub(y, axis=-1, act=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_elementwise_sub`
+
+请参考 :ref:`cn_api_tensor_cn_elementwise_sub`
 
 .. py:method:: elementwise_sum(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_elementwise_sum`
+
+请参考 :ref:`cn_api_tensor_cn_elementwise_sum`
 
 .. py:method:: equal(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_equal`
+
+请参考 :ref:`cn_api_tensor_cn_equal`
 
 .. py:method:: equal_all(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_equal_all`
+
+请参考 :ref:`cn_api_tensor_cn_equal_all`
 
 .. py:method:: erf(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_erf`
+
+请参考 :ref:`cn_api_tensor_cn_erf`
 
 .. py:method:: exp(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_exp`
+
+请参考 :ref:`cn_api_tensor_cn_exp`
 
 .. py:method:: expand(shape, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_expand`
+
+请参考 :ref:`cn_api_tensor_cn_expand`
 
 .. py:method:: expand_as(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_expand_as`
+
+请参考 :ref:`cn_api_tensor_cn_expand_as`
 
 .. py:method:: flatten(start_axis=0, stop_axis=-1, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_flatten`
+
+请参考 :ref:`cn_api_tensor_cn_flatten`
 
 .. py:method:: flip(axis, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_flip`
+
+请参考 :ref:`cn_api_tensor_cn_flip`
 
 .. py:method:: floor(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_floor`
+
+请参考 :ref:`cn_api_tensor_cn_floor`
 
 .. py:method:: floor_divide(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_floor_divide`
+
+请参考 :ref:`cn_api_tensor_cn_floor_divide`
 
 .. py:method:: floor_mod(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_floor_mod`
+
+请参考 :ref:`cn_api_tensor_cn_floor_mod`
 
 .. py:method:: gather(index, axis=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_gather`
+
+请参考 :ref:`cn_api_tensor_cn_gather`
 
 .. py:method:: gather_nd(index, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_gather_nd`
+
+请参考 :ref:`cn_api_tensor_cn_gather_nd`
 
 .. py:method:: gradient()
 
@@ -515,240 +611,321 @@ Tensor
         z = x * y
         z.backward()
         print("tensor's grad is: {}".format(x.grad))
-        
-.. py:method:: greater_equal(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_greater_equal`
+
+请参考 :ref:`cn_api_tensor_cn_greater_equal`
 
 .. py:method:: greater_than(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_greater_than`
+
+请参考 :ref:`cn_api_tensor_cn_greater_than`
 
 .. py:method:: has_inf()
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_has_inf`
+
+请参考 :ref:`cn_api_tensor_cn_has_inf`
 
 .. py:method:: has_nan()
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_has_nan`
+
+请参考 :ref:`cn_api_tensor_cn_has_nan`
 
 .. py:method:: histogram(bins=100, min=0, max=0)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_histogram`
+
+请参考 :ref:`cn_api_tensor_cn_histogram`
 
 .. py:method:: increment(value=1.0, in_place=True)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_increment`
+
+请参考 :ref:`cn_api_tensor_cn_increment`
 
 .. py:method:: index_sample(index)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_index_sample`
+
+请参考 :ref:`cn_api_tensor_cn_index_sample`
 
 .. py:method:: index_select(index, axis=0, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_index_select`
+
+请参考 :ref:`cn_api_tensor_cn_index_select`
 
 .. py:method:: inverse(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_inverse`
+
+请参考 :ref:`cn_api_tensor_cn_inverse`
 
 .. py:method:: is_empty(cond=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_is_empty`
+
+请参考 :ref:`cn_api_tensor_cn_is_empty`
 
 .. py:method:: isfinite(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_isfinite`
+
+请参考 :ref:`cn_api_tensor_cn_isfinite`
 
 .. py:method:: isinf(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_isinf`
+
+请参考 :ref:`cn_api_tensor_cn_isinf`
 
 .. py:method:: isnan(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_isnan`
+
+请参考 :ref:`cn_api_tensor_cn_isnan`
 
 .. py:method:: kron(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_kron`
+
+请参考 :ref:`cn_api_tensor_cn_kron`
 
 .. py:method:: less_equal(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_less_equal`
+
+请参考 :ref:`cn_api_tensor_cn_less_equal`
 
 .. py:method:: less_than(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_less_than`
+
+请参考 :ref:`cn_api_tensor_cn_less_than`
 
 .. py:method:: log(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_log`
+
+请参考 :ref:`cn_api_tensor_cn_log`
 
 .. py:method:: log1p(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_log1p`
+
+请参考 :ref:`cn_api_tensor_cn_log1p`
 
 .. py:method:: logical_and(y, out=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_logical_and`
+
+请参考 :ref:`cn_api_tensor_cn_logical_and`
 
 .. py:method:: logical_not(out=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_logical_not`
+
+请参考 :ref:`cn_api_tensor_cn_logical_not`
 
 .. py:method:: logical_or(y, out=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_logical_or`
+
+请参考 :ref:`cn_api_tensor_cn_logical_or`
 
 .. py:method:: logical_xor(y, out=None, name=None)
 
 返回：计算后的Tensor
-返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_logical_xor`
 
-.. py:method:: logsumexp(axis=None, keepdim=False, name=None)
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_logical_xor`
+
+.. py:method:: logsigmoid()
+        logsigmoid
+
+        Returns: 
+            Tensor
+        .. py:method:: logsumexp(axis=None, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_logsumexp`
+
+请参考 :ref:`cn_api_tensor_cn_logsumexp`
 
 .. py:method:: masked_select(mask, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_masked_select`
+
+请参考 :ref:`cn_api_tensor_cn_masked_select`
 
 .. py:method:: matmul(y, transpose_x=False, transpose_y=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_matmul`
+
+请参考 :ref:`cn_api_tensor_cn_matmul`
 
 .. py:method:: max(axis=None, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_max`
+
+请参考 :ref:`cn_api_tensor_cn_max`
 
 .. py:method:: maximum(y, axis=-1, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_maximum`
+
+请参考 :ref:`cn_api_tensor_cn_maximum`
 
 .. py:method:: mean(axis=None, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_mean`
+
+请参考 :ref:`cn_api_tensor_cn_mean`
 
 .. py:method:: min(axis=None, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_min`
+
+请参考 :ref:`cn_api_tensor_cn_min`
 
 .. py:method:: minimum(y, axis=-1, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_minimum`
+
+请参考 :ref:`cn_api_tensor_cn_minimum`
 
 .. py:method:: mm(mat2, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_mm`
+
+请参考 :ref:`cn_api_tensor_cn_mm`
 
 .. py:method:: mod(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_mod`
+
+请参考 :ref:`cn_api_tensor_cn_mod`
 
 .. py:method:: multiplex(index)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_multiplex`
+
+请参考 :ref:`cn_api_tensor_cn_multiplex`
 
 .. py:method:: multiply(y, axis=-1, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_multiply`
+
+请参考 :ref:`cn_api_tensor_cn_multiply`
 
 .. py:method:: ndimension()
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_ndimension`
+
+请参考 :ref:`cn_api_tensor_cn_ndimension`
 
 .. py:method:: nonzero(as_tuple=False)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_nonzero`
+
+请参考 :ref:`cn_api_tensor_cn_nonzero`
 
 .. py:method:: norm(p=fro, axis=None, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_norm`
+
+请参考 :ref:`cn_api_tensor_cn_norm`
 
 .. py:method:: not_equal(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_not_equal`
+
+请参考 :ref:`cn_api_tensor_cn_not_equal`
 
 .. py:method:: numel(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_numel`
+
+请参考 :ref:`cn_api_tensor_cn_numel`
 
 .. py:method:: numpy()
 
@@ -773,122 +950,170 @@ Tensor
 .. py:method:: pow(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_pow`
+
+请参考 :ref:`cn_api_tensor_cn_pow`
 
 .. py:method:: prod(axis=None, keepdim=False, dtype=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_prod`
+
+请参考 :ref:`cn_api_tensor_cn_prod`
+
+.. py:method:: rank()
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_rank`
 
 .. py:method:: reciprocal(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reciprocal`
+
+请参考 :ref:`cn_api_tensor_cn_reciprocal`
 
 .. py:method:: reduce_all(dim=None, keep_dim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reduce_all`
+
+请参考 :ref:`cn_api_tensor_cn_reduce_all`
 
 .. py:method:: reduce_any(dim=None, keep_dim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reduce_any`
+
+请参考 :ref:`cn_api_tensor_cn_reduce_any`
 
 .. py:method:: reduce_max(dim=None, keep_dim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reduce_max`
+
+请参考 :ref:`cn_api_tensor_cn_reduce_max`
 
 .. py:method:: reduce_mean(dim=None, keep_dim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reduce_mean`
+
+请参考 :ref:`cn_api_tensor_cn_reduce_mean`
 
 .. py:method:: reduce_min(dim=None, keep_dim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reduce_min`
+
+请参考 :ref:`cn_api_tensor_cn_reduce_min`
 
 .. py:method:: reduce_prod(dim=None, keep_dim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reduce_prod`
+
+请参考 :ref:`cn_api_tensor_cn_reduce_prod`
 
 .. py:method:: reduce_sum(dim=None, keep_dim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reduce_sum`
+
+请参考 :ref:`cn_api_tensor_cn_reduce_sum`
 
 .. py:method:: remainder(y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_remainder`
+
+请参考 :ref:`cn_api_tensor_cn_remainder`
 
 .. py:method:: reshape(shape, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reshape`
+
+请参考 :ref:`cn_api_tensor_cn_reshape`
 
 .. py:method:: reverse(axis, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_reverse`
+
+请参考 :ref:`cn_api_tensor_cn_reverse`
 
 .. py:method:: roll(shifts, axis=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_roll`
+
+请参考 :ref:`cn_api_tensor_cn_roll`
 
 .. py:method:: round(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_round`
+
+请参考 :ref:`cn_api_tensor_cn_round`
 
 .. py:method:: rsqrt(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_rsqrt`
+
+请参考 :ref:`cn_api_tensor_cn_rsqrt`
 
 .. py:method:: scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_scale`
+
+请参考 :ref:`cn_api_tensor_cn_scale`
 
 .. py:method:: scatter(index, updates, overwrite=True, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_scatter`
+
+请参考 :ref:`cn_api_tensor_cn_scatter`
 
 .. py:method:: scatter_nd(updates, shape, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_scatter_nd`
+
+请参考 :ref:`cn_api_tensor_cn_scatter_nd`
 
 .. py:method:: scatter_nd_add(index, updates, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_scatter_nd_add`
+
+请参考 :ref:`cn_api_tensor_cn_scatter_nd_add`
 
 .. py:method:: set_value(value)
 
@@ -911,183 +1136,261 @@ Tensor
         custom_weight = np.random.randn(1024, 4).astype("float32")
         linear.weight.set_value(custom_weight)  # change existing weight
         out = linear(input)  # call with different weight
-        
-.. py:method:: shard_index(index_num, nshards, shard_id, ignore_value=-1)
 
 返回：计算后的Tensor
-返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_shard_index`
 
-.. py:method:: sign(name=None)
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_shard_index`
+
+.. py:method:: sigmoid()
+        sigmoid
+
+        Returns: 
+            Tensor
+        .. py:method:: sign(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_sign`
+
+请参考 :ref:`cn_api_tensor_cn_sign`
 
 .. py:method:: sin(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_sin`
+
+请参考 :ref:`cn_api_tensor_cn_sin`
 
 .. py:method:: sinh(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_sinh`
+
+请参考 :ref:`cn_api_tensor_cn_sinh`
 
 .. py:method:: size()
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_size`
+
+请参考 :ref:`cn_api_tensor_cn_size`
 
 .. py:method:: slice(axes, starts, ends)
 
 返回：计算后的Tensor
-返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_slice`
 
-.. py:method:: sort(axis=-1, descending=False, name=None)
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_slice`
+
+.. py:method:: softplus()
+        softplus
+
+        Returns: 
+            Tensor
+        .. py:method:: softsign()
+        softsign
+
+        Returns: 
+            Tensor
+        .. py:method:: sort(axis=-1, descending=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_sort`
+
+请参考 :ref:`cn_api_tensor_cn_sort`
 
 .. py:method:: split(num_or_sections, axis=0, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_split`
+
+请参考 :ref:`cn_api_tensor_cn_split`
 
 .. py:method:: sqrt(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_sqrt`
+
+请参考 :ref:`cn_api_tensor_cn_sqrt`
 
 .. py:method:: square(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_square`
+
+请参考 :ref:`cn_api_tensor_cn_square`
 
 .. py:method:: squeeze(axis=None, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_squeeze`
+
+请参考 :ref:`cn_api_tensor_cn_squeeze`
 
 .. py:method:: stack(axis=0, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_stack`
+
+请参考 :ref:`cn_api_tensor_cn_stack`
 
 .. py:method:: stanh(scale_a=0.67, scale_b=1.7159, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_stanh`
+
+请参考 :ref:`cn_api_tensor_cn_stanh`
 
 .. py:method:: std(axis=None, unbiased=True, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_std`
+
+请参考 :ref:`cn_api_tensor_cn_std`
 
 .. py:method:: strided_slice(axes, starts, ends, strides)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_strided_slice`
+
+请参考 :ref:`cn_api_tensor_cn_strided_slice`
 
 .. py:method:: sum(axis=None, dtype=None, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_sum`
+
+请参考 :ref:`cn_api_tensor_cn_sum`
 
 .. py:method:: sums(out=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_sums`
+
+请参考 :ref:`cn_api_tensor_cn_sums`
 
 .. py:method:: t(name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_t`
+
+请参考 :ref:`cn_api_tensor_cn_t`
 
 .. py:method:: tanh(name=None)
 
 返回：计算后的Tensor
-返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_tanh`
 
-.. py:method:: tile(repeat_times, name=None)
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_tanh`
+
+.. py:method:: tanh_shrink()
+        tanh_shrink
+
+        Returns: 
+            Tensor
+        .. py:method:: tile(repeat_times, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_tile`
+
+请参考 :ref:`cn_api_tensor_cn_tile`
 
 .. py:method:: topk(k, axis=None, largest=True, sorted=True, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_topk`
+
+请参考 :ref:`cn_api_tensor_cn_topk`
 
 .. py:method:: trace(offset=0, axis1=0, axis2=1, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_trace`
+
+请参考 :ref:`cn_api_tensor_cn_trace`
 
 .. py:method:: transpose(perm, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_transpose`
+
+请参考 :ref:`cn_api_tensor_cn_transpose`
 
 .. py:method:: unbind(axis=0)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_unbind`
+
+请参考 :ref:`cn_api_tensor_cn_unbind`
 
 .. py:method:: unique(return_index=False, return_inverse=False, return_counts=False, axis=None, dtype=int64, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_unique`
+
+请参考 :ref:`cn_api_tensor_cn_unique`
 
 .. py:method:: unique_with_counts(dtype=int32)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_unique_with_counts`
+
+请参考 :ref:`cn_api_tensor_cn_unique_with_counts`
 
 .. py:method:: unsqueeze(axis, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_unsqueeze`
+
+请参考 :ref:`cn_api_tensor_cn_unsqueeze`
 
 .. py:method:: unstack(axis=0, num=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_unstack`
+
+请参考 :ref:`cn_api_tensor_cn_unstack`
 
 .. py:method:: var(axis=None, unbiased=True, keepdim=False, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_var`
+
+请参考 :ref:`cn_api_tensor_cn_var`
 
 .. py:method:: where(x, y, name=None)
 
 返回：计算后的Tensor
+
 返回类型：Tensor
-请参考 ref:`cn_api_tensor_cn_where`
+
+请参考 :ref:`cn_api_tensor_cn_where`

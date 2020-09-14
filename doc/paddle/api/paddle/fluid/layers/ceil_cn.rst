@@ -29,7 +29,7 @@ ceil
 
         import paddle
         paddle.disable_static()
-        x = paddle.to_tensor([[-1.5,6],[1,15.6]])
+        x = paddle.to_tensor([[-1.5,6], [1,15.6]])
         res = paddle.ceil(x)
         print(res.numpy())
         # [[-1.  6.]

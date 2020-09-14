@@ -82,7 +82,7 @@ Tensor: generated_tensor_3
 ```
 The visual representation of the **Tensor* above is:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/beginners_guide/image/Tensor.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png" width="600" ></center>
 <br><center>Figure1. Visual representation of Tensor with different ranks</center>
 
 
@@ -116,7 +116,7 @@ CompleTensor[imag]: generated_tensor_0.real
 ```
 If the input data contains complex Number, a **ComplexTensor** is automatically created. **ComplexTensor** is a special data structure in Paddle. **ComplexTensor** consists of two **Tensor**, one is real part and the other is  imaginary part. **ComplexTensor** can be visualized as follows:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/beginners_guide/image/ComplexTensor.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png" width="600" ></center>
 <br><center>Figure2. Visual representation of ComplexTensor</center>
 
 **Tensor** must be "rectangular" -- that is, along each axis, every element is the same size. For example:
@@ -167,7 +167,7 @@ Let we create a 4-D **Tensor**, and visualize it to represents the relationship 
 rank_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/beginners_guide/image/Axis.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png" width="600" ></center>
 <br><center>Figure3. The relationship between Tensor shape, axis, dimension and rank</center>
 
 ```python

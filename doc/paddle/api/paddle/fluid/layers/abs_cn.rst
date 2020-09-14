@@ -27,7 +27,7 @@ abs
 
         import paddle
         paddle.disable_static()
-        x = paddle.to_tensor([-1, -2, -3, -4])
+        x = paddle.to_tensor([-1, -2, -3, -4], dtype='float32')
         res = paddle.abs(x)
         print(res.numpy())
         # [1, 2, 3, 4]

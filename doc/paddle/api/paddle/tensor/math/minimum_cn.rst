@@ -58,15 +58,15 @@ minimum
     import paddle
     paddle.disable_static()
   
-    x = paddle.to_tensor([[1, 2], [3, 4]])
-    y = paddle.to_tensor([[5, 6], [7, 8]])
+    x = paddle.to_tensor([[1, 2], [3, 4]], dtype='float32')
+    y = paddle.to_tensor([[5, 6], [7, 8]], dtype='float32')
     res = paddle.minimum(x, y)
     print(res.numpy())
     #[[1. 2.]
     # [3. 4.]]
 
-    x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
-    y = paddle.to_tensor([1, 2])
+    x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]], dtype='float32')
+    y = paddle.to_tensor([1, 2], dtype='float32')
     res = paddle.minimum(x, y, axis=1)
     print(res.numpy())
     #[[[1. 1. 1.]
