@@ -1,4 +1,4 @@
-# 2.0-beta Release Note
+# Release Note
 
 ## Important Update
 This version is the beta version of PaddlePaddle Framework v2.0. The most important change is the full upgrade of the API system and the comprehensive improvement on the imperative programming (dynamic graph) capability. This version systematically optimizes the directory structure of PaddlePaddle basic APIs, comprehensively fixes relevant issues left over from the past, fully supplements APIs, and especially provides the better high-level API functions. It also provides support for the quantitative training and mixed precision training under a dynamic graph. Perfect syntax support is implemented in the dynamic-to-static conversion. The usability is improved substantially. Dynamic graph-related functions tend to be perfect. In addition, the C++ APIs for the inference library are upgraded and optimized. Both the support of the inference library for quantitative models and the inference performance are fully enhanced.
@@ -116,7 +116,6 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
   - Added paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=0), which distributes tensors in a specified tensor list to all the processes.
   - Added paddle.distributed.barrier(group=0)，which synchronizes all the processes.
 
-
 ### High-level APIs
 
 - Added PaddlePaddle high-level APIs to encapsulate common operations such as networking, training, evaluation, inference, and access so as to implement low code development. In the MNIST handwritten digit recognition task versus the imperative programming implementation mode, high-level APIs can reduce 80% of executable codes.
@@ -194,7 +193,7 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
   - Added paddle.jit.save API, which is used to save a dynamic-to-static model so that the API is easier to use; deleted an old API ProgramTranslator.save_inference_model.
   - Added paddle.jit.load API, which is used to load inference models including models saved by paddle.jit.save and paddle.io.save_inference_model. After being loaded, models can be used for model inference or model training optimization in a dynamic graph.
 
-  #### Mixed Precision Training
+#### Mixed Precision Training
 - Added the support for mixed precision of dynamic graphs. The ratio of the speed when the ResNet-50 model is trained on V100 using mixed precision to the speed using fp32 is 2.6.
 
 #### Quantitative Training
