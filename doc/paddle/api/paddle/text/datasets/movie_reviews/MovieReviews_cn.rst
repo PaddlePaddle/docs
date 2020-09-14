@@ -6,45 +6,44 @@ MovieReviews
 .. py:class:: paddle.text.datasets.MovieReviews()
 
 
-    Implementation of `NLTK movie reviews <http://www.nltk.org/nltk_data/>`_ dataset.
+该类是对`NLTK movie reviews <http://www.nltk.org/nltk_data/>`_ 测试数据集的实现。
 
-    参数
+参数
 :::::::::
-        data_file(str): path to data tar file, can be set None if
-            :attr:`download` is True. Default None
-        mode(str): 'train' 'test' mode. Default 'train'.
-        download(bool): whether auto download cifar dataset if
-            :attr:`data_file` unset. Default True.
+    - data_file（str）- 保存压缩数据的路径，如果参数:attr:`download`设置为True，
+    可设置为None。默认为None。
+    - mode（str）- 'train'或 'test' 模式。默认为'train'。
+    - download（bool）- 如果:attr:`data_file`未设置，是否自动下载数据集。默认为True。
 
-    Returns:
-        Dataset: instance of movie reviews dataset
+返回值
+:::::::::
+``Dataset``，NLTK movie reviews数据集实例。
 
-    代码示例
+代码示例
 :::::::::
 
-        .. code-block:: python
+.. code-block:: python
 
-            import paddle
-            from paddle.text.datasets import MovieReviews
+    import paddle
+    from paddle.text.datasets import MovieReviews
 
-            class SimpleNet(paddle.nn.Layer):
-                def __init__(self):
-                    super(SimpleNet, self).__init__()
+    class SimpleNet(paddle.nn.Layer):
+        def __init__(self):
+            super(SimpleNet, self).__init__()
 
-                def forward(self, word, category):
-                    return paddle.sum(word), category
+        def forward(self, word, category):
+            return paddle.sum(word), category
 
-            paddle.disable_static()
+    paddle.disable_static()
 
-            movie_reviews = MovieReviews(mode='train')
+    movie_reviews = MovieReviews(mode='train')
 
-            for i in range(10):
-                word_list, category = movie_reviews[i]
-                word_list = paddle.to_tensor(word_list)
-                category = paddle.to_tensor(category)
+    for i in range(10):
+        word_list, category = movie_reviews[i]
+        word_list = paddle.to_tensor(word_list)
+        category = paddle.to_tensor(category)
 
-                model = SimpleNet()
-                word_list, category = model(word_list, category)
-                print(word_list.numpy().shape, category.numpy())
+        model = SimpleNet()
+        word_list, category = model(word_list, category)
+        print(word_list.numpy().shape, category.numpy())
 
-    
