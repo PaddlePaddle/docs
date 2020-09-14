@@ -29,6 +29,7 @@ cos
 .. code-block:: python
 
         import paddle
+        import numpy as np
         paddle.disable_static()
         x = paddle.to_tensor([[-1, np.pi], [1, 15.6]], dtype='float32')
         res = paddle.cos(x)

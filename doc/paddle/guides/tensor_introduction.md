@@ -1,3 +1,5 @@
+
+
 # Tensor概念介绍
 
 飞桨（PaddlePaddle，以下简称Paddle）和其他深度学习框架一样，使用**Tensor**来表示数据，在神经网络中传递的数据均为**Tensor**。
@@ -12,6 +14,9 @@
 * [Tensor的shape](#2)
 * [Tensor其他属性](#3)
 * [Tensor的操作](#4)
+
+
+----------
 
 ## <h2 id="1">Tensor的创建</h2>
 
@@ -81,7 +86,7 @@ Tensor: generated_tensor_3
 ```
 上述不同rank的**Tensor**可以可视化的表示为：
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="600"></center>
 <br><center>图1 不同rank的Tensor可视化表示</center>
 
 
@@ -116,7 +121,7 @@ CompleTensor[imag]: generated_tensor_0.real
 如果检测到输入数据包含complex numbers，则会自动创建一个**ComplexTensor**，**ComplexTensor**是Paddle中一种特殊的数据结构，
 其包含实部（real）与虚部（imag）两个形状与数据类型相同的**Tensor**，其结构可视化表示为：
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="600" ></center>
 <br><center>图2 ComplexTensor的可视化表示</center>
 
 **Tensor**必须形状规则，类似于“矩形”的概念，也就是，沿任何一个轴（也称作维度）上，元素的数量都是相等的，如果为以下情况：
@@ -151,6 +156,7 @@ paddle.arrange(start, end, step) # 创建从start到end，步长为step的Tenso
 paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为num的Tensor
 ```
 
+----------
 ## <h2 id="2">Tensor的shape</h2>
 
 ### 基本概念
@@ -159,13 +165,14 @@ paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为
 1. shape：描述了tensor的每个维度上的元素数量
 2. rank： tensor的维度的数量，例如vector的rank为1，matrix的rank为2.
 3. axis或者dimension：指tensor某个特定的维度
+4. size：指tensor中全部元素的个数
 
 让我们来创建1个4-D **Tensor**，并通过图形来直观表达以上几个概念之间的关系；
 ```python
 rank_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="600" ></center>
 <br><center>图3 Tensor的shape、axis、dimension、rank之间的关系</center>
 
 ```python
@@ -189,7 +196,7 @@ Elements number along the last axis of tensor: 5
 1. 如果索引为负数，则从尾部开始计算
 2. 如果索引使用 ``:`` ，则其对应格式为start: stop: step，其中start、stop、step均可缺省
 
-针对1-D **Tensor**，则仅有单个轴上的索引：
+* 针对1-D **Tensor**，则仅有单个轴上的索引：
 ```python
 rank_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
 print("Origin Tensor:", rank_1_tensor.numpy())
@@ -215,7 +222,7 @@ Interval of 3: [0 3 6]
 Reverse: [8 7 6 5 4 3 2 1 0]
 ```
 
-针对2-D及以上的 **Tensor**，则会有多个轴上的索引：
+* 针对2-D及以上的 **Tensor**，则会有多个轴上的索引：
 ```python
 rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
                                   [4, 5, 6, 7],
@@ -277,8 +284,8 @@ After reshape: [2, 5, 3]
 
 在指定新的shape时存在一些技巧：
 
-1. -1 表示这个维度的值是从Tensor的元素总数和剩余维度推断出来的。因此，有且只有一个维度可以被设置为-1。
-2. 0 表示实际的维数是从Tensor的对应维数中复制出来的，因此shape中0的索引值不能超过x的维度。
+**1.** -1 表示这个维度的值是从Tensor的元素总数和剩余维度推断出来的。因此，有且只有一个维度可以被设置为-1。
+**2.** 0 表示实际的维数是从Tensor的对应维数中复制出来的，因此shape中0的索引值不能超过x的维度。
 
 有一些例子可以很好解释这些技巧：
 ```text
@@ -295,8 +302,8 @@ print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy()
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
 
+----------
 ## <h2 id="3">Tensor其他属性</h2>
-
 ### Tensor的dtype
 
 **Tensor**的数据类型，可以通过 Tensor.dtype 来查看，dtype支持：'bool'，'float16'，'float32'，'float64'，'uint8'，'int8'，'int16'，'int32'，'int64'。
@@ -336,7 +343,7 @@ Tensor after cast to int64: VarType.INT64
 
 初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。
 
-创建CPU上的Tensor：
+* **创建CPU上的Tensor**：
 ```python
 cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
 print(cpu_tensor)
@@ -346,7 +353,7 @@ Tensor: generated_tensor_0
   - place: CPUPlace
 ```
 
-创建GPU上的Tensor：
+* **创建GPU上的Tensor**：
 ```python
 gpu_tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
 print(gpu_tensor)
@@ -357,7 +364,7 @@ Tensor: generated_tensor_0
 
 ```
 
-创建固定内存上的Tensor：
+* **创建固定内存上的Tensor**：
 ```python
 pin_memory_tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
 print(pin_memory_tensor)
@@ -378,6 +385,7 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 
+----------
 ## <h2 id="4">Tensor的操作</h2>
 
 Paddle提供了丰富的Tensor操作的API，包括数学运算符、逻辑运算符、线性代数相关等100+余种API，这些API调用有两种方法：
@@ -486,4 +494,4 @@ x.matmul(y)                   #矩阵乘法
 ```
 需要注意，Paddle中Tensor的操作符均为非inplace操作，即 ``x.add(y)`` 不会在**tensor x**上直接进行操作，而会返回一个新的**Tensor**来表示运算结果。
 
-更多Tensor操作相关的API，请参考[class paddle.Tensor](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/api_cn/paddle_cn/Tensor_cn.rst)
+更多Tensor操作相关的API，请参考[class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)

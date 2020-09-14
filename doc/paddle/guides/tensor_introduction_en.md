@@ -14,6 +14,7 @@ The dtypes of all elements in the same Tensor are the same. If you are familiar 
 * [Other attributes of Tensor](#3)
 * [Method of Tensor](#4)
 
+----------
 ## <h2 id="1">Creation of Tensor</h2>
 
 Firstly, let we create a **Tensor**:
@@ -82,7 +83,7 @@ Tensor: generated_tensor_3
 ```
 The visual representation of the **Tensor* above is:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="600" ></center>
 <br><center>Figure1. Visual representation of Tensor with different ranks</center>
 
 
@@ -116,7 +117,7 @@ CompleTensor[imag]: generated_tensor_0.real
 ```
 If the input data contains complex Number, a **ComplexTensor** is automatically created. **ComplexTensor** is a special data structure in Paddle. **ComplexTensor** consists of two **Tensor**, one is real part and the other is  imaginary part. **ComplexTensor** can be visualized as follows:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="600" ></center>
 <br><center>Figure2. Visual representation of ComplexTensor</center>
 
 **Tensor** must be "rectangular" -- that is, along each axis, every element is the same size. For example:
@@ -152,6 +153,7 @@ paddle.arrange(start, end, 2) # Elements: from start to end, step size is 2
 paddle.linspace(start, end, 10) # Elements: from start to end, num of elementwise is 10
 ```
 
+----------
 ## <h2 id="2">Shape of Tensor</h2>
 
 ### Basic Concept
@@ -161,13 +163,14 @@ The shape of **Tensor** can be get by **Tensor.shape**. shape is an important at
 1. shape: Describes the number of elements on each of the tensor's dimensions.
 2. rank: The number of tensor's dimensions. For example, the rank of vector is 1, the rank of matrix is 2.
 3. axis or dimension: A particular dimension of a tensor.
+4. size: The number of all elements in the tensor.
 
 Let we create a 4-D **Tensor**, and visualize it to represents the relationship between the above concepts.
 ```python
 rank_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="600" ></center>
 <br><center>Figure3. The relationship between Tensor shape, axis, dimension and rank</center>
 
 ```python
@@ -299,6 +302,7 @@ print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy()
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
 
+----------
 ## <h2 id="3">Other attributes of Tensor</h2>
 
 ### dtype of Tensor
@@ -341,24 +345,29 @@ Tensor after cast to int64: VarType.INT64
 Device can be specified when creating a tensor. There are three kinds of to choose from: CPU/GPU/Pinned memory.
 There is higher read and write efficiency between Pinned memory with GPU. In addition, Pinned memory supports asynchronous data copy, which will further improve the performance of network. The disadvantage is that allocating too much Pinned memory may reduce the performance of the host. Because it reduces the pageable memory which is used to store virtual memory data.
 
+* **Create Tensor on GPU**:
 ```python
 cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
 print(cpu_tensor)
 ```
+
 ```text
 Tensor: generated_tensor_0
   - place: CPUPlace
 ```
 
+* **Create Tensor on CPU**:
 ```python
 gpu_tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
 print(gpu_tensor)
 ```
+
 ```text
 Tensor: generated_tensor_0
   - place: CUDAPlace(0)
-
 ```
+
+* **Create Tensor on pinned memory**:
 ```python
 pin_memory_tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
 print(pin_memory_tensor)
@@ -379,6 +388,7 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 
+----------
 ## <h2 id="4">Method of Tensor</h2>
 
 
@@ -489,4 +499,4 @@ x.matmul(y)                   #Matrix multiplication
 ```
 It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.And dd(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
 
-For more API related to Tensor operations, please refer to[class paddle.Tensor](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/api_cn/paddle_cn/Tensor_cn.rst)
+For more API related to Tensor operations, please refer to[class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
