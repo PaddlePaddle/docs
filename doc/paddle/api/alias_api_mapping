@@ -268,7 +268,7 @@ paddle.fluid.layers.rnn.birnn	paddle.nn.functional.birnn,paddle.nn.functional.rn
 paddle.fluid.dygraph.base.no_grad	paddle.framework.no_grad
 paddle.nn.functional.common.dropout3d	paddle.nn.functional.dropout3d
 paddle.fluid.layers.polygon_box_transform	paddle.nn.functional.polygon_box_transform,paddle.nn.functional.extension.polygon_box_transform
-paddle.fluid.layers.rnn.rnn   paddle.nn.functional.rnn,paddle.nn.functional.rnn.rnn
+paddle.fluid.layers.rnn.rnn	paddle.nn.functional.rnn,paddle.nn.functional.rnn.rnn
 paddle.tensor.search.sort	paddle.sort,paddle.tensor.sort
 paddle.tensor.logic.equal	paddle.equal,paddle.tensor.equal
 paddle.fluid.layers.swish	paddle.nn.functional.swish,paddle.nn.functional.activation.swish
