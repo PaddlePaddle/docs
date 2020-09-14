@@ -263,7 +263,7 @@ if __name__ == "__main__":
     get_not_display_doc_list()
     get_display_doc_map()
     get_all_same_api()
-    get_alias_mapping()
+    # get_alias_mapping()
 
     clean_en_files()
     gen_en_files()
