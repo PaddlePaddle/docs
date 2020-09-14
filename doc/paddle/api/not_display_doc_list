@@ -1,3 +1,5 @@
 paddle.utils
 paddle.incubate
-paddle.hapi
+paddle.hapi.progressbar.ProgressBar
+paddle.metric.accuracy
+paddle.metric.auc

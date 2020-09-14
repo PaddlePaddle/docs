@@ -15,9 +15,9 @@
 
 ..  toctree::
     :hidden:
-
-    grammar_list_cn.rst
+    
     program_translator_cn.rst
+    grammar_list_cn.rst
     input_spec_cn.rst
     error_handling_cn.md
     debugging_cn.md

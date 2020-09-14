@@ -150,6 +150,7 @@ paddle.fluid.layers.bilinear_tensor_product	paddle.static.nn.bilinear_tensor_pro
 paddle.fluid.framework.name_scope	paddle.static.name_scope
 paddle.fluid.layers.is_empty	paddle.is_empty,paddle.tensor.is_empty,paddle.tensor.logic.is_empty
 paddle.tensor.math.multiply	paddle.multiply,paddle.tensor.multiply
+paddle.tensor.creation.Tensor	paddle.Tensor
 paddle.tensor.creation.to_tensor	paddle.to_tensor,paddle.tensor.to_tensor
 paddle.fluid.initializer.Normal	paddle.nn.initializer.Normal
 paddle.nn.layer.common.AlphaDropout	paddle.nn.AlphaDropout,paddle.nn.layer.AlphaDropout
@@ -268,7 +269,7 @@ paddle.fluid.layers.rnn.birnn	paddle.nn.functional.birnn,paddle.nn.functional.rn
 paddle.fluid.dygraph.base.no_grad	paddle.framework.no_grad
 paddle.nn.functional.common.dropout3d	paddle.nn.functional.dropout3d
 paddle.fluid.layers.polygon_box_transform	paddle.nn.functional.polygon_box_transform,paddle.nn.functional.extension.polygon_box_transform
-paddle.fluid.layers.rnn.rnn   paddle.nn.functional.rnn,paddle.nn.functional.rnn.rnn
+paddle.fluid.layers.rnn.rnn	paddle.nn.functional.rnn,paddle.nn.functional.rnn.rnn
 paddle.tensor.search.sort	paddle.sort,paddle.tensor.sort
 paddle.tensor.logic.equal	paddle.equal,paddle.tensor.equal
 paddle.fluid.layers.swish	paddle.nn.functional.swish,paddle.nn.functional.activation.swish
@@ -378,7 +379,6 @@ paddle.tensor.manipulation.concat	paddle.concat,paddle.tensor.concat
 paddle.tensor.stat.std	paddle.std,paddle.tensor.std
 paddle.fluid.layers.dice_loss	paddle.nn.functional.dice_loss,paddle.nn.functional.loss.dice_loss
 paddle.nn.functional.loss.binary_cross_entropy	paddle.nn.functional.binary_cross_entropy
-paddle.fluid.dygraph.base.to_variable	paddle.to_variable,paddle.framework.to_variable
 paddle.fluid.dygraph.Linear	paddle.nn.Linear,paddle.nn.layer.Linear,paddle.nn.layer.common.Linear
 paddle.fluid.layers.box_clip	paddle.nn.functional.box_clip,paddle.nn.functional.vision.box_clip
 paddle.nn.layer.activation.ReLU6	paddle.nn.ReLU6
