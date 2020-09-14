@@ -5,7 +5,6 @@ prepare_context
 
 .. py:class:: paddle.fluid.dygraph.prepare_context(strategy=None)
 
-:api_attr: 命令式编程模式（动态图)
 
 
 

@@ -5,9 +5,6 @@ filter_by_instag
 
 .. py:function:: paddle.fluid.layers.filter_by_instag(ins, ins_tag, filter_tag, is_lod)
 
-:alias_main: paddle.nn.functional.filter_by_instag
-:alias: paddle.nn.functional.filter_by_instag,paddle.nn.functional.extension.filter_by_instag
-:old_api: paddle.fluid.layers.filter_by_instag
 
 
 

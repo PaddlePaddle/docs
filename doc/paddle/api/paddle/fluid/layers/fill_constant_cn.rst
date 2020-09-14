@@ -5,9 +5,6 @@ fill_constant
 
 .. py:function:: paddle.fluid.layers.fill_constant(shape,dtype,value,force_cpu=False,out=None)
 
-:alias_main: paddle.fill_constant
-:alias: paddle.fill_constant,paddle.tensor.fill_constant,paddle.tensor.creation.fill_constant
-:old_api: paddle.fluid.layers.fill_constant
 
 
 

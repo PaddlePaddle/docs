@@ -5,9 +5,6 @@ GradientClipByValue
 
 .. py:class:: paddle.fluid.clip.GradientClipByValue(max, min=None, need_clip=None)
 
-:alias_main: paddle.nn.GradientClipByValue
-:alias: paddle.nn.GradientClipByValue,paddle.nn.clip.GradientClipByValue
-:old_api: paddle.fluid.clip.GradientClipByValue
 
 
 

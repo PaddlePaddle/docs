@@ -40,7 +40,7 @@ Tensor, 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状
 
 .. code-block:: python
 
-    import numpy as np 
+    import paddle
     paddle.disable_static()
      
     input = paddle.to_tensor([[1, 2], [3, 4]])

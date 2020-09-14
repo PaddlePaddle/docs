@@ -5,8 +5,6 @@ log1p
 
 .. py:function:: paddle.log1p(x, name=None)
 
-:alias_main: paddle.log1p
-:alias: paddle.log1p,paddle.tensor.log1p,paddle.tensor.math.log1p
 
 
 

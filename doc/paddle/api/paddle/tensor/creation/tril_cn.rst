@@ -5,8 +5,6 @@ tril
 
 .. py:function:: paddle.tensor.tril(input, diagonal=0, name=None)
 
-:alias_main: paddle.tril
-:alias: paddle.tril,paddle.tensor.tril,paddle.tensor.creation.tril
 
 
 

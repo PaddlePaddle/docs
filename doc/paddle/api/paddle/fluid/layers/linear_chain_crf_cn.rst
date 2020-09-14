@@ -6,7 +6,6 @@ linear_chain_crf
 
 .. py:function:: paddle.fluid.layers.linear_chain_crf(input, label, param_attr=None, length=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

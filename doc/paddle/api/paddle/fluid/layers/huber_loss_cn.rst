@@ -5,9 +5,6 @@ huber_loss
 
 .. py:function:: paddle.fluid.layers.huber_loss(input, label, delta)
 
-:alias_main: paddle.nn.functional.huber_loss
-:alias: paddle.nn.functional.huber_loss,paddle.nn.functional.loss.huber_loss
-:old_api: paddle.fluid.layers.huber_loss
 
 
 

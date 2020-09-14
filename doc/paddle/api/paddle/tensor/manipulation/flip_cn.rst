@@ -5,8 +5,6 @@ flip
 
 .. py:function:: paddle.flip(x, axis, name=None):
 
-:alias_main: paddle.flip
-:alias: paddle.flip, paddle.tensor.flip, paddle.tensor.manipulation.flip
 
 
 

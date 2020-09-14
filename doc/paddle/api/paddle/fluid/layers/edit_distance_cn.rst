@@ -6,9 +6,6 @@ edit_distance
 
 .. py:function:: paddle.fluid.layers.edit_distance(input,label,normalized=True,ignored_tokens=None, input_length=None, label_length=None）
 
-:alias_main: paddle.nn.functional.edit_distance
-:alias: paddle.nn.functional.edit_distance,paddle.nn.functional.loss.edit_distance
-:old_api: paddle.fluid.layers.edit_distance
 
 
 

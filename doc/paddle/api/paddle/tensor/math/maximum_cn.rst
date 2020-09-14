@@ -5,8 +5,6 @@ maximum
 
 .. py:function:: paddle.tensor.maximum(x, y, axis=-1, name=None)
 
-:alias_main: paddle.maximum
-:alias: paddle.maximum,paddle.tensor.maximum,paddle.tensor.math.maximum
 
 该OP逐元素对比输入的两个多维Tensor，并且把各个位置更大的元素保存到返回结果中。
 

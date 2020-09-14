@@ -6,37 +6,31 @@ IMDB 数据集使用BOW网络的文本分类
 IMDB数据集是一个对电影评论标注为正向评论与负向评论的数据集，共有25000条文本数据作为训练集，25000条文本数据作为测试集。
 该数据集的官方地址为： http://ai.stanford.edu/~amaas/data/sentiment/
 
--  Warning:
-   ``paddle.dataset.imdb``\ 先在是一个非常粗野的实现，后续需要有替代的方案。
-
 环境设置
 --------
 
 本示例基于飞桨开源框架2.0版本。
 
-.. code:: 
+.. code:: ipython3
 
     import paddle
     import numpy as np
     
     paddle.disable_static()
     print(paddle.__version__)
-    print(paddle.__git_commit__)
-
 
 
 .. parsed-literal::
 
-    0.0.0
-    264e76cae6861ad9b1d4bcd8c3212f7a78c01e4d
+    2.0.0-beta0
 
 
 加载数据
 --------
 
-我们会使用\ ``paddle.dataset``\ 完成数据下载，构建字典和准备数据读取器。在飞桨2.0版本中，推荐使用padding的方式来对同一个batch中长度不一的数据进行补齐，所以在字典中，我们还会添加一个特殊的\ ``<pad>``\ 词，用来在后续对batch中较短的句子进行填充。
+我们会使用\ ``paddle.dataset``\ 完成数据下载，构建字典和准备数据读取器。在飞桨框架2.0版本中，推荐使用padding的方式来对同一个batch中长度不一的数据进行补齐，所以在字典中，我们还会添加一个特殊的\ ``<pad>``\ 词，用来在后续对batch中较短的句子进行填充。
 
-.. code:: 
+.. code:: ipython3
 
     print("Loading IMDB word dict....")
     word_dict = paddle.dataset.imdb.word_dict()
@@ -51,7 +45,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
     Loading IMDB word dict....
 
 
-.. code:: 
+.. code:: ipython3
 
     # add a pad token to the dict for later padding the sequence
     word_dict['<pad>'] = len(word_dict)
@@ -88,7 +82,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 在这里我们设置一下词表大小，\ ``embedding``\ 的大小，batch_size，等等
 
-.. code:: 
+.. code:: ipython3
 
     vocab_size = len(word_dict)
     emb_size = 256
@@ -109,7 +103,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 在这里，取出一条数据打印出来看看，可以对数据有一个初步直观的印象。
 
-.. code:: 
+.. code:: ipython3
 
     # 取出来第一条数据看看样子。
     sent, label = next(train_reader())
@@ -127,11 +121,11 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 
 用padding的方式对齐数据
-----------------------------
+-----------------------
 
 文本数据中，每一句话的长度都是不一样的，为了方便后续的神经网络的计算，常见的处理方式是把数据集中的数据都统一成同样长度的数据。这包括：对于较长的数据进行截断处理，对于较短的数据用特殊的词\ ``<pad>``\ 进行填充。接下来的代码会对数据集中的数据进行这样的处理。
 
-.. code:: 
+.. code:: ipython3
 
     def create_padded_dataset(reader):
         padded_sents = []
@@ -172,7 +166,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 本示例中，我们将会使用一个不考虑词的顺序的BOW的网络，在查找到每个词对应的embedding后，简单的取平均，作为一个句子的表示。然后用\ ``Linear``\ 进行线性变换。为了防止过拟合，我们还使用了\ ``Dropout``\ 。
 
-.. code:: 
+.. code:: ipython3
 
     class MyNet(paddle.nn.Layer):
         def __init__(self):
@@ -191,7 +185,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 开始模型的训练
 --------------
 
-.. code:: 
+.. code:: ipython3
 
     def train(model):
         model.train()
@@ -218,8 +212,8 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
                 if batch_id % 500 == 0:
                     print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
                 avg_loss.backward()
-                opt.minimize(avg_loss)
-                model.clear_gradients()
+                opt.step()
+                opt.clear_grad()
     
             # evaluate model after one epoch
             model.eval()
@@ -250,16 +244,15 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 0, loss is: [0.6926701]
-    epoch: 0, batch_id: 500, loss is: [0.41248566]
-    [validation] accuracy/loss: 0.8505121469497681/0.3615057170391083
-    epoch: 1, batch_id: 0, loss is: [0.29521096]
-    epoch: 1, batch_id: 500, loss is: [0.2916747]
-    [validation] accuracy/loss: 0.86475670337677/0.3259459137916565
+    epoch: 0, batch_id: 0, loss is: [0.6918494]
+    epoch: 0, batch_id: 500, loss is: [0.33142853]
+    [validation] accuracy/loss: 0.8506321907043457/0.3620821535587311
+    epoch: 1, batch_id: 0, loss is: [0.37161]
+    epoch: 1, batch_id: 500, loss is: [0.2296829]
+    [validation] accuracy/loss: 0.8622759580612183/0.3286365270614624
 
 
 The End
---------
+-------
 
 可以看到，在这个数据集上，经过两轮的迭代可以得到86%左右的准确率。你也可以通过调整网络结构和超参数，来获得更好的效果。
-

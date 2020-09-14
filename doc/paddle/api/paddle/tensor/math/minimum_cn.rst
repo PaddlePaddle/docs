@@ -5,8 +5,6 @@ minimum
 
 .. py:function:: paddle.tensor.minimum(x, y, axis=-1, name=None)
 
-:alias_main: paddle.minimum
-:alias: paddle.minimum,paddle.tensor.minimum,paddle.tensor.math.minimum
 
 该OP逐元素对比输入的两个多维Tensor，并且把各个位置更小的元素保存到返回结果中。
 

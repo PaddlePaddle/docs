@@ -5,7 +5,6 @@ DataParallel
 
 .. py:class:: paddle.fluid.dygraph.DataParallel(layers, strategy)
 
-:api_attr: 命令式编程模式（动态图)
 
 通过数据并行模式执行动态图模型。
 

@@ -6,7 +6,6 @@ sequence_pool
 
 .. py:function:: paddle.fluid.layers.sequence_pool(input, pool_type, is_test=False, pad_value=0.0)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
