@@ -22,15 +22,14 @@ We introduce the transformation of dygraph to static graph in the following link
 
 - `Debugging Methods <debugging_en.html>`_ : Introduce the debugging methods when using ProgramTranslator.
 
-- `Error Handling <error_handling_en.html>`_ ：Introduce the error handling by ProgramTranslator.
-
-- `Debugging Methods <debugging_en.html>`_ ：Introduce the debugging methods when using ProgramTranslator.
 
 ..  toctree::
     :hidden:
 
+    basic_usage_en.rst
     program_translator_en.rst
     grammar_list_en.rst
     input_spec_en.rst
     error_handling_en.md
     debugging_en.md
+

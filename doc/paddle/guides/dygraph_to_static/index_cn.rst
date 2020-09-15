@@ -29,9 +29,11 @@ Python执行开销较大，与C++有一定差距。因此在工业界的许多�
 
 ..  toctree::
     :hidden:
-    
+
+    basic_usage_cn.rst    
     program_translator_cn.rst
     grammar_list_cn.rst
     input_spec_cn.rst
     error_handling_cn.md
     debugging_cn.md
+
