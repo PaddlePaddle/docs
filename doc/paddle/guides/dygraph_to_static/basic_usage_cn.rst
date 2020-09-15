@@ -3,7 +3,8 @@
 
 PaddlePaddle提供了两种动态图转静态图的方式，基于动态图trace的TracedLayer与基于源代码级别转换的ProgramTranslator。
 
-1. 基于trace的TracedLayer：
+基于trace的TracedLayer
+------------------------
 
 trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就是基于这种技术，在一次执行动态图的过程中，记录所有运行的算子，并构建和保存静态图模型。一个使用例子如下：
 
@@ -77,7 +78,8 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 
 上例如果在使用TracedLayer.trace(func, inputs=[input_var])，由于trace只能记录if-else其中跑的一次算子，模型就无法按用户想要的根据input_var的形状进行if-else控制流保存。类似的控制流还有while/for循环的情况
 
-2. 基于源代码转写的ProgramTranslator
+基于源代码转写的ProgramTranslator
+-----------------------------------
 
 对于依赖数据的控制流，我们使用基于源代码转写的ProgramTranslator来进行动态图转静态图。其基本原理是通过分析Python代码来将动态图代码转写为静态图代码，并在底层自动帮用户使用执行器运行。其基本使用方法十分简便，只需要在要转化的函数（该函数也可以是用户自定义动态图Layer的forward函数）前添加一个装饰器 ``@paddle.jit.to_static`` ，上面的例子转化如下，并且可以依旧使用该函数运行得到结果：
 

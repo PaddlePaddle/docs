@@ -4,7 +4,8 @@ Basic Usage
 PaddlePaddle has two ways to transform dygraph to static graph. TracedLayer extracts computation graph through tracing and ProgramTranslator gets computation graph through source code transformation.
 
 
-1. TracedLayer：
+TracedLayer
+-------------
 
 Tracing means recording the operators when running a model. TracedLayer is based on this technique. It runs dygraph program once and records all operators, then constructs static graph model and saves it. Now take a glance at an usage example:
 
@@ -74,7 +75,8 @@ However, as tracing only records operators once, if user's code contains Tensor-
 
 If we apply TracedLayer.trace(func, inputs=[input_var]) on above example, tracing can take record of operators in only one branch of if-else, then the model can not be saved as what user orignally means. The similar situations applies to while/for loop.
 
-2. ProgramTranslator
+ProgramTranslator
+-------------------
 
 For the Tensor-dependent control flow, we use source-code-translate based ProgramTranslator to convert dygraph into static graph. The basic idea is analyzing Python source code and turning into static graph code, then run the static graph code using Executor. The basic usage of ProgramTranslator is simple, put a decorator ``@paddle.jit.to_static`` before the definition of the function to transform (the function can also be a method of a class, e.g., the ``forward`` function of user-defined imperative Layer). Above Tensor-dependent example can be transformed correctly by ProgramTranslator as below:
 
