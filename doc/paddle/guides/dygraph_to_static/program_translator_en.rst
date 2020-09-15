@@ -11,7 +11,7 @@ The entity for transforming dygraph to static graph is the decorated function. F
 
 2. From dygraph source code to AST (Abstract Syntax Tree)
 
-The core of transforming dygraph to static graph is similar to a compiler, we parse the dygraph code into AST, change AST, then turn it back into static graph code. We use Python ``inspect.getsource`` to get the source code string of the function. Python provides ``ast`` library to parse string code into AST, but Python2, Python3 have slight grammar difference. To avoid the work to handle different grammars, we used an open source AST library `gast <https://github.com/serge-sans-paille/gast>`_ that provides compatibility AST among various Python versions. There is no essential difficulty to turn function into AST with these library.
+The core of transforming dygraph to static graph is similar to a compiler, we parse the dygraph code into AST, change AST, then turn it back into static graph code. We use Python ``inspect.getsource`` to get the source code string of the function. Python provides `ast <https://docs.python.org/3/library/ast.html>`_ library to parse string code into AST, but Python2, Python3 have slight grammar difference. To avoid the work to handle different grammars, we used an open source AST library `gast <https://github.com/serge-sans-paille/gast>`_ that provides compatibility AST among various Python versions. There is no essential difficulty to turn function into AST with these library.
 
 3. Transform AST and turn it to static graph code
 
