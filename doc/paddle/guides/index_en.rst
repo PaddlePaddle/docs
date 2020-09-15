@@ -18,4 +18,4 @@ Let's start with studying basic concept of PaddlePaddle:
 
     tensor_introduction_en.md
     migration_en.rst
-    dynamic_to_static/index_en.rst
+    dygraph_to_static/index_en.rst
