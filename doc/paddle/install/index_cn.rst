@@ -187,6 +187,10 @@
 
             python -m pip install paddlepaddle==2.0.0b0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
+        如果您是使用Windows系统请使用以下指令:
+
+            pip install paddlepaddle==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html
+
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装 
 
     (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
@@ -203,6 +207,10 @@
             或
 
             python -m pip install paddlepaddle-gpu==2.0.0b0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+        如果您是使用Windows系统请使用以下指令:
+
+            python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html 
         
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装。
 
