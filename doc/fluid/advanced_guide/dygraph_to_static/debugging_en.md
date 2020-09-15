@@ -71,7 +71,9 @@ func(np.ones([3, 2]))
 
 There are two ways to print the transformed static graph code:
 
-1. Use the attribute `code` of the decorated function:
+1. Use the attribute `code` of the decorated function
+
+   In the following code, the decorator `paddle.jit.to_static` transforms `func` into a class object `StaticLayer`. You can use the `code` attribute of `StaticLayer` to get the transformed code.
     ```Python
     @paddle.jit.to_static
     def func(x):
@@ -128,7 +130,7 @@ There are two ways to print the transformed static graph code:
             3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
-    `set_code_level` can set different levels to view the code transformed by different ast transformers. For details, please refer to [set_code_level]()<!--TODO：补充set_code_level文档链接-->。
+    `set_code_level` can set different levels to view the code transformed by different ast transformers. For details, please refer to [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_en.html)。
 
 ## `print`
 You can call `print` to view variables. `print` will be transformed when using Dynamic-to-Static. When only Paddle Tensor is printed, `print` will be transformed and call Paddle operator [Print](../../api/layers/Print.html) in runtime. Otherwise, call python `print`.
@@ -166,7 +168,7 @@ Here call print function.
 ## Log Printing
 ProgramTranslator can log additional debugging information to help you know whether the function was successfully transformed or not.
 
-You can call `paddle.jit.set_verbosity(level)` or set environment variable `TRANSLATOR_VERBOSITY=level` to enable logging and view logs of different levels. The argument `level` varies from 0 to 3:
+You can call [`paddle.jit.set_verbosity(level)`](../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_en.html) or set environment variable `TRANSLATOR_VERBOSITY=level` to enable logging and view logs of different levels. The argument `level` varies from 0 to 3:
 - 0: no logging
 - 1: includes the information in Dynamic-to-Static tranformation process, such as the source code not transformed, the callable object to transform and so on
 - 2: includes above and more detailed function transformation logs

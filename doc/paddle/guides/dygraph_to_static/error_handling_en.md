@@ -1,13 +1,13 @@
 # Error Handling
 
 This section will introduce the error information when an exception occurs, so as to help you better understand the Dynamic-to-Static error information.
-When running the transformed static graph code, the internal can be divided into two steps: the dynamic graph code is transformed into the static graph code, and the static graph code is run. We will introduce the error reporting in these two steps.
+When running the transformed static graph code, the internal procedure can be divided into two steps: the dynamic graph code is transformed into the static graph code, and the static graph code is run. We will introduce the error reporting in these two steps.
 
 ## Exceptions in Dynamic-to-Static Transformation
 
 If ProgramTranslator cannot transform a function, it will display a warning message and try to run the function as-is.
 
-In the following code, the function `inner_func` is transformed before calling. When calling `inner_func` in `x=inner_func(data)`, it is not allowed to transform repeatedly, and a warning message will be given:
+In the following code, the function `inner_func` is transformed before calling. When calling `inner_func` in `x = inner_func(data)`, it is not allowed to transform repeatedly, and a warning message will be given:
 
 ```python
 import paddle
@@ -32,12 +32,12 @@ WARNING: <function inner_func at 0x7fa9bcaacf50> doesn't have to be transformed 
 ```
 ## Exceptions in Running Transformed Code
 
-When an exception occurs in the transformed code by ProgramTranslator, the exception is be catched and the error message is augmented. It maps the error line of the static graph code to the dynamic graph code un-transformed, and then re-raise the exception.
+When an exception occurs in the transformed code by ProgramTranslator, the exception is caught and the error message is augmented. It maps the error line of the static graph code to the un-transformed dynamic graph code, and then re-raises the exception.
 
 Among the features of the re-raised exception:
 
 - Some useless call stacks of Dynamic-to-Static are hidden;
-- A prompt will be given before the code un-transformed: "In User Code:";
+- A prompt will be given before the un-transformed code: "In User Code:";
 - The error message includes references to the original dynamic graph code before transformation;
 
 For example, if executing the following code, an exception is raised when the static graph is built, that is, at compile time:
@@ -90,14 +90,14 @@ The above error information can be divided into three points:
         File "paddle/fluid/layers/nn.py", line 6169, in get_attr_shape
             "be -1. But received shape[%d] is also -1." % dim_idx)
     ```
-    `File "<ipython-input-13-f9c3ea702e3a>", line 7, in func` is the location information of un-transformed code, `x = fluid.layers.reshape(x, shape=[-1, -1])` is the code un-transformed.
+    `File "<ipython-input-13-f9c3ea702e3a>", line 7, in func` is the location information of un-transformed code, `x = fluid.layers.reshape(x, shape=[-1, -1])` is the un-transformed code.
 
 3. The new exception contains the message that the exception originally reported, as follows:  
     ```bash
     AssertionError: Only one dimension value of 'shape' in reshape can be -1. But received shape[1] is also -1.
     ```  
 
-If executing the following code, an exception is raised when the static graph is executed, that is, at runtime:
+If execute the following code, an exception is raised when the static graph is executed at runtime:
 
 ```Python
 @paddle.jit.to_static
@@ -157,4 +157,4 @@ InvalidArgumentError: The 'shape' in ReshapeOp is invalid. The input tensor X'si
   [operator < reshape2 > error]  [operator < run_program > error]
 ```
 
-In the above exception, in addition to hiding part of the error stack and locating the error to the dynamic graph code un-transformed, the error information includes the c++ error stack `C++ Traceback` and `Error Message Summary`, which are the exception from C++ and are displayed in Python exception after processing.
+In the above exception, in addition to hiding part of the error stack and locating the error to the un-transformed dynamic graph code, the error information includes the c++ error stack `C++ Traceback` and `Error Message Summary`, which are the exception from C++ and are displayed in Python exception after processing.
