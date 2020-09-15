@@ -12,6 +12,10 @@ Dygraph to Static Graph
 
 - `Debugging Methods <debugging_en.html>`_ ：Introduce the debugging methods when using ProgramTranslator.
 
+- `Error Handling <error_handling_en.html>`_ ：Introduce the error handling by ProgramTranslator.
+
+- `Debugging Methods <debugging_en.html>`_ ：Introduce the debugging methods when using ProgramTranslator.
+
 ..  toctree::
     :hidden:
 
@@ -20,4 +24,3 @@ Dygraph to Static Graph
     input_spec_en.rst
     error_handling_en.md
     debugging_en.md
-

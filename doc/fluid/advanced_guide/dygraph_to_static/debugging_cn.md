@@ -4,7 +4,7 @@
 
 > **注解:**
 >
-> 请确保转换前的动态图代码能够成功运行，建议使用[paddle.jit.ProgramTranslator().enable(False)](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)关闭动转静功能，直接运行动态图，如下：
+> 请确保转换前的动态图代码能够成功运行，建议使用 [paddle.jit.ProgramTranslator().enable(False)](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)关闭动转静功能，直接运行动态图，如下：
 
 ```python
 import paddle
@@ -25,7 +25,7 @@ func(np.ones([3, 2]))
 
 ## 断点调试
 使用动转静功能时，您可以使用断点调试代码。
-例如，在代码中，调用`pdb.set_trace()`：
+例如，在代码中，调用 `pdb.set_trace()`：
 ```Python
 import pdb
 
@@ -52,7 +52,7 @@ func(np.ones([3, 2]))
 ...
 ```
 
-如果您想在原始的动态图代码中使用调试器，请先调用[`paddle.jit.ProgramTranslator().enable(False)`](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)，如下：
+如果您想在原始的动态图代码中使用调试器，请先调用 [`paddle.jit.ProgramTranslator().enable(False)`](../../api_cn/dygraph_cn/ProgramTranslator_cn.html#enable)，如下：
 ```python
 paddle.jit.ProgramTranslator().enable(False)
 func(np.ones([3, 2]))
@@ -68,7 +68,8 @@ func(np.ones([3, 2]))
 ## 打印转换后的代码
 您可以打印转换后的静态图代码，有2种方法：
 
-1. 使用被装饰函数的`code` 属性
+1. 使用被装饰后的函数的 `code` 属性
+   如下代码中，装饰器 `paddle.jit.to_static` 会将函数 `func` 转化为一个类对象 `StaticLayer`，可以使用 StaticLayer 的 `code` 属性来获得转化后的代码。
     ```Python
     @paddle.jit.to_static
     def func(x):
@@ -97,9 +98,9 @@ func(np.ones([3, 2]))
         return x
     ```
 
-2. 使用`set_code_level(level)`或环境变量`TRANSLATOR_CODE_LEVEL=level`
+2. 使用 `set_code_level(level)` 或环境变量 `TRANSLATOR_CODE_LEVEL=level`
 
-    通过调用`set_code_level`或设置环境变量`TRANSLATOR_CODE_LEVEL`，可以在log中查看转换后的代码：
+    通过调用 `set_code_level` 或设置环境变量 `TRANSLATOR_CODE_LEVEL`，可以在日志中查看转换后的代码：
 
     ```python
     @paddle.jit.to_static
@@ -129,10 +130,10 @@ func(np.ones([3, 2]))
             3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
-    `set_code_level` 函数可以设置查看不同的AST Transformer转化后的代码，详情请见[set_code_level]()<!--TODO：补充set_code_level文档链接-->。
+    `set_code_level` 函数可以设置查看不同的AST Transformer转化后的代码，详情请见 [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_cn.html)。
 
 ## 使用 `print`
-`print` 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印Paddle Tensor时，实际运行时会被转换为Paddle算子[Print](../../api_cn/layers_cn/Print_cn.html)，否则仍然运行`print`。
+`print` 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印 Paddle Tensor 时，实际运行时会被转换为 Paddle 算子 [Print](../../api_cn/layers_cn/Print_cn.html)，否则仍然运行 `print`。
 ```python
 @paddle.jit.to_static
 def func(x):
@@ -167,7 +168,7 @@ Here call print function.
 
 ## 日志打印
 ProgramTranslator在日志中记录了额外的调试信息，以帮助您了解动转静过程中函数是否被成功转换。
-您可以调用`paddle.jit.set_verbosity(level)` 或设置环境变量`TRANSLATOR_VERBOSITY=level`来设置日志详细等级，并查看不同等级的日志信息。目前，`level`可以取值0-3：
+您可以调用 [`paddle.jit.set_verbosity(level)`]((../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_cn.html)) 或设置环境变量 `TRANSLATOR_VERBOSITY=level` 来设置日志详细等级，并查看不同等级的日志信息。目前，`level` 可以取值0-3：
 - 0: 无日志
 - 1: 包括了动转静转化流程的信息，如转换前的源码、转换的可调用对象
 - 2: 包括以上信息，还包括更详细函数转化日志
@@ -177,11 +178,11 @@ ProgramTranslator在日志中记录了额外的调试信息，以帮助您了解
 >
 > 日志中包括了源代码等信息，请在共享日志前确保它不包含敏感信息。
 
-可以在代码运行前调用`paddle.jit.set_verbosity`控制日志详细程度：
+可以在代码运行前调用 `paddle.jit.set_verbosity` 控制日志详细程度：
 ```python
 paddle.jit.set_verbosity(3)
 ```
-或者设置环境变量`TRANSLATOR_VERBOSITY`：
+或者设置环境变量 `TRANSLATOR_VERBOSITY`：
 ```python
 import os
 os.environ["TRANSLATOR_VERBOSITY"] = '3'
