@@ -5,12 +5,6 @@ logsigmoid
 
 .. py:function:: paddle.fluid.layers.logsigmoid(x, name=None)
 
-:alias_main: paddle.nn.functional.logsigmoid
-:alias: paddle.nn.functional.logsigmoid,paddle.nn.functional.activation.logsigmoid
-:old_api: paddle.fluid.layers.logsigmoid
-
-
-
 Logsigmoid激活函数
 
 

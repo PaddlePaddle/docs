@@ -5,7 +5,7 @@ paddle.nn.functional.loss.l1_loss	paddle.nn.functional.l1_loss
 paddle.nn.functional.loss.margin_ranking_loss	paddle.nn.functional.margin_ranking_loss
 paddle.nn.layer.pooling.AdaptiveAvgPool3d	paddle.nn.AdaptiveAvgPool3d,paddle.nn.layer.AdaptiveAvgPool3d
 paddle.nn.functional.common.alpha_dropout	paddle.nn.functional.alpha_dropout
-paddle.nn.functional.activation.logsigmoid	paddle.nn.functional.logsigmoid
+paddle.nn.functional.activation.log_sigmoid	paddle.nn.functional.log_sigmoid
 paddle.fluid.executor.Executor	paddle.static.Executor
 paddle.nn.functional.pooling.avg_pool2d	paddle.nn.functional.avg_pool2d
 paddle.fluid.dygraph.checkpoint.load_dygraph	paddle.load,paddle.framework.load
