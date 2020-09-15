@@ -1,7 +1,7 @@
 ..  _install_introduction_:
-=====================
+============================
  Installation Manuals
-===========================
+============================
 
 The manuals will guide you to build and install PaddlePaddle on your 64-bit desktop or laptop.
 
