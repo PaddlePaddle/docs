@@ -1,12 +1,12 @@
 ..  _install_introduction_:
-======================
+===========================
  Installation Manuals
-======================
+===========================
 
 The manuals will guide you to build and install PaddlePaddle on your 64-bit desktop or laptop.
 
 1. Operating system requirements:
-============================
+=================================
 
 * Windows 7 / 8 / 10, Pro/Enterprise
 * Ubuntu 14.04 / 16.04 / 18.04
@@ -15,7 +15,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 * 64-bit operating system is required
 
 2. Processor requirements:
-============================
+==========================
 
 * Processor supports MKL
 * The processor architecture is x86_64(or called x64, Intel 64, AMD64). Currently, PaddlePaddle does not support arm64.
@@ -188,6 +188,10 @@ This section describes how to use pip to install.
 
             python -m pip install paddlepaddle==2.0.0b0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
+        If you are using Windows environment, please use the following instruction:
+
+            python -m pip install paddlepaddle==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html 
+
         If you are using Python 3, please change **python** in the above command to **python3** and install.
         
 
@@ -206,6 +210,10 @@ This section describes how to use pip to install.
             or
 
             python -m pip install paddlepaddle-gpu==2.0.0b0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+        If you are using Windows environment, please use the following instruction:
+
+            python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html
         
         If you are using Python 3, please change **python** in the above command to **python3** and install.
 
