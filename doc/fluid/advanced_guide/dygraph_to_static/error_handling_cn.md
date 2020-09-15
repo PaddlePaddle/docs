@@ -4,7 +4,7 @@
 
 ## 动转静过程中的异常
 在动态图代码转换成静态图代码的过程中，如果ProgramTranslator无法转换一个函数时，将会显示警告信息，并尝试直接运行该函数。
-如下代码中，函数`inner_func` 在调用前被转换成静态图代码，当`x=inner_func(data)`调用该函数时，不能重复转换，会给出警告信息：
+如下代码中，函数 `inner_func` 在调用前被转换成静态图代码，当 `x = inner_func(data)` 调用该函数时，不能重复转换，会给出警告信息：
 
 ```python
 import paddle
@@ -31,7 +31,7 @@ WARNING: <function inner_func at 0x7fa9bcaacf50> doesn't have to be transformed 
 
 ## 运行转换后的代码报错
 
-如果在动转静后的静态图代码中发生异常，ProgramTranslator会捕获该异常，增强异常报错信息，将静态图代码报错行映射到转换前的动态图代码，并重新抛出该异常。
+如果在动转静后的静态图代码中发生异常，ProgramTranslator 会捕获该异常，增强异常报错信息，将静态图代码报错行映射到转换前的动态图代码，并重新抛出该异常。
 重新抛出的异常具有以下特点：
 
 - 隐藏了部分对用户无用的动转静过程调用栈；
@@ -157,4 +157,4 @@ InvalidArgumentError: The 'shape' in ReshapeOp is invalid. The input tensor X'si
   [operator < reshape2 > error]  [operator < run_program > error]
 ```
 
-上述异常中，除了隐藏部分报错栈、报错定位到转换前的动态图代码外，报错信息中包含了C++报错栈`C++ Traceback`和`Error Message Summary`，这是Paddle的C++端异常信息，经处理后在Python的异常信息中显示。
+上述异常中，除了隐藏部分报错栈、报错定位到转换前的动态图代码外，报错信息中包含了C++报错栈 `C++ Traceback` 和 `Error Message Summary`，这是 Paddle 的 C++ 端异常信息，经处理后在 Python 的异常信息中显示。
