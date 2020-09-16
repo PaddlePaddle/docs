@@ -1,4 +1,4 @@
-基本使用方法
+基本用法
 ==============
 
 PaddlePaddle提供了两种动态图转静态图的方式，基于动态图trace的TracedLayer与基于源代码级别转换的ProgramTranslator。

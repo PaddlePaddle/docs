@@ -12,7 +12,7 @@ We introduce the transformation of dygraph to static graph in the following link
 
 - `Basic Usage <basic_usage_en.html>`_ : Introduce the basic usage for transforming dygraph code into static code.
 
-- `Dygraph to Static Graph <program_translator_en.html>`_ : Introduce the architecture of ProgramTranslator.
+- `Architecture <program_translator_en.html>`_ : Introduce the architecture of ProgramTranslator.
 
 - `Supported Grammars <grammar_list_en.html>`_ : Introduce the grammars supported by ProgramTranslator and list unsupported grammars.
 
