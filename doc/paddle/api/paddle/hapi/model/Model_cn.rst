@@ -5,7 +5,7 @@ Model
 
 .. py:class:: paddle.Model()
 
- ``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，通过 ``paddle.disable_static()`` 来切换。需要注意的是，该开关需要在实例化 ``Model`` 对象之前使用。 在静态图模式下，输入需要使用 ``paddle.static.InputSpec`` 来定义。
+ ``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，通过 ``paddle.disable_static()`` 来切换。需要注意的是，该开关需要在实例化 ``Model`` 对象之前使用。输入需要使用 ``paddle.static.InputSpec`` 来定义。
 
 **代码示例**：
 
@@ -157,7 +157,6 @@ Model
 
 将模型的参数和训练过程中优化器的信息保存到指定的路径，以及推理所需的参数与文件。如果training=True，所有的模型参数都会保存到一个后缀为 ``.pdparams`` 的文件中。
 所有的优化器信息和相关参数，比如 ``Adam`` 优化器中的 ``beta1`` ， ``beta2`` ，``momentum`` 等，都会被保存到后缀为 ``.pdopt``。如果优化器比如SGD没有参数，则该不会产生该文件。如果training=False，则不会保存上述说的文件。只会保存推理需要的参数文件和模型文件。
-需要注意的是，保存推理模型的参数文件和模型文件时，需要在 ``forward`` 上添加 ``@paddle.jit.to_static`` 函数在动态图模式下。
 
 参数：
     - **path** (str) - 保存的文件名前缀。格式如 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
@@ -182,8 +181,6 @@ Model
                 nn.Linear(200, 10),
                 nn.Softmax())
 
-        # If save for inference in dygraph, need this
-        @paddle.jit.to_static
         def forward(self, x):
             return self.net(x)
 
@@ -191,7 +188,7 @@ Model
     device = paddle.set_device('cpu')
     # if use static graph, do not set
     paddle.disable_static(device) if dynamic else None
-    # inputs and labels are not required for dynamic graph.
+
     input = InputSpec([None, 784], 'float32', 'x')
     label = InputSpec([None, 1], 'int64', 'label')
     model = paddle.Model(Mnist(), input, label)
