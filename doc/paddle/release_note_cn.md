@@ -129,7 +129,7 @@
 	- 新增常见Loss接口`paddle.nn.loss.*`和Metric接口`paddle.metric.*`的封装
 	- 发布基于高层API实现的12个模型
 		- Transformer，Seq2seq，LAC，BMN，ResNet，YOLOv3，VGG，MobileNet，TSM，CycleGAN，Bert，OCR
-		- 发布于[PaddlePaddle/hapi](https://github.com/paddlePaddle/hapi)仓库的[examples](https://github.com/PaddlePaddle/hapi/tree/master/examples)目录
+		- 发布于[PaddlePaddle/hapi](https://github.com/paddlePaddle/hapi)仓库
 - **模型执行**
     - 新增Model类`paddle.Model`封装，封装模型开发过程中常用的基础功能，包括：
 		- 提供`Model.summary`接口，用于查看动态图组网的网络结构与参数数量。
