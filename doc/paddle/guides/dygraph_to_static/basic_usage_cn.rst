@@ -56,7 +56,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 
 
-但是也正如我们阐述的原理，trace只是记录了一次执行涉及算子，若在用户的模型代码中，包含了依赖数据条件（包括输入的值或者shape）的控制流分支，即根据数据条件触发运行不同的算子，则TracedLayer无法正常工作。比如下面
+但是也正如我们阐述的原理，trace只是记录了一次执行涉及的算子。若在用户的模型代码中，包含了依赖数据条件（包括输入的值或者shape）的控制流分支，即根据数据条件触发运行不同的算子，则TracedLayer无法正常工作。比如下面
 
 
 .. code-block:: python
@@ -76,7 +76,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     out = func(input_var)
 
 
-上例如果在使用TracedLayer.trace(func, inputs=[input_var])，由于trace只能记录if-else其中跑的一次算子，模型就无法按用户想要的根据input_var的形状进行if-else控制流保存。类似的控制流还有while/for循环的情况
+如果对上述样例中的 ``func`` 使用 ``TracedLayer.trace(func, inputs=[input_var])`` ，由于trace只能记录if-else其中跑的一次算子，模型就无法按用户想要的根据input_var的形状进行if-else控制流保存。类似的控制流还有while/for循环的情况
 
 基于源代码转写的ProgramTranslator
 -----------------------------------
@@ -121,7 +121,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
             return fc + self._offset
 
 
-存储该模型可以使用paddle.jit.save接口：
+存储该模型可以使用 ``paddle.jit.save`` 接口：
 
 .. code-block:: python
 
