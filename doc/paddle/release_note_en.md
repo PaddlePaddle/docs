@@ -129,7 +129,7 @@ For Version Paddle 2.x, users are recommended to use APIs in the paddle root dir
 
 - **Model Networking**
   - Added the encapsulation of the common loss API `paddle.nn.loss.*` and metric API `paddle.metric.*`
-  - Released 12 models based on high-level API implementations, including Transformer, Seq2seq, LAC, BMN, ResNet, YOLOv3, VGG, MobileNet, TSM, CycleGAN, Bert, OCR. The code can be found in [PaddlePaddle/hapi examples](https://github.com/PaddlePaddle/hapi/tree/master/examples).
+  - Released 12 models based on high-level API implementations, including Transformer, Seq2seq, LAC, BMN, ResNet, YOLOv3, VGG, MobileNet, TSM, CycleGAN, Bert, OCR. The code can be found in [PaddlePaddle/hapi](https://github.com/PaddlePaddle/hapi).
 
 - **Model Execution**
   - Added class API `paddle.Model`, which encapsulates the common model development methods:
