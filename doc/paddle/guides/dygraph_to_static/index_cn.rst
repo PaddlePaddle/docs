@@ -8,16 +8,16 @@
 
 - `InputSpec功能介绍 <input_spec_cn.html>`_ ：介绍了动态图转静态图指定输入InputSpec的功能和用法
 
-- `报错信息处理 <error_handling_cn.html>`_ ：介绍了动态图转静态图支持的报错信息处理方法
+- `报错信息处理 <error_handling_cn.html>`_ ：介绍了动态图转静态图的报错信息处理方法
 
 - `调试方法 <debugging_cn.html>`_ ：介绍了动态图转静态图支持的调试方法
 
 
 ..  toctree::
     :hidden:
-
-    grammar_list_cn.rst
+    
     program_translator_cn.rst
+    grammar_list_cn.rst
     input_spec_cn.rst
     error_handling_cn.md
     debugging_cn.md
