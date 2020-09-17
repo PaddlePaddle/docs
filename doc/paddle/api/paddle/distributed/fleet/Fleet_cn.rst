@@ -81,6 +81,11 @@ Fleet
 
 .. code-block:: python
 
+
+    # 这个示例需要由fleetrun启动, 用法为:
+    # fleetrun --gpus=0,1 example.py
+    # 脚本example.py中的代码是下面这个示例.
+
     import paddle
     import paddle.nn as nn
     from paddle.distributed import fleet
@@ -140,6 +145,10 @@ Fleet
 
 .. code-block:: python
 
+    # 这个示例需要由fleetrun启动, 用法为:
+    # fleetrun --gpus=0,1 example.py
+    # 脚本example.py中的代码是下面这个示例.
+
     import numpy as np
     import paddle
     from paddle.distributed import fleet
@@ -172,6 +181,10 @@ Fleet
 **代码示例**
 
 .. code-block:: python
+
+    # 这个示例需要由fleetrun启动, 用法为:
+    # fleetrun --gpus=0,1 example.py
+    # 脚本example.py中的代码是下面这个示例.
 
     import numpy as np
     import paddle
@@ -211,6 +224,10 @@ Fleet
 **代码示例**
 
 .. code-block:: python
+
+    # 这个示例需要由fleetrun启动, 用法为:
+    # fleetrun --gpus=0,1 example.py
+    # 脚本example.py中的代码是下面这个示例.
 
     import numpy as np
     import paddle
@@ -257,6 +274,10 @@ Fleet
 
 .. code-block:: python
 
+    # 这个示例需要由fleetrun启动, 用法为:
+    # fleetrun --gpus=0,1 example.py
+    # 脚本example.py中的代码是下面这个示例.
+
     import numpy as np
     import paddle
     from paddle.distributed import fleet
@@ -291,6 +312,10 @@ Fleet
 **代码示例**
 
 .. code-block:: python
+
+    # 这个示例需要由fleetrun启动, 用法为:
+    # fleetrun --gpus=0,1 example.py
+    # 脚本example.py中的代码是下面这个示例.
 
     import paddle
     import paddle.nn as nn
@@ -352,6 +377,10 @@ Fleet
 **代码示例**
 
 .. code-block:: python
+
+    # 这个示例需要由fleetrun启动, 用法为:
+    # fleetrun --gpus=0,1 example.py
+    # 脚本example.py中的代码是下面这个示例.
 
     import paddle
     import paddle.nn as nn
