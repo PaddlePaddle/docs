@@ -1,43 +1,17 @@
 版本迁移工具
 ====================
 
-飞桨框架v2.0-beta，最重要的变化为API体系的全面升级以及动态图能力的全面完善。下文将简要介绍Paddle
-2的变化。
+在飞桨框架2.0beta中，我们API的位置、命名、参数，行为，进行了系统性的调整和规, 将API体系从1.X版本的``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
 
-主要变化
---------
-
-在飞桨框架v2.0中，我们做了许多的升级。首先，全面完善了动态图模式，相较于静态图而言，动态图每次执行一个运算，可以立即得到结果，能够使算法的开发变得更加高效。此外，本版本对API目录，进行了较大的调整。将API体系从1.X版本的
-``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。原则上，Paddle
-2仍支持Paddle 1下的所有语法。但是，我们会逐步废弃掉 ``paddle.fluid``
-下的API，强烈建议您将Paddle 1的代码迁移到Paddle
-2下，以避免后续带来不必要的麻烦。下文将介绍手动与自动两种方式，来完成Paddle
-1到Paddle 2的迁移。
-
-手动将Paddle 1 的代码迁移到 Paddle 2
+使用版本迁移工具自动迁移您的paddle1.x的代码升级为Paddle2.0beta的代码
 ------------------------------------
 
-本节将介绍如何将您的代码手动的从Paddle 1迁移到Paddle 2。
-
-1、API的变化
-~~~~~~~~~~~~
-
-对于Paddle
-1下的API，您可以通过我们提供的API升级表（TODO），查看每个API的升级关系，从而手动完成修改。
-### 2、句法的变化 在Paddle 1中，通过 ``with fluid.dygraph.guard():``
-开启动态图模式，在Paddle 2.0-beta中，可以直接通过
-``paddle.disable_static()``\ 开启动态图。
-
-Paddle1to2 自动迁移您的代码到Paddle2
-------------------------------------
-
-Paddle 2 包含了许多API的变化，为了节约您将代码从Paddle 1迁移到Paddle
-2的时间，我们提供了自动迁移工具–Paddle1to2，能够帮助您快速完成代码迁移。
+WARNING: 版本自动迁移工具并不能处理所有的情况，在使用本工具后，您仍然需要手工来进行检查并做相应的调整。
 
 安装
 ~~~~
 
-Paddle1to2可以通过pip的方式安装，方式如下:
+paddle1to2工具可以通过pip的方式安装，方式如下:
 
 .. code:: ipython3
 
@@ -52,8 +26,7 @@ Paddle1to2 可以使用下面的方式，快速使用:
 
     ! paddle1to2 --inpath /path/to/model.py
 
-这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle 1转换为Paddle
-2的变化。如果您确认上述变化没有问题，只需要再执行：
+这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle1.x转换为Paddle2.0beta的变化。如果您确认上述变化没有问题，只需要再执行：
 
 .. code:: ipython3
 
@@ -86,26 +59,23 @@ Paddle1to2 可以使用下面的方式，快速使用:
 开始
 ^^^^
 
-在使用Paddle 1to2前，需要确保您已经安装了Paddle 2.0-beta版本。
+在使用paddle1to2前，需要确保您已经安装了Paddle2.0beta版本。
 
 .. code:: ipython3
 
     import paddle
     print (paddle.__version__)
-    # TODO change to paddle 2.0-beta
-
 
 .. parsed-literal::
 
-    0.0.0
+    2.0.0-beta0
 
 
-克隆\ `PaddlePaddle/models <https://github.com/PaddlePaddle/models>`__\ 来作为工具的测试。
+克隆\ `paddlePaddle/models <https://github.com/PaddlePaddle/models>`__\ 来作为工具的测试。
 
 .. code:: ipython3
 
     ! git clone https://github.com/PaddlePaddle/models
-
 
 .. parsed-literal::
 
@@ -121,8 +91,7 @@ Paddle1to2 可以使用下面的方式，快速使用:
 查看帮助文档
 ^^^^^^^^^^^^
 
-paddle1to2 会随着 paddle
-2.0-beta安装。所以您可以直接通过下面的方式，查看帮助文档。
+您可以直接通过下面的方式，查看帮助文档。
 
 .. code:: ipython3
 
@@ -136,7 +105,7 @@ paddle1to2 会随着 paddle
                       INPATH [--backup [BACKUP]] [--write] [--no-confirm]
                       [--refactor {refactor_import,norm_api_alias,args_to_kwargs,refactor_kwargs,api_rename,refactor_with,post_refactor}]
                       [--print-match]
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       --log-level {DEBUG,INFO,WARNING,ERROR}
@@ -156,17 +125,17 @@ paddle1to2 会随着 paddle
                             for each file.
 
 
-Paddle 1的例子
+paddle1.x的例子
 ^^^^^^^^^^^^^^
 
-这里是一个基于Paddle 1实现的一个mnist分类，部分内容如下：
+这里是一个基于paddle1.x实现的一个mnist分类，部分内容如下：
 
 .. code:: ipython3
 
     ! head -n 198 models/dygraph/mnist/train.py | tail -n  20
 
 
-.. parsed-literal::
+.. code:: ipython3
 
         with fluid.dygraph.guard(place):
             if args.ce:
@@ -175,14 +144,14 @@ Paddle 1的例子
                 np.random.seed(seed)
                 fluid.default_startup_program().random_seed = seed
                 fluid.default_main_program().random_seed = seed
-    
+ 
             if args.use_data_parallel:
                 strategy = fluid.dygraph.parallel.prepare_context()
             mnist = MNIST()
             adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
             if args.use_data_parallel:
                 mnist = fluid.dygraph.parallel.DataParallel(mnist, strategy)
-    
+ 
             train_reader = paddle.batch(
                 paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
             if args.use_data_parallel:
@@ -190,7 +159,7 @@ Paddle 1的例子
                     train_reader)
 
 
-使用Paddle1to2进行转化
+使用paddle1to2进行转化
 ^^^^^^^^^^^^^^^^^^^^^^
 
 paddle1to2支持单文件的转化，您可以通过下方的命令直接转化单独的文件。
@@ -227,8 +196,7 @@ paddle1to2支持单文件的转化，您可以通过下方的命令直接转化�
 
 -  本迁移工具不能完成所有API的迁移，有少量的API需要您手动完成迁移，具体信息可见WARNING。
 
-使用Paddle 2
+使用paddle 2
 ~~~~~~~~~~~~
 
-完成迁移后，代码就从Paddle 1迁移到了Paddle 2，您就可以在Paddle
-2下进行相关的开发。
+完成迁移后，代码就从paddle1.x迁移到了paddle2.0beta，您就可以在paddle2.0beta下进行相关的开发。
