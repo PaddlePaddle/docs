@@ -1,5 +1,5 @@
-ProgramTranslator支持的语法
-==========================
+支持语法列表
+==============
 
 ProgramTranslator本质是把Python运行语法转写为PaddlePaddle静态图代码，但是Python语法的表达能力和PaddlePaddle静态图表达能力存在不同，这使得一些代码无法被转换。
 
