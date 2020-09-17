@@ -11,33 +11,21 @@ paddle1.8中推荐使用两个异步数据加载的API：
 
 1. DataLoader.from_generator，有限的异步加载
 
-该API提供了单线程和单进程的异步加载支持，在静态图下仅支持单线程异步加载，在动态图下支持单线程+单进程的异步加载。但由于线程和进程数目不可配置，所以异步加速能力是有限的，适用于数据读取负载适中的场景。
+该API提供了单线程和单进程的异步加载支持。但由于线程和进程数目不可配置，所以异步加速能力是有限的，适用于数据读取负载适中的场景。
 
 具体使用方法及示例请参考API文档：[fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1)。
 
 2. DataLoader，灵活的异步加载
 
-该API提供了多进程的异步加载支持，在静态图与动态图下均可使用，也是paddle后续主推的数据读取方式。用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
+该API提供了多进程的异步加载支持，也是paddle后续主推的数据读取方式。用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
 
 具体使用方法及示例请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)
 
 ----------
 
-##### 问题：在静态图下使用`DataLoader`读取数据时，如何给变量命名？
-
-+ 答复：在paddle1.8中，静态图下给数据读取变量命名是通过指定`fluid.data`中`name`字段实现的，例如 `x = fluid.data(name='x', shape=[3, 2, 1], dtype='float32')`，然后将创建的变量传入DataLoader或DataLoader.from_generator的`feed_list`参数中使用。
-
-具体示例请参考飞桨API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1) 和 [fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader) 中静态图的示例。
-
-----------
-
 ##### 问题：使用多卡进行并行训练时，如何配置DataLoader进行异步数据读取？
 
-+ 答复：paddle1.8中多卡训练时设置异步读取和单卡场景并无太大差别，特别需要注意的是places参数的设置。
-
-静态图模式下，传入DataLoader的places参数一般需要使用`fluid.cuda_places()`和`fluid.cpu_places()`指定，例如`places = fluid.cuda_places() if USE_CUDA else fluid.cpu_places(CPU_NUM)`。使用这两个接口会获得正确的卡数，比如当前使用了4张GPU卡，那么`fluid.cuda_places()`会返回当前4张GPU卡的列表，这样才能保证训练和DataLoader指定的卡数是一致的，CPU同理。
-
-动态图模式下，由于目前仅支持多进程多卡，每个进程将仅使用一个设备，比如一张GPU卡，这种情况下，与单卡训练无异，只需要确保每个进程使用的是正确的卡即可。
++ 答复：paddle1.8中多卡训练时设置异步读取和单卡场景并无太大差别，动态图模式下，由于目前仅支持多进程多卡，每个进程将仅使用一个设备，比如一张GPU卡，这种情况下，与单卡训练无异，只需要确保每个进程使用的是正确的卡即可。
 
 具体示例请参考飞桨API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1) 和 [fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader) 中的示例。
 
@@ -57,42 +45,15 @@ paddle1.8中推荐使用两个异步数据加载的API：
 
 ----------
 
-##### 问题：`paddle.fluid.layers.py_reader`和`fluid.io.PyReader`有什么区别？
-
-+ 答复：两个都是异步的Reader，实现原理上差别不大，仅在接口形态和使用上有所区别。
-
-将来这两个接口会逐渐废弃，请使用API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1) 或者 [fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
-
-----------
-
 ##### 问题：有拓展Tensor维度的Op吗？
 
 + 答复：有，请参考API [paddle.fluid.layers.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/unsqueeze_cn.html)。
 
 ----------
 
-##### 问题：是否支持两维以上的变长tensor，如：shape[-1, -1, 128]？
-
-+ 答复：支持，在静态图配置网络时`shape`可以设置为：[-1，**任意整数**，128]，输入时`shape`可以设置为：[**任意整数**，**任意整数**，128]。
-
-维度只是个占位，网络运行时的实际维度是从输入数据中推导出来的。两个"任意整数" 在输入和配置时可以不相等，但是配置网络时，第一维度必须为-1或者None。
-
-----------
-
 ##### 问题：如何从numpy.array生成一个具有shape和dtype的Tensor?
 
-+ 答复：在静态图模式下，可以参考如下示例：
-
-```
-import paddle.fluid as fluid
-import numpy as np
-
-t = fluid.create_lod_tensor(np.ndarray([5, 30]), [], fluid.CPUPlace())
-```
-
-具体请参考API [paddle.fluid.create_lod_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/create_lod_tensor_cn.html#cn-api-fluid-create-lod-tensor)
-
-在动态图模式下，可以参考如下示例：
++ 答复：在动态图模式下，可以参考如下示例：
 
 ```
 import paddle.fluid as fluid
