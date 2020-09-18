@@ -120,3 +120,25 @@ DistributedStrategy
 
 设置 distribute_strategy 策略的配置。
   k_steps(int) 参数更新的周期，默认为1
+
+测试9
+
+设置 distribute_strategy 策略的配置。
+**k_steps(int)** 参数更新的周期，默认为1
+
+测试10 
+
+设置 distribute_strategy 策略的配置。
+  **k_steps(int)** 参数更新的周期，默认为1
+
+测试11 
+
+设置 distribute_strategy 策略的配置。
+
+  **k_steps(int)** 参数更新的周期，默认为1
+
+测试12
+
+设置 distribute_strategy 策略的配置。
+
+**k_steps(int)** 参数更新的周期，默认为1
