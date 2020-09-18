@@ -97,3 +97,26 @@ DistributedStrategy
   avg(bool) 梯度的融合方式，有两种选择：
     - sum: 梯度求和
     - avg: 梯度求平均
+
+测试6
+
+设置 distribute_strategy 策略的配置。
+
+  k_steps(int) 参数更新的周期，默认为1
+
+  avg(bool) 梯度的融合方式，有两种选择：
+
+    - sum: 梯度求和
+    - avg: 梯度求平均
+
+测试7 
+
+
+设置 distribute_strategy 策略的配置。
+
+  k_steps(int) 参数更新的周期，默认为1
+
+测试8 
+
+设置 distribute_strategy 策略的配置。
+  k_steps(int) 参数更新的周期，默认为1
