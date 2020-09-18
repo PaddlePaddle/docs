@@ -24,7 +24,6 @@ Model
         nn.Tanh(),
         nn.Linear(200, 10))
 
-    # inputs and labels are not required for dynamic graph.
     input = InputSpec([None, 784], 'float32', 'x')
     label = InputSpec([None, 1], 'int64', 'label')
     
