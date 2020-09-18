@@ -28,7 +28,7 @@ DistributedStrategy
 
 设置Recompute策略的配置。目前来讲，用户使用Recompute策略时，必须配置 checkpoints 参数。
 
-**checkpoints(int)** Recompute策略的检查点，默认为空列表，也即不启用Recompute。
+**checkpoints(int): ** Recompute策略的检查点，默认为空列表，也即不启用Recompute。
 
 .. py:attribute:: gradient_merge
 
@@ -50,9 +50,9 @@ DistributedStrategy
 
 设置 **distribute_strategy** 策略的配置。
 
-**k_steps(int)** 参数更新的周期，默认为1
+**k_steps(int): ** 参数更新的周期，默认为1
 
-**avg(bool)** 梯度的融合方式，有两种选择：
+**avg(bool): ** 梯度的融合方式，有两种选择：
 
 - **sum**: 梯度求和
 - **avg**: 梯度求平均
