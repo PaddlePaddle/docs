@@ -131,3 +131,60 @@ DistributedStrategy
 **lamb_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.01.
 
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0. 默认值是 None.
+
+.. py:attribute:: localsgd
+是否使用LocalSGD optimizer，默认值：False。更多的细节请参考[Don't Use Large Mini-Batches, Use Local SGD](https://arxiv.org/pdf/1808.07217.pdf)
+
+**示例代码**
+
+.. code-block:: python  
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.localsgd = True # by default this is false
+
+
+.. py:attribute:: localsgd_configs
+设置LocalSGD优化器的参数。用户可以配置k_steps和begin_step参数。
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.localsgd = True
+  strategy.localsgd_configs = {"k_steps": 4,
+                                "begin_step": 30}
+
+**k_steps(int):** 训练过程中的全局参数更新间隔，默认值1。
+
+**begin_step(int):** 指定从第几个step之后进行local SGD算法，默认值1。
+
+.. py:attribute:: adaptive_localsgd
+是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考[Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD](https://arxiv.org/pdf/1810.08313.pdf)
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.adaptive_localsgd = True # by default this is false
+
+.. py:attribute:: adaptive_localsgd_configs
+设置AdaptiveLocalSGD优化器的参数。用户可以配置init_k_steps和begin_step参数。
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.adaptive_localsgd = True
+  strategy.adaptive_localsgd_configs = {"init_k_steps": 1,
+                                        "begin_step": 30}
+
+**init_k_steps(int):** 自适应localsgd的初始训练步长。训练后，自适应localsgd方法将自动调整步长。 默认值1。
+
+**begin_step(int):** 指定从第几个step之后进行Adaptive LocalSGD算法，默认值1。
