@@ -28,13 +28,13 @@ paddle.disable_static()
 
 1. 通过调用paddle.to_tensor函数，将python scalar/list，或者numpy.ndarray数据转换为Paddle的Tensor。具体使用方法，请查看官网的API文档。
 
-   ```python
-   import paddle
-   
-   paddle.disable_static()
-   paddle.to_tensor(1)
-   paddle.to_tensor((1.1, 2.2), place=paddle.CUDAPinnedPlace())
-   ```
+```python
+import paddle
+
+paddle.disable_static()
+paddle.to_tensor(1)
+paddle.to_tensor((1.1, 2.2))
+```
 
 2. 通过调用paddle.zeros, paddle.ones, paddle.full, paddle.arange, paddle.rand, paddle.randn, paddle.randint, paddle.normal, paddle.uniform等函数，创建并返回Tensor。
 
@@ -86,6 +86,7 @@ paddle.disable_static()
 - 对于当前逐元素操作，不加elementwise前缀
 - 对于按照某一轴操作，不加reduce前缀
 - Conv, Pool, Dropout, BatchNorm, Pad组网类API根据输入数据类型增加1d, 2d, 3d后缀
+
   | Paddle 1.8  API名称  | Paddle 2.0-beta 对应的名称|
   | --------------- | ------------------------ |
   | paddle.fluid.layers.elementwise_add | paddle.add               |
@@ -170,6 +171,9 @@ for data, label in val_dataset:
  针对顺序的线性网络结构我们可以直接使用Sequential来快速完成组网，可以减少类的定义等代码编写 
 
 ```python
+import paddle
+paddle.disable_static()
+
 # Sequential形式组网
 mnist = paddle.nn.Sequential(
     paddle.nn.Flatten(),
@@ -185,6 +189,8 @@ mnist = paddle.nn.Sequential(
  针对一些比较复杂的网络结构，就可以使用Layer子类定义的方式来进行模型代码编写，在`__init__`构造函数中进行组网Layer的声明，在`forward`中使用声明的Layer变量进行前向计算。子类组网方式也可以实现sublayer的复用，针对相同的layer可以在构造函数中一次性定义，在forward中多次调用。 
 
 ```python
+import paddle
+paddle.disable_static()
 
 # Layer类继承方式组网
 class Mnist(paddle.nn.Layer):
@@ -217,18 +223,19 @@ mnist = Mnist()
 
 ```python
 import paddle
-
 paddle.disable_static()
+
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
+lenet = paddle.vision.models.LeNet()
 
 # Mnist继承paddle.nn.Layer属于Net，model包含了训练功能
-model = paddle.Model(Mnist())
+model = paddle.Model(lenet)
 
 # 设置训练模型所需的optimizer, loss, metric
 model.prepare(
-    paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
-    paddle.nn.loss.CrossEntropyLoss(),
+    paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters()),
+    paddle.nn.CrossEntropyLoss(),
     paddle.metric.Accuracy(topk=(1, 2))
     )
 
@@ -247,31 +254,28 @@ import paddle
 paddle.disable_static()
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
+lenet = paddle.vision.models.LeNet()
 
 # 加载训练集 batch_size 设为 64
 train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=64, shuffle=True)
 
 def train():
-    net = LeNet()
     epochs = 2
-    adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=net.parameters())
+    adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=lenet.parameters())
     # 用Adam作为优化函数
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
-            x_data = data[0]
-            y_data = data[1]
-            predicts = net(x_data)
-            acc = paddle.nn.functional.cross_entropy(predicts, y_data)
-            loss = paddle.metric.accuracy(predicts, y_data, k=2)
-            avg_loss = paddle.mean(loss)
+            x_data, y_data = data
+            predicts = lenet(x_data)
+            loss = paddle.nn.functional.cross_entropy(predicts, y_data, reduction='mean')
+            acc = paddle.metric.accuracy(predicts, y_data, k=1)
             avg_acc = paddle.mean(acc)
-            avg_loss.backward()
+            loss.backward()
             if batch_id % 100 == 0:
-                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, avg_loss.numpy(), avg_acc.numpy()))
+                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), avg_acc.numpy()))
             adam.step()
             adam.clear_grad()
-
-# 启动训练            
+# 启动训练
 train()
 ```
 
@@ -284,7 +288,7 @@ train()
 
 当调用paddle.Model高层来实现训练时，想要启动单机多卡训练非常简单，代码不需要做任何修改，只需要在启动时增加一下参数`-m paddle.distributed.launch`。
 
-```bash
+```text
 # 单机单卡启动，默认使用第0号卡
 $ python train.py
 
@@ -303,7 +307,7 @@ $ python -m paddle.distributed.launch train.py
 
 如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行4处修改，具体如下：
 
-```python
+```text
 import paddle
 import paddle.distributed as dist
 
@@ -330,8 +334,6 @@ def train():
             predicts = net(x_data)           acc = paddle.metric.accuracy(predicts, y_data, k=2)
             avg_acc = paddle.mean(acc)
             loss = paddle.nn.functional.cross_entropy(predicts, y_data)
-            avg_loss = paddle.mean(loss)
-            # 计算损失
             
             # 第3处改动，归一化loss
             avg_loss = net.scale_loss(avg_loss)
@@ -368,7 +370,7 @@ $ python -m paddle.distributed.launch train.py
 
 launch方式启动训练，以文件为单位启动多进程，需要用户在启动时调用`paddle.distributed.launch`，对于进程的管理要求较高。2.0版本增加了spawn启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。
 
-```python
+```text
 # 启动train多进程训练，默认使用所有可见的GPU卡
 if __name__ == '__main__':
     dist.spawn(train)
@@ -388,7 +390,7 @@ Paddle保存的模型有两种格式，一种是训练格式，保存模型参�
 
 高层API下用于预测部署的模型保存方法为：
 
-```python
+```text
 model = paddle.Model(Mnist())
 # 预测格式，保存的模型可用于预测部署
 model.save('mnist', training=False)
@@ -399,7 +401,7 @@ model.save('mnist', training=False)
 
 动态图训练的模型，可以通过动静转换功能，转换为可部署的静态图模型，具体做法如下：
 
-```python
+```text
 import paddle
 from paddle.jit import to_static
 from paddle.static import InputSpec
