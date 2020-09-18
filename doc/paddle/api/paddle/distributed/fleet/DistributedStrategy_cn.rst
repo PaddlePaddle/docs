@@ -32,8 +32,7 @@ DistributedStrategy
 
 .. py:attribute:: pipeline
 
-是否为分布式训练启用Pipeline并行。目前，主要实现单机多GPU间的流水线并行和多机间的数据并行。
-流水线信息用户定义的程序中的device_guard确定。
+是否启用Pipeline并行。目前，主要实现单机多GPU间的Pipeline并行和多机间的数据并行。Pipeline信息由用户定义程序中的device_guard确定。
 
 **示例代码**
 
@@ -46,9 +45,7 @@ DistributedStrategy
 
 .. py:attribute:: pipeline_configs
 
-设置Pipeline策略的配置。Pipeline策略下，神经网络的不同层在不同的GPU设备。相邻的GPU设备间有用于
-同步隐层Tensor的队列。Pipeline并行包含多种生产者-消费者形式的硬件对，如GPU-CPU、CPU-GPU、GPU-XPU。
-加速PIpeline并行的最佳方式是减少Tensor队列中的Tensor大小，这样生产者可以更快的为下游消费者提供数据。
+设置Pipeline策略的配置。Pipeline策略下，神经网络的不同层在不同的GPU设备。相邻的GPU设备间有用于同步隐层Tensor的队列。Pipeline并行包含多种生产者-消费者形式的硬件对，如GPU-CPU、CPU-GPU、GPU-XPU。加速PIpeline并行的最佳方式是减少Tensor队列中的Tensor大小，这样生产者可以更快的为下游消费者提供数据。
 
 **micro_batch (int):** 每个用户定义的mini-batch中包含的更小的micro-batch的数量。
 
