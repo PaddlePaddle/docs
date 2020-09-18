@@ -10,22 +10,28 @@ DistributedStrategy
 ::::::::::::
 
 .. py:attribute:: recompute
+
 是否启用Recompute来优化内存空间，默认值：False
 
 **示例代码**
 
 .. code-block:: python
+
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.recompute = True
   # suppose x and y are names of checkpoint tensors for recomputation
   strategy.recompute_configs = {"checkpoints": ["x", "y"]}
+
+
 .. py:attribute:: recompute_configs
+
 设置Recompute策略的配置。目前来讲，用户使用Recompute策略时，必须配置 checkpoints 参数。
 
 **checkpoints(int):** Recompute策略的检查点，默认为空列表，也即不启用Recompute。
 
 .. py:attribute:: gradient_merge
+
 梯度累加，是一种大Batch训练的策略。添加这一策略后，模型的参数每过 **k_steps** 步更新一次，
 **k_steps** 是用户定义的步数。在不更新参数的步数里，Paddle只进行前向、反向网络的计算；
 在更新参数的步数里，Paddle执行优化网络，通过特定的优化器（比如SGD、Adam），
@@ -34,11 +40,14 @@ DistributedStrategy
 **示例代码**
 
 .. code-block:: python
+
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.gradient_merge = True
   strategy.gradient_merge_configs = {"k_steps": 4, "avg": True}  
+
 .. py:attribute:: gradient_merge_configs
+
 设置 **distribute_strategy** 策略的配置。
 
 **k_steps(int):** 参数更新的周期，默认为1
@@ -89,5 +98,3 @@ DistributedStrategy
 
 **lamb_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.01.
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0. 默认值是 None.
-
-
