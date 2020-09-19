@@ -6,8 +6,77 @@ DistributedStrategy
 .. py:class:: paddle.distributed.fleet.DistributedStrategy
 
 
+
 属性
 ::::::::::::
+
+.. py:attribute:: save_to_prototxt
+
+序列化当前的DistributedStrategy，并且保存到output文件中
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.dgc = True
+  strategy.recompute = True
+  strategy.recompute_configs = {"checkpoints": ["x"]}
+  strategy.save_to_prototxt("dist_strategy.prototxt")
+
+
+.. py:attribute:: load_from_prototxt
+
+加载已经序列化过的DistributedStrategy文件，并作为初始化DistributedStrategy返回
+
+**示例代码**
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.load_from_prototxt("dist_strategy.prototxt")
+
+
+.. py:attribute:: execution_strategy
+
+配置DistributedStrategy中的[ExecutionStrategy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html)
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle
+  exe_strategy = paddle.fluid.ExecutionStrategy()
+  exe_strategy.num_threads = 10
+  exe_strategy.num_iteration_per_drop_scope = 10
+  exe_strategy.num_iteration_per_run = 10
+  
+  strategy = paddle.distributed.fleet.DistributedStrategy()
+  strategy.execution_strategy = exe_strategy
+
+
+.. py:attribute:: build_strategy
+
+配置DistributedStrategy中的[BuildStrategy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html)
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle
+  build_strategy = paddle.fluid.BuildStrategy()
+  build_strategy.enable_sequential_execution = True
+  build_strategy.fuse_elewise_add_act_ops = True
+  build_strategy.fuse_bn_act_ops = True
+  build_strategy.enable_auto_fusion = True
+  build_strategy.fuse_relu_depthwise_conv = True
+  build_strategy.fuse_broadcast_ops = True
+  build_strategy.fuse_all_optimizer_ops = True
+  build_strategy.enable_inplace = True
+  
+  strategy = paddle.distributed.fleet.DistributedStrategy()
+  strategy.build_strategy = build_strategy
+
 
 .. py:attribute:: recompute
 
