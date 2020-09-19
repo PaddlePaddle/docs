@@ -1,6 +1,6 @@
-===============
+======================
 paddle.optimizer
-===============
+======================
 
 ..  toctree::
     :maxdepth: 1
@@ -11,8 +11,7 @@ paddle.optimizer
     optimizer/AdagradOptimizer.rst
     optimizer/Adam.rst
     optimizer/Adamax.rst
-    optimizer/AdamaxOptimizer.rst
-    optimizer/AdamOptimizer.rst
+    optimizer/AdamW.rst
     optimizer/DecayedAdagrad.rst
     optimizer/DecayedAdagradOptimizer.rst
     optimizer/DGCMomentumOptimizer.rst
@@ -28,8 +27,20 @@ paddle.optimizer
     optimizer/ModelAverage.rst
     optimizer/Momentum.rst
     optimizer/MomentumOptimizer.rst
-    optimizer/PipelineOptimizer.rst
     optimizer/RecomputeOptimizer.rst
-    optimizer/RMSPropOptimizer.rst
+    optimizer/RMSProp.rst
     optimizer/SGD.rst
     optimizer/SGDOptimizer.rst
+    optimizer/Optimizer.rst
+    optimizer/NoamLR.rst
+    optimizer/PiecewiseLR.rst
+    optimizer/NaturalExpLR.rst
+    optimizer/InverseTimeLR.rst
+    optimizer/PolynomialLR.rst
+    optimizer/LinearLrWarmup.rst
+    optimizer/ExponentialLR.rst
+    optimizer/MultiStepLR.rst
+    optimizer/StepLR.rst
+    optimizer/LambdaLR.rst
+    optimizer/ReduceLROnPlateau.rst
+    optimizer/CosineAnnealingLR.rst

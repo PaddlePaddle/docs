@@ -5,7 +5,6 @@ fluid.dygraph
 ..  toctree::
     :maxdepth: 1
 
-    dygraph/BackwardStrategy.rst
     dygraph/BatchNorm.rst
     dygraph/BilinearTensorProduct.rst
     dygraph/Conv2D.rst
@@ -31,6 +30,7 @@ fluid.dygraph
     dygraph/guard.rst
     dygraph/InstanceNorm.rst
     dygraph/InverseTimeDecay.rst
+    dygraph/jit.rst
     dygraph/Layer.rst
     dygraph/LayerList.rst
     dygraph/LayerNorm.rst
@@ -55,4 +55,5 @@ fluid.dygraph
     dygraph/to_variable.rst
     dygraph/TracedLayer.rst
     dygraph/Tracer.rst
+    dygraph/TranslatedLayer.rst
     dygraph/TreeConv.rst

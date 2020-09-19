@@ -16,23 +16,23 @@ paddle.tensor
     tensor/atan.rst
     tensor/cast.rst
     tensor/ceil.rst
+    tensor/chunk.rst
     tensor/concat.rst
     tensor/cos.rst
     tensor/create_tensor.rst
     tensor/crop_tensor.rst
+    tensor/cross.rst
     tensor/cumsum.rst
     tensor/diag.rst
     tensor/div.rst
     tensor/elementwise_add.rst
     tensor/elementwise_div.rst
-    tensor/elementwise_equal.rst
     tensor/elementwise_floordiv.rst
-    tensor/elementwise_max.rst
-    tensor/elementwise_min.rst
     tensor/elementwise_mod.rst
     tensor/elementwise_mul.rst
     tensor/elementwise_pow.rst
     tensor/elementwise_sub.rst
+    tensor/equal_all.rst
     tensor/erf.rst
     tensor/exp.rst
     tensor/expand.rst
@@ -42,6 +42,7 @@ paddle.tensor
     tensor/flatten.rst
     tensor/floor.rst
     tensor/full.rst
+    tensor/full_like.rst
     tensor/gather.rst
     tensor/gather_nd.rst
     tensor/greater_equal.rst
@@ -50,9 +51,13 @@ paddle.tensor
     tensor/has_nan.rst
     tensor/increment.rst
     tensor/is_empty.rst
+    tensor/index_select.rst
     tensor/isfinite.rst
+    tensor/isinf.rst
+    tensor/isnan.rst
     tensor/less_equal.rst
     tensor/less_than.rst
+    tensor/logic.rst
     tensor/linalg.rst
     tensor/linspace.rst
     tensor/load.rst
@@ -62,9 +67,12 @@ paddle.tensor
     tensor/logical_or.rst
     tensor/logical_xor.rst
     tensor/math.rst
+    tensor/masked_select.rst
     tensor/max.rst
+    tensor/maximum.rst
     tensor/mean.rst
     tensor/min.rst
+    tensor/minimum.rst
     tensor/mm.rst
     tensor/mul.rst
     tensor/multiplex.rst
@@ -72,6 +80,7 @@ paddle.tensor
     tensor/not_equal.rst
     tensor/ones.rst
     tensor/ones_like.rst
+    tensor/numel.rst
     tensor/pow.rst
     tensor/random.rst
     tensor/rank.rst
@@ -92,6 +101,7 @@ paddle.tensor
     tensor/scatter.rst
     tensor/scatter_nd.rst
     tensor/scatter_nd_add.rst
+    tensor/search.rst
     tensor/shape.rst
     tensor/shard_index.rst
     tensor/shuffle.rst
@@ -105,6 +115,7 @@ paddle.tensor
     tensor/squeeze.rst
     tensor/stack.rst
     tensor/stanh.rst
+    tensor/std.rst
     tensor/stat.rst
     tensor/strided_slice.rst
     tensor/sum.rst
@@ -116,6 +127,7 @@ paddle.tensor
     tensor/unique_with_counts.rst
     tensor/unsqueeze.rst
     tensor/unstack.rst
+    tensor/var.rst
     tensor/where.rst
     tensor/zeros.rst
     tensor/zeros_like.rst
