@@ -5,6 +5,12 @@ detection_output
 
 .. py:function:: paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
 
+:alias_main: paddle.nn.functional.detection_output
+:alias: paddle.nn.functional.detection_output,paddle.nn.functional.vision.detection_output
+:old_api: paddle.fluid.layers.detection_output
+
+
+
 给定回归位置偏移、置信度以及先验框信息计算检测的输出，执行步骤如下：
 
     1.根据先验框(``prior_box``)信息和回归位置偏移解码出预测框坐标。

@@ -4,6 +4,12 @@ elementwise_min
 -------------------------------
 
 .. py:function:: paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
+
+:alias_main: paddle.elementwise_min
+:alias: paddle.elementwise_min,paddle.tensor.elementwise_min,paddle.tensor.math.elementwise_min
+:old_api: paddle.fluid.layers.elementwise_min
+
+
 该OP逐元素对比输入的两个多维Tensor，并且把各个位置更小的元素保存到返回结果中。
 
 等式是：
@@ -60,7 +66,7 @@ elementwise_min
 
     x = fluid.layers.data(name="x", shape=[3], dtype='float32')
     y = fluid.layers.data(name="y", shape=[3], dtype='float32')
-    z = fluid.layers.elementwise_max(x, y)
+    z = fluid.layers.elementwise_min(x, y)
 
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)
@@ -84,7 +90,7 @@ elementwise_min
 
     x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
     y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
-    z = fluid.layers.elementwise_max(x, y, axis=1)
+    z = fluid.layers.elementwise_min(x, y, axis=1)
 
     place = fluid.CPUPlace()
     exe = fluid.Executor(place)

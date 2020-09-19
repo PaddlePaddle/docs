@@ -5,6 +5,9 @@ auc
 
 .. py:function:: paddle.fluid.layers.auc(input, label, curve='ROC', num_thresholds=200, topk=1, slide_steps=1)
 
+
+
+
 **Area Under the Curve(AUC) Layer**
 
 该层根据前向输出和标签计算AUC，在二分类(binary classification)估计中广泛使用。

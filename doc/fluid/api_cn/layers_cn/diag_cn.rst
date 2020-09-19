@@ -5,6 +5,12 @@ diag
 
 .. py:function:: paddle.fluid.layers.diag(diagonal)
 
+:alias_main: paddle.diag
+:alias: paddle.diag,paddle.tensor.diag,paddle.tensor.creation.diag
+:old_api: paddle.fluid.layers.diag
+
+
+
 该OP创建一个方阵，使用输入diagonal来指定方阵的对角线元素的值。
 
 参数：

@@ -5,6 +5,12 @@ filter_by_instag
 
 .. py:function:: paddle.fluid.layers.filter_by_instag(ins, ins_tag, filter_tag, is_lod)
 
+:alias_main: paddle.nn.functional.filter_by_instag
+:alias: paddle.nn.functional.filter_by_instag,paddle.nn.functional.extension.filter_by_instag
+:old_api: paddle.fluid.layers.filter_by_instag
+
+
+
 此函数通过instag来过滤ins batch，大量属于同样的tags的样本，我们可以指定我们想要的一些tags，属于这些tags的样本将会被保留在输出中，其余的将会移除。比如，一个batch有4个样本，每个样本都有自己的tag表。
 
 Ins   |   Ins_Tag |
@@ -26,6 +32,7 @@ Lod为[1，1，1，1]，filter tags为[1]，从上面的定义中，带有标签
     - **ins_tag** (Variable) - 输入变量(LoDTensor),通常为1维列表，通过lod info来分割。
     - **filter_tag** (Variable) - 输入变量(1D Tensor/List)，通常为持有tags的列表。
     - **is_lod** (Bool) – 指定样本是否为lod tensor的布尔值。
+    - **out_val_if_empty** (Int64) - 如果batch内样本被全部过滤，输出会被指定成这个值。
     
 返回：过滤之后的样本（LoDTensor）和 损失权重（Tensor）。
 

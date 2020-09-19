@@ -1,5 +1,5 @@
 =======================
-fluid.optimizer
+paddle.optimizer
 =======================
 
 
@@ -14,8 +14,7 @@ fluid.optimizer
     optimizer_cn/AdagradOptimizer_cn.rst
     optimizer_cn/Adam_cn.rst
     optimizer_cn/Adamax_cn.rst
-    optimizer_cn/AdamaxOptimizer_cn.rst
-    optimizer_cn/AdamOptimizer_cn.rst
+    optimizer_cn/AdamW_cn.rst
     optimizer_cn/DecayedAdagrad_cn.rst
     optimizer_cn/DecayedAdagradOptimizer_cn.rst
     optimizer_cn/DGCMomentumOptimizer_cn.rst
@@ -31,8 +30,20 @@ fluid.optimizer
     optimizer_cn/ModelAverage_cn.rst
     optimizer_cn/Momentum_cn.rst
     optimizer_cn/MomentumOptimizer_cn.rst
-    optimizer_cn/PipelineOptimizer_cn.rst
     optimizer_cn/RecomputeOptimizer_cn.rst
-    optimizer_cn/RMSPropOptimizer_cn.rst
+    optimizer_cn/RMSProp_cn.rst
     optimizer_cn/SGD_cn.rst
     optimizer_cn/SGDOptimizer_cn.rst
+    optimizer_cn/Optimizer_cn.rst
+    optimizer_cn/lr_scheduler_cn/CosineAnnealingLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/ExponentialLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/InverseTimeLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/LambdaLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/MultiStepLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/NaturalExpLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/NoamLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/PiecewiseLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/PolynomiaLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/ReduceLROnPlateauLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/StepLR_cn.rst
+    optimizer_cn/lr_scheduler_cn/LinearLrWarmup_cn.rst

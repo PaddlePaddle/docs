@@ -5,6 +5,12 @@ natural_exp_decay
 
 .. py:function:: paddle.fluid.layers.natural_exp_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
+:alias_main: paddle.nn.functional.natural_exp_decay
+:alias: paddle.nn.functional.natural_exp_decay,paddle.nn.functional.learning_rate.natural_exp_decay
+:old_api: paddle.fluid.layers.natural_exp_decay
+
+
+
 将自然指数衰减运用到初始学习率上。
 
 训练模型时，在训练过程中降低学习率。 自然指数衰减使用自然指数来计算衰减倍率，每 ``decay_steps`` 步衰减倍率的自然指数幂次项上增加 ``decay_rate`` 。

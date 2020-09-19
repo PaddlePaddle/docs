@@ -5,6 +5,12 @@ smooth_l1
 
 .. py:function:: paddle.fluid.layers.smooth_l1(x, y, inside_weight=None, outside_weight=None, sigma=None)
 
+:alias_main: paddle.nn.functional.smooth_l1
+:alias: paddle.nn.functional.smooth_l1,paddle.nn.functional.loss.smooth_l1
+:old_api: paddle.fluid.layers.smooth_l1
+
+
+
 该layer计算变量 ``x`` 和 ``y`` 的smooth L1 loss，它以 ``x`` 和 ``y`` 的第一维大小作为批处理大小。对于每个实例，按元素计算smooth L1 loss，然后计算所有loss。输出变量的形状是[batch_size, 1]
 
 

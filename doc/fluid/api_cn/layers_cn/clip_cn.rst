@@ -5,6 +5,12 @@ clip
 
 .. py:function:: paddle.fluid.layers.clip(x, min, max, name=None)
 
+:alias_main: paddle.nn.clip
+:alias: paddle.nn.clip,paddle.nn.clip.clip
+:old_api: paddle.fluid.layers.clip
+
+
+
 该OP对输入Tensor每个元素的数值进行裁剪，使得输出Tensor元素的数值被限制在区间[min, max]内。具体的计算公式为如下。
 
 .. math::

@@ -3,9 +3,12 @@
 save_vars
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.io.save_vars(executor, dirname, main_program=None, vars=None, predicate=None, filename=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该接口将 ``Program`` 的变量保存到文件中。
 

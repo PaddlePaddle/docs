@@ -25,7 +25,6 @@
 
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
         rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
         yum update -y
         yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
 
@@ -89,7 +88,7 @@
         > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 
-        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 8.0。
+        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 10.0。
 
 
 4. 进入Docker后进入paddle目录下：
@@ -119,7 +118,7 @@
 
     > 安装protobuf。
 
-    `apt install patchelf`
+    `yum install patchelf`
 
     > 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
@@ -153,7 +152,7 @@
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
-> 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 来安装
+> 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `yum install -y vim` 来安装
 
 <a name="ct_source"></a>
 ### **本机编译**
@@ -206,7 +205,7 @@
     * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 
         `yum install patchelf`
-        > 不能使用apt安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
+        > 不能使用yum安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
 
 7. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
 

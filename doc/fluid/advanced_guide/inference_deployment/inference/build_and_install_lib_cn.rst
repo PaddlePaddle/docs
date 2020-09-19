@@ -1,23 +1,22 @@
 .. _install_or_build_cpp_inference_lib:
 
-安装与编译C++预测库
+安装与编译 Linux 预测库
 ===========================
 
 直接下载安装
 -------------
 
 ..  csv-table:: 
-    :header: "版本说明", "预测库(1.7.0版本)", "预测库(develop版本)"
+    :header: "版本说明", "预测库(1.8.4版本)", "预测库(develop版本)"
     :widths: 3, 2, 2
 
-    "ubuntu14.04_cpu_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-cpu-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-mkl/fluid_inference.tgz>`_"
-    "ubuntu14.04_cpu_avx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-cpu-avx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-openblas/fluid_inference.tgz>`_"
-    "ubuntu14.04_cpu_noavx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-cpu-noavx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-noavx-openblas/fluid_inference.tgz>`_"
-    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_"
-    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_"
-    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl_trt5", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-gpu-cuda9-cudnn7-avx-mkl-trt5/fluid_inference.tgz>`_", 
-    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl_trt5", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-gpu-cuda10-cudnn7-avx-mkl-trt5/fluid_inference.tgz>`_", 
-    "nv-jetson-cuda10-cudnn7.5-trt5", "`fluid_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/1.7.0-nv-jetson-cuda10-cudnn7.5-trt5/fluid_inference.tar.gz>`_", 
+    "ubuntu14.04_cpu_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-cpu-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-mkl/fluid_inference.tgz>`_"
+    "ubuntu14.04_cpu_avx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-cpu-avx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-openblas/fluid_inference.tgz>`_"
+    "ubuntu14.04_cpu_noavx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-cpu-noavx-openblas/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-noavx-openblas/fluid_inference.tgz>`_"
+    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_"
+    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_"
+    "ubuntu14.04_cuda10.1_cudnn7.6_avx_mkl_trt6", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-gpu-cuda10.1-cudnn7.6-avx-mkl-trt6%2Ffluid_inference.tgz>`_", 
+    "nv-jetson-cuda10-cudnn7.5-trt5", "`fluid_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/1.7.1-nv-jetson-cuda10-cudnn7.5-trt5/fluid_inference.tar.gz>`_", 
 
 
 从源码编译
@@ -40,23 +39,28 @@ WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需�
 
 建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
 
-首先从github拉取最新代码并安装nccl
+首先从github拉取最新代码
 
 .. code-block:: bash
 
-  git clone https://github.com/paddlepaddle/paddle
+  git clone https://github.com/paddlepaddle/Paddle
+  cd Paddle
   # 建议使用git checkout切换到Paddle稳定的版本，如：
-  git checkout v1.6.2
+  git checkout v1.8.4
+
+**note**: 如果您是多卡机器，建议安装NCCL；如果您是单卡机器则可以在编译时显示指定WITH_NCCL=OFF来跳过这一步。注意如果WITH_NCCL=ON，且没有安装NCCL，则编译会报错。
+
+.. code-block:: bash
 
   git clone https://github.com/NVIDIA/nccl.git
+  cd nccl
   make -j4
   make install
 
-**note**： 单卡机器上不会用到nccl但仍存在依赖， 后续会考虑将此依赖去除。
 
 **Server端预测库源码编译**
 
-下面的代码片段配制编译选项并进行编译（需要将PADDLE_ROOT替换为PaddlePaddle预测库的安装路径）：
+下面的代码片段配制编译选项并进行编译（需要将PADDLE_ROOT替换为PaddlePaddle预测库的安装路径，WITH_NCCL根据实际情况进行修改）：
 
   .. code-block:: bash
 
@@ -70,6 +74,7 @@ WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需�
            -DWITH_MKL=OFF \
            -DWITH_GPU=OFF  \
            -DON_INFER=ON \
+           -DWITH_NCCL=OFF \
            ..
       make
       make inference_lib_dist
@@ -118,7 +123,7 @@ NVIDIA Jetson是NVIDIA推出的嵌入式AI平台，Paddle Inference支持在 NVI
         make inference_lib_dist -j4
 
     3. 样例测试
-      请参照官网样例：https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/deploy/inference/paddle_tensorrt_infer.html#id2
+      请参照官网样例：https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/inference_improving/paddle_tensorrt_infer.html#id2
     
     **FAQ**
 
@@ -165,28 +170,21 @@ NVIDIA Jetson是NVIDIA推出的嵌入式AI平台，Paddle Inference支持在 NVI
      │       ├── libpaddle_fluid.a
      │       └── libpaddle_fluid.so
      ├── third_party
-     │   ├── boost
-     │   │   └── boost
-     │   ├── eigen3
-     │   │   ├── Eigen
-     │   │   └── unsupported
      │   └── install
      │       ├── gflags
      │       ├── glog
      │       ├── mkldnn
      │       ├── mklml
-     │       ├── protobuf
-     │       ├── xxhash
-     │       └── zlib
+     │       └── protobuf
      └── version.txt
 
 version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使用OpenBlas或MKL数学库、CUDA/CUDNN版本号，如：
 
   .. code-block:: text
 
-     GIT COMMIT ID: cc9028b90ef50a825a722c55e5fda4b7cd26b0d6
+     GIT COMMIT ID: 0231f58e592ad9f673ac1832d8c495c8ed65d24f
      WITH_MKL: ON
      WITH_MKLDNN: ON
      WITH_GPU: ON
-     CUDA version: 8.0
+     CUDA version: 10.1
      CUDNN version: v7

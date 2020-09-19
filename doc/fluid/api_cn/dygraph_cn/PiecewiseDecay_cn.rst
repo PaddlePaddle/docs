@@ -3,9 +3,12 @@
 PiecewiseDecay
 -------------------------------
 
-**注意：该API仅支持【动态图】模式**
 
 .. py:class:: paddle.fluid.dygraph.PiecewiseDecay(boundaries, values, begin, step=1, dtype='float32')
+
+:api_attr: 命令式编程模式（动态图)
+
+
 
 该接口提供对初始学习率进行分段(piecewise)常数衰减的功能。
 
@@ -35,8 +38,10 @@ PiecewiseDecay
     boundaries = [10000, 20000]
     values = [1.0, 0.5, 0.1]
     with fluid.dygraph.guard():
+        emb = fluid.dygraph.Embedding( [10, 10] )
         optimizer = fluid.optimizer.SGD(
-           learning_rate=fluid.dygraph.PiecewiseDecay(boundaries, values, 0) )
+            learning_rate=fluid.dygraph.PiecewiseDecay(boundaries, values, 0),
+            parameter_list = emb.parameters() )
 
 
 

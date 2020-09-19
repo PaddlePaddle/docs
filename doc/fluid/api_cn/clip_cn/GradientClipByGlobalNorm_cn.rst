@@ -3,13 +3,25 @@
 GradientClipByGlobalNorm
 -------------------------------
 
-.. py:class:: paddle.fluid.clip.GradientClipByGlobalNorm(clip_norm, group_name='default_group')
+.. py:class:: paddle.fluid.clip.GradientClipByGlobalNorm(clip_norm, group_name='default_group', need_clip=None)
+
+:alias_main: paddle.nn.GradientClipByGlobalNorm
+:alias: paddle.nn.GradientClipByGlobalNorm,paddle.nn.clip.GradientClipByGlobalNorm
+:old_api: paddle.fluid.clip.GradientClipByGlobalNorm
+
+
  
-通过多个 Tensor 的范数之和的比率，来剪切（clip）多个 Tensor （ Tensor 不是从该类传入， 通过 ``fluid.program_guard`` 的 ``main_program`` 参数传入，即公式中的 :math:`t\_list` 见代码实例）。
+将一个 Tensor列表 :math:`t\_list` 中所有Tensor的L2范数之和，限定在 ``clip_norm`` 范围内。
 
-给定一个 Tensor 列表 :math:`t\_list` 和一个剪切比率 ``clip_norm`` ，返回该类的实例作为 ``set_gradient_clip`` 方法的第一个参数， ``set_gradient_clip`` 第二个参数是用来计算被剪切的 Tensor 列表（该值默认为 ``None`` 会基于所有 Tensor 列表来计算全局范数 ``global_norm`` 。
+- 如果范数之和大于 ``clip_norm`` ，则所有 Tensor 会乘以一个系数进行压缩
 
-剪切过程如下：
+- 如果范数之和小于或等于 ``clip_norm`` ，则不会进行任何操作。
+
+输入的 Tensor列表 不是从该类里传入， 而是默认会选择 ``Program`` 中全部的梯度，如果 ``need_clip`` 不为None，则可以只选择部分参数进行梯度裁剪。
+
+该类需要在初始化 ``optimizer`` 时进行设置后才能生效，可参看 ``optimizer`` 文档(例如： :ref:`cn_api_fluid_optimizer_SGDOptimizer` )。
+
+裁剪公式如下：
 
 .. math::
             \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{max(global\_norm,clip\_norm)}\\
@@ -21,67 +33,75 @@ GradientClipByGlobalNorm
 
 
 参数:
- - **clip_norm** (float) - 范数最大值
+ - **clip_norm** (float) - 所允许的范数最大值
  - **group_name** (str, optional) - 剪切的组名
+ - **need_clip** (function, optional) - 类型: 函数。用于指定需要梯度裁剪的参数，该函数接收一个 ``Parameter`` ，返回一个 ``bool`` (True表示需要裁剪，False不需要裁剪)。默认为None，此时会裁剪网络中全部参数。
   
-**代码示例**
+**代码示例1：静态图**
  
 .. code-block:: python
-        
-    import paddle.fluid as fluid
-    import paddle.fluid.core as core
+            
     import paddle
-
-    place = core.CPUPlace()
-    prog = fluid.framework.Program()
-    startup_program = fluid.framework.Program()
+    import paddle.fluid as fluid
+    import numpy as np
+                
+    main_prog = fluid.Program()
+    startup_prog = fluid.Program()
     with fluid.program_guard(
-            main_program=prog, startup_program=startup_program):
-        image = fluid.layers.data(name='x', shape=[784], dtype='float32')
-        label = fluid.layers.data(name='y', shape=[1], dtype='int64')
-        hidden1 = fluid.layers.fc(input=image, size=128, act='relu')
-        hidden2 = fluid.layers.fc(input=hidden1, size=64, act='relu')
-        predict = fluid.layers.fc(input=hidden2, size=10, act='softmax')
-        cost = fluid.layers.cross_entropy(input=predict, label=label)
-        avg_cost = fluid.layers.mean(cost)
+            main_program=main_prog, startup_program=startup_prog):
+        image = fluid.data(
+            name='x', shape=[-1, 2], dtype='float32')
+        predict = fluid.layers.fc(input=image, size=3, act='relu') #Trainable parameters: fc_0.w.0, fc_0.b.0
+        loss = fluid.layers.mean(predict)
+        
+        # 裁剪网络中全部参数：
+        clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0)
+        
+        # 仅裁剪参数fc_0.w_0时：
+        # 为need_clip参数传入一个函数fileter_func，fileter_func接收参数的类型为Parameter，返回类型为bool
+        # def fileter_func(Parameter):
+        # # 可以较为方便的通过Parameter.name判断（name可以在fluid.ParamAttr中设置，默认为fc_0.w_0、fc_0.b_0）
+        #   return Parameter.name=="fc_0.w_0"
+        # clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0, need_clip=fileter_func)
 
-    prog_clip = prog.clone()
-    avg_cost_clip = prog_clip.block(0).var(avg_cost.name)
+        sgd_optimizer = fluid.optimizer.SGDOptimizer(learning_rate=0.1, grad_clip=clip)
+        sgd_optimizer.minimize(loss)
 
-    p_g = fluid.backward.append_backward(loss=avg_cost)
-    p_g_clip = fluid.backward.append_backward(loss=avg_cost_clip)
-
-    with fluid.program_guard(main_program=prog_clip, startup_program=startup_program):
-        fluid.clip.set_gradient_clip(
-            fluid.clip.GradientClipByGlobalNorm(clip_norm=2.0))
-        p_g_clip = fluid.clip.append_gradient_clip_ops(p_g_clip)
-
-    grad_list = [elem[1] for elem in p_g]
-    grad_clip_list = [elem[1] for elem in p_g_clip]
-
-    train_reader = paddle.batch(
-        paddle.reader.shuffle(
-            paddle.dataset.mnist.train(), buf_size=8192),
-        batch_size=128)
-
+    place = fluid.CPUPlace()
     exe = fluid.Executor(place)
-    feeder = fluid.DataFeeder(feed_list=[image, label], place=place)
-    exe.run(startup_program)
-
-    count = 0
-    for data in train_reader():
-        count += 1
-        print("count:%s" % count)
-        if count > 5:
-            break
-        out = exe.run(prog, feed=feeder.feed(data), fetch_list=grad_list)
-        out_clip = exe.run(prog_clip,
-                           feed=feeder.feed(data),
-                           fetch_list=grad_clip_list)
+    x = np.random.uniform(-100, 100, (10, 2)).astype('float32')
+    exe.run(startup_prog)
+    out = exe.run(main_prog, feed={'x': x}, fetch_list=loss)
 
 
+**代码示例2：动态图**
 
+.. code-block:: python
 
+    import paddle
+    import paddle.fluid as fluid
+    
+    with fluid.dygraph.guard():
+        linear = fluid.dygraph.Linear(10, 10)  #可训练参数: linear_0.w.0, linear_0.b.0
+        inputs = fluid.layers.uniform_random([32, 10]).astype('float32')
+        out = linear(fluid.dygraph.to_variable(inputs))
+        loss = fluid.layers.reduce_mean(out)
+        loss.backward()
 
+        # 裁剪网络中全部参数：
+        clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0)
 
+        # 仅裁剪参数linear_0.w_0时：
+        # 为need_clip参数传入一个函数fileter_func，fileter_func接收参数的类型为ParamBase，返回类型为bool
+        # def fileter_func(ParamBase):
+        # # 可以通过ParamBase.name判断（name可以在fluid.ParamAttr中设置，默认为linear_0.w_0、linear_0.b_0）
+        #   return ParamBase.name == "linear_0.w_0"
+        # # 注：linear.weight、linear.bias能分别返回dygraph.Linear层的权重与偏差，也可以此来判断
+        #   return ParamBase.name == linear.weight.name
+        # clip = fluid.clip.GradientClipByGlobalNorm(clip_norm=1.0, need_clip=fileter_func)
 
+        sgd_optimizer = fluid.optimizer.SGD(
+            learning_rate=0.1, 
+            parameter_list=linear.parameters(),
+            grad_clip=clip)
+        sgd_optimizer.minimize(loss)

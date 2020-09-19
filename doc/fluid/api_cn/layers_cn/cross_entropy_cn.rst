@@ -5,6 +5,12 @@ cross_entropy
 
 .. py:function:: paddle.fluid.layers.cross_entropy(input, label, soft_label=False, ignore_index=-100)
 
+:alias_main: paddle.nn.functional.cross_entropy
+:alias: paddle.nn.functional.cross_entropy,paddle.nn.functional.loss.cross_entropy
+:old_api: paddle.fluid.layers.cross_entropy
+
+
+
 该OP计算输入input和标签label间的交叉熵，可用于计算硬标签或软标签的交叉熵。
 
 1. 硬标签交叉熵算法：若soft_label = False, :math:`label[i_1, i_2, ..., i_k]` 表示每个样本的硬标签值:

@@ -5,6 +5,12 @@ generate_mask_labels
 
 .. py:function:: paddle.fluid.layers.generate_mask_labels(im_info, gt_classes, is_crowd, gt_segms, rois, labels_int32, num_classes, resolution)
 
+:alias_main: paddle.nn.functional.generate_mask_labels
+:alias: paddle.nn.functional.generate_mask_labels,paddle.nn.functional.vision.generate_mask_labels
+:old_api: paddle.fluid.layers.generate_mask_labels
+
+
+
 **为Mask-RCNN生成mask标签**
 
 对于给定的 RoI (Regions of Interest) 和 输入ground truth的分类标签和分割的坐标标签，采样出前景RoI，并返回其在输入 ``rois`` 中索引位置，并对每个RoI生成 :math:`K*M^{2}` 的二值mask标签。K为类别个数，M是RoI特征图大小。这些输出目标一般用于计算mask分支的损失。
