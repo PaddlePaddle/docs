@@ -11,56 +11,312 @@ Fleet
 
 .. py:method:: init(role_maker=None, is_collective=False)
 
+使用RoleMaker或其他配置初始化fleet。
+
+返回：无。
+
+
+**代码示例1**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+
+**代码示例2**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init(is_collective=True)
+
+**代码示例3**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    role = fleet.PaddleCloudRoleMaker
+    fleet.init(role)
+
 
 .. py:method:: is_first_worker()
+
+返回当前节点是否为第一个`worker`节点
+
+返回：True/False
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.is_first_worker()
+
 
 
 .. py:method:: worker_index()
 
+返回当前节点的编号, 每个`worker`节点被分配[0, worker_num-1]内的唯一的编码ID
+
+返回：int
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.worker_index()
+
 
 .. py:method:: worker_num()
+
+返回当前全部训练节点的个数
+
+返回：int
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.worker_num()
 
 
 .. py:method:: is_worker()
 
+返回当前节点是否为`worker`节点
+
+返回：True/False
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.is_worker()
+
 
 .. py:method:: worker_endpoints(to_string=False)
 
+返回全部worker节点的ip及端口信息
+
+返回：list/string
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.worker_endpoints()
+
 
 .. py:method:: server_num()
+
+返回当前全部Server节点的个数
+
+返回：int
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.server_num()
 
 
 .. py:method:: server_index()
 
 
+返回当前节点的编号, 每个`server`节点被分配[0, server_num-1]内的唯一的编码ID
+
+返回：int
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.server_index()
+
+
 .. py:method:: server_endpoints(to_string=False)
+
+
+返回全部server节点的ip及端口信息
+
+返回：list/string
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.server_endpoints()
 
 
 .. py:method:: is_server()
 
 
+返回当前节点是否为`server`节点
+
+返回：True/False
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.is_server()
+
+
 .. py:method:: barrier_worker()
+
+强制要求所有的worker在此处需要相互等待一次
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.barrier_worker()
 
 
 .. py:method:: init_worker()
 
+worker节点在训练前的初始化, 包括通信模块， 参数同步等
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.init_worker()
+
 
 .. py:method:: init_server(*args, **kwargs)
+
+server节点的初始化, 包括server端参数初始化，模型加载等
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.init_server()
 
 
 .. py:method:: run_server()
 
+server节点的运行, 此命令会将ParameterServer的进程启动并常驻直至训练结束
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.init_server()
+    fleet.run_server()
+
 
 .. py:method:: stop_worker()
 
+停止当前正在运行的worker节点
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    fleet.init()
+    fleet.init_worker()
+    "..."
+    fleet.stop_worker()
+
 
 .. py:method:: save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
+
+保存模型及参数用于预估服务
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    import paddle.fluid as fluid
+
+    fleet.init()
+
+    # build net
+    # fleet.distributed_optimizer(...)
+
+    exe = fluid.Executor(fluid.CPUPlace())
+    fleet.save_inference_model(exe, "dirname", ["feednames1"], [acc, loss], fluid.default_main_program())
 
 
 .. py:method:: save_persistables(executor, dirname, main_program=None)
 
 
+保存全量模型参数
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    import paddle.fluid as fluid
+
+    fleet.init()
+
+    # build net
+    # fleet.distributed_optimizer(...)
+
+    exe = fluid.Executor(fluid.CPUPlace())
+    fleet.save_persistables(exe, "dirname", fluid.default_main_program())
+
+
 .. py:method:: distributed_optimizer(optimizer, strategy=None)
+
+基于分布式布式并行策略进行模型的拆分及优化。
+
+**代码示例**
+
+.. code-block:: python
+    import paddle.distributed.fleet as fleet
+    role = fleet.role_maker.PaddleCloudRoleMaker(is_collective=True)
+    fleet.init(role)
+    strategy = fleet.DistributedStrategy()
+    optimizer = paddle.optimizer.SGD(learning_rate=0.001)
+    optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
 
 
 .. py:method:: distributed_model(model)
