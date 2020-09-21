@@ -211,15 +211,15 @@ DistributedStrategy
 
 **incr_every_n_steps(int):** 每经过n个连续的正常梯度值才会增大loss scaling值。默认值1000。
 
-**decr_every_n_nan_or_inf(int)** 每经过n个连续的无效梯度值(nan或者inf)才会减小loss scaling值。默认值2。
+**decr_every_n_nan_or_inf(int):** 每经过n个连续的无效梯度值(nan或者inf)才会减小loss scaling值。默认值2。
 
-**incr_ratio(float)** 每次增大loss scaling值的扩增倍数，其为大于1的浮点数。默认值2.0。
+**incr_ratio(float):** 每次增大loss scaling值的扩增倍数，其为大于1的浮点数。默认值2.0。
 
-**decr_ratio(float)** 每次减小loss scaling值的比例系数，其为小于1的浮点数。默认值0.5。
+**decr_ratio(float):** 每次减小loss scaling值的比例系数，其为小于1的浮点数。默认值0.5。
 
-**custom_white_list(list[str])** 用户自定义OP开启fp16执行的白名单。
+**custom_white_list(list[str]):** 用户自定义OP开启fp16执行的白名单。
 
-**custom_black_list(list[str])** 用户自定义OP禁止fp16执行的黑名单。
+**custom_black_list(list[str]):** 用户自定义OP禁止fp16执行的黑名单。
 
 **示例代码**
 
@@ -234,7 +234,7 @@ DistributedStrategy
 
 .. py:attribute:: dgc
 
-是否启用深度梯度压缩训练。更多信息请参考[Deep Gradient Compression](https://arxiv.org/abs/1712.01887). 默认值：False
+是否启用深度梯度压缩训练。更多信息请参考[Deep Gradient Compression](https://arxiv.org/abs/1712.01887)。 默认值：False
 
 **示例代码**
 
