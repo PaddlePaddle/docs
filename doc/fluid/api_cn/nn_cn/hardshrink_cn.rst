@@ -2,7 +2,7 @@
 
 hardshrink
 -------------------------------
-.. py:functional:: paddle.nn.functional.hardshrink(x, threshold=0.5, name=None)
+.. py:function:: paddle.nn.functional.hardshrink(x, threshold=0.5, name=None)
 
 hardshrink激活层。计算公式如下：
 
@@ -34,9 +34,7 @@ hardshrink激活层。计算公式如下：
 
     import paddle
     import paddle.nn.functional as F
-    import numpy as np
 
     paddle.disable_static()
-
-    x = paddle.to_variable(np.array([-1, 0.3, 2.5]))
+    x = paddle.to_tensor([-1, 0.3, 2.5])
     out = F.hardshrink(x) # [-1., 0., 2.5]
