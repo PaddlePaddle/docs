@@ -29,12 +29,12 @@
 
 静态图存储载入相关接口为飞桨框架1.x版本的主要使用接口，出于兼容性的目的，这些接口仍然可以在飞桨框架2.x使用，但不再推荐。相关接口包括：
 
-- paddle.io.save
-- paddle.io.load
-- paddle.io.save_inference_model
-- paddle.io.load_inference_model
-- paddle.io.load_program_state
-- paddle.io.set_program_state
+- paddle.static.save
+- paddle.static.load
+- paddle.static.save_inference_model
+- paddle.static.load_inference_model
+- paddle.static.load_program_state
+- paddle.static.set_program_state
 
 由于飞桨框架2.0不再主推静态图模式，故本文不对以上主要用于飞桨框架1.x的相关接口展开介绍，如有需要，可以阅读对应API文档。
 
@@ -526,7 +526,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 如果您是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的接口存储模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
 
-4.1 从 ``paddle.io.save_inference_model`` 存储结果中载入模型&参数
+4.1 从 ``paddle.static.save_inference_model`` 存储结果中载入模型&参数
 ------------------------------------------------------------------
 
 曾用接口名为 ``paddle.fluid.io.save_inference_model`` 。
@@ -698,7 +698,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 .. note::
     由于 ``structured_name`` 是动态图下独有的变量命名方式，因此从静态图存储结果载入的state_dict在配置到动态图的Layer中时，需要配置 ``Layer.set_state_dict(use_structured_name=False)`` 。
 
-4.2 从 ``paddle.io.save`` 存储结果中载入参数
+4.2 从 ``paddle.static.save`` 存储结果中载入参数
 ----------------------------------------------
 
 曾用接口名为 ``paddle.fluid.save`` 。
@@ -722,7 +722,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     由于 ``paddle.fluid.save`` 接口原先在静态图模式下的定位是存储训练时参数，或者说存储Checkpoint，故尽管其同时存储了模型结构，目前也暂不支持从 ``paddle.fluid.save`` 的存储结果中同时载入模型和参数，后续如有需求再考虑支持。
 
 
-4.3 从 ``paddle.io.save_params/save_persistables`` 存储结果中载入参数
+4.3 从 ``paddle.fluid.io.save_params/save_persistables`` 存储结果中载入参数
 -----------------------------------------------------------------------
 
 .. note::
@@ -730,7 +730,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 曾用接口名为 ``paddle.fluid.io.save_params/save_persistables`` 。
 
-此处可以使用 ``paddle.io.load_program_state`` 接口从以上两个接口的存储结果中载入state_dict，并用于动态图Layer的配置，示例如下（接前述示例）：
+此处可以使用 ``paddle.static.load_program_state`` 接口从以上两个接口的存储结果中载入state_dict，并用于动态图Layer的配置，示例如下（接前述示例）：
 
 .. code-block:: python
 
@@ -739,4 +739,4 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     fluid.io.save_params(exe, model_path)
 
     # load 
-    state_dict = paddle.io.load_program_state(model_path)
+    state_dict = paddle.static.load_program_state(model_path)

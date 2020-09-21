@@ -282,7 +282,7 @@ paddle.framework.get_default_dtype	paddle.get_default_dtype
 paddle.fluid.layers.atan	paddle.atan,paddle.tensor.atan,paddle.tensor.math.atan
 paddle.fluid.layers.pad2d	paddle.nn.functional.pad2d,paddle.nn.functional.common.pad2d
 paddle.nn.layer.pooling.MaxPool3d	paddle.nn.MaxPool3d,paddle.nn.layer.MaxPool3d
-paddle.fluid.io.load	paddle.static.load,paddle.tensor.load,paddle.tensor.io.load
+paddle.fluid.io.load	paddle.static.load
 paddle.fluid.dygraph.learning_rate_scheduler.ExponentialDecay	paddle.ExponentialDecay,paddle.framework.ExponentialDecay
 paddle.fluid.layers.conv3d	paddle.static.nn.conv3d
 paddle.nn.layer.activation.Softmax	paddle.nn.Softmax
@@ -447,7 +447,7 @@ paddle.tensor.stat.numel	paddle.numel,paddle.tensor.numel
 paddle.nn.functional.activation.relu6	paddle.nn.functional.relu6
 paddle.tensor.math.cumsum	paddle.cumsum,paddle.tensor.cumsum
 paddle.fluid.layers.resize_trilinear	paddle.nn.functional.resize_trilinear,paddle.nn.functional.vision.resize_trilinear
-paddle.fluid.save	paddle.static.save,paddle.tensor.save,paddle.tensor.io.save
+paddle.fluid.io.save	paddle.static.save
 paddle.fluid.layers.scale	paddle.scale,paddle.tensor.scale,paddle.tensor.math.scale
 paddle.fluid.framework.default_startup_program	paddle.static.default_startup_program
 paddle.fluid.layers.noam_decay	paddle.nn.functional.noam_decay,paddle.nn.functional.learning_rate.noam_decay
