@@ -5,9 +5,6 @@ kldiv_loss
 
 .. py:function:: paddle.fluid.layers.kldiv_loss(x, target, reduction='mean', name=None)
 
-:alias_main: paddle.nn.functional.kldiv_loss
-:alias: paddle.nn.functional.kldiv_loss,paddle.nn.functional.loss.kldiv_loss
-:old_api: paddle.fluid.layers.kldiv_loss
 
 
 

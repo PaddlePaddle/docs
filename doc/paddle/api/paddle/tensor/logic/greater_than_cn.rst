@@ -1,40 +1,33 @@
-.. _cn_api_fluid_layers_greater_than:
+.. _cn_api_tensor_cn_greater_than:
 
 greater_than
 -------------------------------
-
-.. py:function:: paddle.fluid.layers.greater_than(x, y, cond=None, name=None)
-
-:alias_main: paddle.greater_than
-:alias: paddle.greater_than,paddle.tensor.greater_than,paddle.tensor.logic.greater_than
-:old_api: paddle.fluid.layers.greater_than
+.. py:function:: paddle.greater_than(x, y, name=None)
 
 
+该OP返回 :math:`x>y` 逐元素比较x和y是否相等，相同位置前者输入大于等于后者输入则返回True，否则返回False。使用重载算子 `>` 可以有相同的计算函数效果
 
-该OP逐元素地返回 :math:`x > y` 的逻辑值，使用重载算子 `>` 可以有相同的计算函数效果。
+**注：该OP输出的结果不返回梯度。**
 
 参数：
-    - **x** (Variable) – 进行比较的第一个输入，是一个多维的Tensor，数据类型可以是float32，float64，int32，int64。 
-    - **y** (Variable) – 进行比较的第二个输入，是一个多维的Tensor，数据类型可以是float32，float64，int32，int64。
-    - **cond** (Variable，可选) – 如果为None，则创建一个Tensor来作为进行比较的输出结果，该Tensor的shape和数据类型和输入x一致；如果不为None，则将Tensor作为该OP的输出，数据类型和数据shape需要和输入x一致。默认值为None。 
+    - **x** (Tensor) - 输入Tensor，支持的数据类型包括 float32， float64，int32， int64。
+    - **y** (Tensor) - 输入Tensor，支持的数据类型包括 float32， float64， int32， int64。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    
 
-返回：输出结果的Tensor，数据的shape和输入x一致。
+返回：输出结果的Tensor，输出Tensor的shape和输入一致，Tensor数据类型为bool。
 
-返回类型：Variable，数据类型为bool类型。
+返回类型：变量（Tensor）
 
 **代码示例**:
 
 .. code-block:: python
 
-     import paddle.fluid as fluid
-     import paddle.fluid.layers as layers
      import numpy as np
-     label = layers.assign(np.array([2, 3], dtype='int32'))
-     limit = layers.assign(np.array([3, 2], dtype='int32'))
-     out = fluid.layers.greater_than(x=label, y=limit) #out=[False, True]
-     out1 = label > limit #out1=[False, True]
-
-
-
-
+     import paddle
+     import paddle.imperative as imperative
+     paddle.enable_imperative()
+     x = imperative.to_variable(np.array([1, 2, 3]))
+     y = imperative.to_variable(np.array([1, 3, 2]))
+     result1 = paddle.greater_than(x, y)
+     print(result1.numpy())  # result1 = [False False True]

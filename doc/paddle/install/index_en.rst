@@ -1,12 +1,13 @@
 ..  _install_introduction_:
-======================
+
+============================
  Installation Manuals
-======================
+============================
 
 The manuals will guide you to build and install PaddlePaddle on your 64-bit desktop or laptop.
 
 1. Operating system requirements:
-============================
+=================================
 
 * Windows 7 / 8 / 10, Pro/Enterprise
 * Ubuntu 14.04 / 16.04 / 18.04
@@ -15,13 +16,13 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 * 64-bit operating system is required
 
 2. Processor requirements:
-============================
+==========================
 
 * Processor supports MKL
 * The processor architecture is x86_64(or called x64, Intel 64, AMD64). Currently, PaddlePaddle does not support arm64.
 
 3. Version requirements of python and pip:
-============================
+==========================================
 
 * Python 2 requires version 2.7.15+
 * Python 3 requires version 3.5.1+/3.6/3.7
@@ -29,7 +30,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 * Python and pip requires 64-bit
 
 4. PaddlePaddle's support for GPU:
-=================================
+==================================
 
 * Currently, **PaddlePaddle** only supports **CUDA** driver of **NVIDIA** graphics card.
 * You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA9/10) 
@@ -64,7 +65,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 Please make sure your environment meets the above conditions. If you have other requirements, please refer to `Appendix <Tables_en.html#ciwhls>`_ .
 
 5. PaddlePaddle's support for NCCL:
-=================================
+===================================
 
 * Support for Windows
 
@@ -97,7 +98,7 @@ Please make sure your environment meets the above conditions. If you have other 
 
 
 The first way to install: use pip to install
-================================
+============================================
 
 You can choose any of the four ways to install: "use pip to install", "use Conda to install", "use Docker to install", "compiling from the source code"
 
@@ -182,11 +183,15 @@ This section describes how to use pip to install.
         If you are using Python 2, command to install CPU version is:
         ::
     
-            python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.0.0b0 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.0.0b0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+        If you are using Windows environment, please use the following instruction:
+
+            python -m pip install paddlepaddle==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html 
 
         If you are using Python 3, please change **python** in the above command to **python3** and install.
         
@@ -201,11 +206,15 @@ This section describes how to use pip to install.
         If you are using Python2, please attention that PaddlePaddle installed through command below only supports CUDA10.0 under Windows、Ubuntu、CentOS:
         ::
 
-            python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.0.0b0 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.0.0b0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+        If you are using Windows environment, please use the following instruction:
+
+            python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html
         
         If you are using Python 3, please change **python** in the above command to **python3** and install.
 
@@ -228,7 +237,7 @@ This section describes how to use pip to install.
 
 
 The second way to install: compile and install with source code
-====================================
+===============================================================
 
 - If you use PaddlePaddle only, we suggest you installation methods **pip** to install.
 - If you need to develop PaddlePaddle, please refer to `compile from source code <compile/fromsource.html>`_

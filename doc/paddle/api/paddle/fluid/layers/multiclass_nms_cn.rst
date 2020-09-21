@@ -5,9 +5,6 @@ multiclass_nms
 
 .. py:function:: paddle.fluid.layers.multiclass_nms(bboxes, scores, score_threshold, nms_top_k, keep_top_k, nms_threshold=0.3, normalized=True, nms_eta=1.0, background_label=0, name=None)
 
-:alias_main: paddle.nn.functional.multiclass_nms
-:alias: paddle.nn.functional.multiclass_nms,paddle.nn.functional.extension.multiclass_nms
-:old_api: paddle.fluid.layers.multiclass_nms
 
 
 

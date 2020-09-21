@@ -5,9 +5,6 @@ fsp_matrix
 
 .. py:function:: paddle.fluid.layers.fsp_matrix(x, y)
 
-:alias_main: paddle.nn.functional.fsp_matrix
-:alias: paddle.nn.functional.fsp_matrix,paddle.nn.functional.vision.fsp_matrix
-:old_api: paddle.fluid.layers.fsp_matrix
 
 
 

@@ -8,8 +8,11 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
-    nn_cn/Conv1D_cn.rst
-    nn_cn/Conv2D_cn.rst
+    nn_cn/Conv1d_cn.rst
+    nn_cn/Conv2d_cn.rst
+    nn_cn/Conv3d_cn.rst
+    nn_cn/ConvTranspose2d_cn.rst
+    nn_cn/ConvTranspose3d_cn.rst
     nn_cn/diag_embed_cn.rst
     nn_cn/interpolate_cn.rst
     nn_cn/Linear_cn.rst
@@ -28,6 +31,9 @@ paddle.nn
     nn_cn/anchor_generator_cn.rst
     nn_cn/assign_cn.rst
     nn_cn/BatchNorm_cn.rst
+    nn_cn/BatchNorm1d_cn.rst
+    nn_cn/BatchNorm2d_cn.rst
+    nn_cn/BatchNorm3d_cn.rst
     nn_cn/SyncBatchNorm_cn.rst
     nn_cn/beam_search_cn.rst
     nn_cn/beam_search_decode_cn.rst
@@ -89,6 +95,9 @@ paddle.nn
     nn_cn/huber_loss_cn.rst
     nn_cn/image_resize_cn.rst
     nn_cn/image_resize_short_cn.rst
+    nn_cn/InstanceNorm1d_cn.rst
+    nn_cn/InstanceNorm2d_cn.rst
+    nn_cn/InstanceNorm3d_cn.rst
     nn_cn/inverse_time_decay_cn.rst
     nn_cn/iou_similarity_cn.rst
     nn_cn/kldiv_loss_cn.rst
@@ -100,8 +109,8 @@ paddle.nn
     nn_cn/leaky_relu_cn.rst
     nn_cn/Linear_cn.rst
     nn_cn/linear_lr_warmup_cn.rst
-    nn_cn/logsigmoid_cn.rst
     nn_cn/log_loss_cn.rst
+    nn_cn/log_sigmoid_cn.rst
     nn_cn/log_softmax_cn.rst
     nn_cn/lrn_cn.rst
     nn_cn/margin_ranking_loss_cn.rst

@@ -5,9 +5,6 @@ retinanet_target_assign
 
 .. py:function:: paddle.fluid.layers.retinanet_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, gt_labels, is_crowd, im_info, num_classes=1, positive_overlap=0.5, negative_overlap=0.4)
 
-:alias_main: paddle.nn.functional.retinanet_target_assign
-:alias: paddle.nn.functional.retinanet_target_assign,paddle.nn.functional.vision.retinanet_target_assign
-:old_api: paddle.fluid.layers.retinanet_target_assign
 
 
 

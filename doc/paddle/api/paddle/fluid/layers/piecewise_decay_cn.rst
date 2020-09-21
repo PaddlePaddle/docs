@@ -5,9 +5,6 @@ piecewise_decay
 
 .. py:function:: paddle.fluid.layers.piecewise_decay(boundaries,values)
 
-:alias_main: paddle.nn.functional.piecewise_decay
-:alias: paddle.nn.functional.piecewise_decay,paddle.nn.functional.learning_rate.piecewise_decay
-:old_api: paddle.fluid.layers.piecewise_decay
 
 
 

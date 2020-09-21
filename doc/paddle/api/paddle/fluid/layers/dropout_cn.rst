@@ -5,9 +5,6 @@ dropout
 
 .. py:function:: paddle.fluid.layers.dropout(x,dropout_prob,is_test=False,seed=None,name=None,dropout_implementation='downgrade_in_infer')
 
-:alias_main: paddle.nn.functional.dropout
-:alias: paddle.nn.functional.dropout,paddle.nn.functional.common.dropout
-:old_api: paddle.fluid.layers.dropout
 
 
 

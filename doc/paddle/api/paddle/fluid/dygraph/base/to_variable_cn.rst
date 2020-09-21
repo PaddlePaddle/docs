@@ -7,7 +7,6 @@ to_variable
 .. py:function:: paddle.fluid.dygraph.to_variable(value, name=None, zero_copy=None)
 
 
-:api_attr: 命令式编程模式（动态图)
 
 
 

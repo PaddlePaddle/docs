@@ -5,9 +5,6 @@ psroi_pool
 
 .. py:function:: paddle.fluid.layers.psroi_pool(input, rois, output_channels, spatial_scale, pooled_height, pooled_width, name=None)
 
-:alias_main: paddle.nn.functional.psroi_pool
-:alias: paddle.nn.functional.psroi_pool,paddle.nn.functional.vision.psroi_pool
-:old_api: paddle.fluid.layers.psroi_pool
 
 
 

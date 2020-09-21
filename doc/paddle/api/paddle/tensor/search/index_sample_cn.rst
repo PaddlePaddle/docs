@@ -5,8 +5,6 @@ index_sample
 
 .. py:function:: paddle.index_sample(x, index)
 
-:alias_main: paddle.index_sample
-:alias: paddle.index_sample,paddle.tensor.index_sample,paddle.tensor.search.index_sample
 
 
 

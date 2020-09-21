@@ -5,9 +5,6 @@ rsqrt
 
 .. py:function:: paddle.fluid.layers.rsqrt(x, name=None)
 
-:alias_main: paddle.rsqrt
-:alias: paddle.rsqrt,paddle.tensor.rsqrt,paddle.tensor.math.rsqrt
-:old_api: paddle.fluid.layers.rsqrt
 
 
 

@@ -5,9 +5,6 @@ GradientClipByGlobalNorm
 
 .. py:class:: paddle.fluid.clip.GradientClipByGlobalNorm(clip_norm, group_name='default_group', need_clip=None)
 
-:alias_main: paddle.nn.GradientClipByGlobalNorm
-:alias: paddle.nn.GradientClipByGlobalNorm,paddle.nn.clip.GradientClipByGlobalNorm
-:old_api: paddle.fluid.clip.GradientClipByGlobalNorm
 
 
  

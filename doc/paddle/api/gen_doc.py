@@ -228,13 +228,13 @@ class EnDocGenerator(object):
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
         if "fluid.dygraph" in self.module_name:
-            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+            self.stream.write('''..  autoclass:: {0}.{1}
     :members:
     :noindex:
 
 '''.format(self.module_name, self.api))
         elif "fluid.optimizer" in self.module_name:
-            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+            self.stream.write('''..  autoclass:: {0}.{1}
     :members:
     :inherited-members:
     :exclude-members: apply_gradients, apply_optimize, backward, load
@@ -242,7 +242,7 @@ class EnDocGenerator(object):
 
 '''.format(self.module_name, self.api))
         else:
-            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+            self.stream.write('''..  autoclass:: {0}.{1}
     :members:
     :inherited-members:
     :noindex:

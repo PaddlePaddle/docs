@@ -5,9 +5,6 @@ scatter_nd
 
 .. py:function:: paddle.fluid.layers.scatter_nd(index, updates, shape, name=None)
 
-:alias_main: paddle.scatter_nd
-:alias: paddle.scatter_nd,paddle.tensor.scatter_nd,paddle.tensor.manipulation.scatter_nd
-:old_api: paddle.fluid.layers.scatter_nd
 
 
 

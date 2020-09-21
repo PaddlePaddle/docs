@@ -5,9 +5,6 @@ teacher_student_sigmoid_loss
 
 .. py:function:: paddle.fluid.layers.teacher_student_sigmoid_loss(input, label, soft_max_up_bound=15.0, soft_max_lower_bound=-15.0)
 
-:alias_main: paddle.nn.functional.teacher_student_sigmoid_loss
-:alias: paddle.nn.functional.teacher_student_sigmoid_loss,paddle.nn.functional.loss.teacher_student_sigmoid_loss
-:old_api: paddle.fluid.layers.teacher_student_sigmoid_loss
 
 
 

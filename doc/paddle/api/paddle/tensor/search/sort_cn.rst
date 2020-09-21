@@ -5,11 +5,9 @@ sort
 
 .. py:function:: paddle.sort(x, axis=-1, descending=False, name=None)
 
-:alias_main: paddle.sort
-:alias: paddle.sort,paddle.tensor.sort,paddle.tensor.search.sort
 
 
-对输入变量沿给定轴进行排序，输出排序好的数据和相应的索引，其维度和输入相同。**默认升序排列，如果需要降序排列设置** ``descending=True`` 。
+对输入变量沿给定轴进行排序，输出排序好的数据，其维度和输入相同。默认升序排列，如果需要降序排列设置 ``descending=True`` 。
 
 
 参数：
@@ -18,9 +16,8 @@ sort
     - **descending** (bool，可选) - 指定算法排序的方向。如果设置为True，算法按照降序排序。如果设置为False或者不设置，按照升序排序。默认值为False。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：一组已排序的输出（与 ``x`` 维度相同、数据类型相同）和索引（数据类型为int64）。
+返回：Tensor, 排序后的输出（与 ``x`` 维度相同、数据类型相同）。
 
-返回类型：tuple[Tensor]
 
 **代码示例**：
 
@@ -41,28 +38,21 @@ sort
     out1 = paddle.sort(x=x, axis=-1)
     out2 = paddle.sort(x=x, axis=0)
     out3 = paddle.sort(x=x, axis=1)
-    print(out1[0].numpy())
+    print(out1.numpy())
     #[[[5. 5. 8. 9.]
     #  [0. 0. 1. 7.]
     #  [2. 4. 6. 9.]]
     # [[2. 2. 4. 5.]
     #  [4. 7. 7. 9.]
     #  [0. 1. 6. 7.]]]
-    print(out1[1].numpy())
-    #[[[0 3 1 2]
-    # [0 1 2 3]
-    # [2 3 0 1]]
-    # [[1 3 2 0]
-    # [0 1 2 3]
-    # [2 0 3 1]]]
-    print(out2[0].numpy())
+    print(out2.numpy())
     #[[[5. 2. 4. 2.]
     #  [0. 0. 1. 7.]
     #  [1. 7. 0. 4.]]
     # [[5. 8. 9. 5.]
     #  [4. 7. 7. 9.]
     #  [6. 9. 2. 6.]]]
-    print(out3[0].numpy())
+    print(out3.numpy())
     #[[[0. 0. 1. 4.]
     #  [5. 8. 2. 5.]
     #  [6. 9. 9. 7.]]

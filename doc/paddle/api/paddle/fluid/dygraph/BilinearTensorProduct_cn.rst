@@ -5,9 +5,6 @@ BilinearTensorProduct
 
 .. py:class:: paddle.fluid.dygraph.BilinearTensorProduct(input1_dim, input2_dim, output_dim, name=None, act=None, param_attr=None, bias_attr=None, dtype="float32")
 
-:alias_main: paddle.nn.BilinearTensorProduct
-:alias: paddle.nn.BilinearTensorProduct,paddle.nn.layer.BilinearTensorProduct,paddle.nn.layer.common.BilinearTensorProduct
-:old_api: paddle.fluid.dygraph.BilinearTensorProduct
 
 
 

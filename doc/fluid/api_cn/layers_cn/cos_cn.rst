@@ -13,14 +13,14 @@ cos
 
 余弦函数。
 
-输入范围是 `(-inf, inf)` ， 输出范围是 `[-1,1]`。若输入超出边界则结果为`nan`。
+输入范围是 `(-inf, inf)` ， 输出范围是 `[-1,1]`。
 
 .. math::
 
     out = cos(x)
 
 参数:
-    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64。
+    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64 、float16。
     - name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回：输出Tensor，与 ``x`` 维度相同、数据类型相同。
@@ -32,12 +32,9 @@ cos
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([[-1,np.pi],[1,15.6]]).astype(np.float32)
-        x = paddle.to_variable(x_data)
-        res = paddle.cos(x)
-        print(res.numpy())
-        # [[ 0.54030231 -1.        ]
-        # [ 0.54030231 -0.99417763]]
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = paddle.cos(x)
+        print(out.numpy())
+        # [0.92106099 0.98006658 0.99500417 0.95533649]

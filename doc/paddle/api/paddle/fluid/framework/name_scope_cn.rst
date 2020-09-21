@@ -6,7 +6,6 @@ name_scope
 
 .. py:function:: paddle.fluid.name_scope(prefix=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

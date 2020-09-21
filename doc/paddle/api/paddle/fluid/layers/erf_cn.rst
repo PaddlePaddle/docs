@@ -5,9 +5,6 @@ erf
 
 .. py:function:: paddle.fluid.layers.erf(x)
 
-:alias_main: paddle.erf
-:alias: paddle.erf,paddle.tensor.erf,paddle.tensor.math.erf,paddle.nn.functional.erf,paddle.nn.functional.activation.erf
-:old_api: paddle.fluid.layers.erf
 
 
 

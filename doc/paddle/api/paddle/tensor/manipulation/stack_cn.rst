@@ -1,21 +1,19 @@
-.. _cn_api_fluid_layers_stack:
-
+.. _cn_api_paddle_tensor_arange
 stack
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.stack(x, axis=0)
+.. py:function:: paddle.tensor.stack(x, axis=0, name=None)
 
 
 
+该OP沿 axis 轴对输入 x 进行堆叠操作。要求所有输入Tensor有相同的Shape和数据类型。
+例如，输入 x 为 N 个 Shape 为 [A, B]的 Tensor, 如果 ``axis==0`` , 则输出 Tensor 的 Shape 为 [N, A, B]; 如果 ``axis==1`` , 则输出 Tensor 的 Shape 为 [A, N, B]; 以此类推。
 
+.. code-block:: text
 
-该OP沿 ``axis`` 轴对输入 ``x`` 进行堆叠操作。
+    Case 1:
 
-- 例1:
-
-.. code-block:: python
-
-    输入:
+        Input:
         x[0].shape = [1, 2]
         x[0].data = [ [1.0 , 2.0 ] ]
         x[1].shape = [1, 2]
@@ -23,21 +21,19 @@ stack
         x[2].shape = [1, 2]
         x[2].data = [ [5.0 , 6.0 ] ]
 
-    参数:
-        axis = 0 #沿着第0维对输入x进行堆叠操作。
+        Attrs:
+        axis = 0
 
-    输出:
-        Out.shape = [3, 1, 2]
-        Out.data = [ [ [1.0, 2.0] ],
+        Output:
+        Out.dims = [3, 1, 2]
+        Out.data =[ [ [1.0, 2.0] ],
                     [ [3.0, 4.0] ],
                     [ [5.0, 6.0] ] ]
 
 
-- 例2:
+    Case 2:
 
-.. code-block:: python
-
-    输入:
+        Input:
         x[0].shape = [1, 2]
         x[0].data = [ [1.0 , 2.0 ] ]
         x[1].shape = [1, 2]
@@ -45,42 +41,40 @@ stack
         x[2].shape = [1, 2]
         x[2].data = [ [5.0 , 6.0 ] ]
 
-    参数:
-        axis = 1 or axis = -2 #沿着第1维对输入进行堆叠操作。
 
-    输出:
+        Attrs:
+        axis = 1 or axis = -2  # If axis = -2, axis = axis+ndim(x[0])+1 = -2+2+1 = 1.
+
+        Output:
         Out.shape = [1, 3, 2]
-        Out.data = [ [ [1.0, 2.0]
-                      [3.0, 4.0]
-                      [5.0, 6.0] ] ]
+        Out.data =[ [ [1.0, 2.0]
+                        [3.0, 4.0]
+                        [5.0, 6.0] ] ]
 
-参数:
-      - **x** (Variable|list(Variable)) – 输入 x 可以是单个Tensor，或是多个Tensor组成的列表。如果 x 是一个列表，那么这些Tensor的维度必须相同。 假设输入是N维Tensor :math:`[d_0,d_1,...,d_{n−1}]`，则输出变量的维度为N+1维 :math:`[d_0,d_1,...d_{axis-1},len(x),d_{axis}...,d_{n−1}]` 。支持的数据类型: float32，float64，int32，int64。
-      - **axis** (int, 可选) – 指定对输入Tensor进行堆叠运算的轴，有效 ``axis`` 的范围是: :math:`[-(R+1), R+1)`，R是输入中第一个Tensor的rank。如果 ``axis`` < 0，则 :math:`axis=axis+rank(x[0])+1` 。axis默认值为0。
+**参数**：
+        - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个Tensor，且这些Tensor的维度和数据类型必须相同。支持的数据类型: float32，float64，int32，int64。
 
-返回: 堆叠运算后的Tensor，数据类型与输入Tensor相同。输出维度等于 :math:`rank(x[0])+1` 维。
+        - **axis** (int, 可选) – 指定对输入Tensor进行堆叠运算的轴，有效 axis 的范围是: [−(R+1),R+1]，R是输入中第一个Tensor的维数。如果 axis < 0，则 axis=axis+R+1 。默认值为0。
 
-返回类型: Variable
+        - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-**代码示例**：
+**返回**：堆叠运算后的Tensor，数据类型与输入Tensor相同。
+
+**返回类型**：Variable
+
+**代码示例**:
 
 .. code-block:: python
+   
+    import paddle
+    paddle.disable_static()
+    x1 = paddle.to_tensor([[1.0, 2.0]])
+    x2 = paddle.to_tensor([[3.0, 4.0]])
+    x3 = paddle.to_tensor([[5.0, 6.0]])
 
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    x1 = layers.data(name='x1', shape=[1, 2], dtype='int32')
-    x2 = layers.data(name='x2', shape=[1, 2], dtype='int32')
-    #对Tensor List进行堆叠
-    data = layers.stack([x1,x2])  # 沿着第0轴进行堆叠，data.shape=[2, 1, 2]
-
-    data = layers.stack([x1,x2], axis=1)  # 沿着第1轴进行堆叠，data.shape=[1, 2, 2]
-
-    #单个Tensor的堆叠
-    data = layers.stack(x1)  # 沿着第0轴进行堆叠，data.shape=[1, 1, 2]
-
-
-
-
-
-
-
+    out = paddle.stack([x1, x2, x3], axis=0)
+    print(out.shape)  # [3, 1, 2]
+    print(out.numpy())
+    # [[[1., 2.]],
+    #  [[3., 4.]],
+    #  [[5., 6.]]]
