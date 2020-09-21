@@ -81,7 +81,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 .. parsed-literal::
 
     视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
-    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'MovieReviews', 'UCIHousing', 'WMT14', 'WMT16']
+    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 
 这里我们是加载一个手写数字识别的数据集，用\ ``mode``\ 来标识是训练数据还是测试数据集。数据集接口会自动从远端下载数据集到本机缓存目录\ ``~/.cache/paddle/dataset``\ 。
