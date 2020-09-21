@@ -188,3 +188,80 @@ DistributedStrategy
 **init_k_steps(int):** 自适应localsgd的初始训练步长。训练后，自适应localsgd方法将自动调整步长。 默认值1。
 
 **begin_step(int):** 指定从第几个step之后进行Adaptive LocalSGD算法，默认值1。
+
+.. py:attribute:: amp
+
+是否启用自动混合精度训练。默认值：False
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.amp = True # by default this is false
+
+.. py:attribute:: amp_configs
+
+设置自动混合精度训练配置。为避免梯度inf或nan，amp会根据梯度值自动调整loss scale值。目前可以通过字典设置以下配置。
+
+**init_loss_scaling(float):** 初始loss scaling值。默认值32768。
+
+**use_dynamic_loss_scaling(bool):** 是否动态调整loss scale值。默认True。
+
+**incr_every_n_steps(int):** 每经过n个连续的正常梯度值才会增大loss scaling值。默认值1000。
+
+**decr_every_n_nan_or_inf(int):** 每经过n个连续的无效梯度值(nan或者inf)才会减小loss scaling值。默认值2。
+
+**incr_ratio(float):** 每次增大loss scaling值的扩增倍数，其为大于1的浮点数。默认值2.0。
+
+**decr_ratio(float):** 每次减小loss scaling值的比例系数，其为小于1的浮点数。默认值0.5。
+
+**custom_white_list(list[str]):** 用户自定义OP开启fp16执行的白名单。
+
+**custom_black_list(list[str]):** 用户自定义OP禁止fp16执行的黑名单。
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.amp = True
+  strategy.amp_configs = {
+      "init_loss_scaling": 32768,
+      "custom_white_list": ['conv2d']}
+
+.. py:attribute:: dgc
+
+是否启用深度梯度压缩训练。更多信息请参考[Deep Gradient Compression](https://arxiv.org/abs/1712.01887)。 默认值：False
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.dgc = True  # by default this is false
+
+.. py:attribute:: dgc_configs
+
+设置dgc策略的配置。目前用户可配置 rampup_begin_step，rampup_step，sparsity参数。
+
+**rampup_begin_step(int):** 梯度压缩的起点步。默认值0。
+
+**rampup_step(int):** 使用稀疏预热的时间步长。默认值为1。例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，\
+并且rampup_step为100，则在0~19步时使用0.75，在20~39步时使用0.9375，依此类推。当到达sparsity数组末尾时，此后将会使用0.999。
+
+**sparsity(list[float]):** 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
+例如：如果sparsity为[0.99, 0.999]，则将传输top [1%, 0.1%]的重要元素。
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.dgc = True
+  strategy.dgc_configs = {"rampup_begin_step": 1252}
+
