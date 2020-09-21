@@ -3,8 +3,8 @@
 ## 升级概要
 本版本是2.0版的公测版，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
 
- - 动态图功能完善，动态图模下数据表示概念为Tensor，推荐使用动态图模式； 
- - API目录体系调整，API的命名和别名进行了统一规范化，虽然兼容老版API，但请使用新API体系开发； 
+ - 动态图功能完善，动态图模下数据表示概念为Tensor，推荐使用动态图模式；
+ - API目录体系调整，API的命名和别名进行了统一规范化，虽然兼容老版API，但请使用新API体系开发；
  - 数据处理、组网方式、模型训练、多卡启动、模型保存和推理等开发流程都有了对应优化，请对应查看说明；
 
 以上变化请仔细阅读本指南。对于已有模型的升级，我们还提供了2.0转换工具（见附录）提供更自动化的辅助。
@@ -74,9 +74,9 @@ paddle.to_tensor(np.random.randn(3, 4))
 - **推荐用户优先使用较短的路径的别名**，比如`paddle.add -> paddle.tensor.add`，推荐优先使用`paddle.add`
 - 以下为一些特殊的别名关系，推荐使用左边的API名称：
   - paddle.sigmoid -> paddle.tensor.sigmoid -> paddle.nn.functional.sigmoid
-  - paddle.tanh -> paddle.tensor.tanh -> paddle.nn.functional.tanh 
-  - paddle.remainder -> paddle.mod -> paddle.floor_mod 
-  - paddle.divide -> paddle.true_divide 
+  - paddle.tanh -> paddle.tensor.tanh -> paddle.nn.functional.tanh
+  - paddle.remainder -> paddle.mod -> paddle.floor_mod
+  - paddle.divide -> paddle.true_divide
   - paddle.rand -> paddle.uniform
   - paddle.randn -> paddle.standard_normal
   - Optimizer.clear_grad -> Optimizer.clear_gradients
@@ -109,7 +109,7 @@ paddle.to_tensor(np.random.randn(3, 4))
   | paddle.fluid.dygraph.Conv2D | paddle.nn.Conv2d |
   | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.ConvTranspose2d |
   | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2d, paddle.nn.AvgPool2d |
-  
+
 ## 三、开发流程
 ### 数据处理
 数据处理推荐使用**paddle.io目录下的Dataset，Sampler, BatchSampler, DataLoader接口**，不推荐reader类接口。一些常用的数据集已经在paddle.vision.datasets和paddle.text.datasets目录实现，具体参考API文档。
@@ -141,7 +141,7 @@ class MyDataset(Dataset):
                 ['testdata3', 'label3'],
                 ['testdata4', 'label4'],
             ]
-    
+
     def __getitem__(self, index):
         """
         步骤三：实现__getitem__方法，定义指定index时如何获取数据，并返回单条数据（训练数据，对应的标签）
@@ -191,7 +191,7 @@ mnist = paddle.nn.Sequential(
 
 #### SubClass组网
 
- 针对一些比较复杂的网络结构，就可以使用Layer子类定义的方式来进行模型代码编写，在`__init__`构造函数中进行组网Layer的声明，在`forward`中使用声明的Layer变量进行前向计算。子类组网方式也可以实现sublayer的复用，针对相同的layer可以在构造函数中一次性定义，在forward中多次调用。 
+ 针对一些比较复杂的网络结构，就可以使用Layer子类定义的方式来进行模型代码编写，在`__init__`构造函数中进行组网Layer的声明，在`forward`中使用声明的Layer变量进行前向计算。子类组网方式也可以实现sublayer的复用，针对相同的layer可以在构造函数中一次性定义，在forward中多次调用。
 
 ```python
 import paddle
@@ -301,7 +301,7 @@ $ python train.py
 $ python -m paddle.distributed.launch train.py
 
 # 单机多卡启动，设置当前使用的第0号和第1号卡
-$ python -m paddle.distributed.launch --selected_gpus='0,1' train.py 
+$ python -m paddle.distributed.launch --selected_gpus='0,1' train.py
 
 # 单机多卡启动，设置当前使用第0号和第1号卡
 $ export CUDA_VISIABLE_DEVICES='0,1'
@@ -326,7 +326,7 @@ train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), bat
 def train():
     # 第1处改动，初始化并行环境
     dist.init_parallel_env()
-    
+
     # 第2处改动，增加paddle.DataParallel封装
     net = paddle.DataParallel(LeNet())
     epochs = 2
@@ -339,7 +339,7 @@ def train():
             predicts = net(x_data)           acc = paddle.metric.accuracy(predicts, y_data, k=2)
             avg_acc = paddle.mean(acc)
             loss = paddle.nn.functional.cross_entropy(predicts, y_data)
-            
+
             # 第3处改动，归一化loss
             avg_loss = net.scale_loss(avg_loss)
             avg_loss.backward()
@@ -350,7 +350,7 @@ def train():
             adam.step()
             adam.clear_grad()
 
-# 启动训练            
+# 启动训练  
 train()
 ```
 
@@ -364,7 +364,7 @@ $ python train.py
 $ python -m paddle.distributed.launch train.py
 
 # 单机多卡启动，设置当前使用的第0号和第1号卡
-$ python -m paddle.distributed.launch --selected_gpus '0,1' train.py 
+$ python -m paddle.distributed.launch --selected_gpus '0,1' train.py
 
 # 单机多卡启动，设置当前使用第0号和第1号卡
 $ export CUDA_VISIABLE_DEVICES='0,1'
@@ -478,9 +478,9 @@ auto output0 = predictor->GetOutputHandle("Out");
 for (...) {
   // Assign data to input0
   MyServiceSetData(input0);
-  
+
   predictor->Run();
-  
+
   // get data from the output0 handle
   MyServiceGetData(output0);
 }
@@ -502,12 +502,10 @@ https://github.com/PaddlePaddle/paddle1to2
 ### 2.0文档教程
 以下提供了2.0版本的一些示例教程：
 
-您可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.0-beta/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码: 
+您可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.0-beta/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
 https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs
 
 ### 2.0API升级列表
 - [Release Note](https://github.com/PaddlePaddle/Paddle/releases/tag/v2.0.0-beta0#)
 - [API新增列表](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-New-API-List)
 - [API升级列表](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-Upgraded-API-List)
-
-
