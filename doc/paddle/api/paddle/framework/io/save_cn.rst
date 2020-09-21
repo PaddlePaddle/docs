@@ -24,7 +24,7 @@ save
 
     paddle.disable_static()
 
-    emb = paddle.nn.Embedding([10, 10])
+    emb = paddle.nn.Embedding(10, 10)
     layer_state_dict = emb.state_dict()
     paddle.save(layer_state_dict, "emb.pdparams")
 
