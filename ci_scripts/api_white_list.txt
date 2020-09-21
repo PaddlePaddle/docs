@@ -8,3 +8,4 @@ paddle/reader/ComposeNotAligned_cn.rst
 paddle/fluid/layers/scatter_cn.rst
 paddle/tensor/manipulation/scatter_cn.rst
 paddle/distributed/fleet/Fleet_cn.rst
+upgrade_guide_cn.md
