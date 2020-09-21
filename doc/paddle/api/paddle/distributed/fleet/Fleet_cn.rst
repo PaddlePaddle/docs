@@ -6,14 +6,19 @@ Fleet
 
 .. py:class:: paddle.distributed.fleet.Fleet
 
-
+Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化后即可快速开始使用飞桨大规模分布式训练
 
 
 .. py:method:: init(role_maker=None, is_collective=False)
 
 使用RoleMaker或其他配置初始化fleet。
 
-返回：无。
+
+参数：
+    role_maker (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
+    is_collective (bool) 在未指定role_maker的情况下,可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建， is_collective=False则按照ParameterServer模式进行创建
+
+返回：None
 
 
 **代码示例1**
@@ -41,7 +46,7 @@ Fleet
 
 .. py:method:: is_first_worker()
 
-返回当前节点是否为第一个`worker`节点
+返回当前节点是否为第一个`worker`节点, 判断当前worker_index是否为0， 如果为0则返回True，否则返回False
 
 返回：True/False
 
@@ -74,7 +79,7 @@ Fleet
 
 .. py:method:: worker_num()
 
-返回当前全部训练节点的个数
+返回当前全部训练节点中`workjer`节点的个数
 
 返回：int
 
@@ -119,6 +124,11 @@ Fleet
 
 .. py:method:: server_num()
 
+**注意：**
+
+  **该参数只在ParameterServer模式下生效**
+
+
 返回当前全部Server节点的个数
 
 返回：int
@@ -133,6 +143,11 @@ Fleet
 
 
 .. py:method:: server_index()
+
+
+**注意：**
+
+  **该参数只在ParameterServer模式下生效**
 
 
 返回当前节点的编号, 每个`server`节点被分配[0, server_num-1]内的唯一的编码ID
@@ -152,6 +167,11 @@ Fleet
 .. py:method:: server_endpoints(to_string=False)
 
 
+**注意：**
+
+  **该参数只在ParameterServer模式下生效**
+
+
 返回全部server节点的ip及端口信息
 
 返回：list/string
@@ -166,6 +186,11 @@ Fleet
 
 
 .. py:method:: is_server()
+
+
+**注意：**
+
+  **该参数只在ParameterServer模式下生效**
 
 
 返回当前节点是否为`server`节点
@@ -183,7 +208,7 @@ Fleet
 
 .. py:method:: barrier_worker()
 
-强制要求所有的worker在此处需要相互等待一次
+调用集合通信功能，强制要求所有的worker在此处相互等待一次
 
 返回：无
 
