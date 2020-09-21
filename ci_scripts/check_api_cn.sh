@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -x
 
 function build_paddle() {
     git clone https://github.com/PaddlePaddle/Paddle.git
