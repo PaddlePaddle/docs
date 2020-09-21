@@ -57,7 +57,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: python
+.. code-block:: text
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -69,27 +69,6 @@ HDFSClient
 
     client = HDFSClient(hadoop_home, configs)
     client.mkdirs("hdfs:/test_hdfs_client")
-
-.. py:method:: rename(fs_src_path, fs_dst_path)
-重命名本地文件名。
-
-参数：
-    - **fs_src_path** (str)：重命名前原始文件名。
-    - **fs_dst_path** (str)：新文件名。
-
-**示例代码**：
-
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils.fs import LocalFS
-
-    client = LocalFS()
-    client.touch("test_rename_src")
-    print(client.is_exists("test_rename_src")) # True
-    client.rename("test_rename_src", "test_rename_dst")
-    print(client.is_exists("test_rename_src")) # False
-    print(client.is_exists("test_rename_dst")) # True
-    client.delete("test_rename_dst")
 
 .. py:method:: delete(fs_path)
 删除HADOOP文件（或目录）。
