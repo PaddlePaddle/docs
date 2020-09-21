@@ -12,7 +12,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
     hadoop_home = "/home/client/hadoop-client/hadoop/"
@@ -36,7 +36,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -57,7 +57,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -78,7 +78,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -102,7 +102,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -126,7 +126,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -150,7 +150,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -172,7 +172,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -194,7 +194,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -217,7 +217,7 @@ HDFSClient
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -240,7 +240,7 @@ HADOOP系统文件移动。
  
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 
@@ -264,7 +264,7 @@ HADOOP系统文件移动。
 
 **示例代码**：
 
-.. code-block:: text
+.. code-block:: python
 
     from paddle.distributed.fleet.utils.fs import HDFSClient
 

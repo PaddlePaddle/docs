@@ -14,4 +14,6 @@ paddle/distributed/fleet/utils/fs/FSFileNotExistsError_cn.rst
 paddle/distributed/fleet/utils/fs/FSShellCmdAborted_cn.rst
 paddle/distributed/fleet/utils/fs/FSTimeOut_cn.rst
 paddle/distributed/fleet/utils/fs/FS_cn.rst
+paddle/distributed/fleet/utils/fs/HDFSClient_cn.rst
+paddle/distributed/fleet/utils/fs/LocalFS_cn.rst
 upgrade_guide_cn.md
