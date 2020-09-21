@@ -92,7 +92,8 @@ QueueyDataset是流式处理数据使用Dataset类。与InmemoryDataset继承自
     os.remove("./test_queue_dataset_run_a.txt")
     os.remove("./test_queue_dataset_run_b.txt")
 
-    .. py:method:: set_filelist(filelist)
+
+.. py:method:: set_filelist(filelist)
 
 在当前的worker中设置文件列表。
 
