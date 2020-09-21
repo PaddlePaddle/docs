@@ -3,7 +3,7 @@
 HDFSClient
 -------------------------------
 
-.. py:class:: paddle.distributed.fleet.utils.fs.HDFSClient
+.. py:class:: paddle.distributed.fleet.utils.HDFSClient
 一个HADOOP文件系统工具类。
 
 参数：
@@ -14,7 +14,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
     hadoop_home = "/home/client/hadoop-client/hadoop/"
 
     configs = {
@@ -38,7 +38,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -59,7 +59,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -80,7 +80,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -104,7 +104,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -128,7 +128,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -152,7 +152,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -174,7 +174,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -196,7 +196,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -219,7 +219,7 @@ HDFSClient
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -242,7 +242,7 @@ HADOOP系统文件移动。
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {
@@ -266,7 +266,7 @@ HADOOP系统文件移动。
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import HDFSClient
+    from paddle.distributed.fleet.utils import HDFSClient
 
     hadoop_home = "/home/client/hadoop-client/hadoop/"
     configs = {

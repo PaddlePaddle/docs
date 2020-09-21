@@ -3,13 +3,13 @@
 LocalFS
 -------------------------------
 
-.. py:class:: paddle.distributed.fleet.utils.fs.LocalFS
+.. py:class:: paddle.distributed.fleet.utils.LocalFS
 一个本地文件系统工具类。
 
 **示例代码**：
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     subdirs, files = client.ls_dir("./")
@@ -27,7 +27,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     subdirs, files = client.ls_dir("./")
@@ -42,7 +42,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     client.mkdirs("test_mkdirs")
@@ -59,7 +59,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     client.touch("test_rename_src")
@@ -79,7 +79,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     client.mkdirs("test_localFS_mkdirs")
@@ -98,7 +98,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     client.touch("test_is_file")
@@ -118,7 +118,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     client.mkdirs("test_is_dir")
@@ -138,7 +138,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     ret = local_fs.is_exist("test_is_exist")
@@ -154,7 +154,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     client.touch("test_touch")
@@ -172,7 +172,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     client.touch("test_mv_src")
@@ -192,7 +192,7 @@ LocalFS
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.utils.fs import LocalFS
+    from paddle.distributed.fleet.utils import LocalFS
 
     client = LocalFS()
     subdirs = client.list_dirs("./")
