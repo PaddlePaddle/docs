@@ -5,9 +5,6 @@ atan
 
 .. py:function:: paddle.fluid.layers.atan(x, name=None)
 
-:alias_main: paddle.atan
-:alias: paddle.atan,paddle.tensor.atan,paddle.tensor.math.atan
-:update_api: paddle.fluid.layers.atan
 
 
 
@@ -29,11 +26,8 @@ arctangent函数。
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([-0.8183,  0.4912, -0.6444,  0.0371]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
         res = paddle.atan(x)
         print(res.numpy())
         # [-0.6858,  0.4566, -0.5724,  0.0371]

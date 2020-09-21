@@ -5,9 +5,6 @@ box_clip
 
 .. py:function:: paddle.fluid.layers.box_clip(input, im_info, name=None)
 
-:alias_main: paddle.nn.functional.box_clip
-:alias: paddle.nn.functional.box_clip,paddle.nn.functional.vision.box_clip
-:old_api: paddle.fluid.layers.box_clip
 
 
 

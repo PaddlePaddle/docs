@@ -5,9 +5,6 @@ cos
 
 .. py:function:: paddle.fluid.layers.cos(x, name=None)
 
-:alias_main: paddle.cos
-:alias: paddle.cos,paddle.tensor.cos,paddle.tensor.math.cos
-:old_api: paddle.fluid.layers.cos
 
 
 
@@ -33,10 +30,8 @@ cos
 
         import paddle
         import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([[-1,np.pi],[1,15.6]]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor([[-1, np.pi], [1, 15.6]], dtype='float32')
         res = paddle.cos(x)
         print(res.numpy())
         # [[ 0.54030231 -1.        ]

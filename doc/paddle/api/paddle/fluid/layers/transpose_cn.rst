@@ -5,9 +5,6 @@ transpose
 
 .. py:function:: paddle.fluid.layers.transpose(x,perm,name=None)
 
-:alias_main: paddle.transpose
-:alias: paddle.transpose,paddle.tensor.transpose,paddle.tensor.linalg.transpose,paddle.tensor.manipulation.transpose
-:old_api: paddle.fluid.layers.transpose
 
 
 

@@ -5,8 +5,6 @@ clip
 
 .. py:function:: paddle.clip(x, min=None, max=None, name=None)
 
-:alias_main: paddle.clip
-:alias: paddle.clip,paddle.tensor.clip,paddle.tensor.math.clip
 
 
 

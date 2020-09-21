@@ -4,9 +4,9 @@
 本示例教程介绍如何使用飞桨完成一个机器翻译任务。我们将会使用飞桨提供的LSTM的API，组建一个\ ``sequence to sequence with attention``\ 的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
 
 环境设置
----------
+--------
 
-本示例教程基于飞桨2.0-beta版本。
+本示例教程基于飞桨框架2.0-beta版本。
 
 .. code:: ipython3
 
@@ -17,17 +17,15 @@
     
     paddle.disable_static()
     print(paddle.__version__)
-    print(paddle.__git_commit__)
 
 
 .. parsed-literal::
 
-    0.0.0
-    89af2088b6e74bdfeef2d4d78e08461ed2aafee5
+    2.0.0-beta0
 
 
 下载数据集
-------------
+----------
 
 我们将使用 http://www.manythings.org/anki/
 提供的中英文的英汉句对作为数据集，来完成本任务。该数据集含有23610个中英文双语的句对。
@@ -39,16 +37,16 @@
 
 .. parsed-literal::
 
-    --2020-09-04 16:13:35--  https://www.manythings.org/anki/cmn-eng.zip
-    Resolving www.manythings.org (www.manythings.org)... 104.24.109.196, 172.67.173.198, 2606:4700:3037::6818:6cc4, ...
-    Connecting to www.manythings.org (www.manythings.org)|104.24.109.196|:443... connected.
+    --2020-09-10 16:17:25--  https://www.manythings.org/anki/cmn-eng.zip
+    Resolving www.manythings.org (www.manythings.org)... 2606:4700:3033::6818:6dc4, 2606:4700:3036::ac43:adc6, 2606:4700:3037::6818:6cc4, ...
+    Connecting to www.manythings.org (www.manythings.org)|2606:4700:3033::6818:6dc4|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 1030722 (1007K) [application/zip]
     Saving to: ‘cmn-eng.zip’
     
-    cmn-eng.zip         100%[===================>]   1007K   520KB/s    in 1.9s    
+    cmn-eng.zip         100%[===================>]   1007K  91.2KB/s    in 11s     
     
-    2020-09-04 16:13:38 (520 KB/s) - ‘cmn-eng.zip’ saved [1030722/1030722]
+    2020-09-10 16:17:38 (91.2 KB/s) - ‘cmn-eng.zip’ saved [1030722/1030722]
     
     Archive:  cmn-eng.zip
       inflating: cmn.txt                 
@@ -66,7 +64,7 @@
 
 
 构建双语句对的数据结构
--------------------------
+----------------------
 
 接下来我们通过处理下载下来的双语句对的文本文件，将双语句对读入到python的数据结构中。这里做了如下的处理。
 
@@ -116,7 +114,7 @@
 
 
 创建词表
-----------
+--------
 
 接下来我们分别创建中英文的词表，这两份词表会用来将英文和中文的句子转换为词的ID构成的序列。词表中还加入了如下三个特殊的词：
 - ``<pad>``: 用来对较短的句子进行填充。 - ``<bos>``: “begin of
@@ -157,7 +155,7 @@ Note:
 
 
 创建padding过的数据集
------------------------------
+---------------------
 
 接下来根据词表，我们将会创建一份实际的用于训练的用numpy
 array组织起来的数据集。 -
@@ -198,7 +196,7 @@ array组织起来的数据集。 -
 
 
 创建网络
----------
+--------
 
 我们将会创建一个Encoder-AttentionDecoder架构的模型结构用来完成机器翻译任务。
 首先我们将设置一些必要的网络结构中用到的参数。
@@ -214,7 +212,7 @@ array组织起来的数据集。 -
     batch_size = 16
 
 Encoder部分
-----------------
+-----------
 
 在编码器的部分，我们通过查找完Embedding之后接一个LSTM的方式构建一个对源语言编码的网络。飞桨的RNN系列的API，除了LSTM之外，还提供了SimleRNN,
 GRU供使用，同时，还可以使用反向RNN，双向RNN，多层RNN等形式。也可以通过\ ``dropout``\ 参数设置是否对多层RNN的中间层进行\ ``dropout``\ 处理，来防止过拟合。
@@ -239,7 +237,7 @@ LSTMCell等API更灵活的创建单步的RNN计算，甚至通过继承RNNCellBa
             return x
 
 AttentionDecoder部分
-------------------------
+--------------------
 
 在解码器部分，我们通过一个带有注意力机制的LSTM来完成解码。
 
@@ -358,77 +356,76 @@ AttentionDecoder部分
                 print("iter {}, loss:{}".format(iteration, loss.numpy()))
     
             loss.backward()
-            opt.minimize(loss)
-            encoder.clear_gradients()
-            atten_decoder.clear_gradients()
+            opt.step()
+            opt.clear_grad()
 
 
 .. parsed-literal::
 
     epoch:0
-    iter 0, loss:[7.6194725]
-    iter 200, loss:[3.4147663]
+    iter 0, loss:[7.620109]
+    iter 200, loss:[2.9760551]
     epoch:1
-    iter 0, loss:[3.0931656]
-    iter 200, loss:[2.7543137]
+    iter 0, loss:[2.9679596]
+    iter 200, loss:[3.161064]
     epoch:2
-    iter 0, loss:[2.8413522]
-    iter 200, loss:[2.340513]
+    iter 0, loss:[2.7516625]
+    iter 200, loss:[2.9755423]
     epoch:3
-    iter 0, loss:[2.597812]
-    iter 200, loss:[2.5552855]
+    iter 0, loss:[2.7249248]
+    iter 200, loss:[2.3419888]
     epoch:4
-    iter 0, loss:[2.0783448]
-    iter 200, loss:[2.4544785]
+    iter 0, loss:[2.3236473]
+    iter 200, loss:[2.3453429]
     epoch:5
-    iter 0, loss:[1.8709135]
-    iter 200, loss:[1.8736631]
+    iter 0, loss:[2.1926975]
+    iter 200, loss:[2.1977856]
     epoch:6
-    iter 0, loss:[1.9589291]
-    iter 200, loss:[2.119414]
+    iter 0, loss:[2.014393]
+    iter 200, loss:[2.1863418]
     epoch:7
-    iter 0, loss:[1.5829577]
-    iter 200, loss:[1.6002902]
+    iter 0, loss:[1.8619595]
+    iter 200, loss:[1.8904227]
     epoch:8
-    iter 0, loss:[1.6022769]
-    iter 200, loss:[1.52694]
+    iter 0, loss:[1.5901132]
+    iter 200, loss:[1.7812968]
     epoch:9
-    iter 0, loss:[1.3616685]
-    iter 200, loss:[1.5420443]
+    iter 0, loss:[1.341565]
+    iter 200, loss:[1.4957166]
     epoch:10
-    iter 0, loss:[1.0397792]
-    iter 200, loss:[1.2458231]
+    iter 0, loss:[1.2202356]
+    iter 200, loss:[1.3485341]
     epoch:11
-    iter 0, loss:[1.2107158]
-    iter 200, loss:[1.426417]
+    iter 0, loss:[1.1035374]
+    iter 200, loss:[1.2871654]
     epoch:12
-    iter 0, loss:[1.1840894]
-    iter 200, loss:[1.0999664]
+    iter 0, loss:[1.194801]
+    iter 200, loss:[1.0479954]
     epoch:13
-    iter 0, loss:[1.0968472]
-    iter 200, loss:[0.8149167]
+    iter 0, loss:[1.0022258]
+    iter 200, loss:[1.0899843]
     epoch:14
-    iter 0, loss:[0.95585203]
-    iter 200, loss:[1.0070628]
+    iter 0, loss:[0.93466896]
+    iter 200, loss:[0.99347967]
     epoch:15
-    iter 0, loss:[0.89463925]
-    iter 200, loss:[0.8288595]
+    iter 0, loss:[0.83665943]
+    iter 200, loss:[0.9594004]
     epoch:16
-    iter 0, loss:[0.5672495]
-    iter 200, loss:[0.7317069]
+    iter 0, loss:[0.78929776]
+    iter 200, loss:[0.945769]
     epoch:17
-    iter 0, loss:[0.76785177]
-    iter 200, loss:[0.5319323]
+    iter 0, loss:[0.62574965]
+    iter 200, loss:[0.6308163]
     epoch:18
-    iter 0, loss:[0.5250005]
-    iter 200, loss:[0.4182841]
+    iter 0, loss:[0.63433456]
+    iter 200, loss:[0.6287957]
     epoch:19
-    iter 0, loss:[0.52320284]
-    iter 200, loss:[0.47618982]
+    iter 0, loss:[0.54270047]
+    iter 200, loss:[0.72688276]
 
 
 使用模型进行机器翻译
------------------------
+--------------------
 
 根据你所使用的计算设备的不同，上面的训练过程可能需要不等的时间。（在一台Mac笔记本上，大约耗时15~20分钟）
 完成上面的模型训练之后，我们可以得到一个能够从英文翻译成中文的机器翻译模型。接下来我们通过一个greedy
@@ -478,40 +475,39 @@ search算法来提升效果）
 
 .. parsed-literal::
 
-    i agree with him
-    true: 我同意他。
-    pred: 我同意他。
-    i think i ll take a bath tonight
-    true: 我想我今晚會洗澡。
-    pred: 我想我今晚會洗澡。
-    he asked for a drink of water
-    true: 他要了水喝。
-    pred: 他喝了一杯水。
-    i began running
-    true: 我開始跑。
-    pred: 我開始跑。
-    i m sick
-    true: 我生病了。
-    pred: 我生病了。
-    you had better go to the dentist s
-    true: 你最好去看牙醫。
-    pred: 你最好去看牙醫。
-    we went for a walk in the forest
-    true: 我们去了林中散步。
-    pred: 我們去公园散步。
-    you ve arrived very early
-    true: 你來得很早。
-    pred: 你去早个。
-    he pretended not to be listening
-    true: 他裝作沒在聽。
-    pred: 他假装聽到它。
-    he always wanted to study japanese
-    true: 他一直想學日語。
-    pred: 他一直想學日語。
+    i want to study french
+    true: 我要学法语。
+    pred: 我要学法语。
+    i didn t know that he was there
+    true: 我不知道他在那裡。
+    pred: 我不知道他在那裡。
+    i called tom
+    true: 我給湯姆打了電話。
+    pred: 我看見湯姆了。
+    he is getting along with his employees
+    true: 他和他的員工相處。
+    pred: 他和他的員工相處。
+    we raced toward the fire
+    true: 我們急忙跑向火。
+    pred: 我們住在美國。
+    i ran away in a hurry
+    true: 我趕快跑走了。
+    pred: 我在班里是最高。
+    he cut the envelope open
+    true: 他裁開了那個信封。
+    pred: 他裁開了信封。
+    he s shorter than tom
+    true: 他比湯姆矮。
+    pred: 他比湯姆矮。
+    i ve just started playing tennis
+    true: 我剛開始打網球。
+    pred: 我剛去打網球。
+    i need to go home
+    true: 我该回家了。
+    pred: 我该回家了。
 
 
 The End
 -------
 
 你还可以通过变换网络结构，调整数据集，尝试不同的参数的方式来进一步提升本示例当中的机器翻译的效果。同时，也可以尝试在其他的类似的任务中用飞桨来完成实际的实践。
-

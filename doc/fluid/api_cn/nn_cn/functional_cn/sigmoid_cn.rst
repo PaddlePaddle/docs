@@ -24,12 +24,10 @@ sigmoid 激活函数。
 :::::::::
 .. code-block:: python
 
-    import numpy as np
     import paddle
     import paddle.nn.functional as F 
 
     paddle.disable_static()
-    input_data = np.array([1.0, 2.0, 3.0, 4.0]).astype('float32')
-    x = paddle.to_variable(input_data)
+    x = paddle.to_tensor([1.0, 2.0, 3.0, 4.0])
     output = F.sigmoid(x)
     print(output.numpy()) # [0.7310586, 0.880797, 0.95257413, 0.98201376]

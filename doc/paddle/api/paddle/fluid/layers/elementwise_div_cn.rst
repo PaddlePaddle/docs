@@ -5,9 +5,6 @@ elementwise_div
 
 .. py:function:: paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None, name=None)
 
-:alias_main: paddle.elementwise_div
-:alias: paddle.elementwise_div,paddle.tensor.elementwise_div,paddle.tensor.math.elementwise_div
-:old_api: paddle.fluid.layers.elementwise_div
 
 
 

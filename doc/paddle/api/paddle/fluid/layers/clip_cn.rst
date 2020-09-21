@@ -5,9 +5,6 @@ clip
 
 .. py:function:: paddle.fluid.layers.clip(x, min, max, name=None)
 
-:alias_main: paddle.nn.clip
-:alias: paddle.nn.clip,paddle.nn.clip.clip
-:old_api: paddle.fluid.layers.clip
 
 
 

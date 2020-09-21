@@ -5,9 +5,6 @@ maxout
 
 .. py:function:: paddle.fluid.layers.maxout(x, groups, name=None, axis=1)
 
-:alias_main: paddle.nn.functional.maxout
-:alias: paddle.nn.functional.maxout,paddle.nn.functional.activation.maxout
-:old_api: paddle.fluid.layers.maxout
 
 
 

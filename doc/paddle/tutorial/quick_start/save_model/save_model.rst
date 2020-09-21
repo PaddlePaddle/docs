@@ -7,7 +7,8 @@
 环境
 ----
 
-本教程基于paddle-develop编写，如果您的环境不是本版本，请先安装paddle-develop版本。
+本教程基于paddle-2.0Beta编写，如果您的环境不是此版本，请先安装paddle-2.0Beta版本，使用命令：pip3
+install paddlepaddle==2.0Beta。
 
 .. code:: ipython3
 
@@ -25,7 +26,7 @@
 
 .. parsed-literal::
 
-    0.0.0
+    2.0.0-beta0
 
 
 数据集

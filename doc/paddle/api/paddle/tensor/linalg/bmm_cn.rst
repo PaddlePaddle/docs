@@ -5,8 +5,6 @@ bmm
 
 .. py:function:: paddle.tensor.bmm(x, y, name=None):
 
-:alias_main: paddle.bmm
-:alias: paddle.bmm,paddle.tensor.bmm,paddle.tensor.linalg.bmm
 
 
 

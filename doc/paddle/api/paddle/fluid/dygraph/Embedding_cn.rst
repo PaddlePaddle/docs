@@ -5,9 +5,6 @@ Embedding
 
 .. py:class:: paddle.fluid.dygraph.Embedding(size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
 
-:alias_main: paddle.nn.Embedding
-:alias: paddle.nn.Embedding,paddle.nn.layer.Embedding,paddle.nn.layer.common.Embedding
-:old_api: paddle.fluid.dygraph.Embedding
 
 
 

@@ -5,8 +5,6 @@ maximum
 
 .. py:function:: paddle.tensor.maximum(x, y, axis=-1, name=None)
 
-:alias_main: paddle.maximum
-:alias: paddle.maximum,paddle.tensor.maximum,paddle.tensor.math.maximum
 
 该OP逐元素对比输入的两个多维Tensor，并且把各个位置更大的元素保存到返回结果中。
 
@@ -58,39 +56,30 @@ maximum
 
     import paddle
     import numpy as np
-
     paddle.disable_static()
   
-    x_data = np.array([[1, 2], [3, 4]], dtype=np.float32)
-    y_data = np.array([[5, 6], [7, 8]], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor([[1, 2], [3, 4]])
+    y = paddle.to_tensor([[5, 6], [7, 8]])
     res = paddle.maximum(x, y)
     print(res.numpy())
     #[[5. 6.]
     # [7. 8.]]
 
-    x_data = np.array([[[1, 2, 3], [1, 2, 3]]], dtype=np.float32)
-    y_data = np.array([1, 2], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
+    y = paddle.to_tensor([1, 2])
     res = paddle.maximum(x, y, axis=1)
     print(res.numpy())
     #[[[1. 2. 3.]
     #  [2. 2. 3.]]]
 
-    x_data = np.array([2, 3, 5], dtype=np.float32)
-    y_data = np.array([1, 4, np.nan], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor([2, 3, 5], dtype='float32')
+    y = paddle.to_tensor([1, 4, np.nan], dtype='float32')
     res = paddle.maximum(x, y)
     print(res.numpy())
     #[ 2.  4. nan]
 
-    x_data = np.array([5, 3, np.inf], dtype=np.float32)
-    y_data = np.array([1, 4, 5], dtype=np.float32)
-    x = paddle.to_variable(x_data)
-    y = paddle.to_variable(y_data)
+    x = paddle.to_tensor([5, 3, np.inf], dtype='float32')
+    y = paddle.to_tensor([1, 4, 5], dtype='float32')
     res = paddle.maximum(x, y)
     print(res.numpy())
     #[ 5.  4. inf]

@@ -5,9 +5,6 @@ LayerNorm
 
 .. py:class:: paddle.fluid.dygraph.LayerNorm(normalized_shape, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, dtype="float32")
 
-:alias_main: paddle.nn.LayerNorm
-:alias: paddle.nn.LayerNorm,paddle.nn.layer.LayerNorm,paddle.nn.layer.norm.LayerNorm
-:old_api: paddle.fluid.dygraph.LayerNorm
 
 
 

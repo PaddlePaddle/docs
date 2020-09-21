@@ -5,9 +5,6 @@ create_tensor
 
 .. py:function:: paddle.fluid.layers.create_tensor(dtype,name=None,persistable=False)
 
-:alias_main: paddle.create_tensor
-:alias: paddle.create_tensor,paddle.tensor.create_tensor,paddle.tensor.creation.create_tensor
-:old_api: paddle.fluid.layers.create_tensor
 
 
 

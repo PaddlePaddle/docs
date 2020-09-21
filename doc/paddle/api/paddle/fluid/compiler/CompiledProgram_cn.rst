@@ -6,7 +6,6 @@ CompiledProgram
 
 .. py:class:: paddle.fluid.CompiledProgram(program_or_graph, build_strategy=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

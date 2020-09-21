@@ -1,63 +1,53 @@
-.. _cn_api_fluid_metrics_Accuracy:
+.. _cn_api_paddle_metric_accuracy:
 
-Accuracy
+accuracy
 -------------------------------
-.. py:class:: paddle.fluid.metrics.Accuracy(name=None)
 
+.. py:function:: paddle.metric.accuracy(input, label, k=1, correct=None, total=None)
 
+accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
+使用输入和标签计算准确率。 如果正确的标签在topk个预测值里，则计算结果加1。注意：输出正确率的类型由input类型决定，input和lable的类型可以不一样。
 
-该接口用来计算多个mini-batch的平均准确率。Accuracy对象有两个状态value和weight。Accuracy的定义参照 https://en.wikipedia.org/wiki/Accuracy_and_precision 。
+参数
+:::::::::
 
-参数:
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **input** (Tensor|LoDTensor)-数据类型为float32,float64。输入为网络的预测值。shape为 ``[sample_number, class_dim]`` 。
+    - **label** (Tensor|LoDTensor)-数据类型为int64，int32。输入为数据集的标签。shape为 ``[sample_number, 1]`` 。
+    - **k** (int64|int32) - 取每个类别中k个预测值用于计算。
+    - **correct** (int64|int32)-正确预测值的个数。
+    - **total** (int64|int32)-总共的预测值。
 
-返回：初始化后的 ``Accuracy`` 对象
+返回
+:::::::::
 
-返回类型：Accuracy
+    ``Tensor``，计算出来的正确率，数据类型为float32的Tensor。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        # 假设有batch_size = 128
-        batch_size=128
-        accuracy_manager = fluid.metrics.Accuracy()
-        # 假设第一个batch的准确率为0.9
-        batch1_acc = 0.9
-        accuracy_manager.update(value = batch1_acc, weight = batch_size)
-        print("expect accuracy: %.2f, get accuracy: %.2f" % (batch1_acc, accuracy_manager.eval()))
-        # 假设第二个batch的准确率为0.8
-        batch2_acc = 0.8
-        accuracy_manager.update(value = batch2_acc, weight = batch_size)
-        #batch1和batch2的联合准确率为(batch1_acc * batch_size + batch2_acc * batch_size) / batch_size / 2
-        print("expect accuracy: %.2f, get accuracy: %.2f" % ((batch1_acc * batch_size + batch2_acc * batch_size) / batch_size / 2, accuracy_manager.eval()))
-        #重置accuracy_manager
-        accuracy_manager.reset()
-        #假设第三个batch的准确率为0.8
-        batch3_acc = 0.8
-        accuracy_manager.update(value = batch3_acc, weight = batch_size)
-        print("expect accuracy: %.2f, get accuracy: %.2f" % (batch3_acc, accuracy_manager.eval()))
+    import paddle.fluid as fluid
+    import numpy as np
 
-.. py:method:: update(value, weight)
+    data = fluid.layers.data(name="input", shape=[-1, 32, 32], dtype="float32")
+    label = fluid.layers.data(name="label", shape=[-1,1], dtype="int")
+    fc_out = fluid.layers.fc(input=data, size=10)
+    predict = fluid.layers.softmax(input=fc_out)
+    result = fluid.layers.accuracy(input=predict, label=label, k=5)
 
-该函数使用输入的(value, weight)来累计更新Accuracy对象的对应状态，更新方式如下：
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
 
-    .. math::
-                   \\ \begin{array}{l}{\text { self. value }+=\text { value } * \text { weight }} \\ {\text { self. weight }+=\text { weight }}\end{array} \\
-
-参数：    
-    - **value** (float|numpy.array) – mini-batch的正确率
-    - **weight** (int|float) – mini-batch的大小
-
-返回：无
-
-.. py:method:: eval()
-
-该函数计算并返回累计的mini-batches的平均准确率。
-
-返回：累计的mini-batches的平均准确率
-
-返回类型：float或numpy.array
-
+    exe.run(fluid.default_startup_program())
+    x = np.random.rand(3, 32, 32).astype("float32")
+    y = np.array([[1],[0],[1]])
+    output= exe.run(feed={"input": x,"label": y},
+                     fetch_list=[result[0]])
+    print(output)
+    
+    """
+    Output:
+    [array([0.6666667], dtype=float32)]
+    """

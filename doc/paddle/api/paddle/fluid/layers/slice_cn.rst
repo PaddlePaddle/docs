@@ -5,9 +5,6 @@ slice
 
 .. py:function:: paddle.fluid.layers.slice(input, axes, starts, ends)
 
-:alias_main: paddle.slice
-:alias: paddle.slice,paddle.tensor.slice,paddle.tensor.manipulation.slice
-:old_api: paddle.fluid.layers.slice
 
 
 

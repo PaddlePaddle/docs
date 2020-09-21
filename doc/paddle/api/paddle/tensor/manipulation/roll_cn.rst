@@ -5,8 +5,6 @@ roll
 
 .. py:function:: paddle.roll(x, shifts, axis=None, name=None):
 
-:alias_main: paddle.roll
-:alias: paddle.roll, paddle.tensor.roll, paddle.tensor.manipulation.roll
 
 
 

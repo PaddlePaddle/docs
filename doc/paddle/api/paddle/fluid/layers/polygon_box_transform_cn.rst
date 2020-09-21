@@ -5,9 +5,6 @@ polygon_box_transform
 
 .. py:function:: paddle.fluid.layers.polygon_box_transform(input, name=None)
 
-:alias_main: paddle.nn.functional.polygon_box_transform
-:alias: paddle.nn.functional.polygon_box_transform,paddle.nn.functional.extension.polygon_box_transform
-:old_api: paddle.fluid.layers.polygon_box_transform
 
 
 

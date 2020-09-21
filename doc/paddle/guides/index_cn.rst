@@ -8,7 +8,9 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 
 让我们从学习PaddlePaddle基本概念这里开始：
 
-- `版本转换工具 <./migration_cn.html>`_：介绍 Paddle 1 到Paddle 2的变化与Paddle1to2转换工具的使用。
+
+- `Tensor概念介绍 <tensor_introduction.html>`_ : 飞桨中数据的表示方式，Tensor概念介绍，
+- `版本迁移 <./migration_cn.html>`_：介绍 Paddle 1 到Paddle 2的变化与Paddle1to2转换工具的使用。
 - `动态图转静态图 <./dygraph_to_static/index_cn.html>`_：介绍 Paddle 动态图转静态图的方法 
 - `模型存储与载入 <./model_save_load_cn.html>`_：介绍 Paddle 模型与参数存储载入的方法
 
@@ -16,6 +18,7 @@ PaddlePaddle (PArallel Distributed Deep LEarning)是一个易用、高效、灵�
 ..  toctree::
     :hidden:
 
+    tensor_introduction.md
     migration_cn.rst
     dygraph_to_static/index_cn.rst
     model_save_load_cn.rst

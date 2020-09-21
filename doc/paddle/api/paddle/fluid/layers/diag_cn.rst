@@ -5,9 +5,6 @@ diag
 
 .. py:function:: paddle.fluid.layers.diag(diagonal)
 
-:alias_main: paddle.diag
-:alias: paddle.diag,paddle.tensor.diag,paddle.tensor.creation.diag
-:old_api: paddle.fluid.layers.diag
 
 
 

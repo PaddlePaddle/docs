@@ -4,9 +4,6 @@ prior_box
 -------------------------------
 .. py:function:: paddle.fluid.layers.prior_box(input,image,min_sizes=None,max_sizes=None,aspect_ratios=[1.0],variance=[0.1,0.1,0.2,0.2],flip=False,clip=False,steps=[0.0,0.0],offset=0.5,name=None,min_max_aspect_ratios_order=False)
 
-:alias_main: paddle.nn.functional.prior_box
-:alias: paddle.nn.functional.prior_box,paddle.nn.functional.vision.prior_box
-:old_api: paddle.fluid.layers.prior_box
 
 
 

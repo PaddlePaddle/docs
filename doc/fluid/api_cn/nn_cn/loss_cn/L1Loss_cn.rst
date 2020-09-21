@@ -39,14 +39,11 @@ L1Loss
 
 .. code-block:: python
 
-        import numpy as np
         import paddle
 
         paddle.disable_static()
-        input_data = np.array([[1.5, 0.8], [0.2, 1.3]]).astype("float32")
-        label_data = np.array([[1.7, 1], [0.4, 0.5]]).astype("float32")
-        input = paddle.to_variable(input_data)
-        label = paddle.to_variable(label_data)
+        input = paddle.to_tensor([[1.5, 0.8], [0.2, 1.3]])
+        label = paddle.to_tensor([[1.7, 1], [0.4, 0.5]])
 
         l1_loss = paddle.nn.loss.L1Loss()
         output = l1_loss(input, label)

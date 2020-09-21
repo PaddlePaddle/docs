@@ -5,9 +5,6 @@ logical_not
 
 .. py:function:: paddle.logical_not(x, out=None, name=None)
 
-:alias_main: paddle.logical_not
-:alias: paddle.logical_not, paddle.tensor.logical_not, paddle.tensor.logic.logical_not
-:old_api: paddle.fluid.layers.logical_not
 
 
 

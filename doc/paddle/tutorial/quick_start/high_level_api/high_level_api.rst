@@ -4,7 +4,7 @@
 1. 简介
 -------
 
-飞桨2.0全新推出高层API，是对飞桨API的进一步封装与升级，提供了更加简洁易用的API，进一步提升了飞桨的易学易用性，并增强飞桨的功能。
+飞桨框架2.0全新推出高层API，是对飞桨API的进一步封装与升级，提供了更加简洁易用的API，进一步提升了飞桨的易学易用性，并增强飞桨的功能。
 
 飞桨高层API面向从深度学习小白到资深开发者的所有人群，对于AI初学者来说，使用高层API可以简单快速的构建深度学习项目，对于资深开发者来说，可以快速完成算法迭代。
 
@@ -45,7 +45,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. parsed-literal::
 
-    '0.0.0'
+    '2.0.0-beta0'
 
 
 
@@ -62,8 +62,6 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 -  如何在fit接口满足需求的时候进行自定义，使用基础API来完成训练。
 -  如何使用多卡来加速训练。
 
-其他端到端的示例教程： \* TBD
-
 3. 数据集定义、加载和数据预处理
 -------------------------------
 
@@ -76,28 +74,21 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. code:: ipython3
 
-    paddle.vision.datasets.__all__
-
-
+    print('视觉相关数据集：', paddle.vision.datasets.__all__)
+    print('自然语言相关数据集：', paddle.text.datasets.__all__)
 
 
 .. parsed-literal::
 
-    ['DatasetFolder',
-     'ImageFolder',
-     'MNIST',
-     'Flowers',
-     'Cifar10',
-     'Cifar100',
-     'VOC2012']
-
+    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
+    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'MovieReviews', 'UCIHousing', 'WMT14', 'WMT16']
 
 
 这里我们是加载一个手写数字识别的数据集，用\ ``mode``\ 来标识是训练数据还是测试数据集。数据集接口会自动从远端下载数据集到本机缓存目录\ ``~/.cache/paddle/dataset``\ 。
 
 .. code:: ipython3
 
-    # 测试数据集
+    # 训练数据集
     train_dataset = vision.datasets.MNIST(mode='train')
     
     # 验证数据集
@@ -340,9 +331,9 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 5. 模型训练
 -----------
 
-使用\ ``paddle.Model``\ 封装成模型类后进行训练非常的简洁方便，我们可以直接通过调用\ ``Model.fit``\ 就可以完成训练过程。
+网络结构通过\ ``paddle.Model``\ 接口封装成模型类后进行执行操作非常的简洁方便，可以直接通过调用\ ``Model.fit``\ 就可以完成训练过程。
 
-在使用\ ``Model.fit``\ 接口启动训练前，我们先通过\ ``Model.prepare``\ 接口来对训练进行提前的配置准备工作，包括设置模型优化器，Loss计算方法，精度计算方法等。
+使用\ ``Model.fit``\ 接口启动训练前，我们先通过\ ``Model.prepare``\ 接口来对训练进行提前的配置准备工作，包括设置模型优化器，Loss计算方法，精度计算方法等。
 
 .. code:: ipython3
 
@@ -398,10 +389,252 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     # train.py里面包含的就是单机单卡代码
     python -m paddle.distributed.launch train.py
 
+5.3 自定义Loss
+~~~~~~~~~~~~~~
+
+有时我们会遇到特定任务的Loss计算方式在框架既有的Loss接口中不存在，或算法不符合自己的需求，那么期望能够自己来进行Loss的自定义，我们这里就会讲解介绍一下如何进行Loss的自定义操作，首先来看下面的代码：
+
+.. code:: python
+
+   class SelfDefineLoss(paddle.nn.Layer):
+       """
+       1. 继承paddle.nn.Layer
+       """
+       def __init__(self):
+           """
+           2. 构造函数根据自己的实际算法需求和使用需求进行参数定义即可
+           """
+           super(SelfDefineLoss, self).__init__()
+
+       def forward(self, input, label):
+           """
+           3. 实现forward函数，forward在调用时会传递两个参数：input和label
+               - input：单个或批次训练数据经过模型前向计算输出结果
+               - label：单个或批次训练数据对应的标签数据
+
+               接口返回值是一个Tensor，根据自定义的逻辑加和或计算均值后的损失
+           """
+           # 使用Paddle中相关API自定义的计算逻辑
+           # output = xxxxx
+           # return output
+
+那么了解完代码层面如果编写自定义代码后我们看一个实际的例子，下面是在图像分割示例代码中写的一个自定义Loss，当时主要是想使用自定义的softmax计算维度。
+
+.. code:: python
+
+   class SoftmaxWithCrossEntropy(paddle.nn.Layer):
+       def __init__(self):
+           super(SoftmaxWithCrossEntropy, self).__init__()
+
+       def forward(self, input, label):
+           loss = F.softmax_with_cross_entropy(input, 
+                                               label, 
+                                               return_softmax=False,
+                                               axis=1)
+           return paddle.mean(loss)
+
+5.4 自定义Metric
+~~~~~~~~~~~~~~~~
+
+和Loss一样，如果遇到一些想要做个性化实现的操作时，我们也可以来通过框架完成自定义的评估计算方法，具体的实现方式如下：
+
+.. code:: python
+
+   class SelfDefineMetric(paddle.metric.Metric):
+       """
+       1. 继承paddle.metric.Metric
+       """
+       def __init__(self):
+           """
+           2. 构造函数实现，自定义参数即可
+           """
+           super(SelfDefineMetric, self).__init__()
+
+       def name(self):
+           """
+           3. 实现name方法，返回定义的评估指标名字
+           """
+           return '自定义评价指标的名字'
+
+       def compute(self, ...)
+           """
+           4. 本步骤可以省略，实现compute方法，这个方法主要用于`update`的加速，可以在这个方法中调用一些paddle实现好的Tensor计算API，编译到模型网络中一起使用低层C++ OP计算。
+           """
+
+           return 自己想要返回的数据，会做为update的参数传入。
+
+       def update(self, ...):
+           """
+           5. 实现update方法，用于单个batch训练时进行评估指标计算。
+           - 当`compute`类函数未实现时，会将模型的计算输出和标签数据的展平作为`update`的参数传入。
+           - 当`compute`类函数做了实现时，会将compute的返回结果作为`update`的参数传入。
+           """
+           return acc value
+       
+       def accumulate(self):
+           """
+           6. 实现accumulate方法，返回历史batch训练积累后计算得到的评价指标值。
+           每次`update`调用时进行数据积累，`accumulate`计算时对积累的所有数据进行计算并返回。
+           结算结果会在`fit`接口的训练日志中呈现。
+           """
+           # 利用update中积累的成员变量数据进行计算后返回
+           return accumulated acc value
+
+       def reset(self):
+           """
+           7. 实现reset方法，每个Epoch结束后进行评估指标的重置，这样下个Epoch可以重新进行计算。
+           """
+           # do reset action
+
+我们看一个框架中的具体例子，这个是框架中已提供的一个评估指标计算接口，这里就是按照上述说明中的实现方法进行了相关类继承和成员函数实现。
+
+.. code:: python
+
+   from paddle.metric import Metric
+
+
+   class Precision(Metric):
+       """
+       Precision (also called positive predictive value) is the fraction of
+       relevant instances among the retrieved instances. Refer to
+       https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers
+
+       Noted that this class manages the precision score only for binary
+       classification task.
+       
+       ......
+
+       """
+
+       def __init__(self, name='precision', *args, **kwargs):
+           super(Precision, self).__init__(*args, **kwargs)
+           self.tp = 0  # true positive
+           self.fp = 0  # false positive
+           self._name = name
+
+       def update(self, preds, labels):
+           """
+           Update the states based on the current mini-batch prediction results.
+
+           Args:
+               preds (numpy.ndarray): The prediction result, usually the output
+                   of two-class sigmoid function. It should be a vector (column
+                   vector or row vector) with data type: 'float64' or 'float32'.
+               labels (numpy.ndarray): The ground truth (labels),
+                   the shape should keep the same as preds.
+                   The data type is 'int32' or 'int64'.
+           """
+           if isinstance(preds, paddle.Tensor):
+               preds = preds.numpy()
+           elif not _is_numpy_(preds):
+               raise ValueError("The 'preds' must be a numpy ndarray or Tensor.")
+
+           if isinstance(labels, paddle.Tensor):
+               labels = labels.numpy()
+           elif not _is_numpy_(labels):
+               raise ValueError("The 'labels' must be a numpy ndarray or Tensor.")
+
+           sample_num = labels.shape[0]
+           preds = np.floor(preds + 0.5).astype("int32")
+
+           for i in range(sample_num):
+               pred = preds[i]
+               label = labels[i]
+               if pred == 1:
+                   if pred == label:
+                       self.tp += 1
+                   else:
+                       self.fp += 1
+
+       def reset(self):
+           """
+           Resets all of the metric state.
+           """
+           self.tp = 0
+           self.fp = 0
+
+       def accumulate(self):
+           """
+           Calculate the final precision.
+
+           Returns:
+               A scaler float: results of the calculated precision.
+           """
+           ap = self.tp + self.fp
+           return float(self.tp) / ap if ap != 0 else .0
+
+       def name(self):
+           """
+           Returns metric name
+           """
+           return self._name
+
+5.5 自定义Callback
+~~~~~~~~~~~~~~~~~~
+
+``fit``\ 接口的callback参数支持我们传一个Callback类实例，用来在每轮训练和每个batch训练前后进行调用，可以通过callback收集到训练过程中的一些数据和参数，或者实现一些自定义操作。
+
+.. code:: python
+
+   class SelfDefineCallback(paddle.callbacks.Callback):
+       """
+       1. 继承paddle.callbacks.Callback
+       2. 按照自己的需求实现以下类成员方法：
+           def on_train_begin(self, logs=None)                 训练开始前，`Model.fit`接口中调用
+           def on_train_end(self, logs=None)                   训练结束后，`Model.fit`接口中调用
+           def on_eval_begin(self, logs=None)                  评估开始前，`Model.evaluate`接口调用
+           def on_eval_end(self, logs=None)                    评估结束后，`Model.evaluate`接口调用
+           def on_test_begin(self, logs=None)                  预测测试开始前，`Model.predict`接口中调用
+           def on_test_end(self, logs=None)                    预测测试结束后，`Model.predict`接口中调用 
+           def on_epoch_begin(self, epoch, logs=None)          每轮训练开始前，`Model.fit`接口中调用 
+           def on_epoch_end(self, epoch, logs=None)            每轮训练结束后，`Model.fit`接口中调用 
+           def on_train_batch_begin(self, step, logs=None)     单个Batch训练开始前，`Model.fit`和`Model.train_batch`接口中调用
+           def on_train_batch_end(self, step, logs=None)       单个Batch训练结束后，`Model.fit`和`Model.train_batch`接口中调用
+           def on_eval_batch_begin(self, step, logs=None)      单个Batch评估开始前，`Model.evalute`和`Model.eval_batch`接口中调用
+           def on_eval_batch_end(self, step, logs=None)        单个Batch评估结束后，`Model.evalute`和`Model.eval_batch`接口中调用
+           def on_test_batch_begin(self, step, logs=None)      单个Batch预测测试开始前，`Model.predict`和`Model.test_batch`接口中调用
+           def on_test_batch_end(self, step, logs=None)        单个Batch预测测试结束后，`Model.predict`和`Model.test_batch`接口中调用
+       """
+       def __init__(self):
+           super(SelfDefineCallback, self).__init__()
+
+       按照需求定义自己的类成员方法
+
+我们看一个框架中的实际例子，这是一个框架自带的ModelCheckpoint回调函数，方便用户在fit训练模型时自动存储每轮训练得到的模型。
+
+.. code:: python
+
+   class ModelCheckpoint(Callback):
+       def __init__(self, save_freq=1, save_dir=None):
+           self.save_freq = save_freq
+           self.save_dir = save_dir
+
+       def on_epoch_begin(self, epoch=None, logs=None):
+           self.epoch = epoch
+
+       def _is_save(self):
+           return self.model and self.save_dir and ParallelEnv().local_rank == 0
+
+       def on_epoch_end(self, epoch, logs=None):
+           if self._is_save() and self.epoch % self.save_freq == 0:
+               path = '{}/{}'.format(self.save_dir, epoch)
+               print('save checkpoint at {}'.format(os.path.abspath(path)))
+               self.model.save(path)
+
+       def on_train_end(self, logs=None):
+           if self._is_save():
+               path = '{}/final'.format(self.save_dir)
+               print('save checkpoint at {}'.format(os.path.abspath(path)))
+               self.model.save(path)
+
 6. 模型评估
 -----------
 
-对于训练好的模型进行评估操作可以使用\ ``evaluate``\ 接口来实现。
+对于训练好的模型进行评估操作可以使用\ ``evaluate``\ 接口来实现，事先定义好用于评估使用的数据集后，可以简单的调用\ ``evaluate``\ 接口即可完成模型评估操作，结束后根据prepare中loss和metric的定义来进行相关评估结果计算返回。
+
+返回格式是一个字典： \* 只包含loss，\ ``{'loss': xxx}`` \*
+包含loss和一个评估指标，\ ``{'loss': xxx, 'metric name': xxx}`` \*
+包含loss和多个评估指标，\ ``{'loss': xxx, 'metric name': xxx, 'metric name': xxx}``
 
 .. code:: ipython3
 
@@ -410,11 +643,32 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 7. 模型预测
 -----------
 
-高层API中提供\ ``predict``\ 接口，支持用户使用测试数据来完成模型的预测。
+高层API中提供了\ ``predict``\ 接口来方便用户对训练好的模型进行预测验证，只需要基于训练好的模型将需要进行预测测试的数据放到接口中进行计算即可，接口会将经过模型计算得到的预测结果进行返回。
+
+返回格式是一个list，元素数目对应模型的输出数目： \*
+模型是单一输出：[(numpy_ndarray_1, numpy_ndarray_2, …, numpy_ndarray_n)]
+\* 模型是多输出：[(numpy_ndarray_1, numpy_ndarray_2, …,
+numpy_ndarray_n), (numpy_ndarray_1, numpy_ndarray_2, …,
+numpy_ndarray_n), …]
+
+numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据，数目对应预测数据集的数目。
 
 .. code:: ipython3
 
     pred_result = model.predict(val_dataset)
+
+7.1 使用多卡进行预测
+~~~~~~~~~~~~~~~~~~~~
+
+有时我们需要进行预测验证的数据较多，单卡无法满足我们的时间诉求，那么\ ``predict``\ 接口也为用户支持实现了使用多卡模式来运行。
+
+使用起来也是超级简单，无需修改代码程序，只需要使用launch来启动对应的预测脚本即可。
+
+.. code:: bash
+
+   $ python3 -m paddle.distributed.launch infer.py
+
+infer.py里面就是包含model.predict的代码程序。
 
 8. 模型部署
 -----------
@@ -422,7 +676,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 8.1 模型存储
 ~~~~~~~~~~~~
 
-模型训练和验证达到我们的预期后，可以使用\ ``save``\ 接口来将我们的模型保存下来，用于后续模型的Fine-tuning或推理部署。
+模型训练和验证达到我们的预期后，可以使用\ ``save``\ 接口来将我们的模型保存下来，用于后续模型的Fine-tuning（接口参数training=True）或推理部署（接口参数training=False）。
 
 .. code:: ipython3
 

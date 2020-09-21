@@ -5,8 +5,6 @@ trace
 
 .. py:function:: paddle.trace(x, offset=0, axis1=0, axis2=1, name=None)
 
-:alias_main: paddle.trace
-:alias: paddle.trace, paddle.tensor.trace, paddle.tensor.math.trace
 
 
 
