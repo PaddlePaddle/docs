@@ -570,7 +570,3 @@ paddle.metric.metrics.Accuracy	paddle.metric.Accuracy
 paddle.metric.metrics.Precision	paddle.metric.Precision
 paddle.metric.metrics.Recall	paddle.metric.Recall
 paddle.metric.metrics.Auc	paddle.metric.Auc
-paddle.fluid.io.save_inference_model paddle.static.save_inference_model
-paddle.fluid.io.load_inference_model paddle.static.load_inference_model
-paddle.fluid.io.load_program_state paddle.static.load_program_state
-paddle.fluid.io.set_program_state paddle.static.set_program_state
