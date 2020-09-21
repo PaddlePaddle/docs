@@ -40,7 +40,7 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
 .. code-block:: python
 
     import paddle.distributed.fleet as fleet
-    role = fleet.PaddleCloudRoleMaker
+    role = fleet.PaddleCloudRoleMaker()
     fleet.init(role)
 
 
