@@ -4,7 +4,7 @@ load
 ----
 
 
-.. py:function:: paddle.load(model_path, config=None)
+.. py:function:: paddle.fluid.dygraph.load_dygraph(model_path, config=None)
 
 
 该接口用于从磁盘中加载Layer和Optimizer的 ``state_dict`` ，该接口会同时加载 ``model_path + ".pdparams"`` 和 ``model_path + ".pdopt"`` 中的内容。
@@ -29,23 +29,22 @@ load
 .. code-block:: python
 
     import paddle
-            
+    import paddle.fluid as fluid
+
     paddle.disable_static()
 
     emb = paddle.nn.Embedding([10, 10])
 
     state_dict = emb.state_dict()
-    paddle.save(state_dict, "paddle_dy")
+    fluid.save_dygraph(state_dict, "paddle_dy")
 
-    scheduler = paddle.optimizer.lr_scheduler.NoamLR(
-        d_model=0.01, warmup_steps=100, verbose=True)
     adam = paddle.optimizer.Adam(
-        learning_rate=scheduler,
+        learning_rate=0.001,
         parameters=emb.parameters())
     state_dict = adam.state_dict()
-    paddle.save(state_dict, "paddle_dy")
+    fluid.save_dygraph(state_dict, "paddle_dy")
 
-    para_state_dict, opti_state_dict = paddle.load("paddle_dy")
+    para_state_dict, opti_state_dict = fluid.load_dygraph("paddle_dy")
 
 
 

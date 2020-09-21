@@ -295,7 +295,7 @@ SaveLoadConfig
 配置是否保留 ``paddle.load`` 载入结果中 ``structured_name`` 到真实的参数变量名的映射表。这个映射表是调用 ``paddle.save`` 时存储的，一般仅用于调试，移除此映射表不影响真实的训练和预测。默认情况下不会保留在 ``paddle.load`` 的结果中。默认值为False。
 
 .. note::
-    该配置仅用于 ``paddle.load`` 方法。
+    该配置仅用于 ``paddle.load`` 和 ``paddle.fluid.load_dygraph`` 方法。
 
 **示例代码**
     .. code-block:: python
@@ -307,11 +307,11 @@ SaveLoadConfig
         linear = paddle.nn.Linear(5, 1)
 
         state_dict = linear.state_dict()
-        paddle.save(state_dict, "paddle_dy")
+        paddle.save(state_dict, "paddle_dy.pdparams")
 
-        configs = paddle.SaveLoadConfig()
-        configs.keep_name_table = True
-        para_state_dict, _ = paddle.load("paddle_dy", configs)
+        config = paddle.SaveLoadConfig()
+        config.keep_name_table = True
+        para_state_dict = paddle.load("paddle_dy.pdparams", config)
 
         print(para_state_dict)
         # the name_table is 'StructuredToParameterName@@'
