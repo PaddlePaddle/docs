@@ -31,11 +31,11 @@ UserDefinedRoleMaker是基于从用户自定义的参数中获取分布式相关
 .. code-block:: python
 
     import paddle.distributed.fleet as fleet
-
+    from paddle.distributed.fleet.base.role_maker import Role
 
     role = fleet.UserDefinedRoleMaker(
         current_id=0,
-        role=role_maker.Role.SERVER,
+        role=Role.SERVER,
         worker_num=2,
         server_endpoints=["127.0.0.1:36011", "127.0.0.1:36012"])
 
