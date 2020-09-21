@@ -20,7 +20,7 @@ Flowers
 返回
 :::::::::
 
-				Flowers数据集实例
+				Flowers数据集实例，包含image和label两个字段，image数据形状为图像尺寸，label数据形状为[1]
 
 代码示例
 :::::::::
