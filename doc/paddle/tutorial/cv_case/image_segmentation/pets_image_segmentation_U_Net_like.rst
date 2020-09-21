@@ -329,7 +329,7 @@ DataLoader（多进程数据集加载）。
 
 
 
-.. image:: ./pets_image_segmentation_U_Net_like_files/pets_image_segmentation_U_Net_like_001.png
+.. image:: https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/pets_image_segmentation_U_Net_like_001.png
 
 
 4.模型组网
