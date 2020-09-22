@@ -15,7 +15,7 @@ paddle1to2工具可以通过pip的方式安装，方式如下:
 
 .. code:: ipython3
 
-    ! pip install -U paddle1to2
+    $ pip install -U paddle1to2
 
 基本用法
 ~~~~~~~~
@@ -24,13 +24,13 @@ Paddle1to2 可以使用下面的方式，快速使用:
 
 .. code:: ipython3
 
-    ! paddle1to2 --inpath /path/to/model.py
+    $ paddle1to2 --inpath /path/to/model.py
 
 这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle1.x转换为Paddle2.0beta的变化。如果您确认上述变化没有问题，只需要再执行：
 
 .. code:: ipython3
 
-    ! paddle1to2 --inpath /path/to/model.py --write
+    $ paddle1to2 --inpath /path/to/model.py --write
 
 就会原地改写model.py，将上述变化改写到您的源文件中。
 注意：我们会默认备份源文件，到~/.paddle1to2/下。
@@ -75,7 +75,7 @@ Paddle1to2 可以使用下面的方式，快速使用:
 
 .. code:: ipython3
 
-    ! git clone https://github.com/PaddlePaddle/models
+    $ git clone https://github.com/PaddlePaddle/models
 
 .. parsed-literal::
 
@@ -95,7 +95,7 @@ Paddle1to2 可以使用下面的方式，快速使用:
 
 .. code:: ipython3
 
-    ! paddle1to2 -h
+    $ paddle1to2 -h
 
 
 .. parsed-literal::
@@ -132,7 +132,7 @@ paddle1.x的例子
 
 .. code:: ipython3
 
-    ! head -n 198 models/dygraph/mnist/train.py | tail -n  20
+    $ head -n 198 models/dygraph/mnist/train.py | tail -n  20
 
 
 .. code:: ipython3
@@ -166,14 +166,14 @@ paddle1to2支持单文件的转化，您可以通过下方的命令直接转化�
 
 .. code:: ipython3
 
-    !paddle1to2 --inpath models/dygraph/mnist/train.py
+    $ paddle1to2 --inpath models/dygraph/mnist/train.py
 
 注意，对于参数的删除及一些特殊情况，我们都会打印WARNING信息，需要您仔细核对相关内容。
 如果您觉得上述信息没有问题，可以直接对文件进行原地修改，方式如下：
 
 .. code:: ipython3
 
-    !paddle1to2 --inpath models/dygraph/mnist/train.py --write 
+    $ paddle1to2 --inpath models/dygraph/mnist/train.py --write 
 
 此时，命令行会弹出下方的提示：
 
@@ -189,7 +189,7 @@ paddle1to2支持单文件的转化，您可以通过下方的命令直接转化�
 
 .. code:: ipython3
 
-    ! cat report.log
+    $ cat report.log
 
 注意事项
 ~~~~~~~~
