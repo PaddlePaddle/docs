@@ -167,7 +167,7 @@
 (2) 动态图训练 + 模型&参数存储
 
 3.1.1 动转静训练 + 模型&参数存储
------------------------------
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标Layer传入 ``paddle.jit.save`` 存储即可。：
 
@@ -346,7 +346,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 
 3.1.2 动态图训练 + 模型&参数存储
------------------------------
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 动态图模式相比动转静模式更加便于调试，如果您仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接存储模型和参数。
 
@@ -432,17 +432,17 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
         model_path=model_path,
         input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
 
-动态图训练后存储模型和参数注意点如下：
+动态图训练后使用 ``paddle.jit.save`` 存储模型和参数注意点如下：
 
 (1) 相比动转静训练，Layer对象的forward方法不需要额外装饰，保持原实现即可
 
 (2) 与动转静训练相同，请确保Layer.forward方法中仅实现预测功能，避免将训练所需的loss计算逻辑写入forward方法
 
-(3) 在最后使用jit.save时，需要指定Layer的 ``InputSpec`` ，Layer对象forward方法的每一个参数均需要对应的 ``InputSpec`` 进行描述，不能省略。这里的 ``input_spec`` 参数支持两种类型的输入：
+(3) 在最后使用 ``paddle.jit.save`` 时，需要指定Layer的 ``InputSpec`` ，Layer对象forward方法的每一个参数均需要对应的 ``InputSpec`` 进行描述，不能省略。这里的 ``input_spec`` 参数支持两种类型的输入：
 
 - ``InputSpec`` 列表
 
-用InputSpec以此描述forward输入参数的shape，dtype和name，如前述示例（此处示例中name省略，name省略的情况下会使用forward的对应参数名作为name，所以这里的name为 ``x`` ）：
+使用InputSpec描述forward输入参数的shape，dtype和name，如前述示例（此处示例中name省略，name省略的情况下会使用forward的对应参数名作为name，所以这里的name为 ``x`` ）：
 
 .. code-block:: python
 
