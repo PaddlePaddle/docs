@@ -38,8 +38,10 @@ load
     state_dict = emb.state_dict()
     fluid.save_dygraph(state_dict, "paddle_dy")
 
+    scheduler = paddle.optimizer.lr_scheduler.NoamLR(
+        d_model=0.01, warmup_steps=100, verbose=True)
     adam = paddle.optimizer.Adam(
-        learning_rate=0.001,
+        learning_rate=scheduler,
         parameters=emb.parameters())
     state_dict = adam.state_dict()
     fluid.save_dygraph(state_dict, "paddle_dy")
