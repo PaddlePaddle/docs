@@ -276,7 +276,7 @@ SaveLoadConfig
             adam.clear_grad()
 
         model_path = "simplenet.example.model.separate_params"
-        config = paddle.jit.SaveLoadConfig()
+        config = paddle.SaveLoadConfig()
         config.separate_params = True
 
         # saving with configs.separate_params
