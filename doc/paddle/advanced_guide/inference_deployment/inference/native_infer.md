@@ -358,7 +358,7 @@ using PlaceType = paddle::PaddlePlace;
 
 PlaceType为目标设备硬件类型，用户可以根据应用场景选择硬件平台类型。
 
-枚举行变量`PlaceType`的所有可能取值包括：
+枚举变量`PlaceType`的所有可能取值包括：
 
 `{kUNK, kCPU, kGPU}`
 
@@ -371,7 +371,7 @@ using PrecisionType = paddle::AnalysisConfig::Precision;
 
 `PrecisionType`设置模型的运行精度，默认值为kFloat32(float32)。
 
-枚举型变量`PrecisionType`的所有可能取值包括：
+枚举变量`PrecisionType`的所有可能取值包括：
 
 `{kFloat32, kInt8, kHalf}`
 
@@ -384,7 +384,7 @@ using DataType = paddle::PaddleDType;
 
 `DataType`为模型中Tensor的数据精度，默认值为FLOAT32(float32)。
 
-枚举行变量`DataType`的所有可能取值包括：
+枚举变量`DataType`的所有可能取值包括：
 
 `{FLOAT32, INT64, INT32, UINT8}`
 
