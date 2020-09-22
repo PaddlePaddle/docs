@@ -30,8 +30,11 @@ function find_need_check_files() {
     done
 }
 
+
+need_check_cn_doc_files=`git diff --numstat upstream/$BRANCH | awk '{print $NF}' | grep "doc/paddle/api/paddle/.*_cn.rst" | sed 's#doc/##g'` 
+echo $need_check_cn_doc_files
 find_need_check_files
-if [ -z "$need_check_files" ]
+if [ "$need_check_files" = "" -a "$need_check_cn_doc_files" = "" ]
 then
     echo "need check files is empty, skip chinese api check"
 else
@@ -42,11 +45,26 @@ else
       exit 5
     fi
 
-    for file in $need_check_files;do
-        python chinese_samplecode_processor.py ../$file
-        if [ $? -ne 0 ];then
-            echo "chinese sample code failed"
-            exit 5
-        fi
-    done
+   if [ "${need_check_files}" != "" ]; then
+        for file in $need_check_files;do
+            python chinese_samplecode_processor.py ../$file
+            if [ $? -ne 0 ];then
+                echo "chinese sample code failed, the file is ${file}"
+                exit 5
+            fi
+        done
+    fi
+
+    if [ "${need_check_cn_doc_files}" != "" ];then
+        cd ../doc/paddle/api
+        python gen_doc.py
+        cd -
+
+        for file in $need_check_cn_doc_files; do
+            cat ../doc/paddle/api/en_cn_files_diff | awk '{print $1}' | grep ${file}
+            if [ $? -eq 0 ];then
+                echo "Chinese doc file exist, but the Englist doc does not exist, the Chinese file is ${file}"
+            fi
+        done
+    fi
 fi
