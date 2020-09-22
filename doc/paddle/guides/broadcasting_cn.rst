@@ -8,7 +8,7 @@
 通常来讲，如果有一个形状较小和一个形状较大的张量，我们希望多次使用较小的张量来对较大的张量执行一些操作，看起来像是较小形状的张量的形状首先被扩展到和较大形状的张量一致，然后做运算。
 值得注意的是，这期间并没有对较小形状张量的数据拷贝操作。
 
-飞桨的广播机制主要遵循如下规则；如果两个张量的形状遵循一下规则，我们认为这两个张量是可广播的（参考`Numpy 广播机制 <https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting>`）：
+飞桨的广播机制主要遵循如下规则；如果两个张量的形状遵循一下规则，我们认为这两个张量是可广播的（参考 `Numpy 广播机制 <https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting>`_ ）：
 
 1. 每个张量至少为一维张量
 2. 从后往前比较张量的形状，当前维度的大小要么相等，要么其中一个等于一，要么其中一个不存在
