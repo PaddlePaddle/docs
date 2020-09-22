@@ -1,9 +1,9 @@
-.. _cn_api_fluid_io_buffered:
+.. _cn_api_io_buffered:
 
 buffered
 -------------------------------
 
-.. py:function:: paddle.fluid.io.buffered(reader, size)
+.. py:function:: paddle.io.buffered(reader, size)
 
 
 
