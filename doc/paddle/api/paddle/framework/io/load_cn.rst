@@ -11,7 +11,7 @@ load
     目前仅支持载入 Layer 或者 Optimizer 的 ``state_dict`` 。
 
 .. note::
-    ``paddle.load`` 支持从paddle1.x版本中静态图save相关API的存储结果中载入 ``state_dict`` ，但由于一些历史原因，如果从 ``paddle.static.save_inference_model/paddle.fluid.io.save_params/paddle.fluid.io.save_persistables`` 的存储结果中载入 ``state_dict`` ，动态图模式下参数的结构性变量名将无法被恢复。并且在将载入的 ``state_dict`` 配置到当前Layer中时，需要配置 ``Layer.set_state_dict`` 的参数 ``use_structured_name=False`` 。
+    ``paddle.load`` 支持从paddle1.x版本中静态图save相关API的存储结果中载入 ``state_dict`` 。 但是从``paddle.static.save_inference_model/paddle.fluid.io.save_params/paddle.fluid.io.save_persistables`` 等API的存储结果中载入 ``state_dict`` 时，动态图模式下参数的结构性变量名将无法被恢复。并且在将载入的 ``state_dict`` 配置到当前Layer中时，需要配置 ``Layer.set_state_dict`` 的参数 ``use_structured_name=False`` 。
 
 参数:
     - **path** (str) – 载入目标对象实例的路径。通常该路径是目标文件的路径，在兼容载入 ``paddle.jit.save/paddle.static.save_inference_model`` 的存储结果时，该路径是一个目录。
