@@ -561,7 +561,6 @@ paddle.text.datasets.conll05.Conll05st	paddle.text.datasets.Conll05st,paddle.tex
 paddle.text.datasets.imdb.Imdb	paddle.text.datasets.Imdb,paddle.text.Imdb
 paddle.text.datasets.imikolov.Imikolov	paddle.text.datasets.Imikolov,paddle.text.Imikolov
 paddle.text.datasets.movielens.Movielens	paddle.text.datasets.Movielens,paddle.text.Movielens
-paddle.text.datasets.movie_reviews.MovieReviews	paddle.text.datasets.MovieRevie,paddle.text.MovieRevie
 paddle.text.datasets.uci_housing.UCIHousing	paddle.text.datasets.UCIHousing,paddle.text.UCIHousing
 paddle.text.datasets.wmt14.WMT14	paddle.text.datasets.WMT14,paddle.text.WMT14
 paddle.text.datasets.wmt16.WMT16	paddle.text.datasets.WMT16,paddle.text.WMT16
