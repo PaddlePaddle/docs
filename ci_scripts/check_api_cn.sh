@@ -9,6 +9,8 @@ function build_paddle() {
     cmake .. -DWITH_GPU=ON  -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     make -j`nproc`
     pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+
+    cd -
 }
 
 need_check_files=""
