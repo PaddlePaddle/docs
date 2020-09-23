@@ -1,9 +1,9 @@
-.. _cn_api_fluid_io_buffered:
+.. _cn_api_io_buffered:
 
 buffered
 -------------------------------
 
-.. py:function:: paddle.fluid.io.buffered(reader, size)
+.. py:function:: paddle.io.buffered(reader, size)
 
 
 
@@ -15,3 +15,20 @@ buffered
     - **size** (int) – 最大buffer的大小
 
 返回:缓存的reader（读取器）
+
+**代码示例**
+
+..  code-block:: python
+
+    import paddle
+
+    def reader():
+        for i in range(3):
+            yield i
+
+    # Create a buffered reader, and the buffer size is 2.
+    buffered_reader = paddle.io.buffered(reader, 2)
+
+    # Output: 0 1 2
+    for i in buffered_reader():
+        print(i)
