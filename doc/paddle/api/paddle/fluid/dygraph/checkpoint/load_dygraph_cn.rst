@@ -10,7 +10,7 @@ load
 该接口用于从磁盘中加载Layer和Optimizer的 ``state_dict`` ，该接口会同时加载 ``model_path + ".pdparams"`` 和 ``model_path + ".pdopt"`` 中的内容。
 
 .. note::
-    由于一些历史原因，如果从 ``paddle.static.save_inference_model`` 的存储结果中载入 ``state_dict`` ，动态图模式下参数的结构性变量名将无法被恢复。并且在将载入的 ``state_dict`` 配置到当前Layer中时，需要配置 ``Layer.set_state_dict`` 的参数 ``use_structured_name=False`` 。
+    如果从 ``paddle.static.save_inference_model`` 的存储结果中载入 ``state_dict`` ，动态图模式下参数的结构性变量名将无法被恢复。并且在将载入的 ``state_dict`` 配置到当前Layer中时，需要配置 ``Layer.set_state_dict`` 的参数 ``use_structured_name=False`` 。
 
 参数:
     - **model_path** (str) – 保存state_dict的文件前缀。该路径不应该包括后缀 ``.pdparams`` 或 ``.pdopt``。
