@@ -128,16 +128,18 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 + 答复：可以尝试按如下方法解决：
 
-1. 检查是当前模型是否占用内存过高，可尝试减小`batch_size` ；
+1. 检查是当前模型是否占用了过多显存，可尝试减小`batch_size` ；
 
 2. 开启以下三个选项：
 
-    `#一旦不再使用即释放内存垃圾，=1.0 垃圾占用内存大小达到10G时，释放内存垃圾`
-    `export FLAGS_eager_delete_tensor_gb=0.0`
-    `#启用快速垃圾回收策略，不等待cuda kernel 结束，直接释放显存`
-    `export FLAGS_fast_eager_deletion_mode=1`
-    `#该环境变量设置只占用0%的显存`
-    `export FLAGS_fraction_of_gpu_memory_to_use=0`
+```
+#一旦不再使用即释放内存垃圾，=1.0 垃圾占用内存大小达到10G时，释放内存垃圾`
+export FLAGS_eager_delete_tensor_gb=0.0`
+#启用快速垃圾回收策略，不等待cuda kernel 结束，直接释放显存`
+export FLAGS_fast_eager_deletion_mode=1`
+#该环境变量设置只占用0%的显存`
+export FLAGS_fraction_of_gpu_memory_to_use=0`
+```
 
 详细请参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 调整相关配置。
 
@@ -201,7 +203,7 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 + 答复：在增量训练过程中，不仅需要保存模型的参数，也需要保存优化器的参数。
 
-具体地，在1.8版本中需要使用Layer和Optimizer的state_dict和set_dict方法配合fluid.save_dygraph/load_dygraph使用。简要示例如下：
+具体地，在1.8版本中需要使用Layer和Optimizer的`state_dict`和`set_dict`方法配合`fluid.save_dygraph/load_dygraph`使用。简要示例如下：
 
 ```
 import paddle.fluid as fluid
