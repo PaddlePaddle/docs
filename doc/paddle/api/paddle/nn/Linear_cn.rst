@@ -9,7 +9,6 @@ Linear
 
 **线性变换层：**
 
-
 .. math::
 
         \\Out = Act({XW + b})\\
