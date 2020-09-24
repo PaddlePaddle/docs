@@ -37,7 +37,10 @@ save_inference_model
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
+
+    paddle.enable_static()
 
     path = "./infer_model"
 

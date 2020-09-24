@@ -32,7 +32,10 @@ save
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
+
+    paddle.enable_static()
 
     x = fluid.data(name="x", shape=[10, 10], dtype='float32')
     y = fluid.layers.fc(x, 10)
