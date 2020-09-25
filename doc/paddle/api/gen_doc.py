@@ -20,6 +20,9 @@ api_set = set()
 def get_all_api(root_path='paddle'):
     for filefiner, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
+        # not show paddle.reader APIs
+        if name.startswith("paddle.reader"):
+            continue
         try:
             m = eval(name)
         except AttributeError:
