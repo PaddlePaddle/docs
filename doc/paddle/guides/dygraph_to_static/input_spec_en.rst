@@ -199,7 +199,7 @@ The length of ``input_spec`` is 2 corresponding to arguments x and bias_info in 
 2.4 Specify non-Tensor arguments
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Currently, the `input_spec`` from ``to_static`` decorator only receive objects with ``InputSpec`` type. When the decorated function contains some non-Tensor arguments, such as Int, String or other python types, we recommend to use kwargs with default values as argument, see use_act in followed example.
+Currently, the ``input_spec`` from ``to_static`` decorator only receives objects with ``InputSpec`` type. When the decorated function contains some non-Tensor arguments, such as Int, String or other python types, we recommend to use kwargs with default values as argument, see use_act in followed example.
 
 .. code-block:: python
 
