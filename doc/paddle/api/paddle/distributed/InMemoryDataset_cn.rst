@@ -16,6 +16,7 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+    paddle.enable_static()
     dataset = paddle.distributed.InMemoryDataset()
 
 .. py:method:: init(**kwargs)
@@ -49,6 +50,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
     import paddle
     import paddle.fluid as fluid
     import os
+
+    paddle.enable_static()
+
     with open("test_queue_dataset_run_a.txt", "w") as f:
         data = "2 1 2 2 5 4 2 2 7 2 1 3\n"
         data += "2 6 2 2 1 4 2 2 4 2 2 3\n"
@@ -120,6 +124,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+
     dataset = paddle.distributed.InMemoryDataset()
     dataset.init(
         batch_size=1,
@@ -168,6 +175,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+    
+    paddle.enable_static()
+
     dataset = paddle.distributed.InMemoryDataset()
     dataset.init(
         batch_size=1,
@@ -193,6 +203,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 
     import paddle
     import os
+    
+    paddle.enable_static()
+    
     with open("test_queue_dataset_run_a.txt", "w") as f:
         data = "2 1 2 2 5 4 2 2 7 2 1 3\n"
         data += "2 6 2 2 1 4 2 2 4 2 2 3\n"
@@ -240,6 +253,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+    
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -269,6 +285,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -296,6 +315,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -323,6 +345,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -352,6 +377,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -383,6 +411,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+    
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -424,6 +455,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -460,6 +494,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+    
     dataset = paddle.distributed.InMemoryDataset()
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
@@ -492,6 +529,9 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
+
+    paddle.enable_static()
+    
     dataset = paddle.distributed.InMemoryDataset()
     dataset._init_distributed_settings(fea_eval=True)
     slots = ["slot1", "slot2", "slot3", "slot4"]
