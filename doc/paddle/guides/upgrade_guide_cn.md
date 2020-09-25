@@ -38,7 +38,7 @@ paddle.to_tensor((1.1, 2.2))
 paddle.to_tensor(np.random.randn(3, 4))
 ```
 
-2. 通过调用``paddle.zeros, paddle.ones, paddle.full, paddle.arange, paddle.rand, paddle.randn, paddle.randint, paddle.normal, paddle.uniform`等函数，创建并返回Tensor。
+2. 通过调用 `paddle.zeros, paddle.ones, paddle.full, paddle.arange, paddle.rand, paddle.randn, paddle.randint, paddle.normal, paddle.uniform` 等函数，创建并返回Tensor。
 
 ## 二、API
 ### API目录结构
