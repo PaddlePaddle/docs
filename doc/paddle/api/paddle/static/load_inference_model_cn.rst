@@ -32,8 +32,11 @@ load_inference_model
 
 .. code-block:: python
 
+        import paddle
         import paddle.fluid as fluid
         import numpy as np
+
+        paddle.enable_static()
 
         # 构建模型
         main_prog = fluid.Program()

@@ -60,7 +60,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 
     place = paddle.CPUPlace()
     exe = paddle.Executor(place)
-    program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
+    program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname, exe)
     fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 
 
