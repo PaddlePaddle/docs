@@ -42,7 +42,7 @@ ParamAttr
                                     trainable=True)
    print(w_param_attrs.name) # "fc_weight"
    paddle.enable_static()
-   x = paddle.data(name='X', shape=[1], dtype='float32')
+   x = paddle.static.data(name='X', shape=[1], dtype='float32')
    y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=w_param_attrs)
 
 

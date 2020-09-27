@@ -107,8 +107,8 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
         main_program = paddle.static.default_main_program()
 
         # 创建前向函数的输入变量
-        x = paddle.data(name='x', shape=[2,3], dtype='int32')
-        y = paddle.data(name='y', shape=[2,3], dtype='int32')
+        x = paddle.static.data(name='x', shape=[2,3], dtype='int32')
+        y = paddle.static.data(name='y', shape=[2,3], dtype='int32')
         
         # 创建前向函数的输出变量，必须指明变量名称name/数据类型dtype/维度shape
         output = create_tmp_var('output','int32', [3,1])
