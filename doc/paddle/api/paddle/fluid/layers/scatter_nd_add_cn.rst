@@ -5,9 +5,6 @@ scatter_nd_add
 
 .. py:function:: paddle.fluid.layers.scatter_nd_add(ref, index, updates, name=None)
 
-:alias_main: paddle.scatter_nd_add
-:alias: paddle.scatter_nd_add,paddle.tensor.scatter_nd_add,paddle.tensor.manipulation.scatter_nd_add
-:old_api: paddle.fluid.layers.scatter_nd_add
 
 
 

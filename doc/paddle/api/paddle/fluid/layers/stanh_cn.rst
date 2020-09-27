@@ -5,9 +5,6 @@ stanh
 
 .. py:function:: paddle.fluid.layers.stanh(x, scale_a=0.67, scale_b=1.7159, name=None)
 
-:alias_main: paddle.stanh
-:alias: paddle.stanh,paddle.tensor.stanh,paddle.tensor.math.stanh
-:old_api: paddle.fluid.layers.stanh
 
 
 

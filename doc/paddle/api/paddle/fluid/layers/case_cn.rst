@@ -6,10 +6,6 @@ case
 
 .. py:function:: paddle.fluid.layers.case(pred_fn_pairs, default=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
-:alias_main: paddle.nn.case
-:alias: paddle.nn.case,paddle.nn.control_flow.case
-:old_api: paddle.fluid.layers.case
 
 
 

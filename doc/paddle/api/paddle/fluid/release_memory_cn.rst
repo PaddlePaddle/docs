@@ -6,7 +6,6 @@ release_memory
 
 .. py:function:: paddle.fluid.transpiler.release_memory(input_program, skip_opt_set=None) 
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

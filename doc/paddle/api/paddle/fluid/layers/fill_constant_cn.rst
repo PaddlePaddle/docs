@@ -5,9 +5,6 @@ fill_constant
 
 .. py:function:: paddle.fluid.layers.fill_constant(shape,dtype,value,force_cpu=False,out=None)
 
-:alias_main: paddle.fill_constant
-:alias: paddle.fill_constant,paddle.tensor.fill_constant,paddle.tensor.creation.fill_constant
-:old_api: paddle.fluid.layers.fill_constant
 
 
 
@@ -26,10 +23,6 @@ fill_constant
 返回： 根据shape和dtype创建的Tensor。
 
 返回类型：变量（Variable）
-
-抛出异常：
-    - :code:`TypeError`: dtype必须是bool，float16，float32，float64，int32和int64之一，输出Tensor的数据类型必须与dtype相同。
-    - :code:`TypeError`: 当 `shape` 的数据类型不是list、tuple、Variable。
 
 **代码示例**：
 

@@ -5,9 +5,6 @@ elu
 
 .. py:function:: paddle.fluid.layers.elu(x, alpha=1.0, name=None)
 
-:alias_main: paddle.nn.functional.elu
-:alias: paddle.nn.functional.elu,paddle.nn.functional.activation.elu
-:old_api: paddle.fluid.layers.elu
 
 
 

@@ -2,26 +2,27 @@
 Install and Compile C++ Inference Library on Windows
 ===========================
 
-Direct Download and Install
+Download and Install directly
 -------------
 
-| Version      |     Inference Libraries(v1.8.3)   | Compiler | Build tools | cuDNN | CUDA |
+| Version      |  Inference Libraries(v1.8.4)   |Inference Libraries(v2.0.0-beta0)| Compiler | Build tools | cuDNN | CUDA |
 |:---------|:-------------------|:-------------------|:----------------|:--------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/post97/fluid_inference_install_dir.zip) |  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/open/post97/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/post107/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-beta0/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) || MSVC 2015 update 3|  CMake v3.16.0  |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) ||  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
 
 ### Hardware Environment
 
 Hardware Configuration of the experimental environment:
 
-| CPU           |      I7-8700K      |
-|:--------------|:-------------------|
-| Memory        | 16G               |
-| Hard Disk     | 1T hdd + 256G ssd |
-| Graphics Card | GTX1080 8G        |
+|Operating System| win10 family version|
+|:---------------|:-------------------|
+| CPU            | I7-8700K      |
+| Memory         | 16G               |
+| Hard Disk      | 1T hdd + 256G ssd |
+| Graphics Card  | GTX1080 8G        |
 
 The operating system is win10 family version in the experimental environment.
 
@@ -36,8 +37,8 @@ Users can also compile C++ inference libraries from the PaddlePaddle core code b
 |ON_INFER|Whether to generate the inference library. Must be set to ON when compiling the inference library. | ON   |
 |WITH_GPU|Whether to support GPU   | ON/OFF     |
 |WITH_MKL|Whether to support MKL   | ON/OFF     |
-|WITH_PYTHON|Whether the PYTHON interpreter is embedded      | OFF        |
-|MSVC_STATIC_CRT|Whether to compile with / MT mode |   ON   |
+|WITH_PYTHON|Whether to generate the Python whl package| OFF        |
+|MSVC_STATIC_CRT|Whether to compile with /MT mode |   ON   |
 |CUDA_TOOKIT_ROOT_DIR | When compiling the GPU inference library, you need to set the CUDA root directory | YOUR_CUDA_PATH |
 
 For details on the compilation options, see [the compilation options list](../../../beginners_guide/install/Tables_en.html/#Compile)
@@ -54,21 +55,16 @@ For details on the compilation options, see [the compilation options list](../..
 
    - compile CPU inference library
    ```bash
-   # create build directory
-   mkdir build
-
-   # change to the build directory
-   cd build
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
    # use -DWITH_MKL to select math library: Intel MKL or OpenBLAS
 
    # By default on Windows we use /MT for C Runtime Library, If you want to use /MD, please use the below command
    # If you have no ideas the differences between the two, use the above one
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
    - compile GPU inference library
    ```bash
-   # -DCUDA_TOOKIT_ROOT_DIR is cuda root directory, such as -DCUDA_TOOKIT_ROOT_DIR="D:\\cuda"
+   # -DCUDA_TOOKIT_ROOT_DIR is cuda root directory, such as -DCUDA_TOOKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
    cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
@@ -76,15 +72,18 @@ For details on the compilation options, see [the compilation options list](../..
 
 The inference library will be installed in `fluid_inference_install_dir`.
 
-version.txt constains the detailed configurations about the library, including git commit ID、math library, CUDA, CUDNN versions：
+version.txt constains the detailed configurations about the library, including git commit ID、math library, CUDA, CUDNN versions, CXX compiler version:
 
 
-     GIT COMMIT ID: cc9028b90ef50a825a722c55e5fda4b7cd26b0d6
-     WITH_MKL: ON
-     WITH_MKLDNN: ON
-     WITH_GPU: ON
-     CUDA version: 8.0
-     CUDNN version: v7
+```text
+GIT COMMIT ID: 264e76cae6861ad9b1d4bcd8c3212f7a78c01e4d
+WITH_MKL: ON
+WITH_MKLDNN: ON
+WITH_GPU: ON
+CUDA version: 10.0
+CUDNN version: v7.4
+CXX compiler version: 19.0.24215.1
+```
 
 
 Inference Demo Compilation
@@ -94,13 +93,12 @@ Inference Demo Compilation
 
 Hardware Configuration of the experimental environment:
 
-| CPU           |      I7-8700K      |
-|:--------------|:-------------------|
-| Memory        | 16G               |
-| Hard Disk     | 1T hdd + 256G ssd |
-| Graphics Card | GTX1080 8G        |
-
-The operating system is win10 family version in the experimental environment.
+|Operating System| win10 family version|
+|:---------------|:-------------------|
+| CPU            | I7-8700K      |
+| Memory         | 16G               |
+| Hard Disk      | 1T hdd + 256G ssd |
+| Graphics Card  | GTX1080 8G        |
 
 ### Steps to Configure Environment
 

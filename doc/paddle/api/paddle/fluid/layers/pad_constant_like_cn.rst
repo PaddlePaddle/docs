@@ -5,9 +5,6 @@ pad_constant_like
 
 .. py:function:: paddle.fluid.layers.pad_constant_like(x, y, pad_value=0.0, name=None)
 
-:alias_main: paddle.nn.functional.pad_constant_like
-:alias: paddle.nn.functional.pad_constant_like,paddle.nn.functional.common.pad_constant_like
-:old_api: paddle.fluid.layers.pad_constant_like
 
 
 

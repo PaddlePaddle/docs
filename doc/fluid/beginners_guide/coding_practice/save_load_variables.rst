@@ -204,8 +204,8 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
     path = "./models"
     startup_prog = fluid.default_startup_program()
     exe.run(startup_prog)
+    fluid.io.load_persistables(exe, path, startup_prog)
     main_prog = fluid.default_main_program()
-    fluid.io.load_persistables(exe, path, main_prog)
     exe.run(main_prog)
 
 上面的例子中，通过调用 :code:`fluid.io.load_persistables` 函数，PaddlePaddle Fluid会从默认
@@ -270,12 +270,12 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
     pserver_endpoints = "127.0.0.1:1001,127.0.0.1:1002"
     trainers = 4
     training_role == "PSERVER"
+    current_endpoint = "127.0.0.1:1002"
     config = fluid.DistributeTranspilerConfig()
     t = fluid.DistributeTranspiler(config=config)
     t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True, current_endpoint=current_endpoint)
 
     if training_role == "PSERVER":
-        current_endpoint = "127.0.0.1:1001"
         pserver_prog = t.get_pserver_program(current_endpoint)
         pserver_startup = t.get_startup_program(current_endpoint, pserver_prog)
 
@@ -284,7 +284,7 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
         exe.run(pserver_prog)
     if training_role == "TRAINER":
         main_program = t.get_trainer_program()
-                exe.run(main_program)
+        exe.run(main_program)
 
 上面的例子中，每个PServer通过调用HDFS的命令获取到0号trainer保存的参数，通过配置获取到PServer的 :code:`fluid.Program` ，PaddlePaddle Fluid会从此
 :code:`fluid.Program` 也就是 :code:`pserver_startup` 的所有模型变量中找出长期变量，并通过指定的 :code:`path` 目录下一一加载。

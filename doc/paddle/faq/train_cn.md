@@ -1,314 +1,306 @@
-# 网络搭建及训练
+# 框架类FAQ
 
 
+## 数据处理
 
-## 模型介绍
+##### 问题：如何在训练过程中高效读取数量很大的数据集？
 
-##### Q: sigmoid中num_classes意义？
++ 答复：当训练时使用的数据集数据量较大或者预处理逻辑复杂时，如果串行地进行数据读取，数据读取往往会成为训练效率的瓶颈。这种情况下通常需要利用多线程或者多进程的方法异步地进行数据载入，从而提高数据读取和整体训练效率。
 
-+ 问题描述
+paddle1.8中推荐使用两个异步数据加载的API：
 
-sigmoid二分类，`sigmoid_cross_entropy_with_logits`，其中num_classes的意义是什么？
+1. DataLoader.from_generator，有限的异步加载
 
-+ 问题解答
+该API提供了单线程和单进程的异步加载支持。但由于线程和进程数目不可配置，所以异步加速能力是有限的，适用于数据读取负载适中的场景。
 
-`sigmoid_cross_entropy_with_logits`里面的num_classes是指有多个分类标签，而且这些标签之间相互独立，这样对每个分类都会有一个预测概率。举个例子，假如我们要做一个视频动作分类，有如下几个标签（吃饭，聊天，走路，打球），那么num_classes = 4。一个视频可以同时有多个ground truth标签是1，比如这里可能是(1, 1, 0, 0)，也就是一边吃饭一边聊天的场景。而一个可能的预测概率是(0.8, 0.9, 0.1, 0.3)，那么计算损失函数的时候，要对每个分类标签分别计算`sigmoid cross entropy`。
+具体使用方法及示例请参考API文档：[fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1)。
 
-##### Q：proto信息解释文档？
+2. DataLoader，灵活的异步加载
 
-+ 问题描述
+该API提供了多进程的异步加载支持，也是paddle后续主推的数据读取方式。用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
 
-PaddlePaddle的proto信息相关的解释文档？
+具体使用方法及示例请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)
 
-+ 问题解答
+----------
 
-proto信息可以打印出来，然后参考Github [framework.prot](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto)文件进行解释。
+##### 问题：使用多卡进行并行训练时，如何配置DataLoader进行异步数据读取？
 
++ 答复：paddle1.8中多卡训练时设置异步读取和单卡场景并无太大差别，动态图模式下，由于目前仅支持多进程多卡，每个进程将仅使用一个设备，比如一张GPU卡，这种情况下，与单卡训练无异，只需要确保每个进程使用的是正确的卡即可。
 
-## 模型调用
+具体示例请参考飞桨API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1) 和 [fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader) 中的示例。
 
-##### Q: 如何不训练某层的权重？
+----------
 
-+ 问题解答
+##### 问题：在动态图使用`paddle.dataset.mnist.train()`获得数据后，如何转换为可操作的Tensor？
 
-ParamAttr里配置`learning_rate=0`。
++ 答复：调用`fluid.dygraph.to_varibale(data)`，即可将data数据转化为可以操作的动态图Tensor。
 
-##### Q: 根据输出结束模型运行？
+----------
 
-+ 问题描述
+##### 问题：如何给图片添加一个通道数，并进行训练？
 
-PaddlePaddle可以像tf一样根据输出，只执行模型的一部分么？
++ 答复：如果是在进入paddle计算流程之前，数据仍然是numpy.array的形式，使用numpy接口`numpy.expand_dims`为图片数据增加维度后，再通过`numpy.reshape`进行操作即可，具体使用方法可查阅numpy的官方文档。
 
-+ 问题解答
+如果是希望在模型训练或预测流程中完成通道的操作，可以使用paddle对应的API [paddle.fluid.layers.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/unsqueeze_cn.html#unsqueeze) 和 [paddle.fluid.layers.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/reshape_cn.html#reshape)。
 
-目前的executor会执行整个program。建议做法是，在定义program的时候提前clone出一个子program，如当前`inference_program = fluid.default_main_program().clone(for_test=True)`的做法。
+----------
 
-##### Q: 遍历每一个时间布？
+##### 问题：有拓展Tensor维度的Op吗？
 
-+ 问题描述
++ 答复：有，请参考API [paddle.fluid.layers.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/unsqueeze_cn.html)。
 
-在RNN模型中如何遍历序列数据里每一个时间步？
+----------
 
-+ 问题解答
+##### 问题：如何从numpy.array生成一个具有shape和dtype的Tensor?
 
-对于LodTensor数据，分步处理每一个时间步数据的需求，大部分情况可以使用`DynamicRNN`，[参考示例](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/book/test_machine_translation.py#L69) ，其中`rnn.step_input`即是每一个时间步的数据，`rnn.memory`是需要更新的rnn的hidden state，另外还有个`rnn.static_input`是rnn外部的数据在DynamicRNN内的表示（如encoder的output），可以利用这三种数据完成所需操作。
-
-rank_table记录了每个sequence的长度，DynamicRNN中调用了lod_tensor_to_array在产生array时按照rank_table做了特殊处理（sequence从长到短排序后从前到后进行slice），每个时间步数据的batch size可能会缩小（短的sequence结束时），这是Fluid DynamicRNN的一些特殊之处。
-对于非LoDTensor数据，可以使用StaticRNN，用法与上面类似，参考[语言模型示例]( https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/unarchived/language_model/lstm/lm_model.py#L261)。
-
-##### Q: NumPy读取出fc层W矩阵？
-
-+ 问题描述
-
-PaddlePaddle中训练好的fc层参数，有没有直接用numpy 读取出fc层的W矩阵的示例代码呢？
-
-+ 问题解答
-
-weight名字在构建网络的时候可以通过param_attr指定，然后用`fluid.global_scope().find_var("weight_name").get_tensor()`。
-
-##### Q: `stop_gradient=True`影响范围？
-
-+ 问题描述
-
-请问fluid里面如果某一层使用`stop_gradient=True`，那么是不是这一层之前的层都会自动 `stop_gradient=True`?
-
-+ 问题解答
-
-是的，梯度不回传了。
-
-##### Q: 如何获取accuracy？
-
-+ 问题描述
-
-根据models里面的[ctr例子](https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/ctr/infer.py)改写了一个脚本，主要在train的同时增加test过程，方便选择模型轮次，整体训练测试过程跑通，不过无法获取accuracy？
-
-+ 问题解答
-
-AUC中带有LOD 信息，需要设置`return_numpy=False `来获得返回值。
-
-##### Q: 模型运行过程中如何获取某个变量的值？
-
-+ 问题描述
-
-在使用Executor运行模型时，如何获取模型中某个变量的值。
-
-+ 问题解答
-
-Executor的run方法提供了`fetch_list`参数，如果用户想获取运行模型中某个变量的值，只需要该变量添加到`fetch_list`中即可，详细用法可参考[Executor的示例](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/api_cn/executor_cn.html#executor)。
-
-##### Q: 图片小数量大数据集处理方法
-
-+ 问题描述
-
-对于图片小但数量很大的数据集有什么好的处理方法？
-
-+ 问题解答
-
-`multiprocess_reader`可以解决该问题。参考[Github示例](https://github.com/PaddlePaddle/Paddle/issues/16592)。
-
-##### Q: Libnccl.so报错如何解决？
-
-+ 报错信息
++ 答复：在动态图模式下，可以参考如下示例：
 
 ```
-Failed to find dynamic library: libnccl.so ( libnccl.so: cannot open shared object file: No such file or directory ）
+import paddle.fluid as fluid
+
+with fluid.dygraph.guard(fluid.CPUPlace()):
+    x = np.ones([2, 2], np.float32)
+    y = fluid.dygraph.to_variable(x)
 ```
 
-+ 问题解答
+具体请参考API [paddle.fluid.dygraph.to_variable](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/to_variable_cn.html#to-variable)
 
-按照以下步骤做检查：
+----------
 
-1、先确定是否安装libnccl.so
+##### 问题：如何初始化一个随机数的Tensor？
 
-2、确定环境变量是否配置正确
++ 答复：使用`numpy.random`生成随机的numpy.array，再参考上一个问题中的示例创建随机数Tensor即可。
+
+
+## 模型搭建
+
+##### 问题：如何不训练某层的权重？
+
++ 答复：在`ParamAttr`里设置learning_rate=0。
+
+----------
+
+##### 问题：`stop_gradient=True`的影响范围？
+
++ 答复：如果fluid里某一层使用`stop_gradient=True`，那么这一层之前的层都会自动 `stop_gradient=True`，梯度不再回传。
+
+----------
+
+##### 问题：请问`fluid.layers.matmul`和`fluid.layers.mul`有什么区别？
+
++ 答复：`matmul`支持broadcast和任意阶相乘。`mul`会把输入都转成两维去做矩阵乘。
+
+----------
+
+
+
+## 模型训练&评估
+
+##### 问题：使用CPU进行模型训练，如何利用多处理器进行加速？
+
++ 答复：在1.8版本的动态图模式下，CPU训练加速可以从以下两点进行配置：
+
+1. 使用多进程DataLoader加速数据读取：训练数据较多时，数据处理往往会成为训练速度的瓶颈，paddle提供了异步数据读取接口DataLoader，可以使用多进程进行数据加载，充分利用多处理的优势，具体使用方法及示例请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
+
+2. 推荐使用支持MKL（英特尔数学核心函数库）的paddle安装包，MKL相比Openblas等通用计算库在计算速度上有显著的优势，能够提升您的训练效率。
+
+----------
+
+##### 问题：使用NVIDIA多卡运行Paddle时报错 Nccl error，如何解决？
+
++ 答复：这个错误大概率是环境配置不正确导致的，建议您使用NVIDIA官方提供的方法参考检测自己的环境是否配置正确。具体地，可以使用[ NCCL Tests ](https://github.com/NVIDIA/nccl-tests) 检测您的环境；如果检测不通过，请登录[ NCCL官网 ](https://developer.nvidia.com/zh-cn)下载NCCl，安装后重新检测。
+
+----------
+
+##### 问题：多卡训练时启动失败，`Error：Out of all 4 Trainers`，如何处理？
+
++ 问题描述：多卡训练时启动失败，显示如下信息：
+
+![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-13d1b5df218cb40b0243d13450ab667f34aee2f7)
+
++ 报错分析：PaddlePaddle安装版本和多卡训练不匹配导致。
+
++ 解决方法：排查当前安装的PaddlePaddle是否支持并行训练。如果是开发者编译的Paddle，请在编译时打开 `WITH_DISTRIBUTE`选项。
+
+----------
+
+##### 问题：训练时报错提示显存不足，如何解决？
+
++ 答复：可以尝试按如下方法解决：
+
+1. 检查是当前模型是否占用了过多显存，可尝试减小`batch_size` ；
+
+2. 开启以下三个选项：
 
 ```
-export LD_LIBRARY_PATH=`pwd`/nccl_2.1.4-1+cuda8.0_x86_64/lib:$LD_LIBRARY_PATH
+#一旦不再使用即释放内存垃圾，=1.0 垃圾占用内存大小达到10G时，释放内存垃圾`
+export FLAGS_eager_delete_tensor_gb=0.0`
+#启用快速垃圾回收策略，不等待cuda kernel 结束，直接释放显存`
+export FLAGS_fast_eager_deletion_mode=1`
+#该环境变量设置只占用0%的显存`
+export FLAGS_fraction_of_gpu_memory_to_use=0`
 ```
 
-3、确定是否要配置软链
+详细请参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 调整相关配置。
+
+此外，建议您使用[AI Studio 学习与 实训社区训练](https://aistudio.baidu.com/aistudio/index)，获取免费GPU算力，提升您的训练效率。
+
+----------
+
+##### 问题：如何提升模型训练时的GPU利用率？
+
++ 答复：有如下两点建议：
+
+  1. 如果数据预处理耗时较长，可使用DataLoader加速数据读取过程，具体请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
+
+  2. 如果提高GPU计算量，可以增大`batch_size`，但是注意同时调节其他超参数以确保训练配置的正确性。
+
+  以上两点均为比较通用的方案，其他的优化方案和模型相关，可参考官方模型库 [models](https://github.com/PaddlePaddle/models) 中的具体示例。
+
+----------
+
+##### 问题：如何处理变长ID导致程序内存占用过大的问题？
+
++ 答复：请先参考[显存分配与优化文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/advanced_usage/best_practice/memory_optimize.html) 开启存储优化开关，包括显存垃圾及时回收和Op内部的输出复用输入等。若存储空间仍然不够，建议：
+
+  1. 降低 `batch_size` ；
+  2. 对index进行排序，减少padding的数量。
+
+----------
+
+##### 问题：训练过程中如果出现不收敛的情况，如何处理？
+
++ 答复：不收敛的原因有很多，可以参考如下方式排查：
+
+  1. 检查数据集中训练数据的准确率，数据是否有错误，特征是否归一化；
+  2. 简化网络结构，先基于benchmark实验，确保在baseline网络结构和数据集上的收敛结果正确；
+  3. 对于复杂的网络，每次只增加一个改动，确保改动后的网络正确；
+  4. 检查网络在训练数据上的Loss是否下降；
+  5. 检查学习率、优化算法是否合适，学习率过大会导致不收敛；
+  6. 检查`batch_size`设置是否合适，`batch_size`过小会导致不收敛；
+  7. 检查梯度计算是否正确，是否有梯度过大的情况，是否为`NaN`。
+
+----------
+
+##### 问题：Loss为NaN，如何处理？
+
++ 答复：可能是网络设计存在问题，Loss过大（Loss为NaN）会导致梯度爆炸。如果没有改网络结构，但是出现了NaN，可能是数据读取导致，比如标签对应关系错误。
+
+----------
+
+##### 问题：使用GPU训练时报错，`Error：incompatible constructor arguments.`，如何处理？
+
++ 问题描述：
+  ![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-3779aa5b33dbe1f05ba2bfeabb2d22d4270d1929)
+
++ 报错分析：`CUDAPlace()`接口没有指定GPU的ID编号导致。
+
++ 答复：CUDAPlace()接口需要指定GPU的ID编号，接口使用方法参见：[paddle.fluid.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CUDAPlace_cn.html)。
+
+----------
+
+##### 问题：增量训练中，如何保存模型和恢复训练？
+
++ 答复：在增量训练过程中，不仅需要保存模型的参数，也需要保存优化器的参数。
+
+具体地，在1.8版本中需要使用Layer和Optimizer的`state_dict`和`set_dict`方法配合`fluid.save_dygraph/load_dygraph`使用。简要示例如下：
 
 ```
-cd /usr/lib/x86_64-linux-gnu
-ln -s libnccl.so.2 libnccl.so
+import paddle.fluid as fluid
+
+with fluid.dygraph.guard():
+    emb = fluid.dygraph.Embedding([10, 10])
+
+    state_dict = emb.state_dict()
+    fluid.save_dygraph(state_dict, "paddle_dy")
+
+    adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000),
+                                parameter_list = emb.parameters() )
+
+    state_dict = adam.state_dict()
+    fluid.save_dygraph(state_dict, "paddle_dy")
+
+    para_state_dict, opti_state_dict = fluid.load_dygraph("paddle_dy")
+    emb.set_dict(para_state_dict)
+    adam.set_dict(opti_state_dict)
 ```
 
+更多介绍请参考以下API文档：
+- [save_dygraph](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/save_dygraph_cn.html#save-dygraph)
+- [load_dygraph](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/load_dygraph_cn.html#load-dygraph)
 
-## 模型保存
+----------
 
-##### Q: 保存模型API选择
+##### 问题：训练后的模型很大，如何压缩？
 
-+ 问题描述
++ 答复：建议您使用飞桨模型压缩工具[PaddleSlim](https://www.paddlepaddle.org.cn/tutorials/projectdetail/489539)。PaddleSlim是飞桨开源的模型压缩工具库，包含模型剪裁、定点量化、知识蒸馏、超参搜索和模型结构搜索等一系列模型压缩策略，专注于**模型小型化技术**。
 
-请说明一下如下两个接口的适用场景，现在保存模型都不知用哪个：`save_inference_model`、`save_params`？
+----------
 
-+ 问题解答
 
-`save_inference_model`主要是用于预测的，该API除了会保存预测时所需的模型参数，还会保存预测使用的模型结构。而`save_params`会保存一个program中的所有参数，但是不保存该program对应的模型结构。参考[模型保存与加载](http://paddlepaddle.org/documentation/docs/zh/1.4/api_guides/low_level/model_save_reader.html)
 
-##### Q: 保存模型报错
+## 应用预测
 
-+ 问题描述
+##### 问题：load_inference_model在加载预测模型时能否用py_reader读取？
 
-CTR模型保存模型时报错
++ 答复：目前`load_inference_model`加载进行的模型还不支持py_reader输入。
 
-+ 代码文件：[network_conf.py](https://github.com/PaddlePaddle/models/blob/develop/PaddleRec/ctr/network_conf.py)只修改了最后一行：
+----------
 
-```
-accuracy = fluid.layers.accuracy(input=predict, label=words[-1])
-auc_var, batch_auc_var, auc_states = \
-    fluid.layers.auc(input=predict, label=words[-1], num_thresholds=2 ** 12, slide_steps=20)
-return accuracy, avg_cost, auc_var, batch_auc_var, py_reader
-```
 
-+ 问题解答
 
-保存模型时需指定program 才能正确保存。请使用`executor = Executor(place)`, 你的train_program, 以及给`layers.data`指定的名称作为`save_inference_model` 的输入。
+## 参数调整
 
+##### 问题：如何将本地数据传入`fluid.dygraph.Embedding`的参数矩阵中？
 
-## 参数相关
++ 答复：需将本地词典向量读取为NumPy数据格式，然后使用`fluid.initializer.NumpyArrayInitializer`这个op初始化`fluid.dygraph.Embedding`里的`param_attr`参数，即可实现加载用户自定义（或预训练）的Embedding向量。
 
-##### Q: 本地数据传入embedding的参数矩阵
+------
 
-+ 问题描述
+##### 问题：如何实现网络层中多个feature间共享该层的向量权重？
 
-如何将本地数据传入embedding的参数矩阵中？
++ 答复：将所有网络层中`param_attr`参数里的`name`设置为同一个，即可实现共享向量权重。如使用embedding层时，可以设置`param_attr=fluid.ParamAttr(name="word_embedding")`，然后把param_attr传入embedding中。
 
-+ 问题解答
+----------
 
-需将本地词典向量读取为numpy数据格式，然后使用fluid.initializer.NumpyArrayInitializer这个op初始化fluid.layers.embedding里的param_attr参数。即可实现加载用户自定义（或预训练）的embedding向量。
+##### 问题：如何修改全连接层参数，如：weights、bias、optimizer.SGD？
 
-##### Q: 如何查看w和b的值
++ 答复：可以通过`param_attr`设置参数的属性，`fluid.ParamAttr( initializer=fluid.initializer.Normal(0.0, 0.02), learning_rate=2.0)`，如果`learning_rate`设置为0，该层就不参与训练。手动输入参数也可以实现，但是会比较麻烦。
 
-+ 问题描述
+----------
 
-如何查看paddle.fluid.layers.fc生成的w和b的值？
+##### 问题：使用optimizer或ParamAttr设置的正则化和学习率，二者什么差异？
 
-+ 问题解答
++ 答复：ParamAttr中定义的`regularizer`优先级更高。若ParamAttr中定义了`regularizer`，则忽略Optimizer中的`regularizer`；否则，则使用Optimizer中的`regularizer`。学习率的设置也可以参考此方式。
 
-可以通过param_t = fluid.global_scope().find_var(param_name).get_tensor()查看，
-param_name可以自己指定，如果不知道的话，可以通过 param_list = fluid.framework.default_main_program().block(0).all_parameters() 看一下。
+----------
 
-##### Q: 共享向量权重
+##### 问题：如何导出指定层的权重，如导出最后一层的*weights*和*bias*？
 
-+ 问题描述
++ 答复：使用`save_vars`保存指定的vars，然后使用`load_vars`加载对应层的参数值。具体示例请见API文档：[load_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/load_vars_cn.html#load-vars) 和 [save_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/save_vars_cn.html#save-vars) 。
 
-fluid.layers.embedding中如何实现多个feature间共享该层的向量权重？
+----------
 
-+ 问题解答
+##### 问题：训练过程中如何固定网络和Batch Normalization（BN）？
 
-将所有embedding层中param_attr参数里的name设置为同一个，即可实现共享向量权重。如`param_attr=fluid.ParamAttr(name="word_embedding")`。
++ 答复：
 
-##### Q: 手动输入参数并改变？
+1. 对于固定BN：设置 `use_global_stats=True`，使用已加载的全局均值和方差：`global mean/variance`，具体内容可查看官网文档[BatchNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/BatchNorm_cn.html)。
 
-+ 问题描述
+2. 对于固定网络层：如： stage1→ stage2 → stage3 ，设置stage2的输出，假设为*y*，设置 `y.stop_gradient=True`，那么， stage1→ stage2整体都固定了，不再更新。
 
-PaddlePaddle的全连接层，可不可以手动输入参数比如weights和bias并禁止优化器比如optimizer.SGD在模型训练的时候改变它？
+----------
 
-+ 问题解答
+##### 问题：优化器设置时报错`AttributeError: parameter_list argument given to the Optimizer should not be None in dygraph mode.`，如何处理？
 
-可以通过ParamAttr设置参数的属性，`fluid.ParamAttr( initializer=fluid.initializer.Normal(0.0, 0.02), learning_rate=2.0)`，其中learning_rate设置为0，就不会修改。手动输入参数也可以实现，但是会比较麻烦。
++ 错误分析：必选参数缺失导致。
 
-##### Q: `fluid.unique_name.guard()`影响范围
++ 答复：飞桨框架1.7版本之后需要在optimizer的设置中加入必选项`param_list`。
 
-+ 问题描述
+----------
 
-batch norm 里面的两个参数：moving_mean_name、moving_variance_name应该是两个var，但是他们却没有受到 `with fluid.unique_name.guard()` 的影响，导致名字重复？
+##### 问题：`fluid.layer.pool2d`的全局池化参数和设置参数有关系么？
 
-+ 问题解答
++ 答复：如果设置`global_pooling`，则设置的`pool_size`将忽略，不会产生影响。
 
-用户指定的name的优先级高于unique_name生成器，所以名字不会被改变。
-
-##### Q: 2fc层共享参数？
-
-+ 问题描述
-
-怎么配置让两个fc层共享参数？
-
-+ 问题解答
-
-只要指定param_attr相同名字即可，是`param_attr = fluid.ParamAttr(name='fc_share')`，然后把param_attr传到fc里去。
-
-
-## LoD-Tensor数据结构相关
-
-##### Q: 拓展tensor纬度
-
-+ 问题描述
-
-PaddlePaddle有拓展tensor维度的op吗？
-
-+ 问题解答
-
-请参[unsqueeze op](http://paddlepaddle.org/documentation/docs/zh/1.3/api/layers.html#unsqueeze)，例如[1,2]拓展为[1，2，1]
-
-##### Q: 多维变长tensor?
-
-+ 问题描述
-
-PaddlePaddle是否支持两维以上的变长tensor，如shape[-1, -1, 128]？
-
-+ 问题解答
-
-配置网络的时候可以将shape写成[-1,任意正数,128]，然后输入的时候shape可以为[任意正数,任意正数,128]。维度只是个占位，运行网络的时候的实际维度是从输入数据推导出来的。两个"任意整数" 在输入和配置的时候可以不相等。配置网络的时候第一维度必须为-1。
-
-##### Q: vector -> LodTensor
-
-+ 问题描述
-
-C++ 如何把std::vector转换成LodTensor的方法?
-
-+ 问题解答
-
-如下示例
-
-```cpp
-std::vector<int64_t> ids{1918, 117, 55, 97, 1352, 4272, 1656, 903};
-framework::LoDTensor words;
-auto size = static_cast<int>(ids.size());
-framework::LoD lod{{0, ids.size()}};
-DDim dims{size, 1};
-words.Resize(dims);
-words.set_lod(lod);
-auto *pdata = words.mutable_data<int64_t>();
-size_t n = words.numel() * sizeof(int64_t);
-memcpy(pdata, ids.data(), n);
-```
-
-##### Q: 报错holder should not be null
-
-+ 错误信息
-
-```
-C++ Callstacks:
-holder should not be null
-Tensor not initialized yet when Tensor::type() is called. at [/paddle/paddle/fluid/framework/tensor.h:145]
-PaddlePaddle Call Stacks:
-```
-
-+ 问题解答
-
-错误提示是某个tensor为空。建议运行时加上环境变量GLOG_vmodule=operator=4 , GLOG_logtostderr=1看看运行到哪个op，哪个tensor为空。
-
-
-## pyreader
-
-##### Q: 加载模型时pyreader使用
-
-+ 问题描述
-
-调用`save_inference_model`后，`load_inference_model`加载预测模型的时候用py_reader读取，`feeded_var_names`为空也无法通过feed输入了。py_reader此刻应该如何声明？
-
-+ 问题解答
-
-目前`load_inference_model`加载进行的模型还不支持py_reader输入。
-
-##### Q: 变量取名
-
-+ 问题描述
-
-使用py_reader读取数据的时候，怎么给读取的变量指定名字呢？
-
-+ 问题解答
-
-参考[create_py_reader_by_data](http://paddlepaddle.org/documentation/docs/zh/1.3/api_cn/layers_cn.html#create-py-reader-by-data)
+----------

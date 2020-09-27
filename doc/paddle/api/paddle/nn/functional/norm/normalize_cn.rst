@@ -42,7 +42,7 @@ normalize
 
         paddle.disable_static()
         x = np.arange(6, dtype=np.float32).reshape(2,3)
-        x = paddle.to_variable(x)
+        x = paddle.to_tensor(x)
         y = F.normalize(x)
         print(y.numpy())
         # [[0.         0.4472136  0.8944272 ]

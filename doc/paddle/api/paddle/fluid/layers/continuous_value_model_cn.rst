@@ -5,9 +5,6 @@ continuous_value_model
 
 .. py:function:: paddle.fluid.layers.continuous_value_model(input, cvm, use_cvm=True)
 
-:alias_main: paddle.nn.functional.continuous_value_model
-:alias: paddle.nn.functional.continuous_value_model,paddle.nn.functional.extension.continuous_value_model
-:old_api: paddle.fluid.layers.continuous_value_model
 
 
 

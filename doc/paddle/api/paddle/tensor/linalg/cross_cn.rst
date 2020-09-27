@@ -5,8 +5,6 @@ cross
 
 .. py:function:: paddle.cross(x, y, axis=None, name=None)
 
-:alias_main: paddle.cross
-:alias: paddle.cross,paddle.tensor.cross,paddle.tensor.linalg.cross
 
 
 

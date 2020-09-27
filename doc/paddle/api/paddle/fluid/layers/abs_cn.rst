@@ -5,9 +5,6 @@ abs
 
 .. py:function:: paddle.fluid.layers.abs(x, name=None)
 
-:alias_main: paddle.abs
-:alias: paddle.abs,paddle.tensor.abs,paddle.tensor.math.abs
-:old_api: paddle.fluid.layers.abs
 
 
 
@@ -29,11 +26,8 @@ abs
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([-1, -2, -3, -4]).astype(np.float32)
-        x = paddle.to_variable(x_data)
+        x = paddle.to_tensor([-1, -2, -3, -4], dtype='float32')
         res = paddle.abs(x)
         print(res.numpy())
         # [1, 2, 3, 4]

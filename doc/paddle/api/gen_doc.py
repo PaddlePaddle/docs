@@ -20,6 +20,9 @@ api_set = set()
 def get_all_api(root_path='paddle'):
     for filefiner, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
+        # not show paddle.reader APIs
+        if name.startswith("paddle.reader"):
+            continue
         try:
             m = eval(name)
         except AttributeError:
@@ -228,13 +231,13 @@ class EnDocGenerator(object):
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
         if "fluid.dygraph" in self.module_name:
-            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+            self.stream.write('''..  autoclass:: {0}.{1}
     :members:
     :noindex:
 
 '''.format(self.module_name, self.api))
         elif "fluid.optimizer" in self.module_name:
-            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+            self.stream.write('''..  autoclass:: {0}.{1}
     :members:
     :inherited-members:
     :exclude-members: apply_gradients, apply_optimize, backward, load
@@ -242,7 +245,7 @@ class EnDocGenerator(object):
 
 '''.format(self.module_name, self.api))
         else:
-            self.stream.write('''..  autoclass:: paddle.{0}.{1}
+            self.stream.write('''..  autoclass:: {0}.{1}
     :members:
     :inherited-members:
     :noindex:

@@ -5,8 +5,6 @@ triu
 
 .. py:function:: paddle.tensor.triu(input, diagonal=0, name=None)
 
-:alias_main: paddle.triu
-:alias: paddle.triu,paddle.tensor.triu,paddle.tensor.creation.triu
 
 
 

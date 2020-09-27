@@ -5,9 +5,6 @@ sums
 
 .. py:function:: paddle.fluid.layers.sums(input,out=None)
 
-:alias_main: paddle.sums
-:alias: paddle.sums,paddle.tensor.sums,paddle.tensor.math.sums
-:old_api: paddle.fluid.layers.sums
 
 
 

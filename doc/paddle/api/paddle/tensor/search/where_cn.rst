@@ -5,9 +5,6 @@ where
 
 .. py:function:: paddle.where(condition, x, y, name=None)
 
-:alias_main: paddle.where
-:alias: paddle.where,paddle.tensor.where,paddle.tensor.search.where
-:update_api: paddle.fluid.layers.cond
 
 
 

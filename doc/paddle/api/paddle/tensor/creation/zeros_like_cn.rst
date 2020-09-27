@@ -5,9 +5,6 @@ zeros_like
 
 .. py:function:: paddle.zeros_like(x, dtype=None, name=None)
 
-:alias_main: paddle.zeros_like
-:alias: paddle.tensor.zeros_like, paddle.tensor.creation.zeros_like
-:update_api: paddle.fluid.layers.zeros_like
 
 该OP返回一个和 ``x`` 具有相同的形状的全零Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 

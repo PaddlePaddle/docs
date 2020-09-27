@@ -5,9 +5,6 @@ gather_tree
 
 .. py:function:: paddle.fluid.layers.gather_tree(ids, parents)
 
-:alias_main: paddle.nn.gather_tree
-:alias: paddle.nn.gather_tree,paddle.nn.decode.gather_tree
-:old_api: paddle.fluid.layers.gather_tree
 
 
 

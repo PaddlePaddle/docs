@@ -5,9 +5,6 @@ argsort
 
 .. py:function:: paddle.fluid.layers.argsort(input,axis=-1,descending=False,name=None)
 
-:alias_main: paddle.argsort
-:alias: paddle.argsort,paddle.tensor.argsort,paddle.tensor.search.argsort
-:old_api: paddle.fluid.layers.argsort
 
 
 

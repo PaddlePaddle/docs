@@ -5,9 +5,6 @@ affine_grid
 
 .. py:function:: paddle.fluid.layers.affine_grid(theta, out_shape, name=None)
 
-:alias_main: paddle.nn.functional.affine_grid
-:alias: paddle.nn.functional.affine_grid,paddle.nn.functional.vision.affine_grid
-:old_api: paddle.fluid.layers.affine_grid
 
 
 
