@@ -93,6 +93,7 @@ DistributedStrategy
 **示例代码**
 
 .. code-block:: python
+
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.lars = True
@@ -122,6 +123,7 @@ DistributedStrategy
 **示例代码**
 
 .. code-block:: python
+
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.lamb = True
