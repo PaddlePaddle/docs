@@ -3,7 +3,7 @@
 switch
 -------------------------------
 
-.. py:function:: paddle.fluid.unique_name.switch(new_generator=None)
+.. py:function:: paddle.utils.unique_name.switch(new_generator=None)
 
 
 
@@ -21,15 +21,15 @@ switch
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        name1 = fluid.unique_name.generate('fc')
-        name2 = fluid.unique_name.generate('fc')
+        import paddle
+        name1 = paddle.utils.unique_name.generate('fc')
+        name2 = paddle.utils.unique_name.generate('fc')
         print(name1, name2)  # fc_0, fc_1
          
-        pre_generator = fluid.unique_name.switch()  # 切换到新命名空间
-        name2 = fluid.unique_name.generate('fc')
+        pre_generator, pre_dygraph_name_checker = paddle.utils.unique_name.switch() # 切换到新命名空间
+        name2 = paddle.utils.unique_name.generate('fc')
         print(name2)  # fc_0
 
-        fluid.unique_name.switch(pre_generator)  # 切换回原命名空间
-        name3 = fluid.unique_name.generate('fc')
+        paddle.utils.unique_name.switch(pre_generator, pre_dygraph_name_checker) # 切换回原命名空间
+        name3 = paddle.utils.unique_name.generate('fc')
         print(name3)  # fc_2, 因为原命名空间已生成fc_0, fc_1
