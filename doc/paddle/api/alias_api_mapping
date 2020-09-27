@@ -457,7 +457,7 @@ paddle.tensor.linalg.cross	paddle.cross,paddle.tensor.cross
 paddle.fluid.layers.maxout	paddle.nn.functional.maxout,paddle.nn.functional.activation.maxout
 paddle.nn.layer.norm.InstanceNorm2d	paddle.nn.InstanceNorm2d
 paddle.fluid.layers.assign	paddle.nn.functional.assign,paddle.nn.functional.common.assign
-paddle.fluid.layers.case	paddle.nn.case,paddle.nn.control_flow.case
+paddle.fluid.layers.case	paddle.static.nn.case
 paddle.fluid.core.CUDAPlace	paddle.CUDAPlace,paddle.framework.CUDAPlace
 paddle.nn.functional.pooling.max_pool2d	paddle.nn.functional.max_pool2d
 paddle.fluid.layers.resize_bilinear	paddle.nn.functional.resize_bilinear,paddle.nn.functional.vision.resize_bilinear
