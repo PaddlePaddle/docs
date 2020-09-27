@@ -87,6 +87,7 @@ DistributedStrategy
 - **avg**: 梯度求平均
 
 .. py:attribute:: lars
+
 是否使用LARS optimizer，默认值：False
 
 **示例代码**
@@ -101,7 +102,9 @@ DistributedStrategy
     "epsilon": 0,
     "exclude_from_weight_decay": ["batch_norm", ".b"],
   } 
+
 .. py:attribute:: lars_configs
+
 设置LARS优化器的参数。用户可以配置 lars_coeff，lars_weight_decay，epsilon，exclude_from_weight_decay 参数。
 
 **lars_coeff(float):** lars 系数，[原论文](https://arxiv.org/abs/1708.03888) 中的 trust coefficient。 默认值是 0.001.
@@ -113,6 +116,7 @@ DistributedStrategy
 **epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。 默认值是 0.
 
 .. py:attribute:: lamb
+
 是否使用LAMB optimizer，默认值：False
 
 **示例代码**
@@ -125,7 +129,9 @@ DistributedStrategy
       'lamb_weight_decay': 0.01,
       'exclude_from_weight_decay': [],
   }
+
 .. py:attribute:: lamb_configs
+
 设置LAMB优化器的参数。用户可以配置 lamb_weight_decay，exclude_from_weight_decay 参数。
 
 **lamb_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.01.
