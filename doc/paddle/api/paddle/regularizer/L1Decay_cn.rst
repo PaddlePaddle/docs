@@ -1,0 +1,67 @@
+
+.. _cn_api_paddle_regularizer_L1Decay:
+
+L1Decay
+-------------------------------
+
+.. py:attribute::   paddle.regularizer.L1Decay(coeff=0.0)
+
+
+L1Decay实现L1权重衰减正则化，用于模型训练，使得权重矩阵稀疏。
+
+该类生成的实例对象，需要设置在 :ref:`cn_api_paddle_ParamAttr` 或者 ``optimizer`` 
+(例如 :ref:`cn_api_paddle_optimizer_Momentum` )中，在 ``ParamAttr`` 中设置时，
+只对该网络层中的参数生效；在 ``optimizer`` 中设置时，会对所有的参数生效；如果同时设置，
+在 ``ParamAttr`` 中设置的优先级会高于在 ``optimizer`` 中设置。
+
+具体实现中，L1权重衰减正则化的计算公式如下：
+
+.. math::
+            \\L1WeightDecay=reg\_coeff∗sign(parameter)\\
+
+参数：
+  - **coeff** (float) – L1正则化系数，默认值为0.0。
+
+**代码示例1**
+
+.. code-block:: python
+    
+    # 在optimizer中设置L1正则化
+    import paddle
+    from paddle.regularizer import L1Decay
+    import numpy as np
+    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    linear = paddle.nn.Linear(10, 10)
+    inp = paddle.to_tensor(inp)
+    out = linear(inp)
+    loss = paddle.mean(out)
+    beta1 = paddle.to_tensor([0.9], dtype="float32")
+    beta2 = paddle.to_tensor([0.99], dtype="float32")
+    momentum = paddle.optimizer.Momentum(
+        learning_rate=0.1,
+        parameters=linear.parameters(),
+        weight_decay=L1Decay(0.0001))
+    back = out.backward()
+    momentum.step()
+    momentum.clear_grad()
+
+
+**代码示例2**
+
+.. code-block:: python
+    
+    # 在ParamAttr中设置L1正则化
+    # 此时optimizer中设置的正则化不会对该参数生效
+    from paddle.nn import Conv2d
+    from paddle import ParamAttr
+    from paddle.regularizer import L2Decay
+
+    my_conv2d = Conv2d(
+            in_channels=10,
+            out_channels=10,
+            kernel_size=1,
+            stride=1,
+            padding=0,
+            weight_attr=ParamAttr(regularizer=L2Decay(coeff=0.01)),
+            bias_attr=False)
+
