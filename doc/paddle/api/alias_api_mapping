@@ -225,7 +225,7 @@ paddle.fluid.layers.pool2d	paddle.nn.functional.pool2d,paddle.nn.functional.pool
 paddle.nn.functional.norm.batch_norm	paddle.nn.functional.batch_norm
 paddle.nn.layer.common.UpsamplingNearest2d	paddle.nn.UpsamplingNearest2d,paddle.nn.layer.UpsamplingNearest2d
 paddle.nn.functional.conv.conv_transpose3d	paddle.nn.functional.conv_transpose3d
-paddle.fluid.layers.switch_case	paddle.nn.switch_case,paddle.nn.control_flow.switch_case
+paddle.fluid.layers.switch_case	paddle.static.nn.switch_case
 paddle.fluid.layers.image_resize	paddle.nn.functional.image_resize,paddle.nn.functional.vision.image_resize
 paddle.nn.layer.conv.Conv3d	paddle.nn.Conv3d,paddle.nn.layer.Conv3d
 paddle.fluid.layers.logical_or	paddle.logical_or,paddle.tensor.logical_or,paddle.tensor.logic.logical_or
