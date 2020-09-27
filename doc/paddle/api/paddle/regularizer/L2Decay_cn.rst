@@ -26,6 +26,7 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
 **代码示例1**
 
 .. code-block:: python
+    
     # 在optimizer中设置L1正则化
     import paddle
     from paddle.regularizer import L2Decay
