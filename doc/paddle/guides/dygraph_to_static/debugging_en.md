@@ -94,8 +94,7 @@ There are two ways to print the transformed static graph code:
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
 2. Call [`set_code_level(level=100, also_to_stdout=False)`](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_en.html) or set environment variable `TRANSLATOR_CODE_LEVEL=level`
@@ -125,8 +124,7 @@ There are two ways to print the transformed static graph code:
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
     In addition, if you want to output the transformed code to ``sys.stdout``, you can set the argument ``also_to_stdout`` to True, otherwise the transformed code is only output to ``sys.stderr``.

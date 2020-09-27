@@ -42,8 +42,6 @@ ProgramTranslator打印的警告信息如下：
 import paddle
 import numpy as np
 
-paddle.disable_static()
-
 @paddle.jit.to_static
 def func(x):
     x = paddle.to_tensor(x)

@@ -92,8 +92,7 @@ func(np.ones([3, 2]))
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
 
@@ -125,8 +124,7 @@ func(np.ones([3, 2]))
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
     此外，如果您想将转化后的代码也输出到 ``sys.stdout``, 可以设置参数 ``also_to_stdout`` 为 True，否则将仅输出到 ``sys.stderr``。

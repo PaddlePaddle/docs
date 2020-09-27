@@ -44,7 +44,6 @@ For example, if executing the following code, an exception is raised when the st
 import paddle
 import numpy as np
 
-paddle.disable_static()
 
 @paddle.jit.to_static
 def func(x):
