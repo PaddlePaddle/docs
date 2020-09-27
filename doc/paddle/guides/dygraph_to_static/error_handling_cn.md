@@ -1,16 +1,14 @@
 # 报错信息处理
 
-本节内容将介绍使用动态图转静态图（下文简称：动转静）功能发生异常时，[ProgramTranslator](./program_translator_cn.html)对报错信息做的处理，以帮助您更好地理解动转静报错信息。使用动转静功能运行动态图代码时，内部可以分为2个步骤：动态图代码转换成静态图代码，运行静态图代码。接下来将分别介绍这2个步骤中的异常报错情况。
+本节内容将介绍使用动态图转静态图（下文简称：动转静）功能发生异常时，[ProgramTranslator](./program_translator_cn.html)的动转静报错模块对报错信息做的处理，以帮助您更好地理解动转静报错信息。使用动转静功能运行动态图代码时，内部可以分为2个步骤：动态图代码转换成静态图代码，运行静态图代码。接下来将分别介绍这2个步骤中的异常报错情况。
 
 ## 动转静过程中的异常
-在动态图代码转换成静态图代码的过程中，如果ProgramTranslator无法转换一个函数时，将会显示警告信息，并尝试直接运行该函数。
+在动态图代码转换成静态图代码的过程中，如果 ProgramTranslator 无法转换一个函数时，将会显示警告信息，并尝试直接运行该函数。
 如下代码中，函数 `inner_func` 在调用前被转换成静态图代码，当 `x = inner_func(data)` 调用该函数时，不能重复转换，会给出警告信息：
 
 ```python
 import paddle
 import numpy as np
-
-paddle.disable_static()
 
 @paddle.jit.to_static
 def func():
@@ -26,7 +24,7 @@ func()
 ProgramTranslator打印的警告信息如下：
 
 ```bash
-WARNING: <function inner_func at 0x7fa9bcaacf50> doesn't have to be transformed to static function because it has been transformed before, it will be run as-is.
+2020-01-01 00:00:00,104-WARNING: <function inner_func at 0x125b3a550> doesn't have to be transformed to static function because it has been transformed before, it will be run as-is.
 ```
 
 ## 运行转换后的代码报错
@@ -77,7 +75,7 @@ AssertionError: In user code:
 
 1. 报错栈中，涉及代码转换过程的信息栈默认会被隐藏，不进行展示，以减少干扰信息。
 
-2. ProgramTranslator处理后的报错信息中，会包含提示"In user code:"，表示之后的报错栈中，包含动转静前的动态图代码，即用户写的代码：
+2. ProgramTranslator 处理后的报错信息中，会包含提示 "In user code:"，表示之后的报错栈中，包含动转静前的动态图代码，即用户写的代码：
 	```bash
 	AssertionError: In user code:
 
@@ -95,7 +93,11 @@ AssertionError: In user code:
 	AssertionError: Only one dimension value of 'shape' in reshape can be -1. But received shape[1] is also -1.
 	```
 
-运行以下代码，在静态图运行时，即运行期会抛出异常：
+> **注解:**
+>
+> 如果您想查看 Paddle 原生报错信息栈，即未被动转静模块处理过的报错信息栈，可以设置环境变量 ``TRANSLATOR_DISABLE_NEW_ERROR=1`` 关闭动转静报错模块。该环境变量默认值为0，表示默认开启动转静报错模块。
+
+运行以下代码，在静态图运行期会抛出异常：
 
 ```Python
 @paddle.jit.to_static
@@ -158,3 +160,7 @@ InvalidArgumentError: The 'shape' in ReshapeOp is invalid. The input tensor X'si
 ```
 
 上述异常中，除了隐藏部分报错栈、报错定位到转换前的动态图代码外，报错信息中包含了C++报错栈 `C++ Traceback` 和 `Error Message Summary`，这是 Paddle 的 C++ 端异常信息，经处理后在 Python 的异常信息中显示。
+
+> **注解:**
+>
+> 如果您想查看被隐藏的信息栈，可以设置环境变量 ``TRANSLATOR_SIMPLIFY_NEW_ERROR=0``。该环境变量默认值为1，表示隐藏冗余的报错信息栈。
