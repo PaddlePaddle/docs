@@ -53,7 +53,7 @@ append_backward
         p_g_list1 = paddle.static.append_backward(loss=avg_loss)
         # output: [(embedding_0.w_0, embedding_0.w_0@GRAD), (my_fc.w_0, my_fc.w_0@GRAD), (my_fc.b_0, my_fc.b_0@GRAD)]
 
-        # return the param_grads corresponding to parameter_list that can be list of param (Variable).
+        # return the param_grads corresponding to parameter_list that can be list of param (Tensor).
         p_g_list2 = paddle.static.append_backward(loss=avg_loss, parameter_list=all_weights)
         # output: [(embedding_0.w_0, embedding_0.w_0@GRAD), (my_fc.w_0, my_fc.w_0@GRAD)]
 
@@ -61,11 +61,11 @@ append_backward
         p_g_list3 = paddle.static.append_backward(loss=avg_loss, parameter_list=all_weights_name)
         # output: [(embedding_0.w_0, embedding_0.w_0@GRAD), (my_fc.w_0, my_fc.w_0@GRAD)]
 
-        # no_grad_set can be set of Variables that means grad will be cut off from these Variables.
+        # no_grad_set can be set of Tensors that means grad will be cut off from these Tensors.
         p_g_list4 = paddle.static.append_backward(loss=avg_loss, no_grad_set=set([x_emb]))
         # output: [(my_fc.w_0, my_fc.w_0@GRAD), (my_fc.b_0, my_fc.b_0@GRAD)]
 
-        # no_grad_set can be set of Variable.name when the Variable is created inside layers and can't be specified explicitly.
+        # no_grad_set can be set of Tensor.name when the Tensors is created inside layers and can't be specified explicitly.
         p_g_list5 = paddle.static.append_backward(loss=avg_loss, no_grad_set=set(['my_fc.b_0']))
         # output: [(embedding_0.w_0, embedding_0.w_0@GRAD), (my_fc.w_0, my_fc.w_0@GRAD)]
 
