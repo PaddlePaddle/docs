@@ -203,7 +203,7 @@ paddle.nn.layer.loss.L1Loss	paddle.nn.L1Loss,paddle.nn.layer.L1Loss
 paddle.fluid.dygraph.io.TranslatedLayer	paddle.jit.TranslatedLayer
 paddle.nn.functional.conv.conv_transpose2d	paddle.nn.functional.conv_transpose2d
 paddle.tensor.manipulation.split	paddle.split,paddle.tensor.split
-paddle.fluid.layers.tensor.create_parameter	paddle.create_parameter,paddle.framework.create_parameter
+paddle.fluid.layers.tensor.create_parameter	paddle.static.create_parameter,paddle.framework.create_parameter
 paddle.nn.layer.activation.Softsign	paddle.nn.Softsign
 paddle.nn.layer.loss.CrossEntropyLoss	paddle.nn.CrossEntropyLoss,paddle.nn.layer.CrossEntropyLoss
 paddle.nn.layer.norm.BatchNorm3d	paddle.nn.BatchNorm3d
@@ -419,7 +419,7 @@ paddle.fluid.layers.iou_similarity	paddle.nn.functional.iou_similarity,paddle.nn
 paddle.fluid.layers.transpose	paddle.transpose,paddle.tensor.transpose,paddle.tensor.linalg.transpose,paddle.tensor.manipulation.transpose
 paddle.nn.functional.activation.elu	paddle.nn.functional.elu
 paddle.tensor.manipulation.broadcast_to	paddle.broadcast_to,paddle.tensor.broadcast_to
-paddle.fluid.layers.tensor.create_global_var	paddle.create_global_var,paddle.framework.create_global_var
+paddle.fluid.layers.tensor.create_global_var	paddle.static.create_global_var,paddle.framework.create_global_var
 paddle.fluid.layers.elementwise_add	paddle.elementwise_add,paddle.tensor.elementwise_add,paddle.tensor.math.elementwise_add
 paddle.fluid.layers.affine_channel	paddle.nn.functional.affine_channel,paddle.nn.functional.vision.affine_channel
 paddle.tensor.creation.full_like	paddle.full_like,paddle.tensor.full_like
