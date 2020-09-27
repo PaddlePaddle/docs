@@ -127,8 +127,8 @@ import MNIST 引入即可。
 目前Paddle框架有三种保存模型参数的体系，分别是： #### paddle
 高阶API-模型参数保存 \* paddle.Model.fit \* paddle.Model.save ####
 paddle 基础框架-动态图-模型参数保存 \* paddle.save #### paddle
-基础框架-静态图-模型参数保存 \* paddle.io.save \*
-paddle.io.save_inference_model
+基础框架-静态图-模型参数保存 \* paddle.static.save \*
+paddle.static.save_inference_model
 
 下面将基于高阶API对模型保存与加载的方法进行讲解。
 
@@ -168,8 +168,8 @@ paddle.io.save_inference_model
 当恢复训练状态时，需要加载模型数据，此时我们可以使用加载函数从存储模型状态和优化器状态的文件中载入模型参数和优化器参数，如果不需要恢复优化器，则不必使用优化器状态文件。
 #### 高阶API-模型参数加载 \* paddle.Model.load #### paddle
 基础框架-动态图-模型参数加载 \* paddle.load #### paddle
-基础框架-静态图-模型参数加载 \* paddle.io.load \*
-paddle.io.load_inference_model
+基础框架-静态图-模型参数加载 \* paddle.static.load \*
+paddle.static.load_inference_model
 
 下面将对高阶API的模型参数加载方法进行讲解 \* model.load(self, path,
 skip_mismatch=False, reset_optimizer=False)

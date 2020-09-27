@@ -27,23 +27,6 @@ How to save model variables
 
 The model variables we need to save are different depending on the application. For example, if we just want to save the model for future predictions, just saving the model parameters will be enough. But if we need to save a checkpoint for future recovery of current training, then we should save all the persistable variables, and even record the current epoch and step id. It is because even though some model variables are not parameters, they are still essential for model training.
 
-
-Difference between save_vars、save_params、save_persistables and save_inference_model
-##########################################################################
-1. :code:`save_inference_model` will prune the inference model based on :code:`feeded_var_names` and :code:`target_vars` , this method will save the ``__model__`` file of the pruned program and the persistable variables in the program.
-
-2. :code:`save_persistables` this method will not save model, it will save all the persistable variables in the program.
-
-3. :code:`save_params` this method will not save model, it will save all the parameters in the program.
-
-4. :code:`save_vars` this method will not save model, it will save the given parameter by user.
-
- :code:`save_persistables` this method is useful for increment training or checkpoint training, it can save persistable variables in program comprehensively, such as parameter variables, optimizer variables, if you need increment training or checkpoint training, please choose this one. 
- :code:`save_inference_model` this method  is useful for inference, it will save persistable variables and pruned program, if you need program and variables for follow-up  high performance inference, please choose this one.
-
- :code:`save_vars 和 save_params` there methods are only needed in particular cases, we suppose you already know the purpose of there APIs, there are not recommended for use normally.
-
-
 Save the model to make prediction for new samples
 ===================================================
 
@@ -143,8 +126,8 @@ In the above example, by calling the :code:`fluid.io.save_persistables` function
     path = "./models"
     startup_prog = fluid.default_startup_program()
     exe.run(startup_prog)
+    fluid.io.load_persistables(exe, path, startup_prog)
     main_prog = fluid.default_main_program()
-    fluid.io.load_persistables(exe, path, main_prog)
     exe.run(main_prog)
     
 In the above example, by calling the :code:`fluid.io.load_persistables` function, PaddlePaddle Fluid will find persistable variables from all model variables in the default :code:`fluid.Program` , e.t. :code:`prog` . and load them one by one from the specified :code:`path` directory to continue training.
@@ -196,23 +179,23 @@ For the PServer to be loaded with parameters during training, for example:
 
     exe = fluid.Executor(fluid.CPUPlace())
     path = "./models"
-	pserver_endpoints = "127.0.0.1:1001,127.0.0.1:1002"
-	trainers = 4
-	Training_role == "PSERVER"
-	config = fluid.DistributeTranspilerConfig()
-	t = fluid.DistributeTranspiler(config=config)
-	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True)
-
-	if training_role == "PSERVER":
-		current_endpoint = "127.0.0.1:1001"
-		pserver_prog = t.get_pserver_program(current_endpoint)
-		pserver_startup = t.get_startup_program(current_endpoint, pserver_prog)
-
-		exe.run(pserver_startup)
-		fluid.io.load_persistables(exe, path, pserver_startup)
-		exe.run(pserver_prog)
-	if training_role == "TRAINER":
-		main_program = t.get_trainer_program()
-				exe.run(main_program)
+    pserver_endpoints = "127.0.0.1:1001,127.0.0.1:1002"
+    trainers = 4
+    Training_role == "PSERVER"
+    current_endpoint = "127.0.0.1:1002"
+    config = fluid.DistributeTranspilerConfig()
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True, current_endpoint=current_endpoint)
+    
+    if training_role == "PSERVER":
+        pserver_prog = t.get_pserver_program(current_endpoint)
+        pserver_startup = t.get_startup_program(current_endpoint, pserver_prog)
+    
+        exe.run(pserver_startup)
+        fluid.io.load_persistables(exe, path, pserver_startup)
+        exe.run(pserver_prog)
+    if training_role == "TRAINER":
+        main_program = t.get_trainer_program()
+        exe.run(main_program)
 
 In the above example, each PServer obtains the parameters saved by trainer 0 by calling the HDFS command, and obtains the PServer's :code:`fluid.Program` by configuration. PaddlePaddle Fluid will find all persistable variables in all model variables from this :code:`fluid.Program` , e.t. :code:`pserver_startup` , and load them from the specified :code:`path` directory.
