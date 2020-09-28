@@ -3,7 +3,7 @@
 bmm
 -------------------------------
 
-.. py:function:: paddle.tensor.bmm(x, y, name=None):
+.. py:function:: paddle.bmm(x, y, name=None):
 
 
 
@@ -18,9 +18,9 @@ bmm
 
 **参数**：
     
-    -**x** (Tensor) : 输入变量，类型为 Tensor。
-    -**y** (Tensor) : 输入变量，类型为 Tensor。
-    -**name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
+    - **x** (Tensor) : 输入变量，类型为 Tensor。
+    - **y** (Tensor) : 输入变量，类型为 Tensor。
+    - **name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
 
 **返回**：
     - Tensor，矩阵相乘后的结果。
