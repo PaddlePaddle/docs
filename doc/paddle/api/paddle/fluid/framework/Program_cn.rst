@@ -86,8 +86,7 @@ str，由Program转换得到的字符串
 - 克隆Program用于训练时，将 ``for_test`` 设置为False。
 - 克隆Program用于测试时，将 ``for_test`` 设置为True。虽然在这种情况下，如果在使用了优化器之后调用 ``clone`` 我们依旧会对Program当中反向执行以及优化器相关的内容进行自动裁剪，但是，我们强烈建议在使用优化器之前使用 ``clone`` 例如如果使用的是 :ref:`cn_api_fluid_optimizer_Momentum` 可以这样去使用:
 
-代码示例
-::::::::::
+**代码示例**
 
    ::
 
@@ -109,7 +108,7 @@ str，由Program转换得到的字符串
 Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program前向内容的Program。否则返回一个新的，和当前Program完全相同的Program
 
 
-代码示例：
+代码示例
 ::::::::::
 
 .. note::
@@ -363,7 +362,7 @@ int64，该Program中当前正在使用的random seed
 :::::::::
     - **index** (int) - 需要获取的 :ref:`api_guide_Block`  的index
 
-返回:
+返回
 :::::::::
 :ref:`api_guide_Block`，该Program中index对应的那个 :ref:`api_guide_Block`
 
@@ -385,7 +384,7 @@ int64，该Program中当前正在使用的random seed
 
 获取当前 :ref:`api_guide_Block` 。当前 :ref:`api_guide_Block`  是用来添加OP的。
 
-返回:
+返回
 :::::::::
 :ref:`api_guide_Block`，该Program中用户当前所在的 :ref:`api_guide_Block`
 
@@ -407,7 +406,7 @@ int64，该Program中当前正在使用的random seed
 
 获取当前Program中所有变量。返回值是一个可迭代对象（iterable object)。
 
-返回:
+返回
 :::::::::
 Generator，会yield每个Program中的变量
 
