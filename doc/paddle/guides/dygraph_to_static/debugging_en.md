@@ -86,7 +86,7 @@ There are two ways to print the transformed static graph code:
     ```bash
 
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
@@ -116,7 +116,7 @@ There are two ways to print the transformed static graph code:
     ```bash
     2020-XX-XX 00:00:00,980 Dynamic-to-Static INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
@@ -200,4 +200,4 @@ def func(x):
 2020-XX-XX 00:00:00,152 Dynamic-to-Static INFO: (Level 1) Convert callable object: convert <built-in function len>.
 ```
 
-In addition, if you want to output the logs to ``sys.stdout``, you can set the argument ``also_to_stdout`` to True, otherwise the logs are only output to ``sys.stderr``. For details, please refer to [set_verbosity](../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_en.html)
+In addition, if you want to output the logs to ``sys.stdout``, you can set the argument ``also_to_stdout`` to True, otherwise the logs are only output to ``sys.stderr``. For details, please refer to [set_verbosity](../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_en.html).

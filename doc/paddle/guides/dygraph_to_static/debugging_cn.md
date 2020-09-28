@@ -84,7 +84,7 @@ func(np.ones([3, 2]))
     ```bash
 
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
@@ -116,7 +116,7 @@ func(np.ones([3, 2]))
     ```bash
     2020-XX-XX 00:00:00,980 Dynamic-to-Static INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
