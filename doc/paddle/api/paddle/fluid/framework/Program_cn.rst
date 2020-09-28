@@ -90,13 +90,17 @@ str，由Program转换得到的字符串
 
    ::
 
-        import paddle.fluid as fluid
-        img = fluid.layers.data(name='image', shape=[784])
-        pred = fluid.layers.fc(input=img, size=10, act='relu')
-        loss = fluid.layers.mean(pred)
-        ## 我们推荐在使用 Optimizer前使用clone()接口
-        test_program = fluid.default_main_program().clone(for_test=True)
-        optimizer = fluid.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
+        import paddle
+        import paddle.static as static
+
+        paddle.enable_static()
+
+        img = static.data(name='image', shape=[None, 784])
+        pred = static.nn.fc(input=img, size=10, act='relu')
+        loss = paddle.mean(pred)
+        # Here we use clone before Momentum
+        test_program = static.default_main_program().clone(for_test=True)
+        optimizer = paddle.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
         optimizer.minimize(loss)
 
 参数
@@ -116,18 +120,18 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
 
 .. code-block:: python
 
-        import six
+    import six
 
-        def print_prog(prog):
-            for name, value in sorted(six.iteritems(prog.block(0).vars)):
-                print(value)
-            for op in prog.block(0).ops:
-                print("op type is {}".format(op.type))
-                print("op inputs are {}".format(op.input_arg_names))
-                print("op outputs are {}".format(op.output_arg_names))
-                for key, value in sorted(six.iteritems(op.all_attrs())):
-                    if key not in ['op_callstack', 'op_role_var']:
-                        print(" [ attrs: {}:   {} ]".format(key, value))
+    def print_prog(prog):
+        for name, value in sorted(six.iteritems(prog.block(0).vars)):
+            print(value)
+        for op in prog.block(0).ops:
+            print("op type is {}".format(op.type))
+            print("op inputs are {}".format(op.input_arg_names))
+            print("op outputs are {}".format(op.output_arg_names))
+            for key, value in sorted(six.iteritems(op.all_attrs())):
+                if key not in ['op_callstack', 'op_role_var']:
+                    print(" [ attrs: {}:   {} ]".format(key, value))
 
 1.克隆一个Program，示例代码如下。
 
