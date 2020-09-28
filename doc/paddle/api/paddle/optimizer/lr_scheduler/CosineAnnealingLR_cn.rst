@@ -5,7 +5,7 @@ CosineAnnealingLR
 
 .. py:class:: paddle.optimizer.lr_scheduler.CosineAnnealingLR(learning_rate, T_max, eta_min=0, last_epoch=-1, verbose=False) 
 
-该接口使用 ``cosine annealing`` 方式来动态调整学习率。
+该接口使用 ``cosine annealing`` 的策略来动态调整学习率。
 
 .. math::
         \begin{aligned}
@@ -18,32 +18,27 @@ CosineAnnealingLR
         \end{aligned}
 
 
-:math:`\eta_{max}` 的初始值为 ``learning_rate``, :math:`T_{cur}` 是SGDR（重启训练SGD）训练过程中的当前训练轮数。SGDR的训练方法可以参考文档 `SGDR: Stochastic Gradient Descent with Warm Restarts <https://arxiv.org/abs/1608.03983>`_.
+:math:`\eta_{max}` 的初始值为 ``learning_rate``， :math:`T_{cur}` 是SGDR（重启训练SGD）训练过程中的当前训练轮数。SGDR的训练方法可以参考文档 `SGDR: Stochastic Gradient Descent with Warm Restarts <https://arxiv.org/abs/1608.03983>`_.
 这里只是实现了 ``cosine annealing`` 动态学习率，热启训练部分没有实现。 
 
 
-参数
-:::::::::
-    - **learning_rate** （float）：初始学习率，可以是Python的float。
-    - **T_max** （float|int）：训练的上限轮数，是学习率衰减周期的一半。
-    - **eta_min** （float|int, 可选）：学习率的下限，即公式中的 :math:`\eta_{min}` 。默认值为0。 
-    - **last_epoch** （int，可选）: 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
-    - **verbose** （bool，可选）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+参数：
+    - **learning_rate** (float) - 初始学习率，也就是公式中的 :math:`\eta_{max}` 。 可以是Python的float类型。
+    - **T_max** (float|int) - 训练的上限轮数，是余弦衰减周期的一半。
+    - **eta_min** (float|int, 可选) - 学习率的最小值，即公式中的 :math:`\eta_{min}` 。默认值为0。 
+    - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
+    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
-返回
-:::::::::
-    返回计算CosineAnnealingLR的可调用对象。
+返回：用于调整学习率的 ``CosineAnnealingLR`` 实例对象。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
     import paddle
     import numpy as np
 
-    # train on default imperative mode
-    paddle.disable_static()
+    # train on default dynamic graph mode
     x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     scheduler = paddle.optimizer.lr_scheduler.CosineAnnealingLR(learning_rate=0.5, T_max=10, verbose=True)
@@ -54,11 +49,11 @@ CosineAnnealingLR
             out = linear(x)
             loss = paddle.reduce_mean(out)
             loss.backward()
-            sgd.minimize(loss)
-            linear.clear_gradients()
+            sgd.step()
+            sgd.clear_gradients()
         scheduler.step()
 
-    # train on static mode
+    # train on static graph mode
     paddle.enable_static()
     main_prog = paddle.static.Program()
     start_prog = paddle.static.Program()
@@ -86,7 +81,7 @@ CosineAnnealingLR
 
 .. py:method:: step(epoch=None)
 
-step函数需要在优化器的 `step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
+step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
 
 参数：
   - **epoch** （int，可选）- 指定具体的epoch数。默认值None，此时将会从-1自动累加 ``epoch`` 数。

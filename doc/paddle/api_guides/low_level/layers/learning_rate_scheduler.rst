@@ -17,30 +17,39 @@
 
 ======
 
-* :code:`noam_decay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_noam_decay`
+* :code:`NoamLR`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_NoamLR`
 
-* :code:`exponential_decay`: 指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_exponential_decay`
+* :code:`ExponentialLR`: 指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_ExponentialLR`
 
-* :code:`natural_exp_decay`: 自然指数衰减，即每次将当前学习率乘以给定的衰减率的自然指数得到下一个学习率。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_natural_exp_decay`
+* :code:`NaturalExpLR`: 自然指数衰减，即每次将当前学习率乘以给定的衰减率的自然指数得到下一个学习率。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_NaturalExpLR`
 
-* :code:`inverse_time_decay`: 逆时间衰减，即得到的学习率与当前衰减次数成反比。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_inverse_time_decay`
+* :code:`InverseTimeLR`: 逆时间衰减，即得到的学习率与当前衰减次数成反比。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_InverseTimeLR`
 
-* :code:`polynomial_decay`: 多项式衰减，即得到的学习率为初始学习率和给定最终学习之间由多项式计算权重定比分点的插值。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_polynomial_decay`
+* :code:`PolynomialLR`: 多项式衰减，即得到的学习率为初始学习率和给定最终学习之间由多项式计算权重定比分点的插值。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_PolynomialLR`
 
-* :code:`piecewise_decay`: 分段衰减，即由给定step数分段呈阶梯状衰减，每段内学习率相同。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_piecewise_decay`
+* :code:`PiecewiseLR`: 分段衰减，即由给定step数分段呈阶梯状衰减，每段内学习率相同。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_PiecewiseLR`
 
-* :code:`append_LARS`: 通过Layer-wise Adaptive Rate Scaling算法获得学习率，相关算法请参考 `《Train Feedfoward Neural Network with Layer-wise Adaptive Rate via Approximating Back-matching Propagation》 <https://arxiv.org/abs/1802.09750>`_ 。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_append_LARS`
+* :code:`CosineAnnealingLR`: 余弦式衰减，即学习率随step数变化呈余弦函数周期变化。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingLR`
 
-* :code:`cosine_decay`: 余弦衰减，即学习率随step数变化呈余弦函数。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_cosine_decay`
+* :code:`LinearLrWarmup`: 学习率随step数线性增加到指定学习率。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_LinearLrWarmup`
 
-* :code:`linear_lr_warmup`: 学习率随step数线性增加到指定学习率。
-  相关API Reference请参考 :ref:`cn_api_fluid_layers_linear_lr_warmup`
+* :code:`StepLR`: 学习率每隔一定的step数进行衰减，需要指定step_size。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_StepLR`
+
+* :code:`MultiStepLR`: 学习率在指定的step数时进行衰减，需要指定衰减的节点位置。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_MultiStepLR`
+
+* :code:`LambdaLR`: 学习率根据自定义的lambda函数进行衰减。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_LambdaLR`
+
+* :code:`ReduceLROnPlateau`: 学习率根据当前监控指标（一般为loss）来进行自适应调整，当loss趋于稳定时衰减学习率。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_ReduceLROnPlateau`
 

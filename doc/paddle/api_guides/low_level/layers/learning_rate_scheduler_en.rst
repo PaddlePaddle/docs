@@ -17,20 +17,27 @@ The following content describes the APIs related to the learning rate scheduler:
 
 ======
 
-* :code:`noam_decay`: Noam decay. Please refer to `Attention Is All You Need <https://arxiv.org/pdf/1706.03762.pdf>`_ for related algorithms. For related API Reference please refer to :ref:`api_fluid_layers_noam_decay`
+* :code:`NoamLR`: Noam decay. Please refer to `Attention Is All You Need <https://arxiv.org/pdf/1706.03762.pdf>`_ for related algorithms. For related API Reference please refer to :ref:`api_paddle_optimizer_NoamLR`
 
-* :code:`exponential_decay`: Exponential decay. That is, each time the current learning rate is multiplied by the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_fluid_layers_exponential_decay`
+* :code:`ExponentialLR`: Exponential decay. That is, each time the current learning rate is multiplied by the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_ExponentialLR`
 
-* :code:`natural_exp_decay`: Natural exponential decay. That is, each time the current learning rate is multiplied by the natural exponent of the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_fluid_layers_natural_exp_decay`
+* :code:`NaturalExpLR`: Natural exponential decay. That is, each time the current learning rate is multiplied by the natural exponent of the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_NaturalExpLR`
 
-* :code:`inverse_time_decay`: Inverse time decay. The decayed learning rate is inversely proportional to the current number of decays. For related API Reference please refer to :ref:`api_fluid_layers_inverse_time_decay`
+* :code:`InverseTimeLR`: Inverse time decay. The decayed learning rate is inversely proportional to the current number of decays. For related API Reference please refer to :ref:`api_paddle_optimizer_InverseTimeLR`
 
-* :code:`polynomial_decay`: Polynomial decay, i.e. the decayed learning rate is calculated in a polynomial format with the initial learning rate and the end learning rate. For related API Reference please refer to :ref:`api_fluid_layers_polynomial_decay`
+* :code:`PolynomialLR`: Polynomial decay, i.e. the decayed learning rate is calculated in a polynomial format with the initial learning rate and the end learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_PolynomialLR`
 
-* :code:`piecewise_decay`: Piecewise decay. That is, the stair-like decay for a given number of steps, the learning rate stays the same within each step. For related API Reference please refer to :ref:`api_fluid_layers_piecewise_decay`
+* :code:`PiecewiseLR`: Piecewise decay. That is, the stair-like decay for a given number of steps, the learning rate stays the same within each step. For related API Reference please refer to :ref:`api_paddle_optimizer_PiecewiseLR`
 
-* :code:`append_LARS`: The learning rate is obtained by the Layer-wise Adaptive Rate Scaling algorithm. For related algorithms, please refer to `Train Feed forward Neural Network with Layerwise Adaptive Rate via Approximating Back-matching Propagation <https://arxiv. Org/abs/1802.09750>`_ . For related API Reference please refer to :ref:`api_fluid_layers_append_LARS`
+* :code:`CosineAnnealingLR`: Cosine attenuation. It means the learning rate changes with the number of steps in the form of a cosine function. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_CosineAnnealingLR`
 
-* :code:`cosine_decay`: Cosine attenuation. It means the learning rate changes with the number of steps in the form of a cosine function. For related API Reference please refer to :ref:`api_fluid_layers_cosine_decay`
+* :code:`LinearLrWarmup`: The learning rate increases linearly to an appointed rate with the number of steps. For related API Reference please refer to :ref:`api_paddle_optimizer_LinearLrWarmup`
 
-* :code:`linear_lr_warmup`: The learning rate increases linearly to an appointed rate with the number of steps. For related API Reference please refer to :ref:`api_fluid_layers_linear_lr_warmup`
+* :code:`StepLR`: Decay the learning rate every certain number of steps, and ``step_size`` needs to be specified. For related API Reference please refer to :ref:`api_paddle_optimizer_StepLR`
+
+* :code:`MultiStepLR`: Decay the learning rate at specified step, and ``milestones`` needs to be specified. For related API Reference please refer to :ref:`api_paddle_optimizer_MultiStepLR`
+
+* :code:`LambdaLR`: Decay the learning rate by lambda function. For related API Reference please refer to :ref:`api_paddle_optimizer_LambdaLR`
+
+* :code:`ReduceLROnPlateau`: Adjuge the learning rate according to monitoring index(In general, it's loss), and decay the learning rate when monitoring index becomes stable. For related API Reference please refer to :ref:`api_paddle_optimizer_ReduceLROnPlateau`
+

@@ -3,42 +3,40 @@
 PiecewiseLR
 -------------------------------
 
-
 .. py:class:: paddle.optimizer.lr_scheduler.PiecewiseLR(boundaries, values, last_epoch=-1, verbose=False)
 
 
-该接口提供对初始学习率进行分段(piecewise)常数衰减的功能。
+该接口提供分段设置学习率的策略。
 
-分段常数衰减的过程举例描述如下。
+过程可以描述如下：
 
 .. code-block:: text
 
-    例如，设定的boundaries列表为[100, 200]，候选学习率常量列表values为[1.0, 0.5, 0.1]，则：
-    1、在当前训练步数epoch小于100步，学习率值为1.0。
-    2、在当前训练步数epoch大于或等于100步，并且小于200步时，学习率值为0.5。
-    3、在当前训练步数epoch大于或等于200步时，学习率值为0.1。
+    boundaries = [100, 200]
+    values = [1.0, 0.5, 0.1]
+
+    learning_rate = 1.0     if epoch < 100
+    learning_rate = 0.5    if 100 <= epoch < 200
+    learning_rate = 0.1   if 200 <= epoch
+    ...
 
 
-参数
-:::::::::
-    - **boundaries** （list）：指定衰减的步数边界。列表的数据元素为Python int类型。
-    - **values** （list） ：备选学习率列表。数据元素类型为Python float的列表。与边界值列表有对应的关系。
-    - **last_epoch** （int，可选）：上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率 。
-    - **verbose** （bool，可选）：如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+参数：
+    - **boundaries** (list) - 指定衰减的步数边界。列表的数据元素为Python int类型。
+    - **values** (list) - 备选学习率列表。数据元素类型为Python float的列表。与边界值列表有对应的关系。
+    - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率 。
+    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
-返回
-:::::::::
-返回计算PiecewiseLR的可调用对象。
+返回：用于调整学习率的 ``PiecewiseLR`` 实例对象。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
     import paddle
     import numpy as np
 
-    # train on default dygraph mode
+    # train on default dynamic graph mode
     paddle.disable_static()
     x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
@@ -50,11 +48,11 @@ PiecewiseLR
             out = linear(x)
             loss = paddle.reduce_mean(out)
             loss.backward()
-            sgd.minimize(loss)
-            linear.clear_gradients()
+            sgd.step()
+            sgd.clear_gradients()
         scheduler.step()
 
-    # train on static mode
+    # train on static graph mode
     paddle.enable_static()
     main_prog = paddle.static.Program()
     start_prog = paddle.static.Program()
@@ -82,10 +80,10 @@ PiecewiseLR
 
 .. py:method:: step(epoch=None)
 
-step函数需要在优化器的 `step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
+step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
 
 参数：
-  - **epoch** （int，可选）- 指定具体的epoch数。默认值None，此时将会从-1自动累加 ``epoch`` 数。
+  - **epoch** (int，可选) - 指定具体的epoch数。默认值None，此时将会从-1自动累加 ``epoch`` 数。
 
 返回：
   无。
