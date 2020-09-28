@@ -1,5 +1,3 @@
-
-
 # Tensor概念介绍
 
 飞桨（PaddlePaddle，以下简称Paddle）和其他深度学习框架一样，使用**Tensor**来表示数据，在神经网络中传递的数据均为**Tensor**。
@@ -8,15 +6,7 @@
 
 同一**Tensor**的中所有元素的dtype均相同。如果你对 [Numpy](https://www.paddlepaddle.org.cn/tutorials/projectdetail/590690) 熟悉，**Tensor**是类似于 **Numpy array** 的概念。
 
-### 目录
-
-* [Tensor的创建](#1)
-* [Tensor的shape](#2)
-* [Tensor其他属性](#3)
-* [Tensor的操作](#4)
-
-
-## <h2 id="1">Tensor的创建</h2>
+## Tensor的创建
 
 首先，让我们开始创建一个 **Tensor** :
 
@@ -154,8 +144,7 @@ paddle.arrange(start, end, step) # 创建从start到end，步长为step的Tenso
 paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为num的Tensor
 ```
 
-
-## <h2 id="2">Tensor的shape</h2>
+## Tensor的shape
 
 ### 基本概念
 查看一个**Tensor**的形状可以通过 **Tensor.shape**，shape是 **Tensor** 的一个重要属性，以下为相关概念：
@@ -234,7 +223,7 @@ print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy()
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
 
-## <h2 id="3">Tensor其他属性</h2>
+## Tensor其他属性
 ### Tensor的dtype
 
 **Tensor**的数据类型，可以通过 Tensor.dtype 来查看，dtype支持：'bool'，'float16'，'float32'，'float64'，'uint8'，'int8'，'int16'，'int32'，'int64'。
@@ -300,11 +289,12 @@ Tensor: generated_tensor_0
 pin_memory_tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
 print(pin_memory_tensor)
 ```
+
 ```text
 Tensor: generated_tensor_0
   - place: CUDAPinnedPlace
-
 ```
+
 ### Tensor的name
 
 Tensor的name是其唯一的标识符，为python 字符串类型，查看一个Tensor的name可以通过Tensor.name属性。默认地，在每个Tensor创建时，Paddle会自定义一个独一无二的name。
@@ -316,7 +306,7 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 
-## <h2 id="4">Tensor的操作</h2>
+## Tensor的操作
 
 Paddle提供了丰富的Tensor操作的API，包括数学运算符、逻辑运算符、线性代数相关等100+余种API，这些API调用有两种方法：
 ```python

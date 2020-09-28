@@ -7,15 +7,7 @@ representing data.
 
 The dtypes of all elements in the same Tensor are the same. If you are familiar with [Numpy](https://www.paddlepaddle.org.cn/tutorials/projectdetail/590690), **Tensor** is similar to the **Numpy array**.
 
-### Contents
-
-* [Creation of Tensor](#1)
-* [Shape of Tensor](#2)
-* [Other attributes of Tensor](#3)
-* [Method of Tensor](#4)
-
-
-## <h2 id="1">Creation of Tensor</h2>
+## Creation of Tensor
 
 Firstly, let we create a **Tensor**:
 
@@ -154,7 +146,7 @@ paddle.linspace(start, end, 10) # Elements: from start to end, num of elementwi
 ```
 
 
-## <h2 id="2">Shape of Tensor</h2>
+## Shape of Tensor
 
 ### Basic Concept
 
@@ -234,7 +226,7 @@ Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 1
 ```
 
 
-## <h2 id="3">Other attributes of Tensor</h2>
+## Other attributes of Tensor
 
 ### dtype of Tensor
 
@@ -320,7 +312,7 @@ Tensor name: generated_tensor_0
 ```
 
 
-## <h2 id="4">Method of Tensor</h2>
+## Method of Tensor
 
 
 Paddles provide rich Tensor operating API , including mathematical operators, logical operators, linear algebra operators and so on. The total number is more than 100+ kinds. For example:
