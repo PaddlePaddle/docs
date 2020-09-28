@@ -16,8 +16,6 @@
 * [Tensor的操作](#4)
 
 
-----------
-
 ## <h2 id="1">Tensor的创建</h2>
 
 首先，让我们开始创建一个 **Tensor** :
@@ -156,7 +154,7 @@ paddle.arrange(start, end, step) # 创建从start到end，步长为step的Tenso
 paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为num的Tensor
 ```
 
-----------
+
 ## <h2 id="2">Tensor的shape</h2>
 
 ### 基本概念
@@ -236,7 +234,6 @@ print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy()
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
 
-----------
 ## <h2 id="3">Tensor其他属性</h2>
 ### Tensor的dtype
 
@@ -319,7 +316,6 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 
-----------
 ## <h2 id="4">Tensor的操作</h2>
 
 Paddle提供了丰富的Tensor操作的API，包括数学运算符、逻辑运算符、线性代数相关等100+余种API，这些API调用有两种方法：

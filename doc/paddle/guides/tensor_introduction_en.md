@@ -14,7 +14,7 @@ The dtypes of all elements in the same Tensor are the same. If you are familiar 
 * [Other attributes of Tensor](#3)
 * [Method of Tensor](#4)
 
-----------
+
 ## <h2 id="1">Creation of Tensor</h2>
 
 Firstly, let we create a **Tensor**:
@@ -153,7 +153,7 @@ paddle.arrange(start, end, 2) # Elements: from start to end, step size is 2
 paddle.linspace(start, end, 10) # Elements: from start to end, num of elementwise is 10
 ```
 
-----------
+
 ## <h2 id="2">Shape of Tensor</h2>
 
 ### Basic Concept
@@ -233,7 +233,7 @@ print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy()
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
 
-----------
+
 ## <h2 id="3">Other attributes of Tensor</h2>
 
 ### dtype of Tensor
@@ -319,7 +319,7 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 
-----------
+
 ## <h2 id="4">Method of Tensor</h2>
 
 
