@@ -37,21 +37,4 @@ is_empty
     #    - data: [0])
 
 
-.. code-block:: python
-
-    # static mode
-    import numpy as np
-    import paddle
-
-    paddle.enable_static()
-    input = paddle.static.data(name="input", shape=[4, 32, 32], dtype="float32")
-    res = paddle.is_empty(x=input)
-
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    data = np.ones((4, 32, 32)).astype(np.float32)
-    out = exe.run(feed={'input':data}, fetch_list=[res])
-    print("is_empty: ", out)
-    # ('out:', [array([False])])
-
-
 
