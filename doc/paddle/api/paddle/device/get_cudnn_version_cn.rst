@@ -15,5 +15,5 @@ get_cudnn_version
 .. code-block:: python
         
     import paddle
-    paddle.disable_static()
+    
     device = paddle.get_cudnn_version()

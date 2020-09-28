@@ -17,7 +17,7 @@ Paddle支持包括CPU和GPU在内的多种设备运行，设备可以通过字�
 .. code-block:: python
     
     import paddle
-    paddle.disable_static()
+    
     paddle.set_device("cpu")
     x1 = paddle.ones(name='x1', shape=[1, 2], dtype='int32')
     x2 = paddle.zeros(name='x2', shape=[1, 2], dtype='int32')
