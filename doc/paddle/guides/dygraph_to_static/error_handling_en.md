@@ -163,5 +163,3 @@ In the above exception, in addition to hiding part of the error stack and locati
 > **NOTE:**
 >
 > If you want to view the hidden part of the error stack, you can set the environment variable ``TRANSLATOR_SIMPLIFY_NEW_ERROR=0``. The default value of this environment variable is 1, which means to hide redundant error stack.
-
-.
