@@ -344,7 +344,7 @@ It can be seen that Tensor class method has the same result with paddle API. And
 
 ### Index and slice
 
-You can easily access or modify Tensors by indexing or slicing. Paddle follows standard Python indexing rules, similar to [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. It has following characteristics:
+You can easily access or modify Tensors by indexing or slicing. Paddle follows standard Python indexing rules, similar to [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. It has the following features:
 
 1. Indexing a Tensor based on the subscript 0-n. A negative subscript means counting backwards from the end.
 2. Slicing a Tensor base on separating parameters `start:stop:step` by colons `:`, and `start`, `stop` and `step` can be default.
@@ -418,7 +418,7 @@ These three are exactly the same.
 >
 > Please be careful to modify a Tensor through index or slice. It will **inplace** modify the value of Tensor, and the original value will not be saved. If the modified Tensor participates in the gradient calculation, only the modified value will be used, which may introduce risks to the gradient calculation. Paddle will detect and report errors in risky operations later.
 
-Similar to accessing a Tensor, modifying a Tensor by indexing or slicing can be on a single or multiple axes. In addition, it supports assigning multiple types of data to A Tensor. The supported data types are `int`, `float`,  `numpy.ndarray` and `Tensor`.
+Similar to accessing a Tensor, modifying a Tensor by indexing or slicing can be on a single or multiple axes. In addition, it supports assigning multiple types of data to a Tensor. The supported data types are `int`, `float`,  `numpy.ndarray` and `Tensor`.
 
 ```python
 import paddle
