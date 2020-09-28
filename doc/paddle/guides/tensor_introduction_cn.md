@@ -335,7 +335,7 @@ Tensor: eager_tmp_3
 可以看出，使用 **Tensor类成员函数** 和 **paddle API** 具有相同的效果，由于 **类成员函数** 操作更为方便，以下均从 **Tensor类成员函数** 的角度，对常用**Tensor**操作进行介绍。
 
 ### 索引和切片
-您可以通过索引或切片方便地访问或修改 Tensor。Paddle 使用标准的 Python 索引规则与 Numpy 索引规则，与[ndexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings)类似。具有以下特点：
+您可以通过索引或切片方便地访问或修改 Tensor。Paddle 使用标准的 Python 索引规则与 Numpy 索引规则，与 [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings)类似。具有以下特点：
 
 1. 基于 0-n 的下标进行索引，如果下标为负数，则从尾部开始计算
 2. 通过冒号 ``:`` 分隔切片参数 ``start:stop:step`` 来进行切片操作，其中 start、stop、step 均可缺省

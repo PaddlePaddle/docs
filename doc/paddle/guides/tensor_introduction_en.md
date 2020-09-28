@@ -344,7 +344,7 @@ It can be seen that Tensor class method has the same result with paddle API. And
 
 ### Index and slice
 
-You can easily access or modify Tensors by indexing or slicing. Paddle follows standard Python indexing rules, similar to[ndexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. It has following characteristics:
+You can easily access or modify Tensors by indexing or slicing. Paddle follows standard Python indexing rules, similar to [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. It has following characteristics:
 
 1. Indexing a Tensor based on the subscript 0-n. A negative subscript means counting backwards from the end.
 2. Slicing a Tensor base on separating parameters `start:stop:step` by colons `:`, and `start`, `stop` and `step` can be default.
