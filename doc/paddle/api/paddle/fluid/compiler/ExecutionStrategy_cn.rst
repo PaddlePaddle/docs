@@ -3,7 +3,7 @@
 ExecutionStrategy
 -------------------------------
 
-.. py:class:: paddle.fluid.ExecutionStrategy
+.. py:class:: paddle.static.ExecutionStrategy
 
 
 通过设置 ``ExecutionStrategy`` 中的选项，用户可以对执行器的执行配置进行调整，比如设置执行器中线程池的大小等。

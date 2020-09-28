@@ -3,7 +3,7 @@
 BuildStrategy
 -------------------------------
 
-.. py:class:: paddle.fluid.BuildStrategy
+.. py:class:: paddle.static.BuildStrategy
 
 ``BuildStrategy`` 使用户更方便地控制 :ref:`cn_api_fluid_ParallelExecutor` 中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
@@ -131,7 +131,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
 .. py:attribute:: gradient_scale_strategy
 
-``fluid.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
+``static.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
 代码示例
 :::::::::
@@ -190,7 +190,7 @@ bool类型或None。设为True时可用于减少总内存消耗，False表示不
 
 .. py:attribute:: reduce_strategy
 
-``fluid.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种参数梯度聚合策略，即 ``AllReduce`` 和 ``Reduce`` 。如果用户需要在所有执行设备上独立地进行参数更新，可以使用 ``AllReduce`` 。如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
+``static.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种参数梯度聚合策略，即 ``AllReduce`` 和 ``Reduce`` 。如果用户需要在所有执行设备上独立地进行参数更新，可以使用 ``AllReduce`` 。如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
 默认值为 ``AllReduce`` 。
 
 代码示例
@@ -204,7 +204,7 @@ bool类型或None。设为True时可用于减少总内存消耗，False表示不
     paddle.enable_static()
 
     build_strategy = static.BuildStrategy()
-    build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
+    build_strategy.reduce_strategy = static.BuildStrategy.ReduceStrategy.Reduce
 
 .. py:attribute:: remove_unnecessary_lock
 
