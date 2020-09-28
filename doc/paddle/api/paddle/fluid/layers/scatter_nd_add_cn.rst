@@ -55,6 +55,7 @@ scatter_nd_add
 **代码示例**：
 
 .. code-block:: python
+
     import paddle
     import numpy as np
     x = paddle.rand(shape=[3, 5, 9, 10], dtype='float32')
