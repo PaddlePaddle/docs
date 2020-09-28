@@ -49,7 +49,7 @@ GradientClipByValue
     # 仅裁剪参数linear_0.w_0时：
     # pass a function(fileter_func) to need_clip, and fileter_func receive a ParamBase, and return bool
     # def fileter_func(ParamBase):
-    # # 可以通过ParamBase.name判断（name可以在fluid.ParamAttr中设置，默认为linear_0.w_0、linear_0.b_0）
+    # # 可以通过ParamBase.name判断（name可以在paddle.ParamAttr中设置，默认为linear_0.w_0、linear_0.b_0）
     #   return ParamBase.name == "linear_0.w_0"
     # # 注：linear.weight、linear.bias能分别返回dygraph.Linear层的权重与偏差，可以此来判断
     #   return ParamBase.name == linear.weight.name
@@ -83,7 +83,7 @@ GradientClipByValue
         # 仅裁剪参数fc_0.w_0时：
         # 为need_clip参数传入一个函数fileter_func，fileter_func接收参数的类型为Parameter，返回类型为bool
         # def fileter_func(Parameter):
-        # # 可以较为方便的通过Parameter.name判断（name可以在fluid.ParamAttr中设置，默认为fc_0.w_0、fc_0.b_0）
+        # # 可以较为方便的通过Parameter.name判断（name可以在paddle.ParamAttr中设置，默认为fc_0.w_0、fc_0.b_0）
         #   return Parameter.name=="fc_0.w_0"
         # clip = paddle.nn.GradientClipByValue(min=-1, max=1, need_clip=fileter_func)
 
