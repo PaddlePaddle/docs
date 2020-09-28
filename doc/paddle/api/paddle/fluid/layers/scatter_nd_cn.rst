@@ -3,7 +3,7 @@
 scatter_nd
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.scatter_nd(index, updates, shape, name=None)
+.. py:function:: paddle.scatter_nd(index, updates, shape, name=None)
 
 
 
