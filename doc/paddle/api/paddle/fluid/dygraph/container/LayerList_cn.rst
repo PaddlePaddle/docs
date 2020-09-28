@@ -19,18 +19,17 @@ LayerList用于保存子层列表，它包含的子层将被正确地注册和�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
 
-    class MyLayer(fluid.Layer):
+    class MyLayer(paddle.nn.Layer):
         def __init__(self):
             super(MyLayer, self).__init__()
-            self.linears = fluid.dygraph.LayerList(
-                [fluid.dygraph.Linear(10, 10) for i in range(10)])
+            self.linears = paddle.nn.LayerList(
+                [paddle.nn.Linear(10, 10) for i in range(10)])
+                
         def forward(self, x):
-            # LayerList可以像iterable一样迭代，也可以使用int索引
+            # LayerList can act as an iterable, or be indexed using ints
             for i, l in enumerate(self.linears):
                 x = self.linears[i // 2](x) + l(x)
             return x
-
-
