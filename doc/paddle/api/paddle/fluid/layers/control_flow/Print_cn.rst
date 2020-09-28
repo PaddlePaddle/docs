@@ -4,7 +4,7 @@ Print
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.Print(input, first_n=-1, message=None, summarize=20, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
+.. py:function:: paddle.static.Print(input, first_n=-1, message=None, summarize=20, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
 
 
 
@@ -37,35 +37,20 @@ Print
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
     import paddle
-    import numpy as np
 
-    x = fluid.layers.data(name='x', shape=[1], dtype='float32', lod_level=1)
-    x = fluid.layers.Print(x, message="The content of input layer:") 
-    
-    y = fluid.layers.data(name='y', shape=[1], dtype='float32', lod_level=2)
-    out = fluid.layers.sequence_expand(x=x, y=y, ref_level=0)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    x_d = fluid.create_lod_tensor(np.array([[1.1], [2.2],[3.3],[4.4]]).astype('float32'), [[1,3]], place)
-    y_d = fluid.create_lod_tensor(np.array([[1.1],[1.1],[1.1],[1.1],[1.1],[1.1]]).astype('float32'), [[1,3], [1,2,1,2]], place)
-    results = exe.run(fluid.default_main_program(),
-                      feed={'x':x_d, 'y': y_d },
-                      fetch_list=[out],return_numpy=False)
-**运行输出**:
+    x = paddle.full(shape=[2, 3], fill_value=3, dtype='int64')
+    out = paddle.static.Print(x, message="The content of input layer:")
 
-.. code-block:: bash 
-   
-   The content of input layer:    The place is:CPUPlace
-   Tensor[x]
-    shape: [4,1,]
-    dtype: f
-    LoD: [[ 0,1,4, ]]
-    data: 1.1,2.2,3.3,4.4,
-
-
-
-
+    main_program = paddle.static.default_main_program()
+    exe = paddle.static.Executor(place=paddle.CPUPlace())
+    res = exe.run(main_program, fetch_list=[out])
+    # Variable: fill_constant_1.tmp_0
+    #   - message: The content of input layer:
+    #   - lod: {}
+    #   - place: CPUPlace
+    #   - shape: [2, 3]
+    #   - layout: NCHW
+    #   - dtype: long
+    #   - data: [3 3 3 3 3 3]
 
