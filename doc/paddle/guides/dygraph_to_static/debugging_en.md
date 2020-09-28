@@ -10,7 +10,6 @@ This section will introduce several debugging methods recommended by Dynamic Gra
 ```python
 import paddle
 import numpy as np
-paddle.disable_static()
 
 # Disable Dynamic-to-Static
 paddle.jit.ProgramTranslator().enable(False)
@@ -87,7 +86,7 @@ There are two ways to print the transformed static graph code:
     ```bash
 
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
@@ -95,11 +94,10 @@ There are two ways to print the transformed static graph code:
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
-2. Call `set_code_level(level)` or set environment variable `TRANSLATOR_CODE_LEVEL=level`
+2. Call [`set_code_level(level=100, also_to_stdout=False)`](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_en.html) or set environment variable `TRANSLATOR_CODE_LEVEL=level`
 
     You can view the transformed code in the log by calling `set_code_level` or set environment variable `TRANSLATOR_CODE_LEVEL`.
 
@@ -116,9 +114,9 @@ There are two ways to print the transformed static graph code:
     ```
 
     ```bash
-    2020-XX-XX 00:00:00,980-INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
+    2020-XX-XX 00:00:00,980 Dynamic-to-Static INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
@@ -126,11 +124,11 @@ There are two ways to print the transformed static graph code:
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
-    `set_code_level` can set different levels to view the code transformed by different ast transformers. For details, please refer to [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_en.html)。
+    In addition, if you want to output the transformed code to ``sys.stdout``, you can set the argument ``also_to_stdout`` to True, otherwise the transformed code is only output to ``sys.stderr``.
+    `set_code_level` can set different levels to view the code transformed by different ast transformers. For details, please refer to [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_en.html).
 
 ## `print`
 You can call `print` to view variables. `print` will be transformed when using Dynamic-to-Static. When only Paddle Tensor is printed, `print` will be transformed and call Paddle operator [Print](../../api/layers/Print.html) in runtime. Otherwise, call python `print`.
@@ -168,7 +166,7 @@ Here call print function.
 ## Log Printing
 ProgramTranslator can log additional debugging information to help you know whether the function was successfully transformed or not.
 
-You can call [`paddle.jit.set_verbosity(level)`](../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_en.html) or set environment variable `TRANSLATOR_VERBOSITY=level` to enable logging and view logs of different levels. The argument `level` varies from 0 to 3:
+You can call [`paddle.jit.set_verbosity(level=0, also_to_stdout=False)`](../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_en.html) or set environment variable `TRANSLATOR_VERBOSITY=level` to enable logging and view logs of different levels. The argument `level` varies from 0 to 3:
 - 0: no logging
 - 1: includes the information in Dynamic-to-Static tranformation process, such as the source code not transformed, the callable object to transform and so on
 - 2: includes above and more detailed function transformation logs
@@ -189,7 +187,7 @@ os.environ["TRANSLATOR_VERBOSITY"] = '3'
 ```
 
 ```bash
-2020-XX-XX 00:00:00,123-Level 1:    Source code:
+2020-XX-XX 00:00:00,123 Dynamic-to-Static INFO: (Level 1) Source code:
 @paddle.jit.to_static
 def func(x):
     x = paddle.to_tensor(x)
@@ -199,4 +197,7 @@ def func(x):
         x = paddle.ones(shape=[1])
     return x
 
-2020-XX-XX 00:00:00,152-Level 1: Convert callable object: convert <built-in function len>.
+2020-XX-XX 00:00:00,152 Dynamic-to-Static INFO: (Level 1) Convert callable object: convert <built-in function len>.
+```
+
+In addition, if you want to output the logs to ``sys.stdout``, you can set the argument ``also_to_stdout`` to True, otherwise the logs are only output to ``sys.stderr``. For details, please refer to [set_verbosity](../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_en.html).
