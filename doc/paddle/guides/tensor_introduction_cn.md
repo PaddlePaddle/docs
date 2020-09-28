@@ -190,72 +190,6 @@ Elements number along axis 0 of tensor: 2
 Elements number along the last axis of tensor: 5
 ```
 
-### 索引
-通过索引能方便地对Tensor进行“切片”操作。Paddle使用标准的 Python索引规则 与 Numpy索引规则，与[ndexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings)类似。具有以下特点：
-
-1. 如果索引为负数，则从尾部开始计算
-2. 如果索引使用 ``:`` ，则其对应格式为start: stop: step，其中start、stop、step均可缺省
-
-* 针对1-D **Tensor**，则仅有单个轴上的索引：
-```python
-rank_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", rank_1_tensor.numpy())
-
-print("First element:", rank_1_tensor[0].numpy())
-print("Last element:", rank_1_tensor[-1].numpy())
-print("All element:", rank_1_tensor[:].numpy())
-print("Before 3:", rank_1_tensor[:3].numpy())
-print("From 6 to the end:", rank_1_tensor[6:].numpy())
-print("From 3 to 6:", rank_1_tensor[3:6].numpy())
-print("Interval of 3:", rank_1_tensor[::3].numpy())
-print("Reverse:", rank_1_tensor[::-1].numpy())
-```
-```text
-Origin Tensor: array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype=int64)
-First element: [0]
-Last element: [8]
-All element: [0 1 2 3 4 5 6 7 8]
-Before 3: [0 1 2]
-From 6 to the end: [6 7 8]
-From 3 to 6: [3 4 5]
-Interval of 3: [0 3 6]
-Reverse: [8 7 6 5 4 3 2 1 0]
-```
-
-* 针对2-D及以上的 **Tensor**，则会有多个轴上的索引：
-```python
-rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
-                                  [4, 5, 6, 7],
-                                  [8, 9, 10, 11]])
-print("Origin Tensor:", rank_2_tensor.numpy())
-print("First row:", rank_2_tensor[0].numpy())
-print("First row:", rank_2_tensor[0, :].numpy())
-print("First column:", rank_2_tensor[:, 0].numpy())
-print("Last column:", rank_2_tensor[:, -1].numpy())
-print("All element:", rank_2_tensor[:].numpy())
-print("First row and second column:", rank_2_tensor[0, 1].numpy())
-```
-```text
-Origin Tensor: array([[ 0  1  2  3]
-                      [ 4  5  6  7]
-                      [ 8  9 10 11]], dtype=int64)
-First row: [0 1 2 3]
-First row: [0 1 2 3]
-First column: [0 4 8]
-Last column: [ 3  7 11]
-All element: [[ 0  1  2  3]
-              [ 4  5  6  7]
-              [ 8  9 10 11]]
-First row and second column: [1]
-```
-
-输入索引的第一个值对应axis 0，第二个值对应axis 1，以此类推，如果某个axis上未指定索引，则默认为 ``:`` 。例如：
-```
-rank_3_tensor[1]
-rank_3_tensor[1, :]
-rank_3_tensor[1, :, :]
-```
-以上三种索引的结果是完全相同的。
 
 ### 对shape进行操作
 
@@ -414,7 +348,97 @@ Tensor: eager_tmp_3
 
 可以看出，使用 **Tensor类成员函数** 和 **paddle API** 具有相同的效果，由于 **类成员函数** 操作更为方便，以下均从 **Tensor类成员函数** 的角度，对常用**Tensor**操作进行介绍。
 
-#### 数学运算符
+### 索引和切片
+您可以通过索引或切片方便地访问或修改 Tensor。Paddle 使用标准的 Python 索引规则与 Numpy 索引规则，与[ndexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings)类似。具有以下特点：
+
+1. 基于 0-n 的下标进行索引，如果下标为负数，则从尾部开始计算
+2. 通过冒号 ``:`` 分隔切片参数 ``start:stop:step`` 来进行切片操作，其中 start、stop、step 均可缺省
+
+#### 访问 Tensor
+* 针对1-D **Tensor**，则仅有单个轴上的索引或切片：
+```python
+rank_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
+print("Origin Tensor:", rank_1_tensor.numpy())
+
+print("First element:", rank_1_tensor[0].numpy())
+print("Last element:", rank_1_tensor[-1].numpy())
+print("All element:", rank_1_tensor[:].numpy())
+print("Before 3:", rank_1_tensor[:3].numpy())
+print("From 6 to the end:", rank_1_tensor[6:].numpy())
+print("From 3 to 6:", rank_1_tensor[3:6].numpy())
+print("Interval of 3:", rank_1_tensor[::3].numpy())
+print("Reverse:", rank_1_tensor[::-1].numpy())
+```
+```text
+Origin Tensor: array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype=int64)
+First element: [0]
+Last element: [8]
+All element: [0 1 2 3 4 5 6 7 8]
+Before 3: [0 1 2]
+From 6 to the end: [6 7 8]
+From 3 to 6: [3 4 5]
+Interval of 3: [0 3 6]
+Reverse: [8 7 6 5 4 3 2 1 0]
+```
+
+* 针对2-D及以上的 **Tensor**，则会有多个轴上的索引或切片：
+```python
+rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
+                                  [4, 5, 6, 7],
+                                  [8, 9, 10, 11]])
+print("Origin Tensor:", rank_2_tensor.numpy())
+print("First row:", rank_2_tensor[0].numpy())
+print("First row:", rank_2_tensor[0, :].numpy())
+print("First column:", rank_2_tensor[:, 0].numpy())
+print("Last column:", rank_2_tensor[:, -1].numpy())
+print("All element:", rank_2_tensor[:].numpy())
+print("First row and second column:", rank_2_tensor[0, 1].numpy())
+```
+```text
+Origin Tensor: array([[ 0  1  2  3]
+                      [ 4  5  6  7]
+                      [ 8  9 10 11]], dtype=int64)
+First row: [0 1 2 3]
+First row: [0 1 2 3]
+First column: [0 4 8]
+Last column: [ 3  7 11]
+All element: [[ 0  1  2  3]
+              [ 4  5  6  7]
+              [ 8  9 10 11]]
+First row and second column: [1]
+```
+
+索引或切片的第一个值对应 axis 0，第二个值对应 axis 1，以此类推，如果某个 axis 上未指定索引，则默认为 ``:`` 。例如：
+```
+rank_3_tensor[1]
+rank_3_tensor[1, :]
+rank_3_tensor[1, :, :]
+```
+以上三种操作的结果是完全相同的。
+
+#### 修改 Tensor
+
+> **注意：**
+>
+> 请慎重通过索引或切片修改 Tensor，该操作会**原地**修改该 Tensor 的数值，且原值不会被保存。如果被修改的 Tensor 参与梯度计算，将仅会使用修改后的数值，这可能会给梯度计算引入风险。Paddle 之后将会对具有风险的操作进行检测和报错。
+
+与访问 Tensor 类似，修改 Tensor 可以在单个或多个轴上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`, `float`, `numpy.ndarray`, `Tensor`。
+
+```python
+import paddle
+import numpy as np
+
+x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1,1,1], [1,1,1]]
+
+x[0] = 0                      # x : [[0, 0, 0], [1 ,1, 1]]        id(x) = 4433705584
+x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1 ,1, 1]]  id(x) = 4433705584
+x[...] = 3                    # x : [[3, 3, 3], [3, 3, 3]]        id(x) = 4433705584
+
+x[0:1] = np.array([1,2,3])    # x : [[1, 2, 3], [3, 3, 3]]        id(x) = 4433705584
+x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 4433705584
+```
+
+### 数学运算符
 ```python
 x.abs()                       #绝对值
 x.ceil()                      #向上取整
@@ -450,7 +474,7 @@ x % y  -> x.remainder(y)      #逐元素相除并取余
 x ** y -> x.pow(y)            #逐元素幂运算
 ```
 
-#### 逻辑运算符
+### 逻辑运算符
 ```python
 x.is_empty()                  #判断tensor是否为空
 x.isfinite()                  #判断tensor中元素是否是有限的数字，即不包括inf与nan
@@ -483,7 +507,7 @@ x.logical_xor(y)              #对两个bool型tensor逐元素进行逻辑亦或
 x.logical_not(y)              #对两个bool型tensor逐元素进行逻辑非操作
 ```
 
-#### 线性代数相关
+### 线性代数相关
 ```python
 x.cholesky()                  #矩阵的cholesky分解
 x.t()                         #矩阵转置
