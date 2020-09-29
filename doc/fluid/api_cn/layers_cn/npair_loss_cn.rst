@@ -27,16 +27,11 @@ NPair损失需要成对的数据。NPair损失分为两部分：第一部分是�
 .. code-block:: python
 
         import paddle
-        import numpy as np
         
         DATATYPE = "float32"
-        anchor_data = np.random.rand(18, 6).astype(DATATYPE)
-        positive_data = np.random.rand(18, 6).astype(DATATYPE)
-        labels_data = np.random.rand(18).astype(DATATYPE)
-        
-        anchor = paddle.to_tensor(anchor_data)
-        positive = paddle.to_tensor(positive_data)
-        labels = paddle.to_tensor(labels_data)
+        anchor = paddle.rand(shape=(18, 6), dtype=DATATYPE)
+        positive = paddle.rand(shape=(18, 6), dtype=DATATYPE)
+        labels = paddle.rand(shape=(18,), dtype=DATATYPE)
         
         npair_loss = paddle.nn.functional.npair_loss(anchor, positive, labels, l2_reg = 0.002)
         print(npair_loss.numpy())

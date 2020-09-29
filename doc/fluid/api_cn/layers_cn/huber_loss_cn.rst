@@ -5,6 +5,13 @@ huber_loss
 
 .. py:function:: paddle.fluid.layers.huber_loss(input, label, delta)
 
+:alias_main: paddle.nn.functional.huber_loss
+:alias: paddle.nn.functional.huber_loss,paddle.nn.functional.loss.huber_loss
+:old_api: paddle.fluid.layers.huber_loss
+
+
+
+
 该OP计算输入（input）与标签（label）之间的Huber损失。Huber损失是常用的回归损失之一，相较于平方误差损失，Huber损失减小了对异常点的敏感度，更具鲁棒性。
 
 当输入与标签之差的绝对值大于delta时，计算线性误差:
@@ -19,30 +26,33 @@ huber_loss
 
 
 参数:
-:::::::::
-  - **input** （Tensor） - 输入的预测数据，维度为[batch_size, 1] 或[batch_size]的 `Tensor` 。数据类型为float32或float64。
-  - **label** （Tensor） - 输入的真实标签，维度为[batch_size, 1] 或[batch_size]的 `Tensor` 。数据类型为float32或float64。
+  - **input** （Variable） - 输入的预测数据，维度为[batch_size, 1] 或[batch_size]的Tensor。数据类型为float32或float64。
+  - **label** （Variable） - 输入的真实标签，维度为[batch_size, 1] 或[batch_size]的Tensor。数据类型为float32或float64。
   - **delta** （float） -  Huber损失的阈值参数，用于控制Huber损失对线性误差或平方误差的侧重。数据类型为float32。
 
+返回： 计算出的Huber损失，数据维度和数据类型与label相同的Tensor。
 
-返回:
-:::::::::
-计算出的Huber损失，数据维度和数据类型与label相同的 `Tensor` 。
+返回类型: Variable
+
 
 
 **代码示例**
 
 ..  code-block:: python
 
-        import paddle
-        import numpy as np
+    import paddle.fluid as fluid
+    import numpy as np
 
-        DATATYPE='float32'
-        input_data = np.array([[1.],[2.],[3.],[4.]]).astype(DATATYPE)
-        label_data = np.array([[3.],[3.],[4.],[4.]]).astype(DATATYPE)
+    DATATYPE='float32'
+    input_data = np.array([[1.],[2.],[3.],[4.]]).astype(DATATYPE)
+    label_data = np.array([[3.],[3.],[4.],[4.]]).astype(DATATYPE)
 
-        x = paddle.to_tensor(input_data)
-        y = paddle.to_tensor(label_data)
-        loss = paddle.nn.functional.huber_loss(x, y, delta=1.0)
+    x = fluid.layers.data(name='input', shape=[1], dtype=DATATYPE)
+    y = fluid.layers.data(name='label', shape=[1], dtype=DATATYPE)
+    loss = fluid.layers.huber_loss(input=x, label=y, delta=1.0)
 
-        print(loss.numpy())  #[[1.5], [0.5], [0.5], [0. ]]
+    place = fluid.CPUPlace()
+    #place = fluid.CUDAPlace(0)
+    exe = fluid.Executor(place)
+    HuberLoss, = exe.run(feed={'input':input_data ,'label':label_data}, fetch_list=[loss.name])
+    print(HuberLoss)  #[[1.5], [0.5], [0.5], [0. ]], dtype=float32
