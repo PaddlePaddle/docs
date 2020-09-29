@@ -7,15 +7,7 @@ representing data.
 
 The dtypes of all elements in the same Tensor are the same. If you are familiar with [Numpy](https://www.paddlepaddle.org.cn/tutorials/projectdetail/590690), **Tensor** is similar to the **Numpy array**.
 
-### Contents
-
-* [Creation of Tensor](#1)
-* [Shape of Tensor](#2)
-* [Other attributes of Tensor](#3)
-* [Method of Tensor](#4)
-
-----------
-## <h2 id="1">Creation of Tensor</h2>
+## Creation of Tensor
 
 Firstly, let we create a **Tensor**:
 
@@ -153,8 +145,8 @@ paddle.arrange(start, end, 2) # Elements: from start to end, step size is 2
 paddle.linspace(start, end, 10) # Elements: from start to end, num of elementwise is 10
 ```
 
-----------
-## <h2 id="2">Shape of Tensor</h2>
+
+## Shape of Tensor
 
 ### Basic Concept
 
@@ -187,75 +179,6 @@ Shape of tensor: [2, 3, 4, 5]
 Elements number along axis 0 of tensor: 2
 Elements number along the last axis of tensor: 5
 ```
-
-### indexing
-
-Paddle follows standard Python indexing rules, similar to[ndexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. indexing is used to work on Tensor "slice". It has following characteristics:
-
-1. negative indices count backwards from the end
-2. colons, : , are used for slices: start:stop:step
-
-For **1-D Tensor**, there is only single-axis indexing:
-```python
-rank_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", rank_1_tensor.numpy())
-
-print("First element:", rank_1_tensor[0].numpy())
-print("Last element:", rank_1_tensor[-1].numpy())
-print("All element:", rank_1_tensor[:].numpy())
-print("Before 3:", rank_1_tensor[:3].numpy())
-print("From 6 to the end:", rank_1_tensor[6:].numpy())
-print("From 3 to 6:", rank_1_tensor[3:6].numpy())
-print("Interval of 3:", rank_1_tensor[::3].numpy())
-print("Reverse:", rank_1_tensor[::-1].numpy())
-```
-```text
-Origin Tensor: array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype=int64)
-First element: [0]
-Last element: [8]
-All element: [0 1 2 3 4 5 6 7 8]
-Before 3: [0 1 2]
-From 6 to the end: [6 7 8]
-From 3 to 6: [3 4 5]
-Interval of 3: [0 3 6]
-Reverse: [8 7 6 5 4 3 2 1 0]
-```
-
-For 2-D **Tensor** or above, there is multi-axis indexing:
-```python
-rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
-                                  [4, 5, 6, 7],
-                                  [8, 9, 10, 11]])
-print("Origin Tensor:", rank_2_tensor.numpy())
-
-print("First row:", rank_2_tensor[0].numpy())
-print("First row:", rank_2_tensor[0, :].numpy())
-print("First column:", rank_2_tensor[:, 0].numpy())
-print("Last column:", rank_2_tensor[:, -1].numpy())
-print("All element:", rank_2_tensor[:].numpy())
-print("First row and second column:", rank_2_tensor[0, 1].numpy())
-```
-```text
-Origin Tensor: array([[ 0  1  2  3]
-                      [ 4  5  6  7]
-                      [ 8  9 10 11]], dtype=int64)
-First row: [0 1 2 3]
-First row: [0 1 2 3]
-First column: [0 4 8]
-Last column: [ 3  7 11]
-All element: [[ 0  1  2  3]
-              [ 4  5  6  7]
-              [ 8  9 10 11]]
-First row and second column: [1]
-```
-
-The first element of index is corresponds to Axis 0, the second is corresponds to Axis 1, and so on. If no index is specified on an Axis, the default is ':' . For example:
-```
-rank_3_tensor[1]
-rank_3_tensor[1, :]
-rank_3_tensor[1, :, :]
-```
-These three are exactly the same.
 
 ### Manipulating Shape
 
@@ -302,8 +225,8 @@ print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy()
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
 
-----------
-## <h2 id="3">Other attributes of Tensor</h2>
+
+## Other attributes of Tensor
 
 ### dtype of Tensor
 
@@ -388,11 +311,104 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 
-----------
-## <h2 id="4">Method of Tensor</h2>
 
+## Method of Tensor
 
-Paddles provide rich Tensor operating API , including mathematical operators, logical operators, linear algebra operators and so on. The total number is more than 100+ kinds. For example:
+### Index and slice
+
+You can easily access or modify Tensors by indexing or slicing. Paddle follows standard Python indexing rules, similar to [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. It has the following features:
+
+1. Indexing a Tensor based on the subscript 0-n. A negative subscript means counting backwards from the end.
+2. Slicing a Tensor base on separating parameters `start:stop:step` by colons `:`, and `start`, `stop` and `step` can be default.
+
+#### Access Tensor
+For **1-D Tensor**, there is only single-axis indexing or slicing:
+```python
+rank_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
+print("Origin Tensor:", rank_1_tensor.numpy())
+
+print("First element:", rank_1_tensor[0].numpy())
+print("Last element:", rank_1_tensor[-1].numpy())
+print("All element:", rank_1_tensor[:].numpy())
+print("Before 3:", rank_1_tensor[:3].numpy())
+print("From 6 to the end:", rank_1_tensor[6:].numpy())
+print("From 3 to 6:", rank_1_tensor[3:6].numpy())
+print("Interval of 3:", rank_1_tensor[::3].numpy())
+print("Reverse:", rank_1_tensor[::-1].numpy())
+```
+```text
+Origin Tensor: array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype=int64)
+First element: [0]
+Last element: [8]
+All element: [0 1 2 3 4 5 6 7 8]
+Before 3: [0 1 2]
+From 6 to the end: [6 7 8]
+From 3 to 6: [3 4 5]
+Interval of 3: [0 3 6]
+Reverse: [8 7 6 5 4 3 2 1 0]
+```
+
+For 2-D **Tensor** or above, there is multi-axis indexing or slicing:
+```python
+rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
+                                  [4, 5, 6, 7],
+                                  [8, 9, 10, 11]])
+print("Origin Tensor:", rank_2_tensor.numpy())
+
+print("First row:", rank_2_tensor[0].numpy())
+print("First row:", rank_2_tensor[0, :].numpy())
+print("First column:", rank_2_tensor[:, 0].numpy())
+print("Last column:", rank_2_tensor[:, -1].numpy())
+print("All element:", rank_2_tensor[:].numpy())
+print("First row and second column:", rank_2_tensor[0, 1].numpy())
+```
+```text
+Origin Tensor: array([[ 0  1  2  3]
+                      [ 4  5  6  7]
+                      [ 8  9 10 11]], dtype=int64)
+First row: [0 1 2 3]
+First row: [0 1 2 3]
+First column: [0 4 8]
+Last column: [ 3  7 11]
+All element: [[ 0  1  2  3]
+              [ 4  5  6  7]
+              [ 8  9 10 11]]
+First row and second column: [1]
+```
+
+The first element of index or slice is corresponds to axis 0, the second is corresponds to axis 1, and so on. If no index is specified on an axis, the default is `:` . For example:
+```
+rank_3_tensor[1]
+rank_3_tensor[1, :]
+rank_3_tensor[1, :, :]
+```
+These three are exactly the same.
+
+#### Modify Tensor
+
+> **Warning:**
+>
+> Please be careful to modify a Tensor through index or slice. It will **inplace** modify the value of Tensor, and the original value will not be saved. If the modified Tensor participates in the gradient calculation, only the modified value will be used, which may introduce risks to the gradient calculation. Paddle will detect and report errors in risky operations later.
+
+Similar to accessing a Tensor, modifying a Tensor by indexing or slicing can be on a single or multiple axes. In addition, it supports assigning multiple types of data to a Tensor. The supported data types are `int`, `float`,  `numpy.ndarray` and `Tensor`.
+
+```python
+import paddle
+import numpy as np
+
+x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1,1,1], [1,1,1]]
+
+x[0] = 0                      # x : [[0, 0, 0], [1 ,1, 1]]        id(x) = 4433705584
+x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1 ,1, 1]]  id(x) = 4433705584
+x[...] = 3                    # x : [[3, 3, 3], [3, 3, 3]]        id(x) = 4433705584
+
+x[0:1] = np.array([1,2,3])    # x : [[1, 2, 3], [3, 3, 3]]        id(x) = 4433705584
+x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 4433705584
+```
+
+---
+
+In addition, Paddle provides rich Tensor operating APIs, including mathematical operators, logical operators, linear algebra operators and so on. The total number is more than 100 kinds. For example:
 
 ```python
 x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]])
@@ -417,7 +433,8 @@ Tensor: eager_tmp_3
   - data: [6.6 8.8 11 13.2]
 ```
 
-It can be seen that Tensor class method has the same result with paddle API. And the Tensor class method is more convenient to invoke.
+It can be seen that Tensor class method has the same result with Paddle API. And the Tensor class method is more convenient to invoke.
+
 
 ### mathematical operators
 ```python
@@ -499,4 +516,4 @@ x.matmul(y)                   #Matrix multiplication
 ```
 It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.And dd(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
 
-For more API related to Tensor operations, please refer to[class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
+For more API related to Tensor operations, please refer to [class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
