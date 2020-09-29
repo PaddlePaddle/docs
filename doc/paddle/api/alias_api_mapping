@@ -148,6 +148,8 @@ paddle.fluid.layers.scatter_nd	paddle.scatter_nd,paddle.tensor.scatter_nd,paddle
 paddle.nn.functional.pooling.adaptive_avg_pool2d	paddle.nn.functional.adaptive_avg_pool2d
 paddle.fluid.layers.bilinear_tensor_product	paddle.static.nn.bilinear_tensor_product
 paddle.fluid.framework.name_scope	paddle.static.name_scope
+paddle.fluid.framework.cpu_places paddle.static.cpu_places
+paddle.fluid.framework.cuda_places paddle.static.cuda_places
 paddle.fluid.layers.is_empty	paddle.is_empty,paddle.tensor.is_empty,paddle.tensor.logic.is_empty
 paddle.tensor.math.multiply	paddle.multiply,paddle.tensor.multiply
 paddle.tensor.creation.Tensor	paddle.Tensor
