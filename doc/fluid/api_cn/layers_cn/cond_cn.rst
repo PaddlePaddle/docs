@@ -89,7 +89,7 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
         # out is a tuple containing 2 tensors
 
     place = paddle.CUDAPlace(
-        0) if paddle.fluid.core.is_compiled_with_cuda() else paddle.CPUPlace()
+        0) if paddle.is_compiled_with_cuda() else paddle.CPUPlace()
     exe = paddle.static.Executor(place)
     ret = exe.run(main_program, fetch_list=out)
     # ret[0] = [[1 1]]
