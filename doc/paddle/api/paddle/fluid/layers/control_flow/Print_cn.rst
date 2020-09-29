@@ -28,8 +28,6 @@ Print
 
 返回：输出Tensor
 
-返回类型：Variable
-
 .. note::
    输入和输出是两个不同的Variable，在接下来的过程中，应该使用输出Variable而非输入Variable，否则打印层将失去backward的信息。
 
