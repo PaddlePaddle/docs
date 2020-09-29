@@ -13,7 +13,7 @@ SimpleRNNCell
 
 .. math::
 
-        h_{t} & = \mathrm{tanh}(W_{ih}x_{t} + b_{ih} + W_{hh}h{t-1} + b_{hh})
+        h_{t} & = \mathrm{tanh}(W_{ih}x_{t} + b_{ih} + W_{hh}h_{t-1} + b_{hh})
 
         y_{t} & = h_{t}
 
