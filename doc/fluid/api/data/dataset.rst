@@ -10,7 +10,6 @@ dataset
     dataset/imdb.rst
     dataset/imikolov.rst
     dataset/movielens.rst
-    dataset/sentiment.rst
     dataset/uci_housing.rst
     dataset/wmt14.rst
     dataset/wmt16.rst

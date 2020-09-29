@@ -34,8 +34,13 @@ PaddlePaddle主要的动转静方式是基于源代码级别转换的ProgramTran
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
+<<<<<<< HEAD
         def __init__(self, batch_size, feature_size, fc_size):
             super(SimpleFcLayer, self).__init__()
+=======
+        def __init__(self, feature_size, batch_size, fc_size):
+            super(SimpleFCLayer, self).__init__()
+>>>>>>> 22ba8a868254da7a1a17396a11f4aa3ab2aa548a
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))
@@ -75,8 +80,13 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
+<<<<<<< HEAD
         def __init__(self, batch_size, feature_size, fc_size):
             super(SimpleFcLayer, self).__init__()
+=======
+        def __init__(self, feature_size, batch_size, fc_size):
+            super(SimpleFCLayer, self).__init__()
+>>>>>>> 22ba8a868254da7a1a17396a11f4aa3ab2aa548a
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))
@@ -111,7 +121,11 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 
     place = paddle.CPUPlace()
     exe = paddle.Executor(place)
+<<<<<<< HEAD
     program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
+=======
+    program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname, exe)
+>>>>>>> 22ba8a868254da7a1a17396a11f4aa3ab2aa548a
     fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 
 

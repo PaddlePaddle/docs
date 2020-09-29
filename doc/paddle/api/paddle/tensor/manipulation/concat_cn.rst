@@ -3,7 +3,7 @@
 concat
 -------------------------------
 
-.. py:function:: paddle.tensor.concat(x, axis=0, name=None)
+.. py:function:: paddle.concat(x, axis=0, name=None)
 
 
 该OP对输入沿 ``axis`` 轴进行联结，返回一个新的Tensor。
