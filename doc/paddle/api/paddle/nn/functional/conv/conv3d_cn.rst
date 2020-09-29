@@ -64,20 +64,15 @@ conv3d
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
     import paddle.nn.functional as F
 
-    x = np.random.randn(2, 3, 8, 8, 8).astype(np.float32)
-    w = np.random.randn(6, 3, 3, 3, 3).astype(np.float32)
+    x_var = paddle.randn((2, 3, 8, 8, 8), dtype='float32')
+    w_var = paddle.randn((6, 3, 3, 3, 3), dtype='float32')
 
-    paddle.disable_static()
-    
-    x_var = paddle.to_tensor(x)
-    w_var = paddle.to_tensor(w)
     y_var = F.conv3d(x_var, w_var)
-    
     y_np = y_var.numpy()
-    print(y_np.shape)
 
+    print(y_np.shape)
     # (2, 6, 6, 6, 6)
+

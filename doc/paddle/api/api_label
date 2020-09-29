@@ -989,3 +989,6 @@ resize_short	.. _api_paddle_dataset_image_resize_short:
 ConstantPad3d	.. _api_paddle_nn_ConstantPad3d:
 lrn	.. _api_paddle_fluid_layers_lrn:
 scatter	.. _api_paddle_fluid_layers_scatter:
+get_device .. _api_paddle_device_get_device:
+set_device .. _api_paddle_device_set_device:
+get_cudnn_version .. _api_paddle_device_get_cudnn_version:
