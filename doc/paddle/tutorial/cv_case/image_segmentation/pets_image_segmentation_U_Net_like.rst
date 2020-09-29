@@ -26,6 +26,9 @@
     import paddle
     from paddle.nn import functional as F
     
+    device = paddle.set_device('gpu')
+    paddle.disable_static(device)
+    
     paddle.__version__
 
 
@@ -326,7 +329,7 @@ DataLoader（多进程数据集加载）。
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/pets_image_segmentation_U_Net_like_001.png?raw=true
+.. image:: https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/pets_image_segmentation_U_Net_like_001.png
 
 
 4.模型组网
@@ -551,28 +554,28 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
     --------------------------------------------------------------------------------
        Layer (type)          Input Shape         Output Shape         Param #
     ================================================================================
-          Conv2d-38    [-1, 3, 160, 160]     [-1, 32, 80, 80]             896
-     BatchNorm2d-14     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
-            ReLU-14     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
-            ReLU-17    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-          Conv2d-49    [-1, 128, 20, 20]    [-1, 128, 20, 20]           1,152
-          Conv2d-50    [-1, 128, 20, 20]    [-1, 256, 20, 20]          33,024
-    SeparableConv2d-17    [-1, 128, 20, 20]    [-1, 256, 20, 20]               0
-     BatchNorm2d-17    [-1, 256, 20, 20]    [-1, 256, 20, 20]           1,024
-          Conv2d-51    [-1, 256, 20, 20]    [-1, 256, 20, 20]           2,304
-          Conv2d-52    [-1, 256, 20, 20]    [-1, 256, 20, 20]          65,792
-    SeparableConv2d-18    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-        MaxPool2d-9    [-1, 256, 20, 20]    [-1, 256, 10, 10]               0
-          Conv2d-53    [-1, 128, 20, 20]    [-1, 256, 10, 10]          33,024
-          Encoder-9    [-1, 128, 20, 20]    [-1, 256, 10, 10]               0
-            ReLU-21     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
-    ConvTranspose2d-17     [-1, 64, 80, 80]     [-1, 32, 80, 80]          18,464
-     BatchNorm2d-21     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
-    ConvTranspose2d-18     [-1, 32, 80, 80]     [-1, 32, 80, 80]           9,248
-         Upsample-8     [-1, 64, 80, 80]   [-1, 64, 160, 160]               0
-          Conv2d-57   [-1, 64, 160, 160]   [-1, 32, 160, 160]           2,080
-          Decoder-9     [-1, 64, 80, 80]   [-1, 32, 160, 160]               0
-          Conv2d-58   [-1, 32, 160, 160]    [-1, 4, 160, 160]           1,156
+           Conv2d-1    [-1, 3, 160, 160]     [-1, 32, 80, 80]             896
+      BatchNorm2d-1     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
+             ReLU-1     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
+             ReLU-4    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
+          Conv2d-12    [-1, 128, 20, 20]    [-1, 128, 20, 20]           1,152
+          Conv2d-13    [-1, 128, 20, 20]    [-1, 256, 20, 20]          33,024
+    SeparableConv2d-5    [-1, 128, 20, 20]    [-1, 256, 20, 20]               0
+      BatchNorm2d-4    [-1, 256, 20, 20]    [-1, 256, 20, 20]           1,024
+          Conv2d-14    [-1, 256, 20, 20]    [-1, 256, 20, 20]           2,304
+          Conv2d-15    [-1, 256, 20, 20]    [-1, 256, 20, 20]          65,792
+    SeparableConv2d-6    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
+        MaxPool2d-3    [-1, 256, 20, 20]    [-1, 256, 10, 10]               0
+          Conv2d-16    [-1, 128, 20, 20]    [-1, 256, 10, 10]          33,024
+          Encoder-3    [-1, 128, 20, 20]    [-1, 256, 10, 10]               0
+             ReLU-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
+    ConvTranspose2d-7     [-1, 64, 80, 80]     [-1, 32, 80, 80]          18,464
+      BatchNorm2d-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
+    ConvTranspose2d-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]           9,248
+         Upsample-4     [-1, 64, 80, 80]   [-1, 64, 160, 160]               0
+          Conv2d-20   [-1, 64, 160, 160]   [-1, 32, 160, 160]           2,080
+          Decoder-4     [-1, 64, 80, 80]   [-1, 32, 160, 160]               0
+          Conv2d-21   [-1, 32, 160, 160]    [-1, 4, 160, 160]           1,156
     ================================================================================
     Total params: 168,420
     Trainable params: 167,140
@@ -597,19 +600,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 5.模型训练
 ----------
 
-5.1 配置信息
-~~~~~~~~~~~~
-
-定义训练BATCH_SIZE、训练轮次和计算设备等信息。
-
-.. code:: ipython3
-
-    BATCH_SIZE = 32
-    EPOCHS = 15
-    device = paddle.set_device('gpu')
-    paddle.disable_static(device)
-
-5.3 自定义Loss
+5.1 自定义Loss
 ~~~~~~~~~~~~~~
 
 在这个任务中我们使用SoftmaxWithCrossEntropy损失函数来做计算，飞桨中有functional形式的API，这里我们做一个自定义操作，实现一个Class形式API放到模型训练中使用。没有直接使用CrossEntropyLoss的原因主要是对计算维度的自定义需求，本次需要进行softmax计算的维度是1，不是默认的最后一维，所以我们采用上面提到的损失函数，通过axis参数来指定softmax计算维度。
@@ -627,7 +618,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                                                 axis=1)
             return paddle.mean(loss)
 
-5.4 启动模型训练
+5.2 启动模型训练
 ~~~~~~~~~~~~~~~~
 
 使用模型代码进行Model实例生成，使用prepare接口定义优化器、损失函数和评价指标等信息，用于后续训练使用。在所有初步配置完成后，调用fit接口开启训练执行过程，调用fit时只需要将前面定义好的训练数据集、测试数据集、训练轮次（Epoch）和批次大小（batch_size）配置好即可。
@@ -640,12 +631,12 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                                      epsilon=1e-07, 
                                      centered=False,
                                      parameters=model.parameters())
-    model = paddle.Model(PetModel(num_classes))
+    model = paddle.Model(PetNet(num_classes))
     model.prepare(optim, SoftmaxWithCrossEntropy())
     model.fit(train_dataset, 
               val_dataset, 
-              epochs=EPOCHS, 
-              batch_size=BATCH_SIZE)
+              epochs=15, 
+              batch_size=32)
 
 6.模型预测
 ----------
