@@ -34,8 +34,8 @@ PaddlePaddle主要的动转静方式是基于源代码级别转换的ProgramTran
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
-        def __init__(self, feature_size, batch_size, fc_size):
-            super(SimpleFCLayer, self).__init__()
+        def __init__(self, batch_size, feature_size, fc_size):
+            super(SimpleFcLayer, self).__init__()
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))
@@ -75,8 +75,8 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
-        def __init__(self, feature_size, batch_size, fc_size):
-            super(SimpleFCLayer, self).__init__()
+        def __init__(self, batch_size, feature_size, fc_size):
+            super(SimpleFcLayer, self).__init__()
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))

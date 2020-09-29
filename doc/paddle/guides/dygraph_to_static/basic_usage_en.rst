@@ -33,8 +33,8 @@ To save the transformed model, we can call ``paddle.jit.save`` . Let's take a fu
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
-        def __init__(self, feature_size, batch_size, fc_size):
-            super(SimpleFCLayer, self).__init__()
+        def __init__(self, batch_size, feature_size, fc_size):
+            super(SimpleFcLayer, self).__init__()
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))
@@ -74,8 +74,8 @@ Define a simple fully connected network, note that we don't add a decorator befo
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
-        def __init__(self, feature_size, batch_size, fc_size):
-            super(SimpleFCLayer, self).__init__()
+        def __init__(self, batch_size, feature_size, fc_size):
+            super(SimpleFcLayer, self).__init__()
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))
