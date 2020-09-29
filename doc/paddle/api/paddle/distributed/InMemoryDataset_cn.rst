@@ -48,7 +48,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 
 
     import paddle
-    import paddle.fluid as fluid
     import os
 
     paddle.enable_static()
@@ -69,7 +68,7 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
     for slot in slots:
-        var = fluid.data(
+        var = paddle.static.data(
             name=slot, shape=[None, 1], dtype="int64", lod_level=1)
         slots_vars.append(var)
 
@@ -86,7 +85,7 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 
     paddle.enable_static()
     
-    place = paddle.CUDAPlace(0) if paddle.fluid.core.is_compiled_with_cuda() else paddle.CPUPlace()
+    place = paddle.CPUPlace()
     exe = paddle.static.Executor(place)
     startup_program = paddle.static.Program()
     main_program = paddle.static.Program()

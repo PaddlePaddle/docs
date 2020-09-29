@@ -47,7 +47,6 @@ QueueyDataset是流式处理数据使用Dataset类。与InmemoryDataset继承自
 
 
     import paddle
-    import paddle.fluid as fluid
     import os
 
     paddle.enable_static()
@@ -84,7 +83,7 @@ QueueyDataset是流式处理数据使用Dataset类。与InmemoryDataset继承自
 
     paddle.enable_static()
     
-    place = paddle.CUDAPlace(0) if paddle.fluid.core.is_compiled_with_cuda() else paddle.CPUPlace()
+    place = paddle.CPUPlace()
     exe = paddle.static.Executor(place)
     startup_program = paddle.static.Program()
     main_program = paddle.static.Program()
