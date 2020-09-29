@@ -307,12 +307,15 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
+            import paddle
             import paddle.fluid as fluid
             import numpy as np
             import os
 
             # We use 2 CPU cores to run inference network
             os.environ['CPU_NUM'] = '2'
+
+            paddle.enable_static()
 
             # The data source has only 3 batches, which can not be
             # divided evenly to each CPU core
