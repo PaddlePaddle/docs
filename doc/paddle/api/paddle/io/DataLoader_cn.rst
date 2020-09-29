@@ -173,6 +173,7 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
+            import paddle
             import paddle.fluid as fluid
             import numpy as np
 
@@ -186,6 +187,8 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
             USE_GPU = False # whether to use GPU
 
             DATA_FORMAT = 'batch_generator' # data format of data source user provides
+
+            paddle.enable_static()
 
             def simple_net(image, label):
                 fc_tmp = fluid.layers.fc(image, size=CLASS_NUM)
@@ -367,7 +370,10 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
+            import paddle
             import paddle.fluid as fluid
+
+            paddle.enable_static()
 
             image = fluid.layers.data(name='image', shape=[784], dtype='float32')
             label = fluid.layers.data(name='label', shape=[1], dtype='int64')
