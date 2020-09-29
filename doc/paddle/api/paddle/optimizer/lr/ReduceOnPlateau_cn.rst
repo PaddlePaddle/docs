@@ -1,9 +1,9 @@
-.. _cn_api_paddle_optimizer_ReduceLROnPlateau:
+.. _cn_api_paddle_optimizer_lr_ReduceOnPlateau:
 
-ReduceLROnPlateau
+ReduceOnPlateau
 -----------------------------------
 
-.. py:class:: paddle.optimizer.lr_scheduler.ReduceLROnPlateau(learning_rate, mode='min', factor=0.1, patience=10, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=0, epsilon=1e-8, verbose=False)
+.. py:class:: paddle.optimizer.lr.ReduceOnPlateau(learning_rate, mode='min', factor=0.1, patience=10, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=0, epsilon=1e-8, verbose=False)
 
 `loss` 自适应的学习率衰减策略。默认情况下，当 ``loss`` 停止下降时，降低学习率。其思想是：一旦模型表现不再提升，将学习率降低2-10倍对模型的训练往往有益。
 
@@ -24,7 +24,7 @@ ReduceLROnPlateau
     - **epsilon** (float，可选) - 如果新旧学习率间的差异小于epsilon ，则不会更新。默认值:1e-8。
     - **verbose** (bool，可选) - 如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
-返回：用于调整学习率的 ``ReduceLROnPlateau`` 实例对象。
+返回：用于调整学习率的 ``ReduceOnPlateau`` 实例对象。
 
 **代码示例**
 
@@ -34,14 +34,12 @@ ReduceLROnPlateau
     import numpy as np
 
     # train on default dynamic graph mode
-    paddle.disable_static()
-    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.lr_scheduler.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
-    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
+    scheduler = paddle.optimizer.lr.ReduceOnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
+    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
     for epoch in range(20):
         for batch_id in range(2):
-            x = paddle.to_tensor(x)
+            x = paddle.uniform([10, 10])
             out = linear(x)
             loss = paddle.reduce_mean(out)
             loss.backward()
@@ -58,7 +56,7 @@ ReduceLROnPlateau
         y = paddle.static.data(name='y', shape=[None, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.lr_scheduler.ReduceLROnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
+        scheduler = paddle.optimizer.lr.ReduceOnPlateau(learning_rate=1.0, factor=0.5, patience=5, verbose=True)
         sgd = paddle.optimizer.SGD(learning_rate=scheduler)
         sgd.minimize(loss)
 

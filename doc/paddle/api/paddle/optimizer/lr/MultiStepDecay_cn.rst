@@ -1,33 +1,34 @@
-.. _cn_api_paddle_optimizer_PiecewiseLR:
+.. _cn_api_paddle_optimizer_lr_MultiStepDecay:
 
-PiecewiseLR
--------------------------------
+MultiStepDecay
+-----------------------------------
 
-.. py:class:: paddle.optimizer.lr_scheduler.PiecewiseLR(boundaries, values, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr.MultiStepDecay(learning_rate, milestones, gamma=0.1, last_epoch=-1, verbose=False)
 
+该接口提供一种学习率按 `指定轮数` 进行衰减的策略。
 
-该接口提供分段设置学习率的策略。
+衰减过程可以参考以下代码：
 
-过程可以描述如下：
+.. code-block:: text 
 
-.. code-block:: text
+    learning_rate = 0.5
+    milestones = [30, 50]
+    gamma = 0.1
 
-    boundaries = [100, 200]
-    values = [1.0, 0.5, 0.1]
-
-    learning_rate = 1.0     if epoch < 100
-    learning_rate = 0.5    if 100 <= epoch < 200
-    learning_rate = 0.1   if 200 <= epoch
+    learning_rate = 0.5     if epoch < 30
+    learning_rate = 0.05    if 30 <= epoch < 50
+    learning_rate = 0.005   if 50 <= epoch
     ...
 
-
 参数：
-    - **boundaries** (list) - 指定衰减的步数边界。列表的数据元素为Python int类型。
-    - **values** (list) - 备选学习率列表。数据元素类型为Python float的列表。与边界值列表有对应的关系。
+    - **learning_rate** (float) - 初始学习率，数据类型为Python float。
+    - **milestones** (list) - 轮数下标列表。必须递增。
+    - **gamma** (float，可选) - 衰减率，``new_lr = origin_lr * gamma``, 衰减率必须小于等于1.0，默认值为0.1。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率 。
     - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
-返回：用于调整学习率的 ``PiecewiseLR`` 实例对象。
+
+返回：用于调整学习率的 ``MultiStepDecay`` 实例对象。
 
 **代码示例**
 
@@ -37,14 +38,12 @@ PiecewiseLR
     import numpy as np
 
     # train on default dynamic graph mode
-    paddle.disable_static()
-    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.lr_scheduler.PiecewiseLR(boundaries=[3, 6, 9], values=[0.1, 0.2, 0.3, 0.4], verbose=True)
-    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
+    scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2, 4, 6], gamma=0.8, verbose=True)
+    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
     for epoch in range(20):
         for batch_id in range(2):
-            x = paddle.to_tensor(x)
+            x = paddle.uniform([10, 10])
             out = linear(x)
             loss = paddle.reduce_mean(out)
             loss.backward()
@@ -61,7 +60,7 @@ PiecewiseLR
         y = paddle.static.data(name='y', shape=[None, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.lr_scheduler.PiecewiseLR(boundaries=[3, 6, 9], values=[0.1, 0.2, 0.3, 0.4], verbose=True)
+        scheduler = paddle.optimizer.lr.MultiStepDecay(learning_rate=0.5, milestones=[2, 4, 6], gamma=0.8, verbose=True)
         sgd = paddle.optimizer.SGD(learning_rate=scheduler)
         sgd.minimize(loss)
 
@@ -91,3 +90,4 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 **代码示例** ：
 
   参照上述示例代码。
+

@@ -6,7 +6,7 @@
 CosineAnnealingLR
 -------------------
 
-..  autoclass:: paddle.optimizer.lr_scheduler.CosineAnnealingLR
+..  autoclass:: paddle.optimizer.CosineAnnealingLR
     :members:
     :inherited-members:
     :exclude-members: set_dict, set_state_dict, state_dict

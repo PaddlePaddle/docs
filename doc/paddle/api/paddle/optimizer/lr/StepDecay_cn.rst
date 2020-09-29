@@ -1,36 +1,34 @@
-.. _cn_api_paddle_optimizer_LinearLrWarmup:
+.. _cn_api_paddle_optimizer_lr_StepDecay:
 
-LinearLrWarmup
+StepDecay
 -----------------------------------
 
-.. py:class:: paddle.optimizer.lr_scheduler.LinearLrWarmup(learing_rate, warmup_steps, start_lr, end_lr, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr.StepDecay(learning_rate, step_size, gamma=0.1, last_epoch=-1, verbose=False)
 
-该接口提供一种学习率优化策略-线性学习率热身(warm up)对学习率进行初步调整。在正常调整学习率之前，先逐步增大学习率。
+该接口提供一种学习率按指定 `间隔` 轮数衰减的策略。
 
-当训练步数小于热身步数（warmup_steps）时，学习率lr按如下方式更新：
+衰减过程可以参考以下代码：
 
-.. code-block:: text
+.. code-block:: text 
 
-    lr = start_lr + (end_lr - start_lr) * \frac{epoch}{warmup_steps}
+    learning_rate = 0.5
+    step_size = 30
+    gamma = 0.1
 
-当训练步数大于等于热身步数（warmup_steps）时，学习率lr为：
-
-.. code-block:: text
-
-    lr = learning_rate
-
-其中learning_rate为热身之后的学习率，可以是python的float类型或者 ``_LRScheduler`` 的任意子类。
+    learning_rate = 0.5     if epoch < 30
+    learning_rate = 0.05    if 30 <= epoch < 60
+    learning_rate = 0.005   if 60 <= epoch < 90
+    ...
 
 参数：
-    - **learning rate** (float|_LRScheduler) - 热启训练之后的学习率，可以是python的float类型或者 ``_LRScheduler`` 的任意子类。
-    - **warmup_steps** (int) - 进行warm up过程的步数。
-    - **start_lr** (float) - warm up的起始学习率。
-    - **end_lr** (float) - warm up的最终学习率。
+    - **learning_rate** (float) - 初始学习率，数据类型为Python float。
+    - **step_size** (int) - 学习率衰减轮数间隔。
+    - **gamma** (float, 可选) - 衰减率，``new_lr = origin_lr * gamma`` ，衰减率必须小于等于1.0，默认值为0.1。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率 。
-    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** (bool，可选) - 如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 
-返回：用于调整学习率的 ``LinearLrWarmup`` 实例对象。
+返回：用于调整学习率的 ``StepDecay`` 实例对象。
 
 **代码示例**
 
@@ -40,15 +38,12 @@ LinearLrWarmup
     import numpy as np
 
     # train on default dynamic graph mode
-    paddle.disable_static()
-    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.LinearLrWarmup(
-            learning_rate=0.5, warmup_steps=20, start_lr=0, end_lr=0.5, verbose=True)
-    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=5, gamma=0.8, verbose=True)
+    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
     for epoch in range(20):
         for batch_id in range(2):
-            x = paddle.to_tensor(x)
+            x = paddle.uniform([10, 10])
             out = linear(x)
             loss = paddle.reduce_mean(out)
             loss.backward()
@@ -65,8 +60,7 @@ LinearLrWarmup
         y = paddle.static.data(name='y', shape=[None, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.lr_scheduler.LinearLrWarmup(
-            learning_rate=0.5, warmup_steps=20, start_lr=0, end_lr=0.5, verbose=True)
+        scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=5, gamma=0.8, verbose=True)
         sgd = paddle.optimizer.SGD(learning_rate=scheduler)
         sgd.minimize(loss)
 
@@ -96,5 +90,4 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 **代码示例** ：
 
   参照上述示例代码。
-
 

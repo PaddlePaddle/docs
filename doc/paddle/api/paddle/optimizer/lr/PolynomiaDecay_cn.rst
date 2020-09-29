@@ -1,9 +1,9 @@
-.. _cn_api_paddle_optimizer_PolynomialLR:
+.. _cn_api_paddle_optimizer_lr_scheduler_PolynomialDecay:
 
-PolynomialLR
+PolynomialDecay
 -------------------------------
 
-.. py:class:: paddle.optimizer.lr_scheduler.PolynomialLR(learning_rate, decay_steps, end_lr=0.0001, power=1.0, cycle=False, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr.PolynomialDecay(learning_rate, decay_steps, end_lr=0.0001, power=1.0, cycle=False, last_epoch=-1, verbose=False)
 
 
 该接口提供学习率按多项式衰减的策略。通过多项式衰减函数，使得学习率值逐步从初始的 ``learning_rate``，衰减到 ``end_lr`` 。
@@ -30,11 +30,11 @@ PolynomialLR
     - **decay_steps** (int) - 进行衰减的步长，这个决定了衰减周期。
     - **end_lr** (float，可选）- 最小的最终学习率。默认值为0.0001。
     - **power** (float，可选) - 多项式的幂。默认值为1.0。
-    - **cycle** (bool，可选) - 学习率下降后是否重新上升。若为True，则学习率衰减到最低学习率值时，会出现上升。若为False，则学习率曲线则单调递减。默认值为False。
+    - **cycle** (bool，可选) - 学习率下降后是否重新上升。若为True，则学习率衰减到最低学习率值时，会重新上升。若为False，则学习率单调递减。默认值为False。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
-返回：用于调整学习率的 ``PolynomialLR`` 实例对象。
+返回：用于调整学习率的 ``PolynomialDecay`` 实例对象。
 
 
 **代码示例**
@@ -45,14 +45,12 @@ PolynomialLR
     import numpy as np
 
     # train on default dynamic graph mode
-    paddle.disable_static()
-    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.lr_scheduler.PolynomialLR(learning_rate=0.5, decay_steps=20, verbose=True)
-    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
+    scheduler = paddle.optimizer.lr.PolynomialDecay(learning_rate=0.5, decay_steps=20, verbose=True)
+    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
     for epoch in range(20):
         for batch_id in range(2):
-            x = paddle.to_tensor(x)
+            x = paddle.uniform([10, 10])
             out = linear(x)
             loss = paddle.reduce_mean(out)
             loss.backward()
@@ -69,7 +67,7 @@ PolynomialLR
         y = paddle.static.data(name='y', shape=[None, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.lr_scheduler.PolynomialLR(learning_rate=0.5, decay_steps=20, verbose=True)
+        scheduler = paddle.optimizer.lr.PolynomialDecay(learning_rate=0.5, decay_steps=20, verbose=True)
         sgd = paddle.optimizer.SGD(learning_rate=scheduler)
         sgd.minimize(loss)
 

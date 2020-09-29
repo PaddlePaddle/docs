@@ -17,27 +17,27 @@ The following content describes the APIs related to the learning rate scheduler:
 
 ======
 
-* :code:`NoamLR`: Noam decay. Please refer to `Attention Is All You Need <https://arxiv.org/pdf/1706.03762.pdf>`_ for related algorithms. For related API Reference please refer to :ref:`api_paddle_optimizer_NoamLR`
+* :code:`NoamDecay`: Noam decay. Please refer to `Attention Is All You Need <https://arxiv.org/pdf/1706.03762.pdf>`_ for related algorithms. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_NoamDecay`
 
-* :code:`ExponentialLR`: Exponential decay. That is, each time the current learning rate is multiplied by the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_ExponentialLR`
+* :code:`ExponentialDecay`: Exponential decay. That is, each time the current learning rate is multiplied by the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_ExponentialDecay`
 
-* :code:`NaturalExpLR`: Natural exponential decay. That is, each time the current learning rate is multiplied by the natural exponent of the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_NaturalExpLR`
+* :code:`NaturalExpDecay`: Natural exponential decay. That is, each time the current learning rate is multiplied by the natural exponent of the given decay rate to get the next learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_NaturalExpDecay`
 
-* :code:`InverseTimeLR`: Inverse time decay. The decayed learning rate is inversely proportional to the current number of decays. For related API Reference please refer to :ref:`api_paddle_optimizer_InverseTimeLR`
+* :code:`InverseTimeDecay`: Inverse time decay. The decayed learning rate is inversely proportional to the current number of decays. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_InverseTimeDecay`
 
-* :code:`PolynomialLR`: Polynomial decay, i.e. the decayed learning rate is calculated in a polynomial format with the initial learning rate and the end learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_PolynomialLR`
+* :code:`PolynomialDecay`: Polynomial decay, i.e. the decayed learning rate is calculated in a polynomial format with the initial learning rate and the end learning rate. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_PolynomialDecay`
 
-* :code:`PiecewiseLR`: Piecewise decay. That is, the stair-like decay for a given number of steps, the learning rate stays the same within each step. For related API Reference please refer to :ref:`api_paddle_optimizer_PiecewiseLR`
+* :code:`PiecewiseDecay`: Piecewise decay. That is, the stair-like decay for a given number of steps, the learning rate stays the same within each step. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_PiecewiseDecay`
 
-* :code:`CosineAnnealingLR`: Cosine attenuation. It means the learning rate changes with the number of steps in the form of a cosine function. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_CosineAnnealingLR`
+* :code:`CosineAnnealingDecay`: Cosine attenuation. It means the learning rate changes with the number of steps in the form of a cosine function. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_CosineAnnealingDecay`
 
-* :code:`LinearLrWarmup`: The learning rate increases linearly to an appointed rate with the number of steps. For related API Reference please refer to :ref:`api_paddle_optimizer_LinearLrWarmup`
+* :code:`LinearWarmup`: The learning rate increases linearly to an appointed rate with the number of steps. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_LinearWarmup`
 
-* :code:`StepLR`: Decay the learning rate every certain number of steps, and ``step_size`` needs to be specified. For related API Reference please refer to :ref:`api_paddle_optimizer_StepLR`
+* :code:`StepDecay`: Decay the learning rate every certain number of steps, and ``step_size`` needs to be specified. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_StepDecay`
 
-* :code:`MultiStepLR`: Decay the learning rate at specified step, and ``milestones`` needs to be specified. For related API Reference please refer to :ref:`api_paddle_optimizer_MultiStepLR`
+* :code:`MultiStepDecay`: Decay the learning rate at specified step, and ``milestones`` needs to be specified. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_MultiStepDecay`
 
-* :code:`LambdaLR`: Decay the learning rate by lambda function. For related API Reference please refer to :ref:`api_paddle_optimizer_LambdaLR`
+* :code:`LambdaDecay`: Decay the learning rate by lambda function. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_LambdaDecay`
 
-* :code:`ReduceLROnPlateau`: Adjuge the learning rate according to monitoring index(In general, it's loss), and decay the learning rate when monitoring index becomes stable. For related API Reference please refer to :ref:`api_paddle_optimizer_ReduceLROnPlateau`
+* :code:`ReduceOnPlateau`: Adjuge the learning rate according to monitoring index(In general, it's loss), and decay the learning rate when monitoring index becomes stable. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_ReduceOnPlateau`
 

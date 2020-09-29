@@ -1,34 +1,29 @@
-.. _cn_api_paddle_optimizer_StepLR:
+.. _cn_api_paddle_optimizer_lr_NoamDecay:
 
-StepLR
------------------------------------
+NoamDecay
+-------------------------------
 
-.. py:class:: paddle.optimizer.lr_scheduler.StepLR(learning_rate, step_size, gamma=0.1, last_epoch=-1, verbose=False)
+.. py:class:: paddle.optimizer.lr.NoamDecay(d_model, warmup_steps, learning_rate=1.0, last_epoch=-1, verbose=False)
 
-该接口提供一种学习率按指定 `间隔` 轮数衰减的策略。
 
-衰减过程可以参考以下代码：
+该接口提供Noam衰减学习率的策略。
 
-.. code-block:: text 
+Noam衰减的计算方式如下：
 
-    learning_rate = 0.5
-    step_size = 30
-    gamma = 0.1
+.. math::
 
-    learning_rate = 0.5     if epoch < 30
-    learning_rate = 0.05    if 30 <= epoch < 60
-    learning_rate = 0.005   if 60 <= epoch < 90
-    ...
+    new\_learning\_rate = learning\_rate * d_{model}^{-0.5} * min(epoch^{-0.5}, epoch * warmup\_steps^{-1.5})
+
+关于Noam衰减的更多细节请参考 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
 
 参数：
-    - **learning_rate** (float) - 初始学习率，数据类型为Python float。
-    - **step_size** (int) - 学习率衰减轮数间隔。
-    - **gamma** (float, 可选) - 衰减率，``new_lr = origin_lr * gamma`` ，衰减率必须小于等于1.0，默认值为0.1。
-    - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率 。
+    - **d$_{model}$** (int) - 模型的输入、输出向量特征维度，为超参数。数据类型为Python int。
+    - **warmup_steps** (int) - 预热步数，为超参数。数据类型为Python int。
+    - **learning_rate** (float) - 初始学习率，数据类型为Python float。默认值为1.0。
+    - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 `True` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
-
-返回：用于调整学习率的 ``StepLR`` 实例对象。
+返回：用于调整学习率的 ``NoamDecay`` 实例对象。
 
 **代码示例**
 
@@ -38,14 +33,12 @@ StepLR
     import numpy as np
 
     # train on default dynamic graph mode
-    paddle.disable_static()
-    x = np.random.uniform(-1, 1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.lr_scheduler.StepLR(learning_rate=0.5, step_size=5, gamma=0.8, verbose=True)
-    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameter_list=linear.parameters())
+    scheduler = paddle.optimizer.lr.NoamDecay(d_model=0.01, warmup_steps=100, verbose=True)
+    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
     for epoch in range(20):
         for batch_id in range(2):
-            x = paddle.to_tensor(x)
+            x = paddle.uniform([10, 10])
             out = linear(x)
             loss = paddle.reduce_mean(out)
             loss.backward()
@@ -62,7 +55,7 @@ StepLR
         y = paddle.static.data(name='y', shape=[None, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.lr_scheduler.StepLR(learning_rate=0.5, step_size=5, gamma=0.8, verbose=True)
+        scheduler = paddle.optimizer.lr.NoamDecay(d_model=0.01, warmup_steps=100, verbose=True)
         sgd = paddle.optimizer.SGD(learning_rate=scheduler)
         sgd.minimize(loss)
 
@@ -79,6 +72,8 @@ StepLR
                 fetch_list=loss.name)
         scheduler.step()
 
+
+
 .. py:method:: step(epoch=None)
 
 step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
@@ -92,4 +87,5 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 **代码示例** ：
 
   参照上述示例代码。
+
 
