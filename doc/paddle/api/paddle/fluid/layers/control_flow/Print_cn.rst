@@ -37,6 +37,8 @@ Print
 
     import paddle
 
+    paddle.enable_static()
+
     x = paddle.full(shape=[2, 3], fill_value=3, dtype='int64')
     out = paddle.static.Print(x, message="The content of input layer:")
 
