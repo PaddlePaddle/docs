@@ -43,7 +43,6 @@ paddle.nn
     nn_cn/box_coder_cn.rst
     nn_cn/box_decoder_and_assign_cn.rst
     nn_cn/bpr_loss_cn.rst
-    nn_cn/brelu_cn.rst
     nn_cn/case_cn.rst
     nn_cn/center_loss_cn.rst
     nn_cn/clip_by_norm_cn.rst
