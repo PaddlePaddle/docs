@@ -3,17 +3,13 @@
 in_dygraph_mode
 -------------------------------
 
-.. py:function:: paddle.in_dynamic_mode()
+.. py:function:: paddle.fluid.in_dygraph_mode()
 
 
 
 
 该接口检查程序是否在动态图模式中运行。
-从paddle2.0开始，默认开启动态图模式。
-
-注意：
-    ``paddle.in_dynamic_mode`` 是 ``fluid.in_dygraph_mode``　的別名, 
-    我们推荐使用　``paddle.in_dynamic_mode。
+可以通过 ``fluid.dygraph.guard`` 接口开启动态图模式。
 
 返回：如果程序是在动态图模式下运行的，则返回 ``True``。
 
@@ -23,9 +19,11 @@ in_dygraph_mode
 
 .. code-block:: python
 
-    import paddle
+    import paddle.fluid as fluid
 
-    print(paddle.in_dynamic_mode())  # True
-    paddle.enable_static()
-    print(paddle.in_dynamic_mode())  # False
+    fluid.enable_dygraph()          # 现在进入 dygragh 模式
+    print(fluid.in_dygraph_mode())  # True
+    fluid.disable_dygraph()
+    print(fluid.in_dygraph_mode())  # False
+
 
