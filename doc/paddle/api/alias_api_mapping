@@ -74,6 +74,7 @@ paddle.fluid.layers.has_nan	paddle.has_nan,paddle.tensor.has_nan,paddle.tensor.s
 paddle.tensor.manipulation.expand_as	paddle.expand_as,paddle.tensor.expand_as
 paddle.fluid.layers.crf_decoding	paddle.static.nn.crf_decoding
 paddle.fluid.framework.default_main_program	paddle.static.default_main_program
+paddle.fluid.framework.is_compiled_with_cuda	paddle.is_compiled_with_cuda,paddle.device.is_compiled_with_cuda
 paddle.fluid.framework.Variable	paddle.Variable,paddle.framework.Variable
 paddle.fluid.layers.l2_normalize	paddle.nn.functional.l2_normalize,paddle.nn.functional.norm.l2_normalize
 paddle.fluid.layers.log_loss	paddle.nn.functional.log_loss,paddle.nn.functional.loss.log_loss
@@ -225,7 +226,7 @@ paddle.fluid.layers.pool2d	paddle.nn.functional.pool2d,paddle.nn.functional.pool
 paddle.nn.functional.norm.batch_norm	paddle.nn.functional.batch_norm
 paddle.nn.layer.common.UpsamplingNearest2d	paddle.nn.UpsamplingNearest2d,paddle.nn.layer.UpsamplingNearest2d
 paddle.nn.functional.conv.conv_transpose3d	paddle.nn.functional.conv_transpose3d
-paddle.fluid.layers.switch_case	paddle.nn.switch_case,paddle.nn.control_flow.switch_case
+paddle.fluid.layers.switch_case	paddle.static.nn.switch_case
 paddle.fluid.layers.image_resize	paddle.nn.functional.image_resize,paddle.nn.functional.vision.image_resize
 paddle.nn.layer.conv.Conv3d	paddle.nn.Conv3d,paddle.nn.layer.Conv3d
 paddle.fluid.layers.logical_or	paddle.logical_or,paddle.tensor.logical_or,paddle.tensor.logic.logical_or
@@ -457,7 +458,7 @@ paddle.tensor.linalg.cross	paddle.cross,paddle.tensor.cross
 paddle.fluid.layers.maxout	paddle.nn.functional.maxout,paddle.nn.functional.activation.maxout
 paddle.nn.layer.norm.InstanceNorm2d	paddle.nn.InstanceNorm2d
 paddle.fluid.layers.assign	paddle.nn.functional.assign,paddle.nn.functional.common.assign
-paddle.fluid.layers.case	paddle.nn.case,paddle.nn.control_flow.case
+paddle.fluid.layers.case	paddle.static.nn.case
 paddle.fluid.core.CUDAPlace	paddle.CUDAPlace,paddle.framework.CUDAPlace
 paddle.nn.functional.pooling.max_pool2d	paddle.nn.functional.max_pool2d
 paddle.fluid.layers.resize_bilinear	paddle.nn.functional.resize_bilinear,paddle.nn.functional.vision.resize_bilinear
