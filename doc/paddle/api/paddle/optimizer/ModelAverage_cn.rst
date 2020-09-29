@@ -39,7 +39,8 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
         
     import paddle.fluid as fluid
     import numpy
-     
+    
+    paddle.enable_static()
     # 首先创建执行引擎
     place = fluid.CPUPlace()  # fluid.CUDAPlace(0)
     exe = fluid.Executor(place)
