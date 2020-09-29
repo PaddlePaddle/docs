@@ -86,6 +86,7 @@ DistributedStrategy
 - **sum**: 梯度求和
 - **avg**: 梯度求平均
 
+
 .. py:attribute:: lars
 
 是否使用LARS optimizer，默认值：False
@@ -116,6 +117,7 @@ DistributedStrategy
 
 **epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。 默认值是 0.
 
+
 .. py:attribute:: lamb
 
 是否使用LAMB optimizer，默认值：False
@@ -140,7 +142,9 @@ DistributedStrategy
 
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0. 默认值是 None.
 
+
 .. py:attribute:: localsgd
+
 是否使用LocalSGD optimizer，默认值：False。更多的细节请参考[Don't Use Large Mini-Batches, Use Local SGD](https://arxiv.org/pdf/1808.07217.pdf)
 
 **示例代码**
