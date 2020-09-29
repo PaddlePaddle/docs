@@ -27,14 +27,24 @@ Layer
 .. code-block:: python
 
     import paddle
-    import numpy as np
+
+    class MyLayer(paddle.nn.Layer):
+        def __init__(self):
+            super(MyLayer, self).__init__()
+            self._linear = paddle.nn.Linear(1, 1)
+            self._dropout = paddle.nn.Dropout(p=0.5)
+
+        def forward(self, input):
+            temp = self._linear(input)
+            temp = self._dropout(temp)
+            return temp
 
     x = paddle.randn([10, 1], 'float32')
-
-    linear = paddle.nn.Linear(1,1)
-    linear.train()  # the default mode is train
-    out = linear(x)
-
+    mylayer = MyLayer()
+    mylayer.eval()  # set mylayer._dropout to eval mode
+    out = mylayer(x)
+    mylayer.train()  # set mylayer._dropout to train mode
+    out = mylayer(x)
 
 .. py:method:: eval()
 
@@ -111,23 +121,27 @@ hook(Layer, input) -> None or modified input
 
     import paddle
     import numpy as np
+
     # the forward_post_hook change the input of the layer: input = input * 2
     def forward_pre_hook(layer, input):
         # user can use layer and input for information statistis tasks
         # change the input
         input_return = (input[0] * 2)
         return input_return
+
     linear = paddle.nn.Linear(13, 5)
     # register the hook
     forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook)
     value0 = np.arange(26).reshape(2, 13).astype("float32")
     in0 = paddle.to_tensor(value0)
     out0 = linear(in0)
+
     # remove the hook
     forward_pre_hook_handle.remove()
     value1 = value0 * 2
     in1 = paddle.to_tensor(value1)
     out1 = linear(in1)
+
     # hook change the linear's input to input * 2, so out0 is equal to out1.
     assert (out0.numpy() == out1.numpy()).any()
 
@@ -150,24 +164,28 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
-                import paddle
-                import numpy as np
-                # the forward_post_hook change the output of the layer: output = output * 2
-                def forward_post_hook(layer, input, output):
-                    # user can use layer, input and output for information statistis tasks
-                    # change the output
-                    return output * 2
-                linear = paddle.nn.Linear(13, 5)
-                # register the hook
-                forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
-                value1 = np.arange(26).reshape(2, 13).astype("float32")
-                in1 = paddle.to_tensor(value1)
-                out0 = linear(in1)
-                # remove the hook
-                forward_post_hook_handle.remove()
-                out1 = linear(in1)
-                # hook change the linear's output to output * 2, so out0 is equal to out1 * 2.
-                assert (out0.numpy() == (out1.numpy()) * 2).any()
+    import paddle
+    import numpy as np
+
+    # the forward_post_hook change the output of the layer: output = output * 2
+    def forward_post_hook(layer, input, output):
+        # user can use layer, input and output for information statistis tasks
+        # change the output
+        return output * 2
+
+    linear = paddle.nn.Linear(13, 5)
+    # register the hook
+    forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
+    value1 = np.arange(26).reshape(2, 13).astype("float32")
+    in1 = paddle.to_tensor(value1)
+    out0 = linear(in1)
+
+    # remove the hook
+    forward_post_hook_handle.remove()
+    out1 = linear(in1)
+
+    # hook change the linear's output to output * 2, so out0 is equal to out1 * 2.
+    assert (out0.numpy() == (out1.numpy()) * 2).any()
                 
 .. py:method:: create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 
@@ -190,34 +208,20 @@ hook(Layer, input, output) -> None or modified output
 
     import paddle
 
-    class MyLinear(paddle.nn.Layer):
-        def __init__(self,
-                    in_features,
-                    out_features):
-            super(MyLinear, self).__init__()
-            self.weight = self.create_parameter(
-                shape=[in_features, out_features],
-                is_bias=False)
-            self.bias = self.create_parameter(
-                shape=[out_features],
-                is_bias=True)
+    class MyLayer(paddle.nn.Layer):
+        def __init__(self):
+            super(MyLayer, self).__init__()
+            self._linear = paddle.nn.Linear(1, 1)
+            w_tmp = self.create_parameter([1,1])
+            self.add_parameter("w_tmp", w_tmp)
 
         def forward(self, input):
-            inputs = {'X': [input], 'Y': [self.weight]}
-            attrs = {
-                'transpose_X': False,
-                'transpose_Y': False,
-                'alpha': 1,
-            }
-            tmp = self.create_variable(name = "linear_tmp_0", dtype=self._dtype)
-            paddle.fluid.default_main_program().current_block().append_op(
-                type='matmul', inputs=inputs, outputs={'Out': tmp}, attrs=attrs)
+            return self._linear(input)
 
-            return tmp
     x = paddle.randn([10, 1], 'float32')
-    mylinear = MyLinear(1,1)
-    out = mylinear(x)
-    print(out)
+    mylayer = MyLayer()
+    for name, param in mylayer.named_parameters():
+        print(name, param)      # will print w_tmp,_linear.weight,_linear.bias
 
 .. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
 
@@ -244,29 +248,15 @@ hook(Layer, input, output) -> None or modified output
                     in_features,
                     out_features):
             super(MyLinear, self).__init__()
-            self.weight = self.create_parameter(
-                shape=[in_features, out_features],
-                is_bias=False)
-            self.bias = self.create_parameter(
-                shape=[out_features],
-                is_bias=True)
-
+            self.linear = paddle.nn.Linear( 10, 10)
+                
+            self.back_var = self.create_variable(name = "linear_tmp_0", dtype=self._dtype)
+        
         def forward(self, input):
-            inputs = {'X': [input], 'Y': [self.weight]}
-            attrs = {
-                'transpose_X': False,
-                'transpose_Y': False,
-                'alpha': 1,
-            }
-            tmp = self.create_variable(name = "linear_tmp_0", dtype=self._dtype)
-            paddle.fluid.default_main_program().current_block().append_op(
-                type='matmul', inputs=inputs, outputs={'Out': tmp}, attrs=attrs)
-
-            return tmp
-    x = paddle.randn([10, 1], 'float32')
-    mylinear = MyLinear(1,1)
-    out = mylinear(x)
-    print(out)
+            out = self.linear(input)
+            paddle.assign( out, self.back_var)
+            
+            return out
 
 .. py:method:: parameters(include_sublayers=True)
 
@@ -302,13 +292,13 @@ hook(Layer, input, output) -> None or modified output
 
     import paddle
 
-    fc1 = paddle.nn.Linear(10, 3)
-    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
-    model = paddle.nn.Sequential(fc1, fc2)
+    linear1 = paddle.nn.Linear(10, 3)
+    linear2 = paddle.nn.Linear(3, 10, bias_attr=False)
+    model = paddle.nn.Sequential(linear1, linear2)
 
     layer_list = list(model.children())
 
-    print(layer_list)
+    print(layer_list)   # [<paddle.nn.layer.common.Linear object at 0x7f7b8113f830>, <paddle.nn.layer.common.Linear object at 0x7f7b8113f950>]
 
 .. py:method:: named_children()
 
@@ -324,11 +314,13 @@ hook(Layer, input, output) -> None or modified output
 
     import paddle
 
-    fc1 = paddle.nn.Linear(10, 3)
-    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
-    model = paddle.nn.Sequential(fc1, fc2)
+    linear1 = paddle.nn.Linear(10, 3)
+    linear2 = paddle.nn.Linear(3, 10, bias_attr=False)
+    model = paddle.nn.Sequential(linear1, linear2)
     for prefix, layer in model.named_children():
         print(prefix, layer)
+        # ('0', <paddle.nn.layer.common.Linear object at 0x7fb61ed85830>)
+        # ('1', <paddle.nn.layer.common.Linear object at 0x7fb61ed85950>)
 
 .. py:method:: sublayers(include_sublayers=True)
 
@@ -479,6 +471,15 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 
 .. code-block:: python
 
+    import numpy as np
+    import paddle
+
+    linear = paddle.nn.Linear(10, 3)
+    value = np.array([0]).astype("float32")
+    buffer = paddle.to_tensor(value)
+    linear.register_buffer("buf_name", buffer, persistable=True)
+
+    print(linear.buffers())     # == print([linear.buf_name])
 
 .. py:method:: named_buffers(prefix='', include_sublayers=True)
 
@@ -540,6 +541,29 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 
 .. code-block:: python
 
+    import paddle
+
+    class MySequential(paddle.nn.Layer):
+        def __init__(self, *layers):
+            super(MySequential, self).__init__()
+            if len(layers) > 0 and isinstance(layers[0], tuple):
+                for name, layer in layers:
+                    self.add_sublayer(name, layer)
+            else:
+                for idx, layer in enumerate(layers):
+                    self.add_sublayer(str(idx), layer)
+
+        def forward(self, input):
+            for layer in self._sub_layers.values():
+                input = layer(input)
+            return input
+
+    fc1 = paddle.nn.Linear(10, 3)
+    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
+    model = MySequential(fc1, fc2)
+    for prefix, layer in model.named_sublayers():
+        print(prefix, layer)
+
 
 .. py:method:: add_parameter(name, parameter)
 
@@ -556,6 +580,23 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 **代码示例**
 
 .. code-block:: python
+
+    import paddle
+
+    class MyLayer(paddle.nn.Layer):
+        def __init__(self):
+            super(MyLayer, self).__init__()
+            self._linear = paddle.nn.Linear(1, 1)
+            w_tmp = self.create_parameter([1,1])
+            self.add_parameter("w_tmp", w_tmp)
+
+        def forward(self, input):
+            return self._linear(input)
+
+    x = paddle.randn([10, 1], 'float32')
+    mylayer = MyLayer()
+    for name, param in mylayer.named_parameters():
+        print(name, param)      # will print w_tmp,_linear.weight,_linear.bias
 
 
 .. py:method:: state_dict(destination=None, include_sublayers=True)
@@ -579,7 +620,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
     emb = paddle.nn.Embedding(10, 10)
 
     state_dict = emb.state_dict()
-    paddle.save( state_dict, "paddle_dy")
+    paddle.save( state_dict, "paddle_dy.pdparams")
 
 .. py:method:: set_state_dict(state_dict, include_sublayers=True, use_structured_name=True)
 
