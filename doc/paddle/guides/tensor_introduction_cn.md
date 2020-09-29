@@ -308,32 +308,6 @@ Tensor name: generated_tensor_0
 
 ## Tensor的操作
 
-Paddle提供了丰富的Tensor操作的API，包括数学运算符、逻辑运算符、线性代数相关等100+余种API，这些API调用有两种方法：
-```python
-x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]])
-y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]])
-
-print(paddle.add(x, y), "\n")
-print(x.add(y), "\n")
-```
-```text
-Tensor: eager_tmp_2
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
-
-Tensor: eager_tmp_3
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
-```
-
-可以看出，使用 **Tensor类成员函数** 和 **paddle API** 具有相同的效果，由于 **类成员函数** 操作更为方便，以下均从 **Tensor类成员函数** 的角度，对常用**Tensor**操作进行介绍。
-
 ### 索引和切片
 您可以通过索引或切片方便地访问或修改 Tensor。Paddle 使用标准的 Python 索引规则与 Numpy 索引规则，与 [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings)类似。具有以下特点：
 
@@ -424,6 +398,34 @@ x[0:1] = np.array([1,2,3])    # x : [[1, 2, 3], [3, 3, 3]]        id(x) = 443370
 x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 4433705584
 ```
 
+---
+
+同时，Paddle 还提供了丰富的 Tensor 操作的 API，包括数学运算符、逻辑运算符、线性代数相关等100余种 API，这些 API 调用有两种方法：
+```python
+x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]])
+y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]])
+
+print(paddle.add(x, y), "\n")
+print(x.add(y), "\n")
+```
+```text
+Tensor: eager_tmp_2
+  - place: CUDAPlace(0)
+  - shape: [2, 2]
+  - layout: NCHW
+  - dtype: float
+  - data: [6.6 8.8 11 13.2]
+
+Tensor: eager_tmp_3
+  - place: CUDAPlace(0)
+  - shape: [2, 2]
+  - layout: NCHW
+  - dtype: float
+  - data: [6.6 8.8 11 13.2]
+```
+
+可以看出，使用 **Tensor 类成员函数** 和 **Paddle API** 具有相同的效果，由于 **类成员函数** 操作更为方便，以下均从 **Tensor 类成员函数** 的角度，对常用 **Tensor** 操作进行介绍。
+
 ### 数学运算符
 ```python
 x.abs()                       #绝对值
@@ -504,4 +506,4 @@ x.matmul(y)                   #矩阵乘法
 ```
 需要注意，Paddle中Tensor的操作符均为非inplace操作，即 ``x.add(y)`` 不会在**tensor x**上直接进行操作，而会返回一个新的**Tensor**来表示运算结果。
 
-更多Tensor操作相关的API，请参考[class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
+更多Tensor操作相关的API，请参考 [class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)

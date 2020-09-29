@@ -314,34 +314,6 @@ Tensor name: generated_tensor_0
 
 ## Method of Tensor
 
-
-Paddles provide rich Tensor operating API , including mathematical operators, logical operators, linear algebra operators and so on. The total number is more than 100+ kinds. For example:
-
-```python
-x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]])
-y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]])
-
-print(paddle.add(x, y), "\n")
-print(x.add(y), "\n")
-```
-```text
-Tensor: eager_tmp_2
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
-
-Tensor: eager_tmp_3
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
-```
-
-It can be seen that Tensor class method has the same result with paddle API. And the Tensor class method is more convenient to invoke.
-
 ### Index and slice
 
 You can easily access or modify Tensors by indexing or slicing. Paddle follows standard Python indexing rules, similar to [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. It has the following features:
@@ -434,6 +406,36 @@ x[0:1] = np.array([1,2,3])    # x : [[1, 2, 3], [3, 3, 3]]        id(x) = 443370
 x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 4433705584
 ```
 
+---
+
+In addition, Paddle provides rich Tensor operating APIs, including mathematical operators, logical operators, linear algebra operators and so on. The total number is more than 100 kinds. For example:
+
+```python
+x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]])
+y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]])
+
+print(paddle.add(x, y), "\n")
+print(x.add(y), "\n")
+```
+```text
+Tensor: eager_tmp_2
+  - place: CUDAPlace(0)
+  - shape: [2, 2]
+  - layout: NCHW
+  - dtype: float
+  - data: [6.6 8.8 11 13.2]
+
+Tensor: eager_tmp_3
+  - place: CUDAPlace(0)
+  - shape: [2, 2]
+  - layout: NCHW
+  - dtype: float
+  - data: [6.6 8.8 11 13.2]
+```
+
+It can be seen that Tensor class method has the same result with Paddle API. And the Tensor class method is more convenient to invoke.
+
+
 ### mathematical operators
 ```python
 x.abs()                       #absolute value
@@ -514,4 +516,4 @@ x.matmul(y)                   #Matrix multiplication
 ```
 It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.And dd(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
 
-For more API related to Tensor operations, please refer to[class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
+For more API related to Tensor operations, please refer to [class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
