@@ -113,7 +113,6 @@ paddle.nn
     nn_cn/log_softmax_cn.rst
     nn_cn/lrn_cn.rst
     nn_cn/margin_ranking_loss_cn.rst
-    nn_cn/maxout_cn.rst
     nn_cn/mse_loss_cn.rst
     nn_cn/multiclass_nms_cn.rst
     nn_cn/natural_exp_decay_cn.rst
