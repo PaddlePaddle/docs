@@ -70,5 +70,5 @@ GradientClipByNorm
     # clip = paddle.nn.GradientClipByNorm(clip_norm=1.0, need_clip=fileter_func)
 
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
-    sdg.minimize(loss)
+    sdg.step()
             

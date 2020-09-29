@@ -55,5 +55,5 @@ GradientClipByValue
     # clip = paddle.nn.GradientClipByValue(min=-1, max=1, need_clip=fileter_func)
 
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
-    sdg.minimize(loss)
+    sdg.step()
             
