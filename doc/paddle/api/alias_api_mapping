@@ -101,7 +101,6 @@ paddle.fluid.layers.generate_mask_labels	paddle.nn.functional.generate_mask_labe
 paddle.tensor.math.prod	paddle.prod,paddle.tensor.prod
 paddle.fluid.layers.abs	paddle.abs,paddle.tensor.abs,paddle.tensor.math.abs
 paddle.fluid.dygraph.base.no_grad_	paddle.no_grad
-paddle.fluid.layers.grid_sampler	paddle.nn.functional.vision.grid_sampler
 paddle.tensor.linalg.cholesky	paddle.cholesky,paddle.tensor.cholesky
 paddle.tensor.math.sum	paddle.sum,paddle.tensor.sum,paddle.nn.functional.common.sum
 paddle.fluid.dygraph.learning_rate_scheduler.PiecewiseDecay	paddle.PiecewiseDecay,paddle.framework.PiecewiseDecay
