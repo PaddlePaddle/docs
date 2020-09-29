@@ -20,7 +20,6 @@ PaddlePaddle主要的动转静方式是基于源代码级别转换的ProgramTran
         else:
             out = paddle.cast(input_var, "int64")
 
-    paddle.disable_static()
     in_np = np.array([-2]).astype('int')
     input_var = paddle.to_tensor(in_np)
     func(input_var)
@@ -56,8 +55,6 @@ PaddlePaddle主要的动转静方式是基于源代码级别转换的ProgramTran
 .. code-block:: python
 
     import paddle
-
-    paddle.disable_static()
 
     fc_layer = SimpleFcLayer(3, 4, 2)
     in_np = np.random.random([3, 4]).astype('float32')
@@ -102,8 +99,6 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     import paddle
     from paddle.jit import TracedLayer
 
-    paddle.disable_static()
-
     fc_layer = SimpleFcLayer(3, 4, 2)
     in_np = np.random.random([3, 4]).astype('float32')
     # 将numpy的ndarray类型的数据转换为Tensor类型
@@ -142,7 +137,6 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
         else:
             return paddle.cast(input_var, "int64")
 
-    paddle.disable_static()
     in_np = np.array([-2]).astype('int')
     input_var = paddle.to_tensor(in_np)
     out = func(input_var)
