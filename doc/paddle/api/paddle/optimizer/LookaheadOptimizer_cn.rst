@@ -30,6 +30,15 @@ LookaheadOptimizer
             import paddle.fluid as fluid
             import numpy.random as random
 
+            paddle.enable_static()
+            def sample_data():
+               res = []
+               for i in range(2):
+                   data = np.random.normal(size=(2,))
+                   label = np.random.randint(2, size=(1,))
+                   res.append((data, label))
+               return res
+
             x = fluid.layers.data(name='x', shape=[2], dtype='float32')
             label = fluid.layers.data(name="label", shape=[1], dtype="int64")
             y = fluid.layers.fc(input=[x], size=2, act="softmax")
@@ -53,6 +62,7 @@ LookaheadOptimizer
             reader = paddle.batch(paddle.reader.shuffle(train_reader, buf_size=50000),batch_size=1)
             
             for batch_data in reader():
+                batch_data = sample_data()
                 exe.run(fluid.default_main_program(),
                 feed=feeder.feed(batch_data))
 
