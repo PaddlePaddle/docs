@@ -23,9 +23,8 @@ log_loss
   - **epsilon** (float) – epsilon
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回： 形为[N x 1]的二维张量，计算出的负log_loss值，数据类型为 float32
+返回： Tensor,形状为[N x 1], 数据类型为 float32
 
-返回类型: Tensor
 
 
 **代码示例**
