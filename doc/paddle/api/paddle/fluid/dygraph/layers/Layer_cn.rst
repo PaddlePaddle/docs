@@ -3,7 +3,7 @@
 Layer
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.Layer(name_scope=None, dtype=core.VarDesc.VarType.FP32)
+.. py:class:: paddle.nn.Layer(name_scope=None, dtype=core.VarDesc.VarType.FP32)
 
 
 
@@ -22,11 +22,48 @@ Layer
 
 返回：无
 
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    import numpy as np
+
+    x = paddle.randn([10, 1], 'float32')
+
+    linear = paddle.nn.Linear(1,1)
+    linear.train()  # the default mode is train
+    out = linear(x)
+
+
 .. py:method:: eval()
 
 将此层及其所有子层设置为预测模式。这只会影响某些模块，如Dropout和BatchNorm。
 
 返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    class MyLayer(paddle.nn.Layer):
+        def __init__(self):
+            super(MyLayer, self).__init__()
+            self._linear = paddle.nn.Linear(1, 1)
+            self._dropout = paddle.nn.Dropout(p=0.5)
+
+        def forward(self, input):
+            temp = self._linear(input)
+            temp = self._dropout(temp)
+            return temp
+
+    x = paddle.randn([10, 1], 'float32')
+    mylayer = MyLayer()
+    mylayer.eval()  # set mylayer._dropout to eval mode
+    out = mylayer(x)
+    print(out)
 
 .. py:method:: full_name()
 
@@ -35,6 +72,23 @@ Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__
 返回：Layer的全名
 
 返回类型：str
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    class LinearNet(paddle.nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__(name_scope = "demo_linear_net")
+            self._linear = paddle.nn.Linear(1, 1)
+
+        def forward(self, x):
+            return self._linear(x)
+
+    linear_net = LinearNet()
+    print(linear_net.full_name())   # demo_linear_net_0
 
 .. py:method:: register_forward_pre_hook(hook)
 
@@ -55,34 +109,27 @@ hook(Layer, input) -> None or modified input
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
-
-    # forward_pre_hook函数修改了layer的输入：input = input * 2
+    # the forward_post_hook change the input of the layer: input = input * 2
     def forward_pre_hook(layer, input):
-        # 改变输入值
+        # user can use layer and input for information statistis tasks
+        # change the input
         input_return = (input[0] * 2)
         return input_return
-
-    with fluid.dygraph.guard():
-        linear = fluid.Linear(13, 5, dtype="float32")
-
-        # 注册hook
-        forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook)
-
-        value0 = np.arange(26).reshape(2, 13).astype("float32")
-        in0 = fluid.dygraph.to_variable(value0)
-        out0 = linear(in0)
-
-        # 移除hook
-        forward_pre_hook_handle.remove()
-
-        value1 = value0 * 2
-        in1 = fluid.dygraph.to_variable(value1)
-        out1 = linear(in1)
-
-        # hook改变了layer的输入（input = input * 2），所以out0等于out1
-        assert (out0.numpy() == out1.numpy()).any()
+    linear = paddle.nn.Linear(13, 5)
+    # register the hook
+    forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook)
+    value0 = np.arange(26).reshape(2, 13).astype("float32")
+    in0 = paddle.to_tensor(value0)
+    out0 = linear(in0)
+    # remove the hook
+    forward_pre_hook_handle.remove()
+    value1 = value0 * 2
+    in1 = paddle.to_tensor(value1)
+    out1 = linear(in1)
+    # hook change the linear's input to input * 2, so out0 is equal to out1.
+    assert (out0.numpy() == out1.numpy()).any()
 
 .. py:method:: register_forward_post_hook(hook)
 
@@ -103,33 +150,25 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-
-    # forward_post_hook函数改变了layer的输出：output = output * 2
-    def forward_post_hook(layer, input, output):
-        # 改变输出值
-        return output * 2
-
-    with fluid.dygraph.guard():
-        linear = fluid.Linear(13, 5, dtype="float32")
-
-        # 注册hook
-        forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
-
-        value1 = np.arange(26).reshape(2, 13).astype("float32")
-        in1 = fluid.dygraph.to_variable(value1)
-
-        out0 = linear(in1)
-
-        # remove the hook
-        forward_post_hook_handle.remove()
-
-        out1 = linear(in1)
-
-        # hook改变了layer的输出（output = output * 2），所以out0等于out1 * 2
-        assert (out0.numpy() == (out1.numpy()) * 2).any()
-
+                import paddle
+                import numpy as np
+                # the forward_post_hook change the output of the layer: output = output * 2
+                def forward_post_hook(layer, input, output):
+                    # user can use layer, input and output for information statistis tasks
+                    # change the output
+                    return output * 2
+                linear = paddle.nn.Linear(13, 5)
+                # register the hook
+                forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
+                value1 = np.arange(26).reshape(2, 13).astype("float32")
+                in1 = paddle.to_tensor(value1)
+                out0 = linear(in1)
+                # remove the hook
+                forward_post_hook_handle.remove()
+                out1 = linear(in1)
+                # hook change the linear's output to output * 2, so out0 is equal to out1 * 2.
+                assert (out0.numpy() == (out1.numpy()) * 2).any()
+                
 .. py:method:: create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 
 为Layer创建参数。
@@ -145,6 +184,41 @@ hook(Layer, input, output) -> None or modified output
 
 返回类型： :ref:`cn_api_fluid_Variable`
 
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    class MyLinear(paddle.nn.Layer):
+        def __init__(self,
+                    in_features,
+                    out_features):
+            super(MyLinear, self).__init__()
+            self.weight = self.create_parameter(
+                shape=[in_features, out_features],
+                is_bias=False)
+            self.bias = self.create_parameter(
+                shape=[out_features],
+                is_bias=True)
+
+        def forward(self, input):
+            inputs = {'X': [input], 'Y': [self.weight]}
+            attrs = {
+                'transpose_X': False,
+                'transpose_Y': False,
+                'alpha': 1,
+            }
+            tmp = self.create_variable(name = "linear_tmp_0", dtype=self._dtype)
+            paddle.fluid.default_main_program().current_block().append_op(
+                type='matmul', inputs=inputs, outputs={'Out': tmp}, attrs=attrs)
+
+            return tmp
+    x = paddle.randn([10, 1], 'float32')
+    mylinear = MyLinear(1,1)
+    out = mylinear(x)
+    print(out)
+
 .. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
 
 为Layer创建变量。
@@ -159,6 +233,41 @@ hook(Layer, input, output) -> None or modified output
 
 返回类型： :ref:`cn_api_fluid_Variable`
 
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    class MyLinear(paddle.nn.Layer):
+        def __init__(self,
+                    in_features,
+                    out_features):
+            super(MyLinear, self).__init__()
+            self.weight = self.create_parameter(
+                shape=[in_features, out_features],
+                is_bias=False)
+            self.bias = self.create_parameter(
+                shape=[out_features],
+                is_bias=True)
+
+        def forward(self, input):
+            inputs = {'X': [input], 'Y': [self.weight]}
+            attrs = {
+                'transpose_X': False,
+                'transpose_Y': False,
+                'alpha': 1,
+            }
+            tmp = self.create_variable(name = "linear_tmp_0", dtype=self._dtype)
+            paddle.fluid.default_main_program().current_block().append_op(
+                type='matmul', inputs=inputs, outputs={'Out': tmp}, attrs=attrs)
+
+            return tmp
+    x = paddle.randn([10, 1], 'float32')
+    mylinear = MyLinear(1,1)
+    out = mylinear(x)
+    print(out)
+
 .. py:method:: parameters(include_sublayers=True)
 
 返回一个由当前层及其子层的所有参数组成的列表。
@@ -169,6 +278,57 @@ hook(Layer, input, output) -> None or modified output
 返回：一个由当前层及其子层的所有参数组成的列表，列表中的元素类型为Parameter(Variable)。
 
 返回类型：list
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    linear = paddle.nn.Linear(1,1)
+    print(linear.parameters())  # print linear_0.w_0 and linear_0.b_0
+
+.. py:method:: children()
+
+返回所有子层的迭代器。
+
+返回：子层的迭代器。
+
+返回类型：iterator
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    fc1 = paddle.nn.Linear(10, 3)
+    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
+    model = paddle.nn.Sequential(fc1, fc2)
+
+    layer_list = list(model.children())
+
+    print(layer_list)
+
+.. py:method:: named_children()
+
+返回所有子层的迭代器，生成子层名称和子层的元组。
+
+返回：产出子层名称和子层的元组的迭代器。
+
+返回类型：iterator
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    fc1 = paddle.nn.Linear(10, 3)
+    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
+    model = paddle.nn.Sequential(fc1, fc2)
+    for prefix, layer in model.named_children():
+        print(prefix, layer)
 
 .. py:method:: sublayers(include_sublayers=True)
 
@@ -181,6 +341,27 @@ hook(Layer, input, output) -> None or modified output
 
 返回类型：list
 
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    class MyLayer(paddle.nn.Layer):
+        def __init__(self):
+            super(MyLayer, self).__init__()
+            self._linear = paddle.nn.Linear(1, 1)
+            self._dropout = paddle.nn.Dropout(p=0.5)
+
+        def forward(self, input):
+            temp = self._linear(input)
+            temp = self._dropout(temp)
+            return temp
+
+    x = paddle.randn([10, 1], 'float32')
+    mylayer = MyLayer()
+    print(mylayer.sublayers())  # [<paddle.nn.layer.common.Linear object at 0x7f44b58977d0>, <paddle.nn.layer.common.Dropout object at 0x7f44b58978f0>]
+
 .. py:method:: clear_gradients()
 
 清除该层所有参数的梯度。
@@ -189,20 +370,18 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
 
-    with fluid.dygraph.guard():
-        value = np.arange(26).reshape(2, 13).astype("float32")
-        a = fluid.dygraph.to_variable(value)
-        linear = fluid.Linear(13, 5, dtype="float32")
-        adam = fluid.optimizer.Adam(learning_rate=0.01, 
-                                    parameter_list=linear.parameters())
-        out = linear(a)
-        out.backward()
-        adam.minimize(out)
-        linear.clear_gradients()
-
+    value = np.arange(26).reshape(2, 13).astype("float32")
+    a = paddle.to_tensor(value)
+    linear = paddle.nn.Linear(13, 5)
+    adam = paddle.optimizer.Adam(learning_rate=0.01,
+                                parameters=linear.parameters())
+    out = linear(a)
+    out.backward()
+    adam.minimize(out)
+    linear.clear_gradients()
 
 .. py:method:: named_parameters(prefix='', include_sublayers=True)
 
@@ -220,14 +399,13 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
 
-    with fluid.dygraph.guard():
-        fc1 = fluid.Linear(10, 3)
-        fc2 = fluid.Linear(3, 10, bias_attr=False)
-        model = fluid.dygraph.Sequential(fc1, fc2)
-        for name, param in model.named_parameters():
-            print(name, param)
+    fc1 = paddle.nn.Linear(10, 3)
+    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
+    model = paddle.nn.Sequential(fc1, fc2)
+    for name, param in model.named_parameters():
+        print(name, param)
 
 .. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
 
@@ -247,14 +425,13 @@ hook(Layer, input, output) -> None or modified output
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
 
-    with fluid.dygraph.guard():
-        fc1 = fluid.Linear(10, 3)
-        fc2 = fluid.Linear(3, 10, bias_attr=False)
-        model = fluid.dygraph.Sequential(fc1, fc2)
-        for prefix, layer in model.named_sublayers():
-            print(prefix, layer)
+    fc1 = paddle.nn.Linear(10, 3)
+    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
+    model = paddle.nn.Sequential(fc1, fc2)
+    for prefix, layer in model.named_sublayers():
+        print(prefix, layer)
 
 .. py:method:: register_buffer(name, variable, persistable=True)
 
@@ -278,16 +455,14 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 .. code-block:: python
 
     import numpy as np
-    import paddle.fluid as fluid
-
-    with fluid.dygraph.guard():
-        linear = fluid.Linear(10, 3)
-        value = np.array([0]).astype("float32")
-        buffer = fluid.dygraph.to_variable(value)
-        linear.register_buffer("buf_name", buffer, persistable=True)
-        
-        # get the buffer by attribute.
-        print(linear.buf_name)
+    import paddle
+    
+    linear = paddle.nn.Linear(10, 3)
+    value = np.array([0]).astype("float32")
+    buffer = paddle.to_tensor(value)
+    linear.register_buffer("buf_name", buffer, persistable=True)
+    # get the buffer by attribute.
+    print(linear.buf_name)
 
 .. py:method:: buffers(include_sublayers=True)
 
@@ -299,6 +474,11 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 返回：一个由当前层及其子层的所有buffers组成的列表，列表中的元素类型为Variable。
 
 返回类型：list
+
+**代码示例**
+
+.. code-block:: python
+
 
 .. py:method:: named_buffers(prefix='', include_sublayers=True)
 
@@ -317,25 +497,24 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 .. code-block:: python
 
     import numpy as np
-    import paddle.fluid as fluid
+    import paddle
 
-    with fluid.dygraph.guard():
-        fc1 = fluid.Linear(10, 3)
-        buffer1 = fluid.dygraph.to_variable(np.array([0]).astype("float32"))
-        # register a variable as buffer by specific `persistable`
-        fc1.register_buffer("buf_name_1", buffer1, persistable=True)
+    fc1 = paddle.nn.Linear(10, 3)
+    buffer1 = paddle.to_tensor(np.array([0]).astype("float32"))
+    # register a variable as buffer by specific `persistable`
+    fc1.register_buffer("buf_name_1", buffer1, persistable=True)
 
-        fc2 = fluid.Linear(3, 10)
-        buffer2 = fluid.dygraph.to_variable(np.array([1]).astype("float32"))
-        # register a buffer by assigning an attribute with Variable.
-        # The `persistable` can only be False by this way.
-        fc2.buf_name_2 = buffer2
+    fc2 = paddle.nn.Linear(3, 10)
+    buffer2 = paddle.to_tensor(np.array([1]).astype("float32"))
+    # register a buffer by assigning an attribute with Variable.
+    # The `persistable` can only be False by this way.
+    fc2.buf_name_2 = buffer2
 
-        model = fluid.dygraph.Sequential(fc1, fc2)
+    model = paddle.nn.Sequential(fc1, fc2)
 
-        # get all named buffers
-        for name, buffer in model.named_buffers():
-            print(name, buffer)
+    # get all named buffers
+    for name, buffer in model.named_buffers():
+        print(name, buffer)
 
 .. py:method:: forward(*inputs, **kwargs)
 
@@ -357,6 +536,11 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 
 返回类型：Layer
 
+**代码示例**
+
+.. code-block:: python
+
+
 .. py:method:: add_parameter(name, parameter)
 
 添加参数实例。可以通过self.name访问该parameter。
@@ -368,6 +552,11 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 返回：传入的参数实例
 
 返回类型：Parameter( :ref:`cn_api_fluid_Variable` )
+
+**代码示例**
+
+.. code-block:: python
+
 
 .. py:method:: state_dict(destination=None, include_sublayers=True)
 
@@ -385,11 +574,12 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        state_dict = emb.state_dict()
-        fluid.save_dygraph(state_dict, "paddle_dy")
+    import paddle
+
+    emb = paddle.nn.Embedding(10, 10)
+
+    state_dict = emb.state_dict()
+    paddle.save( state_dict, "paddle_dy")
 
 .. py:method:: set_state_dict(state_dict, include_sublayers=True, use_structured_name=True)
 
@@ -407,15 +597,10 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 .. code-block:: python
 
     import paddle
-                
-    paddle.disable_static()
-    
-    emb = paddle.nn.Embedding(10, 10)
 
+    emb = paddle.nn.Embedding(10, 10)
+    
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
-    
     para_state_dict = paddle.load("paddle_dy.pdparams")
-
     emb.set_state_dict(para_state_dict)
-
