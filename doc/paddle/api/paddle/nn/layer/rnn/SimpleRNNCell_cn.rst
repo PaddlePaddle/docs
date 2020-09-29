@@ -18,7 +18,7 @@ SimpleRNNCell
         y_{t} & = h_{t}
 
    
-详情请参考论文 : _`《Finding Structure in Time》<https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_。
+详情请参考论文 : _`《Finding Structure in Time》 <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_。
 
 变量：
     - **input_size** (int) - 输入的大小。
