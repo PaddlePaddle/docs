@@ -4,7 +4,7 @@ data_norm
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False)
+.. py:function:: paddle.static.nn.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False)
 
 
 
@@ -28,7 +28,7 @@ data_norm
         y_i &\gets \gamma \hat{x_i} + \beta \qquad &//\ scale\ and\ shift
 
 参数:
-  - **input** （Variable） - 输入变量，它是一个LoDTensor。
+  - **input** （Tensor） - 输入变量。
   - **act** （string，默认None） - 激活函数类型，线性| relu | prelu | ...
   - **epsilon** （float，默认1e-05） -
   - **param_attr** （ParamAttr） - 参数比例的参数属性。
@@ -45,16 +45,16 @@ data_norm
 
 返回: 张量变量，是对输入数据进行正则化后的结果。
 
-返回类型: Variable
+返回类型: Tensor
 
 **代码示例**
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
 
-    hidden1 = fluid.layers.data(name="hidden1", shape=[200])
-    hidden2 = fluid.layers.data_norm(name="hidden2", input=hidden1)
+    x = paddle.randn(shape=[32,100])
+    hidden2 = paddle.static.nn.data_norm(input=x)
 
 
 

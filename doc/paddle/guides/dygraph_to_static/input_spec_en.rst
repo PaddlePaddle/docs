@@ -103,9 +103,6 @@ A simple example as follows:
             out = out + y
             return out
 
-
-    paddle.disable_static()
-
     net = SimpleNet()
 
     # save static model for inference directly
@@ -137,7 +134,6 @@ If we want to train model in dygraph mode and only expect to save the inference 
             out = out + y
             return out
 
-    paddle.disable_static()
     net = SimpleNet()
 
     # train process (Pseudo code)
