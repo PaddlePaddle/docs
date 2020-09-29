@@ -6,10 +6,6 @@ cond
 
 .. py:function:: paddle.fluid.layers.cond(pred, true_fn=None, false_fn=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
-:alias_main: paddle.nn.cond
-:alias: paddle.nn.cond,paddle.nn.control_flow.cond
-:old_api: paddle.fluid.layers.cond
 
 
 
@@ -25,11 +21,11 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
 
        .. code-block:: python
                   
-            import paddle.fluid as fluid
+            import paddle
 
             paddle.enable_static()
-            a = paddle.data(name='a', shape=[-1, 1], dtype='float32')
-            b = paddle.data(name='b', shape=[-1, 1], dtype='float32')
+            a = paddle.static.data(name='a', shape=[-1, 1], dtype='float32')
+            b = paddle.static.data(name='b', shape=[-1, 1], dtype='float32')
             c = a * b
             out = paddle.nn.cond(a < b, lambda: a + c, lambda: b * b)
 
