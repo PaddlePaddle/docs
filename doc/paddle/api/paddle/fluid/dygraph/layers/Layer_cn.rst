@@ -79,9 +79,7 @@ Layer
 
 Layer的全名。组成方式为： ``name_scope`` + “/” + MyLayer.__class__.__name__ 。
 
-返回：Layer的全名
-
-返回类型：str
+返回：str， Layer的全名
 
 **代码示例**
 
@@ -111,9 +109,7 @@ hook(Layer, input) -> None or modified input
 参数：
     - **hook** (function) - 被注册为 ``forward pre-hook`` 的函数
 
-返回：一个 ``HookRemoveHelper`` 类对象，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
-
-返回类型： ``HookRemoveHelper`` 类对象
+返回：HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
 
 **代码示例**
 
@@ -156,9 +152,7 @@ hook(Layer, input, output) -> None or modified output
 参数：
     - **hook** (function) - 被注册为 ``forward post-hook`` 的函数
 
-返回：一个 ``HookRemoveHelper`` 类对象，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
-
-返回类型： ``HookRemoveHelper`` 类对象
+返回：HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注册的hook函数。
 
 **代码示例**
 
@@ -198,9 +192,7 @@ hook(Layer, input, output) -> None or modified output
     - **is_bias** (bool, 可选) - 是否是偏置参数。默认值：False。
     - **default_initializer** (Initializer, 可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 :ref:`cn_api_fluid_initializer_XavierInitializer` ，设置bias参数的初始化方式为 :ref:`cn_api_fluid_initializer_ConstantInitializer` 。默认值：None。
 
-返回：创建的参数变量
-
-返回类型： :ref:`cn_api_fluid_Variable`
+返回：Tensor， 创建的参数变量
 
 **代码示例**
 
@@ -232,9 +224,7 @@ hook(Layer, input, output) -> None or modified output
     - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
     - **type** (core.VarDesc.VarType, 可选) - 变量类型，该参数不需要用户设置。默认值：core.VarDesc.VarType.LOD_TENSOR。
 
-返回：创建的 ``Tensor`` 
-
-返回类型： :ref:`cn_api_fluid_Variable`
+返回：Tensor， 返回创建的 ``Tensor`` 
 
 **代码示例**
 
@@ -264,9 +254,7 @@ hook(Layer, input, output) -> None or modified output
 参数：
     - **include_sublayers** (bool, 可选) - 是否返回子层的参数。如果为True，返回的列表中包含子层的参数。默认值：True。
 
-返回：一个由当前层及其子层的所有参数组成的列表，列表中的元素类型为Parameter(Variable)。
-
-返回类型：list
+返回：list， 一个由当前层及其子层的所有参数组成的列表，列表中的元素类型为Parameter(Variable)。
 
 **代码示例**
 
@@ -281,9 +269,7 @@ hook(Layer, input, output) -> None or modified output
 
 返回所有子层的迭代器。
 
-返回：子层的迭代器。
-
-返回类型：iterator
+返回：iterator， 子层的迭代器。
 
 **代码示例**
 
@@ -303,9 +289,7 @@ hook(Layer, input, output) -> None or modified output
 
 返回所有子层的迭代器，生成子层名称和子层的元组。
 
-返回：产出子层名称和子层的元组的迭代器。
-
-返回类型：iterator
+返回：iterator， 产出子层名称和子层的元组的迭代器。
 
 **代码示例**
 
@@ -328,9 +312,7 @@ hook(Layer, input, output) -> None or modified output
 参数：
     - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
 
-返回： 一个由所有子层组成的列表，列表中的元素类型为Layer。
-
-返回类型：list
+返回： list， 一个由所有子层组成的列表，列表中的元素类型为Layer。
 
 **代码示例**
 
@@ -355,6 +337,8 @@ hook(Layer, input, output) -> None or modified output
 .. py:method:: clear_gradients()
 
 清除该层所有参数的梯度。
+
+返回：无
 
 **代码示例**
 
@@ -381,9 +365,7 @@ hook(Layer, input, output) -> None or modified output
     - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
     - **include_sublayers** (bool, 可选) - 是否返回子层的参数。如果为True，返回的列表中包含子层的参数。默认值：True。
 
-返回：产出名称和参数的元组的迭代器。
-
-返回类型：iterator
+返回：iterator， 产出名称和参数的元组的迭代器。
 
 **代码示例**
 
@@ -407,9 +389,7 @@ hook(Layer, input, output) -> None or modified output
     - **include_self** (bool, 可选) - 是否包含该层自身。默认值：False。
     - **layers_set** (set, 可选): 记录重复子层的集合。默认值：None。
 
-返回：产出名称和子层的元组的迭代器。
-
-返回类型：iterator
+返回：iterator， 产出名称和子层的元组的迭代器。
 
 **代码示例**
 
@@ -438,8 +418,6 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 
 返回：None
 
-返回类型：None
-
 **代码示例**
 
 .. code-block:: python
@@ -461,9 +439,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 参数：
     - **include_sublayers** (bool, 可选) - 是否返回子层的buffers。如果为True，返回的列表中包含子层的buffers。默认值：True。
 
-返回：一个由当前层及其子层的所有buffers组成的列表，列表中的元素类型为Variable。
-
-返回类型：list
+返回：list， 一个由当前层及其子层的所有buffers组成的列表，列表中的元素类型为Variable。
 
 **代码示例**
 
@@ -487,9 +463,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
     - **prefix** (str, 可选) - 在所有buffer名称前加的前缀。默认值：''。
     - **include_sublayers** (bool, 可选) - 是否返回子层的buffers。如果为True，返回的列表中包含子层的buffers。默认值：True。
 
-返回：产出名称和buffer的元组的迭代器。
-
-返回类型：iterator
+返回：iterator， 产出名称和buffer的元组的迭代器。
 
 **代码示例**
 
@@ -523,6 +497,8 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
     - **\*inputs** (tuple) - 解包后的tuple参数。
     - **\*\*kwargs** (dict) - 解包后的dict参数。
 
+返回： 无
+
 .. py:method:: add_sublayer(name, sublayer)
 
 添加子层实例。可以通过self.name访问该sublayer。
@@ -531,9 +507,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
     - **name** (str) - 子层名。
     - **sublayer** (Layer) - Layer实例。
 
-返回：添加的子层
-
-返回类型：Layer
+返回：Layer， 添加的子层
 
 **代码示例**
 
@@ -571,9 +545,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
     - **name** (str) - 参数名。
     - **parameter** (Parameter) - Parameter实例。
 
-返回：传入的参数实例
-
-返回类型：Parameter( :ref:`cn_api_fluid_Variable` )
+返回：Parameter， 传入的参数实例
 
 **代码示例**
 
@@ -604,9 +576,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
     - **destination** (dict, 可选) - 如果提供 ``destination`` ，则所有参数和可持久性buffers都将存放在 ``destination`` 中。 默认值：None。
     - **include_sublayers** (bool, 可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
 
-返回：包含所有参数和可持久行buffers的dict
-
-返回类型：dict
+返回：dict， 包含所有参数和可持久行buffers的dict
 
 **代码示例**
 
@@ -628,7 +598,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
     - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
     - **use_structured_name** (bool, 可选) - 如果设置为True，将使用Layer的结构性变量名作为dict的key，否则将使用Parameter或者Buffer的变量名作为key。默认值：True。
 
-返回：None
+返回：无
 
 **代码示例**
 
