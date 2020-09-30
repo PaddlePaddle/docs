@@ -6,7 +6,6 @@ DataFeedDesc
 
 .. py:class:: paddle.fluid.DataFeedDesc(proto_file)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

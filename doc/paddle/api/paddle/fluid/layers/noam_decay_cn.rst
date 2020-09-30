@@ -5,9 +5,6 @@ noam_decay
 
 .. py:function:: paddle.fluid.layers.noam_decay(d_model, warmup_steps)
 
-:alias_main: paddle.nn.functional.noam_decay
-:alias: paddle.nn.functional.noam_decay,paddle.nn.functional.learning_rate.noam_decay
-:old_api: paddle.fluid.layers.noam_decay
 
 
 

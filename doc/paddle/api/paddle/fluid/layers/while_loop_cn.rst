@@ -7,10 +7,6 @@ ____________________________________
 
 .. py:function:: paddle.fluid.layers.while_loop(cond, body, loop_vars, is_test=False, name=None)
 
-:api_attr: 声明式编程模式（静态图)
-:alias_main: paddle.nn.while_loop
-:alias: paddle.nn.while_loop,paddle.nn.control_flow.while_loop
-:old_api: paddle.fluid.layers.while_loop
 
 
 

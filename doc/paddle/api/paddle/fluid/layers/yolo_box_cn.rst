@@ -5,9 +5,6 @@ yolo_box
 
 .. py:function:: paddle.fluid.layers.yolo_box(x, img_size, anchors, class_num, conf_thresh, downsample_ratio, clip_bbox=True,name=None)
 
-:alias_main: paddle.nn.functional.yolo_box
-:alias: paddle.nn.functional.yolo_box,paddle.nn.functional.vision.yolo_box
-:old_api: paddle.fluid.layers.yolo_box
 
 
 

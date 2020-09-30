@@ -6,7 +6,6 @@ While
 
 .. py:class:: paddle.fluid.layers.While (cond, is_test=False, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

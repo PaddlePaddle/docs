@@ -5,9 +5,6 @@ log
 
 .. py:function:: paddle.fluid.layers.log(x, name=None)
 
-:alias_main: paddle.log
-:alias: paddle.log,paddle.tensor.log,paddle.tensor.math.log
-:old_api: paddle.fluid.layers.log
 
 
 

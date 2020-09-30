@@ -5,9 +5,6 @@ linear_lr_warmup
 
 .. py:function:: paddle.fluid.layers.linear_lr_warmup(learning_rate, warmup_steps, start_lr, end_lr)
 
-:alias_main: paddle.nn.functional.linear_lr_warmup
-:alias: paddle.nn.functional.linear_lr_warmup,paddle.nn.functional.learning_rate.linear_lr_warmup
-:old_api: paddle.fluid.layers.linear_lr_warmup
 
 
 

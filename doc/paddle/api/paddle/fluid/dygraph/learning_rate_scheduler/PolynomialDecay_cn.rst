@@ -6,7 +6,6 @@ PolynomialDecay
 
 .. py:class:: paddle.fluid.dygraph.PolynomialDecay(learning_rate, decay_steps, end_learning_rate=0.0001, power=1.0, cycle=False, begin=0, step=1, dtype='float32')
 
-:api_attr: 命令式编程模式（动态图)
 
 
 

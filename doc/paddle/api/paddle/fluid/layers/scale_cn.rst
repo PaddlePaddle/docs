@@ -5,9 +5,6 @@ scale
 
 .. py:function:: paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 
-:alias_main: paddle.scale
-:alias: paddle.scale,paddle.tensor.scale,paddle.tensor.math.scale
-:old_api: paddle.fluid.layers.scale
 
 
 

@@ -5,9 +5,6 @@ increment
 
 .. py:function:: paddle.fluid.layers.increment(x, value=1.0, in_place=True)
 
-:alias_main: paddle.increment
-:alias: paddle.increment,paddle.tensor.increment,paddle.tensor.math.increment
-:old_api: paddle.fluid.layers.increment
 
 
 

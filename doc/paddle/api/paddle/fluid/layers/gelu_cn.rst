@@ -5,9 +5,6 @@ gelu
 
 .. py:function:: paddle.fluid.layers.gelu(x)
 
-:alias_main: paddle.nn.functional.gelu
-:alias: paddle.nn.functional.gelu,paddle.nn.functional.activation.gelu
-:old_api: paddle.fluid.layers.gelu
 
 
 

@@ -391,13 +391,14 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
         state_dict = emb.state_dict()
         fluid.save_dygraph(state_dict, "paddle_dy")
 
-.. py:method:: set_dict(stat_dict, include_sublayers=True)
+.. py:method:: set_state_dict(state_dict, include_sublayers=True, use_structured_name=True)
 
-根据传入的 ``stat_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``stat_dict`` 中的 ``Tensor`` 设置。
+根据传入的 ``state_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
 
 参数：
     - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
     - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
+    - **use_structured_name** (bool, 可选) - 如果设置为True，将使用Layer的结构性变量名作为dict的key，否则将使用Parameter或者Buffer的变量名作为key。默认值：True。
 
 返回：None
 
@@ -405,36 +406,16 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        state_dict = emb.state_dict()
-        fluid.save_dygraph(state_dict, "paddle_dy")
-        para_state_dict, _ = fluid.load_dygraph("paddle_dy")
-        emb.set_dict(para_state_dict)
+    import paddle
+                
+    paddle.disable_static()
+    
+    emb = paddle.nn.Embedding(10, 10)
 
-.. py:method:: load_dict(stat_dict, include_sublayers=True)
+    state_dict = emb.state_dict()
+    paddle.save(state_dict, "paddle_dy.pdparams")
+    
+    para_state_dict = paddle.load("paddle_dy.pdparams")
 
-.. warning::
-    该函数将被弃用。请使用set_dict函数。
-
-根据传入的 ``stat_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``stat_dict`` 中的 ``Tensor`` 设置。
-
-参数：
-    - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
-
-返回：None
-
-**代码示例**
-
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-        state_dict = emb.state_dict()
-        fluid.save_dygraph(state_dict, "paddle_dy")
-        para_state_dict, _ = fluid.load_dygraph("paddle_dy")
-        emb.load_dict(para_state_dict)
+    emb.set_state_dict(para_state_dict)
 

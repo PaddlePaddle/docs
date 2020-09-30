@@ -19,7 +19,7 @@ ceil
 
 
 参数:
-    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64。
+    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64 、float16。
     - name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回：输出Tensor，与 ``x`` 维度相同、数据类型相同。
@@ -31,12 +31,9 @@ ceil
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([[-1.5,6],[1,15.6]]).astype(np.float32)
-        x = paddle.to_variable(x_data)
-        res = paddle.ceil(x)
-        print(res.numpy())
-        # [[-1.  6.]
-        # [ 1. 16.]]
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = paddle.ceil(x)
+        print(out.numpy())
+        # [-0. -0.  1.  1.]

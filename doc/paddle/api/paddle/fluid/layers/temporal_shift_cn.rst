@@ -4,9 +4,6 @@ temporal_shift
 -------------------------------
 .. py:function:: paddle.fluid.layers.temporal_shift(x, seg_num, shift_ratio=0.25, name=None)
 
-:alias_main: paddle.nn.functional.temporal_shift
-:alias: paddle.nn.functional.temporal_shift,paddle.nn.functional.extension.temporal_shift
-:old_api: paddle.fluid.layers.temporal_shift
 
 
 

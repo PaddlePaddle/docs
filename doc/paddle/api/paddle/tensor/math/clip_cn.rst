@@ -1,41 +1,44 @@
-.. _cn_api_fluid_layers_clip:
+.. _cn_api_tensor_clip:
 
 clip
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.clip(x, min, max, name=None)
-
-:alias_main: paddle.nn.clip
-:alias: paddle.nn.clip,paddle.nn.clip.clip
-:old_api: paddle.fluid.layers.clip
+.. py:function:: paddle.clip(x, min=None, max=None, name=None)
 
 
 
-该OP对输入Tensor每个元素的数值进行裁剪，使得输出Tensor元素的数值被限制在区间[min, max]内。具体的计算公式为如下。
+
+该OP将输入的所有元素进行剪裁，使得输出元素限制在[min, max]内，具体公式如下：
 
 .. math::
 
-  Out = MIN(MAX(x,min),max)
-
-
+        Out = MIN(MAX(x, min), max) 
 
 参数：
-        - **x** (Variable)- 多维Tensor，数据类型为float32
-        - **min** (float)- 最小值，输入Tensor中小于该值的元素由min代替。
-        - **max** (float)- 最大值，输入Tensor中大于该值的元素由max替换。
-        - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64。
+    - min (float32|Tensor, 可选) - 裁剪的最小值，输入中小于该值的元素将由该元素代替，若参数为空，则不对输入的最小值做限制。数据类型可以是float32或形状为[1]的Tensor，类型可以为int32，float32，float64，默认值为None。
+    - max (float32|Tensor, 可选) - 裁剪的最大值，输入中大于该值的元素将由该元素代替，若参数为空，则不对输入的最大值做限制。数据类型可以是float32或形状为[1]的Tensor，类型可以为int32，float32，float64，默认值为None。
+    - name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：  对元素的数值进行裁剪之后的Tesnor，与输入x具有相同的shape和数据类型
+返回：输出Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型：Variable
+返回类型：Tensor
 
-**代码示例：**
+**代码示例**：
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    input = fluid.layers.data(
-        name='data', shape=[1], dtype='float32')
-    reward = fluid.layers.clip(x=input, min=-1.0, max=1.0)
+    import paddle
+    import numpy as np
 
-
+    paddle.disable_static()
+    x = np.array([[1.2,3.5], [4.5,6.4]]).astype('float32')
+    x1 = paddle.to_tensor(x)
+    out1 = paddle.clip(x1, min=3.5, max=5.0)
+    out2 = paddle.clip(x1, min=2.5)
+    print(out1.numpy())
+    # [[3.5, 3.5]
+    # [4.5, 5.0]]
+    print(out2.numpy())
+    # [[2.5, 3.5]
+    # [[4.5, 6.4]

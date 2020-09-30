@@ -6,8 +6,6 @@ addmm
 
 .. py:function:: paddle.addmm(input, x, y, alpha=1.0, beta=1.0, name=None)
 
-:alias_main: paddle.addmm
-:alias: paddle.addmm,paddle.tensor.addmm,paddle.tensor.math.addmm
 
 
 
@@ -19,39 +17,30 @@ addmm
     out = alpha * x * y + beta * input
 
 参数:
-    - **input** （Variable）：输入Tensor input，数据类型支持float32, float64。
-    - **x** （Variable）：输入Tensor x，数据类型支持float32, float64。
-    - **y** （Variable）：输入Tensor y，数据类型支持float32, float64。
+    - **input** （Tensor）：输入Tensor input，数据类型支持float32, float64。
+    - **x** （Tensor）：输入Tensor x，数据类型支持float32, float64。
+    - **y** （Tensor）：输入Tensor y，数据类型支持float32, float64。
     - **alpha** （float，可选）：乘以x*y的标量，数据类型支持float32, float64，默认值为1.0。
     - **beta** （float，可选）：乘以input的标量，数据类型支持float32, float64，默认值为1.0。
     - **name** （str，可选）：具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：计算得到的Tensor。Tensor数据类型与输入input数据类型一致。
 
-返回类型：变量（Variable）
+返回类型：变量（Tensor）
 
 
 **代码示例**:
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
-    import paddle.fluid as fluid
 
-    input = fluid.data(name='input', shape=[2, 2], dtype='float32')
-    x = fluid.data(name='x', shape=[2, 2], dtype='float32')
-    y = fluid.data(name='y', shape=[2, 2], dtype='float32')
-    out = paddle.addmm( input=input, x=x, y=y, alpha=5.0, beta=0.5 )
+    x = paddle.ones([2,2])
+    y = paddle.ones([2,2])
+    input = paddle.ones([2,2])
 
-    data_x = np.ones((2, 2)).astype(np.float32)
-    data_y = np.ones((2, 2)).astype(np.float32)
-    data_input = np.ones((2, 2)).astype(np.float32)
+    out = paddle.addmm( input=input, x=x, y=y, beta=0.5, alpha=5.0 )
 
-    place =  fluid.CUDAPlace(0) if fluid.core.is_compiled_with_cuda() else fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    results = exe.run(fluid.default_main_program(), 
-                      fetch_list=[out], feed={"input": data_input, 'x': data_x, "y": data_y})
-    print(np.array(results[0]))
+    print( out.numpy() )
     # [[10.5 10.5]
     # [10.5 10.5]]

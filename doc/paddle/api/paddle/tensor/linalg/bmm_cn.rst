@@ -3,10 +3,8 @@
 bmm
 -------------------------------
 
-.. py:function:: paddle.tensor.bmm(x, y, name=None):
+.. py:function:: paddle.bmm(x, y, name=None):
 
-:alias_main: paddle.bmm
-:alias: paddle.bmm,paddle.tensor.bmm,paddle.tensor.linalg.bmm
 
 
 
@@ -20,15 +18,15 @@ bmm
 
 **参数**：
     
-    -**x** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
-    -**y** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
-    -**name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
+    - **x** (Tensor) : 输入变量，类型为 Tensor。
+    - **y** (Tensor) : 输入变量，类型为 Tensor。
+    - **name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
 
 **返回**：
-    - Variable (Tensor / LoDTensor)，矩阵相乘后的结果。
+    - Tensor，矩阵相乘后的结果。
 
 **返回类型**：
-    - Variable（变量）。
+    - Tensor。
 
 
 **示例**:
@@ -36,16 +34,18 @@ bmm
 .. code-block:: python
     
     import paddle
-    import paddle.fluid as fluid
-    # size input1: (2, 2, 3) and input2: (2, 3, 2)
-    input1 = np.array([[[1.0, 1.0, 1.0],[2.0, 2.0, 2.0]],[[3.0, 3.0, 3.0],[4.0, 4.0, 4.0]]])
-    input2 = np.array([[[1.0, 1.0],[2.0, 2.0],[3.0, 3.0]],[[4.0, 4.0],[5.0, 5.0],[6.0, 6.0]]])
-    with fluid.dygraph.guard():
-        x = fluid.dygraph.to_variable(input1)
-        y = fluid.dygraph.to_variable(input2)
-        out = paddle.bmm(x, y)
-        #output size: (2, 2, 2)
-        #output value:
-        #[[[6.0, 6.0],[12.0, 12.0]],[[45.0, 45.0],[60.0, 60.0]]]
-        out_np = out.numpy()
+
+    # In imperative mode:
+    # size x: (2, 2, 3) and y: (2, 3, 2)
+    x = paddle.to_tensor([[[1.0, 1.0, 1.0],
+                            [2.0, 2.0, 2.0]],
+                            [[3.0, 3.0, 3.0],
+                            [4.0, 4.0, 4.0]]])
+    y = paddle.to_tensor([[[1.0, 1.0],[2.0, 2.0],[3.0, 3.0]],
+                            [[4.0, 4.0],[5.0, 5.0],[6.0, 6.0]]])
+    out = paddle.bmm(x, y)
+    #output size: (2, 2, 2)
+    #output value:
+    #[[[6.0, 6.0],[12.0, 12.0]],[[45.0, 45.0],[60.0, 60.0]]]
+    out_np = out.numpy()
 

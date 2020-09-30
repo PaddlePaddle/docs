@@ -5,9 +5,6 @@ pool2d
 
 .. py:function:: paddle.fluid.layers.pool2d(input, pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, name=None, exclusive=True, data_format="NCHW")
 
-:alias_main: paddle.nn.functional.pool2d
-:alias: paddle.nn.functional.pool2d,paddle.nn.functional.pooling.pool2d
-:old_api: paddle.fluid.layers.pool2d
 
 
 

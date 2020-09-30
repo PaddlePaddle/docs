@@ -5,9 +5,6 @@ image_resize_short
 
 .. py:function:: paddle.fluid.layers.image_resize_short(input, out_short_len, resample='BILINEAR')
 
-:alias_main: paddle.nn.functional.image_resize_short
-:alias: paddle.nn.functional.image_resize_short,paddle.nn.functional.vision.image_resize_short
-:old_api: paddle.fluid.layers.image_resize_short
 
 
 

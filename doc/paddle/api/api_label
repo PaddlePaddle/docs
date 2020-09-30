@@ -1,3 +1,4 @@
+to_tensor .. _api_paddle_to_tensor
 train	.. _api_paddle_dataset_wmt14_train:
 roi_pool	.. _api_paddle_fluid_layers_roi_pool:
 expand	.. _api_paddle_fluid_layers_expand:
@@ -397,7 +398,7 @@ Decoder	.. _api_paddle_fluid_layers_Decoder:
 array_read	.. _api_paddle_fluid_layers_array_read:
 floor_divide	.. _api_paddle_tensor_math_floor_divide:
 floor_mod	.. _api_paddle_tensor_math_floor_mod:
-logsigmoid	.. _api_paddle_nn_functional_logsigmoid:
+log_sigmoid	.. _api_paddle_nn_functional_log_sigmoid:
 generate_mask_labels	.. _api_paddle_fluid_layers_generate_mask_labels:
 square	.. _api_paddle_fluid_layers_square:
 reset_profiler	.. _api_paddle_fluid_profiler_reset_profiler:
@@ -988,3 +989,6 @@ resize_short	.. _api_paddle_dataset_image_resize_short:
 ConstantPad3d	.. _api_paddle_nn_ConstantPad3d:
 lrn	.. _api_paddle_fluid_layers_lrn:
 scatter	.. _api_paddle_fluid_layers_scatter:
+get_device .. _api_paddle_device_get_device:
+set_device .. _api_paddle_device_set_device:
+get_cudnn_version .. _api_paddle_device_get_cudnn_version:

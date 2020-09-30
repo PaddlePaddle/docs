@@ -6,7 +6,6 @@ LambdaDecay
 
 .. py:class:: paddle.fluid.dygraph.LambdaDecay(learning_rate, lr_lambda)
 
-:api_attr: 命令式编程模式（动态图)
 
 
 该API提供 lambda函数 设置学习率的功能。 ``lr_lambda`` 为一个lambda函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。

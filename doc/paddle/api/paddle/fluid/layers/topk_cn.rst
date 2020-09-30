@@ -4,9 +4,6 @@ topk
 -------------------------------
 .. py:function:: paddle.fluid.layers.topk(input, k, name=None)
 
-:alias_main: paddle.topk
-:alias: paddle.topk,paddle.tensor.topk,paddle.tensor.search.topk
-:old_api: paddle.fluid.layers.topk
 
 
 
