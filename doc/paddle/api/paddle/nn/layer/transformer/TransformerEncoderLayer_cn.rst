@@ -1,7 +1,9 @@
+.. _cn_api_nn_TransformerEncoderLayer:
+
 TransformerEncoderLayer
 -------------------------------
 
-.. py:class:: paddle.nn.layer.transformer.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None)
+.. py:class:: paddle.nn.TransformerEncoderLayer(d_model, nhead, dim_feedforward, dropout=0.1, activation='relu', attn_dropout=None, act_dropout=None, normalize_before=False, weight_attr=None, bias_attr=None)
 
 
 

@@ -1,7 +1,9 @@
+.. _cn_api_nn_MultiHeadAttention:
+
 MultiHeadAttention
 -------------------------------
 
-.. py:class:: paddle.nn.layer.transformer.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=None, need_weights=False, weight_attr=None, bias_attr=None)
+.. py:class:: paddle.nn.MultiHeadAttention(embed_dim, num_heads, dropout=0.0, kdim=None, vdim=None, need_weights=False, weight_attr=None, bias_attr=None)
 
 
 
@@ -28,11 +30,12 @@ MultiHeadAttention
 .. code-block:: python
 
    import paddle
+   from paddle.nn import MultiHeadAttention
 
    # encoder input: [batch_size, sequence_length, d_model]
    query = paddle.rand((2, 4, 128))
    # self-attention mask: [batch_size, num_heads, query_len, query_len]
    attn_mask = paddle.rand((2, 2, 4, 4))
-   multi_head_attn = paddle.MultiHeadAttention(128, 2)
+   multi_head_attn = MultiHeadAttention(128, 2)
    output = multi_head_attn(query, None, None, attn_mask=attn_mask)  # [2, 4, 128]
 

@@ -1,7 +1,9 @@
+.. _cn_api_nn_TransformerDecoder:
+
 TransformerDecoder
 -------------------------------
 
-.. py:class:: paddle.nn.layer.transformer.TransformerDecoder(decoder_layer, num_layers, norm=None)
+.. py:class:: paddle.nn.TransformerDecoder(decoder_layer, num_layers, norm=None)
 
 
 
