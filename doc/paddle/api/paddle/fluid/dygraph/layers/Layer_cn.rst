@@ -12,7 +12,7 @@ Layer
 
 参数：
     - **name_scope** (str，可选) - 为Layer内部参数命名而采用的名称前缀。如果前缀为“mylayer”，在一个类名为MyLayer的Layer中，参数名为“mylayer_0.w_n”，其中w是参数的名称，n为自动生成的具有唯一性的后缀。如果为None，前缀名将为小写的类名。默认值为None。
-    - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
+    - **dtype** (str可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
 
 返回：无
 
@@ -190,7 +190,7 @@ hook(Layer, input, output) -> None or modified output
     - **attr** (ParamAttr，可选) - 指定权重参数属性的对象，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。默认值为None。
     - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为“float32”。
     - **is_bias** (bool, 可选) - 是否是偏置参数。默认值：False。
-    - **default_initializer** (Initializer, 可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 :ref:`cn_api_fluid_initializer_XavierInitializer` ，设置bias参数的初始化方式为 :ref:`cn_api_fluid_initializer_ConstantInitializer` 。默认值：None。
+    - **default_initializer** (Initializer, 可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 :ref:`_cn_api_fluid_initializer_Xavier` ，设置bias参数的初始化方式为 :ref:`_cn_api_fluid_initializer_Constant` 。默认值：None。
 
 返回：Tensor， 创建的参数变量
 
@@ -214,15 +214,14 @@ hook(Layer, input, output) -> None or modified output
     for name, param in mylayer.named_parameters():
         print(name, param)      # will print w_tmp,_linear.weight,_linear.bias
 
-.. py:method:: create_variable(name=None, persistable=None, dtype=None, type=VarType.LOD_TENSOR)
+.. py:method:: create_variable(name=None, persistable=None, dtype=None)
 
 为Layer创建变量。
 
 参数：
     - **name** (str, 可选) - 变量名。默认值：None。
     - **persistable** (bool, 可选) - 是否为持久性变量，后续会被移出。默认值：None。
-    - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
-    - **type** (core.VarDesc.VarType, 可选) - 变量类型，该参数不需要用户设置。默认值：core.VarDesc.VarType.LOD_TENSOR。
+    - **dtype** (str, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
 
 返回：Tensor， 返回创建的 ``Tensor`` 
 
@@ -354,7 +353,7 @@ hook(Layer, input, output) -> None or modified output
                                 parameters=linear.parameters())
     out = linear(a)
     out.backward()
-    adam.minimize(out)
+    adam.step()
     linear.clear_gradients()
 
 .. py:method:: named_parameters(prefix='', include_sublayers=True)
@@ -403,17 +402,17 @@ hook(Layer, input, output) -> None or modified output
     for prefix, layer in model.named_sublayers():
         print(prefix, layer)
 
-.. py:method:: register_buffer(name, variable, persistable=True)
+.. py:method:: register_buffer(name, tensor, persistable=True)
 
-将一个Variable注册为buffer。
+将一个Tensor注册为buffer。
 
-buffer是一个非参数类型的变量，不会被优化器更新，但在评估或预测阶段可能是必要的状态变量。比如 ``BatchNorm`` 中的均值和方差。
+buffer是一个不可训练的变量，不会被优化器更新，但在评估或预测阶段可能是必要的状态变量。比如 ``BatchNorm`` 中的均值和方差。
 
 注册的buffer默认是可持久性的，会被保存到 ``state_dict`` 中。如果指定 ``persistable`` 参数为False，则会注册一个非持久性的buffer，即不会同步和保存到 ``state_dict`` 中。
 
 参数：
     - **name** (str) - 注册buffer的名字。可以通过此名字来访问已注册的buffer。
-    - **variable** (Variable) - 将被注册为buffer的变量。
+    - **tensor** (Tensor) - 将被注册为buffer的变量。
     - **persistable** (bool, 可选) - 注册的buffer是否需要可持久性地保存到 ``state_dict`` 中。
 
 返回：None
@@ -439,7 +438,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 参数：
     - **include_sublayers** (bool, 可选) - 是否返回子层的buffers。如果为True，返回的列表中包含子层的buffers。默认值：True。
 
-返回：list， 一个由当前层及其子层的所有buffers组成的列表，列表中的元素类型为Variable。
+返回：list， 一个由当前层及其子层的所有buffers组成的列表，列表中的元素类型为Tensor。
 
 **代码示例**
 
