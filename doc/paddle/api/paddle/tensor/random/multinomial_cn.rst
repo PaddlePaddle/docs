@@ -10,8 +10,7 @@ multinomial
 
 该OP以输入 ``x`` 为概率，生成一个多项分布的Tensor。
 输入 ``x`` 是用来随机采样的概率分布， ``x`` 中每个元素都应该大于等于0，且不能都为0。
- ``num_samples`` 表示多项分布采样的次数。
- ``replacement`` 表示它是否是一个可放回的采样，如果 ``replacement`` 为True, 能重复对一种类别采样。
+参数 ``replacement`` 表示它是否是一个可放回的采样，如果 ``replacement`` 为True, 能重复对一种类别采样。
 
 参数：
     - **x** (Tensor) - 输入的概率值。数据类型为 ``float32`` 、``float64`` .
