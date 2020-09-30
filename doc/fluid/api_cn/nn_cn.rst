@@ -91,7 +91,6 @@ paddle.nn
     nn_cn/hard_sigmoid_cn.rst
     nn_cn/hard_swish_cn.rst
     nn_cn/hash_cn.rst
-    nn_cn/hsigmoid_cn.rst
     nn_cn/huber_loss_cn.rst
     nn_cn/image_resize_cn.rst
     nn_cn/image_resize_short_cn.rst
