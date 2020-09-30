@@ -38,7 +38,6 @@ In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddleP
 |                               | Adagrad, and Adam                                     |
 +-------------------------------+-------------------------------------------------------+
 | paddle.optimizer.lr_scheduler | APIs related to learning rate attenuation             |
-|                               |                                                       |
 +-------------------------------+-------------------------------------------------------+
 | paddle.metric                 | APIs related to evaluation index computation such as  |
 |                               | accuracy and auc                                      |
@@ -50,10 +49,8 @@ In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddleP
 |                               | and CUDAPlace                                         |
 +-------------------------------+-------------------------------------------------------+
 | paddle.distributed            | Distributed related basic APIs                        |
-|                               |                                                       |
 +-------------------------------+-------------------------------------------------------+
 | paddle.distributed.fleet      | Distributed related high-level APIs                   |
-|                               |                                                       |
 +-------------------------------+-------------------------------------------------------+
 | paddle.vision                 | Vision domain APIs such as datasets, data processing, |
 |                               | and commonly used basic network structures like       |
