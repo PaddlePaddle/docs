@@ -3,7 +3,7 @@
 Layer
 -------------------------------
 
-.. py:class:: paddle.nn.Layer(name_scope=None, dtype=core.VarDesc.VarType.FP32)
+.. py:class:: paddle.nn.Layer(name_scope=None, dtype="float32")
 
 
 
@@ -12,7 +12,7 @@ Layer
 
 参数：
     - **name_scope** (str，可选) - 为Layer内部参数命名而采用的名称前缀。如果前缀为“mylayer”，在一个类名为MyLayer的Layer中，参数名为“mylayer_0.w_n”，其中w是参数的名称，n为自动生成的具有唯一性的后缀。如果为None，前缀名将为小写的类名。默认值为None。
-    - **dtype** (str可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
+    - **dtype** (str可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32"。
 
 返回：无
 
@@ -221,7 +221,7 @@ hook(Layer, input, output) -> None or modified output
 参数：
     - **name** (str, 可选) - 变量名。默认值：None。
     - **persistable** (bool, 可选) - 是否为持久性变量，后续会被移出。默认值：None。
-    - **dtype** (str, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 ``core.VarDesc.VarType.FP32`` 。
+    - **dtype** (str, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32" 。
 
 返回：Tensor， 返回创建的 ``Tensor`` 
 
