@@ -238,6 +238,7 @@ temporal_shift	.. _api_paddle_fluid_layers_temporal_shift:
 ComplexVariable	.. _api_paddle_fluid_ComplexVariable:
 DataLoader	.. _api_paddle_io_DataLoader:
 Uniform	.. _api_paddle_distribution_Uniform:
+Categorical	.. _api_paddle_distribution_Categorical:
 PaddleCloudRoleMaker	.. _api_paddle_fluid_incubate_fleet_base_role_maker_PaddleCloudRoleMaker:
 ParallelEnv	.. _api_paddle_fluid_dygraph_parallel_ParallelEnv:
 beam_search	.. _api_paddle_fluid_layers_beam_search:
