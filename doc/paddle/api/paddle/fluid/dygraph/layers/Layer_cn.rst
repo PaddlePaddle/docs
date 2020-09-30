@@ -190,7 +190,7 @@ hook(Layer, input, output) -> None or modified output
     - **attr** (ParamAttr，可选) - 指定权重参数属性的对象，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。默认值为None。
     - **dtype** (str|core.VarDesc.VarType, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为“float32”。
     - **is_bias** (bool, 可选) - 是否是偏置参数。默认值：False。
-    - **default_initializer** (Initializer, 可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 :ref:`_cn_api_fluid_initializer_Xavier` ，设置bias参数的初始化方式为 :ref:`_cn_api_fluid_initializer_Constant` 。默认值：None。
+    - **default_initializer** (Initializer, 可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 paddle.nn.initializer.Xavier ，设置bias参数的初始化方式为 paddle.nn.initializer.Constant 。默认值：None。
 
 返回：Tensor， 创建的参数变量
 
