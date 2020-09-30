@@ -66,7 +66,7 @@ oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses p
 **PP**: Tensor of size `(IC, 3*OC)`.\
 **oneDNN**: Expects tensor of size `(L, D, IC, G, OC)` which is `(1, 1, IC, 3, OC)` in non-stacked, single direction GRU case. Therefore it does not need reorder. Name: `weights_layer`
 * WeightH - hidden weights of each gate \
-**PP**: Tensor claimed to be of size `(OC, 3*OC)` which for real is `(OC, 2*OC)` + (OC, OC).\
+**PP**: Tensor claimed to be of size `(OC, 3*OC)` which for real is `(OC, 2*OC)` + `(OC, OC)`.\
 **oneDNN**: Expects tensor of size `(L, D, OC, G, OC)` which is `(1, 1, OC, 3, OC)` in non-stacked, single direction GRU case. It needs custom reorder due to unusual data alignment in PP tensor. Name: `weights_iter`
 * Bias - bias of each gate (optional)\
 **PP**: Tensor of size `(1, 3*OC)`.\
@@ -95,7 +95,7 @@ oneDNN `GRU` operator is based on Paddle Paddle `fusion_gru` operator. It uses p
 * PaddlePaddle Input LoD -> oneDNN TNC/NTC\
 Every time before executing `GRU`, each batch represented by PP tensor has to be converted into oneDNN tensor representation. It is done first by calculating length of the longest sentence in a batch to get `T` dimension and then creating oneDNN memory (or getting it from oneDNN cache). After that, based on the memory format chosen by oneDNN GRU primitive: `TNC` or `NTC` correct custom reorder is called.\
 \
-Because oneDNN assumes that all sentences are of equal length, before reorder, whole memory is set to 0 to add padding. Placement of this padding is also dependent on computation direction that is defined by `is_reverse` attribute. To get correct resuts, is computation is from left to right, the padding has to be on the right side of words. On the contrary, for right to left computation, it has to be on the left side.
+Because oneDNN assumes that all sentences are of equal length, before reorder, whole memory is set to 0 to add padding. Placement of this padding depends also on computation direction that is defined by `is_reverse` attribute. To get correct resuts, if computation is performed from left to right, the padding has to be on the right side of words. Otherwise, for right to left computation, it has to be on the left side.
 ![](images/input_is_reverse.svg)
 
 * PaddlePaddle WeightX -> oneDNN WeightX\
