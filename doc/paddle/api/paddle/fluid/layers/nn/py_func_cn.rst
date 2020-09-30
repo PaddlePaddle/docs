@@ -37,6 +37,8 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
     import paddle
     import six
 
+    paddle.enable_static()
+
     # 自定义的前向函数，可直接输入LoDTenosor
     def tanh(x):
         return np.tanh(x)

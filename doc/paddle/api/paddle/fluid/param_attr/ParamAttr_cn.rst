@@ -36,13 +36,11 @@ ParamAttr
 
    import paddle
    
-   w_param_attrs = paddle.ParamAttr(name="fc_weight",
-                                    learning_rate=0.5,
-                                    regularizer=fluid.regularizer.L2Decay(1.0),
-                                    trainable=True)
-   print(w_param_attrs.name) # "fc_weight"
-   paddle.enable_static()
-   x = paddle.static.data(name='X', shape=[1], dtype='float32')
-   y_predict = paddle.static.nn.fc(input=x, size=10, param_attr=w_param_attrs)
+   weight_attr = paddle.ParamAttr(name="weight",
+                                  learning_rate=0.5,
+                                  regularizer=paddle.regularizer.L2Decay(1.0),
+                                  trainable=True)
+   print(w_param_attrs.name) # "weight"
+   paddle.nn.Linear(3, 4, weight_attr=weight_attr)
 
 
