@@ -106,7 +106,7 @@ paddle.tensor.math.sum	paddle.sum,paddle.tensor.sum,paddle.nn.functional.common.
 paddle.fluid.dygraph.learning_rate_scheduler.PiecewiseDecay	paddle.PiecewiseDecay,paddle.framework.PiecewiseDecay
 paddle.tensor.search.masked_select	paddle.masked_select,paddle.tensor.masked_select
 paddle.fluid.layers.scatter_nd_add	paddle.scatter_nd_add,paddle.tensor.scatter_nd_add,paddle.tensor.manipulation.scatter_nd_add
-paddle.fluid.layers.strided_slice	paddle.strided_slice,paddle.tensor.strided_slice,paddle.tensor.manipulation.strided_slice
+paddle.tensor.manipulation.strided_slice	paddle.strided_slice,paddle.tensor.strided_slice
 paddle.nn.functional.activation.gelu	paddle.nn.functional.gelu
 paddle.fluid.layers.shape	paddle.shape,paddle.tensor.shape,paddle.tensor.attribute.shape
 paddle.fluid.layers.gather_tree	paddle.nn.gather_tree,paddle.nn.decode.gather_tree
