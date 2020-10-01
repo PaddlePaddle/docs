@@ -40,3 +40,4 @@ functional
     functional_cn/max_pool1d_cn.rst
     functional_cn/cross_entropy_loss_cn.rst
     functional_cn/bilinear_cn.rst
+    functional_cn/sigmoid_focal_loss_cn.rst
