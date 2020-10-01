@@ -158,7 +158,7 @@ paddle.tensor.math.multiply	paddle.multiply,paddle.tensor.multiply
 paddle.tensor.creation.Tensor	paddle.Tensor
 paddle.tensor.creation.to_tensor	paddle.to_tensor,paddle.tensor.to_tensor
 paddle.fluid.initializer.NormalInitializer	paddle.fluid.initializer.Normal
-paddle.nn.initializer.xavier.Normal	paddle.nn.initializer.Normal
+paddle.nn.initializer.normal.Normal	paddle.nn.initializer.Normal
 paddle.nn.layer.common.AlphaDropout	paddle.nn.AlphaDropout,paddle.nn.layer.AlphaDropout
 paddle.nn.layer.loss.BCELoss	paddle.nn.BCELoss,paddle.nn.layer.BCELoss
 paddle.nn.layer.conv.ConvTranspose2d	paddle.nn.ConvTranspose2d,paddle.nn.layer.ConvTranspose2d
@@ -248,8 +248,8 @@ paddle.nn.functional.activation.softshrink	paddle.nn.functional.softshrink
 paddle.nn.functional.activation.log_softmax	paddle.nn.functional.log_softmax
 paddle.nn.functional.common.bilinear	paddle.nn.functional.bilinear
 paddle.fluid.initializer.TruncatedNormalInitializer	paddle.fluid.initializer.TruncatedNormal
-paddle.nn.initializer.xavier.TruncatedNormal	paddle.nn.initializer.TruncatedNormal
-paddle.nn.initializer.xavier.Assign	paddle.nn.initializer.Assign
+paddle.nn.initializer.normal.TruncatedNormal	paddle.nn.initializer.TruncatedNormal
+paddle.nn.initializer.assign.Assign	paddle.nn.initializer.Assign
 paddle.fluid.layers.pool3d	paddle.nn.functional.pool3d,paddle.nn.functional.pooling.pool3d
 paddle.tensor.linalg.norm	paddle.norm,paddle.tensor.norm
 paddle.fluid.layers.roi_align	paddle.nn.functional.roi_align,paddle.nn.functional.vision.roi_align
@@ -352,7 +352,7 @@ paddle.fluid.layers.isfinite	paddle.tensor.logic.isfinite
 paddle.nn.functional.conv.conv3d	paddle.nn.functional.conv3d
 paddle.nn.functional.loss.nll_loss	paddle.nn.functional.nll_loss
 paddle.fluid.initializer.UniformInitializer	paddle.fluid.initializer.Uniform
-paddle.nn.initializer.xavier.Uniform	paddle.nn.initializer.Uniform
+paddle.nn.initializer.uniform.Uniform	paddle.nn.initializer.Uniform
 paddle.tensor.manipulation.roll	paddle.roll,paddle.tensor.roll
 paddle.nn.layer.common.ZeroPad2d	paddle.nn.ZeroPad2d,paddle.nn.layer.ZeroPad2d
 paddle.nn.layer.norm.LayerNorm	paddle.nn.LayerNorm,paddle.nn.layer.LayerNorm
