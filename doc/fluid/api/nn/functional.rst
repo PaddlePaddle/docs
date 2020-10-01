@@ -19,4 +19,3 @@ functional
     functional/conv_transpose2d.rst
     functional/conv_transpose3d.rst
     functional/bilinear.rst
-    functional/sigmoid_focal_loss.rst
