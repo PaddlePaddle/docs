@@ -10,32 +10,32 @@ sigmoid_focal_loss
 该算子通过下式计算focal loss：
 
 .. math::
-           Out = -Labels * alpha * {(1 - \\sigma(Logit))}^{gamma}\\log(\\sigma(Logit)) - (1 - Labels) * (1 - alpha) * {\\sigma(Logit)}^{gamma}\\log(1 - \\sigma(Logit))
+           Out = -Labels * alpha * {(1 - \sigma(Logit))}^{gamma}\log(\sigma(Logit)) - (1 - Labels) * (1 - alpha) * {\sigma(Logit)}^{gamma}\log(1 - \sigma(Logit))
 
-其中 :math:`\sigma(Logit) = \frac{1}{1 + e^{-Logit}}`
+其中 :math:`\sigma(Logit) = \frac{1}{1 + \exp(-Logit)}`
 
-当:attr:`normalizer` 不为None时，该算子会将输出损失Out除以张量``normalizer``:
+当 `normalizer` 不为None时，该算子会将输出损失Out除以张量 `normalizer` ：
 
-    .. math::
-           Out = Out / normalizer
+.. math::
+           Out = \frac{Out}{normalizer}
 
-最后，该算子会添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
+最后，该算子会添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 ``'none'`` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 ``'mean'`` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 ``'sum'`` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
-**注意: 标签值0表示背景类（即负样本），1表示前景类（即正样本）。
+**注意**: 标签值0表示背景类（即负样本），1表示前景类（即正样本）。
 
 参数
 :::::::::
-    - **logit** (Tensor) - :math:`[N, *]` , 其中N是batch_size， `*` 是任意其他维度。输入数据 ``logit`` 一般是卷积层的输出，不需要经过 ``sigmoid`` 层。数据类型是float32、float64。
-    - **label** (Tensor) - :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。
-    - **normalizer** (Tensor，可选) - :math:`[1, ]` ，focal loss的归一化系数，数据类型与输入 ``logit`` 相同。若设置为None，则不会将focal loss做归一化操作（即不会将focal loss除以normalizer）。在目标检测任务中，设置为正样本的数量。
-    - **alpha** (int|float) - 用于平衡易分样本和难分样本的超参数，取值范围:math:`[0，1]` 。默认值设置为0.25。
+    - **logit** (Tensor) - 维度为 :math:`[N, *]` , 其中N是batch_size， `*` 是任意其他维度。输入数据 ``logit`` 一般是卷积层的输出，不需要经过 ``sigmoid`` 层。数据类型是float32、float64。
+    - **label** (Tensor) - 维度为 :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。
+    - **normalizer** (Tensor，可选) - 维度为 :math:`[1]` ，focal loss的归一化系数，数据类型与输入 ``logit`` 相同。若设置为None，则不会将focal loss做归一化操作（即不会将focal loss除以normalizer）。在目标检测任务中，设置为正样本的数量。
+    - **alpha** (int|float) - 用于平衡易分样本和难分样本的超参数，取值范围 :math:`[0，1]` 。默认值设置为0.25。
     - **gamma** (int|float) - 用于平衡正样本和负样本的超参数，默认值设置为2.0。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `focal loss` 的均值；设置为 ``'sum'`` 时，计算 `focal loss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
     - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回
 :::::::::
-    - Tensor，输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[1]` 。
+    - Tensor，输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``logit`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[1]` 。
 
 代码示例
 :::::::::
@@ -49,6 +49,6 @@ sigmoid_focal_loss
     label = paddle.to_tensor([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]], dtype='float32')
     one = paddle.to_tensor([1.], dtype='float32')
     fg_label = paddle.greater_equal(label, one)
-    fg_num = paddle.reduce_sum(paddle.cast(fg_label, dtype='int32'))
+    fg_num = paddle.reduce_sum(paddle.cast(fg_label, dtype='float32'))
     output = paddle.nn.functional.sigmoid_focal_loss(logit, label, normalizer=fg_num)
-    print(output.numpy())  # [0.45618808]
+    print(output.numpy())  # [0.65782464]
