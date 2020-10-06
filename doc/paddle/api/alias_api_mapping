@@ -122,7 +122,6 @@ paddle.fluid.layers.yolo_box	paddle.nn.functional.yolo_box,paddle.nn.functional.
 paddle.nn.functional.activation.hardtanh	paddle.nn.functional.hardtanh
 paddle.fluid.layers.distribute_fpn_proposals	paddle.nn.functional.distribute_fpn_proposals,paddle.nn.functional.vision.distribute_fpn_proposals
 paddle.tensor.math.max	paddle.max,paddle.tensor.max
-paddle.fluid.layers.thresholded_relu	paddle.nn.functional.thresholded_relu,paddle.nn.functional.activation.thresholded_relu
 paddle.tensor.math.minimum	paddle.minimum,paddle.tensor.minimum
 paddle.fluid.layers.linspace	paddle.linspace,paddle.tensor.linspace,paddle.tensor.creation.linspace
 paddle.nn.functional.pooling.adaptive_avg_pool1d	paddle.nn.functional.adaptive_avg_pool1d
@@ -272,7 +271,6 @@ paddle.fluid.layers.polygon_box_transform	paddle.nn.functional.polygon_box_trans
 paddle.fluid.layers.rnn.rnn	paddle.nn.functional.rnn,paddle.nn.functional.rnn.rnn
 paddle.tensor.search.sort	paddle.sort,paddle.tensor.sort
 paddle.tensor.logic.equal	paddle.equal,paddle.tensor.equal
-paddle.fluid.layers.swish	paddle.nn.functional.swish,paddle.nn.functional.activation.swish
 paddle.nn.layer.common.ReplicationPad1d	paddle.nn.ReplicationPad1d,paddle.nn.layer.ReplicationPad1d
 paddle.tensor.math.min	paddle.min,paddle.tensor.min
 paddle.fluid.dygraph.container.ParameterList	paddle.nn.ParameterList
