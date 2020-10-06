@@ -379,7 +379,7 @@ paddle.tensor.manipulation.concat	paddle.concat,paddle.tensor.concat
 paddle.tensor.stat.std	paddle.std,paddle.tensor.std
 paddle.fluid.layers.dice_loss	paddle.nn.functional.dice_loss,paddle.nn.functional.loss.dice_loss
 paddle.nn.functional.loss.binary_cross_entropy	paddle.nn.functional.binary_cross_entropy
-paddle.fluid.dygraph.Linear	paddle.nn.Linear,paddle.nn.layer.Linear,paddle.nn.layer.common.Linear
+paddle.nn.layer.common.Linear	paddle.nn.Linear,paddle.nn.layer.Linear,paddle.nn.layer.common.Linear
 paddle.fluid.layers.box_clip	paddle.nn.functional.box_clip,paddle.nn.functional.vision.box_clip
 paddle.nn.layer.activation.ReLU6	paddle.nn.ReLU6
 paddle.static.input.data	paddle.static.data
