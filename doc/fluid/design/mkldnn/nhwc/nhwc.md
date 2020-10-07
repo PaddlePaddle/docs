@@ -22,9 +22,7 @@ Having operators to control what layout (data arrangement) input and output data
 in theory to specify models that partially to work on ``NCHW`` and partially to work on ``NHWC`` data arrangement.However it was agreed on that given model will only have one type of data arrangement at during it execution. 
 Hence either all ``data_format`` attributes are set to ``NCHW`` (default) or to ``NHWC``, there is no support for having some operators having ``data_format`` set to ``NCHW`` while some others to ``NHWC``.
 
-
-Another element to consider is that PaddlePaddle ``NHWC`` data layout as supported by non-MKLDNN CPU implementations is only applicable to input signal. This mean that operator input signals may have either ``NHWC`` or ``NCHW`` data arrangement. On the other hand operators' learnable parameters (i.e. of those listed above) are
-always using ``NCHW`` PaddlePaddle data layout.
+Another element to consider is that PaddlePaddle ``NHWC`` data layout as supported by non-MKLDNN CPU implementations is only applicable to input signal. This mean that operator input signals may have either ``NHWC`` or ``NCHW`` data arrangement. On the other hand operators' learnable parameters (i.e. of those listed above) are always using ``NCHW`` PaddlePaddle data layout.
 
 Final element is that PaddlePaddle data layout change how shape of data looks like. For example ``NCHW`` data shape of [2, 3, 4, 5] when being transformed to ``NHWC`` data will have a shape of [2, 4, 5, 3]. This is different from MKL-DNN shape description which is always ``NCHW`` order even if data underneath is ``NHWC``, ``NCHW16C`` or other.
 
@@ -80,16 +78,3 @@ Snippet from *PoolOp::InferShape()* that illustrated the idea of modifications t
 When performing data transformation we need a value of ``data_format`` and this value is acquired
 inside of *GetKernelTypeForVar()* and based on that *data_layout* of Kernel Type is set, to be later
 used by data transformation code.
-
-
-
-
-
-
-
-
-
-
-
-
-
