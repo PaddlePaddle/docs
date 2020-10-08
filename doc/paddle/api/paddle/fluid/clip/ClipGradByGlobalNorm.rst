@@ -1,9 +1,9 @@
-.. _cn_api_fluid_clip_GradientClipByGlobalNorm:
+.. _cn_api_fluid_clip_ClipGradByGlobalNorm:
 
-GradientClipByGlobalNorm
+ClipGradByGlobalNorm
 -------------------------------
 
-.. py:class:: paddle.nn.GradientClipByGlobalNorm(clip_norm, group_name='default_group', need_clip=None)
+.. py:class:: paddle.nn.ClipGradByGlobalNorm(clip_norm, group_name='default_group', need_clip=None)
 
 
 
