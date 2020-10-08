@@ -21,13 +21,13 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
 
        .. code-block:: python
                   
-            import paddle
+           import numpy as np
+           import paddle
 
-            paddle.enable_static()
-            a = paddle.static.data(name='a', shape=[-1, 1], dtype='float32')
-            b = paddle.static.data(name='b', shape=[-1, 1], dtype='float32')
-            c = a * b
-            out = paddle.nn.cond(a < b, lambda: a + c, lambda: b * b)
+           a = paddle.to_tensor(np.zeros((1, 1)))
+           b = paddle.to_tensor(np.zeros((1, 1)))
+           c = a * b
+           out = paddle.nn.cond(a < b, lambda: a + c, lambda: b * b)
 
        不管 ``a < b`` 是否成立， ``c = a * b`` 都会被运行。
 
@@ -73,21 +73,11 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
                                                                    dtype='int64',
                                                                    value=2)
 
-    paddle.enable_static()
-
-    main_program = paddle.static.Program()
-    startup_program = paddle.static.Program()
-    with paddle.static.program_guard(main_program, startup_program):
-        x = paddle.fill_constant(shape=[1], dtype='float32', value=0.1)
-        y = paddle.fill_constant(shape=[1], dtype='float32', value=0.23)
-        pred = paddle.less_than(x=x, y=y, name=None)
-        out = paddle.nn.cond(pred, true_func, false_func)
-        # out is a tuple containing 2 tensors
-
-    place = paddle.CUDAPlace(
-        0) if paddle.is_compiled_with_cuda() else paddle.CPUPlace()
-    exe = paddle.static.Executor(place)
-    ret = exe.run(main_program, fetch_list=out)
+    x = paddle.fill_constant(shape=[1], dtype='float32', value=0.1)
+    y = paddle.fill_constant(shape=[1], dtype='float32', value=0.23)
+    pred = paddle.less_than(x=x, y=y, name=None)
+    ret = paddle.nn.cond(pred, true_func, false_func)
+    # ret is a tuple containing 2 tensors
     # ret[0] = [[1 1]]
     # ret[1] = [[ True  True  True]
     #           [ True  True  True]]            
