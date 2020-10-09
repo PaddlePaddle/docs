@@ -172,7 +172,7 @@ paddle.nn.layer.activation.Sigmoid	paddle.nn.Sigmoid,paddle.nn.layer.Sigmoid
 paddle.fluid.layers.hard_sigmoid	paddle.nn.functional.hard_sigmoid,paddle.nn.functional.activation.hard_sigmoid
 paddle.nn.layer.norm.BatchNorm1d	paddle.nn.BatchNorm1d
 paddle.nn.layer.common.ReflectionPad1d	paddle.nn.ReflectionPad1d,paddle.nn.layer.ReflectionPad1d
-paddle.fluid.layers.fc	paddle.static.nn.fc
+paddle.static.nn.common.fc	paddle.static.nn.fc
 paddle.framework.random.set_cuda_rng_state	paddle.set_cuda_rng_state
 paddle.nn.layer.conv.ConvTranspose3d	paddle.nn.ConvTranspose3d,paddle.nn.layer.ConvTranspose3d
 paddle.fluid.dygraph.layers.Layer	paddle.nn.Layer
