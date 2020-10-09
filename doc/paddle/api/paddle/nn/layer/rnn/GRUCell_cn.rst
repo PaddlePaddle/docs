@@ -25,7 +25,7 @@ GRUCell
 详情请参考论文 :`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_。
 
 
-变量：
+参数：
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih的参数。默认为None。
@@ -34,7 +34,7 @@ GRUCell
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
     - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
 
-参数：
+变量：
     - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（3 * hidden_size, input_size）。对应公式中的 :math:`W_{ir}, W_{iz}, W_{ic}`。
     - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（3 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hr}, W_{hz}, W_{hc}`。
     - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（3 * hidden_size, ）。对应公式中的 :math:`b_{ir}, b_{iz}, b_{ic}`。
