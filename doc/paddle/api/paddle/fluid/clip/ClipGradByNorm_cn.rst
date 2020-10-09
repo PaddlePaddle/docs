@@ -3,7 +3,7 @@
 ClipGradByNorm
 -------------------------------
 
-.. py:class:: paddle.nn.ClipGradByNorm(clip_norm, need_clip=None)
+.. py:class:: paddle.nn.ClipGradByNorm(clip_norm)
 
 
 

@@ -3,7 +3,7 @@
 ClipGradByValue
 -------------------------------
 
-.. py:class:: paddle.nn.ClipGradByValue(max, min=None, need_clip=None)
+.. py:class:: paddle.nn.ClipGradByValue(max, min=None)
 
 
 
