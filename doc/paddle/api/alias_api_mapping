@@ -74,6 +74,7 @@ paddle.fluid.layers.has_nan	paddle.has_nan,paddle.tensor.has_nan,paddle.tensor.s
 paddle.tensor.manipulation.expand_as	paddle.expand_as,paddle.tensor.expand_as
 paddle.fluid.layers.crf_decoding	paddle.static.nn.crf_decoding
 paddle.fluid.framework.default_main_program	paddle.static.default_main_program
+paddle.fluid.framework.is_compiled_with_cuda	paddle.is_compiled_with_cuda,paddle.device.is_compiled_with_cuda
 paddle.fluid.framework.Variable	paddle.Variable,paddle.framework.Variable
 paddle.fluid.layers.l2_normalize	paddle.nn.functional.l2_normalize,paddle.nn.functional.norm.l2_normalize
 paddle.fluid.layers.log_loss	paddle.nn.functional.log_loss,paddle.nn.functional.loss.log_loss
@@ -100,7 +101,6 @@ paddle.fluid.layers.generate_mask_labels	paddle.nn.functional.generate_mask_labe
 paddle.tensor.math.prod	paddle.prod,paddle.tensor.prod
 paddle.fluid.layers.abs	paddle.abs,paddle.tensor.abs,paddle.tensor.math.abs
 paddle.fluid.dygraph.base.no_grad_	paddle.no_grad
-paddle.fluid.layers.grid_sampler	paddle.nn.functional.vision.grid_sampler
 paddle.tensor.linalg.cholesky	paddle.cholesky,paddle.tensor.cholesky
 paddle.tensor.math.sum	paddle.sum,paddle.tensor.sum,paddle.nn.functional.common.sum
 paddle.fluid.dygraph.learning_rate_scheduler.PiecewiseDecay	paddle.PiecewiseDecay,paddle.framework.PiecewiseDecay
@@ -148,6 +148,8 @@ paddle.fluid.layers.scatter_nd	paddle.scatter_nd,paddle.tensor.scatter_nd,paddle
 paddle.nn.functional.pooling.adaptive_avg_pool2d	paddle.nn.functional.adaptive_avg_pool2d
 paddle.fluid.layers.bilinear_tensor_product	paddle.static.nn.bilinear_tensor_product
 paddle.fluid.framework.name_scope	paddle.static.name_scope
+paddle.fluid.framework.cpu_places	paddle.static.cpu_places
+paddle.fluid.framework.cuda_places	paddle.static.cuda_places
 paddle.fluid.layers.is_empty	paddle.is_empty,paddle.tensor.is_empty,paddle.tensor.logic.is_empty
 paddle.tensor.math.multiply	paddle.multiply,paddle.tensor.multiply
 paddle.tensor.creation.Tensor	paddle.Tensor
@@ -203,7 +205,7 @@ paddle.nn.layer.loss.L1Loss	paddle.nn.L1Loss,paddle.nn.layer.L1Loss
 paddle.fluid.dygraph.io.TranslatedLayer	paddle.jit.TranslatedLayer
 paddle.nn.functional.conv.conv_transpose2d	paddle.nn.functional.conv_transpose2d
 paddle.tensor.manipulation.split	paddle.split,paddle.tensor.split
-paddle.fluid.layers.tensor.create_parameter	paddle.create_parameter,paddle.framework.create_parameter
+paddle.fluid.layers.tensor.create_parameter	paddle.static.create_parameter,paddle.framework.create_parameter
 paddle.nn.layer.activation.Softsign	paddle.nn.Softsign
 paddle.nn.layer.loss.CrossEntropyLoss	paddle.nn.CrossEntropyLoss,paddle.nn.layer.CrossEntropyLoss
 paddle.nn.layer.norm.BatchNorm3d	paddle.nn.BatchNorm3d
@@ -419,7 +421,7 @@ paddle.fluid.layers.iou_similarity	paddle.nn.functional.iou_similarity,paddle.nn
 paddle.fluid.layers.transpose	paddle.transpose,paddle.tensor.transpose,paddle.tensor.linalg.transpose,paddle.tensor.manipulation.transpose
 paddle.nn.functional.activation.elu	paddle.nn.functional.elu
 paddle.tensor.manipulation.broadcast_to	paddle.broadcast_to,paddle.tensor.broadcast_to
-paddle.fluid.layers.tensor.create_global_var	paddle.create_global_var,paddle.framework.create_global_var
+paddle.fluid.layers.tensor.create_global_var	paddle.static.create_global_var,paddle.framework.create_global_var
 paddle.fluid.layers.elementwise_add	paddle.elementwise_add,paddle.tensor.elementwise_add,paddle.tensor.math.elementwise_add
 paddle.fluid.layers.affine_channel	paddle.nn.functional.affine_channel,paddle.nn.functional.vision.affine_channel
 paddle.tensor.creation.full_like	paddle.full_like,paddle.tensor.full_like
@@ -569,3 +571,6 @@ paddle.metric.metrics.Accuracy	paddle.metric.Accuracy
 paddle.metric.metrics.Precision	paddle.metric.Precision
 paddle.metric.metrics.Recall	paddle.metric.Recall
 paddle.metric.metrics.Auc	paddle.metric.Auc
+paddle.fluid.unique_name.guard	paddle.utils.unique_name.guard
+paddle.fluid.unique_name.switch	paddle.utils.unique_name.switch
+paddle.fluid.unique_name.generate	paddle.utils.unique_name.generate

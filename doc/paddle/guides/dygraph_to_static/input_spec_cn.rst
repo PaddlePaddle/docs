@@ -1,6 +1,6 @@
 .. _user_guide_dy2sta_input_spec_cn:
 
-InputSpec功能介绍
+InputSpec 功能介绍
 =================
 
 
@@ -103,9 +103,6 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
             out = out + y
             return out
 
-
-    paddle.disable_static()
-
     net = SimpleNet()
 
     # save static model for inference directly
@@ -137,7 +134,6 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
             out = out + y
             return out
 
-    paddle.disable_static()
     net = SimpleNet()
 
     # train process (Pseudo code)
