@@ -27,7 +27,7 @@ LSTMCell
 详情请参考论文 :`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_。
 
 
-变量：
+参数：
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih的参数。默认为None。
@@ -36,7 +36,7 @@ LSTMCell
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
     - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
 
-参数：
+变量：
     - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（4 * hidden_size, input_size）。对应公式中的 :math:`W_{ii}, W_{if}, W_{ig}, W_{io}`。
     - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（4 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hi}, W_{hf}, W_{hg}, W_{ho}`。
     - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{ii}, b_{if}, b_{ig}, b_{io}`。
