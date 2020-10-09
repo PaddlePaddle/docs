@@ -20,7 +20,7 @@ SimpleRNNCell
    
 详情请参考论文 :`《Finding Structure in Time》 <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_。
 
-变量：
+参数：
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
     - **activation** (str, 可选) - 简单循环神经网络单元的激活函数。可以是tanh或relu。默认为tanh。
@@ -30,7 +30,7 @@ SimpleRNNCell
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
     - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
 
-参数：
+变量：
     - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（hidden_size, input_size）。对应公式中的 :math:`W_{ih}`。
     - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（hidden_size, hidden_size）。对应公式中的 :math:`W_{hh}`。
     - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（hidden_size, ）。对应公式中的 :math:`b_{ih}`。
