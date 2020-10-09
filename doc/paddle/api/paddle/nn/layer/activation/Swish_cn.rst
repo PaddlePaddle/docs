@@ -2,7 +2,7 @@
 
 Swish
 -------------------------------
-.. py:class:: paddle.nn.Swish(threshold=1.0, name=None)
+.. py:class:: paddle.nn.Swish(name=None)
 
 Swish激活层
 
@@ -14,7 +14,6 @@ Swish激活层
 
 参数
 ::::::::::
-    - threshold (float, 可选) - Swish激活计算公式中的threshold值。默认值为1.0。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状:
