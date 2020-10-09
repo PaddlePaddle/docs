@@ -1,5 +1,5 @@
 paddle.tensor.math.divide	paddle.divide,paddle.tensor.divide
-paddle.fluid.layers.sigmoid_focal_loss	paddle.nn.functional.sigmoid_focal_loss,paddle.nn.functional.loss.sigmoid_focal_loss
+paddle.nn.functional.loss.sigmoid_focal_loss	paddle.nn.functional.sigmoid_focal_loss
 paddle.fluid.layers.smooth_l1	paddle.nn.functional.smooth_l1,paddle.nn.functional.loss.smooth_l1
 paddle.nn.functional.loss.l1_loss	paddle.nn.functional.l1_loss
 paddle.nn.functional.loss.margin_ranking_loss	paddle.nn.functional.margin_ranking_loss
