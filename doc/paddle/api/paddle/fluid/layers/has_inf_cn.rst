@@ -23,5 +23,5 @@ has_inf
 
     import paddle
     data = paddle.randn(shape=[4, 32, 32], dtype="float32")
-    res = fluid.layers.has_inf(data)
+    res = paddle.has_inf(data)
     # [False]

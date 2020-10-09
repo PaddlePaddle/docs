@@ -5,6 +5,7 @@ pow
 
 .. py:function:: paddle.pow(x, y, name=None):
 
+
 该OP是指数激活算子：
 
 .. math::
@@ -37,4 +38,5 @@ pow
     y = paddle.fill_constant(shape=[1], value=2, dtype='float32')
     res = paddle.pow(x, y)
     print(res.numpy()) # [1 4 9]
+
 
