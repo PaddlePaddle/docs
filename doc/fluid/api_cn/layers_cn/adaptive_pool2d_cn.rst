@@ -34,9 +34,7 @@ adaptive_pool2d
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
 
 
-返回： Tensor, 自适应池化结果张量
-
-返回类型：张量(Tensor)，数据类型与 ``input`` 一致
+返回： Tensor, 自适应池化结果张量，数据类型与 ``input`` 一致
 
 
 抛出异常:

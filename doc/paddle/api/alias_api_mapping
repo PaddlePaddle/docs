@@ -391,7 +391,6 @@ paddle.fluid.layers.add_position_encoding	paddle.nn.functional.add_position_enco
 paddle.nn.functional.common.cosine_similarity	paddle.nn.functional.cosine_similarity
 paddle.fluid.layers.floor	paddle.floor,paddle.tensor.floor,paddle.tensor.math.floor
 paddle.tensor.math.mod	paddle.mod,paddle.tensor.mod
-paddle.nn.functional.loss.mse_loss	paddle.nn.functional.mse_loss
 paddle.tensor.math.log1p	paddle.log1p,paddle.tensor.log1p
 paddle.fluid.layers.continuous_value_model	paddle.nn.functional.continuous_value_model,paddle.nn.functional.extension.continuous_value_model
 paddle.fluid.layers.unstack	paddle.unstack,paddle.tensor.unstack,paddle.tensor.manipulation.unstack
@@ -416,7 +415,6 @@ paddle.nn.layer.loss.KLDivLoss	paddle.nn.KLDivLoss,paddle.nn.layer.KLDivLoss
 paddle.fluid.core.VarBase	paddle.framework.VarBase
 paddle.tensor.math.sign	paddle.sign,paddle.tensor.sign
 paddle.fluid.layers.prior_box	paddle.nn.functional.prior_box,paddle.nn.functional.vision.prior_box
-paddle.fluid.layers.adaptive_pool2d	paddle.nn.functional.adaptive_pool2d,paddle.nn.functional.pooling.adaptive_pool2d
 paddle.fluid.layers.iou_similarity	paddle.nn.functional.iou_similarity,paddle.nn.functional.loss.iou_similarity
 paddle.fluid.layers.transpose	paddle.transpose,paddle.tensor.transpose,paddle.tensor.linalg.transpose,paddle.tensor.manipulation.transpose
 paddle.nn.functional.activation.elu	paddle.nn.functional.elu
@@ -432,7 +430,6 @@ paddle.fluid.layers.nce	paddle.static.nn.nce
 paddle.nn.functional.activation.relu	paddle.nn.functional.relu
 paddle.nn.layer.norm.InstanceNorm1d	paddle.nn.InstanceNorm1d
 paddle.nn.functional.common.pad	paddle.nn.functional.pad
-paddle.fluid.layers.adaptive_pool3d	paddle.nn.functional.adaptive_pool3d,paddle.nn.functional.pooling.adaptive_pool3d
 paddle.fluid.layers.psroi_pool	paddle.nn.functional.psroi_pool,paddle.nn.functional.vision.psroi_pool
 paddle.fluid.layers.spectral_norm	paddle.static.nn.spectral_norm
 paddle.nn.functional.pooling.max_pool1d	paddle.nn.functional.max_pool1d

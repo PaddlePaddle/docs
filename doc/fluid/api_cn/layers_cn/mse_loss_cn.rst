@@ -19,9 +19,8 @@ mse_loss
     - **input** (Tensor) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
     - **label** (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
 
-返回：预测值和目标值的均方差
+返回：Tensor, 预测值和目标值的均方差
 
-返回类型：张量（Tensor）
 
 **代码示例**：
 
