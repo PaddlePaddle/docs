@@ -7,6 +7,7 @@ fluid
 
     fluid/BuildStrategy.rst
     fluid/CompiledProgram.rst
+    fluid/ComplexVariable.rst
     fluid/cpu_places.rst
     fluid/CPUPlace.rst
     fluid/create_lod_tensor.rst

@@ -21,23 +21,38 @@ import contextlib
 import paddle.fluid as fluid
 import paddle.tensor as tensor
 import paddle.nn as nn
+import paddle.optimizer as optimizer
+
+#import paddle.complex as complex
 #import paddle.framework as framework
+
 
 def parse_arg():
     parser = argparse.ArgumentParser()
     parser.add_argument('--submodules', nargs="*")
     parser.add_argument(
-        '--module_name', type=str, help='Generate the documentation of which module')
+        '--module_name',
+        type=str,
+        help='Generate the documentation of which module')
     parser.add_argument(
         '--module_prefix', type=str, help='Generate the prefix of module')
     parser.add_argument(
-        '--output', type=str, help='Output file or output directory for output rst')
+        '--output',
+        type=str,
+        help='Output file or output directory for output rst')
     parser.add_argument(
-        '--output_name', type=str, help='Output file or output directory for output rst')
+        '--output_name',
+        type=str,
+        help='Output file or output directory for output rst')
     parser.add_argument(
-        '--output_dir', type=str, help='Output file or output directory for output rst')
+        '--output_dir',
+        type=str,
+        help='Output file or output directory for output rst')
     parser.add_argument(
-        '--to_multiple_files', type=bool, default=False, help='Whether to separate to multiple files')
+        '--to_multiple_files',
+        type=bool,
+        default=False,
+        help='Whether to separate to multiple files')
 
     return parser.parse_args()
 
@@ -52,8 +67,9 @@ def parse_arg():
         else:
             pass
 
+
 class DocGenerator(object):
-    def __init__(self, module_name=None, module_prefix=None): 
+    def __init__(self, module_name=None, module_prefix=None):
         self.module_name = module_name
         self.module_prefix = module_prefix
         self.stream = None
@@ -61,7 +77,7 @@ class DocGenerator(object):
     @contextlib.contextmanager
     def guard(self, filename):
         assert self.stream is None, "stream must be None"
-        self.stream = open(filename, 'w') 
+        self.stream = open(filename, 'w')
         yield
         self.stream.close()
         self.stream = None
@@ -69,20 +85,21 @@ class DocGenerator(object):
     def print_submodule(self, submodule_name):
         submodule = getattr(self.module, submodule_name)
         if submodule is None:
-            raise ValueError("Cannot find submodule {0}".format(submodule_name))
+            raise ValueError(
+                "Cannot find submodule {0}".format(submodule_name))
         self.print_section(submodule_name)
 
-        for item in sorted(submodule.__all__,key=str.lower):
+        for item in sorted(submodule.__all__, key=str.lower):
             self.print_item(item)
 
     def print_current_module(self):
-        for item in sorted(self.module.__all__,key=str.lower):
+        for item in sorted(self.module.__all__, key=str.lower):
             self.print_item(item)
 
     def print_section(self, name):
         self._print_header_(name, dot='=', is_title=False)
 
-    def print_item(self, name):
+    def print_item(self, name, output_name):
         item = getattr(self.module, name, None)
         if isinstance(item, types.TypeType):
             self.print_class(name)
@@ -90,7 +107,7 @@ class DocGenerator(object):
             self.print_method(name)
         else:
             self.stream.close()
-            path = os.getcwd()+"/fluid/"+name+".rst"
+            path = os.getcwd() + "/" + output_name + "/" + name + ".rst"
             if name != "PipeReader":
                 os.remove(path)
 
@@ -148,7 +165,9 @@ class DocGenerator(object):
         self.stream.write(".. _api_{0}_{1}:\n\n".format("_".join(
             self.module_prefix.split(".")), name))
 
-def generate_doc(module_name, module_prefix, output, output_name, to_multiple_files, output_dir):
+
+def generate_doc(module_name, module_prefix, output, output_name,
+                 to_multiple_files, output_dir):
     if module_name == "":
         module_name = None
 
@@ -175,13 +194,14 @@ def generate_doc(module_name, module_prefix, output, output_name, to_multiple_fi
     else:
         gen.module_prefix = output_name + "." + module_prefix
 
-    dirname = output if to_multiple_files else os.path.dirname(output) 
+    dirname = output if to_multiple_files else os.path.dirname(output)
 
     if output_dir != None:
         dirname = output_dir + "/" + dirname
         output = output_dir + "/" + output
 
-    if len(dirname) > 0 and (not os.path.exists(dirname) or not os.path.isdir(dirname)): 
+    if len(dirname) > 0 and (not os.path.exists(dirname) or
+                             not os.path.isdir(dirname)):
         os.makedirs(dirname)
 
     if not to_multiple_files:
@@ -190,7 +210,7 @@ def generate_doc(module_name, module_prefix, output, output_name, to_multiple_fi
             prefix_len = len(gen.module_prefix)
             assert gen.module_prefix == gen.module_name[0:prefix_len],    \
                 "module_prefix must be prefix of module_name"
-            diff_name = gen.module_name[prefix_len+1:]
+            diff_name = gen.module_name[prefix_len + 1:]
             if diff_name != "":
                 header_name = diff_name
     else:
@@ -202,17 +222,18 @@ def generate_doc(module_name, module_prefix, output, output_name, to_multiple_fi
             gen._print_header_(header_name, dot='=', is_title=True)
             gen.print_current_module()
     else:
-        apis = sorted(gen.module.__all__,key=str.lower)
+        apis = sorted(gen.module.__all__, key=str.lower)
         for api in apis:
             header_name = api
             with gen.guard(os.path.join(output, api + '.rst')):
                 gen.print_header_reminder()
-                gen.print_item(api)
+                gen.print_item(api, output_name)
 
 
 def main():
     args = parse_arg()
-    generate_doc(args.module_name, args.module_prefix, args.output, args.output_name, args.to_multiple_files, args.output_dir)
+    generate_doc(args.module_name, args.module_prefix, args.output,
+                 args.output_name, args.to_multiple_files, args.output_dir)
 
 
 if __name__ == '__main__':

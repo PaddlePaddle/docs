@@ -5,10 +5,13 @@ MSRAInitializer
 
 .. py:class:: paddle.fluid.initializer.MSRAInitializer(uniform=True, fan_in=None, seed=0)
 
+
+
+
 该接口实现MSRA方式的权重初始化（a.k.a. Kaiming初始化）
 
 该接口为权重初始化函数，方法来自Kaiming He，Xiangyu Zhang，Shaoqing Ren 和 Jian Sun所写的论文: `Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification <https://arxiv.org/abs/1502.01852>`_ 。这是一个鲁棒性特别强的初始化方法，并且适应了非线性激活函数（rectifier nonlinearities）。
-可以选择使用均匀分布或者正太分布初始化权重；
+可以选择使用均匀分布或者正态分布初始化权重；
 在均匀分布中，范围为[-x,x]，其中：
 
 .. math::

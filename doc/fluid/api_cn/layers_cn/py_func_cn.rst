@@ -3,9 +3,12 @@
 py_func
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 PaddlePaddle Fluid通过py_func在Python端注册OP。py_func的设计原理在于Paddle中的LodTensor与numpy数组可以方便的互相转换，从而可使用Python中的numpy API来自定义一个Python OP。
 

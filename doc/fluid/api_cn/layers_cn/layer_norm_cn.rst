@@ -3,9 +3,12 @@
 layer_norm
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该OP实现了层归一化层（Layer Normalization Layer），其可以应用于小批量输入数据。更多详情请参考：`Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_
 

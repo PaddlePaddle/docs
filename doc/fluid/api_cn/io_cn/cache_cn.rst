@@ -5,6 +5,9 @@ cache
 
 .. py:function:: paddle.fluid.io.cache(reader)
 
+
+
+
 缓存reader数据到内存中，小心此方法可能会花长时间来处理数据，并且会占用大量内存。 ``reader()`` 只能被调用一次。
 
 参数:

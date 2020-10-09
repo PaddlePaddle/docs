@@ -5,6 +5,12 @@ pad
 
 .. py:function:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
 
+:alias_main: paddle.nn.functional.pad
+:alias: paddle.nn.functional.pad,paddle.nn.functional.common.pad
+:old_api: paddle.fluid.layers.pad
+
+
+
 该OP在Tensor上填充一个由 ``pad_value`` 给出的常数值，填充宽度由 ``paddings`` 指定。
 其中，维度 ``i`` 中 ``x`` 内容前填充的值个数用 ``paddings[2*i]`` 表示，维度 ``i`` 中 ``x`` 内容后填充的值个数用 ``paddings[2*i+1]`` 表示。
 

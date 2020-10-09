@@ -5,6 +5,12 @@ deformable_roi_pooling
 
 .. py:function:: paddle.fluid.layers.deformable_roi_pooling(input, rois, trans, no_trans=False, spatial_scale=1.0, group_size=[1, 1], pooled_height=1, pooled_width=1, part_size=None, sample_per_part=1, trans_std=0.1, position_sensitive=False, name=None)
 
+:alias_main: paddle.nn.functional.deformable_roi_pooling
+:alias: paddle.nn.functional.deformable_roi_pooling,paddle.nn.functional.vision.deformable_roi_pooling
+:old_api: paddle.fluid.layers.deformable_roi_pooling
+
+
+
 可变形感兴趣区域（ROI）池化层
 
 该OP对输入进行了可形变的感兴趣区域(ROI)池化操作。如同 `可形变卷积网络 <https://arxiv.org/abs/1703.06211>`_  描述的一样，它将为每个bin中的像素获取一个偏移量，以便于在合适的位置进行池化。在完成可变形感兴趣区域（ROI）池化操作之后，批量数将变为候选框的数量。
@@ -42,7 +48,7 @@ deformable_roi_pooling
 
 ..  code-block:: python
 
-    #position_sensitive为False
+    #position_sensitive=False
 
     import paddle.fluid as fluid
     input = fluid.data(name="input",
@@ -68,7 +74,7 @@ deformable_roi_pooling
                                             trans_std=0.1,
                                             position_sensitive=False)
 
-    #position_sensitive为True
+    #position_sensitive=True
 
     import paddle.fluid as fluid
     input = fluid.data(name="input",

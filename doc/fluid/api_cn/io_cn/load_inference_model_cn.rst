@@ -3,9 +3,12 @@
 load_inference_model
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.io.load_inference_model(dirname, executor, model_filename=None, params_filename=None, pserver_endpoints=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 从指定文件路径中加载预测模型(Inference Model)，即调用该接口可获得模型结构（Inference Program）和模型参数。若只想加载预训练后的模型参数，请使用 :ref:`cn_api_fluid_io_load_params` 接口。更多细节请参考 :ref:`api_guide_model_save_reader` 。
 

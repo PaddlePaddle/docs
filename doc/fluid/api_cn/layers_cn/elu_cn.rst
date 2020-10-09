@@ -5,6 +5,12 @@ elu
 
 .. py:function:: paddle.fluid.layers.elu(x, alpha=1.0, name=None)
 
+:alias_main: paddle.nn.functional.elu
+:alias: paddle.nn.functional.elu,paddle.nn.functional.activation.elu
+:old_api: paddle.fluid.layers.elu
+
+
+
 ELU激活层（ELU Activation Operator）
 
 根据 https://arxiv.org/abs/1511.07289 对输入Tensor中每个元素应用以下计算。

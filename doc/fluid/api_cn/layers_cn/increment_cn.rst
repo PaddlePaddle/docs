@@ -5,6 +5,12 @@ increment
 
 .. py:function:: paddle.fluid.layers.increment(x, value=1.0, in_place=True)
 
+:alias_main: paddle.increment
+:alias: paddle.increment,paddle.tensor.increment,paddle.tensor.math.increment
+:old_api: paddle.fluid.layers.increment
+
+
+
 使输入Tensor ``x`` 的数据累加 ``value`` , 该OP通常用于循环次数的计数。
 
 参数:

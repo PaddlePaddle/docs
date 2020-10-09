@@ -6,6 +6,9 @@ DistributeTranspiler
 .. py:class:: paddle.fluid.DistributeTranspiler (config=None)
 
 
+
+
+
 该类可以把fluid program转变为分布式数据并行计算的program, 有PServer和NCCL2两种模式。
 在Pserver（全称：parameter server）模式下， 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于parameter server的分布式架构(即PServer,参数服务器)来进行训练的program。
 在NCCL2模式下, 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于NCCL2的分布式架构来进行训练的program。在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播

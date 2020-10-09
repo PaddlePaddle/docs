@@ -5,6 +5,12 @@ unfold
 
 .. py:function:: paddle.fluid.layers.unfold(x, kernel_size, strides=1, paddings=0, dilation=1, name=None)
 
+:alias_main: paddle.nn.functional.unfold
+:alias: paddle.nn.functional.unfold,paddle.nn.functional.common.unfold
+:old_api: paddle.fluid.layers.unfold
+
+
+
 该OP实现的功能与卷积中用到的im2col函数一样，通常也被称作为im2col过程。对于每一个卷积核覆盖下的区域，元素会被重新排成一列。当卷积核在整个图片上滑动时，将会形成一系列的列向量。对于每一个输入形状为[N, C, H, W]的 ``x`` ，都将会按照下面公式计算出一个形状为[N, Cout, Lout]的输出。
 
 
