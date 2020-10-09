@@ -459,6 +459,7 @@ PipelineTrainer	.. _api_paddle_fluid_trainer_desc_PipelineTrainer:
 anchor_generator	.. _api_paddle_fluid_layers_anchor_generator:
 train	.. _api_paddle_dataset_wmt16_train:
 concat	.. _api_paddle_tensor_manipulation_concat:
+strided_slice  .. _api_paddle_tensor_manipulation_strided_slice:
 to_variable	.. _api_paddle_fluid_dygraph_base_to_variable:
 sequence_reshape	.. _api_paddle_fluid_layers_sequence_reshape:
 hash	.. _api_paddle_fluid_layers_hash:
