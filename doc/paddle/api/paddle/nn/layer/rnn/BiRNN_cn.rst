@@ -23,8 +23,8 @@ BiRNN
     - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为False，则Tensor的形状为[batch_size,time_steps,cell_fw.hidden_size + cell_bw.hidden_size]，如果time_major为True，则Tensor的形状为[time_steps,batch_size,cell_fw.hidden_size + cell_bw.hidden_size]。
     - **final_states** (tuple) - 前向和后向cell的最终状态。
     
-..note:
-    该类是一个封装rnn cell的低级api，用户在使用forward函数是时须确保initial_states满足cell的要求。
+.. Note::
+    该类是一个封装rnn cell的低级api，用户在使用forward函数时须确保initial_states满足cell的要求。
 
 
 **代码示例**：

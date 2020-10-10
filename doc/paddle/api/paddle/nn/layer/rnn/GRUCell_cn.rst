@@ -48,7 +48,7 @@ GRUCell
     - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     - **new_states** (Tensor) - 新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     
-..note:
+.. Note::
     所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden_size}}`。对于参数初始化，详情请参考 :ref:`api_fluid_ParamAttr`。
 
 
