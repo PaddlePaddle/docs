@@ -21,10 +21,6 @@ unstack
 
 返回: 长度为num的Tensor列表, 数据类型与输入Tensor相同，dim为 ``(D-1)``。
 
-返回类型: list(Tensor)
-
-抛出异常：
-      - :code:`ValueError`：``x.shape[axis]`` <= 0 或 ``axis`` 不在[-D, D)范围内
 
 **代码示例**：
 

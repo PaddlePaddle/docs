@@ -45,7 +45,6 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
     import paddle
 
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
@@ -73,10 +72,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 .. code-block:: python
 
     import paddle
-    import numpy as np
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand(shape=[2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.AdamW(learning_rate = 0.01,
                                 weight_decay = 0.01,
@@ -104,19 +100,16 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.randn(shape=[10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.mean(out)
 
     beta1 = paddle.to_tensor([0.9], dtype="float32")
     beta2 = paddle.to_tensor([0.99], dtype="float32")
 
-    adam = paddle.optimizer.Adam(learning_rate=0.1,
+    adam = paddle.optimizer.AdamW(learning_rate=0.1,
             parameters=linear.parameters(),
             weight_decay=0.01)
     out.backward()
@@ -137,11 +130,8 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand(shape=[2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     optimizer = paddle.optimizer.AdamW(weight_decay=0.01,
                                      learning_rate=0.02,
@@ -169,7 +159,6 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 .. code-block:: python
 
     import paddle
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
 
     adam = paddle.optimizer.AdamW(weight_decay=0.01,
@@ -203,20 +192,17 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
+    import numpy as np
     # example1: _LRScheduler is not used, return value is all the same
-    paddle.disable_static()
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     adam = paddle.optimizer.AdamW(learning_rate=0.001, parameters = emb.parameters(),weight_decay=0.01)
     lr = adam.get_lr()
     print(lr) # 0.001
 
     # example2: PiecewiseLR is used, return the step learning rate
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.randn([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.reduce_mean(out)
 

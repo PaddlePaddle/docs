@@ -2,7 +2,7 @@
 
 strided_slice
 -------------------------------
-.. py:function:: paddle.strided_slice(x, axes, starts, ends, strides)
+.. py:function:: paddle.strided_slice(x, axes, starts, ends, strides, name)
 
 
 
@@ -46,32 +46,25 @@ strided_slice算子。
 
 参数：
        
-        - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``，``float64``，``int32``，或 ``int64``。
+        - **x** （Tensor）- 多维 ``Tensor``，数据类型为 ``float32``，``float64``，``int32``，或 ``int64``。
         - **axes** （list|tuple）- 数据类型是 ``int32``。表示进行切片的轴。
-        - **starts** （list|tuple|Variable）- 数据类型是 ``int32``。如果 ``starts`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``starts`` 的类型是 ``Variable``，则是1-D ``Tensor`` 或 ``LoDTensor``。表示在各个轴上切片的起始索引值。
-        - **ends** （list|tuple|Variable）- 数据类型是 ``int32``。如果 ``ends`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``ends`` 的类型是 ``Variable``，则是1-D ``Tensor`` 或 ``LoDTensor``。表示在各个轴上切片的结束索引值。
-        - **strides** （list|tuple|Variable）- 数据类型是 ``int32``。如果 ``strides`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``strides`` 的类型是 ``Variable``，则是1-D ``Tensor`` 或 ``LoDTensor``。表示在各个轴上切片的步长。
+        - **starts** （list|tuple|Tensor）- 数据类型是 ``int32``。如果 ``starts`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``。如果 ``starts`` 的类型是 ``Tensor``，则是1-D ``Tensor``。表示在各个轴上切片的起始索引值。
+        - **ends** （list|tuple|Tensor）- 数据类型是 ``int32``。如果 ``ends`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``。如果 ``ends`` 的类型是 ``Tensor``，则是1-D ``Tensor``。表示在各个轴上切片的结束索引值。
+        - **strides** （list|tuple|Tensor）- 数据类型是 ``int32``。如果 ``strides`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``。如果 ``strides`` 的类型是 ``Tensor``，则是1-D ``Tensor``。表示在各个轴上切片的步长。
 
 
-返回：多维 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``x`` 相同。
+返回：多维 ``Tensor``，数据类型与 ``x`` 相同。
 
-
-返回类型：Variable。
-
-抛出异常：
-    - :code:`TypeError`：``starts`` 的类型应该是 list、tuple 或 Variable。
-    - :code:`TypeError`：``ends`` 的类型应该是 list、tuple 或 Variable。
-    - :code:`TypeError`：``strides`` 的类型应该是 list、tuple 或 Variable。
 
 **代码示例：**
 
 .. code-block:: python
 
         import paddle
-        paddle.disable_static()
+        
         x = paddle.zeros(shape=[3,4,5,6], dtype="float32")
         # example 1:
-        # attr starts is a list which doesn't contain tensor Variable.
+        # attr starts is a list which doesn't contain tensor Tensor.
         axes = [1, 2, 3]
         starts = [-3, 0, 2]
         ends = [3, 2, 4]
@@ -80,7 +73,7 @@ strided_slice算子。
         sliced_1 = paddle.strided_slice(x, axes=axes, starts=starts, ends=ends, strides=strides_1)
         # sliced_1 is x[:, 1:3:1, 0:2:1, 2:4:1].                                        
         # example 2:
-        # attr starts is a list which contain tensor Variable.
+        # attr starts is a list which contain tensor Tensor.
         minus_3 = paddle.fill_constant([1], "int32", -3)
         sliced_2 = paddle.strided_slice(x, axes=axes, starts=[minus_3, 0, 2], ends=ends, strides=strides_2)
         # sliced_2 is x[:, 1:3:1, 0:2:1, 2:4:2].

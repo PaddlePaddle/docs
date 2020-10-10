@@ -83,7 +83,6 @@ RMSProp
 .. code-block:: python
 
     import paddle
-    paddle.disable_static()
     a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     rmsprop = paddle.optimizer.RMSProp(learning_rate = 0.01,
@@ -112,7 +111,6 @@ RMSProp
 
     import paddle
 
-    paddle.disable_static()
     inp = paddle.rand([10,10], dtype="float32")
     linear = paddle.nn.Linear(10, 10)
     out = linear(inp)
@@ -140,7 +138,6 @@ RMSProp
 
     import paddle
 
-    paddle.disable_static()
     a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     rmsprop = paddle.optimizer.RMSProp(learning_rate=0.02,
@@ -169,9 +166,8 @@ RMSProp
 
 
     import paddle
-    paddle.disable_static()
+    
     linear = paddle.nn.Linear(10, 10)
-
     rmsprop = paddle.optimizer.RMSProp(0.1, parameters=linear.parameters())
 
     # set learning rate manually by python float value

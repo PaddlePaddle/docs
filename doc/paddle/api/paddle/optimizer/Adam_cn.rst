@@ -126,12 +126,9 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.randn([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.mean(out)
 
@@ -159,11 +156,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     optimizer = paddle.optimizer.Adam(learning_rate=0.02,
                                      parameters=linear.parameters())
@@ -190,7 +184,6 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
 
     adam = paddle.optimizer.Adam(0.1, parameters=linear.parameters())
