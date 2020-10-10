@@ -11,7 +11,7 @@ GRUCell
 
 状态更新公式如下：
 
-.. math::
+..  math::
 
         r_{t} & = \sigma(W_{ir}x_{t} + b_{ir} + W_{hr}x_{t} + b_{hr})
 

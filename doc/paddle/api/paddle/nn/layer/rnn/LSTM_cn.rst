@@ -11,7 +11,7 @@ LSTM
 
 状态更新公式如下：
 
-  .. math::
+..  math::
 
         i_{t} & = \sigma(W_{ii}x_{t} + b_{ii} + W_{hi}h_{t-1} + b_{hi})
         f_{t} & = \sigma(W_{if}x_{t} + b_{if} + W_{hf}h_{t-1} + b_{hf})
