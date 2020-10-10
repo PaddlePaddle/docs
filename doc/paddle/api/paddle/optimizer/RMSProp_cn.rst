@@ -54,7 +54,6 @@ RMSProp
 
     import paddle
 
-    paddle.disable_static()
     inp = paddle.rand([10,10], dtype="float32")
     linear = paddle.nn.Linear(10, 10)
     out = linear(inp)
@@ -201,14 +200,12 @@ RMSProp
     import paddle
     import numpy as np
     # example1: _LRScheduler is not used, return value is all the same
-    paddle.disable_static()
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     rmsprop = paddle.optimizer.RMSProp(0.001, parameters = emb.parameters())
     lr = rmsprop.get_lr()
     print(lr) # 0.001
 
     # example2: PiecewiseDecay is used, return the step learning rate
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
