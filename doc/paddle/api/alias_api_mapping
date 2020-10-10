@@ -571,3 +571,4 @@ paddle.metric.metrics.Auc	paddle.metric.Auc
 paddle.fluid.unique_name.guard	paddle.utils.unique_name.guard
 paddle.fluid.unique_name.switch	paddle.utils.unique_name.switch
 paddle.fluid.unique_name.generate	paddle.utils.unique_name.generate
+paddle.fluid.install_check.run_check	paddle.utils.run_check
