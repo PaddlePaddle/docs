@@ -21,6 +21,9 @@ LSTM
         h_{t} & = o_{t} \* \\tanh(c_{t})
         y_{t} & = h_{t}
 
+其中：
+    - :math:`\sigma` ：sigmoid激活函数。
+
 参数：
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
@@ -42,7 +45,7 @@ LSTM
 
 输出:
     - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为True，则Tensor的形状为[time_steps,batch_size,num_directions * hidden_size]，如果time_major为False，则Tensor的形状为[batch_size,time_steps,num_directions * hidden_size]，当direction设置为bidirectional时，num_directions等于2，否则等于1。
-    - **final_states** (Tensor) - 最终状态。形状为[num_lauers * num_directions, batch_size, hidden_size],当direction设置为bidirectional时，num_directions等于2，否则等于1。
+    - **final_states** (tuple) - 最终状态,一个包含h和c的元组。形状为[num_lauers * num_directions, batch_size, hidden_size],当direction设置为bidirectional时，num_directions等于2，否则等于1。
 
 **代码示例**：
 
