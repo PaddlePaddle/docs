@@ -13,9 +13,7 @@ has_nan
 参数：
   - **x** (Tensor) - 被检查的变量Tensor。
 
-返回：Tensor变量存储输出值，包含一个bool型数值，指明输入中是否包含NAN。
-
-返回类型：Tensor。
+返回：Tensor，存储输出值，包含一个bool型数值，指明输入中是否包含NAN。
 
 **代码示例**：
 

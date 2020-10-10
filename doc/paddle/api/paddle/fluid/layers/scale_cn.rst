@@ -30,9 +30,7 @@ scale
         - **act** (str，可选) - 应用于输出的激活函数，如tanh、softmax、sigmoid、relu等。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回: 缩放后的输出Tensor。
-
-返回类型:  Tensor。
+返回: Tensor，缩放后的计算结果。
 
 **代码示例：**
 

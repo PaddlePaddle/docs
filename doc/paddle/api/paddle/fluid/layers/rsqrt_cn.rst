@@ -22,9 +22,7 @@ rsqrt
     - **x** (Tensor) – 输入是多维Tensor，数据类型可以是float32和float64。 
     - **name** (str，可选）— 这一层的名称（可选）。如果设置为None，则将自动命名这一层。默认值为None。
 
-返回：对输入x进行rsqrt激活函数计算后的Tensor，数据shape和输入x的shape一致。
-
-返回类型：Tensor，数据类型和输入数据类型一致。
+返回：Tensor，对输入x进行rsqrt激活函数计算结果，数据shape、类型和输入x的shape、类型一致。
 
 **代码示例**：
 
