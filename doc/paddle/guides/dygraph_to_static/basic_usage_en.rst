@@ -20,7 +20,6 @@ The basic idea of source-code-translate based ProgramTranslator is analyzing Pyt
         else:
             out = paddle.cast(input_var, "int64")
 
-    paddle.disable_static()
     in_np = np.array([-2]).astype('int')
     input_var = paddle.to_tensor(in_np)
     func(input_var)
@@ -33,8 +32,8 @@ To save the transformed model, we can call ``paddle.jit.save`` . Let's take a fu
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
-        def __init__(self, feature_size, batch_size, fc_size):
-            super(SimpleFCLayer, self).__init__()
+        def __init__(self, batch_size, feature_size, fc_size):
+            super(SimpleFcLayer, self).__init__()
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))
@@ -50,8 +49,6 @@ Call ``paddle.jit.save`` to save above model:
 .. code-block:: python
 
     import paddle
-
-    paddle.disable_static()
 
     fc_layer = SimpleFcLayer(3, 4, 2)
     in_np = np.random.random([3, 4]).astype('float32')
@@ -74,8 +71,8 @@ Define a simple fully connected network, note that we don't add a decorator befo
     import paddle
 
     class SimpleFcLayer(paddle.nn.Layer):
-        def __init__(self, feature_size, batch_size, fc_size):
-            super(SimpleFCLayer, self).__init__()
+        def __init__(self, batch_size, feature_size, fc_size):
+            super(SimpleFcLayer, self).__init__()
             self._linear = paddle.nn.Linear(feature_size, fc_size)
             self._offset = paddle.to_tensor(
                 np.random.random((batch_size, fc_size)).astype('float32'))
@@ -90,8 +87,6 @@ Save model by TracedLayer:
 
     import paddle
     from paddle.jit import TracedLayer
-
-    paddle.disable_static()
 
     fc_layer = SimpleFcLayer(3, 4, 2)
     in_np = np.random.random([3, 4]).astype('float32')
@@ -125,7 +120,6 @@ However, as tracing only records operators once, if user's code contains Tensor-
         else:
             return paddle.cast(input_var, "int64")
 
-    paddle.disable_static()
     in_np = np.array([-2]).astype('int')
     input_var = paddle.to_tensor(in_np)
     out = func(input_var)

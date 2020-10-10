@@ -103,9 +103,6 @@ A simple example as follows:
             out = out + y
             return out
 
-
-    paddle.disable_static()
-
     net = SimpleNet()
 
     # save static model for inference directly
@@ -137,7 +134,6 @@ If we want to train model in dygraph mode and only expect to save the inference 
             out = out + y
             return out
 
-    paddle.disable_static()
     net = SimpleNet()
 
     # train process (Pseudo code)
@@ -194,3 +190,46 @@ If a function takes an argument of type dict, the element in the ``input_spec`` 
 
 
 The length of ``input_spec`` is 2 corresponding to arguments x and bias_info in forward function. The last element of ``input_spec``  is a InputSpec dict with same key corresponding to signature information of bias_info.
+
+
+2.4 Specify non-Tensor arguments
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Currently, the ``input_spec`` from ``to_static`` decorator only receives objects with ``InputSpec`` type. When the decorated function contains some non-Tensor arguments, such as Int, String or other python types, we recommend to use kwargs with default values as argument, see use_act in followed example.
+
+.. code-block:: python
+
+    class SimpleNet(Layer):
+        def __init__(self, ):
+            super(SimpleNet, self).__init__()
+            self.linear = paddle.nn.Linear(10, 3)
+            self.relu = paddle.nn.ReLU()
+
+        @to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
+        def forward(self, x, use_act=False):
+            out = self.linear(x)
+            if use_act:
+                out = self.relu(out)
+            return out
+
+    net = SimpleNet()
+    adam = paddle.optimizer.Adam(parameters=net.parameters())
+
+    # train model
+    batch_num = 10
+    for step in range(batch_num):
+        x = paddle.rand([4, 10], 'float32')
+        use_act = (step%2 == 0)
+        out = net(x, use_act)
+        loss = paddle.mean(out)
+        loss.backward()
+        adam.minimize(loss)
+        net.clear_gradients()
+
+    # save inference model with use_act=False
+    paddle.jit.save(net, model_path='./simple_net')
+
+
+In above example, use_act is equal to True if step is an odd number, and False if step is an even number. We support non-tensor argument applied to different values during training after conversion. Moreover, the shared parameters of the model can be updated during the training with different values. The behavior is consistent with the dynamic graph.
+
+The default value of the kwargs is primarily used for saving inference model. The inference model and network parameters will be exported based on input_spec and the default values of kwargs. Therefore, it is recommended to set the default value of the kwargs arguments for prediction.

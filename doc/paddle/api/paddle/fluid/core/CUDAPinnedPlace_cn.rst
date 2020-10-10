@@ -15,6 +15,6 @@ CUDAPinnedPlace
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      place = fluid.CUDAPinnedPlace()
+      import paddle
+      place = paddle.CUDAPinnedPlace()
 
