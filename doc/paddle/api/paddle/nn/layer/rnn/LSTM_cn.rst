@@ -14,12 +14,19 @@ LSTM
 ..  math::
 
         i_{t} & = \sigma(W_{ii}x_{t} + b_{ii} + W_{hi}h_{t-1} + b_{hi})
+
         f_{t} & = \sigma(W_{if}x_{t} + b_{if} + W_{hf}h_{t-1} + b_{hf})
+
         o_{t} & = \sigma(W_{io}x_{t} + b_{io} + W_{ho}h_{t-1} + b_{ho})
-        \\widetilde{c}_{t} & = \\tanh(W_{ig}x_{t} + b_{ig} + W_{hg}h_{t-1} + b_{hg})
-        c_{t} & = f_{t} \* c_{t-1} + i_{t} \* \\widetile{c}_{t}
-        h_{t} & = o_{t} \* \\tanh(c_{t})
+
+        g_{t} & = \tanh(W_{ig}x_{t} + b_{ig} + W_{hg}h_{t-1} + b_{hg})
+
+        c_{t} & = f_{t} * c_{t-1} + i_{t} * g_{t}
+
+        h_{t} & = o_{t} * \tanh(c_{t})
+
         y_{t} & = h_{t}
+
 
 其中：
     - :math:`\sigma` ：sigmoid激活函数。
