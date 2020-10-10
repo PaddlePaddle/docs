@@ -17,7 +17,7 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
 
 累积次数（num_accumulates）大于特定窗口阈值(average_window)时，将累积的Parameters临时变量置为0.0，这几个参数的作用通过以下示例代码说明：
 
-.. code-block:: python
+.. code-block:: text
 
     if num_accumulates >= min_average_window and num_accumulates >= min(max_average_window, num_updates * average_window_rate):
         num_accumulates = 0
@@ -39,7 +39,9 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
         
     import paddle.fluid as fluid
     import numpy
-     
+    import paddle
+    
+    paddle.enable_static()
     # 首先创建执行引擎
     place = fluid.CPUPlace()  # fluid.CUDAPlace(0)
     exe = fluid.Executor(place)
@@ -88,7 +90,9 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
         
     import paddle.fluid as fluid
     import numpy
-     
+    import paddle
+    
+    paddle.enable_static() 
     # 首先创建执行引擎
     place = fluid.CPUPlace()  # fluid.CUDAPlace(0)
     exe = fluid.Executor(place)
@@ -136,7 +140,9 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
         
     import paddle.fluid as fluid
     import numpy
-     
+    import paddle
+    
+    paddle.enable_static() 
     # 首先创建执行引擎
     place = fluid.CPUPlace()  # fluid.CUDAPlace(0)
     exe = fluid.Executor(place)

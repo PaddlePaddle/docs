@@ -6,8 +6,79 @@ DistributedStrategy
 .. py:class:: paddle.distributed.fleet.DistributedStrategy
 
 
+
 属性
 ::::::::::::
+
+.. py:attribute:: save_to_prototxt
+
+序列化当前的DistributedStrategy，并且保存到output文件中
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.dgc = True
+  strategy.recompute = True
+  strategy.recompute_configs = {"checkpoints": ["x"]}
+  strategy.save_to_prototxt("dist_strategy.prototxt")
+
+
+.. py:attribute:: load_from_prototxt
+
+加载已经序列化过的DistributedStrategy文件，并作为初始化DistributedStrategy返回
+
+**示例代码**
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.load_from_prototxt("dist_strategy.prototxt")
+
+
+.. py:attribute:: execution_strategy
+
+`Post Local SGD <https://arxiv.org/abs/1808.07217>`__
+
+配置DistributedStrategy中的`ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`__
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle
+  exe_strategy = paddle.fluid.ExecutionStrategy()
+  exe_strategy.num_threads = 10
+  exe_strategy.num_iteration_per_drop_scope = 10
+  exe_strategy.num_iteration_per_run = 10
+  
+  strategy = paddle.distributed.fleet.DistributedStrategy()
+  strategy.execution_strategy = exe_strategy
+
+
+.. py:attribute:: build_strategy
+
+配置DistributedStrategy中的`BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`__
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle
+  build_strategy = paddle.fluid.BuildStrategy()
+  build_strategy.enable_sequential_execution = True
+  build_strategy.fuse_elewise_add_act_ops = True
+  build_strategy.fuse_bn_act_ops = True
+  build_strategy.enable_auto_fusion = True
+  build_strategy.fuse_relu_depthwise_conv = True
+  build_strategy.fuse_broadcast_ops = True
+  build_strategy.fuse_all_optimizer_ops = True
+  build_strategy.enable_inplace = True
+  
+  strategy = paddle.distributed.fleet.DistributedStrategy()
+  strategy.build_strategy = build_strategy
+
 
 .. py:attribute:: recompute
 
@@ -104,7 +175,7 @@ DistributedStrategy
 .. py:attribute:: lars_configs
 设置LARS优化器的参数。用户可以配置 lars_coeff，lars_weight_decay，epsilon，exclude_from_weight_decay 参数。
 
-**lars_coeff(float):** lars 系数，[原论文](https://arxiv.org/abs/1708.03888) 中的 trust coefficient。 默认值是 0.001.
+**lars_coeff(float):** lars 系数，`原论文 <https://arxiv.org/abs/1708.03888>`__ 中的 trust coefficient。 默认值是 0.001.
 
 **lars_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.0005.
 
@@ -133,7 +204,7 @@ DistributedStrategy
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0. 默认值是 None.
 
 .. py:attribute:: localsgd
-是否使用LocalSGD optimizer，默认值：False。更多的细节请参考[Don't Use Large Mini-Batches, Use Local SGD](https://arxiv.org/pdf/1808.07217.pdf)
+是否使用LocalSGD optimizer，默认值：False。更多的细节请参考 `Don't Use Large Mini-Batches, Use Local SGD <https://arxiv.org/pdf/1808.07217.pdf>`__
 
 **示例代码**
 
@@ -162,7 +233,7 @@ DistributedStrategy
 **begin_step(int):** 指定从第几个step之后进行local SGD算法，默认值1。
 
 .. py:attribute:: adaptive_localsgd
-是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考[Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD](https://arxiv.org/pdf/1810.08313.pdf)
+是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考`Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD <https://arxiv.org/pdf/1810.08313.pdf>`__
 
 **示例代码**
 

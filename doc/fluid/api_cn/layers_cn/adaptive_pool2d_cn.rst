@@ -5,10 +5,6 @@ adaptive_pool2d
 
 .. py:function:: paddle.fluid.layers.adaptive_pool2d(input, pool_size, pool_type='max', require_index=False, name=None)
 
-:alias_main: paddle.nn.functional.adaptive_pool2d
-:alias: paddle.nn.functional.adaptive_pool2d,paddle.nn.functional.pooling.adaptive_pool2d
-:old_api: paddle.fluid.layers.adaptive_pool2d
-
 
 
 该OP使用上述输入参数的池化配置，为二维空间自适应池化操作，根据 ``input`` ， 池化类型 ``pool_type`` ， 池化核大小 ``pool_size`` 这些参数得到输出。
@@ -31,16 +27,14 @@ adaptive_pool2d
        Output(i ,j) &= \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
 
 参数：
-  - **input** （Variable） - 池化操作的输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor。 输入张量的格式为NCHW，其中N是batch大小，C是通道数，H是特征的高度，W是特征的宽度，数据类型为float32或float64。
+  - **input** （Tensor） - 池化操作的输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor。 输入张量的格式为NCHW，其中N是batch大小，C是通道数，H是特征的高度，W是特征的宽度，数据类型为float32或float64。
   - **pool_size** （int|list|tuple） - 池化核大小。 如果池化核大小是元组或列表，则它必须包含两个整数（pool_size_Height，pool_size_Width。若为一个整数，则表示H和W维度上均为该值。
   - **pool_type** （string）- 池化类型，可输入“max”代表max-pooling，或者“avg”代表average-pooling。
   - **require_index** （bool） - 如果为False，则输出中带有最大池化点所在的索引。 如果pool_type为avg,该项不可被设置为True, 默认False。
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
 
 
-返回： Variable(Tensor) 自适应池化结果张量
-
-返回类型：变量(Variable)，数据类型与 ``input`` 一致
+返回： Tensor, 自适应池化结果张量，数据类型与 ``input`` 一致
 
 
 抛出异常:
@@ -65,9 +59,9 @@ adaptive_pool2d
     #             wend = ceil((i + 1) * W / n)
     #             output[:, :, i, j] = avg(input[:, :, hstart: hend, wstart: wend])
     #
-    import paddle.fluid as fluid
-    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
-    pool_out = fluid.layers.adaptive_pool2d(
+    import paddle
+    data = paddle.rand(shape=[1,3,32,32])
+    pool_out = paddle.fluid.layers.adaptive_pool2d(
                       input=data,
                       pool_size=[3, 3],
                       pool_type='avg')
@@ -86,13 +80,11 @@ adaptive_pool2d
     #             wend = ceil((i + 1) * W / n)
     #             output[:, :, i, j] = max(input[:, :, hstart: hend, wstart: wend])
     #
-    import paddle.fluid as fluid
-    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
-    pool_out = fluid.layers.adaptive_pool2d(
+    import paddle
+    data = paddle.rand(shape=[1,3,32,32])
+    pool_out = paddle.fluid.layers.adaptive_pool2d(
                       input=data,
                       pool_size=[3, 3],
                       pool_type='max')
-
-
 
 
