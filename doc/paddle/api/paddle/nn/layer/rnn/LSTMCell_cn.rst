@@ -14,13 +14,13 @@ LSTMCell
 .. math::
 
     \begin{alinged}
-    i_{t} = \sigma (W_{ii}x_{t} + b_{ii} + W_{hi}h_{t-1} + b_{hi}) \\
-    f_{t} = \sigma (W_{if}x_{t} + b_{if} + W_{hf}h_{t-1} + b_{hf}) \\
-    o_{t} = \sigma (W_{io}x_{t} + b_{io} + W_{ho}h_{t-1} + b_{ho}) \\
-    g_{t} = \tanh (W_{ig}x_{t} + b_{ig} + W_{hg}h_{t-1} + b_{hg}) \\
-    c_{t} = f_{t} \odot c_{t-1} + i_{t} \odot g_{t} \\
-    h_{t} = o_{t} \odot \tanh (c_{t}) \\
-    y_{t} = h_{t} 
+    i_{t} &= \sigma (W_{ii}x_{t} + b_{ii} + W_{hi}h_{t-1} + b_{hi}) \\
+    f_{t} &= \sigma (W_{if}x_{t} + b_{if} + W_{hf}h_{t-1} + b_{hf}) \\
+    o_{t} &= \sigma (W_{io}x_{t} + b_{io} + W_{ho}h_{t-1} + b_{ho}) \\
+    g_{t} &= \tanh (W_{ig}x_{t} + b_{ig} + W_{hg}h_{t-1} + b_{hg}) \\
+    c_{t} &= f_{t} \odot c_{t-1} + i_{t} \odot g_{t} \\
+    h_{t} &= o_{t} \odot \tanh (c_{t}) \\
+    y_{t} &= h_{t} 
     \end{alinged}
 
 
