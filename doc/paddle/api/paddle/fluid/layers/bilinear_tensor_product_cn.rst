@@ -4,7 +4,7 @@ bilinear_tensor_product
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.bilinear_tensor_product(x, y, size, act=None, name=None, param_attr=None, bias_attr=None)
+.. py:function:: paddle.static.nn.bilinear_tensor_product(x, y, size, act=None, name=None, param_attr=None, bias_attr=None)
 
 
 
@@ -32,19 +32,17 @@ bilinear_tensor_product
     - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) : 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
-返回： 一个形为 [batch_size, size] 的 2-D 张量。
-
-返回类型：Variable
+返回： Variable, 一个形为 [batch_size, size] 的 2-D 张量。
 
 **代码示例：**
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  layer1 = fluid.layers.data("t1", shape=[-1, 5], dtype="float32")
-  layer2 = fluid.layers.data("t2", shape=[-1, 4], dtype="float32")
-  tensor = fluid.layers.bilinear_tensor_product(x=layer1, y=layer2, size=1000)
-
+  import paddle
+  paddle.enable_static()
+  layer1 = paddle.static.data("t1", shape=[-1, 5], dtype="float32")
+  layer2 = paddle.static.data("t2", shape=[-1, 4], dtype="float32")
+  tensor = paddle.static.nn.bilinear_tensor_product(x=layer1, y=layer2, size=1000)
 
 
 
