@@ -384,6 +384,4 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
             dataset.set_use_var([image, label])
             dataset.set_pipe_command('cat')
 
-            loader = fluid.io.DataLoader.from_dataset(dataset, fluid.cpu_places())
-
 
