@@ -46,7 +46,6 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
     import paddle
 
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
@@ -62,7 +61,6 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     # Adam with beta1/beta2 as Tensor and weight_decay as float
     import paddle
 
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
@@ -96,10 +94,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    import numpy as np
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.Adam(learning_rate = 0.01,
                                 parameters = linear.parameters())
@@ -219,7 +214,6 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     import numpy as np
     import paddle
     # example1: _LRScheduler is not used, return value is all the same
-    paddle.disable_static()
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     adam = paddle.optimizer.Adam(0.001, parameters = emb.parameters())
     lr = adam.get_lr()
