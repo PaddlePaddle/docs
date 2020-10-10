@@ -230,7 +230,7 @@ load_inference_model	.. _api_paddle_io_load_inference_model:
 bilinear_tensor_product	.. _api_paddle_fluid_layers_bilinear_tensor_product:
 disable_dygraph	.. _api_paddle_fluid_dygraph_base_disable_dygraph:
 isfinite	.. _api_paddle_fluid_layers_isfinite:
-maxout	.. _api_paddle_fluid_layers_maxout:
+maxout	.. _api_paddle_nn_functional_maxout:
 Uniform	.. _api_paddle_fluid_initializer_Uniform:
 leaky_relu	.. _api_paddle_nn_functional_leaky_relu:
 MPISymetricRoleMaker	.. _api_paddle_fluid_incubate_fleet_base_role_maker_MPISymetricRoleMaker:

@@ -453,7 +453,6 @@ paddle.fluid.layers.noam_decay	paddle.nn.functional.noam_decay,paddle.nn.functio
 paddle.fluid.layers.yolov3_loss	paddle.nn.functional.yolov3_loss,paddle.nn.functional.vision.yolov3_loss
 paddle.fluid.layers.piecewise_decay	paddle.nn.functional.piecewise_decay,paddle.nn.functional.learning_rate.piecewise_decay
 paddle.tensor.linalg.cross	paddle.cross,paddle.tensor.cross
-paddle.fluid.layers.maxout	paddle.nn.functional.maxout,paddle.nn.functional.activation.maxout
 paddle.nn.layer.norm.InstanceNorm2d	paddle.nn.InstanceNorm2d
 paddle.fluid.layers.assign	paddle.nn.functional.assign,paddle.nn.functional.common.assign
 paddle.fluid.layers.case	paddle.static.nn.case

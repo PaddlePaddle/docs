@@ -1,28 +1,28 @@
-.. _cn_api_nn_cn_hard_shrink:
+.. _cn_api_nn_cn_hardsigmoid:
 
-hardshrink
+hardsigmoid
 -------------------------------
-.. py:function:: paddle.nn.functional.hardshrink(x, threshold=0.5, name=None)
 
-hardshrink激活层。计算公式如下：
+.. py:function:: paddle.nn.functional.hardsigmoid(x, name=None)
+
+hardsigmoid激活层。sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参见 https://arxiv.org/abs/1603.00391。
 
 .. math::
 
-    hardshrink(x)=
+    hardsigmoid(x)=
         \left\{
         \begin{aligned}
-        &x, & & if \ x > threshold \\
-        &x, & & if \ x < -threshold \\
-        &0, & & if \ others
+        &0, & & \text{if } x \leq -3 \\
+        &1, & & \text{if } x \geq 3 \\
+        &x/6 + 1/2, & & \text{otherwise}
         \end{aligned}
         \right.
 
 其中，:math:`x` 为输入的 Tensor
 
-参数
+参数:
 ::::::::::
     - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
-    - threshold (float, 可选) - hard_shrink激活计算公式中的threshold值。默认值为0.5。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
@@ -37,5 +37,5 @@ hardshrink激活层。计算公式如下：
     import paddle
     import paddle.nn.functional as F
 
-    x = paddle.to_tensor([-1, 0.3, 2.5])
-    out = F.hardshrink(x) # [-1., 0., 2.5]
+    x = paddle.to_tensor([-4., 5., 1.])
+    out = F.hardsigmoid(x) # [0., 1., 0.666667]
