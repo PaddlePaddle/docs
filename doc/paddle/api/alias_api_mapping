@@ -571,3 +571,12 @@ paddle.metric.metrics.Auc	paddle.metric.Auc
 paddle.fluid.unique_name.guard	paddle.utils.unique_name.guard
 paddle.fluid.unique_name.switch	paddle.utils.unique_name.switch
 paddle.fluid.unique_name.generate	paddle.utils.unique_name.generate
+paddle.nn.layer.rnn.SimpleRNNCell	paddle.nn.SimpleRNNCell,paddle.nn.layer.SimpleRNNCell
+paddle.nn.layer.rnn.SimpleRNN	paddle.nn.SimpleRNN,paddle.nn.layer.SimpleRNN
+paddle.nn.layer.rnn.RNN	paddle.nn.RNN,paddle.nn.layer.RNN
+paddle.nn.layer.rnn.BiRNN	paddle.nn.BiRNN,paddle.nn.layer.BiRNN
+paddle.nn.layer.rnn.RNNCellBase	paddle.nn.RNNCellBase,paddle.nn.layer.RNNCellBase
+paddle.nn.layer.rnn.LSTMCell	paddle.nn.LSTMCell,paddle.nn.layer.LSTMCell
+paddle.nn.layer.rnn.GRUCell	paddle.nn.GRUCell,paddle.nn.layer.GRUCell
+paddle.nn.layer.rnn.LSTM	paddle.nn.LSTM,paddle.nn.layer.LSTM
+paddle.nn.layer.rnn.GRU	paddle.nn.GRU,paddle.nn.layer.GRU
