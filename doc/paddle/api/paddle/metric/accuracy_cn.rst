@@ -29,7 +29,7 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
 
     predictions = paddle.to_tensor([[0.2, 0.1, 0.4, 0.1, 0.1], [0.2, 0.3, 0.1, 0.15, 0.25]], dtype='float32')
     label = paddle.to_tensor([[2], [0]], dtype="int64")
