@@ -488,13 +488,13 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_elementwise_sub`
 
-.. py:method:: elementwise_sum(name=None)
+.. py:method:: add_n(inputs, name=None)
 
 返回：计算后的Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_elementwise_sum`
+请参考 :ref:`cn_api_tensor_add_n`
 
 .. py:method:: equal(y, name=None)
 

@@ -46,7 +46,7 @@ name_scope
           # elementwise_div is created in '/s1/s3'
           elif op.type == 'elementwise_div':
               assert op.desc.attr("op_namescope") == '/s1/s3/'
-          # elementwise_sum is created in '/s4'
+          # elementwise_sub is created in '/s4'
           elif op.type == 'elementwise_sub':
               assert op.desc.attr("op_namescope") == '/s4/'
           # pow is created in /s1_1/
