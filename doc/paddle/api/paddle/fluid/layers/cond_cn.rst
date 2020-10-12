@@ -21,11 +21,10 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
 
        .. code-block:: python
                   
-           import numpy as np
            import paddle
 
-           a = paddle.to_tensor(np.zeros((1, 1)))
-           b = paddle.to_tensor(np.zeros((1, 1)))
+           a = paddle.zeros((1, 1))
+           b = paddle.zeros((1, 1))
            c = a * b
            out = paddle.nn.cond(a < b, lambda: a + c, lambda: b * b)
 
