@@ -14,9 +14,8 @@
 - `动态图转静态图 <./04_dygraph_to_static/index_cn.html>`_ : 介绍飞桨框架动态图转静态图的方法。
 - `预测部署 <./05_inference_deployment/index_cn.html>`_ : 介绍如何使用训练好的模型进行预测。
 - `分布式训练 <./06_distributed_training/index_cn.html>_` : 介绍如何使用分布式进行训练。
-- `性能优化 <./07_performance_improving/index_cn.html>`_ : 介绍飞桨框架使用过程中的调优方法。
-- `自定义OP <./08_new_op/index_cn.html>`_ : 介绍飞桨框架自定义OP的方法。
-- `参与开发 <./09_contribution/index_cn.html>`_ : 介绍如何参与飞桨框架的开发。
+- `自定义OP <./07_new_op/index_cn.html>`_ : 介绍飞桨框架自定义OP的方法。
+- `参与开发 <./08_contribution/index_cn.html>`_ : 介绍如何参与飞桨框架的开发。
 
 
 ..  toctree::
@@ -28,6 +27,5 @@
     04_dygraph_to_static/index_cn.rst
     05_inference_deployment/index_cn.rst
     06_distributed_training/index_cn.rst
-    07_performance_improving/index_cn.rst
-    08_new_op/index_cn.rst
-    09_contribution/index_cn.rst
+    07_new_op/index_cn.rst
+    08_contribution/index_cn.rst
