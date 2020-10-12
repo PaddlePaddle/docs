@@ -17,8 +17,8 @@ LSTMCell
         f_{t} &= \sigma (W_{if}x_{t} + b_{if} + W_{hf}h_{t-1} + b_{hf})\\ 
         o_{t} &= \sigma (W_{io}x_{t} + b_{io} + W_{ho}h_{t-1} + b_{ho})\\ 
         g_{t} &= \tanh (W_{ig}x_{t} + b_{ig} + W_{hg}h_{t-1} + b_{hg})\\ 
-        c_{t} &= f_{t} \odot c_{t-1} + i_{t} \odot g_{t}\\ 
-        h_{t} &= o_{t} \odot \tanh (c_{t})\\ 
+        c_{t} &= f_{t} * c_{t-1} + i_{t} * g_{t}\\ 
+        h_{t} &= o_{t} * \tanh (c_{t})\\ 
         y_{t} &= h_{t} 
 
 

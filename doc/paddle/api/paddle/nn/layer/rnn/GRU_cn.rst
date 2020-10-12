@@ -11,12 +11,16 @@ GRU
 
 状态更新公式如下：
 
-  .. math::
+..  math::
 
         r_{t} & = \sigma(W_{ir}x_{t} + b_{ir} + W_{hr}x_{t} + b_{hr})
+
         z_{t} & = \sigma(W_{iz)x_{t} + b_{iz} + W_{hz}x_{t} + b_{hz})
-        \\widetilde{h}_{t} & = \\tanh(W_{ic)x_{t} + b_{ic} + r_{t} \* (W_{hc}x_{t} + b{hc}))
-        h_{t} & = z_{t} \* h_{t-1} + (1 - z_{t}) \* \\widetilde{h}_{t}
+
+        \widetilde{h}_{t} & = \tanh(W_{ic)x_{t} + b_{ic} + r_{t} * (W_{hc}x_{t} + b_{hc})
+
+        h_{t} & = z_{t} * h_{t-1} + (1 - z_{t}) * \widetilde{h}_{t}
+
         y_{t} & = h_{t}
 
 其中：

@@ -11,10 +11,11 @@ SimpleRNN
 
 状态更新公式如下：
 
-  .. math::
+..  math::
 
-      h_{t} & = \mathrm{tanh}(W_{ih}x_{t} + b_{ih} + W_{hh}h_{t-1} + b_{hh})
-      y_{t} & = h_{t}
+        h_{t} & = \mathrm{tanh}(W_{ih}x_{t} + b_{ih} + W_{hh}h_{t-1} + b_{hh})
+
+        y_{t} & = h_{t}
 
 参数：
     - **input_size** (int) - 输入的大小。
