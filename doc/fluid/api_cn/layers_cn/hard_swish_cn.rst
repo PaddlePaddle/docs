@@ -5,12 +5,6 @@ hard_swish
 
 .. py:function:: paddle.fluid.layers.hard_swish(x, threshold=6.0, scale=6.0, offset=3.0, name=None)
 
-:alias_main: paddle.nn.functional.hard_swish
-:alias: paddle.nn.functional.hard_swish,paddle.nn.functional.activation.hard_swish
-:old_api: paddle.fluid.layers.hard_swish
-
-
-
 该OP实现了hard_swish激活函数。hard_swish激活函数在MobileNetV3架构中被提出，相较于swish函数，具有数值稳定性好，计算速度快等优点，具体原理请参考: https://arxiv.org/pdf/1905.02244.pdf
 
  :math:`out = \frac{x * (min(max(0, x+offset), threshold))}{scale}`
