@@ -88,16 +88,14 @@ Conv2d
 
 .. code-block:: python
 
-   import numpy as np
    import paddle
    import paddle.nn as nn
-   x = np.random.uniform(-1, 1, (2, 4, 8, 8)).astype('float32')
-   
-   paddle.disable_static()
-   x_var = paddle.to_tensor(x)
+
+   x_var = paddle.uniform((2, 4, 8, 8), dtype='float32', min=-1., max=1.)
+
    conv = nn.Conv2d(4, 6, (3, 3))
    y_var = conv(x_var)
    y_np = y_var.numpy()
    print(y_np.shape)
-   
    # (2, 6, 6, 6)
+

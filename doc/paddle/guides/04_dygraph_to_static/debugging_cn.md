@@ -9,7 +9,6 @@
 ```python
 import paddle
 import numpy as np
-paddle.disable_static()
 # 关闭动转静动能
 paddle.jit.ProgramTranslator().enable(False)
 
@@ -85,7 +84,7 @@ func(np.ones([3, 2]))
     ```bash
 
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
@@ -93,12 +92,11 @@ func(np.ones([3, 2]))
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
 
-2. 使用 `set_code_level(level)` 或环境变量 `TRANSLATOR_CODE_LEVEL=level`
+2. 使用 [`set_code_level(level=100, also_to_stdout=False)`](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_cn.html) 或环境变量 `TRANSLATOR_CODE_LEVEL=level`
 
     通过调用 `set_code_level` 或设置环境变量 `TRANSLATOR_CODE_LEVEL`，可以在日志中查看转换后的代码：
 
@@ -116,9 +114,9 @@ func(np.ones([3, 2]))
    运行结果：
 
     ```bash
-    2020-XX-XX 00:00:00,980-INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
+    2020-XX-XX 00:00:00,980 Dynamic-to-Static INFO: After the level 100 ast transformer: 'All Transformers', the transformed code:
     def func(x):
-        x = fluid.layers.assign(x)
+        x = paddle.nn.functional.assign(x)
 
         def true_fn_0(x):
             x = x - 1
@@ -126,11 +124,11 @@ func(np.ones([3, 2]))
 
         def false_fn_0(x):
             return x
-        x = fluid.dygraph.dygraph_to_static.convert_operators.convert_ifelse(x >
-            3, true_fn_0, false_fn_0, (x,), (x,), (x,))
+        x = paddle.jit.dy2static.convert_ifelse(x > 3, true_fn_0, false_fn_0, (x,), (x,), (x,))
         return x
     ```
-    `set_code_level` 函数可以设置查看不同的AST Transformer转化后的代码，详情请见 [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_cn.html)。
+    此外，如果您想将转化后的代码也输出到 ``sys.stdout``, 可以设置参数 ``also_to_stdout`` 为 True，否则将仅输出到 ``sys.stderr``。
+    `set_code_level` 函数可以设置查看不同的 AST Transformer 转化后的代码，详情请见 [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_cn.html)。
 
 ## 使用 `print`
 `print` 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印 Paddle Tensor 时，实际运行时会被转换为 Paddle 算子 [Print](../../api_cn/layers_cn/Print_cn.html)，否则仍然运行 `print`。
@@ -168,7 +166,7 @@ Here call print function.
 
 ## 日志打印
 ProgramTranslator在日志中记录了额外的调试信息，以帮助您了解动转静过程中函数是否被成功转换。
-您可以调用 [`paddle.jit.set_verbosity(level)`]((../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_cn.html)) 或设置环境变量 `TRANSLATOR_VERBOSITY=level` 来设置日志详细等级，并查看不同等级的日志信息。目前，`level` 可以取值0-3：
+您可以调用 [`paddle.jit.set_verbosity(level=0, also_to_stdout=False)`]((../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_cn.html)) 或设置环境变量 `TRANSLATOR_VERBOSITY=level` 来设置日志详细等级，并查看不同等级的日志信息。目前，`level` 可以取值0-3：
 - 0: 无日志
 - 1: 包括了动转静转化流程的信息，如转换前的源码、转换的可调用对象
 - 2: 包括以上信息，还包括更详细函数转化日志
@@ -190,7 +188,7 @@ os.environ["TRANSLATOR_VERBOSITY"] = '3'
 
 运行结果：
 ```bash
-2020-XX-XX 00:00:00,123-Level 1:    Source code:
+2020-XX-XX 00:00:00,123 Dynamic-to-Static INFO: (Level 1) Source code:
 @paddle.jit.to_static
 def func(x):
     x = paddle.to_tensor(x)
@@ -200,5 +198,6 @@ def func(x):
         x = paddle.ones(shape=[1])
     return x
 
-2020-XX-XX 00:00:00,152-Level 1: Convert callable object: convert <built-in function len>.
+2020-XX-XX 00:00:00,152 Dynamic-to-Static INFO: (Level 1) Convert callable object: convert <built-in function len>.
 ```
+此外，如果您想将日志也输出到 ``sys.stdout``, 可以设置参数 ``also_to_stdout`` 为 True，否则将仅输出到 ``sys.stderr``，详情请见 [set_verbosity](../../../paddle/api/paddle/fluid/dygraph/jit/set_verbosity_cn.html)。

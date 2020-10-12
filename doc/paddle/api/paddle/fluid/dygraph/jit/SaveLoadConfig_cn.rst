@@ -5,7 +5,7 @@ SaveLoadConfig
 
 .. py:class:: paddle.SaveLoadConfig()
 
-用于配置接口 :ref:`cn_api_fluid_dygraph_jit_save` 和 :ref:`cn_api_fluid_dygraph_jit_load` 存储载入 :ref:`cn_api_fluid_dygraph_TranslatedLayer` 时的附加选项。
+用于配置接口 ``paddle.jit.save/load`` 和 ``paddle.load`` 存储载入时的附加选项。
 
 **示例代码：**
 
@@ -74,10 +74,10 @@ SaveLoadConfig
 
 .. py:attribute:: output_spec
 
-选择保存模型（ :ref:`cn_api_fluid_dygraph_TranslatedLayer` ）的输出变量，通过指定的这些变量能够使模型仅计算特定的结果。
-默认情况下，原始 :ref:`cn_api_fluid_dygraph_Layer` 的forward方法的所有返回变量都将配置为存储后模型 :ref:`cn_api_fluid_dygraph_TranslatedLayer` 的输出变量。
+选择保存模型（ ``paddle.jit.TranslatedLayer`` ）的输出变量，通过指定的这些变量能够使模型仅计算特定的结果。
+默认情况下，原始 ``paddle.nn.Layer`` 的forward方法的所有返回变量都将配置为存储后模型 ``paddle.jit.TranslatedLayer`` 的输出变量。
 
-``output_spec`` 属性类型需要是 ``list[Variable]``。如果输入的 ``output_spec`` 列表不是原始 :ref:`cn_api_fluid_dygraph_Layer` 的forward方法的所有返回变量，
+``output_spec`` 属性类型需要是 ``list[Variable]``。如果输入的 ``output_spec`` 列表不是原始 ``paddle.nn.Layer`` 的forward方法的所有返回变量，
 将会依据输入的 ``output_spec`` 列表对存储的模型进行裁剪。
 
 .. note::
@@ -132,7 +132,7 @@ SaveLoadConfig
 
 .. py:attribute:: model_filename
 
-存储转写 :ref:`cn_api_fluid_dygraph_Layer` 模型结构 ``Program`` 的文件名称。默认文件名为 ``__model__``。
+存储转写 ``paddle.nn.Layer`` 模型结构 ``Program`` 的文件名称。默认文件名为 ``__model__``。
 
 **示例代码**
     .. code-block:: python
@@ -183,7 +183,7 @@ SaveLoadConfig
 
 .. py:attribute:: params_filename
 
-存储转写 :ref:`cn_api_fluid_dygraph_Layer` 所有持久参数（包括 ``Parameters`` 和持久的 ``Buffers``）的文件名称。默认文件名称为 ``__variable__``。
+存储转写 ``paddle.nn.Layer`` 所有持久参数（包括 ``Parameters`` 和持久的 ``Buffers``）的文件名称。默认文件名称为 ``__variable__``。
 
 **示例代码**
     .. code-block:: python
@@ -236,9 +236,12 @@ SaveLoadConfig
 .. py:attribute:: separate_params
 
 配置是否将 :ref:`cn_api_fluid_dygraph_Layer` 的参数存储为分散的文件。
-（这是为了兼容接口 :ref:`cn_api_fluid_io_save_inference_model` 的行为）
+（这是为了兼容接口 ``paddle.static.save_inference_model`` 的行为）
 
 如果设置为 ``True`` ，每个参数将会被存储为一个文件，文件名为参数名，同时``SaveLoadConfig.params_filename`` 指定的文件名将不会生效。默认为 ``False``。
+
+.. note::
+    仅用于 ``paddle.load`` 方法.
 
 **示例代码**
     .. code-block:: python
@@ -273,7 +276,7 @@ SaveLoadConfig
             adam.clear_grad()
 
         model_path = "simplenet.example.model.separate_params"
-        config = paddle.jit.SaveLoadConfig()
+        config = paddle.SaveLoadConfig()
         config.separate_params = True
 
         # saving with configs.separate_params
@@ -307,11 +310,11 @@ SaveLoadConfig
         linear = paddle.nn.Linear(5, 1)
 
         state_dict = linear.state_dict()
-        paddle.save(state_dict, "paddle_dy")
+        paddle.save(state_dict, "paddle_dy.pdparams")
 
-        configs = paddle.SaveLoadConfig()
-        configs.keep_name_table = True
-        para_state_dict, _ = paddle.load("paddle_dy", configs)
+        config = paddle.SaveLoadConfig()
+        config.keep_name_table = True
+        para_state_dict = paddle.load("paddle_dy.pdparams", config)
 
         print(para_state_dict)
         # the name_table is 'StructuredToParameterName@@'
