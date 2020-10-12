@@ -211,7 +211,6 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
     # example1: _LRScheduler is not used, return value is all the same
     emb = paddle.nn.Embedding(10, 10, sparse=False)
@@ -220,9 +219,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     print(lr) # 0.001
 
     # example2: PiecewiseLR is used, return the step learning rate
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.randn([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.reduce_mean(out)
 
@@ -232,8 +230,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     adam = paddle.optimizer.Adam(scheduler,
                            parameters=linear.parameters())
 
-    # first step: learning rate is 0.2
-    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+    # learning rate is 0.2
+    print(adam.get_lr())
 
     # learning rate for different steps
     ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
@@ -241,4 +239,4 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         adam.step()
         lr = adam.get_lr()
         scheduler.step()
-        np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+        print(lr, ret[i])

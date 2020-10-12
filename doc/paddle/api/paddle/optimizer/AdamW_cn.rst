@@ -193,7 +193,6 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 .. code-block:: python
 
     import paddle
-    import numpy as np
     # example1: _LRScheduler is not used, return value is all the same
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     adam = paddle.optimizer.AdamW(learning_rate=0.001, parameters = emb.parameters(),weight_decay=0.01)
@@ -213,8 +212,8 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
                            parameters=linear.parameters(),
                            weight_decay=0.01)
 
-    # first step: learning rate is 0.2
-    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+    # learning rate is 0.2
+    print(adam.get_lr())
 
     # learning rate for different steps
     ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
@@ -222,4 +221,4 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
         adam.step()
         lr = adam.get_lr()
         scheduler.step()
-        np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+        print(lr, ret[i])
