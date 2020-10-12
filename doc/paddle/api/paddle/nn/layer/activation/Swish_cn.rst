@@ -1,14 +1,14 @@
-.. _cn_api_nn_ReLU6:
+.. _cn_api_nn_Swish:
 
-ReLU6
+Swish
 -------------------------------
-.. py:class:: paddle.nn.ReLU6(name=None)
+.. py:class:: paddle.nn.Swish(name=None)
 
-ReLU6激活层
+Swish激活层
 
 .. math::
 
-    ReLU6(x) = min(max(0,x), 6)
+    Swish(x) = \frac{x}{1 + e^{-x}}
 
 其中，:math:`x` 为输入的 Tensor
 
@@ -29,6 +29,6 @@ ReLU6激活层
     import paddle
     import numpy as np
 
-    x = paddle.to_tensor(np.array([-1, 0.3, 6.5]))
-    m = paddle.nn.ReLU6()
-    out = m(x) # [0, 0.3, 6]
+    x = paddle.to_tensor(np.array([-2., 0., 1.]))
+    m = paddle.nn.Swish()
+    out = m(x) # [-0.238406, 0., 0.731059]
