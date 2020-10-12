@@ -116,7 +116,7 @@ paddle.fluid.layers.shape	paddle.shape,paddle.tensor.shape,paddle.tensor.attribu
 paddle.fluid.layers.gather_tree	paddle.nn.gather_tree,paddle.nn.decode.gather_tree
 paddle.fluid.layers.natural_exp_decay	paddle.nn.functional.natural_exp_decay,paddle.nn.functional.learning_rate.natural_exp_decay
 paddle.tensor.manipulation.flatten	paddle.flatten,paddle.tensor.flatten
-paddle.fluid.initializer.Bilinear	paddle.nn.initializer.Bilinear
+paddle.fluid.initializer.BilinearInitializer	paddle.nn.initializer.Bilinear
 paddle.fluid.backward.gradients	paddle.static.gradients
 paddle.nn.layer.activation.Tanhshrink	paddle.nn.Tanhshrink
 paddle.fluid.core.CPUPlace	paddle.CPUPlace,paddle.framework.CPUPlace
