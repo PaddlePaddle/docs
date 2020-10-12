@@ -2,41 +2,41 @@
 安装与编译 Windows 预测库
 ===========================
 
-下载安装包与对应的测试环境
+直接下载安装
 -------------
 
-| 版本说明      |     预测库(1.8.3版本)     |       编译器        |    构建工具      |  cuDNN  |  CUDA  |
-|:---------|:-------------------|:-------------------|:----------------|:--------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/open/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/post97/fluid_inference_install_dir.zip) |  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/open/post97/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/post107/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
+| 版本说明      |     预测库(1.8.4版本)  |预测库(2.0.0-beta0版本)   |     编译器     |    构建工具      |  cuDNN  |  CUDA  |
+|:---------|:-------------------|:-------------------|:----------------|:--------|:-------|:-------|
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-beta0/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) || MSVC 2015 update 3|  CMake v3.16.0  |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) ||  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
 
 ### 硬件环境
 
 测试环境硬件配置：
 
-| CPU      |      I7-8700K      |
+| 操作系统      |    win10 家庭版本      |
 |:---------|:-------------------|
+| CPU      |      I7-8700K      |
 | 内存 | 16G               |
 | 硬盘 | 1T hdd + 256G ssd |
 | 显卡 | GTX1080 8G        |
 
-测试环境操作系统使用 win10 家庭版本
 
-从源码编译预测库
+从源码编译
 --------------
 用户也可以从 PaddlePaddle 核心代码编译C++预测库，只需在编译时配制下面这些编译选项：
 
 |选项       |说明               |   值     |
 |:-------------|:-------|:------------|
 |CMAKE_BUILD_TYPE |  配置生成器上的构建类型，windows预测库目前只支持Release          | Release    |
-|ON_INFER |    是否生成预测库，编译预测库时必须设置为ON                | ON         |
+|ON_INFER |   是否生成预测库，编译预测库时必须设置为ON                | ON         |
 |WITH_GPU |   是否支持GPU                  | ON/OFF     |
-|WITH_MKL |   是否使用Intel MKL(数学核心库)                 | ON/OFF     |
-|WITH_PYTHON | 是否内嵌PYTHON解释器                | OFF(推荐)        |
-|MSVC_STATIC_CRT|是否使用/MT 模式进行编译，Windows默认使用 /MT 模式进行编译 |ON/OFF|
+|WITH_MKL |   是否使用Intel MKL(数学核心库)或者OPENBLAS     | ON/OFF     |
+|WITH_PYTHON | 是否编译Python包                | OFF(推荐)        |
+|MSVC_STATIC_CRT|是否使用/MT 模式进行编译，默认使用 /MT 模式进行编译 |ON/OFF|
 |CUDA_TOOKIT_ROOT_DIR|编译GPU预测库时，需设置CUDA的根目录|YOUR_CUDA_PATH|
 
 请按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
@@ -45,46 +45,45 @@
 
 Windows下安装与编译预测库步骤：(在Windows命令提示符下执行以下指令)
 
-1. 将PaddlePaddle的源码clone在当下目录的Paddle文件夹中，并进入Paddle目录：
+1. 将PaddlePaddle的源码clone在当下目录的Paddle文件夹中，并进入Paddle目录，创建build目录：
    ```bash
    git clone https://github.com/PaddlePaddle/Paddle.git
    cd Paddle
-   ```
-
-2. 执行cmake：
-   - 编译CPU预测
-   ```bash
    # 创建并进入build目录
    mkdir build
    cd build
+   ```
 
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
+2. 执行cmake：
+   - 编译CPU预测库
+   ```bash
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
 
    # Windows默认使用 /MT 模式进行编译，如果想使用 /MD 模式，请使用以下命令。如不清楚两者的区别，请使用上面的命令
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
    - 编译GPU预测库:
    ```bash
-   # -DCUDA_TOOKIT_ROOT_DIR 为cuda根目录，例如-DCUDA_TOOKIT_ROOT_DIR="D:\\cuda"
+   # -DCUDA_TOOKIT_ROOT_DIR为你所安装的cuda根目录，例如-DCUDA_TOOKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
    cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
 3. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，编译inference_lib_dist项目。
    操作方法：在Visual Studio中选择相应模块，右键选择"生成"（或者"build"）
 
-编译成功后，使用C++预测库所需的依赖（包括：（1）编译出的PaddlePaddle预测库和头文件；（2）第三方链接库和头文件；（3）版本信息与编译选项信息）
-均会存放于`fluid_inference_install_dir`目录中。
+编译成功后，使用C++预测库所需的依赖（包括：1. 编译出的PaddlePaddle预测库和头文件；2. 第三方链接库和头文件；3. 版本信息与编译选项信息）均会存放于`fluid_inference_install_dir`目录中。
 
-version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使用OpenBlas或MKL数学库、CUDA/CUDNN版本号，如：
+version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使用OpenBlas或MKL数学库、CUDA/CUDNN版本号、C++编译器版本，如：
 
-
-     GIT COMMIT ID: cc9028b90ef50a825a722c55e5fda4b7cd26b0d6
-     WITH_MKL: ON
-     WITH_MKLDNN: ON
-     WITH_GPU: ON
-     CUDA version: 8.0
-     CUDNN version: v7
-
+```text
+GIT COMMIT ID: 264e76cae6861ad9b1d4bcd8c3212f7a78c01e4d
+WITH_MKL: ON
+WITH_MKLDNN: ON
+WITH_GPU: ON
+CUDA version: 10.0
+CUDNN version: v7.4
+CXX compiler version: 19.0.24215.1
+```
 
 编译预测demo
 -------------
@@ -93,13 +92,12 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
 
 测试环境硬件配置：
 
-| CPU      |      I7-8700K      |
+| 操作系统      |    win10 家庭版本      |
 |:---------|:-------------------|
+| CPU      |      I7-8700K      |
 | 内存 | 16G               |
 | 硬盘 | 1T hdd + 256G ssd |
 | 显卡 | GTX1080 8G        |
-
-测试环境操作系统使用 win10 家庭版本。
 
 ### 软件要求
 
