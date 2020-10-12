@@ -145,6 +145,8 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 
             def __len__(self):
                 return self.num_samples
+                
+        paddle.enable_static()
 
         image = static.data(name='image', shape=[None, 784], dtype='float32')
         label = static.data(name='label', shape=[None, 1], dtype='int64')
