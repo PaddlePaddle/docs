@@ -312,7 +312,7 @@ paddle.fluid.layers.reduce_all	paddle.reduce_all,paddle.tensor.reduce_all,paddle
 paddle.fluid.layers.rpn_target_assign	paddle.nn.functional.rpn_target_assign,paddle.nn.functional.extension.rpn_target_assign
 paddle.fluid.layers.reduce_max	paddle.reduce_max,paddle.tensor.reduce_max,paddle.tensor.math.reduce_max
 paddle.tensor.random.randperm	paddle.randperm,paddle.tensor.randperm
-paddle.fluid.layers.deformable_conv	paddle.static.nn.deformable_conv
+paddle.static.nn.common.deform_conv2d	paddle.static.nn.deform_conv2d
 paddle.tensor.manipulation.unique	paddle.unique,paddle.tensor.unique
 paddle.tensor.linalg.dot	paddle.dot,paddle.tensor.dot
 paddle.nn.layer.common.ReplicationPad3d	paddle.nn.ReplicationPad3d,paddle.nn.layer.ReplicationPad3d
