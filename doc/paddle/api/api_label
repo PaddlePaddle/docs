@@ -219,8 +219,7 @@ load_persistables_for_increment	.. _api_paddle_fluid_contrib_load_persistables_f
 load_dygraph	.. _api_paddle_fluid_dygraph_checkpoint_load_dygraph:
 LayerHelperBase	.. _api_paddle_fluid_layer_helper_base_LayerHelperBase:
 CompiledProgram	.. _api_paddle_fluid_compiler_CompiledProgram:
-thresholded_relu	.. _api_paddle_nn_functional_thresholded_relu:
-ThresholdedReLU	.. _api_paddle_nn_layer_activation_ThresholdedReLU:
+thresholded_relu	.. _api_paddle_fluid_layers_thresholded_relu:
 PipelineOptimizer	.. _api_paddle_optimizer_PipelineOptimizer:
 clip	.. _api_paddle_tensor_math_clip:
 squeeze	.. _api_paddle_fluid_layers_squeeze:
@@ -719,8 +718,7 @@ test	.. _api_paddle_dataset_wmt16_test:
 create_lod_tensor	.. _api_paddle_fluid_create_lod_tensor:
 generate_activation_fn	.. _api_paddle_fluid_layers_layer_function_generator_generate_activation_fn:
 space_to_depth	.. _api_paddle_fluid_layers_space_to_depth:
-swish	.. _api_paddle_nn_functional_swish:
-Swish	.. _api_paddle_nn_layer_activation_Swish:
+swish	.. _api_paddle_fluid_layers_swish:
 QueueDataset	.. _api_paddle_fluid_dataset_QueueDataset:
 train	.. _api_paddle_dataset_movielens_train:
 reciprocal	.. _api_paddle_fluid_layers_reciprocal:
