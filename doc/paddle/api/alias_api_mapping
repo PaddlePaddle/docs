@@ -266,7 +266,6 @@ paddle.nn.layer.common.Pad2D	paddle.nn.Pad2D,paddle.nn.layer.Pad2D
 paddle.fluid.layers.conv2d	paddle.static.nn.conv2d
 paddle.fluid.layers.create_parameter	paddle.static.nn.create_parameter
 paddle.tensor.creation.ones_like	paddle.ones_like,paddle.tensor.ones_like
-paddle.fluid.layers.sums	paddle.sums,paddle.tensor.sums,paddle.tensor.math.sums
 paddle.fluid.layers.rnn.birnn	paddle.nn.functional.birnn,paddle.nn.functional.rnn.birnn
 paddle.fluid.dygraph.base.no_grad	paddle.framework.no_grad
 paddle.nn.functional.common.dropout3d	paddle.nn.functional.dropout3d
