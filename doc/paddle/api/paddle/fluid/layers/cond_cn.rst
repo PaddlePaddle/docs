@@ -4,7 +4,7 @@ cond
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.cond(pred, true_fn=None, false_fn=None, name=None)
+.. py:function:: paddle.nn.cond(pred, true_fn=None, false_fn=None, name=None)
 
 
 
