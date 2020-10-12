@@ -322,7 +322,6 @@ paddle.fluid.layers.erf	paddle.erf,paddle.tensor.erf,paddle.tensor.math.erf,padd
 paddle.fluid.layers.image_resize_short	paddle.nn.functional.image_resize_short,paddle.nn.functional.vision.image_resize_short
 paddle.tensor.manipulation.gather_nd	paddle.gather_nd,paddle.tensor.gather_nd
 paddle.nn.functional.activation.softplus	paddle.nn.functional.softplus
-paddle.nn.layer.activation.HSigmoid	paddle.nn.HSigmoid,paddle.nn.layer.HSigmoid
 paddle.fluid.layers.has_inf	paddle.has_inf,paddle.tensor.has_inf,paddle.tensor.search.has_inf
 paddle.fluid.layers.logical_not	paddle.logical_not,paddle.tensor.logical_not,paddle.tensor.logic.logical_not
 paddle.tensor.stat.var	paddle.var,paddle.tensor.var
@@ -406,7 +405,6 @@ paddle.fluid.dygraph.learning_rate_scheduler.PolynomialDecay	paddle.PolynomialDe
 paddle.nn.functional.loss.ctc_loss	paddle.nn.functional.ctc_loss
 paddle.nn.layer.common.Embedding	paddle.nn.Embedding,paddle.nn.layer.Embedding
 paddle.tensor.math.isnan	paddle.isnan,paddle.tensor.isnan
-paddle.nn.functional.activation.hsigmoid	paddle.nn.functional.hsigmoid
 paddle.nn.functional.loss.kl_div	paddle.nn.functional.kl_div
 paddle.tensor.manipulation.expand	paddle.expand,paddle.tensor.expand
 paddle.fluid.dygraph.jit.SaveLoadConfig	paddle.SaveLoadConfig,paddle.framework.SaveLoadConfig
@@ -473,7 +471,6 @@ paddle.fluid.layers.sqrt	paddle.sqrt,paddle.tensor.sqrt,paddle.tensor.math.sqrt
 paddle.fluid.layers.elementwise_mul	paddle.tensor.elementwise_mul,paddle.tensor.math.elementwise_mul,paddle.nn.functional.common.elementwise_mul
 paddle.tensor.manipulation.stack	paddle.stack,paddle.tensor.stack
 paddle.tensor.manipulation.unsqueeze	paddle.unsqueeze,paddle.tensor.unsqueeze
-paddle.fluid.layers.hsigmoid	paddle.static.nn.hsigmoid
 paddle.tensor.math.add	paddle.add,paddle.tensor.add
 paddle.nn.layer.common.Bilinear	paddle.nn.Bilinear,paddle.nn.layer.Bilinear
 paddle.nn.functional.extension.row_conv	paddle.nn.functional.row_conv
