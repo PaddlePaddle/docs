@@ -1,9 +1,8 @@
+.. _cn_guides_distributed_training:
+
 ##########
 分布式训练
 ##########
 
-..  toctree::
-    :maxdepth: 1
 
-    cluster_quick_start.rst
-    fleet_api_howto_cn.rst
+分布式相关的文档
