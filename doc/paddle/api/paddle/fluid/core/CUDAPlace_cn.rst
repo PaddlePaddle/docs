@@ -25,7 +25,7 @@ CUDAPlace
 
        import paddle
 
-       place = Place.CUDAPlace(0)
+       place = paddle.CUDAPlace(0)
        paddle.disable_static(place)
 
 
