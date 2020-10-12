@@ -31,7 +31,5 @@ relu6激活层
     import paddle.nn.functional as F
     import numpy as np
 
-    paddle.disable_static()
-
     x = paddle.to_tensor(np.array([-1, 0.3, 6.5]))
     out = F.relu6(x) # [0, 0.3, 6]
