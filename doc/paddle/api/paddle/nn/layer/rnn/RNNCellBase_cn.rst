@@ -9,9 +9,11 @@ RNNCellBase
 
 **循环神经网络单元基类**
 
-该OP（RNNCellBase）是一个抽象表示根据输入和隐藏状态来计算输出和新状态的基本类，最适合也最常用于循环神经网络。根据输入的形状，数据类型和值生成初始状态。
+该OP（RNNCellBase）是一个抽象表示根据输入和隐藏状态来计算输出和新状态的基本类，最适合也最常用于循环神经网络。
 
-.. py: :: get_initial_states(batch_ref,shape=None,dtype=None,init_value=0.,batch_dim_idx=0):
+.. py:function:: get_initial_states(batch_ref,shape=None,dtype=None,init_value=0.,batch_dim_idx=0):
+
+根据输入的形状，数据类型和值生成初始状态。
 
 参数：
     - **batch_ref** (Tensor) - 一个Tensor，其形状决定了生成初始状态使用的batch_size。当batch_ref形状为d时，d[batch_dim_idx]为batch_size。
