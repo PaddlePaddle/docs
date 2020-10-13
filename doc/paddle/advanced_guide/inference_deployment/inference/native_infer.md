@@ -121,6 +121,14 @@ config->DisableGpu();          // 禁用GPU
 config->EnableMKLDNN();            // 开启MKLDNN，可加速CPU预测
 config->SetCpuMathLibraryNumThreads(10);        // 设置CPU Math库线程数，CPU核心数支持情况下可加速预测
 ```
+
+**note**
+
+如果在输入shape为变长时开启MKLDNN加速预测，需要通过`SetMkldnnCacheCapacity`接口设置MKLDNN缓存的不同输入shape的数目，否则可能会出现内存泄漏。使用方法如下：
+```c++
+config->SetMkldnnCacheCapacity(100); // 缓存100个不同的输入shape
+```
+
 #### 配置GPU预测
 ``` c++
 config->EnableUseGpu(100, 0); // 初始化100M显存，使用GPU ID为0
