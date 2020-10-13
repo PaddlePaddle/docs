@@ -725,7 +725,6 @@ Swish	.. _api_paddle_nn_layer_activation_Swish:
 QueueDataset	.. _api_paddle_fluid_dataset_QueueDataset:
 train	.. _api_paddle_dataset_movielens_train:
 reciprocal	.. _api_paddle_fluid_layers_reciprocal:
-SaveLoadConfig	.. _api_paddle_jit_SaveLoadConfig:
 MetricBase	.. _api_paddle_fluid_metrics_MetricBase:
 adaptive_avg_pool2d	.. _api_paddle_nn_functional_pooling_adaptive_avg_pool2d:
 polynomial_decay	.. _api_paddle_fluid_layers_polynomial_decay:
@@ -980,7 +979,6 @@ trace	.. _api_paddle_tensor_math_trace:
 set_gradient_clip	.. _api_paddle_fluid_clip_set_gradient_clip:
 FSTimeOut	.. _api_paddle_distributed_fleet_utils_FSTimeOut:
 crop_tensor	.. _api_paddle_fluid_layers_crop_tensor:
-load	.. _api_paddle_fluid_layers_load:
 program_guard	.. _api_paddle_fluid_framework_program_guard:
 retinanet_detection_output	.. _api_paddle_fluid_layers_retinanet_detection_output:
 Sampler	.. _api_paddle_io_Sampler:
