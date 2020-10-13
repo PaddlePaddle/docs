@@ -3,7 +3,7 @@
 SimpleRNN
 -------------------------------
 
-.. py:class:: paddle.nn.SimpleRNN(input_size,hidden_size,num_layers=1,activation="tanh",direction="forward",dropout=0.,time_major=False,weight_ih_attr=None,weight_hh_attr=None,bias_ih_attr=None,bias_hh_attr=None,name=None)
+.. py:class:: paddle.nn.SimpleRNN(input_size, hidden_size, num_layers=1, activation="tanh", direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 
 
 
@@ -22,8 +22,8 @@ SimpleRNN
 参数：
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
-    - **activation** (str, 可选) - 网络中每个单元的激活函数。可以是tanh或relu。默认为tanh。
     - **num_layers** (int，可选) - 网络层数。默认为1。
+    - **activation** (str, 可选) - 网络中每个单元的激活函数。可以是tanh或relu。默认为tanh。
     - **direction** (str，可选) - 网络迭代方向，可设置为forward，backward或bidirectional。默认为forward。
     - **dropout** (float，可选) - dropout概率，指的是出第一层外每层输入时的dropout概率。默认为0.
     - **time_major** (bool，可选) - 指定input的第一个维度是否是time steps。默认为False。
