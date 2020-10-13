@@ -12,8 +12,6 @@ ProgramTranslator
 
 返回：ProgramTranslator 单例对象。
 
-返回类型：ProgramTranslator。
-
 **示例代码**
 
 .. code-block:: python
@@ -66,8 +64,6 @@ ProgramTranslator
 
 返回：包含数值结果的Tensor或者Tensor的元组，是输入动态图函数的返回值。
 
-返回类型：Tensor或者Tensor的元组。
-
 **示例代码**
 
 .. code-block:: python
@@ -97,8 +93,6 @@ ProgramTranslator
     - **dygraph_func** (callable) - 动态图函数。
 
 返回：将动态图接口转为静态图组网接口的可调用函数。
-
-返回类型：可调用函数。
 
 **示例代码**
 
@@ -133,8 +127,6 @@ ProgramTranslator
     inputs: 输入Tensor的列表，这些Tensor可以在执行去feed。
     outputs: 输出Tensor的列表，这些Tensor可以在运行时被fetch。
 
-返回类型：类型为(Program, Program, list(Tensor), list(Tensor)) 的元组。
-
 **示例代码**
 
 .. code-block:: python
@@ -168,8 +160,6 @@ ProgramTranslator
 
 返回：转化后的静态图代码字符串。
 
-返回类型：str。
-
 **示例代码**
 
 .. code-block:: python
@@ -196,8 +186,6 @@ ProgramTranslator
 返回ProgramCache单例。这个方法是PaddlePaddle开发者用来管理ProgramTranslator中的Program缓存，普通用户不需要使用这个方法。
 
 返回：ProgramTranslator中的ProgramCache。
-
-返回类型：ProgramCache。
 
 **示例代码**
 
