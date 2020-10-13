@@ -34,7 +34,5 @@ softplus激活层
     import paddle.nn.functional as F
     import numpy as np
 
-    paddle.disable_static()
-
     x = paddle.to_tensor(np.array([-0.4, -0.2, 0.1, 0.3]))
     out = F.softplus(x) # [0.513015, 0.598139, 0.744397, 0.854355]
