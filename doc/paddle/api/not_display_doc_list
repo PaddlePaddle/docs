@@ -2,4 +2,3 @@ paddle.incubate
 paddle.hapi.progressbar.ProgressBar
 paddle.fluid.contrib
 paddle.optimizer._LRScheduler
-paddle.fluid.dygraph.dygraph_to_static
