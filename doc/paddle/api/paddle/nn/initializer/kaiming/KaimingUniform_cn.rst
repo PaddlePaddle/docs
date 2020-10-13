@@ -33,7 +33,6 @@ KaimingUniform
 
     import paddle
     import paddle.nn as nn
-    paddle.disable_static()
     linear = nn.Linear(2, 4, weight_attr=nn.initializer.KaimingUniform())
     data = paddle.rand([30, 10, 2], dtype='float32')
     res = linear(data)
