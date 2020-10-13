@@ -247,7 +247,7 @@ Tensor
 
         import paddle
         import numpy as np
-        paddle.disable_static()
+
         x = np.ones([2, 2], np.float32)
         inputs = []
         for _ in range(10):
@@ -256,8 +256,8 @@ Tensor
             # there is no one need gradient on it.
             tmp.stop_gradient=False
             inputs.append(tmp)
-        ret = paddle.sums(inputs)
-        loss = paddle.reduce_sum(ret)
+        ret = paddle.add_n(inputs)
+        loss = paddle.sum(ret)
         loss.backward()
 
 .. py:method:: bmm(y, name=None)
