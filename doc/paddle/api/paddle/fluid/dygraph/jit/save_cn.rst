@@ -1,32 +1,34 @@
-.. _cn_api_fluid_dygraph_jit_save:
+.. _cn_api_paddle_jit_save:
 
 save
 -----------------
 
-.. py:function:: paddle.jit.save(layer, model_path, input_spec=None, config=None)
+.. py:function:: paddle.jit.save(layer, path, input_spec=None, **configs)
 
-将输入的经过 ``@declarative`` 装饰的 :ref:`cn_api_fluid_dygraph_Layer` 存储为 :ref:`cn_api_fluid_dygraph_TranslatedLayer` 格式的模型，
-载入后可用于预测推理或者fine-tune训练。
+将输入的 ``Layer`` 存储为 ``paddle.jit.TranslatedLayer`` 格式的模型，载入后可用于预测推理或者fine-tune训练。
 
-该接口将会将输入 :ref:`cn_api_fluid_dygraph_Layer` 转写后的模型结构 ``Program`` 和所有必要的持久参数变量存储至输入路径 ``model_path`` 中。
+该接口会将输入 ``Layer`` 转写后的模型结构 ``Program`` 和所有必要的持久参数变量存储至输入路径 ``path`` 。
 
-默认存储的 ``Program`` 文件名为 ``__model__``， 默认存储持久参数变量的文件名为 ``__variables__``，
-同时会将变量的一些描述信息存储至文件 ``__variables.info__``，这些额外的信息将在fine-tune训练中使用。
+``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel`` ，存储的持久参数变量文件的后缀为 ``.pdiparams`` ，同时这里也会将一些变量描述信息存储至文件，文件后缀为 ``.pdiparams.info`` ，这些额外的信息将在fine-tune训练中使用。
 
-存储的模型能够被以下API载入使用：
-  - :ref:`cn_api_fluid_dygraph_jit_load`
-  - :ref:`cn_api_fluid_io_load_inference_model` （需要配置参数 ``params_filename='__variables__'`` ）
-  - 其他预测库API
+存储的模型能够被以下API完整地载入使用：
+    - ``paddle.jit.load``
+    - ``paddle.static.load_inference_model`` 
+    - 其他预测库API
 
-参数：
-    - **layer** (Layer) - 需要存储的 :ref:`cn_api_fluid_dygraph_Layer` 对象。输入的 ``Layer`` 需要经过 ``@declarative`` 装饰。
-    - **model_path** (str) - 存储模型的目录。
-    - **input_spec** (list[Variable], 可选) - 描述存储模型的输入。此参数是传入当前存储的 ``TranslatedLayer`` forward方法的一个示例输入。如果为 ``None`` ，所有原 ``Layer`` forward方法的输入变量将都会被配置为存储模型的输入变量。默认为 ``None``。
-    - **config** (SaveLoadConfig, 可选) - 用于指定额外配置选项的 :ref:`cn_api_fluid_dygraph_jit_SaveLoadConfig` 对象。默认为 ``None``。
+参数
+:::::::::
+    - layer (Layer) - 需要存储的 ``Layer`` 对象。
+    - path (str) - 存储模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
+    - input_spec (list[InputSpec|Tensor], 可选) - 描述存储模型forward方法的输入，可以通过InputSpec或者示例Tensor进行描述。如果为 ``None`` ，所有原 ``Layer`` forward方法的输入变量将都会被配置为存储模型的输入变量。默认为 ``None``。
+    - **configs (dict, 可选) - 其他用于兼容的存储配置选项。这些选项将来可能被移除，如果不是必须使用，不推荐使用这些配置选项。默认为 ``None``。目前支持以下配置选项：(1) output_spec (list[Tensor]) - 选择存储模型的输出目标。默认情况下，所有原 ``Layer`` forward方法的返回值均会作为存储模型的输出。如果传入的 ``output_spec`` 列表不是所有的输出变量，存储的模型将会根据 ``output_spec`` 所包含的结果被裁剪。
 
-返回：无
+返回
+:::::::::
+无
 
-**示例代码**
+代码示例
+:::::::::
 
 .. code-block:: python
 
@@ -75,10 +77,6 @@ save
                 print("Epoch {} batch {}: loss = {}".format(
                     epoch_id, batch_id, np.mean(loss.numpy())))
 
-    # enable dygraph mode
-    place = paddle.CPUPlace()
-    paddle.disable_static(place) 
-
     # 1. train & save model.
 
     # create network
@@ -89,7 +87,6 @@ save
     # create data loader
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
     loader = paddle.io.DataLoader(dataset,
-        places=place,
         batch_size=BATCH_SIZE,
         shuffle=True,
         drop_last=True,
@@ -99,6 +96,5 @@ save
     train(layer, loader, loss_fn, adam)
 
     # save
-    model_path = "linear.example.model"
-    paddle.jit.save(layer, model_path)
-
+    path = "example_model/linear"
+    paddle.jit.save(layer, path)

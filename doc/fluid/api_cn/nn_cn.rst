@@ -43,7 +43,6 @@ paddle.nn
     nn_cn/box_coder_cn.rst
     nn_cn/box_decoder_and_assign_cn.rst
     nn_cn/bpr_loss_cn.rst
-    nn_cn/brelu_cn.rst
     nn_cn/case_cn.rst
     nn_cn/center_loss_cn.rst
     nn_cn/clip_by_norm_cn.rst
@@ -91,7 +90,6 @@ paddle.nn
     nn_cn/hard_sigmoid_cn.rst
     nn_cn/hard_swish_cn.rst
     nn_cn/hash_cn.rst
-    nn_cn/hsigmoid_cn.rst
     nn_cn/huber_loss_cn.rst
     nn_cn/image_resize_cn.rst
     nn_cn/image_resize_short_cn.rst
@@ -114,7 +112,6 @@ paddle.nn
     nn_cn/log_softmax_cn.rst
     nn_cn/lrn_cn.rst
     nn_cn/margin_ranking_loss_cn.rst
-    nn_cn/maxout_cn.rst
     nn_cn/mse_loss_cn.rst
     nn_cn/multiclass_nms_cn.rst
     nn_cn/natural_exp_decay_cn.rst

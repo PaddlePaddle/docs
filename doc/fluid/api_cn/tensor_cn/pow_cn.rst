@@ -39,4 +39,4 @@ pow
     res = paddle.pow(x, y)
     print(res.numpy()) # [1 4 9]
 
-    
+

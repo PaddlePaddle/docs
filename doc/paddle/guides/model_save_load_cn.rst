@@ -7,10 +7,13 @@
 一、存储载入体系简介
 ##################
 
+1.1 接口体系
+------------
+
 飞桨框架2.x对模型与参数的存储与载入相关接口进行了梳理，根据接口使用的场景与模式，分为三套体系，分别是：
 
-1.1 动态图存储载入体系
---------------------
+1.1.1 动态图存储载入体系
+```````````````````````
 
 为提升框架使用体验，飞桨框架2.0将主推动态图模式，动态图模式下的存储载入接口包括：
 
@@ -21,11 +24,10 @@
 
 本文主要介绍飞桨框架2.0动态图存储载入体系，各接口关系如下图所示：
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/save_2.0.png?raw=true
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/load_2.0.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/main_save_load_2.0.png?raw=true
 
-1.2 静态图存储载入体系（飞桨框架1.x）
---------------------------------
+1.1.2 静态图存储载入体系
+```````````````````````
 
 静态图存储载入相关接口为飞桨框架1.x版本的主要使用接口，出于兼容性的目的，这些接口仍然可以在飞桨框架2.x使用，但不再推荐。相关接口包括：
 
@@ -38,8 +40,8 @@
 
 由于飞桨框架2.0不再主推静态图模式，故本文不对以上主要用于飞桨框架1.x的相关接口展开介绍，如有需要，可以阅读对应API文档。
 
-1.3 高阶API存储载入体系
----------------------
+1.1.3 高阶API存储载入体系
+````````````````````````
 
 - paddle.Model.fit (训练接口，同时带有参数存储的功能)
 - paddle.Model.save
@@ -49,6 +51,13 @@
 
 .. note::
     本教程着重介绍飞桨框架2.x的各个存储载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应API文档。
+
+1.2 接口存储结果组织形式
+----------------------
+
+飞桨2.0统一了各存储接口对于同一种存储行为的处理方式，并且统一推荐或自动为存储的文件添加飞桨标准的文件后缀，详见下图：
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/save_result_format_2.0.png?raw=true
 
 
 二、参数存储载入（训练调优）
@@ -104,10 +113,6 @@
                 print("Epoch {} batch {}: loss = {}".format(
                     epoch_id, batch_id, np.mean(loss.numpy())))
 
-    # enable dygraph mode
-    place = paddle.CPUPlace()
-    paddle.disable_static(place) 
-
     # create network
     layer = LinearNet()
     loss_fn = nn.CrossEntropyLoss()
@@ -116,7 +121,6 @@
     # create data loader
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
     loader = paddle.io.DataLoader(dataset,
-        places=place,
         batch_size=BATCH_SIZE,
         shuffle=True,
         drop_last=True,
@@ -220,10 +224,6 @@
                 print("Epoch {} batch {}: loss = {}".format(
                     epoch_id, batch_id, np.mean(loss.numpy())))
 
-    # enable dygraph mode
-    place = paddle.CPUPlace()
-    paddle.disable_static(place) 
-
     # create network
     layer = LinearNet()
     loss_fn = nn.CrossEntropyLoss()
@@ -232,7 +232,6 @@
     # create data loader
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
     loader = paddle.io.DataLoader(dataset,
-        places=place,
         batch_size=BATCH_SIZE,
         shuffle=True,
         drop_last=True,
@@ -247,8 +246,8 @@
 .. code-block:: python
 
     # save
-    model_path = "linear.example.model"
-    paddle.jit.save(layer, model_path)
+    path = "example.model/linear"
+    paddle.jit.save(layer, path)
 
 
 通过动转静训练后保存模型&参数，有以下两项注意点：
@@ -399,10 +398,6 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
                 print("Epoch {} batch {}: loss = {}".format(
                     epoch_id, batch_id, np.mean(loss.numpy())))
 
-    # enable dygraph mode
-    place = paddle.CPUPlace()
-    paddle.disable_static(place) 
-
     # create network
     layer = LinearNet()
     loss_fn = nn.CrossEntropyLoss()
@@ -411,7 +406,6 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     # create data loader
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
     loader = paddle.io.DataLoader(dataset,
-        places=place,
         batch_size=BATCH_SIZE,
         shuffle=True,
         drop_last=True,
@@ -426,10 +420,10 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 .. code-block:: python
 
     # save
-    model_path = "linear.example.dy_model"
+    path = "example.dy_model/linear"
     paddle.jit.save(
         layer=layer, 
-        model_path=model_path,
+        path=path,
         input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
 
 动态图训练后使用 ``paddle.jit.save`` 存储模型和参数注意点如下：
@@ -448,7 +442,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
     paddle.jit.save(
         layer=layer, 
-        model_path=model_path,
+        path=path,
         input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
 
 - Example Tensor 列表
@@ -459,7 +453,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
     paddle.jit.save(
         layer=layer, 
-        model_path=model_path,
+        path=path,
         input_spec=[image])
 
 3.2 模型&参数载入
@@ -476,10 +470,6 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     import paddle.nn as nn
     import paddle.optimizer as opt
 
-    # enable dygraph mode
-    place = paddle.CPUPlace()
-    paddle.disable_static(place) 
-
     BATCH_SIZE = 16
     BATCH_NUM = 4
     EPOCH_NUM = 4
@@ -488,8 +478,8 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     CLASS_NUM = 10
 
     # load
-    model_path = "linear.example.model"
-    loaded_layer = paddle.jit.load(model_path)
+    path = "example.model/linear"
+    loaded_layer = paddle.jit.load(path)
 
 载入模型及参数后进行预测，示例如下（接前述示例）：
 
@@ -532,7 +522,6 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     loaded_layer.train()
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
     loader = paddle.io.DataLoader(dataset,
-        places=place,
         batch_size=BATCH_SIZE,
         shuffle=True,
         drop_last=True,
@@ -561,15 +550,12 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
         def forward(self, x):
             return self._linear(x)
 
-    # enable dygraph mode
-    paddle.disable_static() 
-
     # create network
     layer = LinearNet()
 
     # load
-    model_path = "linear.example.model"
-    state_dict = paddle.load(model_path)
+    path = "example.model/linear"
+    state_dict = paddle.load(path)
 
     # inference
     layer.set_state_dict(state_dict, use_structured_name=False)
@@ -581,16 +567,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 四、旧存储格式兼容载入
 ###################
 
-如果您是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的接口存储模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
-
-4.1 从 ``paddle.static.save_inference_model`` 存储结果中载入模型&参数
-------------------------------------------------------------------
-
-曾用接口名为 ``paddle.fluid.io.save_inference_model`` 。
-
-(1) 同时载入模型和参数
-
-使用 ``paddle.jit.load`` 配合 ``paddle.SaveLoadConfig`` 载入模型和参数。
+如果您是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的fluid相关接口存储模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
 
 飞桨1.x模型准备及训练示例，该示例为后续所有示例的前序逻辑：
 
@@ -608,6 +585,9 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
     IMAGE_SIZE = 784
     CLASS_NUM = 10
+
+    # enable static mode
+    paddle.enable_static()
 
     # define a random dataset
     class RandomDataset(paddle.io.Dataset):
@@ -651,7 +631,14 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
             fluid.default_main_program(),
             feed=data, 
             fetch_list=[avg_loss])
-    
+
+
+4.1 从 ``paddle.fluid.io.save_inference_model`` 存储结果中载入模型&参数
+------------------------------------------------------------------
+
+(1) 同时载入模型和参数
+
+使用 ``paddle.jit.load`` 配合 ``**configs`` 载入模型和参数。
 
 如果您是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
 
@@ -662,7 +649,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     fluid.io.save_inference_model(
         model_path, ["image"], [pred], exe)
 
-    # enable dygraph mode
+    # enable dynamic mode
     paddle.disable_static(place)
 
     # load
@@ -682,13 +669,11 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     fluid.io.save_inference_model(
         model_path, ["image"], [pred], exe, model_filename="__simplenet__")
 
-    # enable dygraph mode
+    # enable dynamic mode
     paddle.disable_static(place)
 
     # load
-    config = paddle.SaveLoadConfig()
-    config.model_filename = "__simplenet__"
-    fc = paddle.jit.load(model_path, config=config)
+    fc = paddle.jit.load(model_path, model_filename="__simplenet__")
 
     # inference
     fc.eval()
@@ -704,13 +689,11 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     fluid.io.save_inference_model(
         model_path, ["image"], [pred], exe, params_filename="__params__")
 
-    # enable dygraph mode
+    # enable dynamic mode
     paddle.disable_static(place)
 
     # load
-    config = paddle.SaveLoadConfig()
-    config.params_filename = "__params__"
-    fc = paddle.jit.load(model_path, config=config)
+    fc = paddle.jit.load(model_path, params_filename="__params__")
 
     # inference
     fc.eval()
@@ -719,7 +702,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 (2) 仅载入参数
 
-如果您仅需要从 ``paddle.fluid.io.save_inference_model`` 的存储结果中载入参数，以state_dict的形式配置到已有代码的模型中，可以使用 ``paddle.load`` 配合 ``paddle.SaveLoadConfig`` 载入。
+如果您仅需要从 ``paddle.fluid.io.save_inference_model`` 的存储结果中载入参数，以state_dict的形式配置到已有代码的模型中，可以使用 ``paddle.load`` 配合 ``**configs`` 载入。
 
 如果您是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
 
@@ -735,9 +718,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
     model_path = "fc.example.model.with_model_filename"
 
-    config = paddle.SaveLoadConfig()
-    config.model_filename = "__simplenet__"
-    load_param_dict = paddle.load(model_path, config)
+    load_param_dict = paddle.load(model_path, model_filename="__simplenet__")
 
 如果您指定了存储的参数文件名，可以按照以下方式载入（接前述示例）：
 
@@ -745,9 +726,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
     model_path = "fc.example.model.with_params_filename"
 
-    config = paddle.SaveLoadConfig()
-    config.params_filename = "__params__"
-    load_param_dict = paddle.load(model_path, config)
+    load_param_dict = paddle.load(model_path, params_filename="__params__")
 
 .. note::
     一般预测模型不会存储优化器Optimizer的参数，因此此处载入的仅包括模型本身的参数。
@@ -755,10 +734,9 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 .. note::
     由于 ``structured_name`` 是动态图下独有的变量命名方式，因此从静态图存储结果载入的state_dict在配置到动态图的Layer中时，需要配置 ``Layer.set_state_dict(use_structured_name=False)`` 。
 
-4.2 从 ``paddle.static.save`` 存储结果中载入参数
-----------------------------------------------
 
-曾用接口名为 ``paddle.fluid.save`` 。
+4.2 从 ``paddle.fluid.save`` 存储结果中载入参数
+----------------------------------------------
 
  ``paddle.fluid.save`` 的存储格式与2.x动态图接口 ``paddle.save`` 存储格式是类似的，同样存储了dict格式的参数，因此可以直接使用 ``paddle.load`` 载入state_dict，但需要注意不能仅传入保存的路径，而要传入保存参数的文件名，示例如下（接前述示例）：
 
@@ -769,7 +747,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     program = fluid.default_main_program()
     fluid.save(program, model_path)
 
-    # enable dygraph mode
+    # enable dynamic mode
     paddle.disable_static(place)
 
     load_param_dict = paddle.load("fc.example.model.save.pdparams")
