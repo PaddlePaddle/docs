@@ -40,11 +40,11 @@ ProgramTranslator
 
     @paddle.jit.to_static
     def func(x):
-    if paddle.mean(x) > 0:
-        x_v = x - 1
-    else:
-        x_v = x + 1
-    return x_v
+        if paddle.mean(x) > 0:
+            x_v = x - 1
+        else:
+            x_v = x + 1
+        return x_v
 
 
     prog_trans = paddle.jit.ProgramTranslator()
@@ -106,7 +106,7 @@ ProgramTranslator
             x_v = x - 1
         else:
             x_v = x + 1
-    return x_v
+        return x_v
 
 
     prog_trans = paddle.jit.ProgramTranslator()
