@@ -633,7 +633,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
             fetch_list=[avg_loss])
 
 
-4.2 从 ``paddle.fluid.io.save_inference_model`` 存储结果中载入模型&参数
+4.1 从 ``paddle.fluid.io.save_inference_model`` 存储结果中载入模型&参数
 ------------------------------------------------------------------
 
 (1) 同时载入模型和参数
