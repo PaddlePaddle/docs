@@ -33,7 +33,7 @@ CompiledProgram，初始化后的 ``CompiledProgram`` 对象
     exe = static.Executor(place)
 
     data = static.data(name='X', shape=[None, 1], dtype='float32')
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
     paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
@@ -99,7 +99,7 @@ CompiledProgram，配置之后的 ``CompiledProgram`` 对象
     exe = static.Executor(place)
 
     data = static.data(name='X', shape=[None, 1], dtype='float32')
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
 
     test_program = static.default_main_program().clone(for_test=True)

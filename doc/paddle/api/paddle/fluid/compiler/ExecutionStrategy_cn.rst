@@ -25,7 +25,7 @@ ExecutionStrategy，一个ExecutionStrategy的实例
 
     x = static.data(name='x', shape=[None, 13], dtype='float32')
     y = static.data(name='y', shape=[None, 1], dtype='float32')
-    y_predict = static.nn.fc(input=x, size=1, act=None)
+    y_predict = static.nn.fc(x=x, size=1, activation=None)
 
     cost = F.square_error_cost(input=y_predict, label=y)
     avg_loss = paddle.mean(cost)

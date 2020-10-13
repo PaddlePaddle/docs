@@ -32,7 +32,7 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
 
 **示例代码1**:
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle
     import six
@@ -71,7 +71,7 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
             # 用户自定义的调试函数，打印出输入的LodTensor
             paddle.static.nn.py_func(func=debug_func, x=hidden, out=None)
 
-        prediction = paddle.static.nn.fc(hidden, size=10, act='softmax')
+        prediction = paddle.static.nn.fc(hidden, size=10, activation='softmax')
         loss = paddle.static.nn.cross_entropy(input=prediction, label=label)
         return paddle.mean(loss)
 

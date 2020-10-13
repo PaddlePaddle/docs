@@ -33,7 +33,7 @@ Program，创建的空的Program
     with static.program_guard(main_program=main_program, startup_program=startup_program):
         x = static.data(name="x", shape=[-1, 784], dtype='float32')
         y = static.data(name="y", shape=[-1, 1], dtype='int32')
-        z = static.nn.fc(name="fc", input=x, size=10, act="relu")
+        z = static.nn.fc(name="fc", x=x, size=10, activation="relu")
 
     print("main program is: {}".format(main_program))
     print("start up program is: {}".format(startup_program))
@@ -88,7 +88,7 @@ str，由Program转换得到的字符串
 
 **代码示例**
 
-   ::
+.. code-block:: python
 
         import paddle
         import paddle.static as static
@@ -96,7 +96,7 @@ str，由Program转换得到的字符串
         paddle.enable_static()
 
         img = static.data(name='image', shape=[None, 784])
-        pred = static.nn.fc(input=img, size=10, act='relu')
+        pred = static.nn.fc(x=img, size=10, activation='relu')
         loss = paddle.mean(pred)
         # Here we use clone before Momentum
         test_program = static.default_main_program().clone(for_test=True)
@@ -164,10 +164,10 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
     with static.program_guard(train_program, startup_program):
         with utils.unique_name.guard():
             img = static.data(name='image', shape=[None, 784])
-            hidden = static.nn.fc(input=img, size=200, act='relu')
+            hidden = static.nn.fc(x=img, size=200, activation='relu')
             hidden = F.dropout(hidden, p=0.5)
             loss = F.cross_entropy(
-                input=static.nn.fc(hidden, size=10, act='softmax'),
+                input=static.nn.fc(x=hidden, size=10, activation='softmax'),
                 label=static.data(name='label', shape=[1], dtype='int64'))
             avg_loss = paddle.mean(loss)
             test_program = train_program.clone(for_test=True)
@@ -211,10 +211,10 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
 
     def network():
         img = static.data(name='image', shape=[None, 784])
-        hidden = static.nn.fc(input=img, size=200, act='relu')
+        hidden = static.nn.fc(x=img, size=200, activation='relu')
         hidden = F.dropout(hidden, p=0.5)
         loss = F.cross_entropy(
-            input=static.nn.fc(hidden, size=10, act='softmax'),
+            input=static.nn.fc(x=hidden, size=10, activation='softmax'),
             label=static.data(name='label', shape=[1], dtype='int64'))
         avg_loss = paddle.mean(loss)
         return avg_loss
@@ -450,7 +450,7 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
 
     program = static.default_main_program()
     data = static.data(name='x', shape=[None, 13], dtype='float32')
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
     paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 

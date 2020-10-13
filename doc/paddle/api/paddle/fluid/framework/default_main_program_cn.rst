@@ -40,8 +40,8 @@ default_main_program
         bn2 = paddle.static.nn.batch_norm(conv2, act='relu')
         pool2 = paddle.nn.functional.pool2d(bn2, 2, 'max', 2)
         
-        fc1 = paddle.static.nn.fc(pool2, size=50, act='relu')
-        fc2 = paddle.static.nn.fc(fc1, size=102, act='softmax')
+        fc1 = paddle.static.nn.fc(x=pool2, size=50, activation='relu')
+        fc2 = paddle.static.nn.fc(x=fc1, size=102, activation='softmax')
         
         loss = paddle.nn.functional.loss.cross_entropy(input=fc2, label=label)
         loss = paddle.mean(loss)
