@@ -426,9 +426,7 @@ for epoch in range(epoch_num):
         loss = paddle.nn.functional.cross_entropy(cost, label)
         avg_loss = paddle.mean(loss)
 
-        avg_loss = mnist.scale_loss(avg_loss)
         avg_loss.backward()
-        mnist.apply_collective_grads()
 
         adam.minimize(avg_loss)
         mnist.clear_gradients()
@@ -477,7 +475,7 @@ trainers_endpoints: 127.0.0.1:6170,127.0.0.1:6171 , node_id: 0 , current_node_ip
 总结一下，多卡训练相比单卡训练，有如下步骤不同：
 1. 通过 ParallelEnv() 的 dev_id 设置程序运行的设备。
 ```
-place = paddle.CUDAPlace(paddle.imperative.ParallelEnv().dev_id)
+place = paddle.CUDAPlace(paddle.imperative.ParallelEnv().device_id)
 paddle.enable_imperative(place):
 ```
 2. 准备多卡环境。
@@ -497,23 +495,14 @@ mnist = paddle.imperative.DataParallel(mnist, strategy)
 ```
 train_reader = paddle.incubate.reader.distributed_batch_reader(train_reader)
 ```
-
-5. 单步训练。
-
-首先对 loss 进行归一化，然后计算单卡的梯度，最终将所有的梯度聚合。
-```
-avg_loss = mnist.scale_loss(avg_loss)
-avg_loss.backward()
-mnist.apply_collective_grads()
-```
-6. 模型保存。
+5. 模型保存。
 
 和单卡不同，多卡训练时需逐个进程执行保存操作，多个进程同时保存会使模型文件格式出错。
 ```
-if paddle.imperative.ParallelEnv().local_rank == 0：
+if paddle.imperative.ParallelEnv().rank == 0：
     paddle.imperative.save(mnist.state_dict(), "worker_0")
 ```
-7. 评估测试。
+6. 评估测试。
 
 对模型进行评估测试时，如果需要加载模型，须确保评估和保存的操作在同一个进程中，否则可能出现模型尚未保存完成，即启动评估，造成加载出错的问题。如果不需要加载模型，则没有这个问题，在一个进程或多个进程中评估均可。
 

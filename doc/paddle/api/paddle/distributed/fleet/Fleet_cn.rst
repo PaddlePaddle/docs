@@ -420,9 +420,7 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
     print("loss:", loss.numpy())
 
-    loss = dp_layer.scale_loss(loss)
     loss.backward()
-    dp_layer.apply_collective_grads()
 
     adam.step()
     adam.clear_grad()
@@ -651,9 +649,7 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
     print("loss:", loss.numpy())
 
-    loss = dp_layer.scale_loss(loss)
     loss.backward()
-    dp_layer.apply_collective_grads()
 
     adam.step()
     adam.clear_grad()
@@ -716,9 +712,7 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
     print("loss:", loss.numpy())
 
-    loss = dp_layer.scale_loss(loss)
     loss.backward()
-    dp_layer.apply_collective_grads()
 
     adam.step()
     adam.clear_grad()
