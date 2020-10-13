@@ -339,7 +339,8 @@ paddle.fluid.layers.elementwise_div	paddle.elementwise_div,paddle.tensor.element
 paddle.framework.random.manual_seed	paddle.manual_seed
 paddle.tensor.random.uniform	paddle.uniform,paddle.tensor.uniform
 paddle.fluid.layers.asin	paddle.asin,paddle.tensor.asin,paddle.tensor.math.asin
-paddle.fluid.initializer.Constant	paddle.nn.initializer.Constant
+paddle.fluid.initializer.ConstantInitializer	paddle.fluid.initializer.Constant
+paddle.nn.initializer.constant.Constant	paddle.nn.initializer.Constant
 paddle.fluid.layers.retinanet_detection_output	paddle.nn.functional.retinanet_detection_output,paddle.nn.functional.vision.retinanet_detection_output
 paddle.fluid.layers.isfinite	paddle.tensor.logic.isfinite
 paddle.nn.functional.conv.conv3d	paddle.nn.functional.conv3d
