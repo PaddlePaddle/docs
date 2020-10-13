@@ -320,7 +320,6 @@ Tensor
 
         import paddle
         import numpy as np
-        paddle.disable_static()
 
         x = np.ones([2, 2], np.float32)
         inputs2 = []
@@ -328,8 +327,8 @@ Tensor
             tmp = paddle.to_tensor(x)
             tmp.stop_gradient=False
             inputs2.append(tmp)
-        ret2 = fluid.layers.sums(inputs2)
-        loss2 = fluid.layers.reduce_sum(ret2)
+        ret2 = paddle.add_n(inputs2)
+        loss2 = paddle.sum(ret2)
         loss2.backward()
         print(loss2.gradient())
         loss2.clear_gradient()
@@ -394,11 +393,10 @@ Tensor
     .. code-block:: python
 
         import paddle
-        import numpy as np
-        paddle.disable_static()
+        import numpy as np 
 
         data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = Linear(32, 64)
+        linear = paddle.nn.Linear(32, 64)
         data = paddle.to_tensor(data)
         x = linear(data)
         y = x.detach()
