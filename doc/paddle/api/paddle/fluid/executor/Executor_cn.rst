@@ -17,8 +17,6 @@ Executor支持单GPU、多GPU以及CPU运行。
   
 返回：初始化后的 ``Executor`` 对象
 
-返回类型：Executor
-
 **示例代码**
 
 .. code-block:: python
@@ -109,8 +107,6 @@ Executor支持单GPU、多GPU以及CPU运行。
   - **use_prune** (bool) - 该参数表示输入Program是否会被裁剪。如果该参数为True，会根据feed和fetch_list裁剪Program，这意味着对生成fetch_list没有必要的算子和变量会被裁剪掉。默认为False，即算子和变量在运行过程不会被裁剪。注意如果Optimizer.minimize()返回的tuple被作为fetch_list参数，那么use_prune会被重载为True并且Program会被裁剪。
 
 返回：返回fetch_list中指定的变量值
-
-返回类型：List
 
 .. note::
      1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
