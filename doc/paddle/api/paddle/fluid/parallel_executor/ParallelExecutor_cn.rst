@@ -24,8 +24,6 @@ ParallelExecutor
 
 返回：初始化后的 ``ParallelExecutor`` 对象
 
-返回类型：ParallelExecutor
-
 抛出异常：``TypeError`` 
     - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会抛出此异常。
 
@@ -91,8 +89,6 @@ ParallelExecutor
     - **return_numpy** (bool) – 该变量表示是否将fetched tensor转换为numpy。默认为：True。
 
 返回：返回fetch_list中指定的变量值
-
-返回类型：List
 
 抛出异常：
      - ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，抛出此异常
