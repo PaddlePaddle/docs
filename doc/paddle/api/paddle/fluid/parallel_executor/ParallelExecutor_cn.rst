@@ -114,7 +114,7 @@ ParallelExecutor
     place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
      
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
@@ -167,7 +167,7 @@ ParallelExecutor
     
     use_cuda = True
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
