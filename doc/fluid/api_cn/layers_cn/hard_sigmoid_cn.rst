@@ -5,12 +5,6 @@ hard_sigmoid
 
 .. py:function:: paddle.fluid.layers.hard_sigmoid(x, slope=0.2, offset=0.5, name=None)
 
-:alias_main: paddle.nn.functional.hard_sigmoid
-:alias: paddle.nn.functional.hard_sigmoid,paddle.nn.functional.activation.hard_sigmoid
-:old_api: paddle.fluid.layers.hard_sigmoid
-
-
-
 sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参见 https://arxiv.org/abs/1603.00391。
 
 .. math::
