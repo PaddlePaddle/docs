@@ -1,12 +1,12 @@
 .. _cn_api_paddle_nn_UpSample:
 
-UpSample
+Upsample
 -------------------------------
 
-.. py:function:: paddle.nn.UpSample(x,size=None,scale_factor=None,mode='nearest',align_corners=False,align_mode=0,data_format='NCHW',name=None):
+.. py:function:: paddle.nn.Upsample(x,size=None,scale_factor=None,mode='nearest',align_corners=False,align_mode=0,data_format='NCHW',name=None):
 
-:alias_main: paddle.nn.UpSample
-:alias: paddle.nn.layer.UpSample,paddle.nn.layer.common.UpSample
+:alias_main: paddle.nn.Upsample
+:alias: paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
 
 
 
@@ -24,6 +24,9 @@ UpSample
 
     BICUBIC：双三次插值
 
+    LINEAR: 线性插值
+
+    AREA: 面积插值
 
 
 
@@ -141,10 +144,11 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 
 参数:
     - **x** (Tensor) - 4-D或5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
-    - **size** (list|tuple|Variable|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
-    - **scale_factor** (float|Tensor|list|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
+    - **size** (list|tuple|Tensor|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None
+    - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
+如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
     - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
-    - **resample** (str) - 插值方法。支持“双线性”,“三线性”,“临近插值”,"双三次"。默认值为双线性插值。
+    - **mode** (str) - 插值方法。支持“双线性”,“三线性”,“临近插值”,"双三次","线性"，"面积"。默认值为最近临插值。
     - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为True
     - **align_mode** （int）- 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
@@ -154,17 +158,20 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 返回类型: 变量（variable）
 
 抛出异常：
-    - :code:`TypeError` - out_shape应该是一个列表、元组或变量。
+    - :code:`TypeError` - out_shape应该是一个列表、元组或张量。
     - :code:`TypeError` - actual_shape应该是变量或None。
-    - :code:`ValueError` - image_resize的"resample"只能是"BILINEAR"或"TRILINEAR"或"NEAREST"或"BICUBIC"。
+    - :code:`ValueError` - Upsample的"mode"只能是"BILINEAR"或"TRILINEAR"或"NEAREST"或"BICUBIC"或"LINEAR"或"AREA"。
+    - :code:`ValueError` - 'linear' 只支持 3-D tensor。
+    - :code:`ValueError` - 'bilinear', 'bicubic' ，'nearest' 只支持 4-D tensor。
+    - :code:`ValueError` - 'trilinear' 只支持 5-D tensor
     - :code:`ValueError` - out_shape 和 scale 不可同时为 None。
+    - :code:`ValueError` - out_shape 的长度必须为1如果输入是3D张量
     - :code:`ValueError` - out_shape 的长度必须为2如果输入是4D张量。
     - :code:`ValueError` - out_shape 的长度必须为3如果输入是5D张量。
     - :code:`ValueError` - scale应大于0。
     - :code:`TypeError`  - align_corners 应为bool型。
     - :code:`ValueError` - align_mode 只能取 ‘0’ 或 ‘1’。
-    - :code:`ValueError` - data_format 只能取 ‘NCHW’、‘NHWC’、‘NCDHW’ 或者 ‘NDHWC’。
-
+    - :code:`ValueError` - data_format 只能取 'NCW', 'NCHW'、'NHWC'、'NCDHW' 或者 'NDHWC'。
 
 **代码示例**
 
