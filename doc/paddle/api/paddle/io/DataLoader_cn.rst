@@ -29,7 +29,7 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
     - **timeout** (int) - 从子进程输出队列获取mini-batch数据的超时时间。默认值为0。
     - **worker_init_fn** (callable) - 子进程初始化函数，此函数会被子进程初始化时被调用，并传递 ``worker id`` 作为参数。默认值为None。
 
-返回：迭代 ``dataset`` 数据的迭代器
+返回：迭代 ``dataset`` 数据的迭代器，迭代器返回的数据中的每个元素都是一个Tensor。
 
 返回类型: DataLoader
 
