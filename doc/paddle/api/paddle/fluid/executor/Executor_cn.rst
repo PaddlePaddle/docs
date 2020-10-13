@@ -13,7 +13,7 @@ Executor
 Executor支持单GPU、多GPU以及CPU运行。
 
 参数：
-    - **place** (fluid.CPUPlace()|fluid.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()` ，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)` 。默认值为None。
+    - **place** (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()` ，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)` 。默认值为None。
   
 返回：初始化后的 ``Executor`` 对象
 
@@ -58,7 +58,7 @@ Executor支持单GPU、多GPU以及CPU运行。
     # 另一种方法是，编译这个main program然后运行。
     # 参考CompiledProgram以获取更多信息。
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
 
@@ -104,7 +104,7 @@ Executor支持单GPU、多GPU以及CPU运行。
   - **fetch_var_name** (str) – 该参数表示结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
   - **scope** (Scope) – 该参数表示执行当前program所使用的作用域，用户可以为不同的program指定不同的作用域。默认值：paddle.static.global_scope()。
   - **return_numpy** (bool) – 该参数表示是否将返回的计算结果（fetch list中指定的变量）转化为numpy；如果为False，则每个变量返回的类型为LoDTensor，否则返回变量的类型为numpy.ndarray。默认为：True。
-  - **use_program_cache** (bool) – 该参数表示是否对输入的Program进行缓存。如果该参数为True，在以下情况时，模型运行速度可能会更快：输入的program为 ``fluid.Program`` ，并且模型运行过程中，调用该接口的参数（program、 feed变量名和fetch_list变量）名始终不变。默认为：False。
+  - **use_program_cache** (bool) – 该参数表示是否对输入的Program进行缓存。如果该参数为True，在以下情况时，模型运行速度可能会更快：输入的program为 ``paddle.static.Program`` ，并且模型运行过程中，调用该接口的参数（program、 feed变量名和fetch_list变量）名始终不变。默认为：False。
   - **return_merged** (bool) – 该参数表示是否按照执行设备维度将返回的计算结果（fetch list中指定的变量）进行合并。如果 ``return_merged`` 设为False，返回值类型是一个Tensor的二维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的二维列表（ ``return_numpy`` 设为True时）。如果 ``return_merged`` 设为True，返回值类型是一个Tensor的一维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的一维列表（ ``return_numpy`` 设为True时）。更多细节请参考示例代码2。如果返回的计算结果是变长的，请设置 ``return_merged`` 为False，即不按照执行设备维度合并返回的计算结果。该参数的默认值为True，但这仅是为了兼容性考虑，在未来的版本中默认值可能会更改为False。
   - **use_prune** (bool) - 该参数表示输入Program是否会被裁剪。如果该参数为True，会根据feed和fetch_list裁剪Program，这意味着对生成fetch_list没有必要的算子和变量会被裁剪掉。默认为False，即算子和变量在运行过程不会被裁剪。注意如果Optimizer.minimize()返回的tuple被作为fetch_list参数，那么use_prune会被重载为True并且Program会被裁剪。
 
