@@ -18,7 +18,8 @@ paddle.fluid.dygraph.base.enable_dygraph	paddle.disable_static
 paddle.tensor.math.kron	paddle.kron,paddle.tensor.kron
 paddle.nn.functional.pooling.avg_pool3d	paddle.nn.functional.avg_pool3d
 paddle.fluid.layers.crop_tensor	paddle.crop_tensor,paddle.tensor.crop_tensor,paddle.tensor.creation.crop_tensor
-paddle.fluid.layers.lrn	paddle.nn.functional.lrn,paddle.nn.functional.norm.lrn
+paddle.nn.functional.norm.local_response_norm	paddle.nn.functional.local_response_norm
+paddle.nn.layer.norm.LocalResponseNorm  paddle.nn.LocalResponseNorm,paddle.nn.layer.LocalResponseNorm
 paddle.tensor.logic.less_than	paddle.less_than,paddle.tensor.less_than
 paddle.nn.layer.loss.NLLLoss	paddle.nn.NLLLoss,paddle.nn.layer.NLLLoss
 paddle.fluid.layers.sigmoid	paddle.nn.functional.sigmoid,paddle.nn.functional.activation.sigmoid
@@ -40,7 +41,7 @@ paddle.tensor.math.floor_divide	paddle.floor_divide,paddle.tensor.floor_divide
 paddle.fluid.layers.prelu	paddle.static.nn.prelu
 paddle.tensor.manipulation.chunk	paddle.chunk,paddle.tensor.chunk
 paddle.tensor.manipulation.reshape	paddle.reshape,paddle.tensor.reshape
-paddle.fluid.layers.increment	paddle.increment,paddle.tensor.increment,paddle.tensor.math.increment
+paddle.tensor.math.increment	paddle.increment,paddle.tensor.increment,paddle.tensor.math.increment
 paddle.fluid.compiler.CompiledProgram	paddle.static.CompiledProgram
 paddle.tensor.manipulation.flip	paddle.flip,paddle.reverse,paddle.tensor.flip,paddle.tensor.reverse
 paddle.fluid.dygraph.parallel.ParallelEnv	paddle.distributed.ParallelEnv
@@ -131,7 +132,6 @@ paddle.fluid.layers.linspace	paddle.linspace,paddle.tensor.linspace,paddle.tenso
 paddle.nn.functional.pooling.adaptive_avg_pool1d	paddle.nn.functional.adaptive_avg_pool1d
 paddle.fluid.layers.square	paddle.square,paddle.tensor.square,paddle.tensor.math.square
 paddle.tensor.math.isinf	paddle.isinf,paddle.tensor.isinf
-paddle.fluid.layers.huber_loss	paddle.nn.functional.huber_loss,paddle.nn.functional.loss.huber_loss
 paddle.nn.layer.conv.ConvTranspose1d	paddle.nn.ConvTranspose1d,paddle.nn.layer.ConvTranspose1d
 paddle.fluid.dygraph.base.disable_dygraph	paddle.enable_static
 paddle.nn.layer.loss.MarginRankingLoss	paddle.nn.MarginRankingLoss,paddle.nn.layer.MarginRankingLoss
@@ -269,7 +269,6 @@ paddle.nn.layer.common.Pad2D	paddle.nn.Pad2D,paddle.nn.layer.Pad2D
 paddle.fluid.layers.conv2d	paddle.static.nn.conv2d
 paddle.fluid.layers.create_parameter	paddle.static.nn.create_parameter
 paddle.tensor.creation.ones_like	paddle.ones_like,paddle.tensor.ones_like
-paddle.fluid.layers.sums	paddle.sums,paddle.tensor.sums,paddle.tensor.math.sums
 paddle.fluid.layers.rnn.birnn	paddle.nn.functional.birnn,paddle.nn.functional.rnn.birnn
 paddle.fluid.dygraph.base.no_grad	paddle.framework.no_grad
 paddle.nn.functional.common.dropout3d	paddle.nn.functional.dropout3d
@@ -290,7 +289,9 @@ paddle.fluid.io.load	paddle.static.load
 paddle.fluid.dygraph.learning_rate_scheduler.ExponentialDecay	paddle.ExponentialDecay,paddle.framework.ExponentialDecay
 paddle.fluid.layers.conv3d	paddle.static.nn.conv3d
 paddle.nn.layer.activation.Softmax	paddle.nn.Softmax
-paddle.fluid.initializer.MSRA	paddle.nn.initializer.MSRA
+paddle.fluid.initializer.MSRAInitializer	paddle.fluid.initializer.MSRA
+paddle.nn.initializer.kaiming.KaimingUniform	paddle.nn.initializer.KaimingUniform
+paddle.nn.initializer.kaiming.KaimingNormal	paddle.nn.initializer.KaimingNormal
 paddle.tensor.random.randn	paddle.randn,paddle.tensor.randn
 paddle.tensor.logic.less_equal	paddle.less_equal,paddle.tensor.less_equal
 paddle.nn.layer.loss.CTCLoss	paddle.nn.CTCLoss,paddle.nn.layer.CTCLoss
@@ -314,7 +315,7 @@ paddle.fluid.layers.reduce_all	paddle.reduce_all,paddle.tensor.reduce_all,paddle
 paddle.fluid.layers.rpn_target_assign	paddle.nn.functional.rpn_target_assign,paddle.nn.functional.extension.rpn_target_assign
 paddle.fluid.layers.reduce_max	paddle.reduce_max,paddle.tensor.reduce_max,paddle.tensor.math.reduce_max
 paddle.tensor.random.randperm	paddle.randperm,paddle.tensor.randperm
-paddle.fluid.layers.deformable_conv	paddle.static.nn.deformable_conv
+paddle.static.nn.common.deform_conv2d	paddle.static.nn.deform_conv2d
 paddle.tensor.manipulation.unique	paddle.unique,paddle.tensor.unique
 paddle.tensor.linalg.dot	paddle.dot,paddle.tensor.dot
 paddle.nn.layer.common.ReplicationPad3d	paddle.nn.ReplicationPad3d,paddle.nn.layer.ReplicationPad3d
@@ -339,7 +340,8 @@ paddle.fluid.layers.elementwise_div	paddle.elementwise_div,paddle.tensor.element
 paddle.framework.random.manual_seed	paddle.manual_seed
 paddle.tensor.random.uniform	paddle.uniform,paddle.tensor.uniform
 paddle.fluid.layers.asin	paddle.asin,paddle.tensor.asin,paddle.tensor.math.asin
-paddle.fluid.initializer.Constant	paddle.nn.initializer.Constant
+paddle.fluid.initializer.ConstantInitializer	paddle.fluid.initializer.Constant
+paddle.nn.initializer.constant.Constant	paddle.nn.initializer.Constant
 paddle.fluid.layers.retinanet_detection_output	paddle.nn.functional.retinanet_detection_output,paddle.nn.functional.vision.retinanet_detection_output
 paddle.fluid.layers.isfinite	paddle.tensor.logic.isfinite
 paddle.nn.functional.conv.conv3d	paddle.nn.functional.conv3d
@@ -377,7 +379,7 @@ paddle.fluid.layers.clip	paddle.nn.clip,paddle.nn.clip.clip
 paddle.fluid.framework.ComplexVariable	paddle.framework.ComplexVariable
 paddle.tensor.search.argmin	paddle.argmin,paddle.tensor.argmin
 paddle.nn.layer.common.Dropout2d	paddle.nn.Dropout2d,paddle.nn.layer.Dropout2d
-paddle.tensor.math.elementwise_sum	paddle.elementwise_sum,paddle.tensor.elementwise_sum
+paddle.tensor.math.add_n	paddle.add_n,paddle.tensor.add_n,paddle.tensor.math.add_n
 paddle.tensor.manipulation.concat	paddle.concat,paddle.tensor.concat
 paddle.tensor.stat.std	paddle.std,paddle.tensor.std
 paddle.fluid.layers.dice_loss	paddle.nn.functional.dice_loss,paddle.nn.functional.loss.dice_loss
@@ -397,7 +399,6 @@ paddle.fluid.layers.continuous_value_model	paddle.nn.functional.continuous_value
 paddle.fluid.layers.unstack	paddle.unstack,paddle.tensor.unstack,paddle.tensor.manipulation.unstack
 paddle.fluid.layers.rsqrt	paddle.rsqrt,paddle.tensor.rsqrt,paddle.tensor.math.rsqrt
 paddle.tensor.creation.eye	paddle.eye,paddle.tensor.eye
-paddle.fluid.layers.unique_with_counts	paddle.unique_with_counts,paddle.tensor.unique_with_counts,paddle.tensor.manipulation.unique_with_counts
 paddle.nn.layer.common.Dropout3d	paddle.nn.Dropout3d,paddle.nn.layer.Dropout3d
 paddle.nn.layer.vision.PixelShuffle	paddle.nn.layer.PixelShuffle
 paddle.fluid.layers.while_loop	paddle.nn.while_loop,paddle.nn.control_flow.while_loop
@@ -565,6 +566,16 @@ paddle.metric.metrics.Accuracy	paddle.metric.Accuracy
 paddle.metric.metrics.Precision	paddle.metric.Precision
 paddle.metric.metrics.Recall	paddle.metric.Recall
 paddle.metric.metrics.Auc	paddle.metric.Auc
+paddle.metric.metrics.accuracy	paddle.metric.accuracy
 paddle.fluid.unique_name.guard	paddle.utils.unique_name.guard
 paddle.fluid.unique_name.switch	paddle.utils.unique_name.switch
 paddle.fluid.unique_name.generate	paddle.utils.unique_name.generate
+paddle.nn.layer.rnn.SimpleRNNCell	paddle.nn.SimpleRNNCell,paddle.nn.layer.SimpleRNNCell
+paddle.nn.layer.rnn.SimpleRNN	paddle.nn.SimpleRNN,paddle.nn.layer.SimpleRNN
+paddle.nn.layer.rnn.RNN	paddle.nn.RNN,paddle.nn.layer.RNN
+paddle.nn.layer.rnn.BiRNN	paddle.nn.BiRNN,paddle.nn.layer.BiRNN
+paddle.nn.layer.rnn.RNNCellBase	paddle.nn.RNNCellBase,paddle.nn.layer.RNNCellBase
+paddle.nn.layer.rnn.LSTMCell	paddle.nn.LSTMCell,paddle.nn.layer.LSTMCell
+paddle.nn.layer.rnn.GRUCell	paddle.nn.GRUCell,paddle.nn.layer.GRUCell
+paddle.nn.layer.rnn.LSTM	paddle.nn.LSTM,paddle.nn.layer.LSTM
+paddle.nn.layer.rnn.GRU	paddle.nn.GRU,paddle.nn.layer.GRU

@@ -247,7 +247,7 @@ Tensor
 
         import paddle
         import numpy as np
-        paddle.disable_static()
+
         x = np.ones([2, 2], np.float32)
         inputs = []
         for _ in range(10):
@@ -256,8 +256,8 @@ Tensor
             # there is no one need gradient on it.
             tmp.stop_gradient=False
             inputs.append(tmp)
-        ret = paddle.sums(inputs)
-        loss = paddle.reduce_sum(ret)
+        ret = paddle.add_n(inputs)
+        loss = paddle.sum(ret)
         loss.backward()
 
 .. py:method:: bmm(y, name=None)
@@ -320,7 +320,6 @@ Tensor
 
         import paddle
         import numpy as np
-        paddle.disable_static()
 
         x = np.ones([2, 2], np.float32)
         inputs2 = []
@@ -328,8 +327,8 @@ Tensor
             tmp = paddle.to_tensor(x)
             tmp.stop_gradient=False
             inputs2.append(tmp)
-        ret2 = fluid.layers.sums(inputs2)
-        loss2 = fluid.layers.reduce_sum(ret2)
+        ret2 = paddle.add_n(inputs2)
+        loss2 = paddle.sum(ret2)
         loss2.backward()
         print(loss2.gradient())
         loss2.clear_gradient()
@@ -394,11 +393,10 @@ Tensor
     .. code-block:: python
 
         import paddle
-        import numpy as np
-        paddle.disable_static()
+        import numpy as np 
 
         data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
-        linear = Linear(32, 64)
+        linear = paddle.nn.Linear(32, 64)
         data = paddle.to_tensor(data)
         x = linear(data)
         y = x.detach()
@@ -488,13 +486,13 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_elementwise_sub`
 
-.. py:method:: elementwise_sum(name=None)
+.. py:method:: add_n(inputs, name=None)
 
 返回：计算后的Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_elementwise_sum`
+请参考 :ref:`cn_api_tensor_add_n`
 
 .. py:method:: equal(y, name=None)
 
