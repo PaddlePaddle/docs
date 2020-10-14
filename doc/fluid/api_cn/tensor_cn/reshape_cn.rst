@@ -38,12 +38,6 @@ reshape
 ``Tensor``, 改变形状后的 ``Tensor``，数据类型与 ``x`` 相同。
 
 
-抛出异常：
-    - :code:`TypeError`：``starts`` 的类型应该是list、tuple 或 Tensor。
-    - :code:`ValueError`：``shape`` 中至多有一个元素可以是-1。
-    - :code:`ValueError`：``shape`` 中的元素为0时，对应的维度应该小于等于``x``的维度。
-    - :code:`ValueError`：``shape`` 中的元素除了-1之外，都应该是非负值。
-
 **代码示例**
 
 .. code-block:: python

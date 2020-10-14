@@ -5,9 +5,6 @@ distribute_fpn_proposals
 
 .. py:function:: paddle.fluid.layers.distribute_fpn_proposals(fpn_rois, min_level, max_level, refer_level, refer_scale, name=None)
 
-:alias_main: paddle.nn.functional.distribute_fpn_proposals
-:alias: paddle.nn.functional.distribute_fpn_proposals,paddle.nn.functional.vision.distribute_fpn_proposals
-:old_api: paddle.fluid.layers.distribute_fpn_proposals
 
 
 

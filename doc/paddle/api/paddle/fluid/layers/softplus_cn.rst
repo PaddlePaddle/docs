@@ -5,9 +5,6 @@ softplus
 
 .. py:function:: paddle.fluid.layers.softplus(x,name=None)
 
-:alias_main: paddle.nn.functional.softplus
-:alias: paddle.nn.functional.softplus,paddle.nn.functional.activation.softplus
-:old_api: paddle.fluid.layers.softplus
 
 
 

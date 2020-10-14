@@ -5,9 +5,6 @@ space_to_depth
 
 .. py:function:: paddle.fluid.layers.space_to_depth(x, blocksize, name=None)
 
-:alias_main: paddle.nn.functional.space_to_depth
-:alias: paddle.nn.functional.space_to_depth,paddle.nn.functional.vision.space_to_depth
-:old_api: paddle.fluid.layers.space_to_depth
 
 
 

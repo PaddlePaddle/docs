@@ -1,4 +1,4 @@
-.. _cn_api_fluid_global_scope:
+.. _cn_api_fluid_executor_global_scope:
 
 global_scope
 -------------------------------
@@ -6,7 +6,6 @@ global_scope
 
 .. py:function:: paddle.fluid.global_scope()
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
@@ -20,9 +19,9 @@ global_scope
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
+        import paddle
         import numpy
 
-        fluid.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), fluid.CPUPlace())
-        data = numpy.array(fluid.global_scope().find_var("data").get_tensor())
+        paddle.static.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), paddle.CPUPlace())
+        data = numpy.array(paddle.static.global_scope().find_var("data").get_tensor())
         print(data)  # [[1. 1.]]

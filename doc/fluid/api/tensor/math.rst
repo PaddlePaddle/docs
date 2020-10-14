@@ -22,6 +22,7 @@ math
     math/min.rst
     math/mm.rst
     math/mul.rst
+    math/multiply.rst
     math/pow.rst
     math/prod.rst
     math/sign.rst

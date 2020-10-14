@@ -5,9 +5,6 @@ elementwise_floordiv
 
 .. py:function:: paddle.fluid.layers.elementwise_floordiv(x, y, axis=-1, act=None, name=None)
 
-:alias_main: paddle.elementwise_floordiv
-:alias: paddle.elementwise_floordiv,paddle.tensor.elementwise_floordiv,paddle.tensor.math.elementwise_floordiv
-:old_api: paddle.fluid.layers.elementwise_floordiv
 
 
 

@@ -6,9 +6,6 @@ matrix_nms
 
 .. py:function:: paddle.fluid.layers.matrix_nms(bboxes, scores, score_threshold, post_threshold, nms_top_k, keep_top_k, use_gaussian=False, gaussian_sigma=2., background_label=0, normalized=True, return_index=False, name=None)
 
-:alias_main: paddle.nn.functional.matrix_nms
-:alias: paddle.nn.functional.matrix_nms,paddle.nn.functional.extension.matrix_nms
-:old_api: paddle.fluid.layers.matrix_nms
 
 
 

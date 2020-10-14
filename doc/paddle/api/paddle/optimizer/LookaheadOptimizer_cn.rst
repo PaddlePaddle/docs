@@ -6,7 +6,6 @@ LookaheadOptimizer
 
 .. py:class:: paddle.fluid.optimizer.LookaheadOptimizer(inner_optimizer, alpha=0.5, k=5)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
@@ -31,6 +30,7 @@ LookaheadOptimizer
             import paddle.fluid as fluid
             import numpy.random as random
 
+            paddle.enable_static()
             x = fluid.layers.data(name='x', shape=[2], dtype='float32')
             label = fluid.layers.data(name="label", shape=[1], dtype="int64")
             y = fluid.layers.fc(input=[x], size=2, act="softmax")

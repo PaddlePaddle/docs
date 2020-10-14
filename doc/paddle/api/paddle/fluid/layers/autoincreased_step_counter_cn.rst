@@ -6,7 +6,6 @@ autoincreased_step_counter
 
 .. py:function:: paddle.fluid.layers.autoincreased_step_counter(counter_name=None, begin=1, step=1)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

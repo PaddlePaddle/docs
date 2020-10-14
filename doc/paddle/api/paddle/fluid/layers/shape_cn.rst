@@ -5,9 +5,6 @@ shape
 
 .. py:function:: paddle.fluid.layers.shape(input)
 
-:alias_main: paddle.shape
-:alias: paddle.shape,paddle.tensor.shape,paddle.tensor.attribute.shape
-:old_api: paddle.fluid.layers.shape
 
 
 

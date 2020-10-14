@@ -6,7 +6,6 @@ DynamicRNN
 
 .. py:class:: paddle.fluid.layers.DynamicRNN(name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

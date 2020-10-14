@@ -5,9 +5,6 @@ mean
 
 .. py:function:: paddle.fluid.layers.mean(x, name=None)
 
-:alias_main: paddle.mean
-:alias: paddle.mean,paddle.tensor.mean,paddle.tensor.stat.mean
-:old_api: paddle.fluid.layers.mean
 
 
 

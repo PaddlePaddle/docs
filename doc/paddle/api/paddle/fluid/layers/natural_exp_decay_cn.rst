@@ -5,9 +5,6 @@ natural_exp_decay
 
 .. py:function:: paddle.fluid.layers.natural_exp_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
-:alias_main: paddle.nn.functional.natural_exp_decay
-:alias: paddle.nn.functional.natural_exp_decay,paddle.nn.functional.learning_rate.natural_exp_decay
-:old_api: paddle.fluid.layers.natural_exp_decay
 
 
 

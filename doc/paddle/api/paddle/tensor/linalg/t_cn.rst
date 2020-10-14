@@ -5,8 +5,6 @@ t
 
 .. py:function:: paddle.tensor.t(input, name=None)
 
-:alias_main: paddle.t
-:alias: paddle.t,paddle.tensor.t,paddle.tensor.linalg.t
 
 
 

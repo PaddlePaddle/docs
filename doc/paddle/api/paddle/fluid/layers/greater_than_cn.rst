@@ -5,9 +5,6 @@ greater_than
 
 .. py:function:: paddle.fluid.layers.greater_than(x, y, cond=None, name=None)
 
-:alias_main: paddle.greater_than
-:alias: paddle.greater_than,paddle.tensor.greater_than,paddle.tensor.logic.greater_than
-:old_api: paddle.fluid.layers.greater_than
 
 
 

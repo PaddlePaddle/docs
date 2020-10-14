@@ -5,9 +5,6 @@ density_prior_box
 
 .. py:function:: paddle.fluid.layers.density_prior_box(input, image, densities=None, fixed_sizes=None, fixed_ratios=None, variance=[0.1, 0.1, 0.2, 0.2], clip=False, steps=[0.0, 0.0], offset=0.5, flatten_to_2d=False, name=None)
 
-:alias_main: paddle.nn.functional.density_prior_box
-:alias: paddle.nn.functional.density_prior_box,paddle.nn.functional.vision.density_prior_box
-:old_api: paddle.fluid.layers.density_prior_box
 
 
 

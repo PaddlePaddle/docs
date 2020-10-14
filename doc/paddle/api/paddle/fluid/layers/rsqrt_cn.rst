@@ -3,11 +3,8 @@
 rsqrt
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.rsqrt(x, name=None)
+.. py:function:: paddle.rsqrt(x, name=None)
 
-:alias_main: paddle.rsqrt
-:alias: paddle.rsqrt,paddle.tensor.rsqrt,paddle.tensor.math.rsqrt
-:old_api: paddle.fluid.layers.rsqrt
 
 
 
@@ -22,18 +19,17 @@ rsqrt
 
 
 参数:
-    - **x** (Variable) – 输入是多维Tensor或LoDTensor，数据类型可以是float32和float64。 
+    - **x** (Tensor) – 输入是多维Tensor，数据类型可以是float32和float64。 
     - **name** (str，可选）— 这一层的名称（可选）。如果设置为None，则将自动命名这一层。默认值为None。
 
-返回：对输入x进行rsqrt激活函数计算后的Tensor或LoDTensor，数据shape和输入x的shape一致。
-
-返回类型：Variable，数据类型和输入数据类型一致。
+返回：Tensor，对输入x进行rsqrt激活函数计算结果，数据shape、类型和输入x的shape、类型一致。
 
 **代码示例**：
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.data(name="input", shape=[32, 784])
-        result = fluid.layers.rsqrt(data)
+        import paddle
 
+        x = paddle.to_tensor([0.1, 0.2, 0.3, 0.4])
+        out = paddle.rsqrt(x)
+        # [3.16227766 2.23606798 1.82574186 1.58113883]

@@ -5,9 +5,6 @@ inverse_time_decay
 
 .. py:function:: paddle.fluid.layers.inverse_time_decay(learning_rate, decay_steps, decay_rate, staircase=False)
 
-:alias_main: paddle.nn.functional.inverse_time_decay
-:alias: paddle.nn.functional.inverse_time_decay,paddle.nn.functional.learning_rate.inverse_time_decay
-:old_api: paddle.fluid.layers.inverse_time_decay
 
 
 

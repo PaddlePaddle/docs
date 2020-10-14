@@ -13,7 +13,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * **CUDA 工具包 9.0/9.1/9.2/10.0/10.1 配合 cuDNN v7.3+**
+    * **CUDA 工具包 9.0/9.1/9.2/10.0/10.1 配合 cuDNN v7.4+**
     * **GPU运算能力超过1.0的硬件设备**
 
 ## 安装步骤
@@ -40,6 +40,8 @@
         * 安装 wheel 包可以通过命令 `pip install wheel`
 
     > git可以在官网[下载](https://gitforwindows.org/)，并添加到环境变量中。
+
+    > 如果您使用的是Python2，还需要安装[Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-us/download/details.aspx?id=44266)
 
 2. 将PaddlePaddle的源码clone在当前目录下的Paddle的文件夹中，并进入Padde目录下：
 

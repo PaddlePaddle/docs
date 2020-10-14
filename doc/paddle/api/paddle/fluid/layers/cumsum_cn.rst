@@ -5,11 +5,6 @@ cumsum
 
 .. py:function:: paddle.fluid.layers.cumsum(x,axis=None,exclusive=None,reverse=None)
 
-:alias_main: paddle.cumsum
-:alias: paddle.cumsum,paddle.tensor.cumsum,paddle.tensor.math.cumsum
-:old_api: paddle.fluid.layers.cumsum
-
-
 
 沿给定轴(axis)的元素的累加和。默认结果的第一个元素和输入的第一个元素一致。如果exlusive为True，结果的第一个元素则为0。
 

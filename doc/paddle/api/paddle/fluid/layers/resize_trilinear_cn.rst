@@ -5,9 +5,6 @@ resize_trilinear
 
 .. py:function:: paddle.fluid.layers.resize_trilinear(input, out_shape=None, scale=None, name=None, actual_shape=None, align_corners=True, align_mode=1, data_format='NCDHW')
 
-:alias_main: paddle.nn.functional.resize_trilinear
-:alias: paddle.nn.functional.resize_trilinear,paddle.nn.functional.vision.resize_trilinear
-:old_api: paddle.fluid.layers.resize_trilinear
 
 
 

@@ -16,9 +16,6 @@ full_like
     
 返回：返回一个存储结果的Tensor，数据类型和dtype相同。
 
-抛出异常：
-    - ``TypeError``: - 当 ``x`` 的数据类型不是bool、float16、float32、float64、int32、int64其中之一。
-    - ``TypeError``: - 当 ``dtype`` 不是bool、float16、float32、float64、int32、int64或者None其中之一。
 
     **代码示例**：
 

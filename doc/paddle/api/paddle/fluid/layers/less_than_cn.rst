@@ -5,9 +5,6 @@ less_than
 
 .. py:function:: paddle.fluid.layers.less_than(x, y, force_cpu=None, cond=None, name=None)
 
-:alias_main: paddle.less_than
-:alias: paddle.less_than,paddle.tensor.less_than,paddle.tensor.logic.less_than
-:old_api: paddle.fluid.layers.less_than
 
 
 

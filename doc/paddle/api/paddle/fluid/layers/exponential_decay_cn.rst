@@ -5,9 +5,6 @@ exponential_decay
 
 .. py:function:: paddle.fluid.layers.exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
 
-:alias_main: paddle.nn.functional.exponential_decay
-:alias: paddle.nn.functional.exponential_decay,paddle.nn.functional.learning_rate.exponential_decay
-:old_api: paddle.fluid.layers.exponential_decay
 
 
 

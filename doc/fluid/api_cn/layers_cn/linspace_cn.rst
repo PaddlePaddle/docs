@@ -17,11 +17,6 @@ linspace
 
 返回：表示等间隔划分结果的1-D Tensor，该Tensor的shape大小为 :math:`[num]` ，在mum为1的情况下，仅返回包含start元素值的Tensor。
 
-抛出异常：
-    - ``TypeError`` - 当 ``start`` 或者 ``stop`` 的数据类型不是float32，float64， int32或者int64。
-    - ``TypeError`` - 当 ``dtype`` 的类型不是float32，float64，int32或者int64。
-    - ``TypeError`` - ``num`` 的类型必须是int当 ``num`` 不是Tensor的时候。
-    - ``TypeError`` - ``num`` 的数据类型必须是int32当 ``num`` 是Tensor的时候。
 
 **代码示例**：
 

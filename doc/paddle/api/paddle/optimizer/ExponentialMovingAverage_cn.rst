@@ -6,7 +6,6 @@ ExponentialMovingAverage
 
 .. py:class:: paddle.fluid.optimizer.ExponentialMovingAverage(decay=0.999, thres_steps=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

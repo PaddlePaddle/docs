@@ -5,9 +5,6 @@ isfinite
 
 .. py:function:: paddle.fluid.layers.isfinite(x)
 
-:alias_main: paddle.isfinite
-:alias: paddle.isfinite,paddle.tensor.isfinite,paddle.tensor.logic.isfinite
-:old_api: paddle.fluid.layers.isfinite
 
 
 

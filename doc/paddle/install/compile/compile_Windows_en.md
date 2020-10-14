@@ -13,7 +13,7 @@
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
-    * **CUDA toolkit 9.0/9.1/9.2/10.0/10.1 with cuDNN v7.3+**
+    * **CUDA toolkit 9.0/9.1/9.2/10.0/10.1 with cuDNN v7.4+**
     * **GPU's computing capability exceeds 1.0**
 
 ## Installation steps
@@ -44,6 +44,8 @@ There is one compilation methods in Windows system:
         * To Install Wheel package you can use command `pip install wheel`
 
     > Git can be downloaded on the [official website](https://gitforwindows.org/) and added to the environment variable.
+
+    > If you are using Python 2, you need to install [Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-us/download/details.aspx?id=44266)
 
 2. Clone the PaddlePaddle source code to the Paddle subdirectories of the current directory and go to the Paddle subdirectories:
 

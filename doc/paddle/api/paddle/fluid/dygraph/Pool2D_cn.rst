@@ -5,9 +5,6 @@ Pool2D
 
 .. py:class:: paddle.fluid.dygraph.Pool2D(pool_size=-1, pool_type='max', pool_stride=1, pool_padding=0, global_pooling=False, use_cudnn=True, ceil_mode=False, exclusive=True, data_format="NCHW")
 
-:alias_main: paddle.nn.Pool2D
-:alias: paddle.nn.Pool2D,paddle.nn.layer.Pool2D,paddle.nn.layer.common.Pool2D
-:old_api: paddle.fluid.dygraph.Pool2D
 
 
 

@@ -5,9 +5,6 @@ similarity_focus
 
 .. py:function:: paddle.fluid.layers.similarity_focus(input, axis, indexes, name=None)
 
-:alias_main: paddle.nn.functional.similarity_focus
-:alias: paddle.nn.functional.similarity_focus,paddle.nn.functional.extension.similarity_focus
-:old_api: paddle.fluid.layers.similarity_focus
 
 
 

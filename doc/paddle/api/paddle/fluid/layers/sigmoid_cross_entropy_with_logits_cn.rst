@@ -5,9 +5,6 @@ sigmoid_cross_entropy_with_logits
 
 .. py:function:: paddle.fluid.layers.sigmoid_cross_entropy_with_logits(x, label, ignore_index=-100, name=None, normalize=False)
 
-:alias_main: paddle.nn.functional.sigmoid_cross_entropy_with_logits
-:alias: paddle.nn.functional.sigmoid_cross_entropy_with_logits,paddle.nn.functional.loss.sigmoid_cross_entropy_with_logits
-:old_api: paddle.fluid.layers.sigmoid_cross_entropy_with_logits
 
 
 

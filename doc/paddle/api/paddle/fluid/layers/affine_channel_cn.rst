@@ -5,9 +5,6 @@ affine_channel
 
 .. py:function:: paddle.fluid.layers.affine_channel(x, scale=None, bias=None, data_layout='NCHW', name=None,act=None)
 
-:alias_main: paddle.nn.functional.affine_channel
-:alias: paddle.nn.functional.affine_channel,paddle.nn.functional.vision.affine_channel
-:old_api: paddle.fluid.layers.affine_channel
 
 
 

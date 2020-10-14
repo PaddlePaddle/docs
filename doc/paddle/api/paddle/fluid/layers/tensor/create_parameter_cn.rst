@@ -6,7 +6,6 @@ create_parameter
 
 .. py:function:: paddle.fluid.layers.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
@@ -30,9 +29,8 @@ create_parameter
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    W = layers.create_parameter(shape=[784, 200], dtype='float32')
+    import paddle
+    W = paddle.static.create_parameter(shape=[784, 200], dtype='float32')
 
 
 

@@ -5,9 +5,6 @@ SpectralNorm
 
 .. py:class:: paddle.fluid.dygraph.SpectralNorm(weight_shape, dim=0, power_iters=1, eps=1e-12, name=None, dtype="float32")
 
-:alias_main: paddle.nn.SpectralNorm
-:alias: paddle.nn.SpectralNorm,paddle.nn.layer.SpectralNorm,paddle.nn.layer.norm.SpectralNorm
-:old_api: paddle.fluid.dygraph.SpectralNorm
 
 
 

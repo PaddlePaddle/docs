@@ -5,9 +5,6 @@ margin_rank_loss
 
 .. py:function:: paddle.fluid.layers.margin_rank_loss(label, left, right, margin=0.1, name=None)
 
-:alias_main: paddle.nn.functional.margin_rank_loss
-:alias: paddle.nn.functional.margin_rank_loss,paddle.nn.functional.loss.margin_rank_loss
-:old_api: paddle.fluid.layers.margin_rank_loss
 
 
 

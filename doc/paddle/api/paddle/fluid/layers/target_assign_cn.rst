@@ -5,9 +5,6 @@ target_assign
 
 .. py:function:: paddle.fluid.layers.target_assign(input, matched_indices, negative_indices=None, mismatch_value=None, name=None)
 
-:alias_main: paddle.nn.functional.target_assign
-:alias: paddle.nn.functional.target_assign,paddle.nn.functional.extension.target_assign
-:old_api: paddle.fluid.layers.target_assign
 
 
 

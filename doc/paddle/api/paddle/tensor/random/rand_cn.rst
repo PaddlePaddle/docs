@@ -5,11 +5,6 @@ rand
 
 .. py:function:: paddle.rand(shape, dtype=None, name=None)
 
-:alias_main: paddle.rand
-:alias: paddle.tensor.rand, paddle.tensor.random.rand
-
-
-
 该OP返回符合均匀分布的，范围在[0, 1)的Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
 参数
@@ -22,11 +17,6 @@ rand
 ::::::::::
     Tensor: 符合均匀分布的范围为[0, 1)的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
-抛出异常
-::::::::::
-    - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
-    - ``TypeError`` - 如果 ``dtype`` 不是float32、float64。
-
 示例代码
 ::::::::::
 
@@ -35,25 +25,25 @@ rand
     import paddle
     import numpy as np
 
-    paddle.enable_imperative()
+    paddle.disable_static()
     # example 1: attr shape is a list which doesn't contain Tensor.
-    result_1 = paddle.rand(shape=[2, 3])
-    # [[0.451152  , 0.55825245, 0.403311  ],
-    #  [0.22550228, 0.22106001, 0.7877319 ]]
+    out1 = paddle.rand(shape=[2, 3])
+    # [[0.451152  , 0.55825245, 0.403311  ],  # random
+    #  [0.22550228, 0.22106001, 0.7877319 ]]  # random
 
     # example 2: attr shape is a list which contains Tensor.
-    dim_1 = paddle.fill_constant([1], "int64", 2)
-    dim_2 = paddle.fill_constant([1], "int32", 3)
-    result_2 = paddle.rand(shape=[dim_1, dim_2, 2])
-    # [[[0.8879919  0.25788337]
-    #   [0.28826773 0.9712097 ]
-    #   [0.26438272 0.01796806]]
-    #  [[0.33633623 0.28654453]
-    #   [0.79109055 0.7305809 ]
-    #   [0.870881   0.2984597 ]]]
+    dim1 = paddle.full([1], 2, "int64")
+    dim2 = paddle.full([1], 3, "int32")
+    out2 = paddle.rand(shape=[dim1, dim2, 2])
+    # [[[0.8879919 , 0.25788337],  # random
+    #   [0.28826773, 0.9712097 ],  # random
+    #   [0.26438272, 0.01796806]],  # random
+    #  [[0.33633623, 0.28654453],  # random
+    #   [0.79109055, 0.7305809 ],  # random
+    #   [0.870881  , 0.2984597 ]]]  # random
 
     # example 3: attr shape is a Tensor, the data type must be int64 or int32.
-    var_shape = paddle.imperative.to_variable(np.array([2, 3]))
-    result_3 = paddle.rand(var_shape)
-    # [[0.22920267 0.841956   0.05981819]
-    #  [0.4836288  0.24573246 0.7516129 ]]
+    shape_tensor = paddle.to_tensor(np.array([2, 3]))
+    out2 = paddle.rand(shape_tensor)
+    # [[0.22920267, 0.841956  , 0.05981819],  # random
+    #  [0.4836288 , 0.24573246, 0.7516129 ]]  # random

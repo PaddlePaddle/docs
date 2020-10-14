@@ -5,9 +5,6 @@ collect_fpn_proposals
 
 .. py:function:: paddle.fluid.layers.collect_fpn_proposals(multi_rois, multi_scores, min_level, max_level, post_nms_top_n, name=None)
 
-:alias_main: paddle.nn.functional.collect_fpn_proposals
-:alias: paddle.nn.functional.collect_fpn_proposals,paddle.nn.functional.vision.collect_fpn_proposals
-:old_api: paddle.fluid.layers.collect_fpn_proposals
 
 
 

@@ -5,9 +5,6 @@ flatten
 
 .. py:function::  paddle.fluid.layers.flatten(x, axis=1, name=None)
 
-:alias_main: paddle.flatten
-:alias: paddle.flatten,paddle.tensor.flatten,paddle.tensor.manipulation.flatten
-:old_api: paddle.fluid.layers.flatten
 
 
 

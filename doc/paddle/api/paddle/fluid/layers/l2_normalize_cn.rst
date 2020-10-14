@@ -5,9 +5,6 @@ l2_normalize
 
 .. py:function:: paddle.fluid.layers.l2_normalize(x,axis,epsilon=1e-12,name=None)
 
-:alias_main: paddle.nn.functional.l2_normalize
-:alias: paddle.nn.functional.l2_normalize,paddle.nn.functional.norm.l2_normalize
-:old_api: paddle.fluid.layers.l2_normalize
 
 
 

@@ -5,9 +5,6 @@ mse_loss
 
 .. py:function:: paddle.fluid.layers.mse_loss(input,label)
 
-:alias_main: paddle.nn.functional.mse_loss
-:alias: paddle.nn.functional.mse_loss,paddle.nn.functional.loss.mse_loss
-:old_api: paddle.fluid.layers.mse_loss
 
 
 

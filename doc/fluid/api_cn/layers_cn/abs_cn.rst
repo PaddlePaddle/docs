@@ -29,11 +29,9 @@ abs
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([-1, -2, -3, -4]).astype(np.float32)
-        x = paddle.to_variable(x_data)
-        res = paddle.abs(x)
-        print(res.numpy())
-        # [1, 2, 3, 4]
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = paddle.abs(x)
+        print(out.numpy())
+        # [0.4 0.2 0.1 0.3]

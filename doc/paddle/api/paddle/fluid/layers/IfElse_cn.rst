@@ -6,7 +6,6 @@ IfElse
 
 .. py:class:: paddle.fluid.layers.IfElse(cond, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

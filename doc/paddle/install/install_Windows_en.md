@@ -17,6 +17,8 @@
 
     * If you are using Python 3, the output should be 3.5.1+/3.6+/3.7+
 
+    If you are using Python 2, you need to install [Microsoft Visual C++ Compiler for Python 2.7](https://www.microsoft.com/en-us/download/details.aspx?id=44266)
+
 * If Python doesn't match your expected version, use the following command to see if Python's path is where you expect it to be:
 
     where python
@@ -50,7 +52,7 @@
 * If your computer doesn’t have NVIDIA® GPU, please install the CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and it satisfies the following requirements, we recommend you to install the GPU version of PaddlePaddle
-    * *CUDA Toolkit 9.0/10.0 with cuDNN v7.3+*
+    * *CUDA Toolkit 9.0/10.0 with cuDNN v7.4+*
     * *GPU's computing capability exceeds 1.0*
 
 Note: currently, the official Windows installation package only support CUDA 9.0/10.0 with single GPU, and don't include CUDA 9.1/9.2/10.1. if you need to use, please compile by yourself through the source code.
@@ -69,16 +71,16 @@ We would like to introduce the pip installation here.
 ## Installation steps
 
 * CPU version of PaddlePaddle:
-  * `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple`(Baidu source is recommended) or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * `python -m pip install paddlepaddle==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 * GPU version of PaddlePaddle:
-  * `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple`(Baidu source is recommended) or `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * `python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 There is a checking function below for [verifyig whether the installation is successful](#check). If you have any further questions, please check the [FAQ](./FAQ.html).
 
 Notice:
 
-* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install PaddlePaddle that supports CUDA 10.0(with cuDNN v7.3+).
+* `python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html` This command will install PaddlePaddle that supports CUDA 10.0(with cuDNN v7.4+).
 <a name="check"></a>
 ## Installation Verification
 After completing the installation process, you can use `python` to enter python interface and input `import paddle.fluid as fluid` and then `fluid.install_check.run_check()` to check whether the installation is successful.

@@ -5,9 +5,6 @@ rpn_target_assign
 
 .. py:function:: paddle.fluid.layers.rpn_target_assign(bbox_pred, cls_logits, anchor_box, anchor_var, gt_boxes, is_crowd, im_info, rpn_batch_size_per_im=256, rpn_straddle_thresh=0.0, rpn_fg_fraction=0.5, rpn_positive_overlap=0.7, rpn_negative_overlap=0.3, use_random=True)
 
-:alias_main: paddle.nn.functional.rpn_target_assign
-:alias: paddle.nn.functional.rpn_target_assign,paddle.nn.functional.extension.rpn_target_assign
-:old_api: paddle.fluid.layers.rpn_target_assign
 
 
 

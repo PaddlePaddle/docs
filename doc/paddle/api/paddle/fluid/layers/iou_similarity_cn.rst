@@ -5,9 +5,6 @@ iou_similarity
 
 .. py:function:: paddle.fluid.layers.iou_similarity(x, y, box_normalized=True, name=None)
 
-:alias_main: paddle.nn.functional.iou_similarity
-:alias: paddle.nn.functional.iou_similarity,paddle.nn.functional.loss.iou_similarity
-:old_api: paddle.fluid.layers.iou_similarity
 
 
 

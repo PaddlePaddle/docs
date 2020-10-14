@@ -5,9 +5,6 @@ shuffle
 
 .. py:function:: paddle.fluid.io.shuffle(reader, buffer_size)
 
-:alias_main: paddle.shuffle
-:alias: paddle.shuffle,paddle.tensor.shuffle,paddle.tensor.random.shuffle
-:old_api: paddle.fluid.io.shuffle
 
 
 

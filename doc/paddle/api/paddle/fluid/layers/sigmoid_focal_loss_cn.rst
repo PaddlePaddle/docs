@@ -5,9 +5,6 @@ sigmoid_focal_loss
 
 .. py:function:: paddle.fluid.layers.sigmoid_focal_loss(x, label, fg_num, gamma=2.0, alpha=0.25)
 
-:alias_main: paddle.nn.functional.sigmoid_focal_loss
-:alias: paddle.nn.functional.sigmoid_focal_loss,paddle.nn.functional.loss.sigmoid_focal_loss
-:old_api: paddle.fluid.layers.sigmoid_focal_loss
 
 
 

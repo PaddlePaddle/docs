@@ -5,9 +5,6 @@ randperm
 
 .. py:function:: paddle.randperm(n, dtype="int64", name=None)
 
-:alias_main: paddle.randperm
-:alias: paddle.tensor.randperm, paddle.tensor.random.randperm
-
 该OP返回一个数值在0到n-1、随机排列的1-D Tensor，数据类型为 ``dtype``。
 
 参数:
@@ -20,22 +17,17 @@ randperm
 ::::::::::
   Tensor：一个数值在0到n-1、随机排列的1-D Tensor，数据类型为 ``dtype`` 。
 
-抛出异常
-::::::::::
-  - ValueError - 如果 ``n`` 不大于0.
-  - TypeError - 如果 ``dtype`` 不是int32、int64、float32、float64.
-
 代码示例
 ::::::::::
 
-..  code-block:: python
+.. code-block:: python
 
     import paddle
 
-    paddle.enable_imperative()
+    paddle.disable_static()
 
-    result_1 = paddle.randperm(5)
-    # [4 1 2 3 0]
+    out1 = paddle.randperm(5)
+    # [4, 1, 2, 3, 0]  # random
 
-    result_2 = paddle.randperm(7, 'int32')
-    # [1 6 2 0 4 3 5]   
+    out2 = paddle.randperm(7, 'int32')
+    # [1, 6, 2, 0, 4, 3, 5]  # random

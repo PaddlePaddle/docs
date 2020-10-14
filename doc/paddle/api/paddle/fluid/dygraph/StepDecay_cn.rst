@@ -6,7 +6,6 @@ StepDecay
 
 .. py:class:: paddle.fluid.dygraph.StepDecay(learning_rate, step_size, decay_rate=0.1)
 
-:api_attr: 命令式编程模式（动态图)
 
 
 该接口提供 ``step_size`` 衰减学习率的功能，每经过 ``step_size`` 个 ``epoch`` 时会通过 ``decay_rate`` 衰减一次学习率。

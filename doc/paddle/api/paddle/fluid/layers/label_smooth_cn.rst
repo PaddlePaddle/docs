@@ -5,9 +5,6 @@ label_smooth
 
 .. py:function:: paddle.fluid.layers.label_smooth(label, prior_dist=None, epsilon=0.1, dtype='float32', name=None)
 
-:alias_main: paddle.nn.functional.label_smooth
-:alias: paddle.nn.functional.label_smooth,paddle.nn.functional.common.label_smooth
-:old_api: paddle.fluid.layers.label_smooth
 
 
 

@@ -5,9 +5,6 @@ reduce_min
 
 .. py:function:: paddle.fluid.layers.reduce_min(input, dim=None, keep_dim=False, name=None)
 
-:alias_main: paddle.reduce_min
-:alias: paddle.reduce_min,paddle.tensor.reduce_min,paddle.tensor.math.reduce_min
-:old_api: paddle.fluid.layers.reduce_min
 
 
 

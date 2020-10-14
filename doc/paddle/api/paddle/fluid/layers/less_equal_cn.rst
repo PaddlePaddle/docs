@@ -5,9 +5,6 @@ less_equal
 
 .. py:function:: paddle.fluid.layers.less_equal(x, y, cond=None, name=None)
 
-:alias_main: paddle.less_equal
-:alias: paddle.less_equal,paddle.tensor.less_equal,paddle.tensor.logic.less_equal
-:old_api: paddle.fluid.layers.less_equal
 
 
 

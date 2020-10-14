@@ -1,9 +1,9 @@
-.. _cn_api_fluid_io_cache:
+.. _cn_api_io_cache:
 
 cache
 -------------------------------
 
-.. py:function:: paddle.fluid.io.cache(reader)
+.. py:function:: paddle.io.cache(reader)
 
 
 
@@ -15,4 +15,21 @@ cache
 
 返回：每次都会从内存中yields数据的一个装饰reader。
 
-返回类型：生成器
+返回类型：数据保存在内存的reader（读取器）
+
+**代码示例**
+
+..  code-block:: python
+
+    import paddle
+
+    def reader():
+        for i in range(3):
+            yield i
+
+    # All data is cached into memory
+    cached_reader = paddle.io.cache(reader)
+
+    # Output: 0 1 2
+    for i in cached_reader():
+        print(i)

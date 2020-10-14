@@ -6,7 +6,6 @@ sequence_reshape
 
 .. py:function:: paddle.fluid.layers.sequence_reshape(input, new_dim)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

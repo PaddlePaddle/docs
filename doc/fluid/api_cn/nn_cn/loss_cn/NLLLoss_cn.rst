@@ -63,8 +63,8 @@ NLLLoss
 
         place = paddle.CPUPlace()
         paddle.disable_static(place)
-        input = paddle.to_variable(input_np)
+        input = paddle.to_tensor(input_np)
         log_out = log_softmax(input)
-        label = paddle.to_variable(label_np)
+        label = paddle.to_tensor(label_np)
         result = nll_loss(log_out, label)
         print(result.numpy()) # [1.0720209]

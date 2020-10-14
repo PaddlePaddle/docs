@@ -5,9 +5,6 @@ resize_nearest
 
 .. py:function:: paddle.fluid.layers.resize_nearest(input, out_shape=None, scale=None, name=None, actual_shape=None, align_corners=True, data_format='NCHW')
 
-:alias_main: paddle.nn.functional.resize_nearest
-:alias: paddle.nn.functional.resize_nearest,paddle.nn.functional.vision.resize_nearest
-:old_api: paddle.fluid.layers.resize_nearest
 
 
 

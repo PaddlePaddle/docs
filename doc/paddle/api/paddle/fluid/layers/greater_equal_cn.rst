@@ -5,9 +5,6 @@ greater_equal
 
 .. py:function:: paddle.fluid.layers.greater_equal(x, y, cond=None, name=None)
 
-:alias_main: paddle.greater_equal
-:alias: paddle.greater_equal,paddle.tensor.greater_equal,paddle.tensor.logic.greater_equal
-:old_api: paddle.fluid.layers.greater_equal
 
 
 

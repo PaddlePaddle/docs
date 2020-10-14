@@ -6,7 +6,6 @@ sequence_pad
 
 .. py:function:: paddle.fluid.layers.sequence_pad(x,pad_value,maxlen=None,name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

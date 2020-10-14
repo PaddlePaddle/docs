@@ -3,11 +3,8 @@
 log
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.log(x, name=None)
+.. py:function:: paddle.log(x, name=None)
 
-:alias_main: paddle.log
-:alias: paddle.log,paddle.tensor.log,paddle.tensor.math.log
-:old_api: paddle.fluid.layers.log
 
 
 
@@ -19,31 +16,20 @@ Log激活函数（计算自然对数）
 
 
 参数:
-  - **x** (Variable) – 该OP的输入为LodTensor/Tensor。数据类型为float32，float64。 
+  - **x** (Tensor) – 该OP的输入为Tensor。数据类型为float32，float64。 
   - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回：Log算子自然对数输出
-
-返回类型: Variable - 该OP的输出为LodTensor/Tensor，数据类型为输入一致。
-
+返回：Tensor, Log算子自然对数输出，数据类型与输入一致。
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
-  import paddle.fluid as fluid
-  import numpy as np
+    import paddle
 
-  # Graph Organizing
-  x = fluid.layers.data(name="x", shape=[1], dtype="float32")
-  res = fluid.layers.log(x)
-  
-  # Create an executor using CPU as an example
-  exe = fluid.Executor(fluid.CPUPlace())
-  exe.run(fluid.default_startup_program())
+    x = [[2,3,4], [7,8,9]]
+    x = paddle.to_tensor(x, dtype='float32')
+    res = paddle.log(x)
+    # [[0.693147, 1.09861, 1.38629], [1.94591, 2.07944, 2.19722]]
 
-  # Execute
-  x_i = np.array([[1], [2]]).astype(np.float32)
-  res_val, = exe.run(fluid.default_main_program(), feed={'x':x_i}, fetch_list=[res])
-  print(res_val) # [[0.], [0.6931472]]
 

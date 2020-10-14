@@ -1,49 +1,30 @@
-.. _cn_api_fluid_layers_isfinite:
+.. _cn_api_tensor_isfinite:
 
 isfinite
--------------------------------
+-----------------------------
 
-.. py:function:: paddle.fluid.layers.isfinite(x)
+.. py:function:: paddle.tensor.isfinite(x, name=None)
 
-:alias_main: paddle.isfinite
-:alias: paddle.isfinite,paddle.tensor.isfinite,paddle.tensor.logic.isfinite
-:old_api: paddle.fluid.layers.isfinite
+返回输入tensor的每一个值是否为 `Finite` （既非 `+/-INF` 也非 `+/-NaN` ）。
 
+参数
+:::::::::
+    - **x** (Tensor): 输入的 `Tensor` ，数据类型为：float16、float32、float64、int32、int64。
+    - **name** (str, 可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
+返回
+:::::::::
+``Tensor``, 每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `Finite` （既非 `+/-INF` 也非 `+/-NaN` ）。
 
-``注意：此算子的输入 Tensor / LoDTensor 数据类型必须为 int32 / float / double 之一。``
-
-测试 x 是否包含无穷值（即 nan 或 inf）。若元素均为有穷数，返回真；否则返回假。
-
-参数：
-  - **x(variable)** : 变量，包含被测试的 Tensor / LoDTensor。
-
-返回: 
-  - Variable (Tensor / LoDTensor)，此 Tensor 变量包含一个 bool 型结果。
-
-返回类型
-  - Variable (Tensor / LoDTensor)，一个包含 Tensor 的变量。
-
-**代码示例**：
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy
-
-    # Graph Organizing
-    var = fluid.layers.data(name="data", shape=(4, 6), dtype="float32")
-    output = fluid.layers.isfinite(var)
-
-    # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    img = numpy.array((4, 6)).astype(numpy.float32)
-    res, = exe.run(fluid.default_main_program(), feed={'data':img}, fetch_list=[output])
-    print(res)  # Output Value: [ True]
-
-
-
-
+    import paddle
+    import numpy as np
+    paddle.disable_static()
+    x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
+    x = paddle.to_tensor(x_np)
+    out = paddle.tensor.isfinite(x)
+    print(out.numpy())  # [False  True  True False  True False False]

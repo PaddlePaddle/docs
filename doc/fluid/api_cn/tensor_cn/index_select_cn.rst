@@ -18,10 +18,6 @@ index_select
 **返回**：
     -**Tensor**: 返回一个数据类型同输入的Tensor。
      
-抛出异常：
-    - ``TypeError`` - 当 ``x`` 或者 ``index`` 的类型不是Tensor。
-    - ``TypeError`` - 当 ``x`` 的数据类型不是float32、float64、int32、int64其中之一或者 ``index`` 的数据类型不是int32、int64其中之一。
-
 
 **代码示例**：
 

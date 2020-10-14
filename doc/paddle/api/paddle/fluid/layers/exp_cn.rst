@@ -5,9 +5,6 @@ exp
 
 .. py:function:: paddle.fluid.layers.exp(x, name=None)
 
-:alias_main: paddle.exp
-:alias: paddle.exp,paddle.tensor.exp,paddle.tensor.math.exp
-:old_api: paddle.fluid.layers.exp
 
 
 

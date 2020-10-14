@@ -5,9 +5,6 @@ roi_pool
 
 .. py:function:: paddle.fluid.layers.roi_pool(input, rois, pooled_height=1, pooled_width=1, spatial_scale=1.0)
 
-:alias_main: paddle.nn.functional.roi_pool
-:alias: paddle.nn.functional.roi_pool,paddle.nn.functional.vision.roi_pool
-:old_api: paddle.fluid.layers.roi_pool
 
 
 

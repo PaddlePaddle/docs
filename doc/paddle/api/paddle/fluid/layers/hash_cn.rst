@@ -5,9 +5,6 @@ hash
 
 .. py:function::  paddle.fluid.layers.hash(input, hash_size, num_hash=1, name=None)
 
-:alias_main: paddle.nn.functional.hash
-:alias: paddle.nn.functional.hash,paddle.nn.functional.lod.hash
-:old_api: paddle.fluid.layers.hash
 
 
 

@@ -5,9 +5,6 @@ elementwise_mod
 
 .. py:function:: paddle.fluid.layers.elementwise_mod(x, y, axis=-1, act=None, name=None)
 
-:alias_main: paddle.elementwise_mod
-:alias: paddle.elementwise_mod,paddle.tensor.elementwise_mod,paddle.tensor.math.elementwise_mod
-:old_api: paddle.fluid.layers.elementwise_mod
 
 
 

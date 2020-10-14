@@ -5,9 +5,6 @@ reduce_max
 
 .. py:function:: paddle.fluid.layers.reduce_max(input, dim=None, keep_dim=False, name=None)
 
-:alias_main: paddle.reduce_max
-:alias: paddle.reduce_max,paddle.tensor.reduce_max,paddle.tensor.math.reduce_max
-:old_api: paddle.fluid.layers.reduce_max
 
 
 

@@ -1,14 +1,9 @@
-.. _cn_api_tensor_randint:
+.. _cn_api_tensor_random_randint:
 
 randint
 -------------------------------
 
 .. py:function:: paddle.randint(low=0, high=None, shape=[1], dtype=None, name=None)
-
-:alias_main: paddle.randint
-:alias: paddle.tensor.randint, paddle.tensor.random.randint
-
-
 
 该OP返回服从均匀分布的、范围在[``low``, ``high``)的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low``)。
 
@@ -24,12 +19,6 @@ randint
 ::::::::::
     Tensor：从区间[``low``，``high``)内均匀分布采样的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
-抛出异常
-::::::::::
-    - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
-    - ``TypeError`` - 如果 ``dtype`` 不是int32、int64。
-    - ``ValueError`` - 如果 ``high`` 不大于 ``low``；或者 ``high`` 为None，且 ``low`` 不大于0。
-
 代码示例
 :::::::::::
 
@@ -38,35 +27,34 @@ randint
     import paddle
     import numpy as np
 
-    paddle.enable_imperative()
+    paddle.disable_static()
 
     # example 1:
     # attr shape is a list which doesn't contain Tensor.
-    result_1 = paddle.randint(low=-5, high=5, shape=[3])
-    # [0, -3, 2]
+    out1 = paddle.randint(low=-5, high=5, shape=[3])
+    # [0, -3, 2]  # random
 
     # example 2:
     # attr shape is a list which contains Tensor.
-    dim_1 = paddle.fill_constant([1], "int64", 2)
-    dim_2 = paddle.fill_constant([1], "int32", 3)
-    result_2 = paddle.randint(low=-5, high=5, shape=[dim_1, dim_2], dtype="int32")
-    print(result_2.numpy())
-    # [[ 0, -1, -3],
-    #  [ 4, -2,  0]]
+    dim1 = paddle.full([1], 2, "int64")
+    dim2 = paddle.full([1], 3, "int32")
+    out2 = paddle.randint(low=-5, high=5, shape=[dim1, dim2], dtype="int32")
+    # [[0, -1, -3],  # random
+    #  [4, -2,  0]]  # random
 
     # example 3:
     # attr shape is a Tensor
-    var_shape = paddle.imperative.to_variable(np.array([3]))
-    result_3 = paddle.randint(low=-5, high=5, shape=var_shape)
-    # [-2, 2, 3]
+    shape_tensor = paddle.to_tensor(np.array([3]))
+    out3 = paddle.randint(low=-5, high=5, shape=shape_tensor)
+    # [-2, 2, 3]  # random
 
     # example 4:
-    # date type is int32
-    result_4 = paddle.randint(low=-5, high=5, shape=[3], dtype='int32')
-    # [-5, 4, -4]
+    # data type is int32
+    out4 = paddle.randint(low=-5, high=5, shape=[3], dtype='int32')
+    # [-5, 4, -4]  # random
 
     # example 5:
     # Input only one parameter
     # low=0, high=10, shape=[1], dtype='int64'
-    result_5 = paddle.randint(10)
-    # [7]
+    out5 = paddle.randint(10)
+    # [7]  # random

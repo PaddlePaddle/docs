@@ -5,9 +5,6 @@ round
 
 .. py:function:: paddle.fluid.layers.round(x, name=None)
 
-:alias_main: paddle.round
-:alias: paddle.round,paddle.tensor.round,paddle.tensor.math.round
-:old_api: paddle.fluid.layers.round
 
 
 

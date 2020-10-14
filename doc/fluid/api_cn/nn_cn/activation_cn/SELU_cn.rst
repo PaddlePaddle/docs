@@ -8,14 +8,18 @@ SELU激活层
 
 .. math::
 
-    SELU(x) = scale * (max(0,x) + min(0, alpha * (e^{x} - 1)))
+    SELU(x)= scale *
+             \begin{cases}
+               x, \text{if } x > 0 \\
+               alpha * e^{x} - alpha, \text{if } x <= 0
+             \end{cases}
 
 其中，:math:`x` 为输入的 Tensor
 
 参数
 ::::::::::
-    - scale (float, 可选) - SELU激活计算公式中的scale值。默认值为1.0507009873554804934193349852946。
-    - alpha (float, 可选) - SELU激活计算公式中的alpha值。默认值为1.6732632423543772848170429916717。
+    - scale (float, 可选) - SELU激活计算公式中的scale值，必须大于1.0。默认值为1.0507009873554804934193349852946。
+    - alpha (float, 可选) - SELU激活计算公式中的alpha值，必须大于等于零。默认值为1.6732632423543772848170429916717。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状:

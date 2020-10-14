@@ -37,6 +37,7 @@ paddle
 	paddle/CUDAPinnedPlace.rst
 	paddle/CUDAPlace.rst
 	paddle/cumsum.rst
+	paddle/DataParallel.rst
 	paddle/default_main_program.rst
 	paddle/default_startup_program.rst
 	paddle/diag.rst

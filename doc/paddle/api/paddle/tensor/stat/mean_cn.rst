@@ -1,52 +1,53 @@
-.. _cn_api_fluid_layers_mean:
+.. _cn_api_tensor_cn_mean:
 
 mean
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.mean(x, name=None)
-
-:alias_main: paddle.mean
-:alias: paddle.mean,paddle.tensor.mean,paddle.tensor.stat.mean
-:old_api: paddle.fluid.layers.mean
+.. py:function:: paddle.mean(x, axis=None, keepdim=False, name=None)
 
 
 
-计算 ``x`` 所有元素的平均值。
+该OP沿 ``axis`` 计算 ``x`` 的平均值。
 
-参数：
-        - **x** (Variable) : Tensor 或 LoDTensor。均值运算的输入。
-        - **name** (basestring | None) : 输出变量的名称。
+参数
+::::::::::
+    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64。
+    - axis (int|list|tuple, 可选) - 指定对 ``x`` 进行计算的轴。``axis`` 可以是int、list(int)、tuple(int)。如果 ``axis`` 包含多个维度，则沿着 ``axis`` 中的所有轴进行计算。``axis`` 或者其中的元素值应该在范围[-D, D)内，D是 ``x`` 的维度。如果 ``axis`` 或者其中的元素值小于0，则等价于 :math:`axis + D` 。如果 ``axis`` 是None，则对 ``x`` 的全部元素计算平均值。默认值为None。
+    - keepdim (bool, 可选) - 是否在输出Tensor中保留减小的维度。如果 ``keepdim`` 为True，则输出Tensor和 ``x`` 具有相同的维度(减少的维度除外，减少的维度的大小为1)。否则，输出Tensor的形状会在 ``axis`` 上进行squeeze操作。默认值为False。
+    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：
-        - Variable: 包含输出均值的 Tensor / LoDTensor。
+返回
+::::::::::
+    ``Tensor`` ，沿着 ``axis`` 进行平均值计算的结果，数据类型和 ``x`` 相同。
 
-返回类型：
-        - Variable（变量）。
-
-**代码示例**：
+代码示例
+::::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy
+    import paddle
+    import numpy as np
 
-    # Graph Organizing
-    input = fluid.layers.data(
-        name='data', shape=[2, 3], dtype='float32')
-    output = fluid.layers.mean(input)
+    paddle.disable_static()
 
-    # Create an executor using CPU as an example
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    x_ndarray = numpy.ones([2, 3]).astype(numpy.float32)
-    res, = exe.run(fluid.default_main_program(),
-                   feed={'data':x_ndarray},
-                   fetch_list=[output])
-    print(res)
-    '''
-    Output Value:
-    [1.]
-    '''
+    x = np.array([[[1, 2, 3, 4],
+                   [5, 6, 7, 8],
+                   [9, 10, 11, 12]],
+                  [[13, 14, 15, 16],
+                   [17, 18, 19, 20],
+                   [21, 22, 23, 24]]], 'float32')
+    x = paddle.to_tensor(x)
+    out1 = paddle.mean(x)
+    # [12.5]
+    out2 = paddle.mean(x, axis=-1)
+    # [[ 2.5  6.5 10.5]
+    #  [14.5 18.5 22.5]]
+    out3 = paddle.mean(x, axis=-1, keepdim=True)
+    # [[[ 2.5]
+    #   [ 6.5]
+    #   [10.5]]
+    #  [[14.5]
+    #   [18.5]
+    #   [22.5]]]
+    out4 = paddle.mean(x, axis=[0, 2])
+    # [ 8.5 12.5 16.5]

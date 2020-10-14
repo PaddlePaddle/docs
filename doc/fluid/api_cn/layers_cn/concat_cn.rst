@@ -15,13 +15,6 @@ concat
 
 返回：联结后的 ``Tensor`` ，数据类型和 ``input`` 中的Tensor相同。
 
-
-抛出异常：
-    - ``TypeError``: - 当输入 ``input`` 的类型不是list、tuple或者Tensor的时候。
-    - ``TypeError``: - 当输入 ``input`` 的数据类型不是 bool，float16， float32， float64， int32， int64时。
-    - ``TypeError``: - 当 ``axis`` 的类型不是int或者Tensor时。当 ``axis`` 是Tensor的时候其数据类型不是int32或者int64时。
-    - ``TypeError``: - 当输入 ``input`` 中的Tensor存在数据类型不一致时。
-
 **代码示例**：
 
 .. code-block:: python

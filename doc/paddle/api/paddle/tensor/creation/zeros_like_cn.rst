@@ -1,29 +1,37 @@
-.. _cn_api_fluid_layers_zeros_like:
+.. _cn_api_tensor_zeros_like:
 
 zeros_like
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.zeros_like(x, out=None)
+.. py:function:: paddle.zeros_like(x, dtype=None, name=None)
 
 
+该OP返回一个和 ``x`` 具有相同的形状的全零Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
-
-
-该OP创建一个和x具有相同的形状和数据类型的全零Tensor。
-
-参数：
-    - **x** (Variable) – 指定输入为一个多维的Tensor，数据类型可以是bool，float32，float64，int32，int64。
-    - **out** (Variable|可选) – 如果为None，则创建一个Variable作为输出，创建后的Variable的数据类型，shape大小和输入变量x一致。如果是输入的一个Tensor，数据类型和数据shape大小需要和输入变量x一致。默认值为None。
+参数
+::::::::::
+    - **x** (Tensor) – 输入的多维Tensor，数据类型可以是bool，float16, float32，float64，int32，int64。输出Tensor的形状和 ``x`` 相同。如果 ``dtype`` 为None，则输出Tensor的数据类型与 ``x`` 相同。
+    - **dtype** (str|np.dtype|core.VarDesc.VarType, 可选) - 输出Tensor的数据类型，支持bool，float16, float32，float64，int32，int64。当该参数值为None时， 输出Tensor的数据类型与 ``x`` 相同。默认值为None.
+    - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
     
-返回：返回一个多维的Tensor，具体的元素值和输入的数据类型相关，如果是bool类型的，则全False，其它均为0。数据shape大小和输入x一致。
+返回
+::::::::::
+    Tensor：和 ``x`` 具有相同的形状全零Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
-返回类型：Variable
+抛出异常
+::::::::::
+    - ``TypeError`` - 如果 ``dtype`` 不是bool、float16、float32、float64、int32、int64。
 
-**代码示例**：
+代码示例
+::::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', dtype='float32', shape=[3])
-    data = fluid.layers.zeros_like(x) # [0.0, 0.0, 0.0]
+    import paddle
+    import numpy as np
 
+    paddle.enable_imperative()
+
+    x = paddle.imperative.to_variable(np.array([1,2,3], dtype='float32'))
+    out1 = paddle.zeros_like(x) # [0., 0., 0.]
+    out2 = paddle.zeros_like(x, dtype='int32') # [0, 0, 0]

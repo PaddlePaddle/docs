@@ -18,10 +18,6 @@ full
 返回：返回一个存储结果的Tensor，数据类型和dtype相同。
 
 
-抛出异常：
-    - ``TypeError``: - 如果 ``dtype`` 的类型不是bool, float16, float32, float64, int32, int64其中之一。
-    - ``TypeError``: - 如果 ``shape`` 的类型不是list或tuple或Tensor。当 ``shape`` 是Tensor的时候，其数据类型不是int32或者int64时。
-
 **代码示例**：
 
 .. code-block:: python

@@ -5,9 +5,6 @@ Linear
 
 .. py:class:: paddle.fluid.dygraph.Linear(input_dim, output_dim, param_attr=None, bias_attr=None, act=None, dtype='float32')
 
-:alias_main: paddle.nn.Linear
-:alias: paddle.nn.Linear,paddle.nn.layer.Linear,paddle.nn.layer.common.Linear
-:old_api: paddle.fluid.dygraph.Linear
 
 
 

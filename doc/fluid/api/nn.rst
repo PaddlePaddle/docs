@@ -33,10 +33,10 @@ paddle.nn
     nn/ConstantPad2d.rst
     nn/ConstantPad3d.rst
     nn/continuous_value_model.rst
-    nn/conv2d.rst
-    nn/conv2d_transpose.rst
-    nn/conv3d.rst
-    nn/conv3d_transpose.rst
+    nn/Conv2d.rst
+    nn/Conv3d.rst
+    nn/ConvTranspose2d.rst 
+    nn/ConvTranspose3d.rst 
     nn/cosine_decay.rst
     nn/cosine_similarity.rst
     nn/CosineSimilarity.rst
@@ -88,13 +88,12 @@ paddle.nn
     nn/Linear.rst
     nn/linear_lr_warmup.rst
     nn/log_loss.rst
+    nn/log_sigmoid.rst
     nn/log_softmax.rst
-    nn/logsigmoid.rst
     nn/loss.rst
     nn/lrn.rst
     nn/margin_rank_loss.rst
     nn/matrix_nms.rst
-    nn/maxout.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
     nn/natural_exp_decay.rst

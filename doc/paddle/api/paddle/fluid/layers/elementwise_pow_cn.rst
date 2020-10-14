@@ -5,9 +5,6 @@ elementwise_pow
 
 .. py:function:: paddle.fluid.layers.elementwise_pow(x, y, axis=-1, act=None, name=None)
 
-:alias_main: paddle.elementwise_pow
-:alias: paddle.elementwise_pow,paddle.tensor.elementwise_pow,paddle.tensor.math.elementwise_pow
-:old_api: paddle.fluid.layers.elementwise_pow
 
 
 该OP逐元素对输入Tensor进行幂操作。
