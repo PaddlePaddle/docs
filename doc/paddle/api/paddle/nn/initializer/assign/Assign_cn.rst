@@ -34,7 +34,7 @@ Assign
     # linear_1.weight:  [2. 2.]
     # linear_1.bias:  [2.]
 
-    res_1 = linear(data_1)
+    res_1 = linear_1(data_1)
     # res_1:  [6.]
 
     # python list
@@ -49,7 +49,7 @@ Assign
     # linear_2.weight:  [2. 2.]
     # linear_2.bias:  [2.]
 
-    res_2 = linear(data_2)
+    res_2 = linear_2(data_2)
     # res_2:  [6.]
 
     # tensor
@@ -64,6 +64,6 @@ Assign
     # linear_3.weight:  [2. 2.]
     # linear_3.bias:  [2.]
 
-    res_3 = linear(data_3)
+    res_3 = linear_3(data_3)
     # res_3:  [6.]
 
