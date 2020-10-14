@@ -5,9 +5,6 @@ upsample
 
 .. py:function:: paddle.nn.functioanl.upsample(x,size=None,scale_factor=None,mode='nearest',align_corners=False,align_mode=0,data_format='NCHW',name=None):
 
-:alias_main: paddle.nn.functional.upsample
-:alias: paddle.nn.functional.upsample,paddle.nn.functional.common.upsample
-
 
 
 该OP用于调整一个batch中图片的大小。

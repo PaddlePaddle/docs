@@ -5,9 +5,6 @@ UpsamplingNearest2d
 
 .. py:function:: paddle.nn.UpsamplingNearest2d(x,size=None,scale_factor=None, data_format='NCHW',name=None):
 
-:alias_main: paddle.nn.UpsamplingNearest2d
-:alias: paddle.nn.layer.UpsamplingNearest2d,paddle.nn.layer.common.UpsamplingNearest2d
-
 
 
 该OP用于调整一个batch中图片的大小。

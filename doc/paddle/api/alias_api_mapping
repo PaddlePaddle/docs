@@ -394,3 +394,8 @@ paddle.fluid.layers.box_coder	paddle.nn.functional.box_coder,paddle.nn.functiona
 paddle.fluid.layers.bilinear_tensor_product	paddle.static.nn.bilinear_tensor_product
 paddle.fluid.initializer.Normal	paddle.nn.initializer.Normal
 paddle.fluid.dygraph.jit.SaveLoadConfig	paddle.jit.SaveLoadConfig
+paddle.nn.functional.interpolate	paddle.nn.functional.interpolate,paddle.nn.functional.common.interpolate
+paddle.nn.functional.upsample	paddle.nn.functional.upsample,paddle.nn.functional.common.upsample
+paddle.nn.Upsample	paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
+paddle.nn.UpsamplingBilinear2d	paddle.nn.layer.UpsamplingBilinear2d,paddle.nn.layer.common.UpsamplingBilinear2d
+paddle.nn.UpsamplingNearest2d	paddle.nn.layer.UpsamplingNearest2d,paddle.nn.layer.common.UpsamplingNearest2d
