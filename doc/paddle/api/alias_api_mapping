@@ -19,7 +19,7 @@ paddle.tensor.math.kron	paddle.kron,paddle.tensor.kron
 paddle.nn.functional.pooling.avg_pool3d	paddle.nn.functional.avg_pool3d
 paddle.fluid.layers.crop_tensor	paddle.crop_tensor,paddle.tensor.crop_tensor,paddle.tensor.creation.crop_tensor
 paddle.nn.functional.norm.local_response_norm	paddle.nn.functional.local_response_norm
-paddle.nn.layer.norm.LocalResponseNorm  paddle.nn.LocalResponseNorm,paddle.nn.layer.LocalResponseNorm
+paddle.nn.functional.norm.LocalResponseNorm	paddle.nn.LocalResponseNorm,paddle.nn.layer.LocalResponseNorm
 paddle.tensor.logic.less_than	paddle.less_than,paddle.tensor.less_than
 paddle.nn.layer.loss.NLLLoss	paddle.nn.NLLLoss,paddle.nn.layer.NLLLoss
 paddle.fluid.layers.sigmoid	paddle.nn.functional.sigmoid,paddle.nn.functional.activation.sigmoid
