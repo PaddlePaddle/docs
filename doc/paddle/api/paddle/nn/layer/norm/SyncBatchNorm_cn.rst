@@ -34,6 +34,9 @@ SyncBatchNorm
 - :math:`\gamma` : 可训练的比例参数
 - :math:`\beta` : 可训练的偏差参数
 
+注意：
+    如果您想用容器封装您的模型，而且您的模型在预测阶段中包含 ``SyncBatchNorm`` 这个算子的话，请使用 ``nn.LayerList`` 或者 ``nn.Sequential`` 而不要直接使用 ``list`` 来封装模型。
+
 参数：
     - **num_features** (int) - 指明输入 ``Tensor`` 的通道数量。
     - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
