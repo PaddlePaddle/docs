@@ -157,7 +157,8 @@ paddle.fluid.layers.is_empty	paddle.is_empty,paddle.tensor.is_empty,paddle.tenso
 paddle.tensor.math.multiply	paddle.multiply,paddle.tensor.multiply
 paddle.tensor.creation.Tensor	paddle.Tensor
 paddle.tensor.creation.to_tensor	paddle.to_tensor,paddle.tensor.to_tensor
-paddle.fluid.initializer.Normal	paddle.nn.initializer.Normal
+paddle.fluid.initializer.NormalInitializer	paddle.fluid.initializer.Normal
+paddle.nn.initializer.normal.Normal	paddle.nn.initializer.Normal
 paddle.nn.layer.common.AlphaDropout	paddle.nn.AlphaDropout,paddle.nn.layer.AlphaDropout
 paddle.nn.layer.loss.BCELoss	paddle.nn.BCELoss,paddle.nn.layer.BCELoss
 paddle.nn.layer.conv.ConvTranspose2d	paddle.nn.ConvTranspose2d,paddle.nn.layer.ConvTranspose2d
@@ -196,7 +197,9 @@ paddle.nn.layer.common.ReflectionPad2d	paddle.nn.ReflectionPad2d,paddle.nn.layer
 paddle.nn.layer.conv.Conv1d	paddle.nn.Conv1d,paddle.nn.layer.Conv1d
 paddle.fluid.param_attr.ParamAttr	paddle.ParamAttr,paddle.framework.ParamAttr
 paddle.fluid.layers.retinanet_target_assign	paddle.nn.functional.retinanet_target_assign,paddle.nn.functional.vision.retinanet_target_assign
-paddle.fluid.initializer.Xavier	paddle.nn.initializer.Xavier
+paddle.fluid.initializer.XavierInitializer	paddle.fluid.initializer.Xavier
+paddle.nn.initializer.xavier.XavierNormal	paddle.nn.initializer.XavierNormal
+paddle.nn.initializer.xavier.XavierUniform	paddle.nn.initializer.XavierUniform
 paddle.fluid.dygraph.parallel.prepare_context	paddle.distributed.prepare_context
 paddle.tensor.math.pow	paddle.pow,paddle.tensor.pow
 paddle.fluid.layers.bipartite_match	paddle.nn.functional.bipartite_match,paddle.nn.functional.vision.bipartite_match
@@ -244,7 +247,9 @@ paddle.nn.layer.pooling.MaxPool1d	paddle.nn.MaxPool1d,paddle.nn.layer.MaxPool1d
 paddle.nn.functional.activation.softshrink	paddle.nn.functional.softshrink
 paddle.nn.functional.activation.log_softmax	paddle.nn.functional.log_softmax
 paddle.nn.functional.common.bilinear	paddle.nn.functional.bilinear
-paddle.fluid.initializer.TruncatedNormal	paddle.nn.initializer.TruncatedNormal
+paddle.fluid.initializer.TruncatedNormalInitializer	paddle.fluid.initializer.TruncatedNormal
+paddle.nn.initializer.normal.TruncatedNormal	paddle.nn.initializer.TruncatedNormal
+paddle.nn.initializer.assign.Assign	paddle.nn.initializer.Assign
 paddle.fluid.layers.pool3d	paddle.nn.functional.pool3d,paddle.nn.functional.pooling.pool3d
 paddle.tensor.linalg.norm	paddle.norm,paddle.tensor.norm
 paddle.fluid.layers.roi_align	paddle.nn.functional.roi_align,paddle.nn.functional.vision.roi_align
@@ -346,7 +351,8 @@ paddle.fluid.layers.retinanet_detection_output	paddle.nn.functional.retinanet_de
 paddle.fluid.layers.isfinite	paddle.tensor.logic.isfinite
 paddle.nn.functional.conv.conv3d	paddle.nn.functional.conv3d
 paddle.nn.functional.loss.nll_loss	paddle.nn.functional.nll_loss
-paddle.fluid.initializer.Uniform	paddle.nn.initializer.Uniform
+paddle.fluid.initializer.UniformInitializer	paddle.fluid.initializer.Uniform
+paddle.nn.initializer.uniform.Uniform	paddle.nn.initializer.Uniform
 paddle.tensor.manipulation.roll	paddle.roll,paddle.tensor.roll
 paddle.nn.layer.common.ZeroPad2d	paddle.nn.ZeroPad2d,paddle.nn.layer.ZeroPad2d
 paddle.nn.layer.norm.LayerNorm	paddle.nn.LayerNorm,paddle.nn.layer.LayerNorm
