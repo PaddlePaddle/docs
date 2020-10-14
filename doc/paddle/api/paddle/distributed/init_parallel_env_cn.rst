@@ -53,9 +53,7 @@ init_parallel_env
         labels = paddle.randn([10, 1], 'float32')
         loss = loss_fn(outputs, labels)
         
-        loss = dp_layer.scale_loss(loss)
         loss.backward()
-        dp_layer.apply_collective_grads()
 
         adam.step()
         adam.clear_grad()

@@ -3,7 +3,7 @@
 Adam
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adam(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None, lazy_mode=False)
+.. py:class:: paddle.optimizer.Adam(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, lazy_mode=False, name=None)
 
 
 
@@ -36,8 +36,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
       如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
     - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
       默认值为None，此时将不进行梯度裁剪。
-    - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
     - **lazy_mode** （bool, 可选） - 设为True时，仅更新当前具有梯度的元素。官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为False
+    - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
 
 **代码示例**
@@ -45,12 +45,9 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.mean(out)
     adam = paddle.optimizer.Adam(learning_rate=0.1,
@@ -63,12 +60,9 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
     # Adam with beta1/beta2 as Tensor and weight_decay as float
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.mean(out)
 
@@ -100,10 +94,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    import numpy as np
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.Adam(learning_rate = 0.01,
                                 parameters = linear.parameters())
@@ -130,12 +121,9 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.randn([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.mean(out)
 
@@ -163,11 +151,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
     optimizer = paddle.optimizer.Adam(learning_rate=0.02,
                                      parameters=linear.parameters())
@@ -194,7 +179,6 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 .. code-block:: python
 
     import paddle
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
 
     adam = paddle.optimizer.Adam(0.1, parameters=linear.parameters())
@@ -227,20 +211,16 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
     # example1: _LRScheduler is not used, return value is all the same
-    paddle.disable_static()
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     adam = paddle.optimizer.Adam(0.001, parameters = emb.parameters())
     lr = adam.get_lr()
     print(lr) # 0.001
 
     # example2: PiecewiseLR is used, return the step learning rate
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.randn([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.reduce_mean(out)
 
@@ -250,8 +230,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     adam = paddle.optimizer.Adam(scheduler,
                            parameters=linear.parameters())
 
-    # first step: learning rate is 0.2
-    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+    # learning rate is 0.2
+    print(adam.get_lr())
 
     # learning rate for different steps
     ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
@@ -259,4 +239,4 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
         adam.step()
         lr = adam.get_lr()
         scheduler.step()
-        np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+        print(lr, ret[i])

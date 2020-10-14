@@ -1,5 +1,4 @@
-paddle.utils
 paddle.incubate
 paddle.hapi.progressbar.ProgressBar
-paddle.metric.accuracy
-paddle.metric.auc
+paddle.fluid.contrib
+paddle.optimizer._LRScheduler

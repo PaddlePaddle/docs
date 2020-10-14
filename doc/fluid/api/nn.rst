@@ -94,7 +94,6 @@ paddle.nn
     nn/lrn.rst
     nn/margin_rank_loss.rst
     nn/matrix_nms.rst
-    nn/maxout.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
     nn/natural_exp_decay.rst

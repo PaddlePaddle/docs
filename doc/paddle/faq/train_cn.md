@@ -96,16 +96,19 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ## 模型训练&评估
 
-##### 问题：在CPU上进行模型训练，如何使用多线程？
+##### 问题：使用CPU进行模型训练，如何利用多处理器进行加速？
 
-+ 答复：可以参考使用[CompiledProgram API 中的with_data_parallel方法](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CompiledProgram_cn.html#id5)。
++ 答复：在1.8版本的动态图模式下，CPU训练加速可以从以下两点进行配置：
+
+1. 使用多进程DataLoader加速数据读取：训练数据较多时，数据处理往往会成为训练速度的瓶颈，paddle提供了异步数据读取接口DataLoader，可以使用多进程进行数据加载，充分利用多处理的优势，具体使用方法及示例请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
+
+2. 推荐使用支持MKL（英特尔数学核心函数库）的paddle安装包，MKL相比Openblas等通用计算库在计算速度上有显著的优势，能够提升您的训练效率。
 
 ----------
 
+##### 问题：使用NVIDIA多卡运行Paddle时报错 Nccl error，如何解决？
 
-##### 问题：使用NVIDIA多卡运行Paddle时报错，`Error：NCCL ContextMap`或者`Error：hang住`（log日志打印突然卡住），如何解决？
-
-+ 答复：参考[NCCL Tests](https://github.com/NVIDIA/nccl-tests)检测您的环境。如果检测不通过，请登录[NCCL官网](https://developer.nvidia.com/zh-cn)下载NCCl，安装后重新检测。
++ 答复：这个错误大概率是环境配置不正确导致的，建议您使用NVIDIA官方提供的方法参考检测自己的环境是否配置正确。具体地，可以使用[ NCCL Tests ](https://github.com/NVIDIA/nccl-tests) 检测您的环境；如果检测不通过，请登录[ NCCL官网 ](https://developer.nvidia.com/zh-cn)下载NCCl，安装后重新检测。
 
 ----------
 
@@ -124,6 +127,32 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 ##### 问题：训练过程中提示显存不足，报错 `Error：Out of memory error GPU`，如何处理？
 
 + 答复：这是一种常见情况，可以先检查一下GPU卡是否被其他程序占用，你可以尝试调整`batch_size`大小，也可以更改网络模型，或者参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 。建议用户使用[AI Studio 学习与 实训社区训练](https://aistudio.baidu.com/aistudio/index)，获取免费GPU算力，显存16GB的v100，速度更快。
++ 报错分析：PaddlePaddle安装版本和多卡训练不匹配导致。
+
++ 解决方法：排查当前安装的PaddlePaddle是否支持并行训练。如果是开发者编译的Paddle，请在编译时打开 `WITH_DISTRIBUTE`选项。
+
+----------
+
+##### 问题：训练时报错提示显存不足，如何解决？
+
++ 答复：可以尝试按如下方法解决：
+
+1. 检查是当前模型是否占用了过多显存，可尝试减小`batch_size` ；
+
+2. 开启以下三个选项：
+
+```
+#一旦不再使用即释放内存垃圾，=1.0 垃圾占用内存大小达到10G时，释放内存垃圾`
+export FLAGS_eager_delete_tensor_gb=0.0`
+#启用快速垃圾回收策略，不等待cuda kernel 结束，直接释放显存`
+export FLAGS_fast_eager_deletion_mode=1`
+#该环境变量设置只占用0%的显存`
+export FLAGS_fraction_of_gpu_memory_to_use=0`
+```
+
+详细请参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 调整相关配置。
+
+此外，建议您使用[AI Studio 学习与 实训社区训练](https://aistudio.baidu.com/aistudio/index)，获取免费GPU算力，提升您的训练效率。
 
 ----------
 
@@ -142,26 +171,20 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 ##### 问题：使用CPU或GPU时，如何设置`num_threds`？
 
 + 答复：可以通过`os.getenv("CPU_NUM")`获取相关参数值或者`os.environ['CPU_NUM'] = str(2)`设置相关参数值。
+  1. 如果数据预处理耗时较长，可使用DataLoader加速数据读取过程，具体请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
+
+  2. 如果提高GPU计算量，可以增大`batch_size`，但是注意同时调节其他超参数以确保训练配置的正确性。
+
+  以上两点均为比较通用的方案，其他的优化方案和模型相关，可参考官方模型库 [models](https://github.com/PaddlePaddle/models) 中的具体示例。
 
 ----------
 
 ##### 问题：如何处理变长ID导致程序显存占用过大的问题？
 
-+ 答复：请先参考上述显存不足的问题的解决方案。若存储空间仍然不够，建议对index进行排序，减少padding的数量。
++ 答复：请先参考[显存分配与优化文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/advanced_usage/best_practice/memory_optimize.html) 开启存储优化开关，包括显存垃圾及时回收和Op内部的输出复用输入等。若存储空间仍然不够，建议：
 
-----------
-
-##### 问题：Executor与ParallelExecutor有什么区别？
-
-+ 答复：飞桨（PaddlePaddle，以下简称Paddle）的设计思想类似于高级编程语言C++和JAVA等。程序的执行过程被分为编译和执行两个阶段。
-
-用户完成对 Program 的定义后，Executor 接受这段 Program 并转化为C++后端真正可执行的 FluidProgram，这一自动完成的过程叫做编译。
-
-编译过后需要 Executor 来执行这段编译好的 FluidProgram。
-
-1. `fluid.Executor`执行对象是Program，可以认为是一个轻量级的执行器，目前主要用于参数初始化、参数加载、参数模型保存。
-
-2. `fluid.ParallelExecutor` 是 `Executor` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式， ParallelExecutor 在构造时会将参数分发到不同的节点上，并将输入的 Program 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。
+  1. 降低 `batch_size` ；
+  2. 对index进行排序，减少padding的数量。
 
 ----------
 
@@ -169,25 +192,19 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 + 答复：不收敛的原因有很多，可以参考如下方式排查：
 
-  1. 检查数据集中训练数据的准确率，数据是否有很多错误，特征是否归一化；
+  1. 检查数据集中训练数据的准确率，数据是否有错误，特征是否归一化；
   2. 简化网络结构，先基于benchmark实验，确保在baseline网络结构和数据集上的收敛结果正确；
   3. 对于复杂的网络，每次只增加一个改动，确保改动后的网络正确；
   4. 检查网络在训练数据上的Loss是否下降；
   5. 检查学习率、优化算法是否合适，学习率过大会导致不收敛；
   6. 检查`batch_size`设置是否合适，`batch_size`过小会导致不收敛；
-  7. 检查梯度计算是否正确，是否有梯度过大的情况，是否为NaN。
+  7. 检查梯度计算是否正确，是否有梯度过大的情况，是否为`NaN`。
 
 ----------
 
 ##### 问题：Loss为NaN，如何处理？
 
 + 答复：可能由于网络的设计问题，Loss过大（Loss为NaN）会导致梯度爆炸。如果没有改网络结构，但是出现了NaN，可能是数据读取导致，比如标签对应关系错误。还可以检查下网络中是否会出现除0，log0的操作等。
-
-----------
-
-##### 问题：在AI Studio上使用GPU训练时报错 `Attempt to use GPU for prediction, but environment variable CUDA_VISIBLE_DEVICES was not set correctly.`，如何处理？
-
-+ 答复：需要在Notebook环境中增加：`%set_env CUDA_VISIBLE_DEVICES=0`。
 
 ----------
 
@@ -202,7 +219,35 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ----------
 
-##### 问题：出现未编译CUDA报错怎么办？
+##### 问题：增量训练中，如何保存模型和恢复训练？
+
++ 答复：在增量训练过程中，不仅需要保存模型的参数，也需要保存优化器的参数。
+
+具体地，在1.8版本中需要使用Layer和Optimizer的`state_dict`和`set_dict`方法配合`fluid.save_dygraph/load_dygraph`使用。简要示例如下：
+
+```
+import paddle.fluid as fluid
+
+with fluid.dygraph.guard():
+    emb = fluid.dygraph.Embedding([10, 10])
+
+    state_dict = emb.state_dict()
+    fluid.save_dygraph(state_dict, "paddle_dy")
+
+    adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000),
+                                parameter_list = emb.parameters() )
+
+    state_dict = adam.state_dict()
+    fluid.save_dygraph(state_dict, "paddle_dy")
+
+    para_state_dict, opti_state_dict = fluid.load_dygraph("paddle_dy")
+    emb.set_dict(para_state_dict)
+    adam.set_dict(opti_state_dict)
+```
+
+更多介绍请参考以下API文档：
+- [save_dygraph](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/save_dygraph_cn.html#save-dygraph)
+- [load_dygraph](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/load_dygraph_cn.html#load-dygraph)
 
 ![](https://ai-studio-static-online.cdn.bcebos.com/aba33440dd194ea397528f06bcb3574bddcf496b679b4da2832955b71cf65c76)
 

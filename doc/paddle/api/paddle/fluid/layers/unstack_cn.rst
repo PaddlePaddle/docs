@@ -3,7 +3,7 @@
 unstack
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.unstack(x, axis=0, num=None)
+.. py:function:: paddle.unstack(x, axis=0, num=None)
 
 
 
@@ -21,19 +21,14 @@ unstack
 
 返回: 长度为num的Tensor列表, 数据类型与输入Tensor相同，dim为 ``(D-1)``。
 
-返回类型: list(Tensor)
-
-抛出异常：
-      - :code:`ValueError`：``x.shape[axis]`` <= 0 或 ``axis`` 不在[-D, D)范围内
 
 **代码示例**：
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[2, 3, 5], dtype='float32')  #创建一个shape=[2, 3, 5]的Tensor
-    y = fluid.layers.unstack(x, axis=1)  #沿着第1轴进行unpack, unpack后为3个shape=[2，5]的Tensor
-
+    import paddle
+    x = paddle.ones(name='x', shape=[2, 3, 5], dtype='float32')  # create a tensor with shape=[2, 3, 5]
+    y = paddle.unstack(x, axis=1)  # unstack with second axis, which results 3 tensors with shape=[2, 5]
 
 
 

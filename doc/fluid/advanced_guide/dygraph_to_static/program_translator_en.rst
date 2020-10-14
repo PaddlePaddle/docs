@@ -60,7 +60,7 @@ Load model and run it in static graph mode:
 
     place = paddle.CPUPlace()
     exe = paddle.Executor(place)
-    program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
+    program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname, exe)
     fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 
 However, as tracing only records operators once, if user's code contains Tensor-dependent (including Tensor value or Tensor shape) control flow, that is the Tensor can cause different operators being executed, then TracedLayer cannot handle this case. For instance:

@@ -29,7 +29,7 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
     - **timeout** (int) - 从子进程输出队列获取mini-batch数据的超时时间。默认值为0。
     - **worker_init_fn** (callable) - 子进程初始化函数，此函数会被子进程初始化时被调用，并传递 ``worker id`` 作为参数。默认值为None。
 
-返回：迭代 ``dataset`` 数据的迭代器
+返回：迭代 ``dataset`` 数据的迭代器，迭代器返回的数据中的每个元素都是一个Tensor。
 
 返回类型: DataLoader
 
@@ -37,7 +37,10 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
+
     import numpy as np
+
+    import paddle
     import paddle.fluid as fluid
     from paddle.io import Dataset, BatchSampler, DataLoader
 
@@ -48,7 +51,7 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
     IMAGE_SIZE = 784
     CLASS_NUM = 10
 
-    USE_GPU = True # whether use GPU to run model
+    USE_GPU = False # whether use GPU to run model
 
     # define a random dataset
     class RandomDataset(Dataset):
@@ -63,10 +66,47 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
         def __len__(self):
             return self.num_samples
 
+    dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
+
     # get places
     places = fluid.cuda_places() if USE_GPU else fluid.cpu_places()
 
+    # --------------------- dygraph mode --------------------
+
+    class SimpleNet(fluid.dygraph.Layer):
+        def __init__(self):
+            super(SimpleNet, self).__init__()
+            self.fc = fluid.dygraph.nn.Linear(IMAGE_SIZE, CLASS_NUM, act='softmax')
+
+        def forward(self, image, label=None):
+            return self.fc(image)
+
+    with fluid.dygraph.guard(places[0]):
+        simple_net = SimpleNet()
+        opt = fluid.optimizer.SGD(learning_rate=1e-3,
+                                  parameter_list=simple_net.parameters())
+
+        loader = DataLoader(dataset,
+                            batch_size=BATCH_SIZE,
+                            shuffle=True,
+                            drop_last=True,
+                            num_workers=2)
+
+        for e in range(EPOCH_NUM):
+            for i, (image, label) in enumerate(loader()):
+                out = simple_net(image)
+                loss = fluid.layers.cross_entropy(out, label)
+                avg_loss = fluid.layers.reduce_mean(loss)
+                avg_loss.backward()
+                opt.minimize(avg_loss)
+                simple_net.clear_gradients()
+                print("Epoch {} batch {}: loss = {}".format(e, i, np.mean(loss.numpy())))
+
+    # -------------------------------------------------------
+
     # -------------------- static graph ---------------------
+
+    paddle.enable_static()
 
     def simple_net(image, label):
         fc_tmp = fluid.layers.fc(image, size=CLASS_NUM, act='softmax')
@@ -86,11 +126,8 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
     prog = fluid.CompiledProgram(fluid.default_main_program()).with_data_parallel(loss_name=loss.name)
 
-    dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
-
     loader = DataLoader(dataset,
                         feed_list=[image, label],
-                        places=places,
                         batch_size=BATCH_SIZE, 
                         shuffle=True,
                         drop_last=True,
@@ -102,41 +139,6 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
             print("Epoch {} batch {}: loss = {}".format(e, i, l[0][0]))
 
     # -------------------------------------------------------
-        
-    # -------------------- dynamic graph --------------------
-
-    class SimpleNet(fluid.dygraph.Layer):
-        def __init__(self):
-            super(SimpleNet, self).__init__()
-            self.fc = fluid.dygraph.nn.Linear(IMAGE_SIZE, CLASS_NUM, act='softmax')
-
-        def forward(self, image, label=None):
-            return self.fc(image)
-
-    with fluid.dygraph.guard(places[0]):
-        simple_net = SimpleNet()
-        opt = fluid.optimizer.SGD(learning_rate=1e-3,
-                                  parameter_list=simple_net.parameters())
-
-        loader = DataLoader(dataset,
-                            places=places[0],
-                            batch_size=BATCH_SIZE,
-                            shuffle=True,
-                            drop_last=True,
-                            num_workers=2)
-
-        for e in range(EPOCH_NUM):
-            for i, (image, label) in enumerate(loader()):
-                out = simple_net(image)
-                loss = fluid.layers.cross_entropy(out, label)
-                avg_loss = fluid.layers.reduce_mean(loss)
-                avg_loss.backward()
-                opt.minimize(avg_loss)
-                simple_net.clear_gradients()
-                print("Epoch {} batch {}: loss = {}".format(e, i, np.mean(loss.numpy())))
-
-    # -------------------------------------------------------
-
 
 .. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
 
@@ -171,6 +173,7 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
+            import paddle
             import paddle.fluid as fluid
             import numpy as np
 
@@ -184,6 +187,8 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
             USE_GPU = False # whether to use GPU
 
             DATA_FORMAT = 'batch_generator' # data format of data source user provides
+
+            paddle.enable_static()
 
             def simple_net(image, label):
                 fc_tmp = fluid.layers.fc(image, size=CLASS_NUM)
@@ -305,12 +310,15 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
+            import paddle
             import paddle.fluid as fluid
             import numpy as np
             import os
 
             # We use 2 CPU cores to run inference network
             os.environ['CPU_NUM'] = '2'
+
+            paddle.enable_static()
 
             # The data source has only 3 batches, which can not be
             # divided evenly to each CPU core
@@ -362,7 +370,10 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
+            import paddle
             import paddle.fluid as fluid
+
+            paddle.enable_static()
 
             image = fluid.layers.data(name='image', shape=[784], dtype='float32')
             label = fluid.layers.data(name='label', shape=[1], dtype='int64')
@@ -372,7 +383,5 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
             dataset.set_filelist(['a.txt', 'b.txt', 'c.txt'])
             dataset.set_use_var([image, label])
             dataset.set_pipe_command('cat')
-
-            loader = fluid.io.DataLoader.from_dataset(dataset, fluid.cpu_places())
 
 

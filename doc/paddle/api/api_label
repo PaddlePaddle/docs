@@ -219,7 +219,8 @@ load_persistables_for_increment	.. _api_paddle_fluid_contrib_load_persistables_f
 load_dygraph	.. _api_paddle_fluid_dygraph_checkpoint_load_dygraph:
 LayerHelperBase	.. _api_paddle_fluid_layer_helper_base_LayerHelperBase:
 CompiledProgram	.. _api_paddle_fluid_compiler_CompiledProgram:
-thresholded_relu	.. _api_paddle_fluid_layers_thresholded_relu:
+thresholded_relu	.. _api_paddle_nn_functional_thresholded_relu:
+ThresholdedReLU	.. _api_paddle_nn_layer_activation_ThresholdedReLU:
 PipelineOptimizer	.. _api_paddle_optimizer_PipelineOptimizer:
 clip	.. _api_paddle_tensor_math_clip:
 squeeze	.. _api_paddle_fluid_layers_squeeze:
@@ -230,7 +231,7 @@ load_inference_model	.. _api_paddle_io_load_inference_model:
 bilinear_tensor_product	.. _api_paddle_fluid_layers_bilinear_tensor_product:
 disable_dygraph	.. _api_paddle_fluid_dygraph_base_disable_dygraph:
 isfinite	.. _api_paddle_fluid_layers_isfinite:
-maxout	.. _api_paddle_fluid_layers_maxout:
+maxout	.. _api_paddle_nn_functional_maxout:
 Uniform	.. _api_paddle_fluid_initializer_Uniform:
 leaky_relu	.. _api_paddle_nn_functional_leaky_relu:
 MPISymetricRoleMaker	.. _api_paddle_fluid_incubate_fleet_base_role_maker_MPISymetricRoleMaker:
@@ -238,6 +239,7 @@ temporal_shift	.. _api_paddle_fluid_layers_temporal_shift:
 ComplexVariable	.. _api_paddle_fluid_ComplexVariable:
 DataLoader	.. _api_paddle_io_DataLoader:
 Uniform	.. _api_paddle_distribution_Uniform:
+Categorical	.. _api_paddle_distribution_Categorical:
 PaddleCloudRoleMaker	.. _api_paddle_fluid_incubate_fleet_base_role_maker_PaddleCloudRoleMaker:
 ParallelEnv	.. _api_paddle_fluid_dygraph_parallel_ParallelEnv:
 beam_search	.. _api_paddle_fluid_layers_beam_search:
@@ -459,6 +461,7 @@ PipelineTrainer	.. _api_paddle_fluid_trainer_desc_PipelineTrainer:
 anchor_generator	.. _api_paddle_fluid_layers_anchor_generator:
 train	.. _api_paddle_dataset_wmt16_train:
 concat	.. _api_paddle_tensor_manipulation_concat:
+strided_slice  .. _api_paddle_tensor_manipulation_strided_slice:
 to_variable	.. _api_paddle_fluid_dygraph_base_to_variable:
 sequence_reshape	.. _api_paddle_fluid_layers_sequence_reshape:
 hash	.. _api_paddle_fluid_layers_hash:
@@ -481,7 +484,7 @@ Variable	.. _api_paddle_fluid_framework_Variable:
 ChunkEvaluator	.. _api_paddle_metric_ChunkEvaluator:
 cumsum	.. _api_paddle_tensor_math_cumsum:
 TruncatedNormal	.. _api_paddle_fluid_initializer_TruncatedNormal:
-sigmoid_focal_loss	.. _api_paddle_fluid_layers_sigmoid_focal_loss:
+sigmoid_focal_loss	.. _api_paddle_nn_functional_sigmoid_focal_loss:
 LayerNorm	.. _api_paddle_fluid_dygraph_LayerNorm:
 MultiTrainer	.. _api_paddle_fluid_trainer_desc_MultiTrainer:
 xmap_readers	.. _api_paddle_io_xmap_readers:
@@ -717,11 +720,11 @@ test	.. _api_paddle_dataset_wmt16_test:
 create_lod_tensor	.. _api_paddle_fluid_create_lod_tensor:
 generate_activation_fn	.. _api_paddle_fluid_layers_layer_function_generator_generate_activation_fn:
 space_to_depth	.. _api_paddle_fluid_layers_space_to_depth:
-swish	.. _api_paddle_fluid_layers_swish:
+swish	.. _api_paddle_nn_functional_swish:
+Swish	.. _api_paddle_nn_layer_activation_Swish:
 QueueDataset	.. _api_paddle_fluid_dataset_QueueDataset:
 train	.. _api_paddle_dataset_movielens_train:
 reciprocal	.. _api_paddle_fluid_layers_reciprocal:
-SaveLoadConfig	.. _api_paddle_jit_SaveLoadConfig:
 MetricBase	.. _api_paddle_fluid_metrics_MetricBase:
 adaptive_avg_pool2d	.. _api_paddle_nn_functional_pooling_adaptive_avg_pool2d:
 polynomial_decay	.. _api_paddle_fluid_layers_polynomial_decay:
@@ -742,6 +745,7 @@ soft_relu	.. _api_paddle_fluid_layers_soft_relu:
 no_grad	.. _api_paddle_fluid_dygraph_base_no_grad:
 dynamic_decode	.. _api_paddle_fluid_layers_dynamic_decode:
 bernoulli	.. _api_paddle_tensor_random_bernoulli:
+multinomial	.. _api_paddle_tensor_random_multinomial:
 ComposeNotAligned	.. _api_paddle_reader_ComposeNotAligned:
 GRUUnit	.. _api_paddle_fluid_dygraph_GRUUnit:
 ReplicationPad2d	.. _api_paddle_nn_ReplicationPad2d:
@@ -975,7 +979,6 @@ trace	.. _api_paddle_tensor_math_trace:
 set_gradient_clip	.. _api_paddle_fluid_clip_set_gradient_clip:
 FSTimeOut	.. _api_paddle_distributed_fleet_utils_FSTimeOut:
 crop_tensor	.. _api_paddle_fluid_layers_crop_tensor:
-load	.. _api_paddle_fluid_layers_load:
 program_guard	.. _api_paddle_fluid_framework_program_guard:
 retinanet_detection_output	.. _api_paddle_fluid_layers_retinanet_detection_output:
 Sampler	.. _api_paddle_io_Sampler:
@@ -989,3 +992,6 @@ resize_short	.. _api_paddle_dataset_image_resize_short:
 ConstantPad3d	.. _api_paddle_nn_ConstantPad3d:
 lrn	.. _api_paddle_fluid_layers_lrn:
 scatter	.. _api_paddle_fluid_layers_scatter:
+get_device .. _api_paddle_device_get_device:
+set_device .. _api_paddle_device_set_device:
+get_cudnn_version .. _api_paddle_device_get_cudnn_version:

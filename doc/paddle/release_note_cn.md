@@ -64,7 +64,6 @@
   | Paddle 1.8    | Paddle 2.0-beta |
   | --------------- | ------------------------ |
   | paddle.fluid.layers.elementwise_add | paddle.add               |
-  | paddle.fluid.layers.elementwise_sub | paddle.subract           |
   | paddle.fluid.layers.elementwise_mul | paddle.multiply          |
   | paddle.fluid.layers.elementwise_div | paddle.divide |
   | paddle.fluid.layers.elementwise_max | paddle.maximum             |

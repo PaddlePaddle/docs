@@ -53,24 +53,18 @@ RMSProp
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.rand([10,10], dtype="float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
     out = linear(inp)
     loss = paddle.mean(out)
 
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    adam = paddle.optimizer.RMSProp(learning_rate=0.1,
+    rmsprop = paddle.optimizer.RMSProp(learning_rate=0.1,
             parameters=linear.parameters(),
             weight_decay=0.01)
     out.backward()
-    adam.step()
-    adam.clear_grad()
+    rmsprop.step()
+    rmsprop.clear_grad()
 
 .. py:method:: step()
 
@@ -88,17 +82,14 @@ RMSProp
 .. code-block:: python
 
     import paddle
-    import numpy as np
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
-    adam = paddle.optimizer.RMSProp(learning_rate = 0.01,
+    rmsprop = paddle.optimizer.RMSProp(learning_rate = 0.01,
                                 parameters = linear.parameters())
     out = linear(a)
     out.backward()
-    adam.step()
-    adam.clear_grad()
+    rmsprop.step()
+    rmsprop.clear_grad()
 
 .. py:method:: minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
@@ -118,24 +109,18 @@ RMSProp
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.rand([10,10], dtype="float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
     out = linear(inp)
     loss = paddle.mean(out)
 
-    beta1 = paddle.to_tensor([0.9], dtype="float32")
-    beta2 = paddle.to_tensor([0.99], dtype="float32")
-
-    adam = paddle.optimizer.RMSProp(learning_rate=0.1,
+    rmsprop = paddle.optimizer.RMSProp(learning_rate=0.1,
             parameters=linear.parameters(),
             weight_decay=0.01)
     out.backward()
-    adam.minimize(loss)
-    adam.clear_grad()
+    rmsprop.step()
+    rmsprop.clear_grad()
 
 .. py:method:: clear_gradients()
 
@@ -151,18 +136,15 @@ RMSProp
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    a = paddle.rand([2,13], dtype="float32")
     linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.RMSProp(learning_rate=0.02,
+    rmsprop = paddle.optimizer.RMSProp(learning_rate=0.02,
                                      parameters=linear.parameters())
     out = linear(a)
     out.backward()
-    optimizer.step()
-    optimizer.clear_gradients()
+    rmsprop.step()
+    rmsprop.clear_gradients()
 
 .. py:method:: set_lr(value)
 
@@ -183,16 +165,15 @@ RMSProp
 
 
     import paddle
-    paddle.disable_static()
+    
     linear = paddle.nn.Linear(10, 10)
-
-    adam = paddle.optimizer.RMSProp(0.1, parameters=linear.parameters())
+    rmsprop = paddle.optimizer.RMSProp(0.1, parameters=linear.parameters())
 
     # set learning rate manually by python float value
     lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
     for i in range(5):
-        adam.set_lr(lr_list[i])
-        lr = adam.get_lr()
+        rmsprop.set_lr(lr_list[i])
+        lr = rmsprop.get_lr()
         print("current lr is {}".format(lr))
     # Print:
     #    current lr is 0.2
@@ -216,36 +197,33 @@ RMSProp
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
+    import numpy as np
     # example1: _LRScheduler is not used, return value is all the same
-    paddle.disable_static()
     emb = paddle.nn.Embedding(10, 10, sparse=False)
-    adam = paddle.optimizer.RMSProp(0.001, parameters = emb.parameters())
-    lr = adam.get_lr()
+    rmsprop = paddle.optimizer.RMSProp(0.001, parameters = emb.parameters())
+    lr = rmsprop.get_lr()
     print(lr) # 0.001
 
     # example2: PiecewiseDecay is used, return the step learning rate
-    paddle.disable_static()
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
+    inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
     loss = paddle.reduce_mean(out)
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
     scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
-    adam = paddle.optimizer.RMSProp(scheduler,
+    rmsprop = paddle.optimizer.RMSProp(scheduler,
                            parameters=linear.parameters())
 
     # first step: learning rate is 0.2
-    np.allclose(adam.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
+    np.allclose(rmsprop.get_lr(), 0.2, rtol=1e-06, atol=0.0) # True
 
     # learning rate for different steps
     ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
     for i in range(12):
-        adam.step()
-        lr = adam.get_lr()
+        rmsprop.step()
+        lr = rmsprop.get_lr()
         scheduler.step()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True

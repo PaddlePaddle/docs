@@ -30,6 +30,7 @@ LookaheadOptimizer
             import paddle.fluid as fluid
             import numpy.random as random
 
+            paddle.enable_static()
             x = fluid.layers.data(name='x', shape=[2], dtype='float32')
             label = fluid.layers.data(name="label", shape=[1], dtype="int64")
             y = fluid.layers.fc(input=[x], size=2, act="softmax")
