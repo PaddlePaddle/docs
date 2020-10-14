@@ -28,7 +28,7 @@ program_guard
     startup_program = paddle.static.Program()
     with paddle.static.program_guard(main_program, startup_program):
         data = paddle.static.data(name='image', shape=[None, 784, 784], dtype='float32')
-        hidden = paddle.static.nn.fc(input=data, size=10, act='relu')
+        hidden = paddle.static.nn.fc(x=data, size=10, activation='relu')
 
 例如，当组的网不需要 startup_program 初始化各变量时，可以传入一个临时的 program。
 
