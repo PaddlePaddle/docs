@@ -3,7 +3,7 @@
 Assign
 -------------------------------
 
-.. py:class:: paddle.nn.initializer.Assign(value)
+.. py:class:: paddle.nn.initializer.Assign(value, name=None)
 
 
 该OP使用Numpy数组、Python列表、Tensor来初始化参数。

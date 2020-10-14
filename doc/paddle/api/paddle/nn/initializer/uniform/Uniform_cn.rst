@@ -3,7 +3,7 @@
 Uniform
 -------------------------------
 
-.. py:class:: paddle.fluid.initializer.Uniform(low=-1.0, high=1.0) 
+.. py:class:: paddle.fluid.initializer.Uniform(low=-1.0, high=1.0, name=None) 
 
 
 随机均匀分布初始化函数。

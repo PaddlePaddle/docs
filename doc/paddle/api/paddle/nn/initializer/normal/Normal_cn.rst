@@ -3,7 +3,7 @@
 Normal
 -------------------------------
 
-.. py:class:: paddle.nn.initializer.Normal(mean=0.0, std=1.0)
+.. py:class:: paddle.nn.initializer.Normal(mean=0.0, std=1.0, name=None)
 
 
 随机正态（高斯）分布初始化函数。
