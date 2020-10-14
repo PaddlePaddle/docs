@@ -1,15 +1,19 @@
-.. _cn_api_nn_ReplicationPad1d:
+.. _cn_api_nn_Pad1D:
 
-ReplicationPad1d
+Pad1D
 -------------------------------
-.. py:class:: paddle.nn.ReplicationPad1d(padding, data_format="NCL", name=None)
+.. py:class:: paddle.nn.Pad1D(padding, mode="constant", value=0.0, data_format="NCL", name=None)
 
-**ReplicationPad1d**
+**Pad1D**
 
-按照 padding 对输入 以replicate模式进行 ``pad``，即填充输入的边界值。
+按照 padding、mode 和 value 属性对输入进行填充。
 
 参数：
   - **padding** (Tensor | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
+  - **mode** (str) - padding的四种模式，分别为 `'constant'`, `'reflect'`, `'replicate'` 和`'circular'`。
+    `'constant'` 表示填充常数 `value`；`'reflect'` 表示填充以input边界值为轴的映射；`'replicate'` 表示
+    填充input边界值；`'circular'`为循环填充input。默认值为 `'constant'` 。
+  - **value** (float32) - 以 `'constant'` 模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定input的format，可为 `'NCL'` 或者 `'NLC'`，默认值为`'NCL'`。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 
@@ -23,13 +27,13 @@ ReplicationPad1d
     import paddle.nn as nn
     import numpy as np
     paddle.disable_static()
-
     input_shape = (1, 2, 3)
     pad = [1, 2]
+    mode = "constant"
     data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
-    my_pad = nn.ReplicationPad1d(padding=pad)
+    my_pad = nn.Pad1D(padding=pad, mode=mode)
     data = paddle.to_tensor(data)
     result = my_pad(data)
     print(result.numpy())
-    # [[[1. 1. 2. 3. 3. 3.]
-    #   [4. 4. 5. 6. 6. 6.]]]
+    # [[[0. 1. 2. 3. 0. 0.]
+    #   [0. 4. 5. 6. 0. 0.]]]
