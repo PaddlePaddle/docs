@@ -3,7 +3,7 @@
 accuracy
 -------------------------------
 
-.. py:function:: paddle.metric.accuracy(input, label, k=1, correct=None, total=None)
+.. py:function:: paddle.metric.accuracy(input, label, k=1, correct=None, total=None, name=None)
 
 accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
@@ -12,11 +12,12 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 参数
 :::::::::
 
-    - **input** (Tensor|LoDTensor)-数据类型为float32,float64。输入为网络的预测值。shape为 ``[sample_number, class_dim]`` 。
-    - **label** (Tensor|LoDTensor)-数据类型为int64，int32。输入为数据集的标签。shape为 ``[sample_number, 1]`` 。
-    - **k** (int64|int32) - 取每个类别中k个预测值用于计算。
-    - **correct** (int64|int32)-正确预测值的个数。
-    - **total** (int64|int32)-总共的预测值。
+    - **input** (Tensor)-数据类型为float32,float64。输入为网络的预测值。shape为 ``[sample_number, class_dim]`` 。
+    - **label** (Tensor)-数据类型为int64，int32。输入为数据集的标签。shape为 ``[sample_number, 1]`` 。
+    - **k** (int64|int32，可选) - 取每个类别中k个预测值用于计算，默认值为1。
+    - **correct** (int64|int32, 可选)-正确预测值的个数，默认值为None。
+    - **total** (int64|int32，可选)-总共的预测值，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
 :::::::::
@@ -28,26 +29,9 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
+    import paddle
 
-    data = fluid.layers.data(name="input", shape=[-1, 32, 32], dtype="float32")
-    label = fluid.layers.data(name="label", shape=[-1,1], dtype="int")
-    fc_out = fluid.layers.fc(input=data, size=10)
-    predict = fluid.layers.softmax(input=fc_out)
-    result = fluid.layers.accuracy(input=predict, label=label, k=5)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-
-    exe.run(fluid.default_startup_program())
-    x = np.random.rand(3, 32, 32).astype("float32")
-    y = np.array([[1],[0],[1]])
-    output= exe.run(feed={"input": x,"label": y},
-                     fetch_list=[result[0]])
-    print(output)
-    
-    """
-    Output:
-    [array([0.6666667], dtype=float32)]
-    """
+    predictions = paddle.to_tensor([[0.2, 0.1, 0.4, 0.1, 0.1], [0.2, 0.3, 0.1, 0.15, 0.25]], dtype='float32')
+    label = paddle.to_tensor([[2], [0]], dtype="int64")
+    result = paddle.metric.accuracy(input=predictions, label=label, k=1)
+    # [0.5]
