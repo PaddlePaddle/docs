@@ -26,7 +26,7 @@ BuildStrategy，一个BuildStrategy的实例
     places = static.cpu_places()
 
     data = static.data(name="x", shape=[None, 1], dtype="float32")
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
     paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
@@ -162,7 +162,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
         places = static.cuda_places()
 
     data = static.data(name='X', shape=[None, 1], dtype='float32')
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
     paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 

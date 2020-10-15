@@ -339,12 +339,7 @@ def train():
             predicts = net(x_data)           acc = paddle.metric.accuracy(predicts, y_data, k=2)
             avg_acc = paddle.mean(acc)
             loss = paddle.nn.functional.cross_entropy(predicts, y_data)
-
-            # 第3处改动，归一化loss
-            avg_loss = net.scale_loss(avg_loss)
             avg_loss.backward()
-            # 第4处改动，同步梯度
-            net.apply_collective_grads()
             if batch_id % 100 == 0:
                 print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, avg_loss.numpy(), avg_acc.numpy()))
             adam.step()
