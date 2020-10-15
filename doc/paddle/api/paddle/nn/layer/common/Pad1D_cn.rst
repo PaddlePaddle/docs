@@ -30,9 +30,8 @@ Pad1D
     input_shape = (1, 2, 3)
     pad = [1, 2]
     mode = "constant"
-    data = np.arange(np.prod(input_shape), dtype=np.float32).reshape(input_shape) + 1
+    data = paddle.arange(np.prod(input_shape), dtype="float32").reshape(input_shape) + 1
     my_pad = nn.Pad1D(padding=pad, mode=mode)
-    data = paddle.to_tensor(data)
     result = my_pad(data)
     print(result.numpy())
     # [[[0. 1. 2. 3. 0. 0.]
