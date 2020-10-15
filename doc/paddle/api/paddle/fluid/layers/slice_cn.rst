@@ -37,8 +37,6 @@ slice
 
 返回：多维 ``Tensor`` ，数据类型与 ``input`` 相同。
 
-返回类型：Tensor。
-
 抛出异常：
     - :code:`TypeError`：``starts`` 的类型应该是 list、tuple 或 Tensor。
     - :code:`TypeError`：``ends`` 的类型应该是 list、tuple 或 Tensor。
@@ -47,10 +45,8 @@ slice
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    input = np.random.random(size=(4, 5, 6)).astype('float32')
-    input = paddle.to_tensor(input, dtype='float32')
+    input = paddle.rand(shape=[4, 5, 6], dtype='float32')
 
     # example 1:
     # attr starts is a list which doesn't contain tensor.
