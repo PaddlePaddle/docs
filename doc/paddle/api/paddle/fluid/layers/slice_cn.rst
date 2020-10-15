@@ -63,7 +63,7 @@ slice
 
     # example 2:
     # attr starts is a list which contain tensor.
-    minus_3 = paddle.fill_constant([1], "int32", -3)
+    minus_3 = paddle.full([1], -3, "int32")
     sliced_2 = paddle.slice(input, axes=axes, starts=[minus_3, 0, 2], ends=ends)
     # sliced_2 is input[:, 0:3, 0:2, 2:4].
 
