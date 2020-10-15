@@ -1,4 +1,4 @@
-.. _cn_doc_train_predict:
+.. _cn_doc_train_eval_predict:
 
 训练与预测
 =====================
