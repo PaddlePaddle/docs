@@ -586,3 +586,6 @@ paddle.nn.layer.rnn.GRUCell	paddle.nn.GRUCell,paddle.nn.layer.GRUCell
 paddle.nn.layer.rnn.LSTM	paddle.nn.LSTM,paddle.nn.layer.LSTM
 paddle.nn.layer.rnn.GRU	paddle.nn.GRU,paddle.nn.layer.GRU
 paddle.utils.install_check.run_check	paddle.utils.run_check
+paddle.nn.layer.common.Pad1D	paddle.nn.Pad1D,paddle.nn.common.Pad1D
+paddle.nn.layer.common.Pad2D	paddle.nn.Pad2D,paddle.nn.common.Pad2D
+paddle.nn.layer.common.Pad3D	paddle.nn.Pad3D,paddle.nn.common.Pad3D
