@@ -31,34 +31,37 @@ Categorical
     import paddle
     from paddle.distribution import Categorical
 
+    paddle.manual_seed(100)
     x = paddle.rand([6])
     print(x.numpy())
-    # [0.32564053, 0.99334985, 0.99034804,
-    #  0.09053693, 0.30820143, 0.19095989]
+    # [0.00224779 0.50324494 0.13526054
+    #  0.1611277  0.7955702  0.96897715]
+
+    paddle.manual_seed(200)
     y = paddle.rand([6])
     print(y.numpy())
-    # [0.6365463 , 0.7278677 , 0.90260243, 
-    # 0.5226815 , 0.35837543, 0.13981032]
+    # [0.00449559 0.00648983 0.27052107
+    #  0.3222554  0.5911404  0.93795437]
 
     cat = Categorical(x)
     cat2 = Categorical(y)
 
     cat.sample([2,3])
-    # [[5, 1, 1],
-    # [0, 1, 2]]
+    # [[4, 5, 5],
+    # [4, 2, 3]]
 
     cat.entropy()
-    # [1.71887]
+    # [1.72595]
 
     cat.kl_divergence(cat2)
-    # [0.0278455]
+    # [0.0218145]
 
     value = paddle.to_tensor([2,1,3])
     cat.probs(value)
-    # [0.341613 0.342648 0.03123]
+    # [0.0527038 0.196088 0.0627829]
 
     cat.log_prob(value)
-    # [-1.07408 -1.07105 -3.46638]
+    # [-2.94307 -1.62919 -2.76807]
 
 
 .. py:function:: sample(shape)
@@ -79,16 +82,17 @@ Categorical
     import paddle
     from paddle.distribution import Categorical
 
+    paddle.manual_seed(100)
     x = paddle.rand([6])
     print(x.numpy())
-    # [0.32564053, 0.99334985, 0.99034804,
-    #  0.09053693, 0.30820143, 0.19095989]
+    # [0.00224779 0.50324494 0.13526054
+    #  0.1611277  0.7955702  0.96897715]
 
     cat = Categorical(x)
 
     cat.sample([2,3])
-    # [[5, 1, 1],
-    # [0, 1, 2]]
+    # [[4, 5, 5],
+    # [4, 2, 3]]
 
 .. py:function:: kl_divergence(other)
 
@@ -108,20 +112,23 @@ Categorical
     import paddle
     from paddle.distribution import Categorical
 
+    paddle.manual_seed(100)
     x = paddle.rand([6])
     print(x.numpy())
-    # [0.32564053, 0.99334985, 0.99034804,
-    #  0.09053693, 0.30820143, 0.19095989]
+    # [0.00224779 0.50324494 0.13526054
+    #  0.1611277  0.7955702  0.96897715]
+
+    paddle.manual_seed(200)
     y = paddle.rand([6])
     print(y.numpy())
-    # [0.6365463 , 0.7278677 , 0.90260243, 
-    # 0.5226815 , 0.35837543, 0.13981032]
+    # [0.00449559 0.00648983 0.27052107
+    #  0.3222554  0.5911404  0.93795437]
 
     cat = Categorical(x)
     cat2 = Categorical(y)
 
     cat.kl_divergence(cat2)
-    # [0.0278455]
+    # [0.0218145]
 
 .. py:function:: entropy()
 
@@ -138,15 +145,16 @@ Categorical
     import paddle
     from paddle.distribution import Categorical
 
+    paddle.manual_seed(100)
     x = paddle.rand([6])
     print(x.numpy())
-    # [0.32564053, 0.99334985, 0.99034804,
-    #  0.09053693, 0.30820143, 0.19095989]
+    # [0.00224779 0.50324494 0.13526054
+    #  0.1611277  0.7955702  0.96897715]
 
     cat = Categorical(x)
 
     cat.entropy()
-    # [1.71887]
+    # [1.72595]
 
 .. py:function:: probs(value)
 
@@ -167,16 +175,17 @@ Categorical
     import paddle
     from paddle.distribution import Categorical
 
+    paddle.manual_seed(100)
     x = paddle.rand([6])
     print(x.numpy())
-    # [0.32564053, 0.99334985, 0.99034804,
-    #  0.09053693, 0.30820143, 0.19095989]
+    # [0.00224779 0.50324494 0.13526054
+    #  0.1611277  0.7955702  0.96897715]
 
     cat = Categorical(x)
 
     value = paddle.to_tensor([2,1,3])
     cat.probs(value)
-    # [0.341613 0.342648 0.03123]
+    # [0.0527038 0.196088 0.0627829]
 
 .. py:function:: log_prob(value)
 
@@ -194,17 +203,18 @@ Categorical
     import paddle
     from paddle.distribution import Categorical
 
+    paddle.manual_seed(100)
     x = paddle.rand([6])
     print(x.numpy())
-    # [0.32564053, 0.99334985, 0.99034804,
-    #  0.09053693, 0.30820143, 0.19095989]
+    # [0.00224779 0.50324494 0.13526054
+    #  0.1611277  0.7955702  0.96897715]
 
     cat = Categorical(x)
 
     value = paddle.to_tensor([2,1,3])
-
     cat.log_prob(value)
-    # [-1.07408 -1.07105 -3.46638]
+    # [-2.94307 -1.62919 -2.76807]
+    
 
 
 
