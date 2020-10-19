@@ -16,17 +16,6 @@
 - `自定义指标 <./07_customize_cn.html>`_ : 飞桨框架自定义指标的方法，主要包含自定义Loss、自定义Metric与自定义Callback。
 - `模型的加载与保存 <./08_model_save_load_cn.html>`_ : 飞桨框架模型的加载与保存体系介绍。
 
-=====  =====  ======
-   Inputs     Output
-------------  ------
-  A      B    A or B
-=====  =====  ======
-False  False  False
-True   False  True
-False  True   True
-True   True   True
-=====  =====  ======
-
 .. toctree::
     :hidden:
 
