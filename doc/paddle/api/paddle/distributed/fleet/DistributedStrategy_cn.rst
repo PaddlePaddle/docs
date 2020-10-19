@@ -336,3 +336,14 @@ DistributedStrategy
   strategy.dgc = True
   strategy.dgc_configs = {"rampup_begin_step": 1252}
 
+.. py:attribute:: fp16_allreduce
+
+是否使用fp16梯度allreduce训练。默认值：False
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.fp16_allreduce = True  # by default this is false
