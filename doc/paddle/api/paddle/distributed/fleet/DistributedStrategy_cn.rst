@@ -80,6 +80,20 @@ DistributedStrategy
   strategy.build_strategy = build_strategy
 
 
+.. py:attribute:: auto
+
+表示是否启用自动并行策略。此功能目前是实验性功能。目前，自动并行只有在用户只设置auto，不设置其它策略时才能生效。具体请参考示例代码。默认值：False
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.auto = True
+
+
 .. py:attribute:: recompute
 
 是否启用Recompute来优化内存空间，默认值：False
