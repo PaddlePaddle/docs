@@ -15,3 +15,8 @@
   训练与预测 (model.fit evaluate predict、一步步拆解fit、evaluate、predict)
   单机多卡 (训练 + 预测)
   动态图代码调试
+
+..  toctree::
+    :hidden:
+
+    model_save_load_cn.rst
