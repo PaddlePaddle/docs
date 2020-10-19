@@ -2,17 +2,4 @@ paddle.incubate
 paddle.hapi.progressbar.ProgressBar
 paddle.fluid.contrib
 paddle.reader
-paddle.fluid.wrapped_decorator
-paddle.fluid.transpiler.collective
-paddle.fluid._cuda_synchronize
-paddle.fluid.transpiler
-paddle.fluid.trainer_factory
-paddle.fluid.train_desc
-paddle.distributed.fleet.utils.fs.ExecuteError
-paddle.distributed.fleet.utils.fs.FS
-paddle.distributed.fleet.utils.fs.FSFileExistsError
-paddle.distributed.fleet.utils.fs.FSFileNotExistsError
-paddle.distributed.fleet.utils.fs.FSShellCmdAborted
-paddle.distributed.fleet.utils.fs.FSTimeOut
-paddle.fluid.device_worker
 
