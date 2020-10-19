@@ -9,6 +9,7 @@ paddle/fluid/layers/scatter_cn.rst
 paddle/tensor/manipulation/scatter_cn.rst
 paddle/distributed/init_parallel_env_cn.rst
 paddle/distributed/spawn_cn.rst
+paddle/distributed/ReduceOp_cn.rst
 paddle/distributed/fleet/Fleet_cn.rst
 paddle/distributed/fleet/utils/fs/ExecuteError_cn.rst
 paddle/distributed/fleet/utils/fs/FSFileExistsError_cn.rst
