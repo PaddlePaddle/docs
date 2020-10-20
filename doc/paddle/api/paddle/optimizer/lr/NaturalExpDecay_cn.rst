@@ -36,7 +36,7 @@ NaturalExpDecay
         for batch_id in range(2):
             x = paddle.uniform([10, 10])
             out = linear(x)
-            loss = paddle.reduce_mean(out)
+            loss = paddle.mean(out)
             loss.backward()
             sgd.step()
             sgd.clear_gradients()
