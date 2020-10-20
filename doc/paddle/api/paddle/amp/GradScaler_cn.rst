@@ -1,4 +1,4 @@
-.. _cn_api_amp_GradScalar:
+.. _cn_api_amp_GradScaler:
 
 GradScaler
 -------------------------------
@@ -7,7 +7,7 @@ GradScaler
 
 
 
-GradScaler用于动态图模式下的"自动混合精度"的训练或推断。它控制loss的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()`` 和 ``minimize()`` 两个方法。
+GradScaler用于动态图模式下的"自动混合精度"的训练。它控制loss的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()`` 和 ``minimize()`` 两个方法。
 
 ``scale()`` 用于让loss乘上一个缩放的比例。
 ``minimize()`` 与 ``Optimizer.minimize()`` 类似，执行参数的更新。
@@ -25,7 +25,7 @@ GradScaler用于动态图模式下的"自动混合精度"的训练或推断。�
     - **use_dynamic_loss_scaling** (bool, 可选) - 是否使用动态的loss scaling。如果不使用，则使用固定的loss scaling；如果使用，则会动态更新loss scaling。默认值为True。
 
 返回：
-    一个AmpScaler对象。
+    一个GradScaler对象。
 
 
 **代码示例**：
@@ -52,7 +52,7 @@ GradScaler用于动态图模式下的"自动混合精度"的训练或推断。�
 如果这个 :class:`GradScaler` 的实例不使用loss scaling，则返回的输出将保持不变。
 
 参数：
-    - **var** (Tensor) - 缩放的Tensor。
+    - **var** (Tensor) - 需要进行缩放的Tensor。
 
 返回：缩放后的Tensor或者原Tensor。
 
