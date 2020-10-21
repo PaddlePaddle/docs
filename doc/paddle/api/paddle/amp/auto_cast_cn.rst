@@ -39,9 +39,9 @@ auto_cast
         print(conv.dtype) # FP32
 
     a = paddle.rand([2,3])
-    b = paddle.rand([3,4])
-    with paddle.amp.auto_cast(custom_white_list={'matmul_v2'}):
-        c = paddle.matmul(a, b)
+    b = paddle.rand([2,3])
+    with paddle.amp.auto_cast(custom_white_list={'elementwise_add'}):
+        c = a + b
         print(c.dtype) # FP16
 
 
