@@ -1,8 +1,8 @@
-conv_transpose3d
+conv3d_transpose
 -------------------------------
 
 
-.. py:function:: paddle.nn.functional.conv_transpose3d(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCHW', output_size=None, name=None)
+.. py:function:: paddle.nn.functional.conv3d_transpose(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCHW', output_size=None, name=None)
 
 
 
@@ -70,7 +70,7 @@ conv_transpose3d
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-如果指定了output_size， ``conv_transpose3d`` 可以自动计算卷积核的大小。
+如果指定了output_size， ``conv3d_transpose`` 可以自动计算卷积核的大小。
 
 参数:
   - **x** (Tensor) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
@@ -111,7 +111,7 @@ conv_transpose3d
     x_var = paddle.randn((2, 3, 8, 8, 8), dtype='float32')
     w_var = paddle.randn((3, 6, 3, 3, 3), dtype='float32')
 
-    y_var = F.conv_transpose3d(x_var, w_var)
+    y_var = F.conv3d_transpose(x_var, w_var)
     y_np = y_var.numpy()
 
     print(y_np.shape)

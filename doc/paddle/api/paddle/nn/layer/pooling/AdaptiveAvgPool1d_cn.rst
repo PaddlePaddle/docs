@@ -1,10 +1,10 @@
-.. _cn_api_nn_AdaptiveAvgPool1d:
+.. _cn_api_nn_AdaptiveAvgPool1D:
 
 
-AdaptiveAvgPool1d
+AdaptiveAvgPool1D
 -------------------------------
 
-.. py:function:: paddle.nn.AdaptiveAvgPool1d(output_size, name=None)
+.. py:function:: paddle.nn.AdaptiveAvgPool1D(output_size, name=None)
 
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算1D的自适应平均池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度.
@@ -32,7 +32,7 @@ AdaptiveAvgPool1d
 
 返回
 :::::::::
-计算AdaptiveAvgPool1d的可调用对象
+计算AdaptiveAvgPool1D的可调用对象
 
 抛出异常
 :::::::::
@@ -61,6 +61,6 @@ AdaptiveAvgPool1d
         paddle.disable_static()
         
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
-        AdaptiveAvgPool1d = nn.layer.AdaptiveAvgPool1d(output_size=16)
-        pool_out = AdaptiveAvgPool1d(data)
+        AdaptiveAvgPool1D = nn.layer.AdaptiveAvgPool1D(output_size=16)
+        pool_out = AdaptiveAvgPool1D(data)
         # pool_out shape: [1, 3, 16]

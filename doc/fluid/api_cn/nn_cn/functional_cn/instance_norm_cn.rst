@@ -5,9 +5,9 @@ instance_norm
 
 .. py:class:: paddle.nn.functional.instance_norm(x, running_mean, running_var, weight, bias, training=False, epsilon=1e-05, momentum=0.9, use_input_stats=True, data_format='NCHW', name=None):
 
-推荐使用nn.InstanceNorm1d，nn.InstanceNorm2d, nn.InstanceNorm3d，由内部调用此方法。
+推荐使用nn.InstanceNorm1D，nn.InstanceNorm2D, nn.InstanceNorm3D，由内部调用此方法。
 
-详情见 :ref:`cn_api_nn_InstanceNorm1d` 。  
+详情见 :ref:`cn_api_nn_InstanceNorm1D` 。
 
 参数：
     - **x** (int) - 输入，数据类型为float32, float64。

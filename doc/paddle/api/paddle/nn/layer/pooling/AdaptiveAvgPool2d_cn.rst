@@ -1,7 +1,7 @@
-AdaptiveAvgPool2d
+AdaptiveAvgPool2D
 -------------------------------
 
-.. py:function:: paddle.nn.AdaptiveAvgPool2d(output_size, data_format="NCHW", name=None)
+.. py:function:: paddle.nn.AdaptiveAvgPool2D(output_size, data_format="NCHW", name=None)
 
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算2D的自适应平均池化。输入和输出都是4-D Tensor，
 默认是以 `NCHW` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `H` 是输入特征的高度, `H` 是输入特征的宽度。
@@ -35,7 +35,7 @@ AdaptiveAvgPool2d
 
 返回
 :::::::::
-计算AdaptiveAvgPool2d的可调用对象
+计算AdaptiveAvgPool2D的可调用对象
 
 抛出异常
 :::::::::
@@ -67,6 +67,6 @@ AdaptiveAvgPool2d
         input_data = np.random.rand(2, 3, 32, 32)
         x = paddle.to_tensor(input_data)
         # x.shape is [2, 3, 32, 32]
-        adaptive_avg_pool = paddle.nn.AdaptiveAvgPool2d(output_size=3)
+        adaptive_avg_pool = paddle.nn.AdaptiveAvgPool2D(output_size=3)
         pool_out = adaptive_avg_pool(x = x)
         # pool_out.shape is [2, 3, 3, 3]

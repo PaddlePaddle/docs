@@ -1,9 +1,9 @@
-.. _cn_api_paddle_framework_manual_seed:
+.. _cn_api_paddle_framework_seed:
 
-manual_seed
+seed
 -------------------------------
 
-.. py:function:: paddle.framework.manual_seed(seed)
+.. py:function:: paddle.framework.seed(seed)
 
 
 设置全局默认generator的随机种子。
@@ -21,4 +21,4 @@ manual_seed
 .. code-block:: python
 
     import paddle
-    paddle.manual_seed(102)
+    paddle.seed(102)

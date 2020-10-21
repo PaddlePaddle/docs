@@ -1,9 +1,9 @@
 
-conv_transpose2d
+conv2d_transpose
 -------------------------------
 
 
-.. py:function:: paddle.nn.functional.conv_transpose2d(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCHW', output_size=None, name=None)
+.. py:function:: paddle.nn.functional.conv2d_transpose(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCHW', output_size=None, name=None)
 
 
 
@@ -107,7 +107,7 @@ conv_transpose2d
     x_var = paddle.randn((2, 3, 8, 8), dtype='float32')
     w_var = paddle.randn((3, 6, 3, 3), dtype='float32')
 
-    y_var = F.conv_transpose2d(x_var, w_var)
+    y_var = F.conv2d_transpose(x_var, w_var)
     y_np = y_var.numpy()
 
     print(y_np.shape)

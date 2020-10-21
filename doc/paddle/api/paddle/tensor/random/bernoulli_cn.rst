@@ -27,13 +27,13 @@ bernoulli
 
     import paddle
 
-    paddle.manual_seed(100) # on CPU device
+    paddle.seed(100) # on CPU device
     x = paddle.rand([2,3])
     print(x.numpy())
     # [[0.5535528  0.20714243 0.01162981]
     # [0.51577556 0.36369765 0.2609165 ]]
 
-    paddle.manual_seed(200) # on CPU device
+    paddle.seed(200) # on CPU device
     out = paddle.bernoulli(x)
     print(out.numpy())
     # [[0. 0. 0.]
