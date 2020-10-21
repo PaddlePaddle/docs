@@ -38,9 +38,8 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
@@ -98,9 +97,8 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
@@ -161,7 +159,7 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     import paddle
     linear = paddle.nn.Linear(10, 10)
 
-    adadelta = paddle.optimizer.AdamW(weight_decay=0.01,
+    adadelta = paddle.optimizer.Adadelta(weight_decay=0.01,
                                  learning_rate=0.1, parameters=linear.parameters())
 
     # set learning rate manually by python float value

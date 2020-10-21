@@ -28,9 +28,8 @@ SGD
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
@@ -86,9 +85,8 @@ SGD
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
