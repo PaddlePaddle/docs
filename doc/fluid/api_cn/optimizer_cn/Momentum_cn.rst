@@ -108,8 +108,7 @@ Momentum
     beta1 = paddle.to_tensor([0.9], dtype="float32")
     beta2 = paddle.to_tensor([0.99], dtype="float32")
 
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
-            parameters=linear.parameters())
+    momentum = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
     out.backward()
     momentum.minimize(loss)
     momentum.clear_grad()
@@ -134,8 +133,7 @@ Momentum
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
-                                     parameters=linear.parameters())
+    optimizer = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
     out = linear(a)
     out.backward()
     optimizer.step()
