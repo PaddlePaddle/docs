@@ -13,7 +13,7 @@ auto_cast
 
 参数：
     - **enable** (bool, 可选) - 是否开启自动混合精度。默认值为True。
-    - **custom_white_list** (set|list, 可选) - 自定义算子白名单。这个名单中的算子在支持float16计算时会被认为是数值安全的，并且对性能至关重要。如果设置了白名单，该名单中的算子会使用float16计算。
+    - **p** (set|list, 可选) - 自定义算子白名单。这个名单中的算子在支持float16计算时会被认为是数值安全的，并且对性能至关重要。如果设置了白名单，该名单中的算子会使用float16计算。
     - **custom_black_list** (set|list, 可选) - 自定义算子黑名单。这个名单中的算子在支持float16计算时会被认为是数值危险的，它们的影响也可能会在下游操作中观察到。这些算子通常不会转为float16计算。
 
 
@@ -34,6 +34,15 @@ auto_cast
         conv = conv2d(data)
         print(conv.dtype) # FP32
 
+    with paddle.amp.auto_cast(custom_black_list={'conv2d'}):
+        conv = conv2d(data)
+        print(conv.dtype) # FP32
+
+    a = paddle.rand([2,3])
+    b = paddle.rand([3,4])
+    with paddle.amp.auto_cast(custom_white_list={'matmul_v2'}):
+        c = paddle.matmul(a, b)
+        print(c.dtype) # FP16
 
 
 
