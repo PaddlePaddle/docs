@@ -5,9 +5,6 @@ deformable_roi_pooling
 
 .. py:function:: paddle.fluid.layers.deformable_roi_pooling(input, rois, trans, no_trans=False, spatial_scale=1.0, group_size=[1, 1], pooled_height=1, pooled_width=1, part_size=None, sample_per_part=1, trans_std=0.1, position_sensitive=False, name=None)
 
-:alias_main: paddle.nn.functional.deformable_roi_pooling
-:alias: paddle.nn.functional.deformable_roi_pooling,paddle.nn.functional.vision.deformable_roi_pooling
-:old_api: paddle.fluid.layers.deformable_roi_pooling
 
 
 

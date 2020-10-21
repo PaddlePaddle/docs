@@ -5,9 +5,6 @@ ssd_loss
 
 .. py:function:: paddle.fluid.layers.ssd_loss(location, confidence, gt_box, gt_label, prior_box, prior_box_var=None, background_label=0, overlap_threshold=0.5, neg_pos_ratio=3.0, neg_overlap=0.5, loc_loss_weight=1.0, conf_loss_weight=1.0, match_type='per_prediction', mining_type='max_negative', normalize=True, sample_size=None)
 
-:alias_main: paddle.nn.functional.ssd_loss
-:alias: paddle.nn.functional.ssd_loss,paddle.nn.functional.loss.ssd_loss
-:old_api: paddle.fluid.layers.ssd_loss
 
 
 

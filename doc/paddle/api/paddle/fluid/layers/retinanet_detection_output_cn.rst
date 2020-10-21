@@ -5,9 +5,6 @@ retinanet_detection_output
 
 .. py:function:: paddle.fluid.layers.retinanet_detection_output(bboxes, scores, anchors, im_info, score_threshold=0.05, nms_top_k=1000, keep_top_k=100, nms_threshold=0.3, nms_eta=1.0)
 
-:alias_main: paddle.nn.functional.retinanet_detection_output
-:alias: paddle.nn.functional.retinanet_detection_output,paddle.nn.functional.vision.retinanet_detection_output
-:old_api: paddle.fluid.layers.retinanet_detection_output
 
 
 

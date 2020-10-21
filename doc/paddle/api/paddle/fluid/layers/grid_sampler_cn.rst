@@ -5,9 +5,6 @@ grid_sampler
 
 .. py:function::  paddle.fluid.layers.grid_sampler(x, grid, name=None)
 
-:alias_main: paddle.nn.functional.grid_sampler
-:alias: paddle.nn.functional.grid_sampler,paddle.nn.functional.vision.grid_sampler
-:old_api: paddle.fluid.layers.grid_sampler
 
 
 

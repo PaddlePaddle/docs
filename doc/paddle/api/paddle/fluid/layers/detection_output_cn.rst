@@ -5,9 +5,6 @@ detection_output
 
 .. py:function:: paddle.fluid.layers.detection_output(loc, scores, prior_box, prior_box_var, background_label=0, nms_threshold=0.3, nms_top_k=400, keep_top_k=200, score_threshold=0.01, nms_eta=1.0)
 
-:alias_main: paddle.nn.functional.detection_output
-:alias: paddle.nn.functional.detection_output,paddle.nn.functional.vision.detection_output
-:old_api: paddle.fluid.layers.detection_output
 
 
 

@@ -6,7 +6,6 @@ sequence_unpad
 
 .. py:function:: paddle.fluid.layers.sequence_unpad(x, length, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

@@ -6,7 +6,6 @@ py_reader
 
 .. py:function:: paddle.fluid.layers.py_reader(capacity, shapes, dtypes, lod_levels=None, name=None, use_double_buffer=True)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

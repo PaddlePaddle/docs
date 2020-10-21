@@ -5,9 +5,6 @@ elementwise_min
 
 .. py:function:: paddle.fluid.layers.elementwise_min(x, y, axis=-1, act=None, name=None)
 
-:alias_main: paddle.elementwise_min
-:alias: paddle.elementwise_min,paddle.tensor.elementwise_min,paddle.tensor.math.elementwise_min
-:old_api: paddle.fluid.layers.elementwise_min
 
 
 该OP逐元素对比输入的两个多维Tensor，并且把各个位置更小的元素保存到返回结果中。

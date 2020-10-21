@@ -5,12 +5,6 @@ sign
 
 .. py:function:: paddle.fluid.layers.sign(x)
 
-:alias_main: paddle.sign
-:alias: paddle.sign,paddle.tensor.sign,paddle.tensor.math.sign
-:old_api: paddle.fluid.layers.sign
-
-
-
 此OP对输入x中每个元素进行正负判断，并且输出正负判断值：1代表正，-1代表负，0代表零。
 
 参数：

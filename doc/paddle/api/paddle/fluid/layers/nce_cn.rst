@@ -6,7 +6,6 @@ nce
 
 .. py:function:: paddle.fluid.layers.nce(input, label, num_total_classes, sample_weight=None, param_attr=None, bias_attr=None, num_neg_samples=None, name=None, sampler='uniform', custom_dist=None, seed=0, is_sparse=False)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

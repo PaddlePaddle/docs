@@ -6,11 +6,10 @@ py_func
 
 .. py:function:: paddle.fluid.layers.py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
-PaddlePaddle Fluid通过py_func在Python端注册OP。py_func的设计原理在于Paddle中的LodTensor与numpy数组可以方便的互相转换，从而可使用Python中的numpy API来自定义一个Python OP。
+PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Paddle中的LodTensor与numpy数组可以方便的互相转换，从而可使用Python中的numpy API来自定义一个Python OP。
 
 该自定义的Python OP的前向函数是 ``func``, 反向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func`` ，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为LoDTensor类型； ``out``  为 ``func`` 的输出， 既可以是LoDTensor类型, 也可以是numpy数组。
 
@@ -33,10 +32,12 @@ PaddlePaddle Fluid通过py_func在Python端注册OP。py_func的设计原理在�
 
 **示例代码1**:
 
-..  code-block:: python
+.. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import six
+
+    paddle.enable_static()
 
     # 自定义的前向函数，可直接输入LoDTenosor
     def tanh(x):
@@ -52,35 +53,37 @@ PaddlePaddle Fluid通过py_func在Python端注册OP。py_func的设计原理在�
         print(x)
     
     def create_tmp_var(name, dtype, shape):
-        return fluid.default_main_program().current_block().create_var(
+        return paddle.static.default_main_program().current_block().create_var(
             name=name, dtype=dtype, shape=shape)
 
     def simple_net(img, label):
         hidden = img
         for idx in six.moves.range(4):
-            hidden = fluid.layers.fc(hidden, size=200)
+            hidden = paddle.static.nn.fc(hidden, size=200)
             new_hidden = create_tmp_var(name='hidden_{}'.format(idx),
                 dtype=hidden.dtype, shape=hidden.shape)
 
             # 用户自定义的前向反向计算
-            hidden = fluid.layers.py_func(func=tanh, x=hidden,
+            hidden = paddle.static.nn.py_func(func=tanh, x=hidden,
                 out=new_hidden, backward_func=tanh_grad,
                 skip_vars_in_backward_input=hidden)
 
             # 用户自定义的调试函数，打印出输入的LodTensor
-            fluid.layers.py_func(func=debug_func, x=hidden, out=None)
+            paddle.static.nn.py_func(func=debug_func, x=hidden, out=None)
 
-        prediction = fluid.layers.fc(hidden, size=10, act='softmax')
-        loss = fluid.layers.cross_entropy(input=prediction, label=label)
-        return fluid.layers.mean(loss)
+        prediction = paddle.static.nn.fc(hidden, size=10, activation='softmax')
+        loss = paddle.static.nn.cross_entropy(input=prediction, label=label)
+        return paddle.mean(loss)
 
 **示例代码2**:
 
 ..  code-block:: python
     
     # 该示例展示了如何将LoDTensor转化为numpy数组，并利用numpy API来自定义一个OP
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
+
+    paddle.enable_static()
 
     def element_wise_add(x, y): 
         # 必须先手动将LodTensor转换为numpy数组，否则无法支持numpy的shape操作
@@ -98,24 +101,24 @@ PaddlePaddle Fluid通过py_func在Python端注册OP。py_func的设计原理在�
         return result
 
     def create_tmp_var(name, dtype, shape):
-        return fluid.default_main_program().current_block().create_var(
+        return paddle.static.default_main_program().current_block().create_var(
                     name=name, dtype=dtype, shape=shape)
 
     def py_func_demo():
-        start_program = fluid.default_startup_program()
-        main_program = fluid.default_main_program()
+        start_program = paddle.static.default_startup_program()
+        main_program = paddle.static.default_main_program()
 
         # 创建前向函数的输入变量
-        x = fluid.data(name='x', shape=[2,3], dtype='int32')
-        y = fluid.data(name='y', shape=[2,3], dtype='int32')
+        x = paddle.static.data(name='x', shape=[2,3], dtype='int32')
+        y = paddle.static.data(name='y', shape=[2,3], dtype='int32')
         
         # 创建前向函数的输出变量，必须指明变量名称name/数据类型dtype/维度shape
         output = create_tmp_var('output','int32', [3,1])
 
         # 输入多个LodTensor以list[Variable]或tuple(Variable)形式
-        fluid.layers.py_func(func=element_wise_add, x=[x,y], out=output)
+        paddle.static.nn.py_func(func=element_wise_add, x=[x,y], out=output)
 
-        exe=fluid.Executor(fluid.CPUPlace())
+        exe=paddle.static.Executor(fluid.CPUPlace())
         exe.run(start_program)
 
         # 给program喂入numpy数组

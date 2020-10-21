@@ -5,8 +5,6 @@ equal_all
 
 .. py:function:: paddle.equal_all(x, y, name=None)
 
-:alias_main: paddle.equal_all
-:alias: paddle.equal_all,paddle.tensor.equal_all,paddle.tensor.logic.equal_all
 
 该OP返回：返回的结果只有一个元素值，如果所有相同位置的元素相同返回True，否则返回False。
 

@@ -5,29 +5,29 @@ abs
 
 .. py:function:: paddle.fluid.layers.abs(x, name=None)
 
-:alias_main: paddle.abs
-:alias: paddle.abs,paddle.tensor.abs,paddle.tensor.math.abs
-:old_api: paddle.fluid.layers.abs
 
 
 
-绝对值激活函数。
+绝对值函数。
 
 .. math::
     out = |x|
 
 参数:
-    - **x** (Variable)- 多维Tensor，数据类型为float32或float64。
-    - **name** (str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - x (Tensor) - 输入的Tensor，数据类型为：float32、float64。
+    - name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：表示绝对值结果的Tensor，数据类型与x相同。
+返回：输出Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型：Variable
+返回类型：Tensor
 
 **代码示例**：
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.data(name="input", shape=[32, 784])
-        result = fluid.layers.abs(data)
+        import paddle
+        paddle.disable_static()
+        x = paddle.to_tensor([-1, -2, -3, -4], dtype='float32')
+        res = paddle.abs(x)
+        print(res.numpy())
+        # [1, 2, 3, 4]

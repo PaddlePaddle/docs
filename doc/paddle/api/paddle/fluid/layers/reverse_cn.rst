@@ -5,9 +5,6 @@ reverse
 
 .. py:function:: paddle.fluid.layers.reverse(x,axis)
 
-:alias_main: paddle.reverse
-:alias: paddle.reverse,paddle.tensor.reverse,paddle.tensor.manipulation.reverse
-:old_api: paddle.fluid.layers.reverse
 
 
 

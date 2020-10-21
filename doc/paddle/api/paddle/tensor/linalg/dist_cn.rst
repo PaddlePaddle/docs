@@ -5,8 +5,6 @@ dist
 
 .. py:function:: paddle.tensor.linalg.dist(x, y, p=2)
 
-:alias_main: paddle.dist
-:alias: paddle.dist,paddle.tensor.dist,paddle.tensor.linalg.dist
 
 
 

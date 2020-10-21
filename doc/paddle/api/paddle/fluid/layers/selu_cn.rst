@@ -5,9 +5,6 @@ selu
 
 .. py:function:: paddle.fluid.layers.selu(x, scale=None, alpha=None, name=None)
 
-:alias_main: paddle.nn.functional.selu
-:alias: paddle.nn.functional.selu,paddle.nn.functional.activation.selu
-:old_api: paddle.fluid.layers.selu
 
 
 

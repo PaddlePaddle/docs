@@ -5,9 +5,6 @@ resize_bilinear
 
 .. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None, actual_shape=None, align_corners=True, align_mode=1, data_format='NCHW')
 
-:alias_main: paddle.nn.functional.resize_bilinear
-:alias: paddle.nn.functional.resize_bilinear,paddle.nn.functional.vision.resize_bilinear
-:old_api: paddle.fluid.layers.resize_bilinear
 
 
 

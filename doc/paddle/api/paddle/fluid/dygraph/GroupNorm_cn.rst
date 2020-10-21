@@ -5,9 +5,6 @@ GroupNorm
 
 .. py:class:: paddle.fluid.dygraph.GroupNorm(channels, groups, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, data_layout='NCHW', dtype="float32")
 
-:alias_main: paddle.nn.GroupNorm
-:alias: paddle.nn.GroupNorm,paddle.nn.layer.GroupNorm,paddle.nn.layer.norm.GroupNorm
-:old_api: paddle.fluid.dygraph.GroupNorm
 
 
 

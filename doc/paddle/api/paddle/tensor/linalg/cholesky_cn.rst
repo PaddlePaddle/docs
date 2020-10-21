@@ -5,8 +5,6 @@ cholesky
 
 .. py:function:: paddle.cholesky(x, upper=False, name=None)
 
-:alias_main: paddle.cholesky
-:alias: paddle.cholesky, paddle.tensor.cholesky, paddle.tensor.linalg.cholesky
 
 
 

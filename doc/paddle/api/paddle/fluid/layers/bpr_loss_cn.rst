@@ -5,9 +5,6 @@ bpr_loss
 
 .. py:function:: paddle.fluid.layers.bpr_loss(input, label, name=None)
 
-:alias_main: paddle.nn.functional.bpr_loss
-:alias: paddle.nn.functional.bpr_loss,paddle.nn.functional.loss.bpr_loss
-:old_api: paddle.fluid.layers.bpr_loss
 
 
 

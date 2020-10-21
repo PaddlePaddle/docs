@@ -5,9 +5,6 @@ rank
 
 .. py:function::  paddle.fluid.layers.rank(input)
 
-:alias_main: paddle.rank
-:alias: paddle.rank,paddle.tensor.rank,paddle.tensor.attribute.rank
-:old_api: paddle.fluid.layers.rank
 
 
 

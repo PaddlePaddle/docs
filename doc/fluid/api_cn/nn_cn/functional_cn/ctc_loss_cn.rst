@@ -8,7 +8,7 @@ ctc_loss
 
 参数
 :::::::::
-    - **log_probs** (Tensor): - 经过 padding 的概率序列，其 shape 必须是 [max_logit_length, batch_size, num_classes + 1]。其中 max_logit_length 是最长输入序列的长度。该输入不需要经过 softmax 操作，因为该 OP 的内部对 input 做了 softmax 操作。数据类型仅支持float32。
+    - **log_probs** (Tensor): - 经过 padding 的概率序列，其 shape 必须是 [max_logit_length, batch_size, num_classes + 1]。其中 max_logit_length 是最长输入序列的长度。该输入不需要经过 softmax 操作，因为该 OP 的内部对 input 做了 softmax 操作。数据类型支持 float32 和 float64。
     - **labels** (Tensor): - 经过 padding 的标签序列，其 shape 为 [batch_size, max_label_length]，其中 max_label_length 是最长的 label 序列的长度。数据类型支持int32。
     - **input_lengths** (Tensor): - 表示输入 ``log_probs`` 数据中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
     - **label_lengths** (Tensor): - 表示 label 中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。

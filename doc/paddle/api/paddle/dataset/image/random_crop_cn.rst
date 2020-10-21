@@ -5,9 +5,6 @@ random_crop
 
 .. py:function:: paddle.fluid.layers.random_crop(x, shape, seed=None)
 
-:alias_main: paddle.nn.functional.random_crop
-:alias: paddle.nn.functional.random_crop,paddle.nn.functional.extension.random_crop
-:old_api: paddle.fluid.layers.random_crop
 
 
 

@@ -5,9 +5,6 @@ generate_proposals
 
 .. py:function:: paddle.fluid.layers.generate_proposals(scores, bbox_deltas, im_info, anchors, variances, pre_nms_top_n=6000, post_nms_top_n=1000, nms_thresh=0.5, min_size=0.1, eta=1.0, name=None)
 
-:alias_main: paddle.nn.functional.generate_proposals
-:alias: paddle.nn.functional.generate_proposals,paddle.nn.functional.vision.generate_proposals
-:old_api: paddle.fluid.layers.generate_proposals
 
 
 

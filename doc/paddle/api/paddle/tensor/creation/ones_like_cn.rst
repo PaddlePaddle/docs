@@ -5,8 +5,6 @@ ones_like
 
 .. py:function:: paddle.ones_like(x, dtype=None, name=None)
 
-:alias_main: paddle.ones_like
-:alias: paddle.tensor.ones_like, paddle.tensor.creation.ones_like
 
 该OP返回一个和 ``x`` 具有相同形状的数值都为1的Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 

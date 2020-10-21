@@ -3,51 +3,58 @@
 BuildStrategy
 -------------------------------
 
-
-.. py:class:: paddle.fluid.BuildStrategy
-
-:api_attr: 声明式编程模式（静态图)
-
-
+.. py:class:: paddle.static.BuildStrategy
 
 ``BuildStrategy`` 使用户更方便地控制 :ref:`cn_api_fluid_ParallelExecutor` 中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
-**代码示例**
+返回
+:::::::::
+BuildStrategy，一个BuildStrategy的实例
+
+代码示例
+:::::::::
 
 .. code-block:: python
     
     import os
-    import numpy as np
-    import paddle.fluid as fluid
+    import paddle
+    import paddle.static as static
 
-    os.environ["CPU_NUM"] = '2'
-    places = fluid.cpu_places()
+    paddle.enable_static()
 
-    data = fluid.layers.data(name="x", shape=[1], dtype="float32")
-    hidden = fluid.layers.fc(input=data, size=10)
-    loss = fluid.layers.mean(hidden)
-    fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    os.environ['CPU_NUM'] = str(2)
+    places = static.cpu_places()
 
-    build_strategy = fluid.BuildStrategy()
+    data = static.data(name="x", shape=[None, 1], dtype="float32")
+    hidden = static.nn.fc(x=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+
+    build_strategy = static.BuildStrategy()
     build_strategy.enable_inplace = True
     build_strategy.memory_optimize = True
-    build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
-    program = fluid.compiler.CompiledProgram(fluid.default_main_program())
+    build_strategy.reduce_strategy = static.BuildStrategy.ReduceStrategy.Reduce
+    program = static.CompiledProgram(static.default_main_program())
     program = program.with_data_parallel(loss_name=loss.name,
-                                         build_strategy=build_strategy,
-                                         places=places)
+                                        build_strategy=build_strategy,
+                                        places=places)
 
 
 .. py:attribute:: debug_graphviz_path
 
 str类型。表示以graphviz格式向文件中写入计算图的路径，有利于调试。默认值为空字符串。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
     build_strategy.debug_graphviz_path = "./graph"
 
 
@@ -55,12 +62,17 @@ str类型。表示以graphviz格式向文件中写入计算图的路径，有利
 
 bool类型。如果设置为True，则算子的执行顺序将与算子定义的执行顺序相同。默认为False。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
     build_strategy.enable_sequential_execution = True
 
 
@@ -68,12 +80,17 @@ bool类型。如果设置为True，则算子的执行顺序将与算子定义的
      
 bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模式下有效，使程序运行更快。默认为False。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
     build_strategy.fuse_broadcast_ops = True
 
      
@@ -81,12 +98,17 @@ bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模�
 
 bool类型。表明是否融合(fuse) elementwise_add_op和activation_op。这会使整体执行过程更快。默认为False。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
     build_strategy.fuse_elewise_add_act_ops = True
 
 
@@ -94,64 +116,73 @@ bool类型。表明是否融合(fuse) elementwise_add_op和activation_op。这�
 
 bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存并可能加速执行过程。此选项仅适用于GPU设备。默认为False。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
     build_strategy.fuse_relu_depthwise_conv = True
 
 .. py:attribute:: gradient_scale_strategy
 
-``fluid.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
+``static.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
+    import numpy
     import os
-    import numpy as np
-    import paddle.fluid as fluid
-    import paddle.fluid.compiler as compiler
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
 
     use_cuda = True
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    exe = fluid.Executor(place)
+    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
+    exe = static.Executor(place)
 
-    # NOTE: 如果你使用CPU计算，需要指定CPU_NUM, 否则,fluid
-    # 将使用所有的核的数目作为CPU_NUM,
-    # 这种情况下，输入的batch size应该大于CPU_NUM, 否则, 
-    # 进程将会因为异常而失败。
+    # NOTE: If you use CPU to run the program, you need
+    # to specify the CPU_NUM, otherwise, paddle will use
+    # all the number of the logic core as the CPU_NUM,
+    # in that case, the batch size of the input should be
+    # greater than CPU_NUM, if not, the process will be
+    # failed by an exception.
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
-        places = fluid.cpu_places()
+        places = static.cpu_places()
     else:
-        places = places = fluid.cuda_places()
+        places = static.cuda_places()
 
-    data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-    hidden = fluid.layers.fc(input=data, size=10)
-    loss = fluid.layers.mean(hidden)
-    fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+    data = static.data(name='X', shape=[None, 1], dtype='float32')
+    hidden = static.nn.fc(x=data, size=10)
+    loss = paddle.mean(hidden)
+    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
-    fluid.default_startup_program().random_seed=1
-    exe.run(fluid.default_startup_program())
+    exe.run(static.default_startup_program())
 
-    build_strategy = fluid.BuildStrategy()
+    build_strategy = static.BuildStrategy()
     build_strategy.gradient_scale_strategy = \
-         fluid.BuildStrategy.GradientScaleStrategy.Customized
-    compiled_prog = compiler.CompiledProgram(
-         fluid.default_main_program()).with_data_parallel(
-                  loss_name=loss.name, build_strategy=build_strategy,
-                  places = places)
+            static.BuildStrategy.GradientScaleStrategy.Customized
+    compiled_prog = static.CompiledProgram(
+            static.default_main_program()).with_data_parallel(
+                    loss_name=loss.name, build_strategy=build_strategy,
+                    places=places)
 
     dev_count =  len(places)
-    x = np.random.random(size=(10, 1)).astype('float32')
-    loss_grad = np.ones((dev_count)).astype("float32") * 0.01
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_grad = numpy.ones((dev_count)).astype("float32") * 0.01
     loss_grad_name = loss.name+"@GRAD"
     loss_data = exe.run(compiled_prog,
-                     feed={"X": x, loss_grad_name : loss_grad},
-                     fetch_list=[loss.name, loss_grad_name])
+                        feed={"X": x, loss_grad_name : loss_grad},
+                        fetch_list=[loss.name, loss_grad_name])
 
 .. py:attribute:: memory_optimize
 
@@ -159,27 +190,37 @@ bool类型或None。设为True时可用于减少总内存消耗，False表示不
 
 .. py:attribute:: reduce_strategy
 
-``fluid.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种参数梯度聚合策略，即 ``AllReduce`` 和 ``Reduce`` 。如果用户需要在所有执行设备上独立地进行参数更新，可以使用 ``AllReduce`` 。如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
+``static.BuildStrategy.ReduceStrategy`` 类型。在 ``ParallelExecutor`` 中，存在两种参数梯度聚合策略，即 ``AllReduce`` 和 ``Reduce`` 。如果用户需要在所有执行设备上独立地进行参数更新，可以使用 ``AllReduce`` 。如果使用 ``Reduce`` 策略，所有参数的优化将均匀地分配给不同的执行设备，随之将优化后的参数广播给其他执行设备。
 默认值为 ``AllReduce`` 。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.reduce_strategy = fluid.BuildStrategy.ReduceStrategy.Reduce
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
+    build_strategy.reduce_strategy = static.BuildStrategy.ReduceStrategy.Reduce
 
 .. py:attribute:: remove_unnecessary_lock
 
 bool类型。设置True会去除GPU操作中的一些锁操作， ``ParallelExecutor`` 将运行得更快，默认为True。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
     build_strategy.remove_unnecessary_lock = True
 
 
@@ -187,12 +228,15 @@ bool类型。设置True会去除GPU操作中的一些锁操作， ``ParallelExec
 
 bool类型。表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。当前的实现不支持FP16训练和CPU。并且目前**仅支持**仅在一台机器上进行同步式批正则。默认为 False。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    build_strategy = fluid.BuildStrategy()
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    build_strategy = static.BuildStrategy()
     build_strategy.sync_batch_norm = True
-
-

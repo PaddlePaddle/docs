@@ -5,9 +5,6 @@ unique_with_counts
 
 .. py:function:: paddle.fluid.layers.unique_with_counts(x, dtype='int32')
 
-:alias_main: paddle.unique_with_counts
-:alias: paddle.unique_with_counts,paddle.tensor.unique_with_counts,paddle.tensor.manipulation.unique_with_counts
-:old_api: paddle.fluid.layers.unique_with_counts
 
 
 该OP对输入Tensor元素进行去重，获取去重后结果Tensor，同时获取去重后结果在原始输入中的计数Tensor以及在原始输入中的索引Tensor。

@@ -32,12 +32,9 @@ cos
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([[-1,np.pi],[1,15.6]]).astype(np.float32)
-        x = paddle.to_variable(x_data)
-        res = paddle.cos(x)
-        print(res.numpy())
-        # [[ 0.54030231 -1.        ]
-        # [ 0.54030231 -0.99417763]]
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = paddle.cos(x)
+        print(out.numpy())
+        # [0.92106099 0.98006658 0.99500417 0.95533649]

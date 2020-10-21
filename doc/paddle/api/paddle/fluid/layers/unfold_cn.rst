@@ -5,9 +5,6 @@ unfold
 
 .. py:function:: paddle.fluid.layers.unfold(x, kernel_size, strides=1, paddings=0, dilation=1, name=None)
 
-:alias_main: paddle.nn.functional.unfold
-:alias: paddle.nn.functional.unfold,paddle.nn.functional.common.unfold
-:old_api: paddle.fluid.layers.unfold
 
 
 

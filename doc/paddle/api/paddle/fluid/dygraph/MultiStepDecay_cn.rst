@@ -6,7 +6,6 @@ MultiStepDecay
 
 .. py:class:: paddle.fluid.dygraph.MultiStepDecay(learning_rate, milestones, decay_rate=0.1)
 
-:api_attr: 命令式编程模式（动态图)
 
 
 该接口提供 ``MultiStep`` 衰减学习率的功能。

@@ -5,9 +5,6 @@ npair_loss
 
 .. py:function:: paddle.fluid.layers.npair_loss(anchor, positive, labels, l2_reg=0.002)
 
-:alias_main: paddle.nn.functional.npair_loss
-:alias: paddle.nn.functional.npair_loss,paddle.nn.functional.loss.npair_loss
-:old_api: paddle.fluid.layers.npair_loss
 
 
 

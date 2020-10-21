@@ -5,9 +5,6 @@ swish
 
 .. py:function:: paddle.fluid.layers.swish(x, beta=1.0, name=None)
 
-:alias_main: paddle.nn.functional.swish
-:alias: paddle.nn.functional.swish,paddle.nn.functional.activation.swish
-:old_api: paddle.fluid.layers.swish
 
 
 

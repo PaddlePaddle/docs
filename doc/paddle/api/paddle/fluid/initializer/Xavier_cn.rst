@@ -5,9 +5,6 @@ Xavier
 
 .. py:attribute:: paddle.fluid.initializer.Xavier
 
-:alias_main: paddle.nn.initializer.Xavier
-:alias: paddle.nn.initializer.Xavier
-:old_api: paddle.fluid.initializer.Xavier
 
 
 

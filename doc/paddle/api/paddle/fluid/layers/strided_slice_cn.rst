@@ -4,9 +4,6 @@ strided_slice
 -------------------------------
 .. py:function:: paddle.fluid.layers.strided_slice(input, axes, starts, ends, strides)
 
-:alias_main: paddle.strided_slice
-:alias: paddle.strided_slice,paddle.tensor.strided_slice,paddle.tensor.manipulation.strided_slice
-:old_api: paddle.fluid.layers.strided_slice
 
 
 strided_slice算子。

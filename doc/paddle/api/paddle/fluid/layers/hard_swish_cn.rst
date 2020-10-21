@@ -5,9 +5,6 @@ hard_swish
 
 .. py:function:: paddle.fluid.layers.hard_swish(x, threshold=6.0, scale=6.0, offset=3.0, name=None)
 
-:alias_main: paddle.nn.functional.hard_swish
-:alias: paddle.nn.functional.hard_swish,paddle.nn.functional.activation.hard_swish
-:old_api: paddle.fluid.layers.hard_swish
 
 
 

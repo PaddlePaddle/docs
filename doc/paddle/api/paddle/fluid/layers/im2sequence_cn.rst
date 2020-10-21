@@ -6,7 +6,6 @@ im2sequence
 
 .. py:function:: paddle.fluid.layers.im2sequence(input, filter_size=1, stride=1, padding=0, input_image_size=None, out_stride=1, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

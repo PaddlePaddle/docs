@@ -5,7 +5,6 @@ load_op_library
 
 .. py:class:: paddle.fluid.load_op_library
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

@@ -6,7 +6,6 @@ TracedLayer
 
 .. py:class:: paddle.fluid.dygraph.TracedLayer(program, parameters, feed_names, fetch_names)
 
-:api_attr: 命令式编程模式（动态图)
 
 
 

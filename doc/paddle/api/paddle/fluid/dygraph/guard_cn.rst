@@ -1,35 +1,35 @@
-.. _cn_api_fluid_dygraph_guard:
+.. _cn_api_fluid_unique_name_guard:
 
 guard
 -------------------------------
 
-
-.. py:function:: paddle.fluid.dygraph.guard(place=None)
-
-:api_attr: 命令式编程模式（动态图)
+.. py:function:: paddle.fluid.unique_name.guard(new_generator=None)
 
 
 
-通过with语句创建一个dygraph运行的context，执行context代码。
 
-参数：
-    - **place** (fluid.CPUPlace|fluid.CUDAPlace, 可选) –  动态图执行的设备，可以选择cpu，gpu，如果用户未制定，则根据用户paddle编译的方式来选择运行的设备，如果编译的cpu版本，则在cpu上运行，如果是编译的gpu版本，则在gpu上运行。默认值：None。
+该接口用于更改命名空间，与with语句一起使用。使用后，在with语句的上下文中使用新的命名空间，调用generate接口时相同前缀的名称将从0开始重新编号。
 
-返回： None
+参数:
+  - **new_generator** (str|bytes, 可选) - 新命名空间的名称。请注意，Python2中的str在Python3中被区分为str和bytes两种，因此这里有两种类型。 缺省值为None，若不为None，new_generator将作为前缀添加到generate接口产生的唯一名称中。
+
+返回: 无。
 
 **代码示例**
 
 .. code-block:: python
 
-    import numpy as np
-    import paddle.fluid as fluid
-
-    with fluid.dygraph.guard():
-        inp = np.ones([3, 1024], dtype='float32')
-        t = fluid.dygraph.base.to_variable(inp)
-        linear1 = fluid.Linear(1024, 4, bias_attr=False)
-        linear2 = fluid.Linear(4, 4)
-        ret = linear1(t)
-        dy_ret = linear2(ret)
+        import paddle.fluid as fluid
+        with fluid.unique_name.guard():
+            name_1 = fluid.unique_name.generate('fc')
+        with fluid.unique_name.guard():
+            name_2 = fluid.unique_name.generate('fc')
+        print(name_1, name_2)  # fc_0, fc_0
+         
+        with fluid.unique_name.guard('A'):
+            name_1 = fluid.unique_name.generate('fc')
+        with fluid.unique_name.guard('B'):
+            name_2 = fluid.unique_name.generate('fc')
+        print(name_1, name_2)  # Afc_0, Bfc_0
 
 

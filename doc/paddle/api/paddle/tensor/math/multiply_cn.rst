@@ -5,8 +5,6 @@ multiply
 
 .. py:function:: paddle.multiply(x, y, axis=-1, name=None)
 
-:alias_main: paddle.multiply
-:alias: paddle.multiply, paddle.tensor.multiply, paddle.tensor.math.multiply
 
 
 

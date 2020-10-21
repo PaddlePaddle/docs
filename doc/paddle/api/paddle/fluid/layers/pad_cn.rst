@@ -5,9 +5,6 @@ pad
 
 .. py:function:: paddle.fluid.layers.pad(x, paddings, pad_value=0.0, name=None)
 
-:alias_main: paddle.nn.functional.pad
-:alias: paddle.nn.functional.pad,paddle.nn.functional.common.pad
-:old_api: paddle.fluid.layers.pad
 
 
 

@@ -6,7 +6,6 @@ create_py_reader_by_data
 
 .. py:function:: paddle.fluid.layers.create_py_reader_by_data(capacity,feed_list,name=None,use_double_buffer=True)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

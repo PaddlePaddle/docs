@@ -31,12 +31,9 @@ ceil
 .. code-block:: python
 
         import paddle
-        import numpy as np
-
         paddle.disable_static()
-        x_data = np.array([[-1.5,6],[1,15.6]]).astype(np.float32)
-        x = paddle.to_variable(x_data)
-        res = paddle.ceil(x)
-        print(res.numpy())
-        # [[-1.  6.]
-        # [ 1. 16.]]
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = paddle.ceil(x)
+        print(out.numpy())
+        # [-0. -0.  1.  1.]

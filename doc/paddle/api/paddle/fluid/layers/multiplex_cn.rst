@@ -5,9 +5,6 @@ multiplex
 
 .. py:function:: paddle.fluid.layers.multiplex(inputs, index)
 
-:alias_main: paddle.multiplex
-:alias: paddle.multiplex,paddle.tensor.multiplex,paddle.tensor.math.multiplex
-:old_api: paddle.fluid.layers.multiplex
 
 
 

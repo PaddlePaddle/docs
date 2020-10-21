@@ -1,12 +1,11 @@
-.. _cn_api_fluid_scope_guard:
+.. _cn_api_fluid_executor_scope_guard:
 
 scope_guard
 -------------------------------
 
 
-.. py:function:: paddle.fluid.scope_guard(scope)
+.. py:function:: paddle.fluid.executor.scope_guard (scope)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
@@ -26,11 +25,11 @@ scope_guard
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy
 
-    new_scope = fluid.Scope()
-    with fluid.scope_guard(new_scope):
-         fluid.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), fluid.CPUPlace())
+    new_scope = paddle.static.Scope()
+    with paddle.static.scope_guard(new_scope):
+         paddle.static.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), paddle.CPUPlace())
     data = numpy.array(new_scope.find_var("data").get_tensor())
     print(data)  # [[1. 1.]]

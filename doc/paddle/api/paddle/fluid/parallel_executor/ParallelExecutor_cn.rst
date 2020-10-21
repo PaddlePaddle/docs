@@ -4,9 +4,8 @@ ParallelExecutor
 -------------------------------
 
 
-.. py:class:: paddle.fluid.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
+.. py:class:: paddle.static.ParallelExecutor(use_cuda, loss_name=None, main_program=None, share_vars_from=None, exec_strategy=None, build_strategy=None, num_trainers=1, trainer_id=0, scope=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 
@@ -15,17 +14,15 @@ ParallelExecutor
 参数:
     - **use_cuda** (bool) – 该参数表示是否使用GPU执行。
     - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字。**注意：如果是数据并行模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。
-    - **main_program** (Program) – 需要被执行的Program 。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为fluid.default_main_program()。 默认为：None。
+    - **main_program** (Program) – 需要被执行的Program 。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。 默认为：None。
     - **share_vars_from** (ParallelExecutor) - 如果设置了share_vars_from，当前的ParallelExecutor将与share_vars_from指定的ParallelExecutor共享参数值。需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的ParallelExecutor在调用with_data_parallel时，需要将share_vars_from设置为训练所对应的ParallelExecutor。由于ParallelExecutor只有在第一次执行时才会将参数变量分发到其他设备上，因此share_vars_from指定的ParallelExecutor必须在当前ParallelExecutor之前运行。默认为：None。
-    - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。 关于exec_strategy更多信息，请参阅 ``fluid.ExecutionStrategy`` 。 默认为：None。
-    - **build_strategy** (BuildStrategy): 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``fluid.BuildStrategy`` 。 默认为：None。
+    - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。 关于exec_strategy更多信息，请参阅 ``paddle.static.ExecutionStrategy`` 。 默认为：None。
+    - **build_strategy** (BuildStrategy): 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``paddle.static.BuildStrategy`` 。 默认为：None。
     - **num_trainers** (int) – 进行GPU分布式训练时需要设置该参数。如果该参数值大于1，NCCL将会通过多层级节点的方式来初始化。每个节点应有相同的GPU数目。默认为：1。
     - **trainer_id** (int) –  进行GPU分布式训练时需要设置该参数。该参数必须与num_trainers参数同时使用。trainer_id指明是当前所在节点的 “rank”（层级）。trainer_id从0开始计数。默认为：0。
-    - **scope** (Scope) – 指定执行Program所在的作用域。默认为：fluid.global_scope()。
+    - **scope** (Scope) – 指定执行Program所在的作用域。默认为：paddle.static.global_scope()。
 
 返回：初始化后的 ``ParallelExecutor`` 对象
-
-返回类型：ParallelExecutor
 
 抛出异常：``TypeError`` 
     - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会抛出此异常。
@@ -38,47 +35,47 @@ ParallelExecutor
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy
     import os
-    
+
     use_cuda = True
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    paddle.enable_static()
+    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace() 
     
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
-    
-    exe = fluid.Executor(place)
-    
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-        hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-        test_program = fluid.default_main_program().clone(for_test=True)
-        fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
+
+    exe = paddle.static.Executor(place)
+
+    train_program = paddle.static.Program()
+    startup_program = paddle.static.Program()
+    with paddle.static.program_guard(train_program, startup_program):
+        data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
+        hidden = paddle.static.nn.fc(data, 10)
+        loss = paddle.mean(hidden)
+        test_program = paddle.static.default_main_program().clone(for_test=True)
+        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
     exe.run(startup_program)
-    
-    train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
-                                       main_program=train_program,
-                                       loss_name=loss.name)
-    # 注意：如果此处不设置share_vars_from=train_exe，测试过程中用的参数与训练使用的参数是不一致
-    test_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
-                                      main_program=test_program,
-                                      share_vars_from=train_exe)
 
-    train_data = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data, = train_exe.run(feed={"X": train_data},
+    train_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
+                                               main_program=train_program,
+                                               loss_name=loss.name) 
+    # 注意：如果此处不设置share_vars_from=train_exe，测试过程中用的参数与训练使用的参数是不一致
+    test_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
+                                              main_program=test_program,
+                                              share_vars_from=train_exe)
+
+    x = numpy.random.random(size=(10, 1)).astype('float32')
+    loss_data, = train_exe.run(feed={"X": x},
                                fetch_list=[loss.name])
 
-    test_data = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data, = test_exe.run(feed={"X": test_data},
+    loss_data, = test_exe.run(feed={"X": x},
                               fetch_list=[loss.name])
 
 .. py:method::  run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
@@ -93,8 +90,6 @@ ParallelExecutor
 
 返回：返回fetch_list中指定的变量值
 
-返回类型：List
-
 抛出异常：
      - ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，抛出此异常
      - ``TypeError`` - 如果feed参数是list类型，但是它里面的元素不是dict类型时，抛出此异常
@@ -106,35 +101,36 @@ ParallelExecutor
 **示例代码**
 
 .. code-block:: python
-    
-    import paddle.fluid as fluid
+    import paddle
     import numpy
     import os
 
     use_cuda = True
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    paddle.enable_static()
+    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
      
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
-    exe = fluid.Executor(place)
 
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-        hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-        fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
- 
-        exe.run(startup_program)
- 
-        train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
-                                           main_program=train_program,
-                                           loss_name=loss.name)
+    exe = paddle.static.Executor(place)
+
+    train_program = paddle.static.Program()
+    startup_program = paddle.static.Program()
+    with paddle.static.program_guard(train_program, startup_program):
+        data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
+        hidden = paddle.static.nn.fc(data, 10)
+        loss = paddle.mean(hidden)
+        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
+
+    exe.run(startup_program)
+
+    train_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
+                                               main_program=train_program,
+                                               loss_name=loss.name)
     # 如果feed参数是dict类型:
     # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (5, 1)的图像
     x = numpy.random.random(size=(10, 1)).astype('float32')
@@ -147,9 +143,8 @@ ParallelExecutor
     # 第二个设备处理形为 (9, 1) 的图像
     #
     # 使用 exe.device_count 得到设备数目
-    x1 = numpy.random.random(size=(10, 1)).astype('float32')
     x2 = numpy.random.random(size=(9, 1)).astype('float32')
-    loss_data, = train_exe.run(feed=[{"X": x1}, {"X": x2}],
+    loss_data, = train_exe.run(feed=[{"X": x}, {"X": x2}],
                                fetch_list=[loss.name])
 
 .. py:method::  drop_local_exe_scopes()
@@ -162,35 +157,37 @@ ParallelExecutor
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy
     import os
     
     use_cuda = True
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
-    # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
+    # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
-    
-    train_program = fluid.Program()
-    startup_program = fluid.Program()
-    with fluid.program_guard(train_program, startup_program):
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
-        hidden = fluid.layers.fc(input=data, size=10)
-        loss = fluid.layers.mean(hidden)
-    
-    place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
-    exe = fluid.Executor(place)
+
+    paddle.enable_static()
+    train_program = paddle.static.Program()
+    startup_program = paddle.static.Program()
+    with paddle.static.program_guard(train_program, startup_program):
+        data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
+        hidden = paddle.static.nn.fc(data, 10)
+        loss = paddle.mean(hidden)
+
+    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
+    exe = paddle.static.Executor(place)
     exe.run(startup_program)
-    
-    parallel_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
-                                       main_program=train_program,
-                                       loss_name=loss.name)
-    
+
+    parallel_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
+                                                  main_program=train_program,
+                                                  loss_name=loss.name)
+
     x = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = parallel_exe.run(feed={"X": x},
-                               fetch_list=[loss.name])
-    
+                                  fetch_list=[loss.name])
+
     parallel_exe.drop_local_exe_scopes()
+

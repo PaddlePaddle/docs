@@ -4,8 +4,6 @@ unbind
 
 .. py:function:: paddle.tensor.unbind(input, axis=0)
 
-:alias_main: paddle.unbind
-:alias: paddle.unbind,paddle.tensor.unbind,paddle.tensor.manipulation.unbind
 
 
 

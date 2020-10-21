@@ -1,16 +1,16 @@
 动态图转静态图
 ================
 
-PaddlePadde的动态图具有接口易用、Python风格的编程体验、友好的debug交互等优点。在动态图模式下，代码是按照我们编写的顺序依次执行。这种机制更符合python程序员的习惯，可以很方便地将大脑中的想法快速地转化为实际代码，也更容易调试。但在部分性能方面，python速度负担太大，无法与C++相提并论。因此在工业界部署很多地方（如大型推荐系统、移动端）都倾向于直接使用C++来提速。
+动态图有诸多优点，包括易用的接口，python风格的编程体验，友好的debug交互机制等。在动态图模式下，代码是按照我们编写的顺序依次执行。这种机制更符合Python程序员的习惯，可以很方便地将大脑中的想法快速地转化为实际代码，也更容易调试。但在性能方面，Python执行开销较大，与C++有一定差距。因此在工业界的许多部署场景中（如大型推荐系统、移动端）都倾向于直接使用C++来提速。
 
-此时，静态图在部署方面更具有性能的优势。静态图程序在编译执行时，先搭建模型的神经网络结构，然后再对神经网络执行计算操作。预先搭建好的神经网络可以脱离python依赖，在C++端被重新解析执行。
+相比动态图，静态图在部署方面更具有性能的优势。静态图程序在编译执行时，先搭建模型的神经网络结构，然后再对神经网络执行计算操作。预先搭建好的神经网络可以脱离Python依赖，在C++端被重新解析执行，而且拥有整体网络结构也能进行一些网络结构的优化。
 
 动态图代码更易编写和debug，但在部署性能上，静态图更具优势。因此我们新增了动态图转静态图的功能，支持用户依然使用动态图编写组网代码。PaddlePaddle会对用户代码进行分析，自动转换为静态图网络结构，兼顾了动态图易用性和静态图部署性能两方面优势。
 
 基本使用方法
 --------------
 
-PaddlePaddle提供了两种动态图转静态图的方式，基于动态图trace的转换与基于源代码级别的转换的ProgramTranslator。
+PaddlePaddle提供了两种动态图转静态图的方式，基于动态图trace的TracedLayer与基于源代码级别转换的ProgramTranslator。
 
 1. 基于trace的TracedLayer：
 
@@ -60,7 +60,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 
     place = paddle.CPUPlace()
     exe = paddle.Executor(place)
-    program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
+    program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname, exe)
     fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 
 
@@ -88,7 +88,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 
 2. 基于源代码转写的ProgramTranslator
 
-对于依赖数据的控制流，我们使用基于源代码转写的ProgramTranslator来进行动态图转静态图。其基本原理是通过分析python代码来将动态图代码转写为静态图代码，并在底层自动帮用户使用执行器运行。其基本使用方法十分简便，只需要在要转化的函数（该函数也可以是用户自定义动态图Layer的forward函数）前添加一个装饰器@paddle.jit.to_static，上面的例子转化如下，并且可以依旧使用该函数运行得到结果：
+对于依赖数据的控制流，我们使用基于源代码转写的ProgramTranslator来进行动态图转静态图。其基本原理是通过分析Python代码来将动态图代码转写为静态图代码，并在底层自动帮用户使用执行器运行。其基本使用方法十分简便，只需要在要转化的函数（该函数也可以是用户自定义动态图Layer的forward函数）前添加一个装饰器 ``@paddle.jit.to_static`` ，上面的例子转化如下，并且可以依旧使用该函数运行得到结果：
 
 .. code-block:: python
 
@@ -108,7 +108,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     func(input_var)
 
 
-若要存储转化后的静态图模型，可以调用paddle.jit.save，我们再以SimpleFcLayer为例，需要在SimpleFcLayer的forward函数添加装饰器：
+若要存储转化后的静态图模型，可以调用 ``paddle.jit.save`` ，我们再以SimpleFcLayer为例，需要在SimpleFcLayer的forward函数添加装饰器：
 
 .. code-block:: python
 
@@ -141,7 +141,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
     input_var = paddle.to_tensor(in_np)
     out = fc_layer(input_var)
 
-    paddle.jit.save(mnist, "./mnist_dy2stat", input_spec=[input_var])
+    paddle.jit.save(fc_layer, "./fc_layer_dy2stat", input_spec=[input_var])
 
 内部架构原理
 --------------
@@ -157,21 +157,21 @@ TracedLayer的原理就是trace，相对简单，因此我们在这里不展开�
 
 2. 动态图源码转AST（抽象语法树）
 
-动态图转静态图的最核心部分类似一个编译器，解析动态图代码语句为AST，再对应AST进行改写，最后反转回成静态图代码。从函数转化为代码字符串可以使用Python的inspect.getsource。从字符串Python提供了自带的ast库来解析字符串为 `AST <https://docs.python.org/3/library/ast.html>`_ ，但是由于python2，python3的语法略有不同，为了避免我们需要额外处理这些python2，python3的不同情况，我们使用了统一python2，python3的开源AST处理 `gast库 <https://github.com/serge-sans-paille/gast>`_ 。这些接口使得函数转化为AST没有本质上的困难。
+动态图转静态图的最核心部分类似一个编译器，解析动态图代码语句为AST，再对应AST进行改写，最后反转回成静态图代码。从函数转化为代码字符串可以使用Python的inspect.getsource。从字符串Python提供了自带的 `ast <https://docs.python.org/3/library/ast.html>`_ 库来解析字符串为AST，但是由于Python2，Python3的语法略有不同，为了避免我们需要额外处理这些Python2，Python3的不同情况，我们使用了统一Python2，Python3的开源AST处理 `gast库 <https://github.com/serge-sans-paille/gast>`_ 。这些接口使得函数转化为AST没有本质上的困难。
 
 3. AST改写和静态图源码转换
 
-这部分为动转静最核心的部分，我们对支持的各种语法进行ast转写。其中最重要的python控制流，if-else，while，for循环被分别分析转化为PaddlePaddle静态图接口cond，while_loop等接口实现。我们对想转化的每一种主要语法创建一个Transformer（这里的Transformer是python ast转写的概念，而不是自然语言处理NLP领域的Transformer），每个Transformer扫一遍AST并进行对应的改写。最后被转化完成的AST我们使用gast提供的接口转回成源码。
+这部分为动转静最核心的部分，我们对支持的各种语法进行ast转写。其中最重要的Python控制流，if-else，while，for循环被分别分析转化为PaddlePaddle静态图接口cond，while_loop等接口实现。我们对想转化的每一种主要语法创建一个Transformer（这里的Transformer是Python ast转写的概念，而不是自然语言处理NLP领域的Transformer），每个Transformer扫一遍AST并进行对应的改写。最后被转化完成的AST我们使用gast提供的接口转回成源码。
 
 4. 静态图源码作为动态图一部分运行的技术
 
-为了动静转化更加易用和被转化的代码能在动态图中复用，我们在拥有源码后运行生成Program，并将这个Program作为一个大op，包装成动态图的一个op，这样既能把用户的代码转为静态图提速或者保存部署，另一方面如果用户想在python层使用生成的静态图代码作为动态图的一部分继续训练或者别的动态图运算也是可以直接使用。
+为了动静转化更加易用和被转化的代码能在动态图中复用，我们在拥有源码后运行生成Program，并将这个Program作为一个大op，包装成动态图的一个op，这样既能把用户的代码转为静态图提速或者保存部署，另一方面如果用户想在Python层使用生成的静态图代码作为动态图的一部分继续训练或者别的动态图运算也是可以直接使用。
 
 5. 易用性与Debug功能在动转静过程的实现
 
 正如AST转写类似编译器，而一般编译器都会提供debug断点，报错，输出一些中间代码等功能。我们在进行动转静时，万一用户的动态图代码出错，或者用户想断点调试，或者用户想看看被转化后的静态图代码是否符合其预期，我们也希望能够像编译器一样提供这些易用性功能，使得动转静兼顾性能和部署同时还具有易用性。我们这里将列出这些功能的实现方式
 
-A. 报错对应到动态图代码行。由于被转化后的静态图代码和原动态图代码不同，python运行出错时会报静态图的错误，因此我们在每一次AST转写时添加AST节点对应的原动态图代码行等信息，在python报错栈中将静态图的报错转化成对应的动态图源码报错
+A. 报错对应到动态图代码行。由于被转化后的静态图代码和原动态图代码不同，Python运行出错时会报静态图的错误，因此我们在每一次AST转写时添加AST节点对应的原动态图代码行等信息，在Python报错栈中将静态图的报错转化成对应的动态图源码报错
 
 B. 设置断点功能。我们保留了被转化后代码的中的pdb.set_trace(), 用户可以使用这种方式进行断点调试
 

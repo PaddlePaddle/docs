@@ -52,9 +52,9 @@ stack
                         [5.0, 6.0] ] ]
 
 **参数**：
-        - **x** (Tensor|list[Tensor]) – 输入 x 可以是单个Tensor，或是多个Tensor组成的列表。如果 x 是一个列表，那么这些Tensor的维度必须相同。支持的数据类型: float32，float64，int32，int64。
+        - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个Tensor，且这些Tensor的维度和数据类型必须相同。支持的数据类型: float32，float64，int32，int64。
 
-        - **axis** (int, 可选) – 指定对输入Tensor进行堆叠运算的轴，有效 axis 的范围是: [−(R+1),R+1)]，R是输入中第一个Tensor的维数。如果 axis < 0，则 axis=axis+R+1 。默认值为0。
+        - **axis** (int, 可选) – 指定对输入Tensor进行堆叠运算的轴，有效 axis 的范围是: [−(R+1),R+1]，R是输入中第一个Tensor的维数。如果 axis < 0，则 axis=axis+R+1 。默认值为0。
 
         - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
@@ -67,16 +67,10 @@ stack
 .. code-block:: python
    
     import paddle
-    import numpy as np
-
-    data1 = np.array([[1.0, 2.0]])
-    data2 = np.array([[3.0, 4.0]])
-    data3 = np.array([[5.0, 6.0]])
-
     paddle.disable_static()
-    x1 = paddle.to_variable(data1)
-    x2 = paddle.to_variable(data2)
-    x3 = paddle.to_variable(data3)
+    x1 = paddle.to_tensor([[1.0, 2.0]])
+    x2 = paddle.to_tensor([[3.0, 4.0]])
+    x3 = paddle.to_tensor([[5.0, 6.0]])
 
     out = paddle.stack([x1, x2, x3], axis=0)
     print(out.shape)  # [3, 1, 2]

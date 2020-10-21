@@ -5,7 +5,6 @@ glu
 
 .. py:function:: paddle.fluid.nets.glu(input, dim=-1)
 
-:api_attr: 声明式编程模式（静态图)
 
 
 

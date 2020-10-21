@@ -5,9 +5,6 @@ BatchNorm
 
 .. py:class:: paddle.fluid.dygraph.BatchNorm(num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False, trainable_statistics=False)
 
-:alias_main: paddle.nn.BatchNorm
-:alias: paddle.nn.BatchNorm,paddle.nn.layer.BatchNorm,paddle.nn.layer.norm.BatchNorm
-:old_api: paddle.fluid.dygraph.BatchNorm
 
 
 

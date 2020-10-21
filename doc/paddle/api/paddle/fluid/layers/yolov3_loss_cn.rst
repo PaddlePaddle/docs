@@ -5,9 +5,6 @@ yolov3_loss
 
 .. py:function:: paddle.fluid.layers.yolov3_loss(x, gt_box, gt_label, anchors, anchor_mask, class_num, ignore_thresh, downsample_ratio, gt_score=None, use_label_smooth=True, name=None)
 
-:alias_main: paddle.nn.functional.yolov3_loss
-:alias: paddle.nn.functional.yolov3_loss,paddle.nn.functional.vision.yolov3_loss
-:old_api: paddle.fluid.layers.yolov3_loss
 
 
 
