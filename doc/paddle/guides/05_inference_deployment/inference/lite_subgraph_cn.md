@@ -23,8 +23,8 @@ config->EnableLiteEngine(
 
 - **`precision_mode`**，类型：`enum class PrecisionType {kFloat32 = 0, kHalf, kInt8,};`, 默认值为`PrecisionType::kFloat32`。指定lite子图的运行精度。
 - **`zero_copy`**，类型：bool，lite子图与Paddle之间的数据传递是否是零拷贝模式。
-- **`passes_filter`**，类型：std::vector<std::string>，默认为空，扩展借口，暂不使用。
-- **`ops_filer`**，类型：std::vector<std::string>，默认为空，显示指定哪些op不使用lite子图运行。
+- **`passes_filter`**，类型：`std::vector<std::string>`，默认为空，扩展借口，暂不使用。
+- **`ops_filer`**，类型：`std::vector<std::string>`，默认为空，显示指定哪些op不使用lite子图运行。
 
 Python接口如下：
 
