@@ -281,6 +281,7 @@ paddle.fluid.layers.polygon_box_transform	paddle.nn.functional.polygon_box_trans
 paddle.fluid.layers.rnn.rnn	paddle.nn.functional.rnn,paddle.nn.functional.rnn.rnn
 paddle.tensor.search.sort	paddle.sort,paddle.tensor.sort
 paddle.tensor.logic.equal	paddle.equal,paddle.tensor.equal
+paddle.tensor.logic.is_tensor	paddle.is_tensor
 paddle.nn.layer.common.ReplicationPad1d	paddle.nn.ReplicationPad1d,paddle.nn.layer.ReplicationPad1d
 paddle.tensor.math.min	paddle.min,paddle.tensor.min
 paddle.fluid.dygraph.container.ParameterList	paddle.nn.ParameterList
