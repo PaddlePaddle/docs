@@ -18,12 +18,8 @@ print(rank_1_tensor)
 ```
 
 ```text
-Tensor: generated_tensor_1
-  - place: CUDAPlace(0)
-  - shape: [3]
-  - layout: NCHW
-  - dtype: double
-  - data: [2.0, 3.0, 4.0]
+Tensor(shape=[3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+       [2., 3., 4.])
 ```
 特殊地，如果仅输入单个scalar类型数据（例如float/int/bool类型的单个元素），则会创建shape为[1]的**Tensor**
 ```python
@@ -32,12 +28,8 @@ paddle.to_tensor([2])
 ```
 上述两种创建方式完全一致，shape均为[1]，输出如下：
 ```text
-Tensor: generated_tensor_0
-  - place: CUDAPlace(0)
-  - shape: [1]
-  - layout: NCHW
-  - dtype: int32_t
-  - data: [2]
+Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+       [2])
 ```
 
 ### 2. 创建类似于matrix的**2-D Tensor**，其rank为2
@@ -47,12 +39,9 @@ rank_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
 print(rank_2_tensor)
 ```
 ```text
-Tensor: generated_tensor_2
-  - place: CUDAPlace(0)
-  - shape: [2, 3]
-  - layout: NCHW
-  - dtype: double
-  - data: [1.0 2.0 3.0 4.0 5.0 6.0]
+Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+       [[1., 2., 3.],
+        [4., 5., 6.]])
 ```
 
 ### 3. 同样地，还可以创建rank为3、4...N等更复杂的多维Tensor
@@ -65,26 +54,26 @@ rank_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
 print(rank_3_tensor)
 ```
 ```text
-Tensor: generated_tensor_3
-  - place: CUDAPlace(0)
-  - shape: [2, 2, 5]
-  - layout: NCHW
-  - dtype: double
-  - data: [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]
+Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+       [[[1, 2, 3, 4, 5],
+         [ 6,  7,  8,  9, 10]],
+
+        [[11, 12, 13, 14, 15],
+         [16, 17, 18, 19, 20]]])
 ```
 上述不同rank的**Tensor**可以可视化的表示为：
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="600"></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800"></center>
 <br><center>图1 不同rank的Tensor可视化表示</center>
 
 
 你可以通过 Tensor.numpy() 方法方便地将 **Tensor** 转化为 **Numpy array**：
 ```python
-print(rank_2_tensor.numpy())
+rank_2_tensor.numpy()
 ```
 ```text
-array([[1.0, 2.0, 3.0],
-       [4.0, 5.0, 6.0]], dtype=float32)
+array([[1., 2., 3.],
+       [4., 5., 6.]], dtype=float32)
 ```
 
 **Tensor**不仅支持 floats、ints 类型数据，也支持 complex numbers 数据：
@@ -109,7 +98,7 @@ CompleTensor[imag]: generated_tensor_0.real
 如果检测到输入数据包含complex numbers，则会自动创建一个**ComplexTensor**，**ComplexTensor**是Paddle中一种特殊的数据结构，
 其包含实部（real）与虚部（imag）两个形状与数据类型相同的**Tensor**，其结构可视化表示为：
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="800" ></center>
 <br><center>图2 ComplexTensor的可视化表示</center>
 
 **Tensor**必须形状规则，类似于“矩形”的概念，也就是，沿任何一个轴（也称作维度）上，元素的数量都是相等的，如果为以下情况：
@@ -159,7 +148,7 @@ paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为
 rank_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="800" ></center>
 <br><center>图3 Tensor的shape、axis、dimension、rank之间的关系</center>
 
 ```python
@@ -269,8 +258,8 @@ cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
 print(cpu_tensor)
 ```
 ```text
-Tensor: generated_tensor_0
-  - place: CPUPlace
+Tensor(shape=[1], dtype=int64, place=CPUPlace, stop_gradient=True,
+       [1])
 ```
 
 * **创建GPU上的Tensor**：
@@ -279,9 +268,8 @@ gpu_tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
 print(gpu_tensor)
 ```
 ```text
-Tensor: generated_tensor_0
-  - place: CUDAPlace(0)
-
+Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+       [1])
 ```
 
 * **创建固定内存上的Tensor**：
@@ -291,8 +279,8 @@ print(pin_memory_tensor)
 ```
 
 ```text
-Tensor: generated_tensor_0
-  - place: CUDAPinnedPlace
+Tensor(shape=[1], dtype=int64, place=CUDAPinnedPlace, stop_gradient=True,
+       [1])
 ```
 
 ### Tensor的name
@@ -330,7 +318,7 @@ print("Interval of 3:", rank_1_tensor[::3].numpy())
 print("Reverse:", rank_1_tensor[::-1].numpy())
 ```
 ```text
-Origin Tensor: array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype=int64)
+Origin Tensor: [0 1 2 3 4 5 6 7 8])
 First element: [0]
 Last element: [8]
 All element: [0 1 2 3 4 5 6 7 8]
@@ -355,9 +343,9 @@ print("All element:", rank_2_tensor[:].numpy())
 print("First row and second column:", rank_2_tensor[0, 1].numpy())
 ```
 ```text
-Origin Tensor: array([[ 0  1  2  3]
-                      [ 4  5  6  7]
-                      [ 8  9 10 11]], dtype=int64)
+Origin Tensor: [[ 0  1  2  3]
+                [ 4  5  6  7]
+                [ 8  9 10 11]]
 First row: [0 1 2 3]
 First row: [0 1 2 3]
 First column: [0 4 8]
@@ -402,26 +390,21 @@ x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 443370
 
 同时，Paddle 还提供了丰富的 Tensor 操作的 API，包括数学运算符、逻辑运算符、线性代数相关等100余种 API，这些 API 调用有两种方法：
 ```python
-x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]])
-y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]])
+x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]], dtype="float64")
+y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]], dtype="float64")
 
 print(paddle.add(x, y), "\n")
 print(x.add(y), "\n")
 ```
-```text
-Tensor: eager_tmp_2
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
 
-Tensor: eager_tmp_3
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
+```text
+Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+       [[6.60000000, 8.80000000],
+        [        11., 13.20000000]])
+
+Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+       [[6.60000000, 8.80000000],
+        [        11., 13.20000000]])
 ```
 
 可以看出，使用 **Tensor 类成员函数** 和 **Paddle API** 具有相同的效果，由于 **类成员函数** 操作更为方便，以下均从 **Tensor 类成员函数** 的角度，对常用 **Tensor** 操作进行介绍。
@@ -506,4 +489,4 @@ x.matmul(y)                   #矩阵乘法
 ```
 需要注意，Paddle中Tensor的操作符均为非inplace操作，即 ``x.add(y)`` 不会在**tensor x**上直接进行操作，而会返回一个新的**Tensor**来表示运算结果。
 
-更多Tensor操作相关的API，请参考 [class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
+更多Tensor操作相关的API，请参考 [class paddle.Tensor](../../../api/paddle/tensor/creation/Tensor_cn.html)

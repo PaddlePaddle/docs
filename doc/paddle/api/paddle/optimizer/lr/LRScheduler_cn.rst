@@ -100,7 +100,7 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
         for batch_id in range(2):
             x = paddle.to_tensor(x)
             out = linear(x)
-            loss = paddle.reduce_mean(out)
+            loss = paddle.mean(out)
             loss.backward()
             sgd.step()
             sgd.clear_gradients()

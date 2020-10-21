@@ -43,7 +43,7 @@ LambdaDecay
         for batch_id in range(2):
             x = paddle.uniform([10, 10])
             out = linear(x)
-            loss = paddle.reduce_mean(out)
+            loss = paddle.mean(out)
             loss.backward()
             sgd.minimize(loss)
             linear.clear_gradients()
