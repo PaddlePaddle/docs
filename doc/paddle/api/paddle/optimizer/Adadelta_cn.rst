@@ -206,7 +206,7 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     lr = adadelta.get_lr()
     print(lr) # 0.001
 
-    # example2: PiecewiseLR is used, return the step learning rate
+    # example2: PiecewiseDecay is used, return the step learning rate
     paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
@@ -216,7 +216,7 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    scheduler = paddle.optimizer.PiecewiseDecay(bd, value, 0)
     adadelta = paddle.optimizer.Adadelta(scheduler,
                            parameters=linear.parameters(),
                            weight_decay=0.01)
