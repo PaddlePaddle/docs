@@ -3,7 +3,7 @@
 Momentum
 -------------------------------
 
-.. py:class:: paddle.optimizer.Momentum(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, weight_decay=None, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.Momentum(learning_rate=0.001, momentum=0.9, parameters=None, use_nesterov=False, weight_decay=None, grad_clip=None, name=None)
 
 
 该接口实现含有速度状态的Simple Momentum 优化器
@@ -24,6 +24,7 @@ Momentum
     - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
     - **momentum** (float) - 动量因子。
     - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
+    - **use_nesterov** (bool, 可选) - 赋能牛顿动量，默认值False。
     - **weight_decay** (float|Tensor, 可选) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Tensor类型。默认值为0.01
     - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
       默认值为None，此时将不进行梯度裁剪。
@@ -38,7 +39,6 @@ Momentum
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -68,7 +68,6 @@ Momentum
 
     import paddle
     import numpy as np
-    paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
@@ -98,7 +97,6 @@ Momentum
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -129,7 +127,6 @@ Momentum
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)

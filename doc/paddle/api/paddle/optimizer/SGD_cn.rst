@@ -30,7 +30,6 @@ SGD
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -60,7 +59,6 @@ SGD
 
     import paddle
     import numpy as np
-    paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
@@ -90,7 +88,6 @@ SGD
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -121,7 +118,6 @@ SGD
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)

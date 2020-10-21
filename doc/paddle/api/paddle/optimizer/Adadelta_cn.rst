@@ -1,9 +1,9 @@
 .. _cn_api_paddle_optimizer_Adadelta:
 
-AdadeltaOptimizer
+Adadelta
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adadelta(learning_rate, epsilon=1.0e-6, rho=0.95, parameter_list=None, regularization=None, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, grad_clip=None, name=None)
 
 
 **注意：此接口不支持稀疏参数更新。**
@@ -20,9 +20,9 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
 
 
 参数：
-    - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
+    - **learning_rate** (float|_LRScheduleri, 可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
     - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06
-    - **rho** (float) - 算法中的衰减率，默认值为0.95。
+    - **rho** (float, 可选) - 算法中的衰减率，默认值为0.95。
     - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **weight_decay** (float|Tensor, 可选) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Tensor类型。默认值为0.01
     - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
@@ -40,7 +40,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -71,7 +70,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 
     import paddle
     import numpy as np
-    paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
@@ -102,7 +100,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -134,7 +131,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
@@ -163,7 +159,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 .. code-block:: python
 
     import paddle
-    paddle.disable_static()
     linear = paddle.nn.Linear(10, 10)
 
     adadelta = paddle.optimizer.AdamW(weight_decay=0.01,
@@ -200,7 +195,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     import numpy as np
     import paddle
     # example1: _LRScheduler is not used, return value is all the same
-    paddle.disable_static()
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     adadelta = paddle.optimizer.Adadelta(learning_rate=0.001, parameters = emb.parameters(),weight_decay=0.01)
     lr = adadelta.get_lr()
