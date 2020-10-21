@@ -216,7 +216,7 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.PiecewiseDecay(bd, value, 0)
+    scheduler = paddle.optimizer.lr.PiecewiseDecay(bd, value, 0)
     adadelta = paddle.optimizer.Adadelta(scheduler,
                            parameters=linear.parameters(),
                            weight_decay=0.01)
