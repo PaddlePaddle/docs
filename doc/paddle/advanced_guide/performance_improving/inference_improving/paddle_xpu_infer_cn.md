@@ -1,16 +1,16 @@
-# 使用Lite子图预测
+# 使用昆仑预测
 
-Lite子图，顾名思义，将Paddle-Lite视为轻量级预测引擎，引入到Paddle内部，其优势在于，对于轻量级的模型，使用Lite子图预测，框架的开销可大幅度降低。
+百度的昆仑芯⽚是⼀款⾼性能的AI SoC芯⽚，⽀持推理和训练。昆仑芯⽚采⽤百度的先进AI架构，⾮常适合常⽤的深度学习和机器学习算法的云端计算需求，并能适配诸如⾃然语⾔处理、⼤规模语⾳识别、⾃动驾驶、⼤规模推荐等多种终端场景的计算需求。
+
+Paddle Inference集成了[Paddle-Lite预测引擎](https://paddle-lite.readthedocs.io/zh/latest/demo_guides/baidu_xpu.html)在昆仑xpu上进行预测部署。
 
 ## 编译注意事项
 
-如要使用Lite xpu子图，请确保编译的时候设置了WITH_LITE=ON，且XPU_SDK_ROOT设置了正确的路径。
+请确保编译的时候设置了WITH_LITE=ON，且XPU_SDK_ROOT设置了正确的路径。
 
-如果使用Lite cuda子图，请确保编译的时候设置了WITH_LITE=ON，且WITH_GPU设置为ON。
+## 使用介绍
 
-## Lite子图使用介绍
-
-在使用Predictor时，我们通过配置Config中的接口
+在使用Predictor时，我们通过配置Config中的接口，在XPU上运行。
 
 ```c++
 config->EnableLiteEngine(
@@ -38,8 +38,6 @@ config.enable_lite_engine(
 ```
 
 ### Python demo
-
-#### 使用lite xpu子图预测
 
 下载[resnet50](http://paddle-inference-dist.bj.bcebos.com/resnet50_model.tar.gz)模型，并解压，运行如下命令将会调用预测引擎
 
