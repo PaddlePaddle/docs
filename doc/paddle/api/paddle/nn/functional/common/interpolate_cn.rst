@@ -17,7 +17,7 @@ Interpolate
 
     BILINEAR：双线性插值
 
-    TRALINEAR：三线性插值
+    TRILINEAR：三线性插值
 
     BICUBIC：双三次插值
 
@@ -141,9 +141,8 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 参数:
     - **x** (Tensor) - 4-D或5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
     - **size** (list|tuple|Tensor|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
-    - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
-如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
-    - **mode** (str, 可选) - 插值方法。支持“双线性”,“三线性”,“临近插值”,"双三次","线性"，"面积"。默认值为"nearest"。
+    - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
+    - **mode** (str, 可选) - 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area"。默认值为"nearest"。
     - **align_corners** （bool, 可选）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为True
     - **align_mode** （int, 可选）- 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
