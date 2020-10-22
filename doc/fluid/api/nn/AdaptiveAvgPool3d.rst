@@ -1,9 +1,9 @@
-.. _api_nn_pooling_AdaptiveAvgPool3d:
+.. _api_nn_pooling_AdaptiveAvgPool3D:
 
-AdaptiveAvgPool3d
+AdaptiveAvgPool3D
 -----------------
 
-..  autoclass:: paddle.nn.AdaptiveAvgPool3d
+..  autoclass:: paddle.nn.AdaptiveAvgPool3D
     :members:
     :inherited-members:
     :noindex:

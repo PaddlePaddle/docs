@@ -220,22 +220,22 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
         def __init__(self):
             super(MyNet, self).__init__()
     
-            self.conv1 = paddle.nn.Conv2d(in_channels=3, 
+            self.conv1 = paddle.nn.Conv2D(in_channels=3,
                                           out_channels=32, 
                                           kernel_size=(3, 3),
                                           stride=2)
              
-            self.conv2 = paddle.nn.Conv2d(in_channels=32, 
+            self.conv2 = paddle.nn.Conv2D(in_channels=32,
                                           out_channels=64, 
                                           kernel_size=(3,3), 
                                           stride=2)       
             
-            self.conv3 = paddle.nn.Conv2d(in_channels=64, 
+            self.conv3 = paddle.nn.Conv2D(in_channels=64,
                                           out_channels=128, 
                                           kernel_size=(3,3),
                                           stride=2)
            
-            self.gloabl_pool = paddle.nn.AdaptiveAvgPool2d((1,1))
+            self.gloabl_pool = paddle.nn.AdaptiveAvgPool2D((1,1))
     
             self.fc1 = paddle.nn.Linear(in_features=128, out_features=8)
         def forward(self, x):

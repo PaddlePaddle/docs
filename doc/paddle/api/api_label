@@ -78,7 +78,7 @@ tanh	.. _api_paddle_tensor_math_tanh:
 equal_all	.. _api_paddle_tensor_logic_equal_all:
 FtrlOptimizer	.. _api_paddle_optimizer_FtrlOptimizer:
 get_default_dtype	.. _api_paddle_framework_get_default_dtype:
-ConvTranspose3d	.. _api_paddle_nn_layer_conv_ConvTranspose3d:
+Conv3DTranspose	.. _api_paddle_nn_layer_conv_Conv3DTranspose:
 dropout	.. _api_paddle_fluid_layers_dropout:
 unsqueeze	.. _api_paddle_fluid_layers_unsqueeze:
 nll_loss	.. _api_paddle_nn_functional_loss_nll_loss:
@@ -146,7 +146,7 @@ long_type	.. _api_paddle_compat_long_type:
 continuous_value_model	.. _api_paddle_fluid_layers_continuous_value_model:
 autodoc	.. _api_paddle_fluid_layers_layer_function_generator_autodoc:
 BackwardStrategy	.. _api_paddle_framework_BackwardStrategy:
-conv_transpose1d	.. _api_paddle_nn_functional_conv_transpose1d:
+conv1d_transpose	.. _api_paddle_nn_functional_conv1d_transpose:
 Adam	.. _api_paddle_optimizer_Adam:
 data	.. _api_paddle_fluid_data:
 L1Decay	.. _api_paddle_fluid_regularizer_L1Decay:
@@ -274,7 +274,7 @@ unsqueeze	.. _api_paddle_tensor_manipulation_unsqueeze:
 Momentum	.. _api_paddle_optimizer_Momentum:
 dropout2d	.. _api_paddle_nn_functional_dropout2d:
 kl_div	.. _api_paddle_nn_functional_kl_div:
-ConvTranspose2d	.. _api_paddle_nn_layer_conv_ConvTranspose2d:
+Conv2DTranspose	.. _api_paddle_nn_layer_conv_Conv2DTranspose:
 get_word_dict	.. _api_paddle_dataset_sentiment_get_word_dict:
 binary_cross_entropy	.. _api_paddle_nn_functional_binary_cross_entropy:
 dropout	.. _api_paddle_nn_functional_dropout:
@@ -286,7 +286,7 @@ scaled_dot_product_attention	.. _api_paddle_fluid_nets_scaled_dot_product_attent
 DecayedAdagradOptimizer	.. _api_paddle_optimizer_DecayedAdagradOptimizer:
 InMemoryDataset	.. _api_paddle_fluid_dataset_InMemoryDataset:
 is_compiled_with_xpu	.. _api_paddle_fluid_is_compiled_with_xpu:
-Conv3d	.. _api_paddle_nn_layer_conv_Conv3d:
+Conv3D	.. _api_paddle_nn_layer_conv_Conv3D:
 sampling_id	.. _api_paddle_fluid_layers_sampling_id:
 tile	.. _api_paddle_tensor_manipulation_tile:
 argsort	.. _api_paddle_fluid_layers_argsort:
@@ -325,7 +325,7 @@ var	.. _api_paddle_tensor_stat_var:
 cuda_pinned_places	.. _api_paddle_fluid_cuda_pinned_places:
 label_smooth	.. _api_paddle_fluid_layers_label_smooth:
 sequence_topk_avg_pooling	.. _api_paddle_fluid_contrib_sequence_topk_avg_pooling:
-AdaptiveAvgPool3d	.. _api_paddle_nn_layer_pooling_AdaptiveAvgPool3d:
+AdaptiveAvgPool3D	.. _api_paddle_nn_layer_pooling_AdaptiveAvgPool3D:
 DataParallel	.. _api_paddle_fluid_dygraph_parallel_DataParallel:
 StaticAnalysisVisitor	.. _api_paddle_fluid_dygraph_dygraph_to_static_StaticAnalysisVisitor:
 batch_fc	.. _api_paddle_fluid_contrib_batch_fc:
@@ -354,7 +354,7 @@ center_loss	.. _api_paddle_fluid_layers_center_loss:
 unique_with_counts	.. _api_paddle_fluid_layers_unique_with_counts:
 pow	.. _api_paddle_fluid_layers_pow:
 get_movie_title_dict	.. _api_paddle_dataset_movielens_get_movie_title_dict:
-conv_transpose2d	.. _api_paddle_nn_functional_conv_transpose2d:
+conv2d_transpose	.. _api_paddle_nn_functional_conv2d_transpose:
 StepDecay	.. _api_paddle_fluid_dygraph_StepDecay:
 pow	.. _api_paddle_tensor_math_pow:
 LoopTransformer	.. _api_paddle_fluid_dygraph_dygraph_to_static_LoopTransformer:
@@ -454,7 +454,7 @@ ConstantPad2d	.. _api_paddle_nn_ConstantPad2d:
 load_program_state	.. _api_paddle_io_load_program_state:
 resize_nearest	.. _api_paddle_fluid_layers_resize_nearest:
 mse_loss	.. _api_paddle_nn_functional_mse_loss:
-conv_transpose3d	.. _api_paddle_nn_functional_conv_transpose3d:
+conv3d_transpose	.. _api_paddle_nn_functional_conv3d_transpose:
 set_device	.. _api_paddle_device_set_device:
 where	.. _api_paddle_fluid_layers_where:
 PipelineTrainer	.. _api_paddle_fluid_trainer_desc_PipelineTrainer:
@@ -532,7 +532,7 @@ save_vars	.. _api_paddle_fluid_io_save_vars:
 op_freq_statistic	.. _api_paddle_fluid_contrib_op_freq_statistic:
 split	.. _api_paddle_fluid_layers_split:
 SGDOptimizer	.. _api_paddle_optimizer_SGDOptimizer:
-Conv1d	.. _api_paddle_nn_layer_conv_Conv1d:
+Conv1D	.. _api_paddle_nn_layer_conv_Conv1D:
 prelu	.. _api_paddle_nn_functional_prelu:
 unfold	.. _api_paddle_fluid_layers_unfold:
 smooth_l1	.. _api_paddle_fluid_layers_smooth_l1:
@@ -574,7 +574,7 @@ Scope	.. _api_paddle_fluid_Scope:
 add_position_encoding	.. _api_paddle_fluid_layers_add_position_encoding:
 CTCLoss	.. _api_paddle_nn_layer_loss_CTCLoss:
 cuda_profiler	.. _api_paddle_fluid_profiler_cuda_profiler:
-Conv2d	.. _api_paddle_nn_layer_conv_Conv2d:
+Conv2D	.. _api_paddle_nn_layer_conv_Conv2D:
 uniform_random	.. _api_paddle_fluid_layers_uniform_random:
 ChunkEvaluator	.. _api_paddle_fluid_evaluator_ChunkEvaluator:
 test	.. _api_paddle_dataset_wmt14_test:
@@ -816,7 +816,7 @@ Role	.. _api_paddle_fluid_incubate_fleet_base_role_maker_Role:
 cross	.. _api_paddle_tensor_linalg_cross:
 fetch	.. _api_paddle_dataset_wmt16_fetch:
 buffered	.. _api_paddle_reader_buffered:
-manual_seed	.. _api_paddle_framework_random_manual_seed:
+seed	.. _api_paddle_framework_random_seed:
 QuantInt8MkldnnPass	.. _api_paddle_fluid_contrib_slim_quantization_quant_int8_mkldnn_pass_QuantInt8MkldnnPass:
 load_and_transform	.. _api_paddle_dataset_image_load_and_transform:
 CUDAPlace	.. _api_paddle_fluid_CUDAPlace:
@@ -863,7 +863,7 @@ start_profiler	.. _api_paddle_fluid_profiler_start_profiler:
 BatchSampler	.. _api_paddle_io_BatchSampler:
 SmoothL1Loss	.. _api_paddle_nn_layer_loss_SmoothL1Loss:
 DatasetFactory	.. _api_paddle_fluid_dataset_DatasetFactory:
-AdaptiveAvgPool2d	.. _api_paddle_nn_layer_pooling_AdaptiveAvgPool2d:
+AdaptiveAvgPool2D	.. _api_paddle_nn_layer_pooling_AdaptiveAvgPool2D:
 sequence_slice	.. _api_paddle_fluid_layers_sequence_slice:
 SpectralNorm	.. _api_paddle_fluid_dygraph_SpectralNorm:
 WeightNormParamAttr	.. _api_paddle_fluid_param_attr_WeightNormParamAttr:
@@ -969,7 +969,7 @@ reduce_sum	.. _api_paddle_fluid_layers_reduce_sum:
 InverseTimeDecay	.. _api_paddle_fluid_dygraph_learning_rate_scheduler_InverseTimeDecay:
 randn	.. _api_paddle_tensor_random_randn:
 Softplus	.. _api_paddle_nn_layer_activation_Softplus:
-ConvTranspose1d	.. _api_paddle_nn_layer_conv_ConvTranspose1d:
+Conv1DTranspose	.. _api_paddle_nn_layer_conv_Conv1DTranspose:
 ParameterList	.. _api_paddle_fluid_dygraph_container_ParameterList:
 Dropout	.. _api_paddle_fluid_dygraph_Dropout:
 zeros	.. _api_paddle_fluid_layers_zeros:

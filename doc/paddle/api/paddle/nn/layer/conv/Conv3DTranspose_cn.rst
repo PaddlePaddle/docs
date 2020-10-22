@@ -1,7 +1,7 @@
-ConvTranspose3d
+Conv3DTranspose
 -------------------------------
 
-.. py:class:: paddle.nn.ConvTranspose3d(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, dilation=1, weight_attr=None, bias_attr=None, data_format="NCDHW")
+.. py:class:: paddle.nn.Conv3DTranspose(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, dilation=1, weight_attr=None, bias_attr=None, data_format="NCDHW")
 
 
 三维转置卷积层（Convlution3d transpose layer)
@@ -96,7 +96,7 @@ ConvTranspose3d
 
     x_var = paddle.uniform((2, 4, 8, 8, 8), dtype='float32', min=-1., max=1.)
 
-    conv = nn.ConvTranspose3d(4, 6, (3, 3, 3))
+    conv = nn.Conv3DTranspose(4, 6, (3, 3, 3))
     y_var = conv(x_var)
     y_np = y_var.numpy()
     print(y_np.shape)

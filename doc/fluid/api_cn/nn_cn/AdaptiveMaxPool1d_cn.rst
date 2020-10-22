@@ -1,10 +1,10 @@
-.. _cn_api_nn_AdaptiveMaxPool1d:
+.. _cn_api_nn_AdaptiveMaxPool1D:
 
 
-AdaptiveMaxPool1d
+AdaptiveMaxPool1D
 -------------------------------
 
-.. py:function:: paddle.nn.AdaptiveMaxPool1d(output_size, return_indices=False, name=None)
+.. py:function:: paddle.nn.AdaptiveMaxPool1D(output_size, return_mask=False, name=None)
 
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算1D的自适应平均池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度.
@@ -23,7 +23,7 @@ AdaptiveMaxPool1d
 参数
 :::::::::
     - **output_size** (int|list|tuple): 算子输出特征图的长度，其数据类型为int,list或tuple。
-    - **return_indices** (bool): 如果设置为True，则会与输出一起返回最大值的索引，默认为False。
+    - **return_mask** (bool): 如果设置为True，则会与输出一起返回最大值的索引，默认为False。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状
@@ -33,7 +33,7 @@ AdaptiveMaxPool1d
 
 返回
 :::::::::
-计算AdaptiveMaxPool1d的可调用对象
+计算AdaptiveMaxPool1D的可调用对象
 
 抛出异常
 :::::::::
@@ -62,11 +62,11 @@ AdaptiveMaxPool1d
         paddle.disable_static()
         
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
-        AdaptiveMaxPool1d = nn.layer.AdaptiveMaxPool1d(output_size=16)
-        pool_out = AdaptiveMaxPool1d(data)
+        AdaptiveMaxPool1D = nn.layer.AdaptiveMaxPool1D(output_size=16)
+        pool_out = AdaptiveMaxPool1D(data)
         # pool_out shape: [1, 3, 16]
 
-        # for return_indices = true
-        AdaptiveMaxPool1d = nn.layer.AdaptiveMaxPool1d(output_size=16, return_indices=True)
-        pool_out, indices = AdaptiveMaxPool1d(data)
+        # for return_mask = true
+        AdaptiveMaxPool1D = nn.layer.AdaptiveMaxPool1D(output_size=16, return_mask=True)
+        pool_out, indices = AdaptiveMaxPool1D(data)
         # pool_out shape: [1, 3, 16], indices shape: [1, 3, 16]

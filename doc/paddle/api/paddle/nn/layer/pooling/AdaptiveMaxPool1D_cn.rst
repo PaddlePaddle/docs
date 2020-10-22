@@ -1,10 +1,10 @@
-.. _cn_api_nn_AdaptiveAvgPool1d:
+.. _cn_api_nn_AdaptiveMaxPool1D:
 
 
-AdaptiveAvgPool1d
+AdaptiveMaxPool1D
 -------------------------------
 
-.. py:function:: paddle.nn.AdaptiveAvgPool1d(output_size, name=None)
+.. py:function:: paddle.nn.AdaptiveMaxPool1D(output_size, return_mask=False, name=None)
 
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算1D的自适应平均池化。输入和输出都是3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度.
@@ -17,12 +17,13 @@ AdaptiveAvgPool1d
 
     lend &= ceil((i + 1) * L_{in} / L_{out})
 
-    Output(i) &= \frac{sum(Input[lstart:lend])}{(lstart - lend)}
+    Output(i) &= max(Input[lstart:lend])
 
 
 参数
 :::::::::
-    - **output_size** (int): 算子输出特征图的长度，其数据类型为int。
+    - **output_size** (int|list|tuple): 算子输出特征图的长度，其数据类型为int,list或tuple。
+    - **return_mask** (bool): 如果设置为True，则会与输出一起返回最大值的索引，默认为False。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状
@@ -32,28 +33,28 @@ AdaptiveAvgPool1d
 
 返回
 :::::::::
-计算AdaptiveAvgPool1d的可调用对象
+计算AdaptiveMaxPool1D的可调用对象
 
 抛出异常
 :::::::::
-    - ``ValueError`` - ``output_size`` 应是一个整数。
+    - ``ValueError`` - ``output_size`` 应是一个整数或长度为1的list，tuple
 
 代码示例
 :::::::::
 
 .. code-block:: python
 
-        # average adaptive pool1d
+        # max adaptive pool1d
         # suppose input data in shape of [N, C, L], `output_size` is m or [m],
         # output shape is [N, C, m], adaptive pool divide L dimension
         # of input data into m grids averagely and performs poolings in each
         # grid to get output.
-        # adaptive avg pool performs calculations as follow:
+        # adaptive max pool performs calculations as follow:
         #
         #     for i in range(m):
         #         lstart = floor(i * L / m)
         #         lend = ceil((i + 1) * L / m)
-        #         output[:, :, i] = sum(input[:, :, lstart: lend])/(lstart - lend)
+        #         output[:, :, i] = max(input[:, :, lstart: lend])
         #
         import paddle
         import paddle.nn as nn
@@ -61,6 +62,11 @@ AdaptiveAvgPool1d
         paddle.disable_static()
         
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
-        AdaptiveAvgPool1d = nn.layer.AdaptiveAvgPool1d(output_size=16)
-        pool_out = AdaptiveAvgPool1d(data)
+        AdaptiveMaxPool1D = nn.layer.AdaptiveMaxPool1D(output_size=16)
+        pool_out = AdaptiveMaxPool1D(data)
         # pool_out shape: [1, 3, 16]
+
+        # for return_mask = true
+        AdaptiveMaxPool1D = nn.layer.AdaptiveMaxPool1D(output_size=16, return_mask=True)
+        pool_out, indices = AdaptiveMaxPool1D(data)
+        # pool_out shape: [1, 3, 16], indices shape: [1, 3, 16]
