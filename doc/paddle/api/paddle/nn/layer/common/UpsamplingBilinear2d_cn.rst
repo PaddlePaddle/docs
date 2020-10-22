@@ -26,7 +26,7 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation
     - **size** (list|tuple|Tensor|None) - 输出Tensor，输入为4D张量，形状为为(out_h, out_w)的2-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
     - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，默认值：'NCHW'。
-    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
+    - **name** (str|None, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
 返回：4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)。
 
@@ -45,7 +45,7 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation
 
     import paddle
     import paddle.nn as nn
-    import numpy as np
+    
     input_data = paddle.rand(shape=[2,3,6,10])
     upsample_out  = paddle.nn.UpsamplingBilinear2d(size=[12,12])
     output = upsample_out(input_data)

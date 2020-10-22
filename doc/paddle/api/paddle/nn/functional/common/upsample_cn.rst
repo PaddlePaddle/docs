@@ -173,7 +173,6 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 ..  code-block:: python
 
      import paddle
-     import numpy as np
      import paddle.nn.functional as F
 
      input = paddle.rand(shape=(2,3,6,10))

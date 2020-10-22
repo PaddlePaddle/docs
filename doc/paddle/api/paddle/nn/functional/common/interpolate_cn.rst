@@ -173,7 +173,6 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 ..  code-block:: python
 
     import paddle
-    import numpy as np
     import paddle.nn.functional as F
     
     # given out size
