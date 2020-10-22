@@ -3,7 +3,7 @@
 Interpolate
 -------------------------------
 
-.. py:function:: paddle.nn.functioanl.interpolate(x, size=None, scale_factor=None, name=None, resample='BILINEAR', actual_shape=None, align_corners=False, align_mode=0, data_format='NCHW')
+.. py:function:: paddle.nn.functioanl.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 
 
 
@@ -143,15 +143,14 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     - **size** (list|tuple|Tensor|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
     - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
 如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
-    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
-    - **mode** (str) - 插值方法。支持“双线性”,“三线性”,“临近插值”,"双三次","线性"，"面积"。默认值为最近临插值。
-    - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为True
-    - **align_mode** （int）- 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。
+    - **mode** (str, 可选) - 插值方法。支持“双线性”,“三线性”,“临近插值”,"双三次","线性"，"面积"。默认值为"nearest"。
+    - **align_corners** （bool, 可选）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为True
+    - **align_mode** （int, 可选）- 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
+    - **name** (str|None, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
 返回：4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
-返回类型: 变量（variable）
 
 抛出异常：
     - :code:`TypeError` - out_shape应该是一个列表、元组或张量。
@@ -176,11 +175,9 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     import paddle
     import numpy as np
     import paddle.nn.functional as F
-    paddle.disable_static()
     
     # given out size
-    input_data = np.random.rand(2,3,6,10).astype("float32")
-    x = paddle.to_tensor(input_data)
+    x = paddle.rand(shape=(2,3,6,10))
     output_1 = F.interpolate(x=x, size=[12,12])
     print(output_1.shape)
     # [2L, 3L, 12L, 12L]
