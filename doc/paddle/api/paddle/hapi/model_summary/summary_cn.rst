@@ -3,14 +3,13 @@
 summary
 -------------------------------
 
-.. py:function:: paddle.summary(net, input_size, batch_size=None, dtypes=None)
+.. py:function:: paddle.summary(self, input_size=None, dtype=None)
 
  ``summary`` 函数能够打印网络的基础结构和参数信息。
 
 参数：
   - **net** (Layer) - 网络实例，必须是 ``Layer`` 的子类。
   - **input_size** (tuple|InputSpec|list[tuple|InputSpec) - 输入张量的大小。如果网络只有一个输入，那么该值需要设定为tuple或InputSpec。如果模型有多个输入。那么该值需要设定为list[tuple|InputSpec]，包含每个输入的shape。
-  - **batch_size** (int，可选) - 输入张量的批大小。默认值：None。
   - **dtypes** (str，可选) - 输入张量的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
 
 返回：字典，包含了总的参数量和总的可训练的参数量。
@@ -53,6 +52,6 @@ summary
 
     lenet = LeNet()
 
-    params_info = paddle.summary(lenet, (1, 28, 28))
+    params_info = paddle.summary(lenet, (1, 1, 28, 28))
     print(params_info)
 
