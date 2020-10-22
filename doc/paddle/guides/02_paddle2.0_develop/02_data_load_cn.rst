@@ -22,7 +22,7 @@
     自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 .. warning::
-    除 `paddle.vision.dataset` 与 `paddle.text.dataset`外，飞桨框架还内置了另一套数据集，路径为`paddle.dataset.*`，但是该数据集的使用方式较老，会在未来的版本废弃，请您尽量不要使用该目录下数据集的API。
+    除\ ``paddle.vision.dataset``\ 与\ ``paddle.text.dataset``\ 外，飞桨框架还内置了另一套数据集，路径为\ ``paddle.dataset.*``\ ，但是该数据集的使用方式较老，会在未来的版本废弃，请您尽量不要使用该目录下数据集的API。
 
 这里我们加载一个手写数字识别的数据集，其他数据集的使用方式也都类似。用\ ``mode``\ 来标识训练集与测试集。数据集接口会自动从远端下载数据集到本机缓存目录\ ``~/.cache/paddle/dataset``\ 。
 
@@ -117,7 +117,7 @@
 数据加载
 ------------
 
-飞桨推荐使用 `paddle.io.DataLoader` 完成数据的加载。简单的示例如下：
+飞桨推荐使用\ ``paddle.io.DataLoader``\ 完成数据的加载。简单的示例如下：
 
 .. code:: ipython3
 
@@ -134,7 +134,7 @@
     (64, 1, 28, 28)
     (64, 1)
 
-通过上述的方法，我们定义了一个数据迭代器 `train_loader`, 用于加载训练数据。通过 `batch_size=64` 我们设置了数据集的批大小为64，通过 `shuffle=True` ，我们在取数据前会打乱数据。此外，我们还可以通过设置 `num_workers` 来开启多进程数据加载，提升加载速度。
+通过上述的方法，我们定义了一个数据迭代器\ ``train_loader``\ , 用于加载训练数据。通过\ ``batch_size=64``\ 我们设置了数据集的批大小为64，通过\ ``shuffle=True``\ ，我们在取数据前会打乱数据。此外，我们还可以通过设置\ ``num_workers``\ 来开启多进程数据加载，提升加载速度。
 
 .. note::
-    DataLoader 默认用异步加载数据的方式来读取数据，一方面可以提升数据加载的速度，另一方面也会占据更少的内存。如您需要同时加载全部数据到内存中，请设置 `use_buffer_reader=False`。
+    DataLoader 默认用异步加载数据的方式来读取数据，一方面可以提升数据加载的速度，另一方面也会占据更少的内存。如您需要同时加载全部数据到内存中，请设置\ ``use_buffer_reader=False``\ 。
