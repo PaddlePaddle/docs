@@ -23,7 +23,7 @@ auto_cast
 
     import paddle
 
-    conv2d = paddle.nn.Conv2d(3, 2, 3, bias_attr=False)
+    conv2d = paddle.nn.Conv2D(3, 2, 3, bias_attr=False)
     data = paddle.rand([10, 3, 32, 32])
 
     with paddle.amp.auto_cast():
