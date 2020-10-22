@@ -95,7 +95,7 @@ DistributedStrategy
   strategy.auto = True
   #strategy.amp = True # if set amp at the same time, auto will not apply
   optimizer = paddle.optimizer.SGD(learning_rate=0.01)
-  optimizer = fleet.distirbuted_optimizer(optimizer, strategy)
+  optimizer = fleet.distributed_optimizer(optimizer, strategy)
 
 
 .. py:attribute:: recompute
