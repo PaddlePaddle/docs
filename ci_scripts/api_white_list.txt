@@ -22,8 +22,3 @@ paddle/distributed/fleet/utils/fs/LocalFS_cn.rst
 paddle/fluid/dygraph/parallel/DataParallel_cn.rst
 paddle/fluid/dygraph/parallel/ParallelEnv_cn.rst
 upgrade_guide_cn.md
-paddle/optimizer/adam/Adam_cn.rst
-paddle/optimizer/adamax/Adamax_cn.rst
-paddle/optimizer/adamw/AdamW_cn.rst
-paddle/optimizer/optimizer/Optimizer_cn.rst
-paddle/optimizer/rmsprop/RMSProp_cn.rst
