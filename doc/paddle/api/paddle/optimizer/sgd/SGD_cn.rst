@@ -58,8 +58,8 @@ SGD
 
     import paddle
     import numpy as np
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    value = paddle.arange(26, dtype='float32')
+    a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
     sgd = paddle.optimizer.SGD(learning_rate=0.0003, parameters = linear.parameters())
     out = linear(a)
@@ -88,7 +88,6 @@ SGD
 
     inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
     out = linear(inp)
     loss = paddle.mean(out)
 
@@ -116,8 +115,8 @@ SGD
     import paddle
     import numpy as np
 
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    value = paddle.arange(26, dtype='float32')
+    a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
     optimizer = paddle.optimizer.SGD(learning_rate=0.0003,
                                      parameters=linear.parameters())

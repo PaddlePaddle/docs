@@ -40,7 +40,6 @@ Momentum
 
     inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
     out = linear(inp)
     loss = paddle.mean(out)
     momentum = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
@@ -67,8 +66,8 @@ Momentum
 
     import paddle
     import numpy as np
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    value = paddle.arange(26, dtype='float32')
+    a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
     momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
     out = linear(a)
@@ -97,7 +96,6 @@ Momentum
 
     inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
     linear = paddle.nn.Linear(10, 10)
-    inp = paddle.to_tensor(inp)
     out = linear(inp)
     loss = paddle.mean(out)
 
@@ -124,8 +122,8 @@ Momentum
 
     import paddle
 
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
+    value = paddle.arange(26, dtype='float32')
+    a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
     optimizer = paddle.optimizer.Momentum(learning_rate=0.1, parameters=linear.parameters(), weight_decay=0.01)
     out = linear(a)
