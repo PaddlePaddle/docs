@@ -16,6 +16,6 @@ functional
     functional/adaptive_avg_pool3d.rst
     functional/conv2d.rst
     functional/conv3d.rst
-    functional/conv_transpose2d.rst
-    functional/conv_transpose3d.rst
+    functional/conv2d_transpose.rst
+    functional/conv3d_transpose.rst
     functional/bilinear.rst

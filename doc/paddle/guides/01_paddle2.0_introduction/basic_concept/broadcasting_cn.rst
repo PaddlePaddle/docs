@@ -1,4 +1,4 @@
-.. _cn_user_guide_broadcasting:
+.. _cn_use_guide_broadcasting:
 
 ==================
 广播 (broadcasting)
