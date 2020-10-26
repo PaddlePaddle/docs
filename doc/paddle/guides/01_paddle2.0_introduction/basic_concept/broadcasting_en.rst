@@ -1,4 +1,4 @@
-.. _user_guide_broadcasting:
+.. _use_guide_broadcasting:
 
 ==================
 Broadcasting

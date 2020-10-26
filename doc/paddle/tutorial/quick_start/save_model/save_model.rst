@@ -17,7 +17,7 @@ install paddlepaddle==2.0Beta。
     from paddle.nn import Layer
     from paddle.vision.datasets import MNIST
     from paddle.metric import Accuracy
-    from paddle.nn import Conv2d,MaxPool2d,Linear
+    from paddle.nn import Conv2D,MaxPool2D,Linear
     from paddle.static import InputSpec
     
     print(paddle.__version__)
@@ -49,10 +49,10 @@ import MNIST 引入即可。
     class MyModel(Layer):
         def __init__(self):
             super(MyModel, self).__init__()
-            self.conv1 = paddle.nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
-            self.max_pool1 = MaxPool2d(kernel_size=2, stride=2)
-            self.conv2 = Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1)
-            self.max_pool2 = MaxPool2d(kernel_size=2, stride=2)
+            self.conv1 = paddle.nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
+            self.max_pool1 = MaxPool2D(kernel_size=2, stride=2)
+            self.conv2 = Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
+            self.max_pool2 = MaxPool2D(kernel_size=2, stride=2)
             self.linear1 = Linear(in_features=16*5*5, out_features=120)
             self.linear2 = Linear(in_features=120, out_features=84)
             self.linear3 = Linear(in_features=84, out_features=10)

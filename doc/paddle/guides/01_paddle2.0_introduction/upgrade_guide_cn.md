@@ -106,9 +106,9 @@ paddle.to_tensor(np.random.randn(3, 4))
   | paddle.fluid.layers.reduce_min | paddle.min        |
   | paddle.fluid.layers.reduce_all | paddle.all        |
   | paddle.fluid.layers.reduce_any | paddle.any        |
-  | paddle.fluid.dygraph.Conv2D | paddle.nn.Conv2d |
-  | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.ConvTranspose2d |
-  | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2d, paddle.nn.AvgPool2d |
+  | paddle.fluid.dygraph.Conv2D | paddle.nn.Conv2D |
+  | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.Conv2DTranspose |
+  | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2D, paddle.nn.AvgPool2D |
 
 ## 三、开发流程
 ### 数据处理

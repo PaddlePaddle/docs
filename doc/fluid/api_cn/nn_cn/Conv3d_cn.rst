@@ -1,7 +1,7 @@
-Conv3d
+Conv3D
 -------------------------------
 
-.. py:class:: paddle.nn.Conv3d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, padding_mode='zeros', weight_attr=None, bias_attr=None, data_format="NCDHW")
+.. py:class:: paddle.nn.Conv3D(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, padding_mode='zeros', weight_attr=None, bias_attr=None, data_format="NCDHW")
 
 
 
@@ -102,7 +102,7 @@ Conv3d
    paddle.disable_static()
    
    x_var = paddle.to_tensor(x)
-   conv = nn.Conv3d(4, 6, (3, 3, 3))
+   conv = nn.Conv3D(4, 6, (3, 3, 3))
    y_var = conv(x_var)
    y_np = y_var.numpy()
    print(y_np.shape)
