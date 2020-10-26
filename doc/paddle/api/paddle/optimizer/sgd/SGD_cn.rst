@@ -57,7 +57,6 @@ SGD
 .. code-block:: python
 
     import paddle
-    import numpy as np
     value = paddle.arange(26, dtype='float32')
     a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
@@ -113,7 +112,6 @@ SGD
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
     value = paddle.arange(26, dtype='float32')
     a = paddle.reshape(value, [2, 13])

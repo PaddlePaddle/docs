@@ -3,7 +3,7 @@
 Adadelta
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, grad_clip=None, weight_decay=0.01, name=None)
 
 
 **注意：此接口不支持稀疏参数更新。**
@@ -67,7 +67,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 .. code-block:: python
 
     import paddle
-    import numpy as np
     value = paddle.arange(26, dtype='float32')
     a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
@@ -125,7 +124,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
     value = paddle.arange(26, dtype='float32')
     a = paddle.reshape(value, [2, 13])
