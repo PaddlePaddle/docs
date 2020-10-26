@@ -3,7 +3,7 @@
 Adadelta
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, grad_clip=None, weight_decay=0.01, name=None)
+.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, weight_decay=0.01, grad_clip=None, name=None)
 
 
 **注意：此接口不支持稀疏参数更新。**
