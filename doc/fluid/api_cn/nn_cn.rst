@@ -8,11 +8,11 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
-    nn_cn/Conv1d_cn.rst
-    nn_cn/Conv2d_cn.rst
-    nn_cn/Conv3d_cn.rst
-    nn_cn/ConvTranspose2d_cn.rst
-    nn_cn/ConvTranspose3d_cn.rst
+    nn_cn/Conv1D_cn.rst
+    nn_cn/Conv2D_cn.rst
+    nn_cn/Conv3D_cn.rst
+    nn_cn/Conv2DTranspose_cn.rst
+    nn_cn/Conv3DTranspose_cn.rst
     nn_cn/diag_embed_cn.rst
     nn_cn/interpolate_cn.rst
     nn_cn/Linear_cn.rst
@@ -31,9 +31,9 @@ paddle.nn
     nn_cn/anchor_generator_cn.rst
     nn_cn/assign_cn.rst
     nn_cn/BatchNorm_cn.rst
-    nn_cn/BatchNorm1d_cn.rst
-    nn_cn/BatchNorm2d_cn.rst
-    nn_cn/BatchNorm3d_cn.rst
+    nn_cn/BatchNorm1D_cn.rst
+    nn_cn/BatchNorm2D_cn.rst
+    nn_cn/BatchNorm3D_cn.rst
     nn_cn/SyncBatchNorm_cn.rst
     nn_cn/beam_search_cn.rst
     nn_cn/beam_search_decode_cn.rst
@@ -93,9 +93,9 @@ paddle.nn
     nn_cn/huber_loss_cn.rst
     nn_cn/image_resize_cn.rst
     nn_cn/image_resize_short_cn.rst
-    nn_cn/InstanceNorm1d_cn.rst
-    nn_cn/InstanceNorm2d_cn.rst
-    nn_cn/InstanceNorm3d_cn.rst
+    nn_cn/InstanceNorm1D_cn.rst
+    nn_cn/InstanceNorm2D_cn.rst
+    nn_cn/InstanceNorm3D_cn.rst
     nn_cn/inverse_time_decay_cn.rst
     nn_cn/iou_similarity_cn.rst
     nn_cn/kldiv_loss_cn.rst
@@ -193,10 +193,10 @@ paddle.nn
     nn_cn/Dropout3D_cn.rst
     nn_cn/AlphaDropout_cn.rst
     nn_cn/ZeroPad2d_cn.rst
-    nn_cn/AdaptiveAvgPool2d_cn.rst
-    nn_cn/AdaptiveAvgPool3d_cn.rst
-    nn_cn/AdaptiveAvgPool1d_cn.rst
-    nn_cn/AdaptiveMaxPool1d_cn.rst
-    nn_cn/AvgPool1d_cn.rst
-    nn_cn/MaxPool1d_cn.rst
+    nn_cn/AdaptiveAvgPool2D_cn.rst
+    nn_cn/AdaptiveAvgPool3D_cn.rst
+    nn_cn/AdaptiveAvgPool1D_cn.rst
+    nn_cn/AdaptiveMaxPool1D_cn.rst
+    nn_cn/AvgPool1D_cn.rst
+    nn_cn/MaxPool1D_cn.rst
     nn_cn/Bilinear_cn.rst

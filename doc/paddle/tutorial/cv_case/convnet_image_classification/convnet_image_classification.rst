@@ -73,7 +73,7 @@
 组建网络
 --------
 
-接下来我们使用飞桨定义一个使用了三个二维卷积（\ ``Conv2d``)且每次卷积之后使用\ ``relu``\ 激活函数，两个二维池化层（\ ``MaxPool2d``\ ），和两个线性变换层组成的分类网络，来把一个\ ``(32, 32, 3)``\ 形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
+接下来我们使用飞桨定义一个使用了三个二维卷积（\ ``Conv2D``)且每次卷积之后使用\ ``relu``\ 激活函数，两个二维池化层（\ ``MaxPool2D``\ ），和两个线性变换层组成的分类网络，来把一个\ ``(32, 32, 3)``\ 形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
 
 .. code:: ipython3
 
@@ -81,13 +81,13 @@
         def __init__(self, num_classes=1):
             super(MyNet, self).__init__()
     
-            self.conv1 = paddle.nn.Conv2d(in_channels=3, out_channels=32, kernel_size=(3, 3))
-            self.pool1 = paddle.nn.MaxPool2d(kernel_size=2, stride=2)
+            self.conv1 = paddle.nn.Conv2D(in_channels=3, out_channels=32, kernel_size=(3, 3))
+            self.pool1 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
             
-            self.conv2 = paddle.nn.Conv2d(in_channels=32, out_channels=64, kernel_size=(3,3))
-            self.pool2 = paddle.nn.MaxPool2d(kernel_size=2, stride=2)    
+            self.conv2 = paddle.nn.Conv2D(in_channels=32, out_channels=64, kernel_size=(3,3))
+            self.pool2 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
             
-            self.conv3 = paddle.nn.Conv2d(in_channels=64, out_channels=64, kernel_size=(3,3))
+            self.conv3 = paddle.nn.Conv2D(in_channels=64, out_channels=64, kernel_size=(3,3))
     
             self.flatten = paddle.nn.Flatten()
             

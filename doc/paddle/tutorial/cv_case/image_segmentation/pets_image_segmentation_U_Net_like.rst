@@ -337,15 +337,15 @@ DataLoader（多进程数据集加载）。
 
 U-Net是一个U型网络结构，可以看做两个大的阶段，图像先经过Encoder编码器进行下采样得到高级语义特征图，再经过Decoder解码器上采样将特征图恢复到原图片的分辨率。
 
-4.1 定义SeparableConv2d接口
+4.1 定义SeparableConv2D接口
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-我们为了减少卷积操作中的训练参数来提升性能，是继承paddle.nn.Layer自定义了一个SeparableConv2d
-Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的Conv2d操作拆解为两个子Conv2d，先对输入数据的每个通道使用\ ``filter_size * filter_size * 1``\ 的卷积核进行计算，输入输出通道数目相同，之后在使用\ ``1 * 1 * num_filters``\ 的卷积核计算。
+我们为了减少卷积操作中的训练参数来提升性能，是继承paddle.nn.Layer自定义了一个SeparableConv2D
+Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的Conv2D操作拆解为两个子Conv2D，先对输入数据的每个通道使用\ ``filter_size * filter_size * 1``\ 的卷积核进行计算，输入输出通道数目相同，之后在使用\ ``1 * 1 * num_filters``\ 的卷积核计算。
 
 .. code:: ipython3
 
-    class SeparableConv2d(paddle.nn.Layer):
+    class SeparableConv2D(paddle.nn.Layer):
         def __init__(self, 
                      in_channels, 
                      out_channels, 
@@ -357,9 +357,9 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                      weight_attr=None, 
                      bias_attr=None, 
                      data_format="NCHW"):
-            super(SeparableConv2d, self).__init__()
+            super(SeparableConv2D, self).__init__()
             # 第一次卷积操作没有偏置参数
-            self.conv_1 = paddle.nn.Conv2d(in_channels, 
+            self.conv_1 = paddle.nn.Conv2D(in_channels,
                                            in_channels, 
                                            kernel_size, 
                                            stride=stride,
@@ -369,7 +369,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                                            weight_attr=weight_attr, 
                                            bias_attr=False,  
                                            data_format=data_format)
-            self.pointwise = paddle.nn.Conv2d(in_channels, 
+            self.pointwise = paddle.nn.Conv2D(in_channels,
                                               out_channels, 
                                               1, 
                                               stride=1, 
@@ -397,17 +397,17 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
             super(Encoder, self).__init__()
             
             self.relu = paddle.nn.ReLU()
-            self.separable_conv_01 = SeparableConv2d(in_channels, 
+            self.separable_conv_01 = SeparableConv2D(in_channels,
                                                      out_channels, 
                                                      kernel_size=3, 
                                                      padding='same')
-            self.bn = paddle.nn.BatchNorm2d(out_channels)
-            self.separable_conv_02 = SeparableConv2d(out_channels, 
+            self.bn = paddle.nn.BatchNorm2D(out_channels)
+            self.separable_conv_02 = SeparableConv2D(out_channels,
                                                      out_channels, 
                                                      kernel_size=3, 
                                                      padding='same')
-            self.pool = paddle.nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
-            self.residual_conv = paddle.nn.Conv2d(in_channels, 
+            self.pool = paddle.nn.MaxPool2D(kernel_size=3, stride=2, padding=1)
+            self.residual_conv = paddle.nn.Conv2D(in_channels,
                                                   out_channels, 
                                                   kernel_size=1, 
                                                   stride=2, 
@@ -441,17 +441,17 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
             super(Decoder, self).__init__()
     
             self.relu = paddle.nn.ReLU()
-            self.conv_transpose_01 = paddle.nn.ConvTranspose2d(in_channels, 
+            self.conv_transpose_01 = paddle.nn.Conv2DTranspose(in_channels,
                                                                out_channels, 
                                                                kernel_size=3, 
                                                                padding='same')
-            self.conv_transpose_02 = paddle.nn.ConvTranspose2d(out_channels, 
+            self.conv_transpose_02 = paddle.nn.Conv2DTranspose(out_channels,
                                                                out_channels, 
                                                                kernel_size=3, 
                                                                padding='same')
-            self.bn = paddle.nn.BatchNorm2d(out_channels)
+            self.bn = paddle.nn.BatchNorm2D(out_channels)
             self.upsample = paddle.nn.Upsample(scale_factor=2.0)
-            self.residual_conv = paddle.nn.Conv2d(in_channels, 
+            self.residual_conv = paddle.nn.Conv2D(in_channels,
                                                   out_channels, 
                                                   kernel_size=1, 
                                                   padding='same')
@@ -485,11 +485,11 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
         def __init__(self, num_classes):
             super(PetNet, self).__init__()
     
-            self.conv_1 = paddle.nn.Conv2d(3, 32, 
+            self.conv_1 = paddle.nn.Conv2D(3, 32,
                                            kernel_size=3,
                                            stride=2,
                                            padding='same')
-            self.bn = paddle.nn.BatchNorm2d(32)
+            self.bn = paddle.nn.BatchNorm2D(32)
             self.relu = paddle.nn.ReLU()
     
             in_channels = 32
@@ -513,7 +513,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                 self.decoders.append(block)
                 in_channels = out_channels
     
-            self.output_conv = paddle.nn.Conv2d(in_channels, 
+            self.output_conv = paddle.nn.Conv2D(in_channels,
                                                 num_classes, 
                                                 kernel_size=3, 
                                                 padding='same')
@@ -554,28 +554,28 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
     --------------------------------------------------------------------------------
        Layer (type)          Input Shape         Output Shape         Param #
     ================================================================================
-           Conv2d-1    [-1, 3, 160, 160]     [-1, 32, 80, 80]             896
-      BatchNorm2d-1     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
+           Conv2D-1    [-1, 3, 160, 160]     [-1, 32, 80, 80]             896
+      BatchNorm2D-1     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
              ReLU-1     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
              ReLU-4    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-          Conv2d-12    [-1, 128, 20, 20]    [-1, 128, 20, 20]           1,152
-          Conv2d-13    [-1, 128, 20, 20]    [-1, 256, 20, 20]          33,024
-    SeparableConv2d-5    [-1, 128, 20, 20]    [-1, 256, 20, 20]               0
-      BatchNorm2d-4    [-1, 256, 20, 20]    [-1, 256, 20, 20]           1,024
-          Conv2d-14    [-1, 256, 20, 20]    [-1, 256, 20, 20]           2,304
-          Conv2d-15    [-1, 256, 20, 20]    [-1, 256, 20, 20]          65,792
-    SeparableConv2d-6    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-        MaxPool2d-3    [-1, 256, 20, 20]    [-1, 256, 10, 10]               0
-          Conv2d-16    [-1, 128, 20, 20]    [-1, 256, 10, 10]          33,024
+          Conv2D-12    [-1, 128, 20, 20]    [-1, 128, 20, 20]           1,152
+          Conv2D-13    [-1, 128, 20, 20]    [-1, 256, 20, 20]          33,024
+    SeparableConv2D-5    [-1, 128, 20, 20]    [-1, 256, 20, 20]               0
+      BatchNorm2D-4    [-1, 256, 20, 20]    [-1, 256, 20, 20]           1,024
+          Conv2D-14    [-1, 256, 20, 20]    [-1, 256, 20, 20]           2,304
+          Conv2D-15    [-1, 256, 20, 20]    [-1, 256, 20, 20]          65,792
+    SeparableConv2D-6    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
+        MaxPool2D-3    [-1, 256, 20, 20]    [-1, 256, 10, 10]               0
+          Conv2D-16    [-1, 128, 20, 20]    [-1, 256, 10, 10]          33,024
           Encoder-3    [-1, 128, 20, 20]    [-1, 256, 10, 10]               0
              ReLU-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
-    ConvTranspose2d-7     [-1, 64, 80, 80]     [-1, 32, 80, 80]          18,464
-      BatchNorm2d-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
-    ConvTranspose2d-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]           9,248
+    Conv2DTranspose-7     [-1, 64, 80, 80]     [-1, 32, 80, 80]          18,464
+      BatchNorm2D-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
+    Conv2DTranspose-8     [-1, 32, 80, 80]     [-1, 32, 80, 80]           9,248
          Upsample-4     [-1, 64, 80, 80]   [-1, 64, 160, 160]               0
-          Conv2d-20   [-1, 64, 160, 160]   [-1, 32, 160, 160]           2,080
+          Conv2D-20   [-1, 64, 160, 160]   [-1, 32, 160, 160]           2,080
           Decoder-4     [-1, 64, 80, 80]   [-1, 32, 160, 160]               0
-          Conv2d-21   [-1, 32, 160, 160]    [-1, 4, 160, 160]           1,156
+          Conv2D-21   [-1, 32, 160, 160]    [-1, 4, 160, 160]           1,156
     ================================================================================
     Total params: 168,420
     Trainable params: 167,140

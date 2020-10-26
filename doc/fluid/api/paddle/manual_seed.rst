@@ -1,7 +1,7 @@
-.. _api_paddle_manual_seed:
+.. _api_paddle_seed:
 
-manual_seed
+seed
 -------------------------------
-:doc_source: paddle.framework.manual_seed
+:doc_source: paddle.framework.seed
 
 

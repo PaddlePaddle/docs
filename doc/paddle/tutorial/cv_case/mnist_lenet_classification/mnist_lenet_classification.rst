@@ -66,7 +66,7 @@ MNIST数据集使用LeNet进行图像分类
 组网
 ----
 
-用paddle.nn下的API，如\ ``Conv2d``\ 、\ ``MaxPool2d``\ 、\ ``Linear``\ 完成LeNet的构建。
+用paddle.nn下的API，如\ ``Conv2D``\ 、\ ``MaxPool2D``\ 、\ ``Linear``\ 完成LeNet的构建。
 
 .. code:: ipython3
 
@@ -75,10 +75,10 @@ MNIST数据集使用LeNet进行图像分类
     class LeNet(paddle.nn.Layer):
         def __init__(self):
             super(LeNet, self).__init__()
-            self.conv1 = paddle.nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
-            self.max_pool1 = paddle.nn.MaxPool2d(kernel_size=2,  stride=2)
-            self.conv2 = paddle.nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1)
-            self.max_pool2 = paddle.nn.MaxPool2d(kernel_size=2, stride=2)
+            self.conv1 = paddle.nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
+            self.max_pool1 = paddle.nn.MaxPool2D(kernel_size=2,  stride=2)
+            self.conv2 = paddle.nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
+            self.max_pool2 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
             self.linear1 = paddle.nn.Linear(in_features=16*5*5, out_features=120)
             self.linear2 = paddle.nn.Linear(in_features=120, out_features=84)
             self.linear3 = paddle.nn.Linear(in_features=84, out_features=10)

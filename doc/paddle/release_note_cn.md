@@ -20,7 +20,7 @@
   | :--- | --------------- |
   | paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor, paddle.framework目录下的所有API |
   | paddle.tensor     | 跟tensor操作相关的API，比如：创建zeros, 矩阵运算matmul, 变换concat, 计算add, 查找argmax等 |
-  | paddle.nn         | 跟组网相关的API，比如：Linear, Conv2d，损失函数，卷积，LSTM等，激活函数等 |
+  | paddle.nn         | 跟组网相关的API，比如：Linear, Conv2D，损失函数，卷积，LSTM等，激活函数等 |
   | paddle.static.nn  | 静态图下组网专用API，比如：输入占位符data/Input，控制流while_loop/cond |
   | paddle.static | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
   | paddle.framework  | 框架通用API和imprerative模式的API，比如：to_tensor, prepare_context等       |
@@ -74,20 +74,20 @@
   | paddle.fluid.layers.reduce_min | paddle.min        |
   | paddle.fluid.layers.reduce_all | paddle.all        |
   | paddle.fluid.layers.reduce_any | paddle.any        |
-  | paddle.fluid.dygraph.Conv2D | paddle.nn.Conv2d |
-  | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.ConvTranspose2d |
-  | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2d, paddle.nn.AvgPool2d |
+  | paddle.fluid.dygraph.Conv2D | paddle.nn.Conv2D |
+  | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.Conv2DTranspose |
+  | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2D, paddle.nn.AvgPool2D |
 
 #### 新增API
 - 共计新增140个API，具体参考[链接](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-New-API-List)和API文档
-  - 新增环境设置API：paddle.set_default_dtype, paddle.get_default_dtype, paddle.set_device, paddle.get_device, paddle.manual_seed
+  - 新增环境设置API：paddle.set_default_dtype, paddle.get_default_dtype, paddle.set_device, paddle.get_device, paddle.seed
   - 新增Tensor操作API：numel, chunk, masked_select, isfinite, isinf, isnan, sort, topk, Flatten, dim, tile
   - 新增组网API: Linear, Bilinear, Embedding, linear, bilinear, embedding
-  - 新增视觉组网类API：Conv1d, ConvTranspose1d, MaxPool1d, MaxPool2d, MaxPool3d, AvgPool1d, AvgPool2d, AvgPool3d, AdaptiveMaxPool1d, AdaptiveMaxPool2d, AdaptiveMaxPool3d, ReflactionPad1d, ReflactionPad2d, ReflactionPad3d, ReplicationPad1d, ReplicationPad2d, ReplicationPad3d, ZeroPad2d, ConstantPad1d, ConstantPad2d, ConstantPad3d, PixelShuffle, Upsample, UpsamplingNearest2d, UpsamplingBilinear2d, conv1d, conv_transpose1d, avg_pool1d, avg_pool2d, avg_pool3d, max_pool1d, max_pool2d, max_pool3d, adaptive_max_pool1d, adaptive_max_pool2d, adaptive_max_pool3d, adaptive_avg_pool1d, adaptive_avg_pool3d
+  - 新增视觉组网类API：Conv1D, Conv1DTranspose, MaxPool1D, MaxPool2D, MaxPool3D, AvgPool1D, AvgPool2D, AvgPool3D, AdaptiveMaxPool1D, AdaptiveMaxPool2D, AdaptiveMaxPool3D, ReflactionPad1d, ReflactionPad2d, ReflactionPad3d, ReplicationPad1d, ReplicationPad2d, ReplicationPad3d, ZeroPad2d, ConstantPad1d, ConstantPad2d, ConstantPad3d, PixelShuffle, Upsample, UpsamplingNearest2d, UpsamplingBilinear2d, conv1d, conv1d_transpose, avg_pool1d, avg_pool2d, avg_pool3d, max_pool1d, max_pool2d, max_pool3d, adaptive_max_pool1d, adaptive_max_pool2d, adaptive_max_pool3d, adaptive_avg_pool1d, adaptive_avg_pool3d
   - 新增文本处理组网类API: SimpleRNN, LSTM, GRU, MultiHeadAttention, Transformer, TransformerEncoder, TransformerEncoderLayer, TransformerDecoder, TransformerDecoderLayer
   - 新增激活类API：ELU, Hardshrink, Hardtanh, PReLU, ReLU6, Tanh, Tanhshrink, Softmax
-  - 新增归一化API：BatchNorm1d, BatchNorm2d, BatchNorm3d, SyncBatchNorm, InstanceNorm1d, InstanceNorm2d, InstanceNorm3d, weight_norm, remove_weight_norm, batch_norm, instance_norm, layer_norm, normalize
-  - 新增Dropout类API：Dropout2d, Dropout3d, AlphaDropout, dropout, dropout2d, dropout3d
+  - 新增归一化API：BatchNorm1D, BatchNorm2D, BatchNorm3D, SyncBatchNorm, InstanceNorm1D, InstanceNorm2D, InstanceNorm3D, weight_norm, remove_weight_norm, batch_norm, instance_norm, layer_norm, normalize
+  - 新增Dropout类API：Dropout2D, Dropout3D, AlphaDropout, dropout, dropout2d, dropout3d
   - 新增相似度、损失函数类API：CosineSimilarity, PairwiseDistance, CTCLoss, KLDivLoss, BCEWithLogitsLoss, MarginRankingLoss, SmoothL1Loss, consine_similarity, binary_cross_entropy, binary_cross_entropy_with_logits, cross_entropy, ctc_loss, l1_loss, mse_loss, margin_ranking_loss, nll_loss, smooth_l1_loss
   - 新增分布式通信类API: broadcast, all_reduce, reduce, all_gather, scatter, barrier
   - 新增概率分布类API： Distribution, normal, bernoulli
@@ -197,7 +197,7 @@
 
 - 新增`ImperativeQuantAware`类，提供动态图量化训练功能，目前支持对Conv2D、Linear等层的量化，支持的模型类型包括MobileNetV1/MobileNetV2/ResNet50等。
 - 模型经动态图量化训练后，使用`ImperativeQuantAware.save_quantized_model`接口保存的量化模型可利用Paddle-Lite推理库进行预测部署。
-- 静态图量化支持Conv2d_tranpose量化，支持Linear使用per-channel形式量化。
+- 静态图量化支持Conv2D_tranpose量化，支持Linear使用per-channel形式量化。
 #### 性能优化（含分布式）
 
 - 简化动态图模式下DataLoader底层实现逻辑，降低读取线程开销，进一步提升数据读取效率，提升模型整体训练速度。经测试MobileNetV1在V100单卡、BatchSize=128的场景下整体训练速度提升34%。
