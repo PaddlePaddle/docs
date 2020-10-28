@@ -8,30 +8,6 @@ API 文档
 
 **飞桨框架的API目录结构如下：**
 
-- ``paddle.*`` : paddle根目录下保留了常用API的别名，当前包括 ``paddle.tensor`` 和 ``paddle.framework`` 目录下的所有API。
-- ``paddle.tensor`` : tensor操作相关的API，例如创建 ``zeros`` 、矩阵运算 ``matmul`` 、变换 ``concat`` 、计算 ``add`` 、查找 ``argmax`` 等。
-- ``paddle.framework`` : 框架通用API和动态图模式的API，例如 ``no_grad`` 、 ``save`` 、 ``load`` 等。
-- ``paddle.amp`` : paddle自动混合精度策略，包括 ``auto_cast`` 、 ``GradScaler`` 等。
-- ``paddle.callbacks`` : paddle日志回调类，包括 ``ModelCheckpoint`` 、 ``ProgBarLogger`` 等。
-- ``paddle.nn`` : 组网相关的API，例如 ``Linear`` 、卷积 ``Conv2D`` 、循环神经网络 ``LSTM`` 、损失函数 ``CrossEntropyLoss`` 、激活函数 ``ReLU`` 等。
-- ``paddle.static`` : 静态图下基础框架相关API，例如 ``Variable`` 、 ``Program`` 、 ``Executor``等。
-- ``paddle.static.nn`` : 静态图下组网专用API，例如全连接层 ``fc`` 、控制流 ``while_loop/cond`` 。
-- ``paddle.optimizer`` : 优化算法相关API，例如 ``SGD`` 、 ``Adagrad`` 、 ``Adam`` 等。
-- ``paddle.optimizer.lr`` : 学习率衰减相关API，例如 ``NoamDecay`` 、 ``StepDecay`` 、 ``PiecewiseDecay`` 等。
-- ``paddle.metric`` : 评估指标计算相关的API，例如 ``Accuracy`` 、 ``Auc`` 等。
-- ``paddle.io`` : 数据输入输出相关API，例如 ``Dataset`` 、 ``DataLoader`` 等。
-- ``paddle.device`` : 设备管理相关API，例如 ``CPUPlace`` 、 ``CUDAPlace`` 等。
-- ``paddle.distributed`` : 分布式相关基础API。
-- ``paddle.distributed.fleet`` : 分布式相关高层API。
-- ``paddle.vision`` : 视觉领域API，例如数据集 ``Cifar10`` 、数据处理 ``ColorJitter`` 、常用基础网络结构 ``ResNet`` 等。
-- ``paddle.text`` : NLP领域API，目前包括NLP领域相关的数据集，如 ``Imdb`` 、 ``Movielens`` 。
-
-
-
-
-
-
-
 +-------------------------------+-------------------------------------------------------+
 | 目录                          | 功能和包含的API                                       |
 +===============================+=======================================================+
@@ -39,45 +15,46 @@ API 文档
 |                               | 根目录下保留了常用API的别名，当前包括：paddle.tensor, |
 |                               | paddle.framework目录下的所有API                       |
 +-------------------------------+-------------------------------------------------------+
-| paddle.tensor                 | 跟tensor操作相关的API，比如：创建zeros,               |
+| paddle.tensor                 | 跟tensor操作相关的API，如：创建zeros,                 |
 |                               | 矩阵运算matmul, 变换concat, 计算add, 查找argmax等     |
 +-------------------------------+-------------------------------------------------------+
-| paddle.nn                     | 跟组网相关的API，比如：Linear,                        |
-|                               | Conv2D，损失函数，卷积，LSTM等，激活函数等            |
+| paddle.framework              | 框架通用API和动态图模式的API，例如 no_grad 、         |
+|                               | save 、 load 等。                                     |
 +-------------------------------+-------------------------------------------------------+
-| paddle.static.nn              | 静态图下组网专用A                                     |
-|                               | PI，比如：输入占位符data/Input，控制流while_loop/cond |
+| paddle.amp                    | paddle自动混合精度策略，包括 auto_cast 、             |
+|                               | GradScaler 等。                                       |
++-------------------------------+-------------------------------------------------------+
+| paddle.callbacks              | paddle日志回调类，包括 ModelCheckpoint 、             |
+|                               | ProgBarLogger 等。                                    |
++-------------------------------+-------------------------------------------------------+
+| paddle.nn                     | 组网相关的API，例如 Linear 、卷积 Conv2D 、           |
+|                               | 循环神经网络 LSTM 、损失函数 CrossEntropyLoss 、      |
+|                               | 激活函数 ReLU 等。                                    |
 +-------------------------------+-------------------------------------------------------+
 | paddle.static                 | 静态图下基础框架相关API，比如：Variable, Program,     |
 |                               | Executor等                                            |
 +-------------------------------+-------------------------------------------------------+
-| paddle.framework              | 框架通用API和imprerative模式的API，比如：to_tensor,   |
-|                               | prepare_context等                                     |
+| paddle.static.nn              | 静态图下组网专用API，例如全连接层 fc 、控制流         |
+|                               | while_loop/cond 。                                    |
 +-------------------------------+-------------------------------------------------------+
 | paddle.optimizer              | 优化算法相关API，比如：SGD，Adagrad, Adam等           |
-|                               |                                                       |
 +-------------------------------+-------------------------------------------------------+
-| paddle.optimizer.lr_scheduler | 学习率衰减相关API                                     |
-|                               |                                                       |
+| paddle.optimizer.lr           | 学习率衰减相关API，例如 NoamDecay 、 StepDecay 、     |
+|                               | PiecewiseDecay 等。                                   |
 +-------------------------------+-------------------------------------------------------+
-| paddle.metric                 | 评估指标计算相关的API，比如：accuracy, auc等          |
-|                               |                                                       |
+| paddle.metric                 | 评估指标计算相关的API，比如：Accuracy, Auc等。        |
 +-------------------------------+-------------------------------------------------------+
-| paddle.io                     | 数据输入输出相关API，比如：save, load, Dataset,       |
-|                               | DataLoader等                                          |
+| paddle.io                     | 数据输入输出相关API，比如：Dataset, DataLoader 等。   |
 +-------------------------------+-------------------------------------------------------+
 | paddle.device                 | 设备管理相关API，比如：CPUPlace， CUDAPlace等         |
-|                               |                                                       |
 +-------------------------------+-------------------------------------------------------+
 | paddle.distributed            | 分布式相关基础API                                     |
-|                               |                                                       |
 +-------------------------------+-------------------------------------------------------+
 | paddle.distributed.fleet      | 分布式相关高层API                                     |
-|                               |                                                       |
 +-------------------------------+-------------------------------------------------------+
-| paddle.vision                 | 视觉领域API，                                         |
-|                               | 比如，数据集，数据处理，常用基础网络结构，比如resnet  |
+| paddle.vision                 | 视觉领域API，例如数据集 Cifar10 、数据处理 ColorJitter|
+|                               | 、常用基础网络结构 ResNet 等。                        |
 +-------------------------------+-------------------------------------------------------+
-| paddle.text                   | NLP领域API,                                           |
-|                               | 比如，数据集，数据处理，常用网络结构，比如transformer |
+| paddle.text                   | NLP领域API，目前包括NLP领域相关的数据集，             |
+|                               | 如 Imdb 、 Movielens 。                               |
 +-------------------------------+-------------------------------------------------------+

@@ -1,4 +1,4 @@
-# 飞桨框架2.0beta升级指南
+# 飞桨框架2.0rc升级指南
 
 ## 升级概要
 本版本是2.0版的公测版，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
@@ -8,19 +8,15 @@
  - 数据处理、组网方式、模型训练、多卡启动、模型保存和推理等开发流程都有了对应优化，请对应查看说明；
 
 以上变化请仔细阅读本指南。对于已有模型的升级，我们还提供了2.0转换工具（见附录）提供更自动化的辅助。
-其他一些功能增加方面诸如动态图对量化训练、混合精度的支持、动静转换等方面不在本指南列出，具体可查看[Release Note](https://github.com/PaddlePaddle/Paddle/releases/tag/v2.0.0-beta0#)或对应文档。
+其他一些功能增加方面诸如动态图对量化训练、混合精度的支持、动静转换等方面不在本指南列出，具体可查看[Release Note](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/release_note_cn.html)或对应文档。
 
 ## 一、动态图
 
 ### 推荐优先使用动态图模式
-飞桨2.0版本将会把动态图作为默认模式。2.0-beta版本虽然还未做默认切换，但推荐大家优先使用动态图模式，需要在程序开始时调用`paddle.disable_static`切换到动态图。2.0-rc版本后默认模式将切换为动态图，此行代码可删除。（2.0-rc版本后如果还想使用静态图，可通过调用`paddle.enable_static`切换）。
+飞桨2.0rc版本将会把动态图作为默认模式。（如果还想使用静态图，可通过调用`paddle.enable_static`切换）。
 
 ```python
 import paddle
-
-# 2.0-beta版本需要调用下面代码，切换到动态图模式
-# 2.0-rc版本可以删除这一行
-paddle.disable_static()
 ```
 
 ### 使用Tensor概念表示数据
@@ -31,8 +27,8 @@ paddle.disable_static()
 
 ```python
 import paddle
+import numpy as np
 
-paddle.disable_static()
 paddle.to_tensor(1)
 paddle.to_tensor((1.1, 2.2))
 paddle.to_tensor(np.random.randn(3, 4))
@@ -46,25 +42,27 @@ paddle.to_tensor(np.random.randn(3, 4))
 为了API组织更加简洁和清晰，将原来padddle.fluid.xxx的目录体系全新升级为paddle.xxx，并对子目录的组织进行了系统的条理化优化。同时还增加了高层API，可以高低搭配使用。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
 **基于2.0的开发任务，请使用paddle目录下的API，不要再使用paddle.fluid目录下的API。** 如果发现Paddle目录下有API缺失的情况，推荐使用基础API进行组合实现；您也可以通过在 [github](https://github.com/paddlepaddle/paddle) 上提issue的方式向我们反馈。
 
-**2.0-beta版本的API 整体目录结构如下**：
+**2.0-rc版本的API 整体目录结构如下**：
 
 | 目录 | 功能和包含的API |
 | :--- | --------------- |
 | paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor和paddle.framework目录下的所有API |
-| paddle.tensor     | 跟tensor操作相关的API，比如：创建zeros, 矩阵运算matmul, 变换concat, 计算add, 查找argmax等 |
-| paddle.nn         | 跟组网相关的API，比如：Linear，卷积，LSTM，损失函数,激活函数等 |
-| paddle.static.nn  | 静态图下组网专用API，比如：输入占位符data, 全连接层fc, 控制流while_loop/cond |
-| paddle.static | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
-| paddle.framework  | 框架通用API和动态图模式的API，比如：to_tensor, no_grad等 |
-| paddle.optimizer  | 优化算法相关API，比如：SGD，Adagrad, Adam等                  |
-| paddle.optimizer.lr_scheduler  | 学习率衰减相关API                  |
-| paddle.metric     | 评估指标计算相关的API，比如：accuracy, auc等             |
+| paddle.tensor     | tensor操作相关的API，例如创建 zeros 、矩阵运算 matmul 、变换 concat 、计算 add 、查找 argmax 等。|
+| paddle.framework  | 框架通用API和动态图模式的API，例如 no_grad 、 save 、 load 等。|
+| paddle.amp        | paddle自动混合精度策略，包括 auto_cast 、 GradScaler 等。|
+| paddle.callbacks  | paddle日志回调类，包括 ModelCheckpoint 、 ProgBarLogger 等。|
+| paddle.nn         | 组网相关的API，例如 Linear 、卷积 Conv2D 、循环神经网络 LSTM 、损失函数 CrossEntropyLoss 、激活函数 ReLU 等。 |
+| paddle.static     | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
+| paddle.static.nn  | 静态图下组网专用API，例如全连接层 fc 、控制流 while_loop/cond 。|
+| paddle.optimizer  | 优化算法相关API，比如：SGD、Adagrad、Adam等。|
+| paddle.optimizer.lr  | 学习率衰减相关API，例如 NoamDecay 、 StepDecay 、 PiecewiseDecay 等。|
+| paddle.metric     | 评估指标计算相关的API，比如：Accuracy, Auc等。             |
 | paddle.io         | 数据输入输出相关API，比如：Dataset, DataLoader等 |
 | paddle.device     | 设备管理相关API，比如：CPUPlace， CUDAPlace等                |
 | paddle.distributed      | 分布式相关基础API                                                |
 | paddle.distributed.fleet      | 分布式相关高层API                                         |
-| paddle.vision     | 视觉领域API，比如，数据集，数据处理，常用基础网络结构，比如resnet             |
-| paddle.text       | NLP领域API, 比如，数据集，数据处理，常用网络结构，比如Transformer |
+| paddle.vision     | 视觉领域API，例如数据集 Cifar10 、数据处理 ColorJitter 、常用基础网络结构 ResNet 等。|
+| paddle.text       | 目前包括NLP领域相关的数据集，如 Imdb 、 Movielens 。|
 
 ### API别名规则
 
@@ -73,16 +71,10 @@ paddle.to_tensor(np.random.randn(3, 4))
 	- paddle.nn目录下除functional目录以外的所有API，在paddle.nn目录下均有别名；functional目录中的API，在paddle.nn目录下均没有别名。
 - **推荐用户优先使用较短的路径的别名**，比如`paddle.add -> paddle.tensor.add`，推荐优先使用`paddle.add`
 - 以下为一些特殊的别名关系，推荐使用左边的API名称：
-  - paddle.sigmoid -> paddle.tensor.sigmoid -> paddle.nn.functional.sigmoid
   - paddle.tanh -> paddle.tensor.tanh -> paddle.nn.functional.tanh
   - paddle.remainder -> paddle.mod -> paddle.floor_mod
-  - paddle.divide -> paddle.true_divide
   - paddle.rand -> paddle.uniform
   - paddle.randn -> paddle.standard_normal
-  - Optimizer.clear_grad -> Optimizer.clear_gradients
-  - Optimizer.set_state_dict -> Optimizer.set_dict
-  - Optimizer.get_lr -> Optimizer.current_step_lr
-  - Layer.clear_grad -> Layer.clear_gradients
   - Layer.set_state_dict -> Layer.set_dict
 
 ### 常用API名称变化
@@ -90,12 +82,11 @@ paddle.to_tensor(np.random.randn(3, 4))
 - 加、减、乘、除使用全称，不使用简称
 - 对于当前逐元素操作，不加elementwise前缀
 - 对于按照某一轴操作，不加reduce前缀
-- Conv, Pool, Dropout, BatchNorm, Pad组网类API根据输入数据类型增加1d, 2d, 3d后缀
+- Conv, Pool, Dropout, BatchNorm, Pad组网类API根据输入数据类型增加1D, 2D, 3D后缀
 
-  | Paddle 1.8  API名称  | Paddle 2.0-beta 对应的名称|
+  | Paddle 1.8  API名称  | Paddle 2.0-rc 对应的名称|
   | --------------- | ------------------------ |
   | paddle.fluid.layers.elementwise_add | paddle.add               |
-  | paddle.fluid.layers.elementwise_sub | paddle.subtract           |
   | paddle.fluid.layers.elementwise_mul | paddle.multiply          |
   | paddle.fluid.layers.elementwise_div | paddle.divide |
   | paddle.fluid.layers.elementwise_max | paddle.maximum             |
@@ -177,7 +168,6 @@ for data, label in val_dataset:
 
 ```python
 import paddle
-paddle.disable_static()
 
 # Sequential形式组网
 mnist = paddle.nn.Sequential(
@@ -195,7 +185,6 @@ mnist = paddle.nn.Sequential(
 
 ```python
 import paddle
-paddle.disable_static()
 
 # Layer类继承方式组网
 class Mnist(paddle.nn.Layer):
@@ -228,7 +217,6 @@ mnist = Mnist()
 
 ```python
 import paddle
-paddle.disable_static()
 
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
@@ -256,7 +244,6 @@ model.evaluate(test_dataset, log_freq=20, batch_size=64)
 ```python
 import paddle
 
-paddle.disable_static()
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
 lenet = paddle.vision.models.LeNet()
@@ -316,7 +303,6 @@ $ python -m paddle.distributed.launch train.py
 import paddle
 import paddle.distributed as dist
 
-paddle.disable_static()
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
 
@@ -336,7 +322,8 @@ def train():
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
             y_data = data[1]
-            predicts = net(x_data)           acc = paddle.metric.accuracy(predicts, y_data, k=2)
+            predicts = net(x_data)           
+            acc = paddle.metric.accuracy(predicts, y_data, k=2)
             avg_acc = paddle.mean(acc)
             loss = paddle.nn.functional.cross_entropy(predicts, y_data)
             avg_loss.backward()
@@ -420,7 +407,6 @@ class SimpleNet(paddle.nn.Layer):
         out = out + y
         return out
 
-paddle.disable_static()
 
 net = SimpleNet()
 
@@ -488,7 +474,7 @@ Python API 的变更与 C++ 基本对应，会在2.0RC版发布。
 
 ## 附录
 ### 2.0转换工具
-为了降级代码升级的成本，我们提供了转换工具，可以帮助将Paddle 1.8版本开发的代码，升级为2.0-beta的API。由于相比于Paddle 1.8版本，2.0-beta版本的API进行了大量的升级，包括API名称，参数名称，行为等。转换工具当前还不能覆盖所有的API升级；对于无法转换的API，转换工具会报错，提示用户手动升级。
+为了降级代码升级的成本，我们提供了转换工具，可以帮助将Paddle 1.8版本开发的代码，升级为2.0-rc的API。由于相比于Paddle 1.8版本，2.0-rc版本的API进行了大量的升级，包括API名称，参数名称，行为等。转换工具当前还不能覆盖所有的API升级；对于无法转换的API，转换工具会报错，提示用户手动升级。
 
 https://github.com/PaddlePaddle/paddle1to2
 
@@ -497,10 +483,6 @@ https://github.com/PaddlePaddle/paddle1to2
 ### 2.0文档教程
 以下提供了2.0版本的一些示例教程：
 
-您可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.0-beta/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
+您可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
 https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs
 
-### 2.0API升级列表
-- [Release Note](https://github.com/PaddlePaddle/Paddle/releases/tag/v2.0.0-beta0#)
-- [API新增列表](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-New-API-List)
-- [API升级列表](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-Upgraded-API-List)
