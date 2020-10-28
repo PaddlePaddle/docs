@@ -142,6 +142,9 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 .. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
 
 .. note::
+    这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
+
+.. note::
     框架保证DataLoader的数据加载顺序与用户提供的数据源读取顺序一致。
 
 创建一个DataLoader对象用于加载Python生成器产生的数据。数据会由Python线程预先读取，并异步送入一个队列中。
@@ -353,6 +356,9 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 
 .. py:method:: from_dataset(dataset, places, drop_last=True)
+
+.. note::
+    这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
 
 创建一个DataLoader对象用于加载Dataset产生的数据。目前，Dataset仅支持Linux系统下使用。
 
