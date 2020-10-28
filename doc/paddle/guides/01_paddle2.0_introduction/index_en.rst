@@ -11,5 +11,6 @@ For more information, you can view these pages:
 
 ..  toctree::
     :hidden:
-
+    
+    basic_concept/index_en.rst
     migration_en.rst
