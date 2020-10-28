@@ -9,19 +9,19 @@ DataLoader返回一个迭代器，该迭代器根据 ``batch_sampler`` 给定的
 
 DataLoader支持单进程和多进程的数据加载方式，当 ``num_workers`` 大于0时，将使用多进程方式异步加载数据。
 
-DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本)， ``map-style`` 的数据集请参考 ``paddle.io.Dataset`` 。
+DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``map-style`` 的数据集可通过下标索引样本，请参考 ``paddle.io.Dataset`` ； ``iterable-style`` 数据集只能迭代式地获取样本，类似Python迭代器，请参考 ``paddle.io.IterableDataset`` 。
 
-``batch_sampler`` 请参考 ``fluid.io.BatchSampler``
+``batch_sampler`` 请参考 ``paddle.io.BatchSampler``
 
 参数:
     - **dataset** (Dataset) - DataLoader从此参数给定数据集中加载数据，此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例。
-    - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``fluid.layers.data()`` 创建。当 ``return_list`` 为False时，此参数必须设置。默认值为None。
+    - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``paddle.static..data()`` 创建。当 ``return_list`` 为False时，此参数必须设置。默认值为None。
     - **places** (list(Place)|tuple(Place)) - 数据需要放置到的Place列表。在静态图和动态图模式中，此参数均必须设置。在动态图模式中，此参数列表长度必须是1。默认值为None。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。若return_list = False，每个设备上的返回数据均是str -> Tensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(Tensor)。在动态图模式下，此参数必须为True。默认值为False。
-    - **batch_sampler** (BatchSampler) - ``fluid.io.BatchSampler`` 或其子类的实例，DataLoader通过 ``batch_sampler`` 产生的mini-batch索引列表来 ``dataset`` 中索引样本并组成mini-batch。默认值为None。
-    - **batch_size** (int) - 每mini-batch中样本个数，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``fluid.io.BatchSampler`` 。默认值为1。
-    - **shuffle** (bool) - 生成mini-batch索引列表时是否对索引打乱顺序，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``fluid.io.BatchSampler`` 。默认值为False。
-    - **drop_last** (bool) - 是否丢弃因数据集样本数不能被 ``batch_size`` 整除而产生的最后一个不完整的mini-batch，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``fluid.io.BatchSampler`` 。默认值为False。
+    - **batch_sampler** (BatchSampler) - ``paddle.io.BatchSampler`` 或其子类的实例，DataLoader通过 ``batch_sampler`` 产生的mini-batch索引列表来 ``dataset`` 中索引样本并组成mini-batch。默认值为None。
+    - **batch_size** (int) - 每mini-batch中样本个数，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler`` 。默认值为1。
+    - **shuffle** (bool) - 生成mini-batch索引列表时是否对索引打乱顺序，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler`` 。默认值为False。
+    - **drop_last** (bool) - 是否丢弃因数据集样本数不能被 ``batch_size`` 整除而产生的最后一个不完整的mini-batch，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler`` 。默认值为False。
     - **collate_fn** (callable) - 通过此参数指定如果将样本列表组合为mini-batch数据，当 ``collate_fn`` 为None时，默认为将样本个字段在第0维上堆叠(同 ``np.stack(..., axis=0)`` )为mini-batch的数据。默认值为None。
     - **num_workers** (int) - 用于加载数据的子进程个数，若为0即为不开启子进程，在主进程中进行数据加载。默认值为0。
     - **use_buffer_reader** (bool) - 是否使用缓存读取器 。若 ``use_buffer_reader`` 为True，DataLoader会异步地预读取下一个mini-batch的数据，可加速数据读取过程，但同时会占用少量的CPU/GPU存储，即一个batch输入数据的存储空间。默认值为True。
@@ -37,11 +37,11 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
 .. code-block:: python
 
-
     import numpy as np
 
     import paddle
-    import paddle.fluid as fluid
+    import paddle.nn as nn
+    import paddle.nn.functional as F
     from paddle.io import Dataset, BatchSampler, DataLoader
 
     BATCH_NUM = 20
@@ -68,39 +68,35 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
 
-    # get places
-    places = fluid.cuda_places() if USE_GPU else fluid.cpu_places()
-
     # --------------------- dygraph mode --------------------
 
-    class SimpleNet(fluid.dygraph.Layer):
+    class SimpleNet(nn.Layer):
         def __init__(self):
             super(SimpleNet, self).__init__()
-            self.fc = fluid.dygraph.nn.Linear(IMAGE_SIZE, CLASS_NUM, act='softmax')
+            self.fc = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
         def forward(self, image, label=None):
             return self.fc(image)
 
-    with fluid.dygraph.guard(places[0]):
-        simple_net = SimpleNet()
-        opt = fluid.optimizer.SGD(learning_rate=1e-3,
-                                  parameter_list=simple_net.parameters())
+    simple_net = SimpleNet()
+    opt = paddle.optimizer.SGD(learning_rate=1e-3,
+                              parameters=simple_net.parameters())
 
-        loader = DataLoader(dataset,
-                            batch_size=BATCH_SIZE,
-                            shuffle=True,
-                            drop_last=True,
-                            num_workers=2)
+    loader = DataLoader(dataset,
+                        batch_size=BATCH_SIZE,
+                        shuffle=True,
+                        drop_last=True,
+                        num_workers=2)
 
-        for e in range(EPOCH_NUM):
-            for i, (image, label) in enumerate(loader()):
-                out = simple_net(image)
-                loss = fluid.layers.cross_entropy(out, label)
-                avg_loss = fluid.layers.reduce_mean(loss)
-                avg_loss.backward()
-                opt.minimize(avg_loss)
-                simple_net.clear_gradients()
-                print("Epoch {} batch {}: loss = {}".format(e, i, np.mean(loss.numpy())))
+    for e in range(EPOCH_NUM):
+        for i, (image, label) in enumerate(loader()):
+            out = simple_net(image)
+            loss = F.cross_entropy(out, label)
+            avg_loss = paddle.mean(loss)
+            avg_loss.backward()
+            opt.minimize(avg_loss)
+            simple_net.clear_gradients()
+            print("Epoch {} batch {}: loss = {}".format(e, i, np.mean(loss.numpy())))
 
     # -------------------------------------------------------
 
@@ -108,23 +104,26 @@ DataLoader当前仅支持 ``map-style`` 的数据集(可通过下标索引样本
 
     paddle.enable_static()
 
+    # get places
+    place = paddle.CUDAPlace(0) if USE_GPU else paddle.CPUPlace()
+
     def simple_net(image, label):
-        fc_tmp = fluid.layers.fc(image, size=CLASS_NUM, act='softmax')
-        cross_entropy = fluid.layers.softmax_with_cross_entropy(image, label)
-        loss = fluid.layers.reduce_mean(cross_entropy)
-        sgd = fluid.optimizer.SGD(learning_rate=1e-3)
+        fc_tmp = paddle.fluid.layers.fc(image, size=CLASS_NUM, act='softmax')
+        cross_entropy = paddle.fluid.layers.softmax_with_cross_entropy(image, label)
+        loss = paddle.fluid.layers.reduce_mean(cross_entropy)
+        sgd = paddle.fluid.optimizer.SGD(learning_rate=1e-3)
         sgd.minimize(loss)
         return loss
 
-    image = fluid.data(name='image', shape=[None, IMAGE_SIZE], dtype='float32')
-    label = fluid.data(name='label', shape=[None, 1], dtype='int64')
+    image = paddle.static.data(name='image', shape=[None, IMAGE_SIZE], dtype='float32')
+    label = paddle.static.data(name='label', shape=[None, 1], dtype='int64')
 
     loss = simple_net(image, label)
 
-    exe = fluid.Executor(places[0])
-    exe.run(fluid.default_startup_program())
+    exe = paddle.fluid.Executor(place)
+    exe.run(paddle.fluid.default_startup_program())
 
-    prog = fluid.CompiledProgram(fluid.default_main_program()).with_data_parallel(loss_name=loss.name)
+    prog = paddle.fluid.CompiledProgram(paddle.fluid.default_main_program()).with_data_parallel(loss_name=loss.name)
 
     loader = DataLoader(dataset,
                         feed_list=[image, label],
