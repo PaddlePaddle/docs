@@ -3,8 +3,8 @@
 ## Environment preparation
 
 * **MacOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip or pip3 version 9.0.1+ (64 bit)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **pip or pip3 version 20.2.2+ (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -59,7 +59,7 @@ Please follow the steps below to install:
 
     `git checkout release/1.5`
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
 
 7. Create and enter the /paddle/build path:
 
@@ -70,7 +70,7 @@ Please follow the steps below to install:
         For Python2: pip install protobuf==3.1.0
         For Python3: pip3.5 install protobuf==3.1.0
 
-    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
+    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
 
     > Install protobuf 3.1.0.
 
@@ -103,7 +103,7 @@ Please follow the steps below to install:
         For Python2: pip install -U (whl package name)
         For Python3: pip3.5 install -U (whl package name)
 
-        Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
+        Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -119,7 +119,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
 2. Install python and pip:
 
-    > **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.5.x, python3.6.x, python3.7.x), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+    > **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.5.x, python3.6.x, python3.7.x, python3.8), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
         For python2: brew install python@2
         For python3: Install using Python official website
@@ -171,7 +171,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     - `cd Paddle`
 
-7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch)
+7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.2 branch)
 
     `git checkout [name of the branch]`
 
@@ -179,7 +179,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     `git checkout release/1.5`
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.2 branch
 
 8. And please create and enter a directory called build:
 

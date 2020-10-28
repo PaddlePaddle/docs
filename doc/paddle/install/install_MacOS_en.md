@@ -4,8 +4,8 @@
 ## Environment preparation
 
 * **MacOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip or pip3 version 9.0.1+ (64 bit)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **pip or pip3 version 20.2.2+ (64 bit)**
 
 ### Note
 
@@ -25,11 +25,11 @@
 
         python --version
 
-    * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7
+    * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7/3.8
 
         python3 --version
 
-* It is required to confirm whether the pip version meets the requirements. The pip version is required to be 9.0.1+
+* It is required to confirm whether the pip version meets the requirements. The pip version is required to be 20.2.2+
 
     * If you are using Python 2
 
@@ -73,8 +73,8 @@ We will introduce pip installation here.
 ## Installation steps
 
 * CPU version of PaddlePaddle：
-  * For Python 2: `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * For Python 3: `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 2: `python -m pip install paddlepaddle==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3: `python3 -m pip install paddlepaddle==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 You can[Verify installation succeeded or not](#check), if you have any questions, please check[FAQ](./FAQ.html)
 
