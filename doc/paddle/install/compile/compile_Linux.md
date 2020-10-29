@@ -1,12 +1,15 @@
-# **CentOS下从源码编译**
+# **Linux下从源码编译**
 
 ## 环境准备
 
-* **CentOS 版本 (64 bit)**
+* **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 9.0/9.1/9.2/10.0/10.1 CUDA 9.1 仅支持单卡模式)**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip 或 pip3 版本 9.0.1+ (64 bit)**
+    * **CentOS 7 (GPU 版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2 CUDA 9.1 仅支持单卡模式)**
+    * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -14,24 +17,34 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 
-    * **CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
-    * **CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
+    * **CUDA 工具包9.0/10.0/10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
     * **GPU运算能力超过1.0的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 * 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
+      * **Centos 系统可以参考以下命令**
 
-        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        yum update -y
-        yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+            ```shell
+                wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+                rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+                yum update -y
+                yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+            ```
+
+      * **Ubuntu 系统可以参考以下命令**
+
+            ```shell
+                wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+                dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+                sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+            ```
 
 
 ## 安装步骤
 
-在CentOS的系统下有2种编译方式：
+在Linux的系统下有2种编译方式：
 
 * 使用Docker编译(GPU版本只支持CentOS 7)
 * 本机编译（不提供在CentOS 6下编译中遇到问题的支持）
@@ -88,7 +101,7 @@
         > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 
-        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 8.0。
+        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 9.0。
 
 
 4. 进入Docker后进入paddle目录下：
@@ -103,7 +116,7 @@
 
     `git checkout release/1.5`
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
 
 6. 创建并进入/paddle/build路径下：
 
@@ -114,7 +127,7 @@
         For Python2: pip install protobuf
         For Python3: pip3.5 install protobuf
 
-    注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
+    注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
 
     > 安装protobuf。
 
@@ -148,7 +161,7 @@
         For Python2: pip install -U（whl包的名字）
         For Python3: pip3.5 install -U（whl包的名字）
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
+    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -159,9 +172,72 @@
 
 1. 检查您的计算机和操作系统是否符合我们支持的编译标准： `uname -m && cat /etc/*release`
 
-2. 更新`yum`的源： `yum update`, 并添加必要的yum源：`yum install -y epel-release`, 并提前安装[OpenCV](https://opencv.org/releases.html)
+2. 更新系统源
 
-3. 安装必要的工具`bzip2`以及`make`： `yum install -y bzip2` ， `yum install -y make`
+    * Centos 环境
+
+            更新`yum`的源： `yum update`, 并添加必要的yum源：`yum install -y epel-release`
+
+    * Ubuntu 环境
+
+            更新`apt`的源： `apt update`
+
+
+3. 安装必要的工具
+
+    * Centos 环境
+
+            `bzip2`以及`make`： `yum install -y bzip2` ， `yum install -y make`
+
+            cmake 需要3.10以上，建议使用3.16.0:
+
+                ```shell
+                    wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
+                    tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
+                    rm cmake-3.16.0-Linux-x86_64.tar.gz
+                    PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
+
+            gcc 需要4.8.2以上，建议使用8.2.0:
+
+                ```shell
+                    wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
+                    tar -xvf gcc-8.2.0.tar.xz && \
+                    cd gcc-8.2.0 && \
+                    sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
+                    unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
+                    ./contrib/download_prerequisites && \
+                    cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
+                    ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
+                    make -j8 && make install
+                ```
+
+    * Ubuntu 环境
+
+            `bzip2`以及`make`： `apt install -y bzip2` ， `apt install -y make`
+
+            cmake 需要3.10以上，建议使用3.16.0:
+
+                ```shell
+                    wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
+                    tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
+                    rm cmake-3.16.0-Linux-x86_64.tar.gz
+                    PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
+
+            gcc 需要4.8.2以上，建议使用8.2.0:
+
+                ```shell
+                    wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
+                    tar -xvf gcc-8.2.0.tar.xz && \
+                    cd gcc-8.2.0 && \
+                    sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
+                    unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
+                    ./contrib/download_prerequisites && \
+                    cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
+                    ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
+                    make -j8 && make install
+                 ```
 
 4. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 
@@ -172,13 +248,13 @@
 
     * b. 安装pip:
 
-            For Python2: yum install python-pip (请保证拥有9.0.1及以上的pip版本)
-            For Python3: (请参照Python官方流程安装, 并保证拥有9.0.1及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
+            For Python2: yum install python-pip (请保证拥有20.2.2及以上的pip版本)
+            For Python3: (请参照Python官方流程安装, 并保证拥有20.2.2及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
 
-    * c.（Only For Python3）设置Python3相关的环境变量，这里以python3.5版本示例，请替换成您使用的版本（3.6、3.7）：
+    * c.（Only For Python3）设置Python3相关的环境变量，这里以python3.5版本示例，请替换成您使用的版本（3.6、3.7、3.8）：
 
         1. 首先使用``` find `dirname $(dirname
-            $(which python3))` -name "libpython3.so"```找到Python lib的路径，如果是3.6或3.7，请将`python3`改成`python3.6`或`python3.7`，然后将下面[python-lib-path]替换为找到文件路径
+            $(which python3))` -name "libpython3.so"```找到Python lib的路径，如果是3.6、3.7、3.8，请将`python3`改成`python3.6`、`python3.7`、`python3.8`，然后将下面[python-lib-path]替换为找到文件路径
 
         2. 设置PYTHON_LIBRARIES：`export PYTHON_LIBRARY=[python-lib-path]`
 
@@ -188,7 +264,7 @@
 
         5. 设置系统环境变量路径：`export PATH=[python-lib-path]:$PATH` （这里将[python-lib-path]的最后两级目录替换为/bin/)
 
-    * d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7)
+    * d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8)
 
         1.  `pip install virtualenv` 或 `pip3 install virtualenv`
         2.  `pip install virtualenvwrapper` 或 `pip3 install virtualenvwrapper`
@@ -239,25 +315,32 @@
         > 请注意PY_VERSION参数更换为您需要的python版本
 
 
-    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.0/CUDA9)**)
+    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.2/CUDA10.1/CUDA10.0/CUDA9)**)
 
-        1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是ubuntu 16.04，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+        1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
+       * **Centos 系统可以参考以下命令**
 
             i. `wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm`
 
-
             ii.  `rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm`
 
-
             iii. `yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0`
+
+       * **Ubuntu 系统可以参考以下命令**
+
+            i. `wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+
+            ii.  `dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
+
+            iii. `sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0`
 
         2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
                 For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
                 For Python3: cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
+    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
 
 
 
