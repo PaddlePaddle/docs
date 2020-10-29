@@ -22,7 +22,7 @@
 
 .. parsed-literal::
 
-    2.0.0-beta0
+    2.0.0-rc0
 
 
 3. 实践一个手写数字识别任务
@@ -39,19 +39,18 @@
 
 .. code:: ipython3
 
-    train_dataset = paddle.vision.datasets.MNIST(mode='train', chw_format=False)
-    val_dataset =  paddle.vision.datasets.MNIST(mode='test', chw_format=False)
+    train_dataset = paddle.vision.datasets.MNIST(mode='train')
+    val_dataset =  paddle.vision.datasets.MNIST(mode='test')
 
 3.2 模型搭建
 ~~~~~~~~~~~~
 
-通过Sequential将一层一层的网络结构组建起来。通过数据集加载接口的chw_format参数我们已经将[1,
-28, 28]形状的图片数据改变形状为[1,
-784]，那么在组网过程中不在需要先进行Flatten操作。
+通过Sequential将一层一层的网络结构组建起来。需要先对数据进行Flatten操作，将[1,28, 28]形状的图片数据改变形状为[1,784]。
 
 .. code:: ipython3
 
     mnist = paddle.nn.Sequential(
+        paddle.nn.Flatten(),
         paddle.nn.Linear(784, 512),
         paddle.nn.ReLU(),
         paddle.nn.Dropout(0.2),
@@ -64,8 +63,6 @@
 配置好我们模型训练需要的损失计算方法和优化方法后就可以使用fit接口来开启我们的模型训练过程。
 
 .. code:: ipython3
-
-    # 开启动态图模式
     
     # 预计模型结构生成模型实例，便于进行后续的配置、训练和验证
     model = paddle.Model(mnist)  
@@ -113,5 +110,4 @@
 
 那么初步训练得到的模型效果在97%附近，我们可以进一步通过调整其中的训练参数来提升我们的模型精度。
 
-至此我们可以知道如何通过飞桨的几个简单API来快速完成一个深度学习任务，大家可以针对自己的需求来更换其中的代码，如果需要使用自己的数据集，那么可以更换数据集加载部分程序，如果需要替换模型，那么可以更改模型代码实现等等。后文会具体描述深度学习每个环节的
-
+至此我们可以知道如何通过飞桨的几个简单API来快速完成一个深度学习任务，大家可以针对自己的需求来更换其中的代码，如果需要使用自己的数据集，那么可以更换数据集加载部分程序，如果需要替换模型，那么可以更改模型代码实现等等。后文会具体描述深度学习每个环节。
