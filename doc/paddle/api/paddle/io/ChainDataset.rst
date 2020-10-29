@@ -9,6 +9,13 @@ ChainDataset
 
 用于级联的数据集须都是 ``paddle.io.IterableDataset`` 数据集，将各流式数据集按顺序级联为一个数据集。
 
+参数:
+    - **datasets** (list of IterableDataset) - 待级联的多个数据集。
+
+返回：级联后的流式数据集
+
+返回类型: ChainDataset 
+
 **代码示例**
 
 .. code-block:: python
