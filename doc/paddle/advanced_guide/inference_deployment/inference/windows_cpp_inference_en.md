@@ -5,13 +5,17 @@ Install and Compile C++ Inference Library on Windows
 Download and Install directly
 -------------
 
-| Version      |  Inference Libraries(v1.8.4)   |Inference Libraries(v2.0.0-beta0)| Compiler | Build tools | cuDNN | CUDA |
+| Version      |  Inference Libraries(v1.8.5)   |Inference Libraries(v2.0.0-rc0)| Compiler | Build tools | cuDNN | CUDA |
 |:---------|:-------------------|:-------------------|:----------------|:--------|:-------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-beta0/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) || MSVC 2015 update 3|  CMake v3.16.0  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) ||  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/cpu/paddle_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.17.0  |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/open/cpu/fluid_inference_install_dir.zip) |[fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/open/cpu/paddle_inference_install_dir.zip)| MSVC 2015 update 3|  CMake v3.17.0  |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/mkl/post97/fluid_inference_install_dir.zip) |[fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post90/paddle_inference_install_dir.zip)|  MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   9.0    |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   9.0    |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post100/paddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.0    |
+|    cuda10.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/open/post107/fluid_inference_install_dir.zip) | | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.0    |
+|    cuda10.1_cudnn7_avx_mkl | | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post101/paddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.1   |
+|    cuda10.2_cudnn7_avx_mkl |  | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post102/paddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.2    |
+
 
 ### Hardware Environment
 
