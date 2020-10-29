@@ -13,7 +13,6 @@ Compared with the 2.0-beta, this version is further improved in the following as
 
 ### Basic API (Including Distributed)
 
-
 #### Name Change of Commonly Used APIs
 1. Modified 58 API names. For details, see [link](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0rc-renamed-API-List)
 
