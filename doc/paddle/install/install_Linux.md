@@ -121,6 +121,10 @@ Linux系统下有3种安装方式：
 
 * `python -m pip install paddlepaddle-gpu==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.2 cuDNN v7的PaddlePaddle。
 
+  安装其他CUDA版本可以使用以下命令:
+  CUDA9: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post90 -f https://paddlepaddle.org.cn/whl/stable.html`  
+  CUDA10.0: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post100 -f https://paddlepaddle.org.cn/whl/stable.html`  
+  CUDA10.1: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post101 -f https://paddlepaddle.org.cn/whl/stable.html`  
 
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html#ciwhls)
 

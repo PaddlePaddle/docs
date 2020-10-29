@@ -79,7 +79,11 @@ Windows系统下有2种安装方式：
 
 注：
 
-* `python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html` 此命令将安装支持CUDA 10.0(配合cuDNN v7.4+)的PaddlePaddle。
+* `python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html` 此命令将安装支持CUDA 10.2(配合cuDNN v7.4+)的PaddlePaddle。
+  安装其他CUDA版本可以使用以下命令:
+  CUDA9: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post90 -f https://paddlepaddle.org.cn/whl/stable.html`  
+  CUDA10.0: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post100 -f https://paddlepaddle.org.cn/whl/stable.html`  
+  CUDA10.1: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post101 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 
 <a name="check"></a>

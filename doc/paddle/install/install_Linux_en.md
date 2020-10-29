@@ -121,6 +121,10 @@ Note:
 
 
 * `python -m pip install paddlepaddle-gpu==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install the PaddlePaddle that supports CUDA 10.2 cuDNN v7.
+  Install other CUDA versions, use the following command:
+  CUDA9: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post90 -f https://paddlepaddle.org.cn/whl/stable.html`  
+  CUDA10.0: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post100 -f https://paddlepaddle.org.cn/whl/stable.html`
+  CUDA10.1: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post101 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 
 * Download the latest stable installation package by default. For development installation package, please refer to [here](./Tables.html#ciwhls)

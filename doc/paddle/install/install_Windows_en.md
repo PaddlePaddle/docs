@@ -80,7 +80,12 @@ There is a checking function below for [verifyig whether the installation is suc
 
 Notice:
 
-* `python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html` This command will install PaddlePaddle that supports CUDA 10.0(with cuDNN v7.4+).
+* `python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html` This command will install PaddlePaddle that supports CUDA 10.2(with cuDNN v7.4+).
+  Install other CUDA versions, use the following command:
+  CUDA9: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post90 -f https://paddlepaddle.org.cn/whl/stable.html`  
+  CUDA10.0: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post100 -f https://paddlepaddle.org.cn/whl/stable.html`
+  CUDA10.1: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post101 -f https://paddlepaddle.org.cn/whl/stable.html`
+
 <a name="check"></a>
 ## Installation Verification
 After completing the installation process, you can use `python` to enter python interface and input `import paddle.fluid as fluid` and then `fluid.install_check.run_check()` to check whether the installation is successful.
