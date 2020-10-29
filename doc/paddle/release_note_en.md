@@ -1,4 +1,4 @@
-# 2.0-rc Release Note
+# Release Note
 
 ## Important Update
 Compared with the 2.0-beta, this version is further improved in the following aspects:

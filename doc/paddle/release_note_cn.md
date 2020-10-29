@@ -1,4 +1,4 @@
-# 2.0-rc Release Note
+# Release Note
 
 ## 重要更新
 相对2.0-beta版，本版本在如下方面进一步完善：
