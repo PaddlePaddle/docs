@@ -3,7 +3,7 @@
 SyncBatchNorm
 -------------------------------
 
-.. py:class:: paddle.nn.SyncBatchNorm(num_features, epsilon=1e-5, momentum=0.9, track_running_stats=True, weight_attr=None, bias_attr=None, data_format='NCHW', name=None)
+.. py:class:: paddle.nn.SyncBatchNorm(num_features, epsilon=1e-5, momentum=0.9, weight_attr=None, bias_attr=None, data_format='NCHW', name=None)
 
 该接口用于构建 ``SyncBatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。实现了跨卡GPU同步的批归一化(Cross-GPU Synchronized Batch Normalization Layer)的功能，可用在其他层（类似卷积层和全连接层）之后进行归一化操作。根据所有GPU同一批次的数据按照通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
@@ -40,7 +40,6 @@ SyncBatchNorm
     - **momentum** (float, 可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
     - **weight_attr** (ParamAttr|bool, 可选) - 指定权重参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的权重参数。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **track_running_stats** （bool, 可选）- 是否计算全局均值和方差。默认: ``True`` ，表示计算全局均值和方差。
 
 形状：
     - input: 一个二维到五维的 ``Tensor`` 。
@@ -83,6 +82,6 @@ convert_sync_batchnorm(layer)
     import paddle
     import paddle.nn as nn
     paddle.disable_static()
-    model = nn.Sequential(nn.Conv2d(3, 5, 3), nn.BatchNorm2d(5))
+    model = nn.Sequential(nn.Conv2D(3, 5, 3), nn.BatchNorm2D(5))
     sync_model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
 

@@ -1,9 +1,9 @@
 
-conv_transpose2d
+conv2d_transpose
 -------------------------------
 
 
-.. py:function:: paddle.nn.functional.conv_transpose2d(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCHW', output_size=None, name=None)
+.. py:function:: paddle.nn.functional.conv2d_transpose(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCHW', output_size=None, name=None)
 
 
 
@@ -111,7 +111,7 @@ conv_transpose2d
     paddle.disable_static()
     x_var = paddle.to_tensor(x)
     w_var = paddle.to_tensor(w)
-    y_var = F.conv_transpose2d(x_var, w_var)
+    y_var = F.conv2d_transpose(x_var, w_var)
     y_np = y_var.numpy()
     print(y_np.shape)
 

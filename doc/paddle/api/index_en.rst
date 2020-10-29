@@ -21,7 +21,7 @@ In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddleP
 |                               | zeros, matrix operation matmul, transforming concat,  |
 |                               | computing add, and finding argmax                     |
 +-------------------------------+-------------------------------------------------------+
-| paddle.nn                     | Networking-related APIs such as Linear, Conv2d, loss  |
+| paddle.nn                     | Networking-related APIs such as Linear, Conv2D, loss  |
 |                               | function, convolution, LSTM，and activation function  |
 +-------------------------------+-------------------------------------------------------+
 | paddle.static.nn              | Special APIs for networking under a static graph such |

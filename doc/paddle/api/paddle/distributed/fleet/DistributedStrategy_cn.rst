@@ -80,6 +80,27 @@ DistributedStrategy
   strategy.build_strategy = build_strategy
 
 
+.. py:attribute:: auto
+
+表示是否启用自动并行策略。此功能目前是实验性功能。目前，自动并行只有在用户只设置auto，不设置其它策略时才能生效。具体请参考示例代码。默认值：False
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle
+  import paddle.distributed.fleet as fleet
+  paddle.enable_static()
+
+  strategy = fleet.DistributedStrategy()
+  strategy.auto = True
+  # if set other strategy at the same time, auto will not apply
+  # strategy.amp = True
+
+  optimizer = paddle.optimizer.SGD(learning_rate=0.01)
+  optimizer = fleet.distributed_optimizer(optimizer, strategy)
+
+
 .. py:attribute:: recompute
 
 是否启用Recompute来优化内存空间，默认值：False
@@ -336,3 +357,14 @@ DistributedStrategy
   strategy.dgc = True
   strategy.dgc_configs = {"rampup_begin_step": 1252}
 
+.. py:attribute:: fp16_allreduce
+
+是否使用fp16梯度allreduce训练。默认值：False
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.fp16_allreduce = True  # by default this is false

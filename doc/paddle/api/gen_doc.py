@@ -109,7 +109,7 @@ def choose_real_api(api_list):
     if id(eval(api)) in id_real_api_map:
         return id_real_api_map[id(eval(api))]
     else:
-        # in case of alias_mapping not contain the apisÚ
+        # in case of alias_mapping not contain the apis
         # try to find shortest path of api as the real api
         shortest = len(api_list[0].split("."))
         shorttest_api = api_list[0]
