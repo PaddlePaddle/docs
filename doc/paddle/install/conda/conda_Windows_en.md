@@ -8,7 +8,7 @@ Anaconda is a free and open source distribution of Python and R for computationa
 
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-    * **GPU Version support CUDA 9.0/9.1/9.2/10.0/10.1, and only support single GPU**
+    * **GPU Version support CUDA 9.0/9.1/9.2/10.0/10.1/10.2, and only support single GPU**
 * **conda version 4.8.3+ (64 bit)**
 
 
