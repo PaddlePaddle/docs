@@ -72,7 +72,10 @@ We would like to introduce the pip installation here.
   * `python -m pip install paddlepaddle==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 * GPU version of PaddlePaddle:
-  * `python -m pip install paddlepaddle-gpu==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html`
+  * CUDA10.2: `python -m pip install paddlepaddle-gpu -f https://paddlepaddle.org.cn/whl/stable.html`
+  * CUDA10.1: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post101 -f https://paddlepaddle.org.cn/whl/stable.html`
+  * CUDA10.0: `python -m pip install paddlepaddle-gpu==2.0.0rc0.post100 -f https://paddlepaddle.org.cn/whl/stable.html`
+  * CUDA9.0:  `python -m pip install paddlepaddle-gpu==2.0.0rc0.post90 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 There is a checking function below for [verifyig whether the installation is successful](#check). If you have any further questions, please check the [FAQ](./FAQ.html).
 
