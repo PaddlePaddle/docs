@@ -6,7 +6,7 @@
 设置环境
 --------
 
-我们将使用飞桨框架2.0beta版本。
+我们将使用飞桨2.0rc版本。
 
 .. code:: ipython3
 
@@ -16,14 +16,7 @@
     import numpy as np
     import matplotlib.pyplot as plt
     
-    paddle.disable_static()
     print(paddle.__version__)
-
-
-.. parsed-literal::
-
-    2.0.0-beta0
-
 
 加载并浏览数据集
 ----------------
@@ -66,14 +59,12 @@
     plt.show()
 
 
-
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_001.png?raw=true
-
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/rc_convnet_image_classification_001.png?raw=true
 
 组建网络
 --------
 
-接下来我们使用飞桨定义一个使用了三个二维卷积（\ ``Conv2D``)且每次卷积之后使用\ ``relu``\ 激活函数，两个二维池化层（\ ``MaxPool2D``\ ），和两个线性变换层组成的分类网络，来把一个\ ``(32, 32, 3)``\ 形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
+接下来我们使用飞桨定义一个使用了三个二维卷积（\ ``Conv2d``)且每次卷积之后使用\ ``relu``\ 激活函数，两个二维池化层（\ ``MaxPool2d``\ ），和两个线性变换层组成的分类网络，来把一个\ ``(32, 32, 3)``\ 形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
 
 .. code:: ipython3
 
@@ -85,7 +76,7 @@
             self.pool1 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
             
             self.conv2 = paddle.nn.Conv2D(in_channels=32, out_channels=64, kernel_size=(3,3))
-            self.pool2 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
+            self.pool2 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)    
             
             self.conv3 = paddle.nn.Conv2D(in_channels=64, out_channels=64, kernel_size=(3,3))
     
@@ -156,12 +147,11 @@
                 y_data = paddle.reshape(y_data, (-1, 1))
                             
                 logits = model(x_data)
-                loss = F.softmax_with_cross_entropy(logits, y_data)
-                avg_loss = paddle.mean(loss)
+                loss = F.cross_entropy(logits, y_data)
                 
                 if batch_id % 1000 == 0:
-                    print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
-                avg_loss.backward()
+                    print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
+                loss.backward()
                 opt.step()
                 opt.clear_grad()
     
@@ -177,7 +167,7 @@
                 y_data = paddle.reshape(y_data, (-1, 1))           
                 
                 logits = model(x_data)            
-                loss = F.softmax_with_cross_entropy(logits, y_data)
+                loss = F.cross_entropy(logits, y_data)
                 acc = paddle.metric.accuracy(logits, y_data)
                 accuracies.append(np.mean(acc.numpy()))
                 losses.append(np.mean(loss.numpy()))
@@ -195,36 +185,36 @@
 .. parsed-literal::
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.331658]
-    epoch: 0, batch_id: 1000, loss is: [1.6067888]
-    [validation] accuracy/loss: 0.5676916837692261/1.2106356620788574
-    epoch: 1, batch_id: 0, loss is: [1.1509854]
-    epoch: 1, batch_id: 1000, loss is: [1.3777964]
-    [validation] accuracy/loss: 0.5818690061569214/1.1748384237289429
-    epoch: 2, batch_id: 0, loss is: [1.051642]
-    epoch: 2, batch_id: 1000, loss is: [1.0261706]
-    [validation] accuracy/loss: 0.6607428193092346/0.9685573577880859
-    epoch: 3, batch_id: 0, loss is: [0.8457774]
-    epoch: 3, batch_id: 1000, loss is: [0.6820123]
-    [validation] accuracy/loss: 0.6822084784507751/0.9241172075271606
-    epoch: 4, batch_id: 0, loss is: [0.9059805]
-    epoch: 4, batch_id: 1000, loss is: [0.587117]
-    [validation] accuracy/loss: 0.7012779712677002/0.8670551180839539
-    epoch: 5, batch_id: 0, loss is: [1.0894825]
-    epoch: 5, batch_id: 1000, loss is: [0.9055369]
-    [validation] accuracy/loss: 0.6954872012138367/0.8820587992668152
-    epoch: 6, batch_id: 0, loss is: [0.4162583]
-    epoch: 6, batch_id: 1000, loss is: [0.5274862]
-    [validation] accuracy/loss: 0.7074680328369141/0.8538646697998047
-    epoch: 7, batch_id: 0, loss is: [0.52636147]
-    epoch: 7, batch_id: 1000, loss is: [0.70929015]
-    [validation] accuracy/loss: 0.7107627987861633/0.8633227944374084
-    epoch: 8, batch_id: 0, loss is: [0.57556355]
-    epoch: 8, batch_id: 1000, loss is: [0.83717]
-    [validation] accuracy/loss: 0.69319087266922/0.903077244758606
-    epoch: 9, batch_id: 0, loss is: [0.88774866]
-    epoch: 9, batch_id: 1000, loss is: [0.91165334]
-    [validation] accuracy/loss: 0.7194488644599915/0.8668457865715027
+    epoch: 0, batch_id: 0, loss is: [2.2965763]
+    epoch: 0, batch_id: 1000, loss is: [1.0031449]
+    [validation] accuracy/loss: 0.5404353141784668/1.2701575756072998
+    epoch: 1, batch_id: 0, loss is: [1.174142]
+    epoch: 1, batch_id: 1000, loss is: [1.0762234]
+    [validation] accuracy/loss: 0.6140175461769104/1.0952659845352173
+    epoch: 2, batch_id: 0, loss is: [1.1910104]
+    epoch: 2, batch_id: 1000, loss is: [1.0185118]
+    [validation] accuracy/loss: 0.6521565318107605/0.9856007695198059
+    epoch: 3, batch_id: 0, loss is: [0.9634655]
+    epoch: 3, batch_id: 1000, loss is: [0.7929425]
+    [validation] accuracy/loss: 0.6713258624076843/0.9420197010040283
+    epoch: 4, batch_id: 0, loss is: [0.7008929]
+    epoch: 4, batch_id: 1000, loss is: [0.7753452]
+    [validation] accuracy/loss: 0.6847044825553894/0.8882610201835632
+    epoch: 5, batch_id: 0, loss is: [0.82852745]
+    epoch: 5, batch_id: 1000, loss is: [0.6828017]
+    [validation] accuracy/loss: 0.6798123121261597/0.9283958077430725
+    epoch: 6, batch_id: 0, loss is: [0.66858184]
+    epoch: 6, batch_id: 1000, loss is: [0.6745519]
+    [validation] accuracy/loss: 0.700579047203064/0.8796287178993225
+    epoch: 7, batch_id: 0, loss is: [0.53450656]
+    epoch: 7, batch_id: 1000, loss is: [0.76947826]
+    [validation] accuracy/loss: 0.705670952796936/0.8611085414886475
+    epoch: 8, batch_id: 0, loss is: [0.812968]
+    epoch: 8, batch_id: 1000, loss is: [0.909574]
+    [validation] accuracy/loss: 0.7171525359153748/0.8313455581665039
+    epoch: 9, batch_id: 0, loss is: [0.68075883]
+    epoch: 9, batch_id: 1000, loss is: [0.27960974]
+    [validation] accuracy/loss: 0.7102635502815247/0.8689636588096619
 
 
 .. code:: ipython3
@@ -241,12 +231,10 @@
 
 .. parsed-literal::
 
-    <matplotlib.legend.Legend at 0x167d186d0>
+    <matplotlib.legend.Legend at 0x12bcd62b0>
 
 
-
-
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_002.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/rc_convnet_image_classification_002.png?raw=true
 
 
 The End
