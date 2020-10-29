@@ -68,8 +68,6 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
 
-    # --------------------- dygraph mode --------------------
-
     class SimpleNet(nn.Layer):
         def __init__(self):
             super(SimpleNet, self).__init__()
@@ -98,51 +96,10 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
             simple_net.clear_gradients()
             print("Epoch {} batch {}: loss = {}".format(e, i, np.mean(loss.numpy())))
 
-    # -------------------------------------------------------
-
-    # -------------------- static graph ---------------------
-
-    paddle.enable_static()
-
-    # get places
-    place = paddle.CUDAPlace(0) if USE_GPU else paddle.CPUPlace()
-
-    def simple_net(image, label):
-        fc_tmp = paddle.fluid.layers.fc(image, size=CLASS_NUM, act='softmax')
-        cross_entropy = paddle.fluid.layers.softmax_with_cross_entropy(image, label)
-        loss = paddle.fluid.layers.reduce_mean(cross_entropy)
-        sgd = paddle.fluid.optimizer.SGD(learning_rate=1e-3)
-        sgd.minimize(loss)
-        return loss
-
-    image = paddle.static.data(name='image', shape=[None, IMAGE_SIZE], dtype='float32')
-    label = paddle.static.data(name='label', shape=[None, 1], dtype='int64')
-
-    loss = simple_net(image, label)
-
-    exe = paddle.fluid.Executor(place)
-    exe.run(paddle.fluid.default_startup_program())
-
-    prog = paddle.fluid.CompiledProgram(paddle.fluid.default_main_program()).with_data_parallel(loss_name=loss.name)
-
-    loader = DataLoader(dataset,
-                        feed_list=[image, label],
-                        batch_size=BATCH_SIZE, 
-                        shuffle=True,
-                        drop_last=True,
-                        num_workers=2)
-
-    for e in range(EPOCH_NUM):
-        for i, data in enumerate(loader()):
-            l = exe.run(prog, feed=data, fetch_list=[loss], return_numpy=True)
-            print("Epoch {} batch {}: loss = {}".format(e, i, l[0][0]))
-
-    # -------------------------------------------------------
-
 .. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
 
 .. note::
-    这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
+    **注意：** 这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
 
 .. note::
     框架保证DataLoader的数据加载顺序与用户提供的数据源读取顺序一致。
@@ -358,7 +315,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 .. py:method:: from_dataset(dataset, places, drop_last=True)
 
 .. note::
-    这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
+    **注意：** 这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
 
 创建一个DataLoader对象用于加载Dataset产生的数据。目前，Dataset仅支持Linux系统下使用。
 
