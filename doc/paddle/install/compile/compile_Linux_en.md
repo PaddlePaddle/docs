@@ -1,12 +1,15 @@
-# **Compile on CentOS from Source Code**
+# **Compile on Linux from Source Code**
 
 ## Environment preparation
 
 * **CentOS version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1 CUDA 9.1, only support single-card mode)**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip or pip3 version 9.0.1+ (64 bit)**
+    * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2 CUDA 9.1, only support single-card mode)**
+    * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1/10.2)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **pip or pip3 version 20.2.2+ (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -14,24 +17,35 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
-    * **CUDA toolkit 10.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
-    * **CUDA toolkit 9.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
     * **Hardware devices with GPU computing power over 1.0**
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under ubuntu 16.04, CUDA9 and cuDNN7). For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl):
+* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA9 and cuDNN7). For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl):
 
 
-        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        yum update -y
-        yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+       * **Centos system can refer to the following commands **
+
+           ```shell
+                wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+                rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+                yum update -y
+                yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+            ```
+
+       * **Ubuntu system can refer to the following commands **
+
+            ```shell
+                wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+                dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+                sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+            ```
 
 
 ## Installation steps
 
-There are two compilation methods under CentOS system:
+There are two compilation methods under Linux system:
 
 * Compile with Docker(GPU version only supports CentOS 7)
 * Local compilation (no official support for compilation problems under CentOS 6)
@@ -102,7 +116,7 @@ Please follow the steps below to install:
 
     `git checkout release/1.5`
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
 
 6. Create and enter the /paddle/build path:
 
@@ -114,7 +128,7 @@ Please follow the steps below to install:
         For Python2: pip install protobuf
         For Python3: pip3.5 install protobuf
 
-    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
+    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
 
     > Install protobuf 3.1.0
 
@@ -149,7 +163,7 @@ Please follow the steps below to install:
         For Python2: pip install -U (whl package name)
         For Python3: pip3.5 install -U (whl package name)
 
-    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
+    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -160,9 +174,71 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
 1. Check that your computer and operating system meet the compilation standards we support: `uname -m && cat /etc/*release`
 
-2. Update the source of `yum`: `yum update`, and add the necessary yum source: `yum install -y epel-release`, and install [OpenCV](https://opencv.org/releases.html) in advance
+2. Update the system source
 
-3. Install the necessary tools `bzip2` and `make`: `yum install -y bzip2 `, `yum install -y make`
+    * Centos system
+
+            Update the source of `yum`: `yum update`, and add the necessary yum source: `yum install -y epel-release`
+
+    * Ubuntu system
+
+            Update the source of `apt`: `apt update`
+
+3. Install the necessary tools
+
+    * Centos system
+
+            `bzip2` and `make`: `yum install -y bzip2 `, `yum install -y make`
+
+            cmake requires version 3.10, we recommend that you use 3.16.0 version:
+
+                ```shell
+                    wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
+                    tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
+                    rm cmake-3.16.0-Linux-x86_64.tar.gz
+                    PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
+
+            gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
+
+                ```shell
+                    wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
+                    tar -xvf gcc-8.2.0.tar.xz && \
+                    cd gcc-8.2.0 && \
+                    sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
+                    unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
+                    ./contrib/download_prerequisites && \
+                    cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
+                    ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
+                    make -j8 && make install
+                ```
+
+    * Ubuntu system
+
+            `bzip2` and `make`: `apt install -y bzip2 `, `apt install -y make`
+
+            cmake requires version 3.10, we recommend that you use 3.16.0 version:
+
+                ```shell
+                    wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
+                    tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
+                    rm cmake-3.16.0-Linux-x86_64.tar.gz
+                    PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
+
+            gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
+
+                ```shell
+                    wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
+                    tar -xvf gcc-8.2.0.tar.xz && \
+                    cd gcc-8.2.0 && \
+                    sed -i 's#ftp://gcc.gnu.org/pub/gcc/infrastructure/#https://paddle-ci.gz.bcebos.com/#g' ./contrib/download_prerequisites && \
+                    unset LIBRARY_PATH CPATH C_INCLUDE_PATH PKG_CONFIG_PATH CPLUS_INCLUDE_PATH INCLUDE && \
+                    ./contrib/download_prerequisites && \
+                    cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
+                    ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
+                    make -j8 && make install
+                 ```
 
 4. We support compiling and installing with virtualenv. First, create a virtual environment called `paddle-venv` with the following command:
 
@@ -178,10 +254,10 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
             For Python2: yum install python-pip (please have a pip version of 9.0.1 and above)
             For Python3: (Please refer to the official Python installation process, and ensure that the pip3 version 9.0.1 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
 
-    * c. (Only For Python3) set Python3 related environment variables, here is python3.5 version example, please replace with the version you use (3.6, 3.7):
+    * c. (Only For Python3) set Python3 related environment variables, here is python3.5 version example, please replace with the version you use (3.6, 3.7,3.8):
 
         1. First find the path to the Python lib using ``` find `dirname $(dirname
-            $(which python3))` -name "libpython3.so"``` . If it is 3.6 or 3.7, change `python3` to `python3.6` or `python3.7`, then replace [python-lib-path] in the following steps with the file path found.
+            $(which python3))` -name "libpython3.so"``` . If it is 3.6,3.7,3.8, change `python3` to `python3.6`,`python3.7`,python3.8, then replace [python-lib-path] in the following steps with the file path found.
 
         2. Set PYTHON_LIBRARIES: `export PYTHON_LIBRARY=[python-lib-path]`.
 
@@ -192,7 +268,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
         5. Set the system environment variable path: `export PATH=[python-lib-path]:$PATH `(here replace the last two levels content of [python-lib-path] with /bin/)
 
-    * d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7)
+    * d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8)
 
         1. `pip install virtualenv` or `pip3 install virtualenv`
 
@@ -222,7 +298,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     - `cd Paddle`
 
-8. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch):
+8. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch):
 
     - `git checkout [name of target branch]`
 
@@ -266,7 +342,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
                 For Python3: cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 
-    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
+    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
 
 
 
