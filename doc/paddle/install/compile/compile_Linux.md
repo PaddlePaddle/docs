@@ -5,6 +5,9 @@
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
     * **CentOS 7 (GPU 版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2 CUDA 9.1 仅支持单卡模式)**
+    * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2)**
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
@@ -14,26 +17,29 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 
-    * **CUDA 工具包10.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
-    * **CUDA 工具包9.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
+    * **CUDA 工具包9.0/10.0/10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
     * **GPU运算能力超过1.0的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 * 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
-       * **Centos 系统可以参考以下命令**
+      * **Centos 系统可以参考以下命令**
 
+            ```shell
                 wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
                 rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
                 yum update -y
                 yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+            ```
 
-       * **Ubuntu 系统可以参考以下命令**
+      * **Ubuntu 系统可以参考以下命令**
 
+            ```shell
                 wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
                 dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
                 sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+            ```
 
 
 ## 安装步骤
@@ -185,13 +191,16 @@
 
             cmake 需要3.10以上，建议使用3.16.0:
 
+                ```shell
                     wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
                     tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
                     rm cmake-3.16.0-Linux-x86_64.tar.gz
                     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
 
             gcc 需要4.8.2以上，建议使用8.2.0:
 
+                ```shell
                     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
                     tar -xvf gcc-8.2.0.tar.xz && \
                     cd gcc-8.2.0 && \
@@ -201,6 +210,7 @@
                     cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
                     ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
                     make -j8 && make install
+                ```
 
     * Ubuntu 环境
 
@@ -208,13 +218,16 @@
 
             cmake 需要3.10以上，建议使用3.16.0:
 
+                ```shell
                     wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
                     tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
                     rm cmake-3.16.0-Linux-x86_64.tar.gz
                     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
 
             gcc 需要4.8.2以上，建议使用8.2.0:
 
+                ```shell
                     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
                     tar -xvf gcc-8.2.0.tar.xz && \
                     cd gcc-8.2.0 && \
@@ -224,7 +237,7 @@
                     cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
                     ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
                     make -j8 && make install
-
+                 ```
 
 4. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 

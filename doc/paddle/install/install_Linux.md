@@ -5,6 +5,9 @@
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2, 仅支持单卡)**
     * **CentOS 7 (GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2, 其中CUDA 9.1仅支持单卡)**
+    * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2)**
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
@@ -64,27 +67,30 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装GPU版PaddlePaddle
 
-	* **CUDA 工具包10.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
-	* **CUDA 工具包9.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
-	* **GPU运算能力超过1.0的硬件设备**
+    * **CUDA 工具包9.0/10.0/10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
+    * **GPU运算能力超过1.0的硬件设备**
 
-		您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+        您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 * 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
 
        * **Centos 系统可以参考以下命令**
 
-		wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-		rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-		yum update -y
-		yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+           ```shell
+        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        yum update -y
+        yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+           ```
 
        * **Ubuntu 系统可以参考以下命令**
 
+           ```shell
                 wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
                 dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
                 sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+           ```
 
 
 ## 安装方式

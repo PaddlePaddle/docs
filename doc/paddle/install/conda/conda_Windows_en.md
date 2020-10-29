@@ -64,21 +64,25 @@ If you are using Python3:
 
  > (1) CPU version: If you just want to install the CPU version, please refer to the following command to install:
 
-      conda install paddlepaddle
+            conda install paddlepaddle==2.0.0rc0 -c paddle
 
  > (2) GPU version: If you want to use the GPU version, please refer to the following command to install:
 
       If you are using CUDA 9, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=9.0
+
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=9.0 -c paddle
 
       If you are using CUDA 10.0, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=10.0
+
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=10.0 -c paddle
 
       If you are using CUDA 10.1, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=10.1
+
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=10.1 -c paddle
 
       If you are using CUDA 10.2, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=10.2
+
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=10.2 -c paddle
 
 6.Installation environment verification
 

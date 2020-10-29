@@ -58,25 +58,25 @@
 
     (1). **CPU版本**：如果您只是想安装CPU版本请参考如下命令安装
 
-        conda install paddlepaddle
+            conda install paddlepaddle-gpu==2.0.0rc0 -c paddle
 
     (2). **GPU版本**：如果您想使用GPU版本请参考如下命令安装
 
         如果您是使用 CUDA 9，cuDNN 7.6+，安装GPU版本的命令为:
 
-            conda install paddlepaddle-gpu cudatoolkit=9.0
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=9.0 -c paddle
 
         如果您是使用 CUDA 10.0，cuDNN 7.6+，安装GPU版本的命令为:
 
-            conda install paddlepaddle-gpu cudatoolkit=10.0
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=10.0 -c paddle
 
         如果您是使用 CUDA 10.1，cuDNN 7.6+，安装GPU版本的命令为:
 
-            conda install paddlepaddle-gpu cudatoolkit=10.1
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=10.1 -c paddle
 
         如果您是使用 CUDA 10.2，cuDNN 7.6+，安装GPU版本的命令为:
 
-            conda install paddlepaddle-gpu cudatoolkit=10.2
+            conda install paddlepaddle-gpu==2.0.0rc0 cudatoolkit=10.2 -c paddle
 
 6. 安装环境验证
 

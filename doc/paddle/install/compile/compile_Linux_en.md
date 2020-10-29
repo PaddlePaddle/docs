@@ -5,6 +5,9 @@
 * **CentOS version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
     * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2 CUDA 9.1, only support single-card mode)**
+    * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1/10.2)**
 * **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 * **pip or pip3 version 20.2.2+ (64 bit)**
 
@@ -14,8 +17,7 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
-    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
-    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
     * **Hardware devices with GPU computing power over 1.0**
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -25,16 +27,20 @@
 
        * **Centos system can refer to the following commands **
 
+           ```shell
                 wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
                 rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
                 yum update -y
                 yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+            ```
 
        * **Ubuntu system can refer to the following commands **
 
+            ```shell
                 wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
                 dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
                 sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+            ```
 
 
 ## Installation steps
@@ -186,13 +192,16 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
             cmake requires version 3.10, we recommend that you use 3.16.0 version:
 
+                ```shell
                     wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
                     tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
                     rm cmake-3.16.0-Linux-x86_64.tar.gz
                     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
 
             gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
 
+                ```shell
                     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
                     tar -xvf gcc-8.2.0.tar.xz && \
                     cd gcc-8.2.0 && \
@@ -202,6 +211,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
                     cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
                     ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
                     make -j8 && make install
+                ```
 
     * Ubuntu system
 
@@ -209,13 +219,16 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
             cmake requires version 3.10, we recommend that you use 3.16.0 version:
 
+                ```shell
                     wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
                     tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
                     rm cmake-3.16.0-Linux-x86_64.tar.gz
                     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
+                ```
 
             gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
 
+                ```shell
                     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
                     tar -xvf gcc-8.2.0.tar.xz && \
                     cd gcc-8.2.0 && \
@@ -225,6 +238,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
                     cd .. && mkdir temp_gcc82 && cd temp_gcc82 && \
                     ../gcc-8.2.0/configure --prefix=/usr/local/gcc-8.2 --enable-threads=posix --disable-checking --disable-multilib && \
                     make -j8 && make install
+                 ```
 
 4. We support compiling and installing with virtualenv. First, create a virtual environment called `paddle-venv` with the following command:
 

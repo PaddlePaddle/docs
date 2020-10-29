@@ -6,6 +6,9 @@
 * **Linux Version(64 bit)**
     * **CentOS 6 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2, only supports single card)**
     * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2, CUDA 9.1 only supports single card)**
+    * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1/10.2)**
 * **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 * **pip or pip3 version 20.2.2+ (64 bit)**
 
@@ -65,8 +68,7 @@
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install the GPU version of PaddlePaddle
 
-    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
-    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
     * **Hardware devices with GPU computing power over 1.0**
 
 
@@ -76,16 +78,20 @@
 
     * **Centos system can refer to the following commands **
 
+        ```shell
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
         rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
         yum update -y
         yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+        ```
 
     * **Ubuntu system can refer to the following commands **
 
+        ```shell
         wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
         dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
         sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+        ```
 
 ## Installation method
 
