@@ -5,6 +5,8 @@
 ## 环境准备
 
 在进行PaddlePaddle安装之前请确保您的Anaconda软件环境已经正确安装。软件下载和安装参见Anaconda官网(https://www.anaconda.com/)。在您已经正确安装Anaconda的情况下请按照下列步骤安装PaddlePaddle。
+* **MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)**
+* **conda 版本 4.8.3+ (64 bit)**
 
 ## 安装步骤
 
@@ -32,15 +34,9 @@
 
         conda create -n paddle_env python=3.8
 
-    activate paddle_env (for Windows) 或 conda activate paddle_env (for MacOS/Linux) 命令进入Anaconda虚拟环境。
+    conda activate paddle_env 命令进入Anaconda虚拟环境。
 
 2. 确认您的conda虚拟环境和需要安装PaddlePaddle的Python是您预期的位置，因为您计算机可能有多个Python。进入Anaconda的命令行终端，输入以下指令确认Python位置。
-
-    在 Windows 环境下，输出 Python 路径的命令为
-
-        where python
-
-    在 MacOS/Linux 环境下，输出 Python 路径的命令为
 
         如果您使用 Python 2:   which python
 
@@ -49,12 +45,6 @@
     根据您的环境，您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
 
 3. 检查Python的版本
-
-    在 Windows 环境下，使用以下命令确认版本(Python2 应对应 2.7.15+，Python3 应对应 3.5.1+/3.6/3.7/3.8)
-
-        python --version
-
-    在 MacOS/Linux 环境下
 
         如果您是使用 Python 2，使用以下命令确认是 2.7.15+:
 
@@ -66,12 +56,6 @@
 
 4. 确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
 
-    在 Windows 环境下
-
-        python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-
-    在 MacOS/Linux 环境下
-
         如果您使用Python2:
 
             python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -82,27 +66,9 @@
 
 5. 安装PaddlePaddle
 
-    (1). **CPU版本**：如果您只是想安装CPU版本请参考如下命令安装
+     **CPU版本**：如果您只是想安装CPU版本请参考如下命令安装
 
         conda install paddlepaddle
-
-    (2). **GPU版本**：如果您想使用GPU版本请参考如下命令安装
-
-        如果您是使用 CUDA 9，cuDNN 7.6+，安装GPU版本的命令为:
-
-            conda install paddlepaddle-gpu cudatoolkit=9.0
-
-        如果您是使用 CUDA 10.0，cuDNN 7.6+，安装GPU版本的命令为:
-
-            conda install paddlepaddle-gpu cudatoolkit=10.0
-
-        如果您是使用 CUDA 10.0，cuDNN 7.6+，安装GPU版本的命令为:
-
-            conda install paddlepaddle-gpu cudatoolkit=10.1
-
-        如果您是使用 CUDA 10.0，cuDNN 7.6+，安装GPU版本的命令为:
-
-            conda install paddlepaddle-gpu cudatoolkit=10.2
 
 6. 安装环境验证
 

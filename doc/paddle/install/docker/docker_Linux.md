@@ -40,7 +40,7 @@
         > -it 参数说明容器已和本机交互式运行；
 
 
-        > -v $PWD:/paddle 指定将当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
+        > -v $PWD:/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
         > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
 
@@ -58,7 +58,7 @@
         > -it 参数说明容器已和本机交互式运行；
 
 
-        > -v $PWD:/paddle 指定将当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
+        > -v $PWD:/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
         > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
 

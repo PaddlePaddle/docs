@@ -7,6 +7,8 @@ Anaconda is a free and open source distribution of Python and R for computationa
 ## Environmental preparation
 
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
+* **MacOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)**
+* **conda version 4.8.3+ (64 bit)**
 
 ## Installation steps
 
@@ -23,21 +25,17 @@ If you want to use python version 3.7: `conda create -n paddle_env python=3.7`
 
 If you want to use python version 3.8: `conda create -n paddle_env python=3.8`
 
-Activate paddle_env (for Windows) or conda activate paddle_env (for MacOS / Linux) command to enter the Anaconda virtual environment.
+conda activate paddle_env command to enter the Anaconda virtual environment.
 
 2.Confirm that your conda virtual environment and the Python loaction which is preapared to install PaddlePaddle are where you expected them for your computer may have multiple Pythons environments. Enter Anaconda's command line terminal and enter the following command to confirm the Python location.
 
 If you are using Python 2, use the following command to get the Python path. Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
 
-     In a Windows environment, the command to get the Python path is:  where python
-
-     In a MacOS/Linux environment, the command to get the Python path is:  which python
+     The command to get the Python path is:  which python
 
 If you are using Python 3, use the following command to get the Python path. Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
 
-     In a Windows environment, the command to get the Python path is:  where python3
-
-     In a MacOS/Linux environment, the command to get the Python path is:  which python3
+     The command to get the Python path is:  which python3
 
 
 3.Check the version of Python
@@ -62,23 +60,9 @@ If you are using Python3:
 
 5.Install PaddlePaddle
 
- > (1) CPU version: If you just want to install the CPU version, please refer to the following command to install:
+ > CPU version: If you just want to install the CPU version, please refer to the following command to install:
 
       conda install paddlepaddle
-
- > (2) GPU version: If you want to use the GPU version, please refer to the following command to install:
-
-      If you are using CUDA 9, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=9.0
-
-      If you are using CUDA 10.0, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=10.0
-
-      If you are using CUDA 10.0, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=10.1
-
-      If you are using CUDA 10.0, cuDNN 7.6+, the command to install the GPU version is:
-           conda install paddlepaddle-gpu cudatoolkit=10.2
 
 6.Installation environment verification
 

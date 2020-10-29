@@ -171,7 +171,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     - `cd Paddle`
 
-7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.2 branch)
+7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch)
 
     `git checkout [name of the branch]`
 
@@ -179,7 +179,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     `git checkout release/1.5`
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.2 branch
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
 
 8. And please create and enter a directory called build:
 
