@@ -6,7 +6,7 @@
 环境设置
 --------
 
-本示例教程基于飞桨框架2.0-beta版本。
+本示例教程基于飞桨2.0RC版本。
 
 .. code:: ipython3
 
@@ -15,13 +15,12 @@
     import re
     import numpy as np
     
-    paddle.disable_static()
     print(paddle.__version__)
 
 
 .. parsed-literal::
 
-    2.0.0-beta0
+    2.0.0-rc0
 
 
 下载数据集
@@ -37,16 +36,16 @@
 
 .. parsed-literal::
 
-    --2020-09-10 16:17:25--  https://www.manythings.org/anki/cmn-eng.zip
+    --2020-10-26 09:50:14--  https://www.manythings.org/anki/cmn-eng.zip
     Resolving www.manythings.org (www.manythings.org)... 2606:4700:3033::6818:6dc4, 2606:4700:3036::ac43:adc6, 2606:4700:3037::6818:6cc4, ...
     Connecting to www.manythings.org (www.manythings.org)|2606:4700:3033::6818:6dc4|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 1030722 (1007K) [application/zip]
     Saving to: ‘cmn-eng.zip’
     
-    cmn-eng.zip         100%[===================>]   1007K  91.2KB/s    in 11s     
+    cmn-eng.zip         100%[===================>]   1007K   138KB/s    in 7.3s    
     
-    2020-09-10 16:17:38 (91.2 KB/s) - ‘cmn-eng.zip’ saved [1030722/1030722]
+    2020-10-26 09:50:23 (138 KB/s) - ‘cmn-eng.zip’ saved [1030722/1030722]
     
     Archive:  cmn-eng.zip
       inflating: cmn.txt                 
@@ -281,7 +280,7 @@ AttentionDecoder部分
                                                  encoder_outputs)
     
             context_vector = paddle.multiply(encoder_outputs, attention_weights)               
-            context_vector = paddle.reduce_sum(context_vector, 1)
+            context_vector = paddle.sum(context_vector, 1)
             context_vector = paddle.unsqueeze(context_vector, 1)
             
             lstm_input = paddle.concat((x, context_vector), axis=-1)
@@ -344,12 +343,11 @@ AttentionDecoder部分
             # the decoder recurrent loop mentioned above
             for i in range(MAX_LEN + 2):
                 cn_word = paddle.to_tensor(x_cn_data[:,i:i+1])
-                cn_word_label = paddle.to_tensor(x_cn_label_data[:,i:i+1])
+                cn_word_label = paddle.to_tensor(x_cn_label_data[:,i])
     
                 logits, (hidden, cell) = atten_decoder(cn_word, hidden, cell, en_repr)
-                step_loss = F.softmax_with_cross_entropy(logits, cn_word_label)
-                avg_step_loss = paddle.mean(step_loss)
-                loss += avg_step_loss
+                step_loss = F.cross_entropy(logits, cn_word_label)
+                loss += step_loss
     
             loss = loss / (MAX_LEN + 2)
             if(iteration % 200 == 0):
@@ -363,65 +361,65 @@ AttentionDecoder部分
 .. parsed-literal::
 
     epoch:0
-    iter 0, loss:[7.620109]
-    iter 200, loss:[2.9760551]
+    iter 0, loss:[7.6254287]
+    iter 200, loss:[2.7549095]
     epoch:1
-    iter 0, loss:[2.9679596]
-    iter 200, loss:[3.161064]
+    iter 0, loss:[3.25681]
+    iter 200, loss:[3.1060884]
     epoch:2
-    iter 0, loss:[2.7516625]
-    iter 200, loss:[2.9755423]
+    iter 0, loss:[2.8566368]
+    iter 200, loss:[2.5701585]
     epoch:3
-    iter 0, loss:[2.7249248]
-    iter 200, loss:[2.3419888]
+    iter 0, loss:[2.5982018]
+    iter 200, loss:[2.498022]
     epoch:4
-    iter 0, loss:[2.3236473]
-    iter 200, loss:[2.3453429]
+    iter 0, loss:[2.4150505]
+    iter 200, loss:[2.2246962]
     epoch:5
-    iter 0, loss:[2.1926975]
-    iter 200, loss:[2.1977856]
+    iter 0, loss:[2.2809484]
+    iter 200, loss:[2.0454435]
     epoch:6
-    iter 0, loss:[2.014393]
-    iter 200, loss:[2.1863418]
+    iter 0, loss:[1.9620974]
+    iter 200, loss:[1.9354618]
     epoch:7
-    iter 0, loss:[1.8619595]
-    iter 200, loss:[1.8904227]
+    iter 0, loss:[1.404521]
+    iter 200, loss:[1.6144934]
     epoch:8
-    iter 0, loss:[1.5901132]
-    iter 200, loss:[1.7812968]
+    iter 0, loss:[1.6302392]
+    iter 200, loss:[1.6218137]
     epoch:9
-    iter 0, loss:[1.341565]
-    iter 200, loss:[1.4957166]
+    iter 0, loss:[1.6828392]
+    iter 200, loss:[1.7782025]
     epoch:10
-    iter 0, loss:[1.2202356]
-    iter 200, loss:[1.3485341]
+    iter 0, loss:[1.1777062]
+    iter 200, loss:[1.2404836]
     epoch:11
-    iter 0, loss:[1.1035374]
-    iter 200, loss:[1.2871654]
+    iter 0, loss:[1.2056196]
+    iter 200, loss:[1.322629]
     epoch:12
-    iter 0, loss:[1.194801]
-    iter 200, loss:[1.0479954]
+    iter 0, loss:[1.316817]
+    iter 200, loss:[1.021146]
     epoch:13
-    iter 0, loss:[1.0022258]
-    iter 200, loss:[1.0899843]
+    iter 0, loss:[1.2051158]
+    iter 200, loss:[1.227415]
     epoch:14
-    iter 0, loss:[0.93466896]
-    iter 200, loss:[0.99347967]
+    iter 0, loss:[1.0421599]
+    iter 200, loss:[0.7064129]
     epoch:15
-    iter 0, loss:[0.83665943]
-    iter 200, loss:[0.9594004]
+    iter 0, loss:[0.7054539]
+    iter 200, loss:[1.1203959]
     epoch:16
-    iter 0, loss:[0.78929776]
-    iter 200, loss:[0.945769]
+    iter 0, loss:[0.7972643]
+    iter 200, loss:[0.57451296]
     epoch:17
-    iter 0, loss:[0.62574965]
-    iter 200, loss:[0.6308163]
+    iter 0, loss:[0.5825621]
+    iter 200, loss:[0.66827786]
     epoch:18
-    iter 0, loss:[0.63433456]
-    iter 200, loss:[0.6287957]
+    iter 0, loss:[0.5396042]
+    iter 200, loss:[0.60596395]
     epoch:19
-    iter 0, loss:[0.54270047]
-    iter 200, loss:[0.72688276]
+    iter 0, loss:[0.41747904]
+    iter 200, loss:[0.58902776]
 
 
 使用模型进行机器翻译
@@ -475,36 +473,36 @@ search算法来提升效果）
 
 .. parsed-literal::
 
-    i want to study french
-    true: 我要学法语。
-    pred: 我要学法语。
-    i didn t know that he was there
-    true: 我不知道他在那裡。
-    pred: 我不知道他在那裡。
-    i called tom
-    true: 我給湯姆打了電話。
-    pred: 我看見湯姆了。
-    he is getting along with his employees
-    true: 他和他的員工相處。
-    pred: 他和他的員工相處。
-    we raced toward the fire
-    true: 我們急忙跑向火。
-    pred: 我們住在美國。
-    i ran away in a hurry
-    true: 我趕快跑走了。
-    pred: 我在班里是最高。
-    he cut the envelope open
-    true: 他裁開了那個信封。
-    pred: 他裁開了信封。
-    he s shorter than tom
-    true: 他比湯姆矮。
-    pred: 他比湯姆矮。
-    i ve just started playing tennis
-    true: 我剛開始打網球。
-    pred: 我剛去打網球。
-    i need to go home
-    true: 我该回家了。
-    pred: 我该回家了。
+    he may have been ill
+    true: 他可能病了。
+    pred: 他可能生病了。
+    she kept working
+    true: 她继续工作。
+    pred: 她继续工作。
+    i don t think he ll come
+    true: 我不認為他會來的。
+    pred: 我不認為他會來的。
+    we all have secrets
+    true: 我們都有秘密。
+    pred: 我們都有秘密。
+    he s the same age as me
+    true: 他和我同岁。
+    pred: 他和我同岁。
+    he can speak russian as well
+    true: 他还会说俄语。
+    pred: 他也會說俄語。
+    he is a thief
+    true: 这是一个小偷。
+    pred: 他是義一個人人。
+    i forgot to ask him
+    true: 我忘了問他。
+    pred: 我忘了他。
+    i believe you
+    true: 我相信你。
+    pred: 我相信你。
+    i feel a whole lot better today
+    true: 我今天感觉好多了。
+    pred: 我今天感觉好多了。
 
 
 The End
