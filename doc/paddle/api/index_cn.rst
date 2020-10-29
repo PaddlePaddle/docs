@@ -4,9 +4,9 @@ API 文档
 
 欢迎使用飞桨框架(PaddlePaddle), PaddlePaddle 是一个易用、高效、灵活、可扩展的深度学习框架，致力于让深度学习技术的创新与应用更简单。
 
-在最近的版本中，飞桨框架对API做了很多优化，您可以阅读 `版本说明 <../release_note_cn.html>`_ 来了解新版本的特性。此外，您可参考PaddlePaddle的 `GitHub <https://github.com/PaddlePaddle/Paddle>`_ 了解详情。
+在本版本中，飞桨框架对API做了许多优化，您可以参考下表来了解飞桨框架最新版的API目录结构与说明。更详细的说明，请参见 `版本说明 <../release_note_cn.html>`_ 。此外，您可参考PaddlePaddle的 `GitHub <https://github.com/PaddlePaddle/Paddle>`_ 了解详情。
 
-**飞桨框架的API目录结构如下：**
+**注: paddle.fluid.\*, paddle.dataset.\* 会在未来的版本中废弃，请您尽量不要使用这两个目录下的API。**
 
 +-------------------------------+-------------------------------------------------------+
 | 目录                          | 功能和包含的API                                       |
