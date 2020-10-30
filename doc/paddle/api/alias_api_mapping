@@ -383,6 +383,7 @@ paddle.tensor.manipulation.scatter	paddle.scatter,paddle.tensor.scatter
 paddle.fluid.layers.detection_output	paddle.nn.functional.detection_output,paddle.nn.functional.vision.detection_output
 paddle.fluid.layers.conv3d_transpose	paddle.static.nn.conv3d_transpose
 paddle.tensor.stat.numel	paddle.numel,paddle.tensor.numel
+paddle.tensor.stat.median	paddle.median,paddle.tensor.median
 paddle.nn.functional.activation.relu6	paddle.nn.functional.relu6
 paddle.tensor.math.cumsum	paddle.cumsum,paddle.tensor.cumsum
 paddle.fluid.io.save	paddle.static.save
