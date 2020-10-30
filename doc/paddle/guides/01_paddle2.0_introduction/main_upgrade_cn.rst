@@ -32,7 +32,7 @@
 .. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image10.png?raw=true
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guid[M(X2[M+X2es/01_paddle2.0_introduction/main_upgrade/image11.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image11.png?raw=true
 
 
 .. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image12.png?raw=true
@@ -48,4 +48,3 @@
 
 
 .. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image16.png?raw=true
-
