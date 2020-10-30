@@ -26,7 +26,7 @@ Paddle1to2 可以使用下面的方式，快速使用:
 
     $ paddle1to2 --inpath /path/to/model.py
 
-这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle1.x转换为Paddle2.0beta的变化。如果您确认上述变化没有问题，只需要再执行：
+这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle1.x转换为Paddle2.0rc的变化。如果您确认上述变化没有问题，只需要再执行：
 
 .. code:: ipython3
 
