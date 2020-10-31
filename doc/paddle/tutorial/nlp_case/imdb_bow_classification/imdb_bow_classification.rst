@@ -77,7 +77,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
     warriors:5144
     widely:5145
     <unk>:5146
-    <pad>:5148
+    <pad>:5147
     totally 5148 words
 
 
@@ -154,7 +154,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
     print(test_sents.shape)
     print(test_labels.shape)
     
-    for sent in data[:3]:
+    for sent in train_sents[:3]:
         print(ids_to_str(sent))
 
 
@@ -164,23 +164,9 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
     (25000, 1)
     (25000, 200)
     (25000, 1)
-    [5146   43   71    6 1092   14    0  878  130  151 5146   18  281  747
-        0 5146    3 5146 2165   37 5146   46    5   71 4089  377  162   46
-        5   32 1287  300   35  203 2136  565   14    2  253   26  146   61
-      372    1  615 5146    5   30    0   50 3290    6 2148   14    0 5146
-       11   17  451   24    4  127   10    0  878  130   43    2   50 5146
-      751 5146    5    2  221 3727    6    9 1167  373    9    5 5146    7
-        5 1343   13    2 5146    1  250    7   98 4270   56 2316    0  928
-       11   11    9   16    5 5146 5146    6   50   69   27  280   27  108
-     1045    0 2633 4177 3180   17 1675    1 2571 5148 5148 5148 5148 5148
-     5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148
-     5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148
-     5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148
-     5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148
-     5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148 5148
-     5148 5148 5148 5148]
-    <unk> has much in common with the third man another <unk> film set among the <unk> of <unk> europe like <unk> there is much inventive camera work there is an innocent american who gets emotionally involved with a woman he doesnt really understand and whose <unk> is all the more striking in contrast with the <unk> br but id have to say that the third man has a more <unk> storyline <unk> is a bit disjointed in this respect perhaps this is <unk> it is presented as a <unk> and making it too coherent would spoil the effect br br this movie is <unk> <unk> in more than one sense one never sees the sun shine grim but intriguing and frightening
-    the
+    <unk> has much in common with the third man another <unk> film set among the <unk> of <unk> europe like <unk> there is much inventive camera work there is an innocent american who gets emotionally involved with a woman he doesnt really understand and whose <unk> is all the more striking in contrast with the <unk> br but id have to say that the third man has a more <unk> storyline <unk> is a bit disjointed in this respect perhaps this is <unk> it is presented as a <unk> and making it too coherent would spoil the effect br br this movie is <unk> <unk> in more than one sense one never sees the sun shine grim but intriguing and frightening <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad>
+    <unk> is the most original movie ive seen in years if you like unique thrillers that are influenced by film noir then this is just the right cure for all of those hollywood summer <unk> <unk> the theaters these days von <unk> <unk> like breaking the waves have gotten more <unk> but this is really his best work it is <unk> without being distracting and offers the perfect combination of suspense and dark humor its too bad he decided <unk> cameras were the wave of the future its hard to say who talked him away from the style he <unk> here but its everyones loss that he went into his heavily <unk> <unk> direction instead <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad> <pad>
+    <unk> von <unk> is never <unk> in trying out new techniques some of them are very original while others are best <unk> br he depicts <unk> germany as a <unk> train journey with so many cities lying in ruins <unk> <unk> a young american of german descent feels <unk> to help in their <unk> it is not a simple task as he quickly finds outbr br his uncle finds him a job as a night <unk> on the <unk> <unk> line his job is to <unk> to the needs of the passengers when the shoes are <unk> a <unk> mark is made on the <unk> a terrible argument <unk> when a passengers shoes are not <unk> despite the fact they have been <unk> there are many <unk> to the german <unk> of <unk> to such stupid <unk> br the <unk> journey is like an <unk> <unk> mans <unk> through life with all its <unk> and <unk> in one sequence <unk> <unk> through the back <unk> to discover them filled with <unk> bodies appearing to have just escaped from <unk> these images horrible as they are are <unk> as in a dream each with its own terrible impact yet <unk> br
 
 
 2.3 用Dataset 与 DataLoader 加载
