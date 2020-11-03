@@ -24,7 +24,6 @@ full
 
     import paddle
 
-    paddle.disable_static()  # Now we are in imperative mode
     data1 = paddle.full(shape=[2,1], fill_value=0, dtype='int64') 
     #[[0]
     # [0]]
@@ -41,7 +40,7 @@ full
     #  [True True]]
     
     # attr fill_value is a Tensor.
-    val = paddle.fill_constant([1], "float32", 2.0)
+    val = paddle.full([1], "float32", 2.0)
     data5 = paddle.full(shape=[2,1], fill_value=val, dtype='float32')
     # [[2.0] 
     #  [2.0]]

@@ -25,7 +25,6 @@ zeros
 .. code-block:: python
 
     import paddle
-    paddle.disable_static()  # Now we are in imperative mode
     data = paddle.zeros(shape=[3, 2], dtype='float32') 
     # [[0. 0.]
     #  [0. 0.]
@@ -36,7 +35,7 @@ zeros
     #  [0. 0.]]
     
     # shape is a Tensor
-    shape = paddle.fill_constant(shape=[2], dtype='int32', value=2)
+    shape = paddle.full(shape=[2], dtype='int32', value=2)
     data3 = paddle.zeros(shape=shape, dtype='int32') 
     # [[0 0]
     #  [0 0]]
