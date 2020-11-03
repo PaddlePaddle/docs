@@ -6,5 +6,5 @@
 log2
 ------
 
-..  autofunction:: paddle.fluid.layers.pow
+..  autofunction:: paddle.fluid.layers.log2
     :noindex:

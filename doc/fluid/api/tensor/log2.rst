@@ -1,4 +1,4 @@
-.. _api_tensor_cn_log:
+.. _api_tensor_cn_log2:
 
 log2
 -------------------------------
