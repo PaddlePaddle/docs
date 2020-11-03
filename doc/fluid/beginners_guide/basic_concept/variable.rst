@@ -48,7 +48,7 @@ Paddle 中使用 :code:`fluid.data` 来接收输入数据， :code:`fluid.data` 
     b = fluid.data(name="image",shape=[None, 3,None,None],dtype="float32")
 
 
-其中，dtype=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看： :ref:`Paddle目前支持的数据类型 <user_guide_use_numpy_array_as_train_data>` 。
+其中，dtype=“int64”表示有符号64位整数数据类型，更多Fluid目前支持的数据类型请查看： :ref:`Paddle目前支持的数据类型 <user_guide_paddle_support_data_types>` 。
 
 **3. 常量 Variable**
 
