@@ -3,9 +3,9 @@
 ## Environment Preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-    * **GPU Version support CUDA 9.0/9.1/9.2/10.0/10.1, and only support single GPU**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7(64bit)**
-* **pip version 9.0.1+(64bit)**
+* **GPU Version support CUDA 9.0/10.0/10.1/10.2, and only support single GPU**
+* **Python version 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64bit)**
+* **pip version 20.2.2+ (64bit)**
 
 ### Precautions
 
@@ -15,7 +15,7 @@
 
     * If you are using Python 2, the output should be 2.7.15+
 
-    * If you are using Python 3, the output should be 3.5.1+/3.6+/3.7+
+    * If you are using Python 3, the output should be 3.5.1+/3.6+/3.7+/3.8+
 
 * If Python doesn't match your expected version, use the following command to see if Python's path is where you expect it to be:
 
@@ -27,10 +27,10 @@
 
     * You can adjust it in any of the following ways:
 
-        * Use specific Python paths to execute commands（e.g. C:\Python36\python.exe corresponding to Python 3，C:\Python27\python.exe corresponding to Python 2)     
+        * Use specific Python paths to execute commands（e.g. C:\Python37\python.exe or C:\Python27\python.exe)  
         * By modifying the environment variable, set your expected installation path in the first order (please modify it in control panel -> system properties -> environment variable -> path)
 
-* Confirm whether the pip version meets the requirements. The pip version is required to be 9.0.1+
+* Confirm whether the pip version meets the requirements. The pip version is required to be 20.2.2+
 
     python -m ensurepip
 
@@ -69,10 +69,10 @@ We would like to introduce the pip installation here.
 ## Installation steps
 
 * CPU version of PaddlePaddle:
-  * `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple`(Baidu source is recommended) or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * `python -m pip install paddlepaddle==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 * GPU version of PaddlePaddle:
-  * `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple`(Baidu source is recommended) or `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * `python -m pip install paddlepaddle-gpu==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html`
 
 There is a checking function below for [verifyig whether the installation is successful](#check). If you have any further questions, please check the [FAQ](./FAQ.html).
 
