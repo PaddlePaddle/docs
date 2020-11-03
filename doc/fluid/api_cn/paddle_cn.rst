@@ -95,6 +95,7 @@ paddle
 	paddle_cn/logical_xor_cn.rst
 	paddle_cn/logsumexp_cn.rst
 	paddle_cn/log_cn.rst
+	paddle_cn/log2_cn.rst
 	paddle_cn/seed_cn.rst
 	paddle_cn/get_cuda_rng_state_cn.rst
 	paddle_cn/set_cuda_rng_state_cn.rst
