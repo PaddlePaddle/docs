@@ -86,6 +86,7 @@ paddle.tensor
     tensor_cn/linspace_cn.rst
     tensor_cn/load_cn.rst
     tensor_cn/log_cn.rst
+    tensor_cn/log2_cn.rst
     tensor_cn/log1p_cn.rst
     tensor_cn/logical_and_cn.rst
     tensor_cn/logical_not_cn.rst
