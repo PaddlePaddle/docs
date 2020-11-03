@@ -91,6 +91,7 @@ paddle
 	paddle/linspace.rst
 	paddle/load.rst
 	paddle/log.rst
+	paddle/log2.rst
 	paddle/log1p.rst
 	paddle/logical_and.rst
 	paddle/logical_not.rst

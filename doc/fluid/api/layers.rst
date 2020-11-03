@@ -162,6 +162,7 @@ fluid.layers
     layers/lod_append.rst
     layers/lod_reset.rst
     layers/log.rst
+    layers/log2.rst
     layers/log_loss.rst
     layers/logical_and.rst
     layers/logical_not.rst
