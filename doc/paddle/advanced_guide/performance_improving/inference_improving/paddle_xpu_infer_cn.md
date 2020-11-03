@@ -39,10 +39,10 @@ config.enable_lite_engine(
 
 ### Python demo
 
-下载[resnet50](http://paddle-inference-dist.bj.bcebos.com/resnet50_model.tar.gz)模型，并解压，运行如下命令将会调用预测引擎
+下载[resnet50](https://paddle-inference-dist.bj.bcebos.com/inference_demo/python/resnet50/ResNet50.tar.gz)模型，并解压，运行如下命令将会调用预测引擎
 
 ```bash
-python resnet50_subgraph.py --model_file ./model/model --params_file ./model/params
+python resnet50_subgraph.py --model_file ./ResNet50/model --params_file ./ResNet50/params
 ```
 
 resnet50_subgraph.py的内容是：
