@@ -5,11 +5,6 @@ log2
 
 .. py:function:: paddle.fluid.layers.log2(x, name=None)
 
-:alias_main: paddle.log2
-:alias: paddle.log2,paddle.tensor.log2,paddle.tensor.math.log2
-:old_api: paddle.fluid.layers.log2
-
-
 
 
 Log2激活函数（计算底为2的对数）

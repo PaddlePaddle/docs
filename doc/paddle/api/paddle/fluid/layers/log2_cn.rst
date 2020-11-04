@@ -5,9 +5,6 @@ log2
 
 .. py:function:: paddle.fluid.layers.log2(x, name=None)
 
-:alias_main: paddle.log2
-:alias: paddle.log2,paddle.tensor.log2,paddle.tensor.math.log2
-:old_api: paddle.fluid.layers.log2
 
 
 
@@ -36,7 +33,7 @@ Log2激活函数（计算底为2的对数）
   
   # example 1: x is a float
   x_i = paddle.to_tensor([[1.0], [2.0]])
-  res = paddle.log2(x_i)
+  res = paddle.log2(x_i) # [[0.], [1.0]]
 
   # example 2: x is float32
   x_i = paddle.full(shape=[1], fill_value=2, dtype='float32')
