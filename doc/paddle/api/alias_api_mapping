@@ -343,7 +343,8 @@ paddle.fluid.layers.add_position_encoding	paddle.nn.functional.add_position_enco
 paddle.nn.functional.common.cosine_similarity	paddle.nn.functional.cosine_similarity
 paddle.fluid.layers.floor	paddle.floor,paddle.tensor.floor,paddle.tensor.math.floor
 paddle.tensor.math.mod	paddle.mod,paddle.tensor.mod
-paddle.tensor.math.log1p	paddle.log1p,paddle.tensor.log1p
+paddle.fluid.layers.log2    paddle.log2,paddle.tensor.log2,paddle.tensor.math.log2
+paddle.tensor.math.log1p    paddle.log1p,paddle.tensor.log1p
 paddle.fluid.layers.unstack	paddle.unstack,paddle.tensor.unstack,paddle.tensor.manipulation.unstack
 paddle.fluid.layers.rsqrt	paddle.rsqrt,paddle.tensor.rsqrt,paddle.tensor.math.rsqrt
 paddle.tensor.creation.eye	paddle.eye,paddle.tensor.eye
