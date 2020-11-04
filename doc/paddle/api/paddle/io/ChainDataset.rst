@@ -12,9 +12,7 @@ ChainDataset
 参数:
     - **datasets** (list of IterableDataset) - 待级联的多个数据集。
 
-返回：级联后的流式数据集
-
-返回类型: ChainDataset 
+返回：Dataset，级联后的流式数据集
 
 **代码示例**
 
