@@ -528,6 +528,7 @@ paddle.vision.models.mobilenetv2.MobileNetV2	paddle.vision.models.MobileNetV2,pa
 paddle.vision.models.mobilenetv2.mobilenet_v2	paddle.vision.models.mobilenet_v2,paddle.vision.mobilenet_v2
 paddle.vision.models.lenet.LeNet	paddle.vision.models.LeNet,paddle.vision.LeNet
 paddle.vision.transforms.transforms.Compose	paddle.vision.transforms.Compose,paddle.vision.Compose
+paddle.vision.transforms.transforms.BaseTransform	paddle.vision.transforms.BaseTransform,paddle.vision.BaseTransform
 paddle.vision.transforms.transforms.Resize	paddle.vision.transforms.Resize,paddle.vision.Resize
 paddle.vision.transforms.transforms.RandomResizedCrop	paddle.vision.transforms.RandomResizedCrop,paddle.vision.RandomResizedCrop
 paddle.vision.transforms.transforms.CenterCrop	paddle.vision.transforms.CenterCrop,paddle.vision.CenterCrop
