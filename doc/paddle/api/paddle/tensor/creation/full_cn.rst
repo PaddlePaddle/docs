@@ -29,18 +29,18 @@ full
     # [0]]
 
     # attr shape is a list which contains Tensor.
-    positive_2 = paddle.full(shape=[1], dtype="int32", value=2)
+    positive_2 = paddle.full(shape=[1], dtype="int32", fill_value=2)
     data3 = paddle.full(shape=[1, positive_2], dtype='float32', fill_value=1.5)
     # [[1.5 1.5]]
 
     # attr shape is a Tensor.
-    shape = paddle.full(shape=[1], dtype="int32", value=2)
+    shape = paddle.full(shape=[1], dtype="int32", fill_value=2)
     data4 = paddle.full(shape=shape, dtype='bool', fill_value=True) 
     # [[True True] 
     #  [True True]]
     
     # attr fill_value is a Tensor.
-    val = paddle.full(shape=[1], dtype="int32", value=2)
+    val = paddle.full(shape=[1], dtype="int32", fill_value=2)
     data5 = paddle.full(shape=[2,1], fill_value=val, dtype='float32')
     # [[2.0] 
     #  [2.0]]
