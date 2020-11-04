@@ -1,4 +1,4 @@
-.. _cn_api_io_cn_ChainDataset:
+.. _cn_api_io_ChainDataset:
 
 ChainDataset
 -------------------------------

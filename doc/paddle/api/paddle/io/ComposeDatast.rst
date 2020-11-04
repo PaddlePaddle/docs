@@ -1,4 +1,4 @@
-.. _cn_api_io_cn_ComposeDataset:
+.. _cn_api_io_ComposeDataset:
 
 ComposeDataset
 -------------------------------
