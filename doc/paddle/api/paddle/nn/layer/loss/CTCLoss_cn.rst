@@ -60,7 +60,6 @@ CTCLoss
         input_lengths = np.array([5, 5]).astype("int64")
         label_lengths = np.array([3, 3]).astype("int64")
 
-        paddle.disable_static()
         log_probs = paddle.to_tensor(log_probs)
         labels = paddle.to_tensor(labels)
         input_lengths = paddle.to_tensor(input_lengths)
@@ -69,10 +68,10 @@ CTCLoss
         loss = paddle.nn.CTCLoss(blank=0, reduction='none')(log_probs, labels, 
             input_lengths, 
             label_lengths)
-        print(loss.numpy())  #[3.9179852 2.9076521]
+        print(loss)  #[3.9179852 2.9076521]
 
         loss = paddle.nn.CTCLoss(blank=0, reduction='mean')(log_probs, labels, 
             input_lengths, 
             label_lengths)
-        print(loss.numpy())  #[1.1376063]
+        print(loss)  #[1.1376063]
 
