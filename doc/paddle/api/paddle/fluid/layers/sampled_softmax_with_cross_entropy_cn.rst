@@ -3,7 +3,7 @@
 sampled_softmax_with_cross_entropy
 ----------------------------------------------
 
-.. py:function:: paddle.fluid.layers.sampled_softmax_with_cross_entropy(logits, label, num_samples, num_true=1, remove_accidental_hits=True, use_customized_samples=False, customized_samples=None, customized_probabilities=None, seed=0)
+.. py:function:: paddle.nn.functional.loss.sampled_softmax_with_cross_entropy(logits, label, num_samples, num_true=1, remove_accidental_hits=True, use_customized_samples=False, customized_samples=None, customized_probabilities=None, seed=0)
 
 
 
@@ -37,14 +37,14 @@ sampled_softmax_with_cross_entropy
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
+    import paddle.nn as nn
 
-    input = fluid.layers.data(name='data', shape=[256], dtype='float32')
-    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-    fc = fluid.layers.fc(input=input, size=100)
-    out = fluid.layers.sampled_softmax_with_cross_entropy(
-              logits=fc, label=label, num_samples=25)
-
+    linear = nn.Linear(256, 100)
+    input = paddle.rand(shape=[32, 256])
+    label = paddle.full([32, 1], 1, "int64")
+    fc = linear(input)
+    out = nn.functional.loss.sampled_softmax_with_cross_entropy(logits=fc, label=label, num_samples=25)
 
 
 
