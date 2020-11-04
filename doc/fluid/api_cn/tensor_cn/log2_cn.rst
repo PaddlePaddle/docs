@@ -28,7 +28,6 @@ Log2激活函数（计算底为2的对数）
 ..  code-block:: python
 
   import paddle
-  import paddle.fluid as fluid
   
   # example 1: x is a float
   x_i = paddle.to_tensor([[1.0], [2.0]])
