@@ -7,16 +7,19 @@
 -------------
 
 ..  csv-table:: 
-    :header: "版本说明", "预测库(1.8.4版本)", "预测库(2.0.0-beta0版本)", "预测库(develop版本)"
+    :header: "版本说明", "预测库(1.8.5版本)", "预测库(2.0.0-rc0版本)", "预测库(develop版本)"
     :widths: 3, 2, 2, 2
 
-    "ubuntu14.04_cpu_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-cpu-avx-mkl/fluid_inference.tgz>`_", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-beta0-cpu-avx-mkl/paddle_inference.tgz>`_", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-mkl/paddle_inference.tgz>`_"
-    "ubuntu14.04_cpu_avx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-cpu-avx-openblas/fluid_inference.tgz>`_", ,"`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-openblas/paddle_inference.tgz>`_"
-    "ubuntu14.04_cpu_noavx_openblas", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-cpu-noavx-openblas/fluid_inference.tgz>`_", ,"`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-noavx-openblas/paddle_inference.tgz>`_"
-    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-beta0-gpu-cuda9-cudnn7-avx-mkl/paddle_inference.tgz>`_", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/paddle_inference.tgz>`_"
-    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`_", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-beta0-gpu-cuda10-cudnn7-avx-mkl/paddle_inference.tgz>`_", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda10-cudnn7-avx-mkl/paddle_inference.tgz>`_"
-    "ubuntu14.04_cuda10.1_cudnn7.6_avx_mkl_trt6", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.4-gpu-cuda10.1-cudnn7.6-avx-mkl-trt6%2Ffluid_inference.tgz>`_", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-beta0-gpu-cuda10.1-cudnn7.6-avx-mkl-trt6%2Fpaddle_inference.tgz>`_", 
-    "nv-jetson-cuda10-cudnn7.5-trt5", "`fluid_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/1.7.1-nv-jetson-cuda10-cudnn7.5-trt5/fluid_inference.tar.gz>`_", "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-beta0-nv-jetson-cuda10-cudnn7.5-trt5/paddle_inference.tgz>`_",
+    "ubuntu14.04_cpu_avx_mkl_gcc482", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.5-cpu-avx-mkl/fluid_inference.tgz>`__", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc0-cpu-avx-mkl/paddle_inference.tgz>`__", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-mkl/paddle_inference.tgz>`__"
+    "ubuntu14.04_cpu_avx_openblas_gcc482", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.5-cpu-avx-openblas/fluid_inference.tgz>`__", ,"`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-avx-openblas/paddle_inference.tgz>`__"
+    "ubuntu14.04_cpu_noavx_openblas_gcc482", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.5-cpu-noavx-openblas/fluid_inference.tgz>`__", ,"`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-cpu-noavx-openblas/paddle_inference.tgz>`__"
+    "ubuntu14.04_cuda9.0_cudnn7_avx_mkl_gcc482", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.5-gpu-cuda9-cudnn7-avx-mkl/fluid_inference.tgz>`__", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc0-gpu-cuda9-cudnn7-avx-mkl/paddle_inference.tgz>`__", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda9-cudnn7-avx-mkl/paddle_inference.tgz>`__"
+    "ubuntu14.04_cuda10.0_cudnn7_avx_mkl_gcc482", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.5-gpu-cuda10-cudnn7-avx-mkl/fluid_inference.tgz>`__", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc0-gpu-cuda10-cudnn7-avx-mkl/paddle_inference.tgz>`__", "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/latest-gpu-cuda10-cudnn7-avx-mkl/paddle_inference.tgz>`__"
+    "ubuntu14.04_cuda10.1_cudnn7.6_avx_mkl_trt6_gcc482", "`fluid_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/1.8.5-gpu-cuda10.1-cudnn7.6-avx-mkl-trt6/fluid_inference.tgz>`__", ,
+    "ubuntu14.04_cuda10.1_cudnn7.6_avx_mkl_trt6_gcc82", , "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc0-gpu-cuda10.1-cudnn7-avx-mkl/paddle_inference.tgz>`__",
+    "ubuntu14.04_cuda10.2_cudnn8.0_avx_mkl_trt7_gcc82", , "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc0-gpu-cuda10.2-cudnn8-avx-mkl/paddle_inference.tgz>`__",
+    "nv_jetson_cuda10_cudnn7.5_trt5(jetpack4.2)", "`fluid_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/1.8.5-nv-jetson-cuda10-cudnn7.5-trt5/fluid_inference.tgz>`__", ,
+    "nv_jetson_cuda10_cudnn7.6_trt6(jetpack4.3)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc0-nv-jetson-cuda10-cudnn7.6-trt6/paddle_inference.tgz>`__",
 
 
 从源码编译
@@ -46,7 +49,7 @@ WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需�
   git clone https://github.com/paddlepaddle/Paddle
   cd Paddle
   # 建议使用git checkout切换到Paddle稳定的版本，如：
-  git checkout v1.8.4
+  git checkout v1.8.5
 
 **note**: 如果您是多卡机器，建议安装NCCL；如果您是单卡机器则可以在编译时显示指定WITH_NCCL=OFF来跳过这一步。注意如果WITH_NCCL=ON，且没有安装NCCL，则编译会报错。
 
