@@ -11,22 +11,18 @@ declarative
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-    from paddle.fluid.dygraph.jit import declarative
+    import paddle
+    from paddle.jit import to_static
 
-    fluid.enable_dygraph()
-
-    @declarative
+    @to_static
     def func(x):
-        x = fluid.dygraph.to_variable(x)
-        if fluid.layers.mean(x) < 0:
+        if paddle.mean(x) < 0:
             x_v = x - 1
         else:
             x_v = x + 1
         return x_v
 
-    x = np.ones([1, 2])
+    x = paddle.ones([1, 2], dtype='float32')
     x_v = func(x)
-    print(x_v.numpy()) # [[2. 2.]]
+    print(x_v) # [[2. 2.]]
 
