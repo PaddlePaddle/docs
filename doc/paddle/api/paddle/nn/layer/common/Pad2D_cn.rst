@@ -2,7 +2,7 @@
 
 Pad2D
 -------------------------------
-.. py:class:: paddle.nn.Pad2D(padding, mode="constant", value=0.0, data_format="NCL", name=None)
+.. py:class:: paddle.nn.Pad2D(padding, mode="constant", value=0.0, data_format="NCHW", name=None)
 
 **Pad2D**
 
@@ -26,14 +26,13 @@ Pad2D
     import paddle
     import paddle.nn as nn
     import numpy as np
-    paddle.disable_static()
     input_shape = (1, 1, 2, 3)
     pad = [1, 0, 1, 2]
     mode = "constant"
     data = paddle.arange(np.prod(input_shape), dtype="float32").reshape(input_shape) + 1
     my_pad = nn.Pad2D(padding=pad, mode=mode)
     result = my_pad(data)
-    print(result.numpy())
+    print(result)
     # [[[[0. 0. 0. 0.]
     #    [0. 1. 2. 3.]
     #    [0. 4. 5. 6.]
