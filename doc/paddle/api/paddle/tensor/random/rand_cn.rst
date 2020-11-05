@@ -23,9 +23,7 @@ rand
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
     # example 1: attr shape is a list which doesn't contain Tensor.
     out1 = paddle.rand(shape=[2, 3])
     # [[0.451152  , 0.55825245, 0.403311  ],  # random
@@ -43,7 +41,7 @@ rand
     #   [0.870881  , 0.2984597 ]]]  # random
 
     # example 3: attr shape is a Tensor, the data type must be int64 or int32.
-    shape_tensor = paddle.to_tensor(np.array([2, 3]))
+    shape_tensor = paddle.to_tensor([2, 3])
     out2 = paddle.rand(shape_tensor)
     # [[0.22920267, 0.841956  , 0.05981819],  # random
     #  [0.4836288 , 0.24573246, 0.7516129 ]]  # random

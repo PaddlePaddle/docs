@@ -23,9 +23,6 @@ standard_normal
 .. code-block:: python
 
     import paddle
-    import numpy as np
-
-    paddle.disable_static()
 
     # example 1: attr shape is a list which doesn't contain Tensor.
     out1 = paddle.standard_normal(shape=[2, 3])
