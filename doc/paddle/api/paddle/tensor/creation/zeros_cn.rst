@@ -35,7 +35,7 @@ zeros
     #  [0. 0.]]
     
     # shape is a Tensor
-    shape = paddle.full(shape=[2], dtype='int32', value=2)
+    shape = paddle.full(shape=[2], dtype='int32', fill_value=2)
     data3 = paddle.zeros(shape=shape, dtype='int32') 
     # [[0 0]
     #  [0 0]]
