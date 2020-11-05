@@ -8,7 +8,7 @@ prelu
 prelu激活函数
 
 .. math::
-    prelu(x) = max(0, x) + weight * min(0, x)
+    prelu(x) = max(0, x) + \alpha * min(0, x)
 
 共提供三种激活方式：
 
