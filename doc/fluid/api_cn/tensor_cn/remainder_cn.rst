@@ -1,9 +1,9 @@
 .. _cn_api_tensor_remainder:
 
-remainder
+mod
 -------------------------------
 
-.. py:function:: paddle.remainder(x, y, name=None)
+.. py:function:: paddle.mod(x, y, name=None)
 
 逐元素取模算子。公式为：
 
@@ -11,7 +11,7 @@ remainder
         out = x \% y
 
 **注意**:
-        ``paddle.remainder`` 支持广播。关于广播规则，请参考 :ref:`use_guide_broadcasting`
+        ``paddle.mod`` 支持广播。关于广播规则，请参考 :ref:`use_guide_broadcasting`
 
 参数：
         - x（Tensor）- 多维Tensor。数据类型为float32 、float64、int32或int64。
@@ -29,5 +29,5 @@ remainder
 
         x = paddle.to_tensor([2, 3, 8, 7])
         y = paddle.to_tensor([1, 5, 3, 3])
-        z = paddle.remainder(x, y)
+        z = paddle.mod(x, y)
         print(z)  # [0, 3, 2, 1]
