@@ -17,7 +17,7 @@ GRU
 
         r_{t} & = \sigma(W_{ir}x_{t} + b_{ir} + W_{hr}x_{t-1} + b_{hr})
 
-        z_{t} & = \sigma(W_{iz}x_{t} + b_{iz} + W_{hz}x_{t-1} + b_{hz})
+        z_{t} & = \sigma(W_{iz}x_{t} + b_{iz} + W_{hz}x_{t1} + b_{hz})
 
         \widetilde{h}_{t} & = \tanh(W_{ic}x_{t} + b_{ic} + r_{t} * (W_{hc}x_{t-1} + b_{hc}))
 
