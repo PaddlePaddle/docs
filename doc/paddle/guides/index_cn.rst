@@ -12,6 +12,7 @@
 - `飞桨框架2.0模型开发 <./02_paddle2.0_develop/index_cn.html>`_ : 飞桨框架2.0模型开发全流程说明。
 - `模型可视化 <./03_VisualDL/index_cn.html>`_ : 介绍如何用VisualDL实现飞桨框架模型的可视化。
 - `动态图转静态图 <./04_dygraph_to_static/index_cn.html>`_ : 介绍飞桨框架动态图转静态图的方法。
+- `硬件支持 <./hardware_support_cn.html>`_ : 介绍飞桨框架支持的硬件设备。
 - `预测部署 <./05_inference_deployment/index_cn.html>`_ : 介绍如何使用训练好的模型进行预测。
 - `分布式训练 <./06_distributed_training/index_cn.html>`_ : 介绍如何使用分布式进行训练。
 - `自定义OP <./07_new_op/index_cn.html>`_ : 介绍飞桨框架自定义OP的方法。
@@ -25,6 +26,7 @@
     02_paddle2.0_develop/index_cn.rst
     03_VisualDL/index_cn.rst
     04_dygraph_to_static/index_cn.rst
+    hardware_support_cn.rst
     05_inference_deployment/index_cn.rst
     06_distributed_training/index_cn.rst
     07_new_op/index_cn.rst
