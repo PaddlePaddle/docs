@@ -158,7 +158,6 @@ paddle.fluid.layers.ceil	paddle.ceil,paddle.tensor.ceil,paddle.tensor.math.ceil
 paddle.nn.layer.activation.ReLU	paddle.nn.ReLU
 paddle.tensor.logic.greater_equal	paddle.greater_equal,paddle.tensor.greater_equal
 paddle.nn.layer.pooling.AvgPool2D	paddle.nn.AvgPool2D,paddle.nn.layer.AvgPool2D
-paddle.tensor.math.floor_mod	paddle.floor_mod,paddle.tensor.floor_mod
 paddle.nn.functional.pooling.adaptive_avg_pool3d	paddle.nn.functional.adaptive_avg_pool3d
 paddle.tensor.math.inverse	paddle.inverse,paddle.tensor.inverse
 paddle.fluid.layers.label_smooth	paddle.nn.functional.label_smooth,paddle.nn.functional.common.label_smooth
@@ -170,7 +169,7 @@ paddle.nn.layer.conv.Conv3DTranspose	paddle.nn.Conv3DTranspose,paddle.nn.layer.C
 paddle.fluid.dygraph.layers.Layer	paddle.nn.Layer
 paddle.tensor.logic.greater_than	paddle.greater_than,paddle.tensor.greater_than
 paddle.fluid.dygraph.jit.set_code_level	paddle.jit.set_code_level
-paddle.tensor.math.remainder	paddle.remainder,paddle.tensor.remainder
+paddle.tensor.math.remainder	paddle.mod,paddle.tensor.mod,paddle.tensor.math.mod,paddle.remainder,paddle.tensor.remainder,paddle.floor_mod,paddle.tensor.floor_mod,paddle.tensor.math.floor_mod
 paddle.fluid.layers.shard_index	paddle.shard_index,paddle.tensor.shard_index,paddle.tensor.manipulation.shard_index
 paddle.nn.layer.pooling.AvgPool3D	paddle.nn.AvgPool3D,paddle.nn.layer.AvgPool3D
 paddle.fluid.dygraph.jit.save	paddle.jit.save
@@ -342,7 +341,6 @@ paddle.tensor.math.maximum	paddle.maximum,paddle.tensor.maximum
 paddle.fluid.layers.add_position_encoding	paddle.nn.functional.add_position_encoding,paddle.nn.functional.extension.add_position_encoding
 paddle.nn.functional.common.cosine_similarity	paddle.nn.functional.cosine_similarity
 paddle.fluid.layers.floor	paddle.floor,paddle.tensor.floor,paddle.tensor.math.floor
-paddle.tensor.math.mod	paddle.mod,paddle.tensor.mod
 paddle.fluid.layers.log2    paddle.log2,paddle.tensor.log2,paddle.tensor.math.log2
 paddle.tensor.math.log1p    paddle.log1p,paddle.tensor.log1p
 paddle.fluid.layers.unstack	paddle.unstack,paddle.tensor.unstack,paddle.tensor.manipulation.unstack
