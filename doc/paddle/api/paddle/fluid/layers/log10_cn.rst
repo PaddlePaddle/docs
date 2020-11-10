@@ -38,10 +38,10 @@ Log10激活函数（计算底为10的对数）
   x_i = paddle.full(shape=[1], fill_value=10, dtype='float32')
   paddle.to_tensor(x_i)
   res = paddle.log10(x_i)
-  print(res.numpy()) # [1.]
+  print(res.numpy()) # [1.0]
   
   # example 3: x is float64
   x_i = paddle.full(shape=[1], fill_value=10, dtype='float64')
   paddle.to_tensor(x_i)
   res = paddle.log10(x_i)
-  print(res.numpy()) # [1.]
+  print(res.numpy()) # [1.0]
