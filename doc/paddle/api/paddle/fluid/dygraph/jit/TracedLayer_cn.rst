@@ -4,7 +4,7 @@ TracedLayer
 -------------------------------
 
 
-.. py:class:: paddle.fluid.dygraph.TracedLayer(program, parameters, feed_names, fetch_names)
+.. py:class:: paddle.jit.TracedLayer(program, parameters, feed_names, fetch_names)
 
 
 
@@ -33,31 +33,27 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
-    import numpy as np
+    import paddle
 
-    class ExampleLayer(fluid.dygraph.Layer):
+    class ExampleLayer(paddle.nn.Layer):
         def __init__(self):
             super(ExampleLayer, self).__init__()
-            self._fc = Linear(3, 10)
+            self._fc = paddle.nn.Linear(3, 10)
 
         def forward(self, input):
             return self._fc(input)
 
-    with fluid.dygraph.guard():
-        layer = ExampleLayer()
-        in_np = np.random.random([2, 3]).astype('float32')
-        in_var = to_variable(in_np)
-        out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
+    layer = ExampleLayer()
+    in_var = paddle.uniform(shape=[2, 3], dtype='float32')
+    out_dygraph, static_layer = paddle.jit.TracedLayer.trace(layer, inputs=[in_var])
 
-        # 内部使用Executor运行静态图模型
-        out_static_graph = static_layer([in_var])
-        print(len(out_static_graph)) # 1
-        print(out_static_graph[0].shape) # (2, 10)
+    # 内部使用Executor运行静态图模型
+    out_static_graph = static_layer([in_var])
+    print(len(out_static_graph)) # 1
+    print(out_static_graph[0].shape) # (2, 10)
 
-        # 将静态图模型保存为预测模型
-        static_layer.save_inference_model(dirname='./saved_infer_model')
+    # 将静态图模型保存为预测模型
+    static_layer.save_inference_model(dirname='./saved_infer_model')
 
 .. py:method:: set_strategy(build_strategy=None, exec_strategy=None)
 
@@ -73,33 +69,29 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
-    import numpy as np
+    import paddle
 
-    class ExampleLayer(fluid.dygraph.Layer):
+    class ExampleLayer(paddle.nn.Layer):
         def __init__(self):
             super(ExampleLayer, self).__init__()
-            self._fc = Linear(3, 10)
+            self._fc = paddle.nn.Linear(3, 10)
 
         def forward(self, input):
             return self._fc(input)
 
-    with fluid.dygraph.guard():
-        layer = ExampleLayer()
-        in_np = np.random.random([2, 3]).astype('float32')
-        in_var = to_variable(in_np)
+    layer = ExampleLayer()
+    in_var = paddle.uniform(shape=[2, 3], dtype='float32')
 
-        out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
+    out_dygraph, static_layer = paddle.jit.TracedLayer.trace(layer, inputs=[in_var])
 
-        build_strategy = fluid.BuildStrategy()
-        build_strategy.enable_inplace = True
+    build_strategy = paddle.static.BuildStrategy()
+    build_strategy.enable_inplace = True
 
-        exec_strategy = fluid.ExecutionStrategy()
-        exec_strategy.num_threads = 2
+    exec_strategy = paddle.static.ExecutionStrategy()
+    exec_strategy.num_threads = 2
 
-        static_layer.set_strategy(build_strategy=build_strategy, exec_strategy=exec_strategy)
-        out_static_graph = static_layer([in_var])
+    static_layer.set_strategy(build_strategy=build_strategy, exec_strategy=exec_strategy)
+    out_static_graph = static_layer([in_var])
 
 .. py:method:: save_inference_model(dirname, feed=None, fetch=None)
 
@@ -116,30 +108,28 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.dygraph import Linear, to_variable, TracedLayer
     import numpy as np
+    import paddle
 
-    class ExampleLayer(fluid.dygraph.Layer):
+    class ExampleLayer(paddle.nn.Layer):
         def __init__(self):
             super(ExampleLayer, self).__init__()
-            self._fc = Linear(3, 10)
+            self._fc = paddle.nn.Linear(3, 10)
 
         def forward(self, input):
             return self._fc(input)
 
     save_dirname = './saved_infer_model'
     in_np = np.random.random([2, 3]).astype('float32')
+    in_var = to_variable(in_np)
+    layer = ExampleLayer()
+    out_dygraph, static_layer = paddle.jit.TracedLayer.trace(layer, inputs=[in_var])
+    static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
 
-    with fluid.dygraph.guard():
-        layer = ExampleLayer()
-        in_var = to_variable(in_np)
-        out_dygraph, static_layer = TracedLayer.trace(layer, inputs=[in_var])
-        static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    program, feed_vars, fetch_vars = fluid.io.load_inference_model(save_dirname,
+    paddle.enable_static()
+    place = paddle.CPUPlace()
+    exe = paddle.static.Executor(place)
+    program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname,
                                         exe)
 
     fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
