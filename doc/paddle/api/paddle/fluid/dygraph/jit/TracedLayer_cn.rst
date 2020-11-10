@@ -121,7 +121,7 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
     save_dirname = './saved_infer_model'
     in_np = np.random.random([2, 3]).astype('float32')
-    in_var = to_variable(in_np)
+    in_var = paddle.to_tensor(in_np)
     layer = ExampleLayer()
     out_dygraph, static_layer = paddle.jit.TracedLayer.trace(layer, inputs=[in_var])
     static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
