@@ -4,7 +4,7 @@ case
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.case(pred_fn_pairs, default=None, name=None)
+.. py:function:: paddle.static.nn.case(pred_fn_pairs, default=None, name=None)
 
 :api_attr: 声明式编程模式（静态图)
 
