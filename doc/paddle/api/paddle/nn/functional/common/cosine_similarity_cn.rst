@@ -27,7 +27,6 @@ cosine_similarity
     import paddle
     import paddle.nn as nn
     import numpy as np
-    paddle.disable_static()
 
     np.random.seed(0)
     x1 = np.random.rand(2,3)
@@ -35,7 +34,7 @@ cosine_similarity
     x1 = paddle.to_tensor(x1)
     x2 = paddle.to_tensor(x2)
     result = paddle.nn.functional.cosine_similarity(x1, x2, axis=0)
-    print(result.numpy())
+    print(result)
     # [0.99806249 0.9817672  0.94987036]
 
 

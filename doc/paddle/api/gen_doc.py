@@ -70,7 +70,10 @@ def get_display_doc_map(file="./display_doc_list"):
 def get_alias_mapping(file="./alias_api_mapping"):
     with open(file, 'r') as f:
         for line in f.readlines():
-            t = line.strip().split('\t')
+            if "\t" in line:
+                t = line.strip().split('\t')
+            else:
+                t = line.strip().split('    ')
             real_api = t[0].strip()
             alias_apis = t[1].strip().split(',')
             alias_api_map[real_api] = alias_apis
