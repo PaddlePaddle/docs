@@ -19,7 +19,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 .. note::
 
-当 **禁用自动组batch** 时， ``default_collate_fn`` 将不对输入数据做任何处理。
+    当禁用自动组batch时， ``default_collate_fn`` 将不对输入数据做任何处理。
 
 参数:
     - **dataset** (Dataset) - DataLoader从此参数给定数据集中加载数据，此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例。
