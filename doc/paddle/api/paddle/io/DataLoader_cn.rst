@@ -13,13 +13,21 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 ``batch_sampler`` 请参考 ``paddle.io.BatchSampler``
 
+**禁用自动组batch**
+
+在如NLP等任务中，用户需求自定义组batch的方式，不希望 ``DataLoader`` 自动组batch， ``DataLoader`` 支持在 ``batch_size`` 和 ``batch_sampler`` 均为None的时候禁用自动组batch功能，此时需求从 ``dataset`` 中获取的数据为已经组好batch的数据，该数据将不做任何处理直接传到 ``collate_fn`` 或 ``default_collate_fn`` 中。
+
+..note::
+
+当 **禁用自动组batch** 时， ``default_collate_fn`` 将不对输入数据做任何处理。
+
 参数:
     - **dataset** (Dataset) - DataLoader从此参数给定数据集中加载数据，此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例。
     - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``paddle.static..data()`` 创建。当 ``return_list`` 为False时，此参数必须设置。默认值为None。
     - **places** (list(Place)|tuple(Place)) - 数据需要放置到的Place列表。在静态图和动态图模式中，此参数均必须设置。在动态图模式中，此参数列表长度必须是1。默认值为None。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。若return_list = False，每个设备上的返回数据均是str -> Tensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(Tensor)。在动态图模式下，此参数必须为True。默认值为False。
     - **batch_sampler** (BatchSampler) - ``paddle.io.BatchSampler`` 或其子类的实例，DataLoader通过 ``batch_sampler`` 产生的mini-batch索引列表来 ``dataset`` 中索引样本并组成mini-batch。默认值为None。
-    - **batch_size** (int) - 每mini-batch中样本个数，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler`` 。默认值为1。
+    - **batch_size** (int|None) - 每mini-batch中样本个数，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler`` 。默认值为1。
     - **shuffle** (bool) - 生成mini-batch索引列表时是否对索引打乱顺序，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler`` 。默认值为False。
     - **drop_last** (bool) - 是否丢弃因数据集样本数不能被 ``batch_size`` 整除而产生的最后一个不完整的mini-batch，为 ``batch_sampler`` 的替代参数，若 ``batch_sampler`` 未设置，会根据 ``batch_size`` ``shuffle`` ``drop_last`` 创建一个 ``paddle.io.BatchSampler`` 。默认值为False。
     - **collate_fn** (callable) - 通过此参数指定如果将样本列表组合为mini-batch数据，当 ``collate_fn`` 为None时，默认为将样本个字段在第0维上堆叠(同 ``np.stack(..., axis=0)`` )为mini-batch的数据。默认值为None。
