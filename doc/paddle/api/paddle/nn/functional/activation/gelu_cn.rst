@@ -40,8 +40,6 @@ gelu激活层（GELU Activation Operator）
     import paddle.nn.functional as F
     import numpy as np
 
-    paddle.disable_static()
-
     x = paddle.to_tensor(np.array([[-1, 0.5],[1, 1.5]]))
     out1 = F.gelu(x) # [-0.158655 0.345731 0.841345 1.39979]
     out2 = F.gelu(x, True) # [-0.158808 0.345714 0.841192 1.39957]

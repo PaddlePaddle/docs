@@ -4,7 +4,7 @@ name_scope
 -------------------------------
 
 
-.. py:function:: paddle.fluid.name_scope(prefix=None)
+.. py:function:: paddle.static.name_scope(prefix=None)
 
 
 
@@ -23,7 +23,7 @@ name_scope
       import paddle
       paddle.enable_static()
       with paddle.static.name_scope("s1"):
-         a = paddle.data(name='data', shape=[None, 1], dtype='int32')
+         a = paddle.static.data(name='data', shape=[None, 1], dtype='int32')
          b = a + 1
          with paddle.static.name_scope("s2"):
             c = b * 1

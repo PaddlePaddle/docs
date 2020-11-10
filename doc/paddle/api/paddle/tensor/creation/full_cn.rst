@@ -24,24 +24,23 @@ full
 
     import paddle
 
-    paddle.disable_static()  # Now we are in imperative mode
     data1 = paddle.full(shape=[2,1], fill_value=0, dtype='int64') 
     #[[0]
     # [0]]
 
     # attr shape is a list which contains Tensor.
-    positive_2 = paddle.fill_constant([1], "int32", 2)
+    positive_2 = paddle.full(shape=[1], dtype="int32", fill_value=2)
     data3 = paddle.full(shape=[1, positive_2], dtype='float32', fill_value=1.5)
     # [[1.5 1.5]]
 
     # attr shape is a Tensor.
-    shape = paddle.fill_constant([2], "int32", 2)
+    shape = paddle.full(shape=[1], dtype="int32", fill_value=2)
     data4 = paddle.full(shape=shape, dtype='bool', fill_value=True) 
     # [[True True] 
     #  [True True]]
     
     # attr fill_value is a Tensor.
-    val = paddle.fill_constant([1], "float32", 2.0)
+    val = paddle.full(shape=[1], dtype="int32", fill_value=2)
     data5 = paddle.full(shape=[2,1], fill_value=val, dtype='float32')
     # [[2.0] 
     #  [2.0]]
