@@ -17,7 +17,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 在如NLP等任务中，用户需求自定义组batch的方式，不希望 ``DataLoader`` 自动组batch， ``DataLoader`` 支持在 ``batch_size`` 和 ``batch_sampler`` 均为None的时候禁用自动组batch功能，此时需求从 ``dataset`` 中获取的数据为已经组好batch的数据，该数据将不做任何处理直接传到 ``collate_fn`` 或 ``default_collate_fn`` 中。
 
-..note::
+.. note::
 
 当 **禁用自动组batch** 时， ``default_collate_fn`` 将不对输入数据做任何处理。
 
