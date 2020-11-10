@@ -104,7 +104,8 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
             loss.backward()
             sgd.step()
             sgd.clear_gradients()
-        scheduler.step()
+            scheduler.step()    # If you update learning rate each step
+      # scheduler.step()        # If you update learning rate each epoch
 
 .. py:method:: get_lr()
 

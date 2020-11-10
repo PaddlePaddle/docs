@@ -20,7 +20,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         x = paddle.to_tensor([1.0, 2.0, 3.0])
         print("tensor's grad is: {}".format(x.dtype))
 
@@ -33,7 +32,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
         y = paddle.to_tensor([4.0, 5.0, 6.0], stop_gradient=False)
         z = x * y
@@ -49,7 +47,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         print("Tensor name: ", paddle.to_tensor(1).name)
         # Tensor name: generated_tensor_0
 
@@ -62,7 +59,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         print("Tensor's number of dimensition: ", paddle.to_tensor([[1, 2], [3, 4]]).ndim)
         # Tensor's number of dimensition: 2
 
@@ -76,7 +72,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         print("Whether Tensor is persistable: ", paddle.to_tensor(1).persistable)
         # Whether Tensor is persistable: false
 
@@ -92,7 +87,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
         print(cpu_tensor.place)
 
@@ -105,7 +99,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         print("Tensor's shape: ", paddle.to_tensor([[1, 2], [3, 4]]).shape)
         # Tensor's shape: [2, 2]
 
@@ -119,7 +112,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         print("Tensor's stop_gradient: ", paddle.to_tensor([[1, 2], [3, 4]]).stop_gradient)
         # Tensor's stop_gradient: True
 
@@ -147,13 +139,13 @@ Tensor
 
 请参考 :ref:`cn_api_tensor_add`
 
-.. py:method:: addcmul(tensor1, tensor2, value=1.0, name=None)
+.. py:method:: add_n(inputs, name=None)
 
 返回：计算后的Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_addcmul`
+请参考 :ref:`cn_api_tensor_add_n`
 
 .. py:method:: addmm(x, y, beta=1.0, alpha=1.0, name=None)
 
@@ -219,7 +211,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         x = paddle.to_tensor(1.0)
         print("original tensor's dtype is: {}".format(x.dtype))
         print("new tensor's dtype is: {}".format(x.astype('float64').dtype))
@@ -343,6 +334,36 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_clip`
 
+.. py:method:: clone()
+
+复制当前Tensor，并且保留在原计算图中进行梯度传导。
+
+返回：clone后的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor(1.0, stop_gradient=False)
+        clone_x = x.clone()
+        y = clone_x**2
+        y.backward()
+        print(clone_x.stop_gradient) # False
+        print(clone_x.grad)          # [2.0], support gradient propagation
+        print(x.stop_gradient)       # False
+        print(x.grad)                # [2.0], clone_x support gradient propagation for x
+
+        x = paddle.to_tensor(1.0)
+        clone_x = x.clone()
+        clone_x.stop_gradient = False
+        z = clone_x**3
+        z.backward()
+        print(clone_x.stop_gradient) # False
+        print(clone_x.grad)          # [3.0], support gradient propagation
+        print(x.stop_gradient)       # True
+        print(x.grad)                # None
+
 .. py:method:: concat(axis=0, name=None)
 
 返回：计算后的Tensor
@@ -366,6 +387,22 @@ Tensor
 返回类型：Tensor
 
 请参考 :ref:`cn_api_fluid_layers_cosh`
+
+.. py:method:: cpu()
+
+将当前Tensor的拷贝到CPU上，不保留在计算图中。
+
+返回：clone后的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+        print(x.place)    # CUDAPlace(0)
+
+        y = x.cpu()
+        print(y.place)    # CPUPlace
 
 .. py:method:: cross(y, axis=None, name=None)
 
@@ -410,7 +447,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         print("Tensor's number of dimensition: ", paddle.to_tensor([[1, 2], [3, 4]]).dim())
         # Tensor's number of dimensition: 2
 
@@ -438,61 +474,6 @@ Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_linalg_dot`
 
-.. py:method:: elementwise_add(y, axis=-1, act=None, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_elementwise_add`
-
-.. py:method:: elementwise_div(y, axis=-1, act=None, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_elementwise_div`
-
-.. py:method:: elementwise_floordiv(y, axis=-1, act=None, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_elementwise_floordiv`
-
-.. py:method:: elementwise_mod(y, axis=-1, act=None, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_elementwise_mod`
-
-.. py:method:: elementwise_pow(y, axis=-1, act=None, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_elementwise_pow`
-
-.. py:method:: elementwise_sub(y, axis=-1, act=None, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_elementwise_sub`
-
-.. py:method:: add_n(inputs, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_tensor_add_n`
 
 .. py:method:: equal(y, name=None)
 
@@ -609,7 +590,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
         y = paddle.to_tensor([4.0, 5.0, 6.0], stop_gradient=False)
         z = x * y
@@ -632,21 +612,6 @@ Tensor
 
 请参考 :ref:`cn_api_tensor_cn_greater_than`
 
-.. py:method:: has_inf()
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_has_inf`
-
-.. py:method:: has_nan()
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_has_nan`
 
 .. py:method:: histogram(bins=100, min=0, max=0)
 
@@ -905,7 +870,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         print("Tensor's number of dimensition: ", paddle.to_tensor([[1, 2], [3, 4]]).ndimension())
         # Tensor's number of dimensition: 2
 
@@ -953,13 +917,28 @@ Tensor
 
         import paddle
         import numpy as np
-        paddle.disable_static()
 
         data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
         linear = paddle.nn.Linear(32, 64)
         data = paddle.to_tensor(data)
         x = linear(data)
         print(x.numpy())
+
+.. py:method:: pin_memory(y, name=None)
+
+将当前Tensor的拷贝到固定内存上，不保留在计算图中。
+
+返回：clone后的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+        print(x.place)      # CUDAPlace(0)
+
+        y = x.pin_memory()
+        print(y.place)      # CUDAPinnedPlace
 
 .. py:method:: pow(y, name=None)
 
@@ -993,61 +972,6 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_reciprocal`
 
-.. py:method:: reduce_all(dim=None, keep_dim=False, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reduce_all`
-
-.. py:method:: reduce_any(dim=None, keep_dim=False, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reduce_any`
-
-.. py:method:: reduce_max(dim=None, keep_dim=False, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reduce_max`
-
-.. py:method:: reduce_mean(dim=None, keep_dim=False, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reduce_mean`
-
-.. py:method:: reduce_min(dim=None, keep_dim=False, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reduce_min`
-
-.. py:method:: reduce_prod(dim=None, keep_dim=False, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reduce_prod`
-
-.. py:method:: reduce_sum(dim=None, keep_dim=False, name=None)
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_reduce_sum`
 
 .. py:method:: remainder(y, name=None)
 
@@ -1141,7 +1065,6 @@ Tensor
 
         import paddle
         import numpy as np
-        paddle.disable_static()
 
         data = np.ones([3, 1024], dtype='float32')
         linear = paddle.nn.Linear(1024, 4)
@@ -1159,13 +1082,6 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_shard_index`
 
-.. py:method:: sigmoid()
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_sigmoid`
 
 .. py:method:: sign(name=None)
 
@@ -1207,19 +1123,6 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_slice`
 
-.. py:method:: softplus()
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_softplus`
-
-.. py:method:: softsign()
-
-返回：计算后的Tensor
-
-返回类型：Tensor
 
 请参考 :ref:`cn_api_fluid_layers_softsign`
 
@@ -1327,13 +1230,6 @@ Tensor
 
 请参考 :ref:`cn_api_tensor_tanh`
 
-.. py:method:: tanh_shrink()
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_fluid_layers_tanh_shrink`
 
 .. py:method:: tile(repeat_times, name=None)
 

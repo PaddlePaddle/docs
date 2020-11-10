@@ -39,8 +39,6 @@ to_tensor
 .. code-block:: python
 
         import paddle
-        import numpy as np
-        paddle.disable_static()
                 
         type(paddle.to_tensor(1))
         # <class 'paddle.Tensor'>
