@@ -52,7 +52,7 @@ ProgramTranslator
 
     x = paddle.ones([1, 2])
     # ProgramTranslator被关闭所以func会以动态图模式运行
-    print(func(x).numpy())  # [[0. 0.]]
+    print(func(x))  # [[0. 0.]]
 
 .. py:method:: get_output(dygraph_func, *args, **kwargs)
 
@@ -83,7 +83,7 @@ ProgramTranslator
 
     x = paddle.ones([1, 2])
     x_v = prog_trans.get_output(func, x)
-    print(x_v.numpy())  # [[0. 0.]]
+    print(x_v)  # [[0. 0.]]
 
 .. py:method:: get_func(dygraph_func)
 
