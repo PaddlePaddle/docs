@@ -265,7 +265,7 @@ Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_broadcast_to`
+请参考 :ref:`cn_api_tensor_expand` ，API功能相同。
 
 .. py:method:: cast(dtype)
 
@@ -382,17 +382,25 @@ Tensor
 
 .. py:method:: cosh(name=None)
 
-返回：计算后的Tensor
+对该Tensor中的每个元素求双曲余弦。
 
-返回类型：Tensor
+**代码示例**
+    .. code-block:: python
 
-请参考 :ref:`cn_api_fluid_layers_cosh`
+        import paddle
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = x.cosh()
+        print(out)
+        # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+        #        [1.08107233, 1.02006674, 1.00500417, 1.04533851])
 
 .. py:method:: cpu()
 
-将当前Tensor的拷贝到CPU上，不保留在计算图中。
+将当前Tensor的拷贝到CPU上，且返回的Tensor不保留在原计算图中。
 
-返回：clone后的Tensor
+如果当前Tensor已经在CPU上，则不会发生任何拷贝。
+
+返回：拷贝到CPU上的Tensor
 
 **代码示例**
     .. code-block:: python
@@ -411,6 +419,28 @@ Tensor
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_linalg_cross`
+
+.. py:method:: cuda(device_id=None, blocking=False)
+
+将当前Tensor的拷贝到GPU上，且返回的Tensor不保留在原计算图中。
+
+如果当前Tensor已经在GPU上，且device_id为None，则不会发生任何拷贝。
+
+参数：
+    - **device_id** (int, optional) - 目标GPU的设备Id，默认为None，此时为当前Tensor的设备Id，如果当前Tensor不在GPU上，则为0。
+    - **blocking** (bool, optional) - 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为False。
+
+返回：拷贝到GPU上的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+        print(x.place)    # CUDAPlace(0)
+
+        y = x.cpu()
+        print(y.place)    # CPUPlace
 
 .. py:method:: cumsum(axis=None, dtype=None, name=None)
 
@@ -926,9 +956,11 @@ Tensor
 
 .. py:method:: pin_memory(y, name=None)
 
-将当前Tensor的拷贝到固定内存上，不保留在计算图中。
+将当前Tensor的拷贝到固定内存上，且返回的Tensor不保留在原计算图中。
 
-返回：clone后的Tensor
+如果当前Tensor已经在固定内存上，则不会发生任何拷贝。
+
+返回：拷贝到固定内存上的Tensor
 
 **代码示例**
     .. code-block:: python
@@ -1101,11 +1133,18 @@ Tensor
 
 .. py:method:: sinh(name=None)
 
-返回：计算后的Tensor
+对该Tensor中逐个元素求双曲正弦。
 
-返回类型：Tensor
+**代码示例**
+    .. code-block:: python
 
-请参考 :ref:`cn_api_fluid_layers_sinh`
+        import paddle
+        paddle.disable_static()
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = x.sinh()
+        print(out)
+        # [-0.41075233 -0.201336    0.10016675  0.30452029]
 
 .. py:method:: size()
 

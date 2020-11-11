@@ -76,7 +76,7 @@ to_tensor
         #   - dtype: double
         #   - data: [0.1 0.2 0.3 0.4]
 
-        type(paddle.to_tensor([[1+1j, 2], [3+2j, 4]]), dtype='complex64')
+        type(paddle.to_tensor([[1+1j, 2], [3+2j, 4]], dtype='complex64'))
         # <class 'paddle.ComplexTensor'>
 
         paddle.to_tensor([[1+1j, 2], [3+2j, 4]], dtype='complex64')
