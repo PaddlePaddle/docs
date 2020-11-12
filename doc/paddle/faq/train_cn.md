@@ -333,7 +333,7 @@ with fluid.dygraph.guard():
 
   `step`表示的是经历了多少组mini_batch，其统计方法为`exe.run`(对应Program)运行的当前次数，即每运行一次`exe.run`，step加1。举例代码如下：
 
-```
+```text
 # 执行下方代码后相当于step增加了N x Epoch总数
 for epoch in range(epochs):
 	# 执行下方代码后step相当于自增了N
