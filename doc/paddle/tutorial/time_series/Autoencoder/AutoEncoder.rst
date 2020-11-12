@@ -102,7 +102,7 @@
     df_small_noise.plot(legend=False, ax=ax)
     plt.show()
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_01.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_01.png?raw=true
 
 
 **带有异常的时序数据如下：**
@@ -117,7 +117,7 @@
     plt.show()
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_02.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_02.png?raw=true
 
 
 
@@ -292,7 +292,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_03.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_03.png?raw=true
 
 
 探测异常时序
@@ -342,7 +342,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_04.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_04.png?raw=true
 
 
 .. parsed-literal::
@@ -378,15 +378,15 @@ AutoEncoder 对异常数据的重构
         sys.exit
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_05.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_05.png?raw=true
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_06.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_06.png?raw=true
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_07.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_07.png?raw=true
 
 
 
@@ -403,7 +403,7 @@ AutoEncoder 对异常数据的重构
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_08.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_08.png?raw=true
 
 
 .. code:: ipython3
@@ -463,5 +463,5 @@ AutoEncoder 对异常数据的重构
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_09.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_09.png?raw=true
 

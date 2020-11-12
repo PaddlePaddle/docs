@@ -229,7 +229,7 @@ DataLoader（多进程数据集加载）。
     =============train dataset=============
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_01.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_01.png?raw=true
 
 
 
@@ -238,7 +238,7 @@ DataLoader（多进程数据集加载）。
     (100, 100)
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_02.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_02.png?raw=true
 
 
 .. parsed-literal::
@@ -531,14 +531,14 @@ Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用L
     Predict samples: 1
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_03.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_03.png?raw=true
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_04.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_04.png?raw=true
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_05.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_paddle2.0_files/super_resolution_sub_pixel_paddle2.0_05.png?raw=true
 
 
 .. parsed-literal::
