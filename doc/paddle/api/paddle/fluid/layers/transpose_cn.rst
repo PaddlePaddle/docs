@@ -12,7 +12,7 @@ transpose
 
 参数：
     - **x** (Variable) - 输入：x:[N_1, N_2, ..., N_k, D]多维Tensor，可选的数据类型为float16, float32, float64, int32, int64。
-    - **perm** (list) - perm长度必须和X的维度相同，并依照perm中数据进行重排。
+    - **perm** (list|tuple) - perm长度必须和X的维度相同，并依照perm中数据进行重排。
     - **name** (str) - 该层名称（可选）。
 
 返回： 多维Tensor
