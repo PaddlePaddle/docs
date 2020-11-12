@@ -10,7 +10,7 @@
 
 **数据展示**
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_01.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_01.png?raw=true
 
 自定义数据集读取器
 ------------------
@@ -89,13 +89,13 @@ CTC相关论文：\ `Connectionist Temporal Classification: Labelling
 Unsegmented Sequence Data with Recurrent
 Neu <http://people.idsia.ch/~santiago/papers/icml2006.pdf>`__
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_02.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_02.png?raw=true
 
 网络部分，因本篇采用数据集较为简单且图像尺寸较小并不适合较深层次网络。若在对尺寸较大的图像进行模型构建，可以考虑使用更深层次网络/注意力机制来完成。当然也可以通过目标检测形式先检出文本位置，然后进行OCR部分模型构建。
 
 PaddleOCR 效果图如下：
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_03.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_03.png?raw=true
 
 
 .. code:: ipython3
@@ -351,7 +351,7 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_04.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_04.png?raw=true
 
 
 开始预测
