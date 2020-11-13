@@ -75,7 +75,7 @@ API reference 请参考：:ref:`cn_api_fluid_layers_assign`
 
 Fluid 使用 :code:`argmin` 计算输入 Tensor 指定轴上最小元素的索引。
 
-API reference 请参考：:ref:`cn_api_fluid_layers_assign`
+API reference 请参考：:ref:`cn_api_fluid_layers_argmin`
 
 10. argmax
 -----------
