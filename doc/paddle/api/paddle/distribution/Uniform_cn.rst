@@ -39,7 +39,6 @@ Uniform
     import paddle
     from paddle.distribution import Uniform
 
-    paddle.disable_static()
     # Without broadcasting, a single uniform distribution [3, 4]:
     u1 = Uniform(low=3.0, high=4.0)
     # 2 distributions [1, 3], [2, 4]

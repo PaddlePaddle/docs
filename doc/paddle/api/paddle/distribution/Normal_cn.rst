@@ -37,7 +37,6 @@ Normal
     import paddle
     from paddle.distribution import Normal
 
-    paddle.disable_static()
     # Define a single scalar Normal distribution.
     dist = Normal(loc=0., scale=3.)
     # Define a batch of two scalar valued Normals.
