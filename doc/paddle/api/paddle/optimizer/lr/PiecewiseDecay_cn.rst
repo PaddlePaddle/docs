@@ -16,8 +16,8 @@ PiecewiseDecay
     values = [1.0, 0.5, 0.1]
 
     learning_rate = 1.0     if epoch < 100
-    learning_rate = 0.5    if 100 <= epoch < 200
-    learning_rate = 0.1   if 200 <= epoch
+    learning_rate = 0.5     if 100 <= epoch < 200
+    learning_rate = 0.1     if 200 <= epoch
     ...
 
 
@@ -48,7 +48,8 @@ PiecewiseDecay
             loss.backward()
             sgd.step()
             sgd.clear_gradients()
-        scheduler.step()
+            scheduler.step()    # If you update learning rate each step
+      # scheduler.step()        # If you update learning rate each epoch
 
     # train on static graph mode
     paddle.enable_static()
@@ -74,7 +75,8 @@ PiecewiseDecay
                     'y': np.random.randn(3, 4, 5).astype('float32')
                 },
                 fetch_list=loss.name)
-        scheduler.step()
+            scheduler.step()    # If you update learning rate each step
+      # scheduler.step()        # If you update learning rate each epoch
 
 .. py:method:: step(epoch=None)
 
