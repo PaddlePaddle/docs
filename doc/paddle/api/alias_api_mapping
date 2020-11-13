@@ -541,3 +541,4 @@ paddle.nn.functional.upsample	paddle.nn.functional.upsample,paddle.nn.functional
 paddle.nn.Upsample	paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
 paddle.nn.UpsamplingBilinear2d	paddle.nn.layer.UpsamplingBilinear2d,paddle.nn.layer.common.UpsamplingBilinear2d
 paddle.nn.UpsamplingNearest2d	paddle.nn.layer.UpsamplingNearest2d,paddle.nn.layer.common.UpsamplingNearest2d
+paddle.nn.initializer.initializer.set_global_initializer	paddle.nn.initializer.set_global_initializer
