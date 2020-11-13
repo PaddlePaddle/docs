@@ -268,7 +268,6 @@ with fluid.dygraph.guard():
 ----------
 
 
-
 ## 参数调整
 
 ##### 问题：如何将本地数据传入`fluid.dygraph.Embedding`的参数矩阵中？
@@ -336,10 +335,10 @@ with fluid.dygraph.guard():
 ```text
 # 执行下方代码后相当于step增加了N x Epoch总数
 for epoch in range(epochs):
-	# 执行下方代码后step相当于自增了N
-	for data in [mini_batch_1,2,3...N]:
-		# 执行下方代码后step += 1
-		exe.run(data)
+    # 执行下方代码后step相当于自增了N
+    for data in [mini_batch_1,2,3...N]:
+        # 执行下方代码后step += 1
+        exe.run(data)
 ```
 
 -----
