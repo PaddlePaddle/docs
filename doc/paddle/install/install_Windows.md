@@ -78,9 +78,6 @@ Windows系统下有2种安装方式：
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
-注：
-
-* `python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html` 此命令将安装支持CUDA 10.2(配合cuDNN v7.4+)的PaddlePaddle。
 
 <a name="check"></a>
 ## 验证安装

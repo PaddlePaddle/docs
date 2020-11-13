@@ -191,7 +191,7 @@ DataLoader（多进程数据集加载）。
     plt.show()
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_01.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_01.png?raw=true
 
 
 4.定义模型
@@ -403,7 +403,7 @@ DataLoader（多进程数据集加载）。
     plt.show()
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_02.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_02.png?raw=true
 
 
 6.2 测试集结果可视化
@@ -438,5 +438,5 @@ DataLoader（多进程数据集加载）。
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_03.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_03.png?raw=true
 

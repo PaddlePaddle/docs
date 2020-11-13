@@ -43,14 +43,16 @@ CosineAnnealingDecay
     scheduler = paddle.optimizer.lr.CosineAnnealingDecay(learning_rate=0.5, T_max=10, verbose=True)
     sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
     for epoch in range(20):
-        for batch_id in range(2):
+        for batch_id in range(5):
             x = paddle.uniform([10, 10])
             out = linear(x)
             loss = paddle.mean(out)
             loss.backward()
             sgd.step()
             sgd.clear_gradients()
-        scheduler.step()
+            scheduler.step()    # If you update learning rate each step
+      # scheduler.step()        # If you update learning rate each epoch
+        
 
     # train on static graph mode
     paddle.enable_static()
@@ -68,7 +70,7 @@ CosineAnnealingDecay
     exe = paddle.static.Executor()
     exe.run(start_prog)
     for epoch in range(20):
-        for batch_id in range(2):
+        for batch_id in range(5):
             out = exe.run(
                 main_prog,
                 feed={
@@ -76,7 +78,8 @@ CosineAnnealingDecay
                     'y': np.random.randn(3, 4, 5).astype('float32')
                 },
                 fetch_list=loss.name)
-        scheduler.step()
+            scheduler.step()    # If you update learning rate each step
+      # scheduler.step()        # If you update learning rate each epoch
 
 .. py:method:: step(epoch=None)
 
