@@ -35,8 +35,6 @@ where
 .. code-block:: python
 
           import paddle
-          import numpy as np
-          import paddle.fluid as fluid
 
           x = paddle.to_tensor([0.9383, 0.1983, 3.2, 1.2])
           y = paddle.to_tensor([1.0, 1.0, 1.0, 1.0])
