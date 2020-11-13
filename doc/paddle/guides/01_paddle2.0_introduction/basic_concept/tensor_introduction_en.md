@@ -18,12 +18,8 @@ rank_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
 print(rank_1_tensor)
 ```
 ```text
-Tensor: generated_tensor_1
-  - place: CUDAPlace(0)
-  - shape: [3]
-  - layout: NCHW
-  - dtype: double
-  - data: [2.0, 3.0, 4.0]
+Tensor(shape=[3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+       [2., 3., 4.])
 ```
 
 Specifically, if you imput only a scalar data (for example, float/int/bool), then a **Tensor** whose shape is [1]will be created.
@@ -33,12 +29,8 @@ paddle.to_tensor([2])
 ```
 The above two are completely the same, Tensor shape is [1]:
 ```text
-Tensor: generated_tensor_0
-  - place: CUDAPlace(0)
-  - shape: [1]
-  - layout: NCHW
-  - dtype: int32_t
-  - data: [2]
+Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+       [2])
 ```
 
 ### 2. create **2-D Tensor** like matrix, whose rank is 2
@@ -48,12 +40,9 @@ rank_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
 print(rank_2_tensor)
 ```
 ```text
-Tensor: generated_tensor_2
-  - place: CUDAPlace(0)
-  - shape: [2, 3]
-  - layout: NCHW
-  - dtype: double
-  - data: [1.0 2.0 3.0 4.0 5.0 6.0]
+Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+       [[1., 2., 3.],
+        [4., 5., 6.]])
 ```
 
 ### 3. Similarly, you can create multidimensional Tensor whose rank is 3, 4... N
@@ -66,16 +55,16 @@ rank_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
 print(rank_3_tensor)
 ```
 ```text
-Tensor: generated_tensor_3
-  - place: CUDAPlace(0)
-  - shape: [2, 2, 5]
-  - layout: NCHW
-  - dtype: double
-  - data: [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20]
+Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+       [[[1, 2, 3, 4, 5],
+         [ 6,  7,  8,  9, 10]],
+
+        [[11, 12, 13, 14, 15],
+         [16, 17, 18, 19, 20]]])
 ```
 The visual representation of the **Tensor* above is:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800" ></center>
 <br><center>Figure1. Visual representation of Tensor with different ranks</center>
 
 
@@ -84,8 +73,8 @@ You can convert **Tensor** to Numpy array easily Tensor.numpy() method.
 print(rank_2_tensor.numpy())
 ```
 ```text
-array([[1.0, 2.0, 3.0],
-       [4.0, 5.0, 6.0]], dtype=float32)
+array([[1., 2., 3.],
+       [4., 5., 6.]], dtype=float32)
 ```
 
 **Tensor supports not only floats and ints but also complex Numbers data:
@@ -109,7 +98,7 @@ CompleTensor[imag]: generated_tensor_0.real
 ```
 If the input data contains complex Number, a **ComplexTensor** is automatically created. **ComplexTensor** is a special data structure in Paddle. **ComplexTensor** consists of two **Tensor**, one is real part and the other is  imaginary part. **ComplexTensor** can be visualized as follows:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="800" ></center>
 <br><center>Figure2. Visual representation of ComplexTensor</center>
 
 **Tensor** must be "rectangular" -- that is, along each axis, every element is the same size. For example:
@@ -162,7 +151,7 @@ Let we create a 4-D **Tensor**, and visualize it to represents the relationship 
 rank_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="800" ></center>
 <br><center>Figure3. The relationship between Tensor shape, axis, dimension and rank</center>
 
 ```python
@@ -275,8 +264,8 @@ print(cpu_tensor)
 ```
 
 ```text
-Tensor: generated_tensor_0
-  - place: CPUPlace
+Tensor(shape=[1], dtype=int64, place=CPUPlace, stop_gradient=True,
+       [1])
 ```
 
 * **Create Tensor on CPU**:
@@ -286,8 +275,8 @@ print(gpu_tensor)
 ```
 
 ```text
-Tensor: generated_tensor_0
-  - place: CUDAPlace(0)
+Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+       [1])
 ```
 
 * **Create Tensor on pinned memory**:
@@ -296,8 +285,8 @@ pin_memory_tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
 print(pin_memory_tensor)
 ```
 ```text
-Tensor: generated_tensor_0
-  - place: CUDAPinnedPlace
+Tensor(shape=[1], dtype=int64, place=CUDAPinnedPlace, stop_gradient=True,
+       [1])
 
 ```
 ### name of Tensor
@@ -337,7 +326,7 @@ print("Interval of 3:", rank_1_tensor[::3].numpy())
 print("Reverse:", rank_1_tensor[::-1].numpy())
 ```
 ```text
-Origin Tensor: array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype=int64)
+Origin Tensor: [0 1 2 3 4 5 6 7 8])
 First element: [0]
 Last element: [8]
 All element: [0 1 2 3 4 5 6 7 8]
@@ -411,26 +400,21 @@ x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 443370
 In addition, Paddle provides rich Tensor operating APIs, including mathematical operators, logical operators, linear algebra operators and so on. The total number is more than 100 kinds. For example:
 
 ```python
-x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]])
-y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]])
+x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]], dtype="float64")
+y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]], dtype="float64")
 
 print(paddle.add(x, y), "\n")
 print(x.add(y), "\n")
 ```
-```text
-Tensor: eager_tmp_2
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
 
-Tensor: eager_tmp_3
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [6.6 8.8 11 13.2]
+```text
+Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+       [[6.60000000, 8.80000000],
+        [        11., 13.20000000]])
+
+Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+       [[6.60000000, 8.80000000],
+        [        11., 13.20000000]])
 ```
 
 It can be seen that Tensor class method has the same result with Paddle API. And the Tensor class method is more convenient to invoke.
@@ -516,4 +500,4 @@ x.matmul(y)                   #Matrix multiplication
 ```
 It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.And dd(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
 
-For more API related to Tensor operations, please refer to [class paddle.Tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/creation/Tensor_cn.html)
+For more API related to Tensor operations, please refer to [class paddle.Tensor]((../../../api/paddle/tensor/creation/Tensor_cn.html))

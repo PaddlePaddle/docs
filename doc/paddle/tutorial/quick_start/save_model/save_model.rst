@@ -1,14 +1,14 @@
 模型保存及加载
 ==============
 
-本教程将基于Paddle高阶API对模型参数的保存和加载进行讲解。在日常训练模型过程中我们会遇到一些突发情况，导致训练过程主动或被动的中断，因此在模型没有完全训练好的情况下，我们需要高频的保存下模型参数，在发生意外时可以快速载入保存的参数继续训练。抑或是模型已经训练好了，我们需要使用训练好的参数进行预测或部署模型上线。面对上述情况，Paddle中提供了保存模型和提取模型的方法，支持从上一次保存状态开始训练，只要我们随时保存训练过程中的模型状态，就不用从初始状态重新训练。
+本教程将基于Paddle高阶API对模型参数的保存和加载进行讲解。在日常训练模型过程中我们会遇到一些突发情况，导致训练过程主动或被动的中断，因此在模型没有完全训练好的情况下，我们需要高频的保存下模型参数，在发生意外时可以快速载入保存的参数继续训练；抑或是模型已经训练好了，我们需要使用训练好的参数进行预测或部署模型上线。面对上述情况，Paddle中提供了保存模型和提取模型的方法，支持从上一次保存状态开始训练，只要我们随时保存训练过程中的模型状态，就不用从初始状态重新训练。
 下面将基于手写数字识别的模型讲解paddle如何保存及加载模型，并恢复训练，网络结构部分的讲解省略。
 
 环境
 ----
 
-本教程基于paddle-2.0Beta编写，如果您的环境不是此版本，请先安装paddle-2.0Beta版本，使用命令：pip3
-install paddlepaddle==2.0Beta。
+本教程基于paddle-2.0rc版编写，如果您的环境不是此版本，请先安装paddle-2.0rc版本，使用命令：pip3
+install paddlepaddle==2.0.0-rc0
 
 .. code:: ipython3
 
@@ -17,16 +17,15 @@ install paddlepaddle==2.0Beta。
     from paddle.nn import Layer
     from paddle.vision.datasets import MNIST
     from paddle.metric import Accuracy
-    from paddle.nn import Conv2d,MaxPool2d,Linear
+    from paddle.nn import Conv2D,MaxPool2D,Linear
     from paddle.static import InputSpec
     
     print(paddle.__version__)
-    paddle.disable_static()
 
 
 .. parsed-literal::
 
-    2.0.0-beta0
+    2.0.0-rc0
 
 
 数据集
@@ -49,10 +48,10 @@ import MNIST 引入即可。
     class MyModel(Layer):
         def __init__(self):
             super(MyModel, self).__init__()
-            self.conv1 = paddle.nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
-            self.max_pool1 = MaxPool2d(kernel_size=2, stride=2)
-            self.conv2 = Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1)
-            self.max_pool2 = MaxPool2d(kernel_size=2, stride=2)
+            self.conv1 = paddle.nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
+            self.max_pool1 = MaxPool2D(kernel_size=2, stride=2)
+            self.conv2 = Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
+            self.max_pool2 = MaxPool2D(kernel_size=2, stride=2)
             self.linear1 = Linear(in_features=16*5*5, out_features=120)
             self.linear2 = Linear(in_features=120, out_features=84)
             self.linear3 = Linear(in_features=84, out_features=10)
@@ -70,7 +69,6 @@ import MNIST 引入即可。
             x = self.linear2(x)
             x = F.relu(x)
             x = self.linear3(x)
-            x = F.softmax(x)
             return x
 
 模型训练
@@ -88,35 +86,37 @@ import MNIST 引入即可。
     
     model.prepare(
         optim,
-        paddle.nn.loss.CrossEntropyLoss(),
+        paddle.nn.CrossEntropyLoss(),
         Accuracy(topk=(1, 2))
         )
     model.fit(train_dataset,
             test_dataset,
-            epochs=1,
-            log_freq=100,
+            epochs=3,
             batch_size=64,
-            save_dir='mnist_checkpoint')
-
+            save_dir='mnist_checkpoint',
+            verbose=1
+            )
 
 
 .. parsed-literal::
 
-    Epoch 1/1
-    step 100/938 - loss: 1.6177 - acc_top1: 0.6119 - acc_top2: 0.6813 - 15ms/step
-    step 200/938 - loss: 1.7720 - acc_top1: 0.7230 - acc_top2: 0.7788 - 15ms/step
-    step 300/938 - loss: 1.6114 - acc_top1: 0.7666 - acc_top2: 0.8164 - 15ms/step
-    step 400/938 - loss: 1.6537 - acc_top1: 0.7890 - acc_top2: 0.8350 - 15ms/step
-    step 500/938 - loss: 1.5229 - acc_top1: 0.8170 - acc_top2: 0.8619 - 15ms/step
-    step 600/938 - loss: 1.5269 - acc_top1: 0.8391 - acc_top2: 0.8821 - 15ms/step
-    step 700/938 - loss: 1.4821 - acc_top1: 0.8561 - acc_top2: 0.8970 - 15ms/step
-    step 800/938 - loss: 1.4860 - acc_top1: 0.8689 - acc_top2: 0.9081 - 15ms/step
-    step 900/938 - loss: 1.5032 - acc_top1: 0.8799 - acc_top2: 0.9174 - 15ms/step
-    step 938/938 - loss: 1.4617 - acc_top1: 0.8835 - acc_top2: 0.9203 - 15ms/step
+    Epoch 1/3
+    step 938/938 [==============================] - loss: 0.1555 - acc_top1: 0.8947 - acc_top2: 0.9496 - 16ms/step          
     save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/0
     Eval begin...
-    step 100/157 - loss: 1.4765 - acc_top1: 0.9636 - acc_top2: 0.9891 - 6ms/step
-    step 157/157 - loss: 1.4612 - acc_top1: 0.9705 - acc_top2: 0.9910 - 6ms/step
+    step 157/157 [==============================] - loss: 0.0105 - acc_top1: 0.9535 - acc_top2: 0.9807 - 6ms/step          
+    Eval samples: 10000
+    Epoch 2/3
+    step 938/938 [==============================] - loss: 0.0143 - acc_top1: 0.9689 - acc_top2: 0.9909 - 16ms/step          
+    save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/1
+    Eval begin...
+    step 157/157 [==============================] - loss: 0.0101 - acc_top1: 0.9733 - acc_top2: 0.9934 - 6ms/step          
+    Eval samples: 10000
+    Epoch 3/3
+    step 938/938 [==============================] - loss: 0.0083 - acc_top1: 0.9796 - acc_top2: 0.9951 - 16ms/step          
+    save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/2
+    Eval begin...
+    step 157/157 [==============================] - loss: 0.0276 - acc_top1: 0.9761 - acc_top2: 0.9934 - 6ms/step             
     Eval samples: 10000
     save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/final
 
@@ -127,8 +127,8 @@ import MNIST 引入即可。
 目前Paddle框架有三种保存模型参数的体系，分别是： #### paddle
 高阶API-模型参数保存 \* paddle.Model.fit \* paddle.Model.save ####
 paddle 基础框架-动态图-模型参数保存 \* paddle.save #### paddle
-基础框架-静态图-模型参数保存 \* paddle.static.save \*
-paddle.static.save_inference_model
+基础框架-静态图-模型参数保存 \* paddle.io.save \*
+paddle.io.save_inference_model
 
 下面将基于高阶API对模型保存与加载的方法进行讲解。
 
@@ -168,8 +168,8 @@ paddle.static.save_inference_model
 当恢复训练状态时，需要加载模型数据，此时我们可以使用加载函数从存储模型状态和优化器状态的文件中载入模型参数和优化器参数，如果不需要恢复优化器，则不必使用优化器状态文件。
 #### 高阶API-模型参数加载 \* paddle.Model.load #### paddle
 基础框架-动态图-模型参数加载 \* paddle.load #### paddle
-基础框架-静态图-模型参数加载 \* paddle.static.load \*
-paddle.static.load_inference_model
+基础框架-静态图-模型参数加载 \* paddle.io.load \*
+paddle.io.load_inference_model
 
 下面将对高阶API的模型参数加载方法进行讲解 \* model.load(self, path,
 skip_mismatch=False, reset_optimizer=False)
@@ -221,42 +221,22 @@ model.load能够同时加载模型和优化器参数。通过reset_optimizer参�
     model.fit(train_data=train_dataset,
             eval_data=test_dataset,
             batch_size=64,
-            log_freq=100,
-            epochs=2
+            epochs=2,
+            verbose=1
             )
 
 
 .. parsed-literal::
 
     Epoch 1/2
-    step 100/938 - loss: 1.4635 - acc_top1: 0.9650 - acc_top2: 0.9898 - 15ms/step
-    step 200/938 - loss: 1.5459 - acc_top1: 0.9659 - acc_top2: 0.9897 - 15ms/step
-    step 300/938 - loss: 1.5109 - acc_top1: 0.9658 - acc_top2: 0.9893 - 15ms/step
-    step 400/938 - loss: 1.4797 - acc_top1: 0.9664 - acc_top2: 0.9899 - 15ms/step
-    step 500/938 - loss: 1.4786 - acc_top1: 0.9673 - acc_top2: 0.9902 - 15ms/step
-    step 600/938 - loss: 1.5082 - acc_top1: 0.9679 - acc_top2: 0.9906 - 15ms/step
-    step 700/938 - loss: 1.4768 - acc_top1: 0.9687 - acc_top2: 0.9909 - 15ms/step
-    step 800/938 - loss: 1.4638 - acc_top1: 0.9696 - acc_top2: 0.9913 - 15ms/step
-    step 900/938 - loss: 1.5058 - acc_top1: 0.9704 - acc_top2: 0.9916 - 15ms/step
-    step 938/938 - loss: 1.4702 - acc_top1: 0.9708 - acc_top2: 0.9917 - 15ms/step
+    step 938/938 [==============================] - loss: 0.0046 - acc_top1: 0.9768 - acc_top2: 0.9943 - 18ms/step          
     Eval begin...
-    step 100/157 - loss: 1.4613 - acc_top1: 0.9755 - acc_top2: 0.9944 - 5ms/step
-    step 157/157 - loss: 1.4612 - acc_top1: 0.9805 - acc_top2: 0.9956 - 5ms/step
+    step 157/157 [==============================] - loss: 0.0012 - acc_top1: 0.9789 - acc_top2: 0.9934 - 6ms/step          
     Eval samples: 10000
     Epoch 2/2
-    step 100/938 - loss: 1.4832 - acc_top1: 0.9789 - acc_top2: 0.9927 - 15ms/step
-    step 200/938 - loss: 1.4618 - acc_top1: 0.9779 - acc_top2: 0.9932 - 14ms/step
-    step 300/938 - loss: 1.4613 - acc_top1: 0.9779 - acc_top2: 0.9929 - 15ms/step
-    step 400/938 - loss: 1.4765 - acc_top1: 0.9772 - acc_top2: 0.9932 - 15ms/step
-    step 500/938 - loss: 1.4932 - acc_top1: 0.9775 - acc_top2: 0.9934 - 15ms/step
-    step 600/938 - loss: 1.4773 - acc_top1: 0.9773 - acc_top2: 0.9936 - 15ms/step
-    step 700/938 - loss: 1.4612 - acc_top1: 0.9783 - acc_top2: 0.9939 - 15ms/step
-    step 800/938 - loss: 1.4653 - acc_top1: 0.9779 - acc_top2: 0.9939 - 15ms/step
-    step 900/938 - loss: 1.4639 - acc_top1: 0.9780 - acc_top2: 0.9939 - 15ms/step
-    step 938/938 - loss: 1.4678 - acc_top1: 0.9779 - acc_top2: 0.9937 - 15ms/step
+    step 938/938 [==============================] - loss: 0.0063 - acc_top1: 0.9845 - acc_top2: 0.9965 - 18ms/step          
     Eval begin...
-    step 100/157 - loss: 1.4612 - acc_top1: 0.9733 - acc_top2: 0.9945 - 6ms/step
-    step 157/157 - loss: 1.4612 - acc_top1: 0.9778 - acc_top2: 0.9952 - 6ms/step
+    step 157/157 [==============================] - loss: 0.0014 - acc_top1: 0.9848 - acc_top2: 0.9964 - 6ms/step             
     Eval samples: 10000
 
 

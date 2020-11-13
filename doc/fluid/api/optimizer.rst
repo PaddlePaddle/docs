@@ -6,7 +6,6 @@ paddle.optimizer
     :maxdepth: 1
 
     optimizer/Adadelta.rst
-    optimizer/AdadeltaOptimizer.rst
     optimizer/Adagrad.rst
     optimizer/AdagradOptimizer.rst
     optimizer/Adam.rst
@@ -26,11 +25,9 @@ paddle.optimizer
     optimizer/LookaheadOptimizer.rst
     optimizer/ModelAverage.rst
     optimizer/Momentum.rst
-    optimizer/MomentumOptimizer.rst
     optimizer/RecomputeOptimizer.rst
     optimizer/RMSProp.rst
     optimizer/SGD.rst
-    optimizer/SGDOptimizer.rst
     optimizer/Optimizer.rst
     optimizer/NoamLR.rst
     optimizer/PiecewiseLR.rst

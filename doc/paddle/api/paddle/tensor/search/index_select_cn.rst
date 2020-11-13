@@ -26,7 +26,6 @@ index_select
         import paddle
         import numpy as np
 
-        paddle.disable_static()  # Now we are in imperative mode
         data = np.array([[1.0, 2.0, 3.0, 4.0],
                          [5.0, 6.0, 7.0, 8.0],
                          [9.0, 10.0, 11.0, 12.0]])

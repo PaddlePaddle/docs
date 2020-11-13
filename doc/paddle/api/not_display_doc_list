@@ -1,4 +1,5 @@
 paddle.incubate
 paddle.hapi.progressbar.ProgressBar
 paddle.fluid.contrib
-paddle.optimizer._LRScheduler
+paddle.reader
+paddle.dataset

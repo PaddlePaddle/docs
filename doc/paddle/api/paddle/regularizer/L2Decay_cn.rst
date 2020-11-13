@@ -53,11 +53,11 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
     # Example2: set Regularizer in parameters
     # Set L2 regularization in parameters.
     # Global regularizer does not take effect on my_conv2d for this case.
-    from paddle.nn import Conv2d
+    from paddle.nn import Conv2D
     from paddle import ParamAttr
     from paddle.regularizer import L2Decay
 
-    my_conv2d = Conv2d(
+    my_conv2d = Conv2D(
             in_channels=10,
             out_channels=10,
             kernel_size=1,
