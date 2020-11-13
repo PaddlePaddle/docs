@@ -76,7 +76,7 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ##### 问题：如何不训练某层的权重？
 
-+ 答复：在`ParamAttr`里设置learning_rate=0。
++ 答复：在`ParamAttr`里设置learning_rate=0或trainable设置为False。具体请参考文档：https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/ParamAttr_cn.html#paramattr
 
 ----------
 
@@ -124,15 +124,6 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ----------
 
-##### 问题：训练过程中提示显存不足，报错 `Error：Out of memory error GPU`，如何处理？
-
-+ 答复：这是一种常见情况，可以先检查一下GPU卡是否被其他程序占用，你可以尝试调整`batch_size`大小，也可以更改网络模型，或者参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 。建议用户使用[AI Studio 学习与 实训社区训练](https://aistudio.baidu.com/aistudio/index)，获取免费GPU算力，显存16GB的v100，速度更快。
-+ 报错分析：PaddlePaddle安装版本和多卡训练不匹配导致。
-
-+ 解决方法：排查当前安装的PaddlePaddle是否支持并行训练。如果是开发者编译的Paddle，请在编译时打开 `WITH_DISTRIBUTE`选项。
-
-----------
-
 ##### 问题：训练时报错提示显存不足，如何解决？
 
 + 答复：可以尝试按如下方法解决：
@@ -160,17 +151,6 @@ export FLAGS_fraction_of_gpu_memory_to_use=0`
 
 + 答复：有如下两点建议：
 
-  1. 如果数据预处理耗时较长，可使用[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)加速；该API提供了多进程的异步加载支持，在静态图与动态图下均可使用，也是paddle后续主推的数据读取方式。用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
-
-  2. 如果GPU显存没满，且数据读取不是性能瓶颈，可以增加`batch_size`，但是注意调节其他超参数。
-
-  以上两点均为比较通用的方案，其他的优化方案和模型相关，可参考相应models示例。
-
-----------
-
-##### 问题：使用CPU或GPU时，如何设置`num_threds`？
-
-+ 答复：可以通过`os.getenv("CPU_NUM")`获取相关参数值或者`os.environ['CPU_NUM'] = str(2)`设置相关参数值。
   1. 如果数据预处理耗时较长，可使用DataLoader加速数据读取过程，具体请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
 
   2. 如果提高GPU计算量，可以增大`batch_size`，但是注意同时调节其他超参数以确保训练配置的正确性。
@@ -179,7 +159,7 @@ export FLAGS_fraction_of_gpu_memory_to_use=0`
 
 ----------
 
-##### 问题：如何处理变长ID导致程序显存占用过大的问题？
+##### 问题：如何处理变长ID导致程序内存占用过大的问题？
 
 + 答复：请先参考[显存分配与优化文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.5/advanced_usage/best_practice/memory_optimize.html) 开启存储优化开关，包括显存垃圾及时回收和Op内部的输出复用输入等。若存储空间仍然不够，建议：
 
@@ -255,11 +235,6 @@ with fluid.dygraph.guard():
 
 -----
 
-##### 问题：增量训练中，如何保存模型和恢复训练？
-
-+ 答复：在增量训练过程中，不仅需要保存模型的参数，也需要保存模型训练的状态（如learning_rate）。使用[save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/save_cn.html#save)保存模型训练的参数和状态；恢复训练时，使用[load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/load_cn.html#load)进行恢复训练。
-
-----------
 
 ##### 问题：训练后的模型很大，如何压缩？
 
@@ -282,11 +257,6 @@ with fluid.dygraph.guard():
 
 ----------
 
-##### 问题：如何修改全连接层参数，如：weights、bias、optimizer.SGD？
-
-+ 答复：可以通过`param_attr`设置参数的属性，`fluid.ParamAttr( initializer=fluid.initializer.Normal(0.0, 0.02), learning_rate=2.0)`，如果`learning_rate`设置为0，该层就不参与训练。手动输入参数也可以实现，但是会比较麻烦。
-
-----------
 
 ##### 问题：使用optimizer或ParamAttr设置的正则化和学习率，二者什么差异？
 
