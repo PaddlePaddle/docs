@@ -39,7 +39,7 @@ Object，一个可以在paddle中使用的对象实例
     layer_state_dict = emb.state_dict()
     paddle.save(layer_state_dict, "emb.pdparams")
 
-    scheduler = paddle.optimizer.lr_scheduler.NoamLR(
+    scheduler = paddle.optimizer.lr.NoamDecay(
         d_model=0.01, warmup_steps=100, verbose=True)
     adam = paddle.optimizer.Adam(
         learning_rate=scheduler,
