@@ -34,8 +34,6 @@ Object，一个可以在paddle中使用的对象实例
 .. code-block:: python
 
     import paddle
-            
-    paddle.disable_static()
 
     emb = paddle.nn.Embedding(10, 10)
     layer_state_dict = emb.state_dict()
