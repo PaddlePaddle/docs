@@ -23,7 +23,6 @@ empty
     import paddle
     import numpy as np
 
-    paddle.disable_static()   # Now we are in imperative mode
     paddle.set_device("cpu")  # and use cpu device
 
     # example 1: argument ``shape`` is a list which doesn't contain Tensor.

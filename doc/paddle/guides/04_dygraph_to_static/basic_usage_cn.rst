@@ -86,6 +86,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 接下来是TracedLayer如何存储模型：
 
 .. code-block:: python
+
     import paddle
     from paddle.jit import TracedLayer
 
