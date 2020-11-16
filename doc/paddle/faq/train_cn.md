@@ -76,7 +76,7 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ##### 问题：如何不训练某层的权重？
 
-+ 答复：在`ParamAttr`里设置learning_rate=0。
++ 答复：在`ParamAttr`里设置learning_rate=0或trainable设置为False。具体请参考文档：https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/ParamAttr_cn.html#paramattr
 
 ----------
 
@@ -118,9 +118,9 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-13d1b5df218cb40b0243d13450ab667f34aee2f7)
 
-+ 报错分析：PaddlePaddle安装版本和多卡训练不匹配导致。
++ 报错分析：主进程发现一号卡（逻辑）上的训练进程退出了。
 
-+ 解决方法：排查当前安装的PaddlePaddle是否支持并行训练。如果是开发者编译的Paddle，请在编译时打开 `WITH_DISTRIBUTE`选项。
++ 解决方法：查看一号卡上的日志，找出具体的出错原因。`paddle.distributed.launch` 启动多卡训练时，设置 `--log_dir` 参数会将每张卡的日志保存在设置的文件夹下。
 
 ----------
 
@@ -184,7 +184,7 @@ export FLAGS_fraction_of_gpu_memory_to_use=0`
 
 ##### 问题：Loss为NaN，如何处理？
 
-+ 答复：可能是网络设计存在问题，Loss过大（Loss为NaN）会导致梯度爆炸。如果没有改网络结构，但是出现了NaN，可能是数据读取导致，比如标签对应关系错误。
++ 答复：可能由于网络的设计问题，Loss过大（Loss为NaN）会导致梯度爆炸。如果没有改网络结构，但是出现了NaN，可能是数据读取导致，比如标签对应关系错误。还可以检查下网络中是否会出现除0，log0的操作等。
 
 ----------
 
@@ -229,24 +229,18 @@ with fluid.dygraph.guard():
 - [save_dygraph](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/save_dygraph_cn.html#save-dygraph)
 - [load_dygraph](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/load_dygraph_cn.html#load-dygraph)
 
-----------
+![](https://ai-studio-static-online.cdn.bcebos.com/aba33440dd194ea397528f06bcb3574bddcf496b679b4da2832955b71cf65c76)
+
+* 答复：报错是由于没有安装GPU版本的PaddlePaddle，CPU版本默认不包含CUDA检测功能。使用`pip install paddlepaddle-gpu -U` 即可。
+
+-----
+
 
 ##### 问题：训练后的模型很大，如何压缩？
 
 + 答复：建议您使用飞桨模型压缩工具[PaddleSlim](https://www.paddlepaddle.org.cn/tutorials/projectdetail/489539)。PaddleSlim是飞桨开源的模型压缩工具库，包含模型剪裁、定点量化、知识蒸馏、超参搜索和模型结构搜索等一系列模型压缩策略，专注于**模型小型化技术**。
 
 ----------
-
-
-
-## 应用预测
-
-##### 问题：load_inference_model在加载预测模型时能否用py_reader读取？
-
-+ 答复：目前`load_inference_model`加载进行的模型还不支持py_reader输入。
-
-----------
-
 
 
 ## 参数调整
@@ -263,15 +257,10 @@ with fluid.dygraph.guard():
 
 ----------
 
-##### 问题：如何修改全连接层参数，如：weights、bias、optimizer.SGD？
-
-+ 答复：可以通过`param_attr`设置参数的属性，`fluid.ParamAttr( initializer=fluid.initializer.Normal(0.0, 0.02), learning_rate=2.0)`，如果`learning_rate`设置为0，该层就不参与训练。手动输入参数也可以实现，但是会比较麻烦。
-
-----------
 
 ##### 问题：使用optimizer或ParamAttr设置的正则化和学习率，二者什么差异？
 
-+ 答复：ParamAttr中定义的`regularizer`优先级更高。若ParamAttr中定义了`regularizer`，则忽略Optimizer中的`regularizer`；否则，则使用Optimizer中的`regularizer`。学习率的设置也可以参考此方式。
++ 答复：ParamAttr中定义的`regularizer`优先级更高。若ParamAttr中定义了`regularizer`，则忽略Optimizer中的`regularizer`；否则，则使用Optimizer中的`regularizer`。ParamAttr中的学习率默认为1，在对参数优化时，最终的学习率等于optimizer的学习率乘以ParamAttr的学习率。
 
 ----------
 
@@ -295,12 +284,46 @@ with fluid.dygraph.guard():
 
 + 错误分析：必选参数缺失导致。
 
-+ 答复：飞桨框架1.7版本之后需要在optimizer的设置中加入必选项`param_list`。
++ 答复：飞桨框架1.7版本之后，动态图模式下，需要在optimizer的设置中加入必选项`parameter_list`。
 
 ----------
 
 ##### 问题：`fluid.layer.pool2d`的全局池化参数和设置参数有关系么？
 
 + 答复：如果设置`global_pooling`，则设置的`pool_size`将忽略，不会产生影响。
+
+----------
+
+##### 问题：训练的step在参数优化器中是如何变化的？
+
+<img src="https://ai-studio-static-online.cdn.bcebos.com/610cd445435e40e1b1d8a4944a7448c35d89ea33ab364ad8b6804b8dd947e88c" style="zoom: 50%;" />
+
+* 答复：
+
+  `step`表示的是经历了多少组mini_batch，其统计方法为`exe.run`(对应Program)运行的当前次数，即每运行一次`exe.run`，step加1。举例代码如下：
+
+```text
+# 执行下方代码后相当于step增加了N x Epoch总数
+for epoch in range(epochs):
+    # 执行下方代码后step相当于自增了N
+    for data in [mini_batch_1,2,3...N]:
+        # 执行下方代码后step += 1
+        exe.run(data)
+```
+
+-----
+
+
+##### 问题：如何修改全连接层参数，比如weight，bias？
+
++ 答复：可以通过`param_attr`设置参数的属性，`fluid.ParamAttr( initializer=fluid.initializer.Normal(0.0, 0.02), learning_rate=2.0)`，如果`learning_rate`设置为0，该层就不参与训练。也可以构造一个numpy数据，使用`fluid.initializer.NumpyArrayInitializer`来给权重设置想要的值。
+
+----------
+
+## 应用预测
+
+##### 问题：load_inference_model在加载预测模型时能否用py_reader读取？
+
++ 答复：目前`load_inference_model`加载进行的模型还不支持py_reader输入。
 
 ----------
