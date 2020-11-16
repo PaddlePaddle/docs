@@ -43,7 +43,7 @@ multiply
         - **name** （string，可选）- 输出的名字。默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
 
-返回：        维度与 ``x`` 相同的 ``Tensor`` 或 ``LoDTensor`` ，数据类型与 ``x`` 相同。
+返回：        维度与 ``x`` 相同的 ``Tensor`` ，数据类型与 ``x`` 相同。
 
 返回类型：        Tensor。
 
@@ -53,7 +53,7 @@ multiply
 
     import paddle
     import numpy as np
-    paddle.enable_imperative()
+
     x_data = np.array([[1, 2], [3, 4]], dtype=np.float32)
     y_data = np.array([[5, 6], [7, 8]], dtype=np.float32)
     x = paddle.to_tensor(x_data)
