@@ -3,7 +3,7 @@
 multiply
 -------------------------------
 
-.. py:function:: paddle.multiply(x, y, axis=-1, name=None)
+.. py:function:: paddle.multiply(x, y, name=None)
 
 
 
@@ -24,8 +24,6 @@ multiply
 
 对于情况2:
         1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
-        2. 如果 ``axis`` 为-1（默认值），则 :math:`axis= rank(X)-rank(Y)` 。
-        3. 考虑到子序列， :math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 
@@ -39,15 +37,15 @@ multiply
         shape(X) = (2, 3, 4, 5), shape(Y) = (2, 1), with axis=0
 
 参数：
-        - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` 。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
-        - **y** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor`` 。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
+        - **x** （Tensor）- 多维 ``Tensor`` 或 ``LoDTensor`` 。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
+        - **y** （Tensor）- 多维 ``Tensor`` 或 ``LoDTensor`` 。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
         - **axis** （int32，可选）-  ``y`` 的维度对应到 ``x`` 维度上时的索引。默认值为 -1。
         - **name** （string，可选）- 输出的名字。默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
 
 返回：        维度与 ``x`` 相同的 ``Tensor`` 或 ``LoDTensor`` ，数据类型与 ``x`` 相同。
 
-返回类型：        Variable。
+返回类型：        Tensor。
 
 **代码示例 1**
 
@@ -58,15 +56,15 @@ multiply
     paddle.enable_imperative()
     x_data = np.array([[1, 2], [3, 4]], dtype=np.float32)
     y_data = np.array([[5, 6], [7, 8]], dtype=np.float32)
-    x = paddle.imperative.to_variable(x_data)
-    y = paddle.imperative.to_variable(y_data)
+    x = paddle.to_tensor(x_data)
+    y = paddle.to_tensor(y_data)
     res = paddle.multiply(x, y)
     print(res.numpy()) # [[5, 12], [21, 32]]
     x_data = np.array([[[1, 2, 3], [1, 2, 3]]], dtype=np.float32)
     y_data = np.array([1, 2], dtype=np.float32)
-    x = paddle.imperative.to_variable(x_data)
-    y = paddle.imperative.to_variable(y_data)
-    res = paddle.multiply(x, y, axis=1)
+    x = paddle.to_tensor(x_data)
+    y = paddle.to_tensor(y_data)
+    res = paddle.multiply(x, y)
     print(res.numpy()) # [[[1, 2, 3], [2, 4, 6]]]
 
 
