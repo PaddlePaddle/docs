@@ -298,7 +298,7 @@ $ python -m paddle.distributed.launch train.py
 
 ##### 基础API场景
 
-如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行3处修改，具体如下：
+如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行5处修改，具体如下：
 
 ```python
 import paddle
