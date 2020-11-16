@@ -235,4 +235,4 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
 
 kwargs 参数的默认值主要用于保存推理模型。在借助 ``paddle.jit.save`` 保存预测模型时，动转静会根据 input_spec 和 kwargs 的默认值保存推理模型和网络参数。因此建议将 kwargs 参数默认值设置为预测时的取值。
 
-更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考 :ref:`user_guide_model_save_load` 。
+更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考 :ref:`cn_doc_model_save_load` 。
