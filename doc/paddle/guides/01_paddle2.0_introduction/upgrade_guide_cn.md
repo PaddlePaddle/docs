@@ -1,4 +1,4 @@
-# 飞桨框架2.0rc升级指南
+# 升级指南
 
 ## 升级概要
 本版本是2.0版的候选发布版本，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
@@ -46,9 +46,10 @@ paddle.to_tensor(np.random.randn(3, 4))
 
 | 目录 | 功能和包含的API |
 | :--- | --------------- |
-| paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor和paddle.framework目录下的所有API |
+| paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor、paddle.framework和paddle.device目录下的所有API |
 | paddle.tensor     | tensor操作相关的API，例如创建 zeros 、矩阵运算 matmul 、变换 concat 、计算 add 、查找 argmax 等。|
 | paddle.framework  | 框架通用API和动态图模式的API，例如 no_grad 、 save 、 load 等。|
+| paddle.device     | 设备管理相关API，比如：set_device， get_device等                |
 | paddle.amp        | paddle自动混合精度策略，包括 auto_cast 、 GradScaler 等。|
 | paddle.callbacks  | paddle日志回调类，包括 ModelCheckpoint 、 ProgBarLogger 等。|
 | paddle.nn         | 组网相关的API，例如 Linear 、卷积 Conv2D 、循环神经网络 LSTM 、损失函数 CrossEntropyLoss 、激活函数 ReLU 等。 |
@@ -58,7 +59,6 @@ paddle.to_tensor(np.random.randn(3, 4))
 | paddle.optimizer.lr  | 学习率衰减相关API，例如 NoamDecay 、 StepDecay 、 PiecewiseDecay 等。|
 | paddle.metric     | 评估指标计算相关的API，比如：Accuracy, Auc等。             |
 | paddle.io         | 数据输入输出相关API，比如：Dataset, DataLoader等 |
-| paddle.device     | 设备管理相关API，比如：CPUPlace， CUDAPlace等                |
 | paddle.distributed      | 分布式相关基础API                                                |
 | paddle.distributed.fleet      | 分布式相关高层API                                         |
 | paddle.vision     | 视觉领域API，例如数据集 Cifar10 、数据处理 ColorJitter 、常用基础网络结构 ResNet 等。|
@@ -67,7 +67,7 @@ paddle.to_tensor(np.random.randn(3, 4))
 ### API别名规则
 
 - 为了方便用户使用，API会在不同的路径下建立别名：
-    - 所有framework, tensor目录下的API，均在paddle根目录建立别名；除少数特殊API外，其他API在paddle根目录下均没有别名。
+    - 所有device, framework, tensor目录下的API，均在paddle根目录建立别名；除少数特殊API外，其他API在paddle根目录下均没有别名。
     - paddle.nn目录下除functional目录以外的所有API，在paddle.nn目录下均有别名；functional目录中的API，在paddle.nn目录下均没有别名。
 - **推荐用户优先使用较短的路径的别名**，比如`paddle.add -> paddle.tensor.add`，推荐优先使用`paddle.add`
 - 以下为一些特殊的别名关系，推荐使用左边的API名称：
@@ -249,7 +249,7 @@ test_dataset = paddle.vision.datasets.MNIST(mode='test')
 lenet = paddle.vision.models.LeNet()
 
 # 加载训练集 batch_size 设为 64
-train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=64, shuffle=True)
+train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
 def train():
     epochs = 2
@@ -257,17 +257,18 @@ def train():
     # 用Adam作为优化函数
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
-            x_data, y_data = data
-            predicts = lenet(x_data)
+            x_data = data[0]
+            y_data = data[1]
+            predicts = lenet(x_data)  
+            acc = paddle.metric.accuracy(predicts, y_data)
             loss = paddle.nn.functional.cross_entropy(predicts, y_data, reduction='mean')
-            acc = paddle.metric.accuracy(predicts, y_data, k=1)
-            avg_acc = paddle.mean(acc)
             loss.backward()
             if batch_id % 100 == 0:
-                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), avg_acc.numpy()))
+                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
             adam.step()
             adam.clear_grad()
-# 启动训练
+
+# 启动训练  
 train()
 ```
 
@@ -297,38 +298,41 @@ $ python -m paddle.distributed.launch train.py
 
 ##### 基础API场景
 
-如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行4处修改，具体如下：
+如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行3处修改，具体如下：
 
 ```python
 import paddle
+# 第1处改动，导入分布式训练所需要的包
 import paddle.distributed as dist
 
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
+lenet = paddle.vision.models.LeNet()
 
 # 加载训练集 batch_size 设为 64
-train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=64, shuffle=True)
+train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
 def train():
-    # 第1处改动，初始化并行环境
+    # 第2处改动，初始化并行环境
     dist.init_parallel_env()
 
-    # 第2处改动，增加paddle.DataParallel封装
-    net = paddle.DataParallel(LeNet())
+    # 第3处改动，增加paddle.DataParallel封装
+    net = paddle.DataParallel(lenet)
     epochs = 2
+    # 第4处改动，修改模型为paddle.DataParallel封装后的名称
     adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=net.parameters())
     # 用Adam作为优化函数
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
             y_data = data[1]
+            # 第5处改动，修改模型为paddle.DataParallel封装后的名称
             predicts = net(x_data)  
-            acc = paddle.metric.accuracy(predicts, y_data, k=2)
-            avg_acc = paddle.mean(acc)
-            loss = paddle.nn.functional.cross_entropy(predicts, y_data)
-            avg_loss.backward()
+            acc = paddle.metric.accuracy(predicts, y_data)
+            loss = paddle.nn.functional.cross_entropy(predicts, y_data, reduction='mean')
+            loss.backward()
             if batch_id % 100 == 0:
-                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, avg_loss.numpy(), avg_acc.numpy()))
+                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
             adam.step()
             adam.clear_grad()
 
@@ -338,9 +342,9 @@ train()
 
 修改完后保存文件，然后使用跟高层API相同的启动方式即可
 
+**注意：** 单卡训练不支持调用 ``init_parallel_env``，请使用以下几种方式进行分布式训练。
+
 ```bash
-# 单机单卡启动，默认使用第0号卡
-$ python train.py
 
 # 单机多卡启动，默认使用当前可见的所有卡
 $ python -m paddle.distributed.launch train.py
