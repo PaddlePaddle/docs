@@ -6,15 +6,15 @@
 一、简介
 ##################
 
-ONNX (Open Neural Network Exchange) 是一种针对机器学习所设计的开源文件格式，用于存储训练好的模型，它使得不同的人工智能框架可以采用相同格式存储模型并交互，通过 ``ONNX`` 格式，Paddle 模型可以使用OpenVINO、ONNX Runtime等框架进行推理。Paddle转ONNX协议由 `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 实现，可用于图像分类、检测、分割等类型的转换，同时也在持续探索NLP类模型的转换。下面介绍如何将Paddle模型转换为ONNX模型并验证正确性:
+ONNX (Open Neural Network Exchange) 是针对机器学习所设计的开源文件格式，用于存储训练好的模型，它使得不同的人工智能框架可以采用相同格式存储模型并交互，通过ONNX格式，Paddle 模型可以使用OpenVINO、ONNX Runtime等框架进行推理。Paddle转ONNX协议由 `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 实现，可用于图像分类、检测、分割等类型的转换，同时也在持续探索NLP类模型的转换。下面介绍如何将Paddle模型转换为ONNX模型并验证正确性。
 
-本教程涉及的示例代码 `tutorial <https://github.com/paddlepaddle/paddle2onn/examples/tutorial_dygraph2onnx.py>`_ , 除了Paddle以外，还需安装 `paddle2onnx <https://github.com/paddlepaddle/paddle2onnx>`_ ， `ONNX <https://github.com/onnx/onnx>`_ 和 `ONNX Runtime <https://github.com/microsoft/onnxruntime>`_ ：
+本教程涉及的 `示例代码 <https://github.com/paddlepaddle/paddle2onnx/blob/develop/examples/tutorial_dygraph2onnx.py>`_ ， 除Paddle以外，还需安装以下依赖：
 
 .. code-block:: bash
 
     pip install paddle2onnx onnx onnxruntime 
 
-二、将模型导出为ONNX协议 
+二、模型导出为ONNX协议 
 ##################
 
 2.1 动态图导出ONNX协议
@@ -22,7 +22,7 @@ ONNX (Open Neural Network Exchange) 是一种针对机器学习所设计的开�
 
 Paddle动态图模型转换为ONNX协议，首先会将Paddle的动态图 ``paddle.nn.Layer`` 转换为静态图， 详细原理可以参考 `动态图转静态图 <../04_dygraph_to_static/index_cn.html>`_ ，然后依照ONNX的算子协议，将Paddle的算子一一映射为ONNX的算子。动态图转换ONNX调用 ``paddle.onnx.export()`` 接口即可实现，该接口通过 ``input_spec`` 参数为模型指定输入的形状和数据类型，支持 ``Tensor`` 或 ``InputSpec`` ，其中 ``InputSpec`` 支持动态的shape。
 
-关于 ``paddle.onnx.export`` 接口更详细的使用方法，请参考 `API <../../doc/paddle/api/paddle/onnx/export_cn.rst>`_ 。
+关于 ``paddle.onnx.export`` 接口更详细的使用方法，请参考 `API <../../api/paddle/onnx/export_cn.rst>`_ 。
 
 .. code-block:: python
 
@@ -43,15 +43,15 @@ Paddle动态图模型转换为ONNX协议，首先会将Paddle的动态图 ``padd
     x_spec = InputSpec([None, 784], 'float32', 'x')
     paddle.onnx.export(layer, save_path, input_spec=[x_spec])
 
-2.2 静态图转ONNX协议
+2.2 静态图导出ONNX协议
 ------------
 
-Paddle 2.0以后我们将主推动态图组网方式，如果您的模型来自于旧版本的Paddle，请参考paddle2onnx的 `使用文档 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/README.md>`_ 和 `tutorial <https://github.com/paddlepaddle/paddle2onn/examples/tutorial.ipynb>`_ 。
+Paddle 2.0以后我们将主推动态图组网方式，如果您的模型来自于旧版本的Paddle，请参考paddle2onnx的 `使用文档 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/README.md>`_ 和 `示例 <https://github.com/paddlepaddle/paddle2onnx/blob/develop/examples/tutorial.ipynb>`_ 。
 
 三、ONNX模型的验证
 ##################
 
-ONNX官方工具包提供了API可验证模型的正确性，主要包括两个方面，一个是算子是否符合对应版本的协议，第二个是网络结构是否完整。
+ONNX官方工具包提供了API可验证模型的正确性，主要包括两个方面，一是算子是否符合对应版本的协议，二是网络结构是否完整。
 
 .. code-block:: python
 
@@ -65,7 +65,7 @@ ONNX官方工具包提供了API可验证模型的正确性，主要包括两个�
 
 如果模型检查失败，请到 `Paddle  <https://github.com/PaddlePaddle/Paddle/issues/>`_ 或 `paddle2onnx  <https://github.com/PaddlePaddle/paddle2onnx/issues/>`_ 提出Issue，我们会跟进相应的问题。
 
-四、使用onnxruntime推理ONNX模型 
+四、ONNXRuntime推理
 ##################
 
 .. code-block:: python
