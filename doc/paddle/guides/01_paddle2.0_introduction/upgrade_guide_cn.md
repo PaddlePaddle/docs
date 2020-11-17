@@ -299,7 +299,7 @@ $ python -m paddle.distributed.launch train.py
 
 ##### 基础API场景
 
-如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行5处修改，具体如下：
+如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行3处修改，具体如下：
 
 ```python
 import paddle
@@ -319,17 +319,15 @@ def train():
     dist.init_parallel_env()
 
     # 第3处改动，增加paddle.DataParallel封装
-    net = paddle.DataParallel(lenet)
+    lenet = paddle.DataParallel(lenet)
     epochs = 2
-    # 第4处改动，修改模型为paddle.DataParallel封装后的名称
-    adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=net.parameters())
+    adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=lenet.parameters())
     # 用Adam作为优化函数
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
             y_data = data[1]
-            # 第5处改动，修改模型为paddle.DataParallel封装后的名称
-            predicts = net(x_data)
+            predicts = lenet(x_data)
             acc = paddle.metric.accuracy(predicts, y_data)
             loss = loss_fn(predicts, y_data)
             loss.backward()
@@ -361,20 +359,87 @@ $ python -m paddle.distributed.launch train.py
 
 #### 方式2、spawn启动
 
-launch方式启动训练，以文件为单位启动多进程，需要用户在启动时调用`paddle.distributed.launch`，对于进程的管理要求较高。2.0版本增加了spawn启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。
+launch方式启动训练，以文件为单位启动多进程，需要用户在启动时调用 ``paddle.distributed.launch`` ，对于进程的管理要求较高。飞桨框架2.0版本增加了 ``spawn`` 启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。使用示例如下：
 
-```bash
-# 启动train多进程训练，默认使用所有可见的GPU卡
-if __name__ == '__main__':
-    dist.spawn(train)
+```python
 
-# 启动train函数2个进程训练，默认使用当前可见的前2张卡
-if __name__ == '__main__':
-    dist.spawn(train, nprocs=2)
+    from __future__ import print_function
 
-# 启动train函数2个进程训练，默认使用第4号和第5号卡
-if __name__ == '__main__':
-    dist.spawn(train, nprocs=2, selelcted_gpus='4,5')
+    import paddle
+    import paddle.nn as nn
+    import paddle.optimizer as opt
+    import paddle.distributed as dist
+
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear1 = nn.Linear(10, 10)
+            self._linear2 = nn.Linear(10, 1)
+
+        def forward(self, x):
+            return self._linear2(self._linear1(x))
+
+    def train(print_result=False):
+
+        # 1. 初始化并行训练环境
+        dist.init_parallel_env()
+
+        # 2. 创建并行训练 Layer 和 Optimizer
+        layer = LinearNet()
+        dp_layer = paddle.DataParallel(layer)
+
+        loss_fn = nn.MSELoss()
+        adam = opt.Adam(
+            learning_rate=0.001, parameters=dp_layer.parameters())
+
+        # 3. 运行网络
+        inputs = paddle.randn([10, 10], 'float32')
+        outputs = dp_layer(inputs)
+        labels = paddle.randn([10, 1], 'float32')
+        loss = loss_fn(outputs, labels)
+
+        if print_result is True:
+            print("loss:", loss.numpy())
+
+        loss.backward()
+
+        adam.step()
+        adam.clear_grad()
+
+    # 使用方式1：仅传入训练函数
+    # 适用场景：训练函数不需要任何参数，并且需要使用所有当前可见的GPU设备并行训练
+    if __name__ == '__main__':
+        dist.spawn(train)
+
+    # 使用方式2：传入训练函数和参数
+    # 适用场景：训练函数需要一些参数，并且需要使用所有当前可见的GPU设备并行训练
+    if __name__ == '__main__':
+        dist.spawn(train, args=(True,))
+
+    # 使用方式3：传入训练函数、参数并指定并行进程数
+    # 适用场景：训练函数需要一些参数，并且仅需要使用部分可见的GPU设备并行训练，例如：
+    # 当前机器有8张GPU卡 {0,1,2,3,4,5,6,7}，此时会使用前两张卡 {0,1}；
+    # 或者当前机器通过配置环境变量 CUDA_VISIBLE_DEVICES=4,5,6,7，仅使4张
+    # GPU卡可见，此时会使用可见的前两张卡 {4,5}
+    if __name__ == '__main__':
+        dist.spawn(train, args=(True,), nprocs=2)
+
+    # 使用方式4：传入训练函数、参数、指定进程数并指定当前使用的卡号
+    # 使用场景：训练函数需要一些参数，并且仅需要使用部分可见的GPU设备并行训练，但是
+    # 可能由于权限问题，无权配置当前机器的环境变量，例如：当前机器有8张GPU卡
+    # {0,1,2,3,4,5,6,7}，但你无权配置CUDA_VISIBLE_DEVICES，此时可以通过
+    # 指定参数 selected_gpus 选择希望使用的卡，例如 selected_gpus='4,5'，
+    # 可以指定使用第4号卡和第5号卡
+    if __name__ == '__main__':
+        dist.spawn(train, nprocs=2, selected_gpus='4,5')
+
+    # 使用方式5：指定多卡通信的起始端口
+    # 使用场景：端口建立通信时提示需要重试或者通信建立失败
+    # Paddle默认会通过在当前机器上寻找空闲的端口用于多卡通信，但当机器使用环境
+    # 较为复杂时，程序找到的端口可能不够稳定，此时可以自行指定稳定的空闲起始
+    # 端口以获得更稳定的训练体验
+    if __name__ == '__main__':
+        dist.spawn(train, nprocs=2, started_port=12345)
 ```
 
 ### 模型保存

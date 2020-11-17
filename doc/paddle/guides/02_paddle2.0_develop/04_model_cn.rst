@@ -13,21 +13,19 @@
 +---------------+---------------------------------------------------------------------------+
 | 功能          | API名称                                                                   |
 +===============+===========================================================================+
-| Conv          | Conv1d、Conv2d、Conv3d、ConvTranspose1d、ConvTranspose2d、ConvTranspose3d |
+| Conv          | Conv1D、Conv2D、Conv3D、Conv1DTranspose、Conv2DTranspose、Conv3DTranspose |
 +---------------+---------------------------------------------------------------------------+
-| Pool          | AdaptiveAvgPool1d、AdaptiveAvgPool2d、AdaptiveAvgPool3d、                 |
-|               | AdaptiveMaxPool1d、AdaptiveMaxPool2d、AdaptiveMaxPool3d、                 |
-|               | AvgPool1d、AvgPool2d、AvgPool3d、MaxPool1d、MaxPool2d、MaxPool3d          |
+| Pool          | AdaptiveAvgPool1D、AdaptiveAvgPool2D、AdaptiveAvgPool3D、                 |
+|               | AdaptiveMaxPool1D、AdaptiveMaxPool2D、AdaptiveMaxPool3D、                 |
+|               | AvgPool1D、AvgPool2D、AvgPool3D、MaxPool1D、MaxPool2D、MaxPool3D          |
 +---------------+---------------------------------------------------------------------------+
-| Padding       | ConstantPad1d、ConstantPad2d、ConstantPad3d、Pad2D、ReflectionPad1d、     |
-|               | ReflectionPad2d、ReplicationPad1d、ReplicationPad2d、ReplicationPad3d、   |
-|               | ZeroPad2d                                                                 |
+| Padding       | Pad1d、Pad2D、Pad3d                                                       |
 +---------------+---------------------------------------------------------------------------+
 | Activation    | ELU、GELU、Hardshrink、Hardtanh、HSigmoid、LeakyReLU、LogSigmoid、        |
 |               | LogSoftmax、PReLU、ReLU、ReLU6、SELU、Sigmoid、Softmax、Softplus、        |
 |               | Softshrink、Softsign、Tanh、Tanhshrink                                    |
 +---------------+---------------------------------------------------------------------------+
-| Normlization  | BatchNorm、BatchNorm1d、BatchNorm2d、BatchNorm3d、GroupNorm、InstanceNorm |
+| Normlization  | BatchNorm、BatchNorm1d、BatchNorm2d、BatchNorm3d、GroupNorm、             |
 |               | InstanceNorm1d、InstanceNorm2d、InstanceNorm3d、LayerNorm、SpectralNorm、 |
 |               | SyncBatchNorm                                                             |
 +---------------+---------------------------------------------------------------------------+
