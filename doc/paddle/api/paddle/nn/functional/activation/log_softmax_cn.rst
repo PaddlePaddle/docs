@@ -8,7 +8,10 @@ log_softmax
 
 .. math::
 
-    Out[i, j] = log(softmax(x)) = log(\frac{\exp(X[i, j])}{\sum_j(exp(X[i, j])})
+    \begin{aligned} 
+    log\_softmax[i, j] &= log(softmax(x)) \\
+    &= log(\frac{\exp(X[i, j])}{\sum_j(\exp(X[i, j])})
+    \end{aligned}
 
 参数
 ::::::::::
@@ -28,16 +31,13 @@ log_softmax
 
     import paddle
     import paddle.nn.functional as F
-    import numpy as np
 
-    paddle.disable_static()
-
-    x = np.array([[[-2.0, 3.0, -4.0, 5.0],
-                    [3.0, -4.0, 5.0, -6.0],
-                    [-7.0, -8.0, 8.0, 9.0]],
-                    [[1.0, -2.0, -3.0, 4.0],
-                    [-5.0, 6.0, 7.0, -8.0],
-                    [6.0, 7.0, 8.0, 9.0]]]).astype('float32')
+    x = [[[-2.0, 3.0, -4.0, 5.0],
+            [3.0, -4.0, 5.0, -6.0],
+            [-7.0, -8.0, 8.0, 9.0]],
+            [[1.0, -2.0, -3.0, 4.0],
+            [-5.0, 6.0, 7.0, -8.0],
+            [6.0, 7.0, 8.0, 9.0]]]
     x = paddle.to_tensor(x)
     out1 = F.log_softmax(x)
     out2 = F.log_softmax(x, dtype='float64')

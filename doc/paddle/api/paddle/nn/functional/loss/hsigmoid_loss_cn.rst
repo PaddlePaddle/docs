@@ -30,8 +30,8 @@ hsigmoid_loss
     - **num_classes** (int) - 类别总数(字典大小)必须大于等于2。若使用默认树结构，即当 ``path_table`` 和 ``path_code`` 都为None时 ，必须设置该参数。若使用自定义树结构，即当 ``path_table`` 和 ``path_code`` 都不为None时，它取值应为自定义树结构的非叶节点的个数，用于指定二分类的类别总数。
     - **weight** (Tensor) - 该OP的权重参数。形状为 ``[numclasses-1, D]`` ，数据类型和 ``input`` 相同。
     - **bias** (Tensor, 可选) - 该OP的偏置参数。形状为 ``[numclasses-1, 1]`` ，数据类型和 ``input`` 相同。如果设置为None，将没有偏置参数。默认值为None。
-    - **path_table** (Variable，可选) – 存储每一批样本从类别（单词）到根节点的路径，按照从叶至根方向存储。 数据类型为int64，形状为 ``[N, L]`` ，其中L为路径长度。``path_table`` 和 ``path_code`` 应具有相同的形状, 对于每个样本i，path_table[i]为一个类似np.ndarray的结构，该数组内的每个元素都是其双亲结点权重矩阵的索引。默认值为None。
-    - **path_code** (Variable，可选) – 存储每一批样本从类别（单词）到根节点的路径编码，按从叶至根方向存储。数据类型为int64，形状为 ``[N, L]``。默认值为None。
+    - **path_table** (Tensor，可选) – 存储每一批样本从类别（单词）到根节点的路径，按照从叶至根方向存储。 数据类型为int64，形状为 ``[N, L]`` ，其中L为路径长度。``path_table`` 和 ``path_code`` 应具有相同的形状, 对于每个样本i，path_table[i]为一个类似np.ndarray的结构，该数组内的每个元素都是其双亲结点权重矩阵的索引。默认值为None。
+    - **path_code** (Tensor，可选) – 存储每一批样本从类别（单词）到根节点的路径编码，按从叶至根方向存储。数据类型为int64，形状为 ``[N, L]``。默认值为None。
     - **is_sparse** (bool，可选) – 是否使用稀疏更新方式。如果设置为True，W的梯度和输入梯度将会变得稀疏。默认值为False。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
