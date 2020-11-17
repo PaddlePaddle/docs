@@ -8,8 +8,8 @@ InMemoryDataset
 
 
 
-
 InMemoryDataset，它将数据加载到内存中，并在训练前随机整理数据。
+
 **代码示例**:
 
 .. code-block:: python
@@ -99,7 +99,7 @@ InMemoryDataset，它将数据加载到内存中，并在训练前随机整理�
   **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
   **2. 本api需要在机大规模参数服务器训练下生效，敬请期待详细使用文档**
 
-对InMemoryDataset的实例进行分布式训俩相关配置的初始化。
+对InMemoryDataset的实例进行分布式训练相关配置的初始化。
 
 参数：
     - **kwargs** - 可选的关键字参数，由调用者提供， 目前支持以下关键字配置。
@@ -449,7 +449,7 @@ InMemoryDataset，它将数据加载到内存中，并在训练前随机整理�
 
 .. py:method:: local_shuffle()
 
-局域shuffle。加载到内存的训练样本进行单机节点内部的打乱
+局部shuffle。加载到内存的训练样本进行单机节点内部的打乱
 
 **代码示例**:
 
@@ -478,9 +478,7 @@ InMemoryDataset，它将数据加载到内存中，并在训练前随机整理�
 
 .. py:method:: global_shuffle(fleet=None, thread_num=12)
 
-全局shuffle。
-
-只能用在分布式模式（单机多进程或多机多进程）中。您如果在分布式模式中运行，应当传递fleet而非None。
+全局shuffle。只能用在分布式模式（单机多进程或多机多进程）中。您如果在分布式模式中运行，应当传递fleet而非None。
 
 **代码示例**:
 
