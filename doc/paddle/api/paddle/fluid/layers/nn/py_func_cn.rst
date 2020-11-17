@@ -36,6 +36,7 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
 
     import paddle
     import six
+    import numpy as np
 
     paddle.enable_static()
 
