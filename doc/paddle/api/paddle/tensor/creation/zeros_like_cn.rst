@@ -28,10 +28,7 @@ zeros_like
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.enable_imperative()
-
-    x = paddle.imperative.to_variable(np.array([1,2,3], dtype='float32'))
+    x = paddle.to_tensor([1, 2, 3])
     out1 = paddle.zeros_like(x) # [0., 0., 0.]
     out2 = paddle.zeros_like(x, dtype='int32') # [0, 0, 0]

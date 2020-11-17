@@ -448,10 +448,9 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     step 1875/1875 [==============================] - loss: 0.0700 - acc: 0.9462 - 11ms/step          
 
 
-注：
-^^^^
+.. note::
 
-``fit()``\ 的第一个参数不仅可以传递数据集\ ``paddle.io.Dataset``\ ，还可以传递DataLoader，如果想要实现某个自定义的数据集抽样等逻辑，可以在fit外自定义DataLoader，然后传递给fit函数。
+    \``fit()``\ 的第一个参数不仅可以传递数据集\ ``paddle.io.Dataset``\ ，还可以传递DataLoader，如果想要实现某个自定义的数据集抽样等逻辑，可以在fit外自定义DataLoader，然后传递给fit函数。
 
 .. code:: python
 

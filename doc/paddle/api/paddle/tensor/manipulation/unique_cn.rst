@@ -29,7 +29,6 @@ unique
     import numpy as np
     import paddle
 
-    paddle.disable_static()
     x_data = np.array([2, 3, 3, 1, 5, 3])
     x = paddle.to_tensor(x_data)
     unique = paddle.unique(x)

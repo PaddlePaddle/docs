@@ -23,7 +23,6 @@ concat
   import paddle
   import numpy as np
   
-  paddle.disable_static()  # Now we are in imperative mode
   in1 = np.array([[1, 2, 3],
                   [4, 5, 6]])
   in2 = np.array([[11, 12, 13],
