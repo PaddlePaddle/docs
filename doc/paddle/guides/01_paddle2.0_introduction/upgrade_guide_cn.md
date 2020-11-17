@@ -221,7 +221,7 @@ import paddle
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
 lenet = paddle.vision.models.LeNet()
-    
+
 # Mnist继承paddle.nn.Layer属于Net，model包含了训练功能
 model = paddle.Model(lenet)
 
@@ -260,7 +260,7 @@ def train():
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
             y_data = data[1]
-            predicts = lenet(x_data)  
+            predicts = lenet(x_data)
             acc = paddle.metric.accuracy(predicts, y_data)
             loss = loss_fn(predicts, y_data)
             loss.backward()
@@ -269,7 +269,7 @@ def train():
             adam.step()
             adam.clear_grad()
 
-# 启动训练  
+# 启动训练
 train()
 ```
 
@@ -329,7 +329,7 @@ def train():
             x_data = data[0]
             y_data = data[1]
             # 第5处改动，修改模型为paddle.DataParallel封装后的名称
-            predicts = net(x_data)  
+            predicts = net(x_data)
             acc = paddle.metric.accuracy(predicts, y_data)
             loss = loss_fn(predicts, y_data)
             loss.backward()
@@ -338,7 +338,7 @@ def train():
             adam.step()
             adam.clear_grad()
 
-# 启动训练  
+# 启动训练
 train()
 ```
 
