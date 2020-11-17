@@ -9,8 +9,7 @@ InMemoryDataset
 
 
 
-InMemoryDataset会根据用户自定义的预处理指令预处理原始数据，向内存中加载数据并在训练前缓冲数据。此类由paddle.distributed.InMemoryDataset直接创建。
-
+InMemoryDataset，它将数据加载到内存中，并在训练前随机整理数据。
 **代码示例**:
 
 .. code-block:: python
@@ -45,7 +44,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 **代码示例**
 
 .. code-block:: python
-
 
     import paddle
     import os
@@ -82,8 +80,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
     dataset.set_filelist(
         ["test_queue_dataset_run_a.txt", "test_queue_dataset_run_b.txt"])
     dataset.load_into_memory()
-
-    paddle.enable_static()
     
     place = paddle.CPUPlace()
     exe = paddle.static.Executor(place)
@@ -123,7 +119,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -174,7 +169,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-    
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -239,6 +233,127 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 参数：
     - **filelist** (list[string]) - 文件列表
 
+.. py:method:: _set_queue_num(queue_num)
+
+**注意：**
+
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+设置数据集输出队列数量，训练线程从队列获取数。
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle
+    paddle.enable_static()
+    dataset = paddle.distributed.InMemoryDataset()
+    dataset._set_queue_num(12)
+
+参数：
+    - **queue_num** (int) - 数据集输出队列数量
+
+.. py:method:: _set_parse_ins_id(parse_ins_id)
+
+**注意：**
+
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+设置数据集是否解析ins_id
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle
+    paddle.enable_static()
+    dataset = paddle.distributed.InMemoryDataset()
+    dataset._set_parse_ins_id(True)
+
+参数：
+    - **parse_ins_id** (bool) - 是否解析ins_id
+
+.. py:method:: _set_parse_content(parse_content)
+
+**注意：**
+
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+设置数据集是否解析content
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle
+    paddle.enable_static()
+    dataset = paddle.distributed.InMemoryDataset()
+    dataset._set_parse_content(True)
+
+参数：
+    - **parse_content** (bool) - 是否解析content
+
+.. py:method:: _set_fleet_send_batch_size(fleet_send_batch_size=1024)
+
+**注意：**
+
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+设置fleet发送的batchsize，默认值1024
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle
+    paddle.enable_static()
+    dataset = paddle.distributed.InMemoryDataset()
+    dataset._set_fleet_send_batch_size(800)
+
+参数：
+    - **fleet_send_batch_size** (int) - 设置fleet发送的batchsize
+
+.. py:method:: _set_fleet_send_sleep_seconds(fleet_send_sleep_seconds=0)
+
+**注意：**
+
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+设置fleet发送睡眠时间，默认值0。
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle
+    paddle.enable_static()
+    dataset = paddle.distributed.InMemoryDataset()
+    dataset._set_fleet_send_sleep_seconds(2)
+
+参数：
+    - **fleet_send_sleep_seconds** (int) - fleet发送睡眠时间
+
+.. py:method:: _set_merge_by_lineid(merge_size=2)
+
+**注意：**
+
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+按lineid设置合并，相同lineid的实例将在随机打乱后合并，您应该在数据生成器中解析lineid。
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle
+    paddle.enable_static()
+    dataset = paddle.distributed.InMemoryDataset()
+    dataset._set_merge_by_lineid()
+
+参数：
+    - **merge_size** (int) - 合并的ins大小。 默认是2。
+
+
 .. py:method:: load_into_memory()
 
 **注意：**
@@ -252,7 +367,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
@@ -284,7 +398,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -314,7 +427,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -344,7 +456,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -376,7 +487,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -410,7 +520,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
@@ -454,7 +563,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -493,7 +601,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
@@ -516,6 +623,28 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
     dataset.global_shuffle()
     print dataset.get_shuffle_data_size()
 
+.. py:method:: _set_fea_eval(record_candidate_size, fea_eval=True)
+
+**注意：**
+
+  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+
+为slot随机设置fea eval模式以调试slot（特征）的重要性级别，对于slot随机，需要将fea_eval设置为True。
+
+**代码示例**:
+
+.. code-block:: python
+
+    import paddle
+    paddle.enable_static()
+    dataset = paddle.distributed.InMemoryDataset()
+    dataset._set_fea_eval(1000000, True)
+
+参数：
+    - **record_candidate_size** (int) - 随机一个slot的候选实例的大小
+    - **fea_eval** (bool) - 是否启用fee eval模式以启用slot随机。默认为True。
+
+
 .. py:method:: slots_shuffle(slots)
 
 该方法是在特征层次上的一个打乱方法，经常被用在有着较大缩放率实例的稀疏矩阵上，为了比较metric，比如auc，在一个或者多个有着baseline的特征上做特征打乱来验证特征level的重要性。
@@ -528,7 +657,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
