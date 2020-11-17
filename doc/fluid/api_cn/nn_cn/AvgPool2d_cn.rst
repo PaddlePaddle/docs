@@ -3,7 +3,7 @@
 AvgPool2D
 -------------------------------
 
-.. py:function:: paddle.nn.AvgPool2d(kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format="NCHW", name=None)
+.. py:function:: paddle.nn.AvgPool2D(kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format="NCHW", name=None)
 该接口用于构建 `AvgPool2D` 类的一个可调用对象，其将构建一个二维平均池化层，根据输入参数 `kernel_size`, `stride`,
 `padding` 等参数对输入做平均池化操作。
 
@@ -19,6 +19,8 @@ AvgPool2D
 .. math::
     out(N_i, C_j, h, w)  = \frac{1}{ksize[0] * ksize[1]} \sum_{m=0}^{ksize[0]-1} \sum_{n=0}^{ksize[1]-1}
                                input(N_i, C_j, stride[0] \times h + m, stride[1] \times w + n)
+
+
 参数
 :::::::::
     - **kernel_size** (int|list|tuple): 池化核大小。如果它是一个元组或列表，它必须包含两个整数值， (pool_size_Height, pool_size_Width)。若为一个整数，则它的平方值将作为池化核大小，比如若pool_size=2, 则池化核大小为2x2。
@@ -54,7 +56,7 @@ AvgPool2D
 
         # avg pool2d
         input = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32, 32]).astype(np.float32))
-        AvgPool2d = nn.AvgPool2D(kernel_size=2,
+        AvgPool2dD = nn.AvgPool2D(kernel_size=2,
                               stride=2, padding=0)
         output = AvgPoo2D(input)
         # output.shape [1, 3, 16, 16]

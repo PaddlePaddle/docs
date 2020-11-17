@@ -21,6 +21,8 @@ AvgPool3D
                                               & \frac{\text{input}(N_i, C_j, \text{stride}[0] \times d + k,
                                                       \text{stride}[1] \times h + m, \text{stride}[2] \times w + n)}
                                                      {kD \times kH \times kW}
+
+
 参数
 :::::::::
     - **kernel_size** (int|list|tuple): 池化核大小。如果它是一个元组或列表，它必须包含三个整数值， (pool_size_Depth, pool_size_Height, pool_size_Width)。若为一个整数，则表示D，H和W维度上均为该值，比如若pool_size=2, 则池化核大小为[2,2,2]。
@@ -56,7 +58,7 @@ AvgPool3D
 
         # avg pool3d
         input = paddle.to_tensor(np.random.uniform(-1, 1, [1, 2, 3, 32, 32]).astype(np.float32))
-        AvgPool3d = nn.AvgPool3d(kernel_size=2,
+        AvgPool3D = nn.AvgPool3D(kernel_size=2,
                                  stride=2, padding=0)
-        output = AvgPool3d(input)
+        output = AvgPool3D(input)
         # output.shape [1, 2, 3, 16, 16]
