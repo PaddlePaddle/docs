@@ -13,6 +13,7 @@ paddle/distributed/ReduceOp_cn.rst
 paddle/distributed/scatter_cn.rst
 paddle/distributed/all_gather_cn.rst
 paddle/distributed/all_reduce_cn.rst
+paddle/distributed/reduce_cn.rst
 paddle/distributed/barrier_cn.rst
 paddle/distributed/broadcast_cn.rst
 paddle/distributed/fleet/Fleet_cn.rst
