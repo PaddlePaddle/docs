@@ -221,7 +221,7 @@ import paddle
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
 lenet = paddle.vision.models.LeNet()
-
+    
 # Mnist继承paddle.nn.Layer属于Net，model包含了训练功能
 model = paddle.Model(lenet)
 
@@ -247,6 +247,7 @@ import paddle
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
 lenet = paddle.vision.models.LeNet()
+loss_fn = paddle.nn.CrossEntropyLoss()
 
 # 加载训练集 batch_size 设为 64
 train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
@@ -261,7 +262,7 @@ def train():
             y_data = data[1]
             predicts = lenet(x_data)  
             acc = paddle.metric.accuracy(predicts, y_data)
-            loss = paddle.nn.functional.cross_entropy(predicts, y_data, reduction='mean')
+            loss = loss_fn(predicts, y_data)
             loss.backward()
             if batch_id % 100 == 0:
                 print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
@@ -308,6 +309,7 @@ import paddle.distributed as dist
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
 lenet = paddle.vision.models.LeNet()
+loss_fn = paddle.nn.CrossEntropyLoss()
 
 # 加载训练集 batch_size 设为 64
 train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
@@ -329,7 +331,7 @@ def train():
             # 第5处改动，修改模型为paddle.DataParallel封装后的名称
             predicts = net(x_data)  
             acc = paddle.metric.accuracy(predicts, y_data)
-            loss = paddle.nn.functional.cross_entropy(predicts, y_data, reduction='mean')
+            loss = loss_fn(predicts, y_data)
             loss.backward()
             if batch_id % 100 == 0:
                 print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
