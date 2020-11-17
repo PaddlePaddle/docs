@@ -1,5 +1,5 @@
 ##############
-FAQ
+常见问题
 ##############
 如果您在使用Paddle框架开发过程中遇到了使用咨询类的问题，希望快速得到官方的答疑和指导，可以先来FAQ中查阅
 
@@ -10,7 +10,6 @@ FAQ以常见问答对的形式收录了用户在使用Paddle框架时的高频�
 如果FAQ无法解决您的问题，您也可以在PaddlePaddle的 `Github Issue <https://github.com/PaddlePaddle/Paddle/issues>`_ 中进行提问，我们会有专门的技术人员为您解答。
 
 FAQ问题集：
-======================
 
 ..  toctree::
     :maxdepth: 1
@@ -27,4 +26,3 @@ FAQ问题集：
 
 
     others_cn.md
-
