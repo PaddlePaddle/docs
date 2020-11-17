@@ -21,6 +21,7 @@ multiply
 对于这个运算算子有2种情况：
         1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
         2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
+        3. 当y 的维度和 x 维度不同时，会进行broadcasting
 
 参数：
         - **x** （Tensor）- 多维 ``Tensor`` 。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
@@ -44,13 +45,13 @@ multiply
     x = paddle.to_tensor(x_data)
     y = paddle.to_tensor(y_data)
     res = paddle.multiply(x, y)
-    print(res.numpy()) # [[5, 12], [21, 32]]
+    print(res.numpy()) # [[5., 12.], [21., 32.]]
     x_data = np.array([[[1, 2, 3], [1, 2, 3]]], dtype=np.float32)
     y_data = np.array([1, 2], dtype=np.float32)
     x = paddle.to_tensor(x_data)
     y = paddle.to_tensor(y_data)
     res = paddle.multiply(x, y)
-    print(res.numpy()) # [[[1, 2, 3], [2, 4, 6]]]
+    print(res.numpy()) # [[[1., 2., 3.], [2., 4., 6.]]]
 
 
 
