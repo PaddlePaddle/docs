@@ -21,7 +21,7 @@ multiply
 对于这个运算算子有2种情况：
         1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
         2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
-        3. 当y 的维度和 x 维度不同时，会进行broadcasting
+        3. 当y 的维度和 x 维度不同时，会进行broadcasting。
 
 参数：
         - **x** （Tensor）- 多维 ``Tensor`` 。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
