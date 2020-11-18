@@ -1,4 +1,4 @@
-.. _cn_api_nn_AvgPool2d:
+.. _cn_api_nn_AvgPool2D:
 
 AvgPool2D
 -------------------------------
@@ -37,7 +37,7 @@ AvgPool2D
 
 返回
 :::::::::
-计算AvgPool2d的可调用对象
+计算AvgPool2D的可调用对象
 
 抛出异常
 :::::::::

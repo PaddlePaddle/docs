@@ -1,4 +1,4 @@
-.. _cn_api_nn_MaxPool2d:
+.. _cn_api_nn_MaxPool2D:
 
 MaxPool2D
 -------------------------------
