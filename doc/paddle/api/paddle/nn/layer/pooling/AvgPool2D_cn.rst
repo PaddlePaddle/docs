@@ -32,6 +32,10 @@ AvgPool2D
     - **data_format** (str)： 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"
     - **name** (str)：函数的名字，默认为None.
 
+形状
+:::::::::
+    - **x** (Tensor): 默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor。 其数据类型为float16, float32, float64, int32或int64。
+    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即NCHW格式的4-D Tensor。 其数据类型与输入相同。
 
 
 
@@ -39,11 +43,7 @@ AvgPool2D
 :::::::::
 计算AvgPool2D的可调用对象
 
-抛出异常
-:::::::::
-    - ``ValueError`` - 如果 ``padding`` 是一个字符串，但不是["SAME", "VALID"]的其中一个。
-    - ``ValueError`` - 如果 ``padding`` 设置为"VALID" 但是"ceil_mode"设置为True
-    - ``ShapeError`` - 如果池化后输出的形状小于0。
+
 
 代码示例
 :::::::::
@@ -52,10 +52,9 @@ AvgPool2D
 
         import paddle
         import paddle.nn as nn
-        import numpy as np
 
         # avg pool2d
-        input = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32, 32]).astype(np.float32))
+        input = paddle.uniform(shape=[1, 2, 32, 32], dtype='float32', min=-1, max=1)
         AvgPool2dD = nn.AvgPool2D(kernel_size=2,
                               stride=2, padding=0)
         output = AvgPoo2D(input)
