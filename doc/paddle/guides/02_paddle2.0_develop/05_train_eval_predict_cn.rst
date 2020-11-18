@@ -151,7 +151,9 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
     
     # 设置优化器
     optim = paddle.optimizer.Adam(parameters=model.parameters())
-    
+    # 设置损失函数
+    loss_fn = paddle.nn.CrossEntropyLoss()
+
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
             
@@ -160,7 +162,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
             predicts = mnist(x_data)    # 预测结果  
             
             # 计算损失 等价于 prepare 中loss的设置
-            loss = paddle.nn.functional.cross_entropy(predicts, y_data)
+            loss = loss_fn(predicts, y_data)
             
             # 计算准确率 等价于 prepare 中metrics的设置
             acc = paddle.metric.accuracy(predicts, y_data)
@@ -198,7 +200,8 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
 
     # 加载测试数据集
     test_loader = paddle.io.DataLoader(test_dataset, places=paddle.CPUPlace(), batch_size=32, drop_last=True)
-    
+    loss_fn = paddle.nn.CrossEntropyLoss()
+
     mnist.eval()
 
     for batch_id, data in enumerate(test_loader()):
@@ -208,7 +211,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
         predicts = mnist(x_data)    # 预测结果
         
         # 计算损失与精度
-        loss = paddle.nn.functional.cross_entropy(predicts, y_data)
+        loss = loss_fn(predicts, y_data)
         acc = paddle.metric.accuracy(predicts, y_data)
         
         # 打印信息
