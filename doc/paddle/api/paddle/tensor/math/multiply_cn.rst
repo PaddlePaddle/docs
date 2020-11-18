@@ -45,9 +45,9 @@ multiply
     print(res) # [[5, 12], [21, 32]]
 
     x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
-    y = paddle.to_tensor([1, 2])
+    y = paddle.to_tensor([2])
     res = paddle.multiply(x, y)
-    print(res) # [[[1, 2, 3], [2, 4, 6]]]
+    print(res) # [[2, 4, 6], [2, 4, 6]]]
 
 
 
