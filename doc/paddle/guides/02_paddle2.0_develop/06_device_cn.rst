@@ -31,11 +31,12 @@
 基础API场景
 ~~~~~~~~~~~~~~~~~~
 
-如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行2处修改，具体如下：
+如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行3处修改，具体如下：
 
 .. code:: python3
 
     import paddle
+    # 第1处改动 导入分布式训练所需的包
     import paddle.distributed as dist
 
     # 加载数据集
@@ -50,13 +51,13 @@
         paddle.nn.Dropout(0.2),
         paddle.nn.Linear(512, 10)
     )
-    # 第1处改动，初始化并行环境
+    # 第2处改动，初始化并行环境
     dist.init_parallel_env()
 
     # 用 DataLoader 实现数据加载
     train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=32, shuffle=True)
     
-    # 第2处改动，增加paddle.DataParallel封装
+    # 第3处改动，增加paddle.DataParallel封装
     mnist = paddle.DataParallel(mnist)
     mnist.train()
 
@@ -94,11 +95,9 @@
             optim.clear_grad()
 
 修改完后保存文件，然后使用跟高层API相同的启动方式即可。
+**注意：** 单卡训练不支持调用\ ``init_parallel_env``\ ，请使用以下几种方式进行分布式训练。
 
 .. code:: bash
-
-    # 单机单卡启动，默认使用第0号卡
-    $ python train.py
 
     # 单机多卡启动，默认使用当前可见的所有卡
     $ python -m paddle.distributed.launch train.py
