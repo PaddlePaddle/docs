@@ -7,7 +7,8 @@
 ##################
 
 ONNX (Open Neural Network Exchange) 是针对机器学习所设计的开源文件格式，用于存储训练好的模型。它使得不同的人工智能框架可以采用相同格式存储模型并交互。通过ONNX格式，Paddle模型可以使用OpenVINO、ONNX Runtime等框架进行推理。
-Paddle转ONNX协议由 `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 实现，支持图像分类、检测、分割等类型模型的转换，同时也在持续探索NLP类模型的转换。下面介绍如何将Paddle模型转换为ONNX模型并验证正确性。
+
+Paddle转ONNX协议由 `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 实现，下面介绍如何将Paddle模型转换为ONNX模型并验证正确性。
 
 本教程涉及的 `示例代码 <https://github.com/paddlepaddle/paddle2onnx/blob/develop/examples/tutorial_dygraph2onnx.py>`_ ， 除Paddle以外，还需安装以下依赖：
 
