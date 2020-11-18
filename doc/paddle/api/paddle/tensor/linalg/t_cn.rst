@@ -43,9 +43,9 @@ t
 .. code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[2, 3], dtype='float32')
-    x_transposed = paddle.t(x) # paddle.t 等价于 paddle.tensor.t
+
+    x = paddle.ones(shape=[2, 3], dtype='int32')
+    x_transposed = paddle.t(x)
     print(x_transposed.shape)
-    #(3L, 2L)
+    # [3, 2]
 
