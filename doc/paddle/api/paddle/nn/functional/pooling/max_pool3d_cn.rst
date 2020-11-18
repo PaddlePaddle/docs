@@ -36,11 +36,6 @@ max_pool3d
     - **name** (str)：函数的名字，默认为None.
 
 
-形状
-:::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，长度，高度，宽度），即NCDHW格式的5-D Tensor。 其数据类型为float16, float32, float64, int32或int64.
-    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度，输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor。 其数据类型与输入相同。
-
 
 返回
 :::::::::
