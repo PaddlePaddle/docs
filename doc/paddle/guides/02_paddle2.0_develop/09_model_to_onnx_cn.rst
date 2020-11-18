@@ -10,7 +10,7 @@ ONNX (Open Neural Network Exchange) 是针对机器学习所设计的开源文�
 
 Paddle转ONNX协议由 `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 实现，下面介绍如何将Paddle模型转换为ONNX模型并验证正确性。
 
-本教程涉及的 `示例代码 <https://github.com/paddlepaddle/paddle2onnx/blob/develop/examples/tutorial_dygraph2onnx.py>`_ ， 除Paddle以外，还需安装以下依赖：
+本教程涉及的示例代码，可点击 `IPython <https://github.com/paddlepaddle/paddle2onnx/blob/develop/examples/tutorial_dygraph2onnx.ipynb>`_ 获取， 除Paddle以外，还需安装以下依赖：
 
 .. code-block:: bash
 
