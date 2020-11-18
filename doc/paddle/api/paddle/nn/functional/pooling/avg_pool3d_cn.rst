@@ -52,7 +52,6 @@ avg_pool3d
 .. code-block:: python
 
 
-        import paddle.fluid as fluid
         import paddle
         input = paddle.uniform(shape=[1, 2, 32, 32, 32], dtype='float32', min=-1, max=1)
         # avg pool3d
