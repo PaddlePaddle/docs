@@ -24,7 +24,7 @@ ParamAttr
       :ref:`cn_api_fluid_regularizer_L2Decay` ，如果在 ``optimizer`` (例如 :ref:`cn_api_fluid_optimizer_SGDOptimizer` ) 中也
       设置了正则化，``optimizer`` 中的正则化将被忽略。默认值为None，表示没有正则化。
     - **trainable** (bool) - 参数是否需要训练。默认值为True，表示需要训练。
-    - **do_model_average** (bool) - 是否做模型平均。默认值为False，表示不做模型平均。
+    - **do_model_average** (bool) - 是否做模型平均。默认值为True。仅在 :ref:`ExponentialMovingAverage` 下使用。
     - **need_clip** (bool) - 参数是否需要进行梯度裁剪。默认值为True，表示该参数的梯度会根据优化器中设置的裁剪规则进行裁剪。
 
 返回: 表示参数属性的对象。
