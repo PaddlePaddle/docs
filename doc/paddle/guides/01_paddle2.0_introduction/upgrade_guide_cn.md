@@ -1,4 +1,4 @@
-# 飞桨框架2.0rc升级指南
+# 升级指南
 
 ## 升级概要
 本版本是2.0版的候选发布版本，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
@@ -46,9 +46,10 @@ paddle.to_tensor(np.random.randn(3, 4))
 
 | 目录 | 功能和包含的API |
 | :--- | --------------- |
-| paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor和paddle.framework目录下的所有API |
+| paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor、paddle.framework和paddle.device目录下的所有API |
 | paddle.tensor     | tensor操作相关的API，例如创建 zeros 、矩阵运算 matmul 、变换 concat 、计算 add 、查找 argmax 等。|
 | paddle.framework  | 框架通用API和动态图模式的API，例如 no_grad 、 save 、 load 等。|
+| paddle.device     | 设备管理相关API，比如：set_device， get_device等                |
 | paddle.amp        | paddle自动混合精度策略，包括 auto_cast 、 GradScaler 等。|
 | paddle.callbacks  | paddle日志回调类，包括 ModelCheckpoint 、 ProgBarLogger 等。|
 | paddle.nn         | 组网相关的API，例如 Linear 、卷积 Conv2D 、循环神经网络 LSTM 、损失函数 CrossEntropyLoss 、激活函数 ReLU 等。 |
@@ -58,7 +59,6 @@ paddle.to_tensor(np.random.randn(3, 4))
 | paddle.optimizer.lr  | 学习率衰减相关API，例如 NoamDecay 、 StepDecay 、 PiecewiseDecay 等。|
 | paddle.metric     | 评估指标计算相关的API，比如：Accuracy, Auc等。             |
 | paddle.io         | 数据输入输出相关API，比如：Dataset, DataLoader等 |
-| paddle.device     | 设备管理相关API，比如：CPUPlace， CUDAPlace等                |
 | paddle.distributed      | 分布式相关基础API                                                |
 | paddle.distributed.fleet      | 分布式相关高层API                                         |
 | paddle.vision     | 视觉领域API，例如数据集 Cifar10 、数据处理 ColorJitter 、常用基础网络结构 ResNet 等。|
@@ -67,7 +67,7 @@ paddle.to_tensor(np.random.randn(3, 4))
 ### API别名规则
 
 - 为了方便用户使用，API会在不同的路径下建立别名：
-    - 所有framework, tensor目录下的API，均在paddle根目录建立别名；除少数特殊API外，其他API在paddle根目录下均没有别名。
+    - 所有device, framework, tensor目录下的API，均在paddle根目录建立别名；除少数特殊API外，其他API在paddle根目录下均没有别名。
     - paddle.nn目录下除functional目录以外的所有API，在paddle.nn目录下均有别名；functional目录中的API，在paddle.nn目录下均没有别名。
 - **推荐用户优先使用较短的路径的别名**，比如`paddle.add -> paddle.tensor.add`，推荐优先使用`paddle.add`
 - 以下为一些特殊的别名关系，推荐使用左边的API名称：
@@ -247,9 +247,10 @@ import paddle
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
 lenet = paddle.vision.models.LeNet()
+loss_fn = paddle.nn.CrossEntropyLoss()
 
 # 加载训练集 batch_size 设为 64
-train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=64, shuffle=True)
+train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
 def train():
     epochs = 2
@@ -257,16 +258,17 @@ def train():
     # 用Adam作为优化函数
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
-            x_data, y_data = data
+            x_data = data[0]
+            y_data = data[1]
             predicts = lenet(x_data)
-            loss = paddle.nn.functional.cross_entropy(predicts, y_data, reduction='mean')
-            acc = paddle.metric.accuracy(predicts, y_data, k=1)
-            avg_acc = paddle.mean(acc)
+            acc = paddle.metric.accuracy(predicts, y_data)
+            loss = loss_fn(predicts, y_data)
             loss.backward()
             if batch_id % 100 == 0:
-                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), avg_acc.numpy()))
+                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
             adam.step()
             adam.clear_grad()
+
 # 启动训练
 train()
 ```
@@ -297,50 +299,52 @@ $ python -m paddle.distributed.launch train.py
 
 ##### 基础API场景
 
-如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行4处修改，具体如下：
+如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行3处修改，具体如下：
 
 ```python
 import paddle
+# 第1处改动，导入分布式训练所需要的包
 import paddle.distributed as dist
 
 train_dataset = paddle.vision.datasets.MNIST(mode='train')
 test_dataset = paddle.vision.datasets.MNIST(mode='test')
+lenet = paddle.vision.models.LeNet()
+loss_fn = paddle.nn.CrossEntropyLoss()
 
 # 加载训练集 batch_size 设为 64
-train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=64, shuffle=True)
+train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
 def train():
-    # 第1处改动，初始化并行环境
+    # 第2处改动，初始化并行环境
     dist.init_parallel_env()
 
-    # 第2处改动，增加paddle.DataParallel封装
-    net = paddle.DataParallel(LeNet())
+    # 第3处改动，增加paddle.DataParallel封装
+    lenet = paddle.DataParallel(lenet)
     epochs = 2
-    adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=net.parameters())
+    adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=lenet.parameters())
     # 用Adam作为优化函数
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
             y_data = data[1]
-            predicts = net(x_data)  
-            acc = paddle.metric.accuracy(predicts, y_data, k=2)
-            avg_acc = paddle.mean(acc)
-            loss = paddle.nn.functional.cross_entropy(predicts, y_data)
-            avg_loss.backward()
+            predicts = lenet(x_data)
+            acc = paddle.metric.accuracy(predicts, y_data)
+            loss = loss_fn(predicts, y_data)
+            loss.backward()
             if batch_id % 100 == 0:
-                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, avg_loss.numpy(), avg_acc.numpy()))
+                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
             adam.step()
             adam.clear_grad()
 
-# 启动训练  
+# 启动训练
 train()
 ```
 
 修改完后保存文件，然后使用跟高层API相同的启动方式即可
 
+**注意：** 单卡训练不支持调用 ``init_parallel_env``，请使用以下几种方式进行分布式训练。
+
 ```bash
-# 单机单卡启动，默认使用第0号卡
-$ python train.py
 
 # 单机多卡启动，默认使用当前可见的所有卡
 $ python -m paddle.distributed.launch train.py
@@ -355,20 +359,86 @@ $ python -m paddle.distributed.launch train.py
 
 #### 方式2、spawn启动
 
-launch方式启动训练，以文件为单位启动多进程，需要用户在启动时调用`paddle.distributed.launch`，对于进程的管理要求较高。2.0版本增加了spawn启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。
+launch方式启动训练，以文件为单位启动多进程，需要用户在启动时调用 ``paddle.distributed.launch`` ，对于进程的管理要求较高。飞桨框架2.0版本增加了 ``spawn`` 启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。使用示例如下：
 
-```bash
-# 启动train多进程训练，默认使用所有可见的GPU卡
+```python
+from __future__ import print_function
+
+import paddle
+import paddle.nn as nn
+import paddle.optimizer as opt
+import paddle.distributed as dist
+
+class LinearNet(nn.Layer):
+    def __init__(self):
+        super(LinearNet, self).__init__()
+        self._linear1 = nn.Linear(10, 10)
+        self._linear2 = nn.Linear(10, 1)
+
+    def forward(self, x):
+        return self._linear2(self._linear1(x))
+
+def train(print_result=False):
+
+    # 1. 初始化并行训练环境
+    dist.init_parallel_env()
+
+    # 2. 创建并行训练 Layer 和 Optimizer
+    layer = LinearNet()
+    dp_layer = paddle.DataParallel(layer)
+
+    loss_fn = nn.MSELoss()
+    adam = opt.Adam(
+        learning_rate=0.001, parameters=dp_layer.parameters())
+
+    # 3. 运行网络
+    inputs = paddle.randn([10, 10], 'float32')
+    outputs = dp_layer(inputs)
+    labels = paddle.randn([10, 1], 'float32')
+    loss = loss_fn(outputs, labels)
+
+    if print_result is True:
+        print("loss:", loss.numpy())
+
+    loss.backward()
+
+    adam.step()
+    adam.clear_grad()
+
+# 使用方式1：仅传入训练函数
+# 适用场景：训练函数不需要任何参数，并且需要使用所有当前可见的GPU设备并行训练
 if __name__ == '__main__':
     dist.spawn(train)
 
-# 启动train函数2个进程训练，默认使用当前可见的前2张卡
+# 使用方式2：传入训练函数和参数
+# 适用场景：训练函数需要一些参数，并且需要使用所有当前可见的GPU设备并行训练
 if __name__ == '__main__':
-    dist.spawn(train, nprocs=2)
+    dist.spawn(train, args=(True,))
 
-# 启动train函数2个进程训练，默认使用第4号和第5号卡
+# 使用方式3：传入训练函数、参数并指定并行进程数
+# 适用场景：训练函数需要一些参数，并且仅需要使用部分可见的GPU设备并行训练，例如：
+# 当前机器有8张GPU卡 {0,1,2,3,4,5,6,7}，此时会使用前两张卡 {0,1}；
+# 或者当前机器通过配置环境变量 CUDA_VISIBLE_DEVICES=4,5,6,7，仅使4张
+# GPU卡可见，此时会使用可见的前两张卡 {4,5}
 if __name__ == '__main__':
-    dist.spawn(train, nprocs=2, selelcted_gpus='4,5')
+    dist.spawn(train, args=(True,), nprocs=2)
+
+# 使用方式4：传入训练函数、参数、指定进程数并指定当前使用的卡号
+# 使用场景：训练函数需要一些参数，并且仅需要使用部分可见的GPU设备并行训练，但是
+# 可能由于权限问题，无权配置当前机器的环境变量，例如：当前机器有8张GPU卡
+# {0,1,2,3,4,5,6,7}，但你无权配置CUDA_VISIBLE_DEVICES，此时可以通过
+# 指定参数 selected_gpus 选择希望使用的卡，例如 selected_gpus='4,5'，
+# 可以指定使用第4号卡和第5号卡
+if __name__ == '__main__':
+    dist.spawn(train, nprocs=2, selected_gpus='4,5')
+
+# 使用方式5：指定多卡通信的起始端口
+# 使用场景：端口建立通信时提示需要重试或者通信建立失败
+# Paddle默认会通过在当前机器上寻找空闲的端口用于多卡通信，但当机器使用环境
+# 较为复杂时，程序找到的端口可能不够稳定，此时可以自行指定稳定的空闲起始
+# 端口以获得更稳定的训练体验
+if __name__ == '__main__':
+    dist.spawn(train, nprocs=2, started_port=12345)
 ```
 
 ### 模型保存
