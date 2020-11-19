@@ -197,6 +197,10 @@ paddle.nn
     nn_cn/AdaptiveAvgPool3D_cn.rst
     nn_cn/AdaptiveAvgPool1D_cn.rst
     nn_cn/AdaptiveMaxPool1D_cn.rst
-    nn_cn/AvgPool1D_cn.rst
-    nn_cn/MaxPool1D_cn.rst
+    nn_cn/AvgPool1d_cn.rst
+    nn_cn/AvgPool2d_cn.rst
+    nn_cn/AvgPool3d_cn.rst
+    nn_cn/MaxPool1d_cn.rst
+    nn_cn/MaxPool2d_cn.rst
+    nn_cn/MaxPool3d_cn.rst
     nn_cn/Bilinear_cn.rst
