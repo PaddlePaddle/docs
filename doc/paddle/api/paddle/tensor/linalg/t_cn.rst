@@ -19,7 +19,7 @@ t
 
 **示例**:
 
-.. code-block:: python
+.. code-block:: text
 
         # 例1 (0-D tensor)
         x = tensor([0.79])
