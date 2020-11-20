@@ -19,7 +19,7 @@ diffrent oneDNN convolution primitive. As instance of convolution is identified 
 One of situations when output tensor name is not enough to uniquely identify the instance of operator is when operators are performing [inplace](../inplace/inplace.md) execution. In this situation
 one of inputs and one of outputs of operator are the same Paddle Tensor and its name is the same so it is not enough to uniquely indentify instance of operator. So for that situation
 operators supprting inplace execution mode are having its caching key extended as follows:
-* softmax's key is having an attribute of normalization added
+* softmax's key is having a value of attribute of normalization axe added
 * activation's key is having an enum determining type of activation added
 * elementwise_mul's key is having character "M" added
 
