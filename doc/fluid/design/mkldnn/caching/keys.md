@@ -29,7 +29,7 @@ Then given operator instance may process diffrent input signal each iteration an
 we need to include input tensor shape information into caching key.
 
 ### 3. Executor identification
-On a scenario when there are are multiple models executed in a interleaved mode e.g. one iteration of model A followed by one iteration of model B and then again one iteration of model A , it 
+On a scenario when there are are multiple models executed in a interleaved mode e.g. one iteration of model A followed by one iteration of model B and then again one iteration of model A , it
 is needed to also add information to they key on what model is executed to avoid sitation that weights of one model will be used for weights of other model. Model during inference is connected
 to Executor or Naive Executor so part of address of used Executor or Naive Executor is made a part of key as well.
 
@@ -37,5 +37,3 @@ to Executor or Naive Executor so part of address of used Executor or Naive Execu
 When there is a multi-threaded execution of model e.g. Paralel Executor where there are multiple threads executing single model or number of threads where each of them is executing its own model
 then it is needed to add to the information on Thread ID which is a hash of thread id (provided by C++ thread structures). This element is only aplied when cache is working in a mode where
 multi threading is present.
-
-
