@@ -64,7 +64,6 @@ gather_nd
     import paddle
     import numpy as np
     
-    paddle.disable_static()
     np_x = np.array([[[1, 2], [3, 4], [5, 6]],
                      [[7, 8], [9, 10], [11, 12]]])
     np_index = [[0, 1]]

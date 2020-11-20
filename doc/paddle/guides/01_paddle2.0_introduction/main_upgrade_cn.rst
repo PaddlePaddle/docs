@@ -1,4 +1,4 @@
-飞桨框架2.0RC API升级概要
+API升级概要
 ===============================
 
 
@@ -17,7 +17,7 @@
 .. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image05.png?raw=true
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image06.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image06_v2.png?raw=true
 
 
 .. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/01_paddle2.0_introduction/main_upgrade/image07.png?raw=true

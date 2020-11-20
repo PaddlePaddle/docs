@@ -3,7 +3,7 @@
 Pad
 -------------------------------
 
-.. py:class:: paddle.vision.transforms.Pad(padding, fill=0, padding_mode='constant')
+.. py:class:: paddle.vision.transforms.Pad(padding, fill=0, padding_mode='constant', keys=None)
 
 使用特定的填充模式和填充值来对输入图像进行填充。
 
@@ -21,11 +21,12 @@ Pad
             ``edge`` 表示在图像边缘填充最后一个值。
             ``reflect`` 表示用原图像的反向图片填充（不重复使用边缘上的值）。比如使用这个模式对 ``[1, 2, 3, 4]``的两端分别填充2个值，最后结果是 ``[3, 2, 1, 2, 3, 4, 3, 2]``。
             ``symmetric`` 表示用原图像的反向图片填充（重复使用边缘上的值）。比如使用这个模式对 ``[1, 2, 3, 4]``的两端分别填充2个值，最后结果是 ``[2, 1, 1, 2, 3, 4, 4, 3]``。
+    - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
 返回
 :::::::::
 
-    ``numpy ndarray``，填充后的图像。
+    ``PIL.Image 或 numpy ndarray``，填充后的图像。
 
 代码示例
 :::::::::
@@ -33,12 +34,13 @@ Pad
 .. code-block:: python
 
     import numpy as np
+    from PIL import Image
     from paddle.vision.transforms import Pad
-
-
-    transform = Pad(2)
-    fake_img = np.random.rand(500, 500, 3).astype('float32')
-    fake_img = transform(fake_img)
     
-    print(fake_img.shape)
-    # (504, 504, 3)
+    transform = Pad(2)
+    
+    fake_img = Image.fromarray((np.random.rand(224, 224, 3) * 255.).astype(np.uint8))
+    
+    fake_img = transform(fake_img)
+    print(fake_img.size)
+    

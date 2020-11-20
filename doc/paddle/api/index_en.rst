@@ -34,6 +34,9 @@ In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddleP
 | paddle.framework              | Universal APIs and imprerative mode APIs such as      |
 |                               | to_variable and prepare_context                       |
 +-------------------------------+-------------------------------------------------------+
+| paddle.onnx                   | APIs related to convert paddle model to ONNX，such as |
+|                               | export                                                |
++-------------------------------+-------------------------------------------------------+
 | paddld.optimizer              | APIs related to optimization algorithms such as SGD,  |
 |                               | Adagrad, and Adam                                     |
 +-------------------------------+-------------------------------------------------------+

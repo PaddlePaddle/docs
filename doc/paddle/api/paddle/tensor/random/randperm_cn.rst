@@ -24,8 +24,6 @@ randperm
 
     import paddle
 
-    paddle.disable_static()
-
     out1 = paddle.randperm(5)
     # [4, 1, 2, 3, 0]  # random
 

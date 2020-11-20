@@ -24,7 +24,6 @@ sum
 
     import numpy as np
     import paddle
-    paddle.disable_static()
 
     # x is a Tensor variable with following elements:
     #    [[0.2, 0.3, 0.5, 0.9]

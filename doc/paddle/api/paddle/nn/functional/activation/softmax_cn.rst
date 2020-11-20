@@ -86,7 +86,7 @@ softmax
 ::::::::::
     - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
     - axis (int, 可选) - 指定对输入 ``x`` 进行运算的轴。``axis`` 的有效范围是[-D, D)，D是输入 ``x`` 的维度， ``axis`` 为负值时与 :math:`axis + D` 等价。默认值为-1。
-    - dtype (str|np.dtype|core.VarDesc.VarType, 可选) - 输入Tensor的数据类型。如果指定了 ``dtype`` ，则输入Tensor的数据类型会在计算前转换到 ``dtype`` 。``dtype``可以用来避免数据溢出。如果 ``dtype`` 为None，则输出Tensor的数据类型和 ``x`` 相同。默认值为None。
+    - dtype (str，可选) - 输出 `Tensor` 的数据类型，支持float32、float64。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
@@ -101,8 +101,6 @@ softmax
     import paddle
     import paddle.nn.functional as F
     import numpy as np
-
-    paddle.disable_static()
 
     x = np.array([[[2.0, 3.0, 4.0, 5.0],
                     [3.0, 4.0, 5.0, 6.0],
