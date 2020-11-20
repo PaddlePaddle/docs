@@ -254,6 +254,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         <th> cp35-cp35m    </th>
         <th> cp36-cp36m    </th>
         <th> cp37-cp37m    </th>
+        <th> cp38-cp38    </th>
     </tr>
     </thead>
     <tbody>
@@ -407,8 +408,8 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         paddlepaddle-2.0.0rc0-cp36-cp36m-macosx_10_6_intel.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc0-cpu-mac/paddlepaddle-2.0.0rc0-cp37-cp37m-macosx_10_6_intel.whl">
         paddlepaddle-2.0.0rc0-cp37-cp37m-macosx_10_6_intel.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc0-cpu-mac/paddlepaddle-0.0.0-cp38-cp38-macosx_10_14_x86_64.whl">
-        paddlepaddle-2.0.0rc0-cp38-cp38-macosx_10_6_intel.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc0-cpu-mac/paddlepaddle-2.0.0rc0-cp38-cp38-macosx_10_14_x86_64.whl">
+        paddlepaddle-2.0.0rc0-cp38-cp38-macosx_10_14_x86_64.whl</a></td>
     </tr>
    </tbody>
 </table>
@@ -460,6 +461,7 @@ platform tag: 类似 'linux_x86_64', 'any'
         <th> cp35-cp35m    </th>
         <th> cp36-cp36m    </th>
         <th> cp37-cp37m    </th>
+        <th> cp38-cp38    </th>
     </tr>
     </thead>
     <tbody>
@@ -526,6 +528,7 @@ platform tag: 类似 'linux_x86_64', 'any'
         <th> cp35-cp35m    </th>
         <th> cp36-cp36m    </th>
         <th> cp37-cp37m    </th>
+        <th> cp38-cp38    </th>
     </tr>
     </thead>
     <tbody>
