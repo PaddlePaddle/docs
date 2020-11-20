@@ -19,19 +19,19 @@ sampled_softmax_with_cross_entropy
 根据采样标签对逻辑进行采样。如果remove_accidental_hits为“真”，如果sample[i, j] 意外匹配“真”标签，则相应的sampled_logits[i, j]减去1e20，使其SoftMax结果接近零。然后用logQ(y|x)减去采样的逻辑，这些采样的逻辑和重新索引的标签被用来计算具有交叉熵的SoftMax。
 
 参数：
-        - **logits** （Variable）- 非比例对数概率，是一个二维张量，形状为[N x K]。N是批大小，K是类别号。
-        - **label** （Variable）- 基本事实，是一个二维张量。label是一个张量<int64>，其形状为[N x T]，其中T是每个示例的真实标签数。
+        - **logits** （Tensor）- 非比例对数概率，是一个二维张量，形状为[N x K]。N是批大小，K是类别号。
+        - **label** （Tensor）- 基本事实，是一个二维张量。label是一个张量<int64>，其形状为[N x T]，其中T是每个示例的真实标签数。
         - **num_samples** （int）- 每个示例的数目num_samples应该小于类的数目。
         - **num_true** （int）- 每个训练实例的目标类别总数。
         - **remove_accidental_hits** （bool）- 指示采样时是否删除意外命中的标签。如果为真，如果一个sample[i，j]意外地碰到了真标签，那么相应的sampled_logits[i，j]将被减去1e20，使其SoftMax结果接近零。默认值为True。
         - **use_customized_samples** （bool）- 是否使用自定义样本和可能性对logits进行抽样。
-        - **customized_samples** （Variable）- 用户定义的示例，它是一个具有形状[N, T + S]的二维张量。S是num_samples，T是每个示例的真标签数。
-        - **customized_probabilities** （Variable）- 用户定义的样本概率，与customized_samples形状相同的二维张量。
+        - **customized_samples** （Tensor）- 用户定义的示例，它是一个具有形状[N, T + S]的二维张量。S是num_samples，T是每个示例的真标签数。
+        - **customized_probabilities** （Tensor）- 用户定义的样本概率，与customized_samples形状相同的二维张量。
         - **seed** （int）- 用于生成随机数的随机种子，在采样过程中使用。默认值为0。
 
 返回：交叉熵损失，是一个二维张量，形状为[N x 1]。
 
-返回类型：Variable
+返回类型：Tensor
 
 **代码示例：**
 
