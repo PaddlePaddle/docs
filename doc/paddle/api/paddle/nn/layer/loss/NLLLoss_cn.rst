@@ -51,7 +51,7 @@ NLLLoss
         import paddle
         import numpy as np
 
-        nll_loss = paddle.nn.layer.NLLLoss()
+        nll_loss = paddle.nn.NLLLoss()
         log_softmax = paddle.nn.LogSoftmax(axis=1)
 
         input_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
@@ -65,4 +65,4 @@ NLLLoss
         log_out = log_softmax(input)
         label = paddle.to_tensor(label_np)
         result = nll_loss(log_out, label)
-        print(result.numpy()) # [1.0720209]
+        print(result) # [1.0720209]

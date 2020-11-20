@@ -48,9 +48,8 @@ unfold
     - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
-返回：   unfold操作之后的结果，形状如上面所描述的[N, Cout, Lout]，Cout每一个滑动block里面覆盖的元素个数，Lout是滑动block的个数，数据类型与 ``x`` 相同
+返回：Tensor,  unfold操作之后的结果，形状如上面所描述的[N, Cout, Lout]，Cout每一个滑动block里面覆盖的元素个数，Lout是滑动block的个数，数据类型与 ``x`` 相同
 
-返回类型：    Tensor
 
 **代码示例**:
 
