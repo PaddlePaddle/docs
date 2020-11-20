@@ -8,8 +8,7 @@ InMemoryDataset
 
 
 
-
-InMemoryDataset会根据用户自定义的预处理指令预处理原始数据，向内存中加载数据并在训练前缓冲数据。此类由paddle.distributed.InMemoryDataset直接创建。
+InMemoryDataset，它将数据加载到内存中，并在训练前随机整理数据。
 
 **代码示例**:
 
@@ -46,7 +45,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 
 .. code-block:: python
 
-
     import paddle
     import os
 
@@ -82,8 +80,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
     dataset.set_filelist(
         ["test_queue_dataset_run_a.txt", "test_queue_dataset_run_b.txt"])
     dataset.load_into_memory()
-
-    paddle.enable_static()
     
     place = paddle.CPUPlace()
     exe = paddle.static.Executor(place)
@@ -103,7 +99,7 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
   **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
   **2. 本api需要在机大规模参数服务器训练下生效，敬请期待详细使用文档**
 
-对InMemoryDataset的实例进行分布式训俩相关配置的初始化。
+对InMemoryDataset的实例进行分布式训练相关配置的初始化。
 
 参数：
     - **kwargs** - 可选的关键字参数，由调用者提供， 目前支持以下关键字配置。
@@ -123,7 +119,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -174,7 +169,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-    
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -191,54 +185,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
         candidate_size=10000)
     dataset.update_settings(batch_size=2)
 
-
-.. py:method:: set_filelist(filelist)
-
-在当前的worker中设置文件列表。
-
-**代码示例**:
-
-.. code-block:: python
-
-    import paddle
-    import os
-    
-    paddle.enable_static()
-    
-    with open("test_queue_dataset_run_a.txt", "w") as f:
-        data = "2 1 2 2 5 4 2 2 7 2 1 3\n"
-        data += "2 6 2 2 1 4 2 2 4 2 2 3\n"
-        data += "2 5 2 2 9 9 2 2 7 2 1 3\n"
-        data += "2 7 2 2 1 9 2 3 7 2 5 3\n"
-        f.write(data)
-    with open("test_queue_dataset_run_b.txt", "w") as f:
-        data = "2 1 2 2 5 4 2 2 7 2 1 3\n"
-        data += "2 6 2 2 1 4 2 2 4 2 2 3\n"
-        data += "2 5 2 2 9 9 2 2 7 2 1 3\n"
-        data += "2 7 2 2 1 9 2 3 7 2 5 3\n"
-        f.write(data)
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    os.remove("./test_queue_dataset_run_a.txt")
-    os.remove("./test_queue_dataset_run_b.txt")
-
-
-参数：
-    - **filelist** (list[string]) - 文件列表
-
 .. py:method:: load_into_memory()
 
 **注意：**
@@ -252,7 +198,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
@@ -284,7 +229,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -314,7 +258,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -337,14 +280,13 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 
 .. py:method:: local_shuffle()
 
-局域shuffle。加载到内存的训练样本进行单机节点内部的打乱
+局部shuffle。加载到内存的训练样本进行单机节点内部的打乱
 
 **代码示例**:
 
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -367,16 +309,13 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 
 .. py:method:: global_shuffle(fleet=None, thread_num=12)
 
-全局shuffle。
-
-只能用在分布式模式（单机多进程或多机多进程）中。您如果在分布式模式中运行，应当传递fleet而非None。
+全局shuffle。只能用在分布式模式（单机多进程或多机多进程）中。您如果在分布式模式中运行，应当传递fleet而非None。
 
 **代码示例**:
 
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -410,7 +349,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
@@ -454,7 +392,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
 
     dataset = paddle.distributed.InMemoryDataset()
@@ -493,7 +430,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
@@ -528,7 +464,6 @@ InMemoryDataset会根据用户自定义的预处理指令预处理原始数据�
 .. code-block:: python
 
     import paddle
-
     paddle.enable_static()
     
     dataset = paddle.distributed.InMemoryDataset()
