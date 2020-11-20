@@ -52,7 +52,7 @@ max_pool3d
           import paddle.nn.functional as F
           # max pool3d
           input = paddle.uniform(shape=[1, 2, 32, 32, 32], dtype='float32', min=-1, max=1)
-          output = F.max_pool2d(input,
+          output = F.max_pool3d(input,
                                 kernel_size=2,
                                 stride=2, padding=0)
           output.shape [1, 3, 16, 16, 16]
