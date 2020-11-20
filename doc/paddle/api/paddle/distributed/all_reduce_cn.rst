@@ -27,7 +27,6 @@ all_reduce
         from paddle.distributed import ReduceOp
         from paddle.distributed import init_parallel_env
 
-        paddle.disable_static()
         paddle.set_device('gpu:%d'%paddle.distributed.ParallelEnv().dev_id)
         init_parallel_env()
         if paddle.distributed.ParallelEnv().local_rank == 0:

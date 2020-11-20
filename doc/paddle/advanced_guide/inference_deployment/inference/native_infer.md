@@ -508,7 +508,19 @@ for (...) {
 
 ###### ClearIntermediateTensor()
 
-释放中间tensor。
+释放临时tensor，将其所占空间归还显/内存池。
+
+参数：
+
+- `None`
+
+返回：`None`
+
+返回类型：`void`
+
+###### TryShrinkMemory()
+
+释放临时tensor，并检查显/内存池中是否有可以释放的chunk，若有则释放chunk，降低显/内存占用（显/内存池可认为是`list<chunk>`组成，如果chunk空闲，则可通过释放chunk来降低显/内存占用），demo示例可参考[Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/test/shrink_memory)。
 
 参数：
 

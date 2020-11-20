@@ -25,9 +25,6 @@ randint
 .. code-block:: python
 
     import paddle
-    import numpy as np
-
-    paddle.disable_static()
 
     # example 1:
     # attr shape is a list which doesn't contain Tensor.
@@ -36,15 +33,15 @@ randint
 
     # example 2:
     # attr shape is a list which contains Tensor.
-    dim1 = paddle.full([1], 2, "int64")
-    dim2 = paddle.full([1], 3, "int32")
-    out2 = paddle.randint(low=-5, high=5, shape=[dim1, dim2], dtype="int32")
+    dim1 = paddle.to_tensor([2], 'int64')
+    dim2 = paddle.to_tensor([3], 'int32')
+    out2 = paddle.randint(low=-5, high=5, shape=[dim1, dim2])
     # [[0, -1, -3],  # random
     #  [4, -2,  0]]  # random
 
     # example 3:
     # attr shape is a Tensor
-    shape_tensor = paddle.to_tensor(np.array([3]))
+    shape_tensor = paddle.to_tensor(3)
     out3 = paddle.randint(low=-5, high=5, shape=shape_tensor)
     # [-2, 2, 3]  # random
 
