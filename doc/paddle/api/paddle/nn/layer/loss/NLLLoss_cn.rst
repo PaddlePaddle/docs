@@ -3,7 +3,7 @@
 NLLLoss
 -------------------------------
 
-.. py:class:: paddle.nn.loss.NLLLoss(weight=None, ignore_index=-100, reduction='mean', name=None)
+.. py:class:: paddle.nn.NLLLoss(weight=None, ignore_index=-100, reduction='mean', name=None)
 
 该接口可创建一个NLLLoss可调用类，计算输入x和标签label间的 `negative log likelihood loss` 损失 ，可用于训练一个 `n` 类分类器。
 

@@ -3,7 +3,7 @@
 dice_loss
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.dice_loss(input, label, epsilon=1e-05)
+.. py:function:: paddle.nn.functional.dice_loss(input, label, epsilon=1e-05)
 
 
 

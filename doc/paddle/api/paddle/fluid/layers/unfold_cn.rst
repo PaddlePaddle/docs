@@ -3,7 +3,7 @@
 unfold
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.unfold(x, kernel_size, strides=1, paddings=0, dilation=1, name=None)
+.. py:function:: paddle.nn.functional.unfold(x, kernel_size, strides=1, paddings=0, dilation=1, name=None)
 
 
 

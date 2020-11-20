@@ -3,7 +3,7 @@
 log_loss
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.log_loss(input, label, epsilon=0.0001, name=None)
+.. py:function:: paddle.nn.functional.log_loss(input, label, epsilon=0.0001, name=None)
 
 
 
