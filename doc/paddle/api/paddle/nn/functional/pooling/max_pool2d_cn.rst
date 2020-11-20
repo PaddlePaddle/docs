@@ -55,7 +55,7 @@ max_pool2d
                                 kernel_size=2,
                                 stride=2, padding=0)
           # output.shape [1, 3, 16, 16]
-          # for return_indices=True
+          # for return_mask=True
           output, max_indices = F.max_pool2d(input,
                                              kernel_size=2,
                                              stride=2,
