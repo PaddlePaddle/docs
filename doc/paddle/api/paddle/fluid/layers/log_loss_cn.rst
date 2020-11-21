@@ -3,7 +3,7 @@
 log_loss
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.log_loss(input, label, epsilon=0.0001, name=None)
+.. py:function:: paddle.nn.functional.log_loss(input, label, epsilon=0.0001, name=None)
 
 
 
@@ -34,7 +34,6 @@ log_loss
     import paddle
     import paddle.nn.functional as F
     
-    paddle.disable_static()
     label = paddle.randn((10,1))
     prob = paddle.randn((10,1))
     cost = F.log_loss(input=prob, label=label)
