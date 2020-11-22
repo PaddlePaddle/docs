@@ -25,11 +25,10 @@ erf
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
-    paddle.disable_static()
-    x_data = np.array([-0.4, -0.2, 0.1, 0.3])
-    x = paddle.to_tensor(x_data)
+
+    x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
     out = paddle.erf(x)
-    print(out.numpy())
-    # [-0.42839236 -0.22270259  0.11246292  0.32862676]
+    print(out)
+    # Tensor(shape=[4], dtype=float32, place=CPUPlace, stop_gradient=True,
+    #        [-0.42839241, -0.22270259,  0.11246292,  0.32862678])
