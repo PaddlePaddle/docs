@@ -56,30 +56,29 @@ maximum
 
     import paddle
     import numpy as np
-    paddle.disable_static()
-  
+
     x = paddle.to_tensor([[1, 2], [3, 4]])
     y = paddle.to_tensor([[5, 6], [7, 8]])
     res = paddle.maximum(x, y)
-    print(res.numpy())
+    print(res)
     #[[5. 6.]
     # [7. 8.]]
 
     x = paddle.to_tensor([[[1, 2, 3], [1, 2, 3]]])
     y = paddle.to_tensor([1, 2])
     res = paddle.maximum(x, y, axis=1)
-    print(res.numpy())
+    print(res)
     #[[[1. 2. 3.]
     #  [2. 2. 3.]]]
 
     x = paddle.to_tensor([2, 3, 5], dtype='float32')
     y = paddle.to_tensor([1, 4, np.nan], dtype='float32')
     res = paddle.maximum(x, y)
-    print(res.numpy())
+    print(res)
     #[ 2.  4. nan]
 
     x = paddle.to_tensor([5, 3, np.inf], dtype='float32')
     y = paddle.to_tensor([1, 4, 5], dtype='float32')
     res = paddle.maximum(x, y)
-    print(res.numpy())
+    print(res)
     #[ 5.  4. inf]
