@@ -6,7 +6,7 @@ Fluid MKL-DNN integration is having caching mechanism to store MKL-DNN objects. 
 
 ### 1. General architecture
 Basic idea is that MKL-DNN cache is hash map where [key](./keys.md) name is pointing to MKL-DNN object stored in mentioned hash map.
-In more detail MKL-DNN Cache is stored inside MKL-DNN Device Context and it consists of three level of unordered maps based structure. Picture below outlines mentioned architecture:
+In more detail MKL-DNN Cache is stored inside MKL-DNN Device Context and it consists of three levels of unordered maps based structure. Picture below outlines mentioned architecture:
 
 ![](images/cache.svg)
 
