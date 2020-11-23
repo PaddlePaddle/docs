@@ -436,6 +436,7 @@ paddle.hapi.callbacks.ProgBarLogger	paddle.callbacks.ProgBarLogger
 paddle.hapi.callbacks.ModelCheckpoint	paddle.callbacks.ModelCheckpoint
 paddle.hapi.callbacks.VisualDL	paddle.callbacks.VisualDL
 paddle.hapi.model_summary.summary	paddle.summary
+paddle.hapi.model_flops.flops	paddle.flops
 paddle.vision.models.resnet.ResNet	paddle.vision.models.ResNet,paddle.vision.ResNet
 paddle.vision.models.resnet.resnet18	paddle.vision.models.resnet18,paddle.vision.resnet18
 paddle.vision.models.resnet.resnet34	paddle.vision.models.resnet34,paddle.vision.resnet34
