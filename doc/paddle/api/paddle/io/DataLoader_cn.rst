@@ -138,9 +138,9 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 .. code-block:: python
 
-    ```
+    '''
     Example in static graph mode
-    ```
+    '''
     import numpy as np
 
     import paddle
@@ -337,9 +337,9 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 **代码示例 3**
 
-    ```
+    '''
     Example of `drop_last` using in static graph multi-cards mode
-    ```
+    '''
     import paddle
     import paddle.static as static
     import numpy as np
