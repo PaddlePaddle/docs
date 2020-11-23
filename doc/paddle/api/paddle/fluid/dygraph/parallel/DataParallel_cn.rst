@@ -3,7 +3,7 @@
 DataParallel
 ------------
 
-.. py:class:: paddle.fluid.dygraph.DataParallel(layers, strategy)
+.. py:class:: paddle.DataParallel(layers, strategy)
 
 
 通过数据并行模式执行动态图模型。
