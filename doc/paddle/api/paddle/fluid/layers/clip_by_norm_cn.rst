@@ -26,6 +26,7 @@ clip_by_norm
 .. code-block:: python
 
     import paddle
+    import numpy as np
 
     input = paddle.to_tensor(data=np.array([[0.1, 0.2], [0.3, 0.4]]), dtype="float32")
     reward = paddle.nn.clip_by_norm(x=input, max_norm=1.0)
