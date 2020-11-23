@@ -8,20 +8,19 @@ round
 
 
 
-
 该OP将输入中的数值四舍五入到最接近的整数数值。
 
-.. code-block:: python
+例：
+::
+    输入：
+        x.shape = [4]
+        x.data = [1.2, -0.9, 3.4, 0.9]
 
-  输入：
-    x.shape = [4]
-    x.data = [1.2, -0.9, 3.4, 0.9]
+    输出：
+        out.shape = [4]
+        out.data = [1., -1., 3., 1.]
 
-  输出：
-    out.shape = [4]
-    out.data = [1., -1., 3., 1.]
-
-参数:
+参数：
 
     - **x** (Tensor) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
