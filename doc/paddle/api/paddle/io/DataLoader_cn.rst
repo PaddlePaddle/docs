@@ -269,7 +269,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 .. code-block:: python
 
     '''
-    Example in static graph mode. 
+    Example in dynamic graph mode. 
     '''
     import numpy as np
 
