@@ -337,6 +337,8 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 **代码示例 3**
 
+.. code-block:: python
+
     '''
     Example of `drop_last` using in static graph multi-cards mode
     '''
