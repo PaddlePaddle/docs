@@ -49,13 +49,10 @@ DataParallel
             return self._linear2(self._linear1(x))
 
     def train():
-        # 1. enable dynamic mode
-        paddle.disable_static()
-        
-        # 2. initialize parallel environment
+        # 1. initialize parallel environment
         dist.init_parallel_env()
 
-        # 3. create data parallel layer & optimizer
+        # 2. create data parallel layer & optimizer
         layer = LinearNet()
         dp_layer = paddle.DataParallel(layer)
 
@@ -63,7 +60,7 @@ DataParallel
         adam = opt.Adam(
             learning_rate=0.001, parameters=dp_layer.parameters())
 
-        # 4. run layer
+        # 3. run layer
         inputs = paddle.randn([10, 10], 'float32')
         outputs = dp_layer(inputs)
         labels = paddle.randn([10, 1], 'float32')
