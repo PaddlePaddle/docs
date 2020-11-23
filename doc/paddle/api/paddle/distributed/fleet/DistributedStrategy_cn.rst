@@ -394,11 +394,17 @@ DistributedStrategy
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.sharding = True
-  strategy.sharding_configs = {"fuse_broadcast_MB": 32}
 
 .. py:attribute:: sharding_configs
 
 设置sharding策略的参数。
 
-**fuse_broadcast_MB(float):** sharding 广播通信中参数融合的阈值。 该参数会影响sharding 训练中的通信速度，是一个需要根据具体模型大小和网络拓扑设定的经验值。 默认值是 32.
+**fuse_broadcast_MB(float):** sharding 广播通信中参数融合的阈值。 该参数会影响sharding 训练中的通信速度，是一个需要根据具体模型大小和网络拓扑设定的经验值。 默认值是 32. 
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.sharding = True
+  strategy.sharding_configs = {"fuse_broadcast_MB": 32}
 
