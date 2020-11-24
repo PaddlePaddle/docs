@@ -27,7 +27,6 @@ expand
        import paddle
        import numpy as np
                
-       paddle.disable_static()
        np_data = np.array([1, 2, 3]).astype('int32')
        data = paddle.to_tensor(np_data)
        out = paddle.expand(data, [2, 3])

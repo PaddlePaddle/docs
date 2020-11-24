@@ -13,12 +13,13 @@ PaddlePaddle主要的动转静方式是基于源代码级别转换的ProgramTran
     import paddle
 
     @paddle.jit.to_static
-    def func(input_var)
+    def func(input_var):
         # if判断与输入input_var的shape有关
         if input_var.shape[0] > 1:
             out = paddle.cast(input_var, "float64")
         else:
             out = paddle.cast(input_var, "int64")
+        return out
 
     in_np = np.array([-2]).astype('int')
     input_var = paddle.to_tensor(in_np)
@@ -86,6 +87,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 接下来是TracedLayer如何存储模型：
 
 .. code-block:: python
+
     import paddle
     from paddle.jit import TracedLayer
 

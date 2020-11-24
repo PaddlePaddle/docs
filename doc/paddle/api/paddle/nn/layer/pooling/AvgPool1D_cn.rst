@@ -35,14 +35,6 @@ AvgPool1D
 计算AvgPool1D的可调用对象
 
 
-抛出异常
-:::::::::
-    - ``ValueError`` - 如果 ``padding`` 是字符串但不是 "SAME" 和 "VALID" 。
-    - ``ValueError`` - 如果 ``padding`` 是 "VALID" 但 `ceil_mode` 被设置为True。
-    - ``ValueError`` - 如果 ``padding`` 是一个长度大于1的list或turple。
-    - ``ShapeError`` - 如果输入x不是一个3-D Tensor。
-    - ``ShapeError`` - 如果计算得到的输出形状小于等于0。
-
 代码示例
 :::::::::
 
@@ -50,10 +42,8 @@ AvgPool1D
 
         import paddle
         import paddle.nn as nn
-        import numpy as np
-        paddle.disable_static()
 
-        data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
+        data = paddle.uniform(shape=[1, 2, 32], dtype='float32', min=-1, max=1)
         AvgPool1D = nn.layer.AvgPool1D(kernel_size=2, stride=2, padding=0)
         pool_out = AvgPool1D(data)
         # pool_out shape: [1, 3, 16]

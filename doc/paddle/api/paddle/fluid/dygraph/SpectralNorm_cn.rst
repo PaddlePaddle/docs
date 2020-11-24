@@ -3,9 +3,7 @@
 SpectralNorm
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.SpectralNorm(weight_shape, dim=0, power_iters=1, eps=1e-12, name=None, dtype="float32")
-
-
+.. py:class:: paddle.nn.SpectralNorm(weight_shape, dim=0, power_iters=1, eps=1e-12, name=None, dtype="float32")
 
 
 该接口用于构建 ``SpectralNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了谱归一化层的功能，用于计算fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，输入权重参数应分别为2-D, 3-D, 4-D, 5-D张量，输出张量与输入张量维度相同。谱特征值计算方式如下：
@@ -27,7 +25,9 @@ SpectralNorm
 
 可参考: `Spectral Normalization <https://arxiv.org/abs/1802.05957>`_
 
-参数：
+参数
+:::::::::
+
     - **weight_shape** (list 或 tuple) - 权重参数的shape。
     - **dim** (int, 可选) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1。默认值：0。
     - **power_iters** (int, 可选) - 将用于计算的 ``SpectralNorm`` 功率迭代次数，默认值：1。
@@ -35,17 +35,21 @@ SpectralNorm
     - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
-返回：无
+形状
+:::::::::
 
-**代码示例**：
+- input: 任意形状的Tensor。
+- output: 和输入形状一样。
+
+代码示例
+:::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
+    import paddle
+    x = paddle.rand((2,8,32,32))
 
-    with fluid.dygraph.guard():
-        weight = np.random.random((2, 8, 32, 32)).astype('float32')
-        spectralNorm = fluid.dygraph.nn.SpectralNorm(weight.shape, dim=1, power_iters=2)
-        ret = spectralNorm(fluid.dygraph.base.to_variable(weight))
+    spectral_norm = paddle.nn.SpectralNorm(x.shape, dim=1, power_iters=2)
+    spectral_norm_out = spectral_norm(x)
 
+    print(spectral_norm_out.shape) # [2, 8, 32, 32]

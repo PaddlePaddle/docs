@@ -49,7 +49,8 @@ StepDecay
             loss.backward()
             sgd.step()
             sgd.clear_gradients()
-        scheduler.step()
+            scheduler.step()    # If you update learning rate each step
+      # scheduler.step()        # If you update learning rate each epoch
 
     # train on static graph mode
     paddle.enable_static()
@@ -75,7 +76,8 @@ StepDecay
                     'y': np.random.randn(3, 4, 5).astype('float32')
                 },
                 fetch_list=loss.name)
-        scheduler.step()
+            scheduler.step()    # If you update learning rate each step
+      # scheduler.step()        # If you update learning rate each epoch
 
 .. py:method:: step(epoch=None)
 

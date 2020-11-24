@@ -1,5 +1,5 @@
 ########################
-Paddle 2.0 Basic Concept
+Basic Concept
 ########################
 
 Let's start with studying basic concept of PaddlePaddle:

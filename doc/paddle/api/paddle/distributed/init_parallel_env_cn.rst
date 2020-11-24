@@ -8,7 +8,7 @@ init_parallel_env
 初始化动态图模式下的并行训练环境。
 
 .. note::
-    目前仅支持初始化GPU训练环境，使用NCCL进行通信。
+    目前同时初始化 ``NCCL`` 和 ``GLOO`` 上下文用于通信。
 
 返回
 :::::::::
@@ -32,14 +32,11 @@ init_parallel_env
         def forward(self, x):
             return self._linear2(self._linear1(x))
 
-    def train():
-        # 1. enable dynamic mode
-        paddle.disable_static()
-        
-        # 2. initialize parallel environment
+    def train(): 
+        # 1. initialize parallel environment
         dist.init_parallel_env()
 
-        # 3. create data parallel layer & optimizer
+        # 2. create data parallel layer & optimizer
         layer = LinearNet()
         dp_layer = paddle.DataParallel(layer)
 
@@ -47,7 +44,7 @@ init_parallel_env
         adam = opt.Adam(
             learning_rate=0.001, parameters=dp_layer.parameters())
 
-        # 4. run layer
+        # 3. run layer
         inputs = paddle.randn([10, 10], 'float32')
         outputs = dp_layer(inputs)
         labels = paddle.randn([10, 1], 'float32')
