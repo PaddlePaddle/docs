@@ -521,9 +521,9 @@ paddle.utils.install_check.run_check	paddle.utils.run_check
 paddle.nn.layer.transformer.MultiHeadAttention	paddle.nn.MultiHeadAttention,paddle.nn.layer.MultiHeadAttention
 paddle.nn.layer.transformer.Transformer	paddle.nn.Transformer,paddle.nn.layer.Transformer
 paddle.nn.layer.transformer.TransformerDecoder	paddle.nn.TransformerDecoder,paddle.nn.layer.TransformerDecoder
-paddle.nn.layer.transformer.TransformerDecoderLayer	paddle.nn.MultiHeadAttention,paddle.nn.layer.TransformerDecoderLayer
-paddle.nn.layer.transformer.TransformerEncoder	paddle.nn.MultiHeadAttention,paddle.nn.layer.TransformerEncoder
-paddle.nn.layer.transformer.TransformerEncoderLayer	paddle.nn.MultiHeadAttention,paddle.nn.layer.TransformerEncoderLayer
+paddle.nn.layer.transformer.TransformerDecoderLayer	paddle.nn.TransformerDecoderLayer,paddle.nn.layer.TransformerDecoderLayer
+paddle.nn.layer.transformer.TransformerEncoder	paddle.nn.TransformerEncoder,paddle.nn.layer.TransformerEncoder
+paddle.nn.layer.transformer.TransformerEncoderLayer	paddle.nn.TransformerEncoderLayer,paddle.nn.layer.TransformerEncoderLayer
 paddle.optimizer.adadelta.Adadelta	paddle.optimizer.Adadelta
 paddle.optimizer.adagrad.Adagrad	paddle.optimizer.Adagrad
 paddle.optimizer.adam.Adam	paddle.optimizer.Adam
