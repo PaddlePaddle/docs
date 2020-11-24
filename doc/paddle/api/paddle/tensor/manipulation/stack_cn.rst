@@ -2,7 +2,7 @@
 stack
 -------------------------------
 
-.. py:function:: paddle.tensor.stack(x, axis=0, name=None)
+.. py:function:: paddle.stack(x, axis=0, name=None)
 
 
 
@@ -60,21 +60,18 @@ stack
 
 **返回**：堆叠运算后的Tensor，数据类型与输入Tensor相同。
 
-**返回类型**：Variable
-
 **代码示例**:
 
 .. code-block:: python
    
     import paddle
-    paddle.disable_static()
+    
     x1 = paddle.to_tensor([[1.0, 2.0]])
     x2 = paddle.to_tensor([[3.0, 4.0]])
     x3 = paddle.to_tensor([[5.0, 6.0]])
-
     out = paddle.stack([x1, x2, x3], axis=0)
     print(out.shape)  # [3, 1, 2]
-    print(out.numpy())
+    print(out)
     # [[[1., 2.]],
     #  [[3., 4.]],
     #  [[5., 6.]]]
