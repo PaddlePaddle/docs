@@ -56,6 +56,7 @@ minimum
 .. code-block:: python
 
     import paddle
+    import numpy as np
 
     x = paddle.to_tensor([[1, 2], [3, 4]], dtype='float32')
     y = paddle.to_tensor([[5, 6], [7, 8]], dtype='float32')
