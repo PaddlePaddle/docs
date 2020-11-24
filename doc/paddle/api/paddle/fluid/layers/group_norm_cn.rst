@@ -35,3 +35,4 @@ group_norm
     paddle.enable_static()
     data = paddle.static.data(name='data', shape=[2, 8, 32, 32], dtype='float32')
     x = paddle.static.nn.group_norm(input=data, groups=4)
+    print(x.shape) # [2, 8, 32, 32]
