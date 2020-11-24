@@ -24,17 +24,10 @@ avg_pool1d
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 
+
 返回
 :::::::::
 ``Tensor``, 输入 `x` 经过平均池化计算得到的目标3-D Tensor，其数据类型与输入相同。
-
-抛出异常
-:::::::::
-    - ``ValueError`` - 如果 ``padding`` 是字符串但不是 "SAME" 和 "VALID" 。
-    - ``ValueError`` - 如果 ``padding`` 是 "VALID" 但 `ceil_mode` 被设置为True。
-    - ``ValueError`` - 如果 ``padding`` 是一个长度大于1的list或turple。
-    - ``ShapeError`` - 如果输入x不是一个3-D Tensor。
-    - ``ShapeError`` - 如果计算得到的输出形状小于等于0。
 
 
 
@@ -45,9 +38,7 @@ avg_pool1d
 
         import paddle
         import paddle.nn.functional as F
-        import numpy as np
-        paddle.disable_static()
 
-        data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
+        data = paddle.uniform(shape=[1, 2, 32], dtype='float32', min=-1, max=1)
         pool_out = F.avg_pool1d(data, kernel_size=2, stride=2, padding=0)
         # pool_out shape: [1, 3, 16]
