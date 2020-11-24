@@ -2,7 +2,7 @@
 unsqueeze
 -------------------------------
 
-.. py:function:: paddle.tensor.unsqueeze(x, axis, name=None)
+.. py:function:: paddle.unsqueeze(x, axis, name=None)
 
 该OP向输入Tensor的Shape中一个或多个位置（axis）插入尺寸为1的维度。
 
@@ -12,8 +12,6 @@ unsqueeze
         - **name** （str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 **返回**：扩展维度后的多维Tensor，数据类型与输入Tensor一致。
-
-**返回类型**：Tensor
 
 **代码示例**：
 

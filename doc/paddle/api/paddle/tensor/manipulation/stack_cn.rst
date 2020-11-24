@@ -2,7 +2,7 @@
 stack
 -------------------------------
 
-.. py:function:: paddle.tensor.stack(x, axis=0, name=None)
+.. py:function:: paddle.stack(x, axis=0, name=None)
 
 
 
@@ -59,8 +59,6 @@ stack
         - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 **返回**：堆叠运算后的Tensor，数据类型与输入Tensor相同。
-
-**返回类型**：Variable
 
 **代码示例**:
 
