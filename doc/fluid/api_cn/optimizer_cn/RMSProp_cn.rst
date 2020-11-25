@@ -225,17 +225,17 @@ RMSProp
     lr = adam.get_lr()
     print(lr) # 0.001
 
-    # example2: PiecewiseDecay is used, return the step learning rate
+    # example2: StepDecay is used, return the step learning rate
     paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
-    loss = paddle.reduce_mean(out)
+    loss = paddle.mean(out)
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
     adam = paddle.optimizer.RMSProp(scheduler,
                            parameters=linear.parameters())
 
