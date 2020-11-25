@@ -25,11 +25,9 @@ broadcast_to
 .. code-block:: python
 
        import paddle
-       import numpy as np
                
-       np_data = np.array([1, 2, 3]).astype('int32')
-       data = paddle.to_tensor(np_data)
-       out = paddle.broadcast_to(data, [2, 3])
-       np_out = out.numpy()
+       data = paddle.to_tensor([1, 2, 3], dtype='int32')
+       out = paddle.broadcast_to(data, shape=[2, 3])
+       print(out)
        # [[1, 2, 3], [1, 2, 3]]
 
