@@ -3,7 +3,7 @@
 floor
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.floor(x, name=None)
+.. py:function:: paddle.floor(x, name=None)
 
 
 
@@ -19,14 +19,18 @@ floor
 
 返回：输出为Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型：Variable
+返回类型：Tensor
 
 **代码示例**：
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data1 = fluid.layers.fill_constant(shape=[3, 2], value=2.5, dtype='float32') # [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
-        data2 = fluid.layers.fill_constant(shape=[2, 3], value=-2.5, dtype='float64') # [[-2.5, -2.5, -2.5], [-2.5, -2.5, -2.5]]
-        result1 = fluid.layers.floor(data1) # [[2., 2.], [2., 2.], [2., 2.]]
-        result2 = fluid.layers.floor(data2) # [[-3., -3., -3.], [-3., -3., -3.]]
+        import paddle
+
+        data1 = paddle.full(shape=[3, 2], fill_value=2.5, dtype='float32') # [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
+        data2 = paddle.full(shape=[2, 3], fill_value=-2.5, dtype='float64') # [[-2.5, -2.5, -2.5], [-2.5, -2.5, -2.5]]
+        result1 = paddle.floor(data1) # [[2., 2.], [2., 2.], [2., 2.]]
+        result2 = paddle.floor(data2) # [[-3., -3., -3.], [-3., -3., -3.]]
+        print(result1)
+        print(result2)
+
