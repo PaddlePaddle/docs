@@ -5,11 +5,6 @@ multiplex
 
 .. py:function:: paddle.multiplex(inputs, index, name)
 
-:alias_main: paddle.multiplex
-:alias: paddle.multiplex,paddle.tensor.multiplex,paddle.tensor.math.multiplex
-:old_api: paddle.fluid.layers.multiplex
-
-
 
 根据给定的index参数，该OP从每个输入Tensor中选择特定行构造输出Tensor。
 
@@ -41,9 +36,7 @@ multiplex
   - **index** （Tensor）- 用来选择输入Tensor中的某些行构建输出Tensor的索引，为数据类型为int32或int64、shape为[M, 1]的2-D Tensor，其中M为输入Tensor个数。
   - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-返回：进行Multiplex运算后的输出Tensor。
-
-返回类型：Tensor。
+返回：Tensor, 进行Multiplex运算后的输出Tensor。
 
 **代码示例**
 
