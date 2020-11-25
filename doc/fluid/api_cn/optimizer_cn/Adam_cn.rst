@@ -242,11 +242,11 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
-    loss = paddle.reduce_mean(out)
+    loss = paddle.mean(out)
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
     adam = paddle.optimizer.Adam(scheduler,
                            parameters=linear.parameters())
 
