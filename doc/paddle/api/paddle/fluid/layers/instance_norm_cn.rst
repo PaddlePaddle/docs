@@ -41,11 +41,8 @@ NCHW[batch,in_channels,in_height,in_width]
 .. code-block:: python
     
     import paddle
-    import numpy as np
     paddle.enable_static()
     x = paddle.static.data(name='x', shape=[3, 7, 3, 7], dtype='float32')
     hidden1 = paddle.static.nn.fc(x, size=200)
-    param_attr = paddle.ParamAttr(name='instance_norm_w')
-    bias_attr = paddle.ParamAttr(name='instance_norm_b')
-    hidden2 = paddle.static.instance_norm(hidden1, param_attr = param_attr, bias_attr = bias_attr)
+    hidden2 = paddle.static.nn.instance_norm(hidden1)
 
