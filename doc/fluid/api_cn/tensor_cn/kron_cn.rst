@@ -41,9 +41,7 @@ Kronecker Product 算子。
   - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
 
 返回：
-  - Kron OP 的输出。多维 Tensor，数据类型为 float16, float32, float64, int32 或 int64，与 x 一致。
-
-返回类型: Tensor
+  - 多维 Tensor,Kron OP 的输出, 数据类型为 float16, float32, float64, int32 或 int64，与 x 一致。
 
 
 **代码示例**

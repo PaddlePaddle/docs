@@ -5,7 +5,6 @@ mm
 
 .. py:function:: paddle.mm(input, mat2, out=None, name=None)
 
-:update_api: paddle.matmul
 
 
 
@@ -26,8 +25,6 @@ mm不遵循broadcast规则，需要遵循broadcast规则的矩阵相乘请使用
 返回：
     - Tensor (Tensor / LoDTensor)，矩阵相乘后的结果。
 
-返回类型：
-    - Tensor（变量）。
 
 **代码示例**：
 
