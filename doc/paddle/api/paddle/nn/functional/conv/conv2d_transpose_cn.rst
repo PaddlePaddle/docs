@@ -85,7 +85,7 @@ conv2d_transpose
 
 返回：4-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
-返回类型：Variable
+返回类型：Tensor
 
 抛出异常:
     -  ``ValueError`` : 如果输入的shape、kernel_size、stride、padding和groups不匹配，抛出ValueError
