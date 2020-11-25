@@ -9,3 +9,4 @@
 	compile_CentOS.md
 	compile_MacOS.md
 	compile_Windows.md
+	compile_FT.md

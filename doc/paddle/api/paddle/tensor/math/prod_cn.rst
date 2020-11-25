@@ -26,44 +26,32 @@ prod
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     
     # the axis is a int element
     data_x = np.array([[0.2, 0.3, 0.5, 0.9],
                  [0.1, 0.2, 0.6, 0.7]]).astype(np.float32)
     x = paddle.to_tensor(data_x)
     out1 = paddle.prod(x)
-    print(out1.numpy())
     # [0.0002268]
     
     out2 = paddle.prod(x, -1)
-    print(out2.numpy())
     # [0.027  0.0084]
 
     out3 = paddle.prod(x, 0)
-    print(out3.numpy())
     # [0.02 0.06 0.3  0.63]
-    print(out3.numpy().dtype)
-    # float32
 
     out4 = paddle.prod(x, 0, keepdim=True)
-    print(out4.numpy())
     # [[0.02 0.06 0.3  0.63]]
 
     out5 = paddle.prod(x, 0, dtype='int64')
-    print(out5.numpy())
     # [0 0 0 0]
-    print(out5.numpy().dtype)
-    # int64
 
     # the axis is list
     data_y = np.array([[[1.0, 2.0], [3.0, 4.0]],
                        [[5.0, 6.0], [7.0, 8.0]]])
     y = paddle.to_tensor(data_y)
     out6 = paddle.prod(y, [0, 1])
-    print(out6.numpy())
     # [105. 384.]
 
     out7 = paddle.prod(y, (1, 2))
-    print(out7.numpy())
     # [  24. 1680.]

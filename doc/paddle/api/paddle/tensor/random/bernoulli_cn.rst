@@ -26,19 +26,17 @@ bernoulli
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-
-    x = paddle.rand([2, 3])
-    print(x.numpy())
-    # [[0.11272584 0.3890902  0.7730957 ]
-    # [0.10351662 0.8510418  0.63806665]]
+    paddle.seed(100) # on CPU device
+    x = paddle.rand([2,3])
+    print(x)
+    # [[0.5535528  0.20714243 0.01162981]
+    #  [0.51577556 0.36369765 0.2609165 ]]
 
     out = paddle.bernoulli(x)
-    print(out.numpy())
-    # [[0. 0. 1.]
-    # [0. 0. 1.]]
+    print(out)
+    # [[0. 0. 0.]
+    #  [1. 1. 0.]]
 
 
 

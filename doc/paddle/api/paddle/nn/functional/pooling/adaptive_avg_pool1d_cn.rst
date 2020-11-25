@@ -10,7 +10,7 @@ adaptive_avg_pool1d
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `L` 是输入特征的长度.
 
 .. note::
-   详细请参考对应的 `Class` 请参考: :ref:`cn_api_nn_AdaptiveAvgPool1d` 。
+   详细请参考对应的 `Class` 请参考: :ref:`cn_api_nn_AdaptiveAvgPool1D` 。
 
 
 参数
@@ -47,7 +47,6 @@ adaptive_avg_pool1d
         import paddle
         import paddle.nn.functional as F
         import numpy as np
-        paddle.disable_static()
 
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
         pool_out = F.adaptive_avg_pool1d(data, output_size=16)

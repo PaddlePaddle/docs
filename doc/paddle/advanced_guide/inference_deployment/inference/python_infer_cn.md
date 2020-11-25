@@ -277,6 +277,7 @@ if __name__ == "__main__":
     * `get_output_names() -> List[str]`
     * `get_output_handle(output_name: str) -> Tensor`
     * `clear_intermediate_tensor() -> None`
+    * `try_shrink_memory() -> None`
     * `clone() -> Predictor`
 * PredictorPool
     * `retrive(idx: int) -> Predictor`

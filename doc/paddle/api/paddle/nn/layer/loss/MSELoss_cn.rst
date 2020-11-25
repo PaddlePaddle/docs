@@ -40,29 +40,10 @@ MSELoss
     import numpy as np
     import paddle
 
-
-    # static graph mode
-    paddle.enable_static()
-    mse_loss = paddle.nn.loss.MSELoss()
-    input = paddle.data(name="input", shape=[1])
-    label = paddle.data(name="label", shape=[1])
-    place = paddle.CPUPlace()
     input_data = np.array([1.5]).astype("float32")
     label_data = np.array([1.7]).astype("float32")
 
-    output = mse_loss(input,label)
-    exe = paddle.static.Executor(place)
-    exe.run(paddle.static.default_startup_program())
-    output_data = exe.run(
-        paddle.static.default_main_program(),
-        feed={"input":input_data, "label":label_data},
-        fetch_list=[output],
-        return_numpy=True)
-    print(output_data)
-    # [array([0.04000002], dtype=float32)]
-
-    # dynamic graph mode
-    paddle.disable_static()
+    mse_loss = paddle.nn.loss.MSELoss()
     input = paddle.to_tensor(input_data)
     label = paddle.to_tensor(label_data)
     output = mse_loss(input, label)

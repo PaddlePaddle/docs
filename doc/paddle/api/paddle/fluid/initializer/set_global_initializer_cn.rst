@@ -1,9 +1,9 @@
-.. _cn_api_fluid_set_global_initializer:
+.. _cn_api_nn_initializer_set_global_initializer:
 
 set_global_initializer
 -------------------------------
 
-.. py:function:: paddle.fluid.set_global_initializer(weight_init, bias_init=None)
+.. py:function:: paddle.nn.initializer.set_global_initializer(weight_init, bias_init=None)
 
 该API用于设置Paddle框架中全局的参数初始化方法。该API只对位于其后的代码生效。
 
@@ -22,21 +22,24 @@ set_global_initializer
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    
-    fluid.set_global_initializer(fluid.initializer.Uniform(), fluid.initializer.Constant())
-    x = fluid.data(name="x", shape=[1, 3, 32, 32])
+    import paddle
+    import paddle.nn as nn
+
+    nn.initializer.set_global_initializer(nn.initializer.Uniform(), nn.initializer.Constant())
+    x_var = paddle.uniform((2, 4, 8, 8), dtype='float32', min=-1., max=1.)
 
     # conv1的weight参数是通过Uniform来初始化
     # conv1的bias参数是通过Constant来初始化
-    conv1 = fluid.layers.conv2d(x, 5, 3)
+    conv1 = nn.Conv2D(4, 6, (3, 3))
+    y_var1 = conv1(x_var)
 
     # 如果同时设置了param_attr/bias_attr, 全局初始化将不会生效
     # conv2的weight参数是通过Xavier来初始化
     # conv2的bias参数是通过Normal来初始化
-    conv2 = fluid.layers.conv2d(conv1, 5, 3, 
-        param_attr=fluid.initializer.Xavier(), 
-        bias_attr=fluid.initializer.Normal())
+    conv2 = nn.Conv2D(4, 6, (3, 3), 
+        weight_attr=nn.initializer.XavierUniform(),
+        bias_attr=nn.initializer.Normal())
+    y_var2 = conv2(x_var)
     
     # 取消全局参数初始化的设置
-    fluid.set_global_initializer(None)
+    nn.initializer.set_global_initializer(None)

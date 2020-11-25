@@ -1,7 +1,7 @@
-AdaptiveAvgPool3d
+AdaptiveAvgPool3D
 -------------------------------
 
-.. py:function:: paddle.nn.AdaptiveAvgPool3d(output_size, data_format="NCDHW", name=None)
+.. py:function:: paddle.nn.AdaptiveAvgPool3D(output_size, data_format="NCDHW", name=None)
 
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算3D的自适应平均池化。输入和输出都是5-D Tensor，
 默认是以 `NCDHW` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `D` 是特征图长度, `H` 是输入特征的高度, `H` 是输入特征的宽度。
@@ -38,7 +38,7 @@ AdaptiveAvgPool3d
 
 返回
 :::::::::
-计算AdaptiveAvgPool3d的可调用对象
+计算AdaptiveAvgPool3D的可调用对象
 
 抛出异常
 :::::::::
@@ -73,6 +73,6 @@ AdaptiveAvgPool3d
         input_data = np.random.rand(2, 3, 8, 32, 32)
         x = paddle.to_tensor(input_data)
         # x.shape is [2, 3, 8, 32, 32]
-        adaptive_avg_pool = paddle.nn.AdaptiveAvgPool3d(output_size=3)
+        adaptive_avg_pool = paddle.nn.AdaptiveAvgPool3D(output_size=3)
         pool_out = adaptive_avg_pool(x = x)
         # pool_out = [2, 3, 3, 3, 3]

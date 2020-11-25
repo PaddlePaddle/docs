@@ -40,14 +40,11 @@ spawn
         def forward(self, x):
             return self._linear2(self._linear1(x))
 
-    def train(print_result=False):
-        # 1. enable dynamic mode
-        paddle.disable_static()
-        
-        # 2. initialize parallel environment
+    def train(print_result=False): 
+        # 1. initialize parallel environment
         dist.init_parallel_env()
 
-        # 3. create data parallel layer & optimizer
+        # 2. create data parallel layer & optimizer
         layer = LinearNet()
         dp_layer = paddle.DataParallel(layer)
 
@@ -55,7 +52,7 @@ spawn
         adam = opt.Adam(
             learning_rate=0.001, parameters=dp_layer.parameters())
 
-        # 4. run layer
+        # 3. run layer
         inputs = paddle.randn([10, 10], 'float32')
         outputs = dp_layer(inputs)
         labels = paddle.randn([10, 1], 'float32')
@@ -64,9 +61,7 @@ spawn
         if print_result is True:
             print("loss:", loss.numpy())
         
-        loss = dp_layer.scale_loss(loss)
         loss.backward()
-        dp_layer.apply_collective_grads()
 
         adam.step()
         adam.clear_grad()
@@ -96,10 +91,10 @@ spawn
     # Usage 4: pass function, arguments, nprocs and selected_gpus.
     # If your training method need some arguments, and 
     # only use part of visible devices for parallel training,
-    # but you can't set your machine's environment varibale 
+    # but you can't set your machine's environment variable 
     # CUDA_VISIBLE_DEVICES, such as it is None or all cards
-    # {0,1,2,3,4,5,6,7}, you can pass `selelcted_gpus` to 
+    # {0,1,2,3,4,5,6,7}, you can pass `selected_gpus` to 
     # select the GPU cards you want to use. For example,
     # this case will use cards {4,5} if your machine hold 8 cards.
     if __name__ == '__main__':
-        dist.spawn(train, args=(True,), nprocs=2, selelcted_gpus='4,5')
+        dist.spawn(train, args=(True,), nprocs=2, selected_gpus='4,5')

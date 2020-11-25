@@ -37,7 +37,5 @@ selu激活层
     import paddle.nn.functional as F
     import numpy as np
 
-    paddle.disable_static()
-
     x = paddle.to_tensor(np.array([[0.0, 1.0],[2.0, 3.0]]))
     out = F.selu(x) # [[0, 1.050701],[2.101402, 3.152103]]

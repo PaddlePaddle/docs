@@ -15,26 +15,27 @@ addcmul
     out = input + value * tensor1 * tensor2
 
 参数:
-    - **input** (Variable) : 输入Tensor input，数据类型支持float32, float64, int32, int64。
-    - **itensor1** (Variable) : 输入Tensor tensor1，数据类型支持float32, float64, int32, int64。
-    - **itensor2** (Variable) : 输入Tensor tensor2，数据类型支持float32, float64, int32, int64。
+    - **input** (Tensor) : 输入Tensor input，数据类型支持float32, float64, int32, int64。
+    - **itensor1** (Tensor) : 输入Tensor tensor1，数据类型支持float32, float64, int32, int64。
+    - **itensor2** (Tensor) : 输入Tensor tensor2，数据类型支持float32, float64, int32, int64。
     - **value** (int|float) : 乘以tensor1*tensor2的标量。如果输入input类型为float32或float64，value类型必须为float，如果输入input类型为int32或int64，value类型必须为int。
-    - **out** (Variable, 可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
+    - **out** (Tensor, 可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：计算得到的Tensor。Tensor数据类型与输入input数据类型一致。
 
-返回类型：变量（Variable）
+返回类型：变量（Tensor）
 
 **代码示例**:
 
 .. code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
-
-    input = fluid.data(name='input', dtype='float32', shape=[3, 4])
-    tensor1 = fluid.data(name='tenosr1', dtype='float32', shape=[1, 4])
-    tensor2 = fluid.data(name='tensor2', dtype='float32', shape=[3, 4])
-    data = paddle.addcmul(input, tensor1, tensor2, value=1.0)
+    input = paddle.ones([2,2])
+    tensor1 = paddle.ones([2,2])
+    tensor2 = paddle.ones([2,2])
+    out = paddle.addcmul(input, tensor1, tensor2, value=0.5)
+    print(out.numpy())
+    # [[1.5 1.5]
+    # [1.5 1.5]]
 

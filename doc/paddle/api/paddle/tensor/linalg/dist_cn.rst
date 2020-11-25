@@ -5,9 +5,6 @@ dist
 
 .. py:function:: paddle.tensor.linalg.dist(x, y, p=2)
 
-
-
-
 该OP用于计算 `(x-y)` 的 p 范数（p-norm），需要注意这不是严格意义上的范数，仅作为距离的度量。输入 `x` 和 `y` 的形状（shape）必须是可广播的（broadcastable）。其含义如下，详情请参考 `numpy的广播概念 <https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html>`_ ：
 
 - 每个输入都至少有1维
@@ -50,29 +47,31 @@ z (4-D Tensor):  8 x 7 x 6 x 5
     ||z||_{p}=(\sum_{i=1}^{m}|z_i|^p)^{\frac{1}{p}}
 
 参数:
-  - **x** (Variable): 1-D 到 6-D Tensor，数据类型为float32或float64。
-  - **y** (Variable): 1-D 到 6-D Tensor，数据类型为float32或float64。
+  - **x** (Tensor): 1-D 到 6-D Tensor，数据类型为float32或float64。
+  - **y** (Tensor): 1-D 到 6-D Tensor，数据类型为float32或float64。
   - **p** (float, optional): 用于设置需要计算的范数，数据类型为float32或float64。默认值为2.
 
 返回: `(x-y)` 的 `p` 范数。
 
-返回类型: Variable
+返回类型: Tensor
 
 **代码示例**:
 
 ..  code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
     import numpy as np
-    with fluid.dygraph.guard():
-        x = fluid.dygraph.to_variable(np.array([[3, 3],[3, 3]]).astype(np.float32))
-        y = fluid.dygraph.to_variable(np.array([[3, 3],[3, 1]]).astype(np.float32))
-        out = paddle.dist(x, y, 0)
-        print(out.numpy()) # out = [1.]
-        out = paddle.dist(x, y, 2)
-        print(out.numpy()) # out = [2.]
-        out = paddle.dist(x, y, float("inf"))
-        print(out.numpy()) # out = [2.]
-        out = paddle.dist(x, y, float("-inf"))
-        print(out.numpy()) # out = [0.]
+
+    x = paddle.to_tensor(np.array([[3, 3],[3, 3]]), "float32")
+    y = paddle.to_tensor(np.array([[3, 3],[3, 1]]), "float32")
+    out = paddle.dist(x, y, 0)
+    print(out) # out = [1.]
+
+    out = paddle.dist(x, y, 2)
+    print(out) # out = [2.]
+
+    out = paddle.dist(x, y, float("inf"))
+    print(out) # out = [2.]
+
+    out = paddle.dist(x, y, float("-inf"))
+    print(out) # out = [0.]

@@ -37,7 +37,6 @@ gather
     import numpy as np
     import paddle
 
-    paddle.disable_static()
     input_1 = np.array([[1,2],[3,4],[5,6]])
     index_1 = np.array([0,1])
     input = paddle.to_tensor(input_1)

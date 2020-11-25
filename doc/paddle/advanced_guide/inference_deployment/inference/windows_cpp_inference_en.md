@@ -5,13 +5,17 @@ Install and Compile C++ Inference Library on Windows
 Download and Install directly
 -------------
 
-| Version      |  Inference Libraries(v1.8.4)   |Inference Libraries(v2.0.0-beta0)| Compiler | Build tools | cuDNN | CUDA |
-|:---------|:-------------------|:-------------------|:----------------|:--------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-beta0/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) || MSVC 2015 update 3|  CMake v3.16.0  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) ||  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
+| Version      |  Inference Libraries(v1.8.5)   |Inference Libraries(v2.0.0-rc0)| Compiler | Build tools | cuDNN | CUDA |
+|:---------|:-------------------|:-------------------|:----------------|:--------|:-------|:-------|
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/cpu/paddle_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.17.0  |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/open/cpu/fluid_inference_install_dir.zip) |[paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/open/cpu/paddle_inference_install_dir.zip)| MSVC 2015 update 3|  CMake v3.17.0  |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/mkl/post97/fluid_inference_install_dir.zip) |[paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post90/paddle_inference_install_dir.zip)|  MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   9.0    |
+|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   9.0    |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post100/paddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.0    |
+|    cuda10.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.5/win-infer/open/post107/fluid_inference_install_dir.zip) | | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.0    |
+|    cuda10.1_cudnn7_avx_mkl | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post101/paddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.1   |
+|    cuda10.2_cudnn7_avx_mkl |  | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc0/win-infer/mkl/post102/paddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6.5  |   10.2    |
+
 
 ### Hardware Environment
 
@@ -51,26 +55,37 @@ For details on the compilation options, see [the compilation options list](../..
    cd Paddle
    ```
 
-2. Run Cmake command
+2. Run Cmake command:
 
-   - compile CPU inference library
+   - for 64bit inference library
    ```bash
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
    # use -DWITH_MKL to select math library: Intel MKL or OpenBLAS
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF
 
    # By default on Windows we use /MT for C Runtime Library, If you want to use /MD, please use the below command
    # If you have no ideas the differences between the two, use the above one
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
-   - compile GPU inference library
+
+   - for 32bit inference library
    ```bash
-   # -DCUDA_TOOKIT_ROOT_DIR is cuda root directory, such as -DCUDA_TOOKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOKIT_ROOT_DIR=YOUR_CUDA_PATH
+   # WITH_MKL must be OFF for
+   cmake .. -G "Visual Studio 14 2015" -A Win32 -T host=x86 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=OFF -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
    ```
 
-3. Open the `paddle.sln` using VisualStudio 2015, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build).
+3. Use Visual Studio 2015 to compile:
 
-The inference library will be installed in `fluid_inference_install_dir`.
+    - compile 64bit inference library:
+      1. Open the `paddle.sln` using Visual Studio 2015
+      2. choose the `x64` for Slution Platforms, and `Release` for Solution Configurations
+      3. build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build)
+
+    - compile 32bit inference library:
+      1. Open the `paddle.sln` using Visual Studio 2015
+      2. choose the `Win32` for Slution Platforms, and `Release` for Solution Configurations
+      3. build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build)
+
+The inference library will be installed in `paddle_inference_install_dir`.
 
 version.txt constains the detailed configurations about the library, including git commit ID、math library, CUDA, CUDNN versions, CXX compiler version:
 
