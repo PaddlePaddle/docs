@@ -3,7 +3,7 @@
 asin
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.asin(x, name=None)
+.. py:function:: paddle.asin(x, name=None)
 
 
 
@@ -26,8 +26,8 @@ arcsine函数。
 .. code-block:: python
 
         import paddle
-        paddle.disable_static()
+
         x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
         res = paddle.asin(x)
-        print(res.numpy())
+        print(res)
         # [-0.9585,  0.5135, -0.7003,  0.0372]
