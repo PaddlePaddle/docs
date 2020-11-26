@@ -3,10 +3,7 @@
 load_program_state
 -------------------------------
 
-.. py:function:: paddle.fluid.io.load_program_state(model_path, var_list=None)
-
-
-
+.. py:function:: paddle.static.load_program_state(model_path, var_list=None)
 
 该接口从本地加载 ``Program`` 的参数和优化器的变量信息到内存中。
 
@@ -23,19 +20,18 @@ load_program_state
 .. code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
+    import paddle.static as static
 
     paddle.enable_static()
 
-    x = fluid.data( name="x", shape=[10, 10], dtype='float32')
-    y = fluid.layers.fc( x, 10)
-    z = fluid.layers.fc( y, 10)
+    x = static.data(name="x", shape=[10, 10], dtype='float32')
+    y = static.nn.fc(x, 10)
+    z = static.nn.fc(y, 10)
 
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run( fluid.default_startup_program() )
-    prog = fluid.default_main_program()
+    place = paddle.CPUPlace()
+    exe = static.Executor(place)
+    exe.run(static.default_startup_program())
+    prog = static.default_main_program()
 
-    fluid.save( prog, "./temp")
-    program_state = fluid.load_program_state( "./temp")
-
+    static.save(prog, "./temp")
+    program_state = static.load_program_state("./temp")
