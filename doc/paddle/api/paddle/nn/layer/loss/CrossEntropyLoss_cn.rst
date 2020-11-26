@@ -41,7 +41,6 @@ CrossEntropyLoss
 
             import paddle
             import numpy as np
-            paddle.disable_static()
             input_data = np.random.random([5, 100]).astype("float64")
             label_data = np.random.randint(0, 100, size=(5)).astype(np.int64)
             weight_data = np.random.random([100]).astype("float64")
@@ -50,5 +49,4 @@ CrossEntropyLoss
             weight = paddle.to_tensor(weight_data)
             ce_loss = paddle.nn.loss.CrossEntropyLoss(weight=weight, reduction='mean')
             output = ce_loss(input, label)
-            print(output.numpy())
 

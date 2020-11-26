@@ -48,7 +48,6 @@ adaptive_max_pool1d
         import paddle
         import paddle.nn.functional as F
         import numpy as np
-        paddle.disable_static()
 
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
         pool_out = F.adaptive_max_pool1d(data, output_size=16)
