@@ -27,7 +27,6 @@ expand_as
        import paddle
        import numpy as np
                
-       paddle.disable_static()
        np_data_x = np.array([1, 2, 3]).astype('int32')
        np_data_y = np.array([[1, 2, 3], [4, 5, 6]]).astype('int32')
        data_x = paddle.to_tensor(np_data_x)

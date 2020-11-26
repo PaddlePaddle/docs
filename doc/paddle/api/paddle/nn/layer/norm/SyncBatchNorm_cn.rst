@@ -57,12 +57,11 @@ SyncBatchNorm
     import paddle.nn as nn
     import numpy as np
     x = np.array([[[[0.3, 0.4], [0.3, 0.07]], [[0.83, 0.37], [0.18, 0.93]]]]).astype('float32')
-    paddle.disable_static()
     x = paddle.to_tensor(x)
-    if paddle.fluid.is_compiled_with_cuda():
+    if paddle.is_compiled_with_cuda():
         sync_batch_norm = nn.SyncBatchNorm(2)
         hidden1 = sync_batch_norm(x)
-        print(hidden1.numpy())
+        print(hidden1)
         # [[[[0.26824948, 1.0936325],[0.26824948, -1.6301316]],[[ 0.8095662, -0.665287],[-1.2744656, 1.1301866 ]]]]
 
 方法
@@ -84,7 +83,6 @@ convert_sync_batchnorm(layer)
 
     import paddle
     import paddle.nn as nn
-    paddle.disable_static()
     model = nn.Sequential(nn.Conv2D(3, 5, 3), nn.BatchNorm2D(5))
     sync_model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
 

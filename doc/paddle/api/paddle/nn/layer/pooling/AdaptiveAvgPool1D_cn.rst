@@ -58,7 +58,6 @@ AdaptiveAvgPool1D
         import paddle
         import paddle.nn as nn
         import numpy as np
-        paddle.disable_static()
         
         data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
         AdaptiveAvgPool1D = nn.layer.AdaptiveAvgPool1D(output_size=16)

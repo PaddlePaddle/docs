@@ -13,12 +13,13 @@ The basic idea of source-code-translate based ProgramTranslator is analyzing Pyt
     import paddle
 
     @paddle.jit.to_static
-    def func(input_var)
+    def func(input_var):
         # if condition depends on the shape of input_var
         if input_var.shape[0] > 1:
             out = paddle.cast(input_var, "float64")
         else:
             out = paddle.cast(input_var, "int64")
+        return out
 
     in_np = np.array([-2]).astype('int')
     input_var = paddle.to_tensor(in_np)

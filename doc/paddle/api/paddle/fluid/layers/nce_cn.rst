@@ -15,10 +15,10 @@ nce
 该层默认使用均匀分布进行抽样。
 
 参数:
-    - **input** (Variable) -  输入变量, 2-D 张量，形状为 [batch_size, dim]，数据类型为 float32 或者 float64。
-    - **label** (Variable) -  标签，2-D 张量，形状为 [batch_size, num_true_class]，数据类型为 int64。
+    - **input** (Tensor) -  输入张量, 2-D 张量，形状为 [batch_size, dim]，数据类型为 float32 或者 float64。
+    - **label** (Tensor) -  标签，2-D 张量，形状为 [batch_size, num_true_class]，数据类型为 int64。
     - **num_total_classes** (int) - 所有样本中的类别的总数。
-    - **sample_weight** (Variable，可选) - 存储每个样本权重，shape 为 [batch_size, 1] 存储每个样本的权重。每个样本的默认权重为1.0。
+    - **sample_weight** (Tensor，可选) - 存储每个样本权重，shape 为 [batch_size, 1] 存储每个样本的权重。每个样本的默认权重为1.0。
     - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) : 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **num_neg_samples** (int) - 负样例的数量，默认值是10。
@@ -30,20 +30,22 @@ nce
 
 返回： nce loss，数据类型与 **input** 相同
 
-返回类型: Variable
+返回类型: Tensor
 
 
 **代码示例**
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
+
+    paddle.enable_static()
 
     window_size = 5
     words = []
     for i in range(window_size):
-        words.append(fluid.data(
+        words.append(paddle.static.data(
             name='word_{0}'.format(i), shape=[-1, 1], dtype='int64'))
 
     dict_size = 10000
@@ -54,18 +56,18 @@ nce
         if i == label_word:
             continue
 
-        emb = fluid.layers.embedding(input=words[i], size=[dict_size, 32],
-                        param_attr='embed', is_sparse=True)
+        emb = paddle.static.nn.embedding(input=words[i], size=[dict_size, 32],
+                            param_attr='embed', is_sparse=True)
         embs.append(emb)
 
-    embs = fluid.layers.concat(input=embs, axis=1)
-    loss = fluid.layers.nce(input=embs, label=words[label_word],
-            num_total_classes=dict_size, param_attr='nce.w_0',
-            bias_attr='nce.b_0')
+    embs = paddle.concat(x=embs, axis=1)
+    loss = paddle.static.nn.nce(input=embs, label=words[label_word],
+                num_total_classes=dict_size, param_attr='nce.w_0',
+                bias_attr='nce.b_0')
 
     #or use custom distribution
     dist = np.array([0.05,0.5,0.1,0.3,0.05])
-    loss = fluid.layers.nce(input=embs, label=words[label_word],
+    loss = paddle.static.nn.nce(input=embs, label=words[label_word],
             num_total_classes=5, param_attr='nce.w_1',
             bias_attr='nce.b_1',
             num_neg_samples=3,

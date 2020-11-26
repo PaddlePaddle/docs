@@ -5,9 +5,6 @@ arange
 
 .. py:function:: paddle.arange(start=0, end=None, step=1, dtype=None, name=None)
 
-
-
-
 该OP返回以步长 ``step`` 均匀分隔给定数值区间[``start``, ``end``)的1-D Tensor，数据类型为 ``dtype``。
 
 当 ``dtype`` 表示浮点类型时，为了避免浮点计算误差，建议给 ``end`` 加上一个极小值epsilon，使边界可以更加明确。
@@ -33,21 +30,18 @@ arange
 
 .. code-block:: python
 
-        import paddle
-        import numpy as np
+    import paddle
 
-        paddle.enable_imperative()
+    out1 = paddle.arange(5)
+    # [0, 1, 2, 3, 4]
 
-        out1 = paddle.arange(5)
-        # [0, 1, 2, 3, 4]
+    out2 = paddle.arange(3, 9, 2.0)
+    # [3, 5, 7]
 
-        out2 = paddle.arange(3, 9, 2.0)
-        # [3, 5, 7]
+    # use 4.999 instead of 5.0 to avoid floating point rounding errors
+    out3 = paddle.arange(4.999, dtype='float32')
+    # [0., 1., 2., 3., 4.]
 
-        # use 4.999 instead of 5.0 to avoid floating point rounding errors
-        out3 = paddle.arange(4.999, dtype='float32')
-        # [0., 1., 2., 3., 4.]
-
-        start_var = paddle.imperative.to_variable(np.array([3]))
-        out4 = paddle.arange(start_var, 7)
-        # [3, 4, 5, 6]
+    start_var = paddle.to_tensor([3])
+    out4 = paddle.arange(start_var, 7)
+    # [3, 4, 5, 6]
