@@ -25,13 +25,7 @@ tanh 激活函数
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-
-    x_data = np.array([-0.4, -0.2, 0.1, 0.3])
-    x = paddle.to_tensor(x_data)
-    out = paddle.tanh(x)
-    print(out.numpy())
-    # [-0.37994896 -0.19737532  0.09966799  0.29131261]
-
+    x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+    y = paddle.tanh(x)
+    print(y) # y=[-0.37994900, -0.19737528, 0.09966799, 0.29131261]

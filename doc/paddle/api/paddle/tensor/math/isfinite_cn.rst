@@ -3,7 +3,7 @@
 isfinite
 -----------------------------
 
-.. py:function:: paddle.tensor.isfinite(x, name=None)
+.. py:function:: paddle.isfinite(x, name=None)
 
 返回输入tensor的每一个值是否为 `Finite` （既非 `+/-INF` 也非 `+/-NaN` ）。
 
@@ -23,8 +23,8 @@ isfinite
 
     import paddle
     import numpy as np
-    paddle.disable_static()
+
     x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
     x = paddle.to_tensor(x_np)
-    out = paddle.tensor.isfinite(x)
-    print(out.numpy())  # [False  True  True False  True False False]
+    out = paddle.isfinite(x)
+    print(out)  # [False, True, True, False, True, False, False]

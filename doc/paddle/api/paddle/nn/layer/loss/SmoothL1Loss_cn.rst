@@ -7,16 +7,16 @@ SmoothL1Loss
 ，否则为L1损失。在某些情况下，它可以防止爆炸梯度, 也称为Huber损失,该损失函数的数学计算公式如下：
 
     .. math::
-         loss(x,y)=\\frac{1}{n}\\sum_{i}z_i
+         loss(x,y) = \frac{1}{n}\sum_{i}z_i
 
 `z_i`的计算公式如下：
 
     .. math::
 
-        \\mathop{z_i}=\\left\\{\\begin{array}{rcl}
-        0.5(x_i - y_i)^2 & & {if |x_i - y_i| < delta} \\\\
+        \mathop{z_i} = \left\{\begin{array}{rcl}
+        0.5(x_i - y_i)^2 & & {if |x_i - y_i| < delta} \\
         delta * |x_i - y_i| - 0.5 * delta^2 & & {otherwise}
-        \\end{array} \\right.
+        \end{array} \right.
 
 参数
 ::::::::::
@@ -42,11 +42,10 @@ SmoothL1Loss
             import paddle
             import numpy as np
 
-            paddle.disable_static()
             input = np.random.rand(3,3).astype("float32")
             label = np.random.rand(3,3).astype("float32")
             input = paddle.to_tensor(input_data)
             label = paddle.to_tensor(label_data)
             loss = paddle.nn.SmoothL1Loss()
             output = loss(input, label)
-            print(output.numpy())
+            print(output)
