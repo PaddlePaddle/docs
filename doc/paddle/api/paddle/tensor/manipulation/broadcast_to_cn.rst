@@ -1,11 +1,11 @@
-.. _cn_api_tensor_expand:
+.. _cn_api_tensor_broadcast_to:
 
-expand
+broadcast_to
 -------------------------------
 
 .. py:function:: paddle.expand(x, shape, name=None)
 
-根据 ``shape`` 指定的形状扩展 ``x`` ，扩展后， ``x`` 的形状和 ``shape`` 指定的形状一致。
+根据 ``shape`` 指定的形状广播 ``x`` ，广播后， ``x`` 的形状和 ``shape`` 指定的形状一致。
 
 ``x`` 的维数和 ``shape`` 的元素数应小于等于6，并且 ``shape`` 中的元素数应该大于等于 ``x`` 的维数。扩展的维度的维度值应该为1。
 
@@ -27,7 +27,7 @@ expand
        import paddle
                
        data = paddle.to_tensor([1, 2, 3], dtype='int32')
-       out = paddle.expand(data, shape=[2, 3])
+       out = paddle.broadcast_to(data, shape=[2, 3])
        print(out)
        # [[1, 2, 3], [1, 2, 3]]
 

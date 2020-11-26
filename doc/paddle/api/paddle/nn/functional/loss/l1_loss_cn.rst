@@ -41,19 +41,18 @@ l1_loss
 .. code-block:: python
 
         import paddle
-        paddle.disable_static()
         input = paddle.to_tensor([[1.5, 0.8], [0.2, 1.3]])
         label = paddle.to_tensor([[1.7, 1], [0.4, 0.5]])
 
         l1_loss = paddle.nn.functional.l1_loss(input, label)
-        print(l1_loss.numpy())  
+        print(l1_loss)  
         # [0.35]
 
         l1_loss = paddle.nn.functional.l1_loss(input, label, reduction='none')
-        print(l1_loss.numpy())  
+        print(l1_loss)  
         # [[0.20000005 0.19999999]
         # [0.2        0.79999995]]
 
         l1_loss = paddle.nn.functional.l1_loss(input, label, reduction='sum')
-        print(l1_loss.numpy())  
+        print(l1_loss)  
         # [1.4]
