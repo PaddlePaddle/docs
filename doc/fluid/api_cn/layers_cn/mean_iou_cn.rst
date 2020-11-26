@@ -27,6 +27,8 @@ mean_iou
     - **out_wrong** (Variable) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中错误的个数。
     - **out_correct** (Variable) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中正确的个数。
 
+.. note::
+``input`` 和 ``label`` 对应的数值应该是类别id，而不是one-hot形式。
 
 代码示例
 ::::::::::::
