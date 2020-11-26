@@ -199,7 +199,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     lr = adam.get_lr()
     print(lr) # 0.001
 
-    # example2: PiecewiseLR is used, return the step learning rate
+    # example2: StepDecay is used, return the step learning rate
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.randn([10,10], dtype="float32")
     out = linear(inp)
@@ -207,7 +207,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    scheduler = paddle.optimizer.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
     adam = paddle.optimizer.AdamW(scheduler,
                            parameters=linear.parameters(),
                            weight_decay=0.01)
