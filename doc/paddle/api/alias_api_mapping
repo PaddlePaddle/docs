@@ -542,3 +542,5 @@ paddle.nn.Upsample	paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
 paddle.nn.UpsamplingBilinear2d	paddle.nn.layer.UpsamplingBilinear2d,paddle.nn.layer.common.UpsamplingBilinear2d
 paddle.nn.UpsamplingNearest2d	paddle.nn.layer.UpsamplingNearest2d,paddle.nn.layer.common.UpsamplingNearest2d
 paddle.fluid.initializer.set_global_initializer	paddle.nn.initializer.set_global_initializer
+paddle.fluid.io.load_program_state  paddle.static.load_program_state
+paddle.fluid.io.set_program_state  paddle.static.set_program_state
