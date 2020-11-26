@@ -3,7 +3,7 @@
 cross_entropy
 -------------------------------
 
-.. py:function:: paddle.nn.functional.loss.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_lable=False, axis=-1, name=None)
+.. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_lable=False, axis=-1, name=None)
 
 
 
