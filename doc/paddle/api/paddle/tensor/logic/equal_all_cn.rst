@@ -24,15 +24,12 @@ equal_all
 
 .. code-block:: python
 
-     import numpy as np
      import paddle
-     import paddle.imperative as imperative
-     paddle.enable_imperative()
-     paddle.enable_imperative()
-     x = imperative.to_variable(np.array([1, 2, 3]))
-     y = imperative.to_variable(np.array([1, 2, 3]))
-     z = imperative.to_variable(np.array([1, 4, 3]))
+
+     x = paddle.to_tensor([1.0, 2.0, 3.0])
+     y = paddle.to_tensor([1.0, 2.0, 3.0])
+     z = paddle.to_tensor([1.0, 4.0, 3.0])
      result1 = paddle.equal_all(x, y)
-     print(result1.numpy()) # result1 = [True ]
+     print(result1) # result1 = [True ]
      result2 = paddle.equal_all(x, z)
-     print(result2.numpy()) # result2 = [False ]
+     print(result2) # result2 = [False ]

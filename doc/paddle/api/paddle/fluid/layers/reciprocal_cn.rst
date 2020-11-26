@@ -3,7 +3,7 @@
 reciprocal
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.reciprocal(x, name=None)
+.. py:function:: paddle.reciprocal(x, name=None)
 
 
 
@@ -26,15 +26,10 @@ reciprocal 对输入Tensor取倒数
 
 .. code-block:: python
 
-        import paddle
-        import numpy as np
+    import paddle
 
-        paddle.enable_imperative()
-        x_data = np.array([1, 2, 3, 4]).astype(np.float32)
-        x = paddle.imperative.to_variable(x_data)
-        res = paddle.%s(x)
-        print(res.numpy())
-
-
+    x = paddle.to_tensor([1, 2, 3, 4], dtype='float32')
+    result = paddle.reciprocal(x)
+    print(result)
 
 
