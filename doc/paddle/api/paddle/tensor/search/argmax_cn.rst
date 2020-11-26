@@ -29,16 +29,15 @@ argmax
      import numpy as np
      import paddle
 
-     paddle.disable_static()
      data = [[5,8,9,5],
              [0,0,1,7],
              [6,9,2,4]]
      x =  paddle.to_tensor(data)
      out1 = paddle.argmax(x)
-     print(out1.numpy()) # 2
+     print(out1) # 2
      out2 = paddle.argmax(x, axis=1)
-     print(out2.numpy()) 
+     print(out2) 
      # [2 3 1]
      out3 = paddle.argmax(x, axis=-1)
-     print(out3.numpy()) 
+     print(out3) 
      # [2 3 1]

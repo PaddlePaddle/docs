@@ -24,38 +24,35 @@ sort
 .. code-block:: python
 
     import paddle
-    import paddle.imperative as imperative 
-    import numpy as np
-    
-    paddle.enable_imperative()
-    input_array = np.array([[[5,8,9,5],
-                    [0,0,1,7],
-                    [6,9,2,4]],
-                    [[5,2,4,2],
-                    [4,7,7,9],
-                    [1,7,0,6]]]).astype(np.float32)
-    x = imperative.to_variable(input_array)
+
+    x = paddle.to_tensor([[[5,8,9,5],
+                        [0,0,1,7],
+                        [6,9,2,4]],
+                        [[5,2,4,2],
+                        [4,7,7,9],
+                        [1,7,0,6]]], dtype='float32')
     out1 = paddle.sort(x=x, axis=-1)
     out2 = paddle.sort(x=x, axis=0)
     out3 = paddle.sort(x=x, axis=1)
-    print(out1.numpy())
+    print(out1)
     #[[[5. 5. 8. 9.]
     #  [0. 0. 1. 7.]
     #  [2. 4. 6. 9.]]
     # [[2. 2. 4. 5.]
     #  [4. 7. 7. 9.]
     #  [0. 1. 6. 7.]]]
-    print(out2.numpy())
+    print(out2)
     #[[[5. 2. 4. 2.]
     #  [0. 0. 1. 7.]
     #  [1. 7. 0. 4.]]
     # [[5. 8. 9. 5.]
     #  [4. 7. 7. 9.]
     #  [6. 9. 2. 6.]]]
-    print(out3.numpy())
+    print(out3)
     #[[[0. 0. 1. 4.]
     #  [5. 8. 2. 5.]
     #  [6. 9. 9. 7.]]
     # [[1. 2. 0. 2.]
     #  [4. 7. 4. 6.]
     #  [5. 7. 7. 9.]]]
+    
