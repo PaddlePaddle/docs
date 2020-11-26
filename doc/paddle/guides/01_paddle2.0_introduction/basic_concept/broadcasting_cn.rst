@@ -1,4 +1,4 @@
-.. _cn_use_guide_broadcasting:
+.. _cn_user_guide_broadcasting:
 
 ==================
 广播 (broadcasting)
@@ -18,27 +18,32 @@
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-
-    x = paddle.to_tensor(np.ones((2, 3, 4), np.float32))
-    y = paddle.to_tensor(np.ones((2, 3, 4), np.float32))
+    x = paddle.ones((2, 3, 4))
+    y = paddle.ones((2, 3, 4))
     # 两个张量 形状一致，可以广播
-
-    x = paddle.to_tensor(np.ones((2, 3, 1, 5), np.float32))
-    y = paddle.to_tensor(np.ones((3, 4, 1), np.float32))
+    z = x + y
+    print(z.shape) 
+    # [2, 3, 4]
+    
+    x = paddle.ones((2, 3, 1, 5))
+    y = paddle.ones((3, 4, 1))
     # 从后向前依次比较：
     # 第一次：y的维度大小是1
     # 第二次：x的维度大小是1
     # 第三次：x和y的维度大小相等
     # 第四次：y的维度不存在
     # 所以 x和y是可以广播的
+    z = x + y
+    print(z.shape) 
+    # [2, 3, 4, 5]
 
     # 相反
-    x = paddle.to_tensor(np.ones((2, 3, 4), np.float32))
-    y = paddle.to_tensor(np.ones((2, 3, 6), np.float32))
+    x = paddle.ones((2, 3, 4))
+    y = paddle.ones((2, 3, 6))
     # 此时x和y是不可广播的，因为第一次比较 4不等于6
+    # z = x + y
+    # InvalidArgumentError: Broadcast dimension mismatch.
 
 现在我们知道什么情况下两个张量是可以广播的，两个张量进行广播语义后的结果张量的形状计算规则如下：
 
@@ -50,50 +55,15 @@
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-
-    x = paddle.to_tensor(np.ones((2, 1, 4), np.float32))
-    y = paddle.to_tensor(np.ones((3, 1), np.float32))
+    x = paddle.ones((2, 1, 4))
+    y = paddle.ones((3, 1))
     z = x + y
     print(z.shape)
     # z的形状: [2,3,4]
 
-    x = paddle.to_tensor(np.ones((2, 1, 4), np.float32))
-    y = paddle.to_tensor(np.ones((3, 2), np.float32))
+    x = paddle.ones((2, 1, 4))
+    y = paddle.ones((3, 2))
     z = x + y
     print(z.shape)
     # InvalidArgumentError: Broadcast dimension mismatch.
-
-除此之外，飞桨的elementwise系列API针对广播机制增加了axis参数，当使用较小形状的y来来匹配较大形状的x的时候，且满足y的形状的长度小于x的形状长度，
-axis表示y在x上应用广播机制的时候的起始维度的位置，当设置了asis参数后，张量的维度比较顺序变成了从axis开始，从前向后比较。当axis=-1时，axis = rank(x) - rank(y),
-同时y的大小为1的尾部维度将被忽略。
-
-例如:
-
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    paddle.disable_static()
-
-    x = paddle.to_tensor(np.ones((2, 1, 4), np.float32))
-    y = paddle.to_tensor(np.ones((3, 1), np.float32))
-    z = paddle.elementwise_add(x, y, axis=1)
-    # z的形状 [2, 3, 4]
-
-    x = paddle.to_tensor(np.ones((2, 3, 4, 5), np.float32))
-    y = paddle.to_tensor(np.ones((4, 5), np.float32))
-    z = paddle.elementwise_add(x, y, axis=1)
-    print(z.shape)
-    # InvalidArgumentError: Broadcast dimension mismatch.
-    # 因为指定了axis之后，计算广播的维度从axis开始从前向后比较
-
-    x = paddle.to_tensor(np.ones((2, 3, 4, 5), np.float32))
-    y = paddle.to_tensor(np.ones((3), np.float32))
-    z = paddle.elementwise_add(x, y, axis=1)
-    print(z.shape)
-    # z的形状 [2, 3, 4, 5]
-    # 因为此时是从axis=1的维度开始，从前向后比较维度进行广播

@@ -36,7 +36,6 @@ PixelShuffle
 
     x = paddle.rand((2, 9, 4, 4))
     pixel_shuffle = nn.PixelShuffle(3)
-    out_var = pixel_shuffle(x_var)
-    out = out_var.numpy()
+    out = pixel_shuffle(x)
     print(out.shape)
     # (2, 1, 12, 12)
