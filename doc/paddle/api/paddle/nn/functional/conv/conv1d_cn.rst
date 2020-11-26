@@ -25,7 +25,7 @@ conv1d
 
   输入形状：:math:`（N,C_{in},L_{in}）`
 
-  卷积核形状： :math:`（C_{out},C_{in},L_{f}}）`
+  卷积核形状： :math:`（C_{out},C_{in},L_{f}）`
 
 - 输出：
 
@@ -35,7 +35,7 @@ conv1d
 
 .. math::
 
-    L_{out} &= \frac{\left ( L_{in} + padding * 2 - \left ( dilation*\left ( L_{f}-1 \right )+1 \right ) \right )}{stride}+1
+    L_{out} = \frac{\left ( L_{in} + padding * 2 - \left ( dilation*\left ( L_{f}-1 \right )+1 \right ) \right )}{stride}+1
 
 如果 ``padding`` = "SAME":
 
@@ -76,6 +76,7 @@ conv1d
 **代码示例**：
 
 .. code-block:: python
+
     import paddle
     import paddle.nn.functional as F
     import numpy as np

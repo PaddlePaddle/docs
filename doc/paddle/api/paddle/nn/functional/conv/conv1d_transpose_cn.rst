@@ -33,11 +33,11 @@ conv1d_transpose
 
     输入Tensor的形状： :math:`（N，C_{in}， L_{in}）`
 
-    卷积核的形状 ： :math:`（C_{in}, C_{out}, L_f）`
+    卷积核的形状 ： :math:`（C_{in}， C_{out}， L_f）`
 
 - 输出：
 
-    输出Tensor的形状 ： :math:`（N，C_{out}, L_{out}）`
+    输出Tensor的形状 ： :math:`（N，C_{out}， L_{out}）`
 
 其中
 
@@ -49,12 +49,14 @@ conv1d_transpose
 如果 ``padding`` = "SAME":
 
 .. math::
-   & L'_{out} = \frac{(L_{in} + stride - 1)}{stride}
+
+   L'_{out} = \frac{(L_{in} + stride - 1)}{stride}
 
 如果 ``padding`` = "VALID":
 
 .. math::
-    & L'_{out} = (L_{in}-1)*stride + dilation*(L_f-1)+1
+
+    L'_{out} = (L_{in}-1)*stride + dilation*(L_f-1)+1
 
 注意：
 

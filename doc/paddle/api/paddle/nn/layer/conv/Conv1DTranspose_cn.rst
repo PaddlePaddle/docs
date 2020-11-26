@@ -44,7 +44,7 @@ Conv1DTranspose
     - 输入：:math:`（N，C_{in}， L_{in}）`
 
 
-    - 输出：:math:`（N，C_{out}, L_{out}）`
+    - 输出：:math:`（N，C_{out}， L_{out}）`
 
     其中
 
@@ -55,12 +55,12 @@ Conv1DTranspose
     如果 ``padding`` = "SAME":
 
     .. math::
-        & L'_{out} = \frac{(L_{in} + stride - 1)}{stride}
+        L'_{out} = \frac{(L_{in} + stride - 1)}{stride}
 
     如果 ``padding`` = "VALID":
 
     .. math::
-        & L'_{out} = (L_{in}-1)*stride + dilation*(kernel\_size-1)+1
+        L'_{out} = (L_{in}-1)*stride + dilation*(kernel\_size-1)+1
 
 抛出异常:
     -  ``ValueError`` : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError

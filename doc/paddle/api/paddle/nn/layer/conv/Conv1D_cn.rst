@@ -47,8 +47,8 @@ Conv1D
 本层的可学习偏置，类型为 ``Parameter``
     
 形状:
-    - 输入: :math:`(N, C_{in}, L_{in})`
-    - 输出: :math:`(N, C_{out}, L_{out})`
+    - 输入: :math:`(N， C_{in}， L_{in})`
+    - 输出: :math:`(N， C_{out}， L_{out})`
 
     其中:
 
