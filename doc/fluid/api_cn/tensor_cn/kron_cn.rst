@@ -3,7 +3,7 @@
 kron
 -------------------------------
 
-.. py:function:: paddle.tensor.kron(x, y, out=None, name=None)
+.. py:function:: paddle.kron(x, y, out=None, name=None)
 
 
 
@@ -53,7 +53,6 @@ Kronecker Product 算子。
     x = paddle.to_tensor([[1, 2], [3, 4]], dtype='int64')
     y = paddle.to_tensor([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype='int64')
     out = paddle.kron(x, y)
-    print(out)
 
     # Tensor(shape=[6, 6], dtype=int64, place=CPUPlace, stop_gradient=True,
     #        [[1, 2, 3, 2, 4, 6],

@@ -3,7 +3,7 @@
 cross_entropy
 -------------------------------
 
-.. py:function:: paddle.paddle.nn.functional.loss.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_lable=False, axis=-1, name=None)
+.. py:function:: paddle.nn.functional.loss.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_lable=False, axis=-1, name=None)
 
 
 
@@ -35,9 +35,9 @@ cross_entropy
 ..  code-block:: python
 
         import paddle
-        input_data = np.random.random([5, 100]).astype("float64")
-        label_data = np.random.randint(0, 100, size=(5)).astype(np.int64)
-        weight_data = np.random.random([100]).astype("float64")
+        input_data = paddle.rand(shape = [5, 100], dtype = "float64")
+        label_data = paddle.rand(0, 100, size=(5), dtype = "int64")
+        weight_data = paddle.rand([100],dtype = "float64")
         input =  paddle.to_tensor(input_data)
         label =  paddle.to_tensor(label_data)
         weight = paddle.to_tensor(weight_data)

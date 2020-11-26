@@ -33,24 +33,21 @@ BilinearTensorProduct
     - **bias_attr**  (ParamAttr) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
-返回：维度为[batch_size, size]的2D Tensor，数据类型与输入数据类型相同。
-
-返回类型： Variable
+返回：Tensor, 维度为[batch_size, size]的2D Tensor，数据类型与输入数据类型相同。
 
 **代码示例**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy
 
-    with fluid.dygraph.guard():
-        layer1 = numpy.random.random((5, 5)).astype('float32')
-        layer2 = numpy.random.random((5, 4)).astype('float32')
-        bilinearTensorProduct = fluid.dygraph.nn.BilinearTensorProduct(
-               input1_dim=5, input2_dim=4, output_dim=1000)
-        ret = bilinearTensorProduct(fluid.dygraph.base.to_variable(layer1),
-                           fluid.dygraph.base.to_variable(layer2))
+    layer1 = numpy.random.random((5, 5)).astype('float32')
+    layer2 = numpy.random.random((5, 4)).astype('float32')
+    bilinearTensorProduct = paddle.nn.BilinearTensorProduct(
+        input1_dim=5, input2_dim=4, output_dim=1000)
+    ret = bilinearTensorProduct(paddle.to_tensor(layer1),
+                                paddle.to_tensor(layer2))
 
 属性
 ::::::::::::

@@ -3,7 +3,7 @@
 rank
 -------------------------------
 
-.. py:function::  paddle.fluid.layers.rank(input)
+.. py:function::  paddle.rank(input)
 
 
 

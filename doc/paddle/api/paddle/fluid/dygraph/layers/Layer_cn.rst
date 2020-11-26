@@ -246,6 +246,39 @@ hook(Layer, input, output) -> None or modified output
             
             return out
 
+.. py:method:: create_tensor(name=None, persistable=None, dtype=None)
+
+为Layer创建变量。
+
+参数：
+    - **name** (str, 可选) - 变量名。默认值：None。
+    - **persistable** (bool, 可选) - 是否为持久性变量，后续会被移出。默认值：None。
+    - **dtype** (str, 可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32" 。
+
+返回：Tensor， 返回创建的 ``Tensor`` 
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    class MyLinear(paddle.nn.Layer):
+        def __init__(self,
+                    in_features,
+                    out_features):
+            super(MyLinear, self).__init__()
+            self.linear = paddle.nn.Linear( 10, 10)
+                
+            self.back_var = self.create_tensor(name = "linear_tmp_0", dtype=self._dtype)
+        
+        def forward(self, input):
+            out = self.linear(input)
+            paddle.assign( out, self.back_var)
+            
+            return out
+
+
 .. py:method:: parameters(include_sublayers=True)
 
 返回一个由当前层及其子层的所有参数组成的列表。
@@ -253,7 +286,7 @@ hook(Layer, input, output) -> None or modified output
 参数：
     - **include_sublayers** (bool, 可选) - 是否返回子层的参数。如果为True，返回的列表中包含子层的参数。默认值：True。
 
-返回：list， 一个由当前层及其子层的所有参数组成的列表，列表中的元素类型为Parameter(Variable)。
+返回：list， 一个由当前层及其子层的所有参数组成的列表，列表中的元素类型为Parameter(Tensor)。
 
 **代码示例**
 
@@ -473,12 +506,12 @@ buffer是一个不可训练的变量，不会被优化器更新，但在评估�
 
     fc1 = paddle.nn.Linear(10, 3)
     buffer1 = paddle.to_tensor(np.array([0]).astype("float32"))
-    # register a variable as buffer by specific `persistable`
+    # register a tensor as buffer by specific `persistable`
     fc1.register_buffer("buf_name_1", buffer1, persistable=True)
 
     fc2 = paddle.nn.Linear(3, 10)
     buffer2 = paddle.to_tensor(np.array([1]).astype("float32"))
-    # register a buffer by assigning an attribute with Variable.
+    # register a buffer by assigning an attribute with Tensor.
     # The `persistable` can only be False by this way.
     fc2.buf_name_2 = buffer2
 

@@ -3,7 +3,7 @@
 CrossEntropyLoss
 -------------------------------
 
-.. py:function:: paddle.nn.loss.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean')
+.. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean')
 
 该OP计算输入input和标签label间的交叉熵损失 ，它结合了 `LogSoftmax` 和 `NLLLoss` 的OP计算，可用于训练一个 `n` 类分类器。
 
@@ -40,13 +40,13 @@ CrossEntropyLoss
 ..  code-block:: python
 
             import paddle
-            import numpy as np
-            input_data = np.random.random([5, 100]).astype("float64")
-            label_data = np.random.randint(0, 100, size=(5)).astype(np.int64)
-            weight_data = np.random.random([100]).astype("float64")
+            import munpy as np
+            input_data = paddle.uniform([5, 100],dtype = "float64")
+            label_data = paddle.uniform(0, 100, size=(5),dtype = "int64")
+            weight_data = paddle.uniform([100],detype = "float64")
             input  = paddle.to_tensor(input_data)
             label  = paddle.to_tensor(label_data)
             weight = paddle.to_tensor(weight_data)
-            ce_loss = paddle.nn.loss.CrossEntropyLoss(weight=weight, reduction='mean')
+            ce_loss = paddle.nn.CrossEntropyLoss(weight=weight, reduction='mean')
             output = ce_loss(input, label)
 

@@ -47,8 +47,7 @@ adaptive_max_pool1d
         #
         import paddle
         import paddle.nn.functional as F
-        import numpy as np
 
-        data = paddle.to_tensor(np.random.uniform(-1, 1, [1, 3, 32]).astype(np.float32))
+        data = paddle.to_tensor(paddle.uniform(shape = [1, 3, 32], min = -1, max = 1, dtype = "float32"))
         pool_out = F.adaptive_max_pool1d(data, output_size=16)
         # pool_out shape: [1, 3, 16])

@@ -3,7 +3,7 @@
 kron
 -------------------------------
 
-.. py:function:: paddle.tensor.kron(x, y, out=None, name=None)
+.. py:function:: paddle.kron(x, y, out=None, name=None)
 
 
 

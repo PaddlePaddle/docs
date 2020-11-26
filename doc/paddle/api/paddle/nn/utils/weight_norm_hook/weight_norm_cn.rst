@@ -29,7 +29,6 @@ weight_norm
     from paddle.nn import Conv2D
     from paddle.nn.utils import weight_norm
     x = np.array([[[[0.3, 0.4], [0.3, 0.07]], [[0.83, 0.37], [0.18, 0.93]]]]).astype('float32')
-    paddle.disable_static()
     conv = Conv2D(3, 5, 3)
     wn = weight_norm(conv)
     print(conv.weight_g.shape)

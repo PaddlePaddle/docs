@@ -21,7 +21,7 @@ mm
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：
-    - Variable (Tensor / LoDTensor)，矩阵相乘后的结果。
+    - Tensor，矩阵相乘后的结果。
 
 
 ::
