@@ -13,8 +13,6 @@ load_program_state
 
 返回：存储参数和优化器信息的dict
 
-返回类型：dict
-
 **代码示例**
 
 .. code-block:: python
