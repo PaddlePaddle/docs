@@ -409,6 +409,7 @@ paddle.fluid.layers.sqrt	paddle.sqrt,paddle.tensor.sqrt,paddle.tensor.math.sqrt
 paddle.tensor.manipulation.stack	paddle.stack,paddle.tensor.stack
 paddle.tensor.manipulation.unsqueeze	paddle.unsqueeze,paddle.tensor.unsqueeze
 paddle.tensor.math.add	paddle.add,paddle.tensor.add
+paddle.tensor.math.subtract	paddle.subtract,paddle.tensor.subtract
 paddle.nn.layer.common.Bilinear	paddle.nn.Bilinear,paddle.nn.layer.Bilinear
 paddle.nn.functional.extension.row_conv	paddle.nn.functional.row_conv
 paddle.nn.layer.loss.BCEWithLogitsLoss	paddle.nn.BCEWithLogitsLoss,paddle.nn.layer.BCEWithLogitsLoss
