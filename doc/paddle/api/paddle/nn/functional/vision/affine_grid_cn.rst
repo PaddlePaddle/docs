@@ -16,12 +16,6 @@ affine_grid
 
 返回： Tensor。Shape为 ``[N, H, W, 2]`` 的4-D Tensor，表示仿射变换前后的坐标的映射关系。其中，N、H、W分别为仿射变换中输出feature map的batch size、高和宽。 数据类型与 ``theta`` 一致。
 
-返回类型：Tensor
-
-抛出异常：
-    - ``ValueError`` - 如果输入参数类型不支持。
-
-
 
 **代码示例：**
 

@@ -1,3 +1,5 @@
+.. _cn_api_paddle_nn_Conv1D:
+
 Conv1D
 -------------------------------
 
@@ -65,15 +67,6 @@ Conv1D
     .. math::
         L_{out} = \frac{\left ( L_{in} -\left ( dilation*\left ( kernel\_size-1 \right )+1 \right ) \right )}{stride}+1
 
-
-抛出异常：
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCL"也不是"NLC"。
-    - ``ValueError`` - 如果 ``input`` 的通道数未被明确定义。
-    - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    - ``ShapeError`` - 如果输入不是3-D Tensor。
-    - ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
-    - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
-    - ``ShapeError`` - 如果输出的通道数不能被 ``groups`` 整除。
 
 
 **代码示例**：

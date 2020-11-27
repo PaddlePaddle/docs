@@ -1,3 +1,5 @@
+.. _cn_api_paddle_nn_Conv1DTranspose:
+
 Conv1DTranspose
 -------------------------------
 
@@ -30,7 +32,7 @@ Conv1DTranspose
   - **out_channels** (int) - 卷积核的个数，和输出特征通道数相同。
   - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含一个整数的元组或列表，表示卷积核的长度。
   - **stride** (int|tuple, 可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含一个整型数，表示滑动步长 。默认值：1。
-    - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的0. 默认值：0。
+  - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的0. 默认值：0。
   - **output_padding** (int|list|tuple, optional): 输出特征尾部一侧额外添加的大小. 默认值: 0.
   - **groups** (int, 可选) - 一维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，卷积核的前一半仅和输入特征图的前一半连接。卷积核的后一半仅和输入特征图的后一半连接。默认值：1。
   - **dilation** (int|tuple, 可选) - 空洞大小。可以为单个整数或包含一个整数的元组或列表，表示卷积核中的空洞。默认值：1。
@@ -62,13 +64,6 @@ Conv1DTranspose
     .. math::
         L'_{out} = (L_{in}-1)*stride + dilation*(kernel\_size-1)+1
 
-抛出异常:
-    -  ``ValueError`` : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
-    -  ``ValueError`` - 如果 ``data_format`` 既不是"NCL"也不是"NLC"。
-    -  ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    -  ``ShapeError`` - 如果输入不是3-D Tensor。
-    -  ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
-    -  ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
 **代码示例**
 

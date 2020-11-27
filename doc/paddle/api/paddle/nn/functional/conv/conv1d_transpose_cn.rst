@@ -1,3 +1,4 @@
+.. _cn_api_nn_functional_conv1d_transpose:
 
 conv1d_transpose
 -------------------------------
@@ -69,7 +70,7 @@ conv1d_transpose
 参数:
   - **x** (Tensor) - 输入是形状为 :math:`[N, C, L]` 或 :math:`[N, L, C]` 的3-D Tensor，N是批尺寸，C是通道数，L是特征长度，数据类型为float16, float32或float64。
   - **weight** (Tensor) - 形状为 :math:`[C, M/g, kL]` 的卷积核（卷积核）。 M是输出通道数， g是分组的个数，kL是卷积核的长度。
-  - **bias** (int|list|tuple) - 偏置项，形状为： :math:`[M,]` 。
+  - **bias** (int|list|tuple，可选) - 偏置项，形状为： :math:`[M,]` 。
   - **stride** (int|list|tuple，可选) - 步长大小。整数或包含一个整数的列表或元组。默认值：1。
     - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的0. 默认值：0。
   - **output_padding** (int|list|tuple, optional): 输出形状上尾部一侧额外添加的大小. 默认值: 0.
@@ -82,15 +83,6 @@ conv1d_transpose
 
 返回：3-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
-返回类型：Tensor
-
-抛出异常:
-    -  ``ValueError`` : 如果输入的shape、kernel_size、stride、padding和groups不匹配，抛出ValueError
-    -  ``ValueError`` - 如果 ``data_format`` 既不是"NCL"也不是"NLC"。
-    -  ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    -  ``ValueError`` - 如果 ``output_size`` 和 ``filter_size`` 同时为None。
-    -  ``ShapeError`` - 如果输入不是3-D Tensor。
-    -  ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
 **代码示例**
 
