@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_UpsamplingNearest2d:
+.. _cn_api_paddle_nn_UpsamplingNearest2D:
 
 UpsamplingNearest2D
 -------------------------------
