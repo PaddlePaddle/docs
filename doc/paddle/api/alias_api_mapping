@@ -432,11 +432,12 @@ paddle.nn.functional.input.one_hot	paddle.nn.functional.one_hot
 paddle.tensor.creation.full	paddle.full,paddle.tensor.full
 paddle.hapi.model.Model	paddle.Model
 paddle.hapi.callbacks.Callback	paddle.callbacks.Callback
-paddle.hapi.callbacks.ProgBarLogger	paddle.callbacks.ProgBarLogger
+paddle.hapi.callbacks.ProgBarLogger	   paddle.callbacks.ProgBarLogger
 paddle.hapi.callbacks.ModelCheckpoint	paddle.callbacks.ModelCheckpoint
-paddle.hapi.callbacks.VisualDL	paddle.callbacks.VisualDL
-paddle.hapi.callbacks.ReduceLROnPlateau	paddle.callbacks.ReduceLROnPlateau
+paddle.hapi.callbacks.VisualDL	  paddle.callbacks.VisualDL
+paddle.hapi.callbacks.ReduceLROnPlateau	   paddle.callbacks.ReduceLROnPlateau
 paddle.hapi.callbacks.LRScheduler	paddle.callbacks.LRScheduler
+paddle.hapi.callbacks.EarlyStopping	   paddle.callbacks.EarlyStopping
 paddle.hapi.model_summary.summary	paddle.summary
 paddle.vision.models.resnet.ResNet	paddle.vision.models.ResNet,paddle.vision.ResNet
 paddle.vision.models.resnet.resnet18	paddle.vision.models.resnet18,paddle.vision.resnet18
