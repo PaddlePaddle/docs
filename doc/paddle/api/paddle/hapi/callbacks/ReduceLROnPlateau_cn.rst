@@ -5,7 +5,7 @@ ReduceLROnPlateau
 
 .. py:class:: paddle.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.1, patience=10, verbose=1, mode='auto', min_delta=1e-4, cooldown=0, min_lr=0)
 
- 当评估指标停止改善时，降低学习率。模型通常会因学习率降低2-10倍而受益。因此监视一个评价指标，如果这个指标在几个epoch内没有改善，就降低学习率。
+ 该回调函数会在评估指标停止改善时，降低学习率。模型通常会因学习率降低2-10倍而受益。因此监视一个评价指标，如果这个指标在几个epoch内没有改善，就降低学习率。
 
 参数：
   - **monitor** (str，可选) - 监视的指标名称。默认值：'loss'。 
