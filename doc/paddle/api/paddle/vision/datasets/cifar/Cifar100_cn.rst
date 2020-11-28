@@ -38,10 +38,9 @@ Cifar100
                         nn.Softmax())
 
                 def forward(self, image, label):
-                    image = paddle.reshape(image, (3, -1))
+                    image = paddle.reshape(image, (1, -1))
                     return self.fc(image), label
 
-            paddle.disable_static()
 
             normalize = Normalize(mean=[0.5, 0.5, 0.5],
                                 std=[0.5, 0.5, 0.5])
