@@ -9,7 +9,24 @@
 - 通过所有单元测试。
 - 请遵守[提交代码的一些约定](#提交代码的一些约定)。
 
-以下教程将指导您提交代码。
+
+## 使用官方开发镜像（推荐）
+
+```
+# 第一次启动（CPU开发）
+docker run -it --cpu-shares=20000 --name=username --net=host --privileged --rm -v $(pwd):/Paddle hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+# 第一次启动（GPU开发）
+nvidia-docker run -it --cpu-shares=20000 --name=username --net=host --privileged --rm -v $(pwd):/Paddle hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+# 后面几次启动
+docker exec -it username bash
+```
+
+不同开发者启动docker的命令不一样，以上只是推荐命令。如果使用自己习惯的命令，一定要加参数--privileged（GPU的CUPTI库调用需要）
+
+**推荐使用官方开发镜像 hub.baidubce.com/paddlepaddle/paddle:latest-dev 提交代码。**
+
+**以下教程将指导您提交代码。**
+
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
 跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
@@ -42,7 +59,7 @@ Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-b
 
 Paddle 开发人员使用 [pre-commit](http://pre-commit.com/) 工具来管理 Git 预提交钩子。 它可以帮助我们格式化源代码（C++，Python），在提交（commit）前自动检查一些基本事宜（如每个文件只有一个 EOL，Git 中不要添加大文件等）。
 
-`pre-commit`测试是 Travis-CI 中单元测试的一部分，不满足钩子的 PR 不能被提交到 Paddle，首先安装并在当前目录运行它：
+`pre-commit`测试是 CI 中单元测试的一部分，不满足钩子的 PR 不能被提交到 Paddle，首先安装并在当前目录运行它：
 
 ```bash
 ➜  pip install pre-commit
@@ -51,7 +68,7 @@ Paddle 开发人员使用 [pre-commit](http://pre-commit.com/) 工具来管理 G
 
 Paddle 使用 `clang-format` 来调整 C/C++ 源代码格式，请确保 `clang-format` 版本在 3.8 以上。
 
-注：通过`pip install pre-commit`和`conda install -c conda-forge pre-commit`安装的`yapf`稍有不同的，Paddle 开发人员使用的是`pip install pre-commit`。
+注：通过`pip install pre-commit`和`conda install -c conda-forge pre-commit`安装的`yapf`稍有不同的，Paddle 开发人员使用的是`pip install pre-commit`，使用Paddle docker镜像会自带`pre-commit`不需要单独安装。
 
 ## 开始开发
 
@@ -66,19 +83,53 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   README.md
+    modified:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-## 编译和单元测试
+## 编译
+
+创建并进入/Paddle/build路径下：
+
+    mkdir -p /Paddle/build && cd /Paddle/build
+
+执行cmake：
+
+
+    * 对于需要编译**CPU版本PaddlePaddle**的用户：
+
+    For Python2: cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+
+    * 对于需要编译**GPU版本PaddlePaddle**的用户：
+
+    For Python2: cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+
+执行编译：
+
+    make -j$(nproc)
+
+    如：make -j16，使用16核编译
+
+安装编译好的whl包：首先进入/Paddle/build/python/dist目录下找到生成的.whl包后，然后当前机器或目标机器安装编译好的.whl包：
+
+    For Python2: pip install -U（whl包的名字）
+    For Python3: pip3.5 install -U（whl包的名字）
 
 关于编译 PaddlePaddle 的源码，请参见[从源码编译](../../../install/compile/fromsource.html) 选择对应的操作系统。
+
+## 单元测试
+
+    单测运行（重复运行多次，避免随机失败）如重复运行100次的命令如下:
+    ctest --repeat-until-fail 100 -R test_xx
+
 关于单元测试，可参考[Op单元测试](../new_op/new_op.html#id7) 的运行方法。
 
 ## 提交（commit）
@@ -92,7 +143,7 @@ On branch test
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test
@@ -115,15 +166,6 @@ clang-formater.......................................(no files to check)Skipped
  create mode 100644 233
 ```
 
-<b> <font color="red">需要注意的是：您需要在commit中添加说明（commit message）以触发CI单测，写法如下：</font> </b>
-
-```bash
-# 触发develop分支的CI单测
-➜  git commit -m "test=develop"
-
-# 触发release/1.1分支的CI单侧
-➜  git commit -m "test=release/1.1"
-```
 
 ## 保持本地仓库最新
 
@@ -135,8 +177,8 @@ clang-formater.......................................(no files to check)Skipped
 ➜  git remote
 origin
 ➜  git remote -v
-origin	https://github.com/USERNAME/Paddle (fetch)
-origin	https://github.com/USERNAME/Paddle (push)
+origin    https://github.com/USERNAME/Paddle (fetch)
+origin    https://github.com/USERNAME/Paddle (push)
 ```
 
 这里 origin 是我们 clone 的远程仓库的名字，也就是自己用户名下的 Paddle，接下来我们创建一个原始 Paddle 仓库的远程主机，命名为 upstream。

@@ -2,6 +2,4 @@
 
 add
 -------------------------------
-:doc_source: paddle.fluid.layers.elementwise_add
-
-
+:doc_source: paddle.tensor.add

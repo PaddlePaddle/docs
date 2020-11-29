@@ -23,6 +23,7 @@ paddle
 	paddle/cast.rst
 	paddle/ceil.rst
 	paddle/cholesky.rst
+	paddle/chunk.rst
 	paddle/clamp.rst
 	paddle/CompiledProgram.rst
 	paddle/concat.rst
@@ -36,19 +37,18 @@ paddle
 	paddle/CUDAPinnedPlace.rst
 	paddle/CUDAPlace.rst
 	paddle/cumsum.rst
+	paddle/DataParallel.rst
 	paddle/default_main_program.rst
 	paddle/default_startup_program.rst
 	paddle/diag.rst
 	paddle/disable_imperative.rst
 	paddle/dist.rst
+	paddle/distribution.rst
 	paddle/div.rst
 	paddle/dot.rst
 	paddle/elementwise_add.rst
 	paddle/elementwise_div.rst
-	paddle/elementwise_equal.rst
 	paddle/elementwise_floordiv.rst
-	paddle/elementwise_max.rst
-	paddle/elementwise_min.rst
 	paddle/elementwise_mod.rst
 	paddle/elementwise_mul.rst
 	paddle/elementwise_pow.rst
@@ -56,6 +56,7 @@ paddle
 	paddle/elementwise_sum.rst
 	paddle/enable_imperative.rst
 	paddle/equal.rst
+	paddle/equal_all.rst
 	paddle/erf.rst
 	paddle/ExecutionStrategy.rst
 	paddle/Executor.rst
@@ -96,12 +97,15 @@ paddle
 	paddle/logical_or.rst
 	paddle/logical_xor.rst
 	paddle/logsumexp.rst
-	paddle/manual_seed.rst
+	paddle/seed.rst
+	paddle/masked_select.rst
 	paddle/matmul.rst
 	paddle/max.rst
+	paddle/maximum.rst
 	paddle/mean.rst
 	paddle/meshgrid.rst
 	paddle/min.rst
+	paddle/minimum.rst
 	paddle/mm.rst
 	paddle/mul.rst
 	paddle/multiplex.rst
@@ -111,6 +115,7 @@ paddle
 	paddle/not_equal.rst
 	paddle/ones.rst
 	paddle/ones_like.rst
+	paddle/numel.rst
 	paddle/ParallelExecutor.rst
 	paddle/ParamAttr.rst
 	paddle/pow.rst

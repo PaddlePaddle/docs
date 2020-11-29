@@ -3,9 +3,9 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-    * **GPU Version support CUDA 9.0/9.1/9.2/10.0/10.1, and only support single GPU**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7(64bit)**
-* **pip version 9.0.1+(64bit)**
+* **GPU Version support CUDA 9.0/10.0/10.1/10.2, and only support single GPU**
+* **Python version 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64bit)**
+* **pip version 20.2.2+ (64bit)**
 * **Visual Studio 2015 Update3**
 
 ## Choose CPU/GPU
@@ -13,8 +13,8 @@
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
-    * **CUDA toolkit 9.0/9.1/9.2/10.0/10.1 with cuDNN v7.3+**
-    * **GPU's computing capability exceeds 1.0**
+    * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6.5+**
+    * **GPU's computing capability exceeds 3.0**
 
 ## Installation steps
 
@@ -29,7 +29,7 @@ There is one compilation methods in Windows system:
 
 1. Install the necessary tools i.e. cmake, git and python:
 
-    > Cmake requires version 3.5 and above, which can be downloaded from the [official website](https://cmake.org/download/) and added to the environment variable. 
+    > CMake requires version 3.10 and above, but there are official [Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html) versions of 3.12/3.13/3.14 when the GPU is compiled, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
 
     > Python requires version 2.7 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/2.7/).
 
@@ -43,7 +43,7 @@ There is one compilation methods in Windows system:
 
         * To Install Wheel package you can use command `pip install wheel`
 
-    > Git can be downloaded on the [official website](https://gitforwindows.org/) and added to the environment variable. 
+    > Git can be downloaded on the [official website](https://gitforwindows.org/) and added to the environment variable.
 
 2. Clone the PaddlePaddle source code to the Paddle subdirectories of the current directory and go to the Paddle subdirectories:
 
@@ -56,7 +56,7 @@ There is one compilation methods in Windows system:
 
     For example：
 
-    `git checkout release/1.7`
+    `git checkout release/1.8`
 
     Note: python3.6、python3.7 version started supporting from release/1.2
 
@@ -78,7 +78,7 @@ There is one compilation methods in Windows system:
 
     Python2 by default，Python3 please add：
 
-    > -DPY_VERSION=3 (or 3.5、3.6、3.7)
+    > -DPY_VERSION=3 (or 3.5、3.6、3.7、3.8)
 
     If your device information contains multiple Python or CUDA, you can also specify a specific version of Python or CUDA by setting the corresponding compile options:
 
@@ -88,7 +88,7 @@ There is one compilation methods in Windows system:
 
     For example: (for instance only, please set it according to your actual installation path)
 
-    `cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"`
+    `cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\Python37\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0"`
 
 6. Use Blend for Visual Studio 2015 to open `paddle.sln` file, select the platform `x64`, configure with `Release`, then begin to compile
 

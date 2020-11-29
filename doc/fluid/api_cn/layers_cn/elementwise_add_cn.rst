@@ -107,7 +107,7 @@ elementwise_add
             "y": np.random.randint(1, 5, size=[5]).astype('float32')
         }
     x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
+    y = fluid.layers.data(name="y", shape=[5], dtype='float32')
     # z = x + y
     z = fluid.layers.elementwise_add(x, y, axis=3)
     place = fluid.CPUPlace()

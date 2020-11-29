@@ -43,35 +43,35 @@ nce
 
     window_size = 5
     words = []
-    for i in xrange(window_size):
-        words.append(fluid.layers.data(
-            name='word_{0}'.format(i), shape=[1], dtype='int64'))
+    for i in range(window_size):
+        words.append(fluid.data(
+            name='word_{0}'.format(i), shape=[-1, 1], dtype='int64'))
 
     dict_size = 10000
     label_word = int(window_size / 2) + 1
 
     embs = []
-    for i in xrange(window_size):
+    for i in range(window_size):
         if i == label_word:
             continue
 
         emb = fluid.layers.embedding(input=words[i], size=[dict_size, 32],
-                           param_attr='embed', is_sparse=True)
+                        param_attr='embed', is_sparse=True)
         embs.append(emb)
 
     embs = fluid.layers.concat(input=embs, axis=1)
     loss = fluid.layers.nce(input=embs, label=words[label_word],
-              num_total_classes=dict_size, param_attr='nce.w_0',
-              bias_attr='nce.b_0')
+            num_total_classes=dict_size, param_attr='nce.w_0',
+            bias_attr='nce.b_0')
 
-    # 或使用自定义分布
+    #or use custom distribution
     dist = np.array([0.05,0.5,0.1,0.3,0.05])
     loss = fluid.layers.nce(input=embs, label=words[label_word],
-              num_total_classes=5, param_attr='nce.w_1',
-              bias_attr='nce.b_1',
-              num_neg_samples=3,
-              sampler="custom_dist",
-              custom_dist=dist)
+            num_total_classes=5, param_attr='nce.w_1',
+            bias_attr='nce.b_1',
+            num_neg_samples=3,
+            sampler="custom_dist",
+            custom_dist=dist)
 
 
 

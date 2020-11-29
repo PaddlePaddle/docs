@@ -22,23 +22,24 @@ ClipByNorm算子
 
 
 参数：
-        - **x** (Variable)- 多维Tensor或LoDTensor，数据类型为float32。clip_by_norm运算的输入，维数必须在[1,9]之间。
-        - **max_norm** (float32)- 最大范数值。
-        - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+        - **x** (Tensor) : 多维Tensor或LoDTensor，数据类型为float32。clip_by_norm运算的输入，维数必须在[1,9]之间。
+        - **max_norm** (float32) : 最大范数值。
+        - **name** (str，可选) : 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 返回：        表示为输出Tensor或LoDTensor，数据类型为float32。和输入(X)具有相同的形状.
 
 
-返回类型：Variable
+返回类型：张量（Tensor）
 
 **代码示例：**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    input = fluid.data(
-        name='data', shape=[None, 1], dtype='float32')
-    reward = fluid.layers.clip_by_norm(x=input, max_norm=1.0)
+    import paddle
+    import numpy as np
 
+    paddle.disable_static()
+    input = paddle.to_tensor(data=np.array([[0.1, 0.2], [0.3, 0.4]]), dtype="float32")
+    reward = paddle.nn.clip_by_norm(x=input, max_norm=1.0)
 
 
 

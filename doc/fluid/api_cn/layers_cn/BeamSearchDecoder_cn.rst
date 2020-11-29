@@ -20,7 +20,7 @@ BeamSearchDecoder
   - **start_token** (int) - 起始标记id。
   - **end_token** (int) - 结束标记id。
   - **beam_size** (int) - 在beam search中使用的beam宽度。
-  - **embedding_fn** (可选) - 处理选中的候选id的接口。通常，它是一个将词id转换为词嵌入的嵌入层，函数的返回值作为 :code:`cell.call` 接口的 :code:`input` 参数。如果 :code:`embedding_fn` 未提供，则必须在 :code:`cell.call` 中实现词嵌入转换。默认值None。
+  - **embedding_fn** (可选) - 处理选中的候选id的接口。它通常是一个将词id转换为词嵌入的嵌入层，其返回值将作为 :code:`cell.call` 接口的 :code:`input` 参数。**注意** ，这里要使用 :ref:`cn_api_fluid_embedding` 而非 :ref:`cn_api_fluid_layers_embedding`，因为选中的id的形状是 :math:`[batch\_size, beam\_size]` ，如果使用后者则还需要在这里提供unsqueeze。如果 :code:`embedding_fn` 未提供，则必须在 :code:`cell.call` 中实现词嵌入转换。默认值None。
   - **output_fn** (可选) - 处理cell输出的接口，在计算得分和选择候选标记id之前使用。默认值None。
 
 **示例代码**
@@ -123,7 +123,7 @@ BeamSearchDecoder
 参数：
   - **initial_cell_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。调用者提供的参数。
 
-返回：一个元组 :code:`(initial_inputs, initial_states, finished)`。:code:`initial_inputs` 是一个tensor，当 :code:`embedding_fn` 为None时，由 :code:`start_token` 填充，形状为 :math:`[batch\_size,beam\_size,1]` ；否则使用 :code:`embedding_fn(t)` 返回的值。:code:`initial_states` 是tensor变量的嵌套结构(命名元组，字段包括 :code:`cell_states，log_probs，finished，lengths`)，其中 :code:`log_probs，finished，lengths` 都含有一个tensor，形状为 :math:`[batch\_size, beam\_size]`，数据类型为float32，bool，int64。:code:`cell_states` 具有与输入参数 :code:`initial_cell_states` 相同结构的值，但形状扩展为 :math:`[batch\_size,beam\_size,...]`。 :code:`finished` 是一个布尔型tensor，由False填充，形状为 :math:`[batch\_size,beam\_size]`。
+返回：一个元组 :code:`(initial_inputs, initial_states, finished)`。:code:`initial_inputs` 是一个tensor，当 :code:`embedding_fn` 为None时，该tensor t的形状为 :math:`[batch\_size,beam\_size]` ，值为 :code:`start_token` ；否则使用 :code:`embedding_fn(t)` 返回的值。:code:`initial_states` 是tensor变量的嵌套结构(命名元组，字段包括 :code:`cell_states，log_probs，finished，lengths`)，其中 :code:`log_probs，finished，lengths` 都含有一个tensor，形状为 :math:`[batch\_size, beam\_size]`，数据类型为float32，bool，int64。:code:`cell_states` 具有与输入参数 :code:`initial_cell_states` 相同结构的值，但形状扩展为 :math:`[batch\_size,beam\_size,...]`。 :code:`finished` 是一个布尔型tensor，由False填充，形状为 :math:`[batch\_size,beam\_size]`。
 
 返回类型：tuple
 
@@ -135,7 +135,7 @@ BeamSearchDecoder
   - **time** (Variable) - 调用者提供的形状为[1]的tensor，表示当前解码的时间步长。其数据类型为int64。
   - **logits** (Variable) - 形状为 :math:`[batch\_size,beam\_size,vocab\_size]` 的tensor，表示当前时间步的logits。其数据类型为float32。
   - **next_cell_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。它的结构，形状和数据类型与 :code:`initialize()` 的返回值 :code:`initial_states` 中的 :code:`cell_states` 相同。它代表该cell的下一个状态。
-  - **beam_state** (Variable) - tensor变量的结构。在第一个解码步骤与 :code:`initialize()` 返回的 :code:`initial_states` 同，其他步骤与 :code:`initialize()` 返回的 :code:`beam_search_state` 相同。
+  - **beam_state** (Variable) - tensor变量的结构。在第一个解码步骤与 :code:`initialize()` 返回的 :code:`initial_states` 同，其他步骤与 :code:`step()` 返回的 :code:`beam_search_state` 相同。
   
 返回：一个元组 :code:`(beam_search_output, beam_search_state)`。:code:`beam_search_output` 是tensor变量的命名元组，字段为 :code:`scores，predicted_ids parent_ids`。其中 :code:`scores，predicted_ids，parent_ids` 都含有一个tensor，形状为 :math:`[batch\_size,beam\_size]`，数据类型为float32 ，int64，int64。:code:`beam_search_state` 具有与输入参数 :code:`beam_state` 相同的结构，形状和数据类型。
 
@@ -146,9 +146,9 @@ BeamSearchDecoder
 执行beam search解码步骤，该步骤使用 :code:`cell` 来计算概率，然后执行beam search步骤以计算得分并选择候选标记ID。
   
 参数：
-  - **time** (Variable) - 调用者提供的形状为[1]的int64tensor，表示当前解码的时间步长。
+  - **time** (Variable) - 调用者提供的形状为[1]的tensor，表示当前解码的时间步长。其数据类型为int64。。
   - **inputs** (Variable) - tensor变量。在第一个解码时间步时与由 :code:`initialize()` 返回的 :code:`initial_inputs` 相同，其他时间步与由 :code:`step()` 返回的 :code:`next_inputs` 相同。
-  - **States** (Variable) - tensor变量的结构。在第一个解码时间步时与 :code:`initialize()` 返回的 :code:`initial_states` 相同，其他时间步与由 :code:`step()` 返回的 :code:`beam_search_state` 相同。
+  - **states** (Variable) - tensor变量的结构。在第一个解码时间步时与 :code:`initialize()` 返回的 :code:`initial_states` 相同，其他时间步与由 :code:`step()` 返回的 :code:`beam_search_state` 相同。
   - **kwargs** - 附加的关键字参数，由调用者提供。
   
 返回：一个元组 :code:`(beam_search_output，beam_search_state，next_inputs，finish)` 。:code:`beam_search_state` 和参数 :code:`states` 具有相同的结构，形状和数据类型。 :code:`next_inputs` 与输入参数 :code:`inputs` 具有相同的结构，形状和数据类型。 :code:`beam_search_output` 是tensor变量的命名元组(字段包括 :code:`scores，predicted_ids，parent_ids` )，其中 :code:`scores，predicted_ids，parent_ids` 都含有一个tensor，形状为 :math:`[batch\_size,beam\_size]`，数据类型为float32 ，int64，int64。:code:`finished` 是一个bool类型的tensor，形状为 :math:`[batch\_size,beam\_size]`。
@@ -167,12 +167,3 @@ BeamSearchDecoder
 返回：一个元组 :code:`(predicted_ids, final_states)`。:code:`predicted_ids` 是一个tensor，形状为 :math:`[time\_step，batch\_size,beam\_size]`，数据类型为int64。:code:`final_states` 与输入参数 :code:`final_states` 相同。
 
 返回类型：tuple
-
-.. py:method:: output_dtype()
-   
-用于beam search输出的数据类型的嵌套结构。它是一个命名元组，字段包括 :code:`scores, predicted_ids, parent_ids`。
-
-参数：无。
-
-返回：用于beam search输出的数据类型的命名元组。
-

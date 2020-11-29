@@ -2,6 +2,6 @@
 
 greater_than
 -------------------------------
-:doc_source: paddle.fluid.layers.greater_than
+:doc_source: paddle.tensor.greater_than
 
 

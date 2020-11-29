@@ -2,6 +2,6 @@
 
 greater_equal
 -------------------------------
-:doc_source: paddle.fluid.layers.greater_equal
+:doc_source: paddle.tensor.greater_equal
 
 

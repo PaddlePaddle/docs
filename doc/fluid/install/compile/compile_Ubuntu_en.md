@@ -86,7 +86,7 @@ Please follow the steps below to install:
         > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
-        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 8.0.
+        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
 
 4. After entering Docker, enter the Paddle Directory:
 
@@ -169,7 +169,7 @@ Congratulations, now you have completed the compilation and installation of Padd
             For Python2: apt install python-dev
             For Python3: apt install python3.5-dev
 
-    * b. Install pip: (Please ensure that pip version is 9.0.1 and above ): 
+    * b. Install pip: (Please ensure that pip version is 9.0.1 and above ):
 
             For Python2: apt install python-pip
             For Python3: apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt install curl && curl https://bootstrap.pypa.io/get-pip. Py -o - | python3.5 && easy_install pip

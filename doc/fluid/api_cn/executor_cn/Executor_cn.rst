@@ -39,7 +39,7 @@ Executor支持单GPU、多GPU以及CPU运行。
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        data = fluid.data(name='X', shape=[None, 1], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
         fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
@@ -130,7 +130,7 @@ Executor支持单GPU、多GPU以及CPU运行。
             place = fluid.CPUPlace() # fluid.CUDAPlace(0)
             exe = fluid.Executor(place)
      
-            data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+            data = fluid.data(name='X', shape=[None, 1], dtype='float32')
             hidden = fluid.layers.fc(input=data, size=10)
             loss = fluid.layers.mean(hidden)
             adam = fluid.optimizer.Adam()
@@ -175,8 +175,8 @@ train_from_dataset可以非常容易扩展到大规模分布式在线和离线�
 
         place = fluid.CPUPlace() # 通过设置place = fluid.CUDAPlace(0)使用GPU
         exe = fluid.Executor(place)
-        x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
-        y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
+        x = fluid.data(name="x", shape=[None, 10, 10], dtype="int64")
+        y = fluid.data(name="y", shape=[None, 1], dtype="int64", lod_level=1)
         dataset = fluid.DatasetFactory().create_dataset()
         dataset.set_use_var([x, y])
         dataset.set_thread(1)
@@ -210,12 +210,13 @@ train_from_dataset可以非常容易扩展到大规模分布式在线和离线�
   import paddle.fluid as fluid
   place = fluid.CPUPlace() # 使用GPU时可设置place = fluid.CUDAPlace(0)
   exe = fluid.Executor(place)
-  x = fluid.layers.data(name="x", shape=[10, 10], dtype="int64")
-  y = fluid.layers.data(name="y", shape=[1], dtype="int64", lod_level=1)
+  x = fluid.data(name="x", shape=[None, 10, 10], dtype="int64")
+  y = fluid.data(name="y", shape=[None, 1], dtype="int64", lod_level=1)
   dataset = fluid.DatasetFactory().create_dataset()
   dataset.set_use_var([x, y])
   dataset.set_thread(1)
   filelist = [] # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
   dataset.set_filelist(filelist)
   exe.run(fluid.default_startup_program())
-  exe.infer_from_dataset(program=fluid.default_main_program(),dataset=dataset)
+  exe.infer_from_dataset(program=fluid.default_main_program(),
+                         dataset=dataset)

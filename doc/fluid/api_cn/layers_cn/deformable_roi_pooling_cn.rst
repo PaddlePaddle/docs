@@ -48,7 +48,7 @@ deformable_roi_pooling
 
 ..  code-block:: python
 
-    #position_sensitive为False
+    #position_sensitive=False
 
     import paddle.fluid as fluid
     input = fluid.data(name="input",
@@ -74,7 +74,7 @@ deformable_roi_pooling
                                             trans_std=0.1,
                                             position_sensitive=False)
 
-    #position_sensitive为True
+    #position_sensitive=True
 
     import paddle.fluid as fluid
     input = fluid.data(name="input",

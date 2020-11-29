@@ -3,49 +3,39 @@
 randperm
 -------------------------------
 
-.. py:function:: paddle.tensor.random.randperm(n, out=None, dtype="int64", device=None, stop_gradient=True, seed=0)
+.. py:function:: paddle.randperm(n, dtype="int64", name=None)
 
 :alias_main: paddle.randperm
-:alias: paddle.randperm,paddle.tensor.randperm,paddle.tensor.random.randperm
+:alias: paddle.tensor.randperm, paddle.tensor.random.randperm
 
+该OP返回一个数值在0到n-1、随机排列的1-D Tensor，数据类型为 ``dtype``。
 
+参数:
+::::::::::
+  - **n** (int) - 随机序列的上限（不包括在序列中），应该大于0。 
+  - **dtype** (str|np.dtype|core.VarDesc.VarType, 可选) - 输出Tensor的数据类型，支持int32、int64、float32、float64。默认值为"int64".
+  - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-该OP返回一个数值在0到n-1、顺序随机的整数排列。
+返回
+::::::::::
+  Tensor：一个数值在0到n-1、随机排列的1-D Tensor，数据类型为 ``dtype`` 。
 
-参数: 
-  - **n** (int): 整数排列的上限，应该大于0。 
-  - **out** (Variable, optional): 可选的输出变量，如果不为 `None` ，返回的整数排列保存在该变量中，默认是 `None` 。
-  - **dtype** (np.dtype|core.VarDesc.VarType|str, optional): 整数排列的数据类型，支持 `int64` 和 `int32` ，默认是 `int64` 。
-  - **device** (str, optional): 指定整数排列所在的设备内存。设置为 `cpu` 则保存在 `cpu` 内存中，设置为 `gpu` ，则保存在 `gpu` 内存中，设置为 `None` 则保存在运行的设备内存中。默认是 `None` 。
-  - **stop_gradient** (bool, optional): 返回的整数排列是否记录并更新梯度，默认是 `True` 。 
-  - **seed** (int, optional): 设置随机种子。`seed` 等于0时，每次返回不同的整数排列；`seed` 不等于0时，相同的 `seed` 返回相同的整数排列。
+抛出异常
+::::::::::
+  - ValueError - 如果 ``n`` 不大于0.
+  - TypeError - 如果 ``dtype`` 不是int32、int64、float32、float64.
 
-返回:  一个数值在0到n-1、顺序随机的整数排列。
-
-返回类型: Variable
-
-**代码示例**:
+代码示例
+::::::::::
 
 ..  code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
-    import numpy as np
 
-    # Note that, the random permutation returned by randperm depends
-    # the random seed in computer, so the output in the next example
-    # will be change.
-    with fluid.dygraph.guard():
-        out_1 = paddle.randperm(6)
-        print(out_1.numpy())  # Random permutation, for example [2 4 5 0 3 1]
+    paddle.enable_imperative()
 
-        out_2 = fluid.dygraph.to_variable(
-				np.array([0, 1, 2, 3])).astype(np.int64)
-        paddle.randperm(6, out_2)
-        print(out_2.numpy())  # Random permutation, for example [5 0 2 4 1 3]
+    result_1 = paddle.randperm(5)
+    # [4 1 2 3 0]
 
-        out_3 = paddle.randperm(6, dtype="int32", device="cpu")
-        print(out_3.numpy())  # Random permutation, for example [3 1 4 2 5 0]
-
-        out_4 = paddle.randperm(6, device="cpu", stop_gradient=True)
-        print(out_4.numpy())  # Random permutation, for example [3 1 5 2 0 4]     
+    result_2 = paddle.randperm(7, 'int32')
+    # [1 6 2 0 4 3 5]   

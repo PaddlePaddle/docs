@@ -7,7 +7,6 @@ norm
 
 :alias_main: paddle.norm
 :alias: paddle.norm,paddle.tensor.norm,paddle.tensor.linalg.norm
-:update_api: paddle.fluid.layers.l2_normalize
 
 
 

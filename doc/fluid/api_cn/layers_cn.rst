@@ -31,6 +31,7 @@ fluid.layers
     layers_cn/auc_cn.rst
     layers_cn/autoincreased_step_counter_cn.rst
     layers_cn/batch_norm_cn.rst
+    layers_cn/BasicDecoder_cn.rst
     layers_cn/beam_search_cn.rst
     layers_cn/beam_search_decode_cn.rst
     layers_cn/bilinear_tensor_product_cn.rst
@@ -87,6 +88,7 @@ fluid.layers
     layers_cn/dynamic_lstmp_cn.rst
     layers_cn/dynamic_decode_cn.rst
     layers_cn/Decoder_cn.rst
+    layers_cn/DecodeHelper_cn.rst
     layers_cn/DynamicRNN_cn.rst
     layers_cn/edit_distance_cn.rst
     layers_cn/elementwise_add_cn.rst
@@ -124,6 +126,7 @@ fluid.layers
     layers_cn/get_tensor_from_selected_rows_cn.rst
     layers_cn/greater_equal_cn.rst
     layers_cn/greater_than_cn.rst
+    layers_cn/GreedyEmbeddingHelper_cn.rst
     layers_cn/grid_sampler_cn.rst
     layers_cn/group_norm_cn.rst
     layers_cn/gru_unit_cn.rst
@@ -242,6 +245,7 @@ fluid.layers
     layers_cn/rsqrt_cn.rst
     layers_cn/RNNCell_cn.rst
     layers_cn/sampled_softmax_with_cross_entropy_cn.rst
+    layers_cn/SampleEmbeddingHelper_cn.rst
     layers_cn/sampling_id_cn.rst
     layers_cn/scale_cn.rst
     layers_cn/scatter_cn.rst
@@ -308,6 +312,7 @@ fluid.layers
     layers_cn/thresholded_relu_cn.rst
     layers_cn/topk_cn.rst
     layers_cn/transpose_cn.rst
+    layers_cn/TrainingHelper_cn.rst
     layers_cn/unfold_cn.rst
     layers_cn/Uniform_cn.rst
     layers_cn/uniform_random_cn.rst

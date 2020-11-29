@@ -25,7 +25,6 @@
 
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
         rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
         yum update -y
         yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
 
@@ -90,7 +89,7 @@ Please follow the steps below to install:
         > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
-        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 8.0.
+        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
 
 
 4. After entering Docker, go to the paddle directory: `cd paddle`
@@ -109,7 +108,7 @@ Please follow the steps below to install:
 
     `mkdir -p /paddle/build && cd /paddle/build`
 
-7. Use the following command to install the dependencies: 
+7. Use the following command to install the dependencies:
 
 
         For Python2: pip install protobuf
@@ -119,7 +118,7 @@ Please follow the steps below to install:
 
     > Install protobuf 3.1.0
 
-    `apt install patchelf`
+    `yum install patchelf`
 
     > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
@@ -145,7 +144,7 @@ Please follow the steps below to install:
 
 10. After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package: `cd /paddle/build/python/dist`
 
-11. Install the compiled `.whl` package on the current machine or target machine: 
+11. Install the compiled `.whl` package on the current machine or target machine:
 
         For Python2: pip install -U (whl package name)
         For Python3: pip3.5 install -U (whl package name)
@@ -154,7 +153,7 @@ Please follow the steps below to install:
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
-> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
+> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `yum install -y vim` in the container.
 
 <a name="ct_source"></a>
 ### **Local compilation**
@@ -215,7 +214,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     * Here is the installation method for `patchELF`. Other dependencies can be installed using `yum install` or `pip install`/`pip3 install` followed by the name and version:
 
     `yum install patchelf`
-    > Users who can't use apt installation can refer to patchElF github [official documentation](https://gist.github.com/ruario/80fefd174b3395d34c14).
+    > Users who can't use yum installation can refer to patchElF github [official documentation](https://gist.github.com/ruario/80fefd174b3395d34c14).
 
 7. Put the PaddlePaddle source cloned in the Paddle folder in the current directory and go to the Paddle directory:
 

@@ -11,7 +11,7 @@
 - `Operator <operator.html>`_ : Operator表示对数据的操作。
 - `Program <program.html>`_ : Program表示对计算过程的描述。
 - `Executor <executor.html>`_ : Executor表示执行引擎。
-
+- `Broadcasting <broadcasting.html>`_ : Paddle对广播支持的说明。
 ..  toctree::
     :hidden:
 
@@ -22,4 +22,4 @@
     operator.rst
     program.rst
     executor.rst
-
+    broadcasting.rst

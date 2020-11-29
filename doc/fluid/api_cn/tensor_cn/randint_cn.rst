@@ -3,60 +3,70 @@
 randint
 -------------------------------
 
-.. py:function:: paddle.randint(low, high=None, shape=None, out=None, dtype=None, device=None, stop_gradient=False, seed=0, name=None)
+.. py:function:: paddle.randint(low=0, high=None, shape=[1], dtype=None, name=None)
 
 :alias_main: paddle.randint
-:alias: paddle.randint,paddle.tensor.randint,paddle.tensor.random.randint
+:alias: paddle.tensor.randint, paddle.tensor.random.randint
 
 
 
-该OP使用从区间[low，high)内均匀分布采样的随机整数初始化一个Tensor。当high为None时（默认），均匀采样的区间为[0,low)。
+该OP返回服从均匀分布的、范围在[``low``, ``high``)的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low``)。
 
-参数：
-    - **low** (int)-要生成的随机值范围的下限，low包含在范围中。当high为None时，均匀采样的区间为[0,low)。
-    - **high** (int，可选)-要生成的随机值范围的上限，high不包含在范围中。默认值为None。
-    - **shape** (list|tuple|Variable，可选)-输出Tensor的维度，shape类型支持list，tuple，Variable。如果shape类型是list或者tuple，它的元素可以是整数或者形状为[1]的Tensor，其中整数的数据类型为int，Tensor的数据类型为int32或int64。如果shape的类型是Variable，则是1D的Tensor，Tensor的数据类型为int32或int64。如果shape为None，则会将shape设置为[1]。默认值为None。
-    - **out** (Variable，可选)-用于存储创建的Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
-    - **dtype** (np.dtype|core.VarDesc.VarType|str，可选)- 输出Tensor的数据类型，支持数据类型为int32，int64。如果dtype为None，则会将dtype设置为int64。默认值为None。
-    - **device** (str， 可选)-指定在GPU或CPU上创建Tensor。如果device为None，则将选择运行Paddle程序的设备，默认为None。
-    - **stop_gradient** (bool，可选)-指定是否停止梯度计算，默认值为False。
-    - **seed** (int，可选)-随机种子，用于生成样本。0表示使用系统生成的种子。注意如果种子不为0，该操作符每次都生成同样的随机数。默认为 0。
-    - **name** (str，可选)-具体用法请参见:ref:`api_guide_Name` ，一般无需设置，默认值为None。
+参数
+::::::::::
+    - **low** (int) - 要生成的随机值范围的下限，``low`` 包含在范围中。当 ``high`` 为None时，均匀采样的区间为[0, ``low``)。默认值为0。
+    - **high** (int, 可选) - 要生成的随机值范围的上限，``high`` 不包含在范围中。默认值为None，此时范围是[0, ``low``)。
+    - **shape** (list|tuple|Tensor) - 生成的随机Tensor的形状。如果 ``shape`` 是list、tuple，则其中的元素可以是int，或者是形状为[1]且数据类型为int32、int64的Tensor。如果 ``shape`` 是Tensor，则是数据类型为int32、int64的1-D Tensor。。默认值为[1]。
+    - **dtype** (str|np.dtype|core.VarDesc.VarType, 可选) - 输出Tensor的数据类型，支持int32、int64。当该参数值为None时， 输出Tensor的数据类型为int64。默认值为None.
+    - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
 
-返回：表示一个随机初始化结果的Tensor，该Tensor的数据类型由dtype参数决定，该Tensor的维度由shape参数决定。
+返回
+::::::::::
+    Tensor：从区间[``low``，``high``)内均匀分布采样的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
-返回类型：Variable
+抛出异常
+::::::::::
+    - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
+    - ``TypeError`` - 如果 ``dtype`` 不是int32、int64。
+    - ``ValueError`` - 如果 ``high`` 不大于 ``low``；或者 ``high`` 为None，且 ``low`` 不大于0。
 
-抛出异常：
-    - :code:`TypeError`: shape的类型应该是list、tuple 或 Variable。
-    - :code:`TypeError`: dtype的类型应该是int32或int64。
-    - :code:`ValueError`: 该OP的high必须大于low（high为None时，则会先将high设置为low，将low设置为0，再判断low和high的大小关系）。
-
-**代码示例**：
+代码示例
+:::::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
     import paddle
+    import numpy as np
+
+    paddle.enable_imperative()
 
     # example 1:
-    # attr shape is a list which doesn't contain tensor Variable.
-    result_1 = paddle.randint(low=-5, high=5, shape=[3, 4], dtype="int64")
+    # attr shape is a list which doesn't contain Tensor.
+    result_1 = paddle.randint(low=-5, high=5, shape=[3])
+    # [0, -3, 2]
 
     # example 2:
-    # attr shape is a list which contains tensor Variable.
-    dim_1 = fluid.layers.fill_constant([1],"int64",3)
-    dim_2 = fluid.layers.fill_constant([1],"int32",5)
+    # attr shape is a list which contains Tensor.
+    dim_1 = paddle.fill_constant([1], "int64", 2)
+    dim_2 = paddle.fill_constant([1], "int32", 3)
     result_2 = paddle.randint(low=-5, high=5, shape=[dim_1, dim_2], dtype="int32")
+    print(result_2.numpy())
+    # [[ 0, -1, -3],
+    #  [ 4, -2,  0]]
 
     # example 3:
-    # attr shape is a Variable, the data type must be int64 or int32.
-    var_shape = fluid.data(name='var_shape', shape=[2], dtype="int64")
-    result_3 = paddle.randint(low=-5, high=5, shape=var_shape, dtype="int32")
-    var_shape_int32 = fluid.data(name='var_shape_int32', shape=[2], dtype="int32")
-    result_4 = paddle.randint(low=-5, high=5, shape=var_shape_int32, dtype="int64")
+    # attr shape is a Tensor
+    var_shape = paddle.imperative.to_variable(np.array([3]))
+    result_3 = paddle.randint(low=-5, high=5, shape=var_shape)
+    # [-2, 2, 3]
 
     # example 4:
+    # date type is int32
+    result_4 = paddle.randint(low=-5, high=5, shape=[3], dtype='int32')
+    # [-5, 4, -4]
+
+    # example 5:
     # Input only one parameter
     # low=0, high=10, shape=[1], dtype='int64'
-    result_4 = paddle.randint(10)
+    result_5 = paddle.randint(10)
+    # [7]

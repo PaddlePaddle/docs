@@ -5,6 +5,7 @@ paddle.nn
 ..  toctree::
     :maxdepth: 1
 
+    nn/activation.rst
     nn/adaptive_pool2d.rst
     nn/adaptive_pool3d.rst
     nn/add_position_encoding.rst
@@ -28,12 +29,17 @@ paddle.nn
     nn/clip_by_norm.rst
     nn/collect_fpn_proposals.rst
     nn/cond.rst
+    nn/ConstantPad1d.rst
+    nn/ConstantPad2d.rst
+    nn/ConstantPad3d.rst
     nn/continuous_value_model.rst
-    nn/conv2d.rst
-    nn/conv2d_transpose.rst
-    nn/conv3d.rst
-    nn/conv3d_transpose.rst
+    nn/Conv2D.rst
+    nn/Conv3D.rst
+    nn/Conv2DTranspose.rst
+    nn/Conv3DTranspose.rst
     nn/cosine_decay.rst
+    nn/cosine_similarity.rst
+    nn/CosineSimilarity.rst
     nn/cross_entropy.rst
     nn/data.rst
     nn/deformable_roi_pooling.rst
@@ -49,6 +55,7 @@ paddle.nn
     nn/exponential_decay.rst
     nn/filter_by_instag.rst
     nn/fsp_matrix.rst
+    nn/functional.rst
     nn/gather_tree.rst
     nn/gelu.rst
     nn/generate_mask_labels.rst
@@ -59,7 +66,8 @@ paddle.nn
     nn/GradientClipByValue.rst
     nn/grid_sampler.rst
     nn/GroupNorm.rst
-    nn/hard_shrink.rst
+    nn/hardshrink.rst
+    nn/hardtanh.rst
     nn/hard_sigmoid.rst
     nn/hard_swish.rst
     nn/hash.rst
@@ -67,6 +75,7 @@ paddle.nn
     nn/huber_loss.rst
     nn/image_resize.rst
     nn/image_resize_short.rst
+    nn/initializer.rst
     nn/inverse_time_decay.rst
     nn/iou_similarity.rst
     nn/kldiv_loss.rst
@@ -79,11 +88,12 @@ paddle.nn
     nn/Linear.rst
     nn/linear_lr_warmup.rst
     nn/log_loss.rst
-    nn/logsigmoid.rst
+    nn/log_sigmoid.rst
+    nn/log_softmax.rst
     nn/loss.rst
     nn/lrn.rst
     nn/margin_rank_loss.rst
-    nn/maxout.rst
+    nn/matrix_nms.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
     nn/natural_exp_decay.rst
@@ -91,23 +101,29 @@ paddle.nn
     nn/npair_loss.rst
     nn/one_hot.rst
     nn/pad.rst
-    nn/pad_constant_like.rst
     nn/pad2d.rst
+    nn/pad_constant_like.rst
     nn/ParameterList.rst
     nn/piecewise_decay.rst
     nn/pixel_shuffle.rst
     nn/polygon_box_transform.rst
     nn/polynomial_decay.rst
-    nn/pool2d.rst
     nn/Pool2D.rst
     nn/pool3d.rst
+    nn/prelu.rst
     nn/prior_box.rst
     nn/prroi_pool.rst
     nn/psroi_pool.rst
     nn/random_crop.rst
     nn/rank_loss.rst
+    nn/ReflectionPad1d.rst
+    nn/ReflectionPad2d.rst
     nn/ReLU.rst
+    nn/relu.rst
     nn/relu6.rst
+    nn/ReplicationPad1d.rst
+    nn/ReplicationPad2d.rst
+    nn/ReplicationPad3d.rst
     nn/resize_bilinear.rst
     nn/resize_nearest.rst
     nn/resize_trilinear.rst
@@ -138,7 +154,7 @@ paddle.nn
     nn/ssd_loss.rst
     nn/swish.rst
     nn/switch_case.rst
-    nn/tanh_shrink.rst
+    nn/tanhshrink.rst
     nn/target_assign.rst
     nn/teacher_student_sigmoid_loss.rst
     nn/temporal_shift.rst
@@ -148,3 +164,11 @@ paddle.nn
     nn/while_loop.rst
     nn/yolo_box.rst
     nn/yolov3_loss.rst
+    nn/functional/loss/margin_ranking_loss.rst
+    nn/functional/activation/sigmoid.rst
+    nn/layer/loss/MarginRankingLoss.rst
+    nn/ZeroPad2d.rst
+    nn/AdaptiveAvgPool2D.rst
+    nn/AdaptiveAvgPool3D.rst
+    nn/layer/activation/Sigmoid.rst
+    nn/Bilinear.rst

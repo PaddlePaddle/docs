@@ -182,6 +182,7 @@ fluid.layers
     layers/mul.rst
     layers/multi_box_head.rst
     layers/multiclass_nms.rst
+    layers/matrix_nms.rst
     layers/multiplex.rst
     layers/MultivariateNormalDiag.rst
     layers/natural_exp_decay.rst

@@ -38,6 +38,7 @@ LarsMomentumOptimizer
 .. code-block:: python
 
     import paddle.fluid as fluid
+    import numpy as np
 
     np_inp = np.array([[1.0, 2.0], [3.0, 4.0]], dtype=np.float32)
     inp = fluid.layers.data(
@@ -99,6 +100,49 @@ LarsMomentumOptimizer
         out.backward()
         optimizer.minimize(out)
         optimizer.clear_gradients()
+
+.. py:method:: set_lr()
+
+**注意：**
+
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**  
+
+手动设置当前 ``optimizer`` 的学习率。当使用LearningRateDecay时，无法使用该API手动设置学习率，因为这将导致冲突。
+
+参数：
+    value (float|Variable) - 需要设置的学习率的值。
+
+返回：无
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle.fluid as fluid
+            
+    with fluid.dygraph.guard():
+        linear = fluid.dygraph.nn.Linear(10, 10)
+        adam = fluid.optimizer.Adam(0.1, parameter_list=linear.parameters())
+        # 通过Python float数值手动设置学习率
+        lr_list = [0.2, 0.3, 0.4, 0.5, 0.6]
+        for i in range(5):
+            adam.set_lr(lr_list[i])
+            print("current lr is {}".format(adam.current_step_lr()))
+        # 打印结果:
+        #    current lr is 0.2
+        #    current lr is 0.3
+        #    current lr is 0.4
+        #    current lr is 0.5
+        #    current lr is 0.6
+
+
+        # 通过 框架的Variable 设置学习率
+        lr_var = fluid.layers.create_global_var(shape=[1], value=0.7, dtype='float32')
+        adam.set_lr(lr_var)
+        print("current lr is {}".format(adam.current_step_lr()))
+        # 打印结果:
+        #    current lr is 0.7
+
 
 
 .. py:method:: current_step_lr()

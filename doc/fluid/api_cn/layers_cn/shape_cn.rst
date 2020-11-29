@@ -33,7 +33,7 @@ shape层。
             input.shape = [3, 2]
 
 参数：
-        - **input** （Variable）-  输入的多维Tensor或SelectedRows，数据类型为float32，float64，int32，int64。如果输入是SelectedRows类型，则返回其内部持有Tensor的shape。
+        - **input** （Variable）-  输入的多维Tensor或SelectedRows，数据类型为float16，float32，float64，int32，int64。如果输入是SelectedRows类型，则返回其内部持有Tensor的shape。
 
 
 返回： 一个Tensor，表示输入Tensor或SelectedRows的shape。

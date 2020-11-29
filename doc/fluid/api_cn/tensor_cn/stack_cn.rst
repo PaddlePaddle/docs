@@ -2,22 +2,63 @@
 stack
 -------------------------------
 
-.. py:function:: paddle.tensor.stack(x, axis=0)
-
-:alias_main: paddle.stack
-:alias: paddle.stack,paddle.tensor.stack,paddle.tensor.manipulation.stack
-:update_api: paddle.fluid.layers.stack
+.. py:function:: paddle.tensor.stack(x, axis=0, name=None)
 
 
 
-该OP沿 axis 轴对输入 x 进行堆叠操作。
+该OP沿 axis 轴对输入 x 进行堆叠操作。要求所有输入Tensor有相同的Shape和数据类型。
+例如，输入 x 为 N 个 Shape 为 [A, B]的 Tensor, 如果 ``axis==0`` , 则输出 Tensor 的 Shape 为 [N, A, B]; 如果 ``axis==1`` , 则输出 Tensor 的 Shape 为 [A, N, B]; 以此类推。
+
+.. code-block:: text
+
+    Case 1:
+
+        Input:
+        x[0].shape = [1, 2]
+        x[0].data = [ [1.0 , 2.0 ] ]
+        x[1].shape = [1, 2]
+        x[1].data = [ [3.0 , 4.0 ] ]
+        x[2].shape = [1, 2]
+        x[2].data = [ [5.0 , 6.0 ] ]
+
+        Attrs:
+        axis = 0
+
+        Output:
+        Out.dims = [3, 1, 2]
+        Out.data =[ [ [1.0, 2.0] ],
+                    [ [3.0, 4.0] ],
+                    [ [5.0, 6.0] ] ]
+
+
+    Case 2:
+
+        Input:
+        x[0].shape = [1, 2]
+        x[0].data = [ [1.0 , 2.0 ] ]
+        x[1].shape = [1, 2]
+        x[1].data = [ [3.0 , 4.0 ] ]
+        x[2].shape = [1, 2]
+        x[2].data = [ [5.0 , 6.0 ] ]
+
+
+        Attrs:
+        axis = 1 or axis = -2  # If axis = -2, axis = axis+ndim(x[0])+1 = -2+2+1 = 1.
+
+        Output:
+        Out.shape = [1, 3, 2]
+        Out.data =[ [ [1.0, 2.0]
+                        [3.0, 4.0]
+                        [5.0, 6.0] ] ]
 
 **参数**：
-        - **x** (Variable|list(Variable)) – 输入 x 可以是单个Tensor，或是多个Tensor组成的列表。如果 x 是一个列表，那么这些Tensor的维度必须相同。 假设输入是N维Tensor [d0,d1,...,dn−1]，则输出变量的维度为N+1维 [d0,d1,...daxis−1,len(x),daxis...,dn−1] 。支持的数据类型: float32，float64，int32，int64。
+        - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个Tensor，且这些Tensor的维度和数据类型必须相同。支持的数据类型: float32，float64，int32，int64。
 
-        - **axis** (int, 可选) – 指定对输入Tensor进行堆叠运算的轴，有效 axis 的范围是: [−(R+1),R+1)]，R是输入中第一个Tensor的rank。如果 axis < 0，则 axis=axis+rank(x[0])+1 。axis默认值为0。
+        - **axis** (int, 可选) – 指定对输入Tensor进行堆叠运算的轴，有效 axis 的范围是: [−(R+1),R+1]，R是输入中第一个Tensor的维数。如果 axis < 0，则 axis=axis+R+1 。默认值为0。
 
-**返回**：堆叠运算后的Tensor，数据类型与输入Tensor相同。输出维度等于 rank(x[0])+1 维。
+        - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+
+**返回**：堆叠运算后的Tensor，数据类型与输入Tensor相同。
 
 **返回类型**：Variable
 
@@ -26,17 +67,14 @@ stack
 .. code-block:: python
    
     import paddle
-    import paddle.fluid as fluid
-    import numpy as np
-    data1 = np.array([[1.0, 2.0,3.0]])
-    data2 = np.array([[3.0, 4.0, 5.0]])
-    data3 = np.array([[5.0, 6.0,7.0]])
-    with fluid.dygraph.guard():
-        x1 = fluid.dygraph.to_variable(data1)
-        x2 = fluid.dygraph.to_variable(data2)
-        x3 = fluid.dygraph.to_variable(data3)
-        result = paddle.stack([x1, x2, x3], axis=2)
-        # result shape: [3, 1, 2]
-        # result value: [[[1.0, 2.0]],
-        #                [[3.0, 4.0]],
-        #                [[5.0, 6.0]]]
+    paddle.disable_static()
+    x1 = paddle.to_tensor([[1.0, 2.0]])
+    x2 = paddle.to_tensor([[3.0, 4.0]])
+    x3 = paddle.to_tensor([[5.0, 6.0]])
+
+    out = paddle.stack([x1, x2, x3], axis=0)
+    print(out.shape)  # [3, 1, 2]
+    print(out.numpy())
+    # [[[1., 2.]],
+    #  [[3., 4.]],
+    #  [[5., 6.]]]

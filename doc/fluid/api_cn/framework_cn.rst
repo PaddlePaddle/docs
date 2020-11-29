@@ -23,7 +23,9 @@ paddle.framework
     framework_cn/get_default_dtype_cn.rst
     framework_cn/global_scope_cn.rst
     framework_cn/gradients_cn.rst
-    framework_cn/manual_seed_cn.rst
+    framework_cn/seed_cn.rst
+    framework_cn/get_cuda_rng_state_cn.rst
+    framework_cn/set_cuda_rng_state_cn.rst
     framework_cn/name_scope_cn.rst
     framework_cn/ParallelExecutor_cn.rst
     framework_cn/ParamAttr_cn.rst

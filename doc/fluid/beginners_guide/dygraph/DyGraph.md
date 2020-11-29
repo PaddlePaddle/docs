@@ -55,8 +55,7 @@ import paddle
 from paddle.imperative import to_variable
 
 data = np.ones([2, 2], np.float32)
-#x = paddle.data(name='x', shape=[2,2], dtype='float32')
-x = paddle.nn.data(name='x', shape=[2,2], dtype='float32')
+x = paddle.static.data(name='x', shape=[2,2], dtype='float32')
 x += 10
 exe = paddle.Executor()
 exe.run(paddle.default_startup_program())
@@ -152,7 +151,7 @@ class SimpleImgConvPool(paddle.nn.Layer):
                  param_attr=None,
                  bias_attr=None):
         super(SimpleImgConvPool, self).__init__()
-        
+
         self._conv2d = Conv2D(
             num_channels=num_channels,
             num_filters=num_filters,
@@ -165,7 +164,7 @@ class SimpleImgConvPool(paddle.nn.Layer):
             bias_attr=None,
             act=act,
             use_cudnn=use_cudnn)
-        
+
         self._pool2d = Pool2D(
             pool_size=pool_size,
             pool_type=pool_type,
@@ -203,12 +202,12 @@ class MNIST(paddle.nn.Layer):
             1, 20, 5, 2, 2, act="relu")
         self._simple_img_conv_pool_2 = SimpleImgConvPool(
             20, 50, 5, 2, 2, act="relu")
-        
+
         self.pool_2_shape = 50 * 4 * 4
         SIZE = 10
         self.output_weight = self.create_parameter(
             [self.pool_2_shape, 10])
-    
+
     def forward(self, inputs, label=None):
         x = self._simple_img_conv_pool_1(inputs)
         x = self._simple_img_conv_pool_2(x)
@@ -275,25 +274,25 @@ adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
 epoch_num = 5
 
 for epoch in range(epoch_num):
-	for batch_id, data in enumerate(train_reader()):
-		dy_x_data = np.array([x[0].reshape(1, 28, 28) for x in data]).astype('float32')
-		y_data = np.array([x[1] for x in data]).astype('int64').reshape(-1, 1)
-	
-		img = to_variable(dy_x_data)
-		label = to_variable(y_data)
-	
-		cost, acc = mnist(img, label)
-		
-		loss = paddle.nn.functional.cross_entropy(cost, label)
-		avg_loss = paddle.mean(loss)
-		avg_loss.backward()
-		adam.minimize(avg_loss)
-		mnist.clear_gradients()
-		
-		if batch_id % 100 == 0:
-			print("Loss at epoch {} step {}: {:}".format(
-				epoch, batch_id, avg_loss.numpy()))
-	
+    for batch_id, data in enumerate(train_reader()):
+        dy_x_data = np.array([x[0].reshape(1, 28, 28) for x in data]).astype('float32')
+        y_data = np.array([x[1] for x in data]).astype('int64').reshape(-1, 1)
+
+        img = to_variable(dy_x_data)
+        label = to_variable(y_data)
+
+        cost, acc = mnist(img, label)
+
+        loss = paddle.nn.functional.cross_entropy(cost, label)
+        avg_loss = paddle.mean(loss)
+        avg_loss.backward()
+        adam.minimize(avg_loss)
+        mnist.clear_gradients()
+
+        if batch_id % 100 == 0:
+            print("Loss at epoch {} step {}: {:}".format(
+                epoch, batch_id, avg_loss.numpy()))
+
 model_dict = mnist.state_dict()
 paddle.imperative.save(model_dict, "save_temp")
 ```
@@ -307,7 +306,7 @@ paddle.imperative.save(model_dict, "save_temp")
 model.eval()      #切换到评估模式
 model.train()     #切换到训练模式
 ```
- 
+
 
 模型评估测试的实现如下：
 * 首先定义 MNIST 类的对象 mnist_eval，然后通过 [load_dygraph](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/load_dygraph_cn.html#load-dygraph) 接口加载保存好的模型参数，通过 [Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Layer_cn.html#layer) 的 [set_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Layer_cn.html#set_dict) 接口将参数导入到模型中，通过 [Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Layer_cn.html#layer) 的 eval 接口切换到预测评估模式。
@@ -316,7 +315,7 @@ model.train()     #切换到训练模式
 
 ```python
 paddle.enable_imperative()
-mnist_eval = MNIST() 
+mnist_eval = MNIST()
 model_dict, _ = paddle.imperative.load("save_temp")
 mnist_eval.set_dict(model_dict)
 print("checkpoint loaded")
@@ -326,21 +325,21 @@ mnist_eval.eval()
 acc_set = []
 avg_loss_set = []
 for batch_id, data in enumerate(test_reader()):
-	dy_x_data = np.array([x[0].reshape(1, 28, 28)
-						  for x in data]).astype('float32')
-	y_data = np.array(
-		[x[1] for x in data]).astype('int64').reshape(-1, 1)
-		
-	img = to_variable(dy_x_data)
-	label = to_variable(y_data)
+    dy_x_data = np.array([x[0].reshape(1, 28, 28)
+                          for x in data]).astype('float32')
+    y_data = np.array(
+        [x[1] for x in data]).astype('int64').reshape(-1, 1)
 
-	prediction, acc = mnist_eval(img, label)
-	
-	loss = paddle.nn.functional.cross_entropy(input=prediction, label=label)
-	avg_loss = paddle.mean(loss)
-	acc_set.append(float(acc.numpy()))
-	avg_loss_set.append(float(avg_loss.numpy()))
-	
+    img = to_variable(dy_x_data)
+    label = to_variable(y_data)
+
+    prediction, acc = mnist_eval(img, label)
+
+    loss = paddle.nn.functional.cross_entropy(input=prediction, label=label)
+    avg_loss = paddle.mean(loss)
+    acc_set.append(float(acc.numpy()))
+    avg_loss_set.append(float(avg_loss.numpy()))
+
 acc_val_mean = np.array(acc_set).mean()
 avg_loss_val_mean = np.array(avg_loss_set).mean()
 print("Eval avg_loss is: {}, acc is: {}".format(avg_loss_val_mean, acc_val_mean))
@@ -351,9 +350,9 @@ print("Eval avg_loss is: {}, acc is: {}".format(avg_loss_val_mean, acc_val_mean)
 在命令式编程下，模型和优化器在不同的模块中，所以模型和优化器分别在不同的对象中存储，使得模型参数和优化器信息需分别存储。
 因此模型的保存需要单独调用模型和优化器中的 state_dict() 接口，同样模型的加载也需要单独进行处理。
 
-保存模型 ： 
+保存模型 ：
 1. 保存模型参数：首先通过 minist.state_dict 函数获取 mnist 网络的所有参数，然后通过 paddle.imperative.save 函数将获得的参数保存至以 save_path 为前缀的文件中。
-1. 保存优化器信息：首先通过 adam.state_dict 函数获取 adam 优化器的信息，然后通过  paddle.imperative.save 函数将获得的参数保存至以 save_path 为前缀的文件中。 
+1. 保存优化器信息：首先通过 adam.state_dict 函数获取 adam 优化器的信息，然后通过  paddle.imperative.save 函数将获得的参数保存至以 save_path 为前缀的文件中。
    * [Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Layer_cn.html#layer) 的 [state_dict](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/Layer_cn.html#state_dict) 接口：该接口可以获取当前层及其子层的所有参数，并将参数存放在 dict 结构中。
    * [Optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/optimizer_cn/AdamOptimizer_cn.html#adamoptimizer) 的 state_dict 接口：该接口可以获取优化器的信息，并将信息存放在 dict 结构中。其中包含优化器使用的所有变量，例如对于 Adam 优化器，包括 beta1、beta2、momentum 等信息。注意如果该优化器的 minimize 函数没有被调用过，则优化器的信息为空。
    * [paddle.imperative.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/dygraph_cn/save_dygraph_cn.html#save-dygraph) 接口：该接口将传入的参数或优化器的 dict 保存到磁盘上。
@@ -363,7 +362,7 @@ print("Eval avg_loss is: {}, acc is: {}".format(avg_loss_val_mean, acc_val_mean)
 # 保存优化器信息
 2. paddle.imperative.save(adam.state_dict(), "save_path")
 ```
-加载模型： 
+加载模型：
 1. 通过 paddle.imperative.load 函数获取模型参数信息 model_state 和优化器信息 opt_state；
 1. 通过 mnist.set_dict 函数用获取的模型参数信息设置 mnist 网络的参数
 1. 通过 adam.set_dict 函数用获取的优化器信息设置 adam 优化器信息。
@@ -406,35 +405,35 @@ adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
 mnist = paddle.imperative.DataParallel(mnist, strategy)
 
 train_reader = paddle.batch(
-	paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
+    paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
 train_reader = paddle.incubate.reader.distributed_batch_reader(
-	train_reader)
+    train_reader)
 
 for epoch in range(epoch_num):
-	for batch_id, data in enumerate(train_reader()):
-		dy_x_data = np.array([x[0].reshape(1, 28, 28)
-							  for x in data]).astype('float32')
-		y_data = np.array(
-			[x[1] for x in data]).astype('int64').reshape(-1, 1)
+    for batch_id, data in enumerate(train_reader()):
+        dy_x_data = np.array([x[0].reshape(1, 28, 28)
+                              for x in data]).astype('float32')
+        y_data = np.array(
+            [x[1] for x in data]).astype('int64').reshape(-1, 1)
 
-		img = to_variable(dy_x_data)
-		label = to_variable(y_data)
-		label.stop_gradient = True
-		
-		cost, acc = mnist(img, label)
-		
-		loss = paddle.nn.functional.cross_entropy(cost, label)
-		avg_loss = paddle.mean(loss)
-		
-		avg_loss = mnist.scale_loss(avg_loss)
-		avg_loss.backward()
-		mnist.apply_collective_grads()
-		
-		adam.minimize(avg_loss)
-		mnist.clear_gradients()
-		
-		if batch_id % 100 == 0 and batch_id is not 0:
-			print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
+        img = to_variable(dy_x_data)
+        label = to_variable(y_data)
+        label.stop_gradient = True
+
+        cost, acc = mnist(img, label)
+
+        loss = paddle.nn.functional.cross_entropy(cost, label)
+        avg_loss = paddle.mean(loss)
+
+        avg_loss = mnist.scale_loss(avg_loss)
+        avg_loss.backward()
+        mnist.apply_collective_grads()
+
+        adam.minimize(avg_loss)
+        mnist.clear_gradients()
+
+        if batch_id % 100 == 0 and batch_id is not 0:
+            print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
 
 if paddle.imperative.ParallelEnv().local_rank == 0:
     paddle.imperative.save(mnist.state_dict(),  "work_0")
@@ -477,7 +476,7 @@ trainers_endpoints: 127.0.0.1:6170,127.0.0.1:6171 , node_id: 0 , current_node_ip
 总结一下，多卡训练相比单卡训练，有如下步骤不同：
 1. 通过 ParallelEnv() 的 dev_id 设置程序运行的设备。
 ```
-place = paddle.CUDAPlace(paddle.imperative.ParallelEnv().dev_id) 
+place = paddle.CUDAPlace(paddle.imperative.ParallelEnv().dev_id)
 paddle.enable_imperative(place):
 ```
 2. 准备多卡环境。
@@ -511,7 +510,7 @@ mnist.apply_collective_grads()
 和单卡不同，多卡训练时需逐个进程执行保存操作，多个进程同时保存会使模型文件格式出错。
 ```
 if paddle.imperative.ParallelEnv().local_rank == 0：
-	paddle.imperative.save(mnist.state_dict(), "worker_0")
+    paddle.imperative.save(mnist.state_dict(), "worker_0")
 ```
 7. 评估测试。
 
@@ -552,7 +551,7 @@ static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
 # 声明式编程中需要使用执行器执行之前已经定义好的网络
 place = paddle.CPUPlace()
 exe = paddle.Executor(place)
-program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
+program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname, exe)
 # 声明式编程中需要调用执行器的run方法执行计算过程
 fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 ```
@@ -573,9 +572,9 @@ in_np = np.array([-2]).astype('int')
 input_var = paddle.imperative.to_variable(in_np)
 # if判断与输入input_var的shape有关
 if input_var.shape[0] > 1:
-	print("input_var's shape[0] > 1")
+    print("input_var's shape[0] > 1")
 else:
-	print("input_var's shape[1] < 1")
+    print("input_var's shape[1] < 1")
 ```
 
 * 针对依赖数据的控制流，解决流程如下 1. 添加declarative装饰器； 2. 利用ProgramTranslator进行转换
@@ -595,13 +594,13 @@ class MNIST(paddle.nn.Layer):
             1, 20, 5, 2, 2, act="relu")
         self._simple_img_conv_pool_2 = SimpleImgConvPool(
             20, 50, 5, 2, 2, act="relu")
-        
+
         self.pool_2_shape = 50 * 4 * 4
         SIZE = 10
         self.output_weight = self.create_parameter(
             [self.pool_2_shape, 10])
-    
-	@declarative
+
+    @declarative
     def forward(self, inputs, label=None):
         x = self._simple_img_conv_pool_1(inputs)
         x = self._simple_img_conv_pool_2(x)
@@ -613,7 +612,7 @@ class MNIST(paddle.nn.Layer):
             return x, acc
         else:
             return x
-			
+
 ```
 
 
@@ -654,13 +653,13 @@ class MNIST(paddle.nn.Layer):
             1, 20, 5, 2, 2, act="relu")
         self._simple_img_conv_pool_2 = SimpleImgConvPool(
             20, 50, 5, 2, 2, act="relu")
-        
+
         self.pool_2_shape = 50 * 4 * 4
         SIZE = 10
         self.output_weight = self.create_parameter(
             [self.pool_2_shape, 10])
-    
-	@declarative
+
+    @declarative
     def forward(self, inputs, label=None):
         x = self._simple_img_conv_pool_1(inputs)
         x = self._simple_img_conv_pool_2(x)
@@ -672,7 +671,7 @@ class MNIST(paddle.nn.Layer):
             return x, acc
         else:
             return x
-			
+
 ```
 
 
@@ -685,7 +684,7 @@ class MNIST(paddle.nn.Layer):
 
 ```
 x = y * 10
-print(x.numpy()) 
+print(x.numpy())
 ```
 
 来直接打印变量的值

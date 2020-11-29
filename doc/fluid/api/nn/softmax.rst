@@ -2,6 +2,7 @@
 
 softmax
 -------------------------------
-:doc_source: paddle.fluid.layers.softmax
 
+..  autofunction:: paddle.nn.functional.softmax
+    :noindex:
 

@@ -42,7 +42,7 @@ NaturalExpDecay
     - **staircase** (bool，可选) - 若为True, 学习率变化曲线呈阶梯状，若为False，学习率变化值曲线为平滑的曲线。默认值为False。
     - **begin** (int，可选) – 起始步，即以上运算式子中global_step的初始化值。默认值为0。
     - **step** (int，可选) – 步大小，即以上运算式子中global_step的每次的增量值。默认值为1。
-    - **dtype**  – (str，可选) 初始化学习率变量的数据类型，可以为"float32", "float64"。默认值为"float32"。
+    - **dtype** (str，可选) – 学习率值的数据类型，可以为"float32", "float64"。默认值为"float32"。
 
 返回： 无
 
@@ -53,12 +53,14 @@ NaturalExpDecay
     import paddle.fluid as fluid
     base_lr = 0.1
     with fluid.dygraph.guard():
+        emb = fluid.dygraph.Embedding([10, 10])
         sgd_optimizer = fluid.optimizer.SGD(
                 learning_rate=fluid.dygraph.NaturalExpDecay(
-                      learning_rate=base_lr,
-                      decay_steps=10000,
-                      decay_rate=0.5,
-                      staircase=True))
+                    learning_rate=base_lr,
+                    decay_steps=10000,
+                    decay_rate=0.5,
+                    staircase=True),
+                parameter_list=emb.parameters())
 
 
 
