@@ -5,44 +5,30 @@ stanh
 
 .. py:function:: paddle.fluid.layers.stanh(x, scale_a=0.67, scale_b=1.7159, name=None)
 
-
-
-
-STanh 激活算子（STanh Activation Operator.）
+stanh 激活函数
 
 .. math::
-          \\out=b*\frac{e^{a*x}-e^{-a*x}}{e^{a*x}+e^{-a*x}}\\
 
-参数：
-    - **x** (Tensor|LoDTensor) - 数据类型为float32,float64。STanh operator的输入
-    - **scale_a** (float) - 输入的a的缩放参数
-    - **scale_b** (float) - b的缩放参数
-    - **name** (str|None) - 这个层的名称(可选)。如果设置为None，该层将被自动命名
+    out = b * \frac{e^{a * x} - e^{-a * x}}{e^{a * x} + e^{-a * x}}
 
-返回: 与输入shape相同的张量
+参数:
+::::::::::
+ - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
+ - scale_a (float, 可选) - stanh激活计算公式中的输入缩放参数a。默认值为0.67。
+ - scale_b (float, 可选) - stanh激活计算公式中的输出缩放参数b。默认值为1.7159。
+ - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回类型: Variable（Tensor），数据类型为float32的Tensor。
+返回
+::::::::::
+    ``Tensor`` ，数据类型和形状同 ``x`` 一致。
 
-**代码示例：**
+代码示例
+::::::::::
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
-    data = fluid.layers.data(name="input", shape=[-1, 3])
-    result = fluid.layers.stanh(data,scale_a=0.67, scale_b=1.72)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    x = np.random.random(size=(3, 3)).astype('float32')
-    output= exe.run(feed={"input": x},
-                 fetch_list=[result])
-    print(output)
-    """
-    output:
-    [array([[0.626466  , 0.89842904, 0.7501062 ],
-           [0.25147712, 0.7484996 , 0.22902708],
-           [0.62705994, 0.23110689, 0.56902856]], dtype=float32)]
-    """
 
-
+    x = paddle.to_tensor(np.array([1.0, 2.0, 3.0, 4.0], 'float32'))
+    out = paddle.stanh(x, scale_a=0.67, scale_b=1.72) # [1.00616539, 1.49927628, 1.65933108, 1.70390463]
