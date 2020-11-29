@@ -27,11 +27,10 @@ layer_norm
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     np.random.seed(123)
     x_data = np.random.random(size=(2, 2, 2, 3)).astype('float32')
     x = paddle.to_tensor(x_data) 
     layer_norm_out = paddle.nn.functional.layer_norm(x, x.shape[1:])
 
-    print(layer_norm_out.numpy())
+    print(layer_norm_out)
 
