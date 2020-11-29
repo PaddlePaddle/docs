@@ -1,9 +1,9 @@
-.. _cn_api_fluid_layers_assign:
+.. _cn_api_paddle_tensor_creation_assign:
 
 assign
 -------------------------------
 
-.. py:function:: paddle.assign(input,output=None)
+.. py:function:: paddle.assign(x,output=None)
 
 
 

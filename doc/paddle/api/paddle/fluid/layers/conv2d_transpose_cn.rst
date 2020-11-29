@@ -4,7 +4,7 @@ conv2d_transpose
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.conv2d_transpose(input, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format='NCHW')
+.. py:function:: paddle.static.nn.conv2d_transpose(input, num_filters, output_size=None, filter_size=None, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format='NCHW')
 
 
 
@@ -71,7 +71,7 @@ conv2d_transpose
 如果指定了output_size， ``conv2d_transpose`` 可以自动计算滤波器的大小。
 
 参数:
-  - **input** （Variable）- 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。数据类型：float32或float64。
+  - **input** （Tensor）- 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。数据类型：float32或float64。
   - **num_filters** (int) - 滤波器（卷积核）的个数，与输出图片的通道数相同。
   - **output_size** (int|tuple，可选) - 输出图片的大小。如果output_size是一个元组，则必须包含两个整型数，（output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。默认：None。output_size和filter_size不能同时为None。
   - **filter_size** (int|tuple，可选) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_height, filter_size_width）。否则，filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， ``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。默认：None。output_size和filter_size不能同时为None。
@@ -88,7 +88,7 @@ conv2d_transpose
 
 返回：4-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
-返回类型：Variable
+返回类型：Tensor
 
 抛出异常:
     -  ``ValueError`` : 如果输入的shape、filter_size、stride、padding和groups不匹配，抛出ValueError
@@ -104,16 +104,9 @@ conv2d_transpose
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-    data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
-    param_attr = fluid.ParamAttr(name='conv2d.weight', initializer=fluid.initializer.Xavier(uniform=False), learning_rate=0.001)
-    res = fluid.layers.conv2d_transpose(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    x = np.random.rand(1, 3, 32, 32).astype("float32")
-    output = exe.run(feed={"data": x}, fetch_list=[res])
-    print(output)
+    import paddle
+    paddle.enable_static()
+    data = paddle.static.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
+    conv2d_transpose = paddle.static.nn.conv2d_transpose(input=data, num_filters=2, filter_size=3)
 
 
