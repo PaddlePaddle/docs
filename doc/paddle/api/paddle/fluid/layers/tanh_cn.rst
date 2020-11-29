@@ -3,7 +3,7 @@
 tanh
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.tanh(x, name=None)
+.. py:function:: paddle.tanh(x, name=None)
 
 
 
@@ -22,15 +22,18 @@ tanh 激活函数
 
 返回: 张量(Tensor)
 
-返回类型: 变量(Variable)
+返回类型: 变量(Tensor)
 
 **代码示例**：
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name="input", shape=[32, 784])
-    result = fluid.layers.tanh(data)
+	import paddle
+
+	x = paddle.rand(shape=[32, 784])
+	y = paddle.tanh(x)
+	print(y.shape)
+
 
 
 

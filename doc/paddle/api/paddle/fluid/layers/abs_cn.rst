@@ -3,7 +3,7 @@
 abs
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.abs(x, name=None)
+.. py:function:: paddle.abs(x, name=None)
 
 
 
@@ -26,8 +26,8 @@ abs
 .. code-block:: python
 
         import paddle
-        paddle.disable_static()
+        
         x = paddle.to_tensor([-1, -2, -3, -4], dtype='float32')
         res = paddle.abs(x)
-        print(res.numpy())
+        print(res)
         # [1, 2, 3, 4]

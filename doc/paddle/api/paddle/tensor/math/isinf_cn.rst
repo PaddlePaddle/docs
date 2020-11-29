@@ -23,8 +23,8 @@ isinf
 
     import paddle
     import numpy as np
-    paddle.disable_static()
+
     x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
     x = paddle.to_tensor(x_np)
-    out = paddle.tensor.isinf(x)
-    print(out.numpy())  # [ True False False  True False False False]
+    out = paddle.isinf(x)
+    print(out)  # [True, False, False, True, False, False, False]

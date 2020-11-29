@@ -49,12 +49,11 @@ one_hot
 .. code-block:: python
 
     import paddle
-    label = paddle.data(name="label", shape=[4], dtype="int64")
+    label = paddle.to_tensor([1, 1, 3, 0], dtype='int64')
     # label.shape = [4]
-    # label.data = [1, 1, 3, 0]
-    one_hot_label = paddle.nn.functional.one_hot(x=label, num_classes=4)
+    one_hot_label = paddle.nn.functional.one_hot(label, num_classes=4)
     # one_hot_label.shape = [4, 4]
-    # one_hot_label.data = [[0., 1., 0., 0.],
-    #                       [0., 1., 0., 0.],
-    #                       [0., 0., 0., 1.],
-    #                       [1., 0., 0., 0.]]
+    # one_hot_label = [[0., 1., 0., 0.],
+    #                  [0., 1., 0., 0.],
+    #                  [0., 0., 0., 1.],
+    #                  [1., 0., 0., 0.]]

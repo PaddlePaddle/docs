@@ -27,10 +27,7 @@ ReLU激活层（Rectified Linear Unit）。计算公式如下：
 .. code-block:: python
 
     import paddle
-    import numpy as np
-  
-    paddle.disable_static()
 
-    x = paddle.to_tensor(np.array([-2, 0, 1]).astype('float32'))
+    x = paddle.to_tensor([-2., 0., 1.])
     m = paddle.nn.ReLU()
     out = m(x) # [0., 0., 1.]

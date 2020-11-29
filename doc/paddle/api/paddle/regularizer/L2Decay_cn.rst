@@ -3,7 +3,7 @@
 L2Decay
 -------------------------------
 
-.. py:attribute::   paddle.regularizer.L2Decay
+.. py:attribute::   paddle.regularizer.L2Decay(coeff=0.0)
 
 
 L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模型对训练数据过拟合。
@@ -18,7 +18,7 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
 具体实现中，L2权重衰减正则化的损失函数计算如下：
 
 .. math::
-            \\loss = coeff * reduce\_sum(square(x))\\
+            \\loss = 0.5 * coeff * reduce\_sum(square(x))\\
 
 参数:
   - **coeff** (float) – 正则化系数，默认值为0.0。
@@ -53,11 +53,11 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
     # Example2: set Regularizer in parameters
     # Set L2 regularization in parameters.
     # Global regularizer does not take effect on my_conv2d for this case.
-    from paddle.nn import Conv2d
+    from paddle.nn import Conv2D
     from paddle import ParamAttr
     from paddle.regularizer import L2Decay
 
-    my_conv2d = Conv2d(
+    my_conv2d = Conv2D(
             in_channels=10,
             out_channels=10,
             kernel_size=1,

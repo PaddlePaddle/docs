@@ -1,6 +1,17 @@
 #!/bin/bash
 set -x
 
+function install_paddle() {
+    # try to download paddle, and install
+    rm -rf paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+    wget https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+    pip install -U paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+    # if failed, build paddle
+    if [ $? -ne 0 ];then
+        build_paddle
+    fi
+}
+
 function build_paddle() {
     git clone https://github.com/PaddlePaddle/Paddle.git
     mkdir Paddle/build
@@ -41,9 +52,9 @@ then
     echo "need check files is empty, skip chinese api check"
 else
     echo "need check files is not empty, begin to build and install paddle"
-    build_paddle
+    install_paddle
     if [ $? -ne 0 ];then
-      echo "paddle build error"
+      echo "install paddle error"
       exit 5
     fi
 

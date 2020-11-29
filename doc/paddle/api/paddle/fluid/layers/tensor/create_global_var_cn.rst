@@ -26,9 +26,8 @@ create_global_var
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    var = layers.create_global_var(shape=[2,3], value=1.0, dtype='float32',
+    import paddle
+    var = paddle.static.create_global_var(shape=[2,3], value=1.0, dtype='float32',
                                    persistable=True, force_cpu=True, name='new_var')
 
 

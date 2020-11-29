@@ -3,7 +3,7 @@
 NLLLoss
 -------------------------------
 
-.. py:class:: paddle.nn.loss.NLLLoss(weight=None, ignore_index=-100, reduction='mean', name=None)
+.. py:class:: paddle.nn.NLLLoss(weight=None, ignore_index=-100, reduction='mean', name=None)
 
 该接口可创建一个NLLLoss可调用类，计算输入x和标签label间的 `negative log likelihood loss` 损失 ，可用于训练一个 `n` 类分类器。
 
@@ -51,7 +51,7 @@ NLLLoss
         import paddle
         import numpy as np
 
-        nll_loss = paddle.nn.layer.NLLLoss()
+        nll_loss = paddle.nn.NLLLoss()
         log_softmax = paddle.nn.LogSoftmax(axis=1)
 
         input_np = np.array([[0.88103855, 0.9908683 , 0.6226845 ],
@@ -61,10 +61,8 @@ NLLLoss
                              [0.05689114, 0.0862954 , 0.6325046 ]]).astype(np.float32)
         label_np = np.array([0, 2, 1, 1, 0]).astype(np.int64)
 
-        place = paddle.CPUPlace()
-        paddle.disable_static(place)
         input = paddle.to_tensor(input_np)
         log_out = log_softmax(input)
         label = paddle.to_tensor(label_np)
         result = nll_loss(log_out, label)
-        print(result.numpy()) # [1.0720209]
+        print(result) # [1.0720209]

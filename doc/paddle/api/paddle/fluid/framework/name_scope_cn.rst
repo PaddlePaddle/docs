@@ -4,7 +4,7 @@ name_scope
 -------------------------------
 
 
-.. py:function:: paddle.fluid.name_scope(prefix=None)
+.. py:function:: paddle.static.name_scope(prefix=None)
 
 
 
@@ -23,7 +23,7 @@ name_scope
       import paddle
       paddle.enable_static()
       with paddle.static.name_scope("s1"):
-         a = paddle.data(name='data', shape=[None, 1], dtype='int32')
+         a = paddle.static.data(name='data', shape=[None, 1], dtype='int32')
          b = a + 1
          with paddle.static.name_scope("s2"):
             c = b * 1
@@ -46,7 +46,7 @@ name_scope
           # elementwise_div is created in '/s1/s3'
           elif op.type == 'elementwise_div':
               assert op.desc.attr("op_namescope") == '/s1/s3/'
-          # elementwise_sum is created in '/s4'
+          # elementwise_sub is created in '/s4'
           elif op.type == 'elementwise_sub':
               assert op.desc.attr("op_namescope") == '/s4/'
           # pow is created in /s1_1/

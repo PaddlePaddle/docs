@@ -22,7 +22,6 @@ empty_like
     import paddle
     import numpy as np
 
-    paddle.disable_static()   # Now we are in imperative mode
     paddle.set_device("cpu")  # and use cpu device
 
     x = paddle.randn([2, 3], 'float32')

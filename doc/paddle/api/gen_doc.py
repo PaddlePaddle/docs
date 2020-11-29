@@ -15,10 +15,11 @@ alias_api_map = {}
 not_display_doc_map = {}
 display_doc_map = {}
 api_set = set()
+id_real_api_map = {}
 
 
 def get_all_api(root_path='paddle'):
-    for filefiner, name, ispkg in pkgutil.walk_packages(
+    for filefinder, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
         # not show paddle.reader APIs
         if name.startswith("paddle.reader"):
@@ -30,7 +31,7 @@ def get_all_api(root_path='paddle'):
         else:
             if hasattr(eval(name), "__all__"):
                 #may have duplication of api
-                for api in list(set(eval(name).__all__)):
+                for api in set(eval(name).__all__):
                     api_all = name + "." + api
                     if "," in api:
                         continue
@@ -69,78 +70,105 @@ def get_display_doc_map(file="./display_doc_list"):
 def get_alias_mapping(file="./alias_api_mapping"):
     with open(file, 'r') as f:
         for line in f.readlines():
-            t = line.strip().split('\t')
+            if "\t" in line:
+                t = line.strip().split('\t')
+            else:
+                t = line.strip().split('    ')
             real_api = t[0].strip()
             alias_apis = t[1].strip().split(',')
             alias_api_map[real_api] = alias_apis
 
+            try:
+                m = eval(real_api)
+            except AttributeError:
+                print("AttributeError:", real_api)
+                pass
+            else:
+                id_real_api_map[id(eval(real_api))] = real_api
 
-def is_filter_api(api):
-    #if api in display_list, just return False
-    if api in display_doc_map:
-        return False
 
-    #check api in not_display_list
-    for key in not_display_doc_map:
-        #find the api
-        if key == api:
-            return True
-        #find the module
-        if api.startswith(key):
-            k_segs = key.split(".")
-            a_segs = api.split(".")
-            if k_segs[len(k_segs) - 1] == a_segs[len(k_segs) - 1]:
-                return True
+def filter_same_api():
+    # filter same_apis by display list and not display list
+    for k in list(same_api_map.keys()):
+        same_apis = same_api_map[k]
+        if is_display_apis(same_apis):
+            continue
 
-    #check api in alias map
-    if api in alias_api_map:
-        return False
+        if is_not_display_apis(same_apis):
+            del same_api_map[k]
 
-    same_apis = same_api_map[id(eval(api))]
 
-    #api not in alias map
-    #if the api in alias_map key, others api is alias api
-    for x in same_apis:
-        if x in alias_api_map:
-            return True
+def find_real_api(api_list):
+    # find the real_api
+    if len(api_list) == 1:
+        return api_list[0]
+    else:
+        return choose_real_api(api_list)
 
-    if len(same_apis) > 1:
-        # find shortest path of api as the real api
-        # others api as the alias api
-        shortest = len(same_apis[0].split("."))
-        for x in same_apis:
+
+def choose_real_api(api_list):
+    api = api_list[0]
+    # the api in id_real_api_map, return real_api
+    if id(eval(api)) in id_real_api_map:
+        return id_real_api_map[id(eval(api))]
+    else:
+        # in case of alias_mapping not contain the apis
+        # try to find shortest path of api as the real api
+        shortest = len(api_list[0].split("."))
+        shorttest_api = api_list[0]
+        for x in api_list:
             if len(x.split(".")) < shortest:
                 shortest = len(x.split("."))
+                shorttest_api = x
 
-        if len(api.split(".")) == shortest:
-            return False
-        else:
+        return shorttest_api
+
+
+# check if any of the same apis in display list
+def is_display_apis(api_list):
+    for api in api_list:
+        if api in display_doc_map:
             return True
     return False
 
 
+def is_not_display_apis(api_list):
+    for api in api_list:
+        #check api in not_display_list
+        for key in not_display_doc_map:
+            #find the api
+            if key == api:
+                return True
+            #find the module
+            if api.startswith(key):
+                k_segs = key.split(".")
+                a_segs = api.split(".")
+                if k_segs[len(k_segs) - 1] == a_segs[len(k_segs) - 1]:
+                    return True
+    return False
+
+
 def gen_en_files(root_path='paddle', api_label_file="api_label"):
-    backup_path = root_path + "_" + str(int(time.time()))
     api_f = open(api_label_file, 'w')
 
-    for api in api_set:
-        if is_filter_api(api):
-            continue
-        module_name = ".".join(api.split(".")[0:-1])
-        doc_file = api.split(".")[-1]
+    for api_list in same_api_map.values():
+        real_api = find_real_api(api_list)
 
-        if isinstance(eval(module_name + "." + doc_file), types.ModuleType):
+        module_name = ".".join(real_api.split(".")[0:-1])
+        doc_file = real_api.split(".")[-1]
+
+        if isinstance(eval(real_api), types.ModuleType):
             continue
 
-        path = "/".join(api.split(".")[0:-1])
+        path = "/".join(real_api.split(".")[0:-1])
         if not os.path.exists(path):
             os.makedirs(path)
-        f = api.replace(".", "/")
-        if os.path.exists(f + en_suffix):
+        f = real_api.replace(".", "/") + en_suffix
+        if os.path.exists(f):
             continue
-        os.mknod(f + en_suffix)
+        os.mknod(f)
         gen = EnDocGenerator()
-        with gen.guard(f + en_suffix):
+        with gen.guard(f):
             gen.module_name = module_name
             gen.api = doc_file
             gen.print_header_reminder()
@@ -267,6 +295,7 @@ if __name__ == "__main__":
     get_display_doc_map()
     get_all_same_api()
     get_alias_mapping()
+    filter_same_api()
 
     clean_en_files()
     gen_en_files()

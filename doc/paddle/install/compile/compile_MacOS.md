@@ -3,8 +3,8 @@
 ## 环境准备
 
 * **MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip 或 pip3 版本 9.0.1+ (64 bit)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -55,7 +55,7 @@
 
 	`git checkout release/1.2`
 
-	注意：python3.6、python3.7版本从release/1.2分支开始支持
+	注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
 
 7. 创建并进入/paddle/build路径下：
 
@@ -66,7 +66,7 @@
 		For Python2: pip install protobuf==3.1.0
 		For Python3: pip3.5 install protobuf==3.1.0
 
-	注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
+	注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
 
 	> 安装protobuf 3.1.0。
 
@@ -98,7 +98,7 @@
 		For Python2: pip install -U（whl包的名字）
 		For Python3: pip3.5 install -U（whl包的名字)
 
-		注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7，请将上述命令中的Python3.5改成Python3.6/Python3.7
+		注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -114,7 +114,7 @@
 
 2. 安装Python以及pip：
 
-	> **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x、python3.6.x、python3.7.x), pip以及其他的依赖，这将会使您高效编译。
+	> **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x、python3.6.x、python3.7.x、python3.8), pip以及其他的依赖，这将会使您高效编译。
 
 		For python2: brew install python@2
 		For python3: 使用Python官网安装
@@ -171,7 +171,7 @@
 
 	`git checkout release/1.2`
 
-	注意：python3.6、python3.7版本从release/1.2分支开始支持
+	注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
 
 8. 并且请创建并进入一个叫build的目录下：
 
