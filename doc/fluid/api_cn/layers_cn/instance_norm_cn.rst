@@ -3,9 +3,12 @@
 instance_norm
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.instance_norm(input, epsilon=1e-05, param_attr=None, bias_attr=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 
 可用作卷积和全连接操作的实例正则化函数，根据每个样本的每个通道的均值和方差信息进行正则化。该层需要的数据格式如下：

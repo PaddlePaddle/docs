@@ -5,6 +5,12 @@ image_resize_short
 
 .. py:function:: paddle.fluid.layers.image_resize_short(input, out_short_len, resample='BILINEAR')
 
+:alias_main: paddle.nn.functional.image_resize_short
+:alias: paddle.nn.functional.image_resize_short,paddle.nn.functional.vision.image_resize_short
+:old_api: paddle.fluid.layers.image_resize_short
+
+
+
 该OP用于调整一批图片的大小。输入图像的短边将被调整为给定的out_short_len 。输入图像的长边按比例调整大小，最终图像的长宽比保持不变。
 
 参数:

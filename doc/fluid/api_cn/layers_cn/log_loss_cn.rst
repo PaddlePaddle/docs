@@ -5,6 +5,12 @@ log_loss
 
 .. py:function:: paddle.fluid.layers.log_loss(input, label, epsilon=0.0001, name=None)
 
+:alias_main: paddle.nn.functional.log_loss
+:alias: paddle.nn.functional.log_loss,paddle.nn.functional.loss.log_loss
+:old_api: paddle.fluid.layers.log_loss
+
+
+
 **负log loss层**
 
 该 OP 对输入的预测结果和目标标签进行计算，返回负对数损失值。

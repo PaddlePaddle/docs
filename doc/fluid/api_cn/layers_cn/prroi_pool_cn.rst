@@ -5,6 +5,12 @@ prroi_pool
 
 .. py:function:: paddle.fluid.layers.prroi_pool(input, rois, output_channels, spatial_scale, pooled_height, pooled_width, name=None)
 
+:alias_main: paddle.nn.functional.prroi_pool
+:alias: paddle.nn.functional.prroi_pool,paddle.nn.functional.vision.prroi_pool
+:old_api: paddle.fluid.layers.prroi_pool
+
+
+
 PRROIPool运算
 
 精确区域池化方法（Precise region of interest pooling，也称为PRROIPooling）是对输入的 "感兴趣区域"(RoI)执行插值处理，将离散的特征图数据映射到一个连续空间，使用二重积分再求均值的方式实现Pooling。
@@ -28,10 +34,18 @@ PRROIPool运算
 
 .. code-block:: python
 
+    ## prroi_pool without batch_roi_num
     import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[490, 28, 28], dtype='float32')
-    rois = fluid.layers.data(name='rois', shape=[4], lod_level=1, dtype='float32')
-    pool_out = fluid.layers.prroi_pool(x, rois, 10, 1.0, 7, 7)
+    x = fluid.data(name='x', shape=[None, 490, 28, 28], dtype='float32')
+    rois = fluid.data(name='rois', shape=[None, 4], lod_level=1, dtype='float32')
+    pool_out = fluid.layers.prroi_pool(x, rois, 1.0, 7, 7)
+
+    ## prroi_pool with batch_roi_num
+    batchsize=4
+    x2 = fluid.data(name='x2', shape=[batchsize, 490, 28, 28], dtype='float32')
+    rois2 = fluid.data(name='rois2', shape=[batchsize, 4], dtype='float32')
+    batch_rois_num = fluid.data(name='rois_nums', shape=[batchsize], dtype='int64')
+    pool_out2 = fluid.layers.prroi_pool(x2, rois2, 1.0, 7, 7, batch_roi_nums=batch_rois_num)
 
 
 

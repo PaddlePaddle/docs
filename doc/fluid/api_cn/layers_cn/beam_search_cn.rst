@@ -5,6 +5,12 @@ beam_search
 
 .. py:function:: paddle.fluid.layers.beam_search(pre_ids, pre_scores, ids, scores, beam_size, end_id, level=0, is_accumulated=True, name=None, return_parent_idx=False)
 
+:alias_main: paddle.nn.beam_search
+:alias: paddle.nn.beam_search,paddle.nn.decode.beam_search
+:old_api: paddle.fluid.layers.beam_search
+
+
+
 束搜索(Beam search)是在机器翻译等生成任务中选择候选词的一种经典算法
 
 更多细节参考 `Beam Search <https://en.wikipedia.org/wiki/Beam_search>`_

@@ -5,6 +5,9 @@ UniformInitializer
 
 .. py:class:: paddle.fluid.initializer.UniformInitializer(low=-1.0, high=1.0, seed=0) 
 
+
+
+
 随机均匀分布初始化器
 
 参数：

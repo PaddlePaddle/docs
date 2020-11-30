@@ -5,6 +5,9 @@ sigmoid
 
 .. py:function:: paddle.fluid.layers.sigmoid(x, name=None)
 
+
+
+
 sigmoid激活函数
 
 .. math::

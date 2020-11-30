@@ -4,6 +4,12 @@ topk
 -------------------------------
 .. py:function:: paddle.fluid.layers.topk(input, k, name=None)
 
+:alias_main: paddle.topk
+:alias: paddle.topk,paddle.tensor.topk,paddle.tensor.search.topk
+:old_api: paddle.fluid.layers.topk
+
+
+
 此OP用于查找输入Tensor的最后一维的前k个最大项，返回它们的值和索引。
 如果输入是1-D Tensor，则找到Tensor的前k个最大项，并输出前k个最大项的值和索引。如果输入是更高阶的Tensor，则该OP会基于最后一维计算前k项。
 

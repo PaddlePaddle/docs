@@ -3,9 +3,12 @@
 LookaheadOptimizer
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.optimizer.LookaheadOptimizer(inner_optimizer, alpha=0.5, k=5)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 本类实现了Lookahead优化算法：https://arxiv.org/abs/1907.08610。Lookahead优化算法在内存中保存两部分参数：快参数和慢参数。每个训练步次，inner_optimizer都更新快参数；每隔k个训练步次，Lookahead更新慢参数，如下：
 
@@ -26,7 +29,7 @@ LookaheadOptimizer
 
             import paddle
             import paddle.fluid as fluid
-            import numpy as np
+            import numpy.random as random
 
             x = fluid.layers.data(name='x', shape=[2], dtype='float32')
             label = fluid.layers.data(name="label", shape=[1], dtype="int64")
@@ -43,11 +46,14 @@ LookaheadOptimizer
             exe = fluid.Executor(place)
             exe.run(fluid.default_startup_program())
 
+            def train_reader(limit=5):
+                for i in range(limit):
+                    yield random.random([2]).astype('float32'), random.random([1]).astype('int64')
+            
             feeder = fluid.DataFeeder(feed_list=[x, label], place=place)
-
-            step = 0
-            while(step < 10):
-                step += 1
+            reader = paddle.batch(paddle.reader.shuffle(train_reader, buf_size=50000),batch_size=1)
+            
+            for batch_data in reader():
                 exe.run(fluid.default_main_program(),
                 feed=feeder.feed(batch_data))
 

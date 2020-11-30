@@ -3,9 +3,12 @@
 ModelAverage
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.optimizer.ModelAverage(average_window_rate, min_average_window=10000, max_average_window=10000, regularization=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 ModelAverage优化器，在训练过程中累积特定连续的历史Parameters，累积的历史范围可以用传入的average_window参数来控制，在预测时使用平均后的Parameters，通常可以提高预测的精度。
 
@@ -26,7 +29,9 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
   - **average_window_rate** (float) – 相对于Parameters更新次数的窗口长度计算比率
   - **min_average_window** (int, 可选) – 平均值计算窗口长度的最小值，默认值为10000
   - **max_average_window** (int, 可选) – 平均值计算窗口长度的最大值，推荐设置为一轮训练中mini-batchs的数目，默认值为10000
-  - **regularization** (WeightDecayRegularizer, 可选) – 正则化函数，用于减少泛化误差。例如可以是 :ref:`cn_api_fluid_regularizer_L2DecayRegularizer` ，默认值为None
+  - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
+    :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
+    如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
   - **name** (str, 可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
 **代码示例**

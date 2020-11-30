@@ -5,6 +5,12 @@ log
 
 .. py:function:: paddle.fluid.layers.log(x, name=None)
 
+:alias_main: paddle.log
+:alias: paddle.log,paddle.tensor.log,paddle.tensor.math.log
+:old_api: paddle.fluid.layers.log
+
+
+
 
 Log激活函数（计算自然对数）
 

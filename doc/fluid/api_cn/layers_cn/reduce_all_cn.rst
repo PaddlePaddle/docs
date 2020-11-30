@@ -5,6 +5,12 @@ reduce_all
 
 .. py:function:: paddle.fluid.layers.reduce_all(input, dim=None, keep_dim=False, name=None)
 
+:alias_main: paddle.reduce_all
+:alias: paddle.reduce_all,paddle.tensor.reduce_all,paddle.tensor.logic.reduce_all
+:old_api: paddle.fluid.layers.reduce_all
+
+
+
 该OP是对指定维度上的Tensor元素进行与逻辑（&）计算，并输出相应的计算结果。
 
 参数：

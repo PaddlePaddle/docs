@@ -1,10 +1,10 @@
 
 # 编程指南
 
-目前飞桨（PaddlePaddle，以下简称Paddle）已经同时支持动态图和静态图两种编程方式，
-本文主要侧重于介绍静态图的编程方法，关于动态图编程方法，请参考[动态图机制-DyGraph](../dygraph/DyGraph.html)。
+目前飞桨（PaddlePaddle，以下简称Paddle）已经同时支持命令式编程模式(动态图)和声明式编程模式(静态图)两种编程方式，
+本文主要侧重于介绍声明式编程模式的编程方法，关于命令式编程模式编程方法，请参考[命令式编程模式机制-DyGraph](../dygraph/DyGraph.html)。
 
-阅读完本文档，您将了解在Paddle静态图编程方式中，如何表示和定义数据变量，以及如何完整的组建一个深度学习网络并进行训练。
+阅读完本文档，您将了解在Paddle声明式编程模式编程方式中，如何表示和定义数据变量，以及如何完整的组建一个深度学习网络并进行训练。
 
 ## 数据的表示和定义
 
@@ -38,7 +38,7 @@ data = fluid.layers.fill_constant(shape=[3, 4], value=16, dtype='int64')
 
 以上例子中，我们只使用了一种数据类型"int64"，即有符号64位整数数据类型，更多Paddle目前支持的数据类型请查看：[支持的数据类型](../../../advanced_guide/data_preparing/feeding_data.html#fluid)。
 
-需要注意的是，在静态图编程方式中，上述定义的Tensor并不具有值（即使创建常量的时候指定了value），
+需要注意的是，在声明式编程模式编程方式中，上述定义的Tensor并不具有值（即使创建常量的时候指定了value），
 它们仅表示将要执行的操作，在网络执行时（训练或者预测）才会进行真正的赋值操作，
 如您直接打印上例代码中的data将会得对其信息的描述：
 
@@ -166,7 +166,7 @@ print outs
 
 ## 组建更加复杂的网络
 
-某些场景下，用户需要根据当前网络中的某些状态，来具体决定后续使用哪一种操作，或者重复执行某些操作。在动态图中，可以方便的使用Python的控制流语句（如for，if-else等）来进行条件判断，但是在静态图中，由于组网阶段并没有实际执行操作，也没有产生中间计算结果，因此无法使用Python的控制流语句来进行条件判断，为此静态图提供了多个控制流API来实现条件判断。这里以[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)为例来说明如何在静态图中实现条件循环的操作。
+某些场景下，用户需要根据当前网络中的某些状态，来具体决定后续使用哪一种操作，或者重复执行某些操作。在命令式编程模式中，可以方便的使用Python的控制流语句（如for，if-else等）来进行条件判断，但是在声明式编程模式中，由于组网阶段并没有实际执行操作，也没有产生中间计算结果，因此无法使用Python的控制流语句来进行条件判断，为此声明式编程模式提供了多个控制流API来实现条件判断。这里以[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)为例来说明如何在声明式编程模式中实现条件循环的操作。
 
 while_loop API用于实现类似while/for的循环控制功能，使用一个callable的方法cond作为参数来表示循环的条件，只要cond的返回值为True，while_loop就会循环执行循环体body（也是一个callable的方法），直到 cond 的返回值为False。对于while_loop API的详细定义和具体说明请参考文档[fluid.layers.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/while_loop_cn.html)。
 
@@ -180,7 +180,7 @@ while i < ten:
 print('i =', i)
 ```
 
-在静态图中使用while_loop API实现以上代码的逻辑：
+在声明式编程模式中使用while_loop API实现以上代码的逻辑：
 
 ```python
 # 该代码要求安装飞桨1.7+版本
@@ -191,7 +191,7 @@ import paddle.fluid.layers as layers
 
 # 定义cond方法，作为while_loop的判断条件
 def cond(i, ten):
-    return i < ten 
+    return i < ten
 
 # 定义body方法，作为while_loop的执行体，只要cond返回值为True，while_loop就会一直调用该方法进行计算
 # 由于在使用while_loop OP时，cond和body的参数都是由while_loop的loop_vars参数指定的，所以cond和body必须有相同数量的参数列表，因此body中虽然只需要i这个参数，但是仍然要保持参数列表个数为2，此处添加了一个dummy参数来进行"占位"
@@ -210,7 +210,7 @@ print(res) #[array([10])]
 
 ```
 
-限于篇幅，上面仅仅用一个最简单的例子来说明如何在静态图中实现循环操作。循环操作在很多应用中都有着重要作用，比如NLP中常用的Transformer模型，在解码（生成）阶段的Beam Search算法中，需要使用循环操作来进行候选的选取与生成，可以参考[Transformer](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/PaddleMT/transformer)模型的实现来进一步学习while_loop在复杂场景下的用法。
+限于篇幅，上面仅仅用一个最简单的例子来说明如何在声明式编程模式中实现循环操作。循环操作在很多应用中都有着重要作用，比如NLP中常用的Transformer模型，在解码（生成）阶段的Beam Search算法中，需要使用循环操作来进行候选的选取与生成，可以参考[Transformer](https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/PaddleMT/transformer)模型的实现来进一步学习while_loop在复杂场景下的用法。
 
 除while_loop之外，飞桨还提供fluid.layers.cond API来实现条件分支的操作，以及fluid.layers.switch_case和fluid.layers.case API来实现分支控制功能，具体用法请参考文档：[cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/cond_cn.html)，[switch_case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/switch_case_cn.html)和[case](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/layers_cn/case_cn.html#case)
 
@@ -218,7 +218,7 @@ print(res) #[array([10])]
 
 一个典型的模型通常包含4个部分，分别是：输入数据定义，搭建网络（模型前向计算逻辑），定义损失函数，以及选择优化算法。
 
-下面我们通过一个非常简单的数据预测网络（线性回归），来完整的展示如何使用Paddle静态图方式完成一个深度学习模型的组建和训练。
+下面我们通过一个非常简单的数据预测网络（线性回归），来完整的展示如何使用Paddle声明式编程模式方式完成一个深度学习模型的组建和训练。
 
 问题描述：给定一组数据 $<X,Y>$，求解出函数 $f$，使得 $y=f(x)$，其中$X$,$Y$均为一维张量。最终网络可以依据输入$x$，准确预测出$y_{\_predict}$。
 

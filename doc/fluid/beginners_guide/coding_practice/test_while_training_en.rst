@@ -25,13 +25,13 @@ Generate test :code:`fluid.Program` by cloning training :code:`fluid.Program`
 
    import paddle.fluid as fluid
 
-   img = fluid.layers.data(name="image", shape=[784])
+   image = fluid.data(name="image", shape=[None, 784], dtype='float32')
+   label = fluid.data(name="label", shape=[None, 1], dtype="int64")
    prediction = fluid.layers.fc(
-     input=fluid.layers.fc(input=img, size=100, act='relu'),
+     input=fluid.layers.fc(input=image, size=100, act='relu'),
      size=10,
      act='softmax'
    )
-   label = fluid.layers.data(name="label", shape=[1], dtype="int64")
    loss = fluid.layers.mean(fluid.layers.cross_entropy(input=prediction, label=label))
    acc = fluid.layers.accuracy(input=prediction, label=label)
 
@@ -56,9 +56,9 @@ For example:
    import paddle.fluid as fluid
 
    def network(is_test):
-       file_obj = fluid.layers.open_files(filenames=["test.recordio"] if is_test else ["train.recordio"], ...)
-       img, label = fluid.layers.read_file(file_obj)
-       hidden = fluid.layers.fc(input=img, size=100, act="relu")
+       image = fluid.data(name="image", shape=[None, 784], dtype='float32')
+       label = fluid.data(name="label", shape=[None, 1], dtype="int64")
+       hidden = fluid.layers.fc(input=image, size=100, act="relu")
        hidden = fluid.layers.batch_norm(input=hidden, is_test=is_test)
        ...
        return loss
@@ -70,7 +70,7 @@ For example:
 
    test_program = fluid.Program()
    with fluid.unique_name.guard():
-       with fluid.program_gurad(test_program, fluid.Program()):
+       with fluid.program_guard(test_program, fluid.Program()):
            test_loss = network(is_test=True)
 
    # fluid.default_main_program() is the train program

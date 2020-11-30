@@ -5,6 +5,12 @@ transpose
 
 .. py:function:: paddle.fluid.layers.transpose(x,perm,name=None)
 
+:alias_main: paddle.transpose
+:alias: paddle.transpose,paddle.tensor.transpose,paddle.tensor.linalg.transpose,paddle.tensor.manipulation.transpose
+:old_api: paddle.fluid.layers.transpose
+
+
+
 该OP根据perm对输入的多维Tensor进行数据重排。返回多维Tensor的第i维对应输入Tensor的perm[i]维。
 
 参数：

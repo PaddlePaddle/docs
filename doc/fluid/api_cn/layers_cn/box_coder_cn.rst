@@ -5,6 +5,12 @@ box_coder
 
 .. py:function:: paddle.fluid.layers.box_coder(prior_box, prior_box_var, target_box, code_type='encode_center_size', box_normalized=True, name=None, axis=0)
 
+:alias_main: paddle.nn.functional.box_coder
+:alias: paddle.nn.functional.box_coder,paddle.nn.functional.vision.box_coder
+:old_api: paddle.fluid.layers.box_coder
+
+
+
 Bounding Box Coder
 
 编码/解码带有先验框信息的目标边界框

@@ -5,6 +5,12 @@ image_resize
 
 .. py:function:: paddle.fluid.layers.image_resize(input, out_shape=None, scale=None, name=None, resample='BILINEAR', actual_shape=None, align_corners=True, align_mode=1, data_format='NCHW')
 
+:alias_main: paddle.nn.functional.image_resize
+:alias: paddle.nn.functional.image_resize,paddle.nn.functional.vision.image_resize
+:old_api: paddle.fluid.layers.image_resize
+
+
+
 **注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 该OP用于调整一个batch中图片的大小。

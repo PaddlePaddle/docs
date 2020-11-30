@@ -1,153 +1,123 @@
-***
-
 # **Install on Ubuntu**
 
-This instruction describes how to install PaddlePaddle on a *64-bit desktop or laptop* and Ubuntu system. The Ubuntu systems we support must meet the following requirements:
+## Environment preparation
 
-Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in the [latest Release installation package list](./Tables_en.html/#ciwhls-release).
+* **Ubuntu version (64 bit)**
+    * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip or pip3 version 9.0.1+ (64 bit)**
 
-Under Ubuntu, you can use `cat /proc/cpuinfo | grep avx` to check if your processor supports the AVX instruction set.
+### Note
 
-* Ubuntu 14.04 /16.04 /18.04
 
-## Determine which version to install
+* You can use `uname -m && cat /etc/*release` view the operating system and digit information of the machine
+* Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-* PaddlePaddle for CPU is supported. If your computer does not have an NVIDIA® GPU, you can only install this version. If your computer has a GPU, it is also recommended that you install the CPU version of PaddlePaddle first to check if your local environment is suitable.
+    * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
 
-* PaddlePaddle for GPU is supported. In order to make the PaddlePaddle program run more quickly, we accelerate the PaddlePaddle program through the GPU, but the GPU version of the PaddlePaddle needs to have the NVIDIA® GPU that meets the following conditions (see the NVIDIA official documentation for the specific installation process and configuration: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), [For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
+        which python
 
-    * *CUDA Toolkit 9.0 with cuDNN v7*
-    * *CUDA Toolkit 8.0 with cuDNN v7*
-    * *Hardware devices with GPU computing power exceeding 1.0*
+    * If you are using Python 3, use the following command to output Python path. Depending on the environment, you may need to replace Python 3 in all command lines in the description with Python or specific Python path
+
+        which python3
+
+* You need to confirm that the version of Python meets the requirements
+    * If you are using Python 2，use the following command to confirm it is 2.7.15+
+
+        python --version
+
+    * If you are using Python 3，use the following command to confirm it is 3.5.1+/3.6/3.7
+
+        python3 --version
+
+* You need to confirm that the version of pip meets the requirements, pip version is required 9.0.1+
+
+    * If you are using Python 2
+
+        python -m ensurepip
+
+        python -m pip --version
+
+    * If you are using Python 3
+
+        python3 -m ensurepip
+
+        python3 -m pip --version
+
+* Confirm that Python and pip is 64 bit，and the processor architecture is x86_64(or called x64、Intel 64、AMD64)architecture. Currently, PaddlePaddle doesn't support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64" :
+
+    * If you are using Python 2
+
+        python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+    * If you are using Python 3
+
+        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+* The installation package provided by default requires computer support for MKL
+* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md).
+
+## Choose CPU/GPU
+
+* If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
+
+* If your computer has NVIDIA® GPU, and meet the following conditions, we command you to install PaddlePaddle
+    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **Hardware devices with GPU computing power over 1.0**
+
+
+    You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+
+* If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under ubuntu 16.04, CUDA9 and cuDNN7). For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl):
+
+
+    wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+    dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
 
 
 ## Choose an installation method
 
-Under the Ubuntu system, we offer 4 installation methods:
+Under the Ubuntu system, we offer 3 installation methods:
 
-* Pip installation
-* Docker installation (the version of python in the image is 2.7)
-* Source code compilation and installation
-* Docker source code compilation and installation (the python version in the image is 2.7, 3.5, 3.6, 3.7)
+* Pip installation (recommended)
+* [Source code compilation and installation](./compile/compile_Ubuntu.html#ubt_source)
+* [Docker source code compilation and installation](./compile/compile_Ubuntu.html#ubt_docker)
 
+We will introduce pip installation here.
 
-**With pip installation** (the easiest way to install), we offer you a pip installation method, but it depends more on your native environment and may have some issues related to your local environment.
+## Installation steps
 
-**Use Docker for installation** (the safest way to install), because we have installed the tools and configuration in a Docker image so that if something goes wrong, others can reproduce the problem for help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
+* CPU version of PaddlePaddle：
+  * For Python 2： `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
-Compile and install from [**source**](#ubt_source) and [**use Docker**](#ubt_docker). This is a process of compiling the PaddlePaddle source code into a binary file and then installing the binary file. Compared to the binary PaddlePaddle that has been successfully tested and compiled for you, the manual compilation is more complicated, we will answer you in detail at the end of the description.
+* GPU version PaddlePaddle：
+  * For Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
-<br/><br/>
-### ***Install using pip***
+You can [verify whether the installation is successful](#check), if you have any questions please see [FAQ](./FAQ.html)
 
+Note:
 
-First, we use the following commands to **check if the environment of this machine** is suitable for installing PaddlePaddle:
+* For python2.7, we recommend to use `python` command; For python3.x, we recommend to use `python3` command.
 
-    uname -m && cat /etc/*release
-
->The above command will display the operating system and processing bits of the machine. Please make sure your computer is consistent with the requirements of this tutorial.
-
-Second, your computer needs to meet any of the following requirements:
-
-*    Python2.7.x (dev), Pip >= 9.0.1
-*    Python3.5+.x (dev), Pip3 >= 9.0.1
-
->You may have installed pip on your Ubuntu. Please use pip -V or pip3 -V to confirm its version is the recommended pip 9.0.1 or higher.
-
-    Update apt source: `apt update`
-
-Use the following command to install or upgrade Python and pip to the required version: (pip and dev installation in python3.6, python3.7 differs greatly across different Ubuntu versions, thus the steps are omitted here)
-
-    - For python2: `sudo apt install python-dev python-pip`
-
-    - For python3.5: `sudo apt install python3.5-dev and curl https://bootstrap.pypa.io/get-pip.py -o - | python3.5 && easy_install pip`
-
-    - For python3.6, python3.7: We assumed that python3.6 (3.7) and the corresponding versions of dev and pip3 are properly installed by yourself.
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install PaddlePaddle supporting CUDA 10.0 cuDNN v7.
 
 
->Even if you already have Python 2 or Python 3 in your environment, you need to install Python-dev or Python 3.5 (3.6, 3.7) -dev.
+* Download the latest stable installation package by default. For development installation package, please refer to[here](./Tables.html#ciwhls)
 
-Now let's install PaddlePaddle:
-
-
-
-1. Use pip install to install PaddlePaddle
-
-
-    * For users who need **the CPU version PaddlePaddle**: `pip install paddlepaddle` or `pip3 install paddlepaddle`
-
-    * For users who need **the GPU version PaddlePaddle**: `pip install paddlepaddle-gpu` or `pip3 install paddlepaddle-gpu`
-
-    > 1.In order to prevent problem "nccl.h cannot be found", please first install nccl2 according to the following command (here is ubuntu 16.04, CUDA9, ncDNN v7 nccl2 installation instructions), for more information about the installation information, please refer to [the NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download):
-
-        i. `Wget http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
-        ii. `dpkg -i nvidia-machine- Learning-repo-ubuntu1604_1.0.0-1_amd64.deb`
-        iii. `sudo apt-get install -y libnccl2=2.2.13-1+cuda9.0 libnccl-dev=2.2.13-1+cuda9.0`
-
-    > 2.If you do not specify the pypi package version number, we will by default provide you with a version of PaddlePaddle that supports Cuda 9/cuDNN v7.
-
-    * For users with `Cannot uninstall 'six'.` problems, the probable reason is the existing Python installation issues in your system. In this case, use  `pip install paddlepaddle --ignore-installed six`(CPU) or `pip install paddlepaddle-gpu -- Ignore-installed six` (GPU)  to resolve.
-
-    * For users with **other requirements**: `pip install paddlepaddle==[version number]` or `pip3 install paddlepaddle==[version number]`
-
-    > For `the version number`, please refer to [the latest Release installation package list](./Tables.html/#whls). If you need to obtain and install **the latest PaddlePaddle development branch**, you can download and install the latest whl installation package and c-api development package from [the latest dev installation package list](./Tables.html/#ciwhls) or our [CI system](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview). To log in, click on "Log in as guest".
-
-
-Now you have completed the process of installing PaddlePaddle using `pip install`.
-
-
-<br/><br/>
-### ***Install using Docker***
-
-In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on **installing and using Docker**, please refer to [the official Docker documentation](https://docs.docker.com/install/).
-
-> Please note that to install and use the PaddlePaddle version that supports GPU, you must first install [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
-
-If Docker is **properly installed**, you can start **installing PaddlePaddle using Docker**.
-
-1. Use the following command to pull the image we pre-installed for PaddlePaddle:
-
-    * For users who need **a CPU version of PaddlePaddle**, use the following command to pull the image we pre-installed for your *PaddlePaddle For CPU*:
-
-        `Docker pull hub.baidubce.com/paddlepaddle/paddle: 1.2`
-
-    * For users who need **a GPU version of PaddlePaddle**, use the following command to pull the image we pre-installed for your *PaddlePaddle For GPU*:
-
-        `Docker pull hub.baidubce.com/paddlepaddle/paddle:1.2-gpu-cuda9.0-cudnn7`
-
-    * You can also pull any of our Docker images by following the instructions below:
-
-        `Docker pull hub.baidubce.com/paddlepaddle/paddle:[tag]`
-
-        > (Please replace [tag] with the contents of [the mirror table](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/beginners_guide/install/Tables.html/#dockers))
-
-2. Use the following command to build from the already pulled image and enter the Docker container:
-
-    `Docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
-
-    > In the above command, --name [Name of container] sets the name of the Docker; the `-it` parameter indicates that the container is running interactively with the host machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to The absolute path of the current path) is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of tag is the same as the second step; /bin/bash is the command to be executed in Docker.
-
-3. (Optional: When you need to enter the Docker container a second time) re-enter the PaddlePaddle container with the following command:
-
-    `Docker start [Name of container]`
-
-    > start the container created previously.
-
-    `Docker attach [Name of container]`
-
-    > Enter the started container.
-
-Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to [the official Docker documentation](https://docs.docker.com/).
-
->Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
-
+<a name="check"></a>
 <br/><br/>
 ## ***Verify installation***
 
-After the installation is complete, you can use `python` or `python3` to enter the python interpreter and then use `import paddle.fluid` to verify that the installation was successful.
+    After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid as fluid` and then  `fluid.install_check.run_check()` to verify that the installation was successful.
 
-
+    If `Your Paddle Fluid is installed succesfully!` appears, it means the installation was successful.
 
 <br/><br/>
 ## ***How to uninstall***

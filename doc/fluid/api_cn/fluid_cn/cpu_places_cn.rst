@@ -5,6 +5,9 @@ cpu_places
 
 .. py:function:: paddle.fluid.cpu_places(device_count=None)
 
+
+
+
 该接口创建 ``device_count`` 个 ``fluid.CPUPlace`` 对象，并返回所创建的对象列表。
 
 如果 ``device_count`` 为 ``None``，则设备数目将由环境变量 ``CPU_NUM`` 确定。如果未设置 ``CPU_NUM`` 环境变量，则设备数目会默认设为1，也就是说， ``CPU_NUM=1``。

@@ -3,9 +3,12 @@
 embedding
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.embedding(input, size, is_sparse=False, is_distributed=False, padding_idx=None, param_attr=None, dtype='float32')
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，函数会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 

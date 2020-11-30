@@ -12,8 +12,6 @@
 
     install/index_cn.rst
     beginners_guide/index_cn.rst
-    user_guides/index_cn.rst
     advanced_guide/index_cn.rst
     api_cn/index_cn.rst
-    faq/index_cn.rst
     release_note_cn.md

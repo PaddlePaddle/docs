@@ -3,9 +3,12 @@
 ExponentialMovingAverage
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.optimizer.ExponentialMovingAverage(decay=0.999, thres_steps=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 用指数衰减计算参数的滑动平均值。给定参数 :math:`\theta` ，它的指数滑动平均值 (exponential moving average, EMA) 为
 

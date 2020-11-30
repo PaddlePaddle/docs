@@ -5,6 +5,9 @@ sqrt
 
 .. py:function:: paddle.fluid.layers.sqrt(x, name=None)
 
+
+
+
 计算输入的算数平方根。
 
 .. math:: out=\sqrt x=x^{1/2}

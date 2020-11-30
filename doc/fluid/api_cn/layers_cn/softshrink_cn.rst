@@ -5,6 +5,12 @@ softshrink
 
 .. py:function:: paddle.fluid.layers.softshrink(x, alpha=None)
 
+:alias_main: paddle.nn.functional.softshrink
+:alias: paddle.nn.functional.softshrink,paddle.nn.functional.activation.softshrink
+:old_api: paddle.fluid.layers.softshrink
+
+
+
 Softshrink激活函数
 
 .. math::

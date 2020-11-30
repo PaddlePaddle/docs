@@ -3,9 +3,12 @@
 load_persistables
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.io.load_persistables(executor, dirname, main_program=None, filename=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该接口从给定的 ``main_program`` 中取出所有 ``persistable==True`` 的变量（即持久性变量，详见 :ref:`api_guide_model_save_reader` ），并根据目录 ``dirname``  或 ``filename`` 提供的参数文件对这些持久性变量进行赋值。
 

@@ -1,124 +1,101 @@
 ***
 # **Install on MacOS**
 
-This instruction will show you how to install PaddlePaddle on a *64-bit desktop or laptop* and MacOS system. The MacOS system we support must meet the following requirements.
+## Environment preparation
 
-Please note: Attempts on other systems may cause the installation to fail.
+* **MacOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip or pip3 version 9.0.1+ (64 bit)**
 
-* MacOS 10.11/10.12/10.13/10.14
+### Note
 
-## Determine which version to install
+* Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-* Only PaddlePaddle for CPU is supported.
+    * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace `python` in all command lines
 
+        which python
 
+    * If you are using Python 3, use the following command to output Python path. Depending on the environment, you may need to replace `python` in all command lines
+
+        which python3
+
+* You need to confirm whether the version of Python meets the requirements
+
+    * If you are using Python 2, use the following command to confirm that it is 2.7.15+
+
+        python --version
+
+    * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7
+
+        python3 --version
+
+* It is required to confirm whether the pip version meets the requirements. The pip version is required to be 9.0.1+
+
+    * If you are using Python 2
+
+        python -m ensurepip
+
+        python -m pip --version
+
+    * If you are using Python 3
+
+        python3 -m ensurepip
+
+        python3 -m pip --version
+
+* Confirm that Python and pip is 64 bit，and the processor architecture is x86_64(or x64、Intel 64、AMD64)architecture. Currently, PaddlePaddle doesn't support arm64 architecture. The first line of output from the following command should be "64bit", and the second line should be "x86_64", "x64" or "AMD64".
+
+    * If you are using Python 2
+
+        python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+    * If you are using Python 3
+
+        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+
+* The installation package provided by default requires computer support for MKL
+
+## Choose CPU/GPU
+
+* Currently, only the CPU version of PaddlePaddle is supported in the MacOS environment
 
 ## Choose an installation method
 
 Under the MacOS system we offer 3 installation methods:
 
-* Pip installation (not supported for GPU version) (distributed architecture is not supported under python3)
-* Docker installation (the GPU version is not supported) (the version of python in the image is 2.7)
-* Docker source compilation and installation (not supported for GPU version) (Python version 2.7, 3.5, 3.6, 3.7 in image)
-
-**With pip installation** (the easiest way to install), we offer you a pip installation method, but it depends more on your local environment and may have some issues related to your local environment.
-
-**Use Docker for installation** (the safest way to install), because we have installed the tools and configuration in a Docker image so that if something goes wrong, others can reproduce the problem for help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the local CPU and operating system. The performance is the same as installing the compiler on the machine.
+* Pip installation (recommend)
+* [Source code compilation and installation](./compile/compile_MacOS.html#mac_source)
+* [Docker source code compilation and installation](./compile/compile_MacOS.html#mac_docker)
 
 
-<br/><br/>
-### ***Install using pip***
+We will introduce pip installation here.
 
-Due to the large difference in Python situation in MacOS, we do not provide quick installation commands. Please follow the steps below to install.
+## Installation steps
 
-First, **check whether your computer and operating system** meet our supported compilation standards or not by  `uname -m` and view the system version `About This Mac` in the Apple menu.
+* CPU version of PaddlePaddle：
+  * For Python 2: `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3: `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
-Second, your computer needs to meet the following requirements:
+You can[Verify installation succeeded or not](#check), if you have any questions, please check[FAQ](./FAQ.html)
 
-> **Please do not use the Python originally provided by MacOS**. For **Python 2**, we recommend Python2.7.15 provided by [Homebrew](https://brew.sh/) or [Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg). For Python3, please use python3.5.x, Python3.6.x or python3.7.x provided by [Python.org](https://www.python.org/downloads/mac-osx/).
+Note:
 
+* On MacOS you need to install unrar to support PaddlePaddle, you can use command `brew install unrar`
+* For python2.7, we suggest command `python`; for python3.x, we suggest command `python3`
+* Download the latest release installation package by default. To obtain the development installation package, please refer to [here](./Tables.html#ciwhls)
+* Using Python native to MacOS can cause installation failures. For **Python2**，we recommend to use [Homebrew](https://brew.sh) or python2.7.15 provided by [Python.org](https://www.python.org/ftp/python/2.7.15/python-2.7.15-macosx10.9.pkg); for **Python3**, please use python3.5.x、python3.6.x or python3.7.x provided by [Python.org](https://www.python.org/downloads/mac-osx/).
 
-        For python2: brew install python@2 or use Python officially downloaded python2.7.15
-        For python3: Use python3.5.x, python3.6.x or python3.7.x downloaded from Python official site
-
-
-* Python2.7.x, Pip >= 9.0.1
-
-* Python3.5.x, Pip3 >= 9.0.1
-
-* Python3.6.x, Pip3 >= 9.0.1
-
-* Python3.7.x, Pip3 >= 9.0.1
-
-    > Note: You may have installed pip on your MacOS. Please use pip -V to confirm that its version is the recommended pip 9.0.1 or higher.
-
-
-Here's how to install PaddlePaddle:
-
-1. Use pip install to install PaddlePaddle:
-
-    * For users who need **the CPU version PaddlePaddle**: `pip install paddlepaddle` or `pip3 install paddlepaddle`
-
-    * For users with **other requirements**: `pip install paddlepaddle==[version number]` or `pip3 install paddlepaddle==[version number]`
-
-    > For `the version number`, please refer to [the latest Release installation package list](./Tables.html/#ciwhls-release). If you need to obtain and install **the latest PaddlePaddle development branch**, you can download the latest whl installation package and c-api development package from [the CI system](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview) and install it. To log in, click on "Log in as guest".
-
-
-
-Now you have completed the process of installing PaddlePaddle via `pip install`.
-
-
-<br/><br/>
-### ***Install using Docker***
-
-In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on **installing and using Docker**, please refer to [the official Docker documentation](https://docs.docker.com/install/).
-
-Please note that running docker on MacOS requires logging in with your dockerID, otherwise an `Authenticate Failed` error will occur.
-
-
-If Docker is **properly installed**, you can start **using Docker to install PaddlePaddle**.
-
-1. Use the following command to pull the image we pre-installed for PaddlePaddle:
-
-    * For users who need **the CPU version of PaddlePaddle**, use the following command to pull the image we pre-installed for your *PaddlePaddle For CPU*:
-
-        `Docker pull hub.baidubce.com/paddlepaddle/paddle: 1.2`
-
-    * You can also pull any of our Docker images by following the instructions below:
-
-        `Docker pull hub.baidubce.com/paddlepaddle/paddle:[tag]`
-
-        > (Please replace [tag] with the contents of [the mirror table](./Tables.html/#dockers))
-
-2. Use the following command to build from the already pulled image and enter the Docker container:
-
-    `Docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
-
-    > In the above command, --name [Name of container] sets the name of the Docker; the -it parameter indicates that the container is running interactively with the host machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to [The absolute path](https://baike.baidu.com/item/绝对路径/481185) ) of the current path is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of tag is the same as the second step; /bin/bash is the command to be executed in Docker.
-
-3. (Optional: When you need to enter the Docker container a second time) re-enter the PaddlePaddle container with the following command:
-
-    `Docker start [Name of container]`
-
-    > start the container created previously.
-
-    `Docker attach [Name of container]`
-
-    > Enter the started container.
-
-Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to [the official Docker documentation](https://docs.docker.com/).
-
-> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
-
-
+<a name="check"></a>
 <br/><br/>
 ## ***Verify installation***
 
-After the installation is complete, you can use `python` or `python3` to enter the python interpreter and then use `import paddle.fluid` to verify that the installation was successful.
+After the installation is completed, you can use `python` or `python3` to enter the Python interface, input `import paddle.fluid as fluid` and then `fluid.install_check.run_check()` to verify that the installation was successful.
+
+If `Your Paddle Fluid is installed succesfully!` appears, it means the installation was successful.
 
 <br/><br/>
 ## ***How to uninstall***
 
-Please use the following command to uninstall PaddlePaddle (Users who use Docker to install PaddlePaddle should use the following command in the container containing PaddlePaddle. Please use the corresponding version of pip):
+Please use the following command to uninstall PaddlePaddle：
 
-* ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
+* `python -m pip uninstall paddlepaddle` or `python3 -m pip uninstall paddlepaddle`

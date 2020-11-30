@@ -5,6 +5,12 @@ scale
 
 .. py:function:: paddle.fluid.layers.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 
+:alias_main: paddle.scale
+:alias: paddle.scale,paddle.tensor.scale,paddle.tensor.math.scale
+:old_api: paddle.fluid.layers.scale
+
+
+
 缩放算子。
 
 对输入Tensor进行缩放和偏置，其公式如下：
@@ -56,7 +62,7 @@ scale
     import numpy as np
 
     inputs = fluid.layers.data(name="x", shape=[2, 3], dtype='float32')
-    scale = fluid.layers.data(name="scale", shape=[1], dtype='float32'
+    scale = fluid.layers.data(name="scale", shape=[1], dtype='float32',
                               append_batch_size=False)
     output = fluid.layers.scale(inputs, scale = scale, bias = 1.0)
 

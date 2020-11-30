@@ -5,6 +5,10 @@ load_program_state
 
 .. py:function:: paddle.fluid.io.load_program_state(model_path, var_list=None)
 
+:api_attr: 声明式编程模式（静态图)
+
+
+
 该接口从本地加载 ``Program`` 的参数和优化器的变量信息到内存中。
 
 参数:

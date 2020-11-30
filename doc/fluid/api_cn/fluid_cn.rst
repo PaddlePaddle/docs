@@ -23,11 +23,15 @@ fluid
     fluid_cn/DataFeeder_cn.rst
     fluid_cn/default_main_program_cn.rst
     fluid_cn/default_startup_program_cn.rst
+    fluid_cn/disable_dygraph_cn.rst
+    fluid_cn/device_guard_cn.rst
     fluid_cn/DistributeTranspiler_cn.rst
     fluid_cn/DistributeTranspilerConfig_cn.rst
     fluid_cn/embedding_cn.rst
+    fluid_cn/enable_dygraph_cn.rst
     fluid_cn/ExecutionStrategy_cn.rst
     fluid_cn/Executor_cn.rst
+    fluid_cn/get_flags_cn.rst
     fluid_cn/global_scope_cn.rst
     fluid_cn/gradients_cn.rst
     fluid_cn/in_dygraph_mode_cn.rst
@@ -47,6 +51,8 @@ fluid
     fluid_cn/require_version_cn.rst
     fluid_cn/save_cn.rst
     fluid_cn/scope_guard_cn.rst
+    fluid_cn/set_flags_cn.rst
+    fluid_cn/set_global_initializer_cn.rst
     fluid_cn/Tensor_cn.rst
     fluid_cn/Variable_cn.rst
     fluid_cn/WeightNormParamAttr_cn.rst

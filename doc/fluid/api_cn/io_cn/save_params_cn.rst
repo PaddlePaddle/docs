@@ -3,9 +3,12 @@
 save_params
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.io.save_params(executor, dirname, main_program=None, filename=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该OP从 ``main_program`` 中取出所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
 

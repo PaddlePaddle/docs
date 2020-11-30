@@ -5,6 +5,12 @@ tanh_shrink
 
 .. py:function:: paddle.fluid.layers.tanh_shrink(x, name=None)
 
+:alias_main: paddle.nn.functional.tanh_shrink
+:alias: paddle.nn.functional.tanh_shrink,paddle.nn.functional.activation.tanh_shrink
+:old_api: paddle.fluid.layers.tanh_shrink
+
+
+
 tanh_shrink激活函数
 
 .. math::

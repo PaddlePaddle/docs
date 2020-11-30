@@ -5,6 +5,12 @@ add_position_encoding
 
 .. py:function:: paddle.fluid.layers.add_position_encoding(input, alpha, beta, name=None)
 
+:alias_main: paddle.nn.functional.add_position_encoding
+:alias: paddle.nn.functional.add_position_encoding,paddle.nn.functional.extension.add_position_encoding
+:old_api: paddle.fluid.layers.add_position_encoding
+
+
+
 该OP将输入inpu中每个位置（序列中的位置）的特征与对应的位置编码加权求和，位置编码可参考论文: `Attention Is All You Need <http://arxiv.org/pdf/1706.03762.pdf>`_
 
 输出的计算公式如下：
@@ -34,16 +40,12 @@ add_position_encoding
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-     
-  tensor = fluid.layers.data(
-        name='tensor',
-        shape=[32, 64, 512],
-        dtype='float32',
-        append_batch_size=False)
-  position_tensor = fluid.layers.add_position_encoding(
-        input=tensor, alpha=1.0, beta=1.0)
+    import paddle
+    import paddle.nn.functional as F
 
+    tensor = paddle.randn([16, 32, 64])
+    position_tensor = F.add_position_encoding(
+        input=tensor, alpha=1.0, beta=1.0)
 
 
 

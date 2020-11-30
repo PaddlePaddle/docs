@@ -5,7 +5,6 @@ brelu
 
 .. py:function:: paddle.fluid.layers.brelu(x, t_min=0.0, t_max=24.0, name=None)
 
-
 BReLU 激活函数
 
 .. math::   out=min(max(x,t\_min),t\_max)

@@ -5,6 +5,12 @@ expand
 
 .. py:function:: paddle.fluid.layers.expand(x, expand_times, name=None)
 
+:alias_main: paddle.expand
+:alias: paddle.expand,paddle.tensor.expand,paddle.tensor.manipulation.expand
+:old_api: paddle.fluid.layers.expand
+
+
+
 该OP会根据参数 ``expand_times`` 对输入 ``x`` 的各维度进行复制。通过参数 ``expand_times`` 来为 ``x`` 的每个维度设置复制次数。 ``x`` 的秩应小于等于6。注意， ``expand_times`` 的大小必须与 ``x`` 的秩相同。以下是一个用例：
 
 ::

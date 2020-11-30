@@ -5,6 +5,12 @@ thresholded_relu
 
 .. py:function:: paddle.fluid.layers.thresholded_relu(x,threshold=None)
 
+:alias_main: paddle.nn.functional.thresholded_relu
+:alias: paddle.nn.functional.thresholded_relu,paddle.nn.functional.activation.thresholded_relu
+:old_api: paddle.fluid.layers.thresholded_relu
+
+
+
 逐元素计算 ThresholdedRelu激活函数。
 
 .. math::

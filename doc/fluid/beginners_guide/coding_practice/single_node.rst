@@ -17,8 +17,8 @@
 
    import paddle.fluid as fluid
 
-   image = fluid.layers.data(name="image", shape=[784])
-   label = fluid.layers.data(name="label", shape=[1])
+   image = fluid.data(name="image", shape=[None, 784], dtype='float32')
+   label = fluid.data(name="label", shape=[None, 1], dtype='int64')
    hidden = fluid.layers.fc(input=image, size=100, act='relu')
    prediction = fluid.layers.fc(input=hidden, size=10, act='softmax')
    loss = fluid.layers.cross_entropy(input=prediction, label=label)
@@ -60,7 +60,7 @@
 
 执行单卡训练可以使用 :code:`fluid.Executor()` 中的 :code:`run()` 方法，运行训练\
 :code:`fluid.Program` 即可。在运行的时候，用户可以通过 :code:`run(feed=...)`\
-参数传入数据；用户可以通过 :code:`run(fetch=...)` 获取持久的数据。例如:\
+参数传入数据；用户可以通过 :code:`run(fetch=...)` 获取输出数据。例如:\
 
 .. code-block:: python
 
@@ -70,7 +70,7 @@
     train_program = fluid.Program()
     startup_program = fluid.Program()
     with fluid.program_guard(train_program, startup_program):
-        data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+        data = fluid.data(name='X', shape=[None, 1], dtype='float32')
         hidden = fluid.layers.fc(input=data, size=10)
         loss = fluid.layers.mean(hidden)
         sgd = fluid.optimizer.SGD(learning_rate=0.001)
@@ -92,14 +92,14 @@
                          fetch_list=[loss.name])
 
     # Or use CompiledProgram:
-    compiled_prog = compiler.CompiledProgram(train_program)
+    compiled_prog = fluid.CompiledProgram(train_program)
     loss_data, = exe.run(compiled_prog,
                  feed={"X": x},
                  fetch_list=[loss.name])
 
 多卡训练
 #######################
-在多卡训练中，你可以使用 :code:`fluid.compiler.CompiledProgram` 来编译 :code:`fluid.Program` ，然后调用 :code:`with_data_parallel` 。例如：
+在多卡训练中，你可以使用 :code:`fluid.CompiledProgram` 来编译 :code:`fluid.Program` ，然后调用 :code:`with_data_parallel` 。例如：
 
 .. code-block:: python
 
@@ -112,7 +112,7 @@
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
 
-    compiled_prog = compiler.CompiledProgram(
+    compiled_prog = fluid.CompiledProgram(
         train_program).with_data_parallel(
         loss_name=loss.name)
     loss_data, = exe.run(compiled_prog,
@@ -128,4 +128,9 @@
 
 进阶使用
 ###############
+
+.. toctree::
+   :maxdepth: 2
+
+   test_while_training.rst
 

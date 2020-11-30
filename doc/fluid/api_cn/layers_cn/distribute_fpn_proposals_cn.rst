@@ -5,6 +5,12 @@ distribute_fpn_proposals
 
 .. py:function:: paddle.fluid.layers.distribute_fpn_proposals(fpn_rois, min_level, max_level, refer_level, refer_scale, name=None)
 
+:alias_main: paddle.nn.functional.distribute_fpn_proposals
+:alias: paddle.nn.functional.distribute_fpn_proposals,paddle.nn.functional.vision.distribute_fpn_proposals
+:old_api: paddle.fluid.layers.distribute_fpn_proposals
+
+
+
 **该op仅支持LoDTensor输入**。在 Feature Pyramid Networks（FPN）模型中，需要依据proposal的尺度和参考尺度与级别将所有proposal分配到不同的FPN级别中。 此外，为了恢复proposals的顺序，我们返回一个数组，该数组表示当前proposals中的原始RoIs索引。 要计算每个RoI的FPN级别，公式如下：
 
 .. math::

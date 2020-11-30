@@ -86,7 +86,7 @@
         > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 
-        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 8.0。
+        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 10.0。
 
 
 4. 进入Docker后进入paddle目录下：

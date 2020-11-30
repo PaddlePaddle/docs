@@ -3,11 +3,14 @@
 BuildStrategy
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.BuildStrategy
 
-``BuildStrategy`` 使用户更方便地控制[ ``ParallelExecutor`` ](../fluid_cn.html\#parallelexecutor)中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
+:api_attr: 声明式编程模式（静态图)
+
+
+
+``BuildStrategy`` 使用户更方便地控制 :ref:`cn_api_fluid_ParallelExecutor` 中计算图的建造方法，可通过设置 ``ParallelExecutor`` 中的 ``BuildStrategy`` 成员来实现此功能。
 
 **代码示例**
 
@@ -68,6 +71,7 @@ bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模�
 **代码示例**
 
 .. code-block:: python
+
     import paddle.fluid as fluid
     build_strategy = fluid.BuildStrategy()
     build_strategy.fuse_broadcast_ops = True
@@ -108,6 +112,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
     import os
     import numpy as np
+    import paddle.fluid as fluid
     import paddle.fluid.compiler as compiler
 
     use_cuda = True

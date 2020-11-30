@@ -5,6 +5,12 @@ random_crop
 
 .. py:function:: paddle.fluid.layers.random_crop(x, shape, seed=None)
 
+:alias_main: paddle.nn.functional.random_crop
+:alias: paddle.nn.functional.random_crop,paddle.nn.functional.extension.random_crop
+:old_api: paddle.fluid.layers.random_crop
+
+
+
 该操作对batch中每个实例进行随机裁剪，即每个实例的裁剪位置不同，裁剪位置由均匀分布随机数生成器决定。所有裁剪后的实例都具有相同的维度，由 ``shape`` 参数决定。
 
 参数:

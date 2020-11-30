@@ -5,6 +5,12 @@ swish
 
 .. py:function:: paddle.fluid.layers.swish(x, beta=1.0, name=None)
 
+:alias_main: paddle.nn.functional.swish
+:alias: paddle.nn.functional.swish,paddle.nn.functional.activation.swish
+:old_api: paddle.fluid.layers.swish
+
+
+
 逐元素计算 Swish 激活函数，参考 `Searching for Activation Functions <https://arxiv.org/abs/1710.05941>`_ 。
 
 .. math::

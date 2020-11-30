@@ -3,9 +3,12 @@
 img_conv_group
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.nets.img_conv_group(input, conv_num_filter, pool_size, conv_padding=1, conv_filter_size=3, conv_act=None, param_attr=None, conv_with_batchnorm=False, conv_batchnorm_drop_rate=0.0, pool_stride=1, pool_type='max', use_cudnn=True)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。根据输入参数，img_conv_group将使用Convolution2d，BatchNorm，DropOut对Input进行连续计算，得到最后结果。
 

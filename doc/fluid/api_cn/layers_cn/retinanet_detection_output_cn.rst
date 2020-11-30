@@ -5,6 +5,12 @@ retinanet_detection_output
 
 .. py:function:: paddle.fluid.layers.retinanet_detection_output(bboxes, scores, anchors, im_info, score_threshold=0.05, nms_top_k=1000, keep_top_k=100, nms_threshold=0.3, nms_eta=1.0)
 
+:alias_main: paddle.nn.functional.retinanet_detection_output
+:alias: paddle.nn.functional.retinanet_detection_output,paddle.nn.functional.vision.retinanet_detection_output
+:old_api: paddle.fluid.layers.retinanet_detection_output
+
+
+
 在 `RetinaNet <https://arxiv.org/abs/1708.02002>`_ 中，有多个 `FPN <https://arxiv.org/abs/1612.03144>`_ 层会输出用于分类的预测值和位置回归的预测值，该OP通过执行以下步骤将这些预测值转换成最终的检测结果：
 
 1. 在每个FPN层上，先剔除分类预测值小于score_threshold的anchor，然后按分类预测值从大到小排序，选出排名前nms_top_k的anchor，并将这些anchor与其位置回归的预测值做解码操作得到检测框。
@@ -34,27 +40,27 @@ retinanet_detection_output
 
   import paddle.fluid as fluid
 
-  bboxes_low = fluid.data(name='bboxes_low', shape=[1, 44, 4],
-      dtype='float32')
-  bboxes_high = fluid.data(name='bboxes_high', shape=[1, 11, 4],
-      dtype='float32')
-  scores_low = fluid.data(name='scores_low', shape=[1, 44, 10],
-      dtype='float32')
-  scores_high = fluid.data(name='scores_high', shape=[1, 11, 10],
-      dtype='float32')
-  anchors_low = fluid.data(name='anchors_low', shape=[44, 4],
-      dtype='float32')
-  anchors_high = fluid.data(name='anchors_high', shape=[11, 4],
-      dtype='float32')
-  im_info = fluid.data(name="im_info", shape=[1, 3],
-      dtype='float32')
+  bboxes_low = fluid.data(
+      name='bboxes_low', shape=[1, 44, 4], dtype='float32')
+  bboxes_high = fluid.data(
+      name='bboxes_high', shape=[1, 11, 4], dtype='float32')
+  scores_low = fluid.data(
+      name='scores_low', shape=[1, 44, 10], dtype='float32')
+  scores_high = fluid.data(
+      name='scores_high', shape=[1, 11, 10], dtype='float32')
+  anchors_low = fluid.data(
+      name='anchors_low', shape=[44, 4], dtype='float32')
+  anchors_high = fluid.data(
+      name='anchors_high', shape=[11, 4], dtype='float32')
+  im_info = fluid.data(
+      name="im_info", shape=[1, 3], dtype='float32')
   nmsed_outs = fluid.layers.retinanet_detection_output(
-                                          bboxes=[bboxes_low, bboxes_high],
-                                          scores=[scores_low, scores_high],
-                                          anchors=[anchors_low, anchors_high],
-                                          im_info=im_info,
-                                          score_threshold=0.05,
-                                          nms_top_k=1000,
-                                          keep_top_k=100,
-                                          nms_threshold=0.45,
-                                          nms_eta=1.)
+      bboxes=[bboxes_low, bboxes_high],
+      scores=[scores_low, scores_high],
+      anchors=[anchors_low, anchors_high],
+      im_info=im_info,
+      score_threshold=0.05,
+      nms_top_k=1000,
+      keep_top_k=100,
+      nms_threshold=0.45,
+      nms_eta=1.0)

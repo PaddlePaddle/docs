@@ -7,14 +7,15 @@ if [ "$night" == "develop" ];then
    wget -q https://paddle-wheel.bj.bcebos.com/0.0.0-gpu-cuda9-cudnn7-mkl/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
    pip install -U paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
 else
-   git clone https://github.com/PaddlePaddle/Paddle.git
-   mkdir Paddle/build && cd Paddle/build
-   cmake .. -DWITH_GPU=ON -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+   cd Paddle/build
+   cmake .. -DWITH_GPU=ON  -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
    make -j`nproc`
    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl 
 fi
 
+
 for files in `echo $git_files`;do
+  cd /FluidDoc
   grep "code-block" $files
   if [ $? -eq 0 ] ;then 
     echo $files|grep 'doc/fluid/api_cn/.*/.*.rst'

@@ -5,6 +5,9 @@ firstn
 
 .. py:function:: paddle.fluid.io.firstn(reader, n)
 
+
+
+
 该接口创建一个数据读取器，它可以返回的最大样本数为n。
 
 参数：

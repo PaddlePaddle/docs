@@ -5,6 +5,9 @@ compose
 
 .. py:function:: paddle.fluid.io.compose(*readers, **kwargs)
 
+
+
+
 该接口将多个数据读取器组合为一个数据读取器，返回读取器的输出包含所有输入读取器的输出。
 
 例如：如果输入为三个reader，三个reader的输出分别为：（1，2）、3、（4，5），则组合reader的输出为：（1，2，3，4，5）。

@@ -5,6 +5,12 @@ polynomial_decay
 
 .. py:function:: paddle.fluid.layers.polynomial_decay(learning_rate,decay_steps,end_learning_rate=0.0001,power=1.0,cycle=False)
 
+:alias_main: paddle.nn.functional.polynomial_decay
+:alias: paddle.nn.functional.polynomial_decay,paddle.nn.functional.learning_rate.polynomial_decay
+:old_api: paddle.fluid.layers.polynomial_decay
+
+
+
 对初始学习率使用多项式衰减
 
 .. code-block:: text

@@ -1,148 +1,128 @@
-***
-
 # **Install on CentOS**
 
-This note will show you how to install PaddlePaddle on a *64-bit desktop or laptop* and CentOS. The CentOS system we support needs to meet the following requirements:
 
-Please note: Attempts on other systems may cause the installation to fail. Please ensure that your environment meets the conditions. The installation we provide by default requires your computer processor to support the AVX instruction set. Otherwise, please select the version of `no_avx` in [the latest Release installation package list](./Tables.html/#ciwhls-release).
+## Environmental preparation
 
-Under CentOS you can use `cat /proc/cpuinfo | grep avx` to check if your processor supports the AVX instruction set.
+* **CentOS Version(64 bit)**
+    * **CentOS 6 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1, only supports single card)**
+    * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1, CUDA 9.1 only supports single card)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip or pip3 version 9.0.1+ (64 bit)**
 
-* CentOS 6 / 7
+### Note
 
-## Determine which version to install
+* You can use`uname -m && cat /etc/*release` to view the local operating system and bit information
+* Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-* Only PaddlePaddle for CPU is supported. If your computer does not have an NVIDIA® GPU, you can only install this version. If your computer has a GPU, it is recommended that you install the CPU version of PaddlePaddle first to check if your local environment is suitable.
+    * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
 
-* PaddlePaddle with GPU support, in order to make the PaddlePaddle program run more quickly, we accelerate the PaddlePaddle program through the GPU, but the GPU version of PaddlePaddle needs to have the NVIDIA® GPU that meets the following conditions (see the NVIDIA official for the specific installation process and configuration). Documentation: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), [For cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
+        which python
 
-    * *CUDA Toolkit 9.0 with cuDNN v7*
-    * *CUDA Toolkit 8.0 with cuDNN v7*
-    * *Hardware devices with GPU compute capability exceeding 1.0*
+    * If you are using Python 3, use the following command to output Python path. Depending on your environment, you may need to replace Python 3 in all command lines in the instructions with Python or specific Python path
 
+        which python3
 
-## Choose an installation method
+* You need to confirm whether the version of Python meets the requirements
 
-We offer 4 installation methods under the CentOS system:
+    * If you are using Python 2, use the following command to confirm that it is 2.7.15+
 
-* Pip installation
-* Docker installation (the GPU version is not supported) (the version of python in the image is 2.7)
-* Source code compilation and installation (all versions of CentOS 6 and GPU version of CentOS 7 are not supported)
-* Docker source compilation and installation (not supported for GPU version) (Python version 2.7, 3.5, 3.6, 3.7 in image)
+        python --version
 
-**With pip installation** (the easiest way to install), we offer you a pip installation method, but it depends more on your native environment and may have some issues related to your local environment.
+    * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7
 
-**Use Docker for installation** (the safest way to install), because we are installing the tools and configuration in a Docker image so that if something goes wrong, others can reproduce the problem for help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually run directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
+        python3 --version
 
-Compile and install from [**source**](#ct_source) and [**use Docker**](#ct_docker). This is a process of compiling the PaddlePaddle source code into a binary file and then installing the binary file. Compared with the binary form of PaddlePaddle that has been successfully tested and compiled for you, this manual compilation is more complicated, and we will answer you in detail at the end of this tutorial.
+* It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 9.0.1+
 
+    * If you are using Python 2
 
-<br/><br/>
-## ***Install PaddlePaddle using pip***
+        python -m ensurepip
 
-First, we use the following commands to check if **the environment of this machine** is suitable for installing PaddlePaddle:
+        python -m pip --version
 
-`Uname -m && cat /etc/*release`
+    * If you are using Python 3
 
-> The above command will display the operating system and processing bits of the machine. Please make sure your computer is consistent with the requirements of this tutorial.
+        python3 -m ensurepip
 
-Second, your computer needs to meet the following requirements:
+        python3 -m pip --version
 
-*    Python2.7.x (devel), Pip >= 9.0.1
+* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"：
 
-    > CentOS6 needs to compile Python 2.7 into a [shared library](./FAQ.html/#FAQ).
+    * If you are using Python 2
 
-*    Python3.5+.x (devel), Pip3 >= 9.0.1
+        python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
-    > You may have installed pip on your CentOS. Please use pip -V to confirm that we recommend using pip 9.0.1 or higher to install.
+    * If you are using Python 2
 
-    Update the source of yum: `yum update` and install the extension source to install pip: `yum install -y epel-release`
+        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
-    Use the following command to install or upgrade Python and pip to the required version:
+* The installation package provided by default requires computer support for MKL
+* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), for instructions please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
 
+## Choose CPU/GPU
 
-        - For Python2: `sudo yum install python-devel python-pip`
-        - For Python3: (Please refer to the official Python installation, and pay attention to whether the python3 version is consistent with the python version corresponding to the pip3 command. If there are multiple python3 versions, please specify the pip version such as pip3.7, or add soft link from pip3 to the python version you use. )
+* If your computer doesn't have NVIDIA® GPU, please install the CPU version of PaddlePaddle
 
+* If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install the GPU version of PaddlePaddle
 
+    * **CUDA toolkit 10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **Hardware devices with GPU computing power over 1.0**
 
+        You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-    > Even if you already have `Python` in your environment, you need to install the `python develop` package.
+* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
-Here's how to install PaddlePaddle:
 
-1. Use pip install to install PaddlePaddle:
+        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        yum update -y
+        yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
 
-    * For users who need **the CPU version PaddlePaddle**: `pip install paddlepaddle` or `pip3 install paddlepaddle`
+## Installation method
 
-    * For users who need **the GPU version PaddlePaddle**: `pip install paddlepaddle-gpu` or `pip3 install paddlepaddle-gpu`
+There are three installation methods under CentOS system:
 
-    > 1 . In order to prevent problem "nccl.h cannot be found", please first install nccl2 according to the instructions of [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download).
+* pip installation（recommend）
+* [Compile From Source Code](./compile/compile_CentOS_en.html#ct_source)
+* [Compile From Docker Source Code](./compile/compile_CentOS_en.html#ct_docker)
 
-    > 2 . If you do not specify the pypi package version number, we will by default provide you with a version of PaddlePaddle that supports Cuda 9/cuDNN v7.
+Here is pip installation
 
-    * For users with `Cannot uninstall 'six'.` problems, the probable reason is the existing Python installation issues in your system. In this case, use  `pip install paddlepaddle --ignore-installed six`(CPU) or `pip install paddlepaddle-gpu -- Ignore-installed six` (GPU)  to resolve.
+## Installation steps
 
-    * For users with **other requirements**: `pip install paddlepaddle==[version number]` or `pip3 install paddlepaddle==[version number]`
+* CPU version of PaddlePaddle：
+  * For Python 2: `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` or `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+* GPU version of PaddlePaddle：
+  * For Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * For Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
-    > For `the version number`, please refer to [the latest Release installation package list](./Tables.html/#whls). If you need to obtain and install **the latest PaddlePaddle development branch**, you can download and install the latest whl installation package and c-api development package from [the latest dev installation package list](./Tables.html/#ciwhls) or our [CI system](https://paddleci.ngrok.io/project.html?projectId=Manylinux1&tab=projectOverview). To log in, click on "Log in as guest".
+You can[Verify installation succeeded or not](#check)，if you have any questions, you can refer to [FAQ](./FAQ.html)
 
-Now you have completed the process of installing PaddlePaddle via `pip install`.
 
+Note:
 
-<br/><br/>
-## *Install using Docker*
+* If it is python2.7, it is recommended to use the `python` command; if it is python3.x, it is recommended to use the 'python3' command
 
-In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on installing and using Docker, please refer to [the official Docker documentation](https://docs.docker.com/install/).
 
-> Please note that to install and use the PaddlePaddle version that supports GPU, you must first install [nvidia-docker](https://github.com/NVIDIA/nvidia-docker).
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` This command will install the PaddlePaddle that supports CUDA 10.0 cuDNN v7.
 
-Once you have **properly installed Docker**, you can start **installing PaddlePaddle with Docker**.
 
-1. Use the following command to pull the image we pre-installed for PaddlePaddle:
+* Download the latest stable installation package by default. For development installation package, please refer to [here](./Tables.html#ciwhls)
 
-    * For users who need a **CPU version of PaddlePaddle**, use the following command to pull the image we pre-installed for your *PaddlePaddle For CPU*:
-
-        `Docker pull hub.baidubce.com/paddlepaddle/paddle: 1.2`
-
-    * You can also pull any of our Docker images by following the instructions below:
-
-        `Docker pull hub.baidubce.com/paddlepaddle/paddle:[tag]`
-
-        > (Please replace [tag] with the contents of [the mirror table](./Tables.html/#dockers))
-
-
-2. Use the following command to build from the already pulled image and enter the Docker container:
-
-    `Docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
-
-        > In the above command, --name [Name of container] sets the name of the Docker; the -it parameter indicates that the container is running interactively with the host machine; -v $PWD:/paddle specifies the current path (the PWD variable in Linux will expand to [The absolute path](https://baike.baidu.com/item/%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/481185) of the current path ) which is mounted to the /paddle directory inside the container; `<imagename>` specifies the name of the image to use, if you need to use our image please use `hub.baidubce.com/paddlepaddle/paddle:[tag]`. Note: The meaning of the tag is the same as the second step. /bin/bash is the command to be executed in Docker.
-
-3. (Optional: When you need to enter the Docker container a second time) re-enter the PaddlePaddle container with the following command:
-
-    `Docker start [Name of container]`
-
-    > start the container created previously
-
-    `Docker attach [Name of container]`
-
-    > Enter the started container in the last step.
-
-Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to [the official Docker documentation](https://docs.docker.com/).
-
-> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
-
-
-<br/><br/>
+<a name="check"></a>
 ## ***Verify installation***
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` to verify that the installation was successful.
+After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` and `fluid.install_check.run_check()`
 
-<br/><br/>
+If `Your Paddle Fluid is installed succesfully!` appears, to verify that the installation was successful.
+
+
 ## ***How to uninstall***
 
-Please use the following command to uninstall PaddlePaddle (users who use Docker to install PaddlePaddle should use the following command in the container containing PaddlePaddle. Please use the corresponding version of pip):
+Please use the following command to uninstall PaddlePaddle:
 
-* ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
+* ***CPU version of PaddlePaddle***: `python -m pip uninstall paddlepaddle` or `python3 -m pip uninstall paddlepaddle`
 
-* ***GPU version of PaddlePaddle***: `pip uninstall paddlepaddle-gpu` or `pip3 uninstall paddlepaddle-gpu`
+* ***GPU version of PaddlePaddle***: `python -m pip uninstall paddlepaddle-gpu` or `python3 -m pip uninstall paddlepaddle-gpu`

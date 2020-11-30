@@ -3,6 +3,12 @@
 strided_slice
 -------------------------------
 .. py:function:: paddle.fluid.layers.strided_slice(input, axes, starts, ends, strides)
+
+:alias_main: paddle.strided_slice
+:alias: paddle.strided_slice,paddle.tensor.strided_slice,paddle.tensor.manipulation.strided_slice
+:old_api: paddle.fluid.layers.strided_slice
+
+
 strided_slice算子。
 
 该OP沿多个轴生成 ``input`` 的切片，与numpy类似： https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html。该OP使用 ``axes`` 、 ``starts`` 和 ``ends`` 属性来指定轴列表中每个轴的起点和终点位置，并使用此信息来对 ``input`` 切片。如果向 ``starts`` 或 ``ends`` 传递负值如 :math:`-i`，则表示该轴的反向第 :math:`i-1` 个位置（这里以0为初始位置）， ``strides`` 表示切片的步长， ``strides`` 如果为负数，则按照反方向进行切片。如果传递给 ``starts`` 或 ``ends`` 的值大于n（维度中的元素数目），则表示n。当切片一个未知数量的维度时，建议传入 ``INT_MAX``。 ``axes`` 、 ``starts`` 和 ``ends`` 以及 ``strides`` 四个参数的元素数目必须相等。以下示例将解释切片如何工作：

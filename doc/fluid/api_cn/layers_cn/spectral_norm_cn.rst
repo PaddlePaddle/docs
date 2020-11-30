@@ -3,9 +3,12 @@
 spectral_norm
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.spectral_norm(weight, dim=0, power_iters=1, eps=1e-12, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 **Spectral Normalization Layer**
 

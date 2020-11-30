@@ -5,6 +5,12 @@ space_to_depth
 
 .. py:function:: paddle.fluid.layers.space_to_depth(x, blocksize, name=None)
 
+:alias_main: paddle.nn.functional.space_to_depth
+:alias: paddle.nn.functional.space_to_depth,paddle.nn.functional.vision.space_to_depth
+:old_api: paddle.fluid.layers.space_to_depth
+
+
+
 该OP对成块的空间数据进行重组，输出一个输入张量的拷贝，其高度和宽度维度上的值移至通道维度。
 
 重组时，依据 ``blocksize`` 指明的数据块大小, 对形为 ``[batch, channel, height, width]`` 的输入张量进行space_to_depth（广度至深度）运算，生成形为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的输出：

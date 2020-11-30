@@ -5,6 +5,12 @@ teacher_student_sigmoid_loss
 
 .. py:function:: paddle.fluid.layers.teacher_student_sigmoid_loss(input, label, soft_max_up_bound=15.0, soft_max_lower_bound=-15.0)
 
+:alias_main: paddle.nn.functional.teacher_student_sigmoid_loss
+:alias: paddle.nn.functional.teacher_student_sigmoid_loss,paddle.nn.functional.loss.teacher_student_sigmoid_loss
+:old_api: paddle.fluid.layers.teacher_student_sigmoid_loss
+
+
+
 **Teacher Student Log Loss Layer（教师--学生对数损失层）**
 
 定制化需求，用于student萃取teacher的值。此图层接受输入预测和目标标签，并返回teacher_student损失。

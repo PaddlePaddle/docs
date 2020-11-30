@@ -5,6 +5,12 @@ shard_index
 
 .. py:function:: paddle.fluid.layers.shard_index(input, index_num, nshards, shard_id, ignore_value=-1)
 
+:alias_main: paddle.shard_index
+:alias: paddle.shard_index,paddle.tensor.shard_index,paddle.tensor.manipulation.shard_index
+:old_api: paddle.fluid.layers.shard_index
+
+
+
 该函数对输入的索引根据分片（shard）的偏移量重新计算。
 索引长度被均分为N个分片，如果输入索引所在的分片跟分片ID对应，则该索引以分片的偏移量为界重新计算，否则更新为默认值（ignore_value）。具体计算为：
 ::

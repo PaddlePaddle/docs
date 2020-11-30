@@ -3,9 +3,12 @@
 Switch
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.layers.Switch (name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该类用于实现Switch分支控制功能。Switch分支包含多个case分支和一个default分支，Switch控制流会依次检查各case分支条件是否满足，并仅执行第一个满足条件的case分支后面的语句。若不存在满足条件的case分支，则仅执行default分支后面的语句。
 

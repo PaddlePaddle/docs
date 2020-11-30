@@ -5,6 +5,9 @@ multiprocess_reader
 
 .. py:function:: paddle.fluid.io.multiprocess_reader(readers, use_pipe=True, queue_size=1000)
 
+
+
+
 使用python多进程从 ``readers`` 中读取数据，然后使用 ``multiprocessing.Pipe`` 或 ``multiprocessing.Queue`` 合并所有数据。 ``readers`` 列表中的每个reader会被创建一个独立的进程来调用，reader之间应该相互独立，互不影响，避免出现多进程读取的冲突问题.
 
 multiprocess.queue需要/dev/shm的rw访问权限，某些平台不支持。

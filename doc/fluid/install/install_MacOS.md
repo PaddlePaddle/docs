@@ -60,11 +60,9 @@
 
 ## 安装方式
 
-MacOS系统下有5种安装方式：
+MacOS系统下有3种安装方式：
 
 * pip安装（推荐）
-* [conda安装](./install_Conda.html)
-* [Docker安装](./install_Docker.html)
 * [源码编译安装](./compile/compile_MacOS.html#mac_source)
 * [Docker源码编译安装](./compile/compile_MacOS.html#mac_docker)
 
@@ -74,8 +72,8 @@ MacOS系统下有5种安装方式：
 ## 安装步骤
 
 * CPU版PaddlePaddle：
-  * 对于Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * 对于Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 2： `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 

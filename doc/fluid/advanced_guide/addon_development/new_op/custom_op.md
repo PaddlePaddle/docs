@@ -77,14 +77,12 @@ class Relu2GradMaker : public framework::SingleGradOpMaker<T> {
  public:
   using framework::SingleGradOpMaker<T>::SingleGradOpMaker;
 
-  std::unique_ptr<T> Apply() const override {
-    auto* op = new T();
+  void Apply(GradOpPtr<T> op) const override {
     op->SetType("relu2_grad");
     op->SetInput("Y", this->Output("Y"));
     op->SetInput(framework::GradVarName("Y"), this->OutputGrad("Y"));
     op->SetAttrMap(this->Attrs());
     op->SetOutput(framework::GradVarName("X"), this->InputGrad("X"));
-    return std::unique_ptr<T>(op);
   }
 };
 
@@ -142,7 +140,7 @@ REGISTER_OP_CPU_KERNEL(relu2_grad,
 
 
 
-ReLU OP的GPU实现， ``relu_op.cc`` 文件:
+ReLU OP的GPU实现， ``relu_op.cu`` 文件:
 
 ```
 // relu_op.cu
@@ -272,8 +270,8 @@ g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 -DPADDLE
 
 注意点:
 
-1. NVCC编译GPU OP的cu文件时，需要加 `-DPADDLE_WITH_CUDA -DEIGEN_USE_GPU -DPADDLE_USE_DSO` 。
-2. 如果安装的PaddlePaddle不包含MKLDNN，则需要去掉编译选项`-DPADDLE_WITH_MKLDNN`。默认的安装包已包含MKLDNN。
+1. 通过NVCC编译CUDA源文件时，需要加编译选项 `-DPADDLE_WITH_CUDA -DEIGEN_USE_GPU -DPADDLE_USE_DSO`，在框架源码中会使用这些宏定义进行条件编译。用户自定义的C++ OP实现编译时，选项的开启状态需要和核心框架编译行为一致。如`EIGEN_USE_GPU`是使用Eigen数学库的GPU实现时需要增加的编译选项。
+2. 如果飞桨安装包中不包含MKLDNN库，则需要去掉编译选项`-DPADDLE_WITH_MKLDNN`。核心框架源码中(比如tensor.h)有使用此宏定义进行条件编译，该选项是否打开同样需要和核心框架编译行为保持一致。默认的飞桨安装包中含有MKLDNN库。
 3. 可多个OP编译到同一个动态库中。
 4. 通过pip方式安装的PaddlePaddle由GCC 4.8编译得到，由于GCC 4.8和GCC 5以上**C++11 ABI不兼容**，您编写的自定义OP，需要通过GCC 4.8编译。若是GCC 5及以上的环境上使用自定义OP，推荐使用[Docker安装PaddlePaddle](https://www.paddlepaddle.org.cn/install/doc/docker)，使得编Paddle和编译自定义OP的GCC版本相同。
 
@@ -333,6 +331,11 @@ np.allclose(out, np.maximum(x,0.))
 
 ## FAQ
 
-1. Q:如果出现类似错误: cannot open shared object file: No such file or directory.
+1. Q: 如果出现类似错误: `relu2_op.so: cannot open shared object file: No such file or directory` 以及 `libpaddle_framework.so: cannot open shared object file: No such file or directory`。
 
-   A:  需要设置动态库的路径到环境变量LD_LIBRARY_PATH中。
+   A: 需要将`relu2_op.so`所在路径以及`libpaddle_framework.so`路径(即`paddle.sysconfig.get_lib()`得到路径)设置到环境变量LD_LIBRARY_PATH中:
+
+     ``` 
+      # 假如relu2_op.so路径是：`paddle/test`，对于Linux环境设置:
+      export LD_LIBRARY_PATH=paddle/test:$( python -c 'import paddle; print(paddle.sysconfig.get_lib())'):$LD_LIBRARY_PATH
+     ```

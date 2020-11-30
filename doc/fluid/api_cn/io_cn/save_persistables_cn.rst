@@ -3,9 +3,12 @@
 save_persistables
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.io.save_persistables(executor, dirname, main_program=None, filename=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该OP从给定 ``main_program`` 中取出所有持久性变量（详见 :ref:`api_guide_model_save_reader` ），然后将它们保存到目录 ``dirname`` 中或 ``filename`` 指定的文件中。
 

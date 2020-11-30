@@ -3,47 +3,35 @@
 logical_xor
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.logical_xor(x, y, out=None, name=None)
+.. py:function:: paddle.logical_xor(x, y, out=None, name=None)
 
-该OP逐元素的对 ``X`` 和 ``Y`` 两LoDTensor/Tensor进行逻辑异或运算。
+该OP逐元素的对 ``X`` 和 ``Y`` 进行逻辑异或运算。
 
 .. math::
         Out = (X || Y) \&\& !(X \&\& Y)
 
+.. note::
+    ``paddle.logical_xor`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+
 参数：
-        - **x** （Variable）- 逻辑异或运算的第一个输入，是一个多维的LoDTensor/Tensor，数据类型只能是bool。
-        - **y** （Variable）- 逻辑异或运算的第二个输入，是一个多维的LoDTensor/Tensor，数据类型只能是bool。
-        - **out** （Variable，可选）- 指定算子输出结果的LoDTensor/Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
-        - **name** （str，可选）- 该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_Name` ，默认值为None。
+        - **x** （Tensor）- 输入的 `Tensor` ，数据类型为：bool。
+        - **y** （Tensor）- 输入的 `Tensor` ，数据类型为：bool。
+        - **out** （Tensor，可选）- 指定算子输出结果的 `Tensor` ，可以是程序中已经创建的任何Tensor。默认值为None，此时将创建新的Tensor来保存输出结果。
+        - **name** （str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
-
-返回：与 ``x`` 维度相同，数据类型相同的LoDTensor/Tensor。
-
-返回类型：Variable
-
+返回： ``Tensor`` ， 维度``x`` 维度相同，存储运算后的结果。
 
 **代码示例：**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
+      import paddle
+      import numpy as np
 
-    # Graph organizing
-    x = fluid.layers.data(name='x', shape=[2], dtype='bool')
-    y = fluid.layers.data(name='y', shape=[2], dtype='bool')
-    res = fluid.layers.logical_xor(x=x, y=y)
-    # The comment lists another available method.
-    # res = fluid.layers.fill_constant(shape=[2], dtype='bool', value=0)
-    # fluid.layers.logical_xor(x=x, y=y, out=res)
-
-    # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    x_i = np.array([[1, 0], [0, 1]]).astype(np.bool)
-    y_i = np.array([[1, 1], [0, 0]]).astype(np.bool)
-    res_val, = exe.run(fluid.default_main_program(), feed={'x':x_i, 'y':y_i}, fetch_list=[res])
-    print(res_val) # [[False, True], [False, True]]
-
+      paddle.disable_static()
+      x_data = np.array([True, False], dtype=np.bool).reshape([2, 1])
+      y_data = np.array([True, False, True, False], dtype=np.bool).reshape([2, 2])
+      x = paddle.to_tensor(x_data)
+      y = paddle.to_tensor(y_data)
+      res = paddle.logical_xor(x, y)
+      print(res.numpy()) # [[False,  True], [ True, False]]

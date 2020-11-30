@@ -5,6 +5,12 @@ exponential_decay
 
 .. py:function:: paddle.fluid.layers.exponential_decay(learning_rate,decay_steps,decay_rate,staircase=False)
 
+:alias_main: paddle.nn.functional.exponential_decay
+:alias: paddle.nn.functional.exponential_decay,paddle.nn.functional.learning_rate.exponential_decay
+:old_api: paddle.fluid.layers.exponential_decay
+
+
+
 在学习率上运用指数衰减。
 
 训练模型时，在训练过程中降低学习率。每 ``decay_steps`` 步骤中以 ``decay_rate`` 衰减学习率。

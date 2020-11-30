@@ -3,9 +3,12 @@
 CompiledProgram
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.CompiledProgram(program_or_graph, build_strategy=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等，关于build_strategy更多信息。请参阅  ``fluid.BuildStrategy`` 。
 
@@ -22,34 +25,29 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
 .. code-block:: python
         
     import paddle.fluid as fluid
-    import paddle.fluid.compiler as compiler
     import numpy
-    import os
-    
+
     place = fluid.CUDAPlace(0) # fluid.CPUPlace()
     exe = fluid.Executor(place)
-    
-    data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+
+    data = fluid.data(name='X', shape=[None, 1], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
     loss = fluid.layers.mean(hidden)
     fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
     exe.run(fluid.default_startup_program())
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.fuse_all_optimizer_ops = True
-    compiled_prog = compiler.CompiledProgram(
-             fluid.default_main_program(), 
-             build_strategy=build_strategy)
-    
+    compiled_prog = fluid.CompiledProgram(
+              fluid.default_main_program())
+
     x = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = exe.run(compiled_prog,
-                         feed={"X": x},
-                         fetch_list=[loss.name])
+                          feed={"X": x},
+                          fetch_list=[loss.name])
 
 
 .. py:method:: with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None, places=None)
 
-该接口用于将输入的Program或Graph进行转换，以便通过数据并行模式运行该模型。用户可以通过 `build_strategy` 和 `exec_strategy` 设置计算图构建和计算图执行过程中可以进行的一些优化，例如：将梯度聚合的AllReduce操作进行融合、指定计算图运行过程中使用的线程池大小等。**注意：如果在构建CompiledProgram和调用with_data_parallel时都指定了build_strategy，在CompiledProgram中的build_strategy会被复写，因此，如果是数据并行训练，建议在调用with_data_parallel接口是设置build_strategy**。
+该接口用于将输入的Program或Graph进行转换，以便通过数据并行模式运行该模型。用户可以通过 `build_strategy` 和 `exec_strategy` 设置计算图构建和计算图执行过程中可以进行的一些优化，例如：将梯度聚合的AllReduce操作进行融合、指定计算图运行过程中使用的线程池大小等。**注意：如果在构建CompiledProgram和调用with_data_parallel时都指定了build_strategy，在CompiledProgram中的build_strategy会被复写，因此，如果是数据并行训练，建议在调用with_data_parallel接口时设置build_strategy**。
      
 参数：
   - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字，**注意：如果是模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。
@@ -70,45 +68,47 @@ CompiledProgram根据 `build_strategy` 的配置将输入的Program或Graph进�
 **代码示例**
 
 .. code-block:: python
-            
+
     import paddle.fluid as fluid
-    import paddle.fluid.compiler as compiler
     import numpy
     import os
-    
+
     use_cuda = True
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
+    parallel_places = [fluid.CUDAPlace(0), fluid.CUDAPlace(1)] if use_cuda else [fluid.CPUPlace()] * 2
+
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
     # 否则fluid会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
     # 否则程序会异常中断。
     if not use_cuda:
         os.environ['CPU_NUM'] = str(2)
-    
+
     exe = fluid.Executor(place)
-    
-    data = fluid.layers.data(name='X', shape=[1], dtype='float32')
+
+    data = fluid.data(name='X', shape=[None, 1], dtype='float32')
     hidden = fluid.layers.fc(input=data, size=10)
     loss = fluid.layers.mean(hidden)
+
     test_program = fluid.default_main_program().clone(for_test=True)
     fluid.optimizer.SGD(learning_rate=0.01).minimize(loss)
-    
+
     exe.run(fluid.default_startup_program())
-    build_strategy = fluid.BuildStrategy()
-    build_strategy.fuse_all_reduce_ops = True
-    compiled_train_prog = compiler.CompiledProgram(
-             fluid.default_main_program()).with_data_parallel(
-                      loss_name=loss.name, build_strategy=build_strategy)
-    # 注意：如果此处不设置share_vars_from=compiled_train_prog，测试过程中用的参数与训练使用的参数是不一致
-    compiled_test_prog = compiler.CompiledProgram(
-             test_program).with_data_parallel(
-                      share_vars_from=compiled_train_prog)
+    compiled_train_prog = fluid.CompiledProgram(
+        fluid.default_main_program()).with_data_parallel(
+                loss_name=loss.name, places=parallel_places)
+    # 注意：如果此处不设置share_vars_from=compiled_train_prog，
+    # 测试过程中用的参数与训练使用的参数是不一致
+    compiled_test_prog = fluid.CompiledProgram(
+        test_program).with_data_parallel(
+                share_vars_from=compiled_train_prog,
+                places=parallel_places)
 
     train_data = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = exe.run(compiled_train_prog,
-                         feed={"X": train_data},
-                         fetch_list=[loss.name])
+                      feed={"X": train_data},
+                      fetch_list=[loss.name])
     test_data = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = exe.run(compiled_test_prog,
-                         feed={"X": test_data},
-                         fetch_list=[loss.name])
+                      feed={"X": test_data},
+                      fetch_list=[loss.name])

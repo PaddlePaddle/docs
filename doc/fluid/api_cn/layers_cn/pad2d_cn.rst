@@ -5,6 +5,12 @@ pad2d
 
 .. py:function::  paddle.fluid.layers.pad2d(input, paddings=[0, 0, 0, 0], mode='constant', pad_value=0.0, data_format='NCHW', name=None)
 
+:alias_main: paddle.nn.functional.pad2d
+:alias: paddle.nn.functional.pad2d,paddle.nn.functional.common.pad2d
+:old_api: paddle.fluid.layers.pad2d
+
+
+
 该OP依照 paddings 和 mode 属性对input进行2维 ``pad`` 。
 
 参数：
@@ -19,36 +25,34 @@ pad2d
 
 返回类型：Variable
 
-示例：
+**示例**：
 
 .. code-block:: text
 
-  假设X是输入图像:
+      Input = [[[[1., 2., 3.],
+                 [4., 5., 6.]]]]
 
-      X = [[1, 2, 3],
-           [4, 5, 6]]
+      Case 0:
+          paddings = [0, 1, 2, 3],
+          mode = 'constant'
+          pad_value = 0
+          Out = [[[[0., 0., 1., 2., 3., 0., 0., 0.],
+                   [0., 0., 4., 5., 6., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0.]]]]
 
-     Case 0:
-        paddings = [0, 1, 2, 3],
-        mode = 'constant'
-        pad_value = 0
-        Out = [[0, 0, 1, 2, 3, 0, 0, 0]
-               [0, 0, 4, 5, 6, 0, 0, 0]
-               [0, 0, 0, 0, 0, 0, 0, 0]]
+      Case 1:
+          paddings = [0, 1, 2, 1],
+          mode = 'reflect'
+          Out = [[[[3., 2., 1., 2., 3., 2.],
+                   [6., 5., 4., 5., 6., 5.],
+                   [3., 2., 1., 2., 3., 2.]]]]
 
-     Case 1:
-        paddings = [0, 1, 2, 1],
-        mode = 'reflect'
-        Out = [[3, 2, 1, 2, 3, 2]
-               [6, 5, 4, 5, 6, 5]
-               [3, 2, 1, 2, 3, 2]]
-
-     Case 2:
-        paddings = [0, 1, 2, 1],
-        mode = 'edge'
-        Out = [[1, 1, 1, 2, 3, 3]
-               [4, 4, 4, 5, 6, 6]
-               [4, 4, 4, 5, 6, 6]]
+      Case 2:
+          paddings = [0, 1, 2, 1],
+          mode = 'edge'
+          Out = [[[[1., 1., 1., 2., 3., 3.],
+                   [4., 4., 4., 5., 6., 6.],
+                   [4., 4., 4., 5., 6., 6.]]]]
 
 
 
@@ -56,8 +60,6 @@ pad2d
 
 .. code-block:: python
 
-  import paddle.fluid as fluid
-  data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
-  result = fluid.layers.pad2d(input=data, paddings=[1,2,3,4], mode='reflect')
-
-
+    import paddle.fluid as fluid
+    data = fluid.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
+    result = fluid.layers.pad2d(input=data, paddings=[0, 1, 2, 3], mode='reflect')

@@ -3,9 +3,12 @@
 DistributeTranspiler
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.transpiler.DistributeTranspiler (config=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 
 该类可以把fluid program转变为分布式数据并行计算的program, 有PServer和NCCL2两种模式。

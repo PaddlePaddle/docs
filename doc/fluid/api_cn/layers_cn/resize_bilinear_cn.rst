@@ -5,6 +5,12 @@ resize_bilinear
 
 .. py:function:: paddle.fluid.layers.resize_bilinear(input, out_shape=None, scale=None, name=None, actual_shape=None, align_corners=True, align_mode=1, data_format='NCHW')
 
+:alias_main: paddle.nn.functional.resize_bilinear
+:alias: paddle.nn.functional.resize_bilinear,paddle.nn.functional.vision.resize_bilinear
+:old_api: paddle.fluid.layers.resize_bilinear
+
+
+
 **注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 该OP应用双向性插值法调整输入图片的大小，输出形状按优先级由actual_shape、out_shape和scale指定。

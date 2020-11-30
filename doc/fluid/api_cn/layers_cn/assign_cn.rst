@@ -5,6 +5,12 @@ assign
 
 .. py:function:: paddle.fluid.layers.assign(input,output=None)
 
+:alias_main: paddle.nn.functional.assign
+:alias: paddle.nn.functional.assign,paddle.nn.functional.common.assign
+:old_api: paddle.fluid.layers.assign
+
+
+
 该OP将输入Tensor或numpy数组拷贝至输出Tensor。
 
 参数：

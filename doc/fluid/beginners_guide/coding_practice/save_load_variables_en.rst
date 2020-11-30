@@ -179,23 +179,23 @@ For the PServer to be loaded with parameters during training, for example:
 
     exe = fluid.Executor(fluid.CPUPlace())
     path = "./models"
-	pserver_endpoints = "127.0.0.1:1001,127.0.0.1:1002"
-	trainers = 4
-	Training_role == "PSERVER"
-	config = fluid.DistributeTranspilerConfig()
-	t = fluid.DistributeTranspiler(config=config)
-	t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True)
-
-	if training_role == "PSERVER":
-		current_endpoint = "127.0.0.1:1001"
-		pserver_prog = t.get_pserver_program(current_endpoint)
-		pserver_startup = t.get_startup_program(current_endpoint, pserver_prog)
-
-		exe.run(pserver_startup)
-		fluid.io.load_persistables(exe, path, pserver_startup)
-		exe.run(pserver_prog)
-	if training_role == "TRAINER":
-		main_program = t.get_trainer_program()
-				exe.run(main_program)
+    pserver_endpoints = "127.0.0.1:1001,127.0.0.1:1002"
+    trainers = 4
+    Training_role == "PSERVER"
+    current_endpoint = "127.0.0.1:1002"
+    config = fluid.DistributeTranspilerConfig()
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id, pservers=pserver_endpoints, trainers=trainers, sync_mode=True, current_endpoint=current_endpoint)
+    
+    if training_role == "PSERVER":
+        pserver_prog = t.get_pserver_program(current_endpoint)
+        pserver_startup = t.get_startup_program(current_endpoint, pserver_prog)
+    
+        exe.run(pserver_startup)
+        fluid.io.load_persistables(exe, path, pserver_startup)
+        exe.run(pserver_prog)
+    if training_role == "TRAINER":
+        main_program = t.get_trainer_program()
+        exe.run(main_program)
 
 In the above example, each PServer obtains the parameters saved by trainer 0 by calling the HDFS command, and obtains the PServer's :code:`fluid.Program` by configuration. PaddlePaddle Fluid will find all persistable variables in all model variables from this :code:`fluid.Program` , e.t. :code:`pserver_startup` , and load them from the specified :code:`path` directory.

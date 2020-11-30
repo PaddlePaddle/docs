@@ -5,6 +5,12 @@ SpectralNorm
 
 .. py:class:: paddle.fluid.dygraph.SpectralNorm(weight_shape, dim=0, power_iters=1, eps=1e-12, name=None, dtype="float32")
 
+:alias_main: paddle.nn.SpectralNorm
+:alias: paddle.nn.SpectralNorm,paddle.nn.layer.SpectralNorm,paddle.nn.layer.norm.SpectralNorm
+:old_api: paddle.fluid.dygraph.SpectralNorm
+
+
+
 该接口用于构建 ``SpectralNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了谱归一化层的功能，用于计算fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，输入权重参数应分别为2-D, 3-D, 4-D, 5-D张量，输出张量与输入张量维度相同。谱特征值计算方式如下：
 
 步骤1：生成形状为[H]的向量U,以及形状为[W]的向量V,其中H是输入权重张量的第 ``dim`` 个维度，W是剩余维度的乘积。

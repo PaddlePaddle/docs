@@ -5,6 +5,12 @@ slice
 
 .. py:function:: paddle.fluid.layers.slice(input, axes, starts, ends)
 
+:alias_main: paddle.slice
+:alias: paddle.slice,paddle.tensor.slice,paddle.tensor.manipulation.slice
+:old_api: paddle.fluid.layers.slice
+
+
+
 该OP沿多个轴生成 ``input`` 的切片。与numpy类似： https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html 该OP使用 ``axes`` 、 ``starts`` 和 ``ends`` 属性来指定轴列表中每个轴的起点和终点位置，并使用此信息来对 ``input`` 切片。如果向 ``starts`` 或 ``ends`` 传递负值如 :math:`-i`，则表示该轴的反向第 :math:`i-1` 个位置（这里以0为初始位置）。如果传递给 ``starts`` 或 ``end`` 的值大于n（维度中的元素数目），则表示n。当切片一个未知数量的维度时，建议传入 ``INT_MAX``。 ``axes`` 、 ``starts`` 和 ``ends`` 三个参数的元素数目必须相等。以下示例将解释切片如何工作：
 
 ::
@@ -28,7 +34,7 @@ slice
 
 参数：
         - **input** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float16``， ``float32``，``float64``，``int32``，或 ``int64``。
-        - **axes** （list|tuple）- 数据类型是 ``int32``。表示进行切片的轴。它是可选的，如果不存在，将被视为 :math:`[0,1，...，len（starts）- 1]`。
+        - **axes** （list|tuple）- 数据类型是 ``int32``。表示进行切片的轴。
         - **starts** （list|tuple|Variable）- 数据类型是 ``int32``。如果 ``starts`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``starts`` 的类型是 ``Variable``，则是1-D ``Tensor`` 或 ``LoDTensor``。表示在各个轴上切片的起始索引值。
         - **ends** （list|tuple|Variable）- 数据类型是 ``int32``。如果 ``ends`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``ends`` 的类型是 ``Variable``，则是1-D ``Tensor`` 或 ``LoDTensor``。表示在各个轴上切片的结束索引值。
 
@@ -39,7 +45,6 @@ slice
 抛出异常：
     - :code:`TypeError`：``starts`` 的类型应该是 list、tuple 或 Variable。
     - :code:`TypeError`：``ends`` 的类型应该是 list、tuple 或 Variable。
-
 **代码示例：**
 
 .. code-block:: python

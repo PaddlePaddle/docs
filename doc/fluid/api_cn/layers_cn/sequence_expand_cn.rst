@@ -3,9 +3,12 @@
 sequence_expand
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.sequence_expand(x, y, ref_level=-1, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层lod对输入 ``x`` 进行扩展。 ``x`` 的lod level最多为1，若 ``x`` 的lod level为1，则 ``x`` 的lod大小必须与 ``y`` 的第 ``ref_level`` 层lod大小相等；若 ``x`` 的lod level为0，则 ``x`` 的第一维大小必须与 ``y`` 第 ``ref_level`` 层大小相等。 ``x`` 的秩最少为2，当 ``x`` 的秩大于2时，将被当作是一个二维张量处理。
 

@@ -3,9 +3,15 @@
 cond
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.cond(pred, true_fn=None, false_fn=None, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+:alias_main: paddle.nn.cond
+:alias: paddle.nn.cond,paddle.nn.control_flow.cond
+:old_api: paddle.fluid.layers.cond
+
+
 
 如果 ``pred`` 是 ``True`` ，该API返回 ``true_fn()`` ，否则返回 ``false_fn()`` 。
 用户如果不想在 ``callable`` 中做任何事，可以把 ``true_fn`` 或 ``false_fn`` 设为 ``None`` ，此时本API会把该 ``callable`` 视为简单返回 ``None`` 。

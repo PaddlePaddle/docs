@@ -5,6 +5,12 @@ soft_relu
 
 .. py:function:: paddle.fluid.layers.soft_relu(x, threshold=40.0, name=None)
 
+:alias_main: paddle.nn.functional.soft_relu
+:alias: paddle.nn.functional.soft_relu,paddle.nn.functional.activation.soft_relu
+:old_api: paddle.fluid.layers.soft_relu
+
+
+
 SoftReLU 激活函数.
 
 .. math::   out=ln(1+exp(max(min(x,threshold),-threshold)))

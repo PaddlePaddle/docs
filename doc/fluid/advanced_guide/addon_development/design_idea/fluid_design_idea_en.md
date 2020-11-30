@@ -59,40 +59,41 @@ The blocks contain:
 The concept of block is the same with that in generic programs. For example, there are three blocks in the following C++ code:
 
 ``` cpp
-int main(){ //block 0
-    int i = 0;
-    if (i<10){ //block 1
-        for (int j=0;j<10;j++){ //block 2
-        }
-    }
-    return 0;
+#include <iostream>
+
+int main() {
+	int x = 5; // block 0
+	int y = 4; // block 0
+	int out;   // block 0
+	
+	if (x < y) { // block 0
+	    out = 1; // block 1
+	} else {
+	    out = 0; // block 2
+	}
+	
+	std::cout << out << std::endl;
+	return 0;
 }
 ```
 
 Similarly, the following Program contains 3 blocks:
 
 ```python
-import paddle.fluid as fluid # block 0
+import paddle.fluid as fluid
 
-limit = fluid.layers.fill_constant_batch_size_like(
-    Input=label, dtype='int64', shape=[1], value=5.0)
-cond = fluid.layers.less_than(x=label, y=limit)
+x = fluid.data(name='x', shape=[1], dtype='int64') # block 0
+y = fluid.data(name='y', shape=[1], dtype='int64') # block 0
 
-ie = fluid.layers.IfElse(cond)
-with ie.true_block(): # block 1
-    true_image = ie.input(image)
-    hidden = fluid.layers.fc(input=true_image, size=100, act='tanh')
-    prob = fluid.layers.fc(input=hidden, size=10, act='softmax')
-    ie.output(prob)
+def true_block():
+    return fluid.layers.fill_constant(dtype='int64', value=1, shape=[1]) # block 1
+    
+def false_block():
+    return fluid.layers.fill_constant(dtype='int64', value=0, shape=[1]) # block 2
 
-with ie.false_block(): # block 2
-    false_image = ie.input(image)
-    hidden = fluid.layers.fc(
-        input=false_image, size=200, act='tanh')
-    prob = fluid.layers.fc(input=hidden, size=10, act='softmax')
-    ie.output(prob)
+condition = fluid.layers.less_than(x, y) # block 0
 
-prob = ie()
+out = fluid.layers.cond(condition, true_block, false_block) # block 0
 ```
 ### BlockDesc and ProgramDesc
 
@@ -229,8 +230,8 @@ import numpy
 train_data=numpy.array([[1.0],[2.0],[3.0],[4.0]]).astype('float32')
 y_true = numpy.array([[2.0],[4.0],[6.0],[8.0]]).astype('float32')
 # Define the network
-x = fluid.layers.data(name="x",shape=[1],dtype='float32')
-y = fluid.layers.data(name="y",shape=[1],dtype='float32')
+x = fluid.data(name="x",shape=[None, 1],dtype='float32')
+y = fluid.data(name="y",shape=[None, 1],dtype='float32')
 y_predict = fluid.layers.fc(input=x,size=1,act=None)
 #definition loss function
 cost = fluid.layers.square_error_cost(input=y_predict,label=y)
@@ -299,7 +300,7 @@ As you can see from the output, the entire definition process is transformed int
 
 BlockDesc contains defined vars and a series of ops. Take input x as an example. In python code, x is 1D data of data type "float 32":
 ```python
-x = fluid.layers.data(name="x",shape=[1],dtype='float32')
+x = fluid.data(name="x",shape=[None, 1],dtype='float32')
 ```
 In BlockDesc, the variable x is described as:
 ```
@@ -348,7 +349,7 @@ Since there are multiple columns of incoming and outgoing data, fluid defines tr
 ```python
 # Start training
  outs = exe.run(
-      feed={'x':train_data,'y':y_true},
+     feed={'x':train_data,'y':y_true},
      fetch_list=[y_predict.name,avg_cost.name])
 ```
 The above code defines that train_data is to be passed into the x variable, y_true is to be passed into the y variable, and output the predicted value of y and the last round value of cost.

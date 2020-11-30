@@ -5,6 +5,12 @@ affine_grid
 
 .. py:function:: paddle.fluid.layers.affine_grid(theta, out_shape, name=None)
 
+:alias_main: paddle.nn.functional.affine_grid
+:alias: paddle.nn.functional.affine_grid,paddle.nn.functional.vision.affine_grid
+:old_api: paddle.fluid.layers.affine_grid
+
+
+
 该OP用于生成仿射变换前后的feature maps的坐标映射关系。在视觉应用中，根据该OP得到的映射关系，将输入feature map的像素点变换到对应的坐标，就得到了经过仿射变换的feature map。
 
 参数：

@@ -3,9 +3,12 @@
 StaticRNN
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.layers.StaticRNN(name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该OP用来处理一批序列数据，其中每个样本序列的长度必须相等。StaticRNN将序列按照时间步长展开，用户需要定义每个时间步中的处理逻辑。
 

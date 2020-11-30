@@ -5,6 +5,9 @@ batch
 
 .. py:function:: paddle.fluid.io.batch(reader, batch_size, drop_last=False)
 
+
+
+
 该接口是一个reader的装饰器。返回的reader将输入reader的数据打包成指定的batch_size大小的批处理数据（batched data）。
 
 参数：

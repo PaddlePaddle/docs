@@ -5,6 +5,12 @@ reciprocal
 
 .. py:function:: paddle.fluid.layers.reciprocal(x, name=None)
 
+:alias_main: paddle.reciprocal
+:alias: paddle.reciprocal,paddle.tensor.reciprocal,paddle.tensor.math.reciprocal
+:old_api: paddle.fluid.layers.reciprocal
+
+
+
 reciprocal 对输入Tensor取倒数
 
 
@@ -23,17 +29,14 @@ reciprocal 对输入Tensor取倒数
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        data = fluid.layers.fill_constant(shape=[2], value=4, dtype='float32') #data=[4.0, 4.0]
-        result = fluid.layers.reciprocal(data) # result=[0.25, 0.25]
+        import paddle
+        import numpy as np
 
-
-
-
-
-
-
-
+        paddle.enable_imperative()
+        x_data = np.array([1, 2, 3, 4]).astype(np.float32)
+        x = paddle.imperative.to_variable(x_data)
+        res = paddle.%s(x)
+        print(res.numpy())
 
 
 

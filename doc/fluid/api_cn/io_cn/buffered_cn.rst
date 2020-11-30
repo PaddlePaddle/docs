@@ -5,6 +5,9 @@ buffered
 
 .. py:function:: paddle.fluid.io.buffered(reader, size)
 
+
+
+
 创建一个缓存数据读取器，它读取数据并且存储进缓存区，从缓存区读取数据将会加速，只要缓存不是空的。
 
 参数:

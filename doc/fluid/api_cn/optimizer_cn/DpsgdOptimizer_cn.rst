@@ -5,6 +5,9 @@ DpsgdOptimizer
 
 .. py:class:: paddle.fluid.optimizer.DpsgdOptimizer(learning_rate=0.001, clip=0.9, batch_size=0.999, sigma=1e-8)
 
+
+
+
 Dpsgd优化器是参考CCS16论文 `《Deep Learning with Differential Privacy》 <https://arxiv.org/abs/1607.00133>`_ 相关内容实现的。
 
 其参数更新的计算公式如下:
@@ -54,7 +57,7 @@ Dpsgd优化器是参考CCS16论文 `《Deep Learning with Differential Privacy�
                 feed={'X': x},
                  fetch_list=[loss.name])
 
-.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None, grad_clip=None)
+.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 
 为网络添加反向计算过程，并根据反向计算所得的梯度，更新parameter_list中的Parameters，最小化网络损失值loss。
 
@@ -63,9 +66,8 @@ Dpsgd优化器是参考CCS16论文 `《Deep Learning with Differential Privacy�
     - **startup_program** (Program， 可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` ， 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`
     - **parameter_list** (list， 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set， 可选) – 不需要更新的Parameter或者Parameter.name组成集合，默认值为None
-    - **grad_clip** (GradClipBase， 可选) – 梯度裁剪的策略，静态图模式不需要使用本参数，当前本参数只支持在dygraph模式下的梯度裁剪，未来本参数可能会调整，默认值为None
-
-返回： (optimize_ops, params_grads)，数据类型为(list, list)，其中optimize_ops是minimize接口为网络添加的OP列表，params_grads是一个由(param, grad)变量对组成的列表，param是Parameter，grad是该Parameter对应的梯度值
+         
+返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
 **代码示例**：
 

@@ -5,6 +5,9 @@ XavierInitializer
 
 .. py:class:: paddle.fluid.initializer.XavierInitializer(uniform=True, fan_in=None, fan_out=None, seed=0)
 
+
+
+
 该类实现Xavier权重初始化方法（ Xavier weight initializer），Xavier权重初始化方法出自Xavier Glorot和Yoshua Bengio的论文 `Understanding the difficulty of training deep feedforward neural networks <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>`_
 
 该初始化函数用于保持所有层的梯度尺度几乎一致。

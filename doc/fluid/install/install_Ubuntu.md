@@ -57,15 +57,15 @@
         python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 * 默认提供的安装包需要计算机支持MKL
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/beginners_guide/install/install_script.md)。
+* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
 
 ## 选择CPU/GPU
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装CPU版的PaddlePaddle
 
 * 如果您的计算机有 NVIDIA® GPU，并且满足以下条件，推荐安装GPU版的PaddlePaddle
-	* **CUDA 工具包10.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
-	* **CUDA 工具包9.0配合cuDNN v7.3+(如需多卡支持，需配合NCCL2.3.7及更高)**
+	* **CUDA 工具包10.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
+	* **CUDA 工具包9.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
 	* **GPU运算能力超过1.0的硬件设备**
 
 
@@ -82,11 +82,9 @@
 
 ## 安装方式
 
-Ubuntu系统下有5种安装方式：
+Ubuntu系统下有3种安装方式：
 
 * pip安装（推荐）
-* [conda安装](./install_Conda.html)
-* [Docker安装](./install_Docker.html)
 * [源码编译安装](./compile/compile_Ubuntu.html#ubt_source)
 * [Docker源码编译安装](./compile/compile_Ubuntu.html#ubt_docker)
 
@@ -95,12 +93,12 @@ Ubuntu系统下有5种安装方式：
 ## 安装步骤
 
 * CPU版PaddlePaddle：
-  * 对于Python 2： `python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * 对于Python 3： `python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 2： `python -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 3： `python3 -m pip install paddlepaddle==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 * GPU版PaddlePaddle：
-  * 对于Python 2： `python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
-  * 对于Python 3： `python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 2： `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
+  * 对于Python 3： `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://mirror.baidu.com/pypi/simple` 或 `python3 -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple`
 
 您可[验证是否安装成功](#check)，如有问题请查看[FAQ](./FAQ.html)
 
@@ -108,7 +106,7 @@ Ubuntu系统下有5种安装方式：
 
 * 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
 
-* `python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle，如您对CUDA或cuDNN版本有不同要求，可用`python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`或 `python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple`命令来安装，版本号请见[这里](https://pypi.org/project/paddlepaddle-gpu#history)，关于paddlepaddle与CUDA, cuDNN版本的对应关系请见[安装包列表](./Tables.html#whls)
+* `python -m pip install paddlepaddle-gpu==2.0.0a0 -i https://pypi.tuna.tsinghua.edu.cn/simple` 此命令将安装支持CUDA 10.0 cuDNN v7的PaddlePaddle。
 
 
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](./Tables.html#ciwhls)

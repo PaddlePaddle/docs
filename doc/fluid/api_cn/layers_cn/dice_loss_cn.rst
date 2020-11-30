@@ -5,6 +5,12 @@ dice_loss
 
 .. py:function:: paddle.fluid.layers.dice_loss(input, label, epsilon=1e-05)
 
+:alias_main: paddle.nn.functional.dice_loss
+:alias: paddle.nn.functional.dice_loss,paddle.nn.functional.loss.dice_loss
+:old_api: paddle.fluid.layers.dice_loss
+
+
+
 该OP用来比较预测结果跟标签之间的相似度，通常用于二值图像分割，即标签为二值，也可以做多标签的分割。
 
 dice_loss定义为:

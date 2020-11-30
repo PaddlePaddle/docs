@@ -6,7 +6,13 @@ DataLoader
 .. py:class:: paddle.fluid.io.DataLoader
 
 
-.. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False)
+
+
+
+.. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
+
+.. note::
+    框架保证DataLoader的数据加载顺序与用户提供的数据源读取顺序一致。
 
 创建一个DataLoader对象用于加载Python生成器产生的数据。数据会由Python线程预先读取，并异步送入一个队列中。
 
@@ -26,12 +32,13 @@ DataLoader
     - **iterable** (bool) - 所创建的DataLoader对象是否可迭代。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。仅在iterable = True模式下有效。若return_list = False，每个设备上的返回数据均是str -> LoDTensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(LoDTensor)。推荐在静态图模式下使用return_list = False，在动态图模式下使用return_list = True。
     - **use_multiprocess** (bool) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有效, 在静态图模式下，该参数设置与否均无任何影响。默认值为False。
+    - **drop_last** (bool): 是否丢弃最后的不足CPU/GPU设备数的批次。默认值为True。在网络训练时，用户不能设置drop_last=False，此时所有CPU/GPU设备均应从DataLoader中读取到数据。在网络预测时，用户可以设置drop_last=False，此时最后不足CPU/GPU设备数的批次可以进行预测。
 
 返回: 被创建的DataLoader对象
 
 返回类型: loader (DataLoader)
 
-**代码示例**
+**代码示例 1**
 
 .. code-block:: python
 
@@ -163,6 +170,50 @@ DataLoader
                     assert image.shape == [BATCH_SIZE, 784]
                     assert label.shape == [BATCH_SIZE, 1]
                     assert relu.shape == [BATCH_SIZE, 784]
+
+
+**代码示例 2**
+
+.. code-block:: python
+
+            import paddle.fluid as fluid
+            import numpy as np
+            import os
+
+            # We use 2 CPU cores to run inference network
+            os.environ['CPU_NUM'] = '2'
+
+            # The data source has only 3 batches, which can not be
+            # divided evenly to each CPU core
+            def batch_generator():
+                for i in range(3):
+                    yield np.array([i+1]).astype('float32'),
+
+            x = fluid.data(name='x', shape=[None], dtype='float32')
+            y = x * x
+
+            def run_inference(drop_last):
+                loader = fluid.io.DataLoader.from_generator(feed_list=[x],
+                        capacity=8, drop_last=drop_last)
+                loader.set_batch_generator(batch_generator, fluid.cpu_places())
+
+                exe = fluid.Executor(fluid.CPUPlace())
+                prog = fluid.CompiledProgram(fluid.default_main_program())
+                prog = prog.with_data_parallel()
+
+                result = []
+                for data in loader():
+                    each_ret, = exe.run(prog, feed=data, fetch_list=[y])
+                    result.extend(each_ret)
+                return result
+
+            # Set drop_last to True, so that the last batch whose
+            # number is less than CPU core number would be discarded.
+            print(run_inference(drop_last=True)) # [1.0, 4.0]
+
+            # Set drop_last to False, so that the last batch whose
+            # number is less than CPU core number can be tested.
+            print(run_inference(drop_last=False)) # [1.0, 4.0, 9.0]
 
 
 .. py:method:: from_dataset(dataset, places, drop_last=True)

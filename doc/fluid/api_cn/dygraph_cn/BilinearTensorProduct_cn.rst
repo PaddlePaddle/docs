@@ -5,6 +5,12 @@ BilinearTensorProduct
 
 .. py:class:: paddle.fluid.dygraph.BilinearTensorProduct(input1_dim, input2_dim, output_dim, name=None, act=None, param_attr=None, bias_attr=None, dtype="float32")
 
+:alias_main: paddle.nn.BilinearTensorProduct
+:alias: paddle.nn.BilinearTensorProduct,paddle.nn.layer.BilinearTensorProduct,paddle.nn.layer.common.BilinearTensorProduct
+:old_api: paddle.fluid.dygraph.BilinearTensorProduct
+
+
+
 该接口用于构建 ``BilinearTensorProduct`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。双线性乘积计算式子如下。
 
 .. math::

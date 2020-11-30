@@ -10,6 +10,9 @@ default_startup_program
 
 
 
+
+
+
 该函数可以获取默认/全局 startup :ref:`cn_api_fluid_Program` (初始化启动程序)。
 
  :ref:`_cn_api_fluid_layers` 中的函数会新建参数或 :ref:`cn_api_paddle_data_reader_reader` (读取器) 或 `NCCL <https://developer.nvidia.com/nccl>`_ 句柄作为全局变量。

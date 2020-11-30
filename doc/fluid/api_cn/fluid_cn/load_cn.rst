@@ -5,6 +5,10 @@ load
 
 .. py:function:: paddle.fluid.load(program, model_path, executor=None, var_list=None)
 
+:api_attr: 声明式编程模式（静态图)
+
+
+
 该接口从Program中过滤出参数和优化器信息，然后从文件中获取相应的值。
 
 如果Program和加载的文件之间参数的维度或数据类型不匹配，将引发异常。

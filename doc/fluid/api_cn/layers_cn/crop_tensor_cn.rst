@@ -5,6 +5,12 @@ crop_tensor
 
 .. py:function:: paddle.fluid.layers.crop_tensor(x, shape=None, offsets=None, name=None)
 
+:alias_main: paddle.crop_tensor
+:alias: paddle.crop_tensor,paddle.tensor.crop_tensor,paddle.tensor.creation.crop_tensor
+:old_api: paddle.fluid.layers.crop_tensor
+
+
+
 根据偏移量（offsets）和形状（shape），裁剪输入（x）Tensor。
 
 **示例**：
@@ -98,7 +104,7 @@ crop_tensor
     # crop3.shape = [-1, 2, 3]
 
     # offsets is a list in which each element is a constant or Tensor
-    offsets_var =  fluid.data(name="dim1", shape=[1], dtype="int32")
+    offsets_var =  fluid.data(name="offset", shape=[1], dtype="int32")
     crop4 = fluid.layers.crop_tensor(x, shape=[-1, 2, 3], offsets=[0, 1, offsets_var])
     # crop4.shape = [-1, 2, 3]
 

@@ -3,9 +3,12 @@
 autoincreased_step_counter
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.autoincreased_step_counter(counter_name=None, begin=1, step=1)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 创建一个自增变量，每个迭代累加一次，默认首次返回值为 1，默认累加步长为 1。
 

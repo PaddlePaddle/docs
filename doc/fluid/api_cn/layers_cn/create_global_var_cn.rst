@@ -5,6 +5,9 @@ create_global_var
 
 .. py:function:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
+
+
+
 该OP在全局块中创建一个新的Tensor，Tensor的值为 ``value`` 。
 
 参数：
@@ -26,7 +29,7 @@ create_global_var
     import paddle.fluid as fluid
     import paddle.fluid.layers as layers
     var = layers.create_global_var(shape=[2,3], value=1.0, dtype='float32',
-                     persistable=True, force_cpu=True, name='new_var')
+                                   persistable=True, force_cpu=True, name='new_var')
 
 
 

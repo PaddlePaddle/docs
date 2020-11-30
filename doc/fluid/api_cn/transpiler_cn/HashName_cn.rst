@@ -3,9 +3,12 @@
 HashName
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.transpiler.HashName(pserver_endpoints)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该方法使用 python ``Hash()`` 函数将变量散列到多个parameter server节点。
 

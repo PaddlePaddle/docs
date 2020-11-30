@@ -1,34 +1,33 @@
-***
 # **Compile on MacOS from Source Code**
 
-This instruction will show you how to compile PaddlePaddle on *64-bit desktops or laptops* and MacOS systems. The MacOS systems we support need to meet the following requirements:
+## Environment preparation
 
-* MacOS 10.12/10.13/10.14 (this involves whether the related tools can be installed normally)
+* **MacOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip or pip3 version 9.0.1+ (64 bit)**
 
-## Determine which version to compile
+## Choose CPU/GPU
 
-* **Only PaddlePaddle for CPU is supported.**
+* Currently, only PaddlePaddle for CPU is supported.
 
-## Choose a compilation method
+## Installation steps
+There are two compilation methods in MacOS system:
 
-Under the MacOS 10.12/10.13/10.14 system we offer 2 ways to compile:
+* Compile with docker
+* Local compilation
 
-* Docker source compilation (this image already contains python2.7, python3.6, python3.7 environment)
-* Direct source code compilation
-
-
-We recommend **using Docker for compilation** because we are installing both the tools and the configuration in a Docker image. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
-
-Also for those who can't install Docker for a variety of reasons, we also provide a way to **compile directly from local sources**, but since the situation on this machine is more complicated, we only support specific systems.
-
-<br/><br/>
+<a name="mac_docker"></a>
 ### ***Compile with Docker***
 
-In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on **installing and using Docker**, please refer to the [official Docker documentation](https://docs.docker.com/install/).
+[Docker](https://docs.docker.com/install/) is an open source application container engine. Using docker, you can not only isolate the installation and use of paddlepaddle from the system environment, but also share GPU, network and other resources with the host
 
-> Please note that running Docker on MacOS requires logging in with your dockerID, otherwise an Authenticate Failed error will occur.
+Compiling PaddlePaddle with Docker，you need:
 
-Once you have **properly installed Docker**, you can start **compiling PaddlePaddle with Docker**:
+- On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
+
+- Log in to Docker with Docker ID to avoid `Authenticate Failed` error
+
+Please follow the steps below to install:
 
 1. Enter the terminal of the Mac
 
@@ -38,27 +37,40 @@ Once you have **properly installed Docker**, you can start **compiling PaddlePad
 
 3. Go to the Paddle directory: `cd Paddle`
 
-4. Take advantage of the image we provided (with this command you don't have to download the image in advance):
+4. Create and enter a Docker container that meets the compilation environment:
 
-    `docker run --name paddle-test -v $PWD:/paddle --network=host -it` `hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
+    `docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
 
-    > --name paddle-test Name the Docker container you created as paddle-test, -v $PWD:/paddle mount the current directory to the /paddle directory in the Docker container (the PWD variable in Linux will expand to the current path's [Absolute path](https://baike.baidu.com/item/绝对路径/481185)), -it keeps interacting with the host, `hub.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `hub.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
+    > --name paddle-test name the Docker container you created as paddle-test, 
 
-5. After entering Docker, go to the paddle directory: `cd paddle`
+    > -v $PWD:/paddle mount the current directory to the /paddle directory in the Docker container (the PWD variable in Linux will expand to the current path's [Absolute path](https://baike.baidu.com/item/绝对路径/481185)), 
+
+    > -it keeps interacting with the host, `hub.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `hub.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
+
+5. After entering Docker, go to the paddle directory: 
+
+	`cd paddle`
 
 6. Switch to a more stable version to compile:
 
-    `git checkout v1.1`
+    `git checkout [name of the branch]`
+
+    For example：
+
+    `git checkout release/1.5`
+
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch
 
 7. Create and enter the /paddle/build path:
 
     `mkdir -p /paddle/build && cd /paddle/build`
 
-8. Use the following command to install the dependencies: (For Python3: Please select the pip for the python version you wish to use, such as pip3.5, pip3.6)
+8. Use the following command to install the dependencies:
 
+		For Python2: pip install protobuf==3.1.0
+		For Python3: pip3.5 install protobuf==3.1.0
 
-        For Python2: pip install protobuf==3.1.0
-        For Python3: pip3.5 install protobuf==3.1.0
+    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
 
     > Install protobuf 3.1.0.
 
@@ -69,12 +81,13 @@ Once you have **properly installed Docker**, you can start **compiling PaddlePad
 9. Execute cmake:
 
     > For details on the compilation options, see the [compilation options table](../Tables_en.html/#Compile).
+    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
-        `cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release`
 
-        > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS.
+		> We currently do not support the compilation of the GPU version PaddlePaddle under CentOS.
 
 10. Execute compilation:
 
@@ -87,23 +100,22 @@ Once you have **properly installed Docker**, you can start **compiling PaddlePad
 12. Install the compiled `.whl` package on the current machine or target machine: (For Python3: Please select the pip corresponding to the python version you wish to use, such as pip3.5, pip3.6)
 
 
-        For Python2: pip install (whl package name)
-        For Python3: pip3.5 install (whl package name)
+        For Python2: pip install -U (whl package name)
+        For Python3: pip3.5 install -U (whl package name)
 
+        Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
 
-Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
+Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
 > Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
 
-Congratulations, you have now completed the process of compiling PaddlePaddle using Docker.
-
-
+<a name="mac_source"></a>
 <br/><br/>
-### ***Native compilation***
+### ***Local compilation***
 
 **Please strictly follow the order of the following instructions**
 
-1. Check that your computer and operating system meet our supported compilation standards: `uname -m` and view the system version `about this Mac`. And install openCV in advance.
+1. Check that your computer and operating system meet our supported compilation standards: `uname -m` and view the system version `about this Mac`. And install [OpenCV](https://opencv.org/releases.html) in advance.
 
 2. Install python and pip:
 
@@ -132,7 +144,7 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
     - d. Set PYTHON_INCLUDE_DIR: `export PYTHON_INCLUDE_DIRS=[python-include-path]`
 
-    - e. Set the system environment variable path: `export PATH=[python-bin-path]:$PATH` (here [python-bin-path] is the result of replacing the last two levels of [python-lib-path] with the path after /bin/ )
+    - e. Set the system environment variable path: `export PATH=[python-bin-path]:$PATH` (here [python-bin-path] is the result of replacing the last two levels of [python-lib-path] with the path after /bin/)
 
     - f. Set the dynamic library link: `export LD_LIBRARY_PATH=[python-ld-path]` and `export DYLD_LIBRARY_PATH=[python-ld-path]` (here [python-ld-path] is the [python-bin-path]'s parent directory )
 
@@ -161,7 +173,13 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch)
 
-    `git checkout release/1.2`
+    `git checkout [name of the branch]`
+
+    For example：
+
+    `git checkout release/1.5`
+
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch
 
 8. And please create and enter a directory called build:
 
@@ -175,8 +193,8 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 
             For Python2: cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-            For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \-DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-
+            For Python3: cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+            -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
     > ``-DPY_VERSION=3.5`` Please change to the Python version of the installation environment.
 
@@ -188,7 +206,7 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 12. Install the compiled `.whl` package on the current machine or target machine:
 
-    `pip install (whl package name)` or `pip3 install (whl package name)`
+    `pip install -U (whl package name)` or `pip3 install -U (whl package name)`
 
     > If you have multiple python environments and pips installed on your computer, please see the [FAQ](../Tables.html/#MACPRO).
 
@@ -197,7 +215,9 @@ Congratulations, now you have completed the process of compiling PaddlePaddle us
 <br/><br/>
 ### ***Verify installation***
 
-After the installation is complete, you can use `python` to enter the Python interpreter and then use `import paddle.fluid` to verify that the installation was successful.
+After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid as fluid` and then  `fluid.install_check.run_check()` to verify that the installation was successful.
+
+If `Your Paddle Fluid is installed succesfully!` appears, it means the installation was successful.
 
 <br/><br/>
 ### ***How to uninstall***
@@ -205,3 +225,5 @@ After the installation is complete, you can use `python` to enter the Python int
 Please use the following command to uninstall PaddlePaddle (users who use Docker to install PaddlePaddle should use the following command in the container containing PaddlePaddle. Please use the corresponding version of pip):
 
 * ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
+
+Users installing PaddlePaddle with Docker, please use above commands in the container involved PaddlePaddle and attention to use the corresponding version of Pip

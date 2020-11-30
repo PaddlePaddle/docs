@@ -3,9 +3,12 @@
 sequence_expand_as
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.sequence_expand_as(x, y, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 进行扩展。当前实现要求 ``y`` 的lod层数（level）必须为1，且 ``x`` 的第一维必须和 ``y`` 的第0层lod大小相同，所以扩展后的LodTensor具有和 ``y`` 相同的lod。扩展结果与输入 ``x`` 的lod无关，所以无需考虑 ``x`` 的lod。
 

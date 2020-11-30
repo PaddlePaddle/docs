@@ -6,6 +6,12 @@ edit_distance
 
 .. py:function:: paddle.fluid.layers.edit_distance(input,label,normalized=True,ignored_tokens=None, input_length=None, label_length=None）
 
+:alias_main: paddle.nn.functional.edit_distance
+:alias: paddle.nn.functional.edit_distance,paddle.nn.functional.loss.edit_distance
+:old_api: paddle.fluid.layers.edit_distance
+
+
+
 该OP计算一批给定字符串及其参照字符串间的编辑距离。编辑距离也称Levenshtein距离，通过计算从一个字符串变成另一个字符串所需的最少操作步骤来衡量两个字符串的相异度。这里的操作包括插入、删除和替换。
 
 比如给定假设字符串A=“kitten”和参照字符串B=“sitting”，从A变换成B编辑距离为3，至少需要两次替换和一次插入：

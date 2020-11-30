@@ -3,9 +3,12 @@
 sequence_softmax
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.sequence_softmax(input, use_cudnn=False, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 .. note::
     该OP的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用 :ref:`cn_api_fluid_layers_softmax`

@@ -3,9 +3,12 @@
 IfElse
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.layers.IfElse(cond, name=None)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 该类用于实现IfElse分支控制功能， IfElse包含两个Block，true_block，false_block，IfElse会将满足True或False条件的数据分别放入不同的block运行。    
 

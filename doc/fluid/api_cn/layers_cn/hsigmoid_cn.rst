@@ -3,9 +3,12 @@
 hsigmoid
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.hsigmoid(input, label, num_classes, param_attr=None, bias_attr=None, name=None, path_table=None, path_code=None, is_custom=False, is_sparse=False)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 层次sigmoid（hierarchical sigmoid），该OP通过构建一个分类二叉树来降低计算复杂度，主要用于加速语言模型的训练过程。
 

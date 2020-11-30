@@ -3,9 +3,12 @@
 DataFeedDesc
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:class:: paddle.fluid.DataFeedDesc(proto_file)
+
+:api_attr: 声明式编程模式（静态图)
+
+
 
 描述训练数据的格式。输入是一个文件路径名，其内容是protobuf message。
 

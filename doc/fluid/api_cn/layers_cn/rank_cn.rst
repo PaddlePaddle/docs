@@ -3,24 +3,26 @@
 rank
 -------------------------------
 
-.. py:function::  paddle.fluid.layers.rank(input)
+.. py:function::  paddle.rank(input)
 
-该OP用于计算输入Tensor的维度（秩）。
+
+
+
+该OP用于计算输入Tensor的维度。
 
 参数：
-    - **input** (Variable) — 输入input是shape为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor，数据类型可以任意类型。
+    - **input** (Tensor) — 输入input是shape为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor，数据类型可以任意类型。
 
-返回：输出Tensor的秩，是一个0-D Tensor。
-
-返回类型：Variable，数据类型为int32。
+返回：Tensor，是一个0-D Tensor，数据类型为int32
 
 **代码示例**
 
 .. code-block:: python
 
-       import paddle.fluid as fluid
-       input = fluid.data(
-            name="input", shape=[3, 100, 100], dtype="float32")
-       rank = fluid.layers.rank(input) # rank=(4,)
+            import paddle
 
-
+            input = paddle.rand((3, 100, 100))
+            rank = paddle.rank(input)
+            print(rank)
+            # Tensor(shape=[], dtype=int32, place=CUDAPlace(0), stop_gradient=True,
+            #        3)

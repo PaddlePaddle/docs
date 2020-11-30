@@ -5,6 +5,12 @@ is_empty
 
 .. py:function:: paddle.fluid.layers.is_empty(x, cond=None)
 
+:alias_main: paddle.is_empty
+:alias: paddle.is_empty,paddle.tensor.is_empty,paddle.tensor.logic.is_empty
+:old_api: paddle.fluid.layers.is_empty
+
+
+
 测试变量是否为空
 
 参数：

@@ -1,109 +1,159 @@
-***
 # **Compile on Ubuntu from Source Code**
 
-This instruction describes how to compile PaddlePaddle on *64-bit desktops or laptops* and Ubuntu systems. The Ubuntu systems we support must meet the following requirements:
+## Environment preparation
 
-* Ubuntu 14.04/16.04/18.04 (this involves whether the related tools can be installed successfully)
+* **Ubuntu version (64 bit)**
+    * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1)**
+* **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **pip or pip3 version 9.0.1+ (64 bit)**
 
-## Determine which version to compile
+## Choose CPU/GPU
 
-* **CPU version of PaddlePaddle**, if your system does not have an NVIDIA® GPU, you must install this version. This version is easier than the GPU version. So even if you have a GPU on your computer, we recommend that you first install the CPU version of PaddlePaddle to check if your local environment is suitable.
+* If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
-* **GPU version of PaddlePaddle**, in order to make the PaddlePaddle program run more quickly, we usually use the GPU to accelerate the PaddlePaddle program, but the GPU version of PaddlePaddle needs to have the NVIDIA® GPU that meets the following conditions (see NVIDIA for the specific installation process and configuration). Official documentation: [For CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/), For [cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/))
+* If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
+    * **CUDA toolkit 10.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0 with cuDNN v7.3+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 8.0 with cuDNN v7.1+(for multi card support, NCCL2.1.15-2.2.13）**
+    * **Hardware devices with GPU computing power over 1.0**
 
-    * *CUDA Toolkit 9.0 with cuDNN v7*
-    * *CUDA Toolkit 8.0 with cuDNN v7*
-    * *Hardware devices with GPU compute capability exceeding 1.0*
+        You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-## Choose a compilation method
+* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under ubuntu 16.04, CUDA9 and cuDNN7). For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl):
 
-Under Ubuntu's system we offer 2 ways to compile:
 
-* Docker source compilation (this image already contains python2.7, python3.6, python3.7 environment)
+        wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+        dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+        sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
 
-* Direct native source code compilation (does not support GPU version under ubuntu18.04)
+## Installation steps
 
-We recommend using **Docker for compilation** because we are installing both the tools and the configuration in a Docker image. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker. Someone uses a virtual machine to analogize to Docker. It should be emphasized that Docker does not virtualize any hardware. The compiler tools running in the Docker container are actually running directly on the native CPU and operating system. The performance is the same as installing the compiler on the machine.
+There are two compilation methods in Ubuntu system:
 
-We also provide methods that can be **compiled from local source code**, but since the situation on host machine is more complicated, we only provide support for specific systems.
+* Compile with docker (GPU version under Ubuntu 18.04 is not supported temporarily)
+* Local compilation
 
-<br/><br/>
-## ***Compile with Docker***
+<a name="ubt_docker"></a>
+### **Compile with docker**
 
-In order to better use Docker and avoid problems, we recommend using **the highest version of Docker**. For details on **installing and using Docker**, please refer to [the official Docker documentation](https://docs.docker.com/install/).
+[Docker](https://docs.docker.com/install/) is an open source application container engine. Using docker, you can not only isolate the installation and use of paddlepaddle from the system environment, but also share GPU, network and other resources with the host
 
-> Please note that to install and use the PaddlePaddle version that supports GPU, you must first install nvidia-docker
+Compiling PaddlePaddle with Docker，you need:
 
-Once you have **properly installed Docker**, you can start **compiling PaddlePaddle with Docker**:
+- On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
-1. First select the path where you want to store PaddlePaddle, then use the following command to clone PaddlePaddle's source code from github to a folder named Paddle in the local current directory:
+- To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+
+Please follow the steps below to install:
+
+1. First, select the path where you want to store PaddlePaddle, and then use the following command to clone the source code of PaddlePaddle from GitHub to the folder named Paddle under the current local directory:
 
     `git clone https://github.com/PaddlePaddle/Paddle.git`
 
-2. Go to the Paddle directory: `cd Paddle`
+2. Enter the Paddle Directory: `cd Paddle`
 
-3. Take advantage of the image we provided (with this command you don't have to download the image in advance):
+3. Create and enter a Docker container that meets the compilation environment:
 
-    `docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
+    * Compile CPU version of PaddlePaddle:
 
-    > --name paddle-test names the Docker container you created as paddle-test, -v $PWD:/paddle mounts the current directory to the /paddle directory in the Docker container (the PWD variable in Linux will expand to the current path's [absolute path](https://baike.baidu.com/item/%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84/481185)), -it keeps interacting with the host, `hub.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `hub.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash Starts the /bin/bash command after entering the container.
 
-4. After entering Docker, go to the paddle directory: `cd paddle`
 
-5. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch)
+        `docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
 
-    `git checkout release/1.2`
+        > --name paddle-test names the Docker container you created as paddle-test;
 
-6. Create and enter the /paddle/build path:
+
+        > -v $PWD:/paddle mount the current directory to the /paddle directory in the docker container (PWD variable in Linux will be expanded to [absolute path](https://baike.baidu.com/item/绝对路径/481185) of the current path);
+
+
+        > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+
+
+    * Compile GPU version of PaddlePaddle:
+
+
+
+        `nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
+
+        > --name paddle-test names the Docker container you created as paddle-test;
+
+
+        > -v $PWD:/paddle mount the current directory to the /paddle directory in the docker container (PWD variable in Linux will be expanded to [absolute path](https://baike.baidu.com/item/绝对路径/481185) of the current path);
+
+
+        > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+
+
+        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
+
+4. After entering Docker, enter the Paddle Directory:
+
+    `cd paddle`
+
+5. Switch to a more stable release branch for compilation:
+
+    `git checkout [name of the branch]`
+
+    For example：
+
+    `git checkout release/1.5`
+
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch
+
+6. Create and enter /paddle/build Directory:
 
     `mkdir -p /paddle/build && cd /paddle/build`
 
-7. Use the following command to install the dependencies: (For Python3: Please select the pip for the python version you wish to use, such as pip3.5, pip3.6)
+7. Use the following command to install dependencies:
 
-        For Python2: pip install protobuf==3.1.0
-        For Python3: pip3.5 install protobuf==3.1.0
+        For Python2: pip install protobuf
+        For Python3: pip3.5 install protobuf
 
+    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
 
-    > Install protobuf 3.1.0.
+    > Install protobuf
 
     `apt install patchelf`
 
-    > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
+    > Install patchelf
+    This is a small but useful program, it can be used to modify dynamic linker and RPATH of ELF executable
 
-8. Execute cmake:
+8. Execute cmake：
 
-    > For the meaning of the specific compiling options, [compilation options table](../Tables.html/#Compile) is your resort. Please note that the parameter `-DPY_VERSION` is the python version used in your current environment.
+    > For the specific meaning of compilation options, you can read [Compile options table](../Tables.html#Compile)
 
-    * For users who need to compile the **CPU version PaddlePaddle**:
+    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
 
-        `cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    *  Compile**CPU version of PaddlePaddle**:
 
-    * For users who need to compile the **GPU version PaddlePaddle**:
+        `cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
-        `cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    *  Compile**GPU version of PaddlePaddle**：
 
-9. Execute compilation:
+        `cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+
+9. Execute compiling：
 
     `make -j$(nproc)`
 
     > Use multicore compilation
 
-10. After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package: `cd /paddle/build/python/dist`
+10. after compiling successful, enter `/paddle/build/python/dist` Directory and find generated `.whl` package: `cd /paddle/build/python/dist`
 
-11. Install the compiled `.whl` package on the current machine or target machine: (For Python3: Please select the pip corresponding to the python version you wish to use, such as pip3.5, pip3.6)
+11. Install the compiled `.whl` package on the current machine or target machine:
 
-        For Python2: pip install (whl package name)
-        For Python3: pip3.5 install (whl package name)
+        For Python2: pip install -U（whl package name）
+        For Python3: pip3.5 install -U（whl package name）
 
+    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
 
-Now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
+Congratulations, now you have completed the compilation and installation of PaddlePaddle. You only need to enter the Docker container and run PaddlePaddle to start using. For more Docker usage, please refer to [official docker documentation](https://docs.docker.com)
 
 > Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
 
-Congratulations, you have now completed the process of compiling PaddlePaddle using Docker.
-
-
-<br/><br/>
+<a name="ubt_source"></a>
 ### ***Local compilation***
 
 **Please strictly follow the following instructions step by step**
@@ -114,26 +164,29 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 
 3. We support compiling and installing with virtualenv. First, create a virtual environment called `paddle-venv` with the following command:
 
-    * a. Install Python-dev: (Please install python3.x-dev that matches the current environment python version)
+    * a. Install Python-dev: (Please note that gcc4.8 is not supported in python2.7 under Ubuntu 16.04, please use gcc5.4 to compile Paddle)
 
             For Python2: apt install python-dev
             For Python3: apt install python3.5-dev
 
-    * b. Install pip: (Please ensure that pip version is 9.0.1 and above ): (Please note that the version corresponding to python3 is modified)
+    * b. Install pip: (Please ensure that pip version is 9.0.1 and above ):
 
             For Python2: apt install python-pip
             For Python3: apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt install curl && curl https://bootstrap.pypa.io/get-pip. Py -o - | python3.5 && easy_install pip
 
 
-    * c. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv` (please note the python version) :
+    * c. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv` :
 
-        1. `apt install virtualenv` or `pip install virtualenv` or `pip3 install virtualenv`
+        1.  `apt install virtualenv` or `pip install virtualenv` or `pip3 install virtualenv`
         2. `apt install virtualenvwrapper` or `pip install virtualenvwrapper` or `pip3 install virtualenvwrapper`
         3. Find `virtualenvwrapper.sh`: `find / -name virtualenvwrapper.sh`
         4. (Only for Python3) Set the interpreter path for the virtual environment: `export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5`
-        5. See the installation method in `virtualenvwrapper.sh`: `cat virtualenvwrapper.sh`
+        5. See the installation method in `virtualenvwrapper.sh`: `cat virtualenvwrapper.sh`, this shell file describes the steps and commands
         6. Install `virtualwrapper` according to the installation method in `virtualenvwrapper.sh`
-        7. Create a virtual environment called `paddle-venv`: `mkvirtualenv paddle-venv`
+        7. Set VIRTUALENVWRAPPER_PYTHON：`export VIRTUALENVWRAPPER_PYTHON=[python-lib-path]:$PATH` （Here, replace the last two directories of [python-lib-path] with /bin/)
+        8. Create a virtual environment called `paddle-venv`: `mkvirtualenv paddle-venv`
+
+    Note: for the above commands involving Python 3, we use Python 3.5 as an example. If your Python version is 3.6 / 3.7, please change Python 3.5 in the above commands to Python 3.6 / Python 3.7
 
 4. Enter the virtual environment: `workon paddle-venv`
 
@@ -154,6 +207,10 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
 7. Switch to a more stable release branch to compile, replacing the brackets and their contents with **the target branch name**:
 
     - `git checkout [name of target branch]`
+
+    For example:
+
+    `git checkout release/1.5`
 
 8. And please create and enter a directory called build:
 
@@ -185,11 +242,15 @@ Congratulations, you have now completed the process of compiling PaddlePaddle us
                 For Python3: cmake .. -DPY_VERSION=3.5 -DWITH_FLUID_ONLY=ON -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 
 
-            > `-DPY_VERSION=3.5` Please change to the Python version of the installation environment
+    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
 
 10. Compile with the following command:
 
     `make -j$(nproc)`
+
+    > compile using multi-core
+
+    > If “Too many open files” error is displayed during compilation, please use the instruction ulimit -n 8192  to increase the number of files allowed to be opened by the current process. Generally speaking, 8192 can ensure the completion of compilation.
 
 11. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package: `cd /paddle/build/python/dist`
 
@@ -202,12 +263,16 @@ Congratulations, now you have completed the process of compiling PaddlePaddle na
 <br/><br/>
 ### ***Verify installation***
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` to verify that the installation was successful.
+After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid as fluid` and then  `fluid.install_check.run_check()` to verify that the installation was successful.
+
+If `Your Paddle Fluid is installed succesfully!` appears, it means the installation was successful.
 
 <br/><br/>
 ### ***How to uninstall***
-Please use the following command to uninstall PaddlePaddle (users who use Docker to install PaddlePaddle should use the following command in the container containing PaddlePaddle. Please use the corresponding version of pip):
+Please use the following command to uninstall PaddlePaddle:
 
 - ***CPU version of PaddlePaddle***: `pip uninstall paddlepaddle` or `pip3 uninstall paddlepaddle`
 
 - ***GPU version of PaddlePaddle***: `pip uninstall paddlepaddle-gpu` or `pip3 uninstall paddlepaddle-gpu`
+
+Users installing PaddlePaddle with Docker, please use above commands in the container involved PaddlePaddle and attention to use the corresponding version of Pip

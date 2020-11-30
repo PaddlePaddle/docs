@@ -3,9 +3,11 @@
 data
 -------------------------------
 
-**注意：该API仅支持【静态图】模式**
 
 .. py:function:: paddle.fluid.layers.data(name, shape, append_batch_size=True, dtype='float32', lod_level=0, type=VarType.LOD_TENSOR, stop_gradient=True)
+
+
+
 
 该OP会在全局block中创建变量（Variable），该全局变量可被计算图中的算子（operator）访问。
 

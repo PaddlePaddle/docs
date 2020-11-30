@@ -5,6 +5,12 @@ box_clip
 
 .. py:function:: paddle.fluid.layers.box_clip(input, im_info, name=None)
 
+:alias_main: paddle.nn.functional.box_clip
+:alias: paddle.nn.functional.box_clip,paddle.nn.functional.vision.box_clip
+:old_api: paddle.fluid.layers.box_clip
+
+
+
 将检测框框剪切为 ``im_info`` 给出的大小。对于每个输入框，公式如下：
 
 ::

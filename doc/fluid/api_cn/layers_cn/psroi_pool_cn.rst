@@ -5,6 +5,12 @@ psroi_pool
 
 .. py:function:: paddle.fluid.layers.psroi_pool(input, rois, output_channels, spatial_scale, pooled_height, pooled_width, name=None)
 
+:alias_main: paddle.nn.functional.psroi_pool
+:alias: paddle.nn.functional.psroi_pool,paddle.nn.functional.vision.psroi_pool
+:old_api: paddle.fluid.layers.psroi_pool
+
+
+
 **注意 rois必须为2维LoDTensor，lod_level为1**
 
 该OP执行PSROIPooling运算，是位置敏感的感兴趣区域池化方法（Position sensitive region of interest pooling，也称为PSROIPooling）。输入input是位置敏感的评分图，输入rois是感兴趣区域的位置坐标。PSROIPooling不同于普通ROIPooling的地方在于，输入input特征图的不同通道会跟输出特征图上的位置区域相关联，该方法是在R-FCN模型中首次提出来的，更多详细信息请参阅 https://arxiv.org/abs/1605.06409。

@@ -5,6 +5,12 @@ elementwise_div
 
 .. py:function:: paddle.fluid.layers.elementwise_div(x, y, axis=-1, act=None, name=None)
 
+:alias_main: paddle.elementwise_div
+:alias: paddle.elementwise_div,paddle.tensor.elementwise_div,paddle.tensor.math.elementwise_div
+:old_api: paddle.fluid.layers.elementwise_div
+
+
+
 该OP是逐元素相除算子，输入 ``x`` 与输入 ``y`` 逐元素相除，并将各个位置的输出元素保存到返回结果中。
 
 等式是：
@@ -101,7 +107,7 @@ elementwise_div
             "y": np.random.randint(1, 5, size=[5]).astype('float32')
         }
     x = fluid.layers.data(name="x", shape=[2,3,4,5], dtype='float32')
-    y = fluid.layers.data(name="y", shape=[3,4], dtype='float32')
+    y = fluid.layers.data(name="y", shape=[5], dtype='float32')
     z = fluid.layers.elementwise_div(x, y, axis=3)
     # z = x / y
     place = fluid.CPUPlace()

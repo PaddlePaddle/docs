@@ -5,6 +5,9 @@ load
 
 .. py:function:: paddle.fluid.layers.load(out, file_path, load_as_fp16=None)
 
+
+
+
 该OP操作将从磁盘文件中加载LoDTensor/SelectedRows变量。
 
 

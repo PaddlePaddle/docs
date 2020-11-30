@@ -5,6 +5,12 @@ iou_similarity
 
 .. py:function:: paddle.fluid.layers.iou_similarity(x, y, box_normalized=True, name=None)
 
+:alias_main: paddle.nn.functional.iou_similarity
+:alias: paddle.nn.functional.iou_similarity,paddle.nn.functional.loss.iou_similarity
+:old_api: paddle.fluid.layers.iou_similarity
+
+
+
 **IOU Similarity Operator**
 
 计算两个框列表的intersection-over-union(IOU)。框列表 :math:`X` 应为LoDTensor， :math:`Y` 是普通张量， :math:`X` 成批输入的所有实例共享 :math:`Y` 中的框。给定框A和框B，IOU的运算如下：

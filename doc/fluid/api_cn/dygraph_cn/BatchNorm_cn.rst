@@ -5,6 +5,12 @@ BatchNorm
 
 .. py:class:: paddle.fluid.dygraph.BatchNorm(num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False, trainable_statistics=False)
 
+:alias_main: paddle.nn.BatchNorm
+:alias: paddle.nn.BatchNorm,paddle.nn.layer.BatchNorm,paddle.nn.layer.norm.BatchNorm
+:old_api: paddle.fluid.dygraph.BatchNorm
+
+
+
 该接口用于构建 ``BatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
 当use_global_stats = False时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是minibatch的统计数据。计算公式如下：

@@ -5,6 +5,9 @@ TruncatedNormalInitializer
 
 .. py:class:: paddle.fluid.initializer.TruncatedNormalInitializer(loc=0.0, scale=1.0, seed=0)
 
+
+
+
 Random Truncated Normal(高斯)分布初始化函数
 
 参数：

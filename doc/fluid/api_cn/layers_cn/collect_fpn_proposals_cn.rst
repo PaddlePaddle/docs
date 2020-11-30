@@ -5,6 +5,12 @@ collect_fpn_proposals
 
 .. py:function:: paddle.fluid.layers.collect_fpn_proposals(multi_rois, multi_scores, min_level, max_level, post_nms_top_n, name=None)
 
+:alias_main: paddle.nn.functional.collect_fpn_proposals
+:alias: paddle.nn.functional.collect_fpn_proposals,paddle.nn.functional.vision.collect_fpn_proposals
+:old_api: paddle.fluid.layers.collect_fpn_proposals
+
+
+
 **该op仅支持LoDTensor输入**。连接多级RoIs（感兴趣区域）并依据multi_scores选择N个RoIs。此操作执行以下步骤：
 1、选择num_level个RoIs和scores作为输入：num_level = max_level - min_level
 2、连接num_level个RoIs和scores。

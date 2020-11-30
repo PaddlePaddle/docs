@@ -27,7 +27,7 @@ Fluid提供了高度优化的[C++预测库](./native_infer.html)，为了方便�
 * `void PD_DisableGpu(PD_AnalysisConfig* config)`: 禁用GPU。
 * `int PD_GpuDeviceId(const PD_AnalysisConfig* config)`: 返回使用的GPU设备的ID。
 * `void PD_SwitchIrOptim(PD_AnalysisConfig* config, bool x)`: 设置预测是否开启IR优化。
-* `void PD_EnableTensorRtEngine(PD_AnalysisConfig* config, int workspace_size, int max_batch_size, int min_subgraph_size, Precision precision, bool use_static, bool use_calib_mode)`: 开启TensorRT。关于参数的解释，详见``使用Paddle-TensorRT库预测``。
+* `void PD_EnableTensorRtEngine(PD_AnalysisConfig* config, int workspace_size, int max_batch_size, int min_subgraph_size, Precision precision, bool use_static, bool use_calib_mode)`: 开启TensorRT。关于参数的解释，详见[使用Paddle-TensorRT库预测](../../performance_improving/inference_improving/paddle_tensorrt_infer.html)。
 * `void PD_EnableMKLDNN(PD_AnalysisConfig* config)`: 开启MKLDNN。
 
 #### 代码示例

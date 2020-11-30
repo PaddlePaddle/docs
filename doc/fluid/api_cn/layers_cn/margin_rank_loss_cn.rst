@@ -5,6 +5,12 @@ margin_rank_loss
 
 .. py:function:: paddle.fluid.layers.margin_rank_loss(label, left, right, margin=0.1, name=None)
 
+:alias_main: paddle.nn.functional.margin_rank_loss
+:alias: paddle.nn.functional.margin_rank_loss,paddle.nn.functional.loss.margin_rank_loss
+:old_api: paddle.fluid.layers.margin_rank_loss
+
+
+
 margin rank loss（间隔排序损失）层。在排序问题中，它可以比较来自排序网络的输入 ``left`` 和输入 ``right`` 的得分。
 
 可用如下等式定义：

@@ -5,6 +5,12 @@ round
 
 .. py:function:: paddle.fluid.layers.round(x, name=None)
 
+:alias_main: paddle.round
+:alias: paddle.round,paddle.tensor.round,paddle.tensor.math.round
+:old_api: paddle.fluid.layers.round
+
+
+
 
 该OP将输入中的数值四舍五入到最接近的整数数值。
 
