@@ -76,7 +76,6 @@ IterableDataset
     dataset = SplitedIterableDataset(start=2, end=9)
     dataloader = DataLoader(
         dataset,
-        places=place,
         num_workers=2,
         batch_size=1,
         drop_last=True)
@@ -122,7 +121,6 @@ IterableDataset
 
     dataloader = DataLoader(
         dataset,
-        places=place,
         num_workers=2,
         batch_size=1,
         drop_last=True,
