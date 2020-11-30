@@ -75,7 +75,7 @@ Bfloat16 inference support has been added for the following operators:
 
 #### Model results
 
-The test with the image classification models has been already added to Paddle Paddle. The table below shows the results of the 4 models tested on a two-socket machine - ` Intel(R) Xeon(R) Platinum 8371HC CPU @ 3.30GHz`
+The test with the bfloat16 image classification models is added to PaddlePaddle release2.0 rc1 version. The table below shows the results of the 4 models tested on a two-socket machine - ` Intel(R) Xeon(R) Platinum 8371HC CPU @ 3.30GHz`
 
 ```
 batch_size=1  nr_threads=1
