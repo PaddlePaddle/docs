@@ -3,7 +3,7 @@
 stanh
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.stanh(x, scale_a=0.67, scale_b=1.7159, name=None)
+.. py:function:: paddle.stanh(x, scale_a=0.67, scale_b=1.7159, name=None)
 
 stanh 激活函数
 
