@@ -73,7 +73,6 @@ IterableDataset
             for i in range(iter_start, iter_end):
                 yield np.array([i])
 
-    place = paddle.CPUPlace()
     dataset = SplitedIterableDataset(start=2, end=9)
     dataloader = DataLoader(
         dataset,
@@ -106,7 +105,6 @@ IterableDataset
             for i in range(self.start, self.end):
                 yield np.array([i])
 
-    place = paddle.CPUPlace()
     dataset = RangeIterableDataset(start=2, end=9)
 
     def worker_init_fn(worker_id):
