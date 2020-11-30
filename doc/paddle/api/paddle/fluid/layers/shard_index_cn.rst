@@ -34,7 +34,7 @@ shard_index
 .. code-block:: python
 
     import paddle
-    label = paddle.to_tensor([32, 1], dtype="int64")
+    label = paddle.to_tensor([[16], [1]], dtype="int64")
     shard_label = paddle.shard_index(input=label,
                                      index_num=20,
                                      nshards=2,
