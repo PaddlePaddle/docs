@@ -35,7 +35,6 @@ Uniform
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
     from paddle.distribution import Uniform
 
@@ -51,8 +50,7 @@ Uniform
     u4 = Uniform(low=3.0, high=[5.0, 6.0, 7.0])
 
     # Complete example
-    value_npdata = np.array([0.8], dtype="float32")
-    value_tensor = paddle.to_tensor(value_npdata)
+    value_tensor = paddle.to_tensor([0.8], dtype="float32")
 
     uniform = Uniform([0.], [2.])
 

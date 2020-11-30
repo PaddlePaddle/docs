@@ -40,20 +40,19 @@ normalize
         import paddle
         import paddle.nn.functional as F
 
-        paddle.disable_static()
         x = np.arange(6, dtype=np.float32).reshape(2,3)
         x = paddle.to_tensor(x)
         y = F.normalize(x)
-        print(y.numpy())
+        print(y)
         # [[0.         0.4472136  0.8944272 ]
         # [0.42426404 0.5656854  0.7071067 ]]
 
         y = F.normalize(x, p=1.5)
-        print(y.numpy())
+        print(y)
         # [[0.         0.40862012 0.81724024]
         # [0.35684016 0.4757869  0.5947336 ]]
 
         y = F.normalize(x, axis=0)
-        print(y.numpy())
+        print(y)
         # [[0.         0.24253564 0.37139067]
         # [1.         0.97014254 0.9284767 ]]

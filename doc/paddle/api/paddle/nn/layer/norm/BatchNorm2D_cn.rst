@@ -62,12 +62,11 @@ BatchNorm2D
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     np.random.seed(123)
     x_data = np.random.random(size=(2, 1, 2, 3)).astype('float32')
     x = paddle.to_tensor(x_data) 
     batch_norm = paddle.nn.BatchNorm2D(1)
     batch_norm_out = batch_norm(x)
 
-    print(batch_norm_out.numpy())
+    print(batch_norm_out)
 

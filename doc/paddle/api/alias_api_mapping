@@ -409,6 +409,7 @@ paddle.fluid.layers.sqrt	paddle.sqrt,paddle.tensor.sqrt,paddle.tensor.math.sqrt
 paddle.tensor.manipulation.stack	paddle.stack,paddle.tensor.stack
 paddle.tensor.manipulation.unsqueeze	paddle.unsqueeze,paddle.tensor.unsqueeze
 paddle.tensor.math.add	paddle.add,paddle.tensor.add
+paddle.tensor.math.subtract	paddle.subtract,paddle.tensor.subtract
 paddle.nn.layer.common.Bilinear	paddle.nn.Bilinear,paddle.nn.layer.Bilinear
 paddle.nn.functional.extension.row_conv	paddle.nn.functional.row_conv
 paddle.nn.layer.loss.BCEWithLogitsLoss	paddle.nn.BCEWithLogitsLoss,paddle.nn.layer.BCEWithLogitsLoss
@@ -522,9 +523,9 @@ paddle.utils.install_check.run_check	paddle.utils.run_check
 paddle.nn.layer.transformer.MultiHeadAttention	paddle.nn.MultiHeadAttention,paddle.nn.layer.MultiHeadAttention
 paddle.nn.layer.transformer.Transformer	paddle.nn.Transformer,paddle.nn.layer.Transformer
 paddle.nn.layer.transformer.TransformerDecoder	paddle.nn.TransformerDecoder,paddle.nn.layer.TransformerDecoder
-paddle.nn.layer.transformer.TransformerDecoderLayer	paddle.nn.MultiHeadAttention,paddle.nn.layer.TransformerDecoderLayer
-paddle.nn.layer.transformer.TransformerEncoder	paddle.nn.MultiHeadAttention,paddle.nn.layer.TransformerEncoder
-paddle.nn.layer.transformer.TransformerEncoderLayer	paddle.nn.MultiHeadAttention,paddle.nn.layer.TransformerEncoderLayer
+paddle.nn.layer.transformer.TransformerDecoderLayer	paddle.nn.TransformerDecoderLayer,paddle.nn.layer.TransformerDecoderLayer
+paddle.nn.layer.transformer.TransformerEncoder	paddle.nn.TransformerEncoder,paddle.nn.layer.TransformerEncoder
+paddle.nn.layer.transformer.TransformerEncoderLayer	paddle.nn.TransformerEncoderLayer,paddle.nn.layer.TransformerEncoderLayer
 paddle.optimizer.adadelta.Adadelta	paddle.optimizer.Adadelta
 paddle.optimizer.adagrad.Adagrad	paddle.optimizer.Adagrad
 paddle.optimizer.adam.Adam	paddle.optimizer.Adam
@@ -543,3 +544,5 @@ paddle.nn.Upsample	paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
 paddle.nn.UpsamplingBilinear2d	paddle.nn.layer.UpsamplingBilinear2d,paddle.nn.layer.common.UpsamplingBilinear2d
 paddle.nn.UpsamplingNearest2d	paddle.nn.layer.UpsamplingNearest2d,paddle.nn.layer.common.UpsamplingNearest2d
 paddle.fluid.initializer.set_global_initializer	paddle.nn.initializer.set_global_initializer
+paddle.fluid.io.load_program_state	paddle.static.load_program_state
+paddle.fluid.io.set_program_state	paddle.static.set_program_state
