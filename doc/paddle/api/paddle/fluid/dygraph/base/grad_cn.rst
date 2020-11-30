@@ -25,7 +25,6 @@ grad
   .. code-block:: python
 
         import paddle
-        paddle.disable_static()
 
         def test_dygraph_grad(create_graph):
             x = paddle.ones(shape=[1], dtype='float32')
@@ -63,7 +62,7 @@ grad
         paddle.disable_static()
 
         def test_dygraph_grad(grad_outputs=None):
-            x = paddle.fill_constant(shape=[1], value=2.0, dtype='float32')
+            x = paddle.to_tensor(2.0)
             x.stop_gradient = False
 
             y1 = x * x
@@ -86,7 +85,7 @@ grad
 
             return dx.numpy()
 
-        grad_value = paddle.fill_constant(shape=[1], value=4.0, dtype='float32')
+        grad_value = paddle.to_tensor(4.0)
 
         # dy1 = [1], dy2 = [1]
         print(test_dygraph_grad(None)) # [7.]
@@ -98,5 +97,5 @@ grad
         print(test_dygraph_grad([grad_value, None])) # [19.]
 
         # dy1 = [3], dy2 = [4]
-        grad_y1 = paddle.fill_constant(shape=[1], value=3.0, dtype='float32')
+        grad_y1 = paddle.to_tensor(3.0)
         print(test_dygraph_grad([grad_y1, grad_value])) # [24.]
