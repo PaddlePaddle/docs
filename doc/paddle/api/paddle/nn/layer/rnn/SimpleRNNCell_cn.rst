@@ -15,12 +15,13 @@ SimpleRNNCell
 
 .. math::
 
-        h_{t} & = \mathrm{tanh}(W_{ih}x_{t} + b_{ih} + W_{hh}h_{t-1} + b_{hh})
+        h_{t} & = \mathrm{act}(W_{ih}x_{t} + b_{ih} + W_{hh}h_{t-1} + b_{hh})
 
         y_{t} & = h_{t}
 
-   
-详情请参考论文 :`《Finding Structure in Time》 <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_。
+其中的 `act` 表示激活函数。
+
+详情请参考论文 :`Finding Structure in Time <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_。
 
 参数：
     - **input_size** (int) - 输入的大小。
