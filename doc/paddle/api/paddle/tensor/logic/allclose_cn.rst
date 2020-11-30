@@ -29,8 +29,6 @@ allclose
     import paddle
     import numpy as np
 
-    paddle.disable_static()
-
     np_x = np.array([10000., 1e-07]).astype("float32")
     np_y = np.array([10000.1, 1e-08]).astype("float32")
     x = paddle.to_tensor (np_x)
