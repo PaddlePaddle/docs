@@ -245,7 +245,7 @@ float64_tensor = paddle.cast(float32_tensor, dtype='float64')
 print("Tensor after cast to float64:", float64_tensor.dtype)
 
 int64_tensor = paddle.cast(float32_tensor, dtype='int64')
-print("Tensor after cast to int64:", int64_tensor.dthpe)
+print("Tensor after cast to int64:", int64_tensor.dtype)
 ```
 ```text
 Tensor after cast to float64: VarType.FP64

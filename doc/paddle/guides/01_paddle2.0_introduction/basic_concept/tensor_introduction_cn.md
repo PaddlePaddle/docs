@@ -115,9 +115,9 @@ ValueError:
 
 上面介绍了通过Python数据来创建**Tensor**的方法，我们也可以通过 **Numpy array** 来创建**Tensor**：
 ```python
-rank_1_tensor = paddle.to_tensor(Numpy array([1.0, 2.0]))
+rank_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
 
-rank_2_tensor = paddle.to_tensor(Numpy array([[1.0, 2.0],
+rank_2_tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
                                               [3.0, 4.0]]))
 
 rank_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
@@ -241,7 +241,7 @@ float64_tensor = paddle.cast(float32_tensor, dtype='float64')
 print("Tensor after cast to float64:", float64_tensor.dtype)
 
 int64_tensor = paddle.cast(float32_tensor, dtype='int64')
-print("Tensor after cast to int64:", int64_tensor.dthpe)
+print("Tensor after cast to int64:", int64_tensor.dtype)
 ```
 ```text
 Tensor after cast to float64: VarType.FP64
