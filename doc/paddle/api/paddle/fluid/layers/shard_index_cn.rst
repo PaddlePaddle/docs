@@ -39,3 +39,5 @@ shard_index
                                      index_num=20,
                                      nshards=2,
                                      shard_id=0)
+    print(shard_label)
+    # [[-1], [1]]
