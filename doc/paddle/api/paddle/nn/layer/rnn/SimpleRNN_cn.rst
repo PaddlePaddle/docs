@@ -3,7 +3,7 @@
 SimpleRNN
 -------------------------------
 
-.. py:class:: paddle.nn.SimpleRNN(input_size, hidden_size, num_layers=1, activation="tanh", direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
+.. py:class:: paddle.nn.SimpleRNN(input_size, hidden_size, num_layers=1, activation="tanh", direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None)
 
 
 
