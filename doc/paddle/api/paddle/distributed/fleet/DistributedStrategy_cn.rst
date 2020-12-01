@@ -48,7 +48,7 @@ DistributedStrategy
 .. code-block:: python
 
   import paddle
-  exe_strategy = paddle.fluid.ExecutionStrategy()
+  exe_strategy = paddle.static.ExecutionStrategy()
   exe_strategy.num_threads = 10
   exe_strategy.num_iteration_per_drop_scope = 10
   exe_strategy.num_iteration_per_run = 10
@@ -66,7 +66,7 @@ DistributedStrategy
 .. code-block:: python
 
   import paddle
-  build_strategy = paddle.fluid.BuildStrategy()
+  build_strategy = paddle.static.BuildStrategy()
   build_strategy.enable_sequential_execution = True
   build_strategy.fuse_elewise_add_act_ops = True
   build_strategy.fuse_bn_act_ops = True
@@ -379,3 +379,32 @@ DistributedStrategy
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.fp16_allreduce = True  # by default this is false
+
+
+.. py:attribute:: sharding
+
+是否开启sharding 策略。sharding 实现了[ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054)
+中 ZeRO-DP 类似的功能，其通过将模型的参数和优化器状态在ranks 间分片来支持更大模型的训练。 
+默认值：False
+
+**示例代码**
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.sharding = True
+
+.. py:attribute:: sharding_configs
+
+设置sharding策略的参数。
+
+**fuse_broadcast_MB(float):** sharding 广播通信中参数融合的阈值。 该参数会影响sharding 训练中的通信速度，是一个需要根据具体模型大小和网络拓扑设定的经验值。 默认值是 32. 
+
+.. code-block:: python
+
+  import paddle.distributed.fleet as fleet
+  strategy = fleet.DistributedStrategy()
+  strategy.sharding = True
+  strategy.sharding_configs = {"fuse_broadcast_MB": 32}
+

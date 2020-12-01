@@ -31,7 +31,6 @@ batch_norm
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     x = np.random.seed(123)
     x = np.random.random(size=(2, 1, 2, 3)).astype('float32')
     running_mean = np.random.random(size=1).astype('float32')
@@ -44,4 +43,4 @@ batch_norm
     w = paddle.to_tensor(weight_data)
     b = paddle.to_tensor(bias_data)
     batch_norm_out = paddle.nn.functional.batch_norm(x, rm, rv, w, b)
-    print(batch_norm_out.numpy())
+    print(batch_norm_out)

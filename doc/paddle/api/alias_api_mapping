@@ -409,6 +409,7 @@ paddle.fluid.layers.sqrt	paddle.sqrt,paddle.tensor.sqrt,paddle.tensor.math.sqrt
 paddle.tensor.manipulation.stack	paddle.stack,paddle.tensor.stack
 paddle.tensor.manipulation.unsqueeze	paddle.unsqueeze,paddle.tensor.unsqueeze
 paddle.tensor.math.add	paddle.add,paddle.tensor.add
+paddle.tensor.math.subtract	paddle.subtract,paddle.tensor.subtract
 paddle.nn.layer.common.Bilinear	paddle.nn.Bilinear,paddle.nn.layer.Bilinear
 paddle.nn.functional.extension.row_conv	paddle.nn.functional.row_conv
 paddle.nn.layer.loss.BCEWithLogitsLoss	paddle.nn.BCEWithLogitsLoss,paddle.nn.layer.BCEWithLogitsLoss
@@ -432,9 +433,12 @@ paddle.nn.functional.input.one_hot	paddle.nn.functional.one_hot
 paddle.tensor.creation.full	paddle.full,paddle.tensor.full
 paddle.hapi.model.Model	paddle.Model
 paddle.hapi.callbacks.Callback	paddle.callbacks.Callback
-paddle.hapi.callbacks.ProgBarLogger	paddle.callbacks.ProgBarLogger
+paddle.hapi.callbacks.ProgBarLogger	   paddle.callbacks.ProgBarLogger
 paddle.hapi.callbacks.ModelCheckpoint	paddle.callbacks.ModelCheckpoint
-paddle.hapi.callbacks.VisualDL	paddle.callbacks.VisualDL
+paddle.hapi.callbacks.VisualDL	  paddle.callbacks.VisualDL
+paddle.hapi.callbacks.ReduceLROnPlateau	   paddle.callbacks.ReduceLROnPlateau
+paddle.hapi.callbacks.LRScheduler	paddle.callbacks.LRScheduler
+paddle.hapi.callbacks.EarlyStopping	   paddle.callbacks.EarlyStopping
 paddle.hapi.model_summary.summary	paddle.summary
 paddle.vision.models.resnet.ResNet	paddle.vision.models.ResNet,paddle.vision.ResNet
 paddle.vision.models.resnet.resnet18	paddle.vision.models.resnet18,paddle.vision.resnet18
@@ -542,3 +546,5 @@ paddle.nn.Upsample	paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
 paddle.nn.UpsamplingBilinear2d	paddle.nn.layer.UpsamplingBilinear2d,paddle.nn.layer.common.UpsamplingBilinear2d
 paddle.nn.UpsamplingNearest2d	paddle.nn.layer.UpsamplingNearest2d,paddle.nn.layer.common.UpsamplingNearest2d
 paddle.fluid.initializer.set_global_initializer	paddle.nn.initializer.set_global_initializer
+paddle.fluid.io.load_program_state	paddle.static.load_program_state
+paddle.fluid.io.set_program_state	paddle.static.set_program_state

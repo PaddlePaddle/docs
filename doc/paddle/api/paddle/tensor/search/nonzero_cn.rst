@@ -24,47 +24,33 @@ nonzero
 .. code-block:: python
 
         import paddle
-        import paddle.fluid as fluid
-        import numpy as np
 
-        data1 = np.array([[1.0, 0.0, 0.0],
-                            [0.0, 2.0, 0.0],
-                            [0.0, 0.0, 3.0]])
-        data2 = np.array([0.0, 1.0, 0.0, 3.0])
-        data3 = np.array([0.0, 0.0, 0.0])
-        with fluid.dygraph.guard():
-            x1 = fluid.dygraph.to_variable(data1)
-            x2 = fluid.dygraph.to_variable(data2)
-            x3 = fluid.dygraph.to_variable(data3)
-            out_z1 = paddle.nonzero(x1)
-            print(out_z1.numpy())
-            #[[0 0]
-            # [1 1]
-            # [2 2]]
-            out_z1_tuple = paddle.nonzero(x1, as_tuple=True)
-            for out in out_z1_tuple:
-                print(out.numpy())
-            #[[0]
-            # [1]
-            # [2]]
-            #[[0]
-            # [1]
-            # [2]]
-            out_z2 = paddle.nonzero(x2)
-            print(out_z2.numpy())
-            #[[1]
-            # [3]]
-            out_z2_tuple = paddle.nonzero(x2, as_tuple=True)
-            for out in out_z2_tuple:
-                print(out.numpy())
-            #[[1]
-            # [3]]
-            out_z3 = paddle.nonzero(x3)
-            print(out_z3.numpy())
-            #[]
-            out_z3_tuple = paddle.nonzero(x3, as_tuple=True)
-            for out in out_z3_tuple:
-                print(out.numpy())
-            #[]         
+        x1 = paddle.to_tensor([[1.0, 0.0, 0.0],
+                                [0.0, 2.0, 0.0],
+                                [0.0, 0.0, 3.0]])
+        x2 = paddle.to_tensor([0.0, 1.0, 0.0, 3.0])
+        out_z1 = paddle.nonzero(x1)
+        print(out_z1)
+        #[[0 0]
+        # [1 1]
+        # [2 2]]
+        out_z1_tuple = paddle.nonzero(x1, as_tuple=True)
+        for out in out_z1_tuple:
+            print(out)
+        #[[0]
+        # [1]
+        # [2]]
+        #[[0]
+        # [1]
+        # [2]]
+        out_z2 = paddle.nonzero(x2)
+        print(out_z2)
+        #[[1]
+        # [3]]
+        out_z2_tuple = paddle.nonzero(x2, as_tuple=True)
+        for out in out_z2_tuple:
+            print(out)
+        #[[1]
+        # [3]]         
 
 

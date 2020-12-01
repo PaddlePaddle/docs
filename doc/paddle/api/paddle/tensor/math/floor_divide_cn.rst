@@ -34,10 +34,9 @@ floor_divide
         import paddle
         import numpy as np
 
-        paddle.disable_static()
         np_x = np.array([2, 3, 8, 7])
         np_y = np.array([1, 5, 3, 3])
         x = paddle.to_tensor(np_x)
         y = paddle.to_tensor(np_y)
         z = paddle.floor_divide(x, y)
-        print(z.numpy())  # [2, 0, 2, 2]
+        print(z)  # [2, 0, 2, 2]
