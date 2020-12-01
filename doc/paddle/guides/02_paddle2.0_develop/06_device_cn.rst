@@ -25,7 +25,7 @@
     $ python -m paddle.distributed.launch --selected_gpus='0,1' train.py
 
     # 单机多卡启动，设置当前使用第0号和第1号卡
-    $ export CUDA_VISIABLE_DEVICES=0,1
+    $ export CUDA_VISIBLE_DEVICES=0,1
     $ python -m paddle.distributed.launch train.py
 
 基础API场景
@@ -106,7 +106,7 @@
     $ python -m paddle.distributed.launch --selected_gpus '0,1' train.py
 
     # 单机多卡启动，设置当前使用第0号和第1号卡
-    $ export CUDA_VISIABLE_DEVICES=0,1
+    $ export CUDA_VISIBLE_DEVICES=0,1
     $ python -m paddle.distributed.launch train.py
 
 2. 方式2、spawn启动
