@@ -3,9 +3,9 @@
 ## 环境准备
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-    * **GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1，且仅支持单卡**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip 版本 9.0.1+ (64 bit)**
+* **GPU版本支持CUDA 9.0/10.0/10.1/10.2，且仅支持单卡**
+* **Python 版本 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64 bit)**
+* **pip 版本 20.2.2+ (64 bit)**
 * **Visual Studio 2015 Update3**
 
 ## 选择CPU/GPU
@@ -13,8 +13,8 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * **CUDA 工具包 9.0/9.1/9.2/10.0/10.1 配合 cuDNN v7.3+**
-    * **GPU运算能力超过1.0的硬件设备**
+    * **CUDA 工具包 9.0/10.0/10.1/10.2 配合 cuDNN v7.6.5+**
+    * **GPU运算能力超过3.0的硬件设备**
 
 ## 安装步骤
 
@@ -52,7 +52,7 @@
 
     例如：
 
-    `git checkout release/1.7`
+    `git checkout release/1.8`
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持
 
@@ -75,7 +75,7 @@
 
     默认为Python2，Python3请添加：
 
-    > -DPY_VERSION=3（或3.5、3.6、3.7）
+    > -DPY_VERSION=3（或3.5、3.6、3.7、3.8）
 
     如果你的设备信息包含多个Python或CUDA版本，你也可以通过设置路径变量，来指定特定版本的Python或CUDA：
 
@@ -85,7 +85,7 @@
 
     例如：（仅作示例，请根据你的设备路径信息进行设置）
 
-    `cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"`
+    `cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\Python37\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0"`
 
 6. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
 
@@ -111,4 +111,3 @@
 * **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle`
 
 * **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu`
-
