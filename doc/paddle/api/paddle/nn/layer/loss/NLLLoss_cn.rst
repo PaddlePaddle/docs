@@ -49,7 +49,6 @@ NLLLoss
 .. code-block:: python
 
         import paddle
-        import numpy as np
         
         nll_loss = paddle.nn.loss.NLLLoss()
         log_softmax = paddle.nn.LogSoftmax(axis=1)
