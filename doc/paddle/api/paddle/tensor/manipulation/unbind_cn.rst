@@ -10,7 +10,7 @@ unbind
 该OP将输入Tensor按照指定的维度分割成多个子Tensor。
 
 **参数**：
-       - **input** (Variable) - 输入变量，数据类型为float32，float64，int32，int64的多维Tensor。
+       - **input** (Tensor) - 输入变量，数据类型为float32，float64，int32，int64的多维Tensor。
        - **axis** (int32|int64，可选) - 数据类型为int32或int64,表示需要分割的维度。如果axis < 0，则划分的维度为rank(input) + axis。默认值为0。
 
 **返回**：分割后的Tensor列表。
@@ -23,13 +23,12 @@ unbind
     
     import paddle
     # input is a variable which shape is [3, 4, 5]
-    input = paddle.fluid.data(
-        name="input", shape=[3, 4, 5], dtype="float32")
-    [x0, x1, x2] = paddle.tensor.unbind(input, axis=0)
+    input = paddle.to_tensor([3, 4, 5], "float32")
+    [x0, x1, x2] = paddle.unbind(input, axis=0)
     # x0.shape [4, 5]
     # x1.shape [4, 5]
     # x2.shape [4, 5]
-    [x0, x1, x2, x3] = paddle.tensor.unbind(input, axis=1)
+    [x0, x1, x2, x3] = paddle.unbind(input, axis=1)
     # x0.shape [3, 5]
     # x1.shape [3, 5]
     # x2.shape [3, 5]
