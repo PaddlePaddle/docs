@@ -23,15 +23,14 @@ create_parameter
 
 返回：创建的Tensor变量。
 
-返回类型：Variable。
+返回类型：ParamBase。
 
 **代码示例**：
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    W = layers.create_parameter(shape=[784, 200], dtype='float32')
+    import paddle
+    W = paddle.static.create_parameter(shape=[784, 200], dtype='float32')
 
 
 
