@@ -11,7 +11,7 @@
 环境设置
 --------
 
-本示例基于飞桨开源框架2.0版本。
+本示例基于飞桨开源框架2.0RC版本。
 
 .. code:: ipython3
 
@@ -23,19 +23,18 @@
     from PIL import Image
     from collections import defaultdict
     
-    paddle.disable_static()
     print(paddle.__version__)
 
 
 .. parsed-literal::
 
-    2.0.0-beta0
+    2.0.0-rc0
 
 
 数据集
 ------
 
-本示例采用\ `CIFAR-10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集。这是一个经典的数据集，由50000张图片的训练数据，和10000张图片的测试数据组成，其中每张图片是一个RGB的长和宽都为32的图片。使用\ ``paddle.dataset.cifar``\ 可以方便的完成数据的下载工作，把数据归一化到\ ``(0, 1.0)``\ 区间内，并提供迭代器供按顺序访问数据。我们会把训练数据和测试数据分别存放在两个\ ``numpy``\ 数组中，供后面的训练和评估来使用。
+本示例采用\ `CIFAR-10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集。这是一个经典的数据集，由50000张图片的训练数据，和10000张图片的测试数据组成，其中每张图片是一个RGB的长和宽都为32的图片。使用\ ``paddle.vision.datasets.cifar.Cifar10``\ 可以方便的完成数据的下载工作，把数据归一化到\ ``(0, 1.0)``\ 区间内，并提供迭代器供按顺序访问数据。我们会把训练数据和测试数据分别存放在两个\ ``numpy``\ 数组中，供后面的训练和评估来使用。
 
 .. code:: ipython3
 
@@ -125,7 +124,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_001.png?raw=true?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/rc_image_search_001.png?raw=true
 
 
 
@@ -150,7 +149,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
     for y_test_idx, y in enumerate(y_test):
         class_idx_to_test_idxs[y].append(y_test_idx)
 
-有了上面的索引，我们就可以为飞桨准备一个读取数据的迭代器。该迭代器每次生成\ ``2 * number of classes``\ 张图片，在CIFAR10数据集中，这会是20张图片。前10张图片，和后10张图片，分别是10个类别中每个类别随机抽出的一张图片。这样，在实际的训练过程中，我们就会有10张相似的图片和90张不相似的图片（前10张图片中的任意一张图片，都与后10张的对应位置的1张图片相似，而与其他9张图片不相似）。
+有了上面的索引，我们就可以为飞桨准备一个读取数据的迭代器。该迭代器每次生成\ ``2 * number of classes``\ 张图片，在CIFAR10数据集中，这会是20张图片。前10张图片，和后10张图片，分别是10个类别中每个类别随机抽出的一张图片。这样，在实际的训练过程中，我们就会有10组相似的图片和90组不相似的图片（前10张图片中的任意一张图片，都与后10张的对应位置的1张图片相似，而与其他9张图片不相似）。
 
 .. code:: ipython3
 
@@ -190,7 +189,6 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 .. code:: ipython3
 
-    
     examples = next(pairs_train_reader())
     print(examples.shape)
     show_collage(examples)
@@ -203,7 +201,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_002.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/rc_image_search_002.png?raw=true
 
 
 
@@ -212,7 +210,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 我们的目标是首先把图片转换为高维空间的表示，然后计算图片在高维空间表示时的相似度。
 下面的网络结构用来把一个形状为\ ``(3, 32, 32)``\ 的图片转换成形状为\ ``(8,)``\ 的向量。在有些资料中也会把这个转换成的向量称为\ ``Embedding``\ ，请注意，这与自然语言处理领域的词向量的区别。
-下面的模型由三个连续的卷积加一个全局均值池化，然后用一个线性全链接层映射到维数为8的向量空间。为了后续计算余弦相似度时的便利，我们还在最后用\ `l2_normalize <https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/l2_normalize_cn.html>`__\ 做了归一化。（即，余弦相似度的分母部分）
+下面的模型由三个连续的卷积加一个全局均值池化，然后用一个线性全链接层映射到维数为8的向量空间。为了后续计算余弦相似度时的便利，我们还在最后做了归一化。（即，余弦相似度的分母部分）
 
 .. code:: ipython3
 
@@ -220,22 +218,22 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
         def __init__(self):
             super(MyNet, self).__init__()
     
-            self.conv1 = paddle.nn.Conv2d(in_channels=3, 
+            self.conv1 = paddle.nn.Conv2D(in_channels=3, 
                                           out_channels=32, 
                                           kernel_size=(3, 3),
                                           stride=2)
              
-            self.conv2 = paddle.nn.Conv2d(in_channels=32, 
+            self.conv2 = paddle.nn.Conv2D(in_channels=32, 
                                           out_channels=64, 
                                           kernel_size=(3,3), 
                                           stride=2)       
             
-            self.conv3 = paddle.nn.Conv2d(in_channels=64, 
+            self.conv3 = paddle.nn.Conv2D(in_channels=64, 
                                           out_channels=128, 
                                           kernel_size=(3,3),
                                           stride=2)
            
-            self.gloabl_pool = paddle.nn.AdaptiveAvgPool2d((1,1))
+            self.gloabl_pool = paddle.nn.AdaptiveAvgPool2D((1,1))
     
             self.fc1 = paddle.nn.Linear(in_features=128, out_features=8)
         def forward(self, x):
@@ -248,10 +246,8 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
             x = self.gloabl_pool(x)
             x = paddle.squeeze(x, axis=[2, 3])
             x = self.fc1(x)
-            x = F.l2_normalize(x, axis=1)
-    
+            x = x / paddle.norm(x, axis=1, keepdim=True)
             return x
-
 
 在模型的训练过程中如下面的代码所示：
 
@@ -259,8 +255,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
    is all you
    need <https://arxiv.org/abs/1706.03762>`__\ 中，在点积之后的\ ``scale``\ 操作）。
 -  整个计算过程，会先用上面的网络分别计算前10张图片（anchors)的高维表示，和后10张图片的高维表示。然后再用\ `matmul <https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/matmul_cn.html>`__\ 计算前10张图片分别与后10张图片的相似度。（所以\ ``similarities``\ 会是一个\ ``(10, 10)``\ 的Tensor）。
--  为\ `softmax_with_cross_entropy <https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/softmax_with_cross_entropy_cn.html>`__\ 构造类别标签时，则相应的，可以构造出来0
-   ~
+-  在构造类别标签时，则相应的，可以构造出来0 ~
    num_classes的标签值，用来让学习的目标成为相似的图片的相似度尽可能的趋向于1.0，而不相似的图片的相似度尽可能的趋向于-1.0。
 
 .. code:: ipython3
@@ -285,19 +280,17 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
                 
                 anchor_embeddings = model(anchors)
                 positive_embeddings = model(positives)
-          
+                
                 similarities = paddle.matmul(anchor_embeddings, positive_embeddings, transpose_y=True) 
                 similarities = paddle.multiply(similarities, inverse_temperature)
                 
                 sparse_labels = paddle.arange(0, num_classes, dtype='int64')
-                sparse_labels = paddle.reshape(sparse_labels, (num_classes, 1))
     
-                loss = F.softmax_with_cross_entropy(similarities, sparse_labels)
+                loss = F.cross_entropy(similarities, sparse_labels)
                 
-                avg_loss = paddle.mean(loss)
                 if batch_id % 500 == 0:
-                    print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, avg_loss.numpy()))
-                avg_loss.backward()
+                    print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
+                loss.backward()
                 opt.step()
                 opt.clear_grad()
     
@@ -308,46 +301,46 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 .. parsed-literal::
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.3078856]
-    epoch: 0, batch_id: 500, loss is: [1.9325346]
-    epoch: 1, batch_id: 0, loss is: [1.9889]
-    epoch: 1, batch_id: 500, loss is: [2.0410695]
-    epoch: 2, batch_id: 0, loss is: [2.2465641]
-    epoch: 2, batch_id: 500, loss is: [1.8171736]
-    epoch: 3, batch_id: 0, loss is: [1.9939486]
-    epoch: 3, batch_id: 500, loss is: [2.1440036]
-    epoch: 4, batch_id: 0, loss is: [2.1497147]
-    epoch: 4, batch_id: 500, loss is: [2.3686018]
-    epoch: 5, batch_id: 0, loss is: [1.938681]
-    epoch: 5, batch_id: 500, loss is: [1.7729127]
-    epoch: 6, batch_id: 0, loss is: [2.0061004]
-    epoch: 6, batch_id: 500, loss is: [1.6132584]
-    epoch: 7, batch_id: 0, loss is: [1.8874661]
-    epoch: 7, batch_id: 500, loss is: [1.6153599]
-    epoch: 8, batch_id: 0, loss is: [1.9407685]
-    epoch: 8, batch_id: 500, loss is: [2.1532288]
-    epoch: 9, batch_id: 0, loss is: [1.4792883]
-    epoch: 9, batch_id: 500, loss is: [1.857158]
-    epoch: 10, batch_id: 0, loss is: [2.1518302]
-    epoch: 10, batch_id: 500, loss is: [1.790559]
-    epoch: 11, batch_id: 0, loss is: [1.7292264]
-    epoch: 11, batch_id: 500, loss is: [1.8555079]
-    epoch: 12, batch_id: 0, loss is: [1.6968924]
-    epoch: 12, batch_id: 500, loss is: [1.4554331]
-    epoch: 13, batch_id: 0, loss is: [1.3950458]
-    epoch: 13, batch_id: 500, loss is: [1.7197256]
-    epoch: 14, batch_id: 0, loss is: [1.7336586]
-    epoch: 14, batch_id: 500, loss is: [2.0465684]
-    epoch: 15, batch_id: 0, loss is: [1.7675827]
-    epoch: 15, batch_id: 500, loss is: [2.6443417]
-    epoch: 16, batch_id: 0, loss is: [1.7331158]
-    epoch: 16, batch_id: 500, loss is: [1.6207634]
-    epoch: 17, batch_id: 0, loss is: [2.0908554]
-    epoch: 17, batch_id: 500, loss is: [1.7711265]
-    epoch: 18, batch_id: 0, loss is: [1.8717268]
-    epoch: 18, batch_id: 500, loss is: [1.5269613]
-    epoch: 19, batch_id: 0, loss is: [1.5681677]
-    epoch: 19, batch_id: 500, loss is: [1.7821472]
+    epoch: 0, batch_id: 0, loss is: [2.273315]
+    epoch: 0, batch_id: 500, loss is: [2.1661842]
+    epoch: 1, batch_id: 0, loss is: [2.1161895]
+    epoch: 1, batch_id: 500, loss is: [2.0314116]
+    epoch: 2, batch_id: 0, loss is: [1.9640319]
+    epoch: 2, batch_id: 500, loss is: [1.8882437]
+    epoch: 3, batch_id: 0, loss is: [1.8816122]
+    epoch: 3, batch_id: 500, loss is: [1.8939931]
+    epoch: 4, batch_id: 0, loss is: [2.1332495]
+    epoch: 4, batch_id: 500, loss is: [1.8578304]
+    epoch: 5, batch_id: 0, loss is: [1.8462454]
+    epoch: 5, batch_id: 500, loss is: [1.9699743]
+    epoch: 6, batch_id: 0, loss is: [2.5005558]
+    epoch: 6, batch_id: 500, loss is: [2.0097346]
+    epoch: 7, batch_id: 0, loss is: [1.8816965]
+    epoch: 7, batch_id: 500, loss is: [1.6799539]
+    epoch: 8, batch_id: 0, loss is: [1.469229]
+    epoch: 8, batch_id: 500, loss is: [2.241674]
+    epoch: 9, batch_id: 0, loss is: [1.9045532]
+    epoch: 9, batch_id: 500, loss is: [2.4102457]
+    epoch: 10, batch_id: 0, loss is: [1.726363]
+    epoch: 10, batch_id: 500, loss is: [2.0155177]
+    epoch: 11, batch_id: 0, loss is: [1.9058796]
+    epoch: 11, batch_id: 500, loss is: [2.5273433]
+    epoch: 12, batch_id: 0, loss is: [1.7982479]
+    epoch: 12, batch_id: 500, loss is: [2.1631742]
+    epoch: 13, batch_id: 0, loss is: [1.5346181]
+    epoch: 13, batch_id: 500, loss is: [1.7859802]
+    epoch: 14, batch_id: 0, loss is: [2.0379326]
+    epoch: 14, batch_id: 500, loss is: [1.7520059]
+    epoch: 15, batch_id: 0, loss is: [1.6825731]
+    epoch: 15, batch_id: 500, loss is: [1.8745648]
+    epoch: 16, batch_id: 0, loss is: [1.6543556]
+    epoch: 16, batch_id: 500, loss is: [2.0173113]
+    epoch: 17, batch_id: 0, loss is: [1.8639036]
+    epoch: 17, batch_id: 500, loss is: [1.5646063]
+    epoch: 18, batch_id: 0, loss is: [2.126454]
+    epoch: 18, batch_id: 500, loss is: [2.143014]
+    epoch: 19, batch_id: 0, loss is: [2.1033292]
+    epoch: 19, batch_id: 500, loss is: [2.3456562]
 
 
 模型预测
@@ -370,11 +363,9 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 .. code:: ipython3
 
-    num_collage_examples = 10
-    
     examples = np.empty(
         (
-            num_collage_examples,
+            num_classes,
             near_neighbours_per_example + 1,
             3,
             height_width,
@@ -382,9 +373,13 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
         ),
         dtype=np.float32,
     )
-    for row_idx in range(num_collage_examples):
-        examples[row_idx, 0] = x_test[row_idx]
-        anchor_near_neighbours = indicies[row_idx][1:near_neighbours_per_example+1]
+    
+    for row_idx in range(num_classes):
+        examples_for_class = class_idx_to_test_idxs[row_idx]
+        anchor_idx = random.choice(examples_for_class)
+        
+        examples[row_idx, 0] = x_test[anchor_idx]
+        anchor_near_neighbours = indicies[anchor_idx][1:near_neighbours_per_example+1]
         for col_idx, nn_idx in enumerate(anchor_near_neighbours):
             examples[row_idx, col_idx + 1] = x_test[nn_idx]
     
@@ -393,11 +388,11 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/image_search_003.png?raw=true
-
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/rc_image_search_003.png?raw=true
 
 
 The end
 -------
 
-上面展示的结果当中，每一行里其余的图片都是跟第一张图片按照相似度进行排序相似的图片。你也可以调整网络结构和超参数，以获得更好的结果。
+上面展示的结果当中，每一行里其余的图片都是跟第一张图片按照相似度进行排序相似的图片。但是，你也可以发现，在某些类别上，比如汽车、青蛙、马，可以有不错的效果，但在另外一些类别上，比如飞机，轮船，效果并不是特别好。你可以试着分析这些错误，进一步调整网络结构和超参数，以获得更好的结果。
+

@@ -3,7 +3,7 @@
 linspace
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.linspace(start, stop, num, dtype=None, name=None)
+.. py:function:: paddle.linspace(start, stop, num, dtype=None, name=None)
 
 该OP返回一个Tensor，Tensor的值为在区间start和stop上均匀间隔的num个值，输出Tensor的长度为num。
 **注意：该OP不进行梯度计算**
@@ -22,9 +22,9 @@ linspace
 
 .. code-block:: python
 
-      import paddle.fluid as fluid
-      data = fluid.layers.linspace(0, 10, 5, 'float32') # [0.0,  2.5,  5.0,  7.5, 10.0]
-      data = fluid.layers.linspace(0, 10, 1, 'float32') # [0.0]
+      import paddle
+      data = paddle.linspace(0, 10, 5, 'float32') # [0.0,  2.5,  5.0,  7.5, 10.0]
+      data = paddle.linspace(0, 10, 1, 'float32') # [0.0]
 
 
 

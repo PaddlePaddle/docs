@@ -26,7 +26,7 @@ BuildStrategy，一个BuildStrategy的实例
     places = static.cpu_places()
 
     data = static.data(name="x", shape=[None, 1], dtype="float32")
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
     paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
@@ -131,7 +131,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 
 .. py:attribute:: gradient_scale_strategy
 
-``static.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
+``paddle.static.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下， ``ParallelExecutor`` 根据设备数目来设置 *loss@grad* 。如果用户需要自定义 *loss@grad* ，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
 代码示例
 :::::::::
@@ -162,7 +162,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
         places = static.cuda_places()
 
     data = static.data(name='X', shape=[None, 1], dtype='float32')
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
     paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 

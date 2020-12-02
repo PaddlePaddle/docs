@@ -6,12 +6,12 @@ Program
 .. py:class::  paddle.static.Program
 
 
-**注意：默认情况下，Paddle Fluid内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_main_program` **在每个mini batch中运行并更新权重。**
+**注意：默认情况下，Paddle内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_main_program` **在每个mini batch中运行并更新权重。**
 
-Program是Paddle Fluid对于计算图的一种静态描述，使用Program的构造函数可以创建一个Program。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`cn_api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
+Program是Paddle对于计算图的一种静态描述，使用Program的构造函数可以创建一个Program。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`cn_api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
 。
 
-一个Program的集合通常包含初始化程序（startup_program）与主程序(main_program)，初始化程序是一个包含一些初始化工作的Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个Program的集合可以被用来测试或者训练，被用来训练时， ``Paddle Fluid`` 将会利用所有用户使用的OP和变量来搭建一个训练网络，被用来测试时， 可以通过调用Program相关的接口例如：`clone` 剪去一些与测试无关的OP和变量，比如反向传播的OP和变量。
+一个Program的集合通常包含初始化程序（startup_program）与主程序(main_program)，初始化程序是一个包含一些初始化工作的Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个Program的集合可以被用来测试或者训练，被用来训练时， ``Paddle`` 将会利用所有用户使用的OP和变量来搭建一个训练网络，被用来测试时， 可以通过调用Program相关的接口例如：`clone` 剪去一些与测试无关的OP和变量，比如反向传播的OP和变量。
 
 
 返回
@@ -33,7 +33,7 @@ Program，创建的空的Program
     with static.program_guard(main_program=main_program, startup_program=startup_program):
         x = static.data(name="x", shape=[-1, 784], dtype='float32')
         y = static.data(name="y", shape=[-1, 1], dtype='int32')
-        z = static.nn.fc(name="fc", input=x, size=10, act="relu")
+        z = static.nn.fc(name="fc", x=x, size=10, activation="relu")
 
     print("main program is: {}".format(main_program))
     print("start up program is: {}".format(startup_program))
@@ -88,7 +88,7 @@ str，由Program转换得到的字符串
 
 **代码示例**
 
-   ::
+.. code-block:: python
 
         import paddle
         import paddle.static as static
@@ -96,7 +96,7 @@ str，由Program转换得到的字符串
         paddle.enable_static()
 
         img = static.data(name='image', shape=[None, 784])
-        pred = static.nn.fc(input=img, size=10, act='relu')
+        pred = static.nn.fc(x=img, size=10, activation='relu')
         loss = paddle.mean(pred)
         # Here we use clone before Momentum
         test_program = static.default_main_program().clone(for_test=True)
@@ -164,10 +164,10 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
     with static.program_guard(train_program, startup_program):
         with utils.unique_name.guard():
             img = static.data(name='image', shape=[None, 784])
-            hidden = static.nn.fc(input=img, size=200, act='relu')
+            hidden = static.nn.fc(x=img, size=200, activation='relu')
             hidden = F.dropout(hidden, p=0.5)
             loss = F.cross_entropy(
-                input=static.nn.fc(hidden, size=10, act='softmax'),
+                input=static.nn.fc(x=hidden, size=10, activation='softmax'),
                 label=static.data(name='label', shape=[1], dtype='int64'))
             avg_loss = paddle.mean(loss)
             test_program = train_program.clone(for_test=True)
@@ -176,7 +176,7 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
     # Due to parameter sharing usage for train and test, so we need to use startup program of train
     # instead of using test startup program, while nothing is in test's startup program
 
-    # In Paddle Fluid we will share weights by using the same Variable name. In train and test program
+    # In Paddle we will share weights by using the same Tensor name. In train and test program
     # all parameters will have the same name and this can make train and test program sharing parameters,
     # that's why we need to use startup program of train. And for startup program of test, it has nothing,
     # since it is a new program.
@@ -211,10 +211,10 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
 
     def network():
         img = static.data(name='image', shape=[None, 784])
-        hidden = static.nn.fc(input=img, size=200, act='relu')
+        hidden = static.nn.fc(x=img, size=200, activation='relu')
         hidden = F.dropout(hidden, p=0.5)
         loss = F.cross_entropy(
-            input=static.nn.fc(hidden, size=10, act='softmax'),
+            input=static.nn.fc(x=hidden, size=10, activation='softmax'),
             label=static.data(name='label', shape=[1], dtype='int64'))
         avg_loss = paddle.mean(loss)
         return avg_loss
@@ -327,7 +327,7 @@ int64，该Program中当前正在使用的random seed
     ## 0
     ## the default random seed is 0
 
-    # Here we need to set random seed before we use fluid.layers.dropout
+    # Here we need to set random seed before we use paddle.nn.functional.dropout
     prog.random_seed = 1
     z_var = F.dropout(x_var, 0.7)
 
@@ -430,6 +430,9 @@ Generator，会yield每个Program中的变量
     for var in prog.list_vars():
         print(var)
 
+    # var img : paddle.VarType.LOD_TENSOR.shape(-1, 1, 28, 28).astype(VarType.FP32)
+    # var label : paddle.VarType.LOD_TENSOR.shape(-1, 1).astype(VarType.INT64)
+
 .. py:method:: all_parameters()
 
 获取当前Program中所有的 :ref:`api_guide_parameter` 。返回值是一个列表。
@@ -450,7 +453,7 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
 
     program = static.default_main_program()
     data = static.data(name='x', shape=[None, 13], dtype='float32')
-    hidden = static.nn.fc(input=data, size=10)
+    hidden = static.nn.fc(x=data, size=10)
     loss = paddle.mean(hidden)
     paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
 
@@ -460,8 +463,8 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
     # Here will print all parameters in current program, in this example,
     # the result is like:
     #
-    # persist trainable param fc_0.w_0 : fluid.VarType.LOD_TENSOR.shape(13, 10).astype(VarType.FP32)
-    # persist trainable param fc_0.b_0 : fluid.VarType.LOD_TENSOR.shape(10,).astype(VarType.FP32)
+    # persist trainable param fc_0.w_0 : paddle.VarType.LOD_TENSOR.shape(13, 10).astype(VarType.FP32)
+    # persist trainable param fc_0.b_0 : paddle.VarType.LOD_TENSOR.shape(10,).astype(VarType.FP32)
     #
     # Here print(param) will print out all the properties of a parameter,
     # including name, type and persistable, you can access to specific

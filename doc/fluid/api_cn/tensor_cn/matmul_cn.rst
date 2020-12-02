@@ -44,7 +44,6 @@ matmul
 
     import paddle
     import numpy as np
-    paddle.disable_static()
 
     # vector * vector
     x_data = np.random.random([10]).astype(np.float32)

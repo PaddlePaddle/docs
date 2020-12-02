@@ -20,14 +20,14 @@ where
       \right.
 
 参数：
-    - **condition** （Variable）- 选择 ``x`` 或 ``y`` 元素的条件 。
-    - **x** （Variable）- 多维 ``Tensor`` ，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。
-    - **y** （Variable）- 多维 ``Tensor`` ，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。
+    - **condition** （Tensor）- 选择 ``x`` 或 ``y`` 元素的条件 。
+    - **x** （Tensor）- 多维 ``Tensor`` ，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。
+    - **y** （Tensor）- 多维 ``Tensor`` ，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：数据类型与 ``x`` 相同的 ``Tensor`` 。
 
-返回类型：Variable。
+返回类型：Tensor。
 
 
 **代码示例：**
@@ -35,16 +35,10 @@ where
 .. code-block:: python
 
           import paddle
-          import numpy as np
-          import paddle.fluid as fluid
 
-          x_i = np.array([0.9383, 0.1983, 3.2, 1.2]).astype("float32")
-          y_i = np.array([1.0, 1.0, 1.0, 1.0]).astype("float32")
+          x = paddle.to_tensor([0.9383, 0.1983, 3.2, 1.2])
+          y = paddle.to_tensor([1.0, 1.0, 1.0, 1.0])
+          out = paddle.where(x>1, x, y)
 
-          with fluid.dygraph.guard():
-              x = fluid.dygraph.to_variable(x_i)
-              y = fluid.dygraph.to_variable(y_i)
-              out = paddle.where(x>1, x, y)
-
-          print(out.numpy())
+          print(out)
           #out: [1.0, 1.0, 3.2, 1.2]

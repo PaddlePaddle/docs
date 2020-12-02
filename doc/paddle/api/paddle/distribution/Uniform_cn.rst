@@ -35,11 +35,9 @@ Uniform
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
     from paddle.distribution import Uniform
 
-    paddle.disable_static()
     # Without broadcasting, a single uniform distribution [3, 4]:
     u1 = Uniform(low=3.0, high=4.0)
     # 2 distributions [1, 3], [2, 4]
@@ -52,8 +50,7 @@ Uniform
     u4 = Uniform(low=3.0, high=[5.0, 6.0, 7.0])
 
     # Complete example
-    value_npdata = np.array([0.8], dtype="float32")
-    value_tensor = paddle.to_tensor(value_npdata)
+    value_tensor = paddle.to_tensor([0.8], dtype="float32")
 
     uniform = Uniform([0.], [2.])
 

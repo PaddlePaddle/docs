@@ -3,16 +3,12 @@
 prelu
 -------------------------------
 
+.. py:function:: paddle.static.nn.prelu(x, mode, param_attr=None, name=None)
 
-.. py:function:: paddle.fluid.layers.prelu(x, mode, param_attr=None, name=None)
-
-
-
-
-等式：
+prelu激活函数
 
 .. math::
-    y = max(0, x) + \alpha min(0, x)
+    prelu(x) = max(0, x) + \alpha * min(0, x)
 
 共提供三种激活方式：
 
@@ -24,27 +20,23 @@ prelu
 
 
 参数：
-          - **x** （Variable）- 多维Tensor或LoDTensor，数据类型为float32。
-          - **mode** (str) - 权重共享模式。
-          - **param_attr** (ParamAttr，可选) - 可学习权重 :math:`[\alpha]` 的参数属性，可由ParamAttr创建。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-          - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。 
+    - **x** （Tensor）- 多维Tensor或LoDTensor，数据类型为float32。
+    - **mode** (str) - 权重共享模式。
+    - **param_attr** (ParamAttr，可选) - 可学习权重 :math:`[\alpha]` 的参数属性，可由ParamAttr创建。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。 
 
 
-返回： 表示激活输出Tensor或LoDTensor，数据类型为float32。与输入形状相同。
-
-
-返回类型：Variable
-
+返回： 表示激活输出Tensor，数据类型和形状于输入相同。
 
 **代码示例：**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.param_attr import ParamAttr
-    x = fluid.data(name="x", shape=[None,5,10,10], dtype="float32")
-    mode = 'channel'
-    output = fluid.layers.prelu(
-             x,mode,param_attr=ParamAttr(name='alpha'))
+    import paddle
+
+    x = paddle.to_tensor([-1., 2., 3.])
+    param = paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(0.2))
+    out = paddle.static.nn.prelu(x, 'all', param)
+    # [-0.2, 2., 3.]
 
 

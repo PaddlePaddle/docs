@@ -5,9 +5,9 @@ batch_norm
 
 .. py:class:: paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', name=None):
 
-推荐使用nn.BatchNorm1d，nn.BatchNorm2d, nn.BatchNorm3d，由内部调用此方法。
+推荐使用nn.BatchNorm1D，nn.BatchNorm2D, nn.BatchNorm3D，由内部调用此方法。
 
-详情见 :ref:`cn_api_nn_BatchNorm1d` 。
+详情见 :ref:`cn_api_nn_BatchNorm1D` 。
 
 参数：
     - **x** (int) - 输入，数据类型为float32, float64。
@@ -31,7 +31,6 @@ batch_norm
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     x = np.random.seed(123)
     x = np.random.random(size=(2, 1, 2, 3)).astype('float32')
     running_mean = np.random.random(size=1).astype('float32')
@@ -44,4 +43,4 @@ batch_norm
     w = paddle.to_tensor(weight_data)
     b = paddle.to_tensor(bias_data)
     batch_norm_out = paddle.nn.functional.batch_norm(x, rm, rv, w, b)
-    print(batch_norm_out.numpy())
+    print(batch_norm_out)

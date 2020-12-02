@@ -4,7 +4,7 @@ case
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.case(pred_fn_pairs, default=None, name=None)
+.. py:function:: paddle.static.nn.case(pred_fn_pairs, default=None, name=None)
 
 :api_attr: 声明式编程模式（静态图)
 
@@ -38,21 +38,21 @@ case
     paddle.enable_static()
 
     def fn_1():
-        return paddle.fill_constant(shape=[1, 2], dtype='float32', value=1)
+        return paddle.full(shape=[1, 2], dtype='float32', fill_value=1)
 
     def fn_2():
-        return paddle.fill_constant(shape=[2, 2], dtype='int32', value=2)
+        return paddle.full(shape=[2, 2], dtype='int32', fill_value=2)
 
     def fn_3():
-        return paddle.fill_constant(shape=[3], dtype='int32', value=3)
+        return paddle.full(shape=[3], dtype='int32', fill_value=3)
 
     main_program = paddle.static.default_startup_program()
     startup_program = paddle.static.default_main_program()
 
     with paddle.static.program_guard(main_program, startup_program):
-        x = paddle.fill_constant(shape=[1], dtype='float32', value=0.3)
-        y = paddle.fill_constant(shape=[1], dtype='float32', value=0.1)
-        z = paddle.fill_constant(shape=[1], dtype='float32', value=0.2)
+        x = paddle.full(shape=[1], dtype='float32', fill_value=0.3)
+        y = paddle.full(shape=[1], dtype='float32', fill_value=0.1)
+        z = paddle.full(shape=[1], dtype='float32', fill_value=0.2)
 
         pred_1 = paddle.less_than(z, x)  # true: 0.2 < 0.3
         pred_2 = paddle.less_than(x, y)  # false: 0.3 < 0.1

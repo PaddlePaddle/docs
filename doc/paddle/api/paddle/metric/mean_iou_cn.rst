@@ -3,7 +3,7 @@
 mean_iou
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.mean_iou(input, label, num_classes)
+.. py:function:: paddle.metric.mean_iou(input, label, num_classes)
 
 
 
@@ -17,25 +17,26 @@ mean_iou
 先得到类别的预测结果，然后从中计算均值-IOU。
 
 参数:
-    - **input** (Variable) - 分割类别预测结果，类型为int32或int64的多维Tensor。
-    - **label** (Variable) - 真实label，类型为int32或int64的多维Tensor，它的shape与input相同。
+    - **input** (Tensor) - 分割类别预测结果，类型为int32或int64的多维Tensor。
+    - **label** (Tensor) - 真实label，类型为int32或int64的多维Tensor，它的shape与input相同。
     - **num_classes** (int32) - 类别数目。
 
 返回: 
-    - **mean_iou** (Variable) - 类型为float32的1-D Tensor，shape为[1]， 均值IOU的计算结果。
-    - **out_wrong** (Variable) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中错误的个数。
-    - **out_correct** (Variable) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中正确的个数。
+    - **mean_iou** (Tensor) - 类型为float32的1-D Tensor，shape为[1]， 均值IOU的计算结果。
+    - **out_wrong** (Tensor) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中错误的个数。
+    - **out_correct** (Tensor) - 类型为int32的1-D Tensor，shape为[num_classes]，代表每个类别中正确的个数。
 
 
 **代码示例**
 
-..  code-block:: python
+.. code-block:: python
 
-   import paddle.fluid as fluid
-   iou_shape = [32, 32]
-   num_classes = 5
-   predict = fluid.layers.data(name='predict', shape=iou_shape, dtype='int64')
-   label = fluid.layers.data(name='label', shape=iou_shape, dtype='int64')
-   mean_iou, out_wrong, out_correct = fluid.layers.mean_iou(predict, label, num_classes)
+    import paddle
+
+    iou_shape = [64, 32, 32]
+    num_classes = 5
+    predict = paddle.randint(low=0, high=255, shape=iou_shape, dtype='int64')
+    label = paddle.randint(low=0, high=255, shape=iou_shape, dtype='int64')
+    mean_iou, out_wrong, out_correct = paddle.metric.mean_iou(predict, label, num_classes)
 
     

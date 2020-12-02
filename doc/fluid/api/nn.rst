@@ -33,10 +33,10 @@ paddle.nn
     nn/ConstantPad2d.rst
     nn/ConstantPad3d.rst
     nn/continuous_value_model.rst
-    nn/Conv2d.rst
-    nn/Conv3d.rst
-    nn/ConvTranspose2d.rst 
-    nn/ConvTranspose3d.rst 
+    nn/Conv2D.rst
+    nn/Conv3D.rst
+    nn/Conv2DTranspose.rst
+    nn/Conv3DTranspose.rst
     nn/cosine_decay.rst
     nn/cosine_similarity.rst
     nn/CosineSimilarity.rst
@@ -94,7 +94,6 @@ paddle.nn
     nn/lrn.rst
     nn/margin_rank_loss.rst
     nn/matrix_nms.rst
-    nn/maxout.rst
     nn/mse_loss.rst
     nn/multiclass_nms.rst
     nn/natural_exp_decay.rst
@@ -169,7 +168,7 @@ paddle.nn
     nn/functional/activation/sigmoid.rst
     nn/layer/loss/MarginRankingLoss.rst
     nn/ZeroPad2d.rst
-    nn/AdaptiveAvgPool2d.rst
-    nn/AdaptiveAvgPool3d.rst
+    nn/AdaptiveAvgPool2D.rst
+    nn/AdaptiveAvgPool3D.rst
     nn/layer/activation/Sigmoid.rst
     nn/Bilinear.rst

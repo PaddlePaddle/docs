@@ -70,7 +70,10 @@ def get_display_doc_map(file="./display_doc_list"):
 def get_alias_mapping(file="./alias_api_mapping"):
     with open(file, 'r') as f:
         for line in f.readlines():
-            t = line.strip().split('\t')
+            if "\t" in line:
+                t = line.strip().split('\t')
+            else:
+                t = line.strip().split('    ')
             real_api = t[0].strip()
             alias_apis = t[1].strip().split(',')
             alias_api_map[real_api] = alias_apis
@@ -109,7 +112,7 @@ def choose_real_api(api_list):
     if id(eval(api)) in id_real_api_map:
         return id_real_api_map[id(eval(api))]
     else:
-        # in case of alias_mapping not contain the apisÚ
+        # in case of alias_mapping not contain the apis
         # try to find shortest path of api as the real api
         shortest = len(api_list[0].split("."))
         shorttest_api = api_list[0]

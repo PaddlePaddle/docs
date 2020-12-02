@@ -30,11 +30,8 @@ ELU激活层（ELU Activation Operator）
 .. code-block:: python
 
     import paddle
-    import numpy as np
-  
-    paddle.disable_static()
 
-    x = paddle.to_tensor(np.array([[-1, 6],[1, 15.6]]))
+    x = paddle.to_tensor([[-1. ,6.], [1., 15.6]])
     m = paddle.nn.ELU(0.2)
     out = m(x)
     # [[-0.12642411  6.        ]

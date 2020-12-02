@@ -5,3 +5,4 @@ MKL-DNN Data Caching
   :maxdepth: 1
 
   caching.md
+  keys.md

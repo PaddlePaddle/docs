@@ -3,9 +3,7 @@
 softmax_with_cross_entropy
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False, axis=-1)
-
-
+.. py:function:: paddle.nn.functional.softmax_with_cross_entropy(logits, label, soft_label=False, ignore_index=-100, numeric_stable_mode=True, return_softmax=False, axis=-1)
 
 
 该OP实现了softmax交叉熵损失函数。该函数会将softmax操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的梯度值。
@@ -34,8 +32,8 @@ softmax_with_cross_entropy
     softmax_j &= \exp(logits_j - max_j - {log\_max\_sum}_j)
 
 参数：
-  - **logits** (Variable) - 维度为任意维的多维 ``Tensor`` ，数据类型为float32或float64。表示未缩放的输入。
-  - **label** (Variable) - 如果 ``soft_label`` 为True， ``label`` 是一个和 ``logits`` 维度相同的的 ``Tensor`` 。如果 ``soft_label`` 为False， ``label`` 是一个在axis维度上大小为1，其它维度上与 ``logits`` 维度相同的 ``Tensor`` 。
+  - **logits** (Tensor) - 维度为任意维的多维 ``Tensor`` ，数据类型为float32或float64。表示未缩放的输入。
+  - **label** (Tensor) - 如果 ``soft_label`` 为True， ``label`` 是一个和 ``logits`` 维度相同的的 ``Tensor`` 。如果 ``soft_label`` 为False， ``label`` 是一个在axis维度上大小为1，其它维度上与 ``logits`` 维度相同的 ``Tensor`` 。
   - **soft_label** (bool, 可选) - 指明是否将输入标签当作软标签。默认值：False。
   - **ignore_index** (int, 可选) - 指明要无视的目标值，使其不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认值：kIgnoreIndex（-100）。 
   - **numeric_stable_mode** (bool, 可选) – 指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效。若 ``soft_label`` 为 True或者执行设备为CPU，算法一直具有数学稳定性。注意使用稳定算法时速度可能会变慢。默认值：True。
@@ -52,10 +50,16 @@ softmax_with_cross_entropy
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name='data', shape=[128], dtype='float32')
-    label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-    fc = fluid.layers.fc(input=data, size=100)
-    out = fluid.layers.softmax_with_cross_entropy(logits=fc, label=label)
+    import paddle
+    import numpy as np
+
+    data = np.random.rand(128).astype("float32") 
+    label = np.random.rand(1).astype("int64")
+    data = paddle.to_tensor(data)
+    label = paddle.to_tensor(label)
+    linear = paddle.nn.Linear(128, 100)
+    x = linear(data)
+    out = paddle.nn.functional.softmax_with_cross_entropy(logits=x, label=label)
+    print(out)
 
 

@@ -26,17 +26,13 @@ mean
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-
-    x = np.array([[[1, 2, 3, 4],
-                   [5, 6, 7, 8],
-                   [9, 10, 11, 12]],
-                  [[13, 14, 15, 16],
-                   [17, 18, 19, 20],
-                   [21, 22, 23, 24]]], 'float32')
-    x = paddle.to_tensor(x)
+    x = paddle.to_tensor([[[1., 2., 3., 4.],
+                            [5., 6., 7., 8.],
+                            [9., 10., 11., 12.]],
+                            [[13., 14., 15., 16.],
+                            [17., 18., 19., 20.],
+                            [21., 22., 23., 24.]]])
     out1 = paddle.mean(x)
     # [12.5]
     out2 = paddle.mean(x, axis=-1)

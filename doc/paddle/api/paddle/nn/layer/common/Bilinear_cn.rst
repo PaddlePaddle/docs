@@ -49,7 +49,6 @@ Bilinear
     import paddle
     import numpy
 
-    paddle.disable_static()
     layer1 = numpy.random.random((5, 5)).astype('float32')
     layer2 = numpy.random.random((5, 4)).astype('float32')
     bilinear = paddle.nn.Bilinear(

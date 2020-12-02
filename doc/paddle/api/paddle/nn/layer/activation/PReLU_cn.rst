@@ -18,7 +18,7 @@ PReLU激活层（PReLU Activation Operator）。计算公式如下：
 ::::::::::
     - num_parameters (int, 可选) - 可训练`weight`数量，支持2种输入：1 - 输入中的所有元素使用同一个`weight`值; 输入的通道数 - 在同一个通道中的元素使用同一个`weight`值。默认为1。
     - init (float, 可选) - `weight`的初始值。默认为0.25。
-    - weight_attr (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - weight_attr (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_ParamAttr` 。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状:
@@ -34,7 +34,6 @@ PReLU激活层（PReLU Activation Operator）。计算公式如下：
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     paddle.set_default_dtype("float64")
 
     data = np.array([[[[-2.0,  3.0, -4.0,  5.0],

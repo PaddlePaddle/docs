@@ -5,9 +5,9 @@ instance_norm
 
 .. py:class:: paddle.nn.functional.instance_norm(x, running_mean, running_var, weight, bias, training=False, epsilon=1e-05, momentum=0.9, use_input_stats=True, data_format='NCHW', name=None):
 
-推荐使用nn.InstanceNorm1d，nn.InstanceNorm2d, nn.InstanceNorm3d，由内部调用此方法。
+推荐使用nn.InstanceNorm1D，nn.InstanceNorm2D, nn.InstanceNorm3D，由内部调用此方法。
 
-详情见 :ref:`cn_api_nn_InstanceNorm1d` 。  
+详情见 :ref:`cn_api_nn_InstanceNorm1D` 。
 
 参数：
     - **x** (int) - 输入，数据类型为float32, float64。
@@ -31,7 +31,6 @@ instance_norm
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     x = np.random.seed(123)
     x = np.random.random(size=(2, 1, 2, 3)).astype('float32')
     running_mean = np.random.random(size=1).astype('float32')
@@ -44,4 +43,4 @@ instance_norm
     w = paddle.to_tensor(weight_data)
     b = paddle.to_tensor(bias_data)
     instance_norm_out = paddle.nn.functional.instance_norm(x, rm, rv, w, b)
-    print(instance_norm_out.numpy())
+    print(instance_norm_out)

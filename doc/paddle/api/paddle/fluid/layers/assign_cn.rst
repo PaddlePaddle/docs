@@ -11,12 +11,12 @@ assign
 该OP将输入Tensor或numpy数组拷贝至输出Tensor。
 
 参数：
-    - **input** (Variable|np.ndarray) - 输入Tensor或numpy数组，支持数据类型为float32, float64, int32, int64和bool。
-    - **output** (Variable，可选) - 输出Tensor。如果为None，则创建一个新的Tensor作为输出Tensor，默认值为None。
+    - **input** (Tensor|np.ndarray) - 输入Tensor或numpy数组，支持数据类型为float32, float64, int32, int64和bool。
+    - **output** (Tensor，可选) - 输出Tensor。如果为None，则创建一个新的Tensor作为输出Tensor，默认值为None。
 
 返回：输出Tensor，形状、数据类型、数据值和 ``input`` 一致。
 
-返回类型：Variable
+返回类型：Tensor
 
 **代码示例**：
 
