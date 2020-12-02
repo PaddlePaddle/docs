@@ -4,7 +4,7 @@ create_parameter
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
+.. py:function:: paddle.static.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
 
 
 
@@ -21,9 +21,7 @@ create_parameter
     - **is_bias** (bool，可选) - 当default_initializer为空，该值会对选择哪个默认初始化程序产生影响。如果is_bias为真，则使用initializer.Constant(0.0)，否则使用Xavier()，默认值False。
     - **default_initializer** (Initializer，可选) - 参数的初始化程序，默认值为空。
 
-返回：创建的Tensor变量。
-
-返回类型：ParamBase。
+返回：创建的Parameter变量。
 
 **代码示例**：
 
