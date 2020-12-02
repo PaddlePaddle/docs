@@ -77,7 +77,6 @@ conv2d
 
 返回：4-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
 
-返回类型：Tensor。
 
 抛出异常：
     - ``ValueError`` - 如果 ``use_cudnn`` 不是bool值。
@@ -98,7 +97,8 @@ conv2d
     import paddle
     paddle.enable_static()
     data = paddle.static.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
-    conv2d_transpose = paddle.static.nn.conv2d(input=data, num_filters=2, filter_size=3)
+    conv2d = paddle.static.nn.conv2d(input=data, num_filters=2, filter_size=3)
+    print(conv2d.shape) # [-1, 2, 30, 30]
 
 
 
