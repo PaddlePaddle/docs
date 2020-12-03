@@ -61,7 +61,6 @@ Auc
                 def __len__(self):
                     return self.n
             
-            paddle.disable_static()
             model = paddle.Model(nn.Sequential(
                 nn.Linear(10, 2), nn.Softmax())
             )
