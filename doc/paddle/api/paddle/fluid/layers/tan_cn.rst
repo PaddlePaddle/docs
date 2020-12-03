@@ -8,11 +8,13 @@ tan
 
 
 
+三角函数tangent。
 
-tan激活函数（计算三角函数tangent的值）
+输入范围是 `(k*pi-pi/2, k*pi+pi/2)`， 输出范围是 `[-inf, inf]`。 
 
 .. math::
-                  \\Out=tan(x)\\
+
+    out = tan(x)
 
 
 参数:
@@ -31,16 +33,16 @@ tan激活函数（计算三角函数tangent的值）
 
   # example 1: x is a float
   x_i = paddle.to_tensor([[1.0], [2.0]])
-  res = paddle.tan(x_i) # [[0.], [1.0]]
+  res = paddle.tan(x_i) #[[ 1.55740786], [-2.18504000]]
 
   # example 2: x is float32
   x_i = paddle.full(shape=[1], fill_value=2, dtype='float32')
   paddle.to_tensor(x_i)
   res = paddle.tan(x_i)
-  print(res) # [1.]
+  print(res) # [ 1.55740786]
   
   # example 3: x is float64
   x_i = paddle.full(shape=[1], fill_value=2, dtype='float64')
   paddle.to_tensor(x_i)
   res = paddle.tan(x_i)
-  print(res) # [1.]
+  print(res) # [ 1.55740786]
