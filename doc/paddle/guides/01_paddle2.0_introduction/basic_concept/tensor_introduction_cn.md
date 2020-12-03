@@ -115,9 +115,9 @@ ValueError:
 
 上面介绍了通过Python数据来创建**Tensor**的方法，我们也可以通过 **Numpy array** 来创建**Tensor**：
 ```python
-rank_1_tensor = paddle.to_tensor(Numpy array([1.0, 2.0]))
+rank_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
 
-rank_2_tensor = paddle.to_tensor(Numpy array([[1.0, 2.0],
+rank_2_tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
                                               [3.0, 4.0]]))
 
 rank_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
@@ -241,7 +241,7 @@ float64_tensor = paddle.cast(float32_tensor, dtype='float64')
 print("Tensor after cast to float64:", float64_tensor.dtype)
 
 int64_tensor = paddle.cast(float32_tensor, dtype='int64')
-print("Tensor after cast to int64:", int64_tensor.dthpe)
+print("Tensor after cast to int64:", int64_tensor.dtype)
 ```
 ```text
 Tensor after cast to float64: VarType.FP64
@@ -376,14 +376,15 @@ rank_3_tensor[1, :, :]
 import paddle
 import numpy as np
 
-x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1,1,1], [1,1,1]]
+x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1., 1., 1.], [1., 1., 1.]]
 
-x[0] = 0                      # x : [[0, 0, 0], [1 ,1, 1]]        id(x) = 4433705584
-x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1 ,1, 1]]  id(x) = 4433705584
-x[...] = 3                    # x : [[3, 3, 3], [3, 3, 3]]        id(x) = 4433705584
+x[0] = 0                      # x : [[0., 0., 0.], [1., 1., 1.]]        id(x) = 4433705584
+x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1., 1., 1.]]     id(x) = 4433705584
+x[...] = 3                    # x : [[3., 3., 3.], [3., 3., 3.]]        id(x) = 4433705584
 
-x[0:1] = np.array([1,2,3])    # x : [[1, 2, 3], [3, 3, 3]]        id(x) = 4433705584
-x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 4433705584
+x[0:1] = np.array([1,2,3])    # x : [[1., 2., 3.], [3., 3., 3.]]        id(x) = 4433705584
+
+x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]        id(x) = 4433705584
 ```
 
 ---

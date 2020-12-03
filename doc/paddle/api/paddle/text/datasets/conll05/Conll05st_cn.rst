@@ -46,7 +46,6 @@ Conll05st
         def forward(self, pred_idx, mark, label):
             return paddle.sum(pred_idx), paddle.sum(mark), paddle.sum(label)
 
-    paddle.disable_static()
 
     conll05st = Conll05st()
 
