@@ -22,6 +22,7 @@ unbind
 .. code-block:: python
     
     import paddle
+    import numpy as np
     # input is a variable which shape is [3, 4, 5]
     np_input = np.random.rand(3, 4, 5).astype('float32')
     input = paddle.to_tensor(np_input)
