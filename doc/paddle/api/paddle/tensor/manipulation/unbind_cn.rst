@@ -2,7 +2,7 @@
 unbind
 -------------------------------
 
-.. py:function:: paddle.tensor.unbind(input, axis=0)
+.. py:function:: paddle.unbind(input, axis=0)
 
 
 
