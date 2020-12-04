@@ -225,7 +225,6 @@ DataLoader（多进程数据集加载）。
 
     from paddle.static import InputSpec
     
-    paddle.disable_static()
     num_keypoints = 15
     model = paddle.Model(FaceNet(num_keypoints))
     model.summary((1,3, 96, 96))
