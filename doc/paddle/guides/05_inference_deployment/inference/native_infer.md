@@ -121,6 +121,14 @@ config->DisableGpu();          // 禁用GPU
 config->EnableMKLDNN();            // 开启MKLDNN，可加速CPU预测
 config->SetCpuMathLibraryNumThreads(10);        // 设置CPU Math库线程数，CPU核心数支持情况下可加速预测
 ```
+
+**note**
+
+如果在输入shape为变长时开启MKLDNN加速预测，需要通过`SetMkldnnCacheCapacity`接口设置MKLDNN缓存的不同输入shape的数目，否则可能会出现内存泄漏。使用方法如下：
+```c++
+config->SetMkldnnCacheCapacity(100); // 缓存100个不同的输入shape
+```
+
 #### 配置GPU预测
 ``` c++
 config->EnableUseGpu(100, 0); // 初始化100M显存，使用GPU ID为0
@@ -500,7 +508,19 @@ for (...) {
 
 ###### ClearIntermediateTensor()
 
-释放中间tensor。
+释放临时tensor，将其所占空间归还显/内存池。
+
+参数：
+
+- `None`
+
+返回：`None`
+
+返回类型：`void`
+
+###### TryShrinkMemory()
+
+释放临时tensor，并检查显/内存池中是否有可以释放的chunk，若有则释放chunk，降低显/内存占用（显/内存池可认为是`list<chunk>`组成，如果chunk空闲，则可通过释放chunk来降低显/内存占用），demo示例可参考[Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/test/shrink_memory)。
 
 参数：
 

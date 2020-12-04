@@ -195,7 +195,6 @@ paddle.nn.layer.loss.L1Loss	paddle.nn.L1Loss,paddle.nn.layer.L1Loss
 paddle.fluid.dygraph.io.TranslatedLayer	paddle.jit.TranslatedLayer
 paddle.nn.functional.conv.conv2d_transpose	paddle.nn.functional.conv2d_transpose
 paddle.tensor.manipulation.split	paddle.split,paddle.tensor.split
-paddle.fluid.layers.tensor.create_parameter	paddle.static.create_parameter,paddle.framework.create_parameter
 paddle.nn.layer.activation.Softsign	paddle.nn.Softsign
 paddle.nn.layer.loss.CrossEntropyLoss	paddle.nn.CrossEntropyLoss,paddle.nn.layer.CrossEntropyLoss
 paddle.nn.layer.norm.BatchNorm3D	paddle.nn.BatchNorm3D
@@ -246,7 +245,7 @@ paddle.nn.layer.pooling.MaxPool2D	paddle.nn.MaxPool2D,paddle.nn.layer.MaxPool2D
 paddle.fluid.layers.multiplex	paddle.multiplex,paddle.tensor.multiplex,paddle.tensor.math.multiplex
 paddle.nn.layer.common.Pad2D	paddle.nn.Pad2D,paddle.nn.layer.Pad2D
 paddle.fluid.layers.conv2d	paddle.static.nn.conv2d
-paddle.fluid.layers.create_parameter	paddle.static.nn.create_parameter
+paddle.fluid.layers.create_parameter	paddle.static.create_parameter
 paddle.tensor.creation.ones_like	paddle.ones_like,paddle.tensor.ones_like
 paddle.fluid.dygraph.base.no_grad	paddle.framework.no_grad
 paddle.nn.functional.common.dropout3d	paddle.nn.functional.dropout3d
@@ -433,10 +432,14 @@ paddle.nn.functional.input.one_hot	paddle.nn.functional.one_hot
 paddle.tensor.creation.full	paddle.full,paddle.tensor.full
 paddle.hapi.model.Model	paddle.Model
 paddle.hapi.callbacks.Callback	paddle.callbacks.Callback
-paddle.hapi.callbacks.ProgBarLogger	paddle.callbacks.ProgBarLogger
+paddle.hapi.callbacks.ProgBarLogger	   paddle.callbacks.ProgBarLogger
 paddle.hapi.callbacks.ModelCheckpoint	paddle.callbacks.ModelCheckpoint
-paddle.hapi.callbacks.VisualDL	paddle.callbacks.VisualDL
+paddle.hapi.callbacks.VisualDL	  paddle.callbacks.VisualDL
+paddle.hapi.callbacks.ReduceLROnPlateau	   paddle.callbacks.ReduceLROnPlateau
+paddle.hapi.callbacks.LRScheduler	paddle.callbacks.LRScheduler
+paddle.hapi.callbacks.EarlyStopping	   paddle.callbacks.EarlyStopping
 paddle.hapi.model_summary.summary	paddle.summary
+paddle.hapi.model_flops.flops	paddle.flops
 paddle.vision.models.resnet.ResNet	paddle.vision.models.ResNet,paddle.vision.ResNet
 paddle.vision.models.resnet.resnet18	paddle.vision.models.resnet18,paddle.vision.resnet18
 paddle.vision.models.resnet.resnet34	paddle.vision.models.resnet34,paddle.vision.resnet34

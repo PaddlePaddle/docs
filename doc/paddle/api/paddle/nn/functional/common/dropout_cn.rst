@@ -118,7 +118,6 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为: 对
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     x = np.array([[1,2,3], [4,5,6]]).astype('float32')
     x = paddle.to_tensor(x)
     y_train = paddle.nn.functional.dropout(x, 0.5)
@@ -126,9 +125,9 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为: 对
     y_0 = paddle.nn.functional.dropout(x, axis=0)
     y_1 = paddle.nn.functional.dropout(x, axis=1)
     y_01 = paddle.nn.functional.dropout(x, axis=[0,1])
-    print(x.numpy())
-    print(y_train.numpy())
-    print(y_test.numpy())
-    print(y_0.numpy())
-    print(y_1.numpy())
-    print(y_01.numpy())
+    print(x)
+    print(y_train)
+    print(y_test)
+    print(y_0)
+    print(y_1)
+    print(y_01)
