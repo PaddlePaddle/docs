@@ -25,8 +25,6 @@ diag_embed
 
 返回： 指定二维平面填充了对角线的 Tensor。数据类型和输入数据类型一致。
 
-返回类型：  Tensor
-
 **代码示例** 
 
 ..  code-block:: python
