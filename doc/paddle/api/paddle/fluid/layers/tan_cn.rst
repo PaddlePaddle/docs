@@ -22,7 +22,7 @@ tan
   - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
-返回类型: Tensor - 该OP的输出为Tensor，数据类型为输入一致。
+返回: Tensor - 该OP的输出为Tensor，数据类型为输入一致。
 
 
 **代码示例**
