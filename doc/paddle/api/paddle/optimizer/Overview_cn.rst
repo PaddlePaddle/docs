@@ -30,6 +30,20 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
      :ref:`cn_api_paddle_optimizer_RMSProp`, "RMSProp优化器"
      :ref:`cn_api_paddle_optimizer_SGD`, "SGD优化器"
 
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    "SGD", "SGD优化器"
+
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    " :ref:`SGD <cn_api_paddle_optimizer_SGD>` ", "SGD优化器"  
+
+
+
 .. _about_lr:
 学习率衰减相关API
 :::::::::::::::::::::::
@@ -38,7 +52,7 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
     :header: "API名称", "API功能"
     :widths:10, 30
 
-     :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingDecay`, "Cosine Annealing学习率衰减"
+    :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingDecay`, "Cosine Annealing学习率衰减"
      :ref:`cn_api_paddle_optimizer_lr_ExponentialDecay`, "Exponential 学习率衰减"
      :ref:`cn_api_paddle_optimizer_lr_InverseTimeDecay`, "Inverse Time 学习率衰减"
      :ref:`cn_api_paddle_optimizer_lr_LRScheduler`, "学习率衰减的基类"
