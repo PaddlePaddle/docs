@@ -9,7 +9,7 @@ tan
 
 三角函数tangent。
 
-输入范围是 `(k*pi-pi/2, k*pi+pi/2)`， 输出范围是 `[-inf, inf]`。 
+输入范围是 `(k*pi-pi/2, k*pi+pi/2)`， 输出范围是 `(-inf, inf)`。 
 
 .. math::
 
