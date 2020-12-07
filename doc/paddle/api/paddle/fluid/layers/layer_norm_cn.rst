@@ -4,7 +4,7 @@ layer_norm
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
+.. py:function:: paddle.static.nn.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
 
 
 
@@ -39,7 +39,6 @@ layer_norm
 
 返回：表示归一化结果的 ``Tensor`` ，数据类型和 ``input`` 一致，返回维度和 ``input`` 一致。
 
-返回类型：Tensor
 
 **代码示例**
 

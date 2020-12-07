@@ -30,8 +30,6 @@ label_smooth
 
 返回：为平滑后标签的 ``Tensor`` 。
 
-返回类型: Tensor
-
 **代码示例**
 
 ..  code-block:: python
