@@ -3,7 +3,7 @@
 GRU
 -------------------------------
 
-.. py:class:: paddle.nn.GRU(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
+.. py:class:: paddle.nn.GRU(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None)
 
 
 
@@ -33,14 +33,12 @@ GRU
     - **hidden_size** (int) - 隐藏状态大小。
     - **num_layers** (int，可选) - 网络层数。默认为1。
     - **direction** (str，可选) - 网络迭代方向，可设置为forward，backward或bidirectional。默认为forward。
-    - **dropout** (float，可选) - dropout概率，指的是出第一层外每层输入时的dropout概率。默认为0.
     - **time_major** (bool，可选) - 指定input的第一个维度是否是time steps。默认为False。
+    - **dropout** (float，可选) - dropout概率，指的是出第一层外每层输入时的dropout概率。默认为0。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih的参数。默认为None。
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh的参数。默认为None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih的参数。默认为None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
-    - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
-
     
 输入:
     - **inputs** (Tensor) - 网络输入。如果time_major为True，则Tensor的形状为[time_steps,batch_size,input_size]，如果time_major为False，则Tensor的形状为[batch_size,time_steps,input_size]。

@@ -165,7 +165,7 @@ paddle.tensor.logic.greater_equal	paddle.greater_equal,paddle.tensor.greater_equ
 paddle.nn.layer.pooling.AvgPool2D	paddle.nn.AvgPool2D,paddle.nn.layer.AvgPool2D
 paddle.nn.functional.pooling.adaptive_avg_pool3d	paddle.nn.functional.adaptive_avg_pool3d
 paddle.tensor.math.inverse	paddle.inverse,paddle.tensor.inverse
-paddle.fluid.layers.label_smooth	paddle.nn.functional.label_smooth,paddle.nn.functional.common.label_smooth
+paddle.nn.functional.common.label_smooth	paddle.nn.functional.label_smooth
 paddle.nn.layer.activation.Sigmoid	paddle.nn.Sigmoid,paddle.nn.layer.Sigmoid
 paddle.nn.layer.norm.BatchNorm1D	paddle.nn.BatchNorm1D
 paddle.static.nn.common.fc	paddle.static.nn.fc
