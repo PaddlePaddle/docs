@@ -1,9 +1,9 @@
-.. _cn_api_paddle_nn_UpsamplingBilinear2d:
+.. _cn_api_paddle_nn_UpsamplingBilinear2D:
 
-UpsamplingBilinear2d
+UpsamplingBilinear2D
 -------------------------------
 
-.. py:function:: paddle.nn.UpsamplingBilinear2d(size=None,scale_factor=None, data_format='NCHW',name=None):
+.. py:function:: paddle.nn.UpsamplingBilinear2D(size=None,scale_factor=None, data_format='NCHW',name=None):
 
 
 
@@ -47,7 +47,7 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation
     import paddle.nn as nn
     
     input_data = paddle.rand(shape=[2,3,6,10])
-    upsample_out  = paddle.nn.UpsamplingBilinear2d(size=[12,12])
+    upsample_out  = paddle.nn.UpsamplingBilinear2D(size=[12,12])
     output = upsample_out(input_data)
     print(output.shape)
     # [2L, 3L, 12L, 12L]
