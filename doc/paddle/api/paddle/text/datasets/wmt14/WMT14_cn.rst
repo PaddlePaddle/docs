@@ -38,7 +38,6 @@ http://paddlepaddle.bj.bcebos.com/demo/wmt_shrinked_data/wmt14.tgz
         def forward(self, src_ids, trg_ids, trg_ids_next):
             return paddle.sum(src_ids), paddle.sum(trg_ids), paddle.sum(trg_ids_next)
 
-    paddle.disable_static()
 
     wmt14 = WMT14(mode='train', dict_size=50)
 
