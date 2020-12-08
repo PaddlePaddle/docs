@@ -4,7 +4,7 @@
 
 * **处理器：ZHAOXIN KaiSheng KH-37800D**
 * **操作系统：centos7**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
+* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 * **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 兆芯为x86架构，编译方法与[Linux下从源码编译cpu版](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/compile_Linux.html)一致。
@@ -18,60 +18,106 @@
 
 1. Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要[源码安装](https://github.com/Kitware/CMake)
 
+        ```
         wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
+        ```
+
+        ```
         tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8
+        ```
+
+        ```
         ./bootstrap && make && sudo make install
+        ```
 
 2. Paddle内部使用patchelf来修改动态库的rpath，如果操作系统提供的源包括了patchelf，直接安装即可，否则需要源码安装，请参考[patchelf官方文档](https://github.com/NixOS/patchelf)。
 
+        ```
         ./bootstrap.sh
+        ```
+
+        ```
         ./configure
+        ```
+
+        ```
         make
+        ```
+
+        ```
         make check
+        ```
+
+        ```
         sudo make install
+        ```
 
 3. 将Paddle的源代码克隆到当下目录下的Paddle文件夹中，并进入Paddle目录
 
-    - `git clone https://github.com/PaddlePaddle/Paddle.git`
+    ```
+    git clone https://github.com/PaddlePaddle/Paddle.git
+    ```
 
-    - `cd Paddle`
+    ```
+    cd Paddle
+    ```
 
 4. 切换到较稳定release分支下进行编译：
 
-    `git checkout [分支/标签名]`
+    ```
+    git checkout [分支/标签名]
+    ```
 
     例如：
 
-    `git checkout v2.0.0-rc1`
+    ```
+    git checkout release/2.0-rc1
+    ```
 
 5. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。
 
-    - `pip install -r python/requirments.txt`
+    ```
+    pip install -r python/requirments.txt
+    ```
 
 6. 请创建并进入一个叫build的目录下：
 
-    `mkdir build && cd build`
+    ```
+    mkdir build && cd build
+    ```
 
 7. 链接过程中打开文件数较多，可能超过系统默认限制导致编译出错，设置进程允许打开的最大文件数：
 
-    `ulimit -n 4096`
+    ```
+    ulimit -n 4096
+    ```
 
 8. 执行cmake：
 
     >具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 
-        For Python2: cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
-        For Python3: cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
+        For Python2:
+        ```
+        cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
+        ```
+        For Python3:
+        ```
+        cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
+        ```
 
 9. 编译。
 
-    `make -j$(nproc)`
+    ```
+    make -j$(nproc)
+    ```
 
 10. 编译成功后进入`Paddle/build/python/dist`目录下找到生成的`.whl`包。
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-    `python2 -m pip install -U（whl包的名字）`或`python3 -m pip install -U（whl包的名字）`
+    ```
+    python2 -m pip install -U（whl包的名字）`或`python3 -m pip install -U（whl包的名字）
+    ```
 
 恭喜，至此您已完成PaddlePaddle在FT环境下的编译安装。
 
@@ -98,7 +144,9 @@
 ## **如何卸载**
 请使用以下命令卸载PaddlePaddle：
 
-`python3 -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle`
+```
+python3 -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle
+```
 
 ## **备注**
 
