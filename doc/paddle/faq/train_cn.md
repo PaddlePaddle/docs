@@ -92,6 +92,12 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ----------
 
+##### 问题：在模型组网时，inplace参数的设置会影响梯度回传吗？经过不带参数的op之后，梯度是否会保留下来？
+
++ 答复：inplace 参数不会影响梯度回传。只要用户没有手动设置stop_gradient=True，梯度都会保留下来。
+
+----------
+
 
 
 ## 模型训练&评估
