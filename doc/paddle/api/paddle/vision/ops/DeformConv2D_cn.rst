@@ -6,11 +6,11 @@ DeformConv2D
 
 deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x，输出Tensor y，可变形卷积运算如下所示：
 
-可形变卷积v2:
+可形变卷积v2(make != None):
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}`
 
-可形变卷积v1:
+可形变卷积v1(make = None):
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k)}`
 
@@ -52,14 +52,6 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
-
-属性
-::::::::::::
-.. py:attribute:: weight
-本层的可学习参数，类型为 ``Parameter``
-
-.. py:attribute:: bias
-本层的可学习偏置，类型为 ``Parameter``
     
 形状:
     - x: :math:`(N, C_{in}, H_{in}, W_{in})`
@@ -70,11 +62,10 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     其中:
 
     .. math::
+
         H_{out} = \frac{(H_{in} + 2 * paddings[0] - (dilations[0] * (kernel\_size[0] - 1) + 1))}{strides[0]} + 1
 
         W_{out} = \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (kernel\_size[1] - 1) + 1))}{strides[1]} + 1
-
-抛出异常：ValueError – 如果input, filter_size, stride, padding和groups的大小不匹配。
 
 **代码示例**：
 

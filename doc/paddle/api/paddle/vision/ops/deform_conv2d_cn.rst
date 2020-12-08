@@ -5,11 +5,11 @@ deform_conv2d
 
 deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x，输出Tensor y，可变形卷积运算如下所示：
 
-可形变卷积v2:
+可形变卷积v2(make != None):
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}`
 
-可形变卷积v1:
+可形变卷积v1(make = None):
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k)}`
 
@@ -54,9 +54,6 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
  
 返回：可变形卷积输出的4-D Tensor，数据类型为float32或float64。
      
-返回类型：Tensor
-     
-抛出异常：ValueError – 如果input, filter_size, stride, padding和groups的大小不匹配。
 
 **代码示例**：
 
