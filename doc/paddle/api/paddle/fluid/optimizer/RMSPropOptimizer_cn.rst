@@ -15,21 +15,21 @@ RMSPropOptimizer
     w & = w - \frac{\eta} {\sqrt{r(w,t) + \epsilon}} \nabla Q_{i}(w)
     
 第一个等式计算每个权重平方梯度的移动平均值，然后将梯度除以 :math:`sqrtv（w，t）` 。
-  
+
 .. math::
    r(w, t) & = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\
    v(w, t) & = \beta v(w, t-1) +\frac{\eta} {\sqrt{r(w,t) +\epsilon}} \nabla Q_{i}(w)\\
          w & = w - v(w, t)
 
 如果居中为真：
-  
+
 .. math::
       r(w, t) & = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\
       g(w, t) & = \rho g(w, t-1) + (1 -\rho)\nabla Q_{i}(w)\\
       v(w, t) & = \beta v(w, t-1) + \frac{\eta} {\sqrt{r(w,t) - (g(w, t))^2 +\epsilon}} \nabla Q_{i}(w)\\
             w & = w - v(w, t)
       
-其中， :math:`ρ` 是超参数，典型值为0.9,0.95等。 :math:`beta` 是动量术语。  :math:`epsilon` 是一个平滑项，用于避免除零，通常设置在1e-4到1e-8的范围内。
+其中， :math:`ρ` 是超参数，典型值为0.9,0.95等。 :math:`beta` 是动量术语。  :math:`epsilon` 是一个平滑项，用于避免除零，通常设置在1e-4到1e-8的范围内。:math:`eta` 是学习率`learning_rate`
       
 参数：
     - **learning_rate** （float） - 全局学习率。
@@ -139,7 +139,7 @@ RMSPropOptimizer
 
     import paddle.fluid as fluid
     import numpy as np
-
+    
     with fluid.dygraph.guard():
         value = np.arange(26).reshape(2, 13).astype("float32")
         a = fluid.dygraph.to_variable(value)
@@ -212,14 +212,14 @@ RMSPropOptimizer
 
     import paddle.fluid as fluid
     import numpy as np
-
+    
     # example1: LearningRateDecay is not used, return value is all the same
     with fluid.dygraph.guard():
         emb = fluid.dygraph.Embedding([10, 10])
         adam = fluid.optimizer.Adam(0.001, parameter_list = emb.parameters())
         lr = adam.current_step_lr()
         print(lr) # 0.001
-
+    
     # example2: PiecewiseDecay is used, return the step learning rate
     with fluid.dygraph.guard():
         inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
@@ -227,15 +227,15 @@ RMSPropOptimizer
         inp = fluid.dygraph.to_variable(inp)
         out = linear(inp)
         loss = fluid.layers.reduce_mean(out)
-
+    
         bd = [2, 4, 6, 8]
         value = [0.2, 0.4, 0.6, 0.8, 1.0]
         adam = fluid.optimizer.Adam(fluid.dygraph.PiecewiseDecay(bd, value, 0),
                            parameter_list=linear.parameters())
-
+    
         # first step: learning rate is 0.2
         np.allclose(adam.current_step_lr(), 0.2, rtol=1e-06, atol=0.0) # True
-
+    
         # learning rate for different steps
         ret = [0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1.0, 1.0, 1.0, 1.0]
         for i in range(12):
