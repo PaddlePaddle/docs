@@ -16,9 +16,9 @@ Recall
     - **name** (str，可选) – metric实例的名字，默认是'recall'。
 
 
-**代码示例**
+**代码示例**:
 
-    # 独立使用示例:
+    独立使用示例:
         
         .. code-block:: python
 
@@ -33,7 +33,7 @@ Recall
             res = m.accumulate()
             print(res) # 2.0 / 3.0
 
-    # 在Model API中的示例:
+    在Model API中的示例:
         
         .. code-block:: python
 

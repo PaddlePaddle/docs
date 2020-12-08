@@ -14,7 +14,7 @@ Accuracy
 
 **代码示例**：
 
-    # 独立使用示例:
+    独立使用示例:
         
         .. code-block:: python
 
@@ -35,23 +35,30 @@ Accuracy
             print(res) # 0.75
 
 
-    # 在Model API中的示例:
+    在Model API中的示例:
         
         .. code-block:: python
 
             import paddle
-
-            train_dataset = paddle.vision.datasets.MNIST(mode='train')
-
-            model = paddle.Model(paddle.vision.LeNet(classifier_activation=None))
+            from paddle.static import InputSpec
+            import paddle.vision.transforms as T
+            from paddle.vision.datasets import MNIST
+               
+            input = InputSpec([None, 1, 28, 28], 'float32', 'image')
+            label = InputSpec([None, 1], 'int64', 'label')
+            transform = T.Compose([T.Transpose(), T.Normalize([127.5], [127.5])])
+            train_dataset = MNIST(mode='train', transform=transform)
+  
+            model = paddle.Model(paddle.vision.LeNet(), input, label)
             optim = paddle.optimizer.Adam(
                 learning_rate=0.001, parameters=model.parameters())
             model.prepare(
                 optim,
                 loss=paddle.nn.CrossEntropyLoss(),
                 metrics=paddle.metric.Accuracy())
-
+  
             model.fit(train_dataset, batch_size=64)
+
 
 
 .. py:function:: compute(pred, label, *args)
