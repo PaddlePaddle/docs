@@ -7,7 +7,7 @@
 - `基本概念 <./basic_concept/index_cn.html>`_ : 飞桨框架2.0RC 基本概念的介绍。
 - `API升级概要 <./main_upgrade_cn.html>`_ : 飞桨框架2.0RC API升级说明。
 - `升级指南 <./upgrade_guide_cn.html>`_: 介绍飞桨框架2.0RC 的主要变化和如何升级。
-- `版本迁移工具 <./migration_cn.html>`_: 介绍paddle1to2转换工具的使用。
+- `版本迁移工具 <./migration_cn.html>`_: 介绍飞桨框架版本转换工具的使用。
 
 ..  toctree::
     :hidden:
