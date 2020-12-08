@@ -106,7 +106,7 @@ Please follow the steps below to install:
         > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 8.0.
 
 
-4. After entering Docker, go to the paddle directory: `cd paddle`
+4. After entering Docker, go to the paddle directory: `cd /paddle`
 
 5. Switch to a more stable version to compile:
 

@@ -45,7 +45,7 @@
 
 5. 进入Docker后进入paddle目录下：
 
-	`cd paddle`
+	`cd /paddle`
 
 6. 切换到较稳定版本下进行编译：
 
