@@ -544,8 +544,8 @@ paddle.nn.layer.common.Pad3D	paddle.nn.Pad3D,paddle.nn.common.Pad3D
 paddle.nn.functional.interpolate	paddle.nn.functional.interpolate,paddle.nn.functional.common.interpolate
 paddle.nn.functional.upsample	paddle.nn.functional.upsample,paddle.nn.functional.common.upsample
 paddle.nn.Upsample	paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
-paddle.nn.UpsamplingBilinear2d	paddle.nn.layer.UpsamplingBilinear2d,paddle.nn.layer.common.UpsamplingBilinear2d
-paddle.nn.UpsamplingNearest2d	paddle.nn.layer.UpsamplingNearest2d,paddle.nn.layer.common.UpsamplingNearest2d
+paddle.nn.layer.common.UpsamplingBilinear2D	paddle.nn.UpsamplingBilinear2D,paddle.nn.layer.UpsamplingBilinear2D
+paddle.nn.layer.common.UpsamplingNearest2D	paddle.nn.UpsamplingNearest2D,paddle.nn.layer.UpsamplingNearest2D
 paddle.fluid.initializer.set_global_initializer	paddle.nn.initializer.set_global_initializer
 paddle.fluid.io.load_program_state	paddle.static.load_program_state
 paddle.fluid.io.set_program_state	paddle.static.set_program_state
