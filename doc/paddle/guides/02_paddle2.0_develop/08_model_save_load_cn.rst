@@ -343,6 +343,40 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
         def forward(self, x):
             return self._linear(x)
 
+(3) 如果您需要存储多个方法，需要用``paddle.jit.to_static`` 装饰每一个需要被存储的方法，并且``paddle.jit.save``的``input_spec``参数必须为None。示例如下：
+.. code-block:: python
+
+    import paddle
+    import paddle.nn as nn
+    from paddle.static import InputSpec
+
+    IMAGE_SIZE = 784
+    CLASS_NUM = 10
+
+
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
+            self._linear_2 = nn.Linear(IMAGE_SIZE, CLASS_NUM)
+
+        @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
+        def forward(self, x):
+            return self._linear(x)
+
+        @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
+        def another_forward(self, x):
+            return self._linear_2(x)
+
+
+    inps = paddle.randn([1, IMAGE_SIZE])
+    layer = LinearNet()
+    before_0 = layer.another_forward(inps)
+    before_1 = layer(inps)
+    # save and load
+    path = "example.model/linear"
+    paddle.jit.save(layer, path)
+
 
 3.1.2 动态图训练 + 模型&参数存储
 ``````````````````````````````
@@ -529,6 +563,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     loss_fn = nn.CrossEntropyLoss()
     adam = opt.Adam(learning_rate=0.001, parameters=loaded_layer.parameters())
     train(loaded_layer, loader, loss_fn, adam)
+    paddle.jit.save(loaded_layer, "fine-tune.model/linear", input_spec=[x])
 
 
 此外， ``paddle.jit.save`` 同时保存了模型和参数，如果您只需要从存储结果中载入模型的参数，可以使用 ``paddle.load`` 接口载入，返回所存储模型的state_dict，示例如下：
