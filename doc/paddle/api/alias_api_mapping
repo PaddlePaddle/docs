@@ -1,4 +1,6 @@
 paddle.tensor.math.divide	paddle.divide,paddle.tensor.divide
+paddle.fluid.layers.gather_tree	paddle.nn.functional.gather_tree
+paddle.fluid.layers.temporal_shift	paddle.nn.functional.temporal_shift
 paddle.nn.functional.loss.sigmoid_focal_loss	paddle.nn.functional.sigmoid_focal_loss
 paddle.nn.functional.loss.l1_loss	paddle.nn.functional.l1_loss
 paddle.nn.functional.loss.margin_ranking_loss	paddle.nn.functional.margin_ranking_loss
