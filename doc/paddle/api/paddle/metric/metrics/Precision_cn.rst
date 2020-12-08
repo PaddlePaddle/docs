@@ -16,9 +16,9 @@ Precision
     - **name** (str，可选) – metric实例的名字，默认是'precision'。
 
 
-**代码示例**
+**代码示例**:
 
-    # 独立使用示例:
+    独立使用示例:
         
         .. code-block:: python
 
@@ -33,7 +33,7 @@ Precision
             res = m.accumulate()
             print(res) # 1.0
 
-    # 在Model API中的示例:
+    在Model API中的示例:
         
         .. code-block:: python
 
@@ -55,7 +55,6 @@ Precision
                 def __len__(self):
                     return self.n
   
-            paddle.disable_static()
             model = paddle.Model(nn.Sequential(
                 nn.Linear(10, 1),
                 nn.Sigmoid()
