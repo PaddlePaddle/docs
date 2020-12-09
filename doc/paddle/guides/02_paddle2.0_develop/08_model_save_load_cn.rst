@@ -344,7 +344,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
             return self._linear(x)
 
 
-(3) 如果您需要存储多个方法，需要用``paddle.jit.to_static`` 装饰每一个需要被存储的方法，并且``paddle.jit.save``的``input_spec``参数必须为None。示例如下：
+(3) 如果您需要存储多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被存储的方法，并且 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。示例如下：
 
 .. code-block:: python
 
