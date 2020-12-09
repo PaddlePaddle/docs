@@ -378,8 +378,8 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     path = "example.model/linear"
     paddle.jit.save(layer, path)
 
-存储的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 `` example.model `` 文件夹下产生5个文件：
-`` linear.another_forward.pdiparams    linear.pdiparams    linear.pdmodel    linear.another_forward.pdmodel    linear.pdiparams.info ``
+存储的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
+``linear.another_forward.pdiparams    linear.pdiparams    linear.pdmodel    linear.another_forward.pdmodel    linear.pdiparams.info``
 
 3.1.2 动态图训练 + 模型&参数存储
 ``````````````````````````````
@@ -496,7 +496,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 3.2 模型&参数载入
 ----------------
 
-载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。为了规避变量名字冲突，参数的名字在使用 ``paddle.jit.load`` 载入之后可能发生变化。
+载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。为了规避变量名字冲突，载入之后参数的名字可能发生变化。
 
 载入模型及参数，示例如下：
 
