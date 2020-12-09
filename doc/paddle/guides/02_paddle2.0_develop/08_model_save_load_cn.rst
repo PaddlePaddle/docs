@@ -496,7 +496,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 3.2 模型&参数载入
 ----------------
 
-载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。为了规避变量名字冲突，载入之后参数的名字可能发生变化。
+载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。为了规避变量名字冲突，载入之后会重命名变量。
 
 载入模型及参数，示例如下：
 
