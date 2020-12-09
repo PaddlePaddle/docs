@@ -356,9 +356,9 @@ First row and second column: [1]
 
 The first element of index or slice is corresponds to axis 0, the second is corresponds to axis 1, and so on. If no index is specified on an axis, the default is `:` . For example:
 ```
-ndim_3_tensor[1]
-ndim_3_tensor[1, :]
-ndim_3_tensor[1, :, :]
+ndim_2_tensor[1]
+ndim_2_tensor[1, :]
+ndim_2_tensor[:, 1]
 ```
 These three are exactly the same.
 
@@ -424,8 +424,8 @@ x.sqrt()                      #calculate sqrt of each element
 x.sin()                       #calculate the sine of each element
 x.cos()                       #calculate the cosine of each element
 x.add(y)                      #add element by element
-x.subtract(y)                 #subtract element by elementm
-x.multiply(y)                 #ultiply element by element
+x.subtract(y)                 #subtract element by element
+x.multiply(y)                 #multiply element by element
 x.divide(y)                   #divide element by element
 x.mod(y)                      #mod element by element
 x.pow(y)                      #pow element by element
@@ -460,7 +460,7 @@ x.allclose(y)                 #judge whether all elements of tensor x is close t
 
 Paddle overwrite the magic functions related to Python logical operations. Like this:
 ```text
-x == y  -> x.eqyal(y)  
+x == y  -> x.equal(y)  
 x != y  -> x.not_equal(y)  
 x < y   -> x.less_than(y)  
 x <= y  -> x.less_equal(y)  

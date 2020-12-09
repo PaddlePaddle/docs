@@ -349,9 +349,9 @@ First row and second column: [1]
 
 索引或切片的第一个值对应 axis 0，第二个值对应 axis 1，以此类推，如果某个 axis 上未指定索引，则默认为 ``:`` 。例如：
 ```
-ndim_3_tensor[1]
-ndim_3_tensor[1, :]
-ndim_3_tensor[1, :, :]
+ndim_2_tensor[1]
+ndim_2_tensor[1, :]
+ndim_2_tensor[:, 1]
 ```
 以上三种操作的结果是完全相同的。
 
