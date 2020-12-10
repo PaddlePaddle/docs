@@ -379,7 +379,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     paddle.jit.save(layer, path)
 
 存储的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
-``linear.another_forward.pdiparams  linear.pdiparams  linear.pdmodel  linear.another_forward.pdmodel  linear.pdiparams.info``
+``linear.another_forward.pdiparams, linear.pdiparams, linear.pdmodel, linear.another_forward.pdmodel, linear.pdiparams.info``
 
 3.1.2 动态图训练 + 模型&参数存储
 ``````````````````````````````
