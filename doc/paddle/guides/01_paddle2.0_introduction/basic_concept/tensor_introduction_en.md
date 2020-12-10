@@ -11,11 +11,11 @@ The dtypes of all elements in the same Tensor are the same. If you are familiar 
 
 Firstly, let we create a **Tensor**:
 
-### 1. create **1-D Tensor** like vector, whose rank is 1
+### 1. create **1-D Tensor** like vector, whose ndim is 1
 ```python
 # The Tensor data type can be specified by dtype, otherwise, float32 Tensor will be created
-rank_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
-print(rank_1_tensor)
+ndim_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
+print(ndim_1_tensor)
 ```
 ```text
 Tensor(shape=[3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
@@ -33,11 +33,11 @@ Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
        [2])
 ```
 
-### 2. create **2-D Tensor** like matrix, whose rank is 2
+### 2. create **2-D Tensor** like matrix, whose ndim is 2
 ```python
-rank_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
+ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
                                   [4.0, 5.0, 6.0]])
-print(rank_2_tensor)
+print(ndim_2_tensor)
 ```
 ```text
 Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
@@ -45,14 +45,14 @@ Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
         [4., 5., 6.]])
 ```
 
-### 3. Similarly, you can create multidimensional Tensor whose rank is 3, 4... N
+### 3. Similarly, you can create multidimensional Tensor whose ndim is 3, 4... N
 ```
 # There can be an arbitrary number of axes (sometimes called "dimensions")
-rank_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
+ndim_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
                                   [[11, 12, 13, 14, 15],
                                    [16, 17, 18, 19, 20]]])
-print(rank_3_tensor)
+print(ndim_3_tensor)
 ```
 ```text
 Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
@@ -65,45 +65,35 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
 The visual representation of the **Tensor* above is:
 
 <center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800" ></center>
-<br><center>Figure1. Visual representation of Tensor with different ranks</center>
+<br><center>Figure1. Visual representation of Tensor with different ndims</center>
 
 
 You can convert **Tensor** to Numpy array easily Tensor.numpy() method.
 ```python
-print(rank_2_tensor.numpy())
+print(ndim_2_tensor.numpy())
 ```
 ```text
 array([[1., 2., 3.],
        [4., 5., 6.]], dtype=float32)
 ```
 
-**Tensor supports not only floats and ints but also complex Numbers data:
+**Tensor** supports not only floats and ints but also complex numbers data:
+
 ```python
-rank_2_complex_tensor = paddle.to_tensor([[1+1j, 2+2j],
+ndim_2_complex_tensor = paddle.to_tensor([[1+1j, 2+2j],
                                           [3+3j, 4+4j]])
 ```
-```text
-CompleTensor[real]: generated_tensor_0.real
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [1 2 3 4]
-CompleTensor[imag]: generated_tensor_0.real
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [1 2 3 4]
-```
-If the input data contains complex Number, a **ComplexTensor** is automatically created. **ComplexTensor** is a special data structure in Paddle. **ComplexTensor** consists of two **Tensor**, one is real part and the other is  imaginary part. **ComplexTensor** can be visualized as follows:
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="800" ></center>
-<br><center>Figure2. Visual representation of ComplexTensor</center>
+If input complex number data, the dtype of **Tensor** is ``complex64`` or ``complex128`` .
+```text
+Tensor(shape=[2, 2], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
+       [[(1+1j), (2+2j)],
+        [(3+3j), (4+4j)]])
+```
 
 **Tensor** must be "rectangular" -- that is, along each axis, every element is the same size. For example:
 ```
-rank_2_tensor = paddle.to_tensor([[1.0, 2.0],
+ndim_2_tensor = paddle.to_tensor([[1.0, 2.0],
                                   [4.0, 5.0, 6.0]])
 ```
 An exception will be thrown in this case:
@@ -116,12 +106,12 @@ ValueError:
 The way to create **Tensor** from Python data is described above. We can also create **Tensor**
 from numpy array:
 ```python
-rank_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
+ndim_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
 
-rank_2_tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
+ndim_2_tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
                                               [3.0, 4.0]]))
 
-rank_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
+ndim_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
 ```
 The created **Tensor** will have the same shape and dtype with the original Numpy array.
 
@@ -130,8 +120,8 @@ If you want to create a **Tensor** with specific size, Paddle also provide these
 paddle.zeros([m, n])             # All elements: 0, Shape: [m, n]
 paddle.ones([m, n])              # All elements: 1, Shape: [m, n]
 paddle.full([m, n], 10)          # All elements: 10, Shape: [m, n]
-paddle.arrange(start, end, 2) # Elements: from start to end, step size is 2
-paddle.linspace(start, end, 10) # Elements: from start to end, num of elementwise is 10
+paddle.arange(start, end, 2)     # Elements: from start to end, step size is 2
+paddle.linspace(start, end, 10)  # Elements: from start to end, num of elementwise is 10
 ```
 
 
@@ -142,24 +132,24 @@ paddle.linspace(start, end, 10) # Elements: from start to end, num of elementwi
 The shape of **Tensor** can be get by **Tensor.shape**. shape is an important attribute of **Tensor**, and the following are related concepts:
 
 1. shape: Describes the number of elements on each of the tensor's dimensions.
-2. rank: The number of tensor's dimensions. For example, the rank of vector is 1, the rank of matrix is 2.
+2. ndim: The number of tensor's dimensions. For example, the ndim of vector is 1, the ndim of matrix is 2.
 3. axis or dimension: A particular dimension of a tensor.
 4. size: The number of all elements in the tensor.
 
 Let we create a 4-D **Tensor**, and visualize it to represents the relationship between the above concepts.
 ```python
-rank_4_tensor = paddle.ones([2, 3, 4, 5])
+ndim_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
 <center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="800" ></center>
-<br><center>Figure3. The relationship between Tensor shape, axis, dimension and rank</center>
+<br><center>Figure2. The relationship between Tensor shape, axis, dimension and ndim</center>
 
 ```python
-print("Data Type of every element:", rank_4_tensor.dtype)
-print("Number of dimensions:", rank_4_tensor.ndim)
-print("Shape of tensor:", rank_4_tensor.shape)
-print("Elements number along axis 0 of tensor:", rank_4_tensor.shape[0])
-print("Elements number along the last axis of tensor:", rank_4_tensor.shape[-1])
+print("Data Type of every element:", ndim_4_tensor.dtype)
+print("Number of dimensions:", ndim_4_tensor.ndim)
+print("Shape of tensor:", ndim_4_tensor.shape)
+print("Elements number along axis 0 of tensor:", ndim_4_tensor.shape[0])
+print("Elements number along the last axis of tensor:", ndim_4_tensor.shape[-1])
 ```
 ```text
 Data Type of every element: VarType.FP32
@@ -173,22 +163,22 @@ Elements number along the last axis of tensor: 5
 
 Manipulating shape of Tensor is important in programming.
 ```python
-rank_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
+ndim_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
                                   [[11, 12, 13, 14, 15],
                                    [16, 17, 18, 19, 20]],
                                   [[21, 22, 23, 24, 25],
                                    [26, 27, 28, 29, 30]]])
-print("the shape of rank_3_tensor:", rank_3_tensor.shape)
+print("the shape of ndim_3_tensor:", ndim_3_tensor.shape)
 ```
 ```text
-the shape of rank_3_tensor: [3, 2, 5]
+the shape of ndim_3_tensor: [3, 2, 5]
 ```
 
 Paddle provides reshape API to manipulate the shape of Tensor:
 ```python
-rank_3_tensor = paddle.reshape(rank_3_tensor, [2, 5, 3])
-print("After reshape:", rank_3_tensor.shape)
+ndim_3_tensor = paddle.reshape(ndim_3_tensor, [2, 5, 3])
+print("After reshape:", ndim_3_tensor.shape)
 ```
 ```text
 After reshape: [2, 5, 3]
@@ -197,7 +187,7 @@ After reshape: [2, 5, 3]
 There are some tricks for specifying a new shape:
 
 1. -1 indicates that the value of this dimension is inferred from the total number of elements and the other dimension of Tensor. Therefore, there is one and only one that can be set to -1.
-2. 0 means that the actual dimension is copied from the corresponding dimension of Tensor, so the index value of 0 in shape can't exceed the rank of X.
+2. 0 means that the actual dimension is copied from the corresponding dimension of Tensor, so the index value of 0 in shape can't exceed the ndim of X.
 
 For example:
 ```text
@@ -208,7 +198,7 @@ origin:[3, 2, 5] reshape:[0, 5, -1] actual: [3, 5, 2]
 
 If you flatten a tensor by reshape to -1, you can see what order it is laid out in memory.
 ```python
-print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy())
+print("Tensor flattened to Vector:", paddle.reshape(ndim_3_tensor, [-1]).numpy())
 ```
 ```text
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
@@ -313,17 +303,16 @@ You can easily access or modify Tensors by indexing or slicing. Paddle follows s
 #### Access Tensor
 For **1-D Tensor**, there is only single-axis indexing or slicing:
 ```python
-rank_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", rank_1_tensor.numpy())
-
-print("First element:", rank_1_tensor[0].numpy())
-print("Last element:", rank_1_tensor[-1].numpy())
-print("All element:", rank_1_tensor[:].numpy())
-print("Before 3:", rank_1_tensor[:3].numpy())
-print("From 6 to the end:", rank_1_tensor[6:].numpy())
-print("From 3 to 6:", rank_1_tensor[3:6].numpy())
-print("Interval of 3:", rank_1_tensor[::3].numpy())
-print("Reverse:", rank_1_tensor[::-1].numpy())
+ndim_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
+print("Origin Tensor:", ndim_1_tensor.numpy())
+print("First element:", ndim_1_tensor[0].numpy())
+print("Last element:", ndim_1_tensor[-1].numpy())
+print("All element:", ndim_1_tensor[:].numpy())
+print("Before 3:", ndim_1_tensor[:3].numpy())
+print("From 6 to the end:", ndim_1_tensor[6:].numpy())
+print("From 3 to 6:", ndim_1_tensor[3:6].numpy())
+print("Interval of 3:", ndim_1_tensor[::3].numpy())
+print("Reverse:", ndim_1_tensor[::-1].numpy())
 ```
 ```text
 Origin Tensor: [0 1 2 3 4 5 6 7 8])
@@ -339,17 +328,17 @@ Reverse: [8 7 6 5 4 3 2 1 0]
 
 For 2-D **Tensor** or above, there is multi-axis indexing or slicing:
 ```python
-rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
+ndim_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
                                   [4, 5, 6, 7],
                                   [8, 9, 10, 11]])
-print("Origin Tensor:", rank_2_tensor.numpy())
+print("Origin Tensor:", ndim_2_tensor.numpy())
 
-print("First row:", rank_2_tensor[0].numpy())
-print("First row:", rank_2_tensor[0, :].numpy())
-print("First column:", rank_2_tensor[:, 0].numpy())
-print("Last column:", rank_2_tensor[:, -1].numpy())
-print("All element:", rank_2_tensor[:].numpy())
-print("First row and second column:", rank_2_tensor[0, 1].numpy())
+print("First row:", ndim_2_tensor[0].numpy())
+print("First row:", ndim_2_tensor[0, :].numpy())
+print("First column:", ndim_2_tensor[:, 0].numpy())
+print("Last column:", ndim_2_tensor[:, -1].numpy())
+print("All element:", ndim_2_tensor[:].numpy())
+print("First row and second column:", ndim_2_tensor[0, 1].numpy())
 ```
 ```text
 Origin Tensor: array([[ 0  1  2  3]
@@ -367,9 +356,9 @@ First row and second column: [1]
 
 The first element of index or slice is corresponds to axis 0, the second is corresponds to axis 1, and so on. If no index is specified on an axis, the default is `:` . For example:
 ```
-rank_3_tensor[1]
-rank_3_tensor[1, :]
-rank_3_tensor[1, :, :]
+ndim_2_tensor[1]
+ndim_2_tensor[1, :]
+ndim_2_tensor[:, 1]
 ```
 These three are exactly the same.
 
@@ -426,53 +415,52 @@ It can be seen that Tensor class method has the same result with Paddle API. And
 x.abs()                       #absolute value
 x.ceil()                      #round up to an integer
 x.floor()                     #round down to an integer
-x.exp()                       #Calculate exponents of the natural constant of each element
-x.log()                       #Calculate natural logarithm of each element
-x.reciprocal()                #reciprocal
-x.square()                    #Calculate square of each element
-x.sqrt()                      #Calculate sqrt of each element
-x.sum()                       #Calculate the sum of all elements
-x.asin()                      #Calculate the arcsine of each element
+x.round()                     #round to an integer
+x.exp()                       #calculate exponents of the natural constant of each element
+x.log()                       #calculate natural logarithm of each element
+x.reciprocal()                #reciprocal of each element
+x.square()                    #calculate square of each element
+x.sqrt()                      #calculate sqrt of each element
+x.sin()                       #calculate the sine of each element
+x.cos()                       #calculate the cosine of each element
 x.add(y)                      #add element by element
-x.add(-y)                     #minus element by element
+x.subtract(y)                 #subtract element by element
 x.multiply(y)                 #multiply element by element
 x.divide(y)                   #divide element by element
-x.floor_divide(y)             #divide exactly element by element
-x.remainder(y)                #mod element by element
+x.mod(y)                      #mod element by element
 x.pow(y)                      #pow element by element
-x.reduce_max()                #max value on specific axis
-x.reduce_min()                #min value on specific axis
-x.reduce_prod()               #multiply of all elements on specific axis
-x.reduce_sum()                #sum of all elements on specific axis
+x.max()                       #the maximum element on specific axis
+x.min()                       #the minimum element on specific axis
+x.prod()                      #multiply all elements on specific axis
+x.sum()                       #sum of all elements on specific axis
 ```
 
 Paddle overwrite the magic functions related to Python mathematical operations. Like this:
 ```text
 x + y  -> x.add(y)  
-x - y  -> x.add(-y)  
+x - y  -> x.subtract(y)  
 x * y  -> x.multiply(y)  
 x / y  -> x.divide(y)  
-x // y -> x.floor_divide(y)
-x % y  -> x.remainder(y)
+x % y  -> x.mod(y)
 x ** y -> x.pow(y)
 ```
 
 ### logical operators
 ```python
-x.is_empty()                  #Judge whether tensor is empty
 x.isfinite()                  #Judge whether the element in tensor is finite number
-x.euqal_all(y)                #Judge whether all elements of two tensor are equal
-x.euqal(y)                    #judge whether each element of two tensor is equal
+x.equal_all(y)                #Judge whether all elements of two tensor are equal
+x.equal(y)                    #judge whether each element of two tensor is equal
 x.not_equal(y)                #judge whether each element of two tensor is not equal
 x.less_than(y)                #judge whether each element of tensor x is less than corresponding element of tensor y
 x.less_equal(y)               #judge whether each element of tensor x is less than or equal to element of tensor y
 x.greater_than(y)             #judge whether each element of tensor x is greater than element of tensor y
 x.greater_equal(y)            #judge whether each element of tensor x is greater than or equal to element of tensor y
+x.allclose(y)                 #judge whether all elements of tensor x is close to all elements of tensor y
 ```
 
 Paddle overwrite the magic functions related to Python logical operations. Like this:
 ```text
-x == y  -> x.euqal(y)  
+x == y  -> x.equal(y)  
 x != y  -> x.not_equal(y)  
 x < y   -> x.less_than(y)  
 x <= y  -> x.less_equal(y)  
@@ -482,8 +470,6 @@ x >= y  -> x.greater_equal(y)
 
 The following operations are targeted at bool Tensor only:
 ```python
-x.reduce_all(y)               #Judge whether a bool tensor is True for all elements
-x.reduce_any(y)               #Judge whether a bool tensor exists at least one element is True
 x.logical_and(y)              #logic and operation for two bool tensor
 x.logical_or(y)               #logic or operation for two bool tensor
 x.logical_xor(y)              #logic xor operation for two bool tensor
@@ -495,10 +481,10 @@ x.logical_not(y)              #logic not operation for two bool tensor
 x.cholesky()                  #cholesky decomposition of a matrix
 x.t()                         #matrix transpose
 x.transpose([1, 0])           #swap axis 0 with axis 1
-x.norm('pro')                 #Frobenius Norm of matrix
+x.norm('fro')                 #Frobenius Norm of matrix
 x.dist(y, p=2)                #The 2 norm of (x-y)
 x.matmul(y)                   #Matrix multiplication
 ```
-It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.And dd(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
+It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.add(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
 
 For more API related to Tensor operations, please refer to [class paddle.Tensor]((../../../api/paddle/tensor/creation/Tensor_cn.html))
