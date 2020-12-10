@@ -18,15 +18,15 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
     :header: "API名称", "API功能"
     :widths:10,30
 
-    " :ref:`Adadelta <cn_api_paddle_optimizer_Adadelta>` ", "Adadelta优化器"
-    " :ref:`Adagrad <cn_api_fluid_optimizer_Adagrad>` ", "Adagrad优化器"
-    " :ref:`Adam <cn_api_paddle_optimizer_Adam>` ", "Adam优化器"
-    " :ref:`Adamax <cn_api_paddle_optimizer_Adamax>` ", "Adamax优化器"
-    " :ref:`AdamW <cn_api_paddle_optimizer_AdamW>` ", "AdamW优化器"
-    " :ref:`Momentum <cn_api_paddle_optimizer_Momentum>` ", "Momentum优化器"
-    " :ref:`Optimizer <cn_api_paddle_optimizer_Optimizer>` ", "飞桨框架优化器基类"
-    " :ref:`RMSProp <cn_api_paddle_optimizer_RMSProp>` ", "RMSProp优化器"
-    " :ref:`SGD <cn_api_paddle_optimizer_SGD>` ", "SGD优化器"
+    ":ref:`cn_api_paddle_optimizer_Adadelta`", "Adadelta优化器"
+    ":ref:`cn_api_fluid_optimizer_Adagrad`", "Adagrad优化器"
+    ":ref:`cn_api_paddle_optimizer_Adam`", "Adam优化器"
+    ":ref:`cn_api_paddle_optimizer_Adamax`", "Adamax优化器"
+    ":ref:`cn_api_paddle_optimizer_AdamW`", "AdamW优化器"
+    ":ref:`cn_api_paddle_optimizer_Momentum`", "Momentum优化器"
+    ":ref:`cn_api_paddle_optimizer_Optimizer`", "飞桨框架优化器基类"
+    ":ref:`cn_api_paddle_optimizer_RMSProp`", "RMSProp优化器"
+    ":ref:`cn_api_paddle_optimizer_SGD`", "SGD优化器"
     
 .. _about_lr:
 学习率衰减相关API
