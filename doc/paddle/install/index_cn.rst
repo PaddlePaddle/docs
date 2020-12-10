@@ -5,8 +5,7 @@
 #########
 本说明将指导您在64位操作系统编译和安装PaddlePaddle
 
-1. 操作系统要求：
-============================
+**1. 操作系统要求：**
 
 * Windows 7 / 8 / 10，专业版 / 企业版
 * Ubuntu 14.04 / 16.04 / 18.04
@@ -14,22 +13,19 @@
 * MacOS 10.11 / 10.12 / 10.13 / 10.14
 * 操作系统要求是 64 位版本
 
-2. 处理器要求
-============================
+**2. 处理器要求**
 
 * 处理器支持 MKL
 * 处理器架构是x86_64（或称作 x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构
 
-3. Python 和 pip 版本要求：
-============================
+**3. Python 和 pip 版本要求：**
 
 * Python 2 的版本要求 2.7.15+
 * Python 3 的版本要求 3.5.1+/3.6/3.7
 * Python 具有 pip, 且 pip 的版本要求 9.0.1+
 * Python 和 pip 要求是 64 位版本
 
-4. PaddlePaddle 对 GPU 支持情况：
-=================================
+**4. PaddlePaddle 对 GPU 支持情况：**
 
 * 目前 **PaddlePaddle** 仅支持 **NVIDIA** 显卡的 **CUDA** 驱动
 * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.6+(For CUDA9/10)
@@ -63,8 +59,7 @@
 
 请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html#ciwhls>`_ .
 
-5. PaddlePaddle 对 NCCL 支持情况：
-=================================
+**5. PaddlePaddle 对 NCCL 支持情况：**
 
 * Windows 支持情况
 
@@ -95,8 +90,7 @@
 
     * 不支持NCCL
 
-第一种安装方式：使用 pip 安装
-================================
+**第一种安装方式：使用 pip 安装**
 
 您可以选择“使用pip安装”、“使用conda安装”、“使用docker安装”、“从源码编译安装” 四种方式中的任意一种方式进行安装。
 
@@ -231,19 +225,17 @@
     `Windows下安装 <install_Windows.html>`_
 
 
-第二种安装方式：使用源代码编译安装
-====================================
+**第二种安装方式：使用源代码编译安装**
 
 - 如果您只是使用 PaddlePaddle ，建议使用 **pip** 安装即可。
 - 如果您有开发PaddlePaddle的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
-..	toctree::
-	:hidden:
 
-	install_Ubuntu.md
-	install_CentOS.md
-	install_MacOS.md
-	install_Windows.md
-	compile/fromsource.rst
-	Tables.md
- 
+..  toctree::
+    :hidden:
+
+    install_Linux.md
+    install_MacOS.md
+    install_Windows.md
+    compile/fromsource.rst
+    Tables.md
