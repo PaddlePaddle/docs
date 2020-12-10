@@ -5,7 +5,7 @@
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
     * **GPU Version support CUDA 9.0/9.1/9.2/10.0/10.1, and only support single GPU**
 * **Python version 2.7.15+/3.5.1+/3.6/3.7(64bit)**
-* **pip version 9.0.1+(64bit)**
+* **pip version 20.2.2+(64bit)**
 * **Visual Studio 2015 Update3**
 
 ## Choose CPU/GPU
@@ -29,7 +29,7 @@ There is one compilation methods in Windows system:
 
 1. Install the necessary tools i.e. cmake, git and python:
 
-    > Cmake requires version 3.5 and above, which can be downloaded from the [official website](https://cmake.org/download/) and added to the environment variable. 
+    > Cmake requires version 3.5 and above, which can be downloaded from the [official website](https://cmake.org/download/) and added to the environment variable.
 
     > Python requires version 2.7 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/2.7/).
 
@@ -43,7 +43,7 @@ There is one compilation methods in Windows system:
 
         * To Install Wheel package you can use command `pip install wheel`
 
-    > Git can be downloaded on the [official website](https://gitforwindows.org/) and added to the environment variable. 
+    > Git can be downloaded on the [official website](https://gitforwindows.org/) and added to the environment variable.
 
 2. Clone the PaddlePaddle source code to the Paddle subdirectories of the current directory and go to the Paddle subdirectories:
 

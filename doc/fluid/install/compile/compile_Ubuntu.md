@@ -323,7 +323,7 @@
     例如：
 
     ```
-    git checkout release/1.5
+    git checkout release/1.8
     ```
 
 7. 并且请创建并进入一个叫build的目录下：
