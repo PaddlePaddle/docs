@@ -24,7 +24,7 @@
 
 * 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
-      * **Centos 系统可以参考以下命令**
+    * **Centos 系统可以参考以下命令**
 
         ```
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -42,7 +42,7 @@
         yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
         ```
 
-      * **Ubuntu 系统可以参考以下命令**
+    * **Ubuntu 系统可以参考以下命令**
 
         ```
         wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
@@ -132,7 +132,7 @@
     例如：
 
     ```
-    git checkout release/1.5
+    git checkout release/1.8
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
@@ -266,7 +266,10 @@
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
-                    tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
+        ```
+
+        ```
+        tar -zxvf cmake-3.16.0-Linux-x86_64.tar.gz
         ```
 
         ```
@@ -372,60 +375,60 @@
             ```
 
         3. 其次使用
-        ```
-        find `dirname $(dirname $(which python3))`/include -name "python3.5m"
-        ```
+            ```
+            find `dirname $(dirname $(which python3))`/include -name "python3.5m"
+            ```
             找到Python Include的路径，请注意python版本，然后将下面[python-include-path]替换为找到文件路径
 
         4. 设置PYTHON_INCLUDE_DIR:
-        ```
-        export PYTHON_INCLUDE_DIRS=[python-include-path]
-        ```
+            ```
+            export PYTHON_INCLUDE_DIRS=[python-include-path]
+            ```
 
         5. 设置系统环境变量路径：
-        ```
-        export PATH=[python-lib-path]:$PATH
-        ```
+            ```
+            export PATH=[python-lib-path]:$PATH
+            ```
             （这里将[python-lib-path]的最后两级目录替换为/bin/)
 
     * d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8)
 
         1. 安装`virtualenv`
-        ```
-        pip install virtualenv
-        ```
+            ```
+            pip install virtualenv
+            ```
             或
-        ```
-        pip3 install virtualenv
-        ```
+            ```
+            pip3 install virtualenv
+            ```
         2. 安装`virtualenvwrapper`
-        ```
-        pip install virtualenvwrapper
-        ```
+            ```
+            pip install virtualenvwrapper
+            ```
             或
-        ```
-        pip3 install virtualenvwrapper
-        ```
+            ```
+            pip3 install virtualenvwrapper
+            ```
         3.  找到`virtualenvwrapper.sh`：
-        ```
-        find / -name virtualenvwrapper.sh
-        ```
+            ```
+            find / -name virtualenvwrapper.sh
+            ```
             （请找到对应Python版本的`virtualenvwrapper.sh`）
         4.  查看`virtualenvwrapper.sh`中的安装方法：
-        ```
-        cat vitualenvwrapper.sh
-        ```
+            ```
+            cat vitualenvwrapper.sh
+            ```
             该shell文件中描述了步骤及命令
         5.  按照`virtualenvwrapper.sh`中的描述，安装`virtualwrapper`
         6.  设置VIRTUALENVWRAPPER_PYTHON：
-        ```
-        export VIRTUALENVWRAPPER_PYTHON=[python-lib-path]:$PATH
-        ```
-         （这里将[python-lib-path]的最后两级目录替换为/bin/)
+            ```
+            export VIRTUALENVWRAPPER_PYTHON=[python-lib-path]:$PATH
+            ```
+            （这里将[python-lib-path]的最后两级目录替换为/bin/)
         7.  创建名为`paddle-venv`的虚环境：
-        ```
-        mkvirtualenv paddle-venv
-        ```
+            ```
+            mkvirtualenv paddle-venv
+            ```
 
 5. 进入虚环境：
 
@@ -435,22 +438,11 @@
 
 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖：
 
-    * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用
-    ```
-    yum install
-    ```
-        或者
-    ```
-    pip install
-    ```
-        或
-    ```
-    pip3 install
-    ```
-        后跟依赖名称和版本安装:
-    ```
-    yum install patchelf
-    ```
+    * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
+
+        ```
+        yum install patchelf
+        ```
         > 不能使用yum安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
 
 7. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
@@ -583,15 +575,39 @@
 恭喜，至此您已完成PaddlePaddle的编译安装
 
 ## **验证安装**
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
+安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入
+
+```
+import paddle.fluid as fluid
+```
+
+再输入
+
+```
+fluid.install_check.run_check()
+```
 
 如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
 
 ## **如何卸载**
 请使用以下命令卸载PaddlePaddle：
 
-* **CPU版本的PaddlePaddle**: `pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle`
-* **GPU版本的PaddlePaddle**: `pip uninstall paddlepaddle-gpu` 或 `pip3 uninstall paddlepaddle-gpu`
+* **CPU版本的PaddlePaddle**:
+    ```
+    pip uninstall paddlepaddle
+    ```
+    或
+    ```
+    pip3 uninstall paddlepaddle
+    ```
+
+* **GPU版本的PaddlePaddle**:
+    ```
+    pip uninstall paddlepaddle-gpu
+    ```
+    或
+    ```
+    pip3 uninstall paddlepaddle-gpu
+    ```
 
 使用Docker安装PaddlePaddle的用户，请进入包含PaddlePaddle的容器中使用上述命令，注意使用对应版本的pip
