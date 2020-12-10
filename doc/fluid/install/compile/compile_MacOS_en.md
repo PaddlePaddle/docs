@@ -4,7 +4,7 @@
 
 * **MacOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
 * **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip or pip3 version 9.0.1+ (64 bit)**
+* **pip or pip3 version 20.2.2+ (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -41,15 +41,15 @@ Please follow the steps below to install:
 
     `docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash`
 
-    > --name paddle-test name the Docker container you created as paddle-test, 
+    > --name paddle-test name the Docker container you created as paddle-test,
 
-    > -v $PWD:/paddle mount the current directory to the /paddle directory in the Docker container (the PWD variable in Linux will expand to the current path's [Absolute path](https://baike.baidu.com/item/绝对路径/481185)), 
+    > -v $PWD:/paddle mount the current directory to the /paddle directory in the Docker container (the PWD variable in Linux will expand to the current path's [Absolute path](https://baike.baidu.com/item/绝对路径/481185)),
 
     > -it keeps interacting with the host, `hub.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `hub.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
 
-5. After entering Docker, go to the paddle directory: 
+5. After entering Docker, go to the paddle directory:
 
-	`cd paddle`
+    `cd paddle`
 
 6. Switch to a more stable version to compile:
 
@@ -67,8 +67,8 @@ Please follow the steps below to install:
 
 8. Use the following command to install the dependencies:
 
-		For Python2: pip install protobuf==3.1.0
-		For Python3: pip3.5 install protobuf==3.1.0
+        For Python2: pip install protobuf==3.1.0
+        For Python3: pip3.5 install protobuf==3.1.0
 
     Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7, please change Python3.5 in the commands to Python3.6/Python3.7
 
@@ -85,9 +85,9 @@ Please follow the steps below to install:
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
-		`cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release`
+        `cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release`
 
-		> We currently do not support the compilation of the GPU version PaddlePaddle under CentOS.
+        > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS.
 
 10. Execute compilation:
 

@@ -7,7 +7,7 @@
     * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1)**
     * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1)**
 * **Python version 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip or pip3 version 9.0.1+ (64 bit)**
+* **pip or pip3 version 20.2.2+ (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -169,7 +169,7 @@ Congratulations, now you have completed the compilation and installation of Padd
             For Python2: apt install python-dev
             For Python3: apt install python3.5-dev
 
-    * b. Install pip: (Please ensure that pip version is 9.0.1 and above ):
+    * b. Install pip: (Please ensure that pip version is 20.2.2 and above ):
 
             For Python2: apt install python-pip
             For Python3: apt-get udpate && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt install curl && curl https://bootstrap.pypa.io/get-pip. Py -o - | python3.5 && easy_install pip
