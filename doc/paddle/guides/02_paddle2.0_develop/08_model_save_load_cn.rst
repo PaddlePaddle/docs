@@ -345,7 +345,11 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 
 (3) 如果您需要存储多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被存储的方法。
-只有在forward之外还需要存储其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。示例如下：
+
+.. note::
+    只有在forward之外还需要存储其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。
+
+示例代码如下：
 
 .. code-block:: python
 
@@ -496,7 +500,10 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 3.2 模型&参数载入
 ----------------
 
-载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。为了规避变量名字冲突，载入之后会重命名变量。
+载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。
+
+.. note::
+    为了规避变量名字冲突，载入之后会重命名变量。
 
 载入模型及参数，示例如下：
 
