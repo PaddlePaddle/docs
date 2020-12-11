@@ -5,7 +5,7 @@
 * **Windows 7/8/10 专业版/企业版 (64bit)**
     * **GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1，且仅支持单卡**
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7 (64 bit)**
-* **pip 版本 9.0.1+ (64 bit)**
+* **pip 版本 20.2.2+ (64 bit)**
 * **Visual Studio 2015 Update3**
 
 ## 选择CPU/GPU
@@ -111,4 +111,3 @@
 * **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle`
 
 * **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu`
-
