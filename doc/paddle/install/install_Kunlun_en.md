@@ -1,22 +1,22 @@
 # Paddle installation for machines with Kunlun XPU card
 
-## Installation method one：pre-built Wheel package
+## Installation Method 1：pre-built Wheel package
 
-Install the pre-built wheel package that supports Kunlun XPU. At present, this wheel package only supports the Ubuntu environment. For other environments, please choose Installation method two to installing from source code compilation.
+Install the pre-built wheel package that supports Kunlun XPU. At present, this wheel package only supports the Ubuntu environment. For other environments, please choose Installation Method 2 to installing from source code compilation.
 
 #### Download the pre-built installation package
 
 Python3.7
 
-o  ```wget https://fleet.bj.bcebos.com/kunlun/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl```
+o  ```wget https://fleet.bj.bcebos.com/kunlun/paddlepaddle-2.0.0rc1-cp37-cp37m-linux_x86_64.whl```
 
-o  ```python3.7 -m pip install -U paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl ```
+o  ```python3.7 -m pip install -U paddlepaddle-2.0.0rc1-cp37-cp37m-linux_x86_64.whl ```
 
 Python2.7
 
-o  ``` wget https://fleet.bj.bcebos.com/kunlun/paddlepaddle-0.0.0-cp27-cp27mu-linux_x86_64.whl ```
+o  ``` wget https://fleet.bj.bcebos.com/kunlun/paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl ```
 
-o  ```python2.7 -m pip install -U paddlepaddle-0.0.0-cp27-cp27mu-linux_x86_64.whl```
+o  ```python2.7 -m pip install -U paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl```
 
 
 
@@ -55,11 +55,11 @@ or
 
  ```pip3 uninstall paddlepaddle ```
 
-In addition, if there are environmental problems with the pre-built wheel package that supports Kunlun XPU card, it is recommended to use Installation method two  to compile the package that supports Kunlun XPU.
+In addition, if there are environmental problems with the pre-built wheel package that supports Kunlun XPU card, it is recommended to use Installation Method 2 to compile the package that supports Kunlun XPU.
 
 
 
-## Installation method two：by compiling Paddle with Kunlun XPU support
+## Installation Method 2：by compiling Paddle with Kunlun XPU support
 
 #### Environment preparation
 

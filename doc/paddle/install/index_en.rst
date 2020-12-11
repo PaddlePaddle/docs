@@ -249,5 +249,6 @@ The second way to install: compile and install with source code
 	install_CentOS_en.md
 	install_MacOS_en.md
 	install_Windows_en.md
+    install_Kunlun_en.md
 	compile/fromsource_en.rst
 	Tables_en.md

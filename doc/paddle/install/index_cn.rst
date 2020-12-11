@@ -237,5 +237,6 @@
     install_Linux.md
     install_MacOS.md
     install_Windows.md
+    install_Kunlun_zh.md
     compile/fromsource.rst
     Tables.md
