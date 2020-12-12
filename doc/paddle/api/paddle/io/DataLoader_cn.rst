@@ -23,7 +23,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 参数:
     - **dataset** (Dataset) - DataLoader从此参数给定数据集中加载数据，此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例。
-    - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``paddle.static..data()`` 创建。当 ``return_list`` 为False时，此参数必须设置。默认值为None。
+    - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``paddle.static.data()`` 创建。当 ``return_list`` 为False时，此参数必须设置。默认值为None。
     - **places** (list(Place)|tuple(Place)) - 数据需要放置到的Place列表。在静态图和动态图模式中，此参数均必须设置。在动态图模式中，此参数列表长度必须是1。默认值为None。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。若return_list = False，每个设备上的返回数据均是str -> Tensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(Tensor)。在动态图模式下，此参数必须为True。默认值为False。
     - **batch_sampler** (BatchSampler) - ``paddle.io.BatchSampler`` 或其子类的实例，DataLoader通过 ``batch_sampler`` 产生的mini-batch索引列表来 ``dataset`` 中索引样本并组成mini-batch。默认值为None。
