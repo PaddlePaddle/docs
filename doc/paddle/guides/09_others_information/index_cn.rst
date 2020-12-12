@@ -9,6 +9,6 @@
 - `飞桨框架API映射表 <./api_mapping_cn.html>`_ : 说明飞桨框架1.X版本与飞桨框架2.0RC1版本API对应关系。
 
 ..  toctree::
-    :maxdepth: 1
+    :hidden:
 
     api_mapping_cn.rst
