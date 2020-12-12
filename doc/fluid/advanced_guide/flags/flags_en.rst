@@ -8,7 +8,7 @@ These FLAGS in PaddlePaddle can be set in two ways.
 
 - Set the FLAGS through export. For example: :code:`export FLAGS_eager_delete_tensor_gb = 1.0` .
 
-- Through :code:`get_flags` and :code:`set_flags` to print and set the environment variables. For more information of using these API, please refer to :ref:`api_fluid_get_flags` and :ref:`api_fluid_get_flags` .
+- Through :code:`get_flags` and :code:`set_flags` to print and set the environment variables. For more information of using these API, please refer to :ref:`api_fluid_get_flags` and :ref:`api_fluid_set_flags` .
 
 
 FLAGS Quick Search
