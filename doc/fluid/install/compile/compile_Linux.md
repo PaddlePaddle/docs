@@ -212,7 +212,7 @@
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
-> 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt install -y vim` 来安装
+> 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `yum/apt install -y vim` 来安装
 
 <a name="ct_source"></a>
 ### <span id="compile_from_host">本机编译</span>
@@ -246,6 +246,8 @@
         ```
         apt update
         ```
+
+    并提前安装[OpenCV](https://opencv.org/releases.html)
 
 
 3. 安装必要的工具
@@ -438,7 +440,7 @@
 
 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖：
 
-    * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
+    * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`apt install`、`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 
         ```
         yum install patchelf
@@ -496,7 +498,7 @@
         > 请注意PY_VERSION参数更换为您需要的python版本
 
 
-    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.2/CUDA10.1/CUDA10.0/CUDA9)**)
+    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.0/CUDA9)、ubuntu16.04/14.04**)
 
         1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
 
