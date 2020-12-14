@@ -18,7 +18,7 @@
 
 .. parsed-literal::
 
-    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
+    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
     自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 .. warning::
@@ -28,11 +28,12 @@
 
 .. code:: ipython3
 
-    # 训练数据集
-    train_dataset = vision.datasets.MNIST(mode='train')
+    from paddle.vision.transforms import ToTensor
+    # 训练数据集 用ToTensor将数据格式转为Tensor
+    train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
 
     # 验证数据集
-    val_dataset = vision.datasets.MNIST(mode='test')
+    val_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 
 
 自定义数据集
@@ -86,15 +87,15 @@
             return len(self.data)
 
     # 测试定义的数据集
-    train_dataset_2 = MyDataset(mode='train')
-    val_dataset_2 = MyDataset(mode='test')
+    train_dataset2 = MyDataset(mode='train')
+    val_dataset2 = MyDataset(mode='test')
 
     print('=============train dataset=============')
-    for data, label in train_dataset:
+    for data, label in train_dataset2:
         print(data, label)
 
     print('=============evaluation dataset=============')
-    for data, label in val_dataset:
+    for data, label in val_dataset2:
         print(data, label)
 
 

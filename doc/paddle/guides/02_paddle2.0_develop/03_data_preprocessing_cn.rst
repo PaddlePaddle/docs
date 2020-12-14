@@ -19,7 +19,7 @@
 
 .. parsed-literal::
 
-    数据处理方法：['Compose', 'BatchCompose', 'Resize', 'RandomResizedCrop', 'CenterCropResize', 'CenterCrop', 'RandomHorizontalFlip', 'RandomVerticalFlip', 'Permute', 'Normalize', 'GaussianNoise', 'BrightnessTransform', 'SaturationTransform', 'ContrastTransform', 'HueTransform', 'ColorJitter', 'RandomCrop', 'RandomErasing', 'Pad', 'RandomRotate', 'Grayscale', 'flip', 'resize', 'pad', 'rotate', 'to_grayscale']
+    数据处理方法： ['BaseTransform', 'Compose', 'Resize', 'RandomResizedCrop', 'CenterCrop', 'RandomHorizontalFlip', 'RandomVerticalFlip', 'Transpose', 'Normalize', 'BrightnessTransform', 'SaturationTransform', 'ContrastTransform', 'HueTransform', 'ColorJitter', 'RandomCrop', 'Pad', 'RandomRotation', 'Grayscale', 'ToTensor', 'to_tensor', 'hflip', 'vflip', 'resize', 'pad', 'rotate', 'to_grayscale', 'crop', 'center_crop', 'adjust_brightness', 'adjust_contrast', 'adjust_hue', 'normalize'
 
 这里，我们随机调整图像的亮度、对比度、饱和度，并调整图像的大小，对图像的其他调整，可以参考具体的API文档。
 
