@@ -1,4 +1,4 @@
-# 2.0-rc1 Release Note
+# Release Note
 
 ## Release note
 
