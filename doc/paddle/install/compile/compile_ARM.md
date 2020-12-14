@@ -18,39 +18,39 @@
 
 1. Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要[源码安装](https://github.com/Kitware/CMake)
 
-        ```
-        wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
-        ```
+    ```
+    wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
+    ```
 
-        ```
-        tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8
-        ```
+    ```
+    tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8
+    ```
 
-        ```
-        ./bootstrap && make && sudo make install
-        ```
+    ```
+    ./bootstrap && make && sudo make install
+    ```
 
 2. Paddle内部使用patchelf来修改动态库的rpath，如果操作系统提供的源包括了patchelf，直接安装即可，否则需要源码安装，请参考[patchelf官方文档](https://github.com/NixOS/patchelf)，后续会考虑在ARM上移出该依赖。
 
-        ```
-        ./bootstrap.sh
-        ```
+    ```
+    ./bootstrap.sh
+    ```
 
-        ```
-        ./configure
-        ```
+    ```
+    ./configure
+    ```
 
-        ```
-        make
-        ```
+    ```
+    make
+    ```
 
-        ```
-        make check
-        ```
+    ```
+    make check
+    ```
 
-        ```
-        sudo make install
-        ```
+    ```
+    sudo make install
+    ```
 
 3. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库，在飞腾加国产化操作系统环境中，pip安装可能失败或不能正常工作，主要依赖通过源或源码安装的方式安装依赖库，建议使用系统提供源的方式安装依赖库。
 
@@ -127,22 +127,36 @@
 
 在mobilenetv1和resnet50模型上测试
 
-    wget -O profile.tar https://paddle-cetc15.bj.bcebos.com/profile.tar?authorization=bce-auth-v1/4409a3f3dd76482ab77af112631f01e4/2020-10-09T10:11:53Z/-1/host/786789f3445f498c6a1fd4d9cd3897ac7233700df0c6ae2fd78079eba89bf3fb
-    tar xf profile.tar && cd profile
-    python resnet.py --model_file ResNet50_inference/model --params_file ResNet50_inference/params
-    # 正确输出应为：[0.0002414  0.00022418 0.00053661 0.00028639 0.00072682 0.000213
-    #              0.00638718 0.00128127 0.00013535 0.0007676 ]
-    python mobilenetv1.py --model_file mobilenetv1/model --params_file mobilenetv1/params
-    # 正确输出应为：[0.00123949 0.00100392 0.00109539 0.00112206 0.00101901 0.00088412
-    #              0.00121536 0.00107679 0.00106071 0.00099605]
-    python ernie.py --model_dir ernieL3H128_model/
-    # 正确输出应为：[0.49879393 0.5012061 ]
+```
+wget -O profile.tar https://paddle-cetc15.bj.bcebos.com/profile.tar?authorization=bce-auth-v1/4409a3f3dd76482ab77af112631f01e4/2020-10-09T10:11:53Z/-1/host/786789f3445f498c6a1fd4d9cd3897ac7233700df0c6ae2fd78079eba89bf3fb
+```
+```
+tar xf profile.tar && cd profile
+```
+```
+python resnet.py --model_file ResNet50_inference/model --params_file ResNet50_inference/params
+# 正确输出应为：[0.0002414  0.00022418 0.00053661 0.00028639 0.00072682 0.000213
+#              0.00638718 0.00128127 0.00013535 0.0007676 ]
+```
+```
+python mobilenetv1.py --model_file mobilenetv1/model --params_file mobilenetv1/params
+# 正确输出应为：[0.00123949 0.00100392 0.00109539 0.00112206 0.00101901 0.00088412
+#              0.00121536 0.00107679 0.00106071 0.00099605]
+```
+```
+python ernie.py --model_dir ernieL3H128_model/
+# 正确输出应为：[0.49879393 0.5012061 ]
+```
 
 ## **如何卸载**
 请使用以下命令卸载PaddlePaddle：
 
 ```
-pip uninstall paddlepaddle` 或 `pip3 uninstall paddlepaddle
+pip uninstall paddlepaddle
+```
+或
+```
+pip3 uninstall paddlepaddle
 ```
 
 
