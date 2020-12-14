@@ -68,7 +68,7 @@
     git checkout release/1.8
     ```
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从releasel/1.8分支开始支持
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
 
 7. 创建并进入/paddle/build路径下：
 
@@ -154,7 +154,7 @@
 
 2. 安装Python以及pip：
 
-    > **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x、python3.6.x、python3.7.x、python3.8.x), pip以及其他的依赖，这将会使您高效编译。
+    > **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x、python3.6.x、python3.7.x、python3.8), pip以及其他的依赖，这将会使您高效编译。
 
     For python2:
     ```
@@ -218,9 +218,9 @@
 
     - a. 这里特别说明一下**CMake**的安装：
 
-        由于我们使用的是CMake3.4请根据以下步骤：
+        CMake我们支持3.10以上版本,推荐使用CMake3.16,请根据以下步骤安装：
 
-        1. 从CMake[官方网站](https://cmake.org/files/v3.4/cmake-3.4.3-Darwin-x86_64.dmg)下载CMake镜像并安装
+        1. 从CMake[官方网站](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg)下载CMake镜像并安装
         2. 在控制台输入
             ```
             sudo "/Applications/CMake.app/Contents/bin/cmake-gui" –install
@@ -250,7 +250,7 @@
     git checkout release/1.8
     ```
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从releasel/1.8分支开始支持
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
 
 8. 并且请创建并进入一个叫build的目录下：
 

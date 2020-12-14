@@ -155,7 +155,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
 2. Install python and pip:
 
-    > **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.5.x, python3.6.x, python3.7.x, python3.8.x), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+    > **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.5.x, python3.6.x, python3.7.x, python3.8), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
     For python2:
     ```
@@ -222,9 +222,9 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     - a. Here is a special description of the installation of **CMake**:
 
-        Since we are using CMake3.4 please follow the steps below:
+        We support CMake version 3.10 and above, CMake 3.16 is recommended, please follow the steps below to install:
 
-        1. Download the CMake image from the [official CMake website](https://cmake.org/files/v3.4/cmake-3.4.3-Darwin-x86_64.dmg) and install it.
+        1. Download the CMake image from the [official CMake website](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg) and install it.
 
         2. Enter
             ```
