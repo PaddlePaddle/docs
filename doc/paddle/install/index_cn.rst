@@ -36,7 +36,7 @@
 
     * Windows 安装 GPU 版本
 
-        * Windows 7/8/10 支持 CUDA 9.0/10.0 单卡模式，不支持 CUDA 9.1/9.2/10.1		
+        * Windows 7/8/10 支持 CUDA 9.0/10.0 单卡模式，不支持 CUDA 9.1/9.2/10.1
         * 不支持 **nvidia-docker** 方式安装
     * Ubuntu 安装 GPU 版本
 
@@ -73,7 +73,7 @@
     * Ubuntu 16.04:
 
         * CUDA10.1 下支持NCCL v2.4.2-v2.4.8
-        * CUDA10.0/9.2/9.0 下支持NCCL v2.3.7-v2.4.8        
+        * CUDA10.0/9.2/9.0 下支持NCCL v2.3.7-v2.4.8
         * CUDA9.1 下支持NCCL v2.1.15
     * Ubuntu 18.04：
 
@@ -103,9 +103,9 @@
 3. 确认您需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
     如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
-    
+
         在 Windows 环境下，输出 Python 路径的命令为：
-        
+
         ::
 
             where python
@@ -134,25 +134,25 @@
 
     如果您是使用 Python 2，使用以下命令确认是 2.7.15+
     ::
-    
+
         python --version
 
     如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7
     ::
-    
+
         python3 --version
-    
-5. 检查 pip 的版本，确认是 9.0.1+  
+
+5. 检查 pip 的版本，确认是 9.0.1+
 
     如果您是使用 Python 2
     ::
-    
-        python -m ensurepip 
+
+        python -m ensurepip
         python -m pip --version
 
     如果您是使用 Python 3
     ::
-    
+
         python3 -m ensurepip
         python3 -m pip --version
 
@@ -165,16 +165,16 @@
 
     如果您是使用 Python 3
     ::
-    
+
         python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 7. 如果您希望使用 `pip <https://pypi.org/project/pip/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 
-    (1). **CPU版本** ：如果您只是想安装CPU版本请参考如下命令安装 
+    (1). **CPU版本** ：如果您只是想安装CPU版本请参考如下命令安装
 
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
-    
+
             python -m pip install paddlepaddle==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple
 
             或
@@ -185,9 +185,9 @@
 
             pip install paddlepaddle==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html
 
-        如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装 
+        如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装
 
-    (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
+    (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装
 
         注意：
 
@@ -204,8 +204,8 @@
 
         如果您是使用Windows系统请使用以下指令:
 
-            python -m pip install paddlepaddle_gpu==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html 
-        
+            python -m pip install paddlepaddle_gpu==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html
+
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装。
 
 8. 验证安装
@@ -234,8 +234,11 @@
 ..  toctree::
     :hidden:
 
-    install_Linux.md
-    install_MacOS.md
-    install_Windows.md
+    pip/linux-pip.md
+    pip/windows-pip.md
+    pip/macos-pip.md
+    conda/linux-conda.md
+    conda/windows-conda.md
+    conda/macos-conda.md
     compile/fromsource.rst
     Tables.md
