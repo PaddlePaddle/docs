@@ -40,6 +40,9 @@
     which python3
     ```
 
+* 需要确认python的版本是否满足要求
+
+  * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
 
         python --version
 
