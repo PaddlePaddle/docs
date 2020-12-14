@@ -25,7 +25,6 @@
   ```
 
 
-
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
   * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
@@ -39,7 +38,6 @@
     ```
     which python3
     ```
-
 
 
 * You need to confirm whether the version of Python meets the requirements
@@ -89,7 +87,6 @@
     ```
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
-
 
 
 * The installation package provided by default requires computer support for MKL
@@ -145,7 +142,6 @@ We will introduce pip installation here.
     ```
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
-
 
 
 ## Installation Step

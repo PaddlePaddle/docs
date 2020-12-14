@@ -115,7 +115,6 @@ python3 --version
 ```
 
 
-
 1.2.3 Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
 If you are using Python2:
@@ -181,7 +180,6 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
     ```
 
 
-
 ### Installation Step
 
 You can choose the following version of PaddlePaddle to start installation:
@@ -214,7 +212,6 @@ conda install paddlepaddle
   ```
   conda install paddlepaddle-gpu cudatoolkit=10.0
   ```
-
 
 
 
