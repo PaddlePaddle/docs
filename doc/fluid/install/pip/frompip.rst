@@ -1,10 +1,10 @@
 ===========================
-**从源码编译**
+**Pip安装**
 ===========================
 
 ..	toctree::
 	:maxdepth: 1
 
-	linux-compile.md
-	windows-compile.md
-	macos-compile.md
+	linux-pip.md
+	windows-pip.md
+	macos-pip.md

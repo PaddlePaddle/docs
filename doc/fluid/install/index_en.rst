@@ -24,8 +24,8 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 ============================
 
 * Python 2 requires version 2.7.15+
-* Python 3 requires version 3.5.1+/3.6/3.7
-* Python needs pip, and pip requires version 9.0.1+
+* Python 3 requires version 3.5.1+/3.6/3.7/3.8
+* Python needs pip, and pip requires version 20.2.2+
 * Python and pip requires 64-bit
 
 4. PaddlePaddle's support for GPU:
@@ -144,12 +144,12 @@ This section describes how to use pip to install.
     
         python --version
 
-    If you are using Python 3，confirm it is 3.5.1+/3.6/3.7 using command
+    If you are using Python 3，confirm it is 3.5.1+/3.6/3.7/3.8 using command
     ::
     
         python3 --version
     
-5. Check the version of pip and confirm it is 9.0.1+  
+5. Check the version of pip and confirm it is 20.2.2+  
 
     If you are using Python 2
     ::
@@ -242,13 +242,11 @@ This section describes how to use pip to install.
 
 9. For more information to help, please refer to:
 
-    `install under Ubuntu <install_Ubuntu_en.html>`_
+    `Install on Linux via pip <frompip_en/linux-pip_en.html>`_
 
-    `install under CentOS <install_CentOS_en.html>`_
+    `Install on MacOS via pip <frompip_en/macos-pip_en.html>`_
 
-    `install under MacOS <install_MacOS_en.html>`_
-
-    `install under Windows <install_Windows_en.html>`_
+    `Install on Windows via pip <frompip_en/windows-pip_en.html>`_
 
 
 The second way to install: use Conda to install
@@ -290,14 +288,14 @@ This section describes how to use Conda to install.
         conda create --name paddle python=2.7
         conda activate paddle
 
-   If you are using Python3 under Window, note: python3 version can be 3.5.1+/3.6/3.7
+   If you are using Python3 under Window, note: python3 version can be 3.5.1+/3.6/3.7/3.8
 
     ::
 
         conda create --name paddle python=3.7
         activate paddle
 
-    If you are using Python3 under MacOS/Linux, note: python3 version can be 3.5.1+/3.6/3.7
+    If you are using Python3 under MacOS/Linux, note: python3 version can be 3.5.1+/3.6/3.7/3.8
 
     ::
 
@@ -341,12 +339,12 @@ This section describes how to use Conda to install.
     
         python --version
 
-    If you are using Python 3, use the following command to confirm it is 3.5.1+/3.6/3.7
+    If you are using Python 3, use the following command to confirm it is 3.5.1+/3.6/3.7/3.8
     ::
     
         python3 --version
     
-7. Check the version of pip and confirm it is 9.0.1+  
+7. Check the version of pip and confirm it is 20.2.2+  
 
     If you are using Python 2
     ::
@@ -412,7 +410,11 @@ This section describes how to use Conda to install.
 
 11. For more information to help, please refer to:
 
-    `install under conda <install_Conda_en.html>`_
+    `Install on Linux via conda <fromconda_en/linux-conda_en.html>`_
+
+    `Install on MacOS via conda <fromconda_en/macos-conda_en.html>`_
+
+    `Install on Windows via <fromconda_en/windows-conda_en.html>`_
 
 
 The third way to install: use Docker to install
@@ -518,7 +520,7 @@ If you want to use `docker <https://www.docker.com>`_ to install PaddlePaddle, y
 
 5. For more help, refer to:
 
-   `use Docker to install <install_Docker_en.html>`_
+   `use Docker to install <fromdocker_en/docker_en.html>`_
 
 	
 The fourth way to install: compile and install with source code
@@ -530,11 +532,8 @@ The fourth way to install: compile and install with source code
 ..	toctree::
 	:hidden:
 
-	install_Ubuntu_en.md
-	install_CentOS_en.md
-	install_MacOS_en.md
-	install_Windows_en.md
-        install_Conda_en.md
-        install_Docker_en.md
+	pip/frompip_en.rst
+	conda/fromconda_en.rst
 	compile/fromsource_en.rst
+	docker/fromdocker_en.rst
 	Tables_en.md

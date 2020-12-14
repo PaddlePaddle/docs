@@ -1,10 +1,10 @@
 ===========================
-**从源码编译**
+**Conda安装**
 ===========================
 
 ..	toctree::
 	:maxdepth: 1
 
-	linux-compile.md
-	windows-compile.md
-	macos-compile.md
+	linux-conda.md
+	windows-conda.md
+	macos-conda.md

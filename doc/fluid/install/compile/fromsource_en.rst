@@ -7,7 +7,6 @@ You can also choose to compile and install PaddlePaddle in the way of source cod
 ..	toctree::
 	
 
-	compile_Ubuntu_en.md
-	compile_CentOS_en.md
-	compile_MacOS_en.md
-	compile_Windows_en.md
+	linux-compile_en.md
+	windows-compile_en.md
+	macos-compile_en.md

@@ -24,8 +24,8 @@
 ============================
 
 * Python 2 的版本要求 2.7.15+
-* Python 3 的版本要求 3.5.1+/3.6/3.7
-* Python 具有 pip, 且 pip 的版本要求 9.0.1+
+* Python 3 的版本要求 3.5.1+/3.6/3.7/3.8
+* Python 具有 pip, 且 pip 的版本要求 20.2.2+
 * Python 和 pip 要求是 64 位版本
 
 4. PaddlePaddle 对 GPU 支持情况：
@@ -143,12 +143,12 @@
     
         python --version
 
-    如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7
+    如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8
     ::
     
         python3 --version
     
-5. 检查 pip 的版本，确认是 9.0.1+  
+5. 检查 pip 的版本，确认是 20.2.2+  
 
     如果您是使用 Python 2
     ::
@@ -239,13 +239,11 @@
 
 9. 更多帮助信息请参考：
 
-    `Ubuntu下安装 <install_Ubuntu.html>`_
+    `Linux下的PIP安装 <frompip/linux-pip.html>`_
 
-    `CentOS下安装 <install_CentOS.html>`_
+    `MacOS下的PIP安装 <frompip/macos-pip.html>`_
 
-    `MacOS下安装 <install_MacOS.html>`_
-
-    `Windows下安装 <install_Windows.html>`_
+    `Windows下的PIP安装 <frompip/windows-pip.html>`_
 
 
 第二种安装方式：使用 conda 安装
@@ -284,14 +282,14 @@
         conda create --name paddle python=2.7
         conda activate paddle
 
-    如果您是使用 Python3 并且在 Window 环境下，注意：python3版本可以是3.5.1+/3.6/3.7
+    如果您是使用 Python3 并且在 Window 环境下，注意：python3版本可以是3.5.1+/3.6/3.7/3.8
 
     ::
 
         conda create --name paddle python=3.7
         activate paddle
 
-    如果您是使用 Python3 并且在 MacOS/Linux 环境下，注意：python3版本可以是3.5.1+/3.6/3.7
+    如果您是使用 Python3 并且在 MacOS/Linux 环境下，注意：python3版本可以是3.5.1+/3.6/3.7/3.8
 
     ::
 
@@ -335,12 +333,12 @@
     
         python --version
 
-    如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7
+    如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8
     ::
     
         python3 --version
     
-7. 检查 pip 的版本，确认是 9.0.1+  
+7. 检查 pip 的版本，确认是 20.2.2+  
 
     如果您是使用 Python 2
     ::
@@ -405,7 +403,11 @@
 
 11. 更多帮助信息请参考：
 
-    `conda下安装 <install_Conda.html>`_
+    `Linux下的Conda安装 <fromconda/linux-conda.html>`_
+
+    `MacOS下的Conda安装 <fromconda/macos-conda.html>`_
+
+    `Windows下的Conda安装 <fromconda/windows-conda.html>`_
 
 
 第三种安装方式：使用 docker 安装
@@ -510,7 +512,7 @@
 
 5. 更多帮助信息请参考：
 
-   `使用Docker安装 <install_Docker.html>`_
+   `使用Docker安装 <fromdocker/docker.html>`_
 
 	
 第四种安装方式：使用源代码编译安装
@@ -522,12 +524,9 @@
 ..	toctree::
 	:hidden:
 
-	install_Ubuntu.md
-	install_CentOS.md
-	install_MacOS.md
-	install_Windows.md
-	install_Conda.md
-	install_Docker.md
+	pip/frompip.rst
+	conda/fromconda.rst
 	compile/fromsource.rst
+	docker/fromdocker.rst
 	Tables.md
  
