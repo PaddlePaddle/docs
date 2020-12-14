@@ -24,7 +24,7 @@
   uname -m && cat /ect/*release
   ```
 
-  
+
 
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
@@ -40,7 +40,7 @@
     which python3
     ```
 
-    
+
 
 * You need to confirm whether the version of Python meets the requirements
 
@@ -60,7 +60,7 @@
     python -m ensurepip
     ```
 
-    ``` 
+    ```
     python -m pip --version
     ```
 
@@ -70,11 +70,11 @@
     python3 -m ensurepip
     ```
 
-    ``` 
+    ```
     python3 -m pip --version
     ```
 
-  
+
 
 * You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
@@ -90,7 +90,7 @@
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
-    
+
 
 * The installation package provided by default requires computer support for MKL
 
@@ -114,7 +114,7 @@ We will introduce pip installation here.
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7). For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl):
+* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
   * **Centos system can refer to the following commands**
 
@@ -146,7 +146,7 @@ We will introduce pip installation here.
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
 
-    
+
 
 ## Installation Step
 
@@ -174,7 +174,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle==1.8.5 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 #### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
 
@@ -194,7 +194,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==1.8.5.post97 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 2.2.1 <span id="cuda10">CUDA10.0 PaddlePaddle</span>
 
@@ -210,7 +210,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==1.8.5.post107 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 Note：
 
@@ -219,7 +219,7 @@ Note：
 * If you want to use the tsinghua pypi, you can use the following command:
 
   ```
-  python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple 
+  python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 

@@ -6,12 +6,12 @@
 
 * **Linux 版本 (64 bit)**
 * **CentOS 6 (GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1, 仅支持单卡)**
-  
+
 * **CentOS 7 (GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1, 其中CUDA 9.1仅支持单卡)**
   * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
   * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1)**
   * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1)**
-  
+
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
@@ -24,7 +24,7 @@
   uname -m && cat /ect/*release
   ```
 
-  
+
 
 * 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
@@ -40,7 +40,7 @@
     which python3
     ```
 
-    
+
 
 * 需要确认python的版本是否满足要求
 
@@ -60,7 +60,7 @@
     python -m ensurepip
     ```
 
-    ``` 
+    ```
     python -m pip --version
     ```
 
@@ -70,11 +70,11 @@
     python3 -m ensurepip
     ```
 
-    ``` 
+    ```
     python3 -m pip --version
     ```
 
-  
+
 
 * 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
 
@@ -90,7 +90,7 @@
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
-    
+
 
 * 默认提供的安装包需要计算机支持MKL
 
@@ -114,7 +114,7 @@
 
     您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
   * **Centos 系统可以参考以下命令**
 
@@ -146,7 +146,7 @@
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
 
-    
+
 ### 根据版本进行安装
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
@@ -173,7 +173,7 @@
   python3 -m pip install paddlepaddle==1.8.5 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
 
@@ -193,7 +193,7 @@
   python3 -m pip install paddlepaddle-gpu==1.8.5.post97 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 2.2.1 <span id="cuda10">CUDA10.0的PaddlePaddle</span>
 
@@ -209,7 +209,7 @@
   python3 -m pip install paddlepaddle-gpu==1.8.5.post107 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 注：
 
@@ -218,7 +218,7 @@
 * 如果您需要使用清华源，可以通过以下命令
 
   ```
-   python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple 
+   python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
