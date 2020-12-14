@@ -12,11 +12,17 @@
 
 1. Pull PaddlePaddle image
 
-    * CPU version of PaddlePaddle： `docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]`
+    * CPU version of PaddlePaddle：
+        ```
+        docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]
+        ```
 
     If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
-    * CPU version of PaddlePaddle： `docker pull paddlepaddle/paddle:[version number]`
+    * CPU version of PaddlePaddle：
+        ```
+        docker pull paddlepaddle/paddle:[version number]
+        ```
 
     After `:`please fill in the PaddlePaddle version number, you can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
@@ -26,7 +32,9 @@
 
 
 
-        `docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash`
+        ```
+        docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
+        ```
 
         > --name [Name of container] set name of Docker;
 
@@ -83,19 +91,26 @@ You can find the docker mirroring of the published versions of PaddlePaddle in [
 ### 补充说明
 
 * When you need to enter the docker container for the second time, use the following command:
-```
-    #Container created before startup
-    docker start [Name of container]
 
-    #Enter the starting container
+    Container created before startup
+    ```
+    docker start [Name of container]
+    ```
+
+    Enter the starting container
+    ```
     docker attach [Name of container]
-```
+    ```
+
 * If you are a newcomer to Docker, you can refer to the materials on the Internet for learning, such as [Docker tutorial](http://www.runoob.com/docker/docker-hello-world.html)
 
 ## How to uninstall
 
 After entering the Docker container, execute the following command:
 
-* **CPU version of PaddlePaddle**: `pip uninstall paddlepaddle`
+* **CPU version of PaddlePaddle**:
+    ```
+    pip uninstall paddlepaddle
+    ```
 
 Or delete the docker container directly through `docker rm [Name of container]`
