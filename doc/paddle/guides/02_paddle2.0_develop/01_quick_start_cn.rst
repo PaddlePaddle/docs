@@ -77,7 +77,7 @@
     # 开始模型训练
     model.fit(train_dataset,
               epochs=5, 
-              batch_size=32,
+              batch_size=64,
               verbose=1)
 
 
@@ -85,15 +85,15 @@
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/5
-    step 1875/1875 [==============================] - loss: 0.2913 - acc: 0.9354 - 10ms/step          
+    step 938/938 [==============================] - loss: 0.1358 - acc: 0.9284 - 18ms/step          
     Epoch 2/5
-    step 1875/1875 [==============================] - loss: 0.0691 - acc: 0.9702 - 10ms/step          
+    step 938/938 [==============================] - loss: 0.0370 - acc: 0.9680 - 18ms/step          
     Epoch 3/5
-    step 1875/1875 [==============================] - loss: 0.1305 - acc: 0.9785 - 11ms/step          
+    step 938/938 [==============================] - loss: 0.0284 - acc: 0.9780 - 18ms/step          
     Epoch 4/5
-    step 1875/1875 [==============================] - loss: 0.0051 - acc: 0.9832 - 11ms/step          
+    step 938/938 [==============================] - loss: 0.0062 - acc: 0.9823 - 18ms/step          
     Epoch 5/5
-    step 1875/1875 [==============================] - loss: 0.1686 - acc: 0.9859 - 11ms/step
+    step 938/938 [==============================] - loss: 0.0924 - acc: 0.9859 - 18ms/step
 
 3.4 模型评估
 ~~~~~~~~~~~~

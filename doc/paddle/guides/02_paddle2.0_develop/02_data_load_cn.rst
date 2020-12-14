@@ -122,7 +122,7 @@
 
 .. code:: ipython3
 
-    train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=64, shuffle=True)
+    train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
     for batch_id, data in enumerate(train_loader()):
         x_data = data[0]
         y_data = data[1]

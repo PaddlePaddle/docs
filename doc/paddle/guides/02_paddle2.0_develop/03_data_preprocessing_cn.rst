@@ -32,7 +32,7 @@
     transform = Compose([ColorJitter(), Resize(size=100)])
 
     # 通过transform参数传递定义好的数据增项方法即可完成对自带数据集的应用
-    train_dataset_3 = vision.datasets.MNIST(mode='train', transform=transform)
+    train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
 
 
 自定义数据集
