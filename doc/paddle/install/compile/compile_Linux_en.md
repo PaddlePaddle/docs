@@ -4,10 +4,10 @@
 
 * **CentOS version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2 CUDA 9.1, only support single-card mode)**
+    * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0 CUDA 9.1, only support single-card mode)**
     * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
     * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
-    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1/10.2/11.0)**
 * **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 * **pip or pip3 version 20.2.2+ (64 bit)**
 
@@ -17,7 +17,9 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
-    * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 9.0/10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
+    * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.3.7 or higher)**
     * **Hardware devices with GPU computing power over 1.0**
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -122,7 +124,7 @@ Please follow the steps below to install:
         > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
-        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 8.0.
+        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
 
 
 4. After entering Docker, go to the paddle directory:
@@ -342,9 +344,9 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
         ```
         yum install python-pip
         ```
-        (please have a pip version of 9.0.1 and above)
+        (please have a pip version of 20.2.2 and above)
 
-        For Python3: (Please refer to the official Python installation process, and ensure that the pip3 version 9.0.1 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
+        For Python3: (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
 
     * c. (Only For Python3) set Python3 related environment variables, here is python3.5 version example, please replace with the version you use (3.6, 3.7,3.8):
 

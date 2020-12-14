@@ -4,10 +4,10 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2 CUDA 9.1 仅支持单卡模式)**
+    * **CentOS 7 (GPU 版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0 CUDA 9.1 仅支持单卡模式)**
     * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
     * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2/11.0)**
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
@@ -17,7 +17,9 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 
-    * **CUDA 工具包9.0/10.0/10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
+    * **CUDA 工具包9.0/10.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
+    * **CUDA 工具包10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.7及更高)**
+    * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
     * **GPU运算能力超过1.0的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -114,7 +116,7 @@
 
         > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
-        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 9.0。
+        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 10.0。
 
 
 4. 进入Docker后进入paddle目录下：
