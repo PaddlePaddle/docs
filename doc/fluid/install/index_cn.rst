@@ -527,7 +527,7 @@
 	install_MacOS.md
 	install_Windows.md
 	install_Conda.md
-	install_Docker.md
 	compile/fromsource.rst
+    docker/docker.md
 	Tables.md
  

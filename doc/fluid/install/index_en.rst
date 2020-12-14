@@ -535,6 +535,6 @@ The fourth way to install: compile and install with source code
 	install_MacOS_en.md
 	install_Windows_en.md
         install_Conda_en.md
-        install_Docker_en.md
 	compile/fromsource_en.rst
+    docker/docker_en.md
 	Tables_en.md

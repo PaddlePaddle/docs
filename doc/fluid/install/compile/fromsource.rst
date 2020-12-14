@@ -5,6 +5,6 @@
 ..	toctree::
 	:maxdepth: 1
 
-	compile_Linux.md
-	compile_MacOS.md
-	compile_Windows.md
+	linux-compile.md
+	windows-compile.md
+	macos-compile.md
