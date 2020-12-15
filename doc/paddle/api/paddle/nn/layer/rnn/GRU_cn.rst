@@ -32,7 +32,7 @@ GRU
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
     - **num_layers** (int，可选) - 网络层数。默认为1。
-    - **direction** (str，可选) - 网络迭代方向，可设置为forward，backward或bidirectional。默认为forward。
+    - **direction** (str，可选) - 网络迭代方向，可设置为forward或bidirect（或bidirectional）。默认为forward。
     - **time_major** (bool，可选) - 指定input的第一个维度是否是time steps。默认为False。
     - **dropout** (float，可选) - dropout概率，指的是出第一层外每层输入时的dropout概率。默认为0。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih的参数。默认为None。
