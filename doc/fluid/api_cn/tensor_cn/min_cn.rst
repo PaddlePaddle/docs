@@ -26,16 +26,12 @@ min
 ::::::::::
 ..  code-block:: python
 
-    import numpy as np
     import paddle
-
     paddle.disable_static()
 
-    # data_x is a variable with shape [2, 4]
     # the axis is a int element
-    data_x = np.array([[0.2, 0.3, 0.5, 0.9],
-                    [0.1, 0.2, 0.6, 0.7]])
-    x = paddle.to_variable(data_x)
+    x = paddle.to_tensor([[0.2, 0.3, 0.5, 0.9],
+                          [0.1, 0.2, 0.6, 0.7]])
     result1 = paddle.min(x)
     print(result1.numpy())
     #[0.1]
@@ -50,11 +46,9 @@ min
     #[[0.2]
     # [0.1]]
 
-    # data_y is a variable with shape [2, 2, 2]
     # the axis is list 
-    data_y = np.array([[[1.0, 2.0], [3.0, 4.0]],
-                       [[5.0, 6.0], [7.0, 8.0]]])
-    y = paddle.to_variable(data_y)
+    y = paddle.to_tensor([[[1.0, 2.0], [3.0, 4.0]],
+                          [[5.0, 6.0], [7.0, 8.0]]])
     result5 = paddle.min(y, axis=[1, 2])
     print(result5.numpy()) 
     #[1. 5.]

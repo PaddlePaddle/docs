@@ -7,8 +7,6 @@ no_grad
 .. py:class:: paddle.fluid.dygraph.no_grad
 
 :api_attr: 命令式编程模式（动态图)
-:alias_main: paddle.no_grad
-:alias: paddle.no_grad
 :old_api: paddle.fluid.dygraph.no_grad
 
 

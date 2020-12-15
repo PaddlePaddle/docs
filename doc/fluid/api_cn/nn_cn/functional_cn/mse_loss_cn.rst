@@ -58,8 +58,8 @@ mse_loss
     # [array([0.04000002], dtype=float32)]
     # dynamic graph mode
     paddle.disable_static()
-    input = paddle.to_variable(input_data)
-    label = paddle.to_variable(label_data)
+    input = paddle.to_tensor(input_data)
+    label = paddle.to_tensor(label_data)
     output = mse_loss(input, label)
     print(output.numpy())
     # [0.04000002]

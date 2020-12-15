@@ -15,11 +15,6 @@ concat
 
 返回：联结后的Tensor ，数据类型和 ``x`` 中的Tensor相同。
 
-抛出异常：
-    - ``TypeError``: - 当输入 ``x`` 的类型不是list或者tuple时。
-    - ``TypeError``: - 当输入 ``x`` 的数据类型不是 bool，float16， float32， float64， int32， int64时。
-    - ``TypeError``: - 当 ``axis`` 的类型不是int或者Tensor时。 当 ``axis`` 是Tensor的时候其数据类型不是int32或者int64时。
-    - ``TypeError``: - 当输入 ``x`` 中的Tensor存在数据类型不一致时。
 
 **代码示例**：
 
@@ -28,16 +23,16 @@ concat
   import paddle
   import numpy as np
   
-  paddle.enable_imperative()  # Now we are in imperative mode
+  paddle.disable_static()  # Now we are in imperative mode
   in1 = np.array([[1, 2, 3],
                   [4, 5, 6]])
   in2 = np.array([[11, 12, 13],
                   [14, 15, 16]])
   in3 = np.array([[21, 22],
                   [23, 24]])
-  x1 = paddle.imperative.to_variable(in1)
-  x2 = paddle.imperative.to_variable(in2)
-  x3 = paddle.imperative.to_variable(in3)
+  x1 = paddle.to_tensor(in1)
+  x2 = paddle.to_tensor(in2)
+  x3 = paddle.to_tensor(in3)
   zero = paddle.full(shape=[1], dtype='int32', fill_value=0)
   # When the axis is negative, the real axis is (axis + Rank(x))
   # As follow, axis is -1, Rank(x) is 2, the real axis is 1

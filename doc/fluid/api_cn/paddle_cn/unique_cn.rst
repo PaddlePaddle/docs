@@ -2,6 +2,6 @@
 
 unique
 -------------------------------
-:doc_source: paddle.fluid.layers.unique
+:doc_source: paddle.tensor.unique
 
 

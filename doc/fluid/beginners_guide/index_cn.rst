@@ -34,8 +34,8 @@
     import numpy
     import paddle
     # 定义输入数据占位符
-    a = paddle.nn.data(name="a", shape=[1], dtype='int64')
-    b = paddle.nn.data(name="b", shape=[1], dtype='int64')
+    a = paddle.static.data(name="a", shape=[1], dtype='int64')
+    b = paddle.static.data(name="b", shape=[1], dtype='int64')
     # 组建网络（此处网络仅由一个操作构成，即elementwise_add）
     result = paddle.elementwise_add(a, b)
     # 准备运行网络

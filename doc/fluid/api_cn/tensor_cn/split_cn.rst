@@ -16,10 +16,6 @@ split
 
 返回：分割后的Tensor列表。
 
-抛出异常：
-    - :code:`TypeError`：``x`` 的数据类型不是float16、float32、float64、int32或int64时 。
-    - :code:`TypeError`：``num_or_sections`` 不是int、list 或 tuple时。
-    - :code:`TypeError`：``axis`` 不是 int 或 Tensor时。当 ``axis`` 为Tensor，其数据类型不是int32或int64时。
 
 **代码示例**：
 
@@ -28,10 +24,10 @@ split
     import numpy as np
     import paddle
     
-    paddle.enable_imperative()
+    paddle.disable_static()
     # x is a Tensor which shape is [3, 9, 5]
     x_np = np.random.random([3, 9, 5]).astype("int32")
-    x = paddle.imperative.to_variable(x_np)
+    x = paddle.to_tensor(x_np)
 
     out0, out1, out22 = paddle.split(x, num_or_sections=3, axis=1)
     # out0.shape [3, 3, 5]

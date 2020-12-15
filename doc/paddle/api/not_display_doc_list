@@ -1,0 +1,5 @@
+paddle.incubate
+paddle.hapi.progressbar.ProgressBar
+paddle.fluid.contrib
+paddle.reader
+paddle.dataset

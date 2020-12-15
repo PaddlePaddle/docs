@@ -3,44 +3,35 @@
 tanh
 -------------------------------
 
-.. py:function:: paddle.tanh(x, name=None, out=None)
-
-:alias_main: paddle.tanh
-:alias: paddle.tanh,paddle.tensor.tanh,paddle.tensor.math.tanh
-:update_api: paddle.fluid.layers.tanh
-
+.. py:function:: paddle.tanh(x, name=None)
 
 
 tanh 激活函数
 
 .. math::
-        out = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
-
+    out = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
 
 参数:
 
-    - **x** (Variable) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-    - **out** (Variable, 可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
+    - **x** (Tensor) - Tanh算子的输入, 多维Tensor，数据类型为 float16，float32或float64。
+    - **name** (str, 可选) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
 
-返回：返回类型为Variable(Tensor|LoDTensor)， 数据类型同输入一致。
+返回: tanh的输出Tensor，和输入有着相同类型和shape。
+
+返回类型: Tensor
 
 **代码示例**：
 
 .. code-block:: python
 
-        import numpy as np
-        import paddle
-        import paddle.fluid as fluid
+    import paddle
+    import numpy as np
 
-        inputs = fluid.layers.data(name="x", shape = [3], dtype='float32')
-        output = paddle.tanh(inputs)
+    paddle.disable_static()
 
-        exe = fluid.Executor(fluid.CPUPlace())
-        exe.run(fluid.default_startup_program())
+    x_data = np.array([-0.4, -0.2, 0.1, 0.3])
+    x = paddle.to_tensor(x_data)
+    out = paddle.tanh(x)
+    print(out.numpy())
+    # [-0.37994896 -0.19737532  0.09966799  0.29131261]
 
-        img = np.array([0, 0.5, 0.3]).astype(np.float32)
-
-        res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-        print(res)
-        # [array([0., 0.46211717, 0.2913126], dtype=float32)]

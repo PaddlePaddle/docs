@@ -1,7 +1,8 @@
-.. _api_tensor_cn_isfinite:
+.. _api_tensor_isfinite:
 
 isfinite
 -------------------------------
-:doc_source: paddle.fluid.layers.isfinite
 
+..  autofunction:: paddle.tensor.math.isfinite
+    :noindex:
 

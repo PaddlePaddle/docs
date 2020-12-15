@@ -6,8 +6,8 @@ load
 .. py:function:: paddle.fluid.io.load(program, model_path, executor=None, var_list=None)
 
 :api_attr: 声明式编程模式（静态图)
-:alias_main: paddle.load
-:alias: paddle.load,paddle.tensor.load,paddle.tensor.io.load
+:alias_main: paddle.static.load
+:alias: paddle.static.load
 :old_api: paddle.fluid.io.load
 
 
