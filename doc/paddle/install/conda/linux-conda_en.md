@@ -3,7 +3,6 @@
 [Anaconda](https://www.anaconda.com/)is a free and open source distribution of Python and R for computational science. Anaconda is dedicated to simplifying package management and deployment. Anaconda's packages are managed using the package management system Conda. Conda is an open source package management system and environment management system that runs on Windows, macOS, and Linux.
 
 
-
 ## Environmental preparation
 
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
@@ -114,7 +113,7 @@ If you are using Python 3, use the following command to confirm it's version is 
 python3 --version
 ```
 
-  
+
 
 1.2.3 Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
@@ -184,7 +183,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
 
-    
+
 
 ### Installation Step
 
@@ -203,7 +202,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.1 <span id="cpu">CPU version of PaddlePaddle</span>
 
 ```
-conda install paddlepaddle==2.0.0rc1 -c paddle 
+conda install paddlepaddle==2.0.0rc1 -c paddle
 ```
 
 
@@ -260,4 +259,3 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 conda config --set show_channel_urls yes
 ```
-

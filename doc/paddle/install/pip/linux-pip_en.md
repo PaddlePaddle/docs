@@ -24,7 +24,7 @@
   uname -m && cat /ect/*release
   ```
 
-  
+
 
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
@@ -40,7 +40,7 @@
     which python3
     ```
 
-    
+
 
 * You need to confirm whether the version of Python meets the requirements
 
@@ -60,7 +60,7 @@
     python -m ensurepip
     ```
 
-    ``` 
+    ```
     python -m pip --version
     ```
 
@@ -70,11 +70,11 @@
     python3 -m ensurepip
     ```
 
-    ``` 
+    ```
     python3 -m pip --version
     ```
 
-  
+
 
 * You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
@@ -90,7 +90,7 @@
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
-    
+
 
 * The installation package provided by default requires computer support for MKL
 
@@ -150,7 +150,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
 
-    
+
 
 ## Installation Step
 
@@ -181,7 +181,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle==2.0rc1 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 #### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
 
@@ -201,7 +201,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post90 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-  
+
 
 2.2.2 <span id="cuda10">CUDA10.0 PaddlePaddle</span>
 
@@ -217,7 +217,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post100 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-  
+
 
 2.2.3 <span id="cuda10.1">CUDA10.1 PaddlePaddle</span>
 
@@ -233,7 +233,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post101 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-  
+
 
 2.2.4 <span id="cuda10.2">CUDA10.2 PaddlePaddle</span>
 
@@ -249,7 +249,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
   ```
 
-  
+
 
 2.2.5 <span id="cuda11">CUDA11.0 PaddlePaddle</span>
 
@@ -265,7 +265,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post110 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-  
+
 
 Note：
 
@@ -274,18 +274,18 @@ Note：
 * If you want to use the tsinghua pypi, you can use the following command:
 
   ```
-   python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple 
+   python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
 
-## **三、**Verify installation
+## Verify installation
 
 After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` and `fluid.install_check.run_check()`
 
 If `Your Paddle Fluid is installed succesfully!` appears, to verify that the installation was successful.
 
-## **四、**How to uninstall
+## How to uninstall
 
 Please use the following command to uninstall PaddlePaddle:
 
