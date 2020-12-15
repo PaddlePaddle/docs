@@ -164,6 +164,7 @@ If `PaddlePaddle is installed successfully!` appears, to verify that the install
 
 
 
+
 ## Notice
 
 For domestic users who cannot connect to the Anaconda official source, you can add Tsinghua source to install it according to the following command.

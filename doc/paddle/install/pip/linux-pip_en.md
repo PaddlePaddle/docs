@@ -279,13 +279,13 @@ Note：
 
 
 
-## **三、**Verify installation
+## Verify installation
 
 After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
 If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 
-## **四、**How to uninstall
+## How to uninstall
 
 Please use the following command to uninstall PaddlePaddle:
 

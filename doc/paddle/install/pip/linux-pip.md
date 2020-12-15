@@ -287,6 +287,7 @@
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
+
 ## **四、如何卸载**
 
 请使用以下命令卸载PaddlePaddle：

@@ -179,6 +179,7 @@ conda install paddlepaddle==2.0.0rc1 -c paddle
 
 
 
+
 #### 2.2<span id="gpu"> GPU version of PaddlePaddle</span>
 
 *  <span id="cuda9">If you are using CUDA 9，cuDNN 7.6+:</span>
