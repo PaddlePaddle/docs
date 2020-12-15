@@ -24,13 +24,13 @@ o  ```python2.7 -m pip install -U paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64
 
 安装完成后您可以使用 python 或 python3 进入python解释器，输入
 
-```import paddle.fluid as fluid ```
+```import paddle ```
 
 再输入
 
-``` fluid.install_check.run_check()```
+``` paddle.utils.run_check()```
 
-如果出现Your Paddle Fluid is installed succesfully!，说明您已成功安装。
+如果出现PaddlePaddle is installed successfully!，说明您已成功安装。
 
 
 
@@ -147,13 +147,13 @@ For Python3: ```cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWI
 
 安装完成后您可以使用 python 或 python3 进入python解释器，输入
 
-```import paddle.fluid as fluid ```
+```import paddle ```
 
 再输入
 
-``` fluid.install_check.run_check()```
+``` paddle.utils.run_check()```
 
-如果出现Your Paddle Fluid is installed succesfully!，说明您已成功安装。
+如果出现PaddlePaddle is installed successfully!，说明您已成功安装。
 
 
 
