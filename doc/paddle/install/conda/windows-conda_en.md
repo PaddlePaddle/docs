@@ -118,7 +118,7 @@ If you are using Python 3, use the following command to confirm it's version is 
 python3 --version
 ```
 
-  
+
 
 1.2.3 Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
@@ -174,8 +174,9 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.1 <span id="cpu">CPU version of PaddlePaddle</span>
 
 ```
-conda install paddlepaddle==2.0.0rc1 -c paddle 
+conda install paddlepaddle==2.0.0rc1 -c paddle
 ```
+
 
 
 
@@ -231,4 +232,3 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 conda config --set show_channel_urls yes
 ```
-
