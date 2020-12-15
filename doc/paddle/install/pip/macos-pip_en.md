@@ -124,9 +124,9 @@ python3 -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/s
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` and `fluid.install_check.run_check()`
+After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
-If `Your Paddle Fluid is installed succesfully!` appears, to verify that the installation was successful.
+If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 
 ## How to uninstall
 

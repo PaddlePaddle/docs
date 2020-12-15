@@ -21,8 +21,8 @@
 **3. Python 和 pip 版本要求：**
 
 * Python 2 的版本要求 2.7.15+
-* Python 3 的版本要求 3.5.1+/3.6/3.7
-* Python 具有 pip, 且 pip 的版本要求 9.0.1+
+* Python 3 的版本要求 3.5.1+/3.6/3.7/3.8
+* Python 具有 pip, 且 pip 的版本要求 20.2.2+
 * Python 和 pip 要求是 64 位版本
 
 **4. PaddlePaddle 对 GPU 支持情况：**
@@ -36,25 +36,25 @@
 
     * Windows 安装 GPU 版本
 
-        * Windows 7/8/10 支持 CUDA 9.0/10.0 单卡模式，不支持 CUDA 9.1/9.2/10.1		
+        * Windows 7/8/10 支持 CUDA 9.0/10.0 单卡模式，不支持 CUDA 9.1/9.2/10.1	 
         * 不支持 **nvidia-docker** 方式安装
     * Ubuntu 安装 GPU 版本
 
         * Ubuntu 14.04 支持 CUDA 10.0/10.1，不支持CUDA 9.0/9.1/9.2
-        * Ubuntu 16.04 支持 CUDA 9.0/9.1/9.2/10.0/10.1
-        * Ubuntu 18.04 支持 CUDA 10.0/10.1，不支持CUDA 9.0/9.1/9.2
-        * 如果您是使用 **nvidia-docker** 安装，支持 CUDA 9.0/9.1/9.2/10.0/10.1
+        * Ubuntu 16.04 支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2
+        * Ubuntu 18.04 支持 CUDA 10.0/10.1/10.2/11.0，不支持CUDA 9.0/9.1/9.2
+        * 如果您是使用 **nvidia-docker** 安装，支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0
     * CentOS 安装 GPU 版本
 
         * 如果您是使用本机 **pip** 安装：
 
-            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0/10.1，CUDA 9.1 仅支持单卡模式
-            * CentOS 6 支持 CUDA 9.0/9.1/9.2/10.0/10.1 单卡模式
+            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0，CUDA 9.1 仅支持单卡模式
+            * CentOS 6 支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2 单卡模式
         * 如果您是使用本机源码编译安装：
 
-            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0/10.1，CUDA 9.1 仅支持单卡模式
+            * CentOS 7 支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0，CUDA 9.1 仅支持单卡模式
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
-        * 如果您是使用 **nvidia-docker** 安装，在CentOS 7 下支持 CUDA 9.0/9.1/9.2/10.0/10.1
+        * 如果您是使用 **nvidia-docker** 安装，在CentOS 7 下支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0
     * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
 
 请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html#ciwhls>`_ .
@@ -137,12 +137,12 @@
     
         python --version
 
-    如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7
+    如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8
     ::
     
         python3 --version
     
-5. 检查 pip 的版本，确认是 9.0.1+  
+5. 检查 pip 的版本，确认是 20.2.2+  
 
     如果您是使用 Python 2
     ::
@@ -175,15 +175,15 @@
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
     
-            python -m pip install paddlepaddle==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.0.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用Windows系统请使用以下指令:
 
-            pip install paddlepaddle==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html
+            pip install paddlepaddle==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html
 
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装 
 
@@ -193,36 +193,34 @@
 
             * 需要您确认您的 GPU 满足上方列出的要求
 
-        如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下只支持CUDA10.0：
+        如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下只支持CUDA10.2：
         ::
 
-            python -m pip install paddlepaddle-gpu==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle-gpu==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.0.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用Windows系统请使用以下指令:
 
-            python -m pip install paddlepaddle_gpu==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html 
+            python -m pip install paddlepaddle_gpu==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html 
         
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装。
 
 8. 验证安装
 
-    使用 python 或 python3 进入python解释器，输入import paddle.fluid ，再输入 paddle.fluid.install_check.run_check()。
+    使用 python 或 python3 进入python解释器，输入import paddle ，再输入 paddle.utils.run_check()。
 
-    如果出现 Your Paddle Fluid is installed succesfully!，说明您已成功安装。
+    如果出现 PaddlePaddle is installed successfully!，说明您已成功安装。
 
 9. 更多帮助信息请参考：
 
-    `Ubuntu下安装 <install_Ubuntu.html>`_
+    `Linux下的PIP安装 <frompip/linux-pip.html>`_
 
-    `CentOS下安装 <install_CentOS.html>`_
+    `MacOS下的PIP安装 <frompip/macos-pip.html>`_
 
-    `MacOS下安装 <install_MacOS.html>`_
-
-    `Windows下安装 <install_Windows.html>`_
+    `Windows下的PIP安装 <frompip/windows-pip.html>`_
 
 
 **第二种安装方式：使用源代码编译安装**
@@ -234,9 +232,9 @@
 ..  toctree::
     :hidden:
 
-    install_Linux.md
-    install_MacOS.md
-    install_Windows.md
+    frompip/linux-pip.md
+    frompip/macos-pip.md
+    frompip/windows-pip.md
     install_Kunlun_zh.md
     compile/fromsource.rst
     Tables.md

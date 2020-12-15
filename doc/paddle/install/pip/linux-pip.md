@@ -121,7 +121,7 @@
 
     您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
   * **Centos 系统可以参考以下命令**
 
@@ -282,10 +282,10 @@
 
 ## **三、验证安装**
 
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
+安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle` ，再输入
+ `paddle.utils.run_check()`
 
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
 
 ## **四、如何卸载**

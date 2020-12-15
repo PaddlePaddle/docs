@@ -18,39 +18,39 @@
 
 1. Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要[源码安装](https://github.com/Kitware/CMake)
 
-        ```
-        wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
-        ```
+    ```
+    wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
+    ```
 
-        ```
-        tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8
-        ```
+    ```
+    tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8
+    ```
 
-        ```
-        ./bootstrap && make && sudo make install
-        ```
+    ```
+    ./bootstrap && make && sudo make install
+    ```
 
 2. Paddle内部使用patchelf来修改动态库的rpath，如果操作系统提供的源包括了patchelf，直接安装即可，否则需要源码安装，请参考[patchelf官方文档](https://github.com/NixOS/patchelf)。
 
-        ```
-        ./bootstrap.sh
-        ```
+    ```
+    ./bootstrap.sh
+    ```
 
-        ```
-        ./configure
-        ```
+    ```
+    ./configure
+    ```
 
-        ```
-        make
-        ```
+    ```
+    make
+    ```
 
-        ```
-        make check
-        ```
+    ```
+    make check
+    ```
 
-        ```
-        sudo make install
-        ```
+    ```
+    sudo make install
+    ```
 
 3. 将Paddle的源代码克隆到当下目录下的Paddle文件夹中，并进入Paddle目录
 
@@ -96,14 +96,14 @@
 
     >具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
 
-        For Python2:
-        ```
-        cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
-        ```
-        For Python3:
-        ```
-        cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
-        ```
+    For Python2:
+    ```
+    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
+    ```
+    For Python3:
+    ```
+    cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
+    ```
 
 9. 编译。
 
@@ -123,29 +123,49 @@
 
 
 ## **验证安装**
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
+安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入
+```
+import paddle
+```
+再输入
+```
+paddle.utils.run_check()
+```
 
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
 在mobilenetv1和resnet50模型上测试
 
-    wget -O profile.tar https://paddle-cetc15.bj.bcebos.com/profile.tar?authorization=bce-auth-v1/4409a3f3dd76482ab77af112631f01e4/2020-10-09T10:11:53Z/-1/host/786789f3445f498c6a1fd4d9cd3897ac7233700df0c6ae2fd78079eba89bf3fb
-    tar xf profile.tar && cd profile
-    python resnet.py --model_file ResNet50_inference/model --params_file ResNet50_inference/params
-    # 正确输出应为：[0.0002414  0.00022418 0.00053661 0.00028639 0.00072682 0.000213
-    #              0.00638718 0.00128127 0.00013535 0.0007676 ]
-    python mobilenetv1.py --model_file mobilenetv1/model --params_file mobilenetv1/params
-    # 正确输出应为：[0.00123949 0.00100392 0.00109539 0.00112206 0.00101901 0.00088412
-    #              0.00121536 0.00107679 0.00106071 0.00099605]
-    python ernie.py --model_dir ernieL3H128_model/
-    # 正确输出应为：[0.49879393 0.5012061 ]
+```
+wget -O profile.tar https://paddle-cetc15.bj.bcebos.com/profile.tar?authorization=bce-auth-v1/4409a3f3dd76482ab77af112631f01e4/2020-10-09T10:11:53Z/-1/host/786789f3445f498c6a1fd4d9cd3897ac7233700df0c6ae2fd78079eba89bf3fb
+```
+```
+tar xf profile.tar && cd profile
+```
+```
+python resnet.py --model_file ResNet50_inference/model --params_file ResNet50_inference/params
+# 正确输出应为：[0.0002414  0.00022418 0.00053661 0.00028639 0.00072682 0.000213
+#              0.00638718 0.00128127 0.00013535 0.0007676 ]
+```
+```
+python mobilenetv1.py --model_file mobilenetv1/model --params_file mobilenetv1/params
+# 正确输出应为：[0.00123949 0.00100392 0.00109539 0.00112206 0.00101901 0.00088412
+#              0.00121536 0.00107679 0.00106071 0.00099605]
+```
+```
+python ernie.py --model_dir ernieL3H128_model/
+# 正确输出应为：[0.49879393 0.5012061 ]
+```
 
 ## **如何卸载**
 请使用以下命令卸载PaddlePaddle：
 
 ```
-python3 -m pip uninstall paddlepaddle` 或 `python3 -m pip uninstall paddlepaddle
+python3 -m pip uninstall paddlepaddle
+```
+或
+```
+python3 -m pip uninstall paddlepaddle
 ```
 
 ## **备注**

@@ -118,7 +118,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7). For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl):
+* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
   * **Centos system can refer to the following commands**
 
@@ -281,9 +281,9 @@ Note：
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` and `fluid.install_check.run_check()`
+After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
-If `Your Paddle Fluid is installed succesfully!` appears, to verify that the installation was successful.
+If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 
 ## How to uninstall
 
