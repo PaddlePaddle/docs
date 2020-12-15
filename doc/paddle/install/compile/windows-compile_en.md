@@ -138,15 +138,15 @@ Congratulations, you have completed the process of compiling PaddlePaddle succes
 
 After the compilation and installation is completed, you can use `python` to enter the Python interface, input
 ```
-import paddle.fluid as fluid
+import paddle
 ```
 and then
 ```
-fluid.install_check.run_check()
+paddle.utils.run_check()
 ```
 to verify that the installation was successful.
 
-If `Your Paddle Fluid is installed succesfully!` appears, it means the compilation and installation was successful.
+If `PaddlePaddle is installed successfully!` appears, it means the compilation and installation was successful.
 
 
 ### ***How to uninstall***

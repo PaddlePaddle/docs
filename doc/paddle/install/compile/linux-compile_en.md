@@ -24,7 +24,7 @@
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA9 and cuDNN7). For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl):
+* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
 
 
     * **Centos system can refer to the following commands**
@@ -488,7 +488,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     * For users who need to compile the **GPU version PaddlePaddle**:
 
-        1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 16.04, CUDA9, ncDNN7 nccl2 installation instructions), for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download):
+        1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 16.04, CUDA9, ncDNN7 nccl2 installation instructions, for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download)):
 
             ```
             wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -551,15 +551,15 @@ Congratulations, now you have completed the process of compiling PaddlePaddle na
 
 After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use
 ```
-import paddle.fluid as fluid
+import paddle
 ```
 and then  
 ```
-fluid.install_check.run_check()
+paddle.utils.run_check()
 ```
 to verify that the installation was successful.
 
-If `Your Paddle Fluid is installed succesfully!` appears, it means the installation was successful.
+If `PaddlePaddle is installed successfully!` appears, it means the installation was successful.
 
 <br/><br/>
 ### ***How to uninstall***

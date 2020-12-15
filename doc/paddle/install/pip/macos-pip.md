@@ -5,7 +5,7 @@
 ### 1.1目前飞桨支持的环境
 
 * **macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)**
-  
+
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
@@ -18,7 +18,7 @@
   uname -m && cat /ect/*release
   ```
 
-  
+
 
 * 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
@@ -34,7 +34,7 @@
     which python3
     ```
 
-    
+
 
 * 需要确认python的版本是否满足要求
 
@@ -58,7 +58,7 @@
     python -m ensurepip
     ```
 
-    ``` 
+    ```
     python -m pip --version
     ```
 
@@ -68,11 +68,11 @@
     python3 -m ensurepip
     ```
 
-    ``` 
+    ```
     python3 -m pip --version
     ```
 
-  
+
 
 * 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
 
@@ -88,7 +88,7 @@
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
-    
+
 
 * 默认提供的安装包需要计算机支持MKL
 
@@ -104,7 +104,7 @@
 
 * 目前在MacOS环境仅支持CPU版PaddlePaddle
 
-    
+
 ### 根据版本进行安装
 
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
@@ -129,10 +129,10 @@
 
 ## **三、验证安装**
 
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
+安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle` ，再输入
+ `paddle.utils.run_check()`
 
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
 ## **四、如何卸载**
 

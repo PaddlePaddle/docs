@@ -210,9 +210,9 @@
 
 8. 验证安装
 
-    使用 python 或 python3 进入python解释器，输入import paddle.fluid ，再输入 paddle.fluid.install_check.run_check()。
+    使用 python 或 python3 进入python解释器，输入import paddle ，再输入 paddle.utils.run_check()。
 
-    如果出现 Your Paddle Fluid is installed succesfully!，说明您已成功安装。
+    如果出现 PaddlePaddle is installed successfully!，说明您已成功安装。
 
 9. 更多帮助信息请参考：
 

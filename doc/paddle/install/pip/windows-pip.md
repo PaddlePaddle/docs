@@ -6,7 +6,7 @@
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
   * **GPU版本支持CUDA 9.0/10.0/10.1/10.2/11.0，且仅支持单卡**
-  
+
 * **Python 版本 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64 bit)**
 
 * **pip 版本 20.2.2+ (64 bit)**
@@ -19,7 +19,7 @@
   uname -m && cat /ect/*release
   ```
 
-  
+
 
 * 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
@@ -35,7 +35,7 @@
     which python3
     ```
 
-    
+
 
 * 需要确认python的版本是否满足要求
 
@@ -59,7 +59,7 @@
     python -m ensurepip
     ```
 
-    ``` 
+    ```
     python -m pip --version
     ```
 
@@ -69,7 +69,7 @@
     python3 -m ensurepip
     ```
 
-    ``` 
+    ```
     python3 -m pip --version
     ```
 
@@ -88,7 +88,7 @@
     python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
-    
+
 
 * 默认提供的安装包需要计算机支持MKL
 * 当前版本暂不支持NCCL，分布式等相关功能
@@ -116,7 +116,7 @@
   * 注：目前官方发布的windows安装包仅包含 CUDA 9.0/10.0/10.1/10.2/11.0，不包含 CUDA 9.1/9.2，如需使用，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
-    
+
 ### 根据版本进行安装
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
@@ -137,8 +137,8 @@
   ```
   python -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
   ```
-  
-* 如果您是使用 Python 3 
+
+* 如果您是使用 Python 3
 
   ```
   python3 -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
@@ -154,7 +154,7 @@
   python -m pip install paddlepaddle-gpu==2.0.0rc1.post90 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-* 如果您是使用 Python 3 
+* 如果您是使用 Python 3
 
   ```
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post90 -f https://paddlepaddle.org.cn/whl/stable.html
@@ -168,7 +168,7 @@
   python -m pip install paddlepaddle-gpu==2.0.0rc1.post100 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-* 如果您是使用 Python 3 
+* 如果您是使用 Python 3
 
   ```
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post100 -f https://paddlepaddle.org.cn/whl/stable.html
@@ -182,7 +182,7 @@
   python -m pip install paddlepaddle-gpu==2.0.0rc1.post101 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-* 如果您是使用 Python 3 
+* 如果您是使用 Python 3
 
   ```
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post101 -f https://paddlepaddle.org.cn/whl/stable.html
@@ -196,7 +196,7 @@
   python -m pip install paddlepaddle-gpu==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
-* 如果您是使用 Python 3 
+* 如果您是使用 Python 3
 
   ```
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html
@@ -208,7 +208,7 @@
   ```
   python -m pip install paddlepaddle-gpu==2.0.0rc1.post110 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
-* 如果您是使用 Python 3 
+* 如果您是使用 Python 3
 
   ```
   python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post110 -f https://paddlepaddle.org.cn/whl/stable.html
@@ -220,10 +220,10 @@
 
 ## **三、验证安装**
 
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
+安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle` ，再输入
+ `paddle.utils.run_check()`
 
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
 ## **四、如何卸载**
 
@@ -231,4 +231,4 @@
 
 * **CPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle`
 
-* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu` 
+* **GPU版本的PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu`

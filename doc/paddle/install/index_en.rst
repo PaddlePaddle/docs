@@ -220,9 +220,9 @@ This section describes how to use pip to install.
 
 8. Verify installation
 
-    After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid as fluid` and then  `fluid.install_check.run_check()` to verify that the installation was successful.
+    After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and then  `paddle.utils.run_check()` to verify that the installation was successful.
 
-    If `Your Paddle Fluid is installed succesfully!` appears, it means the installation was successful.
+    If `PaddlePaddle is installed successfully!` appears, it means the installation was successful.
 
 
 9. For more information to help, please refer to:

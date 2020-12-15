@@ -24,7 +24,7 @@
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
     * **Centos 系统可以参考以下命令**
 
@@ -500,7 +500,7 @@
 
     * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.2/CUDA10.1/CUDA10.0/CUDA9)**)
 
-        1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令），更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl):
+        1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
        * **Centos 系统可以参考以下命令**
 
@@ -580,16 +580,16 @@
 安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入
 
 ```
-import paddle.fluid as fluid
+import paddle
 ```
 
 再输入
 
 ```
-fluid.install_check.run_check()
+paddle.utils.run_check()
 ```
 
-如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
+如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
 ## **如何卸载**
 请使用以下命令卸载PaddlePaddle：

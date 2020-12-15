@@ -114,7 +114,7 @@ If you are using Python 3, use the following command to confirm it's version is 
 python3 --version
 ```
 
-  
+
 
 1.2.3 Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
@@ -152,7 +152,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7). For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl):
+* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
   * **Centos system can refer to the following commands**
 
@@ -184,7 +184,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
 
-    
+
 
 ### Installation Step
 
@@ -203,7 +203,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.1 <span id="cpu">CPU version of PaddlePaddle</span>
 
 ```
-conda install paddlepaddle==2.0.0rc1 -c paddle 
+conda install paddlepaddle==2.0.0rc1 -c paddle
 ```
 
 
@@ -244,9 +244,9 @@ conda install paddlepaddle==2.0.0rc1 -c paddle
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` and `fluid.install_check.run_check()`
+After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
-If `Your Paddle Fluid is installed succesfully!` appears, to verify that the installation was successful.
+If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 
 
 
@@ -260,4 +260,3 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 conda config --set show_channel_urls yes
 ```
-

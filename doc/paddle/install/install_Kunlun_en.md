@@ -24,13 +24,13 @@ o  ```python2.7 -m pip install -U paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64
 
 After installation, you can use python or python3 to enter the python interpreter, enter:
 
-```import paddle.fluid as fluid ```
+```import paddle ```
 
 then input:
 
-``` fluid.install_check.run_check()```
+``` paddle.utils.run_check()```
 
-If "Your Paddle Fluid is installed succesfully!" appears, it means you have successfully installed it.
+If "PaddlePaddle is installed successfully!" appears, it means you have successfully installed it.
 
 
 
@@ -145,13 +145,13 @@ For Python3: ```cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWI
 
 After installation, you can use python or python3 to enter the python interpreter, enter:
 
-```import paddle.fluid as fluid ```
+```import paddle ```
 
 then input:
 
-``` fluid.install_check.run_check()```
+``` paddle.utils.run_check()```
 
-If "Your Paddle Fluid is installed succesfully!" appears, it means you have successfully installed it.
+If "PaddlePaddle is installed successfully!" appears, it means you have successfully installed it.
 
 
 
