@@ -114,7 +114,7 @@ python --version
 python3 --version
 ```
 
-  
+
 
 1.2.3 确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
 
@@ -180,7 +180,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 #### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 ```
-conda install paddlepaddle==2.0.0rc1 -c paddle 
+conda install paddlepaddle==2.0.0rc1 -c paddle
 ```
 
 
@@ -223,8 +223,7 @@ conda install paddlepaddle==2.0.0rc1 -c paddle
 
 ## **三、验证安装**
 
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid` ，再输入
- `fluid.install_check.run_check()`
+安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle.fluid as fluid`，再输入`fluid.install_check.run_check()`
 
 如果出现`Your Paddle Fluid is installed succesfully!`，说明您已成功安装。
 
@@ -240,4 +239,3 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 conda config --set show_channel_urls yes
 ```
-
