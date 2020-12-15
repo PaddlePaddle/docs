@@ -216,11 +216,11 @@
 
 9. 更多帮助信息请参考：
 
-    `Linux下的PIP安装 <frompip/linux-pip.html>`_
+    `Linux下的PIP安装 <pip/linux-pip.html>`_
 
-    `MacOS下的PIP安装 <frompip/macos-pip.html>`_
+    `MacOS下的PIP安装 <pip/macos-pip.html>`_
 
-    `Windows下的PIP安装 <frompip/windows-pip.html>`_
+    `Windows下的PIP安装 <pip/windows-pip.html>`_
 
 
 **第二种安装方式：使用源代码编译安装**
@@ -232,9 +232,9 @@
 ..  toctree::
     :hidden:
 
-    frompip/linux-pip.md
-    frompip/macos-pip.md
-    frompip/windows-pip.md
+    pip/linux-pip.md
+    pip/macos-pip.md
+    pip/windows-pip.md
     install_Kunlun_zh.md
     compile/fromsource.rst
     Tables.md
