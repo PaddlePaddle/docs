@@ -267,6 +267,37 @@ The Paddle framework 2.0-RC1 version has the following updates:
 - Release models: Pixel2Pixel, CycleGAN, PSGAN, UGATIT, ESRGAN, CGAN, DCGAN
 - Provide 10 pre-trained models for style migration, makeup migration, coloring, super score, character and scene animation, etc.
 
+### PaddleNLP
+
+- Release 2.0-beta version: support all-around dynamic graph models; provide the PaddleNLP core library, with deeply integrating with higher-order APIs; support the pip installation; provide developers with best practices in the text domain of PaddlePaddle 2.0.
+- Add the text graph learning model ERNIESage, generative pre-training model ERNIE-Gen, open domain dialogue generation model PLATO-2, semantic matching model SentenceTransformer, time sequence prediction model TCN, and so on.
+- Enrich the pre-training language models further, including a total of 22 pre-training models such as ERNIE, BERT, RoBERTa, and ELECTRA (containing 11 Chinese pre-training models).
+- Add 8 common text task evaluation metrics such as Perplexity, BLEU, Rouge-L, and so on, adapted to the PaddlePaddle 2.0 Metrics API system to improve ease of use.
+- Add 25 new datasets for text classification, sequence annotation, machine translation, reading comprehension, and so on, adapted to the PaddlePaddle 2.0 Dataset API system, with fast loading by pressing one key.
+- Add the Embedding API function, including 38 Chinese word vectors, supporting fast loading and word granularity semantic distance calculation.
+
+### Parakeet
+
+- Release 2.0-alpha version: provide Parakeet core library; improve Chinese documentation; support pip installation.
+- Upgrade the text-to-speech model framework to unify the text front-end interface. The model is fully upgraded to Paddle 2.0 API, including TransformerTTS, Waveflow, Wavenet model, and new Tacotron2 model.
+- Provide more reusable networking modules. This facilitates the combination of model flexibly. Optimize the data processing and loading process. This improves the training speed.
+- Add the experiment module to standardize the experiment process. This facilitates the experiment management and secondary development. The sample codes for experiments are provided for existing models.
+
+## Utility Component
+
+### PaddleHub
+- Release 2.0-rc version: fully migrate the dynamic graph programming mode. It is more convenient for model development and debugging. The finetune interface is more flexible and easy to use.
+- Upgrade the visual class task migration learning capability fully, supporting a variety of tasks such as image classification, image coloring, and style migration.
+- Upgrade Transformer class models such as BERT, ERNIE and RoBERTa to dynamic graph. Support the Fine-Tune capability for text classification.
+- Optimize the Serving capability for service-oriented deployment, supporting multi-card prediction and automatic load balancing. The performance is improved greatly.
+- Add the Auto Augment (automatic data augment capability). This allows the efficient search for the proper combination of data augment policies for the datasets.
+
+### X2Paddle
+- Release version 1.0.0-rc0: It fully supports PaddlePaddle dynamic graph API.
+- Add the PyTorch model conversion: supports the conversion between Tracing and Scripting.
+- Add the support of conversion from Caffe/ONNX/Tensorflow to Paddle2.0 dynamic graph.
+- Add the Optimizer module, mainly including op fusions and op elimination functions, to improve the readability of the converted model code and the prediction performance of the model.
+
 ## Kunlun hardware
 
 ###  Models adapted to Kunlun hardware
