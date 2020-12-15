@@ -1,4 +1,4 @@
-.. _cn_api_paddle_nn_functioanl_interpolate:
+.. _cn_api_paddle_nn_functional_interpolate:
 
 Inerpolate
 -------------------------------

@@ -38,7 +38,7 @@
 .. code:: python
    
     class SoftmaxWithCrossEntropy(paddle.nn.Layer):
-       def __init__(self):
+        def __init__(self):
            super(SoftmaxWithCrossEntropy, self).__init__()
        
         def forward(self, input, label):

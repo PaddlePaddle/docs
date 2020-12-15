@@ -44,5 +44,5 @@ smooth_l1_loss
             label = np.random.rand(3,3).astype("float32")
             input = paddle.to_tensor(input_data)
             label = paddle.to_tensor(label_data)
-            output = paddle.nn.functioanl.smooth_l1_loss(input,label)
+            output = paddle.nn.functional.smooth_l1_loss(input,label)
             print(output.numpy())
