@@ -260,7 +260,7 @@
 
 ### PaddleRec
 
-- 发布模型：gru4rec, deepfm, mmoe, 支持动态图
+- 发布模型：gru4rec, deepfm, mmoe, dnn, LR 支持动态图
 
 ### PaddleGAN
 
@@ -301,4 +301,4 @@
 ## 昆仑硬件
 
 ###  模型适配昆仑硬件
-- Resnet50静态图模型适配昆仑硬件
+- Resnet50, mobilenetv3, deeplabv3, bertbase, DQN 静态图模型适配昆仑硬件
