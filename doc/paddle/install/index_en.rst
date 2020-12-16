@@ -227,11 +227,11 @@ This section describes how to use pip to install.
 
 9. For more information to help, please refer to:
 
-    `install under Ubuntu <frompip/linux-pip_en.html>`_
+    `install under Ubuntu <pip/linux-pip_en.html>`_
 
-    `install under MacOS <frompip/macos-pip_en.html>`_
+    `install under MacOS <pip/macos-pip_en.html>`_
 
-    `install under Windows <frompip/windows-pip_en.html>`_
+    `install under Windows <pip/windows-pip_en.html>`_
 
 
 The second way to install: compile and install with source code
@@ -243,9 +243,9 @@ The second way to install: compile and install with source code
 ..	toctree::
 	:hidden:
 
-	frompip/linux-pip_en.md
-	frompip/macos-pip_en.md
-	frompip/windows-pip_en.md
-    install_Kunlun_en.md
+	pip/frompip_en.rst
+	conda/fromconda_en.rst
+	docker/fromdocker_en.rst
 	compile/fromsource_en.rst
+	install_Kunlun_en.md
 	Tables_en.md
