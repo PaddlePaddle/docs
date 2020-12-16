@@ -238,9 +238,9 @@ If you want to install PaddlePaddle which support CUDA10.2 with cuDNN v7.4+,you 
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid` and `fluid.install_check.run_check()`
+After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
-If `Your Paddle Fluid is installed succesfully!` appears, to verify that the installation was successful.
+If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 
 ## How to uninstall
 

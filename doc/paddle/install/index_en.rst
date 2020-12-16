@@ -25,8 +25,8 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 ==========================================
 
 * Python 2 requires version 2.7.15+
-* Python 3 requires version 3.5.1+/3.6/3.7
-* Python needs pip, and pip requires version 9.0.1+
+* Python 3 requires version 3.5.1+/3.6/3.7/3.8
+* Python needs pip, and pip requires version 20.2.2+
 * Python and pip requires 64-bit
 
 4. PaddlePaddle's support for GPU:
@@ -46,20 +46,20 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
     * Ubuntu install GPU version
 
         * Ubuntu 14.04 supports CUDA 10.0/10.1, but doesn't support CUDA 9.0/9.1/9.2
-        * Ubuntu 16.04 supports CUDA 9.0/9.1/9.2/10.0/10.1
-        * Ubuntu 18.04 supports CUDA 10.0/10.1, but doesn't support CUDA 9.0/9.1/9.2
-        * If you install using **nvidia-docker** , it supports CUDA 9.0/9.1/9.2/10.0/10.1
+        * Ubuntu 16.04 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2
+        * Ubuntu 18.04 supports CUDA 10.0/10.1/10.2/11.0, but doesn't support CUDA 9.0/9.1/9.2
+        * If you install using **nvidia-docker** , it supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0
     * CentOS install GPU version
 
         * If you install using native **pip** :
 
-            * CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1, CUDA 9.1 supports single-card mode only
-            * CentOS 6 supports CUDA 9.0/9.1/9.2/10.0/10.1 single-card mode
+            * CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0, CUDA 9.1 supports single-card mode only
+            * CentOS 6 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2 single-card mode
         * If you compile and install using native source code:
 
-            * CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1, CUDA 9.1 supports single-card mode only
+            * CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0, CUDA 9.1 supports single-card mode only
             * CentOS 6 is not recommended, we don't provide official support in case of compilation problems
-        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1
+        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0
     * MacOS isn't supported: PaddlePaddle has no GPU support in Mac OS platform
 
 Please make sure your environment meets the above conditions. If you have other requirements, please refer to `Appendix <Tables_en.html#ciwhls>`_ .
@@ -145,12 +145,12 @@ This section describes how to use pip to install.
     
         python --version
 
-    If you are using Python 3，confirm it is 3.5.1+/3.6/3.7 using command
+    If you are using Python 3，confirm it is 3.5.1+/3.6/3.7/3.8 using command
     ::
     
         python3 --version
     
-5. Check the version of pip and confirm it is 9.0.1+  
+5. Check the version of pip and confirm it is 20.2.2+  
 
     If you are using Python 2
     ::
@@ -183,15 +183,15 @@ This section describes how to use pip to install.
         If you are using Python 2, command to install CPU version is:
         ::
     
-            python -m pip install paddlepaddle==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.0.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         If you are using Windows environment, please use the following instruction:
 
-            python -m pip install paddlepaddle==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html 
+            python -m pip install paddlepaddle==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html 
 
         If you are using Python 3, please change **python** in the above command to **python3** and install.
         
@@ -203,37 +203,35 @@ This section describes how to use pip to install.
 
             * You need to confirm that your GPU meets the requirements listed above
 
-        If you are using Python2, please attention that PaddlePaddle installed through command below only supports CUDA10.0 under Windows、Ubuntu、CentOS:
+        If you are using Python2, please attention that PaddlePaddle installed through command below only supports CUDA10.2 under Windows、Ubuntu、CentOS:
         ::
 
-            python -m pip install paddlepaddle-gpu==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle-gpu==2.0.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.0.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         If you are using Windows environment, please use the following instruction:
 
-            python -m pip install paddlepaddle_gpu==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html
+            python -m pip install paddlepaddle_gpu==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html
         
         If you are using Python 3, please change **python** in the above command to **python3** and install.
 
 8. Verify installation
 
-    After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle.fluid as fluid` and then  `fluid.install_check.run_check()` to verify that the installation was successful.
+    After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and then  `paddle.utils.run_check()` to verify that the installation was successful.
 
-    If `Your Paddle Fluid is installed succesfully!` appears, it means the installation was successful.
+    If `PaddlePaddle is installed successfully!` appears, it means the installation was successful.
 
 
 9. For more information to help, please refer to:
 
-    `install under Ubuntu <install_Ubuntu_en.html>`_
+    `install under Ubuntu <pip/linux-pip_en.html>`_
 
-    `install under CentOS <install_CentOS_en.html>`_
+    `install under MacOS <pip/macos-pip_en.html>`_
 
-    `install under MacOS <install_MacOS_en.html>`_
-
-    `install under Windows <install_Windows_en.html>`_
+    `install under Windows <pip/windows-pip_en.html>`_
 
 
 The second way to install: compile and install with source code
@@ -245,10 +243,9 @@ The second way to install: compile and install with source code
 ..	toctree::
 	:hidden:
 
-	install_Ubuntu_en.md
-	install_CentOS_en.md
-	install_MacOS_en.md
-	install_Windows_en.md
-    install_Kunlun_en.md
+	pip/frompip_en.rst
+	conda/fromconda_en.rst
+	docker/fromdocker_en.rst
 	compile/fromsource_en.rst
+	install_Kunlun_en.md
 	Tables_en.md
