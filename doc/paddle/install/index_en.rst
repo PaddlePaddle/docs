@@ -243,9 +243,9 @@ The second way to install: compile and install with source code
 ..	toctree::
 	:hidden:
 
-	pip/linux-pip_en.md
-	pip/macos-pip_en.md
-	pip/windows-pip_en.md
+    pip/frompip_en.rst
+    conda/fromconda_en.rst
+    docker/fromdocker_en.rst
+    compile/fromsource_en.rst
     install_Kunlun_en.md
-	compile/fromsource_en.rst
-	Tables_en.md
+    Tables_en.md

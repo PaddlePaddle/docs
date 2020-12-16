@@ -232,9 +232,9 @@
 ..  toctree::
     :hidden:
 
-    pip/linux-pip.md
-    pip/macos-pip.md
-    pip/windows-pip.md
-    install_Kunlun_zh.md
+    pip/frompip.rst
+    conda/fromconda.rst
+    docker/fromdocker.rst
     compile/fromsource.rst
+    install_Kunlun_zh.md
     Tables.md
