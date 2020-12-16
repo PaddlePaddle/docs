@@ -292,7 +292,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 
 
-.. image:: n_gram_model_files/n_gram_model_23_1.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/n_gram_model_23_1.png?raw=true
 
 
 6、方式2：基于基础API，完成模型的训练与预测
@@ -370,7 +370,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 
 
-.. image:: n_gram_model_files/n_gram_model_27_1.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/n_gram_model_27_1.png?raw=true
 
 
 6.3 预测

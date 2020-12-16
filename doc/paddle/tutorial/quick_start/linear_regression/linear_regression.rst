@@ -93,8 +93,7 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: linear_regression_files/linear_regression_10_0.png
-
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_10_0.png?raw=true
 
 .. code:: ipython3
 
@@ -107,7 +106,7 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: linear_regression_files/linear_regression_11_0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_11_0.png?raw=true
 
 
 **数据归一化处理**\  下图为大家展示各属性的取值范围分布：
@@ -126,7 +125,7 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: linear_regression_files/linear_regression_13_1.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_13_1.png?raw=true
 
 
 从上图看出，我们各属性的数值范围差异太大，甚至不能够在一个画布上充分的展示各属性具体的最大、最小值以及异常值等。下面我们进行归一化。
@@ -180,7 +179,7 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: linear_regression_files/linear_regression_19_1.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_19_1.png?raw=true
 
 
 .. code:: ipython3
@@ -298,7 +297,7 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: linear_regression_files/linear_regression_27_0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_27_0.png?raw=true
 
 
 可以从上图看出，随着训练轮次的增加，损失在呈降低趋势。但由于每次仅基于少量样本更新参数和计算损失，所以损失下降曲线会出现震荡。
@@ -362,7 +361,7 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: linear_regression_files/linear_regression_32_0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_32_0.png?raw=true
 
 
 上图可以看出，我们训练出来的模型的预测结果与真实结果是较为接近的。
