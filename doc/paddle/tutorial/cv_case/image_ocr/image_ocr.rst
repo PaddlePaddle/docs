@@ -352,7 +352,7 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
 
 
 
-.. image:: ihttps://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/image_ocr_files/image_ocr_24_0.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/image_ocr_files/image_ocr_24_0.png?raw=true
 
 
 开始预测
