@@ -262,7 +262,6 @@ paddle.framework.get_default_dtype	paddle.get_default_dtype
 paddle.fluid.layers.atan	paddle.atan,paddle.tensor.atan,paddle.tensor.math.atan
 paddle.nn.layer.pooling.MaxPool3D	paddle.nn.MaxPool3D,paddle.nn.layer.MaxPool3D
 paddle.fluid.io.load	paddle.static.load
-paddle.fluid.dygraph.learning_rate_scheduler.ExponentialDecay	paddle.ExponentialDecay,paddle.framework.ExponentialDecay
 paddle.fluid.layers.conv3d	paddle.static.nn.conv3d
 paddle.nn.layer.activation.Softmax	paddle.nn.Softmax
 paddle.fluid.initializer.MSRAInitializer	paddle.fluid.initializer.MSRA

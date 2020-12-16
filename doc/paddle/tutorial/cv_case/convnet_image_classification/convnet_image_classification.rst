@@ -65,7 +65,7 @@
 
 
 
-.. image:: convnet_image_classification_files/convnet_image_classification_6_0.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_6_0.png?raw=true
 
 
 组建网络
@@ -200,48 +200,7 @@
     epoch: 2, batch_id: 0, loss is: [1.2720516]
     epoch: 2, batch_id: 1000, loss is: [1.2153295]
     [validation] accuracy/loss: 0.4481829106807709/1.5278583765029907
-    epoch: 3, batch_id: 0, loss is: [1.4969867]
-    epoch: 3, batch_id: 1000, loss is: [1.3803508]
-    [validation] accuracy/loss: 0.45007985830307007/1.5132100582122803
-    epoch: 4, batch_id: 0, loss is: [1.2560716]
-    epoch: 4, batch_id: 1000, loss is: [1.507746]
-    [validation] accuracy/loss: 0.47733625769615173/1.4632482528686523
-    epoch: 5, batch_id: 0, loss is: [1.309202]
-    epoch: 5, batch_id: 1000, loss is: [1.2009554]
-    [validation] accuracy/loss: 0.47124600410461426/1.4764647483825684
-    epoch: 6, batch_id: 0, loss is: [1.4618884]
-    epoch: 6, batch_id: 1000, loss is: [0.88979495]
-    [validation] accuracy/loss: 0.4820287525653839/1.4558100700378418
-    epoch: 7, batch_id: 0, loss is: [0.9409781]
-    epoch: 7, batch_id: 1000, loss is: [1.3709068]
-    [validation] accuracy/loss: 0.4884185194969177/1.4503610134124756
-    epoch: 8, batch_id: 0, loss is: [1.1110406]
-    epoch: 8, batch_id: 1000, loss is: [1.4339361]
-    [validation] accuracy/loss: 0.48821884393692017/1.470142126083374
-    epoch: 9, batch_id: 0, loss is: [0.9574076]
-    epoch: 9, batch_id: 1000, loss is: [1.3678448]
-    [validation] accuracy/loss: 0.4820287525653839/1.511709213256836
-    epoch: 10, batch_id: 0, loss is: [1.6616956]
-    epoch: 10, batch_id: 1000, loss is: [1.1900017]
-    [validation] accuracy/loss: 0.47913339734077454/1.5237611532211304
-    epoch: 11, batch_id: 0, loss is: [0.7818362]
-    epoch: 11, batch_id: 1000, loss is: [1.0886108]
-    [validation] accuracy/loss: 0.48871806263923645/1.5404168367385864
-    epoch: 12, batch_id: 0, loss is: [0.7753295]
-    epoch: 12, batch_id: 1000, loss is: [0.8484475]
-    [validation] accuracy/loss: 0.47913339734077454/1.576073169708252
-    epoch: 13, batch_id: 0, loss is: [1.1584547]
-    epoch: 13, batch_id: 1000, loss is: [0.6626812]
-    [validation] accuracy/loss: 0.47903355956077576/1.6340681314468384
-    epoch: 14, batch_id: 0, loss is: [0.7478821]
-    epoch: 14, batch_id: 1000, loss is: [0.7778341]
-    [validation] accuracy/loss: 0.4702475965023041/1.6356017589569092
-    epoch: 15, batch_id: 0, loss is: [0.95272243]
-    epoch: 15, batch_id: 1000, loss is: [0.9893582]
-    [validation] accuracy/loss: 0.4658546447753906/1.7035187482833862
-    epoch: 16, batch_id: 0, loss is: [0.81184196]
-    epoch: 16, batch_id: 1000, loss is: [0.7417667]
-    [validation] accuracy/loss: 0.47633785009384155/1.7327795028686523
+    ...
     epoch: 17, batch_id: 0, loss is: [0.6450094]
     epoch: 17, batch_id: 1000, loss is: [1.0317154]
     [validation] accuracy/loss: 0.4706469774246216/1.8176376819610596
@@ -272,7 +231,7 @@
 
 
 
-.. image:: convnet_image_classification_files/convnet_image_classification_12_1.png
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/convnet_image_classification_12_1.png?raw=true
 
 
 The End
