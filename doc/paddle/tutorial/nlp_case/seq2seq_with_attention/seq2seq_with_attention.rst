@@ -6,7 +6,7 @@
 环境设置
 --------
 
-本示例教程基于飞桨2.0RC版本。
+本示例教程基于飞桨2.0RC1版本。
 
 .. code:: ipython3
 
@@ -20,7 +20,7 @@
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0-rc1
 
 
 下载数据集
@@ -36,16 +36,16 @@
 
 .. parsed-literal::
 
-    --2020-10-26 09:50:14--  https://www.manythings.org/anki/cmn-eng.zip
-    Resolving www.manythings.org (www.manythings.org)... 2606:4700:3033::6818:6dc4, 2606:4700:3036::ac43:adc6, 2606:4700:3037::6818:6cc4, ...
-    Connecting to www.manythings.org (www.manythings.org)|2606:4700:3033::6818:6dc4|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 1030722 (1007K) [application/zip]
-    Saving to: ‘cmn-eng.zip’
+    --2020-12-14 18:07:30--  https://www.manythings.org/anki/cmn-eng.zip
+    正在解析主机 www.manythings.org (www.manythings.org)... 104.24.108.196, 104.24.109.196, 172.67.173.198
+    正在连接 www.manythings.org (www.manythings.org)|104.24.108.196|:443... 已连接。
+    已发出 HTTP 请求，正在等待回应... 200 OK
+    长度：1047888 (1023K) [application/zip]
+    正在保存至: “cmn-eng.zip”
     
-    cmn-eng.zip         100%[===================>]   1007K   138KB/s    in 7.3s    
+    cmn-eng.zip         100%[===================>]   1023K   284KB/s  用时 3.6s      
     
-    2020-10-26 09:50:23 (138 KB/s) - ‘cmn-eng.zip’ saved [1030722/1030722]
+    2020-12-14 18:07:36 (284 KB/s) - 已保存 “cmn-eng.zip” [1047888/1047888])
     
     Archive:  cmn-eng.zip
       inflating: cmn.txt                 
@@ -59,7 +59,7 @@
 
 .. parsed-literal::
 
-       23610 cmn.txt
+       24026 cmn.txt
 
 
 构建双语句对的数据结构
@@ -99,7 +99,7 @@
 
 .. parsed-literal::
 
-    5508
+    5613
     (['i', 'won'], ['我', '赢', '了', '。'])
     (['he', 'ran'], ['他', '跑', '了', '。'])
     (['i', 'quit'], ['我', '退', '出', '。'])
@@ -149,8 +149,8 @@ Note:
 
 .. parsed-literal::
 
-    2539
-    2039
+    2567
+    2048
 
 
 创建padding过的数据集
@@ -189,9 +189,9 @@ array组织起来的数据集。 -
 
 .. parsed-literal::
 
-    (5508, 11)
-    (5508, 12)
-    (5508, 12)
+    (5613, 11)
+    (5613, 12)
+    (5613, 12)
 
 
 创建网络
@@ -361,65 +361,65 @@ AttentionDecoder部分
 .. parsed-literal::
 
     epoch:0
-    iter 0, loss:[7.6254287]
-    iter 200, loss:[2.7549095]
+    iter 0, loss:[7.627163]
+    iter 200, loss:[3.4799619]
     epoch:1
-    iter 0, loss:[3.25681]
-    iter 200, loss:[3.1060884]
+    iter 0, loss:[3.1061254]
+    iter 200, loss:[3.0856893]
     epoch:2
-    iter 0, loss:[2.8566368]
-    iter 200, loss:[2.5701585]
+    iter 0, loss:[2.5837023]
+    iter 200, loss:[2.4774187]
     epoch:3
-    iter 0, loss:[2.5982018]
-    iter 200, loss:[2.498022]
+    iter 0, loss:[2.669735]
+    iter 200, loss:[2.5333247]
     epoch:4
-    iter 0, loss:[2.4150505]
-    iter 200, loss:[2.2246962]
+    iter 0, loss:[2.3728533]
+    iter 200, loss:[2.519483]
     epoch:5
-    iter 0, loss:[2.2809484]
-    iter 200, loss:[2.0454435]
+    iter 0, loss:[2.4868279]
+    iter 200, loss:[2.2394028]
     epoch:6
-    iter 0, loss:[1.9620974]
-    iter 200, loss:[1.9354618]
+    iter 0, loss:[1.912401]
+    iter 200, loss:[1.9941695]
     epoch:7
-    iter 0, loss:[1.404521]
-    iter 200, loss:[1.6144934]
+    iter 0, loss:[2.095499]
+    iter 200, loss:[1.8654814]
     epoch:8
-    iter 0, loss:[1.6302392]
-    iter 200, loss:[1.6218137]
+    iter 0, loss:[1.5444477]
+    iter 200, loss:[1.6987498]
     epoch:9
-    iter 0, loss:[1.6828392]
-    iter 200, loss:[1.7782025]
+    iter 0, loss:[1.6606278]
+    iter 200, loss:[1.5448124]
     epoch:10
-    iter 0, loss:[1.1777062]
-    iter 200, loss:[1.2404836]
+    iter 0, loss:[1.5323858]
+    iter 200, loss:[1.3515877]
     epoch:11
-    iter 0, loss:[1.2056196]
-    iter 200, loss:[1.322629]
+    iter 0, loss:[1.1793854]
+    iter 200, loss:[1.2833853]
     epoch:12
-    iter 0, loss:[1.316817]
-    iter 200, loss:[1.021146]
+    iter 0, loss:[1.3123708]
+    iter 200, loss:[1.2210991]
     epoch:13
-    iter 0, loss:[1.2051158]
-    iter 200, loss:[1.227415]
+    iter 0, loss:[0.8979997]
+    iter 200, loss:[1.2892962]
     epoch:14
-    iter 0, loss:[1.0421599]
-    iter 200, loss:[0.7064129]
+    iter 0, loss:[0.8698184]
+    iter 200, loss:[1.0216825]
     epoch:15
-    iter 0, loss:[0.7054539]
-    iter 200, loss:[1.1203959]
+    iter 0, loss:[0.76651883]
+    iter 200, loss:[0.7595413]
     epoch:16
-    iter 0, loss:[0.7972643]
-    iter 200, loss:[0.57451296]
+    iter 0, loss:[0.72599435]
+    iter 200, loss:[0.59768426]
     epoch:17
-    iter 0, loss:[0.5825621]
-    iter 200, loss:[0.66827786]
+    iter 0, loss:[0.737612]
+    iter 200, loss:[0.85637724]
     epoch:18
-    iter 0, loss:[0.5396042]
-    iter 200, loss:[0.60596395]
+    iter 0, loss:[0.721517]
+    iter 200, loss:[0.57950366]
     epoch:19
-    iter 0, loss:[0.41747904]
-    iter 200, loss:[0.58902776]
+    iter 0, loss:[0.58147454]
+    iter 200, loss:[0.6164701]
 
 
 使用模型进行机器翻译
@@ -473,39 +473,40 @@ search算法来提升效果）
 
 .. parsed-literal::
 
-    he may have been ill
-    true: 他可能病了。
-    pred: 他可能生病了。
-    she kept working
-    true: 她继续工作。
-    pred: 她继续工作。
-    i don t think he ll come
-    true: 我不認為他會來的。
-    pred: 我不認為他會來的。
-    we all have secrets
-    true: 我們都有秘密。
-    pred: 我們都有秘密。
-    he s the same age as me
-    true: 他和我同岁。
-    pred: 他和我同岁。
-    he can speak russian as well
-    true: 他还会说俄语。
-    pred: 他也會說俄語。
-    he is a thief
-    true: 这是一个小偷。
-    pred: 他是義一個人人。
+    i want to study french
+    true: 我要学法语。
+    pred: 我要学法语。
+    i ll make you happy
+    true: 我会让你幸福的。
+    pred: 我会让你幸福的。
+    she s a bit naive
+    true: 她有点天真。
+    pred: 她有点不好。
+    she can speak three languages
+    true: 她會講三種語言。
+    pred: 她會講英語和法语。
+    he was willing to work for others
+    true: 他願意為別人工作。
+    pred: 他願意為別人工作。
+    they make frequent trips to europe
+    true: 他們經常去歐洲。
+    pred: 他們經常去歐洲。
+    i don t eat chicken skin
+    true: 我吃不下鸡皮。
+    pred: 我不太想过。
+    you need to know
+    true: 你有必要了解。
+    pred: 你需要知道。
     i forgot to ask him
     true: 我忘了問他。
-    pred: 我忘了他。
-    i believe you
-    true: 我相信你。
-    pred: 我相信你。
-    i feel a whole lot better today
-    true: 我今天感觉好多了。
-    pred: 我今天感觉好多了。
+    pred: 我忘了他爸爸。
+    i knew that something was wrong
+    true: 我知道有些事不對。
+    pred: 我知道有些事不。
 
 
 The End
 -------
 
 你还可以通过变换网络结构，调整数据集，尝试不同的参数的方式来进一步提升本示例当中的机器翻译的效果。同时，也可以尝试在其他的类似的任务中用飞桨来完成实际的实践。
+

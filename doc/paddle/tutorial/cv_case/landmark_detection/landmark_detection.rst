@@ -1,7 +1,7 @@
 关键点检测方法及应用1: 人脸关键点检测
 =====================================
 
-本示例教程当前是基于2.0-rc版本Paddle做的案例实现，未来会随着2.0的系列版本发布进行升级。
+本示例教程当前是基于2.0-rc1版本Paddle做的案例实现，未来会随着2.0的系列版本发布进行升级。
 
 1.简要介绍
 ----------
@@ -21,11 +21,6 @@
 
 .. code:: ipython3
 
-    # !pip install paddlepaddle==2.0.0rc0 -f https://paddlepaddle.org.cn/whl/stable.html
-    # !python -m pip install paddlepaddle-gpu==2.0.0rc0 -i https://mirror.baidu.com/pypi/simple
-
-.. code:: ipython3
-
     import numpy as np
     import matplotlib.pyplot as plt
     import pandas as pd
@@ -37,13 +32,13 @@
     from paddle.vision.models import resnet18
     from paddle.nn import functional as F
     print(paddle.__version__)
-    # device = paddle.set_device('cpu') 
-    device = paddle.set_device('gpu') 
+    device = paddle.set_device('cpu') 
+    #device = paddle.set_device('gpu') 
 
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0-rc1
 
 
 3.数据集
@@ -191,7 +186,8 @@ DataLoader（多进程数据集加载）。
     plt.show()
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_01.png?raw=true
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/landmark_detection_files/landmark_detection_8_0.png?raw=true
 
 
 4.定义模型
@@ -235,71 +231,71 @@ DataLoader（多进程数据集加载）。
     -------------------------------------------------------------------------------
        Layer (type)         Input Shape          Output Shape         Param #    
     ===============================================================================
-        Conv2D-121        [[1, 3, 96, 96]]     [1, 64, 48, 48]         9,408     
-      BatchNorm2D-121    [[1, 64, 48, 48]]     [1, 64, 48, 48]          256      
-          ReLU-61        [[1, 64, 48, 48]]     [1, 64, 48, 48]           0       
-        MaxPool2D-7      [[1, 64, 48, 48]]     [1, 64, 24, 24]           0       
-        Conv2D-122       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
-      BatchNorm2D-122    [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
-          ReLU-62        [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
-        Conv2D-123       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
-      BatchNorm2D-123    [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
-       BasicBlock-49     [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
-        Conv2D-124       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
-      BatchNorm2D-124    [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
-          ReLU-63        [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
-        Conv2D-125       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
-      BatchNorm2D-125    [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
-       BasicBlock-50     [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
-        Conv2D-127       [[1, 64, 24, 24]]     [1, 128, 12, 12]       73,728     
-      BatchNorm2D-127    [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
-          ReLU-64        [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
-        Conv2D-128       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
-      BatchNorm2D-128    [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
-        Conv2D-126       [[1, 64, 24, 24]]     [1, 128, 12, 12]        8,192     
-      BatchNorm2D-126    [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
-       BasicBlock-51     [[1, 64, 24, 24]]     [1, 128, 12, 12]          0       
-        Conv2D-129       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
-      BatchNorm2D-129    [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
-          ReLU-65        [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
-        Conv2D-130       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
-      BatchNorm2D-130    [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
-       BasicBlock-52     [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
-        Conv2D-132       [[1, 128, 12, 12]]     [1, 256, 6, 6]        294,912    
-      BatchNorm2D-132     [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
-          ReLU-66         [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
-        Conv2D-133        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
-      BatchNorm2D-133     [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
-        Conv2D-131       [[1, 128, 12, 12]]     [1, 256, 6, 6]        32,768     
-      BatchNorm2D-131     [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
-       BasicBlock-53     [[1, 128, 12, 12]]     [1, 256, 6, 6]           0       
-        Conv2D-134        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
-      BatchNorm2D-134     [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
-          ReLU-67         [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
-        Conv2D-135        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
-      BatchNorm2D-135     [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
-       BasicBlock-54      [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
-        Conv2D-137        [[1, 256, 6, 6]]      [1, 512, 3, 3]       1,179,648   
-      BatchNorm2D-137     [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
-          ReLU-68         [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
-        Conv2D-138        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
-      BatchNorm2D-138     [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
-        Conv2D-136        [[1, 256, 6, 6]]      [1, 512, 3, 3]        131,072    
-      BatchNorm2D-136     [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
-       BasicBlock-55      [[1, 256, 6, 6]]      [1, 512, 3, 3]           0       
-        Conv2D-139        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
-      BatchNorm2D-139     [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
-          ReLU-69         [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
-        Conv2D-140        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
-      BatchNorm2D-140     [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
-       BasicBlock-56      [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
-    AdaptiveAvgPool2D-7   [[1, 512, 3, 3]]      [1, 512, 1, 1]           0       
-         Linear-19           [[1, 512]]           [1, 1000]           513,000    
-         ResNet-7         [[1, 3, 96, 96]]        [1, 1000]              0       
-         Linear-20          [[1, 1000]]            [1, 512]           512,512    
-          ReLU-70            [[1, 512]]            [1, 512]              0       
-         Dropout-7           [[1, 512]]            [1, 512]              0       
-         Linear-21           [[1, 512]]            [1, 30]            15,390     
+         Conv2D-21        [[1, 3, 96, 96]]     [1, 64, 48, 48]         9,408     
+      BatchNorm2D-21     [[1, 64, 48, 48]]     [1, 64, 48, 48]          256      
+          ReLU-11        [[1, 64, 48, 48]]     [1, 64, 48, 48]           0       
+        MaxPool2D-2      [[1, 64, 48, 48]]     [1, 64, 24, 24]           0       
+         Conv2D-22       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+      BatchNorm2D-22     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+          ReLU-12        [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-23       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+      BatchNorm2D-23     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+       BasicBlock-9      [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-24       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+      BatchNorm2D-24     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+          ReLU-13        [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-25       [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+      BatchNorm2D-25     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+       BasicBlock-10     [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-27       [[1, 64, 24, 24]]     [1, 128, 12, 12]       73,728     
+      BatchNorm2D-27     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+          ReLU-14        [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
+         Conv2D-28       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
+      BatchNorm2D-28     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+         Conv2D-26       [[1, 64, 24, 24]]     [1, 128, 12, 12]        8,192     
+      BatchNorm2D-26     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+       BasicBlock-11     [[1, 64, 24, 24]]     [1, 128, 12, 12]          0       
+         Conv2D-29       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
+      BatchNorm2D-29     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+          ReLU-15        [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
+         Conv2D-30       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
+      BatchNorm2D-30     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+       BasicBlock-12     [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
+         Conv2D-32       [[1, 128, 12, 12]]     [1, 256, 6, 6]        294,912    
+      BatchNorm2D-32      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+          ReLU-16         [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
+         Conv2D-33        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
+      BatchNorm2D-33      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+         Conv2D-31       [[1, 128, 12, 12]]     [1, 256, 6, 6]        32,768     
+      BatchNorm2D-31      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+       BasicBlock-13     [[1, 128, 12, 12]]     [1, 256, 6, 6]           0       
+         Conv2D-34        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
+      BatchNorm2D-34      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+          ReLU-17         [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
+         Conv2D-35        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
+      BatchNorm2D-35      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+       BasicBlock-14      [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
+         Conv2D-37        [[1, 256, 6, 6]]      [1, 512, 3, 3]       1,179,648   
+      BatchNorm2D-37      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+          ReLU-18         [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
+         Conv2D-38        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
+      BatchNorm2D-38      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+         Conv2D-36        [[1, 256, 6, 6]]      [1, 512, 3, 3]        131,072    
+      BatchNorm2D-36      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+       BasicBlock-15      [[1, 256, 6, 6]]      [1, 512, 3, 3]           0       
+         Conv2D-39        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
+      BatchNorm2D-39      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+          ReLU-19         [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
+         Conv2D-40        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
+      BatchNorm2D-40      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+       BasicBlock-16      [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
+    AdaptiveAvgPool2D-2   [[1, 512, 3, 3]]      [1, 512, 1, 1]           0       
+         Linear-4            [[1, 512]]           [1, 1000]           513,000    
+         ResNet-2         [[1, 3, 96, 96]]        [1, 1000]              0       
+         Linear-5           [[1, 1000]]            [1, 512]           512,512    
+          ReLU-20            [[1, 512]]            [1, 512]              0       
+         Dropout-2           [[1, 512]]            [1, 512]              0       
+         Linear-6            [[1, 512]]            [1, 30]            15,390     
     ===============================================================================
     Total params: 12,227,014
     Trainable params: 12,207,814
@@ -328,7 +324,7 @@ DataLoader（多进程数据集加载）。
 ）损失函数\ ``paddle.nn.MSELoss()``\ 来做计算，飞桨2.0中，在nn下将损失函数封装成可调用类。我们这里使用paddle.Model相关的API直接进行训练，只需要定义好数据集、网络模型和损失函数即可。
 
 5.1 启动模型训练
-~~~~~~~~~~~~~~~~~~~~~~
+----------------
 
 使用模型代码进行Model实例生成，使用prepare接口定义优化器、损失函数和评价指标等信息，用于后续训练使用。在所有初步配置完成后，调用fit接口开启训练执行过程，调用fit时只需要将前面定义好的训练数据集、测试数据集、训练轮次（Epoch）和批次大小（batch_size）配置好即可。
 
@@ -341,20 +337,33 @@ DataLoader（多进程数据集加载）。
     model.fit(train_dataset, val_dataset, epochs=60, batch_size=256)
 
 
-
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/60
-    step 7/7 - loss: 0.0935 - 580ms/step
+    step 7/7 - loss: 0.0938 - 11s/step
     Eval begin...
-    step 2/2 - loss: 1.0652 - 487ms/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 2/2 - loss: 20.6454 - 4s/step
+    Eval samples: 428
+    Epoch 2/60
+    step 7/7 - loss: 0.0362 - 11s/step
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 2/2 - loss: 1.0127 - 4s/step
     Eval samples: 428
     ...
+    Epoch 59/60
+    step 7/7 - loss: 0.0037 - 12s/step
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 2/2 - loss: 6.9502e-04 - 4s/step
     Eval samples: 428
     Epoch 60/60
-    step 7/7 - loss: 0.0037 - 582ms/step
+    step 7/7 - loss: 0.0036 - 12s/step
     Eval begin...
-    step 2/2 - loss: 0.0012 - 485ms/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 2/2 - loss: 7.2478e-04 - 4s/step
     Eval samples: 428
 
 
@@ -373,7 +382,7 @@ DataLoader（多进程数据集加载）。
 .. parsed-literal::
 
     Predict begin...
-    step 428/428 [==============================] - 15ms/step         
+    step 428/428 [==============================] - 29ms/step          
     Predict samples: 428
 
 
@@ -402,7 +411,8 @@ DataLoader（多进程数据集加载）。
     plt.show()
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_02.png?raw=true
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/landmark_detection_files/landmark_detection_17_1.png?raw=true
 
 
 6.2 测试集结果可视化
@@ -416,7 +426,7 @@ DataLoader（多进程数据集加载）。
 .. parsed-literal::
 
     Predict begin...
-    step 1783/1783 [==============================] - 15ms/step        
+    step 1783/1783 [==============================] - 28ms/step          
     Predict samples: 1783
 
 
@@ -437,5 +447,6 @@ DataLoader（多进程数据集加载）。
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/1_facial_landmark_files/1_facial_landmark_03.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/landmark_detection/landmark_detection_files/landmark_detection_20_0.png?raw=true
+
 

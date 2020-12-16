@@ -3,7 +3,7 @@
 broadcast_to
 -------------------------------
 
-.. py:function:: paddle.expand(x, shape, name=None)
+.. py:function:: paddle.broadcast_to(x, shape, name=None)
 
 根据 ``shape`` 指定的形状广播 ``x`` ，广播后， ``x`` 的形状和 ``shape`` 指定的形状一致。
 

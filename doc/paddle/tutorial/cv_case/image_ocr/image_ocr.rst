@@ -22,6 +22,12 @@
 
 .. code:: ipython3
 
+    # 解压数据集
+    !unzip OCR_Dataset.zip -d data/
+
+
+.. code:: ipython3
+
     import os
     
     import PIL.Image as Image
@@ -246,33 +252,29 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
                 epochs=EPOCH,
                 save_dir="output/",
                 save_freq=1,
-                log_freq=100)
+                verbose=1)
 
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/10
-    step 100/529 - loss: 0.0191 - 66ms/step
+    step 529/529 [==============================] - loss: 0.1363 - 36ms/step          
+    save checkpoint at /Users/tclong/online_repo/paddle2.0_docs/image_ocr/output/0
     Eval begin...
-    step 63/63 - loss: 0.0081 - 27ms/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.1189 - 13ms/step          
     Eval samples: 1000
     Epoch 2/10
-    step 100/529 - loss: 0.0084 - 64ms/step
-    Eval begin...
-    step 63/63 - loss: 0.0075 - 27ms/step
     Eval samples: 1000
     ...
-    Epoch 9/10
-    step 100/529 - loss: 0.0025 - 66ms/step
+    Epoch 8/10
+    step 529/529 [==============================] - loss: 0.0146 - 36ms/step          
+    save checkpoint at /Users/tclong/online_repo/paddle2.0_docs/image_ocr/output/7
     Eval begin...
-    step 63/63 - loss: 0.0082 - 26ms/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0172 - 12ms/step          
     Eval samples: 1000
-    Epoch 10/10
-    step 100/529 - loss: 0.0022 - 63ms/step
-    Eval begin...
-    step 63/63 - loss: 0.0099 - 28ms/step
-    Eval samples: 1000
-
 
 预测前准备
 ----------
@@ -318,7 +320,6 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
         def __len__(self):
             return len(self.img_paths)
 
-
 参数设置
 ~~~~~~~~
 
@@ -351,7 +352,7 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_04.png?raw=true
+.. image:: ihttps://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/image_ocr_files/image_ocr_24_0.png?raw=true
 
 
 开始预测
@@ -362,7 +363,6 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
 
 .. code:: ipython3
 
-    
     from ctc import decode
     
     # 实例化预测模型
@@ -387,7 +387,7 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
 .. parsed-literal::
 
     Predict begin...
-    step 1/1 [==============================] - 24ms/step
+    step 1/1 [==============================] - 12ms/step
     Predict samples: 3
     文件名：9451.jpg，预测结果为：(3, 4, 6, 3)
     文件名：9450.jpg，预测结果为：(8, 2, 0, 5)
