@@ -229,7 +229,7 @@
 - 如果您有开发PaddlePaddle的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
 
-..  toctree::
+..	toctree::
 	:hidden:
 
 	pip/frompip.rst
