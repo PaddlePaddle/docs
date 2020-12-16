@@ -3,7 +3,7 @@
 imag
 ------
 
-.. py::function:: paddle.imag(x, name=None)
+.. py:function:: paddle.imag(x, name=None)
 
 返回一个包含输入复数Tensor的虚部数值的新Tensor。
 

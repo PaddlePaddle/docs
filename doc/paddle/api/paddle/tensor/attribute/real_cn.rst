@@ -3,7 +3,7 @@
 real
 ------
 
-.. py::function:: paddle.real(x, name=None)
+.. py:function:: paddle.real(x, name=None)
 
 返回一个包含输入复数Tensor的实部数值的新Tensor。
 
