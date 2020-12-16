@@ -303,7 +303,7 @@ paddle.tensor.random.uniform	paddle.uniform,paddle.tensor.uniform
 paddle.fluid.layers.asin	paddle.asin,paddle.tensor.asin,paddle.tensor.math.asin
 paddle.fluid.initializer.ConstantInitializer	paddle.fluid.initializer.Constant
 paddle.nn.initializer.constant.Constant	paddle.nn.initializer.Constant
-paddle.fluid.layers.isfinite	paddle.isfinite,paddle.tensor.isfinite,paddle.tensor.logic.isfinite
+paddle.tensor.math.isfinite	paddle.isfinite,paddle.tensor.isfinite
 paddle.nn.functional.conv.conv3d	paddle.nn.functional.conv3d
 paddle.nn.functional.loss.nll_loss	paddle.nn.functional.nll_loss
 paddle.fluid.initializer.UniformInitializer	paddle.fluid.initializer.Uniform
