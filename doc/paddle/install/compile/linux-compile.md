@@ -125,16 +125,10 @@
     cd /paddle
     ```
 
-5. 切换到较稳定版本下进行编译：
+5. 切换到develop版本进行编译：
 
     ```
-    git checkout [分支名]
-    ```
-
-    例如：
-
-    ```
-    git checkout release/1.8
+    git checkout develop
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
@@ -457,16 +451,10 @@
     cd Paddle
     ```
 
-8. 切换到较稳定release分支下进行编译：
+8. 切换到develop分支下进行编译：
 
     ```
-    git checkout [分支名]
-    ```
-
-    例如：
-
-    ```
-    git checkout release/1.8
+    git checkout develop
     ```
 
 9. 并且请创建并进入一个叫build的目录下：

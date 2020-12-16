@@ -111,13 +111,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2:
 
 ```
-python -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
+python -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
 ```
 
 * If you are using Python 3:
 
 ```
-python3 -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
+python3 -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
 ```
 
 
