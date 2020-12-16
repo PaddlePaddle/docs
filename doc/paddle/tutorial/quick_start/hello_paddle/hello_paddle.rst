@@ -66,7 +66,7 @@ world程序。
 
 .. parsed-literal::
 
-    paddle 2.0.0-rc0
+    paddle 2.0.0-rc1
 
 
 准备数据
@@ -118,7 +118,7 @@ world程序。
 
 .. parsed-literal::
 
-    w before optimize: -0.4046955108642578
+    w before optimize: 0.6917380094528198
     b before optimize: 0.0
 
 
@@ -164,12 +164,12 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
 
 .. parsed-literal::
 
-    epoch 0 loss [1078.4275]
-    epoch 1000 loss [8.00917]
-    epoch 2000 loss [1.7907966]
-    epoch 3000 loss [0.40040764]
-    epoch 4000 loss [0.08952817]
-    finished training， loss [0.02004853]
+    epoch 0 loss [485.04092]
+    epoch 1000 loss [8.149743]
+    epoch 2000 loss [1.8222207]
+    epoch 3000 loss [0.4074264]
+    epoch 4000 loss [0.09109598]
+    finished training， loss [0.02039883]
 
 
 机器学习出来的参数
@@ -189,8 +189,8 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
 
 .. parsed-literal::
 
-    w after optimize: 2.0180301666259766
-    b after optimize: 9.769454002380371
+    w after optimize: 2.0181875228881836
+    b after optimize: 9.767448425292969
 
 
 hello paddle
@@ -206,5 +206,4 @@ hello paddle
 .. parsed-literal::
 
     hello paddle
-
 
