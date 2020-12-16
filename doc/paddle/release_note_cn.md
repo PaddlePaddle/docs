@@ -298,7 +298,7 @@
 - 新增Caffe/ONNX/Tensorflow到Paddle2.0 动态图的转换支持。
 - 新增Optimizer模块，主要包括op融合、op消除功能，提升转换后模型代码的可读性以及模型的预测性能。
 
-## 昆仑硬件
+## [昆仑硬件](https://cloud.baidu.com/product/kunlun.html)
 
-###  模型适配[昆仑硬件](https://cloud.baidu.com/product/kunlun.html)
+###  模型适配昆仑硬件
 - Resnet50, mobilenetv3, deeplabv3, bertbase, DQN 静态图模型适配昆仑硬件
