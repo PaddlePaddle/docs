@@ -45,7 +45,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. parsed-literal::
 
-    '2.0.0-rc0'
+    '2.0.0-rc1'
 
 
 
@@ -80,7 +80,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. parsed-literal::
 
-    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
+    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
     自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 
@@ -88,11 +88,12 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. code:: ipython3
 
+    from paddle.vision.transforms import ToTensor
     # 训练数据集
-    train_dataset = vision.datasets.MNIST(mode='train')
+    train_dataset = vision.datasets.MNIST(mode='train', transform=ToTensor())
     
     # 验证数据集
-    val_dataset = vision.datasets.MNIST(mode='test')
+    val_dataset = vision.datasets.MNIST(mode='test', transform=ToTensor())
 
 3.2 自定义数据集
 ~~~~~~~~~~~~~~~~
@@ -296,16 +297,16 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 .. code:: ipython3
 
     # 使用GPU训练
-    paddle.set_device('gpu')
+    # paddle.set_device('gpu')
     
     # 模型封装
     
     ## 场景1：动态图模式
     ## 1.1 为模型预测部署场景进行模型训练
     ## 需要添加input和label数据描述，否则会导致使用model.save(training=False)保存的预测模型在使用时出错
-    input = paddle.static.InputSpec([None, 1, 28, 28], dtype='float32')
-    label = paddle.static.InputSpec([None, 1], dtype='int8')
-    model = paddle.Model(mnist, input, label)
+    inputs = paddle.static.InputSpec([-1, 1, 28, 28], dtype='float32', name='input')
+    label = paddle.static.InputSpec([-1, 1], dtype='int8', name='label')
+    model = paddle.Model(mnist, inputs, label)
     
     ## 1.2 面向实验而进行的模型训练
     ## 可以不传递input和label信息
@@ -419,38 +420,30 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
     # 启动模型训练，指定训练数据集，设置训练轮次，设置每次数据集计算的批次大小，设置日志格式
     model.fit(train_dataset, 
-              epochs=10, 
-              batch_size=32,
+              epochs=5, 
+              batch_size=64,
               verbose=1)
 
 
 .. parsed-literal::
 
-    Epoch 1/10
-    step 1875/1875 [==============================] - loss: 0.4830 - acc: 0.9358 - 11ms/step          
-    Epoch 2/10
-    step 1875/1875 [==============================] - loss: 0.1842 - acc: 0.9369 - 12ms/step          
-    Epoch 3/10
-    step 1875/1875 [==============================] - loss: 0.0644 - acc: 0.9402 - 11ms/step          
-    Epoch 4/10
-    step 1875/1875 [==============================] - loss: 0.0682 - acc: 0.9379 - 11ms/step          
-    Epoch 5/10
-    step 1875/1875 [==============================] - loss: 0.6575 - acc: 0.9416 - 11ms/step          
-    Epoch 6/10
-    step 1875/1875 [==============================] - loss: 0.1236 - acc: 0.9431 - 11ms/step          
-    Epoch 7/10
-    step 1875/1875 [==============================] - loss: 0.1304 - acc: 0.9432 - 11ms/step          
-    Epoch 8/10
-    step 1875/1875 [==============================] - loss: 0.0709 - acc: 0.9446 - 11ms/step          
-    Epoch 9/10
-    step 1875/1875 [==============================] - loss: 0.0308 - acc: 0.9427 - 11ms/step          
-    Epoch 10/10
-    step 1875/1875 [==============================] - loss: 0.0700 - acc: 0.9462 - 11ms/step          
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    Epoch 1/5
+    step 938/938 [==============================] - loss: 0.1019 - acc: 0.9488 - 18ms/step          
+    Epoch 2/5
+    step 938/938 [==============================] - loss: 0.0193 - acc: 0.9757 - 18ms/step          
+    Epoch 3/5
+    step 938/938 [==============================] - loss: 0.0277 - acc: 0.9810 - 19ms/step          
+    Epoch 4/5
+    step 938/938 [==============================] - loss: 0.0045 - acc: 0.9849 - 18ms/step          
+    Epoch 5/5
+    step 938/938 [==============================] - loss: 0.0816 - acc: 0.9877 - 18ms/step          
 
 
-.. note::
+注：
+^^^^
 
-    \``fit()``\ 的第一个参数不仅可以传递数据集\ ``paddle.io.Dataset``\ ，还可以传递DataLoader，如果想要实现某个自定义的数据集抽样等逻辑，可以在fit外自定义DataLoader，然后传递给fit函数。
+``fit()``\ 的第一个参数不仅可以传递数据集\ ``paddle.io.Dataset``\ ，还可以传递DataLoader，如果想要实现某个自定义的数据集抽样等逻辑，可以在fit外自定义DataLoader，然后传递给fit函数。
 
 .. code:: python
 
@@ -466,7 +459,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 .. code:: ipython3
 
     # 使用GPU训练
-    paddle.set_device('gpu')
+    # paddle.set_device('gpu')
     
     # 构建模型训练用的Model，告知需要训练哪个模型
     model = paddle.Model(mnist)
@@ -478,33 +471,24 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     
     # 启动模型训练，指定训练数据集，设置训练轮次，设置每次数据集计算的批次大小，设置日志格式
     model.fit(train_dataset, 
-              epochs=10, 
-              batch_size=32,
+              epochs=5, 
+              batch_size=64,
               verbose=1)
 
 
 .. parsed-literal::
 
-    Epoch 1/10
-    step 1875/1875 [==============================] - loss: 0.0490 - acc: 0.9741 - 6ms/step          
-    Epoch 2/10
-    step 1875/1875 [==============================] - loss: 0.1384 - acc: 0.9760 - 7ms/step          
-    Epoch 3/10
-    step 1875/1875 [==============================] - loss: 0.0929 - acc: 0.9767 - 7ms/step          
-    Epoch 4/10
-    step 1875/1875 [==============================] - loss: 0.0190 - acc: 0.9772 - 6ms/step          
-    Epoch 5/10
-    step 1875/1875 [==============================] - loss: 0.0862 - acc: 0.9774 - 7ms/step          
-    Epoch 6/10
-    step 1875/1875 [==============================] - loss: 0.0748 - acc: 0.9785 - 8ms/step          
-    Epoch 7/10
-    step 1875/1875 [==============================] - loss: 0.0039 - acc: 0.9798 - 17ms/step          
-    Epoch 8/10
-    step 1875/1875 [==============================] - loss: 0.0037 - acc: 0.9808 - 11ms/step          
-    Epoch 9/10
-    step 1875/1875 [==============================] - loss: 0.0013 - acc: 0.9800 - 8ms/step          
-    Epoch 10/10
-    step 1875/1875 [==============================] - loss: 0.0376 - acc: 0.9810 - 8ms/step            
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    Epoch 1/5
+    step 938/938 [==============================] - loss: 0.0305 - acc: 0.9880 - 19ms/step          
+    Epoch 2/5
+    step 938/938 [==============================] - loss: 0.0021 - acc: 0.9918 - 18ms/step          
+    Epoch 3/5
+    step 938/938 [==============================] - loss: 0.0022 - acc: 0.9926 - 18ms/step          
+    Epoch 4/5
+    step 938/938 [==============================] - loss: 0.0124 - acc: 0.9932 - 18ms/step          
+    Epoch 5/5
+    step 938/938 [==============================] - loss: 0.0434 - acc: 0.9942 - 18ms/step          
 
 
 5.2 单机多卡
@@ -773,9 +757,8 @@ train.py里面包含的就是单机单卡代码
 .. parsed-literal::
 
     Eval begin...
-    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9801 - 2ms/step          
-    Eval samples: 10000
-
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step  5150/10000 [==============>...............] - loss: 3.5763e-07 - acc: 0.9742 - ETA: 6s - 1ms/step
 
 7. 模型预测
 -----------

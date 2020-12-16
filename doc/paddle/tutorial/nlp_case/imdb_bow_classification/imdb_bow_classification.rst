@@ -9,7 +9,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 1. 环境设置
 -----------
 
-本示例基于飞桨开源框架2.0版本。
+本示例基于飞桨开源框架2.0rc1版本。
 
 .. code:: ipython3
 
@@ -20,7 +20,7 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0-rc1
 
 
 2. 加载数据
@@ -197,10 +197,10 @@ DataLoader封装后，完成数据的加载。
     train_dataset = IMDBDataset(train_sents, train_labels)
     test_dataset = IMDBDataset(test_sents, test_labels)
     
-    train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), return_list=True,
-                                        shuffle=True, batch_size=batch_size, drop_last=True)
-    test_loader = paddle.io.DataLoader(test_dataset, places=paddle.CPUPlace(), return_list=True,
-                                        shuffle=True, batch_size=batch_size, drop_last=True)
+    train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True, 
+                                        batch_size=batch_size, drop_last=True)
+    test_loader = paddle.io.DataLoader(test_dataset, return_list=True, shuffle=True, 
+                                       batch_size=batch_size, drop_last=True)
 
 3. 组建网络
 -----------
@@ -246,15 +246,18 @@ DataLoader封装后，完成数据的加载。
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 781/781 [==============================] - loss: 0.3887 - 14ms/step          
+    step 781/781 [==============================] - loss: 0.3923 - 14ms/step          
     Eval begin...
-    step 781/781 [==============================] - loss: 0.4126 - 3ms/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 781/781 [==============================] - loss: 0.2972 - 3ms/step          
     Eval samples: 24992
     Epoch 2/2
-    step 781/781 [==============================] - loss: 0.2067 - 14ms/step          
+    step 781/781 [==============================] - loss: 0.2996 - 14ms/step          
     Eval begin...
-    step 781/781 [==============================] - loss: 0.3580 - 3ms/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 781/781 [==============================] - loss: 0.2048 - 3ms/step          
     Eval samples: 24992
 
 
@@ -312,12 +315,12 @@ DataLoader封装后，完成数据的加载。
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 0, loss is: [0.6930327]
-    epoch: 0, batch_id: 500, loss is: [0.31035018]
-    [validation] accuracy/loss: 0.851072371006012/0.3619750440120697
-    epoch: 1, batch_id: 0, loss is: [0.39157593]
-    epoch: 1, batch_id: 500, loss is: [0.43316245]
-    [validation] accuracy/loss: 0.8644766211509705/0.3269137144088745
+    epoch: 0, batch_id: 0, loss is: [0.69251275]
+    epoch: 0, batch_id: 500, loss is: [0.33841172]
+    [validation] accuracy/loss: 0.8510323166847229/0.36114799976348877
+    epoch: 1, batch_id: 0, loss is: [0.18500623]
+    epoch: 1, batch_id: 500, loss is: [0.21162835]
+    [validation] accuracy/loss: 0.8570342659950256/0.3353509306907654
 
 
 6. The End

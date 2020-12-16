@@ -10,7 +10,7 @@ trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计�
 1、环境
 -------
 
-本教程基于paddle-2.0rc编写，如果您的环境不是本版本，请先安装paddle-2.0rc版本。
+本教程基于paddle-2.0rc1编写，如果您的环境不是本版本，请先安装paddle-2.0rc1版本。
 
 .. code:: ipython3
 
@@ -22,7 +22,7 @@ trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计�
 
 .. parsed-literal::
 
-    '2.0.0-rc0'
+    '2.0.0-rc1'
 
 
 
@@ -42,15 +42,16 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    --2020-10-27 09:22:19--  https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
-    正在连接 172.19.57.45:3128... 已连接。
-    已发出 Proxy 请求，正在等待回应... 200 OK
+    --2020-12-16 14:12:57--  https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
+    正在解析主机 ocw.mit.edu (ocw.mit.edu)... 151.101.110.133
+    正在连接 ocw.mit.edu (ocw.mit.edu)|151.101.110.133|:443... 已连接。
+    已发出 HTTP 请求，正在等待回应... 200 OK
     长度：5458199 (5.2M) [text/plain]
     正在保存至: “t8.shakespeare.txt”
     
-    t8.shakespeare.txt  100%[===================>]   5.21M   856KB/s  用时 13s       
+    t8.shakespeare.txt  100%[===================>]   5.21M  70.2KB/s  用时 40s       
     
-    2020-10-27 09:22:33 (426 KB/s) - 已保存 “t8.shakespeare.txt” [5458199/5458199])
+    2020-12-16 14:13:37 (134 KB/s) - 已保存 “t8.shakespeare.txt” [5458199/5458199])
     
 
 
@@ -182,8 +183,8 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
     train_dataset = TrainDataset(trigram)
     
     # 加载数据
-    train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), return_list=True,
-                                        shuffle=True, batch_size=batch_size, drop_last=True)
+    train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True, 
+                                        batch_size=batch_size, drop_last=True)
 
 4、模型组网
 -----------
@@ -259,10 +260,11 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 3519/3519 [==============================] - loss: 5.0840 - 499ms/step          
+    step 3519/3519 [==============================] - loss: 5.1676 - 81ms/step          
     Epoch 2/2
-    step 3519/3519 [==============================] - loss: 5.0217 - 488ms/step          
+    step 3519/3519 [==============================] - loss: 5.4961 - 94ms/step          
 
 
 5.3 loss可视化
@@ -285,12 +287,13 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    [<matplotlib.lines.Line2D at 0x14fe20ca0>]
+    [<matplotlib.lines.Line2D at 0x1495ccaf0>]
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/rc_n_gram_model_001.png?raw=true
+.. image:: n_gram_model_files/n_gram_model_23_1.png
+
 
 6、方式2：基于基础API，完成模型的训练与预测
 -------------------------------------------
@@ -325,22 +328,22 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 0, loss is: [7.82583]
-    epoch: 0, batch_id: 500, loss is: [5.209134]
-    epoch: 0, batch_id: 1000, loss is: [5.219675]
-    epoch: 0, batch_id: 1500, loss is: [5.7377477]
-    epoch: 0, batch_id: 2000, loss is: [5.3354797]
-    epoch: 0, batch_id: 2500, loss is: [5.4568267]
-    epoch: 0, batch_id: 3000, loss is: [5.0538363]
-    epoch: 0, batch_id: 3500, loss is: [5.10138]
-    epoch: 1, batch_id: 0, loss is: [5.4055595]
-    epoch: 1, batch_id: 500, loss is: [5.3116407]
-    epoch: 1, batch_id: 1000, loss is: [5.199607]
-    epoch: 1, batch_id: 1500, loss is: [5.484496]
-    epoch: 1, batch_id: 2000, loss is: [5.4431257]
-    epoch: 1, batch_id: 2500, loss is: [5.049994]
-    epoch: 1, batch_id: 3000, loss is: [5.169182]
-    epoch: 1, batch_id: 3500, loss is: [5.0565596]
+    epoch: 0, batch_id: 0, loss is: [7.823718]
+    epoch: 0, batch_id: 500, loss is: [5.5144377]
+    epoch: 0, batch_id: 1000, loss is: [5.018609]
+    epoch: 0, batch_id: 1500, loss is: [5.029891]
+    epoch: 0, batch_id: 2000, loss is: [5.195608]
+    epoch: 0, batch_id: 2500, loss is: [4.8786173]
+    epoch: 0, batch_id: 3000, loss is: [5.1473885]
+    epoch: 0, batch_id: 3500, loss is: [5.0238667]
+    epoch: 1, batch_id: 0, loss is: [5.059877]
+    epoch: 1, batch_id: 500, loss is: [5.200143]
+    epoch: 1, batch_id: 1000, loss is: [5.464027]
+    epoch: 1, batch_id: 1500, loss is: [5.2350717]
+    epoch: 1, batch_id: 2000, loss is: [5.284937]
+    epoch: 1, batch_id: 2500, loss is: [5.041799]
+    epoch: 1, batch_id: 3000, loss is: [5.275515]
+    epoch: 1, batch_id: 3500, loss is: [5.121647]
 
 
 6.2 loss可视化
@@ -362,12 +365,12 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    [<matplotlib.lines.Line2D at 0x13c582e80>]
+    [<matplotlib.lines.Line2D at 0x14b384dc0>]
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/rc_n_gram_model_002png?raw=true
+.. image:: n_gram_model_files/n_gram_model_27_1.png
 
 
 6.3 预测
@@ -396,7 +399,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    the input words is: works, of
-    the predict words is: william
-    the true words is: william
+    the input words is: the, complete
+    the predict words is: works
+    the true words is: works
 
