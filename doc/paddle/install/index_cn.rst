@@ -216,11 +216,11 @@
 
 9. 更多帮助信息请参考：
 
-    `Linux下的PIP安装 <frompip/linux-pip.html>`_
+    `Linux下的PIP安装 <pip/linux-pip.html>`_
 
-    `MacOS下的PIP安装 <frompip/macos-pip.html>`_
+    `MacOS下的PIP安装 <pip/macos-pip.html>`_
 
-    `Windows下的PIP安装 <frompip/windows-pip.html>`_
+    `Windows下的PIP安装 <pip/windows-pip.html>`_
 
 
 **第二种安装方式：使用源代码编译安装**
@@ -229,12 +229,12 @@
 - 如果您有开发PaddlePaddle的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
 
-..  toctree::
-    :hidden:
+..	toctree::
+	:hidden:
 
-    frompip/linux-pip.md
-    frompip/macos-pip.md
-    frompip/windows-pip.md
-    install_Kunlun_zh.md
-    compile/fromsource.rst
-    Tables.md
+	pip/frompip.rst
+	conda/fromconda.rst
+	docker/fromdocker.rst
+	compile/fromsource.rst
+	install_Kunlun_zh.md
+	Tables.md
