@@ -182,7 +182,10 @@ o  ```python mnist_example.py --use_device=xpu --num_epochs=5```
 
 ## 附录：当前昆仑XPU适配支持的模型
 
-|  模型   | 下载链接  |
+|  模型名称  | 模型地址  |
 |  ----  | ----  |
-| ResNet50  | [点击下载](https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/ResNet50_vd_pretrained.pdparams) |
-| MobileNetv3  | [点击下载](https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/MobileNetV3_large_x1_0_pretrained.pdparams) |
+| ResNet50  | [模型地址](https://github.com/PaddlePaddle/PaddleClas/tree/dygraph/docs/zh_CN/extension/train_on_xpu.md) |
+| MobileNetv3  | [模型地址](https://github.com/PaddlePaddle/PaddleClas/tree/dygraph/docs/zh_CN/extension/train_on_xpu.md) |
+| Deeplabv3  | [模型地址](https://github.com/PaddlePaddle/PaddleSeg/blob/develop/legacy/docs/train_on_xpu.md) |
+| DQN  | [模型地址](https://github.com/PaddlePaddle/PARL/blob/develop/examples/DQN/README.md) |
+| Bertbase  | [模型地址](https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/legacy/pretrain_language_models/BERT/README.md) |
