@@ -3,13 +3,13 @@
 conj
 -------------------------------
 
-.. py:function:: paddle.conj(input, name=None)
+.. py:function:: paddle.conj(x, name=None)
 
 
 该OP是逐元素计算Tensor的共轭运算。
 
 参数：
-    - input (Tensor) - 输入的复数值的Tensor，数据类型为：complex64、complex128。
+    - x (Tensor) - 输入的复数值的Tensor，数据类型为：complex64、complex128。
     - name (str，可选） - 默认值为None。一般无需用户设置。更多信息请参见 :ref:`api_guide_Name`。
 
 返回：
