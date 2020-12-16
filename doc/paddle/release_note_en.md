@@ -300,5 +300,5 @@ The Paddle framework 2.0-RC1 version has the following updates:
 
 ## Kunlun hardware
 
-###  Models adapted to Kunlun hardware
+###  Models adapted to [Kunlun hardware](https://cloud.baidu.com/product/kunlun.html)
 - Resnet50, mobilenetv3, deeplabv3, bertbase, DQN static graphs model adapted to Kunlun hardware  

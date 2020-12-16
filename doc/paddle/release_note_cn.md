@@ -300,5 +300,5 @@
 
 ## 昆仑硬件
 
-###  模型适配昆仑硬件
+###  模型适配[昆仑硬件](https://cloud.baidu.com/product/kunlun.html)
 - Resnet50, mobilenetv3, deeplabv3, bertbase, DQN 静态图模型适配昆仑硬件
