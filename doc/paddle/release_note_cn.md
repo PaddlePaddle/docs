@@ -4,7 +4,7 @@
 
 飞桨框架2.0-RC1版本有如下重要更新：
 
-- **安装环境** 官方发布支持CUDA11的安装包（experimental）；官方发布支持百度昆仑芯片的安装包（experimental）
+- **安装环境** 官方发布支持CUDA11的安装包（experimental）；官方发布支持[百度昆仑芯片](https://cloud.baidu.com/product/kunlun.html)的安装包（experimental）
 - **API功能** 支持numpy兼容的`paddle.Tensor` 索引和切片操作(基本索引)；去除部分API中的axis参数，支持numpy兼容的广播语义；新增了部分API，完善了部分API的功能，修复了部分API的bug
 - **动静转换** 支持动态图转静态图的更多python语法，并支持通过 `paddle.jit.not_to_static ` 标识不进行动转静的函数
 - **框架功能** 支持多次调用`paddle.Tensor.backward()` 进行累计梯度，效果等同于增加batch size后计算的梯度；默认隐藏了C++报错栈，并优化了报错格式；分布式训练支持heterbox异构训练
