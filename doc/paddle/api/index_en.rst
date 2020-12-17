@@ -6,7 +6,7 @@ PaddlePaddle (PArallel Distributed Deep LEarning) is an efficient, flexible, and
 
 In this version, PaddlePaddle has made many optimizations to the APIs. You can refer to the following table to understand the API directory structure and description of the latest version of PaddlePaddle.In addition, you can refer to PaddlePaddle's `GitHub <https://github.com/PaddlePaddle/Paddle>`_ for details, or read `Release Notes <../release_note_en.html>`_ to learn about the features of the new version.
 
-**The API directory structure of PaddlePaddle 2.0-beta is as follows:**
+**The API directory structure of PaddlePaddle is as follows:**
 
 +-------------------------------+-------------------------------------------------------+
 | Directory                     | Functions and Included APIs                           |
