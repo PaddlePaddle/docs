@@ -552,4 +552,4 @@ paddle.fluid.initializer.set_global_initializer	paddle.nn.initializer.set_global
 paddle.fluid.io.load_program_state	paddle.static.load_program_state
 paddle.fluid.io.set_program_state	paddle.static.set_program_state
 paddle.tensor.attribute.real	paddle.real,paddle.tensor.real
-paddle.tensor.attribute.imag	paddle.real,paddle.tensor.imag
+paddle.tensor.attribute.imag	paddle.imag,paddle.tensor.imag
