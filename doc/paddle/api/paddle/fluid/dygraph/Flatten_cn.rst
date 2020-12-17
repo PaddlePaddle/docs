@@ -3,17 +3,16 @@
 Flatten
 -------------------------------
 
-.. py:function:: paddle.nn.Flatten(start_axis=1, stop_axis=- 1)
+.. py:function:: paddle.nn.Flatten(start_axis=1, stop_axis=-1)
 
 
 
 该接口用于构造一个 ``Flatten`` 类的可调用对象。更多信息请参见代码示例。它实现将一个连续维度的Tensor展平成一维Tensor。
 
-输入 ``x`` 与输入 ``y`` 必须可以广播为相同形状, 关于广播规则，请参考 :ref:`use_guide_broadcasting`
 
 参数：
-    - start_axis (int) - 展开的起始维度，默认值为1。
-    - stop_axis  (int) - 展开的结束维度，默认值为-1。
+    - start_axis (int，可选) - 展开的起始维度，默认值为1。
+    - stop_axis  (int，可选) - 展开的结束维度，默认值为-1。
 
 返回：  无。
 
