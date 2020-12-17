@@ -107,7 +107,7 @@ paddle.fluid.backward.append_backward	paddle.static.append_backward
 paddle.nn.functional.pooling.adaptive_max_pool2d	paddle.nn.functional.adaptive_max_pool2d
 paddle.tensor.math.prod	paddle.prod,paddle.tensor.prod
 paddle.fluid.layers.abs	paddle.abs,paddle.tensor.abs,paddle.tensor.math.abs
-paddle.fluid.dygraph.base.no_grad_	paddle.no_grad
+paddle.fluid.dygraph.base.no_grad	paddle.no_grad,paddle.framework.no_grad
 paddle.tensor.linalg.cholesky	paddle.cholesky,paddle.tensor.cholesky
 paddle.tensor.math.sum	paddle.sum,paddle.tensor.sum,paddle.nn.functional.common.sum
 paddle.tensor.search.masked_select	paddle.masked_select,paddle.tensor.masked_select
@@ -236,7 +236,6 @@ paddle.nn.functional.activation.prelu	paddle.nn.functional.prelu
 paddle.tensor.linalg.matmul	paddle.matmul,paddle.tensor.matmul
 paddle.nn.layer.loss.SmoothL1Loss	paddle.nn.SmoothL1Loss,paddle.nn.layer.SmoothL1Loss
 paddle.framework.io.save	paddle.save,paddle.framework.save
-paddle.fluid.core	paddle.framework.core
 paddle.nn.functional.vision.grid_sample	paddle.nn.functional.grid_sample
 paddle.tensor.random.rand	paddle.rand,paddle.tensor.rand
 paddle.tensor.random.bernoulli	paddle.bernoulli,paddle.tensor.bernoulli
@@ -250,7 +249,6 @@ paddle.nn.layer.common.Pad2D	paddle.nn.Pad2D,paddle.nn.layer.Pad2D
 paddle.fluid.layers.conv2d	paddle.static.nn.conv2d
 paddle.fluid.layers.create_parameter	paddle.static.create_parameter
 paddle.tensor.creation.ones_like	paddle.ones_like,paddle.tensor.ones_like
-paddle.fluid.dygraph.base.no_grad	paddle.framework.no_grad
 paddle.nn.functional.common.dropout3d	paddle.nn.functional.dropout3d
 paddle.tensor.search.sort	paddle.sort,paddle.tensor.sort
 paddle.tensor.logic.equal	paddle.equal,paddle.tensor.equal
@@ -331,7 +329,6 @@ paddle.nn.layer.common.UpSample	paddle.nn.UpSample,paddle.nn.layer.UpSample
 paddle.fluid.layers.instance_norm	paddle.static.nn.instance_norm
 paddle.nn.functional.activation.hardshrink	paddle.nn.functional.hardshrink
 paddle.fluid.layers.clip	paddle.nn.clip,paddle.nn.clip.clip
-paddle.fluid.framework.ComplexVariable	paddle.framework.ComplexVariable
 paddle.tensor.search.argmin	paddle.argmin,paddle.tensor.argmin
 paddle.nn.layer.common.Dropout2D	paddle.nn.Dropout2D,paddle.nn.layer.Dropout2D
 paddle.tensor.math.add_n	paddle.add_n,paddle.tensor.add_n,paddle.tensor.math.add_n
@@ -364,7 +361,6 @@ paddle.nn.functional.common.dropout	paddle.nn.functional.dropout
 paddle.nn.functional.common.linear	paddle.nn.functional.linear
 paddle.nn.layer.activation.LogSoftmax	paddle.nn.LogSoftmax,paddle.nn.layer.LogSoftmax
 paddle.nn.layer.loss.KLDivLoss	paddle.nn.KLDivLoss,paddle.nn.layer.KLDivLoss
-paddle.fluid.core.VarBase	paddle.framework.VarBase
 paddle.tensor.math.sign	paddle.sign,paddle.tensor.sign
 paddle.fluid.layers.iou_similarity	paddle.nn.functional.iou_similarity,paddle.nn.functional.loss.iou_similarity
 paddle.fluid.layers.transpose	paddle.transpose,paddle.tensor.transpose,paddle.tensor.linalg.transpose,paddle.tensor.manipulation.transpose

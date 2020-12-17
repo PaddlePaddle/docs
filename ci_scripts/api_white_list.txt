@@ -28,4 +28,3 @@ paddle/distributed/fleet/utils/fs/LocalFS_cn.rst
 paddle/fluid/dygraph/parallel/DataParallel_cn.rst
 paddle/fluid/dygraph/parallel/ParallelEnv_cn.rst
 upgrade_guide_cn.md
-paddle/io/DataLoader_cn.rst

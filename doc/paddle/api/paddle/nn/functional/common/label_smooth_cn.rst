@@ -40,7 +40,6 @@ label_smooth
         x_data = np.array([[[0, 1, 0],
                             [ 1,  0, 1]]]).astype("float32")
         print(x_data.shape)
-        paddle.disable_static()
         x = paddle.to_tensor(x_data, stop_gradient=False)
         output = paddle.nn.functional.label_smooth(x)
         print(output)
