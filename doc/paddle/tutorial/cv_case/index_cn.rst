@@ -3,7 +3,7 @@
 ################
 
 
-在这里PaddlePaddle为大家提供了一篇cv的教程供大家学习：
+在这里PaddlePaddle为大家提供了几篇cv的教程供大家学习：
     
      - `图像分类 <./image_classification/image_classification.html>`_ ：介绍使用 Paddle 在MNIST数据集上完成图像分类。
      - `图像分类 <./convnet_image_classification/convnet_image_classification.html>`_ ：介绍使用 Paddle 在Cifar10数据集上完成图像分类。    
