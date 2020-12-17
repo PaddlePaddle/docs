@@ -59,7 +59,6 @@ grad
   .. code-block:: python
 
         import paddle
-        paddle.disable_static()
 
         def test_dygraph_grad(grad_outputs=None):
             x = paddle.to_tensor(2.0)

@@ -4,7 +4,7 @@
 
 The Paddle framework 2.0-RC1 version has the following updates:
 
-- **Installation environment** Official release of the binary package supporting CUDA11(experimental) ; Official release of the binary package supporting Baidu Kunlun chip (experimental)
+- **Installation environment** Official release of the binary package supporting CUDA11(experimental) ; Official release of the binary package supporting [Baidu Kunlun chip](https://cloud.baidu.com/product/kunlun.html) (experimental)
 - **API function** Support numpy-compatible `paddle.Tensor` indexing and slicing operations(basic indexing); removes the axis parameter in some APIs, support numpy-compatible broadcast semantics; add some new APIs, improve some APIs' functions, and fix some API bugs
 - **Dynamic to static conversion** Support more python syntax for dynamic to static graphs, and support for marking functions that do not perform dynamic to static conversion by running `paddle.jit.not_to_static`
 - **Framework function** Support multiple executions of `paddle.Tensor.backward()` to accumulate the gradient. The effect is equivalent to the gradient calculated after increasing the batch size. By default, the C++ error stack is hidden, and the error reporting format is optimized. The distributed training supports the heterbox training
