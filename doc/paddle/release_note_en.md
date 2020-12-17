@@ -298,7 +298,7 @@ The Paddle framework 2.0-RC1 version has the following updates:
 - Add the support of conversion from Caffe/ONNX/Tensorflow to Paddle2.0 dynamic graph.
 - Add the Optimizer module, mainly including op fusions and op elimination functions, to improve the readability of the converted model code and the prediction performance of the model.
 
-## Kunlun hardware
+## [Kunlun hardware](https://cloud.baidu.com/product/kunlun.html)
 
 ###  Models adapted to Kunlun hardware
 - Resnet50, mobilenetv3, deeplabv3, bertbase, DQN static graphs model adapted to Kunlun hardware  

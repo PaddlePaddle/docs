@@ -60,16 +60,10 @@ Please follow the steps below to install:
     cd paddle
     ```
 
-6. Switch to a more stable version to compile:
+6. Switch to `develop` version to compile:
 
     ```
-    git checkout [name of the branch]
-    ```
-
-    For example：
-
-    ```
-    git checkout release/1.8
+    git checkout develop
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
@@ -244,16 +238,10 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     cd Paddle
     ```
 
-7. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch)
+7. Switch to `develop` branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch)
 
     ```
-    git checkout [name of the branch]
-    ```
-
-    For example：
-
-    ```
-    git checkout release/1.8
+    git checkout develop
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
