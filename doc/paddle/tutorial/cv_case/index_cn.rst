@@ -17,7 +17,6 @@
     :titlesonly:
 
     image_classification/image_classification.rst
-    convnet_image_classification/convnet_image_classification.rst
     image_ocr/image_ocr.rst
     landmark_detection/landmark_detection.rst
     super_resolution_sub_pixel/super_resolution_sub_pixel.rst
