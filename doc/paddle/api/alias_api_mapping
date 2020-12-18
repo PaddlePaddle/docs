@@ -546,3 +546,5 @@ paddle.nn.layer.common.UpsamplingNearest2D	paddle.nn.UpsamplingNearest2D,paddle.
 paddle.fluid.initializer.set_global_initializer	paddle.nn.initializer.set_global_initializer
 paddle.fluid.io.load_program_state	paddle.static.load_program_state
 paddle.fluid.io.set_program_state	paddle.static.set_program_state
+paddle.tensor.attribute.real	paddle.real,paddle.tensor.real
+paddle.tensor.attribute.imag	paddle.imag,paddle.tensor.imag
