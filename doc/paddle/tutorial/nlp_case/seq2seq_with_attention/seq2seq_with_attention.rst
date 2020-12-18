@@ -6,7 +6,7 @@
 环境设置
 --------
 
-本示例教程基于飞桨框架2.0-beta版本。
+本示例教程基于飞桨2.0RC1版本。
 
 .. code:: ipython3
 
@@ -15,13 +15,12 @@
     import re
     import numpy as np
     
-    paddle.disable_static()
     print(paddle.__version__)
 
 
 .. parsed-literal::
 
-    2.0.0-beta0
+    2.0.0-rc1
 
 
 下载数据集
@@ -37,16 +36,16 @@
 
 .. parsed-literal::
 
-    --2020-09-10 16:17:25--  https://www.manythings.org/anki/cmn-eng.zip
-    Resolving www.manythings.org (www.manythings.org)... 2606:4700:3033::6818:6dc4, 2606:4700:3036::ac43:adc6, 2606:4700:3037::6818:6cc4, ...
-    Connecting to www.manythings.org (www.manythings.org)|2606:4700:3033::6818:6dc4|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 1030722 (1007K) [application/zip]
-    Saving to: ‘cmn-eng.zip’
+    --2020-12-14 18:07:30--  https://www.manythings.org/anki/cmn-eng.zip
+    正在解析主机 www.manythings.org (www.manythings.org)... 104.24.108.196, 104.24.109.196, 172.67.173.198
+    正在连接 www.manythings.org (www.manythings.org)|104.24.108.196|:443... 已连接。
+    已发出 HTTP 请求，正在等待回应... 200 OK
+    长度：1047888 (1023K) [application/zip]
+    正在保存至: “cmn-eng.zip”
     
-    cmn-eng.zip         100%[===================>]   1007K  91.2KB/s    in 11s     
+    cmn-eng.zip         100%[===================>]   1023K   284KB/s  用时 3.6s      
     
-    2020-09-10 16:17:38 (91.2 KB/s) - ‘cmn-eng.zip’ saved [1030722/1030722]
+    2020-12-14 18:07:36 (284 KB/s) - 已保存 “cmn-eng.zip” [1047888/1047888])
     
     Archive:  cmn-eng.zip
       inflating: cmn.txt                 
@@ -60,7 +59,7 @@
 
 .. parsed-literal::
 
-       23610 cmn.txt
+       24026 cmn.txt
 
 
 构建双语句对的数据结构
@@ -100,7 +99,7 @@
 
 .. parsed-literal::
 
-    5508
+    5613
     (['i', 'won'], ['我', '赢', '了', '。'])
     (['he', 'ran'], ['他', '跑', '了', '。'])
     (['i', 'quit'], ['我', '退', '出', '。'])
@@ -150,8 +149,8 @@ Note:
 
 .. parsed-literal::
 
-    2539
-    2039
+    2567
+    2048
 
 
 创建padding过的数据集
@@ -190,9 +189,9 @@ array组织起来的数据集。 -
 
 .. parsed-literal::
 
-    (5508, 11)
-    (5508, 12)
-    (5508, 12)
+    (5613, 11)
+    (5613, 12)
+    (5613, 12)
 
 
 创建网络
@@ -281,7 +280,7 @@ AttentionDecoder部分
                                                  encoder_outputs)
     
             context_vector = paddle.multiply(encoder_outputs, attention_weights)               
-            context_vector = paddle.reduce_sum(context_vector, 1)
+            context_vector = paddle.sum(context_vector, 1)
             context_vector = paddle.unsqueeze(context_vector, 1)
             
             lstm_input = paddle.concat((x, context_vector), axis=-1)
@@ -344,12 +343,11 @@ AttentionDecoder部分
             # the decoder recurrent loop mentioned above
             for i in range(MAX_LEN + 2):
                 cn_word = paddle.to_tensor(x_cn_data[:,i:i+1])
-                cn_word_label = paddle.to_tensor(x_cn_label_data[:,i:i+1])
+                cn_word_label = paddle.to_tensor(x_cn_label_data[:,i])
     
                 logits, (hidden, cell) = atten_decoder(cn_word, hidden, cell, en_repr)
-                step_loss = F.softmax_with_cross_entropy(logits, cn_word_label)
-                avg_step_loss = paddle.mean(step_loss)
-                loss += avg_step_loss
+                step_loss = F.cross_entropy(logits, cn_word_label)
+                loss += step_loss
     
             loss = loss / (MAX_LEN + 2)
             if(iteration % 200 == 0):
@@ -363,65 +361,65 @@ AttentionDecoder部分
 .. parsed-literal::
 
     epoch:0
-    iter 0, loss:[7.620109]
-    iter 200, loss:[2.9760551]
+    iter 0, loss:[7.627163]
+    iter 200, loss:[3.4799619]
     epoch:1
-    iter 0, loss:[2.9679596]
-    iter 200, loss:[3.161064]
+    iter 0, loss:[3.1061254]
+    iter 200, loss:[3.0856893]
     epoch:2
-    iter 0, loss:[2.7516625]
-    iter 200, loss:[2.9755423]
+    iter 0, loss:[2.5837023]
+    iter 200, loss:[2.4774187]
     epoch:3
-    iter 0, loss:[2.7249248]
-    iter 200, loss:[2.3419888]
+    iter 0, loss:[2.669735]
+    iter 200, loss:[2.5333247]
     epoch:4
-    iter 0, loss:[2.3236473]
-    iter 200, loss:[2.3453429]
+    iter 0, loss:[2.3728533]
+    iter 200, loss:[2.519483]
     epoch:5
-    iter 0, loss:[2.1926975]
-    iter 200, loss:[2.1977856]
+    iter 0, loss:[2.4868279]
+    iter 200, loss:[2.2394028]
     epoch:6
-    iter 0, loss:[2.014393]
-    iter 200, loss:[2.1863418]
+    iter 0, loss:[1.912401]
+    iter 200, loss:[1.9941695]
     epoch:7
-    iter 0, loss:[1.8619595]
-    iter 200, loss:[1.8904227]
+    iter 0, loss:[2.095499]
+    iter 200, loss:[1.8654814]
     epoch:8
-    iter 0, loss:[1.5901132]
-    iter 200, loss:[1.7812968]
+    iter 0, loss:[1.5444477]
+    iter 200, loss:[1.6987498]
     epoch:9
-    iter 0, loss:[1.341565]
-    iter 200, loss:[1.4957166]
+    iter 0, loss:[1.6606278]
+    iter 200, loss:[1.5448124]
     epoch:10
-    iter 0, loss:[1.2202356]
-    iter 200, loss:[1.3485341]
+    iter 0, loss:[1.5323858]
+    iter 200, loss:[1.3515877]
     epoch:11
-    iter 0, loss:[1.1035374]
-    iter 200, loss:[1.2871654]
+    iter 0, loss:[1.1793854]
+    iter 200, loss:[1.2833853]
     epoch:12
-    iter 0, loss:[1.194801]
-    iter 200, loss:[1.0479954]
+    iter 0, loss:[1.3123708]
+    iter 200, loss:[1.2210991]
     epoch:13
-    iter 0, loss:[1.0022258]
-    iter 200, loss:[1.0899843]
+    iter 0, loss:[0.8979997]
+    iter 200, loss:[1.2892962]
     epoch:14
-    iter 0, loss:[0.93466896]
-    iter 200, loss:[0.99347967]
+    iter 0, loss:[0.8698184]
+    iter 200, loss:[1.0216825]
     epoch:15
-    iter 0, loss:[0.83665943]
-    iter 200, loss:[0.9594004]
+    iter 0, loss:[0.76651883]
+    iter 200, loss:[0.7595413]
     epoch:16
-    iter 0, loss:[0.78929776]
-    iter 200, loss:[0.945769]
+    iter 0, loss:[0.72599435]
+    iter 200, loss:[0.59768426]
     epoch:17
-    iter 0, loss:[0.62574965]
-    iter 200, loss:[0.6308163]
+    iter 0, loss:[0.737612]
+    iter 200, loss:[0.85637724]
     epoch:18
-    iter 0, loss:[0.63433456]
-    iter 200, loss:[0.6287957]
+    iter 0, loss:[0.721517]
+    iter 200, loss:[0.57950366]
     epoch:19
-    iter 0, loss:[0.54270047]
-    iter 200, loss:[0.72688276]
+    iter 0, loss:[0.58147454]
+    iter 200, loss:[0.6164701]
 
 
 使用模型进行机器翻译
@@ -478,36 +476,37 @@ search算法来提升效果）
     i want to study french
     true: 我要学法语。
     pred: 我要学法语。
-    i didn t know that he was there
-    true: 我不知道他在那裡。
-    pred: 我不知道他在那裡。
-    i called tom
-    true: 我給湯姆打了電話。
-    pred: 我看見湯姆了。
-    he is getting along with his employees
-    true: 他和他的員工相處。
-    pred: 他和他的員工相處。
-    we raced toward the fire
-    true: 我們急忙跑向火。
-    pred: 我們住在美國。
-    i ran away in a hurry
-    true: 我趕快跑走了。
-    pred: 我在班里是最高。
-    he cut the envelope open
-    true: 他裁開了那個信封。
-    pred: 他裁開了信封。
-    he s shorter than tom
-    true: 他比湯姆矮。
-    pred: 他比湯姆矮。
-    i ve just started playing tennis
-    true: 我剛開始打網球。
-    pred: 我剛去打網球。
-    i need to go home
-    true: 我该回家了。
-    pred: 我该回家了。
+    i ll make you happy
+    true: 我会让你幸福的。
+    pred: 我会让你幸福的。
+    she s a bit naive
+    true: 她有点天真。
+    pred: 她有点不好。
+    she can speak three languages
+    true: 她會講三種語言。
+    pred: 她會講英語和法语。
+    he was willing to work for others
+    true: 他願意為別人工作。
+    pred: 他願意為別人工作。
+    they make frequent trips to europe
+    true: 他們經常去歐洲。
+    pred: 他們經常去歐洲。
+    i don t eat chicken skin
+    true: 我吃不下鸡皮。
+    pred: 我不太想过。
+    you need to know
+    true: 你有必要了解。
+    pred: 你需要知道。
+    i forgot to ask him
+    true: 我忘了問他。
+    pred: 我忘了他爸爸。
+    i knew that something was wrong
+    true: 我知道有些事不對。
+    pred: 我知道有些事不。
 
 
 The End
 -------
 
 你还可以通过变换网络结构，调整数据集，尝试不同的参数的方式来进一步提升本示例当中的机器翻译的效果。同时，也可以尝试在其他的类似的任务中用飞桨来完成实际的实践。
+

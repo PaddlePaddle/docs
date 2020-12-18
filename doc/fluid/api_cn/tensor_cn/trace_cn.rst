@@ -23,7 +23,7 @@ trace
     - 如果 offset < 0，则取主对角线左下的对角线。
 
 参数：
-    - **x** （Variable）- 输入张量，至少为 2D 数组，支持数据类型为 float32，float64，int32，int64。
+    - **x** （Tensor）- 输入张量，至少为 2D 数组，支持数据类型为 float32，float64，int32，int64。
     - **offset** （int ，可选）- 从指定的二维平面中获取对角线的位置，默认值为 0，既主对角线。
     - **axis1** （int ， 可选）- 获取对角线的二维平面的第一维，默认值为 0。
     - **axis2** （int ， 可选）- 获取对角线的二维平面的第二维，默认值为 1。
@@ -31,7 +31,7 @@ trace
 
 返回： 指定二维平面的对角线元素之和。数据类型和输入数据类型一致。
 
-返回类型：  变量（Variable）
+返回类型：  变量（Tensor）
 
 **代码示例**
 
@@ -44,7 +44,6 @@ trace
     case2 = np.random.randn(3, 10, 10).astype('float32')
     case3 = np.random.randn(3, 10, 5, 10).astype('float32')
     
-    paddle.enable_imperative()
     case1 = paddle.imperative.to_variable(case1)
     case2 = paddle.imperative.to_variable(case2)
     case3 = paddle.imperative.to_variable(case3)

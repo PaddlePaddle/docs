@@ -4,7 +4,7 @@ conv2d
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.conv2d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format="NCHW")
+.. py:function:: paddle.static.nn.conv2d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format="NCHW")
 
 
 
@@ -61,7 +61,7 @@ conv2d
     W_{out} = \frac{\left ( W_{in} -\left ( dilation[1]*\left ( W_{f}-1 \right )+1 \right ) \right )}{stride[1]}+1
 
 参数：
-    - **input** (Variable) - 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
+    - **input** (Tensor) - 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
     - **num_filters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|list|tuple) - 滤波器大小。如果它是一个列表或元组，则必须包含两个整数值：（filter_size_height，filter_size_width）。若为一个整数，filter_size_height = filter_size_width = filter_size。
     - **stride** (int|list|tuple，可选) - 步长大小。滤波器和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。
@@ -77,7 +77,6 @@ conv2d
 
 返回：4-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
 
-返回类型：Variable。
 
 抛出异常：
     - ``ValueError`` - 如果 ``use_cudnn`` 不是bool值。
@@ -95,17 +94,11 @@ conv2d
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-    data = fluid.layers.data(name='data', shape=[3, 32, 32], dtype='float32')
-    param_attr = fluid.ParamAttr(name='conv2d.weight', initializer=fluid.initializer.Xavier(uniform=False), learning_rate=0.001)
-    res = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    x = np.random.rand(1, 3, 32, 32).astype("float32")
-    output = exe.run(feed={"data": x}, fetch_list=[res])
-    print(output)
+    import paddle
+    paddle.enable_static()
+    data = paddle.static.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
+    conv2d = paddle.static.nn.conv2d(input=data, num_filters=2, filter_size=3)
+    print(conv2d.shape) # [-1, 2, 30, 30]
 
 
 

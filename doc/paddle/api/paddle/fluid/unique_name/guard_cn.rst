@@ -3,7 +3,7 @@
 guard
 -------------------------------
 
-.. py:function:: paddle.fluid.unique_name.guard(new_generator=None)
+.. py:function:: paddle.utils.unique_name.guard(new_generator=None)
 
 
 
@@ -19,17 +19,16 @@ guard
 
 .. code-block:: python
 
-        import paddle.fluid as fluid
-        with fluid.unique_name.guard():
-            name_1 = fluid.unique_name.generate('fc')
-        with fluid.unique_name.guard():
-            name_2 = fluid.unique_name.generate('fc')
-        print(name_1, name_2)  # fc_0, fc_0
-         
-        with fluid.unique_name.guard('A'):
-            name_1 = fluid.unique_name.generate('fc')
-        with fluid.unique_name.guard('B'):
-            name_2 = fluid.unique_name.generate('fc')
-        print(name_1, name_2)  # Afc_0, Bfc_0
+        import paddle
+        with paddle.utils.unique_name.guard():
+            name_1 = paddle.utils.unique_name.generate('fc')
+        with paddle.utils.unique_name.guard():
+            name_2 = paddle.utils.unique_name.generate('fc')
+        print(name_1, name_2) # fc_0, fc_0
 
+        with paddle.utils.unique_name.guard('A'):
+            name_1 = paddle.utils.unique_name.generate('fc')
+        with paddle.utils.unique_name.guard('B'):
+            name_2 = paddle.utils.unique_name.generate('fc')
+        print(name_1, name_2) # Afc_0, Bfc_0
 

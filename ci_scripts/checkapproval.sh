@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 API_FILES=("doc/paddle/api/paddle")
 
 for API_FILE in ${API_FILES[*]}; do

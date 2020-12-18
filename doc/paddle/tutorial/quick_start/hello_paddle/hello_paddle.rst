@@ -56,18 +56,17 @@ world程序。
 为了能够使用飞桨，我们需要先用python的\ ``import``\ 语句导入飞桨\ ``paddle``\ 。
 同时，为了能够更好的对数组进行计算和处理，我们也还需要导入\ ``numpy``\ 。
 
-如果你是在本机运行这个notebook，而且还没有安装飞桨，可以去飞桨的官网查看如何安装：\ `飞桨官网 <https://www.paddlepaddle.org.cn/>`__\ 。并且请使用2.0beta或以上版本的飞桨。
+如果你是在本机运行这个notebook，而且还没有安装飞桨，可以去飞桨的官网查看如何安装：\ `飞桨官网 <https://www.paddlepaddle.org.cn/>`__\ 。并且请使用2.0RC或以上版本的飞桨。
 
 .. code:: ipython3
 
     import paddle
-    paddle.disable_static()
     print("paddle " + paddle.__version__)
 
 
 .. parsed-literal::
 
-    paddle 2.0.0-beta0
+    paddle 2.0.0-rc1
 
 
 准备数据
@@ -119,7 +118,7 @@ world程序。
 
 .. parsed-literal::
 
-    w before optimize: -1.696260690689087
+    w before optimize: 0.6917380094528198
     b before optimize: 0.0
 
 
@@ -165,12 +164,12 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
 
 .. parsed-literal::
 
-    epoch 0 loss [2094.069]
-    epoch 1000 loss [7.8451133]
-    epoch 2000 loss [1.7541145]
-    epoch 3000 loss [0.39221546]
-    epoch 4000 loss [0.08769739]
-    finished training， loss [0.0196382]
+    epoch 0 loss [485.04092]
+    epoch 1000 loss [8.149743]
+    epoch 2000 loss [1.8222207]
+    epoch 3000 loss [0.4074264]
+    epoch 4000 loss [0.09109598]
+    finished training， loss [0.02039883]
 
 
 机器学习出来的参数
@@ -190,8 +189,8 @@ descent)作为优化算法（传给\ ``paddle.optimizer.SGD``\ 的参数\ ``lear
 
 .. parsed-literal::
 
-    w after optimize: 2.0178451538085938
-    b after optimize: 9.771825790405273
+    w after optimize: 2.0181875228881836
+    b after optimize: 9.767448425292969
 
 
 hello paddle

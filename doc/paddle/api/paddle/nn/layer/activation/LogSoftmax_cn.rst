@@ -8,8 +8,10 @@ LogSoftmax激活层，计算公式如下：
 
 .. math::
 
-    Out[i, j] = log(softmax(x)) 
-              = log(\\frac{\exp(X[i, j])}{\sum_j(exp(X[i, j])})
+    \begin{aligned} 
+    Out[i, j] &= log(softmax(x)) \\
+    &= log(\frac{\exp(X[i, j])}{\sum_j(\exp(X[i, j])})
+    \end{aligned}
 
 参数
 ::::::::::
@@ -26,16 +28,13 @@ LogSoftmax激活层，计算公式如下：
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    paddle.disable_static()
-
-    x = np.array([[[-2.0, 3.0, -4.0, 5.0],
-                    [3.0, -4.0, 5.0, -6.0],
-                    [-7.0, -8.0, 8.0, 9.0]],
-                    [[1.0, -2.0, -3.0, 4.0],
-                    [-5.0, 6.0, 7.0, -8.0],
-                    [6.0, 7.0, 8.0, 9.0]]], 'float32')
+    x = [[[-2.0, 3.0, -4.0, 5.0],
+          [3.0, -4.0, 5.0, -6.0],
+          [-7.0, -8.0, 8.0, 9.0]],
+         [[1.0, -2.0, -3.0, 4.0],
+          [-5.0, 6.0, 7.0, -8.0],
+          [6.0, 7.0, 8.0, 9.0]]]
     m = paddle.nn.LogSoftmax()
     x = paddle.to_tensor(x)
     out = m(x)

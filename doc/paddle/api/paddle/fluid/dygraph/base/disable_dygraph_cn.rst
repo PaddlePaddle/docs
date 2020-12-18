@@ -1,22 +1,27 @@
-.. _cn_api_fluid_disable_dygraph:
+.. _cn_api_paddle_enable_static:
 
-disable_dygraph
+enable_static
 -------------------------------
 
-.. py:function:: paddle.fluid.disable_dygraph()
+.. py:function:: paddle.enable_static()
 
-该接口关闭动态图模式。
+.. note::
+    从2.0.0版本开始，Paddle默认开启动态图模式。
+
+该接口开启静态图模式。可通过 :ref:`cn_api_paddle_disable_static` 关闭静态图模式。
+
 
 返回：无
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-    fluid.enable_dygraph()  # Now we are in dygraph mode
-    print(fluid.in_dygraph_mode())  # True
-    fluid.disable_dygraph()
-    print(fluid.in_dygraph_mode())  # False
+    import paddle
+    print(paddle.in_dynamic_mode())  # True, dynamic mode is turn ON by default since paddle 2.0.0
 
+    paddle.enable_static()
+    print(paddle.in_dynamic_mode())  # False, Now we are in static mode
+
+    paddle.disable_static()
+    print(paddle.in_dynamic_mode())  # True, Now we are in dynamic mode

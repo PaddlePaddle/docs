@@ -1,7 +1,7 @@
 基于U-Net卷积神经网络实现宠物图像分割
 =====================================
 
-本示例教程当前是基于2.0-beta版本Paddle做的案例实现，未来会随着2.0的系列版本发布进行升级。
+本示例教程当前是基于2.0-RC版本Paddle做的案例实现，未来会随着2.0的系列版本发布进行升级。
 
 1.简要介绍
 ----------
@@ -26,6 +26,7 @@
     import paddle
     from paddle.nn import functional as F
     
+    paddle.set_device('gpu')
     paddle.__version__
 
 
@@ -33,7 +34,7 @@
 
 .. parsed-literal::
 
-    '2.0.0-beta0'
+    '2.0.0-rc0'
 
 
 
@@ -64,17 +65,6 @@ Pet数据集，官网：https://www.robots.ox.ac.uk/~vgg/data/pets 。
     !curl -O http://www.robots.ox.ac.uk/~vgg/data/pets/data/annotations.tar.gz
     !tar -xf images.tar.gz
     !tar -xf annotations.tar.gz
-
-
-.. parsed-literal::
-
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100  755M  100  755M    0     0  1707k      0  0:07:32  0:07:32 --:--:-- 2865k0  0:12:48  524k   0  0:13:34  0:02:41  0:10:53  668k      0  0:12:45  0:03:06  0:09:39 1702k     0  1221k      0  0:10:33  0:03:25  0:07:08 3108k37  282M    0     0  1243k      0  0:10:21  0:03:52  0:06:29  719k0:05:53  566k0  1237k      0  0:10:25  0:04:43  0:05:42 1593k 0  0:09:46  0:05:28  0:04:18 2952k 1467k      0  0:08:47  0:06:43  0:02:04 1711k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 18.2M  100 18.2M    0     0  1602k      0  0:00:11  0:00:11 --:--:-- 3226k
-
 
 3.2 数据集概览
 ~~~~~~~~~~~~~~
@@ -116,12 +106,47 @@ Pet数据集，官网：https://www.robots.ox.ac.uk/~vgg/data/pets 。
 
 .. code:: ipython3
 
+    IMAGE_SIZE = (160, 160)
     train_images_path = "images/"
     label_images_path = "annotations/trimaps/"
-    
-    print("用于训练的图片样本数量:", len([os.path.join(train_images_path, image_name) 
+    image_count = len([os.path.join(train_images_path, image_name) 
               for image_name in os.listdir(train_images_path) 
-              if image_name.endswith('.jpg')]))
+              if image_name.endswith('.jpg')])
+    print("用于训练的图片样本数量:", image_count)
+    
+    # 对数据集进行处理，划分训练集、测试集
+    def _sort_images(image_dir, image_type):
+        """
+        对文件夹内的图像进行按照文件名排序
+        """
+        files = []
+    
+        for image_name in os.listdir(image_dir):
+            if image_name.endswith('.{}'.format(image_type)) \
+                    and not image_name.startswith('.'):
+                files.append(os.path.join(image_dir, image_name))
+    
+        return sorted(files)
+    
+    def write_file(mode, images, labels):
+        with open('./{}.txt'.format(mode), 'w') as f:
+            for i in range(len(images)):
+                f.write('{}\t{}\n'.format(images[i], labels[i]))
+        
+    """
+    由于所有文件都是散落在文件夹中，在训练时我们需要使用的是数据集和标签对应的数据关系，
+    所以我们第一步是对原始的数据集进行整理，得到数据集和标签两个数组，分别一一对应。
+    这样可以在使用的时候能够很方便的找到原始数据和标签的对应关系，否则对于原有的文件夹图片数据无法直接应用。
+    在这里是用了一个非常简单的方法，按照文件名称进行排序。
+    因为刚好数据和标签的文件名是按照这个逻辑制作的，名字都一样，只有扩展名不一样。
+    """
+    images = _sort_images(train_images_path, 'jpg')
+    labels = _sort_images(label_images_path, 'png')
+    eval_num = int(image_count * 0.15)
+    
+    write_file('train', images[:-eval_num], labels[:-eval_num])
+    write_file('test', images[-eval_num:], labels[-eval_num:])
+    write_file('predict', images[-eval_num:], labels[-eval_num:])
 
 
 .. parsed-literal::
@@ -129,7 +154,62 @@ Pet数据集，官网：https://www.robots.ox.ac.uk/~vgg/data/pets 。
     用于训练的图片样本数量: 7390
 
 
-3.3 数据集类定义
+3.3 PetDataSet数据集抽样展示
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+划分好数据集之后，我们来查验一下数据集是否符合预期，我们通过划分的配置文件读取图片路径后再加载图片数据来用matplotlib进行展示，这里要注意的是对于分割的标签文件因为是1通道的灰度图片，需要在使用imshow接口时注意下传参cmap=‘gray’。
+
+.. code:: ipython3
+
+    with open('./train.txt', 'r') as f:
+        i = 0
+    
+        for line in f.readlines():
+            image_path, label_path = line.strip().split('\t')
+            image = np.array(PilImage.open(image_path))
+            label = np.array(PilImage.open(label_path))
+        
+            if i > 2:
+                break
+            # 进行图片的展示
+            plt.figure()
+    
+            plt.subplot(1,2,1), 
+            plt.title('Train Image')
+            plt.imshow(image.astype('uint8'))
+            plt.axis('off')
+    
+            plt.subplot(1,2,2), 
+            plt.title('Label')
+            plt.imshow(label.astype('uint8'), cmap='gray')
+            plt.axis('off')
+    
+            plt.show()
+            i = i + 1
+
+
+.. parsed-literal::
+
+    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2349: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+      if isinstance(obj, collections.Iterator):
+    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2366: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+      return list(data) if isinstance(data, collections.MappingView) else data
+    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/numpy/lib/type_check.py:546: DeprecationWarning: np.asscalar(a) is deprecated since NumPy v1.16, use a.item() instead
+      'a.item() instead', DeprecationWarning, stacklevel=1)
+
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_01.png?raw=true
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_02.png?raw=true
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_03.png?raw=true
+
+
+
+3.4 数据集类定义
 ~~~~~~~~~~~~~~~~
 
 飞桨（PaddlePaddle）数据集加载方案是统一使用Dataset（数据集定义） +
@@ -162,81 +242,33 @@ DataLoader（多进程数据集加载）。
     import random
     
     from paddle.io import Dataset
-    from paddle.vision.transforms import transforms
+    from paddle.vision.transforms import transforms as T
     
-    
-    class ImgTranspose(object):
-        """
-        图像预处理工具，用于将Mask图像进行升维(160, 160) => (160, 160, 1)，
-        并对图像的维度进行转换从HWC变为CHW
-        """
-        def __init__(self, fmt):
-            self.format = fmt
-            
-        def __call__(self, img):
-            if len(img.shape) == 2:
-                img = np.expand_dims(img, axis=2)
-                
-            return img.transpose(self.format)
     
     class PetDataset(Dataset):
         """
         数据集定义
         """
-        def __init__(self, image_path, label_path, mode='train'):
+        def __init__(self, mode='train'):
             """
             构造函数
             """
-            self.image_size = (160, 160)
-            self.image_path = image_path
-            self.label_path = label_path
+            self.image_size = IMAGE_SIZE
             self.mode = mode.lower()
-            self.eval_image_num = 1000
             
-            assert self.mode in ['train', 'test'], \
-                "mode should be 'train' or 'test', but got {}".format(self.mode)
+            assert self.mode in ['train', 'test', 'predict'], \
+                "mode should be 'train' or 'test' or 'predict', but got {}".format(self.mode)
             
-            self._parse_dataset()
-            
-            self.transforms = transforms.Compose([
-                ImgTranspose((2, 0, 1))
-            ])
-            
-        def _sort_images(self, image_dir, image_type):
-            """
-            对文件夹内的图像进行按照文件名排序
-            """
-            files = []
+            self.train_images = []
+            self.label_images = []
     
-            for image_name in os.listdir(image_dir):
-                if image_name.endswith('.{}'.format(image_type)) \
-                        and not image_name.startswith('.'):
-                    files.append(os.path.join(image_dir, image_name))
-    
-            return sorted(files)
+            with open('./{}.txt'.format(self.mode), 'r') as f:
+                for line in f.readlines():
+                    image, label = line.strip().split('\t')
+                    self.train_images.append(image)
+                    self.label_images.append(label)
             
-        def _parse_dataset(self):
-            """
-            由于所有文件都是散落在文件夹中，在训练时我们需要使用的是数据集和标签对应的数据关系，
-            所以我们第一步是对原始的数据集进行整理，得到数据集和标签两个数组，分别一一对应。
-            这样可以在使用的时候能够很方便的找到原始数据和标签的对应关系，否则对于原有的文件夹图片数据无法直接应用。
-            在这里是用了一个非常简单的方法，按照文件名称进行排序。
-            因为刚好数据和标签的文件名是按照这个逻辑制作的，名字都一样，只有扩展名不一样。
-            """
-            temp_train_images = self._sort_images(self.image_path, 'jpg')
-            temp_label_images = self._sort_images(self.label_path, 'png')
-    
-            random.Random(1337).shuffle(temp_train_images)
-            random.Random(1337).shuffle(temp_label_images)
-            
-            if self.mode == 'train':
-                self.train_images = temp_train_images[:-self.eval_image_num]
-                self.label_images = temp_label_images[:-self.eval_image_num]
-            else:
-                self.train_images = temp_train_images[-self.eval_image_num:]
-                self.label_images = temp_label_images[-self.eval_image_num:]
-        
-        def _load_img(self, path, color_mode='rgb'):
+        def _load_img(self, path, color_mode='rgb', transforms=[]):
             """
             统一的图像处理接口封装，用于规整图像大小和通道
             """
@@ -255,37 +287,28 @@ DataLoader（多进程数据集加载）。
                         img = img.convert('RGB')
                 else:
                     raise ValueError('color_mode must be "grayscale", "rgb", or "rgba"')
-    
-                if self.image_size is not None:
-                    if img.size != self.image_size:
-                        img = img.resize(self.image_size, PilImage.NEAREST)
-    
-                return img
+                
+                return T.Compose([
+                    T.Resize(self.image_size)
+                ] + transforms)(img)
     
         def __getitem__(self, idx):
             """
             返回 image, label
             """
-            # 花了比较多的时间在数据处理这里，需要处理成模型能适配的格式，踩了一些坑（比如有不是RGB格式的）
-            # 有图片会出现通道数和期望不符的情况，需要进行相关考虑
-    
-            # 加载原始图像
-            train_image = self._load_img(self.train_images[idx])
-            x = np.array(train_image, dtype='float32')
-    
-            # 对图像进行预处理，统一大小，转换维度格式（HWC => CHW）
-            x = self.transforms(x)
-            
-            # 加载Label图像
-            label_image = self._load_img(self.label_images[idx], color_mode="grayscale")  
-            y = np.array(label_image, dtype='uint8')  
-    
-            # 图像预处理
-            # Label图像是二维的数组(size, size)，升维到(size, size, 1)后才能用于最后loss计算
-            y = self.transforms(y)
-            
-            # 返回img, label，转换为需要的格式
-            return x, y.astype('int64')
+            train_image = self._load_img(self.train_images[idx], 
+                                         transforms=[
+                                             T.Transpose(), 
+                                             T.Normalize(mean=127.5, std=127.5)
+                                         ]) # 加载原始图像
+            label_image = self._load_img(self.label_images[idx], 
+                                         color_mode='grayscale',
+                                         transforms=[T.Grayscale()]) # 加载Label图像
+        
+            # 返回image, label
+            train_image = np.array(train_image, dtype='float32')
+            label_image = np.array(label_image, dtype='int64')
+            return train_image, label_image
             
         def __len__(self):
             """
@@ -293,56 +316,22 @@ DataLoader（多进程数据集加载）。
             """
             return len(self.train_images)
 
-3.4 PetDataSet数据集抽样展示
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-实现好Dataset数据集后，我们来测试一下数据集是否符合预期，因为Dataset是一个可以被迭代的Class，我们通过for循环从里面读取数据来用matplotlib进行展示，这里要注意的是对于分割的标签文件因为是1通道的灰度图片，需要在使用imshow接口时注意下传参cmap=‘gray’。
-
-.. code:: ipython3
-
-    # 训练数据集
-    train_dataset = PetDataset(train_images_path, label_images_path, mode='train')
-    
-    # 验证数据集
-    val_dataset = PetDataset(train_images_path, label_images_path, mode='test')
-    
-    # 抽样一个数据
-    image, label = train_dataset[0]
-    
-    # 进行图片的展示
-    plt.figure()
-    
-    plt.subplot(1,2,1), 
-    plt.title('Train Image')
-    plt.imshow(image.transpose((1, 2, 0)).astype('uint8'))
-    plt.axis('off')
-    
-    plt.subplot(1,2,2), 
-    plt.title('Label')
-    plt.imshow(np.squeeze(label, axis=0).astype('uint8'), cmap='gray')
-    plt.axis('off')
-    
-    plt.show()
-
-
-
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/pets_image_segmentation_U_Net_like_001.png?raw=true
-
-
 4.模型组网
 ----------
 
 U-Net是一个U型网络结构，可以看做两个大的阶段，图像先经过Encoder编码器进行下采样得到高级语义特征图，再经过Decoder解码器上采样将特征图恢复到原图片的分辨率。
 
-4.1 定义SeparableConv2d接口
+4.1 定义SeparableConv2D接口
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-我们为了减少卷积操作中的训练参数来提升性能，是继承paddle.nn.Layer自定义了一个SeparableConv2d
-Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的Conv2d操作拆解为两个子Conv2d，先对输入数据的每个通道使用\ ``filter_size * filter_size * 1``\ 的卷积核进行计算，输入输出通道数目相同，之后在使用\ ``1 * 1 * num_filters``\ 的卷积核计算。
+我们为了减少卷积操作中的训练参数来提升性能，是继承paddle.nn.Layer自定义了一个SeparableConv2D
+Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的Conv2D操作拆解为两个子Conv2D，先对输入数据的每个通道使用\ ``filter_size * filter_size * 1``\ 的卷积核进行计算，输入输出通道数目相同，之后在使用\ ``1 * 1 * num_filters``\ 的卷积核计算。
 
 .. code:: ipython3
 
-    class SeparableConv2d(paddle.nn.Layer):
+    from paddle.nn import functional as F
+    
+    class SeparableConv2D(paddle.nn.Layer):
         def __init__(self, 
                      in_channels, 
                      out_channels, 
@@ -354,33 +343,69 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                      weight_attr=None, 
                      bias_attr=None, 
                      data_format="NCHW"):
-            super(SeparableConv2d, self).__init__()
-            # 第一次卷积操作没有偏置参数
-            self.conv_1 = paddle.nn.Conv2d(in_channels, 
-                                           in_channels, 
-                                           kernel_size, 
-                                           stride=stride,
-                                           padding=padding,
-                                           dilation=dilation,
-                                           groups=in_channels, 
-                                           weight_attr=weight_attr, 
-                                           bias_attr=False,  
-                                           data_format=data_format)
-            self.pointwise = paddle.nn.Conv2d(in_channels, 
-                                              out_channels, 
-                                              1, 
-                                              stride=1, 
-                                              padding=0, 
-                                              dilation=1, 
-                                              groups=1, 
-                                              weight_attr=weight_attr, 
-                                              data_format=data_format)
-            
-        def forward(self, inputs):
-            y = self.conv_1(inputs)
-            y = self.pointwise(y)
+            super(SeparableConv2D, self).__init__()
     
-            return y
+            self._padding = padding
+            self._stride = stride
+            self._dilation = dilation
+            self._in_channels = in_channels
+            self._data_format = data_format
+    
+            # 第一次卷积参数，没有偏置参数
+            filter_shape = [in_channels, 1] + self.convert_to_list(kernel_size, 2, 'kernel_size')
+            self.weight_conv = self.create_parameter(shape=filter_shape, attr=weight_attr)
+    
+            # 第二次卷积参数
+            filter_shape = [out_channels, in_channels] + self.convert_to_list(1, 2, 'kernel_size')
+            self.weight_pointwise = self.create_parameter(shape=filter_shape, attr=weight_attr)
+            self.bias_pointwise = self.create_parameter(shape=[out_channels], 
+                                                        attr=bias_attr, 
+                                                        is_bias=True)
+        
+        def convert_to_list(self, value, n, name, dtype=np.int):
+            if isinstance(value, dtype):
+                return [value, ] * n
+            else:
+                try:
+                    value_list = list(value)
+                except TypeError:
+                    raise ValueError("The " + name +
+                                    "'s type must be list or tuple. Received: " + str(
+                                        value))
+                if len(value_list) != n:
+                    raise ValueError("The " + name + "'s length must be " + str(n) +
+                                    ". Received: " + str(value))
+                for single_value in value_list:
+                    try:
+                        dtype(single_value)
+                    except (ValueError, TypeError):
+                        raise ValueError(
+                            "The " + name + "'s type must be a list or tuple of " + str(
+                                n) + " " + str(dtype) + " . Received: " + str(
+                                    value) + " "
+                            "including element " + str(single_value) + " of type" + " "
+                            + str(type(single_value)))
+                return value_list
+        
+        def forward(self, inputs):
+            conv_out = F.conv2d(inputs, 
+                                self.weight_conv, 
+                                padding=self._padding,
+                                stride=self._stride,
+                                dilation=self._dilation,
+                                groups=self._in_channels,
+                                data_format=self._data_format)
+            
+            out = F.conv2d(conv_out,
+                           self.weight_pointwise,
+                           bias=self.bias_pointwise,
+                           padding=0,
+                           stride=1,
+                           dilation=1,
+                           groups=1,
+                           data_format=self._data_format)
+    
+            return out
 
 4.2 定义Encoder编码器
 ~~~~~~~~~~~~~~~~~~~~~
@@ -393,18 +418,21 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
         def __init__(self, in_channels, out_channels):
             super(Encoder, self).__init__()
             
-            self.relu = paddle.nn.ReLU()
-            self.separable_conv_01 = SeparableConv2d(in_channels, 
+            self.relus = paddle.nn.LayerList(
+                [paddle.nn.ReLU() for i in range(2)])
+            self.separable_conv_01 = SeparableConv2D(in_channels, 
                                                      out_channels, 
                                                      kernel_size=3, 
                                                      padding='same')
-            self.bn = paddle.nn.BatchNorm2d(out_channels)
-            self.separable_conv_02 = SeparableConv2d(out_channels, 
+            self.bns = paddle.nn.LayerList(
+                [paddle.nn.BatchNorm2D(out_channels) for i in range(2)])
+            
+            self.separable_conv_02 = SeparableConv2D(out_channels, 
                                                      out_channels, 
                                                      kernel_size=3, 
                                                      padding='same')
-            self.pool = paddle.nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
-            self.residual_conv = paddle.nn.Conv2d(in_channels, 
+            self.pool = paddle.nn.MaxPool2D(kernel_size=3, stride=2, padding=1)
+            self.residual_conv = paddle.nn.Conv2D(in_channels, 
                                                   out_channels, 
                                                   kernel_size=1, 
                                                   stride=2, 
@@ -413,12 +441,12 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
         def forward(self, inputs):
             previous_block_activation = inputs
             
-            y = self.relu(inputs)
+            y = self.relus[0](inputs)
             y = self.separable_conv_01(y)
-            y = self.bn(y)
-            y = self.relu(y)
+            y = self.bns[0](y)
+            y = self.relus[1](y)
             y = self.separable_conv_02(y)
-            y = self.bn(y)
+            y = self.bns[1](y)
             y = self.pool(y)
             
             residual = self.residual_conv(previous_block_activation)
@@ -437,18 +465,23 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
         def __init__(self, in_channels, out_channels):
             super(Decoder, self).__init__()
     
-            self.relu = paddle.nn.ReLU()
-            self.conv_transpose_01 = paddle.nn.ConvTranspose2d(in_channels, 
+            self.relus = paddle.nn.LayerList(
+                [paddle.nn.ReLU() for i in range(2)])
+            self.conv_transpose_01 = paddle.nn.Conv2DTranspose(in_channels, 
                                                                out_channels, 
                                                                kernel_size=3, 
                                                                padding='same')
-            self.conv_transpose_02 = paddle.nn.ConvTranspose2d(out_channels, 
+            self.conv_transpose_02 = paddle.nn.Conv2DTranspose(out_channels, 
                                                                out_channels, 
                                                                kernel_size=3, 
                                                                padding='same')
-            self.bn = paddle.nn.BatchNorm2d(out_channels)
-            self.upsample = paddle.nn.Upsample(scale_factor=2.0)
-            self.residual_conv = paddle.nn.Conv2d(in_channels, 
+            self.bns = paddle.nn.LayerList(
+                [paddle.nn.BatchNorm2D(out_channels) for i in range(2)]
+            )
+            self.upsamples = paddle.nn.LayerList(
+                [paddle.nn.Upsample(scale_factor=2.0) for i in range(2)]
+            )
+            self.residual_conv = paddle.nn.Conv2D(in_channels, 
                                                   out_channels, 
                                                   kernel_size=1, 
                                                   padding='same')
@@ -456,15 +489,15 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
         def forward(self, inputs):
             previous_block_activation = inputs
     
-            y = self.relu(inputs)
+            y = self.relus[0](inputs)
             y = self.conv_transpose_01(y)
-            y = self.bn(y)
-            y = self.relu(y)
+            y = self.bns[0](y)
+            y = self.relus[1](y)
             y = self.conv_transpose_02(y)
-            y = self.bn(y)
-            y = self.upsample(y)
+            y = self.bns[1](y)
+            y = self.upsamples[0](y)
             
-            residual = self.upsample(previous_block_activation)
+            residual = self.upsamples[1](previous_block_activation)
             residual = self.residual_conv(residual)
             
             y = paddle.add(y, residual)
@@ -482,11 +515,11 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
         def __init__(self, num_classes):
             super(PetNet, self).__init__()
     
-            self.conv_1 = paddle.nn.Conv2d(3, 32, 
+            self.conv_1 = paddle.nn.Conv2D(3, 32, 
                                            kernel_size=3,
                                            stride=2,
                                            padding='same')
-            self.bn = paddle.nn.BatchNorm2d(32)
+            self.bn = paddle.nn.BatchNorm2D(32)
             self.relu = paddle.nn.ReLU()
     
             in_channels = 32
@@ -496,7 +529,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
     
             # 根据下采样个数和配置循环定义子Layer，避免重复写一样的程序
             for out_channels in self.encoder_list:
-                block = self.add_sublayer('encoder_%s'.format(out_channels),
+                block = self.add_sublayer('encoder_{}'.format(out_channels),
                                           Encoder(in_channels, out_channels))
                 self.encoders.append(block)
                 in_channels = out_channels
@@ -505,12 +538,12 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
     
             # 根据上采样个数和配置循环定义子Layer，避免重复写一样的程序
             for out_channels in self.decoder_list:
-                block = self.add_sublayer('decoder_%s'.format(out_channels), 
+                block = self.add_sublayer('decoder_{}'.format(out_channels), 
                                           Decoder(in_channels, out_channels))
                 self.decoders.append(block)
                 in_channels = out_channels
     
-            self.output_conv = paddle.nn.Conv2d(in_channels, 
+            self.output_conv = paddle.nn.Conv2D(in_channels, 
                                                 num_classes, 
                                                 kernel_size=3, 
                                                 padding='same')
@@ -534,55 +567,101 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 ~~~~~~~~~~~~~~
 
 调用飞桨提供的summary接口对组建好的模型进行可视化，方便进行模型结构和参数信息的查看和确认。
-@TODO，需要替换
 
 .. code:: ipython3
 
-    from paddle.static import InputSpec
-    
-    paddle.disable_static()
     num_classes = 4
-    model = paddle.Model(PetNet(num_classes))
-    model.summary((3, 160, 160))
+    network = PetNet(num_classes)
+    model = paddle.Model(network)
+    model.summary((-1, 3,) + IMAGE_SIZE)
 
 
 .. parsed-literal::
 
-    --------------------------------------------------------------------------------
-       Layer (type)          Input Shape         Output Shape         Param #
-    ================================================================================
-          Conv2d-38    [-1, 3, 160, 160]     [-1, 32, 80, 80]             896
-     BatchNorm2d-14     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
-            ReLU-14     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
-            ReLU-17    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-          Conv2d-49    [-1, 128, 20, 20]    [-1, 128, 20, 20]           1,152
-          Conv2d-50    [-1, 128, 20, 20]    [-1, 256, 20, 20]          33,024
-    SeparableConv2d-17    [-1, 128, 20, 20]    [-1, 256, 20, 20]               0
-     BatchNorm2d-17    [-1, 256, 20, 20]    [-1, 256, 20, 20]           1,024
-          Conv2d-51    [-1, 256, 20, 20]    [-1, 256, 20, 20]           2,304
-          Conv2d-52    [-1, 256, 20, 20]    [-1, 256, 20, 20]          65,792
-    SeparableConv2d-18    [-1, 256, 20, 20]    [-1, 256, 20, 20]               0
-        MaxPool2d-9    [-1, 256, 20, 20]    [-1, 256, 10, 10]               0
-          Conv2d-53    [-1, 128, 20, 20]    [-1, 256, 10, 10]          33,024
-          Encoder-9    [-1, 128, 20, 20]    [-1, 256, 10, 10]               0
-            ReLU-21     [-1, 32, 80, 80]     [-1, 32, 80, 80]               0
-    ConvTranspose2d-17     [-1, 64, 80, 80]     [-1, 32, 80, 80]          18,464
-     BatchNorm2d-21     [-1, 32, 80, 80]     [-1, 32, 80, 80]             128
-    ConvTranspose2d-18     [-1, 32, 80, 80]     [-1, 32, 80, 80]           9,248
-         Upsample-8     [-1, 64, 80, 80]   [-1, 64, 160, 160]               0
-          Conv2d-57   [-1, 64, 160, 160]   [-1, 32, 160, 160]           2,080
-          Decoder-9     [-1, 64, 80, 80]   [-1, 32, 160, 160]               0
-          Conv2d-58   [-1, 32, 160, 160]    [-1, 4, 160, 160]           1,156
-    ================================================================================
-    Total params: 168,420
-    Trainable params: 167,140
-    Non-trainable params: 1,280
-    --------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------
+      Layer (type)        Input Shape          Output Shape         Param #    
+    =============================================================================
+        Conv2D-1       [[1, 3, 160, 160]]    [1, 32, 80, 80]          896      
+      BatchNorm2D-1    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+         ReLU-1        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+         ReLU-2        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+    SeparableConv2D-1  [[1, 32, 80, 80]]     [1, 64, 80, 80]         2,400     
+      BatchNorm2D-2    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
+         ReLU-3        [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
+    SeparableConv2D-2  [[1, 64, 80, 80]]     [1, 64, 80, 80]         4,736     
+      BatchNorm2D-3    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
+       MaxPool2D-1     [[1, 64, 80, 80]]     [1, 64, 40, 40]           0       
+        Conv2D-2       [[1, 32, 80, 80]]     [1, 64, 40, 40]         2,112     
+        Encoder-1      [[1, 32, 80, 80]]     [1, 64, 40, 40]           0       
+         ReLU-4        [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
+    SeparableConv2D-3  [[1, 64, 40, 40]]     [1, 128, 40, 40]        8,896     
+      BatchNorm2D-4    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
+         ReLU-5        [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
+    SeparableConv2D-4  [[1, 128, 40, 40]]    [1, 128, 40, 40]       17,664     
+      BatchNorm2D-5    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
+       MaxPool2D-2     [[1, 128, 40, 40]]    [1, 128, 20, 20]          0       
+        Conv2D-3       [[1, 64, 40, 40]]     [1, 128, 20, 20]        8,320     
+        Encoder-2      [[1, 64, 40, 40]]     [1, 128, 20, 20]          0       
+         ReLU-6        [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
+    SeparableConv2D-5  [[1, 128, 20, 20]]    [1, 256, 20, 20]       34,176     
+      BatchNorm2D-6    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
+         ReLU-7        [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
+    SeparableConv2D-6  [[1, 256, 20, 20]]    [1, 256, 20, 20]       68,096     
+      BatchNorm2D-7    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
+       MaxPool2D-3     [[1, 256, 20, 20]]    [1, 256, 10, 10]          0       
+        Conv2D-4       [[1, 128, 20, 20]]    [1, 256, 10, 10]       33,024     
+        Encoder-3      [[1, 128, 20, 20]]    [1, 256, 10, 10]          0       
+         ReLU-8        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
+    Conv2DTranspose-1  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
+      BatchNorm2D-8    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
+         ReLU-9        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
+    Conv2DTranspose-2  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
+      BatchNorm2D-9    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
+       Upsample-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+       Upsample-2      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+        Conv2D-5       [[1, 256, 20, 20]]    [1, 256, 20, 20]       65,792     
+        Decoder-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+         ReLU-10       [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
+    Conv2DTranspose-3  [[1, 256, 20, 20]]    [1, 128, 20, 20]       295,040    
+     BatchNorm2D-10    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
+         ReLU-11       [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
+    Conv2DTranspose-4  [[1, 128, 20, 20]]    [1, 128, 20, 20]       147,584    
+     BatchNorm2D-11    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
+       Upsample-3      [[1, 128, 20, 20]]    [1, 128, 40, 40]          0       
+       Upsample-4      [[1, 256, 20, 20]]    [1, 256, 40, 40]          0       
+        Conv2D-6       [[1, 256, 40, 40]]    [1, 128, 40, 40]       32,896     
+        Decoder-2      [[1, 256, 20, 20]]    [1, 128, 40, 40]          0       
+         ReLU-12       [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
+    Conv2DTranspose-5  [[1, 128, 40, 40]]    [1, 64, 40, 40]        73,792     
+     BatchNorm2D-12    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
+         ReLU-13       [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
+    Conv2DTranspose-6  [[1, 64, 40, 40]]     [1, 64, 40, 40]        36,928     
+     BatchNorm2D-13    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
+       Upsample-5      [[1, 64, 40, 40]]     [1, 64, 80, 80]           0       
+       Upsample-6      [[1, 128, 40, 40]]    [1, 128, 80, 80]          0       
+        Conv2D-7       [[1, 128, 80, 80]]    [1, 64, 80, 80]         8,256     
+        Decoder-3      [[1, 128, 40, 40]]    [1, 64, 80, 80]           0       
+         ReLU-14       [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
+    Conv2DTranspose-7  [[1, 64, 80, 80]]     [1, 32, 80, 80]        18,464     
+     BatchNorm2D-14    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+         ReLU-15       [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+    Conv2DTranspose-8  [[1, 32, 80, 80]]     [1, 32, 80, 80]         9,248     
+     BatchNorm2D-15    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+       Upsample-7      [[1, 32, 80, 80]]    [1, 32, 160, 160]          0       
+       Upsample-8      [[1, 64, 80, 80]]    [1, 64, 160, 160]          0       
+        Conv2D-8      [[1, 64, 160, 160]]   [1, 32, 160, 160]        2,080     
+        Decoder-4      [[1, 64, 80, 80]]    [1, 32, 160, 160]          0       
+        Conv2D-9      [[1, 32, 160, 160]]    [1, 4, 160, 160]        1,156     
+    =============================================================================
+    Total params: 2,059,268
+    Trainable params: 2,051,716
+    Non-trainable params: 7,552
+    -----------------------------------------------------------------------------
     Input size (MB): 0.29
-    Forward/backward pass size (MB): 43.16
-    Params size (MB): 0.64
-    Estimated Total Size (MB): 44.10
-    --------------------------------------------------------------------------------
+    Forward/backward pass size (MB): 117.77
+    Params size (MB): 7.86
+    Estimated Total Size (MB): 125.92
+    -----------------------------------------------------------------------------
     
 
 
@@ -590,62 +669,127 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. parsed-literal::
 
-    {'total_params': 168420, 'trainable_params': 167140}
+    {'total_params': 2059268, 'trainable_params': 2051716}
 
 
 
 5.模型训练
 ----------
 
-5.1 配置信息
-~~~~~~~~~~~~
-
-定义训练BATCH_SIZE、训练轮次和计算设备等信息。
-
-.. code:: ipython3
-
-    BATCH_SIZE = 32
-    EPOCHS = 15
-    device = paddle.set_device('gpu')
-    paddle.disable_static(device)
-
-5.3 自定义Loss
-~~~~~~~~~~~~~~
-
-在这个任务中我们使用SoftmaxWithCrossEntropy损失函数来做计算，飞桨中有functional形式的API，这里我们做一个自定义操作，实现一个Class形式API放到模型训练中使用。没有直接使用CrossEntropyLoss的原因主要是对计算维度的自定义需求，本次需要进行softmax计算的维度是1，不是默认的最后一维，所以我们采用上面提到的损失函数，通过axis参数来指定softmax计算维度。
-
-.. code:: ipython3
-
-    class SoftmaxWithCrossEntropy(paddle.nn.Layer):
-        def __init__(self):
-            super(SoftmaxWithCrossEntropy, self).__init__()
-    
-        def forward(self, input, label):
-            loss = F.softmax_with_cross_entropy(input, 
-                                                label, 
-                                                return_softmax=False,
-                                                axis=1)
-            return paddle.mean(loss)
-
-5.4 启动模型训练
+5.1 启动模型训练
 ~~~~~~~~~~~~~~~~
 
 使用模型代码进行Model实例生成，使用prepare接口定义优化器、损失函数和评价指标等信息，用于后续训练使用。在所有初步配置完成后，调用fit接口开启训练执行过程，调用fit时只需要将前面定义好的训练数据集、测试数据集、训练轮次（Epoch）和批次大小（batch_size）配置好即可。
 
 .. code:: ipython3
 
+    train_dataset = PetDataset(mode='train') # 训练数据集
+    val_dataset = PetDataset(mode='test') # 验证数据集
+    
     optim = paddle.optimizer.RMSProp(learning_rate=0.001, 
                                      rho=0.9, 
                                      momentum=0.0, 
                                      epsilon=1e-07, 
                                      centered=False,
                                      parameters=model.parameters())
-    model = paddle.Model(PetModel(num_classes))
-    model.prepare(optim, SoftmaxWithCrossEntropy())
+    model.prepare(optim, paddle.nn.CrossEntropyLoss())
     model.fit(train_dataset, 
               val_dataset, 
-              epochs=EPOCHS, 
-              batch_size=BATCH_SIZE)
+              epochs=15, 
+              batch_size=32,
+              verbose=1)
+
+
+.. parsed-literal::
+
+    Epoch 1/15
+
+
+.. parsed-literal::
+
+    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/layers/utils.py:77: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
+      return (isinstance(seq, collections.Sequence) and
+    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/nn/layer/norm.py:637: UserWarning: When training, we now always track global mean and variance.
+      "When training, we now always track global mean and variance.")
+
+
+.. parsed-literal::
+
+    step 197/197 [==============================] - loss: 0.7122 - 250ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.6437 - 231ms/step         
+    Eval samples: 1108
+    Epoch 2/15
+    step 197/197 [==============================] - loss: 0.4153 - 249ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.5120 - 231ms/step         
+    Eval samples: 1108
+    Epoch 3/15
+    step 197/197 [==============================] - loss: 0.4270 - 248ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.4798 - 230ms/step         
+    Eval samples: 1108
+    Epoch 4/15
+    step 197/197 [==============================] - loss: 0.4832 - 250ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.5022 - 231ms/step         
+    Eval samples: 1108
+    Epoch 5/15
+    step 197/197 [==============================] - loss: 0.4590 - 249ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.4705 - 232ms/step         
+    Eval samples: 1108
+    Epoch 6/15
+    step 197/197 [==============================] - loss: 0.3575 - 249ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.3862 - 231ms/step         
+    Eval samples: 1108
+    Epoch 7/15
+    step 197/197 [==============================] - loss: 0.2349 - 251ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.3407 - 233ms/step         
+    Eval samples: 1108
+    Epoch 8/15
+    step 197/197 [==============================] - loss: 0.2653 - 251ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.3622 - 231ms/step         
+    Eval samples: 1108
+    Epoch 9/15
+    step 197/197 [==============================] - loss: 0.4281 - 249ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.5789 - 232ms/step         
+    Eval samples: 1108
+    Epoch 10/15
+    step 197/197 [==============================] - loss: 0.3125 - 249ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.4632 - 236ms/step         
+    Eval samples: 1108
+    Epoch 11/15
+    step 197/197 [==============================] - loss: 0.2787 - 251ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.3790 - 231ms/step         
+    Eval samples: 1108
+    Epoch 12/15
+    step 197/197 [==============================] - loss: 0.2590 - 317ms/step        
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.4156 - 235ms/step         
+    Eval samples: 1108
+    Epoch 13/15
+    step 197/197 [==============================] - loss: 0.3269 - 255ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.4400 - 231ms/step         
+    Eval samples: 1108
+    Epoch 14/15
+    step 197/197 [==============================] - loss: 0.2877 - 251ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.3703 - 231ms/step         
+    Eval samples: 1108
+    Epoch 15/15
+    step 197/197 [==============================] - loss: 0.2891 - 251ms/step         
+    Eval begin...
+    step 35/35 [==============================] - loss: 0.4129 - 231ms/step         
+    Eval samples: 1108
+
 
 6.模型预测
 ----------
@@ -659,7 +803,16 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. code:: ipython3
 
-    predict_results = model.predict(val_dataset)
+    predict_dataset = PetDataset(mode='predict')
+    predict_results = model.predict(predict_dataset)
+
+
+.. parsed-literal::
+
+    Predict begin...
+    step 1108/1108 [==============================] - 14ms/step        
+    Predict samples: 1108
+
 
 6.2 预测结果可视化
 ~~~~~~~~~~~~~~~~~~
@@ -668,36 +821,55 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. code:: ipython3
 
-    print(len(predict_results))
     plt.figure(figsize=(10, 10))
     
     i = 0
     mask_idx = 0
     
-    for data in val_dataset:
-        if i > 8: 
-            break
-        plt.subplot(3, 3, i + 1)
-        plt.imshow(data[0].transpose((1, 2, 0)).astype('uint8'))
-        plt.title('Input Image')
-        plt.axis("off")
+    with open('./predict.txt', 'r') as f:
+        for line in f.readlines():
+            image_path, label_path = line.strip().split('\t')
+            resize_t = T.Compose([
+                T.Resize(IMAGE_SIZE)
+            ])
+            image = resize_t(PilImage.open(image_path))
+            label = resize_t(PilImage.open(label_path))
     
-        plt.subplot(3, 3, i + 2)
-        plt.imshow(np.squeeze(data[1], axis=0).astype('uint8'), cmap='gray')
-        plt.title('Label')
-        plt.axis("off")
-        
-        # 模型只有一个输出，所以我们通过predict_results[0]来取出1000个预测的结果
-        # 映射原始图片的index来取出预测结果，提取mask进行展示
-        data = predict_results[0][mask_idx][0].transpose((1, 2, 0))
-        mask = np.argmax(data, axis=-1)
-        mask = np.expand_dims(mask, axis=-1)
+            image = np.array(image).astype('uint8')
+            label = np.array(label).astype('uint8')
     
-        plt.subplot(3, 3, i + 3)
-        plt.imshow(np.squeeze(mask, axis=2).astype('uint8'), cmap='gray')
-        plt.title('Predict')
-        plt.axis("off")
-        i += 3
-        mask_idx += 1
+            if i > 8: 
+                break
+            plt.subplot(3, 3, i + 1)
+            plt.imshow(image)
+            plt.title('Input Image')
+            plt.axis("off")
+    
+            plt.subplot(3, 3, i + 2)
+            plt.imshow(label, cmap='gray')
+            plt.title('Label')
+            plt.axis("off")
+            
+            # 模型只有一个输出，所以我们通过predict_results[0]来取出1000个预测的结果
+            # 映射原始图片的index来取出预测结果，提取mask进行展示
+            data = predict_results[0][mask_idx][0].transpose((1, 2, 0))
+            mask = np.argmax(data, axis=-1)
+    
+            plt.subplot(3, 3, i + 3)
+            plt.imshow(mask.astype('uint8'), cmap='gray')
+            plt.title('Predict')
+            plt.axis("off")
+            i += 3
+            mask_idx += 1
     
     plt.show()
+
+
+.. parsed-literal::
+
+    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/numpy/lib/type_check.py:546: DeprecationWarning: np.asscalar(a) is deprecated since NumPy v1.16, use a.item() instead
+      'a.item() instead', DeprecationWarning, stacklevel=1)
+
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_04.png?raw=true

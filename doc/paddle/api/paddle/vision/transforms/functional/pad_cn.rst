@@ -10,7 +10,7 @@ pad
 参数
 :::::::::
 
-    - img (np.ndarray) - 被填充的图像。
+    - img (PIL.Image|np.ndarray) - 被填充的图像。
     - padding (int|tuple) - 在图像每个边框上填充。
             如果提供单个int值，则用于填充图像所有边。
             如果提供长度为2的元组，则分别为图像左/右和顶部/底部进行填充。
@@ -26,7 +26,7 @@ pad
 返回
 :::::::::
 
-    ``numpy.ndarray``，填充后的图像数据。
+    ``PIL.Image 或 numpy.ndarray``，填充后的图像数据。
 
 代码示例
 :::::::::
@@ -34,11 +34,15 @@ pad
 .. code-block:: python
 
     import numpy as np
-    from paddle.vision.transforms.functional import pad
-
-
-    fake_img = np.random.rand(500, 500, 3).astype('float32')
-    fake_img = pad(fake_img, 2)
-
-    print(fake_img.shape)
-    # (504, 504, 3)
+    from PIL import Image
+    from paddle.vision.transforms import functional as F
+    
+    fake_img = (np.random.rand(256, 300, 3) * 255.).astype('uint8')
+    
+    fake_img = Image.fromarray(fake_img)
+    
+    padded_img = F.pad(fake_img, padding=1)
+    print(padded_img.size)
+    
+    padded_img = F.pad(fake_img, padding=(2, 1))
+    print(padded_img.size)

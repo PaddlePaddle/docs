@@ -4,7 +4,7 @@ layer_norm
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
+.. py:function:: paddle.static.nn.layer_norm(input, scale=True, shift=True, begin_norm_axis=1, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, name=None)
 
 
 
@@ -27,7 +27,7 @@ layer_norm
 - :math:`b` : 可训练的偏差参数
 
 参数：
-  - **input** (Variable) - 维度为任意维度的多维 ``Tensor`` ，数据类型为float32或float64。
+  - **input** (Tensor) - 维度为任意维度的多维 ``Tensor`` ，数据类型为float32或float64。
   - **scale** (bool, 可选) - 指明是否在归一化后学习自适应增益 ``g`` 。默认值：True。
   - **shift** (bool, 可选) - 指明是否在归一化后学习自适应偏差 ``b`` 。默认值：True。
   - **begin_norm_axis** (int, 可选) - 指明归一化将沿着 ``begin_norm_axis`` 到 ``rank（input）`` 的维度执行。默认值：1。
@@ -39,20 +39,14 @@ layer_norm
 
 返回：表示归一化结果的 ``Tensor`` ，数据类型和 ``input`` 一致，返回维度和 ``input`` 一致。
 
-返回类型：Variable
 
 **代码示例**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-    x = fluid.layers.data(name='x', shape=[3, 32, 32], dtype='float32')
-    hidden1 = fluid.layers.layer_norm(input=x, begin_norm_axis=1)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    np_x = np.random.random(size=(8, 3, 32, 32)).astype('float32')
-    output = exe.run(feed={"x": np_x}, fetch_list = [hidden1])
-    print(output)
+    import paddle
+    paddle.enable_static()
+    x = paddle.static.data(name='x', shape=[8, 32, 32], dtype='float32')
+    output = paddle.static.nn.layer_norm(input=x, begin_norm_axis=1)
+    print(output.shape)  # [8, 32, 32]
 

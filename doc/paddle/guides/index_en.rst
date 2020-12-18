@@ -9,13 +9,21 @@ Please refer to  `PaddlePaddle Github <https://github.com/PaddlePaddle/Paddle>`_
 
 Let's start with studying basic concept of PaddlePaddle:
 
-- `Introduction to Tensor <tensor_introduction_en.html>`_ : Introduction of Tensor, which is the representation of data in Paddle.
-- `migration tools <./migration_en.html>`_：how to use migration tools to upgrade your code.
-- `dynamic to static <./dygraph_to_static/index_en.html>`_：how to convert your model from dynamic graph to static graph.
+- `PaddlePaddle Introduction <./01_paddle2.0_introduction/index_en.html>`_ : Introduction of the new features of PaddlePaddle 2.0 and description of the PaddlePaddle 2.0 upgrade guide.
+- `Model Visualization <./03_VisualDL/index_en.html>`_ : Introduce VisualDL, a visual tool of PaddlePaddle.
+- `Dygraph to Static Graph <./04_dygraph_to_static/index_en.html>`_ : Introduce the transformation of dygraph to static graph.
+- `Inference and Deployment <./05_inference_deployment/index_en.html>`_ : Introduce the method of using the trained model to inference.
+- `Distributed Training <./06_distributed_training/index_en.html>`_ : Introduce how the PaddlePaddle uses distributed training
+- `Customize OP <./07_new_op/index_en.html>`_ :  Introduce how to customize OP for PaddlePaddle.
+- `Contribution <./08_Contribution/index_en.html>`_: Introduce how to contribute for PaddlePaddle.
 
 ..  toctree::
     :hidden:
-
-    tensor_introduction_en.md
-    migration_en.rst
-    dygraph_to_static/index_en.rst
+    
+    01_paddle2.0_introduction/index_en.rst
+    03_VisualDL/index_en.rst
+    04_dygraph_to_static/index_en.rst
+    05_inference_deployment/index_en.rst
+    06_distributed_training/index_en.rst
+    07_new_op/index_en.rst
+    08_contribution/index_en.rst

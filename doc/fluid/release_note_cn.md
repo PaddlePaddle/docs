@@ -27,7 +27,7 @@
 - 新增API如下：
   - 在paddle.nn目录新增8个组网类的API: interpolate, LogSoftmax, ReLU, Sigmoid, loss.BCELoss, loss.L1Loss, loss.MSELoss, loss.NLLLoss
   - 在paddle.tensor目录新增59个Tensor相关API：add, addcmul, addmm, allclose, arange, argmax, atan, bmm, cholesky, clamp, cross, diag_embed, dist, div, dot, elementwise_equal, elementwise_sum, equal, eye, flip, full, full_like, gather, index_sample, index_select, linspace, log1p, logsumexp, matmul, max, meshgrid, min, mm, mul, nonzero, norm, ones, ones_like, pow, randint, randn, randperm, roll, sin, sort, split, sqrt, squeeze, stack, std, sum, t, tanh, tril, triu, unsqueeze, where, zeros, zeros_like
-  - 新增device_guard用来指定设备，新增manual_seed用来初始化随机数种子
+  - 新增device_guard用来指定设备，新增seed用来初始化随机数种子
 
 - 部分原fluid目录下API，并没有迁移到paddle目录下
   - 原fluid.contrib目录下API，保留在原位置，未迁移：BasicGRUUnit, BasicLSTMUnit, BeamSearchDecoder, Compressor, HDFSClient, InitState, QuantizeTranspiler, StateCell, TrainingDecoder, basic_gru, basic_lstm, convert_dist_to_sparse_program, ctr_metric_bundle, extend_with_decoupled_weight_decay, fused_elemwise_activation, fused_embedding_seq_pool, load_persistables_for_increment, load_persistables_for_inference, match_matrix_tensor, memory_usage, mixed_precision.AutoMixedPrecisionLists, mixed_precision.decorate, multi_download, multi_upload, multiclass_nms2, op_freq_statistic, search_pyramid_hash, sequence_topk_avg_pooling, shuffle_batch, tree_conv, var_conv_2d
@@ -68,4 +68,3 @@
  - 修复inplace ops引起的transformer 模型性能下降问题
  - 通过完善cache key, 解决Ernie精度测试最后一个batch运行失败的问题
  - 修复fluid.dygraph.guard等context中出现异常时无法正确退出的问题
-

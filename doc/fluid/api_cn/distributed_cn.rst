@@ -18,5 +18,6 @@ paddle.distributed
     distributed_cn/ParallelEnv_cn.rst
     distributed_cn/prepare_context_cn.rst
     distributed_cn/reduce_cn.rst
+    distributed_cn/ReduceOp_cn.rst
     distributed_cn/scatter_cn.rst
     distributed_cn/spawn_cn.rst

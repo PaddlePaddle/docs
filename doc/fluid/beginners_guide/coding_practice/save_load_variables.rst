@@ -204,8 +204,8 @@ save_vars、save_params、save_persistables 以及 save_inference_model的区别
     path = "./models"
     startup_prog = fluid.default_startup_program()
     exe.run(startup_prog)
+    fluid.io.load_persistables(exe, path, startup_prog)
     main_prog = fluid.default_main_program()
-    fluid.io.load_persistables(exe, path, main_prog)
     exe.run(main_prog)
 
 上面的例子中，通过调用 :code:`fluid.io.load_persistables` 函数，PaddlePaddle Fluid会从默认

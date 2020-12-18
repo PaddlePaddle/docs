@@ -19,10 +19,9 @@ remove_weight_norm
 .. code-block:: python
 
     import paddle
-    from paddle.nn import Conv2d
+    from paddle.nn import Conv2D
     from paddle.nn.utils import weight_norm, remove_weight_norm
-    paddle.disable_static()
-    conv = Conv2d(3, 5, 3)
+    conv = Conv2D(3, 5, 3)
     wn = weight_norm(conv)
     remove_weight_norm(conv)
     # print(conv.weight_g)

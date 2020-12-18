@@ -551,7 +551,7 @@ static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
 # 声明式编程中需要使用执行器执行之前已经定义好的网络
 place = paddle.CPUPlace()
 exe = paddle.Executor(place)
-program, feed_vars, fetch_vars = paddle.io.load_inference_model(save_dirname, exe)
+program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname, exe)
 # 声明式编程中需要调用执行器的run方法执行计算过程
 fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
 ```

@@ -31,8 +31,6 @@ prelu激活层（PRelu Activation Operator）。计算公式如下：
     import paddle.nn.functional as F
     import numpy as np
 
-    paddle.disable_static()
-
     data = np.array([[[[-2.0,  3.0, -4.0,  5.0],
                        [ 3.0, -4.0,  5.0, -6.0],
                        [-7.0, -8.0,  8.0,  9.0]],

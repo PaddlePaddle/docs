@@ -1,270 +1,304 @@
-# 版本说明
+# Release Note
 
 ## 重要更新
 
-本版本为飞桨框架v2.0的测试版，最重要的变化为API体系的全面升级以及命令式编程（动态图）能力的全面完善。本版本系统优化了飞桨基础API的目录结构，全面修复了历史遗留的相关问题，并对API做了充分补充，特别是提供了更为完善的高层API功能；同时提供了对动态图的量化训练、混合精度训练的支持，动静转换实现了完备的语法支持，并且易用性大幅提升，动态图相关功能趋于完善，推荐使用动态图模式。此外，推理库的C++接口也做了升级优化，推理库对量化模型的支持以及推理性能都有了全面增强。
+飞桨框架2.0-RC1版本有如下重要更新：
 
-## 训练框架
+- **安装环境** 官方发布支持CUDA11的安装包（experimental）；官方发布支持[百度昆仑芯片](https://cloud.baidu.com/product/kunlun.html)的安装包（experimental）
+- **API功能** 支持numpy兼容的`paddle.Tensor` 索引和切片操作(基本索引)；去除部分API中的axis参数，支持numpy兼容的广播语义；新增了部分API，完善了部分API的功能，修复了部分API的bug
+- **动静转换** 支持动态图转静态图的更多python语法，并支持通过 `paddle.jit.not_to_static ` 标识不进行动转静的函数
+- **框架功能** 支持多次调用`paddle.Tensor.backward()` 进行累计梯度，效果等同于增加batch size后计算的梯度；默认隐藏了C++报错栈，并优化了报错格式；分布式训练支持heterbox异构训练
+- **框架性能** 混合精度训练支持纯FP16模式，ResNet50模型V100单卡训练性能达1400+ samples/sec；分布式训练做了性能优化
 
-### 基础API
+## 前瞻性预告
+- 飞桨框架计划在未来的某个版本起，放弃对python2和python3.5的支持，建议您升级python到3.8版本来使用飞桨
+- 飞桨框架计划在未来的某个版本起，放弃对CUDA9.0的支持，建议您升级CUDA版本来使用飞桨
 
-#### 兼容性说明
+##  训练框架
 
-- Paddle 2.x版本推荐用户使用位于paddle根目录下的API，同时在paddle.fluid目录下保留了所有的Paddle 1.x版本的API。按照设计，Paddle 1.x版本训练的代码，不做任何修改，即可在Paddle 2.x版本上正常运行；Paddle 1.x版本训练保存的模型，可以使用Paddle 2.x版本进行推理。
-
-#### 目录结构调整
-
-- 在2.0-alpha版本的基础上，本版本对于目录结构进行了一些调整，调整完最新的目录结构如下：
-
-  | 目录 | 功能和包含的API |
-  | :--- | --------------- |
-  | paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor, paddle.framework目录下的所有API |
-  | paddle.tensor     | 跟tensor操作相关的API，比如：创建zeros, 矩阵运算matmul, 变换concat, 计算add, 查找argmax等 |
-  | paddle.nn         | 跟组网相关的API，比如：Linear, Conv2d，损失函数，卷积，LSTM等，激活函数等 |
-  | paddle.static.nn  | 静态图下组网专用API，比如：输入占位符data/Input，控制流while_loop/cond |
-  | paddle.static | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
-  | paddle.framework  | 框架通用API和imprerative模式的API，比如：to_tensor, prepare_context等       |
-  | paddle.optimizer  | 优化算法相关API，比如：SGD，Adagrad, Adam等                  |
-  | paddle.optimizer.lr_scheduler  | 学习率衰减相关API                  |
-  | paddle.metric     | 评估指标计算相关的API，比如：accuracy, auc等             |
-  | paddle.io         | 数据输入输出相关API，比如：save, load, Dataset, DataLoader等 |
-  | paddle.device     | 设备管理相关API，比如：CPUPlace， CUDAPlace等                |
-  | paddle.distributed      | 分布式相关基础API                                                |
-  | paddle.distributed.fleet      | 分布式相关高层API                                         |
-  | paddle.vision     | 视觉领域API，比如，数据集，数据处理，常用基础网络结构，比如resnet             |
-  | paddle.text       | NLP领域API, 比如，数据集，数据处理，常用网络结构，比如transformer |
-
-#### API别名规则
-- 为了方便用户使用，API会在不同的路径下建立别名，比如`paddle.add -> paddle.tensor.add`，推荐用户优先使用较短的路径`paddle.add`
-
-- 所有framework, tensor目录下的API，均在paddle根目录建立别名；除少数特殊API外，其他API在paddle根目录下均没有别名。
-
-- paddle.nn目录下除functional目录以外的所有API，在paddle.nn目录下均有别名；functional目录中的API，在paddle.nn目录下均没有别名。
-
-- 以下为一些特殊的别名关系，推荐使用左边的名称：
-  - paddle.sigmoid -> paddle.tensor.sigmoid -> paddle.nn.functional.sigmoid
-  - paddle.tanh -> paddle.tensor.tanh -> paddle.nn.functional.tanh
-  - paddle.remainder -> paddle.mod -> paddle.floor_mod
-  - paddle.divide -> paddle.true_divide
-  - paddle.rand -> paddle.uniform
-  - paddle.randn -> paddle.standard_normal
-  - Optimizer.clear_grad -> Optimizer.clear_gradients
-  - Optimizer.set_state_dict -> Optimizer.set_dict
-  - Optimizer.get_lr -> Optimizer.current_step_lr
-  - Layer.clear_grad -> Layer.clear_gradients
-  - Layer.set_state_dict -> Layer.set_dict
-#### 常用API名称变化
-
-- 此版本使用Tensor表示数据，创建张量API， paddle.fluid.dygraph.to_variable修改为paddle.to_tensor
-- 加、减、乘、除使用全称，不使用简称
-- 对于当前逐元素操作，不加elementwise前缀
-- 对于按照某一轴操作，不加reduce前缀
-- Conv, Pool, Dropout, BatchNorm, Pad组网类API根据输入数据类型增加1d, 2d, 3d后缀
-
-  | Paddle 1.8    | Paddle 2.0-beta |
-  | --------------- | ------------------------ |
-  | paddle.fluid.layers.elementwise_add | paddle.add               |
-  | paddle.fluid.layers.elementwise_sub | paddle.subract           |
-  | paddle.fluid.layers.elementwise_mul | paddle.multiply          |
-  | paddle.fluid.layers.elementwise_div | paddle.divide |
-  | paddle.fluid.layers.elementwise_max | paddle.maximum             |
-  | paddle.fluid.layers.elementwise_min | paddle.minimum |
-  | paddle.fluid.layers.reduce_sum | paddle.sum |
-  | paddle.fluid.layers.reduce_prod | paddle.prod |
-  | paddle.fluid.layers.reduce_max | paddle.max        |
-  | paddle.fluid.layers.reduce_min | paddle.min        |
-  | paddle.fluid.layers.reduce_all | paddle.all        |
-  | paddle.fluid.layers.reduce_any | paddle.any        |
-  | paddle.fluid.dygraph.Conv2D | paddle.nn.Conv2d |
-  | paddle.fluid.dygraph.Conv2DTranspose | paddle.nn.ConvTranspose2d |
-  | paddle.fluid.dygraph.Pool2D | paddle.nn.MaxPool2d, paddle.nn.AvgPool2d |
+### 基础API（含分布式）
 
 #### 新增API
-- 共计新增140个API，具体参考[链接](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-New-API-List)和API文档
-  - 新增环境设置API：paddle.set_default_dtype, paddle.get_default_dtype, paddle.set_device, paddle.get_device, paddle.manual_seed
-  - 新增Tensor操作API：numel, chunk, masked_select, isfinite, isinf, isnan, sort, topk, Flatten, dim, tile
-  - 新增组网API: Linear, Bilinear, Embedding, linear, bilinear, embedding
-  - 新增视觉组网类API：Conv1d, ConvTranspose1d, MaxPool1d, MaxPool2d, MaxPool3d, AvgPool1d, AvgPool2d, AvgPool3d, AdaptiveMaxPool1d, AdaptiveMaxPool2d, AdaptiveMaxPool3d, ReflactionPad1d, ReflactionPad2d, ReflactionPad3d, ReplicationPad1d, ReplicationPad2d, ReplicationPad3d, ZeroPad2d, ConstantPad1d, ConstantPad2d, ConstantPad3d, PixelShuffle, Upsample, UpsamplingNearest2d, UpsamplingBilinear2d, conv1d, conv_transpose1d, avg_pool1d, avg_pool2d, avg_pool3d, max_pool1d, max_pool2d, max_pool3d, adaptive_max_pool1d, adaptive_max_pool2d, adaptive_max_pool3d, adaptive_avg_pool1d, adaptive_avg_pool3d
-  - 新增文本处理组网类API: SimpleRNN, LSTM, GRU, MultiHeadAttention, Transformer, TransformerEncoder, TransformerEncoderLayer, TransformerDecoder, TransformerDecoderLayer
-  - 新增激活类API：ELU, Hardshrink, Hardtanh, PReLU, ReLU6, Tanh, Tanhshrink, Softmax
-  - 新增归一化API：BatchNorm1d, BatchNorm2d, BatchNorm3d, SyncBatchNorm, InstanceNorm1d, InstanceNorm2d, InstanceNorm3d, weight_norm, remove_weight_norm, batch_norm, instance_norm, layer_norm, normalize
-  - 新增Dropout类API：Dropout2d, Dropout3d, AlphaDropout, dropout, dropout2d, dropout3d
-  - 新增相似度、损失函数类API：CosineSimilarity, PairwiseDistance, CTCLoss, KLDivLoss, BCEWithLogitsLoss, MarginRankingLoss, SmoothL1Loss, consine_similarity, binary_cross_entropy, binary_cross_entropy_with_logits, cross_entropy, ctc_loss, l1_loss, mse_loss, margin_ranking_loss, nll_loss, smooth_l1_loss
-  - 新增分布式通信类API: broadcast, all_reduce, reduce, all_gather, scatter, barrier
-  - 新增概率分布类API： Distribution, normal, bernoulli
-  - 新增Optimizer相关API：step, AdamW
-  - 新增数据集相关API：Dataset, IterableDataset, TensorDataset, Sampler, RandomSampler, BatchSampler, DistributedBatchSampler
+- 新增paddle.log2
+- 新增paddle.log10
+- 新增paddle.nn.initializer.set_global_initializer
+- 新增paddle.median
+- 新增paddle.broadcast_shape，可以计算两个tensor shape经过broadcast计算后的shape
+- 新增paddle.vision.ops.deform_conv2d, paddle.vision.ops.DeformConv2d
+- 新增paddle.subtract
+- 新增paddle.optimizer.lamb
+- 新增Tensor相关API，Tensor.cpu、Tensor.cuda(idx)、Tensor.pin_memory、Tensor.is_leaf、Tensor.clone
+
 
 #### 修复和完善API
-- 共计修改和完善155个API，具体参考[链接](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-2.0beta-Upgraded-API-List)和API文档
-- 修复随机数生成相关的API，包括：种子设置paddle.rand, randn, randint, randperm, dropout, Uniform, Normal等
-- 以下API对应的底层C++ OP进行了代码升级，理论上可以实现兼容，但不排除会出现少量不兼容的情况：linspace, concat, gather, gather_nd, split, squeeze, unsqueeze, clip, argmax, argmin, mean, norm, unique, cumsum, LeakyReLU, leaky_relu, hardshrink, embedding, margin_ranking_loss, grid_sample, affine_grid
-- 增加了relu6和Sigmoid激活函数的 oneDNN支持
+- paddle.multiply 去掉axis
+- paddle.pow 去掉 type promotion
+- paddle.add, paddle.subtract, paddle.multiply, paddle.divide, paddle.matmul, paddle.reshape, paddle.transpose, paddle.kron, paddle.trace, paddle.sum 支持complex64 和complex128 数据类型
+- 移除paddle.maximum, paddle.minimum的axis参数
+- multiplex支持动态图
+- CrossEntropyLoss增加soft_label and axis，修改形状，并提升性能
+- paddle.nn.functional.interpolate size参数支持Tensor格式输入
+- paddle.nn.functional.pad添加在constant模式时，对N和C维度的padding
+- paddle.optimizer.momentum支持恢复训练
+- 修复转换前对BatchNorm指定weight_param名字，再使用paddle.nn.SyncBatchNorm.convert_sync_batchnorm 转换成SyncBatchNorm时报错
+- paddle.to_tensor选择设备时，支持直接输入其他Tensor的place
+- 优化Tensor.detach的性能，与原Tensor共享内存，减少1次内存拷贝，并且不保留在原计算图中
+- 静态图模式下，新增支持通过paddle.optimizer.get_lr()获取学习率
+- 修复paddle.Embedding在GPU下使用超范围ID报错异常
 
-#### 多设备/分布式训练API
-- 动态图单机多卡训练
-	 - 新增paddle.distributed.spawn(func, args=(), nprocs=-1, join=True, daemon=False, **options)，用于启动动态图多卡训练。
-	 - 新增paddle.distributed.init_parallel_env()，用于初始化动态图多卡训练的环境。
-	 - 新增paddle.distributed.get_rank()，用于获取多卡训练时当前进程的rank。
-	 - 新增paddle.distributed.get_world_size()，用于获取多卡训练时参与训练的总进程数。
 
- - 分布式集合通信
-	 - 新增paddle.distributed.broadcast(tensor, src, group=0)，将指定进程上的tensor广播到所有进程。
-	 - 新增paddle.distributed.all_reduce(tensor, op=ReduceOp.SUM, group=0)，对所有进程的指定Tensor执行归约操作，结果返回给所有进程。
-	 - 新增paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=0)，对所有进程的指定Tensor执行归约操作，结果返回给指定进程。
-	 - 新增paddle.distributed.all_gather(tensor_list, tensor, group=0)，聚合所有进程的指定Tensor，结果返回给所有进程。
-	 - 新增paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=0)，将指定进程Tensor列表中的Tensor分发到所有进程。
-	 - 新增paddle.distributed.barrier(group=0)，同步所有进程。
+#### 移除API（包括别名）
+- 移除complex module下的api:  paddle.complex.matmul, paddle.complex.reshape, paddle.complex.transpose, paddle.complex.kron, paddle.complex.trace, paddle.complex.sum, paddle.complex.elementwise_add, paddle.complex.elementwise_sub, paddle.complex.elementwise_mul, paddle.complex.elementwise_div
+- 移除paddle.nn.functional下的sigmoid_cross_entropy_with_logits
+
+
 ### 高层API
+- 新增api paddle.callbacks.ReduceLROnPlateau
+- 新增api paddle.callbacks.LRScheduler
+- 新增api paddle.vision.datasets.FashionMnist
+- paddle.io.DataLoader中places参数变更为可选参数，当为默认值None时，自动选择paddle.CPUPlace()或paddle.CUDAPlace(0)，places参数将在后续版本删除
+- paddle.io.DataLoader支持通过设置batch_size=None来禁用DataLoader自动组batch功能
+- 新增api paddle.io.ComposeDataset 用于将多个数据集按字段拼接为一个数据集
+- 新增api paddle.io.ChainDataset 用于将多个数据集按sample整合为一个数据集
+- 新增api paddle.io.WeightedRadnomSampler 用于通过指定权重进行随机采样
+- 新增api paddle.vison.ops.yolo_loss和paddle.vision.ops.yolo_box
+- 新增api paddle.flops
+- 新增api paddle.callbacks.EarlyStopping
+- 更新api model.save，保存文件格式与底层保持一致
+- 修复api 修复动态图input dtype为非float32且Model初始化不提供inputs时，保存预测模型报错的bug
+- paddle.metric.Accuracy支持输入多维Tensor，支持rank为1的label和one-hot表示的label
 
-- 新增飞桨高层API，对模型开发过程中常见的组网、训练、评估、预测、存取等操作进行封装，实现低代码开发，MNIST手写数字识别任务对比命令式编程模式实现方式，高层API可减少80%执行类代码。
-
-- **数据管理**
-	- 统一数据加载使用方式
-		- 数据集定义，继承`paddle.io.Dataset`进行实现。
-		- 多进程数据加载，使用`paddle.io.DataLoader`。
-	- 新增`paddle.io.IterableDataset`用于流式数据集，并在`paddle.io.DataLoader`中支持对其进行并发加速。
-	- 新增`paddle.io.get_worker_info`用于`paddle.io.IterableDataset`中划分子进程数据。
-- **模型组网**
-	- 新增常见Loss接口`paddle.nn.loss.*`和Metric接口`paddle.metric.*`的封装
-	- 发布基于高层API实现的12个模型
-		- Transformer，Seq2seq，LAC，BMN，ResNet，YOLOv3，VGG，MobileNet，TSM，CycleGAN，Bert，OCR
-		- 发布于[PaddlePaddle/hapi](https://github.com/paddlePaddle/hapi)仓库
-- **模型执行**
-    - 新增Model类`paddle.Model`封装，封装模型开发过程中常用的基础功能，包括：
-		- 提供`Model.summary`接口，用于查看动态图组网的网络结构与参数数量。
-		- 提供`Model.prepare`接口，用于指定损失函数和优化算法。
-		- 提供`Model.fit`接口，实现训练和评估，可通过callback方式实现训练过程中执行自定义功能，比如模型存储等。
-		- 提供`Model.evaluate`接口，实现评估集上的预测和评估指标计算。
-		- 提供`Model.predict`接口，实现特定的测试数据推理预测。
-		- 提供`Model.train_batch`接口，实现单batch数据的训练。
-		- 提供`Model.eval_batch`接口，实现单batch数据的评估。
-		- 提供`Model.text_batch`接口，实现单batch数据的测试。
-		- 提供`Model.save`/`Model.load`接口，支持动态图训练模式存储推理模型。
-	- 新增Callback接口`paddle.callbacks.*`，用于模型执行接口，进行日志记录、Checkpoint模型存储等，用户可继承`paddle.callbacks.Callback`进行自定义。
-- **领域API**
-    - 新增视觉（CV）领域接口`paddle.vision`
-    	- 新增Dataset接口`paddle.vision.datasets.*`，对常用数据集进行封装，支持数据的随机访问
-		- 新增Resize, Normalize等24种常见的数据预处理接口`paddle.vision.transforms.*`
-		- 新增图像分类骨干网络和预训练参数
-			- `paddle.vision.models.lenet` 或 `paddle.vision.lenet`
-			- `paddle.vision.models.vgg` 或 `paddle.vision.vgg`
-			- `paddle.vision.models.resnet` 或 `paddle.vision.vgg`
-			- `paddle.vision.models.mobilenetv1` 或 `paddle.vision.mobilenetv1`
-			- `paddle.vision.models.mobilenetv2` 或 `paddle.vision.mobilenetv2`
-	- 新增自然语言处理（NLP）领域接口`paddle.text`
-		- 新增Dataset接口`paddle.text.datasets.*`，对常用数据集进行封装，支持数据的随机访问
-		- 新增领域组网接口`paddle.text.*`
-- **自动断点重启**
-   -  新增接口 `train_epoch_range`:可以在静态图上实现基于epoch粒度的 `checkpoint` 自动保存和自动加载功能，支持自动断点重启。
 
 ### 功能优化（含分布式）
+#### 动态图基础功能
+- 支持Tensor和Scalar在使用运算符运算时进行正确的类型提升
+- 修复了多个模型train/eval模型切换互相干扰的问题。动态图Layer.eval()与no_grad解耦，改动前调用Layer.eval()后Tracer不会自动记录反向，改动后调用Layer.eval()仍会自动记录反向，如果需要反向，可以使用paddle.no_grad
+- 支持通过索引或切片修改 Tensor数据
+- 增加 inplace 反向检测模块，检测是否前向inplace 操作会影响梯度计算的正确性
+- 新增Tensor.backward()自动求导时，梯度会累加在之前的梯度上，可以实现变相扩大“batch_size”
+- 支持了 SE-ResNext oneDNN 动态图训练
+
 
 #### 动态图转静态图
 
-- **ProgramTranslator新增语法支持**
+**新增语法**
 
-	- 新增对return语法动转静支持，使得动转静时可以在if-elif-else或者循环条件中提前return，也能return不同类型的tensor或None。
+- 增加在动转静循环中使用isinstance语法的支持
+- 添加对赋值shape给tuple的动转静语法支持，如a, b, c, d = tensor.shape
+- python的 and/or 语句的左右操作数的执行是有先后顺序的，若左操作数的结果能够确定逻辑值，将不执行右操作数。过去动转静图中的logical_and/logical_or对这种情况处理有问题。增加了这种支持。
+- 增加支持了函数 signature中含有**kwargs的情况
+- 支持使用 jit.not_to_static 装饰函数，在动转静过程中，不转化该函数
+- 支持python字典语法 dict.pop()
 
-	- 新增对print语法动转静支持，使得print(tensor)也能在动转静中打印出tensor。
+**bug修复**
 
-	- 新增对for遍历Tensor，for enumerate遍历Tensor，for遍历TensorList，for enumerate遍历TensorList几种语法的动转静支持，使得循环处理Tensor的相关操作在动转静中能够灵活使用。
-
-	- 新增对assert语法动转静支持，使得assert tensor也能在动转静中保证tensor为True（bool类型）或者非0（其他数据类型）。
-
-	- 新增对数据类型cast的转写支持，使得float(tensor), int(tensor) 等类似的动态图类型转化语句也能在静态图中进行类型转化。
-
-- **ProgramTranslator易用性优化功能**
-
-	- 将动转静的返回类型从callable函数改为class StaticLayer，这个class可以调用.code，.main_program等接口更轻松获取转化后的静态图信息。
-
-	- 增加 set_verbosity 和 set_code_level 接口，可以让用户设置log级别来查看动转静运行过程的log或者查看中间状态转化的代码。
-
-	- 新增InputSpec，可以指定动转静时输入Tensor变量形状和数据类型。
-
-	- 优化了动转静运行下如果出错显示的报错信息，使动转静后静态图运行错误的代码也能汇报到原动态图错误的代码行，并且删除python栈中动转静部分报错，使报错信息更多与用户代码相关。
-
-	- 动转静支持用 pdb.set_trace() 进行断点调试。
-
-- **优化部署模型存储载入接口**
-
-	- 新增 paddle.jit.save 接口用于动转静模型的保存，使接口更加易用，删除旧接口ProgramTranslator.save_inference_model 。
-	- 新增 paddle.jit.load 接口用于载入静态图格式存储的预测模型，包括paddle.jit.save和paddle.io.save_inference_model保存的模型，模型载入后可在动态图下用于模型推理或者模型训练调优。
+- 修复动转静存储lstm接口时一个表示drop_state的变量没有初始化导致模型存储失败的问题
+- 修复嵌套循环在变量分析上的问题
+- 修复return在一些特殊情况的问题
+- 修复if-else中处理列表生成式及变量分析上的问题
+- 修复迭代变量在一些特殊情况的问题
+- 修复transpose API 在动态图和静态图行为不一致问题，使之支持动转静
+- 修复concat API 在动态图和静态图行为不一致问题，使之支持动转静
+- 优化部分动转静报错信息，使报错位置更准确
+- 修复convert_call在特殊情况下会重复递归调用问题
+- 修复由于2.0 API对out.dtype判断不同导致的动转静问题
+- 修复了x.shape == y.shape在动态图是判断list相等，返回True/False，但静态图下会被重载成elementwise的问题，这种转为静态图后对elementwise结果进行reduce。
+- 修复了param_guard覆盖不到hook的问题。
+- 修复了init运行动态图一些参数变量在静态图因为类型不是静态图变量不能赋值的问题
+- 修复了用户在\__init__函数中定义的非参数类型变量值无法正确修改和更新的问题
+- 修复了动转静过程中错误转化第三方库logging的问题
+- 修复了for-enumerate语法AST转写有误的问题
+- 修复了部分warning信息循环显示多次的问题
 
 #### 混合精度训练
-- 增加了动态图混合精度的支持，ResNet-50模型在V100上使用混合精度相比于fp32训练加速比为2.6。
+- 支持更为激进的FP16训练模式（即纯FP16训练）。为保证模型的收敛性在Momentum优化器中新增`multi_precision`和`rescale_grad`属性，`multi_precision`主要指示优化器需要维护一份master weights
+- 使用纯FP16训练，ResNet50模型在配有16GB显存的V100上单卡训练性能可达1400+ samples / sec
 
-#### 量化训练
+#### 模型量化
+- 动态图量化支持skip指定Layer
+- 动态图量化支持2.0 API Conv 以及Linear
 
-- 新增`ImperativeQuantAware`类，提供动态图量化训练功能，目前支持对Conv2D、Linear等层的量化，支持的模型类型包括MobileNetV1/MobileNetV2/ResNet50等。
-- 模型经动态图量化训练后，使用`ImperativeQuantAware.save_quantized_model`接口保存的量化模型可利用Paddle-Lite推理库进行预测部署。
-- 静态图量化支持Conv2d_tranpose量化，支持Linear使用per-channel形式量化。
+#### 分布式训练优化
+
+- 支持使用`paddle.distibuted.spawn`接口启动`all_gather`等分布式低阶API
+- 支持heterbox异构训练
+- 流水线并行支持Executor.run接口，提升易用性
+- Launch接口升级，支持指定单节点的进程数
+- Sharding支持百亿参数模型多卡训练
+
+
+#### 模型保存与载入
+
+- 支持有多个方法声明由`paddle.jit.to_static`转写的Layer在使用`paddle.jit.save`存储后，仍然能够通过`paddle.jit.load`载入，并且由`paddle.jit.to_static`转写的多个方法仍然能够使用
+- 支持由`paddle.jit.load`载入的Layer在fine-tune或者作为其他Layer的子Layer使用之后，仍然能够通过`paddle.jit.save`正确存储
+- 拓展`paddle.jit.save`支持存储`paddle.DataParallel`模型
+- 优化`paddle.static.load_program_state`接口使用体验，在不指定载入`var_list`的使用场景中，载入目录存在干扰文件时仅警告而不报错
+- 支持`paddle.jit.save`处理dict类型的InputSpec
+- 支持`paddle.onnx.export`将动态图模型导出为ONNX文件格式
+
+
 #### 性能优化（含分布式）
+- 提升RNN类OP在CPU上的性能（LSTM，GRU，SimpleRNN），对比2.0-rc版本，LSTM、GRU、SimpleRNN前向性能与后向性能均有显著提升
+- 优化FastThreadedSSAGraphExecutor调度，修复通信同步场景下，通信计算不重叠的情况，4机32卡resnet50提升约0.3%
+- 优化paddle.fleet amp分布式性能，修复最后一个通信和计算不重叠的情况，fp16 4机32卡性能提升约0.5%
+- 优化分布式通信组件Communicator性能。GEO-400模式下，W2V模型吞吐率、Simnet-Bow模型性能均有显著提升。Async模式下，相较于飞桨框架1.8按本，W2V模型吞吐率提升11%，CTR-DNN模型性能提升14%
+- 优化参数服务器模式下Worker为GPU设备时的性能，降低Embedding查表的拷贝耗时，在CTR-DNN模型中，训练吞吐率有显著提升
+- 分布式GPU动态图实现计算和通信overlap，并支持用户细粒度配置梯度fuse的group大小等选项。在ResNet152、Bert两个模型上，多节点性能提升在5%以上。在ResNet50也有3%以上的提升
+- 提升cumsum在GPU上的性能。
+- 提高了Resnet50 oneDNN 动态图训练的性能。目前Resnet50 oneDNN drgraph训练比CPU训练快 6.4 倍
+- 新增GRU和SimpleRNN的cudnn支持
 
-- 简化动态图模式下DataLoader底层实现逻辑，降低读取线程开销，进一步提升数据读取效率，提升模型整体训练速度。经测试MobileNetV1在V100单卡、BatchSize=128的场景下整体训练速度提升34%。
-- 动态图组网API升级和性能优化，大量动态图API将直接调用自动生成的Pybind接口，提升性能。
-
-#### 动态图基础功能
-
-- 支持多卡训练时配置Embedding等API使用稀疏参数梯度更新的功能。@威行
-- 增加Tensor类成员函数，包括Tensor().abs()、Tensor().add()、Tensor().cos()等120余个。
-- 增加Layer的dir()接口，可以方便地查看Layer中属性和函数。
-- 增加optimizer.set_lr()接口，用户可以在动态图模式下中灵活调整学习率。
-- 增加全局参数初始化方式的接口set_global_initializer，可定义全局的参数初始化方法。
-- 增加了对动态训练和推理的oneDNN（原MKL-DNN）支持。Resent50 oneDNN动态训练可以使用（Minist数据集）
-  - Added oneDNN support for dynamic training and inference. Resent50 oneDNN dynamic training with minist dataset is enabled.
 
 #### 调试分析
 
-- 将框架内仅100处使用LOG(FATAL)抛出异常的写法统一改为使用PADDLE_THROW，优化由于框架不支持某种行为而导致的报错格式与内容。
-- 完善框架内Signal Handler实现，优化执行遇到系统Signal错误时的报错格式与内容。
-- 优化框架报错栈格式，将编译时python报错栈移至原生报错栈下方，提升报错信息阅读体验。
-- 累计进一步完善约1300余条框架内检查报错的错误类型与提示文案，提升框架整体调试易用性。
-- 动态图报错信息增强，动态图下Pybind层的报错信息进行系统性增强，提升用户体验。
+- 优化Paddle Python端报错异常类型与Python原生报错类型对齐
+- 默认隐藏C++报错栈，优化隐藏C++栈之后的报错格式，去掉分界标志`Error Message Summary`，与Python原生报错格式对齐
+- 优化部分static模块下API在非静态图模式下使用报错提示，包括static.append_backward, static.gradients, static.scope_guard, static.Print, static.nn.embedding, static.nn.data_norm, static.nn.multi_box_head, static.nn.nce, static.nn.py_func共9个API
+- 优化了动态图模型下传入Tensor为None时的报错信息
+- 动态图print tensor的格式进一步优化
+
+
+### 编译安装
+
+#### 新增支持
+- （experimental）发布支持cuda11的安装包
+- 将cuda10.1及以上的Paddle镜像以及CI系统镜像中的NCCL版本到2.7.8
+- 发布支持xpu的安装包
+- 发布支持jetpack的安装包，以及支持nv_jetson的C++预测库。
+
+#### 体验优化
+- 修复联编策略，单独发布包含tensorrt的gpu包，避免用户在安装其他GPU版本的包出现没有tensorrt的报错
+- 删除安装依赖包：scipy、rarfile、prettytable、pathlib
+- 安装文档优化
+
 
 ### Bug修复
 
-- 修复动态图Layer使用add_parameter接口可能意外出现AttributeError的问题，增强输入检查。
-- 修复无法正常打印int_8与uint_8类型的Tensor的问题，使数据可以正常输出。
+- 修复多卡训练时0号GPU卡显存占用多于其他卡的Bug
+- 修复了tile op计算时shape推导错误的问题
+- 修复了使用paddle时出现的大量invalid escape sequence的warning信息
+- 修复了paddle.full设置INF、NAN、NINF等时的bug
+- 修复paddle.fleet多nccl comm设置不生效的问题，添加同步模式下多nccl comm通信不重叠的警告
+- 修复paddle.framework.seed在TruncatedNormal初始化不符合预期的问题
+- 修复AvgPool 相关 API动转静exclusive参数行为不一致问题；修复MaxPool 相关 API ceil_mode传参问题
+- 修复paddle.topk在GPU下结果不正确的bug
+- 修复 fluid.layers.nn.gather 动态图API，缺少了 overwrite 选项 bug
+- 修复Windows下终端不识别CUDA_VISIBLE_DEVICES为空字符的bug，通过设置空字符串可以使框架以CPU模式执行
+- 修复当LinearLrWarmup中递归包含Learning Rate Scheduler时，optimizer.state_dict/set_dict时的无法递归保存加载的Bug
+- 修复了ptb lm模型单机训练性能下降的问题
+- 修复了softmax_with_cross_entropy使用ignore_index时梯度计算的bug
+- 修复了AdamW第一次执行后再次获取要进行decay的参数为空的bug
 
-#### 依赖库升级
-- 升级oneDNN（原MKL-DNN）从1.3至1.5版本
-  - Upgrade oneDNN from 1.3->1.5
+
 ## 推理
 
 ###  Paddle Inference
 
-#### API
-- 全面升级推理C++ API，推荐使用新版API。原API暂时保留，但使用时会报 warning，计划未来会删除；新版API主要是从规范命名、简化使用方法角度做的升级，重要变化包括：
-	- C++ 接口新增 `paddle_infer` 命名空间，包含推理相关接口；
-	- `ZeroCopyTensor` 更名为 `Tensor`，作为推理接口默认输入输出表示方式；
-	- 简化 `CreatePaddlePredictor` 为 `CreatePredictor`，只保留 对`AnalysisConfig` 的支持，不再支持其他多种Config；
-	- 新增服务相关的工具类，比如 `PredictorPool`，便于创建多个predictor 时使用。
 
 #### 功能升级
-- 升级算子版本兼容信息注册表以支持更精确的Op版本信息，提升推理兼容性。
-- 新增对TRT 7.1版本的适配支持。
-- Paddle-TensorRT增强对 PaddleSlim 量化模型的支持，涵盖CV上检测，分类，分割等多个任务。
-- Python端推理新增对用户自定义OP支持。
-- CPU端增加了`elementwise_add` 和`elementwise_mul` INT8 oneDNN（原MKL-DNN）内核支持。
-- 提升了CPU端测试量化模型的易用性，支持同时对比测试原始模型和量化模型。
-- 新增对Jetson Nx硬件的适配支持。
+- Paddle 在 2.0 中新增或升级了部分算子。从本版本起，对前向算子版本规则进行定义与兼容约束。通过框架间算子版本的对齐，确保不同框架中同一算子版本的定义和行为一致，从而增强框架整体的健壮性
+- 新增TryShrinkMemory接口，通过释放临时tensor的方式减少应用显/内存占用，demo示例可参考[Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/test/shrink_memory)
+- Paddle-TRT支持clip op，支持分类模型GhostNet在Paddle-TRT下运行
+- Paddle-TRT int8预测支持含有channelwise量化的mul op的模型，支持PaddleOCR检测和识别的PaddleSlim量化模型在Paddle-TRT int8下运行
+- `load_inference_model` 和 `save_inference_model` 两个API迁移到 `paddle.static` 下，提升了易用性，兼容旧接口。
+- 新增 `serialize_program`, `deserialize_program`, `serialize_persistables`, `deserialize_persistables`, `save_to_file`,   `load_from_file` 六个API，用来满足用户执行序列化/反序列化 program，序列化/反序列化 params，以及将模型/参数保存到文件，或从文件中加载模型/参数的需求。
+- 支持部分模型的BF16预测。目前支持resnet50，googlenet，mobilenetv1和mobilenetv2模型的BF16预测
+- 添加了一些oneDNN 算子的版本兼容性支持
+
 #### 性能优化
-- 新增 conv + affine_op pass，在6248机器上，MASK-RCNN fp32单线程性能提高了26％。
-  - Added conv + affine_op pass, MASK-RCNN single thread performance is improved by 26% (1.26x) on machine 6248
-- 新增fc + gru pass和oneDNN（原MKL-DNN） GRU fp32内核，使得GRU fp32模型4线程推断速度在机器Intel Xeon 6248上提高 20％。
-  - Added fc + gru fuse pass and enabled oneDNN gru fp32 kernel, speeding up GRU fp32 model inference on 4 CPU threads by 20% (1.2x) on machine Intel Xeon 6248
-- 增加了对许多Op的oneDNN inplace支持（人脸feature fp32模型提速2％）
-  - Added support for oneDNN inplace support for many operators (speedup 2% for Feature model)
-- 优化的oneDNN LRN op，使得GoogleNet fp32模型提速1％
- - Optimized LRN operator (speedup 1% for GoogleNet)
-- 升级了量化模型的转换和优化 @intel
-  -  Improved the transformation and optimization of quantized model
-- 优化了CUDA 的ArgMin, ArgMax OP，使得该OP的二进制大小从60M下降至1.3M
+- ERNIE模型在开启TenorRT时增加变长输入的支持，带来性能提升147%。在软件版本cuda10.1、cudnn 7.6、tensorrt 6.0、[OSS 7.2.1](https://github.com/NVIDIA/TensorRT/tree/7.2.1)，模型ernie-base-2.0，数据集QNLI，输入BatchSize = 32时，Nvidia Telsa T4上的性能从905 sentences/s提升到2237 sentences/s。示例代码：[Paddle-Inference-Demo/c++](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++)
+- 提高了oneDNN INT8 GRU性能。GRU INT8 模型的预测速度是原Paddle NativeConfig float32 模型的 1.65倍（线程= 1，batch_size = 50）
+- 添加了oneDNN batchnorem + activation的fuse支持，pvanet_ocr模型性能因此提高了2.8％
+
 
 #### Bug修复
+- 修复含有avg pooling或global pooling的模型在jetson设备上出现计算结果错误、报错跳出或hang住的问题
+- 修复使用TensorRT动态shape推理时，TensorRT子图输出Tensor的shape结尾是x1时会被错误的删除的问题
+- 修复当使用TensorRT推理时，config.pass_builder()->DeletePass()不生效的问题
+- 解决了某些模型的性能取决于 matmul 算子的 weights 数值的问题
+- 修复了当CPU oneDNN加载多个模型预测时性能变慢的问题
 
-- 修复CPU下的mask-rcnn推断错误的问题
-  - Fix mask-rcnn inference error under CPU inference
-- 修复CPU多线程量化模型和推断过程中出现的错误
-  - Fix the CPU multithread inference on oneDNN quantized INT8 models
+## 模型升级
+
+### PaddleDetection
+- 升级动态图模型：
+  - Faster RCNN, Faster FPN, Mask RCNN, Mask FPN, Cascade RCNN, Cascade Mask, YOLOv3模型精度打平静态图
+    - 支持动转静功能，并打通Paddle Inference，精度速度打平静态图
+- 发布实时实例分割模型SOLOv2，相较竞品精度提升2.4个点，预测速度提升31.2%， 训练速度为竞品2.4倍
+- 新增Android移动端检测demo，包括SSD、YOLO系列模型
+- 新增PACT新量化策略，YOLOv3-Mobilenetv3在COCO数据集上比普通量化相比提升0.7%。
+
+### PaddleSlim
+
+- 动态图压缩功能支持
+  - 新增动态图剪裁、量化训练功能
+  - 剪裁新增通道数对齐功能，使产出模型更容易被预测库加速
+  - PACT量化训练方法改为内置方法，方便用户直接调用
+- 新增OFA模型压缩技术，TinyERNIE经压缩后加速40%，精度无损
+
+### PaddleSeg
+
+- 全新发布2.0-rc版本，全面升级至动态图，支持15+分割模型，4个骨干网络，3个数据集，4种Loss：
+  - 分割模型：ANN, BiSeNetV2, DANet, DeeplabV3, DeeplabV3+, FCN, FastSCNN, Gated-scnn, GCNet, HarDNet, OCRNet, PSPNet, UNet, UNet++, U^2Net, Attention UNet
+  - 骨干网络：ResNet, HRNet, MobileNetV3, Xception
+  - 数据集：Cityscapes, ADE20K, Pascal VOC
+  - Loss：CrossEntropy Loss、BootstrappedCrossEntropy Loss、Dice Loss、BCE Loss
+- 提供基于Cityscapes和Pascal Voc数据集的高质量预训练模型 40+
+- 支持多卡GPU并行评估，提供了高效的指标计算功能。支持多尺度评估/翻转评估/滑动窗口评估等多种评估方式。
+
+### PaddleClas
+
+- 全新发布2.0-rc1，全面升级至动态图，支持23个系列分类网络结构，135个图像分类预训练模型。其中包含14个实用的SSLD蒸馏模型，效果普遍比基准模型提升3%以上，新增ResNeSt、RegNet和GhostNet三个系列模型。
+- 基于动态图，提供混合精度训练方式和基于DALI的训练方式。
+- 基于动态图，提供离线预测部署、服务化部署以及端侧部署三种部署方式。
+
+### PaddleOCR
+
+- 全新发布2.0-rc1，PP-OCR系列模型升级至动态图。提供8.1M超轻量中英文OCR模型，通用中英文OCR模型以及效果更优的多种语言识别模型（纯英文数字、法、德、日、韩），并支持离线预测部署和服务化部署两种部署方式。
+- 发布Style-Text通用文本数据合成工具。
+- 发布PPOCRLabel文本数据标注工具。
+
+### PaddleRec
+
+- 发布模型：gru4rec, deepfm, mmoe, dnn, LR 支持动态图
+
+### PaddleGAN
+
+- 发布模型：Pixel2Pixel, CyclGAN, PSGAN, UGATIT, ESRGAN, CGAN, DCGAN
+- 提供风格迁移，妆容迁移，上色，超分，人物、场景动漫化等预训练模型10个
+
+### PaddleNLP
+
+- 发布2.0-beta版本，全面支持动态图模式，提供PaddleNLP核心库，与高阶API深入融合，支持pip安装，为开发者提供飞桨2.0文本领域的最佳实践。
+- 新增文本图学习模型ERNIESage，生成式预训练模型ERNIE-Gen，开放域对话生成模型PLATO-2，语义匹配模型SentenceTransformer，时间序列预估模型TCN等。
+- 预训练语言模型进一步丰富，包括ERNIE,  BERT,  RoBERTa, ELECTRA等共计22个预训练模型，其中包含11个中文预训练模型。
+- 新增Perplexity, BLEU, Rouge-L等8种常用的文本任务评估指标，适配飞桨2.0 Metrics API体系，提升易用性。
+- 新增文本分类、序列标注、机器翻译、阅读理解等共25个数据集，适配飞桨2.0 Dataset API体系，一键快速加载。
+- 新增Embedding API功能，包含38个中文词向量，支持快速加载和词粒度语义距离计算。
+
+### Parakeet
+
+- 发布 2.0-alpha 版本，提供 Parakeet 核心库，完善了中文文档，支持 pip 安装。
+- 语音合成模型框架全新升级，统一文本前端的接口使用，模型全面升级为 Paddle 2.0 API，包括TransformerTTS、Waveflow、Wavenet 模型，新增 Tacotron2 模型。
+- 提供了更多可复用的组网模块，方便灵活搭建模型。优化数据处理及加载流程，提升训练速度。
+- 新增 experiment 模块，标准化实验流程，方便实验管理和二次开发，对已有模型提供的实验样例代码。
+
+## 工具组件
+
+### PaddleHub
+- 发布 2.0-rc版本，全面迁移动态图编程模式，模型开发调试更加方便，finetune接口更加灵活易用。
+- 视觉类任务迁移学习能力全面升级，支持图像分类、图像着色、风格迁移等多种任务。
+- BERT、ERNIE、RoBERTa等Transformer类模型升级至动态图，支持文本分类的Fine-Tune能力。
+- 优化服务化部署Serving能力，支持多卡预测、自动负载均衡，性能大幅度提升。
+- 新增自动数据增强能力Auto Augment，能高效地搜索适合数据集的数据增强策略组合。
+
+### X2Paddle
+- 发布 1.0.0-rc0版本，全面支持PaddlePaddle动态图API。
+- 新增PyTorch模型转换，支持Tracing和Scripting两种方式进行转换。
+- 新增Caffe/ONNX/Tensorflow到Paddle2.0 动态图的转换支持。
+- 新增Optimizer模块，主要包括op融合、op消除功能，提升转换后模型代码的可读性以及模型的预测性能。
+
+## [昆仑硬件](https://cloud.baidu.com/product/kunlun.html)
+
+###  模型适配昆仑硬件
+- Resnet50, mobilenetv3, deeplabv3, bertbase, DQN 静态图模型适配昆仑硬件

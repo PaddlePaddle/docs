@@ -45,7 +45,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. parsed-literal::
 
-    '2.0.0-beta0'
+    '2.0.0-rc1'
 
 
 
@@ -80,19 +80,20 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. parsed-literal::
 
-    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
-    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'MovieReviews', 'UCIHousing', 'WMT14', 'WMT16']
+    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
+    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 
 这里我们是加载一个手写数字识别的数据集，用\ ``mode``\ 来标识是训练数据还是测试数据集。数据集接口会自动从远端下载数据集到本机缓存目录\ ``~/.cache/paddle/dataset``\ 。
 
 .. code:: ipython3
 
+    from paddle.vision.transforms import ToTensor
     # 训练数据集
-    train_dataset = vision.datasets.MNIST(mode='train')
+    train_dataset = vision.datasets.MNIST(mode='train', transform=ToTensor())
     
     # 验证数据集
-    val_dataset = vision.datasets.MNIST(mode='test')
+    val_dataset = vision.datasets.MNIST(mode='test', transform=ToTensor())
 
 3.2 自定义数据集
 ~~~~~~~~~~~~~~~~
@@ -145,15 +146,15 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
             return len(self.data)
     
     # 测试定义的数据集
-    train_dataset = MyDataset(mode='train')
-    val_dataset = MyDataset(mode='test')
+    train_dataset_2 = MyDataset(mode='train')
+    val_dataset_2 = MyDataset(mode='test')
     
     print('=============train dataset=============')
-    for data, label in train_dataset:
+    for data, label in train_dataset_2:
         print(data, label)
     
     print('=============evaluation dataset=============')
-    for data, label in val_dataset:
+    for data, label in val_dataset_2:
         print(data, label)
 
 
@@ -174,7 +175,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 3.3 数据增强
 ~~~~~~~~~~~~
 
-训练过程中有时会遇到过拟合的问题，其中一个解决方法就是对训练数据做增强，对数据进行处理得到不同的图像，从而泛化数据集。数据增强API是定义在领域目录的transofrms下，这里我们介绍两种使用方式，一种是基于框架自带数据集，一种是基于自己定义的数据集。
+训练过程中有时会遇到过拟合的问题，其中一个解决方法就是对训练数据做增强，对数据进行处理得到不同的图像，从而泛化数据集。数据增强API是定义在领域目录的transforms下，这里我们介绍两种使用方式，一种是基于框架自带数据集，一种是基于自己定义的数据集。
 
 3.3.1 框架自带数据集
 ^^^^^^^^^^^^^^^^^^^^
@@ -188,7 +189,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     transform = Compose([ColorJitter(), Resize(size=100)])
     
     # 通过transform参数传递定义好的数据增项方法即可完成对自带数据集的应用
-    train_dataset = vision.datasets.MNIST(mode='train', transform=transform)
+    train_dataset_3 = vision.datasets.MNIST(mode='train', transform=transform)
 
 3.3.2 自定义数据集
 ^^^^^^^^^^^^^^^^^^
@@ -284,7 +285,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     
             return y
     
-    mnist = Mnist()
+    mnist_2 = Mnist()
 
 4.3 模型封装
 ~~~~~~~~~~~~
@@ -295,18 +296,25 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. code:: ipython3
 
-    # 场景1：动态图模式
-    
-    # 启动动态图训练模式
-    paddle.disable_static()
     # 使用GPU训练
-    paddle.set_device('gpu')
+    # paddle.set_device('gpu')
+    
     # 模型封装
-    model = paddle.Model(mnist)
     
+    ## 场景1：动态图模式
+    ## 1.1 为模型预测部署场景进行模型训练
+    ## 需要添加input和label数据描述，否则会导致使用model.save(training=False)保存的预测模型在使用时出错
+    inputs = paddle.static.InputSpec([-1, 1, 28, 28], dtype='float32', name='input')
+    label = paddle.static.InputSpec([-1, 1], dtype='int8', name='label')
+    model = paddle.Model(mnist, inputs, label)
     
-    # 场景2：静态图模式
+    ## 1.2 面向实验而进行的模型训练
+    ## 可以不传递input和label信息
+    # model = paddle.Model(mnist)
     
+    ## 场景2：静态图模式
+    # paddle.enable_static()
+    # paddle.set_device('gpu')
     # input = paddle.static.InputSpec([None, 1, 28, 28], dtype='float32')
     # label = paddle.static.InputSpec([None, 1], dtype='int8')
     # model = paddle.Model(mnist, input, label)
@@ -320,11 +328,75 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
     model.summary((1, 28, 28))
 
+
+.. parsed-literal::
+
+    ---------------------------------------------------------------------------
+     Layer (type)       Input Shape          Output Shape         Param #    
+    ===========================================================================
+       Flatten-1       [[1, 28, 28]]           [1, 784]              0       
+       Linear-1          [[1, 784]]            [1, 512]           401,920    
+        ReLU-1           [[1, 512]]            [1, 512]              0       
+       Dropout-1         [[1, 512]]            [1, 512]              0       
+       Linear-2          [[1, 512]]            [1, 10]             5,130     
+    ===========================================================================
+    Total params: 407,050
+    Trainable params: 407,050
+    Non-trainable params: 0
+    ---------------------------------------------------------------------------
+    Input size (MB): 0.00
+    Forward/backward pass size (MB): 0.02
+    Params size (MB): 1.55
+    Estimated Total Size (MB): 1.57
+    ---------------------------------------------------------------------------
+    
+
+
+
+
+.. parsed-literal::
+
+    {'total_params': 407050, 'trainable_params': 407050}
+
+
+
 另外，summary接口有两种使用方式，下面我们通过两个示例来做展示，除了\ ``Model.summary``\ 这种配套\ ``paddle.Model``\ 封装使用的接口外，还有一套配合没有经过\ ``paddle.Model``\ 封装的方式来使用。可以直接将实例化好的Layer子类放到\ ``paddle.summary``\ 接口中进行可视化呈现。
 
 .. code:: ipython3
 
     paddle.summary(mnist, (1, 28, 28))
+
+
+.. parsed-literal::
+
+    ---------------------------------------------------------------------------
+     Layer (type)       Input Shape          Output Shape         Param #    
+    ===========================================================================
+       Flatten-1       [[1, 28, 28]]           [1, 784]              0       
+       Linear-1          [[1, 784]]            [1, 512]           401,920    
+        ReLU-1           [[1, 512]]            [1, 512]              0       
+       Dropout-1         [[1, 512]]            [1, 512]              0       
+       Linear-2          [[1, 512]]            [1, 10]             5,130     
+    ===========================================================================
+    Total params: 407,050
+    Trainable params: 407,050
+    Non-trainable params: 0
+    ---------------------------------------------------------------------------
+    Input size (MB): 0.00
+    Forward/backward pass size (MB): 0.02
+    Params size (MB): 1.55
+    Estimated Total Size (MB): 1.57
+    ---------------------------------------------------------------------------
+    
+
+
+
+
+.. parsed-literal::
+
+    {'total_params': 407050, 'trainable_params': 407050}
+
+
 
 这里面有一个注意的点，有的用户可能会疑惑为什么要传递\ ``(1, 28, 28)``\ 这个input_size参数，因为在动态图中，网络定义阶段是还没有得到输入数据的形状信息，我们想要做网络结构的呈现就无从下手，那么我们通过告知接口网络结构的输入数据形状，这样网络可以通过逐层的计算推导得到完整的网络结构信息进行呈现。如果是动态图运行模式，那么就不需要给summary接口传递输入数据形状这个值了，因为在Model封装的时候我们已经定义好了InputSpec，其中包含了输入数据的形状格式。
 
@@ -348,9 +420,36 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
     # 启动模型训练，指定训练数据集，设置训练轮次，设置每次数据集计算的批次大小，设置日志格式
     model.fit(train_dataset, 
-              epochs=10, 
-              batch_size=32,
+              epochs=5, 
+              batch_size=64,
               verbose=1)
+
+
+.. parsed-literal::
+
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    Epoch 1/5
+    step 938/938 [==============================] - loss: 0.1019 - acc: 0.9488 - 18ms/step          
+    Epoch 2/5
+    step 938/938 [==============================] - loss: 0.0193 - acc: 0.9757 - 18ms/step          
+    Epoch 3/5
+    step 938/938 [==============================] - loss: 0.0277 - acc: 0.9810 - 19ms/step          
+    Epoch 4/5
+    step 938/938 [==============================] - loss: 0.0045 - acc: 0.9849 - 18ms/step          
+    Epoch 5/5
+    step 938/938 [==============================] - loss: 0.0816 - acc: 0.9877 - 18ms/step          
+
+
+注：
+^^^^
+
+``fit()``\ 的第一个参数不仅可以传递数据集\ ``paddle.io.Dataset``\ ，还可以传递DataLoader，如果想要实现某个自定义的数据集抽样等逻辑，可以在fit外自定义DataLoader，然后传递给fit函数。
+
+.. code:: python
+
+   train_dataloader = paddle.io.DataLoader(train_dataset)
+   ...
+   model.fit(train_dataloader, ...)
 
 5.1 单机单卡
 ~~~~~~~~~~~~
@@ -359,11 +458,8 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. code:: ipython3
 
-    # 启动动态图训练模式
-    paddle.disable_static()
-    
     # 使用GPU训练
-    paddle.set_device('gpu')
+    # paddle.set_device('gpu')
     
     # 构建模型训练用的Model，告知需要训练哪个模型
     model = paddle.Model(mnist)
@@ -375,19 +471,36 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     
     # 启动模型训练，指定训练数据集，设置训练轮次，设置每次数据集计算的批次大小，设置日志格式
     model.fit(train_dataset, 
-              epochs=10, 
-              batch_size=32,
+              epochs=5, 
+              batch_size=64,
               verbose=1)
+
+
+.. parsed-literal::
+
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    Epoch 1/5
+    step 938/938 [==============================] - loss: 0.0305 - acc: 0.9880 - 19ms/step          
+    Epoch 2/5
+    step 938/938 [==============================] - loss: 0.0021 - acc: 0.9918 - 18ms/step          
+    Epoch 3/5
+    step 938/938 [==============================] - loss: 0.0022 - acc: 0.9926 - 18ms/step          
+    Epoch 4/5
+    step 938/938 [==============================] - loss: 0.0124 - acc: 0.9932 - 18ms/step          
+    Epoch 5/5
+    step 938/938 [==============================] - loss: 0.0434 - acc: 0.9942 - 18ms/step          
+
 
 5.2 单机多卡
 ~~~~~~~~~~~~
 
 对于高层API来实现单机多卡非常简单，整个训练代码和单机单卡没有差异。直接使用\ ``paddle.distributed.launch``\ 启动单机单卡的程序即可。
 
-.. code:: ipython3
+.. code:: bash
 
-    # train.py里面包含的就是单机单卡代码
-    python -m paddle.distributed.launch train.py
+   $ python -m paddle.distributed.launch train.py
+
+train.py里面包含的就是单机单卡代码
 
 5.3 自定义Loss
 ~~~~~~~~~~~~~~
@@ -640,6 +753,13 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
     result = model.evaluate(val_dataset, verbose=1)
 
+
+.. parsed-literal::
+
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step  5150/10000 [==============>...............] - loss: 3.5763e-07 - acc: 0.9742 - ETA: 6s - 1ms/step
+
 7. 模型预测
 -----------
 
@@ -656,6 +776,14 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
 .. code:: ipython3
 
     pred_result = model.predict(val_dataset)
+
+
+.. parsed-literal::
+
+    Predict begin...
+    step 10000/10000 [==============================] - 4ms/step          
+    Predict samples: 10000
+
 
 7.1 使用多卡进行预测
 ~~~~~~~~~~~~~~~~~~~~
@@ -678,10 +806,33 @@ infer.py里面就是包含model.predict的代码程序。
 
 模型训练和验证达到我们的预期后，可以使用\ ``save``\ 接口来将我们的模型保存下来，用于后续模型的Fine-tuning（接口参数training=True）或推理部署（接口参数training=False）。
 
+需要注意的是，在动态图模式训练时保存推理模型的参数文件和模型文件，需要在forward成员函数上添加@paddle.jit.to_static装饰器，参考下面的例子：
+
+.. code:: python
+
+   class Mnist(paddle.nn.Layer):
+       def __init__(self):
+           super(Mnist, self).__init__()
+
+           self.flatten = paddle.nn.Flatten()
+           self.linear_1 = paddle.nn.Linear(784, 512)
+           self.linear_2 = paddle.nn.Linear(512, 10)
+           self.relu = paddle.nn.ReLU()
+           self.dropout = paddle.nn.Dropout(0.2)
+
+       @paddle.jit.to_static
+       def forward(self, inputs):
+           y = self.flatten(inputs)
+           y = self.linear_1(y)
+           y = self.relu(y)
+           y = self.dropout(y)
+           y = self.linear_2(y)
+
+           return y
+
 .. code:: ipython3
 
-    # 保存用于推理部署的模型（training=False）
-    model.save('~/model/mnist', training=False)
+    model.save('~/model/mnist')
 
 8.2 预测部署
 ~~~~~~~~~~~~

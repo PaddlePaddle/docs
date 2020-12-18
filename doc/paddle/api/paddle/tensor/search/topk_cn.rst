@@ -27,37 +27,23 @@ tuple（Tensor）, 返回topk的结果和结果的索引信息。结果的数据
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
 
-    paddle.disable_static()
+    data_1 = paddle.to_tensor([1, 4, 5, 7])
+    value_1, indices_1 = paddle.topk(data_1, k=1)
+    print(value_1) # [7]
+    print(indices_1) # [3]
 
-    data_1 = np.array([1, 4, 5, 7])
-    tensor_1 = paddle.to_tensor(data_1)
-    value_1, indices_1 = paddle.topk(tensor_1, k=1)
-    print(value_1.numpy())
-    # [7]
-    print(indices_1.numpy())
-    # [3] 
-    data_2 = np.array([[1, 4, 5, 7], [2, 6, 2, 5]])
-    tensor_2 = paddle.to_tensor(data_2)
-    value_2, indices_2 = paddle.topk(tensor_2, k=1)
-    print(value_2.numpy())
-    # [[7]
-    #  [6]]
-    print(indices_2.numpy())
-    # [[3]
-    #  [1]]
-    value_3, indices_3 = paddle.topk(tensor_2, k=1, axis=-1)
-    print(value_3.numpy())
-    # [[7]
-    #  [6]]
-    print(indices_3.numpy())
-    # [[3]
-    #  [1]]
-    value_4, indices_4 = paddle.topk(tensor_2, k=1, axis=0)
-    print(value_4.numpy())
-    # [[2 6 5 7]]
-    print(indices_4.numpy())
-    # [[1 1 0 0]]
+    data_2 = paddle.to_tensor([[1, 4, 5, 7], [2, 6, 2, 5]])
+    value_2, indices_2 = paddle.topk(data_2, k=1)
+    print(value_2) # [[7], [6]]
+    print(indices_2) # [[3], [1]]
+
+    value_3, indices_3 = paddle.topk(data_2, k=1, axis=-1)
+    print(value_3) # [[7], [6]]
+    print(indices_3) # [[3], [1]]
+
+    value_4, indices_4 = paddle.topk(data_2, k=1, axis=0)
+    print(value_4) # [[2, 6, 5, 7]]
+    print(indices_4) # [[1, 1, 0, 0]]
 

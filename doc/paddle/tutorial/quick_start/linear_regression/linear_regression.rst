@@ -1,7 +1,7 @@
 线性回归
 ========
 
-NOTE: 本示例教程是基于2.0beta版本开发
+NOTE: 本示例教程是基于飞桨框架2.0-rc1版本开发
 
 简要介绍
 --------
@@ -37,16 +37,12 @@ NOTE: 本示例教程是基于2.0beta版本开发
     import pandas as pd
     import seaborn as sns
     
-    paddle.disable_static()
-    paddle.__version__
-
-
+    print(paddle.__version__)
 
 
 .. parsed-literal::
 
-    '2.0.0-beta0'
-
+    2.0.0-rc1
 
 
 数据处理
@@ -55,14 +51,29 @@ NOTE: 本示例教程是基于2.0beta版本开发
 .. code:: ipython3
 
     #下载数据
-    #!wget https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data -O housing.data 
+    !wget https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data -O housing.data 
+
+
+.. parsed-literal::
+
+    --2020-12-16 16:35:05--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
+    正在解析主机 archive.ics.uci.edu (archive.ics.uci.edu)... 128.195.10.252
+    正在连接 archive.ics.uci.edu (archive.ics.uci.edu)|128.195.10.252|:443... 已连接。
+    已发出 HTTP 请求，正在等待回应... 200 OK
+    长度：49082 (48K) [application/x-httpd-php]
+    正在保存至: “housing.data”
+    
+    housing.data        100%[===================>]  47.93K  22.9KB/s  用时 2.1s      
+    
+    2020-12-16 16:35:10 (22.9 KB/s) - 已保存 “housing.data” [49082/49082])
+    
+
 
 .. code:: ipython3
 
     # 从文件导入数据
     datafile = './housing.data'
     housing_data = np.fromfile(datafile, sep=' ')
-    
     feature_names = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE','DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT', 'MEDV']
     feature_num = len(feature_names)
     # 将原始数据进行Reshape，变成[N, 14]这样的形状
@@ -73,16 +84,16 @@ NOTE: 本示例教程是基于2.0beta版本开发
     # 画图看特征间的关系,主要是变量两两之间的关系（线性或非线性，有无明显较为相关关系）
     features_np = np.array([x[:13] for x in housing_data], np.float32)
     labels_np = np.array([x[-1] for x in housing_data], np.float32)
-    data_np = np.c_[features_np, labels_np]
-    df = pd.DataFrame(data_np, columns=feature_names)
+    # data_np = np.c_[features_np, labels_np]
+    df = pd.DataFrame(housing_data, columns=feature_names)
     matplotlib.use('TkAgg')
     %matplotlib inline
-    sns.pairplot(df.dropna(), y_vars=feature_names[-1], x_vars=feature_names[:])
+    sns.pairplot(df.dropna(), y_vars=feature_names[-1], x_vars=feature_names[::-1], diag_kind='kde')
     plt.show()
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_001.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc1_linear_regression_001.png?raw=true
 
 
 .. code:: ipython3
@@ -96,7 +107,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_002.png?raw=true    
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc1_linear_regression_002.png?raw=true
 
 
 **数据归一化处理**\  下图为大家展示各属性的取值范围分布：
@@ -110,12 +121,12 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 .. parsed-literal::
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1a3e2b4e50>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f9272aa1350>
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_003.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc1_linear_regression_003.png?raw=true
 
 
 从上图看出，我们各属性的数值范围差异太大，甚至不能够在一个画布上充分的展示各属性具体的最大、最小值以及异常值等。下面我们进行归一化。
@@ -164,12 +175,12 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 .. parsed-literal::
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1a3e4cd4d0>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f9272e0b8d0>
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_004.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc1_linear_regression_004.png?raw=true
 
 
 .. code:: ipython3
@@ -236,7 +247,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
             # 在每轮迭代开始之前，将训练数据的顺序随机的打乱
             np.random.shuffle(train_data)
             # 将训练数据进行拆分，每个batch包含20条数据
-            mini_batches = [train_data[k:k+BATCH_SIZE] for k in range(0, len(train_data), BATCH_SIZE)]
+            mini_batches = [train_data[k: k+BATCH_SIZE] for k in range(0, len(train_data), BATCH_SIZE)]
             for batch_id, data in enumerate(mini_batches):
                 features_np = np.array(data[:, :13], np.float32)
                 labels_np = np.array(data[:, -1:], np.float32)
@@ -267,16 +278,16 @@ NOTE: 本示例教程是基于2.0beta版本开发
 .. parsed-literal::
 
     start training ... 
-    Pass:0,Cost:740.21814
-    Pass:50,Cost:36.40338
-    Pass:100,Cost:86.01823
-    Pass:150,Cost:50.86654
-    Pass:200,Cost:31.14208
-    Pass:250,Cost:20.54596
-    Pass:300,Cost:22.30817
-    Pass:350,Cost:24.18756
-    Pass:400,Cost:22.22965
-    Pass:450,Cost:39.25978
+    Pass:0,Cost:642.37836
+    Pass:50,Cost:80.09798
+    Pass:100,Cost:24.53981
+    Pass:150,Cost:45.43977
+    Pass:200,Cost:29.34225
+    Pass:250,Cost:58.18873
+    Pass:300,Cost:11.38395
+    Pass:350,Cost:48.47935
+    Pass:400,Cost:23.04504
+    Pass:450,Cost:19.02773
 
 
 .. code:: ipython3
@@ -287,7 +298,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_005.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc1_linear_regression_005.png?raw=true
 
 
 可以从上图看出，随着训练轮次的增加，损失在呈降低趋势。但由于每次仅基于少量样本更新参数和计算损失，所以损失下降曲线会出现震荡。
@@ -321,17 +332,17 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 .. parsed-literal::
 
-    No.0: infer result is 12.15,ground truth is 8.50
-    No.10: infer result is 5.21,ground truth is 7.00
-    No.20: infer result is 14.32,ground truth is 11.70
-    No.30: infer result is 16.11,ground truth is 11.70
-    No.40: infer result is 13.42,ground truth is 10.80
-    No.50: infer result is 15.50,ground truth is 14.90
-    No.60: infer result is 18.81,ground truth is 21.40
-    No.70: infer result is 15.42,ground truth is 13.80
-    No.80: infer result is 18.16,ground truth is 20.60
-    No.90: infer result is 21.48,ground truth is 24.50
-    Mean loss is: [12.195988]
+    No.0: infer result is 11.87,ground truth is 8.50
+    No.10: infer result is 4.91,ground truth is 7.00
+    No.20: infer result is 14.10,ground truth is 11.70
+    No.30: infer result is 15.86,ground truth is 11.70
+    No.40: infer result is 13.21,ground truth is 10.80
+    No.50: infer result is 15.26,ground truth is 14.90
+    No.60: infer result is 18.65,ground truth is 21.40
+    No.70: infer result is 15.36,ground truth is 13.80
+    No.80: infer result is 18.03,ground truth is 20.60
+    No.90: infer result is 21.29,ground truth is 24.50
+    Mean loss is: [11.895574]
 
 
 .. code:: ipython3
@@ -351,7 +362,7 @@ NOTE: 本示例教程是基于2.0beta版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/linear_regression_006.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc1_linear_regression_006.png?raw=true
 
 
 上图可以看出，我们训练出来的模型的预测结果与真实结果是较为接近的。
@@ -364,7 +375,6 @@ NOTE: 本示例教程是基于2.0beta版本开发
 .. code:: ipython3
 
     import paddle
-    paddle.disable_static()
     paddle.set_default_dtype("float64")
     
     #step1:用高层API定义数据集，无需进行数据处理等，高层API为您一条龙搞定
@@ -384,45 +394,41 @@ NOTE: 本示例教程是基于2.0beta版本开发
     #step3:训练模型
     model = paddle.Model(UCIHousing())
     model.prepare(paddle.optimizer.Adam(parameters=model.parameters()),
-                  paddle.nn.loss.MSELoss())
-    model.fit(train_dataset, eval_dataset, epochs=5, batch_size=8, log_freq=20)
+                  paddle.nn.MSELoss())
+    model.fit(train_dataset, eval_dataset, epochs=5, batch_size=8, verbose=1)
 
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/5
-    step 20/51 - loss: 520.8663 - 1ms/step
-    step 40/51 - loss: 611.7135 - 1ms/step
-    step 51/51 - loss: 620.0662 - 1ms/step
+    step 51/51 [==============================] - loss: 619.0201 - 2ms/step          
     Eval begin...
-    step 13/13 - loss: 389.7871 - 1ms/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 407.2717 - 1ms/step          
     Eval samples: 102
     Epoch 2/5
-    step 20/51 - loss: 867.4678 - 3ms/step
-    step 40/51 - loss: 1081.1701 - 2ms/step
-    step 51/51 - loss: 420.8705 - 2ms/step
+    step 51/51 [==============================] - loss: 421.7720 - 2ms/step          
     Eval begin...
-    step 13/13 - loss: 387.2432 - 1ms/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 404.6681 - 2ms/step          
     Eval samples: 102
     Epoch 3/5
-    step 20/51 - loss: 810.1555 - 2ms/step
-    step 40/51 - loss: 840.3570 - 2ms/step
-    step 51/51 - loss: 421.0806 - 2ms/step
+    step 51/51 [==============================] - loss: 419.6642 - 3ms/step          
     Eval begin...
-    step 13/13 - loss: 384.7417 - 693us/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 402.1082 - 2ms/step          
     Eval samples: 102
     Epoch 4/5
-    step 20/51 - loss: 647.1215 - 1ms/step
-    step 40/51 - loss: 682.9673 - 1ms/step
-    step 51/51 - loss: 422.0570 - 1ms/step
+    step 51/51 [==============================] - loss: 429.8277 - 2ms/step          
     Eval begin...
-    step 13/13 - loss: 382.2546 - 591us/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 399.5636 - 2ms/step          
     Eval samples: 102
     Epoch 5/5
-    step 20/51 - loss: 713.3719 - 1ms/step
-    step 40/51 - loss: 567.0962 - 1ms/step
-    step 51/51 - loss: 456.8702 - 1ms/step
+    step 51/51 [==============================] - loss: 457.2235 - 2ms/step          
     Eval begin...
-    step 13/13 - loss: 379.7527 - 985us/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 397.0019 - 3ms/step          
     Eval samples: 102
 
