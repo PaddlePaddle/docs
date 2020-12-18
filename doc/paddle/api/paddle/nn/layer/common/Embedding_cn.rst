@@ -16,9 +16,8 @@ Embedding
 注：input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
 
-::
+.. code-block:: text
 
-    Case 1:
         x是Tensor， 且padding_idx = -1.
             padding_idx = -1
             x.data = [[1, 3], [2, 4], [4, 127]]
