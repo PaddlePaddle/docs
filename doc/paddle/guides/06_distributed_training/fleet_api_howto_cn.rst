@@ -6,14 +6,13 @@ FleetAPI 设计说明
 -----------------
 
 Fleet是PaddlePaddle分布式训练的高级API。Fleet的命名出自于PaddlePaddle，象征一个舰队中的多只双桨船协同工作。Fleet的设计在易用性和算法可扩展性方面做出了权衡。用户可以很容易从单机版的训练程序，通过添加几行代码切换到分布式训练程序。此外，分布式训练的算法也可以通过Fleet
-API接口灵活定义。具体的设计原理可以参考\ `Fleet
-API设计文档 <https://github.com/PaddlePaddle/Fleet/blob/develop/README.md>`_\ 。当前FleetAPI还处于paddle.fluid.incubate目录下，未来功能完备后会放到paddle.fluid目录中，欢迎持续关注。
+API接口灵活定义。
 
 Fleet API快速上手示例
 ---------------------
 
 下面会针对Fleet
-API最常见的两种使用场景，用一个模型做示例，目的是让用户有快速上手体验的模板。快速上手的示例源代码可以在\ `Fleet Quick Start <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/quick-start>`_ 找到。
+API最常见的两种使用场景，用一个模型做示例，目的是让用户有快速上手体验的模板。
 
 
 * 
@@ -21,14 +20,14 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
 
   .. code-block:: python
 
-     import paddle.fluid as fluid
+     import paddle
 
      def mlp(input_x, input_y, hid_dim=128, label_dim=2):
-       fc_1 = fluid.layers.fc(input=input_x, size=hid_dim, act='tanh')
-       fc_2 = fluid.layers.fc(input=fc_1, size=hid_dim, act='tanh')
-       prediction = fluid.layers.fc(input=[fc_2], size=label_dim, act='softmax')
-       cost = fluid.layers.cross_entropy(input=prediction, label=input_y)
-       avg_cost = fluid.layers.mean(x=cost)
+       fc_1 = paddle.static.nn.fc(input=input_x, size=hid_dim, act='tanh')
+       fc_2 = paddle.static.nn.fc(input=fc_1, size=hid_dim, act='tanh')
+       prediction = paddle.static.nn.fc(input=[fc_2], size=label_dim, act='softmax')
+       cost = paddle.static.nn.cross_entropy(input=prediction, label=input_y)
+       avg_cost = paddle.static.nn.mean(x=cost)
        return avg_cost
 
 * 
@@ -47,20 +46,20 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
 
   .. code-block:: python
 
-     import paddle.fluid as fluid
+     import paddle
      from nets import mlp
      from utils import gen_data
 
-     input_x = fluid.data(name="x", shape=[None, 32], dtype='float32')
-     input_y = fluid.data(name="y", shape=[None, 1], dtype='int64')
+     input_x = paddle.static.data(name="x", shape=[None, 32], dtype='float32')
+     input_y = paddle.static.data(name="y", shape=[None, 1], dtype='int64')
 
      cost = mlp(input_x, input_y)
-     optimizer = fluid.optimizer.SGD(learning_rate=0.01)
+     optimizer = paddle.optimizer.SGD(learning_rate=0.01)
      optimizer.minimize(cost)
-     place = fluid.CUDAPlace(0)
+     place = paddle.CUDAPlace(0)
 
-     exe = fluid.Executor(place)
-     exe.run(fluid.default_startup_program())
+     exe = paddle.static.Executor(place)
+     exe.run(paddle.static.default_startup_program())
      step = 1001
      for i in range(step):
        cost_val = exe.run(feed=gen_data(), fetch_list=[cost.name])
@@ -73,38 +72,47 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
 
   .. code-block:: python
 
-     import paddle.fluid as fluid
-     from nets import mlp
-     from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet
-     from paddle.fluid.incubate.fleet.base import role_maker
-     from utils import gen_data
+    import paddle
+    paddle.enable_static()
 
-     input_x = fluid.data(name="x", shape=[None, 32], dtype='float32')
-     input_y = fluid.data(name="y", shape=[None, 1], dtype='int64')
+    import paddle.distributed.fleet.base.role_maker as role_maker
+    import paddle.distributed.fleet as fleet
 
-     cost = mlp(input_x, input_y)
-     optimizer = fluid.optimizer.SGD(learning_rate=0.01)
+    from nets import mlp
+    from utils import gen_data
 
-     role = role_maker.PaddleCloudRoleMaker()
-     fleet.init(role)
-     optimizer = fleet.distributed_optimizer(optimizer)
-     optimizer.minimize(cost)
+    input_x = paddle.static.data(name="x", shape=[None, 32], dtype='float32')
+    input_y = paddle.static.data(name="y", shape=[None, 1], dtype='int64')
 
-     if fleet.is_server():
-       fleet.init_server()
-       fleet.run_server()
-     elif fleet.is_worker():
-       place = fluid.CPUPlace()
-       exe = fluid.Executor(place)
-       exe.run(fluid.default_startup_program())
-       step = 1001
-       for i in range(step):
-         cost_val = exe.run(
-             program=fluid.default_main_program(),
-             feed=gen_data(),
-             fetch_list=[cost.name])
-         print("worker_index: %d, step%d cost = %f" %
-              (fleet.worker_index(), i, cost_val[0]))
+    cost = mlp(input_x, input_y)
+    optimizer = paddle.optimizer.SGD(learning_rate=0.01)
+
+    role = role_maker.PaddleCloudRoleMaker()
+    fleet.init(role)
+
+    strategy = paddle.distributed.fleet.DistributedStrategy()
+    strategy.a_sync = True
+
+    optimizer = fleet.distributed_optimizer(optimizer, strategy)
+    optimizer.minimize(cost)
+
+    if fleet.is_server():
+      fleet.init_server()
+      fleet.run_server()
+
+    elif fleet.is_worker():
+      place = paddle.CPUPlace()
+      exe = paddle.static.Executor(place)
+      exe.run(paddle.static.default_startup_program())
+
+      step = 1001
+      for i in range(step):
+        cost_val = exe.run(
+            program=paddle.static.default_main_program(),
+            feed=gen_data(),
+            fetch_list=[cost.name])
+        print("worker_index: %d, step%d cost = %f" %
+             (fleet.worker_index(), i, cost_val[0]))
 
 * 
   Collective训练方法
@@ -113,49 +121,39 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
 
   .. code-block:: python
 
-     import paddle.fluid as fluid
+     import paddle
+     paddle.enable_static()
+
+     import paddle.distributed.fleet.base.role_maker as role_maker
+     import paddle.distributed.fleet as fleet
+
      from nets import mlp
-     from paddle.fluid.incubate.fleet.collective import fleet
-     from paddle.fluid.incubate.fleet.base import role_maker
      from utils import gen_data
 
-     input_x = fluid.data(name="x", shape=[None, 32], dtype='float32')
-     input_y = fluid.data(name="y", shape=[None, 1], dtype='int64')
+     input_x = paddle.static.data(name="x", shape=[None, 32], dtype='float32')
+     input_y = paddle.static.data(name="y", shape=[None, 1], dtype='int64')
 
      cost = mlp(input_x, input_y)
-     optimizer = fluid.optimizer.SGD(learning_rate=0.01)
+     optimizer = paddle.optimizer.SGD(learning_rate=0.01)
      role = role_maker.PaddleCloudRoleMaker(is_collective=True)
      fleet.init(role)
 
      optimizer = fleet.distributed_optimizer(optimizer)
      optimizer.minimize(cost)
-     place = fluid.CUDAPlace(0)
+     place = paddle.CUDAPlace(0)
 
-     exe = fluid.Executor(place)
-     exe.run(fluid.default_startup_program())
+     exe = paddle.static.Executor(place)
+     exe.run(paddle.static.default_startup_program())
+
      step = 1001
      for i in range(step):
        cost_val = exe.run(
-           program=fluid.default_main_program(),
+           program=paddle.static.default_main_program(),
            feed=gen_data(),
            fetch_list=[cost.name])
        print("worker_index: %d, step%d cost = %f" %
             (fleet.worker_index(), i, cost_val[0]))
 
-更多使用示例
-------------
-
-`点击率预估 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/distribute_ctr>`_
-
-`语义匹配 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/simnet_bow>`_
-
-`向量学习 <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/word2vec>`_
-
-`基于Resnet50的图像分类 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/resnet>`_
-
-`基于Transformer的机器翻译 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/transformer>`_
-
-`基于Bert的语义表示学习 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/bert>`_
 
 Fleet API相关的接口说明
 -----------------------
@@ -202,31 +200,6 @@ RoleMaker
 
 
 * 
-  MPISymetricRoleMaker
-
-
-  * 
-    描述：MPISymetricRoleMaker会假设每个节点启动两个进程，1worker+1pserver，这种RoleMaker要求用户的集群上有mpi环境。
-
-  * 
-    示例：
-
-    .. code-block:: python
-
-       from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet
-       from paddle.fluid.incubate.fleet.base import role_maker
-
-       role = role_maker.MPISymetricRoleMaker()
-       fleet.init(role)
-
-  * 
-    启动方法：
-
-    .. code-block:: python
-
-       mpirun -np 2 python trainer.py
-
-* 
   PaddleCloudRoleMaker
 
 
@@ -238,8 +211,11 @@ RoleMaker
 
     .. code-block:: python
 
-       from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet
-       from paddle.fluid.incubate.fleet.base import role_maker
+       import paddle
+       paddle.enable_static()
+
+       import paddle.distributed.fleet.base.role_maker as role_maker
+       import paddle.distributed.fleet as fleet
 
        role = role_maker.PaddleCloudRoleMaker()
        fleet.init(role)
@@ -256,8 +232,11 @@ RoleMaker
 
     .. code-block:: python
 
-       from paddle.fluid.incubate.fleet.collective import fleet
-       from paddle.fluid.incubate.fleet.base import role_maker
+       import paddle
+       paddle.enable_static()
+
+       import paddle.distributed.fleet.base.role_maker as role_maker
+       import paddle.distributed.fleet as fleet
 
        role = role_maker.PaddleCloudRoleMaker(is_collective=True)
        fleet.init(role)
@@ -281,45 +260,18 @@ RoleMaker
 
     .. code-block:: python
 
-       from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet
-       from paddle.fluid.incubate.fleet.base import role_maker
+       import paddle
+       paddle.enable_static()
+
+       import paddle.distributed.fleet.base.role_maker as role_maker
+       import paddle.distributed.fleet as fleet
 
        role = role_maker.UserDefinedRoleMaker(
-                   current_id=int(os.getenv("CURRENT_ID")),
-                   role=role_maker.Role.WORKER if bool(int(os.getenv("IS_WORKER"))) 
-                                                                                   else role_maker.Role.SERVER,
-                   worker_num=int(os.getenv("WORKER_NUM")),
-                   server_endpoints=pserver_endpoints)
+           current_id=0,
+           role=role_maker.Role.SERVER,
+           worker_num=2,
+           server_endpoints=["127.0.0.1:36011", "127.0.0.1:36012"])
+
        fleet.init(role)
 
-Strategy
-^^^^^^^^
-
-
-* Parameter Server Training
-
-  * Sync_mode
-
-* Collective Training
-
-  * LocalSGD
-  * ReduceGrad
-
-Fleet Mode
-^^^^^^^^^^
-
-
-* 
-  Parameter Server Training
-
-  .. code-block:: python
-
-     from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler import fleet
-
-* 
-  Collective Training
-
-  .. code-block:: python
-
-     from paddle.fluid.incubate.fleet.collective import fleet
 
