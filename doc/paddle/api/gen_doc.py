@@ -74,6 +74,9 @@ def get_alias_mapping(file="./alias_api_mapping"):
                 t = line.strip().split('\t')
             else:
                 t = line.strip().split('    ')
+            if len(t) < 2:
+                print('line "',line,'" splited to ', t)
+                continue
             real_api = t[0].strip()
             alias_apis = t[1].strip().split(',')
             alias_api_map[real_api] = alias_apis
@@ -166,7 +169,8 @@ def gen_en_files(root_path='paddle', api_label_file="api_label"):
         f = real_api.replace(".", "/") + en_suffix
         if os.path.exists(f):
             continue
-        os.mknod(f)
+
+        # os.mknod(f) # gen.guard will open it
         gen = EnDocGenerator()
         with gen.guard(f):
             gen.module_name = module_name
