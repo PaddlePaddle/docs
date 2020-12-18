@@ -1,9 +1,5 @@
-..  _guides_distribute_en:
+..  toctree::
+    :maxdepth: 1
 
-######################
-Distributed Training
-######################
-
-For more distributed training features and practices, please follow:
-
-- `fleetx docs <https://fleet-x.readthedocs.io/en/latest/index.html>`_ : including quickstart guide, parallel computing setups, on-cloud training practice, etc.
+    cluster_quick_start.rst
+    fleet_api_howto_cn.rst
