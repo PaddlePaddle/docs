@@ -1,6 +1,6 @@
 # 安装类FAQ
 
-##### 问题：Windows环境下，使用pip install时速度慢，如何解决？
+###### 问题：Windows环境下，使用pip install时速度慢，如何解决？
 
 + 解决方案：
 
@@ -24,7 +24,7 @@ https://pypi.douban.com/simple/
 
 ------
 
-##### 问题：使用pip install时报错，`PermissionError: [WinError 5]` ，如何解决？
+###### 问题：使用pip install时报错，`PermissionError: [WinError 5]` ，如何解决？
 
 + 问题描述：
 
@@ -42,7 +42,7 @@ https://pypi.douban.com/simple/
 
 ------
 
-##### 问题： 使用pip install时报错，`ERROR: No matching distribution found for paddlepaddle` ，如何解决？
+###### 问题： 使用pip install时报错，`ERROR: No matching distribution found for paddlepaddle` ，如何解决？
 
 + 问题描述：
 
@@ -61,7 +61,7 @@ Python版本不匹配导致。用户使用的是32位Python，但是对应的32�
 
 ------
 
-##### 问题： 在GPU上执行程序报错，`Error：Segmentation fault`，如何解决？
+###### 问题： 在GPU上执行程序报错，`Error：Segmentation fault`，如何解决？
 
 + 问题描述：
 
@@ -79,7 +79,7 @@ CUDA的安装可参考：https://docs.nvidia.com/cuda/archive/10.0/index.html；
 
 ------
 
-##### 问题： 本地使用import paddle时报错，`ModuleNotFoundError:No module named ‘paddle’`，如何解决？
+###### 问题： 本地使用import paddle时报错，`ModuleNotFoundError:No module named ‘paddle’`，如何解决？
 
 + 报错分析：
 
@@ -91,7 +91,7 @@ CUDA的安装可参考：https://docs.nvidia.com/cuda/archive/10.0/index.html；
 
 ------
 
-##### 问题： 使用PaddlePaddle GPU的Docker镜像时报错， `Cuda Error: CUDA driver version is insufficient for CUDA runtime version`，如何解决？
+###### 问题： 使用PaddlePaddle GPU的Docker镜像时报错， `Cuda Error: CUDA driver version is insufficient for CUDA runtime version`，如何解决？
 
 + 报错分析：
 
@@ -107,7 +107,7 @@ CUDA的安装可参考：https://docs.nvidia.com/cuda/archive/10.0/index.html；
 
 ------
 
-##### 问题： 使用PaddlePaddle时报错，`Error: no CUDA-capable device is detected`，如何解决？
+###### 问题： 使用PaddlePaddle时报错，`Error: no CUDA-capable device is detected`，如何解决？
 
 + 报错分析：
 
@@ -123,7 +123,7 @@ CUDA安装错误导致。
 
 ------
 
-##### 问题： 如何升级PaddlePaddle？
+###### 问题： 如何升级PaddlePaddle？
 
 + 答复：
 
@@ -146,7 +146,7 @@ CUDA安装错误导致。
 
 ------
 
-##### 问题： 在GPU上如何选择PaddlePaddle版本？
+###### 问题： 在GPU上如何选择PaddlePaddle版本？
 
 + 答复：
 
