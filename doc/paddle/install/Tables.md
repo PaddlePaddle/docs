@@ -328,6 +328,39 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         paddlepaddle_gpu-2.0.0rc1-cp38-cp38-linux_x86_64.whl</a></td>
     </tr>
     <tr>
+        <td> cuda10.1-cudnn7.6-trt6.0.1.5 </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc1-gpu-cuda10.1-cudnn7.6-trt6.0.1.5/paddlepaddle_gpu-2.0.0rc1.post101-cp27-cp27mu-linux_x86_64.whl">
+        paddlepaddle_gpu-2.0.0rc1.post101-cp27-cp27mu-linux_x86_64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc1-gpu-cuda10.1-cudnn7.6-trt6.0.1.5/paddlepaddle_gpu-2.0.0rc1.post101-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.0.0rc1.post101-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
+        <td> cuda10.2-cudnn8.0-trt7.1.3 </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc1-gpu-cuda10.2-cudnn8.0-trt7.1.3/paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc1-gpu-cuda10.2-cudnn8.0-trt7.1.3/paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
+        <td> nv-jetson-jetpack4.3-xavier </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-xavier/paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-xavier/paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
         <td> win_cpu_mkl </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0-rc1/win-mkl/paddlepaddle-2.0.0rc1-cp27-cp27m-win_amd64.whl">
