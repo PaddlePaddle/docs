@@ -6,7 +6,7 @@ Cifar10
 .. py:class:: paddle.vision.datasets.Cifar10()
 
 
-    `Cifar-10 <https://www.cs.toronto.edu/~kriz/cifar.html>`_ 数据集的实现，数据集包含10中类别.
+    `Cifar-10 <https://www.cs.toronto.edu/~kriz/cifar.html>`_ 数据集的实现，数据集包含10种类别.
 
 参数
 :::::::::
