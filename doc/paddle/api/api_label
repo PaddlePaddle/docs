@@ -512,6 +512,7 @@ sqrt	.. _api_paddle_fluid_layers_sqrt:
 ParallelEnv	.. _api_paddle_fluid_dygraph_parallel_ParallelEnv:
 cast_bool_if_necessary	.. _api_paddle_jit_dy2static_cast_bool_if_necessary:
 cos	.. _api_paddle_fluid_layers_cos:
+cosh	.. _api_paddle_fluid_layers_cosh:
 hflip	.. _api_paddle_vision_transforms_functional_hflip:
 DistributedStrategy	.. _api_paddle_fluid_incubate_fleet_parameter_server_distribute_transpiler_distributed_strategy_DistributedStrategy:
 create_lod_tensor	.. _api_paddle_fluid_create_lod_tensor:
