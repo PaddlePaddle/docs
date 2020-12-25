@@ -3,7 +3,7 @@
 diag_embed
 -------------------------------
 
-.. py:function:: paddle.functional.diag_embed(input, offset=0, dim1=-2, dim2=-1):
+.. py:function:: paddle.nn.functional.diag_embed(input, offset=0, dim1=-2, dim2=-1):
 
 
 

@@ -122,7 +122,10 @@
 
 .. code:: ipython3
 
+
     train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
+    # train_dataset 取自第一段代码框架自带数据集中定义的数据集
+    # 如果要加载自定义数据集，将train_dataset 换为 train_dataset2即可
     for batch_id, data in enumerate(train_loader()):
         x_data = data[0]
         y_data = data[1]
