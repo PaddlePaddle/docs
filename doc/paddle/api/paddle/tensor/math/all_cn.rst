@@ -22,19 +22,14 @@ all
 ..  code-block:: python
 
     import paddle
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
     import numpy as np
-
-    # set as static mode
-    paddle.disable_static()
 
     # x is a bool Tensor variable with following elements:
     #    [[True, False]
     #     [True, True]]
-    x = layers.assign(np.array([[1, 0], [1, 1]], dtype='int32'))
+    x = paddle.assign(np.array([[1, 0], [1, 1]], dtype='int32'))
     print(x)
-    x = layers.cast(x, 'bool')
+    x = paddle.cast(x, 'bool')
 
     # out1 should be [False]
     out1 = paddle.all(x)  # [False]
@@ -44,11 +39,11 @@ all
     out2 = paddle.all(x, axis=0)  # [True, False]
     print(out2)
 
-    # keep_dim=False, out3 should be [False, True], out.shape should be (2,)
+    # keepdim=False, out3 should be [False, True], out.shape should be (2,)
     out3 = paddle.all(x, axis=-1)  # [False, True]
     print(out3)
 
-    # keep_dim=True, out4 should be [[False], [True]], out.shape should be (2,1)
-    out4 = paddle.all(x, axis=1, keep_dim=True)
-    out4 = layers.cast(out4, 'int32')  # [[False], [True]]
+    # keepdim=True, out4 should be [[False], [True]], out.shape should be (2,1)
+    out4 = paddle.all(x, axis=1, keepdim=True)
+    out4 = paddle.cast(out4, 'int32')  # [[False], [True]]
     print(out4)
