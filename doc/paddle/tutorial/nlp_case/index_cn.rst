@@ -8,6 +8,7 @@
      - `N-Gram <./n_gram_model/n_gram_model.html>`_ ：介绍使用 Paddle 实现N-Gram 模型。
      - `文本分类 <./imdb_bow_classification/imdb_bow_classification.html>`_ ：介绍使用 Paddle 在IMDB数据集上完成文本分类。    
      - `文本翻译 <./seq2seq_with_attention/seq2seq_with_attention.html>`_ ：介绍使用 Paddle 实现文本翻译。
+     - `数字加法 <./addition_rnn/addition_rnn.html>`_ : 介绍使用 Paddle 实现数字加法。
 
 ..  toctree::
     :hidden:
@@ -16,3 +17,4 @@
     n_gram_model/n_gram_model.rst
     imdb_bow_classification/imdb_bow_classification.rst
     seq2seq_with_attention/seq2seq_with_attention.rst
+    addition_rnn/addition_rnn.rst
