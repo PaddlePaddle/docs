@@ -39,7 +39,7 @@ Users can also compile C++ inference libraries from the PaddlePaddle core code b
 |WITH_MKL|Whether to support MKL   | ON/OFF     |
 |WITH_PYTHON|Whether to generate the Python whl package| OFF        |
 |MSVC_STATIC_CRT|Whether to compile with /MT mode |   ON   |
-|CUDA_TOOKIT_ROOT_DIR | When compiling the GPU inference library, you need to set the CUDA root directory | YOUR_CUDA_PATH |
+|CUDA_TOOLKIT_ROOT_DIR | When compiling the GPU inference library, you need to set the CUDA root directory | YOUR_CUDA_PATH |
 
 For details on the compilation options, see [the compilation options list](../../../beginners_guide/install/Tables_en.html/#Compile)
 
@@ -64,8 +64,8 @@ For details on the compilation options, see [the compilation options list](../..
    ```
    - compile GPU inference library
    ```bash
-   # -DCUDA_TOOKIT_ROOT_DIR is cuda root directory, such as -DCUDA_TOOKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOKIT_ROOT_DIR=YOUR_CUDA_PATH
+   # -DCUDA_TOOLKIT_ROOT_DIR is cuda root directory, such as -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOLKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
 3. Open the `paddle.sln` using VisualStudio 2015, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build).

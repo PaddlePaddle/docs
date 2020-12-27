@@ -1,7 +1,7 @@
 基于U-Net卷积神经网络实现宠物图像分割
 =====================================
 
-本示例教程当前是基于2.0-RC版本Paddle做的案例实现，未来会随着2.0的系列版本发布进行升级。
+本示例教程当前是基于2.0-RC1版本Paddle做的案例实现，未来会随着2.0的系列版本发布进行升级。
 
 1.简要介绍
 ----------
@@ -34,7 +34,7 @@
 
 .. parsed-literal::
 
-    '2.0.0-rc0'
+    '2.0.0-rc1'
 
 
 
@@ -65,6 +65,27 @@ Pet数据集，官网：https://www.robots.ox.ac.uk/~vgg/data/pets 。
     !curl -O http://www.robots.ox.ac.uk/~vgg/data/pets/data/annotations.tar.gz
     !tar -xf images.tar.gz
     !tar -xf annotations.tar.gz
+
+
+.. parsed-literal::
+
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100   269  100   269    0     0    139      0  0:00:01  0:00:01 --:--:--   139
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100   274  100   274    0     0    142      0  0:00:01  0:00:01 --:--:--   142
+    tar: This does not look like a tar archive
+    
+    gzip: stdin: not in gzip format
+    tar: Child returned status 1
+    tar: Error is not recoverable: exiting now
+    tar: This does not look like a tar archive
+    
+    gzip: stdin: not in gzip format
+    tar: Child returned status 1
+    tar: Error is not recoverable: exiting now
+
 
 3.2 数据集概览
 ~~~~~~~~~~~~~~
@@ -188,25 +209,16 @@ Pet数据集，官网：https://www.robots.ox.ac.uk/~vgg/data/pets 。
             i = i + 1
 
 
-.. parsed-literal::
 
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2349: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
-      if isinstance(obj, collections.Iterator):
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/matplotlib/cbook/__init__.py:2366: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
-      return list(data) if isinstance(data, collections.MappingView) else data
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/numpy/lib/type_check.py:546: DeprecationWarning: np.asscalar(a) is deprecated since NumPy v1.16, use a.item() instead
-      'a.item() instead', DeprecationWarning, stacklevel=1)
+.. image:: image_segmentation_files/image_segmentation_10_0.png
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_01.png?raw=true
+.. image:: image_segmentation_files/image_segmentation_10_1.png
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_02.png?raw=true
 
-
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_03.png?raw=true
-
+.. image:: image_segmentation_files/image_segmentation_10_2.png
 
 
 3.4 数据集类定义
@@ -470,11 +482,11 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
             self.conv_transpose_01 = paddle.nn.Conv2DTranspose(in_channels, 
                                                                out_channels, 
                                                                kernel_size=3, 
-                                                               padding='same')
+                                                               padding=1)
             self.conv_transpose_02 = paddle.nn.Conv2DTranspose(out_channels, 
                                                                out_channels, 
                                                                kernel_size=3, 
-                                                               padding='same')
+                                                               padding=1)
             self.bns = paddle.nn.LayerList(
                 [paddle.nn.BatchNorm2D(out_channels) for i in range(2)]
             )
@@ -560,7 +572,6 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                 y = decoder(y)
             
             y = self.output_conv(y)
-            
             return y
 
 4.5 模型可视化
@@ -578,90 +589,90 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. parsed-literal::
 
-    -----------------------------------------------------------------------------
-      Layer (type)        Input Shape          Output Shape         Param #    
-    =============================================================================
-        Conv2D-1       [[1, 3, 160, 160]]    [1, 32, 80, 80]          896      
-      BatchNorm2D-1    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
-         ReLU-1        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
-         ReLU-2        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
-    SeparableConv2D-1  [[1, 32, 80, 80]]     [1, 64, 80, 80]         2,400     
-      BatchNorm2D-2    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
-         ReLU-3        [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
-    SeparableConv2D-2  [[1, 64, 80, 80]]     [1, 64, 80, 80]         4,736     
-      BatchNorm2D-3    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
-       MaxPool2D-1     [[1, 64, 80, 80]]     [1, 64, 40, 40]           0       
-        Conv2D-2       [[1, 32, 80, 80]]     [1, 64, 40, 40]         2,112     
-        Encoder-1      [[1, 32, 80, 80]]     [1, 64, 40, 40]           0       
-         ReLU-4        [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
-    SeparableConv2D-3  [[1, 64, 40, 40]]     [1, 128, 40, 40]        8,896     
-      BatchNorm2D-4    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
-         ReLU-5        [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
-    SeparableConv2D-4  [[1, 128, 40, 40]]    [1, 128, 40, 40]       17,664     
-      BatchNorm2D-5    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
-       MaxPool2D-2     [[1, 128, 40, 40]]    [1, 128, 20, 20]          0       
-        Conv2D-3       [[1, 64, 40, 40]]     [1, 128, 20, 20]        8,320     
-        Encoder-2      [[1, 64, 40, 40]]     [1, 128, 20, 20]          0       
-         ReLU-6        [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
-    SeparableConv2D-5  [[1, 128, 20, 20]]    [1, 256, 20, 20]       34,176     
-      BatchNorm2D-6    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
-         ReLU-7        [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
-    SeparableConv2D-6  [[1, 256, 20, 20]]    [1, 256, 20, 20]       68,096     
-      BatchNorm2D-7    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
-       MaxPool2D-3     [[1, 256, 20, 20]]    [1, 256, 10, 10]          0       
-        Conv2D-4       [[1, 128, 20, 20]]    [1, 256, 10, 10]       33,024     
-        Encoder-3      [[1, 128, 20, 20]]    [1, 256, 10, 10]          0       
-         ReLU-8        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
-    Conv2DTranspose-1  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
-      BatchNorm2D-8    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
-         ReLU-9        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
-    Conv2DTranspose-2  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
-      BatchNorm2D-9    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
-       Upsample-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
-       Upsample-2      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
-        Conv2D-5       [[1, 256, 20, 20]]    [1, 256, 20, 20]       65,792     
-        Decoder-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
-         ReLU-10       [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
-    Conv2DTranspose-3  [[1, 256, 20, 20]]    [1, 128, 20, 20]       295,040    
-     BatchNorm2D-10    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
-         ReLU-11       [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
-    Conv2DTranspose-4  [[1, 128, 20, 20]]    [1, 128, 20, 20]       147,584    
-     BatchNorm2D-11    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
-       Upsample-3      [[1, 128, 20, 20]]    [1, 128, 40, 40]          0       
-       Upsample-4      [[1, 256, 20, 20]]    [1, 256, 40, 40]          0       
-        Conv2D-6       [[1, 256, 40, 40]]    [1, 128, 40, 40]       32,896     
-        Decoder-2      [[1, 256, 20, 20]]    [1, 128, 40, 40]          0       
-         ReLU-12       [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
-    Conv2DTranspose-5  [[1, 128, 40, 40]]    [1, 64, 40, 40]        73,792     
-     BatchNorm2D-12    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
-         ReLU-13       [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
-    Conv2DTranspose-6  [[1, 64, 40, 40]]     [1, 64, 40, 40]        36,928     
-     BatchNorm2D-13    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
-       Upsample-5      [[1, 64, 40, 40]]     [1, 64, 80, 80]           0       
-       Upsample-6      [[1, 128, 40, 40]]    [1, 128, 80, 80]          0       
-        Conv2D-7       [[1, 128, 80, 80]]    [1, 64, 80, 80]         8,256     
-        Decoder-3      [[1, 128, 40, 40]]    [1, 64, 80, 80]           0       
-         ReLU-14       [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
-    Conv2DTranspose-7  [[1, 64, 80, 80]]     [1, 32, 80, 80]        18,464     
-     BatchNorm2D-14    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
-         ReLU-15       [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
-    Conv2DTranspose-8  [[1, 32, 80, 80]]     [1, 32, 80, 80]         9,248     
-     BatchNorm2D-15    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
-       Upsample-7      [[1, 32, 80, 80]]    [1, 32, 160, 160]          0       
-       Upsample-8      [[1, 64, 80, 80]]    [1, 64, 160, 160]          0       
-        Conv2D-8      [[1, 64, 160, 160]]   [1, 32, 160, 160]        2,080     
-        Decoder-4      [[1, 64, 80, 80]]    [1, 32, 160, 160]          0       
-        Conv2D-9      [[1, 32, 160, 160]]    [1, 4, 160, 160]        1,156     
-    =============================================================================
+    ------------------------------------------------------------------------------
+       Layer (type)        Input Shape          Output Shape         Param #    
+    ==============================================================================
+        Conv2D-19       [[1, 3, 160, 160]]    [1, 32, 80, 80]          896      
+      BatchNorm2D-31    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+         ReLU-31        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+         ReLU-32        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+    SeparableConv2D-13  [[1, 32, 80, 80]]     [1, 64, 80, 80]         2,400     
+      BatchNorm2D-32    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
+         ReLU-33        [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
+    SeparableConv2D-14  [[1, 64, 80, 80]]     [1, 64, 80, 80]         4,736     
+      BatchNorm2D-33    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
+       MaxPool2D-7      [[1, 64, 80, 80]]     [1, 64, 40, 40]           0       
+        Conv2D-20       [[1, 32, 80, 80]]     [1, 64, 40, 40]         2,112     
+        Encoder-7       [[1, 32, 80, 80]]     [1, 64, 40, 40]           0       
+         ReLU-34        [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
+    SeparableConv2D-15  [[1, 64, 40, 40]]     [1, 128, 40, 40]        8,896     
+      BatchNorm2D-34    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
+         ReLU-35        [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
+    SeparableConv2D-16  [[1, 128, 40, 40]]    [1, 128, 40, 40]       17,664     
+      BatchNorm2D-35    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
+       MaxPool2D-8      [[1, 128, 40, 40]]    [1, 128, 20, 20]          0       
+        Conv2D-21       [[1, 64, 40, 40]]     [1, 128, 20, 20]        8,320     
+        Encoder-8       [[1, 64, 40, 40]]     [1, 128, 20, 20]          0       
+         ReLU-36        [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
+    SeparableConv2D-17  [[1, 128, 20, 20]]    [1, 256, 20, 20]       34,176     
+      BatchNorm2D-36    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
+         ReLU-37        [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
+    SeparableConv2D-18  [[1, 256, 20, 20]]    [1, 256, 20, 20]       68,096     
+      BatchNorm2D-37    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
+       MaxPool2D-9      [[1, 256, 20, 20]]    [1, 256, 10, 10]          0       
+        Conv2D-22       [[1, 128, 20, 20]]    [1, 256, 10, 10]       33,024     
+        Encoder-9       [[1, 128, 20, 20]]    [1, 256, 10, 10]          0       
+         ReLU-38        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
+    Conv2DTranspose-17  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
+      BatchNorm2D-38    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
+         ReLU-39        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
+    Conv2DTranspose-18  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
+      BatchNorm2D-39    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
+       Upsample-17      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+       Upsample-18      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+        Conv2D-23       [[1, 256, 20, 20]]    [1, 256, 20, 20]       65,792     
+        Decoder-9       [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+         ReLU-40        [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
+    Conv2DTranspose-19  [[1, 256, 20, 20]]    [1, 128, 20, 20]       295,040    
+      BatchNorm2D-40    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
+         ReLU-41        [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
+    Conv2DTranspose-20  [[1, 128, 20, 20]]    [1, 128, 20, 20]       147,584    
+      BatchNorm2D-41    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
+       Upsample-19      [[1, 128, 20, 20]]    [1, 128, 40, 40]          0       
+       Upsample-20      [[1, 256, 20, 20]]    [1, 256, 40, 40]          0       
+        Conv2D-24       [[1, 256, 40, 40]]    [1, 128, 40, 40]       32,896     
+        Decoder-10      [[1, 256, 20, 20]]    [1, 128, 40, 40]          0       
+         ReLU-42        [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
+    Conv2DTranspose-21  [[1, 128, 40, 40]]    [1, 64, 40, 40]        73,792     
+      BatchNorm2D-42    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
+         ReLU-43        [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
+    Conv2DTranspose-22  [[1, 64, 40, 40]]     [1, 64, 40, 40]        36,928     
+      BatchNorm2D-43    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
+       Upsample-21      [[1, 64, 40, 40]]     [1, 64, 80, 80]           0       
+       Upsample-22      [[1, 128, 40, 40]]    [1, 128, 80, 80]          0       
+        Conv2D-25       [[1, 128, 80, 80]]    [1, 64, 80, 80]         8,256     
+        Decoder-11      [[1, 128, 40, 40]]    [1, 64, 80, 80]           0       
+         ReLU-44        [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
+    Conv2DTranspose-23  [[1, 64, 80, 80]]     [1, 32, 80, 80]        18,464     
+      BatchNorm2D-44    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+         ReLU-45        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+    Conv2DTranspose-24  [[1, 32, 80, 80]]     [1, 32, 80, 80]         9,248     
+      BatchNorm2D-45    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+       Upsample-23      [[1, 32, 80, 80]]    [1, 32, 160, 160]          0       
+       Upsample-24      [[1, 64, 80, 80]]    [1, 64, 160, 160]          0       
+        Conv2D-26      [[1, 64, 160, 160]]   [1, 32, 160, 160]        2,080     
+        Decoder-12      [[1, 64, 80, 80]]    [1, 32, 160, 160]          0       
+        Conv2D-27      [[1, 32, 160, 160]]    [1, 4, 160, 160]        1,156     
+    ==============================================================================
     Total params: 2,059,268
     Trainable params: 2,051,716
     Non-trainable params: 7,552
-    -----------------------------------------------------------------------------
+    ------------------------------------------------------------------------------
     Input size (MB): 0.29
     Forward/backward pass size (MB): 117.77
     Params size (MB): 7.86
     Estimated Total Size (MB): 125.92
-    -----------------------------------------------------------------------------
+    ------------------------------------------------------------------------------
     
 
 
@@ -692,7 +703,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
                                      epsilon=1e-07, 
                                      centered=False,
                                      parameters=model.parameters())
-    model.prepare(optim, paddle.nn.CrossEntropyLoss())
+    model.prepare(optim, paddle.nn.CrossEntropyLoss(axis=1))
     model.fit(train_dataset, 
               val_dataset, 
               epochs=15, 
@@ -702,92 +713,96 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/15
-
-
-.. parsed-literal::
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/layers/utils.py:77: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
-      return (isinstance(seq, collections.Sequence) and
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/nn/layer/norm.py:637: UserWarning: When training, we now always track global mean and variance.
-      "When training, we now always track global mean and variance.")
-
-
-.. parsed-literal::
-
-    step 197/197 [==============================] - loss: 0.7122 - 250ms/step         
+    step 197/197 [==============================] - loss: 0.6810 - 249ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.6437 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.6550 - 233ms/step         
     Eval samples: 1108
     Epoch 2/15
-    step 197/197 [==============================] - loss: 0.4153 - 249ms/step         
+    step 197/197 [==============================] - loss: 0.4590 - 250ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.5120 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.6143 - 230ms/step         
     Eval samples: 1108
     Epoch 3/15
-    step 197/197 [==============================] - loss: 0.4270 - 248ms/step         
+    step 197/197 [==============================] - loss: 0.4791 - 249ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.4798 - 230ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.5361 - 232ms/step         
     Eval samples: 1108
     Epoch 4/15
-    step 197/197 [==============================] - loss: 0.4832 - 250ms/step         
+    step 197/197 [==============================] - loss: 0.5653 - 248ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.5022 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.5085 - 231ms/step         
     Eval samples: 1108
     Epoch 5/15
-    step 197/197 [==============================] - loss: 0.4590 - 249ms/step         
+    step 197/197 [==============================] - loss: 0.5185 - 248ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.4705 - 232ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.4655 - 231ms/step         
     Eval samples: 1108
     Epoch 6/15
-    step 197/197 [==============================] - loss: 0.3575 - 249ms/step         
+    step 197/197 [==============================] - loss: 0.3978 - 249ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.3862 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.3986 - 231ms/step         
     Eval samples: 1108
     Epoch 7/15
-    step 197/197 [==============================] - loss: 0.2349 - 251ms/step         
+    step 197/197 [==============================] - loss: 0.2650 - 250ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.3407 - 233ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.3950 - 233ms/step         
     Eval samples: 1108
     Epoch 8/15
-    step 197/197 [==============================] - loss: 0.2653 - 251ms/step         
+    step 197/197 [==============================] - loss: 0.2900 - 249ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.3622 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.3803 - 231ms/step         
     Eval samples: 1108
     Epoch 9/15
-    step 197/197 [==============================] - loss: 0.4281 - 249ms/step         
+    step 197/197 [==============================] - loss: 0.5085 - 249ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.5789 - 232ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.4730 - 231ms/step         
     Eval samples: 1108
     Epoch 10/15
-    step 197/197 [==============================] - loss: 0.3125 - 249ms/step         
+    step 197/197 [==============================] - loss: 0.3497 - 249ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.4632 - 236ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.4735 - 232ms/step         
     Eval samples: 1108
     Epoch 11/15
-    step 197/197 [==============================] - loss: 0.2787 - 251ms/step         
+    step 197/197 [==============================] - loss: 0.3136 - 250ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.3790 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.3964 - 233ms/step         
     Eval samples: 1108
     Epoch 12/15
-    step 197/197 [==============================] - loss: 0.2590 - 317ms/step        
+    step 197/197 [==============================] - loss: 0.2949 - 251ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.4156 - 235ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.4410 - 231ms/step         
     Eval samples: 1108
     Epoch 13/15
-    step 197/197 [==============================] - loss: 0.3269 - 255ms/step         
+    step 197/197 [==============================] - loss: 0.3576 - 252ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.4400 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.4428 - 232ms/step         
     Eval samples: 1108
     Epoch 14/15
-    step 197/197 [==============================] - loss: 0.2877 - 251ms/step         
+    step 197/197 [==============================] - loss: 0.3878 - 250ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.3703 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.4347 - 230ms/step         
     Eval samples: 1108
     Epoch 15/15
-    step 197/197 [==============================] - loss: 0.2891 - 251ms/step         
+    step 197/197 [==============================] - loss: 0.3134 - 250ms/step         
     Eval begin...
-    step 35/35 [==============================] - loss: 0.4129 - 231ms/step         
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 35/35 [==============================] - loss: 0.4742 - 233ms/step         
     Eval samples: 1108
 
 
@@ -810,7 +825,7 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 .. parsed-literal::
 
     Predict begin...
-    step 1108/1108 [==============================] - 14ms/step        
+    step 1108/1108 [==============================] - 14ms/step         
     Predict samples: 1108
 
 
@@ -872,4 +887,6 @@ Layer类，整个过程是把\ ``filter_size * filter_size * num_filters``\ 的C
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_segmentation/pets_image_segmentation_U_Net_like_files/rc_pets_image_segmentation_U_Net_like_04.png?raw=true
+.. image:: image_segmentation_files/image_segmentation_31_1.png
+
+
