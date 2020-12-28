@@ -12,13 +12,13 @@ rotate
 
     - img (PIL.Image|numpy.ndarray) - 输入图像。
     - angle (float|int) - 旋转角度，顺时针。
-    resample (int|str, optional): An optional resampling filter. If omitted, or if the 
-            image has only one channel, it is set to PIL.Image.NEAREST or cv2.INTER_NEAREST 
-            according the backend. when use pil backend, support method are as following: 
+    - interpolation (int|str, optional): 插值的方法. 如果这个参数没有设定或者输入图像为单通道，则该参数会根据
+            使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST`` 。 
+            当时用 ``pil`` 作为后端时, 支持的插值方法如下: 
             - "nearest": Image.NEAREST, 
             - "bilinear": Image.BILINEAR, 
             - "bicubic": Image.BICUBIC
-            when use cv2 backend, support method are as following: 
+            当时用 ``cv2`` 作为后端时, 支持的插值方法如下:
             - "nearest": cv2.INTER_NEAREST, 
             - "bilinear": cv2.INTER_LINEAR, 
             - "bicubic": cv2.INTER_CUBIC

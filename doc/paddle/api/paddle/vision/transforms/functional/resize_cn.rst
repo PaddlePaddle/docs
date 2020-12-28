@@ -22,7 +22,7 @@ resize
             - "box": Image.BOX, 
             - "lanczos": Image.LANCZOS, 
             - "hamming": Image.HAMMING
-            当时用 ``cv2`` 作为后端时, 支持的插值方法如下: : 
+            当时用 ``cv2`` 作为后端时, 支持的插值方法如下:
             - "nearest": cv2.INTER_NEAREST, 
             - "bilinear": cv2.INTER_LINEAR, 
             - "area": cv2.INTER_AREA, 
