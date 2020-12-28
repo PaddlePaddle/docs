@@ -16,14 +16,14 @@ RandomResizedCrop
     - scale (list|tuple) - 基于原图选定的需要进行裁剪的范围，默认值：（0.08，1.0）。
     - ratio (list|tuple) - 裁剪后的目标图像宽高比范围，默认值： (0.75, 1.33)。
     - interpolation (int|str, optional) - 插值的方法. 默认值: 'bilinear'. 
-            当时用 ``pil`` 作为后端时, 支持的插值方法如下: 
+            当使用 ``pil`` 作为后端时, 支持的插值方法如下: 
             - "nearest": Image.NEAREST, 
             - "bilinear": Image.BILINEAR, 
             - "bicubic": Image.BICUBIC, 
             - "box": Image.BOX, 
             - "lanczos": Image.LANCZOS, 
             - "hamming": Image.HAMMING
-            当时用 ``cv2`` 作为后端时, 支持的插值方法如下: : 
+            当使用 ``cv2`` 作为后端时, 支持的插值方法如下: : 
             - "nearest": cv2.INTER_NEAREST, 
             - "bilinear": cv2.INTER_LINEAR, 
             - "area": cv2.INTER_AREA, 
