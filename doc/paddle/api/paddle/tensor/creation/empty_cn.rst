@@ -14,7 +14,7 @@ empty
     - **dtype** （np.dtype|str， 可选）- 输出变量的数据类型，可以是bool, float16, float32, float64, int32, int64。若为None，则输出变量的数据类型为系统全局默认类型，默认值为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
     
-返回：返回一个根据``shape``和``dtype``创建并且尚未初始化的Tensor。
+返回：返回一个根据 ``shape`` 和 ``dtype`` 创建并且尚未初始化的Tensor。
 
 **代码示例**：
 
