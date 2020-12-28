@@ -4,7 +4,7 @@ load_inference_model
 -------------------------------
 
 
-.. py:function:: paddle.static.load_inference_model(path_prefix, executor, **configs)
+.. py:function:: paddle.static.load_inference_model(path_prefix, executor, **kwargs)
 
 
 
@@ -14,6 +14,9 @@ load_inference_model
 参数：
   - **path_prefix** (str) – 模型的存储目录 + 模型名称（不包含后缀）。如果是 None，表示从内存加载模型。
   - **executor** (Executor) – 运行模型的 ``executor`` ，详见 :ref:`api_guide_executor` 。
+  - **kwargs** - 支持的 key 包括 'model_filename', 'params_filename'。(注意：kwargs 主要是用来做反向兼容的)。
+    - **model_filename** (str) - 自定义 model_filename。
+    - **params_filename** (str) - 自定义 params_filename。
 
 返回：该接口返回一个包含三个元素的列表 [program，feed_target_names, fetch_targets]。它们的含义描述如下：
   - **program** （Program）– ``Program`` （详见 :ref:`api_guide_Program` ）类的实例。此处它被用于预测，因此可被称为Inference Program。
