@@ -32,7 +32,7 @@ serialize_program
 
     path_prefix = "./infer_model"
 
-    # User defined network, here a softmax regession example
+    # 用户自定义网络，此处用 softmax 回归为例。
     image = paddle.static.data(name='img', shape=[None, 28, 28], dtype='float32')
     label = paddle.static.data(name='label', shape=[None, 1], dtype='int64')
     predict = paddle.static.nn.fc(image, 10, activation='softmax')
@@ -42,8 +42,8 @@ serialize_program
     exe = paddle.static.Executor(paddle.CPUPlace())
     exe.run(paddle.static.default_startup_program())
 
-    # serialize the default main program to bytes.
+    # 序列化program
     serialized_program = paddle.static.serialize_program([image], [predict])
 
-    # deserialize bytes to program
+    # 反序列化program
     deserialized_program = paddle.static.deserialize_program(serialized_program)
