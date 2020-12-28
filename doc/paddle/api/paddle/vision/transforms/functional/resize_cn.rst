@@ -15,14 +15,14 @@ resize
             如果size是一个序列，例如（h，w），输出大小将与此匹配。
             如果size为int，图像的较小边缘将与此数字匹配，即如果 height > width，则图像将重新缩放为(size * height / width, size)。
     - interpolation (int|str, optional) - 插值的方法. 默认值: 'bilinear'. 
-            当时用 ``pil`` 作为后端时, 支持的插值方法如下: 
+            当使用 ``pil`` 作为后端时, 支持的插值方法如下: 
             - "nearest": Image.NEAREST, 
             - "bilinear": Image.BILINEAR, 
             - "bicubic": Image.BICUBIC, 
             - "box": Image.BOX, 
             - "lanczos": Image.LANCZOS, 
             - "hamming": Image.HAMMING
-            当时用 ``cv2`` 作为后端时, 支持的插值方法如下:
+            当使用 ``cv2`` 作为后端时, 支持的插值方法如下:
             - "nearest": cv2.INTER_NEAREST, 
             - "bilinear": cv2.INTER_LINEAR, 
             - "area": cv2.INTER_AREA, 

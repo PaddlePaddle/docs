@@ -13,11 +13,11 @@ RandomRotate
     - degrees (sequence|float|int) - 旋转的角度度数范围。如果度数是数字而不是像（min，max）这样的序列，则会根据degrees参数值生成度数范围（-degrees，+degrees）。
     - interpolation (int|str, optional): 插值的方法. 如果这个参数没有设定或者输入图像为单通道，则该参数会根据
             使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST`` 。 
-            当时用 ``pil`` 作为后端时, 支持的插值方法如下: 
+            当使用 ``pil`` 作为后端时, 支持的插值方法如下: 
             - "nearest": Image.NEAREST, 
             - "bilinear": Image.BILINEAR, 
             - "bicubic": Image.BICUBIC
-            当时用 ``cv2`` 作为后端时, 支持的插值方法如下:
+            当使用 ``cv2`` 作为后端时, 支持的插值方法如下:
             - "nearest": cv2.INTER_NEAREST, 
             - "bilinear": cv2.INTER_LINEAR, 
             - "bicubic": cv2.INTER_CUBIC
