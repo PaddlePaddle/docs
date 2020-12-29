@@ -11,7 +11,7 @@
 环境设置
 --------
 
-本示例基于飞桨开源框架2.0RC版本。
+本示例基于飞桨开源框架2.0RC1版本。
 
 .. code:: ipython3
 
@@ -28,23 +28,25 @@
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0-rc1
 
 
 数据集
 ------
 
-本示例采用\ `CIFAR-10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集。这是一个经典的数据集，由50000张图片的训练数据，和10000张图片的测试数据组成，其中每张图片是一个RGB的长和宽都为32的图片。使用\ ``paddle.vision.datasets.cifar.Cifar10``\ 可以方便的完成数据的下载工作，把数据归一化到\ ``(0, 1.0)``\ 区间内，并提供迭代器供按顺序访问数据。我们会把训练数据和测试数据分别存放在两个\ ``numpy``\ 数组中，供后面的训练和评估来使用。
+本示例采用\ `CIFAR-10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集。这是一个经典的数据集，由50000张图片的训练数据，和10000张图片的测试数据组成，其中每张图片是一个RGB的长和宽都为32的图片。使用\ ``paddle.vision.datasets.Cifar10``\ 可以方便的完成数据的下载工作，把数据归一化到\ ``(0, 1.0)``\ 区间内，并提供迭代器供按顺序访问数据。我们会把训练数据和测试数据分别存放在两个\ ``numpy``\ 数组中，供后面的训练和评估来使用。
 
 .. code:: ipython3
 
-    cifar10_train = paddle.vision.datasets.cifar.Cifar10(mode='train', transform=None)
+    import paddle.vision.transforms as T
+    transform = T.Compose([T.Transpose((2, 0, 1))])
+    
+    cifar10_train = paddle.vision.datasets.Cifar10(mode='train', transform=transform)
     x_train = np.zeros((50000, 3, 32, 32))
     y_train = np.zeros((50000, 1), dtype='int32')
     
     for i in range(len(cifar10_train)):
         train_image, train_label = cifar10_train[i]
-        train_image = train_image.reshape((3,32,32 ))
         
         # normalize the data
         x_train[i,:, :, :] = train_image / 255.
@@ -58,19 +60,26 @@
 
 .. parsed-literal::
 
+    Cache file /home/aistudio/.cache/paddle/dataset/cifar/cifar-10-python.tar.gz not found, downloading https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz 
+    Begin to download
+    
+    Download finished
+
+
+.. parsed-literal::
+
     (50000, 3, 32, 32)
     (50000,)
 
 
 .. code:: ipython3
 
-    cifar10_test = paddle.vision.datasets.cifar.Cifar10(mode='test', transform=None)
+    cifar10_test = paddle.vision.datasets.cifar.Cifar10(mode='test', transform=transform)
     x_test = np.zeros((10000, 3, 32, 32), dtype='float32')
     y_test = np.zeros((10000, 1), dtype='int64')
     
     for i in range(len(cifar10_test)):
         test_image, test_label = cifar10_test[i]
-        test_image = test_image.reshape((3,32,32 )) 
        
         # normalize the data
         x_test[i,:, :, :] = test_image / 255.
@@ -124,7 +133,7 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/rc_image_search_001.png?raw=true
+.. image:: image_search_files/image_search_8_0.png
 
 
 
@@ -149,7 +158,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
     for y_test_idx, y in enumerate(y_test):
         class_idx_to_test_idxs[y].append(y_test_idx)
 
-有了上面的索引，我们就可以为飞桨准备一个读取数据的迭代器。该迭代器每次生成\ ``2 * number of classes``\ 张图片，在CIFAR10数据集中，这会是20张图片。前10张图片，和后10张图片，分别是10个类别中每个类别随机抽出的一张图片。这样，在实际的训练过程中，我们就会有10组相似的图片和90组不相似的图片（前10张图片中的任意一张图片，都与后10张的对应位置的1张图片相似，而与其他9张图片不相似）。
+有了上面的索引，我们就可以为飞桨准备一个读取数据的迭代器。该迭代器每次生成\ ``2 * number of classes``\ 张图片，在CIFAR10数据集中，这会是20张图片。前10张图片，和后10张图片，分别是10个类别中每个类别随机抽出的一张图片。这样，在实际的训练过程中，我们就会有10张相似的图片和90张不相似的图片（前10张图片中的任意一张图片，都与后10张的对应位置的1张图片相似，而与其他9张图片不相似）。
 
 .. code:: ipython3
 
@@ -201,7 +210,7 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/rc_image_search_002.png?raw=true
+.. image:: image_search_files/image_search_15_1.png
 
 
 
@@ -301,46 +310,46 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 .. parsed-literal::
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.273315]
-    epoch: 0, batch_id: 500, loss is: [2.1661842]
-    epoch: 1, batch_id: 0, loss is: [2.1161895]
-    epoch: 1, batch_id: 500, loss is: [2.0314116]
-    epoch: 2, batch_id: 0, loss is: [1.9640319]
-    epoch: 2, batch_id: 500, loss is: [1.8882437]
-    epoch: 3, batch_id: 0, loss is: [1.8816122]
-    epoch: 3, batch_id: 500, loss is: [1.8939931]
-    epoch: 4, batch_id: 0, loss is: [2.1332495]
-    epoch: 4, batch_id: 500, loss is: [1.8578304]
-    epoch: 5, batch_id: 0, loss is: [1.8462454]
-    epoch: 5, batch_id: 500, loss is: [1.9699743]
-    epoch: 6, batch_id: 0, loss is: [2.5005558]
-    epoch: 6, batch_id: 500, loss is: [2.0097346]
-    epoch: 7, batch_id: 0, loss is: [1.8816965]
-    epoch: 7, batch_id: 500, loss is: [1.6799539]
-    epoch: 8, batch_id: 0, loss is: [1.469229]
-    epoch: 8, batch_id: 500, loss is: [2.241674]
-    epoch: 9, batch_id: 0, loss is: [1.9045532]
-    epoch: 9, batch_id: 500, loss is: [2.4102457]
-    epoch: 10, batch_id: 0, loss is: [1.726363]
-    epoch: 10, batch_id: 500, loss is: [2.0155177]
-    epoch: 11, batch_id: 0, loss is: [1.9058796]
-    epoch: 11, batch_id: 500, loss is: [2.5273433]
-    epoch: 12, batch_id: 0, loss is: [1.7982479]
-    epoch: 12, batch_id: 500, loss is: [2.1631742]
-    epoch: 13, batch_id: 0, loss is: [1.5346181]
-    epoch: 13, batch_id: 500, loss is: [1.7859802]
-    epoch: 14, batch_id: 0, loss is: [2.0379326]
-    epoch: 14, batch_id: 500, loss is: [1.7520059]
-    epoch: 15, batch_id: 0, loss is: [1.6825731]
-    epoch: 15, batch_id: 500, loss is: [1.8745648]
-    epoch: 16, batch_id: 0, loss is: [1.6543556]
-    epoch: 16, batch_id: 500, loss is: [2.0173113]
-    epoch: 17, batch_id: 0, loss is: [1.8639036]
-    epoch: 17, batch_id: 500, loss is: [1.5646063]
-    epoch: 18, batch_id: 0, loss is: [2.126454]
-    epoch: 18, batch_id: 500, loss is: [2.143014]
-    epoch: 19, batch_id: 0, loss is: [2.1033292]
-    epoch: 19, batch_id: 500, loss is: [2.3456562]
+    epoch: 0, batch_id: 0, loss is: [2.308973]
+    epoch: 0, batch_id: 500, loss is: [2.1715643]
+    epoch: 1, batch_id: 0, loss is: [2.2405038]
+    epoch: 1, batch_id: 500, loss is: [1.7425933]
+    epoch: 2, batch_id: 0, loss is: [2.2761073]
+    epoch: 2, batch_id: 500, loss is: [1.8646128]
+    epoch: 3, batch_id: 0, loss is: [2.0105839]
+    epoch: 3, batch_id: 500, loss is: [2.1285064]
+    epoch: 4, batch_id: 0, loss is: [1.9750721]
+    epoch: 4, batch_id: 500, loss is: [2.7026405]
+    epoch: 5, batch_id: 0, loss is: [1.9730712]
+    epoch: 5, batch_id: 500, loss is: [1.9468365]
+    epoch: 6, batch_id: 0, loss is: [1.9853971]
+    epoch: 6, batch_id: 500, loss is: [1.9933486]
+    epoch: 7, batch_id: 0, loss is: [2.28084]
+    epoch: 7, batch_id: 500, loss is: [2.035228]
+    epoch: 8, batch_id: 0, loss is: [2.4355981]
+    epoch: 8, batch_id: 500, loss is: [1.9757481]
+    epoch: 9, batch_id: 0, loss is: [1.7824882]
+    epoch: 9, batch_id: 500, loss is: [1.7308222]
+    epoch: 10, batch_id: 0, loss is: [1.6952913]
+    epoch: 10, batch_id: 500, loss is: [1.7937721]
+    epoch: 11, batch_id: 0, loss is: [1.9583824]
+    epoch: 11, batch_id: 500, loss is: [1.954584]
+    epoch: 12, batch_id: 0, loss is: [1.9372938]
+    epoch: 12, batch_id: 500, loss is: [1.923907]
+    epoch: 13, batch_id: 0, loss is: [2.0790615]
+    epoch: 13, batch_id: 500, loss is: [1.879385]
+    epoch: 14, batch_id: 0, loss is: [1.6512644]
+    epoch: 14, batch_id: 500, loss is: [1.6813613]
+    epoch: 15, batch_id: 0, loss is: [1.7223592]
+    epoch: 15, batch_id: 500, loss is: [1.8162235]
+    epoch: 16, batch_id: 0, loss is: [1.7605373]
+    epoch: 16, batch_id: 500, loss is: [1.9162548]
+    epoch: 17, batch_id: 0, loss is: [2.070904]
+    epoch: 17, batch_id: 500, loss is: [1.6421287]
+    epoch: 18, batch_id: 0, loss is: [2.260833]
+    epoch: 18, batch_id: 500, loss is: [1.7033148]
+    epoch: 19, batch_id: 0, loss is: [2.0115561]
+    epoch: 19, batch_id: 500, loss is: [2.305007]
 
 
 模型预测
@@ -388,11 +397,11 @@ similary_or_not)的形式，即，每一个训练样本由两张图片组成，�
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_search/image_search_files/rc_image_search_003.png?raw=true
+.. image:: image_search_files/image_search_22_0.png
+
 
 
 The end
 -------
 
 上面展示的结果当中，每一行里其余的图片都是跟第一张图片按照相似度进行排序相似的图片。但是，你也可以发现，在某些类别上，比如汽车、青蛙、马，可以有不错的效果，但在另外一些类别上，比如飞机，轮船，效果并不是特别好。你可以试着分析这些错误，进一步调整网络结构和超参数，以获得更好的结果。
-
