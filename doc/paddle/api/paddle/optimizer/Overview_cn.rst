@@ -27,6 +27,7 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
     "7", " :ref:`Optimizer <cn_api_paddle_optimizer_Optimizer>` ", "飞桨框架优化器基类"
     "8", " :ref:`RMSProp <cn_api_paddle_optimizer_RMSProp>` ", "RMSProp优化器"
     "9", " :ref:`SGD <cn_api_paddle_optimizer_SGD>` ", "SGD优化器"
+    "10", " :ref:`ModelAverage <cn_api_paddle_optimizer_ModelAverage>` ", "ModelAverage优化器"
     
 .. _about_lr:
 学习率衰减相关API
