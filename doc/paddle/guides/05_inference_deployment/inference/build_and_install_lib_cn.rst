@@ -20,7 +20,9 @@
     "ubuntu14.04_cuda10.1_cudnn7.6_avx_mkl_trt6_gcc82", , "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-gpu-cuda10.1-cudnn7-avx-mkl-trt6/paddle_inference.tgz>`_",
     "ubuntu14.04_cuda10.2_cudnn8_avx_mkl_trt7_gcc82", , "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-gpu-cuda10.2-cudnn8-avx-mkl-trt7/paddle_inference.tgz>`_",
     "ubuntu14.04_cuda11_cudnn8_avx_mkl_trt7_gcc82", , "`paddle_inference.tgz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-gpu-cuda11-cudnn8-avx-mkl-trt7/paddle_inference.tgz>`_",
-    "nv_jetson_cuda10_cudnn7.6_trt6(jetpack4.3)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-cuda10.0-cudnn7.6-trt6.0/paddle_inference.tgz>`_",
+    "nv_jetson_cuda10_cudnn7.6_trt6_nano(jetpack4.3, for Nano)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-nano/paddle_inference_install_dir.zip>`_",
+    "nv_jetson_cuda10_cudnn7.6_trt6_tx2(jetpack4.3, for TX2 series)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-tx2/paddle_inference_install_dir.zip>`_",
+    "nv_jetson_cuda10_cudnn7.6_trt6_xavier(jetpack4.3, for AGX Xavier and Xavier NX)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-xavier/paddle_inference_install_dir.zip>`_",
 
 
 从源码编译
