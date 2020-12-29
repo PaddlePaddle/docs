@@ -37,7 +37,7 @@
 |WITH_MKL |   是否使用Intel MKL(数学核心库)或者OPENBLAS     | ON/OFF     |
 |WITH_PYTHON | 是否编译Python包                | OFF(推荐)        |
 |MSVC_STATIC_CRT|是否使用/MT 模式进行编译，默认使用 /MT 模式进行编译 |ON/OFF|
-|CUDA_TOOKIT_ROOT_DIR|编译GPU预测库时，需设置CUDA的根目录|YOUR_CUDA_PATH|
+|CUDA_TOOLKIT_ROOT_DIR|编译GPU预测库时，需设置CUDA的根目录|YOUR_CUDA_PATH|
 
 请按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
 
@@ -64,8 +64,8 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
    ```
    - 编译GPU预测库:
    ```bash
-   # -DCUDA_TOOKIT_ROOT_DIR为你所安装的cuda根目录，例如-DCUDA_TOOKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOKIT_ROOT_DIR=YOUR_CUDA_PATH
+   # -DCUDA_TOOLKIT_ROOT_DIR为你所安装的cuda根目录，例如-DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOLKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
 3. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，编译inference_lib_dist项目。

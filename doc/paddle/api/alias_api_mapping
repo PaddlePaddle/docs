@@ -325,7 +325,7 @@ paddle.tensor.math.tanh	paddle.tanh,paddle.tensor.tanh,paddle.nn.functional.tanh
 paddle.fluid.dygraph.jit.load	paddle.jit.load
 paddle.fluid.layers.batch_norm	paddle.static.nn.batch_norm
 paddle.fluid.layers.cosh	paddle.cosh,paddle.tensor.cosh,paddle.tensor.math.cosh
-paddle.nn.layer.common.UpSample	paddle.nn.UpSample,paddle.nn.layer.UpSample
+paddle.nn.layer.common.Upsample	paddle.nn.Upsample,paddle.nn.layer.Upsample
 paddle.fluid.layers.instance_norm	paddle.static.nn.instance_norm
 paddle.nn.functional.activation.hardshrink	paddle.nn.functional.hardshrink
 paddle.fluid.layers.clip	paddle.nn.clip,paddle.nn.clip.clip
