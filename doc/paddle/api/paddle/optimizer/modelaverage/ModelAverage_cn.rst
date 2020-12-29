@@ -152,7 +152,7 @@ ModelAverage优化器，在训练过程中累积特定连续的历史Parameters�
                                                 min_average_window=2,
                                                 max_average_window=4)
     loss.backward()
-    modelaverage.minimize()
+    modelaverage.minimize(loss)
     modelaverage.clear_grad()
 
 .. py:method:: step()
