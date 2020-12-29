@@ -1,7 +1,7 @@
 SmoothL1Loss
 -------------------------------
 
-.. py:class:: paddle.nn.loss.SmoothL1Loss(reduction='mean', delta=1.0, name=None)
+.. py:class:: paddle.nn.SmoothL1Loss(reduction='mean', delta=1.0, name=None)
 
 该OP计算输入input和标签label间的SmoothL1损失，如果逐个元素的绝对误差低于1，则创建使用平方项的条件
 ，否则为L1损失。在某些情况下，它可以防止爆炸梯度, 也称为Huber损失,该损失函数的数学计算公式如下：
@@ -24,26 +24,28 @@ SmoothL1Loss
     - **delta** (string, 可选): SmoothL1Loss损失的阈值参数，用于控制Huber损失对线性误差或平方误差的侧重。数据类型为float32。 默认值= 1.0。
     - **name** (string, 可选): - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
     
-调用参数
+输入
 ::::::::::
     - **input** (Tensor): 输入 `Tensor`， 数据类型为float32。其形状为 :math:`[N, C]` , 其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，k >= 1。
     - **label** (Tensor): 输入input对应的标签值，数据类型为float32。数据类型和input相同。
 
 
 
-返回：返回计算 `SmoothL1Loss` 后的损失值。
+返回
+:::::::::
+Tensor, 计算 `SmoothL1Loss` 后的损失值。
 
-返回类型：Tensor
 
-**代码示例**
+代码示例
+:::::::::
 
 ..  code-block:: python
 
             import paddle
             import numpy as np
 
-            input = np.random.rand(3,3).astype("float32")
-            label = np.random.rand(3,3).astype("float32")
+            input_data = np.random.rand(3,3).astype("float32")
+            label_data = np.random.rand(3,3).astype("float32")
             input = paddle.to_tensor(input_data)
             label = paddle.to_tensor(label_data)
             loss = paddle.nn.SmoothL1Loss()

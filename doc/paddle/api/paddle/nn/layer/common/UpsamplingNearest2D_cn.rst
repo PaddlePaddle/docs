@@ -51,8 +51,8 @@ https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation
 
 
 参数:
-    - **size** (list|tuple|Tensor|None) - 输出Tensor，输入为4D张量，形状为为(out_h, out_w)的2-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
-    - **scale_factor** (float|Tensor|list|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
+    - **size** (list|tuple|Tensor|None) - 输出Tensor，输入为4D张量，形状为(out_h, out_w)的2-D Tensor。如果 :code:`size` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 ``size`` 是变量，则其维度大小为1。默认值为None。
+    - **scale_factor** (float|Tensor|list|None)-输入的高度或宽度的乘数因子。 ``size`` 和 ``scale_factor`` 至少要设置一个。 ``size`` 的优先级高于 ``scale_factor`` 。默认值为None。如果 ``scale_factor`` 是一个list或tuple，它必须与输入的shape匹配。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，默认值：'NCHW'。
     - **name** (str|None, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
