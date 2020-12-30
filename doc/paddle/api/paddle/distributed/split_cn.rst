@@ -4,7 +4,7 @@ split
 -------------------------------
 
 
-.. py:function:: paddle.distributed.split(x, size, operatiion, axis=0, num_partitions=1, gather_out=True, weight_attr=None, bias_attr=None, name=None)
+.. py:function:: paddle.distributed.split(x, size, operation, axis=0, num_partitions=1, gather_out=True, weight_attr=None, bias_attr=None, name=None)
 
 切分指定操作的参数到多个设备，并且并行计算得到结果。
 
