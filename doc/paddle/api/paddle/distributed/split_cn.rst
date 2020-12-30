@@ -4,7 +4,7 @@ split
 -------------------------------
 
 
-.. py:function:: paddle.distributed.split(x, size, operatiion, axis=0, num_partitions=1, gather_out=True, param_attr=None, bias_attr=None, name=None)
+.. py:function:: paddle.distributed.split(x, size, operatiion, axis=0, num_partitions=1, gather_out=True, weight_attr=None, bias_attr=None, name=None)
 
 切分指定操作的参数到多个设备，并且并行计算得到结果。
 
@@ -26,11 +26,11 @@ split
     - x (Tensor) - 输入Tensor。Tensor的数据类型为：float16、float32、float64、int32、int64。
     - size (list|tuple) - 指定参数形状的列表或元组，包含2个元素。
     - operation (str) - 指定操作名称，当前支持的操作名称为'embedding'或'linear'。
-    - axis (int，可选) - 指定沿哪个维度切分参数。
-    - num_partitions (int，可选) - 指定参数的划分数。
-    - gather_out (bool，可选) - 是否聚合所有设备的计算结果。
-    - param_attr (ParamAttr，可选) - 指定参数的属性。
-    - bias_attr (ParamAttr，可选) - 指定偏置的属性。
+    - axis (int，可选) - 指定沿哪个维度切分参数。默认值：0。
+    - num_partitions (int，可选) - 指定参数的划分数。默认值：1。
+    - gather_out (bool，可选) - 是否聚合所有设备的计算结果。默认地，聚合所有设备的计算结果。默认值：True。
+    - weight_attr (ParamAttr，可选) - 指定参数的属性。默认值：None。
+    - bias_attr (ParamAttr，可选) - 指定偏置的属性。默认值：None。
     - name (str，可选) - 默认值为None，通常用户不需要设置该属性。更多信息请参考 :ref:`api_guide_Name` 。
 
 返回
@@ -41,14 +41,12 @@ Tensor
 :::::::::
 .. code-block:: python
 
-        import numpy
         import paddle
         from paddle.distributed import init_parallel_env
 
         paddle.set_device('gpu:%d'%paddle.distributed.ParallelEnv().dev_id)
         init_parallel_env()
-        np_data = numpy.random.randint(0, 8, (10,4))
-        data = paddle.to_tensor(np_data)
+        data = paddle.randint(0, 8, shape=[10,4])
         emb_out = padle.distributed.split(
             data,
             (8, 8),
