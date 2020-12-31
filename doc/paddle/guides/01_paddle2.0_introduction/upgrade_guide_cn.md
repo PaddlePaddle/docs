@@ -217,9 +217,10 @@ mnist = Mnist()
 
 ```python
 import paddle
+from paddle.vision.transforms import ToTensor
 
-train_dataset = paddle.vision.datasets.MNIST(mode='train')
-test_dataset = paddle.vision.datasets.MNIST(mode='test')
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 lenet = paddle.vision.models.LeNet()
 
 # Mnist继承paddle.nn.Layer属于Net，model包含了训练功能
@@ -243,9 +244,10 @@ model.evaluate(test_dataset, log_freq=20, batch_size=64)
 
 ```python
 import paddle
+from paddle.vision.transforms import ToTensor
 
-train_dataset = paddle.vision.datasets.MNIST(mode='train')
-test_dataset = paddle.vision.datasets.MNIST(mode='test')
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 lenet = paddle.vision.models.LeNet()
 loss_fn = paddle.nn.CrossEntropyLoss()
 
