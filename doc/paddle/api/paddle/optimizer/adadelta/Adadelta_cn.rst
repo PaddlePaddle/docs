@@ -195,7 +195,6 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     print(lr) # 0.001
 
     # example2: PiecewiseDecay is used, return the step learning rate
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
