@@ -41,7 +41,7 @@ DistributedStrategy
 
 `Post Local SGD <https://arxiv.org/abs/1808.07217>`__
 
-配置DistributedStrategy中的`ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`__
+配置DistributedStrategy中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
 
 **示例代码**
 
@@ -59,7 +59,7 @@ DistributedStrategy
 
 .. py:attribute:: build_strategy
 
-配置DistributedStrategy中的`BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`__
+配置DistributedStrategy中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
 
 **示例代码**
 

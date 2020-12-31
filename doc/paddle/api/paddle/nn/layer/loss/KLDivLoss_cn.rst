@@ -1,7 +1,7 @@
 KLDivLoss
 -------------------------------
 
-.. py:class:: paddle.nn.loss.KLDivLoss(reduction='mean')
+.. py:class:: paddle.nn.KLDivLoss(reduction='mean')
 
 该算子计算输入(Input)和输入(Label)之间的Kullback-Leibler散度损失。注意其中输入(Input)应为对数概率值，输入(Label)应为概率值。
 
@@ -35,8 +35,6 @@ kL发散损失计算如下：
     import paddle
     import numpy as np
     import paddle.nn as nn
-
-    paddle.disable_static()
 
     shape = (5, 20)
     x = np.random.uniform(-10, 10, shape).astype('float32')
