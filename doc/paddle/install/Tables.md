@@ -350,7 +350,29 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         <td> - </td>
     </tr>
     <tr>
-        <td> nv-jetson-jetpack4.3-xavier </td>
+        <td> nv-jetson-jetpack4.3-nano </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-nano/paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-nano/paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
+        <td> nv-jetson-jetpack4.3-tx2 </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-tx2/paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-tx2/paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0rc1-cp36-cp36m-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
+        <td> nv-jetson-jetpack4.3-xavier (for AGX Xavier and Xavier NX) </td>
         <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-rc1-nv-jetson-jetpack4.3-xavier/paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl">
         paddlepaddle_gpu-2.0.0rc1-cp27-cp27mu-linux_aarch64.whl</a></td>
         <td> - </td>
