@@ -41,7 +41,7 @@ WITH_MKL                      ON/OFF           build inference libs supporting M
 WITH_MKLDNN                   ON/OFF           build inference libs supporting MKLDNN
 WITH_XBYAK                    ON               build with XBYAK, must be OFF when building on NV Jetson platforms
 WITH_NV_JETSON                OFF              build inference libs on NV Jetson platforms
-WITH_TENSORRT                 OFF              build inference libs with NVIDIA TensorRT
+WITH_TENSORRT                 OFF              build inference libs with NVIDIA TensorRT. TENSORRT_ROOT needs to be set as the root dir of TRT at the same time
 ============================  ===============  ==================
 
 It is recommended to configure options according to the recommended values to avoid linking unnecessary libraries. Other options can be set if it is necessary.
