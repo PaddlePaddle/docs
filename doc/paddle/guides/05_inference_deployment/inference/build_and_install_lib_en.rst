@@ -1,7 +1,7 @@
 .. _install_or_build_cpp_inference_lib_en:
 
 Install and Compile C++ Inference Library on Linux
-=============================================
+====================================================
 
 Direct Download and Installation
 ---------------------------------
@@ -41,6 +41,7 @@ WITH_MKL                      ON/OFF           build inference libs supporting M
 WITH_MKLDNN                   ON/OFF           build inference libs supporting MKLDNN
 WITH_XBYAK                    ON               build with XBYAK, must be OFF when building on NV Jetson platforms
 WITH_NV_JETSON                OFF              build inference libs on NV Jetson platforms
+WITH_TENSORRT                 OFF              build inference libs with NVIDIA TensorRT
 ============================  ===============  ==================
 
 It is recommended to configure options according to the recommended values to avoid linking unnecessary libraries. Other options can be set if it is necessary.
@@ -208,4 +209,6 @@ The version information of the inference library is recorded in version.txt, inc
      WITH_GPU: ON
      CUDA version: 8.0
      CUDNN version: v7
+
+
 
