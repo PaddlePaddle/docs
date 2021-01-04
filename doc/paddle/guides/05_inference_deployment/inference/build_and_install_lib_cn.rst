@@ -40,7 +40,7 @@ WITH_GPU                      ON/OFF         编译支持GPU的预测库
 WITH_MKL                      ON/OFF         编译支持MKL的预测库
 WITH_MKLDNN                   ON/OFF         编译支持MKLDNN的预测库
 WITH_XBYAK                    ON             使用XBYAK编译，在jetson硬件上编译需要设置为OFF
-WITH_NV_JETSON                OFF            在NV Jetson硬件上编译时需要设为ON
+WITH_TENSORRT                 OFF            编译支持NVIDIA TensorRT的预测库，需要另外配置TENSORRT_ROOT选项指定TRT根目录
 ============================  =============  ==================
 
 建议按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
@@ -194,4 +194,6 @@ version.txt 中记录了该预测库的版本信息，包括Git Commit ID、使�
      WITH_GPU: ON
      CUDA version: 10.1
      CUDNN version: v7
+
+
 
