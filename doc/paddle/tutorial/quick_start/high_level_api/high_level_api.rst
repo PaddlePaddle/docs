@@ -697,16 +697,16 @@ train.py里面包含的就是单机单卡代码
            def on_train_end(self, logs=None)                   训练结束后，`Model.fit`接口中调用
            def on_eval_begin(self, logs=None)                  评估开始前，`Model.evaluate`接口调用
            def on_eval_end(self, logs=None)                    评估结束后，`Model.evaluate`接口调用
-           def on_test_begin(self, logs=None)                  预测测试开始前，`Model.predict`接口中调用
-           def on_test_end(self, logs=None)                    预测测试结束后，`Model.predict`接口中调用 
+           def on_predict_begin(self, logs=None)               预测测试开始前，`Model.predict`接口中调用
+           def on_predict_end(self, logs=None)                 预测测试结束后，`Model.predict`接口中调用 
            def on_epoch_begin(self, epoch, logs=None)          每轮训练开始前，`Model.fit`接口中调用 
            def on_epoch_end(self, epoch, logs=None)            每轮训练结束后，`Model.fit`接口中调用 
            def on_train_batch_begin(self, step, logs=None)     单个Batch训练开始前，`Model.fit`和`Model.train_batch`接口中调用
            def on_train_batch_end(self, step, logs=None)       单个Batch训练结束后，`Model.fit`和`Model.train_batch`接口中调用
            def on_eval_batch_begin(self, step, logs=None)      单个Batch评估开始前，`Model.evalute`和`Model.eval_batch`接口中调用
            def on_eval_batch_end(self, step, logs=None)        单个Batch评估结束后，`Model.evalute`和`Model.eval_batch`接口中调用
-           def on_test_batch_begin(self, step, logs=None)      单个Batch预测测试开始前，`Model.predict`和`Model.test_batch`接口中调用
-           def on_test_batch_end(self, step, logs=None)        单个Batch预测测试结束后，`Model.predict`和`Model.test_batch`接口中调用
+           def on_predict_batch_begin(self, step, logs=None)   单个Batch预测测试开始前，`Model.predict`和`Model.test_batch`接口中调用
+           def on_predict_batch_end(self, step, logs=None)     单个Batch预测测试结束后，`Model.predict`和`Model.test_batch`接口中调用
        """
        def __init__(self):
            super(SelfDefineCallback, self).__init__()
