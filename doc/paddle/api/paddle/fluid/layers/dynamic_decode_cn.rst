@@ -5,7 +5,7 @@ dynamic_decode
 
 
 
-.. py:method:: dynamic_decode(decoder, inits=None, max_step_num=None, output_time_major=False, impute_finished=False, is_test=False, return_length=False, **kwargs):
+.. py:method:: paddle.nn.dynamic_decode(decoder, inits=None, max_step_num=None, output_time_major=False, impute_finished=False, is_test=False, return_length=False, **kwargs):
 
 
 
