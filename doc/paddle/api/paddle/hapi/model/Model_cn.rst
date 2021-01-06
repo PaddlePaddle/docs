@@ -7,7 +7,8 @@ Model
 
  ``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，通过 ``paddle.enable_static()`` 来切换。需要注意的是，该开关需要在实例化 ``Model`` 对象之前使用。输入需要使用 ``paddle.static.InputSpec`` 来定义。
 
-**代码示例**：
+代码示例
+:::::::::
 
 .. code-block:: python
 
@@ -42,8 +43,11 @@ Model
     data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
     model.fit(data, epochs=2, batch_size=32, verbose=1)
 
+方法
+:::::::::
 
-.. py:function:: train_batch(inputs, labels=None)
+train_batch(inputs, labels=None)
+'''''''''
 
 在一个批次的数据上进行训练。
 
@@ -81,7 +85,8 @@ Model
     loss = model.train_batch([data], [label])
     print(loss)
 
-.. py:function:: eval_batch(inputs, labels=None)
+eval_batch(inputs, labels=None)
+'''''''''
 
 在一个批次的数据上进行评估。
 
@@ -121,7 +126,8 @@ Model
     loss = model.eval_batch([data], [label])
     print(loss)
 
-.. py:function:: predict_batch(inputs)
+predict_batch(inputs)
+'''''''''
 
 在一个批次的数据上进行测试。
 
@@ -159,7 +165,8 @@ Model
     print(out)
 
 
-.. py:function:: save(path, training=True):
+save(path, training=True)
+'''''''''
 
 将模型的参数和训练过程中优化器的信息保存到指定的路径，以及推理所需的参数与文件。如果training=True，所有的模型参数都会保存到一个后缀为 ``.pdparams`` 的文件中。
 所有的优化器信息和相关参数，比如 ``Adam`` 优化器中的 ``beta1`` ， ``beta2`` ，``momentum`` 等，都会被保存到后缀为 ``.pdopt``。如果优化器比如SGD没有参数，则该不会产生该文件。如果training=False，则不会保存上述说的文件。只会保存推理需要的参数文件和模型文件。
@@ -215,7 +222,8 @@ Model
     model.save('inference_model', False)  # save for inference
 
 
-.. py:function:: load(path, skip_mismatch=False, reset_optimizer=False):
+load(path, skip_mismatch=False, reset_optimizer=False)
+'''''''''
 
 从指定的文件中载入模型参数和优化器参数，如果不想恢复优化器参数信息，优化器信息文件可以不存在。需要注意的是：参数名称的检索是根据保存模型时结构化的名字，当想要载入参数进行迁移学习时要保证预训练模型和当前的模型的参数有一样结构化的名字。
 
@@ -248,7 +256,8 @@ Model
     model.save('checkpoint/test')
     model.load('checkpoint/test')
 
-.. py:function:: parameters(*args, **kwargs):
+parameters(*args, **kwargs)
+'''''''''
 
 返回一个包含模型所有参数的列表。
     
@@ -270,7 +279,8 @@ Model
     params = model.parameters()
 
 
-.. py:function:: prepare(optimizer=None, loss_function=None, metrics=None):
+prepare(optimizer=None, loss_function=None, metrics=None)
+'''''''''
 
 配置模型所需的部件，比如优化器、损失函数和评价指标。
 
@@ -280,7 +290,8 @@ Model
     - **metrics** (Metric|list[Metric]) - 当该参数被设定时，所有给定的评估方法会在训练和测试时被运行，并返回对应的指标。默认值：None。
 
 
-.. py:function:: fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None):
+fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None)
+'''''''''
 
 训练模型。当 ``eval_data`` 给定时，会在 ``eval_freq`` 个 ``epoch`` 后进行一次评估。
 
@@ -382,7 +393,8 @@ Model
                   epochs=2,
                   save_dir='mnist_checkpoint')
 
-.. py:function:: evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None):
+evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None)
+'''''''''
 
 在输入数据上，评估模型的损失函数值和评估指标。
 
@@ -418,7 +430,8 @@ Model
     result = model.evaluate(val_dataset, batch_size=64)
     print(result)
 
-.. py:function:: predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=None):
+predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=None)
+'''''''''
 
 在输入数据上，预测模型的输出。
 
@@ -472,7 +485,8 @@ Model
     result = model.predict(test_dataset, batch_size=64)
     print(len(result[0]), result[0][0].shape)
 
-.. py:function:: summary(input_size=None, batch_size=None, dtype=None):
+summary(input_size=None, batch_size=None, dtype=None)
+'''''''''
 
 打印网络的基础结构和参数信息。
 
