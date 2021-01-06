@@ -8,7 +8,7 @@ spawn
 使用 ``spawn`` 方法启动多进程任务。
 
 .. note::
-    ``spawn``目前仅支持 GPU collective模式.
+    ``spawn`` 目前仅支持 GPU collective模式.
 
 参数
 :::::::::
