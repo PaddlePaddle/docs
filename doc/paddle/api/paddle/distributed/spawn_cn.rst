@@ -14,7 +14,7 @@ spawn
     - nprocs (int, 可选) - 启动进程的数目。默认值为-1。当 ``nproc`` 为-1时，模型执行时将会从环境变量中获取当前可用的所有设备进行使用：如果使用GPU执行任务，将会从环境变量 ``CUDA_VISIBLE_DEVICES`` 中获取当前所有可用的设备ID；如果使用CPU执行任务，将会从环境变量 ``CPU_NUM`` 中获取当前可用的CPU设备数，例如，可以通过指令 ``export CPU_NUM=4`` 配置默认可用CPU设备数，如果此环境变量没有设置，将会默认设置该环境变量的值为1。
     - join (bool, 可选) - 对所有启动的进程执行阻塞的 ``join`` ，等待进程执行结束。默认为True。
     - daemon (bool, 可选) - 配置启动进程的 ``daemon`` 属性。默认为False。
-    - **options (dict, 可选) - 其他初始化并行执行环境的配置选项。目前支持以下选项： (1) start_method (string) - 启动子进程的方法。进程的启动方法可以是 ``spawn`` ， ``fork`` , ``forkserver`` 。 因为CUDA运行时环境不支持 ``fork`` 方法，当在子进程中使用CUDA时，需要使用 ``spawn`` 或者 ``forkserver`` 方法启动进程。默认方法为 ``spawn`` ； (2) cluster_node_ips (string) - 运行集群的节点（机器）IP，例如 "192.168.0.16,192.168.0.17" ，默认值为 "127.0.0.1" ； (3) node_ip (string) - 当前节点（机器）的IP。例如 "192.168.0.16" , 默认值为 "127.0.0.1" ； (4) started_port (int) - 一个训练节点（机器）上各训练进程的起始端口。例如 6170. 默认值为None ； (5) selected_gpus (string) - 指定训练使用的GPU ID, 例如 "0,1,2,3" ， 默认值为None ； (6) print_config (bool) - 打印当前并行训练的配置， 默认值为False ； (7) use_paddlecloud (bool) - 配置是否使用PaddleCloud启动多进程任务，默认值为False。
+    - **options (dict, 可选) - 其他初始化并行执行环境的配置选项。目前支持以下选项： (1) start_method (string) - 启动子进程的方法。进程的启动方法可以是 ``spawn`` ， ``fork`` , ``forkserver`` 。 因为CUDA运行时环境不支持 ``fork`` 方法，当在子进程中使用CUDA时，需要使用 ``spawn`` 或者 ``forkserver`` 方法启动进程。默认方法为 ``spawn`` ； (2) gpus (string) - 指定训练使用的GPU ID, 例如 "0,1,2,3" ， 默认值为None ； (3) ips (string) - 运行集群的节点（机器）IP，例如 "192.168.0.16,192.168.0.17" ，默认值为 "127.0.0.1" 。
 
 返回
 :::::::::
@@ -93,8 +93,8 @@ spawn
     # only use part of visible devices for parallel training,
     # but you can't set your machine's environment variable 
     # CUDA_VISIBLE_DEVICES, such as it is None or all cards
-    # {0,1,2,3,4,5,6,7}, you can pass `selected_gpus` to 
+    # {0,1,2,3,4,5,6,7}, you can pass `gpus` to 
     # select the GPU cards you want to use. For example,
     # this case will use cards {4,5} if your machine hold 8 cards.
     if __name__ == '__main__':
-        dist.spawn(train, args=(True,), nprocs=2, selected_gpus='4,5')
+        dist.spawn(train, args=(True,), nprocs=2, gpus='4,5')
