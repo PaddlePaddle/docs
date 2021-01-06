@@ -19,7 +19,7 @@ dynamic_decode
   - **inits** (object，可选) - 传递给 :code:`decoder.initialize` 的参数。默认为None。
   - **max_step_num** (int，可选) - 最大步数。如果未提供，解码直到解码过程完成（ :code:`decode.step()` 返回的表示完成状态的Tensor中的值全部为True）。默认为None。
   - **output_time_major** (bool，可选) - 指明最终输出(此方法的第一个返回值)中包含的Tensor的数据布局。如果为False，其将使用batch优先的数据布局, 此时的形状为 :math:`[batch\_size，seq\_len，...]`。如果为True，其将使用time优先的数据布局，此时的形状为 :math:`[seq\_len，batch\_size，...]`。默认值为False。
-  - **impute_finished** (bool，可选) - 若为True并且`decoder.tracks_own_finished`为False，对于当前批次中完成状态为结束的样本，将会拷贝其上一步的状态，而非像未结束的实例那样使用 :code:`decode.step()` 返回的 :code:`next_states` 作为新的状态，这保证了返回的最终状态 :code:`final_states` 是正确的；否则，不会区分是否结束，也没有这个拷贝操作。若 :code:`final_states` 会被使用，则这里应该设置为True，这会一定程度上影响速度。默认为False。
+  - **impute_finished** (bool，可选) - 若为True并且 :code:`decoder.tracks_own_finished` 为False，对于当前批次中完成状态为结束的样本，将会拷贝其上一步的状态，而非像未结束的实例那样使用 :code:`decode.step()` 返回的 :code:`next_states` 作为新的状态，这保证了返回的最终状态 :code:`final_states` 是正确的；否则，不会区分是否结束，也没有这个拷贝操作。若 :code:`final_states` 会被使用，则这里应该设置为True，这会一定程度上影响速度。默认为False。
   - **is_test** (bool，可选) - 标识是否是预测模式，预测模式下内存占用会更少。默认为False。
   - **return_length** (bool，可选) - 标识是否在返回的元组中额外包含一个存放了所有解码序列实际长度的Tensor。默认为False。
   - **kwargs** - 其他命名关键字参数。这些参数将传递给 :code:`decoder.step`。
