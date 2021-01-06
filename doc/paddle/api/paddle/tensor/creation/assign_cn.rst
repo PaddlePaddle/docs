@@ -1,9 +1,9 @@
-.. _cn_api_fluid_layers_assign:
+.. _cn_api_paddle_tensor_creation_assign:
 
 assign
 -------------------------------
 
-.. py:function:: paddle.assign(input,output=None)
+.. py:function:: paddle.assign(x,output=None)
 
 
 
@@ -16,7 +16,6 @@ assign
 
 返回：输出Tensor，形状、数据类型、数据值和 ``input`` 一致。
 
-返回类型：Tensor
 
 **代码示例**：
 

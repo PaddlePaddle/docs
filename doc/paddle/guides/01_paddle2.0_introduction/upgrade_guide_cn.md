@@ -217,9 +217,10 @@ mnist = Mnist()
 
 ```python
 import paddle
+from paddle.vision.transforms import ToTensor
 
-train_dataset = paddle.vision.datasets.MNIST(mode='train')
-test_dataset = paddle.vision.datasets.MNIST(mode='test')
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 lenet = paddle.vision.models.LeNet()
 
 # Mnist继承paddle.nn.Layer属于Net，model包含了训练功能
@@ -243,9 +244,10 @@ model.evaluate(test_dataset, log_freq=20, batch_size=64)
 
 ```python
 import paddle
+from paddle.vision.transforms import ToTensor
 
-train_dataset = paddle.vision.datasets.MNIST(mode='train')
-test_dataset = paddle.vision.datasets.MNIST(mode='test')
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 lenet = paddle.vision.models.LeNet()
 loss_fn = paddle.nn.CrossEntropyLoss()
 
@@ -293,7 +295,7 @@ $ python -m paddle.distributed.launch train.py
 $ python -m paddle.distributed.launch --selected_gpus='0,1' train.py
 
 # 单机多卡启动，设置当前使用第0号和第1号卡
-$ export CUDA_VISIABLE_DEVICES='0,1'
+$ export CUDA_VISIBLE_DEVICES=0,1
 $ python -m paddle.distributed.launch train.py
 ```
 
@@ -353,7 +355,7 @@ $ python -m paddle.distributed.launch train.py
 $ python -m paddle.distributed.launch --selected_gpus '0,1' train.py
 
 # 单机多卡启动，设置当前使用第0号和第1号卡
-$ export CUDA_VISIABLE_DEVICES='0,1'
+$ export CUDA_VISIBLE_DEVICES=0,1
 $ python -m paddle.distributed.launch train.py
 ```
 
@@ -546,7 +548,7 @@ Python API 的变更与 C++ 基本对应，会在2.0RC版发布。
 ### 2.0转换工具
 为了降级代码升级的成本，我们提供了转换工具，可以帮助将Paddle 1.8版本开发的代码，升级为2.0-rc的API。由于相比于Paddle 1.8版本，2.0-rc版本的API进行了大量的升级，包括API名称，参数名称，行为等。转换工具当前还不能覆盖所有的API升级；对于无法转换的API，转换工具会报错，提示用户手动升级。
 
-https://github.com/PaddlePaddle/paddle1to2
+https://github.com/PaddlePaddle/paddle_upgrade_tool
 
 对于转换工具没有覆盖的API，请查看官网的API文档，手动升级代码的API。
 

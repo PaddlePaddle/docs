@@ -66,6 +66,13 @@ For input :code:`Tensor`, take the elementwise cosine value.
 
 API Reference:  :ref:`api_fluid_layers_cos`
 
+cosh
+------------------
+
+For input :code:`Tensor`, take the elementwise hyperbolic cosine value.
+
+API Reference:  :ref:`api_fluid_layers_cosh`
+
 round
 ------------------
 

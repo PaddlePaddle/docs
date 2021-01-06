@@ -41,14 +41,14 @@ DistributedStrategy
 
 `Post Local SGD <https://arxiv.org/abs/1808.07217>`__
 
-配置DistributedStrategy中的`ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`__
+配置DistributedStrategy中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
 
 **示例代码**
 
 .. code-block:: python
 
   import paddle
-  exe_strategy = paddle.fluid.ExecutionStrategy()
+  exe_strategy = paddle.static.ExecutionStrategy()
   exe_strategy.num_threads = 10
   exe_strategy.num_iteration_per_drop_scope = 10
   exe_strategy.num_iteration_per_run = 10
@@ -59,14 +59,14 @@ DistributedStrategy
 
 .. py:attribute:: build_strategy
 
-配置DistributedStrategy中的`BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`__
+配置DistributedStrategy中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
 
 **示例代码**
 
 .. code-block:: python
 
   import paddle
-  build_strategy = paddle.fluid.BuildStrategy()
+  build_strategy = paddle.static.BuildStrategy()
   build_strategy.enable_sequential_execution = True
   build_strategy.fuse_elewise_add_act_ops = True
   build_strategy.fuse_bn_act_ops = True

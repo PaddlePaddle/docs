@@ -43,13 +43,12 @@ Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p` ，�
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     x = np.array([[1,2,3], [4,5,6]]).astype('float32')
     x = paddle.to_tensor(x)
     m = paddle.nn.Dropout(p=0.5)
     y_train = m(x)
     m.eval()  # switch the model to test phase
     y_test = m(x)
-    print(x.numpy())
-    print(y_train.numpy())
-    print(y_test.numpy())
+    print(x)
+    print(y_train)
+    print(y_test)
