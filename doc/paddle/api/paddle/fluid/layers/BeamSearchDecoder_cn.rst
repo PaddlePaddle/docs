@@ -26,7 +26,6 @@ BeamSearchDecoder
 
 .. code-block:: python
         
-    import numpy as np
     import paddle
     from paddle.nn import BeamSearchDecoder, dynamic_decode
     from paddle.nn import GRUCell, Linear, Embedding
