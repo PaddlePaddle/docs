@@ -128,7 +128,7 @@ def filter_same_api():
 
         if is_not_display_apis(same_apis):
             del same_api_map[k]
-    print('filted same_api_map has {} items'.format(len(same_api_map)))
+    print('filtered same_api_map has {} items'.format(len(same_api_map)))
 
 def choose_real_api(api_list):
     global id_real_api_map
