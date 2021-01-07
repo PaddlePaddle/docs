@@ -262,27 +262,40 @@ class EnDocGenerator(object):
     def print_class(self):
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
-        if "fluid.dygraph" in self.module_name or 'paddle.nn' in self.module_name:
-            self.stream.write('''..  autoclass:: {0}.{1}
+
+        cls_templates = {
+            'default': '''..  autoclass:: {0}.{1}
+    :members:
+    :inherited-members:
+    :noindex:
+
+''',
+            'no-inherited': '''..  autoclass:: {0}.{1}
     :members:
     :noindex:
 
-'''.format(self.module_name, self.api))
-        elif "fluid.optimizer" in self.module_name:
-            self.stream.write('''..  autoclass:: {0}.{1}
+''',
+            'fluid.optimizer': '''..  autoclass:: {0}.{1}
     :members:
     :inherited-members:
     :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 
-'''.format(self.module_name, self.api))
+'''}
+        tmpl = 'default'
+        if 'fluid.dygraph' in self.module_name or \
+           'paddle.vision' in self.module_name or \
+           'paddle.callbacks' in self.module_name or \
+           'paddle.io' in self.module_name or \
+           'paddle.nn' in self.module_name:
+            tmpl = 'no-inherited'
+        elif "paddle.optimizer" in self.module_name or \
+             "fluid.optimizer" in self.module_name:
+            tmpl = 'fluid.optimizer'
         else:
-            self.stream.write('''..  autoclass:: {0}.{1}
-    :members:
-    :inherited-members:
-    :noindex:
+            tmpl = 'default'
 
-'''.format(self.module_name, self.api))
+        self.stream.write(cls_templates[tmpl].format(self.module_name, self.api))
 
     def print_function(self):
         self._print_ref_()
