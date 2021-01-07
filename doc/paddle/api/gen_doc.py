@@ -262,7 +262,7 @@ class EnDocGenerator(object):
     def print_class(self):
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
-        if "fluid.dygraph" in self.module_name:
+        if "fluid.dygraph" in self.module_name or 'paddle.nn' in self.module_name:
             self.stream.write('''..  autoclass:: {0}.{1}
     :members:
     :noindex:
