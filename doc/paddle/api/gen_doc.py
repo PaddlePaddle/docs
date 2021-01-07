@@ -286,6 +286,7 @@ class EnDocGenerator(object):
         if 'fluid.dygraph' in self.module_name or \
            'paddle.vision' in self.module_name or \
            'paddle.callbacks' in self.module_name or \
+           'paddle.hapi.callbacks' in self.module_name or \
            'paddle.io' in self.module_name or \
            'paddle.nn' in self.module_name:
             tmpl = 'no-inherited'
