@@ -75,7 +75,7 @@ def get_alias_mapping(file="./alias_api_mapping"):
             else:
                 t = line.strip().split('    ')
             if len(t) < 2:
-                print('line "',line,'" splited to ', t)
+                print('line "', line, '" splited to ', t)
                 continue
             real_api = t[0].strip()
             alias_apis = t[1].strip().split(',')
