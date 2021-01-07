@@ -66,6 +66,7 @@ def get_all_api(root_path='paddle'):
                         api_set.add(api_all)
     print('collect {} apis.'.format(len(api_set)))
 
+
 def get_all_same_api():
     global same_api_map, api_set
     for api in api_set:
@@ -76,6 +77,7 @@ def get_all_same_api():
             same_api_map[fc_id] = [api]
     print('same_api_map has {} items'.format(len(same_api_map)))
 
+
 def get_not_display_doc_list(file="./not_display_doc_list"):
     global not_display_doc_map
     with open(file, 'r') as f:
@@ -84,6 +86,7 @@ def get_not_display_doc_list(file="./not_display_doc_list"):
             not_display_doc_map[line] = 1
     print('not_display_doc_map has {} items'.format(len(not_display_doc_map)))
 
+
 def get_display_doc_map(file="./display_doc_list"):
     global display_doc_map
     with open(file, 'r') as f:
@@ -91,6 +94,7 @@ def get_display_doc_map(file="./display_doc_list"):
             line = line.strip()
             display_doc_map[line] = 1
     print('display_doc_map has {} items'.format(len(display_doc_map)))
+
 
 def get_alias_mapping(file="./alias_api_mapping"):
     global alias_api_map, id_real_api_map
@@ -118,6 +122,7 @@ def get_alias_mapping(file="./alias_api_mapping"):
     print('id_real_api_map has {} items'.format(len(id_real_api_map)))
     print('alias_api_map has {} items'.format(len(alias_api_map)))
 
+
 # filter the same_api_map by display list and not display list
 def filter_same_api():
     global same_api_map
@@ -129,6 +134,7 @@ def filter_same_api():
         if is_not_display_apis(same_apis):
             del same_api_map[k]
     print('filtered same_api_map has {} items'.format(len(same_api_map)))
+
 
 def choose_real_api(api_list):
     global id_real_api_map
@@ -288,24 +294,28 @@ class EnDocGenerator(object):
         self._print_header_(self.api, dot='-', is_title=False)
 
         cls_templates = {
-            'default': '''..  autoclass:: {0}
+            'default':
+            '''..  autoclass:: {0}
     :members:
     :inherited-members:
     :noindex:
 
 ''',
-            'no-inherited': '''..  autoclass:: {0}
+            'no-inherited':
+            '''..  autoclass:: {0}
     :members:
     :noindex:
 
 ''',
-            'fluid.optimizer': '''..  autoclass:: {0}
+            'fluid.optimizer':
+            '''..  autoclass:: {0}
     :members:
     :inherited-members:
     :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 
-'''}
+'''
+        }
         tmpl = 'default'
         if 'fluid.dygraph' in self.module_name or \
            'paddle.vision' in self.module_name or \
