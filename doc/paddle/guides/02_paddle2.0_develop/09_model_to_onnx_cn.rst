@@ -29,6 +29,7 @@ Paddle动态图模型转换为ONNX协议，首先会将Paddle的动态图 ``padd
 .. code-block:: python
 
     import paddle
+    from paddle import nn
     from paddle.static import InputSpec
 
     class LinearNet(nn.Layer):
@@ -98,5 +99,5 @@ ONNX官方工具包提供了API可验证模型的正确性，主要包括两个�
 五、相关链接
 ##################
 
- - `算子转换支持列表  <https://github.com/paddlepaddle/paddle2onnx/blob/develop/docs/op_list.md>`_ 
- - `模型转换支持列表 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/docs/model_zoo.md>`_ 
+ - `算子转换支持列表  <https://github.com/paddlepaddle/paddle2onnx/blob/develop/docs/zh/op_list.md>`_ 
+ - `模型转换支持列表 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/docs/zh/model_zoo.md>`_ 
