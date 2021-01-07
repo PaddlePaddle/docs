@@ -11,7 +11,7 @@ to_tensor
 :::::::::
 
     - pic (PIL.Image|numpy.ndarray) - 输入的图像数据。
-    - data_format (str, optional): 数据的格式，必须为 'HWC' 或 'CHW'。 默认值: 'CHW'。
+    - data_format (str, optional): 返回的张量的格式，必须为 'HWC' 或 'CHW'。 默认值: 'CHW'。
 
 返回
 :::::::::

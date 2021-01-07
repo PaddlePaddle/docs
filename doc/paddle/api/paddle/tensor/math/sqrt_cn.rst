@@ -3,46 +3,35 @@
 sqrt
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.sqrt(x, name=None)
+.. py:function:: paddle.sqrt(x, name=None)
 
 
 
 
 计算输入的算数平方根。
 
-.. math:: out=\sqrt x=x^{1/2}
+.. math:: 
+        out=\sqrt x=x^{1/2}
 
 .. note::
     请确保输入中的数值是非负数。
 
 参数:
 
-    - **x** (Variable) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
+    - **x** (Tensor) - 支持任意维度的Tensor。数据类型为float32，float64或float16。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：返回类型为Variable(Tensor|LoDTensor)， 数据类型同输入一致。
+返回：返回类型为Tensor， 数据类型同输入一致。
 
 **代码示例**：
 
 .. code-block:: python
 
-        import numpy as np
-        import paddle.fluid as fluid
+    import paddle
 
-        inputs = fluid.layers.data(name="x", shape = [3], dtype='float32')
-        output = fluid.layers.sqrt(inputs)
-
-        exe = fluid.Executor(fluid.CPUPlace())
-        exe.run(fluid.default_startup_program())
-
-        img = np.array([0, 9, 36]).astype(np.float32)
-
-        res = exe.run(fluid.default_main_program(), feed={'x':img}, fetch_list=[output])
-        print(res)
-        # [array([0., 3., 6.], dtype=float32)] 
-
-
-
+    x = paddle.to_tensor([0., 9., 36.])
+    y = paddle.sqrt(x)
+    print(y) # y=[0., 3., 6.]
 
 
 

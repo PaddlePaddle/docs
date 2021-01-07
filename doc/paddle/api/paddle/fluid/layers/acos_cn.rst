@@ -3,7 +3,7 @@
 acos
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.acos(x, name=None)
+.. py:function:: paddle.acos(x, name=None)
 
 
 
@@ -27,8 +27,8 @@ arccosine函数。
 .. code-block:: python
 
         import paddle
-        paddle.disable_static()
+
         x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
         res = paddle.acos(x)
-        print(res.numpy())
+        print(res)
         # [2.5293, 1.0573, 2.2711, 1.5336]

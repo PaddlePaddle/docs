@@ -23,7 +23,6 @@ sign
     import paddle
 
     data = np.array([3.0, 0.0, -2.0, 1.7], dtype='float32')
-    paddle.disable_static()
     x = paddle.to_tensor(data)
     out = paddle.sign(x=x)
     print(out)  # [1.0, 0.0, -1.0, 1.0]

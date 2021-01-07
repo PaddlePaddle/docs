@@ -23,13 +23,11 @@ less_than
 
 .. code-block:: python
 
-     import numpy as np
-     import paddle
-     import paddle.imperative as imperative
-     paddle.enable_imperative()
-     x = imperative.to_variable(np.array([1, 2, 3]))
-     y = imperative.to_variable(np.array([1, 3, 2]))
-     result1 = paddle.less_than(x, y)
-     print(result1.numpy())  # result1 = [False True False]
+    import paddle
+
+    x = paddle.to_tensor([1, 2, 3])
+    y = paddle.to_tensor([1, 3, 2])
+    result = paddle.less_than(x, y)
+    print(result) # result = [False, True, False]
 
 

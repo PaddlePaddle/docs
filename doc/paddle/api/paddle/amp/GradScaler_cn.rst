@@ -38,12 +38,14 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
     optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
     scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
     data = paddle.rand([10, 3, 32, 32])
+
     with paddle.amp.auto_cast():
         conv = model(data)
         loss = paddle.mean(conv)
-        scaled = scaler.scale(loss)  # scale the loss 
-        scaled.backward()            # do backward
-        scaler.minimize(optimizer, scaled)  # update parameters
+
+    scaled = scaler.scale(loss)  # scale the loss 
+    scaled.backward()            # do backward
+    scaler.minimize(optimizer, scaled)  # update parameters
 
 
 .. py:function:: scale(var)
@@ -66,12 +68,14 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
     optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
     scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
     data = paddle.rand([10, 3, 32, 32])
+
     with paddle.amp.auto_cast():
         conv = model(data)
         loss = paddle.mean(conv)
-        scaled = scaler.scale(loss)  # scale the loss 
-        scaled.backward()            # do backward
-        scaler.minimize(optimizer, scaled)  # update parameters
+
+    scaled = scaler.scale(loss)  # scale the loss 
+    scaled.backward()            # do backward
+    scaler.minimize(optimizer, scaled)  # update parameters
 
 .. py:function:: minimize(optimizer, *args, **kwargs)
 
@@ -94,12 +98,14 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
     optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
     scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
     data = paddle.rand([10, 3, 32, 32])
+    
     with paddle.amp.auto_cast():
         conv = model(data)
         loss = paddle.mean(conv)
-        scaled = scaler.scale(loss)  # scale the loss 
-        scaled.backward()            # do backward
-        scaler.minimize(optimizer, scaled)  # update parameters
+
+    scaled = scaler.scale(loss)  # scale the loss 
+    scaled.backward()            # do backward
+    scaler.minimize(optimizer, scaled)  # update parameters
 
 
 

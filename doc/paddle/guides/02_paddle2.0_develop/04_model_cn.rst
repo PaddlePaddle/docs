@@ -13,22 +13,20 @@
 +---------------+---------------------------------------------------------------------------+
 | 功能          | API名称                                                                   |
 +===============+===========================================================================+
-| Conv          | Conv1d、Conv2d、Conv3d、ConvTranspose1d、ConvTranspose2d、ConvTranspose3d |
+| Conv          | Conv1D、Conv2D、Conv3D、Conv1DTranspose、Conv2DTranspose、Conv3DTranspose |
 +---------------+---------------------------------------------------------------------------+
-| Pool          | AdaptiveAvgPool1d、AdaptiveAvgPool2d、AdaptiveAvgPool3d、                 |
-|               | AdaptiveMaxPool1d、AdaptiveMaxPool2d、AdaptiveMaxPool3d、                 |
-|               | AvgPool1d、AvgPool2d、AvgPool3d、MaxPool1d、MaxPool2d、MaxPool3d          |
+| Pool          | AdaptiveAvgPool1D、AdaptiveAvgPool2D、AdaptiveAvgPool3D、                 |
+|               | AdaptiveMaxPool1D、AdaptiveMaxPool2D、AdaptiveMaxPool3D、                 |
+|               | AvgPool1D、AvgPool2D、AvgPool3D、MaxPool1D、MaxPool2D、MaxPool3D          |
 +---------------+---------------------------------------------------------------------------+
-| Padding       | ConstantPad1d、ConstantPad2d、ConstantPad3d、Pad2D、ReflectionPad1d、     |
-|               | ReflectionPad2d、ReplicationPad1d、ReplicationPad2d、ReplicationPad3d、   |
-|               | ZeroPad2d                                                                 |
+| Padding       | Pad1D、Pad2D、Pad3d                                                       |
 +---------------+---------------------------------------------------------------------------+
 | Activation    | ELU、GELU、Hardshrink、Hardtanh、HSigmoid、LeakyReLU、LogSigmoid、        |
 |               | LogSoftmax、PReLU、ReLU、ReLU6、SELU、Sigmoid、Softmax、Softplus、        |
 |               | Softshrink、Softsign、Tanh、Tanhshrink                                    |
 +---------------+---------------------------------------------------------------------------+
-| Normlization  | BatchNorm、BatchNorm1d、BatchNorm2d、BatchNorm3d、GroupNorm、InstanceNorm |
-|               | InstanceNorm1d、InstanceNorm2d、InstanceNorm3d、LayerNorm、SpectralNorm、 |
+| Normlization  | BatchNorm、BatchNorm1D、BatchNorm2D、BatchNorm3D、GroupNorm、             |
+|               | InstanceNorm1D、InstanceNorm2D、InstanceNorm3D、LayerNorm、SpectralNorm、 |
 |               | SyncBatchNorm                                                             |
 +---------------+---------------------------------------------------------------------------+
 | Recurrent NN  | BiRNN、GRU、GRUCell、LSTM、LSTMCell、RNN、RNNCellBase、SimpleRNN、        |
@@ -101,14 +99,13 @@
 
 .. parsed-literal::
 
-    飞桨框架内置模型：['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152', 'VGG', 'vgg11', 'vgg13', 'vgg16', 'vgg19', 'MobileNetV1', 'mobilenet_v1', 'MobileNetV2', 'mobilenet_v2', 'LeNet']
+    飞桨框架内置模型： ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152', 'VGG', 'vgg11', 'vgg13', 'vgg16', 'vgg19', 'MobileNetV1', 'mobilenet_v1', 'MobileNetV2', 'mobilenet_v2', 'LeNet']
 
 使用方式如下：
 
 .. code:: ipython3
 
-    import paddle
-    lenet = paddle.vision.models.Lenet()
+    lenet = paddle.vision.models.LeNet()
 
 
 我们可以通过\ ``paddle.summary()``\ 方法查看模型的结构与每一层输入输出形状，具体如下：
@@ -123,12 +120,12 @@
     ---------------------------------------------------------------------------
      Layer (type)       Input Shape          Output Shape         Param #
     ===========================================================================
-       Conv2d-1      [[64, 1, 28, 28]]     [64, 6, 28, 28]          60
+       Conv2D-1      [[64, 1, 28, 28]]     [64, 6, 28, 28]          60
         ReLU-1       [[64, 6, 28, 28]]     [64, 6, 28, 28]           0
-      MaxPool2d-1    [[64, 6, 28, 28]]     [64, 6, 14, 14]           0
-       Conv2d-2      [[64, 6, 14, 14]]     [64, 16, 10, 10]        2,416
+      MaxPool2D-1    [[64, 6, 28, 28]]     [64, 6, 14, 14]           0
+       Conv2D-2      [[64, 6, 14, 14]]     [64, 16, 10, 10]        2,416
         ReLU-2       [[64, 16, 10, 10]]    [64, 16, 10, 10]          0
-      MaxPool2d-2    [[64, 16, 10, 10]]     [64, 16, 5, 5]           0
+      MaxPool2D-2    [[64, 16, 10, 10]]     [64, 16, 5, 5]           0
        Linear-1         [[64, 400]]           [64, 120]           48,120
        Linear-2         [[64, 120]]            [64, 84]           10,164
        Linear-3          [[64, 84]]            [64, 10]             850

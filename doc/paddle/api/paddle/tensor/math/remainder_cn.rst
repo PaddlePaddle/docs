@@ -19,7 +19,7 @@ mod
         - name（str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回：
-        多维Tensor。存储计算的结果，数据类型与 ``x`` 相同，维度为广播后的形状。
+   ``Tensor``，存储运算后的结果。如果x和y有不同的shape且是可以广播的，返回Tensor的shape是x和y经过广播后的shape。如果x和y有相同的shape，返回Tensor的shape与x，y相同。
 
 **代码示例**
 

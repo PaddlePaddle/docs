@@ -23,12 +23,10 @@ equal
 
 .. code-block:: python
 
-     import numpy as np
      import paddle
-     import paddle.imperative as imperative
-     paddle.enable_imperative()
-     x = imperative.to_variable(np.array([1, 2, 3]))
-     y = imperative.to_variable(np.array([1, 3, 2]))
+
+     x = paddle.to_tensor([1.0, 2.0, 3.0])
+     y = paddle.to_tensor([1.0, 3.0, 2.0])
      result1 = paddle.equal(x, y)
-     print(result1.numpy())  # result1 = [True False False]
+     print(result1)  # result1 = [True False False]
 

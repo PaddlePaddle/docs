@@ -22,20 +22,21 @@
     $ python -m paddle.distributed.launch train.py
 
     # 单机多卡启动，设置当前使用的第0号和第1号卡
-    $ python -m paddle.distributed.launch --selected_gpus='0,1' train.py
+    $ python -m paddle.distributed.launch --gpus='0,1' train.py
 
     # 单机多卡启动，设置当前使用第0号和第1号卡
-    $ export CUDA_VISIABLE_DEVICES='0,1'
+    $ export CUDA_VISIBLE_DEVICES=0,1
     $ python -m paddle.distributed.launch train.py
 
 基础API场景
 ~~~~~~~~~~~~~~~~~~
 
-如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行2处修改，具体如下：
+如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行3处修改，具体如下：
 
 .. code:: python3
 
     import paddle
+    # 第1处改动 导入分布式训练所需的包
     import paddle.distributed as dist
 
     # 加载数据集
@@ -50,13 +51,14 @@
         paddle.nn.Dropout(0.2),
         paddle.nn.Linear(512, 10)
     )
-    # 第1处改动，初始化并行环境
+
+    # 第2处改动，初始化并行环境
     dist.init_parallel_env()
 
     # 用 DataLoader 实现数据加载
-    train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=32, shuffle=True)
+    train_loader = paddle.io.DataLoader(train_dataset, batch_size=32, shuffle=True)
     
-    # 第2处改动，增加paddle.DataParallel封装
+    # 第3处改动，增加paddle.DataParallel封装
     mnist = paddle.DataParallel(mnist)
     mnist.train()
 
@@ -94,20 +96,18 @@
             optim.clear_grad()
 
 修改完后保存文件，然后使用跟高层API相同的启动方式即可。
+**注意：** 单卡训练不支持调用\ ``init_parallel_env``\ ，请使用以下几种方式进行分布式训练。
 
 .. code:: bash
-
-    # 单机单卡启动，默认使用第0号卡
-    $ python train.py
 
     # 单机多卡启动，默认使用当前可见的所有卡
     $ python -m paddle.distributed.launch train.py
 
     # 单机多卡启动，设置当前使用的第0号和第1号卡
-    $ python -m paddle.distributed.launch --selected_gpus '0,1' train.py
+    $ python -m paddle.distributed.launch --gpus '0,1' train.py
 
     # 单机多卡启动，设置当前使用第0号和第1号卡
-    $ export CUDA_VISIABLE_DEVICES='0,1'
+    $ export CUDA_VISIBLE_DEVICES=0,1
     $ python -m paddle.distributed.launch train.py
 
 2. 方式2、spawn启动
@@ -181,15 +181,7 @@ launch方式启动训练，以文件为单位启动多进程，需要用户在�
     # 使用场景：训练函数需要一些参数，并且仅需要使用部分可见的GPU设备并行训练，但是
     # 可能由于权限问题，无权配置当前机器的环境变量，例如：当前机器有8张GPU卡 
     # {0,1,2,3,4,5,6,7}，但你无权配置CUDA_VISIBLE_DEVICES，此时可以通过
-    # 指定参数 selected_gpus 选择希望使用的卡，例如 selected_gpus='4,5'，
+    # 指定参数 gpus 选择希望使用的卡，例如 gpus='4,5'，
     # 可以指定使用第4号卡和第5号卡
     if __name__ == '__main__':
-        dist.spawn(train, nprocs=2, selected_gpus='4,5')
-        
-    # 使用方式5：指定多卡通信的起始端口
-    # 使用场景：端口建立通信时提示需要重试或者通信建立失败
-    # Paddle默认会通过在当前机器上寻找空闲的端口用于多卡通信，但当机器使用环境
-    # 较为复杂时，程序找到的端口可能不够稳定，此时可以自行指定稳定的空闲起始
-    # 端口以获得更稳定的训练体验
-    if __name__ == '__main__':
-        dist.spawn(train, nprocs=2, started_port=12345)
+        dist.spawn(train, nprocs=2, gpus='4,5')

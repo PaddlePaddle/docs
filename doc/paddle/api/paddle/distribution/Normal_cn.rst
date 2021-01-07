@@ -33,7 +33,6 @@ Normal
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
     from paddle.distribution import Normal
 
@@ -50,8 +49,7 @@ Normal
     dist = Normal(loc=1., scale=[11., 22.])
 
     # Complete example
-    value_npdata = np.array([0.8], dtype="float32")
-    value_tensor = paddle.to_tensor(value_npdata)
+    value_tensor = paddle.to_tensor([0.8], dtype="float32")
 
     normal_a = Normal([0.], [1.])
     normal_b = Normal([0.5], [2.])
