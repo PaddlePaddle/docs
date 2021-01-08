@@ -3,7 +3,7 @@
 pad
 -------------------------------
 
-.. py:function:: paddle.vision.transforms.pad(img, padding, fill=(0, 0, 0), padding_mode='constant')
+.. py:function:: paddle.vision.transforms.pad(img, padding, fill=0, padding_mode='constant')
 
 使用特定的填充模式和填充值来对输入图像进行填充。
 
@@ -11,10 +11,10 @@ pad
 :::::::::
 
     - img (PIL.Image|np.ndarray) - 被填充的图像。
-    - padding (int|tuple) - 在图像每个边框上填充。
+    - padding (int|tuple|list) - 在图像每个边框上填充。
             如果提供单个int值，则用于填充图像所有边。
-            如果提供长度为2的元组，则分别为图像左/右和顶部/底部进行填充。
-            如果提供了长度为4的元组，则分别按照左，上，右和下的顺序为图像填充。
+            如果提供长度为2的元组/列表，则分别为图像左/右和顶部/底部进行填充。
+            如果提供了长度为4的元组/列表，则分别按照左，上，右和下的顺序为图像填充。
     - fill (int|tuple) - 用于填充的像素值，仅当padding_mode为constant时传递此参数，默认使用0来进行每个像素的填充。
             如果参数值是一个长度为3的元组，则会分别用于填充R，G，B通道。
     - padding_mode (string) - 填充模式，支持：constant, edge, reflect 或 symmetric，默认值：constant，使用fill参数值填充。
