@@ -191,7 +191,6 @@ paddle.fluid.param_attr.ParamAttr	paddle.ParamAttr,paddle.framework.ParamAttr
 paddle.fluid.initializer.XavierInitializer	paddle.fluid.initializer.Xavier
 paddle.nn.initializer.xavier.XavierNormal	paddle.nn.initializer.XavierNormal
 paddle.nn.initializer.xavier.XavierUniform	paddle.nn.initializer.XavierUniform
-paddle.fluid.dygraph.parallel.prepare_context	paddle.distributed.prepare_context
 paddle.tensor.math.pow	paddle.pow,paddle.tensor.pow
 paddle.fluid.input.embedding	paddle.static.nn.embedding
 paddle.fluid.clip.ClipGradByGlobalNorm	paddle.nn.ClipGradByGlobalNorm,paddle.nn.clip.ClipGradByGlobalNorm
