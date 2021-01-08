@@ -123,7 +123,7 @@ For running Paddle on Kunlun XPU machine, we must first install the Paddle packa
    ```ulimit -n 4096```
 
 8. Execute cmake ：
-9. For the meaning of specific compilation options, please refer to [Compile Options Table](https://www.paddlepaddle.org.cn/install/quick/Tables.html#Compile)
+9. For the meaning of specific compilation options, please refer to [Compile Options Table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile)
 
 For Python2: ```cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release ```
 
